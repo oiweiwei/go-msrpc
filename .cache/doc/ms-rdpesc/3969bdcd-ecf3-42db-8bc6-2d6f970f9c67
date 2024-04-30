@@ -1,0 +1,11 @@
+<div class="content"><p>The WriteCacheW_Call structure is used to write the card and
+reader information to the cache.</p><dl>
+<dd>
+<div><pre> typedef struct _WriteCacheW_Call {
+   [string] wchar_t* szLookupName;
+   WriteCache_Common Common;
+ } WriteCacheW_Call;
+</pre></div>
+</dd></dl><p><b>szLookupName:</b>  An <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> containing
+the lookup name.</p><p><b>Common:</b>  Additional parameters for
+the Write Cache call (for more information, see section <a href="5604251b-9173-457c-9476-57863df9010e" data-linktype="relative-path">2.2.1.10</a>.</p></div>

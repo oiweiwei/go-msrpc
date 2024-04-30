@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/71c5724f-447e-452c-9cb9-a0fd90d88594" data-linktype="external">msdn link</a></p><p>The LSAPR_TRUSTED_DOMAIN_NAME_INFO structure is used to
+communicate the name of a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted
+domain</a>. The following structure corresponds to the
+TrustedDomainNameInformation information class.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_TRUSTED_DOMAIN_NAME_INFO {
+   RPC_UNICODE_STRING Name;
+ } LSAPR_TRUSTED_DOMAIN_NAME_INFO,
+  *PLSAPR_TRUSTED_DOMAIN_NAME_INFO;
+</pre></div>
+</dd></dl><p><b>Name:</b>  This field contains a name
+for the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> that is
+subject to the restrictions of a NetBIOS name, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90266" data-linktype="external">[RFC1088]</a>. This field
+SHOULD be used (by implementations external to this protocol) to identify the
+domain via the NetBIOS API, as specified in [RFC1088].</p></div>

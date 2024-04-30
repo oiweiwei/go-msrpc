@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p>The SchRpcStopInstance method MUST stop a specified instance
+of a task.</p><dl>
+<dd>
+<div><pre> HRESULT SchRpcStopInstance(
+   [in] GUID guid,
+   [in] DWORD flags
+ );
+</pre></div>
+</dd></dl><p><b>guid:</b> MUST contain the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_cbc13b29-4954-4944-8865-eb8a2a550ffa" data-linktype="relative-path">task
+instance</a></span> <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>.</p><p><b>flags: </b>Unused. The client MUST send 0 and the
+server MUST return an error if nonzero.</p><p><b>Return Values: </b>For more information on return
+codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>, or Win32
+Error Codes in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><p>Upon receipt of the SchRpcStopInstance call, the server
+MUST:</p><ul><li><p><span><span> 
+</span></span>Return E_INVALIDARG if the <i>flags</i> parameter is non-zero.</p>
+</li><li><p><span><span> 
+</span></span>Return SCHED_E_TASK_NOT_RUNNING if there is no entry in the
+running task list with an instance ID matching the <i>guid</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return E_ACCESSDENIED if the caller does not have execute access
+to the task.</p>
+</li><li><p><span><span> 
+</span></span>Stop the instance of the running task (section <span><a href="1cf5d910-4b90-46db-9644-7cf9225ee4ee" data-linktype="relative-path">3.2.5.1.3</a></span>).</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK.</p>
+</li></ul></div>

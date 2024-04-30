@@ -1,0 +1,108 @@
+<div class="content"><p> </p><p>At most, only one DFSNamespaceRootBLOB can contain
+information about the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS namespace</a></span> root.
+One DFSNamespaceLinkBLOB exists for each <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS link</a></span> in the
+namespace.</p><p>Each DFSNamespaceRootBLOB or DFSNamespaceLinkBLOB MUST have
+the following:</p><ul><li><p><span><span> 
+</span></span>One <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ad861812-8cb0-497a-80bb-13c95aa4e425" data-linktype="relative-path">BLOB</a></span> containing the
+name and other information about the DFS namespace root or DFS link. This is
+the <span><a href="4ccdd530-9696-4572-968f-27d689b33999" data-linktype="relative-path">DFSRootOrLinkIDBLOB</a></span>,
+as specified in section 2.3.3.1.1.2.</p>
+</li><li><p><span><span> 
+</span></span>One BLOB containing the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_a2c6d1c9-deea-427c-91ee-56f6e726eabd" data-linktype="relative-path">DFS targets</a></span> of the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span>
+or DFS link. This is the <span><a href="0e4aa671-ba82-4645-a259-94fe7b04086b" data-linktype="relative-path">DFSTargetListBLOB</a></span>,
+as specified in section 2.3.3.1.1.3.</p>
+</li><li><p><span><span> 
+</span></span>One reserved BLOB.</p>
+</li></ul><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DFSRootOrLinkIDBLOB
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DFSTargetListBLOBSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DFSTargetListBLOB
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ReservedBLOBSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ReservedBLOB</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ReferralTTL</p>
+  </td>
+ </tr>
+</tbody></table><p><b>DFSRootOrLinkIDBLOB (variable): </b>A BLOB that
+contains identification and status information for this DFS root or DFS link.</p><p><b>DFSTargetListBLOBSize (4 bytes): </b>The size, in
+bytes, of the BLOB in the <b>DFSTargetListBLOB</b> field that immediately
+follows this field. The DFSTargetListBLOBSize is stored as an unsigned, 32-bit,
+<span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a></span>
+integer.</p><p><b>DFSTargetListBLOB (variable): </b>A BLOB that
+contains the list of targets for the DFS root or DFS link.</p><p><b>ReservedBLOBSize (4 bytes): </b>The size, in
+bytes, of the BLOB in the <b>ReservedBLOB</b> field that immediately follows
+this field. The <b>ReservedBLOBSize</b> is stored as an unsigned, 32-bit,
+little-endian integer and MUST be 4.</p><p><b>ReservedBLOB (4 bytes): </b> When creating a new
+DFSNamespaceRootBLOB or DFSNamespaceLinkBLOB, this <b>ReservedBLOB</b> MUST be
+zero-filled. When updating an existing DFSNamespaceRootBLOB or
+DFSNamespaceLinkBLOB, the contents of this <b>ReservedBLOB</b> MUST be
+preserved.</p><p><b>ReferralTTL (4 bytes): </b>The referral time-out
+value, in seconds, for the DFS root or DFS link. The <b>ReferralTTL</b> is
+stored as an unsigned, 32-bit, little-endian integer.</p></div>

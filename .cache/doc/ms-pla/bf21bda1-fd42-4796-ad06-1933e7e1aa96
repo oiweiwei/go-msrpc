@@ -1,0 +1,37 @@
+<div class="content"><p>The CreateDataCollectorFromXml method creates a <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_3184c8c5-f13b-4d77-b04a-b92feff97f61" data-linktype="relative-path">data collector</a> using XML.</p><dl>
+<dd>
+<div><pre> HRESULT CreateDataCollectorFromXml(
+   [in] BSTR bstrXml,
+   [out] IValueMap** pValidation,
+   [out, retval] IDataCollector** pCollector
+ );
+</pre></div>
+</dd></dl><p><b>bstrXml: </b>Supplies a string that contains the
+XML specifying the data collector to create. The possible data collector
+definitions can be as follows: IPerformanceCounterDataCollector (section <a href="489d285e-94eb-46b2-8a53-b3501a61b572" data-linktype="relative-path">3.2.4.6</a>), IConfigurationDataCollector
+(section <a href="0f979443-9db2-4805-b2ea-e1540d8b0533" data-linktype="relative-path">3.2.4.7</a>),
+IAlertDataCollector (section <a href="07d907e9-10ed-42f6-9135-9131657a240f" data-linktype="relative-path">3.2.4.8</a>),
+ITraceDataCollector (section <a href="94e049b9-532a-4c3a-ada2-43c75802e825" data-linktype="relative-path">3.2.4.9</a>),
+and IApiTracingDataCollector (section <a href="fed87908-2a85-4cf6-b4ac-723b81b00e1b" data-linktype="relative-path">3.2.4.10</a>). The XML for
+each of those respective data collector types is in their corresponding
+sections; the overall XML of the data collector set, which includes the XML for
+each type of data collector, specified in section <a href="b5be2d38-3f21-478d-a8b9-a61128eb2751" data-linktype="relative-path">3.2.4.19</a>. The bStrXml
+parameter value is the set of XML elements corresponding to a single type of
+data collector.</p><p><b>pValidation: </b>Receives a validation value map
+with a list of properties from the input bstrXml for this <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data collector set</a> (and its
+encapsulated objects) that are invalid or ignored. For each property of the
+data collector set and its associated objects, passed in by the client, that
+could not be set, the server MUST return in an <a href="b028335d-97c1-4b1c-bc07-8748d4956b8a" data-linktype="relative-path">IValueMap</a>. Each <a href="9786577c-9ac8-44d5-a29f-3f14514af0d8" data-linktype="relative-path">IValueMapItem</a> in the
+IValueMap represents a property of the data collector set and its encapsulated
+objects that could not be set by the server. The Names property of the
+IValueMapItem represents the property name, while the Values property of the
+IValueMap represents the HRESULT describing the specific property corresponding
+to that property. The ValueMapType property of the IValueMap is plaValidation;
+more information can be found in section <a href="03c8a331-301b-4f37-8af3-1a08d1d0b4ee" data-linktype="relative-path">2.2.11</a>. Note that the
+client MAY choose to ignore any warnings or errors that are returned by the
+server; however, if it does so, the data collector set might not be executed by
+the server as the client expects.</p><p><b>pCollector: </b>Receives the newly created data
+collector.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT with the severity bit clear on success as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>;
+otherwise, it MUST return one of the errors as defined in <a href="590752a5-ddc3-49e4-9914-147a90bd0193" data-linktype="relative-path">2.2.1</a> or one of the errors
+as defined in [MS-ERREF] section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p></div>

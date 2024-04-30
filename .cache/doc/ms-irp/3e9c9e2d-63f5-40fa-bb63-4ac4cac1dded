@@ -1,0 +1,60 @@
+<div class="content"><p> </p><p>The <b>R_FtpClearStatistics2</b> method is called by the
+client. In response, the server resets statistical data for the FTP server.</p><dl>
+<dd>
+<div><pre> DWORD R_FtpClearStatistics2(
+   [in, string, unique] INET_INFO_IMPERSONATE_HANDLE pszServer,
+   [in] DWORD dwInstance
+ );
+</pre></div>
+</dd></dl><p><b>pszServer: </b>The custom binding handle for the
+target system, as specified in section <span><a href="a6931aa0-3ab6-4018-a398-e142cb8e409e" data-linktype="relative-path">2.1.1</a></span>. The value
+MUST NOT be used by the server implementation.</p><p><b>dwInstance: </b>The ID of the protocol <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_1623705d-a7a0-4e46-9a66-66e9ee63d961" data-linktype="relative-path">server
+instance</a></span> whose statistical data is being cleared.</p><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>
+or [MS-ERREF] section <span><a href="../ms-erref/596a1078-e883-4972-9bbc-49e60bebca55" data-linktype="relative-path">2.3.1</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The system cannot find the specified file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000426</p>
+  <p>ERROR_SERVICE_NOT_ACTIVE</p>
+  </td>
+  <td>
+  <p>The service is not running.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, as
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+</p><p>In response to this request from the client, the server MAY
+reset the statistical data for the FTP server if the return code indicates
+success. If the data is reset, a time stamp SHOULD be saved. This time stamp
+SHOULD be used to populate the <b>TimeOfLastClear</b> field of the <span><b><a href="c202fba9-f50a-4360-a010-190451ad48fb" data-linktype="relative-path">FTP_STATISTICS_0</a></b></span>
+structure in subsequent calls to <span><b><a href="d5d82e20-b6a1-4de8-8a0d-fdae6a79feab" data-linktype="relative-path">R_FtpQueryStatistics2</a></b></span>.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="29ba1825-00cc-45cb-8b68-4758993395cd#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a></p></div>

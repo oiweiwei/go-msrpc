@@ -1,0 +1,140 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/b5ca989e-0a3b-4ca5-b5a3-8e4818b00af9" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_SHARED_VOLUME_STATE_INFO</b> structure
+contains information about the cluster shared <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a> for which a
+notification was generated. See <b>CLUSTER_CHANGE_SHARED_VOLUME_V2</b> (section
+<a href="f84ad01b-d0e5-4dc1-945c-4c39d90fab13" data-linktype="relative-path">2.2.2.21</a>) for details.<a id="Appendix_A_Target_29"></a><a aria-label="Product behavior note 29" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_29" data-linktype="relative-path">&lt;29&gt;</a></p><p><b>CLUSTER_SHARED_VOLUME_STATE_INFO</b> is a
+custom-marshaled structure that has the following fields:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szVolumeName
+  (520 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szNodeName
+  (520 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>VolumeState</p>
+  </td>
+ </tr>
+</tbody></table><p><b>szVolumeName (520 bytes): </b>A buffer of 16-bit <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> characters that
+MUST contain the null-terminated friendly name of the cluster shared volume for
+which the notification was generated. If the volume name plus terminating null
+character is less than the size of the buffer, the buffer is padded with additional
+null characters. The client MUST ignore these additional null characters.</p><p><b>szNodeName (520 bytes): </b>A buffer of 16-bit
+Unicode characters representing the name of the node which generated the
+notification. This buffer MUST contain the node name as a null-terminated <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a>. If the node
+name is less than the size of the buffer, the string MUST be padded with null
+characters. Any such padding MUST be ignored.</p><p><b>VolumeState (4 bytes): </b>A 32-bit integer that
+MUST contain one of the following values, indicating the state of the cluster
+shared volume.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SharedVolumeStateUnavailable</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The shared volume is unavailable.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SharedVolumeStatePaused</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The shared volume is paused.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SharedVolumeStateActive</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The shared volume is active.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SharedVolumeStateActiveRedirected</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The shared volume is active and in redirected mode.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SharedVolumeStateActiveBlockRedirected</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The shared volume is active and in block redirected
+  mode.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

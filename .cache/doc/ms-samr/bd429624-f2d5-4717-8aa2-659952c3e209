@@ -1,0 +1,86 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/bd429624-f2d5-4717-8aa2-659952c3e209" data-linktype="external">msdn link</a></p><p>The SamrGetDisplayEnumerationIndex2 method obtains an index
+into an ascending account-name–sorted list of <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_8d10bd9d-392e-431b-8218-742bdac19815" data-linktype="relative-path">accounts</a>, such that the
+index is the position in the list of the accounts whose account name best
+matches a client-provided string.</p><dl>
+<dd>
+<div><pre> long SamrGetDisplayEnumerationIndex2(
+   [in] SAMPR_HANDLE DomainHandle,
+   [in] DOMAIN_DISPLAY_INFORMATION DisplayInformationClass,
+   [in] PRPC_UNICODE_STRING Prefix,
+   [out] unsigned long* Index
+ );
+</pre></div>
+</dd></dl><p><b>DomainHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_2346e8d0-b0a0-481f-b644-85c45c60d4d1" data-linktype="relative-path">domain object</a>.</p><p><b>DisplayInformationClass: </b>An enumeration
+indicating which set of objects to return an index into (for a subsequent <a href="7cd1c6d0-8819-4a58-9721-5be588c1d4ad" data-linktype="relative-path">SamrQueryDisplayInformation3</a>
+method call).</p><p><b>Prefix: </b>A string matched against the account
+name to find a starting point for an enumeration. The <i>Prefix</i> parameter
+enables the client to obtain a listing of an account from
+SamrQueryDisplayInformation3 such that the accounts are returned in
+alphabetical order with respect to their account name, starting with the
+account name that most closely matches <i>Prefix</i>. See details later in this
+section.</p><p><b>Index: </b>A value to use as input to
+SamrQueryDisplayInformation3 in order to control the accounts that are returned
+from that method.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>The server MUST
+return an error if <i>DomainHandle.HandleType</i> is not equal to
+&#34;Domain&#34;.</p>
+</li><li><p><span>    </span><i>DomainHandle.GrantedAccess</i>
+MUST have the required access specified in section <a href="87bacbd0-7b8b-429f-abc6-4b3d895d4e90" data-linktype="relative-path">3.1.2.2</a>. Otherwise, the
+server MUST return STATUS_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>If <i>DisplayInformationClass</i>
+is not one of the following values, the server MUST return an error code:
+DomainDisplayUser, DomainDisplayMachine, DomainDisplayGroup.</p>
+</li><li><p><span>    </span>If no accounts
+exist of the type specified in DisplayInformationClass, the server MUST return
+STATUS_NO_MORE_ENTRIES.</p>
+</li><li><p><span>    </span>The output
+parameter called <i>Index</i> MUST be returned as an index into a
+one-based-indexed list of <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_60122e64-9d34-40ee-a387-782eaf7adf2f" data-linktype="relative-path">database
+objects</a> sorted by their <b>sAMAccountName</b> attribute value. The index is
+the position of the element that just precedes the element whose <b>sAMAccountName</b>
+generates the longest substring match starting at the beginning of the string
+with the <i>Prefix</i> input parameter. If no such element exists, the server
+MUST return STATUS_NO_MORE_ENTRIES.</p>
+</li><li><p><span>    </span>The list of
+directory objects MUST correspond to <i>DisplayInformationClass</i> as follows.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>DisplayInformationClass</p>
+   </th>
+   <th>
+   <p>Database object criteria</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DomainDisplayUser</p>
+  </td>
+  <td>
+  <p>All <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_e767a471-c3fa-4e4b-a40c-daeb08f82a17" data-linktype="relative-path">user
+  objects</a> (or those derived from user) with <b>userAccountControl</b>
+  containing the UF_NORMAL_ACCOUNT bit.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainDisplayMachine</p>
+  </td>
+  <td>
+  <p>All user objects (or those derived from user) with <b>userAccountControl</b>
+  containing the UF_WORKSTATION_TRUST_ACCOUNT or UF_SERVER_TRUST_ACCOUNT bit.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainDisplayGroup</p>
+  </td>
+  <td>
+  <p>All <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_7ce4771c-2043-49b8-85d3-0c60c7789f9a" data-linktype="relative-path">group
+  objects</a>.</p>
+  </td>
+ </tr></tbody></table>
+</li></ol><p> </p></div>

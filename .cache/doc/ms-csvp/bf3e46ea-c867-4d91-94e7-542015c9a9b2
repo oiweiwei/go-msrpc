@@ -1,0 +1,80 @@
+<div class="content"><p>The <b>GenerateLogEx</b> method<a id="Appendix_A_Target_53"></a><a aria-label="Product behavior note 53" href="6ea29e14-9c33-4927-90a8-258fd1d6d042#Appendix_A_53" data-linktype="relative-path">&lt;53&gt;</a> writes a
+file that contains diagnostic information about <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_acd8b49c-8762-48fd-9272-26a03643322b" data-linktype="relative-path">failover clusters</a> for the
+server on which it executes. The content and format of the file are
+implementation-specific but SHOULD contain diagnostic information.</p><dl>
+<dd>
+<div><pre> HRESULT GenerateLogEx {
+   [ in ] ClusterLogType Type, 
+   [ in ] ULONG SpanMinutes,
+   [ in ] ClusterLogExFlag flags,
+   [ out ] BSTR* LongFilePath,
+   [ in ] BOOL NoCollate
+ };
+</pre></div>
+</dd></dl><p><b>Type:</b> Is
+of type <b>ClusterLogType</b> enum as specified in section <a href="2758b03d-1e29-419f-af6b-ff212b993432" data-linktype="relative-path">2.2.28</a>.</p><p><b>SpanMinutes:</b>
+A value, in minutes, that indicates those values that SHOULD be in the log.
+Events that occurred in the range of <b>Now</b> to (<b>Now</b> – SpanMinutes)
+MUST be in the log and no others. <b>Now</b> is the GMT on the server.</p><p><b>Flags:</b>
+Is of type <b>ClusterLogExFlag</b> enum as specified in section <a href="e2b0f313-a6b9-4fd5-b5fc-7f584e3a0a84" data-linktype="relative-path">2.2.25</a>.</p><p><b>LogFilePath:</b>
+Upon successful completion of this method, the server MUST set this parameter
+to the location where the server has exposed a file containing the diagnostic
+log data. The path is relative to the machine and starts with a <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_a49a79ea-dac7-4016-9a84-cf87161db7e3" data-linktype="relative-path">share</a> name. The format is
+&#34;&lt;share&gt;\&lt;filename&gt;&#34; where &lt;share&gt; is a share name,
+and &lt;filename&gt; is the name of the file or <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_4712ded2-d927-4930-9450-29499f98cef4" data-linktype="relative-path">device</a>. The LogFilePath
+parameter MUST form a valid <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_d5a07545-a023-45ad-89a6-0b5c944bcfd4" data-linktype="relative-path">UncPath</a>
+if \\servername&gt;\ is prepended to its contents. On unsuccessful completion
+of this method, the client MUST ignore this value.</p><p><b>NoCollate:</b>
+If TRUE and if the generated cluster log would consist of multiple sections,
+individual sections of the log file SHOULD<a id="Appendix_A_Target_54"></a><a aria-label="Product behavior note 54" href="6ea29e14-9c33-4927-90a8-258fd1d6d042#Appendix_A_54" data-linktype="relative-path">&lt;54&gt;</a> be
+generated into separate files in <b>LogFilePath</b>.</p><p><b>Return
+Values:</b> A signed 32-bit value that indicates return status. If the method
+returns a negative value, it has failed. Zero or positive values indicate
+success, with the lower 16 bits in positive nonzero values containing warnings
+or flags defined in the method implementation. For more information about
+Microsoft Win32 error codes and HRESULT values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK </p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this
+method MUST return a value that is not one of the values listed in the
+preceding table. The client MUST behave in an identical manner for all return
+values not listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The opnum field value for this method is 9.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>If ClusterLogFlagLocalTime is set in Flags field, use local time
+on the server.</p>
+</li><li><p><span><span> 
+</span></span>If ClusterLogFlagSkipClusterState is set in the Flags field, the
+server MUST skip including the cluster state in the log.</p>
+</li><li><p><span><span> 
+</span></span>Generate the file with the correct data, honoring the <i>SpanMinutes</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Place the file in a valid <i>LogFilePath</i> on the machine, as
+specified in section <a href="2f8a5df5-5c19-4d63-b014-5a6cb37e0a19" data-linktype="relative-path">3.18.4.1</a>.</p>
+</li><li><p><span><span> 
+</span></span>Generate the server-relative path to the file.</p>
+</li></ul><p>Return the following information to the client:</p><ul><li><p><span><span> 
+</span></span>The server-relative path to the file.</p>
+</li></ul></div>

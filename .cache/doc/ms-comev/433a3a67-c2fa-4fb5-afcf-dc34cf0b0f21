@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The PutSubscriberProperty method sets the value of an
+application-specific <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_6d17ce3a-aa95-4db2-83f1-09d5feef3f95" data-linktype="relative-path">subscriber</a></span> property
+of the <span><a href="0d617a76-fc58-455c-9e30-1a8436c5f73a" data-linktype="relative-path">subscription</a></span>, as
+specified in section 3.1.1.2.</p><dl>
+<dd>
+<div><pre> [id(18), helpstring(&#34;method PutSubscriberProperty&#34;)] HRESULT PutSubscriberProperty(
+   [in] BSTR bstrPropertyName,
+   [in] VARIANT* propertyValue
+ );
+</pre></div>
+</dd></dl><p><b>bstrPropertyName: </b>The application-specific
+name for the subscriber property. The format for the subscriber property name
+MUST adhere to the format specified in section <span><a href="6e22df28-0d31-46f1-baab-5b37f15c3b33" data-linktype="relative-path">2.2.2.1</a></span>.</p><p><b>propertyValue: </b>The application-specific
+subscriber property value which MUST be of the type specified in <span><a href="424e0b76-d9e5-4c2e-9bcd-1bc2cdf45cdd" data-linktype="relative-path">2.2.2.2</a></span>.</p><p><b>Return Values: </b>An <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+specifying success or failure. All success codes MUST be treated the same, and
+all failure codes MUST be treated the same.</p><p>When this method is invoked, the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST validate
+both the <i>bstrPropertyName</i> and <i>propertyValue</i> parameter. If the
+validation fails, the server MUST fail the call, returning a failure HRESULT
+back to the client. Otherwise, the server MUST attempt to store the value into
+the state of the DCOM <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> instance
+servicing this call specific to the subscriber properties, and fail the call if
+it cannot. The server MUST override any previously associated value with this
+property name.</p></div>

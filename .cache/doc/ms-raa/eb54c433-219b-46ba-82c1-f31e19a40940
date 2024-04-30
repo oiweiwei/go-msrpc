@@ -1,0 +1,78 @@
+<div class="content"><p>The AuthzGetInformationFromContext method (opnum 4) returns
+information about the identified <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_519bff3c-1c9f-4d5a-aa88-a3c820a4ff3a" data-linktype="relative-path">client context</a>.</p><dl>
+<dd>
+<div><pre> DWORD AuthzGetInformationFromContext(
+         [in] AUTHZR_HANDLE ContextHandle,
+         [in] AUTHZ_CONTEXT_INFORMATION_CLASS InfoClass,
+         [out] AUTHZR_CONTEXT_INFORMATION** ppContextInformation);
+  
+</pre></div>
+</dd></dl><p><b>ContextHandle:</b> An AUTHZR_HANDLE structure, as
+defined in section <a href="4c1628c5-8093-471e-a3b8-8437420063ba" data-linktype="relative-path">2.2.1.1</a>.
+Represents the client context to retrieve information from.</p><p><b>InfoClass:</b> An AUTHZ_CONTEXT_INFORMATION_CLASS
+enumeration, as defined in section <a href="39749c89-99ca-4058-974d-acfcfe1f7b33" data-linktype="relative-path">2.2.2.1</a>. Possible values
+for this field are specified in section 2.2.2.1.</p><p><b>ppContextInformation:</b> A two-layer pointer to
+an AUTHZR_CONTEXT_INFORMATION structure, as defined in section <a href="7b11e558-cdaa-469d-906e-867fc336bd78" data-linktype="relative-path">2.2.3.3</a>. Used to return
+the context information.</p><p><b>Return Values:</b></p><p>If the function succeeds, the function MUST return
+0x00000000. </p><p>If the function fails, it MUST return a nonzero error code
+value.</p><p>When a RAZA server receives this message, the server MUST
+perform the following:</p><ul><li><p><span><span> 
+</span></span>If the <i>InfoClass</i> parameter is one of the following values,
+the RAZA server MUST:</p>
+<ol><li><p><span>   
+</span>Initialize a new AUTHZR_CONTEXT_INFORMATION structure.</p>
+</li><li><p><span>   
+</span>Set the <i>ppContextInformation</i> parameter to the memory address of
+the new structure.</p>
+</li><li><p><span>   
+</span>Perform the corresponding action using the <b>ImpersonationAccessToken</b>
+in the <b>ClientContext</b> object identified in the <i>ContextHandle</i>
+parameter:</p>
+<ul><li><p><span><span> 
+</span></span><b>AuthzContextInfoUserSid</b> (1):</p>
+<ol><li><p><span>    </span>Set the <b>ValueType</b>
+member in the new AUTHZR_CONTEXT_INFORMATION object to 1.</p>
+</li><li><p><span>    </span>Set the <b>pTokenUser</b>
+member of the new AUTHZR_CONTEXT_INFORMATION object to the address of the
+element at the <b>ImpersonationAccessToken.UserIndex</b> of the <b>ImpersonationAccessToken.Sids</b>
+array.</p>
+</li></ol></li><li><p><span><span> 
+</span></span><b>AuthzContextInfoGroupsSids</b> (2):</p>
+<ol><li><p><span>    </span>Set the <b>ValueType</b>
+member in the new AUTHZR_CONTEXT_INFORMATION object to 2.</p>
+</li><li><p><span>    </span>Set the <b>pTokenGroups</b>
+member of the new AUTHZR_CONTEXT_INFORMATION object to the value of the <b>ImpersonationAccessToken.Sids</b>
+member.</p>
+</li></ol></li><li><p><span><span> 
+</span></span><b>AuthzContextInfoRestrictedSids</b> (3):</p>
+<ol><li><p><span>    </span>Set the <b>ValueType</b>
+member in the new AUTHZR_CONTEXT_INFORMATION object to 3.</p>
+</li><li><p><span>    </span>Set the <b>pTokenGroups</b>
+member of the new AUTHZR_CONTEXT_INFORMATION object to the value of the <b>ImpersonationAccessToken.RestrictedSids</b>
+member.</p>
+</li></ol></li><li><p><span><span> 
+</span></span><b>AuthzContextInfoDeviceSids</b> (12):</p>
+<ol><li><p><span>    </span>Set the <b>ValueType</b>
+member in the new AUTHZR_CONTEXT_INFORMATION object to 12.</p>
+</li><li><p><span>    </span>Set the <b>pTokenGroups</b>
+member of the new AUTHZR_CONTEXT_INFORMATION object to the value of the <b>ImpersonationAccessToken.DeviceSids</b>
+member.</p>
+</li></ol></li><li><p><span><span> 
+</span></span><b>AuthzContextInfoUserClaims</b> (13):</p>
+<ol><li><p><span>    </span>Set the <b>ValueType</b>
+member in the new AUTHZR_CONTEXT_INFORMATION object to 13.</p>
+</li><li><p><span>    </span>Set the <b>pTokenClaims</b>
+member of the new AUTHZR_CONTEXT_INFORMATION object to the value of the <b>ImpersonationAccessToken.Claims</b>
+member.</p>
+</li></ol></li><li><p><span><span> 
+</span></span><b>AuthzContextInfoDeviceClaims</b> (14):</p>
+<ol><li><p><span>    </span>Set the <b>ValueType</b>
+member in the new AUTHZR_CONTEXT_INFORMATION object to 14.</p>
+</li><li><p><span>    </span>Set the <b>pTokenClaims</b>
+member of the new AUTHZR_CONTEXT_INFORMATION object to the value of the <b>ImpersonationAccessToken.DeviceClaims</b>
+member.</p>
+</li></ol></li></ul></li></ol></li><li><p><span><span> 
+</span></span>If the <i>InfoClass</i> parameter is any other value, the
+requested information is not supported. The RAZA server MUST set <i>ppContextInformation</i>
+to NULL and return a nonzero error code value.</p>
+</li></ul></div>

@@ -1,0 +1,52 @@
+<div class="content"><p>The W32TimeGetNetlogonServiceBits method returns information
+about the functionality that the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9846d08d-ad98-4bb9-a1e7-1f0bfbdd1113" data-linktype="relative-path">time service</a> provides. The <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a> syntax of this method
+is specified as follows.</p><dl>
+<dd>
+<div><pre> unsigned long W32TimeGetNetlogonServiceBits(
+   [in] handle_t hBinding
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b><a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> primitive binding
+handle, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+part 3, sections Interface Definition Language and Stubs.</p><p><b>Return Values: </b>This method returns an unsigned
+32-bit field that contains information about the functionality that the time
+service provides. Multiple bits can be set in the return value. Any bits not
+defined as follows MUST be set to zero by servers and ignored by clients.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000040</p>
+  <p>DS_TIMESERV_FLAG</p>
+  </td>
+  <td>
+  <p>The time service provides a <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_76c8df1b-52ef-495d-97d9-7c032b1f6ca5" data-linktype="relative-path">time source</a> with which
+  clients can synchronize using NTP, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90272" data-linktype="external">[RFC1305]</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000200</p>
+  <p>DS_GOOD_TIMESERV_FLAG</p>
+  </td>
+  <td>
+  <p>The time service provides a <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_b4bd71f2-0062-4546-a808-8ac6088f2da0" data-linktype="relative-path">reliable time source</a> with
+  which clients can synchronize using NTP, as specified in [RFC1305].</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The time service MUST construct a
+return value that comprises a logical OR of the previously specified flags. In
+the return value, the bit corresponding to the DS_TIMESERV_FLAG MUST be set to
+the value of the time service&#39;s IsTimeServer data element, and the bit
+corresponding to the DS_GOOD_TIMESERV_FLAG MUST be set to the value of the time
+service&#39;s IsReliableTimeServer data element.<a id="Appendix_A_Target_38"></a><a aria-label="Product behavior note 38" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_38" data-linktype="relative-path">&lt;38&gt;</a></p>
+</dd></dl></div>

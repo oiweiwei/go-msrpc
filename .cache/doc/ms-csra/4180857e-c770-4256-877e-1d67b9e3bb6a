@@ -1,0 +1,31 @@
+<div class="content"><p>The DenyRequest method denies a specific <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> request that is
+pending.</p><dl>
+<dd>
+<div><pre> HRESULT DenyRequest(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] DWORD dwRequestId
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">ICertAdminD::SetExtension (section 3.1.4.1.1)</a>.</p><p><b>dwRequestId: </b>A 32-bit nonzero unsigned integer
+value that specifies the ID of the certificate request.</p><p>The following processing rules apply:</p><ol><li><p><span>    </span>The <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> MUST look up the request
+based on the provided <i>dwRequestId</i> parameter in the Request <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_d3a7da8d-a597-4838-9756-25e30b640ba7" data-linktype="relative-path">table</a>. If the request is
+not found, the CA MUST fail the request. If the request is found, the selected
+row is referred to as the identified row in the following processing rules.</p>
+</li><li><p><span>    </span>If the value of
+the Request_Disposition column in the identified row is not &#34;request
+pending&#34;, the CA MUST fail the request.</p>
+</li><li><p><span>    </span>If the value of
+the Request_Disposition column in the identified row is &#34;request
+pending&#34;:</p>
+<ol><li><p><span>   
+</span>The CA MUST set the value of the Request_Disposition column in the
+identified row to &#34;request denied&#34;, and set the Request_Status_Code
+to 0x80094014 (CERTSRV_E_ADMIN_DENIED_REQUEST).<a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a></p>
+</li><li><p><span>   
+</span>The CA SHOULD set the value of the Request_Disposition_Message column in
+the identified row to any value that the implementer considers human-readable.
+The Microsoft CA sets Request_Disposition_Message in this case to &#34;Denied
+by {username}&#34; where &#34;{username}&#34; is replaced with the user name
+of the caller.</p>
+</li></ol></li></ol></div>

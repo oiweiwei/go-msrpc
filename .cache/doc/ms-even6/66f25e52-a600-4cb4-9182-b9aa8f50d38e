@@ -1,0 +1,39 @@
+<div class="content"><p> </p><p>The EvtRpcCancel (Opnum 14) method is used by a client to
+cancel another method. This can be used to terminate long-running methods
+gracefully. Methods that can be canceled include the subscription and query
+functions, and other functions that take a CONTEXT_HANDLE_OPERATION_CONTROL
+argument. </p><dl>
+<dd>
+<div><pre> error_status_t EvtRpcCancel(
+   [in, context_handle] PCONTEXT_HANDLE_OPERATION_CONTROL handle
+ );
+</pre></div>
+</dd></dl><p><b>handle: </b>A handle obtained by any of the other
+methods in this interface. This parameter is an <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle,
+as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>, Context
+Handles.</p><p><b>Return Values: </b>The method MUST return ERROR_SUCCESS
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+nonzero value as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>In response to this request from the client, the server MUST
+first validate the handle. The server SHOULD save the handle value it created
+in the handle table (as specified in section <span><a href="32102cb3-ea77-4171-bd1a-33c8c4d882aa" data-linktype="relative-path">3.1.1.12</a></span>) and
+compare it with the handle passed here to perform the validation check.<a id="Appendix_A_Target_67"></a><a aria-label="Product behavior note 67" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_67" data-linktype="relative-path">&lt;67&gt;</a></p><p>The server MUST return ERROR_INVALID_PARAMETER (0x00000057)
+if the handle is invalid. For information on handle security and authentication
+considerations, see sections <span><a href="ef007e79-0549-446f-a928-379f47d57cfd" data-linktype="relative-path">2.2.20</a></span> and <span><a href="f4145058-63b4-4c32-816d-a26b3ea6bd7d" data-linktype="relative-path">5.1</a></span>.</p><p>If the above check succeeds, the server MUST attempt to
+cancel the outstanding call associated with this handle. As specified in
+section <span><a href="cd433336-1e83-4d8b-ab45-1c748d835312" data-linktype="relative-path">3.1.1.10</a></span>, the
+context handle SHOULD be a control object on the server. The control object
+contains the detail operation object pointers such as query object pointer,
+subscription object pointer, and so forth, plus the Boolean flag. The server
+SHOULD check if the Boolean flag is true. If the flag is true, the server does
+nothing and returns success. If this flag is not true, the server SHOULD get
+the operation object pointer and cancel the operation by stopping operation
+object processing. That would include stopping processing of the query or
+subscription tasks and then setting its cancelation Boolean flag to true. For
+information, see section <span><a href="836e2e00-f150-4a32-9a06-f32e38a1879d" data-linktype="relative-path">3.1.4</a></span>.</p><p>In response to this call, the server MUST NOT remove the
+associated handle from its handle table.</p><p>If the server is too busy to process the outstanding
+operation, it might not be able to cancel the call. The server SHOULD then
+return ERROR_CANCELLED (0x00004C7) or other implementation-dependent error
+codes. If there is no outstanding call or operation, or if the outstanding call
+or operation has already been canceled, the server SHOULD return ERROR_SUCCESS
+(0x00000000).</p><p>The server MUST return a value indicating success or failure
+for this operation.</p></div>

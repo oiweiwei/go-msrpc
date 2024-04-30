@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The Messenger Service Remote Protocol suite is designed to
+perform the following functions:</p><ul><li><p><span><span> 
+</span></span>Receive and display short text messages to the console user.
+(This function is referred to in this document as the &#34;messaging
+protocol&#34;.)</p>
+</li><li><p><span><span> 
+</span></span>Manage the names for which a <span><a href="1bb1da94-fc7e-484c-ad2a-4e0d257a50ce#gt_18623b87-0e55-44bc-a5d3-d49388e1716a" data-linktype="relative-path">message server</a></span>
+receives messages. (This function is referred to in this document as the
+&#34;name management protocol&#34;.)</p>
+</li></ul><p>The name management protocol portion of the Messenger
+Service Remote Protocol is used to manage the set of names for which the
+message server accepts messages. The operations in this protocol are very simple,
+consisting of add, remove, and enumeration methods. The messaging protocol
+portion of the Messenger Service Remote Protocol actually has several forms and
+runs over <span><a href="1bb1da94-fc7e-484c-ad2a-4e0d257a50ce#gt_f53fe4b9-8e1d-4366-9254-3c4f73269e78" data-linktype="relative-path">mailslots</a></span> over
+Server Message Block Protocol, as specified in <span><a href="../ms-smb/f210069c-7086-4dc2-885e-861d837df688" data-linktype="relative-path">[MS-SMB]</a></span>
+and <span><a href="1bb1da94-fc7e-484c-ad2a-4e0d257a50ce#gt_dee69163-4767-4a5e-b58b-683757300d36" data-linktype="relative-path">RPC
+dynamic endpoints</a></span> over User Datagram Protocol (UDP) (as specified in
+<span><a href="https://go.microsoft.com/fwlink/?LinkId=90490" data-linktype="external">[RFC768]</a></span>).
+For how the message <span><a href="1bb1da94-fc7e-484c-ad2a-4e0d257a50ce#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> selects the
+transport that is used for the messaging protocol, see section <span><a href="4ea3ffe7-9925-463f-9882-e25758c67936" data-linktype="relative-path">3.2</a></span>.</p><p>Typically, the Messenger Service Remote Protocol is used to
+send a short text message from a <span><a href="1bb1da94-fc7e-484c-ad2a-4e0d257a50ce#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>, such as a
+file server or print server, to a client machine; for example, to indicate that
+a print job has completed or that a file server is shutting down and all of its
+clients need to save their work and disconnect. As such, the roles of client and
+server are reversed from typical protocols, with the message server (recipient)
+of the messages often being the workstation machine and the message client
+(sender) being a server-class machine.</p></div>

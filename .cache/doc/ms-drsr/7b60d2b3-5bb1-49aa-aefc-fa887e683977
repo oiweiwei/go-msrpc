@@ -1,0 +1,81 @@
+<div class="content"><p> </p><p>The ENCRYPTED_PAYLOAD packet is the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete
+type</a></span> for a value of an encrypted <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+    UCHAR Salt[16];
+    ULONG CheckSum;
+    UCHAR EncryptedData[];
+ } ENCRYPTED_PAYLOAD;
+</pre></div>
+</dd></dl><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Salt
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CheckSum</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EncryptedData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Salt (16 bytes): </b>A 128-bit randomly generated
+value.</p><p><b>CheckSum (4 bytes): </b>A 32-bit <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_9cb45a36-92bb-4c14-b2fd-2ad7e2979bfd" data-linktype="relative-path">CRC32</a></span>
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_fa444149-ef93-4512-a278-2e756295630c" data-linktype="relative-path">checksum</a></span>
+of the data that is encrypted along with the data.</p><p><b>EncryptedData (variable): </b>A variable-length
+byte array that represents the encrypted value.</p></div>

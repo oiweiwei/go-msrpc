@@ -1,0 +1,85 @@
+<div class="content"><p> </p><p>The CompoundMessageHeader contains information about the
+SRMP compound <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span>, as
+specified in <span><a href="../mc-mqsrm/65a36056-30c6-429f-a890-10f107b61f6e" data-linktype="relative-path">[MC-MQSRM]</a></span>
+section <span><a href="../mc-mqsrm/38cfc717-c703-46aa-a145-34f60b79399b" data-linktype="relative-path">2.2.2</a></span>.
+This header MUST be present only if the <b>UserHeader.Flags.AH</b> bit field is
+set.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>HeaderId</p>
+  </td>
+  <td colspan="16">
+  <p>Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>HTTPBodySize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MsgBodySize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MsgBodyOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>HeaderId (2 bytes): </b>A <b>USHORT</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/c0618c5b-362b-4e06-9cb0-8720d240cf12" data-linktype="relative-path">2.2.58</a></span>)
+that specifies the identification number of the header.</p><p><b>Reserved (2 bytes): </b>A <b>USHORT</b> that MUST
+be ignored.</p><p><b>HTTPBodySize (4 bytes): </b>A <b>ULONG</b>
+([MS-DTYP] section <span><a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">2.2.51</a></span>)
+that MUST be the size of the <b>Data</b> field in bytes.</p><p><b>MsgBodySize (4 bytes): </b>A <b>ULONG</b> that
+MUST be the size, in bytes, of the <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_f8f4c2f5-c760-4abe-a9a1-573302980088" data-linktype="relative-path">message body</a></span> within
+the <b>Data</b> field.</p><p><b>MsgBodyOffset (4 bytes): </b>A <b>ULONG</b> that
+MUST be set to the offset of the message body within the <b>Data</b> field.</p><p><b>Data (variable): </b>Specifies an array of bytes
+that contains the SRMP message, including the HTTP POST message that carried
+the SRMP message. More details are specified in [MC-MQSRM] section <span><a href="../mc-mqsrm/b0fb23bd-c7c3-4bce-9672-92c90ee6ae47" data-linktype="relative-path">4.1</a></span>.</p></div>

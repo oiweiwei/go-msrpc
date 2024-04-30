@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The NAMERESOP_DRS_WIRE_V1 structure defines the state of
+name resolution.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   UCHAR nameRes;
+   UCHAR unusedPad;
+   USHORT nextRDN;
+ } NAMERESOP_DRS_WIRE_V1;
+</pre></div>
+</dd></dl><p><b>nameRes:</b>  MUST be the uppercase
+ASCII character &#34;S&#34;.</p><p><b>unusedPad:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>nextRDN:</b>  Unused. MUST be 0 and
+ignored.</p></div>

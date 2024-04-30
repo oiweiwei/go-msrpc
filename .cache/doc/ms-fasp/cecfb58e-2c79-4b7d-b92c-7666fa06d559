@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>This structure contains the metadata that is associated with
+a specific policy object.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_OBJECT_METADATA {
+   unsigned __int64 qwFilterContextID;
+   [range(0, 100)] DWORD dwNumEntries;
+   [size_is(dwNumEntries)] FW_ENFORCEMENT_STATE* pEnforcementStates;
+ } FW_OBJECT_METADATA,
+  *PFW_OBJECT_METADATA;
+</pre></div>
+</dd></dl><p><b>qwFilterContextID:</b>  This field is
+not used across the wires.</p><p><b>dwNumEntries:</b>  A field that
+specifies the number of metadata hints (<span><a href="4767a26e-0687-4c4f-ad94-8de700e5cf83" data-linktype="relative-path">FW_ENFORCEMENT_STATE</a></span>s)
+that the structure contains.</p><p><b>pEnforcementStates:</b>  A pointer to an
+array of FW_ENFORCEMENT_STATE elements. The number of elements is given by <b>dwNumEntries</b>.</p></div>

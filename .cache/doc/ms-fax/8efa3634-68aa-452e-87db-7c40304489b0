@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>FAX_ENUM_CONFIG_OPTION</b> enumeration identifies the
+configuration option to be returned by the <b>FAX_GetConfigOption</b> (section <span><a href="25b48bde-9929-4abb-ab97-058034ed4392" data-linktype="relative-path">3.1.4.1.35</a></span>)
+method.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FAX_CONFIG_OPTION_ALLOW_PERSONAL_CP = 0x00000000,
+   FAX_CONFIG_OPTION_QUEUE_STATE = 0x00000001,
+   FAX_CONFIG_OPTION_ALLOWED_RECEIPTS = 0x00000002,
+   FAX_CONFIG_OPTION_INCOMING_FAXES_PUBLIC = 0x00000003
+ } FAX_ENUM_CONFIG_OPTION;
+</pre></div>
+</dd></dl><p><b>FAX_CONFIG_OPTION_ALLOW_PERSONAL_CP: </b>Represents
+whether the server allows personal cover pages.</p><p><b>FAX_CONFIG_OPTION_QUEUE_STATE: </b>Corresponds to
+the state of the queue in <b>Queue State</b>.</p><p><b>FAX_CONFIG_OPTION_ALLOWED_RECEIPTS: </b>Corresponds
+to the type of receipts the server is configured to send.</p><p><b>FAX_CONFIG_OPTION_INCOMING_FAXES_PUBLIC: </b>Corresponds
+to the viewing permissions of incoming faxes.</p></div>

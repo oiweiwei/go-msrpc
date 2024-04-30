@@ -1,0 +1,5 @@
+<div class="content"><p>Defines a basic informational block describing a <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a>. The structure of <a href="../ms-wcce/4fa5241c-d10e-4011-87e0-c74753d725a3" data-linktype="relative-path">CAINFO</a>
+is specified in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>
+section 2.2.2.4. The marshaling of CAINFO into a <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure is
+specified in [MS-WCCE] section <a href="../ms-wcce/cd9656c0-6be3-4887-84b0-aacedc017b0b" data-linktype="relative-path">2.2.2.2.5</a>.
+</p></div>

@@ -1,0 +1,16 @@
+<div class="content"><p>To effectively manage systems, administrators need the
+capability to query for <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance
+counter</a> data on the health or state of a particular application or system.
+Software components that are designed with performance counters are therefore
+easier to manage and diagnose. The Performance Counter Query Protocol enables
+system administrators to query performance counters on a remote server.</p><p>The Performance Counter Query Protocol is used to retrieve
+performance counter information from a server. The protocol allows a client to
+enumerate the performance counters that are available on the server. The server
+can use the protocol to return performance counter information, such as
+localized counter names and description strings, performance counter types (for
+more information, see <a href="https://go.microsoft.com/fwlink/?LinkId=89980" data-linktype="external">[MSDN-COUNT]</a>),
+and instance information if there are multiple instances of a performance
+counter. The client can also use the protocol to establish a query on the
+server and add or remove performance counters to it. The client can then
+repeatedly retrieve performance counter data that is associated with the query
+by using the protocol.</p></div>

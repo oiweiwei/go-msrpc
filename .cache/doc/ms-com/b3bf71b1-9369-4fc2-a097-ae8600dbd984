@@ -1,0 +1,100 @@
+<div class="content"><p>The TransactionStream structure is used when the client
+passes a reference to the client&#39;s <a href="e105692e-61da-49dd-9bb1-09cd6b8c67bc" data-linktype="relative-path">ITransactionStream</a>
+interface and conveys information about the capabilities of the DTCO
+transaction manager implementation on the client.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Header (24
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">DtcCapabilities</p>
+  </td>
+  <td colspan="16">
+  <p align="center">MarshalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">...</p>
+  </td>
+  <td colspan="16">
+  <p align="center">TransactionStream
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p align="center">…</p>
+  </td>
+  <td colspan="24">
+  <p align="center">IsolationLevel
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p align="center">...</p>
+  </td>
+  
+ </tr>
+</tbody></table><p><b>Header (24 bytes): </b>A <a href="a2527ae5-9c1b-41ff-9d94-a6607d7b8ba0" data-linktype="relative-path">TransactionContextPropertyHeader</a>;
+the <b>StreamVariant</b> field of the structure MUST be set to 0x0001.</p><p><b>DtcCapabilities (2 bytes): </b>A bitwise OR of one
+or more of the values defined in section <a href="8599ea52-f5a0-4bb3-835b-0d6409f7472d" data-linktype="relative-path">2.2.6.1</a> indicating the
+capabilities of the client’s DTCO transaction manager.</p><p><b>MarshalSize (4 bytes): </b>The (unsigned) size in
+bytes of <b>TransactionStream</b>.</p><p><b>TransactionStream (variable): </b>An <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_d2b5b331-4e5f-417f-92c5-38eef54176c2" data-linktype="relative-path">OBJREF</a> instance containing
+a marshaled <b>ITransactionStream</b> interface instance.</p><p><b>IsolationLevel (optional) (4 bytes): </b>The <a href="e9ee0a50-6558-4527-ba8d-67f3180862eb" data-linktype="relative-path">Transaction Isolation Level
+(section 2.2.6.2)</a> used by the COM+ client. This field MUST be present if
+the <b>MaxVersion</b> field of the header is 0x0002; otherwise, this field MUST
+NOT be present.</p></div>

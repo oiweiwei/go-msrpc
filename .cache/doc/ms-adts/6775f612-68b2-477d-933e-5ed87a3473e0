@@ -1,0 +1,88 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/6775f612-68b2-477d-933e-5ed87a3473e0" data-linktype="external">msdn link</a></p><p>The DRS_MSG_NT4_CHGLOG_REPLY_V1 (<a href="../ms-drsr/f977faaa-673e-4f66-b9bf-48c640241d47" data-linktype="relative-path">[MS-DRSR]</a>
+section <a href="../ms-drsr/1bc2090e-d3ec-4435-88b9-02437207ea22" data-linktype="relative-path">4.1.11.1.4</a>)
+response message to an IDL_DRSGetNT4ChangeLog request ([MS-DRSR] section <a href="../ms-drsr/6e000eb6-60fd-4d6c-ae82-bb6479df02fa" data-linktype="relative-path">4.1.11</a>)
+contains a BYTE *pLog field. The format of the referent of this field is not
+specified in [MS-DRSR] section 4.1.11; it is specified here.</p><p>The referent of this field is a CHANGE_LOG_ENTRIES
+structure:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Size</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Version</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SequenceNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ChangeLogEntries
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Size (4 bytes): </b>The size, in bytes, of the
+part of the buffer preceding the <b>ChangeLogEntries</b> field. Equals
+0x00000010.</p><p><b>Version (4 bytes): </b>The version of the message.
+Equals 0x00000001.</p><p><b>SequenceNumber (4 bytes): </b>The sequence number
+for the buffer. Is set to 0x00000001 in a response to an IDL_DRSGetNT4ChangeLog
+request with pmsgIn.V1.pRestart = NULL. The value of pmsgOut.V1.pRestart in any
+IDL_DRSGetNT4ChangeLog response encapsulates SequenceNumber. In a response to
+an IDL_DRSGetNT4ChangeLog request with pmsgIn.V1.pRestart ≠ NULL,
+SequenceNumber is the value encapsulated in pmsgIn.V1.pRestart, plus one.</p><p><b>Flags (4 bytes): </b>Equals 0x00000000. Ignored
+upon receipt.</p><p><b>ChangeLogEntries (variable): </b>A sequence of
+CHANGELOG_ENTRY structures. Each CHANGELOG_ENTRY is followed by padding bytes
+with value zero such that the number of bytes in the CHANGELOG_ENTRY plus the
+padding is congruent to zero mod 8.</p><p>The server stores the total number of bytes in the fixed-length
+and variable-length portions of the CHANGE_LOG_ENTRIES structure in the DWORD
+cbLog field of the DRS_MSG_NT4_CHGLOG_REPLY_V1 response message. This field
+allows the client to determine the number of CHANGELOG_ENTRY structures
+contained in the CHANGE_LOG_ENTRIES structure.</p></div>

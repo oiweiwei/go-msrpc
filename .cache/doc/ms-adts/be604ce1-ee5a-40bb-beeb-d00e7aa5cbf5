@@ -1,0 +1,47 @@
+<div class="content"><p>This is the primary specification for <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a>. The state
+model for this specification is prerequisite to the other specifications for
+Active Directory: <a href="../ms-drsr/f977faaa-673e-4f66-b9bf-48c640241d47" data-linktype="relative-path">[MS-DRSR]</a>
+and <a href="../ms-srpl/ec69eea5-0d5e-428a-b5bc-66732aaeb866" data-linktype="relative-path">[MS-SRPL]</a>.</p><p>Active Directory is either deployed as <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_2e72eeeb-aee9-4b0a-adc6-4476bacf5024" data-linktype="relative-path">AD DS</a> or as <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_afdbd6cd-9f55-4d2f-a98e-1207985534ab" data-linktype="relative-path">AD LDS</a>. This document
+describes both forms. When the specification does not refer specifically to AD
+DS or AD LDS, it applies to both.</p><p>The remainder of this section describes the structure of
+this document.</p><p>The basic state model is specified in section <a href="c30d7ccc-fd8b-4a26-8345-ce34064f3d2b" data-linktype="relative-path">3.1.1.1</a>. The basic state
+model is prerequisite to the remainder of the document. Section 3.1.1.1 also
+includes descriptive content to introduce key concepts and refer to places in
+the document where the full specification is given.</p><p>The <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_fd49ea36-576c-4417-93bd-d1ac63e71093" data-linktype="relative-path">schema</a>
+completes the state model and is specified in section <a href="5859bab0-f545-4db6-80c6-9798b484b3d8" data-linktype="relative-path">3.1.1.2</a>. The schema is
+prerequisite to the remainder of the document.</p><p>Active Directory is a server for <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a>. Section <a href="3c5916a9-f1a0-429d-b937-f8fe672d777c" data-linktype="relative-path">3.1.1.3</a> specifies the
+extensions and variations of LDAP that are supported by Active Directory.</p><p>LDAP is an access protocol that determines very little about
+the behavior of the data being accessed. Section <a href="34eb9be4-ad7f-43c6-b9d7-5302d1ee638b" data-linktype="relative-path">3.1.1.4</a> specifies read
+(LDAP Search) behaviors, and section <a href="832b9a41-9bb4-4619-ac40-243561fa1e65" data-linktype="relative-path">3.1.1.5</a> specifies <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_b242435b-73cc-4c4e-95f0-b2a2ff680493" data-linktype="relative-path">update</a> (LDAP Add, Modify,
+Modify DN, Delete) behaviors. Section <a href="29e5a169-9426-4374-870e-7f764e04db5e" data-linktype="relative-path">3.1.1.6</a> specifies
+background tasks required due to write operations, to the extent that those
+tasks are exposed by protocols.</p><p>One of the update behaviors is the maintenance of the change
+log for use by Windows NT 4.0 operating system <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_ce1138c6-7ab4-4c37-98b4-95599071c3c3" data-linktype="relative-path">backup domain controller (BDC)</a>
+<a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a> <a href="../ms-nrpc/ff8f970f-3e37-40f7-bd4b-af7336e4792f" data-linktype="relative-path">[MS-NRPC]</a>
+section <a href="../ms-nrpc/f28f9dc8-eeb2-4112-9eec-a466f639c761" data-linktype="relative-path">3.6</a>.
+The maintenance of this change log is specified in section <a href="4f99984d-2e90-48e6-b472-f5869e5b90ed" data-linktype="relative-path">3.1.1.7</a>.</p><p>The security services that Active Directory offers clients
+of LDAP are specified in section <a href="3cf530af-fad2-4e14-aac8-c416e25f9f43" data-linktype="relative-path">5.1</a>.</p><p>Active Directory contains a number of <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">objects</a>, visible through
+LDAP, that have special significance to the system. Section <a href="3a396e56-21b4-42c5-8946-64f25a03391e" data-linktype="relative-path">6.1</a> specifies these
+objects.</p><p>A server running Active Directory is part of a distributed
+system that performs replication. The <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_c7d4f1f6-5285-4168-b21a-022f775a3f58" data-linktype="relative-path">Knowledge Consistency Checker
+(KCC)</a> is a component that is used to create spanning trees for <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a>-to-DC replication and is
+specified in section <a href="f2e2f6c7-b232-406d-b48a-fc6ccf231202" data-linktype="relative-path">6.2</a>.</p><p>A server running Active Directory is responsible for
+publishing the services that it offers, in order to eliminate the
+administrative burden of configuring clients to use particular servers running
+Active Directory. A server running Active Directory also implements the server
+side of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_a01cea16-0836-469c-81d4-9eeb52be1ad6" data-linktype="relative-path">LDAP ping</a>
+and <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_0a5fd868-ff77-4beb-838e-79f98cbe3898" data-linktype="relative-path">mailslot ping</a>
+protocols to aid clients in selecting among all the servers offering the same
+service. Section <a href="8ebcf782-87fd-4dc3-8585-1301569dfe4f" data-linktype="relative-path">6.3</a>
+specifies how a server running Active Directory publishes its services, and how
+a client needing some service can use this publication plus the LDAP ping or
+mailslot ping to locate a suitable server.</p><p>Computers in a network with Active Directory can be put into
+a state called &#34;domain joined&#34;; when in this state, the computer can
+authenticate itself. Section <a href="e5dd47ea-3ff5-451c-b6fe-c3bda5591402" data-linktype="relative-path">6.4</a>
+specifies both the state in Active Directory and the state on a computer
+required for the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_4c7bf578-c57e-4edb-98fa-759f851b1a91" data-linktype="relative-path">domain
+joined</a> state.</p><p>Each type of data stored in Active Directory has an
+associated function that compares two values to determine if they are equal
+and, if not, which is greater. Section 3.1.1.2 specifies all but one of these
+functions; the methodology for comparing two <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> strings is
+specified in section <a href="fb01aa88-fe3c-4851-a139-318493addb9a" data-linktype="relative-path">6.5</a>.</p></div>

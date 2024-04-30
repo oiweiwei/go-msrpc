@@ -1,0 +1,49 @@
+<div class="content"><p> </p><p>The <b>RfrGetFQDNFromServerDN</b> method returns the <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">Domain
+Name System (DNS)</a></span> <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a></span> of the server
+corresponding to the passed <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a></span>.</p><dl>
+<dd>
+<div><pre> // opnum 1
+ long RfrGetFQDNFromServerDN(
+    [in]                                     handle_t           hRpc,
+    [in]                                     unsigned long      ulFlags,
+    [in, range(10,1024)]                     unsigned long      cbMailboxServerDN,
+    [in, string, size_is(cbMailboxServerDN)] unsigned char   *  szMailboxServerDN,
+    [out,ref,string]                         unsigned char   ** ppszServerFQDN);
+</pre></div>
+</dd></dl><p><b>hRpc:</b> A <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a></span>
+<span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_44deb72d-c62b-4335-90e4-b9fd4dd782ed" data-linktype="relative-path">binding
+handle</a></span> parameter, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> section
+2. MUST NOT be NULL.</p><p><b>ulFlags:</b> An unsigned long value, containing a set of
+bit <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_425bcab9-7911-4eae-b414-624b7a51eb5f" data-linktype="relative-path">flags</a></span>.
+Unused; SHOULD be set to zero. Other values MUST be ignored by the server.</p><p><b>cbMailboxServerDN:</b> An unsigned long value containing
+the number of bytes in the value of the <b>szMailboxServerDN</b> parameter,
+including terminating NULL character. The value is at least 10, at most 1024.</p><p><b>szMailboxServerDN:</b> A 5 or 6-element DN identifying a <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_d3ad0e15-adc9-4174-bacf-d929b57278b3" data-linktype="relative-path">mailbox</a></span>
+server, which MUST match the server&#39;s implementation of server identities. It
+follows this format: </p><dl>
+<dd>
+<div><pre> &#34;/o=&#34; organization-name &#34;/ou=&#34; administrative-group-name &#34;/CN=configuration/CN=servers/CN=&#34; instance-name &#34;/CN=&#34; short-messaging-server-name
+</pre></div>
+</dd></dl><p>The <code>CN=&#34; instance-name &#34;</code>
+element is optional.<a id="Appendix_A_Target_3"></a><a id="z7"></a><a aria-label="Product behavior note 3" href="9a225804-1148-4d0f-921f-0b0724c000f8#Appendix_A_3" data-linktype="relative-path">&lt;3&gt;</a></p><p>Note that the client MAY receive a DN identifying a specific
+database on this server, from sources listed in section <span><a href="7d41ff2d-0b7c-4acc-9dbf-32e5ad8c1e59" data-linktype="relative-path">1.6</a></span>.
+This DN follows this format:</p><dl>
+<dd>
+<div><pre> &#34;/o=&#34; organization-name &#34;/ou=&#34; administrative-group-name &#34;/CN=configuration/CN=servers/CN=&#34; instance-name &#34;/CN=&#34; short-messaging-server-name &#34;/CN=Microsoft Private MDB&#34; 
+</pre></div>
+</dd></dl><p>Or</p><dl>
+<dd>
+<div><pre> &#34;/o=&#34; organization-name &#34;/ou=&#34; administrative-group-name &#34;/CN=configuration/CN=servers/CN=&#34; instance-name &#34;/CN=&#34; short-messaging-server-name &#34;/CN=Microsoft Public MDB&#34; 
+</pre></div>
+</dd></dl><p>If this is the DN available, it is the client&#39;s
+responsibility to remove the final element before passing the DN to the <b>RfrGetFQDNFromServerDN</b>
+method.</p><p><b>ppszServerFQDN:</b> A string. If the server does not
+return an error, the <b>ppszServerFQDN</b> parameter contains the FQDN of the
+mailbox server identified by the <b>szMailboxServerDN</b> parameter.</p><p><b>Return Values:</b> The server returns 0 for a successful
+execution. An error results in an HRESULT or other nonzero error code.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond those
+thrown by the underlying RPC protocol as specified in <span><a href="/en-us/openspecs/windows_protocols/MS-RPCE/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="absolute-path">[MS-RPCE]</a></span>.</p><p>The server MUST process the data from the client using the
+following constraints when receiving this message. The method MUST perform some
+lookup to determine the FQDN of the server identified by the <b>szMailboxServerDN</b>
+parameter. After considering these constraints, this method SHOULD return one
+mailbox server name in the <b>ppszServerFQDN</b> parameter and 0 as a return
+value. If any errors occur and the method is not able to return the name of a
+mailbox server, a failing HRESULT SHOULD be returned.</p></div>

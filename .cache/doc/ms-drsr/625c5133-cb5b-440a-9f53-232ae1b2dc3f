@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The DRS_MSG_DCINFOREPLY_VFFFFFFFF structure defines the
+response message received from the <span><a href="668abdc8-1db7-4104-9dea-feab05ff1736" data-linktype="relative-path">IDL_DRSDomainControllerInfo</a></span>
+method, when the client has requested InfoLevel = 0xFFFFFFFF.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [range(0,10000)] DWORD cItems;
+   [size_is(cItems)] DS_DOMAIN_CONTROLLER_INFO_FFFFFFFFW* rItems;
+ } DRS_MSG_DCINFOREPLY_VFFFFFFFF;
+</pre></div>
+</dd></dl><p><b>cItems:</b>  The count of items in the <b>rItems</b>
+array.</p><p><b>rItems:</b>  Information about the
+active <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_198f4791-cea3-465d-89e2-262991624e08" data-linktype="relative-path">LDAP connections</a></span>.</p></div>

@@ -1,0 +1,59 @@
+<div class="content"><p>The CreateObject method MUST execute an <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a> command under machine
+security credentials, or for a cluster, under the specified network name
+credentials in order to create an <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a> object
+that has a specific <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">distinguished
+name</a> and attributes.<a id="Appendix_A_Target_52"></a><a aria-label="Product behavior note 52" href="70b8d14d-a366-4156-a2ad-eedb63aec058#Appendix_A_52" data-linktype="relative-path">&lt;52&gt;</a></p><dl>
+<dd>
+<div><pre> HRESULT CreateObject(
+   [in] BSTR domainControllerName,
+   [in] BSTR distinguishedName,
+   [in] SAFEARRAY (_AdAttributeData)* attributes,
+   [in] BSTR verifyNameDomainControllerName,
+   [in] BSTR networkNameResourceName
+ );
+</pre></div>
+</dd></dl><p><b>domainControllerName: </b>MUST be the <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a> of the domain
+controller to which the method sends the LDAP request. The format of the
+distinguished name MUST be as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90325" data-linktype="external">[RFC2251]</a> section
+4.1.3.</p><p><b>distinguishedName: </b>MUST be the distinguished
+name of the Active Directory object that is being created. The distinguished
+name of any object in Active Directory MAY be used. The format of the
+distinguished name is specified in [RFC2251] section 4.1.3. <a id="Appendix_A_Target_53"></a><a aria-label="Product behavior note 53" href="70b8d14d-a366-4156-a2ad-eedb63aec058#Appendix_A_53" data-linktype="relative-path">&lt;53&gt;</a></p><p><b>attributes: </b>MUST be the safe array of
+attributes that are to be created for the new object.</p><p><b>verifyNameDomainControllerName: </b>If the
+attributes of the object refer to an object in another domain, the client MUST
+specify the domain controller in that domain that will be used to verify the
+reference. The LDAP_SERVER_VERIFY_NAME_OID control MUST be added to the LDAP
+command. The LDAP_SERVER_VERIFY_NAME_OID control is specified in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/f2b41f0a-31c7-49c9-a5eb-8e1ba75b9faa" data-linktype="relative-path">3.1.1.3.4.1.16</a>.
+If this parameter does not specify a domain controller that can be contacted to
+validate these references, the method MUST fail and return an LDAP protocol
+failure.</p><p><b>networkNameResourceName: </b>MUST be the name of
+the cluster resource (the resource type MUST be &#34;Network Name&#34;). If
+this parameter is a non-empty string, the server MUST execute the LDAP command
+under the account that corresponds to this network name. There are no
+constraints regarding the format of the network name except the requirement
+that its length MUST NOT be longer than 32,767 characters. Otherwise, if this
+parameter is NULL or an empty string, the server MUST use the <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_ccf481e1-fb56-43d1-b6c6-0733fb52e001" data-linktype="relative-path">machine account</a> to execute
+the LDAP command.</p><p><b>Return Values: </b>The method MUST return:</p><ul><li><p><span><span>  </span></span>0
+on success.</p>
+</li><li><p><span><span>  </span></span>For
+LDAP protocol failures:</p>
+<ul><li><p><span><span> 
+</span></span>If the LDAP error is LDAP_OPERATIONS_ERROR,
+dfsrHelperLdapErrorBase + the server-side error code.</p>
+</li><li><p><span><span> 
+</span></span>For all other LDAP errors, dfsrHelperLdapErrorBase + the LDAP
+return code. For more information, see <a href="https://go.microsoft.com/fwlink/?LinkId=89933" data-linktype="external">[LDAP-ERR]</a>.</p>
+</li></ul></li><li><p><span><span>  </span></span>For
+all other failures, an implementation-specific nonzero <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+between 0x80000000 and 0xFFFFFFFF. For protocol purposes, all nonzero values
+MUST be treated as equivalent failures.</p>
+</li></ul><p>The server MUST handle this message by using the same
+sequence of steps as for <a href="67af51f6-0ed2-41e4-aa72-5ff1209dff4c" data-linktype="relative-path">IADProxy::CreateObject</a>
+(as specified in section 3.1.5.2.1), with the following additional step:</p><ul><li><p><span><span> 
+</span></span>The server MUST execute the LDAP command under the credentials
+that correspond to the network resource name that is supplied in the <i>networkNameResourceName</i>
+parameter.</p>
+</li></ul></div>

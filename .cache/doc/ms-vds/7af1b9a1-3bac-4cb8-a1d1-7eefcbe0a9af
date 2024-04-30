@@ -1,0 +1,62 @@
+<div class="content"><p> </p><p>The UninstallDisks method uninstalls a specific set of <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disks</a></span>
+when it is given a list of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS object</a></span> IDs for
+the disks. All volumes that are contained wholly or partially on the disks are
+also uninstalled, and the obsolete <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_513fcb37-059f-475c-a13d-e89b302f8ae8" data-linktype="relative-path">mount points</a></span> are
+removed.</p><dl>
+<dd>
+<div><pre> HRESULT UninstallDisks(
+   [in, size_is(ulCount)] VDS_OBJECT_ID* pDiskIdArray,
+   [in] unsigned long ulCount,
+   [in] boolean bForce,
+   [out] boolean* pbReboot,
+   [out, size_is(ulCount)] HRESULT* pResults
+ );
+</pre></div>
+</dd></dl><p><b>pDiskIdArray: </b>A pointer to an array of <span><a href="9186f1ce-04de-4df2-a8cf-3925a02fcd47" data-linktype="relative-path">VDS_OBJECT_ID</a></span>
+structures that store the VDS object IDs of the disks to be uninstalled.</p><p><b>ulCount: </b>The number of disks that are
+specified in <i>pDiskIdArray</i>.</p><p><b>bForce: </b>A Boolean that determines whether the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>
+dismount is forced.</p><p><b>pbReboot: </b>A pointer to a Boolean that, if the
+operation is successfully completed, indicates whether the user is required to
+reboot the remote machine to complete the uninstall process.</p><p><b>pResults: </b>A pointer to an array of <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span>
+values that, if the operation is successfully completed, receives an HRESULT
+for each disk uninstall request. There MUST be one HRESULT value in the array
+for each disk in <i>pDiskIdArray</i>. If any disk fails to uninstall properly,
+the error code for that failure is received in the corresponding entry in <i>pResults</i>.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error HRESULT (as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>pDiskIdArray</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>pbReboot</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>pResults</i> is not NULL.</p>
+</li></ul><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>For each VDS object identifier in the specified <b>pDiskIdArray</b>,
+lock and dismount all volumes that have extents on the disk. If the value of
+the Boolean that bForce references is specified as TRUE, continue to the next
+steps, even if the lock or dismount operation fails.</p>
+</li><li><p><span><span> 
+</span></span>For each VDS object identifier in the specified <b>pDiskIdArray</b>,
+take offline (if possible) and uninstall all volumes that have extents on the
+disk. For information on removing volumes, see section <span><a href="5478fbda-3dde-46c3-bacc-0a5d305233a8" data-linktype="relative-path">3.4.5.1.6</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>If the volume uninstalls require a reboot to take full effect,
+set the value of the Boolean that <b>pbReboot</b> references to TRUE;
+otherwise, FALSE. </p>
+</li><li><p><span><span> 
+</span></span>For each VDS object identifier in the specified <i>pDiskIdArray</i>,
+uninstall the disk that corresponds to the identifier. Set the status of each
+disk operation to the corresponding value in the array that <i>pResults</i>
+specifies. For more information on removing disk objects, see section <span><a href="18845e19-b77d-4804-bb59-320ca9f1be87" data-linktype="relative-path">3.4.5.1.4</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>If the disk uninstalls require a restart to take full effect, set
+the value of the Boolean that <i>pbReboot</i> references to TRUE; otherwise,
+FALSE.</p>
+</li><li><p><span><span> 
+</span></span>Clean up any obsolete drive letters and mount points for the
+volumes that have been uninstalled.</p>
+</li><li><p><span><span> 
+</span></span>Return success (HRESULT of 0x00000000) if successful.</p>
+</li></ul></div>

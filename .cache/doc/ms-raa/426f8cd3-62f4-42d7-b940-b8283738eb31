@@ -1,0 +1,18 @@
+<div class="content"><p>The AUTHZR_ACCESS_REPLY structure defines the contents of a
+remote access check reply.</p><dl>
+<dd>
+<div><pre> typedef struct _AUTHZR_ACCESS_REPLY {
+     [range(0, 256)] DWORD ResultListLength;
+     [size_is(ResultListLength)] ACCESS_MASK* GrantedAccessMask;
+     [size_is(ResultListLength)] DWORD* Error;
+ } AUTHZR_ACCESS_REPLY;
+  
+  
+</pre></div>
+</dd></dl><p><b>ResultListLength:</b>  The number of elements in
+the <i>GrantedAccessMask</i> and <i>Error</i> arrays. This number matches the
+number of entries in the object type list structure used in the access check.
+The length MUST be between 1 and 256. If no object type is used to represent
+the object, <i>ResultListLength</i> MUST be set to 1.</p><p><b>GrantedAccessMask:</b>  A pointer to an array of
+granted access masks.</p><p><b>Error:</b>  A pointer to an array of DWORD error
+code results for each element of the array.</p></div>

@@ -1,0 +1,45 @@
+<div class="content"><p>The SetReportSizeLimit method sets the <b>report size limit</b>
+of the specified report limit.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_REPORT_MANAGER | 0x0A)] HRESULT SetReportSizeLimit(
+   [in] FsrmReportLimit limit,
+   [in] VARIANT limitValue
+ );
+</pre></div>
+</dd></dl><p><b>limit: </b>Contains the value from the <a href="9aa04db7-4395-4f94-9743-1e12871beec4" data-linktype="relative-path">FsrmReportLimit (section 2.2.1.2.17)</a>
+enumeration indicating the <b>report size limit</b> that is set.</p><p><b>limitValue: </b>Contains the value of the
+specified <b>report size limit</b>.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>limit</i> parameter is not
+  a valid FsrmReportLimit (section 2.2.1.2.17) value.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>limitValue</i> parameter
+  is not a valid value; it could not be converted to a positive, long number.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>limit</i> contains a valid FsrmReportLimit value.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>limitValue</i> contains a positive long number.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST use <i>limitValue</i> as the <b>report size
+limit</b> for the specified report limit.</p></div>

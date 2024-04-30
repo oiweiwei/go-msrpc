@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The VDS_FILE_SYSTEM_PROP structure provides information
+about the properties of a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file system</a></span>. </p><dl>
+<dd>
+<div><pre> typedef struct _VDS_FILE_SYSTEM_PROP {
+   VDS_FILE_SYSTEM_TYPE type;
+   VDS_OBJECT_ID volumeId;
+   unsigned long ulFlags;
+   ULONGLONG ullTotalAllocationUnits;
+   ULONGLONG ullAvailableAllocationUnits;
+   unsigned long ulAllocationUnitSize;
+   [string] WCHAR* pwszLabel;
+ } VDS_FILE_SYSTEM_PROP,
+  *PVDS_FILE_SYSTEM_PROP;
+</pre></div>
+</dd></dl><p><b>type:</b>  A <span><a href="81d04cc8-5492-442e-a0c4-86b7148140a3" data-linktype="relative-path">VDS_FILE_SYSTEM_TYPE</a></span>
+value that provides information about the type of the file system.</p><p><b>volumeId:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS
+object</a></span> ID of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> object on
+which the file system resides.</p><p><b>ulFlags:</b>  The combination of any
+values, by using the bitwise OR operator, that are defined in the <span><a href="565ffe67-6e77-42f1-bd75-8c761b4138fd" data-linktype="relative-path">VDS_FILE_SYSTEM_PROP_FLAG</a></span>
+enumeration.</p><p><b>ullTotalAllocationUnits:</b>  The total
+number of allocation units on the file system.</p><p><b>ullAvailableAllocationUnits:</b>  The
+number of allocation units available on the file system.</p><p><b>ulAllocationUnitSize:</b>  The size of
+the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2b23c239-06f9-4803-8646-bc908cbe044d" data-linktype="relative-path">allocation
+units</a></span> in use by the file system.</p><p><b>pwszLabel:</b>  A null-terminated
+Unicode label of the file system.</p></div>

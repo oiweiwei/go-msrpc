@@ -1,0 +1,80 @@
+<div class="content"><p>The EnumReportJobs method returns a collection of all the <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_15957e50-08ab-48d2-8824-57a71b23f833" data-linktype="relative-path">report jobs</a> from the <b>List
+of Persisted Report Jobs</b> (section <a href="8443b4d3-17a2-440b-9587-77d4aa0ce732" data-linktype="relative-path">3.2.1.5</a>) and those from
+the <b>List of Non-Persisted Report Jobs</b> (section 3.2.1.5) on the server.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_REPORT_MANAGER | 0x01)] HRESULT EnumReportJobs(
+   [in, defaultvalue(FsrmEnumOptions_None)] 
+     FsrmEnumOptions options,
+   [out, retval] IFsrmCollection** reportJobs
+ );
+</pre></div>
+</dd></dl><p><b>options: </b>Contains the <a href="d01ee30b-4ef8-4eec-8026-3b5a1ccda298" data-linktype="relative-path">FsrmEnumOptions (section 2.2.1.2.5)</a>
+to use when enumerating the report jobs.</p><p><b>reportJobs: </b>Pointer to an <b>IFsrmCollection</b>
+interface pointer (section <a href="171d3b3c-0f4d-40b9-8f48-0e97f9ff17be" data-linktype="relative-path">3.2.4.2.1</a>)
+that upon completion contains a pointer to every report job on the server. The
+caller MUST release the collection when the caller is done with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This return code is returned for the following
+  reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>reportJobs</i> parameter
+  is NULL.</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>0x80045311</p>
+  <p>FSRM_E_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The <i>options</i> parameter contains <b>FsrmEnumOptions</b>
+  (section 2.2.1.2.5) values that are not valid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>If <i>reportJobs</i> is NULL, the server MUST return
+E_INVALIDARG.</p>
+</li><li><p><span><span> 
+</span></span>If <i>options</i> contains <b>FsrmEnumOptions_Asynchronous</b> or
+any value other than what is specified in section 2.2.1.2.5, the server MUST
+return FSRM_E_NOT_SUPPORTED.</p>
+</li></ul><p>Upon successful validation of parameters, the server MUST
+perform the following actions: </p><ul><li><p><span><span> 
+</span></span>Create a new <b>List of Non-Persisted Reports Job Instances</b>
+(section 3.2.1.5).</p>
+</li><li><p><span><span> 
+</span></span>Populate it with <a href="0b493832-f781-4c1a-bddd-d39c9df1680f" data-linktype="relative-path">Non-Persisted Report Job Instances (section 3.2.1.5.1.2)</a>
+copied from the <a href="8f5aa057-1aeb-4430-b548-e841a6c4ac0a" data-linktype="relative-path">Persisted
+Report Jobs (section 3.2.1.5.1.1)</a> in the <b>List of Persisted
+Report Jobs</b>.</p>
+</li><li><p><span><span> 
+</span></span>Populate it with Non-Persisted Report Job Instances in the <b>List
+of Non-Persisted Report Jobs</b> that have a running status of Running.</p>
+</li><li><p><span><span> 
+</span></span>If <i>options</i> did not include <b>FsrmEnumOptions_IncludeDeprecatedObjects</b>,
+remove all Non-Persisted Report Job Instances that have one or more report
+objects as part of their <b>Report Job.Reports</b> that have <b>Report.Deprecated</b>
+set to true.</p>
+</li><li><p><span><span> 
+</span></span>Populate <i>reportJobs</i> with the <b>IFsrmReportJob</b>
+interface pointer (section <a href="e44f5d43-3df5-4342-9a4a-583911290fe0" data-linktype="relative-path">3.2.4.2.34</a>)
+of every Non-Persisted Report Job Instance in this <b>List of Non-Persisted Reports
+Job Instance</b>.</p>
+</li></ul><p>If there are no report jobs configured on the server, the
+method MUST return an <b>IFsrmCollection</b> object that contains zero objects.</p></div>

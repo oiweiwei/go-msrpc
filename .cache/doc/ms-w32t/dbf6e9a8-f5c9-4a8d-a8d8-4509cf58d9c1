@@ -1,0 +1,27 @@
+<div class="content"><p>The W32TimeQueryProviderConfiguration method returns
+configuration data for a specific <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9338a1cf-ec11-4e27-a042-dda5324a44fb" data-linktype="relative-path">time provider</a> within the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9846d08d-ad98-4bb9-a1e7-1f0bfbdd1113" data-linktype="relative-path">time service&#39;s</a> list of time
+providers.<a id="Appendix_A_Target_44"></a><a aria-label="Product behavior note 44" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_44" data-linktype="relative-path">&lt;44&gt;</a> The <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a> syntax of this method
+is specified as follows.</p><dl>
+<dd>
+<div><pre> unsigned long W32TimeQueryProviderConfiguration(
+   [in] handle_t hBinding,
+   [in] unsigned __int32 ulFlags,
+   [in, string] wchar_t* pwszProvider,
+   [out, ref] PW32TIME_CONFIGURATION_PROVIDER* pConfigurationProviderInfo
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b><a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> primitive binding
+handle, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+part 3, sections Interface Definition Language and Stubs.</p><p><b>ulFlags: </b>Reserved. This parameter MUST be set
+to zero and MUST be ignored on receipt.</p><p><b>pwszProvider: </b>A null-terminated string that is
+the name of the time provider to query. This name is implementation specific.<a id="Appendix_A_Target_45"></a><a aria-label="Product behavior note 45" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_45" data-linktype="relative-path">&lt;45&gt;</a></p><p><b>pConfigurationProviderInfo: </b>A pointer that
+receives a pointer to a <a href="d8fcaaaf-7d81-4780-b7fb-c75bc72bf067" data-linktype="relative-path">W32TIME_CONFIGURATION_PROVIDER</a>
+structure containing configuration data for the time provider.</p><p><b>Return Values: </b>This method MUST return zero on
+success; on failure, it returns a nonzero <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_a0f899ec-e1a5-4e04-8abc-80df987c6fb4" data-linktype="relative-path">error code</a>. The values
+transmitted in this field are implementation specific. All nonzero values MUST
+be treated as equivalent for the purposes of this protocol.<a id="Appendix_A_Target_46"></a><a aria-label="Product behavior note 46" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_46" data-linktype="relative-path">&lt;46&gt;</a></p><p>When W32TimeQueryProviderConfiguration is invoked, the
+server SHOULD examine its <b>TimeProviderList</b> to locate the time provider
+corresponding to the name <i>pwszProvider</i>. If the provider cannot be located,
+the server MUST return ERROR_NOT_FOUND, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>;
+otherwise, the server MUST return the associated time provider configuration
+data structure, as specified in section <a href="b224e747-4d3a-43ec-b5c5-94ffab593389" data-linktype="relative-path">3.2.5.9.1</a>.</p></div>

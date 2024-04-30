@@ -1,0 +1,138 @@
+<div class="content"><p> </p><p>The _wireVARIANT is a container for a union that in turn
+contains scalar and OLE Automation data types.</p><dl>
+<dd>
+<div><pre> typedef struct _wireVARIANT {
+   DWORD clSize;
+   DWORD rpcReserved;
+   USHORT vt;
+   USHORT wReserved1;
+   USHORT wReserved2;
+   USHORT wReserved3;
+   [switch_type(ULONG), switch_is(vt)] 
+     union {
+     [case(VT_I8)] 
+       LONGLONG llVal;
+     [case(VT_I4)] 
+       LONG lVal;
+     [case(VT_UI1)] 
+       BYTE bVal;
+     [case(VT_I2)] 
+       SHORT iVal;
+     [case(VT_R4)] 
+       FLOAT fltVal;
+     [case(VT_R8)] 
+       DOUBLE dblVal;
+     [case(VT_BOOL)] 
+       VARIANT_BOOL boolVal;
+     [case(VT_ERROR)] 
+       HRESULT scode;
+     [case(VT_CY)] 
+       CURRENCY cyVal;
+     [case(VT_DATE)] 
+       DATE date;
+     [case(VT_BSTR)] 
+       BSTR bstrVal;
+     [case(VT_UNKNOWN)] 
+       IUnknown* punkVal;
+     [case(VT_DISPATCH)] 
+       IDispatch* pdispVal;
+     [case(VT_ARRAY)] 
+       PSAFEARRAY parray;
+     [case(VT_RECORD, VT_RECORD|VT_BYREF)] 
+       BRECORD brecVal;
+     [case(VT_UI1|VT_BYREF)] 
+       BYTE* pbVal;
+     [case(VT_I2|VT_BYREF)] 
+       SHORT* piVal;
+     [case(VT_I4|VT_BYREF)] 
+       LONG* plVal;
+     [case(VT_I8|VT_BYREF)] 
+       LONGLONG* pllVal;
+     [case(VT_R4|VT_BYREF)] 
+       FLOAT* pfltVal;
+     [case(VT_R8|VT_BYREF)] 
+       DOUBLE* pdblVal;
+     [case(VT_BOOL|VT_BYREF)] 
+       VARIANT_BOOL* pboolVal;
+     [case(VT_ERROR|VT_BYREF)] 
+       HRESULT* pscode;
+     [case(VT_CY|VT_BYREF)] 
+       CURRENCY* pcyVal;
+     [case(VT_DATE|VT_BYREF)] 
+       DATE* pdate;
+     [case(VT_BSTR|VT_BYREF)] 
+       BSTR* pbstrVal;
+     [case(VT_UNKNOWN|VT_BYREF)] 
+       IUnknown** ppunkVal;
+     [case(VT_DISPATCH|VT_BYREF)] 
+       IDispatch** ppdispVal;
+     [case(VT_ARRAY|VT_BYREF)] 
+       PSAFEARRAY* pparray;
+     [case(VT_VARIANT|VT_BYREF)] 
+       VARIANT* pvarVal;
+     [case(VT_I1)] 
+       CHAR cVal;
+     [case(VT_UI2)] 
+       USHORT uiVal;
+     [case(VT_UI4)] 
+       ULONG ulVal;
+     [case(VT_UI8)] 
+       ULONGLONG ullVal;
+     [case(VT_INT)] 
+       INT intVal;
+     [case(VT_UINT)] 
+       UINT uintVal;
+     [case(VT_DECIMAL)] 
+       DECIMAL decVal;
+     [case(VT_I1|VT_BYREF)] 
+       CHAR* pcVal;
+     [case(VT_UI2|VT_BYREF)] 
+       USHORT* puiVal;
+     [case(VT_UI4|VT_BYREF)] 
+       ULONG* pulVal;
+     [case(VT_UI8|VT_BYREF)] 
+       ULONGLONG* pullVal;
+     [case(VT_INT|VT_BYREF)] 
+       INT* pintVal;
+     [case(VT_UINT|VT_BYREF)] 
+       UINT* puintVal;
+     [case(VT_DECIMAL|VT_BYREF)] 
+       DECIMAL* pdecVal;
+     [case(VT_EMPTY)] 
+             ;
+     [case(VT_NULL)] 
+             ;
+   } _varUnion;
+ } wireVARIANTStr;
+</pre></div>
+</dd></dl><p><b>clSize:</b>  MUST be set to the size, in
+quad words (64 bits), of the structure.</p><p><b>rpcReserved:</b>  MUST be set to 0 and
+MUST be ignored by the recipient.</p><p><b>vt:</b>   MUST be set to one of the
+values specified with a &#34;V&#34; in the Context column of the table in
+section <span><a href="3fe7db9f-5803-4dc4-9d14-5425d3f5461f" data-linktype="relative-path">2.2.7</a></span>. </p><p><b>wReserved1:</b>  MAY be set to 0 and
+MUST be ignored by the recipient.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><p><b>wReserved2:</b>  MAY be set to 0 and
+MUST be ignored by the recipient.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p><p><b>wReserved3:</b>  MAY be set to 0 and
+MUST be ignored by the recipient.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p><p><b>_varUnion:</b>  MUST contain an instance
+of the type, according to the value in the <b>vt</b> field.</p><p>Data of this type MUST be marshaled as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+section 14, with the following additional restrictions.</p><ul><li><p><span><span> 
+</span></span>All fields except <b>_varUnion</b> MUST be marshaled using a
+little-endian data representation, regardless of the data representation format
+label. For more information, see [C706] section 14.2.5.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>vt</b> field has the flag VT_ARRAY set, then <b>_varUnion</b>
+MUST be marshaled according to <span><a href="04e72b3f-5731-4508-9bb4-de29fbd0f781" data-linktype="relative-path">2.2.30</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>vt</b> field has the flags VT_UNKNOWN or VT_DISPATCH
+set, then <b>_varUnion</b> MUST be marshaled according to <span><a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a></span>
+section 1.3.2.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>vt</b> field has the flag VT_RECORD set, then <b>_varUnion</b>
+field MUST be marshaled according to <span><a href="29ce0a4f-4786-49c9-a312-5522c1e9b44d" data-linktype="relative-path">2.2.28</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>vt</b> field has the flag VT_BSTR set, then <b>_varUnion</b>
+MUST be marshaled according to <span><a href="9c5a5ce4-ff5b-45ce-b915-ada381b34ac1" data-linktype="relative-path">2.2.23</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>If none of the preceding flags is specified in the <b>vt</b>
+field, the <b>_varUnion</b> field MUST be marshaled by using a little-endian
+data representation, regardless of the data representation format label.</p>
+</li></ul></div>

@@ -1,0 +1,19 @@
+<div class="content"><p>The TSG_PACKET_AUTH structure is sent by the client to the
+TS Gateway server when Pluggable Authentication is used. This packet includes <a href="97c5562c-70a3-4d45-99eb-732202743cd9" data-linktype="relative-path">TSG_PACKET_VERSIONCAPS</a>,
+which is used for capability negotiation, and cookie, which is used for user
+authentication. This MUST be the first packet from the client to the server if
+the server has Pluggable Authentication turned on. The value of the <b>packetId</b>
+field in <a href="4c505da0-93c2-4a2f-9329-6174bbaa481b" data-linktype="relative-path">TSG_PACKET</a>
+MUST be set to <a href="1714596b-088d-4dca-b9fe-8cbfa2520533" data-linktype="relative-path">TSG_PACKET_TYPE_AUTH</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _TSG_PACKET_AUTH {
+   TSG_PACKET_VERSIONCAPS TSGVersionCaps;
+   [range(0,65536)] unsigned long cookieLen;
+   [size_is(cookieLen)] byte* cookie;
+ } TSG_PACKET_AUTH,
+  *PTSG_PACKET_AUTH;
+</pre></div>
+</dd></dl><p><b>TSGVersionCaps:</b>  A
+TSG_PACKET_VERSIONCAPS structure as specified in section 2.2.9.2.1.2.</p><p><b>cookieLen:</b>  An unsigned long that
+specifies the size in bytes for the field cookie.</p><p><b>cookie:</b>  A byte pointer that points
+to the cookie data. The cookie is used for authentication.</p></div>

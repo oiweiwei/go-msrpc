@@ -1,0 +1,90 @@
+<div class="content"><p> </p><p>The Recover method restores a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_a6543827-8d70-4e5a-a982-2fdc2e7f8bca" data-linktype="relative-path">disk pack</a></span> to a
+healthy state. This method is not supported on <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_425be2e8-ca0d-45db-afba-d9daee040d07" data-linktype="relative-path">basic disk</a></span> packs or
+the INVALID dynamic disk pack (the value of <span><a href="c1ec52c2-64c9-4b86-b893-81615ab07aad" data-linktype="relative-path">VDS_PACK_PROP</a></span>::pwszName
+is INVALID for this pack). The INVALID dynamic disk pack contains dynamic disks
+that have failed to be joined to the owning pack because there are errors or
+data corruption has occurred.</p><dl>
+<dd>
+<div><pre> HRESULT Recover(
+   [out] IVdsAsync** ppAsync
+ );
+</pre></div>
+</dd></dl><p><b>ppAsync: </b>A pointer to an <span><a href="97ea9c0f-5c8a-43e9-a9ee-deda29e2a09e" data-linktype="relative-path">IVdsAsync</a></span>
+interface that, if the operation is successfully completed, receives the
+IVdsAsync interface to monitor and control this operation. Callers MUST release
+the interface when they are done with it.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameter:</p><ul><li><p><span><span> 
+</span></span>Verify that <b>ppAsync</b> is not NULL.</p>
+</li></ul><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>Create a new async object implementing the IVdsAsync interface
+with an output type of VDS_ASYNCOUT_RECOVERPACK and set the pointer <b>ppAsync</b>
+references to the interface.</p>
+</li><li><p><span><span> 
+</span></span>Return an HRESULT indicating failure or success. Any errors
+encountered up through this point in processing the operation are returned in
+this HRESULT.</p>
+</li></ul><p>The server MUST then perform the following in sequence.
+Errors generated in this sequence of steps are returned in the pHrResult
+parameter to the IVdsAsync::Wait or IVdsAsyncQueryStatus methods.</p><ul><li><p><span><span> 
+</span></span>For all <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disks</a></span> in the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_890bb28d-df68-420f-a8bc-83899d34ad5c" data-linktype="relative-path">pack</a></span>,
+attempt to bring the disk back to a healthy state.  For all disks in the
+invalid pack, attempt to bring the disk back to a healthy state and rejoin it
+to its proper pack.  Attempt to resync any mirrored <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volumes</a></span>, and
+regenerate any <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_96e19472-82bc-4317-9b5b-8113e2fc6eb8" data-linktype="relative-path">RAID-5</a></span> volumes that
+are in the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_783ae2e4-7c04-40ba-a974-f95a30aa1ab2" data-linktype="relative-path">online</a></span> pack.</p>
+</li><li><p><span><span> 
+</span></span>Set the return code in the async object to an HRESULT indicating
+failure or success.</p>
+</li><li><p><span><span> 
+</span></span>If the task completed successfully, set the percentage completed
+value in the async object to 100.</p>
+</li><li><p><span><span> 
+</span></span>Set the signal state in the async object to TRUE.</p>
+</li><li><p><span><span> 
+</span></span>If changes are made to the pack as a result of the call to
+recover, then for each callback object that is registered in the list of
+callback objects, call the callback object&#39;s <span><a href="04a70bf6-208d-463a-b0a4-cc96e198ded1" data-linktype="relative-path">IVdsAdviseSink::OnNotify (section 3.3.4.3.1)</a></span>
+method by using a <span><a href="4f29057f-ab32-4a3d-9fcb-00ba3457cb42" data-linktype="relative-path">VDS_NOTIFICATION (section 2.2.1.3.9)</a></span>
+structure that has the following attributes:</p>
+<ul><li><p><span><span>  </span></span><b>objectType</b>
+member is the value VDS_NTT_PACK.</p>
+</li><li><p><span><span>  </span></span><b>Pack</b>
+member is a <span><a href="d502258f-be31-4298-882b-581f4804a344" data-linktype="relative-path">VDS_PACK_NOTIFICATION (section 2.2.1.3.2)</a></span>
+structure that has the following attributes:</p>
+<ul><li><p><span><span> 
+</span></span><b>ulEvent</b> is the value VDS_NF_PACK_MODIFY.</p>
+</li><li><p><span><span> 
+</span></span><b>packId</b> is the <span><a href="9186f1ce-04de-4df2-a8cf-3925a02fcd47" data-linktype="relative-path">VDS_OBJECT_ID (section 2.2.1.1.3)</a></span>
+value of this pack object.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>If the method call results in RAID-5 or <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_e7aa7465-999c-41da-b417-977871251f4a" data-linktype="relative-path">mirrored volumes</a></span>
+being regenerated or resynchronized, the server MUST send progress
+notifications to the client as follows.</p>
+<p>For each callback object
+that is registered in the list of callback objects, call the callback object&#39;s
+IVdsAdviseSink::OnNotify method by using a VDS_NOTIFICATION structure that has
+the following attributes:</p>
+<ul><li><p><span><span>  </span></span><b>objectType</b>
+member is VDS_NTT_VOLUME.</p>
+</li><li><p><span><span>  </span></span><b>Volume</b>
+member is a <span><a href="410540de-982d-4db1-991e-a73efed4e6f0" data-linktype="relative-path">VDS_VOLUME_NOTIFICATION (section 2.2.1.3.4)</a></span>
+structure that has the following attributes:</p>
+<ul><li><p><span><span> 
+</span></span><b>ulEvent</b> is the value VDS_NF_VOLUME_REBUILDING_PROGRESS.</p>
+</li><li><p><span><span> 
+</span></span><b>volumeId</b> is the VDS_OBJECT_ID value of this volume object
+being regenerated or resynchronized.</p>
+</li><li><p><span><span> 
+</span></span><b>plexId</b> is the VDS_OBJECT_ID value of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_d864e01b-9fb1-4beb-9864-8221d293445a" data-linktype="relative-path">plex</a></span>
+object being regenerated or resynchronized.</p>
+</li><li><p><span><span> 
+</span></span><b>ulPercentCompleted</b> is a number between 0 and 100
+indicating regeneration or resynchronization progress.</p>
+</li></ul></li></ul></li></ul><p>The server MUST update the percentage completed value
+periodically during the preceding sequence. How often the percentage completed
+is updated, and at what point in the sequence, is implementation-specific.</p></div>

@@ -1,0 +1,65 @@
+<div class="content"><p> </p><p>The IEnumWbemClassObject::NextAsync method is the
+asynchronous version of the <span><a href="141623d4-a170-4b09-8fea-3cb8f78fbbfe" data-linktype="relative-path">IEnumWbemClassObject::Next</a></span>
+method. It provides controlled asynchronous retrieval of <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_8d8f4b2c-bf33-4964-b55c-96ac2cc999bb" data-linktype="relative-path">CIM
+objects</a></span> to a sink. The server MUST asynchronously get one or more
+CIM objects, starting at the current position in an enumeration, and MUST move
+the current position by the number of CIM objects. When <span><a href="56022f1e-3761-4c17-8d55-8e62dc334b86" data-linktype="relative-path">IEnumWbemClassObject</a></span>
+is created, the current position MUST be set on the first <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c1fdd6c7-06cb-4787-8735-4d19a68dd802" data-linktype="relative-path">CIM
+object</a></span> of the collection. The order of the CIM objects that are
+stored in the enumerator is arbitrary.</p><dl>
+<dd>
+<div><pre> HRESULT NextAsync(
+   [in] ULONG uCount,
+   [in] IWbemObjectSink* pSink
+ );
+</pre></div>
+</dd></dl><p><b>uCount: </b>MUST be the number of CIM objects
+being requested.</p><p><b>pSink: </b>MUST be a pointer to the <span><a href="0ddb4f22-371a-4697-af5b-d4184b179b68" data-linktype="relative-path">IWbemObjectSink</a></span>
+interface, which MUST represent the sink to receive the CIM object. As each
+batch of CIM objects is requested, they MUST be delivered to the <span><a href="ce36fcf4-5aaa-4dc7-a760-928f6616da77" data-linktype="relative-path">IWbemObjectSink::Indicate</a></span>
+method to which <i>pSink</i> points (as specified in section 3.1.4.2.1) and
+MUST be followed by a final call to the <span><a href="479c78dc-73cf-4f5b-85bd-5efb26ab48a6" data-linktype="relative-path">IWbemObjectSink::SetStatus</a></span>
+method to which <i>pSink</i> points, as specified in section 3.1.4.2.2. This
+parameter MUST NOT be NULL. In error cases, indicated by the HRESULT return
+value, the supplied IWbemObjectSink <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface pointer</a></span>
+MUST NOT be used by the server.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The server MUST locate the entry in <b>EnumWbemClassObjectTable</b>
+with <b>EnumWbemClassObjectPointer</b> matching IEnumWbemClassObject.</p><p>The server MUST validate that the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that makes the call is the same as the <b>ClientSecurityContext</b> of the <b>SemiSinkResultSetObject</b>
+pointed to by the entry in the <b>EnumWbemClassObjectTable</b>; otherwise,
+WBEM_E_ACCESS_DENIED MUST be returned.</p><p>The server MUST serialize execution of the
+IEnumWbemClassObject::Next call and asynchronous execution of the
+IEnumWbemClassObject::NextAsync call, the <span><a href="8dfc5221-4cdb-44af-8acf-89dcbffae41f" data-linktype="relative-path">IEnumWbemClassObject::Reset</a></span>
+call, and the <span><a href="817d3503-7cef-4b1f-90c0-7c55b212f22a" data-linktype="relative-path">IEnumWbemClassObject::Clone</a></span>
+call.</p><p>In response to IEnumWbemClassObject::NextAsync, the server
+MUST synchronously evaluate the <i>uCount</i> parameter as specified in this
+section. If the <i>uCount</i> parameter value is zero, the server MUST return
+WBEM_S_FALSE. If the <i>uCount</i> parameter value is greater than zero, the
+server MUST add a record in <b>SinkQueue</b> of an entry in <b>EnumWbemClassObjectTable</b>
+for this operation. The new record in <b>SinkQueue</b> will store a reference
+to <i>pSink</i> in <b>WbemObjectSinkPointer</b> and store the requested count
+in <b>RemainingRequestCount</b>. </p><p>The failed method execution MUST return an error in the
+format specified in section 2.2.11.</p><p>If the method succeeds, the server MUST wait asynchronously
+until either the <b>SemiSinkResultSetObject</b> contains <b>RemainingRequestCount</b>
+objects starting at <b>CurrentIndex</b>, or its <b>OperationFinished</b> flag
+is set to true, or the enumeration encounters an error. At that time:</p><ul><li><p><span><span> 
+</span></span>If the enumeration encountered an error, the server MUST deliver
+the error to the client by calling IWbemObjectSink::SetStatus.</p>
+</li><li><p><span><span> 
+</span></span>If the enumeration finished with fewer than the requested number
+of objects, the server MUST deliver them to the client by calling the
+IWbemObjectSink::Indicate method and then indicate completion by calling
+IWbemObjectSink::SetStatus with status WBEM_S_FALSE.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the server MUST deliver <b>RemainingRequestCount</b>
+objects to the client by calling the IWbemObjectSink::Indicate method and then
+indicate completion by calling IWbemObjectSink::SetStatus with status
+WBEM_S_NO_ERROR.</p>
+</li></ul><p>The current index position pointed to by <b>CurrentIndex</b>
+in an entry of <b>EnumWbemClassObjectTable</b> MUST be incremented by the
+number of CIM objects delivered to the client.</p><p>Finally, the server MUST remove the entry from <b>SinkQueue</b>.</p></div>

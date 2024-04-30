@@ -1,0 +1,78 @@
+<div class="content"><p>The Security Property Collection Header structure specifies
+the header of a <a href="68abd53d-29df-40c1-819e-65ea19ef1b03" data-linktype="relative-path">Security
+Property (section 2.2.3.2.1)</a> collection.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">collectionType</p>
+  </td>
+  <td colspan="16">
+  <p align="center">cProperties</p>
+  </td>
+ </tr>
+</tbody></table><p><b>collectionType (2 bytes): </b> An unsigned short
+that MUST contain one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0a01</p>
+  </td>
+  <td>
+  <p>The collection MUST contain properties that are not
+  specific to any one caller in the ORPC call chain, but that apply to the
+  entire ORPC call chain.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0a02</p>
+  </td>
+  <td>
+  <p>The collection MUST contain properties that describe
+  one caller in the ORPC call chain.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cProperties (2 bytes): </b> An unsigned short that
+MUST contain the number of Security Property structures in the collection. MUST
+NOT be zero.</p></div>

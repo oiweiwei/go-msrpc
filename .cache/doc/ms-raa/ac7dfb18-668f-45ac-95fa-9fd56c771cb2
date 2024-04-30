@@ -1,0 +1,18 @@
+<div class="content"><p>The AUTHZR_ACCESS_REQUEST structure defines the contents of
+a remote access check request.</p><dl>
+<dd>
+<div><pre> typedef struct _AUTHZR_ACCESS_REQUEST {
+     ACCESS_MASK DesiredAccess;
+     RPC_SID* PrincipalSelfSid;
+     [range(0, 256)] DWORD ObjectTypeListLength;
+     [size_is(ObjectTypeListLength)] OBJECT_TYPE_LIST* ObjectTypeList;
+ } AUTHZR_ACCESS_REQUEST;
+  
+  
+</pre></div>
+</dd></dl><p><b>DesiredAccess:</b>  The type of access to test.</p><p><b>PrincipalSelfSid:</b>  A pointer to the <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security identifier (SID)</a>
+to use for the <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_14fff74b-8fd4-4528-a4f5-05052f428a47" data-linktype="relative-path">principal
+self</a> SID in the <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_9f92aa05-dd0a-45f2-88d6-89f1fb654395" data-linktype="relative-path">access
+control list (ACL)</a>.</p><p><b>ObjectTypeListLength:</b>  The number of elements
+in the <i>ObjectTypeList</i> array.</p><p><b>ObjectTypeList:</b>  A pointer to an array of
+OBJECT_TYPE_LIST structures in the object tree for the object.</p></div>

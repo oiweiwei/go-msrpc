@@ -1,0 +1,110 @@
+<div class="content"><p>The Security ORPC Extension structure is used to specify the
+version, style, and number of security property collections in the out-of-band
+data sent by the security ORPC extension.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">MaxVersion</p>
+  </td>
+  <td colspan="16">
+  <p align="center">MinVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">Style</p>
+  </td>
+  <td colspan="16">
+  <p align="center">cCollections</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Collections
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>MaxVersion (2 bytes): </b> The major version
+number for this Security ORPC Extension format; this field MUST be set to
+0x0001.</p><p><b>MinVersion (2 bytes): </b> The minor version
+number for this Security ORPC Extension format; this field MUST be set to
+0x0001.</p><p><b>Style (2 bytes): </b> An unsigned short that MUST
+be set to one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>The recipient of the ORPC call MUST append the <a href="135b67ab-fc78-4e25-a5e3-adc7c4caf0b3" data-linktype="relative-path">security property
+  collection (section 2.2.3.2.3)</a> of the recipient when making an
+  outgoing ORPC call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0002</p>
+  </td>
+  <td>
+  <p>The recipient of the ORPC call MUST NOT append the
+  security property collection (section 2.2.3.2.3) of the recipient
+  when making an outgoing ORPC call.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cCollections (2 bytes): </b> The unsigned number
+of elements in the <b>Collections</b> array.</p><p><b>Collections (variable): </b> An array of security
+property collections (section 2.2.3.2.3). The <b>collectionType</b> field in
+the <a href="25146b80-ec6d-45bd-9029-8a4bcb53500f" data-linktype="relative-path">Security Property
+Collection Header (section 2.2.3.2.2)</a> of the first element of the array, if
+present, MUST be set to 0x0a01. The <b>collectionType</b> field in the Security
+Property Collection Header of the remaining elements of the array, if present,
+MUST be set to 0x0a02. The second array element, if present, indicates the
+security property of the direct <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_d4ad46fe-cbab-43f2-a125-b2f125824f33" data-linktype="relative-path">ORPC</a> caller. Subsequent
+array elements, if present, indicate the security properties of previous
+callers in the ORPC call chain.</p></div>

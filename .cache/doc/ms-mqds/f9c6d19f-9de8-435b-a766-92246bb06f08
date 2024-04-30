@@ -1,0 +1,36 @@
+<div class="content"><p> </p><p>This method instructs the server to notify the computer that
+owns the deleted object about the deletion.</p><dl>
+<dd>
+<div><pre> HRESULT S_DSNotifyDelete(
+   [in] handle_t hBind,
+   [in] PCONTEXT_HANDLE_DELETE_TYPE Handle
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST specify an <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle,
+as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>Handle: </b> MUST be set by the client to a pointer to an
+RPC context_handle acquired from a previous call to <span><a href="8fa89cc3-1cd0-455b-81c6-3f5a72ea568c" data-linktype="relative-path">S_DSBeginDeleteNotification</a></span>.
+This RPC context handle MUST NOT have been used in a previous call to <span><a href="1e8a6d52-6c9d-4db8-ac2f-e39f71b2d889" data-linktype="relative-path">S_DSEndDeleteNotification</a></span>.</p><p><b>Return Values: </b> If the method succeeds, the return
+value is MQ_OK (0x00000000). If the method fails, the return value is an
+implementation-specific error code.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC extension protocol, as specified in
+[MS-RPCE].</p><p>While processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Look up the handle in the delete notification table. If not
+found, return an implementation-specific error code.</p>
+</li><li><p><span><span> 
+</span></span>If the object type in the delete notification table entry is
+MQDS_MACHINE, the server MAY notify the <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_2272dfee-5f1c-4991-9135-fa633c869406" data-linktype="relative-path">Primary Site Controller</a></span>
+of the owner site that the machine object was deleted by the client. This
+specification does not mandate how this notification is performed.<a id="Appendix_A_Target_161"></a><a aria-label="Product behavior note 161" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_161" data-linktype="relative-path">&lt;161&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If the object type in the delete notification table entry is
+MQDS_QUEUE, the server MAY notify the Primary Site Controller of the owner site
+that the <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span> object was
+deleted by the client. This specification does not mandate how this
+notification is performed.<a id="Appendix_A_Target_162"></a><a aria-label="Product behavior note 162" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_162" data-linktype="relative-path">&lt;162&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If the object type in the delete notification table entry is
+MQDS_QUEUE, and if the queue is not foreign, the server MUST notify the owner
+queue manager that the queue object was deleted by the client. This
+specification does not mandate how this notification is performed.</p>
+</li></ul></div>

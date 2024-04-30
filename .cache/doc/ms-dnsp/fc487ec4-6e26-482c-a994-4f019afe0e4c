@@ -1,0 +1,78 @@
+<div class="content"><p> </p><p>The <b>DNS_SYSTEMTIME</b> structure stores time values for
+DNS statistics. It is always populated by the server, which MUST supply valid
+values. This structure MUST be formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>wYear</p>
+  </td>
+  <td colspan="16">
+  <p>wMonth</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>wDayOfWeek</p>
+  </td>
+  <td colspan="16">
+  <p>wDay</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>wHour</p>
+  </td>
+  <td colspan="16">
+  <p>wMinute</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>wSecond</p>
+  </td>
+  <td colspan="16">
+  <p>wMillisecond</p>
+  </td>
+ </tr>
+</tbody></table><p><b>wYear (2 bytes): </b>The year, as a 16-bit,
+unsigned integer. Valid values are from 1601 to 30827.</p><p><b>wMonth (2 bytes): </b>The month from 1 (January)
+to 12 (December), as a 16-bit, unsigned integer.</p><p><b>wDayOfWeek (2 bytes): </b>The day of the week from
+0 (Sunday) to 6 (Saturday), as a 16-bit, unsigned integer.</p><p><b>wDay (2 bytes): </b>The day of the month from 1 to
+31, as a 16-bit, unsigned integer.</p><p><b>wHour (2 bytes): </b>The hour from 0 to 23, as a
+16-bit, unsigned integer.</p><p><b>wMinute (2 bytes): </b>The minute from 0 to 59, as
+a 16-bit, unsigned integer.</p><p><b>wSecond (2 bytes): </b>The second from 0 to 59, as
+a 16-bit, unsigned integer.</p><p><b>wMillisecond (2 bytes): </b>The millisecond from 0
+to 999, as a 16-bit, unsigned integer.</p></div>

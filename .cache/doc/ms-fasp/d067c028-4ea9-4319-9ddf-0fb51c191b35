@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>This enumeration is used to represent types of network
+adapters (NICs) in a specific machine. Each type might have one or more network
+adapters.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_INTERFACE_TYPE
+ {
+   FW_INTERFACE_TYPE_ALL = 0x0000,
+   FW_INTERFACE_TYPE_LAN = 0x0001,
+   FW_INTERFACE_TYPE_WIRELESS = 0x0002,
+   FW_INTERFACE_TYPE_REMOTE_ACCESS = 0x0004,
+   FW_INTERFACE_TYPE_MAX = 0x0008
+ } FW_INTERFACE_TYPE;
+</pre></div>
+</dd></dl><p><b>FW_INTERFACE_TYPE_ALL:  </b>Represents all types
+of network adapters (NICs). The following types fall into this type.</p><p><b>FW_INTERFACE_TYPE_LAN:  </b>Represents network
+adapters (NICs) that use wired network physical layers such as Ethernet.</p><p><b>FW_INTERFACE_TYPE_WIRELESS:  </b>Represents
+network adapters that use the wireless 802 network physical layer.</p><p><b>FW_INTERFACE_TYPE_REMOTE_ACCESS:  </b>Represents
+network adapters that use VPN connections.</p><p><b>FW_INTERFACE_TYPE_MAX:  </b>This value and values
+that exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 0x0008.</p></div>

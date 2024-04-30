@@ -1,0 +1,159 @@
+<div class="content"><p> </p><p>The SYNTAX_DISTNAME_BINARY packet is the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete
+type</a></span> for a combination of a <span><a href="385d478f-3eb6-4d2c-ac58-f25c4debdd86" data-linktype="relative-path">DSNAME</a></span> and a binary
+or character data buffer.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>structLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SidLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Guid
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Sid (28
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NameLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StringName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Padding
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dataLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>byteVal
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>structLen (4 bytes): </b>The length of the
+structure, in bytes, up to and including the field StringName.</p><p><b>SidLen (4 bytes): </b>The number of bytes in the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">Sid</a></span>
+field used to represent the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object&#39;s</a></span> <span><a href="../ms-ada3/afac8414-c614-4c6a-b316-41f5978308bd" data-linktype="relative-path">objectSid</a></span>
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span>
+value. Zero indicates that the SYNTAX_DISTNAME_BINARY does not identify the
+objectSid value of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_407dbc2c-3140-4e31-9085-0087e2d3bab2" data-linktype="relative-path">directory object</a></span>.</p><p><b>Guid (16 bytes): </b>The value of the object&#39;s <span><a href="../ms-ada3/937eb5c6-f6b3-4652-a276-5d6bb8979658" data-linktype="relative-path">objectGUID</a></span>
+attribute specified as a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> structure,
+which is defined in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a></span>.
+If the values for all fields in the GUID structure are zero, this indicates
+that the SYNTAX_DISTNAME_BINARY does not identify the objectGUID value of the
+directory object.</p><p><b>Sid (28 bytes): </b>The value of the object&#39;s
+objectSid attribute, its security identifier specified as a SID structure,
+which is defined in [MS-DTYP] section <span><a href="../ms-dtyp/78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">2.4.2</a></span>.
+The size of this field is exactly 28 bytes, regardless of the value of SidLen,
+which specifies how many bytes in this field are used.</p><p><b>NameLen (4 bytes): </b>The number of characters in
+the StringName field, not including the terminating null character, used to
+represent the object&#39;s <span><a href="../ms-ada1/56da5a9b-485d-4d7c-a226-1a54a43d9013" data-linktype="relative-path">distinguishedName</a></span>
+attribute value. Zero indicates that the SYNTAX_DISTNAME_BINARY does not
+identify the distinguishedName value of the directory object.</p><p><b>StringName (variable): </b>The null-terminated <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+value of the object&#39;s distinguishedName attribute, as specified in <span><a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a></span>
+section <span><a href="../ms-adts/85397795-f089-4807-89be-24822570bc2c" data-linktype="relative-path">3.1.1.1.4</a></span>.
+This field always contains at least one character: the terminating null
+character. Each Unicode value is encoded as 2 bytes. The byte ordering is
+little-endian.</p><p><b>Padding (variable): </b>The padding (bytes with
+value zero) to align the field dataLen at a double word boundary.</p><p><b>dataLen (4 bytes): </b>The length of the remaining
+structure, including this field, in bytes.</p><p><b>byteVal (variable): </b>An array of bytes.</p><p><b>Note</b>  All fields have little-endian byte
+ordering.</p><p>The following structure definition shows an alternative
+representation of this data type.</p><dl>
+<dd>
+<div><pre> typedef struct {
+     DSNAME Name;
+     SYNTAX_ADDRESS Data;
+ } SYNTAX_DISTNAME_BINARY;
+  
+</pre></div>
+</dd></dl></div>

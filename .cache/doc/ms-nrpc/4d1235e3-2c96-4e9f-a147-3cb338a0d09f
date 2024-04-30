@@ -1,0 +1,39 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/4d1235e3-2c96-4e9f-a147-3cb338a0d09f" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_SECURE_CHANNEL_TYPE</b> enumeration
+specifies the type of <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure
+channel</a> to use in a logon transaction.</p><dl>
+<dd>
+<div><pre> typedef  enum _NETLOGON_SECURE_CHANNEL_TYPE
+ {
+   NullSecureChannel = 0,
+   MsvApSecureChannel = 1,
+   WorkstationSecureChannel = 2,
+   TrustedDnsDomainSecureChannel = 3,
+   TrustedDomainSecureChannel = 4,
+   UasServerSecureChannel = 5,
+   ServerSecureChannel = 6,
+   CdcServerSecureChannel = 7
+ } NETLOGON_SECURE_CHANNEL_TYPE;
+</pre></div>
+</dd></dl><p><b>NullSecureChannel: </b>An unauthenticated channel
+type. This value MUST NOT be used in the Netlogon <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> calls between a client
+and a remote server. The error code STATUS_INVALID_PARAMETER is returned.</p><p><b>MsvApSecureChannel: </b>A secure channel between
+the local <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_6e52bc15-d369-45fd-b098-d51fc9baa56a" data-linktype="relative-path">NT LAN Manager
+(NTLM)</a> <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_05fd3925-0672-4f24-9dd9-2b9d441eb333" data-linktype="relative-path">security provider</a>
+and the Netlogon server. The client and the server are the same machine for
+this channel type. This value MUST NOT be used in the Netlogon RPC calls
+between a client and a remote server. The error code STATUS_INVALID_PARAMETER
+is returned.</p><p><b>WorkstationSecureChannel:</b> A secure channel
+from a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_6234a38c-ed1b-4c69-969f-6e6479566f65" data-linktype="relative-path">domain member</a> to
+a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a>.</p><p><b>TrustedDnsDomainSecureChannel: </b>A secure
+channel between two DCs, connected through a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a> relationship created
+between two <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a>
+<a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domains</a>. A <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted domain object (TDO)</a>
+is used in this type of channel.</p><p><b>TrustedDomainSecureChannel: </b>A secure channel
+between two DCs, connected through a trust relationship created between two
+domains.<a id="Appendix_A_Target_31"></a><a aria-label="Product behavior note 31" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_31" data-linktype="relative-path">&lt;31&gt;</a></p><p><b>UasServerSecureChannel: </b>Secure channel from a
+LAN Manager server to a DC. This value is no longer supported, and it MUST NOT
+be used in the Netlogon RPC calls between a client and a remote server. The
+error code STATUS_INVALID_PARAMETER is returned.</p><p><b>ServerSecureChannel:</b> A secure channel from a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_ce1138c6-7ab4-4c37-98b4-95599071c3c3" data-linktype="relative-path">backup domain controller</a> to
+a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">primary domain controller</a>.</p><p><b>CdcServerSecureChannel: A</b> secure channel from
+a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8b0a073b-3099-4efe-8b81-c2886b66a870" data-linktype="relative-path">read-only domain
+controller (RODC)</a> to a domain controller.<a id="Appendix_A_Target_32"></a><a aria-label="Product behavior note 32" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_32" data-linktype="relative-path">&lt;32&gt;</a></p></div>

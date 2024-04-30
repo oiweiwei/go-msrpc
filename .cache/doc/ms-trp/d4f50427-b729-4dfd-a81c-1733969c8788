@@ -1,0 +1,81 @@
+<div class="content"><p>The LINEAGENTGROUPENTRY packet provides information on ACD
+agent groups. The <a href="3c5e122b-b903-48c9-8b97-0078eae5c896" data-linktype="relative-path">LINEAGENTGROUPLIST</a>
+packet can contain an array of LINEAGENTGROUPENTRY packets.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwGroupID1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwGroupID2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwGroupID3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwGroupID4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNameOffset</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwGroupID1 (4 bytes): </b>An unsigned 32-bit
+integer. The first part of the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a> for the group. </p><p><b>dwGroupID2 (4 bytes): </b>An unsigned 32-bit
+integer. The second part of the UUID for the group.</p><p><b>dwGroupID3 (4 bytes): </b>An unsigned 32-bit
+integer. The third part of the UUID for the group. </p><p><b>dwGroupID4 (4 bytes): </b>An unsigned 32-bit
+integer. The fourth part of the UUID for a group. It is the responsibility of
+the agent handler to generate and maintain the uniqueness of this identifier.</p><p><b>dwNameSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the ACD group or queue name, including the null
+terminator.</p><p><b>dwNameOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset from the beginning of the packet to a null-terminated
+string specifying the name and other identifying information of an ACD group or
+queue into which the agent can log on. This string can contain information,
+such as supervisor and skill level, to assist the agent in selecting the
+correct group from a list displayed on the workstation screen. The size of the
+field MUST be specified by <b>dwNameSize</b>.</p></div>

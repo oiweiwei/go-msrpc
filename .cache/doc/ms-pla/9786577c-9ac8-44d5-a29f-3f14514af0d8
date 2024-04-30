@@ -1,0 +1,208 @@
+<div class="content"><p>The IValueMapItem interface is used to define a named-value
+pair.</p><p>The following properties MUST be implemented by the objects
+that implement the IValueMapItem interface.</p><p>The following is an XML representation of a ValueMapItem.</p><dl>
+<dd>
+<div><pre> &lt;Key&gt; &lt;/Key&gt;
+ &lt;Description&gt;&lt;/Description&gt;
+ &lt;Enabled&gt;&lt;/Enabled&gt;
+ &lt;Value&gt;&lt;/Value&gt; 
+  
+</pre></div>
+</dd></dl><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Description</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the description of the item.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Enabled</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies whether or not the item is enabled. If an
+  item is not enabled, its Value property will be ignored. In typical usage, a
+  ValueMap will contain a ValueMapItem for each of the multiple possible
+  settings of the property that the ValueMap is passed to (such as an entry for
+  every Keyword or every Level that can be used by an <a href="ebd49d76-5e50-4dd3-869c-8bba6eba42f7" data-linktype="relative-path">ITraceDataProvider</a>).
+  This Enabled property indicates whether or not the ValueMapItem will be used.
+  Essentially, the ValueMap contains a ValueMapItem for each of the multiple
+  possible options, and the Enabled property indicates which options are
+  actually selected.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Key</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the name of the item. The name of the item
+  can be any non-empty BSTR. The semantics of the key depend on the
+  ValueMapType property, specified in section <a href="b028335d-97c1-4b1c-bc07-8748d4956b8a" data-linktype="relative-path">3.2.4.18</a>, of the
+  IValueMap to which this IValueMapItem belongs. The over-the-wire transmission
+  of a BSTR is specified in <a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a>
+  section <a href="../ms-oaut/9c5a5ce4-ff5b-45ce-b915-ada381b34ac1" data-linktype="relative-path">2.2.23</a>.
+  The Performance Logs and Alerts Protocol does not have any predefined Key values
+  or semantic definitions. The only condition Performance Logs and Alerts
+  Protocol places on the Key is that it cannot be an empty BSTR.<a id="Appendix_A_Target_36"></a><a aria-label="Product behavior note 36" href="905cad7f-1a12-49b4-a263-461a2977ab71#Appendix_A_36" data-linktype="relative-path">&lt;36&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Value</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the value of the item. The value is stored
+  in a VARIANT. The format and over the wire transmission of a VARIANT is
+  specified in [MS-OAUT] section <a href="../ms-oaut/b2ee2b50-665e-43e6-a92c-8f2a29fd7add" data-linktype="relative-path">2.2.29</a>.
+  Any VARIANT is a legal value for this property. The ValueMapItem is a generic
+  container and the semantics of the Value property depend on what it is being
+  used to contain. The ValueMapType property contains information regarding how
+  the Value property will be interpreted. <a id="Appendix_A_Target_37"></a><a aria-label="Product behavior note 37" href="905cad7f-1a12-49b4-a263-461a2977ab71#Appendix_A_37" data-linktype="relative-path">&lt;37&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ValueMapType</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the type of ValueMap in which the
+  ValueMapItem will be inserted. Information on the different types of
+  ValueMaps are specified in section <a href="f8a66399-fa9d-4535-8528-fd57adfabf6c" data-linktype="relative-path">2.2.2.11</a>.</p>
+  </td>
+ </tr></tbody></table><p>The following is an XML representation of a ValueMapItem;
+please see section <a href="b5be2d38-3f21-478d-a8b9-a61128eb2751" data-linktype="relative-path">3.2.4.19</a>
+the XML layout of entire data collector set element.</p><dl>
+<dd>
+<div><pre>  
+ &lt;Key&gt; &lt;/Key&gt;
+ &lt;Description&gt;&lt;/Description&gt;
+ &lt;Enabled&gt;&lt;/Enabled&gt;
+ &lt;Value&gt;&lt;/Value&gt; 
+  
+</pre></div>
+</dd></dl><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="3cebfc11-ad20-4809-bcb6-9057c2e4c1c1" data-linktype="relative-path">Description
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Description property.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="8d3365b4-4457-4379-a078-a98c95970e2c" data-linktype="relative-path">Description
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the Description property.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="819b0fba-7cb7-48b7-83f6-baa4901f2df8" data-linktype="relative-path">Enabled
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Enabled property.</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b0b3beb0-d1ef-4e04-a23d-34826f41668b" data-linktype="relative-path">Enabled
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the Enabled property.</p>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="3f5bfec4-1be1-4011-af25-38aca17e8c37" data-linktype="relative-path">Key
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Key property.</p>
+  <p>Opnum: 11</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="c9cf68a5-accb-4912-8646-bab2070ce86a" data-linktype="relative-path">Key
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the Key property.</p>
+  <p>Opnum: 12</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="e67c4036-e6fb-4975-83a7-6befb2bcb482" data-linktype="relative-path">Value
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Value property.</p>
+  <p>Opnum: 13</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="cdde67a0-ceb7-4bc5-bd68-228d77e96b65" data-linktype="relative-path">Value
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the Value property.</p>
+  <p>Opnum: 14</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="d698b471-36e6-4380-bbe5-2d6577cd0c23" data-linktype="relative-path">ValueMapType
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the ValueMapType property.</p>
+  <p>Opnum: 15</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="019cf2ed-1d6b-48ac-a14b-3f0f90b1c99d" data-linktype="relative-path">ValueMapType
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the ValueMapType property.</p>
+  <p>Opnum: 16</p>
+  </td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface.</p></div>

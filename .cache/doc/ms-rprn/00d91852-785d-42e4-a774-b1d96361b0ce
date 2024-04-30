@@ -1,0 +1,111 @@
+<div class="content"><p>RpcGetPrinterDriver retrieves <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer driver</a> data for the
+specified printer.</p><dl>
+<dd>
+<div><pre> DWORD RpcGetPrinterDriver(
+   [in] PRINTER_HANDLE hPrinter,
+   [in, string, unique] wchar_t* pEnvironment,
+   [in] DWORD Level,
+   [in, out, unique, size_is(cbBuf), disable_consistency_check] 
+     BYTE* pDriver,
+   [in] DWORD cbBuf,
+   [out] DWORD* pcbNeeded
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object that
+was opened by <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter (section 3.1.4.2.3)</a>,
+<a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx (section 3.1.4.2.15)</a>,
+<a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter (section 3.1.4.2.2)</a>,
+or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx (section 3.1.4.2.14)</a>.</p><p><b>pEnvironment: </b>A parameter specified in <a href="5b2bf7d5-ac77-464f-be5e-f3a7c1782246" data-linktype="relative-path">Environment Name
+Parameters (section 3.1.4.1.3)</a>.</p><p><b>Level: </b>The driver information level.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Corresponds to <a href="59eab354-82fd-4299-884e-9a1226073a4a" data-linktype="relative-path">_DRIVER_INFO_1 (section 2.2.2.4.1)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Corresponds to <a href="2825d22e-c5a5-47cd-a216-3e903fd6e030" data-linktype="relative-path">_DRIVER_INFO_2 (section 2.2.2.4.2)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Corresponds to <a href="b9a54cc1-e79f-45c8-a126-1acd1f0f8663" data-linktype="relative-path">_DRIVER_INFO_3 (section 2.2.2.4.3)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Corresponds to <a href="2a53e910-04c3-4aba-905a-26741dcd59dd" data-linktype="relative-path">_DRIVER_INFO_4 (section 2.2.2.4.4)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>Corresponds to <a href="9a048522-4746-44c2-ac92-d881ac1f36a8" data-linktype="relative-path">_DRIVER_INFO_6 (section 2.2.2.4.6)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Corresponds to <a href="f9b749d6-08fc-4820-8d7b-fe0ee33e42c5" data-linktype="relative-path">_DRIVER_INFO_8 (section 2.2.2.4.8)</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pDriver: </b>An optional pointer to <i>BUFFER</i>,
+as specified in <a href="f29e9057-df29-40d4-9c51-c615c0da62a1" data-linktype="relative-path">INFO
+Structures Query Parameters (section 3.1.4.1.9)</a>.</p><p><b>BUFFER TYPE:</b> _DRIVER_INFO.</p><dl>
+<dd>
+<p>This parameter SHOULD be NULL if <i>cbBuf</i> is
+zero.</p>
+</dd></dl><p><b>cbBuf: </b>Specified in INFO Structures Query
+Parameters.</p><p><b>pcbNeeded: </b>Specified in INFO Structures Query
+Parameters.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters by performing the validation steps specified in:</p><ul><li><p><span><span> 
+</span></span><a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE
+Parameters (section 3.1.4.1.11)</a>). This method SHOULD assume that
+the handle to the printer object can be used without further access checks.</p>
+</li><li><p><span><span> 
+</span></span>Environment Name Parameters (section 3.1.4.1.3).</p>
+</li><li><p><span><span> 
+</span></span>INFO Structures Query Parameters (section 3.1.4.1.9).</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>The server SHOULD select a printer driver that meets the
+following specifications:</p>
+<ul><li><p><span><span>  </span></span>Compatible
+with the environment specified by the <i>pEnvironment</i> parameter.</p>
+</li><li><p><span><span>  </span></span>Compatible
+with one of the printer drivers listed in the <b>pszzPreviousNames</b> member
+of the <a href="17943579-a514-4d0b-8ded-422265b23f45" data-linktype="relative-path">DRIVER_INFO</a> of
+the printer driver that is associated with the printer.</p>
+<p>If such a printer driver
+cannot be located, the server SHOULD return ERROR_UNKNOWN_PRINTER_DRIVER.<a id="Appendix_A_Target_331"></a><a aria-label="Product behavior note 331" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_331" data-linktype="relative-path">&lt;331&gt;</a></p>
+</li></ul></li><li><p><span><span> 
+</span></span>Using the information about the printer driver, perform the
+processing and response steps specified in INFO Structures Query Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

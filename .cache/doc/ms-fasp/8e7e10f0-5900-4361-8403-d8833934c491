@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>This structure contains a memory section. The format of the
+memory is defined by the context where it is used; for example, see the <b>SubjectName</b>
+field of the <span><a href="dfc16343-eb51-4bba-b890-df5a58839b2b" data-linktype="relative-path">FW_CERT_INFO</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_BYTE_BLOB {
+   [range(0,10000)] unsigned long dwSize;
+   [size_is(dwSize)] unsigned char* Blob;
+ } FW_BYTE_BLOB,
+  *PFW_BYTE_BLOB;
+</pre></div>
+</dd></dl><p><b>dwSize:</b>  This field specifies the
+size in octets of the <b>Blob</b> field.</p><p><b>Blob:</b>  A pointer to an array of <b>dwSize</b>
+octets.</p></div>

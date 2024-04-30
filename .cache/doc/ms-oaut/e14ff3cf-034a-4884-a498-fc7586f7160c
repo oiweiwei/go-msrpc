@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The ELEMDESC structure is used in the <span><a href="d3349d25-e11d-4095-ba86-de3fda178c4e" data-linktype="relative-path">FUNCDESC (section 2.2.42)</a></span>
+and <span><a href="ae7791d2-4399-4dff-b7c6-b0d4f3dce982" data-linktype="relative-path">VARDESC (section 2.2.43)</a></span>
+structures to describe a member of a structure, a parameter, or the return
+value of a method.</p><dl>
+<dd>
+<div><pre> typedef struct tagELEMDESC {
+   TYPEDESC tdesc;
+   PARAMDESC paramdesc;
+ } ELEMDESC;
+</pre></div>
+</dd></dl><p><b>tdesc:</b>  MUST contain a <span><a href="95bb92a7-f783-477f-acbc-c947d754fa8b" data-linktype="relative-path">TYPEDESC (section 2.2.37)</a></span>
+that describes the element, parameter, or return value.</p><p><b>paramdesc:</b>  MUST contain a <span><a href="a965ce8e-6c06-4d7c-ab30-2f14b1d8488a" data-linktype="relative-path">PARAMDESC</a></span>
+that has the values as specified in section 2.2.40, if the ELEMDESC is a member
+of the lprgelemdescParam array in a FUNCDESC (section 2.2.42)
+structure. Otherwise, it MUST contain a PARAMDESC that has the data fields
+pparamdescex and wParamFlags set to NULL and 0 respectively.</p></div>

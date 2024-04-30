@@ -1,0 +1,103 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9921c3ed-f470-4f36-9edf-7afe24c468ec" data-linktype="external">msdn link</a></p><p>The KERB_KEY_DATA structure holds a cryptographic key. This
+structure is used in conjunction with <a href="866f0180-8694-4e14-be7e-dfd91d91694f" data-linktype="relative-path">KERB_STORED_CREDENTIAL</a>.
+For more information, see section <a href="573b6c40-6141-4a41-ba3f-fa72cca9d861" data-linktype="relative-path">3.1.1.8.11.4</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Reserved1</p>
+  </td>
+  <td colspan="16">
+  <p>Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Reserved3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>KeyType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>KeyLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>KeyOffset</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Reserved1 (2 bytes): </b>This value MUST be
+ignored by the recipient and MUST be set to zero.</p><p><b>Reserved2 (2 bytes): </b>This value MUST be
+ignored by the recipient and MUST be set to zero.</p><p><b>Reserved3 (4 bytes): </b>This value MUST be
+ignored by the recipient and MUST be set to zero.</p><p><b>KeyType (4 bytes): </b>Indicates the type of key,
+stored as a 32-bit unsigned integer in little-endian byte order. This MUST be
+set to one of the following values, which are defined in section <a href="1355fa6b-d097-4ecc-8d5e-75b3a6533e04" data-linktype="relative-path">2.2.10.8</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>dec-cbc-crc</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p>des-cbc-md5</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>KeyLength (4 bytes): </b>The length, in bytes, of
+the value beginning at <b>KeyOffset</b>. The value of this field is stored in
+little-endian byte order.</p><p><b>KeyOffset (4 bytes): </b>An offset, in
+little-endian byte order, from the beginning of the property value (that is, from
+the beginning of the <b>Revision</b> field of KERB_STORED_CREDENTIAL) to where
+the key value starts. The key value is the hash value specified according to
+the <b>KeyType</b>.</p></div>

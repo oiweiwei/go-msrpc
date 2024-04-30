@@ -1,0 +1,36 @@
+<div class="content"><p>The Remove method removes an object from the collection of <b>Objects
+Being Enumerated</b>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_COLLECTION_MUTABLE | 0x02)] HRESULT Remove(
+   [in] long index
+ );
+</pre></div>
+</dd></dl><p><b>index: </b>Contains the position of the object to
+remove from the collection of <b>Objects Being Enumerated</b>.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The index is out of range; the index is less than one
+  or greater than the size of the collection.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>index</i> is between one and the number of <b>Objects
+Being Enumerated</b> in the collection, inclusively.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST remove the object at position <i>index</i>.</p></div>

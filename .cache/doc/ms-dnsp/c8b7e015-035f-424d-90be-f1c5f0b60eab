@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_CLIENT_SUBNET_RECORD</b> structure contains
+the IPv4 and IPv6 subnets that are grouped together.</p><dl>
+<dd>
+<div><pre> typedef struct _ClientSubnetRecord {
+   LPWSTR pwszClientSubnetName;
+   PDNS_ADDR_ARRAY pIPAddr;
+   PDNS_ADDR_ARRAY pIPv6Addr;
+ } DNS_RPC_CLIENT_SUBNET_RECORD,
+  *PDNS_RPC_CLIENT_SUBNET_RECORD;
+</pre></div>
+</dd></dl><p><b>pwszClientSubnetName:</b> (variable) A
+NULL-terminated Unicode string containing the name of the client subnet record.</p><p><b>pIPAddr:</b> A pointer to a <span><a href="56ba5fab-f304-4866-99a4-4f1c1f9247a3" data-linktype="relative-path">DNS_ADDR_ARRAY (section 2.2.3.2.3)</a></span>
+structure that contains a list of IP subnets contained in this client subnet
+record along with the SubnetLength as defined in <span><a href="6e041c76-3b55-480a-84fb-feebcb0cc9db" data-linktype="relative-path">DNS ADD
+USER (section 2.2.3.2.2.2)</a></span>.</p><p><b>pIPv6Addr:</b> A pointer to a DNS_ADDR_ARRAY
+structure that contains a list of IPv6 subnets contained in this client subnet
+record along with the SubnetLength as defined in DNS ADD USER.</p></div>

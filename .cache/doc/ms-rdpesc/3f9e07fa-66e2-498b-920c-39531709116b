@@ -1,0 +1,25 @@
+<div class="content"><p>The ReadCache_Common structure contains information common
+to both the <a href="ba203dba-d546-4e9d-b8cf-afa22cf88c3d" data-linktype="relative-path">ReadCacheA_Call</a>
+and <a href="f45705cf-9299-4802-b408-685f02025e6a" data-linktype="relative-path">ReadCacheW_Call</a>
+structures.</p><dl>
+<dd>
+<div><pre> typedef struct _ReadCache_Common {
+   REDIR_SCARDCONTEXT Context;
+   UUID* CardIdentifier;
+   unsigned long FreshnessCounter;
+   long fPbDataIsNULL;
+   unsigned long cbDataLen;
+ } ReadCache_Common;
+</pre></div>
+</dd></dl><p><b>Context:</b>  A valid context, as
+specified in section <a href="060abee1-e520-4149-9ef7-ce79eb500a59" data-linktype="relative-path">2.2.1.1</a>.</p><p><b>CardIdentifier:</b>  A <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a> that specifies the
+name of the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">smart card</a>
+with which the name-value pair is associated.</p><p><b>FreshnessCounter:</b>  A value
+specifying the current revision of the data.</p><p><b>fPbDataIsNULL:</b>  A Boolean value
+specifying whether the caller wants to retrieve the length of the data. It MUST
+be set to TRUE (0x00000001) if the caller wants only to retrieve the length of
+the data; otherwise, it MUST be set to FALSE (0x00000000).</p><p><b>cbDataLen:</b>  The length of the buffer
+specified on the server side. If <b>cbDataLen</b> is set to SCARD_AUTOALLOCATE
+with a value of 0xFFFFFFFF, a buffer of any length can be returned. Otherwise,
+the returned buffer MUST NOT exceed <b>cbDataLen</b> bytes. This field MUST be
+ignored if <b>fPbDataIsNULL</b> is set to TRUE (0x00000001).</p></div>

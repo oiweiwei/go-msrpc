@@ -1,0 +1,165 @@
+<div class="content"><p>The syntax for the <b>GetKey (Opnum 0)</b> method consists
+of the following.</p><dl>
+<dd>
+<div><pre> HRESULT GetKey(
+         [in] handle_t hBinding,
+         [in] ULONG cbTargetSD,
+         [in] [size_is(cbTargetSD)] [ref] char* pbTargetSD,
+         [in] [unique] GUID* pRootKeyID,
+         [in] LONG L0KeyID,
+         [in] LONG L1KeyID,
+         [in] LONG L2KeyID,
+         [out] unsigned long* pcbOut,
+         [out] [size_is(, *pcbOut)] byte** ppbOut);
+  
+</pre></div>
+</dd></dl><p><b>hBinding:</b> This is an <a href="c001759a-376b-4582-bb38-9fd1336ce4e3#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding handle
+parameter, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> and <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a>.</p><p><b>cbTargetSD:</b> This parameter is equal to the length, in
+bytes, of the <a href="c001759a-376b-4582-bb38-9fd1336ce4e3#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security
+descriptor</a> supplied in <i>pbTargetSD</i>.</p><p><b>pbTargetSD:</b> This parameter is a pointer to the
+security descriptor for which the <a href="c001759a-376b-4582-bb38-9fd1336ce4e3#gt_b3b89402-c769-4cf2-b415-08896339af89" data-linktype="relative-path">group key</a> is being
+requested.</p><p><b>pRootKeyID:</b> This parameter represents the <a href="c001759a-376b-4582-bb38-9fd1336ce4e3#gt_0d1bc005-a097-475e-affb-814492a9009c" data-linktype="relative-path">root key identifier</a> of the
+requested key. It can be set to NULL.</p><p><b>L0KeyID:</b> This parameter represents the <b>L0 index</b>
+of the requested <b>group key</b>. It MUST be a signed 32-bit integer greater
+than or equal to -1.</p><p><b>L1KeyID:</b> This parameter represents the <b>L1 index</b>
+of the requested <b>group key</b>. It MUST be a signed 32-bit integer between
+-1 and 31 (inclusive).</p><p><b>L2KeyID:</b> This parameter represents the <b>L2 index</b>
+of the requested <b>group key</b>. It MUST be a 32-bit integer between -1 and
+31 (inclusive).</p><p><b>pcbOut:</b> This parameter is an unsigned, 32-bit
+integer. It MUST be equal to the length, in bytes, of the data returned in <i>ppbOut</i>.</p><p><b>ppbOut:</b> On successful processing of a request, the
+server MUST set this to a pointer that refers to the output key <a href="c001759a-376b-4582-bb38-9fd1336ce4e3#gt_ad861812-8cb0-497a-80bb-13c95aa4e425" data-linktype="relative-path">binary large object (BLOB)</a>,
+as specified in section <a href="192c061c-e740-4aa0-ab1d-6954fb3e58f7" data-linktype="relative-path">2.2.4</a>.</p><p><b>Return Values:</b> The server MUST return zero if it
+successfully processes the message received from the client; otherwise, it MUST
+return a nonzero value.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol [MS-RPCE].</p><p>Processing rules for the <b>GetKey</b> request are specified
+herein. In general, there are four types of requests, as follows:</p><ul><li><p><span><span> 
+</span></span>When the <i>pRootKeyID</i> parameter is equal to NULL and the
+values of the <i>L0KeyID</i>, <i>L1KeyID</i>, and <i>L2KeyID</i> parameters are
+all equal to -1, the latest group key is being requested by the caller.</p>
+</li><li><p><span><span> 
+</span></span>When the <i>pRootKeyID</i> parameter is equal to NULL and the
+values of the <i>L0KeyID</i>, <i>L1KeyID</i>, and <i>L2KeyID</i> parameters are
+all greater than -1, the <a href="c001759a-376b-4582-bb38-9fd1336ce4e3#gt_b6877b45-4797-4f19-b90f-80f6d8652beb" data-linktype="relative-path">seed
+key</a> used at a specific time in the past is being requested by the caller.</p>
+</li><li><p><span><span> 
+</span></span>When the <i>pRootKeyID</i> parameter is not equal to NULL and the
+values of the <i>L0KeyID</i>, <i>L1KeyID</i>, and <i>L2KeyID</i> parameters are
+all equal to -1, the latest group key derived from the specified <a href="c001759a-376b-4582-bb38-9fd1336ce4e3#gt_c554a386-8f04-4557-be16-e1eff4918da6" data-linktype="relative-path">root key</a> is being requested
+by the caller.</p>
+</li><li><p><span><span> 
+</span></span>When the <i>pRootKeyID</i> parameter is not equal to NULL and the
+values of the <i>L0KeyID</i>, <i>L1KeyID</i>, and <i>L2KeyID</i> parameters are
+all greater than -1, a specific seed key is being requested by the caller.</p>
+</li></ul><p>When a Group Key Distribution Protocol server receives the <b>GetKey</b>
+request, it must first validate that the <i>pbTargetSD</i> parameter is a valid
+security descriptor in self-relative format. The server MUST also verify that
+the <i>L0KeyID</i>, <i>L1KeyID</i>, and <i>L2KeyID</i> parameters are either
+all equal to -1 or all greater than or equal to 0. If any of these conditions
+are not met, the server MUST return an error and exit. </p><p>The server MUST further validate its arguments as follows:</p><ol><li><p><span>    </span>Retrieve the
+current time in the FILETIME format specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">2.3.3</a>.
+Construct an unsigned 64-bit number by setting the low-order word to
+dwLowDateTime and the high-order word to dwHighDateTime. Call this 64-bit
+number CurrentTime.</p>
+</li><li><p><span>    </span>Convert the
+CurrentTime value to a <a href="c001759a-376b-4582-bb38-9fd1336ce4e3#gt_23684962-23d9-467d-99de-02d8f491b306" data-linktype="relative-path">group
+key identifier</a> (L0, L1, L2) as follows; the division operator in the
+following calculations represents integer division:</p>
+<ul><li><p><span><span>  </span></span>L0
+= CurrentTime / (32 * 32 * 3.6 * 10<sup>11</sup>)</p>
+</li><li><p><span><span>  </span></span>L1
+= (CurrentTime mod (32 * 32 * 3.6 * 10<sup>11</sup>)) / (32 * 3.6 * 10<sup>11</sup>)</p>
+</li><li><p><span><span>  </span></span>L2
+= (CurrentTime mod (32 * 3.6 * 10<sup>11</sup>)) / (3.6 * 10<sup>11</sup>)</p>
+</li></ul></li><li><p><span>    </span>If (<i>L0KeyID</i>,
+<i>L1KeyID</i>, <i>L2KeyID</i>) is lexically greater than (L0, L1, L2), then
+return an error and exit.</p>
+</li><li><p><span>    </span>Otherwise,
+compute a group key identifier (GKID) as follows:</p>
+<ul><li><p><span><span>  </span></span>If
+the <i>pRootKeyID</i> parameter is equal to NULL and <i>L0KeyID</i> &gt;= 0,
+GKID = (<i>L0KeyID</i>, <i>L1KeyID</i>, <i>L2KeyID</i>).</p>
+</li><li><p><span><span>  </span></span>Otherwise,
+if the <i>pRootKeyID</i> parameter is not equal to NULL and 0 =&lt; <i>L0KeyID</i>
+&lt; L0, GKID = (<i>L0KeyID</i>, 31, 31).</p>
+</li><li><p><span><span>  </span></span>Otherwise,
+GKID = (L0, L1, L2).</p>
+</li></ul></li><li><p><span>    </span>Using the method
+specified in [MS-DTYP] section <a href="../ms-dtyp/4f1bbcbb-814a-4c70-a11e-2a5b8779a6f9" data-linktype="relative-path">2.5.3.2</a>,
+perform an access check with the <i>pbTargetSD</i> parameter value as the
+SecurityDescriptor, the caller&#39;s authorization context as the Token, 0x3 as the
+Access Request mask, and with the Object Tree and PrincipalSelfSubst SID set to
+NULL. If access is granted, the client is authorized to access seed keys.
+Otherwise, if access is not granted, proceed to step 6.</p>
+</li><li><p><span>    </span>If the <i>L0KeyID</i>,
+<i>L1KeyID</i>, and <i>L2KeyID</i> parameters are not all equal to -1, return
+an error and exit.</p>
+</li><li><p><span>    </span>Otherwise, using
+the method specified in [MS-DTYP] section 2.5.3.2, perform an access check with
+<i>pbTargetSD</i> parameter value as the SecurityDescriptor, the caller&#39;s
+authorization context as the Token, 0x2 as the Access Request mask, and with
+the Object Tree and PrincipalSelfSubst SID set to NULL. If access is granted,
+the client is only authorized to access <a href="c001759a-376b-4582-bb38-9fd1336ce4e3#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public keys</a>. Otherwise, if
+access is not granted, return an error and exit.</p>
+</li></ol><p>The server MUST then determine whether it is running on a
+writable <a href="c001759a-376b-4582-bb38-9fd1336ce4e3#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a> or a <a href="c001759a-376b-4582-bb38-9fd1336ce4e3#gt_8b0a073b-3099-4efe-8b81-c2886b66a870" data-linktype="relative-path">read-only domain controller
+(RODC)</a> via implementation-specific means. If it is running on an RODC, the
+server MUST process the request as a client, as specified in section <a href="52d5bd85-f332-4359-a089-6f2210cb6a1a" data-linktype="relative-path">3.2.4.1</a>. Specifically, it
+MUST look for a cached key using the group key identifier GKID computed in the
+previous step 4. If a matching key is not found in the cache, the server MUST
+forward the request to a writable DC with group key identifier (<i>L0KeyID</i>,
+<i>L1KeyID</i>, <i>L2KeyID</i>), as specified by the caller. </p><p>If the access check in the previous step 5 was successful,
+the server MUST return the seed key obtained from the cache or the writable DC
+directly to the client, without performing any of the actions specified in
+section <a href="f0531f4e-1e99-4ec3-ac23-79330aa774c0" data-linktype="relative-path">3.2.4.3</a>.
+Otherwise, if a seed key is found (section 3.2.4.1), the server MUST convert it
+to a public key with the requested group key identifier, using the method
+specified in section <a href="5d373568-dd68-499b-bd06-a3ce16ca7117" data-linktype="relative-path">3.1.4.1.2</a>,
+and return the result to the caller. </p><p>If the server is running on a writable DC, it MUST proceed
+as follows:</p><ol><li><p><span>    </span>If the <i>pRootKeyID</i>
+parameter is not NULL, locate the <b>root key</b> <a href="c001759a-376b-4582-bb38-9fd1336ce4e3#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a> whose <b>CN</b>
+matches the <i>pRootKeyID</i> parameter value and proceed to step 5. If no such
+<b>root key</b> object is found, return an error and exit.</p>
+</li><li><p><span>    </span>If the <i>L0KeyID</i>,
+<i>L1KeyID</i>, and <i>L2KeyID</i> parameters are all equal to -1, select the <b>root
+key</b> object that has the highest value in its <b>msKds-UseStartTime</b>
+attribute. If the set of <b>root keys</b> is empty, create a new <b>root key</b>
+by using the method specified in section <a href="017840c0-2aca-4abe-9ef5-979046e8a198" data-linktype="relative-path">3.1.4.1.1</a> and proceed to
+step 5.</p>
+</li><li><p><span>    </span>Convert the GKID
+value to an unsigned 64-bit number by reversing the method specified in step 2
+of the previous procedure. Let this number be denoted KeyStartTime.</p>
+</li><li><p><span>    </span>From the set of <b>root
+key</b> objects, select the subset of <b>root keys</b> that have the <b>msKds-UseStartTime</b>
+attribute value less than or equal to KeyStartTime. If this subset contains
+more than one <b>root key</b> object, select the one with the highest <b>msKds-CreateTime</b>
+attribute value. If no suitable <b>root key</b> object can be found, return an
+error and exit. </p>
+</li><li><p><span>    </span>Let the <b>root
+key</b> object selected in the above steps be denoted RK. Compute the seed key
+corresponding to security descriptor <i>pbTargetSD</i>, <b>root key</b> RK, and
+group key identifier GKID, as specified in section 3.1.4.1.2. Let this seed key
+be denoted SK. </p>
+</li><li><p><span>    </span>If the client is
+only authorized to access public keys, as determined by the access checks in
+steps 5 and 7 of the previous procedure, compute the public key corresponding
+to the SK, as specified in section 3.1.4.1.2. Return the result in the <i>ppbOut</i>
+parameter of the <b>GetKey</b> method, by using the format specified in section
+2.2.4, and then exit.</p>
+</li><li><p><span>    </span>If the client is
+authorized to access seed keys, as determined by the access check in step 5 of
+the previous procedure, then: </p>
+<ul><li><p><span><span>  </span></span>If
+the L2 component of GKID is equal to 31, return the <b>L1 seed key</b>
+corresponding to SK in the <i>ppbOut</i> parameter by using the format
+specified in section 2.2.4, with the <b>L2 key</b> field omitted.</p>
+</li><li><p><span><span>  </span></span>Otherwise,
+if the L1 component of GKID is equal to 0, return SK in the <i>ppbOut</i>
+parameter by using the format specified in section 2.2.4, with the <b>L1 key</b>
+field omitted.</p>
+</li><li><p><span><span>  </span></span>If
+neither of the above two cases apply, construct the return value in the <i>ppbOut</i>
+parameter by using the format specified in section 2.2.4, with SK in the <b>L2
+key</b> field and the next older <b>L1 seed key</b> in the <b>L1 key</b> field.</p>
+</li></ul></li></ol></div>

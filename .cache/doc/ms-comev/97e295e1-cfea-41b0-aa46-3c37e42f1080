@@ -1,0 +1,89 @@
+<div class="content"><p> </p><p>The QueryS method is called by the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> to query a
+specific <span><a href="66217d57-8c60-4423-9b24-52923f4c2afa" data-linktype="relative-path">event class</a></span> or <span><a href="0d617a76-fc58-455c-9e30-1a8436c5f73a" data-linktype="relative-path">subscription</a></span>.</p><dl>
+<dd>
+<div><pre> [id(5), helpstring(&#34;method QueryS&#34;)] HRESULT QueryS(
+   [in] BSTR progID,
+   [in] BSTR queryCriteria,
+   [out, retval] IUnknown** ppInterface
+ );
+</pre></div>
+</dd></dl><p><b>progID: </b>A string that uniquely identifies the
+type of collection. The value MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&#34;EventSystem.EventClassCollection&#34;</p>
+  </td>
+  <td>
+  <p>The store for <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e8df25db-9bff-46df-b607-d072dd29c02b" data-linktype="relative-path">event classes</a></span> (as
+  specified in section 3.1.1.1). </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;EventSystem.EventSubscriptionCollection&#34;</p>
+  </td>
+  <td>
+  <p>The store for <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_f362c255-5746-44db-aa04-e8060543a19c" data-linktype="relative-path">subscriptions</a></span> (as
+  specified in section 3.1.1.2).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>queryCriteria: </b>The actual query string. The
+syntax for this string MUST conform to section <span><a href="540614a5-1aa5-4e6b-8867-ee10809706bf" data-linktype="relative-path">2.2.1</a></span>.</p><p><b>ppInterface: </b>If the method returns success,
+this MUST contain an <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface pointer</a></span>
+that represents the collection of the event classes or subscriptions based on
+the criteria specified in the <i>queryCriteria</i> parameter. </p><p><b>Return Values: </b>An <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+that specifies success or failure. All success codes MUST be treated the same,
+and all failure codes other than EVENT_E_QUERYSYNTAX and EVENT_E_QUERYFIELD
+MUST be treated the same.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80040203</p>
+  <p>EVENT_E_QUERYSYNTAX</p>
+  </td>
+  <td>
+  <p>A syntax error occurred while trying to evaluate a
+  query string.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80040204</p>
+  <p>EVENT_E_QUERYFIELD</p>
+  </td>
+  <td>
+  <p>An invalid field name was used in a query string.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>When this method is invoked, the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST use the <i>progID</i>
+parameter value to determine the store against which the query needs to be
+executed and validate the query. If the specified collection is not valid or
+the specified query is not valid, the server MUST fail the call and return a
+failure HRESULT back to the client. Otherwise, the server MUST use the query criteria
+to attempt to return the first <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> that matches
+the criteria, and fail the call if it cannot. The object MUST be a DCOM object
+that MUST support the <span><a href="e9e3062a-41dc-43eb-8495-eb6cb70945e6" data-linktype="relative-path">IEventClass</a></span> and <span><a href="2510bb77-b0ab-4254-b3b8-dd5c6189eef2" data-linktype="relative-path">IEventClass2</a></span>
+interfaces and MAY<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="aa52a2bf-fd29-47f9-8dea-d887d6b7d5ee#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a> support the <span><a href="75a639ed-d605-4331-b5d3-bf7efb8f4edf" data-linktype="relative-path">IEventClass3</a></span>
+interface if the object is an event class. It MUST support <span><a href="542e1c26-d18a-4686-a47e-8be9ca73e352" data-linktype="relative-path">IEventSubscription</a></span>
+and <span><a href="48f7dd98-118d-4dce-8826-de75a3e631cc" data-linktype="relative-path">IEventSubscription2</a></span>
+and MAY<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="aa52a2bf-fd29-47f9-8dea-d887d6b7d5ee#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a> support <span><a href="cc19d39a-b232-4df9-9b8b-ac8459988a04" data-linktype="relative-path">IEventSubscription3</a></span>
+if it is a subscription object. This object MUST be stored in a
+collection-based DCOM object supporting <span><a href="ac9b9d0e-1fe0-4ea8-a917-55b38055a1b2" data-linktype="relative-path">IEventObjectCollection</a></span>
+which MUST be returned through the <i>ppInterface</i> parameter.</p></div>

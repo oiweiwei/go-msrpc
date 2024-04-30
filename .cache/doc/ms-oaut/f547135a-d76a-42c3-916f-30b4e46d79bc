@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The FLAGGED_WORD_BLOB structure defines a type for
+transferring length-prefixed data.</p><dl>
+<dd>
+<div><pre> typedef struct _FLAGGED_WORD_BLOB {
+   unsigned long cBytes;
+   unsigned long clSize;
+   [size_is(clSize)] unsigned short asData[];
+ } FLAGGED_WORD_BLOB;
+</pre></div>
+</dd></dl><p><b>cBytes:</b>  MUST be the size, in bytes,
+of the <b>asData</b> array.</p><p><b>Note</b>  A value of 0xFFFFFFFF MUST be
+considered as representing a null <b>BSTR</b>.</p><p><b>clSize:</b>  MUST be the total number of
+unsigned shorts in the asData array. This value MUST be half the value of <b>cBytes</b>,
+rounded up, unless this is a null  <b>BSTR</b>. In the latter case, a value of
+0 MUST be used.</p><p><b>asData:</b>  An array of unsigned
+shorts. If <b>clSize</b> is 0, <b>asData</b> MUST not contain any elements.</p><p>Data of this type MUST be marshaled as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>,
+section 14, with the exception that it MUST be marshaled by using a
+little-endian data representation regardless of the data representation format
+label. For more information, see [C706] section 14.2.5.</p></div>

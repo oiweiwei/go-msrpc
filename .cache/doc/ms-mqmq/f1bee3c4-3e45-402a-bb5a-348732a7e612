@@ -1,0 +1,66 @@
+<div class="content"><p> </p><p>The layout of a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_1a7f2b81-359e-4d2f-b4b4-f30bc7dd0d8f" data-linktype="relative-path">private queue</a></span> <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_390ae273-7109-44eb-981f-aa157e6b37c0" data-linktype="relative-path">format
+name</a></span> MUST be as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SourceQueueManager
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PrivateQueueIdentifier</p>
+  </td>
+ </tr>
+</tbody></table><p><b>SourceQueueManager (16 bytes): </b>A <b>GUID</b>,
+as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a></span>,
+that MUST specify the <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue manager</a></span> that
+hosts the private queue. The start of this field is rounded up to the next
+4-byte boundary.</p><p><b>PrivateQueueIdentifier (4 bytes): </b>A 32-bit
+unsigned integer that MUST identify the private queue on the source queue
+manager. This value MUST be unique for private queues hosted on the same queue
+manager.</p></div>

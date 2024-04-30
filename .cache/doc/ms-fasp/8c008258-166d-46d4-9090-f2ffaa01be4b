@@ -1,0 +1,291 @@
+<div class="content"><p> </p><p>This structure is used to represent a firewall rule.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_RULE {
+   struct _tag_FW_RULE* pNext;
+   unsigned short wSchemaVersion;
+   [string, range(1, 512), ref] wchar_t* wszRuleId;
+   [string, range(1, 10001)] wchar_t* wszName;
+   [string, range(1, 10001)] wchar_t* wszDescription;
+   unsigned long dwProfiles;
+   [range(FW_DIR_INVALID, FW_DIR_OUT)] 
+     FW_DIRECTION Direction;
+   [range(0, 256)] unsigned short wIpProtocol;
+   [switch_type(unsigned short), switch_is(wIpProtocol)] 
+     union {
+     [case(6,17)] 
+       struct {
+       FW_PORTS LocalPorts;
+       FW_PORTS RemotePorts;
+     };
+     [case(1)] 
+       FW_ICMP_TYPE_CODE_LIST V4TypeCodeList;
+     [case(58)] 
+       FW_ICMP_TYPE_CODE_LIST V6TypeCodeList;
+     [default]       ;
+   };
+   FW_ADDRESSES LocalAddresses;
+   FW_ADDRESSES RemoteAddresses;
+   FW_INTERFACE_LUIDS LocalInterfaceIds;
+   unsigned long dwLocalInterfaceTypes;
+   [string, range(1, 10001)] wchar_t* wszLocalApplication; 
+   [string, range(1, 10001)] wchar_t* wszLocalService;
+   [range(FW_RULE_ACTION_INVALID, FW_RULE_ACTION_MAX)] 
+     FW_RULE_ACTION Action;
+   unsigned short wFlags;
+   [string, range(1, 10001)] wchar_t* wszRemoteMachineAuthorizationList;
+   [string, range(1, 10001)] wchar_t* wszRemoteUserAuthorizationList;
+   [string, range(1, 10001)] wchar_t* wszEmbeddedContext;
+   FW_OS_PLATFORM_LIST PlatformValidityList; 
+   FW_RULE_STATUS Status;
+   [range(FW_RULE_ORIGIN_INVALID, FW_RULE_ORIGIN_MAX)] 
+     FW_RULE_ORIGIN_TYPE Origin;
+   [string, range(1, 10001)] wchar_t* wszGPOName;
+   unsigned long Reserved;
+   [size_is((Reserved &amp; FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)] 
+     PFW_OBJECT_METADATA pMetaData;
+   [string, range(1, 10001)] WCHAR* wszLocalUserAuthorizationList;
+   [string, range(1, 10001)] WCHAR* wszPackageId;
+   [string, range(1, 10001)] WCHAR* wszLocalUserOwner;
+   unsigned long dwTrustTupleKeywords;
+   FW_NETWORK_NAMES OnNetworkNames;
+   [string, range(1, 10001)] WCHAR* wszSecurityRealmId;
+   unsigned short wFlags2;
+   FW_NETWORK_NAMES RemoteOutServerNames;
+   [string, range(1,10001)] WCHAR* wszFqbn;
+   unsigned long compartmentId;
+   GUID  providerContextKey;
+   FW_DYNAMIC_KEYWORD_ADDRESS_ID_LIST  RemoteDynamicKeywordAddresses;
+ } FW_RULE,
+ *PFW_RULE;
+</pre></div>
+</dd></dl><p><b>pNext:</b>  A pointer to the next
+FW_RULE in the list.</p><p><b>wSchemaVersion:</b>  Specifies the
+version of the rule.</p><p><b>wszRuleId:</b>  A pointer to a <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string that uniquely identifies the rule.</p><p><b>wszName:</b>  A pointer to a Unicode
+string that provides a friendly name for the rule.</p><p><b>wszDescription:</b>  A pointer to a
+Unicode string that provides a friendly description for the rule.</p><p><b>dwProfiles:</b>  A bitmask of the <span><a href="7704e238-174d-4a5e-b809-5f3787dd8acc" data-linktype="relative-path">FW_PROFILE_TYPE</a></span>
+flags. It is a condition that matches traffic on the specified profiles.</p><p><b>Direction:</b>  Specifies the direction
+of the traffic that the rule matches.</p><p><b>wIpProtocol:</b>  A condition that
+specifies the protocol of the traffic that the rule matches. If the value is
+within the range 0 to 255, the value describes a protocol in IETF IANA numbers
+(for more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89889" data-linktype="external">[IANA-PROTO-NUM]</a></span>).
+If the value is 256, the rule matches any protocol.</p><p><b>LocalPorts:</b>  A condition that
+specifies the local host ports of the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_b08d36f6-b5c6-4ce4-8d2d-6f2ab75ea4cb" data-linktype="relative-path">TCP</a></span> or UDP traffic
+that the rule matches.</p><p><b>RemotePorts:</b>  A condition that
+specifies the remote host ports of the TCP or UDP traffic that the rule
+matches.</p><p><b>V4TypeCodeList:</b>  A condition that
+specifies the list of ICMP types of the traffic that the rule matches. This
+field applies only when <b>wIpProtocol</b> specifies ICMP v4.</p><p><b>V6TypeCodeList:</b>  A condition that
+specifies the list of ICMP types of the traffic that the rule matches. This
+field applies only when <b>wIpProtocol</b> specifies ICMP v6.</p><p><b>LocalAddresses:</b>  A condition that
+specifies the addresses of the local host of the traffic that the rule matches.
+An empty <b>LocalAddresses</b> structure means that this condition is not
+applied.</p><p><b>RemoteAddresses:</b>  A condition that
+specifies the addresses of the remote host of the traffic that the rule
+matches. An empty <b>RemoteAddresses</b> structure means that this condition is
+not applied.</p><p><b>LocalInterfaceIds:</b>  A condition that
+specifies the list of specific network interfaces used by the traffic that the
+rule matches. A <b>LocalInterfaceIds</b> field with no interface <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+specified means that the rule applies to all interfaces; that is, the condition
+is not applied.</p><p><b>dwLocalInterfaceTypes:</b>  A bitmask of
+<span><a href="d067c028-4ea9-4319-9ddf-0fb51c191b35" data-linktype="relative-path">FW_INTERFACE_TYPE</a></span>.
+It is a condition that restricts the interface types that are used by the
+traffic that the rule matches. 0x00000000 means that the condition matches all
+interface types.</p><p><b>wszLocalApplication:</b>  A pointer to a
+Unicode string. It is a condition that specifies a file path name to the
+executable that uses the traffic that the rule matches. A null in this field
+means that the rule applies to all processes in the host.</p><p><b>wszLocalService:</b>  A pointer to a
+Unicode string. It is a condition that specifies the service name of the
+service that uses the traffic that the rule matches. An L&#34;*&#34; string
+in this field means that the rule applies to all services in the system. A null
+in this field means that the rule applies to all processes.</p><p><b>Action:</b>  The action that the rule
+will take for the traffic matches.</p><p><b>wFlags:</b>  Bit flags from <span><a href="fc67ea04-19f0-4ccd-8912-abe467e7c11a" data-linktype="relative-path">FW_RULE_FLAGS</a></span>.</p><p><b>wszRemoteMachineAuthorizationList:</b>  A
+pointer to a Unicode string. A condition that specifies the remote machines
+sending or receiving the traffic that the rule matches. The string is in SDDL
+format (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/4f4251cc-23b6-44b6-93ba-69688422cb06" data-linktype="relative-path">2.5.1</a></span>).</p><p><b>wszRemoteUserAuthorizationList:</b>  A
+pointer to a Unicode string. A condition that specifies the remote users
+accepting or receiving the traffic that the rule matches. The string is in SDDL
+format ([MS-DTYP] section 2.5.1).</p><p><b>wszEmbeddedContext:</b>  A pointer to a
+Unicode string. It specifies a group name for this rule. Other components in
+the system use this string to enable or disable groups of rules by verifying
+that they all have the same group name.</p><p><b>PlatformValidityList:</b>  A condition
+in a rule that determines whether or not the rule is enforced by the local
+computer based on the local computer&#39;s platform information. The rule is
+enforced only if the local computer&#39;s operating system platform is an element
+of the set described by <b>PlatformValidityList</b>.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="1da2ee70-a6ae-4f76-b08f-fdc25c77d8a0#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><p><b>Status:</b>  The status code of the
+rule, as specified by the <span><a href="c4fd81e6-38dd-47c5-8a0f-a98a11cf190e" data-linktype="relative-path">FW_RULE_STATUS</a></span>
+enumeration. This field is filled out when the structure is returned as output.
+On input, this field MUST be set to FW_RULE_STATUS_OK.</p><p><b>Origin:</b>  The rule origin, as
+specified in the <span><a href="9d295321-d75c-41c0-ab0d-7a78df40f77c" data-linktype="relative-path">FW_RULE_ORIGIN_TYPE</a></span>
+enumeration. It MUST be filled on enumerated rules and ignored on input.</p><p><b>wszGPOName:</b>  A pointer to a Unicode
+string containing the displayName of the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_dec32233-8776-4151-91a0-8624a2b9abb0" data-linktype="relative-path">GPO</a></span> containing this
+object. When adding a new object, this field is not used. The client SHOULD set
+the value to NULL, and the server MUST ignore the value. When enumerating an
+existing object, if the client does not set the
+FW_ENUM_RULES_FLAG_RESOLVE_GPO_NAME flag, the server MUST set the value to
+NULL. Otherwise, the server MUST set the value to the displayName of the GPO
+containing the object or NULL if the object is not contained within a GPO. For
+details about how the server initializes an object from a GPO, see section <span><a href="e8924ac5-aa4a-41d1-bf65-4f46b3d399aa" data-linktype="relative-path">3.1.3</a></span>.
+For details about how the displayName of a GPO is stored, see <span><a href="../ms-gpol/62d12924-6252-4052-996f-161d2b9019f4" data-linktype="relative-path">[MS-GPOL]</a></span>
+section <span><a href="../ms-gpol/a0b3f9f6-da35-4c8a-8b8d-1318d4673e9d" data-linktype="relative-path">2.3</a></span>.</p><p><b>Reserved:</b>  Not used other than to
+instruct <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>, using the
+FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA flag, that a pointer to an
+FW_OBJECT_METADATA structure is present. It has no semantic meaning to the
+object itself.</p><p><b>pMetaData:</b>  A pointer to an
+FW_OBJECT_METADATA structure that contains specific metadata about the current
+state of the firewall rule.</p><p><b>wszLocalUserAuthorizationList:</b>  A
+pointer to a Unicode string in SDDL format ([MS-DTYP] section 2.5.1). It is a
+condition that specifies the local users accepting or receiving the traffic
+that the rule matches.</p><p><b>wszPackageId:</b>  A pointer to a
+Unicode string in <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span> string format
+([MS-DTYP] section <span><a href="../ms-dtyp/c92a27b1-c772-4fa7-a432-15df5f1b66a1" data-linktype="relative-path">2.4.2.1</a></span>).
+It is a condition that specifies the application SID of the process that uses
+the traffic that the rule matches. A null in this field means that the rule
+applies to all processes in the host.</p><p><b>wszLocalUserOwner:</b>  A pointer to a
+Unicode string in SID string format. The SID specifies the security principal
+that owns the rule.</p><p><b>dwTrustTupleKeywords:</b>  A bitmask of
+the FW_TRUST_TUPLE_KEYWORD flags. It is a condition that matches traffic
+associated with the specified trust tuples.</p><p><b>OnNetworkNames:</b> Specifies the networks,
+identified by name, in which the rule must be enforced. </p><p><b>wszSecurityRealmId:</b> A pointer to a Unicode
+string in SID string format. The SID specifies the Security Realm ID, which
+identifies a security realm that this firewall rule is associated with. Any
+application that matches this rule will be subject to the IPsec polices for
+this security realm. </p><p><b>wFlags2:</b> Bit flags from FW_RULE_FLAGS2
+(section <span><a href="91e5b14e-8100-4e8d-a900-c28c9735553b" data-linktype="relative-path">2.2.103</a></span>). </p><p><a id="_Hlk65174428"><b>providerContextKey:</b>
+This value MUST the all-zeroes GUID. </a></p><p><b>RemoteDynamicKeywordAddresses:</b> A type that
+specifies the dynamic keyword address Ids to be used for the remote host of the
+traffic matched by this rule. </p><p><b>RemoteOutServerNames:</b> This value is not used
+over the wire.</p><p><b>wszFqbn:</b> A string
+that is formatted as an <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_bbf47ea1-11e7-447c-848d-5a1277648312" data-linktype="relative-path">fully qualified binary name
+(FQBN)</a></span>; also see <span><a href="https://go.microsoft.com/fwlink/?linkid=839018" data-linktype="external">[MSDN-FQBN]</a></span>.</p><p><b>compartmentId:</b> The ID
+of the compartment or Windows Server Container.</p><p>The following are semantic checks that firewall rules MUST
+pass:</p><ul><li><p><span><span> 
+</span></span>The <b>wSchemaVersion</b> field MUST NOT be less than 0x000100.</p>
+</li><li><p><span><span> 
+</span></span>The <b>wSchemaVersion</b> field SHOULD NOT be less than 0x000200.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="1da2ee70-a6ae-4f76-b08f-fdc25c77d8a0#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>The <b>wszRuleId</b> field MUST NOT contain the pipe (|)
+character, MUST NOT be NULL, MUST be a string of at least 1 character, and MUST
+NOT be greater or equal to 512 characters.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="1da2ee70-a6ae-4f76-b08f-fdc25c77d8a0#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>The <b>wszName</b> field string MUST meet the following criteria:</p>
+<ul><li><p><span><span>  </span></span>MUST
+contain 1 or more characters.</p>
+</li><li><p><span><span>  </span></span>MUST
+contain fewer than 10,000 characters.</p>
+</li><li><p><span><span>  </span></span>MUST
+NOT be NULL.</p>
+</li><li><p><span><span>  </span></span>MUST
+NOT contain the pipe (|) character.</p>
+</li><li><p><span><span>  </span></span>MUST
+NOT equal the case-insensitive string &#34;ALL&#34;.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <b>wszDescription</b> field string is not NULL, it MUST
+contain at least 1 character, MUST NOT be greater than or equal to 10,000
+characters, and MUST NOT contain the pipe (|) character.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>wszLocalApplication</b> field string is not NULL, it
+MUST be at least 1 character, MUST NOT be greater than or equal to 260 characters,
+and MUST NOT contain the following characters: /,*,?,&#34;,&lt;,&gt;,|.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>wszLocalService</b> field string is not NULL, it MUST
+contain at least 1 character, MUST NOT be greater than or equal to 260
+characters, and MUST NOT contain the following characters: /,\,|.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>wszEmbeddedContext</b> field string is not NULL, it
+MUST contain at least 1 character, MUST NOT be greater than or equal to 10,000
+characters, and MUST NOT contain the pipe (|) character.</p>
+</li><li><p><span><span> 
+</span></span>The <b>Direction</b> field MUST NOT contain invalid <span><a href="34806362-c31f-4531-ad8c-5a43d5870223" data-linktype="relative-path">FW_DIRECTION</a></span>
+values.</p>
+</li><li><p><span><span> 
+</span></span>The <b>dwProfiles</b> field MUST NOT contain invalid values and,
+if it is not equal to the FW_PROFILE_TYPE_ALL profile type, it MUST NOT contain
+unknown profiles.</p>
+</li><li><p><span><span> 
+</span></span>The <b>wIpProtocol</b> field MUST NOT be greater than 256.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>wPortKeywords</b> field of <b>LocalPorts</b> is
+FW_PORT_KEYWORD_DYNAMIC_RPC_PORTS or FW_PORT_KEYWORD_RPC_EP, the <b>wIpProtocol</b>
+field MUST be 6, and <b>Direction</b> MUST be FW_DIR_IN.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>wPortKeywords</b> field of <b>LocalPorts</b> is
+FW_PORT_KEYWORD_TEREDO_PORT, the <b>wIpProtocol</b> field MUST be 17, and <b>Direction</b>
+MUST be FW_DIR_IN.</p>
+</li><li><p><span><span> 
+</span></span>The <b>wPortKeywords</b> field of <b>LocalPorts</b> MUST be 0 if
+the <b>Direction</b> is FW_DIR_OUT.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>wIpProtocol</b> field is 6 or 17, the <b>wPortKeywords</b>
+field of <b>RemotePorts</b> MUST be 0.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>wIpProtocol</b> field is not 1, 6, 17, or 58, the <b>LocalPorts</b>,
+<b>RemotePorts</b>, <b>V4TypeCodeList</b>, and <b>V6TypeCodeList</b> field MUST
+be empty.</p>
+</li><li><p><span><span> 
+</span></span>The <b>dwV4AddressKeywords</b> and <b>dwV6AddressKeywords</b>
+fields of <b>LocalAddresses</b> MUST be 0.</p>
+</li><li><p><span><span> 
+</span></span><b>dwLocalInterfaceTypes</b> MUST NOT be greater than or equal to
+FW_INTERFACE_TYPE_MAX.</p>
+</li><li><p><span><span> 
+</span></span><b>Action</b> MUST be a valid action from the <span><a href="702e3c23-c9d8-43db-8380-b4c670dd7f7d" data-linktype="relative-path">FW_RULE_ACTION</a></span>
+enumeration.</p>
+</li><li><p><span><span> 
+</span></span><b>wFlags</b> MUST NOT be greater than FW_RULE_FLAGS_MAX.</p>
+</li><li><p><span><span> 
+</span></span>If <b>Direction</b> is FW_DIR_OUT, <b>wFlags</b> MUST NOT contain
+a FW_RULE_FLAGS_ROUTEABLE_ADDRS_TRAVERSE.</p>
+</li><li><p><span><span> 
+</span></span>If <b>Direction</b> is FW_DIR_IN or <b>wIpProtocol</b> is 6 or <b>wFlags</b>
+contains FW_RULE_FLAGS_AUTHENTICATE or
+FW_RULE_FLAGS_AUTHENTICATE_WITH_ENCRYPTION, <b>wFlags</b> MUST NOT contain
+FW_RULE_FLAGS_LOOSE_SOURCE_MAPPED.</p>
+</li><li><p><span><span> 
+</span></span>The <b>wFlags</b> field MUST NOT contain both
+FW_RULE_FLAGS_AUTHENTICATE and FW_RULE_FLAGS_AUTHENTICATE_WITH_ENCRYPTION.</p>
+</li><li><p><span><span> 
+</span></span>If <b>wFlags</b> contains either FW_RULE_FLAGS_AUTHENTICATE or
+FW_RULE_FLAGS_AUTHENTICATE_WITH_ENCRYPTION, <b>Action</b> MUST NOT be
+FW_RULE_ACTION_BLOCK.</p>
+</li><li><p><span><span> 
+</span></span>If <b>Action</b> is FW_RULE_ACTION_ALLOW_BYPASS, <b>Direction</b>
+MUST be FW_DIR_IN, <b>wFlags</b> MUST contain either FW_RULE_FLAGS_AUTHENTICATE
+or FW_RULE_FLAGS_AUTHENTICATE_WITH_ENCRYPTION, and <b>wszRemoteMachineAuthorizationList</b>
+MUST NOT be NULL.</p>
+</li><li><p><span><span> 
+</span></span>If <b>wszRemoteMachineAuthorizationList</b> is not NULL, it MUST
+be at least 1 character, MUST NOT be greater than or equal to 10,000
+characters, MUST NOT contain the pipe (|) character, MUST NOT be an empty
+string (&#34;&#34;), MUST be a valid security descriptor ([MS-DTYP] section <span><a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a></span>),
+MUST have a non-Null <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_9f92aa05-dd0a-45f2-88d6-89f1fb654395" data-linktype="relative-path">ACL</a></span>, MUST have only
+either Allow or Deny <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_b581857f-39aa-4979-876b-daba67a40f15" data-linktype="relative-path">ACEs</a></span>, and each ACE
+MUST have a Filter match access right.</p>
+</li><li><p><span><span> 
+</span></span>If <b>wszRemoteUserAuthorizationList</b> is not NULL, it MUST be
+at least 1 character, MUST NOT be greater than or equal to 10,000 characters,
+MUST NOT contain the pipe (|) character, MUST NOT be an empty string
+(&#34;&#34;), MUST be a valid security descriptor ([MS-DTYP] section 2.4.6),
+MUST have a non-NULL ACL, MUST only have either Allow or Deny ACEs, and each
+ACE MUST have a Filter match access right.</p>
+</li><li><p><span><span> 
+</span></span>If <b>wszRemoteMachineAuthorizationList</b> is not NULL or <b>wszRemoteUserAuthorizationList</b>
+is not NULL, either the FW_RULE_FLAGS_AUTHENTICATE flag or the
+FW_RULE_FLAGS_AUTHENTICATE_WITH_ENCRYPTION flag MUST be set on the <b>wFlags</b>
+field.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>Direction</b> field is FW_DIR_OUT, the <b>wszRemoteMachineAuthorizationList</b>
+field MUST be NULL.</p>
+</li><li><p><span><span> 
+</span></span>If <b>wszLocalUserAuthorizationList</b> is not NULL, it MUST be
+at least 1 character, MUST NOT be greater than or equal to 10,000 characters,
+MUST NOT contain the pipe (&#34;|&#34;) character unless it contains a
+conditional ACE and the <b>wFlags</b> field has the
+FW_RULE_FLAGS_LUA_CONDITIONAL_ACE set (section 2.2.35), MUST NOT be an empty
+string (&#34;&#34;), MUST be a valid security descriptor ([MS-DTYP] section
+2.4.6), MUST have a non-NULL ACL, MUST only have either Allow or Deny ACEs if
+the FW_RULE_FLAGS_LUA_CONDITIONAL_ACE is not set, or can include conditional
+ACEs if FW_RULE_FLAGS_LUA_CONDITIONAL_ACE is set, and each ACE MUST have a
+Filter match access right.</p>
+</li></ul></div>

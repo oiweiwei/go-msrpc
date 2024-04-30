@@ -1,0 +1,7 @@
+<div class="content"><p>The Failover Cluster: Setup and Validation Protocol
+(ClusPrep) consists of DCOM interfaces, as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>,
+that are used for remotely configuring cluster nodes cleaning up cluster nodes
+and validating that hardware and software settings are compatible with use in a
+failover cluster.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

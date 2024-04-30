@@ -1,0 +1,23 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/a9a03a85-5b08-4bb5-81c9-2c68751693ac" data-linktype="external">msdn link</a></p><p>The LSAPR_ACL structure defines the header of an <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_9f92aa05-dd0a-45f2-88d6-89f1fb654395" data-linktype="relative-path">access control list (ACL)</a>
+that specifies a list of security protections applied to an object.</p><p>This structure has no effect on message processing in any
+environment.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_ACL {
+   unsigned char AclRevision;
+   unsigned char Sbz1;
+   unsigned short AclSize;
+   [size_is(AclSize - 4)] unsigned char Dummy1[*];
+ } LSAPR_ACL,
+  *PLSAPR_ACL;
+</pre></div>
+</dd></dl><p><b>AclRevision:</b>  The revision level of
+the LSAPR_ACL structure. This field MUST be ignored. The content is
+unspecified, and no requirements are placed on its value because it is never
+used.</p><p><b>Sbz1:</b>  This field is used for
+alignment. This field MUST be ignored. The content is unspecified, and no
+requirements are placed on its value because it is never used.</p><p><b>AclSize:</b>  The size of this structure
+in bytes, including the size of the variable sized <b>Dummy1</b> field. </p><p><b>Dummy1:</b>  This field MUST be ignored.
+The content is unspecified, and no requirements are placed on its value because
+it is never used.</p><p>The <a href="../ms-dtyp/20233ed8-a6c6-4097-aafa-dd545ed24428" data-linktype="relative-path">ACL</a>
+structure is specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section 2.4.5.</p></div>

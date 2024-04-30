@@ -1,0 +1,520 @@
+<div class="content"><p> </p><p>An array of the <b>FAX_JOB_ENTRY_EXW</b> data type can be
+passed as an out parameter (as a byte array) in the <b>FAX_EnumJobsEx</b>
+(section <span><a href="c65fa0d0-dc19-4aec-b83a-b5b82d70c6d9" data-linktype="relative-path">3.1.4.1.22</a></span>) calls.
+The data type can also be passed as an out parameter in the <b>FAX_GetJobEx</b>
+(section <span><a href="c4540ada-b56d-434b-9a81-68d26c89c412" data-linktype="relative-path">3.1.4.1.42</a></span>) calls.</p><p>The <b>dwSizeOfStruct</b> and <b>lpcwstrRecipientNumberOffset</b>
+fields in the <b>Fixed_Portion</b> block MUST NOT be 0. Except for these fields
+and the <b>dwlMessageId</b> field, all fields of this structure are optional,
+and if the respective information is not available, the fields in the <b>Fixed_Portion</b>
+block MUST be zero. </p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (96 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (96 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfStruct</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwValidityMask</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwlMessageId</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwlBroadcastId</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrRecipientNumberOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrRecipientNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrSenderUserNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrBillingCodeOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>tmOriginalScheduleTime
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>tmSubmissionTime
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Priority</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwDeliveryReportType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrDocumentNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrSubjectOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>pStatus</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Padding</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>dwSizeOfStruct (4 bytes):
+</b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that specifies the size, in bytes, of the structure. MUST be set to 96
+bytes.</p>
+</dd>
+<dd>
+<p><b>dwValidityMask (4 bytes):
+</b>A <b>DWORD</b> value that holds a bitwise combination of valid fields in
+the <b>FAX_ENUM_JOB_FIELDS</b> (section <span><a href="d14835c7-77df-4772-bdde-6612312cb237" data-linktype="relative-path">2.2.77</a></span>)
+enumeration.</p>
+</dd>
+<dd>
+<p><b>dwlMessageId (8 bytes): </b>A
+<b>DWORDLONG</b> ([MS-DTYP] section <span><a href="../ms-dtyp/c575fb47-166c-48cd-a37c-e44cac05c3d6" data-linktype="relative-path">2.2.13</a></span>)
+value that specifies the unique identifier of the job.</p>
+</dd>
+<dd>
+<p><b>dwlBroadcastId (8 bytes):
+</b>A <b>DWORDLONG</b> value that holds the <b>Broadcast Identifier</b>
+(section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>).</p>
+</dd>
+<dd>
+<p><b>lpcwstrRecipientNumberOffset
+(4 bytes): </b>Offset to the <b>lpcwstrRecipientNumber</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpcwstrRecipientNameOffset
+(4 bytes): </b>Offset to the <b>lpcwstrRecipientName</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpcwstrSenderUserNameOffset
+(4 bytes): </b>Offset to the <b>lpcwstrSenderUserName</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpcwstrBillingCodeOffset
+(4 bytes): </b>Offset to the <b>lpcwstrBillingCode</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>tmOriginalScheduleTime
+(16 bytes): </b>If the fax job described by this structure was created by using
+the JSA_SPECIFIC_TIME (the <b>dwScheduleAction</b> field in the <b>FAX_JOB_PARAM_EXW</b>
+(section <span><a href="5fabf6d9-17dd-4133-b485-8285968d2470" data-linktype="relative-path">2.2.14</a></span>) structure
+submitted as the <i>lpJobParams</i> argument to the <b>FAX_SendDocumentEx</b>
+(section <span><a href="bac2e95f-f18b-448f-bb42-cc63b6ff04b2" data-linktype="relative-path">3.1.4.1.73</a></span>) call
+that created the fax job), this field specifies a <b>SYSTEMTIME</b> ([MS-DTYP]
+section <span><a href="../ms-dtyp/2fefe8dd-ab48-4e33-a7d5-7171455a9289" data-linktype="relative-path">2.3.13</a></span>)
+structure that contains the date and time originally used to send the fax. The
+time specified is expressed in <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">UTC</a></span>. Used for
+outgoing faxes only.</p>
+</dd>
+<dd>
+<p><b>tmSubmissionTime (16
+bytes): </b>A <b>SYSTEMTIME</b> that contains the date and time the fax message
+was submitted for sending. The time specified is expressed in UTC. Used for
+outgoing faxes only.</p>
+</dd>
+<dd>
+<p><b>Priority (4 bytes): </b>A
+<b>FAX_ENUM_PRIORITY_TYPE</b> (section <span><a href="15a5874f-2d9b-45f2-b25e-1bc10629b72a" data-linktype="relative-path">2.2.65</a></span>) enumeration
+value that contains the priority of the fax transmission. Used for outgoing
+faxes only. </p>
+</dd>
+<dd>
+<p><b>dwDeliveryReportType (4
+bytes): </b>A <b>DWORD</b> value that specifies the type of receipt that will
+be delivered to the sender when the fax is successfully sent or when the fax
+transmission fails. It can also specify whether a receipt will be sent for each
+<span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_53dfe4f3-05d0-41aa-8217-ecd1962b340b" data-linktype="relative-path">recipient</a></span>
+or for all of the recipients together. This field normally contains one of the values
+defined in <b>FAX_ENUM_DELIVERY_REPORT_TYPES</b> (section 2.2.76) enumeration.</p>
+</dd>
+<dd>
+<p><b>lpcwstrDocumentNameOffset
+(4 bytes): </b>Offset to the <b>lpcwstrDocumentName</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpcwstrSubjectOffset (4
+bytes): </b>Offset to the <b>lpcwstrSubject</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>pStatus (4 bytes): </b>Offset
+to the <b>Fixed_Portion</b> of the <b>pStatus</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>Padding (4 bytes): </b>Padding
+for data alignment to 8-byte boundary.</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  of pStatus (120 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrRecipientNumber
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrRecipientName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrSenderUserName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrBillingCode
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrDocumentName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrSubject
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  of pStatus (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Fixed_Portion of pStatus
+(120 bytes): </b>The <b>Fixed_Portion</b> of the <b>FAX_JOB_STATUS</b> (section
+<span><a href="e1f304ec-977b-45e0-9db7-95c395a0a337" data-linktype="relative-path">2.2.36</a></span>)
+structure containing the job&#39;s dynamic status information. When this data
+structure is used in an array of structures, the <b>Fixed_Portion</b> of <b>pStatus</b>
+is omitted from here and is placed as a <b>Referenced_Fixed_Portion</b> block
+as described in section <span><a href="f76fa313-f69c-4ce3-95ed-796c1c4fae36" data-linktype="relative-path">2.2.1.3</a></span>.</p>
+</dd>
+<dd>
+<p><b>lpcwstrRecipientNumber
+(variable): </b>A null-terminated character string that holds the fax number of
+the fax transmission recipient. This information comes from the recipient&#39;s <b>personal
+profile</b> (section 3.1.1).</p>
+</dd>
+<dd>
+<p><b>lpcwstrRecipientName
+(variable): </b>A null-terminated character string that holds the name of the
+fax transmission recipient. This information comes from the recipient&#39;s <b>personal
+profile</b>.</p>
+</dd>
+<dd>
+<p><b>lpcwstrSenderUserName
+(variable): </b>A null-terminated character string that holds the name of the
+sender of an outgoing fax job. Used for outgoing faxes only. This information
+comes from the sender&#39;s <b>personal profile</b>.</p>
+</dd>
+<dd>
+<p><b>lpcwstrBillingCode
+(variable): </b>A null-terminated character string that holds an
+application-specific or a server-specific billing code that applies to the fax
+transmission. Billing codes are optional. Used for outgoing faxes only.</p>
+</dd>
+<dd>
+<p><b>lpcwstrDocumentName
+(variable): </b>A null-terminated character string that holds a document name
+to associate with the fax document. Used for outgoing faxes only.</p>
+</dd>
+<dd>
+<p><b>lpcwstrSubject
+(variable): </b>A null-terminated character string that holds the subject used
+in the fax cover page. Used for outgoing faxes only.</p>
+</dd>
+<dd>
+<p><b>Variable_Data of pStatus
+(variable): </b>The <b>Variable_Data</b> of the <b>FAX_JOB_STATUS</b> structure
+containing the job&#39;s dynamic status information. When this data structure is
+used in an array of structures, the <b>Variable_Data</b> of pStatus is omitted
+from here and is placed in the <b>Variable_Data</b> block for the structure
+array as described in section 2.2.1.3.</p>
+</dd></dl></div>

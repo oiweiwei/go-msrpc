@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p>The VDS_HBAPORT_PROP structure defines the properties of an <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_49b98426-c07d-42ab-8ebc-bd088b107c24" data-linktype="relative-path">HBA</a></span>
+port.<a id="Appendix_A_Target_38"></a><a aria-label="Product behavior note 38" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_38" data-linktype="relative-path">&lt;38&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _VDS_HBAPORT_PROP {
+   VDS_OBJECT_ID id;
+   VDS_WWN wwnNode;
+   VDS_WWN wwnPort;
+   VDS_HBAPORT_TYPE type;
+   VDS_HBAPORT_STATUS status;
+   unsigned long ulPortSpeed;
+   unsigned long ulSupportedPortSpeed;
+ } VDS_HBAPORT_PROP;
+</pre></div>
+</dd></dl><p><b>id:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS object</a></span> ID of the
+HBA port object.</p><p><b>wwnNode:</b>  The node WWN for the HBA
+port.</p><p><b>wwnPort:</b>  The port WWN of the HBA
+port.</p><p><b>type:</b>  The type of the HBA port that
+<span><a href="04dec17d-0621-411e-bdb1-2b89f94daf41" data-linktype="relative-path">VDS_HBAPORT_TYPE</a></span>
+enumerates.</p><p><b>status:</b>  The status of the HBA port
+that <span><a href="b26163b1-334f-44b6-8ae3-4816d6a6a25e" data-linktype="relative-path">VDS_HBAPORT_STATUS</a></span>
+enumerates.</p><p><b>ulPortSpeed:</b>  The speed of the HBA
+port that <span><a href="2ca489a8-1a2b-4e66-a600-ef1f55a5fb3a" data-linktype="relative-path">VDS_HBAPORT_SPEED_FLAG</a></span>
+enumerates. Only one bit can be set in this bitmask.</p><p><b>ulSupportedPortSpeed:</b>  The
+combination of values, by using a bitwise OR operator, from the
+VDS_HBAPORT_SPEED_FLAG enumeration that describes the set of supported speeds
+of the HBA port.</p></div>

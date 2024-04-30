@@ -1,0 +1,13 @@
+<div class="content"><p>The WINSINTF_BROWSER_INFO_T structure defines information
+about browser names. It is used by the structure <a href="84ea4833-e6d8-4896-9e24-305d6cbbe778" data-linktype="relative-path">WINSINTF_BROWSER_NAMES_T</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSINTF_BROWSER_INFO_T {
+   DWORD dwNameLen;
+   [string] LPBYTE pName;
+ } WINSINTF_BROWSER_INFO_T,
+  *PWINSINTF_BROWSER_INFO_T;
+</pre></div>
+</dd></dl><p><b>dwNameLen:</b>  The length of the name
+that <b>pName</b> points to, in bytes. The length includes the terminating NULL
+character.</p><p><b>pName:</b>  A pointer to a
+NULL-terminated string that contains the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a328071-e088-4f7e-9d28-ff81d8fb1104" data-linktype="relative-path">browser name</a>.</p></div>

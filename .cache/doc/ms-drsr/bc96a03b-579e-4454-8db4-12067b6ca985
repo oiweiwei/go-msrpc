@@ -1,0 +1,166 @@
+<div class="content"><p> </p><p>The DRS_MSG_REVMEMB_REQ_V1 structure defines the request
+message sent to the <span><a href="d5ace452-7cdd-4d50-bb64-39b4c55180a2" data-linktype="relative-path">IDL_DRSGetMemberships</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [range(1,10000)] ULONG cDsNames;
+   [size_is(cDsNames,)] DSNAME** ppDsNames;
+   DWORD dwFlags;
+   [range(1,7)] REVERSE_MEMBERSHIP_OPERATION_TYPE OperationType;
+   DSNAME* pLimitingDomain;
+ } DRS_MSG_REVMEMB_REQ_V1;
+</pre></div>
+</dd></dl><p><b>cDsNames:</b>  The count of items in the
+<b>ppDsNames</b> array.</p><p><b>ppDsNames:</b>  The <span><a href="a0d5477a-5229-46b9-890a-54b924d487d1" data-linktype="relative-path">DSName</a></span>
+of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> whose reverse
+membership is being requested, plus the DSNames of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_51c51c14-7f9d-4c0b-a69c-d3e059bfffac" data-linktype="relative-path">groups</a></span> of the
+appropriate type(s) of which it is already known to be a member.</p><p><b>dwFlags:</b>  Zero or more of the
+following bit flags, which are presented in little-endian byte order.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>X:</b> Unused. MUST be
+zero and ignored.</p>
+</dd>
+<dd>
+<p><b>A
+(DRS_REVMEMB_FLAG_GET_ATTRIBUTES, 0x00000001):</b> Query the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attributes</a></span>
+that correspond to the group membership.</p>
+</dd></dl><p><b>OperationType:</b> The type of group
+membership evaluation to be performed.</p><p><b>pLimitingDomain:</b> <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">Domain</a></span>
+filter; resulting objects that are not from this domain are neither returned
+nor followed transitively.</p></div>

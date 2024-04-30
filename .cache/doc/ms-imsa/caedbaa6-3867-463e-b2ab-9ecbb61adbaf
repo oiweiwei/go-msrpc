@@ -1,0 +1,243 @@
+<div class="content"><p>The R_GetAllData method returns all data associated with a
+node in the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_086b13f2-2715-4000-a16c-6acc3d59cc19" data-linktype="relative-path">metabase</a>,
+including all values that the node inherits.</p><dl>
+<dd>
+<div><pre> HRESULT R_GetAllData(
+   [in] METADATA_HANDLE hMDHandle,
+   [unique, in, string] LPCWSTR pszMDPath,
+   [in] DWORD dwMDAttributes,
+   [in] DWORD dwMDUserType,
+   [in] DWORD dwMDDataType,
+   [out] DWORD* pdwMDNumDataEntries,
+   [out] DWORD* pdwMDDataSetNumber,
+   [in] DWORD dwMDBufferSize,
+   [out] DWORD* pdwMDRequiredBufferSize,
+   [out] IIS_CRYPTO_BLOB** ppDataBlob
+ );
+</pre></div>
+</dd></dl><p><b>hMDHandle: </b>An unsigned 32-bit integer value
+containing an open metabase handle specifying the key to be queried.</p><p><b>pszMDPath: </b>A pointer to a Unicode string that
+contains the path of the node with which the data to be returned is associated,
+relative to the path of the <i>hMDHandle</i> parameter.</p><p><b>dwMDAttributes: </b>Flags used to specify the
+data, as listed in the <a href="10608402-8619-4ea9-be90-d57f21393ce0" data-linktype="relative-path">METADATA_RECORD</a>
+structure.</p><p><b>dwMDUserType: </b>An integer value specifying the
+data to return based on user type.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ALL_METADATA</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Returns all data, regardless of user type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ASP_MD_UT_APP</p>
+  <p>0x00000065</p>
+  </td>
+  <td>
+  <p>Returns data specific to ASP application
+  configuration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_MD_UT_FILE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Returns data specific to a file, such as access
+  permissions or logon methods.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_MD_UT_SERVER</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Returns data specific to the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>, such as ports in
+  use and IP addresses.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_MD_UT_WAM</p>
+  <p>0x00000064</p>
+  </td>
+  <td>
+  <p>Returns data specific to WAM.</p>
+  </td>
+ </tr></tbody></table><p><b>dwMDDataType: </b>An integer value specifying a
+data type. If this parameter is not set to ALL_METADATA, the data item will be
+returned only if its data type matches the specified type.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ALL_METADATA</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Specifies all data, regardless of type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BINARY_METADATA</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Specifies binary data in any form.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DWORD_METADATA</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Specifies all <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a>
+  (unsigned 32-bit integer) data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> EXPANDSZ_METADATA</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Specifies all data that consists of a null-terminated
+  string containing environment variables that are not expanded.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MULTISZ_METADATA</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p> Specifies all data represented as an array of
+  null-terminated strings, terminated by two null characters.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>STRING_METADATA</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Specifies all data consisting of a null-terminated
+  ASCII string.</p>
+  </td>
+ </tr></tbody></table><p><b>pdwMDNumDataEntries: </b>A pointer to an integer
+value that contains the number of entries in the array of <a href="b0fed119-77c2-4bd7-b38d-9fdf1bed2522" data-linktype="relative-path">METADATA_GETALL_RECORD</a>
+structures returned in the <i>ppDataBlob</i> parameter.</p><p><b>pdwMDDataSetNumber: </b>A pointer to an integer
+value used to identify the dataset number for the metabase node whose data is
+being retrieved. The dataset number is obtained by the <a href="75bafa45-c9ec-4e70-8f4d-eb8408247557" data-linktype="relative-path">GetDataSetNumber (section 3.1.4.18)</a>
+method.</p><p><b>dwMDBufferSize: </b>An integer value specifying
+the size, in bytes, required to hold the decrypted data returned by the <i>ppDataBlob</i>
+parameter.</p><p><b>pdwMDRequiredBufferSize: </b>A pointer to an
+integer value that contains the buffer length required, in bytes, to contain
+the decrypted data referenced by the <i>ppDataBlob</i> parameter. </p><p><b>ppDataBlob: </b>An <a href="bbe15a83-a32d-48a3-9564-8dacea965e83" data-linktype="relative-path">IIS_CRYPTO_BLOB</a> structure
+containing the requested values as encrypted opaque data. The encrypted data
+returned in IIS_CRYPTO_BLOB is a contiguous buffer containing an array of
+METADATA_GETALL_RECORD structures followed by the data referenced by the
+METADATA_GETALL_RECORD structures.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it failed. If
+the 12-bit facility code (bits 16–27) is set to 0x007, the value contains a
+Win32 error code in the lower 16 bits. Zero or positive values indicate
+success, with the lower 16 bits in positive nonzero values containing warnings
+or flags defined in the method implementation. For more information about Win32
+error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><dl>
+<dd>
+<p><b>Note</b>  Invalid <i>dwMDUserType</i>
+or <i>dwMDDataType</i> parameters result in a E_INVALIDARG return status.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p> S_OK</p>
+  </td>
+  <td>
+  <p> The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070003</p>
+  <p>ERROR_PATH_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The system cannot find the path specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>E_ACCESSDENIED</p>
+  </td>
+  <td>
+  <p>General access denied error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>An invalid parameter value was specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007007A</p>
+  <p>ERROR_INSUFFICIENT_BUFFER</p>
+  </td>
+  <td>
+  <p>The data area passed to a system call is too small.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 13. </p><p>The client indicates how much decrypted data it is ready to
+receive by passing the number of bytes in the <i>dwMDBufferSize</i> parameter.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Check the path of the node indicated by <i>hMDHandle</i> and <i>pszMDPath</i>.
+If the path does not exist, return ERROR_PATH_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>If the value passed by the client in the <i>dwMDBufferSize</i>
+parameter is too small to contain an array of METADATA_GETALL_RECORD structures
+for each property value stored at the metabase node and their associated data,
+return ERROR_INSUFFICIENT_BUFFER and return the number of bytes required to
+hold the data in the <i>pdwMDRequiredBufferSize</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Check whether at least one of the METADATA_RECORD entries
+contains sensitive data. The METADATA_SECURE secure flag in the <i>dwMDAttributes</i>
+member of the METADATA_RECORD structure for all entries will be set.</p>
+</li></ul><p>If at least one matching entry with the METADATA_SECURE flag
+set is found:</p><ul><li><p><span><span> 
+</span></span>Encrypt the data value based on the procedure described in
+section <a href="60aa6c05-c259-42e8-a7f0-37516b75c165" data-linktype="relative-path">3.1.4.1.2</a>. The
+encrypted data BLOB will be stored in the IIS_CRYPTO_BLOB message format with
+the <b>BlobSignature</b> field set to the <b>ENCRYPTED_DATA_BLOB_SIGNATURE</b>
+signature.</p>
+</li></ul><p>If no METADATA_RECORD entry with the METADATA_SECURE flag is
+found:</p><ul><li><p><span><span> 
+</span></span>Build the IIS_CRYPTO_BLOB message with the <b>BlobSignature</b>
+field set to CLEARTEXT_DATA_BLOB_SIGNATURE. Store the cleartext data in the <b>BlobData</b>
+field. Set the <b>BlobDataLength</b> field to match the length of the <b>BlobData</b>
+field.</p>
+</li></ul></div>

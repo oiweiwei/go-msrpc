@@ -1,0 +1,58 @@
+<div class="content"><p>The ListReaders_Call structure contains the parameters for
+the List Readers call (for more information, see sections <a href="609b752a-dcc7-4e4f-afb7-9c7ce3ef2b3d" data-linktype="relative-path">3.1.4.7</a> and <a href="45a76e74-0301-4259-965d-39c739201b6a" data-linktype="relative-path">3.1.4.8</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _ListReaders_Call {
+   REDIR_SCARDCONTEXT Context;
+   [range(0, 65536)] unsigned long cBytes;
+   [unique] [size_is(cBytes)] const byte *mszGroups;
+   long fmszReadersIsNULL;
+   unsigned long cchReaders;
+ } ListReaders_Call;
+</pre></div>
+</dd></dl><p><b>Context:</b>  A valid context, as
+specified in section <a href="060abee1-e520-4149-9ef7-ce79eb500a59" data-linktype="relative-path">2.2.1.1</a>.</p><p><b>cBytes:</b>  The length, in bytes, of
+reader groups specified in <b>mszGroups</b>.</p><p><b>mszGroups:</b>  The names of the reader
+groups defined in the system. Reader groups not present on the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_6b91e507-0e17-41de-897c-356606d07088" data-linktype="relative-path">protocol server</a> MUST be
+ignored. The value of this is dependent on the context (<a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_09d6bc87-34ed-48e8-b4d4-962e90543462" data-linktype="relative-path">IOCTL</a>) that it is used.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SCARD_IOCTL_LISTREADERSA</p>
+  <p>0x00090028</p>
+  </td>
+  <td>
+  <p>ASCII multistring</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_IOCTL_LISTREADERSW</p>
+  <p>0x0009002C</p>
+  </td>
+  <td>
+  <p>Unicode multistring</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>fmszReadersIsNULL:</b>  A Boolean value
+specifying whether the caller wants to retrieve the length of the data. Set to
+FALSE (0x00000000) to allow the data to be returned. Set to TRUE (0x00000001),
+and only the length of the data will be returned.</p><p><b>cchReaders:</b>  The length of the
+string buffer specified by the caller. If <b>cchReaders</b> is set to
+SCARD_AUTOALLOCATE with a value of 0xFFFFFFFF, a string of any length can be
+returned. Otherwise, the returned string MUST NOT exceed <b>cchReaders</b>
+characters in length, including any NULL characters. When the string to be returned
+exceeds <b>cchReaders</b> characters in length, including any null characters, <a href="6630bb5b-fc0e-4141-8b53-263225c7628d" data-linktype="relative-path">ListReaders_Return</a>.<b>ReturnCode</b>
+MUST be set to SCARD_E_INSUFFICIENT_BUFFER (0x80100008). The <b>cchReaders</b>
+field MUST be ignored if <b>fmszReadersIsNULL</b> is set to TRUE (0x00000001).
+Also, if <b>fmszReadersIsNULL</b> is set to FALSE (0x00000000) but <b>cchReaders</b>
+is set to 0x00000000, then the call MUST succeed, ListReaders_Return.<b>cBytes</b>
+MUST be set to the length of the data in bytes, and ListReaders_Return.<b>msz</b>
+MUST be set to NULL.</p></div>

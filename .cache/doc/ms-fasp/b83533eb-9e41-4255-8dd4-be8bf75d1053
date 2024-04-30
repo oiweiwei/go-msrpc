@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p>This enumeration defines the type of name to match in the
+certificate for a given criterion.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FW_CERT_CRITERIA_NAME_NONE,
+   FW_CERT_CRITERIA_NAME_DNS,
+   FW_CERT_CRITERIA_NAME_UPN,
+   FW_CERT_CRITERIA_NAME_RFC822,
+   FW_CERT_CRITERIA_NAME_CN,
+   FW_CERT_CRITERIA_NAME_OU,
+   FW_CERT_CRITERIA_NAME_O,
+   FW_CERT_CRITERIA_NAME_DC,
+   FW_CERT_CRITERIA_NAME_MAX
+ } FW_CERT_CRITERIA_NAME_TYPE;
+</pre></div>
+</dd></dl><p><b>FW_CERT_CRITERIA_NAME_NONE:  </b>Do not perform
+any name matching.</p><p><b>FW_CERT_CRITERIA_NAME_DNS:  </b>Match the DNS name
+in the Subject Alternative Name of the certificate.</p><p><b>FW_CERT_CRITERIA_NAME_UPN:  </b>Match the UPN name
+in the Subject Alternative Name of the certificate.</p><p><b>FW_CERT_CRITERIA_NAME_RFC822:  </b>Match the
+RFC822 name in the Subject Alternative Name of the certificate.</p><p><b>FW_CERT_CRITERIA_NAME_CN:  </b>Match the CN
+relative distinguished names (RDNs) in the Subject DN of the certificate.</p><p><b>FW_CERT_CRITERIA_NAME_OU:  </b>Match the OU RDNs
+in the Subject DN of the certificate.</p><p><b>FW_CERT_CRITERIA_NAME_O:  </b>Match the O RDNs in
+the Subject DN of the certificate.</p><p><b>FW_CERT_CRITERIA_NAME_DC:  </b>Match the DC RDNs
+in the Subject DN of the certificate.</p><p><b>FW_CERT_CRITERIA_NAME_MAX:  </b>To be valid, a
+value of this type MUST be less than this constant.</p></div>

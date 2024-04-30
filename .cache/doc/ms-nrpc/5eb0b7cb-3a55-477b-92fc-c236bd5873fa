@@ -1,0 +1,31 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/5eb0b7cb-3a55-477b-92fc-c236bd5873fa" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_VALIDATION</b> union defines a union of all
+types of user validation information values.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(enum _NETLOGON_VALIDATION_INFO_CLASS)] 
+ union _NETLOGON_VALIDATION {
+   [case(NetlogonValidationSamInfo)] 
+     PNETLOGON_VALIDATION_SAM_INFO ValidationSam;
+   [case(NetlogonValidationSamInfo2)] 
+     PNETLOGON_VALIDATION_SAM_INFO2 ValidationSam2;
+   [case(NetlogonValidationGenericInfo2)] 
+     PNETLOGON_VALIDATION_GENERIC_INFO2 ValidationGeneric2;
+   [case(NetlogonValidationSamInfo4)] 
+     PNETLOGON_VALIDATION_SAM_INFO4 ValidationSam4;
+   [default]     ;
+ } NETLOGON_VALIDATION,
+  *PNETLOGON_VALIDATION;
+</pre></div>
+</dd></dl><p><b>ValidationSam:</b> This field is selected when the
+validation information type is <b>NetlogonValidationSamInfo</b>. The selected
+data type is <b>NETLOGON_VALIDATION_SAM_INFO</b>, as specified in section <a href="142a277f-e161-45ac-8b95-b94bb169b5da" data-linktype="relative-path">2.2.1.4.11</a>.</p><p><b>ValidationSam2:</b> This field is selected when
+the validation information type is <b>NetlogonValidationSamInfo2</b>. The
+selected data type is <b>NETLOGON_VALIDATION_SAM_INFO2</b>, as specified in
+section <a href="2a12e289-7904-4ecb-9d83-6732200230c0" data-linktype="relative-path">2.2.1.4.12</a>.</p><p><b>ValidationGeneric2:</b> This field is selected
+when the validation information type is <b>NetlogonValidationGenericInfo2</b>.
+The selected data type is <b>NETLOGON_VALIDATION_GENERIC_INFO2</b>, as
+specified in section <a href="e89f8f5b-0985-41a0-b110-1ae0ea2bd183" data-linktype="relative-path">2.2.1.4.8</a>.
+</p><p><b>ValidationSam4:</b> This field is selected when
+the validation information type is <b>NetlogonValidationSamInfo4</b>. The
+selected data type is <b>NETLOGON_VALIDATION_SAM_INFO4</b>, as specified in
+section <a href="bccfdba9-0c38-485e-b751-d4de1935781d" data-linktype="relative-path">2.2.1.4.13</a>.</p></div>

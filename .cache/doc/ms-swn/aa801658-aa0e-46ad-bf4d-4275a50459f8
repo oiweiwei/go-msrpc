@@ -1,0 +1,97 @@
+<div class="content"><p>The server notifies the registered client of resource state
+changes through the use of the RESOURCE_CHANGE structure.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Length</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">ChangeType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">ResourceName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Length (4 bytes):</b>  The size of the resource
+change notification, in bytes.</p><p><b>ChangeType (4 bytes):</b>  Specifies state change
+of the resource. The following values are used to specify the change type.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value </p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>RESOURCE_STATE_UNKNOWN</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>RESOURCE_STATE_AVAILABLE   </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000FF</p>
+  </td>
+  <td>
+  <p>RESOURCE_STATE_UNAVAILABLE</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ResourceName (variable):</b>  The null terminated
+resource name on which the change has been detected. This MUST be either the
+NetName or IP address provided in a WitnessrRegister call, or an
+InterfaceGroupName returned to the client in a WitnessrGetInterfaceList
+response.</p></div>

@@ -1,0 +1,15 @@
+<div class="content"><p>The <b>ROUTE_LOSS_AND_STATE</b> structure<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="6ea29e14-9c33-4927-90a8-258fd1d6d042#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a> contains information about a
+route’s packet loss and its status.</p><dl>
+<dd>
+<div><pre> typedef struct ROUTE_LOSS_AND_STATE {
+   ULONG packetLoss;
+   ROUTE_STATUS status;
+ } ROUTE_LOSS_AND_STATE;
+</pre></div>
+</dd></dl><p><b>packetLoss:</b>  A value between
+0x00000000 and 0x00000064. Designates the reliability of communication on the
+route measured by the server using implementation-specific mechanisms. A value
+of 0x00000000 represents most reliable, and 0x00000064 designates least
+reliable. A server sends a collection of network packets to the remote host and
+measures the number of packets that are successfully delivered.</p><p><b>status:</b>  The status of the
+communication route.</p></div>

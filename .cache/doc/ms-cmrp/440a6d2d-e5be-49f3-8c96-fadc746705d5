@@ -1,0 +1,13 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/440a6d2d-e5be-49f3-8c96-fadc746705d5" data-linktype="external">msdn link</a></p><p>The <b>NOTIFICATION_RPC</b> structure associates the
+NOTIFICATION_DATA_RPC structure with the notify key that was passed as a
+parameter to <b>ApiAddNotifyV2</b> (section <a href="73d7a7d4-fef2-46e4-bd90-4c2e645094f3" data-linktype="relative-path">3.1.4.2.137</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _NOTIFICATION_RPC {
+   DWORD_PTR dwNotifyKey;
+   NOTIFICATION_DATA_RPC NotificationData;
+ } NOTIFICATION_RPC,
+  *PNOTIFICATION_RPC;
+</pre></div>
+</dd></dl><p><b>dwNotifyKey:</b> A 32-bit value provided by the
+client.</p><p><b>NotificationData:</b> A <b>NOTIFICATION_DATA_RPC</b>
+structure as defined in section <a href="806ea3ef-9089-4737-88a6-14b48adc1360" data-linktype="relative-path">2.2.3.23</a>.</p></div>

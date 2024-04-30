@@ -1,0 +1,40 @@
+<div class="content"><p> </p><p>The <b>DHCP_MSCOPE_INFO</b> structure defines the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_04286a2c-1484-44d0-9854-7c57c8b4118c" data-linktype="relative-path">multicast
+scope</a></span> information for a specific multicast subnet. This structure is
+used in the <span><a href="3f135b61-6511-411e-821e-37a330d5ccf5" data-linktype="relative-path">R_DhcpSetMScopeInfo (section 3.2.4.2)</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_MSCOPE_INFO {
+   LPWSTR MScopeName;
+   LPWSTR MScopeComment;
+   DWORD MScopeId;
+   DWORD MScopeAddressPolicy;
+   DHCP_HOST_INFO PrimaryHost;
+   DHCP_SUBNET_STATE MScopeState;
+   DWORD MScopeFlags;
+   DATE_TIME ExpiryTime;
+   LPWSTR LangTag;
+   BYTE TTL;
+ } DHCP_MSCOPE_INFO,
+  *LPDHCP_MSCOPE_INFO;
+</pre></div>
+</dd></dl><p><b>MScopeName:</b>  This is of type <span><a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a></span>,
+containing a null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+represents the multicast scope name. There is no restriction on the length of
+this Unicode string.</p><p><b>MScopeComment:</b>  This is of type LPWSTR,
+containing a null-terminated Unicode string that represents the description
+given to multicast scope. There is no restriction on the length of this Unicode
+string.</p><p><b>MScopeId:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+containing the unique identification of the multicast scope defined on the
+MADCAP server.</p><p><b>MScopeAddressPolicy:</b>  This is of
+type DWORD. This MUST be set to zero when sent and ignored on receipt.</p><p><b>PrimaryHost:</b>  This of type <span><a href="51e16f4a-cb1d-400a-85c7-defe4cba1609" data-linktype="relative-path">DHCP_HOST_INFO (section 2.2.1.2.7)</a></span>,
+a structure containing information about the MADCAP server servicing this
+multicast scope.</p><p><b>MScopeState:</b>  This is of type <span><a href="03ebc39d-3f99-4b33-9f57-2f00ae9d3e33" data-linktype="relative-path">DHCP_SUBNET_STATE (section 2.2.1.1.2)</a></span>,
+a structure containing the state of the multicast subnet.</p><p><b>MScopeFlags:</b>  This is of type DWORD.
+Currently it is not used, and any value set to this member will not affect the
+behavior of the method that uses this structure.</p><p><b>ExpiryTime:</b>  This is of type <span><a href="0f93bea1-8172-4efa-826a-e12667e1bcee" data-linktype="relative-path">DATE_TIME (section 2.2.1.2.11)</a></span>,
+a structure specifying the multicast scope lifetime.</p><p><b>LangTag:</b>  This is of type LPWSTR,
+containing a null-terminated Unicode string that represents the multicast scope
+language (default is LOCALE_SYSTEM_DEFAULT). There is no restriction on the
+length of this Unicode string.</p><p><b>TTL:</b>  This is of type <span><a href="../ms-dtyp/d7edc080-e499-4219-a837-1bc40b64bb04" data-linktype="relative-path">BYTE</a></span>,
+containing the Time-to-Live (TTL) value for the multicast scope. The valid
+range for this field is between 1 and 255, with a default of 32.</p></div>

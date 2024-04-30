@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The DSA_MSG_EXECUTE_SCRIPT_REPLY union defines the response
+messages received from the <span><a href="1cb59761-aeae-4f44-8f9e-06ae75ae45ca" data-linktype="relative-path">IDL_DSAExecuteScript</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DSA_MSG_EXECUTE_SCRIPT_REPLY_V1 V1;
+ } DSA_MSG_EXECUTE_SCRIPT_REPLY;
+</pre></div>
+</dd></dl><p><b>V1:</b>  The version 1 request.</p></div>

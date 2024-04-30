@@ -1,0 +1,19 @@
+<div class="content"><p>A client calls this method to obtain tracking information
+for <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_791190e6-1e02-42cb-bd25-5aee3ab516ed" data-linktype="relative-path">instance containers</a>
+across all <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_ea5c531f-5dd5-43aa-9da1-2ae068c622db" data-linktype="relative-path">conglomerations</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetContainerData(
+   [out] DWORD* nContainers,
+   [out, size_is(,(*nContainers))] 
+     ContainerData** aContainerData
+ );
+</pre></div>
+</dd></dl><p><b>nContainers: </b>A pointer to a variable that,
+upon successful completion, MUST contain the number of elements in <i>aContainerData</i>.</p><p><b>aContainerData: </b>A pointer to a variable that,
+upon successful completion, MUST contain an array of zero or more <a href="3d48fd90-0e10-4fec-87bd-85f1df52cfe7" data-linktype="relative-path">ContainerData (section 2.2.3)</a>
+structures. An array with zero elements MUST be represented by null.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success and a failure result (as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>)
+on failure.</p><p>When this method is invoked, the server MUST attempt to
+return an array of ContainerData structures, one for each instance container
+tracked by the server, or fail the call if it cannot.</p></div>

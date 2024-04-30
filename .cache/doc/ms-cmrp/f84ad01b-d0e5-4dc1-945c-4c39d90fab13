@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/f84ad01b-d0e5-4dc1-945c-4c39d90fab13" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_CHANGE_SHARED_VOLUME_V2</b> enumeration
+SHOULD<a id="Appendix_A_Target_18"></a><a aria-label="Product behavior note 18" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a> list the notifications that are
+generated for a cluster shared <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a>. ClusAPI Protocol
+version 2.0 servers do not support this value.</p><p>These notifications are available only with <b>ApiGetNotifyV2</b>
+(section <a href="491227be-d055-4140-8b85-35cf29f31166" data-linktype="relative-path">3.1.4.2.138</a>).
+The object type is CLUSTER_OBJECT_TYPE_SHARED_VOLUME.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   CLUSTER_CHANGE_SHARED_VOLUME_STATE_V2 = 0x00000001
+ } CLUSTER_CHANGE_SHARED_VOLUME_V2;
+</pre></div>
+</dd></dl><p><b>CLUSTER_CHANGE_SHARED_VOLUME_STATE_V2: </b>This
+notification indicates that the cluster shared volume state has changed.</p></div>

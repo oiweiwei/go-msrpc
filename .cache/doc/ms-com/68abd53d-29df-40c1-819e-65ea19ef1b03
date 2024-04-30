@@ -1,0 +1,60 @@
+<div class="content"><p>The Security Property structure specifies a security
+property sent by the <a href="7bba238a-2969-4067-866e-56802254f85c" data-linktype="relative-path">security
+ORPC extension</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">PropertyType</p>
+  </td>
+  <td colspan="16">
+  <p align="center">Size</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>PropertyType (2 bytes): </b> An unsigned short
+that MUST contain one of the values specified in the Type column in section <a href="e35cdf6a-fa0d-41e4-a7f2-b54ad87fc5b2" data-linktype="relative-path">2.2.3.2.1.1</a>.</p><p><b>Size (2 bytes): </b>An unsigned short that MUST
+contain the size of the <b>Data</b> array as specified in section 2.2.3.2.1.1.</p><p><b>Data (variable): </b>An array of bytes that MUST
+contain a security property value as specified in section 2.2.3.2.1.1.</p></div>

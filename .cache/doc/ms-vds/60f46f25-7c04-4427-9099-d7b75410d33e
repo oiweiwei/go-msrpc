@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The VDS_TRANSITION_STATE enumeration defines the set of
+valid transition state values for a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS object</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_TRANSITION_STATE
+ {
+   VDS_TS_UNKNOWN = 0x00000000,
+   VDS_TS_STABLE = 0x00000001,
+   VDS_TS_EXTENDING = 0x00000002,
+   VDS_TS_SHRINKING = 0x00000003,
+   VDS_TS_RECONFIGING = 0x00000004
+ } VDS_TRANSITION_STATE;
+</pre></div>
+</dd></dl><p><b>VDS_TS_UNKNOWN:  </b>The transition state of the
+object cannot be determined.</p><p><b>VDS_TS_STABLE:  </b>The object is stable. No
+configuration activity is currently in progress.</p><p><b>VDS_TS_EXTENDING:  </b>The object is being
+extended.</p><p><b>VDS_TS_SHRINKING:  </b>The object is being shrunk.</p><p><b>VDS_TS_RECONFIGING:  </b>The object is being
+automatically reconfigured.</p></div>

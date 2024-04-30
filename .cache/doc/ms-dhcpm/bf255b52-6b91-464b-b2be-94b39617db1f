@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The <b>DHCP_PROPERTY_ARRAY</b> structure defines an array of
+<span><a href="1ac6e6e5-f2bc-42ef-9d6a-c9457d48c3c3" data-linktype="relative-path">DHCP_PROPERTY (section 2.2.1.2.117)</a></span>
+structures. This structure is a data container for one or more data elements
+associated with a DHCP property array.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_PROPERTY_ARRAY {
+     DWORD NumElements;
+     [ size_is( NumElements ) ] LPDHCP_PROPERTY     Elements;
+ } DHCP_PROPERTY_ARRAY, *PDHCP_PROPERTY_ARRAY, *LPDHCP_PROPERTY_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  Specifies the number
+of DHCP Property elements.</p><p><b>Elements:</b>  Contains the DHCP Property
+elements.</p></div>

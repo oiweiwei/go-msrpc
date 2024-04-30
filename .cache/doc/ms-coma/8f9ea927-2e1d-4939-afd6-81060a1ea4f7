@@ -1,0 +1,13 @@
+<div class="content"><p>This method is called by a client to perform implementation-specific
+repairs on the server&#39;s <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0944227d-0566-49e1-989f-2fff6e02542d" data-linktype="relative-path">catalog</a>.</p><dl>
+<dd>
+<div><pre> HRESULT RefreshComponents();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving the call, if the server does not need to
+perform any repairs on its catalog, it SHOULD immediately return S_OK
+(0x00000000).</p><p>Otherwise, the server MUST attempt to perform
+implementation-specific<a id="Appendix_A_Target_349"></a><a aria-label="Product behavior note 349" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_349" data-linktype="relative-path">&lt;349&gt;</a>
+repairs on its catalog, and fail if it cannot.</p></div>

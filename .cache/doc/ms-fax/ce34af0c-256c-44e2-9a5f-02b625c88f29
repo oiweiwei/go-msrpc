@@ -1,0 +1,45 @@
+<div class="content"><p> </p><p>The <b>FAX_RECEIPTS_CONFIGW</b> structure defines the format
+for the receipt settings of the fax server. This structure is used by <b>FAX_SetReceiptsConfiguration</b>
+(section <span><a href="7006a1c1-1e13-42e0-be6d-386927232814" data-linktype="relative-path">3.1.4.1.91</a></span>). The
+information contained by this structure describes the <b>delivery receipt
+support</b> fax server configuration (section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>).</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwSizeOfStruct;
+   DWORD dwAllowedReceipts;
+   FAX_ENUM_SMTP_AUTH_OPTIONS SMTPAuthOption;
+   [string] LPWSTR lpwstrReserved;
+   [string] LPWSTR lpwstrSMTPServer;
+   DWORD dwSMTPPort;
+   [string] LPWSTR lpwstrSMTPFrom;
+   [string] LPWSTR lpwstrSMTPUserName;
+   [string] LPWSTR lpwstrSMTPPassword;
+   BOOL bIsToUseForMSRouteThroughEmailMethod;
+ } FAX_RECEIPTS_CONFIGW,
+  *PFAX_RECEIPTS_CONFIGW;
+</pre></div>
+</dd></dl><p><b>dwSizeOfStruct:</b> A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that holds the total size of the structure, in bytes. This value MUST be
+40 or 72 bytes. When filled in on a 32-bit implementation, this value SHOULD be
+40 bytes. When filled in on a 64-bit implementation, this value SHOULD be 72
+bytes.</p><p><b>dwAllowedReceipts:</b> A <b>DWORD</b> that holds
+the type of receipts that the server supports. This member MUST be one of the
+values defined in <b>FAX_ENUM_DELIVERY_REPORT_TYPES</b> (section <span><a href="7a03bb5e-3ba7-45ec-b869-31350298e9b9" data-linktype="relative-path">2.2.76</a></span>).</p><p><b>SMTPAuthOption:</b> A type of <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_0678be67-e739-4e33-97fe-2b03b903a379" data-linktype="relative-path">SMTP</a></span>
+authentication that the server will use for SMTP connections. The options MUST
+be one of the enumerations defined in <b>FAX_ENUM_SMTP_AUTH_OPTIONS</b>
+(section <span><a href="b694b9e9-7111-49cc-91f8-fad468bb1577" data-linktype="relative-path">2.2.56</a></span>).</p><p><b>lpwstrReserved:</b> A reserved pointer, which MUST
+be set to NULL.</p><p><b>lpwstrSMTPServer:</b> A null-terminated character
+string that holds the SMTP server name.</p><p><b>dwSMTPPort:</b> A <b>DWORD</b> that holds the port
+number of the SMTP server.</p><p><b>lpwstrSMTPFrom:</b> A null-terminated character
+string that holds the SMTP email address of the sender of the fax receipt
+messages.</p><p><b>lpwstrSMTPUserName:</b> A null-terminated
+character string that holds the user name to use for Basic-authenticated SMTP
+connections.</p><p><b>lpwstrSMTPPassword:</b> A null-terminated
+character string that holds the password to use for Basic-authenticated SMTP
+connections. For anonymous access, no user name and password is required. For
+Basic and Integrated authentication, a cleartext password is sent over the
+wire. It is for the server to use the password that depends on the
+authentication mode.</p><p><b>bIsToUseForMSRouteThroughEmailMethod:</b> If set
+to TRUE, the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_efaa1290-6d4b-4f44-9e84-35a867069d45" data-linktype="relative-path">routing</a></span> extension
+MUST use the DRT_EMAIL receipts settings to route incoming faxes by email.</p></div>

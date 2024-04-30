@@ -1,0 +1,13 @@
+<div class="content"><p>The SERVICE_TRIGGER_INFO <a id="Appendix_A_Target_27"></a><a aria-label="Product behavior note 27" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_27" data-linktype="relative-path">&lt;27&gt;</a> structure
+contains trigger information about a service.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVICE_TRIGGER_INFO {
+   [range(0, 64)] DWORD cTriggers;
+   [size_is(cTriggers)] PSERVICE_TRIGGER pTriggers;
+   PBYTE pReserved;
+ } SERVICE_TRIGGER_INFO,
+  *PSERVICE_TRIGGER_INFO;
+</pre></div>
+</dd></dl><p><b>cTriggers:</b>  Number of items in the
+pTriggers array.</p><p><b>pTriggers:</b>  Array of triggers each
+element of type SERVICE_TRIGGER.</p><p><b>pReserved:</b>  Reserved, MUST be NULL.</p></div>

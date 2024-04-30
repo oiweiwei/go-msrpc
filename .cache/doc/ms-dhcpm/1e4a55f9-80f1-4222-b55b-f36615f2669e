@@ -1,0 +1,30 @@
+<div class="content"><p> </p><p>The <b>DHCP_ALL_OPTION_VALUES_PB</b> structure contains all
+the option values set for a specific <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_52323544-69e0-4172-8921-2711cbda988e" data-linktype="relative-path">policy</a></span>.</p><dl>
+<dd>
+<div><pre> typedef     struct _DHCP_ALL_OPTION_VALUES_PB {
+     DWORD                          Flags;
+     DWORD                          NumElements;
+     [size_is(NumElements)]
+     struct                         /* anonymous */ {
+         LPWSTR                     PolicyName;
+         LPWSTR                     VendorName;
+         BOOL                       IsVendor;
+         LPDHCP_OPTION_VALUE_ARRAY  OptionsArray;
+     }                             *Options;
+ } DHCP_ALL_OPTION_VALUES_PB, *LPDHCP_ALL_OPTION_VALUES_PB;
+</pre></div>
+</dd></dl><p><b>Flags:</b>  This member is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>.
+It is an unused field that MUST be initialized to 0 in any RPC method that
+modifies the DHCP server configuration. This MUST be treated as an error if it
+is nonzero in an RPC method that queries the DHCP server configuration.</p><p><b>NumElements:</b>  This member is of type
+DWORD and specifies the number of option structures in the <b>DHCP_ALL_OPTION_VALUES_PB</b>
+structure.</p><p><b>PolicyName:</b>  This member is a
+pointer of type <span><a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a></span>
+and contains the null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span>
+identifying the name of the policy. The name of the policy is restricted to 64
+characters.</p><p><b>VendorName:</b>  This member is a
+pointer of type LPWSTR and contains the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_45d20b00-7166-4f94-b679-4cc5a7835a3a" data-linktype="relative-path">vendor class</a></span> name.
+This field is unused.</p><p><b>IsVendor:</b>  This member is of type <span><a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">BOOL</a></span>
+and specifies whether this is a vendor class option.</p><p><b>OptionsArray:</b>  This member is a
+pointer to the <b>DHCP_OPTION_VALUE_ARRAY</b> structure (section <span><a href="313eaf77-256b-44d3-b303-8cca3f158939" data-linktype="relative-path">2.2.1.2.43</a></span>)
+and contains the option values set for the policy.</p></div>

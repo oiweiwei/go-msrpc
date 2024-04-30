@@ -1,0 +1,57 @@
+<div class="content"><p> </p><p>This enumeration describes flag values for connection
+security rules.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_CS_RULE_FLAGS
+ {
+   FW_CS_RULE_FLAGS_NONE = 0x00,
+   FW_CS_RULE_FLAGS_ACTIVE = 0x01,
+   FW_CS_RULE_FLAGS_DTM = 0x02,
+   FW_CS_RULE_FLAGS_TUNNEL_BYPASS_IF_ENCRYPTED = 0x08,
+   FW_CS_RULE_FLAGS_OUTBOUND_CLEAR = 0x10,
+   FW_CS_RULE_FLAGS_APPLY_AUTHZ = 0x20,
+   FW_CS_RULE_FLAGS_KEY_MANAGER_ALLOW_DICTATE_KEY = 0x40,
+   FW_CS_RULE_FLAGS_KEY_MANAGER_ALLOW_NOTIFY_KEY = 0x80,
+   FW_CS_RULE_FLAGS_SECURITY_REALM = 0x100,
+   FW_CS_RULE_FLAGS_MAX = 0x200,
+   FW_CS_RULE_FLAGS_MAX2_1 = 0x02,
+   FW_CS_RULE_FLAGS_MAX_V2_10 = 0x40,
+   FW_CS_RULE_FLAGS_MAX_V2_20 = 0x100
+ } FW_CS_RULE_FLAGS;
+</pre></div>
+</dd></dl><p><b>FW_CS_RULE_FLAGS_NONE:  </b>This value means that
+none of the following flags are set. This value is defined for simplicity in
+writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code.</p><p><b>FW_CS_RULE_FLAGS_ACTIVE:  </b>If this flag is set,
+the rule is enabled; otherwise, the rule is disabled.</p><p><b>FW_CS_RULE_FLAGS_DTM:  </b>If this flag is set,
+the rule is a dynamic tunnel mode rule.</p><p><b>FW_CS_RULE_FLAGS_TUNNEL_BYPASS_IF_ENCRYPTED:  </b>This
+flag MUST only be set on tunnel mode rules. If this flag is set and traffic is
+already arriving encrypted, it is exempted from the tunnel.</p><p><b>FW_CS_RULE_FLAGS_OUTBOUND_CLEAR:  </b>This flag MUST
+only be set on tunnel mode rules. If set, when outbound traffic matches the
+rule, it leaves unprotected, but inbound traffic MUST arrive through the
+tunnel.</p><p><b>FW_CS_RULE_FLAGS_APPLY_AUTHZ:  </b>This flag MUST
+only be set on tunnel mode rules. If this flag is set, the authenticated peers
+of the traffic MUST match the SDDLs that are specified in
+FW_GLOBAL_CONFIG_IPSEC_TUNNEL_REMOTE_MACHINE_AUTHORIZATION_LIST and
+FW_GLOBAL_CONFIG_IPSEC_TUNNEL_REMOTE_USER_AUTHORIZATION_LIST.</p><p><b>FW_CS_RULE_FLAGS_KEY_MANAGER_ALLOW_DICTATE_KEY:  </b>If
+this flag is set, external key managers are permitted to dictate the
+cryptographic keys used. For schema versions 0x0200, 0x0201, and 0x020A, this
+value is invalid and MUST NOT be used.</p><p><b>FW_CS_RULE_FLAGS_KEY_MANAGER_ALLOW_NOTIFY_KEY:  </b>If
+this flag is set, external key managers are notified of the cryptographic keys
+used. For schema versions 0x0200, 0x0201, and 0x020A, this value is invalid and
+MUST NOT be used.</p><p><b>FW_CS_RULE_FLAGS_SECURITY_REALM:</b> If this flag
+is set, the connection security rule is associated with a security realm. The <b>wszRuleId</b>
+of the connection security rule is the same as the IPsec Security Realm ID that
+it is associated with. For schema versions 0x0200, 0x0201, 0x20A, and 0x0214,
+this value is invalid and MUST NOT be used.</p><p><b>FW_CS_RULE_FLAGS_MAX:  </b>This value and values
+that exceed this value are not valid for all schema versions and MUST NOT be
+used. It is only defined for simplicity in writing IDL definitions and code.
+This symbolic constant has a value of 0x200.</p><p><b>FW_CS_RULE_FLAGS_MAX2_1:  </b>This value and
+values that exceed this value are not valid and MUST NOT be used by servers and
+clients with schema version 0x0201 and earlier. It is defined for simplicity in
+writing IDL definitions and code. This symbolic constant has a value of 0x02.</p><p><b>FW_CS_RULE_FLAGS_MAX_V2_10:  </b>This value and
+values that exceed this value are not valid and MUST NOT be used by servers and
+clients with schema version 0x020A and earlier. It is defined for simplicity in
+writing IDL definitions and code. This symbolic constant has a value of 0x40.</p><p><b>FW_CS_RULE_FLAGS_MAX_V2_20:</b>  This value and
+values that exceed this value are not valid and MUST NOT be used by servers and
+clients with schema version 0x0214 and earlier. It is defined for simplicity in
+writing IDL definitions and code. This symbolic constant has a value of 0x100.</p></div>

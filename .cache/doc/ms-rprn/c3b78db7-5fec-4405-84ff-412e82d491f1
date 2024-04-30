@@ -1,0 +1,15 @@
+<div class="content"><p>The <b>RPC_BIDI_REQUEST_DATA</b> structure holds a single <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_604aaee0-7ad4-46a3-932f-8d2def6615ad" data-linktype="relative-path">bidirectional</a> request.<a id="Appendix_A_Target_67"></a><a aria-label="Product behavior note 67" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_67" data-linktype="relative-path">&lt;67&gt;</a> The request is part of a
+bidirectional communication request using the <a href="5aec8347-2ebf-464e-b6d1-540aa60b5c71" data-linktype="relative-path">RpcSendRecvBidiData (section 3.1.4.2.27)</a>
+method. One or more <b>RPC_BIDI_REQUEST_DATA</b> structures MUST be contained
+in a <b>RPC_BIDI_REQUEST_CONTAINER</b> (section <a href="4ea856c4-4c37-4485-868a-e7ac8e331e5e" data-linktype="relative-path">2.2.1.2.10)</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _RPC_BIDI_REQUEST_DATA {
+   DWORD dwReqNumber;
+   [string, unique] wchar_t* pSchema;
+   RPC_BIDI_DATA data;
+ } RPC_BIDI_REQUEST_DATA;
+</pre></div>
+</dd></dl><p><b>dwReqNumber:</b> The index of the request,
+which is used to match a response to a request in a multirequest operation.</p><p><b>pSchema:</b> A pointer to the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_fd49ea36-576c-4417-93bd-d1ac63e71093" data-linktype="relative-path">schema</a> string that
+identifies the requested information.<a id="Appendix_A_Target_68"></a><a aria-label="Product behavior note 68" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_68" data-linktype="relative-path">&lt;68&gt;</a></p><p><b>data:</b> The data that is associated with
+the schema.</p></div>

@@ -1,0 +1,55 @@
+<div class="content"><p>The CreateFileGroup method creates a blank <a href="f9b05999-4313-400a-bd0e-58d02c9eb118" data-linktype="relative-path">Non-Persisted File Group
+Instance (section 3.2.1.3.4.2)</a>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_FILEGROUP_MANAGER | 0x01)] HRESULT CreateFileGroup(
+   [out, retval] IFsrmFileGroup** fileGroup
+ );
+</pre></div>
+</dd></dl><p><b>fileGroup: </b>Pointer to an <b>IFsrmFileGroup</b>
+interface pointer (section <a href="3cd77924-5b8d-4695-997e-df13e335c67f" data-linktype="relative-path">3.2.4.2.23</a>)
+that upon completion points to a blank <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_1f828be2-7a1b-4671-b82d-76b974874edc" data-linktype="relative-path">file group</a>. To have the
+server add the file group to its <b>List of Persisted File Groups</b> (section <a href="6226bc6a-8346-416f-83f9-3c121bdd6e59" data-linktype="relative-path">3.2.1.3</a>), the caller MUST
+call <a href="db474810-08b9-4196-82ed-04d379a3654f" data-linktype="relative-path">Commit (section 3.2.4.2.23.1)</a>
+on the file group. The caller MUST release the file group received when it is
+done with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>fileGroup</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>fileGroup</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate processing
+and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+perform the following actions.</p><ul><li><p><span><span> 
+</span></span>Create a new Non-Persisted File Group Instance.</p>
+<ul><li><p><span><span>  </span></span>Set
+<b>FSRM Base Object.Id</b> to a globally unique identifier.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>File Group.Name</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Members</b> to an empty list.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Non-members</b> to an empty list.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set <i>fileGroup</i> to the <b>IFsrmFileGroup</b> interface
+pointer for the newly created instance.</p>
+</li></ul><p>The new Non-Persisted File Group Instance MUST NOT be
+associated with an existing <a href="dcf7066a-8a51-42a7-8cfb-96272896978e" data-linktype="relative-path">Persisted
+File Group (section 3.2.1.3.4.1)</a>.</p></div>

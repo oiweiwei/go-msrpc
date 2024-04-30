@@ -1,0 +1,121 @@
+<div class="content"><p>The GetReport method retrieves health information for the
+specified <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_fcc139c9-86ff-4414-bc66-5f63e4465b6d" data-linktype="relative-path">replication group</a>
+that is hosted on the server in addition to the global health data of the DFS-R
+service on the server.</p><dl>
+<dd>
+<div><pre> HRESULT GetReport(
+   [in] GUID replicationGroupGuid,
+   [in] BSTR referenceMember,
+   [in] SAFEARRAY (_VersionVectorData)* referenceVersionVectors,
+   [in] long flags,
+   [out] SAFEARRAY (_VersionVectorData)* memberVersionVectors,
+   [out] BSTR* reportXML
+ );
+</pre></div>
+</dd></dl><p><b>replicationGroupGuid: </b>MUST be the identifier
+of the replication group for which the server gets health information. This
+field corresponds to the <b>objectGUID</b> field of the msDFSR-ReplicationGroup
+configuration object in <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+Directory</a>. The msDFSR-ReplicationGroup is specified in <a href="../ms-frs2/9914bdd4-9579-43a7-9f2d-9efe2e162944" data-linktype="relative-path">[MS-FRS2]</a>
+section <a href="../ms-frs2/1454c5ea-ccaa-44d0-a885-9130465ea4bd" data-linktype="relative-path">2.3.5</a>.</p><p><b>referenceMember: </b>MUST be set to NULL.</p><p><b>referenceVersionVectors: </b>If the flags
+parameter has REPORTING_FLAGS_BACKLOG set, the set of <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_5407529a-4f36-4308-8060-63bbe7bac215" data-linktype="relative-path">version vectors</a> for <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_064adaf1-86c7-43e5-a157-b0949980181e" data-linktype="relative-path">replicated folders</a> on the
+reference member MUST be passed by using this parameter. Otherwise, this
+parameter MUST be set to NULL. The <a href="e51af1b7-4a3b-457b-8f2d-60447825e3a7" data-linktype="relative-path">VersionVectorData</a>
+structure is specified in section 2.2.1.4.</p><p><b>flags: </b>Any values of the <a href="1b9cb1a2-d79b-4f78-a69c-f2798cd29ac3" data-linktype="relative-path">DfsrReportingFlags</a>
+enumeration MUST be combined together by using a bitwise OR operation. For more
+information about DfsrReportingFlags, see section 2.2.1.2.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>REPORTING_FLAGS_NONE</p>
+  </td>
+  <td>
+  <p>When this value is set, the server MUST NOT return any
+  optional information.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REPORTING_FLAGS_BACKLOG</p>
+  </td>
+  <td>
+  <p>In addition to the default reporting information, when
+  this value is set, the server MUST return the count of backlogged
+  transactions.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REPORTING_FLAGS_FILES</p>
+  </td>
+  <td>
+  <p>In addition to the default reporting information, when
+  this value is set, the server MUST return the information about the count and
+  cumulative size of files in the replicated folders.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>memberVersionVectors: </b>If the flags parameter
+has REPORTING_FLAGS_BACKLOG set, the set of version vectors for the replicated
+folders on the server MUST be returned in this output parameter. The
+VersionVectorData structure is specified in section 2.2.1.4.</p><p><b>reportXML: </b>The report body in the XML format
+MUST be returned in this output parameter. The report body MUST follow the XML
+format described in section <a href="30d69f93-5b4f-4a20-8806-eafc859c3907" data-linktype="relative-path">2.2.1.5</a>.</p><p><b>Return Values: </b>The method MUST return 0 on
+success; or return an implementation-specific nonzero <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+between 0x80000000 and 0xFFFFFFFF on failure. For protocol purposes, all
+nonzero values MUST be treated as equivalent failures.</p><p>After receiving this message, the server MUST validate only
+the following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that the <i>reportXML</i> pointer is not NULL.</p>
+</li></ul><p>If validation of the reportXML parameter fails, the server
+MUST fail the operation immediately and return an appropriate error as its
+response to the client.<a id="Appendix_A_Target_58"></a><a aria-label="Product behavior note 58" href="70b8d14d-a366-4156-a2ad-eedb63aec058#Appendix_A_58" data-linktype="relative-path">&lt;58&gt;</a></p><p>If the REPORTING_FLAGS_BACKLOG flag was set in the flags
+parameter, the server MUST get the member version vector for each enabled
+replicated folder in the replication group with the <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> that is specified by
+the replicationGroupGuid parameter. The server MUST save information about the
+version vectors in the <i>memberVersionVectors</i> output parameter.</p><p>The server MUST also generate report XML. The server MUST
+get the following information (for more information, see section 2.2.1.5):</p><ul><li><p><span><span> 
+</span></span>Information about the configuration of the replicated folder
+(replicated folder root path, staging folder path, conflict folder path, and
+configured staging size).</p>
+</li><li><p><span><span> 
+</span></span>Information about files that were received from other DFS-R
+members since the DFS-R service started, which SHOULD occur when the system is
+booted. The required information is the count and cumulative compressed size of
+the files received, as well as the cumulative compressed size of the files
+received from other members.</p>
+</li><li><p><span><span> 
+</span></span>Information about available errors that were encountered by the
+DFS-R service since the server started, as well as errors encountered during
+report generation while retrieving information about the replication group
+supplied by the <i>replicationGroupGuid</i> parameter. These errors are
+specified in section <a href="7aed1db6-8e58-4445-91df-8f533d08a8a5" data-linktype="relative-path">2.2.1.5.17</a>.</p>
+</li><li><p><span><span> 
+</span></span>If the REPORTING_FLAGS_BACKLOG flag was specified in message
+parameters, the server MUST also get the count of pending incoming changes that
+are known to the reference member (as specified by the version vectors passed
+in the method parameters) but that are not yet received on the local member.</p>
+</li><li><p><span><span> 
+</span></span>If the REPORTING_FLAGS_FILES flag was specified in message
+parameters, the server MUST also count the number of files and cumulative file
+sizes for:</p>
+<ul><li><p><span><span>  </span></span>Files
+under the replicated folder root that are available for replication. The server
+MUST NOT count any files that are excluded from replication.</p>
+</li><li><p><span><span>  </span></span>Files
+in the conflict folder.</p>
+</li><li><p><span><span>  </span></span>Files
+in the staging folder. For the staging folder, the server MUST count only the
+cumulative size of the files and specify -1 instead of the count of files.</p>
+</li></ul></li></ul><p>If an error is encountered while the server is getting this
+information, the server SHOULD choose to proceed with getting other health
+information and to exclude from the report the information that it was unable
+to collect.  Alternatively, the server MAY choose to abort further processing
+and return the implementation-specific error to the client. <a id="Appendix_A_Target_59"></a><a aria-label="Product behavior note 59" href="70b8d14d-a366-4156-a2ad-eedb63aec058#Appendix_A_59" data-linktype="relative-path">&lt;59&gt;</a></p></div>

@@ -1,0 +1,67 @@
+<div class="content"><p> </p><p>The SYNTAX_ADDRESS packet is the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> for a
+sequence of bytes or <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> characters.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dataLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>byteVal
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dataLen (4 bytes): </b>The size of the entire
+structure (including this field), in bytes.</p><p><b>byteVal (variable): </b>The byte or character
+data.</p><p>The following structure definition shows an alternative
+representation of this data type.</p><dl>
+<dd>
+<div><pre> typedef struct {
+     DWORD dataLen;
+     union {
+         BYTE byteVal[];
+         wchar_t uVal[];
+     };
+ } SYNTAX_ADDRESS;
+  
+</pre></div>
+</dd></dl></div>

@@ -1,0 +1,180 @@
+<div class="content"><p>The DeleteRow method deletes a row or set of rows from a
+database <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_d3a7da8d-a597-4838-9756-25e30b640ba7" data-linktype="relative-path">table</a>.</p><dl>
+<dd>
+<div><pre> HRESULT DeleteRow(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] DWORD dwFlags,
+   [in] FILETIME FileTime,
+   [in] DWORD dwTable,
+   [in] DWORD dwRowId,
+   [out, retval] LONG* pcDeleted
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b> See the definition of the <i>pwszAuthority</i>
+parameter in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.
+</p><p><b>dwFlags: </b>An unsigned integer value that
+specifies the type of rows to be deleted. This parameter can be one of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Delete the
+  individual row.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Delete the
+  rows that contain expired <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Delete the
+  rows that contain pending or failed requests.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>FileTime: </b> Contains a 64-bit value that
+represents the number of 100-nanosecond intervals since January 1, 1601 (<a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">UTC</a>). The value is used to
+query for multiple rows to be deleted. It MUST contain all zeros if the <i>dwRowId</i>
+parameter is nonzero.</p><p><b>dwTable: </b>An unsigned integer value that
+specifies the table in which to delete rows. This parameter can be one of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Delete the <a href="2f82efc0-66dd-49b7-9556-425805e63d30" data-linktype="relative-path">Request table</a> rows.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00003000</p>
+  </td>
+  <td>
+  <p>Delete the <a href="820f99c7-fdc6-4356-b533-9ddbe35d937c" data-linktype="relative-path">Extension table</a> rows.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004000</p>
+  </td>
+  <td>
+  <p>Delete the <a href="c4fbb694-3387-485c-b421-278487d8325c" data-linktype="relative-path">Attribute table</a> rows.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00005000</p>
+  </td>
+  <td>
+  <p>Delete the <a href="3c8fcd6a-6872-46c2-b464-1c86f7fdfb4a" data-linktype="relative-path">CRL table</a> rows.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwRowId: </b>An unsigned integer value that
+represents the row identifier in the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> data table. MUST be set
+to 0 if <i>FileTime</i> is nonzero.</p><p><b>pcDeleted: </b> Returns the count of successfully
+deleted table rows.</p><p>The DeleteRow method is used to instruct the CA to delete
+rows from the specified table.</p><p>The following processing rules apply:</p><ol><li><p><span>    </span>The CA MUST
+verify that exactly one of <i>dwRowId</i> or <i>FileTime</i> is zero. If both
+are zero or if neither is zero, the CA MUST fail the request with error code
+E_INVALIDARG (0x80070057).</p>
+</li><li><p><span>    </span>The CA MUST
+verify that <i>dwTable</i> is set to one of the values defined for the <i>dwTable</i>
+parameter. If set to any other value, the CA MUST fail the request with error
+code E_INVALIDARG (0x80070057).</p>
+</li><li><p><span>    </span>If dwTable is
+set to 0x00000000:</p>
+<ol><li><p><span>   
+</span>If the <i>dwFlags</i> parameter is nonzero and not set to 0X00000001 or
+0x00000002, the CA MUST fail the request.</p>
+</li><li><p><span>   
+</span>If the <i>dwRowId</i> parameter is nonzero:</p>
+<ol><li><p><span>    </span>If <i>dwRowId</i>
+is not a valid <b>RequestId</b>, the CA MUST pass the request and return 0 in
+the <i>pcDeleted</i> parameter.</p>
+</li><li><p><span>    </span>The CA MUST
+delete the corresponding rows in the Request table and also delete all the
+associated rows in the Extension table and Attribute table.</p>
+</li></ol></li><li><p><span>   
+</span>If <i>FileTime</i> is nonzero:</p>
+<ol><li><p><span>    </span>The CA MUST
+delete all the rows in the Request table that match the following criteria and
+also delete all associated rows in the Extension table and Attribute table:</p>
+<ol><li><p><span>    </span> If the <i>dwFlags</i>
+parameter is set to 0x00000001: </p>
+<ul><li><p><span><span> 
+</span></span>Delete all rows that contain issued and revoked certificates that
+expire before <i>FileTime</i> and do not contain archived <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private keys</a> in the
+Request_Raw_Archived_Key datum.</p>
+</li></ul></li><li><p><span>    </span>If <i>dwFlags</i>
+is set to 0x00000002:</p>
+<ul><li><p><span><span> 
+</span></span>Delete all rows that contain pending and failed requests that
+were last acted upon before <i>FileTime</i> and do not contain archived private
+keys in the Request_Raw_Archived_Key datum.</p>
+</li></ul></li></ol></li></ol></li></ol></li><li><p><span>    </span>If <i>dwTable</i>
+is set to 0x00003000: </p>
+<ol><li><p><span>   
+</span>If <i>dwRowId</i> is zero, the CA MUST fail the request.</p>
+</li><li><p><span>   
+</span>If <i>dwFlags</i> is nonzero, the CA MUST fail the request.</p>
+</li><li><p><span>   
+</span>The CA MUST delete the corresponding Extension table row.</p>
+</li></ol></li><li><p><span>    </span>If dwTable is
+set to 0x00004000: </p>
+<ol><li><p><span>   
+</span>If <i>dwRowId</i> is zero, the CA MUST fail the request.</p>
+</li><li><p><span>   
+</span>If <i>dwFlags</i> is nonzero, the CA MUST fail the request.</p>
+</li><li><p><span>   
+</span>The CA MUST delete the corresponding Attribute table row.</p>
+</li></ol></li><li><p><span>    </span>If <i>dwTable</i>
+is set to 0x00005000:</p>
+<ol><li><p><span>   
+</span>If <i>dwFlags</i> is nonzero and not set to 0x00000001, the CA MUST fail
+the request.</p>
+</li><li><p><span>   
+</span>If <i>dwFlags</i> is set to 0x00000000 or 0x00000001:</p>
+<ol><li><p><span>    </span>If <i>dwRowId</i>
+is nonzero:</p>
+<ol><li><p><span>    </span>If <i>dwRowId</i>
+is not a valid CRL table CRL_RowId, the CA MUST pass the request and return 0
+in the <i>pcDeleted</i> parameter.</p>
+</li><li><p><span>    </span>The CA MUST
+delete the corresponding CRL table row.</p>
+</li></ol></li><li><p><span>    </span>If <i>FileTime</i>
+is nonzero:</p>
+<ul><li><p><span><span> 
+</span></span>The CA MUST delete all CRL table rows that contain <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_4f22841f-249b-42fb-a31a-5049c00be939" data-linktype="relative-path">CRLs</a> for which the value in
+the CRL_Next_Update column occurs before <i>FileTime</i>.</p>
+</li></ul></li></ol></li></ol></li><li><p><span>    </span>The CA MUST
+count all deleted rows and return that count in *pcDeleted. If the Windows CA
+fails to delete all rows that match a date restriction as previously specified,
+it returns an HRESULT value of ERROR_OUT_OF_MEMORY to indicate to the client
+that more rows matching the criteria might remain.</p>
+</li></ol></div>

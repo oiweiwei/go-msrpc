@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/353bfb61-0730-4aee-8489-88c249b1a9e1" data-linktype="external">msdn link</a></p><p>The SAMPR_DOMAIN_DISPLAY_MACHINE structure contains a subset
+of <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_ccf481e1-fb56-43d1-b6c6-0733fb52e001" data-linktype="relative-path">machine account</a>
+information sufficient to show a summary of the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_8d10bd9d-392e-431b-8218-742bdac19815" data-linktype="relative-path">account</a> for an account
+management application.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_DOMAIN_DISPLAY_MACHINE {
+   unsigned long Index;
+   unsigned long Rid;
+   unsigned long AccountControl;
+   RPC_UNICODE_STRING AccountName;
+   RPC_UNICODE_STRING AdminComment;
+ } SAMPR_DOMAIN_DISPLAY_MACHINE,
+  *PSAMPR_DOMAIN_DISPLAY_MACHINE;
+</pre></div>
+</dd></dl><p>For information on each field, see section <a href="4e123dbf-e101-4ade-9fff-f2247ed25a11" data-linktype="relative-path">2.2.8.1</a>.</p></div>

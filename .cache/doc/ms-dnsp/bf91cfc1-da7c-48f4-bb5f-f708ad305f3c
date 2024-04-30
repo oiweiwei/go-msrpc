@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p>In the <b>DNS_RPC_ZONE_SECONDARIES_LONGHORN</b> structure
+all fields have same definition as specified in section <b>DNS_RPC_ZONE_SECONDARIES_DOTNET</b>
+(section <span><a href="f3f440eb-6ff5-419c-a9ff-7ed6aafc937a" data-linktype="relative-path">2.2.5.2.5.2</a></span>), with
+the following exceptions:</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcZoneSecondariesLonghorn {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   DWORD fSecureSecondaries;
+   DWORD fNotifyLevel;
+   PDNS_ADDR_ARRAY aipSecondaries;
+   PDNS_ADDR_ARRAY aipNotify;
+ } DNS_RPC_ZONE_SECONDARIES_LONGHORN,
+  *PDNS_RPC_ZONE_SECONDARIES_LONGHORN,
+  DNS_RPC_ZONE_SECONDARIES,
+  *PDNS_RPC_ZONE_SECONDARIES;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The DNS server
+management structure version number. It MUST be set to 0x00000002.</p><p><b>aipSecondaries:</b> A pointer to a structure
+of type DNS_ADDR_ARRAY (section <span><a href="56ba5fab-f304-4866-99a4-4f1c1f9247a3" data-linktype="relative-path">2.2.3.2.3</a></span>) that
+specifies a list of IP addresses of remote DNS servers that are permitted to
+perform <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_67ea3c5b-6b1e-40a3-ac20-3f7eaf056504" data-linktype="relative-path">zone transfers</a></span> for
+this zone. The DNS server will honor zone transfer requests from these
+secondary servers, as directed by the value of fSecureSecondaries above.</p><p><b>aipNotify:</b> A pointer to a structure of
+type DNS_ADDR_ARRAY (section 2.2.3.2.3) that specifies a list of IP addresses
+of the remote DNS servers that be sent notification messages when records in
+this zone change, as directed by fNotifyLevel above.</p></div>

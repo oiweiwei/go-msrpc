@@ -1,0 +1,38 @@
+<div class="content"><p> </p><p>This enumeration represents where the policy object is
+stored and from where it originates.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_RULE_ORIGIN_TYPE
+ {
+   FW_RULE_ORIGIN_INVALID = 0,
+   FW_RULE_ORIGIN_LOCAL = 1,
+   FW_RULE_ORIGIN_GP = 2,
+   FW_RULE_ORIGIN_DYNAMIC = 3,
+   FW_RULE_ORIGIN_AUTOGEN = 4,
+   FW_RULE_ORIGIN_HARDCODED = 5,
+   FW_RULE_ORIGIN_MAX = 6
+ } FW_RULE_ORIGIN_TYPE;
+</pre></div>
+</dd></dl><p><b>FW_RULE_ORIGIN_INVALID:  </b>On enumeration, this
+value is invalid, and MUST NOT be used by the server. It is defined for
+simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. However, the server ignores the fields of this data type on input, and
+hence it is valid for filling rules. This symbolic constant has a value of 0.</p><p><b>FW_RULE_ORIGIN_LOCAL:  </b>Specifies that the
+policy object originates from the local store. This symbolic constant has a
+value of 1.</p><p><b>FW_RULE_ORIGIN_GP:  </b>Specifies that the policy
+object originates from the GP store. This symbolic constant has a value of 2.</p><p><b>FW_RULE_ORIGIN_DYNAMIC:  </b>Specifies that the
+policy object originates from the dynamic store. This symbolic constant has a
+value of 3.</p><p><b>FW_RULE_ORIGIN_AUTOGEN:  </b>Not used. This
+symbolic constant has a value of 4.</p><p><b>FW_RULE_ORIGIN_HARDCODED:  </b>Specifies that the
+policy object originates from the firewall and advanced security component
+hard-coded values and is used due to lack of user settings. These values are
+not configurable and are not addressed in this protocol specification. Specific
+implementations of firewall and advanced security components can choose what
+hard-coded values to use when no other user settings are available. The only
+policy objects in this protocol specification that can have this
+FW_RULE_ORIGIN_HARDCODED value assigned are authentication sets and
+cryptographic sets, which are defined in sections <span><a href="bbec7ab7-0a1d-49a4-9c8e-a4784bbe6f16" data-linktype="relative-path">2.2.65</a></span> and <span><a href="a468fe9e-113b-4155-a63d-0db3aac12619" data-linktype="relative-path">2.2.74</a></span>,
+respectively.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="1da2ee70-a6ae-4f76-b08f-fdc25c77d8a0#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a> This symbolic constant has a
+value of 5.</p><p><b>FW_RULE_ORIGIN_MAX:  </b>This value and values
+that exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing IDL definitions and code. This symbolic constant has a
+value of 6.</p></div>

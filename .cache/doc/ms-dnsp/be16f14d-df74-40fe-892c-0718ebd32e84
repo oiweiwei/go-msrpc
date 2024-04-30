@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_CRITERIA</b> structure contains the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_71aebfeb-8787-432e-a8c8-5aa8eacd3e0a" data-linktype="relative-path">DNS
+policy criteria</a></span> that is associated with a DNS policy.</p><dl>
+<dd>
+<div><pre> typedef struct _CriteriaList {
+   DNS_RPC_CRITERIA_ENUM type;
+   LPWSTR pCriteria;
+ } DNS_RPC_CRITERIA,
+  *PDNS_RPC_CRITERIA;
+</pre></div>
+</dd></dl><p><b>type:</b> This specifies the type of criteria
+associated with the DNS policy. The value is of type <span><a href="4b707d19-860c-461e-b7c5-7e6322db26e9" data-linktype="relative-path">DNS_RPC_CRITERIA_ENUM (section 2.2.15.1.1.6)</a></span>.</p><p><b>pCriteria:</b> A NULL-terminated Unicode string
+containing the DNS policy criteria details.</p></div>

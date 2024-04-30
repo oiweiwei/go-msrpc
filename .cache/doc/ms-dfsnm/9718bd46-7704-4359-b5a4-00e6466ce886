@@ -1,0 +1,248 @@
+<div class="content"><p> </p><p>The NetrDfsMove (Opnum 6) method renames or moves a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS link</a></span>.
+This method has the following <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a></span> syntax.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrDfsMove(
+   [in, string] WCHAR* DfsEntryPath,
+   [in, string] WCHAR* NewDfsEntryPath,
+   [in] unsigned long Flags
+ );
+</pre></div>
+</dd></dl><p><b>DfsEntryPath: </b>The pointer to a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_151c87db-05a4-40c3-99bd-4b682530d210" data-linktype="relative-path">DFS path</a></span>,
+this parameter specifies the source path for the move operation. This MUST be a
+DFS link or the path prefix of any DFS link in the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS namespace</a></span>.</p><p><b>NewDfsEntryPath: </b>The pointer to a DFS path,
+this parameter specifies the destination DFS path for the move operation. This
+MUST be a path or a DFS link in the same DFS namespace.</p><p><b>Flags: </b>A bit field specifying additional
+actions to take.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DFS_MOVE_FLAG_REPLACE_IF_EXISTS</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>If the destination path is an existing link, replace
+  it as part of the move operation.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits are reserved and MUST NOT be used. If
+reserved bits are specified, the server SHOULD fail the call with
+ERROR_INVALID_PARAMETER (0x00000057) .</p>
+</dd></dl><p><b>Return Values: </b>The method MUST return 0 on
+success and a nonzero error code on failure. The method can return any specific
+error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Successful completion.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Permission to perform the operation was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000032</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The specified operation is not supported.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000050</p>
+  <p>ERROR_FILE_EXISTS</p>
+  </td>
+  <td>
+  <p>The destination path specifies an existing link.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>An incorrect parameter was specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000490</p>
+  <p>ERROR_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>A specified DFS root namespace does not exist, or no
+  links were matched.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST verify the existence of the DFS namespaces
+that the <i>DfsEntryPath</i> and <i>NewDfsEntryPath</i> parameters specify. If
+the existence check fails, the server MUST return ERROR_NOT_FOUND.</p><p>The server MUST validate that the source and destination
+paths are</p><ol><li><p><span>    </span>In the same DFS
+namespace.</p>
+</li><li><p><span>    </span>Below the root
+of the namespace.</p>
+</li></ol><p>Otherwise, the server MUST return ERROR_NOT_SUPPORTED.</p><p>The server MUST return ERROR_NOT_FOUND if the <i>DfsEntryPath</i>
+parameter does not match any DFS links in the namespace, as specified below.</p><p>The server MUST validate that the source and destination
+paths do not specify illegal characters or path elements. If either path is
+illegal, the server MUST return ERROR_INVALID_NAME.<a id="Appendix_A_Target_68"></a><a aria-label="Product behavior note 68" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_68" data-linktype="relative-path">&lt;68&gt;</a></p><p>The server SHOULD perform DFS link move operations
+atomically. That is, either all of the constituent operations are performed as
+part of the move and the call succeeds, or no changes are made to the DFS
+namespace and the call fails.<a id="Appendix_A_Target_69"></a><a aria-label="Product behavior note 69" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_69" data-linktype="relative-path">&lt;69&gt;</a></p><p>When the source and destination are both paths in the DFS
+namespace and not links themselves, all DFS links in the DFS namespace that
+have the source path as their prefix MUST be converted to DFS links with the
+destination path as the prefix. In effect, each DFS link that has the prefix
+specified by the source path is removed, and new DFS links that have exactly
+the same targets and target properties are added, but with the prefix specified
+by the destination path. For example, with a source path of
+&#34;\\MyServer\MyDfs\dir1&#34; and a destination path of
+&#34;\\MyServer\MyDfs\dir2&#34;, the DFS link &#34;\\MyServer\MyDfs\dir1\link1&#34;
+becomes &#34;\\MyServer\MyDfs\dir2\link1&#34;, while the DFS link
+&#34;\\MyServer\MyDfs\link2&#34; is unaffected by the move operation.</p><p>If a DFS link already exists at the destination path, unless
+the <i>Flags</i> parameter is DFS_MOVE_FLAG_REPLACE_IF_EXISTS, the server MUST
+fail the call with ERROR_FILE_EXISTS. This MUST be enforced only if the
+destination is an existing link, not if the destination is an existing file or
+directory. In the preceding example, if a DFS link
+&#34;\\MyServer\MyDfs\dir2\link1&#34; already exists, the move operation will
+fail unless the DFS_MOVE_FLAG_REPLACE_IF_EXISTS flags parameter is specified.
+If the DFS_MOVE_FLAG_REPLACE_IF_EXISTS flags parameter is specified, the DFS
+link at the destination path is removed and replaced by the moved DFS link. If
+&#34;\\MySever\MyDfs\dir2\link1&#34; is an existing directory and not a link,
+the operation does not require the DFS_MOVE_FLAG_REPLACE_IF_EXISTS flags
+parameter to be specified.</p><p><span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_3de8e640-501a-4b25-80a7-0ba769f3c0b9" data-linktype="relative-path">DFS servers</a></span> SHOULD
+support the case in which intermediate or leaf pathname components in the
+destination path are files; for example, the case of a source path being
+&#34;\\MyServer\MyDfs\dir1\link1&#34;, a destination path being
+&#34;\\MyServer\MyDfs\comp1\link1&#34;, and &#34;\\MyServer\MyDfs\comp1&#34;
+being a file.<a id="Appendix_A_Target_70"></a><a aria-label="Product behavior note 70" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_70" data-linktype="relative-path">&lt;70&gt;</a></p><p>If intermediate directories in the pathname of a source DFS
+link are empty, they SHOULD be removed, as required, after a move operation.
+For example, if &#34;\\MyServer\MyDfs\dir1\dir2\link1&#34; is moved to
+&#34;\\MyServer\MyDfs\link1&#34;, the dir1 and dir2 directories are removed
+if they are empty.<a id="Appendix_A_Target_71"></a><a aria-label="Product behavior note 71" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_71" data-linktype="relative-path">&lt;71&gt;</a></p><p>If the move operation results in a source DFS link becoming
+the prefix of an existing destination DFS link, the move operation MUST be
+failed. For example, if the source is a DFS link
+&#34;\\MyServer\MyDfs\dir1\link1&#34;, the destination DFS link specified is
+&#34;\\MyServer\MyDfs\dir2&#34;, and if a DFS link
+&#34;\\MyServer\MyDfs\dir2\link2&#34; already exists, the server MUST fail
+the call with ERROR_FILE_EXISTS.</p><p>For a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_2aad5e61-ffe9-406e-a192-328c5327ee72" data-linktype="relative-path">domainv1-based DFS namespace</a></span>
+and <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ce6af522-ba70-4ba1-a684-b98b809c72ad" data-linktype="relative-path">stand-alone
+DFS namespaces</a></span>, the link&#39;s identity is changed. Thus, to another <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ac90b498-3ba4-48d6-bcd6-5495f1654671" data-linktype="relative-path">DFS root
+target</a></span> of the same domainv1-based DFS namespace, one link is deleted
+and then another link is created instead of an existing link being moved. </p><p>The server MUST synchronously update the following fields in
+the DFS metadata for a stand-alone DFS namespace.</p><table><thead>
+  <tr>
+   <th>
+   <p>Operation </p>
+   </th>
+   <th>
+   <p>DFS metadata changes required </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Remove link</p>
+  </td>
+  <td>
+  <p>Remove <b>NamespaceElement</b> from <b>NamespaceElementsList</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Add link</p>
+  </td>
+  <td>
+  <p>Add <b>NamespaceElement</b> in <b>NamespaceElementsList</b>.</p>
+  </td>
+ </tr></tbody></table><p>The server MUST update the following fields in the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_e8de88fd-d760-46fa-ad77-76961fa20aea" data-linktype="relative-path">DFS
+metadata</a></span> for a domainv1-based DFS namespace.</p><table><thead>
+  <tr>
+   <th>
+   <p>Operation </p>
+   </th>
+   <th>
+   <p>DFS metadata changes required </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Remove link</p>
+  </td>
+  <td>
+  <p>Remove <span><a href="9f18db22-cfcc-429f-88eb-364a5ae7482c" data-linktype="relative-path">DFSNamespaceLinkBLOB</a></span>
+  and update BLOBElementCount.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Add link</p>
+  </td>
+  <td>
+  <p>Add DFSNamespaceLinkBLOB and update BLOBElementCount.</p>
+  </td>
+ </tr></tbody></table><p>In contrast, for a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8099f7c1-2a31-4a20-81e6-824689bd9c5a" data-linktype="relative-path">domainv2-based DFS namespace</a></span>,
+the link&#39;s identity is not changed. Instead, the <b>msDFS-LinkPathv2</b>, <b>msDFS-LastModifiedv2</b>,
+and <b>msDFS-GenerationGUIDv2</b> attributes of a DFS link&#39;s <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a></span>
+entry are updated during a move operation. When a destination link is deleted,
+the required local state changes (on-disk, in-memory) are performed on the DFS
+root target server performing the move operation as well. </p><p>The server MUST update the following fields in the DFS metadata
+for a domainv2-based DFS namespace.</p><table><thead>
+  <tr>
+   <th>
+   <p>Operation </p>
+   </th>
+   <th>
+   <p>DFS metadata changes required </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Remove link</p>
+  </td>
+  <td>
+  <p>Update <b>msDFS-LinkPathv2</b>, <b>msDFS-LastModifiedv2</b>,
+  and <b>msDFS-GenerationGUIDv2</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Add link</p>
+  </td>
+  <td>
+  <p>Update <b>msDFS-LinkPathv2</b>, <b>msDFS-LastModifiedv2</b>,
+  and <b>msDFS-GenerationGUIDv2</b>.</p>
+  </td>
+ </tr></tbody></table><p>The server MUST synchronously update the DFS metadata of a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_133ab305-ad75-4b38-8ec9-40bc0dc3b594" data-linktype="relative-path">domain-based
+DFS namespace</a></span>. </p><p>If <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_cf94d206-f71c-4ca1-891a-24c83f533e45" data-linktype="relative-path">DFS root scalability mode</a></span>
+is not enabled for the domain-based DFS namespace, the server MUST notify other
+DFS root targets of the change in DFS metadata by asynchronously issuing a
+NetrDfsSetInfo (Opnum 3) method with the <i>Level</i> parameter 101 and with
+the <b>State</b> field of <span><a href="af9d607e-04e5-4722-8d00-76cf9c7b69f9" data-linktype="relative-path">DFS_INFO_101</a></span> set to
+DFS_VOLUME_STATE_RESYNCHRONIZE.<a id="Appendix_A_Target_72"></a><a aria-label="Product behavior note 72" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_72" data-linktype="relative-path">&lt;72&gt;</a></p><p>The move operation on a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_701a2cc1-eb5a-400f-b394-5bad264ec8f6" data-linktype="relative-path">stand-alone DFS namespace</a></span>
+or a domainv2-based DFS namespace also correctly applies to any security
+descriptor that is associated with the DFS link, to the new reparse point
+created after the move operation.</p></div>

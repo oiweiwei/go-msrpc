@@ -1,0 +1,62 @@
+<div class="content"><p>The HASH_BLOB message stores the hash that is exchanged
+during the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_e58c72cc-2506-4e51-b33d-fbefe4bd6138" data-linktype="relative-path">secure session</a>
+negotiation.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>HashDataLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>HashData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>HashDataLength (4 bytes): </b>A 32-bit unsigned
+integer that stores the size, in bytes, of the <b>HashData</b> field.</p><p><b>Reserved (4 bytes): </b>This field MUST be set to
+0x00000000 and MUST be ignored on receipt.</p><p><b>HashData (variable): </b>A variable-length array
+that contains the hash.</p></div>

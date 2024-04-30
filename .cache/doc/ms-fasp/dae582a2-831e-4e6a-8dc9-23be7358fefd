@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>This structure contains an array of <span><a href="aac2be8c-f4ab-4b0a-9957-74462137fd8a" data-linktype="relative-path">FW_OS_PLATFORM</a></span>
+elements. The structure describes a set of operating system platforms. This set
+is the union of the sets identified by each FW_OS_PLATFORM element.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_OS_PLATFORM_LIST {
+   [range(0, 1000)] unsigned long dwNumEntries;
+   [size_is(dwNumEntries)] PFW_OS_PLATFORM pPlatforms;
+ } FW_OS_PLATFORM_LIST,
+  *PFW_OS_PLATFORM_LIST;
+</pre></div>
+</dd></dl><p><b>dwNumEntries:</b>  This field specifies
+the number of OS platforms that the structure contains.</p><p><b>pPlatforms:</b>  A pointer to an array
+of <b>dwNumEntries</b> contiguous FW_OS_PLATFORM elements.</p></div>

@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p>The ServerAlive2 (Opnum 5) method was introduced with
+version 5.6 of the DCOM Remote Protocol. This method extends the <b>ServerAlive</b>
+method. It returns string and security bindings for the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_19f75354-9b0b-47cb-a00b-4ff196883b32" data-linktype="relative-path">object
+resolver</a></span>, which allows the client to choose the most appropriate,
+mutually compatible settings.</p><dl>
+<dd>
+<div><pre> [idempotent] error_status_t ServerAlive2(
+   [in] handle_t hRpc,
+   [out, ref] COMVERSION* pComVersion,
+   [out, ref] DUALSTRINGARRAY** ppdsaOrBindings,
+   [out, ref] DWORD* pReserved
+ );
+</pre></div>
+</dd></dl><p><b>hRpc: </b> This MUST specify an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/de240b5e-6487-485e-9086-5069977f89db" data-linktype="relative-path">3.2.2.3.1</a></span>.</p><p><b>pComVersion: </b>This MUST contain the <span><a href="807a93f5-7321-4bdb-b88a-59059566afd3" data-linktype="relative-path">COMVERSION</a></span>
+of the object resolver; see section 2.2.11.</p><p><b>ppdsaOrBindings: </b> MUST contain the string and
+security bindings of the object resolver. The returned string bindings MUST NOT
+contain endpoints.</p><p><b>pReserved: </b>MUST contain zero and MUST be
+ignored by the recipient.</p><p>When processing this call:</p><ul><li><p><span><span> 
+</span></span>The object resolver MUST NOT check if the client has the
+permissions to make this call.</p>
+</li><li><p><span><span> 
+</span></span> The object resolver MUST return the object resolver COMVERSION
+and the <span><a href="8ad7d21d-5c34-4649-9bc7-5be6fe568245" data-linktype="relative-path">DUALSTRINGARRAY</a></span>
+containing its RPC bindings to the client.</p>
+</li></ul></div>

@@ -1,0 +1,33 @@
+<div class="content"><p> </p><p>The VOLUMESTATUS enumeration defines values for a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume&#39;s</a></span>
+status. For more information about redundant data and <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_98c2ba19-d0f7-4db1-b6c1-4e7323cc5bc0" data-linktype="relative-path">fault-tolerant</a></span>
+volumes, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89992" data-linktype="external">[MSDN-DISKMAN]</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum _VOLUMESTATUS
+ {
+   VOLUME_STATUS_UNKNOWN,
+   VOLUME_STATUS_HEALTHY,
+   VOLUME_STATUS_FAILED,
+   VOLUME_STATUS_FAILED_REDUNDANCY,
+   VOLUME_STATUS_FAILING,
+   VOLUME_STATUS_FAILING_REDUNDANCY,
+   VOLUME_STATUS_FAILED_REDUNDANCY_FAILING,
+   VOLUME_STATUS_SYNCHING,
+   VOLUME_STATUS_REGENERATING,
+   VOLUME_STATUS_INITIALIZING,
+   VOLUME_STATUS_FORMATTING 
+ } VOLUMESTATUS;
+</pre></div>
+</dd></dl><p><b>VOLUME_STATUS_UNKNOWN:</b>  Volume has an unknown
+status.</p><p><b>VOLUME_STATUS_HEALTHY:</b>  Volume is fully
+functional.</p><p><b>VOLUME_STATUS_FAILED:</b>  Volume is in a failed
+state.</p><p><b>VOLUME_STATUS_FAILED_REDUNDANCY:</b>  Volume&#39;s
+redundant data in a fault-tolerant volume has failed.</p><p><b>VOLUME_STATUS_FAILING:</b>  Volume has encountered
+I/O errors.</p><p><b>VOLUME_STATUS_FAILING_REDUNDANCY:</b>  Volume is
+fault-tolerant, and it encountered I/O errors.</p><p><b>VOLUME_STATUS_FAILED_REDUNDANCY_FAILING:</b> 
+Redundant data in a fault-tolerant volume has failed, and the volume
+encountered I/O errors in the last remaining copy of the data.</p><p><b>VOLUME_STATUS_SYNCHING:</b>  Volume is
+resynchronizing fault-tolerant data for a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_e7aa7465-999c-41da-b417-977871251f4a" data-linktype="relative-path">mirrored volume</a></span>.</p><p><b>VOLUME_STATUS_REGENERATING:</b>  Volume is
+regenerating fault-tolerant data for a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_96e19472-82bc-4317-9b5b-8113e2fc6eb8" data-linktype="relative-path">RAID-5</a></span> volume.</p><p><b>VOLUME_STATUS_INITIALIZING:</b>  Volume is
+initializing to <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_3080678a-2e28-4e28-af89-8c010325a7b2" data-linktype="relative-path">volume manager</a></span>
+control.</p><p><b>VOLUME_STATUS_FORMATTING:</b>  Volume is currently
+being formatted.</p></div>

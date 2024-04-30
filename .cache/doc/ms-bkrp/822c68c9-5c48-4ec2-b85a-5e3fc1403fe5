@@ -1,0 +1,14 @@
+<div class="content"><p>The BackupKey Remote Protocol is used by clients to encrypt
+and decrypt sensitive data (such as cryptographic keys) with the help of a
+server. Data encrypted using this protocol can be decrypted only by the server,
+and the client can safely write such encrypted data to storage that is not
+specially protected. In Windows, this protocol is used to provide <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_8312d817-fdc5-4a49-8894-729b7b9e0ce5" data-linktype="relative-path">encryption</a> of user secrets
+through the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_3af2be04-f627-4a02-a3b0-b465ccede53f" data-linktype="relative-path">Data Protection
+Application Program Interface (DPAPI)</a> in an <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_fcaec097-23d5-4b8f-b3e7-5739cc9c1d78" data-linktype="relative-path">Active Directory Domain</a>.</p><p>Familiarity with cryptography and <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_fbe33f73-7a2c-4134-ab9e-7a12c6d01348" data-linktype="relative-path">Public Key Infrastructure (PKI)</a>
+concepts (such as asymmetric and <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_5d5fbe33-fb23-4288-bf7d-d8bd4593631c" data-linktype="relative-path">symmetric</a> cryptography,
+digital <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a>
+concepts, and cryptographic key exchange) is required for a complete
+understanding of this specification. For more information about cryptography
+and PKI concepts, see <a href="https://go.microsoft.com/fwlink/?LinkId=89841" data-linktype="external">[CRYPTO]</a>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

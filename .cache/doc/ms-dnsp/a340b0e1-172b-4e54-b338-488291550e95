@@ -1,0 +1,7 @@
+<div class="content"><p>The Domain Name Service (DNS) Server Management Protocol
+defines <a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> interfaces
+that provide methods for remotely accessing and administering a <a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a> server. It is a
+client/server protocol based on RPC that is used in the configuration,
+management, and monitoring of a DNS server.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

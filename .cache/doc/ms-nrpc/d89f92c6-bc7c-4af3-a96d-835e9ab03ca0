@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/d89f92c6-bc7c-4af3-a96d-835e9ab03ca0" data-linktype="external">msdn link</a></p><p>The <b>NLPR_SID_ARRAY</b> structure defines an array of
+pointers to <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security
+identifier</a> structures.</p><dl>
+<dd>
+<div><pre> typedef struct _NLPR_SID_ARRAY {
+   ULONG Count;
+   [size_is(Count)] PNLPR_SID_INFORMATION Sids;
+ } NLPR_SID_ARRAY,
+  *PNLPR_SID_ARRAY;
+</pre></div>
+</dd></dl><p><b>Count:</b> The number of pointers in the <b>Sids</b>
+array.</p><p><b>Sids:</b> An array of <b>NLPR_SID_INFORMATION</b>
+structures, as specified in section <a href="e936e7db-27cb-40dd-acf7-eec6ac0e9ed5" data-linktype="relative-path">2.2.1.5.5</a>, each of which
+is a pointer to a SID.</p></div>

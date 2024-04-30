@@ -1,0 +1,222 @@
+<div class="content"><p> </p><p>The SchRpcEnumFolders method MUST retrieve a list of folders
+on the server.</p><p>The server MUST return S_FALSE if there are more folders to
+enumerate.</p><p>Note that if the client requests items 1-10 and then 11-20,
+the second call MAY return duplicate entries if the folder list has changed in
+between calls.</p><dl>
+<dd>
+<div><pre> HRESULT SchRpcEnumFolders(
+   [in, string] const wchar_t* path,
+   [in] DWORD flags,
+   [in, out] DWORD* pStartIndex,
+   [in] DWORD cRequested,
+   [out] DWORD* pcNames,
+   [out, string, size_is(, *pcNames)] 
+     TASK_NAMES* pNames
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>MUST contain the full path associated
+with a folder using the format specified in section <span><a href="fa8809c8-4f0f-4c6d-994a-6c10308757c1" data-linktype="relative-path">2.3.11</a></span>. </p><p><b>flags: </b>All bits except <b>TASK_ENUM_HIDDEN</b>
+MUST be set to zero and the server MUST return an error if undefined bits are
+set to 1. This field has one or more of the following values:</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>H</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>H</p>
+  <p>TASK_ENUM_HIDDEN</p>
+  </td>
+  <td>
+  <p>If set to 1, the server MUST include hidden tasks in
+  the enumeration, otherwise the server MUST exclude hidden tasks from the enumeration.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pStartIndex: </b>MUST contain the index at which
+to start enumeration. If the server returns S_FALSE, the server MUST update <i>startIndex</i>
+to contain the index at which the enumeration MUST resume.</p><p><b>cRequested: </b>MUST contain the number of entries
+requested. The server MUST NOT return more than <i>cRequested</i> entries.</p><p><b>pcNames: </b>MUST contain a count of enumerated
+subfolder names contained in <i>pNames</i>.</p><p><b>pNames: </b>Buffer MUST contain returned folder
+names.</p><p><b>Return Values: </b>For more information on return
+codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>, or Win32
+Error Codes in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><p>Upon receipt of the SchRpcEnumFolders call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Return E_INVALIDARG if the out parameters are NULL or if any bit
+other than TASK_ENUM_HIDDEN is set in the <i>flags</i> parameter.</p>
+<p><b>Note</b>  When
+passing NULL as a value for parameters, behavior can change based on the RPC
+Runtime Check. See <span><a href="535bb46d-f599-4528-9b02-eb2d391fd361" data-linktype="relative-path">RPC Runtime Check Notes</a></span>
+(section 3.3).</p>
+</li><li><p><span><span> 
+</span></span>Return the value 0x80070003, the <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+version of the Win32 error ERROR_PATH_NOT_FOUND, if the <i>path</i> parameter
+does not name a folder in the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a></span> <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_08035fe7-a786-4b30-ab60-3fd046060617" data-linktype="relative-path">task
+store</a></span>, or if the caller does not have either read or write access to
+that folder.</p>
+</li><li><p><span><span> 
+</span></span>Enumerate the subfolders in that folder, starting the enumeration
+at the ordinal position given by the DWORD value pointed to by the <i>pStartIndex</i>
+parameter. The server MUST NOT enumerate more than <i>cRequested</i>
+subfolders. The server MUST enumerate as many subfolders as are available, up
+to a total of <i>cRequested</i> subfolders. The server MUST skip subfolders
+that the caller does not have read or write access to.<a id="Appendix_A_Target_71"></a><a aria-label="Product behavior note 71" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_71" data-linktype="relative-path">&lt;71&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Return an array of pointers to the enumerated null-terminated
+subfolder names in the <i>pNames</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return the number of enumerated subfolder names in the <i>pcNames</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Increment the value pointed to by the <i>pStartIndex</i>
+parameter by the number of enumerated subfolder names.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK if there are no more names to enumerate, else return
+S_FALSE.</p>
+</li></ul><p>If any errors are raised during the processing they are
+returned. For more information on return codes, see section 2.3.14 and Win32
+Error Codes in [MS-ERREF] section 2.1.</p></div>

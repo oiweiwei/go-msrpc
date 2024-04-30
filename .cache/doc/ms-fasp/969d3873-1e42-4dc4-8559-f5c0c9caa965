@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>This structure represents a third-party software component
+that registers with the firewall and advanced security component to implement
+some of the categories.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_PRODUCT {
+   DWORD dwFlags;
+   DWORD dwNumRuleCategories;
+   [size_is(dwNumRuleCategories), unique] 
+     FW_RULE_CATEGORY* pRuleCategories;
+   [string, ref] wchar_t* pszDisplayName;
+   [string, unique] wchar_t* pszPathToSignedProductExe;
+ } FW_PRODUCT,
+  *PFW_PRODUCT;
+</pre></div>
+</dd></dl><p><b>dwFlags:</b>  This field is not used.</p><p><b>dwNumRuleCategories:</b>  The number of
+rule categories with which the third-party software component registered.</p><p><b>pRuleCategories:</b>  A pointer to an
+array of <b>dwNumRuleCategories</b> that are contiguous <span><a href="16b2c1a3-789f-4cde-b3d1-ecd9182b60fe" data-linktype="relative-path">FW_RULE_CATEGORY</a></span>
+elements.</p><p><b>pszDisplayName:</b>  A pointer to a <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string. The string represents the name of the third-party software component.</p><p><b>pszPathToSignedProductExe:</b>  A
+pointer to a Unicode string. The string represents the file path to the binary
+executable of the third-party software component.</p></div>

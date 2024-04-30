@@ -1,0 +1,20 @@
+<div class="content"><p>The GetTypeComp method retrieves a reference to the <a href="7894019f-de1e-455e-b2aa-3b899c2e50f6" data-linktype="relative-path">ITypeComp server</a> instance
+associated with the <a href="99504cf9-16d8-401e-a873-83b85d1ee4aa" data-linktype="relative-path">ITypeInfo
+server</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetTypeComp(
+   [out] ITypeComp** ppTComp
+ );
+</pre></div>
+</dd></dl><p><b>ppTComp: </b>MUST be set to a reference to the
+ITypeComp server instance associated with the ITypeInfo server (see section
+3.5).</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the sevierty bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul></div>

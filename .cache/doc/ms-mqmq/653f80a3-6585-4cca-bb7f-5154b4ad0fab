@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The OBJECTID structure is used to uniquely distinguish
+objects of the same type within the message queuing system. The structure has
+two identifiers: a group identifier and an object identifier.</p><dl>
+<dd>
+<div><pre> typedef struct _OBJECTID {
+   GUID Lineage;
+   DWORD Uniquifier;
+ } OBJECTID;
+</pre></div>
+</dd></dl><p><b>Lineage:</b>  A <span><a href="../ms-dtyp/49e490b8-f972-45d6-a3a4-99f924998d97" data-linktype="relative-path">GUID</a></span>
+(as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a></span>)
+value that identifies the group to which an object belongs. A group is a
+protocol-specific concept. For instance, it can be the identifier of the object
+owner, or it can be the identifier of the source where the objects originate.</p><p><b>Uniquifier:</b>  A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value that identifies the object within the group.</p></div>

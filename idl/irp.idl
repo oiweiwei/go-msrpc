@@ -1,0 +1,418 @@
+import "ms-dtyp.idl";
+ 
+[
+    uuid(82ad4280-036b-11cf-972c-00aa006887b0),
+    version(2.0),
+    ms_union,
+    pointer_default(unique)
+]
+interface inetinfo
+{
+ 
+ 
+typedef [handle] [string] LPWSTR INET_INFO_IMPERSONATE_HANDLE;
+ 
+typedef struct _INET_INFO_CAP_FLAGS {
+    DWORD   Flag;
+    DWORD   Mask;
+} INET_INFO_CAP_FLAGS,
+ * LPINET_INFO_CAP_FLAGS;
+ 
+typedef struct _INET_INFO_CAPABILITIES_STRUCT {
+    DWORD   CapVersion;
+    DWORD   ProductType;
+    DWORD   MajorVersion;
+    DWORD   MinorVersion;
+    DWORD   BuildNumber;
+    DWORD   NumCapFlags;
+ 
+    [size_is(NumCapFlags)]  LPINET_INFO_CAP_FLAGS   CapFlags;
+ 
+} INET_INFO_CAPABILITIES_STRUCT,
+ * LPINET_INFO_CAPABILITIES_STRUCT;
+ 
+typedef struct _INET_LOG_CONFIGURATION {
+    DWORD   inetLogType;
+    DWORD   ilPeriod;
+    WCHAR   rgchLogFileDirectory[260];
+    DWORD   cbSizeForTruncation;
+    WCHAR   rgchDataSource[260];
+    WCHAR   rgchTableName[30];
+    WCHAR   rgchUserName[257];
+    WCHAR   rgchPassword[257];
+} INET_LOG_CONFIGURATION,
+ * LPINET_LOG_CONFIGURATION;
+ 
+typedef struct _INET_INFO_IP_SEC_ENTRY {
+    DWORD       dwMask;
+    DWORD       dwNetwork;
+ 
+} INET_INFO_IP_SEC_ENTRY,
+ *LPINET_INFO_IP_SEC_ENTRY;
+ 
+typedef struct _INET_INFO_IP_SEC_LIST {
+    DWORD               cEntries;
+    [size_is( cEntries)] INET_INFO_IP_SEC_ENTRY  aIPSecEntry[];
+} INET_INFO_IP_SEC_LIST,
+ *LPINET_INFO_IP_SEC_LIST;
+ 
+typedef struct _INET_INFO_VIRTUAL_ROOT_ENTRY {
+    [string] LPWSTR  pszRoot;
+    [string] LPWSTR  pszAddress;
+    [string] LPWSTR  pszDirectory;
+    DWORD   dwMask;
+    [string] LPWSTR  pszAccountName;
+    WCHAR   AccountPassword[257];
+    DWORD   dwError;
+} INET_INFO_VIRTUAL_ROOT_ENTRY,
+ *LPINET_INFO_VIRTUAL_ROOT_ENTRY;
+ 
+typedef struct _INET_INFO_VIRTUAL_ROOT_LIST 
+{
+    DWORD               cEntries;
+    [size_is( cEntries)] 
+        INET_INFO_VIRTUAL_ROOT_ENTRY  aVirtRootEntry[];
+} INET_INFO_VIRTUAL_ROOT_LIST,
+ *LPINET_INFO_VIRTUAL_ROOT_LIST;
+ 
+typedef struct _INET_INFO_CONFIG_INFO {
+    DWORD                           FieldControl;
+    DWORD                           dwConnectionTimeout;
+    DWORD                           dwMaxConnections;
+    [string] LPWSTR                 lpszAdminName;
+    [string] LPWSTR                 lpszAdminEmail;
+    [string] LPWSTR                 lpszServerComment;
+    LPINET_LOG_CONFIGURATION        lpLogConfig;
+    WORD                            LangId;
+    LCID                            LocalId;
+    BYTE                            ProductId[64];
+    BOOL                            fLogAnonymous;
+    BOOL                            fLogNonAnonymous;
+    [string] LPWSTR                 lpszAnonUserName;
+    WCHAR                           szAnonPassword[257];
+    DWORD                           dwAuthentication;
+    short                           sPort;
+    LPINET_INFO_IP_SEC_LIST         DenyIPList;
+    LPINET_INFO_IP_SEC_LIST         GrantIPList;
+    LPINET_INFO_VIRTUAL_ROOT_LIST   VirtualRoots;
+} INET_INFO_CONFIG_INFO,
+ * LPINET_INFO_CONFIG_INFO;
+ 
+typedef struct _INET_INFO_SITE_ENTRY {
+    [string] LPWSTR  pszComment;
+    DWORD   dwInstance;
+} INET_INFO_SITE_ENTRY,
+ *LPINET_INFO_SITE_ENTRY;
+ 
+typedef struct _INET_INFO_SITE_LIST {
+    DWORD               cEntries;
+    [size_is( cEntries)] INET_INFO_SITE_ENTRY  aSiteEntry[];
+} INET_INFO_SITE_LIST,
+ *LPINET_INFO_SITE_LIST;
+ 
+typedef struct _INET_INFO_GLOBAL_CONFIG_INFO {
+    DWORD         FieldControl;
+    DWORD         BandwidthLevel;
+    DWORD         cbMemoryCacheSize;
+} INET_INFO_GLOBAL_CONFIG_INFO,
+ * LPINET_INFO_GLOBAL_CONFIG_INFO;
+ 
+typedef struct _INETA_CACHE_STATISTICS {
+    DWORD FilesCached;
+    DWORD TotalFilesCached;
+    DWORD FileHits;
+    DWORD FileMisses;
+    DWORD FileFlushes;
+    DWORDLONG CurrentFileCacheSize;
+    DWORDLONG MaximumFileCacheSize;
+    DWORD FlushedEntries;
+    DWORD TotalFlushed;
+    DWORD URICached;
+    DWORD TotalURICached;
+    DWORD URIHits;
+    DWORD URIMisses;
+    DWORD URIFlushes;
+    DWORD TotalURIFlushed;
+    DWORD BlobCached;
+    DWORD TotalBlobCached;
+    DWORD BlobHits;
+    DWORD BlobMisses;
+    DWORD BlobFlushes;
+    DWORD TotalBlobFlushed;
+} INETA_CACHE_STATISTICS,
+ *LPINETA_CACHE_STATISTICS;
+ 
+typedef struct _INETA_ATQ_STATISTICS {
+    DWORD         TotalBlockedRequests;
+    DWORD         TotalRejectedRequests;
+    DWORD         TotalAllowedRequests;
+    DWORD         CurrentBlockedRequests;
+    DWORD         MeasuredBandwidth;
+} INETA_ATQ_STATISTICS,
+ *LPINETA_ATQ_STATISTICS;
+ 
+typedef struct _INET_INFO_STATISTICS_0 {
+    INETA_CACHE_STATISTICS  CacheCtrs;
+    INETA_ATQ_STATISTICS    AtqCtrs;
+    DWORD   nAuxCounters;
+    DWORD   rgCounters[20];
+} INET_INFO_STATISTICS_0,
+ * LPINET_INFO_STATISTICS_0;
+ 
+typedef [switch_type(unsigned long)] 
+union _INET_INFO_STATISTICS_INFO {
+    [case(0)]
+        LPINET_INFO_STATISTICS_0 InetStats0;
+    [default]
+        ;
+} INET_INFO_STATISTICS_INFO,
+ *LPINET_INFO_STATISTICS_INFO;
+ 
+typedef struct _W3_STATISTICS_1 {
+    LARGE_INTEGER TotalBytesSent;
+    LARGE_INTEGER TotalBytesReceived;
+    DWORD         TotalFilesSent;
+    DWORD         TotalFilesReceived;
+    DWORD         CurrentAnonymousUsers;
+    DWORD         CurrentNonAnonymousUsers;
+    DWORD         TotalAnonymousUsers;
+    DWORD         TotalNonAnonymousUsers;
+    DWORD         MaxAnonymousUsers;
+    DWORD         MaxNonAnonymousUsers;
+    DWORD         CurrentConnections;
+    DWORD         MaxConnections;
+    DWORD         ConnectionAttempts;
+    DWORD         LogonAttempts;
+    DWORD         TotalOptions;
+    DWORD         TotalGets;
+    DWORD         TotalPosts;
+    DWORD         TotalHeads;
+    DWORD         TotalPuts;
+    DWORD         TotalDeletes;
+    DWORD         TotalTraces;
+    DWORD         TotalMove;
+    DWORD         TotalCopy;
+    DWORD         TotalMkcol;
+    DWORD         TotalPropfind;
+    DWORD         TotalProppatch;
+    DWORD         TotalSearch;
+    DWORD         TotalLock;
+    DWORD         TotalUnlock;
+    DWORD         TotalOthers;
+    DWORD         TotalCGIRequests;
+    DWORD         TotalBGIRequests;
+    DWORD         TotalNotFoundErrors;
+    DWORD         TotalLockedErrors;
+    DWORD         CurrentCalAuth;
+    DWORD         MaxCalAuth;
+    DWORD         TotalFailedCalAuth;
+    DWORD         CurrentCalSsl;
+    DWORD         MaxCalSsl;
+    DWORD         TotalFailedCalSsl;
+    DWORD         CurrentCGIRequests;
+    DWORD         CurrentBGIRequests;
+    DWORD         MaxCGIRequests;
+    DWORD         MaxBGIRequests;
+    DWORD         CurrentBlockedRequests;
+    DWORD         TotalBlockedRequests;
+    DWORD         TotalAllowedRequests;
+    DWORD         TotalRejectedRequests;
+    DWORD         MeasuredBw;
+    DWORD         ServiceUptime;
+    DWORD         TimeOfLastClear;
+    DWORD         nAuxCounters;
+    DWORD         rgCounters[20];
+} W3_STATISTICS_1,
+ * LPW3_STATISTICS_1;
+ 
+typedef [switch_type(unsigned long)] 
+union _W3_STATISTICS_UNION {
+    [case(0)]
+       LPW3_STATISTICS_1 StatInfo1;
+    [default]
+       ;
+} W3_STATISTICS_STRUCT,
+ *LPW3_STATISTICS_STRUCT;
+ 
+typedef struct _FTP_STATISTICS_0 {
+    LARGE_INTEGER TotalBytesSent;
+    LARGE_INTEGER TotalBytesReceived;
+    DWORD         TotalFilesSent;
+    DWORD         TotalFilesReceived;
+    DWORD         CurrentAnonymousUsers;
+    DWORD         CurrentNonAnonymousUsers;
+    DWORD         TotalAnonymousUsers;
+    DWORD         TotalNonAnonymousUsers;
+    DWORD         MaxAnonymousUsers;
+    DWORD         MaxNonAnonymousUsers;
+    DWORD         CurrentConnections;
+    DWORD         MaxConnections;
+    DWORD         ConnectionAttempts;
+    DWORD         LogonAttempts;
+    DWORD         ServiceUptime;
+    DWORD         TotalAllowedRequests;
+    DWORD         TotalRejectedRequests;
+    DWORD         TotalBlockedRequests;
+    DWORD         CurrentBlockedRequests;
+    DWORD         MeasuredBandwidth;
+    DWORD         TimeOfLastClear;
+} FTP_STATISTICS_0,
+ * LPFTP_STATISTICS_0;
+ 
+typedef [switch_type(unsigned long)] 
+union _FTP_STATISTICS_UNION {
+    [case(0)]
+       LPFTP_STATISTICS_0 StatInfo0;
+    [default]
+       ;
+} FTP_STATISTICS_STRUCT,
+ *LPFTP_STATISTICS_STRUCT;
+ 
+typedef struct _IIS_USER_INFO_1 {
+    DWORD           idUser;
+    [string] LPWSTR pszUser;
+    BOOL            fAnonymous;
+    DWORD           inetHost;
+    DWORD           tConnect;
+} IIS_USER_INFO_1,
+ * LPIIS_USER_INFO_1;
+ 
+typedef struct _IIS_USER_INFO_1_CONTAINER {
+    DWORD EntriesRead;
+    [size_is(EntriesRead)] LPIIS_USER_INFO_1 Buffer;
+} IIS_USER_INFO_1_CONTAINER,
+ *LPIIS_USER_INFO_1_CONTAINER;
+ 
+typedef struct _IIS_USER_ENUM_STRUCT {
+    DWORD Level;
+    [switch_is(Level)] union _USER_ENUM_UNION 
+    {
+        [case(1)]
+            LPIIS_USER_INFO_1_CONTAINER Level1;
+        [default]
+            ;
+    } ConfigInfo;
+} IIS_USER_ENUM_STRUCT,
+ *LPIIS_USER_ENUM_STRUCT;
+ 
+DWORD
+R_InetInfoGetVersion(
+    [in, string, unique] INET_INFO_IMPERSONATE_HANDLE pszServer,
+    [in] DWORD dwReserved,
+    [out] DWORD *pdwVersion
+    );
+ 
+DWORD
+R_InetInfoGetAdminInformation( 
+    [in, string, unique] INET_INFO_IMPERSONATE_HANDLE pszServer, 
+    [in] DWORD dwServerMask, 
+    [out] LPINET_INFO_CONFIG_INFO *ppConfig
+    ); 
+ 
+DWORD 
+R_InetInfoGetSites( 
+    [in, string, unique] INET_INFO_IMPERSONATE_HANDLE pszServer, 
+    [in] DWORD dwServerMask, 
+    [out] LPINET_INFO_SITE_LIST * ppSites
+    ); 
+ 
+DWORD 
+R_InetInfoSetAdminInformation(
+    [in, string, unique] INET_INFO_IMPERSONATE_HANDLE pszServer,
+    [in] DWORD dwServerMask,
+    [in, ref] INET_INFO_CONFIG_INFO *pConfig
+    );
+ 
+DWORD
+R_InetInfoGetGlobalAdminInformation(
+    [in, string, unique] INET_INFO_IMPERSONATE_HANDLE     pszServer,
+    [in] DWORD dwServerMask,
+    [out] LPINET_INFO_GLOBAL_CONFIG_INFO *ppConfig
+    );
+ 
+DWORD
+R_InetInfoSetGlobalAdminInformation(
+    [in, string, unique] INET_INFO_IMPERSONATE_HANDLE   pszServer,
+    [in] DWORD dwServerMask,
+    [in, ref] INET_INFO_GLOBAL_CONFIG_INFO * pConfig
+    );
+ 
+DWORD
+R_InetInfoQueryStatistics(
+    [in, string, unique] INET_INFO_IMPERSONATE_HANDLE  pszServer,
+    [in] DWORD Level,
+    [in] DWORD dwServerMask,
+    [out, switch_is(Level)] LPINET_INFO_STATISTICS_INFO StatsInfo
+    );
+ 
+DWORD
+R_InetInfoClearStatistics(
+    [in, string, unique] INET_INFO_IMPERSONATE_HANDLE  pszServer,
+    [in] DWORD dwServerMask
+    );
+ 
+DWORD
+R_InetInfoFlushMemoryCache(
+    [in, string, unique] INET_INFO_IMPERSONATE_HANDLE  pszServer,
+    [in] DWORD dwServerMask
+    );
+ 
+DWORD
+R_InetInfoGetServerCapabilities(
+    [in, string, unique] INET_INFO_IMPERSONATE_HANDLE pszServer,
+    [in] DWORD dwReserved,
+    [out] LPINET_INFO_CAPABILITIES_STRUCT *ppCap
+    );
+ 
+DWORD
+R_W3QueryStatistics2(
+    [in, string, unique] INET_INFO_IMPERSONATE_HANDLE pszServer,
+    [in] DWORD dwLevel,
+    [in] DWORD dwInstance,
+    [in] DWORD dwReserved,
+    [out,switch_is(dwLevel)] LPW3_STATISTICS_STRUCT   InfoStruct
+    );
+ 
+DWORD
+R_W3ClearStatistics2(
+    [in, string, unique] INET_INFO_IMPERSONATE_HANDLE pszServer,
+    [in] DWORD dwInstance
+    );
+ 
+DWORD
+R_FtpQueryStatistics2(
+    [in, string, unique] INET_INFO_IMPERSONATE_HANDLE pszServer,
+    [in] DWORD dwLevel,
+    [in] DWORD dwInstance,
+    [in] DWORD dwReserved,
+    [out,switch_is(dwLevel)] LPFTP_STATISTICS_STRUCT   InfoStruct
+    );
+ 
+DWORD
+R_FtpClearStatistics2(
+    [in, string, unique] INET_INFO_IMPERSONATE_HANDLE pszServer,
+    [in] DWORD dwInstance
+    );
+ 
+DWORD
+R_IISEnumerateUsers(
+    [in, string, unique] INET_INFO_IMPERSONATE_HANDLE pszServer,
+    [in] DWORD dwServiceId,
+    [in] DWORD dwInstance,
+    [in,out] LPIIS_USER_ENUM_STRUCT InfoStruct
+    );
+ 
+DWORD
+R_IISDisconnectUser(
+    [in, string, unique] INET_INFO_IMPERSONATE_HANDLE pszServer,
+    [in] DWORD dwServiceId,
+    [in] DWORD dwInstance,
+    [in] DWORD dwIdUser
+    );
+ 
+DWORD
+Opnum16NotUsedOnWire();
+ 
+DWORD
+Opnum17NotUsedOnWire();
+}

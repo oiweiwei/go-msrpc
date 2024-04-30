@@ -1,0 +1,79 @@
+<div class="content"><p>The WdsRpcMessage (opnum 0) method sends the request packet
+to the server and returns the corresponding reply packet.</p><dl>
+<dd>
+<div><pre> unsigned long WdsRpcMessage(
+   handle_t hBinding,
+   [in] unsigned long uRequestPacketSize,
+   [in, size_is(uRequestPacketSize)] 
+     byte bRequestPacket[],
+   [out] unsigned long* puReplyPacketSize,
+   [out, size_is(, *puReplyPacketSize)] 
+     byte** pbReplyPacket
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle that the
+client established when it connected to the server.</p><p><b>uRequestPacketSize: </b>The client MUST pass the
+total size of request packet in bytes.</p><p><b>bRequestPacket: </b>A pointer to the request
+packet. The packet MUST be constructed as specified in section <a href="787da555-e0af-4e81-a8a8-619368b072ff" data-linktype="relative-path">2.2.1</a>.</p><p><b>puReplyPacketSize: </b>The <a href="c9ecc8ee-2046-4ef2-b2ec-329fde7f8b01#gt_8ed48787-eb06-4b86-8b2e-19347bfbf07b" data-linktype="relative-path">WDS Server</a> MUST set this to
+the total size of the reply packet in bytes.</p><p><b>pbReplyPacket: </b>The WDS Server MUST set this to
+the reply packet. The reply packet MUST be constructed as specified in section
+2.2.1.</p><p><b>Return Values: </b>The method MUST return
+ERROR_SUCCESS (0x00000000) on success or a non-zero Win32 error code value if
+an error occurred.</p><p>When processing this call, the WDS Server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>If the Global Server State is not Running (section <a href="b751b3ce-692f-4a59-8a1e-4d93c60abd09" data-linktype="relative-path">3.1</a>), the server MUST
+return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Server MUST validate the Endpoint Header (section <a href="f77199ab-bab1-4f1d-9fdc-29340276c0ec" data-linktype="relative-path">2.2.1.1</a>) and extract the <a href="c9ecc8ee-2046-4ef2-b2ec-329fde7f8b01#gt_3996e5d9-beae-47cc-bf9d-dd0c570fbff5" data-linktype="relative-path">Endpoint GUID</a>, and if
+invalid, the server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Server MUST search through the list of registered Endpoint GUIDs
+to match the Endpoint GUID specified in the Endpoint Header. If no match is
+found, the server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Server MUST query the <a href="c9ecc8ee-2046-4ef2-b2ec-329fde7f8b01#gt_bfb9708e-9d05-4f79-8969-ef63f73aa434" data-linktype="relative-path">authentication level</a> of the
+<a href="c9ecc8ee-2046-4ef2-b2ec-329fde7f8b01#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> call and validate as
+follows:</p>
+<ul><li><p><span><span>  </span></span>If
+registered Endpoint GUID allows both authenticated and unauthenticated clients,
+then continue to next step.</p>
+</li><li><p><span><span>  </span></span>If
+the registered Endpoint GUID requires an authenticated client and client RPC
+call is unauthenticated, the server MUST return a failure.</p>
+</li><li><p><span><span>  </span></span>If
+the registered Endpoint GUID requires an unauthenticated client and the client
+RPC call is authenticated, the server MUST return a failure.</p>
+</li><li><p><span><span>  </span></span>For
+authenticated clients, server MUST enforce RPC_C_AUTHN_LEVEL_PKT_PRIVACY and
+return failure if client is not using it.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Server MUST dispatch the request packet to the Service Provider
+that registered the Endpoint GUID.</p>
+</li><li><p><span><span> 
+</span></span>Service Provider MUST validate the Operation Header (section <a href="9cb0480c-33b0-4379-9d12-939d583529b5" data-linktype="relative-path">2.2.1.2</a>) and extract the <a href="c9ecc8ee-2046-4ef2-b2ec-329fde7f8b01#gt_1b22a3a6-f2e9-438d-9b61-274ec834a114" data-linktype="relative-path">OpCode</a>. The server MUST
+return failure if invalid.</p>
+</li><li><p><span><span> 
+</span></span>Service Provider MUST validate that it offers the requested
+OpCode under the registered Endpoint, and if invalid the server MUST return
+failure.</p>
+</li><li><p><span><span> 
+</span></span>Service Provider MUST validate and extract all variables from the
+Variables Section (section <a href="30d5d776-df09-419f-8a04-9e9d41c7a516" data-linktype="relative-path">2.2.1.3</a>),
+and return failure if invalid.</p>
+</li><li><p><span><span> 
+</span></span>For the requested OpCode, Service Provider MUST validate that all
+required variables are present.</p>
+</li><li><p><span><span> 
+</span></span>Service Provider MAY validate that the client is authorized to
+perform the requested operation.</p>
+</li><li><p><span><span> 
+</span></span>Service Provider MUST perform the requested operation as
+identified by the Endpoint GUID and OpCode from the request packet. If an error
+is encountered, it MUST be handled as specified in section <a href="0926d80d-f68c-4df3-bab3-2d4741901367" data-linktype="relative-path">3.1.4.2</a>.</p>
+</li><li><p><span><span> 
+</span></span>Service Provider MUST construct the reply packet (section 2.2.1)
+and hand it to WDS Server.</p>
+</li><li><p><span><span> 
+</span></span>WDS Server MUST complete the RPC call setting the output
+parameters for the function to the packet provided by Service Provider.</p>
+</li></ul></div>

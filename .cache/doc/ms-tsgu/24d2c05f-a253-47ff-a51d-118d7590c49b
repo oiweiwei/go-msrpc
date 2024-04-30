@@ -1,0 +1,78 @@
+<div class="content"><p>The TsProxyCloseTunnel method is used to terminate the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_1ebdc9c6-bb01-455e-98f7-8930618bb601" data-linktype="relative-path">tunnel (1)</a> between the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> and the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>. All communication
+between the RDG client and RDG server MUST stop after the RDG server executes
+this method. The RDG client MUST NOT use this tunnel context <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a> in any subsequent
+operations after this method call. This MUST be the final tear down phase of
+the RDG client to RDG server tunnel. If the ADM element <b>Reauthentication
+Connection</b> is FALSE, then the ADM element <b>Number of Connections</b> MUST
+be decremented by 1 in this call. If there is an existing <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_9964c8b0-1d25-4e8e-9dd1-4a51577698f5" data-linktype="relative-path">channel</a> within the tunnel,
+it SHOULD first be closed using <a href="6c537074-326f-4e28-b4eb-345f35404e7f" data-linktype="relative-path">TsProxyCloseChannel</a>. If
+the RDG client calls the TsProxyCloseTunnel method before calling the
+TsProxyCloseChannel method, the RDG server MUST close the channel and then
+close the tunnel.</p><p>Prerequisites: The connection MUST be in any of the
+following states: Connected state, Authorized state, Channel Created state,
+Pipe Created state, Channel Close Pending state, or Tunnel Close Pending state.</p><p>Sequential Processing Rules:</p><ol><li><p><span>    </span>The RDG server
+MUST check whether the tunnel context handle is NULL or not a valid context
+handle. If so, it MUST return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>If there are any
+channels in the tunnel then the RDG server MUST disconnect them. If
+TsProxyCloseChannel has not already been called then the RDG server MUST close
+the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> out pipe and
+return ERROR_GRACEFUL_DISCONNECT for the <a href="8147cb81-042f-48a3-a7ff-9f12ab73e048" data-linktype="relative-path">TsProxySetupReceivePipe</a>.</p>
+</li><li><p><span>    </span>The RDG server
+MUST disconnect the tunnel.</p>
+</li><li><p><span>    </span>If the ADM
+element <b>Reauthentication Connection</b> is FALSE:</p>
+<ol><li><p><span>   
+</span>The RDG server MUST decrement the ADM element <b>Number of Connections</b>
+by 1.</p>
+</li></ol></li><li><p><span>    </span>The connection
+MUST transition to the End state.</p>
+</li><li><p><span>    </span>The RDG server
+MUST return ERROR_SUCCESS.</p>
+<div><pre> HRESULT TsProxyCloseTunnel(
+   [in, out] PTUNNEL_CONTEXT_HANDLE_SERIALIZE* context
+ );
+</pre></div>
+</li></ol><p><b>context: </b>The RDG client MUST provide the RDG
+server with the same context handle it received from the <a href="0386b24c-4603-400d-a79e-11fd9518e34e" data-linktype="relative-path">TsProxyCreateTunnel</a> method
+call.</p><p><b>Return Values: </b>The method MUST return 0 on
+success. This function SHOULD NOT fail from a RDG protocol perspective. If
+TsProxyCloseTunnel is called while any of the channels are not closed, then the
+RDG server MUST close all the channels and then close the tunnel.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value</p>
+   </th>
+   <th>
+   <p>State transition</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_SUCCESS (0x00000000)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to the end state.</p>
+  </td>
+  <td>
+  <p>Returned when a call to the TsProxyCloseTunnel method
+  succeeds.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED (0x00000005)</p>
+  </td>
+  <td>
+  <p>The connection MUST NOT transition its state.</p>
+  </td>
+  <td>
+  <p>Returned when the provided context parameter is NULL
+  or not a valid tunnel context handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

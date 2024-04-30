@@ -1,0 +1,164 @@
+<div class="content"><p>The fPropertyStatus structure represents the status of a
+property value in a table entry, as represented in a <a href="60d1432d-84ca-4b03-a5a3-55e93f2ac624" data-linktype="relative-path">TableEntryFixed (section 2.2.1.9)</a>
+structure. fPropertyStatus is a bit field 1 byte in length.</p><table><thead>
+  <tr>
+   <th>
+   <p><br/>
+   0</p>
+   </th>
+   <th>
+   <p><br/>
+   1</p>
+   </th>
+   <th>
+   <p><br/>
+   2</p>
+   </th>
+   <th>
+   <p><br/>
+   3</p>
+   </th>
+   <th>
+   <p><br/>
+   4</p>
+   </th>
+   <th>
+   <p><br/>
+   5</p>
+   </th>
+   <th>
+   <p><br/>
+   6</p>
+   </th>
+   <th>
+   <p><br/>
+   7</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>R</p>
+  <p>1</p>
+  </td>
+  <td>
+  <p>W</p>
+  </td>
+  <td>
+  <p>R</p>
+  <p>E</p>
+  </td>
+  <td>
+  <p>R</p>
+  <p>2</p>
+  </td>
+  <td>
+  <p>N</p>
+  <p>T</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>N</p>
+  <p>N</p>
+  </td>
+ </tr></tbody></table><dl>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>R1</p>
+  <p> </p>
+  </td>
+  <td>
+  <p><b>Reserved1 (2 bits)</b>. MUST be cleared when sent
+  and MUST be ignored on receipt.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>W</p>
+  <p> </p>
+  </td>
+  <td>
+  <p><b>Write (1 bit)</b>. For historical reasons, this
+  flag SHOULD<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a> be set for a write and MUST be
+  set for a write if the property has variable length and any of the following
+  is true:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>Action equals eACTION_ADD
+  (section <a href="bbd0a961-3b76-4967-af6b-1a3d44f84373" data-linktype="relative-path">2.2.1.11</a>).</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>Action equals eACTION_UPDATE
+  (section 2.2.1.11).</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>Action equals eACTION_DELETE
+  (section 2.2.1.11) and the property is a primary key.</span></p>
+  </li></ul><p>This flag MUST be cleared for a read. It SHOULD<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a> be ignored on receipt.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RE</p>
+  <p> </p>
+  </td>
+  <td>
+  <p><b>Read (1 bit)</b>. For historical reasons, this flag
+  SHOULD<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a> be set for a read and MUST be
+  set for a read if the property has variable length. This flag MUST be cleared
+  for a write and SHOULD<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a> be ignored
+  on receipt.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>R2</p>
+  <p> </p>
+  </td>
+  <td>
+  <p><b>Reserved2 (1 bit)</b>. MUST be cleared when sent
+  and MUST be ignored on receipt.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NT</p>
+  <p> </p>
+  </td>
+  <td>
+  <p><b>NoTouch (1 bit)</b>. For a write, this flag MUST be
+  set on certain properties for historical reasons. For information about which
+  properties require this flag, see the table definitions in section <a href="9029dd8c-1f42-432f-ad41-a2369b32bd79" data-linktype="relative-path">3.1.1.3</a>. For a read,
+  this flag MUST be clear.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>C</p>
+  <p> </p>
+  </td>
+  <td>
+  <p><b>Changed (1 bit)</b>. For a write, indicates that
+  the property value is to be changed. For a read, MAY be set by the server and
+  MUST be ignored by the client on receipt.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NN</p>
+  <p> </p>
+  </td>
+  <td>
+  <p><b>NonNull (1 bit)</b>. The property value is
+  non-null.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

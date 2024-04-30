@@ -1,0 +1,47 @@
+<div class="content"><p> </p><p>The VDS_DISK_NOTIFICATION structure provides information
+about a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span> notification.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_DISK_NOTIFICATION {
+   unsigned long ulEvent;
+   VDS_OBJECT_ID diskId;
+ } VDS_DISK_NOTIFICATION;
+</pre></div>
+</dd></dl><p><b>ulEvent:</b>  The type of disk
+notification; it MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>VDS_NF_DISK_ARRIVE</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The disk has become visible to the operating system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VDS_NF_DISK_DEPART</p>
+  <p>0x00000009</p>
+  </td>
+  <td>
+  <p>The disk is no longer visible to the operating system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VDS_NF_DISK_MODIFY</p>
+  <p>0x0000000A</p>
+  </td>
+  <td>
+  <p>The disk or its properties were modified.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>diskId:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS
+object</a></span> ID of the disk object to which the notification refers.</p></div>

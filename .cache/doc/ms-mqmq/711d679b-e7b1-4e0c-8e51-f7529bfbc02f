@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>An XACTUOW is a structure that serves as a unique identifier
+for a transactional <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_a9e645d9-caad-4e6c-8fed-cefb289e3824" data-linktype="relative-path">unit of work</a></span>. An
+XACTUOW contains 16 unsigned single-byte characters representing a <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a></span>
+(<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section 2.3.4) and is defined as follows:</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned char rgb[16];
+ } XACTUOW;
+</pre></div>
+</dd></dl><p><b>rgb:</b>  An array of unsigned
+single-byte characters that contains a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">globally unique identifier
+(GUID)</a></span>.</p></div>

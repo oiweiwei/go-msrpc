@@ -1,0 +1,80 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/5778eba1-8f9b-4696-b304-34c58edbc5b1" data-linktype="external">msdn link</a></p><p>The LsarQueryTrustedDomainInfoByName method is invoked to
+retrieve information about a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted
+domain object</a> by its string name.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarQueryTrustedDomainInfoByName(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PRPC_UNICODE_STRING TrustedDomainName,
+   [in] TRUSTED_INFORMATION_CLASS InformationClass,
+   [out, switch_is(InformationClass)] 
+     PLSAPR_TRUSTED_DOMAIN_INFO* TrustedDomainInformation
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>TrustedDomainName: </b>The name of the trusted
+domain object to query.</p><p><b>InformationClass: </b>One of the <a href="36069113-6c38-45e8-920e-17f8ef36f578" data-linktype="relative-path">TRUSTED_INFORMATION_CLASS</a>
+values identifying the type of information the caller is interested in.</p><p><b>TrustedDomainInformation: </b>Used to return the
+information requested by the caller.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the supplied parameters was invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000034</p>
+  <p>STATUS_OBJECT_NAME_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The trusted domain object with the specified name
+  could not be found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message is identical in its operation to <a href="e74460c7-db03-45c3-ac3c-a72a840e4943" data-linktype="relative-path">LsarQueryInfoTrustedDomain</a>;
+the only exception is that the <i>TrustedDomainName</i> parameter is used to
+locate the trusted domain object, rather than having the caller supply the
+trusted domain object handle.</p><p>The trusted domain object is located by matching the <i>TrustedDomainName</i>
+parameter against the trusted domain object in the server&#39;s policy database.
+The trailing period on <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_102a36e2-f66f-49e2-bee3-558736b2ecd5" data-linktype="relative-path">DNS
+names</a> is ignored for the purposes of comparison.</p></div>

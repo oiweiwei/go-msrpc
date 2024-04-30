@@ -1,0 +1,17 @@
+<div class="content"><p>The RemoteSPAttach method is called by the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> to establish a
+binding instance in response to a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> call to the server&#39;s
+<a href="3f1dadef-8ecf-4a4d-8368-26cbf25dca37" data-linktype="relative-path">ClientAttach</a> method.</p><dl>
+<dd>
+<div><pre> long RemoteSPAttach(
+   [out] PCONTEXT_HANDLE_TYPE2* pphContext
+ );
+</pre></div>
+</dd></dl><p><b>pphContext: </b>Client handle of type <a href="199f5969-cdf3-4ffd-80c0-03e70679cf31" data-linktype="relative-path">PCONTEXT_HANDLE_TYPE2</a>. </p><p><b>Return Values: </b>The method returns 0 on
+success; otherwise, it returns a nonzero error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+On success, the <b>Server List</b> is updated with the binding instance.</p><p><b>Exceptions Thrown:</b> </p><p>The client raises an RPC_S_ACCESS_DENIED exception if it
+fails to obtain the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+call attributes. The client also raises an RPC_S_ACCESS_DENIED exception if it
+determines from the call attributes that the server did not specify
+RPC_C_AUTHN_LEVEL_PKT_PRIVACY, and the client configuration requires this <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_bfb9708e-9d05-4f79-8969-ef63f73aa434" data-linktype="relative-path">authentication level</a>.</p><p>Except as noted above, no exceptions are thrown beyond those
+thrown by the underlying RPC protocol, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 0.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="e6ad0f06-cb87-47c0-98d2-213e92242547#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p></div>

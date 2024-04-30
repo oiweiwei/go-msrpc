@@ -1,0 +1,77 @@
+<div class="content"><p> </p><p>The NetrShareCheck method checks whether a <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>
+is sharing a device.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrShareCheck(
+   [in, string, unique] SRVSVC_HANDLE ServerName,
+   [in, string] WCHAR* Device,
+   [out] DWORD* Type
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>An <span><a href="5f8329ee-1965-4ea1-ad35-3b29fbb63232" data-linktype="relative-path">SRVSVC_HANDLE (section 2.2.1.1)</a></span>
+pointer that identifies the server. The <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> MUST map this
+structure to an RPC binding handle (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> sections
+4.3.5 and 5.1.5.2). The server MUST ignore this parameter.</p><p><b>Device: </b>A pointer to a null-terminated UTF-16
+string that specifies the name of the device to check for shared access.</p><p><b>Type: </b>A pointer to a DWORD that receives the
+type of the shared device. This parameter is set only if the method returns
+successfully. On success, the server MUST set this parameter as specified in
+section <span><a href="6069f8c0-c93f-43a0-a5b4-7ed447eb4b84" data-linktype="relative-path">2.2.2.4</a></span>, except
+that STYPE_SPECIAL is not returned.</p><p><b>Return Values: </b>The method returns 0x00000000
+(NERR_Success) to indicate success; otherwise, it returns a nonzero error code.
+The method can take any specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>NERR_Success</p>
+  </td>
+  <td>
+  <p>The client request succeeded.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>Not enough storage is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000907</p>
+  <p>NERR_DeviceNotShared</p>
+  </td>
+  <td>
+  <p>The device is not shared.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to a NetrShareCheck request, the server MUST
+scan through the <b>ShareList</b>. For each <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_a49a79ea-dac7-4016-9a84-cf87161db7e3" data-linktype="relative-path">share</a></span>, if <b>Share.LocalPath</b>,
+as specified in <span><a href="../ms-smb2/5606ad47-5ee0-437a-817e-70c366052962" data-linktype="relative-path">[MS-SMB2]</a></span>
+section <span><a href="../ms-smb2/6fe086cf-40ad-49d8-93c5-14b8c8a7b2d9" data-linktype="relative-path">3.3.1.6</a></span>
+or <span><a href="../ms-cifs/d416ff7c-c536-406e-a951-4f04b2fd1d2b" data-linktype="relative-path">[MS-CIFS]</a></span>
+section <span><a href="../ms-cifs/bc0e0b5e-43af-467a-81ed-a2b55647640f" data-linktype="relative-path">3.3.1.2</a></span>,
+points to the device or volume specified by the caller, the server MUST return
+the type of the matching device in the <i>Type</i> parameter. The type can be
+one of the values that are listed in Share Types (section 2.2.2.4).
+In response to a NetrShareCheck message, the server MUST check whether it is sharing
+a device and return a response to the client.</p><p>The <i>Device</i> parameter specifies the name of the shared
+device to check for. The server MUST enumerate the active shared devices, and
+if it finds a match to the <i>Device</i> parameter, the server MUST return the type
+of the matching device in the <i>Type</i> parameter. The type can be one of the
+values that are listed in Share Types. The server MUST set the
+STYPE_CLUSTER_FS, STYPE_CLUSTER_SOFS, and STYPE_CLUSTER_DFS bits of the <i>Type</i>
+parameter to zero; the client MUST ignore them on receipt.</p><p>If no match is found, the server MUST fail the call by using
+an NERR_DeviceNotShared error code.</p><p>The server does not enforce any security measures when it
+processes this call. </p></div>

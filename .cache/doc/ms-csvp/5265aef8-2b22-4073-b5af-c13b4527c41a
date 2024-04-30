@@ -1,0 +1,103 @@
+<div class="content"><p>The <b>CprepDiskRawRead</b> method reads information
+directly from a single 512 byte sector on a given disk.</p><dl>
+<dd>
+<div><pre> HRESULT CprepDiskRawRead(
+   [in] CPREP_DISKID DiskId,
+   [in] unsigned long ulSector,
+   [in] unsigned long cbData,
+   [out, size_is(cbData), length_is(*pcbDataRead)] 
+     byte* pbData,
+   [out] unsigned long* pcbDataRead,
+   [out] unsigned long* ulLatency
+ );
+</pre></div>
+</dd></dl><p><b>DiskId: </b>The identifier of the <b>ClusPrepDisk</b>
+representing the disk that holds the sector from which to read.</p><p><b>ulSector: </b>The sector number to read from.</p><p><b>cbData: </b>The size, in bytes, of the buffer <i>pbData</i>.</p><p><b>pbData: </b>The data to read from the disk.</p><p><b>pcbDataRead: </b>On successful completion, the
+server MUST set this to <i>cbData</i>. Otherwise the client MUST ignore this
+value.</p><p><b>ulLatency: </b>The time, in milliseconds, that the
+read took to be performed.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method
+implementation. For more information about Win32 error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The disk was not found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007001E</p>
+  <p>ERROR_READ_FAULT</p>
+  </td>
+  <td>
+  <p>An attempt to read a buffer size larger than 512 was
+  performed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070548</p>
+  <p>ERROR_INVALID_SERVER_STATE</p>
+  </td>
+  <td>
+  <p>The server&#39;s <b>Prepare State</b> is not Online.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The opnum field value for this method is 3.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Obtain the <b>ClusPrepDisk</b> identified by the <i>DiskId</i>
+parameter as specified in section <a href="c17ce220-d244-45c9-95c0-4c31942253ee" data-linktype="relative-path">3.2.4</a>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>cbData</i> is larger than 512, then return
+ERROR_READ_FAULT.</p>
+</li><li><p><span><span> 
+</span></span>Read a 512 byte sector from the disk at the correct sector and
+place the first <i>cbData</i> bytes from this data into the <i>pbData</i>
+buffer.</p>
+<p><b>Note</b>  While
+performing the read operation, use the <b>Latency Time Source</b> ADM element
+in an implementation-specific manner to determine the elapsed time. For
+example, prior to initiating the read operation, observe the current time of
+day in millisecond granularity. Upon completion of the read, again observe the
+current time of day. The elapsed time can be calculated by subtracting the
+first observed value from the second.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>pcbDataRead</i> to <i>cbData</i>.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>ulLatency</i> to the time, in milliseconds, that the read
+operation took to complete.</p>
+</li></ul><p>The server returns the following information to the client: </p><ul><li><p><span><span> 
+</span></span>The data read</p>
+</li><li><p><span><span> 
+</span></span>How long the read took to complete</p>
+</li></ul></div>

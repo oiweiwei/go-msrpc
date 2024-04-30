@@ -1,0 +1,27 @@
+<div class="content"><p>The W32TIME_CONFIGURATION_INFO structure defines the
+configuration data of the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9846d08d-ad98-4bb9-a1e7-1f0bfbdd1113" data-linktype="relative-path">time
+service</a>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned __int32 ulSize;
+   W32TIME_CONFIGURATION_BASIC basicConfig;
+   W32TIME_CONFIGURATION_ADVANCED advancedConfig;
+   W32TIME_CONFIGURATION_DEFAULT defaultConfig;
+   unsigned __int32 cProviderConfig;
+   [size_is(cProviderConfig)] PW32TIME_CONFIGURATION_PROVIDER* pProviderConfig;
+   unsigned __int32 cEntries;
+   [size_is(cEntries)] PW32TIME_ENTRY pEntries;
+ } W32TIME_CONFIGURATION_INFO,
+  *PW32TIME_CONFIGURATION_INFO;
+</pre></div>
+</dd></dl><p><b>ulSize:</b>  The size, in bytes, of this
+structure. </p><p><b>basicConfig:</b>  The <a href="48a47688-eb84-4738-8e03-f60aa695eff6" data-linktype="relative-path">W32TIME_CONFIGURATION_BASIC</a>
+structure that represents the basic time service configuration data.</p><p><b>advancedConfig:</b>  The <a href="40e4ca5c-2042-434e-997d-4bcc30240641" data-linktype="relative-path">W32TIME_CONFIGURATION_ADVANCED</a>
+structure that represents the advanced time service configuration data.</p><p><b>defaultConfig:</b>  The <a href="eb291e64-bc34-4195-a466-d0139afe2632" data-linktype="relative-path">W32TIME_CONFIGURATION_DEFAULT</a>
+structure that represents the default time service configuration data.</p><p><b>cProviderConfig:</b>  The number of <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9338a1cf-ec11-4e27-a042-dda5324a44fb" data-linktype="relative-path">time providers</a> that are
+configured in the time service. This value also indicates the number of
+structures in <b>pProviderConfig</b>.</p><p><b>pProviderConfig:</b>  An array of <a href="d8fcaaaf-7d81-4780-b7fb-c75bc72bf067" data-linktype="relative-path">W32TIME_CONFIGURATION_PROVIDER</a>
+structures that represent the configuration data of time providers that are
+configured in the time service.</p><p><b>cEntries:</b>  An integer that indicates
+the number of additional configuration entries in <b>pEntries</b>.</p><p><b>pEntries:</b>  A pointer to <a href="c25e944e-fec0-44a5-9414-b7cf63c2f44a" data-linktype="relative-path">W32TIME_ENTRY</a> structures
+that represent additional configuration entries.</p></div>

@@ -1,0 +1,70 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/252d7e10-eaf8-44e9-8b8d-205b384f5782" data-linktype="external">msdn link</a></p><p>The <b>CLAIM_ENTRY</b> structure specifies a single <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_d5c7aa9b-65be-4dd4-a686-cd5253eb203d" data-linktype="relative-path">claim</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _CLAIM_ENTRY {
+   CLAIM_ID Id;
+   CLAIM_TYPE Type;
+   [switch_is(Type), switch_type(CLAIM_TYPE)] 
+     union {
+     [case(CLAIM_TYPE_INT64)] 
+       struct {
+       [range(1, 10*1024*1024)] ULONG ValueCount;
+       [size_is(ValueCount)] LONG64* Int64Values;
+     };
+     [case(CLAIM_TYPE_UINT64)] 
+       struct {
+       [range(1, 10*1024*1024)] ULONG ValueCount;
+       [size_is(ValueCount)] ULONG64* Uint64Values;
+     };
+     [case(CLAIM_TYPE_STRING)] 
+       struct {
+       [range(1, 10*1024*1024)] ULONG ValueCount;
+       [size_is(ValueCount), string] LPWSTR* StringValues;
+     };
+     [case(CLAIM_TYPE_BOOLEAN)] 
+       struct {
+       [range(1, 10*1024*1024)] ULONG ValueCount;
+       [size_is(ValueCount)] ULONG64* BooleanValues;
+     };
+     [default]       ;
+   } Values;
+ } CLAIM_ENTRY,
+  *PCLAIM_ENTRY;
+</pre></div>
+</dd></dl><p><b>Id:</b>  Specifies the claim identifier.</p><p><b>Type:</b>  Specifies the type of the
+data in the <b>Values</b> union. Refer to section <a href="4daf470e-db37-4734-a89e-df45e5ff5328" data-linktype="relative-path">2.2.18.2</a> for allowed
+values and their interpretation.</p><p><b>Values:</b>  A union of arrays of the
+various types of claim values that a CLAIM_ENTRY can contain. The actual type of
+the elements is specified by the <b>Type</b> member.</p><dl>
+<dd>
+<p><b>ValueCount:</b>  Specifies the number
+of array elements in the <b>Int64Values</b> member.</p>
+</dd>
+<dd>
+<p><b>Int64Values:</b>  An array of <a href="../ms-dtyp/7dc8dc9c-9d54-417a-933e-173933f0c329" data-linktype="relative-path">LONG64</a>
+values of the claim. The array has <b>ValueCount</b> elements.</p>
+</dd>
+<dd>
+<p><b>ValueCount:</b>  Specifies the number
+of array elements in the <b>Uint64Values</b> member.</p>
+</dd>
+<dd>
+<p><b>Uint64Values:</b>  An array of ULONG64
+values of the claim. The array has <b>ValueCount</b> elements.</p>
+</dd>
+<dd>
+<p><b>ValueCount:</b>  Specifies the number
+of array elements in the <b>StringValues</b> member.</p>
+</dd>
+<dd>
+<p><b>StringValues:</b>  An array of
+null-terminated, <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a>
+string values of the claim. The array has <b>ValueCount</b> elements.</p>
+</dd>
+<dd>
+<p><b>ValueCount:</b>  Specifies the number
+of array elements in the <b>BooleanValues</b> member.</p>
+</dd>
+<dd>
+<p><b>BooleanValues:</b>  An array of ULONG64
+values of the claim. The array has <b>ValueCount</b> elements.</p>
+</dd></dl></div>

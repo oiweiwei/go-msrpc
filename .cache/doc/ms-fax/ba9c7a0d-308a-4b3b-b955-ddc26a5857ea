@@ -1,0 +1,243 @@
+<div class="content"><p> </p><p>The <b>FAX_TAPI_LOCATIONS</b> structure describes one TAPI
+location. This structure is used in the <b>FAX_TAPI_LOCATION_INFO</b> (section <span><a href="ad988f5c-df1f-4ebb-82c3-744b3520c0fd" data-linktype="relative-path">2.2.89</a></span>)
+structure. For more information about TAPI, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=119989" data-linktype="external">[MSDN-TAPI2.2]</a></span>.</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (24 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (24 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PermanentLocationID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LocationNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CountryCode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AreaCode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NumTollPrefixes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TollPrefixesOffset</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>PermanentLocationID (4
+bytes): </b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that holds a numeric identifier of the TAPI location described by this structure.
+This value is used to uniquely identify the current TAPI location in the array
+of <b>FAX_TAPI_LOCATIONS</b> specified by the <b>TapiLocations</b> <b>Variable_Data</b>
+member of a <b>FAX_TAPI_LOCATION_INFO</b>.</p>
+</dd>
+<dd>
+<p><b>LocationNameOffset (4
+bytes): </b>Offset to the <b>LocationName</b> field in the <b>Variable_Data</b>
+block of the structure.</p>
+</dd>
+<dd>
+<p><b>CountryCode (4 bytes): </b>A
+<b>DWORD</b> containing the country code for this TAPI location.</p>
+</dd>
+<dd>
+<p><b>AreaCode (4 bytes): </b>A
+<b>DWORD</b> containing the area code for this TAPI location.</p>
+</dd>
+<dd>
+<p><b>NumTollPrefixes (4
+bytes): </b>A <b>DWORD</b> containing the number of toll prefixes contained in
+the <b>TollPrefixes</b> field in the <b>Variable_Data</b> block of the
+structure.</p>
+</dd>
+<dd>
+<p><b>TollPrefixesOffset (4
+bytes): </b>Offset to the <b>TollPrefixes</b> field in the <b>Variable_Data</b>
+block of the structure.</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LocationName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TollPrefixes
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>LocationName (variable): </b>A
+null-terminated character string containing the friendly name of the TAPI
+location described by this structure.</p>
+</dd>
+<dd>
+<p><b>TollPrefixes (variable): </b>An
+optional null-terminated character string containing one or multiple toll
+prefixes separated by a &#34;,&#34; character. A toll prefix is a number and
+is represented in this string with decimal-digit characters.</p>
+</dd></dl></div>

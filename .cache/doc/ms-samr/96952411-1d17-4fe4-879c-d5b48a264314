@@ -1,0 +1,9 @@
+<div class="content"><p>The Security Account Manager (SAM) Remote Protocol
+(Client-to-Server) provides management functionality for an account store or
+directory containing users and groups. The goal of this protocol is to enable
+IT administrators and end users to manage users, groups, and computers.</p><p><a id="_Hlk143275472">SAM Remote Protocol specifies the
+behavior for both local and remote domains by using the Active Directory data
+model as a common data model for both scenarios. </a>SAM Remote Protocol also
+specifies the differences in behavior between these two scenarios. </p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

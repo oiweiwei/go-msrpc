@@ -1,0 +1,121 @@
+<div class="content"><p> </p><p>DNSSRV_QUERY_STATS defines a structure that carries the DNS
+server&#39;s statistics values related to query processing over different
+transports. This structure MUST be formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpQueries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpResponses</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpQueriesSent</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpResponsesReceived</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpClientConnections</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpQueries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpResponses</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpQueriesSent</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpResponsesReceived</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>UdpQueries (4 bytes): </b>The cumulative number of
+queries received over UDP, as an unsigned 32-bit integer. If the value is
+greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>UdpResponses (4 bytes): </b>The cumulative number
+of query responses sent over UDP, as an unsigned 32-bit integer. If the value
+is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>UdpQueriesSent (4 bytes): </b>The cumulative
+number of queries sent over UDP by this server to other remote servers, as an
+unsigned 32-bit integer. If the value is greater than 0xFFFFFFFF, then the
+value modulo 0x100000000 is stored in the field.</p><p><b>UdpResponsesReceived (4 bytes): </b>The cumulative
+number of query responses received over UDP by the server, as an unsigned
+32-bit integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p><p><b>TcpClientConnections (4 bytes): </b>The cumulative
+number of TCP connections accepted by this server, as an unsigned 32-bit
+integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p><p><b>TcpQueries (4 bytes): </b>The cumulative number of
+queries received over TCP, as an unsigned 32-bit integer. If the value is
+greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>TcpResponses (4 bytes): </b>The cumulative number
+of query responses sent over TCP, as an unsigned 32-bit integer. If the value
+is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>TcpQueriesSent (4 bytes): </b>The cumulative
+number of queries sent over TCP by this server to other remote servers, as an
+unsigned 32-bit integer. If the value is greater than 0xFFFFFFFF, then the
+value modulo 0x100000000 is stored in the field.</p><p><b>TcpResponsesReceived (4 bytes): </b>The cumulative
+number of query responses over TCP received by the server, as an unsigned
+32-bit integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p></div>

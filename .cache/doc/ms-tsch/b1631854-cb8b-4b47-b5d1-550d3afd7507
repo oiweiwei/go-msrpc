@@ -1,0 +1,226 @@
+<div class="content"><p> </p><p>The SchRpcEnumTasks method MUST return the list of tasks in
+a specific folder.</p><p>MUST returns S_FALSE if there are more tasks to enumerate.</p><p>Note that if client requests items 1-10 and then 11-20, the
+second call can return duplicate entries if the task list has changed in
+between calls.</p><dl>
+<dd>
+<div><pre> HRESULT SchRpcEnumTasks(
+   [in, string] const wchar_t* path,
+   [in] DWORD flags,
+   [in, out] DWORD* startIndex,
+   [in] DWORD cRequested,
+   [out] DWORD* pcNames,
+   [out, string, size_is(, *pcNames)] 
+     TASK_NAMES* pNames
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>MUST contain the full path associated
+with a folder as specified in section <span><a href="fa8809c8-4f0f-4c6d-994a-6c10308757c1" data-linktype="relative-path">2.3.11</a></span>.</p><p><b>flags: </b>The <i>flags</i> parameter MUST contain
+individual bit flags that MUST have one or more of the following values:</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>H</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>H</p>
+  <p>TASK_ENUM_HIDDEN</p>
+  </td>
+  <td>
+  <p>If set to 1, the server MUST include hidden tasks in
+  the enumeration, otherwise the server MUST exclude hidden tasks from the
+  enumeration.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>startIndex: </b>MUST contain the index at which to
+start enumeration. If the server returns S_FALSE, the server MUST update <i>startIndex</i>
+to contain the index at which the enumeration MUST resume.</p><p><b>cRequested: </b>MUST contain the number of entries
+requested. The server MUST NOT return more than <i>cRequested</i> entries.</p><p><b>pcNames: </b>The server MUST set <i>pcNames</i> to
+equal the number of enumerated tasks returned in the <i>pNames</i> parameter.</p><p><b>pNames: </b>Buffer that MUST contain returned <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_47930a5a-7518-4801-85b2-05680cf9c57a" data-linktype="relative-path">task
+names</a></span>.</p><p><b>Return Values: </b>For more information on return
+codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>, or Win32
+Error Codes in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><p>Upon receipt of the SchRpcEnumTasks call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Return E_INVALIDARG if the out parameters are NULL or if any bit
+other than TASK_ENUM_HIDDEN is set in the <i>flags</i> parameter.</p>
+<p><b>Note</b>  When
+passing NULL as a value for parameters, behavior can change based upon the RPC
+Runtime Check. See <span><a href="535bb46d-f599-4528-9b02-eb2d391fd361" data-linktype="relative-path">RPC Runtime Check Notes</a></span>
+(section 3.3).</p>
+</li><li><p><span><span> 
+</span></span>Return the value 0x8007007B, the <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+form of the Win32 error <b>ERROR_INVALID_NAME</b>, if the specified <i>path</i>
+is not in the format specified in section 2.3.11.</p>
+</li><li><p><span><span> 
+</span></span>Return the value 0x80070003, the HRESULT form of the Win32 error
+ERROR_PATH_NOT_FOUND, if the specified <i>path</i> does not exist on the server
+in the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a></span> <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_08035fe7-a786-4b30-ab60-3fd046060617" data-linktype="relative-path">task
+store</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Return the HRESULT version of the Win32 error
+ERROR_FILE_NOT_FOUND if the <i>path</i> parameter does not name a folder in the
+XML task store, or if the caller does not have either read or write access to
+that folder.</p>
+</li><li><p><span><span> 
+</span></span>Enumerate the tasks in that folder, starting the enumeration at
+the ordinal position given by the <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value pointed to by the <i>pStartIndex</i> parameter. The server MUST NOT
+enumerate more than <i>cRequested</i> tasks. The server MUST enumerate as many
+tasks as are available, up to a total of <i>cRequested</i> tasks. The server
+MUST skip tasks that the caller does not have read or write access to. The
+server MUST skip tasks that are hidden (section <span><a href="462ac93f-5411-4fa4-83a1-2002ff33990b" data-linktype="relative-path">2.5.4.12</a></span>) unless
+the TASK_ENUM_HIDDEN bit is set in the <i>flags</i> parameter.<a id="Appendix_A_Target_72"></a><a aria-label="Product behavior note 72" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_72" data-linktype="relative-path">&lt;72&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Return an array of pointers to the enumerated null-terminated
+task names in the <i>pNames</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return the number of enumerated task names in the <i>pcNames</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Increment the value pointed to by the <i>pStartIndex</i>
+parameter by the number of enumerated task names.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK if there are no more names to enumerate, else return
+S_FALSE.</p>
+</li></ul></div>

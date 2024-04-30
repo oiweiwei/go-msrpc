@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The ORPCTHAT structure is the first (implicit) argument
+returned in an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_d4ad46fe-cbab-43f2-a125-b2f125824f33" data-linktype="relative-path">ORPC</a></span> response PDU,
+and is used to return <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_aae39d05-becf-4cb4-bdfc-b05bc8ccabde" data-linktype="relative-path">ORPC extension</a></span> data
+to the client. The ORPCTHAT structure is also returned as an explicit argument
+from an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_a1710eb6-236d-435e-a3c9-1672d28ab367" data-linktype="relative-path">activation</a></span> request.</p><dl>
+<dd>
+<div><pre> typedef struct tagORPCTHAT {
+   unsigned long flags;
+   [unique] ORPC_EXTENT_ARRAY* extensions;
+ } ORPCTHAT;
+</pre></div>
+</dd></dl><p><b>flags:</b>  This can be set to any
+arbitrary value and MUST be ignored on receipt.</p><p><b>extensions:</b>   If non-NULL, this
+field MUST contain an <span><a href="87f24bd8-83dd-49a5-a9e8-bfb1b023abc0" data-linktype="relative-path">ORPC_EXTENT_ARRAY</a></span>.</p></div>

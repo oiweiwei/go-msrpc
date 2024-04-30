@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The <b>DHCP_POLICY_EX_ARRAY</b> structure contains a list of
+policy elements.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_POLICY_EX_ARRAY {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_POLICY_EX Elements;
+ } DHCP_POLICY_EX_ARRAY,
+  *PDHCP_POLICY_EX_ARRAY,
+  *LPDHCP_POLICY_EX_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  Specifies the number
+of policies in the array.</p><p><b>Elements:</b>  A pointer of type <span><a href="a63aaffd-1c6b-4ad8-9d95-c1064b2112ea" data-linktype="relative-path">DHCP_POLICY_EX (section 2.2.1.2.121)</a></span>
+that points to an array with length as specified in the NumElements member.</p></div>

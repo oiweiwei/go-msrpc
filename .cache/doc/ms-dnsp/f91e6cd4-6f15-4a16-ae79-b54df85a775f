@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>DNS_RRL_MODE_ENUM</b> enumeration controls the
+behavior and application of DNS Response Rate Limiting at the server level.</p><dl>
+<dd>
+<div><pre> typedef enum {
+     DnsRRLLogOnly,
+     DnsRRLEnabled,
+     DnsRRLDisabled
+ } DNS_RRL_MODE_ENUM;
+</pre></div>
+</dd></dl><p><b>DnsRRLLogOnly:</b> This is the simulation mode for
+RRL, where the impact of RRL is logged in analytical channel logs but no actual
+action is taken (that is, responses are not dropped).</p><p><b>DnsRRLEnabled:</b> In this mode, the RRL algorithm
+is applied to every incoming query.</p><p><b>DnsRRLDisabled:</b> This mode ensures RRL is
+disabled and not applied to any incoming query.</p></div>

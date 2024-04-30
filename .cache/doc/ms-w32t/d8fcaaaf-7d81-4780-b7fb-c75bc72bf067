@@ -1,0 +1,95 @@
+<div class="content"><p>The W32TIME_CONFIGURATION_PROVIDER structure defines the
+configuration data of an NTP <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9338a1cf-ec11-4e27-a042-dda5324a44fb" data-linktype="relative-path">time
+provider</a>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned __int32 ulSize;
+   unsigned __int32 ulInputProvider;
+   unsigned __int32 ulEnabled;
+   [string, unique] wchar_t* wszDllName;
+   [string, unique] wchar_t* wszProviderName;
+   unsigned __int32 ulDllNameFlag;
+   unsigned __int32 ulProviderNameFlag;
+   unsigned __int32 ulInputProviderFlag;
+   unsigned __int32 ulEnabledFlag;
+   PW32TIME_PROVIDER_CONFIG pProviderConfig;
+ } W32TIME_CONFIGURATION_PROVIDER,
+  *PW32TIME_CONFIGURATION_PROVIDER;
+</pre></div>
+</dd></dl><p><b>ulSize:</b>  The size, in bytes, of this
+structure. </p><p><b>ulInputProvider:</b>  An integer that
+indicates whether the provider is capable of retrieving time samples.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>Indicates that the provider is not capable of
+  retrieving time samples.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>Indicates that the provider is capable of retrieving
+  time samples.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other values are reserved for
+future use.</p>
+</dd></dl><p><b>ulEnabled:</b>  An integer that
+indicates whether or not the provider is enabled.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>Indicates that the provider is disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>Indicates that the provider is enabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other values are reserved for
+future use.</p>
+</dd></dl><p><b>wszDllName:</b>  The <b>ProviderDllName</b>
+element value (see section <a href="8dd91cfb-5de2-4094-8cba-137400f963a3" data-linktype="relative-path">3.2.1.2</a>).</p><p><b>wszProviderName:</b>  The <b>ProviderName</b>
+element value (see section 3.2.1.2)</p><p><b>ulDllNameFlag:</b>  An integer
+indicating the source of the configuration setting for <b>wszDllName</b>, as
+specified in section <a href="cda8dd8e-ef99-4b2d-b747-6077e5d5ddf2" data-linktype="relative-path">2.2.6</a>.</p><p><b>ulProviderNameFlag:</b>  An integer
+indicating the source of the configuration setting for <b>wszProviderName</b>,
+as specified in section 2.2.6.</p><p><b>ulInputProviderFlag:</b>  An integer
+indicating the source of the configuration setting for <b>ulInputProvider</b>,
+as specified in section 2.2.6.</p><p><b>ulEnabledFlag:</b>  An integer
+indicating the source of the configuration setting for <b>ulEnabled</b>, as
+specified in section 2.2.6.</p><p><b>pProviderConfig:</b>  A pointer to the <a href="ddff951a-c18b-4bbc-b32f-04159da95650" data-linktype="relative-path">W32TIME_PROVIDER_CONFIG</a>
+structure.</p></div>

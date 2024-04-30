@@ -1,0 +1,52 @@
+<div class="content"><p>This structure describes an HTTP packet.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>packetType</p>
+  </td>
+  <td colspan="16">
+  <p>reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>packetLength</p>
+  </td>
+ </tr>
+</tbody></table><p><b>packetType (2 bytes): </b>An unsigned short
+representing the type of the packet from <a href="52d9cf1a-808b-4012-98fb-779839cb8a1f" data-linktype="relative-path">HTTP_PACKET_TYPE Enumeration
+(section 2.2.5.3.3)</a>.</p><p><b>reserved (2 bytes): </b>Reserved for future use.</p><p><b>packetLength (4 bytes): </b>An unsigned integer
+representing the length of the packet.</p></div>

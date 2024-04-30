@@ -1,0 +1,278 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/bc04a981-26fd-4da2-af70-f06f5a98b13b" data-linktype="external">msdn link</a></p><p>The following structure MUST be used to represent a
+2,048-bit ClientWrap <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_3f85a24a-f32a-4322-9e99-eba6ae802cd6" data-linktype="relative-path">RSA</a>
+<a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_3f211a0b-87e1-4884-856b-89c69c4a5d34" data-linktype="relative-path">key pair</a> <a href="https://go.microsoft.com/fwlink/?linkid=2164409" data-linktype="external">[RFC8017]</a> that is
+stored and replicated between servers using the LSA (Domain Policy) Remote
+Protocol as specified in sections <a href="df4f7698-298f-4cb2-8bb9-bff20112c3b2" data-linktype="relative-path">3.1.4.1.1</a> and <a href="e8118398-d3da-45fc-827f-186f1c417b69" data-linktype="relative-path">3.1.4.1.3</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x02</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x94</p>
+  </td>
+  <td colspan="8">
+  <p>0x04</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Certificate_Length</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x07</p>
+  </td>
+  <td colspan="8">
+  <p>0x02</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0xA4</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x52</p>
+  </td>
+  <td colspan="8">
+  <p>0x53</p>
+  </td>
+  <td colspan="8">
+  <p>0x41</p>
+  </td>
+  <td colspan="8">
+  <p>0x32</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x08</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Public_Exponent</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Modulus
+  (256 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Prime1
+  (128 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Prime2
+  (128 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Exponent1
+  (128 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Exponent2
+  (128 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Coefficient
+  (128 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Private_Exponent
+  (256 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Certificate
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Certificate_Length (4 bytes): </b>This MUST be a
+32-bit unsigned number in <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a>
+format, equal to the length of the <b>Certificate</b> field, in bytes.</p><p><b>Public_Exponent (4 bytes): </b>This MUST be a
+32-bit unsigned number in little-endian format. It MUST be the public exponent
+of the key pair, referred to as <b>e</b> in [RFC8017]. </p><p><b>Modulus (256 bytes): </b>This MUST be the RSA
+modulus, referred to as <b>n</b> in [RFC8017]. It MUST be equal to <b>Prime1 *
+Prime2</b>. It MUST be encoded in little-endian format. </p><p><b>Prime1 (128 bytes): </b>This MUST be the first
+prime factor of the RSA modulus, referred to as <b>p</b> in [RFC8017]. It MUST
+be encoded in little-endian format. </p><p><b>Prime2 (128 bytes): </b>This MUST be the second
+prime factor of the RSA modulus, referred to as <b>q</b> in [RFC8017]. It MUST
+be encoded in little-endian format. </p><p><b>Exponent1 (128 bytes): </b>This MUST be the
+Chinese Remainder Theorem exponent of <b>Prime1</b>, referred to as <b>dP</b>
+in [RFC8017]. It MUST be encoded in little-endian format. </p><p><b>Exponent2 (128 bytes): </b>This MUST be the
+Chinese Remainder Theorem exponent of <b>Prime2</b>, referred to as <b>dQ</b>
+in [RFC8017]. It MUST be encoded in little-endian format.</p><p><b>Coefficient (128 bytes): </b>This MUST be the
+Chinese Remainder Coefficient of <b>Prime1</b> and <b>Prime2</b>, referred to
+as <b>qInv</b> in [RFC8017]. It MUST be encoded in little-endian format.</p><p><b>Private_Exponent (256 bytes): </b>This MUST be the
+RSA private exponent, referred to as <b>d</b> in [RFC8017]. It MUST be encoded
+in little-endian format.</p><p><b>Certificate (variable): </b>This field MUST
+contain the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a>
+for the key pair&#39;s <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public
+key</a>, formatted as specified in section <a href="db5c89f0-b036-489e-aa68-baa14cc683d3" data-linktype="relative-path">2.2.1</a>. </p></div>

@@ -1,0 +1,263 @@
+<div class="content"><p>This method is called by a client to <a href="3f01a312-3391-4109-a96e-95358babf191#gt_79adca18-e44d-48a5-8f9c-60e53a6fd378" data-linktype="relative-path">register</a> the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_71669ed9-7eaf-4328-9e2e-4d3430f0f9bf" data-linktype="relative-path">components</a> in one or more <a href="3f01a312-3391-4109-a96e-95358babf191#gt_3f7df968-a51b-4dea-9f2c-4cf6ce65ccc1" data-linktype="relative-path">modules</a> and to create <a href="3f01a312-3391-4109-a96e-95358babf191#gt_10747afc-d8b7-4515-b00f-a31037201a38" data-linktype="relative-path">component full configurations</a>
+for those modules in an existing <a href="3f01a312-3391-4109-a96e-95358babf191#gt_ea5c531f-5dd5-43aa-9da1-2ae068c622db" data-linktype="relative-path">conglomeration</a>. This method
+supports conglomerations in any <a href="3f01a312-3391-4109-a96e-95358babf191#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a>.</p><p>Alternatively, this method can be called to verify modules
+without actually registering the components. As a side effect, this method
+returns implementation-specific detailed results of the registration or
+verification operation for informational purposes.</p><dl>
+<dd>
+<div><pre> HRESULT RegisterModule2(
+   [in] GUID ConglomerationIdentifier,
+   [in] GUID PartitionIdentifier,
+   [in, string, size_is(cModules,)] 
+     LPWSTR* ppModules,
+   [in] DWORD cModules,
+   [in] DWORD dwFlags,
+   [in, size_is(cRequested), unique] 
+     GUID* pRequestedCLSIDs,
+   [in] DWORD cRequested,
+   [out, size_is(,cModules)] DWORD** ppModuleFlags,
+   [out] DWORD* pcResults,
+   [out, size_is(,*pcResults)] GUID** ppResultCLSIDs,
+   [out, string, size_is(,*pcResults)] 
+     LPWSTR** ppResultNames,
+   [out, size_is(,*pcResults)] DWORD** ppResultFlags,
+   [out, size_is(,*pcResults)] LONG** ppResultHRs
+ );
+</pre></div>
+</dd></dl><p><b>ConglomerationIdentifier: </b> The <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0ab5119e-c719-4a5c-9198-55a0a2fb508a" data-linktype="relative-path">conglomeration identifier</a>
+of an existing conglomeration on the server, in which the component full
+configurations are to be created, or against which the modules are to be
+verified.</p><p><b>PartitionIdentifier: </b> The <a href="3f01a312-3391-4109-a96e-95358babf191#gt_9587a9d3-3fd7-45c6-aab1-c74ff17a22b7" data-linktype="relative-path">partition identifier</a> of the
+partition in which the conglomeration identified by <i>ConglomerationIdentifier</i>
+is contained, or against which the modules are to be verified.</p><p><b>ppModules: </b> An array of one or more strings,
+each of which is a path in <a href="3f01a312-3391-4109-a96e-95358babf191#gt_c9507dca-291d-4fd6-9cba-a9ee7da8c908" data-linktype="relative-path">UNC</a>
+to a file that the server will recognize as a module.</p><p><b>cModules: </b> The number of elements in <i>ppModules</i>.</p><p><b>dwFlags: </b> A combination of zero or more of the
+following flags.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Flag</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>fREGISTER_VERIFYONLY</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The server SHOULD verify the modules, but MUST NOT
+  actually register any components.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>fREGISTER_EVENTCLASSES</p>
+  <p>0x00000400</p>
+  </td>
+  <td>
+  <p>The server MUST configure the components registered by
+  this operation as <a href="3f01a312-3391-4109-a96e-95358babf191#gt_e8df25db-9bff-46df-b607-d072dd29c02b" data-linktype="relative-path">event
+  classes</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pRequestedCLSIDs: </b> Either an array of one or
+more <a href="3f01a312-3391-4109-a96e-95358babf191#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSIDs</a> of
+components to be registered (or verified), or NULL to specify that all
+components in the modules are to be registered (or verified).</p><p><b>cRequested: </b> The number of elements in <i>pRequestedCLSIDs</i>.</p><p><b>ppModuleFlags: </b> A pointer to a variable that,
+upon successful completion, SHOULD be set to an array of <a href="3e4ce66c-3e29-47fc-9329-55eb90008d02" data-linktype="relative-path">fModuleStatus (section 2.2.3)</a>
+values representing the detailed results of registration for the modules
+located by the paths in <i>ppModules</i>, in the same order. </p><p><b>pcResults: </b> A pointer to a variable that, upon
+successful completion, MUST be set to the number of result items, as specified
+later.</p><p><b>ppResultCLSIDs: </b> A pointer to a variable that,
+upon successful completion, MUST be set to an array of <a href="3f01a312-3391-4109-a96e-95358babf191#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> values, each being the
+CLSID of a result item, as specified later.</p><p><b>ppResultNames: </b> A pointer to a variable that,
+upon successful completion, MUST be set to an array of string values, each
+being an implementation-specific<a id="Appendix_A_Target_325"></a><a aria-label="Product behavior note 325" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_325" data-linktype="relative-path">&lt;325&gt;</a> name
+of a result item, as specified later, in the same order as <i>ppResultCLSIDs</i>.</p><p><b>ppResultFlags: </b> A pointer to a variable that,
+upon successful completion, MUST be set to an array of <a href="65d60086-97d7-4658-8cf4-fa1d6114b47a" data-linktype="relative-path">fComponentStatus (section 2.2.4)</a>
+values, each representing detailed results for a result item, as specified
+later, in the same order as <i>ppResultCLSIDs</i>.</p><p><b>ppResultHRs: </b> A pointer to a variable that,
+upon successful completion, MUST be set to an array of values, each
+representing an HRESULT (<a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>)
+for a result item, as specified later, in the same order as <i>ppResultCLSIDs</i>.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in [MS-ERREF]
+section 2.1,  on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server MUST verify
+that <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0944227d-0566-49e1-989f-2fff6e02542d" data-linktype="relative-path">catalog</a> version
+negotiation has been performed by checking the negotiated catalog version (see
+section <a href="a667265b-22a8-43bb-b462-13528061e009" data-linktype="relative-path">3.1.1.5</a>), and
+fail the call if not.</p><p>The server then MUST perform parameter validation as
+follows:</p><ul><li><p><span><span> 
+</span></span>If <i>cModules</i> is zero, the server MUST fail the call.</p>
+</li><li><p><span><span> 
+</span></span>For each element of <i>ppModules</i>, the server MUST verify that
+its value is not NULL. If <i>ppModules</i> is NULL, the server MUST fail the
+call.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_326"></a><a aria-label="Product behavior note 326" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_326" data-linktype="relative-path">&lt;326&gt;</a> verify
+that <i>dwFlags</i> is a valid combination of the flags specified previously,
+and fail the call if not.</p>
+</li></ul><p>A server MAY legally reject a call with a nonzero number of
+elements in <i>pRequestedCLSIDs</i> as unsupported, returning a failure result
+immediately. A server also MAY<a id="Appendix_A_Target_327"></a><a aria-label="Product behavior note 327" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_327" data-linktype="relative-path">&lt;327&gt;</a>
+support a nonzero number of elements in <i>pRequestedCLSIDs</i> for only a
+subset of the types of modules it supports, returning a failure result after it
+has analyzed the modules.</p><p>If the fREGISTER_VERIFYONLY flag is not set in the <i>dwFlags</i>
+parameter, the server MUST verify that there exists a partition with the
+partition identifier specified in <i>PartitionIdentifier</i>, and that there
+exists a conglomeration in this partition with the conglomeration identifier
+specified in <i>ConglomerationIdentifier</i>, and fail the call if not. The
+registration procedure specified later MUST be performed with this
+conglomeration as the target conglomeration.</p><p>If the fREGISTER_VERIFYONLY flag is set in the <i>dwFlags</i>
+parameter, the server MUST determine whether there exists a partition with the
+partition identifier specified in <i>PartitionIdentifier</i> and, if so,
+whether there exists a conglomeration in this partition with the conglomeration
+identifier specified in <i>ConglomerationIdentifier</i>. If there exists such a
+conglomeration, the verification procedure MUST be performed as a <i>targeted
+verification</i>, as specified later, with this conglomeration as the target
+conglomeration. If not, the verification procedure MUST be performed as an <i>untargeted
+verification</i>, as specified later.</p><p>The remainder of the protocol behavior specified for this
+method SHOULD<a id="Appendix_A_Target_328"></a><a aria-label="Product behavior note 328" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_328" data-linktype="relative-path">&lt;328&gt;</a> be performed as an <a href="3f01a312-3391-4109-a96e-95358babf191#gt_6db11d6b-d493-46d4-ab87-2429ca8bcb1e" data-linktype="relative-path">atomic transaction</a>; in
+other words, either the operation SHOULD fully succeed or the server SHOULD
+make no changes to the catalog. This described behavior is provided to
+facilitate the explanation of how the protocol behaves. This document does not
+mandate that implementations adhere to this model as long as their external
+behavior is consistent with that described in this document.</p><p>The server MUST process each element of <i>ppModules</i> as
+specified later, in an arbitrary order selected by the server. Any failure
+point that follows in this section that specifies the server <i>fail for the
+module</i> indicates that the server MAY<a id="Appendix_A_Target_329"></a><a aria-label="Product behavior note 329" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_329" data-linktype="relative-path">&lt;329&gt;</a>
+tolerate the failure and continue to the next element of <i>ppModules</i>. If
+the server tolerates failures, and this failure tolerance results in the call
+returning S_OK (0x00000000), the server MUST set the flags in the results
+returned in <i>ppModuleFlags</i> for each module as specified later, so that
+the client can determine which elements succeeded and which elements failed.</p><p>As the server processes the elements of <i>ppModules</i>, it
+MUST construct a <i>processed CLSIDs set</i>, starting with an empty set, which
+is used to determine the overall success or failure of the call once all
+modules have been process.</p><p>For each element of <i>ppModules</i>, the server MUST
+perform the following:</p><ul><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_330"></a><a aria-label="Product behavior note 330" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_330" data-linktype="relative-path">&lt;330&gt;</a> verify
+that the value of the element is a path in UNC, and fail for the module if not.</p>
+</li><li><p><span><span> 
+</span></span>The server then SHOULD<a id="Appendix_A_Target_331"></a><a aria-label="Product behavior note 331" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_331" data-linktype="relative-path">&lt;331&gt;</a>
+determine whether the file located by the path exists and is accessible via
+some implementation-specific mechanism, and fail for the module if not.</p>
+</li><li><p><span><span> 
+</span></span>If the file does exist, the server then SHOULD<a id="Appendix_A_Target_332"></a><a aria-label="Product behavior note 332" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_332" data-linktype="relative-path">&lt;332&gt;</a> determine whether it
+recognizes the file as a module, and fail for the module if not.</p>
+</li><li><p><span><span> 
+</span></span>If the file is recognized as a module, the server then MUST, by
+using an implementation-specific mechanism, attempt to determine the set of
+components contained in the module, and fail for the module if it cannot.</p>
+</li><li><p><span><span> 
+</span></span>If the client specified a list of CLSIDs in <i>pRequestedCLSIDs</i>,
+the server MUST select as the set of <i>processed CLSIDs for the module</i> the
+intersection of the set of CLSIDs of the components contained in the module and
+the set of CLSIDs in <i>pRequestedCLSIDs</i>. Otherwise, the server MUST select
+as the set of processed CLSIDs for the module the set of CLSIDs of the
+components contained in the module.</p>
+</li><li><p><span><span> 
+</span></span>If the fREGISTER_VERIFYONLY flag is set in the <i>dwFlags</i>
+parameter, the server MUST perform the following:</p>
+<ul><li><p><span><span>  </span></span>For
+each CLSID in the set of processed CLSIDs for the module, the server MUST
+perform the following:</p>
+<ul><li><p><span><span> 
+</span></span>If the server is performing a targeted verification, the server
+MUST verify that there is not an existing component with this CLSID configured
+in the target conglomeration, and fail for the module if so. If the server is
+performing an untargeted verification, then this requirement does not apply.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST verify that there is not an existing component
+with this CLSID that has an existing <a href="3f01a312-3391-4109-a96e-95358babf191#gt_13923d88-12fd-47b0-b406-ade71fa5963b" data-linktype="relative-path">component legacy configuration</a>,
+and fail the module if there is.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>If the fREGISTER_VERIFYONLY flag is not set in the <i>dwFlags</i>
+parameter, the server MUST perform the following:</p>
+<ul><li><p><span><span>  </span></span>For
+each CLSID in the set of processed CLSIDs for the module, the server MUST
+perform the following:</p>
+<ul><li><p><span><span> 
+</span></span>The server MUST, via an implementation-specific mechanism,
+attempt to register the component in the module with this CLSID, and fail for
+the module if it cannot. Whether or not it is considered a failure to attempt
+to register a component that has the same CLSID as a component that already
+exists is implementation-specific.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST verify that it is possible, according to the
+constraints specified for <a href="3f01a312-3391-4109-a96e-95358babf191#gt_670903d8-6f25-4b7e-b038-a09194865d4a" data-linktype="relative-path">component
+configurations</a> in sections <a href="62d84857-e39e-4879-a46d-8583e355521e" data-linktype="relative-path">3.1.1.3.1</a> and <a href="cee9f1e5-9412-4a19-8a34-17d041112b87" data-linktype="relative-path">3.1.1.3.3</a>, to create a
+component full configuration for the newly registered component in the target
+conglomeration, and fail if not.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST attempt to create a component full configuration
+for that component in the target conglomeration, using implementation-specific
+default values (see section <a href="b32713d1-61b8-48c7-9fd2-d79ec7eee1fc" data-linktype="relative-path">3.1.1.2.6</a>)
+for properties except IsEventClass (section 3.1.1.3.1), and fail for
+the module if it cannot.</p>
+</li><li><p><span><span> 
+</span></span>If the fREGISTER_EVENTCLASSES flag is set in the <i>dwFlags</i>
+parameter, the server MUST attempt to set the IsEventClass property of the
+newly created component full configuration to the value TRUE (0x00000001), and
+fail for the module if it cannot.</p>
+</li><li><p><span><span> 
+</span></span>If the flag fREGISTER_EVENTCLASSES is not set in the <i>dwFlags</i>
+parameter, the server MUST attempt to set the IsEventClass property of the
+newly created component full configuration to the value FALSE (0x00000000), and
+fail for the module if it cannot.</p>
+</li><li><p><span><span> 
+</span></span>The server MAY<a id="Appendix_A_Target_333"></a><a aria-label="Product behavior note 333" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_333" data-linktype="relative-path">&lt;333&gt;</a>
+attempt to create <a href="3f01a312-3391-4109-a96e-95358babf191#gt_13edcb48-247a-4e21-9aa5-67d0961f8d49" data-linktype="relative-path">configured
+interface</a> and <a href="3f01a312-3391-4109-a96e-95358babf191#gt_ab920210-df3f-4a80-971d-bacfc7866fe6" data-linktype="relative-path">configured
+method</a> entries for the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interfaces</a>
+supported by the registered component, using implementation-specific default
+values (see section 3.1.1.2.6) for properties, in the newly created component
+full configuration, and fail for the module if it cannot.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>The server then MUST attempt to add the set of processed CLSIDs
+for the module to the set of processed CLSIDs, and fail for the module if it
+cannot. Collisions SHOULD be tolerated for an untargeted verification and
+SHOULD NOT be tolerated for a targeted verification. Note that collisions are
+not possible for registration due to the constraints on component
+configurations.</p>
+</li></ul><p>Having processed all of the modules, the server MUST
+determine the success of the call as follows:</p><ul><li><p><span><span> 
+</span></span>If the client specified a list of CLSIDs in <i>pRequestedCLSIDs</i>,
+the server MUST verify that the set of process CLSIDs is identical to the set
+of CLSIDs in <i>pRequestedCLSIDs</i>, and fail the call if not.</p>
+</li></ul><p>Upon successful completion of the call, the server SHOULD
+construct the detailed results to return to the client, as specified later.
+Upon successful completion in which the server failed for any modules, the
+server MUST do so. If the server constructs detailed results, this MUST be performed
+as follows:</p><ul><li><p><span><span> 
+</span></span>For each processed CLSID, the server MUST perform the following:</p>
+<ul><li><p><span><span>  </span></span>The
+server SHOULD select an implementation-specific name string for the CLSID. If
+the CLSID is the CLSID of a successfully registered component, this SHOULD be
+the value of the ProgID (see section 3.1.1.3.1) property of the component.</p>
+</li><li><p><span><span>  </span></span>The
+server SHOULD select an fModuleStatus (section 2.2.3) value that
+representing the detailed results of the registration or verification attempt
+for the CLSID for informational purposes.</p>
+</li><li><p><span><span>  </span></span>The
+server MUST select an HRESULT value representing the result of the registration
+or verification attempt for the CLSID. This MUST be S_OK (0x00000000) to
+represent success, or a failure result, as specified in [MS-ERREF] section 2.1,
+to represent failure.</p>
+</li></ul></li></ul><p>The server then MUST set the values referenced by the out
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>The server MUST set the value referenced by <i>ppModuleFlags</i>
+to an array of DWORD values, each of which MUST use the flags specified
+previously with their indicated meaning.</p>
+</li><li><p><span><span> 
+</span></span>If the server constructed detailed results, it MUST set the
+values referenced by <i>pcResults</i>, <i>pcResultCLSIDs</i>, <i>pcResultNames</i>,
+<i>pcResultFlags</i>, and <i>pcResultHRs</i> to represent the detailed results.
+Otherwise, the server MUST set the value referenced by <i>pcResults</i> to zero
+and the values referenced by <i>pcResultCLSIDs</i>, <i>pcResultNames</i>, <i>pcResultFlags</i>,
+and <i>pcResultHRs</i> to NULL.</p>
+</li></ul><p>The server MUST then return S_OK (0x00000000) on successful
+completion, and an implementation-specific failure result, as specified in
+[MS-ERREF] section 2.1, on failure.</p></div>

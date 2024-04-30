@@ -1,0 +1,126 @@
+<div class="content"><p>The IFolderActionCollection interface is used to manage a
+collection of FolderAction objects.</p><p>The following properties MUST be implemented by the objects
+that implement the IFolderActionCollection interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>_NewEnum</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>An enumeration object of type IEnumVariant containing
+  a snapshot of the <a href="69a01836-fb8d-4eba-84e8-3cdb1a417cdb" data-linktype="relative-path">IFolderAction</a>
+  in this collection. The enumeration object is specified in <a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a>
+  section <a href="../ms-oaut/716d04d1-cd16-4065-9b19-1b8808b3df31" data-linktype="relative-path">3.3</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Count</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>Number of folder actions in this collection.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Item</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>Retrieves the requested folder action from the
+  collection.</p>
+  </td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="118a532a-19a3-417b-9f36-4afeb0fd0c50" data-linktype="relative-path">Count
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Count property.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="c959df1f-3ef9-4b44-817d-677caddedafd" data-linktype="relative-path">Item
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Item property.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="32c3fd05-6681-4699-b995-4031b76afb7b" data-linktype="relative-path">_NewEnum
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the NewEnum property.</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="f3c2b114-1c67-4f10-882c-d17b8ecf9ae7" data-linktype="relative-path">Add</a></p>
+  </td>
+  <td>
+  <p>Adds a folder action to the collection.</p>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="85c2fe0d-3338-4562-9af5-697cb2e095bb" data-linktype="relative-path">Remove</a></p>
+  </td>
+  <td>
+  <p>Removes a folder action from the collection.</p>
+  <p>Opnum: 11</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="c7b1596c-fb3d-439d-b8e9-9bb8058f61c1" data-linktype="relative-path">Clear</a></p>
+  </td>
+  <td>
+  <p>Removes all folder actions from the collection.</p>
+  <p>Opnum: 12</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="68d8c146-0be9-43cd-aa2a-bddbac90ea60" data-linktype="relative-path">AddRange</a></p>
+  </td>
+  <td>
+  <p>Adds one or more folder actions to the collection.</p>
+  <p>Opnum: 13</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="33df2d86-2969-4aba-bb1b-a40d377dbfb5" data-linktype="relative-path">CreateFolderAction</a></p>
+  </td>
+  <td>
+  <p>Creates a folder action object.</p>
+  <p>Opnum: 14</p>
+  </td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface.</p></div>

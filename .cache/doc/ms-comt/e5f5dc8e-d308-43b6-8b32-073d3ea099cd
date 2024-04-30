@@ -1,0 +1,39 @@
+<div class="content"><p>This type represents activity statistics for a <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_71669ed9-7eaf-4328-9e2e-4d3430f0f9bf" data-linktype="relative-path">component</a> that has one or
+more <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_712af290-acfd-4e3a-a768-0530caa93b18" data-linktype="relative-path">component instances</a>
+in an <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_791190e6-1e02-42cb-bd25-5aee3ab516ed" data-linktype="relative-path">instance container</a>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   GUID  clsid;
+   DWORD cTotalReferences;
+   DWORD cBoundReferences;
+   DWORD cPooledInstances;
+   DWORD cInstancesInCall;
+   DWORD dwResponseTime;
+   DWORD cCallsCompleted;
+   DWORD cCallsFailed;
+ } ComponentData;
+</pre></div>
+</dd></dl><p><b>clsid:</b>  The <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a> of the component.</p><p><b>cTotalReferences:</b>  An
+implementation-specific<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="8a5428f5-1574-4b06-9c20-5963b11e9035#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a> count of the number of references
+to all component instances of the component. This MUST be set to 0xffffffff if
+the server does not track this information.<a id="Appendix_A_Target_3"></a><a aria-label="Product behavior note 3" href="8a5428f5-1574-4b06-9c20-5963b11e9035#Appendix_A_3" data-linktype="relative-path">&lt;3&gt;</a></p><p><b>cBoundReferences:</b>  The number of
+references to all active (not pooled) component instances of the component.
+This MUST be set to 0xffffffff if the server does not track this information.<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="8a5428f5-1574-4b06-9c20-5963b11e9035#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a></p><p><b>cPooledInstances:</b>  The number of
+pooled component instances of the component, if the server enables <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_1c615e8e-fe93-4873-8d3a-a2b5c7bdfc71" data-linktype="relative-path">instance pooling</a>. This MUST
+be set to 0xffffffff if the server does not track this information.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="8a5428f5-1574-4b06-9c20-5963b11e9035#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p><p><b>cInstancesInCall:</b>  The number of
+component instances of the component that are currently performing a <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_c8bba35a-8be0-463f-986f-4cfe4d53e9b3" data-linktype="relative-path">method call</a>. This MUST be
+set to 0xffffffff if the server does not track this information.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="8a5428f5-1574-4b06-9c20-5963b11e9035#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><p><b>dwResponseTime:</b>  A value that
+indicates the average time, in milliseconds, it takes to complete method calls
+to component instances of the component. Calculation of this value is
+implementation-specific.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="8a5428f5-1574-4b06-9c20-5963b11e9035#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a> This MUST be
+set to 0xffffffff if the server does not track this information.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="8a5428f5-1574-4b06-9c20-5963b11e9035#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p><p><b>cCallsCompleted:</b>  The number of
+method calls to component instances of the component that were successfully
+completed in an implementation-specific<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="8a5428f5-1574-4b06-9c20-5963b11e9035#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a> time period.
+Whether a server considers a method call successfully completed is
+implementation-specific.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="8a5428f5-1574-4b06-9c20-5963b11e9035#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a> This MUST
+be set to 0xffffffff if the server does not track this information.<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="8a5428f5-1574-4b06-9c20-5963b11e9035#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p><p><b>cCallsFailed:</b>  The number of method
+calls to component instances of the component that failed in an
+implementation-specific<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="8a5428f5-1574-4b06-9c20-5963b11e9035#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a> time
+period. Whether a server considers a method call to have failed is
+implementation-specific.<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="8a5428f5-1574-4b06-9c20-5963b11e9035#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a> This MUST
+be set to 0xffffffff if the server does not track this information.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="8a5428f5-1574-4b06-9c20-5963b11e9035#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a></p></div>

@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>The EvtRpcRegisterControllableOperation (Opnum 4) method
+obtains a CONTEXT_HANDLE_OPERATION_CONTROL handle that can be used to cancel
+other operations.</p><dl>
+<dd>
+<div><pre> error_status_t EvtRpcRegisterControllableOperation(
+   [out, context_handle] PCONTEXT_HANDLE_OPERATION_CONTROL* handle
+ );
+</pre></div>
+</dd></dl><p><b>handle: </b>A context handle for a control object.
+This parameter MUST be an <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle,
+as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>, Context
+Handles. For information on handle security and authentication considerations,
+see sections <span><a href="ef007e79-0549-446f-a928-379f47d57cfd" data-linktype="relative-path">2.2.20</a></span> and <span><a href="f4145058-63b4-4c32-816d-a26b3ea6bd7d" data-linktype="relative-path">5.1</a></span>.</p><p><b>Return Values: </b>The method MUST return ERROR_SUCCESS
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+nonzero value as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>In response to this request from the client, for a
+successful operation, the server MUST attempt to create a
+CONTEXT_HANDLE_OPERATION_CONTROL handle. The server SHOULD create a control
+object. The control object SHOULD initialize its operation pointer to be NULL
+and Canceled flag to be FALSE. Then the server SHOULD save the control object
+pointer in its handle table and return the pointer as the context handle to the
+client. If it cannot create the handle, the server MUST fail the operation with
+the error ERROR_OUTOFMEMORY (0x0000000E).</p><p>The control handle created with this method can be used by
+the client when it issues the <span><a href="6286c156-2f70-4618-b876-09f60fb21a98" data-linktype="relative-path">EvtRpcClearLog (section 3.1.4.16)</a></span>,
+<span><a href="732c61e4-4ea5-4895-97c8-27838efb17e8" data-linktype="relative-path">EvtRpcExportLog (section 3.1.4.17)</a></span>,
+and <span><a href="578c7cd9-58d9-4746-9292-63edb5cf55c9" data-linktype="relative-path">EvtRpcLocalizeExportLog (section 3.1.4.18)</a></span>
+methods so that the client can cancel those operations if the server takes too
+long to return. Those methods take the control object as their first parameter,
+and periodically check the object&#39;s <b>Canceled</b> field during the processes.
+The server SHOULD NOT change the control object&#39;s operational pointer data
+field in its implementation of the <b>EvtRpcClearLog</b>, <b>EvtRpcExportLog</b>,
+and <b>EvtRpcLocalizeExportLog</b> methods. If the client sets the <b>Canceled</b>
+field to be TRUE by using the method (section <span><a href="66f25e52-a600-4cb4-9182-b9aa8f50d38e" data-linktype="relative-path">EvtRpcCancel (section 3.1.4.34)</a></span>,
+the server SHOULD respond to the change by halting the process of clearing,
+exporting, or localizing the log file.</p><p><b>Note</b>  The control object created by this
+method SHOULD only be used in the <b>EvtRpcClearLog</b>, <b>EvtRpcExportLog</b>,
+and <b>EvtRpcLocalizeExportLog</b> methods; it is not updated or consumed by
+any other methods. As specified in sections <span><a href="4364e323-0885-4e2f-9d55-70cf57cd6b95" data-linktype="relative-path">3.1.4.8</a></span> and <span><a href="c7a37af2-fb11-4c26-b3af-694183bfdd68" data-linktype="relative-path">3.1.4.12</a></span>,
+operation control objects are created by the server when processing calls to
+the <b>EvtRpcRegisterRemoteSubscription</b> and <b>EvtRpcRegisterLogQuery</b>
+methods; those are the only situations in which the server sets the operational
+pointer data field for the control object. For more information, see sections
+3.1.4.8 and 3.1.4.12.</p><p>The server MUST return a value indicating success or failure
+for this operation.</p></div>

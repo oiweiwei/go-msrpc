@@ -1,0 +1,125 @@
+<div class="content"><p>RpcDeletePrinterDriverEx removes the specified <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer driver</a> from the
+list of supported drivers for a server and deletes the files associated with
+it.<a id="Appendix_A_Target_339"></a><a aria-label="Product behavior note 339" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_339" data-linktype="relative-path">&lt;339&gt;</a> This method can also be used
+to delete specific versions of a driver.</p><dl>
+<dd>
+<div><pre> DWORD RpcDeletePrinterDriverEx(
+   [in, string, unique] STRING_HANDLE pName,
+   [in, string] wchar_t* pEnvironment,
+   [in, string] wchar_t* pDriverName,
+   [in] DWORD dwDeleteFlag,
+   [in] DWORD dwVersionNum
+ );
+</pre></div>
+</dd></dl><p><b>pName: </b>A <a href="59883eb8-5ce6-4ad4-bdd2-599434cfdcf2" data-linktype="relative-path">STRING_HANDLE
+structure (section 2.2.1.1.7)</a> that conforms to the parameter
+specification in <a href="acb355a4-913b-4abb-8cb5-415aea160015" data-linktype="relative-path">Print
+Server Name Parameters (section 3.1.4.1.4)</a>.</p><p><b>pEnvironment: </b>A string that conforms to the
+parameter specification in <a href="5b2bf7d5-ac77-464f-be5e-f3a7c1782246" data-linktype="relative-path">Environment
+Name Parameters (section 3.1.4.1.3)</a>.</p><p><b>pDriverName: </b>A pointer to a string that
+specifies the name of the printer driver to delete. For rules governing printer
+driver names, see section <a href="a4c7686f-a88c-48f9-96eb-bf4dfc3fe519" data-linktype="relative-path">2.2.4.3</a>.</p><p><b>dwDeleteFlag: </b>A bit field that specifies
+options for deleting files and versions of the printer driver. If the value of
+this parameter is zero, the driver MUST be removed from the list of supported
+drivers, and the driver files MUST remain on the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a>.</p><dl>
+<dd>
+<p>These flags can be combined to specify multiple options.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DPD_DELETE_UNUSED_FILES</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Remove unused printer driver files. In this case, an
+  error MUST NOT be returned if some of the files are being used by another
+  installed driver.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DPD_DELETE_SPECIFIC_VERSION</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Delete the version specified by the value of the <i>dwVersionNum</i>
+  parameter. Because more than one version of a printer driver can be installed
+  on a print server, setting this flag does not guarantee that the driver is
+  removed from the list of supported drivers on the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DPD_DELETE_ALL_FILES</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Delete the printer driver only if all its associated
+  files can be removed. In this case, an error MUST be returned if some of the
+  files are being used by another installed driver.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwVersionNum: </b>The version of the printer
+driver to delete.</p><dl>
+<dd>
+<p>The value of this parameter is
+implementation-specific and identifies the driver version and the operating
+system for which the driver was written. The driver version for each printer
+driver object in a <b>List of Printers</b> (section <a href="1bd61448-db4b-4284-a4b1-8346732402d4" data-linktype="relative-path">3.1.1</a>). It has the same
+format and meaning as the <b>cVersion</b> members in <a href="17943579-a514-4d0b-8ded-422265b23f45" data-linktype="relative-path">RPC_DRIVER_INFO
+structures (section 2.2.1.5)</a>.<a id="Appendix_A_Target_340"></a><a aria-label="Product behavior note 340" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_340" data-linktype="relative-path">&lt;340&gt;</a></p>
+</dd>
+<dd>
+<p>This parameter MUST be ignored if the <b>DPD_DELETE_SPECIFIC_VERSION</b>
+flag in the <i>dwDeleteFlag</i> parameter is not set.</p>
+</dd></dl><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate the
+following:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps for Print Server Name Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps for Environment Name Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the string pointed to by the <i>pDriverName</i>
+parameter contains the name of a driver that is part of the list of drivers that
+are installed on the server for the environment specified by the string pointed
+to by the <i>pEnvironment</i> parameter. If that verification fails,
+ERROR_UNKNOWN_PRINTER_DRIVER MUST be returned.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the printer driver identified by <i>pDriverName</i>
+is not being used by any printer in the system. If that verification fails,
+ERROR_PRINTER_DRIVER_IN_USE MUST be returned.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the value of the <i>dwDeleteFlag</i> parameter
+contains the result of the bitwise OR of zero or more of the <b>DPD_DELETE</b>
+defined constants and that all other bits are zero. If that verification fails,
+ERROR_INVALID_PARAMETER MUST be returned.</p>
+</li><li><p><span><span> 
+</span></span>Additional validation MAY<a id="Appendix_A_Target_341"></a><a aria-label="Product behavior note 341" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_341" data-linktype="relative-path">&lt;341&gt;</a> be
+performed.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Clear references to this version of the printer driver in any
+other data structures.</p>
+</li><li><p><span><span> 
+</span></span>Delete the printer driver object and any associated driver files
+in compliance with the settings in the <i>dwDeleteFlag</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>DPD_DELETE_SPECIFIC_VERSION</b> bit is set in <i>dwDeleteFlag</i>,
+delete only printer drivers with a version number that matches the value of <i>dwVersionNum</i>.</p>
+</li><li><p><span><span> 
+</span></span>If any clients have registered for notification of server object
+changes, a notification MUST be broadcast to them.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The DRS_COMPRESSED_BLOB structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete
+type</a></span> that results from marshaling a data structure into a byte
+stream by using <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> and compressing
+that byte stream.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD cbUncompressedSize;
+   DWORD cbCompressedSize;
+   [size_is(cbCompressedSize)] BYTE* pbCompressedData;
+ } DRS_COMPRESSED_BLOB;
+</pre></div>
+</dd></dl><p><b>cbUncompressedSize:</b>  Size in bytes
+of the uncompressed byte stream.</p><p><b>cbCompressedSize:</b>  Size in bytes of
+the <b>pbCompressedData</b> array.<a id="Appendix_A_Target_29"></a><a aria-label="Product behavior note 29" href="e3b89556-4e48-467c-87b3-b4a737cc4999#Appendix_A_29" data-linktype="relative-path">&lt;29&gt;</a></p><p><b>pbCompressedData:</b>  Compressed byte
+stream.</p><p><b>Padding:</b> Data is padded with zeros, if
+necessary, so that the block ends on an alignment boundary of <span><a href="0fdb03d7-34b4-4921-b9c4-6e8025f9e795" data-linktype="relative-path">LONG</a></span>.</p></div>

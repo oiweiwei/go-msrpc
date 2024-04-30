@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The DFS_INFO_104 structure contains the priority of a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ac90b498-3ba4-48d6-bcd6-5495f1654671" data-linktype="relative-path">DFS root
+target</a></span> or a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_44e2f830-c28b-41e3-8c3c-d0bb576ed9fb" data-linktype="relative-path">DFS link target</a></span>. </p><p>The DFS_INFO_104 structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_104 {
+   DFS_TARGET_PRIORITY TargetPriority;
+ } DFS_INFO_104;
+</pre></div>
+</dd></dl><p><b>TargetPriority:</b>  A <span><a href="316fec43-dfeb-4673-afc1-3ab66321debc" data-linktype="relative-path">DFS_TARGET_PRIORITY</a></span>
+structure that indicates the priority rank and priority class of a target. For
+more information on prioritization, see section 2.2.2.7.</p></div>

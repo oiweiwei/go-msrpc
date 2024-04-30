@@ -1,0 +1,223 @@
+<div class="content"><p> </p><p>The <b>KERB_SID_AND_ATTRIBUTES</b> structure represents a <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span>
+and its attributes for use in authentication. It is sent within the <span><a href="69e86ccc-85e3-41b9-b514-7d969cd0ed73" data-linktype="relative-path">KERB_VALIDATION_INFO (section 2.5)</a></span>
+structure and used to include additional information about the group that the
+SID references.</p><p>The <b>KERB_SID_AND_ATTRIBUTES</b> structure is defined as
+follows.</p><dl>
+<dd>
+<div><pre> typedef struct _KERB_SID_AND_ATTRIBUTES {
+     PISID Sid;
+     ULONG Attributes;
+ } KERB_SID_AND_ATTRIBUTES, *PKERB_SID_AND_ATTRIBUTES;
+</pre></div>
+</dd></dl><p><b>Sid:</b> A pointer to an <b>RPC_SID</b> structure
+(<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="relative-path">2.4.2.3</a></span>).</p><p><b>Attributes:</b> A set of bit flags that describe
+attributes of the SID in the <b>Sid</b> field. </p><dl>
+<dd>
+<p><b>Attributes</b> can contain one or more of the
+following bits.</p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  <p>                 </p>
+  </td>
+  <td>
+  <p>This setting means that the group is mandatory for the
+  user and cannot be disabled. Corresponds to SE_GROUP_MANDATORY. For more
+  information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90515" data-linktype="external">[SIDATT]</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  <p>                 </p>
+  </td>
+  <td>
+  <p>This setting means that the group is marked as enabled
+  by default. Corresponds to SE_GROUP_ENABLED_BY_DEFAULT. For more information,
+  see [SIDATT].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>C</p>
+  <p>                 </p>
+  </td>
+  <td>
+  <p>This setting means that the group is enabled for use.
+  Corresponds to SE_GROUP_ENABLED. For more information, see [SIDATT].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>D</p>
+  <p>                 </p>
+  </td>
+  <td>
+  <p>This setting means that the group can be assigned as
+  an owner of a resource. Corresponds to SE_GROUP_OWNER. For more information,
+  see [SIDATT].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E</p>
+  <p>                 </p>
+  </td>
+  <td>
+  <p>This setting means that the group is a domain-local or
+  resource group. Corresponds to SE_GROUP_RESOURCE. For more information, see
+  [SIDATT].</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero and MUST be
+ignored on receipt.</p>
+</dd></dl></div>

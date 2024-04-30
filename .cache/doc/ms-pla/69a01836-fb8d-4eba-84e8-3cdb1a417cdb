@@ -1,0 +1,151 @@
+<div class="content"><p>The IFolderAction interface is used to specify the actions
+that the data manager is to take on each folder under the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data collector set</a> root
+path if both age and size conditions are met. </p><p>The following properties MUST be implemented by the objects
+that implement the IFolderAction interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Actions</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the actions that the data manager is to take
+  if both conditions (age and size) are met.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Age</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>The minimum age of a folder, in days, before it can be
+  considered for these actions. The age of the folder is the number of days
+  since the folder was created. If set to zero, no folders will be excluded
+  because of age. The default value is zero. Any unsigned long is a valid value
+  for this property.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SendCabTo</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the path for sending the CAB file, if the
+  action includes sending the CAB file. The path needs to be formatted as a <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_d5a07545-a023-45ad-89a6-0b5c944bcfd4" data-linktype="relative-path">UncPath</a>. If the cab
+  cannot be sent (because the destination does not exist or the
+  DataCollectorSet does not have write privileges to the destination), the
+  DataManager does not fail and <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_7159c556-babb-45a8-9bc6-fcfbc9244f17" data-linktype="relative-path">data management</a>
+  continues.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Size</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the minimum size, in megabytes (MB), of any
+  folder against which the actions specified in the Actions property will be
+  executed. If set to zero, no folders will be excluded because of size. The
+  default value is zero. Any unsigned long is a valid value for this property.</p>
+  </td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="ce47cc9d-e257-4455-a488-27863db7d50e" data-linktype="relative-path">Age
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Age property.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="6d521bb1-9a0a-4b8b-9dab-7aff6df91be0" data-linktype="relative-path">Age
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the Age property.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="fa86b592-3976-4b3b-9cb2-6849a34d0612" data-linktype="relative-path">Size
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Size property.</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="e6eca172-ccf8-4407-a284-eae092fd65be" data-linktype="relative-path">Size
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the Size property.</p>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="c9786578-2558-4dd4-b037-783c0655772d" data-linktype="relative-path">Actions
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Actions property.</p>
+  <p>Opnum: 11</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="787f45d6-5a1f-461d-9c1f-e1eb20feb078" data-linktype="relative-path">Actions
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the Actions property.</p>
+  <p>Opnum: 12</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="a406167c-f735-4a2a-970e-95fb5a7d416b" data-linktype="relative-path">SendCabTo
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the SendCabTo property.</p>
+  <p>Opnum: 13</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="21b9fe4c-0f9b-466d-85ee-b4fa4612cd80" data-linktype="relative-path">SendCabTo
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the SendCabTo property.</p>
+  <p>Opnum: 14</p>
+  </td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface.</p></div>

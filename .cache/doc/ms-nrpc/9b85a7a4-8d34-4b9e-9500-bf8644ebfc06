@@ -1,0 +1,386 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9b85a7a4-8d34-4b9e-9500-bf8644ebfc06" data-linktype="external">msdn link</a></p><p>The <b>DOMAIN_CONTROLLER_INFOW</b> structure SHOULD<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a> define information returned by
+the following methods: <a href="86a3fa5b-1f0e-412a-942f-33a10e5e9eff" data-linktype="relative-path">DsrGetDcName (section 3.5.4.3.3)</a>,
+<a href="5de19b7e-4ce3-4cc4-978f-8959f46797ba" data-linktype="relative-path">DsrGetDcNameEx (section 3.5.4.3.2)</a>,
+and <a href="fb8e1146-a045-4c31-98d1-c68507ad5620" data-linktype="relative-path">DsrGetDcNameEx2 (section 3.5.4.3.1)</a>.
+This structure is used to describe naming and addressing information about a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _DOMAIN_CONTROLLER_INFOW {
+   [string, unique] wchar_t* DomainControllerName;
+   [string, unique] wchar_t* DomainControllerAddress;
+   ULONG DomainControllerAddressType;
+   GUID DomainGuid;
+   [string, unique] wchar_t* DomainName;
+   [string, unique] wchar_t* DnsForestName;
+   ULONG Flags;
+   [string, unique] wchar_t* DcSiteName;
+   [string, unique] wchar_t* ClientSiteName;
+ } DOMAIN_CONTROLLER_INFOW,
+  *PDOMAIN_CONTROLLER_INFOW;
+</pre></div>
+</dd></dl><p><b>DomainControllerName:</b> A pointer to a
+null-terminated UTF-16 string that contains a NetBIOS or <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">fully qualified domain name
+(FQDN)</a> of the DC, prefixed with &#34;\\&#34;.</p><p><b>DomainControllerAddress:</b> A pointer to a
+null-terminated <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a>
+that contains the DC address, prefixed with &#34;\\&#34;. The string SHOULD<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a> be either a textual
+representation of an IPv4/IPv6 address or the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a> of the DC,
+determined by the <b>DomainControllerAddressType</b> field.</p><p><b>DomainControllerAddressType:</b> A 32-bit value
+indicating the DC address type, which MUST be one, and only one, of the
+following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The address is a string that contains an IPv4 address
+  in dotted-decimal notation (for example, 192.168.0.1), or an IPv6 address in
+  colon-separated notation.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The address is a NetBIOS name.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>DomainGuid:</b> A <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">globally unique identifier
+(GUID)</a> structure (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/49e490b8-f972-45d6-a3a4-99f924998d97" data-linktype="relative-path">2.3.4.1</a>)
+that contains an identifier for the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>. When there is no
+domain GUID, this field MUST be set to zero. A GUID SHOULD<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a> be used across all computers
+and networks wherever a unique identifier is required.</p><p><b>DomainName:</b> A pointer to a Unicode string that
+contains the NetBIOS or FQDN of the domain.</p><p><b>DnsForestName:</b> A pointer to a null-terminated
+Unicode string that contains the FQDN of the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a>.</p><p><b>Flags:</b> A set of bit flags in little-endian
+format that describe the features and roles of the DC. A flag is TRUE (or set)
+if its value is equal to 1. The value is constructed from zero or more bit
+flags from the following table, with the exceptions that bit J cannot be
+combined with A, B, D, E, or P; bit F cannot be combined with I; and bit K
+cannot be combined with L.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>O</p>
+  </td>
+  <td>
+  <p>N</p>
+  </td>
+  <td>
+  <p>M</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>T</p>
+  </td>
+  <td>
+  <p>S</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>Q</p>
+  </td>
+  <td>
+  <p>P</p>
+  </td>
+  <td>
+  <p>L</p>
+  </td>
+  <td>
+  <p>K</p>
+  </td>
+  <td>
+  <p>J</p>
+  </td>
+  <td>
+  <p>I</p>
+  </td>
+  <td>
+  <p>H</p>
+  </td>
+  <td>
+  <p>G</p>
+  </td>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>The DC is the domain&#39;s <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">primary domain controller
+  (PDC)</a>. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>The DC contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_4f5d605a-7b3f-4db7-8c21-b146856d7169" data-linktype="relative-path">global catalog (GC)</a> for
+  the forest <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+  Directory</a>. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>The DC supports the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">Lightweight Directory Access
+  Protocol (LDAP)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>The DC supports a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_c36db657-3138-4d9a-9289-ded5cbb8b40e" data-linktype="relative-path">directory service</a>. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>The DC is a Kerberos <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_6e5aafba-6b66-4fdd-872e-844f142af287" data-linktype="relative-path">Key Distribution Center (KDC)</a>.
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>The DC has a network time service available but no
+  clock hardware. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>G</p>
+  </td>
+  <td>
+  <p>The DC is in the closest <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8abdc986-5679-42d9-ad76-b11eb5a0daba" data-linktype="relative-path">site</a> to the client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>H</p>
+  </td>
+  <td>
+  <p>The DC has a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5e5f9997-e6b4-4a73-aa22-984814b83a18" data-linktype="relative-path">writable</a> directory
+  service available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>I</p>
+  </td>
+  <td>
+  <p>The DC has clock hardware and a network time service
+  available. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>J</p>
+  </td>
+  <td>
+  <p>The DC is an LDAP server servicing an Application <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_784c7cce-f782-48d8-9444-c9030ba86942" data-linktype="relative-path">naming context (NC)</a> (<a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+  section <a href="../ms-adts/b95c96b8-e6ca-40c5-8881-51f83b66f5a7" data-linktype="relative-path">3.1.1.1.5</a>).
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>K</p>
+  </td>
+  <td>
+  <p>The DC is a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8b0a073b-3099-4efe-8b81-c2886b66a870" data-linktype="relative-path">read-only domain controller
+  (RODC)</a>.<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>L</p>
+  </td>
+  <td>
+  <p>The server is a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9d964ddb-09d6-4a1b-b27b-42adabc07993" data-linktype="relative-path">writable domain controller</a>.<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>M</p>
+  </td>
+  <td>
+  <p>The DC&#39;s name is a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a> name.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>N</p>
+  </td>
+  <td>
+  <p>The DC&#39;s <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_45a1c9f1-0263-49a8-97c7-7aca1a99308c" data-linktype="relative-path">domain name</a> is a DNS
+  name.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>O</p>
+  </td>
+  <td>
+  <p>The DC&#39;s forest name is a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_102a36e2-f66f-49e2-bee3-558736b2ecd5" data-linktype="relative-path">DNS name</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>P</p>
+  </td>
+  <td>
+  <p>The DC has an Active Directory Web Service available.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Q</p>
+  </td>
+  <td>
+  <p>The DC has a functional level of DS_BEHAVIOR_WIN2012
+  or later.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>The DC has a functional level of DS_BEHAVIOR_WIN2012R2
+  or later.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>S</p>
+  </td>
+  <td>
+  <p>The DC has a functional level of DS_BEHAVIOR_WIN2016
+  or later.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>T</p>
+  </td>
+  <td>
+  <p>The DC supports <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e006508d-88b8-4819-a112-3b4821d7e44e" data-linktype="relative-path">key list requests</a>, as
+  specified in <a href="../ms-kile/2a32282e-dd48-4ad9-a542-609804b02cc9" data-linktype="relative-path">[MS-KILE]</a>
+  section <a href="../ms-kile/a8198db9-b537-4256-b903-80a716540398" data-linktype="relative-path">2.2.11</a>.
+  If this bit is set, bit S and bit E MUST also be set.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set
+to zero and MUST be ignored on receipt.</p>
+</dd></dl><p><b>DcSiteName: </b>A pointer to a null-terminated
+Unicode string that SHOULD<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a> contain
+the site name that is associated with the DC. When there is no associated site,
+this field MUST be NULL.</p><p><b>ClientSiteName:</b> A pointer to a null-terminated
+Unicode string that contains the client&#39;s site name. When there is no client
+site name, this field MUST be NULL.</p></div>

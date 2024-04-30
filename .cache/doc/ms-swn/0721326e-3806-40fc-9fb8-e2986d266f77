@@ -1,0 +1,98 @@
+<div class="content"><p>The WITNESS_INTERFACE_INFO structure specifies the IP
+addresses of the interface.</p><dl>
+<dd>
+<div><pre> typedef struct _WITNESS_INTERFACE_INFO {
+     WCHAR InterfaceGroupName[260];
+     ULONG Version;
+     USHORT State;
+     ULONG IPV4;
+     USHORT IPV6[8];
+     UINT Flags;
+ } WITNESS_INTERFACE_INFO, *PWITNESS_INTERFACE_INFO;
+            
+            
+</pre></div>
+</dd></dl><p><b>InterfaceGroupName:</b>  The null-terminated
+string that specifies a name of the interface group.</p><p><b>Version:</b>  The current version of the Witness
+Service running on the server.</p><p><b>State:</b>  The current state of the interface.
+This field MUST contain one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>UNKNOWN</p>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>The state of the interface is unknown.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AVAILABLE</p>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>The interface is available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>UNAVAILABLE</p>
+  <p>0x00FF</p>
+  </td>
+  <td>
+  <p>The interface is unavailable.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IPV4:</b>  The <a href="bdf33531-fabc-46df-8252-1100c9c0da85#gt_0f25c9b5-dc73-4c3e-9433-f09d1f62ea8e" data-linktype="relative-path">IPv4</a> address of the
+interface, if the IPv4 flag is set in <b>Flags</b> field.</p><p><b>IPV6:</b>  The <a href="bdf33531-fabc-46df-8252-1100c9c0da85#gt_64c29bb6-c8b2-4281-9f3a-c1eb5d2288aa" data-linktype="relative-path">IPv6</a> address of the
+interface, if the IPv6 flag is set in <b>Flags</b> field.</p><p><b>Flags:</b> The <b>Flags</b> field specifies
+information about the interface. This field MUST be set to combination of zero
+or more of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPv4</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>If set, the <b>IPV4</b> field contains a valid
+  address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPv6</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>If set, the <b>IPV6</b> field contains a valid
+  address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>INTERFACE_WITNESS</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>If set, the interface is available for witness
+  registration. If not set, the interface MUST NOT be used for witness
+  registration.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

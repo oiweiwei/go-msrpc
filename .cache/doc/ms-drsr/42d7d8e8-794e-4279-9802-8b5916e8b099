@@ -1,0 +1,67 @@
+<div class="content"><p> </p><p>The REPLTIMES structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> for
+times at which periodic <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span> occurs.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   UCHAR rgTimes[84];
+ } REPLTIMES;
+</pre></div>
+</dd></dl><p><b>rgTimes:</b>  A byte array of length 84
+that is used to set periodic replication times. Each bit in this byte array
+represents a 15-minute period for which replication can be scheduled within a
+one-week period. The replication schedule begins on Sunday 12:00:00 AM UTC.
+Each byte in the array represents a two-hour period of a week in ascending
+order, starting Sunday 12:00:00 AM UTC. The most significant bit of a byte
+represents the earliest 15-minute period in the two-hour period, and the rest
+of the bits in the byte represent their respective 15-minute periods in this
+order.</p><p>The following diagram shows an alternative representation of
+this structure.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>rgTimes...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...rgTimes</p>
+  </td>
+ </tr>
+</tbody></table><p> </p></div>

@@ -1,0 +1,139 @@
+<div class="content"><p> </p><p>The <b>R_DhcpScanMDatabase</b> method can be used by DHCP
+servers to enumerate and/or fix inconsistencies between the MADCAP lease
+records and the bitmask representation in memory (section <span><a href="3feff318-a575-4a27-8360-5dd3ee7203b5" data-linktype="relative-path">3.1.1.4</a></span>).
+The caller of this function can free the memory pointed to by <i>ScanList</i>
+and its member <b>ScanItems</b> by calling the function <b>midl_user_free </b>(section
+<span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpScanMDatabase(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, ref, string] LPWSTR* MScopeName,
+   [in] DWORD FixFlag,
+   [out] LPDHCP_SCAN_LIST* ScanList
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the MADCAP server. This parameter is unused.</p><p><b>MScopeName: </b>This is a pointer to a Unicode
+string that contains the name of the multicast subnet in which a scan is done
+for the MADCAP client IPv4 addresses that are not in sync.</p><p><b>FixFlag: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+defining the behavior of this method. This method enumerates the MADCAP client
+IPv4 addresses that are not in sync in both the stores, and if the <i>FixFlag</i>
+parameter is set to TRUE, it fixes those unmatched IPv4 addresses also.</p><p><b>ScanList: </b>This is a pointer of type <span><a href="bc78876c-bf97-49a7-9093-e772920b7ca1" data-linktype="relative-path">DHCP_SCAN_LIST (section 2.2.1.2.74)</a></span>
+that points to the location that contains the MADCAP client IPv4 addresses that
+are not in sync in both the stores.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the MADCAP server
+  database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 8.</p><p>When processing this call, the MADCAP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4MScope</b> ADM element entry corresponding
+to <i>MScopeName</i> from the server ADM element <b>DHCPv4MScopesList</b>. If
+the <b>DHCPv4MScope</b> entry is not found, return
+ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4IpRange.BitMask</b> ADM element from memory
+for each element in the <b>DHCPv4MScope.DHCPv4IpRangesList</b> ADM element.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4MClientsList</b> ADM element from the
+specified <b>DHCPv4MScope</b>.</p>
+</li><li><p><span><span> 
+</span></span>Allocate memory to <i>ScanList</i>, which is equal to the size of
+type <b>DHCP_SCAN_LIST</b>, and set its fields <b>NumScanItems</b> to zero and <b>ScanItems</b>
+to NULL.</p>
+</li><li><p><span><span> 
+</span></span>Allocate memory to <b>ScanItems</b> for 100 entries at a time. As
+entries are added to <i>ScanList</i> in the instructions that follow, continue
+incrementing <b>NumScanItems</b>. If <b>NumScanItems</b> reaches a value of
+100, then allocate memory for 200 entries, copy the first 100 entries to the
+new memory, and then free the old memory. Continue similarly until all elements
+are added to the <i>ScanList</i>.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the <b>DHCPv4MClientsList</b> and for each <b>DHCPv4MClient</b>
+that has the corresponding bit set to 0 in the retrieved <b>DHCPv4IpRange.BitMask</b>,
+add the IPv4 address in the <i>ScanList</i> and set the <b>ScanFlag</b> as
+DhcpRegistryFix.</p>
+</li><li><p><span><span> 
+</span></span>For all the DHCPv4 client Ipv4 that have the corresponding bit
+set to 1 in the retrieved <b>DHCPv4IpRange.BitMask</b> and no corresponding <b>DHCPv4MClient</b>
+entry in the <b>DHCPv4MClientsList</b> and the IPv4 address does not fall
+within the range specified by any of the entries of <b>DHCPv4MScope.DHCPv4ExclusionRangesList</b>,
+add the IPv4 address in the <i>ScanList</i> and set the <b>ScanFlag</b> as
+DhcpDatabaseFix.</p>
+</li><li><p><span><span> 
+</span></span>If <i>FixFlag</i> is set to FALSE, return ERROR_SUCCESS to the
+caller.</p>
+</li><li><p><span><span> 
+</span></span>If <i>FixFlag</i> is set to TRUE, traverse the <i>ScanList</i>,
+and for each entry that contains <b>ScanFlag</b> equal to DhcpDatabaseFix,
+create a <b>DHCPv4MClient</b> object and insert it into <b>DHCPv4MClientsList</b>.
+The <b>DHCPv4MClient</b> object is initialized as follows:</p>
+<ul><li><p><span><span>  </span></span><b>DHCPv4MClient.ClientIpAddress</b>
+is set to the <i>ScanList.IpAddress</i>.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4MClient.MScopeId</b>
+is set to the <b>DHCPv4MScope.MScopeId</b>.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4MClient.ClientName</b>
+is set to NULL.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4MClient.ClientId</b>
+is set to the binary encoding of the string representation of <i>ScanList.IpAddress</i>.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4MClient.ClientLeaseStarts</b>
+is set to the current system time.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4MClient.ClientLeaseEnds</b>
+is set to the default lease duration for specified multicast subnet.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4MClient.OwnerHost.NetBiosName</b>
+is set to the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b86c44e6-57df-4c48-8163-5e3fa7bdcff4" data-linktype="relative-path">NetBIOS</a></span> name of the
+DHCPv4 Server. <b>OwnerHost.IpAddress</b> is set to <i>ServerIpAddress</i>
+parameter in case an IP address is passed.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4MClient.
+AddressState</b> is set to ADDRESS_STATE_ACTIVE.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4MClient.AddressFlags</b>
+is set to 0.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>For each entry that contains <b>ScanFlag</b> equal to
+DhcpRegistryFix, set the bit corresponding to that IP address in the <b>DHCPv4IpRange.BitMask</b>
+to 1.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

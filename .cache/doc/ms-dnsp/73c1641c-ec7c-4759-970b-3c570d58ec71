@@ -1,0 +1,83 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_RRL_STATS</b> structure SHOULD<a id="Appendix_A_Target_78"></a><a aria-label="Product behavior note 78" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_78" data-linktype="relative-path">&lt;78&gt;</a> contain DNS server statistics
+related to the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_000e9310-7f5d-4937-bc98-d6845a4d3f06" data-linktype="relative-path">Response Rate Limiting (RRL)</a></span>.
+This structure is formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TotalResponsesSent</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TotalResponsesDropped</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TotalResponsesTruncated</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TotalResponsesLeaked</p>
+  </td>
+ </tr>
+</tbody></table><p> </p><p><b>Header (8 bytes):</b> A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>TotalResponsesSent (4 bytes):</b> The number of
+times the server responded to a valid query since it last started. This counter
+is maintained and updated only when RRL is enabled. After reaching 0xFFFFFFFF,
+the value increments to 0x00000000.</p><p><b>TotalResponsesDropped (4 bytes):</b> The number of
+times the server dropped a valid query due to Response Rate Limiting, since it
+last started. This counter is maintained and updated only when RRL is enabled.
+After reaching 0xFFFFFFFF, the value increments to 0x00000000. </p><p><b>TotalResponsesTruncated (4 bytes):</b> The number
+of times the server has responded to a valid query with a truncation bit set,
+since it last started. This counter is maintained and updated only when RRL is
+enabled. After reaching 0xFFFFFFFF, the value increments to 0x00000000.</p><p><b>TotalResponsesLeaked (4 bytes):</b> The number of
+times the server has responded to a valid query after using the total responses
+available within a given timeframe since it last started. For details see
+DNS_RPC_RRL_PARAMS (section <span><a href="c0166ded-6a52-47b2-b914-6dd2ae4d61f0" data-linktype="relative-path">2.2.16.2.1</a></span>). This
+counter is maintained and updated only when RRL is enabled. After reaching
+0xFFFFFFFF, the value increments to 0x00000000.</p></div>

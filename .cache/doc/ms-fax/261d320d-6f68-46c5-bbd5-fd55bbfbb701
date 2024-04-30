@@ -1,0 +1,119 @@
+<div class="content"><p> </p><p>The fax client application calls the <b>FAX_ReAssignMessage
+(Opnum 102)</b> method to reassign the specified fax message to a set of users.<a id="Appendix_A_Target_144"></a><a aria-label="Product behavior note 144" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_144" data-linktype="relative-path">&lt;144&gt;</a></p><p>Protocol version FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), and FAX_API_VERSION_2 (0x00020000) fax servers
+SHOULD NOT implement this call. The fax client MUST NOT call this method if the
+protocol version reported by the server is FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), or FAX_API_VERSION_2 (0x00020000). For more
+information, see <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>).</p><p>The <i>dwlMessageId</i> parameter specifies a particular
+message and can be obtained using the <b>FAX_EnumMessages</b> (section <span><a href="365c2295-c0f9-44bd-a72b-6db0b16c0f8f" data-linktype="relative-path">3.1.4.1.24</a></span>)
+method or the <b>FAX_EnumMessagesEx</b> (section <span><a href="43cf8eed-1cf3-4240-80c5-6f8d1d082084" data-linktype="relative-path">3.1.4.1.25</a></span>)
+methods.</p><p>The client MUST specify the recipients for a reassigned
+message in a semicolon (;) separated format. In response, the server MUST
+validate whether the <b>bIncomingFaxesArePublic</b> option in the <b>FAX_GENERAL_CONFIG</b>
+(section <span><a href="7b87f66e-e7bf-4294-be2f-669de0595bde" data-linktype="relative-path">2.2.31</a></span>) data
+structure is not set in the server configuration. The server MUST also validate
+whether the message that is specified by the dwlMessageId argument refers to a
+valid message on the server. The server MUST validate that there are <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_53dfe4f3-05d0-41aa-8217-ecd1962b340b" data-linktype="relative-path">recipient</a></span>
+numbers for each of the recipients that are listed in <i>pReAssignInfo</i>
+structure. On success, the server MUST reassign the specified fax message.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_ReAssignMessage(
+   [in] handle_t hBinding,
+   [in] DWORDLONG dwlMessageId,
+   [in, ref] PFAX_REASSIGN_INFO pReAssignInfo
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section 3.1.4.1.10) or <b>FAX_ConnectionRefCount</b> (section
+<span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>)
+method call used to connect to the fax server.</p><p><b>dwlMessageId: </b>A <b>DWORDLONG</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/c575fb47-166c-48cd-a37c-e44cac05c3d6" data-linktype="relative-path">2.2.13</a></span>)
+value that specifies the identifier of the fax message to reassign.</p><p><b>pReAssignInfo: </b>A pointer to a <b>FAX_REASSIGN_INFO</b> (section
+<span><a href="4925b2d5-4e81-48d2-96f7-9444e71da601" data-linktype="relative-path">2.2.18</a></span>)
+structure that contains reassignment information.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>This error code is returned under any of the following
+  conditions:</p>
+  <p><span>§<span>  
+  </span></span>The <i>dwlMessageId</i> argument does not specify a valid
+  message.</p>
+  <p><span>§<span>  
+  </span></span>One or more recipients specified in the <b>lpcwstrRecipients</b>
+  field of the <i>pReAssignInfo</i> argument do not have a corresponding fax
+  user account.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The caller does not have the <b>FAX_ACCESS_MANAGE_RECEIVE_FOLDER</b>
+  access rights.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>This error code is returned under any of the following
+  conditions:</p>
+  <p><span>§<span>  
+  </span></span>The value specified for the <i>dwlMessageId</i> parameter is
+  zero.</p>
+  <p><span>§<span>  
+  </span></span>The <b>lpcwstrRecipients</b> member of the data structure
+  specified by the <i>pReAssignInfo</i> parameter is set to NULL or to an empty
+  string.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_BUFFER_OVERFLOW</p>
+  <p>0x0000006F</p>
+  </td>
+  <td>
+  <p>The number of recipients specified in the <b>lpcwstrRecipients</b>
+  member of the data structure pointed at by <i>pReAssignInfo</i> is greater
+  than FAX_MAX_RECIPIENTS (10000).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_OPERATION</p>
+  <p>0x000010DD</p>
+  </td>
+  <td>
+  <p>This error code is returned under any of the following
+  conditions:</p>
+  <p><span>§<span>  
+  </span></span>Incoming faxes are public (section 2.2.31). Reassignment is not
+  supported when incoming faxes are public.</p>
+  <p><span>§<span>  
+  </span></span>The server does not support reassignment, or the server is
+  configured with a policy that is currently set to disable fax message
+  reassignment.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

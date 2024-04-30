@@ -1,0 +1,40 @@
+<div class="content"><p> </p><p>The <b>RPC_FAX_OUTBOUND_ROUTING_RULEW</b> data type is used
+as an input argument for <b>FAX_SetOutboundRule</b> (section <span><a href="3999fbce-e326-4601-8d0f-f5ba411afeb7" data-linktype="relative-path">3.1.4.1.86</a></span>).
+The information contained in this structure describes one routing rule in the <b>Configuration
+of the Routing Rules</b> (section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>).</p><p>For reference, the data type definition is as follows.</p><dl>
+<dd>
+<div><pre> typedefstruct{
+   DWORD dwSizeOfStruct;
+   DWORD dwAreaCode;
+   DWORD dwCountryCode;
+   [string] LPWSTR lpwstrCountryName;
+   [switch_is(bUseGroup)] FAX_RULE_DESTINATION Destination;
+   BOOL bUseGroup;
+ }RPC_FAX_OUTBOUND_ROUTING_RULEW,
+ *RPC_PFAX_OUTBOUND_ROUTING_RULEW;
+</pre></div>
+</dd></dl><p><b>dwSizeOfStruct:</b> A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that holds the total size of the structure, in bytes. This value MUST be
+24 or 40 bytes. When filled in on a 32-bit implementation, this value SHOULD be
+24 bytes. When filled in on a 64-bit implementation this value SHOULD be 40
+bytes.</p><p><b>dwAreaCode:</b> A <b>DWORD</b> that contains the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_2a9a9f5f-0538-45c4-aabd-4dde3a8d8f0f" data-linktype="relative-path">area code</a></span>
+of the rule. A value of zero indicates the special any-area value
+ROUTING_RULE_AREA_CODE_ANY. The <b>dwAreaCode</b> and <b>dwCountryCode</b>
+members MUST form a unique key. This value is unrestricted.</p><p><b>dwCountryCode:</b> A <b>DWORD</b> that contains
+the country/region code of the rule. A value of zero indicates the special
+any-country, any-region value ROUTING_RULE_COUNTRY_CODE_ANY. The <b>dwAreaCode</b>
+and <b>dwCountryCode</b> numeric values MUST form a unique key. Clients can
+obtain valid values with the <b>FAX_GetCountryList</b> (section <span><a href="8619db79-4289-4563-b7fe-ad423b072622" data-linktype="relative-path">3.1.4.1.37</a></span>)
+method.</p><p><b>lpwstrCountryName:</b> A pointer to a
+null-terminated string that contains the country/region name indicated by the <i>dwCountryCode</i>
+parameter if known; otherwise, a NULL pointer. If <b>dwCountryCode</b> is zero,
+this pointer MUST be NULL.</p><p><b>Destination:</b> A <b>FAX_RULE_DESTINATION</b>
+(section <span><a href="79a62357-933f-4291-b414-78c88e260a87" data-linktype="relative-path">2.2.81</a></span>) union that
+contains the destination of the rule. When bUseGroup is FALSE, this union value
+MUST hold a device identifier; otherwise, this union value MUST represent the
+name of an outbound <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_efaa1290-6d4b-4f44-9e84-35a867069d45" data-linktype="relative-path">routing</a></span> group of
+devices.</p><p><b>bUseGroup:</b> A Boolean value that indicates
+whether the group is used in the destination. If TRUE, the group MUST be used
+as the rule&#39;s destination. If FALSE, the device MUST be used as the rule&#39;s
+destination.</p></div>

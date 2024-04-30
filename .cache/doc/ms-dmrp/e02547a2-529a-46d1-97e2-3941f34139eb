@@ -1,0 +1,374 @@
+<div class="content"><p> </p><p>The IFILE_SYSTEM_INFO structure provides information about
+an installed <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file system</a></span>. For
+more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90139" data-linktype="external">[MSDN-STC]</a></span>.</p><dl>
+<dd>
+<div><pre> struct ifilesysteminfo {
+   long fsType;
+   WCHAR fsName[MAX_FS_NAME_SIZE];
+   unsigned long fsFlags;
+   unsigned long fsCompressionFlags;
+   int cchLabelLimit;
+   int cchLabel;
+   [size_is(cchLabel)] wchar_t* iLabelChSet;
+ };
+ typedef struct ifilesysteminfo IFILE_SYSTEM_INFO;
+</pre></div>
+</dd></dl><p><b>fsType:</b>   Type of the file system.
+This field contains one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FSTYPE_UNKNOWN</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>File system type is unknown.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSTYPE_NTFS</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>File system type is <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_86f79a17-c0be-4937-8660-0cf6ce5ddc1a" data-linktype="relative-path">NTFS</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSTYPE_FAT</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>File system type is <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_f2bf797b-e733-4fb9-b5e5-7e122f4abbe0" data-linktype="relative-path">FAT</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSTYPE_FAT32</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>File system type is FAT32 file system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSTYPE_CDFS</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>File system type is <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_1ddfdf88-c5e7-4320-bade-80f0b73c9c2e" data-linktype="relative-path">CDFS</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSTYPE_UDF</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>File system type is <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_5068e37f-372c-41df-9357-1072e12ed970" data-linktype="relative-path">UDF</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSTYPE_OTHER</p>
+  <p>0x80000000</p>
+  </td>
+  <td>
+  <p>File system type is not listed.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>fsName:</b>  Null-terminated <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+file system name.</p><p><b>fsFlags:</b>  Bitmap of <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_bafb2696-b639-45eb-9d5a-95d905a2262d" data-linktype="relative-path">file
+system flags</a></span>. The value of this field is a logical OR of zero or
+more of the applicable <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_425bcab9-7911-4eae-b414-624b7a51eb5f" data-linktype="relative-path">flags</a></span>. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FSF_FMT_OPTION_COMPRESS</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>File system supports compression.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FMT_OPTION_LABEL</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>File system supports label specification.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_MNT_POINT_SUPPORT</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>File system supports creation of <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_513fcb37-059f-475c-a13d-e89b302f8ae8" data-linktype="relative-path">mount
+  points</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_REMOVABLE_MEDIA_SUPPORT</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>File system supports creation of <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_58aae236-0186-4ba1-a46b-f0a997e6c6f2" data-linktype="relative-path">removable
+  media</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_GROW_SUPPORT</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>File system supports the extend operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_QUICK_FORMAT_ENABLE</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>File system supports <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_551fedc1-b5b0-4bd2-b11f-86af801d1c7a" data-linktype="relative-path">quick formatting</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_512</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>File system supports an <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_2b23c239-06f9-4803-8646-bc908cbe044d" data-linktype="relative-path">allocation unit size</a></span>
+  of 512 bytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_1K</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 1
+  kilobyte.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_2K</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 2
+  kilobytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_4K</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 4
+  kilobytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_8K</p>
+  <p>0x00000400</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 8
+  kilobytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_16K</p>
+  <p>0x00000800</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 16
+  kilobytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_32K</p>
+  <p>0x00001000</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 32
+  kilobytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_64K</p>
+  <p>0x00002000</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 64
+  kilobytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_128K</p>
+  <p>0x00004000</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 128
+  kilobytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_256K</p>
+  <p>0x00008000</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 256
+  kilobytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_OTHER</p>
+  <p>0x00010000</p>
+  </td>
+  <td>
+  <p>File system supports any allocation unit size that the
+  user provides.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_FORMAT_SUPPORTED</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>File system supports formatting.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_VALID_BITS</p>
+  <p>0x0003FFFF</p>
+  </td>
+  <td>
+  <p>All other bits in the bitmap MUST be ignored. The
+  server does a bitwise AND operation with this value to clear upper-level bits
+  that may be present but are not supported.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>fsCompressionFlags:</b>  Bitmap of
+allocation unit sizes that are valid for compression. The value of this field
+is a logical &#39;OR&#39; of zero or more of the applicable flags.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_1K</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 1
+  kilobyte.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_2K</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 2
+  kilobytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_4K</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 4
+  kilobytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_8K</p>
+  <p>0x00000400</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 8
+  kilobytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_16K</p>
+  <p>0x00000800</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 16
+  kilobytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_32K</p>
+  <p>0x00001000</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 32
+  kilobytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_64K</p>
+  <p>0x00002000</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 64
+  kilobytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_128K</p>
+  <p>0x00004000</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 128
+  kilobytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_256K</p>
+  <p>0x00008000</p>
+  </td>
+  <td>
+  <p>File system supports an allocation unit size of 256
+  kilobytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FSF_FS_ALLOC_SZ_OTHER</p>
+  <p>0x00010000</p>
+  </td>
+  <td>
+  <p>File system supports any allocation unit size that the
+  user provides.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cchLabelLimit:</b>  Maximum number of
+characters allowed in the file system&#39;s label.</p><p><b>cchLabel:</b>  Length of the iLabelChSet
+member in bytes.</p><p><b>iLabelChSet:</b>  Array of characters
+that are not allowed in the file system&#39;s label.</p></div>

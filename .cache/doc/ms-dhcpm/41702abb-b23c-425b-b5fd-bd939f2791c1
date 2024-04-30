@@ -1,0 +1,37 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4GetClientInfoEx</b> method retrieves DHCPv4
+client lease record information from the DHCPv4 server database. The retrieved
+information also includes the link-layer filter status information for the
+DHCPv4 client and the policy, if any, that resulted in the specific IPv4
+address assignment. The caller of this method can free the memory pointed to by
+the ClientInfo parameter by calling the <b>midl_user_free</b> function (section
+<span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><p>The <b>R_DhcpV4GetClientInfoEx</b> method is an extension of
+the <b>R_DhcpV4GetClientInfo</b> (Opnum 123) (section <span><a href="b9fbb4b0-d8f3-4a9c-8090-b31a5e792d29" data-linktype="relative-path">3.2.4.124)</a></span>
+method, where a <span><a href="99021b06-24d3-4edf-b673-0316e85cf28d" data-linktype="relative-path">DHCP_CLIENT_INFO_EX (section 2.2.1.2.119)</a></span>
+structure is queried, rather than a <span><a href="6ac8d531-84bb-4e8c-8010-840c41fd72e8" data-linktype="relative-path">DHCP_CLIENT_INFO_PB (section 2.2.1.2.115)</a></span>
+structure. The structure returns a list of <span><a href="1ac6e6e5-f2bc-42ef-9d6a-c9457d48c3c3" data-linktype="relative-path">DHCP_PROPERTY (section 2.2.1.2.117)</a></span>
+elements that can be associated with the given DHCPv4 client. </p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4GetClientInfoEx(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, ref] LPDHCP_SEARCH_INFO SearchInfo,
+   [out] LPDHCP_CLIENT_INFO_EX* ClientInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>As specified in <b>R_DhcpV4GetClientInfo</b>
+(Opnum 123).</p><p><b>SearchInfo: </b>As specified in <b>R_DhcpV4GetClientInfo</b>
+(Opnum 123).</p><p><b>ClientInfo: </b>A pointer of type <b>LPDHCP_CLIENT_INFO_EX</b>
+that points to the location where the DHCPv4 client lease record information
+will be returned. The caller SHOULD free this buffer. The structure&#39;s <b>ClientHardwareAddress</b>
+member represents a DHCPv4 client unique-identifier as specified in section <span><a href="651865ec-6404-4191-ad30-113578a94556" data-linktype="relative-path">2.2.1.2.5.2</a></span>.</p><dl>
+<dd>
+<p>The DHCP_PROPERTY (section 2.2.1.2.117)
+elements that are queried are as follows:</p>
+</dd>
+<dd>
+<p><b>AddressStateEx: </b>The
+DHCP_PROPERTY (section 2.2.1.2.117) element specifies the extended
+address state flags for the client when the ID value is
+DhcpPropIdClientAddressStateEx and the Type value is DhcpPropTypeDword.</p>
+</dd></dl><p><b>Return Values: </b>As specified in <b>R_DhcpV4GetClientInfo</b>
+(Opnum 123).</p><p>The opnum field value for this method is 132.</p><p>The remainder of the processing behavior for this method is
+as defined for the <b>R_DhcpV4GetClientInfo</b> method.</p></div>

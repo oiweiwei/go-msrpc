@@ -1,0 +1,37 @@
+<div class="content"><p> </p><p>The INVOKEKIND enumeration values are used in the <b>invkind</b>
+field of a <span><a href="d3349d25-e11d-4095-ba86-de3fda178c4e" data-linktype="relative-path">FUNCDESC (section 2.2.42)</a></span>
+to specify the way that a method is invoked using <span><a href="5c2a1997-60d7-496d-8d9a-ed940bbb82eb" data-linktype="relative-path">IDispatch::Invoke (section 3.1.4.4)</a></span>.
+They are also used in the <span><a href="9b417eae-849f-4608-89f0-60e3ea04d8a6" data-linktype="relative-path">ITypeInfo2::GetFuncIndexOfMemId</a></span>,
+<span><a href="d82eb39d-b218-4484-a158-7b582ab65e5c" data-linktype="relative-path">ITypeInfo::GetDllEntry</a></span>
+and <span><a href="476f00da-0806-40d9-bbf3-6059154abbb7" data-linktype="relative-path">ITypeComp::Bind</a></span>
+methods to distinguish between properties and <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_f930baab-25f1-4142-bced-5effc9f62d45" data-linktype="relative-path">property</a></span> accessor
+methods that have the same <span><a href="ace8758f-ee2b-4cb6-8645-973994d12530" data-linktype="relative-path">MEMBERID (section 2.2.35)</a></span>
+but are invoked differently.</p><p>Fields and parameters that contain function invocation
+constants MUST contain a single INVOKEKIND value, and MUST NOT contain bitwise
+combinations of multiple INVOKEKIND values.</p><p>The function invocation constants are defined in the
+INVOKEKIND enumeration.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum tagINVOKEKIND
+ {
+   INVOKE_FUNC = 0x1,
+   INVOKE_PROPERTYGET = 0x2,
+   INVOKE_PROPERTYPUT = 0x4,
+   INVOKE_PROPERTYPUTREF = 0x8
+ } INVOKEKIND;
+</pre></div>
+</dd></dl><p><b>INVOKE_FUNC:  </b>MUST be set if the type member
+is a method declared without the <b>[propget]</b>, <b>[propput]</b>, or <b>[propputref]</b>
+attributes, or to specify that a <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> method
+request MUST NOT return a property.</p><p><b>INVOKE_PROPERTYGET:  </b>MUST be set if the type
+member is a property declared with the <b>[propget]</b> attribute (as specified
+in section <span><a href="232d5f12-4b88-43e3-a633-60fc157b1a5f" data-linktype="relative-path">2.2.49.5.1</a></span>), or to
+specify that a client method request MUST NOT return anything but an <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_544446d5-79ab-4b08-85c4-214f1b64fdf2" data-linktype="relative-path">ODL
+dispinterface</a></span> property (as specified in section <span><a href="e23aaa6d-3ad4-4886-b652-0203a1a50c58" data-linktype="relative-path">2.2.49.5.3</a></span>)
+or a property declared with the <b>[propget]</b> attribute.</p><p><b>INVOKE_PROPERTYPUT:  </b>MUST be set if the type
+member is a property declared with the <b>[propput]</b> attribute (as specified
+in section 2.2.49.5.1), or to specify that a client method request MUST NOT
+return anything but a property declared with the <b>[propput]</b> attribute.</p><p><b>INVOKE_PROPERTYPUTREF:  </b>MUST be set if the
+type member is a property declared with the <b>[propputref]</b> attribute (as
+specified in section 2.2.49.5.1), or to specify that a client method request
+MUST NOT return anything but a property declared with the <b>[propputref]</b>
+attribute.</p></div>

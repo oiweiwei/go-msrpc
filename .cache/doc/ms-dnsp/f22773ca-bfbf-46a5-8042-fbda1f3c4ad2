@@ -1,0 +1,32 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_ZONE</b> structure contains basic information
+about a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span> present on the
+DNS server. There are different versions of the DNS_RPC_ZONE structure. The DNS
+server MAY<a id="Appendix_A_Target_38"></a><a aria-label="Product behavior note 38" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_38" data-linktype="relative-path">&lt;38&gt;</a> decide to use one of these
+structures depending upon the value of the <b>dwClientVersion</b> field in DNS
+Server Management Protocol method calls (section <span><a href="bdffbbf3-e31b-49ba-8b8d-8abde125a9d8" data-linktype="relative-path">3.1.4</a></span>) as follows
+in the table provided. If the method call does not specify the value of <b>dwClientVersion</b>,
+the DNS_RPC_ZONE_W2K version of the structure MUST be used.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value </p>
+   </th>
+   <th>
+   <p>Structure </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>DNS_RPC_ZONE_W2K (section <span><a href="6b6e834a-e08e-432c-a9a7-8ced1422a688" data-linktype="relative-path">2.2.5.2.1.1</a></span>)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00060000 </p>
+  </td>
+  <td>
+  <p><a id="_Hlk61961136">DNS_RPC_ZONE_DOTNET </a>(section
+  <span><a href="64c5005d-2a55-46cc-8453-af393bb27bb9" data-linktype="relative-path">2.2.5.2.1.2</a></span>)</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

@@ -1,0 +1,9 @@
+<div class="content"><p> </p><p>The Remote Procedure Call Location Services Extensions is a
+legacy protocol that has been deprecated and is not used by Microsoft.
+Implementers should use the DCE-based RPC Location Services capabilities in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>.</p><p>The Remote Procedure Call Location Services Extensions is a
+set of extensions/restrictions to the distributed computing environment (DCE)
+remote procedure call (RPC) Location Services specified in [C706]. These
+extensions add new capabilities to the DCE RPC Location Services Protocol.</p><p>This document specifies a set of extensions and restrictions
+to the DCE RPC Location Services specification as specified in [C706].</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

@@ -1,0 +1,95 @@
+<div class="content"><p>The VARSTRING packet is used for returning variably sized
+strings. It is used both by the line device class and the phone device class.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwStringFormat</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwStringSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwStringOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>The total size, in
+bytes, allocated to this packet.</p><p><b>dwNeededSize (4 bytes): </b>The size, in bytes,
+for this packet that is needed to hold all the returned information.</p><p><b>dwUsedSize (4 bytes): </b>The size, in bytes, of
+the portion of this packet that contains useful information. </p><p><b>dwStringFormat (4 bytes): </b>The format of the
+string. This member uses one of the <a href="5511d60f-9ae8-46b0-9fd2-cd37f0875dc3" data-linktype="relative-path">STRINGFORMAT_Constants</a>. </p><p><b>dwStringSize (4 bytes): </b>The size, in bytes, of
+the string information, including the null terminator.</p><p><b>dwStringOffset (4 bytes): </b>The offset, from the
+beginning of the packet to the variably sized device field containing the
+string information. The size of the field is specified by <b>dwStringSize</b>. </p><p><b>VarData (variable): </b>The string information, as
+specified by <b>dwStringOffset</b>. The encoding of the string is specified by <b>dwStringFormat</b>.</p><p>This packet is not extendible. </p><p>If a string cannot be returned in a variable packet, the <b>dwStringSize</b>
+and <b>dwStringOffset</b> fields are set in one of the following ways:</p><ul><li><p><span><span> 
+</span></span><b>dwStringSize</b> and <b>dwStringOffset</b> members are both
+set to 0. </p>
+</li><li><p><span><span> 
+</span></span><b>dwStringOffset</b> is nonzero and dwStringSize is 0.</p>
+</li><li><p><span><span> 
+</span></span><b>dwStringOffset</b> is nonzero, <b>dwStringSize</b> is 1, and
+the byte at the given offset is 0.</p>
+</li></ul></div>

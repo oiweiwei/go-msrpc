@@ -1,0 +1,48 @@
+<div class="content"><p>The BackupKey Remote Protocol provides a method of
+protecting a secret value so that the value can be stored in a potentially
+insecure location, while still being recoverable by an authorized user. The
+protocol does this by encrypting the secret with the assistance of a server, in
+a process known as <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_387b58ea-6abd-41c8-af6c-34206259765f" data-linktype="relative-path">wrapping</a>.
+When an authorized user wants to access the secret, the user authenticates to
+the server and submits the wrapped data to the server. The server then extracts
+the original secret in a process known as <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_c6590684-c769-4edf-82be-62f3450b09e7" data-linktype="relative-path">unwrapping</a>, and returns it
+to the user.</p><p>As the name indicates, this protocol was designed
+specifically to wrap and unwrap cryptographic keys. Within the Windows
+implementation, this protocol is used by the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_3af2be04-f627-4a02-a3b0-b465ccede53f" data-linktype="relative-path">Data Protection Application
+Program Interface (DPAPI)</a> on a client in an <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_fcaec097-23d5-4b8f-b3e7-5739cc9c1d78" data-linktype="relative-path">Active Directory domain</a> and
+a <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">Domain Controller (DC)</a>
+in the same domain to wrap cryptographic keys. However, all of this protocol&#39;s
+variants will wrap arbitrary secrets. Nothing in the protocol requires the
+secrets to be cryptographic keys or to have any particular structure, other
+than a limitation that is imposed on the length of the secret in certain cases.
+This limitation is specified in section <a href="628f2667-734b-42a4-9dc2-4678e93b65fe" data-linktype="relative-path">2.2.2.2</a>.</p><p>The BackupKey Remote Protocol consists of two subprotocols,
+each of which enables the client to perform a wrapping operation and a
+corresponding unwrapping operation. In the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_0d6344a7-948f-4215-b887-8bbe43eb9620" data-linktype="relative-path">ServerWrap subprotocol</a>,
+both the wrapping and unwrapping operations are performed through a protocol
+exchange with a server supporting this subprotocol. On the other hand, the
+server side of the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_e28261fb-25ef-4781-93e0-7280fece1bc4" data-linktype="relative-path">ClientWrap
+subprotocol</a> consists of a key retrieval method and an unwrapping method.
+Thus, a client can perform the unwrapping operation of the ClientWrap
+subprotocol only through a protocol exchange with a server that supports this
+subprotocol. However, a client can perform the wrapping operation of the
+ClientWrap subprotocol purely locally using <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public key</a> cryptography,
+provided that it has in the past retrieved a key from a server that supports
+this subprotocol.</p><p>A BackupKey Remote Protocol client or server can implement
+either or both of these subprotocols, and in each case it can implement the
+entire subprotocol or only the unwrapping operation. However, a client or
+server has to always support unwrapping any secrets whose wrapping it performed
+or enabled. Thus, a server that supports ServerWrap wrapping has to also
+support ServerWrap unwrapping, and a server that supports ClientWrap key
+retrieval has to also support ClientWrap unwrapping. Similarly, a client that
+supports the wrapping operation of either subprotocol has to also support the
+corresponding unwrapping operation.</p><p>It is important to note that a BackupKey Remote Protocol
+server does not actually perform remote backup of secrets. Instead, the server
+wraps each secret and returns it to the client. The client is responsible for
+storing the secret until it is needed again, at which point the client can
+request the server to unwrap the secret.</p><p>The BackupKey Remote Protocol uses <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a>
+<a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> with the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_05fd3925-0672-4f24-9dd9-2b9d441eb333" data-linktype="relative-path">security provider</a>
+extensions for user impersonation and connection <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_8312d817-fdc5-4a49-8894-729b7b9e0ce5" data-linktype="relative-path">encryption</a> and
+authentication specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.
+Named pipes over the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_09dbec39-5e75-4d9a-babf-1c9f1d499625" data-linktype="relative-path">Server
+Message Block (SMB)</a> Protocol are used as transport. <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_bc2f6b5e-e5c0-408b-8f55-0350c24b9838" data-linktype="relative-path">SPNEGO</a> <a href="https://go.microsoft.com/fwlink/?LinkId=90461" data-linktype="external">[RFC4178]</a> <a href="../ms-spng/f377a379-c24f-4a0f-a3eb-0d835389e28a" data-linktype="relative-path">[MS-SPNG]</a>
+is used to negotiate an authentication mechanism between client and server.</p></div>

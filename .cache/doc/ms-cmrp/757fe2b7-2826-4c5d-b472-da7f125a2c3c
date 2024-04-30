@@ -1,0 +1,183 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/757fe2b7-2826-4c5d-b472-da7f125a2c3c" data-linktype="external">msdn link</a></p><p>(Protocol Version 3) The ApiExecuteBatch method instructs
+the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> to perform a
+transacted series of modifications, relative to the designated key, to the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_13de67f6-ac9d-491f-8dfb-12601a8b0838" data-linktype="relative-path">cluster registry</a>. The
+contents of the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_2d67ea57-10e6-422f-985e-694834945a02" data-linktype="relative-path">registry</a>
+are changed only if all the modifications succeed; the first failure causes all
+previous modifications to be backed out.</p><p>The modifications are described in a <a href="71c7bedf-88cf-4eb8-9bc5-80d14a222e53" data-linktype="relative-path">CLUSTER_REG_BATCH_UPDATE</a>
+structure, as described in section 2.2.3.17. Each batch update command instructs
+the server as to how the registry is modified. </p><p>The server MUST NOT fail this method if the key identified
+in a CLUSREG_CREATE_KEY already exists. The server MUST NOT fail this method if
+the key identified in a CLUSREG_DELETE_KEY command or the value identified in a
+CLUSREG_DELETE_VALUE does not exist.</p><p>The server MUST maintain a current key pointer that is
+initially set to the designated key and is changed to the key identified in a
+CLUSREG_CREATE_KEY command when it is executed. The current key pointer is
+cleared when a CLUSREG_DELETE_KEY command is executed requiring a subsequent
+CLUSREG_CREATE_KEY command to be executed before any CLUSREG_SET_VALUE or
+CLUSREG_DELETE_VALUE commands can be processed. After the key pointer is
+cleared, the server MUST fail this method with ERROR_INVALID_PARAMETER
+(0x00000057) if a CLUSREG_SET_VALUE or CLUSREG_DELETE_VALUE command is
+encountered prior to a CLUSREG_CREATE_KEY command. </p><p>The <b>Name</b> field for the CLUSREG_CREATE_KEY and
+CLUSREG_DELETE_KEY commands is the path to the key to be created/opened or
+deleted and is relative to the designated key. The key namespace is
+hierarchical, and each level in the hierarchy is separated by a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> backslash
+(&#34;\&#34;). The following are examples of properly formed key names:
+&#34;test&#34;, &#34;test\KeyToDelete&#34;. </p><p>The following table describes the command type, how the <b>Name</b>
+and <b>Data</b> fields are interpreted for the command, and the effect the
+command has on the key pointer. </p><table><thead>
+  <tr>
+   <th>
+   <p>Command type</p>
+   </th>
+   <th>
+   <p>Action</p>
+   </th>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Data</p>
+   </th>
+   <th>
+   <p>Key pointer effect</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CLUSREG_SET_VALUE</p>
+  </td>
+  <td>
+  <p>Creates or updates the named value with the specified
+  data. </p>
+  </td>
+  <td>
+  <p>The name of the value. Can be the null <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> (0x0000)
+  indicating the default (unnamed) value associated with the key.</p>
+  </td>
+  <td>
+  <p>The optional data associated with the value.</p>
+  </td>
+  <td>
+  <p>None.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSREG_CREATE_KEY</p>
+  </td>
+  <td>
+  <p>Creates or opens the named subkey relative to the
+  current key pointer.</p>
+  </td>
+  <td>
+  <p>A subkey path relative to the current key pointer.</p>
+  </td>
+  <td>
+  <p>Not used.</p>
+  </td>
+  <td>
+  <p>Key pointer is set to this key.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSREG_DELETE_KEY</p>
+  </td>
+  <td>
+  <p>Deletes the named subkey relative to the current key
+  pointer.</p>
+  </td>
+  <td>
+  <p>A subkey path relative to the current key pointer.</p>
+  </td>
+  <td>
+  <p>Not used.</p>
+  </td>
+  <td>
+  <p>Key pointer is cleared.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSREG_DELETE_VALUE</p>
+  </td>
+  <td>
+  <p>Deletes the named value relative to the current key
+  pointer.</p>
+  </td>
+  <td>
+  <p>The name of the value. Can be the null Unicode string
+  (0x0000) indicating the default (unnamed) value associated with the key.</p>
+  </td>
+  <td>
+  <p>Not used.</p>
+  </td>
+  <td>
+  <p>None.</p>
+  </td>
+ </tr></tbody></table><p>The server MUST accept an ApiExecuteBatch request for
+processing if it is in the read/write state, as specified in section <a href="756547e7-ca64-4b7c-9f1b-2b1fbc6153d3" data-linktype="relative-path">3.1.1</a>.</p><p>The server MUST require that the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> have a security
+access level of &#34;All&#34; (section <a href="a249a463-3d3b-4058-abf6-3024d81806a0" data-linktype="relative-path">3.1.4</a>).</p><dl>
+<dd>
+<div><pre> error_status_t ApiExecuteBatch(
+   [in] HKEY_RPC hKey,
+   [in] DWORD cbData,
+   [in, size_is(cbData)] UCHAR const * lpData,
+   [out] int * pdwFailedCommand,
+   [out] error_status_t *rpc_status
+ );
+</pre></div>
+</dd></dl><p><b>hKey: </b>The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle for a
+key that was previously obtained by a call to <a href="8b07215b-bf64-44cd-b6db-de347f237d25" data-linktype="relative-path">ApiGetRootKey</a>, <a href="74d389fd-e811-4372-8753-147c492e6bca" data-linktype="relative-path">ApiCreateKey</a>, or <a href="2afc42d3-a41c-40ce-911b-945f0e602ce0" data-linktype="relative-path">ApiOpenKey</a>. The key
+represented by this parameter is the initial key from which all commands in the
+buffer of the <i>lpData</i> parameter are executed.</p><p><b>cbData: </b>A 32-bit integer that provides the
+size, in bytes, of the buffer pointed to by the <i>lpData</i> parameter.</p><p><b>lpData: </b>A pointer to a buffer containing a
+variable-length CLUSTER_REG_BATCH_UPDATE structure, as described in section
+2.2.3.17, that contains a series of commands describing a set of modifications
+to be applied to the cluster registry.</p><p><b>pdwFailedCommand: </b>A pointer to a 32-bit
+integer that is written, upon failure of the method, with the number of the
+command that caused the failure. Commands are numbered beginning at one and
+increase monotonically.</p><p><b>rpc_status: </b>A 32-bit integer used to indicate
+success or failure. The RPC runtime MUST indicate, by writing to this
+parameter, whether it succeeded in executing this method on the server. The
+encoding of the value passed in this parameter MUST conform to encoding for
+comm_status and fault_status, as specified in Appendix E of <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>Return Values: </b>The method MUST return the
+following error codes for the specified conditions.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Success.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000006</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The data that is pointed to by the <i>hKey</i>
+  parameter does not represent a valid <a href="d1058558-6a75-4bb7-90f5-4f6a6a49837d" data-linktype="relative-path">HKEY_RPC</a> context handle.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A CLUSREG_SET_VALUE or CLUSREG_DELETE_VALUE command
+  has been encountered prior to a CLUSREG_CREATE_KEY command.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>For any other condition, this method MUST return a value
+that is not one of the values listed in the preceding table. The client MUST
+behave in one consistent, identical manner for all values that are not listed
+in the preceding table. The client SHOULD treat errors specified in section <a href="ca75805a-4b39-4074-8b5b-dbaae6e81b1f" data-linktype="relative-path">3.2.4.6</a> as recoverable
+errors and initiate the reconnect procedure as specified in section 3.2.4.6.</p></div>

@@ -1,0 +1,66 @@
+<div class="content"><p>The EnumNotificationActions method enumerates all the <b>notifications</b>
+for the specified <b>notification period</b>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_FILE_MANAGEMENT_JOB | 0x08)] HRESULT EnumNotificationActions(
+   [in] long days,
+   [out, retval] IFsrmCollection** actions
+ );
+</pre></div>
+</dd></dl><p><b>days: </b>The days parameter contains the <b>notification
+period</b> for which <b>notifications</b> are to be enumerated.</p><p><b>actions: </b>Pointer to an <b>IFsrmCollection</b>
+interface pointer (section <a href="171d3b3c-0f4d-40b9-8f48-0e97f9ff17be" data-linktype="relative-path">3.2.4.2.1</a>)
+that upon completion contains <b>IFsrmAction</b> interface pointers of all the <b>notifications</b>
+for the specified <b>notification period</b>. A caller MUST release the
+collection received when the caller is done with it. To get the specific action
+interface for the action, the caller MUST call <b>QueryInterface</b> for the
+interface corresponding to the action&#39;s <b>action type</b>.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified notification could not be found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>actions</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>days</i> is greater than or equal to 0.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>actions</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST perform the following steps in sequence or
+return a nonzero error code as follows:</p><ul><li><p><span><span> 
+</span></span>Find the <b>Notification period</b>, if any, in the file
+management job&#39;s list of <b>notification periods</b> whose <b>Notification
+Interval</b> is equivalent to <i>days</i>. For the remainder of these steps,
+this will be referred to as the <b>affected notification period</b>.</p>
+</li><li><p><span><span> 
+</span></span>If there is no affected <b>notification period</b>, the server
+MUST return FSRM_E_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST create a new <b>IFsrmCollection</b> object and
+populate it with any <b>notifications</b> from the affected notification
+period&#39;s <b>Notification period.Notifications</b> property.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST assign the new <b>IFsrmCollection</b> object to <i>actions</i>.</p>
+</li></ul></div>

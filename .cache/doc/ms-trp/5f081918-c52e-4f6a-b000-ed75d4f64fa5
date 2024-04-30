@@ -1,0 +1,139 @@
+<div class="content"><p>The LINEAGENTSTATUS packet describes the current status of
+an ACD agent. LINEAGENTSTATUS is supplied by the server in the field VarData of
+the completion packet of the <a href="71191825-c814-40b6-a303-8d2630a50ab8" data-linktype="relative-path">GetAgentStatus</a>
+request.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNumEntries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwGroupListSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwGroupListOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwState</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNextState</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwActivityID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwActivitySize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwActivityOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAgentFeatures</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwValidStates</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwValidNextStates</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, allocated to this data packet. </p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, needed to hold all the information requested.</p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the portion of this packet that contains useful
+information.</p><p><b>dwNumEntries (4 bytes): </b>An unsigned 32-bit
+integer. The number of <a href="d4f50427-b729-4dfd-a81c-1733969c8788" data-linktype="relative-path">LINEAGENTGROUPENTRY</a>
+packets that appear in the array specified by <b>dwGroupListOffset</b>. The
+value MUST be 0 if no agent is associated with (logged in) the address.</p><p><b>dwGroupListSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the group list array.</p><p><b>dwGroupListOffset (4 bytes): </b>An unsigned
+32-bit integer. Offset from the beginning of this packet to an array of
+LINEAGENTGROUPENTRY packets. The size is <b>dwNumEntries</b> times
+SIZEOF(LINEAGENTGROUPENTRY). The array contains ACD groups into which the agent
+is currently associated with (logged in) the address. The size of the field
+MUST be specified by <b>dwGroupListSize</b>. </p><p><b>dwState (4 bytes): </b>An unsigned 32-bit integer.
+The current state of the agent. MUST be one of the <a href="3b8615bf-802a-471b-8079-f63bf6d567b2" data-linktype="relative-path">LINEAGENTSTATE_Constants</a>. </p><p><b>dwNextState (4 bytes): </b>An unsigned 32-bit
+integer. The state into which the agent is automatically placed when the
+current call completes. MUST be one of the LINEAGENTSTATE_Constants. </p><p><b>dwActivityID (4 bytes): </b>An unsigned 32-bit
+integer. The identifier of the current agent activity.</p><p><b>dwActivitySize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the agent activity string. </p><p><b>dwActivityOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset from the beginning of the packet to a null-terminated
+string specifying the current agent activity. The size of the string MUST be
+specified by <b>dwActivitySize</b>. This string MUST be part of the <b>VarData</b>
+field of the packet containing this packet.</p><p><b>dwAgentFeatures (4 bytes): </b>An unsigned 32-bit
+integer. The agent-related features available at the time the status was
+obtained, using the <a href="a5c2308f-4859-4319-8792-2fccb6bd95f8" data-linktype="relative-path">LINEAGENTFEATURE_Constants</a>.</p><p><b>dwValidStates (4 bytes): </b>An unsigned 32-bit
+integer. The agent states that could be selected, at this point in time, using
+the <a href="c4876fd0-9657-4ebe-87ff-000000063bd5" data-linktype="relative-path">SetAgentState</a>
+packet. MUST consist of one or more of the LINEAGENTSTATE_Constants. </p><p><b>dwValidNextStates (4 bytes): </b>An unsigned 32-bit
+integer. The next agent states that could be selected, at this point in time,
+by calling the SetAgentState packet. MUST consist of one or more of the
+LINEAGENTSTATE_Constants.</p></div>

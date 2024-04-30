@@ -1,0 +1,245 @@
+<div class="content"><p> </p><p>The nonreplicated, multivalued <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span> <span><a href="../ms-ada3/8a9018ac-1d10-4bae-8141-04822a5f51f2" data-linktype="relative-path">repsFrom</a></span>
+is an optional attribute on the root <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> of every <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_325d116f-cdbe-4dbd-b7e6-769ba75bf210" data-linktype="relative-path">NC
+replica</a></span>. It is stored with the structure of the REPS_FROM <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete
+type</a></span>, which is represented by the following diagram.</p><p><b>Note</b>  In the following field descriptions,
+the source <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span> refers to the DC
+identified by the uuidDsaObj.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwReserved0</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cb</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cConsecutiveFailures</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>timeLastSuccess</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>timeLastAttempt</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulResultLastAttempt</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cbOtherDraOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cbOtherDra</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulReplicaFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>rtSchedule
+  (84 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwReserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>usnVec (24
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uuidDsaObj
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uuidInvocId
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uuidTransportObj
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwReserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cbPasDataOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwVersion (4 bytes): </b>The version of this
+structure. The value must be 1 or 2.<a id="Appendix_A_Target_49"></a><a aria-label="Product behavior note 49" href="e3b89556-4e48-467c-87b3-b4a737cc4999#Appendix_A_49" data-linktype="relative-path">&lt;49&gt;</a></p><p><b>dwReserved0 (4 bytes): </b>Unused. MUST be 0 and
+ignored.</p><p><b>cb (4 bytes): </b>The total number of bytes in the
+REPS_FROM structure.</p><p><b>cConsecutiveFailures (4 bytes): </b>An unsigned
+long that contains the number of consecutive failures that have occurred while
+replicating from the source DC.</p><p><b>timeLastSuccess (8 bytes): </b>A <span><a href="a72a16b9-73e4-41ca-a5c1-afc5fc54e175" data-linktype="relative-path">DSTIME</a></span>
+that contains the time of the last successful <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span> <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_e14454ba-5d3b-4fdb-99e5-50ecf632bd16" data-linktype="relative-path">cycle</a></span>
+with the source DC.</p><p><b>timeLastAttempt (8 bytes): </b>A DSTIME that
+contains the time of the last replication attempt with the source DC.</p><p><b>ulResultLastAttempt (4 bytes): </b>A Win32 error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>,
+that represents the result of the last replication attempt with the source DC.</p><p><b>cbOtherDraOffset (4 bytes): </b>The offset from
+the start of the structure to a location in the data field, specifying the
+start of a structure that contains a <span><a href="3d0d3777-9358-47dd-b555-34405f57f912" data-linktype="relative-path">NetworkAddress</a></span> for
+the source DC. If <b>dwVersion</b> is 1, it is an <span><a href="107b7c0e-0f0d-4fe2-8232-14ec3b78f40d" data-linktype="relative-path">MTX_ADDR</a></span> structure.
+If <b>dwVersion</b> is 2, it is a <span><a href="88a39619-6dbe-4ba1-8435-5966c1a490a7" data-linktype="relative-path">DSA_RPC_INST</a></span>
+structure.</p><p><b>cbOtherDra (4 bytes): </b>The size of the
+structure pointed to by <b>cbOtherDraOffset</b>.</p><p><b>ulReplicaFlags (4 bytes): </b>A <span><a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">ULONG</a></span>.
+This field contains a set of <span><a href="ac9c8a11-cd46-4080-acbf-9faa86344030" data-linktype="relative-path">DRS_OPTIONS</a></span> that
+are applicable when replicating from the source DC.</p><p><b>rtSchedule (84 bytes): </b>A <span><a href="42d7d8e8-794e-4279-9802-8b5916e8b099" data-linktype="relative-path">REPLTIMES</a></span>
+structure. If periodic replication is enabled (ulReplicaFlags contains
+DRS_PER_SYNC), this field identifies the 15-minute intervals within each week
+when a replication cycle is initiated with the source DC.</p><p><b>dwReserved1 (4 bytes): </b>Unused. MUST be 0 and
+ignored.</p><p><b>usnVec (24 bytes): </b>A <span><a href="595d11b8-6ca7-4a61-bd56-3e6a2b99b76b" data-linktype="relative-path">USN_VECTOR</a></span>
+structure. This holds 0 or the usnvecTo field from the response to the last
+IDL_DRSGetNCChanges replication request sent to the source DC.</p><p><b>uuidDsaObj (16 bytes): </b>A <span><a href="../ms-dtyp/49e490b8-f972-45d6-a3a4-99f924998d97" data-linktype="relative-path">GUID</a></span>
+that is the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_736b1076-d1cb-40b9-9247-d66cca6819d1" data-linktype="relative-path">DSA GUID</a></span> of the
+source DC.</p><p><b>uuidInvocId (16 bytes): </b>A GUID that contains
+the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_e7869b9a-61fa-46e3-89dd-fb3f57d1ba7a" data-linktype="relative-path">invocation
+ID</a></span> of the source DC.</p><p><b>uuidTransportObj (16 bytes): </b>A GUID that
+contains the <span><a href="../ms-ada3/937eb5c6-f6b3-4652-a276-5d6bb8979658" data-linktype="relative-path">objectGUID</a></span>
+of the <span><a href="../ms-adsc/299e17d3-4d05-445f-ae8c-9d5abf598873" data-linktype="relative-path">interSiteTransport</a></span>
+object that corresponds to the transport used for communication with the source
+DC.</p><p><b>dwReserved (4 bytes): </b>Unused. MUST be 0 and
+ignored.</p><p><b>cbPasDataOffset (4 bytes): </b>The offset from the
+start of the structure to a location in the data field, specifying the start of
+a PAS_DATA structure.</p><p><b>data (variable): </b>The storage for the rest of
+the structure. The structures pointed to by <b>cbOtherDraOffset</b> and <b>cbPasDataOffset</b>
+are packed into this field and can be referenced using the offsets.</p></div>

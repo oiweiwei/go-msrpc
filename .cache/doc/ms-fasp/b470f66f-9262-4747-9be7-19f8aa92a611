@@ -1,0 +1,78 @@
+<div class="content"><p> </p><p>The RRPC_FWDeleteConnectionSecurityRule method requests the
+server to delete the specified connection security rule in the policy contained
+in the policy store referenced by the handle specified in the <i>hPolicy</i>
+parameter.</p><dl>
+<dd>
+<div><pre> unsigned long RRPC_FWDeleteConnectionSecurityRule(
+   [in] FW_CONN_HANDLE rpcConnHandle,
+   [in] FW_POLICY_STORE_HANDLE hPolicy,
+   [in, string, ref] wchar_t* pRuleId
+ );
+</pre></div>
+</dd></dl><p><b>rpcConnHandle: </b>This parameter is an <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle that connects to the RPC interface of the Firewall and Advanced
+Security Protocol.</p><p><b>hPolicy: </b>This input parameter is an <span><a href="88f6ea4a-a946-4747-bb93-f142f1760752" data-linktype="relative-path">FW_POLICY_STORE_HANDLE</a></span>
+data type. The data type MUST contain an opened policy store handle,
+successfully opened with the RRPC_FWOpenPolicyStore (Opnum 0) method. The
+handle MUST have read/write access rights.</p><p><b>pRuleId: </b>This parameter is the pointer to a
+string that is the ID of the connection security rule the client wants to
+delete from the specified store.</p><dl>
+<dd>
+<p>This ID can be obtained by enumerating connection
+security rules using RRPC_FWEnumConnectionSecurityRules (Opnum 16) where the ID
+is returned in the <span><a href="18277e4c-628d-4423-9fe3-ba98601ba50d" data-linktype="relative-path">FW_CS_RULE2_0</a></span>
+structure.</p>
+</dd></dl><p><b>Return Values: </b>The method returns 0 if
+successful; if failed, it returns a nonzero error code. The field can take any
+specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+The following return values are common.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000032</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The specified store does not support this method; the
+  store might be read-only.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The <i>hPolicy</i> handle was not opened with
+  read/write access rights. The error is also returned if the client does not
+  have the required credentials to call the method.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified rule referenced by the <i>pRuleId</i>
+  member string is not found in the policy store. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+If any lower-layer errors are reported by RPC exception, this exception is
+converted to an error code and reported to higher-layer protocols via the
+return value.</p><p>This method deletes a connection security rule already
+stored in the connection security linked list of the memory representation of
+the store being modified. It uses this list to determine if the rule exists or
+not. It also writes through and deletes the rule from disk. If called on an
+online store, the removal of the connection security rule is also enforced.</p><p>The server MUST validate that the client is authorized to
+perform the requested operation (as defined in section <span><a href="b0c93352-8371-4d63-abca-b0cc8dbcc3d7" data-linktype="relative-path">3.1.4</a></span>)
+before executing this method.</p></div>

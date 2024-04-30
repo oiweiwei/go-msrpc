@@ -1,0 +1,44 @@
+<div class="content"><p>RpcAddJob does not perform any function but returns a
+nonzero Windows error code to indicate failure.</p><dl>
+<dd>
+<div><pre> DWORD RpcAddJob(
+   [in] PRINTER_HANDLE hPrinter,
+   [in] DWORD Level,
+   [in, out, unique, size_is(cbBuf), disable_consistency_check] 
+     BYTE* pAddJob,
+   [in] DWORD cbBuf,
+   [out] DWORD* pcbNeeded
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object that
+was opened using <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter (section 3.1.4.2.3)</a>,
+<a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx (section 3.1.4.2.15)</a>,
+<a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter (section 3.1.4.2.2)</a>,
+or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx (section 3.1.4.2.14)</a>.</p><p><b>Level: </b>A value that MUST be 0x00000001,
+0x00000002 or 0x00000003.</p><p><b>pAddJob: </b>A pointer to a buffer of undefined
+values. This value can be NULL if <i>cbBuf</i> is zero and <i>Level</i> is
+0x00000001.</p><p><b>cbBuf: </b>The size, in bytes, of the buffer
+pointed to by <i>pAddJob</i>. If <i>Level</i> is 0x00000002 or 0x00000003, this
+value SHOULD be greater than or equal to 10 bytes.</p><p><b>pcbNeeded: </b>A pointer to a variable that SHOULD
+receive zero.</p><p><b>Return Values: </b>This method MUST return a
+nonzero Windows error code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server SHOULD validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>Level</i> is valid, and if this verification
+fails, return ERROR_INVALID_LEVEL.</p>
+</li><li><p><span><span> 
+</span></span>If <i>Level</i> is 0x0000002 or 0x0000003, verify the following:</p>
+<ul><li><p><span><span>  </span></span>The
+value of <i>cbBuf</i> is greater than or equal to 10 bytes on 32-bit
+implementations and 18 bytes on 64-bit implementations. If this verification
+fails, return ERROR_INVALID_DATATYPE.</p>
+</li><li><p><span><span>  </span></span>At
+offset 0 from the beginning of the <i>pAddJob</i> buffer, there is a 32-bit
+value on 32-bit implementations and a 64-bit value on 64-bit implementations,
+between 0 and <i>cbBuf</i>, inclusive. If this verification fails, return
+ERROR_INVALID_LEVEL.</p>
+</li></ul><p>If parameter validation fails, the
+server SHOULD fail the operation immediately and return a nonzero error
+response to the client. Otherwise, the server MUST return
+ERROR_INVALID_PARAMETER.</p>
+</li></ul><p>This method MUST be implemented to ensure compatibility with
+protocol clients.</p></div>

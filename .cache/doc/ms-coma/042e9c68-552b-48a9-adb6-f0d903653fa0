@@ -1,0 +1,117 @@
+<div class="content"><p>The QueryCellArray is part of the representation of a query,
+as used in the <a href="8b39adcb-10ac-4869-a56d-e708484880b5" data-linktype="relative-path">ICatalogTableInfo::GetClientTableInfo (section 3.1.4.7.1)</a>,
+<a href="ba9d3f6d-94d8-4e1f-b31e-122ec038eca7" data-linktype="relative-path">ICatalogTableRead::ReadTable (section 3.1.4.8.1)</a>,
+and <a href="3fe6b10a-65d3-4bcd-8897-f84512d52f3b" data-linktype="relative-path">ICatalogTableWrite::WriteTable (section 3.1.4.9.1)</a>
+methods. It is always used along with a <a href="ee38b86f-4f17-4c3d-b71f-5b7ae876eb54" data-linktype="relative-path">QueryComparisonData (section 2.2.1.6)</a>
+structure.</p><p>QueryCellArray is a custom-marshaled type that is passed in
+a char* parameter. A QueryCellArray is marshaled as an array of zero or more <a href="0f823212-7c71-4f6a-91b7-fb709d827b97" data-linktype="relative-path">QueryCell</a> structures (a
+query with zero QueryCell structures MUST be represented by a NULL pointer).</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">QueryCell
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>QueryCell (variable): </b> MUST be a sequence of
+zero or more QueryCell structures, custom-marshaled in the negotiated format,
+as specified in QueryCell.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">QueryCell
+  0 (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">QueryCell
+  1 (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">QueryCell
+  n (variable)</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p> </p></div>

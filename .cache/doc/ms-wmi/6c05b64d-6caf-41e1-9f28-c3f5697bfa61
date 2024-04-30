@@ -1,0 +1,63 @@
+<div class="content"><p> </p><p>On the IWbemBackupRestore::Restore method invocation, the
+server MUST restore the contents of the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a99173af-90bf-473d-9a81-ff0ce9a85838" data-linktype="relative-path">CIM</a></span> database.</p><dl>
+<dd>
+<div><pre> HRESULT Restore(
+   [in, string] LPCWSTR strRestoreFromFile,
+   [in] long lFlags
+ );
+</pre></div>
+</dd></dl><p><b>strRestoreFromFile: </b>MUST be a UTF-16 string
+that MUST contain the name of the file from which to restore the CIM database.
+This parameter MUST NOT<a id="Appendix_A_Target_60"></a><a aria-label="Product behavior note 60" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_60" data-linktype="relative-path">&lt;60&gt;</a> be NULL.</p><p><b>lFlags: </b>Flags that affect the behavior of the
+Restore method. The flags&#39; behavior MUST be interpreted as specified in the
+following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_BACKUP_RESTORE_FORCE_SHUTDOWN</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>If the bit is not set and if there are any active
+  clients, the server MUST NOT perform the restore.</p>
+  <p>If the bit is set, the server MUST shut down any
+  active clients before performing the restore operation.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method MUST return an <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">HRESULT</a></span>
+value that MUST indicate the status of the method call. The server MUST return
+WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p>If the <b>WBEM_FLAG_BACKUP_RESTORE_FORCE_SHUTDOWN</b>
+flag is not set, the server MUST return WBEM_E_INVALID_PARAMETER.</p>
+</dd>
+<dd>
+<p>In case of failure, the server MUST return an
+HRESULT whose S (severity) bit is set as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section 2.1. The actual HRESULT value is implementation dependent.</p>
+</dd>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>In response to the IWbemBackupRestore::Restore method, the
+server MUST set the <b>RestoreInProgress</b> flag to True. The server MUST go
+through each entry in <b>NamespaceConnectionTable</b> and delete the
+corresponding <b>NamespaceConnection</b> object. The server MUST restore the
+CIM database from the file that is specified in the <i>strRestoreFromFile</i>
+parameter. The server SHOULD<a id="Appendix_A_Target_61"></a><a aria-label="Product behavior note 61" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_61" data-linktype="relative-path">&lt;61&gt;</a> verify
+that the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+making the call is allowed to restore the CIM database using
+implementation-specific authorization policy. If the security principal is not
+authorized, the server MUST return WBEM_E_ACCESS_DENIED.</p><p>The server MUST re-initialize the <b>NamespaceConnectionTable</b>
+with <b>NamespaceConnection</b> objects after the CIM database restoration is
+complete.</p><p>After the Restore operation is complete, the server MUST
+reset the <b>RestoreInProgress</b> flag to False.</p></div>

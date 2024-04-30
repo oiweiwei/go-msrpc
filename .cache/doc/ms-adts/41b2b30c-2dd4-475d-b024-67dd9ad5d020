@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/41b2b30c-2dd4-475d-b024-67dd9ad5d020" data-linktype="external">msdn link</a></p><p>The <b>CLAIMS_ARRAY</b> structure specifies an array of
+CLAIM_ENTRY structures and the associated <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_d5c7aa9b-65be-4dd4-a686-cd5253eb203d" data-linktype="relative-path">claims</a> source type.</p><dl>
+<dd>
+<div><pre> typedef struct _CLAIMS_ARRAY {
+   CLAIMS_SOURCE_TYPE usClaimsSourceType;
+   ULONG ulClaimsCount;
+   [size_is(ulClaimsCount)] PCLAIM_ENTRY ClaimEntries;
+ } CLAIMS_ARRAY,
+  *PCLAIMS_ARRAY;
+</pre></div>
+</dd></dl><p><b>usClaimsSourceType:</b>  Specifies the
+source of the claims.</p><p><b>ulClaimsCount:</b>  Specifies the number
+of <a href="252d7e10-eaf8-44e9-8b8d-205b384f5782" data-linktype="relative-path">CLAIM_ENTRY</a> elements
+in the <b>ClaimEntries</b> member of this structure.</p><p><b>ClaimEntries:</b>  An array that
+contains <b>ulClaimsCount</b> number of CLAIM_ENTRY elements.</p></div>

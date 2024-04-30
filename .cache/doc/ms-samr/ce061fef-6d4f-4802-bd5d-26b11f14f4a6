@@ -1,0 +1,16 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/ce061fef-6d4f-4802-bd5d-26b11f14f4a6" data-linktype="external">msdn link</a></p><p>The ENCRYPTED_LM_OWF_PASSWORD structure defines a block of
+encrypted data used in various methods to communicate sensitive information.</p><dl>
+<dd>
+<div><pre> typedef struct _ENCRYPTED_LM_OWF_PASSWORD {
+   char data[16];
+ } ENCRYPTED_LM_OWF_PASSWORD,
+  *PENCRYPTED_LM_OWF_PASSWORD,
+  ENCRYPTED_NT_OWF_PASSWORD,
+  *PENCRYPTED_NT_OWF_PASSWORD;
+</pre></div>
+</dd></dl><p><b>data:</b>  16 bytes of unstructured data
+used to hold an encrypted 16-byte hash (either an <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_58a72159-b1e9-4770-9b06-d7a6b16279a8" data-linktype="relative-path">LM hash</a> or an <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_7eb5bce8-bdc5-4d61-a3d9-263ada14ba1f" data-linktype="relative-path">NT hash</a>). The encryption
+algorithm is specified in section <a href="3f5ec79d-b449-4ab2-9423-c4dccbe0b184" data-linktype="relative-path">2.2.11.1</a>. The methods
+specified in sections <a href="41d7ca60-909f-4d0d-b85a-c9a35b5f2aaa" data-linktype="relative-path">3.1.5.10</a>
+and <a href="9bcad7d2-b8e1-4d28-a033-86040b7b3ce9" data-linktype="relative-path">3.1.5.13.6</a> use this
+structure and specify the type of hash and the encryption key.</p></div>

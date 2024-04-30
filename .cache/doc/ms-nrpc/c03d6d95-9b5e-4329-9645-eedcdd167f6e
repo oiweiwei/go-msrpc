@@ -1,0 +1,28 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c03d6d95-9b5e-4329-9645-eedcdd167f6e" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_GENERIC_INFO</b> structure defines a
+structure that contains logon information in binary format. Authentication
+protocols make use of this structure for passing generic logon data through the
+Netlogon <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure channel</a>
+to a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a> in the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> that contains the
+user account to use the domain&#39;s <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_00f35ba3-4dbb-4ff9-8e27-572a6aea1b15" data-linktype="relative-path">database</a>. For an example of
+using the <b>NETLOGON_GENERIC_INFO</b> structure, see any of the examples
+documented in <a href="../ms-apds/dd444344-fd7e-430e-b313-7e95ab9c338e" data-linktype="relative-path">[MS-APDS]</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_GENERIC_INFO {
+   NETLOGON_LOGON_IDENTITY_INFO Identity;
+   RPC_UNICODE_STRING PackageName;
+   ULONG DataLength;
+   [size_is(DataLength)] UCHAR * LogonData;
+ } NETLOGON_GENERIC_INFO,
+  *PNETLOGON_GENERIC_INFO;
+</pre></div>
+</dd></dl><p><b>Identity:</b> The <b>NETLOGON_LOGON_IDENTITY_INFO</b>
+structure, as specified in section <a href="81c44fa0-0a27-41b3-b607-de39cce7ea1d" data-linktype="relative-path">2.2.1.4.15</a>, contains
+information about the logon identity. The <b>LogonDomainName</b> field of the <b>NETLOGON_LOGON_IDENTITY_INFO</b>
+structure indicates the target domain that contains the user account.</p><p><b>PackageName:</b> Contains the name of the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_05fd3925-0672-4f24-9dd9-2b9d441eb333" data-linktype="relative-path">security provider</a>, such as
+Kerberos, to which the data will be delivered on the domain controller in the
+target domain that was specified in the <b>Identity</b> field. This name MUST
+match the name of an existing security provider; otherwise, the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_fb216516-748b-4873-8bdd-64c5f4da9920" data-linktype="relative-path">Security Support Provider
+Interface (SSPI)</a> (<a href="https://go.microsoft.com/fwlink/?LinkId=90536" data-linktype="external">[SSPI]</a>)
+returns a package not found error.</p><p><b>DataLength:</b> The length, in bytes, of <b>LogonData</b>.</p><p><b>LogonData:</b> A pointer to a block of binary data
+that contains the information to be sent to the security package referenced in <b>PackageName</b>.
+This data is opaque to Netlogon.</p></div>

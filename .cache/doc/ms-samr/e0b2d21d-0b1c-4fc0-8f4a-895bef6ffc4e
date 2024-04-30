@@ -1,0 +1,88 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/e0b2d21d-0b1c-4fc0-8f4a-895bef6ffc4e" data-linktype="external">msdn link</a></p><p>The SAM_VALIDATE_PERSISTED_FIELDS structure holds various
+characteristics about password state.</p><dl>
+<dd>
+<div><pre> typedef struct _SAM_VALIDATE_PERSISTED_FIELDS {
+   unsigned long PresentFields;
+   LARGE_INTEGER PasswordLastSet;
+   LARGE_INTEGER BadPasswordTime;
+   LARGE_INTEGER LockoutTime;
+   unsigned long BadPasswordCount;
+   unsigned long PasswordHistoryLength;
+   [unique, size_is(PasswordHistoryLength)] 
+     PSAM_VALIDATE_PASSWORD_HASH PasswordHistory;
+ } SAM_VALIDATE_PERSISTED_FIELDS,
+  *PSAM_VALIDATE_PERSISTED_FIELDS;
+</pre></div>
+</dd></dl><p><b>PresentFields:</b>  A bitmask to
+indicate which of the fields are valid. The following table shows the defined
+values. If a bit is set, the corresponding field is valid; if a bit is not set,
+the field is not valid.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SAM_VALIDATE_PASSWORD_LAST_SET</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>PasswordLastSet</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SAM_VALIDATE_BAD_PASSWORD_TIME</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>BadPasswordTime</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SAM_VALIDATE_LOCKOUT_TIME</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>LockoutTime</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SAM_VALIDATE_BAD_PASSWORD_COUNT</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>BadPasswordCount</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SAM_VALIDATE_PASSWORD_HISTORY_LENGTH</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>PasswordHistoryLength</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SAM_VALIDATE_PASSWORD_HISTORY</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>PasswordHistory</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>PasswordLastSet:</b>  This field
+represents the time at which the password was last reset or changed. It uses <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a>
+syntax.</p><p><b>BadPasswordTime:</b>  This field
+represents the time at which an invalid password was presented to either a
+password change request or an authentication request. It uses FILETIME syntax.</p><p><b>LockoutTime:</b>  This field represents
+the time at which the owner of the password data was locked out. It uses
+FILETIME syntax.</p><p><b>BadPasswordCount:</b>  Indicates how
+many invalid passwords have accumulated (see message processing for details).</p><p><b>PasswordHistoryLength:</b>  Indicates
+how many previous passwords are in the <b>PasswordHistory</b> field.</p><p><b>PasswordHistory:</b>  An array of hash
+values representing the previous <b>PasswordHistoryLength</b> passwords.</p></div>

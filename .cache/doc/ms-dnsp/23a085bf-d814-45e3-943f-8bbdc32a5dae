@@ -1,0 +1,89 @@
+<div class="content"><p> </p><p>In the <b>DNS_RPC_ZONE_INFO_LONGHORN</b> structure all
+fields have same definition as specified in section <b>DNS_RPC_ZONE_INFO_DOTNET</b>
+(section <span><a href="45b100df-57c2-4c84-86de-00b69d742372" data-linktype="relative-path">2.2.5.2.4.2</a></span>), with
+the following exceptions:</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcZoneInfoLonghorn {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   [string] char* pszZoneName;
+   DWORD dwZoneType;
+   DWORD fReverse;
+   DWORD fAllowUpdate;
+   DWORD fPaused;
+   DWORD fShutdown;
+   DWORD fAutoCreated;
+   DWORD fUseDatabase;
+   [string] char* pszDataFile;
+   PDNS_ADDR_ARRAY aipMasters;
+   DWORD fSecureSecondaries;
+   DWORD fNotifyLevel;
+   PDNS_ADDR_ARRAY aipSecondaries;
+   PDNS_ADDR_ARRAY aipNotify;
+   DWORD fUseWins;
+   DWORD fUseNbstat;
+   DWORD fAging;
+   DWORD dwNoRefreshInterval;
+   DWORD dwRefreshInterval;
+   DWORD dwAvailForScavengeTime;
+   PDNS_ADDR_ARRAY aipScavengeServers;
+   DWORD dwForwarderTimeout;
+   DWORD fForwarderSlave;
+   PDNS_ADDR_ARRAY aipLocalMasters;
+   DWORD dwDpFlags;
+   [string] char* pszDpFqdn;
+   [string] wchar_t* pwszZoneDn;
+   DWORD dwLastSuccessfulSoaCheck;
+   DWORD dwLastSuccessfulXfr;
+   DWORD fQueuedForBackgroundLoad;
+   DWORD fBackgroundLoadInProgress;
+   BOOL fReadOnlyZone;
+   DWORD dwLastXfrAttempt;
+   DWORD dwLastXfrResult;
+ } DNS_RPC_ZONE_INFO_LONGHORN,
+  *PDNS_RPC_ZONE_INFO_LONGHORN,
+  DNS_RPC_ZONE_INFO,
+  *PDNS_RPC_ZONE_INFO;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The DNS server
+management structure version number. It SHOULD<a id="Appendix_A_Target_43"></a><a aria-label="Product behavior note 43" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_43" data-linktype="relative-path">&lt;43&gt;</a> be set to
+0x00000002.</p><p><b>aipMasters:</b> A pointer to a structure of
+type DNS_ADDR_ARRAY (section <span><a href="56ba5fab-f304-4866-99a4-4f1c1f9247a3" data-linktype="relative-path">2.2.3.2.3</a></span>) that
+specifies a list of IP addresses of the remote <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a></span> servers that can
+be sources of information for this <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span> on which to
+perform <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_67ea3c5b-6b1e-40a3-ac20-3f7eaf056504" data-linktype="relative-path">zone transfers</a></span> by a
+secondary. This value is applicable for secondary, stub and <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_001ff1c1-e24f-4766-a5b1-a5802871054f" data-linktype="relative-path">forwarder</a></span>
+zones only and MUST be NULL for all other zone types.</p><p><b>aipSecondaries:</b> A pointer to a structure
+of type DNS_ADDR_ARRAY (section 2.2.3.2.3) that specifies a list of IP
+addresses of the remote DNS servers that are <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_85ec490e-c7d1-4b6d-80b3-23320e7e1c9d" data-linktype="relative-path">secondary DNS servers</a></span>
+for this zone, or NULL if there are no secondary DNS servers. If <b>fSecureSecondaries</b>
+is set to ZONE_SECSECURE_LIST_ONLY, then only zone transfers from IP addresses
+in this list will be honored.</p><p><b>aipNotify:</b> A pointer to a structure of
+type DNS_ADDR_ARRAY (section 2.2.3.2.3) that specifies a list of IP addresses
+of the remote DNS servers that are secondaries for this zone, for which this
+DNS server is acting as master and the DNS server will send zone notifications
+to these secondary servers, as directed by the value of <b>fNotifyLevel</b>
+above.</p><p><b>aipScavengeServers:</b> A pointer to a
+structure of type DNS_ADDR_ARRAY (section 2.2.3.2.3) that specifies a list of
+IP addresses of the DNS servers that will perform scavenging for this zone.
+This value is applicable for zones of type DNS_ZONE_TYPE_PRIMARY (section <span><a href="27e138a7-110c-44a4-afcb-b95f35f00306" data-linktype="relative-path">2.2.5.1.1</a></span>)
+only. If this value is NULL, there are no restrictions on which DNS server can
+perform scavenging for this zone.</p><p><b>aipLocalMasters:</b> A pointer to a structure
+of type DNS_ADDR_ARRAY (section 2.2.3.2.3) that specifies a list of IP addresses
+of <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_c5f78ae9-df7c-47ee-92f5-5e4f92198cd0" data-linktype="relative-path">primary
+DNS servers</a></span> for this zone. If this value is not NULL then it
+overrides the masters servers list configured in the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_04fd0982-6bb6-44f1-817e-795715049c50" data-linktype="relative-path">directory server</a></span>.</p><p><b>fQueuedForBackgroundLoad:</b> This MUST be
+set to 0x00000001 if this zone is has not yet been loaded from persistent
+storage.</p><p><b>fBackgroundLoadInProgress:</b> This MUST be
+set to 0x00000001 if this zone is currently being loaded from persistent storage,
+or 0x00000000 if it has been loaded.</p><p><b>fReadOnlyZone:</b> This MUST be set to
+0x00000001 if this zone is backed by a read-only store that will not accept
+write operations, or 0x00000000 if not.</p><p><b>dwLastXfrAttempt:</b> The <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_391ec606-c265-48f2-aeeb-3245b5503121" data-linktype="relative-path">time-stamp</a></span>
+at which last zone transfer was attempted by a DNS server. This field is
+applicable only for zones which are secondary or not-authoritative. For all
+other zones senders MUST set this value to zero and receivers MUST ignore it. </p><p><b>dwLastXfrResult:</b> The result of the last
+zone transfer attempted by server. This field is applicable only for zones
+which are secondary or not-authoritative, and in this case it MUST be either a
+Win32 error code, or 0xFFFFFFFF to indicate that a zone transfer is currently
+in progress. For all other zones senders MUST set this value to zero and
+receivers MUST ignore it. </p></div>

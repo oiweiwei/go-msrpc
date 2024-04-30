@@ -1,0 +1,77 @@
+<div class="content"><p>The CreateAutoApplyQuota method creates a <a href="673869d0-b96e-4e50-abcf-acee7008fc40" data-linktype="relative-path">Non-Persisted Auto Apply Quota
+Instance (section 3.2.1.2.2.2)</a> for the specified path.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_QUOTA_MANAGER | 0x02)] HRESULT CreateAutoApplyQuota(
+   [in] BSTR quotaTemplateName,
+   [in] BSTR path,
+   [out, retval] IFsrmAutoApplyQuota** quota
+ );
+</pre></div>
+</dd></dl><p><b>quotaTemplateName: </b>Contains the <b>Name</b>
+property of the <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_de8f825c-1256-4d47-9b99-df9c4827c2e0" data-linktype="relative-path">directory
+quota template</a> from which to derive the <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_81039d49-4277-4f11-8251-7f1ab55eef77" data-linktype="relative-path">auto apply quota</a>. The
+maximum length of this string MUST be 4,000 characters.</p><p><b>path: </b>Contains the path of the local directory
+for the auto apply quota. The maximum length of this string MUST be 260
+characters.</p><p><b>quota: </b>Pointer to an <b>IFsrmAutoApplyQuota</b>
+interface pointer (section <a href="b1d6c4b7-738d-4305-983c-737c9d72ffdd" data-linktype="relative-path">3.2.4.2.17</a>)
+that upon completion points to the newly created Non-Persisted Auto Apply Quota
+Instance. To have the Non-Persisted Auto Apply Quota Instance added to the
+server&#39;s <b>List of Persisted Auto Apply Quota Instances</b> (section <a href="38a86a9b-0221-493b-80e4-3dab6560c53b" data-linktype="relative-path">3.2.1.2</a>), the caller MUST
+call <a href="665a6157-6349-446e-aabb-9a1c3c66f295" data-linktype="relative-path">Commit (section 3.2.4.2.17.1)</a>.</p><dl>
+<dd>
+<p>The caller MUST release the Non-Persisted Auto Apply
+Quota Instance when the caller is done with it.</p>
+</dd></dl><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified auto apply quota could not be found. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045303</p>
+  <p>FSRM_E_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>The auto apply quota for the specified path already
+  exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One of the <i>quota</i> parameters is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>quota</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate processing
+and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+perform the following actions or return a nonzero error code.</p><ul><li><p><span><span> 
+</span></span>Create a new Non-Persisted Auto Apply Quota Instance with the
+properties of the named directory quota template and the <b>Folder path</b> set
+to <i>path</i>.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>quota</i> to the <b>IFsrmAutoApplyQuota</b> interface of
+the new Non-Persisted Auto Apply Quota Instance.</p>
+</li></ul><p>The new Non-Persisted Auto Apply Quota Instance MUST NOT be
+associated with an existing <a href="998fa9b8-cd13-4c87-a1e1-934ab8adf52b" data-linktype="relative-path">Persisted
+Auto Apply Quota (section 3.2.1.2.2.1)</a>.</p><p>If a directory quota template with the specified name does
+not exist, the server MUST return FSRM_E_NOT_FOUND.</p></div>

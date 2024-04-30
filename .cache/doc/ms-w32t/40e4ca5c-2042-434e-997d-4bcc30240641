@@ -1,0 +1,71 @@
+<div class="content"><p>The W32TIME_CONFIGURATION_ADVANCED structure defines the
+advanced configuration data of the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9846d08d-ad98-4bb9-a1e7-1f0bfbdd1113" data-linktype="relative-path">time service</a>.<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a></p><p>The structure is defined to match the advanced configuration
+of the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_43e51d0a-ac6a-4662-a99a-8f3029b78caf" data-linktype="relative-path">W32Time</a>
+implementation. Fields in the structure that are not valid in other
+implementations SHOULD have their corresponding configuration-setting type
+fields set to W32TIME_CONFIGURATION_SETTING_UNDEFINED. For more information on
+W32Time, see <a href="https://go.microsoft.com/fwlink/?LinkId=90586" data-linktype="external">[WTSREF]</a>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned __int32 ulSize;
+   unsigned __int32 ulFrequencyCorrectRate;
+   unsigned __int32 ulPollAdjustFactor;
+   unsigned __int32 ulLargePhaseOffset;
+   unsigned __int32 ulSpikeWatchPeriod;
+   unsigned __int32 ulLocalClockDispersion;
+   unsigned __int32 ulHoldPeriod;
+   unsigned __int32 ulPhaseCorrectRate;
+   unsigned __int32 ulUpdateInterval;
+   unsigned __int32 ulFrequencyCorrectRateFlag;
+   unsigned __int32 ulPollAdjustFactorFlag;
+   unsigned __int32 ulLargePhaseOffsetFlag;
+   unsigned __int32 ulSpikeWatchPeriodFlag;
+   unsigned __int32 ulLocalClockDispersionFlag;
+   unsigned __int32 ulHoldPeriodFlag;
+   unsigned __int32 ulPhaseCorrectRateFlag;
+   unsigned __int32 ulUpdateIntervalFlag;
+ } W32TIME_CONFIGURATION_ADVANCED,
+  *PW32TIME_CONFIGURATION_ADVANCED;
+</pre></div>
+</dd></dl><p><b>ulSize:</b>  The size, in bytes, of this
+structure.</p><p><b>ulFrequencyCorrectRate:</b>  The <b>FrequencyCorrectRate</b>
+element value (see section <a href="1da649d7-3edf-4a9a-98c2-907ecacd1633" data-linktype="relative-path">3.2.1.1</a>).</p><p><b>ulPollAdjustFactor:</b>  The <b>PollAdjustFactor</b>
+element value (see section 3.2.1.1).</p><p><b>ulLargePhaseOffset:</b>  An integer that
+indicates the threshold that determines whether or not a time sample indicates
+a spike, in 100-nanosecond units. If the time difference of the time sample is
+more than the value, the sample indicates a possible spike, in which case the
+time service changes its state, as specified in section <a href="b4abb4b0-6d6e-41e4-bd41-d54980d0598a" data-linktype="relative-path">2.2.7</a>. For more
+information on spike detection, see <a href="https://go.microsoft.com/fwlink/?LinkId=90237" data-linktype="external">[NTP-TR9733i]</a> and <a href="https://go.microsoft.com/fwlink/?LinkId=90236" data-linktype="external">[NTP-TR9733]</a> section
+4.</p><p><b>ulSpikeWatchPeriod:</b>  An integer that
+indicates the time interval, in seconds, that determines how long the time
+service watches a spike condition. If time samples constantly indicate spikes
+in this time interval, the time service becomes unsynchronized, in which case
+the time service MUST change its state, as described in section 2.2.7. For more
+information on spike detection, see [NTP-TR9733i] and [NTP-TR9733] section 4.3.</p><p><b>ulLocalClockDispersion:</b>  An integer
+that indicates the local clock dispersion, in seconds. The root dispersion is
+set to this value if the time service runs as a primary server, or if the root
+dispersion is invalid in the received response. For details on dispersion and
+root dispersion, see <a href="https://go.microsoft.com/fwlink/?LinkId=90272" data-linktype="external">[RFC1305]</a>
+section 3.2.</p><p><b>ulHoldPeriod:</b>  An integer that
+indicates the number of time samples during which the spike detection is
+disabled when the time service is in the HOLD state, as specified in section
+2.2.7. For more information on the HOLD state, see [NTP-TR9733i] and
+[NTP-TR9733] section 4.3. </p><p><b>ulPhaseCorrectRate:</b>  The <b>PhaseCorrectRate</b>
+element value (see section 3.2.1.1).</p><p><b>ulUpdateInterval:</b>  The <b>UpdateInterval</b>
+element value (see section 3.2.1.1).</p><p><b>ulFrequencyCorrectRateFlag:</b>  An
+integer that indicates the source of the configuration setting for <b>ulFrequencyCorrectRate</b>,
+as specified in section <a href="cda8dd8e-ef99-4b2d-b747-6077e5d5ddf2" data-linktype="relative-path">2.2.6</a>.</p><p><b>ulPollAdjustFactorFlag:</b>  An integer
+that indicates the source of the configuration setting for <b>ulPollAdjustFactor</b>,
+as specified in section 2.2.6.</p><p><b>ulLargePhaseOffsetFlag:</b>  An integer
+that indicates the source of the configuration setting for <b>ulLargePhaseOffset</b>,
+as specified in section 2.2.6.</p><p><b>ulSpikeWatchPeriodFlag:</b>  An integer
+that indicates the source of the configuration setting for <b>ulSpikeWatchPeriod</b>,
+as specified in section 2.2.6.</p><p><b>ulLocalClockDispersionFlag:</b>  An
+integer that indicates the source of the configuration setting for <b>ulLocalClockDispersion</b>,
+as specified in section 2.2.6.</p><p><b>ulHoldPeriodFlag:</b>  An integer that
+indicates the source of the configuration setting for <b>ulHoldPeriod</b>, as
+specified in section 2.2.6.</p><p><b>ulPhaseCorrectRateFlag:</b>  An integer
+that indicates the source of the configuration setting for <b>ulPhaseCorrectRate</b>,
+as specified in section 2.2.6.</p><p><b>ulUpdateIntervalFlag:</b>  An integer
+that indicates the source of the configuration setting for <b>ulUpdateInterval</b>,
+as specified in section 2.2.6.</p></div>

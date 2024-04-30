@@ -1,0 +1,42 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/38155d03-b5dc-445d-9fcb-a6938be5972d" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_DELTA_ALIAS</b> structure contains
+information about a SAM <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_d046b6e2-3f79-47e1-87d7-754566744dcd" data-linktype="relative-path">alias</a>.
+This structure is used to replicate the SAM alias data from the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a> to a BDC.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_DELTA_ALIAS {
+   RPC_UNICODE_STRING Name;
+   ULONG RelativeId;
+   SECURITY_INFORMATION SecurityInformation;
+   ULONG SecuritySize;
+   [size_is(SecuritySize)] UCHAR * SecurityDescriptor;
+   RPC_UNICODE_STRING Comment;
+   RPC_UNICODE_STRING DummyString2;
+   RPC_UNICODE_STRING DummyString3;
+   RPC_UNICODE_STRING DummyString4;
+   ULONG DummyLong1;
+   ULONG DummyLong2;
+   ULONG DummyLong3;
+   ULONG DummyLong4;
+ } NETLOGON_DELTA_ALIAS,
+  *PNETLOGON_DELTA_ALIAS;
+</pre></div>
+</dd></dl><p><b>Name:</b> An <b>RPC_UNICODE_STRING</b> structure,
+as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/94a16bb6-c610-4cb9-8db6-26f15f560061" data-linktype="relative-path">2.3.10</a>,
+that contains the alias name.</p><p><b>RelativeId:</b> The <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RID</a> for the alias.</p><p><b>SecurityInformation:</b> A <b>SECURITY_INFORMATION</b>
+structure, as specified in [MS-DTYP] section <a href="../ms-dtyp/23e75ca3-98fd-4396-84e5-86cd9d40d343" data-linktype="relative-path">2.4.7</a>,
+that contains security settings for the alias.</p><p><b>SecuritySize:</b> The size, in bytes, of the <b>SecurityDescriptor</b>
+field.</p><p><b>SecurityDescriptor:</b> A pointer to a <b>SECURITY_DESCRIPTOR</b>
+structure, as specified in [MS-DTYP] section <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a>,
+that describes the security information for the alias object.</p><p><b>Comment:</b> An <b>RPC_UNICODE_STRING</b> that
+contains the administrative comment string for the alias.</p><p><b>DummyString2:</b> A <b>STRING</b> structure, as
+defined in section <a href="4a896c09-a39c-4878-94f0-9e4f8a419f32" data-linktype="relative-path">2.2.1.1.2</a>,
+that MUST contain 0 for the <b>Length</b> field, 0 for the <b>MaximumLength</b>
+field, and NULL for the <b>Buffer</b> field. It is ignored upon receipt. The
+Netlogon usage of dummy fields is described in section <a href="bbc95890-215e-49a9-8bb8-92e723548046" data-linktype="relative-path">1.3.8.1.2</a>.</p><p><b>DummyString3:</b> See definition for <b>DummyString2</b>
+field.</p><p><b>DummyString4:</b> See definition for <b>DummyString2</b>
+field.</p><p><b>DummyLong1:</b> MUST be set to zero and MUST be
+ignored on receipt. The Netlogon usage of dummy fields is described in section
+1.3.8.1.2.</p><p><b>DummyLong2:</b> See definition for <b>DummyLong1</b>
+field.</p><p><b>DummyLong3:</b> See definition for <b>DummyLong1</b>
+field.</p><p><b>DummyLong4:</b> See definition for <b>DummyLong1</b>
+field.</p></div>

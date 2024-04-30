@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The DRS_MSG_NT4_CHGLOG_REPLY union defines the response
+messages received from the <span><a href="6e000eb6-60fd-4d6c-ae82-bb6479df02fa" data-linktype="relative-path">IDL_DRSGetNT4ChangeLog</a></span>
+method. Only one version, identified by <i>pdwOutVersion^</i> = 1, is currently
+defined.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_NT4_CHGLOG_REPLY_V1 V1;
+ } DRS_MSG_NT4_CHGLOG_REPLY;
+</pre></div>
+</dd></dl><p><b>V1:</b>  The version 1 reply.</p></div>

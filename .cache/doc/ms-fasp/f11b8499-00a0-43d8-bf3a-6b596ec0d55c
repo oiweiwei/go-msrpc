@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>This structure represents a range of IPv4 addresses within
+the IPv4 address space.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_IPV4_ADDRESS_RANGE {
+   unsigned long dwBegin;
+   unsigned long dwEnd;
+ } FW_IPV4_ADDRESS_RANGE,
+  *PFW_IPV4_ADDRESS_RANGE;
+</pre></div>
+</dd></dl><p><b>dwBegin:</b>  The first IPv4 address of
+the range in the IPv4 address space defined by this structure. The address is
+included in the range.</p><p><b>dwEnd:</b>  The last IPv4 address of the
+range in the IPv4 address space defined by this structure. The address is
+included in the range.</p><p>Valid FW_IPV4_ADDRESS_RANGE
+structures MUST have a <b>dwBegin</b> value less than or equal to the <b>dwEnd</b>
+value. Structures with <b>dwBegin</b> equal to <b>dwEnd</b> represent a single
+IPv4 address.</p></div>

@@ -1,0 +1,11 @@
+<div class="content"><p>The SC_ENUM_TYPE enumeration specifies information levels
+for the <a href="f5512859-cae9-4a10-9636-eefeb0abd9a4" data-linktype="relative-path">REnumServicesStatusExA</a>
+and <a href="fdb7df2e-341e-4dcc-ad5f-d16c2ac51466" data-linktype="relative-path">REnumServicesStatusExW</a>
+methods.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum 
+ {
+   SC_ENUM_PROCESS_INFO = 0
+ } SC_ENUM_TYPE;
+</pre></div>
+</dd></dl><p><b>SC_ENUM_PROCESS_INFO:</b>  Information level.</p></div>

@@ -1,0 +1,72 @@
+<div class="content"><p> </p><p>The DFS_INFO_107 structure contains information about a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span>
+or <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS
+link</a></span>, including comment, state, time-out, security descriptor, and <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0b8086c9-d025-45b8-bf09-6b5eca72713e" data-linktype="relative-path">DFS</a></span>
+behaviors specified by property flags. </p><p>The DFS_INFO_107 structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_107 {
+   [string] WCHAR* Comment;
+   DWORD State;
+   unsigned long Timeout;
+   unsigned long PropertyFlagMask;
+   unsigned long PropertyFlags;
+   ULONG SecurityDescriptorLength;
+   [size_is(SecurityDescriptorLength)] 
+     PUCHAR pSecurityDescriptor;
+ } DFS_INFO_107;
+</pre></div>
+</dd></dl><p><b>Comment:</b>  A pointer to a
+null-terminated <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> string
+containing a comment associated with the DFS root or DFS link that is for
+informational purposes. This string has no protocol-specified restrictions on
+length or content. The comment is meant for human readability and does not
+affect server functionality.</p><p><b>State:</b>  The states that can be set
+for links. The following table lists such states. All other values are reserved
+and MUST NOT be used. For more information about some of these states, see
+section <span><a href="23dff7a2-3ba8-4fd7-95dd-8e518024362b" data-linktype="relative-path">2.2.2.13</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Indicates that the existing state MUST NOT be changed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_VOLUME_STATE_OFFLINE</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The specified DFS link is offline or unavailable. This
+  flag is valid only for a DFS link.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_VOLUME_STATE_ONLINE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The specified DFS link is available. This flag is
+  valid only for a DFS link.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Timeout:</b>  The time-out, in seconds,
+associated with the root or link and used in a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c6f2eabf-2138-4f97-a788-5d6a41a27bdd" data-linktype="relative-path">DFS referral</a></span>
+response to a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c2787719-60e0-4b69-8efe-c33edf9b40b2" data-linktype="relative-path">DFS client</a></span>.</p><p><b>PropertyFlagMask:</b>  Indicates which
+bits in the <b>PropertyFlags</b> field are valid.</p><p><b>PropertyFlags:</b>  Refers to the <b>PropertyFlags</b>
+field of <span><a href="2da0a76c-4565-4766-9bba-3b6cd1e79374" data-linktype="relative-path">DFS_INFO_103</a></span>, as
+specified in section 2.2.4.3.</p><p><b>SecurityDescriptorLength:</b>  The
+length, in bytes, of the buffer that the <b>pSecurityDescriptor</b> field
+points to.</p><p><b>pSecurityDescriptor:</b>  A
+self-relative security descriptor to be associated with a DFS link. For more
+information on security descriptors, see <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a></span>.</p></div>

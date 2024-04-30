@@ -1,0 +1,15 @@
+<div class="content"><p>The GetMyRoles method retrieves the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_798a6409-d481-4017-a35e-13a65f3c6886" data-linktype="relative-path">CA roles</a>, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89839" data-linktype="external">[CIMC-PP]</a>, assigned to
+the user who calls the method.</p><dl>
+<dd>
+<div><pre> HRESULT GetMyRoles(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [out] LONG* pdwRoles
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.
+</p><p><b>pdwRoles: </b>A bitwise-OR combination of zero or
+more <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> security values
+based on the CA implementation. Microsoft CA permissions are defined in section
+<a href="509360cf-9797-491e-9dd1-795f63cb1538" data-linktype="relative-path">3.1.1.7</a>.</p><p>For <i>pdwRoles</i>, the server MUST return a signed integer
+that represents the CA roles assigned to the caller.</p></div>

@@ -1,0 +1,111 @@
+<div class="content"><p> </p><p>The NspiResolveNames method takes a set of string values in
+an 8-bit character set and performs <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_74f3dfcc-c54c-4005-8a9e-d88b95c5d33b" data-linktype="relative-path">ANR</a></span> (as specified in
+<span><a href="f31bce37-0400-4fa3-9bc6-d77ce2aba12e" data-linktype="relative-path">3.1.1.6</a></span>)
+on those strings. The server reports the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_42ecf4ed-a7e5-4044-a1f0-f67ca58fb4b6" data-linktype="relative-path">MId</a></span> that are the
+result of the ANR process. Certain property values are returned for any valid
+MIds identified by the ANR process.</p><dl>
+<dd>
+<div><pre> long NspiResolveNames(
+   [in] NSPI_HANDLE hRpc,
+   [in] DWORD Reserved,
+   [in] STAT* pStat,
+   [in, unique] PropertyTagArray_r* pPropTags,
+   [in] StringsArray_r* paStr,
+   [out] PropertyTagArray_r** ppMIds,
+   [out] PropertyRowSet_r** ppRows
+ );
+</pre></div>
+</dd></dl><p><b>hRpc: </b>An <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+as specified in section <span><a href="67195f6a-2002-4d81-b279-ba8b0aefb4af" data-linktype="relative-path">2.3.9</a></span>.</p><p><b>Reserved: </b>A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value reserved for future use. </p><p><b>pStat: </b>A reference to a <span><a href="5902bec9-3124-4725-8a8f-1a50282ed023" data-linktype="relative-path">STAT</a></span>
+block describing a logical position in a specific <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_a34b031c-18b2-40e1-acfa-3b73cc71e80b" data-linktype="relative-path">address book container</a></span>.</p><p><b>pPropTags: </b>The value NULL or a reference to a <span><a href="9dc42856-90da-4df9-85ca-f8307db84659" data-linktype="relative-path">PropertyTagArray_r</a></span>
+value containing a list of the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_7eb84614-827d-4b68-a71c-dd94eb0ad27f" data-linktype="relative-path">proptags</a></span> of the
+columns that the client requests to be returned for each row returned. </p><p><b>paStr: </b>A <span><a href="2c7ac29c-0124-464e-a018-16950cfcfabb" data-linktype="relative-path">StringsArray_r</a></span>
+value. Specifies the values the client is requesting the server to do ANR on.
+The server MUST apply any necessary character set conversion as specified in <span><a href="522c7a16-a670-4bea-9c11-74a3d7dfedbe" data-linktype="relative-path">String
+Handling (section 3.1.1.2)</a></span>.</p><p><b>ppMIds: </b>A PropertyTagArray_r value. On return,
+contains a list of MIds matching the array of strings, as specified in the
+input parameter <i>paStr</i>. </p><p><b>ppRows: </b>A reference to a <span><a href="0c81c77a-009c-4077-991e-a2ce23584adf" data-linktype="relative-path">PropertyRowSet_r</a></span>
+value. Contains the address book container rows that the server returns in
+response to the request. </p><p><b>Return Values: </b>The server returns a long value
+specifying the return status of the method.</p><p>Exceptions Thrown</p><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>Server Processing Rules</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints: </p><ol><li><p><span>    </span>If the <b>CodePage</b>
+field of the input parameter <i>pStat</i> contains the value CP_WINUNICODE, the
+server MUST return one of the return values documented in section <span><a href="03bb2ea3-f2e9-4adb-ab46-751aca824b72" data-linktype="relative-path">2.2.2</a></span>. 
+No further constraints are applied to server processing of this method; in this
+case server behavior is undefined.  Note especially that there is no constraint
+on the data the server returns in any output parameter other than the return
+value, nor is there any constraint on how or if the server changes its state.</p>
+</li><li><p><span>    </span>If the input
+parameter Reserved1 contains any value other than 0, the server MUST return one
+of the return values documented in section 2.2.2.  No further constraints are
+applied to server processing of this method; in this case server behavior is
+undefined.  Note especially that there is no constraint on the data the server
+returns in any output parameter other than the return value, nor is there any
+constraint on how or if the server changes its state.</p>
+</li><li><p><span>    </span>If the server
+returns any return value other than Success, the server MUST return the value
+NULL in the return parameters <i>ppMIds</i> and <i>ppRows</i>.</p>
+</li><li><p><span>    </span>The server MAY
+make additional validations as described in section <span><a href="39bcbcd7-fa18-4eb2-a2ae-c598b6683185" data-linktype="relative-path">5</a></span>. If the server
+chooses to limit the visibility of data based on these validations, the server
+MUST proceed as if that data did not exist in the address book. See the product
+behavior note cited in section <span><a href="36c0f768-1fdd-4709-9875-6c387b107560" data-linktype="relative-path">5.1</a></span> for more
+information.</p>
+</li><li><p><span>    </span>If the server is
+unable to locate the address book container specified by the <b>ContainerID</b>
+field in the input parameter <i>pStat</i>, the server MUST return the return
+value InvalidBookmark.</p>
+</li><li><p><span>    </span>The server
+constructs a list of the MIds defined in section <span><a href="24c55599-f2f1-42e8-a166-20057876c85d" data-linktype="relative-path">2.2.9</a></span> to return to
+the client. These MIds are those that result from applying the ANR process (see
+section 3.1.1.6) to the strings in the input parameter <i>paStr</i>. This list
+is in a one-to-one order preserving correspondence with the strings in the
+input parameter <i>paStr</i>. The server MUST return this list of MIds in the
+output parameter <i>ppMIds</i>.</p>
+</li><li><p><span>    </span>Subject to the
+prior constraints, the server MUST construct an PropertyRowSet_r to return to
+the client. This PropertyRowSet_r MUST be exactly the same PropertyRowSet_r
+that would be returned via the method <span><a href="f38b81ac-23d8-4040-a12e-aa4d106f5fc5" data-linktype="relative-path">NspiQueryRows</a></span> with
+the following parameters:</p>
+<ol><li><p><span>   
+</span>The NspiResolveNames parameter <i>hRpc</i> is used as the NspiQueryRows
+parameter <i>hRpc</i>.</p>
+</li><li><p><span>   
+</span>The value 0 is used as the NspiQueryRows parameter <i>dwFlag</i>.</p>
+</li><li><p><span>   
+</span>The NspiResolveNames parameter <i>pStat</i> is used as the NspiQueryRows
+parameter <i>pStat</i>.</p>
+</li><li><p><span>   
+</span>The number of valid MIds constructed for the NspiResolveNames output
+parameter <i>ppMIds</i> (that is, all those MIds not equal to MID_AMBIGUOUS or
+MID_UNRESOLVED) is used as the NspiQueryRows parameter <i>dwETableCount</i>.</p>
+</li><li><p><span>   
+</span>The list of valid MIds constructed for the NspiResolveNames output
+parameter <i>ppMIds</i> (that is, all those MIds not equal to MID_AMBIGUOUS or
+MID_UNRESOLVED) is used as the NspiQueryRows parameter <i>lpETable</i>. These
+MIds are expressed as a simple array of DWORD values rather than as a
+PropertyTagArray_r value.</p>
+</li><li><p><span>   
+</span>The number of valid MIds constructed for the NspiResolveNames output
+parameter <i>ppMIds</i> (that is, all those MIds not equal to MID_AMBIGUOUS or
+MID_UNRESOLVED) is used as the NspiQueryRows parameter <i>Count</i>.</p>
+</li><li><p><span>   
+</span>The NspiResolveNames parameter <i>pPropTags</i> is used as the
+NspiQueryRows parameter <i>pPropTags</i>.</p>
+<p>And the additional
+constraint:</p>
+</li></ol><ul><li><p><span><span>  </span></span>If
+the NspiQueryRows returns Success or ErrorsReturned, the method MUST return the
+number of rows specified by the input parameter <i>Count</i>.</p>
+<p>If the method NspiQueryRows
+with the specified parameters and additional constraint would return any value
+other than Success or ErrorsReturned, the NspiResolveNames method MUST return
+that error code. If the NspiQueryRows would return either Success or
+ErrorsReturned, the server MUST return the constructed PropertyRowSet_r in the
+output parameter <i>ppRows</i>.</p>
+</li></ul></li><li><p><span>    </span>If no other
+return values have been specified by these constraints, the server MUST return
+the return value Success.</p>
+</li></ol></div>

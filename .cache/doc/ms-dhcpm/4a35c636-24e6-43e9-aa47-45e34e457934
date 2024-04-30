@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The <b>DHCP_POL_EXPR</b> structure specifies an individual
+expression of a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_52323544-69e0-4172-8921-2711cbda988e" data-linktype="relative-path">policy</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_POL_EXPR {
+   DWORD ParentExpr;
+   DHCP_POL_LOGIC_OPER Operator;
+ } DHCP_POL_EXPR,
+  *PDHCP_POL_EXPR,
+  *LPDHCP_POL_EXPR;
+</pre></div>
+</dd></dl><p><b>ParentExpr:</b>  This member is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and contains the index of the parent expression in the <b>DHCP_POL_EXPR_ARRAY</b>
+structure (section <span><a href="e24fe009-07df-4476-a36b-9701c6162a19" data-linktype="relative-path">2.2.1.2.108</a></span>) associated
+with the policy.</p><p><b>Operator:</b>  This member is of type <b>DHCP_POL_LOGIC_OPER</b>
+enumeration (section <span><a href="fd910cd5-9c0d-4d19-a88a-c7c941ead177" data-linktype="relative-path">2.2.1.1.24</a></span>) and
+specifies the logical operator of this expression.</p></div>

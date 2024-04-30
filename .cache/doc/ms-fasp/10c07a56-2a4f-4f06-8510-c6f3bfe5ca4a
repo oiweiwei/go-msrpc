@@ -1,0 +1,118 @@
+<div class="content"><p> </p><p>The RRPC_FWGetGlobalConfig method retrieves the value of a
+global policy configuration option. The client specifies to the server from
+what store this value MUST be retrieved and in what specific configuration
+option it is interested.</p><dl>
+<dd>
+<div><pre> unsigned long RRPC_FWGetGlobalConfig(
+   [in] FW_CONN_HANDLE rpcConnHandle,
+   [in] unsigned short BinaryVersion,
+   [in] FW_STORE_TYPE StoreType,
+   [in, range(FW_GLOBAL_CONFIG_INVALID+1, FW_GLOBAL_CONFIG_MAX-1)] 
+     FW_GLOBAL_CONFIG configID,
+   [in] unsigned long dwFlags,
+   [in, out, unique, size_is(cbData), length_is(*pcbTransmittedLen)] 
+     unsigned char* pBuffer,
+   [in] unsigned long cbData,
+   [in, out] unsigned long* pcbTransmittedLen,
+   [out] unsigned long* pcbRequired
+ );
+</pre></div>
+</dd></dl><p><b>rpcConnHandle: </b>This parameter is an <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle that connects to the RPC interface of the Firewall and Advanced
+Security Protocol.</p><p><b>BinaryVersion: </b>This parameter specifies the
+RPC interface binary version. This implies versions of the methods and versions
+of the structures.</p><p><b>StoreType: </b>This parameter specifies the policy
+store from which the client wants to retrieve the configuration option value.</p><p><b>configID: </b>This parameter specifies the
+specific global policy configuration option the client is interested in
+retrieving.</p><p><b>dwFlags: </b>This parameter is a combination of
+flags from the <span><a href="eb0dce3b-08d3-4c32-b9fe-c8bdaf8e256a" data-linktype="relative-path">FW_CONFIG_FLAGS</a></span>
+enumeration, which modifies the behavior of this method, as specified in the
+definition of the enumeration.</p><p><b>pBuffer: </b>This is an input/output parameter.
+This parameter is a pointer to the buffer that the client provides to contain
+the value of the profile configuration option being requested.</p><p><b>cbData: </b>This parameter is the size of the
+buffer that the <i>pBuffer</i> parameter points to.</p><p><b>pcbTransmittedLen: </b>This is a pointer to an
+input and output parameter that specifies the length of the transmitted data
+within the buffer.</p><p><b>pcbRequired: </b>This is a pointer to an output
+parameter that specifies the required minimum buffer size in octets in order
+for the method to be able to return the configuration value. This output
+parameter is nonzero only if the buffer (pointed to by <i>pBuffer</i> and whose
+size is <i>cbData</i>) was not big enough to contain the value.</p><p><b>Return Values: </b>The method returns 0 if
+successful; if failed, it returns a nonzero error code. The field can take any
+specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+The following return values are common. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The client does not have the required credentials to
+  call the method. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specific configuration option is not found within
+  the policy. This means that it is not configured. If the option is not
+  configured in any other store, the firewall uses a default value. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000032</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The store type specified does not support this method.
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000EA</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>The buffer is not big enough to hold the configuration
+  option value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the parameters of this method is incorrect, or
+  is required and not specified. This error can be returned because:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The specific configuration option
+  is not meant to be available in the specified store.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The specified configuration
+  option is not defined.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>One of the required values is not
+  specified.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The buffer size is not enough to
+  hold the specific value.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+If any lower-layer errors are reported by RPC exception, this exception is
+converted to an error code and reported to higher-layer protocols via the
+return value.</p><p>The server MUST validate that the client is authorized to
+perform the requested operation (as defined in section <span><a href="b0c93352-8371-4d63-abca-b0cc8dbcc3d7" data-linktype="relative-path">3.1.4</a></span>)
+before executing this method.</p></div>

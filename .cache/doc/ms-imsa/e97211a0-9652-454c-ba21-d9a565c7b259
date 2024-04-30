@@ -1,0 +1,106 @@
+<div class="content"><p>The RestoreWithPasswd method restores the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_086b13f2-2715-4000-a16c-6acc3d59cc19" data-linktype="relative-path">metabase</a> from a backup,
+using a supplied password to decrypt the secure data.</p><dl>
+<dd>
+<div><pre> HRESULT RestoreWithPasswd(
+   [unique, in, string] LPCWSTR pszMDBackupName,
+   [in] DWORD dwMDVersion,
+   [in] DWORD dwMDFlags,
+   [unique, in, string] LPCWSTR pszPasswd
+ );
+</pre></div>
+</dd></dl><p><b>pszMDBackupName: </b>A pointer to a Unicode string
+containing the name of the backup to be restored.</p><p><b>dwMDVersion: </b>An integer value specifying the
+version number of the backup to be restored, which MUST be less than or equal
+to MD_BACKUP_MAX_VERSION (9999) or the following constant.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MD_BACKUP_HIGHEST_VERSION</p>
+  <p>0xFFFFFFFE</p>
+  </td>
+  <td>
+  <p>Restore from the highest existing backup version in
+  the specified backup name.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwMDFlags: </b>This parameter is reserved and MUST
+be set to zero.</p><p><b>pszPasswd: </b>A password string used to decrypt
+the secure properties in the metabase backup. If the password is not correct,
+an error is returned. If a password is not supplied, this method functions
+exactly the same as the <a href="d09c867a-116c-44b8-9fe4-ebf7bf59bab4" data-linktype="relative-path">Restore</a>
+method.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it failed. If
+the 12-bit facility code (bits 16–27) is set to 0x007, the value contains a
+Win32 error code in the lower 16 bits. Zero or positive values indicate
+success, with the lower 16 bits in positive nonzero values containing warnings
+or flags defined in the method implementation. For more information about Win32
+error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007052B</p>
+  <p>ERROR_WRONG_PASSWORD</p>
+  </td>
+  <td>
+  <p>Unable to update the password. The value provided as
+  the current password is incorrect.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 35.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>The server restores from a backup that is identified by the <i>pszMDBackupName</i>
+parameter and the version number.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>pszMDBackupName</i> parameter is an empty string, the
+server MUST use a default backup name as defined by the server implementation.</p>
+</li><li><p><span><span> 
+</span></span>If the backup named by <i>pszMDBackupName</i> does not exist, the
+server MUST return the E_INVALIDARG error code.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>dwMDVersion</i> parameter is greater than
+MD_BACKUP_MAX_VERSION (9999) and not equal to MD_BACKUP_HIGHEST_VERSION, the
+server MUST return the error code E_INVALIDARG.</p>
+</li><li><p><span><span> 
+</span></span>Any encrypted data MUST be decrypted with the password the client
+has provided. If no password is provided, the function behaves exactly as the
+Restore method.</p>
+</li><li><p><span><span> 
+</span></span>If the backup cannot be decrypted with the supplied password, the
+server MUST return the error code ERROR_WRONG_PASSWORD.</p>
+</li></ul></div>

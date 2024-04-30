@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The QueryInitiatorPortals method returns an object that
+enumerates the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_928ab82e-b1fd-4441-b739-175e2d3d7840" data-linktype="relative-path">iSCSI initiator portals</a></span>
+of the initiator adapter.</p><dl>
+<dd>
+<div><pre> HRESULT QueryInitiatorPortals(
+   [out] IEnumVdsObject** ppEnum
+ );
+</pre></div>
+</dd></dl><p><b>ppEnum: </b>A pointer to an <span><a href="29084d98-40c8-4a10-a45e-4cfc0d8f8f03" data-linktype="relative-path">IEnumVdsObject</a></span>
+interface that, if the operation is successfully completed, receives the
+IEnumVdsObject interface of the object containing an enumeration of initiator
+portal objects in the initiator adapter. Callers MUST release the interface
+when they are done with it.</p><p><b>Return Values: </b>The method MUST return zero or
+a nonerror <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>ppEnum</i> is not NULL. </p>
+</li></ul><p>The server MUST point <i>ppEnum</i> to an IEnumVdsObject
+interface that contains the enumeration of iSCSI initiator portal objects in
+the list of cached storage management objects that have their initiator adapter
+pointer set to this initiator adapter object. The server MUST then return an
+HRESULT indicating failure or success. </p></div>

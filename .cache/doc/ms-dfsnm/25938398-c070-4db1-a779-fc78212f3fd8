@@ -1,0 +1,269 @@
+<div class="content"><p> </p><p>The NetrDfsAdd method creates a new <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS link</a></span>
+or adds a new target to an existing link of a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS namespace</a></span>. </p><p>The NetrDfsAdd (Opnum 1) method has the following <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a></span>
+syntax.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrDfsAdd(
+   [in, string] WCHAR* DfsEntryPath,
+   [in, string] WCHAR* ServerName,
+   [in, unique, string] WCHAR* ShareName,
+   [in, unique, string] WCHAR* Comment,
+   [in] DWORD Flags
+ );
+</pre></div>
+</dd></dl><p><b>DfsEntryPath: </b>The pointer to a DFS link path
+that contains the name of an existing link when additional link targets are
+being added or the name of a new link is being created.</p><p><b>ServerName: </b>The pointer to a null-terminated <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string that specifies the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_44e2f830-c28b-41e3-8c3c-d0bb576ed9fb" data-linktype="relative-path">DFS link target</a></span> host
+name.</p><p><b>ShareName: </b>The pointer to a null-terminated
+Unicode DFS link target <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_3c179f10-1793-4268-96eb-de4d85a32060" data-linktype="relative-path">share name</a></span> string.
+This can also be a share name with a path relative to the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_a49a79ea-dac7-4016-9a84-cf87161db7e3" data-linktype="relative-path">share</a></span>,
+for example, &#34;share1\mydir1\mydir2&#34;. When specified this way, each
+pathname component MUST be a directory.</p><p><b>Comment: </b>The pointer to a null-terminated
+Unicode string that contains a comment associated with this root or link. This
+string has no protocol-specified restrictions on length or content. The comment
+is meant for human consumption and does not affect server functionality. The
+comment MUST be ignored when adding a target to an existing link.</p><p><b>Flags: </b>A value indicating the operation to
+perform. The following table lists such flags.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Create a new link or adds a new target to an existing
+  link.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_ADD_VOLUME</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Create a new link in the DFS namespace if one does not
+  already exist or fails if a link already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_RESTORE_VOLUME</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Add a target without verifying its existence.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If a <i>Flags</i> value other than the bitwise-OR of
+the above values is provided, the server MUST return ERROR_INVALID_PARAMETER
+(0x00000057).</p>
+</dd></dl><p><b>Return Values: </b>The method MUST return 0 on
+success and a nonzero error code on failure. The method can return any specific
+error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Successful completion.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Permission to perform the operation was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000050</p>
+  <p>ERROR_FILE_EXISTS</p>
+  </td>
+  <td>
+  <p>The specified DFS link target already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>An incorrect parameter was specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000490</p>
+  <p>ERROR_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified DFS root namespace does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000032</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The method does not support a domain-based namespace.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000906</p>
+  <p>NERR_NetNameNotFound</p>
+  </td>
+  <td>
+  <p>The DFS link target does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The <span><a href="bf84ae6f-3a0d-47d5-9270-552c333e973c" data-linktype="relative-path">NetrDfsAdd</a></span> method
+SHOULD<a id="Appendix_A_Target_42"></a><a aria-label="Product behavior note 42" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_42" data-linktype="relative-path">&lt;42&gt;</a> support a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_133ab305-ad75-4b38-8ec9-40bc0dc3b594" data-linktype="relative-path">domain-based
+DFS namespace</a></span>. If it does not support a domain-based DFS namespace
+it MUST return ERROR_NOT_SUPPORTED.</p><p>The server MUST verify the existence of the DFS namespace
+that the <i>DfsEntryPath</i> parameter specifies. If the namespace does not
+exist, the server MUST return ERROR_NOT_FOUND.</p><p>The server MUST verify whether the link to be added overlaps
+an existing link. If there is a link for which the specified <i>DfsEntryPath</i>
+parameter is a prefix, the server MUST return ERROR_FILE_EXISTS.</p><p>If the link to be added already exists, and DFS_ADD_VOLUME
+is set in the <b>Flags</b> field of the request, the server MUST return
+ERROR_FILE_EXISTS.</p><p>If the link to be added already exists, and DFS_ADD_VOLUME
+is not set in the <b>Flags</b> field of the request, the server MUST attempt to
+add a new link target to the link. If a target with the path specified by <i>ServerName</i>
+and <i>ShareName</i> was already added to the link, the server MUST return
+ERROR_FILE_EXISTS.</p><p>If DFS_RESTORE_VOLUME is not specified on the <i>Flags</i>
+parameter, the server MAY<a id="Appendix_A_Target_43"></a><a aria-label="Product behavior note 43" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_43" data-linktype="relative-path">&lt;43&gt;</a> choose to
+verify whether the link target exists. If DFS_RESTORE_VOLUME is specified, the
+server MUST NOT perform this test. If it performs the test and the link target
+does not exist, the server MUST fail the call with NERR_NetNameNotFound.</p><p>The exact test the server performs to verify link target
+existence is implementation-defined. A server MAY,<a id="Appendix_A_Target_44"></a><a aria-label="Product behavior note 44" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_44" data-linktype="relative-path">&lt;44&gt;</a> for
+example, assume all link targets are administered through <span><a href="../ms-srvs/accf23b0-0f57-441c-9185-43041f1b0ee9" data-linktype="relative-path">[MS-SRVS]</a></span>
+section <span><a href="../ms-srvs/b2c2b995-8c42-4502-b7d7-646d1b295c5b" data-linktype="relative-path">3.1.4.10</a></span>
+and use NetShareGetInfo level 1005 to perform the test. Three reasons not to
+implement this test are that</p><ul><li><p><span><span> 
+</span></span>It might not be practical to determine the correct administration
+interface to query to perform the test.</p>
+</li><li><p><span><span> 
+</span></span>A link target server can export a share with a network protocol
+and administration interface that this server does not understand.</p>
+</li><li><p><span><span> 
+</span></span>A secured link target server might not permit this server to
+contact it.</p>
+</li></ul><p>The <i>Comment</i> parameter MUST be ignored when a target
+is added to an existing link.</p><p>The server SHOULD<a id="Appendix_A_Target_45"></a><a aria-label="Product behavior note 45" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_45" data-linktype="relative-path">&lt;45&gt;</a> create a
+new link without requiring the <i>DFS_ADD_VOLUME Flags</i> parameter.</p><p>The server MUST determine whether the specified link target
+refers to a domain-based namespace. If it does, this request is creating a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ebaa4758-1010-49c9-b924-7fec6e4f2306" data-linktype="relative-path">DFS
+interlink</a></span>. If it is creating an interlink and the link already
+exists, the server MUST return an implementation-defined failure value. For
+domain-based namespaces, the server MUST set the DFS interlink property as
+appropriate for the link for each type of domain-based namespace. See sections <span><a href="4ccdd530-9696-4572-968f-27d689b33999" data-linktype="relative-path">2.3.3.1.1.2</a></span>
+and <span><a href="95aa7184-b9a1-44ca-890a-2b4ac579b957" data-linktype="relative-path">2.3.4.3</a></span>.</p><p>The server MUST synchronously update the following fields in
+the DFS metadata for a stand-alone DFS namespace.</p><table><thead>
+  <tr>
+   <th>
+   <p>Operation </p>
+   </th>
+   <th>
+   <p>DFS metadata changes required </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Adding a new link</p>
+  </td>
+  <td>
+  <p>New <b>NamespaceElement</b> in <b>NamespaceElementsList</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Adding a new target to an existing link</p>
+  </td>
+  <td>
+  <p>New <b>Target</b> in the <b>TargetsList</b> of the <b>NamespaceElement</b>
+  and an update to the <b>TargetCount</b>.</p>
+  </td>
+ </tr></tbody></table><p>The server MUST update the following fields in the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_e8de88fd-d760-46fa-ad77-76961fa20aea" data-linktype="relative-path">DFS
+metadata</a></span> for a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_2aad5e61-ffe9-406e-a192-328c5327ee72" data-linktype="relative-path">domainv1-based DFS namespace</a></span>.</p><table><thead>
+  <tr>
+   <th>
+   <p>Operation </p>
+   </th>
+   <th>
+   <p>DFS metadata changes required </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Adding a new link</p>
+  </td>
+  <td>
+  <p>New <span><a href="9f18db22-cfcc-429f-88eb-364a5ae7482c" data-linktype="relative-path">DFSNamespaceLinkBLOB</a></span>
+  and BLOBElementCount.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Adding a new target to an existing link</p>
+  </td>
+  <td>
+  <p>New <span><a href="c914cbbc-eb6f-4843-b344-f20dd0619853" data-linktype="relative-path">TargetEntryBLOB</a></span>
+  and updated TargetCount in existing <span><a href="0e4aa671-ba82-4645-a259-94fe7b04086b" data-linktype="relative-path">DFSTargetListBLOB</a></span>,
+  updated DFSTargetListBLOBSize and BLOBDataSize of DFSNamespaceLinkBLOB.</p>
+  </td>
+ </tr></tbody></table><p>The server MUST update the following fields in the DFS
+metadata for a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8099f7c1-2a31-4a20-81e6-824689bd9c5a" data-linktype="relative-path">domainv2-based DFS namespace</a></span>.</p><table><thead>
+  <tr>
+   <th>
+   <p>Operation </p>
+   </th>
+   <th>
+   <p>DFS metadata changes required </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Adding a new link</p>
+  </td>
+  <td>
+  <p>The following mandatory attributes MUST be updated:
+  msDFS-NamespaceIdentityGUIDv2, msDFS-LinkIdentityGUIDv2,
+  msDFS-GenerationGUIDv2, msDFS-LinkPathv2, msDFS-LastModifiedv2,
+  msDFS-TargetListv2, msDFS-Propertiesv2, and msDFS-Ttlv2. </p>
+  <p>The following optional attribute MAY be updated:
+  msDFS-Commentv2.<a id="Appendix_A_Target_46"></a><a aria-label="Product behavior note 46" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_46" data-linktype="relative-path">&lt;46&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Adding a new target to an existing link</p>
+  </td>
+  <td>
+  <p>Update <b>targetCount</b>, <b>totalStringLengthInBytes</b>,
+  <b>priority</b>, and <b>state</b> attributes in msDFS-TargetListv2. Update
+  msDFS-LastModifiedv2.</p>
+  </td>
+ </tr></tbody></table><p>The server MUST synchronously update the DFS metadata of a
+domain-based DFS namespace.</p><p>If <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_cf94d206-f71c-4ca1-891a-24c83f533e45" data-linktype="relative-path">DFS root scalability mode</a></span>
+is not enabled for the domain-based DFS namespace, the server MUST notify other
+<span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ac90b498-3ba4-48d6-bcd6-5495f1654671" data-linktype="relative-path">DFS
+root targets</a></span> of the change in DFS metadata by asynchronously issuing
+a NetrDfsSetInfo (Opnum 3) method with the Level parameter 101, and with the
+State field of <span><a href="af9d607e-04e5-4722-8d00-76cf9c7b69f9" data-linktype="relative-path">DFS_INFO_101</a></span> set to
+DFS_VOLUME_STATE_RESYNCHRONIZE.<a id="Appendix_A_Target_47"></a><a aria-label="Product behavior note 47" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_47" data-linktype="relative-path">&lt;47&gt;</a><a id="Appendix_A_Target_48"></a><a aria-label="Product behavior note 48" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_48" data-linktype="relative-path">&lt;48&gt;</a></p></div>

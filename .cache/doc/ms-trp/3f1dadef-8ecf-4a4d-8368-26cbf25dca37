@@ -1,0 +1,128 @@
+<div class="content"><p>The ClientAttach method is called by the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to establish a
+binding instance with the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>.</p><dl>
+<dd>
+<div><pre> long ClientAttach(
+   [out] PCONTEXT_HANDLE_TYPE* pphContext,
+   [in] long lProcessID,
+   [out] long* phAsyncEventsEvent,
+   [in, string] wchar_t* pszDomainUser,
+   [in, string] wchar_t* pszMachine
+ );
+</pre></div>
+</dd></dl><p><b>pphContext: </b>Pointer to a <a href="855ea515-15c6-42c1-88b7-7a40cac25ab3" data-linktype="relative-path">PCONTEXT_HANDLE_TYPE</a>
+context handle.</p><p><b>lProcessID: </b>Identifier of the process on the
+client that generated the attach request.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>Client is a remote instance that wants to control the
+  telephony devices on this server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFFFFFD</p>
+  </td>
+  <td>
+  <p>Client is a remote instance that wants to manage and
+  administer the telephony server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>phAsyncEventsEvent: </b>If applicable, a pointer
+to a packet containing any asynchronous event that was triggered by the client
+attaching to the server. </p><dl>
+<dd>
+<p>If lProcessId equals 0xFFFFFFFF (-1) and the server
+supports the <a href="c67a9d90-009d-4155-969b-dbb01e32aa4b" data-linktype="relative-path">NegotiateAPIVersionForAllDevices</a>
+request, the server MUST set the value of phAsyncEventsEvent to 0xa5c369a5.</p>
+</dd>
+<dd>
+<p>If lProcessId equals 0xFFFFFFFD (-3), the server
+MUST set the value of phAsyncEventsEvent to 0x32323232 for a 32-bit platform or
+to 0x64646464 for a 64-bit platform.</p>
+</dd></dl><p><b>pszDomainUser: </b>Pointer to a null-terminated
+string indicating the user&#39;s domain account name. The string is passed on the
+wire. </p><dl>
+<dd>
+<p>If lProcessId equals 0xFFFFFFFF (-1), pszDomainUser
+MUST contain either an empty string (&#34;&#34;) or the name of a client
+mailslot. If a mailslot name is specified and the server is able to
+successfully open the mailslot, then the client and the server MUST use the
+&#34;pull&#34; model event scheme. The server MUST inform the client that
+events are available for retrieval by writing a DWORD value to the client&#39;s
+mailslot, and the client retrieves events via the <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a> method. If
+an empty string is specified or the server is unable to open the client&#39;s
+mailslot, then the &#34;push&#34; model event scheme MUST be used in which
+the server calls the client&#39;s <a href="25659319-12d2-4a64-9a3b-7fdb30092dc4" data-linktype="relative-path">RemoteSPEventProc</a> method.</p>
+</dd>
+<dd>
+<p>If lProcessId equals 0xFFFFFFFD (-3), pszDomainUser
+MUST contain the user name. The client in this case is an <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_1eeec2c8-ece5-4700-860c-7f87a7487bf5" data-linktype="relative-path">MMC</a> client that is not
+interested in events occurring on the telephony devices.</p>
+</dd></dl><p><b>pszMachine: </b>Pointer to a null-terminated
+string indicating the client&#39;s machine name. The string MUST be passed on the
+wire. </p><dl>
+<dd>
+<p>If lProcessId equals 0xFFFFFFFF (-1), the pszMachine
+string takes the following format: &lt;clientComputerName&gt;&#34;&lt;protocolSequence1&gt;&#34;&lt;endpoint1&gt;&#34;&lt;protSeqN&gt;&#34;&lt;epN&gt;&#34;\0.
+This allows the client to inform the server of its machine name and what
+protocols and <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoints</a>
+are supported by the client on its remotesp interface. Quotation marks MUST be
+used as delimiting tokens. For instance,
+CLIENT-PC-NAME&#34;ncacn_ip_tcp&#34;251&#34;ncacn_nb_nb&#34;251&#34;\0.</p>
+</dd>
+<dd>
+<p>If lProcessId equals 0xFFFFFFFD (-3), pszMachine
+MUST contain the computer name.</p>
+</dd></dl><p><b>Return Values: </b>The method returns 0 on
+success; otherwise, it returns a nonzero error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following table includes a common error code.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80000048</p>
+  <p>LINEERR_OPERATIONFAILED</p>
+  </td>
+  <td>
+  <p>Generic error on the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>-19</p>
+  </td>
+  <td>
+  <p>Requesting administrator access via lProcessId equals
+  0xFFFFFFFD (-3), but the user credentials of the client do not have
+  administrator access on the server.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>On success, the server adds the
+client to the client list and updates the client&#39;s machine name and the user&#39;s
+domain account name.</p>
+</dd></dl><p><b>Exceptions Thrown:</b></p><p>No exceptions are thrown beyond those thrown by the
+underlying <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol,
+as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 0. </p><p>Either the client or the server can reject unencrypted
+packets based on the configuration.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="e6ad0f06-cb87-47c0-98d2-213e92242547#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p></div>

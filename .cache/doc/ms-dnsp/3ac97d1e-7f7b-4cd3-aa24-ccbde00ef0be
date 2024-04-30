@@ -1,0 +1,214 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_TRUST_ANCHOR</b> structure contains
+information about a trust anchor.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcTrustAnchor {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   WORD wTrustAnchorType;
+   WORD wKeyTag;
+   WORD wRRLength;
+   TRUSTANCHOR_STATE eTrustAnchorState;
+   __int64 i64EnteredStateTime;
+   __int64 i64NextStateTime;
+   DWORD dwReserved;
+   [size_is(wRRLength)] BYTE RRData[];
+ } DNS_RPC_TRUST_ANCHOR,
+  *PDNS_RPC_TRUST_ANCHOR;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The structure
+version number; this MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>wTrustAnchorType:</b> The DNS record type
+corresponding to the trust anchor. This MUST be set to one of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DNS_TYPE_DS</p>
+  <p>0x002B</p>
+  </td>
+  <td>
+  <p>A DS record type <span><a href="https://go.microsoft.com/fwlink/?LinkId=107052" data-linktype="external">[RFC4034]</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_TYPE_DNSKEY</p>
+  <p>0x0030</p>
+  </td>
+  <td>
+  <p>A DNSKEY record type [RFC4034].</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>wKeyTag:</b> The DNSSEC key tag for this
+trust anchor. The key tag for a DS record trust anchor MUST match the value of
+the record’s &#34;Key Tag&#34; field (see [RFC4034]). The key tag for a
+DNSKEY record trust anchor MUST match the value calculated for the DNSKEY
+record (see [RFC4034] Appendix B), with the exception that the REVOKE bit of
+the DNSKEY flags field MUST be set to zero before the calculation.</p><p><b>wRRLength:</b> The length of the <b>RRData</b>
+array.</p><p><b>eTrustAnchorState:</b> The current state of
+the trust anchor. This MUST be one of the following <b>TRUSTANCHOR_STATE</b>
+enumeration values (section <span><a href="d84d1ece-610a-4911-8cfc-8f93bc9a870e" data-linktype="relative-path">2.2.1.1.4</a></span>).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUSTANCHOR_STATE_DSPENDING</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>This <b>trust anchor</b> can be replaced with a
+  matching DNSKEY trust anchor when the associated trust point  has had a
+  successful active refresh. If this state is set, <b>wTrustAnchorType</b> MUST
+  be DNS_TYPE_DS.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUSTANCHOR_STATE_DSINVALID</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The associated <b>trust point</b> has had a successful
+  active refresh, but no DNSKEY record was found that matches this trust
+  anchor. If this state is set, <b>wTrustAnchorType</b> MUST be DNS_TYPE_DS.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUSTANCHOR_STATE_ADDPEND</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>This <b>trust anchor</b> will become valid after the
+  expiration of the RFC 5011 add hold-down time (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=225980" data-linktype="external">[RFC5011]</a></span>).
+  This corresponds to the &#34;AddPend&#34; state in RFC 5011.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUSTANCHOR_STATE_VALID</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>This <b>trust anchor</b> is trusted for DNSSEC proofs
+  because it was either explicitly added by the administrator or became valid
+  after the expiration of the RFC 5011 add hold-down time (see [RFC5011]). This
+  corresponds to the Valid state in RFC 5011.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUSTANCHOR_STATE_MISSING</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>This trust anchor was in the TRUSTANCHOR_STATE_VALID
+  state but was missing in the last successful active refresh. It is still
+  trusted for DNSSEC proofs. This corresponds to the Valid state in [RFC5011].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUSTANCHOR_STATE_REVOKED</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>This <b>trust anchor</b> has been marked as revoked by
+  the administrator for the <b>trust point</b>&#39;s zone. It can never again be
+  trusted for DNSSEC proofs. This corresponds to the Revoked state in
+  [RFC5011].</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>i64EnteredStateTime:</b> The time at which
+this trust anchor entered its current state. This is a 64-bit value
+representing the number of 100-nanosecond intervals since January 1, 1601
+(UTC).</p><p><b>i64NextStateTime:</b> The time at which this
+trust anchor is scheduled to exit the current state. This is a 64-bit value
+representing the number of 100-nanosecond intervals since January 1, 1601
+(UTC). The meaning is dependent on the value of <b>eTrustAnchorState</b>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value of eTrustAnchorState</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUSTANCHOR_STATE_DSPENDING</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Reserved. The value of <b>i64NextStateTime</b> MUST be
+  set to zero when sent and MUST be ignored on receipt.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUSTANCHOR_STATE_DSINVALID</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Reserved. The value of <b>i64NextStateTime</b> MUST be
+  set to zero when sent and MUST be ignored on receipt.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUSTANCHOR_STATE_ADDPEND</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>This <b>trust anchor</b> is scheduled to enter the
+  TRUSTANCHOR_STATE_VALID state on or after the value of <b>i64NextStateTime</b>.
+  This MUST be equivalent to the value of <b>i64EnteredStateTime</b> added to
+  the value of the add hold-down time (see [RFC5011]).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUSTANCHOR_STATE_VALID</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Reserved. The value of <b>i64NextStateTime</b> MUST be
+  set to zero when sent and MUST be ignored on receipt.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUSTANCHOR_STATE_MISSING</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Reserved. The value of <b>i64NextStateTime</b> MUST be
+  set to zero when sent and MUST be ignored on receipt.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUSTANCHOR_STATE_REVOKED</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>This <b>trust anchor</b> will become eligible for
+  deletion on or after the value of i64NextStateTime. This MUST be equivalent
+  to the value of <b>i64EnteredStateTime</b> added to the value of the remove
+  hold-down time (see [RFC5011]).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwReserved:</b> MUST be set to zero when sent
+and MUST be ignored on receipt.</p><p><b>RRData:</b> Binary data in the same format as
+<span><a href="a9d25f06-22b8-468c-944a-5ec60a801a45" data-linktype="relative-path">DNS_RPC_RECORD_DNSKEY (section 2.2.2.2.4.15)</a></span>
+if <b>wTrustAnchorType</b> is DNS_TYPE_DNSKEY, or binary data in the same
+format as <span><a href="ea58fdc5-daae-4156-9a00-c76a9062b060" data-linktype="relative-path">DNS_RPC_RECORD_DS (section 2.2.2.2.4.12)</a></span>
+if <b>wTrustAnchorType</b> is DNS_TYPE_DS.</p></div>

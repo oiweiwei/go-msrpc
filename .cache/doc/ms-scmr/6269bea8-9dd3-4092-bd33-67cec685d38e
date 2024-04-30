@@ -1,0 +1,146 @@
+<div class="content"><p>The REnumDependentServicesW method returns the ServiceName,
+DisplayName, and ServiceStatus values of service records that are listed as
+dependents of a specified service.</p><dl>
+<dd>
+<div><pre> DWORD REnumDependentServicesW(
+   [in] SC_RPC_HANDLE hService,
+   [in] DWORD dwServiceState,
+   [out, size_is(cbBufSize)] LPBYTE lpServices,
+   [in, range(0, 1024*256)] DWORD cbBufSize,
+   [out] LPBOUNDED_DWORD_256K pcbBytesNeeded,
+   [out] LPBOUNDED_DWORD_256K lpServicesReturned
+ );
+</pre></div>
+</dd></dl><p><b>hService: </b>An <a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">SC_RPC_HANDLE</a> data type
+that defines the handle to the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_1fbb7936-8437-4e3d-b62f-47df3be07721" data-linktype="relative-path">service record</a> that MUST
+have been created previously, using one of the open methods specified in
+section <a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a>. The
+SERVICE_ENUMERATE_DEPENDENT access right MUST have been granted to the caller
+when the RPC context handle to the service record was created.</p><p><b>dwServiceState: </b>A value that specifies the
+service records to enumerate based on the value of their
+ServiceStatus.dwCurrentState. This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SERVICE_ACTIVE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Enumerates service records that have a
+  ServiceStatus.dwCurrentState equal to one of the following: SERVICE_START_PENDING,
+  SERVICE_STOP_PENDING, SERVICE_RUNNING, SERVICE_CONTINUE_PENDING,
+  SERVICE_PAUSE_PENDING, and SERVICE_PAUSED.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_INACTIVE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Enumerates service records that have a
+  ServiceStatus.dwCurrentState equal to SERVICE_STOPPED.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_STATE_ALL</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Enumerates service records that have a
+  ServiceStatus.dwCurrentState equal to one of the following:
+  SERVICE_START_PENDING, SERVICE_STOP_PENDING, SERVICE_RUNNING,
+  SERVICE_CONTINUE_PENDING, SERVICE_PAUSE_PENDING, SERVICE_PAUSED, and
+  SERVICE_STOPPED.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>lpServices: </b>A pointer to an array of <a href="79f17326-c138-4fbc-8170-5c11c4b3ca79" data-linktype="relative-path">ENUM_SERVICE_STATUSW (section 2.2.11)</a>
+structures that contain the name and service status information for each
+dependent service in the database.</p><p><b>cbBufSize: </b>The size, in bytes, of the array
+pointed to by <i>lpServices</i>.</p><p><b>pcbBytesNeeded: </b>An <a href="6c441817-d736-4a94-a444-0c1810a6c473" data-linktype="relative-path">LPBOUNDED_DWORD_256K (section 2.2.9)</a>
+pointer to a variable that contains the number of bytes needed to store the
+array of service entries.</p><p><b>lpServicesReturned: </b>An
+LPBOUNDED_DWORD_256K (section 2.2.9) pointer to a variable that
+contains the number of service entries returned.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns one of the following error
+codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>5</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The SERVICE_ENUMERATE_DEPENDENT access right had not
+  been granted to the caller when the RPC context handle to the service record
+  was created.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The handle is no longer valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>87</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter that was specified is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>234</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>More data is available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1115</p>
+  <p>ERROR_SHUTDOWN_IN_PROGRESS</p>
+  </td>
+  <td>
+  <p>The system is shutting down.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation the server MUST determine the list of service records that
+depend on the service record identified by the <i>hService</i> parameter of the
+client request. The server MUST return this list by setting the ServiceName, DisplayName,
+and ServiceStatus.dwCurrentState of each service record in this list in the
+array of ENUM_SERVICE_STATUSW (section 2.2.11) structures pointed to
+by the <i>lpServices</i> parameter and MUST set the number of services returned
+in the lpServicesReturned parameter.</p><p>If the size of the lpServices array is insufficient for the
+list of services returned, the server MUST fail the call with ERROR_MORE_DATA
+(234) and return the size in bytes required in the pcbBytesNeeded parameter. If
+the size is sufficient for data returned, the server also returns the required
+size, in bytes.</p><p>If the size of the lpServices array is sufficient for the
+list of services returned, the enumerated data MAY be in the buffer in a
+non-contiguous manner, and portions of the <i>lpServices</i> array MAY be empty
+(filled with 0x00).</p><p>The server MUST use the process described in section <a href="f9ddeebe-b05e-423c-9440-84fd3d14bee9" data-linktype="relative-path">3.1.7</a>, &#34;Conversion
+Between ANSI and Unicode String Formats&#34;, to convert a string to the
+appropriate format.</p><p>The server MUST return the services in reverse sequence of
+the start order of the services.</p><p>The server MUST return ERROR_INVALID_PARAMETER (87) if a
+bitmask specified in <i>dwServiceState</i> contains undefined values.</p></div>

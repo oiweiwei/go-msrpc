@@ -1,0 +1,118 @@
+<div class="content"><p> </p><p>The <b>R_DhcpEnumMScopes</b> method enumerates IPv4
+multicast subnet names configured on the MADCAP server. The caller of this
+function can free the memory pointed to by the <i>MScopeTable</i> parameter by
+calling the function <b>midl_user_free </b>(section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpEnumMScopes(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, out] DHCP_RESUME_HANDLE* ResumeHandle,
+   [in] DWORD PreferredMaximum,
+   [out] LPDHCP_MSCOPE_TABLE* MScopeTable,
+   [out] DWORD* ElementsRead,
+   [out] DWORD* ElementsTotal
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the MADCAP server. This parameter is unused.</p><p><b>ResumeHandle: </b>This is a pointer of type <span><a href="a6e4cdc0-4f71-4922-ade1-7a5392f9e920" data-linktype="relative-path">DHCP_RESUME_HANDLE (section 2.2.1.2.6)</a></span>
+that identifies the enumeration operation. Initially, this value MUST be set to
+zero, with a successful call returning the handle value used for subsequent
+enumeration requests. For example, if the <i>PreferredMaximum</i> parameter is
+set to 100, and 200 IPv4 multicast subnets are stored on the MADCAP server, the
+resume handle can be used after the first 100 IPv4 multicast subnets are
+retrieved to obtain the next 100 on a subsequent call, and so forth.</p><p><b>PreferredMaximum: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+specifying the preferred maximum number of IPv4 multicast subnet addresses to
+return. If the number of remaining unenumerated multicast subnets is less than
+this value, all the IPv4 multicast subnets configured on MADCAP server are
+returned. To retrieve all the multicast scopes, 0xFFFFFFFF is specified.</p><p><b>MScopeTable: </b>This is a pointer of type <span><a href="612ba078-fe0e-4461-b670-ee33889734a1" data-linktype="relative-path">LPDHCP_MSCOPE_TABLE (section 2.2.1.2.72)</a></span>
+that points to the location in which the IPv4 multicast subnet names configured
+on the MADCAP server are retrieved.</p><p><b>ElementsRead: </b>This is a pointer to a DWORD
+value that specifies the number of IPv4 multicast subnet names returned in <i>MScopeTable</i>.
+The caller MUST allocate memory for this parameter equal to the size of data
+type DWORD.</p><p><b>ElementsTotal: </b>This is a pointer to a DWORD
+value that specifies the number of IPv4 multicast subnets defined on the MADCAP
+server from the <i>ResumeHandle</i> position. The caller MUST allocate memory
+for this parameter equal to the size of data type DWORD.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  </td>
+  <td>
+  <p>There are no more elements left to enumerate.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 3.</p><p>When processing this call, the MADCAP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read access per section
+<span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not, return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve all the entries in server ADM element <b>DHCPv4MScopesList</b>.</p>
+</li><li><p><span><span> 
+</span></span>Allocate memory to <i>MScopeTable</i> equal to the size of type
+DHCP_MSCOPE_TABLE (section 2.2.1.2.72). Initialize its members <b>NumElements</b>
+to zero and the <i>pMScopeNames</i> parameter to NULL.</p>
+</li><li><p><span><span> 
+</span></span>In <b>DHCPv4MScopesList</b>, start enumerating from the location
+specified by <i>ResumeHandle</i>.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ResumeHandle</i> parameter points to 0x00000000, the
+enumeration MUST start from the first entry of <b>DHCPv4MScopesList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ResumeHandle</i> parameter points to a nonzero value,
+the server MUST continue enumeration based on the value of <i>ResumeHandle</i>.
+If <i>ResumeHandle</i> is greater than or equal to the number of <b>DHCPv4MScope</b>
+entries, free the memory allocated to <i>MScopeTable</i>, assign <i>MScopeTable</i>
+to NULL, and return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>The <i>PreferredMaximum</i> parameter specifies the maximum number
+of IPv4 multicast subnets that the server can allocate and assign to the output
+parameter <i>MScopeTable</i>, which will be used by the client to enumerate the
+IPv4 multicast subnets.</p>
+</li><li><p><span><span> 
+</span></span>If <b>PreferredMaximum</b> is 0 and the number of <b>DHCPv4MScope</b>
+entries retrieved is greater than 0, ERROR_SUCCESS is returned. <i>MScopeTable</i>
+will contain a pointer to an empty structure of type <b>DHCP_MSCOPE_TABLE</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>PreferredMaximum</i> is 0 and the number of <b>DHCPv4MScope</b>
+entries is 0, free the memory allocated to <i>MScopeTable</i>, assign <i>MScopeTable</i>
+to NULL, and return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>If <i>PreferredMaximum</i> is less than the number of remaining
+entries in <b>DHCPv4MScopesList</b>, allocate memory for that number of
+multicast subnets to <i>MScopeTable.pMScopeNames</i>, else allocate memory for
+all remaining multicast subnets to <i>MScopeTable.pMScopeNames</i>.</p>
+</li><li><p><span><span> 
+</span></span>Copy the <b>MScopeInfo.MScopeName</b> ADM element from the
+retrieved <b>DHCPv4MScope</b> entries in <i>MScopeTable</i>, copy the number of
+read <b>DHCPv4MScope</b> entries in <i>ElementsRead</i>, and copy the number of
+<b>DHCPv4MScope</b> entries from the <i>ResumeHandle</i> position in <i>ElementsTotal</i>.
+Update the <i>ResumeHandle</i> to the index of the last <b>DHCPv4MScope</b>
+entry read plus 1.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,40 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4EnumSubnetClientsEx</b> method is used to
+retrieve all DHCPv4 clients serviced on the specified IPv4 subnet. The
+information retrieved also includes the link-layer filter status for the DHCPv4
+client and the policy, if any, that resulted in the specific IPv4 address
+assignment.</p><p>The <b>R_DhcpV4EnumSubnetClientsEx</b> method is an
+extension of the <b>R_DhcpV4EnumSubnetClients</b> (Opnum
+115) (section <span><a href="54b6fd10-506d-4982-9d8f-47025eb46d1d" data-linktype="relative-path">3.2.4.116)</a></span> method,
+where an array of  <span><a href="99021b06-24d3-4edf-b673-0316e85cf28d" data-linktype="relative-path">DHCP_CLIENT_INFO_EX (section 2.2.1.2.119)</a></span>
+structures is enumerated, rather than an array of <span><a href="6ac8d531-84bb-4e8c-8010-840c41fd72e8" data-linktype="relative-path">DHCP_CLIENT_INFO_PB (section 2.2.1.2.115)</a></span>
+structures. Each <b>DHCP_CLIENT_INFO_EX</b> structure contains a list of <span><a href="1ac6e6e5-f2bc-42ef-9d6a-c9457d48c3c3" data-linktype="relative-path">DHCP_PROPERTY (section 2.2.1.2.117)</a></span>
+elements that are associated with the given subnet client.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4EnumSubnetClientsEx (
+     [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+     [in] DHCP_IP_ADDRESS SubnetAddress,
+     [in, out] DHCP_RESUME_HANDLE *ResumeHandle,
+     [in] DWORD PreferredMaximum,
+     [out] LPDHCP_CLIENT_INFO_EX_ARRAY *ClientInfo,
+     [out] DWORD *ClientsRead,
+     [out] DWORD *ClientsTotal
+ );
+</pre></div>
+</dd></dl><p><b>ServerIPAddress: </b>As specified in <b>R_DhcpV4EnumSubnetClients</b>
+(Opnum 115).</p><p><b>SubnetAddress: </b>As specified in <b>R_DhcpV4EnumSubnetClients</b>
+(Opnum 115).</p><p><b>ResumeHandle: </b>As specified in <b>R_DhcpV4EnumSubnetClients</b>
+(Opnum 115).</p><p><b>PreferredMaximum: </b>As specified in <b>R_DhcpV4EnumSubnetClients</b>
+(Opnum 115).</p><p><b>ClientInfo: </b>A pointer to an array of DHCPv4
+client lease records. This out parameter contains an array of <b>DHCP_CLIENT_INFO_EX</b>
+structures containing DHCPv4 client lease records. The DHCP_PROPERTY (section 2.2.1.2.117)
+elements that are enumerated are as follows:</p><dl>
+<dd>
+<p><b>AddressStateEx: </b>The &lt;DHCP_PROPERTY&gt;
+element specifies the extended address state flags for the client when the ID
+value is DhcpPropIdClientAddressStateEx and the Type value is
+DhcpPropTypeDword.</p>
+</dd></dl><p><b>ClientsRead: </b>As specified in <b>R_DhcpV4EnumSubnetClients</b>
+(Opnum 115).</p><p><b>ClientsTotal: </b>As specified in <b>R_DhcpV4EnumSubnetClients</b>
+(Opnum 115).</p><p><b>Return Values: </b>As specified in <b>R_DhcpV4EnumSubnetClients</b>
+(Opnum 115).</p><p>The opnum field value for this method is 130.</p><p>The remainder of the processing behavior for this method is
+as defined for the <b>R_DhcpV4EnumSubnetClients</b> method.</p></div>

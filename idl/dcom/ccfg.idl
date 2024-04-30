@@ -1,0 +1,18 @@
+import "ms-oaut.idl";
+  
+ [
+     object,
+     uuid( 52C80B95-C1AD-4240-8D89-72E9FA84025E ),
+     dual,
+     helpstring("IClusCfgAsyncEvictCleanup interface"),
+     pointer_default( unique )
+ ]
+ interface
+ IClusCfgAsyncEvictCleanup : IDispatch
+ {
+     HRESULT CleanupNode(
+         [ in ] BSTR  bstrEvictedNodeNameIn,
+         [ in ] long  nDelayIn,
+         [ in ] long  nTimeoutIn
+         );
+ };

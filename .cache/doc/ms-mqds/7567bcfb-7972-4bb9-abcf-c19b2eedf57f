@@ -1,0 +1,69 @@
+<div class="content"><p> </p><p>The RSAPUBKEY structure contains information specific to a
+particular <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public key</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>magic</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bitLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>pubExp</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>modulus
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>magic (4 bytes): </b>An unsigned 32-bit integer
+that contains the sentinel value. This field MUST be set to 0x31415352.</p><p><b>bitLen (4 bytes): </b>An unsigned 32-bit integer
+that contains the number of bits in the public key modulus.</p><p><b>pubExp (4 bytes): </b>An unsigned 32-bit integer
+that contains the public exponent of the public key.</p><p><b>modulus (variable): </b>A variable-length array of
+bytes containing the public key modulus. The length in bytes of this field is
+given by the <b>bitLen</b> field. The <b>modulus</b> field contains all (<b>bitLen</b>
+/ 8) bytes of the public key modulus.</p></div>

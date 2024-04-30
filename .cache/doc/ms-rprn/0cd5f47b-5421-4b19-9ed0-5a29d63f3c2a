@@ -1,0 +1,32 @@
+<div class="content"><p>The <b>JOB_CONTAINER</b> structure provides information
+about <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print jobs</a>, using <b>JOB_INFO</b>
+structures. The <b>JobInfo</b> member specifies the structure that defines the
+print job properties.</p><dl>
+<dd>
+<div><pre> typedef struct _JOB_CONTAINER {
+   DWORD Level;
+   [switch_is(Level)] union {
+     [case(1)] 
+       JOB_INFO_1* Level1;
+     [case(2)] 
+       JOB_INFO_2* Level2;
+     [case(3)] 
+       JOB_INFO_3* Level3;
+     [case(4)] 
+       JOB_INFO_4* Level4;
+   } JobInfo;
+ } JOB_CONTAINER;
+</pre></div>
+</dd></dl><p><b>Level:</b> Specifies the information level of
+the <b>JobInfo</b> data. The value of this member MUST be in the range
+0x00000001 to 0x00000004 inclusive.</p><p><b>JobInfo:</b> Defines print job properties,
+using an information structure that corresponds to the value of the <b>Level</b>
+member.</p><p><b>Level1:</b> If the <b>Level</b> member is
+0x00000001, this member is a pointer to a <b>JOB_INFO_1</b> structure that
+provides print job information. For details, see section <a href="794c1ba9-ba0a-4498-ba9c-2635563460dd" data-linktype="relative-path">2.2.1.7.1</a>.</p><p><b>Level2:</b> If the <b>Level</b> member is
+0x00000002, this member is a pointer to a <b>JOB_INFO_2</b> structure that
+provides print job information. For details, see section <a href="5a48c6c9-fc5f-42ff-a5a7-f111fee58d1a" data-linktype="relative-path">2.2.1.7.2</a>.</p><p><b>Level3:</b> If the <b>Level</b> member is
+0x00000003, this member is a pointer to a <b>JOB_INFO_3</b> structure that
+provides print job information. For details, see section <a href="1385aef9-d323-4e8d-9d28-5f2f011bd39c" data-linktype="relative-path">2.2.1.7.3</a>.</p><p><b>Level4:</b> If the <b>Level</b> member is
+0x00000004, this member is a pointer to a <b>JOB_INFO_4</b> structure that
+provides print job information. For details, see section <a href="99086f6e-3db1-4034-ac6c-cd4a5a77f22c" data-linktype="relative-path">2.2.1.7.4</a>.</p></div>

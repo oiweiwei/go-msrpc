@@ -1,0 +1,112 @@
+<div class="content"><p> </p><p>The <b>STAT_WORKSTATION_0</b> structure contains statistical
+details about the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_09dbec39-5e75-4d9a-babf-1c9f1d499625" data-linktype="relative-path">SMB</a></span> <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_15c89cb5-6767-49e7-b461-66acaf6c06c8" data-linktype="relative-path">network
+redirector</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _STAT_WORKSTATION_0 {
+   LARGE_INTEGER StatisticsStartTime;
+   LARGE_INTEGER BytesReceived;
+   LARGE_INTEGER SmbsReceived;
+   LARGE_INTEGER PagingReadBytesRequested;
+   LARGE_INTEGER NonPagingReadBytesRequested;
+   LARGE_INTEGER CacheReadBytesRequested;
+   LARGE_INTEGER NetworkReadBytesRequested;
+   LARGE_INTEGER BytesTransmitted;
+   LARGE_INTEGER SmbsTransmitted;
+   LARGE_INTEGER PagingWriteBytesRequested;
+   LARGE_INTEGER NonPagingWriteBytesRequested;
+   LARGE_INTEGER CacheWriteBytesRequested;
+   LARGE_INTEGER NetworkWriteBytesRequested;
+   unsigned long InitiallyFailedOperations;
+   unsigned long FailedCompletionOperations;
+   unsigned long ReadOperations;
+   unsigned long RandomReadOperations;
+   unsigned long ReadSmbs;
+   unsigned long LargeReadSmbs;
+   unsigned long SmallReadSmbs;
+   unsigned long WriteOperations;
+   unsigned long RandomWriteOperations;
+   unsigned long WriteSmbs;
+   unsigned long LargeWriteSmbs;
+   unsigned long SmallWriteSmbs;
+   unsigned long RawReadsDenied;
+   unsigned long RawWritesDenied;
+   unsigned long NetworkErrors;
+   unsigned long Sessions;
+   unsigned long FailedSessions;
+   unsigned long Reconnects;
+   unsigned long CoreConnects;
+   unsigned long Lanman20Connects;
+   unsigned long Lanman21Connects;
+   unsigned long LanmanNtConnects;
+   unsigned long ServerDisconnects;
+   unsigned long HungSessions;
+   unsigned long UseCount;
+   unsigned long FailedUseCount;
+   unsigned long CurrentCommands;
+ } STAT_WORKSTATION_0,
+  *PSTAT_WORKSTATION_0,
+  *LPSTAT_WORKSTATION_0;
+</pre></div>
+</dd></dl><p><b>StatisticsStartTime:</b> The time that statistics
+collection started. The value MUST be stored as the number of seconds elapsed
+since 00:00:00, January 1, 1970 GMT.</p><p><b>BytesReceived:</b> The total number of bytes the
+SMB network redirector has received.</p><p><b>SmbsReceived:</b> The total number of SMB messages
+that the SMB network redirector has received.</p><p><b>PagingReadBytesRequested:</b> If applicable to the
+<span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server
+(2)</a></span>, an implementation-specific value; otherwise, it MUST be set to
+zero.</p><p><b>NonPagingReadBytesRequested:</b> If applicable to
+the server, an implementation-specific value; otherwise, it MUST be set to
+zero.</p><p><b>CacheReadBytesRequested:</b> If applicable to the
+server, an implementation-specific value; otherwise, it MUST be set to zero.</p><p><b>NetworkReadBytesRequested:</b> If applicable to
+the server, an implementation-specific value; otherwise, it MUST be set to
+zero.</p><p><b>BytesTransmitted:</b> The total number of bytes
+that the SMB network redirector has transmitted.</p><p><b>SmbsTransmitted:</b> The total number of SMB
+messages that the SMB network redirector has transmitted.</p><p><b>PagingWriteBytesRequested:</b> If applicable to
+the server, an implementation-specific value; otherwise, it MUST be set to
+zero.</p><p><b>NonPagingWriteBytesRequested:</b> If applicable to
+the server, an implementation-specific value; otherwise, it MUST be set to
+zero.</p><p><b>CacheWriteBytesRequested:</b> If applicable to the
+server, an implementation-specific value; otherwise, it MUST be set to zero.</p><p><b>NetworkWriteBytesRequested:</b> If applicable to
+the server, an implementation-specific value; otherwise, it MUST be set to
+zero.</p><p><b>InitiallyFailedOperations:</b> The total number of
+network operations that have failed to start.</p><p><b>FailedCompletionOperations:</b> The total number
+of network operations that have failed to complete.</p><p><b>ReadOperations:</b> The total number of read
+operations that the SMB network redirector has initiated.</p><p><b>RandomReadOperations:</b> If applicable to the
+server, an implementation-specific value; otherwise, it MUST be set to zero.</p><p><b>ReadSmbs:</b> The total number of read requests
+that the SMB network redirector has sent to remote computers.</p><p><b>LargeReadSmbs:</b> The total number of read
+requests greater than twice the size of the remote computer’s negotiated buffer
+size that the SMB network redirector has sent to remote computers.</p><p><b>SmallReadSmbs:</b> The total number of read
+requests that are less than one-quarter the size of the remote computer’s
+negotiated buffer size that the SMB network redirector has sent to remote
+computers.</p><p><b>WriteOperations:</b> The total number of write
+operations that the SMB network redirector has initiated.</p><p><b>RandomWriteOperations:</b> If applicable to the
+server, an implementation-specific value; otherwise, it MUST be set to zero.</p><p><b>WriteSmbs:</b> The total number of write requests
+that the SMB network redirector has sent to remote computers.</p><p><b>LargeWriteSmbs:</b> The total number of write
+requests that are greater than twice the size of the remote computer’s
+negotiated buffer size and that the SMB network redirector has sent to remote
+computers.</p><p><b>SmallWriteSmbs:</b> The total number of write
+requests that are less than one-quarter the size of the remote computer’s
+negotiated buffer size and that the SMB network redirector has sent to remote
+computers (<span><a href="../ms-cifs/d416ff7c-c536-406e-a951-4f04b2fd1d2b" data-linktype="relative-path">[MS-CIFS]</a></span>
+section <span><a href="../ms-cifs/13ec5da3-6774-4618-a4a0-709002cda9dc" data-linktype="relative-path">3.2.4.15</a></span>).</p><p><b>RawReadsDenied:</b> The total number of raw read
+requests made by the SMB network redirector that have been denied by the remote
+computer. This field MAY<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a> be ignored.</p><p><b>RawWritesDenied:</b> The total number of raw write
+requests made by the SMB network redirector that have been denied by the remote
+computer. This field MAY<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a> be ignored.</p><p><b>NetworkErrors:</b> The total number of network
+errors that the SMB network redirector has received.</p><p><b>Sessions:</b> The total number of remote <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_ee1ec898-536f-41c4-9d90-b4f7d981fd67" data-linktype="relative-path">SMB
+sessions</a></span> that the SMB network redirector has established.</p><p><b>FailedSessions:</b> The number of times that the
+SMB network redirector has attempted to create an SMB session but failed.</p><p><b>Reconnects:</b> The total number of <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_e1d88514-18e6-4e2e-a459-20d5e17e9078" data-linktype="relative-path">SMB
+connections</a></span> that have failed.</p><p><b>CoreConnects:</b> The total number of SMB
+connections to remote computers supporting the PCNET1 dialect that have
+succeeded ([MS-CIFS] section <span><a href="../ms-cifs/0509a819-3896-4294-8fb2-0f299770a8e4" data-linktype="relative-path">3.2.4.2.2</a></span>).</p><p><b>Lanman20Connects:</b> The total number of SMB
+connections that have succeeded to remote computers supporting the LM1.2X002
+dialect.</p><p><b>Lanman21Connects:</b> The total number of SMB
+connections that have succeeded to remote computers supporting the LANMAN2.1
+dialect.</p><p><b>LanmanNtConnects:</b> The total number of SMB
+connections that have succeeded to remote computers supporting the NTLANMAN
+dialect.</p><p><b>ServerDisconnects:</b> The number of times that a
+remote computer has disconnected the SMB network redirector.</p><p><b>HungSessions:</b> The total number of SMB sessions
+that have timed out due to lack of response from the remote computer.</p><p><b>UseCount:</b> The total number of SMB connections
+that the SMB network redirector has established.</p><p><b>FailedUseCount:</b> The total number of failed SMB
+connections for the SMB network redirector.</p><p><b>CurrentCommands:</b> The number of current
+requests that the SMB network redirector has completed.</p></div>

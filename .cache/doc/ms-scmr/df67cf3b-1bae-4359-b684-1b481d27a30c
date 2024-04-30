@@ -1,0 +1,91 @@
+<div class="content"><p>The RSetServiceStatus method updates the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a> status information for
+the calling service.</p><dl>
+<dd>
+<div><pre> DWORD RSetServiceStatus(
+   [in] SC_RPC_HANDLE hServiceStatus,
+   [in] LPSERVICE_STATUS lpServiceStatus
+ );
+</pre></div>
+</dd></dl><p><b>hServiceStatus: </b>An <a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">SC_RPC_HANDLE</a> (section
+2.2.4) data type that defines the handle to the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_1fbb7936-8437-4e3d-b62f-47df3be07721" data-linktype="relative-path">service record</a> that MUST
+have been created previously using one of the open methods specified in section
+<a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a>. The
+SERVICE_SET_STATUS access right MUST have been granted to the caller when the
+RPC context handle was created.</p><p><b>lpServiceStatus: </b>Pointer to the <a href="4e91ff36-ab5f-49ed-a43d-a308e72b0b3c" data-linktype="relative-path">SERVICE_STATUS</a> (section
+2.2.47) structure that contains the latest status information for the service.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns one of the following error
+codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>6</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>Either the handle is no longer valid or the
+  SERVICE_SET_STATUS access rights had not been granted to the caller when the
+  RPC context handle was created.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>13</p>
+  <p>ERROR_INVALID_DATA</p>
+  </td>
+  <td>
+  <p>The data provided in the <i>lpServiceStatus</i>
+  parameter is invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST return ERROR_INVALID_DATA (13) if the
+following conditions are not true:</p><ul><li><p><span><span> 
+</span></span>lpServiceStatus-&gt;dwCurrentState MUST be one of the following
+values:</p>
+<ul><li><p><span><span>  </span></span>SERVICE_STOPPED</p>
+</li><li><p><span><span>  </span></span>SERVICE_START_PENDING</p>
+</li><li><p><span><span>  </span></span>SERVICE_STOP_PENDING</p>
+</li><li><p><span><span>  </span></span>SERVICE_RUNNING</p>
+</li><li><p><span><span>  </span></span>SERVICE_CONTINUE_PENDING</p>
+</li><li><p><span><span>  </span></span>SERVICE_PAUSE_PENDING</p>
+</li><li><p><span><span>  </span></span>SERVICE_PAUSED</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Only one of the following bits can be set if the
+SERVICE_INTERACTIVE_PROCESS bit is set in lpServiceStatus-&gt;dwServiceType:</p>
+<ul><li><p><span><span>  </span></span>SERVICE_WIN32_OWN_PROCESS</p>
+</li><li><p><span><span>  </span></span>SERVICE_WIN32_SHARE_PROCESS</p>
+</li><li><p><span><span>  </span></span>SERVICE_WIN32</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Only one of the following bits can be set if the
+SERVICE_INTERACTIVE_PROCESS bit is not set in lpServiceStatus-&gt;dwServiceType:</p>
+<ul><li><p><span><span>  </span></span>SERVICE_DRIVER</p>
+</li><li><p><span><span>  </span></span>SERVICE_WIN32</p>
+</li><li><p><span><span>  </span></span>SERVICE_WIN32_OWN_PROCESS</p>
+</li><li><p><span><span>  </span></span>SERVICE_WIN32_SHARE_PROCESS</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If any bits other than these are set in
+lpServiceStatus-&gt;dwControlsAccepted:</p>
+<ul><li><p><span><span>  </span></span>SERVICE_ACCEPT_STOP</p>
+</li><li><p><span><span>  </span></span>SERVICE_ACCEPT_PAUSE_CONTINUE</p>
+</li><li><p><span><span>  </span></span>SERVICE_ACCEPT_SHUTDOWN</p>
+</li><li><p><span><span>  </span></span>SERVICE_ACCEPT_PRESHUTDOWN</p>
+</li><li><p><span><span>  </span></span>SERVICE_ACCEPT_PARAMCHANGE</p>
+</li><li><p><span><span>  </span></span>SERVICE_ACCEPT_HARDWAREPROFILECHANGE</p>
+</li><li><p><span><span>  </span></span>SERVICE_ACCEPT_NETBINDCHANGE</p>
+</li><li><p><span><span>  </span></span>SERVICE_ACCEPT_POWEREVENT</p>
+</li><li><p><span><span>  </span></span>SERVICE_ACCEPT_SESSIONCHANGE</p>
+</li></ul></li></ul><p>In response to this request from the service, for a
+successful operation the server MUST update the ServiceStatus with the status
+specified by the service in the <i>lpServiceStatus</i> parameter in the service
+record identified by the <i>hServiceStatus</i> parameter of the client request.</p><p>In response to this request from the service, for a
+successful operation the server MUST transition the service for the service
+record identified by the <i>hService</i> parameter to a new state if the
+current value of ServiceStatus.dwCurrentState in the service record
+ServiceState is different from lpServiceStatus-&gt;dwCurrentState (section <a href="3b30d63a-095b-4bc1-84ec-72370fc1db61" data-linktype="relative-path">3.1.1</a>).</p></div>

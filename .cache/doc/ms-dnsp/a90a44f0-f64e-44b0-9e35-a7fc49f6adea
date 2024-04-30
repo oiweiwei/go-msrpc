@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The R_DnssrvQuery2 method queries the DNS server for
+information. The type of information queried for is specified by the client
+using the pszZone and pszOperation parameters. The DNS server SHOULD implement
+R_ DnssrvQuery2 <a id="Appendix_A_Target_280"></a><a aria-label="Product behavior note 280" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_280" data-linktype="relative-path">&lt;280&gt;</a>.</p><p>All parameters are as specified by the R_DnssrvQuery method
+(section <span><a href="b0419a70-ac0b-40ba-ab94-1510992bc574" data-linktype="relative-path">3.1.4.2</a></span>) with the
+following exceptions:</p><dl>
+<dd>
+<div><pre> LONG R_DnssrvQuery2(
+   [in]                                   handle_t                hBindingHandle,
+   [in]                                   DWORD                   dwClientVersion,
+   [in]                                   DWORD                   dwSettingFlags,
+   [in, unique, string]                   LPCWSTR                 pwszServerName,
+   [in, unique, string]                   LPCSTR                  pszZone,
+   [in, unique, string]                   LPCSTR                  pszOperation,
+   [out]                                  PDWORD                  pdwTypeId,
+   [out, switch_is(*pdwTypeId)]           DNSSRV_RPC_UNION*       ppData
+ );
+</pre></div>
+</dd></dl><p><b>dwClientVersion: </b>The client version in <b>DNS_RPC_CURRENT_CLIENT_VER</b>
+(section <span><a href="a237781b-b048-495d-844b-10ffb38df2a8" data-linktype="relative-path">2.2.1.2.1</a></span>) format.</p><p><b>dwSettingFlags: </b>Reserved for future use only.
+This field MUST be set to zero by clients and ignored by servers.</p><p><b>Return Values: </b>Return values behaviors and
+interpretations are same as they are for R_DnssrvQuery method (section
+3.1.4.2).</p><p>When processing this call, the server MUST perform the same
+actions as for the R_DnssrvQuery method (section 3.1.4.2), except that for
+output structure types with multiple versions, the server MUST return the
+structure type selected by dwClientVersion except in the event the
+dwClientVersion is greater than the server version, in which case the server
+MUST return the highest version number known to itself. </p></div>

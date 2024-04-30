@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/35249ba6-254c-4f19-95d3-4938e371c9ec" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_QUORUM_VALUE</b> enumeration defines the
+possible values that are returned when querying the cluster as to whether a
+configuration change will cause a loss of quorum, as specified in sections <a href="5d858277-d140-46b8-a572-7750d3f22d05" data-linktype="relative-path">3.1.4.3.7.3</a> and <a href="9492f953-8227-4d85-b2bb-24a80b1ad1e4" data-linktype="relative-path">3.1.4.3.7.4</a>. The following
+constant values are valid. All other values are reserved.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   CLUSTER_QUORUM_MAINTAINED = 0,
+   CLUSTER_QUORUM_LOST = 1
+ } CLUSTER_QUORUM_VALUE;
+</pre></div>
+</dd></dl><p><b>CLUSTER_QUORUM_MAINTAINED: </b>Indicates that the
+change to the cluster state will not cause quorum to be lost.</p><p><b>CLUSTER_QUORUM_LOST: </b>Indicates that the change
+to the cluster state will cause quorum to be lost.</p></div>

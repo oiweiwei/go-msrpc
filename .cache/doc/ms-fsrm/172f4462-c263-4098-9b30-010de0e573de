@@ -1,0 +1,26 @@
+<div class="content"><p>The FsrmGetFilePropertyOptions enumeration defines how
+classification properties associated with a file are retrieved.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmGetFilePropertyOptions
+ {
+   FsrmGetFilePropertyOptions_None = 0x00000000,
+   FsrmGetFilePropertyOptions_NoRuleEvaluation = 0x00000001,
+   FsrmGetFilePropertyOptions_Persistent = 0x00000002,
+   FsrmGetFilePropertyOptions_FailOnPersistErrors = 0x00000004,
+   FsrmGetFilePropertyOptions_SkipOrphaned = 0x00000008
+ } FsrmGetFilePropertyOptions;
+</pre></div>
+</dd></dl><p><b>FsrmGetFilePropertyOptions_None:  </b>If the
+FsrmGetFilePropertyOptions_None flag is set, File Server Resource Manager
+retrieves classification properties for the given file.</p><p><b>FsrmGetFilePropertyOptions_NoRuleEvaluation:  </b>If
+the FsrmGetFilePropertyOptions_NoRuleEvaluation flag is set, File Server
+Resource Manager retrieves only classification properties that are not assigned
+by evaluating the current set of classification rules.</p><p><b>FsrmGetFilePropertyOptions_Persistent:  </b>If the
+<b>FsrmGetFilePropertyOptions_Persistent</b> flag is set, File Server Resource
+Manager retrieves classification properties and saves them.</p><p><b>FsrmGetFilePropertyOptions_FailOnPersistErrors:  </b>If
+the <b>FsrmGetFilePropertyOptions_FailOnPersistErrors</b> flag is set, <b>File
+Server Resource Manager</b> retrieves classification properties and fails the
+call if there are any errors while saving them.</p><p><b>FsrmGetFilePropertyOptions_SkipOrphaned:  </b>If
+the <b>FsrmGetFilePropertyOptions_SkipOrphaned</b> flag is set, <b>File Server
+Resource Manager</b> only retrieves classification properties for which a <a href="00194c43-c91d-447d-9c24-0725f48d4219" data-linktype="relative-path">Persisted Property Definition</a>
+exists.</p></div>

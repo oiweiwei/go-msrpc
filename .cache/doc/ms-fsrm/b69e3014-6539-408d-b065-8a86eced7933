@@ -1,0 +1,60 @@
+<div class="content"><p>The EmailTest method sends an email message to the specified
+email address using the settings that the File Server Resource Manager Protocol
+is configured to use. The settings include <a href="1dc633f4-9323-435c-8912-d742eed2aed4" data-linktype="relative-path">SMTP server name</a> and Mail
+from email address. The format of the email address has to be as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=183003" data-linktype="external">[RFC5322]</a>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_SETTING | 0x01)] HRESULT EmailTest(
+   [in] BSTR mailTo
+ );
+</pre></div>
+</dd></dl><p><b>mailTo: </b>Contains the email address for the
+File Server Resource Manager Protocol to send the test email message to.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8004530D</p>
+  <p>FSRM_E_OUT_OF_RANGE</p>
+  </td>
+  <td>
+  <p>The content of the <i>mailTo</i> parameter exceeds the
+  maximum length of 4,000 characters.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045318</p>
+  <p>FSRM_E_INVALID_SMTP_SERVER</p>
+  </td>
+  <td>
+  <p>The <b>SmtpServer</b> property is not set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8004531C</p>
+  <p>FSRM_E_EMAIL_NOT_SENT</p>
+  </td>
+  <td>
+  <p>An email message could not be sent.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST perform the
+following operations:</p><ul><li><p><span><span> 
+</span></span>If the email address mentioned in <b>mailTo</b> exceeds the
+maximum length of 4,000 characters, the server MUST return FSRM_E_OUT_OF_RANGE.</p>
+</li><li><p><span><span> 
+</span></span>If <b>Mail from email address</b> set by MailFrom
+(put) (section <a href="fbf0708e-e8ff-43ab-9ba2-a41757682f64" data-linktype="relative-path">3.2.4.2.11.4</a>)
+contains an invalid email address, the server MUST return
+FSRM_E_INVALID_SMTP_SERVER.</p>
+</li></ul><p>The server MUST send an email message to the email address
+specified by using the settings that the File Server Resource Manager Protocol
+is configured to use or return FSRM_E_EMAIL_NOT_SENT.</p></div>

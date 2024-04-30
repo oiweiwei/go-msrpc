@@ -1,0 +1,20 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/d55e2632-7163-4f6c-b662-4b870e8cc1cd" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_CREDENTIAL</b> structure contains 8 bytes of
+data that have two distinct uses: for <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_4f67a585-fb00-4166-93e8-cf4abca8226d" data-linktype="relative-path">session-key</a> negotiation and
+for building a Netlogon <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e72a2c02-84a2-4ce3-b66f-86f725642dc3" data-linktype="relative-path">authenticator</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_CREDENTIAL {
+   CHAR data[8];
+ } NETLOGON_CREDENTIAL,
+  *PNETLOGON_CREDENTIAL;
+</pre></div>
+</dd></dl><p><b>data:</b> The meaning of the 8 bytes of data
+contained in this structure is determined by the following:</p><ul><li><p><span><span>  </span></span>When
+session-key negotiation is performed, the data field carries an 8-byte
+challenge. Also see section <a href="7b9e31d1-670e-4fc5-ad54-9ffff50755f9" data-linktype="relative-path">3.1.4.1</a>.</p>
+</li><li><p><span><span>  </span></span>When
+the <b>NETLOGON_CREDENTIAL</b> is used as part of a <b>NETLOGON_AUTHENTICATOR</b>
+structure (section <a href="76c93227-942a-4687-ab9d-9d972ffabdab" data-linktype="relative-path">2.2.1.1.5</a>),
+the data field carries 8 bytes of encrypted data, as specified in the <b>Netlogon
+Credential Computation</b> (section <a href="594909fd-725f-45ac-9799-62e4aefe0585" data-linktype="relative-path">3.1.4.4</a>)<b> </b>and <b>Netlogon
+Authenticator Computation and Verification</b> (section <a href="da7acaa3-030b-481e-979b-f58f89389806" data-linktype="relative-path">3.1.4.5</a>) sections.</p>
+</li></ul></div>

@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The DS_REPL_CLIENT_CONTEXT structure defines an active <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+client connection. This structure is a concrete representation of a tuple in an
+<span><a href="65d838f5-2f69-4c22-8b26-3340182dcde1" data-linktype="relative-path">RPCClientContexts</a></span>
+sequence.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   ULONGLONG hCtx;
+   LONG lReferenceCount;
+   BOOL fIsBound;
+   UUID uuidClient;
+   DSTIME timeLastUsed;
+   ULONG IPAddr;
+   int pid;
+ } DS_REPL_CLIENT_CONTEXT;
+</pre></div>
+</dd></dl><p><b>hCtx:</b>  The unique ID of the client
+context.</p><p><b>lReferenceCount:</b>  The number of
+references to the context.</p><p><b>fIsBound:</b>  True if and only if the
+context has not yet been closed by the <span><a href="49eb17c9-b6a9-4cea-bef8-66abda8a7850" data-linktype="relative-path">IDL_DRSUnbind</a></span>
+method. </p><p><b>uuidClient:</b>  Zeros, or the value
+pointed to by the <i>puuidClientDsa</i> parameter to <span><a href="605b1ea1-9cdc-428f-ab7a-70120e020a3d" data-linktype="relative-path">IDL_DRSBind</a></span>.</p><p><b>timeLastUsed:</b>  The date and time at
+which this context was last used in an RPC method call.</p><p><b>IPAddr:</b>  The IPv4 address of the
+client. If the client is connected with IPv6, this field MUST be 0.</p><p><b>pid:</b>  The process ID specified by
+the client in the <i>pextClient</i> parameter to IDL_DRSBind.</p></div>

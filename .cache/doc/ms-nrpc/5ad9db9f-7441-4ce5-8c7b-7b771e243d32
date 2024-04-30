@@ -1,0 +1,30 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/5ad9db9f-7441-4ce5-8c7b-7b771e243d32" data-linktype="external">msdn link</a></p><p>The <b>NetrServerReqChallenge</b> method SHOULD<a id="Appendix_A_Target_172"></a><a aria-label="Product behavior note 172" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_172" data-linktype="relative-path">&lt;172&gt;</a> receive a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_54ceb15a-5c0f-4099-8d9f-71f7b91b0473" data-linktype="relative-path">client challenge</a> and return
+a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_7deccd83-29bf-4f63-ba8d-d3ae04d196e9" data-linktype="relative-path">server challenge (SC)</a>.
+</p><dl>
+<dd>
+<div><pre> NTSTATUS NetrServerReqChallenge(
+   [in, unique, string] LOGONSRV_HANDLE PrimaryName,
+   [in, string] wchar_t* ComputerName,
+   [in] PNETLOGON_CREDENTIAL ClientChallenge,
+   [out] PNETLOGON_CREDENTIAL ServerChallenge
+ );
+</pre></div>
+</dd></dl><p><b>PrimaryName: </b>The custom <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_44deb72d-c62b-4335-90e4-b9fd4dd782ed" data-linktype="relative-path">binding handle</a>, as defined
+in section <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>.</p><p><b>ComputerName: </b>A <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string that
+contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a>
+of the client computer calling this method.</p><p><b>ClientChallenge: </b>A pointer to a <a href="d55e2632-7163-4f6c-b662-4b870e8cc1cd" data-linktype="relative-path">NETLOGON_CREDENTIAL</a>
+structure, as specified in section 2.2.1.3.4, that contains the client
+challenge.</p><p><b>ServerChallenge: </b>A pointer to a
+NETLOGON_CREDENTIAL structure, as specified in section 2.2.1.3.4, that contains
+the server challenge response.</p><p><b>Return Values: </b>The method returns 0x00000000
+on success; otherwise, it returns a nonzero error code.</p><p>On receiving this call, the server MUST perform the
+following validation steps:</p><ul><li><p><span><span> 
+</span></span>Apply Common Error Processing Rule A, specified in section <a href="2d776bfc-e81f-4c8f-9da8-4c2920f65413" data-linktype="relative-path">3</a>.</p>
+</li><li><p><span><span> 
+</span></span>Apply Common Error Processing Rule B, specified in section 3, to 
+the <i>PrimaryName</i> parameter.</p>
+</li></ul><p>The server MUST generate 64 bits of random data as the
+server challenge to be returned in the <i>ServerChallenge</i> parameter. The <i>ServerChallenge</i>
+is saved in the <b>ChallengeTable</b>, along with the client name passed in the
+<i>ComputerName</i> parameter and the client challenge passed in the <i>ClientChallenge</i>
+parameter. </p></div>

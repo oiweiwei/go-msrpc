@@ -1,0 +1,13 @@
+<div class="content"><p>The TSG_PACKET_REAUTH_MESSAGE structure is sent by the RDG
+server to the client when the server requires the user credential to be
+reauthenticated.</p><dl>
+<dd>
+<div><pre> typedef struct _TSG_PACKET_REAUTH_MESSAGE {
+   unsigned __int64 tunnelContext;
+ } TSG_PACKET_REAUTH_MESSAGE,
+  *PTSG_PACKET_REAUTH_MESSAGE;
+</pre></div>
+</dd></dl><p><b>tunnelContext:</b>  A unsigned __int64
+that is sent by the server to client. When the client initiates the
+reauthentication sequence, it MUST include this context. This is used by the
+server to validate successful reauthentication by the client.</p></div>

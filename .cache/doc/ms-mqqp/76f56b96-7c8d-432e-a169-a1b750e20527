@@ -1,0 +1,57 @@
+<div class="content"><p> </p><p>The RemoteQMCancelReceive method cancels a pending call to <span><a href="aab4d8fa-3a56-483c-ac61-4172a09fc199" data-linktype="relative-path">RemoteQMStartReceive</a></span>
+and provides a way for the client to cancel a blocked request.</p><p>Before calling this method, the following methods MUST be
+called:</p><ul><li><p><span><span> 
+</span></span><span><a href="0dbcb6fd-ed56-44c3-9c02-e9fa2d7798b3" data-linktype="relative-path">RemoteQMOpenQueue</a></span></p>
+</li><li><p><span><span> 
+</span></span>RemoteQMStartReceive or <span><a href="a0df225e-80ea-4242-90e5-9891bfa9ebfb" data-linktype="relative-path">RemoteQMStartReceive2</a></span></p>
+<div><pre> HRESULT RemoteQMCancelReceive(
+   [in] handle_t hBind,
+   [in] DWORD hQueue,
+   [in] DWORD pQueue,
+   [in] DWORD dwRequestID
+ );
+</pre></div>
+</li></ul><p><b>hBind: </b> MUST be set to an <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>hQueue: </b> Queue identifier to cancel receive.
+Its value is validated in the method&#39;s processing rules.</p><p><b>pQueue: </b> Queue descriptor to cancel receive.
+Its value is validated in the method&#39;s processing rules.</p><p><b>dwRequestID: </b>A unique value that identifies a
+pending <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_603b69cc-6ddd-43aa-a263-59d39a844e61" data-linktype="relative-path">remote read</a></span>
+operation.</p><p><b>Return Values: </b> The method MUST return MQ_OK
+(0x00000000) on success; otherwise, it MUST return a failure HRESULT, and the
+client MUST treat all failure HRESULTs identically.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>MQ_ERROR</b> (0xC00E0001)</p><p><b>MQ_ERROR_INVALID_PARAMETER</b> (0xC00E0006)</p><p><b>MQ_ERROR_INVALID_HANDLE</b> (0xC00E0007)</p><p><b>STATUS_NOT_FOUND</b> (0xC0000225)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown except
+those thrown by the underlying RPC protocol, as specified in [MS-RPCE].</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Return MQ_ERROR_INVALID_PARAMETER (0xc00e0006) if <i>pQueue</i>
+is equal to zero or not equal to <i>hQueue</i>. <a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="d6c5ba0a-aaf8-489d-baf2-fdc286b4bea4#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Find the subset of <b>RemoteReadEntry</b> elements in <b>rRemoteReadEntryCollection</b>
+where <i>hQueue</i> = <b>RemoteReadEntry.OpenQueueDescriptorHandle</b>.</p>
+</li><li><p><span><span> 
+</span></span>If no such entry is found, return MQ_ERROR_INVALID_HANDLE(0xc00e0007).
+</p>
+</li><li><p><span><span> 
+</span></span>Find <b>RemoteReadEntry</b> from the collection preceding where <b>RemoteReadEntry.RequestId</b>=<i>dwRequestID</i>.</p>
+</li><li><p><span><span> 
+</span></span>If no such entry is found, return MQ_ERROR(0xC00E0001).</p>
+</li><li><p><span><span> 
+</span></span>For each queue in the <b>QueueManager.QueueCollection:</b></p>
+<ul><li><p><span><span>  </span></span>For
+each <b>OpenQueueDescriptor</b> in <b>Queue.OpenQueueDescriptorCollection:</b></p>
+<ul><li><p><span><span> 
+</span></span>Find the <b>OpenQueueDescriptor</b> where <b>OpenQueueDescriptor.Handle</b>=<b>RemoteReadEntry.OpenQueueDescriptorHandle</b>.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Generate a <span><a href="../ms-mqdmpr/59e640f6-ce75-4c91-92d5-433038224cd4" data-linktype="relative-path">Cancel
+Waiting Message Read Request</a></span> (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section 3.1.7.1.17) event with the following inputs:</p>
+<ul><li><p><span><span>  </span></span><i>iQueue</i>:=<b>QueueReference</b>
+member of the <b>OpenQueueDescriptor</b> obtained earlier.</p>
+</li><li><p><span><span>  </span></span><i>iTag</i>:=
+<i>dwRequestID</i>.</p>
+</li><li><p><span><span>  </span></span><i>iStatus</i>:=
+MQ_INFORMATION_REMOTE_CANCELED_BY_CLIENT (0x400E03E9).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Delete the <b>RemoteReadEntry</b>.</p>
+</li><li><p><span><span> 
+</span></span>Return <i>rStatus</i> of the Cancel Waiting Message Read Request
+event.</p>
+</li></ul></div>

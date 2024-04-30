@@ -1,0 +1,128 @@
+<div class="content"><p> </p><p>The fax client application calls the <b>FAX_SetGeneralConfiguration
+(Opnum 98)</b> method to set the configuration options provided for the fax
+service. The <b>FAX_GENERAL_CONFIG</b> (section <span><a href="7b87f66e-e7bf-4294-be2f-669de0595bde" data-linktype="relative-path">2.2.31</a></span>) structure
+MUST be serialized. The variable data fields, such as strings, MUST be filled
+with the offset to the string from the beginning of the buffer and not the
+actual address. In response, the server MUST validate that the client&#39;s fax
+user account has access to manage configuration on the server. On success, the
+server MUST set the requested configuration options.</p><p>Protocol version FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1  (0x00010000), and FAX_API_VERSION_2 (0x00020000) fax servers
+SHOULD NOT implement this call. The fax client MUST NOT call this method if the
+protocol version reported by the server is FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), or FAX_API_VERSION_2 (0x00020000). For more
+information, see <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>).</p><dl>
+<dd>
+<div><pre> error_status_t FAX_SetGeneralConfiguration(
+   [in] handle_t hBinding,
+   [in] DWORD level,
+   [in, ref, size_is(BufferSize)] const LPBYTE Buffer,
+   [in, range(0,FAX_MAX_RPC_BUFFER)] 
+     DWORD BufferSize
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> or <b>FAX_ConnectionRefCoun</b>t (section
+<span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>)
+method call used to connect to the fax server.</p><p><b>level: </b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that indicates the type of structure to return in <i>Buffer</i>. This
+value MUST be set to zero.</p><p><b>Buffer: </b>A pointer to a <b>FAX_GENERAL_CONFIG</b> that
+contains the configuration information to set.</p><p><b>BufferSize: </b>A pointer to a <b>DWORD</b> value
+that specifies the size, in bytes, of the buffer that is pointed to by the <i>Buffer</i>
+parameter. The maximum size is <b>FAX_MAX_RPC_BUFFER</b> (section <span><a href="8bb4ba82-db45-44ea-9caa-af64d7448e6d" data-linktype="relative-path">2.2.82</a></span>).</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The client&#39;s fax user account does
+  not have the required FAX_ACCESS_MANAGE_CONFIG authorization for this
+  operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>In order to process the data for custom marshaling,
+  the server needs to make a copy of the <b>FAX_GENERAL_CONFIG</b> provided by
+  the client; but the server cannot allocate sufficient memory to hold the copy
+  of the <b>FAX_GENERAL_CONFIG</b>. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_DATA</p>
+  <p>0x0000000D</p>
+  </td>
+  <td>
+  <p>The <b>lpcwstrArchiveLocationOffset</b> member of the <b>Fixed_Portion</b>
+  of the <b>FAX_GENERAL_CONFIG</b> referenced by the <i>Buffer</i> parameter is
+  set to an invalid offset value. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. This error code is
+  returned if any of the following conditions are met:</p>
+  <p><span>§<span>  
+  </span></span>The <i>level</i> parameter is set to a value greater than 0.</p>
+  <p><span>§<span>  
+  </span></span>In the <b>FAX_GENERAL_CONFIG</b> referenced by <i>Buffer</i>,
+  the <b>dtDiscountStart.Hour</b> member is set to a value greater than or
+  equal to 24, and the <b>dtDiscountStart.Minute</b> member is set to a value
+  greater than or equal to 60.</p>
+  <p><span>§<span>  
+  </span></span>In the <b>FAX_GENERAL_CONFIG</b> referenced by <i>Buffer</i>,
+  the <b>dtDiscountEnd.Hour</b> member is set to a value greater than or equal
+  to 24, and the <b>dtDiscountEnd.Minute</b> member is set to a value greater
+  than or equal to 60.</p>
+  <p><span>§<span>  
+  </span></span>In the <b>FAX_GENERAL_CONFIG</b> referenced by <i>Buffer</i>,
+  the <b>bUseArchive</b> member is set to TRUE and the <b>lpcwstrArchiveLocationOffset</b>
+  member is set to 0.</p>
+  <p><span>§<span>  
+  </span></span>In the <b>FAX_GENERAL_CONFIG</b> referenced by <i>Buffer</i>,
+  the <b>dwSizeQuotaHighWaterMark</b> member is set to a value greater than the
+  value of the <b>dwSizeQuotaLowWaterMark</b> member.</p>
+  <p><span>§<span>  
+  </span></span>In the <b>FAX_GENERAL_CONFIG</b> referenced by <i>Buffer</i>,
+  the <b>dwQueueState</b> member contains one or more of the following flag
+  values: <b>FAX_INCOMING_BLOCKED</b>, <b>FAX_OUTBOX_BLOCKED</b>, or <b>FAX_OUTBOX_PAUSED</b>.</p>
+  <p><span>§<span>  
+  </span></span>The value of the <i>BufferSize</i> parameter is less than the
+  size required to hold the custom marshaled <b>FAX_GENERAL_CONFIG</b>
+  structure referenced by <i>Buffer</i>. This size is specified by the <b>dwSizeOfStruct</b>
+  member of the <b>FAX_GENERAL_CONFIG</b> referenced by <i>Buffer</i>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INTERNAL_ERROR</p>
+  <p>0x0000054F</p>
+  </td>
+  <td>
+  <p>The server failed to parse the custom marshaled <b>FAX_GENERAL_CONFIG</b>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

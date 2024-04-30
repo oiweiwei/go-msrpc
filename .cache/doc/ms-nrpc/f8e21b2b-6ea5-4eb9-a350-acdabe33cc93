@@ -1,0 +1,77 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/f8e21b2b-6ea5-4eb9-a350-acdabe33cc93" data-linktype="external">msdn link</a></p><p>The <b>IPv6 Address </b>structure specifies the format of an
+IPv6 socket address. This structure is built as if on a little-endian machine
+and is treated as a byte array. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>AddressFamily</p>
+  </td>
+  <td colspan="16">
+  <p>Port</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>FlowInfo</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Address
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ScopeID</p>
+  </td>
+ </tr>
+</tbody></table><p><b>AddressFamily (2 bytes): </b>Address family; MUST
+be 0x0017.</p><p><b>Port (2 bytes): </b>An IP port number.</p><p><b>FlowInfo (4 bytes): </b>Flow information. This
+field is not used by the protocol. The field MUST be set to zero and MUST be
+ignored on receipt.</p><p><b>Address (16 bytes): </b>An IP address, as
+specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90425" data-linktype="external">[RFC3493]</a>.</p><p><b>ScopeID (4 bytes): </b>A set of interfaces for a
+scope, as specified in [RFC3493].</p></div>

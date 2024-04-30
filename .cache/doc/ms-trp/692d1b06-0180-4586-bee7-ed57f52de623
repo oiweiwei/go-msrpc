@@ -1,0 +1,162 @@
+<div class="content"><p>The Telephony Remote Protocol enables a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to control telephony
+devices on the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+through TAPI, and manage or administer them. The server software can be modeled
+as:</p><ul><li><p><span><span> 
+</span></span>TAPI service, which is independent of device specifics and
+depends on device-specific software for actual device control. </p>
+</li><li><p><span><span> 
+</span></span>Telephony service provider (TSP), which is device-specific
+software (including the device driver software). For more information, see <a href="https://go.microsoft.com/fwlink/?LinkId=120037" data-linktype="external">[MSDN-TAPI-SP]</a>.</p>
+</li></ul><p>The TAPI service and the TSP can communicate with each other
+according to a well-defined interface, the Telephony Service Provider Interface
+(TSPI). </p><p>An Automatic Call Distribution (ACD) server is a combination
+of hardware and software that classifies, queues, and distributes incoming
+calls to agents or outgoing calls to lines.</p><p>The Server ACD application is a TAPI proxy application,
+which runs on the same server as the TSP. With a traditional ACD switch, the
+proxy application would interface to the switch&#39;s internal ACD and expose its
+operation. A software-based or &#34;virtual&#34; ACD proxy application would
+be fully responsible for the tracking of calls, queues, groups, and agents and
+would use the standard TAPI interfaces to control the switching hardware. Agent
+client applications will typically run on the individual agent&#39;s workstations and
+make use of the TAPI Remote Service Provider to communicate with the TAPISRV on
+the server machine, and hence the proxy application.</p><p>The Agent object represents an agent that is capable of
+handling calls. This agent is usually a person but can be an interactive voice
+response (IVR) or some other combination of software and hardware. Agents are
+vital to a call center; they are responsible for receiving and processing
+incoming calls and at times, for making outgoing calls to customers or
+prospects.</p><p>An Agent Handler represents software or hardware that is
+capable of passing calls to a group of agents. Typically, this is a proprietary
+switch that connects outside lines to telephones at agent stations. </p><p>An Agent Session represents an agent who has logged on and
+is qualified to handle calls for a particular ACD Group. An agent session is a
+dynamically created object that relates an agent to an ACD group for which the
+group will provide service, and also to the address where they will receive
+calls (turret, station, phone, and so on). Applications can use the agent
+session object to track agent activity in a particular ACD group.</p><p>An ACD group represents a class of calls that requires a
+particular type of handling. An ACD group services one or more queues. As incoming
+calls are classified, they are passed to queues that are associated with the
+relevant ACD group. A call coming off the queue is passed to an agent who has
+created an agent session object, indicating the agent is able to handle calls
+from that ACD group.</p><p>The Queue object represents a point in the ACD system where
+calls are temporarily held pending action. Access to a queue object allows an
+application to read a variety of standard statistics that relate to queue
+usage; however, access does not give an application the ability to control
+calls on the queue. Only applications that have access to the associated
+addresses and lines are able to control the calls on the queue.</p><p>Monitoring and control of ACD agent status on stations is
+supported through these functions: <a href="5f15fc21-d90b-44d1-bf0e-20248ec2dd88" data-linktype="relative-path">GetAgentCaps</a>, <a href="a755267c-dd6f-4f4a-9213-ebc221f9c249" data-linktype="relative-path">GetAgentStatus</a>, <a href="05180027-cf40-4159-8af6-ab6ceb3fdd64" data-linktype="relative-path">GetAgentGroupList</a>, <a href="e56024a8-a442-4afb-9534-416489f65df2" data-linktype="relative-path">GetAgentActivityList</a>, <a href="ec94bc81-d553-40cc-a9d7-e3d9008bef84" data-linktype="relative-path">SetAgentGroup</a>, <a href="c4876fd0-9657-4ebe-87ff-000000063bd5" data-linktype="relative-path">SetAgentState</a>, and <a href="5bef7c67-efbc-4cbb-9a5c-df4cf9eb4091" data-linktype="relative-path">SetAgentActivity</a>.</p><p>Architecturally, ACD functionality is implemented in a
+server-based application. The client functions mentioned above, rather than
+mapping to the telephony service provider, are conveyed to a server application
+that has registered (using an option of <a href="2759c744-e040-4c5d-b4b5-215d391f0490" data-linktype="relative-path">Open</a>) as a handler for
+such functions.</p><p>A line device represents a physical device such as a modem,
+voice board, fax board, or an Integrated Services Digital Network (ISDN) card
+that is connected to a network. Line devices support communications
+capabilities by allowing applications to send information to, or receive
+information from, a network. A line device contains a set of one or more
+homogeneous channels that can be used to establish calls. In Plain Old
+Telephone Service (POTS), exactly one channel exists on a line, and the channel
+is used exclusively for voice. Other technologies, such as ISDN, can support
+more than one channel on a single line.</p><p>An address represents a location on a network. The address
+itself is a string that identifies a location on a network. In the case of a
+telephone network, the address is a telephone number. Each channel can have its
+own address, which means a line could have as many addresses as it has
+channels. The exact relationship between channels and addresses depends on the
+underlying TSP implementation. </p><p>A client can obtain the number of addresses that are present
+on a line by using the <a href="ee317c21-100e-48a3-bcce-e9991efff889" data-linktype="relative-path">GetDevCaps</a>
+packet, which also provides information that is specific to the line device and
+common to all addresses on that line. Different addresses have different
+features, capabilities, and states. The client can access this information by
+sending the <a href="aacadc44-9c22-43f2-8046-9b37dd95d2c1" data-linktype="relative-path">GetAddressCaps</a>
+packet to the server.</p><p>A phone device represents characteristics of the phone
+device hardware rather than the connection to the network itself. Thus,
+operations such as increasing or decreasing the volume of audio that is sent or
+received, changing the ring mode, and so on are carried out by using phone
+device operations.</p><p>Many TAPI operations take a device ID or address ID
+parameter. The device ID can range from 0 to one less than the total number of
+devices that are reported by the corresponding <a href="9d8eb7cd-3245-4e44-97e0-42f7b89c9424" data-linktype="relative-path">Initialize</a> packet. The
+address ID can range from 0 to one less than the number of addresses on that
+line device. The number of addresses on a line is obtained by sending the
+GetDevCaps packet for that line device.</p><p>This protocol consists of two interfaces: the tapsrv
+interface and the remotesp interface.</p><p>The tapsrv interface allows the client to send <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> packets to the server,
+causing TAPI operations to be executed on the server. The RPC packets in this
+specification are named for the specific TAPI operation that will be executed
+and are specified in section <a href="ef0a7faf-82b4-466b-8aa1-a05e464f7485" data-linktype="relative-path">2.2</a>.
+</p><p>TAPI operations can complete either synchronously or
+asynchronously. </p><ul><li><p><span><span> 
+</span></span>Synchronous completion occurs when the requested TAPI operation
+is completely executed before the RPC function call returns to the client. This
+includes the case when the operation was not executed and an error is
+synchronously returned to the client.</p>
+<p>In Synchronous calls the client
+sends a <a href="2b49d075-4b32-4d60-8567-0c522b95f165" data-linktype="relative-path">TAPI32_MSG</a>
+packet through the <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>
+method with appropriate parameters in the packet. Depending on the request, the
+server fills the required values and sends back to client.</p>
+<p>For example, the client sends the GetDevCaps packet
+through the ClientRequest method to get the telephony capabilities of a
+specified line device. The GetDevCaps packet follows the structure of a
+TAPI32_MSG. The server fills the <b>Req_Func</b> field and <b>VarData</b> field
+of TAPI32_MSG with the result of the encapsulated telephony request and <a href="f236ea7a-c8a2-4681-b87c-9f0e07a01dc6" data-linktype="relative-path">LINEDEVCAPS</a>.</p>
+</li></ul><dl>
+<dd>
+<p><img id="MS-TRP_pict4264776a-2836-441a-8746-3296cd9a39da.png" src="ms-trp_files/image001.png" alt="Synchronous Completion" title="Synchronous Completion" data-linktype="relative-path"/></p>
+</dd></dl><p><b>Figure 1: Synchronous Completion</b></p><ul><li><p><span><span> 
+</span></span>Asynchronous completion is when the RPC function call returns to
+the client while the request is still being executed (for example, the RPC
+function call returns while the client is dialing a number on a telephony
+device). A request ID is returned from the server when the asynchronous
+function call returns to the client. When the TAPI operation completes later,
+the server informs the client of completion along with the success or error
+status by using the same request ID to identify the operation being completed.</p>
+<p>In Asynchronous calls, the client
+sends a TAPI32_MSG packet through the ClientRequest method with the appropriate
+parameters in the packet. The server sends the request ID in the response to
+the ClientRequest method. On completion of the request the server sends back an
+<a href="a5ca6e7c-d13c-4799-9b91-91fd1baca909" data-linktype="relative-path">ASYNCEVENTMSG</a> through
+the <a href="25659319-12d2-4a64-9a3b-7fdb30092dc4" data-linktype="relative-path">RemoteSPEventProc</a>
+method with same request ID. The server also calls the RemoteSPEventProc method
+with an ASYNCEVENTMSG to indicate any spontaneous event that is related to the
+TAPI operations on the server.</p>
+<p>For example, when the server
+offers an incoming call the client sends the <a href="1076f351-bdb9-4a83-844c-811a729d7228" data-linktype="relative-path">Answer</a> packet through the
+ClientRequest method to server for answering the call. The Answer packet
+follows the structure of the TAPI32_MSG. The server returns a positive number
+as the request ID for success. On completion of the requested operation the
+server calls the RemoteSPEventProc method with a <a href="8f5bc349-fd55-46f2-b0bc-dc9f757317a9" data-linktype="relative-path">LINE_REPLY</a> packet which
+matches the request identifier previously returned for the Answer packet.
+LINE_REPLY follows the ASYNCEVENTMSG.</p>
+</li></ul><dl>
+<dd>
+<p><img id="MS-TRP_pict16f7ae88-432e-4b79-b302-6d1074977d1f.png" src="ms-trp_files/image002.png" alt="Asynchronous Completion" title="Asynchronous Completion" data-linktype="relative-path"/></p>
+</dd></dl><p><b>Figure 2: Asynchronous Completion</b></p><dl>
+<dd>
+<p>Section <a href="d2c5f406-791e-4e87-aea9-0aca93ed69ea" data-linktype="relative-path">2.2.4</a> specifies the
+packets that are sent as part of requests from client to server, asynchronous
+event packets from server to client indicating the completion of the requested
+operation or spontaneous event relating to TAPI operations on the server.</p>
+</dd></dl><p>The remotesp interface, through the RemoteSPEventProc
+method, allows the server to notify the client of events that affect TAPI
+operations on the server. In RPC terminology, the server is acting as an
+&#34;RPC client&#34; on the remotesp interface because the server makes the
+RPC function call, and the client is acting as an &#34;RPC server&#34; on the
+remotesp interface. Unless otherwise mentioned, the term &#34;server&#34; is
+used to indicate a server in the TAPI sense in this specification. A server
+provides telephony devices that the client can use.</p><p>The events that are notified on the remotesp interface can
+be the completion of an asynchronous TAPI operation that is initiated earlier
+by the client or a spontaneous event that is related to TAPI operations on the server
+(for example, an incoming call on a telephony device). </p><p>The client can specify that the server use a mailslot
+mechanism instead of the remotesp interface for the server to notify the client
+of events. See the <a href="3f1dadef-8ecf-4a4d-8368-26cbf25dca37" data-linktype="relative-path">ClientAttach</a>
+method for details. In this specification, a client that specifies a mailslot
+mechanism is called a connection-less client and a client that uses the
+remotesp interface is called a connection-oriented client.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="e6ad0f06-cb87-47c0-98d2-213e92242547#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a></p><p>Connection-less clients use the Pull Model for getting
+events. In the pull model, the server informs the client that events are
+available for retrieval by writing a DWORD value to the client&#39;s mailslot, and
+the client retrieves events via the ClientRequest method. </p><p>Connection-oriented clients use the Push Model for getting
+events. In the push model, the server connects to the client on the remotesp
+interface by using the <a href="130339d2-967e-4a90-80f2-888b6196b385" data-linktype="relative-path">RemoteSPAttach</a>
+method and calls the RemoteSPEventProc method on the client so that the client
+can process telephony events and completion notifications from the server. </p><p>Clients that connect to the server for administration of the
+telephony devices cannot be interested in events that occur on the telephony
+devices. These clients are called <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_1eeec2c8-ece5-4700-860c-7f87a7487bf5" data-linktype="relative-path">MMC</a> clients in this
+specification and need not provide a mailslot mechanism or remotesp interface
+for the server to notify the client.</p><p>For more information about possible packet sequences to
+complete TAPI operations, see section <a href="997d1fe4-f4ef-40a2-9098-f22ad1b0cbce" data-linktype="relative-path">4</a>.</p><p>For more information, see <a href="https://go.microsoft.com/fwlink/?LinkId=98248" data-linktype="external">[MSDN-MSTelephonyOvw]</a>.</p></div>

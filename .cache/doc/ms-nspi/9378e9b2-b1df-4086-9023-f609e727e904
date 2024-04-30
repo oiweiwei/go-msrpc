@@ -1,0 +1,40 @@
+<div class="content"><p> </p><p>The RestrictionUnion_r structure encodes a single instance
+of any type of restriction. It is an aggregation data structure, allowing a
+single parameter to a <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_e63aea5b-046b-4176-9359-fde82613a406" data-linktype="relative-path">Name Service Provider Interface
+(NSPI)</a></span> method to contain any type of restriction data structure.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(long)] 
+ union _RestrictionUnion_r {
+   [case(0x00000000)] 
+     AndRestriction_r resAnd;
+   [case(0x00000001)] OrRestriction_r resOr;
+   [case(0x00000002)] 
+     NotRestriction_r resNot;
+   [case(0x00000003)] 
+     ContentRestriction_r resContent;
+   [case(0x00000004)] 
+     PropertyRestriction_r resProperty;
+   [case(0x00000005)] 
+     ComparePropsRestriction_r resCompareProps;
+   [case(0x00000006)] 
+     BitMaskRestriction_r resBitMask;
+   [case(0x00000007)] 
+     SizeRestriction_r resSize;
+   [case(0x00000008)] 
+     ExistRestriction_r resExist;
+   [case(0x00000009)] 
+     SubRestriction_r resSubRestriction;
+ } RestrictionUnion_r;
+</pre></div>
+</dd></dl><p><b>resAnd:</b>  RestrictionUnion_r contains
+an encoding of an <b>AndRestriction</b>.</p><p><b>resOr:</b>  RestrictionUnion_r contains
+an encoding of an <b>OrRestriction</b>.</p><p><b>resNot:</b>  RestrictionUnion_r contains
+an encoding of a <b>NotRestriction</b>.</p><p><b>resContent:</b>  RestrictionUnion_r
+contains an encoding of a <b>ContentRestriction</b>.</p><p><b>resProperty:</b>  RestrictionUnion_r
+contains an encoding of a <b>PropertyRestriction</b>.</p><p><b>resCompareProps:</b>  RestrictionUnion_r
+contains an encoding of a <b>CompareRestriction</b>.</p><p><b>resBitMask:</b>  RestrictionUnion_r
+contains an encoding of a <b>BitMaskRestriction</b>.</p><p><b>resSize:</b>  RestrictionUnion_r
+contains an encoding of a <b>SizeRestriction</b>.</p><p><b>resExist:</b>  RestrictionUnion_r
+contains an encoding of an <b>ExistRestriction</b>.</p><p><b>resSubRestriction:</b>  RestrictionUnion_r
+contains an encoding of a <b>SubRestriction</b>.</p></div>

@@ -1,0 +1,70 @@
+<div class="content"><p> </p><p>The DNS_RPC_RECORD_WKS structure contains the information
+for the well known services supported by a host, as defined in section 3.4.2 <span><a href="https://go.microsoft.com/fwlink/?LinkId=90264" data-linktype="external">[RFC1035]</a></span>.
+This record MUST be formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ipAddress</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>chProtocol</p>
+  </td>
+  <td colspan="24">
+  <p>bBitMask
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>ipAddress (4 bytes): </b>The IPv4 address of the
+server that provides the service.</p><p><b>chProtocol (1 byte): </b>The IP protocol number as
+specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89889" data-linktype="external">[IANA-PROTO-NUM]</a></span>.</p><p><b>bBitMask (variable): </b>A list of service names
+(specified as &#34;keywords&#34; in the &#34;WELL KNOWN PORT NUMBERS&#34;
+section of <span><a href="https://go.microsoft.com/fwlink/?LinkId=89888" data-linktype="external">[IANAPORT]</a></span>) or
+port number if service name is unknown as an <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_79fa85ca-ac61-467c-b819-e97dc1a7a599" data-linktype="relative-path">ASCII</a></span> character
+string in DNS_RPC_NAME (section <span><a href="3fd41adc-c69e-407b-979e-721251403132" data-linktype="relative-path">2.2.2.2.1</a></span>) format.
+If more than one port is listed for a single combination of service name and IP
+protocol number, then only the first such port number is indicated when that
+service name is used. Each service name or port MUST be separated by a single
+space character, and the string MUST be terminated by a single null character.
+Each port number specified MUST be less than or equal to 1024. The terminating
+null character MUST be included in the <b>cchNameLength</b> field of the
+DNS_RPC_NAME (section 2.2.2.2.1) structure. </p></div>

@@ -1,0 +1,37 @@
+<div class="content"><p>The CancelClassification method stops the running job
+associated with the <a href="c398aaa3-93ae-458d-8284-bfc5a463847d" data-linktype="relative-path">Default
+Classification job</a> object, if present, from continuing and returns S_OK
+upon successful completion.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_CLASSIFICATION_MANAGER | 0x0C)] HRESULT CancelClassification();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8004533E</p>
+  <p>FSRM_E_CLASSIFICATION_NOT_RUNNING</p>
+  </td>
+  <td>
+  <p>The classification is not currently running.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST stop the associated Running Job or return a
+nonzero error code as follows:</p><ul><li><p><span><span> 
+</span></span>If there is no Running Job in the <b>Classification Job Queue</b>,
+the server MUST return FSRM_E_CLASSIFICATION_NOT_RUNNING.</p>
+</li><li><p><span><span> 
+</span></span>If there is a Running Job in the <b>Classification Job Queue</b>,
+the server MUST set the <b>Running Job.Cancel</b> property of the Running job
+to true.</p>
+</li></ul></div>

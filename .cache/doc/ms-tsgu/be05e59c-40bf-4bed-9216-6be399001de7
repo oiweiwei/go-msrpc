@@ -1,0 +1,65 @@
+<div class="content"><p>The CONNECT_PKT_RESP structure is sent from the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> as a response to UDP
+channel authentication.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>hdr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SynResponse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>result</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>hdr (4 bytes): </b>A <a href="34da4acd-3da9-4f6b-9f93-245a4c2574bc" data-linktype="relative-path">UDP_PACKET_HEADER Structure
+(section 2.2.11.7)</a>. </p><p><b>SynResponse (8 bytes): </b>An <a href="b9b88eeb-4082-42f5-a0d8-bb433bc7fd97" data-linktype="relative-path">AASYNDATARESP Structure
+(section 2.2.11.2)</a>.</p><p><b>result (8 bytes): </b>A <a href="../ms-dtyp/29d44d70-382f-4998-9d76-8a1fe93e445c" data-linktype="relative-path">LONG</a>
+specifying whether the connection was established successfully.</p></div>

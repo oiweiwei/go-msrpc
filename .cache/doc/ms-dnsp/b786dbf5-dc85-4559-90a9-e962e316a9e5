@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_VIRTUALIZATION_INSTANCE_INFO</b> structure
+contains the details of a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1b9d3eb9-dad0-4d1d-acb7-4597e5db641c" data-linktype="relative-path">virtualization instance</a></span>
+when the virtualization instances in the DNS server are enumerated (section <span><a href="4edb00e2-9dee-4e26-9584-8933f3299ebe" data-linktype="relative-path">3.1.4.15</a></span>).</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcVirtualizationInstanceInfo
+ {
+     LPWSTR                  pwszVirtualizationID;
+     LPWSTR                  pwszFriendlyName;
+     LPWSTR                  pwszDescription;
+ }
+ DNS_RPC_VIRTUALIZATION_INSTANCE_INFO, *PDNS_RPC_VIRTUALIZATION_INSTANCE_INFO;
+</pre></div>
+</dd></dl><p><b>pwszVirtualizationID:</b> A NULL-terminated
+Unicode string that uniquely identifies a particular virtualization instance in
+the DNS server. The maximum length of this identifier is limited to 64
+characters.</p><p><b>pwszFriendlyName:</b> A NULL-terminated Unicode
+string that contains a user-friendly name of the DNS virtualization instance.</p><p><b>pwszDescription:</b> A NULL-terminated Unicode
+string that contains a description of the DNS virtualization instance.</p></div>

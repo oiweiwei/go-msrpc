@@ -1,0 +1,13 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/cdbab044-ca61-4ca5-a067-4720dedf62bc" data-linktype="external">msdn link</a></p><p>The <b>CLAIMS_BLOB</b> structure is generated from a <a href="cde2d512-3a15-43f7-94fc-cfac5588adaf" data-linktype="relative-path">CLAIMS_SET</a> structure, as
+specified in section <a href="2385fdc2-b3ff-4892-96c0-66bc1bb4afd8" data-linktype="relative-path">3.1.1.11.2.5</a>.</p><dl>
+<dd>
+<div><pre> typedef struct CLAIMS_BLOB {
+   ULONG ulBlobSizeinBytes;
+   [size_is(ulBlobSizeinBytes)] BYTE* EncodedBlob;
+ } CLAIMS_BLOB,
+  *PCLAIMS_BLOB;
+</pre></div>
+</dd></dl><p><b>ulBlobSizeinBytes:</b>  The size of the <b>EncodedBlob</b>
+member, in bytes.</p><p><b>EncodedBlob:</b>  A byte array of length
+<b>ulBlobSizeinBytes</b> bytes that contains an encoded <a href="bf4a98a1-f2ea-4597-873d-ebbee41ef43d" data-linktype="relative-path">CLAIMS_SET_METADATA</a>
+structure.</p></div>

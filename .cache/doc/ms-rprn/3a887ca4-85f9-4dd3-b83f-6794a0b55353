@@ -1,0 +1,84 @@
+<div class="content"><p>The <b>WSD_DRIVER_DATA</b> structure holds information on
+the discovered printer.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IEEE1284Id
+  (520 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ModelName
+  (520 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>IEEE1284Id (520 bytes): </b>A null-terminated <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a>, which is
+the IEEE 1284 <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_4712ded2-d927-4930-9450-29499f98cef4" data-linktype="relative-path">device</a> ID
+for the discovered printer (for details, see <a href="https://go.microsoft.com/fwlink/?LinkId=89898" data-linktype="external">[IEEE1284]</a>). This can
+be used to generate the correct <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_ca90ad1b-0ee4-41de-bb60-7839243bce61" data-linktype="relative-path">Universal Plug and Play (UPnP)</a>
+ID for the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer driver</a>.</p><p><b>ModelName (520 bytes): </b>A null-terminated
+Unicode string, which is the name of the printer model discovered.</p></div>

@@ -1,0 +1,37 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/1adc2142-dbb8-4554-aa24-010c713698bf" data-linktype="external">msdn link</a></p><p>The SAMPR_DOMAIN_INFO_BUFFER union combines all possible
+structures used in the <a href="9b7ae0b0-bd11-4133-9c62-fba7095aee12" data-linktype="relative-path">SamrSetInformationDomain</a>
+and <a href="5d6a2817-caa9-41ca-a269-fd13ecbb4fa8" data-linktype="relative-path">SamrQueryInformationDomain</a>
+methods. For details on each field, see the associated section for each field
+structure.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DOMAIN_INFORMATION_CLASS)] 
+ union _SAMPR_DOMAIN_INFO_BUFFER {
+   [case(DomainPasswordInformation)] 
+     DOMAIN_PASSWORD_INFORMATION Password;
+   [case(DomainGeneralInformation)] 
+     SAMPR_DOMAIN_GENERAL_INFORMATION General;
+   [case(DomainLogoffInformation)] 
+     DOMAIN_LOGOFF_INFORMATION Logoff;
+   [case(DomainOemInformation)] 
+     SAMPR_DOMAIN_OEM_INFORMATION Oem;
+   [case(DomainNameInformation)] 
+     SAMPR_DOMAIN_NAME_INFORMATION Name;
+   [case(DomainServerRoleInformation)] 
+     DOMAIN_SERVER_ROLE_INFORMATION Role;
+   [case(DomainReplicationInformation)] 
+     SAMPR_DOMAIN_REPLICATION_INFORMATION Replication;
+   [case(DomainModifiedInformation)] 
+     DOMAIN_MODIFIED_INFORMATION Modified;
+   [case(DomainStateInformation)] 
+     DOMAIN_STATE_INFORMATION State;
+   [case(DomainGeneralInformation2)] 
+     SAMPR_DOMAIN_GENERAL_INFORMATION2 General2;
+   [case(DomainLockoutInformation)] 
+     SAMPR_DOMAIN_LOCKOUT_INFORMATION Lockout;
+   [case(DomainModifiedInformation2)] 
+     DOMAIN_MODIFIED_INFORMATION2 Modified2;
+ } SAMPR_DOMAIN_INFO_BUFFER,
+  *PSAMPR_DOMAIN_INFO_BUFFER;
+</pre></div>
+</dd></dl></div>

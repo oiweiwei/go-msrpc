@@ -1,0 +1,49 @@
+<div class="content"><p> </p><p>The VIRTUAL_DISK_ACCESS_MASK enumeration contains the bit
+mask for specifying access rights to a virtual <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_511ca852-83e7-4a0c-8081-06e36436876b" data-linktype="relative-path">hard disk</a></span> (VHD).</p><dl>
+<dd>
+<div><pre> typedef enum _VIRTUAL_DISK_ACCESS_MASK
+ {
+   VIRTUAL_DISK_ACCESS_SURFACE_RO = 0x00010000,
+   VIRTUAL_DISK_ACCESS_SURFACE_RW = 0x00020000,
+   VIRTUAL_DISK_ACCESS_UNSURFACE = 0x00040000,
+   VIRTUAL_DISK_ACCESS_GET_INFO = 0x00080000,
+   VIRTUAL_DISK_ACCESS_CREATE = 0x00100000,
+   VIRTUAL_DISK_ACCESS_METAOPS = 0x00200000,
+   VIRTUAL_DISK_ACCESS_READ = 0x000d0000,
+   VIRTUAL_DISK_ACCESS_ALL = 0x003f0000,
+   VIRTUAL_DISK_ACCESS_WRITABLE = 0x00320000
+ } VIRTUAL_DISK_ACCESS_MASK;
+</pre></div>
+</dd></dl><p><b>VIRTUAL_DISK_ACCESS_SURFACE_RO:  </b>Open the VHD
+for <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_ca1db15f-c3cf-41ca-832e-b2c98007cb6a" data-linktype="relative-path">read-only</a></span>
+surfacing (attaching) access. The caller MUST have READ access to the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual
+disk</a></span> image file. If used in a request to open a VHD that is already
+open, the other handles are limited to either VIRTUAL_DISK_ACCESS_UNSURFACE or
+VIRTUAL_DISK_ACCESS_GET_INFO access; otherwise, the open request with this flag
+will fail.</p><p><b>VIRTUAL_DISK_ACCESS_SURFACE_RW:  </b>Open the VHD
+for read-write surfacing (attaching) access. The caller MUST have (READ |
+WRITE) access to the virtual disk image file. If used in a request to open a
+VHD that is already open, the other handles are limited to either
+VIRTUAL_DISK_ACCESS_UNSURFACE or VIRTUAL_DISK_ACCESS_GET_INFO access;
+otherwise, the open request with this flag will fail. If the VHD is part of a
+differencing chain, the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span> number for this
+request cannot be less than the <i>ReadWriteDepth</i> specified during the
+prior open request for that differencing chain.</p><p><b>VIRTUAL_DISK_ACCESS_UNSURFACE:  </b>Open the VHD
+to allow unsurfacing (detaching) of a surfaced (attached) VHD. The caller MUST
+have (FILE_READ_ATTRIBUTES | FILE_READ_DATA) access to the virtual disk image
+file.</p><p><b>VIRTUAL_DISK_ACCESS_GET_INFO:  </b>Open the VHD
+for retrieval of information. The caller MUST have READ access to the virtual
+disk image file.</p><p><b>VIRTUAL_DISK_ACCESS_CREATE:  </b>Open the VHD for
+creation.</p><p><b>VIRTUAL_DISK_ACCESS_METAOPS:  </b>Open the VHD to
+perform offline metaoperations. For information on the offline metaoperations,
+see <span><a href="https://go.microsoft.com/fwlink/?LinkId=208355" data-linktype="external">[MSDN-CompactVirtualDisk]</a></span>,
+<span><a href="https://go.microsoft.com/fwlink/?LinkId=208356" data-linktype="external">[MSDN-ExpandVirtualDisk]</a></span>,
+<span><a href="https://go.microsoft.com/fwlink/?LinkId=208357" data-linktype="external">[MSDN-MergeVirtualDisk]</a></span>,
+<span><a href="https://go.microsoft.com/fwlink/?LinkId=208358" data-linktype="external">[MSDN-SetVirtualDiskInfo]</a></span>,
+and <span><a href="https://go.microsoft.com/fwlink/?LinkId=208359" data-linktype="external">[MSDN-VIRTDSKACCMSK]</a></span>.
+The caller MUST have (READ | WRITE) access to the virtual disk image file, up
+to <i>ReadWriteDepth</i> if working with a differencing chain. If the VHD is
+part of a differencing chain, the backing store (host <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>) is opened in
+read/write exclusive mode up to <i>ReadWriteDepth</i>.</p><p><b>VIRTUAL_DISK_ACCESS_READ:  </b>Reserved.</p><p><b>VIRTUAL_DISK_ACCESS_ALL:  </b>Allows unrestricted
+access to the VHD. The caller MUST have unrestricted access rights to the
+virtual disk image file.</p><p><b>VIRTUAL_DISK_ACCESS_WRITABLE:</b>  Reserved.</p></div>

@@ -1,0 +1,92 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/3d07c30c-9f0e-4aa3-a9d0-8fc348fd1fe1" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_DELTA_UNION</b> union defines a union of all
+types of <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_00f35ba3-4dbb-4ff9-8e27-572a6aea1b15" data-linktype="relative-path">database</a>
+changes (<a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_bac72edb-4ce9-4baa-8977-f33e331b2b5e" data-linktype="relative-path">deltas</a>).</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(NETLOGON_DELTA_TYPE)] 
+ union _NETLOGON_DELTA_UNION {
+   [case(AddOrChangeDomain)] 
+     PNETLOGON_DELTA_DOMAIN DeltaDomain;
+   [case(AddOrChangeGroup)] 
+     PNETLOGON_DELTA_GROUP DeltaGroup;
+   [case(RenameGroup)] 
+     PNETLOGON_DELTA_RENAME_GROUP DeltaRenameGroup;
+   [case(AddOrChangeUser)] 
+     PNETLOGON_DELTA_USER DeltaUser;
+   [case(RenameUser)] 
+     PNETLOGON_DELTA_RENAME_USER DeltaRenameUser;
+   [case(ChangeGroupMembership)] 
+     PNETLOGON_DELTA_GROUP_MEMBER DeltaGroupMember;
+   [case(AddOrChangeAlias)] 
+     PNETLOGON_DELTA_ALIAS DeltaAlias;
+   [case(RenameAlias)] 
+     PNETLOGON_DELTA_RENAME_ALIAS DeltaRenameAlias;
+   [case(ChangeAliasMembership)] 
+     PNETLOGON_DELTA_ALIAS_MEMBER DeltaAliasMember;
+   [case(AddOrChangeLsaPolicy)] 
+     PNETLOGON_DELTA_POLICY DeltaPolicy;
+   [case(AddOrChangeLsaTDomain)] 
+     PNETLOGON_DELTA_TRUSTED_DOMAINS DeltaTDomains;
+   [case(AddOrChangeLsaAccount)] 
+     PNETLOGON_DELTA_ACCOUNTS DeltaAccounts;
+   [case(AddOrChangeLsaSecret)] 
+     PNETLOGON_DELTA_SECRET DeltaSecret;
+   [case(DeleteGroupByName)] 
+     PNETLOGON_DELTA_DELETE_GROUP DeltaDeleteGroup;
+   [case(DeleteUserByName)] 
+     PNETLOGON_DELTA_DELETE_USER DeltaDeleteUser;
+   [case(SerialNumberSkip)] 
+     PNLPR_MODIFIED_COUNT DeltaSerialNumberSkip;
+   [default]     ;
+ } NETLOGON_DELTA_UNION,
+  *PNETLOGON_DELTA_UNION;
+</pre></div>
+</dd></dl><p><b>DeltaDomain:</b> A pointer to a <b>NETLOGON_DELTA_DOMAIN</b>
+structure, as specified in section <a href="803be876-d755-4187-a011-eaf5bf2755ab" data-linktype="relative-path">2.2.1.5.10</a>, that describes
+a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>. This structure
+is selected when the delta type is AddOrChangeDomain.</p><p><b>DeltaGroup:</b> A pointer to a <b>NETLOGON_DELTA_GROUP</b>
+structure, as specified in section <a href="b7949b4e-0fc7-40d4-8841-8d69230e2d79" data-linktype="relative-path">2.2.1.5.13</a>, that describes
+a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_51c51c14-7f9d-4c0b-a69c-d3e059bfffac" data-linktype="relative-path">group</a> account. This
+structure is selected when the delta type is AddOrChangeGroup.</p><p><b>DeltaRenameGroup:</b> A pointer to a <b>NETLOGON_RENAME_GROUP</b>
+structure, as specified in section <a href="c48a2216-2c51-412b-aeb6-c6666004b53f" data-linktype="relative-path">2.2.1.5.24</a>, that describes
+a rename of a group account. This structure is selected when the delta type is
+RenameGroup.</p><p><b>DeltaUser:</b> A pointer to a <b>NETLOGON_DELTA_USER</b>
+structure, as specified in section <a href="c82fcc5a-59b6-47f7-9f69-dec916ebed2c" data-linktype="relative-path">2.2.1.5.16</a>, that describes
+a domain user account. This structure is selected when the delta type is
+AddOrChangeUser.</p><p><b>DeltaRenameUser:</b> A pointer to a <b>NETLOGON_RENAME_USER</b>
+structure, as specified in section <a href="96943cc2-4412-45df-8ac0-f4b3d323a27e" data-linktype="relative-path">2.2.1.5.25</a>, that describes
+a rename of a user account. This structure is selected when the delta type is
+RenameUser.</p><p><b>DeltaGroupMember:</b> A pointer to a <b>NETLOGON_DELTA_GROUP_MEMBER</b>
+structure, as specified in section <a href="3d4c5636-1f2a-4896-a717-d8598ffaffab" data-linktype="relative-path">2.2.1.5.17</a>, that describes
+a group membership. This structure is selected when the delta type is
+ChangeGroupMembership.</p><p><b>DeltaAlias:</b> A pointer to a <b>NETLOGON_DELTA_ALIAS</b>
+structure, as specified in section <a href="38155d03-b5dc-445d-9fcb-a6938be5972d" data-linktype="relative-path">2.2.1.5.4</a>, that describes
+an <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_d046b6e2-3f79-47e1-87d7-754566744dcd" data-linktype="relative-path">alias</a>. This structure
+is selected when the delta type is AddOrChangeAlias.</p><p><b>DeltaRenameAlias:</b> A pointer to a <b>NETLOGON_RENAME_ALIAS</b>
+structure, as specified in section <a href="15426b42-7d07-40e4-bca7-933823d1b40e" data-linktype="relative-path">2.2.1.5.23</a>, that describes
+a rename of an alias. This structure is selected when the delta type is
+RenameAlias.</p><p><b>DeltaAliasMember:</b> A pointer to a <b>NETLOGON_DELTA_ALIAS_MEMBER</b>
+structure, as specified in section <a href="aeca7467-5e13-417c-a4cb-71d1f6476090" data-linktype="relative-path">2.2.1.5.7</a>, that describes
+an alias membership. This structure is selected when the delta type is
+ChangeAliasMembership.</p><p><b>DeltaPolicy:</b> A pointer to a <b>NETLOGON_DELTA_POLICY</b>
+structure, as specified in section <a href="b9ee3608-efd1-4d57-b4da-5a13b9ec1fa1" data-linktype="relative-path">2.2.1.5.19</a>, that describes
+an <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9e5f2104-d6df-4ae7-8a5c-6bd14a0da8fa" data-linktype="relative-path">LSA</a> policy. This
+structure is selected when the delta type is AddOrChangeLsaPolicy.</p><p><b>DeltaTDomains:</b> A pointer to a <b>NETLOGON_DELTA_TRUSTED_DOMAINS</b>
+structure, as specified in section <a href="fe95340e-db88-4fdd-85c6-bc8ad1c4ff8c" data-linktype="relative-path">2.2.1.5.22</a>, that describes
+a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trusted</a> domain. This
+structure is selected when the delta type is AddOrChangeLsaTDomain.</p><p><b>DeltaAccounts:</b> A pointer to a <b>NETLOGON_DELTA_ACCOUNTS</b>
+structure, as specified in section <a href="7f60a1a7-99d8-49ba-91c0-6e027237b009" data-linktype="relative-path">2.2.1.5.3</a>, that describes
+an LSA account. This structure is selected when the delta type is
+AddOrChangeLsaAccount.</p><p><b>DeltaSecret:</b> A pointer to a <b>NETLOGON_DELTA_SECRET</b>
+structure, as specified in section <a href="ddf4e131-ef89-425f-a70b-88fdd73afb51" data-linktype="relative-path">2.2.1.5.21</a>, that describes
+a LSA secret object as detailed in <a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a>.
+This structure is selected when the delta type is AddOrChangeLsaSecret.</p><p><b>DeltaDeleteGroup:</b> A pointer to a <b>NETLOGON_DELTA_DELETE_GROUP</b>
+structure, as specified in section <a href="3ef06890-0519-4f6e-889d-ec76cd865d7c" data-linktype="relative-path">2.2.1.5.8</a>, that describes
+a group account deletion. This structure is selected when the delta type is
+DeleteGroupByName.</p><p><b>DeltaDeleteUser:</b> A pointer to a <b>NETLOGON_DELTA_DELETE_USER</b>
+structure, as specified in section <a href="3fb60f5f-e33d-427b-b540-ac3b84342d5d" data-linktype="relative-path">2.2.1.5.9</a>, that describes
+a user account deletion. This structure is selected when the delta type is
+DeleteUserByName.</p><p><b>DeltaSerialNumberSkip:</b> A pointer to an <b>NLPR_MODIFIED_COUNT</b>
+structure, as specified in section <a href="75dd3699-8abc-45d2-9fb7-e7a9a78779f5" data-linktype="relative-path">2.2.1.5.26</a>, that holds the
+<a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0b04ee8e-be04-4d04-94c4-90e58390f83d" data-linktype="relative-path">database serial number</a>.
+This structure is selected when the delta type is SerialNumberSkip.</p></div>

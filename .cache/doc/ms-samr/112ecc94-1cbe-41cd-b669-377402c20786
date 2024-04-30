@@ -1,0 +1,48 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/112ecc94-1cbe-41cd-b669-377402c20786" data-linktype="external">msdn link</a></p><p>The SAMPR_ENCRYPTED_USER_PASSWORD_NEW structure carries an
+encrypted string.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_ENCRYPTED_USER_PASSWORD_NEW {
+   unsigned char Buffer[(256 * 2) + 4 + 16];
+ } SAMPR_ENCRYPTED_USER_PASSWORD_NEW,
+  *PSAMPR_ENCRYPTED_USER_PASSWORD_NEW;
+</pre></div>
+</dd></dl><p><b>Buffer:</b>  An array to carry encrypted
+cleartext password data.</p><dl>
+<dd>
+<p>For all protocol uses, the decrypted format of <b>Buffer</b>
+is the following structure.</p>
+</dd>
+<dd>
+<div><pre> typedef struct _SAMPR_USER_PASSWORD_NEW {
+     WCHAR Buffer[256];
+     ULONG Length;
+     UCHAR ClearSalt[16];
+ } SAMPR_USER_PASSWORD_NEW, *PSAMPR_USER_PASSWORD_NEW;
+</pre></div>
+</dd>
+<dd>
+<p><b>Buffer:</b> This array contains the cleartext
+value at the end of the buffer. The cleartext value can be no more than 512
+bytes. The start of the string is <b>Length</b> number of bytes from the end of
+the buffer. The unused portions of SAMPR_USER_PASSWORD_NEW.Buffer SHOULD be
+filled with random bytes by the client.</p>
+</dd>
+<dd>
+<p><b>Length:</b> An unsigned integer, in little-endian
+byte order, that indicates the number of bytes of the cleartext value (located
+in SAMPR_USER_PASSWORD_NEW.Buffer).</p>
+</dd>
+<dd>
+<p><b>ClearSalt:</b> This value (a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_1672c769-f184-404a-9575-e637fd3a43ed" data-linktype="relative-path">salt</a>) MUST be filled with
+random bytes by the client and MUST NOT be encrypted. The length of 16 was
+chosen in particular because 128 bits of randomness was deemed sufficiently
+secure when this protocol was introduced (circa 1998).</p>
+</dd></dl><p>Implementations of this protocol MUST protect the
+SAMPR_ENCRYPTED_USER_PASSWORD_NEW structure by encrypting the first 516 bytes
+of data referenced in its <b>Buffer</b> field on request (and reply) and by
+decrypting on receipt. See section <a href="5fe3c4c4-e71b-440d-b2fd-8448bfaf6e04" data-linktype="relative-path">3.2.2.1</a> for the
+specification of the algorithm performing encryption and decryption.</p><p>The first 516 bytes are defined as the first 516 bytes of
+the SAMPR_USER_PASSWORD_NEW structure defined previously. The last 16 bytes of
+the SAMPR_ENCRYPTED_USER_PASSWORD_NEW structure are defined as the last 16
+bytes of the SAMPR_USER_PASSWORD_NEW structure and MUST NOT be encrypted or
+decrypted.</p></div>

@@ -1,0 +1,23 @@
+<div class="content"><p>The Windows Client Certificate Enrollment Protocol consists
+of a set of <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a>
+interfaces (as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>)
+that allow clients to request various services from a <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">certification authority (CA)</a>.
+These services enable X.509 (as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90590" data-linktype="external">[X509]</a>) <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_a1dfa70d-7803-413d-8697-c40021a3f3d0" data-linktype="relative-path">digital certificate</a> <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_3edb3c30-bb82-4782-9777-19c5006965ef" data-linktype="relative-path">enrollment</a>, <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_71f399e7-7026-46bb-b7c2-8fd4872b900f" data-linktype="relative-path">issuance</a>, <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_caac8fa2-5e21-43b9-a3fe-be0819b906bf" data-linktype="relative-path">revocation</a>, and property
+retrieval.</p><p><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+Directory</a> can be used to store <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> policies for
+certificate enrollment. An implementation of the protocol that is specified in
+this document might retrieve Active Directory <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">objects (1)</a> and <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attributes</a> that define
+these enrollment policies. Because Active Directory is an independent component
+with its own protocols, the exact process for Active Directory discovery and
+objects retrieval is covered in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>.</p><p>Familiarity with <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_fbe33f73-7a2c-4134-ab9e-7a12c6d01348" data-linktype="relative-path">public key infrastructure (PKI)</a>
+concepts such as asymmetric and symmetric cryptography, digital certificates,
+and cryptographic <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_ebc12f7b-18ac-4242-af74-58579c403628" data-linktype="relative-path">key
+exchange</a> is required for a complete understanding of this specification. In
+addition, a comprehensive understanding of the [X509] standard is required for
+a complete understanding of the protocol and its usage. For a comprehensive
+introduction to cryptography and PKI concepts, see <a href="https://go.microsoft.com/fwlink/?LinkId=817338" data-linktype="external">[SCHNEIER]</a>. PKI
+basics and <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a>
+concepts are as specified in [X509]. For an introduction to <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_4f22841f-249b-42fb-a31a-5049c00be939" data-linktype="relative-path">certificate revocation lists
+(CRLs)</a> and revocation concepts, see <a href="https://go.microsoft.com/fwlink/?LinkId=90181" data-linktype="external">[MSFT-CRL]</a>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

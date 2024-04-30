@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The <b>DHCPV6_BIND_ELEMENT_ARRAY</b> structure defines an
+array of <span><a href="3ff7432a-fdc7-476e-bca3-6497f2fef2f3" data-linktype="relative-path">DHCPV6_BIND_ELEMENT (section 2.2.1.2.82)</a></span>
+structures. This contains an array of IPv6 interface binding over which the
+DHCPv6 server receives DHCPv6 packets. The first member contains the number of
+IPv6 interface bindings present in the specific subnet, and the second member
+points to the array of interface bindings over which the DHCPv6 server is
+receiving DHCPv6 packets.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCPV6_BIND_ELEMENT_ARRAY {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCPV6_BIND_ELEMENT Elements;
+ } DHCPV6_BIND_ELEMENT_ARRAY,
+  *LPDHCPV6_BIND_ELEMENT_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and specifies the number of IPv6 interface binding listed in subsequent field
+the <b>Elements</b> member.</p><p><b>Elements:</b>  This is a pointer to an
+array of type DHCPV6_BIND_ELEMENT (section 2.2.1.2.82) structure and
+length <b>NumElements</b> that contains information for interface bindings for
+a DHCPv6 server.</p></div>

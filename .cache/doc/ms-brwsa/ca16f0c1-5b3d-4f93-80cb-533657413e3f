@@ -1,0 +1,115 @@
+<div class="content"><p> </p><p>The browser interface lists the methods associated with the <span><a href="48f4ceaf-3cd0-4964-a964-2f4682b8d2f0#gt_f06aa0c1-29ec-4d3e-a4e2-e38e8f918933" data-linktype="relative-path">browser</a></span>
+service, which creates and maintains a view of resources available on a
+network. The server does not maintain <span><a href="48f4ceaf-3cd0-4964-a964-2f4682b8d2f0#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> state
+information. The protocol operation is stateless. The version for this
+interface is 0.0. </p><p>The <span><a href="48f4ceaf-3cd0-4964-a964-2f4682b8d2f0#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span> for this
+interface is: &#34;6BFFD098-A112-3610-9833-012892020162&#34;.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Opnum0NotUsedOnWire</p>
+  </td>
+  <td>
+  <p>Reserved for local use.</p>
+  <p>Opnum: 0</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Opnum1NotUsedOnWire</p>
+  </td>
+  <td>
+  <p>Reserved for local use.</p>
+  <p>Opnum: 1</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="3fdb5c28-c61b-49d0-bd0f-0a704f7dc507" data-linktype="relative-path">I_BrowserrQueryOtherDomains</a></span></p>
+  </td>
+  <td>
+  <p>Returns a list of other domains configured for this
+  computer.</p>
+  <p>Opnum: 2</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Opnum3NotUsedOnWire</p>
+  </td>
+  <td>
+  <p>Reserved for local use.</p>
+  <p>Opnum: 3</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Opnum4NotUsedOnWire</p>
+  </td>
+  <td>
+  <p>Reserved for local use.</p>
+  <p>Opnum: 4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Opnum5NotUsedOnWire</p>
+  </td>
+  <td>
+  <p>Reserved for local use.</p>
+  <p>Opnum: 5</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Opnum6NotUsedOnWire</p>
+  </td>
+  <td>
+  <p>Reserved for local use.</p>
+  <p>Opnum: 6</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Opnum7NotUsedOnWire</p>
+  </td>
+  <td>
+  <p>Reserved for local use.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Opnum8NotUsedOnWire</p>
+  </td>
+  <td>
+  <p>Reserved for local use.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Opnum9NotUsedOnWire</p>
+  </td>
+  <td>
+  <p>Reserved for local use.</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Opnum10NotUsedOnWire</p>
+  </td>
+  <td>
+  <p>Reserved for local use.</p>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Opnum11NotUsedOnWire</p>
+  </td>
+  <td>
+  <p>Reserved for local use.</p>
+  <p>Opnum: 11</p>
+  </td>
+ </tr></tbody></table><p>In the preceding table, the phrase &#34;Reserved for local
+use&#34; means that the client MUST NOT send the <span><a href="48f4ceaf-3cd0-4964-a964-2f4682b8d2f0#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a></span> and that the
+server behavior is undefined<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="59ffe052-71a7-4dc7-8ec2-cebeb93c30f3#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a> because it
+does not affect interoperability.</p></div>

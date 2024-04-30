@@ -1,0 +1,88 @@
+<div class="content"><p> </p><p>The MQDSPUBLICKEY structure defines a public key
+certificate.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulKeyLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulProviderLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulProviderType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>sProviderName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>aBuf
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>ulKeyLen (4 bytes): </b>An unsigned 32-bit integer
+that MUST contain the size, in bytes, of the data in the <b>aBuf</b> field.</p><p><b>ulProviderLen (4 bytes): </b>An unsigned 32-bit integer
+that MUST contain the size, in bytes, of the provider name, including the
+terminating null character.</p><p><b>ulProviderType (4 bytes): </b>An unsigned 32-bit
+integer that MUST contain an enumerated constant for the provider-type code.
+The value MUST be either PROV_RSA_FULL (0x00000001) or PROV_RSA_AES
+(0x00000018), indicating which provider was used to generate the public key
+certificate stored in the <b>aBuf</b> field.</p><p><b>sProviderName (variable): </b>A null-terminated <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string that contains the provider name.</p><p><b>aBuf (variable): </b>A buffer that MUST contain a <b>BLOBHEADER</b>
+(<span><a href="../ms-mqds/1c8a4041-846e-487e-a4b7-6051b9774247" data-linktype="relative-path">[MS-MQDS]</a></span>
+section <span><a href="../ms-mqds/588d8ab6-a559-4698-af82-8f4d489cfc0e" data-linktype="relative-path">2.2.19</a></span>)
+structure, with the <b>aiKeyAlg</b> field set to CALG_RSA_KEYX (0x0000a400),
+followed by the public key certificate formatted as an <b>RSAPUBKEY</b>
+([MS-MQDS] section <span><a href="../ms-mqds/7567bcfb-7972-4bb9-abcf-c19b2eedf57f" data-linktype="relative-path">2.2.18</a></span>)
+structure.</p></div>

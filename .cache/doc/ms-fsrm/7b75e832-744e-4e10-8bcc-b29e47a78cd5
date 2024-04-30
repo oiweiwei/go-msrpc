@@ -1,0 +1,38 @@
+<div class="content"><p>The _NewEnum method creates a new collection of <b>Objects
+Being Enumerated</b>.</p><dl>
+<dd>
+<div><pre> [propget, id(DISPID_NEWENUM), restricted] HRESULT _NewEnum(
+   [out, retval] IUnknown** unknown
+ );
+</pre></div>
+</dd></dl><p><b>unknown: </b>Pointer to an <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface pointer. Upon successful completion, receives the IUnknown pointer of
+a new <b>IEnumVARIANT</b> enumeration for the items in the collection of <b>Objects
+Being Enumerated</b>. The returned object MUST implement the <b>IEnumVARIANT</b>
+interface and support enumeration methods on the same data as the <b>IFsrmCollection</b>
+object. See <a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a>
+for <b>IEnumVARIANT</b> protocol documentation.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80004003</p>
+  <p>E_POINTER</p>
+  </td>
+  <td>
+  <p>The <i>unknown</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that IUnknown is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST set IUnknown to the IUnknown interface of a
+new <b>IEnumVARIANT</b> enumeration that contains pointers to all the <b>Objects
+Being Enumerated</b> in the collection.</p></div>

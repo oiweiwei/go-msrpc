@@ -1,0 +1,92 @@
+<div class="content"><p>The AddKey method creates a node and adds it to the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_086b13f2-2715-4000-a16c-6acc3d59cc19" data-linktype="relative-path">metabase</a> as a subnode of an
+existing node at the specified path.</p><dl>
+<dd>
+<div><pre> HRESULT AddKey(
+   [in] METADATA_HANDLE hMDHandle,
+   [unique, in, string] LPCWSTR pszMDPath
+ );
+</pre></div>
+</dd></dl><p><b>hMDHandle: </b>An unsigned 32-bit integer value
+containing an open metabase handle specifying the node in the metabase where
+the new key is to be added.</p><p><b>pszMDPath: </b>A pointer to a Unicode string that
+contains the new node&#39;s path, relative to the path of the <i>hMDHandle</i>
+parameter.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it failed. If
+the 12-bit facility code (bits 16–27) is set to 0x007, the value contains a
+Win32 error code in the lower 16 bits. Zero or positive values indicate
+success, with the lower 16 bits in positive nonzero values containing warnings
+or flags defined in the method implementation. For more information about Win32
+error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>E_ACCESSDENIED</p>
+  </td>
+  <td>
+  <p>General access denied error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070006</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The handle is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800700B7</p>
+  <p>ERROR_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>Cannot create a file because that file already exists.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 3.</p><p>When processing this call, the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Check the handle parameter. This handle is valid if it is either
+the master root handle or a handle returned from a previous <a href="a54be1d0-009a-493d-a53e-e2f7fbe87293" data-linktype="relative-path">OpenKey</a> call. If the
+handle is invalid, return ERROR_INVALID_HANDLE error.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD check whether the parent handle, <i>hMDHandle</i>,
+was opened for write access. If not, return E_ACCESSDENIED<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="88fd1df0-e63e-41ca-9bf3-bedcab57cd86#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a>.</p>
+</li><li><p><span><span> 
+</span></span>Check whether the relative path has the right syntax and length.
+If not, return an error.</p>
+</li><li><p><span><span> 
+</span></span>Check whether the relative path refers to an existing node. If
+so, return ERROR_ALREADY_EXISTS.</p>
+</li><li><p><span><span> 
+</span></span>Add a new node to the tree that has the resultant path as a
+combined path of the parent node specified by the <i>hMDHandle</i> parameter
+and the relative path specified by the <i>pszMDPath</i> parameter. If any
+intermediate nodes are required, the server creates these nodes.</p>
+</li></ul></div>

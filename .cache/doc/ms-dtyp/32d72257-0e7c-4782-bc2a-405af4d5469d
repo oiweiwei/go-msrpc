@@ -1,0 +1,19 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/32d72257-0e7c-4782-bc2a-405af4d5469d" data-linktype="external">msdn link</a></p><p>The RPC representation of the <a href="20233ed8-a6c6-4097-aafa-dd545ed24428" data-linktype="relative-path">ACL</a> data type specifies
+the elements needed to access a complete access control list, including both
+the ACL header structure and the array of <a href="d06e5a81-176e-46c6-9cf7-9137aad4455e" data-linktype="relative-path">ACEs</a>. The individual
+members are as specified in section 2.4.5.</p><p>The ACL structure MUST be aligned on a 32-bit boundary.</p><p>In the absence of implementation-specific functions to
+access the individual ACEs, access to each ACE MUST be computed by using the <b>AclSize</b>
+and <b>AceCount</b> members to parse the memory following the ACL to identify
+each <a href="628ebb1d-c509-4ea0-a10f-77ef97ca4586" data-linktype="relative-path">ACE_HEADER</a>, which
+in turn contains the information needed to obtain the specific ACEs.</p><dl>
+<dd>
+<div><pre> typedef struct _ACL {
+   unsigned char AclRevision;
+   unsigned char Sbz1;
+   unsigned short AclSize;
+   unsigned short AceCount;
+   unsigned short Sbz2;
+ } ACL,
+  *PACL;
+</pre></div>
+</dd></dl></div>

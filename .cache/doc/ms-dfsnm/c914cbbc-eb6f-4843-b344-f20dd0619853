@@ -1,0 +1,269 @@
+<div class="content"><p> </p><p>The TargetEntryBLOB holds metadata for the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_a2c6d1c9-deea-427c-91ee-56f6e726eabd" data-linktype="relative-path">DFS
+target</a></span> of a root or a link.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TargetEntrySize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TargetTimeStamp</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TargetState</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TargetType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>ServerNameSize</p>
+  </td>
+  <td colspan="16">
+  <p>ServerName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>ShareNameSize</p>
+  </td>
+  <td colspan="16">
+  <p>ShareName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>TargetEntrySize (4 bytes): </b>The size, in bytes,
+of this target entry, starting from the <b>TargetTimeStamp</b> field, and
+stored as an unsigned, 32-bit, <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a></span>
+integer.</p><p><b>TargetTimeStamp (8 bytes): </b>If bits 9 through
+63 contain nonzero values, this field encodes the last modification time of
+this target entry, stored as FILETIME, as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">2.3.3</a></span>.
+In this case the <b>PriorityRank</b> and <b>PriorityClass</b> members,
+discussed below, are considered to logically contain zero if referenced by an
+implementation.</p><dl>
+<dd>
+<p>If bits 9 through 63 are zero, the 64 bits of the <b>TargetTimeStamp</b>
+has the following format:</p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="5">
+  <p>PriorityRank</p>
+  </td>
+  <td colspan="3">
+  <p>PriorityClass</p>
+  </td>
+  <td colspan="24">
+  <p>High56Bits</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>PriorityRank (5 bits): </b>The
+priority rank of a target, ranging in value from 0x00 to 0x1F, where 0x00 is
+the highest rank.</p>
+</dd>
+<dd>
+<p><b>PriorityClass (3 bits): </b>The
+priority class of a target. One of the following values.</p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DFS_TARGET_PRIORITY_CLASS_SITE_COST_NORMAL</p>
+  <p>0x0</p>
+  </td>
+  <td>
+  <p>See DfsSiteCostNormalPriorityClass in section <span><a href="966bc1f1-2167-4787-b857-61e7d0a66550" data-linktype="relative-path">2.2.2.8</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_TARGET_PRIORITY_CLASS_GLOBAL_HIGH</p>
+  <p>0x1</p>
+  </td>
+  <td>
+  <p>See DfsSGlobalHighPriorityClass in section 2.2.2.8.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_TARGET_PRIORITY_CLASS_SITE_COST_HIGH</p>
+  <p>0x2</p>
+  </td>
+  <td>
+  <p>See DfsSiteCostHighPriorityClass in section 2.2.2.8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_TARGET_PRIORITY_CLASS_SITE_COST_LOW</p>
+  <p>0x3</p>
+  </td>
+  <td>
+  <p>See DfsSiteCostLowPriorityClass in section 2.2.2.8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_TARGET_PRIORITY_CLASS_GLOBAL_LOW</p>
+  <p>0x4</p>
+  </td>
+  <td>
+  <p>see DfsGlobalLowPriorityClass in section 2.2.2.8</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd>
+<dd>
+<p><b>High56Bits (7 bytes): </b>Set
+to zero.</p>
+</dd></dl><p><b>TargetState (4 bytes): </b>The state of this
+target, stored as an unsigned, 32-bit, little-endian integer. The mask
+0x0000000F is used to extract a bit field that contains one of the following
+valid state values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DFS_STORAGE_STATE_OFFLINE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>This target is offline and unavailable for use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_STORAGE_STATE_ONLINE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>This target is online and available for use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_STORAGE_STATE_ACTIVE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>This target is active.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>TargetType (</b>4 bytes): The type of target,
+stored as an unsigned, 32-bit, little-endian integer bit field. This SHOULD be
+set to 0x00000002.<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a></p><p><b>ServerNameSize (2 bytes): </b>The size, in bytes,
+of the <b>ServerName</b> field, stored as an unsigned 16-bit, little-endian
+integer.</p><p><b>ServerName (variable): </b>An array of <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+characters that contains the DFS target server <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_fe6fd875-b30a-44bb-850e-10733990f04c" data-linktype="relative-path">host name</a></span>. The size
+of the array is given in the ServerNameSize field.</p><p><b>ShareNameSize (2 bytes):</b> The size, in bytes,
+of the ShareName, stored as an unsigned, 16-bit, little-endian integer.</p><p><b>ShareName (variable):</b> An array of Unicode
+characters that contains the DFS target <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_3c179f10-1793-4268-96eb-de4d85a32060" data-linktype="relative-path">share name</a></span>.</p></div>

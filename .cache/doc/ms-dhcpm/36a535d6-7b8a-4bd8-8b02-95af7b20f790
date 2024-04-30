@@ -1,0 +1,60 @@
+<div class="content"><p> </p><p>The <b>R_DhcpSetFilterV4</b> method is used to enable or
+disable the allow and deny lists. The DHCPv4 server allows the DHCPv4 clients
+whose link-layer address is in the allow list to be given leases and blocks
+DHCPv4 clients whose link-layer address is in the deny list, provided the
+respective lists are enabled using <b>R_DhcpSetFilterV4</b>.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpSetFilterV4(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_FILTER_GLOBAL_INFO* GlobalFilterInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>GlobalFilterInfo: </b>This is a pointer to a <span><a href="94f51622-4b9c-48f2-8c2e-11f9a71d5046" data-linktype="relative-path">DHCP_FILTER_GLOBAL_INFO (section 2.2.1.2.91)</a></span>
+that contains information to enable or disable allow and deny lists.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 84.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read/write access
+per section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>GlobalFilterInfo</i> is NULL, return error
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Modify the server ADM element <b>DHCPv4FilterStatus</b> with the
+information in <i>GlobalFilterInfo</i> input parameter.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,29 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/a4db0c27-5540-4d2f-b111-08db1ee0b5a4" data-linktype="external">msdn link</a></p><p>The SamrSetMemberAttributesOfGroup method sets the
+attributes of a member relationship.</p><dl>
+<dd>
+<div><pre> long SamrSetMemberAttributesOfGroup(
+   [in] SAMPR_HANDLE GroupHandle,
+   [in] unsigned long MemberId,
+   [in] unsigned long Attributes
+ );
+</pre></div>
+</dd></dl><p><b>GroupHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_7ce4771c-2043-49b8-85d3-0c60c7789f9a" data-linktype="relative-path">group object</a>.</p><p><b>MemberId: </b>A <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RID</a> that represents a
+member of a group (which is a user or <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_ccf481e1-fb56-43d1-b6c6-0733fb52e001" data-linktype="relative-path">machine account</a>).</p><p><b>Attributes: </b>The characteristics of the
+membership relationship. For legal values, see section <a href="9e093bd2-e451-4dd5-9700-97b977d7ebb2" data-linktype="relative-path">2.2.1.10</a>.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>On receiving this message, the server MUST process the data
+from the message subject to the following constraints:</p><ol><li><p><span>    </span>The server MUST
+return an error if <i>GroupHandle.HandleType</i> is not equal to
+&#34;Group&#34;.</p>
+</li><li><p><span>    </span><i>GroupHandle.GrantedAccess</i>
+MUST have the required access specified in section <a href="87bacbd0-7b8b-429f-abc6-4b3d895d4e90" data-linktype="relative-path">3.1.2.2</a>. Otherwise, the
+server MUST return STATUS_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>In a non-<a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a> configuration, the <i>MemberId</i>
+parameter MUST be a member of the group referenced by <i>GroupHandle.Object</i>;
+otherwise, processing MUST be aborted and an error returned.</p>
+</li><li><p><span>    </span>For a message
+processing specification of the <i>Attributes</i> parameter, see section <a href="87988bdd-b100-4b19-874e-9fce919d9114" data-linktype="relative-path">3.1.5.14.7</a>.</p>
+</li></ol></div>

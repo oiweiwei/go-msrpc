@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The I_nsi_entry_object_inq_done method is invoked to free
+any resources associated with the context handle returned by a preceding call
+to the <span><a href="49bdfea1-93c0-449f-94a4-aef47e7b3a95" data-linktype="relative-path">I_nsi_entry_object_inq_begin</a></span>
+method. The <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a></span> syntax of the
+method is specified as follows.</p><dl>
+<dd>
+<div><pre> void I_nsi_entry_object_inq_done(
+   [in, out] NSI_NS_HANDLE_T* InqContext,
+   [out] unsigned short* status
+ );
+</pre></div>
+</dd></dl><p><b>InqContext: </b>A context handle returned by the
+server from a preceding I_nsi_entry_object_inq_begin call. On successful
+completion, this parameter MUST be set to NULL by the server and MUST NOT be
+modified on failure.</p><p><b>status: </b>A 16-bit value that indicates the
+results of the method call. In case of success the value will contain NSI_S_OK,
+or a nonzero value on failure. All failures MUST be treated identically as a
+failure of the freeing of resources initiated by this method, but no further
+action is required by the caller.</p><p><b>Return Values: </b>This method does not return any
+values. <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> exceptions can
+be thrown from this method.</p><p>Exceptions Thrown</p><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

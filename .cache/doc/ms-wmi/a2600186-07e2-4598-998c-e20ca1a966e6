@@ -1,0 +1,105 @@
+<div class="content"><p> </p><p>The WBEM_DATAPACKET_OBJECT MUST contain the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_633b12d4-e2c4-442f-95ff-4b2b5d708ed5" data-linktype="relative-path">CIM class</a></span>
+definition and <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_94e80069-5f2a-4281-a676-50ea656c4795" data-linktype="relative-path">CIM instances</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfHeader</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfData</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>bObjectType</p>
+  </td>
+  <td colspan="24">
+  <p>Object
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwSizeOfHeader (4 bytes): </b>The size, in bytes,
+of the WBEM_DATAPACKET_OBJECT header, which MUST be 0x00000009.</p><p><b>dwSizeOfData (4 bytes): </b>The size, in bytes, of
+the data following the WBEM_DATAPACKET_OBJECT header. </p><p><b>bObjectType (1 byte): </b>The type of data in the
+data packet. The type MUST take one of the following specified values. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>Object is type <span><a href="3a01ac7e-6812-4c05-956b-1d7b7386b326" data-linktype="relative-path">WBEMOBJECT_CLASS</a></span>.</p>
+  <p>Structure contains the complete <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a99173af-90bf-473d-9a81-ff0ce9a85838" data-linktype="relative-path">CIM</a></span>
+  Class definition.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>Object is type <span><a href="25070492-4737-4c89-b152-924a58d5c2f3" data-linktype="relative-path">WBEMOBJECT_INSTANCE</a></span>.</p>
+  <p>Structure contains the complete CIM Instance
+  definition.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p>Object is type <span><a href="214294c9-e1d9-4c70-b54b-fc1e0d86756b" data-linktype="relative-path">WBEMOBJECT_INSTANCE_NOCLASS</a></span>.</p>
+  <p>Structure contains CIM Instance without the CIM Class
+  definition.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Object (variable): </b>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c1fdd6c7-06cb-4787-8735-4d19a68dd802" data-linktype="relative-path">CIM
+object</a></span> carried into the WBEM_DATAPACKET_OBJECT, having dwSizeOfData
+bytes. The embedded CIM object MUST match the selector field <b>bObjectType</b>.</p></div>

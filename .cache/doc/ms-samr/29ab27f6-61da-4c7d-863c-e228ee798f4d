@@ -1,0 +1,66 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/29ab27f6-61da-4c7d-863c-e228ee798f4d" data-linktype="external">msdn link</a></p><p>The SamrQueryInformationUser2 method obtains attributes from
+a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_e767a471-c3fa-4e4b-a40c-daeb08f82a17" data-linktype="relative-path">user object</a>.</p><dl>
+<dd>
+<div><pre> long SamrQueryInformationUser2(
+   [in] SAMPR_HANDLE UserHandle,
+   [in] USER_INFORMATION_CLASS UserInformationClass,
+   [out, switch_is(UserInformationClass)] 
+     PSAMPR_USER_INFO_BUFFER* Buffer
+ );
+</pre></div>
+</dd></dl><p><b>UserHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a user object.</p><p><b>UserInformationClass: </b>An enumeration
+indicating which attributes to return. See section <a href="6b0dff90-5ac0-429a-93aa-150334adabf6" data-linktype="relative-path">2.2.6.28</a> for a list of
+possible values.</p><p><b>Buffer: </b>The requested attributes on output.
+See section <a href="9496c26e-490b-4e76-827f-2695fc216f35" data-linktype="relative-path">2.2.6.29</a>
+for structure details.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>The server MUST
+return an error if <i>UserHandle.HandleType</i> is not equal to
+&#34;User&#34;.</p>
+</li><li><p><span>    </span><i>UserHandle.GrantedAccess</i>
+MUST have the required access specified in <a href="1c780874-7110-4e36-87c6-7dba52543eb1" data-linktype="relative-path">Common
+Processing (section 3.1.5.5.5.1)</a>.</p>
+</li><li><p><span>    </span>If <i>UserInformationClass</i>
+is set to UserAllInformation, the constraints in section <a href="c348de4f-1260-4312-acfd-a000019feb87" data-linktype="relative-path">3.1.5.5.5.2</a>
+(&#34;UserAllInformation&#34;) MUST be satisfied. Otherwise, the constraints
+in section 3.1.5.5.5.1 (&#34;Common Processing&#34;) MUST be satisfied.</p>
+</li><li><p><span>    </span>The following
+bits in <b>Buffer.All.WhichFields</b>, and their corresponding field values,
+MUST never be returned by the server.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>WhichFields bits</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>USER_ALL_NTPASSWORDPRESENT</p>
+  <p>0x01000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>USER_ALL_LMPASSWORDPRESENT</p>
+  <p>0x02000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>USER_ALL_PRIVATEDATA</p>
+  <p>0x04000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>USER_ALL_PASSWORDEXPIRED</p>
+  <p>0x08000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>USER_ALL_SECURITYDESCRIPTOR</p>
+  <p>0x10000000</p>
+  </td>
+ </tr></tbody></table>
+</li></ol><p> </p></div>

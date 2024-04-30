@@ -1,0 +1,29 @@
+<div class="content"><p> </p><p>The QUEUE_SUFFIX_TYPE enumeration defines which type of <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>
+object is represented by the <span><a href="905e154a-6123-42a9-86cb-e0a3169820f2" data-linktype="relative-path">QUEUE_FORMAT (section 2.2.7)</a></span>
+structure. This suffix refers to the portion of the queue path separated from
+the queue name by a semicolon, as specified in <span><a href="0f858702-0f3d-471a-972c-e6706906fa4d" data-linktype="relative-path">Path
+Names (section 2.1.1)</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   QUEUE_SUFFIX_TYPE_NONE = 0,
+   QUEUE_SUFFIX_TYPE_JOURNAL = 1,
+   QUEUE_SUFFIX_TYPE_DEADLETTER = 2,
+   QUEUE_SUFFIX_TYPE_DEADXACT = 3,
+   QUEUE_SUFFIX_TYPE_XACTONLY = 4,
+   QUEUE_SUFFIX_TYPE_SUBQUEUE = 5
+ } QUEUE_SUFFIX_TYPE;
+</pre></div>
+</dd></dl><p><b>QUEUE_SUFFIX_TYPE_NONE:  </b>There is no suffix.</p><p><b>QUEUE_SUFFIX_TYPE_JOURNAL:  </b>Refers to the <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_89cac287-8784-4fdf-893f-739cd0ef3785" data-linktype="relative-path">queue
+journal</a></span> of the queue identified by the unnamed union in the
+QUEUE_FORMAT (section 2.2.7) structure.</p><p><b>QUEUE_SUFFIX_TYPE_DEADLETTER:  </b>Refers to the
+nontransacted <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_99517f21-e7cf-4c8f-a651-0dd969828cba" data-linktype="relative-path">dead-letter queue</a></span> of
+the computer identified by the union in the
+QUEUE_FORMAT (section 2.2.7) structure.</p><p><b>QUEUE_SUFFIX_TYPE_DEADXACT:  </b>Refers to the
+transacted dead-letter queue of the computer identified by the union in the
+QUEUE_FORMAT (section 2.2.7) structure.</p><p><b>QUEUE_SUFFIX_TYPE_XACTONLY:  </b>Refers to the
+transacted <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_86bc3fbd-dfae-4737-a56a-3c0d9045c967" data-linktype="relative-path">connector queue</a></span> of
+the connector identified by the union in the
+QUEUE_FORMAT (section 2.2.7) structure.</p><p><b>QUEUE_SUFFIX_TYPE_SUBQUEUE:  </b>Refers to the <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_328fe8aa-d006-44dd-8cc8-dba7c862aaf8" data-linktype="relative-path">subqueue</a></span>
+that is the direct name identified by the union in the
+QUEUE_FORMAT (section 2.2.7) structure.</p></div>

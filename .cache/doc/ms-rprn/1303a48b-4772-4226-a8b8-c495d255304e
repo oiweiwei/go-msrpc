@@ -1,0 +1,66 @@
+<div class="content"><p>RpcAddPortEx adds a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a> name to the list of
+supported ports.<a id="Appendix_A_Target_359"></a><a aria-label="Product behavior note 359" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_359" data-linktype="relative-path">&lt;359&gt;</a></p><dl>
+<dd>
+<div><pre> DWORD RpcAddPortEx(
+   [in, string, unique] STRING_HANDLE pName,
+   [in] PORT_CONTAINER* pPortContainer,
+   [in] PORT_VAR_CONTAINER* pPortVarContainer,
+   [in, string] wchar_t* pMonitorName
+ );
+</pre></div>
+</dd></dl><p><b>pName: </b>A parameter specified in <a href="acb355a4-913b-4abb-8cb5-415aea160015" data-linktype="relative-path">Print Server Name
+Parameters (section 3.1.4.1.4)</a>.</p><p><b>pPortContainer: </b>A parameter specified in <a href="fff791a0-fcab-420a-b1b1-be6eca61d301" data-linktype="relative-path">PORT_CONTAINER
+Parameters (section 3.1.4.1.8.5)</a>. The value of the <b>Level</b>
+member in the <a href="e05adf6c-a04e-4e39-8b34-e7c118ce2bc8" data-linktype="relative-path">PORT_CONTAINER</a>
+that is referenced by this parameter MUST be 0x00000001 or 0xFFFFFFFF.</p><p><b>pPortVarContainer: </b>A pointer to a <a href="0cf200e2-c00a-4c53-8cb7-c150c44cbdbd" data-linktype="relative-path">PORT_VAR_CONTAINER (section 2.2.1.2.8)</a>
+information structure that contains information about the port.</p><p><b>pMonitorName: </b>A pointer to a string that
+specifies the monitor associated with the port. For rules governing monitor
+names, see section <a href="808e2e6c-7f91-4bdd-92da-56fbca513404" data-linktype="relative-path">2.2.4.8</a>.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps specified in Print Server Name
+Parameters (section 3.1.4.1.4).</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps specified in PORT_CONTAINER
+Parameters (section 3.1.4.1.8.5).</p>
+</li><li><p><span><span> 
+</span></span>If the value of the <b>Level</b> member of the PORT_CONTAINER
+that is referenced by the <i>pPortContainer</i> parameter is 0xFFFFFFFF, verify
+that the <i>pPortVarContainer</i> parameter is not NULL; if that verification
+fails, return ERROR_INVALID_PARAMETER [MS-ERREF].</p>
+</li><li><p><span><span> 
+</span></span>Verify that the port does not already exist, and if that
+verification fails, return ERROR_ALREADY_EXISTS [MS-ERREF].</p>
+</li><li><p><span><span> 
+</span></span>Verify that the port monitor identified by the <i>pMonitorName</i>
+parameter exists, and if that verification fails, the server MUST return
+ERROR_INVALID_NAME [MS-ERREF].</p>
+</li><li><p><span><span> 
+</span></span>Verify that the port monitor for the port supports the <b>AddPort</b>
+<a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_971b7035-4384-4e85-9878-b88c49aef05e" data-linktype="relative-path">monitor module</a> method,
+and if that validation fails, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Additional validation MAY<a id="Appendix_A_Target_360"></a><a aria-label="Product behavior note 360" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_360" data-linktype="relative-path">&lt;360&gt;</a> be
+performed.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Create a new port that is compatible with the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1b5f368b-942b-40dd-84ea-fa9082916216" data-linktype="relative-path">port monitor</a> identified by
+the string that is referenced by the <i>pMonitorName</i> parameter; if the <b>Level</b>
+member of the PORT_CONTAINER is 0xFFFFFFFF, pass the data that is contained in
+the PORT_VAR_CONTAINER that is pointed to by the <i>pPortVarContainer</i>
+parameter to the port monitor.</p>
+</li><li><p><span><span> 
+</span></span>Associate the new port with the port monitor identified by the
+string that is referenced by the <i>pMonitorName</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Modify the list of ports in the system to include the port
+created by this method.</p>
+</li><li><p><span><span> 
+</span></span>If any clients have registered for notification of server object
+changes, a notification MUST be broadcast to them.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

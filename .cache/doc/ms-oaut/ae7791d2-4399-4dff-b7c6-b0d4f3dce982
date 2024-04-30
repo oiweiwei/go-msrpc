@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>The VARDESC structure is used by an <span><a href="99504cf9-16d8-401e-a873-83b85d1ee4aa" data-linktype="relative-path">ITypeInfo
+server</a></span> or <span><a href="7894019f-de1e-455e-b2aa-3b899c2e50f6" data-linktype="relative-path">ITypeComp server</a></span> to
+describe a data member, constant, or <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_544446d5-79ab-4b08-85c4-214f1b64fdf2" data-linktype="relative-path">ODL dispinterface</a></span>
+property, as specified in sections <span><a href="476f00da-0806-40d9-bbf3-6059154abbb7" data-linktype="relative-path">3.5.4.1</a></span> and <span><a href="a6b5857a-38e4-46cd-a2e4-bfbc7e21c787" data-linktype="relative-path">3.7.4.4</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct tagVARDESC {
+   MEMBERID memid;
+   LPOLESTR lpstrReserved;
+   [switch_type(VARKIND), switch_is(varkind)] 
+     union {
+     [case(VAR_PERINSTANCE, VAR_DISPATCH, VAR_STATIC)] 
+       ULONG oInst;
+     [case(VAR_CONST)] 
+       VARIANT* lpvarValue;
+   } _vdUnion;
+   ELEMDESC elemdescVar;
+   WORD wVarFlags;
+   VARKIND varkind;
+ } VARDESC,
+  *LPVARDESC;
+</pre></div>
+</dd></dl><p><b>memid:</b>  MUST be set to the <span><a href="ace8758f-ee2b-4cb6-8645-973994d12530" data-linktype="relative-path">MEMBERID (section 2.2.35)</a></span>
+of the data member, the constant, or the ODL dispinterface property. MUST be
+set to MEMBERID_DEFAULTINST if the VARDESC describes an appobject <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_670b0ee2-d101-41b0-ac77-6ac7dbeee7dc" data-linktype="relative-path">coclass</a></span>,
+as specified in section <span><a href="e86fe771-d836-47b6-b846-846de41d592c" data-linktype="relative-path">2.2.49.8</a></span>.</p><p><b>lpstrReserved:</b>  MUST be set to NULL,
+and MUST be ignored by the recipient.</p><p><b>_vdUnion:</b>  MUST be set to an
+instance of the type, according to the value in the <b>varkind</b> field.</p><p><b>oInst:</b>  </p><ul><li><p><span><span> 
+</span></span>VAR_PERINSTANCE: MUST be set to an implementation-specific value<a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>VAR_DISPATCH: MUST be set to 0.</p>
+</li><li><p><span><span> 
+</span></span>VAR_STATIC: MUST be set to 0.</p>
+</li></ul><p><b>lpVarValue:</b>  MUST be set to a
+reference to a <span><a href="a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a></span> that
+specifies the value of the constant.</p><p><b>elemdescVar:</b>  MUST contain an <span><a href="e14ff3cf-034a-4884-a498-fc7586f7160c" data-linktype="relative-path">ELEMDESC</a></span>
+that describes the data member, constant, or ODL dispinterface property and its
+type, as specified in section 2.2.41.</p><p><b>wVarFlags:</b>  MUST be set to a
+combination of the <span><a href="8ec5cfa4-e710-446a-ab89-6715dece4aec" data-linktype="relative-path">VARFLAGS</a></span> bit flags
+(as specified in 2.2.18), or set to 0. MUST be set to 0 if the VARDESC
+describes an appobject coclass, as specified in section 2.2.49.8.</p><p><b>varkind:</b>  MUST be set to a value of
+the <span><a href="a0e9d463-51a2-49cc-8935-a65c9338d3df" data-linktype="relative-path">VARKIND</a></span>
+enumeration. MUST be set to VAR_STATIC if the VARDESC describes an appobject
+coclass, as specified in section 2.2.49.8.</p></div>

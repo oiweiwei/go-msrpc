@@ -1,0 +1,25 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/175c1cf9-4fa2-4837-9e5b-bb1f0f950bee" data-linktype="external">msdn link</a></p><p>The SamrCreateGroupInDomain method creates a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_7ce4771c-2043-49b8-85d3-0c60c7789f9a" data-linktype="relative-path">group object</a> within a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>.</p><dl>
+<dd>
+<div><pre> long SamrCreateGroupInDomain(
+   [in] SAMPR_HANDLE DomainHandle,
+   [in] PRPC_UNICODE_STRING Name,
+   [in] unsigned long DesiredAccess,
+   [out] SAMPR_HANDLE* GroupHandle,
+   [out] unsigned long* RelativeId
+ );
+</pre></div>
+</dd></dl><p><b>DomainHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_2346e8d0-b0a0-481f-b644-85c45c60d4d1" data-linktype="relative-path">domain object</a>.</p><p><b>Name: </b>The value to use as the name of the
+group. Details on how this value maps to the data model are provided later in
+this section.</p><p><b>DesiredAccess: </b>The access requested on the <i>GroupHandle</i>
+on output. See section <a href="f24f9fa8-798d-4e7d-a110-a5eda6900f41" data-linktype="relative-path">2.2.1.5</a>
+for a listing of possible values.</p><p><b>GroupHandle: </b>An RPC context handle, as
+specified in section 2.2.7.2.</p><p><b>RelativeId: </b>The <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RID</a> of the newly created
+group.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>This method MUST be processed per the specifications in
+section <a href="8df397ba-bdda-4f63-8f00-4502375f9cf6" data-linktype="relative-path">3.1.5.4.1</a>,
+using a group type of GROUP_TYPE_SECURITY_ACCOUNT and using <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_462f2aa7-2cfc-404a-b479-30f127c512b1" data-linktype="relative-path">access mask</a> values from
+section 2.2.1.5.</p></div>

@@ -1,0 +1,86 @@
+<div class="content"><p> </p><p>This form of <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_d2b5b331-4e5f-417f-92c5-38eef54176c2" data-linktype="relative-path">OBJREF</a></span> is used by
+the server object to provide an identifier for a helper object on the client,
+which the client can use as a proxy for the server object.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>std (40
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>clsid (16
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>saResAddr
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>std (40 bytes): </b>This MUST specify an <span><a href="ad717638-f105-4256-b552-385b08ef8ebf" data-linktype="relative-path">STDOBJREF</a></span>.</p><p><b>clsid (16 bytes): </b>This MUST specify a <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a></span>
+identifying an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_a224e395-3fea-48bd-b141-3dd9bee2136a" data-linktype="relative-path">object class</a></span> on the
+client that the client uses as a handler for the interface identified by the
+iid field of the containing OBJREF.</p><p><b>saResAddr (variable): </b> This MUST specify a <span><a href="7fe8200b-dccd-48cf-a2fa-681e3e0a23f4" data-linktype="relative-path">DUALSTRINGARRAY</a></span>
+that MUST contain the network and security bindings for the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_19f75354-9b0b-47cb-a00b-4ff196883b32" data-linktype="relative-path">object
+resolver</a></span> service on the server.</p></div>

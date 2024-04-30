@@ -1,0 +1,19 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/aaf25a55-22c3-4639-96c3-ef5ae3362cf4" data-linktype="external">msdn link</a></p><p>The SAMPR_ALIAS_INFO_BUFFER union combines all possible
+structures used in the <a href="ba787e4e-3a4b-47a2-aca3-c3ac2d2c511e" data-linktype="relative-path">SamrSetInformationAlias</a>
+and <a href="599d6624-d93b-46de-827a-58eb0e7527bd" data-linktype="relative-path">SamrQueryInformationAlias</a>
+methods. For information on each field, see the associated section for the
+field structure.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(ALIAS_INFORMATION_CLASS)] 
+ union _SAMPR_ALIAS_INFO_BUFFER {
+   [case(AliasGeneralInformation)] 
+     SAMPR_ALIAS_GENERAL_INFORMATION General;
+   [case(AliasNameInformation)] 
+     SAMPR_ALIAS_NAME_INFORMATION Name;
+   [case(AliasAdminCommentInformation)] 
+     SAMPR_ALIAS_ADM_COMMENT_INFORMATION AdminComment;
+ } SAMPR_ALIAS_INFO_BUFFER,
+  *PSAMPR_ALIAS_INFO_BUFFER;
+</pre></div>
+</dd></dl></div>

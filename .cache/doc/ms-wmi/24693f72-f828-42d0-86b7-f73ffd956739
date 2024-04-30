@@ -1,0 +1,60 @@
+<div class="content"><p> </p><p>The IWbemRefreshingServices::AddObjectToRefresherByTemplate
+method MUST add a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a99173af-90bf-473d-9a81-ff0ce9a85838" data-linktype="relative-path">CIM</a></span> instance, which
+is identified by its <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c1fdd6c7-06cb-4787-8735-4d19a68dd802" data-linktype="relative-path">CIM object</a></span> instance,
+to the list of <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_94e80069-5f2a-4281-a676-50ea656c4795" data-linktype="relative-path">CIM instances</a></span> to be
+refreshed.</p><p>The AddObjectToRefresherByTemplate method <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a></span>
+equals 4.</p><dl>
+<dd>
+<div><pre> HRESULT AddObjectToRefresherByTemplate(
+   [in] _WBEM_REFRESHER_ID* pRefresherId,
+   [in] IWbemClassObject* pTemplate,
+   [in] long lFlags,
+   [in] IWbemContext* pContext,
+   [in] DWORD dwClientRefrVersion,
+   [out] _WBEM_REFRESH_INFO* pInfo,
+   [out] DWORD* pdwSvrRefrVersion
+ );
+</pre></div>
+</dd></dl><p><b>pRefresherId: </b>MUST be a pointer to the
+_WBEM_REFRESHER_ID structure, as specified in section <span><a href="4785ade4-e762-4f7e-a87c-e00aa316a457" data-linktype="relative-path">2.2.21</a></span>, which
+identifies the client that is requesting refreshing services. This parameter
+MUST NOT be NULL.</p><p><b>pTemplate: </b>MUST be a pointer to an <span><a href="46710c5c-d7ab-4e4c-b4a5-ebff311fdcd1" data-linktype="relative-path">IWbemClassObject</a></span>
+interface CIM instance that MUST be a template for the CIM instances to be
+refreshed by the refresher. This parameter MUST NOT be NULL.</p><p><b>lFlags: </b>This parameter is not used, and its value
+SHOULD be 0x0.</p><p><b>pContext: </b>MUST be a pointer to an <span><a href="18c8f1a1-652f-43b7-9186-6098bc303a8d" data-linktype="relative-path">IWbemContext</a></span>
+interface object, which MUST contain additional information for the server
+refresher. If pContext is NULL, the parameter MUST be ignored.</p><p><b>dwClientRefrVersion: </b>MUST be the version of
+the client refresher. This value SHOULD<a id="Appendix_A_Target_65"></a><a aria-label="Product behavior note 65" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_65" data-linktype="relative-path">&lt;65&gt;</a> be 0x2.
+The server MUST allow all client versions.</p><p><b>pInfo: </b>MUST be an output parameter that returns
+a _WBEM_REFRESH_INFO structure, as specified in section <span><a href="f3881702-6fc6-408c-82c9-72e36d928e06" data-linktype="relative-path">2.2.20</a></span>,
+which MUST contain refresher information about the CIM instance in <i>wszPath</i>.
+This parameter MUST NOT be NULL.</p><p><b>pdwSvrRefrVersion: </b>MUST be an output parameter
+that MUST be the version of the server refresher. The value of this parameter
+SHOULD be 0x1.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that makes the call MUST have WBEM_REMOTE_ENABLE and WBEM_ENABLE accesses to
+the namespace; otherwise, WBEM_E_ACCESS_DENIED MUST be returned.</p><p>In response to
+IWbemRefreshingServices::AddObjectToRefresherByTemplate, the server MUST
+evaluate the <i>pTemplate</i> parameter that defines the CIM instance, and it
+MUST return information to the client to handle the specific CIM instance as
+specified in this section.</p><p>A successful call to
+IWbemRefreshingServices::AddObjectToRefresherByTemplate MUST return WBEM_S_NO_ERROR
+and MUST fill the output _WBEM_REFRESH_INFO structure, as specified in this
+section.</p><p>The server MUST locate the <b>InstanceProviderId</b> for the
+instance in <i>wszPath</i> using the algorithm in section <span><a href="632666ed-b696-49db-bd11-e76b912da16f" data-linktype="relative-path">3.1.4</a></span>.
+If <b>InstanceProviderId</b> is not empty and the provider&#39;s <b>SupportsRefresher</b>
+field is TRUE, the server MUST return the <b>_WBEM_REFRESH_INFO</b> structure
+that has an <b>m_lType</b> set to <b>_WBEM_REFRESH_INFO_REMOTE</b>, otherwise
+returning one with <b>m_lType</b> set to _<b>_WBEM_REFRESH_TYPE_NON_HIPERF</b>.</p><p>If the server sets <b>m_lType</b> to <b>_WBEM_REFRESH_INFO_REMOTE</b>,
+the server MUST return an <span><a href="7e35e02b-092d-407f-a4bf-131f648b7691" data-linktype="relative-path">IWbemRemoteRefresher</a></span>
+interface pointer in <b>_WBEM_REFRESH_INFO_REMOTE</b> that is part of <b>_WBEM_REFRESH_INFO</b>.</p><p>If the server sets <b>m_lType</b> to <b>_WBEM_REFRESH_TYPE_NON_HIPERF</b>,
+the server MUST return the <b>_WBEM_REFRESH_TYPE_NON_HIPERF</b> structure as
+part of <b>_WBEM_REFRESH_INFO</b>.</p><p>In case of failure, the server MUST fill in the
+_WBEM_REFRESH_INFO parameter with 0x0, set its <b>m_lType</b> member to
+WBEM_REFRESH_TYPE_INVALID, and return an error in the format that is specified
+in section 2.2.11.</p></div>

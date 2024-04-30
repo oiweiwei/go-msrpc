@@ -1,0 +1,364 @@
+<div class="content"><p> </p><p>The <b>EcDoConnectEx</b> method establishes a new <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_d08d95ee-5936-47d8-9f35-49e4159354a6" data-linktype="relative-path">Session
+Context</a></span> with the server. The Session Context is persisted on the
+server until the client disconnects by using the <b>EcDoDisconnect</b> method,
+as specified in section <span><a href="506c859b-ea73-483d-8023-4212b9ed6f2a" data-linktype="relative-path">3.1.4.3</a></span>. The <b>EcDoConnectEx</b>
+method returns a <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_1f0ab616-f876-47ff-9cf1-6f24c0255ccc" data-linktype="relative-path">session context handle</a></span>
+to be used by a client in subsequent calls.</p><dl>
+<dd>
+<div><pre> long __stdcall EcDoConnectEx(
+     [in] handle_t hBinding,
+      [out, ref] CXH * pcxh,
+      [in, string] unsigned char * szUserDN,
+      [in] unsigned long ulFlags,
+      [in] unsigned long ulConMod,
+      [in] unsigned long cbLimit,
+      [in] unsigned long ulCpid,
+      [in] unsigned long ulLcidString,
+      [in] unsigned long ulLcidSort,
+      [in] unsigned long ulIcxrLink,
+      [in] unsigned short usFCanConvertCodePages,
+      [out] unsigned long * pcmsPollsMax,
+      [out] unsigned long * pcRetry,
+      [out] unsigned long * pcmsRetryDelay,
+      [out] unsigned short * picxr,
+      [out, string] unsigned char **szDNPrefix,
+      [out, string] unsigned char **szDisplayName,
+      [in] unsigned short rgwClientVersion[3],
+      [out] unsigned short rgwServerVersion[3],
+      [out] unsigned short rgwBestVersion[3],
+      [in, out] unsigned long * pulTimeStamp,
+      [in, size_is(cbAuxIn)] unsigned char rgbAuxIn[],
+      [in] unsigned long cbAuxIn,
+      [out, length_is(*pcbAuxOut), size_is(*pcbAuxOut)] unsigned char rgbAuxOut[],
+      [in, out] SMALL_RANGE_ULONG *pcbAuxOut
+ );
+</pre></div>
+</dd></dl><p><i>hBinding:</i> A valid <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_44deb72d-c62b-4335-90e4-b9fd4dd782ed" data-linktype="relative-path">binding
+handle</a></span>.</p><p><i>pcxh:</i> A session context handle for the client. On
+success, the server MUST return a unique value to be used as a session context
+handle. </p><p>On failure, the server MUST return a zero value as the
+session context handle.</p><p><i>szUserDN:</i> The <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a></span> of the user who
+is calling the <b>EcDoConnectEx</b> method in a directory service. The value of
+the <i>szUserDN</i> parameter is similar to the following: &#34;/o=First
+Organization/ou=First Administrative Group/cn=recipients/cn=janedow&#34;.</p><p><i>ulFlags:</i> A flag value that designates the type of
+connection being established. On input, this parameter contains connection bits
+that MUST be set; all flag values not in the following table are reserved
+connection <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_425bcab9-7911-4eae-b414-624b7a51eb5f" data-linktype="relative-path">flags</a></span>.  </p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Requests connection without administrator privilege. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Requests administrator behavior, which causes the
+  server to check that the user has administrator privilege.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00008000</p>
+  </td>
+  <td>
+  <p>If this flag is not passed and the client version (as
+  specified by the <i>rgwClientVersion</i> parameter) is less than
+  12.00.0000.000 and no <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_94523846-05ff-4a8b-bb73-7b3e5fec19aa" data-linktype="relative-path">public folders</a></span> are
+  configured within the messaging system, the server MUST fail the connection
+  attempt with error code ecClientVerDisallowed. The <b>AUX_EXORGINFO</b>
+  auxiliary block structure, specified in section <span><a href="a16de294-6c6c-4c4d-bd86-9bb3be464045" data-linktype="relative-path">2.2.2.2.17</a></span>,
+  informs the client of the presence of public folders within the organization.
+  The use of the <b>AUX_EXORGINFO </b>auxiliary block structure is further
+  defined in section <span><a href="2c141f3f-7322-4096-8653-8c37ea3f5268" data-linktype="relative-path">3.1.4.1.2.1</a></span>. </p>
+  <p>If this flag is passed and the client version (as
+  specified by the <i>rgwClientVersion </i>parameter) is less than
+  12.00.0000.000, the server MUST NOT fail the connection attempt due to public
+  folders not being configured within the messaging system.</p>
+  <p>If the client version (as specified by the <i>rgwClientVersion</i>
+  parameter) is greater than or equal to 12.00.0000.000, the server MUST NOT
+  fail the connection attempt due to public folders not being configured within
+  the messaging system (regardless of whether or not this flag is passed).</p>
+  </td>
+ </tr></tbody></table><p><i>ulConMod:</i> A client-derived 32-bit hash value of the
+DN passed in the <i>szUserDN</i> parameter. The server determines which public
+folder <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_ea02e669-2dda-460c-9992-b12a23caeeac" data-linktype="relative-path">replica</a></span> to use when
+accessing public folder information when more than one replica of a folder
+exists. The hash can be used to distribute client access across replicas in a
+deterministic way for load balancing.</p><p><i>cbLimit:</i> MUST be set to zero when sent and MUST be
+ignored when received.</p><p><i>ulCpid:</i> The <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_210637d9-9634-4652-a935-ded3cd434f38" data-linktype="relative-path">code page</a></span> in which
+text data is sent. If the <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> format is
+not requested by the client on subsequent calls that use this Session Context,
+the <i>ulCpid</i> parameter sets the code page to be used in subsequent calls.</p><p><i>ulLcidString:</i> The local ID for everything other than
+sorting.</p><p><i>ulLcidSort:</i> The local ID for sorting.</p><p><i>ulIcxrLink:</i> A value used to link the Session Context
+created by this call with a currently existing Session Context on the server.
+To request Session Context linking, the client MUST pass the value of
+0xFFFFFFFF. To link to an existing Session Context, this value is the session
+index value returned in the <i>piCxr</i> parameter from a previous call to the <b>EcDoConnectEx</b>
+method. In addition to passing the session index in the <i>ulIcxrLink </i>parameter,
+the client sets the <i>pulTimeStamp</i> parameter to the value that was
+returned in the <i>pulTimeStamp</i> parameter from the previous call to the <b>EcDoConnectEx</b>
+method. These two values MUST be used by the server to identify an active
+session with the same session index and session creation time stamp. If a
+session is found, the server MUST link the Session Context created by this call
+with the one found.<a id="Appendix_A_Target_8"></a><a id="z15"></a><a aria-label="Product behavior note 8" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p><p>A server allows Session Context linking for the following
+reasons:</p><ol><li><p><span>    </span>To consume a
+single <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_0e48e7fc-c851-4692-9b39-8bfa227f4aba" data-linktype="relative-path">Client Access License (CAL)</a></span>
+for all the connections made from a single client computer. This gives a client
+the ability to open multiple independent connections using more than one
+Session Context on the server but be seen to the server as only consuming a
+single CAL.<a id="Appendix_A_Target_9"></a><a id="z17"></a><a aria-label="Product behavior note 9" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p>
+</li><li><p><span>    </span>To get pending
+notification information for other sessions on the same client computer. For
+details, see <span><a href="../ms-oxcnotif/7c7d1653-5dfb-42f1-9410-fc4e48e10731" data-linktype="relative-path">[MS-OXCNOTIF]</a></span>.</p>
+</li></ol><p>Note that the <i>ulIcxrLink</i> parameter is defined as a
+32-bit value. Other than passing 0xFFFFFFFF for no Session Context linking, the
+server only uses the low-order 16 bits as the session index. This value is the
+value returned in the <i>piCxr</i> parameter from a previous call to the <b>EcDoConnectEx</b>
+method, which is the session index and defined as a 16-bit value.</p><p><i>usFCanConvertCodePages:</i> This parameter is reserved.
+The client MUST pass a value of 0x0001.</p><p><i>pcmsPollsMax:</i> An implementation-dependent value that
+specifies the number of milliseconds that a client waits between polling the
+server for event information. If the client or server does not support making
+asynchronous RPCs for notifications as specified in<b> </b>section <span><a href="e45891af-30cc-43ed-8da9-0043d39e51c9" data-linktype="relative-path">3.3.4.1</a></span>,
+or the client is unable to receive notifications via UDP datagrams, as
+specified in [MS-OXCNOTIF] section <span><a href="../ms-oxcnotif/76a09076-f616-4eab-b221-930a1f92e84d" data-linktype="relative-path">3.2.5.4</a></span>
+and [MS-OXCNOTIF] section <span><a href="../ms-oxcnotif/1551e237-8f70-472c-9824-f13aa08f908d" data-linktype="relative-path">3.2.5.5.2</a></span>,
+the client can poll the server to determine whether any events are pending for
+the client. </p><p><i>pcRetry:</i> An implementation-dependent value that
+specifies the number of times a client retries future RPCs using the session
+context handle returned in this call. This is for client RPCs that fail with
+RPC status code RPC_S_SERVER_TOO_BUSY (0x000006BB). This is a suggested retry
+count for the client and is not to be enforced by the server. For more details
+about circumstances under which the RPC_S_SERVER_TOO_BUSY status code is
+returned, see <span><a href="../ms-oxcrops/13af6911-27e5-4aa0-bb75-637b02d4f2ef" data-linktype="relative-path">[MS-OXCROPS]</a></span>
+section <span><a href="../ms-oxcrops/de3b0970-15e0-4c74-bad2-f554933aa316" data-linktype="relative-path">3.2.4.2</a></span>.
+For more details about how the client handles the RPC_S_SERVER_TOO_BUSY status
+code, see section <span><a href="8a5a1df0-ef1b-4eda-bcb4-29e8cdc4fa8b" data-linktype="relative-path">3.2.4.4</a></span>.</p><p><i>pcmsRetryDelay:</i> An implementation-dependent value
+that specifies the number of milliseconds a client waits before retrying a
+failed RPC. If any future RPC to the server using the session context handle
+returned in this call fails with RPC status code RPC_S_SERVER_TOO_BUSY
+(0x000006BB), the client waits the number of milliseconds specified in this
+output parameter before retrying the call. The number of times a client retries
+is returned in the <i>pcRetry</i> parameter. This is a suggested delay for the
+client and is not to be enforced by the server. </p><p><i>piCxr:</i> A session index value that is associated with
+the session context handle returned from this call. This value in conjunction
+with the session creation time stamp value returned in the <i>pulTimeStamp</i>
+parameter will be passed to a subsequent call to the <b>EcDoConnectEx</b>
+method if the client requests to link two Session Contexts.<a id="Appendix_A_Target_10"></a><a id="z19"></a><a aria-label="Product behavior note 10" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a> The server MUST NOT assign the
+same session index value to two active Session Contexts. The server is free to
+return any 16-bit value for the session index.</p><p>The server MUST also use the session index when returning a <b>RopPending</b>
+<span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_b1119977-cf72-4ae9-bd68-d169cec0b985" data-linktype="relative-path">ROP
+response</a></span> ([MS-OXCROPS] section <span><a href="../ms-oxcrops/c3fdb420-4c92-4b19-a894-f303c50f4a38" data-linktype="relative-path">2.2.14.3</a></span>)
+on calls to the <b>EcDoRpcExt2</b> method, as specified in section <span><a href="1842194b-c530-4b64-a778-0e663029785c" data-linktype="relative-path">3.1.4.2</a></span>,
+to tell the client which Session Context has pending notifications. If Session
+Contexts are linked, a <b>RopPending</b> ROP response can be returned for any
+linked Session Context.</p><p><i>szDNPrefix:</i> An implementation-dependent value that
+specifies a DN prefix that is used to build message <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_53dfe4f3-05d0-41aa-8217-ecd1962b340b" data-linktype="relative-path">recipients</a></span>. An empty
+value indicates that there is nothing to prepend to recipient entries on
+messages.</p><p><i>szDisplayName:</i> The display name of the user
+associated with the <i>szUserDN</i> parameter.</p><p><i>rgwClientVersion:</i> The client protocol version that
+the server uses to determine what protocol functionality the client supports.
+For more details about how version numbers are interpreted from the wire data,
+see section <span><a href="a4cbc102-3dc9-48b5-9a2c-b981141fa12a" data-linktype="relative-path">3.2.4.1.3</a></span>.</p><p><i>rgwServerVersion:</i> The server protocol version that
+the client uses to determine what protocol functionality the server supports.
+For details about how version numbers are interpreted from the wire data, see
+section <span><a href="af563fc0-7303-45fa-93dc-f56d1af4d347" data-linktype="relative-path">3.1.4.1.3</a></span>.</p><p><i>rgwBestVersion:</i> The minimum client protocol version
+that the server supports. This information is useful if the call to the <b>EcDoConnectEx</b>
+method fails with return code ecVersionMismatch. On success, the server returns
+the value passed in the <i>rgwClientVersion</i> parameter by the client. The
+server cannot perform any client protocol version negotiation. The server can
+either return the minimum client protocol version required to access the server
+and fail the call with ecVersionMismatch (0x80040110) or allow the client and
+return the value passed by the client in the <i>rgwClientVersion</i> parameter.
+The server implementation sets the minimum client protocol version that is
+supported by the server. For details about how version numbers are interpreted
+from the wire data, see section <span><a href="b5469159-da86-47a5-b751-a8d25d6c24f7" data-linktype="relative-path">3.1.4.1.3.1</a></span>.</p><p><i>pulTimeStamp:</i> The creation time of the newly created
+Session Context. On input, a value used with the <i>ulIcxrLink</i> parameter to
+link the Session Context created by this call with an existing Session Context.
+If the <i>ulIcxrLink</i> parameter is not set to 0xFFFFFFFF, the client MUST
+pass in the value of the <i>pulTimeStamp</i> parameter returned from the server
+on a previous call to the <b>EcDoConnectEx</b> method. For more details, see
+the <i>ulIcxrLink</i> and <i>piCxr</i> parameter descriptions earlier in this
+section. If the server supports Session Context linking, the server verifies
+that there is a Session Context state with the unique identifier in the <i>ulIcxrLink</i>
+parameter, and the Session Context state has a creation time stamp equal to the
+value passed in this parameter. If so, the server MUST link the Session Context
+created by this call with the one found. If no such Session Context state is
+found, the server does not fail the <b>EcDoConnectEx</b> method call but simply
+does not link the Session Contexts.<a id="Appendix_A_Target_11"></a><a id="z21"></a><a aria-label="Product behavior note 11" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p><p>On output, the server has to return a time stamp in which
+the new Session Context was created. The server saves the Session Context
+creation time stamp within the Session Context state for later use if a client
+attempts to link Session Contexts.</p><p><i>rgbAuxIn:</i> An auxiliary payload buffer prefixed by an <b>RPC_HEADER_EXT</b>
+structure, as specified in section <span><a href="18d293ec-b551-42f5-8beb-32fe304225a9" data-linktype="relative-path">2.2.2.1</a></span>.
+Information stored in this structure determines how to interpret the data that
+follows the structure. The length of the auxiliary payload buffer that includes
+the <b>RPC_HEADER_EXT</b> structure is contained in the <i>cbAuxIn</i>
+parameter.</p><p>For details about how to access the embedded auxiliary
+payload buffer, see section <span><a href="1a93eb7d-60ff-4b74-bcb7-9c9d6d6b8b35" data-linktype="relative-path">3.1.4.1.1</a></span>. For
+details about how to interpret the auxiliary payload data, see section <span><a href="a0266e59-0715-4de7-a4f0-5d5fa115324a" data-linktype="relative-path">3.1.4.1.2</a></span>.</p><p><i>cbAuxIn:</i> The length of the <i>rgbAuxIn</i> parameter.
+If this value on input is larger than 0x00001008 bytes in size, the server SHOULD<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a> fail with the RPC status code
+RPC_X_BAD_STUB_DATA (0x000006F7). If this value is greater than 0x00000000 and
+less than 0x00000008, the server SHOULD<a id="Appendix_A_Target_13"></a><a id="z23"></a><a aria-label="Product behavior note 13" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a>
+fail with ecRpcFailed (0x80040115). For more information on returning RPC
+status codes, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>.</p><p><i>rgbAuxOut:</i> An auxiliary payload buffer prefixed by an
+<b>RPC_HEADER_EXT</b> structure (section 2.2.2.1). On output, the server can
+return auxiliary payload data to the client in this parameter. The server MUST
+include an <b>RPC_HEADER_EXT </b>structure before the auxiliary payload data.</p><p>For details about how to access the embedded auxiliary
+payload buffer, see section 3.1.4.1.1. For details about how to interpret the
+auxiliary payload data, see section 3.1.4.1.2.</p><p><i>pcbAuxOut:</i> The length of the <i>rgbAuxOut</i>
+parameter. If this value on input is larger than 0x00001008, the server MUST
+fail with the RPC status code RPC_X_BAD_STUB_DATA (0x000006F7). </p><p>On output, this parameter contains the size of the data to
+be returned in the <i>rgbAuxOut</i> parameter.</p><p><b>Return Values:</b> If the method succeeds, the return
+value is 0. If the method fails, the return value is an implementation-specific
+error code or one of the protocol-defined error codes listed in the following
+table.</p><table><thead>
+  <tr>
+   <th>
+   <p>Error code name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ecAccessDenied<a id="Appendix_A_Target_14"></a><a id="z25"></a><a aria-label="Product behavior note 14" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a></p>
+  </td>
+  <td>
+  <p>0x80070005</p>
+  </td>
+  <td>
+  <p>The authentication context associated with the binding
+  handle does not have enough privilege or the <i>szUserDN</i> parameter is
+  empty.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ecNotEncrypted</p>
+  </td>
+  <td>
+  <p>0x00000970</p>
+  </td>
+  <td>
+  <p>The server is configured to require encryption and the
+  authentication for the binding handle contained in the <i>hBinding</i>
+  parameter is not set with RPC_C_AUTHN_LEVEL_PKT_PRIVACY. For more information
+  about setting the authentication and authorization, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=203529" data-linktype="external">[MSDN-RpcBindingSetAuthInfoEx]</a></span>.
+  The client attempts the call again with new binding handle that is encrypted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ecClientVerDisallowed</p>
+  </td>
+  <td>
+  <p>0x000004DF</p>
+  </td>
+  <td>
+  <p>1.<span>     </span>The
+  server requires encryption, but the client is not encrypted and the client
+  does not support receiving error code ecNotEncrypted being returned by the
+  server. For details about which client versions do not support receiving
+  error code ecNotEncrypted, see section 3.1.4.1.3 and section 3.2.4.1.3.</p>
+  <p>2.<span>     </span>The
+  client version has been blocked by the administrator.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ecLoginFailure</p>
+  </td>
+  <td>
+  <p>0x80040111</p>
+  </td>
+  <td>
+  <p>Server is unable to log in user to the <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_d3ad0e15-adc9-4174-bacf-d929b57278b3" data-linktype="relative-path">mailbox</a></span>
+  or public folder database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ecUnknownUser</p>
+  </td>
+  <td>
+  <p>0x000003EB</p>
+  </td>
+  <td>
+  <p>The server does not recognize the <i>szUserDN</i>
+  parameter as a valid enabled mailbox. For more details, see <span><a href="../ms-oxcstor/d42ed1e0-3e77-4264-bd59-7afc583510e2" data-linktype="relative-path">[MS-OXCSTOR]</a></span>
+  section <span><a href="../ms-oxcstor/66e8372f-f473-4e6e-ade7-c06af0a3c4e1" data-linktype="relative-path">3.1.4.1</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ecLoginPerm</p>
+  </td>
+  <td>
+  <p>0x000003F2</p>
+  </td>
+  <td>
+  <p>The connection is requested for administrative access,
+  but the authentication context associated with the binding handle does not
+  have enough privilege.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ecVersionMismatch</p>
+  </td>
+  <td>
+  <p>0x80040110</p>
+  </td>
+  <td>
+  <p>The client and server versions are not compatible. The
+  client protocol version is earlier than that required by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ecCachedModeRequired</p>
+  </td>
+  <td>
+  <p>0x000004E1</p>
+  </td>
+  <td>
+  <p>The server requires the client to be running in cache
+  mode. For details about which client versions understand this error code, see
+  section 3.2.4.1.3.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ecRpcHttpDisallowed</p>
+  </td>
+  <td>
+  <p>0x000004E0</p>
+  </td>
+  <td>
+  <p>The server requires the client to not be connected via
+  RPC over <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_d72f1494-4917-4e9e-a9fd-b8f1b2758dcd" data-linktype="relative-path">HTTP</a></span>. For details
+  about which client versions understand this error code, see section
+  3.1.4.1.3.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ecProtocolDisabled</p>
+  </td>
+  <td>
+  <p>0x000007D8</p>
+  </td>
+  <td>
+  <p>The server disallows the user to access the server via
+  this protocol interface. This could be done if the user is only capable of
+  accessing their mailbox information through a different means (for example,
+  Webmail, POP, or IMAP). For details about which client versions understand
+  this error code, see section 3.1.4.1.3.</p>
+  </td>
+ </tr></tbody></table><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol, as specified in <span><a href="/en-us/openspecs/windows_protocols/MS-RPCE/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="absolute-path">[MS-RPCE]</a></span>.</p></div>

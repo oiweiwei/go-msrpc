@@ -1,0 +1,74 @@
+<div class="content"><p>The PerflibV2EnumerateCounterSet method allows a client to
+enumerate the available <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_5ad9937c-a24e-4274-92c8-50ff5f97bf19" data-linktype="relative-path">countersets</a>
+on a server.</p><dl>
+<dd>
+<div><pre> error_status_t PerflibV2EnumerateCounterSet(
+   [in, string] wchar_t* szMachine,
+   [in, range(0, 256)] DWORD dwInSize,
+   [out] DWORD* pdwOutSize,
+   [out] DWORD* pdwRtnSize,
+   [out, size_is(dwInSize), length_is(* pdwOutSize)] 
+     GUID* lpData
+ );
+</pre></div>
+</dd></dl><p><b>szMachine: </b>A <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> specifying a
+server name, which is passed directly to the counter provider. Counter
+providers can ignore the server name provided by <b>szMachine</b>.</p><p><b>dwInSize: </b>The size of the buffer, in number of
+<a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUIDs</a>. </p><p><b>pdwOutSize: </b>On output, the number of GUIDs
+that are returned in the array. The server MUST set this value to zero if the
+value of <b>dwInSize</b> is less than the total number of GUIDs on the server.</p><p><b>pdwRtnSize: </b>On output, the total number of
+GUIDs on the server.</p><p><b>lpData: </b>The buffer that returns an array of
+GUIDs.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) for success; otherwise, it MUST return one of the standard
+Windows errors, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The return value indicates success.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The server returns this value to the client if the
+  authentication level of the client is less than
+  RPC_C_AUTHN_LEVEL_PKT_PRIVACY.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>This return value is used to indicate when the size of
+  the client-provided buffer is not large enough to accommodate all of the GUID
+  values that are being returned by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000000E</p>
+  <p>ERROR_OUTOFMEMORY</p>
+  </td>
+  <td>
+  <p>This return value is used to indicate that the server,
+  while attempting to return all of the appropriate GUIDs to the client, could
+  not allocate memory.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

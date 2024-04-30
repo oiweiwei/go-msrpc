@@ -1,0 +1,223 @@
+<div class="content"><p> </p><p>The NetrDfsEnum method enumerates the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span>
+hosted on a server or the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS links</a></span> of the
+namespace hosted by a server. Depending on the information level, the targets
+of the root and links are also displayed. </p><p>The NetrDfsEnum method uses the following <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a></span>
+syntax.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrDfsEnum(
+   [in] DWORD Level,
+   [in] DWORD PrefMaxLen,
+   [in, out, unique] DFS_INFO_ENUM_STRUCT* DfsEnum,
+   [in, out, unique] DWORD* ResumeHandle
+ );
+</pre></div>
+</dd></dl><p><b>Level: </b>This parameter specifies the
+information level of the data and, in turn, determines the action that the
+method performs. On successful return, the server MUST return an array of the corresponding
+structures in the buffer pointed to by <i>DfsEnum</i>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Level_1</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Gets the name of the DFS root and all links beneath
+  it. In this case, on successful return <span><a href="562e366a-27db-49a9-8aae-b0e747245a69" data-linktype="relative-path">DfsEnum</a></span> MUST
+  point to an array of <span><a href="c76762de-1249-485e-8a30-b1ff37179a3d" data-linktype="relative-path">DFS_INFO_1</a></span>
+  structures.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Level_2</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Gets the name, comment, state, and number of targets
+  for the DFS root and all links under the root. In this case, on successful
+  return DfsEnum MUST point to an array of <span><a href="a5dc283a-1fa7-4f09-a58a-0cfa3e5de625" data-linktype="relative-path">DFS_INFO_2</a></span>
+  structures.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Level_3</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Gets the name, comment, state, number of targets, and
+  target information for the DFS root and all links under the root. In this
+  case, on successful return DfsEnum MUST point to an array of <span><a href="83704eb6-a3bc-4eac-8164-9625c2f2081e" data-linktype="relative-path">DFS_INFO_3</a></span>
+  structures.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Level_4</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Gets the name, comment, state, time-out, <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>,
+  number of targets, and target information for the DFS root and all links
+  under the root. In this case, on successful return DfsEnum MUST point to an
+  array of <span><a href="827866a0-973a-43a3-8df5-c5e1dd437320" data-linktype="relative-path">DFS_INFO_4</a></span>
+  structures.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Level_5</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Gets the name, comment, state, time-out, GUID,
+  property flags, metadata size, and number of targets for a DFS root and all
+  links under the root. In this case, on successful return DfsEnum MUST point
+  to an array of <span><a href="00691ea3-6542-44dc-8baf-200a7a747a1d" data-linktype="relative-path">DFS_INFO_5</a></span>
+  structures.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Level_6</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>Gets the name, comment, state, time-out, GUID, property
+  flags, metadata size, number of targets, and target information for a DFS
+  root or DFS links. In this case, on successful return DfsEnum MUST point to
+  an array of <span><a href="30a81ad6-ace1-4312-8848-c8e03dca1a80" data-linktype="relative-path">DFS_INFO_6</a></span>
+  structures.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Level_8</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Gets the name, comment, state, time-out, GUID,
+  property flags, metadata size, and number of targets for a DFS root and all
+  DFS links under the root. Also returns the security descriptor associated
+  with each of the DFS links. In this case, on successful return DfsEnum MUST
+  point to an array of <span><a href="907080e2-504f-4fba-a9a6-14113a734728" data-linktype="relative-path">DFS_INFO_8</a></span>
+  structures.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Level_9</p>
+  <p>0x00000009</p>
+  </td>
+  <td>
+  <p>Gets the name, comment, state, time-out, GUID,
+  property flags, metadata size, and number of targets, and target information
+  for a DFS root and all DFS links under the root. Also returns the security
+  descriptor associated with each of the DFS links. In this case, on successful
+  return DfsEnum MUST point to an array of <span><a href="60b51cc6-5c92-4446-92ee-a31252de1561" data-linktype="relative-path">DFS_INFO_9</a></span>
+  structures.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The server MUST support <b>Level</b> values 1, 2 and
+3. The server SHOULD support Level values 5, 6, 8, 9, and 300. The server on a
+DC SHOULD support Level value 200. If the server does not support the provided <b>Level</b>,
+it MUST fail the call.<a id="Appendix_A_Target_62"></a><a aria-label="Product behavior note 62" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_62" data-linktype="relative-path">&lt;62&gt;</a> The
+server SHOULD return error code ERROR_INVALID_PARAMETER for unsupported Level
+values.<a id="Appendix_A_Target_63"></a><a aria-label="Product behavior note 63" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_63" data-linktype="relative-path">&lt;63&gt;</a></p>
+</dd></dl><p><b>PrefMaxLen: </b>This parameter specifies
+restrictions on the number of elements returned. A value of 0xFFFFFFFF means
+there are no restrictions, in which case all entries MUST be returned.<a id="Appendix_A_Target_64"></a><a aria-label="Product behavior note 64" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_64" data-linktype="relative-path">&lt;64&gt;</a></p><p><b>DfsEnum: </b>A pointer to a DFS_INFO_ENUM_STRUCT
+union to receive the returned information. The client SHOULD set the <b>Level</b>
+member to the same value as the method&#39;s <i>Level</i> parameter, and MUST set
+the <b>DfsInfoContainer</b> union member to a pointer to the corresponding
+container structure as specified in section <span><a href="c61d8ced-e29e-4604-9a9b-9773f5d10403" data-linktype="relative-path">2.2.6</a></span>. The client
+MUST initialize the container structure&#39;s <b>EntriesRead</b> member to zero and
+<b>Buffer</b> member to a NULL pointer. The value of the <b>Level</b> member
+determines the case of the union.</p><p><b>ResumeHandle: </b>This parameter is used to
+continue an enumeration when more data is available than can be returned in a
+single invocation of this method.</p><ul><li><p><span><span>  </span></span>If
+this parameter is not a NULL pointer, and the method returns ERROR_SUCCESS,
+this parameter receives an implementation-specific nonzero value that can be
+passed in subsequent calls to this method to continue the enumeration.</p>
+</li><li><p><span><span>  </span></span>If
+this parameter is a NULL pointer or points to a 0 value, it indicates that this
+is an initial enumeration request.</p>
+</li><li><p><span><span>  </span></span>If
+this parameter is not a NULL pointer and points to a nonzero value returned in <i>ResumeHandle</i>
+by an earlier invocation of this method, the server will attempt to continue a
+previous enumeration, but MAY produce incomplete or inconsistent results due to
+the possibility of concurrent updates to the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS namespace</a></span>.<a id="Appendix_A_Target_65"></a><a aria-label="Product behavior note 65" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_65" data-linktype="relative-path">&lt;65&gt;</a></p>
+</li></ul><p><b>Return Values: </b>The method MUST return 0 on
+success and a nonzero error code on failure. The method can return any specific
+error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Successful completion.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>An incorrect parameter was specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  </td>
+  <td>
+  <p>There is no data to return.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000490</p>
+  <p>ERROR_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified DFS root namespace does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000010DF</p>
+  <p>ERROR_DEVICE_NOT_AVAILABLE</p>
+  </td>
+  <td>
+  <p>The server hosts more than one root.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>A server MAY<a id="Appendix_A_Target_66"></a><a aria-label="Product behavior note 66" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_66" data-linktype="relative-path">&lt;66&gt;</a> implement
+this method.</p><p>The server MUST verify that it hosts a DFS namespace. If
+that check fails, the server MUST return ERROR_NOT_FOUND.</p><p>The server MUST return ERROR_NO_MORE_ITEMS (0x00000103) if
+there is no data to return.</p><p>The server MUST return ERROR_DEVICE_NOT_AVAILABLE if the
+server hosts more than one root.</p><p>Each member of the DFS_INFO_ENUM_STRUCT return buffer MUST
+be constructed according to the rules of section <span><a href="b5dd4568-3ea4-4f27-ae03-3ebb19fa4b13" data-linktype="relative-path">3.1.4.1.6</a></span>
+(NetrDfsGetInfo) for the specified value of the <i>Level</i> parameter.<a id="Appendix_A_Target_67"></a><a aria-label="Product behavior note 67" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_67" data-linktype="relative-path">&lt;67&gt;</a></p><p>If the requested <i>Level</i> is 1 through 9 and <i>ResumeHandle</i>
+indicates initial enumeration, the server MUST return the DFS root entry as the
+first member of the DFS_INFO_ENUM_STRUCT return buffer followed by DFS links in
+implementation-specific order.</p><p>If the requested <i>Level</i> is 1 through 9 and <i>ResumeHandle</i>
+does not indicate initial enumeration, the server MUST NOT return the DFS root
+entry and all the entries of the DFS_INFO_ENUM_STRUCT return buffer MUST be DFS
+links in implementation-specific order.</p></div>

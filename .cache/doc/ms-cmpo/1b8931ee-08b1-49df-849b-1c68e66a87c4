@@ -1,0 +1,253 @@
+<div class="content"><p> </p><p>The COM_PROTOCOL is a bit field defining the set of <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0c171cc7-e9c4-41b6-95a9-536db0042c7a" data-linktype="relative-path">RPC
+protocol sequences</a></span> supported by an MSDTC Connection Manager: OleTx
+Transports Protocol <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bitFieldEncoding</p>
+  </td>
+ </tr>
+</tbody></table><p><b>bitFieldEncoding (4 bytes): </b>The bits of this
+data type MUST be encoded as follows.</p><dl>
+<dd>
+<p> </p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>T</p>
+  </td>
+  <td>
+  <p>S</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>U</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>L</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>T</p>
+  <p>PROT_IP_TCP (0x00000001)</p>
+  </td>
+  <td>
+  <p>A flag indicating whether the &#34;ncacn_ip_tcp&#34;
+  RPC protocol sequence is supported by the <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span>. If the
+  value is 1, the protocol sequence is supported; otherwise, it is not.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>S</p>
+  <p>PROT_SPX (0x00000002)</p>
+  </td>
+  <td>
+  <p>A flag indicating whether the &#34;ncacn_spx&#34;
+  RPC protocol sequence is supported by the endpoint. If the value is 1, the
+  protocol sequence is supported; otherwise, it is not.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  <p>PROT_NET_BEUI (0x00000004)</p>
+  </td>
+  <td>
+  <p>A flag indicating whether the &#34;ncacn_nb_nb&#34;
+  RPC protocol sequence is supported by the endpoint. If the value is 1, the
+  protocol sequence is supported; otherwise, it is not.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>U</p>
+  <p>PROT_IP_UDP (0x00000008)</p>
+  </td>
+  <td>
+  <p>A flag indicating whether the &#34;ncacn_ip_udp&#34;
+  RPC protocol sequence is supported by the endpoint. If the value is 1, the
+  protocol sequence is supported; otherwise, it is not.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>L</p>
+  <p>PROT_LRPC (0x00000020)</p>
+  </td>
+  <td>
+  <p>A flag indicating whether the &#34;ncalrpc&#34; RPC
+  protocol sequence is supported by the endpoint. If the value is 1, the
+  protocol sequence is supported; otherwise, the protocol sequence is not
+  supported.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If none of the bits are
+set, then <b>bitFieldEncoding</b> is assumed to be set to PROT_IP_TCP by
+default.</p>
+</dd></dl></dd></dl></div>

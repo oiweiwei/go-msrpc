@@ -1,0 +1,69 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/85973e1c-96f2-4c80-8135-b24d74ad7794" data-linktype="external">msdn link</a></p><p>The SAMPR_DOMAIN_GENERAL_INFORMATION structure contains <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> fields.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_DOMAIN_GENERAL_INFORMATION {
+   OLD_LARGE_INTEGER ForceLogoff;
+   RPC_UNICODE_STRING OemInformation;
+   RPC_UNICODE_STRING DomainName;
+   RPC_UNICODE_STRING ReplicaSourceNodeName;
+   OLD_LARGE_INTEGER DomainModifiedCount;
+   unsigned long DomainServerState;
+   unsigned long DomainServerRole;
+   unsigned char UasCompatibilityRequired;
+   unsigned long UserCount;
+   unsigned long GroupCount;
+   unsigned long AliasCount;
+ } SAMPR_DOMAIN_GENERAL_INFORMATION,
+  *PSAMPR_DOMAIN_GENERAL_INFORMATION;
+</pre></div>
+</dd></dl><p>For information on each field, see section <a href="d275ab19-10b0-40e0-94bb-45b7fc130025" data-linktype="relative-path">2.2.3.1</a>.</p><p><b>Note</b>  In section 2.2.3.1, the types for the
+<b>DomainServerState</b> and <b>DomainServerRole</b> members are the <a href="5b1a45c9-937e-4129-bec4-593f64c56d48" data-linktype="relative-path">DOMAIN_SERVER_ENABLE_STATE</a>
+and <a href="abb07f2e-b9e6-48ec-9118-7caeb03cca35" data-linktype="relative-path">DOMAIN_SERVER_ROLE</a>
+enumerations, respectively. These fields have the same purpose as the
+enumeration values, but the data types are different. The following tables show
+the corresponding mappings. </p><p>For <b>DomainServerState:</b></p><table><thead>
+  <tr>
+   <th>
+   <p>Enumeration DOMAIN_SERVER_ENABLE_STATE value</p>
+   </th>
+   <th>
+   <p>unsigned long value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DomainServerEnabled</p>
+  </td>
+  <td>
+  <p>1</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainServerDisabled</p>
+  </td>
+  <td>
+  <p>2</p>
+  </td>
+ </tr></tbody></table><p>For <b>DomainServerRole:</b></p><table><thead>
+  <tr>
+   <th>
+   <p>Enumeration DOMAIN_SERVER_ROLE value</p>
+   </th>
+   <th>
+   <p>unsigned long value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DomainServerRoleBackup</p>
+  </td>
+  <td>
+  <p>2</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainServerRolePrimary</p>
+  </td>
+  <td>
+  <p>3</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

@@ -1,0 +1,22 @@
+<div class="content"><p><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_70ce3665-ae64-44b4-88fe-7c1dcdcd5417" data-linktype="relative-path">Message
+queuing</a> is a communications service that provides asynchronous and reliable
+<a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a> passing between
+client applications, including those client applications running on different
+hosts. In <a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_1b759876-c6fc-4e31-8ccb-1517c45dba30" data-linktype="relative-path">message queuing</a>,
+clients send messages to a <a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a>
+and consume application messages from a queue. The queue provides persistence
+of the messages, enabling them to survive across application restarts, and
+allowing the sending and receiving client applications to operate
+asynchronously from each other.</p><p>Queues are typically hosted by a communications service
+called a <a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue manager</a>.
+By hosting the queue manager in a separate service from the client
+applications, applications can communicate by exchanging messages via a queue
+hosted by the queue manager, even if the client applications never execute at
+the same time. </p><p>The queue manager can perform operations on a <a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_91d29587-3e24-439b-8f2c-c2a43be99afc" data-linktype="relative-path">remote queue</a>. When this
+scenario occurs, a protocol is required to insert messages into the remote
+queue, and another protocol is required to consume messages from the remote
+queue. The Message Queuing (MSMQ): Queue Manager to Queue Manager Protocol
+provides a protocol for consuming messages from a remote queue.</p><p>The Queue Manager to Queue Manager Protocol is used only to
+read messages from a queue or to <a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_c3928f17-f3f2-4219-b748-145d99043b29" data-linktype="relative-path">purge</a> messages from the
+queue. Reading a message also implies deleting the message after it is read, as
+specified in Queue Operations (section <a href="a3d22e0d-3a0a-4fe6-a98a-0e00b35dbae8" data-linktype="relative-path">1.3.3</a>).</p></div>

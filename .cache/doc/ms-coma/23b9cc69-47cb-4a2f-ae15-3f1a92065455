@@ -1,0 +1,153 @@
+<div class="content"><p>The PropertyMeta structure represents the type, size, and
+meta-properties (specified in this section) of a property in a table.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dataType;
+   ULONG cbSize;
+   DWORD flags;
+ } PropertyMeta;
+</pre></div>
+</dd></dl><p><b>dataType:</b>   The <a href="7980c0c5-fa2d-475b-9420-28a4c0e8cbd7" data-linktype="relative-path">eDataType (section 2.2.1.2)</a>
+value that represents the data type of the property.</p><p><b>cbSize:</b>   A size, in bytes,
+associated with the property. The meaning of this value depends on the value of
+the <b>dataType</b> field and whether the fPROPERTY_FIXEDLENGTH flag is set in
+the <b>flags</b> field.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p> Value of dataType </p>
+   </th>
+   <th>
+   <p> fPROPERTY_FIXEDLENGTH set? </p>
+   </th>
+   <th>
+   <p> Meaning </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>eDT_ULONG</p>
+  </td>
+  <td>
+  <p>-</p>
+  </td>
+  <td>
+  <p>The fixed size of the property. MUST be set to
+  0x00000004.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>eDT_GUID</p>
+  </td>
+  <td>
+  <p>-</p>
+  </td>
+  <td>
+  <p>The fixed size of the property. MUST be set to
+  0x00000010 (decimal 16).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>eDT_BYTES</p>
+  </td>
+  <td>
+  <p>No</p>
+  </td>
+  <td>
+  <p>The maximum size of the property. A value of
+  0xFFFFFFFF indicates the property&#39;s size is unconstrained.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>eDT_BYTES</p>
+  </td>
+  <td>
+  <p>Yes</p>
+  </td>
+  <td>
+  <p>The fixed size of the property.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>eDT_LPWSTR</p>
+  </td>
+  <td>
+  <p>No</p>
+  </td>
+  <td>
+  <p>The maximum size of the property. A value of
+  0xFFFFFFFF indicates the property&#39;s size is unconstrained.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>eDT_LPWSTR</p>
+  </td>
+  <td>
+  <p>Yes</p>
+  </td>
+  <td>
+  <p>The fixed size of the property. MUST be set to a
+  multiple of 2.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>flags:</b>   A bit field specifying the
+meta-properties of the property. MUST be a combination of zero or more of the
+following flags.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>fPROPERTY_PRIMARYKEY</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>This property is part of the primary key for its
+  table. MUST be set if fPROPERTY_NOTNULLABLE is set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>fPROPERTY_NOTNULLABLE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>This property cannot be null.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>fPROPERTY_FIXEDLENGTH</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>This eDT_BYTES or eDT_LPWSTR property has a fixed
+  size. MUST NOT be set for properties of type eDT_ULONG or eDT_GUID.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>fPROPERTY_NOTPERSISTABLE</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>This property contains sensitive data such as
+  passwords that MUST NOT be written in plaintext to persistent storage.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>fPROPERTY_CASEINSENSITIVE</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>This eDT_LPWSTR property MUST be treated as
+  case-insensitive for purposes of comparison. MUST NOT be set for properties
+  of type eDT_ULONG, eDT_GUID, or eDT_BYTES.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

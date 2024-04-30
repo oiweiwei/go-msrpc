@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The <b>FAX_ENUM_MESSAGE_FOLDER</b> enumeration defines
+possible locations for a <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_82c28020-815f-4f69-adf5-7c2b78773b23" data-linktype="relative-path">fax message</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FAX_MESSAGE_FOLDER_INBOX = 0x00000000,
+   FAX_MESSAGE_FOLDER_SENTITEMS = 0x00000001,
+   FAX_MESSAGE_FOLDER_QUEUE = 0x00000002
+ } FAX_ENUM_MESSAGE_FOLDER;
+</pre></div>
+</dd></dl><p><b>FAX_MESSAGE_FOLDER_INBOX: </b>The incoming fax
+transmission <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9394bf31-7db9-433c-8d3d-ee6a37bf0848" data-linktype="relative-path">archive</a></span>, defined in
+section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>.</p><p><b>FAX_MESSAGE_FOLDER_SENTITEMS: </b>The outgoing fax
+transmission archive, defined in section 3.1.1.</p><p><b>FAX_MESSAGE_FOLDER_QUEUE: </b>The Outgoing and
+Incoming <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_0c5e7185-40c3-4e58-a8ac-7626ed078235" data-linktype="relative-path">fax queue</a></span>, defined
+in section 3.1.1.</p></div>

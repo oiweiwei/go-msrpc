@@ -1,0 +1,46 @@
+<div class="content"><p>The <b>DEVMODE</b> structure is a truncated form of the
+variable-length, custom-<a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_37e89d91-2800-49d1-9d17-45ebe167ad87" data-linktype="relative-path">marshaled</a>
+<a href="ccc2a501-794e-4d2b-b312-f69c75131c2e" data-linktype="relative-path">_DEVMODE</a> structure
+(section 2.2.2.1), which is version-specific and implementation-specific and
+cannot be expressed using <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a>
+attributes.</p><p>All members of this structure are specified in section
+2.2.2.1.</p><dl>
+<dd>
+<div><pre> typedef struct _devicemode {
+   wchar_t dmDeviceName[32];
+   unsigned short dmSpecVersion;
+   unsigned short dmDriverVersion;
+   unsigned short dmSize;
+   unsigned short dmDriverExtra;
+   DWORD dmFields;
+   short dmOrientation;
+   short dmPaperSize;
+   short dmPaperLength;
+   short dmPaperWidth;
+   short dmScale;
+   short dmCopies;
+   short dmDefaultSource;
+   short dmPrintQuality;
+   short dmColor;
+   short dmDuplex;
+   short dmYResolution;
+   short dmTTOption;
+   short dmCollate;
+   wchar_t dmFormName[32];
+   unsigned short reserved0;
+   DWORD reserved1;
+   DWORD reserved2;
+   DWORD reserved3;
+   DWORD dmNup;
+   DWORD reserved4;
+   DWORD dmICMMethod;
+   DWORD dmICMIntent;
+   DWORD dmMediaType;
+   DWORD dmDitherType;
+   DWORD reserved5;
+   DWORD reserved6;
+   DWORD reserved7;
+   DWORD reserved8;
+ } DEVMODE;
+</pre></div>
+</dd></dl></div>

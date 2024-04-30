@@ -1,0 +1,33 @@
+// @namespace "ROOT"
+// @servername "DPRAVAT-DEV"
+
+class MyClass : Base {
+
+  // @inherited Base
+  sint32 Id;
+
+  [ read, write ] string Data1;
+
+  string Data2 = "defaultValue";
+
+  uint32 Array;
+};
+
+class MyClass2 : MyClass Base {
+
+  // @inherited MyClass
+  sint32 Id;
+
+  // @inherited Base
+  string Data1;
+
+  // @inherited Base
+  string Data2;
+
+  // @inherited Base
+  uint32 Array;
+
+  [ execute, performance{"fast", "sideffects"} ] uint32 Restart(
+
+      [ in, ID(0) ] string ServiceName, [ out, ID(1) ] int Status);
+};

@@ -1,0 +1,44 @@
+<div class="content"><p>The IContainerControl <a href="3f01a312-3391-4109-a96e-95358babf191#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+for creating and controlling an <a href="24094dc0-325f-4692-b0dc-f73af34021fb" data-linktype="relative-path">InstanceContainer (section 2.2.9)</a>.
+This interface inherits from <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>,
+as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section 3.1.1.5.8.</p><p>To receive incoming remote calls for this interface, the
+server MUST implement a DCOM object class with the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a> CLSID_COMAServer, as
+specified in section <a href="3afd05f6-01a3-4920-951f-f9c703a3b0f1" data-linktype="relative-path">1.9</a>,
+using the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a>
+{3F3B1B86-DBBE-11D1-9DA6-00805F85CFE3} for this interface.</p><p>This interface includes the following methods beyond those
+of IUnknown.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="7aee89cf-bd4b-4514-a1aa-1013ea5a293e" data-linktype="relative-path">CreateContainer</a></p>
+  </td>
+  <td>
+  <p>Creates an <a href="3f01a312-3391-4109-a96e-95358babf191#gt_791190e6-1e02-42cb-bd25-5aee3ab516ed" data-linktype="relative-path">instance container</a> for a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_ea5c531f-5dd5-43aa-9da1-2ae068c622db" data-linktype="relative-path">conglomeration</a>.</p>
+  <p>Opnum: 3</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b8b304b1-1c98-4b6b-9a85-75c88de725a4" data-linktype="relative-path">ShutdownContainers</a></p>
+  </td>
+  <td>
+  <p>Shuts down all instance containers for a
+  conglomeration.</p>
+  <p>Opnum: 4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="8f9ea927-2e1d-4939-afd6-81060a1ea4f7" data-linktype="relative-path">RefreshComponents</a></p>
+  </td>
+  <td>
+  <p>Performs implementation-specific repairs to the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0944227d-0566-49e1-989f-2fff6e02542d" data-linktype="relative-path">catalog</a>.</p>
+  <p>Opnum: 5</p>
+  </td>
+ </tr></tbody></table><p>All methods MUST NOT throw exceptions.</p></div>

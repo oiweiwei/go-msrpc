@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The DRS_MSG_SPNREPLY_V1 structure defines a response message
+received from the <span><a href="8b129dc8-ed45-4537-9555-b6fef764ab7d" data-linktype="relative-path">IDL_DRSWriteSPN</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD retVal;
+ } DRS_MSG_SPNREPLY_V1;
+</pre></div>
+</dd></dl><p><b>retVal:</b>  0, or a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows
+error code</a></span>.</p></div>

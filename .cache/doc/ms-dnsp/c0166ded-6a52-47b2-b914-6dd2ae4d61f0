@@ -1,0 +1,140 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_RRL_PARAMS</b> structure SHOULD<a id="Appendix_A_Target_93"></a><a aria-label="Product behavior note 93" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_93" data-linktype="relative-path">&lt;93&gt;</a> contain the configuration
+parameters for the Response Rate Limiting capability configured on the DNS
+server.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRRLParams_ {
+     DWORD    dwResponsesPerSecond;
+     DWORD    dwErrorsPerSecond;
+     DWORD    dwLeakRate;
+     DWORD    dwTCRate;
+     DWORD    dwTotalResponsesInWindow;
+     DWORD    dwWindowSize;
+     DWORD    dwIPv4PrefixLength;
+     DWORD    dwIPv6PrefixLength;
+     DNS_RRL_MODE_ENUM     eMode;    
+     DWORD    dwFlags;
+     BOOL     fSetDefault;    
+ } DNS_RPC_RRL_PARAMS, 
+ *PDNS_RPC_RRL_PARAMS;
+</pre></div>
+</dd></dl><p><b>dwResponsesPerSecond:</b> The maximum number of
+responses a DNS server can give for each successful &#34;unique response&#34;
+in one-second intervals. A DNS response is considered a unique response if the
+combination of the following parameters is unique: the requestor&#39;s IP address,
+masked according to either dwIPv4PrefixLength or dwIPv6PrefixLength; an imputed
+domain name that is either a wildcard (if a wildcard match occurred), the zone
+name (if no match occurred), or the query name; and a Boolean error indicator
+(response code Refused, FormError, or ServFail).</p><p>This parameter can be set any positive integer; the
+default value is 5. </p><p><b>dwErrorsPerSecond:</b> The maximum number of
+responses a DNS server can give for queries resulting in error (ServFail,
+FormError, Refused) in one-second intervals. This parameter can be set to any
+positive integer; the default value is 5.</p><p><b>dwLeakRate:</b> When a query would be dropped due
+to rate limiting, the DNS server responds once per Leak Rate query. The default
+value for this parameter is 3. This parameter can be set to any positive integer
+greater than 1. If the value is set to 0, this behavior is disabled.</p><p><b>dwTCRate:</b> When a query would be dropped due to
+rate limiting, the DNS server returns a truncated response once per TC rate
+query. The default value for this parameter is 2. The parameter can be set to
+any positive integer greater than 1. If the value is set to 0, the behavior is
+disabled (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=617464" data-linktype="external">[RRL]</a></span> section
+2.2.8).</p><p><b>dwTotalResponsesInWindow:</b> The maximum number
+of responses the DNS server can give for each &#34;unique response&#34; in
+the defined window duration. See <b>dwResponsesPerSecond</b> for the definition
+of &#34;unique response&#34;. This includes responses given from leak rate,
+truncation rate, and responses per second / errors per second. The default
+value for this parameter is 1024. This parameter can be set any positive
+integer.</p><p><b>dwWindowSize:</b> The duration, in seconds, where
+the state of <b>dwTotalResponsesInWindow</b> is maintained for each
+&#34;unique response&#34;. See <b>dwResponsesPerSecond</b> for the definition
+of &#34;unique response&#34;. After this duration, the value for <b>dwTotalResponsesInWindow</b>
+is reset to 0. The default value for this parameter is 5. The parameter can be
+set to any positive integer (see [RRL] section 2.2.4).</p><p><b>dwIPv4PrefixLength:</b> Controls how the DNS query
+source IPv4 addresses are grouped into buckets of size (32 –
+dwIPv4PrefixLength) ^ 2. The default value for this parameter is 24. The
+parameter can be set to any positive integer between 0 and 32.</p><p><b>dwIPv6PrefixLength:</b> Controls how DNS query
+source IPv6 addresses are grouped into buckets of size (32 –
+dwIPv6PrefixLength) ^ 2. The default value for this parameter is 56. This
+parameter can be set any positive integer between 0 and 128.</p><p><b>eMode:</b> The mode in which RRL functions on a
+DNS server. </p><p><b>dwFlags:</b> This is used during the update of a
+DNS Response Rate Limiting. The various bits show which members of the DNS RRL
+are to be updated. For possible values, see section <span><a href="f91e6cd4-6f15-4a16-ae79-b54df85a775f" data-linktype="relative-path">2.2.16.1.1</a></span>. For
+details on how this is used for setting RRL, see the operation SetRRL in
+section <span><a href="9500a7e8-165d-4b13-be86-0ddc43100eef" data-linktype="relative-path">3.1.4.1</a></span>. If dwFlags
+is not set for a configuration parameter, default values are applied as shown
+in the following table:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p><span>RRL Configuration Parameter</span></p>
+   </th>
+   <th>
+   <p><span>Default Values.</span></p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span>dwResponsesPerSecond</span></p>
+  </td>
+  <td>
+  <p><span>5</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>dwErrorsPerSecond</span></p>
+  </td>
+  <td>
+  <p><span>5</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>dwLeakRate</span></p>
+  </td>
+  <td>
+  <p><span>3</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>dwTCRate</span></p>
+  </td>
+  <td>
+  <p><span>2</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>dwTotalResponsesInWindow</span></p>
+  </td>
+  <td>
+  <p><span>1024</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>dwWindowSize</span></p>
+  </td>
+  <td>
+  <p><span>5</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>dwIPv4PrefixLength</span></p>
+  </td>
+  <td>
+  <p><span>24</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>dwIPv6PrefixLength</span></p>
+  </td>
+  <td>
+  <p><span>56</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>eMode</span></p>
+  </td>
+  <td>
+  <p><span>DnsRRLDisabled</span></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>fSetDefault:</b> Set this value to TRUE to set RRL
+parameters to their default values. This parameter does not affect the <i>eMode</i>
+parameter of RRL.</p></div>

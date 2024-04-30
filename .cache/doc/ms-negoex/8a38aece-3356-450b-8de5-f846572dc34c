@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>ALERT</b> structure is used in the <b>ALERT_VECTOR</b>
+structure, which is used in the <b>Alerts</b> field of the <b>ALERT_MESSAGE</b>
+structure message, as specified in section <span><a href="bb13c832-61fe-4d4f-a1d8-0ac0a54408cd" data-linktype="relative-path">2.2.6.6</a></span>.  </p><dl>
+<dd>
+<div><pre> struct
+ {
+   ULONG AlertType;
+   BYTE_VECTOR AlertValue;
+ } ALERT; 
+</pre></div>
+</dd></dl><p><b>AlertType:</b> A ULONG that indicates the type of
+the alert. </p><p><b>AlertValue:</b> A <b>BYTE_VECTOR</b> structure, as
+specified in section <span><a href="2e9b7476-1e8b-4543-83ac-77b6f41c1e0c" data-linktype="relative-path">2.2.5.2.3</a></span>, that
+contains an array of alert values.  </p></div>

@@ -1,0 +1,81 @@
+<div class="content"><p>The GetRule method returns a pointer to the <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_4bd4bf29-9046-4cb8-b637-fd107cd756aa" data-linktype="relative-path">classification rule</a> with
+the specified <b>Name</b> and <b>Rule type</b> from the <b>List of Persisted
+Rules</b> (section <a href="a4da1447-54a5-4b37-b135-bfa7481aed1c" data-linktype="relative-path">3.2.1.6</a>).</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_CLASSIFICATION_MANAGER | 0x06)] HRESULT GetRule(
+   [in] BSTR ruleName,
+   [in] FsrmRuleType ruleType,
+   [out, retval] IFsrmRule** Rule
+ );
+</pre></div>
+</dd></dl><p><b>ruleName:</b> Contains the Name of the
+classification rule to return.</p><p><b>ruleType:</b> Contains the <a href="95a2996f-d7ec-4169-a964-d9abf4ec3b6f" data-linktype="relative-path">FsrmRuleType (section 2.2.1.2.11)</a>
+of the classification rule to return.</p><p><b>Rule:</b> Pointer to an IFsrmRule interface
+pointer (section <a href="66f78e6a-9759-47b8-a679-71cf142f48bc" data-linktype="relative-path">3.2.4.2.41</a>)
+that upon completion points to the classification rule with the specified Name
+and Rule type. The caller MUST release the rule when the caller is done with
+it.</p><p><b>Return Values:</b> The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified rule could not be found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045308</p>
+  <p>FSRM_E_INVALID_NAME</p>
+  </td>
+  <td>
+  <p>The <i>ruleName</i> parameter is empty or NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>ruleType</i> parameter is
+  a not a valid value. If <i>ruleType</i>  is <b>FsrmRuleType_Generic</b>, the
+  parameter MUST be considered an valid value.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The specified name exceeds the
+  maximum length of 1000 characters.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>Rule</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>ruleType</i> contains a valid FsrmRuleType value.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+perform the following actions or return a nonzero error code.</p><ul><li><p><span><span> 
+</span></span>Create a new <a href="3ce18cd8-2937-4162-897f-6b1fb425fd71" data-linktype="relative-path">Non-Persisted
+Rule Instance (section 3.2.1.6.3.2)</a>.</p>
+</li><li><p><span><span> 
+</span></span>Populate the configuration data of the Non-Persisted Rule
+Instance from the <a href="c9c94631-1c93-4410-ba6f-af4baf0a05f4" data-linktype="relative-path">Persisted
+Rule (section 3.2.1.6.3.1)</a> in the <b>List of Persisted Rules</b>
+whose <b>Rule.Name</b> is equivalent to <i>ruleName</i> and whose <b>Rule.Type</b>
+is equivalent to <i>ruleType</i>.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>Rule</i> to the <b>IFsrmRule</b> interface pointer of the
+newly created Non-Persisted Rule Instance.</p>
+</li></ul><p>If a classification rule with the specified <b>Name</b> and <b>Rule
+type</b> does not exist, the server MUST return <b>FSRM_E_NOT_FOUND</b>.</p></div>

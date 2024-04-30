@@ -1,0 +1,15 @@
+<div class="content"><p>The LocateCards_Return and GetStatusChange_Return structures
+are used to obtain the results on those calls that return updated reader state
+information. (for more information, see sections <a href="2f20fd13-9639-4895-8a43-1a3d6f0ded67" data-linktype="relative-path">3.1.4.21</a>, <a href="52122b22-b11e-4014-acef-87de2008db77" data-linktype="relative-path">3.1.4.22</a>, <a href="e5ea2e6c-9b12-4fd6-b45d-800213dd96a1" data-linktype="relative-path">3.1.4.23</a>, <a href="98cc1029-420f-4088-b9b9-66ff7efe866d" data-linktype="relative-path">3.1.4.24</a>, <a href="201f92dc-b12e-43fb-9daa-9cfdf3b1bc0f" data-linktype="relative-path">3.1.4.25</a>, and <a href="9f604d08-756d-4d78-9b4e-c45a629dc639" data-linktype="relative-path">3.1.4.26</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _LocateCards_Return {
+   long ReturnCode;
+   [range(0, 10)] unsigned long cReaders;
+   [size_is(cReaders)] ReaderState_Return *rgReaderStates;
+ } LocateCards_Return,
+  GetStatusChange_Return;
+</pre></div>
+</dd></dl><p><b>ReturnCode:</b>  <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a> or Win32 Error
+code. Zero indicates success; any other value indicates failure.</p><p><b>cReaders:</b>  The number of elements in
+the <b>rgReaderStates</b> field.</p><p><b>rgReaderStates:</b>  The current states
+of the readers being watched.</p></div>

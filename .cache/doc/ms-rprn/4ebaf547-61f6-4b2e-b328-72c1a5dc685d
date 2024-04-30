@@ -1,0 +1,18 @@
+<div class="content"><p>The <b>BIDI_TYPE</b> enumeration specifies the type of data
+transferred in a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_604aaee0-7ad4-46a3-932f-8d2def6615ad" data-linktype="relative-path">bidirectional</a>
+operation.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   BIDI_NULL = 0,
+   BIDI_INT = 1,
+   BIDI_FLOAT = 2,
+   BIDI_BOOL = 3,
+   BIDI_STRING = 4,
+   BIDI_TEXT = 5,
+   BIDI_ENUM = 6,
+   BIDI_BLOB = 7
+ } BIDI_TYPE;
+</pre></div>
+</dd></dl><p><b>BIDI_NULL:  </b>No bidirectional data.</p><p><b>BIDI_INT:  </b>Bidirectional data is an integer.</p><p><b>BIDI_FLOAT:  </b>Bidirectional data is a floating-point
+number.</p><p><b>BIDI_BOOL:  </b>Bidirectional data is a Boolean value.</p><p><b>BIDI_STRING:  </b>Bidirectional data is a string.</p><p><b>BIDI_TEXT:  </b>Bidirectional data is text data.</p><p><b>BIDI_ENUM:  </b>Bidirectional data is an enumeration.</p><p><b>BIDI_BLOB:  </b>Bidirectional data is a data <b>BLOB</b>.</p></div>

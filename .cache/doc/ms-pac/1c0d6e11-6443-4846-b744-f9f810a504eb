@@ -1,0 +1,288 @@
+<div class="content"><p> </p><p>The <b>UPN_DNS_INFO</b> structure contains the client&#39;s UPN,
+<span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">fully
+qualified domain name (FQDN)</a></span>, SAM name (optional), and SID
+(optional). It is used to provide the UPN, FQDN, SAM name, and SID that
+corresponds to the client of the ticket. The <b>UPN_DNS_INFO</b> structure is
+placed directly after the <b>Buffers</b> array of the topmost <b>PACTYPE</b>
+structure (section <span><a href="6655b92f-ab06-490b-845d-037e6987275f" data-linktype="relative-path">2.3</a></span>), at the offset
+specified in the <b>Offset</b> field of the corresponding <b>PAC_INFO_BUFFER</b>
+structure (section <span><a href="3341cfa2-6ef5-42e0-b7bc-4544884bf399" data-linktype="relative-path">2.4</a></span>) in the <b>Buffers</b>
+array. The <b>ulType</b> field of the corresponding <b>PAC_INFO_BUFFER</b> is
+set to 0x0000000C.<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="a1c36b00-1fca-415c-a4ca-e66e98844760#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a></p><p>The <b>UPN_DNS_INFO</b> structure is defined as follows. </p><p>The format of the <b>UPN_DNS_INFO</b> structure is defined
+as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>UpnLength</p>
+  </td>
+  <td colspan="16">
+  <p>UpnOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>DnsDomainNameLength</p>
+  </td>
+  <td colspan="16">
+  <p>DnsDomainNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>SamNameLength</p>
+  </td>
+  <td colspan="16">
+  <p>SamNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>SidLength</p>
+  </td>
+  <td colspan="16">
+  <p>SidOffset</p>
+  </td>
+ </tr>
+</tbody></table><p><b>UpnLength (2 bytes): </b>An unsigned 16-bit
+integer in little-endian format that specifies the length, in bytes, of the UPN
+information. The location of the UPN information is described later in this
+section.</p><p><b>UpnOffset (2 bytes): </b>An unsigned 16-bit
+integer in little-endian format that contains the offset to the beginning of
+the UPN information, in bytes, from the beginning of the <b>UPN_DNS_INFO</b>
+structure (section 2.10).</p><p><b>DnsDomainNameLength (2 bytes): </b>An unsigned 16-bit
+integer in little-endian format that specifies the length, in bytes, of the DNS
+information. The location of the DNS information is described later in this
+section.</p><p><b>DnsDomainNameOffset (2 bytes): </b>An unsigned
+16-bit integer in little-endian format that contains the offset to the
+beginning of the DNS information, in bytes, from the beginning of the <b>UPN_DNS_INFO</b>
+structure.</p><p><b>Flags (4 bytes): </b>A set of bit flags in
+little-endian format. A flag is TRUE (or set) if its value is equal to 1. The
+value is constructed from zero or more bit flags from the following table:</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>S</p>
+  </td>
+  <td>
+  <p>U</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>U</p>
+  </td>
+  <td>
+  <p>The user account object does not have the <b>userPrincipalName</b>
+  attribute (<span><a href="../ms-ada3/4517e835-3ee6-44d4-bb95-a94b6966bfb0" data-linktype="relative-path">[MS-ADA3]</a></span>
+  section <span><a href="../ms-ada3/1f730d08-4f9a-44fc-b638-a5d4a7f19bc3" data-linktype="relative-path">2.349</a></span>)
+  set. A UPN constructed by concatenating the user name with the DNS domain
+  name of the account domain is provided.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>S</p>
+  </td>
+  <td>
+  <p>The <b>UPN_DNS_INFO</b> structure has been extended
+  with the user account’s SAM Name and SID.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits are set to zero and
+MUST be ignored on receipt.</p>
+</dd></dl><p><b>SamNameLength (2 bytes):</b> An unsigned 16-bit integer
+in little-endian format that specifies the length, in bytes, of the SAM name.
+The location of the SAM name is described later in this section. This field is
+only present if the <b>S</b> flag bit is set.</p><p><b>SamNameOffset (2 bytes):</b> An unsigned 16-bit integer
+in little-endian format that contains the offset to the beginning of the SAM
+name, in bytes, from the beginning of the <b>UPN_DNS_INFO</b> structure. This
+field is only present if the <b>S</b> flag bit is set.</p><p><b>SidLength (2 bytes):</b> An unsigned 16-bit integer in
+little-endian format that specifies the length, in bytes, of the client’s SID.
+The location of the SID is described later in this section. This field is only
+present if the <b>S</b> flag bit is set.</p><p><b>SidOffset (2 byte):</b> An unsigned 16-bit integer in
+little-endian format that contains the offset to the beginning of the client’s
+SID, in bytes, from the beginning of the <b>UPN_DNS_INFO</b> structure. This
+field is only present if the <b>S</b> flag bit is set.</p><p>The actual DNS and UPN information (and, if the <b>S</b>
+flag bit is set, the SAM name and SID) is placed after the <b>UPN_DNS_INFO</b>
+structure following the header and starting with the corresponding offset in a
+consecutive buffer. The UPN, FQDN, and SAM name are encoded using a two-byte UTF16
+scheme, in little-endian order.</p></div>

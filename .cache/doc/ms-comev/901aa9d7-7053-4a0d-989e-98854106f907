@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The Clone method clones the underlying collection into
+another DCOM <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> implementing
+the <span><a href="70b37fd7-5c0a-4354-9242-47dce8c00bf0" data-linktype="relative-path">IEnumEventObject</a></span>
+interface.</p><dl>
+<dd>
+<div><pre> [id(1), helpstring(&#34;method Clone&#34;)] HRESULT Clone(
+   [out] IEnumEventObject** ppInterface
+ );
+</pre></div>
+</dd></dl><p><b>ppInterface: </b>If the function returns a success
+<span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>,
+this MUST contain the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface pointer</a></span> of
+the clone DCOM object supporting the IEnumEventObject interface.</p><p><b>Return Values: </b>An HRESULT specifying success
+or failure. All success codes MUST be treated the same, and all failure codes
+MUST be treated the same.</p><p>When this method is invoked, the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST attempt
+to clone the underlying collection into another DCOM object implementing the
+IEnumEventObject interface, and return the result.</p></div>

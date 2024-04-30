@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>DHCP_FAILOVER_MODE</b> enumeration defines a set of
+possible modes of operation for a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_f9098c6a-2548-43c0-8dd4-4327299e8506" data-linktype="relative-path">failover</a></span>
+relationship configured on a DHCPv4 server.</p><dl>
+<dd>
+<div><pre> typedef  enum _DHCP_FAILOVER_MODE
+ {
+   LoadBalance = 0x00000000,
+   HotStandby = 0x00000001
+ } DHCP_FAILOVER_MODE,
+  *LPDHCP_FAILOVER_MODE;
+</pre></div>
+</dd></dl><p><b>LoadBalance:</b>  Configures a DHCPv4 server <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_ba9fcec9-1438-47ec-958c-873c1a0d4c5e" data-linktype="relative-path">failover
+relationship</a></span> in a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_d12fee1d-07c6-46d2-80b2-8c750f484c89" data-linktype="relative-path">loadbalance mode</a></span>.</p><p><b>HotStandby:</b>  Configures a DHCPv4 server
+failover relationship in a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_c6996b49-be71-4675-a760-eb26d0222550" data-linktype="relative-path">hotstandby mode</a></span>.</p></div>

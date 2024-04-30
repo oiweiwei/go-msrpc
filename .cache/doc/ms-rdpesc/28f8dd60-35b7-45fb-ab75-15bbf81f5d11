@@ -1,0 +1,18 @@
+<div class="content"><p>The SetAttrib_Call structure allows users to set <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_5cddf14c-b925-4494-9b55-d2c8259f9ad0" data-linktype="relative-path">smart card reader</a>
+attributes.</p><dl>
+<dd>
+<div><pre> typedef struct _SetAttrib_Call {
+   REDIR_SCARDHANDLE hCard;
+   unsigned long dwAttrId;
+   [range(0,65536)] unsigned long cbAttrLen;
+   [size_is(cbAttrLen)] const byte* pbAttr;
+ } SetAttrib_Call;
+</pre></div>
+</dd></dl><p><b>hCard:</b>  A handle, as specified in
+section <a href="b6276356-7c5f-4d3e-be92-a6c85e58d008" data-linktype="relative-path">2.2.1.2</a>.</p><p><b>dwAttrId:</b>  The identifier of the
+attribute to set. The values are write-only. For more information on possible
+values, see <a href="https://go.microsoft.com/fwlink/?LinkId=90244" data-linktype="external">[PCSC3]</a>
+section 3.1.2.</p><p><b>cbAttrLen:</b>  The size, in bytes, of
+the data corresponding to the <b>pbAttr</b> field.</p><p><b>pbAttr:</b>  A buffer that contains the
+attribute whose identifier is supplied in the <b>dwAttrId</b> field. The format
+is specific to the value being set.</p></div>

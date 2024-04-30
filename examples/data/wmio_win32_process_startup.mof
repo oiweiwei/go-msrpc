@@ -1,0 +1,87 @@
+// @namespace "ROOT\cimv2"
+// @servername "WIN2019-X-XX"
+[Abstract, Locale(1033), UUID("{8502C4DA-5FBB-11D2-AAC1-006008C78BC7}")] class
+    Win32_MethodParameterClass {};
+[ Abstract, Locale(1033),
+  UUID("{8502C4DB-5FBB-11D2-AAC1-006008C78BC7}") ] class Win32_ProcessStartup
+    : Win32_MethodParameterClass {
+
+  [
+    write,
+    MappingStrings{
+        "Win32API|Process and Thread Functions|CreateProcess|dwCreationFlags"},
+    BitMap{"0", "1", "2", "3", "4", "9", "10", "26"}
+  ] uint32 CreateFlags;
+
+  [
+    write,
+    MappingStrings{
+        "Win32API|Process and Thread "
+        "Structures|JOBOBJECT_BASIC_LIMIT_INFORMATION|PriorityClass"},
+    ValueMap{"32", "64", "128", "256", "16384", "32768"}
+  ] uint32 PriorityClass;
+
+  [
+    write,
+    MappingStrings{"Win32Registry|HKEY_CURRENT_USER\\Environment"}
+  ] string EnvironmentVariables;
+
+  [
+    write,
+    MappingStrings{
+        "Win32API|Process and Thread Structures|STARTUPINFO|lpDesktop"}
+  ] string WinstationDesktop;
+
+  [
+    write,
+    MappingStrings{
+        "Win32API|Process and Thread Structures|STARTUPINFO|lpTitle"}
+  ] string Title;
+
+  [
+    write,
+    MappingStrings{
+        "Win32API|Process and Thread Structures|STARTUPINFO|dwX"}
+  ] uint32 X;
+
+  [
+    write,
+    MappingStrings{
+        "Win32API|Process and Thread Structures|STARTUPINFO|dwY"}
+  ] uint32 Y;
+
+  [
+    write,
+    MappingStrings{
+        "Win32API|Process and Thread Structures|STARTUPINFO|dwXSize"}
+  ] uint32 XSize;
+
+  [
+    write,
+    MappingStrings{
+        "Win32API|Process and Thread Structures|STARTUPINFO|dwYSize"}
+  ] uint32 YSize = 4294967295;
+
+  [
+    write, MappingStrings{"Win32API|Process and Thread "
+                          "Structures|STARTUPINFO|XCountChars"}
+  ] uint32 XCountChars;
+
+  [
+    write, MappingStrings{"Win32API|Process and Thread "
+                          "Structures|STARTUPINFO|YCountChars"}
+  ] uint32 YCountChars;
+
+  [
+    write, MappingStrings{"Win32API|Process and Thread "
+                          "Structures|STARTUPINFO|dwFillAttribute"}
+  ] uint32 FillAttribute;
+
+  [
+    write, MappingStrings{"Win32API|Process and Thread "
+                          "Structures|STARTUPINFO|wShowWindow"}
+  ] uint16 ShowWindow;
+
+  [ write,
+    MappingStrings{"Win32API|Error Functions|SetErrorMode"} ] uint16 ErrorMode;
+};

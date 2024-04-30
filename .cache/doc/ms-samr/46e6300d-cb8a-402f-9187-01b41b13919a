@@ -1,0 +1,25 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/46e6300d-cb8a-402f-9187-01b41b13919a" data-linktype="external">msdn link</a></p><p>The GROUP_INFORMATION_CLASS enumeration indicates how to
+interpret the <i>Buffer</i> parameter for <a href="e66db19f-600a-481b-bc4e-23953433255d" data-linktype="relative-path">SamrSetInformationGroup</a>
+and <a href="8fd0003f-8076-40ae-872f-9cdb6576b3c7" data-linktype="relative-path">SamrQueryInformationGroup</a>.
+For a list of associated structures, see section <a href="a37ef739-9b21-47a7-89b4-d237dd6491f3" data-linktype="relative-path">2.2.4.7</a>.</p><dl>
+<dd>
+<div><pre> typedef  enum _GROUP_INFORMATION_CLASS
+ {
+   GroupGeneralInformation = 1,
+   GroupNameInformation,
+   GroupAttributeInformation,
+   GroupAdminCommentInformation,
+   GroupReplicationInformation
+ } GROUP_INFORMATION_CLASS;
+</pre></div>
+</dd></dl><p><b>GroupGeneralInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_GROUP_GENERAL_INFORMATION</b>
+structure (see section <a href="fe821071-d333-4eef-862a-f45408343e4e" data-linktype="relative-path">2.2.4.3</a>).</p><p><b>GroupNameInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_GROUP_NAME_INFORMATION</b>
+structure (see section <a href="75b2f39b-46fd-44d9-80bd-a78123dddbdb" data-linktype="relative-path">2.2.4.4</a>).</p><p><b>GroupAttributeInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_GROUP_ATTRIBUTE_INFORMATION</b>
+structure (see section <a href="cb80061b-7801-4082-bbe7-20d88b118eaa" data-linktype="relative-path">2.2.4.2</a>).</p><p><b>GroupAdminCommentInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_GROUP_ADM_COMMENT_INFORMATION</b>
+structure (see section <a href="84b322dd-0621-4502-ac31-1f50af943abb" data-linktype="relative-path">2.2.4.5</a>).</p><p><b>GroupReplicationInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_GROUP_GENERAL_INFORMATION</b>
+structure (see section 2.2.4.3).</p></div>

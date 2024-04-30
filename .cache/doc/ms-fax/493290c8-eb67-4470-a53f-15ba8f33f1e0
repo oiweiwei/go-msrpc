@@ -1,0 +1,239 @@
+<div class="content"><p> </p><p>The <b>_RPC_FAX_OUTBOUND_ROUTING_GROUPW</b> data type is
+used as an array of structures passed as an output byte-array argument for <b>FAX_EnumOutboundGroups</b>
+(section <span><a href="4e08c709-ab72-48f5-bc1d-36b1dcf274ba" data-linktype="relative-path">3.1.4.1.26</a></span>). The
+group name contained by this structure describes one <b>Routing Group</b>
+(section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>).</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (16 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfStruct</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrGroupNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNumDevices</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpdwDevicesOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Status</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>dwSizeOfStruct (4 bytes):
+</b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that holds the size, in bytes, of this structure. MUST be set to 16
+bytes.</p>
+</dd>
+<dd>
+<p><b>lpwstrGroupNameOffset (4
+bytes): </b>Offset to the <b>lpwstrGroupName</b> field in the <b>Variable_Data</b>
+of the data type.</p>
+</dd>
+<dd>
+<p><b>dwNumDevices (4 bytes): </b>A
+<b>DWORD</b> value that holds the number of devices in the group. The value
+MUST be in the range between 0 and 1,000. The <i>dwNumDevices</i> parameter
+also indicates the length of the <i>lpdwDevices</i> array, which MUST NOT be
+larger than the actual number of devices.</p>
+</dd>
+<dd>
+<p><b>lpdwDevicesOffset (4
+bytes): </b>Offset to the <b>lpdwDevices</b> field in the <b>Variable_Data</b>
+block of the structure.</p>
+</dd>
+<dd>
+<p><b>Status (4 bytes): </b>Current
+status of the group from the enumeration FAX_ENUM_GROUP_STATUS (section <span><a href="10687453-1be7-422b-9d69-220789cd5117" data-linktype="relative-path">2.2.59</a></span>).</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrGroupName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpdwDevices
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>lpwstrGroupName
+(variable): </b>A null-terminated character string containing the group name.
+The length of this string MUST be between 1 and 128 characters, excluding the
+length of the terminating null character. The group name is case-insensitive.</p>
+</dd>
+<dd>
+<p><b>lpdwDevices (variable): </b>A
+pointer to an array which contains <b>dwNumDevices</b> entries. Each <b>DWORD</b>
+value specifies one device identifier in the group. A device MUST appear only
+once in a group&#39;s device list. A single device can belong to one or more
+groups. Groups are not set to store invalid devices. The order of the devices
+in the array determines the order the devices are to be used to send faxes,
+when the group is selected.</p>
+</dd></dl></div>

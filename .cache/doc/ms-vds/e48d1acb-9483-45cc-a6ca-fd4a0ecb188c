@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>The VDS_VOLUME_STATUS enumeration defines the set of object
+status values for a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_VOLUME_STATUS
+ {
+   VDS_VS_UNKNOWN = 0x00000000,
+   VDS_VS_ONLINE = 0x00000001,
+   VDS_VS_NO_MEDIA = 0x00000003,
+   VDS_VS_OFFLINE = 0x00000004,
+   VDS_VS_FAILED = 0x00000005
+ } VDS_VOLUME_STATUS;
+</pre></div>
+</dd></dl><p><b>VDS_VS_UNKNOWN:  </b>The status of the volume is
+unknown.</p><p><b>VDS_VS_ONLINE:  </b>The volume is available.</p><p><b>VDS_VS_NO_MEDIA:  </b>The volume belongs to a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_58aae236-0186-4ba1-a46b-f0a997e6c6f2" data-linktype="relative-path">removable
+media</a></span> device, such as a CD-ROM or DVD-ROM drive, but the device does
+not currently have media in the drive.</p><p><b>VDS_VS_OFFLINE:  </b>When this status is set, it
+(1) indicates that no path names for the volume are available for use by
+applications, and (2) prevents READ and READ|WRITE handles to the volume device
+being opened. When a volume transitions to this state, calls to open a new
+handle against the volume device fail, but any in-progress I/O against the
+volume will complete before all I/O to the volume is stopped.<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a></p><p><b>VDS_VS_FAILED:</b>  The volume is unavailable.</p></div>

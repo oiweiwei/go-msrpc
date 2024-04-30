@@ -1,0 +1,34 @@
+<div class="content"><p> </p><p>The CustomHeader structure is used to identify the format
+and ordering of the properties in the activation properties BLOB.</p><dl>
+<dd>
+<div><pre> typedef struct tagCustomHeader {
+   DWORD totalSize;
+   DWORD headerSize;
+   DWORD dwReserved;
+   DWORD destCtx;
+   [range(MIN_ACTPROP_LIMIT, MAX_ACTPROP_LIMIT)] 
+     DWORD cIfs;
+   CLSID classInfoClsid;
+   [size_is(cIfs)] CLSID* pclsid;
+   [size_is(cIfs)] DWORD* pSizes;
+   DWORD* pdwReserved;
+ } CustomHeader;
+</pre></div>
+</dd></dl><p><b>totalSize:</b>   This MUST be the total
+size (in bytes) from the beginning of the CustomHeader to the end of the last
+entry in the subsequent Property array of the activation properties BLOB.</p><p><b>headerSize:</b>  This MUST be the total
+size (in bytes) of the CustomHeader as marshaled by the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_9ebf9540-2c31-43bc-bc56-4a932faabf2d" data-linktype="relative-path">NDR</a></span>
+Type Serialization 1 engine (as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/9a1d0f97-eac0-49ab-a197-f1a581c2d6a0" data-linktype="relative-path">2.2.6</a></span>).</p><p><b>dwReserved:</b>  This MUST be set to
+zero and MUST be ignored on receipt.</p><p><b>destCtx:</b>  This MUST contain an
+implementation-specific value that SHOULD be ignored on receipt.<a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="acc42954-4073-4f05-b850-efd562022077#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a></p><p><b>cIfs:</b>  This MUST be the total number
+of entries in the subsequent Property array of the activation properties BLOB.
+The value MUST be between MIN_ACTPROP_LIMIT and MAX_ACTPROP_LIMIT (see section <span><a href="d5ca7355-6503-4d0c-8616-0b4c479a264f" data-linktype="relative-path">2.2.28.1</a></span>).</p><p><b>classInfoClsid:</b>  This MUST be set to
+GUID_NULL.</p><p><b>pclsid:</b>  This MUST specify an array
+of cIfs <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSIDs</a></span>; the Nth
+entry identifies the Nth entry in the Property array of the activation
+properties BLOB. Each CLSID is used to uniquely identify an activation
+property. The valid CLSID values are defined in section <span><a href="c25391af-f59e-40da-885e-cc84076673e4" data-linktype="relative-path">1.9</a></span>.</p><p><b>pSizes:</b>  This MUST specify an array
+of cIfs DWORDs, each containing the size (in bytes) of the corresponding
+property following the CustomHeader in the buffer.</p><p><b>pdwReserved:</b>  This MUST be set to
+NULL and MUST be ignored on receipt.</p></div>

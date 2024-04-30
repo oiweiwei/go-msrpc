@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The <b>DHCP_CLASS_INFO_ARRAY</b> structure defines an array
+of <span><a href="0f8461a3-14ad-4b60-a398-553b199ecfc0" data-linktype="relative-path">DHCP_CLASS_INFO (section 2.2.1.2.75)</a></span>
+structures. This structure is used by the methods that retrieve more than one
+class of information, such as the <span><a href="071b7697-b53d-4fe3-8cf5-e20427e532a8" data-linktype="relative-path">R_DhcpEnumClasses (section 3.2.4.29)</a></span>
+method. The first member contains the number of classes present for the DHCPv4
+server, and the second member contains a pointer to the array of length <b>NumElements</b>
+containing class information.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_CLASS_INFO_ARRAY {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_CLASS_INFO Classes;
+ } DHCP_CLASS_INFO_ARRAY,
+  *LPDHCP_CLASS_INFO_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+containing the count of classes in the subsequent field the <b>Classes</b>
+member. </p><p><b>Classes:</b>  This is a pointer of type
+DHCP_CLASS_INFO (section 2.2.1.2.75) structure that points to the
+array of length <b>NumElements</b> containing class information.</p></div>

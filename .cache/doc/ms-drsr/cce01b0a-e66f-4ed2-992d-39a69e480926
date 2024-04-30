@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The DS_REPL_PENDING_OPSW structure defines a sequence of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span>
+operations to be processed by a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>. This structure
+is a concrete representation of <span><a href="6226aaa1-178d-45ff-9e17-815556739595" data-linktype="relative-path">ReplicationQueue</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   FILETIME ftimeCurrentOpStarted;
+   DWORD cNumPendingOps;
+   [size_is(cNumPendingOps)] DS_REPL_OPW rgPendingOp[];
+ } DS_REPL_PENDING_OPSW;
+</pre></div>
+</dd></dl><p><b>ftimeCurrentOpStarted:</b>  The time
+when the current operation started.</p><p><b>cNumPendingOps:</b>  The number of items
+in the <b>rgPendingOp</b> array.</p><p><b>rgPendingOp:</b>  The sequence of
+replication operations to be performed. </p></div>

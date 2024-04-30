@@ -1,0 +1,10 @@
+<div class="content"><p>The Remote Assistance Initiation Protocol provides a set of <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a> interfaces that enable
+an <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_64520114-7ddc-4f5a-b63d-81d79b9a6693" data-linktype="relative-path">expert</a> to retrieve
+the <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_494867b1-8c5c-4fde-b089-1056c3a64f18" data-linktype="relative-path">Remote Assistance</a>
+connection-specific data from the remote <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_d27bcedc-ae63-4e15-a0cb-9b371f1820dc" data-linktype="relative-path">novice</a> computer. This
+Remote Assistance connection-specific data is subsequently used to initiate a <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_9d7b1eb9-8131-4eb3-ad5b-08792b014893" data-linktype="relative-path">Remote Assistance connection</a>
+as explained in the Remote Assistance Initiation Protocol.</p><p>The expert needs to have the IP address or <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">fully qualified domain name
+(FQDN)</a> of the novice computer to use this protocol.</p><p>The expert is the DCOM client and the novice is the DCOM
+server.</p><p> Before the expert&#39;s DCOM call is executed on the novice
+computer, DCOM performs a check to verify that the expert is on the list of
+authorized Remote Assistance helpers on the novice computer.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="90b2d2e5-7931-4762-8949-04617e1d9089#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a></p></div>

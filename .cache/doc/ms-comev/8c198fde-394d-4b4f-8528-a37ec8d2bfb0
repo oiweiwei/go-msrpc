@@ -1,0 +1,37 @@
+<div class="content"><p> </p><p>This interface is used to perform version checking and
+transient <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_f362c255-5746-44db-aa04-e8060543a19c" data-linktype="relative-path">subscription</a></span>
+verifications on the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> by the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>.
+IEventSystem2 inherits opnums 0 through 12 from the <span><a href="e33e278a-55c3-4535-9704-df4d67096aae" data-linktype="relative-path">IEventSystem</a></span>
+interface, as specified in section 3.1.4.1. The version for this interface is
+0.0.</p><p>The server SHOULD support this interface.<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="aa52a2bf-fd29-47f9-8dea-d887d6b7d5ee#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a> To receive incoming remote
+calls for this interface, the server MUST implement a DCOM <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_a224e395-3fea-48bd-b141-3dd9bee2136a" data-linktype="relative-path">object
+class</a></span> with the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a></span>
+CLSID_EventSystem (see section <span><a href="25e89236-b0b3-4d8b-b1fb-64e0e9f0e156" data-linktype="relative-path">1.9</a></span>) using the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+{99CC098F-A48A-4e9c-8E58-965C0AFC19D5}for this interface.</p><p>The interface contains the following methods beyond those of
+IEventSystem.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span><a href="bccca89e-6b44-4c1c-a842-f670c983a031" data-linktype="relative-path">GetVersion</a></span></p>
+  </td>
+  <td>
+  <p>Gets the version of the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_472f97f2-82ec-4623-8e46-d348a7984967" data-linktype="relative-path">event</a></span> system
+  implementation.</p>
+  <p>Opnum: 13</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="ee68e53d-b8b5-4619-80b7-5c6f6d0f724a" data-linktype="relative-path">VerifyTransientSubscribers</a></span></p>
+  </td>
+  <td>
+  <p>Verifies the state of the transient <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_6d17ce3a-aa95-4db2-83f1-09d5feef3f95" data-linktype="relative-path">subscribers</a></span>.</p>
+  <p>Opnum: 14</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

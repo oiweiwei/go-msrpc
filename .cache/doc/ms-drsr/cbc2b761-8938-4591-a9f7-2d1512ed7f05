@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The OID_t structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> for an
+<span><a href="33950485-3a96-4b66-8a28-a3a33e80302b" data-linktype="relative-path">OID</a></span>
+or a prefix of an OID; it is a component of type <span><a href="d26d36cd-10c4-4b27-a84e-98336abf357a" data-linktype="relative-path">PrefixTableEntry</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [range(0,10000)] unsigned int length;
+   [size_is(length)] BYTE* elements;
+ } OID_t;
+</pre></div>
+</dd></dl><p><b>length:</b>  The size, in bytes, of the
+elements array.</p><p><b>elements:</b>  An array of bytes that
+constitute an OID or a prefix of an OID.</p></div>

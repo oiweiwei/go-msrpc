@@ -1,0 +1,51 @@
+<div class="content"><p> </p><p>The SHARE_INFO_502_I structure contains information about
+the shared resource, including the name of the resource, type, and permissions,
+the number of <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_866b0055-ceba-4acf-a692-98452943b981" data-linktype="relative-path">connections</a></span>, and
+other pertinent information.</p><dl>
+<dd>
+<div><pre> typedef struct _SHARE_INFO_502_I {
+   [string] WCHAR* shi502_netname;
+   DWORD shi502_type;
+   [string] WCHAR* shi502_remark;
+   DWORD shi502_permissions;
+   DWORD shi502_max_uses;
+   DWORD shi502_current_uses;
+   [string] WCHAR* shi502_path;
+   [string] WCHAR* shi502_passwd;
+   DWORD shi502_reserved;
+   [size_is(shi502_reserved)] unsigned char* shi502_security_descriptor;
+ } SHARE_INFO_502_I,
+  *PSHARE_INFO_502_I,
+  *LPSHARE_INFO_502_I;
+</pre></div>
+</dd></dl><p><b>shi502_netname:</b>  A pointer to a
+null-terminated Unicode UTF-16 string that specifies the name of a shared
+resource. The <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST ignore
+this member when processing the <span><a href="048b35f8-ac41-4b4a-bd4f-408e4d381234" data-linktype="relative-path">NetrShareSetInfo (section 3.1.4.11)</a></span>
+method.</p><p><b>shi502_type:</b>  Specifies a DWORD
+value that indicates the type of share. The server MUST ignore this member when
+processing the NetrShareSetInfo method; otherwise, it MUST be one of the values
+that are listed in section <span><a href="6069f8c0-c93f-43a0-a5b4-7ed447eb4b84" data-linktype="relative-path">2.2.2.4</a></span>.</p><p><b>shi502_remark:</b>  A pointer to a
+null-terminated Unicode UTF-16 string that specifies an optional comment about
+the shared resource.</p><p><b>shi502_permissions:</b>  This field is
+not used. The server MUST ignore the value of this parameter on receipt.</p><p><b>shi502_max_uses:</b>  Specifies a DWORD
+value that indicates the maximum number of concurrent connections that the
+shared resource can accommodate. If the value that is specified by <b>shi502_max_uses</b>
+is 0xFFFFFFFF, the maximum number of connections MUST be unlimited.</p><p><b>shi502_current_uses:</b>  Specifies a
+DWORD value that indicates the number of current connections to the resource.
+The server MUST ignore this member on receipt.</p><p><b>shi502_path:</b>  A pointer to a
+null-terminated Unicode UTF-16 string that contains the local path for the
+shared resource. For disks, <b>shi502_path</b> is the path that is being
+shared. For print queues, <b>shi502_path</b> is the name of the print queue
+that is being shared. For communication devices, <b>shi502_path</b> is the name
+of the communication device that is being shared. For interprocess
+communications (IPC), <b>shi502_path</b> is the name of the interprocess
+communication that is being shared. The server MUST ignore this member when
+processing the NetrShareSetInfo method.</p><p><b>shi502_passwd:</b>  This field is not
+used. The <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> MUST send a
+NULL (zero-length) string and the server MUST ignore the value of this
+parameter on receipt.</p><p><b>shi502_reserved:</b>  The length of the
+security descriptor that is being passed in the <b>shi502_security_descriptor</b>
+member.</p><p><b>shi502_security_descriptor:</b>  Specifies
+the SECURITY_DESCRIPTOR, as described in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section 2.4.6, that is associated with this share.</p></div>

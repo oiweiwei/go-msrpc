@@ -1,0 +1,53 @@
+<div class="content"><p> </p><p>When the IWbemCallResult::GetResultObject method is called,
+the server MUST attempt to retrieve a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c1fdd6c7-06cb-4787-8735-4d19a68dd802" data-linktype="relative-path">CIM object</a></span> from a
+previous <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_51f3288a-1aea-49f6-96a1-91f368e8b49b" data-linktype="relative-path">semisynchronous operation</a></span>
+call to the <span><a href="85e450fa-520c-4813-a17e-c65bf7be47b5" data-linktype="relative-path">IWbemServices::GetObject</a></span>
+method or the <span><a href="cbce28cd-fd45-4df1-9ec8-416e6bb33691" data-linktype="relative-path">IWbemServices::ExecMethod</a></span>
+method. The entry in <b>WbemCallResultTable</b> with <b>WbemCallResultPointer</b>
+pointing to <span><a href="23ec4065-3fbe-4e39-baef-69e22c285623" data-linktype="relative-path">IWbemCallResult</a></span> is
+used to identify the previous semisynchronous call.</p><dl>
+<dd>
+<div><pre> HRESULT GetResultObject(
+   [in] long lTimeout,
+   [out] IWbemClassObject** ppResultObject
+ );
+</pre></div>
+</dd></dl><p><b>lTimeout: </b>MUST be the maximum amount of time,
+in milliseconds, that the call to the IWbemCallResult::GetResultObject method
+allows to pass before it times out. If the constant WBEM_INFINITE (0xFFFFFFFF)
+is used, the GetResultObject method call MUST wait until the operation
+succeeds. If this parameter is set to 0 and the result object is available at
+the time of the method call, the object MUST be returned in <i>ppResultObject</i>
+and WBEM_S_NO_ERROR MUST also be returned. If this parameter is set to 0 but
+the result object is not available at the time of the method call,
+WBEM_S_TIMEDOUT MUST be returned.</p><p><b>ppResultObject: </b>A pointer to a variable that
+receives a logical copy of the CIM object when the semisynchronous operation is
+complete. A new CIM object MUST NOT be returned on error. When sent by the
+client, this parameter value MUST NOT be NULL. Upon return by the server, this
+parameter value can be NULL if there is a failure or if there are no results.
+The caller of this method MUST call IWbemClassObject::Release on the returned
+object when the object is no longer required.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The server MUST locate the entry in <b>WbemCallResultTable</b>
+with <b>WbemCallResultPointer</b> matching IWbemCallResult.</p><p>The IWbemCallResult::GetResultObject method MUST be called
+on the interface obtained in responses to a previous call to a semisynchronous
+operation returning an IWbemCallResult interface.</p><p>In response to the IWbemCallResult::GetResultObject method,
+the server MUST wait for the operation to finish by waiting up to <i>lTimeout</i>
+for <b>OperationFinished</b> to become TRUE for this operation entry in <b>WbemCallResultTable</b>.
+If the operation is finished successfully in <i>lTimeout</i> time, the server
+MUST return the CIM object in the <i>ppResultObject</i> parameter by making a logical
+copy of <b>ResultObject</b>. If the operation is not finished in <i>lTimeout</i>
+time, the server MUST return WBEM_S_TIMEDOUT. The method MUST fail if the
+method parameters are not valid, as specified earlier in this section, or if
+the server is unable to execute the method.</p><p>The successful method execution MUST fill <i>ppResultObject</i>
+with an <span><a href="56022f1e-3761-4c17-8d55-8e62dc334b86" data-linktype="relative-path">IWbemClassObject</a></span> <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface
+pointer</a></span> and MUST return WBEM_S_NO_ERROR.</p><p>If the operation is not finished in <i>lTimeout</i> time,
+this method MUST set the value referenced by the output parameters to NULL and
+return WBEM_S_TIMEDOUT. The client is allowed to retry the operation.</p><p>If the operation fails within <i>lTimeout</i> time, the
+server MUST set the value referenced by the output parameters to NULL and
+return the error code that the original method would have returned in its
+synchronous version in the format specified in section 2.2.11.</p></div>

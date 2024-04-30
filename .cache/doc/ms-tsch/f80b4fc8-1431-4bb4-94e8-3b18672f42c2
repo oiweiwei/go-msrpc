@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <span><a href="4d44c426-fad2-4cc7-9677-bfcd235dca33" data-linktype="relative-path">ATSvc</a></span> method <span><a href="fbd5a268-b8c6-4953-8df3-8931ca0f365d" data-linktype="relative-path">NetrJobEnum</a></span>
+uses the AT_ENUM_CONTAINER structure to return multiple <span><a href="d77ddb4a-bb25-4fbe-b5fe-aeca9d5b9498" data-linktype="relative-path">AT_ENUM</a></span>
+structures. The format of the AT_ENUM_CONTAINER structure is as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _AT_ENUM_CONTAINER {
+   DWORD EntriesRead;
+   [size_is(EntriesRead)] LPAT_ENUM Buffer;
+ } AT_ENUM_CONTAINER,
+  *PAT_ENUM_CONTAINER,
+  *LPAT_ENUM_CONTAINER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  The number of entries
+in the Buffer array.</p><p><b>Buffer:</b>  Pointer to an array of
+AT_ENUM structures.</p></div>

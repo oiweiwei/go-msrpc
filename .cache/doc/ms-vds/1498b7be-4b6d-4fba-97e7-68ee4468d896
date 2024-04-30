@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The VDS_PARTITION_PROP structure provides information about <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span>
+properties.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_PARTITION_PROP {
+   VDS_PARTITION_STYLE PartitionStyle;
+   unsigned long ulFlags;
+   unsigned long ulPartitionNumber;
+   ULONGLONG ullOffset;
+   ULONGLONG ullSize;
+   [switch_is(PartitionStyle)] union {
+     [case(VDS_PST_MBR)] 
+       VDS_PARTITION_INFO_MBR Mbr;
+     [case(VDS_PST_GPT)] 
+       VDS_PARTITION_INFO_GPT Gpt;
+     [default]       ;
+   };
+ } VDS_PARTITION_PROP;
+</pre></div>
+</dd></dl><p><b>PartitionStyle:</b>  The value from the <span><a href="310c0f6a-a0ef-4b63-933e-c4b1a7ecaf37" data-linktype="relative-path">VDS_PARTITION_STYLE</a></span>
+enumeration that describes the partition format of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>
+where the partition resides.</p><p><b>ulFlags:</b>  The combination of any
+values, by using the bitwise OR operator, from the <span><a href="93b35ba4-30e5-437c-be2c-9d99a10d0768" data-linktype="relative-path">VDS_PARTITION_FLAG</a></span>
+enumeration describing the partition.</p><p><b>ulPartitionNumber:</b>  The one-based
+index number of the partition that the operating system assigns.</p><p><b>ullOffset:</b>  The byte offset of the
+partition from the beginning of the disk.</p><p><b>ullSize:</b>  The size of the partition,
+in bytes.</p><p><b>Mbr:</b>  A <span><a href="22476bef-b612-4a6b-a0ef-b8215a5ad6c9" data-linktype="relative-path">VDS_PARTITION_INFO_MBR</a></span>
+structure that describes the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b251c771-5ccf-40f2-b98d-0119db210b4b" data-linktype="relative-path">MBR</a></span> partition.</p><p><b>Gpt:</b>  A <span><a href="559ba138-03c0-4d1d-8650-e531a78ea17c" data-linktype="relative-path">VDS_PARTITION_INFO_GPT</a></span>
+structure that describes the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GPT</a></span> partition.</p></div>

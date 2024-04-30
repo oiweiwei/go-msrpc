@@ -1,0 +1,95 @@
+<div class="content"><p> </p><p>A 32-bit JOB_SIGNATURE_HEADER and 64-byte signature (see the
+following) MAY follow the array of <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_5245e0f1-e443-4a8b-968c-61c736f61fe0" data-linktype="relative-path">triggers</a></span>.</p><p>The following fields <b>Byte1</b> through <b>Byte64</b>
+contain the 64-byte signature.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>SignatureVersion</p>
+  </td>
+  <td colspan="16">
+  <p>MinClientVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>Byte1</p>
+  </td>
+  <td colspan="8">
+  <p>Byte2</p>
+  </td>
+  <td colspan="8">
+  <p>Byte3</p>
+  </td>
+  <td colspan="8">
+  <p>Byte4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>Byte61</p>
+  </td>
+  <td colspan="8">
+  <p>Byte62</p>
+  </td>
+  <td colspan="8">
+  <p>Byte63</p>
+  </td>
+  <td colspan="8">
+  <p>Byte64</p>
+  </td>
+ </tr>
+</tbody></table><p><b>SignatureVersion (2 bytes): </b>Set to 1.</p><p><b>MinClientVersion (2 bytes): </b>Set to 1.</p><p>If the .JOB file does not contain a complete
+JOB_SIGNATURE_HEADER and signature, or if the <b>SignatureVersion</b> and <b>MinClientVersion</b>
+fields do not contain the value 1, the recipient ignores the signature.</p><p>The signature is calculated as follows:</p><ul><li><p><span><span> 
+</span></span>The <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">Security Identifier (SID)</a></span>
+of the file owner, the <b>uuidJob</b> field of the <span><a href="b6425baf-7eb1-46c9-be5f-b13649004d0c" data-linktype="relative-path">FIXDLEN_DATA</a></span>
+structure, and the null-terminated string value from Application Name in the
+variable-length data section is bytewise concatenated in a buffer.</p>
+</li><li><p><span><span> 
+</span></span>A 16-byte MD5 <span><a href="https://go.microsoft.com/fwlink/?LinkId=90275" data-linktype="external">[RFC1321]</a></span> hash
+of the buffer is calculated.</p>
+</li><li><p><span><span> 
+</span></span>A private key is obtained from the system to be used for the
+digital signature.<a id="Appendix_A_Target_24"></a><a aria-label="Product behavior note 24" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_24" data-linktype="relative-path">&lt;24&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>The hash is signed using MD5, and the signed hash is placed in
+the 64 bytes after the JOB_SIGNATURE_HEADER.</p>
+</li></ul></div>

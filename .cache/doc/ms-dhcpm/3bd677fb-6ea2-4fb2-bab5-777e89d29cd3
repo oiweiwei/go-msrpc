@@ -1,0 +1,68 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4FailoverGetScopeStatistics</b> method is used
+to retrieve the statistics of a IPv4 subnet configured for a failover
+relationship on the DHCPv4 server. The caller of this function can free the
+memory pointed to by the <i>pStats</i> parameter by calling the function <b>midl_user_free</b>
+(section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4FailoverGetScopeStatistics(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_IP_ADDRESS scopeId,
+   [out] LPDHCP_FAILOVER_STATISTICS* pStats
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>scopeId: </b>This is of type <b>DHCP_IP_ADDRESS</b>
+data type (section <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">2.2.1.2.1</a></span>), that
+contains a IPv4 subnet address configured for a failover relationship for which
+statistics information needs to be returned.</p><p><b>pStats: </b>This is a pointer of type <b>LPDHCP_FAILOVER_STATISTICS</b>
+(section <span><a href="4117c934-55cc-4e86-923b-6a96f970c0a9" data-linktype="relative-path">2.2.1.2.100</a></span>) that
+contains the statistics information for the <i>scopeId</i> parameter.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20123, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 97.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Return ERROR_INVALID_PARAMETER if any of the following are true.</p>
+<ul><li><p><span><span>  </span></span><i>scopeId</i>
+parameter is 0.</p>
+</li><li><p><span><span>  </span></span><i>pStats</i>
+parameter is NULL.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read access as
+specified in section <span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>. If not, then
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the <b>DHCPv4FailoverStatisticsList</b> ADM
+element and retrieve the <b>DHCPv4FailoverStatistics</b> ADM element whose <i>scopeId</i>
+member is equal to the passed in <i>scopeId</i> parameter. If the corresponding
+<b>DHCPv4FailoverStatistics</b> ADM element is not found, return
+ERROR_FILE_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>Allocate the memory for the <i>pStats</i> parameter, and copy the
+failover statistics information from the matching <b>DHCPv4FailoverStatistics</b>
+ADM element entry in the allocated memory.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

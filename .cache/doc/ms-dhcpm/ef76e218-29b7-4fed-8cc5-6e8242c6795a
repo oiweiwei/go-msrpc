@@ -1,0 +1,96 @@
+<div class="content"><p> </p><p>The <b>DHCP_IP_RESERVATION_INFO</b> structure defines an
+IPv4 reservation for a DHCPv4 client. This structure is an extension of the <b>DHCP_IP_RESERVATION_V4</b>
+structure (section <span><a href="e78d3149-d39a-49bf-b84c-a1cff572a3aa" data-linktype="relative-path">2.2.1.2.32</a></span>), which
+is extended by including the reservation client name and description.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_IP_RESERVATION_INFO {
+   DHCP_IP_ADDRESS ReservedIpAddress;
+   DHCP_CLIENT_UID ReservedForClient;
+   LPWSTR ReservedClientName;
+   LPWSTR ReservedClientDesc;
+   BYTE bAllowedClientTypes;
+   BYTE fOptionsPresent;
+ } DHCP_IP_RESERVATION_INFO,
+  *LPDHCP_IP_RESERVATION_INFO;
+</pre></div>
+</dd></dl><p><b>ReservedIpAddress:</b>  This member is a
+structure of type <b>DHCP_IP_ADDRESS</b> (section <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">2.2.1.2.1</a></span>) that
+contains the IPv4 address of the client (DHCP or BOOTP) (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90319" data-linktype="external">[RFC2132]</a></span>),
+for which a reservation was created.</p><p><b>ReservedForClient:</b>  This member is a
+pointer of type <b>DHCP_CLIENT_UID</b> structure (section <span><a href="b4da2d52-9737-46ec-8bc2-1c598fc3b8c8" data-linktype="relative-path">2.2.1.2.5</a></span>)
+that represents the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_195d8585-7de6-4574-9abf-9db104aaa40c" data-linktype="relative-path">DHCPv4 client-identifier</a></span>
+(section <span><a href="7c88f58b-c615-4386-a643-ab05b860a003" data-linktype="relative-path">2.2.1.2.5.1</a></span>).</p><p><b>ReservedClientName:</b>  This member is
+a pointer to a null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+represents the host name of the DHCPv4 reservation client. There is no
+restriction on the length of this Unicode string.</p><p><b>ReservedClientDesc:</b>  This member is
+a pointer to a null-terminated Unicode string that represents the description
+of the DHCPv4 reservation client. There is no restriction on the length of this
+Unicode string.</p><p><b>bAllowedClientTypes:</b>  This member is
+of type <span><a href="../ms-dtyp/d7edc080-e499-4219-a837-1bc40b64bb04" data-linktype="relative-path">BYTE</a></span>
+and specifies the type of client holding this reservation, as indicated in the
+following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CLIENT_TYPE_DHCP</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>The IPv4 reservation is for a DHCPv4 client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_BOOTP</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>The IPv4 reservation is for a BOOTP client
+  ([RFC2132]).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_BOTH</p>
+  <p>0x03</p>
+  </td>
+  <td>
+  <p>The IPv4 reservation is for both kinds of clients.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>fOptionsPresent:</b>  This member is of
+type BYTE and specifies whether there are any DHCPv4 options configured on the
+reservation, as indicated in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No option values are configured on the reservation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Option values are configured on the reservation.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

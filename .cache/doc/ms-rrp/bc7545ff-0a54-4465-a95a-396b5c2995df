@@ -1,0 +1,108 @@
+<div class="content"><p> </p><p>The BaseRegCloseKey method is called by the client. In
+response, the server destroys (closes) the handle to the specified registry
+key.</p><dl>
+<dd>
+<div><pre> error_status_t BaseRegCloseKey(
+   [in, out] PRPC_HKEY hKey
+ );
+</pre></div>
+</dd></dl><p><b>hKey: </b>A handle to a key that MUST have been
+opened previously by using one of the open methods that are specified in
+section <span><a href="053e8515-dbae-47ea-a7c6-6dc054e3a48f" data-linktype="relative-path">3.1.5</a></span>: <span><a href="956a3052-6580-43ee-91aa-aaf61726149b" data-linktype="relative-path">OpenClassesRoot</a></span>,
+<span><a href="ec140ed9-4d00-4c03-a15c-c7245a497ed5" data-linktype="relative-path">OpenCurrentUser</a></span>,
+<span><a href="6cef29ae-21ba-423f-9158-05145ac80a5b" data-linktype="relative-path">OpenLocalMachine</a></span>,
+<span><a href="7b514c63-6cad-4fe1-9780-743959e377e6" data-linktype="relative-path">OpenPerformanceData</a></span>,
+<span><a href="694e57f4-da3e-4285-8b71-3181d71d6cd1" data-linktype="relative-path">OpenUsers</a></span>,
+<span><a href="c7186ae2-1c82-45e9-933b-97d9873657e8" data-linktype="relative-path">BaseRegCreateKey</a></span>,
+<span><a href="8cb48f55-19e1-4ea2-8d76-dd0f6934f0d9" data-linktype="relative-path">BaseRegOpenKey</a></span>,
+<span><a href="160767d7-83cf-4718-a4f3-d864faee3bb1" data-linktype="relative-path">OpenCurrentConfig</a></span>,
+<span><a href="44954f6d-ef2c-4ec1-a27d-32b9b87e3c8a" data-linktype="relative-path">OpenPerformanceText</a></span>,
+<span><a href="3626fa8a-b20f-4243-bf85-cdb615ed2ca0" data-linktype="relative-path">OpenPerformanceNlsText</a></span>.</p><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000006</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The handle is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000AA</p>
+  <p>ERROR_BUSY</p>
+  </td>
+  <td>
+  <p>The requested resource is in use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000013</p>
+  <p>ERROR_WRITE_PROTECT</p>
+  </td>
+  <td>
+  <p>A read or write operation was attempted to a volume
+  after it was dismounted. The server can no longer service registry requests
+  because server shutdown has been initiated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000015</p>
+  <p>ERROR_NOT_READY</p>
+  </td>
+  <td>
+  <p>The service is not read. Calls can be repeated at a
+  later time.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000102</p>
+  <p>WAIT_TIMEOUT</p>
+  </td>
+  <td>
+  <p>The wait operation timed out.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Server Operations</p><p>If the registry server can no longer service registry
+requests because server shutdown has been initiated, the server MUST return
+ERROR_WRITE_PROTECT.</p><p>If the handle provided in the <i>hKey</i> parameter is not a
+valid open handle to a registry key, the server MUST fail the method and return
+ERROR_INVALID_HANDLE. If the operation was unsuccessful, the server MUST NOT
+change the value of the <i>hKey</i> parameter and return the original value to
+the client.</p><p>If the registry server cannot obtain a lock on a registry
+request, the server MUST return ERROR_BUSY. The operation SHOULD be repeated.</p><p>The server MUST determine if the UPDATECOPY column of the
+entry for <i>hKey</i> in the HANDLETABLE is set to <b>true</b>. If UPDATECOPY
+is set to <b>true</b>, the server MUST copy all subkeys and values of the key
+indicated by the <i>hKey</i> parameter from the 32-bit key namespace into the
+64-bit key namespace or from the 64-bit key namespace into the 32-bit key
+namespace. Any values already in the target namespace are overwritten as part
+of the copy operation. Any errors encountered during the copy operation are not
+returned to the client, and the result of the copy operation is undefined.</p><p>In response to this request from the client, for a
+successful operation, the server MUST return 0 to indicate success and close
+the handle to the key that is specified by the <i>hKey</i> parameter in the
+client request. The server MUST also set the value of the <i>hKey</i> parameter
+to NULL. The server MUST also remove the entry for <i>hKey</i> in the
+HANDLETABLE.</p><p>The implementation of the handle close operation is
+server-specific. However, functionally, after a handle is closed, the server
+MUST not allow the handle to refer to a given registry key until a new handle
+is created and opened for that key using one of the open methods that are
+specified in section 3.1.5: OpenClassesRoot, OpenCurrentUser, OpenLocalMachine,
+OpenPerformanceData, OpenUsers, BaseRegCreateKey, BaseRegOpenKey,
+OpenCurrentConfig, OpenPerformanceText, OpenPerformanceNlsText.</p><p>If the method is unsuccessful, the server MUST return a
+nonzero error code, as specified in [MS-ERREF] section 2.2.</p><p>The server MUST return ERROR_BUSY if an internal lock cannot
+be obtained. This would happen under very high contention rates or if the
+client is corrupted. The operation SHOULD be repeated.</p><p>The server returns WAIT_TIMEOUT if the server load is high
+and it is unable to acquire locks on the registry database.</p></div>

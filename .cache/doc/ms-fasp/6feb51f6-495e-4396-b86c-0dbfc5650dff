@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>This data type defines ICMP (internet control message
+protocol with protocol numbers assigned in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89889" data-linktype="external">[IANA-PROTO-NUM]</a></span>)
+message types and codes. It specifies an ICMP type and either its specific code
+or all codes for that type.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_ICMP_TYPE_CODE {
+   unsigned char bType;
+   [range(0, 256)] unsigned short wCode;
+ } FW_ICMP_TYPE_CODE,
+  *PFW_ICMP_TYPE_CODE;
+</pre></div>
+</dd></dl><p><b>bType:</b>  This field specifies the
+ICMP type.</p><p><b>wCode:</b>  This field specifies the
+ICMP code.</p><p>The <b>wCode</b> field MUST
+contain values between 0x0000 and 0x0100. When <b>wCode</b> contains 0x100, it
+expresses any ICMP code belonging to the corresponding ICMP type. When <b>wCode</b>
+contains values in the range 0 to 0x00FF, it expresses a specific ICMP code.</p><p>All valid ICMP type and code combinations are valid, even
+those not currently assigned for a specific use.</p></div>

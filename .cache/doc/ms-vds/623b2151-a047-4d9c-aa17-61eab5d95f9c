@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The VDS_QUERY_PROVIDER_FLAG enumeration defines the set of
+valid flags for provider query operations. Callers can query for hardware
+providers, software providers, or both.<a id="Appendix_A_Target_28"></a><a aria-label="Product behavior note 28" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_28" data-linktype="relative-path">&lt;28&gt;</a></p><dl>
+<dd>
+<div><pre> typedef enum _VDS_QUERY_PROVIDER_FLAG
+ {
+   VDS_QUERY_SOFTWARE_PROVIDERS = 0x1,
+   VDS_QUERY_HARDWARE_PROVIDERS = 0x2,
+   VDS_QUERY_VIRTUALDISK_PROVIDERS = 0x4
+ } VDS_QUERY_PROVIDER_FLAG;
+</pre></div>
+</dd></dl><p><b>VDS_QUERY_SOFTWARE_PROVIDERS:  </b>If set, the
+operation queries for software providers.</p><p><b>VDS_QUERY_HARDWARE_PROVIDERS:  </b>If set, the
+operation queries for hardware providers.</p><p><b>VDS_QUERY_VIRTUALDISK_PROVIDERS:  </b>If set, the
+operation queries for <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_382202db-fe62-4327-98e3-b0a17f180067" data-linktype="relative-path">virtual disk providers</a></span>.</p></div>

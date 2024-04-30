@@ -1,0 +1,81 @@
+<div class="content"><p>This packet is sent from the RDG server to provide details
+of its protocol version and the supported authentication schemes.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>hdr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>errorCode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>verMajor</p>
+  </td>
+  <td colspan="8">
+  <p>verMinor</p>
+  </td>
+  <td colspan="16">
+  <p>serverVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>ExtendedAuth</p>
+  </td>
+  
+ </tr>
+</tbody></table><p><b>hdr (8 bytes): </b>An <a href="158c24f6-cabc-4c48-b429-28509f9b4f5d" data-linktype="relative-path">HTTP_PACKET_HEADER (section
+2.2.10.9)</a> structure. Its <b>packetType</b> field is set to
+PKT_TYPE_HANDSHAKE_RESPONSE.</p><p><b>errorCode (4 bytes): </b>An unsigned integer
+representing errors encountered during the handshake between the RDG client and
+RDG server, in an <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+format.</p><p><b>verMajor (1 byte): </b>A single byte representing
+the major version of the RDGHTTP protocol.</p><p><b>verMinor (1 byte): </b>A single byte representing
+the minor version of the RDGHTTP protocol.</p><p><b>serverVersion (2 bytes): </b>An unsigned short
+representing the version of RDG server operating system. This field is not used
+and MUST be set to zero.</p><p><b>ExtendedAuth (2 bytes): </b>An unsigned short
+representing the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_3cce7433-1f97-487d-9b8b-2affd6f21428" data-linktype="relative-path">extended
+authentication</a> requested by the RDG client, in an <a href="801ded3f-e14e-48f8-9b23-744914291edc" data-linktype="relative-path">HTTP_EXTENDED_AUTH Enumeration
+(section 2.2.5.3.2)</a> format.</p></div>

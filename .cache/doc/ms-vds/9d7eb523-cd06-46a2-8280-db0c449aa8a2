@@ -1,0 +1,13 @@
+<div class="content"><p>The Virtual Disk Service (VDS) Remote Protocol is a set of <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">Distributed Component Object
+Model (DCOM)</a> interfaces for managing the configuration of <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a> storage on a computer.
+The Virtual Disk Service Remote Protocol deals with detailed low-level
+operating system and storage concepts.</p><p> Although this specification outlines the basic concepts
+that you need to know, this specification assumes that you are familiar with
+these technologies. For information about storage, disk, and <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a> concepts, see <a href="https://go.microsoft.com/fwlink/?LinkId=90139" data-linktype="external">[MSDN-STC]</a> and <a href="https://go.microsoft.com/fwlink/?LinkId=90059" data-linktype="external">[MSDN-PARTITIONINFO]</a>;
+for information on disk management, see <a href="https://go.microsoft.com/fwlink/?LinkId=89992" data-linktype="external">[MSDN-DISKMAN]</a>. </p><p>The Virtual Disk Service Remote Protocol is used to
+programmatically enumerate and configure disks, volumes, <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_49b98426-c07d-42ab-8ebc-bd088b107c24" data-linktype="relative-path">host bus adapter (HBA)</a>
+ports, and <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_daaa5b4b-e3f0-4df2-94b2-332d6d84cf80" data-linktype="relative-path">iSCSI initiators</a>
+on remote computers. This protocol supersedes the Disk Management Remote
+Protocol, as specified in <a href="../ms-dmrp/19a16e20-072f-4d74-a245-ce4df2f1ecdd" data-linktype="relative-path">[MS-DMRP]</a>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The TRKSVR_CALL_DELETE structure is used in <span><a href="cea51ffe-cab6-4b19-93b7-853189437ead" data-linktype="relative-path">LnkSvrMessage</a></span>
+method calls that specify a DELETE_NOTIFY message (see section <span><a href="e6084ee0-fc0d-443e-a4fb-1a792ce70450" data-linktype="relative-path">2.2.11</a></span>),
+to indicate which files are to be removed from the <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_6cfc6bf1-a50a-4a40-b987-0209bd21ea29" data-linktype="relative-path">FileTable</a></span>. See
+section <span><a href="e067c604-0c41-4c4d-b31f-ab7adb0d2bc7" data-linktype="relative-path">3.2.6.2</a></span> for an
+example of the client using this structure.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned long cdroidBirth;
+   [size_is(cdroidBirth)] CDomainRelativeObjId* adroidBirth;
+   unsigned long cVolumes;
+   [size_is(cVolumes)] CVolumeId* pVolumes;
+ } TRKSVR_CALL_DELETE;
+</pre></div>
+</dd></dl><p><b>cdroidBirth:</b>  This field MUST
+contain the number of entries in the adroidBirth array.</p><p><b>adroidBirth:</b>  This field MUST
+contain an array of FileIDs of files that have been deleted. <span><a href="../ms-dltw/80cbf3f6-964d-456a-b08e-6f20c7c86921" data-linktype="relative-path">CDomainRelativeObjId</a></span>
+is as specified in <span><a href="../ms-dltw/fc649f0e-871a-431a-88b5-d5b2f80e9cc9" data-linktype="relative-path">[MS-DLTW]</a></span>
+section 2.2.3.</p><p><b>cVolumes:</b>  This field is unused and
+MUST be zero.</p><p><b>pVolumes:</b>  This field is unused and
+MUST be set to zero.</p></div>

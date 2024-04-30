@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The ATRERR_DRS_WIRE_V1 structure defines <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span>
+errors.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DSNAME* pObject;
+   ULONG count;
+   PROBLEMLIST_DRS_WIRE_V1 FirstProblem;
+ } ATRERR_DRS_WIRE_V1;
+</pre></div>
+</dd></dl><p><b>pObject:</b>  The identity of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>
+being processed when the error occurred.</p><p><b>count:</b>  The count of items in the <b>FirstProblem</b>
+linked list.</p><p><b>FirstProblem:</b>  The first element in
+the linked list of attribute errors.</p></div>

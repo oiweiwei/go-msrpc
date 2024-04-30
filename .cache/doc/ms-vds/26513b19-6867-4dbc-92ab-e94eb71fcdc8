@@ -1,0 +1,47 @@
+<div class="content"><p> </p><p>The LoadService method is used by client applications to
+load the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_97581c48-09dd-4bc4-a379-a846cbf4cc39" data-linktype="relative-path">VDS</a></span> service on a
+remote machine.</p><dl>
+<dd>
+<div><pre> HRESULT LoadService(
+   [in, unique, string] LPWSTR pwszMachineName,
+   [out] IVdsService** ppService
+ );
+</pre></div>
+</dd></dl><p><b>pwszMachineName: </b>A pointer to a string that
+contains the name of the machine on which the VDS service is loaded.</p><p><b>ppService: </b>A pointer to the <span><a href="58998416-7d48-49c3-bc5d-bb0b37e132c5" data-linktype="relative-path">IVdsService</a></span>
+interface that, if successfully completed, returns the IVdsService interface to
+the VDS service that runs on the machine represented by <i>pwszMachineName</i>.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameter: </p><ul><li><p><span><span> 
+</span></span>Verify that <i>ppService</i> is not NULL.</p>
+</li></ul><p>The server MUST:</p><ul><li><p><span><span> 
+</span></span>Load the VDS service on the computer specified by <i>pwszMachineName</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>QueryInterface for the <b>IVdsServiceInitialization</b>
+interface.</p>
+</li><li><p><span><span> 
+</span></span>Call the <span><a href="4ff1b962-4337-4eb7-ade7-b6dd32d54130" data-linktype="relative-path">IVdsServiceInitialization::Initialize</a></span>
+method, passing the <i>pwszMachineName</i> parameter input to this method.</p>
+</li><li><p><span><span> 
+</span></span>Point <i>ppService</i> to the IVdsService interface for the VDS
+service that is loaded.</p>
+</li><li><p><span><span> 
+</span></span>Return an <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path"><span>HRESULT</span></a> that indicates
+failure or success.</p>
+</li></ul><p>The server object that is created when this method is called
+MUST implement only these interfaces:</p><ul><li><p><span><span> 
+</span></span><b>IVdsService</b></p>
+</li><li><p><span><span> 
+</span></span><b>IVdsServiceHba</b></p>
+</li><li><p><span><span> 
+</span></span><b>IVdsServiceIscsi</b></p>
+</li><li><p><span><span> 
+</span></span><b>IVdsServiceUninstallDisk</b></p>
+</li><li><p><span><span> 
+</span></span><b>IVdsServiceSAN</b></p>
+</li></ul></div>

@@ -1,0 +1,150 @@
+<div class="content"><p> </p><p>The method <b>R_DhcpV4GetAllOptionValues</b> gets all the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e4c4b49e-bca4-4854-9e27-67ef0035f06e" data-linktype="relative-path">server
+level policy</a></span> or <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_3b199f35-b0f3-4897-83a6-e7fec0ee7fea" data-linktype="relative-path">scope level policy</a></span>
+options configured. The memory for the <i>Values</i> parameter is allocated by
+this method and can be freed by the caller by calling the function <b>midl_user_free</b>
+(section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4GetAllOptionValues(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DWORD Flags,
+   [in] LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+   [out] LPDHCP_ALL_OPTION_VALUES_PB* Values
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>Flags: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and specifies that the option value is set for a specific or default vendor
+class.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DHCP_FLAGS_OPTION_DEFAULT</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Option definition is set for the default vendor class.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DHCP_FLAGS_OPTION_IS_VENDOR</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>If a bitwise AND operation with this bitmask yields a
+  nonzero value, it indicates that the option definition is set for a specific
+  vendor class.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ScopeInfo: </b>This is a pointer of type <b>DHCP_OPTION_SCOPE_INFO</b>
+structure (section <span><a href="177415f4-85c1-4496-a414-4938dca18b93" data-linktype="relative-path">2.2.1.2.41</a></span>) that
+contains information describing the DHCPv4 scope for which this option value is
+set. This value contains the default, server, scope, multicast scope, or IPv4
+reservation level at which the option values are set.</p><p><b>Values: </b>This is a pointer of type <b>LPDHCP_ALL_OPTIONS_VALUES_PB</b>
+(section <span><a href="1e4a55f9-80f1-4222-b55b-f36615f2669e" data-linktype="relative-path">2.2.1.2.109</a></span>) that
+contains all the policy option values at server or scope level.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist on the DHCP
+  server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 105.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> parameter or Values parameter is NULL, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Validate if this method is authorized for read access as
+specified in section <span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>. If not,
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>The <i>Flags</i> parameter MUST pass one of the validations given
+in the <i>Flags</i> parameter description. Otherwise, the method returns
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Allocate memory for the address pointed to by the <i>Values</i>
+parameter, which is equal to the size of the data type <b>DHCP_ALL_OPTION_VALUES_PB</b>
+structure. Initialize its members as: <b>Flags</b> member equal to zero, <b>NumElements</b>
+member equal to zero, and <b>Options</b> member equal to NULL.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ScopeType</b> member is specified as DhcpGlobalOptions
+enumeration value, retrieve the server ADM element <b>DHCPv4ServerPolicyOptionValuesList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ScopeType</b> member is specified as DhcpSubnetOptions
+enumeration value, retrieve the <b>DHCPv4Scope</b> ADM element entry
+corresponding to the <i>ScopeInfo</i> parameter from the server ADM element <b>DHCPv4ScopesList</b>.
+If the <b>DHCPv4Scope</b> ADM element entry is not present, return
+ERROR_DHCP_SUBNET_NOT_PRESENT. Retrieve <b>DHCPv4ScopePolicyOptionValuesList</b>
+ADM element from the <b>DHCPv4Scope</b> ADM element entry.</p>
+</li><li><p><span><span> 
+</span></span>For each <b>DHCPv4PolicyOptionValue</b> ADM element object in the
+retrieved list do the following:</p>
+<ul><li><p><span><span>  </span></span>Get
+the first two non-filled indices in the array pointed to by the <i>Values</i>
+parameter. Set the <b>IsVendor</b> member to FALSE for the first one and to
+TRUE for the second one. For both of them, allocate required memory for the <i>PolicyName</i>
+parameter and the <i>VendorName</i> parameter and copy the values in the <b>DHCPv4PolicyOptionValue.PolicyName</b>
+ADM element and <b>DHCPv4PolicyOptionValue.VendorName</b> ADM element objects
+into the array. Also allocate memory for the <b>OptionsArray</b> member whose
+size is equal to the size of the data type <b>DHCP_OPTION_VALUE_ARRAY</b>
+structure for both of the ADM element values. Initialize the <b>NumElements</b>
+member in <b>OptionsArray</b> member to zero and <b>Values</b> member to NULL.</p>
+</li><li><p><span><span>  </span></span>Go
+through each <b>DHCPv4ClassedOptValue</b> ADM element object in <b>DHCPv4ClassedOptValueList</b>
+ADM element and count the number of such objects that have <b>OptionID</b> ADM
+element less than or equal to 256. For the first non-filled index obtained
+above, set the <b>NumElements</b> member in the <b>OptionsArray</b> member
+equal to the count and allocate memory for the <b>Values</b> member in the <b>OptionArray</b>
+member whose size is equal to the size of the data type <b>DHCP_OPTION_VALUE</b>
+structure multiplied by the count. Copy the <b>DHCPv4ClassedOptValue</b> ADM
+element objects in <b>DHCPv4ClassedOptionValues</b> ADM element having <b>OptionID</b>
+ADM element less than or equal to 256 to the <b>OptionsArray</b> member.</p>
+</li><li><p><span><span>  </span></span>Go
+through each <b>DHCPv4ClassedOptValue</b> ADM element object in <b>DHCPv4ClassedOptValueList</b>
+ADM element and count the number of such objects that have <b>OptionID</b> ADM
+element greater than 256. For the second non-filled index obtained previously,
+set the <b>NumElements</b> member in the <b>OptionsArray</b> member structure
+equal to the count and allocate memory for the <b>Values</b> member in the <b>OptionArray</b>
+member structure whose size is equal to the size of the data type <b>DHCP_OPTION_VALUE</b>
+multiplied by the count. Copy the <b>DHCPv4ClassedOptValue</b> ADM element
+objects in <b>DHCPv4ClassedOptionValues</b> ADM element having <b>OptionID</b>
+ADM element greater than 256 to the <b>OptionsArray</b> member.</p>
+</li><li><p><span><span>  </span></span>Return
+ERROR_SUCCESS.</p>
+</li></ul></li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

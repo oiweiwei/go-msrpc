@@ -1,0 +1,82 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/447520a5-e1cc-48cc-8fdc-b90db57f7eac" data-linktype="external">msdn link</a></p><p>The KERB_KEY_DATA_NEW structure holds a cryptographic key.
+This structure is used in conjunction with <a href="08cb3ca7-954b-45e3-902e-77512fe3ba8e" data-linktype="relative-path">KERB_STORED_CREDENTIAL_NEW</a>.
+For more information, see section <a href="f3fd5c77-7a63-43dc-ac8d-598ca374a5a3" data-linktype="relative-path">3.1.1.8.11.6</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Reserved1</p>
+  </td>
+  <td colspan="16">
+  <p>Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Reserved3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IterationCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>KeyType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>KeyLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>KeyOffset</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Reserved1 (2 bytes): </b>This value MUST be
+ignored by the recipient and MUST be set to zero.</p><p><b>Reserved2 (2 bytes): </b>This value MUST be
+ignored by the recipient and MUST be set to zero.</p><p><b>Reserved3 (4 bytes): </b>This value MUST be
+ignored by the recipient and MUST be set to zero.</p><p><b>IterationCount (4 bytes): </b> Indicates the
+iteration count used to calculate the password hashes.</p><p><b>KeyType (4 bytes): </b>Indicates the type of key,
+stored as a 32-bit unsigned integer in little-endian byte order. This MUST be
+one of the values listed in section <a href="1355fa6b-d097-4ecc-8d5e-75b3a6533e04" data-linktype="relative-path">2.2.10.8</a>.</p><p><b>KeyLength (4 bytes): </b>The length, in bytes, of
+the value beginning at <b>KeyOffset</b>. The value of this field is stored in
+little-endian byte order.</p><p><b>KeyOffset (4 bytes): </b>An offset, in
+little-endian byte order, from the beginning of the property value (that is,
+from the beginning of the <b>Revision</b> field of KERB_STORED_CREDENTIAL_NEW)
+to where the key value starts.</p></div>

@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>This structure represents a <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_67cbf867-7a49-41f3-a68f-37b5f9035acb" data-linktype="relative-path">security association</a></span>
+that is established after the main mode negotiations take place; it contains
+the selected algorithms to enforce <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span> and the
+methods and results of the authentication process.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_PHASE1_SA_DETAILS {
+   unsigned __int64 SaId;
+   [range( FW_PHASE1_KEY_MODULE_INVALID+1,FW_PHASE1_KEY_MODULE_MAX-1)] 
+     FW_PHASE1_KEY_MODULE_TYPE KeyModuleType;
+   FW_ENDPOINTS Endpoints;
+   FW_PHASE1_CRYPTO_SUITE SelectedProposal;
+   unsigned long dwProposalLifetimeKBytes;
+   unsigned long dwProposalLifetimeMinutes;
+   unsigned long dwProposalMaxNumPhase2;
+   FW_COOKIE_PAIR CookiePair;
+   PFW_AUTH_INFO pFirstAuth;
+   PFW_AUTH_INFO pSecondAuth;
+   unsigned long dwP1SaFlags;
+ } FW_PHASE1_SA_DETAILS,
+  *PFW_PHASE1_SA_DETAILS;
+</pre></div>
+</dd></dl><p><b>SaId:</b>  A 64-bit integer that
+uniquely identifies the security association.</p><p><b>KeyModuleType:</b>  The keying protocol
+used, <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_294fef97-5790-4d41-971e-dd255b783e68" data-linktype="relative-path">IKE</a></span> or <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_3791f3e1-cf2f-4605-9fcc-54f526f036cf" data-linktype="relative-path">AuthIP</a></span>.
+The field MUST contain only a value from the <span><a href="f0944fb9-dc87-4112-8b5f-e897027f2b73" data-linktype="relative-path">FW_PHASE1_KEY_MODULE_TYPE</a></span>
+enumeration. </p><p><b>Endpoints:</b>  This field contains IP
+address information of the two <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoints</a></span> that
+established this security association. An address of zero means the security
+association applies to any endpoint.</p><p><b>SelectedProposal:</b>  This is the
+Phase1 cryptographic suite that was selected by the negotiation of the keying
+protocol.</p><p><b>dwProposalLifetimeKBytes:</b>  Currently
+not supported.</p><p><b>dwProposalLifetimeMinutes:</b>  This
+field specifies the lifetime in minutes of this security association before a
+rekey MUST happen.</p><p><b>dwProposalMaxNumPhase2:</b>  This field
+specifies the number of Phase2 (quick mode) negotiations (rekeys) that can
+happen before this security association MUST be renegotiated.</p><p><b>CookiePair:</b>  This value is used for
+diagnostics.</p><p><b>pFirstAuth:</b>  A pointer to an <span><a href="cd08ebed-295d-4c77-86c6-4ba87aa4df00" data-linktype="relative-path">FW_AUTH_INFO</a></span>
+structure that contains the information that resulted from the method
+negotiated and used for first authentication. This pointer MUST NOT be null.</p><p><b>pSecondAuth:</b>  A pointer to an
+FW_AUTH_INFO structure that contains the information that resulted from the
+method negotiated and used for second authentication. If the field is NULL, the
+second authentication was not performed.</p><p><b>dwP1SaFlags:</b>  Reserved value and not
+currently used. It MUST be set to 0.</p></div>

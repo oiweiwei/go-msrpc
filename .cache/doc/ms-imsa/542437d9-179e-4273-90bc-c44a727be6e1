@@ -1,0 +1,169 @@
+<div class="content"><p>The RestoreHistory method restores a <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_086b13f2-2715-4000-a16c-6acc3d59cc19" data-linktype="relative-path">metabase</a> history entry for
+a specific history version.</p><dl>
+<dd>
+<div><pre> HRESULT RestoreHistory(
+   [unique, in, string] LPCWSTR pszMDHistoryLocation,
+   [in] DWORD dwMDMajorVersion,
+   [in] DWORD dwMDMinorVersion,
+   [in] DWORD dwMDFlags
+ );
+</pre></div>
+</dd></dl><p><b>pszMDHistoryLocation: </b>A pointer to a Unicode
+string containing the absolute path to the location of the history files for
+the metabase. If an empty string is passed to this function, the server SHOULD
+use the default history path.<a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="88fd1df0-e63e-41ca-9bf3-bedcab57cd86#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a></p><p><b>dwMDMajorVersion: </b>An integer value containing
+the predecimal version value of the history entry to restore from. If the <i>dwMDFlags</i>
+parameter contains the MD_HISTORY_LATEST flag, this value MUST be set to zero.</p><p><b>dwMDMinorVersion: </b>An integer value containing
+the postdecimal version value of the history entry to restore from. If the <i>dwMDFlags</i>
+parameter contains the <b>MD_HISTORY_LATEST</b> flag, this value MUST be set to
+zero.</p><p><b>dwMDFlags: </b>A set of bit flags specifying the
+options to be executed during the RestoreHistory call.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MD_HISTORY_LATEST</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Restore to the most recent history file. If this is
+  set, the <i>dwMDMajorVersion</i> and <i>dwMDMinorVersion</i> parameters must
+  be set to zero.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it failed. If
+the 12-bit facility code (bits 16–27) is set to 0x007, the value contains a
+Win32 error code in the lower 16 bits. Zero or positive values indicate success,
+with the lower 16 bits in positive nonzero values containing warnings or flags
+defined in the method implementation. For more information about Win32 error
+codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The system cannot find the file specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070003</p>
+  <p>ERROR_PATH_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The system cannot find the path specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007000E</p>
+  <p>E_OUTOFMEMORY</p>
+  </td>
+  <td>
+  <p>Ran out of memory.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>Not enough storage is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070013</p>
+  <p>ERROR_INVALID_DATA</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800703EC</p>
+  <p>ERROR_INVALID_FLAGS </p>
+  </td>
+  <td>
+  <p>Invalid flags were passed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800CC802</p>
+  <p>MD_ERROR_INVALID_VERSION</p>
+  </td>
+  <td>
+  <p>The version specified in metadata storage was not
+  recognized.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 38. </p><p> When processing this call, the server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>The server MUST restore the history from the location passed in
+the <i>pszMDHistoryLocation</i> value. If this location does not exist the
+server returns the HRESULT derived from the Win32 error code
+ERROR_PATH_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>pszMDHistoryLocation</i> value passed in is an empty
+string, the server uses the default history location as defined by the server
+specific implementation.</p>
+</li><li><p><span><span> 
+</span></span>If the MD_HISTORY_LATEST flag is passed, the server MUST check
+that <i>dwMDMajorVersion</i> and <i>dwMDMinorVersion</i> are 0 and return the
+HRESULT derived from the Win32 error code E_INVALIDARG.</p>
+</li><li><p><span><span> 
+</span></span>If the version requested does not exist, the server MUST return
+the MD_ERROR_INVALID_VERSION error code.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>dwMDFlags</i> value contains anything beyond the
+expected flag values, the server MUST return the ERROR_INVALID_FLAGS error
+code.</p>
+</li><li><p><span><span> 
+</span></span>The server replaces the current metabase data with the data from
+the history entry specified.</p>
+</li></ul></div>

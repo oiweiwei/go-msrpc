@@ -1,0 +1,35 @@
+<div class="content"><p> </p><p>The following values are used in the field <b>fFeatures</b>
+of a <span><a href="2e87a537-9305-41c6-a88b-b79809b3703a" data-linktype="relative-path">SAFEARRAY (section 2.2.30.10)</a></span>
+data type.</p><dl>
+<dd>
+<div><pre> typedef  enum tagADVFEATUREFLAGS
+ {
+   FADF_AUTO = 0x0001,
+   FADF_STATIC = 0x0002,
+   FADF_EMBEDDED = 0x0004,
+   FADF_FIXEDSIZE = 0x0010,
+   FADF_RECORD = 0x0020,
+   FADF_HAVEIID = 0x0040,
+   FADF_HAVEVARTYPE = 0x0080,
+   FADF_BSTR = 0x0100,
+   FADF_UNKNOWN = 0x0200,
+   FADF_DISPATCH = 0x0400,
+   FADF_VARIANT = 0x0800
+ } ADVFEATUREFLAGS;
+</pre></div>
+</dd></dl><p><b>FADF_AUTO:  </b>MUST be set if the SAFEARRAY is
+allocated on the stack. This flag MUST be ignored on receipt.</p><p><b>FADF_STATIC:  </b>MUST be set if the SAFEARRAY is
+statically allocated. This flag MUST be ignored on receipt.</p><p><b>FADF_EMBEDDED:  </b>MUST be set if the SAFEARRAY
+is embedded in a structure. This flag MUST be ignored on receipt.</p><p><b>FADF_FIXEDSIZE:  </b>MUST be set if the SAFEARRAY
+cannot be resized or reallocated. This flag MUST be ignored on receipt. </p><p><b>FADF_RECORD:  </b>The <span><a href="04e72b3f-5731-4508-9bb4-de29fbd0f781" data-linktype="relative-path">SAFEARRAY</a></span> MUST
+contain elements of a <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_10a36f2b-2a1d-4d7f-b57d-261afca73727" data-linktype="relative-path">UDT</a></span> (see section <span><a href="7b86dfb8-ca9b-437b-ad8a-bd9f0aadc266" data-linktype="relative-path">2.2.28.1</a></span>)
+</p><p><b>FADF_HAVEIID:  </b>The SAFEARRAY MUST contain
+MInterfacePointers elements.</p><p><b>FADF_HAVEVARTYPE:  </b>If this bit flag is set,
+the high word of the <b>cLocks</b> field of the SAFEARRAY MUST contain a
+VARIANT type constant that describes the type of the array&#39;s elements (see
+sections <span><a href="3fe7db9f-5803-4dc4-9d14-5425d3f5461f" data-linktype="relative-path">2.2.7</a></span> and
+2.2.30.10). </p><p><b>FADF_BSTR:  </b>The SAFEARRAY MUST contain an
+array of BSTR elements (see section <span><a href="9c5a5ce4-ff5b-45ce-b915-ada381b34ac1" data-linktype="relative-path">2.2.23</a></span>). </p><p><b>FADF_UNKNOWN:  </b>The SAFEARRAY MUST contain an
+array of pointers to IUnknown. </p><p><b>FADF_DISPATCH:  </b>The SAFEARRAY MUST contain an
+array of pointers to IDispatch (see section <span><a href="ac9c502b-ac1c-4202-8ad4-048ac98afcc9" data-linktype="relative-path">3.1.4</a></span>). </p><p><b>FADF_VARIANT:  </b>The SAFEARRAY MUST contain an
+array of VARIANT instances.</p></div>

@@ -1,0 +1,106 @@
+<div class="content"><p> </p><p>The DNS_RPC_RECORD_WINS specifies a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a></span>
+<span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_49c03845-ca86-48f5-9cbf-ab86c624aa29" data-linktype="relative-path">resource
+record</a></span>. This record MUST be formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwMappingFlag</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwLookupTimeout</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCacheTimeout</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cWinsServerCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>aipWinsServers
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwMappingFlag (4 bytes): </b>The scope of the WINS
+record lookups. This value MUST be set to 0x00000000 or any combination of the
+following:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DNS_WINS_FLAG_SCOPE</p>
+  <p>0x80000000</p>
+  </td>
+  <td>
+  <p>Server forwards lookup requests to remote WINS
+  servers.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_WINS_FLAG_LOCAL</p>
+  <p>0x00010000</p>
+  </td>
+  <td>
+  <p>Server performs WINS lookups locally.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwLookupTimeout (4 bytes): </b>The duration, in
+seconds, for which the server waits to receive a response from a remote DNS
+server.</p><p><b>dwCacheTimeout (4 bytes): </b>The duration, in
+seconds, for which the server keeps this record in its <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_2f48e305-acf2-470e-b481-a0b7cc5fae4f" data-linktype="relative-path">cache</a></span>
+before considering it stale.</p><p><b>cWinsServerCount (4 bytes): </b>The number of WINS
+server addresses in this record. The value of this field MUST be at least one.</p><p><b>aipWinsServers (variable): </b>An array of IPv4
+addresses in network byte order with length given by cWinsServerCount.</p></div>

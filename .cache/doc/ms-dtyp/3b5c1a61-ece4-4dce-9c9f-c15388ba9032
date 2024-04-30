@@ -1,0 +1,10 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/3b5c1a61-ece4-4dce-9c9f-c15388ba9032" data-linktype="external">msdn link</a></p><p>The UINT128 structure is intended to hold 128-bit unsigned
+integers, such as an IPv6 destination address.</p><dl>
+<dd>
+<div><pre> typedef struct _UINT128 {
+   UINT64 lower;
+   UINT64 upper;
+ } UINT128,
+  *PUINT128;
+</pre></div>
+</dd></dl></div>

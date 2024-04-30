@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The <b>DHCP_ATTRIB_ARRAY</b> structure defines an array of <span><a href="9096df24-7da6-445e-a35d-667722ff7a09" data-linktype="relative-path">DHCP_ATTRIB (section 2.2.1.2.78)</a></span>
+structures. This structure is used by methods that retrieve more than one
+attribute, such as the <span><a href="327f55c3-8920-4387-908a-1a88351b7d10" data-linktype="relative-path">R_DhcpServerQueryAttributes (section 3.2.4.36)</a></span>
+method. This structure defines an array of length <b>NumElements</b> that
+contains attributes and their values.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_ATTRIB_ARRAY {
+   ULONG NumElements;
+   [size_is(NumElements)] LPDHCP_ATTRIB DhcpAttribs;
+ } DHCP_ATTRIB_ARRAY,
+  *PDHCP_ATTRIB_ARRAY,
+  *LPDHCP_ATTRIB_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This is of type <span><a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">ULONG</a></span>,
+containing the number of attributes in the subsequent field the <b>DhcpAttribs</b>
+member.</p><p><b>DhcpAttribs:</b>  This is a pointer to
+an array of type DHCP_ATTRIB (section 2.2.1.2.78) structure and of
+length <b>NumElements</b> that contains the attributes and its values.</p></div>

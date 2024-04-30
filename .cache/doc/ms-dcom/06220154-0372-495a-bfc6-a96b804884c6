@@ -1,0 +1,100 @@
+<div class="content"><p> </p><p>The OBJREF_EXTENDED format is used when the server returns a
+marshaled <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_a61f46c9-edea-481b-b494-517f3b05e88a" data-linktype="relative-path">envoy context</a></span> to the
+client.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>std (40
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Signature1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>saResAddr
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>nElms</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Signature2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ElmArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>std (40 bytes): </b> This MUST contain an <span><a href="ad717638-f105-4256-b552-385b08ef8ebf" data-linktype="relative-path">STDOBJREF</a></span>
+structure.</p><p><b>Signature1 (4 bytes): </b>This MUST be set to
+0x4E535956.</p><p><b>saResAddr (variable): </b>This MUST contain a <span><a href="7fe8200b-dccd-48cf-a2fa-681e3e0a23f4" data-linktype="relative-path">DUALSTRINGARRAY</a></span>
+structure containing network and security bindings for the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_19f75354-9b0b-47cb-a00b-4ff196883b32" data-linktype="relative-path">object
+resolver</a></span> service on the server.</p><p><b>nElms (4 bytes): </b>The number of elements in the
+<b>ElmArray</b> field. This field MUST be set to 0x00000001. (Note that while
+this protocol supports only a single element, for historical reasons the
+protocol uses an array of one element.)</p><p><b>Signature2 (4 bytes): </b>This MUST be set to
+0x4E535956.</p><p><b>ElmArray (variable): </b>This MUST be a <span><a href="33ae0690-a3f7-4591-8443-b9df4567984d" data-linktype="relative-path">DATAELEMENT</a></span>
+entry.</p></div>

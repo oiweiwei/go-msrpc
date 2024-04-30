@@ -1,0 +1,131 @@
+<div class="content"><p>The wire representation of the stub data in the case of a
+TsProxySendToServer request is defined as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Context
+  Handle (20 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Total Bytes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Number of
+  Buffers</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Buffer1
+  Length</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Buffer2
+  Length (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Buffer3
+  Length (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Buffer1
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Buffer2
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Buffer3
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Context Handle (20 bytes): </b>This field MUST be
+set to the context handle returned by a call to the <a href="99458693-7c7e-45fb-abf8-2328439a4b35" data-linktype="relative-path">TsProxyCreateChannel</a> call.
+This context handle MUST be aligned to the 4-byte boundary.</p><p><b>Total Bytes (4 bytes): </b>This field MUST be set
+to sum total of sizes of all the buffers and 4 bytes for each buffer. This is
+represented in the network byte order.</p><p><b>Number of Buffers (4 bytes): </b>This field MUST
+be set to the total number of buffers. This MUST not exceed 0x00000003. This is
+represented in the network byte order.</p><p><b>Buffer1 Length (4 bytes): </b>This field MUST be
+set to the length of the first buffer. This is represented in the network byte
+order</p><p><b>Buffer2 Length (4 bytes): </b>This field MUST be
+set to the length of the first buffer. This is represented in the network byte
+order. If the Number of Buffers is set to 0x00000002 or 0x00000003, then this
+field is sent.</p><p><b>Buffer3 Length (4 bytes): </b>This field MUST be
+set to the length of the first buffer. This is represented in the network byte
+order. If the Number of Buffers is set to 0x00000003, then this field is sent.</p><p><b>Buffer1 (variable): </b>This field MUST contain
+the data corresponding to first buffer.</p><p><b>Buffer2 (variable): </b>This field MUST contain
+the data corresponding to second buffer.</p><p><b>Buffer3 (variable): </b>This field MUST contain
+the data corresponding to the third buffer.</p></div>

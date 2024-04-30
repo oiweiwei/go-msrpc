@@ -1,0 +1,37 @@
+<div class="content"><p> </p><p>This method returns a list of the CAPIDs of all the central
+access policies available on the specified remote machine. These identifiers
+are equivalent to the SIDs of the central access policy objects as they are
+stored in Active Directory.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarGetAvailableCAPIDs(
+         [in] handle_t BindingHandle,
+         [out] LSAPR_WRAPPED_CAPID_SET* WrappedCAPIDs);
+  
+</pre></div>
+</dd></dl><p><b>BindingHandle:</b> A handle to an RPC binding for
+the specified remote machine.</p><p><b>WrappedCAPIDs:</b> A pointer to
+LSAPR_WRAPPED_CAPID_SET, as defined in section <span><a href="6793e354-dfd4-449e-9734-606fb010fb0d" data-linktype="relative-path">2.2.1.1</a></span>.</p><p><b>Return Values:</b></p><dl>
+<dd>
+<p>If the method succeeds, the function MUST return
+0x00000000 (ERROR_SUCCESS).</p>
+</dd>
+<dd>
+<p>If the method fails, it MUST return a nonzero error
+code from the values defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p>
+</dd></dl><p>When processing this call, the server MUST return an
+LSAPR_WRAPPED_CAPID_SET constructed as follows:</p><ol><li><p><span>    </span>The server MUST
+ensure that an authentication level identifier (as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/425a7c53-c33a-4868-8e5b-2a850d40dc73" data-linktype="relative-path">2.2.1.1.8</a></span>)
+other than RPCE_C_AUTHN_LEVEL_NONE is present in the RPC message. Otherwise,
+the server MUST return STATUS_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>The <i>Entries</i>
+field of the LSAPR_WRAPPED_CAPID_SET MUST be set to the number of <b>CentralAccessPolicy</b>
+objects in the <b>CentralAccessPoliciesList</b> ADM element.</p>
+</li><li><p><span>    </span>The <i>SidInfo</i>
+field of the LSAPR_WRAPPED_CAPID_SET structures MUST be set to an array of
+pointers to LSAPR_SID_INFORMATION structures. There MUST be one
+LSAPR_SID_INFORMATION structure in the array for each <b>CentralAccessPolicy</b>
+object in the <b>CentralAccessPoliciesList</b> ADM element. Each LSAPR_SID_INFORMATION
+structure MUST be set to the <i>CAPID</i> field of the corresponding
+CentralAccessPolicy object.</p>
+</li></ol></div>

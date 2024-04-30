@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>DHCP_IPV6_ADDRESS</b> structure contains the IPv6
+address. This is used in the <span><a href="35c698cc-7141-4985-9940-87361653c79d" data-linktype="relative-path">DHCP_OPTION_SCOPE_INFO6 (section 2.2.1.2.30)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_IPV6_ADDRESS {
+   ULONGLONG HighOrderBits;
+   ULONGLONG LowOrderBits;
+ } DHCP_IPV6_ADDRESS,
+  *LPDHCP_IPV6_ADDRESS,
+  *PDHCP_IPV6_ADDRESS;
+</pre></div>
+</dd></dl><p><b>HighOrderBits:</b>  This is of type <span><a href="../ms-dtyp/c57d9fba-12ef-4853-b0d5-a6f472b50388" data-linktype="relative-path">ULONGLONG</a></span>,
+containing the higher 64 bits of the IPv6 address. </p><p><b>LowOrderBits:</b>  This is of type
+ULONGLONG, containing the lower 64 bits of the IPv6 address.</p></div>

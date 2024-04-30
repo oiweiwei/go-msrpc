@@ -1,0 +1,17 @@
+<div class="content"><p>The StreamMode enumeration defines where the trace events
+are delivered.</p><dl>
+<dd>
+<div><pre> typedef  enum
+ {
+   plaFile = 0x0001,
+   plaRealTime = 0x0002,
+   plaBoth = 0x0003,
+   plaBuffering = 0x0004
+ } StreamMode;
+</pre></div>
+</dd></dl><p><b>plaFile:  </b>Writes the trace events to a log
+file.</p><p><b>plaRealTime:  </b>Delivers the trace events to a
+real time consumer.</p><p><b>plaBoth:  </b>Writes the trace events to a log
+file and delivers them to a real-time consumer.</p><p><b>plaBuffering:  </b> Keeps events in a circular
+buffer in memory only. For more information, see the EVENT_TRACE_BUFFERING_MODE
+logging mode in <a href="https://go.microsoft.com/fwlink/?LinkId=90035" data-linktype="external">[MSDN-LMC]</a>.</p></div>

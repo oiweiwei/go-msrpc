@@ -1,0 +1,104 @@
+<div class="content"><p> </p><p>The BaseRegLoadKey method is called by the client. In
+response, the server loads key, subkey, and value data from a file and inserts
+the data into the registry hierarchy.</p><p>The BaseRegLoadKey method is designed for use in backup and
+recovery scenarios where the client first loads a registry <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_0e82f121-9fab-40e4-a8d9-aee009aa57b9" data-linktype="relative-path">hive</a></span>
+from a file on disk using the BaseRegLoadKey method. Then, after reading or
+writing key data from the loaded hive, the client uses the <span><a href="bd8bb640-ce36-4194-93e1-1ce6b55bf775" data-linktype="relative-path">BaseRegUnLoadKey</a></span>
+method to unload the hive. For example, a backup application loads another user
+hive (another user&#39;s <b>HKEY_CURRENT_USER </b>) from a file on disk using the
+BaseRegLoadKey method. After reading key and value data, it will unload the
+hive using the BaseRegUnLoadKey method.</p><dl>
+<dd>
+<div><pre> error_status_t BaseRegLoadKey(
+   [in] RPC_HKEY hKey,
+   [in] PRRP_UNICODE_STRING lpSubKey,
+   [in] PRRP_UNICODE_STRING lpFile
+ );
+</pre></div>
+</dd></dl><p><b>hKey: </b>A handle to a key that MUST have been
+opened previously by using one of the open methods that are specified in
+section <span><a href="053e8515-dbae-47ea-a7c6-6dc054e3a48f" data-linktype="relative-path">3.1.5</a></span>: <span><a href="694e57f4-da3e-4285-8b71-3181d71d6cd1" data-linktype="relative-path">OpenUsers</a></span>
+and <span><a href="6cef29ae-21ba-423f-9158-05145ac80a5b" data-linktype="relative-path">OpenLocalMachine</a></span>.</p><p><b>Note</b>  The other open methods in this
+protocol cannot be used to obtain the <i>hKey</i> parameter because the server
+checks that the key specified by <i>lpSubKey</i> is a descendent of the <b>HKEY_LOCAL_MACHINE</b>
+or <b>HKEY_USERS</b> root keys.</p><p><b>lpSubKey: </b>A pointer to an <span><a href="c0c90f11-a4c4-496a-ac09-8a8a3697ceef" data-linktype="relative-path">RRP_UNICODE_STRING</a></span>
+structure that specifies the name of the key (as specified in section <span><a href="77526078-ea8b-4090-884f-ed4fb24596c2" data-linktype="relative-path">3.1.1.1</a></span>)
+that MUST be created under <i>hKey</i>.</p><p><b>lpFile: </b>A pointer to a null-terminated
+RRP_UNICODE_STRING structure that contains the name of an existing <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_2d67ea57-10e6-422f-985e-694834945a02" data-linktype="relative-path">registry</a></span>
+file in which the specified key and subkeys are to be saved. The format of the
+file name is implementation-specific. It is assumed that this file was created
+with the <span><a href="f022247d-6ef1-4f46-b195-7f60654f4a0d" data-linktype="relative-path">BaseRegSaveKey</a></span>
+method. If it does not exist, the server creates a file with the specified
+name.</p><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000003F9</p>
+  <p>ERROR_NOT_REGISTRY_FILE</p>
+  </td>
+  <td>
+  <p>The system attempted to load or restore a file into
+  the registry, but the specified file is not in a registry file format. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000013</p>
+  <p>ERROR_WRITE_PROTECT</p>
+  </td>
+  <td>
+  <p>A read or write operation was attempted to a volume
+  after it was dismounted. The server can no longer service registry requests
+  because server shutdown has been initiated.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Server Operations</p><p>In response to this request from the client, for a
+successful operation, the server MUST create a hierarchical structure of a key,
+subkeys, and <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">values</a></span> that are
+based on the layout and information in the file that is specified by the <i>lpFile</i>
+parameter. See section <span><a href="508e3d3e-1225-4075-be04-67680ea80497" data-linktype="relative-path">3.1.1</a></span>. This tree
+MUST be rooted at the key that is specified by the lpSubKey parameter.</p><p>If the subkey that is specified by the <i>lpSubKey</i>
+parameter does not exist under the key that is specified by the <i>hKey</i>
+parameter, the server creates a subkey under <i>hKey</i> by using the name that
+is specified in the <i>lpSubKey</i> parameter and loads the registry
+information from the file that is specified by <i>lpFile</i> into this subkey.
+If the file that is pointed to by <i>lpFile</i> does not exist, the server
+creates the file with the specified name. If the file cannot be created, the
+server fails the operation by using an appropriate error code, as specified in
+section <span><a href="53c0a480-f1c8-493e-abf8-6bb4de4d95eb" data-linktype="relative-path">2.2.6</a></span>.</p><p>If the subkey that is specified by the <i>lpSubKey</i>
+parameter already exists under the key that is specified by the <i>hKey</i>
+parameter, the server MUST fail the method and return ERROR_ACCESS_DENIED.</p><p>The top-level key from the file that is specified by the
+lpFile parameter is a newly created key, and it is added as a subkey to the key
+specified by the <i>hKey</i> parameter. If the <i>lpSubKey</i> parameter is
+NULL, then the name of the top-level key from the file specified by the <i>lpFile</i>
+parameter is the name of the newly created key. If the <i>lpSubKey</i>
+parameter is not NULL, then the name of the newly created key is set to be the
+name specified by the <i>lpSubKey</i> parameter.</p><p>If the value of the <i>lpFile</i> parameter is NULL, the
+server MUST fail the method and return ERROR_INVALID_PARAMETER.</p><p>The file that is pointed to by the <i>lpFile</i> parameter
+MUST be a valid registry file. If not, the server MUST return
+ERROR_NOT_REGISTRY_FILE (1017) to indicate the format of the file was invalid.
+If the file pointed to by <b>lpFile</b> cannot be found, the server creates a
+file with the specified name.</p><p>If the registry server can no longer service registry
+requests because server shutdown has been initiated (<b>SHUTDOWNINPROGRESS</b>
+is set to TRUE), the server MUST return ERROR_WRITE_PROTECT.</p><p>The server MUST return 0 to indicate success or an
+appropriate error code (as specified in [MS-ERREF]) to indicate an error.</p></div>

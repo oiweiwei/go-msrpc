@@ -1,0 +1,27 @@
+<div class="content"><p>The FsrmQuotaFlags enumeration defines bitmasks for the
+possible states of the quota objects in the File Server Resource Manager
+Protocol.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmQuotaFlags
+ {
+   FsrmQuotaFlags_Enforce = 0x00000100,
+   FsrmQuotaFlags_Disable = 0x00000200,
+   FsrmQuotaFlags_StatusIncomplete = 0x00010000,
+   FsrmQuotaFlags_StatusRebuilding = 0x00020000
+ } FsrmQuotaFlags;
+</pre></div>
+</dd></dl><p><b>FsrmQuotaFlags_Enforce:  </b>If the
+FsrmQuotaFlags_Enforce bitmask is set as part of the <i>QuotaFlags</i> property
+of an <b>IFsrmQuotaBase</b> object, the server fails an I/O operation that
+causes the disk space usage to exceed the quota limit. If not set, the server
+does not fail operations that violate the I/O limit, but still run actions
+associated with the quota limit.</p><p><b>FsrmQuotaFlags_Disable:  </b>If the
+FsrmQuotaFlags_Disable bitmask is set as part of the <i>QuotaFlags</i> property
+of an <b>IFsrmQuotaBase</b> object, the server does not track quota data for
+the quota and does not run any actions associated with quota thresholds.</p><p><b>FsrmQuotaFlags_StatusIncomplete:  </b>If the
+FsrmQuotaFlags_StatusIncomplete bitmask is set as part of the <i>QuotaFlags</i>
+property of an <b>IFsrmQuotaBase</b> object, a quota is defined on the server
+but the rebuilding procedure has not yet started.</p><p><b>FsrmQuotaFlags_StatusRebuilding:  </b>If the
+FsrmQuotaFlags_StatusRebuilding bitmask is set as part of the <i>QuotaFlags</i>
+property of an <b>IFsrmQuotaBase</b> object, a quota is rebuilding its data
+from the disk.</p></div>

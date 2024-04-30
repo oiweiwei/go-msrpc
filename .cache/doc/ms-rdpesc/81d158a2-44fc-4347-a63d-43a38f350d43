@@ -1,0 +1,5 @@
+<div class="content"><p>This document specifies an extension (including <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_13d22ba5-5d8e-4815-9728-0629e8422ceb" data-linktype="relative-path">virtual channels</a>) to the
+Remote Desktop Protocol: File System Virtual Channel Extension for supporting <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">smart card</a> reader-like
+devices.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

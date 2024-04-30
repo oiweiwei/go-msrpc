@@ -1,0 +1,182 @@
+<div class="content"><p>If a client with a <a href="../ms-dcom/807a93f5-7321-4bdb-b88a-59059566afd3" data-linktype="relative-path">COMVERSION</a>
+(<a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section 2.2.11) greater than or equal to 5.6 requests a <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_6f5973be-3408-4d7f-ae3e-7303e28bee94" data-linktype="relative-path">class factory</a> reference
+during activation ([MS-DCOM] section <a href="../ms-dcom/c5917c4f-aaf5-46de-8667-bad7e495abf9" data-linktype="relative-path">3.1.2.5.2.3.2</a>),
+the server MUST return an <a href="../ms-dcom/88fdb261-7c9a-41ea-bfac-31583bdc65e6" data-linktype="relative-path">OBJREF_CUSTOM</a>
+instance containing a marshaled representation of the class factory. The
+unmarshaler of the OBJREF_CUSTOM instance on the client MUST convert object
+creation requests on the class factory reference to normal object activation
+requests. This process enables the client to send its client and prototype
+context properties during class-factory-based object activation requests in the
+same way that these properties are sent during normal object activation requests.</p><p>CLSID_CFW (see section <a href="738db53c-1600-432e-b288-63679b581471" data-linktype="relative-path">1.9</a>) MUST be the
+unmarshaler <b>CLSID</b> for the OBJREF_CUSTOM instance. </p><p>The format of the <b>OBJREF_CUSTOM.pObjectData</b> buffer
+for this CLSID_CFW MUST be specified as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>MaxVersion</p>
+  </td>
+  <td colspan="16">
+  <p>MinVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Clsid (16
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ServerName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ShortNameCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ShortNames
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PartitionID
+  (16 bytes, optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Clsctx
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BytesRemaining
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LongNameCount
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LongNameBytes
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LongNames
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>MaxVersion (2 bytes): </b>The major version number
+for this Class Factory Wrapper format; this field MUST be set to 0x0002,
+0x0003, 0x0004, or 0x0005. The value indicates which fields are present, as
+noted in the following relevant fields.</p><p><b>MinVersion (2 bytes): </b>The minor version number
+for this Class Factory Wrapper format; this field MUST be set to 0x0002.</p><p><b>Clsid (16 bytes): </b> A CLSID is a <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a> that MUST identify the
+<a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_a224e395-3fea-48bd-b141-3dd9bee2136a" data-linktype="relative-path">object class</a> of the
+object to be created.</p><p><b>ServerName (variable): </b> A <a href="3b4a0b42-33ce-4729-aca4-baaba0d13a08" data-linktype="relative-path">LengthPrefixedName (section
+2.2.1)</a> that contains the name of the server machine on which the object is
+to be created.</p><p><b>ShortNameCount (4 bytes): </b> A <b>DWORD</b> that
+MUST specify the number of elements in the <b>ShortNames</b> array. </p><p><b>ShortNames (variable): </b> An array of
+LengthPrefixedName (section 2.2.1) that MUST specify alternate names or
+addresses for the server machine on which the object is to be created. The <b>Length</b>
+field of each element in the array MUST be less than 16.</p><p><b>PartitionID (16 bytes): </b>A <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> that MUST specify the <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_9587a9d3-3fd7-45c6-aab1-c74ff17a22b7" data-linktype="relative-path">partition ID</a> of the <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a> of the object
+class of the server object. This field MUST NOT be present if <b>MaxVersion</b>
+is less than 0x0003 and MUST be present otherwise.</p><p><b>Clsctx (4 bytes): </b> A <b>DWORD</b> that MUST be
+set to the value of the <b>dwOrigClsCtx</b> field contained in the <a href="../ms-dcom/e175e4a0-daa0-4805-9004-5773245ce21a" data-linktype="relative-path">SpecialPropertiesData</a>
+structure ([MS-DCOM] section 2.2.22.2.2) specified in an activation request for
+the class factory. This field MUST NOT be present if <b>MaxVersion</b> is less
+than 0x0003 and MUST be present otherwise.</p><p><b>BytesRemaining (4 bytes): </b> A DWORD that MUST
+specify the number of bytes remaining in the buffer after the BytesRemaining
+field. This value MUST be equal to the sum of <b>LongNameBytes</b> plus 8. This
+field MUST NOT be present if <b>MaxVersion</b> is less than 0x0004 and MUST be
+present otherwise.</p><p><b>LongNameCount (4 bytes): </b> A DWORD that MUST
+specify the number of elements in the <b>LongNames</b> array. This field MUST
+NOT be present if <b>MaxVersion</b> is less than 0x0005 and MUST be present
+otherwise.</p><p><b>LongNameBytes (4 bytes): </b> A DWORD that MUST
+specify the number of bytes needed to contain all of the names contained in the
+<b>LongNames</b> array. This field MUST NOT be present if <b>MaxVersion</b> is
+less than 0x0005 and MUST be present otherwise.</p><p><b>LongNames (variable): </b> An array of
+NULL-terminated <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a>
+strings that MUST specify alternate names or addresses for the server machine
+on which the object is to be created. This field MUST NOT be present if <b>MaxVersion</b>
+is less than 0x0005.</p></div>

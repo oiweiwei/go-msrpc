@@ -1,0 +1,19 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/4a0a453d-e42a-4251-869d-922342a343cf" data-linktype="external">msdn link</a></p><p>The <b>CLAIMS_COMPRESSION_FORMAT</b> enumeration specifies
+the source of the compression algorithm that is used for encoding <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_d5c7aa9b-65be-4dd4-a686-cd5253eb203d" data-linktype="relative-path">claims</a> in a <a href="bf4a98a1-f2ea-4597-873d-ebbee41ef43d" data-linktype="relative-path">CLAIMS_SET_METADATA</a>
+structure.</p><dl>
+<dd>
+<div><pre> typedef  enum _CLAIMS_COMPRESSION_FORMAT
+ {
+   COMPRESSION_FORMAT_NONE = 0,
+   COMPRESSION_FORMAT_LZNT1 = 2,
+   COMPRESSION_FORMAT_XPRESS = 3,
+   COMPRESSION_FORMAT_XPRESS_HUFF = 4
+ } CLAIMS_COMPRESSION_FORMAT;
+</pre></div>
+</dd></dl><p><b>COMPRESSION_FORMAT_NONE:</b>  No compression.</p><p><b>COMPRESSION_FORMAT_LZNT1:</b>  The LZNT1
+compression algorithm is used. For more information, see <a href="../ms-xca/a8b7cb0a-92a6-4187-a23b-5e14273b96f8" data-linktype="relative-path">[MS-XCA]</a>
+section <a href="../ms-xca/5655f4a3-6ba4-489b-959f-e1f407c52f15" data-linktype="relative-path">2.5</a>.</p><p><b>COMPRESSION_FORMAT_XPRESS:</b>  The Xpress LZ77
+compression algorithm is used. For more information, see [MS-XCA] sections <a href="../ms-xca/656222f0-ad84-47ab-97b2-83f4468a20b2" data-linktype="relative-path">2.3</a> and <a href="../ms-xca/399bb135-19fe-4b49-8d9e-cc24b5364f08" data-linktype="relative-path">2.4</a>.</p><p><b>COMPRESSION_FORMAT_XPRESS_HUFF:</b>  The Xpress
+LZ77+Huffman compression algorithm is used. For more details, see [MS-XCA]
+sections <a href="../ms-xca/c0244bfe-fd96-4fe5-97dd-39b9fc99b801" data-linktype="relative-path">2.1</a>
+and <a href="../ms-xca/38f3222b-ab2c-4c93-9cf5-0a60de40e346" data-linktype="relative-path">2.2</a>.</p></div>

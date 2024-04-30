@@ -1,0 +1,298 @@
+<div class="content"><p>This method retrieves the value of a responder property from
+the <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_9ae02f8f-f961-4e5c-b07a-ea848ce0993e" data-linktype="relative-path">Online Responder Service</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetOCSPProperty(
+   [in, ref] const BSTR bstrEntryName,
+   [out, ref] VARIANT* pEntryValue
+ );
+</pre></div>
+</dd></dl><p><b>bstrEntryName: </b>A <a href="../ms-oaut/1c9d2cfc-cf7d-4f4b-95bf-584be5defd81" data-linktype="relative-path">BSTR</a>
+that specifies the name of the property to retrieve. The Unicode string value
+SHOULD be one of the values listed in <a href="c8894946-8439-4285-9515-f575620cc0af" data-linktype="relative-path">ResponderProperties</a> or one
+of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Property
+   name</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CAEntries</p>
+  </td>
+  <td>
+  <p>A list of
+  strings containing the <a href="71ee5299-c869-447e-9ac5-6a6d8de38a90" data-linktype="relative-path">RevocationConfigurationId</a>
+  corresponding to each configured <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_11c04cbf-4128-46bd-8b12-02b405424539" data-linktype="relative-path">revocation configuration</a>
+  in RevocationConfigurationList.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AllEntries</p>
+  </td>
+  <td>
+  <p>A list of all
+  the configured properties in the list ResponderProperties and all the
+  revocation configuration properties for all revocation configurations in
+  RevocationConfigurationList.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pEntryValue: </b>A pointer to a <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a>.
+The data returned is the value of the property referenced by <i>bstrEntryName</i>.
+See the following table for the processing rules that apply to the <i>bstrEntryName</i>
+values. Other, vendor-defined <i>bstrEntryName</i> values, not defined in the
+following table, MAY be used, as described in the processing rules that follow
+the table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Property
+   name</p>
+   </th>
+   <th>
+   <p> Processing
+   rule for data returned </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>AuditFilter</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT referenced by <i>pEntryValue</i> MUST be set to VT_I4,
+  and the <b>lVal</b> member MUST be either 0 or a bitwise OR of the following
+  values.</p>
+  <p>Flag value –
+  Meaning</p>
+  <p>0x00000000 –
+  Nothing is Audited.</p>
+  <p>0x00000001 –
+  Audit start/stop of the service.</p>
+  <p>0x00000002 –
+  Audit changes to the revocation configurations on the responder.</p>
+  <p>0x00000004 –
+  Audit <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_9076fc31-afc2-4c3d-9fd4-bf011837b362" data-linktype="relative-path">OCSP</a> requests
+  received by the responder.</p>
+  <p>0x00000008 –
+  Audit changes to the <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security
+  descriptor</a> on the responder.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ArrayController</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT referenced by <i>pEntryValue</i> SHOULD be set to
+  VT_BSTR, and the <b>bstrVal</b> member SHOULD be BSTR for the Unicode string
+  value of the Domain Name System (DNS) name of the machine designated as Array
+  controller for the array of responder machines.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ArrayMembers</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT referenced by <i>pEntryValue</i> SHOULD be set to
+  VT_ARRAY | VT_BSTR, and the <b>pArray</b> member SHOULD reference a single
+  dimension safearray. The number of elements of the safearray referenced by <b>pArray</b>
+  SHOULD be equal to the number of machines running Online Responder Service
+  with the same configuration information. For each machine, there SHOULD be an
+  element in the safearray referenced by <b>pArray</b> containing the BSTR for
+  Unicode string value of the <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a>
+  of the machine.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NumOfThreads</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT referenced by <i>pEntryValue</i> MUST be set to VT_I4,
+  and the <b>lVal</b> member MUST be set to the maximum number of simultaneous
+  OCSP requests <a href="../ms-ocsp/bbe620ce-1cfc-4e1f-9e16-f2a33d250887" data-linktype="relative-path">[MS-OCSP]</a>
+  that can be served by the Online Responder Service. <a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MaxNumOfCacheEntries</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT referenced by <i>pEntryValue</i> MUST be set to VT_I4,
+  and the <b>lVal</b> member MUST be the maximum number of OCSP responses that
+  can be cached by the responder. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CAEntries</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT referenced by <i>pEntryValue</i> SHOULD be set to
+  VT_ARRAY | VT_BSTR, and the <b>pArray</b> member SHOULD reference a single
+  dimension safearray. The number of elements of the safearray reference by <b>pArray</b>
+  SHOULD be equal to the number of entries in RevocationConfigurationList. For
+  each revocation configuration in RevocationConfigurationList, there SHOULD be
+  an element containing the BSTR for the Unicode string value of the
+  RevocationConfigurationId.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LogLevel</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT referenced by <i>pEntryValue</i> SHOULD be set to
+  VT_I4, and the <b>lVal</b> member SHOULD be set to the integer value that
+  specifies the level of information to be communicated to the system
+  (application eventlog channel) as part of operations being performed on the
+  service.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Debug</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT referenced by <i>pEntryValue</i> SHOULD be set to
+  VT_I4, and the <b>lVal</b> member SHOULD be an integer value that specifies
+  whether tracing for errors on the responder is enabled or not.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EnrollPollInterval</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT referenced by <i>pEntryValue</i> SHOULD be set to
+  VT_I4, and the <b>lVal</b> member SHOULD be set to the integer value that
+  specifies the frequency (in number of hours) with which the responder will
+  attempt to enroll for a <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_6a2366ee-fc9c-4406-963d-eac335ed8fc5" data-linktype="relative-path">signing
+  certificate</a> (for signing OCSP responses).<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RequestFlags</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT referenced by <i>pEntryValue</i> SHOULD be set to
+  VT_I4, and the <b>lVal</b> member SHOULD be either 0 or the following value. </p>
+  <p>Flag value –
+  Meaning</p>
+  <p>0x00000001:Responder
+  MUST reject OCSP requests that have signatures on them.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MaxIncomingMessageSize</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT referenced by <i>pEntryValue</i> SHOULD be set to
+  VT_I4, and the <b>lVal</b> member SHOULD be set to the integer value that
+  specifies the maximum size of the OCSP request [MS-OCSP], in bytes, that is
+  allowed to be processed on the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NumOfBackendConnections</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT referenced by <i>pEntryValue</i> SHOULD be set to
+  VT_I4, and the <b>lVal</b> member SHOULD be set to the integer value that
+  specifies the maximum number of connections that can be created by the web
+  server to the Online Responder Service. <a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RefreshRate</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT referenced by <i>pEntryValue</i> SHOULD be set to
+  VT_I4, and the <b>lVal</b> member SHOULD be set to the integer value that
+  specifies the frequency (in number of milliseconds) with which the web server
+  will attempt to contact the Online Responder Service to obtain the latest
+  revocation configuration information. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MaxAge</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT referenced by <i>pEntryValue</i> SHOULD be set to
+  VT_I4, and the <b>lVal</b> member SHOULD be set to the integer value that
+  specifies the value for the HTTP max-age cache-control directive <a href="https://go.microsoft.com/fwlink/?LinkId=90372" data-linktype="external">[RFC2616]</a> as part of
+  the OCSP response.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ISAPIDebug</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT referenced by <i>pEntryValue</i> SHOULD be set to
+  VT_I4, and the <b>lVal</b> member SHOULD be set to the integer value that
+  specifies whether the tracing for errors on the web server is enabled or not.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MaxNumOfRequestEntries</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT referenced by <i>pEntryValue</i> SHOULD be set to
+  VT_I4, and the <b>lVal</b> member SHOULD be set to the integer value that
+  specifies the maximum number of requests that can be included in the <b>requestList</b>
+  field of the OCSPRequest structure (<a href="https://go.microsoft.com/fwlink/?LinkId=90369" data-linktype="external">[RFC2560]</a> section
+  4.1.1).<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AllEntries</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_ARRAY | VT_VARIANT, and the <b>pArray</b>
+  member MUST reference a two-dimensional safearray. The number of elements in
+  the second dimension (signifying the number of columns) of the safearray
+  referenced by <b>pArray</b> MUST be 2. The number of elements in the first
+  dimension (signifying the number of rows) of the safearray referenced by <b>pArray</b>
+  MUST be set to the sum of the number of entries in ResponderProperties and
+  the number of entries in the RevocationConfigurationList. For each property
+  in ResponderProperties, the first column of the row MUST be a VARIANT with <b>vt</b>
+  member as VT_BSTR and the <b>bstrVal</b> member MUST be BSTR for the Unicode
+  string value of the name of the property. The second column of the row MUST
+  be a VARIANT with the value defined in this table, corresponding to the name
+  of the property. For each revocation configuration in
+  RevocationConfigurationList, the first column of the row MUST be a VARIANT
+  with <b>vt</b> member as VT_BSTR and the <b>bstrVal</b> member MUST be BSTR
+  for the Unicode string value of RevocationConfigurationId. The second column
+  of the row MUST be a VARIANT with the value defined in section <a href="df4d237b-c44a-43ee-9389-09a90fa1133c" data-linktype="relative-path">3.2.4.1.3</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The following additional processing rules apply:</p><ul><li><p><span><span> 
+</span></span>If the value of <i>bstrEntryName</i> is not the same as one of
+the values specified in the preceding list or of a vendor-defined property, or
+if the property with the same name is not yet configured on the responder, the
+server MUST fail. The error code SHOULD be 0x80070002.</p>
+</li><li><p><span><span> 
+</span></span>If the value of <i>bstrEntryName</i> corresponds to a
+vendor-defined property, the server MAY return the value as a VARIANT
+containing data of the type integer, string, date, or binary object. Otherwise,
+for <i>bstrEntryName</i> values that do not correspond to the previous list,
+the server responds as if the property were not yet configured on the
+responder.<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p>
+</li></ul></div>

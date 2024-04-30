@@ -1,0 +1,67 @@
+<div class="content"><p>The EnumThresholdActions method enumerates all the actions
+for the specified <b>threshold</b>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_QUOTA_BASE | 0x05)] HRESULT EnumThresholdActions(
+   [in] FSRM_QUOTA_THRESHOLD threshold,
+   [out, retval] IFsrmCollection** actions
+ );
+</pre></div>
+</dd></dl><p><b>threshold: </b>The <b>threshold</b> for which the
+associated actions will be enumerated.</p><p><b>actions: </b>Pointer to an <b>IFsrmCollection</b>
+interface pointer (section <a href="171d3b3c-0f4d-40b9-8f48-0e97f9ff17be" data-linktype="relative-path">3.2.4.2.1</a>)
+that upon completion contains <b>IFsrmAction</b> interface pointers (section <a href="8e93ed78-6809-4ee1-a98b-f3dcdc41ae71" data-linktype="relative-path">3.2.4.2.4</a>) of all the
+actions for the specified action. The caller MUST release the collection when
+it is done with it.</p><dl>
+<dd>
+<p>To get the specific action interface for the action,
+the caller MUST call <b>QueryInterface</b> for the interface corresponding to
+the <b>action type</b> of the actions.</p>
+</dd></dl><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>An object with the specified threshold could not be
+  found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8004530D</p>
+  <p>FSRM_E_OUT_OF_RANGE</p>
+  </td>
+  <td>
+  <p>The content of the <i>threshold</i> parameter is less
+  than 1 or greater than 250.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>actions</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>threshold</i> is greater than 0 and less than 251.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>actions</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST create a new <b>IFsrmCollection</b> object
+and populate it with the actions of the specified <b>threshold </b>or return a
+nonzero error code. If the <b>threshold</b> does not exist for the quota
+object, the server MUST return FSRM_E_NOT_FOUND.</p></div>

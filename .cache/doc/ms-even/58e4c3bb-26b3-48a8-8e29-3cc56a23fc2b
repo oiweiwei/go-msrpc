@@ -1,0 +1,41 @@
+<div class="content"><p> </p><p>The ElfrBackupELFW (Opnum 1) method instructs the server to
+back up the <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_bb3fad7e-60bf-46d4-9c3f-7caea47a743e" data-linktype="relative-path">event log</a></span> to a
+specified file name.</p><dl>
+<dd>
+<div><pre> NTSTATUS ElfrBackupELFW(
+   [in] IELF_HANDLE LogHandle,
+   [in] PRPC_UNICODE_STRING BackupFileName
+ );
+</pre></div>
+</dd></dl><p><b>LogHandle: </b>Handle to an event log. This parameter is
+a server context handle, as specified in section <span><a href="de54bfbc-fbe4-43b8-b8e1-b8a6b2189604" data-linktype="relative-path">2.2.6</a></span>. This handle
+MUST NOT be obtained via the <span><a href="6dcf59eb-11ca-416f-9cc4-8f6c2979baad" data-linktype="relative-path">ElfrOpenBELA (section 3.1.4.2)</a></span>
+method or the <span><a href="4db1601c-7bc2-4d5c-8375-c58a6f8fc7e1" data-linktype="relative-path">ElfrOpenBELW (section 3.1.4.1)</a></span>
+method.</p><p><b>BackupFileName: </b>Provides a <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> string (as
+specified in section <span><a href="40e4e566-b7fb-46e2-b179-893231f39e8d" data-linktype="relative-path">2.2.11</a></span>) that points
+to an <span><a href="c1550f98-a1ce-426a-9991-7509e7c3787c" data-linktype="relative-path">NT Object Path</a></span> of a
+file, (as specified in section 2.2.4.1), in which a current copy of the event
+log is to be placed. This MUST NOT be NULL or empty. The path is evalutated
+relative to the server.</p><p><b>Return Values: </b>The method MUST return STATUS_SUCCESS
+(0x00000000) on success; otherwise, it MUST return an implementation-based,
+nonzero NTSTATUS value specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.<a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="4acc4fbc-1378-4120-83d1-cfb4ae0240e0#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a></p><p>In response to this request from the client, the server MUST
+first check that the handle is valid. The server MUST fail the operation with
+the error STATUS_INVALID_HANDLE (0xC0000008) if the handle is invalid or if the
+handle is for a <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_ddd2e7db-ea8f-4488-ac5f-e77d59abe9e4" data-linktype="relative-path">backup event log</a></span>.
+Handles to backup event logs are obtained via the
+ElfrOpenBELW (section 3.1.4.1) method or the ElfrOpenBELA (section 3.1.4.2)
+method.</p><p>For a description of how the server determines if the handle
+is a backup handle, see section <span><a href="9b7a5f23-0269-4ed7-85ad-a7087af66b44" data-linktype="relative-path">3.1.4.9</a></span>.</p><p>If the handle is valid, the server MUST validate the <i>BackupFileName</i>
+and fail the call if it is not a legal NT Object Path, or if it specifies a
+file that already exists, or if the user does not have write access to the
+specified file path. The server MAY return STATUS_INVALID_PARAMETER
+(0xC000000D) if the <i>BackupFileName</i> is not a legal NT Object Path or the
+file already exists, and the server MUST return STATUS_ACCESS_DENIED
+(0xC0000022) if the user does not have write access to the file.</p><p>If the checks above are successful, the server MUST attempt
+to create a backup of the log associated with the <i>LogHandle</i> parameter.
+This operation can fail for implementation errors other than the ones mentioned
+in the preceding paragraphs. The return value of this method is of the type
+NTSTATUS. Protocol implementers can choose to return other,
+implementation-based return values, such as those returned from operating
+system components that are used to implement the protocol. Protocol
+implementers SHOULD only use return values listed in [MS-ERREF].</p></div>

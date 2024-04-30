@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>This enumeration describes the possible actions on firewall
+rules.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_RULE_ACTION
+ {
+   FW_RULE_ACTION_INVALID = 0,
+   FW_RULE_ACTION_ALLOW_BYPASS = 1,
+   FW_RULE_ACTION_BLOCK = 2,
+   FW_RULE_ACTION_ALLOW = 3,
+   FW_RULE_ACTION_MAX = 4
+ } FW_RULE_ACTION;
+</pre></div>
+</dd></dl><p><b>FW_RULE_ACTION_INVALID:  </b>This value is invalid
+and MUST NOT be used. It is defined for simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span>
+definitions and code. This symbolic constant has a value of 0.</p><p><b>FW_RULE_ACTION_ALLOW_BYPASS:  </b>Rules with this
+action allow traffic but are applicable only to rules that at least specify the
+<b>FW_RULE_FLAGS_AUTHENTICATE</b> flag. This symbolic constant has a value of
+1.</p><p><b>FW_RULE_ACTION_BLOCK:  </b>Rules with this action
+block traffic. This symbolic constant has a value of 2.</p><p><b>FW_RULE_ACTION_ALLOW:  </b>Rules with this action
+allow traffic. This symbolic constant has a value of 3.</p><p><b>FW_RULE_ACTION_MAX:  </b>This value and values
+that exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing IDL definitions and code. This symbolic constant has a
+value of 4. </p><p>If conflicting rules match the same network traffic, the
+actions determine the order of precedence. Allow-bypass rules take precedence
+over block rules, and block rules take precedence over allow rules.</p></div>

@@ -1,0 +1,18 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9a4ba74c-0047-4053-bd51-d6204f291710" data-linktype="external">msdn link</a></p><dl>
+<dd>
+<div><pre> NTSTATUS NetrAccountDeltas(
+   [in, unique, string] LOGONSRV_HANDLE PrimaryName,
+   [in, string] wchar_t* ComputerName,
+   [in] PNETLOGON_AUTHENTICATOR Authenticator,
+   [in, out] PNETLOGON_AUTHENTICATOR ReturnAuthenticator,
+   [in] PUAS_INFO_0 RecordId,
+   [in] DWORD Count,
+   [in] DWORD Level,
+   [out, size_is(BufferSize)] UCHAR * Buffer,
+   [in] DWORD BufferSize,
+   [out] ULONG * CountReturned,
+   [out] ULONG * TotalEntries,
+   [out] PUAS_INFO_0 NextRecordId
+ );
+</pre></div>
+</dd></dl></div>

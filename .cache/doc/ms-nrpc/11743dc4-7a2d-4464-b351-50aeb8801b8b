@@ -1,0 +1,33 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/11743dc4-7a2d-4464-b351-50aeb8801b8b" data-linktype="external">msdn link</a></p><p>The <b>DOMAIN_NAME_BUFFER</b> structure defines information
+returned by the <b>NetrEnumerateTrustedDomains</b> method, as specified in
+section <a href="1d106b28-c30f-4fd1-b7b0-240b6250d7f6" data-linktype="relative-path">3.5.4.7.3</a>. The
+structure is used to describe a set of <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trusted</a> <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_45a1c9f1-0263-49a8-97c7-7aca1a99308c" data-linktype="relative-path">domain names</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _DOMAIN_NAME_BUFFER {
+   ULONG DomainNameByteCount;
+   [unique, size_is(DomainNameByteCount)] 
+     UCHAR * DomainNames;
+ } DOMAIN_NAME_BUFFER,
+  *PDOMAIN_NAME_BUFFER;
+</pre></div>
+</dd></dl><p><b>DomainNameByteCount:</b> The size, in bytes, of
+the buffer pointed to by the <b>DomainNames</b> field, including all UTF-16
+null characters.</p><p><b>DomainNames:</b> The <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> buffer that
+contains the list of trusted <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domains</a>.
+The list format is a UTF-16 string composed of one or more substrings. Each
+substring is separated from adjacent substrings by the UTF-16 null character,
+0x0000. After the final substring, the string is terminated by two UTF-16 null
+characters.</p><dl>
+<dd>
+<p>For example, if there are three trusted domains,
+DOMAIN1, DOMAIN2, and DOMAIN3, the <b>DomainNames</b> string buffer would have
+the following form:</p>
+</dd>
+<dd>
+<p>DOMAIN1&lt;null&gt;DOMAIN2&lt;null&gt;DOMAIN3&lt;null&gt;&lt;null&gt;
+</p>
+</dd>
+<dd>
+<p>where &lt;null&gt; is the UTF-16 null character,
+0x0000.</p>
+</dd></dl></div>

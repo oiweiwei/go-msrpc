@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The DRS_MSG_GETCHGREQ_V7 structure defines the request
+message sent to the <span><a href="b63730ac-614c-431c-9501-28d6aca91894" data-linktype="relative-path">IDL_DRSGetNCChanges</a></span>
+method. This message version is a superset of <span><a href="9db4db21-8ccd-4c81-8662-6e2baff8426c" data-linktype="relative-path">DRS_MSG_GETCHGREQ_V4</a></span>.<a id="Appendix_A_Target_28"></a><a aria-label="Product behavior note 28" href="e3b89556-4e48-467c-87b3-b4a737cc4999#Appendix_A_28" data-linktype="relative-path">&lt;28&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct {
+   UUID uuidTransportObj;
+   [ref] MTX_ADDR* pmtxReturnAddress;
+   DRS_MSG_GETCHGREQ_V3 V3;
+   [unique] PARTIAL_ATTR_VECTOR_V1_EXT* pPartialAttrSet;
+   [unique] PARTIAL_ATTR_VECTOR_V1_EXT* pPartialAttrSetEx;
+   SCHEMA_PREFIX_TABLE PrefixTableDest;
+ } DRS_MSG_GETCHGREQ_V7;
+</pre></div>
+</dd></dl><p><b>uuidTransportObj:</b>  The <span><a href="../ms-ada3/937eb5c6-f6b3-4652-a276-5d6bb8979658" data-linktype="relative-path">objectGUID</a></span>
+of the <span><a href="../ms-adsc/299e17d3-4d05-445f-ae8c-9d5abf598873" data-linktype="relative-path">interSiteTransport</a></span>
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>
+that identifies the transport by which to send the reply.</p><p><b>pmtxReturnAddress:</b>  Transport-specific
+address to which to send the reply.</p><p><b>V3:</b>  Version 3 request.</p><p><b>pPartialAttrSet:</b>  A set of one or
+more <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attributes</a></span>
+whose values are to be replicated to the client&#39;s partial replica, or null if
+the client has a full <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ea02e669-2dda-460c-9992-b12a23caeeac" data-linktype="relative-path">replica</a></span>.</p><p><b>pPartialAttrSetEx:</b>  A set of one or
+more attributes whose values are to be added to the client&#39;s existing partial
+replica, or null.</p><p><b>PrefixTableDest:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_028437b6-7749-4428-b874-22e9559c1abe" data-linktype="relative-path">Prefix
+table</a></span> with which to convert the <span><a href="91173129-08e6-497c-8266-b5ac0aa5f983" data-linktype="relative-path">ATTRTYP</a></span> values in <b>pPartialAttrSet</b>
+and <b>pPartialAttrSetEx</b> to <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_aaaf2f1a-0b0a-487e-a0f0-c3510a6091b2" data-linktype="relative-path">OIDs</a></span>.</p></div>

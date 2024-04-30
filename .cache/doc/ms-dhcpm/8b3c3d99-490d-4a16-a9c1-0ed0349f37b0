@@ -1,0 +1,124 @@
+<div class="content"><p> </p><p>The <b>R_DhcpCreateSubnet</b> method is used to create a new
+IPv4 subnet on the DHCPv4 server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpCreateSubnet(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [in, ref] LPDHCP_SUBNET_INFO SubnetInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused. </p><p><b>SubnetAddress: </b>A <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS</a></span>
+that contains the IPv4 subnet address.</p><p><b>SubnetInfo: </b>This is a pointer to a structure
+of type <span><a href="e25ab58d-3e8b-4530-8ed8-8338850278ef" data-linktype="relative-path">LPDHCP_SUBNET_INFO (section 2.2.1.2.8)</a></span>
+that contains information about the IPv4 subnet, including the IPv4 subnet mask
+and the IPv4 address of the subnet. The structure <span><a href="51e16f4a-cb1d-400a-85c7-defe4cba1609" data-linktype="relative-path">DHCP_HOST_INFO (section 2.2.1.2.7)</a></span>
+(referred by <b>PrimaryHost</b>) stored in <i>SubnetInfo</i> MUST be ignored by
+both the caller and the server.</p><dl>
+<dd>
+<p>This method does not perform any checks to ensure
+that the <b>SubnetState</b> field in <b>SubnetInfo</b> is as specified in <span><a href="03ebc39d-3f99-4b33-9f57-2f00ae9d3e33" data-linktype="relative-path">DHCP_SUBNET_STATE (section 2.2.1.1.2)</a></span>.
+It is the caller&#39;s responsibility to ensure that a valid <b>SubnetState</b>
+value is passed to this method in <b>SubnetInfo</b>. If <b>SubnetState</b> does
+not contain a valid value, as specified in DHCP_SUBNET_STATE), the behavior is
+undefined.</p>
+</dd></dl><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000) indicates
+that the operation was completed successfully, else it contains a Win32 error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E54</p>
+  <p>ERROR_DHCP_SUBNET_EXISTS</p>
+  </td>
+  <td>
+  <p>The IPv4 scope parameters are incorrect. Either the
+  IPv4 scope already exists, corresponding to the <b>SubnetAddress</b> and <b>SubnetMask</b>
+  members of the structure DHCP_SUBNET_INFO (section 2.2.1.2.8), or
+  there is a range overlap of IPv4 addresses between those associated with the <b>SubnetAddress</b>
+  and <b>SubnetMask</b> fields of the new IPv4 scope and the subnet address and
+  mask of an already existing IPv4 scope.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a></span> field value
+for this method is 0.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read/write access
+per section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>SubnetAddress</i> input field is 0, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>SubnetInfo</i> input parameter is NULL, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>SubnetAddress</i> input field is not the same as the <b>SubnetAddress</b>
+member of the <i>SubnetInfo</i> input field, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the bitwise AND operation of the <i>SubnetAddress</i> input
+field with the <b>SubnetMask</b> member of the <i>SubnetInfo</i> input field is
+not the same as the <i>SubnetAddress</i> input field, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server ADM element <b>DHCPv4ScopesList</b>,
+and validate that the range of IPv4 addresses that correspond to the specified <b>SubnetAddress</b>
+and <b>SubnetMask</b> fields of <i>SubnetInfo</i> does not overlap the range of
+IPv4 addresses that correspond to the subnet address and mask of any <b>DHCPv4Scope</b>
+ADM element entry present in the <b>DHCPv4ScopesList</b> ADM element. If an
+overlap is detected, return ERROR_DHCP_SUBNET_EXISTS.</p>
+</li><li><p><span><span> 
+</span></span>Create a <b>DHCPv4Scope</b> ADM element object and insert it into
+the <b>DHCPv4ScopesList</b> ADM element. The <b>DHCPv4Scope</b> ADM element
+object is initialized as follows:</p>
+<ul><li><p><span><span>  </span></span>The
+<b>DHCPv4Scope.ScopeInfo</b> ADM element is initialized with the information
+contained in the <i>SubnetInfo</i> input parameter. The <b>QuarantineOn</b>
+member of the <b>DHCPv4Scope.ScopeInfo</b> ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4Scope.DelayOffer</b>
+ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4Scope.SuperScopeId</b>
+ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4Scope.DHCPv4IpRangesList</b>
+ADM element is set to empty list.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4Scope.DHCPv4ExclusionRangesList</b>
+ADM element is set to empty list.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4Scope.DHCPv4ReservationsList</b>
+ADM element is set to empty list.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4Scope.DHCPv4ClientsList</b>
+ADM element is set to empty list.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4Scope.DHCPv4OptionValuesList</b>
+ADM element is set to empty list.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

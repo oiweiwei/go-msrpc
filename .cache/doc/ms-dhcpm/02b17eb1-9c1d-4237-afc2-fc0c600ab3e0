@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>DHCP_IP_RANGE_ARRAY</b> structure specifies an array
+of IP address ranges.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_IP_RANGE_ARRAY {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_IP_RANGE Elements;
+ } DHCP_IP_RANGE_ARRAY,
+  *PDHCP_IP_RANGE_ARRAY,
+  *LPDHCP_IP_RANGE_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This member contains
+the number of IP address range elements in the array.</p><p><b>Elements:</b>  This member is a pointer
+to an array of type <b>DHCP_IP_RANGE</b> structure (section <span><a href="29a03b34-249e-4bd8-a118-e708dadbf22b" data-linktype="relative-path">2.2.1.2.31</a></span>)
+elements.</p></div>

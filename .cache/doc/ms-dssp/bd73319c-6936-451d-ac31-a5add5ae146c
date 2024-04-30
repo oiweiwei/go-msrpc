@@ -1,0 +1,9 @@
+<div class="content"><p>This protocol provides a <a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a>
+interface for querying domain-related computer state and configuration data.
+The client end of the Directory Services Setup Remote Protocol is an
+application that issues method calls on the RPC interface. The server end of
+the Directory Services Setup Remote Protocol obtains and replies to the client
+with the requested data about the computer on which the server is running. If
+the client connects to and requests information about a <a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller (DC)</a> for
+the <a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_c36db657-3138-4d9a-9289-ded5cbb8b40e" data-linktype="relative-path">directory service</a>,
+this data includes the status of any pending <a href="bad4d224-953b-4576-aa10-cbeb7eaa4457" data-linktype="relative-path">promotion</a> or <a href="69af75e3-5b61-4c88-b732-9e774ed51616" data-linktype="relative-path">demotion</a> of that DC.</p></div>

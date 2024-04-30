@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p>The DFS_STORAGE_INFO_1 structure relates to the <span><a href="f9dedb71-7575-4a50-9576-5f0f59891da4" data-linktype="relative-path">NetrDfsEnum</a></span>,
+<span><a href="1e01d0ba-76f3-4346-9db3-c7cc61009054" data-linktype="relative-path">NetrDfsEnumEx</a></span>,
+and <span><a href="b5dd4568-3ea4-4f27-ae03-3ebb19fa4b13" data-linktype="relative-path">NetrDfsGetInfo</a></span>
+methods when used to enumerate <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS links</a></span> and
+targets in a namespace or to get information about a DFS link. The structure
+contains data about a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_a2c6d1c9-deea-427c-91ee-56f6e726eabd" data-linktype="relative-path">DFS target</a></span>,
+including the host name and <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_3c179f10-1793-4268-96eb-de4d85a32060" data-linktype="relative-path">share name</a></span>, as well
+as the target state and priority. For more information on prioritization, see
+section <span><a href="316fec43-dfeb-4673-afc1-3ab66321debc" data-linktype="relative-path">2.2.2.7</a></span>. </p><p>The DFS_STORAGE_INFO_1 structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_STORAGE_INFO_1 {
+   unsigned long State;
+   [string] WCHAR* ServerName;
+   [string] WCHAR* ShareName;
+   DFS_TARGET_PRIORITY TargetPriority;
+ } DFS_STORAGE_INFO_1,
+  *PDFS_STORAGE_INFO_1,
+  *LPDFS_STORAGE_INFO_1;
+</pre></div>
+</dd></dl><p><b>State:</b>  Refers to the State field of
+<span><a href="cda396f3-e11c-4921-9781-582a7419934f" data-linktype="relative-path">DFS_INFO_106</a></span>.
+For more information, see section 2.2.4.6.</p><p><b>ServerName:</b>  A pointer to a
+null-terminated <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> string
+containing the DFS target host name.</p><p><b>ShareName:</b>  A pointer to a
+null-terminated Unicode string containing the DFS target share name.</p><p><b>TargetPriority:</b>  A
+DFS_TARGET_PRIORITY structure containing the priority class and priority rank.</p></div>

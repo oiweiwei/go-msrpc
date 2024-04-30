@@ -1,0 +1,470 @@
+<div class="content"><p> </p><p>The client uses the AT_INFO structure to configure a <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_740b149e-e6b4-49f5-bc16-e03ff41def7f" data-linktype="relative-path">task</a></span>
+in the <span><a href="4d44c426-fad2-4cc7-9677-bfcd235dca33" data-linktype="relative-path">ATSvc</a></span> <span><a href="920fb461-5cb5-41cc-b0fc-d9449d9976b8" data-linktype="relative-path">NetrJobAdd (section 3.2.5.2.1)</a></span>
+method. The server returns the AT_INFO structure with information about a task
+in the ATSvc <span><a href="ee6ca40c-ae87-421d-998d-ec759d375824" data-linktype="relative-path">NetrJobGetInfo (section 3.2.5.2.4)</a></span>
+method. The format of the AT_INFO structure is as follows.</p><dl>
+<dd>
+<div><pre> typedef struct _AT_INFO {
+   DWORD_PTR JobTime;
+   DWORD DaysOfMonth;
+   unsigned char DaysOfWeek;
+   unsigned char Flags;
+   [string] wchar_t* Command;
+ } AT_INFO,
+  *PAT_INFO,
+  *LPAT_INFO;
+</pre></div>
+</dd></dl><p><b>JobTime:</b>  This field is the time of
+day the task is to run, expressed as milliseconds after midnight. The value is
+in the range of 0 to 86399999 (24*60*60*1000-1). <b>JobTime</b> is present on
+the wire as a 32-bit unsigned integer.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p><p><b>DaysOfMonth:</b>  Contains individual
+bit flags that specify that the task is to run on that day of the month. Bits
+that do not correspond to a real calendar day (for example, bit 2 in February,
+which means the 30th) are ignored. See also the JOB_ADD_CURRENT_DATE flag
+below. The mapping of bit to day of month is as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>x</p>
+  </td>
+  <td>
+  <p>3 1</p>
+  </td>
+  <td>
+  <p>3 0</p>
+  </td>
+  <td>
+  <p>2 9</p>
+  </td>
+  <td>
+  <p>2 8</p>
+  </td>
+  <td>
+  <p>2 7</p>
+  </td>
+  <td>
+  <p>2 6</p>
+  </td>
+  <td>
+  <p>2 5</p>
+  </td>
+  <td>
+  <p>2 4</p>
+  </td>
+  <td>
+  <p>2 3</p>
+  </td>
+  <td>
+  <p>2 2</p>
+  </td>
+  <td>
+  <p>2 1</p>
+  </td>
+  <td>
+  <p>2 0</p>
+  </td>
+  <td>
+  <p>1 9</p>
+  </td>
+  <td>
+  <p>1 8</p>
+  </td>
+  <td>
+  <p>1 7</p>
+  </td>
+  <td>
+  <p>1 6</p>
+  </td>
+  <td>
+  <p>1 5</p>
+  </td>
+  <td>
+  <p>1 4</p>
+  </td>
+  <td>
+  <p>1 3</p>
+  </td>
+  <td>
+  <p>1 2</p>
+  </td>
+  <td>
+  <p>1 1</p>
+  </td>
+  <td>
+  <p>1 0</p>
+  </td>
+  <td>
+  <p>9</p>
+  </td>
+  <td>
+  <p>8</p>
+  </td>
+  <td>
+  <p>7</p>
+  </td>
+  <td>
+  <p>6</p>
+  </td>
+  <td>
+  <p>5</p>
+  </td>
+  <td>
+  <p>4</p>
+  </td>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>1</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>1-31: </b>Any bit set to 1
+specifies that the task can be run on that day of the month. More than one bit
+can be set to 1.</p>
+</dd>
+<dd>
+<p><b>x: </b>Unused. Can be set to
+zero when sent and ignored on receipt.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p>
+</dd>
+<dd>
+<p>Bit 0 is not used.</p>
+</dd></dl><p><b>DaysOfWeek:</b>  Contains individual bit
+flags that specify the day of the week on which the task is to run. The mapping
+of bit to day of week is as follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p><span><br/>
+   0</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   1</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   2</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   3</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   4</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   5</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   6</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   7</span></p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>S<br/>
+  U</p>
+  </td>
+  <td>
+  <p>S<br/>
+  A</p>
+  </td>
+  <td>
+  <p>F<br/>
+  R</p>
+  </td>
+  <td>
+  <p>T<br/>
+  H</p>
+  </td>
+  <td>
+  <p>W<br/>
+  E</p>
+  </td>
+  <td>
+  <p>T<br/>
+  U</p>
+  </td>
+  <td>
+  <p>M<br/>
+  O</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>X</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>Unused. Can be set to zero when sent and ignored upon
+  receipt.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MO</p>
+  <p>Monday</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task can be run on
+  Monday.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TU</p>
+  <p>Tuesday</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task can be run on
+  Tuesday.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WE</p>
+  <p>Wednesday</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task can be run on
+  Wednesday.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TH</p>
+  <p>Thursday</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task can be run on
+  Thursday.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FR</p>
+  <p>Friday</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task can be run on
+  Friday.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SA</p>
+  <p>Saturday</p>
+  </td>
+  <td>
+  <p>If set to 1, indicates that the task can be run on
+  Saturday.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SU</p>
+  <p>Sunday</p>
+  </td>
+  <td>
+  <p>If set to 1, indicates that the task can be run on
+  Sunday.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Flags:</b>  Contains individual bit flags set
+to zero or more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p><span><br/>
+   0</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   1</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   2</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   3</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   4</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   5</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   6</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   7</span></p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>N<br/>
+  I</p>
+  </td>
+  <td>
+  <p>A<br/>
+  C</p>
+  </td>
+  <td>
+  <p>R<br/>
+  T</p>
+  </td>
+  <td>
+  <p>E<br/>
+  R</p>
+  </td>
+  <td>
+  <p>R<br/>
+  P</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>X</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>Unused. MUST be set to zero when sent and MUST be
+  ignored on receipt.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RP</p>
+  <p>JOB_RUN_PERIODICALLY</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task has a repeating
+  schedule. See <span><a href="a5d1950a-671f-493a-a075-d58825852145" data-linktype="relative-path">Global
+  Timer (section 3.2.6.1)</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ER</p>
+  <p>JOB_EXEC_ERROR</p>
+  </td>
+  <td>
+  <p>If an error was encountered during the last time this
+  task tried to execute a program, this bit is set to 1.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RT</p>
+  <p>JOB_RUNS_TODAY</p>
+  </td>
+  <td>
+  <p>If set to 1, indicates that this task is to run today.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AC</p>
+  <p>JOB_ADD_CURRENT_DATE</p>
+  </td>
+  <td>
+  <p>If set to 1, indicates that the bit corresponding to
+  the current day (today) bit is added to the <b>DaysOfMonth</b> bit mask. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NI</p>
+  <p>JOB_NONINTERACTIVE</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that this task is not to be
+  interactive; that is, it will not interact with the current logged-on user.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Command:</b>  This member is a <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a></span> that contains the name of a command, batch program, or binary
+file to execute; or the name of a document to be executed by its associated
+executable.</p><p><b>Note</b>  The <b>DaysOfMonth</b> and <b>DayOfWeek</b>
+bits can be used simultaneously. For example, setting <b>DaysOfMonth</b> to the
+fifteenth of the month, <b>DayOfWeek</b> to Tuesday, and JOB_RUN_PERIODICALLY
+to 1 will cause the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_2b43b2b7-03a8-4053-8e02-0516f90a2da3" data-linktype="relative-path">job</a></span> to run on the
+fifteenth of every month and on Tuesday of every week.</p></div>

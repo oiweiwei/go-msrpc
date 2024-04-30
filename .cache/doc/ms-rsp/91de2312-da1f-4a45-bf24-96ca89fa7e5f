@@ -1,0 +1,5 @@
+<div class="content"><p>This document specifies the Remote Shutdown Protocol. The
+Remote Shutdown Protocol is a remote procedure call (RPC)-based protocol used
+to shut down or terminate shutdown on a remote computer.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

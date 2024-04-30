@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The <b>FAX_TIME</b> structure represents a time, using
+individual members for the current hour and minute. The time is expressed in <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_6189b117-ca53-47a1-9eb3-7ea5ddc215dd" data-linktype="relative-path">Coordinated
+Universal Time</a></span> (<span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">UTC</a></span>). This structure
+is used in <b>_FAX_CONFIGURATIONW</b> (section <span><a href="67302e1d-2877-4c18-9b81-f5272fc2aa7d" data-linktype="relative-path">2.2.29</a></span>), <b>_FAX_OUTBOX_CONFIG</b>
+(section <span><a href="538c6629-1528-4124-bf3d-48517db5f9a4" data-linktype="relative-path">2.2.17</a></span>), <b>FAX_GENERAL_CONFIG</b>
+(section <span><a href="7b87f66e-e7bf-4294-be2f-669de0595bde" data-linktype="relative-path">2.2.31</a></span>) structures.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   WORD Hour;
+   WORD Minute;
+ } FAX_TIME,
+  *PFAX_TIME;
+</pre></div>
+</dd></dl><p><b>Hour:</b> A 16-bit unsigned integer that holds the
+current hour. This value MUST be between 0 and 23 inclusive.</p><p><b>Minute:</b> A 16-bit unsigned integer that holds
+the current minute. This value MUST be between 0 and 59 inclusive.</p></div>

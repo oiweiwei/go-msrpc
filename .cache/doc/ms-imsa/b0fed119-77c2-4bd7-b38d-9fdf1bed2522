@@ -1,0 +1,252 @@
+<div class="content"><p>The METADATA_GETALL_RECORD structure defines an analogous
+structure to <a href="10608402-8619-4ea9-be90-d57f21393ce0" data-linktype="relative-path">METADATA_RECORD</a>
+but is used only to return data from a call to the <a href="caedbaa6-3867-463e-b2ab-9ecbb61adbaf" data-linktype="relative-path">R_GetAllData</a> method. Data
+retrieval specifications are provided in R_GetAllData method parameters, not in
+this structure (as is the case with METADATA_RECORD). The R_GetAllData method
+returns the data from multiple entries as an array of METADATA_GETALL_RECORD
+structures.</p><dl>
+<dd>
+<div><pre> typedef struct ­_METADATA_GETALL_RECORD{
+     DWORD dwMDIdentifier;
+     DWORD dwMDAttributes;
+     DWORD dwMDUserType;
+     DWORD dwMDDataType;
+     DWORD dwMDDataLen;
+     DWORD dwMDDataOffset;
+     DWORD dwMDDataTag;
+ } METADATA_GETALL_RECORD, *PMETADATA_GETALL_RECORD;
+</pre></div>
+</dd></dl><p><b>dwMDIdentifier:</b>  An unsigned integer
+value that uniquely identifies the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_086b13f2-2715-4000-a16c-6acc3d59cc19" data-linktype="relative-path">metabase</a> entry.</p><p><b>dwMDAttributes:</b>  An unsigned integer
+value containing bit flags that specify how to set or get data from the
+metabase. This member MUST be set to a valid combination of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>METADATA_INHERIT</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>In Get methods: Return the inheritable data. </p>
+  <p>In Set methods: The data can be inherited.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>METADATA_INSERT_PATH</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>For a string data item. </p>
+  <p>In Get methods: Replace all occurrences of
+  &#34;&lt;%INSERT_PATH%&gt;&#34; with the path of the data item relative to
+  the handle.</p>
+  <p>In Set methods: Indicate that the string contains the
+  Unicode character substring &#34;&lt;%INSERT_PATH%&gt;&#34;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>METADATA_ISINHERITED</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>In Get methods: Mark the data items that were
+  inherited. </p>
+  <p>In Set methods: Not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>METADATA_NO_ATTRIBUTES</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>In Get methods: Not applicable. Data is returned
+  regardless of this flag setting.</p>
+  <p>In Set methods: The data does not have any attributes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>METADATA_PARTIAL_PATH</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>In Get methods: Return any inherited data even if the
+  entire path is not present. This flag is valid only if METADATA_INHERIT is
+  also set.</p>
+  <p>In Set methods: Not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>METADATA_SECURE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>In Get methods: Not valid.</p>
+  <p>In Set methods: The server and client transport and
+  store the data in a secure fashion, as specified in <a href="2af9c291-1a5f-4004-9aad-b8aec06d749a" data-linktype="relative-path">3.1.4.1.1</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>METADATA_VOLATILE</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>In Get methods: Not valid. </p>
+  <p>In Set methods: Do not save the data in long-term
+  storage.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwMDUserType:</b>  An unsigned integer
+value that specifies the user type of the data. The <b>dwMDUserType</b> member
+MUST be set to one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ASP_MD_UT_APP</p>
+  <p>0x00000065</p>
+  </td>
+  <td>
+  <p>The entry contains information specific to ASP
+  application configuration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_MD_UT_FILE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The entry contains information about a file, such as
+  access permissions or logon methods.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_MD_UT_SERVER</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The entry contains information specific to the server,
+  such as ports in use and IP addresses.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_MD_UT_WAM</p>
+  <p>0x00000064</p>
+  </td>
+  <td>
+  <p>The entry contains information specific to <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_6b0c6982-1354-4309-86eb-c4c4ae9d8bcb" data-linktype="relative-path">web application</a>
+  management.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwMDDataType:</b>  An integer value that
+identifies the type of data in the metabase entry. The <b>dwMDDataType</b>
+member MUST be set to one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ALL_METADATA</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Specifies all data, regardless of type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BINARY_METADATA</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Specifies binary data in any form.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DWORD_METADATA</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Specifies all <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a>
+  (unsigned 32-bit integer) data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EXPANDSZ_METADATA</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Specifies all data that consists of a string that
+  includes the terminating null character, and which contains environment
+  variables that are not expanded.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MULTISZ_METADATA</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Specifies all data represented as an array of strings,
+  where each string includes the terminating null character, and the array
+  itself is terminated by two terminating null characters.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>STRING_METADATA</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Specifies all data consisting of an ASCII string that
+  includes the terminating null character.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwMDDataLen:</b>   An unsigned integer
+value that specifies the length, in bytes, of the data. If the data is a
+string, this value includes the ending null character. For lists of strings,
+this includes an additional terminating null character after the final string
+(double terminating null characters).</p><dl>
+<dd>
+<p>For example, the length of a string list containing
+two strings would be as follows.</p>
+<dl>
+<dd>
+<div><pre> (wcslen(stringA) + 1) * sizeof(WCHAR) + (wcslen(stringB) + 1)
+  * sizeof(WCHAR) + 1 * sizeof(WCHAR)
+</pre></div>
+</dd></dl></dd>
+<dd>
+<p>In-process clients need to specify <b>dwMDDataLen</b>
+only when setting binary data in the metabase. Remote clients MUST specify <b>dwMDDataLen</b>
+for all data types.</p>
+</dd></dl><p><b>dwMDDataOffset:</b>  If the data was
+returned by value, this member contains the byte offset of the data in the
+buffer specified by the <i>pbMDBuffer</i> parameter of the R_GetAllData method.
+All out-of-process executions will return data by value. The array of records,
+excluding the data, is returned in the first part of the buffer. The data
+associated with the records is returned in the buffer after the array of
+records, and <b>dwMDDataOffset</b> is the offset to the beginning of the data
+associated with each record in the array.</p><p><b>dwMDDataTag:</b>  A reserved member that
+is currently unused.</p></div>

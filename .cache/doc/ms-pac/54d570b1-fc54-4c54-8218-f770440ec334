@@ -1,0 +1,42 @@
+<div class="content"><p>The <b>PAC</b> is a structure that conveys
+authorization-related information provided by <a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controllers (DCs)</a>.
+The <b>PAC</b> is used by authentication protocols that verify identities to
+transport authorization information, which controls access to resources. Once
+authentication has been accomplished, the next task is to decide if a
+particular request is authorized. Management of network systems often models
+broad authorization decisions through groups; for example, all engineers who
+can access a specific printer or all sales personnel who can access a certain
+web server. Making group information consistently available to several services
+allows for simpler management.</p><p>The Kerberos protocol is one of the most commonly used
+authentication mechanisms. However, the Kerberos protocol <a href="https://go.microsoft.com/fwlink/?LinkId=90458" data-linktype="external">[RFC4120]</a> does not
+provide authorization; &#34;kerberized&#34; applications are expected to
+manage their own authorization, typically through names. Specifically, the
+Kerberos protocol does not define any explicit group membership or logon policy
+information to be carried in the Kerberos tickets. It leaves that for Kerberos
+extensions to provide a mechanism to convey authorization information by
+encapsulating this information within an <b>AuthorizationData</b> structure
+([RFC4120] section 5.2.6). The <b>PAC</b> was created to provide this
+authorization data for Kerberos Protocol Extensions <a href="../ms-kile/2a32282e-dd48-4ad9-a542-609804b02cc9" data-linktype="relative-path">[MS-KILE]</a>.
+</p><p>[MS-KILE] requires that the <b>PAC</b> information be
+encoded within an <b>AuthorizationData</b> element ([RFC4120] section 5.2.6)
+which consists of group memberships, additional credential information, profile
+and policy information, and supporting security metadata. [MS-KILE] also
+requires that the <b>PAC</b> information be enclosed in an AD-IF-RELEVANT <b>AuthorizationData</b>
+element, since this information is noncritical authorization data. This clearly
+indicates to the receiver that this data can be ignored if the receiver does
+consume the information in the PAC.</p><p>Examples of information that can be provided by a DC
+include:</p><ul><li><p><span><span> 
+</span></span>Authorization data such as <a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security identifiers (SIDs)</a>
+and <a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">relative identifiers
+(RIDs)</a>.</p>
+</li><li><p><span><span> 
+</span></span>User profile information such as a home directory or logon
+script.</p>
+</li><li><p><span><span> 
+</span></span>Password credentials, used during smart card authentication, for
+password based authentication protocols to use at a later time.</p>
+</li><li><p><span><span> 
+</span></span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_083a5403-f654-4db6-b17e-9c10dc5cd420" data-linktype="relative-path">Service for
+User (S4U)</a> protocol <a href="../ms-sfu/3bff5864-8135-400e-bdd9-33b552051d94" data-linktype="relative-path">[MS-SFU]</a>
+data.</p>
+</li></ul></div>

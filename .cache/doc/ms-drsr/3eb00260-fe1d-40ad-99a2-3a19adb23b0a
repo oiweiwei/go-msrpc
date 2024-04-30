@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The DRS_MSG_VERIFYREPLY union defines the response messages
+received from the <span><a href="80739a29-e8ed-4478-8490-475a18e9779d" data-linktype="relative-path">IDL_DRSVerifyNames</a></span>
+method. Only one version, identified by <i>pdwOutVersion^</i> = 1, is currently
+defined.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_VERIFYREPLY_V1 V1;
+ } DRS_MSG_VERIFYREPLY;
+</pre></div>
+</dd></dl><p><b>V1:</b>  The version 1 reply.</p></div>

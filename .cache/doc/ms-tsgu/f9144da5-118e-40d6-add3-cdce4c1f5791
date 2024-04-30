@@ -1,0 +1,72 @@
+<div class="content"><p>This packet is used by the client to request <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_1ebdc9c6-bb01-455e-98f7-8930618bb601" data-linktype="relative-path">tunnel (2)</a> authorization.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>hdr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>fieldsPresent</p>
+  </td>
+  <td colspan="16">
+  <p>cbClientName</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>clientName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>hdr  (8 bytes): </b>An <a href="158c24f6-cabc-4c48-b429-28509f9b4f5d" data-linktype="relative-path">HTTP_PACKET_HEADER (section
+2.2.10.9)</a> structure. Its <b>packetType</b> field is set to
+PKT_TYPE_TUNNEL_AUTH.</p><p><b>fieldsPresent (2 bytes): </b>An unsigned short
+representing the fields present in <a href="63e8788d-9e67-49c0-a181-52e2c7c57800" data-linktype="relative-path">HTTP_TUNNEL_AUTH_PACKET_OPTIONAL
+(section 2.2.10.15)</a>. Its values are defined in the <a href="36162b08-de4d-4a32-bb49-280fc3f43257" data-linktype="relative-path">HTTP_TUNNEL_AUTH_FIELDS_PRESENT_FLAGS
+Enumeration (section 2.2.5.3.4)</a>.</p><p><b>cbClientName (2 bytes): </b>An unsigned short
+representing the length of the <b>clientName</b> field.</p><p><b>clientName (variable): </b>An array of bytes
+representing the name of the client machine.</p></div>

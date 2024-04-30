@@ -1,0 +1,31 @@
+import "ms-dtyp.idl"; 
+import "ms-oaut.idl";
+ 
+ [
+  object,
+  uuid(E8FB8620-588F-11D2-9D61-00C04F79C5FE),
+  dual,
+  pointer_default(unique)
+ ]
+ interface IIisServiceControl : IDispatch
+ {
+   HRESULT Stop(
+          DWORD dwTimeoutMsecs, 
+          DWORD dwForce
+          );
+   HRESULT Start(
+          DWORD dwTimeoutMsecs
+          );
+   HRESULT Reboot( 
+          DWORD dwTimeouMsecs, 
+          DWORD dwForceAppsClosed 
+          );
+   HRESULT Status(
+          [in] DWORD dwBufferSize, 
+          [out, size_is(dwBufferSize)] unsigned char *pbBuffer, 
+          [out] DWORD *pdwMDRequiredBufferSize, 
+          [out] DWORD *pdwNumServices
+          );
+   HRESULT Kill();
+};
+ 

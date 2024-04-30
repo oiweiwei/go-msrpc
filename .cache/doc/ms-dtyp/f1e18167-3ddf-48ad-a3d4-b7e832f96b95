@@ -1,0 +1,26 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/f1e18167-3ddf-48ad-a3d4-b7e832f96b95" data-linktype="external">msdn link</a></p><p>The RPC representation of the SECURITY_DESCRIPTOR structure
+defines the in-memory representation of the <a href="7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">SECURITY_DESCRIPTOR</a> message.
+The individual member semantics for the <b>Revision</b>, <b>Sbz1</b>, <b>Control</b>,
+<b>Owner</b>, <b>Group</b>, <b>Sacl</b> and <b>Dacl</b> members are as
+specified in section 2.4.6, with the exceptions that Owner corresponds to
+OwnerSid, and Group corresponds to GroupSid, respectively.</p><dl>
+<dd>
+<div><pre> typedef struct _SECURITY_DESCRIPTOR {
+   UCHAR Revision;
+   UCHAR Sbz1;
+   USHORT Control;
+   PSID Owner;
+   PSID Group;
+   PACL Sacl;
+   PACL Dacl;
+ } SECURITY_DESCRIPTOR,
+  *PSECURITY_DESCRIPTOR;
+</pre></div>
+</dd></dl><p><b>Revision:</b>  As specified in section
+2.4.6.</p><p><b>Sbz1:</b>  As specified in section
+2.4.6.</p><p><b>Control:</b>  As specified in section
+2.4.6.</p><p><b>Owner:</b>  Pointer to the Owner SID
+(OwnerSid), as specified in section 2.4.6.</p><p><b>Group:</b>  Pointer to the Group SID
+(GroupSid), as specified in section 2.4.6.</p><p><b>Sacl:</b>  Pointer to the Sacl, as
+specified in section 2.4.6.</p><p><b>Dacl:</b>  Pointer to the Dacl, as
+specified in section 2.4.6.</p></div>

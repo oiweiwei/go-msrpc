@@ -1,0 +1,168 @@
+import "ms-dtyp.idl";
+import "ms-mqmq.idl";
+ 
+ 
+[
+    uuid(1a9134dd-7b39-45ba-ad88-44d01ca47f28),
+    version(1.0),
+    pointer_default(unique)
+]
+interface RemoteRead
+{
+    typedef [context_handle] void* QUEUE_CONTEXT_HANDLE_NOSERIALIZE;
+ 
+    typedef [context_handle] 
+    QUEUE_CONTEXT_HANDLE_NOSERIALIZE QUEUE_CONTEXT_HANDLE_SERIALIZE;
+ 
+    typedef enum
+    {
+      stFullPacket = 0,
+      stBinaryFirstSection = 1,
+      stBinarySecondSection = 2,
+      stSrmpFirstSection = 3,
+      stSrmpSecondSection = 4
+    } SectionType;
+ 
+    typedef struct _SectionBuffer {
+        SectionType  SectionBufferType;
+        DWORD SectionSizeAlloc;
+        DWORD SectionSize;
+        [unique, size_is(SectionSize)] byte* pSectionBuffer;
+    } SectionBuffer;
+ 
+    DWORD R_GetServerPort(
+        [in] handle_t hBind
+        );
+ 
+    void Opnum1NotUsedOnWire(void);
+ 
+    void R_OpenQueue(
+        [in] handle_t hBind,
+        [in] QUEUE_FORMAT* pQueueFormat,
+        [in] DWORD dwAccess,
+        [in] DWORD dwShareMode,
+        [in] GUID* pClientId,
+        [in] LONG fNonRoutingServer,
+        [in] unsigned char Major,
+        [in] unsigned char Minor,
+        [in] USHORT BuildNumber,
+        [in] LONG fWorkgroup,
+        [out] QUEUE_CONTEXT_HANDLE_SERIALIZE* pphContext
+        );
+ 
+    HRESULT R_CloseQueue(
+        [in] handle_t  hBind,
+        [in, out] QUEUE_CONTEXT_HANDLE_SERIALIZE* pphContext
+        );
+ 
+    HRESULT R_CreateCursor(
+        [in]  handle_t hBind,
+        [in]  QUEUE_CONTEXT_HANDLE_NOSERIALIZE phContext,
+        [out] DWORD* phCursor
+        );
+ 
+    HRESULT R_CloseCursor(
+        [in] handle_t hBind,
+        [in] QUEUE_CONTEXT_HANDLE_NOSERIALIZE phContext,
+        [in] DWORD hCursor
+        );
+ 
+    HRESULT R_PurgeQueue(
+        [in] handle_t hBind,
+        [in] QUEUE_CONTEXT_HANDLE_NOSERIALIZE phContext
+        );
+ 
+    HRESULT R_StartReceive(
+        [in] handle_t  hBind,
+        [in] QUEUE_CONTEXT_HANDLE_NOSERIALIZE phContext,
+        [in] ULONGLONG LookupId,
+        [in] DWORD hCursor,
+        [in] DWORD ulAction,
+        [in] DWORD ulTimeout,
+        [in] DWORD dwRequestId,
+        [in] DWORD dwMaxBodySize,
+        [in] DWORD dwMaxCompoundMessageSize,
+        [out] DWORD* pdwArriveTime,
+        [out] ULONGLONG* pSequenceId,
+        [out] DWORD* pdwNumberOfSections,
+        [out, size_is(, *pdwNumberOfSections)]
+             SectionBuffer** ppPacketSections
+        );
+ 
+    HRESULT R_CancelReceive(
+        [in] handle_t hBind,
+        [in] QUEUE_CONTEXT_HANDLE_NOSERIALIZE phContext,
+        [in] DWORD dwRequestId
+        );
+ 
+    HRESULT R_EndReceive(
+        [in] handle_t  hBind,
+        [in] QUEUE_CONTEXT_HANDLE_NOSERIALIZE phContext,
+        [in, range(1,2)] DWORD dwAck,
+        [in] DWORD dwRequestId
+        );
+ 
+    HRESULT R_MoveMessage(
+        [in]  handle_t hBind,
+        [in]  QUEUE_CONTEXT_HANDLE_NOSERIALIZE phContextFrom,
+        [in]  ULONGLONG ullContextTo,
+        [in]  ULONGLONG LookupId,
+        [in]  XACTUOW *pTransactionId
+        );
+ 
+    void R_OpenQueueForMove(
+        [in] handle_t hBind,
+        [in] QUEUE_FORMAT* pQueueFormat,
+        [in] DWORD dwAccess,
+        [in] DWORD dwShareMode,
+        [in] GUID* pClientId,
+        [in] LONG fNonRoutingServer,
+        [in] unsigned char Major,
+        [in] unsigned char Minor,
+        [in] USHORT BuildNumber,
+        [in] LONG fWorkgroup,
+        [out] ULONGLONG  *pMoveContext,
+        [out] QUEUE_CONTEXT_HANDLE_SERIALIZE* pphContext
+        );
+ 
+    HRESULT R_QMEnlistRemoteTransaction(
+        [in] handle_t hBind,
+        [in] XACTUOW* pTransactionId,
+        [in, range(0, 131072)] DWORD cbPropagationToken,
+        [in, size_is (cbPropagationToken)]
+              unsigned char* pbPropagationToken,
+        [in] QUEUE_FORMAT* pQueueFormat
+        );
+ 
+    HRESULT R_StartTransactionalReceive(
+        [in] handle_t  hBind,
+        [in] QUEUE_CONTEXT_HANDLE_NOSERIALIZE phContext,
+        [in] ULONGLONG LookupId,
+        [in] DWORD hCursor,
+        [in] DWORD ulAction,
+        [in] DWORD ulTimeout,
+        [in] DWORD dwRequestId,
+        [in] DWORD dwMaxBodySize,
+        [in] DWORD dwMaxCompoundMessageSize,
+        [in] XACTUOW* pTransactionId,
+        [out] DWORD* pdwArriveTime,
+        [out] ULONGLONG* pSequenceId,
+        [out] DWORD* pdwNumberOfSections,
+        [out, size_is(, *pdwNumberOfSections)]
+               SectionBuffer** ppPacketSections
+        );
+ 
+    HRESULT R_SetUserAcknowledgementClass(
+        [in]  handle_t  hBind,
+        [in]  QUEUE_CONTEXT_HANDLE_NOSERIALIZE phContext,
+        [in]  ULONGLONG LookupId,
+        [in]  USHORT usClass
+        );
+ 
+    HRESULT R_EndTransactionalReceive(
+        [in] handle_t  hBind,
+        [in] QUEUE_CONTEXT_HANDLE_NOSERIALIZE phContext,
+        [in, range(1,2)] DWORD dwAck,
+        [in] DWORD dwRequestId
+        );
+}

@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The REMQIRESULT structure is passed as an output parameter
+from <span><a href="11fd5e3a-f5ef-41cc-b943-45217efdb054" data-linktype="relative-path">IRemUnknown::RemQueryInterface</a></span>.
+It contains the result of the RemQueryInterface and the <span><a href="ad717638-f105-4256-b552-385b08ef8ebf" data-linktype="relative-path">STDOBJREF</a></span>
+containing the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_3ca938ae-c14f-4f59-8a7d-daca9f76db4e" data-linktype="relative-path">object reference</a></span> for
+the queried interface.</p><dl>
+<dd>
+<div><pre> typedef struct tagREMQIRESULT {
+   HRESULT hResult;
+   STDOBJREF std;
+ } REMQIRESULT;
+</pre></div>
+</dd></dl><p><b>hResult:</b>   This MUST contain zero if
+the QueryInterface operation was successful. Otherwise, this MUST contain a
+negative value to indicate failure; see section 3.1.1.5.6.1.1.</p><p><b>std:</b>   If hResult is zero, this MUST
+contain a STDOBJREF instance that the client can unmarshal and use to make
+calls on the interface. If hResult contains an error value, this field MUST be
+ignored.</p></div>

@@ -1,0 +1,41 @@
+<div class="content"><p> </p><p>The <b>TRUSTANCHOR_STATE</b> enumeration identifies the
+current state of the life cycle of a DNSSEC trust anchor. All states other than
+TRUSTANCHOR_STATE_DSPENDING and TRUSTANCHOR_STATE_DSINVALID correspond to the
+states given in <span><a href="https://go.microsoft.com/fwlink/?LinkId=225980" data-linktype="external">[RFC5011]</a></span>
+section 4.2. Only the TRUSTANCHOR_STATE_VALID and TRUSTANCHOR_STATE_MISSING trust
+anchors affect the DNS protocol (by acting as a DNSSEC trust anchor). None of
+the states affect the LDAP protocol <span><a href="https://go.microsoft.com/fwlink/?LinkId=157505" data-linktype="external">[RFC4511]</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum
+ {
+     TRUSTANCHOR_STATE_INITIALIZED,
+     TRUSTANCHOR_STATE_DSPENDING,
+     TRUSTANCHOR_STATE_DSINVALID,
+     TRUSTANCHOR_STATE_ADDPEND,
+     TRUSTANCHOR_STATE_VALID,
+     TRUSTANCHOR_STATE_MISSING,
+     TRUSTANCHOR_STATE_REVOKED,
+     TRUSTANCHOR_STATE_DELETED
+ }
+ TRUSTANCHOR_STATE, *PTRUSTANCHOR_STATE;
+</pre></div>
+</dd></dl><p><b>TRUSTANCHOR_STATE_INITIALIZED:</b> Reserved. MUST NOT
+be sent by the server, MUST be ignored by the receiver.</p><p><b>TRUSTANCHOR_STATE_DSPENDING:</b> Indicates a DS trust
+anchor that can be replaced by the DNSKEY trust anchor that matches the hash of
+the DS trust anchor after the next [RFC5011] <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_79ac1b1f-1063-4f6f-8d2f-ec034c123ec6" data-linktype="relative-path">active refresh</a></span>.</p><p><b>TRUSTANCHOR_STATE_DSINVALID:</b> Indicates a DS trust
+anchor that matches a DNSKEY record that is not valid as a trust anchor because
+the SEP flag is not set or because the algorithm is unsupported.</p><p><b>TRUSTANCHOR_STATE_ADDPEND:</b> Indicates a DNSKEY
+trust anchor that has not exceeded the [RFC5011] add-hold-down time. This trust
+anchor can become a valid trust anchor after the hold-down time has been
+exceeded.</p><p><b>TRUSTANCHOR_STATE_VALID:</b> Indicates a DNSKEY trust
+anchor that has exceeded the [RFC5011] add-hold-down time, has been matched to
+(and has replaced) a DS trust anchor, or has been added by the administrator.
+This trust anchor is trusted for DNSSEC operations, and a copy exists in the
+TrustAnchors zone.</p><p><b>TRUSTANCHOR_STATE_MISSING:</b> Indicates a DNSKEY
+trust anchor that is valid but was not seen in the last [RFC5011] active
+refresh. This trust anchor is trusted for DNSSEC operations, and a copy exists
+in the TrustAnchors zone.</p><p><b>TRUSTANCHOR_STATE_REVOKED:</b> Indicates a DNSKEY
+trust anchor that has been revoked by the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_ed54858d-02e4-4de3-b65b-e0b81c4185c7" data-linktype="relative-path">authoritative</a></span> zone
+administrator according to [RFC5011]. This trust anchor will be deleted when
+the [RFC5011] remove-hold-down time is exceeded.</p><p><b>TRUSTANCHOR_STATE_DELETED:</b> Reserved. MUST NOT be
+sent by the server, MUST be ignored by the receiver.</p><p><b>  </b></p></div>

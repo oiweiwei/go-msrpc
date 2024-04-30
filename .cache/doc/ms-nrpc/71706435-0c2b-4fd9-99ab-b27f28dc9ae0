@@ -1,0 +1,18 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/71706435-0c2b-4fd9-99ab-b27f28dc9ae0" data-linktype="external">msdn link</a></p><dl>
+<dd>
+<div><pre> NTSTATUS NetrAccountSync(
+   [in, unique, string] LOGONSRV_HANDLE PrimaryName,
+   [in, string] wchar_t* ComputerName,
+   [in] PNETLOGON_AUTHENTICATOR Authenticator,
+   [in, out] PNETLOGON_AUTHENTICATOR ReturnAuthenticator,
+   [in] DWORD Reference,
+   [in] DWORD Level,
+   [out, size_is(BufferSize)] UCHAR * Buffer,
+   [in] DWORD BufferSize,
+   [out] ULONG * CountReturned,
+   [out] ULONG * TotalEntries,
+   [out] ULONG * NextReference,
+   [out] PUAS_INFO_0 LastRecordId
+ );
+</pre></div>
+</dd></dl></div>

@@ -1,0 +1,33 @@
+<div class="content"><p> </p><p>This method does not perform any action.</p><dl>
+<dd>
+<div><pre> HRESULT RequestChallenge(
+   [in, unique, string] wchar_t* reserved1,
+   [in, unique, string] wchar_t* reserved2,
+   [out, size_is(16), length_is(16)] 
+     unsigned char* reserved3
+ );
+</pre></div>
+</dd></dl><p><b>reserved1: </b>MUST be set to NULL when sent and MUST be
+ignored on receipt.</p><p><b>reserved2: </b>MUST be set to NULL when sent and MUST be
+ignored on receipt.</p><p><b>reserved3: </b>MUST be set to NULL when sent and MUST be
+ignored on receipt.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8004100c</p>
+  <p>WBEM_E_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The server SHOULD return this value.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

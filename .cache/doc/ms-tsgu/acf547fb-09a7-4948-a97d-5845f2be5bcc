@@ -1,0 +1,242 @@
+<div class="content"><p>The TSG_REDIRECTION_FLAGS structure specifies the device
+redirection settings that MUST be enforced by the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a>. For details about
+device redirection, see  <a href="../ms-rdsod/072543f9-4bd4-4dc6-ab97-9a04bf9d2c6a" data-linktype="relative-path">[MS-RDSOD]</a>
+section 2.1.1.2.</p><p>This structure MUST be embedded in the <a href="b06fcd1a-05b3-4f82-844d-520bc103ba3d" data-linktype="relative-path">TSG_PACKET_RESPONSE</a>
+structure.</p><p><b>Note</b>  Both <b>enableAllRedirections</b> and
+<b>disableAllRedirections</b> MUST NOT be TRUE.</p><dl>
+<dd>
+<div><pre> typedef struct _TSG_REDIRECTION_FLAGS {
+   BOOL enableAllRedirections;
+   BOOL disableAllRedirections;
+   BOOL driveRedirectionDisabled;
+   BOOL printerRedirectionDisabled;
+   BOOL portRedirectionDisabled;
+   BOOL reserved;
+   BOOL clipboardRedirectionDisabled;
+   BOOL pnpRedirectionDisabled;
+ } TSG_REDIRECTION_FLAGS,
+  *PTSG_REDIRECTION_FLAGS;
+</pre></div>
+</dd></dl><p><b>enableAllRedirections:</b>  A Boolean
+value indicating whether the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> specifies any
+control over the device redirection on the RDG client.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Device redirection is not enabled for all devices.
+  Other fields of this structure specify which device redirection is enabled or
+  disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Device redirection is enabled for all devices. All
+  other fields of this structure MUST be ignored.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>disableAllRedirections:</b>  A Boolean
+value indicating whether the RDG server specifies any control over disabling
+all device redirection on the RDG client.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Device redirection is not disabled for all devices.
+  Other fields of this structure specify which device redirection is enabled or
+  disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Device redirection is disabled for all devices. All
+  other fields of this structure MUST be ignored.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>driveRedirectionDisabled:</b>  A Boolean
+value indicating whether the RDG server specifies any control over disabling
+drive redirection on the RDG client.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The RDG client is allowed to choose its own
+  redirection settings for enabling or disabling drive redirection.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Drive redirection is disabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>printerRedirectionDisabled:</b>  A
+Boolean value indicating whether the RDG server specifies any control over
+disabling printer redirection on the RDG client.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The RDG client is allowed to choose its own
+  redirection settings for enabling or disabling printer redirection.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Printer redirection is disabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>portRedirectionDisabled:</b>  A Boolean
+value indicating whether the RDG server specifies any control over disabling
+port redirection on the RDG client.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The RDG client is allowed to choose its own
+  redirection settings for enabling or disabling port redirection. Port
+  redirection applies to both serial (COM) and parallel ports (LPT).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Port redirection is disabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>reserved:</b>  Unused. MUST be 0.</p><p><b>clipboardRedirectionDisabled:</b>  A
+Boolean value indicating whether the RDG server specifies any control over
+disabling clipboard redirection on the RDG client.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The RDG client is allowed to choose its own
+  redirection settings for enabling or disabling clipboard redirection.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Clipboard redirection is disabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pnpRedirectionDisabled:</b>  A Boolean
+value indicating whether the RDG server specifies any control over disabling
+Plug and Play redirection on the RDG client.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The RDG client is allowed to choose its own
+  redirection settings for enabling or disabling PnP redirection.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>PnP redirection is disabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

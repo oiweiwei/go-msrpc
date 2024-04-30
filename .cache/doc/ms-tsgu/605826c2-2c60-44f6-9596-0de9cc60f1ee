@@ -1,0 +1,13 @@
+<div class="content"><p>The TSG_CAPABILITIES_UNION union specifies an <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> switch_type union of
+structures as follows.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(unsigned long)] 
+ union {
+   [case(TSG_CAPABILITY_TYPE_NAP)] 
+     TSG_CAPABILITY_NAP TSGCapNap;
+ } TSG_CAPABILITIES_UNION,
+  *PTSG_CAPABILITIES_UNION;
+</pre></div>
+</dd></dl><p><b>TSGCapNap:</b>  A <a href="56a0cb77-9d12-4d58-8c31-73e74ffdedb1" data-linktype="relative-path">TSG_CAPABILITY_NAP</a>
+structure.</p></div>

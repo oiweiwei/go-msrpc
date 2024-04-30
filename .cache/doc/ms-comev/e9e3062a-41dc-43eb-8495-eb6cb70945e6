@@ -1,0 +1,137 @@
+<div class="content"><p> </p><p>The IEventClass interface provides methods that are used by
+the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>
+to manipulate an <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e8df25db-9bff-46df-b607-d072dd29c02b" data-linktype="relative-path">event class</a></span> on the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>.
+The interface inherits Opnums 0 to 6 from <span><a href="../ms-oaut/ac9c502b-ac1c-4202-8ad4-048ac98afcc9" data-linktype="relative-path">IDispatch</a></span>
+as specified in <span><a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a></span>
+section 3.1.4. The version for this interface is 0.0.</p><p>To receive incoming remote calls for this interface, the
+server MUST implement a DCOM <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_a224e395-3fea-48bd-b141-3dd9bee2136a" data-linktype="relative-path">object class</a></span> with
+the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">class
+ID</a></span> CLSID_EventClass (see section <span><a href="25e89236-b0b3-4d8b-b1fb-64e0e9f0e156" data-linktype="relative-path">1.9</a></span>) using the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+{fb2b72a0-7a68-11d1-88f9-0080c7d771bf} for this interface.</p><p>The interface includes the following methods beyond those in
+IDispatch.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span><a href="82c146e4-e53d-45d3-ad1e-fdb104629b5e" data-linktype="relative-path">EventClassID</a></span></p>
+  </td>
+  <td>
+  <p>Gets the EventClassID property for the event class.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="a5bc490c-ba28-4bf9-832b-a5824ee08d1a" data-linktype="relative-path">EventClassID</a></span></p>
+  </td>
+  <td>
+  <p>Sets the EventClassID property for the event class.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="99013cfa-9557-4546-a964-298761e2cc49" data-linktype="relative-path">EventClassName</a></span></p>
+  </td>
+  <td>
+  <p>Gets the EventClassName property of the event class.</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="fe5bfc6f-4e52-48d6-87e1-f7aed79ab30f" data-linktype="relative-path">EventClassName</a></span></p>
+  </td>
+  <td>
+  <p>Sets the EventClassName property of the event class.</p>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="112d9853-03c9-47d7-b198-11216ef468fc" data-linktype="relative-path">OwnerSID</a></span></p>
+  </td>
+  <td>
+  <p>Gets the OwnerSID property of the event class.</p>
+  <p>Opnum: 11</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="079f4f42-e91e-41f3-b23b-302fa1ff3853" data-linktype="relative-path">OwnerSID</a></span></p>
+  </td>
+  <td>
+  <p>Sets the OwnerSID property of the event class.</p>
+  <p>Opnum: 12</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="3ac9d28a-ab38-4e22-b427-8806da241146" data-linktype="relative-path">FiringInterfaceID</a></span></p>
+  </td>
+  <td>
+  <p>Gets the FiringInterfaceID property for the event
+  class.</p>
+  <p>Opnum: 13</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="5eb1cad2-74d1-41ac-b46d-785de2b6e39e" data-linktype="relative-path">FiringInterfaceID</a></span></p>
+  </td>
+  <td>
+  <p>Sets the FiringInterfaceID property for the event
+  class.</p>
+  <p>Opnum: 14</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="772dbd27-f327-483d-8c9d-72c44036ab85" data-linktype="relative-path">Description</a></span></p>
+  </td>
+  <td>
+  <p>Gets the Description property for the event class.</p>
+  <p>Opnum: 15</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="447a7926-dd6f-42b9-9784-31576191cc90" data-linktype="relative-path">Description</a></span></p>
+  </td>
+  <td>
+  <p>Sets the Description property for the event class.</p>
+  <p>Opnum: 16</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Opnum17NotUsedOnWire</p>
+  </td>
+  <td>
+  <p>Reserved for local use.</p>
+  <p>Opnum: 17</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Opnum18NotUsedOnWire</p>
+  </td>
+  <td>
+  <p>Reserved for local use.</p>
+  <p>Opnum: 18</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="bd5228bd-f44a-49b4-b511-7655adba82e0" data-linktype="relative-path">TypeLib</a></span></p>
+  </td>
+  <td>
+  <p>Gets the Typelib property of the event class.</p>
+  <p>Opnum: 19</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="4027535b-c974-4e25-86c6-d5f35c37d0d5" data-linktype="relative-path">TypeLib</a></span></p>
+  </td>
+  <td>
+  <p>Sets the Typelib property of the event class.</p>
+  <p>Opnum: 20</p>
+  </td>
+ </tr></tbody></table><p>In the preceding table, the term &#34;Reserved for local
+use&#34; means that the client MUST NOT send the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a></span>, and the
+server behavior is undefined<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="aa52a2bf-fd29-47f9-8dea-d887d6b7d5ee#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a> because
+it does not affect interoperability.</p></div>

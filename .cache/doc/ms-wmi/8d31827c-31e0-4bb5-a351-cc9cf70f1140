@@ -1,0 +1,159 @@
+<div class="content"><p> </p><p>The IWbemServices::OpenNamespace method provides the client
+with an <span><a href="7a50647a-5311-41c2-8f4f-83bcfb497877" data-linktype="relative-path">IWbemServices</a></span> <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface
+pointer</a></span> that is scoped to the requested namespace. The specified
+namespace MUST be a child namespace of the current namespace through which this
+method is called. </p><dl>
+<dd>
+<div><pre> HRESULT OpenNamespace(
+   [in] const BSTR strNamespace,
+   [in] long lFlags,
+   [in] IWbemContext* pCtx,
+   [out, in, unique] IWbemServices** ppWorkingNamespace,
+   [out, in, unique] IWbemCallResult** ppResult
+ );
+</pre></div>
+</dd></dl><p><b>strNamespace: </b>MUST be the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_775e4b82-5447-4125-b887-b404421e1269" data-linktype="relative-path">CIM path</a></span>
+to the target namespace. This parameter MUST NOT be NULL.</p><p><b>lFlags: </b>Flags that affect the behavior of the
+OpenNamespace method. The behavior of each flag MUST be interpreted as follows:</p><ul><li><p><span><span>  </span></span>If
+this bit is not set, the server MUST make the method call synchronous.</p>
+</li><li><p><span><span>  </span></span>If
+this bit is set, the server MUST make the method call semisynchronously.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY</p>
+  </td>
+  <td>
+  <p>0x00000010</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><dl>
+<dd>
+<p>Any other DWORD value that does
+not match the preceding condition MUST be treated as invalid.</p>
+</dd></dl><p><b>pCtx: </b>This parameter MUST be NULL.</p><p><b>ppWorkingNamespace: </b>This parameter MUST NOT be
+NULL on input when WBEM_FLAG_RETURN_IMMEDIATELY is not set. If the method
+returns WBEM_S_NO_ERROR, <i>ppWorkingNamespace</i> MUST receive a pointer to an
+IWbemServices interface pointer to the requested namespace.</p><dl>
+<dd>
+<p>The output parameter MUST be based on the state of
+the <b>lFlags</b> parameter (whether WBEM_FLAG_RETURN_IMMEDIATELY is set) as
+listed in the following table.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Flag state</p>
+   </th>
+   <th>
+   <p>Success operation</p>
+   </th>
+   <th>
+   <p>Failure operation</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY is not set.</p>
+  </td>
+  <td>
+  <p>MUST be set to the requested IWbemServices interface.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the input parameter is
+  not-NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY is set.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the input parameter is
+  not-NULL.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the input parameter is
+  not-NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ppResult: </b>The output parameter MUST be filled
+according to the state of the <b>lFlags</b> parameter (whether
+WBEM_FLAG_RETURN_IMMEDIATELY is set) as listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Flag state</p>
+   </th>
+   <th>
+   <p>Success operation</p>
+   </th>
+   <th>
+   <p>Failure operation</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY is not set.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the input parameter is
+  not-NULL.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the input parameter is
+  not-NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY is set.</p>
+  </td>
+  <td>
+  <p>MUST be set to the requested IWbemCallResult
+  interface.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the input parameter is not-NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>This parameter MUST NOT be NULL on
+input when WBEM_FLAG_RETURN_IMMEDIATELY equals 1. In such a case, it receives a
+pointer to an <span><a href="23ec4065-3fbe-4e39-baef-69e22c285623" data-linktype="relative-path">IWbemCallResult</a></span>
+interface pointer.</p>
+</dd></dl><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR, as specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>, to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>Requirements described in the parameter definitions are
+checked, and if the requirements are not met, the server returns
+WBEM_E_INVALID_PARAMETER.</p><p>In response to the IWbemServices::OpenNamespace method, the
+server MUST evaluate whether the <i>strNamespace</i> parameter, which is
+specified in the preceding list, is a child of the namespace that is associated
+with the current interface pointer. If the requested namespace does not exist
+as a child namespace, the server MUST return WBEM_E_INVALID_NAMESPACE. If the
+requested namespace exists as a child namespace of the current interface
+pointer, the server MUST create another IWbemServices interface pointer
+associated with this namespace and return WBEM_S_NO_ERROR.</p><p>If the method returns a success code, the method MUST fill
+one of the two output parameters, as indicated by the use of the <i>lFlags</i>
+parameter, which is previously specified. </p><p>The successful synchronous method execution MUST fill the <i>ppWorkingNamespace</i>
+parameter with an IWbemServices interface pointer and MUST return
+WBEM_S_NO_ERROR.</p><p>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_51f3288a-1aea-49f6-96a1-91f368e8b49b" data-linktype="relative-path">semisynchronous</a></span>
+method execution MUST follow the rules that are specified in section <span><a href="c40421d8-b195-4268-884f-a4e74ea58dce" data-linktype="relative-path">3.1.1.1.2</a></span>.</p><p>The failed method execution MUST set the output parameters
+to NULL and MUST return an error in the format that is specified in section
+2.2.11.</p><p>If the <i>ppResult</i> input parameter is non-NULL, the
+server MUST deliver the result of the requested operation (regardless whether
+WBEM_FLAG_RETURN_IMMEDIATELY is set) via the IWbemCallResult, similar to the
+semisynchronous execution case.</p></div>

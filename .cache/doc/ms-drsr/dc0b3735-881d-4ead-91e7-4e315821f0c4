@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The DRS_MSG_ADDSIDREQ union defines the request messages
+that are sent to the <span><a href="376230a5-d806-4ae5-970a-f6243ee193c8" data-linktype="relative-path">IDL_DRSAddSidHistory</a></span>
+method. Only one version, identified by <i>dwInVersion</i> = 1, is currently
+defined.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_ADDSIDREQ_V1 V1;
+ } DRS_MSG_ADDSIDREQ;
+</pre></div>
+</dd></dl><p><b>V1:</b>  Version 1 request.</p></div>

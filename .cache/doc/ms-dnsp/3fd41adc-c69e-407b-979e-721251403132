@@ -1,0 +1,59 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_NAME</b> structure is used to specify an <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a></span>,
+a DNS label, or another string in an <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> buffer by the DNS
+server. See section <span><a href="6ad92105-7d2b-4350-ae8f-80e99c09013e" data-linktype="relative-path">3.1.6.3</a></span> for the
+handling of this structure in the directory server. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>cchNameLength</p>
+  </td>
+  <td colspan="24">
+  <p>dnsName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>cchNameLength (1 byte): </b>The length, in bytes,
+of the string stored in the dnsName member. To represent an empty string,
+cchNameLength MUST be zero and dnsName MUST be empty. The length of this
+structure is always 4-byte aligned so there can be 0-3 bytes of padding at the
+end of this field. The pad bytes are not included in the cchNameLength count.</p><p><b>dnsName (variable): </b>A UTF-8 string with length
+given by cchNameLength. The string MUST NOT be null-terminated. This string can
+represent a Fully qualified domain name (FQDN) or any other string.</p></div>

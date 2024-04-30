@@ -1,0 +1,2515 @@
+import "ms-dtyp.idl";
+ 
+ [
+     uuid(b97db8b2-4c63-11cf-bff6-08002be23f2f), 
+    version(2.0)
+ ]
+ interface clusapi2
+ {
+ 
+ typedef [context_handle] void *HCLUSTER_RPC;
+ typedef [context_handle] void *HNODE_RPC;
+ typedef [context_handle] void *HGROUP_RPC;
+ typedef [context_handle] void *HRES_RPC;
+ typedef [context_handle] void *HKEY_RPC;
+ typedef [context_handle] void *HNOTIFY_RPC;
+ typedef [context_handle] void *HNETWORK_RPC;
+ typedef [context_handle] void *HNETINTERFACE_RPC;
+ 
+ 
+ typedef struct _RPC_SECURITY_DESCRIPTOR {
+     [ size_is( cbInSecurityDescriptor ),
+       length_is( cbOutSecurityDescriptor ) ]
+       unsigned char *lpSecurityDescriptor;
+     unsigned long cbInSecurityDescriptor;
+     unsigned long cbOutSecurityDescriptor;
+ } RPC_SECURITY_DESCRIPTOR, *PRPC_SECURITY_DESCRIPTOR;
+ 
+ 
+ typedef struct _RPC_SECURITY_ATTRIBUTES {
+     unsigned long nLength;
+     RPC_SECURITY_DESCRIPTOR RpcSecurityDescriptor;
+     long bInheritHandle;
+ } RPC_SECURITY_ATTRIBUTES, *PRPC_SECURITY_ATTRIBUTES;
+ 
+ 
+ typedef struct _CLUSTER_OPERATIONAL_VERSION_INFO {
+     unsigned long dwSize;
+     unsigned long dwClusterHighestVersion;
+     unsigned long dwClusterLowestVersion;
+     unsigned long dwFlags;
+     unsigned long dwReserved;
+ }CLUSTER_OPERATIONAL_VERSION_INFO,*PCLUSTER_OPERATIONAL_VERSION_INFO;
+ 
+ 
+ 
+ 
+ HCLUSTER_RPC
+ ApiOpenCluster(
+     [ out ] error_status_t *Status
+     );
+ 
+ error_status_t
+ ApiCloseCluster(
+     [ in, out ] HCLUSTER_RPC *Cluster
+     );
+ 
+ error_status_t 
+ ApiSetClusterName(
+     [in, string] LPCWSTR NewClusterName
+     );
+ 
+ error_status_t
+ ApiGetClusterName(
+     [ out ] [ string ] LPWSTR *ClusterName,
+     [ out ] [ string ] LPWSTR *NodeName
+     );
+ 
+ error_status_t
+ ApiGetClusterVersion(
+     [out] WORD* lpwMajorVersion,
+     [out] WORD* lpwMinorVersion,
+     [out] WORD* lpwBuildNumber,
+     [out, string]  LPWSTR* lpszVendorId,
+     [out, string]  LPWSTR* lpszCSDVersion
+     );
+ 
+ error_status_t
+ ApiGetQuorumResource(
+     [ out, string ] LPWSTR *lpszResourceName,
+     [ out, string ] LPWSTR *lpszDeviceName,
+     [ out ] DWORD *pdwMaxQuorumLogSize
+     );
+ 
+ error_status_t
+ ApiSetQuorumResource(
+     [ in ] HRES_RPC hResource,
+     [ in, string ] LPCWSTR  lpszDeviceName,
+     [ in ] DWORD    dwMaxQuorumLogSize
+     );    
+ 
+ 
+ typedef struct _ENUM_ENTRY {
+     DWORD Type;
+     [string] LPWSTR Name;
+ } ENUM_ENTRY, *PENUM_ENTRY;
+ 
+ typedef struct _ENUM_LIST {
+     DWORD EntryCount;
+     [size_is(EntryCount)] ENUM_ENTRY Entry[*];
+ } ENUM_LIST, *PENUM_LIST;
+ 
+ error_status_t
+ ApiCreateEnum(
+     [ in ] DWORD dwType,
+     [ out ] PENUM_LIST *ReturnEnum
+     );
+ 
+ 
+ HRES_RPC
+ ApiOpenResource(
+     [in, string]  LPCWSTR lpszResourceName,
+     [out] error_status_t *Status
+     );
+ 
+ HRES_RPC
+ ApiCreateResource(
+     [in] HGROUP_RPC hGroup,
+     [in, string] LPCWSTR lpszResourceName,
+     [in, string] LPCWSTR lpszResourceType,
+     [in] DWORD dwFlags,
+     [out] error_status_t *Status
+     );
+     
+ error_status_t
+ ApiDeleteResource(
+     [in] HRES_RPC hResource
+     );
+     
+ error_status_t
+ ApiCloseResource(
+     [ in, out ] HRES_RPC *Resource
+     );
+ 
+ error_status_t
+ ApiGetResourceState(
+     [in] HRES_RPC hResource,
+     [out] DWORD *State,
+     [out, string] LPWSTR *NodeName,
+     [out, string] LPWSTR *GroupName
+     );
+ 
+ error_status_t 
+ ApiSetResourceName(
+     [in] HRES_RPC hResource,
+     [in, string] LPCWSTR lpszResourceName
+     );
+ 
+ error_status_t
+ ApiGetResourceId(
+     [in] HRES_RPC hResource,
+     [out, string] LPWSTR* pGuid
+     );
+ 
+ error_status_t
+ ApiGetResourceType(
+     [ in ] HRES_RPC hResource,
+     [ out, string ] LPWSTR* lpszResourceType
+     );
+ 
+ error_status_t 
+ApiFailResource(
+     [in] HRES_RPC hResource
+     );
+ 
+ error_status_t
+ ApiOnlineResource(
+     [ in ] HRES_RPC hResource
+     );
+ 
+ error_status_t
+ ApiOfflineResource(
+     [ in ] HRES_RPC hResource
+     );
+ 
+ error_status_t
+ ApiAddResourceDependency(
+     [ in ] HRES_RPC hResource,
+     [ in ] HRES_RPC hDependsOn
+     );
+ 
+ error_status_t
+ ApiRemoveResourceDependency(
+     [ in ] HRES_RPC hResource,
+     [ in ] HRES_RPC hDependsOn
+     );
+ 
+ error_status_t 
+ApiCanResourceBeDependent(
+     [in] HRES_RPC hResource,
+     [in] HRES_RPC hResourceDependent
+     );
+ 
+ error_status_t
+ ApiCreateResEnum(
+     [ in ] HRES_RPC hResource,
+     [ in ] DWORD dwType,
+     [ out ] PENUM_LIST *ReturnEnum
+     );
+ 
+ error_status_t
+ ApiAddResourceNode(
+     [ in ] HRES_RPC hResource,
+     [ in ] HNODE_RPC hNode
+     );
+ 
+ error_status_t
+ ApiRemoveResourceNode(
+     [ in ] HRES_RPC hResource,
+     [ in ] HNODE_RPC hNode
+     );
+ 
+ error_status_t
+ ApiChangeResourceGroup(
+     [ in ] HRES_RPC hResource,
+     [ in ] HGROUP_RPC hGroup
+     );
+ 
+ error_status_t
+ ApiCreateResourceType(
+     [ in, string ] LPCWSTR lpszTypeName,
+     [ in, string ] LPCWSTR lpszDisplayName,
+     [ in, string ] LPCWSTR lpszDllName,
+     [ in ] unsigned long dwLooksAlive,
+     [ in ] unsigned long dwIsAlive
+     );
+ 
+ error_status_t
+ ApiDeleteResourceType(
+     [ in, string ] const wchar_t * lpszTypeName
+     );
+ 
+ 
+ HKEY_RPC
+ ApiGetRootKey(
+     [ in ] unsigned long samDesired,
+     [ out ] error_status_t *Status
+     );
+ 
+ HKEY_RPC
+ ApiCreateKey(
+     [ in ] HKEY_RPC hKey,
+     [ in, string ] const wchar_t * lpSubKey,
+     [ in ] unsigned long dwOptions,
+     [ in ] unsigned long samDesired,
+     [ in, unique ] PRPC_SECURITY_ATTRIBUTES lpSecurityAttributes,
+     [ out ] unsigned long * lpdwDisposition,
+     [ out ] error_status_t *Status
+     );
+ 
+ HKEY_RPC
+ ApiOpenKey(
+     [ in ] HKEY_RPC hKey,
+     [ in, string ] const wchar_t * lpSubKey,
+     [ in ] unsigned long samDesired,
+     [ out ] error_status_t *Status
+     );
+ 
+ error_status_t
+ ApiEnumKey(
+     [ in ] HKEY_RPC hKey,
+     [ in ] unsigned long dwIndex,
+     [ out, string ] wchar_t * *KeyName,
+     [ out ] FILETIME *lpftLastWriteTime
+     );
+ 
+ error_status_t
+ ApiSetValue(
+     [ in ] HKEY_RPC hKey,
+     [ in, string ] const wchar_t * lpValueName,
+     [ in ] unsigned long dwType,
+     [ in, size_is(cbData) ] const unsigned char *lpData,
+     [ in ] unsigned long cbData
+     );
+ 
+ error_status_t
+ ApiDeleteValue(
+     [ in ] HKEY_RPC hKey,
+     [ in, string ] const wchar_t * lpValueName
+     );
+ 
+ error_status_t
+ ApiQueryValue(
+     [ in ] HKEY_RPC hKey,
+     [ in, string ] const wchar_t * lpValueName,
+     [ out ] unsigned long *lpValueType,
+     [ out, size_is(cbData) ] unsigned char *lpData,
+     [ in ] unsigned long cbData,
+     [ out ] unsigned long * lpcbRequired
+     );
+ 
+ error_status_t
+ ApiDeleteKey(
+     [ in ] HKEY_RPC hKey,
+     [ in, string ] const wchar_t * lpSubKey
+     );
+ 
+ error_status_t
+ ApiEnumValue(
+     [ in ] HKEY_RPC hKey,
+     [ in ] unsigned long dwIndex,
+     [ out, string ] wchar_t * *lpValueName,
+     [ out ] unsigned long * lpType,
+     [ out, size_is(*lpcbData) ] unsigned char *lpData,
+     [ in, out ] unsigned long * lpcbData,
+     [ out ] unsigned long * TotalSize
+     );
+ 
+ error_status_t
+ ApiCloseKey(
+     [ in, out ] HKEY_RPC *pKey
+     );
+ 
+ error_status_t
+ ApiQueryInfoKey(
+     [ in ] HKEY_RPC hKey,
+     [ out ] LPDWORD lpcSubKeys,
+     [ out ] LPDWORD lpcbMaxSubKeyLen,
+     [ out ] LPDWORD lpcValues,
+     [ out ] LPDWORD lpcbMaxValueNameLen,
+     [ out ] LPDWORD lpcbMaxValueLen,
+     [ out ] LPDWORD lpcbSecurityDescriptor,
+     [ out ] PFILETIME lpftLastWriteTime
+     );
+ 
+ error_status_t
+ ApiSetKeySecurity(
+     [ in ] HKEY_RPC hKey,
+     [ in ] DWORD SecurityInformation,
+     [ in ] PRPC_SECURITY_DESCRIPTOR pRpcSecurityDescriptor
+     );
+ 
+ error_status_t
+ ApiGetKeySecurity(
+     [ in ] HKEY_RPC hKey,
+     [ in ] DWORD SecurityInformation,
+     [ in, out ] PRPC_SECURITY_DESCRIPTOR pRpcSecurityDescriptor
+     );
+ 
+ 
+ HGROUP_RPC
+ ApiOpenGroup(
+     [ in, string ] const wchar_t * lpszGroupName,
+     [ out ] error_status_t *Status
+     );
+ 
+ HGROUP_RPC
+ ApiCreateGroup(
+     [ in, string ] LPCWSTR lpszGroupName,
+     [ out ] error_status_t *Status
+     );
+ 
+ error_status_t
+ ApiDeleteGroup(
+     [ in ] HGROUP_RPC Group
+     );    
+ 
+ error_status_t
+ ApiCloseGroup(
+     [ in, out ] HGROUP_RPC *Group
+     );
+ 
+ error_status_t
+ ApiGetGroupState(
+     [ in ] HGROUP_RPC hGroup,
+     [ out ] unsigned long *State,
+     [ out, string ] wchar_t * *NodeName
+     );
+ 
+ error_status_t
+ ApiSetGroupName(
+     [ in ] HGROUP_RPC hGroup,
+     [ in, string ] LPCWSTR lpszGroupName
+     );
+ 
+ error_status_t
+ ApiGetGroupId(
+     [ in ] HGROUP_RPC hGroup,
+     [ out, string ] LPWSTR *pGuid
+     );
+ 
+ error_status_t
+ ApiGetNodeId(
+     [ in ] HNODE_RPC hNode,
+     [ out, string ] LPWSTR *pGuid
+     );
+ 
+ error_status_t
+ ApiOnlineGroup(
+     [ in ] HGROUP_RPC hGroup
+     );
+ 
+ error_status_t
+ ApiOfflineGroup(
+     [ in ] HGROUP_RPC hGroup
+     );
+ 
+ error_status_t
+ ApiMoveGroup(
+     [ in ] HGROUP_RPC hGroup
+     );
+ 
+ error_status_t
+ ApiMoveGroupToNode(
+     [ in ] HGROUP_RPC hGroup,
+     [ in ] HNODE_RPC hNode
+     );
+     
+ 
+ error_status_t
+ ApiCreateGroupResourceEnum(
+     [ in ] HGROUP_RPC hGroup,
+     [ in ] unsigned long dwType,
+     [ out ] PENUM_LIST *ReturnEnum
+     );
+ 
+ error_status_t
+ ApiSetGroupNodeList(
+     [ in ] HGROUP_RPC hGroup,
+     [ in, unique, size_is(cbListSize) ] UCHAR *lpNodeList,
+     [ in ] DWORD cbListSize
+     );
+ 
+ HNOTIFY_RPC
+ ApiCreateNotify(
+     [ out ] error_status_t *Status
+     );
+ 
+ error_status_t
+ ApiCloseNotify(
+     [ in, out ] HNOTIFY_RPC* hNotify
+     );
+ 
+ error_status_t
+ ApiAddNotifyCluster(
+     [ in ] HNOTIFY_RPC hNotify,
+     [ in ] HCLUSTER_RPC hCluster,
+     [ in ] DWORD dwFilter,
+     [ in ] DWORD dwNotifyKey
+     );
+ 
+ error_status_t
+ ApiAddNotifyNode(
+     [ in ] HNOTIFY_RPC hNotify,
+     [ in ] HNODE_RPC hNode,
+     [ in ] DWORD dwFilter,
+     [ in ] DWORD dwNotifyKey,
+     [ out ] DWORD *dwStateSequence
+     );
+ 
+ error_status_t
+ ApiAddNotifyGroup(
+     [ in ] HNOTIFY_RPC hNotify,
+     [ in ] HGROUP_RPC hGroup,
+     [ in ] DWORD dwFilter,
+     [ in ] DWORD dwNotifyKey,
+     [ out ] DWORD *dwStateSequence
+     );
+ 
+ error_status_t
+ ApiAddNotifyResource(
+     [ in ] HNOTIFY_RPC hNotify,
+     [ in ] HRES_RPC hResource,
+     [ in ] DWORD dwFilter,
+     [ in ] DWORD dwNotifyKey,
+     [ out ] DWORD *dwStateSequence
+     );
+ 
+ error_status_t
+ ApiAddNotifyKey(
+     [ in ] HNOTIFY_RPC hNotify,
+     [ in ] HKEY_RPC hKey,
+     [ in ] DWORD dwNotifyKey,
+     [ in ] DWORD dwFilter,
+     [ in ] BOOL WatchSubTree
+     );
+ 
+ error_status_t
+ ApiReAddNotifyNode(
+     [ in ] HNOTIFY_RPC hNotify,
+     [ in ] HNODE_RPC hNode,
+     [ in ] DWORD dwFilter,
+     [ in ] DWORD dwNotifyKey,
+     [ in ] DWORD StateSequence
+     );
+ 
+ error_status_t
+ ApiReAddNotifyGroup(
+     [ in ] HNOTIFY_RPC hNotify,
+     [ in ] HGROUP_RPC hGroup,
+     [ in ] DWORD dwFilter,
+     [ in ] DWORD dwNotifyKey,
+     [ in ] DWORD StateSequence
+     );
+ 
+ error_status_t
+ ApiReAddNotifyResource(
+     [ in ] HNOTIFY_RPC hNotify,
+     [ in ] HRES_RPC hResource,
+     [ in ] DWORD dwFilter,
+     [ in ] DWORD dwNotifyKey,
+     [ in ] DWORD StateSequence
+     );
+ 
+ error_status_t
+ ApiGetNotify(
+     [ in ] HNOTIFY_RPC hNotify,
+     [ in ] DWORD Timeout,
+     [ out ] DWORD *dwNotifyKey,
+     [ out ] DWORD *dwFilter,
+     [ out ] DWORD *dwStateSequence,
+     [ out, string ] LPWSTR *Name
+     );
+ 
+ HNODE_RPC
+ ApiOpenNode(
+     [ in, string ] const wchar_t * lpszNodeName,
+     [ out ] error_status_t *Status
+     );
+ 
+ error_status_t
+ ApiCloseNode(
+     [ in, out ] HNODE_RPC *Node
+     );
+ 
+ error_status_t
+ ApiGetNodeState(
+     [ in ] HNODE_RPC hNode,
+     [ out ] unsigned long *State
+     );
+ 
+ error_status_t
+ ApiPauseNode(
+     [ in ] HNODE_RPC hNode
+     );
+ 
+ error_status_t
+ ApiResumeNode(
+     [ in ] HNODE_RPC hNode
+     );
+ 
+ error_status_t
+ ApiEvictNode(
+     [ in ] HNODE_RPC hNode
+     );
+ 
+ error_status_t
+ ApiNodeResourceControl(
+     [ in ] HRES_RPC hResource,
+     [ in ] HNODE_RPC hNode,
+     [ in ] DWORD dwControlCode,
+     [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+     [ in ] DWORD nInBufferSize,
+     [ out, size_is(nOutBufferSize),
+         length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+     [ in ] DWORD nOutBufferSize,
+     [ out ] DWORD *lpBytesReturned,
+     [ out ] DWORD *lpcbRequired
+     );    
+ 
+ error_status_t
+ ApiResourceControl(
+     [ in ] HRES_RPC hResource,
+     [ in ] unsigned long dwControlCode,
+     [ in, unique, size_is(nInBufferSize) ] unsigned char *lpInBuffer,
+     [ in ] unsigned long nInBufferSize,
+     [ out, size_is(nOutBufferSize),
+         length_is (*lpBytesReturned)] unsigned char *lpOutBuffer,
+     [ in ] unsigned long nOutBufferSize,
+     [ out ] unsigned long *lpBytesReturned,
+     [ out ] unsigned long *lpcbRequired
+     );
+ 
+ error_status_t
+ ApiNodeResourceTypeControl(
+     [ in ] HCLUSTER_RPC hCluster,
+     [ in, string ] LPCWSTR lpszResourceTypeName,
+     [ in ] HNODE_RPC hNode,
+     [ in ] DWORD dwControlCode,
+     [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+     [ in ] DWORD nInBufferSize,
+     [ out, size_is(nOutBufferSize),
+         length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+     [ in ] DWORD nOutBufferSize,
+     [ out ] DWORD *lpBytesReturned,
+     [ out ] DWORD *lpcbRequired
+     );
+ 
+ error_status_t
+ ApiResourceTypeControl(
+     [ in ] HCLUSTER_RPC hCluster,
+     [ in, string ] LPCWSTR lpszResourceTypeName,
+     [ in ] DWORD dwControlCode,
+     [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+     [ in ] DWORD nInBufferSize,
+     [ out, size_is(nOutBufferSize),
+         length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+     [ in ] DWORD nOutBufferSize,
+     [ out ] DWORD *lpBytesReturned,
+     [ out ] DWORD *lpcbRequired
+     );
+ 
+ error_status_t
+ ApiNodeGroupControl(
+     [ in ] HGROUP_RPC hGroup,
+     [ in ] HNODE_RPC hNode,
+     [ in ] DWORD dwControlCode,
+     [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+     [ in ] DWORD nInBufferSize,
+     [ out, size_is(nOutBufferSize),
+         length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+     [ in ] DWORD nOutBufferSize,
+     [ out ] DWORD *lpBytesReturned,
+     [ out ] DWORD *lpcbRequired
+     );
+ 
+ error_status_t
+ ApiGroupControl(
+     [ in ] HGROUP_RPC hGroup,
+     [ in ] DWORD dwControlCode,
+     [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+     [ in ] DWORD nInBufferSize,
+     [ out, size_is(nOutBufferSize),
+         length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+     [ in ] DWORD nOutBufferSize,
+     [ out ] DWORD *lpBytesReturned,
+     [ out ] DWORD *lpcbRequired
+     );
+ 
+ error_status_t
+ ApiNodeNodeControl(
+     [ in ] HNODE_RPC hNode,
+     [ in ] HNODE_RPC hHostNode,
+     [ in ] DWORD dwControlCode,
+     [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+     [ in ] DWORD nInBufferSize,
+     [ out, size_is(nOutBufferSize),
+        length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+     [ in ] DWORD nOutBufferSize,
+     [ out ] DWORD *lpBytesReturned,
+     [ out ] DWORD *lpcbRequired
+     );
+ 
+ error_status_t
+ ApiNodeControl(
+     [ in ] HNODE_RPC hNode,
+     [ in ] DWORD dwControlCode,
+     [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+     [ in ] DWORD nInBufferSize,
+     [ out, size_is(nOutBufferSize),
+         length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+     [ in ] DWORD nOutBufferSize,
+     [ out ] DWORD *lpBytesReturned,
+     [ out ] DWORD *lpcbRequired
+     );
+ 
+ error_status_t
+ Opnum80NotUsedOnWire(void);
+ 
+ 
+ HNETWORK_RPC
+ ApiOpenNetwork(
+     [ in, string ] LPCWSTR lpszNetworkName,
+     [ out ] error_status_t *Status
+     );
+ 
+ error_status_t
+ ApiCloseNetwork(
+     [ in, out ] HNETWORK_RPC *Network
+     );
+ 
+ error_status_t
+ ApiGetNetworkState(
+     [ in ] HNETWORK_RPC hNetwork,
+     [ out ] DWORD *State
+     );
+ 
+ error_status_t
+ ApiSetNetworkName(
+     [ in ] HNETWORK_RPC hNetwork,
+     [ in, string ] LPCWSTR lpszNetworkName
+     );
+ 
+ error_status_t
+ ApiCreateNetworkEnum(
+     [ in ] HNETWORK_RPC hNetwork,
+     [ in ] DWORD dwType,
+     [ out ] PENUM_LIST *ReturnEnum
+     );
+ 
+ error_status_t
+ ApiGetNetworkId(
+     [ in ] HNETWORK_RPC hNetwork,
+     [ out, string ] LPWSTR *pGuid
+     );
+ 
+ error_status_t
+ ApiSetNetworkPriorityOrder(
+     [ in, range(0, 1000)] DWORD NetworkCount,
+     [ in, string, size_is(NetworkCount) ] LPWSTR NetworkIdList[*]
+     );
+ 
+ error_status_t
+ ApiNodeNetworkControl(
+     [ in ] HNETWORK_RPC hNetwork,
+     [ in ] HNODE_RPC hNode,
+     [ in ] DWORD dwControlCode,
+     [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+     [ in ] DWORD nInBufferSize,
+     [ out, size_is(nOutBufferSize),
+         length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+     [ in ] DWORD nOutBufferSize,
+     [ out ] DWORD *lpBytesReturned,
+     [ out ] DWORD *lpcbRequired
+     );
+ 
+ error_status_t
+ ApiNetworkControl(
+     [ in ] HNETWORK_RPC hNetwork,
+     [ in ] DWORD dwControlCode,
+     [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+     [ in ] DWORD nInBufferSize,
+     [ out, size_is(nOutBufferSize),
+         length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+     [ in ] DWORD nOutBufferSize,
+     [ out ] DWORD *lpBytesReturned,
+     [ out ] DWORD *lpcbRequired
+     );
+ 
+ error_status_t
+ ApiAddNotifyNetwork(
+     [ in ] HNOTIFY_RPC hNotify,
+     [ in ] HNETWORK_RPC hNetwork,
+     [ in ] DWORD dwFilter,
+     [ in ] DWORD dwNotifyKey,
+     [ out ] DWORD *dwStateSequence
+     );
+ 
+ error_status_t
+ ApiReAddNotifyNetwork(
+     [ in ] HNOTIFY_RPC hNotify,
+     [ in ] HNETWORK_RPC hNetwork,
+     [ in ] DWORD dwFilter,
+     [ in ] DWORD dwNotifyKey,
+     [ in ] DWORD StateSequence
+     );
+ 
+ HNETINTERFACE_RPC
+ ApiOpenNetInterface(
+     [ in, string ] LPCWSTR lpszNetInterfaceName,
+     [ out ] error_status_t *Status
+     );
+ 
+ error_status_t
+ ApiCloseNetInterface(
+     [ in, out ] HNETINTERFACE_RPC *NetInterface
+     );
+ 
+ error_status_t
+ ApiGetNetInterfaceState(
+     [ in ] HNETINTERFACE_RPC hNetInterface,
+     [ out ] DWORD *State
+     );
+ 
+ error_status_t
+ ApiGetNetInterface(
+     [ in, string ] LPCWSTR lpszNodeName,
+     [ in, string ] LPCWSTR lpszNetworkName,
+     [ out, string ] LPWSTR *lppszInterfaceName
+     );
+ 
+ error_status_t
+ ApiGetNetInterfaceId(
+     [ in ] HNETINTERFACE_RPC hNetInterface,
+     [ out, string ] LPWSTR *pGuid
+     );
+ 
+ error_status_t
+ ApiNodeNetInterfaceControl(
+     [ in ] HNETINTERFACE_RPC hNetInterface,
+     [ in ] HNODE_RPC hNode,
+     [ in ] DWORD dwControlCode,
+     [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+     [ in ] DWORD nInBufferSize,
+     [ out, size_is(nOutBufferSize),
+         length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+     [ in ] DWORD nOutBufferSize,
+     [ out ] DWORD *lpBytesReturned,
+     [ out ] DWORD *lpcbRequired
+     );
+ 
+ error_status_t
+ ApiNetInterfaceControl(
+     [ in ] HNETINTERFACE_RPC hNetInterface,
+     [ in ] DWORD dwControlCode,
+     [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+     [ in ] DWORD nInBufferSize,
+     [ out, size_is(nOutBufferSize),
+         length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+     [ in ] DWORD nOutBufferSize,
+     [ out ] DWORD *lpBytesReturned,
+     [ out ] DWORD *lpcbRequired
+     );
+ 
+ error_status_t
+ ApiAddNotifyNetInterface(
+     [ in ] HNOTIFY_RPC hNotify,
+     [ in ] HNETINTERFACE_RPC hNetInterface,
+     [ in ] DWORD dwFilter,
+     [ in ] DWORD dwNotifyKey,
+     [ out ] DWORD *dwStateSequence
+     );
+ 
+ error_status_t
+ ApiReAddNotifyNetInterface(
+     [ in ] HNOTIFY_RPC hNotify,
+     [ in ] HNETINTERFACE_RPC hNetInterface,
+     [ in ] DWORD dwFilter,
+     [ in ] DWORD dwNotifyKey,
+     [ in ] DWORD StateSequence
+     );
+ 
+ error_status_t
+ ApiCreateNodeEnum(
+     [ in ] HNODE_RPC hNode,
+     [ in ] DWORD dwType,
+     [ out ] PENUM_LIST *ReturnEnum
+     );    
+ 
+ error_status_t
+ ApiGetClusterVersion2(
+     [ out ] WORD* lpwMajorVersion,
+     [ out ] WORD* lpwMinorVersion,
+     [ out ] WORD* lpwBuildNumber,
+     [ out, string ] wchar_t * *lpszVendorId,
+     [ out, string ] wchar_t * *lpszCSDVersion,
+     [ out ] PCLUSTER_OPERATIONAL_VERSION_INFO *ppClusterOpVerInfo
+     );
+ 
+ error_status_t
+ ApiCreateResTypeEnum(
+     [ in, string ] LPCWSTR lpszTypeName,
+     [ in ] DWORD dwType,
+     [ out ] PENUM_LIST *ReturnEnum
+     );
+ 
+ error_status_t
+ ApiBackupClusterDatabase(
+     [ in, string ] LPCWSTR lpszPathName
+     );
+ 
+ error_status_t
+ ApiNodeClusterControl(
+     [ in ] HCLUSTER_RPC hCluster,
+     [ in ] HNODE_RPC hHostNode,
+     [ in ] DWORD dwControlCode,
+     [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+     [ in ] DWORD nInBufferSize,
+     [ out, size_is(nOutBufferSize),
+         length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+     [ in ] DWORD nOutBufferSize,
+     [ out ] DWORD *lpBytesReturned,
+     [ out ] DWORD *lpcbRequired
+     );
+ 
+ error_status_t
+ ApiClusterControl(
+     [ in ] HCLUSTER_RPC hCluster,
+     [ in ] DWORD dwControlCode,
+     [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+     [ in ] DWORD nInBufferSize,
+     [ out, size_is(nOutBufferSize),
+         length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+     [ in ] DWORD nOutBufferSize,
+     [ out ] DWORD *lpBytesReturned,
+     [ out ] DWORD *lpcbRequired
+     );
+ 
+ error_status_t
+ ApiUnblockGetNotifyCall(
+     [ in ] HNOTIFY_RPC hNotify
+     );
+ 
+ typedef struct IDL_CLUSTER_SET_PASSWORD_STATUS {
+     DWORD    NodeId;
+     BOOLEAN  SetAttempted;
+     DWORD    ReturnStatus;
+ } IDL_CLUSTER_SET_PASSWORD_STATUS, *PIDL_CLUSTER_SET_PASSWORD_STATUS;
+ 
+ typedef enum IDL_CLUSTER_SET_PASSWORD_FLAGS {
+     IDL_CLUSTER_SET_PASSWORD_IGNORE_DOWN_NODES = 1
+ } IDL_CLUSTER_SET_PASSWORD_FLAGS;
+ 
+ error_status_t
+ ApiSetServiceAccountPassword(
+     [ in, string ] LPWSTR lpszNewPassword,
+     [ in ]  IDL_CLUSTER_SET_PASSWORD_FLAGS dwFlags,
+     [ out, size_is(ReturnStatusBufferSize),
+         length_is(*SizeReturned) ] IDL_CLUSTER_SET_PASSWORD_STATUS
+         ReturnStatusBufferPtr[*],
+     [ in ] DWORD ReturnStatusBufferSize,
+     [ out ] DWORD *SizeReturned,
+     [ out ] DWORD *ExpectedBufferSize
+     );
+};
+
+   [
+       uuid(b97db8b2-4c63-11cf-bff6-08002be23f2f), 
+       version(3.0)
+   ]
+ 
+   interface clusapi3
+   {
+    #define MAX_CLUSTER_CONTROL_CODE_BUFFER_SIZE 0x7FFFFFFF
+    typedef [context_handle] void *HGROUPSET_RPC;
+    typedef [context_handle] void *HCLUSTER_RPC;
+    typedef [context_handle] void *HNODE_RPC;
+    typedef [context_handle] void *HGROUP_RPC;
+    typedef [context_handle] void *HRES_RPC;
+    typedef [context_handle] void *HKEY_RPC;
+    typedef [context_handle] void *HNOTIFY_RPC;
+    typedef [context_handle] void *HNETWORK_RPC;
+    typedef [context_handle] void *HNETINTERFACE_RPC;
+    typedef [context_handle] void *HBATCH_PORT_RPC;
+    
+    
+    typedef struct _RPC_SECURITY_DESCRIPTOR {
+        [ size_is( cbInSecurityDescriptor ),
+          length_is( cbOutSecurityDescriptor ) ]
+          unsigned char *lpSecurityDescriptor;
+        unsigned long cbInSecurityDescriptor;
+        unsigned long cbOutSecurityDescriptor;
+    } RPC_SECURITY_DESCRIPTOR, *PRPC_SECURITY_DESCRIPTOR;
+    
+    
+    typedef struct _RPC_SECURITY_ATTRIBUTES {
+        unsigned long nLength;
+        RPC_SECURITY_DESCRIPTOR RpcSecurityDescriptor;
+        long bInheritHandle;
+    } RPC_SECURITY_ATTRIBUTES, *PRPC_SECURITY_ATTRIBUTES;
+    
+    
+    typedef struct _CLUSTER_OPERATIONAL_VERSION_INFO {
+        unsigned long dwSize;
+        unsigned long dwClusterHighestVersion;
+        unsigned long dwClusterLowestVersion;
+        unsigned long dwFlags;
+        unsigned long dwReserved;
+    }CLUSTER_OPERATIONAL_VERSION_INFO, *PCLUSTER_OPERATIONAL_VERSION_INFO;
+    
+    typedef struct IDL_CLUSTER_SET_PASSWORD_STATUS {
+        DWORD    NodeId;
+        BOOLEAN  SetAttempted;
+        DWORD    ReturnStatus;
+    } IDL_CLUSTER_SET_PASSWORD_STATUS, *PIDL_CLUSTER_SET_PASSWORD_STATUS;
+    
+    typedef enum IDL_CLUSTER_SET_PASSWORD_FLAGS {
+        IDL_CLUSTER_SET_PASSWORD_IGNORE_DOWN_NODES = 1
+    } IDL_CLUSTER_SET_PASSWORD_FLAGS;
+   
+   typedef struct _CLUSTER_CREATE_GROUP_INFO_RPC {
+       DWORD   dwVersion;
+       DWORD   dwGroupType;
+   }CLUSTER_CREATE_GROUP_INFO_RPC, *PCLUSTER_CREATE_GROUP_INFO_RPC;
+   
+    HCLUSTER_RPC
+    ApiOpenCluster(
+        [ out ] error_status_t *Status
+        );
+    
+    error_status_t
+    ApiCloseCluster(
+        [ in, out ] HCLUSTER_RPC *Cluster
+        );
+    
+    error_status_t
+    ApiSetClusterName(
+        [ in, string ] LPCWSTR NewClusterName,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiGetClusterName(
+        [ out, string ] LPWSTR *ClusterName,
+        [ out, string ] LPWSTR *NodeName
+        );
+    
+    error_status_t
+    ApiGetClusterVersion(
+        [ out ] WORD *lpwMajorVersion,
+        [ out ] WORD *lpwMinorVersion,
+        [ out ] WORD *lpwBuildNumber,
+        [ out, string ] LPWSTR *lpszVendorId,
+        [ out, string ] LPWSTR *lpszCSDVersion
+        );
+    
+    error_status_t
+    ApiGetQuorumResource(
+        [ out, string ] LPWSTR *lpszResourceName,
+        [ out, string ] LPWSTR *lpszDeviceName,
+        [ out ] DWORD *pdwMaxQuorumLogSize,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiSetQuorumResource(
+        [ in ] HRES_RPC hResource,
+        [ in, string ] LPCWSTR  lpszDeviceName,
+        [ in ] DWORD    dwMaxQuorumLogSize,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    typedef struct _ENUM_ENTRY {
+        DWORD Type;
+        [string] LPWSTR Name;
+    } ENUM_ENTRY, *PENUM_ENTRY;
+    
+    typedef struct _ENUM_LIST {
+        DWORD EntryCount;
+        [size_is(EntryCount)] ENUM_ENTRY Entry[*];
+    } ENUM_LIST, *PENUM_LIST;
+    
+   typedef struct _GROUP_ENUM_ENTRY {
+       [string] LPWSTR Name;
+       [string] LPWSTR Id;
+       DWORD dwState;
+       [string] LPWSTR Owner;
+       DWORD dwFlags;
+       DWORD cbProperties;
+       [size_is(cbProperties)] UCHAR* Properties;
+       DWORD cbRoProperties;
+       [size_is(cbRoProperties)] UCHAR* RoProperties;
+   } GROUP_ENUM_ENTRY, *PGROUP_ENUM_ENTRY;
+   
+   typedef struct _RESOURCE_ENUM_ENTRY {
+       [string] LPWSTR Name;
+       [string] LPWSTR Id;
+       [string] LPWSTR OwnerName;
+       [string] LPWSTR OwnerId;
+       DWORD cbProperties;
+       [size_is(cbProperties)] UCHAR* Properties;
+       DWORD cbRoProperties;
+       [size_is(cbRoProperties)] UCHAR* RoProperties;
+   } RESOURCE_ENUM_ENTRY, *PRESOURCE_ENUM_ENTRY;
+   
+   typedef struct _GROUP_ENUM_LIST {
+       DWORD EntryCount;
+       [size_is(EntryCount)] GROUP_ENUM_ENTRY Entry[*];
+   } GROUP_ENUM_LIST, *PGROUP_ENUM_LIST;
+   
+   typedef struct _RESOURCE_ENUM_LIST {
+       DWORD EntryCount;
+       [size_is(EntryCount)] RESOURCE_ENUM_ENTRY Entry[*];
+   } RESOURCE_ENUM_LIST, *PRESOURCE_ENUM_LIST;
+   
+    error_status_t
+    ApiCreateEnum(
+        [ in ] DWORD dwType,
+        [ out ] PENUM_LIST *ReturnEnum,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    HRES_RPC
+    ApiOpenResource(
+        [ in, string ] LPCWSTR lpszResourceName,
+        [ out ] error_status_t *Status,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    HRES_RPC
+    ApiCreateResource(
+        [ in ] HGROUP_RPC hGroup,
+        [ in, string ] LPCWSTR lpszResourceName,
+        [ in, string ] LPCWSTR lpszResourceType,
+        [ in ] DWORD dwFlags,
+        [ out ] error_status_t *Status,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiDeleteResource(
+        [ in ] HRES_RPC hResource,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiCloseResource(
+        [ in, out ] HRES_RPC *Resource
+        );
+    
+    error_status_t
+    ApiGetResourceState(
+        [ in ] HRES_RPC hResource,
+        [ out ] DWORD *State,
+        [ out, string ] LPWSTR *NodeName,
+        [ out, string ] LPWSTR *GroupName,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiSetResourceName(
+        [ in ] HRES_RPC hResource,
+        [ in, string ] LPCWSTR lpszResourceName,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiGetResourceId(
+        [ in ] HRES_RPC hResource,
+        [ out, string ] LPWSTR *pGuid,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiGetResourceType(
+        [ in ] HRES_RPC hResource,
+        [ out, string ] LPWSTR *lpszResourceType,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiFailResource(
+        [ in ] HRES_RPC hResource,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiOnlineResource(
+        [ in ] HRES_RPC hResource,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiOfflineResource(
+        [ in ] HRES_RPC hResource,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiAddResourceDependency(
+        [ in ] HRES_RPC hResource,
+        [ in ] HRES_RPC hDependsOn,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiRemoveResourceDependency(
+        [ in ] HRES_RPC hResource,
+        [ in ] HRES_RPC hDependsOn,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiCanResourceBeDependent(
+        [ in ] HRES_RPC hResource,
+        [ in ] HRES_RPC hResourceDependent,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiCreateResEnum(
+        [ in ] HRES_RPC hResource,
+        [ in ] DWORD dwType,
+        [ out ] PENUM_LIST *ReturnEnum,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiAddResourceNode(
+        [ in ] HRES_RPC hResource,
+        [ in ] HNODE_RPC hNode,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiRemoveResourceNode(
+        [ in ] HRES_RPC hResource,
+        [ in ] HNODE_RPC hNode,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiChangeResourceGroup(
+        [ in ] HRES_RPC hResource,
+        [ in ] HGROUP_RPC hGroup,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiCreateResourceType(
+        [ in, string ] LPCWSTR lpszTypeName,
+        [ in, string ] LPCWSTR lpszDisplayName,
+        [ in, string ] LPCWSTR lpszDllName,
+        [ in ] DWORD dwLooksAlive,
+        [ in ] DWORD dwIsAlive,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiDeleteResourceType(
+        [ in, string ] LPCWSTR lpszTypeName,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    HKEY_RPC
+    ApiGetRootKey(
+        [ in ] DWORD samDesired,
+        [ out ] error_status_t *Status,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    HKEY_RPC
+    ApiCreateKey(
+        [ in ] HKEY_RPC hKey,
+        [ in, string ] LPCWSTR lpSubKey,
+        [ in ] DWORD dwOptions,
+        [ in ] DWORD samDesired,
+        [ in, unique ] PRPC_SECURITY_ATTRIBUTES lpSecurityAttributes,
+        [ out ] LPDWORD lpdwDisposition,
+        [ out ] error_status_t *Status,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    HKEY_RPC
+    ApiOpenKey(
+        [ in ] HKEY_RPC hKey,
+        [ in, string ] LPCWSTR lpSubKey,
+        [ in ] DWORD samDesired,
+        [ out ] error_status_t *Status,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiEnumKey(
+        [ in ] HKEY_RPC hKey,
+        [ in ] DWORD dwIndex,
+        [ out, string ] LPWSTR *KeyName,
+        [ out ] FILETIME *lpftLastWriteTime,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiSetValue(
+        [ in ] HKEY_RPC hKey,
+        [ in, string ] LPCWSTR lpValueName,
+        [ in ] DWORD dwType,
+        [ in, size_is(cbData) ] const UCHAR *lpData,
+        [ in ] DWORD cbData,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiDeleteValue(
+        [ in ] HKEY_RPC hKey,
+        [ in, string ] LPCWSTR lpValueName,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiQueryValue(
+        [ in ] HKEY_RPC hKey,
+        [ in, string ] LPCWSTR lpValueName,
+        [ out ] DWORD *lpValueType,
+        [ out, size_is(cbData) ] UCHAR *lpData,
+        [ in ] DWORD cbData,
+        [ out ] LPDWORD lpcbRequired,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiDeleteKey(
+        [ in ] HKEY_RPC hKey,
+        [ in, string ] LPCWSTR lpSubKey,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiEnumValue(
+        [ in ] HKEY_RPC hKey,
+        [ in ] DWORD dwIndex,
+        [ out, string ] LPWSTR *lpValueName,
+        [ out ] LPDWORD lpType,
+        [ out, size_is(*lpcbData) ] UCHAR *lpData,
+        [ in, out ] LPDWORD lpcbData,
+        [ out ] LPDWORD TotalSize,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiCloseKey(
+        [ in, out ] HKEY_RPC *pKey
+        );
+    
+    error_status_t
+    ApiQueryInfoKey(
+        [ in ] HKEY_RPC hKey,
+        [ out ] LPDWORD lpcSubKeys,
+        [ out ] LPDWORD lpcbMaxSubKeyLen,
+        [ out ] LPDWORD lpcValues,
+        [ out ] LPDWORD lpcbMaxValueNameLen,
+        [ out ] LPDWORD lpcbMaxValueLen,
+        [ out ] LPDWORD lpcbSecurityDescriptor,
+        [ out ] PFILETIME lpftLastWriteTime,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiSetKeySecurity(
+        [ in ] HKEY_RPC hKey,
+        [ in ] DWORD SecurityInformation,
+        [ in ] PRPC_SECURITY_DESCRIPTOR pRpcSecurityDescriptor,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiGetKeySecurity(
+        [ in ] HKEY_RPC hKey,
+        [ in ] DWORD SecurityInformation,
+        [ in, out ] PRPC_SECURITY_DESCRIPTOR pRpcSecurityDescriptor,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    HGROUP_RPC
+    ApiOpenGroup(
+        [ in, string ] LPCWSTR lpszGroupName,
+        [ out ] error_status_t *Status,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    HGROUP_RPC
+    ApiCreateGroup(
+        [ in, string ] LPCWSTR lpszGroupName,
+        [ out ] error_status_t *Status,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiDeleteGroup(
+        [ in ] HGROUP_RPC Group,
+        [ in ] BOOL force,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiCloseGroup(
+        [ in, out ] HGROUP_RPC *Group
+        );
+    
+    error_status_t
+    ApiGetGroupState(
+        [ in ] HGROUP_RPC hGroup,
+        [ out ] DWORD *State,
+        [ out, string ] LPWSTR *NodeName,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiSetGroupName(
+        [ in ] HGROUP_RPC hGroup,
+        [ in, string ] LPCWSTR lpszGroupName,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiGetGroupId(
+        [ in ] HGROUP_RPC hGroup,
+        [ out, string ] LPWSTR *pGuid,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiGetNodeId(
+        [ in ] HNODE_RPC hNode,
+        [ out, string ] LPWSTR *pGuid,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiOnlineGroup(
+        [ in ] HGROUP_RPC hGroup,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiOfflineGroup(
+        [ in ] HGROUP_RPC hGroup,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiMoveGroup(
+        [ in ] HGROUP_RPC hGroup,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiMoveGroupToNode(
+        [ in ] HGROUP_RPC hGroup,
+        [ in ] HNODE_RPC hNode,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiCreateGroupResourceEnum(
+        [ in ] HGROUP_RPC hGroup,
+        [ in ] DWORD dwType,
+        [ out ] PENUM_LIST *ReturnEnum,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiSetGroupNodeList(
+        [ in ] HGROUP_RPC hGroup,
+        [ in, unique, size_is(cchListSize), format(multi_size) ] wchar_t* multiSzNodeList,
+        [ in ] DWORD cchListSize,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    HNOTIFY_RPC
+    ApiCreateNotify(
+        [ out ] error_status_t *Status,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiCloseNotify(
+        [ in, out ] HNOTIFY_RPC *Notify
+        );
+    
+    error_status_t
+    ApiAddNotifyCluster(
+        [ in ] HNOTIFY_RPC hNotify,
+        [ in ] HCLUSTER_RPC hCluster,
+        [ in ] DWORD dwFilter,
+        [ in ] DWORD dwNotifyKey,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiAddNotifyNode(
+        [ in ] HNOTIFY_RPC hNotify,
+        [ in ] HNODE_RPC hNode,
+        [ in ] DWORD dwFilter,
+        [ in ] DWORD dwNotifyKey,
+        [ out ] DWORD *dwStateSequence,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiAddNotifyGroup(
+        [ in ] HNOTIFY_RPC hNotify,
+        [ in ] HGROUP_RPC hGroup,
+        [ in ] DWORD dwFilter,
+        [ in ] DWORD dwNotifyKey,
+        [ out ] DWORD *dwStateSequence,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiAddNotifyResource(
+        [ in ] HNOTIFY_RPC hNotify,
+        [ in ] HRES_RPC hResource,
+        [ in ] DWORD dwFilter,
+        [ in ] DWORD dwNotifyKey,
+        [ out ] DWORD *dwStateSequence,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiAddNotifyKey(
+        [ in ] HNOTIFY_RPC hNotify,
+        [ in ] HKEY_RPC hKey,
+        [ in ] DWORD dwNotifyKey,
+        [ in ] DWORD Filter,
+        [ in ] BOOL WatchSubTree,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiReAddNotifyNode(
+        [ in ] HNOTIFY_RPC hNotify,
+        [ in ] HNODE_RPC hNode,
+        [ in ] DWORD dwFilter,
+        [ in ] DWORD dwNotifyKey,
+        [ in ] DWORD StateSequence,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiReAddNotifyGroup(
+        [ in ] HNOTIFY_RPC hNotify,
+        [ in ] HGROUP_RPC hGroup,
+        [ in ] DWORD dwFilter,
+        [ in ] DWORD dwNotifyKey,
+        [ in ] DWORD StateSequence,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiReAddNotifyResource(
+        [ in ] HNOTIFY_RPC hNotify,
+        [ in ] HRES_RPC hResource,
+        [ in ] DWORD dwFilter,
+        [ in ] DWORD dwNotifyKey,
+        [ in ] DWORD StateSequence,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    
+    error_status_t
+    ApiGetNotify(
+        [ in ] HNOTIFY_RPC hNotify,
+        [ out ] DWORD *dwNotifyKey,
+        [ out ] DWORD *dwFilter,
+        [ out ] DWORD *dwStateSequence,
+        [ out, string ] LPWSTR *Name,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    
+    HNODE_RPC
+    ApiOpenNode(
+        [ in, string ] LPCWSTR lpszNodeName,
+        [ out ] error_status_t *Status,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiCloseNode(
+        [ in, out ] HNODE_RPC *Node
+        );
+    
+    error_status_t
+    ApiGetNodeState(
+        [ in ] HNODE_RPC hNode,
+        [ out ] DWORD *State,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiPauseNode(
+        [ in ] HNODE_RPC hNode,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiResumeNode(
+        [ in ] HNODE_RPC hNode,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiEvictNode(
+        [ in ] HNODE_RPC hNode,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiNodeResourceControl(
+        [ in ] HRES_RPC hResource,
+        [ in ] HNODE_RPC hNode,
+        [ in ] DWORD dwControlCode,
+        [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+        [ in ] DWORD nInBufferSize,
+        [ out, size_is(nOutBufferSize),
+            length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+        [ in ] DWORD nOutBufferSize,
+        [ out ] DWORD *lpBytesReturned,
+        [ out ] DWORD *lpcbRequired,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiResourceControl(
+        [ in ] HRES_RPC hResource,
+        [ in ] DWORD dwControlCode,
+        [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+        [ in ] DWORD nInBufferSize,
+        [ out, size_is(nOutBufferSize),
+            length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+        [ in ] DWORD nOutBufferSize,
+        [ out ] DWORD *lpBytesReturned,
+        [ out ] DWORD *lpcbRequired,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiNodeResourceTypeControl(
+        [ in ] HCLUSTER_RPC hCluster,
+        [ in, string ] LPCWSTR lpszResourceTypeName,
+        [ in ] HNODE_RPC hNode,
+        [ in ] DWORD dwControlCode,
+        [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+        [ in ] DWORD nInBufferSize,
+        [ out, size_is(nOutBufferSize),
+            length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+        [ in ] DWORD nOutBufferSize,
+        [ out ] DWORD *lpBytesReturned,
+        [ out ] DWORD *lpcbRequired,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiResourceTypeControl(
+        [ in ] HCLUSTER_RPC hCluster,
+        [ in, string ] LPCWSTR lpszResourceTypeName,
+        [ in ] DWORD dwControlCode,
+        [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+        [ in ] DWORD nInBufferSize,
+        [ out, size_is(nOutBufferSize),
+            length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+        [ in ] DWORD nOutBufferSize,
+        [ out ] DWORD *lpBytesReturned,
+        [ out ] DWORD *lpcbRequired,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiNodeGroupControl(
+        [ in ] HGROUP_RPC hGroup,
+        [ in ] HNODE_RPC hNode,
+        [ in ] DWORD dwControlCode,
+        [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+        [ in ] DWORD nInBufferSize,
+        [ out, size_is(nOutBufferSize),
+            length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+        [ in ] DWORD nOutBufferSize,
+        [ out ] DWORD *lpBytesReturned,
+        [ out ] DWORD *lpcbRequired,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiGroupControl(
+        [ in ] HGROUP_RPC hGroup,
+        [ in ] DWORD dwControlCode,
+        [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+        [ in ] DWORD nInBufferSize,
+        [ out, size_is(nOutBufferSize),
+            length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+        [ in ] DWORD nOutBufferSize,
+        [ out ] DWORD *lpBytesReturned,
+        [ out ] DWORD *lpcbRequired,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiNodeNodeControl(
+        [ in ] HNODE_RPC hNode,
+        [ in ] HNODE_RPC hHostNode,
+        [ in ] DWORD dwControlCode,
+        [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+        [ in ] DWORD nInBufferSize,
+        [ out, size_is(nOutBufferSize),
+            length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+        [ in ] DWORD nOutBufferSize,
+        [ out ] DWORD *lpBytesReturned,
+        [ out ] DWORD *lpcbRequired,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiNodeControl(
+        [ in ] HNODE_RPC hNode,
+        [ in ] DWORD dwControlCode,
+        [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+        [ in ] DWORD nInBufferSize,
+        [ out, size_is(nOutBufferSize),
+            length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+        [ in ] DWORD nOutBufferSize,
+        [ out ] DWORD *lpBytesReturned,
+        [ out ] DWORD *lpcbRequired,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    Opnum80NotUsedOnWire(void);
+     
+    HNETWORK_RPC
+    ApiOpenNetwork(
+        [ in, string ] LPCWSTR lpszNetworkName,
+        [ out ] error_status_t *Status,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiCloseNetwork(
+        [ in, out ] HNETWORK_RPC *Network
+        );
+    
+    error_status_t
+    ApiGetNetworkState(
+        [ in ] HNETWORK_RPC hNetwork,
+        [ out ] DWORD *State,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiSetNetworkName(
+        [ in ] HNETWORK_RPC hNetwork,
+        [ in, string ] LPCWSTR lpszNetworkName,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiCreateNetworkEnum(
+        [ in ] HNETWORK_RPC hNetwork,
+        [ in ] DWORD dwType,
+        [ out ] PENUM_LIST *ReturnEnum,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiGetNetworkId(
+        [ in ] HNETWORK_RPC hNetwork,
+        [ out, string ] LPWSTR *pGuid,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiSetNetworkPriorityOrder(
+        [ in, range(0, 1000)] DWORD NetworkCount,
+        [ in, string, size_is(NetworkCount) ] LPWSTR NetworkIdList[*],
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiNodeNetworkControl(
+        [ in ] HNETWORK_RPC hNetwork,
+        [ in ] HNODE_RPC hNode,
+        [ in ] DWORD dwControlCode,
+        [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+        [ in ] DWORD nInBufferSize,
+        [ out, size_is(nOutBufferSize),
+            length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+        [ in ] DWORD nOutBufferSize,
+        [ out ] DWORD *lpBytesReturned,
+        [ out ] DWORD *lpcbRequired,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiNetworkControl(
+        [ in ] HNETWORK_RPC hNetwork,
+        [ in ] DWORD dwControlCode,
+        [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+        [ in ] DWORD nInBufferSize,
+        [ out, size_is(nOutBufferSize),
+            length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+        [ in ] DWORD nOutBufferSize,
+        [ out ] DWORD *lpBytesReturned,
+        [ out ] DWORD *lpcbRequired,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiAddNotifyNetwork(
+        [ in ] HNOTIFY_RPC hNotify,
+        [ in ] HNETWORK_RPC hNetwork,
+        [ in ] DWORD dwFilter,
+        [ in ] DWORD dwNotifyKey,
+        [ out ] DWORD *dwStateSequence,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiReAddNotifyNetwork(
+        [ in ] HNOTIFY_RPC hNotify,
+        [ in ] HNETWORK_RPC hNetwork,
+        [ in ] DWORD dwFilter,
+        [ in ] DWORD dwNotifyKey,
+        [ in ] DWORD StateSequence,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    HNETINTERFACE_RPC
+    ApiOpenNetInterface(
+        [ in, string ] LPCWSTR lpszNetInterfaceName,
+        [ out ] error_status_t *Status,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiCloseNetInterface(
+        [ in, out ] HNETINTERFACE_RPC *NetInterface
+        );
+    
+    error_status_t
+    ApiGetNetInterfaceState(
+        [ in ] HNETINTERFACE_RPC hNetInterface,
+        [ out ] DWORD *State,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiGetNetInterface(
+        [ in, string ] LPCWSTR lpszNodeName,
+        [ in, string ] LPCWSTR lpszNetworkName,
+        [ out, string ] LPWSTR *lppszInterfaceName,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiGetNetInterfaceId(
+        [ in ] HNETINTERFACE_RPC hNetInterface,
+        [ out, string ] LPWSTR *pGuid,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiNodeNetInterfaceControl(
+        [ in ] HNETINTERFACE_RPC hNetInterface,
+        [ in ] HNODE_RPC hNode,
+        [ in ] DWORD dwControlCode,
+        [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+        [ in ] DWORD nInBufferSize,
+        [ out, size_is(nOutBufferSize),
+            length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+        [ in ] DWORD nOutBufferSize,
+        [ out ] DWORD *lpBytesReturned,
+        [ out ] DWORD *lpcbRequired,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiNetInterfaceControl(
+        [ in ] HNETINTERFACE_RPC hNetInterface,
+        [ in ] DWORD dwControlCode,
+        [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+        [ in ] DWORD nInBufferSize,
+        [ out, size_is(nOutBufferSize),
+            length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+        [ in ] DWORD nOutBufferSize,
+        [ out ] DWORD *lpBytesReturned,
+        [ out ] DWORD *lpcbRequired,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiAddNotifyNetInterface(
+        [ in ] HNOTIFY_RPC hNotify,
+        [ in ] HNETINTERFACE_RPC hNetInterface,
+        [ in ] DWORD dwFilter,
+        [ in ] DWORD dwNotifyKey,
+        [ out ] DWORD *dwStateSequence,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiReAddNotifyNetInterface(
+        [ in ] HNOTIFY_RPC hNotify,
+        [ in ] HNETINTERFACE_RPC hNetInterface,
+        [ in ] DWORD dwFilter,
+        [ in ] DWORD dwNotifyKey,
+        [ in ] DWORD StateSequence,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiCreateNodeEnum(
+        [ in ] HNODE_RPC hNode,
+        [ in ] DWORD dwType,
+        [ out ] PENUM_LIST *ReturnEnum,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiGetClusterVersion2(
+        [ out ] WORD *lpwMajorVersion,
+        [ out ] WORD *lpwMinorVersion,
+        [ out ] WORD *lpwBuildNumber,
+        [ out, string ] LPWSTR *lpszVendorId,
+        [ out, string ] LPWSTR *lpszCSDVersion,
+        [ out ] PCLUSTER_OPERATIONAL_VERSION_INFO *ppClusterOpVerInfo,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiCreateResTypeEnum(
+        [ in, string ] LPCWSTR lpszTypeName,
+        [ in ] DWORD dwType,
+        [ out ] PENUM_LIST *ReturnEnum,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiBackupClusterDatabase(
+        [ in, string ] LPCWSTR lpszPathName,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiNodeClusterControl(
+        [ in ] HCLUSTER_RPC hCluster,
+        [ in ] HNODE_RPC hHostNode,
+        [ in ] DWORD dwControlCode,
+        [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+        [ in ] DWORD nInBufferSize,
+        [ out, size_is(nOutBufferSize),
+            length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+        [ in ] DWORD nOutBufferSize,
+        [ out ] DWORD *lpBytesReturned,
+        [ out ] DWORD *lpcbRequired,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiClusterControl(
+        [ in ] HCLUSTER_RPC hCluster,
+        [ in ] DWORD dwControlCode,
+        [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+        [ in ] DWORD nInBufferSize,
+        [ out, size_is(nOutBufferSize),
+            length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+        [ in ] DWORD nOutBufferSize,
+        [ out ] DWORD *lpBytesReturned,
+        [ out ] DWORD *lpcbRequired,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiUnblockGetNotifyCall(
+        [ in ] HNOTIFY_RPC hNotify
+        );
+   
+    error_status_t
+    ApiSetServiceAccountPassword(
+        [ in, string ] LPWSTR lpszNewPassword,
+        [ in ]  IDL_CLUSTER_SET_PASSWORD_FLAGS dwFlags,
+        [ out, size_is(ReturnStatusBufferSize), length_is(*SizeReturned) ]
+            IDL_CLUSTER_SET_PASSWORD_STATUS ReturnStatusBufferPtr[*],
+        [ in, range(0, (64 * 1024)) ] DWORD ReturnStatusBufferSize,
+        [ out ] DWORD *SizeReturned,
+        [ out ] DWORD *ExpectedBufferSize
+        );
+    
+    error_status_t
+    ApiSetResourceDependencyExpression(
+        [ in ] HRES_RPC hResource,
+        [ in, string, unique ] LPCWSTR lpszDependencyExpression,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiGetResourceDependencyExpression(
+        [ in ] HRES_RPC hResource,
+        [ out, string ] LPWSTR *lpszDependencyExpression,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+     Opnum111NotUsedOnWire(void);
+    
+    error_status_t
+    ApiGetResourceNetworkName(
+     [ in ] HRES_RPC hResource,
+        [ out, string ] LPWSTR *lpszName,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiExecuteBatch(
+        [ in ] HKEY_RPC hKey,
+        [ in ] DWORD cbData,
+        [ in, size_is(cbData)] UCHAR const * lpData,
+        [ out ] int * pdwFailedCommand,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiCreateBatchPort(
+        [ in ] HKEY_RPC hKey,
+        [ out ] HBATCH_PORT_RPC * phBatchPort,
+        [ out ] error_status_t *rpc_status
+        );
+    
+    error_status_t
+    ApiGetBatchNotification(
+         [ in ] HBATCH_PORT_RPC hBatchNotify,
+         [ out ] DWORD * cbData,
+         [ out, size_is(,*cbData) ] UCHAR ** lpData
+        );
+    
+    error_status_t
+    ApiCloseBatchPort(
+         [ in, out ] HBATCH_PORT_RPC * phBatchPort
+        );
+    
+   HCLUSTER_RPC
+   ApiOpenClusterEx(
+       [ in ] DWORD dwDesiredAccess,
+       [ out ] DWORD * lpdwGrantedAccess,
+       [ out ] error_status_t *Status
+       );
+   
+   HNODE_RPC
+   ApiOpenNodeEx(
+       [ in, string ] LPCWSTR lpszNodeName,
+       [ in ] DWORD dwDesiredAccess,
+       [ out ] DWORD * lpdwGrantedAccess,
+       [ out ] error_status_t *Status,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   HGROUP_RPC
+   ApiOpenGroupEx(
+       [ in, string ] LPCWSTR lpszGroupName,
+       [ in ] DWORD dwDesiredAccess,
+       [ out ] DWORD * lpdwGrantedAccess,
+       [ out ] error_status_t *Status,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   HRES_RPC
+   ApiOpenResourceEx(
+       [ in, string ] LPCWSTR lpszResourceName,
+       [ in ] DWORD dwDesiredAccess,
+       [ out ] DWORD * lpdwGrantedAccess,
+       [ out ] error_status_t *Status,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   HNETWORK_RPC
+   ApiOpenNetworkEx(
+       [ in, string ] LPCWSTR lpszNetworkName,
+       [ in ] DWORD dwDesiredAccess,
+       [ out ] DWORD * lpdwGrantedAccess,
+       [ out ] error_status_t *Status,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   HNETINTERFACE_RPC
+   ApiOpenNetInterfaceEx(
+       [ in, string ] LPCWSTR lpszNetInterfaceName,
+       [ in ] DWORD dwDesiredAccess,
+       [ out ] DWORD * lpdwGrantedAccess,
+       [ out ] error_status_t *Status,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t
+   ApiChangeCsvState(
+       [ in ] HRES_RPC hResource,
+       [ in ] DWORD dwState,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t ApiCreateNodeEnumEx(
+       [in] HNODE_RPC hNode,
+       [in] DWORD dwType,
+       [in] DWORD dwOptions,
+       [out] PENUM_LIST* ReturnIdEnum,
+       [out] PENUM_LIST* ReturnNameEnum,
+       [out] error_status_t* rpc_status
+   );
+   
+   error_status_t ApiCreateEnumEx(
+       [in] HCLUSTER_RPC hCluster,
+       [in] DWORD dwType,
+       [in] DWORD dwOptions,
+       [out] PENUM_LIST* ReturnIdEnum,
+       [out] PENUM_LIST* ReturnNameEnum,
+       [out] error_status_t* rpc_status
+   );
+   
+   error_status_t
+   ApiPauseNodeEx(
+       [ in ] HNODE_RPC hNode,
+       [ in ] BOOL bDrainNode,
+       [ in ] DWORD dwPauseFlags,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t
+   ApiPauseNodeWithDrainTarget(
+       [ in ] HNODE_RPC hNode,
+       [ in ] DWORD dwPauseFlags,
+       [ in ] HNODE_RPC hNodeDrainTarget,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t
+   ApiResumeNodeEx(
+       [ in ] HNODE_RPC hNode,
+       [ in ] DWORD dwResumeFailbackType,
+       [ in ] DWORD dwResumeFlagsReserved,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   HGROUP_RPC
+   ApiCreateGroupEx(
+       [ in, string ] LPCWSTR lpszGroupName,
+       [ in, unique ] PCLUSTER_CREATE_GROUP_INFO_RPC pGroupInfo,
+       [ out ] error_status_t *Status,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t
+   ApiOnlineGroupEx(
+       [ in ] HGROUP_RPC hGroup,
+       [ in ] DWORD     dwOnlineFlags,
+       [ in, size_is(cbInBufferSize) ] BYTE* lpInBuffer,
+       [ in ] DWORD     cbInBufferSize,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t
+   ApiOfflineGroupEx(
+       [ in ] HGROUP_RPC hGroup,
+       [ in ] DWORD     dwOfflineFlags,
+       [ in, size_is(cbInBufferSize) ] BYTE* lpInBuffer,
+       [ in ] DWORD     cbInBufferSize,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t
+   ApiMoveGroupEx(
+       [ in ] HGROUP_RPC hGroup,
+       [ in ] DWORD      dwMoveFlags,
+       [ in, size_is(cbInBufferSize) ] BYTE* lpInBuffer,
+       [ in ] DWORD      cbInBufferSize,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t
+   ApiMoveGroupToNodeEx(
+       [ in ] HGROUP_RPC hGroup,
+       [ in ] HNODE_RPC  hNode,
+       [ in ] DWORD      dwMoveFlags,
+       [ in, size_is(cbInBufferSize) ] BYTE* lpInBuffer,
+       [ in ] DWORD      cbInBufferSize,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t
+   ApiCancelClusterGroupOperation(
+       [ in ] HGROUP_RPC   hGroup,
+       [ in ] DWORD        dwCancelFlags,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t
+   ApiOnlineResourceEx(
+       [ in ] HRES_RPC hResource,
+       [ in ] DWORD     dwOnlineFlags,
+       [ in, size_is(cbInBufferSize) ] BYTE* lpInBuffer,
+       [ in ] DWORD     cbInBufferSize,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t
+   ApiOfflineResourceEx(
+       [ in ] HRES_RPC hResource,
+       [ in ] DWORD     dwOfflineFlags,
+       [ in, size_is(cbInBufferSize) ] BYTE* lpInBuffer,
+       [ in ] DWORD     cbInBufferSize,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   typedef [context_handle] void *HGENERIC_RPC;
+   
+   typedef struct _NOTIFY_FILTER_AND_TYPE_RPC
+   {
+       DWORD dwObjectType;     // really of type CLUSTER_OBJECT_TYPE_RPC
+       LONGLONG FilterFlags;
+   } NOTIFY_FILTER_AND_TYPE_RPC, *PNOTIFY_FILTER_AND_TYPE_RPC;
+   
+   typedef struct _NOTIFICATION_DATA_RPC
+   {
+       NOTIFY_FILTER_AND_TYPE_RPC FilterAndType;
+       [ size_is(dwBufferSize ) ] BYTE* buffer;
+       DWORD dwBufferSize;
+       [ string ] LPWSTR ObjectId;
+       [ string ] LPWSTR ParentId;
+       [ string ] LPWSTR Name;
+       [ string ] LPWSTR Type;
+   } NOTIFICATION_DATA_RPC, *PNOTIFICATION_DATA_RPC;
+   
+   typedef struct _NOTIFICATION_RPC
+   {
+       DWORD_PTR dwNotifyKey;
+       NOTIFICATION_DATA_RPC NotificationData;
+   } NOTIFICATION_RPC, *PNOTIFICATION_RPC;
+   
+   //
+   // Notify interface V2 functions
+   //
+   HNOTIFY_RPC
+   ApiCreateNotifyV2(
+       [ out ] error_status_t *rpc_error,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t
+   ApiAddNotifyV2(
+       [ in ] HNOTIFY_RPC hNotify,
+       [ in ] HGENERIC_RPC hObject,
+       [ in ] NOTIFY_FILTER_AND_TYPE_RPC filter,
+       [ in ] DWORD dwNotifyKey,
+       [ in ] DWORD dwVersion,
+       [ in ] BOOL isTargetedAtObject,
+       [ out ] error_status_t *rpc_status
+   );
+   
+   error_status_t
+   ApiGetNotifyV2(
+       [ in ] HNOTIFY_RPC hNotify,
+       [ out, size_is(,*dwNumNotifications) ] PNOTIFICATION_RPC* Notifications,
+       [ out ] DWORD *dwNumNotifications
+   );
+   error_status_t
+   Opnum140NotUsedOnWire(void);
+ 
+   error_status_t
+   Opnum141NotUsedOnWire(void);
+ 
+   error_status_t
+   Opnum142NotUsedOnWire(void);
+ 
+   
+   error_status_t
+   ApiCreateGroupEnum(
+       [ in ] HCLUSTER_RPC hCluster,
+       [ in, unique, size_is(cbProperties)] UCHAR* pProperties,
+       [ in ] DWORD cbProperties,
+       [ in, unique, size_is(cbRoProperties)] UCHAR* pRoProperties,
+       [ in ] DWORD cbRoProperties,
+       [ out ] PGROUP_ENUM_LIST* ppResultList,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t
+   ApiCreateResourceEnum(
+       [ in ] HCLUSTER_RPC hCluster,
+       [ in, unique, size_is(cbProperties)] UCHAR* pProperties,
+       [ in ] DWORD cbProperties,
+       [ in, unique, size_is(cbRoProperties)] UCHAR* pRoProperties,
+       [ in ] DWORD cbRoProperties,
+       [ out ] PRESOURCE_ENUM_LIST* ppResultList,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t
+   ApiExecuteReadBatch(
+       [ in ] HKEY_RPC hKey,
+       [ in ] DWORD cbInData,
+       [ in, size_is(cbInData)] UCHAR const * lpInData,
+       [ out ] DWORD * cbOutData,
+       [ out, size_is(,*cbOutData) ] UCHAR ** lpOutData,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t
+   ApiRestartResource(
+       [ in ] HRES_RPC hResource,
+       [ in ] DWORD dwFlags,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   typedef struct _NOTIFICATION_DATA_ASYNC_RPC
+   {
+       DWORD dwNotifyKey;
+       DWORD dwFilter;
+       [ string ] LPWSTR Name;
+   } NOTIFICATION_DATA_ASYNC_RPC, *PNOTIFICATION_DATA_ASYNC_RPC;
+   
+   error_status_t
+   ApiGetNotifyAsync(
+       [ in ] HNOTIFY_RPC hNotify,
+       [ out, size_is(,*dwNumNotifications) ] PNOTIFICATION_DATA_ASYNC_RPC* Notifications,
+       [ out ] DWORD *dwNumNotifications
+       );
+   error_status_t
+   Opnum148NotUsedOnWire(void);
+ 
+   error_status_t
+   Opnum149otUsedOnWire(void);
+ 
+   error_status_t
+   Opnum150NotUsedOnWire(void);
+ 
+   error_status_t
+   Opnum151NotUsedOnWire(void);
+ 
+   error_status_t
+   Opnum152NotUsedOnWire(void);
+ 
+   error_status_t
+   Opnum153NotUsedOnWire(void);
+ 
+   error_status_t
+   Opnum154NotUsedOnWire(void);
+   
+   error_status_t
+   ApiAddNotifyResourceTypeV2(
+       [ in ] HNOTIFY_RPC hNotify,
+       [ in ] LONGLONG filter,
+       [ in ] DWORD dwNotifyKey,
+       [ in ] LPCWSTR resTypeName,
+       [ in ] DWORD dwVersion,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t
+Opnum156NotUsedOnWire(void);
+   
+   error_status_t
+   
+   ApiExecuteReadBatchEx(
+       [in] HKEY_RPC hKey,
+       [in] DWORD cbInData,
+       [in, size_is(cbInData)] const UCHAR* lpInData,
+       [in] DWORD flags,
+       [out] DWORD* cbOutData,
+       [out, size_is(,*cbOutData)] UCHAR** lpOutData,
+    [out] error_status_t *rpc_status
+    );
+   
+   typedef enum 
+   {
+     DiskIdSignature = 0x00000001,
+     DiskIdGuid = 0x00000002,
+     DiskIdUnKnown = 0x00001388
+   } CLUSDSK_DISKID_ENUM;
+   
+   typedef struct _CLUSDSK_DISKID {
+     CLUSDSK_DISKID_ENUM DiskIdType;
+     [switch_is(DiskIdType)] union {
+        [case(DiskIdSignature)] unsigned long DiskSignature;
+        [case(DiskIdGuid)] GUID DiskGuid;
+   };
+   } CLUSDSK_DISKID, *PCLUSDSK_DISKID;
+// XXX: move to the end.
+// #
+   error_status_t
+   Opnum158NotUsedOnWire(void);
+ 
+   error_status_t
+   Opnum159NotUsedOnWire(void);
+ 
+   error_status_t
+   Opnum160NotUsedOnWire(void);
+ 
+   error_status_t
+   Opnum161NotUsedOnWire(void);
+ 
+   error_status_t
+   Opnum162NotUsedOnWire(void);
+ 
+   HGROUPSET_RPC
+   ApiCreateGroupSet (
+          [ in, string ] LPCWSTR lpszGroupSetName,
+          [ out ] error_status_t *Status,
+          [ out ] error_status_t *rpc_status
+          );
+   
+   HGROUPSET_RPC
+   ApiOpenGroupSet(
+          [ in, string ] LPCWSTR lpszGroupSetName,
+          [ out ] error_status_t *Status,
+          [ out ] error_status_t *rpc_status
+          );
+   
+   error_status_t
+   ApiCloseGroupSet(
+          [ in, out ] HGROUPSET_RPC *GroupSet
+          );
+   
+   error_status_t
+   ApiDeleteGroupSet(
+          [ in ] HGROUPSET_RPC GroupSet,
+          [ out ] error_status_t *rpc_status
+          );
+   
+   error_status_t
+   ApiAddGroupToGroupSet(
+          [ in ] HGROUPSET_RPC GroupSet,
+          [ in ] HGROUP_RPC Group,
+          [ out ] error_status_t *rpc_status
+          );
+   
+   error_status_t
+   ApiRemoveGroupFromGroupSet(
+          [ in ] HGROUP_RPC Group,
+          [ out ] error_status_t *rpc_status
+          );
+   
+   error_status_t
+   ApiMoveGroupToGroupSet(
+          [ in ] HGROUPSET_RPC GroupSet,
+          [ in ] HGROUP_RPC Group,
+          [ out ] error_status_t *rpc_status
+          ); 
+ 
+   error_status_t
+   Opnum170NotUsedOnWire(void);
+ 
+   
+   error_status_t
+   ApiAddGroupSetDependency(
+          [ in ] HGROUPSET_RPC DependentGroupSet,
+          [ in ] HGROUPSET_RPC ProviderGroupSet,
+          [ out ] error_status_t *rpc_status
+          );
+   
+   error_status_t
+   ApiAddGroupToGroupSetDependency(
+          [ in ] HGROUP_RPC DependentGroup,
+          [ in ] HGROUPSET_RPC ProviderGroupSet,
+          [ out ] error_status_t *rpc_status
+   ); 
+ 
+   error_status_t
+   ApiNodeGroupSetControl(
+       [ in ] HGROUPSET_RPC hGroupSet,
+       [ in ] HNODE_RPC hNode,
+       [ in ] DWORD dwControlCode,
+       [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+       [ in ] DWORD nInBufferSize,
+       [ out, size_is(nOutBufferSize), length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+       [ in, range(0, MAX_CLUSTER_CONTROL_CODE_BUFFER_SIZE)] DWORD nOutBufferSize,
+       [ out ] DWORD *lpBytesReturned,
+       [ out ] DWORD *lpcbRequired,
+       [ out ] error_status_t *rpc_status
+       ); 
+ 
+            
+   error_status_t
+   ApiGroupSetControl(
+     [ in ] HGROUPSET_RPC hGroupSet,
+     [ in ] DWORD dwControlCode,
+     [ in, unique, size_is(nInBufferSize) ] UCHAR *lpInBuffer,
+     [ in ] DWORD nInBufferSize,
+     [ out, size_is(nOutBufferSize), length_is (*lpBytesReturned)] UCHAR *lpOutBuffer,
+     [ in, range(0, 0x7FFFFFFF)] DWORD nOutBufferSize,
+     [ out ] DWORD *lpBytesReturned,
+     [ out ] DWORD *lpcbRequired,
+     [ out ] error_status_t *rpc_status
+      ); 
+ 
+error_status_t
+   ApiSetGroupDependencyExpression(
+       [ in ] HGROUP_RPC hGroup,
+       [ in ] LPCWSTR lpszDependencyExpression,
+       [ out ] error_status_t *rpc_status
+    );
+ 
+   error_status_t
+   ApiRemoveClusterGroupDependency(
+       [ in ] HGROUP_RPC hGroup,
+       [ in ] HGROUP_RPC hDependsOn,
+       [ out ] error_status_t *rpc_status
+       );
+ 
+   error_status_t
+   ApiSetGroupSetDependencyExpression(
+       [ in ] HGROUPSET_RPC hGroupSet,
+       [ in ] LPCWSTR lpszDependencyExpression,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t
+   ApiRemoveGroupSetDependency(
+       [ in ] HGROUPSET_RPC hGroupSet,
+       [ in ] HGROUPSET_RPC hDependsOn,
+       [ out ] error_status_t *rpc_status
+       );
+   
+   error_status_t
+   ApiRemoveClusterGroupToGroupSetDependency(
+       [ in ] HGROUP_RPC hGroup,
+       [ in ] HGROUPSET_RPC hDependsOn,
+       [ out ] error_status_t *rpc_status
+    ); 
+   error_status_t
+   ApiCreateGroupSetEnum(
+       [ in ]  HCLUSTER_RPC hCluster,
+       [ out ] PENUM_LIST *ReturnEnum,
+       [ out ] error_status_t * rpc_status
+       ); 
+ 
+   error_status_t
+   ApiCreateNetInterfaceEnum(
+       [in] HCLUSTER_RPC hCluster,
+       [in] LPCWSTR lpszNodeName,
+       [in] LPCWSTR lpszNetworkName,
+       [out] PENUM_LIST * ReturnEnum,
+       [out] error_status_t * rpc_status
+       );
+   
+   error_status_t
+   ApiChangeCsvStateEx(
+       [ in ] HRES_RPC hResource,
+       [ in ] DWORD dwState,
+       [ in, string ] LPCWSTR lpszVolumeName,
+         [ out ] error_status_t *rpc_status
+         );
+error_status_t
+         ApiAddGroupToGroupSetEx (
+           [ in ] HGROUPSET_RPC GroupSet,
+           [ in ] HGROUP_RPC Group,
+           [ in ] DWORD FaultDomain,
+           [ in ] DWORD UpdateDomain,
+           [ in ] BOOL UseDomains,
+           [ in ] DWORD *Reserved,
+           [ out ] error_status_t *rpc_status
+           );
+          
+         error_status_t
+         ApiChangeResourceGroupEx(
+           [ in ] HRES_RPC hResource,
+           [ in ] HGROUP_RPC hGroup,
+           [ in ] ULONGLONG flags,
+ [ out ] error_status_t *rpc_status
+         );
+}

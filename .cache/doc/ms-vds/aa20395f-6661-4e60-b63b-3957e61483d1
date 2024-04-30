@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>The QueryPartitionFileSystemFormatSupport method retrieves
+the properties of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file systems</a></span> that
+support <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_ea22e521-1a4e-4ceb-8d64-f65fa6d0e63b" data-linktype="relative-path">formatting</a></span> a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>
+<span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span>
+at a specified byte offset. This method is only supported on OEM, ESP, recovery,
+and unknown partitions.</p><p><b>Note</b>  This method is not valid on CD/DVD or
+<span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_a2b20515-dc69-4674-b74e-91c8f24e3003" data-linktype="relative-path">super
+floppy</a></span> devices. These devices do not support <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_cee39671-0b98-4ca3-904d-018780e7042f" data-linktype="relative-path">partition
+tables</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT QueryPartitionFileSystemFormatSupport(
+   [in] ULONGLONG ullOffset,
+   [out, size_is(,*plNumberOfFileSystems)] 
+     VDS_FILE_SYSTEM_FORMAT_SUPPORT_PROP** ppFileSystemSupportProps,
+   [out] long* plNumberOfFileSystems
+ );
+</pre></div>
+</dd></dl><p><b>ullOffset: </b>The byte offset of the partition
+from the beginning of the disk. This MUST be the offset at the start of a
+partition.</p><p><b>ppFileSystemSupportProps: </b>A pointer to an
+array of <span><a href="15e442cd-f805-4ae1-8f49-db200712177b" data-linktype="relative-path">VDS_FILE_SYSTEM_FORMAT_SUPPORT_PROP</a></span>
+structures which, if the operation completes successfully, receives an array of
+properties of each supported file system.</p><p><b>plNumberOfFileSystems: </b>A pointer to a variable
+which, if the operation completes successfully, receives the total number of
+elements returned in <b>ppFileSystemSupportProps</b>.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.<a id="Appendix_A_Target_107"></a><a aria-label="Product behavior note 107" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_107" data-linktype="relative-path">&lt;107&gt;</a></p><p><b>ERROR_SUCCESS</b> (0x00000000)</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <b>ppFileSystemSupportProps</b> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <b>plNumberOfFileSystems</b> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the partition at offset ullOffset is an OEM, ESP,
+recovery, or unknown partition.</p>
+</li></ul><p>The server MUST point <b>ppFileSystemSupportProps</b> to an
+array of VDS_FILE_SYSTEM_FORMAT_SUPPORT_PROP structures containing information
+about each file system that supports formatting a partition  at the byte offset
+from the beginning of the disk that <i>ullOffset</i> specifies. The server MUST
+then point <b>plNumberOfFileSystems</b> to the size of the array and then
+return an HRESULT indicating failure or success.</p></div>

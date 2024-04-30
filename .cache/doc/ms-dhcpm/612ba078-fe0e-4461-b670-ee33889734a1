@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The <b>DHCP_MSCOPE_TABLE</b> structure contains an array of <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_04286a2c-1484-44d0-9854-7c57c8b4118c" data-linktype="relative-path">multicast
+scope</a></span> names managed by the MADCAP server. This structure is used in
+the <span><a href="bb49ffcc-ad8d-4b90-a72f-ed7571d0708e" data-linktype="relative-path">R_DhcpEnumMScopes (section 3.2.4.4)</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_MSCOPE_TABLE {
+   DWORD NumElements;
+   [size_is(NumElements)] LPWSTR* pMScopeNames;
+ } DHCP_MSCOPE_TABLE,
+  *LPDHCP_MSCOPE_TABLE;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+containing the number of multicast scope names in the subsequent field the <b>pMScopeNames</b>
+member.</p><p><b>pMScopeNames:</b>  This is a pointer of
+type <span><a href="95fec0af-d86e-43cd-8256-48db7cb5fbbc" data-linktype="relative-path">LPWSTR</a></span> that points
+to an array of null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode strings</a></span> that
+refers to the multicast scope names. There is no restriction on the size of
+this field.</p></div>

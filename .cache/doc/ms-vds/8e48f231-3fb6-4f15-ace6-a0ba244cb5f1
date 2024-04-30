@@ -1,0 +1,67 @@
+<div class="content"><p> </p><p>The Next method returns a specified number of objects in the
+enumeration. It begins from the current point.</p><dl>
+<dd>
+<div><pre> [helpstring(&#34;method Next&#34;)] HRESULT Next(
+   [in] unsigned long celt,
+   [out, size_is(celt), length_is(*pcFetched)] 
+     IUnknown** ppObjectArray,
+   [out] unsigned long* pcFetched
+ );
+</pre></div>
+</dd></dl><p><b>celt: </b>The number of elements to retrieve from
+the enumeration.</p><p><b>ppObjectArray: </b>A pointer to an array of
+IUnknown interfaces. The size of this array MUST be equal to <i>celt</i>. If
+successfully completed, it receives an array of the IUnknown interfaces of the
+next objects in the enumeration; the number of elements in this array MUST be
+equal in size to the value of <i>pcFetched</i>. Callers MUST release each
+IUnknown interface that is received.</p><p><b>pcFetched: </b>A pointer to a variable that, upon
+successful completion, receives the number of elements that are successfully
+received in <i>ppObjectArray</i>.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><dl>
+<dd>
+<p>If S_FALSE is returned, the client MUST check the
+value that <i>pcFetched</i> references and not access more than the number of
+elements returned in <i>ppObjectArray</i>.</p>
+</dd></dl><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>ppObjectArray</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>pcFetched</i> is not NULL.</p>
+</li></ul><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>If the number of objects from the current index to the end of the
+enumeration is greater than or equal to the number of objects being requested
+in <i>celt</i>:</p>
+<ul><li><p><span><span>  </span></span>Populate
+the IUnknown pointers in <i>ppObjectArray</i> with the next IUnknown pointers
+(the amount of which <i>celt</i> specifies) in the enumeration that is starting
+from the current index.</p>
+</li><li><p><span><span>  </span></span>Set
+the value that <i>pcFetched</i> references to <i>celt</i>.</p>
+</li><li><p><span><span>  </span></span>Increment
+the current index by <i>celt</i>.</p>
+</li><li><p><span><span>  </span></span>Return
+an HRESULT that indicates failure or success.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the number of objects from the current index to the end of the
+enumeration is less than the number of objects being requested in <i>celt</i>:</p>
+<ul><li><p><span><span>  </span></span>Populate
+the IUnknown pointers in <i>ppObjectArray</i> with the next IUnknown pointers
+in the enumeration. Start from the current index to the end of the enumeration.</p>
+</li><li><p><span><span>  </span></span>Set
+the value that <i>pcFetched</i> references to the number of objects that were
+populated in <i>ppObjectArray</i>.</p>
+</li><li><p><span><span>  </span></span>Increment
+the current index by the number of objects that were populated in <i>ppObjectArray</i>.</p>
+</li><li><p><span><span>  </span></span>Return
+S_FALSE (HRESULT of 0x00000001) if successful, or any non-zero error for
+failure.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the current index is already past the list of objects in the
+enumeration, set the value that <i>pcFetched</i> references to 0 and return
+S_FALSE (HRESULT of 0x00000001) if successful, or any non-zero error for
+failure.</p>
+</li></ul></div>

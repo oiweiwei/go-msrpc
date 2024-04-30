@@ -1,0 +1,674 @@
+<div class="content"><p> </p><p>The DRS_EXTENSIONS_INT structure is a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete
+type</a></span> for structured capabilities information used in version
+negotiation.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cb</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SiteObjGuid
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Pid</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwReplEpoch</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwFlagsExt</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ConfigObjGUID
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwExtCaps</p>
+  </td>
+ </tr>
+</tbody></table><p><b>cb (4 bytes): </b>The count of bytes in the fields
+<b>dwFlags</b> through <b>dwExtCaps</b>, inclusive.<a id="Appendix_A_Target_38"></a><a aria-label="Product behavior note 38" href="e3b89556-4e48-467c-87b3-b4a737cc4999#Appendix_A_38" data-linktype="relative-path">&lt;38&gt;</a><a id="Appendix_A_Target_39"></a><a aria-label="Product behavior note 39" href="e3b89556-4e48-467c-87b3-b4a737cc4999#Appendix_A_39" data-linktype="relative-path">&lt;39&gt;</a><a id="Appendix_A_Target_40"></a><a aria-label="Product behavior note 40" href="e3b89556-4e48-467c-87b3-b4a737cc4999#Appendix_A_40" data-linktype="relative-path">&lt;40&gt;</a> This field allows the
+DRS_EXTENSIONS_INT structure to be extended by including new fields at the end
+of the structure.</p><p><b>dwFlags (4 bytes): </b>The <b>dwFlags</b> field
+contains individual bit flags that describe the capabilities of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>
+that produced the DRS_EXTENSIONS_INT structure.<a id="Appendix_A_Target_41"></a><a aria-label="Product behavior note 41" href="e3b89556-4e48-467c-87b3-b4a737cc4999#Appendix_A_41" data-linktype="relative-path">&lt;41&gt;</a></p><dl>
+<dd>
+<p>The following table lists the bit
+flags, which are presented in little-endian byte order.</p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>A<br/>
+  E</p>
+  </td>
+  <td>
+  <p>U<br/>
+  O</p>
+  </td>
+  <td>
+  <p>D<br/>
+  C</p>
+  </td>
+  <td>
+  <p>D<br/>
+  F</p>
+  </td>
+  <td>
+  <p>M<br/>
+  V</p>
+  </td>
+  <td>
+  <p>R<br/>
+  M</p>
+  </td>
+  <td>
+  <p>A<br/>
+  S</p>
+  </td>
+  <td>
+  <p>B<br/>
+  A<br/>
+  S</p>
+  </td>
+  <td>
+  <p>S<br/>
+  E</p>
+  </td>
+  <td>
+  <p>G<br/>
+  R<br/>
+  I</p>
+  </td>
+  <td>
+  <p>C<br/>
+  B</p>
+  </td>
+  <td>
+  <p>I<br/>
+  N<br/>
+  R</p>
+  </td>
+  <td>
+  <p>D<br/>
+  C<br/>
+  2</p>
+  </td>
+  <td>
+  <p>L<br/>
+  V<br/>
+  R</p>
+  </td>
+  <td>
+  <p>A<br/>
+  E<br/>
+  2</p>
+  </td>
+  <td>
+  <p>K<br/>
+  E</p>
+  </td>
+  <td>
+  <p>A<br/>
+  N<br/>
+  C</p>
+  </td>
+  <td>
+  <p>G<br/>
+  C<br/>
+  6</p>
+  </td>
+  <td>
+  <p>G<br/>
+  M<br/>
+  2</p>
+  </td>
+  <td>
+  <p>G<br/>
+  C<br/>
+  5</p>
+  </td>
+  <td>
+  <p>P<br/>
+  B<br/>
+  3</p>
+  </td>
+  <td>
+  <p>S<br/>
+  H</p>
+  </td>
+  <td>
+  <p>T<br/>
+  M</p>
+  </td>
+  <td>
+  <p>D<br/>
+  C<br/>
+  F</p>
+  </td>
+  <td>
+  <p>R<br/>
+  3</p>
+  </td>
+  <td>
+  <p>R<br/>
+  2</p>
+  </td>
+  <td>
+  <p>G<br/>
+  C<br/>
+  10</p>
+  </td>
+  <td>
+  <p>D<br/>
+  F<br/>
+  2</p>
+  </td>
+  <td>
+  <p>W<br/>
+  B<br/>
+  3</p>
+  </td>
+  <td>
+  <p>G<br/>
+  R<br/>
+  6</p>
+  </td>
+  <td>
+  <p>G<br/>
+  R<br/>
+  5</p>
+  </td>
+  <td>
+  <p>G<br/>
+  C<br/>
+  8</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>BAS (DRS_EXT_BASE,
+0x00000001):</b> Unused. SHOULD be 1 and MUST be ignored.</p>
+</dd>
+<dd>
+<p><b>AS (DRS_EXT_ASYNCREPL,
+0x00000002):</b> If present, signifies that the DC supports <span><a href="892d8577-6e15-45ba-8e7a-022807ed8649" data-linktype="relative-path">DRS_MSG_REPADD_V2</a></span>.</p>
+</dd>
+<dd>
+<p><b>RM (DRS_EXT_REMOVEAPI,
+0x00000004):</b> If present, signifies that the DC supports <span><a href="d5c310ae-347a-49d4-a78e-6ffb2eecd581" data-linktype="relative-path">IDL_DRSRemoveDsServer</a></span>
+and <span><a href="aa3cfa46-c737-425a-ae65-ecaf9efe7e84" data-linktype="relative-path">IDL_DRSRemoveDsDomain</a></span>.</p>
+</dd>
+<dd>
+<p><b>MV (DRS_EXT_MOVEREQ_V2,
+0x00000008):</b> If present, signifies that the DC supports <span><a href="d77d5670-4a35-49d2-b6c8-e314a7f76ff3" data-linktype="relative-path">DRS_MSG_MOVEREQ_V2</a></span>.</p>
+</dd>
+<dd>
+<p><b>DF
+(DRS_EXT_GETCHG_DEFLATE, 0x00000010):</b> If present, signifies that the DC
+supports <span><a href="677d8fab-6aa1-4327-9b6f-62a6ad7fcfa3" data-linktype="relative-path">DRS_MSG_GETCHGREPLY_V2</a></span>.</p>
+</dd>
+<dd>
+<p><b>DC (DRS_EXT_DCINFO_V1,
+0x00000020):</b> If present, signifies that the DC supports <span><a href="668abdc8-1db7-4104-9dea-feab05ff1736" data-linktype="relative-path">IDL_DRSDomainControllerInfo</a></span>.</p>
+</dd>
+<dd>
+<p><b>UO
+(DRS_EXT_RESTORE_USN_OPTIMIZATION, 0x00000040):</b> Unused. SHOULD be 1 and
+MUST be ignored.</p>
+</dd>
+<dd>
+<p><b>AE (DRS_EXT_ADDENTRY,
+0x00000080):</b> If present, signifies that the DC supports <span><a href="06764fc5-4df6-4104-b6af-a92bdaa81f6e" data-linktype="relative-path">IDL_DRSAddEntry</a></span>.</p>
+</dd>
+<dd>
+<p><b>KE (DRS_EXT_KCC_EXECUTE,
+0x00000100):</b> If present, signifies that the DC supports <span><a href="ad807917-687b-40d9-abe2-053af0246523" data-linktype="relative-path">IDL_DRSExecuteKCC</a></span>.</p>
+</dd>
+<dd>
+<p><b>AE2 (DRS_EXT_ADDENTRY_V2,
+0x00000200):</b> If present, signifies that the DC supports <span><a href="895157d5-24e2-4eaf-9060-148d67669e27" data-linktype="relative-path">DRS_MSG_ADDENTRYREQ_V2</a></span>.</p>
+</dd>
+<dd>
+<p><b>LVR
+(DRS_EXT_LINKED_VALUE_REPLICATION, 0x00000400):</b> If present, signifies that
+the DC supports <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_659e8352-a6db-4752-8c05-4b21c602f238" data-linktype="relative-path">link value</a></span> <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span>,
+and this support is enabled.</p>
+</dd>
+<dd>
+<p><b>DC2 (DRS_EXT_DCINFO_V2,
+0x00000800):</b> If present, signifies that the DC supports <span><a href="f567e605-01fe-4228-960e-14647c29f668" data-linktype="relative-path">DRS_MSG_DCINFOREPLY_V2</a></span>.</p>
+</dd>
+<dd>
+<p><b>INR
+(DRS_EXT_INSTANCE_TYPE_NOT_REQ_ON_MOD, 0x00001000):</b> Unused. SHOULD be 1 and
+MUST be ignored.</p>
+</dd>
+<dd>
+<p><b>CB (DRS_EXT_CRYPTO_BIND,
+0x00002000):</b> A client-only flag. If present, it indicates that the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_05fd3925-0672-4f24-9dd9-2b9d441eb333" data-linktype="relative-path">security
+provider</a></span> used for the connection supports <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_4f67a585-fb00-4166-93e8-cf4abca8226d" data-linktype="relative-path">session keys</a></span> through
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+(example, Kerberos connections with mutual <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8e961bf0-95ba-4f58-9034-b67ccb27f317" data-linktype="relative-path">authentication</a></span>
+enable RPC to expose session keys, but NTLM connections do not enable RPC to
+expose session keys).</p>
+</dd>
+<dd>
+<p><b>GRI
+(DRS_EXT_GET_REPL_INFO, 0x00004000):</b> If present, signifies that the DC
+supports <span><a href="dd29f9ce-b30b-411e-bd54-b77634eded47" data-linktype="relative-path">IDL_DRSGetReplInfo</a></span>.</p>
+</dd>
+<dd>
+<p><b>SE
+(DRS_EXT_STRONG_ENCRYPTION, 0x00008000):</b> If present, signifies that the DC
+supports additional 128-bit encryption for passwords over the wire. DCs MUST
+NOT replicate passwords to other DCs that do not support this extension.</p>
+</dd>
+<dd>
+<p><b>DCF
+(DRS_EXT_DCINFO_VFFFFFFFF, 0x00010000):</b> If present, signifies that the DC
+supports <span><a href="625c5133-cb5b-440a-9f53-232ae1b2dc3f" data-linktype="relative-path">DRS_MSG_DCINFOREPLY_VFFFFFFFF</a></span>.</p>
+</dd>
+<dd>
+<p><b>TM
+(DRS_EXT_TRANSITIVE_MEMBERSHIP, 0x00020000):</b> If present, signifies that the
+DC supports <span><a href="d5ace452-7cdd-4d50-bb64-39b4c55180a2" data-linktype="relative-path">IDL_DRSGetMemberships</a></span>.</p>
+</dd>
+<dd>
+<p><b>SH
+(DRS_EXT_ADD_SID_HISTORY, 0x00040000):</b> If present, signifies that the DC
+supports <span><a href="376230a5-d806-4ae5-970a-f6243ee193c8" data-linktype="relative-path">IDL_DRSAddSidHistory</a></span>.</p>
+</dd>
+<dd>
+<p><b>PB3 (DRS_EXT_POST_BETA3,
+0x00080000):</b> Reserved. MUST be set to 1 and ignored.</p>
+</dd>
+<dd>
+<p><b>GC5
+(DRS_EXT_GETCHGREQ_V5, 0x00100000):</b> If present, signifies that the DC
+supports <span><a href="fd24b73c-7b81-43af-8c77-65bc2e3181b7" data-linktype="relative-path">DRS_MSG_GETCHGREQ_V5</a></span>.</p>
+</dd>
+<dd>
+<p><b>GM2(DRS_EXT_GETMEMBERSHIPS2,
+0x00200000):</b> If present, signifies that the DC supports <span><a href="d4e67cc3-2ee1-4b2b-8055-cebefc556252" data-linktype="relative-path">IDL_DRSGetMemberships2</a></span>.</p>
+</dd>
+<dd>
+<p><b>GC6
+(DRS_EXT_GETCHGREQ_V6, 0x00400000):</b> Unused. This bit was used for a
+pre-release version of Windows. No released version of Windows references it.
+This bit can be set or unset with no change in behavior.</p>
+</dd>
+<dd>
+<p><b>ANC
+(DRS_EXT_NONDOMAIN_NCS, 0x00800000):</b> If present, signifies that the DC
+supports <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_53fee475-b07f-45e1-b4b7-c7ac0c1e7f6a" data-linktype="relative-path">application NCs</a></span>.</p>
+</dd>
+<dd>
+<p><b>GC8
+(DRS_EXT_GETCHGREQ_V8, 0x01000000):</b> If present, signifies that the DC
+supports <span><a href="4304bb4a-e9b5-4c8a-8731-df4d6f9ab567" data-linktype="relative-path">DRS_MSG_GETCHGREQ_V8</a></span>.</p>
+</dd>
+<dd>
+<p><b>GR5
+(DRS_EXT_GETCHGREPLY_V5, 0x02000000):</b> Unused. SHOULD be 1 and MUST be
+ignored.</p>
+</dd>
+<dd>
+<p><b>GR6
+(DRS_EXT_GETCHGREPLY_V6, 0x04000000):</b> If present, signifies that the DC
+supports <span><a href="1317a654-5dd6-45ff-af73-919cbc7fbb45" data-linktype="relative-path">DRS_MSG_GETCHGREPLY_V6</a></span>.</p>
+</dd>
+<dd>
+<p><b>WB3
+(DRS_EXT_WHISTLER_BETA3, 0x08000000):</b> If present, signifies that the DC
+supports <span><a href="1eeb493e-93f1-424c-b8eb-ca74e6f051a0" data-linktype="relative-path">DRS_MSG_ADDENTRYREPLY_V3</a></span>,
+<span><a href="b8cc0c8a-7119-4406-8f3a-4172dc512735" data-linktype="relative-path">DRS_MSG_REPVERIFYOBJ</a></span>,
+<span><a href="26eaca61-0f19-47e7-b304-2580e9870aa8" data-linktype="relative-path">DRS_MSG_GETCHGREPLY_V7</a></span>,
+and <span><a href="a5e57fa8-9441-44c6-af98-6437db28d6d6" data-linktype="relative-path">DRS_MSG_QUERYSITESREQ_V1</a></span>.</p>
+</dd>
+<dd>
+<p><b>DF2
+(DRS_EXT_W2K3_DEFLATE, 0x10000000):</b> If present, signifies that the DC
+supports the W2K3 AD deflation library.</p>
+</dd>
+<dd>
+<p><b>GC10
+(DRS_EXT_GETCHGREQ_V10, 0x20000000):</b> If present, signifies that the DC
+supports <span><a href="92b1b77d-2058-46e0-9e8c-6664b96a0cf9" data-linktype="relative-path">DRS_MSG_GETCHGREQ_V10</a></span>.</p>
+</dd>
+<dd>
+<p><b>R2
+(DRS_EXT_RESERVED_FOR_WIN2K_OR_DOTNET_PART2, 0x40000000):</b> Unused. MUST be 0
+and ignored.</p>
+</dd>
+<dd>
+<p><b>R3
+(DRS_EXT_RESERVED_FOR_WIN2K_OR_DOTNET_PART3, 0x80000000):</b> Unused. MUST be 0
+and ignored.</p>
+</dd></dl><p><b>SiteObjGuid (16 bytes): </b>A <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>.
+The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ad613dff-e9c4-4cb6-ad6b-0ce52038ceb5" data-linktype="relative-path">objectGUID</a></span>
+of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_0ce6abc5-9823-4a69-bb30-12e42ff99629" data-linktype="relative-path">site object</a></span> of which
+the DC&#39;s <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_dc90b593-841f-4c6d-8032-b32e58e887a8" data-linktype="relative-path">DSA object</a></span> is a
+descendant. For non-DC client callers, this field SHOULD be set to zero.</p><p><b>Pid (4 bytes): </b>A 32-bit, signed integer value
+that specifies a process identifier. The client sets the <b>Pid</b> field to
+the current client process, or the server sets the <b>Pid</b> to the current
+server process. This is for informational and debugging purposes only. The
+assignment of this field is implementation-specific.<a id="Appendix_A_Target_42"></a><a aria-label="Product behavior note 42" href="e3b89556-4e48-467c-87b3-b4a737cc4999#Appendix_A_42" data-linktype="relative-path">&lt;42&gt;</a></p><p><b>dwReplEpoch (4 bytes): </b>A 32-bit, unsigned
+integer value that specifies the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cb4c7bb2-7c28-4ce0-b5f6-de93a7e236d8" data-linktype="relative-path">replication epoch</a></span>.
+This value is set to zero by all client callers. The server sets this value by
+assigning the value of <span><a href="../ms-ada2/52503d40-a280-47ed-ab3b-f425c45c5728" data-linktype="relative-path">msDS-ReplicationEpoch</a></span>
+from its nTDSDSA object. If <b>dwReplEpoch</b> is not included in
+DRS_EXTENSIONS_INT, the value is considered to be zero.<a id="Appendix_A_Target_43"></a><a aria-label="Product behavior note 43" href="e3b89556-4e48-467c-87b3-b4a737cc4999#Appendix_A_43" data-linktype="relative-path">&lt;43&gt;</a></p><p><b>dwFlagsExt (4 bytes): </b>An extension of the <b>dwFlags</b>
+field that contains individual bit flags. These bit flags determine which
+extended capabilities are enabled in the DC that produced the
+DRS_EXTENSIONS_INT structure. For non-DC client callers, no bits SHOULD be set.
+If <b>dwFlagsExt</b> is not included in DRS_EXTENSIONS_INT, all bit flags are
+considered unset.</p><dl>
+<dd>
+<p>The following table lists the bit
+flags, which are presented in little-endian byte order.<a id="Appendix_A_Target_44"></a><a aria-label="Product behavior note 44" href="e3b89556-4e48-467c-87b3-b4a737cc4999#Appendix_A_44" data-linktype="relative-path">&lt;44&gt;</a></p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>R B</p>
+  </td>
+  <td>
+  <p>L H</p>
+  </td>
+  <td>
+  <p>D A</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>CID</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>G R 9</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>DA (DRS_EXT_ADAM,
+0x00000001):</b> If present, signifies that the DC supports <span><a href="d29519a5-f85e-4bd5-907a-0777ce0be29f" data-linktype="relative-path">DRS_MSG_REPSYNC_V1</a></span>,
+<span><a href="ee70be33-08dc-48b2-a599-43a50943c0e1" data-linktype="relative-path">DRS_MSG_UPDREFS_V1</a></span>,
+<span><a href="d71cd783-4d7b-443c-adfe-6b3a77a19671" data-linktype="relative-path">DRS_MSG_INIT_DEMOTIONREQ_V1</a></span>,
+<span><a href="8e459d5d-129e-40be-8bc9-0872f763c61d" data-linktype="relative-path">DRS_MSG_REPLICA_DEMOTIONREQ_V1</a></span>,
+and <span><a href="687fcbf2-2e1f-467a-9a1c-e2c34b3f7ce1" data-linktype="relative-path">DRS_MSG_FINISH_DEMOTIONREQ_V1</a></span>.</p>
+</dd>
+<dd>
+<p><b>LH (DRS_EXT_LH_BETA2,
+0x00000002):</b> If present, signifies that the DC supports the
+DRS_SPECIAL_SECRET_PROCESSING and DRS_GET_ALL_GROUP_MEMBERSHIP flags as well as
+<b>InfoLevel</b> 3 in <span><a href="18b23122-a1c2-4367-a677-592e0d4eef18" data-linktype="relative-path">DRS_MSG_DCINFOREQ_V1</a></span>.</p>
+</dd>
+<dd>
+<p><b>RB (DRS_EXT_RECYCLE_BIN,
+0x00000004):</b> If present, signifies that the DC has enabled the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_54624800-58f4-45e9-90bf-c9b52dcf98f3" data-linktype="relative-path">Recycle
+Bin</a></span> <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_785b66f1-22b3-450f-97aa-a24a39d04d47" data-linktype="relative-path">optional feature</a></span>. </p>
+</dd>
+<dd>
+<p><b>GR9
+(DRS_EXT_GETCHGREPLY_V9, 0x00000100):</b> If present, signifies that the DC
+supports <b><a href="b9564a19-4500-444b-a99b-0da1b08cdb6f" data-linktype="relative-path"><span>DRS_MSG_GETCHGREPLY_V9</span></a></b>.</p>
+</dd>
+<dd>
+<p><b>CID
+(DRS_EXT_RPC_CORRELATIONID_1, 0x00000400):</b> If present, signifies that the
+DC supports DRS_MSG_GETCHGREQ_V11 (section <span><a href="cb2bab15-950b-48f8-af00-118e186a1311" data-linktype="relative-path">4.1.10.2.8</a></span>),
+DRS_MSG_REPADD_V3 (section <span><a href="63f7638b-c951-4486-ab3f-3f086d9fb622" data-linktype="relative-path">4.1.19.1.4</a></span>),
+DRS_MSG_REPSYNC_V2 (section <span><a href="f32ab384-4894-4167-93f0-eda08703d76b" data-linktype="relative-path">4.1.23.1.3</a></span>), and
+DRS_MSG_UPDREFS_V2 (section <span><a href="af174769-feae-4212-8e1c-a6072b022e6c" data-linktype="relative-path">4.1.26.1.3</a></span>).</p>
+</dd></dl><p><b>ConfigObjGUID (16 bytes): </b>A GUID. This field
+is set to zero by all client callers. The server sets this field by assigning
+it the value of the objectGUID of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_54215750-9443-4383-866c-2a95f79f1625" data-linktype="relative-path">config NC</a></span> <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>.
+If <b>ConfigObjGUID</b> is not included in DRS_EXTENSIONS_INT, the value is
+considered to be the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ba500a5b-8c29-467c-a335-0980c8b11304" data-linktype="relative-path">NULL GUID</a></span> value.<a id="Appendix_A_Target_45"></a><a aria-label="Product behavior note 45" href="e3b89556-4e48-467c-87b3-b4a737cc4999#Appendix_A_45" data-linktype="relative-path">&lt;45&gt;</a></p><p><b>dwExtCaps (4 bytes): </b>A mask for the <b>dwFlagsExt</b>
+field that contains individual bit flags. These bit flags describe the
+potential extended capabilities of the DC that produced the DRS_EXTENSIONS_INT
+structure. For non-DC client callers, no bits SHOULD be set. If neither <b>dwFlagsExt</b>
+nor <b>dwExtCaps</b> is included in DRS_EXTENSIONS_INT, all bits in <b>dwExtCaps</b>
+are considered unset. If <b>dwFlagsExt</b> is included in DRS_EXTENSIONS_INT
+but <b>dwExtCaps</b> is not, all relevant bits in <b>dwExtCaps</b> (as
+explained below) are implicitly set.<a id="Appendix_A_Target_46"></a><a aria-label="Product behavior note 46" href="e3b89556-4e48-467c-87b3-b4a737cc4999#Appendix_A_46" data-linktype="relative-path">&lt;46&gt;</a></p><dl>
+<dd>
+<p>Each bit in <b>dwExtCaps</b> corresponds exactly to
+each bit in <b>dwFlagsExt</b>. If the DC that produced the DRS_EXTENSIONS_INT
+structure supports a capability described by a bit in the <b>dwFlagsExt</b>
+field (that is, the bit either is or could potentially be set), then the
+corresponding bit in <b>dwExtCaps</b> MUST be set. If a bit in <b>dwExtCaps</b>
+is not set, it is assumed that the corresponding bit in <b>dwFlagsExt</b> will
+not and cannot be set.</p>
+</dd>
+<dd>
+<p><b>Note</b>  The <b>dwExtCaps</b> field is
+relevant only for capabilities that are labeled as &#34;optional
+features&#34; in the bit descriptions of <b>dwFlagsExt</b>. The bits in <b>dwExtCaps</b>
+that correspond to capabilities in <b>dwFlagsExt</b> that are not labeled as
+&#34;optional features&#34; MUST NOT be different from the setting of the <b>dwFlagsExt</b>
+bits. Currently, the capabilities represented by the DA and LH bits fit into
+this category.</p>
+</dd></dl></div>

@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The SECURITY_QUALITY_OF_SERVICE structure defines
+information used to support client impersonation as specified in <span><a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a></span>
+section <span><a href="../ms-lsad/0ddf3150-53b5-42a5-b0ec-518bce67738c" data-linktype="relative-path">2.2.3.7</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _SECURITY_QUALITY_OF_SERVICE {
+   unsigned long Length;
+   SECURITY_IMPERSONATION_LEVEL ImpersonationLevel;
+   SECURITY_CONTEXT_TRACKING_MODE ContextTrackingMode;
+   unsigned char EffectiveOnly;
+ } SECURITY_QUALITY_OF_SERVICE,
+  *PSECURITY_QUALITY_OF_SERVICE;
+</pre></div>
+</dd></dl><p>Individual member semantics are specified in [MS-LSAD]
+section 2.2.3.7.</p></div>

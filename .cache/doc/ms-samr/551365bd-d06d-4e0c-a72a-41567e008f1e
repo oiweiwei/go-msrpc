@@ -1,0 +1,13 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/551365bd-d06d-4e0c-a72a-41567e008f1e" data-linktype="external">msdn link</a></p><p>The SAMPR_USER_PREFERENCES_INFORMATION structure contains
+user fields.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_USER_PREFERENCES_INFORMATION {
+   RPC_UNICODE_STRING UserComment;
+   RPC_UNICODE_STRING Reserved1;
+   unsigned short CountryCode;
+   unsigned short CodePage;
+ } SAMPR_USER_PREFERENCES_INFORMATION,
+  *PSAMPR_USER_PREFERENCES_INFORMATION;
+</pre></div>
+</dd></dl><p><b>Reserved1:</b>  Ignored by the client
+and server and MUST be a zero-length string when sent and returned.</p><p>For information on all other fields, see section <a href="899d68a9-8145-4334-a52f-2fbd92bec94f" data-linktype="relative-path">2.2.6.1</a>.</p></div>

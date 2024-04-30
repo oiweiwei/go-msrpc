@@ -1,0 +1,18 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/087e7905-2d56-4c68-8ef1-a4879775579a" data-linktype="external">msdn link</a></p><p>The <b>RPC_SECURITY_ATTRIBUTES</b> structure represents
+security attributes that can be marshaled and unmarshaled by <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>.</p><p>The <b>RPC_SECURITY_ATTRIBUTES</b> is used by a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to indicate the
+security attributes that are assigned when creating a new cluster registry key,
+as specified in section <a href="74d389fd-e811-4372-8753-147c492e6bca" data-linktype="relative-path">3.1.4.2.30</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _RPC_SECURITY_ATTRIBUTES {
+   unsigned long nLength;
+   RPC_SECURITY_DESCRIPTOR RpcSecurityDescriptor;
+   long bInheritHandle;
+ } RPC_SECURITY_ATTRIBUTES,
+  *PRPC_SECURITY_ATTRIBUTES;
+</pre></div>
+</dd></dl><p><b>nLength:</b> The length of the structure, in
+bytes.</p><p><b>RpcSecurityDescriptor:</b> A self-relative <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a> that
+can be marshaled and unmarshaled by RPC, as specified in section <a href="189b6cc4-aa77-4835-a3e6-51115c669ba2" data-linktype="relative-path">2.2.3.1</a>.</p><p><b>bInheritHandle:</b> Any nonzero value if a new
+spawned process inherits the handle; however, because cluster registry keys are
+not inheritable, this field MUST be set to zero for use in <b>ApiCreateKey</b>
+(section 3.1.4.2.30).</p></div>

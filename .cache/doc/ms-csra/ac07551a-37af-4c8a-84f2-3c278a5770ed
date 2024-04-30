@@ -1,0 +1,262 @@
+<div class="content"><p>The CERTTRANSDBRESULTCOLUMN structure is encoded within a <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure.
+The CERTTRANSDBRESULTCOLUMN structure is used by the server to return the
+result of a <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> database
+query that is done by the client (upon the client&#39;s query via invocation of the
+<a href="15fccaa6-c477-4196-b793-c92044868d89" data-linktype="relative-path">OpenView</a> or <a href="b49bb568-5ad6-4ff2-ab21-737f70f7a464" data-linktype="relative-path">EnumView</a> method of the <a href="46496f1f-a631-42b3-a60e-33f95fb6fed1" data-linktype="relative-path">ICertAdminD</a> interface). </p><p>The OpenView and EnumView methods return data in the form of
+a CERTTRANSBLOB structure whose <b>pb</b> member points to an array of one or
+more <a href="00bd8e2e-a9fb-4555-a9f1-7dff91d6e5b3" data-linktype="relative-path">CERTTRANSDBRESULTROW</a>
+structures. Each CERTTRANSDBRESULTROW structure contains one or more
+CERTTRANSDBRESULTCOLUMN structures.</p><p>The CERTTRANSDBRESULTCOLUMN structure contains data for a
+specific column in a specific row.</p><dl>
+<dd>
+<div><pre> typedef struct _CERTTRANSDBRESULTCOLUMN {
+   DWORD Type;
+   DWORD Index;
+   ULONG obValue;
+   DWORD cbValue;
+ } CERTTRANSDBRESULTCOLUMN;
+</pre></div>
+</dd></dl><p><b>Type:</b>  This field describes the
+column. It consists of two WORDs, a high WORD and a low WORD, which are used
+separately.</p><dl>
+<dd>
+<table>
+ <thead>
+  <tr>
+   <th><p><br/>0</p></th>
+   <th><p><br/>1</p></th>
+   <th><p><br/>2</p></th>
+   <th><p><br/>3</p></th>
+   <th><p><br/>4</p></th>
+   <th><p><br/>5</p></th>
+   <th><p><br/>6</p></th>
+   <th><p><br/>7</p></th>
+   <th><p><br/>8</p></th>
+   <th><p><br/>9</p></th>
+   <th><p>1<br/>0</p></th>
+   <th><p><br/>1</p></th>
+   <th><p><br/>2</p></th>
+   <th><p><br/>3</p></th>
+   <th><p><br/>4</p></th>
+   <th><p><br/>5</p></th>
+   <th><p><br/>6</p></th>
+   <th><p><br/>7</p></th>
+   <th><p><br/>8</p></th>
+   <th><p><br/>9</p></th>
+   <th><p>2<br/>0</p></th>
+   <th><p><br/>1</p></th>
+   <th><p><br/>2</p></th>
+   <th><p><br/>3</p></th>
+   <th><p><br/>4</p></th>
+   <th><p><br/>5</p></th>
+   <th><p><br/>6</p></th>
+   <th><p><br/>7</p></th>
+   <th><p><br/>8</p></th>
+   <th><p><br/>9</p></th>
+   <th><p>3<br/>0</p></th>
+   <th><p><br/>1</p></th>
+  </tr>
+ </thead>
+ <tbody><tr>
+  <td colspan="16">
+  <p>Column Flags</p>
+  </td>
+  <td colspan="16">
+  <p>Column Type</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p><b>Column Flags:</b> This
+is the high WORD of the <b>Type</b> field. It is a 16-bit field where only bit
+15 is used, as shown in the following bit diagram.</p><dl>
+<dd>
+<dl>
+<dd>
+<table>
+ <thead>
+  <tr>
+   <th>
+   <p><br/>
+   0</p>
+   </th>
+   <th>
+   <p><br/>
+   1</p>
+   </th>
+   <th>
+   <p><br/>
+   2</p>
+   </th>
+   <th>
+   <p><br/>
+   3</p>
+   </th>
+   <th>
+   <p><br/>
+   4</p>
+   </th>
+   <th>
+   <p><br/>
+   5</p>
+   </th>
+   <th>
+   <p><br/>
+   6</p>
+   </th>
+   <th>
+   <p><br/>
+   7</p>
+   </th>
+   <th>
+   <p><br/>
+   8</p>
+   </th>
+   <th>
+   <p><br/>
+   9</p>
+   </th>
+   <th>
+   <p>1<br/>
+   0</p>
+   </th>
+   <th>
+   <p><br/>
+   1</p>
+   </th>
+   <th>
+   <p><br/>
+   2</p>
+   </th>
+   <th>
+   <p><br/>
+   3</p>
+   </th>
+   <th>
+   <p><br/>
+   4</p>
+   </th>
+   <th>
+   <p><br/>
+   5</p>
+   </th>
+  </tr>
+ </thead>
+ <tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>I</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl></dd>
+<dd>
+<p>      <b>I:</b> If set to 1,
+it indicates that the column is indexed for lookup purposes.</p>
+</dd>
+<dd>
+<p>      All other bits are reserved and MUST be set to
+0.</p>
+</dd>
+<dd>
+<p><b>Column Type:</b> This is
+the low WORD of the <b>Type</b> field. It is divided into two bytes:</p>
+</dd></dl><ul><li><p><span><span> 
+</span></span>The high byte of the low WORD MUST be set to 0, and MUST be
+ignored by the server on receipt.</p>
+</li><li><p><span><span> 
+</span></span>The low byte of the low WORD MUST specify the value type for the
+column that is associated with a specific <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_d3a7da8d-a597-4838-9756-25e30b640ba7" data-linktype="relative-path">table</a> by using one of the
+following values.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>The Column
+  type is a signed integer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>The Column
+  type is a date.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x03</p>
+  </td>
+  <td>
+  <p>The Column
+  type is binary data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x04</p>
+  </td>
+  <td>
+  <p>The Column
+  type is a string.</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p><b>Index:</b>  An unsigned integer value
+that specifies the identifier for the column in the relevant table.</p><p><b>obValue:</b>  An unsigned integer that
+contains the offset from the beginning of the corresponding
+CERTTRANSDBRESULTROW structure to where the value for this column can be found.
+The length of the value is specified in the <b>cbValue</b> field. The offset
+MUST be DWORD aligned. </p><p><b>cbValue:</b>  An unsigned integer value
+that specifies the length, in bytes, of the value for the specific column.</p></div>

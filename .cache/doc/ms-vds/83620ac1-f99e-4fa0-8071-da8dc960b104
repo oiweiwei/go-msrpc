@@ -1,0 +1,65 @@
+<div class="content"><p> </p><p>This method is applicable only to differencing type virtual
+disks. The Merge method moves all data blocks from a differencing virtual disk
+into its parent virtual disk. Merging a virtual disk requires that the virtual
+disk be detached during the operation. Both the virtual disk and its parent are
+opened READ|WRITE using the IVdsVDisk::Open method called against the virtual
+disk with an appropriate value for the ReadWriteDepth, as described later in
+this section.<a id="Appendix_A_Target_145"></a><a aria-label="Product behavior note 145" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_145" data-linktype="relative-path">&lt;145&gt;</a></p><p>For example, to merge a differencing disk that is a child of
+a single parent disk into that parent disk, call the <span><a href="a0ad8aa3-805f-4af9-af3b-748520427819" data-linktype="relative-path">IVdsVDisk::Open</a></span>
+method on the child disk with the <i>ReadWriteDepth</i> parameter set to the
+value 2. This value opens both disks with the READ and WRITE flags set, which
+is necessary for disks to be merged with subsequent call to the
+IVdsOpenVDisk::Merge method.</p><dl>
+<dd>
+<div><pre> HRESULT Merge(
+   [in] MERGE_VIRTUAL_DISK_FLAG Flags,
+   [in] ULONG MergeDepth,
+   [out] IVdsAsync** ppAsync
+ );
+</pre></div>
+</dd></dl><p><b>Flags: </b>A <span><a href="0ba3d1eb-90f8-42e6-8a14-ee32ff87628f" data-linktype="relative-path">MERGE_VIRTUAL_DISK_FLAG (section 2.2.2.20.1.4)</a></span>
+enumeration value that specifies how the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual disk</a></span> is to
+be merged.</p><p><b>MergeDepth: </b>Number of parent backing store
+files in the differencing chain to be updated. For example, if <i>MergeDepth</i>
+has a value of 1, the data blocks from the given <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_f738286f-68d6-4890-a658-efcf815313ae" data-linktype="relative-path">differencing disk</a></span>
+are moved into its parent. If the given differencing disk&#39;s parent is also a
+differencing disk, (in other words the given disk is diskA, its parent is
+diskB, and diskB&#39;s parent is diskC), and the <i>MergeDepth</i> parameter value
+is 2, the data blocks from the given differencing disk (diskA) are moved into
+its parent (diskB), and then its parent&#39;s (diskB&#39;s) data blocks are moved into
+its parent (diskC).<a id="Appendix_A_Target_146"></a><a aria-label="Product behavior note 146" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_146" data-linktype="relative-path">&lt;146&gt;</a></p><p><b>ppAsync: </b>A pointer to an <span><a href="97ea9c0f-5c8a-43e9-a9ee-deda29e2a09e" data-linktype="relative-path">IVdsAsync (section 3.1.3.1)</a></span>
+interface that, if the operation is successfully completed, receives the
+IVdsAsync interface to monitor and control this operation. Callers MUST release
+the interface when they are done with it.</p><p><b>Return Values: </b>The method MUST return zero to
+indicate success, or return an implementation-specific nonzero error code to
+indicate failure.</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>Flags</i> is a bitwise OR of values from the
+MERGE_VIRTUAL_DISK_FLAG enumeration.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>ppAsync</i> is not NULL.</p>
+</li></ul><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>Create a new async object implementing the IVdsAsync interface
+with an output type of VDS_ASYNCOUT_MERGE_VDISK and set the pointer <i>ppAsync</i>
+to the interface.</p>
+</li><li><p><span><span> 
+</span></span>Return an <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path"><span>HRESULT</span></a> indicating
+failure or success. Any errors encountered up through this point in processing
+the operation are returned in this HRESULT.</p>
+</li></ul><p>The server MUST then perform the following in sequence.
+Errors generated in this sequence of steps are returned in the pHrResult
+parameter to the IVdsAsync::Wait or IVdsAsyncQueryStatus methods.</p><ul><li><p><span><span> 
+</span></span>Pass the input parameters to the operating system to merge the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>
+with its parents.</p>
+</li><li><p><span><span> 
+</span></span>Set the return code in the async object to an HRESULT indicating
+failure or success of the operating system.</p>
+</li><li><p><span><span> 
+</span></span>If the task completed successfully, set the percentage completed
+value in the async object to 100.</p>
+</li><li><p><span><span> 
+</span></span>Set the signal state in the async object to TRUE.</p>
+</li></ul><p>At any point in the preceding sequence before the percentage
+completed value in the async object is 100, the server MUST update the
+percentage completed value if forward progress is made during the merge
+operation.</p></div>

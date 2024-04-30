@@ -1,0 +1,307 @@
+<div class="content"><p>The Local Security Authority (Domain Policy) Remote Protocol
+provides a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure
+call (RPC)</a> interface used for providing remote management for policy
+settings related to <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b76eee27-064e-461b-81a9-fbf41e49928b" data-linktype="relative-path">account
+objects</a>, <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_9720ddb8-c802-40b7-8dba-5e7520c3396d" data-linktype="relative-path">secret objects</a>,
+<a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted domain objects
+(TDOs)</a>, and other miscellaneous security-related policy settings. The
+client end of the Local Security Authority (Domain Policy) Remote Protocol is
+an application that issues method calls on the RPC interface. The server end of
+the Local Security Authority (Domain Policy) Remote Protocol is a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_2dc07ca2-2b40-437e-a5ec-ed28ebfb116a" data-linktype="relative-path">service</a> that implements
+support for this RPC interface.</p><p>The following represent primary use cases for remote
+management:</p><ul><li><p><span><span> 
+</span></span>Creating, deleting, enumerating, and modifying <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trusts</a>, account objects,
+and secret objects.</p>
+</li><li><p><span><span> 
+</span></span>Querying and modifying policy settings unrelated to TDOs, account
+objects or secret objects, such as lifetimes of Kerberos tickets.</p>
+</li></ul><p>This protocol is used by Windows clients for the
+&#34;domain join&#34; operation (as specified in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/e5dd47ea-3ff5-451c-b6fe-c3bda5591402" data-linktype="relative-path">6.4</a>)
+as an implementation choice to achieve the end state, as specified in [MS-ADTS].
+The specific profile of the Local Security Authority (Domain Policy) Remote
+Protocol for the &#34;domain join&#34; scenario is specified in section <a href="7c9812de-b31d-47a1-a13f-a91ae94fad37" data-linktype="relative-path">1.6</a> as &#34;Retrieval of
+policy settings by clients&#34;.</p><p>The server end of the Local Security Authority (Domain
+Policy) Remote Protocol can be implemented on a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller (DC)</a>,
+including <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">primary domain
+controllers (PDCs)</a>, <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_ce1138c6-7ab4-4c37-98b4-95599071c3c3" data-linktype="relative-path">backup
+domain controllers (BDCs)</a>, <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_a5a99ce4-e206-42dc-8874-e103934c5b0d" data-linktype="relative-path">global catalog servers (GC
+servers)</a>, and <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8b0a073b-3099-4efe-8b81-c2886b66a870" data-linktype="relative-path">read-only
+domain controllers (RODCs)</a>, or on a non–domain controller. In the case of a
+DC, including PDCs, BDCs, GC servers, and RODCs, the server end of this
+protocol can be in one of the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b3240417-ca43-4901-90ec-fde55b32b3b8" data-linktype="relative-path">forest
+functional levels</a>. The behavior of the server end of the Local Security
+Authority (Domain Policy) Remote Protocol is the same in these cases, except
+when noted in the message processing descriptions for the methods of this
+protocol. See sections <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">3.1.4.4.1</a>,
+<a href="516f503c-0230-489d-b012-e650b46b66a2" data-linktype="relative-path">3.1.4.4.3</a>, <a href="fc14e9ae-a26e-4031-809e-a908dd3e13a3" data-linktype="relative-path">3.1.4.4.5</a>, <a href="3d7af62e-c260-489d-8ab5-c756e0b9fe57" data-linktype="relative-path">3.1.4.7</a>, <a href="d541b40a-06ad-4b3b-bbfa-5cf51a1f02d9" data-linktype="relative-path">3.1.4.7.3</a>, <a href="633788c9-1e98-4555-bc41-d78a0de0f4a4" data-linktype="relative-path">3.1.4.7.4</a>, <a href="cc86a55d-b619-48fd-998a-65cca15efeb9" data-linktype="relative-path">3.1.4.7.10</a>, <a href="9ea46cef-cc72-4109-ba13-91eda6b713bc" data-linktype="relative-path">3.1.4.7.14</a>, and <a href="16be42bc-e85c-4135-b183-aacb88106306" data-linktype="relative-path">3.1.4.7.16</a> for details.</p><p>This protocol is a simple request/response-based RPC
+protocol. Typically, there are no long-lived sessions, although clients can
+cache the RPC connection and reuse it over time. A sample sequence of requests
+and responses is specified in section <a href="3186df57-d57c-4dc3-80a7-7f3050a5ccca" data-linktype="relative-path">4</a>.</p><p>It is helpful to consider two perspectives when
+understanding and implementing this protocol: an object-based perspective and a
+method-based perspective.</p><p>The object-based perspective shows that the protocol exposes
+four main object abstractions: a policy object, an account object, a secret
+object, and a trusted domain object. A requester obtains a &#34;handle&#34;
+(an <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_9dfe84e3-a772-4ad1-9a25-1255c1dc0f84" data-linktype="relative-path">RPC context handle</a>)
+to one of these objects and then performs one or more actions on the object.
+The following is a brief listing of methods that operate on each of the
+respective object types.</p><p>Policy object:</p><ul><li><p><span><span> 
+</span></span>LsarOpenPolicy3</p>
+</li><li><p><span><span> 
+</span></span>LsarOpenPolicy2</p>
+</li><li><p><span><span> 
+</span></span>LsarQueryInformationPolicy2</p>
+</li><li><p><span><span> 
+</span></span>LsarSetInformationPolicy2</p>
+</li><li><p><span><span> 
+</span></span>LsarClose</p>
+</li><li><p><span><span> 
+</span></span>LsarQueryDomainInformationPolicy</p>
+</li><li><p><span><span> 
+</span></span>LsarEnumeratePrivileges</p>
+</li><li><p><span><span> 
+</span></span>LsarLookupPrivilegeName</p>
+</li><li><p><span><span> 
+</span></span>LsarLookupPrivilegeValue</p>
+</li><li><p><span><span> 
+</span></span>LsarLookupPrivilegeDisplayName</p>
+</li><li><p><span><span> 
+</span></span>LsarSetDomainInformationPolicy</p>
+</li><li><p><span><span> 
+</span></span>LsarQuerySecurityObject</p>
+</li><li><p><span><span> 
+</span></span>LsarSetSecurityObject</p>
+</li></ul><p>Account object:</p><ul><li><p><span><span> 
+</span></span>LsarCreateAccount</p>
+</li><li><p><span><span> 
+</span></span>LsarOpenAccount</p>
+</li><li><p><span><span> 
+</span></span>LsarEnumerateAccounts</p>
+</li><li><p><span><span> 
+</span></span>LsarClose</p>
+</li><li><p><span><span> 
+</span></span>LsarDeleteObject</p>
+</li><li><p><span><span> 
+</span></span>LsarSetSystemAccessAccount</p>
+</li><li><p><span><span> 
+</span></span>LsarQuerySecurityObject</p>
+</li><li><p><span><span> 
+</span></span>LsarAddAccountRights</p>
+</li><li><p><span><span> 
+</span></span>LsarRemoveAccountRights</p>
+</li><li><p><span><span> 
+</span></span>LsarAddPrivilegesToAccount</p>
+</li><li><p><span><span> 
+</span></span>LsarRemovePrivilegesFromAccount</p>
+</li><li><p><span><span> 
+</span></span>LsarEnumerateAccountsWithUserRight</p>
+</li><li><p><span><span> 
+</span></span>LsarGetSystemAccessAccount</p>
+</li><li><p><span><span> 
+</span></span>LsarSetSecurityObject</p>
+</li><li><p><span><span> 
+</span></span>LsarEnumeratePrivilegesAccount</p>
+</li><li><p><span><span> 
+</span></span>LsarEnumerateAccountRights</p>
+</li></ul><p>Secret object:</p><ul><li><p><span><span> 
+</span></span>LsarCreateSecret</p>
+</li><li><p><span><span> 
+</span></span>LsarOpenSecret</p>
+</li><li><p><span><span> 
+</span></span>LsarClose</p>
+</li><li><p><span><span> 
+</span></span>LsarDeleteObject</p>
+</li><li><p><span><span> 
+</span></span>LsarRetrievePrivateData</p>
+</li><li><p><span><span> 
+</span></span>LsarStorePrivateData</p>
+</li><li><p><span><span> 
+</span></span>LsarSetSecret</p>
+</li><li><p><span><span> 
+</span></span>LsarQuerySecret</p>
+</li><li><p><span><span> 
+</span></span>LsarQuerySecurityObject</p>
+</li><li><p><span><span> 
+</span></span>LsarSetSecurityObject</p>
+</li></ul><p>Trusted domain object:</p><ul><li><p><span><span> 
+</span></span>LsarCreateTrustedDomainEx3</p>
+</li><li><p><span><span> 
+</span></span>LsarCreateTrustedDomainEx2</p>
+</li><li><p><span><span> 
+</span></span>LsarOpenTrustedDomain</p>
+</li><li><p><span><span> 
+</span></span>LsarClose</p>
+</li><li><p><span><span> 
+</span></span>LsarDeleteObject</p>
+</li><li><p><span><span> 
+</span></span>LsarOpenTrustedDomainByName</p>
+</li><li><p><span><span> 
+</span></span>LsarDeleteTrustedDomain</p>
+</li><li><p><span><span> 
+</span></span>LsarEnumerateTrustedDomainsEx</p>
+</li><li><p><span><span> 
+</span></span>LsarQueryInfoTrustedDomain</p>
+</li><li><p><span><span> 
+</span></span>LsarSetInformationTrustedDomain</p>
+</li><li><p><span><span> 
+</span></span>LsarQueryForestTrustInformation</p>
+</li><li><p><span><span> 
+</span></span>LsarSetForestTrustInformation</p>
+</li><li><p><span><span> 
+</span></span>LsarQueryTrustedDomainInfo</p>
+</li><li><p><span><span> 
+</span></span>LsarSetTrustedDomainInfo</p>
+</li><li><p><span><span> 
+</span></span>LsarQueryTrustedDomainInfoByName</p>
+</li><li><p><span><span> 
+</span></span>LsarSetTrustedDomainInfoByName</p>
+</li></ul><p>For example, to set a policy that controls the lifetime of
+Kerberos tickets, a requester opens a handle to the Policy object and updates
+the maximum service ticket age policy setting via a parameter called <i>MaxServiceTicketAge</i>.
+The call sequence from the requester appears as follows (with the parameter
+information removed for brevity):</p><ol><li><p><span>    </span>Send
+LsarOpenPolicy3 request; receive LsarOpenPolicy3 reply.</p>
+</li><li><p><span>    </span>Send
+LsarQueryDomainInformationPolicy request; receive
+LsarQueryDomainInformationPolicy reply.</p>
+</li><li><p><span>    </span>Send
+LsarSetDomainInformationPolicy request; receive LsarSetDomainInformationPolicy
+reply.</p>
+</li><li><p><span>    </span>Send LsarClose
+request; receive LsarClose reply.</p>
+</li></ol><p>The following is a brief explanation of the call sequence:</p><ol><li><p><span>    </span>Using the
+network address of a responder that implements this protocol, a requester makes
+an LsarOpenPolicy3 request to obtain a handle to the policy object. This handle
+is necessary to examine and manipulate <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> policy information.</p>
+</li><li><p><span>    </span>Using the handle
+returned from LsarOpenPolicy3, the requester makes an
+LsarQueryDomainInformationPolicy request to retrieve the current policy
+settings that affect Kerberos tickets.</p>
+</li><li><p><span>    </span>After modifying
+the portions of the Kerberos ticket policy information to suit the requester,
+the requester makes the LsarSetDomainInformationPolicy request to set the
+policy to the new values.</p>
+</li><li><p><span>    </span>The requester
+closes the policy handle returned from LsarOpenPolicy3. This releases responder
+resources associated with the handle.</p>
+</li></ol><p>In the method-based perspective, there is a common set of
+operations for each object type. The operations fall into patterns. The
+following is a list of the patterns and associated methods, along with a
+description of the pattern.</p><ul><li><p><span><span> 
+</span></span><b>Open pattern:</b> This pattern returns an RPC context handle
+that references a specific object type. A requester uses this pattern by
+specifying a specific access for the handle in the request and using the
+returned handle to call other methods that require the returned handle and the
+associated access. For example, calling the LsarSetSecret method requires a
+secret object handle that has been opened with SECRET_WRITE access.</p>
+<p>LsarOpenPolicy3 is distinguished
+from the other methods in this pattern in two ways. First, the requestor calls
+this method before calling any other handle-based methods. Second, a network
+address, rather than a context handle, is required to indicate the responder.</p>
+<p>The following are the methods that
+follow the open pattern:</p>
+<ul><li><p><span><span>  </span></span>LsarOpenPolicy3</p>
+</li><li><p><span><span>  </span></span>LsarOpenPolicy2</p>
+</li><li><p><span><span>  </span></span>LsarOpenPolicy
+</p>
+</li><li><p><span><span>  </span></span>LsarOpenAccount
+</p>
+</li><li><p><span><span>  </span></span>LsarOpenSecret
+</p>
+</li><li><p><span><span>  </span></span>LsarOpenTrustedDomain
+</p>
+</li><li><p><span><span>  </span></span>LsarOpenTrustedDomainByName</p>
+</li></ul></li><li><p><span><span> 
+</span></span><b>Enumerate pattern:</b> This pattern enables a requester to
+obtain a complete listing of all objects of a certain type (account or <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted domain</a>) or to get
+all values of a certain type out of an object (for example, <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privileges</a> known to the
+server). </p>
+<p>The following are the
+methods that follow the enumerate pattern:</p>
+<ul><li><p><span><span>  </span></span>LsarEnumerateTrustedDomainsEx</p>
+</li><li><p><span><span>  </span></span>LsarEnumerateAccounts
+</p>
+</li><li><p><span><span>  </span></span>LsarEnumeratePrivileges
+</p>
+</li><li><p><span><span>  </span></span>LsarEnumeratePrivilegesAccount
+</p>
+</li><li><p><span><span>  </span></span>LsarEnumerateAccountRights
+</p>
+</li><li><p><span><span>  </span></span>LsarEnumerateAccountsWithUserRight</p>
+</li></ul></li><li><p><span><span> 
+</span></span><b>Create pattern:</b> Methods in this pattern enable specified
+objects to be created. A handle to the newly created object is also returned. </p>
+<p>The following are the
+methods that follow the create pattern:</p>
+<ul><li><p><span><span>  </span></span>LsarCreateAccount</p>
+</li><li><p><span><span>  </span></span>LsarCreateSecret
+</p>
+</li><li><p><span><span>  </span></span>LsarCreateTrustedDomainEx2</p>
+</li><li><p><span><span>  </span></span>LsarCreateTrustedDomainEx3</p>
+</li></ul></li><li><p><span><span> 
+</span></span><b>Query pattern:</b> This pattern enables specified attributes
+of an object to be returned. The requester indicates which attributes to return
+by specifying an &#34;information class&#34;. This is an enumeration that the
+responder understands and translates to a specific structure to return (the
+structure contains the attributes indicated by the information class). </p>
+<p>For example, to retrieve the name
+of a trusted domain, a requester would specify the information level
+&#34;TrustedDomainNameInformation&#34; to the LsarQueryTrustedDomainInfo
+method.</p>
+<p>The following are the
+methods that follow the query pattern:</p>
+<ul><li><p><span><span>  </span></span>LsarQueryDomainInformationPolicy</p>
+</li><li><p><span><span>  </span></span>LsarQueryForestTrustInformation</p>
+</li><li><p><span><span>  </span></span>LsarQueryInformationPolicy2</p>
+</li><li><p><span><span>  </span></span>LsarQuerySecret</p>
+</li><li><p><span><span>  </span></span>LsarQueryTrustedDomainInfo</p>
+</li><li><p><span><span>  </span></span>LsarQueryTrustedDomainInfoByName
+</p>
+</li><li><p><span><span>  </span></span>LsarQueryInfoTrustedDomain</p>
+</li></ul></li><li><p><span><span> 
+</span></span><b>Set pattern:</b> This pattern enables specified object
+attributes to be set. The requester makes a request for which attributes to
+update by specifying an &#34;information class&#34;. Similar to the Query
+pattern, this information level allows the caller to specify to the responder
+which attributes are being sent in the request.</p>
+<p>The following are the methods that
+follow the set pattern:</p>
+<ul><li><p><span><span>  </span></span>LsarSetDomainInformationPolicy</p>
+</li><li><p><span><span>  </span></span>LsarSetForestTrustInformation</p>
+</li><li><p><span><span>  </span></span>LsarSetInformationPolicy2</p>
+</li><li><p><span><span>  </span></span>LsarSetSecret</p>
+</li><li><p><span><span>  </span></span>LsarAddPrivilegesToAccount</p>
+</li><li><p><span><span>  </span></span>LsarRemovePrivilegesFromAccount</p>
+</li><li><p><span><span>  </span></span>LsarAddAccountRights</p>
+</li><li><p><span><span>  </span></span>LsarRemoveAccountRights</p>
+</li></ul></li><li><p><span><span> 
+</span></span><b>Delete pattern:</b> This pattern enables a requester to delete
+a specified object.</p>
+<p>The following are the methods that
+follow the delete pattern:</p>
+<ul><li><p><span><span>  </span></span>LsarDeleteObject</p>
+</li><li><p><span><span>  </span></span>LsarDeleteTrustedDomain</p>
+</li></ul></li><li><p><span><span> 
+</span></span><b>Lookup pattern:</b> This pattern enables a caller to translate
+between different representations of an entity (in the case of this protocol,
+names and identifiers of privileges).</p>
+<p>The following are the
+methods that follow the lookup pattern:</p>
+<ul><li><p><span><span>  </span></span>LsarLookupPrivilegeName</p>
+</li><li><p><span><span>  </span></span>LsarLookupPrivilegeValue</p>
+</li><li><p><span><span>  </span></span>LsarLookupPrivilegeDisplayName</p>
+</li></ul></li><li><p><span><span> 
+</span></span><b>Security pattern:</b> This pattern enables a caller to specify
+or query the access control at the level of individual objects.</p>
+<p>The following are the methods
+that follow the security pattern:</p>
+<ul><li><p><span><span>  </span></span>LsarSetSecurityObject</p>
+</li><li><p><span><span>  </span></span>LsarQuerySecurityObject</p>
+</li></ul></li><li><p><span><span> 
+</span></span><b>Miscellaneous:</b> The following method does not fall into a
+general pattern. A brief description is given here. See the message processing
+section for details.</p>
+<p>LsarClose: This method
+releases responder resources associated with the RPC context handle that is
+passed as a parameter.</p>
+</li></ul></div>

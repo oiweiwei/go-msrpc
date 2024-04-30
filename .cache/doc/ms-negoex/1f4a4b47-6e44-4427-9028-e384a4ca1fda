@@ -1,0 +1,31 @@
+<div class="content"><p> </p><p>The <b>MESSAGE_HEADER</b> structure is a member of other
+message structures and is used to provide metadata about each message. The
+fields are common for all the NEGOEX messages in a conversation exchange except
+for the <b>MESSAGE_TYPE</b> field, which varies according to the message.  </p><dl>
+<dd>
+<div><pre> struct
+ {
+     ULONG64 Signature; 
+     MESSAGE_TYPE MessageType; 
+     ULONG SequenceNum;
+     ULONG cbHeaderLength;
+     ULONG cbMessageLength;
+     CONVERSATION_ID ConversationId;
+ } MESSAGE_HEADER; 
+</pre></div>
+</dd></dl><p><b>Signature:</b> A ULONG64 type that contains the
+MESSAGE_SIGNATURE constant in hexadecimal format that indicates
+&#34;NEGOEXTS&#34;, as specified in section <span><a href="c361c09b-7a4f-4575-b4eb-2320388fa0aa" data-linktype="relative-path">2.2.3</a></span>. The message
+signature should remain the same throughout the negotiation process.  </p><p><b>MessageType:</b> A value of the <b>MESSAGE_TYPE</b>
+enumeration, as specified in section <span><a href="3a77a20d-9746-4e79-8f06-b241263e3da3" data-linktype="relative-path">2.2.6.1</a></span>, that
+contains the type of message.  </p><p><b>SequenceNum:</b> A ULONG type that contains the
+message sequence number of the specific conversation, starting with 0 and
+incremented sequentially.  </p><p><b>cbHeaderLength:</b> A ULONG type that contains the
+header length of the message, which includes the message-specific header and
+excludes the payload.  </p><p><b>cbMessageLength:</b> A ULONG type that contains
+the length of the message.  </p><p><b>ConversationId:</b> A <b>CONVERSATION_ID</b> GUID,
+as specified in section <span><a href="fa13c53c-f15c-4506-9679-c8cd69684463" data-linktype="relative-path">2.2.2</a></span>, that the
+initiator and the acceptor use as a context handle to identify an exchange
+conversation. The <b>CONVERSATION_ID</b> is referred to as ConversationID
+(section <span><a href="52293c7c-088f-4009-8337-8d69f73e4df2" data-linktype="relative-path">3.1.5.2</a></span>). The
+ConversationID MUST remain the same throughout the entire exchange.  </p></div>

@@ -1,0 +1,49 @@
+<div class="content"><p> </p><p>The Next method gets up to a specified number of items from
+the collection, if they are available, starting at the current enumerator
+position.</p><dl>
+<dd>
+<div><pre> [id(3), helpstring(&#34;method Next&#34;)] HRESULT Next(
+   [in] ULONG cReqElem,
+   [out, size_is(cReqElem), length_is(*cRetElem)] 
+     IUnknown** ppInterface,
+   [out] ULONG* cRetElem
+ );
+</pre></div>
+</dd></dl><p><b>cReqElem: </b>The number of elements requested by
+the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>
+to return from the collection.</p><p><b>ppInterface: </b>If the function returns a success
+<span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>,
+this MUST contain an array of <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface pointers</a></span>
+of size <i>cRetElem</i>. Each element in the array MUST be either a DCOM <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>
+supporting the <span><a href="2510bb77-b0ab-4254-b3b8-dd5c6189eef2" data-linktype="relative-path">IEventClass2</a></span>
+interface if the underlying collection is of EventClasses or the element MUST
+be a DCOM object supporting <span><a href="542e1c26-d18a-4686-a47e-8be9ca73e352" data-linktype="relative-path">IEventSubscription</a></span>
+DCOM interface if the underlying collection is of <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_f362c255-5746-44db-aa04-e8060543a19c" data-linktype="relative-path">subscriptions</a></span>.</p><p><b>cRetElem: </b>If the function returns a success
+HRESULT, this MUST contain a number of items returned in the array contained in
+<i>ppInterface</i>.</p><p><b>Return Values: </b>An HRESULT specifying success
+or failure. All success codes other than S_FALSE MUST be treated the same, and
+all failure codes MUST be treated the same.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  <p>S_FALSE</p>
+  </td>
+  <td>
+  <p>End of the collection.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>When this method is invoked, the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST attempt
+to return items from the current position of the enumerator on the collection,
+and move the enumerator ahead in the collection by the value of <i>cRetElem</i>.
+If the number of elements in the collection is less than <i>cReqElem</i>, the
+function MUST return S_FALSE for failure.</p></div>

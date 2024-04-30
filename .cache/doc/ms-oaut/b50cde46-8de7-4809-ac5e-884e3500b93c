@@ -1,0 +1,54 @@
+<div class="content"><p> </p><p>The CreateInstance method creates a new instance of a type
+that describes a <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_afe9a4a6-56fc-4162-8c9b-ca7c7e44449c" data-linktype="relative-path">COM server</a></span> (<span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_670b0ee2-d101-41b0-ac77-6ac7dbeee7dc" data-linktype="relative-path">coclass</a></span>).</p><dl>
+<dd>
+<div><pre> HRESULT CreateInstance(
+   [in] REFIID riid,
+   [out, iid_is(riid)] IUnknown** ppvObj
+ );
+</pre></div>
+</dd></dl><p><b>riid: </b>MUST be an <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_76ad3105-3f05-479d-a40c-c9c8fa2ebd83" data-linktype="relative-path">IID</a></span>.</p><p><b>ppvObj: </b> MUST be set to reference an existing
+instance of the coclass described by the <span><a href="99504cf9-16d8-401e-a873-83b85d1ee4aa" data-linktype="relative-path">ITypeInfo server</a></span>,
+if the coclass was declared with the [predeclid] or [appobject] attributes and
+an instance of the coclass exists. MUST be set to NULL if the coclass was
+declared with the [noncreatable] attribute. Otherwise, MUST be set to a new
+instance of the coclass described by the ITypeInfo server or NULL if the class
+cannot be instantiated. </p><p><b>Return Values: </b>The method MUST return
+information in an HRESULT data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions: </p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD does
+not match a value in the following table, a fatal failure occurred.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD
+matches a value in the following table, a failure occurred. </p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80000004</p>
+  <p>TYPE_E_NOINTERFACE</p>
+  </td>
+  <td>
+  <p>The value of riid did not specify a known type. See
+  [MS-ERREF].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800288BD</p>
+  <p>TYPE_E_BADMODULEKIND</p>
+  </td>
+  <td>
+  <p>The ITypeInfo server specified a non-coclass type. See
+  [MS-ERREF].</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p> </p></div>

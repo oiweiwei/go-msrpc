@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The IUnsecuredApartment::CreateObjectStub method does not
+perform any action and returns E_UNEXPECTED when called by a remote client.</p><dl>
+<dd>
+<div><pre> HRESULT CreateObjectStub(
+   [in] IUnknown* reserved1,
+   [out] IUnknown* reserved2
+ );
+</pre></div>
+</dd></dl><p><b>reserved1: </b>MUST be set to NULL when sent and
+MUST be ignored on receipt.</p><p><b>reserved2: </b>MUST be set to NULL when sent and MUST
+be ignored on receipt.</p><p><b>Return Values: </b>This method MUST return
+E_UNEXPECTED as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p></div>

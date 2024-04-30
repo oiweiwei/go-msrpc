@@ -1,0 +1,101 @@
+<div class="content"><p> </p><p>The SF_TYPE enumeration values are used in the discriminant
+field, <b>sfType</b>, of a <span><a href="5eaa490f-f6c5-4d58-b368-cf2d0ea74572" data-linktype="relative-path">SAFEARRAYUNION</a></span>
+structure.</p><p>The SAFEARRAY feature constants are defined in the SF_TYPE
+enumeration. </p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum tagSF_TYPE
+ {
+   SF_ERROR = VT_ERROR,
+   SF_I1 = VT_I1,
+   SF_I2 = VT_I2,
+   SF_I4 = VT_I4,
+   SF_I8 = VT_I8,
+   SF_BSTR = VT_BSTR,
+   SF_UNKNOWN = VT_UNKNOWN,
+   SF_DISPATCH = VT_DISPATCH,
+   SF_VARIANT = VT_VARIANT,
+   SF_RECORD = VT_RECORD,
+   SF_HAVEIID = VT_UNKNOWN | 0x8000
+ } SF_TYPE;
+</pre></div>
+</dd></dl><p><b>SF_ERROR:  </b>This value means that the SAFEARRAY
+was incorrectly marshaled. The receiver MUST reject any call that has a SAFEARRAY
+argument with this flag specified, by raising an RPC_X_BAD_STUB_DATA <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+exception.</p><dl>
+<dd>
+<p>Hex value is 0x0000000A.</p>
+</dd>
+<dd>
+<p>Element marshaling size: N/A</p>
+</dd></dl><p><b>SF_I1:  </b>The type of the elements contained in
+the SAFEARRAY MUST be a 1-byte integer.</p><dl>
+<dd>
+<p>Hex value is 0x00000010.</p>
+</dd>
+<dd>
+<p>Element marshaling size in bytes: 1</p>
+</dd></dl><p><b>SF_I2:  </b>The type of the elements contained in
+the SAFEARRAY MUST be a 2-byte integer.</p><dl>
+<dd>
+<p>Hex value is 0x00000002.</p>
+</dd>
+<dd>
+<p>Element marshaling size in bytes: 2</p>
+</dd></dl><p><b>SF_I4:  </b>The type of the elements contained in
+the SAFEARRAY MUST be a 4-byte integer.</p><dl>
+<dd>
+<p>Hex value is 0x00000003.</p>
+</dd>
+<dd>
+<p>Element marshaling size in bytes: 4</p>
+</dd></dl><p><b>SF_I8:  </b>The type of the elements contained in
+the SAFEARRAY MUST be an 8-byte integer.</p><dl>
+<dd>
+<p>Hex value is 0x00000014.</p>
+</dd>
+<dd>
+<p>Element marshaling size in bytes: 8</p>
+</dd></dl><p><b>SF_BSTR:  </b>The type of the elements contained
+in the SAFEARRAY MUST be a BSTR.</p><dl>
+<dd>
+<p>Hex value is 0x00000008.</p>
+</dd>
+<dd>
+<p>Element marshaling size in bytes: 4</p>
+</dd></dl><p><b>SF_UNKNOWN:  </b>The type of the elements
+contained in the SAFEARRAY MUST be a pointer to IUnknown.</p><dl>
+<dd>
+<p>Hex value is 0x0000000D.</p>
+</dd>
+<dd>
+<p>Element marshaling size in bytes: 4</p>
+</dd></dl><p><b>SF_DISPATCH:  </b>The type of the elements
+contained in the SAFEARRAY MUST be a pointer to IDispatch (see section <span><a href="ac9c502b-ac1c-4202-8ad4-048ac98afcc9" data-linktype="relative-path">3.1.4</a></span>).</p><dl>
+<dd>
+<p>Hex value is 0x00000009.</p>
+</dd>
+<dd>
+<p>Element marshaling size in bytes: 4</p>
+</dd></dl><p><b>SF_VARIANT:  </b>The type of the elements
+contained in the SAFEARRAY MUST be VARIANT.</p><dl>
+<dd>
+<p>Hex value is 0x0000000C.</p>
+</dd>
+<dd>
+<p>Element marshaling size in bytes: 16</p>
+</dd></dl><p><b>SF_RECORD:  </b>The type of the elements contained
+in the SAFEARRAY is a <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_10a36f2b-2a1d-4d7f-b57d-261afca73727" data-linktype="relative-path">user-defined type (UDT)</a></span>
+(as defined in section <span><a href="7b86dfb8-ca9b-437b-ad8a-bd9f0aadc266" data-linktype="relative-path">2.2.28.1</a></span>.</p><dl>
+<dd>
+<p>Hex value is 0x00000024.</p>
+</dd>
+<dd>
+<p>Element marshaling size in bytes: 4</p>
+</dd></dl><p><b>SF_HAVEIID:  </b>The type of the elements
+contained in the SAFEARRAY MUST be an <span><a href="../ms-dcom/21781a97-cb45-4655-82b0-02c4a1584603" data-linktype="relative-path">MInterfacePointer</a></span>.</p><dl>
+<dd>
+<p>Hex value is 0x0000800D.</p>
+</dd>
+<dd>
+<p>Element marshaling size in bytes: 4</p>
+</dd></dl></div>

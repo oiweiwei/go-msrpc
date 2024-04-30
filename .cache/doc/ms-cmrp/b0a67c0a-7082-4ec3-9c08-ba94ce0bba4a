@@ -1,0 +1,218 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/b0a67c0a-7082-4ec3-9c08-ba94ce0bba4a" data-linktype="external">msdn link</a></p><p>The <b>CLUS_PARTITION_INFO</b> data structure is the format
+in which a property value of syntax CLUSPROP_SYNTAX_PARTITION_INFO, as
+specified in section <a href="7ea3a0e0-d3b9-43e8-85d8-263fff3499da" data-linktype="relative-path">2.2.2.3</a>,
+is written as a property value, as specified in section <a href="de73d6f9-bfdf-47ef-b008-b2da17c1a073" data-linktype="relative-path">2.2.3.10.1</a>. <b>CLUS_PARTITION_INFO</b>
+contains data about a disk <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a>
+that is configured with a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_e88c8bcf-42a7-41c6-b59a-e959ae01048d" data-linktype="relative-path">basic
+volume</a>.</p><p><b>CLUS_PARTITION_INFO</b> is a custom-marshaled data
+structure that has fields as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szDeviceName
+  (520 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szVolumeLabel
+  (520 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSerialNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>rgdwMaximumComponentLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwFileSystemFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szFileSystem
+  (64 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwFlags (4 bytes): </b>An unsigned 32-bit integer.
+Indicates <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_41441ad6-7a82-4a41-a89c-7e4b8d784ad8" data-linktype="relative-path">characteristics</a>
+about the partition. Can be a combination of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CLUSPROP_PIFLAG_STICKY</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a>
+  is configured with a drive letter.</p>
+  <p>Can be combined with any other flag.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSPROP_PIFLAG_REMOVABLE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The partition is formatted with a file system that is
+  removable by the cluster software.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSPROP_PIFLAG_USABLE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The partition is formatted with a file system that is
+  usable by the cluster software. This flag SHOULD be set if and only if the
+  partition is formatted with the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_86f79a17-c0be-4937-8660-0cf6ce5ddc1a" data-linktype="relative-path">NT file system (NTFS)</a>.</p>
+  <p>Can be combined with any other flag, but MUST be set
+  if CLUSPROP_PIFLAG_DEFAULT_QUORUM is set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSPROP_PIFLAG_DEFAULT_QUORUM</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Indicates that the smallest NTFS partition MUST be at
+  least 50,000,000 bytes in size.</p>
+  <p>Can be combined with any other flag, but
+  CLUSPROP_PIFLAG_USABLE MUST also be set if this flag is set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSPROP_PIFLAG_USABLE_FOR_CSV</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>This flag is set if and only if the partition is
+  formatted with NTFS/ReFS. Can be combined with any other flag.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSPROP_PIFLAG_ENCRYPTION_ENABLED</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Encryption is enabled and this flag is used when
+  ENCRYPTION_ENABLED flag is set in <b>EncryptionFlags</b> field.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSPROP_PIFLAG_RAW</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>The partition is a raw volume and is not formatted
+  with a file system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSPROP_PIFLAG_UNKNOWN</p>
+  <p>0x80000000</p>
+  </td>
+  <td>
+  <p>Partition is of unknown file system type.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>szDeviceName (520 bytes): </b>A 520-byte long
+fixed-length field. It contains a null-terminated <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> that
+contains the drive letter of the volume if the volume has a drive letter. If
+the volume is not configured with a drive letter, a null-terminated Unicode
+string of the format &#34;DiskNNNPartitionYYY&#34;, where <i>NNN</i> is the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_7e189ef6-060e-489a-8ef0-b9ec7fcc4a79" data-linktype="relative-path">disk number</a> and <i>YYY</i>
+is the partition number, as specified in <a href="../ms-dmrp/19a16e20-072f-4d74-a245-ce4df2f1ecdd" data-linktype="relative-path">[MS-DMRP]</a>.</p><p><b>szVolumeLabel (520 bytes): </b>A 520-byte long
+fixed-length field. It contains the file system label. This field is a
+null-terminated Unicode string.</p><p><b>dwSerialNumber (4 bytes): </b>An unsigned 32-bit
+integer. This is the serial number that is assigned by the operating system
+when the partition was formatted.</p><p><b>rgdwMaximumComponentLength (4 bytes): </b>An
+unsigned 32-bit integer. A <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">value</a>
+specifying the maximum length, in characters, of a file name component that is
+supported by the specified file system. A file name component is the portion of
+a file name between &#34;\&#34; characters.</p><p><b>dwFileSystemFlags (4 bytes): </b>An unsigned
+32-bit integer that identifies the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_bafb2696-b639-45eb-9d5a-95d905a2262d" data-linktype="relative-path">file system flags</a>.</p><p><b>szFileSystem (64 bytes): </b>A 64-byte long
+fixed-length field that contains a null-terminated Unicode string, which is the
+name of the file system, as specified in [MS-DMRP].</p></div>

@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The FlatUIDArray_r structure encodes an array of <span><a href="09f5370d-05ee-459e-903a-4e63e1928169" data-linktype="relative-path">FlatUID_r</a></span>
+data structures.</p><dl>
+<dd>
+<div><pre> typedef struct _FlatUIDArray_r {
+   [range(0,100000)] DWORD cValues;
+   [size_is(cValues)] FlatUID_r** lpguid;
+ } FlatUIDArray_r;
+</pre></div>
+</dd></dl><p><b>cValues:</b>  The number of FlatUID_r
+structures represented in the FlatUIDArray_r structure. This value MUST NOT
+exceed 100,000.</p><p><b>lpguid:</b>   The FlatUID_r data
+structures.</p></div>

@@ -1,0 +1,53 @@
+<div class="content"><p> </p><p>The <b>RfrGetNewDSA</b> method returns the name of an <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_e63aea5b-046b-4176-9359-fde82613a406" data-linktype="relative-path">NSPI</a></span>
+server or a server array.</p><dl>
+<dd>
+<div><pre> //opnum 0
+ long RfrGetNewDSA(
+  [in]                       handle_t          hRpc,
+  [in]                       unsigned long     ulFlags,
+  [in, string]               unsigned char *   pUserDN,
+  [in,out,unique, string]    unsigned char * * ppszUnused,
+  [in,out,unique, string]    unsigned char * * ppszServer);
+</pre></div>
+</dd></dl><p><b>hRpc:</b> A <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a></span>
+<span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_44deb72d-c62b-4335-90e4-b9fd4dd782ed" data-linktype="relative-path">binding
+handle</a></span> parameter, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> section
+2. MUST NOT be NULL.</p><p><b>ulFlags:</b> An unsigned long value, containing a set of
+bit <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_425bcab9-7911-4eae-b414-624b7a51eb5f" data-linktype="relative-path">flags</a></span>.
+Unused; SHOULD be set to zero. Other values MUST be ignored by the server.</p><p><b>pUserDN:</b> Optional, a <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a></span> indicating the <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_d3ad0e15-adc9-4174-bacf-d929b57278b3" data-linktype="relative-path">mailbox</a></span>
+owned by the client user. The client SHOULD pass this to the server. If
+supplied, the server SHOULD use that DN to affect which NSPI server is returned
+to the caller.</p><p><b>ppszUnused:</b> A string. Unused; SHOULD be set to NULL.
+Other values MUST be ignored by the server.</p><p><b>ppszServer:</b> A string. If the server does not return
+an error, ppszServer contains the <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a></span> of an NSPI
+server or a server array. On failure, the value is undefined.</p><p><b>Return Values:</b> The server returns 0 for a successful
+execution. An error results in an HRESULT or other nonzero error code.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol as specified in <span><a href="/en-us/openspecs/windows_protocols/MS-RPCE/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="absolute-path">[MS-RPCE]</a></span>.</p><p>Upon receiving this message, the server MUST process the
+data from the client using the following constraints. If <b>pUserDN</b> is
+present and contains the DN of an <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_4792b6d3-b01a-43f6-aca4-42fc4e79a633" data-linktype="relative-path">Address Book object</a></span>,
+the server MUST prioritize an NSPI server that contains a writeable copy of
+that Address Book object over NSPI servers that do not, and return a server
+array or a server from the user’s mailbox site.<a id="Appendix_A_Target_2"></a><a id="z3"></a><a aria-label="Product behavior note 2" href="9a225804-1148-4d0f-921f-0b0724c000f8#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a>
+The server can take other constraints into account, such as the network
+location of the NSPI server in comparison to the NSPI referral server or the
+client. The server MUST prioritize available, responsive NSPI servers over
+unresponsive ones. The server can consider load balancing of clients when more
+than one NSPI server has equal priority. After considering these constraints,
+method SHOULD return one NSPI server name in the <b>ppszServer</b> parameter
+and a return value of zero. If any errors occur and the method is not able to
+return the name of an NSPI server, a nonzero value MUST be returned.</p><p>Because the goal of the server is to balance load across
+multiple NSPI servers, clients MUST NOT expect the same NSPI server to be
+returned from the <b>RfrGetNewDSA</b> method, even if all inputs are the same.</p><p>A client SHOULD call the <b>RfrGetNewDSA</b> method and
+connects to the NSPI server returned from that method. The client SHOULD NOT
+connect to an NSPI server without first requesting a server name from <b>RfrGetNewDSA</b>.<a id="z5"></a></p><p>Note that clients can connect to a messaging server with a
+co-located NSPI server and no NSPI referral server, as well as a messaging
+server with an NSPI referral server. When first connecting, the client will not
+have determined which type of messaging server they are connecting to, and
+therefore they will try to connect to the messaging server&#39;s co-located NSPI
+server. On subsequent connections to that server, the client will use the NSPI
+referral server. This is one exception to the protocol documentation that
+states that clients SHOULD always use the NSPI referral server. Clients written
+to this protocol documentation have no reason to connect to an NSPI server
+before using this protocol.</p><p>The NSPI server returned in the <b>ppszServer</b> parameter
+MUST support the same <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_0c171cc7-e9c4-41b6-95a9-536db0042c7a" data-linktype="relative-path">RPC protocol sequence</a></span>
+used by the RPC binding handle.</p></div>

@@ -1,0 +1,29 @@
+<div class="content"><p> </p><p>The R_DnssrvOperation2 method is used to invoke a set of
+server functions specified by the caller. The DNS server SHOULD implement
+R_DnssrvOperation2.</p><p>All parameters are as specified by the R_DnssrvOperation
+method (section <span><a href="9500a7e8-165d-4b13-be86-0ddc43100eef" data-linktype="relative-path">3.1.4.1</a></span>) with the
+following exceptions:</p><dl>
+<dd>
+<div><pre> LONG R_DnssrvOperation2(
+   [in]                               handle_t                    hBindingHandle,
+   [in]                               DWORD                       dwClientVersion,
+   [in]                               DWORD                       dwSettingFlags,
+   [in, unique, string]               LPCWSTR                     pwszServerName,
+   [in, unique, string]               LPCSTR                      pszZone,
+   [in]                               DWORD                       dwContext,
+   [in, unique, string]               LPCSTR                      pszOperation,
+   [in]                               DWORD                       dwTypeId,
+   [in, switch_is(dwTypeId)]          DNSSRV_RPC_UNION            pData
+ );
+</pre></div>
+</dd></dl><p><b>dwClientVersion: </b>The client version in <b>DNS_RPC_CURRENT_CLIENT_VER</b>
+(section <span><a href="a237781b-b048-495d-844b-10ffb38df2a8" data-linktype="relative-path">2.2.1.2.1</a></span>) format.</p><p><b>dwSettingFlags: </b>Reserved for future use. MUST
+be set to zero by clients and MUST be ignored by servers.</p><p><b>Return Values: </b>The method MUST return
+ERROR_SUCCESS (0x00000000) on success or a nonzero Win32 error code value if an
+error occurred. See <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>
+or section <span><a href="aa521c99-3e44-4b75-9faa-c0c1ebcca5b6" data-linktype="relative-path">2.2.1.1.5</a></span>. All
+error values MUST be treated the same.</p><p>When processing this call, the server MUST perform the same
+actions as for the R_DnssrvOperation method (section 3.1.4.1) except in the
+event the dwClientVersion is greater than the server version, in which case the
+server MUST return the highest version number known to the server. </p></div>

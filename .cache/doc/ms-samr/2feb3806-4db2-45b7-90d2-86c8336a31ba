@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/2feb3806-4db2-45b7-90d2-86c8336a31ba" data-linktype="external">msdn link</a></p><p>The SAMPR_ULONG_ARRAY structure holds a counted array of
+unsigned long values.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_ULONG_ARRAY {
+   unsigned long Count;
+   [size_is(Count)] unsigned long* Element;
+ } SAMPR_ULONG_ARRAY,
+  *PSAMPR_ULONG_ARRAY;
+</pre></div>
+</dd></dl><p><b>Count:</b>  The number of elements in <b>Element</b>.
+If zero, <b>Element</b> MUST be ignored. If nonzero, <b>Element</b> MUST point
+to at least Count * sizeof(unsigned long) bytes of memory.</p><p><b>Element:</b>  A pointer to an array of
+unsigned integers with <b>Count</b> elements. The semantic meaning is dependent
+on the method in which the structure is being used.</p></div>

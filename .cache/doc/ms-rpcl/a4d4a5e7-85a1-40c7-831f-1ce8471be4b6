@@ -1,0 +1,38 @@
+<div class="content"><p> </p><p>The QUERYLOCATORREPLY structure represents the data that is
+sent back by a <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_a33485fd-4392-4219-83f8-d65cfa0e9674" data-linktype="relative-path">master locator</a></span> in
+response to a master locator discovery request.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned long unused;
+   unsigned long Hint;
+   unsigned long Uptime;
+   unsigned short SenderName[18];
+ } QUERYLOCATORREPLY;
+</pre></div>
+</dd></dl><p><b>unused:</b>  MUST be ignored by both
+client and server.</p><p><b>Hint:</b>  A hint representing the type
+of responding <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_a4c6ed23-4a18-4477-b837-4f4ce7578f39" data-linktype="relative-path">locator</a></span>. It MUST be
+the following value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>REPLY_MASTER_LOCATOR</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>This locator is a master locator.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Uptime:</b>  SHOULD contain the number
+of elapsed seconds since the sending computer started up.<a id="Appendix_A_Target_3"></a><a aria-label="Product behavior note 3" href="c3f4113b-48f1-4395-9284-ee937948047b#Appendix_A_3" data-linktype="relative-path">&lt;3&gt;</a></p><p><b>SenderName:</b>  MUST contain the
+mailslot sender as specified in section <span><a href="783ca657-3dc5-4d65-a5ab-a81bd65c12a1" data-linktype="relative-path">2.2.4.1.1</a></span>. This
+parameter is limited to 18 characters including the terminating null character.</p></div>

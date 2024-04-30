@@ -1,0 +1,53 @@
+<div class="content"><p> </p><p>The NspiGetPropList method returns a list of all the
+properties that have values on a specified object.</p><dl>
+<dd>
+<div><pre> long NspiGetPropList(
+   [in] NSPI_HANDLE hRpc,
+   [in] DWORD dwFlags,
+   [in] DWORD dwMId,
+   [in] DWORD CodePage,
+   [out] PropertyTagArray_r** ppPropTags
+ );
+</pre></div>
+</dd></dl><p><b>hRpc: </b>An <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+as specified in section <span><a href="67195f6a-2002-4d81-b279-ba8b0aefb4af" data-linktype="relative-path">2.3.9</a></span>.</p><p><b>dwFlags: </b>A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value, containing a set of bit flags. The server MUST ignore values other than
+the bit flag <b>fSkipObjects</b>.</p><p><b>dwMId: </b>A DWORD value, containing a <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_42ecf4ed-a7e5-4044-a1f0-f67ca58fb4b6" data-linktype="relative-path">MId</a></span>.</p><p><b>CodePage: </b>The <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_210637d9-9634-4652-a935-ded3cd434f38" data-linktype="relative-path">codepage</a></span> in which
+the client wishes the server to express string values properties.</p><p><b>ppPropTags: </b>A <span><a href="9dc42856-90da-4df9-85ca-f8307db84659" data-linktype="relative-path">PropertyTagArray_r</a></span>
+value. On return, it holds a list of properties.</p><p><b>Return Values: </b>The server returns a long value
+specifying the return status of the method.</p><p>Exceptions Thrown</p><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>Server Processing Rules</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints: </p><ol><li><p><span>    </span>If the server
+returns any return value other than Success, the server MUST return a NULL for
+the output parameter <i>ppPropTags</i>.</p>
+</li><li><p><span>    </span>The server MAY
+make additional validations according to section <span><a href="39bcbcd7-fa18-4eb2-a2ae-c598b6683185" data-linktype="relative-path">5</a></span>. If the server
+chooses to limit the visibility of data based on these validations, the server
+MUST proceed as if that data did not exist in the address book. See the product
+behavior note cited in section <span><a href="36c0f768-1fdd-4709-9875-6c387b107560" data-linktype="relative-path">5.1</a></span> for more
+information.</p>
+</li><li><p><span>    </span>If the input
+parameter <i>CodePage</i> does not specify a codepage the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_e63aea5b-046b-4176-9359-fde82613a406" data-linktype="relative-path">NSPI</a></span>
+server supports, the server MUST return the return value InvalidCodepage.</p>
+</li><li><p><span>    </span>If the input
+parameter <i>dwMId</i> does not specify an object in the Address Book, the
+server MUST return the value GeneralFailure.</p>
+</li><li><p><span>    </span>If the input
+parameter <i>dwFlags</i> contains the bit flag <b>fSkipObjects</b>, the server
+MUST NOT return any <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_7eb84614-827d-4b68-a71c-dd94eb0ad27f" data-linktype="relative-path">proptags</a></span> with the
+Property Type PtypEmbeddedTable in the output parameter <i>ppPropTags</i>.</p>
+</li><li><p><span>    </span>If the input
+parameter <i>CodePage</i> is CP_WINUNICODE, the server MUST return all string
+valued properties as having the Property Type PtypString.</p>
+</li><li><p><span>    </span>If the input
+parameter <i>CodePage</i> is not CP_WINUNICODE, the server MUST return all
+string valued properties as having the Property Type PtypString8.</p>
+</li><li><p><span>    </span>Subject to the
+previous constraints, the server constructs a list of all proptags
+corresponding to values on the object specified in the input parameter <i>dwMId</i>.
+The server MUST return this list in the output parameter <i>ppPropTags</i>. The
+protocol does not constrain the order of this list.</p>
+</li><li><p><span>    </span>If no error
+condition has been specified by the previous constraints, the server MUST
+return the value Success.</p>
+</li></ol></div>

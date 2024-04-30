@@ -1,0 +1,104 @@
+<div class="content"><p> </p><p>The BaseRegSetValue method is called by the client. In
+response, the server sets the data for the specified value of a registry key.</p><dl>
+<dd>
+<div><pre> error_status_t BaseRegSetValue(
+   [in] RPC_HKEY hKey,
+   [in] PRRP_UNICODE_STRING lpValueName,
+   [in] DWORD dwType,
+   [in, size_is(cbData)] LPBYTE lpData,
+   [in] DWORD cbData
+ );
+</pre></div>
+</dd></dl><p><b>hKey: </b>A handle to a key that MUST have been
+opened previously by using one of the open methods that are specified in
+section <span><a href="053e8515-dbae-47ea-a7c6-6dc054e3a48f" data-linktype="relative-path">3.1.5</a></span>: <span><a href="956a3052-6580-43ee-91aa-aaf61726149b" data-linktype="relative-path">OpenClassesRoot</a></span>,
+<span><a href="ec140ed9-4d00-4c03-a15c-c7245a497ed5" data-linktype="relative-path">OpenCurrentUser</a></span>,
+<span><a href="6cef29ae-21ba-423f-9158-05145ac80a5b" data-linktype="relative-path">OpenLocalMachine</a></span>,
+<span><a href="7b514c63-6cad-4fe1-9780-743959e377e6" data-linktype="relative-path">OpenPerformanceData</a></span>,
+<span><a href="694e57f4-da3e-4285-8b71-3181d71d6cd1" data-linktype="relative-path">OpenUsers</a></span>,
+<span><a href="c7186ae2-1c82-45e9-933b-97d9873657e8" data-linktype="relative-path">BaseRegCreateKey</a></span>,
+<span><a href="8cb48f55-19e1-4ea2-8d76-dd0f6934f0d9" data-linktype="relative-path">BaseRegOpenKey</a></span>,
+<span><a href="160767d7-83cf-4718-a4f3-d864faee3bb1" data-linktype="relative-path">OpenCurrentConfig</a></span>,
+<span><a href="44954f6d-ef2c-4ec1-a27d-32b9b87e3c8a" data-linktype="relative-path">OpenPerformanceText</a></span>,
+<span><a href="3626fa8a-b20f-4243-bf85-cdb615ed2ca0" data-linktype="relative-path">OpenPerformanceNlsText</a></span>.</p><p><b>lpValueName: </b>MUST be a pointer to an <span><a href="c0c90f11-a4c4-496a-ac09-8a8a3697ceef" data-linktype="relative-path">RRP_UNICODE_STRING</a></span>
+structure that contains the name of the <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">value</a></span> (as specified
+in section <span><a href="3d64dbea-f016-4373-8cac-e43bf343837d" data-linktype="relative-path">3.1.1.5</a></span>) to set.</p><p><b>dwType: </b>The type of data to be stored. This
+MUST be one of the <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_71bc18b6-b775-4d09-9a24-949ff7420e2a" data-linktype="relative-path">REG_VALUE_TYPE</a></span>
+values specified in section 3.1.1.5.</p><p><b>lpData: </b>A pointer to a buffer that contains
+the data to set for the value entry.</p><p><b>cbData: </b>The length in bytes of the information
+to be stored.</p><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have KEY_SET_VALUE access rights,
+  or the value being set to a symbolic key is not the literal string
+  &#34;SymbolicLinkValue&#34;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000013</p>
+  <p>ERROR_WRITE_PROTECT</p>
+  </td>
+  <td>
+  <p>A read or write operation was attempted to a volume
+  after it was dismounted. The server can no longer service registry requests
+  because server shutdown has been initiated.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Server Operations</p><p>If the registry server can no longer service registry
+requests because server shutdown has been initiated (<b>SHUTDOWNINPROGRESS</b>
+is set to TRUE), the server MUST return ERROR_WRITE_PROTECT.</p><p>In response to this request from the client, for a
+successful operation, the server MUST set the data that is associated with the
+specified value and registry key.</p><p>If the <i>lpValueName</i> parameter in the client request is
+NULL or an empty string, the server MUST set the data that is associated with
+the default value of the specified key, as specified in section 3.1.1.5.</p><p>If <i>lpValueName</i> is not NULL, the server MUST remove
+any terminating null characters from the value name before storing the value
+name on the server.</p><p>If the key specified by <i>hKey</i> has a KEYTYPE of
+symbolic link and <i>lpValueName</i> is specified to any string other than
+&#34;SymbolicLinkValue&#34;, the server MUST fail the method and return
+ERROR_ACCESS_DENIED.</p><p>The server MUST set the type of the information that is
+stored based on the value that is specified in the <i>dwType</i> parameter. The
+value of <i>dwType</i> MUST be one of the values that are specified in
+REG_VALUE_TYPE, or NULL.</p><p>The server MUST set the data for the value by using the data
+in the buffer that is pointed to by the <i>lpData</i> parameter. </p><p>The client MUST specify the length, in bytes, to copy from
+the buffer in the <i>cbData</i> parameter. This MUST be set to 0 if no data
+needs to be copied from the <i>lpData</i> parameter.</p><p>The server MUST determine if the key path indicated by <i>hKey</i>
+refers to a path that is within the list of paths for which updates to either
+the 32-bit or 64-bit namespaces are copied into the 64-bit or 32-bit namespace,
+respectively, as specified in section <span><a href="d962e3a6-30e1-4bb3-9663-cd4751604212" data-linktype="relative-path">3.1.1.4</a></span>. If the key
+indicated by <i>hKey</i> is within one of the paths, the server MUST set the
+UPDATECOPY column of the HANDLETABLE for the row indicated by <i>hKey</i> to
+TRUE. This indicates that the value is copied between the 32-bit and 64-bit key
+namespaces when the handle is closed.</p><p>The server MUST set the <span><a href="3c984c3e-3e2a-40b8-b479-d4ddcfc50edb" data-linktype="relative-path">KEYISMODIFIED</a></span>
+property of the key indicated by <i>hKey</i> to TRUE.</p><p>The caller MUST have KEY_SET_VALUE access rights to invoke
+this method. Otherwise, the server MUST fail the method and return
+ERROR_ACCESS_DENIED. For more information, see section <span><a href="fefbc801-b141-4bb1-9dcb-bf366da3ae7e" data-linktype="relative-path">2.2.4</a></span>.</p><p>The server MUST return 0 to indicate success or an
+appropriate error code (as specified in [MS-ERREF] section 2.2) to indicate an
+error.</p><p>If the parameter <i>lpValueName</i> is NULL, the server MUST
+return ERROR_INVALID_PARAMETER.</p><p>If the parameter <i>lpValueName</i> is greater than zero and
+the buffer is NULL, the server MUST return ERROR_INVALID_PARAMETER.</p></div>

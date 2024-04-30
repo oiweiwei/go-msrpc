@@ -1,0 +1,23 @@
+<div class="content"><p>This method is called by a client to find the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_791190e6-1e02-42cb-bd25-5aee3ab516ed" data-linktype="relative-path">instance container</a> for a
+process ID.</p><dl>
+<dd>
+<div><pre> HRESULT GetContainerIDFromProcessID(
+   [in] DWORD dwPID,
+   [out, retval] BSTR* pbstrContainerID
+ );
+</pre></div>
+</dd></dl><p><b>dwPID: </b>The ProcessIdentifier (see section <a href="ad6b31b6-6777-46a5-8588-397fe77ffcd9" data-linktype="relative-path">3.1.1.3.21</a>) of an instance
+container.</p><p><b>pbstrContainerID: </b>A pointer to a value that,
+upon successful completion, MUST be set to the Curly Braced GUID String Syntax
+(<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/222af2d3-5c00-4899-bc87-ed4c6515e80d" data-linktype="relative-path">2.3.4.3</a>)
+representation of the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_07da3776-ca7c-4e8a-8c94-95d59b2f40b8" data-linktype="relative-path">container
+identifier</a> of an instance container.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server MUST verify
+that there exists an instance container with the value <i>dwPID</i> for the
+ProcessIdentifier property (see section 3.1.1.3.21), and fail the call if not.</p><p>The server then MUST attempt to set the value referenced by <i>pbstrContainerID</i>
+to the Curly Braced GUID String Syntax ([MS-DTYP] section 2.3.4.3)
+representation of the container identifier of the instance container, and fail
+the call if it cannot.</p></div>

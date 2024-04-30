@@ -1,0 +1,57 @@
+<div class="content"><p> </p><p>The DFSTargetListBLOB contains information about all of the
+targets of the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span> or <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS link</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TargetCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TargetEntryBLOB
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>TargetCount (4 bytes): </b>The number of <span><a href="c914cbbc-eb6f-4843-b344-f20dd0619853" data-linktype="relative-path">TargetEntryBLOB</a></span>
+fields contained in this <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ad861812-8cb0-497a-80bb-13c95aa4e425" data-linktype="relative-path">BLOB</a></span>, stored as an
+unsigned, 32-bit, <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a></span>
+integer.</p><p><b>TargetEntryBLOB (variable): </b>A BLOB that
+contains metadata for a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_a2c6d1c9-deea-427c-91ee-56f6e726eabd" data-linktype="relative-path">DFS target</a></span>.</p></div>

@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>The OpenPerformanceText method is called by the client. In
+response, the server opens a handle to the <b>HKEY_PERFORMANCE_TEXT</b>
+predefined key. The <b>HKEY_PERFORMANCE_TEXT</b> predefined key is used to
+retrieve performance information from a registry server using only the <b>BaseRegQueryInfoKey</b>,
+<b>BaseRegQueryValue</b>, <b>BaseRegEnumValue,</b> and <b>BaseRegCloseKey</b>
+methods.</p><dl>
+<dd>
+<div><pre> error_status_t OpenPerformanceText(
+   [in, unique] PREGISTRY_SERVER_NAME ServerName,
+   [in] REGSAM samDesired,
+   [out] PRPC_HKEY phKey
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>SHOULD be sent as NULL and MUST be
+ignored on receipt because the binding to the server is already complete at
+this stage.</p><p><b>samDesired: </b>SHOULD be sent as 0 and MUST be
+ignored on receipt.</p><p><b>phKey: </b>A pointer to a variable that receives a
+handle to the root key <b>HKEY_PERFORMANCE_TEXT</b>.</p><p><b>Return Values: </b>This method MUST always return
+a 0 (<b>ERROR_SUCCESS</b>), even in case of errors.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Always returned.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Server Operations</p><p>The server attempts to open the root key, <b>HKEY_PERFORMANCE_TEXT</b>,
+and return a handle to that key in the <i>phKey</i> parameter.</p><p>The server MUST create a new valid context handle. The
+server MUST store the context handle value in the handle table (HANDLETABLE)
+along with a mapping to the <b>HKEY_PERFORMANCE_TEXT </b> key. The server MUST
+always return 0, even in case of errors.</p></div>

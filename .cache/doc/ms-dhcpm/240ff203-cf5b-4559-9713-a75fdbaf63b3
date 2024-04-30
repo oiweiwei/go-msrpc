@@ -1,0 +1,72 @@
+<div class="content"><p> </p><p>The <b>R_DhcpGetClientInfoV6</b> method retrieves IPv6
+address lease information of the IPv6 reservation from the DHCPv6 server. The
+caller of this function can free the memory pointed to by <i>ClientInfo</i> by
+calling the function <b>midl_user_free</b> (section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpGetClientInfoV6(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, ref] LPDHCP_SEARCH_INFO_V6 SearchInfo,
+   [out] LPDHCP_CLIENT_INFO_V6* ClientInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SearchInfo: </b>This is a pointer to a structure <span><a href="181ee972-b76b-45dd-a460-bcc37bbb92dd" data-linktype="relative-path">DHCP_SEARCH_INFO_V6 (section 2.2.1.2.69)</a></span>
+that specifies the parameter to be used for retrieving the IPv6 address lease
+information of IPv6 reservation.</p><dl>
+<dd>
+<p>For this call with <b>SearchType</b> of
+Dhcpv6ClientDUID (section <span><a href="41eccd01-ee32-4e9d-aa3a-137275bc8329" data-linktype="relative-path">2.2.1.1.12</a></span>),
+ERROR_INVALID_PARAMETER is returned. </p>
+</dd>
+<dd>
+<p>For this call <b>SearchType</b> of Dhcpv6ClientName
+(section 2.2.1.1.12), ERROR_INVALID_PARAMETER is returned.</p>
+</dd></dl><p><b>ClientInfo: </b>This is a pointer to type <span><a href="d07ea139-f254-4076-a2cc-71cefc676683" data-linktype="relative-path">LPDHCP_CLIENT_INFO_V6</a></span>
+that points to a location in which IPv6 address lease information of IPv6
+reservation is retrieved. The caller can free up this buffer after using this.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database or the client entry is not present in the database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 72.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read access per section
+<span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not, return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If <b>SearchType</b> is not Dhcpv6ClientIpAddress, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the information of <b>DHCPv6ClientInfo</b> object from <b>DHCPv6ClientInfoList</b>
+based on <b>SearchInfo</b>, and return it to the caller.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

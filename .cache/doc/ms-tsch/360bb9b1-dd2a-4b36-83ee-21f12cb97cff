@@ -1,0 +1,38 @@
+<div class="content"><p> </p><p>The SchRpcDelete method MUST delete a task or folder in the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_08035fe7-a786-4b30-ab60-3fd046060617" data-linktype="relative-path">task
+store</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT SchRpcDelete(
+   [in, string] const wchar_t* path,
+   [in] DWORD flags
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>MUST be the full path to the task or
+folder to delete using the format specified in section <span><a href="fa8809c8-4f0f-4c6d-994a-6c10308757c1" data-linktype="relative-path">2.3.11</a></span>.</p><p><b>flags: </b>Unused. The client MUST set to zero and
+the server MUST return an error if nonzero.</p><p><b>Return Values: </b>For more information on return
+codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>, or Win32
+Error Codes in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><p>Upon receipt of the SchRpcDelete call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Return E_INVALIDARG if the <b>path</b> parameter is NULL or if
+the root or the <i>flags</i> parameter is nonzero.<a id="Appendix_A_Target_76"></a><a aria-label="Product behavior note 76" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_76" data-linktype="relative-path">&lt;76&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Return the value 0x8007007B, the <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+form of the Win32 error ERROR_INVALID_NAME, if the specified path is not in the
+format specified in section 2.3.11.</p>
+</li><li><p><span><span> 
+</span></span>Return the value 0x80070003, the HRESULT form of the Win32 error
+ERROR_PATH_NOT_FOUND, if the specified path does not exist on the server in the
+<span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a></span>
+task store.</p>
+</li><li><p><span><span> 
+</span></span>Return the HRESULT form of the Win32 error ERROR_FILE_NOT_FOUND
+if the task specified in the <i>path</i> parameter does not exist on the server
+or the file specified by the <i>path</i> parameter does not exist in the XML
+task store.<a id="Appendix_A_Target_77"></a><a aria-label="Product behavior note 77" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_77" data-linktype="relative-path">&lt;77&gt;</a><a id="Appendix_A_Target_78"></a><a aria-label="Product behavior note 78" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_78" data-linktype="relative-path">&lt;78&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Return E_ACCESSDENIED if the caller does not have delete access
+to the path in the XML task store.<a id="Appendix_A_Target_79"></a><a aria-label="Product behavior note 79" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_79" data-linktype="relative-path">&lt;79&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Delete the task from the XML task store.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK.</p>
+</li></ul></div>

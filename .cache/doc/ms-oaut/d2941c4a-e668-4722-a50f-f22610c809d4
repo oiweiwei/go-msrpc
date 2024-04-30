@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The GetLibAttr method retrieves a structure that contains
+the attributes declared with the Type library.</p><dl>
+<dd>
+<div><pre> HRESULT GetLibAttr(
+   [out] LPTLIBATTR* ppTLibAttr,
+   [out] DWORD* pReserved
+ );
+</pre></div>
+</dd></dl><p><b>ppTLibAttr: </b>MUST be set to a <span><a href="b568f4be-95e5-431b-bb3b-08dc56e9b224" data-linktype="relative-path">TLIBATTR (section 2.2.45)</a></span>
+structure that specifies the attributes declared with the Type library.</p><p><b>pReserved: </b>MUST be set to 0 and ignored on
+receipt.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul></div>

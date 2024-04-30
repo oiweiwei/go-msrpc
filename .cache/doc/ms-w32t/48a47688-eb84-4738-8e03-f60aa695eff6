@@ -1,0 +1,116 @@
+<div class="content"><p>The W32TIME_CONFIGURATION_BASIC structure defines the basic
+configuration data of the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9846d08d-ad98-4bb9-a1e7-1f0bfbdd1113" data-linktype="relative-path">time
+service</a>. </p><p>The structure is defined to match the basic configuration of
+the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_43e51d0a-ac6a-4662-a99a-8f3029b78caf" data-linktype="relative-path">W32Time</a>
+implementation, as described in <a href="https://go.microsoft.com/fwlink/?LinkId=90586" data-linktype="external">[WTSREF]</a>. Fields in
+the structure that are not valid in other implementations SHOULD have their
+corresponding configuration-setting type fields set to
+W32TIME_CONFIGURATION_SETTING_UNDEFINED.<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned __int32 ulSize;
+   unsigned __int32 ulEventLogFlags;
+   unsigned __int32 ulAnnounceFlags;
+   unsigned __int32 ulTimeJumpAuditOffset;
+   unsigned __int32 ulMinPollInterval;
+   unsigned __int32 ulMaxPollInterval;
+   unsigned __int32 ulMaxNegPhaseCorrection;
+   unsigned __int32 ulMaxPosPhaseCorrection;
+   unsigned __int32 ulMaxAllowedPhaseOffset;
+   unsigned __int32 ulEventLogFlagsFlag;
+   unsigned __int32 ulAnnounceFlagsFlag;
+   unsigned __int32 ulTimeJumpAuditOffsetFlag;
+   unsigned __int32 ulMinPollIntervalFlag;
+   unsigned __int32 ulMaxPollIntervalFlag;
+   unsigned __int32 ulMaxNegPhaseCorrectionFlag;
+   unsigned __int32 ulMaxPosPhaseCorrectionFlag;
+   unsigned __int32 ulMaxAllowedPhaseOffsetFlag;
+ } W32TIME_CONFIGURATION_BASIC,
+  *PW32TIME_CONFIGURATION_BASIC;
+</pre></div>
+</dd></dl><p><b>ulSize:</b>  The size, in bytes, of this
+structure. </p><p><b>ulEventLogFlags:</b>  The <b>EventLogFlags</b>
+element value (see section <a href="1da649d7-3edf-4a9a-98c2-907ecacd1633" data-linktype="relative-path">3.2.1.1</a>).</p><p><b>ulAnnounceFlags:</b>  An integer that
+indicates the combination of flags that determines how the time service
+advertises itself as a time server. The value MUST be a bitwise OR of zero or
+more of the following flags.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Timeserv_Announce_No</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Not a time server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Timeserv_Announce_Yes</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Always advertised as a time server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Timeserv_Announce_Auto</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Advertising as a time server is decided automatically:
+  only when the server is synchronized.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Reliable_Timeserv_Announce_Yes</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Always advertised as a reliable time server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Reliable_Timeserv_Announce_Auto</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Advertising as a time server is decided automatically:
+  only when the server is synchronized and is a reliable time server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>All other values are reserved for future use.</p><p><b>ulTimeJumpAuditOffset:</b>  The <b>TimeJumpAuditOffset</b>
+element value (see section 3.2.1.1).</p><p><b>ulMinPollInterval:</b>  An integer that
+indicates the minimum poll interval of domain time synchronization, expressed
+as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90272" data-linktype="external">[RFC1305]</a>
+section 3.2.7, using units of seconds given as exponents to a power of two.</p><p><b>ulMaxPollInterval:</b>  An integer that
+indicates the maximum poll interval of domain time synchronization, expressed
+as specified in [RFC1305] section 3.2.7, using units of seconds given as
+exponents to a power of two.</p><p><b>ulMaxNegPhaseCorrection:</b>  The <b>MaxNegPhaseCorrection</b>
+element value (see section 3.2.1.1).</p><p><b>ulMaxPosPhaseCorrection:</b>  The <b>MaxPosPhaseCorrection</b>
+element value (see section 3.2.1.1).</p><p><b>ulMaxAllowedPhaseOffset:</b>  The <b>MaxAllowedPhaseOffset</b>
+element value (see section 3.2.1.1).</p><p><b>ulEventLogFlagsFlag:</b>  An integer
+that indicates the source of the configuration setting for <b>ulEventLogFlags</b>,
+as specified in section <a href="cda8dd8e-ef99-4b2d-b747-6077e5d5ddf2" data-linktype="relative-path">2.2.6</a>.</p><p><b>ulAnnounceFlagsFlag:</b>  An integer
+that indicates the source of the configuration setting for <b>ulAnnounceFlags</b>,
+as specified in section 2.2.6.</p><p><b>ulTimeJumpAuditOffsetFlag:</b>  An
+integer that indicates the source of the configuration setting for <b>ulTimeJumpAuditOffset</b>,
+as specified in section 2.2.6.</p><p><b>ulMinPollIntervalFlag:</b>  An integer
+that indicates the source of the configuration setting for <b>ulMinPollInterval</b>,
+as specified in section 2.2.6.</p><p><b>ulMaxPollIntervalFlag:</b>  An integer
+that indicates the source of the configuration setting for <b>ulMaxPollInterval</b>,
+as specified in section 2.2.6.</p><p><b>ulMaxNegPhaseCorrectionFlag:</b>  An
+integer that indicates the source of the configuration setting for <b>ulMaxNegPhaseCorrection</b>,
+as specified in section 2.2.6.</p><p><b>ulMaxPosPhaseCorrectionFlag:</b>  An
+integer that indicates the source of the configuration setting for <b>ulMaxPosPhaseCorrection</b>,
+as specified in section 2.2.6.</p><p><b>ulMaxAllowedPhaseOffsetFlag:</b>  An
+integer that indicates the source of the configuration setting for <b>ulMaxAllowedPhaseOffset</b>,
+as specified in section 2.2.6.</p></div>

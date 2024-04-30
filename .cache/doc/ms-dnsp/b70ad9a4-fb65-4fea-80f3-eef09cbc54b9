@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_TRUST_ANCHOR_LIST</b> structure contains zero
+or more <span><a href="3ac97d1e-7f7b-4cd3-aa24-ccbde00ef0be" data-linktype="relative-path">DNS_RPC_TRUST_ANCHOR</a></span>
+structures.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcTrustAnchorList {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   [range(0,500000)] DWORD dwTrustAnchorCount;
+   [size_is(dwTrustAnchorCount)] PDNS_RPC_TRUST_ANCHOR TrustAnchorArray[];
+ } DNS_RPC_TRUST_ANCHOR_LIST,
+  *PDNS_RPC_TRUST_ANCHOR_LIST;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The structure
+version number; this MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>dwTrustAnchorCount:</b> The size of the <b>TrustAnchorArray</b>
+array.</p><p><b>TrustAnchorArray:</b> An array of pointers to
+<b>DNS_RPC_TRUST_ANCHOR</b> structures (section 2.2.6.2.6).</p></div>

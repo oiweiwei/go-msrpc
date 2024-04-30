@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The LsarOpenPolicy method is exactly the same as <span><a href="40a316ae-1bae-4aa1-92cd-650cdaae1863" data-linktype="relative-path">LsarOpenPolicy2</a></span>,
+except that the <i>SystemName</i> parameter in this method contains only one
+character instead of a full string. This is because its syntactical definition
+lacks the [string] <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> annotation
+present in LsarOpenPolicy2, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>. RPC
+data types are specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/e202fcc0-bde5-44b5-8a16-10255084623e" data-linktype="relative-path">2.2.4.1</a></span>.</p><p>The <i>SystemName</i> parameter has no effect on message
+processing in any environment. It MUST be ignored.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarOpenPolicy(
+   [in, unique] wchar_t* SystemName,
+   [in] PLSAPR_OBJECT_ATTRIBUTES ObjectAttributes,
+   [in] ACCESS_MASK DesiredAccess,
+   [out] LSAPR_HANDLE* PolicyHandle
+ );
+</pre></div>
+</dd></dl><p>Processing rules for this message are defined in <span><a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a></span>
+section <span><a href="../ms-lsad/2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">3.1.4.4.2</a></span>.</p></div>

@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The _WBEM_REFRESH_INFO_REMOTE structure MUST be used when
+the client is on a different computer than the computer on which the WMI
+service providing the refreshed information resides.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   IWbemRemoteRefresher* m_pRefresher;
+   IWbemClassObject* m_pTemplate;
+   GUID m_Guid;
+ } _WBEM_REFRESH_INFO_REMOTE;
+</pre></div>
+</dd></dl><p><b>m_pRefresher:</b>  MUST be a pointer to
+the IWbemRemoteRefresher interface that the client used to retrieve the
+refreshed information. </p><p><b>m_pTemplate:</b>  MUST be a pointer to
+an <span><a href="46710c5c-d7ab-4e4c-b4a5-ebff311fdcd1" data-linktype="relative-path">IWbemClassObject</a></span>
+interface that MUST represent a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a99173af-90bf-473d-9a81-ff0ce9a85838" data-linktype="relative-path">CIM</a></span> instance with
+all properties set to the default values as specified in <span><a href="../ms-wmio/b44d0581-5bd3-40fc-95d7-01c1b1239820" data-linktype="relative-path">[MS-WMIO]</a></span>
+section <span><a href="../ms-wmio/65bcd0c2-b3f3-49a7-b4aa-c972cdc0774b" data-linktype="relative-path">2.2.26</a></span>.</p><p><b>m_Guid:</b>  MUST be a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">globally
+unique identifier (GUID)</a></span> created to identify this <span><a href="f3881702-6fc6-408c-82c9-72e36d928e06" data-linktype="relative-path">_WBEM_REFRESH_INFO</a></span>
+object. </p></div>

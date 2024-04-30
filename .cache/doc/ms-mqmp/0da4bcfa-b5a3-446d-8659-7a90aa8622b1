@@ -1,0 +1,41 @@
+<div class="content"><p> </p><p>The R_QMCloseRemoteQueueContext method closes a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_91d29587-3e24-439b-8f2c-c2a43be99afc" data-linktype="relative-path">remote
+queue</a></span> handle originally obtained from <span><a href="47482511-3c4a-4d7e-8edb-46715e89e4af" data-linktype="relative-path">R_QMOpenRemoteQueue (section 3.1.4.2)</a></span>.</p><dl>
+<dd>
+<div><pre> void R_QMCloseRemoteQueueContext(
+   [in, out] PCTX_OPENREMOTE_HANDLE_TYPE* pphContext
+ );
+</pre></div>
+</dd></dl><p><b>pphContext: </b> An <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+as defined in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.
+This handle MUST have been acquired from the <i>pphContext</i> parameter of the
+R_QMOpenRemoteQueue method.</p><p><b>Return Values: </b>None.</p><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol, as specified in [MS-RPCE].</p><p>This method is invoked at the dynamically assigned <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span>
+returned by the <span><a href="a8c96155-a7e6-41cb-95c7-6ab7e4f8214d" data-linktype="relative-path">R_QMGetRTQMServerPort (section 3.1.4.24)</a></span>
+method when IP_HANDSHAKE (0x00000000) or IPX_HANDSHAKE (0x00000002) is the
+interface specified by the <i>fIP</i> parameter.</p><p>When processing this call, the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST:</p><ul><li><p><span><span> 
+</span></span>Locate the <span><a href="8a6ffdd4-3c04-4804-aa20-81d38674d28f" data-linktype="relative-path">RemoteQueueOpenContextHandle (section 3.1.1.8)</a></span>
+ADM element instance in the <i>iRemoteQueueOpenContextHandleTable</i> (section <span><a href="d3518c99-fe35-4c84-8839-4ebd9d2949e9" data-linktype="relative-path">3.1.1.7</a></span>)
+of the server where the value of the <b>Handle</b> attribute of the <b>RemoteQueueOpenContextHandle</b>
+ADM element instance equals <i>pphContext</i>.</p>
+</li><li><p><span><span> 
+</span></span>If no such <b>RemoteQueueOpenContextHandle</b> ADM element
+instance exists, take no further action and immediately return.</p>
+</li><li><p><span><span> 
+</span></span>Declare <i>iLocatedRemoteQueueOpenContextHandle</i> and set it to
+a reference to the located <b>RemoteQueueOpenContextHandle</b> ADM element
+instance.</p>
+</li><li><p><span><span> 
+</span></span>If <i>iLocatedRemoteQueueOpenContextHandle</i>. <b>OpenQueueDescriptorReference.RemoteReadState</b>
+is <b>Opened:</b></p>
+<ul><li><p><span><span>  </span></span>Generate
+a <span><a href="../ms-mqdmpr/c4ccefa4-d914-47b3-8e39-ad49e66a9d9b" data-linktype="relative-path">Close
+Queue</a></span> (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section 3.1.7.1.6) event with the following argument value:</p>
+<ul><li><p><span><span> 
+</span></span><i>iQueueDesc</i> := <i>iLocatedRemoteQueueOpenContextHandle</i>.<b>OpenQueueDescriptorReference</b></p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Delete the <i>iLocatedRemoteQueueOpenContextHandle</i> from <i>iRemoteQueueOpenContextHandleTable</i>.</p>
+</li><li><p><span><span> 
+</span></span>Set the <i>pphContext</i> parameter to NULL.</p>
+</li></ul></div>

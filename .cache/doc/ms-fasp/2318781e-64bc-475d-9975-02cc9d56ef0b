@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>This structure represents the two <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoints</a></span>, source
+and destination, that participate in IP communication.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_ENDPOINTS {
+   [range(FW_IP_VERSION_INVALID+1,FW_IP_VERSION_MAX-1)] 
+     FW_IP_VERSION IpVersion;
+   unsigned long dwSourceV4Address;
+   unsigned long dwDestinationV4Address;
+   unsigned char SourceV6Address[16];
+   unsigned char DestinationV6Address[16];
+ } FW_ENDPOINTS,
+  *PFW_ENDPOINTS;
+</pre></div>
+</dd></dl><p><b>IpVersion:</b>  This field specifies the
+Internet Protocol version used. This field MUST contain a valid value from the <span><a href="f0350f85-9048-4426-8264-fe11d62c5af3" data-linktype="relative-path">FW_IP_VERSION</a></span>
+enumeration.</p><p><b>dwSourceV4Address:</b>  This field is
+the IPv4 address of the source endpoint.</p><p><b>dwDestinationV4Address:</b>  This field
+is the IPv4 address of the destination endpoint.</p><p><b>SourceV6Address:</b>  This field is a
+16-octet array that represents the IPv6 address of the source endpoint.</p><p><b>DestinationV6Address:</b>  This field is
+a 16-octet array that represents the IPv6 address of the destination endpoint.</p><p>The v4 versions or the v6 versions of the fields are used
+depending on the <b>IpVersion</b> field value.</p></div>

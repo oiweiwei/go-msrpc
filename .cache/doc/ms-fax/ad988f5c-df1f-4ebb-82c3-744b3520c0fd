@@ -1,0 +1,195 @@
+<div class="content"><p> </p><p>The <b>FAX_TAPI_LOCATION_INFO</b> structure describes the
+configuration of all TAPI locations for a fax server. This structure is used as
+an input argument for the <b>FaxObs_SetTapiLocations</b> (section <span><a href="366fb36c-9322-4daf-801b-e2aea0deabb0" data-linktype="relative-path">3.1.4.2.29</a></span>)
+method and is returned by the <b>FaxObs_GetTapiLocations</b> (section <span><a href="b9af491c-be5c-4a4e-8cdc-346319ccba4f" data-linktype="relative-path">3.1.4.2.28</a></span>)
+method. The structure contains an array of <b>FAX_TAPI_LOCATIONS</b> (section <span><a href="ba9c7a0d-308a-4b3b-b955-ddc26a5857ea" data-linktype="relative-path">2.2.88</a></span>)
+structures. Each of these structures describes one TAPI location of the fax
+server, and also contains information about which of these TAPI locations is
+the current location. For more information about TAPI, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=119989" data-linktype="external">[MSDN-TAPI2.2]</a></span>.</p><p>This data structure is custom marshaled as follows and uses
+the custom marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (12 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CurrentLocationID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NumLocations</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TapiLocationsOffset</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>CurrentLocationID (4
+bytes): </b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that holds the value of the <b>PermanentLocationID</b> member of the <b>FAX_TAPI_LOCATIONS</b>
+from the list referenced by <b>TapiLocationsOffset</b>. This <b>FAX_TAPI_LOCATIONS</b>
+represents the current TAPI location for the server.</p>
+</dd>
+<dd>
+<p><b>NumLocations (4 bytes): </b>A
+<b>DWORD</b> that holds the number of <b>FAX_TAPI_LOCATIONS</b> in the list
+referenced by <b>TapiLocationsOffset</b>.</p>
+</dd>
+<dd>
+<p><b>TapiLocationsOffset (4
+bytes): </b>Offset to the <b>TapiLocations</b> field in the <b>Variable_Data</b>
+block of the structure.</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TapiLocations
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>TapiLocations (variable):
+</b>An array of <b>FAX_TAPI_LOCATIONS</b>, custom marshaled as described in
+section <span><a href="f67520dd-b268-4af2-a6b1-81f995580ed9" data-linktype="relative-path">2.2.1.2</a></span>.</p>
+</dd></dl></div>

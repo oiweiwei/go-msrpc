@@ -1,0 +1,41 @@
+<div class="content"><p> </p><p>The R_PurgeQueue method removes all <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">messages</a></span>
+from the <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT R_PurgeQueue(
+   [in] handle_t hBind,
+   [in] QUEUE_CONTEXT_HANDLE_NOSERIALIZE phContext
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b>MUST specify an <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle
+parameter, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>phContext: </b>MUST be set by the client to a <span><a href="3e818e81-b12a-4ccd-9606-f434c346a3e9" data-linktype="relative-path">QUEUE_CONTEXT_HANDLE_NOSERIALIZE (section 2.2.4.1)</a></span>
+handle of the queue to be purged. The handle MUST have been returned by the
+server in the <i>pphQueue</i> output parameter of a prior call to the
+R_OpenQueue (Opnum 2) (section <span><a href="b4b3001c-f2ff-4a17-9830-7b21af371dc4" data-linktype="relative-path">3.1.4.2)</a></span> method
+with the <i>dwAccess</i> parameter set to RECEIVE_ACCESS and MUST NOT have been
+closed through a prior call to the R_CloseQueue (Opnum 3) (section <span><a href="e480114a-587f-4110-b03b-7a6188cca307" data-linktype="relative-path">3.1.4.3)</a></span>
+method. This value MUST NOT be NULL.</p><p><b>Return Values: </b>On success, this method MUST return
+MQ_OK (0x00000000). </p><p>If an error occurs, the server MUST return a failure <b>HRESULT</b>,
+and the client MUST treat all failure <b>HRESULT</b>s identically.</p><p>Exceptions Thrown:</p><p>No exceptions are thrown except those thrown by the
+underlying RPC protocol, as specified in [MS-RPCE].</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Find the corresponding <b>OpenQueueDescriptor</b> ADM element
+instance by comparing the <i>phContext</i> parameter with the <b>Handle</b> ADM
+attribute for all <b>OpenQueueDescriptor</b> ADM element instances maintained by
+the local <b>QueueManager</b> ADM element instance.</p>
+</li><li><p><span><span> 
+</span></span>If not found, return a failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>,
+and perform no further actions. Otherwise, assign the found <b>OpenQueueDescriptor</b>
+ADM element instance to the local variable <i>queueDesc</i>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>queueDesc</i>.<b>AccessType</b> is <b>QueueAccessType.ReceiveAccess:</b></p>
+<ul><li><p><span><span>  </span></span>Generate
+a <span><a href="../ms-mqdmpr/19d74159-1a11-4486-8e9d-c54cebfe1088" data-linktype="relative-path">Purge
+Queue</a></span> (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section 3.1.7.1.7) event with the following inputs: </p>
+<ul><li><p><span><span> 
+</span></span><i>iQueue</i> := <i>queueDesc</i>.<b>QueueReference</b></p>
+</li></ul></li><li><p><span><span>  </span></span>Return
+MQ_OK (0x00000000), and perform no further actions.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return STATUS_ACCESS_DENIED (0xC0000022).</p>
+</li></ul></div>

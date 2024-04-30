@@ -1,0 +1,176 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9699d8ca-e1a4-433c-a8c3-d7bebeb01476" data-linktype="external">msdn link</a></p><p>The SamrChangePasswordUser method changes the password of a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_e767a471-c3fa-4e4b-a40c-daeb08f82a17" data-linktype="relative-path">user object</a>.</p><dl>
+<dd>
+<div><pre> long SamrChangePasswordUser(
+   [in] SAMPR_HANDLE UserHandle,
+   [in] unsigned char LmPresent,
+   [in, unique] PENCRYPTED_LM_OWF_PASSWORD OldLmEncryptedWithNewLm,
+   [in, unique] PENCRYPTED_LM_OWF_PASSWORD NewLmEncryptedWithOldLm,
+   [in] unsigned char NtPresent,
+   [in, unique] PENCRYPTED_NT_OWF_PASSWORD OldNtEncryptedWithNewNt,
+   [in, unique] PENCRYPTED_NT_OWF_PASSWORD NewNtEncryptedWithOldNt,
+   [in] unsigned char NtCrossEncryptionPresent,
+   [in, unique] PENCRYPTED_NT_OWF_PASSWORD NewNtEncryptedWithNewLm,
+   [in] unsigned char LmCrossEncryptionPresent,
+   [in, unique] PENCRYPTED_LM_OWF_PASSWORD NewLmEncryptedWithNewNt
+ );
+</pre></div>
+</dd></dl><p><b>UserHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a user object.</p><p><b>LmPresent: </b>If this parameter is zero, the <i>OldLmEncryptedWithNewLm</i>
+and <i>NewLmEncryptedWithOldLm</i> fields MUST be ignored by the server;
+otherwise these fields MUST be processed.</p><p><b>OldLmEncryptedWithNewLm: </b>The <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_58a72159-b1e9-4770-9b06-d7a6b16279a8" data-linktype="relative-path">LM hash</a> of the target
+user&#39;s existing password (as presented by the client) encrypted according to
+the specification of <a href="ce061fef-6d4f-4802-bd5d-26b11f14f4a6" data-linktype="relative-path">ENCRYPTED_LM_OWF_PASSWORD (section 2.2.7.3)</a>,
+where the key is the LM hash of the new password for the target user (as
+presented by the client in the <i>NewLmEncryptedWithOldLm</i> parameter).</p><p><b>NewLmEncryptedWithOldLm: </b>The LM hash of the
+target user&#39;s new password (as presented by the client) encrypted according to
+the specification of ENCRYPTED_LM_OWF_PASSWORD, where the key is the LM hash of
+the existing password for the target user (as presented by the client in the <i>OldLmEncryptedWithNewLm</i>
+parameter).</p><p><b>NtPresent: </b>If this parameter is zero, <i>OldNtEncryptedWithNewNt</i>
+and <i>NewNtEncryptedWithOldNt</i> MUST be ignored by the server; otherwise
+these fields MUST be processed. </p><p><b>OldNtEncryptedWithNewNt: </b>The <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_7eb5bce8-bdc5-4d61-a3d9-263ada14ba1f" data-linktype="relative-path">NT hash</a> of the target
+user&#39;s existing password (as presented by the client) encrypted according to
+the specification of ENCRYPTED_NT_OWF_PASSWORD (section 2.2.7.3),
+where the key is the NT hash of the new password for the target user (as
+presented by the client).</p><p><b>NewNtEncryptedWithOldNt: </b>The NT hash of the
+target user&#39;s new password (as presented by the client) encrypted according to
+the specification of ENCRYPTED_NT_OWF_PASSWORD, where the key is the NT hash of
+the existing password for the target user (as presented by the client).</p><p><b>NtCrossEncryptionPresent: </b>If this parameter is
+zero, <i>NewNtEncryptedWithNewLm</i> MUST be ignored; otherwise, this field
+MUST be processed.</p><p><b>NewNtEncryptedWithNewLm: </b>The NT hash of the
+target user&#39;s new password (as presented by the client) encrypted according to
+the specification of ENCRYPTED_NT_OWF_PASSWORD, where the key is the LM hash of
+the new password for the target user (as presented by the client).</p><p><b>LmCrossEncryptionPresent: </b>If this parameter is
+zero, <i>NewLmEncryptedWithNewNt</i> MUST be ignored; otherwise, this field
+MUST be processed.</p><p><b>NewLmEncryptedWithNewNt: </b>The LM hash of the
+target user&#39;s new password (as presented by the client) encrypted according to
+the specification of ENCRYPTED_LM_OWF_PASSWORD, where the key is the NT hash of
+the new password for the target user (as presented by the client).</p><p>The processing for this method is quite complex. To aid
+comprehension, a brief, non-normative description of the method&#39;s intent
+follows.</p><p>The method requires that the client presents both the NT and
+the LM hash of the new password (and will fail otherwise). However, because the
+old password might not be stored in either the NT or LM hash format on the
+receiver, and thus the new hash values cannot be decrypted using the old hash
+values, the method allows for the new NT and LM hashes to be
+&#34;cross-encrypted&#34; using the new LM or NT hash value (instead of the
+old values). As such, there are three combinations that can lead to successful
+processing, which are listed below.</p><ol><li><p><span>    </span><i>NtPresent</i>
+is nonzero, <i>LmPresent</i> is nonzero, and both the LM and NT hashes are
+present in the database. No &#34;cross-encryption&#34; is required. The
+cross-encryption–related parameters are ignored.</p>
+</li><li><p><span>    </span><i>LmPresent</i>
+is nonzero, <i>NtCrossEncryptionPresent</i> is nonzero, and the LM hash is
+present in the database. This combination is used when the NT hash is not
+stored at the server; the client can send the NT hash encrypted with the new LM
+hash instead. The NT-hash–related parameters are ignored.</p>
+</li><li><p><span>    </span><i>NtPresent</i>
+is nonzero, <i>LmCrossEncryptionPresent</i> is nonzero, and the NT hash is
+present in the database. This combination is used when the LM hash is not
+stored at the server; the client can send the LM hash encrypted with the new NT
+hash instead. The LM-hash–related parameters are ignored.</p>
+</li></ol><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints applied in the
+presented order:</p><ol><li><p><span>    </span>All database
+operations MUST occur in a single transaction.</p>
+</li><li><p><span>    </span>The constraints
+in section <a href="9a859446-f921-410d-bcc1-8a8c3dac751e" data-linktype="relative-path">3.1.5.14.5</a>
+MUST be satisfied.</p>
+</li><li><p><span>    </span>If <i>LmPresent</i>
+is nonzero and <i>NewLmEncryptedWithOldLm</i> or <i>OldLmEncryptedWithNewLm</i>
+is &#34;NULL&#34;, the server MUST return an error.</p>
+</li><li><p><span>    </span>If <i>NtPresent</i>
+is nonzero and <i>NewNtEncryptedWithOldNt</i> or <i>OldNtEncryptedWithNewNt</i>
+is &#34;NULL&#34;, the server MUST return an error.</p>
+</li><li><p><span>    </span>If <i>NtCrossEncryptionPresent</i>
+is nonzero and <i>NewNtEncryptedWithNewLm</i> is &#34;NULL&#34;, the server
+MUST return an error.</p>
+</li><li><p><span>    </span>If <i>LmCrossEncryptionPresent</i>
+is nonzero and <i>NewLmEncryptedWithNewNt</i> is &#34;NULL&#34;, the server
+MUST return an error.</p>
+</li><li><p><span>    </span>If <i>LmPresent</i>
+and <i>NtPresent</i> are zero, the server MUST return an error.</p>
+</li><li><p><span>    </span>Let U be the
+user account referenced by <i>UserHandle.Object</i>.</p>
+</li><li><p><span>    </span>Let
+Stored-LM-Hash be the value of the <b>dBCSPwd</b> attribute from the database
+decrypted using the algorithm specified in section <a href="3f5ec79d-b449-4ab2-9423-c4dccbe0b184" data-linktype="relative-path">2.2.11.1</a>, using U&#39;s
+RelativeId (an unsigned integer) as the key. If the <b>dBCSPwd</b> attribute
+does not exist, let Stored-LM-Hash be &#34;NULL&#34;.</p>
+</li><li><p><span>  </span>Let Stored-NT-Hash be the
+value of the <b>unicodePwd</b> attribute from the database decrypted using the
+algorithm specified in section 2.2.11.1, using U&#39;s RelativeId (an unsigned
+integer) as the key. If the <b>unicodePwd</b> attribute does not exist, let
+Stored-NT-Hash be &#34;NULL&#34;.</p>
+</li><li><p><span>  </span>If <i>LmPresent</i> is
+nonzero and Stored-LM-Hash is not NULL, let Presented-New-LM-Hash be <i>NewLmEncryptedWithOldLm</i>,
+decrypted as specified in section 2.2.11.1, using Stored-LM-Hash as the key;
+and let Presented-Old-LM-Hash be <i>OldLmEncryptedWithNewLm</i>, decrypted as
+specified in section 2.2.11.1, using Presented-New-LM-Hash as the key. The
+values are not referenced below if <i>LmPresent</i> is zero.</p>
+</li><li><p><span>  </span>If <i>NtPresent</i> is
+nonzero and Stored-NT-Hash is not NULL, let Presented-New-NT-Hash be <i>NewNtEncryptedWithOldNt</i>,
+decrypted as specified in section 2.2.11.1, using Stored-NT-Hash as the key;
+and let Presented-Old-NT-Hash be <i>OldNtEncryptedWithNewNt</i>, decrypted as
+specified in section 2.2.11.1, using Presented-New-NT-Hash as the key. The
+values are not referenced below if <i>NtPresent</i> is zero.</p>
+</li><li><p><span>  </span>If all of the following
+conditions are true, the server MUST abort processing and return the error
+status STATUS_LM_CROSS_ENCRYPTION_REQUIRED:</p>
+<ol><li><p><span>   
+</span><i>NtPresent</i> is nonzero.</p>
+</li><li><p><span>   
+</span><i>LmPresent</i> is zero.</p>
+</li><li><p><span>   
+</span><i>LmCrossEncryptionPresent</i> is zero.</p>
+</li><li><p><span>   
+</span>Stored-NT-Hash is non-NULL and equals Presented-Old-NT-Hash.</p>
+</li></ol></li><li><p><span>  </span>If all of the following
+conditions are true, the server MUST abort processing and return the error
+status STATUS_NT_CROSS_ENCRYPTION_REQUIRED.</p>
+<ol><li><p><span>   
+</span><i>NtPresent</i> is nonzero.</p>
+</li><li><p><span>   
+</span><i>LmPresent</i> is nonzero.</p>
+</li><li><p><span>   
+</span><i>NtCrossEncryptionPresent</i> is zero.</p>
+</li><li><p><span>   
+</span>Stored-NT-Hash is NULL.</p>
+</li><li><p><span>   
+</span>Stored-LM-Hash is non-NULL and equals Presented-Old-LM-Hash.</p>
+</li></ol></li><li><p><span>  </span>Exactly one of the three
+following conditions MUST be true; otherwise, the server MUST satisfy the
+constraints in section <a href="11b31f55-f447-4a63-bbf7-be4c4853c23e" data-linktype="relative-path">3.1.5.14.6</a>
+and then return STATUS_WRONG_PASSWORD. </p>
+<ol><li><p><span>   
+</span><i>LmPresent</i> is nonzero, Stored-LM-Hash is non-NULL and equals
+Presented-Old-LM-Hash, <i>NtPresent</i> is nonzero, Stored-NT-Hash is non-NULL,
+and Stored-NT-Hash equals Presented-Old-NT-Hash.</p>
+</li><li><p><span>   
+</span><i>LmPresent</i> is nonzero, Stored-LM-Hash is non-NULL and equals
+Presented-Old-LM-Hash, <i>NtPresent</i> is zero, and Stored-NT-Hash is NULL.</p>
+</li><li><p><span>   
+</span><i>NtPresent</i> is nonzero, Stored-NT-Hash is non-NULL and equals
+Presented-Old-NT-Hash, <i>LmPresent</i> is zero, and Stored-LM-Hash is NULL.</p>
+</li></ol></li><li><p><span>  </span>If <i>LmPresent</i> is
+nonzero, the <b>dBCSPwd</b> attribute MUST be updated with
+Presented-New-LM-Hash.</p>
+</li><li><p><span>  </span>If <i>LmPresent</i> is zero
+and <i>LmCrossEncryptionPresent</i> is nonzero, the <b>dBCSPwd</b> attribute
+MUST be updated with the value of <i>NewLmEncryptedWithNewNt</i>, decrypted
+using the algorithm specified in section 2.2.11.1, using Presented-New-NT-Hash
+as the decryption key.</p>
+</li><li><p><span>  </span>If <i>NtPresent</i> is
+nonzero, the <b>unicodePwd</b> attribute MUST be updated with
+Presented-New-NT-Hash.</p>
+</li><li><p><span>  </span>If <i>NtPresent</i> is zero
+and <i>NtCrossEncryptionPresent</i> is nonzero, the <b>unicodePwd</b> attribute
+MUST be updated with the value of <i>NewNtEncryptedWithNewLm</i>, decrypted
+using the algorithm specified in section 2.2.11.1, using Presented-New-LM-Hash
+as the decryption key.</p>
+</li><li><p><span>  </span>On database error, the
+server MUST return the data error; on general processing error, the server MUST
+return STATUS_WRONG_PASSWORD; otherwise, return STATUS_SUCCESS.</p>
+</li></ol></div>

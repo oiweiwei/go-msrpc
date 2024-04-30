@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>An <b>EXTENSION</b> structure is used in the <b>EXTENSION_VECTOR</b>
+structure (section <span><a href="d622ba20-b8c9-46e9-903a-8e26e4df73a7" data-linktype="relative-path">2.2.5.2.4</a></span>) as the <b>Extensions</b>
+field in the <b>NEGO_MESSAGE</b> structure, as specified in section <span><a href="585eae5b-1f4d-457f-bc1c-0c93251061e1" data-linktype="relative-path">2.2.6.3</a></span>. 
+</p><dl>
+<dd>
+<div><pre> struct
+ {
+   ULONG ExtensionType;
+   BYTE_VECTOR ExtensionValue;
+ } EXTENSION; 
+</pre></div>
+</dd></dl><p><b>ExtensionType:</b> A ULONG that indicates how the
+extension data should be interpreted. All negative extension types (the highest
+bit is set to 1) are critical. If the receiver does not understand a critical
+extension, the authentication attempt MUST be rejected. </p><p><b>ExtensionValue:</b> A <b>BYTE_VECTOR</b> structure
+that contains the extension data. </p></div>

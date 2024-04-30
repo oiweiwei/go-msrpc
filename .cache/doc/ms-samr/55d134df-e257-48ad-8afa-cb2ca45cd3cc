@@ -1,0 +1,20 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/55d134df-e257-48ad-8afa-cb2ca45cd3cc" data-linktype="external">msdn link</a></p><p>The SamrCloseHandle method closes (that is, releases server-side
+resources used by) any context handle obtained from this RPC interface.</p><dl>
+<dd>
+<div><pre> long SamrCloseHandle(
+   [in, out] SAMPR_HANDLE* SamHandle
+ );
+</pre></div>
+</dd></dl><p><b>SamHandle: </b>An RPC context handle, as specified
+in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing any context handle returned from this interface.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>If <i>SamHandle</i>
+is 0, the server MUST return an error.</p>
+</li><li><p><span>    </span>Otherwise, the
+server MUST delete the SamContextHandle (section <a href="cc2dc6ce-e45f-481a-a8ed-5d0e273336b3" data-linktype="relative-path">3.1.1.10</a>) represented by
+SamHandle, and then MUST return 0 for the value of SamHandle and a return code
+of STATUS_SUCCESS.</p>
+</li></ol></div>

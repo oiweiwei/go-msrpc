@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p>The VDS_NOTIFICATION_TARGET_TYPE enumeration defines the set
+of valid target types (subjects) of a Virtual Disk Service Remote Protocol
+notification.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_NOTIFICATION_TARGET_TYPE
+ {
+   VDS_NTT_UNKNOWN = 0x00000000,
+   VDS_NTT_PACK = 0x0000000A,
+   VDS_NTT_VOLUME = 0x0000000B,
+   VDS_NTT_DISK = 0x0000000D,
+   VDS_NTT_PARTITION = 0x0000003C,
+   VDS_NTT_DRIVE_LETTER = 0x0000003D,
+   VDS_NTT_FILE_SYSTEM = 0x0000003E,
+   VDS_NTT_MOUNT_POINT = 0x0000003F,
+   VDS_NTT_SERVICE = 0x000000C8
+ } VDS_NOTIFICATION_TARGET_TYPE;
+</pre></div>
+</dd></dl><p><b>VDS_NTT_UNKNOWN:  </b>Notification is of an
+unknown type.</p><p><b>VDS_NTT_PACK:  </b>Notification refers to a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_890bb28d-df68-420f-a8bc-83899d34ad5c" data-linktype="relative-path">pack</a></span>.</p><p><b>VDS_NTT_VOLUME:  </b>Notification refers to a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>.</p><p><b>VDS_NTT_DISK:  </b>Notification refers to a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.</p><p><b>VDS_NTT_PARTITION:  </b>Notification refers to a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span>.</p><p><b>VDS_NTT_DRIVE_LETTER:  </b>Notification refers to
+a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1b153cd0-e3f3-4383-bc66-d5ad482c9766" data-linktype="relative-path">drive
+letter</a></span>.</p><p><b>VDS_NTT_FILE_SYSTEM:  </b>Notification refers to a
+<span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file
+system</a></span>.</p><p><b>VDS_NTT_MOUNT_POINT:  </b>Notification refers to a
+<span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_513fcb37-059f-475c-a13d-e89b302f8ae8" data-linktype="relative-path">mount
+point</a></span>.</p><p><b>VDS_NTT_SERVICE:  </b>Notification refers to the
+Virtual Disk Service.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p></div>

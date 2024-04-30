@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The SHARE_INFO_0 structure contains the name of the shared
+resource. For a description of the fields in this structure, see the
+description for the <span><a href="8605fd54-6ede-4316-b30d-ecfafa133c1d" data-linktype="relative-path">SHARE_INFO_502_I (section 2.2.4.26)</a></span>
+structure (shi0_xxx denotes the same information as shi502_xxx).</p><dl>
+<dd>
+<div><pre> typedef struct _SHARE_INFO_0 {
+   [string] wchar_t* shi0_netname;
+ } SHARE_INFO_0,
+  *PSHARE_INFO_0,
+  *LPSHARE_INFO_0;
+</pre></div>
+</dd></dl></div>

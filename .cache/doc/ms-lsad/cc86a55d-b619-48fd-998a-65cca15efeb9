@@ -1,0 +1,226 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/cc86a55d-b619-48fd-998a-65cca15efeb9" data-linktype="external">msdn link</a></p><p>The LsarCreateTrustedDomainEx2 method is invoked to create a
+new <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted domain object
+(TDO)</a>.<a id="Appendix_A_Target_96"></a><a aria-label="Product behavior note 96" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_96" data-linktype="relative-path">&lt;96&gt;</a></p><dl>
+<dd>
+<div><pre> NTSTATUS LsarCreateTrustedDomainEx2(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PLSAPR_TRUSTED_DOMAIN_INFORMATION_EX TrustedDomainInformation,
+   [in] PLSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL AuthenticationInformation,
+   [in] ACCESS_MASK DesiredAccess,
+   [out] LSAPR_HANDLE* TrustedDomainHandle
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>TrustedDomainInformation: </b>Information about
+the new TDO to be created.</p><p><b>AuthenticationInformation: </b>Encrypted
+authentication information for the new TDO.</p><p><b>DesiredAccess: </b>An access mask specifying
+desired access to the TDO handle.</p><p><b>TrustedDomainHandle: </b>Used to return the handle
+for the newly created TDO.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the supplied arguments is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000300</p>
+  <p>STATUS_NOT_SUPPORTED_ON_SBS</p>
+  </td>
+  <td>
+  <p>The operation is not supported on a particular
+  product.<a id="Appendix_A_Target_97"></a><a aria-label="Product behavior note 97" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_97" data-linktype="relative-path">&lt;97&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00000DD</p>
+  <p>STATUS_INVALID_DOMAIN_STATE</p>
+  </td>
+  <td>
+  <p>The operation cannot complete in the current state of
+  the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00002B1</p>
+  <p>STATUS_DIRECTORY_SERVICE_REQUIRED</p>
+  </td>
+  <td>
+  <p>The <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+  Directory</a> <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_2dc07ca2-2b40-437e-a5ec-ed28ebfb116a" data-linktype="relative-path">service</a>
+  was not available on the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000078</p>
+  <p>STATUS_INVALID_SID</p>
+  </td>
+  <td>
+  <p>The <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security
+  identifier</a> of the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted
+  domain</a> is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00002E9</p>
+  <p>STATUS_CURRENT_DOMAIN_NOT_ALLOWED</p>
+  </td>
+  <td>
+  <p><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">Trust</a>
+  cannot be established with the current domain.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000035</p>
+  <p>STATUS_OBJECT_NAME_COLLISION</p>
+  </td>
+  <td>
+  <p>Another TDO already exists that matches some of the
+  identifying information of the supplied information.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000401</p>
+  <p>STATUS_PER_USER_TRUST_QUOTA_EXCEEDED</p>
+  </td>
+  <td>
+  <p>The caller&#39;s quota for maximum number of TDOs that can
+  be created by control access right Create-Inbound-Trust is exceeded.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000402</p>
+  <p>STATUS_ALL_USER_TRUST_QUOTA_EXCEEDED</p>
+  </td>
+  <td>
+  <p>The combined users&#39; quota for maximum number of TDOs
+  that can be created by control access right Create-Inbound-Trust is exceeded.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>If Active Directory is not running on this machine, the
+server MUST return STATUS_DIRECTORY_SERVICE_REQUIRED.<a id="Appendix_A_Target_98"></a><a aria-label="Product behavior note 98" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_98" data-linktype="relative-path">&lt;98&gt;</a> If the server is a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8b0a073b-3099-4efe-8b81-c2886b66a870" data-linktype="relative-path">read-only domain controller</a>,
+it MUST return an error.<a id="Appendix_A_Target_99"></a><a aria-label="Product behavior note 99" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_99" data-linktype="relative-path">&lt;99&gt;</a></p><p>If the caller is not a member of the Domain Admins group,
+the server MUST return STATUS_ACCESS_DENIED for policy handle access checking.</p><p>If the TDO creation failed due to the caller not having
+standard access rights to create the TDO, then the server MUST check the
+caller&#39;s control access right (defined in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/1522b774-6464-41a3-87a5-1e5633c3fbbb" data-linktype="relative-path">5.1.3.2.1</a>).
+The TDO creation by control access right is allowed if:</p><ul><li><p><span><span> 
+</span></span>The trust is an inbound-only <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_035d9ce5-f117-4251-8d4d-127c462ec4a0" data-linktype="relative-path">forest trust</a>. The server
+MUST return STATUS_ACCESS_DENIED if the trust to be created is not an
+inbound-only forest trust.</p>
+</li><li><p><span><span> 
+</span></span>The caller has the control access right to create an inbound
+trust on the domain object.</p>
+</li><li><p><span><span> 
+</span></span>The caller&#39;s quota for trust object creations has not been
+exceeded. If the number of TDOs that have been created by the caller through
+control access right Create-Inbound-Trust exceeds the value in the
+msDS-PerUserTrustQuota attribute of the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_40a58fa4-953e-4cf3-96c8-57dba60237ef" data-linktype="relative-path">domain NC</a> root object, then
+the server MUST return STATUS_PER_USER_TRUST_QUOTA_EXCEEDED. For the syntax of
+the msDS-PerUserTrustQuota attribute, refer to <a href="../ms-ada2/e20ebc4e-5285-40ba-b3bd-ffcb81c2783e" data-linktype="relative-path">[MS-ADA2]</a>
+section <a href="../ms-ada2/fe93e7df-799e-4d22-831a-73a052285c58" data-linktype="relative-path">2.418</a>.</p>
+</li><li><p><span><span> 
+</span></span>The combined users&#39; quota for trust object creations has not been
+exceeded. If the number of TDOs that have been created through control access
+right Create-Inbound-Trust exceeds the value in the msDS-AllUsersTrustQuota
+attribute of the domain NC root object (defined in [MS-ADTS] section <a href="../ms-adts/d119446e-3f8c-4610-9db6-2283200b6ec7" data-linktype="relative-path">6.1.1.1.4</a>),
+then the server MUST return STATUS_ALL_USER_TRUST_QUOTA_EXCEEDED. For the
+syntax of the msDS-AllUsersTrustQuota attribute, refer to [MS-ADA2] section <a href="../ms-ada2/f55cc53c-ab57-4052-bad0-bf516de0db68" data-linktype="relative-path">2.220</a>.</p>
+</li></ul><p>This message takes five arguments:</p><p><i>PolicyHandle</i>: An open handle to the policy object. If
+the handle is not a valid context handle to the policy object or <i>PolicyHandle</i>.HandleType
+does not equal &#34;Policy&#34;, the server MUST return
+STATUS_INVALID_HANDLE. <i>PolicyHandle</i>.GrantedAccess MUST NOT be considered
+for this call because the access check MUST happen on the TDO.</p><p><i>TrustedDomainInformation</i>: A structure containing most
+components of a TDO makeup. The data provided in this parameter MUST be checked
+for validity in accordance with rules for TDO consistency specified in
+&#34;Trust Objects&#34; in [MS-ADTS] section <a href="../ms-adts/fe369d31-cc17-4ad7-849e-769403bc2c41" data-linktype="relative-path">6.1.6</a>.
+The server MUST reject invalid input with STATUS_INVALID_PARAMETER. The server
+MUST return STATUS_INVALID_DOMAIN_STATE in the following cases:</p><ul><li><p><span><span> 
+</span></span>The TrustAttributes TRUST_ATTRIBUTE_FOREST_TRANSITIVE flag is set
+and the forestFunctionality specified in [MS-ADTS] section <a href="../ms-adts/d49624d0-9320-4368-8b0c-a7998ac2abdb" data-linktype="relative-path">3.1.1.3.2.27</a>
+is DS_BEHAVIOR_WIN2003 or higher.</p>
+</li><li><p><span><span> 
+</span></span>The TrustAttributes TRUST_ATTRIBUTE_FOREST_TRANSITIVE flag is set
+and the <b>DnsForestName</b> and <b>DnsDomainName</b> fields in DNS Domain
+Information (see section <a href="c939c70e-8cf0-4d90-a9cc-1c5002951723" data-linktype="relative-path">3.1.1.1</a>)
+do not contain the same value.</p>
+</li><li><p><span><span> 
+</span></span>The TrustAttributes TRUST_ATTRIBUTE_CROSS_ORGANIZATION flag is
+set and the forestFunctionality specified in [MS-ADTS] section 3.1.1.3.2.27 is
+DS_BEHAVIOR_WIN2003 or higher. </p>
+</li></ul><p>If one or more properties in <i>TrustedDomainInformation</i>
+points to the current domain (such as the domain that the server is a part of),
+the server MUST return STATUS_CURRENT_DOMAIN_NOT_ALLOWED. If there is another
+domain that claims the same properties, the server MUST return
+STATUS_OBJECT_NAME_COLLISION. Each field in this structure maps to a field in
+the TDO model, as specified in section <a href="0228f75e-9725-479c-b4cd-1cacd667343c" data-linktype="relative-path">3.1.1.5</a>. If the operation
+succeeds, the server MUST update its database with a new TDO field populated
+from this input parameter.</p><p><i>AuthenticationInformation</i>: A structure containing
+authentication information for the trusted domain. The server first MUST
+decrypt this data structure using an algorithm (as specified in section <a href="1f5bd3ed-cfdd-42ab-a2ac-f0786082bb21" data-linktype="relative-path">5.1.1</a>) with the key being
+the session key negotiated by the transport. The server then MUST unmarshal the
+data inside this structure and then store it into a structure whose format is
+specified in section <a href="084fdb6b-5bc3-4912-9aed-0257159996dd" data-linktype="relative-path">2.2.7.11</a>.
+This structure MUST then be stored on Trust Incoming and Outgoing Password
+properties.</p><p><i>DesiredAccess</i>: A bitmask containing a set of access
+rights that the caller attempts to obtain from the TDO, which is access-checked
+as specified in section <a href="e5e1e32e-4066-435d-b669-044fe997eaf7" data-linktype="relative-path">3.1.4.2.1</a>.
+Whatever the set of access rights requested by the caller, the server MUST also
+set the TRUSTED_SET_AUTH bit inside <i>DesiredAccess</i> before performing the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a> check.
+There is no method-specific portion of the check.</p><p>The valid trusted-domain-rights bits are specified in
+section <a href="e035f552-0313-48b7-9bca-fdd9fd4e948e" data-linktype="relative-path">2.2.1.1.5</a>, and
+the security descriptor is specified in section 3.1.1.5.</p><p><i>TrustedDomainHandle</i>:  If the request is successful,
+this parameter is used to return a handle (section <a href="1011130b-0413-460d-81ed-d1821d141639" data-linktype="relative-path">3.1.1.7</a>) to the newly
+created TDO with its fields initialized as follows:</p><ul><li><p><span><span> 
+</span></span>LsaContextHandle.HandleType = &#34;Trusted Domain&#34;</p>
+</li><li><p><span><span> 
+</span></span>LsaContextHandle.Object = the TDO</p>
+</li><li><p><span><span> 
+</span></span>LsaContextHandle.GrantedAccess = as specified in section
+3.1.4.2.1</p>
+</li></ul><p>New TDOs are always created without <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8c0b82d9-efec-4723-95a9-8564edf9ba44" data-linktype="relative-path">forest trust information</a>.
+The <b>ForestTrustInfo</b> and <b>ForestTrustLength</b> fields of the TDO are thus
+set to NULL and 0, respectively.</p><p>If the trust being created is inbound or bidirectional as
+defined in the <b>TrustDirection</b> field of the <i>TrustedDomainInformation</i>
+parameter, then the server MUST also update its database with a new <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_ba0d31d7-aa03-4e10-936a-a0ebd276ebc9" data-linktype="relative-path">interdomain trust account</a>
+populated as specified in [MS-ADTS] section <a href="../ms-adts/ac527b5b-0e88-48a1-8c73-497d40388d04" data-linktype="relative-path">6.1.6.8</a>.</p></div>

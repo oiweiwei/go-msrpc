@@ -1,0 +1,117 @@
+<div class="content"><p> </p><p>The fax client application calls the <b>FAX_SetActivityLoggingConfiguration
+(Opnum 44)</b> method to set options for <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_47e03020-496d-4450-abd0-4eb8b1243224" data-linktype="relative-path">activity logging</a></span>.
+This includes setting whether entries for incoming and outgoing faxes SHOULD be
+logged and the location of the log file.</p><p>In response, the server MUST check that the client&#39;s fax
+user account has access to manage server configuration. It MUST validate the
+logging parameters, including the path that is specified to the log file.</p><p>On success, the server MUST apply the specified logging
+options.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_SetActivityLoggingConfiguration(
+   [in] handle_t hFaxHandle,
+   [in, ref] const PFAX_ACTIVITY_LOGGING_CONFIGW pActivLogCfg
+ );
+</pre></div>
+</dd></dl><p><b>hFaxHandle: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>)
+or <b>FAX_ConnectionRefCount</b> (section <span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>) method
+call used to connect to the fax server.</p><p><b>pActivLogCfg: </b>A pointer to a <b>FAX_ACTIVITY_LOGGING_CONFIGW</b> (section
+<span><a href="875ec5c0-1c6c-4df3-a48e-236f6cab8688" data-linktype="relative-path">2.2.25</a></span>)
+object. The directory specified by the <b>lpwstrDBPath</b> field of this
+structure SHOULD be created by the caller if it does not exist.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access denied. This error code is returned under any
+  of the following conditions:</p>
+  <p><span>§<span>  
+  </span></span>The client&#39;s fax user account does not have the required
+  FAX_ACCESS_MANAGE_CONFIG authorization to manage the server configuration.</p>
+  <p><span>§<span>  
+  </span></span>The directory specified by the <b>lpwstrDBPath</b> member of
+  the <i>pActivLogCfg</i> structure is not a valid fax folder (the fax server
+  does not have rights to create files, write to files, enumerate files and/or
+  delete files), the server needs to return FAX_ERR_FILE_ACCESS_DENIED, and the
+  client does not support this error code.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>This error code is returned under any of the following
+  conditions:</p>
+  <p><span>§<span>  
+  </span></span>The <b>dwSizeOfStruct</b> member of the <b>FAX_ACTIVITY_LOGGING_CONFIGW</b>
+  specified by the <i>pActivLogCfg</i> parameter is set to an incorrect value.
+  The correct size, in bytes, described in the <b>FAX_ACTIVITY_LOGGING_CONFIGW</b>
+  structure.</p>
+  <p><span>§<span>  
+  </span></span>The <b>lpwstrDBPath</b> field of the structure specified by the
+  <i>pActivLogCfg</i> argument contains an empty string or is set to NULL.</p>
+  <p><span>§<span>  
+  </span></span>The <b>lpwstrDBPath</b> member of the structure specified by
+  the <i>pActivLogCfg</i> argument does not indicate a complete path name.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_BUFFER_OVERFLOW</p>
+  <p>0x0000006F</p>
+  </td>
+  <td>
+  <p>The file name is too long. The <b>lpwstrDBPath</b>
+  field of the structure specified by the <i>pActivityLog</i> argument contains
+  a path name longer than 248 characters, not counting the terminating null
+  character.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_REGISTRY_CORRUPT</p>
+  <p>0x000003F7</p>
+  </td>
+  <td>
+  <p>The fax server cannot store the new activity logging
+  configuration in the registry. This error can happen if the registry is
+  corrupted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FAX_ERR_FILE_ACCESS_DENIED</p>
+  <p>0x00001B60</p>
+  </td>
+  <td>
+  <p>This error code is returned under any of the following
+  conditions:</p>
+  <p><span>§<span>  
+  </span></span>The folder specified by the <i>lpwstrDBPath</i> member of the <i>pActivityLog</i>
+  structure is not a valid fax folder where the server has rights to create,
+  enumerate, write to, and delete files.</p>
+  <p><span>§<span>  
+  </span></span>The fax server cannot create a new (if different from the
+  respective existing file) file specified by the <b>lpwstrDBPath</b> member of
+  <i>pActivLogCfg</i>, because the server encountered an access denied
+  (ERROR_ACCESS_DENIED) or sharing violation error (ERROR_SHARING_VIOLATION)
+  when attempting to create the specified file.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

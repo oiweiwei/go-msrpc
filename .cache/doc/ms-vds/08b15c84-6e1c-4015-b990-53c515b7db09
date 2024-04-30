@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>VDS_DISK_FREE_EXTENT</b> structure provides
+information about a disk extent associated with free space on the disk.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_DISK_FREE_EXTENT {
+   VDS_OBJECT_ID diskId;
+   ULONGLONG ullOffset;
+   ULONGLONG ullSize;
+ } VDS_DISK_FREE_EXTENT,
+  *PVDS_DISK_FREE_EXTENT;
+</pre></div>
+</dd></dl><p><b>diskId:</b>  The VDS object ID of the
+disk object on which the extent resides.</p><p><b>ullOffset:</b>  The byte offset of the
+disk extent from the beginning of the disk.</p><p><b>ullSize:</b>  The size, in bytes, of the
+extent.</p></div>

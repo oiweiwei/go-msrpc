@@ -1,0 +1,185 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_PACKET_STATS</b> structure has DNS server
+statistics related to packets usage<a id="Appendix_A_Target_76"></a><a aria-label="Product behavior note 76" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_76" data-linktype="relative-path">&lt;76&gt;</a>. This
+structure MUST be formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpAlloc</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpFree</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpNetAllocs</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpMemory</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpUsed</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpReturn</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpResponseReturn</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpQueryReturn</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpInUse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpInFreeList</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpAlloc</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpRealloc</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpFree</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpNetAllocs</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpMemory</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecursePacketUsed</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecursePacketReturn</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PacketsForNsListUsed
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PacketsForNsListReturned
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PacketsForNsListInUse
+  (optional)</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>UdpAlloc (4 bytes): </b>The cumulative number of
+UDP packets allocated by the server from system memory.</p><p><b>UdpFree (4 bytes): </b>The cumulative number of
+UDP packets returned by the server to system memory.</p><p><b>UdpNetAllocs (4 bytes): </b>The number of
+currently allocated UDP packets.</p><p><b>UdpMemory (4 bytes): </b>The number of bytes of
+memory used by allocated or taken from the free list for use in query
+processing.</p><p><b>UdpUsed (4 bytes): </b>The cumulative number of
+UDP packets from the pool of packets used by the server.</p><p><b>UdpReturn (4 bytes): </b>The cumulative number of
+UDP packets freed or returned to the free list by the server.</p><p><b>UdpResponseReturn (4 bytes): </b>The cumulative
+number of UDP packets freed or returned to the free list by the server that
+were UDP response packets.</p><p><b>UdpQueryReturn (4 bytes): </b>The cumulative
+number of UDP query packets freed or returned to the free list by the server
+that were UDP query packets.</p><p><b>UdpInUse (4 bytes): </b>The number of UDP packets
+currently in use to process queries.</p><p><b>UdpInFreeList (4 bytes): </b>The number of UDP
+packets currently on the server&#39;s free list.</p><p><b>TcpAlloc (4 bytes): </b>The cumulative number of
+TCP buffers allocated by the server from system memory.</p><p><b>TcpRealloc (4 bytes): </b>Not used. Senders MUST
+set this value to zero and receivers MUST ignore it.</p><p><b>TcpFree (4 bytes): </b>The cumulative number of
+TCP buffers returned by the server to system memory.</p><p><b>TcpNetAllocs (4 bytes): </b>The number of
+allocated TCP buffers currently allocated by the server.</p><p><b>TcpMemory (4 bytes): </b>The total system memory,
+in bytes, used by TCP buffers currently allocated by the server.</p><p><b>RecursePacketUsed (4 bytes): </b>The cumulative
+number of packets used by the server for recursion queries.</p><p><b>RecursePacketReturn (4 bytes): </b>The cumulative
+number of packets that were used for recursive queries and then returned by the
+server to the pool of packets.</p><p><b>PacketsForNsListUsed (4 bytes): </b>The total
+number of TCP buffers used by the server for name server list query messages.
+This field SHOULD<a id="Appendix_A_Target_77"></a><a aria-label="Product behavior note 77" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_77" data-linktype="relative-path">&lt;77&gt;</a> be present. A client can tell
+whether the field is present based on the size of the buffer holding this
+structure.</p><p><b>PacketsForNsListReturned (4 bytes): </b>The total
+number of TCP buffers that were used for name server lists in query messages,
+returned by the server to the pool of packets. This field MUST be present if
+and only if PacketsForNsListUsed is present. A client can tell whether the
+field is present based on the size of the buffer holding this structure.</p><p><b>PacketsForNsListInUse (4 bytes): </b>The number of
+TCP buffers that are currently being used by the server for name lists in query
+messages. This field MUST be present if and only if PacketsForNsListUsed is
+present. A client can tell whether the field is present based on the size of
+the buffer holding this structure.</p></div>

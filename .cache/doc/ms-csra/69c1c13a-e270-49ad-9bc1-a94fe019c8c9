@@ -1,0 +1,737 @@
+<div class="content"><p>The <b>PublishCRL</b> method sends a request to the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> server to publish a new <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_4f22841f-249b-42fb-a31a-5049c00be939" data-linktype="relative-path">CRL</a>.</p><dl>
+<dd>
+<div><pre> HRESULT PublishCRL(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] FILETIME FileTime
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">ICertAdminD::SetExtension (section 3.1.4.1.1)</a>.</p><p><b>FileTime: </b>Contains a 64-bit value that
+represents the number of 100-nanosecond intervals since January 1, 1601,
+according to <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">Coordinated
+Universal Time (UTC)</a>. This is used to calculate the nextUpdate value of the
+CRL as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90414" data-linktype="external">[RFC3280]</a>
+section 5 in UTC-Greenwich Mean Time.</p><p>The following processing rules apply:</p><p><b>Note</b>  Although [RFC3280] specifies that <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_caac8fa2-5e21-43b9-a3fe-be0819b906bf" data-linktype="relative-path">revocation</a> is a
+requirement, this protocol differs from that requirement.</p><ol><li><p><span>    </span>When this method
+is invoked, the CA SHOULD create a new base and/or delta CRL for each CA
+Signing_Private_Key in the <a href="3b55aee9-db6f-4631-a318-f96053799779" data-linktype="relative-path">Signing_Cert
+Table</a>, as specified in the following steps. The type of CRL to create
+(base, delta, or both) for each CA <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a> is determined as
+follows:<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a></p>
+<p>The CA SHOULD create a new base
+CRL for each CA key.</p>
+<p>If the CA has enabled delta CRLs,
+as indicated by a nonzero Config_Delta_CRL_Validity_Period value, the CA MUST
+create a new delta CRL in addition to a new base CRL for each CA key.</p>
+<p>If delta CRLs are currently
+disabled (Config_Delta_CRL_Validity_Period is 0) and were enabled previously
+(Previous_Delta_CRL_Validity_Period is not equal to zero), the CA MUST create a
+new delta CRL in addition to a new base CRL for each CA key.</p>
+</li><li><p><span>    </span>The CA server
+MUST check the <a href="2f82efc0-66dd-49b7-9556-425805e63d30" data-linktype="relative-path">Request
+Table</a> to determine which <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a>
+to include in a CRL. If Request_Revocation_Date is not NULL and is in the past:</p>
+<ul><li><p><span><span>  </span></span>If
+the Request_Disposition is not &#34;certificate revoked&#34;, do not include
+the certificate Serial_Number in the CRL.</p>
+<p>An implication of this rule is
+that, if a previously revoked certificate is both released from hold and
+expires between the publishing times of two successive regularly published
+CRLs, the serial number of the certificate does not appear in the latter CRL.
+This outcome does not comply with [RFC3280] section 3.3, which specifies:
+&#34;An entry MUST NOT be removed from the CRL until it appears on one
+regularly scheduled CRL issued beyond the revoked certificate&#39;s validity period.&#34;</p>
+</li><li><p><span><span>  </span></span>If
+the Request_Disposition is &#34;certificate revoked&#34;:</p>
+<ol><li><p><span>    </span>For a delta CRL,
+exclude certificates whose value for the <b>Request_Revoked_When</b> field is
+before the CRL_This_Update of the oldest unexpired base CRL.</p>
+</li><li><p><span>    </span>If the
+Publish_Expired_Cert_In_CRL column is set to 1, the certificate Serial_Number
+MUST be included in CRLs regardless of the certificate&#39;s <b>NotAfter</b> time.</p>
+</li><li><p><span>    </span>If the
+Publish_Expired_Cert_in_CRL column is not set to 1:</p>
+<ul><li><p><span><span> 
+</span></span>If the certificate&#39;s <b>NotAfter</b> time is before the
+CRL_This_Publish of the last CRL, do not include the certificate&#39;s
+Serial_Number in the CRL.</p>
+</li><li><p><span><span> 
+</span></span>If the certificate&#39;s <b>NotAfter</b> time is after or equal to
+the CRL_This_Publish of the last CRL, include the certificate&#39;s Serial_Number
+in the CRL.</p>
+</li></ul></li></ol></li></ul></li><li><p><span>    </span>At CRL creation
+time, the CA SHOULD create a new <a href="3c8fcd6a-6872-46c2-b464-1c86f7fdfb4a" data-linktype="relative-path">CRL table</a> entry for each
+type of CRL (base, and if enabled, delta) for each CA key. For each CRL table
+entry it creates, the CA MUST use the following rules to populate the
+individual data elements:<a id="Appendix_A_Target_24"></a><a aria-label="Product behavior note 24" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_24" data-linktype="relative-path">&lt;24&gt;</a></p>
+<ul><li><p><span><span>  </span></span><b>CRL_Number:</b>
+The CA MUST set this value to the CRL_Number of the last CRL created plus one.</p>
+</li><li><p><span><span>  </span></span><b>CRL_Name_Id:</b>
+The CA MUST set this value to the number that uniquely identifies the CA key
+for which the CRL is being created.</p>
+</li><li><p><span><span>  </span></span><b>CRL_Min_Base:</b>
+(only for a delta CRL). If all of the following conditions are true:</p>
+<ul><li><p><span><span> 
+</span></span>A delta CRL is being published.</p>
+</li><li><p><span><span> 
+</span></span>Delta CRLs are disabled (Config_Delta_CRL_Validity_Period is 0).</p>
+</li><li><p><span><span> 
+</span></span>Delta CRLs were enabled previously
+(Previous_Delta_CRL_Validity_Period is not equal to zero).</p>
+</li></ul><p>The CA MUST set this value to the
+CRL_Number of the most recent base CRL (identified by selecting the CRL_Number
+from the CRL database row with CRL_Min_Base = 0, CRL_Name_ID matching the
+current row, and the highest CRL_Number).</p>
+<p>If the three conditions listed
+above are not all true, the CA MUST set this value to the CRL_Number of the
+latest fully propagated base CRL, selected based on a <b>CRL_Propagation_Complete</b>
+value that is in the past and the most recent CRL_This_Update value. If there
+are no fully propagated CRLs available, use the oldest unexpired base CRL as
+the CRL_Min_Base.</p>
+</li><li><p><span><span>  </span></span><b>CRL_Effective:</b>
+(only for a delta CRL): If this element is present, the CA MUST set its value
+to the CRL_This_Update value of the CRL table row corresponding to the base CRL
+whose CRL_Number is equal to the current delta CRL&#39;s CRL_Min_Base value.</p>
+</li><li><p><span><span>  </span></span><b>CRL_Count:</b>
+The CA MUST set this value to the number of serial numbers that will be
+included on the CRL.</p>
+</li><li><p><span><span>  </span></span><b>CRL_This_Publish:</b>
+The CA MUST set this value to the current time.</p>
+</li><li><p><span><span>  </span></span><b>CRL_This_Update:</b>
+The CA MUST set this value to the current time minus
+Config_CA_Clock_Skew_Minutes.<a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a> The value
+of CRL_This_Update MUST NOT be less than the NotBefore date of the current CA <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_6a2366ee-fc9c-4406-963d-eac335ed8fc5" data-linktype="relative-path">signing certificate</a>. If the
+calculated value of CRL_This_Update is less than the NotBefore date of the
+current CA signing certificate, the CA MUST replace the CRL_This_Update value
+with the NotBefore date of the current CA signing certificate.</p>
+</li><li><p><span><span>  </span></span><b>CRL_Next_Publish:</b>
+The CA MUST set this data element to the current time plus
+Config_Base_CRL_Validity_Period for a base CRL or plus Config_Delta_CRL_Validity_Period
+for a delta CRL.</p>
+</li><li><p><span><span>  </span></span><b>CRL_Propagation_Complete:</b>
+The CA MUST set this data element to the current time plus the overlap period.</p>
+<p>The Microsoft CA computes the
+overlap period based on Config_Base_CRL_Overlap_Period for a base CRL and Config_Delta_CRL_Overlap_Period
+for a delta CRL as follows:</p>
+<ol><li><p><span>    </span>If the registry
+value for Config_Base_CRL_Overlap_Period is configured and valid (valid means
+the units are correct and the value is present), this value is used as is.
+Similarly, if a valid Config_Delta_CRL_Overlap_Period exists, it is used as is.<a id="Appendix_A_Target_26"></a><a aria-label="Product behavior note 26" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_26" data-linktype="relative-path">&lt;26&gt;</a></p>
+</li><li><p><span>    </span>If either of
+these values is not present or not valid, the CA uses the following algorithms
+to determine a value:</p>
+<p>For a base CRL:</p>
+<ol><li><p><span>    </span>Interim_Base_CRL_Overlap_Period
+= MinimumOf(0.1*(Registry_Base_CRL_Validity_Period), 12Hours)</p>
+</li><li><p><span>    </span>Interim_Base_CRL_Overlap_Period
+= GreaterOf(Interim_Base_CRL_Overlap_Period,
+1.5*(Config_CA_Clock_Skew_Minutes))</p>
+</li><li><p><span>    </span>Interim_Base_CRL_Overlap_Period
+= MinimumOf(Interim_Base_CRL_Overlap_Period, Registry_Base_CRL_Validity_Period)</p>
+</li><li><p><span>    </span>Config_Base_CRL_Overlap_Period
+= Interim_Base_CRL_Overlap_Period + Config_CA_Clock_Skew_Minutes</p>
+</li></ol><p>For a delta CRL:</p>
+<ol><li><p><span>    </span>Interim_Delta_CRL_Overlap_Period
+= MinimumOf(Registry_Delta_CRL_Validity_Period, 12Hours)</p>
+</li><li><p><span>    </span>Interim_Delta_CRL_Overlap_Period
+= GreaterOf(Interim_Delta_CRL_Overlap_Period,
+1.5*(Config_CA_Clock_Skew_Minutes))</p>
+</li><li><p><span>    </span>Interim_Delta_CRL_Overlap_Period
+= MinimumOf(Interim_Delta_CRL_Overlap_Period,
+Registry_Base_CRL_Validity_Period)</p>
+</li><li><p><span>    </span>Config_Delta_CRL_Overlap_Period
+= Interim_Delta_CRL_Overlap_Period + Config_CA_Clock_Skew_Minutes</p>
+</li></ol></li></ol></li><li><p><span><span>  </span></span>If
+a file time is provided, which is indicated by a nonzero <i>FileTime</i>
+parameter value, the CA MUST use it in the following manner:</p>
+<ul><li><p><span><span> 
+</span></span>If the <i>FileTime</i> value is less than the current time, the
+CA MUST fail with an error code ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the CA MUST use the value that is provided in the <i>FileTime</i>
+parameter, add overlap period plus the clock skew to it, and set it as the
+CRL_Next_Update.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+a file time is not provided, the CA MUST set CRL_Next_Update to the current
+time plus Config_Base_CRL_Validity_Period for a base CRL or
+Config_Delta_CRL_Validity_Period for a delta CRL plus overlap period.</p>
+<p>The CA SHOULD add a clock skew.<a id="Appendix_A_Target_27"></a><a aria-label="Product behavior note 27" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_27" data-linktype="relative-path">&lt;27&gt;</a></p>
+</li><li><p><span><span>  </span></span><b>CRL_Publish_Flags:</b>
+The CA MUST update this data element with a bitwise OR of all values from the
+list below that apply, based on their descriptions in section <a href="57f94966-f12a-479b-8ba6-f085704f274e" data-linktype="relative-path">3.1.1.4.1</a>.</p>
+<ul><li><p><span><span> 
+</span></span>CPF_BASE: Set this value for a base CRL.</p>
+</li><li><p><span><span> 
+</span></span>CPF_DELTA: Set this value for a delta CRL.</p>
+</li><li><p><span><span> 
+</span></span>CPF_MANUAL: Set this value if the <b>uToken.Sids[uToken.UserIndex]</b>
+is not NULL. This means that the identity of the caller who initiated the generation
+of the CRL is available.</p>
+</li><li><p><span><span> 
+</span></span>CPF_SHADOW: If a delta CRL is being published, delta CRLs are
+disabled (Config_Delta_CRL_Validity_Period is 0), and if they were enabled
+previously (Previous_Delta_CRL_Validity_Period is not equal to zero), the CA
+MUST set this value.</p>
+</li></ul></li></ul></li><li><p><span>    </span>For each type of
+CRL (base and/or delta) required, and for each CA key, the CA MUST create a CRL
+and sign it with the corresponding Signing_Private_Key. The CA MUST allocate
+data to the various CRL fields whose structure and syntax are defined in
+[RFC3280] section 5.1, to the CRL extensions whose structure and syntax are
+defined in [RFC3280] section 5.2, and to the CRL entry extensions whose
+structure and syntax are defined in [RFC3280] section 5.3:</p>
+<ul><li><p><span><span>  </span></span>The
+signatureAlgorithm value is based on the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public key</a> and hash
+algorithm of the CA key and is derived from and has the syntax as specified in
+[RFC3280] section 5.1.1.2.</p>
+</li><li><p><span><span>  </span></span>As
+specified in [RFC3280] section 5.1.1.3, a digital signature that is computed by
+using the ASN.1 DER–encoded tbsCertList MUST be used as the <b>signatureValue</b>
+field. The tbsCertList value is composed of the fields specified in the
+following list.</p>
+<ul><li><p><span><span> 
+</span></span>&#34;V2&#34; MUST be used for the version field (within the
+TBSCertList field), and its syntax is as specified in [RFC3280] section 5.1.</p>
+</li><li><p><span><span> 
+</span></span>The same value previously used for signatureAlgorithm MUST be
+used for the signature field (within the TBSCertList field).</p>
+</li><li><p><span><span> 
+</span></span>The <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">distinguished
+name (DN)</a> of the CA MUST be used for the issuer field (within the
+TBSCertList field). This is the same value as the value that is contained in
+the Issuer field in the CA certificate associated with the signing key. The
+syntax is as specified in [RFC3280] section 5.1.2.3.</p>
+</li><li><p><span><span> 
+</span></span>CRL_This_Update MUST be used for the <b>thisUpdate</b> field of
+the CRL, and its syntax is as specified in [RFC3280] section 5.1.2.4.</p>
+</li><li><p><span><span> 
+</span></span>CRL_Next_Update MUST be used for the <b>nextUpdate</b> field of
+the CRL, and its syntax is as specified in [RFC3280] section 5.1.2.5.</p>
+</li><li><p><span><span> 
+</span></span>For each certificate that is determined in the preceding rule 3
+to be included in the CRL, an entry in the revokedCertificates list MUST be
+created using the following logic:</p>
+<ul><li><p><span><span> 
+</span></span>If Request_Revoked_Reason is <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_79be4e32-d4d9-4c8e-841f-880ade9015d4" data-linktype="relative-path">release from hold</a>
+(0xffffffff) and a base CRL is being constructed, the certificate MUST NOT be
+included as an entry in the revokedCertificates list. </p>
+</li><li><p><span><span> 
+</span></span>If Request_Revoked_Reason is release from hold (0xffffffff) and a
+delta CRL is being constructed, 8 MUST be used for the reasonCode CRL entry
+extension.</p>
+</li><li><p><span><span> 
+</span></span>Serial_Number MUST be used for the userCertificate field.</p>
+</li><li><p><span><span> 
+</span></span>Request_Revocation_Date MUST be used as the revocationDate field.</p>
+</li><li><p><span><span> 
+</span></span>If Request_Revoked_Reason is not 0, it MUST be used for the
+reasonCode CRL entry extension.</p>
+</li><li><p><span><span> 
+</span></span>The fields and CRL entry extensions within revokedCertificates
+have the ASN syntax as defined in [RFC3280] section 5.1.</p>
+</li></ul></li></ul></li><li><p><span><span>  </span></span>The
+subject key identifier field of the CA certificate for which the CRL is being
+generated MUST be used for the AuthorityKeyIdentifier (AKI) CRL extension. The
+syntax is as defined in [RFC3280] section 5.2.1 (which in turn points to
+section 4.2.1.1 of the same RFC).</p>
+</li><li><p><span><span>  </span></span>The
+CRL_Number SHOULD be used for the CRL number extension, which has the syntax
+that is defined in [RFC3280] section 5.2.3.<a id="Appendix_A_Target_28"></a><a aria-label="Product behavior note 28" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_28" data-linktype="relative-path">&lt;28&gt;</a></p>
+</li><li><p><span><span>  </span></span>For
+a delta CRL only, CRL_Min_Base MUST be used for the delta CRL indicator
+extension, which has the syntax that is defined in [RFC3280] section 5.2.3.<a id="Appendix_A_Target_29"></a><a aria-label="Product behavior note 29" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_29" data-linktype="relative-path">&lt;29&gt;</a></p>
+</li><li><p><span><span>  </span></span>The
+issuing distribution point is a CRL extension that MUST be populated with all
+entries in the Config_CA_CDP_Include_In_CRL_IDP_Extension element that is
+defined in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>
+section <a href="../ms-wcce/b3ac7b46-8ea7-440d-a4c5-656bb1286d56" data-linktype="relative-path">3.2.1.1.4</a>.
+This CRL extension has the syntax that is defined in [RFC3280] section 5.2.5. </p>
+</li><li><p><span><span>  </span></span>The
+freshest CRL extension (also known as the delta CRL distribution point) MUST be
+populated with all entries in the
+Config_CA_CDP_Include_In_CRL_Freshest_CRL_Extension element, as defined in
+[MS-WCCE] section 3.2.1.1.4. This CRL extension has the syntax that is defined
+in [RFC3280] section 5.2.6.</p>
+</li></ul></li><li><p><span>    </span>In addition to
+the preceding extensions, the following custom extensions MUST be added to the
+CRL.</p>
+<ul><li><p><span><span>  </span></span>CRL_Next_Publish
+MUST be used for the CRL Next Publish custom extension, which is defined as
+follows:</p>
+<p>The <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_aaaf2f1a-0b0a-487e-a0f0-c3510a6091b2" data-linktype="relative-path">OID (1)</a> of the CRL Next
+Publish extension is 1.3.6.1.4.1.311.21.4. </p>
+<p>The extension value is DER-encoded
+and is defined in ASN.1 <a href="https://go.microsoft.com/fwlink/?LinkId=90590" data-linktype="external">[X509]</a>
+as the following:</p>
+<div><pre> CHOICE {
+     utcTime    UTCTime,
+     generalTime    GeneralizedTime
+ }
+</pre></div>
+<p>If the time is after 1950 and
+before 2050, it is UTC time encoded with a two-digit year. Otherwise, it is
+Generalized time that is encoded with a four-digit year. The date is precise to
+seconds.</p>
+</li><li><p><span><span>  </span></span>The
+CA Version extension MUST be populated with the value
+&#34;{Signing_Cert_Version_ID}{Signing_Private_Key_Version_ID}&#34; where
+Signing_Cert_Version_ID and Signing_Private_Key_Version_ID are replaced with their
+values as defined in [MS-WCCE] section <a href="../ms-wcce/4107be53-83b7-4b9b-b003-9635d0eef4b8" data-linktype="relative-path">3.2.1.1.2</a>.</p>
+<p>The OID (1) of the CA Version
+extension is 1.3.6.1.4.1.311.21.1.</p>
+<p>This extension MUST NOT be marked
+critical.</p>
+<p>The extension value is DER-encoded
+and is defined in ASN.1 [X509] as INTEGER.</p>
+</li><li><p><span><span>  </span></span>The
+Published CRL Locations extension (an <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a> path) MUST
+be populated with all entries from the <b>Config_CA_CDP_Include_In_CRL_Publish_Locations_Extension</b>
+ADM element, as defined in [MS-WCCE] section 3.2.1.1.4.</p>
+<p>The OID (1) of the Published CRL
+Locations extension is 1.3.6.1.4.1.311.21.14.</p>
+<p>This extension MUST NOT be marked
+critical.</p>
+<p>The extension value is DER-encoded
+and is defined in ASN.1 [X509] with the same syntax as the CRL distribution
+points certificate extension, as defined in [RFC3280] section 4.2.1.14.</p>
+</li></ul></li><li><p><span>    </span>After each CRL
+is created, the CA MUST save it to the <b>CRL_Raw_CRL</b> data element of the
+corresponding CRL table entry.</p>
+</li><li><p><span>    </span>For each CRL
+created, immediately prior to publishing, the CA MUST verify the signature in
+the <b>signatureValue</b> field of the CRL. The inputs to signature
+verification are as follows:</p>
+<ul><li><p><span><span>  </span></span>The
+signature value itself.</p>
+</li><li><p><span><span>  </span></span>The
+original message that was signed (in this case the CRL tbsCertList as defined
+in [RFC3280] section 5.1.1.1).</p>
+</li><li><p><span><span>  </span></span>The
+CA public key (from the Subject Public Key Information field of the
+Signing_Cert_Certificate corresponding to the Signing_Private_Key the CA used
+to sign the CRL).</p>
+</li><li><p><span><span>  </span></span>The
+signature algorithm, as identified in the <b>signatureAlgorithm</b> field of
+the CRL.</p>
+</li></ul><p>The detailed signature
+verification process depends on the algorithm. Algorithms for signing CRLs are
+described in <a href="https://go.microsoft.com/fwlink/?LinkId=123851" data-linktype="external">[RFC3279]</a>
+section 2.2. If the verification is not successful, the CA MUST skip to step 8
+below and use 0x80090006 for the error code.</p>
+</li><li><p><span>    </span>The CA MUST then
+consult the <b>Config_CA_CDP_Publish_To_Base</b> and <b>Config_CA_CDP_Publish_To_Delta</b>
+ADM elements and attempt to publish base CRLs and delta CRLs to all of the
+locations identified in the respective elements, including the local registry
+location defined in section <a href="b12d8bdf-165e-4bab-8ec2-982d62eee374" data-linktype="relative-path">3.1.1.8</a>,
+noting the success or failure of each publish attempt. In the case of failure,
+the CA MUST note the error code generated by the CA or returned from the lower
+layer system for each publishing attempt. Steps 8 and 9 of this section are
+performed once for each CRL and location combination. When writing to the local
+registry location, the server uses methods consistent with the communications
+specified in the Windows Remote Registry Protocol (see <a href="../ms-rrp/0fa3191d-bb79-490a-81bd-54c2601b7a78" data-linktype="relative-path">[MS-RRP]</a>
+section <a href="../ms-rrp/ec095de8-b4fe-48fb-8114-dea65b4d710e" data-linktype="relative-path">4.2</a>)
+to write a new registry value. The operations to write a new registry value are
+as follows:</p>
+<ol><li><p><span>   
+</span>First, read all CRLs in the <b>CRL_Local</b> element to determine
+whether a CRL of the same type (base or delta) and signed by the
+Signing_Private_Key that signed the CRL being published exists already. If one
+is found, compare its content to that of the current CRL being published. If
+the content is identical, do nothing.  If not, delete the existing CRL from <b>CRL_Local</b>.
+When all CRLs signed by the CRL being published have been evaluated, if no
+exact match was found, add the current CRL to <b>CRL_Local</b> as follows:</p>
+<ul><li><p><span><span> 
+</span></span>Obtain a handle to the root key HKEY_LOCAL_MACHINE by using the <a href="../ms-rrp/6cef29ae-21ba-423f-9158-05145ac80a5b" data-linktype="relative-path">OpenLocalMachine</a>
+method [MS-RRP] section 3.1.5.3.</p>
+<p>Open the HKEY_LOCAL_MACHINE
+root key with the following input:</p>
+<p>samDesired: 0x6</p>
+</li><li><p><span><span> 
+</span></span>Use the handle returned from OpenLocalMachine with the <a href="../ms-rrp/8cb48f55-19e1-4ea2-8d76-dd0f6934f0d9" data-linktype="relative-path"><span>BaseRegOpenKey</span></a> method
+([MS-RRP] section 3.1.5.15) to open a subkey. The BaseRegOpenKey method returns
+a handle to the subkey.</p>
+<ul><li><p><span><span> 
+</span></span>Open the subkey with the following input:</p>
+<p>dwOptions: 0 (nonvolatile)</p>
+<p>samDesired: 0x6</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Use the handle to the subkey returned from BaseRegOpenKey with
+the <a href="../ms-rrp/c7186ae2-1c82-45e9-933b-97d9873657e8" data-linktype="relative-path">BaseRegCreateKey</a>
+method ([MS-RRP] section 3.1.5.7) to create a new subkey. </p>
+<p><span>§<span> 
+</span></span>Create the new subkey with the following input:</p>
+<p>lpSubKey: The <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_168fbe0c-fc02-4722-979e-b0261766ac9c" data-linktype="relative-path">SHA-1 hash</a> of the DER
+encoded CRL, including tbsCertList and appended signature (the 20 bytes of binary
+data output from the hash algorithm are converted to a string of 40 hexadecimal
+ASCII digits).</p>
+<p>lpClass: NULL</p>
+<p>dwOptions: 0 (nonvolatile)</p>
+<p>samDesired: 0x6</p>
+</li><li><p><span><span> 
+</span></span>Use the handle to a subkey returned from BaseRegCreateKey to
+write values under the subkey by using the <a href="../ms-rrp/2b61fa7e-2a38-46ce-a186-7c91b3ed1b61" data-linktype="relative-path">BaseRegSetValue</a>
+([MS-RRP] section 3.1.5.22) method. </p>
+<p><span>§<span> 
+</span></span>Create the new value with the following input:</p>
+<p>lpValueName: &#34;Blob&#34;</p>
+<p>dwType: 3 (binary)</p>
+<p>lpData: Points to a buffer containing
+the DER encoded CRL. The buffer is constructed as follows: The first 12 bytes
+contain the values represented in hexadecimal as 03 00 00 00 01 00 00 00 14 00
+00 00, followed by the 20-byte SHA-1 hash value used above. The SHA-1 hash
+value is followed by 8 bytes that contain the value represented in hexadecimal
+as 21 00 00 00 01 00 00 00, then 4 bytes that contain the value of the length
+of the CRL, followed by the DER encoded CRL.</p>
+<p>cbData: The length, in bytes, of
+the data referenced by lpdata.</p>
+</li><li><p><span><span> 
+</span></span>After all required keys and values have been created and written,
+the client closes the open handles by using the <a href="../ms-rrp/bc7545ff-0a54-4465-a95a-396b5c2995df" data-linktype="relative-path">BaseRegCloseKey</a>
+method [MS-RRP] section 3.1.5.6.</p>
+</li></ul></li></ol><p>If a nonzero return value is returned from any of
+the above methods, the CA continues to attempt to publish CRLs as follows, and
+the CPF_CASTORE_ERROR flag is set in step 9 below.</p>
+<p>For each combination of new CRL table entry (created
+in preceding rule 3) and CDP location, there will be a publishing attempt, in
+which the CA attempts to write the CRL file to the location specified.
+Specifically, the publishing attempts are done as follows: <a id="Appendix_A_Target_30"></a><a aria-label="Product behavior note 30" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_30" data-linktype="relative-path">&lt;30&gt;</a></p>
+<ul><li><p><span><span>  </span></span>If,
+for a delta CRL and a location that begins with &#34;file://&#34;, the
+CPF_FILE_ERROR flag value was set for the corresponding base CRL, do not
+attempt to publish the delta CRL to the file:// location. The CA MUST generate
+a nonzero error code instead. The CA SHOULD use the error code E_ABORT
+(0x80004004). The server will mark the CPF_POSTPONED_BASE_FILE_ERROR flag when
+it updates the corresponding CRL table entry below. The CA MUST then preserve
+this error code and skip to step 9.</p>
+</li><li><p><span><span>  </span></span>If,
+for a delta CRL and a location that begins with &#34;ldap:///&#34;, the
+CPF_LDAP_ERROR flag value was set for the corresponding base CRL, do not
+attempt to publish the delta CRL to the ldap:/// location. The CA MUST generate
+a nonzero error code instead. The CA SHOULD use the error code E_ABORT
+(0x80004004). The server will mark the CPF_POSTPONED_BASE_LDAP_ERROR flag when
+it updates the corresponding CRL table entry below. The CA MUST then preserve
+this error code and skip to step 9.</p>
+</li><li><p><span><span>  </span></span>If
+any CRL Publishing Locations that have the invalid prefix &#34;ftp:&#34;,
+&#34;http:&#34;, or any locations with a prefix other than &#34;file:&#34;
+that consists of 2, 3, or 4 characters followed by a colon (&#34;:&#34;), are
+encountered, the CA MUST generate a nonzero error code. The CA SHOULD use the
+error code ERROR_BAD_PATHNAME (0x800700a1). The CA MUST then preserve this
+error code and skip to step 9.</p>
+</li><li><p><span><span>  </span></span>When
+writing to a local file path, <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c9507dca-291d-4fd6-9cba-a9ee7da8c908" data-linktype="relative-path">UNC</a>
+path, or file:// location, a file system is invoked to write the CRL as a DER-encoded
+binary file to the path and file name specified. When the CRL publishing
+location starts with the prefix &#34;file://&#34;, but the remaining portion
+of the location is not a path starting with &#34;\\&#34;, the entire location
+is passed to the file system. When the location starts with the prefix
+&#34;file://&#34;, and the remaining portion is a path starting with
+&#34;\\&#34;, only the remaining portion is passed to the file system. When
+the location starts with &#34;{DriveLetter}:&#34; or with &#34;\\&#34;, it
+is passed as is to the file system. A status or Win32 error code, when one was
+returned from the file system, is returned to the invoker (the CA). When a
+Win32 error code is returned from the file system, the server SHOULD convert
+this error code to a 4-byte <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">HRESULT</a>
+value using the pattern 0x8007XXXX, where XXXX is the first two bytes of the
+Win32 hex value 0x0000XXXX. Then, the server SHOULD preserve this HRESULT
+value, and go to step 9 (where the CA will set the CPF_FILE_ERROR publishing
+flag). For more information on writing remote files, see <a href="../ms-fasod/a8df7cf6-4f73-4441-8319-653618a50da0" data-linktype="relative-path">[MS-FASOD]</a>.<a id="Appendix_A_Target_31"></a><a aria-label="Product behavior note 31" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_31" data-linktype="relative-path">&lt;31&gt;</a></p>
+</li><li><p><span><span>  </span></span>For
+any ldap:/// locations identified, within the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a> and <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a> specified, the
+CRL is DER encoded. The steps the CA uses are as follows:</p>
+<ol><li><p><span>    </span>If the value of
+the <b>CRL_Publish_AD_Connection</b> is not NULL, then a previous Active
+Directory connection exists. Go to step 4 and use that Active Directory
+connection for publishing the CRLs.</p>
+<p>Otherwise, invoke the task
+&#34;Initialize an ADConnection&#34;, as defined in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/52a40516-154c-40ea-9f9f-08df8d7c9600" data-linktype="relative-path">7.6.1.1</a>,
+with the following parameters:</p>
+<ul><li><p><span><span> 
+</span></span>TaskInputTargetName: NULL.</p>
+</li><li><p><span><span> 
+</span></span><b>TaskInputPortNumber:</b> If the value of <b>Config_CA_LDAP_Flags</b>
+is 0, use 389; if it is 1, use port 636.</p>
+</li><li><p><span><span> 
+</span></span>Store the new TaskReturnADConnection returned from the task as
+CRL_Publish_AD_Connection.</p>
+</li></ul></li><li><p><span>    </span>Invoke the task
+&#34;Setting an LDAP Option on an ADConnection&#34;, as defined in [MS-ADTS]
+section <a href="../ms-adts/b459e38c-d173-480d-9f90-6b7de1bf65b9" data-linktype="relative-path">7.6.1.2</a>,
+on the Active Directory connection <b>CRL_Publish_AD_Connection</b>. Invoke the
+task one time for each of the following options. For each of these, the <i>TaskInputAdConnection</i>
+parameter is <b>CRL_Publish_AD_Connection</b>. </p>
+<ul><li><p><span><span> 
+</span></span><b>TaskInputOptionName:</b> LDAP_OPT_GETDSNAME_FLAGS</p>
+</li><li><p><span><span> 
+</span></span><b>TaskInputOptionValue:</b> Bit R as defined by <a href="../ms-nrpc/ff8f970f-3e37-40f7-bd4b-af7336e4792f" data-linktype="relative-path">[MS-NRPC]</a>
+section <a href="../ms-nrpc/fb8e1146-a045-4c31-98d1-c68507ad5620" data-linktype="relative-path">3.5.4.3.1</a></p>
+</li><li><p><span><span> 
+</span></span><b>TaskInputOptionName:</b> LDAP_OPT_SIGN</p>
+</li><li><p><span><span> 
+</span></span><b>TaskInputOptionValue:</b> TRUE</p>
+</li><li><p><span><span> 
+</span></span><b>TaskInputOptionName:</b> LDAP_OPT_DNSDOMAIN_NAME </p>
+</li><li><p><span><span> 
+</span></span><b>TaskInputOptionValue:</b> Set to the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> DNS name of the
+joined domain.</p>
+</li></ul></li><li><p><span>    </span>After the Active
+Directory connection is initialized and the options are set, the CA invokes the
+&#34;Performing an LDAP Bind on an ADConnection&#34; task, as specified in
+[MS-ADTS] section <a href="../ms-adts/f76d2202-44aa-4347-aee2-d73426d6c687" data-linktype="relative-path">7.6.1.4</a>,
+on the connection <b>CRL_Publish_AD_Connection</b>, with the following
+parameters:</p>
+<p><b>TaskInputADConnection:</b> <b>CRL_Publish_AD_Connection</b></p>
+<p>If the <b>TaskReturnStatus</b>
+returned is not 0, skip to the error processing logic in step 5 below.
+Otherwise, continue.</p>
+</li><li><p><span>    </span>The CA invokes
+the &#34;Performing an LDAP Operation on an ADConnection&#34; task, as
+specified in [MS-ADTS] section <a href="../ms-adts/b2131a85-4a8c-4f48-a610-6a4b7a701627" data-linktype="relative-path">7.6.1.6</a>,
+with the following parameters:</p>
+<ul><li><p><span><span> 
+</span></span>TaskInputADConnection: CRL_Publish_AD_Connection</p>
+</li><li><p><span><span> 
+</span></span>TaskInputRequestMessage: protocolOp is set to modifyRequest (<a href="https://go.microsoft.com/fwlink/?LinkId=90325" data-linktype="external">[RFC2251]</a> section 4.6)</p>
+</li></ul><p>The parameters of the
+ModifyRequest are set as follows:</p>
+<ul><li><p><span><span> 
+</span></span>The <b>object</b> field contains the
+Config_CA_CDP_Publish_To_Base or Config_CA_CDP_Publish_To_Delta entry that
+specifies an <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a>
+location (without the &#34;ldap:///&#34; prefix)</p>
+</li><li><p><span><span> 
+</span></span>The modification sequence has one list entry whose <b>operation</b>
+field has the value &#34;replace&#34; and whose <b>modification</b> field
+contains the following:</p>
+<ul><li><p><span><span> 
+</span></span>The <b>type</b> field contains either
+&#34;certificateRevocationList&#34;, for a base CRL, or
+&#34;deltaRevocationList&#34; for a delta CRL.</p>
+</li><li><p><span><span> 
+</span></span>The <b>vals</b> field contains the CRL. <a id="Appendix_A_Target_32"></a><a aria-label="Product behavior note 32" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_32" data-linktype="relative-path">&lt;32&gt;</a></p>
+</li></ul></li></ul><p><b>TaskOutputResultMessages:</b> A
+task output parameter that is a list of <b>LDAPMessage</b>, as specified in [MS-ADTS]
+section 7.6.1.6, that contains the response from the directory server.  The
+result of a modify request is a modify response, which, as specified in
+[RFC2251], is an <b>LDAPResult</b>, which contains a <b>resultCode</b> and an <b>errorMessage</b>.</p>
+<p>If the <b>TaskReturnStatus</b>
+returned is not 0, perform to the error processing logic in step 5 below.
+Otherwise, skip step 5 and continue with step 9 below.</p>
+</li><li><p><span>    </span>When invoking an
+LDAP higher layer triggered event, a status or error code, when one was
+returned from the lower layer system, is returned to the invoker (the CA).</p>
+<ul><li><p><span><span> 
+</span></span>If a nonzero <b>TaskReturnStatus</b> is returned from step 3
+above (while attempting to bind to the ADConnection), the CA SHOULD close the
+Active Directory connection by invoking the &#34;Performing an LDAP Unbind on
+an ADConnection&#34; task defined in [MS-ADTS] section <a href="../ms-adts/8c6d378c-be67-4178-894f-24ece20dc092" data-linktype="relative-path">7.6.1.5</a>,
+convert the <b>TaskReturnStatus</b> (an LDAP <b>resultCode</b>) that was
+returned from step 3 to a 4-byte HRESULT value as specified in the Conversion
+of LDAP results at the end of this step. Then, preserve this HRESULT value,
+clear the <b>CRL_Publish_AD_Connection</b> element, and go to step 9 below.</p>
+</li><li><p><span><span> 
+</span></span>If a nonzero <b>TaskOutputResultMessages.resultCode</b> value is
+returned from step 4 above (the LDAP modify operation), that indicates that the
+Active Directory server is down, unavailable, or that there is a timeout, the
+CA MUST close the Active Directory connection by invoking the &#34;Performing
+an LDAP Unbind on an ADConnection&#34; task defined in [MS-ADTS] section
+7.6.1.5, clear the <b>CRL_Publish_AD_Connection</b> element, and re-attempt one
+time to execute steps 1-4 above. If a nonzero <b>TaskReturnStatus</b> is
+returned from step 3 or 4 upon this single retry, the CA MUST close the Active
+Directory connection by invoking the &#34;Performing an LDAP Unbind on an
+ADConnection&#34; task defined in [MS-ADTS] section 7.6.1.5, convert the
+returned <b>TaskReturnStatus</b> from step 3 (in the case of a failure upon 
+bind) or <b>TaskOutputResultMessages.errorMessage</b> from step 4 (in the case
+of a failure upon modify) to a 4-byte HRESULT value as specified in the
+Conversion of LDAP results at the end of this step, preserve this HRESULT
+value, clear the CRL_Publish_AD_Connection element, and go to step 9.<a id="Appendix_A_Target_33"></a><a aria-label="Product behavior note 33" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_33" data-linktype="relative-path">&lt;33&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If any other nonzero <b>TaskOutputResultMessages.resultCode</b>
+value is returned from step 4 above (the LDAP modify operation), the server
+MUST convert the returned <b>TaskOutputResultMessages.errorMessage</b> to a
+4-byte HRESULT value, as specified in the Conversion of LDAP results at the end
+of this step, preserve this HRESULT value, and go to step 9.</p>
+</li></ul></li></ol><p>Conversion of LDAP results
+(<b>TaskReturnStatus</b> or <b>TaskOutputResultMessages</b>) to HRESULT is as
+follows:</p>
+<ul><li><p><span><span> 
+</span></span>If TaskOutputResultMessages.errorMessage is at least 8 bytes
+long:</p>
+<ul><li><p><span><span> 
+</span></span>If each of the first 8 bytes is between &#39;0&#39; and &#39;9&#39; inclusive, or
+between &#39;a&#39; and &#39;f&#39; inclusive, or between &#39;A&#39; and &#39;F&#39; inclusive, then use this
+value as the hexadecimal representation of a Win32 error, which will be the
+input to the following HRESULT conversion.</p>
+</li><li><p><span><span> 
+</span></span>If each of the first 8 bytes is 0, use ERROR_DS_GENERIC_ERROR
+(defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>,
+&#34;Win32 Error Codes&#34;) as the Win32 error that will be input to the
+following HRESULT conversion.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Otherwise, use <b>TaskOutputResultMessages.resultCode</b>.
+Convert it to a Win32 error using the conversion specified in [MS-ERREF]
+section <a href="../ms-erref/a465ae57-5f89-4539-88b3-90cf37a5ae06" data-linktype="relative-path">2.4</a>,
+&#34;LDAP Error to Win32 Error Mapping&#34;, and use this value as the Win32
+error, which will be the input to the following HRESULT conversion.</p>
+</li><li><p><span><span> 
+</span></span>If there is no <b>TaskOutputResultMessages</b> (as in the case of
+the Bind task), use <b>TaskReturnStatus</b> (which is an LDAP resultCode).
+Convert this value to a Win32 error using the conversion specified in
+[MS-ERREF] section 2.4, &#34;LDAP Error to Win32 Error Mapping&#34;, and use
+this value as input to the following HRESULT conversion.</p>
+</li><li><p><span><span> 
+</span></span>Convert the Win32 obtained above to an HRESULT using the pattern
+0x8007XXXX, where XXXX is the first two bytes of the Win32 hex value
+0x0000XXXX.</p>
+</li></ul></li></ul></li><li><p><span>    </span>After each
+attempt to publish a CRL (that is, each combination of CRL and publishing
+location), the CA SHOULD update the corresponding CRL table row. For each row
+updated, the CA MUST use the following rules to update the individual data
+elements:<a id="Appendix_A_Target_34"></a><a aria-label="Product behavior note 34" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_34" data-linktype="relative-path">&lt;34&gt;</a></p>
+<ul><li><p><span><span>  </span></span><b>CRL_Publish_Error:</b>
+If this element is present, populate CRL_Publish_Error with the user name
+associated with the caller identity, in the form &#34;Published by
+{domain\UserName}&#34;, where:</p>
+<ul><li><p><span><span> 
+</span></span>Domain is replaced with the domain name of the domain in which
+the user account exists.</p>
+</li><li><p><span><span> 
+</span></span>UserName is the user name associated with the caller identity.</p>
+</li></ul><p>The domain and UserName are found
+as follows:</p>
+<ol><li><p><span>    </span>Call <a href="../ms-lsat/534c8a46-1be7-4065-9f87-e60a1447ae45" data-linktype="relative-path">LsarOpenPolicy</a>
+<a href="../ms-lsat/1ba21e6f-d8a9-462c-9153-4375f2020894" data-linktype="relative-path">[MS-LSAT]</a>
+section 3.1.4.2 with the following inputs:</p>
+<ul><li><p><span><span> 
+</span></span>SystemName: NULL</p>
+</li><li><p><span><span> 
+</span></span>DesiredAccess: contains the bit value 0x00000800 for
+POLICY_LOOKUP_NAMES</p>
+</li></ul></li><li><p><span>    </span>Call <a href="../ms-lsat/eb7ac899-e697-4883-93de-1e60c7720c02" data-linktype="relative-path">LsarLookupSids</a>
+[MS-LSAT] section 3.1.4.11 on the returned PolicyHandle.</p>
+<ul><li><p><span><span> 
+</span></span>PolicyHandle: the PolicyHandle returned from LsarOpenPolicy
+above.</p>
+</li><li><p><span><span> 
+</span></span>SidEnumBuffer: contains the SID from the ADM element <b>uToken.Sids[UserIndex]</b>.</p>
+<p>The return values from the
+LsarLookupSIDs are as follows:</p>
+<ul><li><p><span><span> 
+</span></span>ReferencedDomains list: the domain name is found in the <b>Name</b>
+field of the Domains structure of the list entry whose <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_5101391c-795d-446c-8054-7550eb75d923" data-linktype="relative-path">index</a> matches the
+DomainIndex of the Names structure of the entry in the TranslatedNames list
+that corresponds to the SID in question.</p>
+</li><li><p><span><span> 
+</span></span>TranslatedNames contains the UserName in the <b>Name</b> field of
+the Names structure of the entry in the list corresponding to the SID in
+question (from the SidEnumBuffer input list).</p>
+</li></ul></li></ul></li></ol><p>The Microsoft CA uses &#34;–&#34;
+instead of &#34;Published by&#34; for publish attempts made in the CA machine
+context, such as automatically scheduled CRL publishing attempts.</p>
+<p>If step 8 resulted in an error code
+or nonzero HRESULT, the caller identity information SHOULD be followed by the
+CRL publishing location to which the CRL could not successfully be published.
+The Microsoft CA appends the username information with a space, two hyphens, a
+space, and an integer. The integer indicates the index (in the list of CRL
+publishing locations that is written to the same data element) of the location
+to which publishing failed. If more than one location fails for one CRL table
+entry, then the index of each failed location is appended to this line,
+separated by spaces. This is followed by two line feed characters, followed by
+the path of each CRL publishing location to which the CRL could not
+successfully be published, separated by newline characters.</p>
+</li><li><p><span><span>  </span></span><b>CRL_Publish_Flags:</b>
+The CA MUST update this data element with a bitwise OR of its existing value
+and all values from the list below that apply, based on their descriptions in
+section 3.1.1.4.1:</p>
+<ul><li><p><span><span> 
+</span></span>CPF_BADURL_ERROR: Set this value if a <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_433a4fb7-ef84-46b0-ab65-905f5e3a80b1" data-linktype="relative-path">Uniform Resource Locator (URL)</a>
+that does not meet the format requirements specified in section 3.1.1.8 for
+Config_CA_CDP_Publish_To_Base and Config_CA_CDP_Publish_To_Delta was
+encountered during publishing of the CRL.</p>
+</li><li><p><span><span> 
+</span></span>CPF_FILE_ERROR: Set this value if a local file path, UNC path, or
+file:// <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_e18af8e8-01d7-4f91-8a1e-0fb21b191f95" data-linktype="relative-path">URI</a> that does
+not meet the format requirements specified in section 3.1.1.8 for
+Config_CA_CDP_Publish_To_Base and Config_CA_CDP_Publish_To_Delta for a file
+location, was encountered during publishing of the CRL, or if step 8 resulted
+in an error code or nonzero HRESULT as a result of the publishing attempt to a
+file location. </p>
+</li><li><p><span><span> 
+</span></span>CPF_HTTP_ERROR: Set this value if an HTTP URI (a URI with the
+prefix &#34;http:&#34;) was encountered during publishing of the CRL.</p>
+</li><li><p><span><span> 
+</span></span>CPF_FTP_ERROR: Set this value if an FTP URI (a URI with the prefix
+&#34;ftp:&#34;) was encountered during publishing of the CRL.</p>
+</li><li><p><span><span> 
+</span></span>CPF_LDAP_ERROR: Set this value if step 8 resulted in an error
+code or nonzero HRESULT as a result of the publishing attempt to an LDAP
+location.</p>
+</li><li><p><span><span> 
+</span></span>CPF_POSTPONED_BASE_LDAP_ERROR: Set this value if the server
+postponed publishing a delta CRL due to a failure in publishing a base CRL to
+an ldap:/// location (see rule 7 above), for example, when the corresponding
+base CRL could not be published to an LDAP location because of an error.</p>
+</li><li><p><span><span> 
+</span></span>CPF_POSTPONED_BASE_FILE_ERROR: Set this value if the server
+postponed publishing a delta CRL due to a failure in publishing a base CRL to a
+file:// location (see rule 7 above), for example, when the corresponding base
+CRL could not be published to a FILE location because of an error.</p>
+</li><li><p><span><span> 
+</span></span>CPF_SIGNATURE_ERROR: Set this value if an error occurred when
+verifying the signature of the generated CRL prior to attempting to publish the
+CRL.</p>
+</li><li><p><span><span> 
+</span></span>CPF_CASTORE_ERROR: Set this value if an error occurred when
+publishing the generated CRL to the default local registry location.</p>
+</li></ul></li></ul></li><li><p><span>  </span>After publishing attempts
+have been made for all CRL publishing locations for a given CRL, the CA MUST
+use the following rules to update the following CRL table data elements in the
+corresponding CRL table row:</p>
+<ul><li><p><span><span>  </span></span>CRL_Publish_Status_Code:</p>
+<ul><li><p><span><span> 
+</span></span>If an error code or nonzero HRESULT value was generated by the CA
+or returned from a lower layer system upon any of the previous attempts to
+publish the CRL (steps 8 and 9 above), the CA MUST set this value to the value
+generated or returned. If more than one error was generated or returned, the CA
+SHOULD set this value to the error code that resulted from the first
+unsuccessful publishing attempt. Error codes are specified in [MS-ERREF]. </p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the CA MUST set this value to 0.</p>
+</li></ul></li><li><p><span><span>  </span></span>CRL_Publish_Flags:</p>
+<ul><li><p><span><span> 
+</span></span>CPF_COMPLETE: The CA MUST set this value if the CRL published
+successfully to all locations (that is, the CRL_Publish_Status_Code was set to
+0).</p>
+</li></ul></li><li><p><span><span>  </span></span><b>CRL_Last_Published</b>
+(for a base CRL only): If this element is present, the CA MUST set its value to
+the current time.</p>
+</li><li><p><span><span>  </span></span><b>CRL_Publish_Attempts:</b>
+If this element is present, the CA MUST set its value to 1 to indicate the
+publish attempt for the newly created CRL.</p>
+</li></ul></li><li><p><span>  </span>After all publishing
+attempts have completed (for all base and delta CRLs for all CA keys to all
+locations), the CA MUST update the Config_CA_CRL_Next_Publish,
+OnNextRestart_Config_CA_CRL_Next_Publish, Config_CA_CRL_Delta_Next_Publish, and
+OnNextRestart_Config_CA_CRL_Delta_Next_Publish data elements. The CA MUST
+update the Config_CA_CRL_Next_Publish and
+OnNextRestart_Config_CA_CRL_Next_Publish configuration data elements with the
+value that was calculated for CRL_Next_Publish for the base CRL(s) (the current
+time plus Config_Base_CRL_Validity_Period), and the CA MUST update the
+Config_CA_CRL_Delta_Next_Publish and
+OnNextRestart_Config_CA_CRL_Delta_Next_Publish configuration data elements with
+the value that was calculated for CRL_Next_Publish for any delta CRL(s)created
+above (the current time plus Config_Delta_CRL_Validity_Period for a delta CRL).</p>
+</li><li><p><span>  </span>If steps 8 or 9 above
+resulted in an error code or nonzero HRESULT value from any attempt to publish
+any of the CRLs, set the value of the ADM elements <b>Config_CA_CRL_Attempt_Republish</b>
+and <b>OnNextRestart_Config_CA_CRL_Attempt_Republish</b> to &#34;1&#34; and
+set the timer documented in section <a href="35719e48-af5d-4b83-864e-1f93b3cd77a5" data-linktype="relative-path">3.1.2.2</a>. If none of the
+attempts to publish the CRLs failed, reset the ADM elements <b>Config_CA_CRL_Attempt_Republish</b>
+and <b>OnNextRestart_Config_CA_CRL_Attempt_Republish</b> to &#34;0&#34;.</p>
+</li><li><p><span>  </span>The CA MUST then set the
+value of Previous_Delta_CRL_Validity_Period to the current value of
+Config_Delta_CRL_Validity_Period.</p>
+</li></ol><p>Return value: The method returns the first error code
+returned from the first CRL write attempt that failed or that was aborted. If
+none of the CRL write attempts failed, the method returns 0.</p></div>

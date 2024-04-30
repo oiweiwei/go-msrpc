@@ -1,0 +1,30 @@
+<div class="content"><p> </p><p>The R_DnssrvComplexOperation2 method is used to invoke a set
+of server functions specified by the caller. These functions generally return
+more complex structures than simple 32-bit integer values, unlike the
+operations accessible through R_DnssrvOperation (section <span><a href="9500a7e8-165d-4b13-be86-0ddc43100eef" data-linktype="relative-path">3.1.4.1</a></span>).
+The DNS server SHOULD implement R_DnssrvComplexOperation2.</p><p>All parameters are as specified by the
+R_DnssrvComplexOperation method (section <span><a href="864a6971-f664-47b9-b012-826fd2b0a409" data-linktype="relative-path">3.1.4.3</a></span>) with the
+following exceptions:</p><dl>
+<dd>
+<div><pre> LONG R_DnssrvComplexOperation2(
+   [in]                                 handle_t               hBindingHandle,
+   [in]                                 DWORD                  dwClientVersion,
+   [in]                                 DWORD                  dwSettingFlags,
+   [in, unique, string]                 LPCWSTR                pwszServerName,
+   [in, unique, string]                 LPCSTR                 pszZone,
+   [in, unique, string]                 LPCSTR                 pszOperation,
+   [in]                                 DWORD                  dwTypeIn,
+   [in, switch_is(dwTypeIn)]            DNSSRV_RPC_UNION       pDataIn,
+   [out]                                PDWORD                 pdwTypeOut,
+   [out, switch_is(*pdwTypeOut)]        DNSSRV_RPC_UNION*      ppDataOut
+ );
+</pre></div>
+</dd></dl><p><b>dwClientVersion: </b>The client version in <b>DNS_RPC_CURRENT_CLIENT_VER</b>
+(section <span><a href="a237781b-b048-495d-844b-10ffb38df2a8" data-linktype="relative-path">2.2.1.2.1</a></span>) format. </p><p><b>dwSettingFlags: </b>Reserved for future use only.
+This field MUST be set to zero by clients and ignored by servers.</p><p><b>Return Values: </b>Return values and
+interpretations are the same as for R_DnssrvComplexOperation (section 3.1.4.3).</p><p>When processing this call, the server MUST perform the same
+actions as for the R_DnssrvComplexOperation method (section 3.1.4.3) except
+that for output structure types with multiple versions, the server MUST return
+the structure type selected by dwClientVersion except in the event the
+dwClientVersion is greater than the server version, in which case the server
+MUST return the highest version number known to itself. </p></div>

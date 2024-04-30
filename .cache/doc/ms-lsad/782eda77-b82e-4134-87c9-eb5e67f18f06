@@ -1,0 +1,18 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/782eda77-b82e-4134-87c9-eb5e67f18f06" data-linktype="external">msdn link</a></p><p>The LSAPR_CR_CIPHER_VALUE structure is a counted buffer of
+bytes containing a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_9720ddb8-c802-40b7-8dba-5e7520c3396d" data-linktype="relative-path">secret
+object</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_CR_CIPHER_VALUE {
+   [range(0,131088)] unsigned long Length;
+   [range(0,131088)] unsigned long MaximumLength;
+   [size_is(MaximumLength), length_is(Length)] 
+     unsigned char* Buffer;
+ } LSAPR_CR_CIPHER_VALUE,
+  *PLSAPR_CR_CIPHER_VALUE;
+</pre></div>
+</dd></dl><p><b>Length:</b>  This field contains the
+number of valid bytes in the <b>Buffer</b> field.<a id="Appendix_A_Target_27"></a><a aria-label="Product behavior note 27" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_27" data-linktype="relative-path">&lt;27&gt;</a></p><p><b>MaximumLength:</b>  This field contains
+the number of allocated bytes in the <b>Buffer</b> field.<a id="Appendix_A_Target_28"></a><a aria-label="Product behavior note 28" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_28" data-linktype="relative-path">&lt;28&gt;</a></p><p><b>Buffer:</b>  This field contains the
+actual secret data. If the value of the <b>MaximumLength</b> field is greater
+than 0, this field MUST contain a non-NULL value. This field is always
+encrypted using algorithms as specified in section <a href="cce8ae78-0138-4129-954e-c65e0c0bffed" data-linktype="relative-path">5.1.2</a>.</p></div>

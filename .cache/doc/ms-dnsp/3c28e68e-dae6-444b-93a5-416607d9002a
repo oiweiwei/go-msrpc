@@ -1,0 +1,291 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_UPDATE_STATS</b> structure has DNS server
+statistics related to <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_dbff570c-a709-479a-980a-5b74ac7ab2e7" data-linktype="relative-path">dynamic updates</a></span>
+processing. This structure MUST be formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Received</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Empty</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NoOps</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Completed</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Rejected</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>FormErr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NxDomain</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotImpl</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Refused</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>YxDomain</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>YxRrset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NxRrset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotAuth</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotZone</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RefusedNonSecure</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RefusedAccessDenied</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecureSuccess</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecureContinue</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecureFailure</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecureDsWriteFailure</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DsSuccess</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DsWriteFailure</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>unused_was_Collisions</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>unused_was_CollisionsRead</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>unused_was_CollisionsWrite</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>unused_was_CollisionsDsWrite</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Queued</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Retry</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Timeout</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>InQueue</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Forwards</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpForwards</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ForwardResponses</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ForwardTimeouts</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ForwardInQueue</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UpdateType
+  (156 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>Received (4 bytes): </b>The number of dynamic
+update requests received by the server.</p><p><b>Empty (4 bytes): </b>The number of empty dynamic
+update requests received by the server.</p><p><b>NoOps (4 bytes): </b>The number of no-op dynamic
+update requests (such as a dynamic update request with no update records)
+received by the server.</p><p><b>Completed (4 bytes): </b>The number of completed
+dynamic update requests received by the server.</p><p><b>Rejected (4 bytes): </b>The number of dynamic
+update requests rejected by the server.</p><p><b>FormErr (4 bytes): </b>The number of dynamic
+update requests rejected by the server, due to malformed packets.</p><p><b>NxDomain (4 bytes): </b>The number of dynamic
+update requests rejected by the server, due to name error.</p><p><b>NotImpl (4 bytes): </b>The number of dynamic
+update requests rejected by the server, due to unimplemented functionality.</p><p><b>Refused (4 bytes): </b>The number of dynamic
+update requests rejected by the server, due to malformed packets.</p><p><b>YxDomain (4 bytes): </b>The number of dynamic
+update requests rejected by the server, due to policy restrictions.</p><p><b>YxRrset (4 bytes): </b>The number of dynamic update
+requests rejected by the server, due to an unknown domain name.</p><p><b>NxRrset (4 bytes): </b>The number of dynamic
+update requests rejected by the server, due to an unknown <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_49c03845-ca86-48f5-9cbf-ab86c624aa29" data-linktype="relative-path">resource
+record</a></span> name.</p><p><b>NotAuth (4 bytes): </b>The number of dynamic
+update requests rejected by the server, due to the server not being <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_ed54858d-02e4-4de3-b65b-e0b81c4185c7" data-linktype="relative-path">authoritative</a></span>
+for the zone.</p><p><b>NotZone (4 bytes): </b>The number of dynamic
+update requests rejected by the server, due to the zone name not being
+recognized as one for which it is authoritative.</p><p><b>RefusedNonSecure (4 bytes): </b>The number of
+dynamic update requests rejected by the server, due to a non-secure update
+request received for a zone where secure updates are required.</p><p><b>RefusedAccessDenied (4 bytes): </b>The number of
+dynamic update requests rejected by the server, due to a failure to update
+records in the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_04fd0982-6bb6-44f1-817e-795715049c50" data-linktype="relative-path">directory server</a></span>.</p><p><b>SecureSuccess (4 bytes): </b>The number of <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_20cbcdff-fbb7-4c77-9ccc-4787afd75eb7" data-linktype="relative-path">secure
+dynamic update</a></span>, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90440" data-linktype="external">[RFC3645]</a></span>,
+requests received by the server that were successfully applied.</p><p><b>SecureContinue (4 bytes): </b>Not used. Senders
+MUST set this value to zero and the receiver MUST ignore it</p><p><b>SecureFailure (4 bytes): </b>The number of secure
+dynamic update requests received by the server that could not be successfully
+applied.</p><p><b>SecureDsWriteFailure (4 bytes): </b>The number of
+secure dynamic update requests received by the server that the server failed to
+update in the directory server.</p><p><b>DsSuccess (4 bytes): </b>The number of unsecure
+dynamic update requests received by the server, that were successfully updated
+in the directory server.</p><p><b>DsWriteFailure (4 bytes): </b>The number of
+unsecure dynamic update requests received by the server that the server failed
+to update in the directory server.</p><p><b>unused_was_Collisions (4 bytes): </b>MUST be set
+to zero when sent and MUST be ignored on receipt.</p><p><b>unused_was_CollisionsRead (4 bytes): </b>MUST be
+set to zero when sent and MUST be ignored on receipt.</p><p><b>unused_was_CollisionsWrite (4 bytes): </b>MUST be
+set to zero when sent and MUST be ignored on receipt.</p><p><b>unused_was_CollisionsDsWrite (4 bytes): </b>MUST
+be set to zero when sent and MUST be ignored on receipt.</p><p><b>Queued (4 bytes): </b>The number of updates
+packets received that needed to be sent to other remote servers.</p><p><b>Retry (4 bytes): </b>MUST be set to zero when sent
+and MUST be ignored on receipt.</p><p><b>Timeout (4 bytes): </b>The number of update
+packets received, that timed-out while waiting to update the remote server.</p><p><b>InQueue (4 bytes): </b>The number of update
+packets received which are waiting in the update queue for updates to complete
+on the remote server.</p><p><b>Forwards (4 bytes): </b>The number of update
+packets received that were forwarded to other servers.</p><p><b>TcpForwards (4 bytes): </b>The number of update
+packets received over TCP that were forwarded to other servers.</p><p><b>ForwardResponses (4 bytes): </b>The number of
+response packets received for the update requests that were forwarded to other
+servers.</p><p><b>ForwardTimeouts (4 bytes): </b>The number of
+update packets which timed out waiting for a response from other servers.</p><p><b>ForwardInQueue (4 bytes): </b>The number of update
+packets forwarded to other servers and which are waiting for a response.</p><p><b>UpdateType (156 bytes): </b>An array of counters
+that keep track of the number of update requests received for different DNS
+record types. This array has a total of 39 entries from DNS_TYPE_ZERO to
+DNS_TYPE_DNAME.</p></div>

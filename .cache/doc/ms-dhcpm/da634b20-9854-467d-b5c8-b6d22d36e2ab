@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The <b>DHCP_CLIENT_INFO_ARRAY_V6</b> structure defines an
+array of <span><a href="d07ea139-f254-4076-a2cc-71cefc676683" data-linktype="relative-path">DHCP_CLIENT_INFO_V6 (section 2.2.1.2.64)</a></span>
+structures. The first member contains the number of DHCPv6 clients present in
+the specific prefix, and the second member contains a pointer to the array of
+length <b>NumElements</b> containing the DHCPv6 client&#39;s information. This
+structure is used by the methods that retrieve more than one DHCPv6 client&#39;s
+information.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_CLIENT_INFO_ARRAY_V6 {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_CLIENT_INFO_V6* Clients;
+ } DHCP_CLIENT_INFO_ARRAY_V6,
+  *LPDHCP_CLIENT_INFO_ARRAY_V6;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+containing the number of DHCPv6 clients in the subsequent field the <b>Clients</b>
+member. </p><p><b>Clients:</b>  This is a pointer of type
+DHCP_CLIENT_INFO_V6 (section 2.2.1.2.64) structure that points to the
+array of length <b>NumElements</b> containing the DHCPv6 client&#39;s information.</p></div>

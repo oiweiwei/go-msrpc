@@ -1,0 +1,29 @@
+<div class="content"><p> </p><p>The REVERSE_MEMBERSHIP_OPERATION_TYPE enumeration defines
+the type of reverse membership evaluation.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   RevMembGetGroupsForUser = 1,
+   RevMembGetAliasMembership,
+   RevMembGetAccountGroups,
+   RevMembGetResourceGroups,
+   RevMembGetUniversalGroups,
+   GroupMembersTransitive,
+   RevMembGlobalGroupsNonTransitive
+ } REVERSE_MEMBERSHIP_OPERATION_TYPE;
+</pre></div>
+</dd></dl><p><b>RevMembGetGroupsForUser:  </b>Nontransitive
+membership in <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_51c51c14-7f9d-4c0b-a69c-d3e059bfffac" data-linktype="relative-path">groups</a></span> that are
+confined to a given <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>, excluding
+built-in groups and domain-local groups. See <span><a href="../ms-adsc/9abb5e97-123d-4da9-9557-b353ab79b830" data-linktype="relative-path">[MS-ADSC]</a></span>
+section <span><a href="../ms-adsc/662b0c28-589b-431e-9524-9ae3faf365ed" data-linktype="relative-path">2.14</a></span>.</p><p><b>RevMembGetAliasMembership:  </b>Nontransitive
+membership in domain-local groups that are confined to a given domain.</p><p><b>RevMembGetAccountGroups:  </b>Transitive
+membership in all account groups in a given domain, excluding built-in groups.</p><p><b>RevMembGetResourceGroups:  </b>Transitive
+membership in all domain-local groups in a given domain, excluding built-in
+groups.</p><p><b>RevMembGetUniversalGroups:  </b>Transitive
+membership in all <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_f46053d6-0708-4094-ac63-57c1bcb73d32" data-linktype="relative-path">universal groups</a></span>,
+excluding built-in groups.</p><p><b>GroupMembersTransitive:  </b>Transitive closure of
+members of a group based on the information present in the server&#39;s <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_325d116f-cdbe-4dbd-b7e6-769ba75bf210" data-linktype="relative-path">NC
+replicas</a></span>, including the primary group.</p><p><b>RevMembGlobalGroupsNonTransitive:  </b>Non-transitive
+membership in <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_2002f42a-84dd-4401-ac8b-8088af87eae6" data-linktype="relative-path">global groups</a></span>, excluding
+built-in groups.</p></div>

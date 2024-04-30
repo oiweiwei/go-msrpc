@@ -1,0 +1,257 @@
+<div class="content"><p> </p><p>The <b>_RPC_FAX_OUTBOUND_ROUTING_RULEW</b> data type is used
+as an array of structures passed as an output byte-array argument for <b>FAX_EnumOutboundRules</b>
+(section <span><a href="90425d36-335f-4019-b424-c81f06fe70d6" data-linktype="relative-path">3.1.4.1.27</a></span>). The
+information contained in each <b>_RPC_FAX_OUTBOUND_ROUTING_RULEW</b> structure
+describes one routing rule in the <b>Configuration of the Routing Rules</b>
+(section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>).</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (24 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (24 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfStruct</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAreaCode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCountryCode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrCountryNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  of Destination</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bUseGroup</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>dwSizeOfStruct (4 bytes):
+</b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that holds the size of this structure. MUST be set to 24 bytes.</p>
+</dd>
+<dd>
+<p><b>dwAreaCode (4 bytes): </b>A
+<b>DWORD</b> that holds the area code of the rule. A value of zero indicates
+the special any-area value ROUTING_RULE_AREA_CODE_ANY. The <b>dwAreaCode</b>
+and <b>dwCountryCode</b> fields MUST form a unique key. This value is
+unrestricted.</p>
+</dd>
+<dd>
+<p><b>dwCountryCode (4 bytes): </b>A
+<b>DWORD</b> that holds the country/region code of the rule. A value of zero
+indicates the special any-country, any-region value
+ROUTING_RULE_COUNTRY_CODE_ANY. The <b>dwAreaCode</b> and <b>dwCountryCode</b>
+numeric values MUST form a unique key. Clients can obtain valid values with the
+<b>FAX_GetCountryList</b> (section <span><a href="8619db79-4289-4563-b7fe-ad423b072622" data-linktype="relative-path">3.1.4.1.37</a></span>) method.</p>
+</dd>
+<dd>
+<p><b>lpwstrCountryNameOffset
+(4 bytes): </b>Offset to the <b>lpwstrCountryname</b> field in the <b>Variable_Data</b>
+block of this structure, containing the country/region name indicated by the <b>dwCountryCode</b>
+field if known; otherwise, it is zero. If <b>dwCountryCode</b> is zero, this
+offset MUST be zero.</p>
+</dd>
+<dd>
+<p><b>Fixed_Portion of
+Destination (4 bytes): </b>The <b>Fixed_Portion</b> of a union that specifies
+the destination of the rule. When <b>bUseGroup</b> is FALSE, this union MUST be
+a <b>_FAX_RULE_DESTINATION_DEVICE_ID</b> (section <span><a href="1446f437-61b8-4c5e-824e-a81f04381ef2" data-linktype="relative-path">2.2.42.1</a></span>) structure
+containing a device identifier; otherwise, it MUST be a <b>_FAX_RULE_DESTINATION_GROUP_NAME</b>
+(section <span><a href="b87ed8fb-25e8-4d32-8090-d9b46b055a41" data-linktype="relative-path">2.2.42.2</a></span>) structure
+containing the name of an outbound <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_efaa1290-6d4b-4f44-9e84-35a867069d45" data-linktype="relative-path">routing</a></span> group of
+devices.</p>
+</dd>
+<dd>
+<p><b>bUseGroup (4 bytes): </b>A
+Boolean value that indicates whether the group is used in the destination. If
+TRUE, the group MUST be used as the rule&#39;s destination. If FALSE, the device
+MUST be used as the rule&#39;s destination.</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrCountryName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data_of_Destination
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>lpwstrCountryName
+(variable): </b>A null-terminated string that specifies the country/region name
+indicated by the <b>dwCountryCode</b> field.</p>
+</dd>
+<dd>
+<p><b>Variable_Data_of_Destination
+(variable): </b>The <b>Variable_Data</b>, if any, of the <b>Destination</b>
+union that specifies the destination of the rule.</p>
+</dd></dl></div>

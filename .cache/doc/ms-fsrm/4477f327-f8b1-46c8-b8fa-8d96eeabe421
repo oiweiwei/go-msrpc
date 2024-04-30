@@ -1,0 +1,18 @@
+<div class="content"><p>The FsrmReportGenerationContext enumeration defines the set
+of contexts under which a report is run.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmReportGenerationContext
+ {
+   FsrmReportGenerationContext_Undefined = 1,
+   FsrmReportGenerationContext_ScheduledReport = 2,
+   FsrmReportGenerationContext_InteractiveReport = 3,
+   FsrmReportGenerationContext_IncidentReport = 4
+ } FsrmReportGenerationContext;
+</pre></div>
+</dd></dl><p><b>FsrmReportGenerationContext_Undefined:  </b>This
+enumeration value is not used by FSRM and MUST NOT be referenced. If the server
+receives this enumeration value, it MUST consider the value invalid and not
+apply any changes.</p><p><b>FsrmReportGenerationContext_ScheduledReport:  </b>The
+report will run as a scheduled report.</p><p><b>FsrmReportGenerationContext_InteractiveReport:  </b>The
+report will run on demand.</p><p><b>FsrmReportGenerationContext_IncidentReport:  </b>The
+report will run in response to a quota or file screen event.</p></div>

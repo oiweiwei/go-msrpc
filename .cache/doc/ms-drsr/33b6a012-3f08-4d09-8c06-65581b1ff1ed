@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The DRS_MSG_ADDENTRYREPLY union defines the response
+messages received from the <span><a href="06764fc5-4df6-4104-b6af-a92bdaa81f6e" data-linktype="relative-path">IDL_DRSAddEntry</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_ADDENTRYREPLY_V1 V1;
+   [case(2)] 
+     DRS_MSG_ADDENTRYREPLY_V2 V2;
+   [case(3)] 
+     DRS_MSG_ADDENTRYREPLY_V3 V3;
+ } DRS_MSG_ADDENTRYREPLY;
+</pre></div>
+</dd></dl><p><b>V1:</b>  Version 1 response (obsolete).</p><p><b>V2:</b>  Version 2 response.</p><p><b>V3:</b>  Version 3 response.</p></div>

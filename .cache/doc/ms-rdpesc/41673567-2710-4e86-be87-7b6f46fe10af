@@ -1,0 +1,142 @@
+<div class="content"><p>A Protocol Identifier.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ProtocolIdentifier</p>
+  </td>
+ </tr>
+</tbody></table><p><b>ProtocolIdentifier (4 bytes): </b>This field MUST
+have a value from Table A which is logically OR&#39;ed with a value from Table B.</p><dl>
+<dd>
+<p><b>Table A</b></p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span>SCARD_PROTOCOL_UNDEFINED</span></p>
+  <p><span>0x00000000</span></p>
+  </td>
+  <td>
+  <p><span>No
+  transmission protocol is active.</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>SCARD_PROTOCOL_T0</span></p>
+  <p><span>0x00000001</span></p>
+  </td>
+  <td>
+  <p><span>Transmission
+  protocol 0 (T=0) is active. It is the asynchronous half-duplex character
+  transmission protocol.</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>SCARD_PROTOCOL_T1</span></p>
+  <p><span>0x00000002</span></p>
+  </td>
+  <td>
+  <p><span>Transmission
+  protocol 1 (T=1) is active. It is the asynchronous half-duplex block
+  transmission protocol.</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>SCARD_PROTOCOL_Tx</span></p>
+  <p><span>0x00000003</span></p>
+  </td>
+  <td>
+  <p><span>Bitwise OR
+  combination of both of the two International Standards Organization (IS0)
+  transmission protocols SCARD_PROTOCOL_T0 and SCARD_PROTOCOL_T1. This value
+  can be used as a bitmask.</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>SCARD_PROTOCOL_RAW</span></p>
+  <p><span>0x00010000</span></p>
+  </td>
+  <td>
+  <p><span>Transmission
+  protocol raw is active. The data from the smart card is raw and does not
+  conform to any transmission protocol.</span></p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p><b>Table B</b></p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SCARD_PROTOCOL_DEFAULT</p>
+  <p>0x80000000</p>
+  </td>
+  <td>
+  <p>A bitwise OR with this value forces the use of the
+  default transmission parameters and card clock frequency.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_PROTOCOL_OPTIMAL</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Optimal transmission parameters and card clock
+  frequency MUST be used. This flag is considered the default. No actual value
+  is defined for this flag; it is there for compatibility with <a href="https://go.microsoft.com/fwlink/?LinkId=90245" data-linktype="external">[PCSC5]</a> section
+  3.1.3.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

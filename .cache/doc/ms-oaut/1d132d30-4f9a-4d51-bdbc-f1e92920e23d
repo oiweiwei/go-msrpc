@@ -1,0 +1,42 @@
+<div class="content"><p> </p><p>The GetTypeInfoType method retrieves the <span><a href="78ccbd1c-d8ff-4301-9afc-df562372fb33" data-linktype="relative-path">TYPEKIND</a></span>
+value associated with an <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_fb6a1829-c102-482c-902f-51c197b22860" data-linktype="relative-path">automation type description</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT GetTypeInfoType(
+   [in] UINT index,
+   [out] TYPEKIND* pTKind
+ );
+</pre></div>
+</dd></dl><p><b>index: </b>MUST equal the ordinal position of the
+specified automation type description within the type information table.</p><p><b>pTKind: </b>MUST be set to the TYPEKIND value
+associated with the type description, as specified in 2.2.17.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions: </p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire <b>HRESULT</b>
+DWORD does not match a value in the following table, a fatal failure occurred.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire <b>HRESULT</b>
+DWORD matches a value in the following table, a failure occurred. </p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8002802B</p>
+  <p>TYPE_E_ELEMENTNOTFOUND</p>
+  </td>
+  <td>
+  <p>The value of <i>index</i> did not specify the ordinal
+  position of an element in the type information table. See [MS-ERREF].</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p> </p></div>

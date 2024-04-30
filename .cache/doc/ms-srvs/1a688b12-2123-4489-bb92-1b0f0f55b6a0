@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The SHARE_INFO_1004 structure contains a comment that is
+associated with the shared resource. For a description of the fields in this
+structure, see the description for the <span><a href="8605fd54-6ede-4316-b30d-ecfafa133c1d" data-linktype="relative-path">SHARE_INFO_502_I (section 2.2.4.26)</a></span>
+structure (shi1004_xxx denotes the same information as shi502_xxx).</p><dl>
+<dd>
+<div><pre> typedef struct _SHARE_INFO_1004 {
+   [string] wchar_t* shi1004_remark;
+ } SHARE_INFO_1004,
+  *PSHARE_INFO_1004,
+  *LPSHARE_INFO_1004;
+</pre></div>
+</dd></dl></div>

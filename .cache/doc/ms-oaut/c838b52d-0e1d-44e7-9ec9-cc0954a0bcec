@@ -1,0 +1,162 @@
+<div class="content"><p> </p><p>The DBCS implementation of the hash algorithm uses the
+default lookup table for all locales.</p><p>The ComputeHashDBCS method uses the named constants defined
+in the <span><a href="382297c6-fcb1-4711-9249-79d31e161545" data-linktype="relative-path">LocaleNames (section 2.2.51.4)</a></span>,
+<span><a href="0dd943a0-c4c0-4140-abb9-e6e6e45f307b" data-linktype="relative-path">PrimaryLookupTables (section 2.2.51.5)</a></span>,
+and <span><a href="273681de-bad0-4d3d-9f44-1da41d0e4f70" data-linktype="relative-path">DBCS
+Substitution Tables (section 2.2.51.6)</a></span> sections.</p><p>Set the substitution table and the character range boundaries
+based on the locale ID and define the character ranges that contain two-byte
+characters. The Korean and Chinese character tables have two-byte characters
+only within a single range of character values, so the second range is empty.</p><dl>
+<dd>
+<div><pre> SET LookupTable to US_English_1252
+ SET PrimaryLocale to the Logical AND of LocaleID and 0x000003FF
+  
+ COMMENT  This method MUST only be called when PrimaryLocale 
+         is LocaleJapanese, LocaleKorean, or LocaleChinese.
+  
+ CASE PrimaryLocale OF
+  
+     LocaleJapanese:      SET SubstitutionTable to WJapanese
+                                  SET EncodingMask to 0x00400000
+                                  SET LowerRangeStart to 0x80
+                                SET LowerRangeEnd to 0xA0
+                                SET UpperRangeStart to 0xE0
+                                SET UpperRangeEnd to 0xFF
+  
+     LocaleKorean:       SET SubstitutionTable to WKorean
+                                  SET EncodingMask to 0x00500000
+                                SET LowerRangeStart to 0x81
+                                SET LowerRangeEnd to 0xFE
+                                SET UpperRangeStart to 0xFE
+                                SET UpperRangeEnd to 0xFE
+  
+     LocaleChinese:      SET UpperRangeStart to 0xFE 
+                                SET UpperRangeEnd to 0xFE
+  
+                  SET SecondaryLocale to the lower 16 bits of LocaleID
+                  COMPUTE SecondaryLocale AS SecondaryLocale divided by 1024
+  
+                  IF SecondaryLocale is SecondaryLocaleChineseTraditional
+          OR SecondaryLocale is SecondaryLocaleChineseHongKong THEN
+  
+                  SET SubstitutionTable to WChineseTraditional
+             SET EncodingMask to 0x00700000
+                  SET LowerRangeStart to 0x81
+                  SET LowerRangeEnd to 0xFE
+           ELSE
+                  SET SubstitutionTable to WChineseSimplified
+             SET EncodingMask to 0x00600000
+                  SET LowerRangeStart to 0xA1
+                  SET LowerRangeEnd to 0xFE
+         ENDIF
+     
+ ENDCASE
+  
+ COMMENT  Initialize hash accumulator with a predefined value.
+ COMMENT  Initialize byte index and loop flag.
+  
+ SET HashAccumulator to 0x0DEADBEE
+ SET ByteIndex to refer to the first byte in Name
+ SET ByteInName to the value of the byte indexed by ByteIndex
+ SET Break to False
+  
+ COMMENT  Step through the characters in the string, multiplying 
+            the accumulator by 37 at each step and adding a value 
+            specified by the value of the character.
+  
+ REPEAT
+     
+                  COMMENT  Store the current byte or exit the loop.
+  
+     IF the value of ByteInName is zero THEN
+                         SET Break to True
+                  ELSE
+                  SET TempChar to the value of ByteInName
+           ENDIF
+  
+     COMMENT  Increment the byte index.  If the previous byte 
+               was the first byte of a DBCS two-byte character, 
+               compute the DBCS character value and increment
+              the byte index again.
+  
+     IF Break is False THEN
+                         INCREMENT ByteIndex to refer to the next byte in Name
+         SET ByteInName to 
+              the value of the byte indexed by ByteIndex
+  
+         IF (TempChar &gt;= LowerRangeStart AND 
+                 TempChar &lt;= LowerRangeEnd) 
+                                       OR (TempChar &gt;= UpperRangeStart AND 
+                      TempChar &lt;= UpperRangeEnd) THEN
+  
+             COMMENT  If the second byte of the DBCS character
+                          is zero, ignore the character and 
+                          exit the loop.
+  
+             IF the value of ByteInName is zero THEN
+                                             SET Break to True                               
+             ELSE
+                                             COMPUTE TempChar as TempChar 
+                                multiplied by 256
+                                             COMPUTE TempChar as the value of ByteInName
+                               added to TempChar
+                                             INCREMENT ByteIndex to refer 
+                              to the next byte in Name
+                 SET ByteInName to the value of the byte 
+                     indexed by ByteIndex
+                                       ENDIF
+  
+                         ENDIF
+                  ENDIF
+  
+           IF Break is False THEN
+  
+         COMMENT  If the character has an upper byte, replace 
+             its value with the appropriate value from a 
+             Locale-specified substitution table.
+         COMMENT  If the upper byte is nonzero after substitution,
+             update the hash accumulator using its value.
+  
+         IF TempChar &gt; 255
+  
+                                       CALL MapDBChar 
+                                             WITH TempChar, SubstitutionTable 
+                                              RETURNING TempChar
+  
+             SET HighByte to the upper byte of TempChar
+                                       IF HighByte is not 0
+                                             COMPUTE HashAccumulator as HashAccumulator 
+                        multiplied by 37, allowing unsigned 32 bit 
+                         overflows
+                                             COMPUTE HashAcculumator as LookupTable 
+                         (HighByte) added to HashAccumulator, 
+                         allowing unsigned 32 bit overflows
+                                       ENDIF
+                         ENDIF
+  
+         COMMENT  Update the hash accumulator using the value of 
+                 a one-byte character or the lower byte of a 
+                 two-byte character.
+  
+                         SET LowByte to the lower byte of TempChar
+         COMPUTE HashAccumulator as HashAccumulator 
+                multiplied by 37, allowing unsigned 
+                32 bit overflows
+                         COMPUTE HashAcculumator as LookupTable 
+               (LowByte) added to HashAccumulator, allowing 
+               unsigned 32 bit overflows
+                  ENDIF
+  
+ UNTIL Break is True
+  
+ COMPUTE HashAccumulator as the remainder when HashAccumulator is
+     divided by 0x0001003F
+ COMPUTE HashAccumulator as the bitwise AND of HashAccumulator and
+     0x0000FFFF
+ COMPUTE HashAccumulator as the bitwise OR of HashAccumulator and
+     EncodingMask
+  
+ RETURN HashAccumulator as a 32-bit unsigned integer
+  
+</pre></div>
+</dd></dl></div>

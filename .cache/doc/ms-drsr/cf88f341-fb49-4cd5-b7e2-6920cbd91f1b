@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The UPTODATE_CURSOR_V1 structure is a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete
+type</a></span> for the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span> state
+relative to a given <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   UUID uuidDsa;
+   USN usnHighPropUpdate;
+ } UPTODATE_CURSOR_V1;
+</pre></div>
+</dd></dl><p><b>uuidDsa:</b>  The invocationId of the DC
+performing the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b242435b-73cc-4c4e-95f0-b2a2ff680493" data-linktype="relative-path">update</a></span>.</p><p><b>usnHighPropUpdate:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_01936446-8739-4b98-b83f-fb5e2a53ce4c" data-linktype="relative-path">USN</a></span>
+of the update on the updating DC.</p><p>A cursor c with c.uuidDsa = x and c.usnHighPropUpdate = y
+indicates a replication state that includes all changes originated by DC x at
+USN less than or equal to y.</p></div>

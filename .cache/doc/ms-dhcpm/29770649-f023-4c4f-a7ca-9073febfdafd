@@ -1,0 +1,69 @@
+<div class="content"><p> </p><p>The <b>R_DhcpGetSuperScopeInfoV4</b> method retrieves all
+the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b4838551-37f3-47de-a36c-7df328750d6d" data-linktype="relative-path">superscope</a></span>
+information from the DHCPv4 server. The caller of this function can free the
+memory pointed to by the <i>SuperScopeTable</i> parameter and its member the <b>pEntries</b>
+array by calling the function <b>midl_user_free</b> (section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpGetSuperScopeInfoV4(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [out] LPDHCP_SUPER_SCOPE_TABLE* SuperScopeTable
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SuperScopeTable: </b>It is a pointer to type <span><a href="c4fd87a7-12e3-4a7a-9a28-bdc40b0affca" data-linktype="relative-path">LPDHCP_SUPER_SCOPE_TABLE</a></span>
+that points to a location that contains the information for all the superscopes.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 37.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate the <i>SuperScopeTable</i> parameter and return
+ERROR_INVALID_PARAMETER if the parameter is NULL.</p>
+</li><li><p><span><span> 
+</span></span>Validate if this method is authorized for read access per section
+<span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not, return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Validate if the machine has enough memory to allocate for
+returning the valid information, and return ERROR_NOT_ENOUGH_MEMORY if there is
+insufficient memory in the system.</p>
+</li><li><p><span><span> 
+</span></span>If there are no entries in the server ADM element <b>DHCPv4ScopesList</b>,
+return ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the <b>DHCPv4ScopesList</b> ADM element, and find
+whether the subnet has a superscope by using the <b>DHCPv4Scope.SuperScopeId</b>
+ADM element. If the <b>DHCPv4Scope.SuperScopeId</b> ADM element is nonzero,
+retrieve the corresponding <b>DHCPv4SuperScope</b> ADM element entry from the <b>DHCPv4SuperScopesList</b>
+ADM element.</p>
+</li><li><p><span><span> 
+</span></span>For every subnet under the superscope, calculate the <b>NextInSuperScope</b>
+member as the <b>SubnetAddress</b> ADM element member of the <b>DHCPv4Scope</b>
+ADM element entry whose <b>SuperScopeId</b> ADM element matches the current
+subnet&#39;s superscope ID.</p>
+</li><li><p><span><span> 
+</span></span>Return the total number of subnets and the retrieved information
+in the <i>SuperScopeTable</i> out parameter.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

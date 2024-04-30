@@ -1,0 +1,627 @@
+<div class="content"><p>The following Smart Card Facility Codes for Windows-specific
+return codes MAY be returned by the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_6b91e507-0e17-41de-897c-356606d07088" data-linktype="relative-path">protocol server</a> to the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_a0d58e1e-3fb3-49a0-84b8-9b9eb7e86c65" data-linktype="relative-path">protocol client</a> and are of
+the data type NTSTATUS, with the <b>sev</b> field set to
+STATUS_SEVERITY_WARNING (0x2) and the reserved bit (<b>N</b>) set to 0.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ReturnCode</p>
+  </td>
+ </tr>
+</tbody></table><p><b>ReturnCode (4 bytes): </b>One of the following
+return codes:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SCARD_S_SUCCESS</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No error has occurred.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_F_INTERNAL_ERROR</p>
+  <p>0x80100001</p>
+  </td>
+  <td>
+  <p>An internal consistency check failed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_CANCELLED</p>
+  <p>0x80100002</p>
+  </td>
+  <td>
+  <p>The action was canceled by a Cancel request.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_INVALID_HANDLE</p>
+  <p>0x80100003</p>
+  </td>
+  <td>
+  <p>The supplied handle was invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_INVALID_PARAMETER</p>
+  <p>0x80100004</p>
+  </td>
+  <td>
+  <p>One or more of the supplied parameters could not be
+  properly interpreted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_INVALID_TARGET</p>
+  <p>0x80100005</p>
+  </td>
+  <td>
+  <p>Registry startup information is missing or invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_NO_MEMORY</p>
+  <p>0x80100006</p>
+  </td>
+  <td>
+  <p>Not enough memory available to complete this command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_F_WAITED_TOO_LONG</p>
+  <p>0x80100007</p>
+  </td>
+  <td>
+  <p>An internal consistency timer has expired.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_INSUFFICIENT_BUFFER</p>
+  <p>0x80100008</p>
+  </td>
+  <td>
+  <p>The data buffer to receive returned data is too small
+  for the returned data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_UNKNOWN_READER</p>
+  <p>0x80100009</p>
+  </td>
+  <td>
+  <p>The specified reader name is not recognized.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_TIMEOUT</p>
+  <p>0x8010000A</p>
+  </td>
+  <td>
+  <p>The user-specified time-out value has expired.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_SHARING_VIOLATION</p>
+  <p>0x8010000B</p>
+  </td>
+  <td>
+  <p>The smart card cannot be accessed because of other
+  connections outstanding.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_NO_SMARTCARD</p>
+  <p>0x8010000C</p>
+  </td>
+  <td>
+  <p>The operation requires a smart card, but no smart card
+  is currently in the device.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_UNKNOWN_CARD</p>
+  <p>0x8010000D</p>
+  </td>
+  <td>
+  <p>The specified smart card name is not recognized.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_CANT_DISPOSE</p>
+  <p>0x8010000E</p>
+  </td>
+  <td>
+  <p>The system could not dispose of the media in the
+  requested manner.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_PROTO_MISMATCH</p>
+  <p>0x8010000F</p>
+  </td>
+  <td>
+  <p>The requested protocols are incompatible with the
+  protocol currently in use with the smart card.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_NOT_READY</p>
+  <p>0x80100010</p>
+  </td>
+  <td>
+  <p>The reader or smart card is not ready to accept
+  commands.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_INVALID_VALUE</p>
+  <p>0x80100011</p>
+  </td>
+  <td>
+  <p>One or more of the supplied parameters values could
+  not be properly interpreted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_SYSTEM_CANCELLED</p>
+  <p>0x80100012</p>
+  </td>
+  <td>
+  <p>The action was canceled by the system, presumably to
+  log off or shut down.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_F_COMM_ERROR</p>
+  <p>0x80100013</p>
+  </td>
+  <td>
+  <p>An internal communications error has been detected.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_F_UNKNOWN_ERROR</p>
+  <p>0x80100014</p>
+  </td>
+  <td>
+  <p>An internal error has been detected, but the source is
+  unknown.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_INVALID_ATR</p>
+  <p>0x80100015</p>
+  </td>
+  <td>
+  <p>An ATR obtained from the registry is not a valid ATR
+  string.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_NOT_TRANSACTED</p>
+  <p>0x80100016</p>
+  </td>
+  <td>
+  <p>An attempt was made to end a non-existent transaction.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_READER_UNAVAILABLE</p>
+  <p>0x80100017</p>
+  </td>
+  <td>
+  <p>The specified reader is not currently available for
+  use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_P_SHUTDOWN</p>
+  <p>0x80100018</p>
+  </td>
+  <td>
+  <p>The operation has been stopped to allow the server
+  application to exit.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_PCI_TOO_SMALL</p>
+  <p>0x80100019</p>
+  </td>
+  <td>
+  <p>The PCI Receive buffer was too small.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_ICC_INSTALLATION</p>
+  <p>0x80100020</p>
+  </td>
+  <td>
+  <p>No primary provider can be found for the smart card.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_ICC_CREATEORDER</p>
+  <p>0x80100021</p>
+  </td>
+  <td>
+  <p>The requested order of object creation is not
+  supported.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_UNSUPPORTED_FEATURE</p>
+  <p>0x80100022</p>
+  </td>
+  <td>
+  <p>This smart card does not support the requested
+  feature.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_DIR_NOT_FOUND</p>
+  <p>0x80100023</p>
+  </td>
+  <td>
+  <p>The specified directory does not exist in the smart
+  card.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_FILE_NOT_FOUND</p>
+  <p>0x80100024</p>
+  </td>
+  <td>
+  <p>The specified file does not exist in the smart card.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_NO_DIR</p>
+  <p>0x80100025</p>
+  </td>
+  <td>
+  <p>The supplied path does not represent a smart card
+  directory.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_READER_UNSUPPORTED</p>
+  <p>0x8010001A</p>
+  </td>
+  <td>
+  <p>The reader device driver does not meet minimal
+  requirements for support.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_DUPLICATE_READER</p>
+  <p>0x8010001B</p>
+  </td>
+  <td>
+  <p>The reader device driver did not produce a unique
+  reader name.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_CARD_UNSUPPORTED</p>
+  <p>0x8010001C</p>
+  </td>
+  <td>
+  <p>The smart card does not meet minimal requirements for
+  support.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_NO_SERVICE</p>
+  <p>0x8010001D</p>
+  </td>
+  <td>
+  <p>Smart Cards for Windows is not running.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_SERVICE_STOPPED</p>
+  <p>0x8010001E</p>
+  </td>
+  <td>
+  <p>Smart Cards for Windows has shut down.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_UNEXPECTED</p>
+  <p>0x8010001F</p>
+  </td>
+  <td>
+  <p>An unexpected card error has occurred.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_NO_FILE</p>
+  <p>0x80100026</p>
+  </td>
+  <td>
+  <p>The supplied path does not represent a smart card
+  file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_NO_ACCESS</p>
+  <p>0x80100027</p>
+  </td>
+  <td>
+  <p>Access is denied to this file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_WRITE_TOO_MANY</p>
+  <p>0x80100028</p>
+  </td>
+  <td>
+  <p>The smart card does not have enough memory to store
+  the information.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_BAD_SEEK</p>
+  <p>0x80100029</p>
+  </td>
+  <td>
+  <p>There was an error trying to set the smart card file
+  object pointer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_INVALID_CHV</p>
+  <p>0x8010002A</p>
+  </td>
+  <td>
+  <p>The supplied PIN is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_UNKNOWN_RES_MSG</p>
+  <p>0x8010002B</p>
+  </td>
+  <td>
+  <p>An unrecognized error code was returned from a layered
+  component.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_NO_SUCH_CERTIFICATE</p>
+  <p>0x8010002C</p>
+  </td>
+  <td>
+  <p>The requested certificate does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_CERTIFICATE_UNAVAILABLE</p>
+  <p>0x8010002D</p>
+  </td>
+  <td>
+  <p>The requested certificate could not be obtained.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_NO_READERS_AVAILABLE</p>
+  <p>0x8010002E</p>
+  </td>
+  <td>
+  <p>Cannot find a smart card reader.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_COMM_DATA_LOST</p>
+  <p>0x8010002F</p>
+  </td>
+  <td>
+  <p>A communications error with the smart card has been
+  detected. Retry the operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_NO_KEY_CONTAINER</p>
+  <p>0x80100030</p>
+  </td>
+  <td>
+  <p>The requested key container does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_SERVER_TOO_BUSY</p>
+  <p>0x80100031</p>
+  </td>
+  <td>
+  <p>Smart Cards for Windows is too busy to complete this
+  operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_PIN_CACHE_EXPIRED</p>
+  <p>0x80100032</p>
+  </td>
+  <td>
+  <p>The smart card PIN cache has expired.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_NO_PIN_CACHE</p>
+  <p>0x80100033</p>
+  </td>
+  <td>
+  <p>The smart card PIN cannot be cached.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_E_READ_ONLY_CARD</p>
+  <p>0x80100034</p>
+  </td>
+  <td>
+  <p>The smart card is read-only and cannot be written to.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_W_UNSUPPORTED_CARD</p>
+  <p>0x80100065</p>
+  </td>
+  <td>
+  <p>The reader cannot communicate with the smart card due
+  to ATR configuration conflicts.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_W_UNRESPONSIVE_CARD</p>
+  <p>0x80100066</p>
+  </td>
+  <td>
+  <p>The smart card is not responding to a reset.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_W_UNPOWERED_CARD</p>
+  <p>0x80100067</p>
+  </td>
+  <td>
+  <p>Power has been removed from the smart card, so that
+  further communication is impossible.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_W_RESET_CARD</p>
+  <p>0x80100068</p>
+  </td>
+  <td>
+  <p>The smart card has been reset, so any shared state
+  information is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_W_REMOVED_CARD</p>
+  <p>0x80100069</p>
+  </td>
+  <td>
+  <p>The smart card has been removed, so that further
+  communication is impossible.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_W_SECURITY_VIOLATION</p>
+  <p>0x8010006A</p>
+  </td>
+  <td>
+  <p>Access was denied because of a security violation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_W_WRONG_CHV</p>
+  <p>0x8010006B</p>
+  </td>
+  <td>
+  <p>The card cannot be accessed because the wrong PIN was
+  presented.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_W_CHV_BLOCKED</p>
+  <p>0x8010006C</p>
+  </td>
+  <td>
+  <p>The card cannot be accessed because the maximum number
+  of PIN entry attempts has been reached.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_W_EOF</p>
+  <p>0x8010006D</p>
+  </td>
+  <td>
+  <p>The end of the smart card file has been reached.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_W_CANCELLED_BY_USER</p>
+  <p>0x8010006E</p>
+  </td>
+  <td>
+  <p>The action was canceled by the user.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_W_CARD_NOT_AUTHENTICATED</p>
+  <p>0x8010006F</p>
+  </td>
+  <td>
+  <p>No PIN was presented to the smart card.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_W_CACHE_ITEM_NOT_FOUND</p>
+  <p>0x80100070</p>
+  </td>
+  <td>
+  <p>The requested item could not be found in the cache.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_W_CACHE_ITEM_STALE</p>
+  <p>0x80100071</p>
+  </td>
+  <td>
+  <p>The requested cache item is too old and was deleted
+  from the cache.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_W_CACHE_ITEM_TOO_BIG</p>
+  <p>0x80100072</p>
+  </td>
+  <td>
+  <p>The new cache item exceeds the maximum per-item size
+  defined for the cache.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

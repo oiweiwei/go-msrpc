@@ -1,0 +1,468 @@
+// Please refer to [MS-MQMQ] for definitions of the 
+// following types:
+ 
+//   MULTICAST_ID
+//   OBJECTID
+//   PROPVARIANT
+//   QUEUE_FORMAT
+//   XACTUOW
+import "ms-mqmq.idl";
+ 
+// Please refer to [MS-MQRR] for definitions of the 
+// following types:
+//   DL_ID
+import "ms-mqrr.idl";
+ 
+// Please refer to [MS-DTYP] for definitions of the 
+// following types:
+//   DWORD
+//   GUID
+ 
+ 
+[
+  uuid(fdb3a030-065f-11d1-bb9b-00a024ea5525),
+  version(1.0),
+  pointer_default(unique)
+]
+interface qmcomm
+{
+ 
+typedef struct CACCreateRemoteCursor {
+  DWORD hCursor;
+  DWORD srv_hACQueue;
+  DWORD cli_pQMQueue;
+} CACCreateRemoteCursor;
+ 
+typedef  enum {
+  CACTB_SEND = 0,
+  CACTB_RECEIVE,
+  CACTB_CREATECURSOR
+} TRANSFER_TYPE;
+ 
+typedef struct CACTransferBufferV1 {
+  [range(0,2)] DWORD uTransferType;
+  [switch_is(uTransferType)] union {
+    [case(CACTB_SEND)] 
+      struct _Send {
+      QUEUE_FORMAT* pAdminQueueFormat;
+      QUEUE_FORMAT* pResponseQueueFormat;
+    } Send;
+    [case(CACTB_RECEIVE)] 
+      struct _Receive {
+      DWORD RequestTimeout;
+      DWORD Action;
+      DWORD Asynchronous;
+      DWORD Cursor;
+      [range(0,1024)] DWORD ulResponseFormatNameLen;
+      [size_is(,ulResponseFormatNameLen)] 
+        WCHAR** ppResponseFormatName;
+      DWORD* pulResponseFormatNameLenProp;
+      [range(0,1024)] DWORD ulAdminFormatNameLen;
+      [size_is(,ulAdminFormatNameLen)] 
+        WCHAR** ppAdminFormatName;
+      DWORD* pulAdminFormatNameLenProp;
+      [range(0,1024)] DWORD ulDestFormatNameLen;
+      [size_is(,ulDestFormatNameLen)] 
+        WCHAR** ppDestFormatName;
+      DWORD* pulDestFormatNameLenProp;
+      [range(0,1024)] DWORD ulOrderingFormatNameLen;
+      [size_is(,ulOrderingFormatNameLen)] 
+        WCHAR** ppOrderingFormatName;
+      DWORD* pulOrderingFormatNameLenProp;
+    } Receive;
+    [case(CACTB_CREATECURSOR)] 
+      struct CACCreateRemoteCursor CreateCursor;
+  };
+  unsigned short* pClass;
+  OBJECTID** ppMessageID;
+  [size_is(,20), length_is(,20)] unsigned char** ppCorrelationID;
+  DWORD* pSentTime;
+  DWORD* pArrivedTime;
+  unsigned char* pPriority;
+  unsigned char* pDelivery;
+  unsigned char* pAcknowledge;
+  unsigned char* pAuditing;
+  DWORD* pApplicationTag;
+  [size_is(,ulAllocBodyBufferInBytes), length_is(,ulBodyBufferSizeInBytes)] 
+    unsigned char** ppBody;
+  DWORD ulBodyBufferSizeInBytes;
+  DWORD ulAllocBodyBufferInBytes;
+  DWORD* pBodySize;
+  [size_is(,ulTitleBufferSizeInWCHARs), length_is(,ulTitleBufferSizeInWCHARs)] 
+    WCHAR** ppTitle;
+  DWORD ulTitleBufferSizeInWCHARs;
+  DWORD* pulTitleBufferSizeInWCHARs;
+  DWORD ulAbsoluteTimeToQueue;
+  DWORD* pulRelativeTimeToQueue;
+  DWORD ulRelativeTimeToLive;
+  DWORD* pulRelativeTimeToLive;
+  unsigned char* pTrace;
+  DWORD* pulSenderIDType;
+  [size_is(,uSenderIDLen)] unsigned char** ppSenderID;
+  DWORD* pulSenderIDLenProp;
+  DWORD* pulPrivLevel;
+  DWORD ulAuthLevel;
+  unsigned char* pAuthenticated;
+  DWORD* pulHashAlg;
+  DWORD* pulEncryptAlg;
+  [size_is(,ulSenderCertLen)] unsigned char** ppSenderCert;
+  DWORD ulSenderCertLen;
+  DWORD* pulSenderCertLenProp;
+  [size_is(,ulProvNameLen)] WCHAR** ppwcsProvName;
+  DWORD ulProvNameLen;
+  DWORD* pulAuthProvNameLenProp;
+  DWORD* pulProvType;
+  long fDefaultProvider;
+  [size_is(,ulSymmKeysSize)] unsigned char** ppSymmKeys;
+  DWORD ulSymmKeysSize;
+  DWORD* pulSymmKeysSizeProp;
+  unsigned char bEncrypted;
+  unsigned char bAuthenticated;
+  unsigned short uSenderIDLen;
+  [size_is(,ulSignatureSize)] unsigned char** ppSignature;
+  DWORD ulSignatureSize;
+  DWORD* pulSignatureSizeProp;
+  GUID** ppSrcQMID;
+  XACTUOW* pUow;
+  [size_is(,ulMsgExtensionBufferInBytes), length_is(,ulMsgExtensionBufferInBytes)] 
+    unsigned char** ppMsgExtension;
+  DWORD ulMsgExtensionBufferInBytes;
+  DWORD* pMsgExtensionSize;
+  GUID** ppConnectorType;
+  DWORD* pulBodyType;
+  DWORD* pulVersion;
+} CACTransferBufferV1;
+ 
+typedef struct CACTransferBufferV2 {
+  struct CACTransferBufferV1 old;
+  unsigned char* pbFirstInXact;
+  unsigned char* pbLastInXact;
+  OBJECTID** ppXactID;
+} CACTransferBufferV2;
+ 
+typedef struct OBJECT_FORMAT {
+  [range(1,2)] DWORD ObjType;
+  [switch_is(ObjType)] union {
+    [case(1)] 
+      QUEUE_FORMAT* pQueueFormat;
+  };
+} OBJECT_FORMAT;
+ 
+typedef [context_handle] void* PCTX_OPENREMOTE_HANDLE_TYPE;
+typedef [context_handle] void* RPC_QUEUE_HANDLE;
+typedef [context_handle] void* RPC_INT_XACT_HANDLE;
+ 
+// opnum 0
+void
+Opnum0NotUsedOnWire (void);
+ 
+// opnum 1
+HRESULT
+R_QMGetRemoteQueueName(
+    [in]  handle_t                hBind,
+    [in]  DWORD                   pQueue,
+    [in, out, ptr, string]        WCHAR** lplpRemoteQueueName
+    );
+ 
+// opnum 2
+HRESULT
+R_QMOpenRemoteQueue(
+    [in] handle_t                      hBind,
+    [out] PCTX_OPENREMOTE_HANDLE_TYPE  *pphContext,
+    [out] DWORD                        *pdwContext,
+ 
+    [in, unique] QUEUE_FORMAT          *pQueueFormat,
+    [in]  DWORD                        dwCallingProcessID,
+    [in]  DWORD                        dwDesiredAccess,
+    [in]  DWORD                        dwShareMode,
+    [in]  GUID*                        pLicGuid,
+    [in]  DWORD                        dwMQS,
+    [out] DWORD                        *dwpQueue,
+    [out] DWORD                        *phQueue
+    );
+ 
+// opnum 3
+void
+R_QMCloseRemoteQueueContext(
+    [in, out] PCTX_OPENREMOTE_HANDLE_TYPE  *pphContext
+    );
+ 
+// opnum 4    
+HRESULT
+R_QMCreateRemoteCursor(
+    [in]  handle_t                     hBind,
+    [in]  struct CACTransferBufferV1 * ptb1,
+    [in]  DWORD                        hQueue,
+    [out] DWORD *                      phCursor
+    );
+ 
+// opnum 5
+void
+Opnum5NotUsedOnWire (void);
+ 
+// opnum 6
+HRESULT
+R_QMCreateObjectInternal(
+    [in] handle_t                   hBind,
+    [in] DWORD                      dwObjectType,
+    [in, string] const WCHAR*       lpwcsPathName,
+    [in, range(0, 524288)] DWORD    SDSize,
+    [in, unique, size_is (SDSize)]  
+        unsigned char               *pSecurityDescriptor,
+    [in, range(1, 128)] DWORD       cp,
+    [in, size_is (cp)]  DWORD       aProp[],
+    [in, size_is (cp)]  PROPVARIANT apVar[]
+    );
+ 
+// opnum 7
+HRESULT
+R_QMSetObjectSecurityInternal(
+    [in] handle_t                  hBind,
+    [in] struct OBJECT_FORMAT*     pObjectFormat,
+    [in] DWORD                     SecurityInformation,
+    [in, range(0, 524288)] DWORD   SDSize,
+    [in, unique, size_is (SDSize)] 
+        unsigned char              *pSecurityDescriptor);
+ 
+ 
+// opnum 8
+HRESULT
+R_QMGetObjectSecurityInternal(
+    [in] handle_t                           hBind,
+    [in] struct OBJECT_FORMAT*              pObjectFormat,
+    [in] DWORD                              RequestedInformation,
+    [out, size_is (nLength)]  unsigned char *pSecurityDescriptor,
+    [in, range(0, 524288)] DWORD            nLength,
+    [out]  DWORD*                           lpnLengthNeeded
+    );
+ 
+// opnum 9
+HRESULT
+R_QMDeleteObject(
+     [in] handle_t hBind,
+     [in] struct OBJECT_FORMAT*  pObjectFormat
+     );
+ 
+// opnum 10
+HRESULT
+R_QMGetObjectProperties(
+    [in] handle_t                        hBind,
+    [in] struct OBJECT_FORMAT*           pObjectFormat,
+    [in, range(1, 128)] DWORD            cp,
+    [in, size_is (cp )]  DWORD           aProp[],
+    [in, out, size_is(cp )]  PROPVARIANT apVar[]
+    );
+ 
+ 
+// opnum 11
+HRESULT
+R_QMSetObjectProperties(
+    [in] handle_t                            hBind,
+    [in] struct OBJECT_FORMAT*               pObjectFormat,
+    [in, range(1, 128)] DWORD                cp,
+    [in, unique, size_is (cp )]  DWORD      aProp[],
+    [in, unique, size_is(cp )]  PROPVARIANT  apVar[]
+    );
+ 
+// opnum 12
+HRESULT
+R_QMObjectPathToObjectFormat(
+    [in] handle_t hBind,
+    [in, string] const WCHAR* lpwcsPathName,
+    [in, out] struct OBJECT_FORMAT *pObjectFormat
+    );
+ 
+// opnum 13
+void
+Opnum13NotUsedOnWire (void);
+ 
+// opnum 14
+HRESULT
+R_QMGetTmWhereabouts(
+    [in]  handle_t                      hBind,
+    [in, range(0, 131072)]  DWORD       cbBufSize,
+    [out, size_is (cbBufSize)]          unsigned char* pbWhereabouts,
+    [out] DWORD                         *pcbWhereabouts
+    );
+ 
+// opnum 15
+HRESULT
+R_QMEnlistTransaction(
+    [in] handle_t                       hBind,
+    [in] XACTUOW*                       pUow,
+    [in, range(0, 131072)] DWORD        cbCookie,
+    [in, size_is (cbCookie)]  unsigned char*    pbCookie 
+    );
+ 
+// opnum 16
+HRESULT
+R_QMEnlistInternalTransaction(
+    [in]  handle_t hBind,
+    [in]  XACTUOW* pUow,
+    [out] RPC_INT_XACT_HANDLE* phIntXact
+    );
+ 
+// opnum 17
+HRESULT
+R_QMCommitTransaction(
+    [in, out] RPC_INT_XACT_HANDLE* phIntXact
+    );
+ 
+// opnum 18
+HRESULT
+R_QMAbortTransaction(
+    [in, out] RPC_INT_XACT_HANDLE* phIntXact
+    );
+ 
+// opnum 19
+HRESULT
+rpc_QMOpenQueueInternal(
+    [in]  handle_t      hBind,
+ 
+    [in]  QUEUE_FORMAT* pQueueFormat,
+    [in]  DWORD         dwDesiredAccess,
+    [in]  DWORD         dwShareMode,
+    [in]  DWORD         hRemoteQueue,
+    [in, out, ptr, string] WCHAR**  lplpRemoteQueueName,
+    [in]  DWORD*            dwpQueue,
+    [in]  GUID*             pLicGuid,
+    [in, string] WCHAR*     lpClientName,
+    [out] DWORD*            pdwQMContext,
+    [out] RPC_QUEUE_HANDLE* phQueue,
+    [in]  DWORD             dwRemoteProtocol,
+    [in]  DWORD             dwpRemoteContext
+    );
+ 
+// opnum 20
+HRESULT
+rpc_ACCloseHandle(
+    [in, out] RPC_QUEUE_HANDLE* phQueue
+    );
+ 
+// opnum 21
+void
+Opnum21NotUsedOnWire (void);
+ 
+// opnum 22
+HRESULT
+rpc_ACCloseCursor(
+    [in] RPC_QUEUE_HANDLE hQueue,
+    [in] DWORD hCursor
+    );
+ 
+// opnum 23
+HRESULT
+rpc_ACSetCursorProperties(
+    [in] RPC_QUEUE_HANDLE hProxy,
+    [in] DWORD hCursor,
+    [in] DWORD hRemoteCursor
+    );
+ 
+ 
+// opnum 24
+void
+Opnum24NotUsedOnWire (void);
+ 
+// opnum 25
+void
+Opnum25NotUsedOnWire(void);
+ 
+ 
+// opnum 26
+HRESULT
+rpc_ACHandleToFormatName(
+    [in] RPC_QUEUE_HANDLE hQueue,
+    [in, range(0, 524288)] DWORD dwFormatNameRPCBufferLen,
+    [in, out, unique,
+     size_is(dwFormatNameRPCBufferLen),
+     length_is(dwFormatNameRPCBufferLen)] WCHAR* lpwcsFormatName,
+    [in, out] DWORD* pdwLength
+    );
+ 
+ 
+// opnum 27
+HRESULT
+rpc_ACPurgeQueue(
+    [in] RPC_QUEUE_HANDLE hQueue
+    );
+ 
+// opnum 28
+HRESULT
+R_QMQueryQMRegistryInternal(
+    [in]  handle_t         hBind,
+    [in]  DWORD            dwQueryType,
+    [out, string] WCHAR**  lplpMQISServer
+    );
+ 
+// opnum 29
+void
+Opnum29NotUsedOnWire (void);
+ 
+// opnum 30
+void
+Opnum30NotUsedOnWire (void);
+ 
+// opnum 31
+DWORD
+R_QMGetRTQMServerPort(
+      [in] handle_t hBind,
+      [in] DWORD fIP
+);
+ 
+// opnum 32
+void
+Opnum32NotUsedOnWire (void);
+ 
+// opnum 33
+void
+Opnum33NotUsedOnWire (void);
+ 
+// opnum 34
+void
+Opnum34NotUsedOnWire(void);
+ 
+}  // interface qmcomm
+ 
+[
+  uuid(76d12b80-3467-11d3-91ff-0090272f9ea3), 
+  version(1.0),
+  pointer_default(unique)
+]
+interface qmcomm2
+{
+ 
+// opnum 0
+HRESULT
+QMSendMessageInternalEx(
+    [in] handle_t                     hBind,
+ 
+    [in] QUEUE_FORMAT *               pQueueFormat,
+    [in] struct CACTransferBufferV2 * ptb,
+    [in, out, unique] OBJECTID *      pMessageID
+    );
+ 
+ 
+// opnum 1
+HRESULT
+rpc_ACSendMessageEx(
+    [in] RPC_QUEUE_HANDLE             hQueue,
+    [in] struct CACTransferBufferV2 * ptb,
+    [in, out, unique] OBJECTID *      pMessageID
+    );
+ 
+// opnum 2
+HRESULT
+rpc_ACReceiveMessageEx(
+    [in] handle_t                          hBind,
+    [in] DWORD                             hQMContext,
+    [in, out] struct CACTransferBufferV2 * ptb
+    );
+ 
+// opnum 3
+HRESULT
+rpc_ACCreateCursorEx(
+    [in] RPC_QUEUE_HANDLE                    hQueue,
+    [in, out] struct CACCreateRemoteCursor * pcc
+    );
+ 
+}  // interface qmcomm2

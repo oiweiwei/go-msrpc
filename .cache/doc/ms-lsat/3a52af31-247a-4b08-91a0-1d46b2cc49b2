@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The LSAPR_REFERENCED_DOMAIN_LIST structure contains
+information about the <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domains</a></span> referenced
+in a lookup operation.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_REFERENCED_DOMAIN_LIST {
+   unsigned long Entries;
+   [size_is(Entries)] PLSAPR_TRUST_INFORMATION Domains;
+   unsigned long MaxEntries;
+ } LSAPR_REFERENCED_DOMAIN_LIST,
+  *PLSAPR_REFERENCED_DOMAIN_LIST;
+</pre></div>
+</dd></dl><p><b>Entries:</b>  Contains the number of
+domains referenced in the lookup operation.</p><p><b>Domains:</b>  Contains a set of
+structures that identify domains. If the <b>Entries</b> field in this structure
+is not 0, this field MUST be non-NULL. If <b>Entries</b> is 0, this field MUST
+be ignored.</p><p><b>MaxEntries:</b>  This field MUST be
+ignored. The content is unspecified, and no requirements are placed on its
+value since it is never used.</p></div>

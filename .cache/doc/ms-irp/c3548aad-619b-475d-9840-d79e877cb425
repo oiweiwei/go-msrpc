@@ -1,0 +1,119 @@
+<div class="content"><p> </p><p>The <b>W3_STATISTICS_1</b> structure contains statistics on
+the usage of the HTTP server.</p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _W3_STATISTICS_1 {
+   LARGE_INTEGER TotalBytesSent;
+   LARGE_INTEGER TotalBytesReceived;
+   DWORD TotalFilesSent;
+   DWORD TotalFilesReceived;
+   DWORD CurrentAnonymousUsers;
+   DWORD CurrentNonAnonymousUsers;
+   DWORD TotalAnonymousUsers;
+   DWORD TotalNonAnonymousUsers;
+   DWORD MaxAnonymousUsers;
+   DWORD MaxNonAnonymousUsers;
+   DWORD CurrentConnections;
+   DWORD MaxConnections;
+   DWORD ConnectionAttempts;
+   DWORD LogonAttempts;
+   DWORD TotalOptions;
+   DWORD TotalGets;
+   DWORD TotalPosts;
+   DWORD TotalHeads;
+   DWORD TotalPuts;
+   DWORD TotalDeletes;
+   DWORD TotalTraces;
+   DWORD TotalMove;
+   DWORD TotalCopy;
+   DWORD TotalMkcol;
+   DWORD TotalPropfind;
+   DWORD TotalProppatch;
+   DWORD TotalSearch;
+   DWORD TotalLock;
+   DWORD TotalUnlock;
+   DWORD TotalOthers;
+   DWORD TotalCGIRequests;
+   DWORD TotalBGIRequests;
+   DWORD TotalNotFoundErrors;
+   DWORD TotalLockedErrors;
+   DWORD CurrentCalAuth;
+   DWORD MaxCalAuth;
+   DWORD TotalFailedCalAuth;
+   DWORD CurrentCalSsl;
+   DWORD MaxCalSsl;
+   DWORD TotalFailedCalSsl;
+   DWORD CurrentCGIRequests;
+   DWORD CurrentBGIRequests;
+   DWORD MaxCGIRequests;
+   DWORD MaxBGIRequests;
+   DWORD CurrentBlockedRequests;
+   DWORD TotalBlockedRequests;
+   DWORD TotalAllowedRequests;
+   DWORD TotalRejectedRequests;
+   DWORD MeasuredBw;
+   DWORD ServiceUptime;
+   DWORD TimeOfLastClear;
+   DWORD nAuxCounters;
+   DWORD rgCounters[20];
+ } W3_STATISTICS_1,
+  *LPW3_STATISTICS_1;
+</pre></div>
+</dd></dl><p><b>TotalBytesSent:</b>  The total number of
+bytes sent.</p><p><b>TotalBytesReceived:</b>  The total
+number of bytes received.</p><p><b>TotalFilesSent:</b>  The total number of
+files sent by the HTTP server.</p><p><b>TotalFilesReceived:</b>  The total
+number of files received by the HTTP server.</p><p><b>CurrentAnonymousUsers:</b>  The current
+number of anonymous users connected to the HTTP server.</p><p><b>CurrentNonAnonymousUsers:</b>  The
+current number of non-anonymous users connected to the HTTP server.</p><p><b>TotalAnonymousUsers:</b>  The total
+number of anonymous users that have ever connected to the HTTP server.</p><p><b>TotalNonAnonymousUsers:</b>  The total
+number of non-anonymous users that have ever connected to the HTTP server.</p><p><b>MaxAnonymousUsers:</b>  The maximum
+number of anonymous users who simultaneously connected to the HTTP server.</p><p><b>MaxNonAnonymousUsers:</b>  The maximum
+number of non-anonymous users who simultaneously connected to the HTTP server.</p><p><b>CurrentConnections:</b>  The current
+number of connections to the HTTP server.</p><p><b>MaxConnections:</b>  The maximum number
+of connections to the HTTP server.</p><p><b>ConnectionAttempts:</b>  The number of
+connection attempts that have been made to the HTTP server.</p><p><b>LogonAttempts:</b>  The number of logon
+attempts that have been made to the HTTP server.</p><p><b>TotalOptions:</b>  The total number of
+HTTP requests made with the OPTIONS method.</p><p><b>TotalGets:</b>  The total number of HTTP
+requests made using the GET method.</p><p><b>TotalPosts:</b>  The total number of
+HTTP requests made using the POST method.</p><p><b>TotalHeads:</b>  The total number of
+HTTP requests made using the HEAD method.</p><p><b>TotalPuts:</b>  The total number of HTTP
+requests made using the PUT method.</p><p><b>TotalDeletes:</b>  The total number of
+HTTP requests made using the DELETE method.</p><p><b>TotalTraces:</b>   The total number of
+HTTP requests made using the TRACE method.</p><p><b>TotalMove:</b>   The total number of
+WebDAV requests made using the MOVE method. For more information on WebDAV
+requests, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90363" data-linktype="external">[RFC2518]</a></span>.</p><p><b>TotalCopy:</b>  The total number of
+WebDAV requests made using the COPY method.</p><p><b>TotalMkcol:</b>  The total number of
+WebDAV requests made using the MKCOL method.</p><p><b>TotalPropfind:</b>  The total number of
+WebDAV requests made using the PROPFIND method.</p><p><b>TotalProppatch:</b>  The total number of
+WebDAV requests made using the PROPPATCH method.</p><p><b>TotalSearch:</b>  The total number of
+requests made using the SEARCH method.</p><p><b>TotalLock:</b>  The total number of
+WebDAV requests made using the LOCK method.</p><p><b>TotalUnlock:</b>  The total number of
+WebDAV requests made using the UNLOCK method.</p><p><b>TotalOthers:</b>  The total number of
+HTTP requests made to methods not already listed.</p><p><b>TotalCGIRequests:</b>  The total number
+of Common Gateway Interface (CGI) requests ever made to the HTTP server.</p><p><b>TotalBGIRequests:</b>  The total number
+of <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_2f68ef3e-f467-415f-b11c-901cf119aeb9" data-linktype="relative-path">Binary
+Gateway Interface (BGI)</a></span> requests ever made to the HTTP server.</p><p><b>TotalNotFoundErrors:</b>  The total
+number of requests that could not be satisfied by the server because the
+requested document could not be found. These requests are generally reported as
+an HTTP 404 error code to the client.</p><p><b>TotalLockedErrors:</b>  The total number
+of locked errors.</p><p><b>CurrentCalAuth:</b>  The current number
+of Client Access Licenses (CALs) that are authorized (for more information, see
+<span><a href="https://go.microsoft.com/fwlink/?LinkId=93381" data-linktype="external">[MSFT-CAL]</a></span>).</p><p><b>MaxCalAuth:</b>  The maximum number of
+CALs that are authorized.</p><p><b>TotalFailedCalAuth:</b>  The total
+number of failed CAL authorizations.</p><p><b>CurrentCalSsl:</b>  The current number
+of CALs for a Secure Sockets Layer (SSL) connection.</p><p><b>MaxCalSsl:</b>  The maximum number of
+CALs for an SSL connection.</p><p><b>TotalFailedCalSsl:</b>  The total number
+of failed CAL SSL connections.</p><p><b>CurrentCGIRequests:</b>  The current
+number of CGI requests. For more information on CGI, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=93380" data-linktype="external">[RFC3875]</a></span>.</p><p><b>CurrentBGIRequests:</b>  The current
+number of BGI requests.</p><p><b>MaxCGIRequests:</b>  The maximum number
+of CGI requests allowed.</p><p><b>MaxBGIRequests:</b>  The maximum number
+of BGI requests allowed.</p><p><b>CurrentBlockedRequests:</b>  The current
+number of blocked requests.</p><p><b>TotalBlockedRequests:</b>  The total
+number of blocked requests.</p><p><b>TotalAllowedRequests:</b>  The total
+number of allowed requests to the HTTP server.</p><p><b>TotalRejectedRequests:</b>  The total
+number of rejected requests.</p><p><b>MeasuredBw:</b>  The measured network
+bandwidth for the HTTP server.</p><p><b>ServiceUptime:</b>  The HTTP server
+uptime.</p><p><b>TimeOfLastClear:</b>  The time of the
+last clear.</p><p><b>nAuxCounters:</b>  The number of
+initialized elements in <b>rgCounters</b>. MUST be 0.</p><p><b>rgCounters:</b>  An array of 20
+elements. This field is unused and MUST be ignored by clients.</p></div>

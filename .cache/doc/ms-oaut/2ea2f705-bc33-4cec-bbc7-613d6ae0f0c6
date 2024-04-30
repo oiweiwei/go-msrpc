@@ -1,0 +1,90 @@
+<div class="content"><p>The GetDocumentation method retrieves the documentation
+resources associated with a type member.</p><dl>
+<dd>
+<div><pre> HRESULT GetDocumentation(
+   [in] MEMBERID memid,
+   [in] DWORD refPtrFlags,
+   [out] BSTR* pBstrName,
+   [out] BSTR* pBstrDocString,
+   [out] DWORD* pdwHelpContext,
+   [out] BSTR* pBstrHelpFile
+ );
+</pre></div>
+</dd></dl><p><b>memid: </b>MUST be either the <a href="ace8758f-ee2b-4cb6-8645-973994d12530" data-linktype="relative-path">MEMBERID</a> of a method or
+data member in the binding context of the <a href="99504cf9-16d8-401e-a873-83b85d1ee4aa" data-linktype="relative-path">ITypeInfo server</a> (see
+section <a href="cc88e625-4b3a-4cf9-8966-26bdc913f62d" data-linktype="relative-path">3.5.4.1.1</a>), or
+MEMBERID_NIL (see section <a href="5fbb4851-25f6-45ef-9f83-e9dd633e1e00" data-linktype="relative-path">2.2.35.1</a>).</p><p><b>refPtrFlags: </b>MUST be a combination of the bit
+flags specified in the following table, or 0.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TYPEINFO_NameArg</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>MUST specify that the client is interested in the
+  actual <i>pBstrName</i> [out] argument.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TYPEINFO_DocStringArg</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>MUST specify that the client is interested in the
+  actual <i>pBstrDocString</i> [out] argument.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TYPEINFO_HelpContextArg</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>MUST specify that the client is interested in the
+  actual <i>pdwHelpContext</i> [out] argument.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TYPEINFO_HelpFileArg</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>MUST specify that the client is interested in the
+  actual <i>pBstrHelpFile</i> [out] argument.</p>
+  </td>
+ </tr></tbody></table><p><b>pBstrName: </b>If the TYPEINFO_NameArg bit flag is
+set in <i>refPtrFlags</i>,<i>pBstrName</i> MUST be set to a <a href="9c5a5ce4-ff5b-45ce-b915-ada381b34ac1" data-linktype="relative-path">BSTR</a> that contains the
+name of the type or specified type member. Othernwise, <i>pBstrName</i> MUST be
+set to a NULL BSTR.</p><p><b>pBstrDocString: </b>MUST be set to the
+documentation string that was associated with the type or specified type member
+using the [helpstring] attribute (see section <a href="ae4d27fa-faaa-4d5f-b0f9-15bfbaaae9b4" data-linktype="relative-path">2.2.49.2</a>), if the
+TYPEINFO_DocStringArg bit flag is set in <i>refPtrFlags</i>. MAY be set to an
+implementation-specific string<a id="Appendix_A_Target_59"></a><a aria-label="Product behavior note 59" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_59" data-linktype="relative-path">&lt;59&gt;</a> if no
+[helpstring] attribute is specified. MUST be set to a NULL BSTR otherwise.</p><p><b>pdwHelpContext: </b>MUST be set to the value that
+was associated with the type or specified type member using the [helpcontext]
+attribute (see section 2.2.49.2), if the TYPEINFO_HelpContextArg bit flag is
+set in <i>refPtrFlags</i>. MUST be set to 0 otherwise. </p><p><b>pBstrHelpFile: </b>MUST be set to the
+documentation string that was associated with the type or specified type member
+using the [helpfile] attribute (see section 2.2.49.2), if the
+TYPEINFO_HelpFileArg bit flag is set in <i>refPtrFlags</i>. MUST be set to a
+NULL BSTR otherwise.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul><p>If <i>memid</i> is MEMBERID_NIL, the values of <i>pBstrName</i>,
+<i>pBstrDocString</i>, <i>pdwHelpContext</i>, and <i>pBstrHelpFile</i> MUST
+correspond to the attributes declared with the type, as specified in section <a href="7b5fa59b-d8f6-4a47-9695-630d3c10363e" data-linktype="relative-path">2.2.49.3</a>. Otherwise, they
+MUST correspond to the attributes declared with the specified member of the
+type.</p></div>

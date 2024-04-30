@@ -1,0 +1,48 @@
+<div class="content"><p> </p><p>The TRKSVR_MESSAGE_TYPE enumeration defines the type of a
+message that is sent to the DLT Central Manager server by the <span><a href="cea51ffe-cab6-4b19-93b7-853189437ead" data-linktype="relative-path">LnkSvrMessage</a></span>
+method. That is, the LnkSvrMessage method is defined such that the caller can
+send different messages in the form of different structures, and the
+TRKSVR_MESSAGE_TYPE enumeration is used in the <span><a href="2f32d86a-18ea-472f-99d3-e9f3a333e329" data-linktype="relative-path">TRKSVR_MESSAGE_UNION</a></span>
+parameter of the LnkSvrMessage method to indicate which structure is being
+passed in a method call. See section 2.2.12 for information on
+TRKSVR_MESSAGE_UNION, and section 3.1.4.1 for more information on the
+LnkSvrMessage method.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum 
+ {
+   old_SEARCH,
+   MOVE_NOTIFICATION = 1,
+   REFRESH = 2,
+   SYNC_VOLUMES = 3,
+   DELETE_NOTIFY = 4,
+   STATISTICS = 5,
+   SEARCH = 6,
+   WKS_CONFIG,
+   WKS_VOLUME_REFRESH
+ } TRKSVR_MESSAGE_TYPE;
+</pre></div>
+</dd></dl><p><b>old_SEARCH:</b>  Unused.</p><p><b>MOVE_NOTIFICATION:  </b>The message includes
+information about one or more files that have been moved (see section <span><a href="5ae9c29a-6cb3-40cc-9531-8dd9d563b90b" data-linktype="relative-path">3.2.6.1</a></span>).
+The message data in this method call is formatted in the <span><a href="8b877b3f-c314-4c7b-a799-66e86dace612" data-linktype="relative-path">TRSVR_CALL_MOVE_NOTIFICATION</a></span>
+structure (see section 2.2.12.1).</p><p><b>REFRESH:  </b>The message communicates the current
+status of the entries in the <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_f0a224bc-aabd-4f97-b93f-6d8b29c349fe" data-linktype="relative-path">ClientVolumeTable</a></span>,
+so that the server can update its <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_bf94bb8e-16ee-4f51-974b-1ab8e4f71bc8" data-linktype="relative-path">ServerVolumeTable</a></span>
+(see section <span><a href="e1aa1914-4e78-43f3-b8cf-b002119cef0b" data-linktype="relative-path">3.2.5.2</a></span>). The
+message data in this method call is formatted in the <span><a href="c8a5a9cf-67b7-4c3c-8bc1-db593559243a" data-linktype="relative-path">TRKSVR_CALL_REFRESH</a></span>
+structure (see section 2.2.12.2).</p><p><b>SYNC_VOLUMES:  </b>The message is used to
+synchronize a <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> (see sections
+<span><a href="82fb1177-fa78-42b8-ae3b-40b29192556e" data-linktype="relative-path">3.2.5.3</a></span>,
+<span><a href="caa09433-3abc-4653-a93f-164d62bb0263" data-linktype="relative-path">3.2.5.4</a></span>,
+and <span><a href="8a5ae52a-3302-46a3-8beb-e01223b28f73" data-linktype="relative-path">3.2.6.4</a></span>).
+The message data in this method call is formatted in the <span><a href="e25bc030-b74b-4186-8559-81ad21c54839" data-linktype="relative-path">TRKSVR_CALL_SYNC_VOLUMES</a></span>
+structure (see section 2.2.12.3).</p><p><b>DELETE_NOTIFY:  </b>The message includes
+information about one or more files that have been deleted (see section <span><a href="0b4e984a-fdc2-4c9e-a895-36424a940d9e" data-linktype="relative-path">3.2.5.5</a></span>).
+The message data in this method call is formatted in the <span><a href="6d49d78d-cc49-427b-a5b3-be3d666c0917" data-linktype="relative-path">TRKSVR_CALL_DELETE</a></span>
+structure (see section 2.2.12.4).</p><p><b>STATISTICS:  </b>The message is a request for
+usage statistics. This message type is not used in this protocol, but is
+included in this specification because it affects the size of the
+TRKSVR_MESSAGE_UNION structure as it is transmitted over the <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+Protocol. See section 2.2.12 for more information on the TRKSVR_MESSAGE_UNION.</p><p><b>SEARCH:  </b>The message is a request for
+information about a moved file’s updated location. (see section <span><a href="4064a135-6d84-4f0d-a171-567808d3d310" data-linktype="relative-path">3.2.6.3</a></span>).
+The message data in this method call is formatted in the <span><a href="eab3383d-fca5-4b4e-bb2d-ec06c9047d48" data-linktype="relative-path">TRKSVRidl_struct_page_CALL_SEARCH</a></span>
+structure (see section 2.2.12.6).</p><p><b>WKS_CONFIG:  </b>Unused.</p><p><b>WKS_VOLUME_REFRESH:  </b>Unused.</p></div>

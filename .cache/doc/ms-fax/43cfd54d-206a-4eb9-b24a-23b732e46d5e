@@ -1,0 +1,163 @@
+<div class="content"><p> </p><p>The <b>_FAX_VERSION</b> structure is the custom-marshaled
+variant of the <b>FAX_VERSION</b> (section <span><a href="7ef8f9ec-366f-4414-9583-4d8962c00e87" data-linktype="relative-path">2.2.22</a></span>) structure.
+The <b>_FAX_VERSION</b> contains the same information about the version of the
+fax server components as contained in the <b>FAX_VERSION</b>. The <b>_FAX_VERSION</b>
+is embedded in the <b>FAX_ROUTING_EXTENSION_INFO</b> (section <span><a href="f9f82598-144c-473f-adc2-ed92e748d3a4" data-linktype="relative-path">2.2.49</a></span>)
+and <b>FAX_DEVICE_PROVIDER_INFO</b> (section <span><a href="7abbf16c-90bb-4bf6-83ec-e0068c7cbc36" data-linktype="relative-path">2.2.30</a></span>) structures.</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (20 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (20 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfStruct</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bValid</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>wMajorVersion</p>
+  </td>
+  <td colspan="16">
+  <p>wMinorVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>wMajorBuildNumber</p>
+  </td>
+  <td colspan="16">
+  <p>wMinorBuildNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwFlags</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>dwSizeOfStruct (4 bytes):
+</b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that holds the total size of the structure, in bytes. This value MUST be
+20 bytes. </p>
+</dd>
+<dd>
+<p><b>bValid (4 bytes): </b>See
+the <b>bValid</b> field for <b>FAX_VERSION</b>.</p>
+</dd>
+<dd>
+<p><b>wMajorVersion (2 bytes): </b>See
+the <b>wMajorVersion</b> field for <b>FAX_VERSION</b>.</p>
+</dd>
+<dd>
+<p><b>wMinorVersion (2 bytes): </b>See
+the <b>wMinorVersion</b> field for <b>FAX_VERSION</b>.</p>
+</dd>
+<dd>
+<p><b>wMajorBuildNumber (2
+bytes): </b>See the <b>wMajorBuildNumber</b> field for <b>FAX_VERSION</b>.</p>
+</dd>
+<dd>
+<p><b>wMinorBuildNumber (2
+bytes): </b>See the <b>wMinorBuildNumber</b> field for <b>FAX_VERSION</b>.</p>
+</dd>
+<dd>
+<p><b>dwFlags (4 bytes): </b>See
+the <b>dwFlags</b> field for <b>FAX_VERSION</b>.</p>
+</dd></dl></div>

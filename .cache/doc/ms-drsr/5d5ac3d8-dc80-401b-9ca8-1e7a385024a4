@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The DS_REPL_KCC_DSA_FAILUREW structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>
+that is in a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span> error
+state. This structure is a concrete representation of a tuple in a <span><a href="eaffa80d-8baf-4784-898e-e9fbc7bd8296" data-linktype="relative-path">KCCFailedConnections</a></span>
+or <span><a href="fec285f3-7f03-4cfc-89ac-911f61c0c7d3" data-linktype="relative-path">KCCFailedLinks</a></span>
+sequence.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [string] LPWSTR pszDsaDN;
+   UUID uuidDsaObjGuid;
+   FILETIME ftimeFirstFailure;
+   DWORD cNumFailures;
+   DWORD dwLastResult;
+ } DS_REPL_KCC_DSA_FAILUREW;
+</pre></div>
+</dd></dl><p><b>pszDsaDN:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a></span>
+of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_dc90b593-841f-4c6d-8032-b32e58e887a8" data-linktype="relative-path">nTDSDSA object</a></span>
+corresponding to the DC.</p><p><b>uuidDsaObjGuid:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_736b1076-d1cb-40b9-9247-d66cca6819d1" data-linktype="relative-path">DSA GUID</a></span>
+of the DC.</p><p><b>ftimeFirstFailure:</b>  The date and
+time at which the DC entered an error state.</p><p><b>cNumFailures:</b>  The number of errors
+that have occurred.</p><p><b>dwLastResult:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows
+error code</a></span>, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>,
+for the last error.</p></div>

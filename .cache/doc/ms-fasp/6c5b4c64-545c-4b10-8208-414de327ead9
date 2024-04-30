@@ -1,0 +1,105 @@
+<div class="content"><p> </p><p>The RRPC_FWDeleteCryptoSet method requests the server to
+delete the specified cryptographic set in the policy contained in the policy
+store that is referenced by the handle specified in the <i>hPolicy</i>
+parameter.</p><dl>
+<dd>
+<div><pre> ULONG RRPC_FWDeleteCryptoSet(
+   [in] FW_CONN_HANDLE rpcConnHandle,
+   [in] FW_POLICY_STORE_HANDLE hPolicy,
+   [in, range(FW_IPSEC_PHASE_INVALID+1, FW_IPSEC_PHASE_MAX-1)] 
+     FW_IPSEC_PHASE IpSecPhase,
+   [in, string, ref] const wchar_t* wszSetId
+ );
+</pre></div>
+</dd></dl><p><b>rpcConnHandle: </b>This parameter is an <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle that connects to the RPC interface of the Firewall and Advanced
+Security Protocol.</p><p><b>hPolicy: </b>This input parameter is an <span><a href="88f6ea4a-a946-4747-bb93-f142f1760752" data-linktype="relative-path">FW_POLICY_STORE_HANDLE</a></span>
+data type. The data type MUST contain an opened policy store handle that is
+successfully opened by using the RRPC_FWOpenPolicyStore (Opnum 0) method. The
+handle MUST have read/write access rights.</p><p><b>IpSecPhase: </b>This parameter specifies the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span>
+negotiation phase type in which this set is used.</p><p><b>wszSetId: </b>This parameter is the pointer to a
+string that is the ID of the cryptographic set that the client wants to delete
+from the specified store.</p><dl>
+<dd>
+<p>This ID can be obtained by enumerating cryptographic
+sets using the RRPC_FWEnumCryptoSets (Opnum 26) where the ID is returned  in
+the <span><a href="a468fe9e-113b-4155-a63d-0db3aac12619" data-linktype="relative-path">FW_CRYPTO_SET</a></span>
+structure.</p>
+</dd></dl><p><b>Return Values: </b>The method returns 0 if
+successful; if it fails, it returns a nonzero error code. The field can take
+any specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+The following return values are common.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000962</p>
+  <p>ERROR_ACTIVE_CONNECTIONS</p>
+  </td>
+  <td>
+  <p>The specified set is still referenced by connection
+  security or main mode rules. This failure happens only when the set is not a
+  primary set. There is always a primary set to use, either from other stores
+  or a hard-coded one.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000032</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The specified store does not support this method; the
+  store might be read-only.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The <i>hPolicy</i> handle was not opened with
+  read/write access rights. The error is also returned if the client does not
+  have the required credentials to call the method.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified rule that is referenced by the <b>wszSetId</b>
+  string is not found in the policy store.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The specified IPsec phase is not a valid one.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+If any lower-layer errors are reported by RPC exception, this exception is
+converted to an error code and reported to higher-layer protocols via the
+return value.</p><p>This method deletes a cryptographic set in the cryptographic
+linked list of the memory representation of the store being modified. It also
+writes through and saves the set to disk. If called on an online store and the
+set is not a primary set, the method does not delete the specified set if any
+connection rule references this set.</p><p>The server MUST determine whether the local computer is
+operating in <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_52549a11-2432-4a5c-966f-5f8a32de9162" data-linktype="relative-path">common criteria mode</a></span>
+by invoking the abstract interface <span><a href="6da7ac30-956b-42cb-b7dc-c0af8b9db707" data-linktype="relative-path">IsComputerInCommonCriteriaMode (section 3.1.6.5)</a></span>.
+If the local computer is operating in common criteria mode, the server MUST
+fail the operation and return an error of ERROR_ACCESS_DENIED (5). Otherwise,
+the server MUST validate that the client is authorized to perform the requested
+operation (as defined in section <span><a href="b0c93352-8371-4d63-abca-b0cc8dbcc3d7" data-linktype="relative-path">3.1.4</a></span>) before
+executing this method.</p></div>

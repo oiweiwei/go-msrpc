@@ -1,0 +1,26 @@
+<div class="content"><p>This method is called by a client to perform <a href="5fe470fe-8067-470c-a7d7-30553c3dc1f7" data-linktype="relative-path">Catalog Version
+Negotiation (section 3.1.4.1)</a>.</p><dl>
+<dd>
+<div><pre> HRESULT InitializeSession(
+   [in] float flVerLower,
+   [in] float flVerUpper,
+   [in] long reserved,
+   [out] float* pflVerSession
+ );
+</pre></div>
+</dd></dl><p><b>flVerLower: </b> The lowest <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0944227d-0566-49e1-989f-2fff6e02542d" data-linktype="relative-path">catalog</a> version supported
+by the client. </p><p><b>flVerUpper: </b> The highest catalog version
+supported by the client.</p><p><b>reserved: </b> MUST be set to zero when sent and
+MUST be ignored on receipt. </p><p><b>pflVerSession: </b>A pointer to a variable that,
+upon successful completion, MUST be set to the negotiated catalog version.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server MUST verify
+that <i>flVerLower</i> is less than or equal to <i>flVerUpper</i>, and fail the
+call if not.</p><p>The server then MUST calculate the negotiated catalog
+version as the highest catalog version number supported by both the client and
+the server, if such a catalog version exists, and store the value as part of
+the session state (see section <a href="a667265b-22a8-43bb-b462-13528061e009" data-linktype="relative-path">3.1.1.5</a>). If there is no
+catalog version supported by both the client and the server, the server MUST
+fail the call.</p><p>The server then MUST set the value referenced by <i>pflVerSession</i>
+to the negotiated catalog version and return S_OK (0x00000000).</p></div>

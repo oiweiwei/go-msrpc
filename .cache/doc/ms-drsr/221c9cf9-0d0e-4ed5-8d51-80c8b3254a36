@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The DRS_MSG_MOVEREQ union defines the request messages sent
+to the <span><a href="595b2fef-493b-4b1d-b60d-e7a1a3345b0e" data-linktype="relative-path">IDL_DRSInterDomainMove</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_MOVEREQ_V1 V1;
+   [case(2)] 
+     DRS_MSG_MOVEREQ_V2 V2;
+ } DRS_MSG_MOVEREQ;
+</pre></div>
+</dd></dl><p><b>V1:</b>  The version 1 request
+(obsolete).</p><p><b>V2:</b>  The version 2 request.</p></div>

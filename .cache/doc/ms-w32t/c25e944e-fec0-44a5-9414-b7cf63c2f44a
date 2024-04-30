@@ -1,0 +1,17 @@
+<div class="content"><p>The W32TIME_ENTRY structure defines the general entry as a
+possible extension to other <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9846d08d-ad98-4bb9-a1e7-1f0bfbdd1113" data-linktype="relative-path">time
+service</a> data structures. This structure has no current use.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned __int32 ulSize;
+   [string, unique] wchar_t* wszName;
+   [string, unique] wchar_t* wszValue;
+   [string, unique] wchar_t* wszHelp;
+ } W32TIME_ENTRY,
+  *PW32TIME_ENTRY;
+</pre></div>
+</dd></dl><p><b>ulSize:</b>  The size, in bytes, of this
+structure. </p><p><b>wszName:</b>  A null-terminated string
+that indicates the name of the entry.</p><p><b>wszValue:</b>  A null-terminated string
+that indicates the value of the entry.</p><p><b>wszHelp:</b>  A null-terminated string
+that indicates the display text of the entry.</p></div>

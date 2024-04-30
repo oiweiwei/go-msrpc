@@ -1,0 +1,154 @@
+<div class="content"><p> </p><p>The <b>FAX_SetSecurity (Opnum 24)</b> method is called by
+the client. On success, the server MUST set the fax server&#39;s security
+descriptor.</p><p>Protocol version FAX_API_VERSION_3 (0x00030000) fax servers
+SHOULD fail this call by returning ERROR_NOT_SUPPORTED (0x00000032). The fax
+client SHOULD NOT call this method if the protocol version reported by the
+server is FAX_API_VERSION_3 (0x00030000). For more information, see <b>FAX_ConnectFaxServer</b> (section
+<span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>).
+The fax client SHOULD call <b>FAX_SetSecurityEx2</b> (section <span><a href="a84f4415-2b45-43eb-acd2-8b575597ecec" data-linktype="relative-path">3.1.4.1.95</a></span>)
+instead.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_SetSecurity(
+   [in] handle_t hBinding,
+   [in] SECURITY_INFORMATION SecurityInformation,
+   [in, unique, size_is(dwBufferSize)] 
+     const LPBYTE pSecurityDescriptor,
+   [in, range(0,FAX_MAX_RPC_BUFFER)] 
+     DWORD dwBufferSize
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> or <b>FAX_ConnectionRefCount</b> (section
+<span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>)
+method call used to connect to the fax server.</p><p><b>SecurityInformation: </b>Identifies the components
+that are included in the security descriptor. The value of this parameter is a
+bitwise OR combination of <b>SECURITY_INFORMATION</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/23e75ca3-98fd-4396-84e5-86cd9d40d343" data-linktype="relative-path">2.4.7</a></span>)
+constant values. </p><p><b>pSecurityDescriptor: </b>A pointer to a <b>SECURITY_DESCRIPTOR
+</b>([MS-DTYP] section <span><a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a></span>)
+structure to be set.</p><p><b>dwBufferSize: </b>A variable to indicate the size,
+in bytes, of the <b>pSecurityDescriptor</b> security descriptor buffer. The
+maximum size is <b>FAX_MAX_RPC_BUFFER</b> (section <span><a href="8bb4ba82-db45-44ea-9caa-af64d7448e6d" data-linktype="relative-path">2.2.82</a></span>).</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The client&#39;s fax user account does
+  not have the access rights required for this operation. This error code is
+  returned under any of the following conditions, listed by required access
+  right:</p>
+  <p><span>§<span>  
+  </span></span><b>WRITE_OWNER</b>, when the fax server is a <b>FAX_API_VERSION_1</b>
+  server and the <i>SecurityInformation</i> parameter contains the <b>OWNER_SECURITY_INFORMATION</b>
+  value.</p>
+  <p><span>§<span>  
+  </span></span><b>WRITE_DAC</b>, when the fax server is a <b>FAX_API_VERSION_1</b>
+  server and <i>SecurityInformation</i> contains the <b>GROUP_SECURITY_INFORMATION</b>
+  or <b>DACL_SECURITY_INFORMATION</b> values.</p>
+  <p><span>§<span>  
+  </span></span><b>READ_CONTROL</b>, when the fax server is a <b>FAX_API_VERSION_2</b>
+  server and <i>SecurityInformation</i> contains the <b>GROUP_SECURITY_INFORMATION</b>,
+  <b>DACL_SECURITY_INFORMATION</b>, or <b>OWNER_SECURITY_INFORMATION</b>
+  values.</p>
+  <p><span>§<span>  
+  </span></span><b>ACCESS_SYSTEM_SECURITY</b>, when <i>SecurityInformation</i>
+  contains the <b>SACL_SECURITY_INFORMATION</b> value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_DATA</p>
+  <p>0x0000000D</p>
+  </td>
+  <td>
+  <p>The data contained in the buffer specified by the <i>pSecurityDescriptor</i>
+  parameter is not a valid <b>SECURITY_DESCRIPTOR</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NOT_SUPPORTED</p>
+  <p>0x00000032</p>
+  </td>
+  <td>
+  <p>The fax server does not support this operation. This
+  error SHOULD be returned by <b>FAX_API_VERSION_3</b> servers.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. This error code is
+  returned under any of the following conditions:</p>
+  <p><span>§<span>  
+  </span></span><i>pSecurityInformation</i> is set to a NULL pointer value.</p>
+  <p><span>§<span>  
+  </span></span>The <i>dwBufferSize</i> parameter is set to a value of 0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_REGISTRY_CORRUPT</p>
+  <p>0x000003F7</p>
+  </td>
+  <td>
+  <p>The registry is corrupted. The structure of one of the
+  files containing registry data is corrupted, or the system&#39;s memory image of
+  the file is corrupted, or the file could not be recovered because the
+  alternate copy or log was absent or corrupted.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown: </b>No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>The server MUST validate that the client has the following
+credentials to set security on the server.</p><table><thead>
+  <tr>
+   <th>
+   <p>Action</p>
+   </th>
+   <th>
+   <p>Authorization</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>To set security information on the object owned by the
+  client</p>
+  </td>
+  <td>
+  <p>The right to change the owner in the object&#39;s security
+  descriptor (WRITE_OWNER).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>To set group security information</p>
+  </td>
+  <td>
+  <p>The right to modify the discretionary access control
+  list (DACL) in the object&#39;s security descriptor (WRITE_DAC).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>To set system-wide security information</p>
+  </td>
+  <td>
+  <p>The right to modify the system access control list
+  (SACL) in the object&#39;s security descriptor (ACCESS_SYSTEM_SECURITY).</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

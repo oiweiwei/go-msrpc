@@ -1,0 +1,209 @@
+<div class="content"><p> </p><p>The SchRpcEnumInstances method MUST return a task&#39;s list of
+instances that are currently running.</p><dl>
+<dd>
+<div><pre> HRESULT SchRpcEnumInstances(
+   [in, string, unique] const wchar_t* path,
+   [in] DWORD flags,
+   [out] DWORD* pcGuids,
+   [out, size_is(, *pcGuids)] GUID** pGuids
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>MUST contain the full path to a task in
+the format specified in section <span><a href="fa8809c8-4f0f-4c6d-994a-6c10308757c1" data-linktype="relative-path">2.3.11</a></span>. If NULL is
+specified, all instances for all tasks MUST be returned. </p><p><b>flags: </b>The flags field MUST contain individual
+bit flags that MUST have one or more of the following values:</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>H</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>H</p>
+  <p>TASK_ENUM_HIDDEN</p>
+  </td>
+  <td>
+  <p>If set to 1, <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_2ada9b4d-080b-4466-b518-9fe5b8d1e844" data-linktype="relative-path">hidden tasks</a></span> MUST
+  be included in the result set.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The client MUST set undefined bits
+to 0. The server MUST return an error if any of the undefined bits are not set
+to 0.</p>
+</dd></dl><p><b>pcGuids: </b>MUST contain the number of instances.</p><p><b>pGuids: </b>MUST be an array of <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUIDs</a></span>.</p><p><b>Return Values: </b>For more information on return
+codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>, or Win32
+Error Codes in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><p>Upon receipt of the SchRpcEnumInstances call, the server
+MUST:</p><ul><li><p><span><span> 
+</span></span>Return E_INVALIDARG if any bit other than TASK_ENUM_HIDDEN is set
+in the <i>flags</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return 0x8007007B, the <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+form of the Win32 error <b>ERROR_INVALID_NAME</b> if the specified path is not
+in the format specified in section 2.3.11.</p>
+</li><li><p><span><span> 
+</span></span>Return 0x80070002, the HRESULT form of the Win32 error
+ERROR_FILE_NOT_FOUND if the task specified in the <i>path</i> parameter does
+not exist on the server or the file specified by the <i>path</i> parameter does
+not exist in the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a></span> <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_08035fe7-a786-4b30-ab60-3fd046060617" data-linktype="relative-path">task
+store</a></span>.<a id="Appendix_A_Target_73"></a><a aria-label="Product behavior note 73" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_73" data-linktype="relative-path">&lt;73&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Enumerate all of the running task instances in the running task
+list conceptual data structure. If the <i>path</i> parameter is not NULL, the
+server MUST skip all entries in the running task list whose locations do not
+match the <i>path</i> parameter. The server MUST skip all entries for tasks to
+which the caller does not have read access. Unless the TASK_ENUM_HIDDEN bit is
+set in the <i>flags</i> parameter, the server MUST skip all entries for hidden
+tasks (section <span><a href="462ac93f-5411-4fa4-83a1-2002ff33990b" data-linktype="relative-path">2.5.4.12</a></span>). </p>
+</li><li><p><span><span> 
+</span></span>Return an array of <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_cbc13b29-4954-4944-8865-eb8a2a550ffa" data-linktype="relative-path">task instance</a></span> IDs
+from the enumerated running task instances in the <i>pGuids</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return the number of task instance IDs in the <i>pcGuids</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK.</p>
+</li></ul></div>

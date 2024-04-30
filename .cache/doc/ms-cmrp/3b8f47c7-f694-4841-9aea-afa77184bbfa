@@ -1,0 +1,18 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/3b8f47c7-f694-4841-9aea-afa77184bbfa" data-linktype="external">msdn link</a></p><p>The <b>ENUM_LIST</b> structure is a container for a list of <b>ENUM_ENTRY</b>
+(section <a href="fbc1bc18-45d4-4668-980d-ed639ea2f03e" data-linktype="relative-path">2.2.3.4</a>)
+structures. An <b>ENUM_LIST</b> encapsulates the results of a query that is
+performed on the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_93ba0f62-7125-4a3e-ab60-5fd4f504bc8c" data-linktype="relative-path">cluster
+state</a>. The semantics of the collection of named <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_0db09eb6-111b-473a-b821-12cd6d6342b1" data-linktype="relative-path">cluster objects</a> depends on
+the query that is performed. For example, the <b>ApiCreateEnum</b> (section <a href="3901b3f0-1737-481f-9815-282471183abd" data-linktype="relative-path">3.1.4.2.8</a>) method can be
+used to query a list of nodes in the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_feef37b3-c173-4f51-aab6-b55a6366259b" data-linktype="relative-path">cluster</a> or a list of
+resources in the cluster. The result of either query is returned to the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> as an <b>ENUM_LIST</b>.</p><dl>
+<dd>
+<div><pre> typedef struct _ENUM_LIST {
+   DWORD EntryCount;
+   [size_is(EntryCount)] ENUM_ENTRY Entry[*];
+ } ENUM_LIST,
+  *PENUM_LIST;
+</pre></div>
+</dd></dl><p><b>EntryCount:</b> An unsigned 32-bit integer. The
+number of elements in the field Entry.</p><p><b>Entry:</b> An array of <b>ENUM_ENTRY</b>
+structures that represents the contents of the list.</p></div>

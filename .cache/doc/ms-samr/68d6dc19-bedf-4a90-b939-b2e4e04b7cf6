@@ -1,0 +1,12 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/68d6dc19-bedf-4a90-b939-b2e4e04b7cf6" data-linktype="external">msdn link</a></p><p>The OLD_LARGE_INTEGER structure defines a 64-bit value that
+is accessible in two 4-byte chunks.</p><dl>
+<dd>
+<div><pre> typedef struct _OLD_LARGE_INTEGER {
+   unsigned long LowPart;
+   long HighPart;
+ } OLD_LARGE_INTEGER,
+  *POLD_LARGE_INTEGER;
+</pre></div>
+</dd></dl><p><b>LowPart:</b>  The least-significant
+portion of a 64-bit value.</p><p><b>HighPart:</b>  The most-significant
+portion of a 64-bit value.</p></div>

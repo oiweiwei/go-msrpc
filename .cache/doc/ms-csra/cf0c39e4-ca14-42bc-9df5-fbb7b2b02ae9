@@ -1,0 +1,196 @@
+<div class="content"><p>The GetCAProperty method is used to retrieve the value of a
+specific property from the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a>.
+</p><dl>
+<dd>
+<div><pre> HRESULT GetCAProperty(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] LONG PropId,
+   [in] LONG PropIndex,
+   [in] LONG PropType,
+   [out, ref] CERTTRANSBLOB* pctbPropertyValue
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b> See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.
+</p><p><b>PropId: </b>An integer value specifying the
+property to be returned. The <i>PropID</i> value MUST be one of the values in
+the table labeled PropId in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>
+section <a href="../ms-wcce/7c715f9f-db50-41c3-abfc-0021c6390d4e" data-linktype="relative-path">3.2.1.4.3.2</a>.
+If a value other than one of the listed values is used, the error E_INVALIDARG
+is returned.</p><p><b>PropIndex: </b>Some of these properties (the ones
+labeled &#34;indexed&#34; in the table in [MS-WCCE] section 3.2.1.4.3.2) have
+arrays of values. This parameter MUST be used as the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_5101391c-795d-446c-8054-7550eb75d923" data-linktype="relative-path">index</a> into such an array.
+For properties that are not arrays, this parameter MUST be ignored.</p><p><b>PropType: </b>An integer value that specifies the
+property data type.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PROPTYPE_LONG</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The property
+  type is a signed long integer or a byte array.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PROPTYPE_BINARY</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The property
+  type is binary data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PROPTYPE_STRING</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The property
+  type is a Unicode string.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pctbPropertyValue: </b> If the function succeeds,
+this method MUST return a <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a>
+structure that contains the property value. If the function fails, the contents
+are undefined. </p><dl>
+<dd>
+<p><b>Note</b>  The numeric values for the
+constants listed in this topic are defined in the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_d3a7da8d-a597-4838-9756-25e30b640ba7" data-linktype="relative-path">table</a> for the <i>PropID</i>
+parameter.</p>
+</dd>
+<dd>
+<p>The data type of the value returned depends on the
+value specified in the <i>PropType</i> parameter and the property specified in
+the <i>PropID</i> parameter:</p>
+</dd></dl><ul><li><p><span><span>  </span></span>If
+PROPTYPE_STRING is specified in the <i>PropType</i> parameter,
+pctbPropertyValue MUST be a pointer to a CERTTRANSBLOB structure. The <b>pb</b>
+member of the structure points to the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a> encoded
+Unicode string. The length, in bytes, of the string MUST be contained in the <b>cb
+</b>member.</p>
+</li><li><p><span><span>  </span></span>If
+PROPTYPE_LONG is specified in the <i>PropType</i> parameter, there are two
+possible return types depending on the <i>PropID</i>. The first type is the
+return of a CAINFO structure (as specified in [MS-WCCE] section <a href="../ms-wcce/4fa5241c-d10e-4011-87e0-c74753d725a3" data-linktype="relative-path">2.2.2.4</a>)
+and the second type is for the return of a BYTE array: </p>
+<ul><li><p><span><span> 
+</span></span>If the value passed in <i>PropId</i> maps to one of the following
+properties, <i>pctbPropertyValue</i> is a pointer to a CERTTRANSBLOB structure,
+and the <b>pb</b> member of that structure MUST contain a pointer to a CAINFO
+structure that contains the values of the properties listed as follows. The
+marshaling rules for a CAINFO structure in a CERTTRANSBLOB are specified in
+[MS-WCCE] section <a href="../ms-wcce/cd9656c0-6be3-4887-84b0-aacedc017b0b" data-linktype="relative-path">2.2.2.2.5</a>:
+</p>
+<ul><li><p><span><span> 
+</span></span>CR_PROP_CATYPE</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_CASIGCERTCOUNT</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_CAXCHGCERTCOUNT</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_EXITCOUNT</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_CAPROPIDMAX</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_KRACERTUSEDCOUNT</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_ROLESEPARATIONENABLED</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_KRACERTCOUNT</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_ADVANCEDSERVER</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the value passed in <i>PropId</i> maps to one of the following
+properties, <i>pctbPropertyValue</i> is a pointer to a CERTTRANSBLOB structure,
+and the <b>pb</b> member of the structure points to a byte array containing the
+value for the requested property. The marshaling rules for each property are
+specified in the subsection of [MS-WCCE] section 3.2.1.4.3.2 that corresponds
+to the property name. The <b>cb</b> member contains the length of the byte
+array: </p>
+<ul><li><p><span><span> 
+</span></span>CR_PROP_CACERTSTATE</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_CRLSTATE</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_KRACERTSTATE</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_BASECRLPUBLISHSTATE</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_DELTACRLPUBLISHSTATE</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_CACERTSTATUSCODE</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_CAFORWARDCROSSCERTSTATE</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_CABACKWARDCROSSCERTSTATE</p>
+</li></ul></li></ul></li><li><p><span><span>  </span></span>If
+PROPTYPE_BINARY is specified in the <i>PropType</i> parameter, <i>pctbPropertyValue</i>
+MUST be a pointer to a CERTTRANSBLOB structure. The <b>pb </b>member of the
+structure points to the requested binary large object (BLOB).</p>
+<p>Based on the property identifier
+passed in <i>PropId</i>, the binary data pointed to by the <b>pb </b>member
+MUST be populated as follows:</p>
+<ul><li><p><span><span> 
+</span></span>CR_PROP_CASIGCERT: MUST be an X.509 <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> encoded using
+DER, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90592" data-linktype="external">[X660]</a>.</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_BASECRL: MUST be a X.509 <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_4f22841f-249b-42fb-a31a-5049c00be939" data-linktype="relative-path">CRL</a> encoded using DER, as
+specified in [X660].</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_CAFORWARDCROSSCERT: MUST be a X.509 certificate encoded
+using DER, as specified in [X660].</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_CABACKWARDCROSSCERT: MUST be a X.509 certificate encoded
+using DER, as specified in [X660].</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_CAXCHGCERT: MUST be a X.509 certificate encoded using
+DER, as specified in [X660].</p>
+</li></ul><p>The CA MUST execute the processing
+rules specified in [MS-WCCE] section <a href="../ms-wcce/585d9359-4bc5-471f-bba7-2d9a336debdc" data-linktype="relative-path">3.2.1.4.3.2.15</a>,
+&#34;PropID = 0x0000000F (CR_PROP_CAXCHGCERT) &#34;CA Exchange
+Certificate&#34;&#34;.</p>
+<ul><li><p><span><span> 
+</span></span>CR_PROP_CAXCHGCERTCHAIN: MUST be a CMS message, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90382" data-linktype="external">[RFC2797]</a>encoded using
+DER, as specified in [X660].</p>
+</li></ul><p>The CA MUST execute the processing
+rules specified in [MS-WCCE] section <a href="../ms-wcce/d38e7259-d0d6-4adb-b111-2bac47c64bed" data-linktype="relative-path">3.2.1.4.3.2.16</a>,
+&#34;PropID = 0x00000010 (CR_PROP_CAXCHGCERTCHAIN) &#34;CA Exchange
+Certificate Chain&#34;&#34;.</p>
+<ul><li><p><span><span> 
+</span></span>CR_PROP_CASIGCERTCHAIN: MUST be a CMS message [RFC2797] encoded
+using DER. [X660].</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_CASIGCERTCRLCHAIN: MUST be a CMS message, as specified in
+[RFC2797], encoded using DER, as specified in [X660].</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_CASIGCERTCRLCHAIN: MUST be a CMS message, as specified in
+[RFC2797], encoded using DER, as specified in [X660].</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_CAXCHGCERTCRLCHAIN: CR_PROP_CASIGCERTCRLCHAIN: MUST be a
+CMS message, as specified in [RFC2797], encoded using DER, as specified in
+[X660].</p>
+</li></ul><p>The CA MUST execute the processing
+rules specified in [MS-WCCE] section <a href="../ms-wcce/5dbf4c4f-3ac1-426a-9425-ff96968a1b6a" data-linktype="relative-path">3.2.1.4.3.2.33</a>,
+&#34;PropID = 0x00000021 (CR_PROP_CAXCHGCERTCRLCHAIN) &#34;CA Exchange
+Certificate Chain and CRL&#34;&#34;.</p>
+<ul><li><p><span><span> 
+</span></span>CR_PROP_DELTACRL: MUST be a X.509 CRL encoded using DER [X660].</p>
+</li><li><p><span><span> 
+</span></span>CR_PROP_KRACERT: MUST be a X.509 CRL encoded using DER, as
+specified in [X660].</p>
+</li></ul></li></ul><p>The marshaling rules for each of the preceding properties
+into a CERTTRANSBLOB are specified in [MS-WCCE] sections <a href="../ms-wcce/213be3a0-7895-446a-ad9e-6847447ff295" data-linktype="relative-path">2.2.2.2.2</a>
+(for X.509 certificate), <a href="../ms-wcce/8d8693ad-39f9-464f-9225-26c7e754e3cf" data-linktype="relative-path">2.2.2.2.3</a>
+(X.509 CRL), and <a href="../ms-wcce/b38b09e8-ae1b-4e55-ab89-4f466732609b" data-linktype="relative-path">2.2.2.2.4</a>
+(CMS message).</p></div>

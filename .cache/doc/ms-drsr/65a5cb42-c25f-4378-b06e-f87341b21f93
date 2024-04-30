@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The DRS_MSG_GETCHGREPLY union defines the response messages
+received from the <span><a href="b63730ac-614c-431c-9501-28d6aca91894" data-linktype="relative-path">IDL_DRSGetNCChanges</a></span>
+method. There are no V3, V4, V5, or V8 messages.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_GETCHGREPLY_V1 V1;
+   [case(2)] 
+     DRS_MSG_GETCHGREPLY_V2 V2;
+   [case(6)] 
+     DRS_MSG_GETCHGREPLY_V6 V6;
+   [case(7)] 
+     DRS_MSG_GETCHGREPLY_V7 V7;
+   [case(9)] 
+     DRS_MSG_GETCHGREPLY_V9 V9;
+ } DRS_MSG_GETCHGREPLY;
+</pre></div>
+</dd></dl><p><b>V1:</b>  Version 1 response (Windows
+2000 operating system).</p><p><b>V2:</b>  Version 2 response (compressed
+V1).</p><p><b>V6:</b>  Version 6 response (Windows
+Server 2003 operating system).</p><p><b>V7:</b>  Version 7 response (compressed
+V6 or V9).</p><p><b>V9:</b>  Version 9 response (V6 with additional
+link-value metadata).</p></div>

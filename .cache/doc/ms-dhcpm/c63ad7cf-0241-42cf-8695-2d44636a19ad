@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The <b>DHCP_SUBNET_ELEMENT_TYPE_V6</b> enumeration defines
+the type of a configuration parameter for a DHCPv6 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_128cd76b-eecb-41e6-96f7-f73c2bf9235a" data-linktype="relative-path">scope</a></span> configured on
+the DHCP server. This value is used in conjunction with other data types to
+specify the configuration parameters for a DHCPv6 scope by the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+methods defined in this specification.</p><dl>
+<dd>
+<div><pre> typedef  enum _DHCP_SUBNET_ELEMENT_TYPE_V6
+ {
+   Dhcpv6IpRanges,
+   Dhcpv6ReservedIps,
+   Dhcpv6ExcludedIpRanges
+ } DHCP_SUBNET_ELEMENT_TYPE_V6,
+  *LPDHCP_SUBNET_ELEMENT_TYPE_V6;
+</pre></div>
+</dd></dl><p><b>Dhcpv6IpRanges: </b>The configuration parameter is
+not used, and it MUST NOT be used by an RPC method defined in this
+specification. If this is used in any of the methods, the method would return
+ERROR_INVALID_PARAMETER, except for <span><a href="2bb3dac1-b29c-4457-8297-2201f28930f8" data-linktype="relative-path">R_DhcpAddSubnetElementV6</a></span>
+and <span><a href="7dab79b0-47b5-49a5-bca2-0fb41ecf5447" data-linktype="relative-path">R_DhcpRemoveSubnetElementV6</a></span>,
+which return ERROR_SUCCESS.</p><p><b>Dhcpv6ReservedIps: </b>The configuration parameter
+is a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservation</a></span>
+for a DHCPv6 client in a DHCPv6 scope element configured on the DHCP server.</p><p><b>Dhcpv6ExcludedIpRanges: </b>The configuration
+parameter is the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_64d30865-9640-4009-a80a-861966749767" data-linktype="relative-path">exclusion range</a></span> of a
+DHCPv6 subnet configured on the DHCPv6 server.</p></div>

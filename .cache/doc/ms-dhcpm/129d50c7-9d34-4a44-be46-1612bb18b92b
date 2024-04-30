@@ -1,0 +1,76 @@
+<div class="content"><p> </p><p>The <b>R_DhcpDeleteSubnetV6</b> method deletes an IPv6
+prefix from the DHCPv6 server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpDeleteSubnetV6(
+     [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+     [in]    DHCP_IPV6_ADDRESS SubnetAddress,
+     [in]    DHCP_FORCE_FLAG ForceFlag
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SubnetAddress: </b>This is of type <span><a href="48b74c46-bf64-40db-92b9-6e61cee1bd33" data-linktype="relative-path">DHCP_IPV6_ADDRESS (section 2.2.1.2.28)</a></span>
+that contains the IPv6 address of the subnet that needs to be removed from the
+DHCPv6 server.</p><p><b>ForceFlag: </b>This is of type <span><a href="3aca524f-86d6-494c-beaf-35c3936780a5" data-linktype="relative-path">DHCP_FORCE_FLAG (section 2.2.1.1.9)</a></span>
+enumeration.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E27</p>
+  <p>ERROR_DHCP_ELEMENT_CANT_REMOVE</p>
+  </td>
+  <td>
+  <p>The specified subnet cannot be deleted because at
+  least one IPv6 address has been leased out to some client from the subnet.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 62.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv6Scope</b> object corresponding to <b>prefixAddress</b>
+from <b>DHCPv6ScopeList</b>. If the <b>DHCPv6Scope</b> object is not found,
+return ERROR_FILE_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ForceFlag</b> is DhcpNoForce, and <b>DHCPv6Scope.DHCPv6ClientInfoList</b>
+is not empty, then return ERROR_DHCP_ELEMENT_CANT_REMOVE.<a id="Appendix_A_Target_65"></a><a aria-label="Product behavior note 65" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_65" data-linktype="relative-path">&lt;65&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Retrieve <b>DHCPv6Scope.DHCPv6ExclusionRangeList</b>, <b>DHCPv6Scope.DHCPv6ReservationList</b>,
+and <b>DHCPv6Scope.DHCPv6ScopeOptionList</b> objects from this <b>DHCPv6Scope</b>
+object, and delete each entry in those lists. </p>
+</li><li><p><span><span> 
+</span></span>Delete the <b>DHCPv6Scope</b> object from <b>DHCPv6ScopeList</b>.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

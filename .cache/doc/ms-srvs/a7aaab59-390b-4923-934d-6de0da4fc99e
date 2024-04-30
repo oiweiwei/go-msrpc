@@ -1,0 +1,8 @@
+<div class="content"><p>This document specifies the Server Service Remote Protocol.
+The Server Service Remote Protocol is a <a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a>–based
+protocol that is used for remotely enabling file and printer sharing and <a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_34f1dfa8-b1df-4d77-aa6e-d777422f9dca" data-linktype="relative-path">named pipe</a> access to the <a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> through the Server
+Message Block (SMB) Protocol, as specified in <a href="../ms-smb/f210069c-7086-4dc2-885e-861d837df688" data-linktype="relative-path">[MS-SMB]</a>.
+The protocol is also used for remote administration of servers that are running
+Windows.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

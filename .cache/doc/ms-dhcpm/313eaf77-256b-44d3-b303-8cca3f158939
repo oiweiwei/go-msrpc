@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The <b>DHCP_OPTION_VALUE_ARRAY</b> structure defines an
+array of <span><a href="fa30c949-e063-4aea-b839-a6210e77741e" data-linktype="relative-path">DHCP_OPTION_VALUE (section 2.2.1.2.42)</a></span>
+structures. This structure is used in the <span><a href="e9cf1506-47f6-4d93-9893-a0b97b36425a" data-linktype="relative-path">DHCP_ALL_OPTION_VALUES (section 2.2.1.2.44)</a></span>
+structure. The first member contains the number of option values, and the
+second member points to the array of length <b>NumElements</b> containing
+option values.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_OPTION_VALUE_ARRAY {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_OPTION_VALUE Values;
+ } DHCP_OPTION_VALUE_ARRAY,
+  *LPDHCP_OPTION_VALUE_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This is a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+that specifies the number of option values in the subsequent field the <b>Values</b>
+member.</p><p><b>Values:</b>  This is a pointer to an
+array of <b>DHCP_OPTION_VALUE</b> structures of length <b>NumElements</b> that
+contains values.</p></div>

@@ -1,0 +1,113 @@
+<div class="content"><p>The EnumAttributesOrExtensions method is used to access sets
+of <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attributes</a> or
+extensions for a particular row ID.</p><dl>
+<dd>
+<div><pre> HRESULT EnumAttributesOrExtensions(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] DWORD RowId,
+   [in] DWORD Flags,
+   [in, string, unique] wchar_t const* pwszLast,
+   [in] DWORD celt,
+   [out] DWORD* pceltFetched,
+   [out, ref] CERTTRANSBLOB* pctbOut
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b> See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">ICertAdminD::SetExtension (section 3.1.4.1.1)</a>.
+</p><p><b>RowId: </b>An unsigned integer that specifies the <b>RequestID</b>
+value of the row to retrieve attributes or extensions.</p><p><b>Flags: </b>An unsigned integer value that MUST
+take either of the following values. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Enumerate
+  attributes</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Enumerate
+  extensions</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pwszLast: </b>A pointer to a null-terminated
+UNICODE string that specifies the name of the attribute or extension beyond
+which the data is requested. If the value of <b>Flags</b> is 1, the name MUST
+be an <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_aaaf2f1a-0b0a-487e-a0f0-c3510a6091b2" data-linktype="relative-path">OID (1)</a> string as
+specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90594" data-linktype="external">[X680]</a>.</p><p><b>celt: </b>An unsigned integer value that specifies
+the requested count of attributes (<a href="e5a321ec-89a5-4a2a-be22-9d87b4566e80" data-linktype="relative-path">CERTTRANSDBATTRIBUTE</a>) or
+extensions (<a href="65b7bde4-e2a2-40dc-99b6-2312903dec37" data-linktype="relative-path">CERTTRANSDBEXTENSION</a>)
+structures to be returned to the client.</p><p><b>pceltFetched: </b>A pointer to the unsigned
+integer that receives the actual count of the attributes (CERTTRANSDBATTRIBUTE)
+or extensions (CERTTRANSDBEXTENSION) structure data returned by the server in
+the <i>pctbOut</i> parameter.</p><p><b>pctbOut: </b>A pointer to the <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure.
+The data returned is marshaled CERTTRANSDBATTRIBUTE or CERTTRANSDBEXTENSION
+structure array as described in CERTTRANSDBATTRIBUTE and CERTTRANSDBEXTENSION.</p><p>The EnumAttributesOrExtensions method obtains information
+about the attributes or extensions (as specified in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>
+section <a href="../ms-wcce/9503393d-7b41-42d0-adcf-2c4ac206406d" data-linktype="relative-path">2.2.2.7</a>)
+that are associated with a specific request in the Request <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_d3a7da8d-a597-4838-9756-25e30b640ba7" data-linktype="relative-path">table</a>.</p><p>The <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a>
+server MUST apply the following ordered processing rules. If an error is
+encountered, the CA SHOULD return the specified error and terminate the
+processing of the method:</p><ol><li><p><span>    </span>The CA server
+MUST enforce that the <i>Flags</i> parameter is either 0 or 1; otherwise, it
+MUST return an error. The error SHOULD be ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span>    </span>The CA server
+MUST enforce that the <i>RowId</i> parameter value is greater than 0 and that a
+row exists in the Request table with the specified <i>RowId</i> in the
+Request_Request_ID column. Otherwise, the CA Server MUST return an error code.
+If the <i>RowId</i> parameter value is not greater than 0, the error code
+SHOULD be ERROR_INVALID_PARAMETER. If the row does not exist, the error SHOULD
+be 0x80094004.</p>
+</li><li><p><span>    </span>If the value of
+the <i>Flags</i> parameter is 0x00000000, the CA MUST compute the set of rows
+from the Attribute table, where each row MUST have the same value in its
+Request_ID_Attribute column as the <i>RowId</i> parameter value. If the <i>pwszLast</i>
+parameter is not NULL, the CA MUST find the row in the set that has the same
+value in the AttributeName as the value of the <i>pwszLast</i> parameter
+(case-insensitive comparison). If the row is not found, the CA MUST fail. The
+error code SHOULD be 0x80094004. If the row is found, the CA MUST remove the
+rows prior to this row (including this row) from the set of rows to return to
+the client.</p>
+<p><b>Note</b>  The
+computed set of rows from this step is referred to as the &#34;resultant
+set&#34; in steps 5 and 7.</p>
+</li><li><p><span>    </span>If the value of
+the <i>Flags</i> parameter is 0x00000001, the CA MUST compute the set of rows
+from the Extension table, where each row MUST have the same value in its
+Request_ID_Extension column as the <i>RowId</i> parameter value. If the <i>pwszLast</i>
+parameter is not NULL, the CA MUST find the row in the set that has the same
+value in the ExtensionName as the value of the <i>pwszLast</i> parameter
+(case-insensitive comparison). If the row is not found, the CA MUST fail. The
+error code SHOULD be ERROR_INVALID_PARAMETER. If the row is found, the CA MUST
+remove the rows prior to this row (including this row) from the set of rows to
+return to the client.</p>
+<p><b>Note</b>  The
+computed set of rows from this step is referred to as the resultant set in
+steps 5 and 7.</p>
+</li><li><p><span>    </span>The value of the
+<i>celt</i> parameter is referred to as RequestedRows. If RequestedRows is smaller
+than the number of the rows in the resultant set, the CA MUST return in step 7
+only the first RequestedRows rows in the sorted resultant set, and remove the
+rest of the rows from the resultant set.</p>
+</li><li><p><span>    </span>The value of the
+<i>*pceltFetched</i> parameter MUST be set to the number of the rows in the
+resultant rows set returned in step 7.</p>
+</li><li><p><span>    </span>The CA MUST
+return the resultant set in the <i>pctbOut</i> parameter. The format and
+marshaling for the value of <i>pctbOut</i> is described in CERTTRANSDBATTRIBUTE
+and CERTTRANSDBEXTENSION. </p>
+</li></ol></div>

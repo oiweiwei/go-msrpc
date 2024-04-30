@@ -1,0 +1,137 @@
+<div class="content"><p> </p><p>The <b>FAX_ConnectFaxServer (Opnum 80)</b> method is called
+by the client to create a connection to the fax server.</p><p>Protocol version FAX_API_VERSION_0 (0x00000000) fax servers
+SHOULD NOT implement this method. </p><p>If the underlying RPC layer fails this call by returning
+RPC_S_PROCNUM_OUT_OF_RANGE (0x000006D1), the fax client SHOULD consider the
+server protocol (and API version) to be FAX_API_VERSION_0 and MAY retry this
+request by switching to the <b>FaxObs Server Interface</b> (section <span><a href="1c8fe732-62a3-45b2-9190-7f6e76f89cae" data-linktype="relative-path">3.1.4.2</a></span>)
+and calling the <b>FaxObs_ConnectionRefCount</b> (section <span><a href="9430f7e2-d21d-4a38-a859-367b74f68a1a" data-linktype="relative-path">3.1.4.2.2</a></span>)
+method.</p><p>In response, if the <b>bAutoCreateAccountOnConnect</b> field
+of the <b>FAX_GENERAL_CONFIG</b> (section <span><a href="7b87f66e-e7bf-4294-be2f-669de0595bde" data-linktype="relative-path">2.2.31</a></span>) structure
+is set to FALSE, the server MUST validate whether the calling user&#39;s
+authenticated user identity has a fax user account associated on the fax server
+and MUST validate whether this client&#39;s fax user account has any fax user
+access rights. On success, the server MUST create a connection handle. </p><p>The client MUST call the <b>FAX_ConnectionRefCount</b> (section
+<span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>)
+method at the end of the session to disconnect the session and close the
+connection handle. This call MUST include a value of 0x00000000 for the <i>Connect</i>
+argument as well as the connection handle returned by the server via the <b>FAX_ConnectFaxServer</b>
+(section 3.1.4.1.10) method as the <i>Handle</i> argument.</p><p>If the <b>bAutoCreateAccountOnConnect</b> field of the <b>FAX_GENERAL_CONFIG</b> is
+set to FALSE and the calling user&#39;s <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_916785d4-dee1-4e63-99a7-ba30240ae3d8" data-linktype="relative-path">authenticated user identity</a></span>
+does not have a fax user account associated on the fax server, <b>FAX_ConnectFaxServer</b>
+MUST fail with ERROR_ACCESS_DENIED.</p><p>If the <b>bAutoCreateAccountOnConnect</b> field of the <b>FAX_GENERAL_CONFIG</b> is
+set to TRUE and the calling user’s authenticated user identity does not have a
+fax user account associated on the fax server, <b>FAX_ConnectFaxServer</b> MUST
+create a new fax user account with the default fax user access rights described
+in section <span><a href="e0fd2035-1162-4282-81fd-c5d8f7fc2dfa" data-linktype="relative-path">3.1.4.1.12</a></span>.</p><p>If this call is successful, the client SHOULD retain the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle used for the <i>hBinding</i> argument and reuse it as the RPC
+binding handle input argument for all subsequent fax server calls made, until
+the connection with the server is disconnected.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_ConnectFaxServer(
+   [in] handle_t hBinding,
+   [in] DWORD dwClientAPIVersion,
+   [out, ref] LPDWORD lpdwServerAPIVersion,
+   [out, ref] PRPC_FAX_SVC_HANDLE pHandle
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle that is
+provided by the client RPC layer when the RPC call is made.</p><p><b>dwClientAPIVersion: </b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that MUST contain the protocol version (fax API version) of the client module.
+This value MUST be one of the constants defined in section <span><a href="cb429097-beb8-46ed-bf45-0fa737060f50" data-linktype="relative-path">2.2.85</a></span>
+(<b>Protocol and Fax API Version Constants</b>). The value determines the
+specific FAX_ERR error codes that can be returned by the fax server, as
+described in the following table. If the fax server receives from the fax
+client a version number greater than the server’s version number, the server
+MUST accept the request and MUST consider the client version to be the same as
+the version supported by the fax server.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FAX_API_VERSION_0</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No FAX_ERR_* values can be returned.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FAX_API_VERSION_1</p>
+  <p>0x00010000</p>
+  </td>
+  <td>
+  <p>FAX_ERR_* values in the FAX_ERR 7001-7012 range can be
+  returned.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FAX_API_VERSION_2</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>FAX_ERR_* values in the FAX_ERR 7001-7013 range can be
+  returned.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FAX_API_VERSION_3</p>
+  <p>0x00030000</p>
+  </td>
+  <td>
+  <p>FAX_ERR_* values in the FAX_ERR 7001-7013 range can be
+  returned.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>lpdwServerAPIVersion: </b>A pointer to a <b>DWORD</b>
+that contains the protocol and fax API version of the fax server that is
+reported back by the fax server to the fax client. This value MUST be one of
+the constants defined in section 2.2.85. </p><dl>
+<dd>
+<p>The fax client SHOULD use this value to determine
+which fax specific error codes are to be expected from the fax server, and also
+to determine which fax server methods are implemented by the fax server. The
+methods which are to be implemented differently depending on the protocol and
+fax API version have version differences documented in their respective
+subsections.</p>
+</dd></dl><p><b>pHandle: </b>The connection handle returned by the
+fax server. The client MUST use this connection handle as the Handle argument
+for the <b>FAX_ConnectionRefCount</b> call made to disconnect from the fax
+server at the end of the session.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return the following
+error code, one of the fax-specific errors that are defined in section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>,
+or one of the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The <b>bAutoCreateAccountOnConnect</b>
+  field of the <b>FAX_GENERAL_CONFIG</b> structure is set to FALSE and the
+  calling user&#39;s authenticated user identity does not have a fax user account
+  associated on the fax server, or the does not have any of the access rights
+  defined in <b>ALL_FAX_USER_ACCESS_RIGHTS</b> (section <span><a href="6b6ab8ee-03ec-42de-a4fa-fd0b5703b2c3" data-linktype="relative-path">2.2.83</a></span>).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown: </b>No exceptions are thrown
+except those that are thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

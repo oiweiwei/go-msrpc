@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The CVolumeId type is used to represent a <span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_3b3c1be2-035c-4823-afeb-10edbd6bb288" data-linktype="relative-path">VolumeID</a></span>,
+which is a unique identifier that represents the identity of a file system <span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct CVolumeId {
+   GUID _volume;
+ } CVolumeId;
+</pre></div>
+</dd></dl><p><b>_volume:</b>  This field MUST contain a <span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+for a volume. The lowest-order bit of this value MUST be zero. Further
+restrictions on the value of a VolumeID are defined in section <span><a href="d741765a-b678-4dbd-8898-cbc3a02a9438" data-linktype="relative-path">3.1.1</a></span>.</p></div>

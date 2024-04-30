@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The <b>USE_INFO</b> union specifies details about the
+connection between a machine on which the workstation service is running and a
+shared resource. This union is used by the methods <b>NetrUseAdd</b> (section <span><a href="e4490e47-3dbc-45c4-8995-5c6bd095fdf5" data-linktype="relative-path">3.2.4.7</a></span>)
+and <b>NetrUseGetInfo</b> (section <span><a href="2a025351-3e5b-466f-9ad5-534a2a716cbf" data-linktype="relative-path">3.2.4.8</a></span>).</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(unsigned long)] 
+ union _USE_INFO {
+   [case(0)] 
+     LPUSE_INFO_0 UseInfo0;
+   [case(1)] 
+     LPUSE_INFO_1 UseInfo1;
+   [case(2)] 
+     LPUSE_INFO_2 UseInfo2;
+   [case(3)] 
+     LPUSE_INFO_3 UseInfo3;
+   [default]     ;
+ } USE_INFO,
+  *PUSE_INFO,
+  *LPUSE_INFO;
+</pre></div>
+</dd></dl><p><b>UseInfo0:</b> Details about a connection (section <span><a href="c6253242-d630-40ba-bded-f69695357ef3" data-linktype="relative-path">2.2.5.22</a></span>).</p><p><b>UseInfo1:</b> Details about a connection (section <span><a href="969d330b-fffa-4c4f-8331-62b3989086ff" data-linktype="relative-path">2.2.5.23</a></span>).</p><p><b>UseInfo2:</b> Details about a connection (section <span><a href="144e75a6-cda2-4418-96b9-e6867b50bfba" data-linktype="relative-path">2.2.5.24</a></span>).</p><p><b>UseInfo3:</b> Details about a connection (section <span><a href="a6cb7714-e93e-4262-abd8-ca29c757a620" data-linktype="relative-path">2.2.5.25</a></span>).</p></div>

@@ -1,0 +1,24 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/e6d7a85b-b667-420d-8b0a-7f2f738c6215" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_CHANGE_NETWORK_V2</b> enumeration SHOULD<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a> list the notifications that are
+generated for a cluster network. ClusAPI Protocol version 2.0 servers do not
+support this value.</p><p>These notifications are available only with <b>ApiGetNotifyV2</b>
+(section <a href="491227be-d055-4140-8b85-35cf29f31166" data-linktype="relative-path">3.1.4.2.138</a>).
+The object type is CLUSTER_OBJECT_TYPE_NETWORK. The ParentId is not set for
+these notifications.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   CLUSTER_CHANGE_NETWORK_DELETED_V2 = 0x00000001,
+   CLUSTER_CHANGE_NETWORK_COMMON_PROPERTY_V2 = 0x00000002,
+   CLUSTER_CHANGE_NETWORK_PRIVATE_PROPERTY_V2 = 0x00000004,
+   CLUSTER_CHANGE_NETWORK_STATE_V2 = 0x00000008,
+   CLUSTER_CHANGE_NETWORK_HANDLE_CLOSE_V2 = 0x00000010
+ } CLUSTER_CHANGE_NETWORK_V2;
+</pre></div>
+</dd></dl><p><b>CLUSTER_CHANGE_NETWORK_DELETED_V2: </b>This
+notification indicates that the cluster network has been deleted.</p><p><b>CLUSTER_CHANGE_NETWORK_COMMON_PROPERTY_V2: </b>This
+notification indicates that the common properties for the cluster network have
+changed.</p><p><b>CLUSTER_CHANGE_NETWORK_PRIVATE_PROPERTY_V2: </b>This
+notification indicates that the private properties for the cluster network have
+changed.</p><p><b>CLUSTER_CHANGE_NETWORK_STATE_V2: </b>This
+notification indicates that the cluster network state has changed.</p><p><b>CLUSTER_CHANGE_NETWORK_HANDLE_CLOSE_V2: </b>For
+details of this notification, see section <a href="2f7e3a15-1ca9-4e9e-9560-2eee1a62de88" data-linktype="relative-path">3.2.4.7</a>.</p></div>

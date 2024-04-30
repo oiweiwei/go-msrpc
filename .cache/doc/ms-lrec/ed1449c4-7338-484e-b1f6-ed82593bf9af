@@ -1,0 +1,100 @@
+<div class="content"><p> </p><p>The <b>NET_EVENT_DATA_HEADER</b> structure specifies the
+size and type of the message payload in an <b>EVENT_BUFFER</b> (section <span><a href="20e0a568-8798-42b8-b81b-878190ee37db" data-linktype="relative-path">2.2.2.1</a></span>)
+structure. The buffer contains one or more <b>NET_EVENT_DATA_HEADER</b>
+structures.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DataSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>DataType</p>
+  </td>
+  <td colspan="7">
+  <p>Reserved1</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+  <td colspan="8">
+  <p>Reserved2</p>
+  </td>
+ </tr>
+</tbody></table><p><b>DataSize
+(4 bytes): </b>This field specifies the size, in bytes, of the <b>NET_EVENT_DATA_HEADER</b>
+structure and the payload specified in the <b>DataType</b> field. The value
+MUST be greater than or equal to 6 and less or equal to 65,535.</p><p><b>DataType
+(2 bytes): </b>This field specifies the type of data that follows after the <b>NET_EVENT_DATA_HEADER</b>
+structure. The field MUST be set to one of the following values.</p><dl>
+<dd>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NetEventDataEventRecord</p>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>The data is an <b>EventRecord</b> (section <span><a href="405486ce-eb82-42a5-9e45-1123306205a1" data-linktype="relative-path">2.3.2.1</a></span>)
+  structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NetEventDataLost</p>
+  <p>0x0002</p>
+  </td>
+  <td>
+  <p>The data is a <b>NET_EVENT_LOST</b> (section <span><a href="0b4092d1-5c68-40ca-8f4d-e068da84487a" data-linktype="relative-path">2.3.2.3</a></span>)
+  structure.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd></dl><p><b>Reserved1
+(7 bits): </b> This field MUST be set to zero when sent and ignored upon
+receipt.</p><p><b>A (1 bit):
+</b> If set, this field indicates the last data item in the buffer.</p><p><b>Reserved2
+(8 bits): </b> This field MUST be set to zero when sent and ignored upon
+receipt.</p></div>

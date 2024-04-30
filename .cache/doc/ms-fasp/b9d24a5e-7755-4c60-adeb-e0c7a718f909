@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>This enumeration is used to describe how preshared keys are
+encoded before being used.</p><dl>
+<dd>
+<div><pre> typedef  enum _FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING_VALUES
+ {
+   FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING_NONE = 0,
+   FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING_UTF_8 = 1,
+   FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING_MAX = 2
+ } FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING_VALUES;
+</pre></div>
+</dd></dl><p><b>FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING_NONE:  </b>Preshared
+key is not encoded. Instead, it is kept in its wide-character format. This
+symbolic constant has a value of 0.</p><p><b>FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING_UTF_8:  </b>Encode
+the preshared key using UTF-8. This symbolic constant has a value of 1.</p><p><b>FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING_MAX:  </b>This
+value and values that exceed this value are not valid and MUST NOT be used. It
+is defined for simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 2.</p></div>

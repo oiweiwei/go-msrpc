@@ -1,0 +1,51 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/b06e6b30-fe57-4e0f-ba1a-5214c953a5df" data-linktype="external">msdn link</a></p><p>The <b>NetrLogonSendToSam</b> method allows a BDC or <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8b0a073b-3099-4efe-8b81-c2886b66a870" data-linktype="relative-path">RODC</a> to forward user
+account password changes to the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a>. It SHOULD<a id="Appendix_A_Target_236"></a><a aria-label="Product behavior note 236" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_236" data-linktype="relative-path">&lt;236&gt;</a> be used by the client to
+deliver an opaque buffer to the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_6bb6ffcf-2a22-4989-89ef-6c9937f91b8b" data-linktype="relative-path">SAM database</a> (<a href="../ms-samr/4df07fab-1bbc-452f-8e92-7853a3c7e380" data-linktype="relative-path">[MS-SAMR]</a><a href="../ms-samr/814e12f6-1037-4b64-8d28-8f1b899dc57f" data-linktype="relative-path"> section 3.1.1</a>)
+on the server side. </p><dl>
+<dd>
+<div><pre> NTSTATUS NetrLogonSendToSam(
+   [in, unique, string] LOGONSRV_HANDLE PrimaryName,
+   [in, string] wchar_t* ComputerName,
+   [in] PNETLOGON_AUTHENTICATOR Authenticator,
+   [out] PNETLOGON_AUTHENTICATOR ReturnAuthenticator,
+   [in, size_is(OpaqueBufferSize)] 
+     UCHAR * OpaqueBuffer,
+   [in] ULONG OpaqueBufferSize
+ );
+</pre></div>
+</dd></dl><p><b>PrimaryName: </b>The custom binding handle, as
+defined in <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>. </p><p><b>ComputerName: </b>A null-terminated Unicode string
+that contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS
+name</a> of the client computer making the call.</p><p><b>Authenticator: </b>A pointer to a <a href="76c93227-942a-4687-ab9d-9d972ffabdab" data-linktype="relative-path">NETLOGON_AUTHENTICATOR</a>
+structure, as specified in section 2.2.1.1.5, that contains the client <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e72a2c02-84a2-4ce3-b66f-86f725642dc3" data-linktype="relative-path">authenticator</a>.</p><p><b>ReturnAuthenticator: </b>A pointer to a <b>NETLOGON_AUTHENTICATOR</b>
+structure, as specified in section 2.2.1.1.5, that contains the server return
+authenticator.</p><p><b>OpaqueBuffer: </b>A buffer to be passed to the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0b53d5bb-74ab-4705-8657-c22d32781103" data-linktype="relative-path">Security Account Manager (SAM)</a>
+service on the PDC. The buffer is encrypted on the wire.</p><p><b>OpaqueBufferSize: </b>The size, in bytes, of the <i>OpaqueBuffer</i>
+parameter.</p><p><b>Return Values: </b>The method returns 0x00000000
+on success; otherwise, it returns a nonzero error code.</p><p>On receiving this call, the server MUST perform the
+following validation steps:</p><ul><li><p><span><span> 
+</span></span>Apply Common Error Processing Rule A, specified in section <a href="2d776bfc-e81f-4c8f-9da8-4c2920f65413" data-linktype="relative-path">3</a>.</p>
+</li><li><p><span><span> 
+</span></span>Using the <i>ComputerName</i> for the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure channel</a> to find the
+corresponding record in the ClientSessionInfo table, verify the <i>Authenticator</i>
+parameter (section <a href="da7acaa3-030b-481e-979b-f58f89389806" data-linktype="relative-path">3.1.4.5</a>).
+If the <i>Authenticator</i> parameter is valid, compute the <i>ReturnAuthenticator</i>
+parameter returned (section 3.1.4.5). Otherwise, the server MUST return
+STATUS_ACCESS_DENIED.</p>
+</li></ul><p>If the <i>PrimaryName</i> parameter is not NULL, it is
+compared against the server&#39;s <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9a7bc8b3-3374-4608-8f73-be20a90b898b" data-linktype="relative-path">computer
+name</a>. If the <i>PrimaryName</i> parameter does not match the server&#39;s
+computer name, the server MUST return STATUS_INVALID_COMPUTER_NAME. If the <i>PrimaryName</i>
+parameter matches the server&#39;s computer name, or the <i>PrimaryName</i>
+parameter is NULL, then processing proceeds.</p><p>The server MUST check whether the caller is a BDC or RODC;
+otherwise, it MUST return STATUS_ACCESS_DENIED. The server determines whether
+the caller is BDC or RODC by examining the value of <i>SecureChannelType</i>
+parameter in the ClientSessionInfo table. The caller is a BDC if <i>SecureChannelType</i>
+is ServerSecureChannel. The caller is an RODC if the <i>SecureChannelType</i>
+is CdcServerSecureChannel.</p><p>The server MUST decrypt the message passed in the <i>OpaqueBuffer</i>
+parameter using the negotiated encryption algorithm (determined by bits C, O,
+or W, respectively, in the <b>NegotiateFlags</b> member of the <b>ClientSessionInfo</b>
+table entry for <i>ComputerName</i>) and the established <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_4f67a585-fb00-4166-93e8-cf4abca8226d" data-linktype="relative-path">session key</a> as the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8bf79983-1325-42db-8e2c-520c8ab2ae74" data-linktype="relative-path">decryption</a> key. The server
+passes the decrypted data to the local SAM for processing. The buffer specified
+by <i>OpaqueBuffer</i> is completely opaque to the Netlogon Protocol.</p><p>This method SHOULD be called only by a machine that has
+established a secure channel with the server.</p></div>

@@ -1,0 +1,55 @@
+<div class="content"><p>The GetSharePathsForLocalPath method returns all the network
+share paths that point to the specified local path.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_PATHMAPPER | 0x01)] HRESULT GetSharePathsForLocalPath(
+   [in] BSTR localPath,
+   [out, retval] SAFEARRAY (VARIANT)* sharePaths
+ );
+</pre></div>
+</dd></dl><p><b>localPath: </b>Contains the local path for which
+to return network shares for. </p><p><b>sharePaths: </b>Pointer to a <a href="../ms-oaut/2e87a537-9305-41c6-a88b-b79809b3703a" data-linktype="relative-path">SAFEARRAY</a>
+that upon completion contains all the network share paths that point to the
+specified path.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045306</p>
+  <p>FSRM_E_INVALID_PATH</p>
+  </td>
+  <td>
+  <p>The local path to return network shares does not exist
+  or exceeds the maximum length of 260 characters.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>localPath</i> parameter is
+  empty or NULL.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>sharePaths</i> parameter
+  is NULL.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>localPath</i> directory is not NULL or empty.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>sharePaths</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST populate <i>sharePaths</i> with all the
+network share paths that have the <i>localPath</i> as a parent directory.</p></div>

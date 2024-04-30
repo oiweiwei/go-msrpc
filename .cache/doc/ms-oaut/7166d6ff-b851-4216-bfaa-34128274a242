@@ -1,0 +1,73 @@
+<div class="content"><p> </p><p>The GetIDsOfNames method maps a single member (method or
+property) name, and an optional set of argument names, to a corresponding set
+of integer <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_3792c5cc-783c-4b2a-a71e-c1ec3f432474" data-linktype="relative-path">DISPIDs</a></span>, which can
+be used on subsequent calls to <span><a href="5c2a1997-60d7-496d-8d9a-ed940bbb82eb" data-linktype="relative-path">IDispatch::Invoke</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT GetIDsOfNames(
+   [in] REFIID riid,
+   [in, size_is(cNames)] LPOLESTR* rgszNames,
+   [in, range(0,16384)] UINT cNames,
+   [in] LCID lcid,
+   [out, size_is(cNames)] DISPID* rgDispId
+ );
+</pre></div>
+</dd></dl><p><b>riid: </b>MUST equal IID_NULL (see section <span><a href="58504586-e4af-44a3-be04-f1dc281b7429" data-linktype="relative-path">1.9</a></span>).</p><p><b>rgszNames: </b>MUST be the array of strings to be
+mapped. The first string in the array MUST specify the name of a method or
+property that is supported by the server. Any additional strings MUST contain
+the names of all arguments for the method or property that is specified by the
+value in the first string. The mapping MUST be case-insensitive.</p><p><b>cNames: </b>MUST equal the count of names to be
+mapped, and MUST<a id="Appendix_A_Target_54"></a><a aria-label="Product behavior note 54" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_54" data-linktype="relative-path">&lt;54&gt;</a> be between 0 and 16384.</p><p><b>lcid: </b>MUST equal the locale ID in which to
+interpret the names.</p><p><b>rgDispId: </b>MUST be an array of DISPIDs that are
+filled in by the server. Each DISPID corresponds, by position, to one of the
+names passed in <i>rgszNames</i>.</p><p><b>Return Values: </b>The method MUST return
+information in an HRESULT data structure, as defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD does
+not match a value in the following table, a fatal failure occurred.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD
+matches a value in the following table, a failure occurred. </p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80020006</p>
+  <p>DISP_E_UNKNOWNNAME</p>
+  </td>
+  <td>
+  <p>One or more names were not known. The returned array
+  of DISPIDs MUST contain at least one DISPID_UNKNOWN, and there MUST be one
+  DISPID_UNKNOWN for each entry that corresponds to an unknown name. See
+  [MS-ERREF].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80020001</p>
+  <p>DISP_E_UNKNOWNINTERFACE</p>
+  </td>
+  <td>
+  <p>The interface identifier passed in riid is not
+  IID_NULL. See [MS-ERREF].</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p>Exceptions Thrown: No exceptions are thrown from this method
+except those that are thrown by the underlying RPC Protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>When GetIDsOfNames is called with more than one name, the
+first name (rgszNames[0]) corresponds to the member name, and subsequent names
+correspond to the names of member parameters. </p><p>The same name can map to different DISPIDs, depending on
+context. For example, a name can have a DISPID when it is used as: a member
+name with a particular interface, a different ID as a member of a different
+interface, or a different mapping for each time it appears as a parameter.</p><p>The implementation of GetIDsOfNames MUST be
+case-insensitive.</p><p>An implementation of the OLE Automation Protocol MAY<a id="Appendix_A_Target_55"></a><a aria-label="Product behavior note 55" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_55" data-linktype="relative-path">&lt;55&gt;</a> choose to implement a mapping
+for the parameter names that map to the index of the parameter in the member
+parameter list.</p></div>

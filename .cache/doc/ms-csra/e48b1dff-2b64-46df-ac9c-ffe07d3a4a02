@@ -1,0 +1,25 @@
+<div class="content"><p>The RestoreGetDatabaseLocation method retrieves the list of <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> server database location
+names for all the database files being restored.</p><dl>
+<dd>
+<div><pre> HRESULT RestoreGetDatabaseLocations(
+   [out, size_is(, *pcwcPaths)] WCHAR** ppwszzDatabaseLocations,
+   [out] LONG* pcwcPaths
+ );
+</pre></div>
+</dd></dl><p><b>ppwszzDatabaseLocations: </b>A pointer to a <a href="../ms-dtyp/7df7c1d5-492c-4db4-a992-5cd9e887c5d7" data-linktype="relative-path">WCHAR</a>
+pointer that will receive the list of null-terminated database location names
+and the log directory name. Detailed information about database file name
+structure formatting is specified in section <a href="488b6344-ad86-49d9-b28c-e339ffcbb124" data-linktype="relative-path">2.2.4</a>.</p><p><b>pcwcPaths: </b>A pointer to the <a href="../ms-dtyp/29d44d70-382f-4998-9d76-8a1fe93e445c" data-linktype="relative-path">LONG</a>
+value that specifies the number of characters in <i>ppwszzDatabaseLocations</i>.</p><p>The CA server MUST apply the following processing rules:</p><ul><li><p><span><span> 
+</span></span>If Config_CA_Interface_Flags contains the value
+IF_NOREMOTEICERTADMINBACKUP, the server SHOULD return an error.<a id="Appendix_A_Target_64"></a><a aria-label="Product behavior note 64" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_64" data-linktype="relative-path">&lt;64&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>The CA server MUST return a list that includes the CA database
+file name and the locations to which the CA log and system files will be
+restored. The locations MUST be accessible to the CA. The database file name
+MUST be in <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c9507dca-291d-4fd6-9cba-a9ee7da8c908" data-linktype="relative-path">UNC</a> format
+and MUST be prefixed with &#34;D&#34;. The log file location MUST be in UNC
+format and prefixed with a character whose value is 130. The system file
+location MUST be in UNC format and prefixed with a character whose value is
+131.</p>
+</li></ul></div>

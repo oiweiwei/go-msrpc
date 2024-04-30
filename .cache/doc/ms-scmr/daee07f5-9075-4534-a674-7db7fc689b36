@@ -1,0 +1,205 @@
+<div class="content"><dl>
+<dd>
+<dl>
+<dd>
+<p>The QUERY_SERVICE_CONFIGA structure defines
+configuration information about an installed service. String values are stored
+in ANSI.</p>
+</dd></dl></dd>
+<dd>
+<div><pre> typedef struct _QUERY_SERVICE_CONFIGA {
+   DWORD dwServiceType;
+   DWORD dwStartType;
+   DWORD dwErrorControl;
+   [string,range(0, 8 * 1024)] LPSTR lpBinaryPathName;
+   [string,range(0, 8 * 1024)] LPSTR lpLoadOrderGroup;
+   DWORD dwTagId;
+   [string,range(0, 8 * 1024)] LPSTR lpDependencies;
+   [string,range(0, 8 * 1024)] LPSTR lpServiceStartName;
+   [string,range(0, 8 * 1024)] LPSTR lpDisplayName;
+ } QUERY_SERVICE_CONFIGA,
+  *LPQUERY_SERVICE_CONFIGA;
+</pre></div>
+</dd></dl><p><b>dwServiceType:</b>  The type of service.
+This member MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SERVICE_KERNEL_DRIVER</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>A driver service. These are services that manage
+  devices on the system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_FILE_SYSTEM_DRIVER</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>A file system driver service. These are services that
+  manage file systems on the system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_WIN32_OWN_PROCESS</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>A service that runs in its own process.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_WIN32_SHARE_PROCESS</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>A service that shares a process with other services.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwStartType:</b>  Defines when to start
+the service. This member MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SERVICE_BOOT_START</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Starts the driver service when the system boots up.
+  This value is valid only for driver services.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_SYSTEM_START</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Starts the driver service when the system boots up.
+  This value is valid only for driver services. The services marked SERVICE_SYSTEM_START
+  are started after all SERVICE_BOOT_START services have been started.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_AUTO_START</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>A service started automatically by the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a> during system
+  startup.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_DEMAND_START</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Starts the service when a client requests the SCM to
+  start the service.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_DISABLED</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>A service that cannot be started. Attempts to start
+  the service result in the error code ERROR_SERVICE_DISABLED.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwErrorControl:</b>  The severity of the
+error if this service fails to start during startup, and the action that the
+SCM takes if failure occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SERVICE_ERROR_IGNORE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The SCM ignores the error and continues the startup
+  operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_ERROR_NORMAL</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The SCM logs the error in the event log and continues
+  the startup operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_ERROR_SEVERE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The SCM logs the error in the event log. If the
+  last-known good configuration is being started, the startup operation
+  continues. Otherwise, the system is restarted with the last-known good
+  configuration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_ERROR_CRITICAL</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The SCM SHOULD log the error in the event log if
+  possible. If the last-known good configuration is being started, the startup
+  operation fails. Otherwise, the system is restarted with the last-known good
+  configuration.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>lpBinaryPathName:</b>  A pointer to a
+null-terminated string that contains the fully qualified path to the service
+binary file. The path MAY include arguments. If the path contains a space, it
+MUST be quoted so that it is correctly interpreted. For example, &#34;d:\\my
+share\\myservice.exe&#34; is specified as &#34;\&#34;d:\\my
+share\\myservice.exe\&#34;&#34;.</p><p><b>lpLoadOrderGroup:</b>  A pointer to a
+null-terminated string that names the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_8ee1e5c0-3886-409f-8707-197e6232042d" data-linktype="relative-path">service group</a> for
+load-ordering of which this service is a member. If the pointer is NULL or if
+it points to an empty string, the service does not belong to a group.</p><p><b>dwTagId:</b>  A unique tag value for
+this service within the service group specified by the <i>lpLoadOrderGroup</i>
+parameter. A value of 0 indicates that the service has not been assigned a tag.</p><p><b>lpDependencies:</b>  A pointer to an
+array of null-separated names of services or names of service groups that MUST
+start before this service. The array is doubly null-terminated. Service group
+names are prefixed with a &#34;+&#34; character (to distinguish them from
+service names). If the pointer is <b>NULL</b> or if it points to an empty
+string, the service has no dependencies. Cyclic dependency between services is
+not allowed. The character set is <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_100cd8a6-5cb1-4895-9de6-e4a3c224a583" data-linktype="relative-path">ANSI</a>. Dependency on a
+service means that this service can only run if the service it depends on is
+running. Dependency on a group means that this service can run if at least one
+member of the group is running after an attempt to start all members of the
+group.</p><p><b>lpServiceStartName:</b>  A pointer to a
+null-terminated string that contains the service name.</p><p><b>lpDisplayName:</b>  A pointer to a
+null-terminated string that contains the service display name.</p></div>

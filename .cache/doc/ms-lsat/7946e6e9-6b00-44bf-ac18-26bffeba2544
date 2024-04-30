@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The purpose of this protocol is to translate human-readable
+names to <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security identifiers (SIDs)</a></span>,
+as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">2.4.2</a></span>,
+and vice versa. The syntax of human-readable names is specified in section <span><a href="2c0e8a6d-df0f-4c77-bbeb-f7cd0f6b2361" data-linktype="relative-path">3.1.4.5</a></span>.
+For example, this protocol can be used to translate &#34;corp\John&#34; to
+&#34;S-1-5-21-397955417-626881126-188441444-1555&#34;, and vice versa.</p><p>This translation is needed for different scenarios, such as
+managing access to resources. In Windows, access to resources is controlled by
+a security descriptor attached to the resource. This security descriptor
+contains a list of SIDs indicating the <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principals</a></span>
+and the kind of access allowed or denied for those principals. In order for
+humans to manage access to resources, translation occurs between SIDs
+(persisted within security descriptors) and human-readable identifiers (in the
+user interface).</p><p>This protocol is intended for use between any two machines,
+most frequently between a <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_6234a38c-ed1b-4c69-969f-6e6479566f65" data-linktype="relative-path">domain member</a></span> and a <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain
+controller (DC)</a></span> for that <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>. This
+protocol can also be used between domain controllers for <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trusting</a></span>
+domains or <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forests</a></span>.</p><p>This protocol is a simple request/response-based <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote
+procedure call (RPC)</a></span> protocol. There are no long-lived sessions,
+although clients are free to cache the RPC connection and reuse it over time. A
+sample sequence of requests and responses is shown in section <span><a href="b1c74144-daef-4246-8037-73922564e3d3" data-linktype="relative-path">4</a></span>.
+</p></div>

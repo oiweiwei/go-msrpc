@@ -1,0 +1,468 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/f28f42b7-173c-4cda-9809-3fe4a5213ab3" data-linktype="external">msdn link</a></p><p>The LSAPR_TRUSTED_DOMAIN_INFORMATION_EX structure
+communicates properties of a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted
+domain</a>. The following structure corresponds to the
+TrustedDomainInformationEx information class. <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">Domain</a> <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trusts</a> are specified in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/fe369d31-cc17-4ad7-849e-769403bc2c41" data-linktype="relative-path">6.1.6</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_TRUSTED_DOMAIN_INFORMATION_EX {
+   RPC_UNICODE_STRING Name;
+   RPC_UNICODE_STRING FlatName;
+   PRPC_SID Sid;
+   unsigned long TrustDirection;
+   unsigned long TrustType;
+   unsigned long TrustAttributes;
+ } LSAPR_TRUSTED_DOMAIN_INFORMATION_EX,
+  *PLSAPR_TRUSTED_DOMAIN_INFORMATION_EX;
+</pre></div>
+</dd></dl><p><b>Name:</b>  The <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_102a36e2-f66f-49e2-bee3-558736b2ecd5" data-linktype="relative-path">DNS name</a> of the domain.
+Maps to the <b>Name</b> field, as specified in section <a href="0228f75e-9725-479c-b4cd-1cacd667343c" data-linktype="relative-path">3.1.1.5</a>.</p><p><b>FlatName:</b>  The NetBIOS name of the
+trusted domain, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90266" data-linktype="external">[RFC1088]</a>. Maps to the
+<b>Flat Name</b> field, as specified in section 3.1.1.5.</p><p><b>Sid:</b>  The domain <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a>. Maps to the <b>Security
+Identifier</b> field, as specified in section 3.1.1.5.</p><p><b>TrustDirection:</b>  This field contains
+bitmapped values that define the properties of the direction of trust between
+the local domain and the named domain. One or more of the valid flags can be
+set. If all bits are 0, the trust is said to be disabled.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>I</p>
+  </td>
+  <td>
+  <p>O</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>I:</b> The trust is inbound.</p>
+</dd>
+<dd>
+<p><b>O:</b> The trust is outbound.</p>
+</dd>
+<dd>
+<p>All other bits SHOULD be 0 and ignored upon receipt.</p>
+</dd>
+<dd>
+<p>Maps to the <b>Trust Direction</b> field, as
+specified in section 3.1.1.5.</p>
+</dd></dl><p><b>TrustType:</b>  This field specifies the
+type of trust between the local domain and the named domain.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Trust with a Windows domain that is not running <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Trust with a Windows domain that is running Active
+  Directory.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Trust with a non–Windows-compliant Kerberos
+  distribution, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90458" data-linktype="external">[RFC4120]</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Trust with a distributed computing environment (DCE)
+  realm. This is a historical reference and is not used.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p><b>Note</b>  Other values SHOULD NOT be
+set.</p>
+</dd>
+<dd>
+<p>Maps to the <b>Trust Type</b> field, as specified in
+section 3.1.1.5.</p>
+</dd></dl><p><b>TrustAttributes:</b>  This field
+contains bitmapped values that define the attributes of the trust.<a id="Appendix_A_Target_32"></a><a aria-label="Product behavior note 32" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_32" data-linktype="relative-path">&lt;32&gt;</a></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>O</p>
+  </td>
+  <td>
+  <p>O</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>T A P T</p>
+  </td>
+  <td>
+  <p>T A N C</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>T A R C</p>
+  </td>
+  <td>
+  <p>T A T E</p>
+  </td>
+  <td>
+  <p>T A W F</p>
+  </td>
+  <td>
+  <p>T A C O</p>
+  </td>
+  <td>
+  <p>T A F T</p>
+  </td>
+  <td>
+  <p>T A Q D</p>
+  </td>
+  <td>
+  <p>T A U O</p>
+  </td>
+  <td>
+  <p>T A N T</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>TrustAttribute values are described in section
+3.1.1.5. The following table shows how these values map to the Trust Attributes
+field in section 3.1.1.5.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Mapping</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TANT (TRUST_ATTRIBUTE_NON_TRANSITIVE)</p>
+  </td>
+  <td>
+  <p>Trust Attributes: Non-transitive</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TAUO (TRUST_ATTRIBUTE_UPLEVEL_ONLY)</p>
+  </td>
+  <td>
+  <p>Trust Attributes: Uplevel only</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TAQD (TRUST_ATTRIBUTE_QUARANTINED_DOMAIN)</p>
+  </td>
+  <td>
+  <p>Trust Attributes: Quarantined</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TAFT (TRUST_ATTRIBUTE_FOREST_TRANSITIVE)</p>
+  </td>
+  <td>
+  <p>Trust Attributes: Forest trust</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TACO (TRUST_ATTRIBUTE_CROSS_ORGANIZATION)</p>
+  </td>
+  <td>
+  <p>Trust Attributes: Cross organization</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TAWF (TRUST_ATTRIBUTE_WITHIN_FOREST)</p>
+  </td>
+  <td>
+  <p>Trust Attributes: Within <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TATE (TRUST_ATTRIBUTE_TREAT_AS_EXTERNAL)</p>
+  </td>
+  <td>
+  <p>Trust Attributes: Treat as external</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TARC (TRUST_ATTRIBUTE_USES_RC4_ENCRYPTION)</p>
+  </td>
+  <td>
+  <p>Trust Attributes: Use <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d57eac33-f561-4a08-b148-dfcf29cfb4d8" data-linktype="relative-path">RC4</a> Encryption (for more
+  information about RC4, see <a href="https://go.microsoft.com/fwlink/?LinkId=817338" data-linktype="external">[SCHNEIER]</a> section
+  17.1).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TANC
+  (TRUST_ATTRIBUTE_CROSS_ORGANIZATION_NO_TGT_DELEGATION)</p>
+  </td>
+  <td>
+  <p>Trust Attributes: Tokens must not be trusted for
+  delegation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TAPT (TRUST_ATTRIBUTE_PIM_TRUST)</p>
+  </td>
+  <td>
+  <p>Trust Attributes: PrivilegedIdentityManagement (PIM)
+  trust.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>O</p>
+  </td>
+  <td>
+  <p>Obsolete. SHOULD be set to 0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>Reserved for future use. SHOULD be set to zero.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

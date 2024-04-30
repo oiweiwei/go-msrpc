@@ -1,0 +1,100 @@
+<div class="content"><p> </p><p>The optional MultiQueueFormatHeader is used when a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span>
+is destined for multiple <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queues</a></span>.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a> When an application-layer message
+is sent using a multiple-element <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_390ae273-7109-44eb-981f-aa157e6b37c0" data-linktype="relative-path">format name</a></span>, this
+header is added to the packet to list the destinations. The sending <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue
+manager</a></span> creates a separate <span><a href="56bae708-1289-48ff-a411-bf3782602476" data-linktype="relative-path">UserMessage Packet</a></span>
+for each destination and specifies the packet address in the <span><a href="056b43bc-2466-4342-8504-1630310d5965" data-linktype="relative-path">UserHeader</a></span>.
+The information in this header provides a list of all destinations that were
+sent the message in addition to associated administration and response queues.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Destination
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Administration
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Response
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Signature
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Destination (variable): </b>An <span><a href="058d7674-8d68-4a49-a1c3-b123818b4697" data-linktype="relative-path">MQFAddressHeader</a></span>
+that specifies the name of one or more destination queues. This field MUST
+contain the list of all queues that were sent a copy of this UserMessage
+Packet. The end of this field is rounded up to the next 4-byte boundary. There
+are no restrictions on the value of the padding bytes.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p><p><b>Administration (variable): </b>An MQFAddressHeader
+that specifies the name of one or more <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_de288973-200c-431f-99be-2165bb440243" data-linktype="relative-path">administration queues</a></span>
+that can receive positive and negative acknowledgement messages. The end of
+this field is rounded up to the next 4-byte boundary. There are no restrictions
+on the value of the padding bytes.<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p><p><b>Response (variable): </b>An MQFAddressHeader that
+specifies the name of one or more response queues that can receive response
+messages from the receivers at the destinations. The end of this field is
+rounded up to the next 4-byte boundary. There are no restrictions on the value
+of the padding bytes.<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p><p><b>Signature (variable): </b>An <span><a href="c0e14cd0-52df-4c12-a682-c4acc01fd445" data-linktype="relative-path">MQFSignatureHeader</a></span>
+that specifies a signature for the packet. </p></div>

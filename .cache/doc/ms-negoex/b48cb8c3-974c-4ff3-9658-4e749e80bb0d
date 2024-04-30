@@ -1,0 +1,7 @@
+<div class="content"><p>The SPNEGO Extended Negotiation (NEGOEX) Security Mechanism
+enhances the capabilities of SPNEGO by providing a security mechanism that can
+be negotiated by the SPNEGO protocol. When the NEGOEX security mechanism is
+selected by SPNEGO, NEGOEX provides a method that allows the selection of a
+common authentication protocol based on metadata such as trust configurations.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

@@ -1,0 +1,85 @@
+<div class="content"><p> </p><p>The <b>DHCPV6_BIND_ELEMENT</b> structure defines an IPv6
+interface binding for the DHCP server over which it receives DHCPv6 packets.
+This structure is used in <span><a href="4c84ae9b-707a-480d-a176-3ebc5f113984" data-linktype="relative-path">DHCPV6_BIND_ELEMENT_ARRAY (section 2.2.1.2.83)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCPV6_BIND_ELEMENT {
+   ULONG Flags;
+   BOOL fBoundToDHCPServer;
+   DHCP_IPV6_ADDRESS AdapterPrimaryAddress;
+   DHCP_IPV6_ADDRESS AdapterSubnetAddress;
+   LPWSTR IfDescription;
+   DWORD IpV6IfIndex;
+   ULONG IfIdSize;
+   [size_is(IfIdSize)] LPBYTE IfId;
+ } DHCPV6_BIND_ELEMENT,
+  *LPDHCPV6_BIND_ELEMENT;
+</pre></div>
+</dd></dl><p><b>Flags:</b>  This is of type <span><a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">ULONG</a></span>,
+specifying a set of bit flags indicating properties of the interface binding.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DHCP_ENDPOINT_FLAG_CANT_MODIFY</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoints</a></span> cannot
+  be modified.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>fBoundToDHCPServer:</b>  This is of type
+<span><a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">BOOL</a></span>,
+specifying whether the interface is bound to the DHCP server.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>It specifies that the interface is not bound to the
+  DHCP server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>It specifies that the interface is bound to the DHCP
+  server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>AdapterPrimaryAddress:</b>  This is of
+type <span><a href="48b74c46-bf64-40db-92b9-6e61cee1bd33" data-linktype="relative-path">DHCP_IPV6_ADDRESS (section 2.2.1.2.28)</a></span>
+structure, specifying the IPv6 address assigned to the interface over which the
+DHCP server is receiving DHCPv6 packets.</p><p><b>AdapterSubnetAddress:</b>  This is of
+type DHCP_IPV6_ADDRESS (section 2.2.1.2.28) structure, specifying the
+IPv6 prefix ID of the subnet from which this interface is receiving DHCPv6
+packets.</p><p><b>IfDescription:</b>  A pointer, of type <span><a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a></span>,
+to a null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+specifies the name assigned to this interface. The maximum number of characters
+allowed in this string is 256, excluding the terminating null character.</p><p><b>IpV6IfIndex:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+containing the IPv6 interface index of the current interface.</p><p><b>IfIdSize:</b>  This is of type ULONG,
+containing the size of the interface <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> stored in the  <b>IfId</b>
+member. </p><p><b>IfId:</b>  This is a pointer to a <span><a href="../ms-dtyp/d7edc080-e499-4219-a837-1bc40b64bb04" data-linktype="relative-path">BYTE</a></span>,
+containing the interface GUID assigned to this interface.</p></div>

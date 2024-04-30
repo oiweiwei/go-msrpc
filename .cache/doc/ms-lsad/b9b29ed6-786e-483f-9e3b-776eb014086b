@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/b9b29ed6-786e-483f-9e3b-776eb014086b" data-linktype="external">msdn link</a></p><p>The LSAPR_TRUSTED_ENUM_BUFFER_EX structure specifies a
+collection of <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a>
+information structures of type <a href="f28f42b7-173c-4cda-9809-3fe4a5213ab3" data-linktype="relative-path">LSAPR_TRUSTED_DOMAIN_INFORMATION_EX</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_TRUSTED_ENUM_BUFFER_EX {
+   unsigned long EntriesRead;
+   [size_is(EntriesRead)] PLSAPR_TRUSTED_DOMAIN_INFORMATION_EX EnumerationBuffer;
+ } LSAPR_TRUSTED_ENUM_BUFFER_EX,
+  *PLSAPR_TRUSTED_ENUM_BUFFER_EX;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  This field contains
+the number of trust information structures.</p><p><b>EnumerationBuffer:</b>  This field
+contains a set of structures that define the trust information, as specified in
+section 2.2.7.9. If the <b>EntriesRead</b> field has a value other than 0, this
+field MUST NOT be NULL.</p></div>

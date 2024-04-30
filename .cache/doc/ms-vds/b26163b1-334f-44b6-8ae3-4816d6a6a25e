@@ -1,0 +1,53 @@
+<div class="content"><p> </p><p>The VDS_HBAPORT_STATUS enumeration defines the set of valid
+statuses for an <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_49b98426-c07d-42ab-8ebc-bd088b107c24" data-linktype="relative-path">HBA</a></span> port. These
+values are used in the status member of the <span><a href="d7c84d37-c1ce-42fc-aa38-ddd10e5c699d" data-linktype="relative-path">VDS_HBAPORT_PROP</a></span>
+structure. These states correspond to the HBA_PORTSTATE values, as specified in
+<span><a href="https://go.microsoft.com/fwlink/?LinkId=89878" data-linktype="external">[HBAAPI]</a></span>.<a id="Appendix_A_Target_35"></a><a aria-label="Product behavior note 35" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_35" data-linktype="relative-path">&lt;35&gt;</a></p><dl>
+<dd>
+<div><pre> typedef  enum _VDS_HBAPORT_STATUS
+ {
+   VDS_HPS_UNKNOWN = 0x00000001,
+   VDS_HPS_ONLINE = 0x00000002,
+   VDS_HPS_OFFLINE = 0x00000003,
+   VDS_HPS_BYPASSED = 0x00000004,
+   VDS_HPS_DIAGNOSTICS = 0x00000005,
+   VDS_HPS_LINKDOWN = 0x00000006,
+   VDS_HPS_ERROR = 0x00000007,
+   VDS_HPS_LOOPBACK = 0x00000008
+ } VDS_HBAPORT_STATUS;
+</pre></div>
+</dd></dl><p><b>VDS_HPS_UNKNOWN:  </b>The HBA port status is
+unknown.</p><dl>
+<dd>
+<p>Corresponding HBA_PORTSTATE value:
+HBA_PORTSTATE_UNKNOWN</p>
+</dd></dl><p><b>VDS_HPS_ONLINE:  </b>The HBA port is operational.</p><dl>
+<dd>
+<p>Corresponding HBA_PORTSTATE value:
+HBA_PORTSTATE_ONLINE</p>
+</dd></dl><p><b>VDS_HPS_OFFLINE:  </b>The HBA port was set <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_e42c8573-c14f-4a3d-bd1e-549aa1f7ec13" data-linktype="relative-path">offline</a></span>
+by a user.</p><dl>
+<dd>
+<p>Corresponding HBA_PORTSTATE value:
+HBA_PORTSTATE_OFFLINE</p>
+</dd></dl><p><b>VDS_HPS_BYPASSED:  </b>The HBA port is bypassed.</p><dl>
+<dd>
+<p>Corresponding HBA_PORTSTATE value: HBA_PORTSTATE_BYPASSED</p>
+</dd></dl><p><b>VDS_HPS_DIAGNOSTICS:  </b>The HBA port is in
+diagnostics mode.</p><dl>
+<dd>
+<p>Corresponding HBA_PORTSTATE value:
+HBA_PORTSTATE_DIAGNOSTICS</p>
+</dd></dl><p><b>VDS_HPS_LINKDOWN:  </b>The HBA port link is down.</p><dl>
+<dd>
+<p>Corresponding HBA_PORTSTATE value:
+HBA_PORTSTATE_LINKDOWN</p>
+</dd></dl><p><b>VDS_HPS_ERROR:  </b>The HBA port has an error.</p><dl>
+<dd>
+<p>Corresponding HBA_PORTSTATE value:
+HBA_PORTSTATE_ERROR</p>
+</dd></dl><p><b>VDS_HPS_LOOPBACK:  </b>The HBA port is loopback.</p><dl>
+<dd>
+<p>Corresponding HBA_PORTSTATE value:
+HBA_PORTSTATE_LOOPBACK</p>
+</dd></dl></div>

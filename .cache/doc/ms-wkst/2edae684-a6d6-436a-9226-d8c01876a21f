@@ -1,0 +1,626 @@
+<div class="content"><p> </p><p>The <b>NetrWkstaSetInfo</b> method configures a remote
+computer according to the information structure passed in the call.</p><dl>
+<dd>
+<div><pre> unsigned long NetrWkstaSetInfo(
+   [in, string, unique] WKSSVC_IDENTIFY_HANDLE ServerName,
+   [in] unsigned long Level,
+   [in, switch_is(Level)] LPWKSTA_INFO WkstaInfo,
+   [in, out, unique] unsigned long* ErrorParameter
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>A <b>WKSSVC_IDENTIFY_HANDLE </b>structure
+(section <span><a href="9ef94a11-0e5c-49d7-9ac7-68d6f03565de" data-linktype="relative-path">2.2.2.1</a></span>) that
+identifies the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server (2)</a></span>. The <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>
+MUST map this structure to an <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>
+(<span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> sections
+4.3.5 and 5.1.5.2). The server MUST ignore this parameter.</p><p><b>Level: </b>The information level of the data. This
+parameter SHOULD be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x000001F6</p>
+  </td>
+  <td>
+  <p>The <i>WkstaInfo</i> parameter points to a <b>WKSTA_INFO_502</b>
+  structure (section <span><a href="eea7a04b-5817-4d3b-8ec0-26967b41cb04" data-linktype="relative-path">2.2.5.4</a></span>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000003F5</p>
+  </td>
+  <td>
+  <p>The <i>WkstaInfo</i> parameter points to a <b>WKSTA_INFO_1013</b>
+  structure (section <span><a href="64b0c019-3bf7-4e23-a00e-ef7ab68b3358" data-linktype="relative-path">2.2.5.5</a></span>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000003FA</p>
+  </td>
+  <td>
+  <p>The <i>WkstaInfo</i> parameter points to a <b>WKSTA_INFO_1018</b>
+  structure (section <span><a href="6ba9e854-0698-4f17-a529-a30a78579806" data-linktype="relative-path">2.2.5.6</a></span>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000416</p>
+  </td>
+  <td>
+  <p>The <i>WkstaInfo</i> parameter points to a <b>WKSTA_INFO_1046</b>
+  structure (section <span><a href="26656710-233c-4c3b-9ba1-9276aa2e3265" data-linktype="relative-path">2.2.5.7</a></span>).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>WkstaInfo: </b>A pointer to a buffer that
+specifies the data. The format of this data depends on the value of the <i>Level</i>
+parameter.</p><p><b>ErrorParameter: </b>A pointer to a value that
+receives an unsigned 32-bit integer. This parameter is meaningful only if the
+method returns ERROR_INVALID_PARAMETER and <i>Level</i> is equal to one of the
+values in the preceding table.</p><dl>
+<dd>
+<p>The <i>ErrorParameter</i> value corresponds to the
+member of the <b>WKSTA_INFO</b> structure (section <span><a href="2ab0c167-091a-46f3-be7d-826b27561bc7" data-linktype="relative-path">2.2.4.1</a></span>) specified
+by the <i>WkstaInfo</i> parameter, which caused the ERROR_INVALID_PARAMETER
+error.</p>
+</dd></dl><p><b>Return Values: </b>When the message processing
+result meets the description in column two of the following table, this method
+MUST return one of the following values (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NERR_Success</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>One of the function parameters is not valid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Any other return value MUST conform to the error code
+requirements in <b>Protocol Details</b> (section <span><a href="aeea622a-ea3e-40cc-a9b1-b4a2a3b2bf6b" data-linktype="relative-path">3</a></span>).</p><p>If the <i>Level</i> parameter value is not valid, the server
+MUST fail the call as follows.</p><p><b>Note</b>  All value ranges are inclusive.</p><table><thead>
+  <tr>
+   <th>
+   <p>Invalid level value</p>
+   </th>
+   <th>
+   <p>Failure processing</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000--0x000001F5,</p>
+  <p>0x000001F7--0x000003F4,</p>
+  <p>0x000003F6--0x000003F9,</p>
+  <p>0x000003FB--0x00000415</p>
+  <p>0x00000417--0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>The server SHOULD return ERROR_INVALID_LEVEL.<a id="Appendix_A_Target_31"></a><a aria-label="Product behavior note 31" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_31" data-linktype="relative-path">&lt;31&gt;</a></p>
+  </td>
+ </tr></tbody></table><p>Otherwise, if the <i>Level</i> parameter equals 0x000001F6,
+the server MUST store values from the <b>WKSTA_INFO_502</b> structure <b>WkstaInfo502</b>
+member (section 2.2.4.1) specified by the <i>WkstaInfo</i> parameter into
+elements of the ADM (section <span><a href="602cbe68-7355-4d27-a2c9-f000bdee159c" data-linktype="relative-path">3.2.1</a></span>) as follows:</p><ul><li><p><span><span> 
+</span></span><b>wki502_keep_conn</b> stored in <b>Keep_Connection</b></p>
+</li><li><p><span><span> 
+</span></span><b>wki502_max_cmds</b> stored in <b>Max_Commands</b></p>
+</li><li><p><span><span> 
+</span></span><b>wki502_sess_timeout</b> stored in <b>Session_TimeOut</b></p>
+</li><li><p><span><span> 
+</span></span><b>wki502_dormant_file_limit</b> stored in <b>DormantFileLimit</b></p>
+</li></ul><p>If the <i>Level</i> parameter equals 0x000003F5, the server
+MUST store values from the <b>WKSTA_INFO_1013</b> structure<b> WkstaInfo1013</b>
+member (section 2.2.4.1) of the <i>WkstaInfo</i> parameter into elements of the
+ADM, as follows:</p><ul><li><p><span><span> 
+</span></span><b>wki1013_keep_conn</b> stored in <b>Keep_Connection</b>.</p>
+</li></ul><p>If the <i>Level</i> parameter equals 0x000003FA, the server
+MUST store values from the <b>WKSTA_INFO_1018</b> structure<b> WkstaInfo1018</b>
+member (section 2.2.4.1) of the <i>WkstaInfo</i> parameter into elements of the
+ADM, as follows:</p><ul><li><p><span><span> 
+</span></span><b>wki1018_sess_timeout</b> stored in <b>Session_TimeOut</b>.</p>
+</li></ul><p>If the <i>Level</i> parameter equals 0x00000416, the server
+MUST store values from the <b>WKSTA_INFO_1046</b> structure<b> WkstaInfo1046</b>
+member (section 2.2.4.1) of the <i>WkstaInfo</i> parameter into elements of the
+ADM, as follows:</p><ul><li><p><span><span> 
+</span></span><b>wki1046_dormant_file_limit</b> stored in <b>DormantFileLimit</b>.</p>
+</li></ul><p>The server MUST validate the values stored from members of <b>WKSTA_INFO</b>
+structures specified by the <i>WkstaInfo</i> parameter. If this validation
+fails, a value SHOULD be returned in the <i>ErrorParameter</i> parameter
+according to the following table.<a id="Appendix_A_Target_32"></a><a aria-label="Product behavior note 32" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_32" data-linktype="relative-path">&lt;32&gt;</a></p><p>For Level value 0x000001F6:</p><table><thead>
+  <tr>
+   <th>
+   <p>Member </p>
+   </th>
+   <th>
+   <p>Valid Range </p>
+   </th>
+   <th>
+   <p>ErrorParameter Value Returned</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>wki502_char_wait</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to any value between 0-65535. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x0000000A</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_collection_time</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to any value between 0-65535000. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x0000000B</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_maximum_collection_count</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to any value between 0-65535. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x0000000C</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_keep_conn</p>
+  </td>
+  <td>
+  <p>1 - 65535</p>
+  </td>
+  <td>
+  <p>0x0000000D</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_max_cmds</p>
+  </td>
+  <td>
+  <p>50 - 65535</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_sess_timeout</p>
+  </td>
+  <td>
+  <p>60 - 65535</p>
+  </td>
+  <td>
+  <p>0x00000012</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_siz_char_buf</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to any value between 64-4096. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x00000017</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_max_threads</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to any value between 1-256. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x00000021</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_lock_quota</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to any value between 0-0xFFFFFFFF. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x00000029</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_lock_increment</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to any value between 0-0xFFFFFFFF. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x0000002A</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_lock_maximum</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to any value between 0-0xFFFFFFFF. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x0000002B</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_pipe_increment</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to any value between 0-0xFFFFFFFF. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x0000002C</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_pipe_maximum</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to any value between 0-0xFFFFFFFF. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x0000002D</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_cache_file_timeout</p>
+  </td>
+  <td>
+  <p>0 - 0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>0x0000002F</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_dormant_file_limit</p>
+  </td>
+  <td>
+  <p>1 - 0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>0x0000002E</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_read_ahead_throughput</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to any value between 0-0xFFFFFFFF. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x0000003E</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_num_mailslot_buffers</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender MAY initialize it
+  to any value. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>Not in use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_num_srv_announce_buffers</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender MAY initialize it
+  to any value. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>Not in use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_max_illegal_datagram_events</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender MAY initialize it
+  to any value. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>Not in use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_illegal_datagram_event_reset_frequency</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender MAY initialize it
+  to any value. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>Not in use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_log_election_packets</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender MAY initialize it
+  to any value. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>Not in use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_use_opportunistic_locking</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to 0. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x00000030</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_use_unlock_behind</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to 0. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x00000031</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_use_close_behind</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to 0. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x00000032</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_buf_named_pipes</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to 0. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x00000033</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_use_lock_read_unlock</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to 0. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x00000034</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_utilize_nt_caching</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to 0. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x00000035</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_use_raw_read</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to 0. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x00000036</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_use_raw_write</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to 0. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x00000037</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_use_write_raw_data</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to 0. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x00000038</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_use_encryption</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to 0. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x00000039</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_buf_files_deny_write</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to 0. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x0000003A</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_buf_read_only_files</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to 0. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x0000003B</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_force_core_create_mode</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to 0. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x0000003C</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wki502_use_512_byte_max_transfer</p>
+  </td>
+  <td>
+  <p>This field is not used. The sender SHOULD initialize
+  it to 0. The receiver SHOULD ignore this field.</p>
+  </td>
+  <td>
+  <p>0x0000003D</p>
+  </td>
+ </tr></tbody></table><p>For Level value 0x000003F5</p><table><thead>
+  <tr>
+   <th>
+   <p>Member</p>
+   </th>
+   <th>
+   <p>Valid Range</p>
+   </th>
+   <th>
+   <p>ErrorParameter Value Returned</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>wki1013_keep_conn</p>
+  </td>
+  <td>
+  <p>1-65535</p>
+  </td>
+  <td>
+  <p>0x0000000D</p>
+  </td>
+ </tr></tbody></table><p>For Level value 0x000003FA:</p><table><thead>
+  <tr>
+   <th>
+   <p>Member</p>
+   </th>
+   <th>
+   <p>Valid Range</p>
+   </th>
+   <th>
+   <p>ErrorParameter Value Returned</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>wki1018_sess_timeout</p>
+  </td>
+  <td>
+  <p>60-65535</p>
+  </td>
+  <td>
+  <p>0x00000012</p>
+  </td>
+ </tr></tbody></table><p>For Level value 0x00000416:</p><table><thead>
+  <tr>
+   <th>
+   <p>Member</p>
+   </th>
+   <th>
+   <p>Valid Range</p>
+   </th>
+   <th>
+   <p>ErrorParameter Value Returned</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>wki1046_dormant_file_limit</p>
+  </td>
+  <td>
+  <p>1-0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>0x0000002E</p>
+  </td>
+ </tr></tbody></table><p>The server SHOULD<a id="Appendix_A_Target_33"></a><a aria-label="Product behavior note 33" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_33" data-linktype="relative-path">&lt;33&gt;</a> enforce
+security measures to verify that the caller has the required permissions to
+execute this routine. If the server enforces security measures, and the caller
+does not have the required credentials, the server MUST fail the call with
+ERROR_ACCESS_DENIED. Specifications for determining the identity of the caller
+for the purpose of performing an access check are in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/0e5b0e1c-0ba5-4342-bc36-30c66a9d07fd" data-linktype="relative-path">3.3.3.1.3</a></span>.</p></div>

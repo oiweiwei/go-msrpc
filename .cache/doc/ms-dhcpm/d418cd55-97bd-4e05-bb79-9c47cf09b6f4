@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The <b>DHCP_MCLIENT_INFO_ARRAY</b> structure defines an
+array of <span><a href="29305f39-f10e-4a80-8d75-b184c6b0898f" data-linktype="relative-path">DHCP_MCLIENT_INFO (section 2.2.1.2.21)</a></span>
+structures. This structure is used by the methods that retrieve information for
+more than one MADCAP client. The first member contains the number of MADCAP
+clients present in the specific IPv4 multicast subnet, and the second member
+points to the array of length <b>NumElements</b> containing the MADCAP client&#39;s
+information.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_MCLIENT_INFO_ARRAY {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_MCLIENT_INFO* Clients;
+ } DHCP_MCLIENT_INFO_ARRAY,
+  *LPDHCP_MCLIENT_INFO_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+specifying the number of MADCAP clients in subsequent field the <b>Clients</b>
+member.</p><p><b>Clients:</b>  This is pointer of type
+DHCP_MCLIENT_INFO (section 2.2.1.2.21), a structure that points to an
+array of length <b>NumElements</b> containing MADCAP client information. </p></div>

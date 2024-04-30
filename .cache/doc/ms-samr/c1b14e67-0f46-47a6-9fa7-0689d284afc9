@@ -1,0 +1,77 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c1b14e67-0f46-47a6-9fa7-0689d284afc9" data-linktype="external">msdn link</a></p><p>The SamrConnect4 method obtains a handle to a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_62a8c543-5998-480b-8fa7-41a8f04a18e5" data-linktype="relative-path">server object</a>.</p><dl>
+<dd>
+<div><pre> long SamrConnect4(
+   [in, unique, string] PSAMPR_SERVER_NAME ServerName,
+   [out] SAMPR_HANDLE* ServerHandle,
+   [in] unsigned long ClientRevision,
+   [in] unsigned long DesiredAccess
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>The null-terminated NETBIOS name
+of the server; this parameter MAY<a id="Appendix_A_Target_45"></a><a aria-label="Product behavior note 45" href="fa61e5fc-f8fb-4d5b-9695-c724af0c3829#Appendix_A_45" data-linktype="relative-path">&lt;45&gt;</a> be
+ignored on receipt.</p><p><b>ServerHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>.</p><p><b>ClientRevision: </b>Indicates the revision (for
+this protocol) of the client. The value MUST be set to 2 and MUST be ignored. </p><p><b>DesiredAccess: </b>An <a href="../ms-dtyp/7a53f60e-e730-4dfe-bbe9-b21b62eb790b" data-linktype="relative-path">ACCESS_MASK</a>
+that indicates the access requested for <i>ServerHandle</i> on output. See
+section <a href="e8afb15e-c053-4984-b84b-66877236e141" data-linktype="relative-path">2.2.1.3</a> for a
+listing of possible values.</p><p>The server MUST behave as with a call to <a href="c842a897-0a42-4ca5-a607-2afd05271dae" data-linktype="relative-path">SamrConnect5</a>, with the
+following parameter values.</p><table><thead>
+  <tr>
+   <th>
+   <p>Parameter name</p>
+   </th>
+   <th>
+   <p>Parameter value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ServerName</p>
+  </td>
+  <td>
+  <p>SamrConnect4.ServerName</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DesiredAccess</p>
+  </td>
+  <td>
+  <p>SamrConnect4.DesiredAccess</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>InVersion</p>
+  </td>
+  <td>
+  <p>1</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>InRevisionInfo</p>
+  </td>
+  <td>
+  <p>SAMPR_REVISION_INFO_V1.Revision = {2}</p>
+  <p>SAMPR_REVISION_INFO_V1.SupportedFeatures = {0}</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>OutVersion</p>
+  </td>
+  <td>
+  <p>Output ignored</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>OutRevisionInfo</p>
+  </td>
+  <td>
+  <p>Output ignored</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ServerHandle</p>
+  </td>
+  <td>
+  <p>SamrConnect4.ServerHandle</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

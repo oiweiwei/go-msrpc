@@ -1,0 +1,72 @@
+<div class="content"><p>The AASYNDATA structure contains the RDGUDP channel
+properties sent between the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> and RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>uUpStreamMtu</p>
+  </td>
+  <td colspan="16">
+  <p>uDownStreamMtu</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>fLossy</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>snSendISN</p>
+  </td>
+ </tr>
+</tbody></table><p><b>uUpStreamMtu (2 bytes): </b>An unsigned short
+representing the size for the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_03aae42f-32fd-47ab-b413-d5ec92d29d45" data-linktype="relative-path">maximum
+transmission unit (MTU)</a> between the RDG client and RDG server path. This
+MUST be determined by the RDG client.</p><p><b>uDownStreamMtu (2 bytes): </b>An unsigned short
+representing the size for the MTU between the RDG server and RDG client path.
+This MUST be determined by the RDG client.</p><p><b>fLossy (4 bytes): </b>A Boolean flag which
+indicates whether the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_a70f5e84-6960-42f0-a160-ba0281eb548d" data-linktype="relative-path">UDP</a>
+channel is reliable or not. This MUST be determined by the consumer of the RDG
+protocol (<a href="../ms-rdpeudp/2744a3ee-04fb-407b-a9e3-b3b2ded422b1" data-linktype="relative-path">[MS-RDPEUDP]</a>).
+The RDG client forwards the flag to the RDG server, which in turn sends the
+flag to a <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_3657ab68-5a60-4cee-8082-dfc2e67435e9" data-linktype="relative-path">target server</a>
+during the <a href="0fcd8c37-7540-426a-a385-8e6be22611fc" data-linktype="relative-path">Connection Setup
+Phase (section 1.3.1.1.1)</a>.</p><p><b>snSendISN (4 bytes): </b>An integer representing
+the initial sequence number used by the forward error correction (FEC) receive
+window between the RDG client and the target server. This MUST be determined by
+the consumer of the RDG protocol ([MS-RDPEUDP]). The RDG client forwards the
+flag to the RDG server, which in turn sends the flag to the target server
+during the Connection Setup Phase.</p></div>

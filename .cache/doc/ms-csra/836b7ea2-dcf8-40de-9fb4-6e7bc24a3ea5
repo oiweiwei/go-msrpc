@@ -1,0 +1,21 @@
+<div class="content"><p>The CloseView method closes a view that was previously
+opened by using the <a href="15fccaa6-c477-4196-b793-c92044868d89" data-linktype="relative-path">OpenView</a>
+method call.</p><dl>
+<dd>
+<div><pre> HRESULT CloseView(
+   [in, string, unique] wchar_t const* pwszAuthority
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.</p><p>The <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a>
+server MUST release the resources associated with storing the resultant set of
+rows obtained via the OpenView method call. If the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a> connection to a
+Windows CA on which OpenView was called is terminated before a call to
+CloseView is made, DCOM eventually releases the resources, but might not
+release the resources immediately.</p><p>The CA server MUST enforce the following sequencing rules:</p><ol><li><p><span>    </span>If the CloseView
+method is called when the value of Config_Database_View_Open is <b>False</b>,
+the server MUST return an error. The error code SHOULD be ERROR_INVALID_HANDLE.</p>
+</li><li><p><span>    </span>If the CloseView
+method is called when the value of Config_Database_View_Open is <b>True</b>,
+the server MUST set the value of Config_Database_View_Open to <b>False</b>.</p>
+</li></ol></div>

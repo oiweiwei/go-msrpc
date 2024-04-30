@@ -1,0 +1,23 @@
+<div class="content"><p>The CommitMode enumeration defines the type of actions to be
+performed when the changes are committed to the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data collector set</a>. Any
+combination of bits MUST be allowed.</p><dl>
+<dd>
+<div><pre> typedef  enum
+ {
+   plaCreateNew = 0x0001,
+   plaModify = 0x0002,
+   plaCreateOrModify = 0x0003,
+   plaUpdateRunningInstance = 0x0010,
+   plaFlushTrace = 0x0020,
+   plaValidateOnly = 0x1000
+ } CommitMode;
+</pre></div>
+</dd></dl><p><b>plaCreateNew:  </b>For a persistent data collector
+set, save it to storage. The set MUST not have existed previously on storage. </p><p><b>plaModify:  </b>Update a previously committed data
+collector set.</p><p><b>plaCreateOrModify:  </b>For a persistent data
+collector set, save it to storage. If the set already exists, the PLA Protocol
+will update it.</p><p><b>plaUpdateRunningInstance:  </b>If the data
+collector set is running, apply the updated property values to it.</p><p><b>plaFlushTrace:  </b>If multiple data collector
+sets are running, flush the event trace <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_3184c8c5-f13b-4d77-b04a-b92feff97f61" data-linktype="relative-path">data collectors</a> memory
+buffers to storage or real-time consumers.</p><p><b>plaValidateOnly:  </b>Perform validation only on the data
+collector set.</p></div>

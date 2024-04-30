@@ -1,0 +1,102 @@
+<div class="content"><p> </p><p>The <b>R_DhcpDeleteClass</b> method deletes the user class
+or vendor class definition from the DHCP server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpDeleteClass(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DWORD ReservedMustBeZero,
+   [in, string, unique] WCHAR* ClassName
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>ReservedMustBeZero: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and is reserved for future use. Currently it is not used, and any value set to
+this parameter will not affect the behavior of this method.</p><p><b>ClassName: </b>This is a pointer to <span><a href="../ms-dtyp/7df7c1d5-492c-4db4-a992-5cd9e887c5d7" data-linktype="relative-path">WCHAR</a></span>
+that contains the name of the class that needs to be deleted.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E4C</p>
+  <p>ERROR_DHCP_CLASS_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The class name being used is unknown or incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E79</p>
+  <p>ERROR_DHCP_DELETE_BUILTIN_CLASS</p>
+  </td>
+  <td>
+  <p>This class cannot be deleted.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 26.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>If <i>ClassName</i> is NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4ClassDef</b> entry corresponding to the <i>ClassName</i>
+from the server ADM element <b>DHCPv4ClassDefList</b>. If the <b>DHCPv4ClassDef</b>
+entry is not found, return ERROR_DHCP_CLASS_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ClassData</b> member of the retrieved ADM element <b>DHCPv4ClassDef</b>
+contains <b>ClassData</b> for any of the built-in classes (section <span><a href="48c6bde4-a569-4dc2-81d9-ca98dbbe9011" data-linktype="relative-path">3.1.1.8</a></span>),
+return ERROR_DHCP_DELETE_BUILTIN_CLASS.</p>
+</li><li><p><span><span> 
+</span></span>Delete the <b>DHCPv4ClassDef</b> entry and remove it from the <b>DHCPv4ClassDefList</b>.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server ADM element <b>DHCPv4OptionDefList</b>
+and retrieve the <b>DHCPv4OptionDef</b> entry corresponding to the class
+specified by <i>ClassName</i>. Remove this entry from the <b>DHCPv4OptionDefList</b>.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server <b>DHCPv4ServerPolicyList</b> ADM
+element, and retrieve all <b>DHCPv4Policy</b> entries with <b>DHCPv4Policy.ClassName</b>
+equal to that specified by the <i>ClassName</i> parameter. Call <span><a href="a79e01a8-54a2-4ca1-82b6-94f49089de98" data-linktype="relative-path">R_DhcpV4DeletePolicy (section 3.2.4.112)</a></span>
+to remove these entries from <b>DHCPv4ServerPolicyList</b>, passing the <i>ServerIpAddress</i>
+parameter, TRUE, 0, and the retrieved <b>DHCPv4Policy.PolicyName</b> value as
+parameters to the R_DhcpV4DeletePolicy method.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server <b>DHCPv4ScopePolicyList</b> ADM
+element, and retrieve all <b>DHCPv4Policy</b> entries with <b>DHCPv4Policy.ClassName</b>
+equal to that specified by the <i>ClassName</i> parameter. Call
+R_DhcpV4DeletePolicy (section 3.2.4.112) to remove these entries from
+the <b>DHCPv4ScopePolicyList</b>, passing the <i>ServerIpAddress</i> parameter,
+FALSE, <b>DHCPv4Scope.ScopeInfo.SubnetAddress</b>, and the retrieved <b>DHCPv4Policy.PolicyName</b>
+value as parameters to R_DhcpV4DeletePolicy.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server ADM element <b>DHCPv4ServerOptValueList</b>
+and retrieve the <b>DHCPv4OptionValue</b> entry corresponding to the class
+specified by <i>ClassName</i>. Remove this entry from the <b>DHCPv4ServerOptValueList</b>.
+Take the same action on <b>DHCPv4ScopeOptValueList</b> for all <b>DHCPv4Scope</b>
+entries, on <b>DHCPv4MScopeOptValueList</b> for all <b>DHCPv4MScope</b>
+entries, and on <b>DHCPv4ResvOptValueList</b> for all <b>DHCPv4Reservation</b>
+entries.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

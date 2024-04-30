@@ -1,0 +1,69 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/52d5bd86-5caf-47aa-aae4-cadf7339ec83" data-linktype="external">msdn link</a></p><p>The <b>NL_TRUST_PASSWORD</b> structure defines a buffer for
+carrying a computer account password, or a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a> password, to be
+transmitted over the wire. It SHOULD<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a> be
+transported as an input parameter to the <b>NetrServerPasswordSet2 </b>method,
+as specified in section <a href="14b020a8-0bcf-4af5-ab72-cc92bc6b1d81" data-linktype="relative-path">3.5.4.4.5</a>.
+<a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_6234a38c-ed1b-4c69-969f-6e6479566f65" data-linktype="relative-path">Domain members</a> use
+NetrServerPasswordSet2 to change their computer account password. The <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">primary domain controller</a>
+uses NetrServerPasswordSet2 to change trust passwords for all directly trusted <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domains</a>. The <b>NL_TRUST_PASSWORD</b>
+structure is encrypted using the negotiated encryption algorithm before it is
+sent over the wire.<a id="Appendix_A_Target_24"></a><a aria-label="Product behavior note 24" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_24" data-linktype="relative-path">&lt;24&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _NL_TRUST_PASSWORD {
+   WCHAR Buffer[256];
+   ULONG Length;
+ } NL_TRUST_PASSWORD,
+  *PNL_TRUST_PASSWORD;
+</pre></div>
+</dd></dl><p><b>Buffer:</b> Array of <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> characters that is
+treated as a byte buffer containing the password, as follows:</p><ul><li><p><span><span>  </span></span>For
+a computer account password, the buffer has the following format:</p>
+</li></ul><dl>
+<dd>
+<dl>
+<dd>
+<p><b><img id="MS-NRPC_pict2bf109df-89b1-fd03-e0fb-c86880a1109d.png" src="ms-nrpc_files/image004.png" alt="Computer account password buffer format" title="Computer account password buffer format" data-linktype="relative-path"/></b></p>
+</dd>
+<dd>
+<p><b>Figure 4: Computer account
+password buffer format</b></p>
+</dd>
+<dd>
+<p>The first (512 – Length) bytes MUST be randomly
+generated data that serves as an additional source of entropy during
+encryption. The last Length bytes of the buffer MUST contain the clear text
+password.</p>
+</dd></dl></dd></dl><ul><li><p><span><span>  </span></span>For
+a domain trust password, the buffer has the following format:</p>
+</li></ul><dl>
+<dd>
+<p><img id="MS-NRPC_pict4f24c57e-2837-d038-1032-44d127b369ea.png" src="ms-nrpc_files/image005.png" alt="Domain trust password buffer format" title="Domain trust password buffer format" data-linktype="relative-path"/></p>
+<dl>
+<dd>
+<p><b>Figure 5: Domain trust password
+buffer format</b></p>
+</dd>
+<dd>
+<p>The last Length bytes of the buffer contain the clear
+text password. The 12 bytes preceding the password are filled with the password
+version information as defined below. The rest of the buffer is filled with
+randomly generated data.</p>
+</dd></dl></dd></dl><ul><li><p><span><span>  </span></span>The
+<b>PasswordVersion</b> part of the preceding diagram has the following format:</p>
+</li></ul><dl>
+<dd>
+<p><img id="MS-NRPC_pict216c2899-33b5-3da5-c821-00598c0c6abc.png" src="ms-nrpc_files/image006.png" alt="Password version buffer format" title="Password version buffer format" data-linktype="relative-path"/></p>
+<dl>
+<dd>
+<p><b>Figure 6: Password version buffer
+format</b></p>
+</dd>
+<dd>
+<p>Where <b>ReservedField</b>, <b>PasswordVersionNumber</b>,
+and <b>PasswordVersionPresent</b> are the fields of the <b>NL_PASSWORD_VERSION</b>
+structure, as specified in section <a href="cba0e87e-b91f-411b-9be8-6fd321e126b7" data-linktype="relative-path">2.2.1.3.8</a>. The <b>PasswordVersionPresent</b>
+field is used to indicate whether the buffer contains a computer account
+password or a trust password: If the value of the <b>PasswordVersionPresent</b>
+field is 0x02231968, then the buffer contains a trust password; otherwise the
+buffer contains a computer account password.</p>
+</dd></dl></dd></dl><p><b>Length:</b> The length of the password, in bytes.</p></div>

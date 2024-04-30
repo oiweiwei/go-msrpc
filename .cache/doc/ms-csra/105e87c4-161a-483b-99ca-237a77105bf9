@@ -1,0 +1,169 @@
+<div class="content"><p>The GetViewDefaultColumnSet method returns an array of
+column identifiers that are associated with a specific view.</p><dl>
+<dd>
+<div><pre> HRESULT GetViewDefaultColumnSet(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] DWORD iColumnSetDefault,
+   [out] DWORD* pcColumn,
+   [out, ref] CERTTRANSBLOB* pctbColumnInfo
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the definition of the <i>pwszAuthority</i>
+parameter in <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">ICertAdminD::SetExtension (section 3.1.4.1.1)</a>.
+</p><p><b>iColumnSetDefault: </b>An unsigned integer value
+that specifies the requested default column set to get. The value MUST be one
+of the values in the following table. If a value other than one of the listed
+values is used, the error E_INVALIDARG is returned.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>The caller
+  attempts to retrieve the list of column identifiers that are useful for
+  viewing pending requests.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFFFFFE</p>
+  </td>
+  <td>
+  <p>The caller
+  attempts to retrieve the list of column identifiers that are useful for
+  viewing issued <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFFFFFD</p>
+  </td>
+  <td>
+  <p>The caller
+  attempts to retrieve the list of column identifiers that are useful for
+  viewing failed requests.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFFFFFC</p>
+  </td>
+  <td>
+  <p>The caller
+  attempts to retrieve the list of column identifiers that are useful for
+  viewing extensions.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFFFFFB</p>
+  </td>
+  <td>
+  <p>The caller
+  attempts to retrieve the list of column identifiers that are useful for
+  viewing <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attributes</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFFFFFA</p>
+  </td>
+  <td>
+  <p>The caller
+  attempts to retrieve the list of column identifiers that are useful for
+  viewing <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_4f22841f-249b-42fb-a31a-5049c00be939" data-linktype="relative-path">CRLs</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFFFFF9</p>
+  </td>
+  <td>
+  <p>The caller
+  attempts to retrieve the list of column identifiers that are useful for
+  viewing revoked certificates.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pcColumn: </b>A pointer to the unsigned integer
+that receives the count of Column identifiers that are returned by the server
+in the <i>pctbColumnInfo</i> parameter.</p><p><b>pctbColumnInfo: </b>A pointer to a <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure.
+Its <b>cb </b>member MUST contain the length, in bytes, of the array that is
+referenced by the <b>pb </b>member. The <b>pb </b>member MUST point to an array
+of DWORDs, where each DWORD value represents the identifier for a column. Each <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a> in
+the array is marshaled by using <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a> format.</p><p>The <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a>
+server MUST return the array of associated column identifiers in the following
+manner.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value of
+   the iColumnSetDefault parameter</p>
+   </th>
+   <th>
+   <p>Processing
+   rule</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>The CA MUST
+  return a subset of column identifiers for a pending request view from the <a href="2f82efc0-66dd-49b7-9556-425805e63d30" data-linktype="relative-path">Request table</a>.<a id="Appendix_A_Target_39"></a><a aria-label="Product behavior note 39" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_39" data-linktype="relative-path">&lt;39&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFFFFFE</p>
+  </td>
+  <td>
+  <p>The CA MUST
+  return a subset of column identifiers for issued and revoked certificate
+  views and failed request view from the Request table.<a id="Appendix_A_Target_40"></a><a aria-label="Product behavior note 40" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_40" data-linktype="relative-path">&lt;40&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFFFFFD</p>
+  </td>
+  <td>
+  <p>The CA MUST
+  return a subset of column identifiers for a failed request view from the
+  Request table.<a id="Appendix_A_Target_41"></a><a aria-label="Product behavior note 41" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_41" data-linktype="relative-path">&lt;41&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFFFFFC</p>
+  </td>
+  <td>
+  <p>The CA MUST
+  return a subset of column identifiers for an extension view from the <a href="820f99c7-fdc6-4356-b533-9ddbe35d937c" data-linktype="relative-path">Extension table</a>.<a id="Appendix_A_Target_42"></a><a aria-label="Product behavior note 42" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_42" data-linktype="relative-path">&lt;42&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFFFFFB</p>
+  </td>
+  <td>
+  <p>The CA MUST
+  return a subset of column identifiers for an attribute view from the <a href="c4fbb694-3387-485c-b421-278487d8325c" data-linktype="relative-path">Attribute table</a>.<a id="Appendix_A_Target_43"></a><a aria-label="Product behavior note 43" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_43" data-linktype="relative-path">&lt;43&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFFFFFA</p>
+  </td>
+  <td>
+  <p>The CA MUST
+  return a subset of column identifiers for a CRL view from the <a href="3c8fcd6a-6872-46c2-b464-1c86f7fdfb4a" data-linktype="relative-path">CRL table</a>.<a id="Appendix_A_Target_44"></a><a aria-label="Product behavior note 44" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_44" data-linktype="relative-path">&lt;44&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFFFFF9</p>
+  </td>
+  <td>
+  <p>The CA MUST
+  return a subset of column identifiers for a revoked certificate view from the
+  Request table.<a id="Appendix_A_Target_45"></a><a aria-label="Product behavior note 45" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_45" data-linktype="relative-path">&lt;45&gt;</a></p>
+  </td>
+ </tr></tbody></table><p> </p></div>

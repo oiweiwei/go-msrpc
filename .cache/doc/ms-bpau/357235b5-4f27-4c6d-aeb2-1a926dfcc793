@@ -1,0 +1,49 @@
+<div class="content"><p> </p><dl>
+<dd>
+<div><pre> HRESULT ExchangePublicKeys(
+   [in] handle_t Binding,
+   [in] KEY_LENGTH ClientKeyLength,
+   [in, unique, size_is(ClientKeyLength)] 
+     byte* ClientKey,
+   [out, ref] KEY_LENGTH* pServerKeyLength,
+   [out, ref, size_is(, *pServerKeyLength)] 
+     byte** pServerKey
+ );
+</pre></div>
+</dd></dl><p><b>Binding: </b>An <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle
+parameter as described in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> section
+2.3.1, Binding Handles.</p><p><b>ClientKeyLength: </b>Length of the client&#39;s local <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a></span>,
+or zero if <i>ClientKey</i> is NULL.</p><p><b>ClientKey: </b>The client&#39;s local certificate,
+encoded as a <span><a href="3026ea50-1d3d-4119-a23c-1d1131899e21" data-linktype="relative-path">CERTIFICATE_BLOB (section 2.2.2)</a></span>.
+If NULL, the client is choosing not to send a certificate.</p><p><b>pServerKeyLength: </b>On output, the length of the
+server&#39;s local certificate. Set to zero if the return value is nonzero, or if <i>pServerKey</i>
+is NULL.</p><p><b>pServerKey: </b>On output, the server&#39;s local
+certificate, encoded as a CERTIFICATE_BLOB (section 2.2.2). If NULL,
+the server is choosing not to return a certificate. Set to NULL if the return
+value is nonzero. Ignored on the client if the method returns an error or
+throws an exception.</p><p><b>Return Values: </b>An HRESULT indicating return
+status. See <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+for details of the HRESULT type.</p><p><b>ERROR_SUCCESS</b> (0x00000000)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>The server MUST first check whether the client&#39;s identity,
+as reported by Kerberos to the RPC layer, is an account in a <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>
+that is trusted by the server, returning 0x80070005 if it is not. See [MS-RPCE]
+section <span><a href="../ms-rpce/29b8217a-0bda-4fdb-a3ea-48560125ae8d" data-linktype="relative-path">3.3.3.4.3</a></span>
+for details of acquiring the client identity. The server MAY apply other
+implementation-specific criteria to the account.<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="8288f3ea-243a-4bc8-a5d4-3e889f720838#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a> </p><p>If <i>ClientKeyLength</i> is nonzero, the server MUST decode
+the client certificate. If an error occurs during decoding, the server MUST
+return a nonzero error. The subject of the client certificate MUST be a <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span>
+string, as defined in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/c92a27b1-c772-4fa7-a432-15df5f1b66a1" data-linktype="relative-path">2.4.2.1</a></span>,
+representing the client&#39;s Kerberos identity; otherwise, the server MUST return
+0x80070005. If the SID string represents the client&#39;s Kerberos identity, the
+server MUST add the certificate to its table of peer certificates. The server
+MAY impose implementation-specific limits on the size of the table.<a id="Appendix_A_Target_3"></a><a aria-label="Product behavior note 3" href="8288f3ea-243a-4bc8-a5d4-3e889f720838#Appendix_A_3" data-linktype="relative-path">&lt;3&gt;</a> If the client certificate is not
+added because of such a limit, the server MUST return 0x80040006. If the table
+already contains a certificate corresponding to this client, the server MAY
+choose whether to replace or augment the prior certificate.<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="8288f3ea-243a-4bc8-a5d4-3e889f720838#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a> The server MUST return zero in
+either case.</p><p>If <i>ClientKeyLength</i> is zero, then the server MUST NOT
+decode the client certificate.</p><p>The server MUST encode its own certificate as a
+CERTIFICATE_BLOB, returning the encoded buffer in <i>pServerKey</i>.</p><p>If an error occurs during encoding, the server MUST return a
+nonzero value. Otherwise, the server MUST return zero.</p><p>The client and server SHOULD NOT include a <span><a href="a0febf01-4556-4e75-a6a3-10f2e224e19d" data-linktype="relative-path">KEY_PROV_INFO</a></span>
+property in the CERTIFICATE_BLOB, because it refers to local resources on the
+sender. Recipients SHOULD ignore the KEY_PROV_INFO property.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="8288f3ea-243a-4bc8-a5d4-3e889f720838#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p></div>

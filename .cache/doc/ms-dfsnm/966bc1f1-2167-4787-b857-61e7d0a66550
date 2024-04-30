@@ -1,0 +1,55 @@
+<div class="content"><p> </p><p>The DFS_TARGET_PRIORITY_CLASS enumeration relates to the <span><a href="7b033d5b-8d26-4931-8b3d-7aa35e441fb0" data-linktype="relative-path">NetrDfsSetInfo</a></span>
+and <span><a href="d2d8d56c-7ff6-4674-8193-313ddf1f1c3b" data-linktype="relative-path">NetrDfsSetInfo2</a></span>
+methods when used to set the priority of <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_a2c6d1c9-deea-427c-91ee-56f6e726eabd" data-linktype="relative-path">DFS targets</a></span> in
+referrals from a server. For more information on prioritization, see section <span><a href="316fec43-dfeb-4673-afc1-3ab66321debc" data-linktype="relative-path">2.2.2.7</a></span>.
+The enumeration defines five possible DFS target priority class settings.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum _DFS_TARGET_PRIORITY_CLASS
+ {
+   DfsInvalidPriorityClass = -1,
+   DfsSiteCostNormalPriorityClass = 0,
+   DfsGlobalHighPriorityClass = 1,
+   DfsSiteCostHighPriorityClass = 2,
+   DfsSiteCostLowPriorityClass = 3,
+   DfsGlobalLowPriorityClass = 4
+ } DFS_TARGET_PRIORITY_CLASS;
+</pre></div>
+</dd></dl><p><b>DfsInvalidPriorityClass:  </b>This is not a valid
+priority class.</p><p><b>DfsSiteCostNormalPriorityClass:  </b>The default
+or &#34;normal&#34; <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_962d81fb-26b3-483b-a5d1-353ed76943e7" data-linktype="relative-path">site cost</a></span> priority
+class for a DFS target.</p><p><b>DfsGlobalHighPriorityClass:  </b>The highest
+priority class for a DFS target. Targets assigned to this class receive global
+preference.</p><p><b>DfsSiteCostHighPriorityClass:  </b>The highest
+site cost priority class for a DFS target. Targets assigned to this class
+receive the highest preference among targets of the same site cost for a given <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c2787719-60e0-4b69-8efe-c33edf9b40b2" data-linktype="relative-path">DFS
+client</a></span>.</p><p><b>DfsSiteCostLowPriorityClass:  </b>The lowest site
+cost priority class for a DFS target. Targets assigned to this class receive
+the least preference among targets of the same site cost for a given DFS
+client.</p><p><b>DfsGlobalLowPriorityClass:  </b>The lowest
+priority class level for a DFS target. Targets assigned to this class receive
+the least preference globally.</p><p>The underlying data type of this enumeration is long
+integer.</p><p>The order of priority classes, from highest to lowest, is as
+follows:</p><ul><li><p><span><span> 
+</span></span>DfsGlobalHighPriorityClass</p>
+</li><li><p><span><span> 
+</span></span>DfsSiteCostHighPriorityClass</p>
+</li><li><p><span><span> 
+</span></span>DfsSiteCostNormalPriorityClass</p>
+</li><li><p><span><span> 
+</span></span>DfsSiteCostLowPriorityClass</p>
+</li><li><p><span><span> 
+</span></span>DfsGlobalLowPriorityClass</p>
+</li></ul><p>Server targets are initially grouped into global
+high-priority, normal-priority, and global low-priority classes. The
+normal-priority class is then subdivided, based on site cost, into site cost
+high-priority, site cost normal-priority, and site-cost low-priority classes.</p><p>For example, all server targets with a site cost value of 0
+are grouped into site cost high-priority, normal-priority, and low-priority
+classes. Then, all server targets with higher site costs are likewise separated
+into site cost high-priority, normal-priority, and low-priority classes. Thus,
+a server target with a site cost value of 0 and a site cost low-priority class
+is still ranked higher than a server target with a site cost value of 1 and a
+site cost high-priority class.</p><p>Be aware that the value for a &#34;normal-priority
+class&#34; is set to 0 even though it is lower in priority than
+DfsGlobalHighPriorityClass and DfsSiteCostHighPriorityClass. This is the
+default priority class setting. For added granularity, priority rank can be
+used to discriminate within a priority class.</p></div>

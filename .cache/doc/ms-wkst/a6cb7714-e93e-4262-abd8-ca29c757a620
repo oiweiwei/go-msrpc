@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The <b>USE_INFO_3</b> structure specifies details about the
+connection between a machine on which the workstation service is running and a
+shared resource, including user name and domain name.</p><dl>
+<dd>
+<div><pre> typedef struct _USE_INFO_3 {
+   USE_INFO_2 ui3_ui2;
+   ULONG ui3_flags;
+ } USE_INFO_3,
+  *PUSE_INFO_3,
+  *LPUSE_INFO_3;
+</pre></div>
+</dd></dl><p><b>ui3_ui2:</b> A pointer to the <b>USE_INFO_2</b>
+structure (section <span><a href="144e75a6-cda2-4418-96b9-e6867b50bfba" data-linktype="relative-path">2.2.5.24</a></span>) that the
+method returns.</p><p><b>ui3_flags:</b> A reserved field that the client
+MUST set to zero, and the server MUST ignore on receipt.</p></div>

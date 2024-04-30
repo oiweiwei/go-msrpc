@@ -1,0 +1,81 @@
+<div class="content"><p> </p><p>This method performs mutual authentication between the
+client and server, and establishes a security context, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90378" data-linktype="external">[RFC2743]</a></span>.
+The server uses the security context to construct a <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_ad0cf6e3-05c3-482d-ab0f-617f91871189" data-linktype="relative-path">digital signature</a></span> in
+subsequent method calls of this protocol, and the client uses the security
+context to validate the digital signature. The digital signature is used in
+methods that return data to the client. It allows the client to authenticate
+the source of the data and ensures that it has not been tampered with en route
+from the server to the client.</p><p>When the client has no further use of the <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+context handle returned from this method, it releases the handle through a
+subsequent call to <span><a href="b6caa8f1-2de9-4ca5-8f3d-e6acade2491e" data-linktype="relative-path">S_DSCloseServerHandle (section 3.1.4.3)</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT S_DSValidateServer(
+   [in] handle_t hBind,
+   [in] const GUID* pguidEnterpriseId,
+   [in] BOOL fSetupMode,
+   [in] unsigned long dwContext,
+   [in, range(0,524288)] unsigned long dwClientBuffMaxSize,
+   [in, size_is(dwClientBuffMaxSize), length_is(dwClientBuffSize)] 
+     unsigned char* pClientBuff,
+   [in, range(0,524288)] unsigned long dwClientBuffSize,
+   [out] PPCONTEXT_HANDLE_SERVER_AUTH_TYPE pphServerAuth
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST specify an RPC binding handle, as
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>pguidEnterpriseId: </b> MUST be set by the client to a
+pointer to the <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> of the <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_7f2ba744-a8fa-4793-9e7a-c14471e313ff" data-linktype="relative-path">enterprise</a></span>
+that owns the server. The server SHOULD ignore it.<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a></p><p><b>fSetupMode: </b> Boolean value that defines the setup
+mode. Clients SHOULD set this value to FALSE (0x00000000). The server SHOULD
+ignore it.<a id="Appendix_A_Target_18"></a><a aria-label="Product behavior note 18" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a></p><p><b>dwContext: </b> MUST be set by the client to a value that
+the client can use to correlate callbacks with the initial call to
+S_DSValidateServer. The server MUST supply this value in the <i>dwContext</i>
+parameter in the related calls of the <span><a href="d8d72d37-1023-4017-9016-ccfbf3e10137" data-linktype="relative-path">S_InitSecCtx (section 3.2.4.3)</a></span>
+callback method.</p><p><b>dwClientBuffMaxSize: </b> MUST be set by the client to
+the size of the buffer pointed to by the <i>pClientBuff</i> parameter.</p><p><b>pClientBuff: </b>A pointer that MUST be set by the client
+to point to a buffer that contains the output_token from an initial call to <b>GSS_Init_sec_context</b>,
+as specified in [RFC2743] section 2.2.1.</p><p><b>dwClientBuffSize: </b> MUST be set by the client to the
+size in bytes of the output_token within the client buffer pointed at by the <i>pClientBuff</i>
+parameter.</p><p><b>pphServerAuth: </b> MUST be set by the server to a <span><a href="c28a1e6b-4092-4443-b69f-5814d5c4f9e4" data-linktype="relative-path">PCONTEXT_HANDLE_SERVER_AUTH_TYPE (section 2.2.5)</a></span>
+RPC context handle.</p><p><b>Return Values: </b> If the method succeeds, the return
+value is 0. If the method fails, the return value is an implementation-specific
+error code.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>MQ_ERROR_DS_ERROR</b> (0xC00E0043)</p><p><b>MQDS_E_CANT_INIT_SERVER_AUTH</b> (0xC00E052B)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol as specified in [MS-RPCE].</p><p>If the <i>dwClientBuffSize</i> parameter is zero, the server
+MUST initialize an empty security context in the security context table
+associated with the <i>pphServerAuth</i> parameter and MUST NOT invoke client
+callback methods. In addition, all signature parameters in other methods in
+this protocol that return server signatures MUST be set to all zeros.</p><p>If the <i>dwClientBuffSize</i> parameter is nonzero, the
+server MUST construct a valid non-empty security context in the security
+context table associated with the <i>pphServerAuth</i> parameter.</p><p>The client MUST supply an input_token in the <i>pClientBuff</i>
+parameter, acquired through an initial call to <b>GSS_Init_sec_context</b>, as
+specified in [RFC2743] section 2.2.1. The server MUST perform the following
+processing. </p><ol><li><p><span>    </span>Let <i>inputToken</i>
+point to an input_token initialized to the <i>pClientBuff</i> parameter.</p>
+</li><li><p><span>    </span>Call <b>GSS_Accept_sec_context</b>,
+as specified in [RFC2743] section 2.2.2, with the input_token contained in <i>inputToken</i>
+and a NULL input_context_handle.</p>
+</li><li><p><span>    </span>If <b>GSS_Accept_sec_context</b>
+returns GSS_S_COMPLETE, the negotiation is complete. The server MUST allocate a
+PCONTEXT_HANDLE_SERVER_AUTH_TYPE RPC context handle and MUST allocate a
+security context entry in the security table keyed by the context handle. The
+server MUST associate the GSS security context (output_context_handle from the
+GSSAPI call) with the security context entry. The server MUST return the RPC
+context handle in the <i>pphServerAuth</i> parameter and return MQ_OK.</p>
+</li><li><p><span>    </span>If <b>GSS_Accept_sec_context</b>
+returns GSS_S_CONTINUE_NEEDED, the server MUST issue a callback to the client
+through the S_InitSecCtx (section 3.2.4.3) method with the <i>dwContext</i>
+parameter set to the value supplied by the client in the <i>dwContext</i>
+parameter and the <i>pServerBuff</i> parameter set to the output_token returned
+from <b>GSS_Accept_sec_context</b>. When the callback to S_InitSecCtx returns,
+the server MUST set <i>inputToken</i> to the <i>pClientBuff</i> parameter
+returned by S_InitSecCtx and MUST continue at step 2.</p>
+</li><li><p><span>    </span>If <b>GSS_Accept_sec_context</b>
+returns any other value, the server MUST take no further action and return a
+failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>.</p>
+</li></ol><p>The GSS security context is used by the server in subsequent
+calls to <b>GSSWrap</b>, as specified in [RFC2743] section 2.3.3.</p><p>On successful return, the client MUST retrieve the GSS
+security context associated with the <i>dwContext</i> parameter and MUST
+associate it with the PCONTEXT_HANDLE_SERVER_AUTH_TYPE RPC context handle returned
+in the <i>pphServerAuth</i> parameter. The GSS security context will be used by
+the client in subsequent calls to <b>GSSUnwrap</b>, as specified in [RFC2743]
+section 2.3.4.</p></div>

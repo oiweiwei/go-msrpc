@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The SAFEARRAYBOUND structure specifies the bounds of one
+dimension of a <span><a href="2e87a537-9305-41c6-a88b-b79809b3703a" data-linktype="relative-path">SAFEARRAY</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct tagSAFEARRAYBOUND {
+   ULONG cElements;
+   LONG lLbound;
+ } SAFEARRAYBOUND,
+  *LPSAFEARRAYBOUND;
+</pre></div>
+</dd></dl><p><b>cElements:</b>  MUST be set to the
+number of elements in the current dimension. MUST be nonzero.</p><p><b>lLbound:</b>  MUST be set to the lower
+bound of the current dimension.</p><p>Data of this type MUST be marshaled as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+section 14, except that it MUST be marshaled by using a little-endian data
+representation, regardless of the data representation format label. For more
+information, see [C706] section 14.2.5.</p></div>

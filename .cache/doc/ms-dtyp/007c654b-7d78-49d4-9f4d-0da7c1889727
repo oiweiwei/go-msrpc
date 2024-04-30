@@ -1,0 +1,61 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/007c654b-7d78-49d4-9f4d-0da7c1889727" data-linktype="external">msdn link</a></p><p>The SERVER_INFO_100 structure contains information about the
+specified server, including the name and platform.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVER_INFO_100 {
+   DWORD sv100_platform_id;
+   [string] wchar_t* sv100_name;
+ } SERVER_INFO_100,
+  *PSERVER_INFO_100,
+  *LPSERVER_INFO_100;
+</pre></div>
+</dd></dl><p><b>sv100_platform_id:</b>  Specifies the
+information level to use for platform-specific information.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PLATFORM_ID_DOS</p>
+  </td>
+  <td>
+  <p>300</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PLATFORM_ID_OS2</p>
+  </td>
+  <td>
+  <p>400</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PLATFORM_ID_NT</p>
+  </td>
+  <td>
+  <p>500</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PLATFORM_ID_OSF</p>
+  </td>
+  <td>
+  <p>600</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PLATFORM_ID_VMS</p>
+  </td>
+  <td>
+  <p>700</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>sv100_name:</b>  A pointer to a
+null-terminated <a href="a66edeb1-52a0-4d64-a93b-2f5c833d7d92#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> <a href="a66edeb1-52a0-4d64-a93b-2f5c833d7d92#gt_4c9eef52-69d4-43e7-ac04-ff1fe43a94fb" data-linktype="relative-path">UTF-16</a> <a href="a66edeb1-52a0-4d64-a93b-2f5c833d7d92#gt_4d5d5403-372f-4f9f-8d7a-65c310c807d9" data-linktype="relative-path">Internet host name</a> or <a href="a66edeb1-52a0-4d64-a93b-2f5c833d7d92#gt_150cc108-7e58-4fdb-957d-2a3734ba15f5" data-linktype="relative-path">NetBIOS host name</a> of a
+server.</p></div>

@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The IEnumVARIANT::Clone method creates a copy of the current
+state of the enumeration.</p><dl>
+<dd>
+<div><pre> HRESULT Clone(
+   [out] IEnumVARIANT** ppEnum
+ );
+</pre></div>
+</dd></dl><p><b>ppEnum: </b>MUST be set to an instance of the
+enumeration.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul><p>The server MUST create a new <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_afe9a4a6-56fc-4162-8c9b-ca7c7e44449c" data-linktype="relative-path">COM server</a></span> that
+implements IEnumVARIANT. The state of the newly created IEnumVARIANT server
+MUST be set according to the type of the current server:</p><ul><li><p><span><span> 
+</span></span>If the original server is a static or semi-static server, the
+state of the new COM server MUST be based on the current state of the
+enumeration.</p>
+</li><li><p><span><span> 
+</span></span>If the original server is a dynamic server, the state of the new
+COM server MUST be based on the current state of the underlying collection, and
+the current position in the sequence.</p>
+</li></ul></div>

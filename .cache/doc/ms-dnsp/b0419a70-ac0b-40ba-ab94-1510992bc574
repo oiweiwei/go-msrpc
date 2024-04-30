@@ -1,0 +1,194 @@
+<div class="content"><p> </p><p>The R_DnssrvQuery method queries the DNS server for
+information. The type of information queried for is specified by the client
+using the pszZone and pszOperation parameters. For the purpose of selecting an
+output structure type the server MUST consider the value of dwClientVersion
+(section <span><a href="a237781b-b048-495d-844b-10ffb38df2a8" data-linktype="relative-path">2.2.1.2.1</a></span>) to be
+0x00000000 when responding to this method.</p><dl>
+<dd>
+<div><pre> LONG R_DnssrvQuery(
+   [in]                                    handle_t               hBindingHandle,
+   [in, unique, string]                    LPCWSTR                pwszServerName,
+   [in, unique, string]                    LPCSTR                 pszZone,
+   [in, unique, string]                    LPCSTR                 pszOperation,
+   [out]                                   PDWORD                 pdwTypeId,
+   [out, switch_is(*pdwTypeId)]            DNSSRV_RPC_UNION*      ppData
+ );
+</pre></div>
+</dd></dl><p><b>hBindingHandle: </b>An RPC binding handle to the
+server. Details concerning binding handles are specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+section 2.3.</p><p><b>pwszServerName: </b>The client can pass a pointer
+to the FQDN of the target server as a null-terminated <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_69864bcc-33be-41c9-9486-e18618ee3dd0" data-linktype="relative-path">UTF-16LE</a></span> character
+string. The server MUST ignore this value.</p><p><b>pszZone: </b>A pointer to a null-terminated
+character string that contains name of the zone to be queried. For operations
+specific to a particular zone, this field MUST contain the name of the zone in
+UTF-8 format. For all other operations, this field MUST be NULL. </p><p><b>pszOperation: </b>A pointer to a null-terminated
+character string that contains the name of the operation to be performed on the
+server. These are two sets of allowed values for pszOperation:</p><dl>
+<dd>
+<p>If pszZone is set to NULL, pszOperation MUST be
+either a property name listed in section <span><a href="c4833797-156c-4c48-a380-d40dd1760eb9" data-linktype="relative-path">3.1.1.1</a></span>, or it
+SHOULD<a id="Appendix_A_Target_265"></a><a aria-label="Product behavior note 265" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_265" data-linktype="relative-path">&lt;265&gt;</a> be the following. </p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&#34;ServerInfo&#34;</p>
+  </td>
+  <td>
+  <p>On output pdwTypeId SHOULD be set according to the
+  value of the dwClientVersion field (section 2.2.1.2.1). If dwClientVersion is
+  0x00000000, then pdwTypeId SHOULD be set to DNSSRV_TYPEID_SERVER_INFO_W2K. If
+  dwClientVersion is 0x00060000, then pdwTypeId SHOULD be set to
+  DNSSRV_TYPEID_SERVER_INFO_DOTNET. If dwClientVersion is 0x00070000, then
+  pdwTypeId SHOULD be set to  DNSSRV_TYPEID_SERVER_INFO<a id="Appendix_A_Target_266"></a><a aria-label="Product behavior note 266" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_266" data-linktype="relative-path">&lt;266&gt;</a> ppData MUST point to a
+  structure of one of the types specified in DNS_RPC_SERVER_INFO (section <span><a href="ac444baf-4bf9-4f36-912e-3041d4c46361" data-linktype="relative-path">2.2.4.2.2</a></span>),
+  which SHOULD contain the configuration information for the DNS server, but
+  MAY have some fields set to zero even when the related configuration value is
+  nonzero.<a id="Appendix_A_Target_267"></a><a aria-label="Product behavior note 267" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_267" data-linktype="relative-path">&lt;267&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VirtualizationInstance</p>
+  </td>
+  <td>
+  <p>Gets the details of a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1b9d3eb9-dad0-4d1d-acb7-4597e5db641c" data-linktype="relative-path">virtualization instance</a></span>
+  in the DNS server. On success, the DNS server MUST set the <i>dwTypeId</i>
+  parameter to DNSSRV_TYPEID_VIRTUALIZATION_INSTANCE (section <span><a href="b61a8727-46b1-4981-a6b3-a1d4b92b67c4" data-linktype="relative-path">2.2.1.2.6</a></span>),
+  and MUST set the <i>ppData</i> point to a structure of type
+  DNS_RPC_VIRTUALIZATION_INSTANCE (section <span><a href="44d991d5-392a-48e7-827f-a1ccbe22ddef" data-linktype="relative-path">2.2.17.1.1</a></span>).</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If pszZone is not NULL, pszOperation MUST be either
+a property name listed in section <span><a href="8df021b3-47ad-4829-a1c2-5588165c27e7" data-linktype="relative-path">3.1.1.2</a></span>, or one of
+the following.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&#34;Zone&#34;</p>
+  </td>
+  <td>
+  <p>On output the value pointed to by pdwTypeId SHOULD<a id="Appendix_A_Target_268"></a><a aria-label="Product behavior note 268" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_268" data-linktype="relative-path">&lt;268&gt;</a> be set to
+  DNSSRV_TYPEID_ZONE and ppData MUST point to a structure of one of the types
+  specified in DNS_RPC_ZONE (section <span><a href="f22773ca-bfbf-46a5-8042-fbda1f3c4ad2" data-linktype="relative-path">2.2.5.2.1</a></span>), which
+  contains abbreviated information about the zone pointed to by pszZone.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;ZoneInfo&#34;</p>
+  </td>
+  <td>
+  <p>On output the value pointed to by pdwTypeId SHOULD<a id="Appendix_A_Target_269"></a><a aria-label="Product behavior note 269" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_269" data-linktype="relative-path">&lt;269&gt;</a> be set to
+  DNSSRV_TYPEID_ZONE_INFOand ppData MUST point to a structure of one of the
+  types specified in DNS_RPC_ZONE_INFO (section <span><a href="5e6b44a9-13c4-4c3a-a7a2-b5576016c3cf" data-linktype="relative-path">2.2.5.2.4</a></span>), which
+  contains full information about the zone pointed to by pszZone.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pdwTypeId: </b>A pointer to an integer that on
+success contains a value of type DNS_RPC_TYPEID (section <span><a href="c49b8142-a364-41c8-914a-7675a573b5e4" data-linktype="relative-path">2.2.1.1.1</a></span>)
+that indicates the type of data pointed to by ppData.</p><p><b>ppData: </b>A DNSSRV_RPC_UNION(section 2.2.1.2.6)
+that contains a data-structure as indicated by dwTypeId.</p><p><b>Return Values: </b>A Win32 error code indicating
+whether the operation completed successfully (0x00000000) or failed (any other
+value). See <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>
+or section <span><a href="aa521c99-3e44-4b75-9faa-c0c1ebcca5b6" data-linktype="relative-path">2.2.1.1.5</a></span>.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>If the Global Server State (section <span><a href="bdac5142-4baf-4b62-bcce-d49eafc9c3e6" data-linktype="relative-path">3.1</a></span>) is not
+&#34;Running&#34;, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Check that the input parameters conform to the syntax
+requirements above, and if not return a failure.</p>
+</li><li><p><span><span> 
+</span></span>If pszZone is not NULL, search the DNS Zone Table (section 3.1)
+for the zone with name matching the value of pszZone. If a matching zone cannot
+be found return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Validate, as specified in section <span><a href="7ba0801d-74f1-499e-81a3-00231ef31952" data-linktype="relative-path">3.1.6.1</a></span>, that the
+client has permissions to perform the attempted operation. If pszZone is NULL
+then the DNS server MUST perform the Phase 2 authorization test using the DNS
+Server Configuration Access Control List. If pszZone is not NULL then the DNS
+server MUST perform the Phase 2 authorization test using the Zone Access
+Control List for the zone specified by pszZone. Read privilege MUST be tested
+for all operations. If the client does not have permission to perform the
+operation, the server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>If pszZone is NULL, execute the operation indicated by the value
+of pszOperation specified as follows:</p>
+<ul><li><p><span><span>  </span></span>If
+pszOperation is ServerInfo, the server MUST return in ppData configuration
+information for the DNS server, and return success.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation matches a property name listed in section <span><a href="8903e50a-9183-4a7d-9640-53f6f5a91481" data-linktype="relative-path">3.1.1.1.1</a></span>,
+the server SHOULD<a id="Appendix_A_Target_270"></a><a aria-label="Product behavior note 270" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_270" data-linktype="relative-path">&lt;270&gt;</a> return DNSSRV_TYPEID_DWORD in
+pdwTypeId and return in ppData the value associated with that property, and
+return success. The server MAY return a nonzero error code.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation matches a property name listed in section <span><a href="f73f36ca-3f06-40ca-a392-f7837d62642f" data-linktype="relative-path">3.1.1.1.2</a></span>,
+the server SHOULD<a id="Appendix_A_Target_271"></a><a aria-label="Product behavior note 271" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_271" data-linktype="relative-path">&lt;271&gt;</a> return
+DNSSRV_TYPEID_ADDRARRAY in pdwTypeId, return in ppData the value associated
+with that property as a DNS_ADDR_ARRAY (section <span><a href="588ae296-71bf-402f-9996-86ecee39dc29" data-linktype="relative-path">2.2.3.2.1</a></span>), and
+return success; it MAY instead return DNSSRV_TYPEID_ADDRARRAY in the pdwTypeId,
+return in ppData the value associated with that property as an IP4_ARRAY
+(section 2.2.3.2.1), and return success; or it MAY instead return a nonzero
+error code.<a id="Appendix_A_Target_272"></a><a aria-label="Product behavior note 272" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_272" data-linktype="relative-path">&lt;272&gt;</a></p>
+</li><li><p><span><span>  </span></span>If
+pszOperation matches a property name listed in section <span><a href="c9d38538-8827-44e6-aa5e-022a016ed723" data-linktype="relative-path">3.1.1.1.3</a></span>
+that the server supports, the server MUST return DNSSRV_TYPEID_LPSTR for UTF-8
+string properties or DNSSRV_TYPEID_LPWSTR for Unicode string properties in
+pdwTypeId, and return in ppData a pointer to the UTF-8 or Unicode string
+associated with that property, and return success.<a id="Appendix_A_Target_273"></a><a aria-label="Product behavior note 273" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_273" data-linktype="relative-path">&lt;273&gt;</a> If the property name is not
+supported, the server MUST return a nonzero error code.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation matches a property name listed in section <span><a href="35e541ef-7a59-4a44-ba18-7cd00aba6a0d" data-linktype="relative-path">3.1.1.1.4</a></span>
+that the server supports, the server MUST return
+DNSSRV_TYPEID_UTF8_STRING_LIST, and return in ppData the
+DNS_RPC_UTF8_STRING_LIST (section <span><a href="8c593fe6-1a07-4140-992c-71f97f929ba3" data-linktype="relative-path">2.2.1.2.3</a></span>)
+associated with that property, and return success. </p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is VirtualizationInstance, the server MUST return in ppData
+details of the virtualization instance in a PDNS_RPC_VIRTUALIZATION_INSTANCE
+structure and return success. If a virtualization instance does not exist then
+return error DNS_ERROR_VIRTUALIZATION_INSTANCE_DOES_NOT_EXIST (9922).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If pszZone is not NULL, execute the operation indicated by the
+value of pszOperation, specified as follows:</p>
+<ul><li><p><span><span>  </span></span>If
+pszOperation is Zone, the server instead returns information about the zone in
+DNS_RPC_ZONE (section 2.2.5.2.1) format in ppData, and return success.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is ZoneInfo, the server instead returns information about the zone
+in DNS_RPC_ZONE_INFO (section 2.2.5.2.4) format in ppData, and return success.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation matches a property name listed in section <span><a href="7bc88855-d86a-41f1-826f-a81788adb95a" data-linktype="relative-path">3.1.1.2.1</a></span>,
+the server MUST return DNSSRV_TYPEID_DWORD in pdwTypeId, return in ppData the
+value associated with that property, and return success.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation matches a property name listed in section <span><a href="d5323708-2169-4c62-b1e0-8569a103a8be" data-linktype="relative-path">3.1.1.2.2</a></span>
+that the server supports, the server SHOULD<a id="Appendix_A_Target_274"></a><a aria-label="Product behavior note 274" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_274" data-linktype="relative-path">&lt;274&gt;</a> return
+DNSSRV_TYPEID_ADDRARRAY in pdwTypeId, return in ppData the value associated
+with that property as a DNS_ADDR_ARRAY (section <span><a href="56ba5fab-f304-4866-99a4-4f1c1f9247a3" data-linktype="relative-path">2.2.3.2.3</a></span>), and
+return success; or it MAY instead return DNSSRV_TYPEID_IPARRAY in pdwTypeId,
+return in ppData the value associated with that property as an IP4_ARRAY
+(section <span><a href="04239598-0c9b-469b-b133-9f0142c2b1c5" data-linktype="relative-path">2.2.3.1.1</a></span>), and
+return success. If the property name is not supported, the server MUST return a
+nonzero error code.</p>
+</li></ul></li></ul></div>

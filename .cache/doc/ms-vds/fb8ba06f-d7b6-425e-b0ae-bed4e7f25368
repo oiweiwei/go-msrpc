@@ -1,0 +1,36 @@
+<div class="content"><p> </p><p>The QueryPartitions method enumerates a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk&#39;s</a></span>
+<span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partitions</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT QueryPartitions(
+   [out, size_is(,*plNumberOfPartitions)] 
+     VDS_PARTITION_PROP** ppPartitionPropArray,
+   [out] long* plNumberOfPartitions
+ );
+</pre></div>
+</dd></dl><p><b>ppPartitionPropArray: </b>A pointer to an array of
+<span><a href="1498b7be-4b6d-4fba-97e7-68ee4468d896" data-linktype="relative-path">VDS_PARTITION_PROP</a></span>
+structures that, if the operation is successfully completed, receives the array
+of partition properties.</p><p><b>plNumberOfPartitions: </b>A pointer to a variable
+that, if the operation is successfully completed, receives the total number of
+elements in <b>ppPartitionPropArray</b>.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><dl>
+<dd>
+<p><b>Note</b>  This method is not valid for
+CD/DVD or <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_a2b20515-dc69-4674-b74e-91c8f24e3003" data-linktype="relative-path">super floppy</a></span>
+devices. These devices do not support <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_cee39671-0b98-4ca3-904d-018780e7042f" data-linktype="relative-path">partition tables</a></span>.</p>
+</dd></dl><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <b>ppPartitionPropArray</b> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <b>plNumberOfPartitions</b> is not NULL.</p>
+</li></ul><p>The server MUST point <b>ppPartitionPropArray</b> to an
+array of VDS_PARTITION_PROP structures that contains information about each
+partition on the disk, point <b>plNumberOfPartitions</b> to the number of
+elements in the array, and then return an HRESULT indicating failure or
+success.</p><p>If the disk has no partition format (it is not formatted as
+either MBR or GPT), then there are no partitions and this method MUST return
+VDS_E_DISK_NOT_INITIALIZED.</p></div>

@@ -1,0 +1,80 @@
+<div class="content"><p> </p><p>The <b>FAX_OpenConnection (Opnum 0)</b> method returns the
+context handle that is supplied by the <b>FAX_StartServerNotification</b>
+family of calls. This is done to provide a security layer, by verifying that
+the notifications are coming from an expected source.</p><p>In response, the fax client (acting as an <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+server for this call) SHOULD validate the notification context referred by the
+Context argument to ensure this is a valid notification context previously
+submitted by the fax client to a <b>FAX_StartServerNotification</b> (section
+<span><a href="693ea4ae-60cd-4043-b775-1a1f19920cbb" data-linktype="relative-path">3.1.4.1.100</a></span>),
+<b>FAX_StartServerNotificationEx</b> (section <span><a href="b73163aa-5f4b-45b3-9c5b-f95077f103c2" data-linktype="relative-path">3.1.4.1.101</a></span>), or <b>FAX_StartServerNotificationEx2</b> (section
+<span><a href="55770fa2-8c93-40c1-a56e-2c17e8ff707b" data-linktype="relative-path">3.1.4.1.102</a></span>)
+method call through the argument with the same name (Context). The fax client
+MUST validate whether the fax server (acting as an RPC client for this call)
+uses an authentication scheme better than RPC_C_AUTHN_LEVEL_PKT_PRIVACY. An RPC
+client always uses a packet <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_bfb9708e-9d05-4f79-8969-ef63f73aa434" data-linktype="relative-path">authentication level</a></span>,
+as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/dc0b2fa4-2d1d-49c7-8d93-43736725b55b" data-linktype="relative-path">3.3.1.5.2</a></span>.</p><p>On success, the fax client MUST open a notification session
+to the fax server and MUST return the same <i>Context</i> in the FaxHandle
+argument that was passed by the fax server in the FaxHandle argument.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_OpenConnection(
+   [in] handle_t hBinding,
+   [in] unsigned __int64 Context,
+   [out] PRPC_FAX_HANDLE FaxHandle
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>Handle provided by the client RPC
+layer when the RPC call is made.</p><p><b>Context: </b>A <b>ULONG64</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">2.2.51</a></span>)
+containing a context information handle. This handle SHOULD match the one
+supplied to the server when using the <b>FAX_StartServerNotification</b> family
+of calls. For more information, see the following topics:</p><p><span>§<span>  </span></span><b>FAX_StartServerNotification</b></p><ul><li><p><span><span> 
+</span></span><b>FAX_StartServerNotificationEx</b></p>
+</li><li><p><span><span> 
+</span></span><b>FAX_StartServerNotificationEx2</b></p>
+</li></ul><p><b>FaxHandle: </b>A pointer to an RPC_FAX_HANDLE
+indicating a context handle to open. This value is used in other fax client
+calls.</p><dl>
+<dd>
+<p>This method MUST return 0x00000000 (ERROR_SUCCESS)
+for success; otherwise, it MUST return one of the following error codes, one of
+the fax-specific errors that are defined in section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in [MS-ERREF] section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The method requires at least packet-level privacy. The
+  server checks the authentication level of the client. If it is less than
+  RPC_C_AUTHN_LEVEL_PKT_PRIVACY, refuse access. Or there are other
+  access-related problems.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>An invalid <b>AssyncInfo</b> structure is pointed to
+  by the <i>Context</i> parameter or there are parameter-related problems.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those thrown by the underlying RPC protocol, [MS-RPCE].</p><p>The returned PRPC_FAX_HANDLE is the <i>Context</i> parameter
+cast to a HANDLE. </p><p>The <b>FAX_OpenConnection</b> method returns the context
+handle supplied by the <b>FAX_StartServerNotification</b> family of calls. This
+is done to provide a security layer, by verifying that the notifications are
+coming from an expected source. </p></div>

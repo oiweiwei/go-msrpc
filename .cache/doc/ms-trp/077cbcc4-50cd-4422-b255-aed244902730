@@ -1,0 +1,122 @@
+<div class="content"><p>The LINE_CALLINFO packet is sent when call information about
+the specified call has changed. A call can be established using <a href="c9acdfde-22de-43ff-b491-23a9ed72fb31" data-linktype="relative-path">MakeCall</a> packet. The
+application can send the <a href="fdcdf2c5-6ef4-4895-86c3-20ce2da10df0" data-linktype="relative-path">GetCallInfo</a>
+packet to determine the current call information. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">TotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">InitContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">fnPostProcessProcHandle</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hCall</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Msg</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">OpenContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hRemoteLine</p>
+  </td>
+ </tr>
+</tbody></table><p><b>TotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size of the asynchronous event packet.</p><p><b>InitContext (4 bytes): </b>An unsigned 32-bit
+integer. The opaque, client-specified session value that MUST be equal to the
+InitContext value that is specified in the original scoping of the line <a href="9d8eb7cd-3245-4e44-97e0-42f7b89c9424" data-linktype="relative-path">Initialize</a> request.</p><p><b>fnPostProcessProcHandle (4 bytes): </b>An unsigned
+32-bit integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>hCall (4 bytes): </b>An <a href="7f4089a0-7432-4ef0-8eeb-5aafe407c07e" data-linktype="relative-path">HCALL</a>. The handle to the
+call or line device that is associated with the asynchronous event. </p><p><b>Msg (4 bytes): </b>An unsigned 32-bit integer.
+MUST be set to 0x00000001 (LINE_CALLINFO).</p><p><b>OpenContext (4 bytes): </b>An unsigned 32-bit
+integer. The opaque client-specified context value that MUST be equal to the
+OpenContext value that is specified in the original scoping of the line <a href="2759c744-e040-4c5d-b4b5-215d391f0490" data-linktype="relative-path">Open</a> request.</p><dl>
+<dd>
+<p>This information MUST be passed back to the
+application with each completion and event that is associated with the handle
+of the line or call on the line. This field is not interpreted by TAPI.</p>
+</dd></dl><p><b>Param1 (4 bytes): </b>An unsigned 32-bit integer.
+The call information item that has changed. MUST be one or more of the <a href="092c60f8-50c8-41b7-a371-edac5331eab9" data-linktype="relative-path">LINECALLINFOSTATE_Constants</a>.</p><p><b>Param2 (4 bytes): </b>An unsigned 32-bit integer.
+This MUST be ignored on receipt and can be any value.  </p><p><b>Param3 (4 bytes): </b>An unsigned 32-bit integer.
+This MUST be ignored on receipt and can be any value.  </p><p><b>hRemoteLine (4 bytes): </b>An unsigned 32-bit
+integer. The handle of the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a>
+for the line value.</p><p>A LINE_CALLINFO message with number of owners incremented,
+number of owners decremented, and/or number of monitors changed indication is
+sent to applications that already have a handle for the call. This can be the
+result of another application changing ownership or monitorship to a call, for
+example using Open, <a href="a23a5495-83ac-4303-a1f0-e6fce3068f3c" data-linktype="relative-path">Close</a>,
+<a href="7ce39c41-3884-48f1-9b37-a7ef3108e7cf" data-linktype="relative-path">GetNewCalls</a> and <a href="c93fb60b-cbe5-40a1-aa85-f64dc4186c0f" data-linktype="relative-path">Shutdown</a> packet.</p><p>The application that causes a change in the number of owners
+or monitors, for example, using DeallocateCall packet, does not itself receive
+a message indicating that the change has been done.</p><p>These LINE_CALLINFO messages are not sent when a
+notification of a new call is provided in a LINE_CALLSTATE message, because the
+call information already reflects the correct number of owners and monitors at
+the time the LINE_CALLSTATE messages are sent. LINE_CALLINFO messages are also
+suppressed in the case where a call is offered by TAPI to monitors through the
+LINECALLSTATE_UNKNOWN mechanism. </p><p>No LINE_CALLINFO messages are sent for a call after the call
+has entered the idle state. Specifically, changes in the number of owners and
+monitors are not reported as applications deallocate their handles for the idle
+call.</p></div>

@@ -1,0 +1,29 @@
+<div class="content"><p>The IExport2 <a href="3f01a312-3391-4109-a96e-95358babf191#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides a method
+for <a href="3f01a312-3391-4109-a96e-95358babf191#gt_f0e19764-1f7d-4410-beca-8a76aa3c9c85" data-linktype="relative-path">exporting</a>, as
+specified in <a href="a8132649-0358-4371-ac3b-e42620cfb673" data-linktype="relative-path">Export and
+Import (section 1.3.7)</a>, a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a> to an <a href="3f01a312-3391-4109-a96e-95358babf191#gt_b1856eaa-54fc-49af-a38c-55cc86e7b93e" data-linktype="relative-path">installer package file</a>.
+This interface inherits from <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>,
+as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section 3.1.1.5.8.</p><p>To receive incoming remote calls for this interface, the
+server MUST implement a DCOM Object Class with the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a> CLSID_COMAServer, as
+specified in section <a href="3afd05f6-01a3-4920-951f-f9c703a3b0f1" data-linktype="relative-path">1.9</a>,
+using the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a>
+{F131EA3E-B7BE-480E-A60D-51CB2785779E} for this interface.</p><p>This interface includes the following methods beyond those
+of IUnknown.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="03d02da1-1d05-4535-8d96-810022c613d3" data-linktype="relative-path">ExportPartition</a></p>
+  </td>
+  <td>
+  <p>Exports a partition to an installer package file.</p>
+  <p>Opnum: 3</p>
+  </td>
+ </tr></tbody></table><p>All methods MUST NOT throw exceptions.</p></div>

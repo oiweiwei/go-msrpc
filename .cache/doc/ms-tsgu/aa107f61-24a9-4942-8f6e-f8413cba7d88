@@ -1,0 +1,36 @@
+<div class="content"><p>The TSG_PACKET_CAPABILITIES structure contains information
+about the capabilities of the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> and RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>.</p><p>This structure MUST be embedded in the <a href="97c5562c-70a3-4d45-99eb-732202743cd9" data-linktype="relative-path">TSG_PACKET_VERSIONCAPS</a>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _TSG_PACKET_CAPABILITIES {
+   unsigned long capabilityType;
+   [switch_is(capabilityType)] TSG_CAPABILITIES_UNION TSGPacket;
+ } TSG_PACKET_CAPABILITIES,
+  *PTSG_PACKET_CAPABILITIES;
+</pre></div>
+</dd></dl><p><b>capabilityType:</b>  Indicates the type
+of <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_f30fdc41-d7c1-422e-b5a8-9dcce071ebeb" data-linktype="relative-path">NAP</a> capability
+supported by the RDG client or the RDG server. This member MUST be the
+following value:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The RDG server supports NAP capability type
+  (TSG_CAPABILITY_TYPE_NAP).<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>TSGPacket:</b>  Specifies the union
+containing the actual structure corresponding to the value defined in the <b>capabilityType</b>
+field. Valid structures are specified in sections <a href="605826c2-2c60-44f6-9596-0de9cc60f1ee" data-linktype="relative-path">2.2.9.2.1.2.1.1</a> and <a href="56a0cb77-9d12-4d58-8c31-73e74ffdedb1" data-linktype="relative-path">2.2.9.2.1.2.1.2</a>.</p></div>

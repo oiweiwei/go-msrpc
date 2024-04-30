@@ -1,0 +1,357 @@
+<div class="content"><p>The IConfigurationDataCollector is used to collect computer
+settings.</p><p>The following properties MUST be implemented by the objects
+that implement the IConfigurationDataCollector interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FileMaxCount</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the maximum number of files to collect. If
+  set to zero or not set, there is no maximum. Any unsigned long is a valid
+  value for this property.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FileMaxRecursiveDepth</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the maximum depth in a file system hierarchy
+  that a recursive file collection MUST attempt. If set to zero, the maximum
+  depth is 30. Any unsigned long is a valid value for this property.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FileMaxTotalSize</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the maximum size, in megabytes, of all files
+  to collect. If set to zero or not set, there is no maximum size. Any unsigned
+  long is a valid value for this property.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Files</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>List of paths to files which will be copied to the
+  output directory. Any arbitrary files can be specified. Absolute, relative,
+  and <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_d5a07545-a023-45ad-89a6-0b5c944bcfd4" data-linktype="relative-path">UncPaths</a> are
+  supported. The &#39;*&#39; and &#39;?&#39; wildcards can be used, and collection can be made
+  recursive by using two backslashes (&#34;\\&#34;) for the last folder
+  delimiter. If a specified file is not found, an error is added to the output
+  file but collection continues. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ManagementQueries</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>List of Windows Management Instrumentation (WMI)
+  queries whose results MUST be collected. The syntax for specifying the
+  queries is &#34;namespace:WQL select statement&#34;. If a specified query
+  cannot be executed, an error is added to the output file but collection
+  continues. The format of ManagementQueries is specified in <a href="../ms-wmi/c476597d-4c76-47e7-a2a4-a564fe4bf814" data-linktype="relative-path">[MS-WMI]</a>
+  section <a href="../ms-wmi/746ed0cb-f895-4114-99f4-eca68451b941" data-linktype="relative-path">2</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>QueryNetworkAdapters</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies whether network adapter information MUST be
+  queried. If set to TRUE, the installed network adapters are enumerated along
+  with their IP addresses and offload capabilities.</p>
+  <p>When the client sets this property to VARIANT_TRUE,
+  the server SHOULD retrieve the network adapter information and store it
+  locally on the server. The PLA Protocol has no knowledge of what information
+  is captured by the server and written to an XML file, and neither the
+  contents of the XML file nor whether the server was successful in writing the
+  XML file can be retrieved by the client using the PLA Protocol. Only the
+  VARIANT_BOOL, which indicates whether the server MUST query for network
+  adapter information, is transferred across the wire. If the client wants to
+  read the network adapter information from the server, it needs to use other
+  means or protocols. Whether the server queries for network adapter
+  information, and what information it queries, has no impact on the behavior
+  of the PLA Protocol. For more information about how VARIANT_BOOL types are
+  transferred over the wire, please see <a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a>.<a id="Appendix_A_Target_18"></a><a aria-label="Product behavior note 18" href="905cad7f-1a12-49b4-a263-461a2977ab71#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RegistryKeys</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>List of registry keys to be collected. If a specified
+  registry key cannot be queried, an error is added to the output file and
+  collection continues. The PLA Protocol allows users to log registry keys to
+  understand the configured status of a remote system. Registry keys are used
+  to refer to state information that is stored on the system about an
+  application, driver, or the system. For example, what default settings the
+  user has saved for an application might be associated with a particular
+  registry key; to retrieve that information, the registry key is specified.
+  The format used for the registry keys is specified in <a href="../ms-rrp/0fa3191d-bb79-490a-81bd-54c2601b7a78" data-linktype="relative-path">[MS-RRP]</a>
+  section <a href="../ms-rrp/77526078-ea8b-4090-884f-ed4fb24596c2" data-linktype="relative-path">3.1.1.1</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RegistryMaxRecursiveDepth</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p> Specifies the maximum depth in the registry hierarchy
+  that a recursive registry key collection MUST attempt. The maximum depth is
+  relative to the depth of the starting key, not absolute. If this value is set
+  to 0, or is not set, then registry keys at any depth will be collected. Any
+  unsigned long is a valid value for this property.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SystemStateFile</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the name of the file where the system state
+  will be saved. The system state is a set of kernel events generated by taking
+  a snapshot of the Circular Kernel Context Logger. The events of the Circular
+  Kernel Context Logger include process events, thread events, disk operations,
+  and other kernel information that provide an indication of what action the
+  operating system was performing when the event was raised. Events for the
+  Circular Kernel Context Logger remain in the operating system memory and are
+  only written to file when a snapshot is taken of the Circular Kernel Context
+  Logger. This property indicates the name of the file to which the contents of
+  the Circular Kernel Context Logger will be written; the file will reside on
+  the local system. The file name needs to be a file name only and cannot
+  include the path to the file. </p>
+  </td>
+ </tr></tbody></table><p>A <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_3184c8c5-f13b-4d77-b04a-b92feff97f61" data-linktype="relative-path">data
+collector</a> can be represented as an XML file, which can be used to serialize
+(using Xml (Get) <a href="38b478b4-408e-4702-aecf-946177a9f06b" data-linktype="relative-path">3.2.4.5.21</a>)
+and deserialize (using SetXml <a href="6f99ca8b-2197-43eb-b17a-7761c529787c" data-linktype="relative-path">3.2.4.5.22</a>)it (the full
+XML specification is available in section <a href="b5be2d38-3f21-478d-a8b9-a61128eb2751" data-linktype="relative-path">3.2.4.19</a>). The format of
+the XML that defines a configuration data collector is as follows: </p><dl>
+<dd>
+<div><pre> &lt;ConfigurationDataCollector&gt;
+   &lt;!-- elements for DataCollectorType --&gt;
+   &lt;Files/&gt;
+  &lt;FileMaxCount/&gt;  
+     &lt;FileMaxRecursiveDepth/&gt;  
+     &lt;FileMaxTotalSize/&gt;  
+  &lt;Name/&gt; 
+  &lt;ManagementQuery/&gt;    
+   &lt;QueryNetworkAdapters/&gt;   
+   &lt;RegistryKey/&gt;   
+   &lt;SystemStateFile/&gt;
+ &lt;/ConfigurationDataCollector&gt;  
+  
+  
+</pre></div>
+</dd></dl><p>Note that the example does not show the property elements
+inherited from IDataCollector that the caller also needs to specify.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="8e8b4126-fce8-483d-8502-da583ab349b5" data-linktype="relative-path">FileMaxCount
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the FileMaxCount property.</p>
+  <p>Opnum: 32</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="26b529a8-422a-4e0e-9d50-b4b92015f620" data-linktype="relative-path">FileMaxCount
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the FileMaxCount property.</p>
+  <p>Opnum: 33</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="5c027b46-f96d-469b-95d0-d02f4f07b9ab" data-linktype="relative-path">FileMaxRecursiveDepth
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the FileMaxRecursiveDepth property.</p>
+  <p>Opnum: 34</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b57490bc-ccbf-48bf-a663-3035afad50ba" data-linktype="relative-path">FileMaxRecursiveDepth
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the FileMaxRecursiveDepth property.</p>
+  <p>Opnum: 35</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="9ed77782-9172-4f58-ba1a-6334fb0c3772" data-linktype="relative-path">FileMaxTotalSize
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the FileMaxTotalSize property.</p>
+  <p>Opnum: 36</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="f0911dbd-797b-46a6-b988-e0920e426f9c" data-linktype="relative-path">FileMaxTotalSize
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the FileMaxTotalSize property.</p>
+  <p>Opnum: 37</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="2e5e0b1f-58b9-4c3e-b871-b2926181618b" data-linktype="relative-path">Files
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Files property.</p>
+  <p>Opnum: 38</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b818eebc-4ac6-4e4d-8b37-9bf16bd73dbe" data-linktype="relative-path">Files
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the Files property.</p>
+  <p>Opnum: 39</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="075523bd-fe49-4418-a35c-1a6304a2d96f" data-linktype="relative-path">ManagementQueries
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Sets the ManagementQueries property.</p>
+  <p>Opnum: 40</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="4014616b-e79c-4c31-a341-4b93682f4b86" data-linktype="relative-path">ManagementQueries
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the ManagementQueries property.</p>
+  <p>Opnum: 41</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="eedd30b7-68b5-4399-8433-7b826a5bda7d" data-linktype="relative-path">QueryNetworkAdapters
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the QueryNetworkAdapters property.</p>
+  <p>Opnum: 42</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="5fa6f505-3966-46cd-994e-dc9d613378f4" data-linktype="relative-path">QueryNetworkAdapters
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the QueryNetworkAdapters property.</p>
+  <p>Opnum: 43</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="8cd3e9f0-7fc4-4145-97e2-1e11068d51cf" data-linktype="relative-path">RegistryKeys
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the RegistryKeys property.</p>
+  <p>Opnum: 44</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="af80e2b4-f631-4d9f-851e-00af476b596b" data-linktype="relative-path">RegistryKeys
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the RegistryKeys property.</p>
+  <p>Opnum: 45</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="c5500f3d-6f28-420f-ada1-d52df5caddcb" data-linktype="relative-path">RegistryMaxRecursiveDepth
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the RegistryMaxRecursiveDepth property.</p>
+  <p>Opnum: 46</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="e8c18bdc-c5e5-4d81-af0f-49b5159d1e96" data-linktype="relative-path">RegistryMaxRecursiveDepth
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the RegistryMaxRecursiveDepth property.</p>
+  <p>Opnum: 47</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="c2a336cd-beeb-40c5-84b4-80a1917885b2" data-linktype="relative-path">SystemStateFile
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the SystemStateFile property.</p>
+  <p>Opnum: 48</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="6f8bb429-b037-4d21-be5f-8e048ccd5b65" data-linktype="relative-path">SystemStateFile
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the SystemStateFile property.</p>
+  <p>Opnum: 49</p>
+  </td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface. Opnums 7–31 are
+used by IDataCollector.</p></div>

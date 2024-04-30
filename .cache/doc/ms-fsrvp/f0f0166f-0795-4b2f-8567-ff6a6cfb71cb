@@ -1,0 +1,70 @@
+<div class="content"><p> </p><p>The <b>IsPathSupported</b> method is invoked by the client
+to query if a given share is supported by the server for <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow
+copy</a></span> operations.</p><dl>
+<dd>
+<div><pre> DWORD IsPathSupported(
+         [in] handle_t hBinding,
+         [in] [string] LPWSTR ShareName,
+         [out] BOOL* SupportedByThisProvider,
+         [out] [string] LPWSTR* OwnerMachineName);
+  
+</pre></div>
+</dd></dl><p><b>hBinding:</b>  An RPC binding handle (as defined
+in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>).</p><p><b>ShareName:</b> The full path of the share in UNC
+format.</p><p><b>SupportedByThisProvider:</b>  A Boolean, when set
+to TRUE, that indicates that shadow copies of this share are supported by the
+server.</p><p><b>OwnerMachineName:</b>  The name of the server
+machine to which the client MUST connect to create shadow copies of the
+specified <i>ShareName</i>. </p><p><b>Return Values:</b> The method returns one of the
+values as specified in section <span><a href="b45c794e-9362-42b7-80c6-7dae3382acf0" data-linktype="relative-path">2.2.4</a></span>. The most
+common error codes are listed in the following table:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>E_ACCESSDENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  the operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG </p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8004230CL</p>
+  <p>FSRVP_E_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_220dcaa3-364d-4de3-9752-82c053762cb6" data-linktype="relative-path">file store</a></span> that
+  contains the share to be shadow copied is not supported by the server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST verify that the share identified by <i>ShareName</i>
+exists on the server, by invoking the event as specified in <span><a href="../ms-smb2/5606ad47-5ee0-437a-817e-70c366052962" data-linktype="relative-path">[MS-SMB2]</a></span>
+section <span><a href="../ms-smb2/13acd5bf-3518-4dfd-8e06-a2e5cc45bf04" data-linktype="relative-path">3.3.4.16</a></span>
+or <span><a href="../ms-cifs/d416ff7c-c536-406e-a951-4f04b2fd1d2b" data-linktype="relative-path">[MS-CIFS]</a></span>
+section <span><a href="../ms-cifs/c5193839-4cd5-4f95-8ada-df13584251ce" data-linktype="relative-path">3.3.4.12</a></span>.
+If the share does not exist, the server MUST fail the call with FSRVP_E_OBJECT_NOT_FOUND.</p><p>The server MUST identify the file store on which the <i>ShareName</i>
+is hosted, in an implementation-defined manner. If the object store has mount
+points underneath or if the file store is not supported by the underlying <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_b3f0aa95-0afc-49e3-a5d5-aa465c3bc385" data-linktype="relative-path">shadow
+copy utility</a></span>, the server MUST fail the call with
+FSRVP_E_NOT_SUPPORTED.</p><p>The server MUST set <i>OwnerMachineName</i> to the name of
+the server which it requires the client to connect to create shadow copies for
+the specified <i>ShareName.</i> The server MUST set <i>SupportedByThisProvider</i>
+to TRUE and return ZERO to the caller.</p></div>

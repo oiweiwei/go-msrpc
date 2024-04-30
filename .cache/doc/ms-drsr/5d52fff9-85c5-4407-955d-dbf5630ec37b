@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The REFERR_DRS_WIRE_V1 structure defines a referral to other
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DCs</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dsid;
+   DWORD extendedErr;
+   DWORD extendedData;
+   CONTREF_DRS_WIRE_V1 Refer;
+ } REFERR_DRS_WIRE_V1;
+</pre></div>
+</dd></dl><p><b>dsid:</b>  The implementation-specific
+diagnostic code.</p><p><b>extendedErr:</b>  0, <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_dfc7ec7a-2b99-4312-a947-5d90a117d1c7" data-linktype="relative-path">STATUS
+code</a></span>, or <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows error code</a></span>.</p><p><b>extendedData:</b>  The implementation-specific
+diagnostic code.</p><p><b>Refer:</b>  The DCs to contact to chase
+the referral.</p></div>

@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The <b>DHCP_HOST_INFO</b> structure provides information on
+the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_746786e7-458f-45aa-ab24-5534a94b4fb3" data-linktype="relative-path">DHCPv4
+server</a></span>. This structure is used in <span><a href="0605fa26-c2ab-4f06-a15b-36d81a3b0690" data-linktype="relative-path">DHCP_CLIENT_INFO_V4 (section 2.2.1.2.14)</a></span>
+and <span><a href="6a445cf3-6e6c-4e29-9817-ac78adc50336" data-linktype="relative-path">DHCP_CLIENT_INFO_VQ (section 2.2.1.2.19)</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_HOST_INFO {
+   DHCP_IP_ADDRESS IpAddress;
+   LPWSTR NetBiosName;
+   LPWSTR HostName;
+ } DHCP_HOST_INFO,
+  *LPDHCP_HOST_INFO;
+</pre></div>
+</dd></dl><p><b>IpAddress:</b>  This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>,
+containing the IPv4 address of the DHCPv4 server.</p><p><b>NetBiosName:</b>  A pointer to a
+null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+points to the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b86c44e6-57df-4c48-8163-5e3fa7bdcff4" data-linktype="relative-path">NetBIOS</a></span> name of the
+DHCPv4 server. </p><p><b>HostName:</b>  A pointer to a
+null-terminated Unicode string that points to the name of the DHCPv4 server.
+Currently not used in any set method. If used in a get method, the value
+returned is NULL.</p></div>

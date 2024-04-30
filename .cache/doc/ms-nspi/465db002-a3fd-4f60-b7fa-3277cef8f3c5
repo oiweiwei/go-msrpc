@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>The NspiQueryColumns method returns a list of all the
+properties the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_e63aea5b-046b-4176-9359-fde82613a406" data-linktype="relative-path">NSPI</a></span> server is aware
+of. It returns this list as an array of <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_7eb84614-827d-4b68-a71c-dd94eb0ad27f" data-linktype="relative-path">proptags</a></span>.</p><dl>
+<dd>
+<div><pre> long NspiQueryColumns(
+   [in] NSPI_HANDLE hRpc,
+   [in] DWORD Reserved,
+   [in] DWORD dwFlags,
+   [out] PropertyTagArray_r** ppColumns
+ );
+</pre></div>
+</dd></dl><p><b>hRpc: </b>An <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+as specified in section <span><a href="67195f6a-2002-4d81-b279-ba8b0aefb4af" data-linktype="relative-path">2.3.9</a></span>.</p><p><b>Reserved: </b>A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value reserved for future use. Ignored by the server. </p><p><b>dwFlags: </b>A DWORD value containing a set of bit
+flags. The server MUST ignore values other than the bit flag <b>NspiUnicodeProptypes</b>.</p><p><b>ppColumns: </b>A reference to a <span><a href="9dc42856-90da-4df9-85ca-f8307db84659" data-linktype="relative-path">PropertyTagArray_r</a></span>
+structure. On return, contains a list of proptags.</p><p><b>Return Values: </b>The server returns a long value
+specifying the return status of the method.</p><p>Exceptions Thrown</p><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>Server Processing Rules</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints: </p><ol><li><p><span>    </span>If the server
+returns any return value other than Success, the server MUST return a NULL for
+the output parameter <i>ppColumns</i>.</p>
+</li><li><p><span>    </span>The server MAY
+make additional validations according to section <span><a href="39bcbcd7-fa18-4eb2-a2ae-c598b6683185" data-linktype="relative-path">5</a></span>. If the server
+chooses to limit the visibility of data based on these validations, the server
+MUST proceed as if that data did not exist in the address book. See the product
+behavior note cited in section <span><a href="36c0f768-1fdd-4709-9875-6c387b107560" data-linktype="relative-path">5.1</a></span> for more
+information.</p>
+</li><li><p><span>    </span>If the input
+parameter <i>dwFlags</i> contains the bit flag <b>NspiUnicodeProptypes</b>,
+then the server MUST report the Property Type of all string valued properties
+as PtypString.</p>
+</li><li><p><span>    </span>If the input
+parameter <i>dwFlags</i> does not contain the bit flag <b>NspiUnicodeProptypes</b>,
+the server MUST report the Property Type of all string valued properties as
+PtypString8.</p>
+</li><li><p><span>    </span>Subject to the
+prior constraints, the server MUST construct a list of all the properties it is
+aware of and return that list as an SPropTagArray in the output parameter <i>ppColumns</i>.
+The protocol does not constrain the order of this list.</p>
+</li><li><p><span>    </span>If no error
+condition has been specified by the previous constraints, the server MUST
+return the value Success.</p>
+</li></ol></div>

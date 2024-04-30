@@ -1,0 +1,102 @@
+<div class="content"><p>The CprepDiskFindKey3 method queries the <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_c8818c63-7458-4054-a17d-bea04fa50618" data-linktype="relative-path">SCSI</a> Persistent Reserve
+registration table for the disk and determines if the specified key is listed
+in the table.</p><p>The user supplies a key and this method returns a BOOLEAN
+indicating whether the key is found in the registration table. </p><dl>
+<dd>
+<div><pre> HRESULT CprepDiskFindKey3(
+   [in] CPREP_DISKID DiskId,
+   [in] ULONGLONG Key,
+   [out] BOOLEAN* pbFound
+ );
+</pre></div>
+</dd></dl><p><b>DiskId: </b>The identifier of the <a href="fd583e19-b6a1-43d0-a77e-0ea7836626e4" data-linktype="relative-path">ClusPrepDisk</a> representing
+the disk.</p><p><b>Key: </b>The registration key to search for in the
+SCSI Persistent Reserve registration table for the <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_7593b869-71a9-4a02-bab3-377e51729067" data-linktype="relative-path">LUN</a> underlying the
+operating system disk identified by the <i>DiskId</i> parameter. A value of
+zero for this parameter indicates that the caller is querying to discover
+whether any keys are registered.</p><p><b>pbFound: </b>Returns a nonzero value if the
+registration key is found in the SCSI Persistent Reserve registration table for
+the LUN underlying the operating system disk identified by the <i>DiskId</i>
+parameter.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Non-negative values indicate success, with the lower 16 bits of the value
+containing warnings or flags defined in the method implementation. For more
+information about <b>Win32</b> error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The disk was not found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>An internal error occurred.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070548</p>
+  <p>ERROR_INVALID_SERVER_STATE</p>
+  </td>
+  <td>
+  <p>The server&#39;s <b>Prepare State</b> is not Online.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007139F</p>
+  <p>ERROR_INVALID_STATE</p>
+  </td>
+  <td>
+  <p>The value of <b>ClusPrepDisk.AttachedState</b> is not
+  Attached.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table. </p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+protocol (see <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>).</p><p>The opnum field value for this method is 12.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Obtain the ClusPrepDisk identified by the DiskId parameter, as
+described in section <a href="c17ce220-d244-45c9-95c0-4c31942253ee" data-linktype="relative-path">3.2.4</a>.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>Key</i> parameter is not zero, search for that key in
+the SCSI Persistent Reserve registration table for the LUN underlying the
+operating system disk identified by the <i>DiskId</i> parameter, as specified
+in <a href="https://go.microsoft.com/fwlink/?LinkId=90528" data-linktype="external">[SPC-3]</a> section
+6.12 and return TRUE in the <i>pbFound</i> parameter if the key is found.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>Key</i> parameter is zero, return TRUE in the <i>pbFound</i>
+parameter if at least one key is present in the SCSI Persistent Reserve
+registration table for the LUN underlying the operating system disk identified
+by the <i>DiskId</i> parameter.</p>
+</li></ul></div>

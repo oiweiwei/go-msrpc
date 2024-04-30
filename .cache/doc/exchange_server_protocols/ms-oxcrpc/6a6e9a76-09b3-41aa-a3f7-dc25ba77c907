@@ -1,0 +1,107 @@
+<div class="content"><p> </p><p>The <b>EcRRegisterPushNotification</b> <a id="z13"></a>method
+registers a callback address with the server for a <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_d08d95ee-5936-47d8-9f35-49e4159354a6" data-linktype="relative-path">Session Context</a></span>. The
+server MAY<a id="Appendix_A_Target_26"></a><a aria-label="Product behavior note 26" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_26" data-linktype="relative-path">&lt;26&gt;</a> support the <b>EcRRegisterPushNotification</b>
+method. </p><p>The callback address is used to notify the client of pending
+events on the server. This call requires an active <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_1f0ab616-f876-47ff-9cf1-6f24c0255ccc" data-linktype="relative-path">session context handle</a></span>
+from the <b>EcDoConnectEx</b> method, as specified in section <span><a href="59d638fe-e63d-422a-b51d-6210b2155138" data-linktype="relative-path">3.1.4.1</a></span>.
+The server MUST store the callback address and the opaque context data in the Session
+Context. To notify the client of pending events, the server sends a packet
+containing just the opaque context data to the callback address. The callback
+address specifies which network transport is to be used to send the data
+packet.</p><p>For more information about notification handling, see <span><a href="../ms-oxcnotif/7c7d1653-5dfb-42f1-9410-fc4e48e10731" data-linktype="relative-path">[MS-OXCNOTIF]</a></span>.</p><dl>
+<dd>
+<div><pre> long __stdcall EcRRegisterPushNotification(
+      [in, out, ref] CXH * pcxh,
+      [in] unsigned long iRpc,
+      [in, size_is(cbContext)] unsigned char rgbContext[],
+      [in] unsigned short cbContext,
+      [in] unsigned long grbitAdviseBits,
+      [in, size_is(cbCallbackAddress)] unsigned char rgbCallbackAddress[],
+      [in] unsigned short cbCallbackAddress,
+      [out] unsigned long *hNotification
+ );
+</pre></div>
+</dd></dl><p><i>pcxh:</i> A session context handle. On input, the client
+MUST pass a valid session context handle that was created by calling the <b>EcDoConnectEx
+</b>method. The server uses the session context handle to identify the Session
+Context to use for this call. On output, the server MUST return the same
+session context handle on success.</p><p>The server can destroy the session context handle by
+returning a zero for the <i>pcxh</i> parameter. Reasons for destroying the
+session context handle are implementation-dependent; following are examples of
+why the server might destroy the session context handle:</p><ul><li><p><span><span> 
+</span></span>The session context handle that was passed in is not valid.</p>
+</li><li><p><span><span> 
+</span></span>An attempt was made to access a <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_d3ad0e15-adc9-4174-bacf-d929b57278b3" data-linktype="relative-path">mailbox</a></span> that is in
+the process of being moved.</p>
+</li></ul><p><i>iRpc:</i> The server MUST ignore this value. The client
+MUST pass a value of 0x00000000.</p><p><i>rgbContext:</i> Opaque client-generated context data that
+is sent back to the client at the callback address, passed in the <i>rgbCallbackAddress</i>
+parameter, when the server notifies the client of pending event information.
+The server MUST save this data within the Session Context and use it when
+sending a notification to the client.</p><p><i>cbContext:</i> The size of the opaque client context data
+that is passed in the <i>rgbContext</i> parameter. If the value of this
+parameter is larger than 0x00000010, the server MUST fail this call with error
+code ecTooBig.</p><p><i>grbitAdviseBits:</i> This parameter MUST be set to
+0xFFFFFFFF.</p><p><i>rgbCallbackAddress:</i> The callback address for the
+server to use to notify the client of a pending event. The size of this data is
+in the <i>cbCallbackAddress</i> parameter.</p><p>The data contained in this parameter follows the format of a
+<b>sockaddr</b> structure. For information about the <b>sockaddr</b> structure,
+see <span><a href="https://go.microsoft.com/fwlink/?LinkId=113717" data-linktype="external">[MSDN-SOCKADDR]</a></span>.</p><p>The server supports the address families AF_INET and
+AF_INET6 for a callback address that corresponds to the protocol sequence types
+that are specified in section <span><a href="75a6fefa-ba8b-4f10-8f79-d3a362fb067a" data-linktype="relative-path">2.1</a></span>.</p><p>If an address family is requested that is not supported, the
+server MUST return error code ecInvalidParam. If the address family is
+supported but the communications stack of the server does not support the
+address type, the server MUST return error code ecNotSupported.</p><p><i>cbCallbackAddress:</i> The length of the callback address
+in the <i>rgbCallbackAddress</i> parameter. The size of this parameter depends
+on the address family being used. If this size does not correspond to the size
+of the <b>sockaddr</b> structure based on address family, the server MUST
+return error code ecInvalidParam.</p><p><i>hNotification:</i> A <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span> to the
+notification callback. If the call completes successfully, the <i>hNotification</i>
+parameter contains a handle to the notification callback on the server.</p><p><b>Return Values:</b> If the method succeeds, the return
+value is 0. If the method fails, the return value is an implementation-specific
+error code or one of the protocol-defined error codes listed in the following
+table.</p><table><thead>
+  <tr>
+   <th>
+   <p>Error code name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ecInvalidParam</p>
+  </td>
+  <td>
+  <p>0x80070057</p>
+  </td>
+  <td>
+  <p>A parameter passed was not valid for the call. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ecNotSupported</p>
+  </td>
+  <td>
+  <p>0x80040102</p>
+  </td>
+  <td>
+  <p>The callback address is not supported on the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ecTooBig</p>
+  </td>
+  <td>
+  <p>0x80040305</p>
+  </td>
+  <td>
+  <p>Opaque context data is too large.</p>
+  </td>
+ </tr></tbody></table><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol as
+specified in <span><a href="/en-us/openspecs/windows_protocols/MS-RPCE/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="absolute-path">[MS-RPCE]</a></span>.</p></div>

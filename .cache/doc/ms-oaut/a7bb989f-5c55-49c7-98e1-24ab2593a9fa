@@ -1,0 +1,61 @@
+<div class="content"><p> </p><p>The EXCEPINFO structure is filled in by an <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_5dcdba04-9cfd-40b3-b0e1-0b8e4374aeaa" data-linktype="relative-path">automation
+server</a></span> to describe an exception that occurred during a call to
+Invoke (as specified in section <span><a href="5c2a1997-60d7-496d-8d9a-ed940bbb82eb" data-linktype="relative-path">3.1.4.4</a></span>). If no
+exception occurred, the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST set both
+wCode and scode to 0. </p><dl>
+<dd>
+<div><pre> typedef struct tagEXCEPINFO {
+   WORD wCode;
+   WORD wReserved;
+   BSTR bstrSource;
+   BSTR bstrDescription;
+   BSTR bstrHelpFile;
+   DWORD dwHelpContext;
+   ULONG_PTR pvReserved;
+   ULONG_PTR pfnDeferredFillIn;
+   HRESULT scode;
+ } EXCEPINFO;
+</pre></div>
+</dd></dl><p><b>wCode:</b>   An implementation-specific<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a> value that identifies an error.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>The value MUST be zero for either of the following
+  conditions:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>This field does not contain an
+  error code.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The value in the <b>scode</b>
+  field is nonzero.</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>1000 &lt; <i>value</i></p>
+  </td>
+  <td>
+  <p>Implementation-specific error values MUST be greater
+  than 1000.</p>
+  </td>
+ </tr></tbody></table><p><b>wReserved:</b>  MUST be set to 0, and
+MUST be ignored on receipt.</p><p><b>bstrSource:</b>  MUST<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a> be set to an
+implementation-specific string that identifies the source of the exception.</p><p><b>bstrDescription:</b>  MUST<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a> be set to an
+implementation-specific string, or to a NULL BSTR if no description is
+available.</p><p><b>bstrHelpFile:</b>  MUST<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a> be set to an
+implementation-specific string, or to a NULL BSTR if no help is available.</p><p><b>dwHelpContext:</b>  MUST<a id="Appendix_A_Target_18"></a><a aria-label="Product behavior note 18" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a> be set to an
+implementation-specific integer. If <b>bstrHelpFile</b> is NULL, this field
+MUST be set to 0, and MUST be ignored on receipt.</p><p><b>pvReserved:</b>  MUST be set to NULL,
+and MUST be ignored on receipt.</p><p><b>pfnDeferredFillIn:</b>  MAY be set to
+NULL, and MUST be ignored on receipt.<a id="Appendix_A_Target_19"></a><a aria-label="Product behavior note 19" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_19" data-linktype="relative-path">&lt;19&gt;</a> </p><p><b>scode:</b>  MUST be set to a failure
+HRESULT that describes the error, or to 0 to indicate that it does not contain
+an error code. If <b>wCode</b> is nonzero, this field MUST be set to 0.</p></div>

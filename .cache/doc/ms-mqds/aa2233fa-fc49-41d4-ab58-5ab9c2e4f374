@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The MQSORTSET structure specifies a multipart sort key. This
+structure is used in directory query operations to define a collection of sort
+keys and sort orders by which to sort the result set. See section <span><a href="ebe8417a-ded8-4f3d-9187-bbbdb0856f41" data-linktype="relative-path">3.1.4.17</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct tagMQSORTSET {
+   [range(0,128)] unsigned long cCol;
+   [size_is(cCol)] MQSORTKEY* aCol;
+ } MQSORTSET;
+</pre></div>
+</dd></dl><p><b>cCol:</b>   MUST be set to the count of <span><a href="87995f3f-a493-4843-9f3f-c59c85fd93d6" data-linktype="relative-path">MQSORTKEY</a></span>
+structures referenced by <b>aCol</b>.</p><p><b>aCol:</b>   A pointer to an array of MQSORTKEY
+structures.</p></div>

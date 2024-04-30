@@ -1,0 +1,109 @@
+<div class="content"><p>This method stops any running <a href="546d32cd-905e-4f34-b023-2be4b5e16413#gt_866d4b3a-f5b8-4518-853e-6f2991a8f4e2" data-linktype="relative-path">Internet services</a>.<a id="Appendix_A_Target_3"></a><a aria-label="Product behavior note 3" href="5c517f8f-7847-402a-b79e-4dbbf517997e#Appendix_A_3" data-linktype="relative-path">&lt;3&gt;</a></p><p>The server can have all functionality through this interface
+disabled using actions taken local to the server machine. In this case the
+function MUST return an error when called (E_ERROR_RESOURCE_DISABLED) and MUST
+NOT perform any other action.</p><p>If the interface functionality is not disabled, the
+following actions SHOULD take place on the server when this method is called:</p><ul><li><p><span><span> 
+</span></span>The method SHOULD first attempt a <a href="546d32cd-905e-4f34-b023-2be4b5e16413#gt_7ea63e69-1023-48fd-bd40-f3729a350c06" data-linktype="relative-path">graceful stop</a> of the
+services. If the caller has requested that the services be forced to stop and
+the code either fails to request the stops or times out (based on the <i>dwTimeoutMsecs</i>
+parameter) while waiting for the services to stop, it SHOULD terminate the
+processes to ensure that they stop. This procedure SHOULD use the <a href="10ffdf93-a56f-4fc8-a3fd-5076135bc33b" data-linktype="relative-path"><b>Kill</b></a> method, as
+specified in section <b>3.1.4.5</b>, to handle the forced termination.<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="5c517f8f-7847-402a-b79e-4dbbf517997e#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a></p>
+<div><pre> HRESULT Stop(
+   DWORD dwTimeoutMsecs,
+   DWORD dwForce
+ );
+</pre></div>
+</li></ul><p><b>dwTimeoutMsecs: </b>Length of time allowed for
+services to stop. If this time has elapsed, and not all services have stopped,
+then the conditional behavior that follows SHOULD occur.</p><p><b>dwForce: </b>Boolean value that specifies whether
+the services will be forced to terminate. If the graceful stopping of any
+service fails, then the conditional behavior that follows SHOULD occur.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Services MUST be forced to terminate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Services MUST NOT be forced to terminate.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>A signed, 32-bit value
+indicating return status. If the method returns a negative value, it has
+failed. If the 12-bit facility code (bits 16–27) is set to 0x007, the value
+contains a Win32 error code in the lower 16 bits. 0 or positive values indicate
+success, with the lower 16 bits in positive nonzero values containing warnings
+or flags defined in the method implementation. For more information about <b>HRESULT</b>,
+see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<p>The method MUST return S_OK (0x00000000) upon
+success.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>E_ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>Not enough memory is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007041D</p>
+  <p>E_ERROR_SERVICE_REQUEST_TIMEOUT</p>
+  </td>
+  <td>
+  <p>A time-out has occurred while waiting for the Internet
+  services to be stopped.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D5</p>
+  <p>E_ERROR_RESOURCE_DISABLED</p>
+  </td>
+  <td>
+  <p>The <a href="fb0c3533-c603-4ba1-8ac5-7426df68ef90" data-linktype="relative-path"><b>IIisServiceControl</b></a>
+  interface is disabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>If the length of time specified by <i>dwTimeoutMsecs</i> has
+elapsed and not all services have stopped, and if <i>dwForce</i> is set to
+0x00000001 (True), then the remaining services SHOULD be forced to terminate.</p></div>

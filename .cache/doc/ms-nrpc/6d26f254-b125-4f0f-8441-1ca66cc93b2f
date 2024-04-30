@@ -1,0 +1,18 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/6d26f254-b125-4f0f-8441-1ca66cc93b2f" data-linktype="external">msdn link</a></p><p>The <b>DsrGetDcSiteCoverageW</b> method SHOULD<a id="Appendix_A_Target_166"></a><a aria-label="Product behavior note 166" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_166" data-linktype="relative-path">&lt;166&gt;</a> return a list of <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8abdc986-5679-42d9-ad76-b11eb5a0daba" data-linktype="relative-path">sites</a> covered by a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a>. Site
+coverage is detailed in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/7a864c15-4a32-4614-bf71-7d9e7f661b71" data-linktype="relative-path">6.1.1.2.2</a>.
+</p><dl>
+<dd>
+<div><pre> NET_API_STATUS DsrGetDcSiteCoverageW(
+   [in, unique, string] LOGONSRV_HANDLE ServerName,
+   [out] PNL_SITE_NAME_ARRAY* SiteNames
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>The custom <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_44deb72d-c62b-4335-90e4-b9fd4dd782ed" data-linktype="relative-path">binding handle</a> (defined in
+section <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>) that
+represents the connection to a DC.</p><p><b>SiteNames: </b>A pointer to an <a href="4c5fb44a-6d68-420d-970e-68ad5436bbd3" data-linktype="relative-path">NL_SITE_NAME_ARRAY</a>
+structure (section 2.2.1.2.2) that contains an array of site name strings.</p><p><b>Return Values: </b>The method returns 0x00000000
+on success; otherwise, it returns a nonzero error code.</p><p>This method returns errors based on Common Error Processing
+Rules A and B, specified in section <a href="2d776bfc-e81f-4c8f-9da8-4c2920f65413" data-linktype="relative-path">3</a>.</p><p>The server MUST return all the sites for which the DC
+publishes site-specific <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a>
+SRV records ([MS-ADTS] section <a href="../ms-adts/c1987d42-1847-4cc9-acf7-aab2136d6952" data-linktype="relative-path">6.3.2.3</a>).</p></div>

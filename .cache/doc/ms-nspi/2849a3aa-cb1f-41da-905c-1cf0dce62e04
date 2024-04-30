@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The SizeRestriction_r structure is an encoding of the <b>SizeRestriction</b>
+data structure defined in <span><a href="/en-us/openspecs/exchange_server_protocols/MS-OXCDATA/1afa0cd9-b1a0-4520-b623-bf15030af5d8" data-linktype="absolute-path">[MS-OXCDATA]</a></span>.
+The semantic meaning is unchanged from the <b>SizeRestriction</b> data
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _SizeRestriction_r {
+   DWORD relop;
+   DWORD ulPropTag;
+   DWORD cb;
+ } SizeRestriction_r;
+</pre></div>
+</dd></dl><p><b>relop:</b>  Encodes the <b>RelOp</b>
+field of the <b>SizeRestriction</b> data structure.</p><p><b>ulPropTag:</b>  Encodes the <b>PropTag</b>
+field of the <b>SizeRestriction</b> data structure.</p><p><b>cb:</b>  Encodes the <b>Size</b> field
+of the <b>SizeRestriction</b> data structure.</p></div>

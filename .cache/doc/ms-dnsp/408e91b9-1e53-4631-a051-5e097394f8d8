@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_NAME_AND_PARAM</b> structure contains
+information about a simple server property that takes a DWORD value. The DNS
+Server Management Protocol uses this structure to exchange information about
+various properties that take an integer value, while processing the
+R_DnssrvOperation2 (section <span><a href="8c0522b1-97fb-4fa7-b4e2-2c55c0afb0e7" data-linktype="relative-path">3.1.4.6</a></span>) method
+call with operation types &#34;ResetDwordProperty&#34;,
+&#34;DeleteNode&#34;, and &#34;DeleteRecordSet&#34;.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcNameAndParam {
+   DWORD dwParam;
+   [string] char* pszNodeName;
+ } DNS_RPC_NAME_AND_PARAM,
+  *PDNS_RPC_NAME_AND_PARAM;
+</pre></div>
+</dd></dl><p><b>dwParam:</b> The requested new value for the
+server property specified by pszNodeName.</p><p><b>pszNodeName:</b> Pointer to a null-terminated
+UTF-8 string that specifies the name of the server property.</p></div>

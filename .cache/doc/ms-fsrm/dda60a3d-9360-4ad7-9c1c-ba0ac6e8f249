@@ -1,0 +1,36 @@
+<div class="content"><p>The <b>RuleType (get)</b> method retrieves the <b>rule type</b>
+of the rule as defined in the <a href="95a2996f-d7ec-4169-a964-d9abf4ec3b6f" data-linktype="relative-path"><b>FsrmRuleType (section 2.2.1.2.11)</b></a>
+enumeration and returns S_OK upon successful completion.</p><dl>
+<dd>
+<div><pre> [propget, id(FSRM_PROPERTY(FSRM_DISPID_RULE | 0x02))] HRESULT RuleType(
+   [out, retval] FsrmRuleType* ruleType
+ );
+</pre></div>
+</dd></dl><p><b>ruleType: </b>Pointer to a variable that upon
+completion contains the <b>rule type</b> of the rule.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>type</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span> Verify that <i>type</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST set <i>type</i> to the <b>rule type</b> of
+the rule.</p></div>

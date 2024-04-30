@@ -1,0 +1,38 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_ZONE_SECONDARIES</b> structure contains the
+information about the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_85ec490e-c7d1-4b6d-80b3-23320e7e1c9d" data-linktype="relative-path">secondary DNS servers</a></span>
+for a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span>. There are
+different versions of the <b>DNS_RPC_ZONE_SECONDARIES</b> structure. The DNS
+server MUST use the structure corresponding to the value of the <i>dwClientVersion</i>
+in DNS Server Management Protocol method calls (section <span><a href="bdffbbf3-e31b-49ba-8b8d-8abde125a9d8" data-linktype="relative-path">3.1.4</a></span>)
+as in the following table, or if the method call does not specify the value of <i>dwClientVersion</i>,
+the <b>DNS_RPC_ZONE_SECONDARIES_W2K</b> version of the structure MUST be used.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value </p>
+   </th>
+   <th>
+   <p>Structure </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>DNS_RPC_ZONE_SECONDARIES_W2K (section <span><a href="0961e81f-542f-48c7-8043-bd420d104101" data-linktype="relative-path">2.2.5.2.5.1</a></span>)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00060000</p>
+  </td>
+  <td>
+  <p>DNS_RPC_ ZONE_SECONDARIES_DOTNET (section <span><a href="f3f440eb-6ff5-419c-a9ff-7ed6aafc937a" data-linktype="relative-path">2.2.5.2.5.2</a></span>)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00070000</p>
+  </td>
+  <td>
+  <p>DNS_RPC_ ZONE_SECONDARIES_LONGHORN (section <span><a href="bf91cfc1-da7c-48f4-bb5f-f708ad305f3c" data-linktype="relative-path">2.2.5.2.5.3</a></span>)</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

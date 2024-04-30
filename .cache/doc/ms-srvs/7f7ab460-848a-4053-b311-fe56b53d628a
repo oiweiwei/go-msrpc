@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The SERVER_TRANSPORT_INFO_0 structure contains information
+about the specified transport protocol, including the name, address, and
+location on the network. The definitions of fields in this structure are
+specified in section <span><a href="9c199b47-8b3c-4d17-81ed-8443f170830f" data-linktype="relative-path">2.2.4.96</a></span>. Fields
+having names of the form svti0_xxx MUST be defined as in the corresponding
+SERVER_TRANSPORT_INFO_3 fields with names of the form svti3_xxx.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVER_TRANSPORT_INFO_0 {
+   DWORD svti0_numberofvcs;
+   [string] wchar_t* svti0_transportname;
+   [size_is(svti0_transportaddresslength)] 
+     unsigned char* svti0_transportaddress;
+   DWORD svti0_transportaddresslength;
+   [string] wchar_t* svti0_networkaddress;
+ } SERVER_TRANSPORT_INFO_0,
+  *PSERVER_TRANSPORT_INFO_0,
+  *LPSERVER_TRANSPORT_INFO_0;
+</pre></div>
+</dd></dl></div>

@@ -1,0 +1,77 @@
+<div class="content"><p> </p><p>The <b>DeleteShareMapping</b> method deletes the mapping of
+a share&#39;s <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow copy</a></span> from a
+shadow copy set. </p><dl>
+<dd>
+<div><pre> DWORD DeleteShareMapping(
+         [in] handle_t hBinding,
+         [in] GUID ShadowCopySetId,
+         [in] GUID ShadowCopyId,
+         [in] [string] LPWSTR ShareName);
+  
+</pre></div>
+</dd></dl><p><b>hBinding:</b>  An RPC binding handle (as defined
+in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>).</p><p><b>ShadowCopySetId:</b> The GUID of the shadow copy
+set.</p><p><b>ShadowCopyId:</b> The GUID of the shadow copy.</p><p><b>ShareName:</b> The name of the share for which the
+share mapping is to be deleted.</p><p><b>Return Values:</b> The method returns one of the
+values as specified in section <span><a href="b45c794e-9362-42b7-80c6-7dae3382acf0" data-linktype="relative-path">2.2.4</a></span>. The most
+common error codes are listed in the following table:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>E_ACCESSDENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  the operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG </p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80042308</p>
+  <p>FSRVP_E_OBJECT_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified object does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80042501</p>
+  <p>FSRVP_E_SHADOWCOPYSET_ID_MISMATCH</p>
+  </td>
+  <td>
+  <p>The provided ShadowCopySetId does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST fail the call with E_INVALIDARG if <b>ShadowCopySetId</b>,
+<b>ShadowCopyId</b>, or <b>ShareName</b> is set to NULL.</p><p>The server MUST look up the <b>ShadowCopySet</b> from <b>GlobalShadowCopysetTable</b>
+using the index <i>ShadowCopySetId.</i> If no shadow copy set is found, the
+server MUST fail the call with FSRVP_E_OBJECT_NOT_FOUND.</p><p>If <b>ShadowCopySet.Status</b> is not &#34;Exposed&#34; or
+&#34;Recovered&#34;, the server MUST fail the call with FSRVP_E_BAD_STATE.</p><p>The server MUST look up the <b>ShadowCopy</b> in <b>ShadowCopySet.ShadowCopyList</b>
+where <b>ShadowCopy.ShadowCopyId</b> matches &#34;ShadowCopyId&#34;. If no
+entry is found, the server MUST fail the call with FSRVP_E_OBJECT_NOT_FOUND.</p><p>The server MUST look up the <b>ShareMapping</b> in <b>ShadowCopy.ShareMappingList</b>
+where <b>ShareMapping.ShareName</b> matches &#34;ShareName&#34;. If no entry
+is found, the server MUST fail the call with FSRVP_E_OBJECT_NOT_FOUND.</p><p>The server MUST delete the file share identified by <b>MappedShare.
+ShadowCopyShareName.</b></p><p>The server MUST delete the <b>MappedShare</b> from <b>ShadowCopy.ShareMappingList</b>
+and free the <b>MappedShare</b> object.</p><p>If <b>ShadowCopy.ShareMappingList</b> is now empty, the
+server SHOULD remove the shadow copy for the <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_220dcaa3-364d-4de3-9752-82c053762cb6" data-linktype="relative-path">file store</a></span>
+identified by <b>ShadowCopy.VolumeName</b> and MUST delete <b>ShadowCopy</b>
+from <b>ShadowCopySet.ShadowCopyList</b> and free the <b>ShadowCopy</b> object.</p><p>If the <b>ShadowCopySet.ShadowCopyList</b> is now empty, the
+server MUST remove the <b>ShadowCopySet</b> from <b>GlobalShadowCopySetTable</b>
+and free the <b>ShadowCopySet</b> object.</p><p>The server MUST return ZERO to the caller.</p></div>

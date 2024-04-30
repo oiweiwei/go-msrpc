@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The DIRERR_DRS_WIRE_V1 union defines the error that occurred
+during processing of a request sent to the <span><a href="06764fc5-4df6-4104-b6af-a92bdaa81f6e" data-linktype="relative-path">IDL_DRSAddEntry</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     ATRERR_DRS_WIRE_V1 AtrErr;
+   [case(2)] 
+     NAMERR_DRS_WIRE_V1 NamErr;
+   [case(3)] 
+     REFERR_DRS_WIRE_V1 RefErr;
+   [case(4)] 
+     SECERR_DRS_WIRE_V1 SecErr;
+   [case(5)] 
+     SVCERR_DRS_WIRE_V1 SvcErr;
+   [case(6)] 
+     UPDERR_DRS_WIRE_V1 UpdErr;
+   [case(7)] 
+     SYSERR_DRS_WIRE_V1 SysErr;
+ } DIRERR_DRS_WIRE_V1;
+</pre></div>
+</dd></dl><p><b>AtrErr:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">Attribute</a></span> errors.</p><p><b>NamErr:</b>  Name resolution error.</p><p><b>RefErr:</b>  Referral.</p><p><b>SecErr:</b>  Security error.</p><p><b>SvcErr:</b>  Service error.</p><p><b>UpdErr:</b>  Update error.</p><p><b>SysErr:</b>  System error.</p></div>

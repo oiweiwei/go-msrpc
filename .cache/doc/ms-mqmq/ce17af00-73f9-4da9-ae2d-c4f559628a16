@@ -1,0 +1,31 @@
+<div class="content"><p> </p><p>The MQCNACCESSMASK bitfield enumeration values can be used
+to set the value of an <b>ACCESS_MASK</b> structure (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/7a53f60e-e730-4dfe-bbe9-b21b62eb790b" data-linktype="relative-path">2.4.3</a></span>),
+which is used to constrain the permissions for a Connected Network.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   MQSEC_CN_OPEN_CONNECTOR = 0x00000001,
+   MQSEC_SET_CN_PROPERTIES = 0x00000010,
+   MQSEC_GET_CN_PROPERTIES = 0x00000020,
+   MQSEC_DELETE_CN = 0x00010000,
+   MQSEC_GET_CN_PERMISSIONS = 0x00020000,
+   MQSEC_CHANGE_CN_PERMISSIONS = 0x00040000,
+   MQSEC_TAKE_CN_OWNERSHIP = 0x00080000,
+   MQSEC_CN_GENERIC_READ = (MQSEC_GET_CN_PROPERTIES    + MQSEC_GET_CN_PERMISSIONS),
+   SEC_CN_GENERIC_ALL = (MQSEC_CN_OPEN_CONNECTOR    + MQSEC_SET_CN_PROPERTIES    + MQSEC_GET_CN_PROPERTIES    + MQSEC_DELETE_CN    + MQSEC_GET_CN_PERMISSIONS    + MQSEC_CHANGE_CN_PERMISSIONS    + MQSEC_TAKE_CN_OWNERSHIP)
+ } MQCNACCESSMASK;
+</pre></div>
+</dd></dl><p><b>MQSEC_CN_OPEN_CONNECTOR:  </b>Specifies the permission
+required by a security principal to open a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_86bc3fbd-dfae-4737-a56a-3c0d9045c967" data-linktype="relative-path">connector queue</a></span> in
+the connected network.</p><p><b>MQSEC_SET_CN_PROPERTIES:  </b>Specifies the permission
+required by a security principal to modify properties of the connected network.</p><p><b>MQSEC_GET_CN_PROPERTIES:  </b>Specifies the permission
+required by a security principal to read properties of the connected network.</p><p><b>MQSEC_DELETE_CN:  </b>Specifies the permission required
+by a security principal to delete the connected network.</p><p><b>MQSEC_GET_CN_PERMISSIONS:  </b>Specifies the permission
+required by a security principal to read permissions for the connected network.</p><p><b>MQSEC_CHANGE_CN_PERMISSIONS:  </b>Specifies the
+permission required by a security principal to modify permissions for the site.</p><p><b>MQSEC_TAKE_CN_OWNERSHIP:  </b>Specifies the permission
+required by a security principal to modify the owner of the connected network.</p><p><b>MQSEC_CN_GENERIC_READ:  </b>Specifies the permission
+required by a security principal to read properties and permissions of the
+connected network.</p><p><b>SEC_CN_GENERIC_ALL:  </b>Specifies the permission
+required by a security principal to perform all of the operations listed
+previously.</p></div>

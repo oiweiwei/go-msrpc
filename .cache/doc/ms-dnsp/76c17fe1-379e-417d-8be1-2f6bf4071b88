@@ -1,0 +1,104 @@
+<div class="content"><p> </p><p>The DNS_RPC_RECORD_NAPTR specifies a NAPTR <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_49c03845-ca86-48f5-9cbf-ab86c624aa29" data-linktype="relative-path">resource
+record</a></span> as specified in section 4 of <span><a href="https://go.microsoft.com/fwlink/?LinkId=107026" data-linktype="external">[RFC3403]</a></span>.<a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a> This record MUST be formatted
+as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>wOrder</p>
+  </td>
+  <td colspan="16">
+  <p>wPreference</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>nameFlags
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>nameService
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>nameSubstitution
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>nameReplacement
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>wOrder (2 bytes): </b>A value that specifies the
+order in which the NAPTR record is processed, as specified in section 4.1 in
+[RFC3403].</p><p><b>wPreference (2 bytes): </b>The preference given to
+this NAPTR record, as specified in section 4.1 in [RFC3403].</p><p><b>nameFlags (variable): </b>Pointer to a structure
+of type DNS_RPC_NAME (section <span><a href="3fd41adc-c69e-407b-979e-721251403132" data-linktype="relative-path">2.2.2.2.1</a></span>)
+containing the string flags value as specified in section 4.1 in [RFC3403].</p><p><b>nameService (variable): </b>Pointer to a structure
+of type DNS_RPC_NAME (section 2.2.2.2.1) containing service parameters value
+for NAPTR to control the rewriting and interpretation of the field in the
+record, as specified in section 4.1 in [RFC3403].</p><p><b>nameSubstitution (variable): </b>Pointer to a
+structure of type DNS_RPC_NAME (section 2.2.2.2.1) containing a substitution
+expression value for the NAPTR record, as specified in section 4.1 in
+[RFC3403].</p><p><b>nameReplacement (variable): </b>Pointer to a
+structure of type DNS_RPC_NAME (section 2.2.2.2.1) containing a replacement
+expression value for the NAPTR record, as specified in section 4.1 in
+[RFC3403].</p></div>

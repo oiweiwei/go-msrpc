@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The DFS_NAMESPACE_VERSION_ORIGIN is an enumeration that
+relates to the <span><a href="7c34ae60-9d4d-46b5-b2e1-e8ca09ac4d10" data-linktype="relative-path">NetrDfsGetSupportedNamespaceVersion</a></span>
+method when used to determine the supported <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_e8de88fd-d760-46fa-ad77-76961fa20aea" data-linktype="relative-path">DFS metadata</a></span> version
+number.</p><p>The DFS_NAMESPACE_VERSION_ORIGIN enumeration has the
+following format.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   DFS_NAMESPACE_VERSION_ORIGIN_COMBINED = 0,
+   DFS_NAMESPACE_VERSION_ORIGIN_SERVER,
+   DFS_NAMESPACE_VERSION_ORIGIN_DOMAIN
+ } DFS_NAMESPACE_VERSION_ORIGIN;
+</pre></div>
+</dd></dl><p><b>DFS_NAMESPACE_VERSION_ORIGIN_COMBINED:  </b>This
+value is not used in communication.</p><p><b>DFS_NAMESPACE_VERSION_ORIGIN_SERVER:  </b>The
+maximum version that a server can support.</p><p><b>DFS_NAMESPACE_VERSION_ORIGIN_DOMAIN:  </b>The
+maximum version that the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span> can support.</p></div>

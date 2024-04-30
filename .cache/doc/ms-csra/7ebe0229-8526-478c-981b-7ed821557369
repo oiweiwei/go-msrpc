@@ -1,0 +1,5 @@
+<div class="content"><p>The CATRANSPROP structure encapsulates information about a <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> property. The
+CATRANSPROP structure and the marshaling of one or more CATRANSPROP structures
+into a <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a>
+structure is specified in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>
+section <a href="../ms-wcce/8116912a-59e6-4849-83dd-77b39b6370e0" data-linktype="relative-path">2.2.2.3</a>.</p></div>

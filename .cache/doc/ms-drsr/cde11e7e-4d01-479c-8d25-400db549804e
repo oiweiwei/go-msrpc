@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The DRS_ERROR_DATA_V1 structure defines the error response
+received from the <span><a href="06764fc5-4df6-4104-b6af-a92bdaa81f6e" data-linktype="relative-path">IDL_DRSAddEntry</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwRepError;
+   DWORD errCode;
+   [switch_is(errCode)] DIRERR_DRS_WIRE_V1* pErrInfo;
+ } DRS_ERROR_DATA_V1;
+</pre></div>
+</dd></dl><p><b>dwRepError:</b>  0 or a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows
+error code</a></span>.</p><p><b>errCode:</b>  A DIRERR code (section <span><a href="b5165b5e-399a-47d6-85d3-45db0296acbb" data-linktype="relative-path">4.1.1.1.25</a></span>)
+that specifies the error category.</p><p><b>pErrInfo:</b>  Category-specific error
+information.</p></div>

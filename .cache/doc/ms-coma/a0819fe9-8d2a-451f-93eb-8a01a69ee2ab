@@ -1,0 +1,16 @@
+<div class="content"><p>This method is called by a replication client application to
+ensure that the server&#39;s base replication directory exists and to get its path.</p><dl>
+<dd>
+<div><pre> HRESULT CreateReplicationDir(
+   [out] LPWSTR* ppwszBaseReplicationDir
+ );
+</pre></div>
+</dd></dl><p><b>ppwszBaseReplicationDir: </b>A pointer to a
+variable that, upon successful completion, MUST contain the server&#39;s base
+replication directory path.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server MUST verify
+that its base replication directory exists. If not, it MUST attempt to create
+this directory, and fail the call if it cannot.</p><p>The server then MUST set <i>ppwszBaseReplicationDir</i> to
+the path of this directory and return success.</p></div>

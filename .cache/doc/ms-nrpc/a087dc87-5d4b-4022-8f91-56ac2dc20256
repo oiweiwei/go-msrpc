@@ -1,0 +1,81 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/a087dc87-5d4b-4022-8f91-56ac2dc20256" data-linktype="external">msdn link</a></p><p>The <b>NetrLogonSamLogoff</b> method SHOULD<a id="Appendix_A_Target_215"></a><a aria-label="Product behavior note 215" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_215" data-linktype="relative-path">&lt;215&gt;</a> update the user <b>lastLogoff</b>
+attribute for the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0b53d5bb-74ab-4705-8657-c22d32781103" data-linktype="relative-path">SAM</a>
+accounts. </p><dl>
+<dd>
+<div><pre> NTSTATUS NetrLogonSamLogoff(
+   [in, unique, string] LOGONSRV_HANDLE LogonServer,
+   [in, string, unique] wchar_t* ComputerName,
+   [in, unique] PNETLOGON_AUTHENTICATOR Authenticator,
+   [in, out, unique] PNETLOGON_AUTHENTICATOR ReturnAuthenticator,
+   [in] NETLOGON_LOGON_INFO_CLASS LogonLevel,
+   [in, switch_is(LogonLevel)] PNETLOGON_LEVEL LogonInformation
+ );
+</pre></div>
+</dd></dl><p><b>LogonServer: </b>The custom binding handle, as
+defined in section <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>.</p><p><b>ComputerName: </b>The Unicode string that contains
+the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a> of the
+client computer calling this method.</p><p><b>Authenticator: </b>A pointer to a <a href="76c93227-942a-4687-ab9d-9d972ffabdab" data-linktype="relative-path">NETLOGON_AUTHENTICATOR</a>
+structure, as specified in section 2.2.1.1.5, that contains the client <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e72a2c02-84a2-4ce3-b66f-86f725642dc3" data-linktype="relative-path">authenticator</a>.</p><p><b>ReturnAuthenticator: </b>A pointer to a
+NETLOGON_AUTHENTICATOR structure, as specified in section 2.2.1.1.5, that
+contains the server return authenticator.</p><p><b>LogonLevel: </b>A NETLOGON_LOGON_INFO_CLASS
+structure, as specified in section <a href="8c7808e5-4e5c-420e-9c90-47286da2218f" data-linktype="relative-path">2.2.1.4.16</a>, that
+identifies the type of logon information in the <i>LogonInformation</i> union.</p><p><b>LogonInformation: </b>A pointer to a <a href="d0128545-f74b-4d89-afd9-42621dff24c4" data-linktype="relative-path">NETLOGON_LEVEL</a> structure,
+as specified in section 2.2.1.4.6, that describes the logon information.</p><p><b>Return Values: </b>The method returns 0x00000000
+on success; otherwise, it returns a nonzero error code.</p><p>On receiving this call, the server MUST perform the
+following validation steps:</p><ul><li><p><span><span> 
+</span></span>The pointer contained in the <i>LogonInformation</i> parameter MUST
+not be NULL; otherwise, the server MUST return STATUS_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Apply Common Error Processing Rule A, specified in section <a href="2d776bfc-e81f-4c8f-9da8-4c2920f65413" data-linktype="relative-path">3</a>.</p>
+</li><li><p><span><span> 
+</span></span>Using the <i>ComputerName</i> for the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure channel</a> to find the
+corresponding record in the ClientSessionInfo table, verify the <i>Authenticator</i>
+parameter (section <a href="da7acaa3-030b-481e-979b-f58f89389806" data-linktype="relative-path">3.1.4.5</a>).
+If the <i>Authenticator</i> parameter is valid, compute the <i>ReturnAuthenticator</i>
+parameter returned (section 3.1.4.5). Otherwise, the server MUST return
+STATUS_ACCESS_DENIED.</p>
+</li></ul><p>The server MUST check the following parameters, and if any
+of them are NULL, it MUST return STATUS_INVALID_PARAMETER:</p><ul><li><p><span><span> 
+</span></span><i>LogonServer</i></p>
+</li><li><p><span><span> 
+</span></span><i>ComputerName</i></p>
+</li><li><p><span><span> 
+</span></span><i>Authenticator</i></p>
+</li><li><p><span><span> 
+</span></span><i>ReturnAuthenticator</i></p>
+</li></ul><p>The server MUST check the <i>LogonLevel</i> parameter, and
+the server MUST return STATUS_INVALID_INFO_CLASS if it is not set to 1 (<b>NetlogonInteractiveInformation</b>).</p><p>If the request is not for the domain of which the server is
+a member and the server is a DC, then the server MUST perform external behavior
+consistent with locally invoking <b>LsarQueryTrustedDomainInfoByName</b> (<a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a>
+section <a href="../ms-lsad/5778eba1-8f9b-4696-b304-34c58edbc5b1" data-linktype="relative-path">3.1.4.7.5</a>),
+using the following parameters (policy handle is not needed locally):</p><ul><li><p><span><span> 
+</span></span><b>TrustedDomainName</b> is set to the value of the <i>LogonInformation.LogonInteractive.Identity.LogonDomainName</i>
+parameter</p>
+</li><li><p><span><span> 
+</span></span><b>InformationClass</b> is set to the value of <b>TrustedDomainInformationEx</b>.</p>
+</li></ul><p>If the call returns STATUS_OBJECT_NAME_NOT_FOUND
+(0xC0000034) the server MUST return STATUS_NO_SUCH_DOMAIN. If the call returns
+any other error code other than STATUS_SUCCESS the server MUST return that
+error code.</p><p>Additionally, the server MUST also verify that:</p><ul><li><p><span><span> 
+</span></span>The <b>securityIdentifier</b> (Sid) field (<a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/eadd9abb-64c1-4a5d-9c77-e4d4d0404922" data-linktype="relative-path">6.1.6.7.8</a>)
+is not NULL,</p>
+</li><li><p><span><span> 
+</span></span>The <b>trustType</b> field ([MS-ADTS] section <a href="../ms-adts/36565693-b5e4-4f37-b0a8-c1b12138e18e" data-linktype="relative-path">6.1.6.7.15</a>)
+is 1 or 2</p>
+</li><li><p><span><span> 
+</span></span>The <b>trustAttributes</b> field ([MS-ADTS] section <a href="../ms-adts/e9a2d23c-c31e-4a6f-88a0-6646fdb51a3c" data-linktype="relative-path">6.1.6.7.9</a>)
+does not contain TRUST_ATTRIBUTE_UPLEVEL_ONLY.</p>
+</li></ul><p>If <b>LsarQueryTrustedDomainInfoByName</b> succeeds and
+returns the domain information in <i>TrustedDomainInformation</i>, the server
+MUST check if it has established a secure channel with the domain. If there is
+not an established secure channel, then the server MUST return the error code
+STATUS_NO_SUCH_DOMAIN. If there is an established secure channel, then the
+server MUST call NetrLogonSamLogoff using <b>LogonLevel</b> and <b>LogonInformation</b>
+to the DC with which it has established a secure channel.</p><p>Otherwise, if the server&#39;s account database is for the
+domain specified by <b>LogonInformation.LogonInteractive.Identity.LogonDomainName</b>,
+then it MAY update the <b>lastLogoff</b> attribute (<a href="../ms-ada1/19528560-f41e-4623-a406-dabcfff0660f" data-linktype="relative-path">[MS-ADA1]</a>
+section <a href="../ms-ada1/863a884f-8805-4a6e-83ae-cdc0acfb6f7c" data-linktype="relative-path">2.350</a>)
+on the account object specified by the <b>LogonInformation.LogonInteractive.Identity.UserName</b>
+field.<a id="Appendix_A_Target_216"></a><a aria-label="Product behavior note 216" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_216" data-linktype="relative-path">&lt;216&gt;</a> </p><p>This method SHOULD only be called by a machine that has
+established a secure channel with the server.</p></div>

@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The CAL structure defines a counted array of 32-bit unsigned
+integers.</p><dl>
+<dd>
+<div><pre> typedef struct tagCAL {
+   unsigned long cElems;
+   [size_is(cElems )] long* pElems;
+ } CAL;
+</pre></div>
+</dd></dl><p><b>cElems:</b>  MUST be set to the total
+number of elements of the array.</p><p><b>pElems:</b>  An array of 32-bit unsigned
+integers.</p></div>

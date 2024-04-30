@@ -1,0 +1,54 @@
+<div class="content"><p> </p><p>If the <b>FormatType</b> field is set to 0x0003, the layout
+of the <b>FormatName</b> field MUST be as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DirectFormatName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>DirectFormatName (variable): </b>A null-terminated
+<b>WCHAR</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/7df7c1d5-492c-4db4-a992-5cd9e887c5d7" data-linktype="relative-path">2.2.60</a></span>)
+buffer that MUST specify a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span> using a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_5209585c-8c60-4a93-9fdd-798a897644ab" data-linktype="relative-path">direct
+format name</a></span>. The size of the field is the <b>WCHAR</b> string&#39;s
+length in bytes. The start of this field is rounded up to the next 2-byte
+boundary.</p></div>

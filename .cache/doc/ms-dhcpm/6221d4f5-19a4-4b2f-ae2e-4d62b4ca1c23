@@ -1,0 +1,201 @@
+<div class="content"><p> </p><p>The <b>R_DhcpRemoveSubnetElementV5</b> method removes an
+IPv4 subnet element from the specified IPv4 subnet defined on the DHCPv4
+server. The subnet elements can be IPv4 reservation for DHCPv4 or BOOTP
+clients, IPv4 range, or IPv4 exclusion range for DHCPv4 or BOOTP clients.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpRemoveSubnetElementV5(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [in, ref] LPDHCP_SUBNET_ELEMENT_DATA_V5 RemoveElementInfo,
+   [in] DHCP_FORCE_FLAG ForceFlag
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SubnetAddress: </b>This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>
+that contains the IPv4 subnet ID from which the IPv4 subnet element is removed.</p><p><b>RemoveElementInfo: </b>This is a pointer of type <span><a href="0a196713-4790-412f-a2d7-893cbad301da" data-linktype="relative-path">DHCP_SUBNET_ELEMENT_DATA_V5 (section 2.2.1.2.38)</a></span>
+that contains the IPv4 subnet element that needs to be removed from the IPv4
+subnet.</p><p><b>ForceFlag: </b>This is of type <span><a href="3aca524f-86d6-494c-beaf-35c3936780a5" data-linktype="relative-path">DHCP_FORCE_FLAG (section 2.2.1.1.9)</a></span>
+that defines the behavior of this method. If the flag is set to DhcpNoForce and
+this subnet has served the IPv4 address to some DHCPv4/BOOTP clients, the IPv4 range
+is not deleted. If the flag is set to DhcpFullForce, the IPv4 range is deleted
+along with the DHCPv4 client lease record on the DHCPv4 server.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E27</p>
+  <p>ERROR_DHCP_ELEMENT_CANT_REMOVE</p>
+  </td>
+  <td>
+  <p>This error can occur for any of the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The specified IPv4 subnet element
+  cannot be removed because at least one IPv4 address has been leased out to a
+  client in the subnet.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The starting address of the
+  specified IPv4 exclusion range is not part of any exclusion range configured
+  on the server.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>There is an error in deleting the
+  exclusion range from the database.</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E37</p>
+  <p>ERROR_DHCP_INVALID_RANGE</p>
+  </td>
+  <td>
+  <p>The specified IPv4 range does not match an existing
+  IPv4 range.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E90</p>
+  <p>ERROR_SCOPE_RANGE_POLICY_RANGE_CONFLICT</p>
+  </td>
+  <td>
+  <p>There is an IP address range configured for a policy
+  in this scope. This operation on the scope IP address range cannot be
+  performed until the policy IP address range is suitably modified.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 39.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4Scope</b> ADM element entry corresponding
+to the <i>SubnetAddress</i> from the <b>DHCPv4ScopesList</b> server ADM
+element.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>DHCPv4Scope</b> element entry is not found, return
+ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member in the <i>RemoveElementInfo</i>
+parameter is set to DhcpReservedIps and the <b>DHCPv4ReservationsList</b>
+element contains a <b>DHCPv4Reservation</b> element entry corresponding to the <b>ReservedIp</b>
+input field, then delete the <b>DHCPv4Reservation</b> element entry
+corresponding to the <b>ReservedIp</b> input field from the <b>DHCPv4ReservationsList</b>
+element. Further, if the <b>ReservedIp</b> input field falls within the limits
+of a range element contained in <b>DHCPv4Scope.DHCPv4IpRangesList</b>, then set
+the bit corresponding to the IPv4 address in that <b>DHCPv4IpRange.Bitmask</b>
+to 0 to indicate the availability of the address for allocation to DHCPv4
+clients.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member in the <i>RemoveElementInfo</i>
+parameter is set to DhcpReservedIps and the preceding steps resulted in a <b>DHCPv4Reservation</b>
+ADM element entry being deleted from the <b>DHCPv4ReservationsList</b> ADM
+element, then also locate a <b>DHCPv4Client</b> ADM element in the <b>DHCPv4ClientsList</b>
+ADM element that matches the <i>ReservedIp</i> input field. If the <b>DHCPv4Client.ClientLeaseExpires</b>
+ADM element is set to 0, then delete the <b>DHCPv4Client</b> ADM element
+object, or else set the <b>DHCPv4Client.ClientLeaseExpires</b> ADM element to
+the lease expiry time applicable to the <b>DHCPv4Scope</b> ADM element. If no
+such <b>DHCPv4Client</b> ADM element is located, return ERROR_DHCP_JET_ERROR.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member in the <i>RemoveElementInfo</i>
+parameter is set to DhcpReservedIps and the <b>DHCPv4ReservationsList</b>
+element does not contain any <b>DHCPv4Reservation</b> element entry
+corresponding to the <b>ReservedIp</b> input field,  then delete any DHCPv4
+client lease record with the client IP address the same as the <b>ReservedIp</b>
+input field by calling <b>R_DhcpDeleteClientInfo</b> (section <span><a href="04bff5a1-0dee-4a95-bf45-85c0f8ffd619" data-linktype="relative-path">3.1.4.20</a></span>).
+Return the result of deleting the lease information.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member in the <i>RemoveElementInfo</i>
+parameter is set to DhcpExcludedIpRanges and the <b>ExcludeIpRange</b> field in
+the <i>RemoveElementInfo</i> parameter is equal to NULL, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member in the <i>RemoveElementInfo</i>
+parameter is set to DhcpExcludedIpRanges and the starting address of the IPv4
+exclusion range in the <b>ExcludeIpRange</b> field of <i>RemoveElementInfo</i>
+parameter is not part of any IPv4 exclusion range configured for the subnet,
+then return ERROR_DHCP_ELEMENT_CANT_REMOVE.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member in the <i>RemoveElementInfo</i>
+parameter is set to DhcpExcludedIpRanges and the IPv4 exclusion range in the <b>ExcludeIpRange</b>
+field of the <i>RemoveElementInfo</i> parameter does not match the starting and
+ending address of any IPv4 exclusion range configured for the subnet, then
+return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member in the <i>RemoveElementInfo</i>
+parameter is set to DhcpExcludedIpRanges, delete the <b>DHCPv4ExclusionRange</b>
+element entry corresponding to the <b>ExcludeIpRange</b> input field from the <b>DHCPv4ExclusionRangesList</b>
+ADM element. If there is an error in deleting the IPv4 exclusion range from the
+DHCP server database, then return ERROR_DHCP_ELEMENT_CANT_REMOVE.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member in the <i>RemoveElementInfo</i>
+parameter is set to DhcpSecondaryHosts, return ERROR_CALL_NOT_IMPLEMENTED.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member in the <i>RemoveElementInfo</i>
+parameter is set to DhcpIpUsedClusters, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member is set to DhcpIpRanges, DhcpIpRangesDhcpOnly,
+DhcpIpRangesDhcpBootp, or DhcpIpRangesBootpOnly, iterate over the DHCPv4Policy
+objects in the <b>DHCPv4Scope.DHCPv4ScopePolicyList</b> ADM element. If any of
+the DHCPv4Policy objects found contains a <b>DHCPv4Policy.Ranges</b> member
+with NumElements greater than zero, return
+ERROR_SCOPE_RANGE_POLICY_RANGE_CONFLICT.<a id="Appendix_A_Target_52"></a><a aria-label="Product behavior note 52" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_52" data-linktype="relative-path">&lt;52&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member in the <i>RemoveElementInfo</i>
+parameter is set to one of the values from DhcpIpRanges, DhcpIpRangesDhcpBootp,
+DhcpIpRangesBootpOnly, or DhcpIpRangesDhcpOnly (section <span><a href="c2ff4890-adad-4906-bb96-d9417f24545a" data-linktype="relative-path">2.2.1.1.7</a></span>),
+and the range of IPv4 subnet specified in the <i>RemoveElementInfo</i>
+parameter does not match the <b>DHCPv4IpRange.RangeInfo</b> of any entry in the
+<b>DHCPv4Scope.DHCPv4IpRangesList</b> ADM element, return
+ERROR_DHCP_INVALID_RANGE.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member in the <i>RemoveElementInfo</i>
+parameter is set to any one of the following values DhcpIpRanges,
+DhcpIpRangesDhcpOnly, DhcpIpRangesDhcpBootp, or DhcpIpRangesBootpOnly, <i>ForceFlag</i>
+(section 2.2.1.1.9) is set to DhcpNoForce, and if there is any entry in the <b>DHCPv4ClientsList</b>
+element having an IPv4 address from that IPv4 range, return the error
+ERROR_DHCP_ELEMENT_CANT_REMOVE; otherwise delete the <b>DHCPv4IpRange</b>
+element entry from the <b>DHCPv4IpRangesList</b> ADM element.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member in the <i>RemoveElementInfo</i>
+parameter is set to any one of the values DhcpIpRanges, DhcpIpRangesDhcpOnly,
+DhcpIpRangesDhcpBootp, or DhcpIpRangesBootpOnly, and <i>ForceFlag</i> (section
+2.2.1.1.9) is set to DhcpFullForce, delete the <b>DHCPv4IpRange</b> element
+entry from the <b>DHCPv4IpRangesList</b> ADM element.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

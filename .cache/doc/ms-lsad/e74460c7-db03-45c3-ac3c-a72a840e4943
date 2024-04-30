@@ -1,0 +1,241 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/e74460c7-db03-45c3-ac3c-a72a840e4943" data-linktype="external">msdn link</a></p><p>The LsarQueryInfoTrustedDomain method is invoked to retrieve
+information about the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted
+domain object</a>.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarQueryInfoTrustedDomain(
+   [in] LSAPR_HANDLE TrustedDomainHandle,
+   [in] TRUSTED_INFORMATION_CLASS InformationClass,
+   [out, switch_is(InformationClass)] 
+     PLSAPR_TRUSTED_DOMAIN_INFO* TrustedDomainInformation
+ );
+</pre></div>
+</dd></dl><p><b>TrustedDomainHandle:</b> An open trusted domain
+object handle.</p><p><b>InformationClass: </b>One of the <a href="36069113-6c38-45e8-920e-17f8ef36f578" data-linktype="relative-path">TRUSTED_INFORMATION_CLASS</a>
+values indicating the type of information the caller is interested in.</p><p><b>TrustedDomainInformation: </b>Used to return
+requested information about the trusted domain object.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the arguments supplied to the function was
+  invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000003</p>
+  <p>STATUS_INVALID_INFO_CLASS</p>
+  </td>
+  <td>
+  <p>The <i>InformationClass</i> argument is outside the
+  allowed range.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>TrustedDomainHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes three arguments:</p><p><i>TrustedDomainHandle</i>: An open handle to a trusted
+domain object. If the handle is not a valid context handle to a trusted domain
+object or <i>TrustedDomainHandle</i>.HandleType does not equal &#34;Trusted
+Domain&#34;, the server MUST return STATUS_INVALID_HANDLE. The server MUST
+verify that <i>TrustedDomainHandle</i> grants access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a>. The following
+table specifies the RequiredAccess value to use in this access check for each <i>InformationClass</i>
+value, or indicates if no processing is supported, regardless of access
+granted. There are several methods in the Local Security Authority (Domain
+Policy) Remote Protocol that query <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted domain</a> information.
+All of them enforce the same rights assignments based on information class as
+described in the following table.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value of InformationClass parameter</p>
+   </th>
+   <th>
+   <p>RequiredAccess value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TrustedDomainNameInformation</p>
+  <p>TrustedDomainInformationBasic</p>
+  <p>TrustedDomainInformationEx</p>
+  <p>TrustedDomainInformationEx2Internal</p>
+  </td>
+  <td>
+  <p>TRUSTED_QUERY_DOMAIN_NAME</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TrustedControllersInformation</p>
+  </td>
+  <td>
+  <p>Does not apply: This information class is obsolete and
+  cannot be set or queried. The server MUST return STATUS_INVALID_PARAMETER.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TrustedPosixOffsetInformation</p>
+  <p>TrustedDomainSupportedEncryptionTypes</p>
+  </td>
+  <td>
+  <p>TRUSTED_QUERY_POSIX</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TrustedPasswordInformation</p>
+  <p>TrustedDomainAuthInformation</p>
+  <p>TrustedDomainAuthInformationInternal</p>
+  </td>
+  <td>
+  <p>TRUSTED_QUERY_AUTH</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TrustedDomainFullInformation</p>
+  <p>TrustedDomainFullInformationInternal</p>
+  <p>TrustedDomainFullInformation2Internal</p>
+  </td>
+  <td>
+  <p>TRUSTED_QUERY_DOMAIN_NAME | TRUSTED_QUERY_POSIX |
+  TRUSTED_QUERY_AUTH</p>
+  </td>
+ </tr></tbody></table><p><i>InformationClass</i>: A value from the
+TRUSTED_INFORMATION_CLASS enumeration specifying what type of information the
+caller is requesting. Not all values are valid. For values outside the
+TRUSTED_INFORMATION_CLASS range, the server MUST reject the request with
+STATUS_INVALID_PARAMETER. Information class values
+TrustedDomainAuthInformationInternal and TrustedDomainFullInformationInternal
+MUST be rejected with STATUS_INVALID_INFO_CLASS.</p><p><i>TrustedDomainInformation</i>: Used to return the data
+requested by the caller, in a structure form corresponding to the <i>InformationClass</i>
+parameter. Information MUST be collected from the abstract data model specified
+in section <a href="0228f75e-9725-479c-b4cd-1cacd667343c" data-linktype="relative-path">3.1.1.5</a>.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value of InformationClass parameter </p>
+   </th>
+   <th>
+   <p>Information to return</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TrustedDomainNameInformation</p>
+  </td>
+  <td>
+  <p>Flat Name</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TrustedPosixOffsetInformation</p>
+  </td>
+  <td>
+  <p>Posix Offset</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TrustedDomainInformationEx</p>
+  </td>
+  <td>
+  <p>Name</p>
+  <p>Flat Name</p>
+  <p>Security Identifier</p>
+  <p>Posix Offset</p>
+  <p>Trust Type</p>
+  <p>Trust Direction</p>
+  <p>Trust Attributes</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TrustedDomainAuthInformation</p>
+  <p>TrustedDomainAuthInformationInternal</p>
+  <p>TrustedDomainFullInformationInternal</p>
+  </td>
+  <td>
+  <p>Not applicable: This information class cannot be
+  queried. Server MUST return STATUS_INVALID_INFO_CLASS.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TrustedDomainFullInformation</p>
+  </td>
+  <td>
+  <p>Name</p>
+  <p>Flat Name</p>
+  <p>Security Identifier</p>
+  <p>Posix Offset</p>
+  <p>Trust Type</p>
+  <p>Trust Direction</p>
+  <p>Trust Attributes</p>
+  <p>Trust Incoming and Outgoing Password values MUST be
+  set to 0. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TrustedDomainFullInformation2Internall</p>
+  </td>
+  <td>
+  <p>Name</p>
+  <p>Flat Name</p>
+  <p>Security Identifier</p>
+  <p>Posix Offset</p>
+  <p>Trust Type</p>
+  <p>Trust Direction</p>
+  <p>Trust Attributes</p>
+  <p>Forest Trust Attributes, as stored in <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a> under
+  the msDs-TrustForestTrustInfo attribute (<a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+  section <a href="../ms-adts/96e44639-eb3e-48c3-a565-1d67cceb3bad" data-linktype="relative-path">6.1.6.9.3</a>).</p>
+  <p><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">Trust</a>
+  Incoming and Outgoing Password values MUST be set to 0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TrustedDomainSupportedEncryptionTypes</p>
+  </td>
+  <td>
+  <p>Supported Encryption Types</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Other values</p>
+  </td>
+  <td>
+  <p>Server MUST return STATUS_INVALID_PARAMETER.</p>
+  </td>
+ </tr></tbody></table><p>If the server is not at DS_BEHAVIOR_WIN2003 <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b3240417-ca43-4901-90ec-fde55b32b3b8" data-linktype="relative-path">forest functional level</a>,
+the presence of the TRUST_ATTRIBUTE_FOREST_TRANSITIVE bit in the <b>Trust
+Attributes</b> field of a trusted domain object MUST NOT be returned by the
+server.<a id="Appendix_A_Target_102"></a><a aria-label="Product behavior note 102" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_102" data-linktype="relative-path">&lt;102&gt;</a></p></div>

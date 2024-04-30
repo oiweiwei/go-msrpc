@@ -1,0 +1,38 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/dfa120e0-8a35-474d-b31f-aa4642f7e2bf" data-linktype="external">msdn link</a></p><p>The <b>NOTIFICATION_DATA_ASYNC_RPC</b> structure contains
+the information for a specific notification. See <b>ApiGetNotifyAsync</b>
+(section <a href="71584e29-974d-4d35-b4bd-dfb71e2da713" data-linktype="relative-path">3.1.4.2.143</a>)
+for more information.</p><dl>
+<dd>
+<div><pre> typedef struct _NOTIFICATION_DATA_ASYNC_RPC {
+   DWORD dwNotifyKey;
+   DWORD dwFilter;
+   [string] LPWSTR Name;
+ } NOTIFICATION_DATA_ASYNC_RPC, *PNOTIFICATION_DATA_ASYNC_RPC;
+</pre></div>
+</dd></dl><p><b>dwNotifyKey:</b> The address of a 32-bit integer
+that the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST
+write upon successful completion of this method. The value was supplied as the <i>dwNotifyKey</i>
+parameter in a previous call to one of the following methods: <b>ApiAddNotifyCluster</b>
+(section <a href="478fbe48-afbe-44e1-81bd-d4ec3e440dbd" data-linktype="relative-path">3.1.4.1.58</a>), <b>ApiAddNotifyNode</b>
+(section <a href="d8f02894-4063-4636-805e-eb8ce205e691" data-linktype="relative-path">3.1.4.1.59</a>), <b>ApiAddNotifyGroup</b>
+(section <a href="88c1f212-c5e3-498c-bc3b-c702e8e02847" data-linktype="relative-path">3.1.4.1.60</a>), <b>ApiAddNotifyResource</b>
+(section <a href="64c35dae-2ef4-4acc-9dfa-fa99bbcdd348" data-linktype="relative-path">3.1.4.1.61</a>), <b>ApiAddNotifyKey</b>
+(section <a href="e492cf93-4dc9-42e3-82c5-ef010cf6e448" data-linktype="relative-path">3.1.4.1.62</a>), <b>ApiAddNotifyNetwork</b>
+(section <a href="6458a96c-90c3-48ea-ab11-3c2a7252f206" data-linktype="relative-path">3.1.4.1.90</a>), <b>ApiAddNotifyNetInterface</b>
+(section <a href="40699a1c-3369-4007-ba64-d3882f54d33e" data-linktype="relative-path">3.1.4.1.99</a>), <b>ApiReAddNotifyNode</b>
+(section <a href="bdd5f909-3eef-4d17-b307-bc19289339ab" data-linktype="relative-path">3.1.4.1.63</a>), <b>ApiReAddNotifyGroup</b>
+(section <a href="3e4e2adb-7416-4da1-9eb0-aef98ea3f700" data-linktype="relative-path">3.1.4.1.64</a>), <b>ApiReAddNotifyResource</b>
+(section <a href="34ded1d5-3ae9-41c6-9198-c4d69d5fc61c" data-linktype="relative-path">3.1.4.1.65</a>), <b>ApiReAddNotifyNetwork</b>
+(section <a href="fae7dcc6-6cfb-4386-9d9a-d4c432f7c21a" data-linktype="relative-path">3.1.4.1.91</a>),
+or <b>ApiReAddNotifyNetInterface</b> (section <a href="5f8415ab-6548-4c16-819e-4711abcd5219" data-linktype="relative-path">3.1.4.1.100</a>).</p><p><b>dwFilter:</b> The address of a 32-bit integer
+value that the server MUST write upon successful completion of this method,
+which contains the <b>CLUSTER_CHANGE</b> (section <a href="9a42352e-9fb9-4a23-8900-8771ee49edb4" data-linktype="relative-path">2.2.2.7</a>) enumeration
+value, indicating the type of event. The value MUST match one or more filter
+blocks that were provided in a previous call to one of the following methods: <b>ApiAddNotifyCluster</b>,
+<b>ApiAddNotifyNode</b>, <b>ApiAddNotifyGroup</b>, <b>ApiAddNotifyResource</b>,
+<b>ApiAddNotifyKey</b>, <b>ApiAddNotifyNetwork</b>, <b>ApiAddNotifyNetInterface</b>,
+<b>ApiReAddNotifyNode</b>, <b>ApiReAddNotifyGroup</b>, <b>ApiReAddNotifyResource</b>,
+<b>ApiReAddNotifyNetwork</b>, or <b>ApiReAddNotifyNetInterface</b>.</p><p><b>Name:</b> The address of a pointer where the
+server MUST write, upon successful completion of this method, the address of a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> buffer that
+contains the name of the object to which the event pertains. If a name is not
+associated with the event, then the buffer contains the null Unicode string.</p></div>

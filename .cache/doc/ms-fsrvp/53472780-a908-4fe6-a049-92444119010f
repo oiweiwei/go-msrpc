@@ -1,0 +1,79 @@
+<div class="content"><p> </p><p>The <b>SetContext</b> method sets the context for the
+current <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow copy</a></span> creation
+process.</p><dl>
+<dd>
+<div><pre> DWORD SetContext(
+         [in] handle_t hBinding,
+         [in] unsigned long Context);
+  
+</pre></div>
+</dd></dl><p><b>hBinding:</b> An RPC binding handle (as defined in
+<span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>).</p><p><b>Context:</b> The context to be used for the shadow
+copy operations. It MUST be set to one of the CONTEXT_VALUES specified in
+section <span><a href="bdef672f-624f-484d-8ee5-5d8045483334" data-linktype="relative-path">2.2.2.2</a></span>. </p><p><b>Return Values:</b> The method returns one of the
+values as specified in section <span><a href="b45c794e-9362-42b7-80c6-7dae3382acf0" data-linktype="relative-path">2.2.4</a></span>. The most
+common error codes are listed below.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>E_ACCESSDENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  the operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8004231B</p>
+  <p>FSRVP_E_UNSUPPORTED_CONTEXT</p>
+  </td>
+  <td>
+  <p>The context value specified is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80042316</p>
+  <p>FSRVP_E_SHADOW_COPY_SET_IN_PROGRESS</p>
+  </td>
+  <td>
+  <p>Creation of another shadow copy set is in progress.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>If the <i>Context</i> parameter contains an invalid value,
+the server MUST fail the call with FSRVP_E_UNSUPPORTED_CONTEXT.</p><p>The server MUST get the requestor client address
+corresponding to the <i>hBinding</i> parameter as specified in [C706] section
+2.12.1.</p><p>If <b>ContextSet</b> is TRUE, the server MUST process as
+follows:</p><ul><li><p><span><span> 
+</span></span>If the requestor client address is not the same as <b>ShadowCopyClientAddress</b>,
+the server MUST fail the call with FSRVP_E_SHADOW_COPY_SET_IN_PROGRESS.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, if the requestor client address is the same as <b>ShadowCopyClientAddress</b>,
+the server MUST process as follows:</p>
+<ul><li><p><span><span>  </span></span>Remove
+the <b>ShadowCopySet</b> if a <b>ShadowCopySet</b> exists in the <b>GlobalShadowCopySetTable</b>
+where <b>ShadowCopySet.Status</b> is not equal to &#34;Recovered&#34;.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>ContextSet</b> to FALSE.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>ShadowCopyClientAddress</b> to NULL.</p>
+</li><li><p><span><span>  </span></span>Increment
+the <b>ShadowCopyClientRetryCount</b>.</p>
+</li><li><p><span><span>  </span></span>If <b>ShadowCopyClientRetryCount</b>
+exceeds the implementation-specific count<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="97e8cd5d-666b-428d-b701-ebd48fb59e16#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a>, the server
+MUST fail the call with FSRVP_E_SHADOW_COPY_SET_IN_PROGRESS.</p>
+</li></ul></li></ul><p>Otherwise, if <b>ContextSet</b> is FALSE, set <b>ShadowCopyClientRetryCount</b>
+to 0.  </p><p>The server MUST set <b>ShadowCopyClientAddress</b> to the
+retrieved requestor client address.</p><p>The server MUST update <b>CurrentContext</b> to Context, set
+<b>ContextSet</b> to TRUE, start the Message Sequence Timer (as specified in
+section <span><a href="d88b9fb3-aa00-4396-91e5-f3db036d4a74" data-linktype="relative-path">3.1.2</a></span>) with a
+timeout value of 180 seconds, and return ZERO to the caller. </p></div>

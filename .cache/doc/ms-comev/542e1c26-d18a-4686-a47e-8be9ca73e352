@@ -1,0 +1,305 @@
+<div class="content"><p> </p><p>The IEventSubscription interface provides methods to get and
+set the properties of a <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_f362c255-5746-44db-aa04-e8060543a19c" data-linktype="relative-path">subscription</a></span>. This
+interface inherits opnums 0 through 6 from <span><a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a></span>
+IDispatch as specified in [MS-OAUT] section <span><a href="../ms-oaut/ac9c502b-ac1c-4202-8ad4-048ac98afcc9" data-linktype="relative-path">3.1.4</a></span>.
+The version for this interface is 0.0.</p><p>To receive incoming remote calls for this interface, the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>
+MUST implement a DCOM <span><a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a></span>
+<span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_a224e395-3fea-48bd-b141-3dd9bee2136a" data-linktype="relative-path">object
+class</a></span> with the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">class ID</a></span>
+CLSID_Subscription (see section <span><a href="25e89236-b0b3-4d8b-b1fb-64e0e9f0e156" data-linktype="relative-path">1.9</a></span>) using the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+{4A6B0E15-2E38-11D1-9965-00C04FBBB345} for this interface.</p><p>The interface includes the following methods beyond those in
+IDispatch.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span><a href="dbc74d03-c475-408d-b47c-e3b5279ae9a9" data-linktype="relative-path">get_SubscriptionID</a></span></p>
+  </td>
+  <td>
+  <p>Gets the SubscriptionID property of the subscription.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="7e2a7004-5148-4e17-94ad-6f7edfbdd791" data-linktype="relative-path">put_SubscriptionID</a></span></p>
+  </td>
+  <td>
+  <p>Sets the SubscriptionID property of the subscription.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="c63752b3-527a-4ab3-8be4-099157e93b5b" data-linktype="relative-path">get_SubscriptionName</a></span></p>
+  </td>
+  <td>
+  <p>Gets the SubscriptionName property of the
+  subscription.</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="a7a58a9d-d81b-4051-aa51-7fee10a89c4c" data-linktype="relative-path">put_SubscriptionName</a></span></p>
+  </td>
+  <td>
+  <p>Sets the SubscriptionName property of the
+  subscription.</p>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="c1c91cf4-dbf9-437f-bd10-724c0c197c6a" data-linktype="relative-path">get_PublisherID</a></span></p>
+  </td>
+  <td>
+  <p>Gets the PublisherID property of the subscription.</p>
+  <p>Opnum: 11</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="620cd513-693d-4e1e-a339-550f5aae7f8b" data-linktype="relative-path">put_PublisherID</a></span></p>
+  </td>
+  <td>
+  <p>Sets the PublisherID property of the subscription.</p>
+  <p>Opnum: 12</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="75f89114-0d97-4c9d-8ba0-3354e70f5ffd" data-linktype="relative-path">get_EventClassID</a></span></p>
+  </td>
+  <td>
+  <p>Gets the EventClassID property of the subscription.</p>
+  <p>Opnum: 13</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="d0cad6bc-670d-40bb-b596-4f7bfad6333a" data-linktype="relative-path">put_EventClassID</a></span></p>
+  </td>
+  <td>
+  <p>Sets the EventClassID property of the subscription.</p>
+  <p>Opnum: 14</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="66e34481-0068-4f97-add1-3c9b6dfd10c0" data-linktype="relative-path">get_MethodName</a></span></p>
+  </td>
+  <td>
+  <p>Gets the MethodName property of the subscription.</p>
+  <p>Opnum: 15</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="0aa60085-f7cb-4de8-a236-ec9d3501805d" data-linktype="relative-path">put_MethodName</a></span></p>
+  </td>
+  <td>
+  <p>Sets the MethodName property of the subscription.</p>
+  <p>Opnum: 16</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="e9614e89-8959-4e59-bca9-b7c0d676d688" data-linktype="relative-path">get_SubscriberCLSID</a></span></p>
+  </td>
+  <td>
+  <p>Gets the SubscriberCLSID property of the subscription.
+  </p>
+  <p>Opnum: 17</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="aad43479-8834-40cf-a8d3-e4ff23c51294" data-linktype="relative-path">put_SubscriberCLSID</a></span></p>
+  </td>
+  <td>
+  <p>Sets the SubscriberCLSID property of the subscription.</p>
+  <p>Opnum: 18</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="984494e2-4c2a-4628-a4f4-63a669160dda" data-linktype="relative-path">get_SubscriberInterface</a></span></p>
+  </td>
+  <td>
+  <p>Gets the SubscriberInterface property of the
+  subscription.</p>
+  <p>Opnum: 19</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="3ae45bac-3226-4c20-87b0-9545ab321ccb" data-linktype="relative-path">put_SubscriberInterface</a></span></p>
+  </td>
+  <td>
+  <p>Sets the SubscriberInterface property of the
+  subscription.</p>
+  <p>Opnum: 20</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="d50d4e15-fcc4-4a1e-8001-bc76c0591a30" data-linktype="relative-path">get_PerUser</a></span></p>
+  </td>
+  <td>
+  <p>Gets the PerUser property of the subscription.</p>
+  <p>Opnum: 21</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="f78609d0-5548-4b9f-8613-3daf9930834e" data-linktype="relative-path">put_PerUser</a></span></p>
+  </td>
+  <td>
+  <p>Sets the PerUser property of the subscription.</p>
+  <p>Opnum: 22</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="01a83dfa-b888-4f34-a3d4-e69a21912deb" data-linktype="relative-path">get_OwnerSID</a></span></p>
+  </td>
+  <td>
+  <p>Gets the OwnerSID property of the subscription.</p>
+  <p>Opnum: 23</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="fbf465dd-e9b2-49c8-b9e8-f9b81812b3b5" data-linktype="relative-path">put_OwnerSID</a></span></p>
+  </td>
+  <td>
+  <p>Sets the OwnerSID property of the subscription.</p>
+  <p>Opnum: 24</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="06f3ba94-8eba-4c57-8ea0-75cb5279fd88" data-linktype="relative-path">get_Enabled</a></span></p>
+  </td>
+  <td>
+  <p>Gets the Enabled property of the subscription.</p>
+  <p>Opnum: 25</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="9bcd45f7-8222-48da-bc53-b7688a9a006f" data-linktype="relative-path">put_Enabled</a></span></p>
+  </td>
+  <td>
+  <p>Sets the Enabled property of the subscription.</p>
+  <p>Opnum: 26</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="1a0f4655-64bb-413f-b6a6-0210739f5da4" data-linktype="relative-path">get_Description</a></span></p>
+  </td>
+  <td>
+  <p>Gets the Description property of the subscription.</p>
+  <p>Opnum: 27</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="231927c2-0fbc-4032-91e6-bd3f4771ed3a" data-linktype="relative-path">put_Description</a></span></p>
+  </td>
+  <td>
+  <p>Sets the Description property of the subscription.</p>
+  <p>Opnum: 28</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="073c02a6-e92d-4966-83e0-dca5a484b961" data-linktype="relative-path">get_MachineName</a></span></p>
+  </td>
+  <td>
+  <p>Gets the MachineName property of the subscription.</p>
+  <p>Opnum: 29</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="26f4ad18-a66a-4e64-b340-833b4045aded" data-linktype="relative-path">put_MachineName</a></span></p>
+  </td>
+  <td>
+  <p>Sets the MachineName property of the subscription.</p>
+  <p>Opnum: 30</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="2b635116-2919-43c3-909a-a3030a494016" data-linktype="relative-path">GetPublisherProperty</a></span></p>
+  </td>
+  <td>
+  <p>Gets the application-specific <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_7db8a6a0-d924-48bb-b9f3-08fcd58d0dc5" data-linktype="relative-path">publisher</a></span>
+  property for the subscription.</p>
+  <p>Opnum: 31</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="d62bbb94-e741-400e-8ee2-b8fa21b02192" data-linktype="relative-path">PutPublisherProperty</a></span></p>
+  </td>
+  <td>
+  <p>Sets the application-specific publisher property for
+  the subscription.</p>
+  <p>Opnum: 32</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="8cc64ea5-7fbe-49e9-9b8c-2b0fc94af2bc" data-linktype="relative-path">RemovePublisherProperty</a></span></p>
+  </td>
+  <td>
+  <p>Removes an application-specific publisher property for
+  the subscription.</p>
+  <p>Opnum: 33</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="9d995cc7-5efa-47bc-9429-d4c9d2d6d087" data-linktype="relative-path">GetPublisherPropertyCollection</a></span></p>
+  </td>
+  <td>
+  <p>Gets an application-specific publisher properties
+  collection for the subscription.</p>
+  <p>Opnum: 34</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="99b6b262-3f56-4cf0-8cb9-1ab594366f4e" data-linktype="relative-path">GetSubscriberProperty</a></span></p>
+  </td>
+  <td>
+  <p>Gets an application-specific subscription property for
+  the subscription.</p>
+  <p>Opnum: 35</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="433a3a67-c2fa-4fb5-afcf-dc34cf0b0f21" data-linktype="relative-path">PutSubscriberProperty</a></span></p>
+  </td>
+  <td>
+  <p>Sets an application-specific subscription property for
+  the subscription.</p>
+  <p>Opnum: 36</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="d46b7176-018d-4515-ae74-bd9ff077801b" data-linktype="relative-path">RemoveSubscriberProperty</a></span></p>
+  </td>
+  <td>
+  <p>Removes an application-specific subscription property
+  for the subscription.</p>
+  <p>Opnum: 37</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="7b3c746c-9ce3-4027-a5fa-64c0701fdaf7" data-linktype="relative-path">GetSubscriberPropertyCollection</a></span></p>
+  </td>
+  <td>
+  <p>Gets the application-specific subscription properties
+  for the subscription as a collection.</p>
+  <p>Opnum: 38</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="286cf35a-04c7-40f6-b89e-3f7c2176f142" data-linktype="relative-path">get_InterfaceID</a></span></p>
+  </td>
+  <td>
+  <p>Gets the InterfaceID property for the subscription.</p>
+  <p>Opnum: 39</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="0debe338-be40-40c8-ab51-91155f71dd14" data-linktype="relative-path">put_InterfaceID</a></span></p>
+  </td>
+  <td>
+  <p>Sets the InterfaceID property for the subscription.</p>
+  <p>Opnum: 40</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

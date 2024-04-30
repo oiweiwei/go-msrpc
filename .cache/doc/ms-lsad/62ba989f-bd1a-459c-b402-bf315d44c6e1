@@ -1,0 +1,95 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/62ba989f-bd1a-459c-b402-bf315d44c6e1" data-linktype="external">msdn link</a></p><p>The LsarOpenTrustedDomainByName method is invoked to open a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted domain object</a>
+handle by supplying the name of the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted domain</a>.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarOpenTrustedDomainByName(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PRPC_UNICODE_STRING TrustedDomainName,
+   [in] ACCESS_MASK DesiredAccess,
+   [out] LSAPR_HANDLE* TrustedDomainHandle
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>TrustedDomainName: </b>The name of the trusted
+domain object.</p><p><b>DesiredAccess: </b>The type of access requested by
+the caller.</p><p><b>TrustedDomainHandle: </b>Used to return the opened
+trusted domain handle.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the supplied arguments was invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000034</p>
+  <p>STATUS_OBJECT_NAME_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>A trusted domain object by this name was not found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes four arguments:</p><p><i>PolicyHandle</i>: An open handle to the policy object. If
+the handle is not a valid context handle to the policy object or <i>PolicyHandle</i>.HandleType
+does not equal &#34;Policy&#34;, the server MUST return
+STATUS_INVALID_HANDLE. <i>PolicyHandle</i>.GrantedAccess MUST NOT be considered
+for this call because the access check MUST happen on the trusted domain
+object.</p><p><i>TrustedDomainName</i>: Contains the name of the trusted
+domain to be opened. This can be a DNS or a NetBIOS name. If the server cannot
+locate a trusted domain object by this name in its policy database, the server
+MUST return STATUS_OBJECT_NAME_NOT_FOUND. The same status code MUST be returned
+by the server if <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+Directory</a> is not running on this machine.</p><p><i>DesiredAccess</i>: The set of rights that the caller
+attempts to obtain from the trusted domain object, which is access-checked
+according to section <a href="e5e1e32e-4066-435d-b669-044fe997eaf7" data-linktype="relative-path">3.1.4.2.1</a>.
+There is no method-specific portion of the check. The valid
+trusted-domain-rights bits are specified in section <a href="e035f552-0313-48b7-9bca-fdd9fd4e948e" data-linktype="relative-path">2.2.1.1.5</a>, and the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a> is
+specified in section <a href="0228f75e-9725-479c-b4cd-1cacd667343c" data-linktype="relative-path">3.1.1.5</a>.</p><p><i>TrustedDomainHandle</i>: If the request is successful,
+this parameter is used to return a handle (section <a href="1011130b-0413-460d-81ed-d1821d141639" data-linktype="relative-path">3.1.1.7</a>) to the opened
+trusted domain object with its fields initialized as follows:</p><ul><li><p><span><span> 
+</span></span>LsaContextHandle.HandleType = &#34;Trusted Domain&#34;</p>
+</li><li><p><span><span> 
+</span></span>LsaContextHandle.Object = the trusted domain object</p>
+</li><li><p><span><span> 
+</span></span>LsaContextHandle.GrantedAccess = as specified in section
+3.1.4.2.1</p>
+</li></ul></div>

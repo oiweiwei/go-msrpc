@@ -1,0 +1,16 @@
+<div class="content"><p>The <b>RPC_BranchOfficeLogOfflineFileFull</b> structure
+holds a single <b>Branch Office Print Remote Log Entry</b> (section <a href="1bd61448-db4b-4284-a4b1-8346732402d4" data-linktype="relative-path">3.1.1</a>)<a id="Appendix_A_Target_90"></a><a aria-label="Product behavior note 90" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_90" data-linktype="relative-path">&lt;90&gt;</a> that indicates the <b>Branch
+Office Print Remote Log Offline Archive</b> (section <a href="fa5a51d5-85cc-40dc-951a-1e288b62d820" data-linktype="relative-path">3.2.1</a>) has exceeded the
+maximum allowed size.<a id="Appendix_A_Target_91"></a><a aria-label="Product behavior note 91" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_91" data-linktype="relative-path">&lt;91&gt;</a> This entry contains the
+information needed to create <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_0c6539af-aed7-4baa-9d21-4aa5b41d448a" data-linktype="relative-path">event
+ID</a> 868 in the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_e6ccb1c9-7b3e-473c-9e14-0806d19c4337" data-linktype="relative-path">Microsoft-Windows-PrintService</a>/Admin
+<a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_43907602-849d-4d1c-9ff8-a2c3228b3735" data-linktype="relative-path">event channel</a>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [string] wchar_t* pMachineName;
+ } RPC_BranchOfficeLogOfflineFileFull;
+</pre></div>
+</dd></dl><p><b>pMachineName:</b> A pointer to a string that
+specifies the name of the client computer that encountered the <b>Branch Office
+Print Remote Log Offline Archive</b> full condition. For rules governing
+computer names, see section <a href="9b3f8135-7022-4b72-accb-aefcc360c83b" data-linktype="relative-path">2.2.4.16</a>.</p></div>

@@ -1,0 +1,101 @@
+<div class="content"><p>This method is called by a client to retrieve the <a href="acc010ef-9eca-4bfa-ac78-0b000a0a14e6" data-linktype="relative-path">table
+metadata (section 3.1.1.2.1)</a> for a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0944227d-0566-49e1-989f-2fff6e02542d" data-linktype="relative-path">catalog</a> table.</p><dl>
+<dd>
+<div><pre> HRESULT GetClientTableInfo(
+   [in] GUID* pCatalogIdentifier,
+   [in] GUID* pTableIdentifier,
+   [in] DWORD tableFlags,
+   [in, size_is(cbQueryCellArray), unique] 
+     char* pQueryCellArray,
+   [in] ULONG cbQueryCellArray,
+   [in, size_is(cbQueryComparison), unique] 
+     char* pQueryComparison,
+   [in] ULONG cbQueryComparison,
+   [in] DWORD eQueryFormat,
+   [out] GUID* pRequiredFixedGuid,
+   [out, size_is(, *pcbReserved1)] 
+     char** ppReserved1,
+   [out] ULONG* pcbReserved1,
+   [out, size_is(, *pcAuxiliaryGuid)] 
+     GUID** ppAuxiliaryGuid,
+   [out] ULONG* pcAuxiliaryGuid,
+   [out, size_is(, *pcProperties)] 
+     PropertyMeta** ppPropertyMeta,
+   [out] ULONG* pcProperties,
+   [out] IID* piid,
+   [out, iid_is(piid)] void** pItf,
+   [out, size_is( , *pcbReserved2)] 
+     char** ppReserved2,
+   [out] ULONG* pcbReserved2
+ );
+</pre></div>
+</dd></dl><p><b>pCatalogIdentifier: </b> The catalog identifier of
+the COMA catalog. MUST be set to {6E38D3C4-C2A7-11D1-8DEC-00C04FC2E0C7}.</p><p><b>pTableIdentifier: </b>The table identifier for one
+of the tables defined in section <a href="9029dd8c-1f42-432f-ad41-a2369b32bd79" data-linktype="relative-path">3.1.1.3</a> for the negotiated
+catalog version.</p><p><b>tableFlags: </b>An <a href="19308cf6-7832-4aef-a61e-cbf8a402989f" data-linktype="relative-path">fTableFlags (section 2.2.1.1)</a>
+value supported by the table identified by <i>pTableIdentifier</i>.</p><p><b>pQueryCellArray: </b>A <a href="042e9c68-552b-48a9-adb6-f0d903653fa0" data-linktype="relative-path">QueryCellArray (section 2.2.1.5)</a>
+structure, marshaled in the negotiated format, as specified in section 2.2.1.5,
+for a supported query (see section <a href="25044da8-32e2-4322-aa95-6347a0ca3bb1" data-linktype="relative-path">3.1.1.2</a>) on the table
+identified by <i>pTableIdentifier</i>.</p><p><b>cbQueryCellArray: </b>The size in bytes of <i>pQueryCellArray</i>.</p><p><b>pQueryComparison: </b>A <a href="ee38b86f-4f17-4c3d-b71f-5b7ae876eb54" data-linktype="relative-path">QueryComparisonData (section 2.2.1.6)</a>
+structure for a supported query (see section 3.1.1.2) on the table identified
+by <i>pTableIdentifier</i>.</p><p><b>cbQueryComparison: </b>The size in bytes of <i>pQueryComparison</i>.</p><p><b>eQueryFormat: </b>MUST be set to eQUERYFORMAT_1
+(0x00000001).</p><p><b>pRequiredFixedGuid: </b> A pointer to a variable
+that, upon successful completion, MUST be set to
+{92AD68AB-17E0-11D1-B230-00C04FB9473F} and SHOULD<a id="Appendix_A_Target_285"></a><a aria-label="Product behavior note 285" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_285" data-linktype="relative-path">&lt;285&gt;</a> be
+ignored on receipt.</p><p><b>ppReserved1: </b>A pointer to a variable that,
+upon successful completion, MUST be set either to NULL or to the location of an
+empty string and MUST be ignored on receipt.</p><p><b>pcbReserved1: </b>A pointer to a variable that,
+upon successful completion, MUST be set to two if ppReserved1 points to an
+empty string, or to zero if ppReserved1 points to NULL, and MUST be ignored on
+receipt.</p><p><b>ppAuxiliaryGuid: </b>A pointer to a variable that,
+upon successful completion, MUST be set to the AuxiliaryGuid value specified in
+the definition of the table identified by <i>pTableIdentifier</i>, and NULL if
+the table definition specifies no such value. This value SHOULD<a id="Appendix_A_Target_286"></a><a aria-label="Product behavior note 286" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_286" data-linktype="relative-path">&lt;286&gt;</a> be ignored on receipt.</p><p><b>pcAuxiliaryGuid: </b>A pointer to a variable that,
+upon successful completion, MUST be the number of elements in <i>ppAuxiliaryGuids</i>
+(zero or one).</p><p><b>ppPropertyMeta: </b>A pointer to a variable that,
+upon successful completion, MUST be set to an array of <a href="23b9cc69-47cb-4a2f-ae15-3f1a92065455" data-linktype="relative-path">PropertyMeta (section 2.2.1.7)</a>
+structures representing the schema (see section <a href="2c67d79d-08ce-47b3-b029-8645aee3464e" data-linktype="relative-path">3.1.1.1</a>) for the table
+identified by <i>pTableIdentifier</i> in the negotiated catalog version.</p><p><b>pcProperties: </b>A pointer to a variable that,
+upon successful completion, MUST be set to the length of the array returned in <i>ppPropertyMeta</i>.</p><p><b>piid: </b>A pointer to a variable that, upon
+successful completion, MUST be set to IID_ICatalogTableRead (see section <a href="3afd05f6-01a3-4920-951f-f9c703a3b0f1" data-linktype="relative-path">1.9</a>).</p><p><b>pItf: </b>A pointer to a variable that, upon
+successful completion, MUST be set to the <a href="fb5599a4-f504-453b-a49e-dc3db3619047" data-linktype="relative-path">ICatalogTableRead (section 3.1.4.8)</a>
+<a href="3f01a312-3391-4109-a96e-95358babf191#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> of the server.</p><p><b>ppReserved2: </b>A pointer to a variable that,
+upon successful completion, MUST be set to NULL.</p><p><b>pcbReserved2: </b> A pointer to a variable that,
+upon successful completion, MUST be set to zero.</p><p><b>Return Values: </b> This method MUST return S_OK
+(0x00000000) on success and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server MUST verify
+that catalog version negotiation has been performed by checking the negotiated
+catalog version (see section <a href="a667265b-22a8-43bb-b462-13528061e009" data-linktype="relative-path">3.1.1.5</a>),
+and fail the call if not.</p><p>The server then MUST perform parameter validation as
+follows:</p><ul><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_287"></a><a aria-label="Product behavior note 287" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_287" data-linktype="relative-path">&lt;287&gt;</a> verify
+that the value referenced by <i>pCatalogIdentifier</i> is the catalog
+identifier of the COMA catalog, {6E38D3C4-C2A7-11D1-8DEC-00C04FC2E0C7}, and
+fail the call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_288"></a><a aria-label="Product behavior note 288" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_288" data-linktype="relative-path">&lt;288&gt;</a> verify
+that the value reference by <i>pTableIdentifier</i> is the table identifier of
+a Table (section 3.1.1.3) defined in section 3.1.1.3 for the
+negotiated catalog version, and fail the call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD <a id="Appendix_A_Target_289"></a><a aria-label="Product behavior note 289" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_289" data-linktype="relative-path">&lt;289&gt;</a> verify
+that <i>tableFlags</i> is a supported table flags value (see section <a href="84e5214c-959e-4d7f-a393-5a4f233b09f7" data-linktype="relative-path">3.1.1.2.3</a>) for the table
+identified by <i>pTableIdentifier</i>, and fail the call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_290"></a><a aria-label="Product behavior note 290" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_290" data-linktype="relative-path">&lt;290&gt;</a> verify
+that the query represented by the parameters <i>pQueryCellArray</i>, <i>cbQueryCellArray</i>,
+<i>pQueryComparison</i>, and <i>cbQueryComparison</i> is a supported query (see
+section 3.1.1.2) on the table identified by <i>pTableIdentifier</i>, and fail
+the call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST verify that all other parameters meet the
+constraints previously specified.</p>
+</li></ul><p>The server then MUST set the values referenced by the out
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>The values referenced <i>ppAuxiliaryGuid</i>, <i>pcAuxiliaryGuid</i>,
+<i>ppPropertyMeta</i>, and <i>pcProperties</i> MUST be set to the values
+specified in the table definition (see section 3.1.1.3) of the table identified
+by <i>pTableIdentifier</i> for the negotiated catalog version, and fail if it
+cannot.</p>
+</li></ul></div>

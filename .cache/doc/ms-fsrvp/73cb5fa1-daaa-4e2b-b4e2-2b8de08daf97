@@ -1,0 +1,37 @@
+<div class="content"><p> </p><p>The <b>GetSupportedVersion</b> method is invoked by the
+client to get the minimum and maximum versions of the protocol that the server
+supports.</p><dl>
+<dd>
+<div><pre> DWORD GetSupportedVersion(
+         [out] DWORD* MinVersion,
+         [out] DWORD* MaxVersion);
+  
+</pre></div>
+</dd></dl><p><b>MinVersion:</b>  The minimum version of the
+protocol that the server supports.</p><p><b>MaxVersion:</b>  The maximum version of the
+protocol that the server supports.</p><p><b>Return Values:</b> The method returns one of the
+values specified in section <span><a href="b45c794e-9362-42b7-80c6-7dae3382acf0" data-linktype="relative-path">2.2.4</a></span>. The most
+common error codes are listed below.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>E_ACCESSDENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  the operation.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST set <i>MinVersion</i> to the global <b>MinServerVersion</b>,
+<i>MaxVersion</i> to the global <b>MaxServerVersion</b>, and MUST return ZERO
+to the caller.</p></div>

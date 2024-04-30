@@ -1,0 +1,24 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/00ff8192-a4f6-45ba-9f65-917e46b6a693" data-linktype="external">msdn link</a></p><p>The SamrRidToSid method obtains the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> of an <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_8d10bd9d-392e-431b-8218-742bdac19815" data-linktype="relative-path">account</a>, given a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RID</a>.</p><dl>
+<dd>
+<div><pre> long SamrRidToSid(
+   [in] SAMPR_HANDLE ObjectHandle,
+   [in] unsigned long Rid,
+   [out] PRPC_SID* Sid
+ );
+</pre></div>
+</dd></dl><p><b>ObjectHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>.
+The message processing shown later in this section contains details on which
+types of <i>ObjectHandle</i> are accepted by the server.</p><p><b>Rid: </b>A RID of an account.</p><p><b>Sid: </b>The SID of the account referenced by <i>Rid</i>.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>The <i>ObjectHandle.HandleType</i>
+MUST be &#34;Domain&#34;, &#34;User&#34;, &#34;Group&#34;, or
+&#34;Alias&#34;.</p>
+</li><li><p><span>    </span>The output
+parameter <i>Sid</i> MUST be set to a SID whose <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> SID prefix is equal to
+the domain SID prefix of the <b>objectSid</b> attribute of the object
+identified by <i>ObjectHandle</i>, and whose RID suffix is equal to the <i>Rid</i>
+parameter.</p>
+</li></ol></div>

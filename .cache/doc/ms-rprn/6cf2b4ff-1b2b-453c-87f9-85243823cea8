@@ -1,0 +1,13 @@
+<div class="content"><p>The <b>SECURITY_CONTAINER</b> structure specifies a <b>SECURITY_DESCRIPTOR</b>
+structure (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a>),
+which contains security information.</p><dl>
+<dd>
+<div><pre> typedef struct SECURITY_CONTAINER {
+   DWORD cbBuf;
+   [size_is(cbBuf), unique] BYTE* pSecurity;
+ } SECURITY_CONTAINER;
+</pre></div>
+</dd></dl><p><b>cbBuf:</b> The size, in bytes, of the buffer
+that is pointed to by the <b>pSecurity</b> member.</p><p><b>pSecurity:</b> An optional pointer to a
+self-relative <b>SECURITY_DESCRIPTOR</b> structure.</p></div>

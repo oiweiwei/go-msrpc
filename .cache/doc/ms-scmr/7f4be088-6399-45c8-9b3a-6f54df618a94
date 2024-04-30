@@ -1,0 +1,201 @@
+<div class="content"><p>The REnumServicesStatusA method enumerates <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_1fbb7936-8437-4e3d-b62f-47df3be07721" data-linktype="relative-path">service records</a> in the
+specified <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a> database.</p><dl>
+<dd>
+<div><pre> DWORD REnumServicesStatusA(
+   [in] SC_RPC_HANDLE hSCManager,
+   [in] DWORD dwServiceType,
+   [in] DWORD dwServiceState,
+   [out, size_is(cbBufSize)] LPBYTE lpBuffer,
+   [in, range(0, 1024*256)] DWORD cbBufSize,
+   [out] LPBOUNDED_DWORD_256K pcbBytesNeeded,
+   [out] LPBOUNDED_DWORD_256K lpServicesReturned,
+   [in, out, unique] LPBOUNDED_DWORD_256K lpResumeIndex
+ );
+</pre></div>
+</dd></dl><p><b>hSCManager: </b>An <a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">SC_RPC_HANDLE (section 2.2.4)</a>
+data type that defines the handle to the SCM database that MUST have been
+created previously, using one of the open methods specified in section <a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a>. The
+SC_MANAGER_ENUMERATE_SERVICE access right MUST have been granted to the caller
+when the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_9dfe84e3-a772-4ad1-9a25-1255c1dc0f84" data-linktype="relative-path">RPC context handle</a>
+to the service record was created.</p><p><b>dwServiceType: </b>A value that specifies the
+service records to enumerate based on the Type value. This MUST be one or a
+combination of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SERVICE_KERNEL_DRIVER</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>A driver service. These are services that manage devices
+  on the system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_FILE_SYSTEM_DRIVER</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>A file system driver service. These are services that
+  manage file systems on the system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_WIN32_OWN_PROCESS</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Service that runs in its own process.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_WIN32_SHARE_PROCESS</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Service that shares a process with other services.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwServiceState: </b>A value that specifies the
+service records to enumerate based on their ServiceStatus.dwCurrentState. This
+MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SERVICE_ACTIVE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Enumerates service records that have
+  ServiceStatus.dwCurrentState equal to one of the following:
+  SERVICE_START_PENDING, SERVICE_STOP_PENDING, SERVICE_RUNNING,
+  SERVICE_CONTINUE_PENDING, SERVICE_PAUSE_PENDING, and SERVICE_PAUSED.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_INACTIVE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Enumerates services that have
+  ServiceStatus.dwCurrentState equal to SERVICE_STOPPED.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_STATE_ALL</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Enumerates services that have
+  ServiceStatus.dwCurrentState equal to one of the following:
+  SERVICE_START_PENDING, SERVICE_STOP_PENDING, SERVICE_RUNNING,
+  SERVICE_CONTINUE_PENDING, SERVICE_PAUSE_PENDING, SERVICE_PAUSED, and
+  SERVICE_STOPPED.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>lpBuffer: </b>A pointer to an array of <a href="86759383-9e73-4b46-aeb9-73d21c2d1f6c" data-linktype="relative-path">ENUM_SERVICE_STATUSA (section 2.2.10)</a>
+structures that contain the name and service status information for each
+dependent service in the database.</p><p><b>cbBufSize: </b>The size, in bytes, of the array
+pointed to by <i>lpBuffer</i>.</p><p><b>pcbBytesNeeded: </b>An <a href="6c441817-d736-4a94-a444-0c1810a6c473" data-linktype="relative-path">LPBOUNDED_DWORD_256K (section 2.2.9)</a>
+pointer to a variable that contains the number of bytes needed to store the
+array of service entries.</p><p><b>lpServicesReturned: </b>An
+LPBOUNDED_DWORD_256K (section 2.2.9) pointer to a variable that
+contains the number of service entries returned.</p><p><b>lpResumeIndex: </b>An
+LPBOUNDED_DWORD_256K (section 2.2.9) pointer to a variable that
+specifies the current position in the status enumeration. The server MUST
+assign a unique number to each service for the boot session, in increasing
+order, and increment that number by one for each service addition. The value of
+the <i>lpResumeIndex</i> parameter is one of these numbers, which the server
+can use to determine the resumption point for the enumeration.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns one of the following error
+codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>5</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The SC_MANAGER_ENUMERATE_SERVICE access right had not
+  been granted to the caller when the RPC context handle to the service record
+  was created.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The handle is no longer valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>87</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter that was specified is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>234</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>More data is available.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation the server MUST determine the list of service records in
+the SCM database identified by the <i>hSCManager</i> parameter with the current
+value of ServiceStatus.dwCurrentState equal to the state specified by the <i>dwServiceState</i>
+parameter and Type equal to the <i>dwServiceType</i> of the client request. The
+server MUST return this list by setting the ServiceName, DisplayName, and
+ServiceStatus of each service in this list in the array of
+ENUM_SERVICE_STATUSA (section 2.2.10) structures pointed to by the <i>lpServices</i>
+parameter and MUST set the number of services returned in the <i>lpServicesReturned</i>
+parameter.</p><p>If the <i>lpResumeIndex</i> value is not zero, the server
+MUST use that as the offset to the service list and return only services
+starting at this offset. If the <i>lpResumeIndex</i> value is zero, the server
+MUST return all services. The server MUST set this parameter to zero if the
+operation succeeds. If the <i>lpResumeIndex</i> value is set by the client to
+any nonzero number not returned by the server, the behavior is not defined.</p><p>If the size of the <i>lpServices</i> array is insufficient
+for the list of services returned, the server MUST fail the call with
+ERROR_MORE_DATA (234) and return the size in bytes required in the <i>pcbBytesNeeded</i>
+parameter. If the size is sufficient for data returned, the server also returns
+the required size, in bytes.</p><p>If the size of the <i>lpServices</i> array is sufficient for
+the list of services returned, the enumerated data MAY be in the buffer in a
+non-contiguous manner, and portions of the <i>lpServices</i> array MAY be empty
+(filled with 0x00).</p><p>The server MUST use the process described in <a href="f9ddeebe-b05e-423c-9440-84fd3d14bee9" data-linktype="relative-path">Conversion Between ANSI and
+Unicode String Formats (section 3.1.7)</a> to convert a string to the
+appropriate format.</p><p>The server MUST return ERROR_INVALID_PARAMETER (87) if a
+bitmask specified in <i>dwServiceState</i> is zero or contains undefined
+values.</p><p>The server MUST return ERROR_INVALID_PARAMETER (87) if a
+bitmask specified in <i>dwServiceType</i> is zero or contains undefined values.</p></div>

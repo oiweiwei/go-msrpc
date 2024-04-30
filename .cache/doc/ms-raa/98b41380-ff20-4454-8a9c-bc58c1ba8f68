@@ -1,0 +1,120 @@
+<div class="content"><p>The AuthzrInitializeContextFromSid method (opnum 1) creates
+a <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_519bff3c-1c9f-4d5a-aa88-a3c820a4ff3a" data-linktype="relative-path">client context</a> from a
+given <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security identifier
+(SID)</a>. For domain SIDs, token group and claim attributes will be retrieved
+from <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a>
+through Kerberos.</p><dl>
+<dd>
+<div><pre> DWORD AuthzrInitializeContextFromSid(
+         [in] handle_t Binding,
+         [in] DWORD Flags,
+         [in] RPC_SID* Sid,
+         [in] [unique] LARGE_INTEGER* pExpirationTime,
+         [in] LUID Identifier,
+         [out] AUTHZR_HANDLE* ContextHandle);
+  
+</pre></div>
+</dd></dl><p><b>Binding:</b> A primitive RPC handle that
+identifies a particular client/server binding.</p><p><b>Flags:</b>  Indicates the type of logon behavior
+when initializing the client context. The following flags are defined.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>When no flags are set, AuthzInitializeContextFromSid
+  attempts to retrieve the user&#39;s token group information by performing an S4U
+  logon.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AUTHZ_COMPUTE_PRIVILEGES (0x00000008)</p>
+  </td>
+  <td>
+  <p>AuthzInitializeContextFromSid retrieves privileges for
+  the new context. If this function performs an S4U logon, it retrieves
+  privileges from the token. Otherwise, it retrieves privileges from all SIDs
+  in the context.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to
+zero.</p>
+</dd></dl><p><b>Sid:</b>  A pointer to the SID of the principal
+for whom a remote client context will be created. This MUST be a valid user or
+computer account.</p><p><b>pExpirationTime:</b>  Reserved. This parameter
+MUST be set to NULL when sent and MUST be ignored when received.</p><p><b>Identifier:</b>  Reserved. This parameter MUST be
+set to zero when sent and MUST be ignored when received.</p><p><b>ContextHandle:</b> A pointer to an AUTHZR_HANDLE
+structure, as defined in section <a href="4c1628c5-8093-471e-a3b8-8437420063ba" data-linktype="relative-path">2.2.1.1</a>.</p><p><b>Return Values:</b></p><p>If the function succeeds, the function MUST return
+0x00000000.</p><p>If the function fails, it MUST return a nonzero error code.</p><p>When a RAZA server receives this message, the server MUST
+perform the following:</p><ol><li><p><span>    </span>If any bits
+other than 0x00000008 are set in <i>Flags</i>, the server MUST return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span>    </span>Call <i>LsarOpenPolicy</i>
+(<a href="../ms-lsat/1ba21e6f-d8a9-462c-9153-4375f2020894" data-linktype="relative-path">[MS-LSAT]</a>
+section <a href="../ms-lsat/534c8a46-1be7-4065-9f87-e60a1447ae45" data-linktype="relative-path">3.1.4.2</a>)
+with the following as input:</p>
+<ul><li><p><span><span>  </span></span><i>SystemName</i>:
+NULL.</p>
+</li><li><p><span><span>  </span></span><i>DesiredAccess</i>:
+Contains the bit value 0x00000800 for POLICY_LOOKUP_NAMES.</p>
+</li></ul></li><li><p><span>    </span>Call <i>LsarLookupSids</i>
+([MS-LSAT] section <a href="../ms-lsat/eb7ac899-e697-4883-93de-1e60c7720c02" data-linktype="relative-path">3.1.4.11</a>)
+on the returned <b>PolicyHandle</b>.</p>
+<ul><li><p><span><span>  </span></span><i>PolicyHandle</i>:
+The <b>PolicyHandle</b> returned from the aforementioned <i>LsarOpenPolicy</i>.</p>
+</li><li><p><span><span>  </span></span><i>SidEnumBuffer</i>:
+The <b>SidInfo</b> part of this structure contains the <i>Sid</i> parameter.
+The <b>Entries</b> part of this structure is set to 1. <b>LookupLevel</b> is
+set to <i>LsapLookupWksta</i>.</p>
+<p>The return values from
+LsarLookupSids are as follows:</p>
+</li><li><p><span><span>  </span></span><b>ReferencedDomains
+list:</b> The domain name is found as follows:</p>
+<ol><li><p><span>    </span>Locate the entry
+in the <b>TranslatedNames</b> list that corresponds to the SID in question.
+This entry contains a <b>Names</b> structure with a <b>DomainIndex</b>.</p>
+</li><li><p><span>    </span>Find the <b>ReferencedDomains</b>
+list entry with an index that matches the <b>DomainIndex</b> from the structure
+in the preceding step. The domain name is found in the <b>Name</b> field of the
+<b>Domains</b> structure.</p>
+</li></ol></li><li><p><span><span>  </span></span><b>TranslatedNames:</b>
+Contains the <b>UserName</b> in the <b>Name</b> field of the <b>Names</b>
+structure of the entry in the list corresponding to the SID in question (from
+the <i>SidEnumBuffer</i> input list).</p>
+</li></ul></li><li><p><span>    </span>Perform a
+Kerberos S4U2Self service ticket request using the S4U2self
+KRB_TGS_REQ/KRB_TGS_REP protocol extension as specified in <a href="../ms-sfu/3bff5864-8135-400e-bdd9-33b552051d94" data-linktype="relative-path">[MS-SFU]</a>
+section <a href="../ms-sfu/36a72c74-7995-4cba-a2d2-6c9471a2a6af" data-linktype="relative-path">3.1.5.1.1.2</a>.</p>
+<ul><li><p><span><span>  </span></span>The
+<i>userName</i> MUST be set to the user name obtained in step 2.</p>
+</li><li><p><span><span>  </span></span>The
+<i>userRealm</i> MUST be set to the domain name of the obtained in step 2.</p>
+</li><li><p><span><span>  </span></span>The
+<i>chksum</i> MUST be set as specified in [MS-SFU] section <a href="../ms-sfu/cd9d5ca7-ce20-4693-872b-2f5dd41cbff6" data-linktype="relative-path">2.2.2</a>.</p>
+</li><li><p><span><span>  </span></span>The
+<i>auth-package</i> MUST be set to &#34;Kerberos&#34;.</p>
+</li></ul></li><li><p><span>    </span>Initialize and
+populate an <b>ImpersonationAccessToken</b> as specified in <a href="../ms-kile/2a32282e-dd48-4ad9-a542-609804b02cc9" data-linktype="relative-path">[MS-KILE]</a>
+section <a href="../ms-kile/4ad7ed1f-0bfa-4b5f-bda3-fedbc549a6c0" data-linktype="relative-path">3.4.5.3</a>.</p>
+</li><li><p><span>    </span>Allocate and
+initialize a new AUTHZR_HANDLE structure, as defined in section 2.2.1.1, and
+assign <b>ContextHandle</b> to the new structure.</p>
+</li><li><p><span>    </span>Allocate memory
+for a new <b>ClientContext</b> object, set the <b>RPCClient</b> member to the
+AUTHZR_HANDLE initialized in step 6, and set <b>AuthzContext</b> to the <b>ImpersonationAccessToken</b>
+initialized in step 5.</p>
+</li><li><p><span>    </span>Append the <b>ClientContext</b>
+object created in step 7 to the <b>ClientContextList</b>.</p>
+</li></ol></div>

@@ -1,0 +1,77 @@
+<div class="content"><p>The <b>RPC_FORM_INFO_2</b> structure provides information
+about a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_8dfb0042-b0de-4108-ac52-b148427603db" data-linktype="relative-path">printer form</a>
+that includes its origin, dimensions, the dimensions of its printable area, and
+its display name.<a id="Appendix_A_Target_43"></a><a aria-label="Product behavior note 43" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_43" data-linktype="relative-path">&lt;43&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _RPC_FORM_INFO_2 {
+   DWORD Flags;
+   [string, unique] const wchar_t* pName;
+   SIZE Size;
+   RECTL ImageableArea;
+   [string, unique] const char* pKeyword;
+   DWORD StringType;
+   [string, unique] const wchar_t* pMuiDll;
+   DWORD dwResourceId;
+   [string, unique] const wchar_t* pDisplayName;
+   LANGID wLangID;
+ } RPC_FORM_INFO_2;
+</pre></div>
+</dd></dl><p><b>pKeyword:</b> This member MUST be set to NULL
+by the client if the value of the <b>Flags</b> member is set to FORM_BUILTIN;
+otherwise, this member is a pointer to a string that specifies a unique,
+localization-independent identifier for this form.<a id="Appendix_A_Target_44"></a><a aria-label="Product behavior note 44" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_44" data-linktype="relative-path">&lt;44&gt;</a></p><p><b>StringType:</b> A value that specifies how a
+form&#39;s display name is passed. The value of this member MUST be a value from
+the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>STRING_NONE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Use the default display name, a string that is pointed
+  to by the <b>pName</b> member. No localized display name exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>STRING_MUIDLL</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Load the form name from the library of <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_3dbf1133-6132-4436-b218-b11d3da31e94" data-linktype="relative-path">string resources</a> that is
+  identified by the <b>pMuiDll</b> member. The <b>dwResourceId</b> member
+  specifies the ID of the form name string in that library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>STRING_LANGPAIR</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Use the form name, a string that is pointed to by the <b>pDisplayName</b>
+  member, and the language that is identified by the <b>wLangID</b> member.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pMuiDll:</b> A NULL pointer and MUST be
+ignored on receipt if <b>StringType</b> is not equal to <b>STRING_MUIDLL</b>,
+or it is a pointer to a string that contains the name of a library of string
+resources. String resources can be localized into multiple languages.<a id="Appendix_A_Target_45"></a><a aria-label="Product behavior note 45" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_45" data-linktype="relative-path">&lt;45&gt;</a> </p><p><b>dwResourceId:</b> The value of this member
+SHOULD be set to zero when sent and ignored on receipt if the value of the <b>StringType</b>
+member is not equal to <b>STRING_MUIDLL</b>; otherwise, the value of this
+member specifies the string resource ID of the form name in the library that is
+identified by the string that is pointed to by the <b>pMuiDll</b> member.</p><p><b>pDisplayName:</b> A NULL pointer and ignored
+on receipt if <b>StringType</b> is not equal to <b>STRING_LANGPAIR</b>;
+otherwise, this member is a pointer to a string that specifies the form name.</p><p><b>wLangID:</b> The value of this member SHOULD
+be set to zero when sent and ignored on receipt if <b>StringType</b> is not
+equal to <b>STRING_LANGPAIR</b>; otherwise, the value of this member MUST be
+the Language Identifier of the <b>pDisplayName</b> member <a href="../ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f" data-linktype="relative-path">[MS-LCID]</a>.</p><p>All members not defined in this section are specified in
+sections <a href="84fe09fa-ea4b-4cc5-8ae4-9c8582fd1ffe" data-linktype="relative-path">2.2.1.3.2</a> and <a href="964b517f-6730-4b4a-99ed-ee9648e7f1f7" data-linktype="relative-path">2.2.1.3</a>.</p></div>

@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The DMPROGRESS_TYPE enumeration is defined as follows:</p><dl>
+<dd>
+<div><pre> typedef  enum _dmProgressType
+ {
+   PROGRESS_UNKNOWN,
+   PROGRESS_FORMAT,
+   PROGRESS_SYNCHING 
+ } DMPROGRESS_TYPE;
+</pre></div>
+</dd></dl><p><b>PROGRESS_UNKNOWN:  </b>Unknown type of operation
+is in progress.</p><p><b>PROGRESS_FORMAT:  </b>Format operation is in
+progress.</p><p><b>PROGRESS_SYNCHING:  </b>Synchronization operation
+is in progress.</p></div>

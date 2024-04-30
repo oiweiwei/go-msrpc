@@ -1,0 +1,19 @@
+<div class="content"><p>The <b>RPC_BIDI_RESPONSE_DATA</b> structure holds a single <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_604aaee0-7ad4-46a3-932f-8d2def6615ad" data-linktype="relative-path">bidirectional</a> response.<a id="Appendix_A_Target_69"></a><a aria-label="Product behavior note 69" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_69" data-linktype="relative-path">&lt;69&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _RPC_BIDI_RESPONSE_DATA {
+   DWORD dwResult;
+   DWORD dwReqNumber;
+   [string, unique] wchar_t* pSchema;
+   RPC_BIDI_DATA data;
+ } RPC_BIDI_RESPONSE_DATA;
+</pre></div>
+</dd></dl><p><b>dwResult:</b> The result of the operation
+that used this structure. If the operation was successful, the value of this
+member MUST be set to zero; otherwise, the value of this member MUST be set to
+a nonzero value.<a id="Appendix_A_Target_70"></a><a aria-label="Product behavior note 70" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_70" data-linktype="relative-path">&lt;70&gt;</a></p><p><b>dwReqNumber:</b> The index of the response,
+which is used to match the response to the request in a multi-request
+operation.</p><p><b>pSchema:</b> A pointer to the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_fd49ea36-576c-4417-93bd-d1ac63e71093" data-linktype="relative-path">schema</a> string that
+identifies the requested information.<a id="Appendix_A_Target_71"></a><a aria-label="Product behavior note 71" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_71" data-linktype="relative-path">&lt;71&gt;</a></p><p><b>data:</b> The data that is associated with
+the schema. This can be a single piece of data or a homogeneous data list. The
+data MUST be composed of a name, a type, and a value; for example,
+&#34;\Printer.Stapler:CurrentValue&#34;. It is referenced by its name under <b>Properties</b>.</p></div>

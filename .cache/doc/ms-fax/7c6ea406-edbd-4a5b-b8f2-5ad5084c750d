@@ -1,0 +1,387 @@
+<div class="content"><p> </p><p>The <b>FAX_JOB_ENTRY</b> structure describes one <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9369467f-ee6b-427f-9d5c-f9cacc40ae66" data-linktype="relative-path">fax job</a></span>.
+The structure includes information about the job type and status, the
+recipient&#39;s and the sender&#39;s <b>personal profiles</b> (section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>),
+scheduling and delivery settings, and the page count.</p><p>This structure is used as an input argument for the <b>FaxObs_SetJob</b>
+(section <span><a href="9f9da633-7698-4074-a2d9-c5aa551df19e" data-linktype="relative-path">3.1.4.2.11</a></span>) method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD SizeOfStruct;
+   DWORD JobId;
+   LPCWSTR UserName;
+   DWORD JobType;
+   DWORD QueueStatus;
+   DWORD Status;
+   DWORD Size;
+   DWORD PageCount;
+   LPCWSTR RecipientNumber;
+   LPCWSTR RecipientName;
+   LPCWSTR Tsid;
+   LPCWSTR SenderName;
+   LPCWSTR SenderCompany;
+   LPCWSTR SenderDept;
+   LPCWSTR BillingCode;
+   DWORD ScheduleAction;
+   SYSTEMTIME ScheduleTime;
+   DWORD DeliveryReportType;
+   LPCWSTR DeliveryReportAddress;
+   LPCWSTR DocumentName;
+ } FAX_JOB_ENTRY,
+  *PFAX_JOB_ENTRY;
+</pre></div>
+</dd></dl><p><b>SizeOfStruct:</b> A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that indicates the size, in bytes, of the <b>FAX_JOB_ENTRY</b> structure. This
+value MUST be 92 or 136 bytes. When filled in on a 32-bit implementation, this
+value SHOULD be 92 bytes. When filled in on a 64-bit implementation, this value
+SHOULD be 136 bytes.</p><p><b>JobId:</b> A <b>DWORD</b> that indicates a unique
+number that identifies the fax jobs of interest. This is the same kind of job
+identifier number as the <i>JobId</i> parameter for the <b>FAX_SetJob</b>
+(section <span><a href="7fa3d24d-6028-4d07-8391-1af766d07358" data-linktype="relative-path">3.1.4.1.82</a></span>)
+function.</p><p><b>UserName:</b> A null-terminated character string
+that contains the name of the fax user account that submitted the fax job, if
+known; otherwise, a NULL pointer.</p><p><b>JobType:</b> A <b>DWORD</b> that indicates the
+type of the fax job of interest. This field is one of the following values,
+which are defined in section 3.1.1.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The job type is JT_UNKNOWN.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The job type is JT_SEND.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The job type is JT_RECEIVE.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The job type is JT_ROUTING.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The job type is JT_FAIL_RECEIVE.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>QueueStatus:</b> A <b>DWORD</b> variable
+containing a set of bit flags indicating the job status of the fax job
+identified by the <b>JobId</b> field. This value MUST be a bitwise OR
+combination of one or more of the <b>Job Status</b> values listed in section
+3.1.1.</p><p><b>Status:</b> A <b>DWORD</b> that specifies the status
+of the fax <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_b61cbe7c-c902-495a-aac5-c4ae2fa11d6b" data-linktype="relative-path">device (or port)</a></span>
+that received or sent the fax job described by this structure, captured at the
+time the job information was recorded. This member SHOULD be ignored when this
+structure is used as an input argument for the <b>FaxObs_SetJob</b> method.
+This value MUST be one of the following predefined device status codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FPS_UNKNOWN</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The status of the device is unknown.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_DIALING</p>
+  <p>0x20000001</p>
+  </td>
+  <td>
+  <p>The device is dialing a fax number.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_SENDING</p>
+  <p>0x20000002</p>
+  </td>
+  <td>
+  <p>The device is sending a <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_cce65523-bec8-486a-8c6c-6091c52af3d3" data-linktype="relative-path">fax document</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_RECEIVING</p>
+  <p>0x20000004</p>
+  </td>
+  <td>
+  <p>The device is receiving a fax document.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_COMPLETED</p>
+  <p>0x20000008</p>
+  </td>
+  <td>
+  <p>The device completed sending or receiving a fax
+  transmission.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_HANDLED</p>
+  <p>0x20000010</p>
+  </td>
+  <td>
+  <p>The fax service processed the outbound fax document;
+  the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_2ba66d72-d766-440f-b5ea-0333759b147c" data-linktype="relative-path">fax service provider (FSP)</a></span>
+  will transmit the fax document.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_UNAVAILABLE</p>
+  <p>0x20000020</p>
+  </td>
+  <td>
+  <p>The device is not available because it is in use by
+  another application.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_BUSY</p>
+  <p>0x20000040</p>
+  </td>
+  <td>
+  <p>The device encountered a busy signal.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_NO_ANSWER</p>
+  <p>0x20000080</p>
+  </td>
+  <td>
+  <p>The receiving device did not answer the call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_BAD_ADDRESS</p>
+  <p>0x20000100</p>
+  </td>
+  <td>
+  <p>The device dialed an invalid fax number.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_NO_DIAL_TONE</p>
+  <p>0x20000200</p>
+  </td>
+  <td>
+  <p>The sending device cannot complete the call because it
+  does not detect a dial tone.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_DISCONNECTED</p>
+  <p>0x20000400</p>
+  </td>
+  <td>
+  <p>The fax call was disconnected by the sender or the
+  caller.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_FATAL_ERROR</p>
+  <p>0x20000800</p>
+  </td>
+  <td>
+  <p>The device has encountered a fatal protocol error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_NOT_FAX_CALL</p>
+  <p>0x20001000</p>
+  </td>
+  <td>
+  <p>The device received a call that was a data call or a
+  voice call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_CALL_DELAYED</p>
+  <p>0x20002000</p>
+  </td>
+  <td>
+  <p>The device delayed a fax call because the sending
+  device received a busy signal multiple times. The device cannot retry the
+  call because dialing restrictions exist (some countries and regions restrict
+  the number of retry attempts when a number is busy).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_CALL_BLACKLISTED</p>
+  <p>0x20004000</p>
+  </td>
+  <td>
+  <p>The device could not complete a call because the
+  telephone number was blocked or reserved; emergency numbers such as 911 are
+  blocked.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_INITIALIZING</p>
+  <p>0x20008000</p>
+  </td>
+  <td>
+  <p>The device is initializing a call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_OFFLINE</p>
+  <p>0x20010000</p>
+  </td>
+  <td>
+  <p>The device is offline and unavailable.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_RINGING</p>
+  <p>0x20020000</p>
+  </td>
+  <td>
+  <p>The device is ringing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_AVAILABLE</p>
+  <p>0x20100000</p>
+  </td>
+  <td>
+  <p>The device is available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_ABORTING</p>
+  <p>0x20200000</p>
+  </td>
+  <td>
+  <p>The device is aborting a fax job.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_ROUTING</p>
+  <p>0x20400000</p>
+  </td>
+  <td>
+  <p>The device is <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_efaa1290-6d4b-4f44-9e84-35a867069d45" data-linktype="relative-path">routing</a></span> a received
+  fax document.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_ANSWERED</p>
+  <p>0x20800000</p>
+  </td>
+  <td>
+  <p>The device answered a new call.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Size:</b> A <b>DWORD</b> variable that indicates
+the total size, in bytes, of the fax document to transmit, if known, or zero
+otherwise.  The size, if known, includes the size of the cover page, if a cover
+page is present, and the size of the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_222c82b4-c682-4c5d-b500-a6f0a7b96d4f" data-linktype="relative-path">fax body</a></span>, if a fax
+body is present. The size MUST NOT exceed 4 gigabytes.</p><p><b>PageCount:</b> A <b>DWORD</b> that indicates the
+total number of pages in the fax transmission, including the cover page, if
+any, and the fax body, if any, of the fax submitted with this fax job. If the
+fax is sent to multiple recipients, this total number of pages is the number of
+fax pages sent to each individual recipient (not the sum of the fax pages sent
+to all recipients).</p><p><b>RecipientNumber:</b> A null-terminated character
+string that contains the fax number of the recipient of the fax transmission,
+if known, or a NULL pointer otherwise. This information comes from the
+recipient&#39;s <b>personal profile</b>.</p><p><b>RecipientName:</b> A null-terminated character
+string that contains the name of the recipient of the fax, if known, or a NULL
+pointer otherwise. This information comes from the recipient&#39;s <b>personal
+profile</b>.</p><p><b>Tsid:</b> A null-terminated character string that
+contains the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_3b1ad462-95fc-4739-b942-4a5670d6ae34" data-linktype="relative-path">transmitting subscriber
+identifier (TSID)</a></span>, if known, or a NULL pointer otherwise. This
+information comes from the sender&#39;s <b>personal profile</b>.</p><p><b>SenderName:</b> A null-terminated character string
+that contains the fax sender name, if known, or a NULL pointer otherwise. This
+information comes from the sender&#39;s <b>personal profile</b>.</p><p><b>SenderCompany:</b> A null-terminated character
+string that contains the fax sender company, if known, or a NULL pointer
+otherwise. This information comes from the sender&#39;s <b>personal profile</b>.</p><p><b>SenderDept:</b> A null-terminated character string
+that contains the fax sender department, if known, or a NULL pointer otherwise.
+This information comes from the sender&#39;s <b>personal profile</b>.</p><p><b>BillingCode:</b> A null-terminated character
+string that contains the fax billing code, if known, or a NULL pointer
+otherwise.</p><p><b>ScheduleAction:</b> A <b>DWORD</b> that indicates
+when the fax is to be sent. This can be one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>JSA_NOW</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The fax is to be sent as soon as a fax device is
+  available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JSA_SPECIFIC_TIME</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The fax is to be sent at the time specified by the <b>ScheduleTime</b>
+  field of this <b>FAX_JOB_ENTRY</b> structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JSA_DISCOUNT_PERIOD</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The fax is to be sent during the discount rate period.
+  The <b>FaxObs_GetConfiguration</b> (section <span><a href="af06e79b-a8eb-4e0d-ad9d-ae71738e1a0f" data-linktype="relative-path">3.1.4.2.24</a></span>)
+  method can be called to retrieve the discount period for the fax server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ScheduleTime:</b> A <b>SYSTEMTIME</b> ([MS-DTYP]
+section <span><a href="../ms-dtyp/2fefe8dd-ab48-4e33-a7d5-7171455a9289" data-linktype="relative-path">2.3.13</a></span>)
+structure indicating the local date and time to send the fax, in <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">Coordinated
+Universal Time (UTC)</a></span> format. This parameter MUST be ignored unless
+the <i>ScheduleAction</i> parameter is set to 1 (JSA_SPECIFIC_TIME).</p><p><b>DeliveryReportType:</b> A <b>DWORD</b> variable
+that indicates the fax delivery report type. This value MUST be one of the <b>FAX_ENUM_DELIVERY_REPORT_TYPES</b>
+(section <span><a href="7a03bb5e-3ba7-45ec-b869-31350298e9b9" data-linktype="relative-path">2.2.76</a></span>) enumeration
+values. The DRT_ATTACH_FAX value can be combined with the DRT_EMAIL value by an
+OR operation.</p><p><b>DeliveryReportAddress:</b> A null-terminated
+character string that contains the email address for the delivery report, if
+known, or a NULL pointer otherwise.</p><p><b>DocumentName:</b> A null-terminated character
+string that contains the document name, if known, or a NULL pointer otherwise.</p></div>

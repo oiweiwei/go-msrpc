@@ -1,0 +1,13 @@
+<div class="content"><p>The CatSrvServices enumeration identifies the optional
+catalog-related capabilities of a COMA server that can be controlled
+dynamically by the <a href="f0bcaa1f-066a-42de-b052-82a1327c0e07" data-linktype="relative-path">ICapabilitySupport (section 3.1.4.19)</a>
+<a href="3f01a312-3391-4109-a96e-95358babf191#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>. The current
+version of COMA defines one such capability, <a href="3f01a312-3391-4109-a96e-95358babf191#gt_9e740bb8-bc2c-4d50-9819-0002e28a1958" data-linktype="relative-path">instance load balancing</a>.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   css_lb = 1
+ } CatSrvServices;
+</pre></div>
+</dd></dl><p><b>css_lb:</b>   Identifies the instance load
+balancing capability.</p></div>

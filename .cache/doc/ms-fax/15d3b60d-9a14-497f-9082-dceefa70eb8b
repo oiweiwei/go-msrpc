@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The <b>FAX_ENUM_PERSONAL_PROF_TYPES</b> enumeration defines
+values to indicate <b>personal profile</b> types.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   RECIPIENT_PERSONAL_PROF = 1,
+   SENDER_PERSONAL_PROF = 2
+ } FAX_ENUM_PERSONAL_PROF_TYPES;
+</pre></div>
+</dd></dl><p><b>RECIPIENT_PERSONAL_PROF:</b> Indicates a <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_53dfe4f3-05d0-41aa-8217-ecd1962b340b" data-linktype="relative-path">recipient</a></span>
+profile.</p><p><b>SENDER_PERSONAL_PROF:</b> Indicates a sender
+profile.</p></div>

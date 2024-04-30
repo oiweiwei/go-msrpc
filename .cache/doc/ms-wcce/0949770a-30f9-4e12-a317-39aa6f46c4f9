@@ -1,0 +1,37 @@
+<div class="content"><p> </p><p>The Request2 method requests a <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a></span> from the
+<span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span>.
+It is similar to the <span><a href="dbb2e78f-7630-4615-92c4-6734fccfc5a6" data-linktype="relative-path">ICertRequestD::Request</a></span>
+method, but it has an additional parameter, <i>pwszSerialNumber</i>, which is
+specified as follows.</p><dl>
+<dd>
+<div><pre> HRESULT Request2(
+   [in, string, unique, range(1, 1536)] wchar_t const * pwszAuthority,
+   [in] DWORD dwFlags,
+   [in, string, unique, range(1, 64)] wchar_t const * pwszSerialNumber,
+   [in, out, ref] DWORD* pdwRequestId,
+   [out] DWORD* pdwDisposition,
+   [in, string, unique, range(1, 1536)] wchar_t const * pwszAttributes,
+   [in, ref] CERTTRANSBLOB const * pctbRequest,
+   [out, ref] CERTTRANSBLOB* pctbFullResponse,
+   [out, ref] CERTTRANSBLOB* pctbEncodedCert,
+   [out, ref] CERTTRANSBLOB* pctbDispositionMessage
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>Identical to the <i>pwszAuthority</i>
+parameter in the ICertRequestD::Request method.</p><p><b>dwFlags: </b>Identical to the <i>dwFlags</i>
+parameter in the ICertRequestD::Request method.</p><p><b>pwszSerialNumber: </b>A null-terminated <span><a href="https://go.microsoft.com/fwlink/?LinkId=90550" data-linktype="external">[UNICODE]</a></span>
+string that specifies a serial number that identifies a certificate. The string
+MUST specify the serial number as an even number of hexadecimal digits. If
+necessary, a zero can be prefixed to the number to produce an even number of
+digits. The string MUST NOT contain more than one leading zero. Information on
+the serial number is specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90414" data-linktype="external">[RFC3280]</a></span>
+section 4.1.2.2.</p><p><b>pdwRequestId: </b>Identical to the <i>pdwRequestId</i>
+parameter in the ICertRequestD::Request method.</p><p><b>pdwDisposition: </b> Identical to the <i>pdwDisposition</i>
+parameter in the ICertRequestD::Request method.</p><p><b>pwszAttributes: </b>Identical to the <i>pwszAttributes</i>
+parameter in the ICertRequestD::Request method.</p><p><b>pctbRequest: </b>Identical to the <i>pctbRequest</i>
+parameter in the ICertRequestD::Request method.</p><p><b>pctbFullResponse: </b>Identical to the <i>pctbCertChain</i>
+parameter in the ICertRequestD::Request method.</p><p><b>pctbEncodedCert: </b>Identical to the <i>pctbEncodedCert</i>
+parameter in the ICertRequestD::Request method.</p><p><b>pctbDispositionMessage: </b>Identical to the <i>pctbDispositionMessage</i>
+parameter in the ICertRequestD::Request method.</p><p><b>Return Values: </b>Identical to the return value
+of the ICertRequestD::Request method.</p><p>The processing rules for this message MUST be the same as
+for the information that is specified in 3.2.1.4.2.1.</p></div>

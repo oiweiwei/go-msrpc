@@ -1,0 +1,116 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/217bff2b-9136-43f2-b6a8-20ef992babc2" data-linktype="external">msdn link</a></p><p>The following structure MUST be used by servers to wrap a
+secret using the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_0d6344a7-948f-4215-b887-8bbe43eb9620" data-linktype="relative-path">ServerWrap
+subprotocol</a>, as specified in section <a href="fd966125-c07f-4c54-a7b9-e1c801113185" data-linktype="relative-path">3.1.1.1</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x01</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Payload_Length</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Ciphertext_Length</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>GUID_of_Wrapping_Key
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>R2 (68
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Rc4EncryptedPayload
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Payload_Length (4 bytes): </b>A 32-bit unsigned
+integer. It MUST be the size, in bytes, of the <b>Secret</b> field within the <a href="5281b891-30ae-42d9-9104-c071528a6f75" data-linktype="relative-path">Rc4EncryptedPayload</a>
+structure. This field MUST be encoded using <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a> format.</p><p><b>Ciphertext_Length  (4 bytes): </b>A 32-bit
+unsigned integer. It MUST be the size, in bytes, of the <b>Rc4EncryptedPayload</b>
+field. This field MUST be encoded using little-endian format.</p><p><b>GUID_of_Wrapping_Key (16 bytes): </b>This MUST be
+the 16-byte <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/001eec5a-7f8b-4293-9e21-ca349392db40" data-linktype="relative-path">2.3.4.2</a>)
+of the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_387b58ea-6abd-41c8-af6c-34206259765f" data-linktype="relative-path">wrapping</a> key used
+by the server for this operation.</p><p><b>R2 (68 bytes): </b>This MUST be a 68-byte random
+number. It SHOULD be generated independently for each wrapping operation.</p><p><b>Rc4EncryptedPayload (variable): </b>This field
+MUST be an Rc4EncryptedPayload structure that is formatted as specified in
+section 2.2.4.1.</p></div>

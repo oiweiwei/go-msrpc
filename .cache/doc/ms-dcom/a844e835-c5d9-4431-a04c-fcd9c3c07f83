@@ -1,0 +1,37 @@
+<div class="content"><p> </p><p>The RemAddRef (Opnum 4) method requests that a specified
+number of <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_10ffa972-2b70-4e41-b025-6785babac521" data-linktype="relative-path">reference counts</a></span> be
+incremented on a specified number of interfaces on the object.</p><dl>
+<dd>
+<div><pre> HRESULT RemAddRef(
+   [in] unsigned short cInterfaceRefs,
+   [in, size_is(cInterfaceRefs)] REMINTERFACEREF InterfaceRefs[],
+   [out, size_is(cInterfaceRefs)] HRESULT* pResults
+ );
+</pre></div>
+</dd></dl><p><b>cInterfaceRefs: </b> This MUST specify the number
+of elements sent in the <i>InterfaceRefs</i> parameter and returned in the <i>pResults</i>
+parameter.</p><p><b>InterfaceRefs: </b> This MUST specify an array of <span><a href="69bc8015-c524-4988-b7fa-96094f0f74e9" data-linktype="relative-path">REMINTERFACEREF</a></span>
+structures, each of which specifies the number of public and private references
+to be added to the interface identified by the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_74540339-daab-46ea-a8f9-fe8fca3b150c" data-linktype="relative-path">IPID</a></span>.</p><p><b>pResults: </b> This MUST contain an array of
+HRESULTs specifying the respective success or failure of the RemAddRef
+operation for each REMINTERFACEREF element.</p><p>When processing this <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_d4ad46fe-cbab-43f2-a125-b2f125824f33" data-linktype="relative-path">ORPC</a></span> call, the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_5b284f60-ee33-4d15-9a7b-0fb82d7c6b68" data-linktype="relative-path">object
+exporter</a></span> MUST do the following:</p><p>For each REMINTERFACEREF element in the InterfaceRefs array
+argument:</p><ul><li><p><span><span> 
+</span></span>It MUST look up <b>REMINTERFACEREF.ipid</b> in the IPID table to
+find the IPID entry. If the entry is not found, it MUST set the return code in
+the corresponding pResults array to CO_E_OBJNOTREG (as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>).</p>
+</li><li><p><span><span> 
+</span></span>If the entry is found, the object exporter MUST do the following:</p>
+<ul><li><p><span><span>  </span></span>It
+MUST increment the public reference count in the IPID entry by <b>REMINTERFACEREF.cPublicRefs</b>.</p>
+</li><li><p><span><span>  </span></span>It
+MUST increment the private reference count in the IPID entry by <b>REMINTERFACEREF.cPrivateRefs</b>.
+</p>
+</li><li><p><span><span>  </span></span> It
+SHOULD associate the private reference counts exclusively for use by the
+client.</p>
+</li><li><p><span><span>  </span></span>It
+MUST set the return code in the corresponding pResults array to a success code
+of zero.<a id="Appendix_A_Target_48"></a><a aria-label="Product behavior note 48" href="acc42954-4073-4f05-b850-efd562022077#Appendix_A_48" data-linktype="relative-path">&lt;48&gt;</a></p>
+</li></ul></li></ul></div>

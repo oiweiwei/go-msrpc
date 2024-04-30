@@ -1,0 +1,16 @@
+<div class="content"><p>The <b>ROUTE_STATUS</b> enumeration<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="6ea29e14-9c33-4927-90a8-258fd1d6d042#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a> defines the possible states of a
+communication route.</p><dl>
+<dd>
+<div><pre> typedef  enum ROUTE_STATUS
+ {
+   DOWN,
+   UP,
+   UP_DOWN 
+ } ROUTE_STATUS;
+</pre></div>
+</dd></dl><p><b>DOWN:  </b>Using implementation-specific
+mechanisms, the server deemed the route unsuitable for communication to the
+remote host.</p><p><b>UP:  </b>Using implementation-specific mechanisms,
+the server deemed the route suitable for communication to the remote host.</p><p><b>UP_DOWN:  </b>Using implementation-specific mechanisms,
+the server deemed the route neither consistently suitable nor consistently
+unsuitable for communication to the remote host.</p></div>

@@ -1,0 +1,89 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4GetPolicy</b> method returns the specified <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_52323544-69e0-4172-8921-2711cbda988e" data-linktype="relative-path">policy</a></span>.
+The memory for the <b>Policy</b> structure is allocated by this method and can
+be freed by the caller by using the function <b>midl_user_free</b> (section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4GetPolicy(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] BOOL ServerPolicy,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [in, unique, string] LPWSTR PolicyName,
+   [out] LPDHCP_POLICY* Policy
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>ServerPolicy: </b>This is of type <span><a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">BOOL</a></span>
+and indicates whether the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e4c4b49e-bca4-4854-9e27-67ef0035f06e" data-linktype="relative-path">server level policy</a></span>
+or <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_3b199f35-b0f3-4897-83a6-e7fec0ee7fea" data-linktype="relative-path">scope
+level policy</a></span> is being requested.</p><p><b>SubnetAddress: </b>This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>
+and identifies the IPv4 subnet from which the policy is being requested.</p><p><b>PolicyName: </b>A pointer to a null-terminated
+Unicode string that contains the name of the policy requested.</p><p><b>Policy: </b>This out parameter is a pointer of
+type <span><a href="77e79969-cedf-4aa9-9059-6223ba815f30" data-linktype="relative-path">LPDHCP_POLICY</a></span> that
+contains the policy data for the requested policy.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates operation was completed successfully. Otherwise, it contains a Win32
+error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 109.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>If the <i>ServerPolicy</i> parameter is TRUE and <i>SubnetAddress</i>
+parameter is not NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ServerPolicy</i> parameter is FALSE and <i>SubnetAddress</i>
+parameter is NULL, return the ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>PolicyName</i> parameter is NULL or if the <i>Policy</i>
+parameter is NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read access as
+specified in section <span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>. If not,
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ServerPolicy</i> parameter is TRUE, retrieve the <b>DHCPv4ServerPolicyList</b>
+ADM element and get the <b>DHCPv4Policy</b> ADM element from the <b>DHCPv4ServerPolicyList</b>
+ADM element for the specified <i>PolicyName</i> parameter. Allocate memory for
+the <i>Policy</i> parameter and populate the <i>Policy</i> parameter data
+structure with the ADM elements in <b>DHCPv4Policy</b> ADM element and return
+ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ServerPolicy</i> parameter is FALSE, retrieve the <b>DHCPv4ScopesList</b>
+ADM element and get the <b>DHCPv4Scope</b> ADM element from <b>DHCPv4ScopesList</b>
+ADM element where the <b>SubnetAddress</b> ADM element member in <b>DHCPv4Scope</b>
+ADM element matches the specified <i>SubnetAddress</i> parameter. If there is
+no <b>DHCPv4Scope</b> ADM element matching the specified <i>SubnetAddress</i>
+parameter, return ERROR_DHCP_SUBNET_NOT_PRESENT. Retrieve the <b>DHCPv4Scope.DHCPv4ScopePolicyList</b>
+ADM element and get the <b>DHCPv4Policy</b> ADM element from the <b>DHCPv4Scope.DHCPv4ScopePolicyList</b>
+ADM element which has the name same as the specified <i>PolicyName</i>
+parameter. Populate the <i>Policy</i> parameter data structure with the ADM
+elements in <b>DHCPv4Policy</b> ADM element.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

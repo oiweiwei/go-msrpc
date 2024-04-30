@@ -1,0 +1,23 @@
+<div class="content"><p>The SetAuditFilter method sets the list of events for which
+the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> server MUST
+create security audit events, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89839" data-linktype="external">[CIMC-PP]</a>.</p><dl>
+<dd>
+<div><pre> HRESULT SetAuditFilter(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] DWORD dwFilter
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.
+</p><p><b>dwFilter: </b>An unsigned integer that specifies
+the events to be audited by the CA. For possible values, see section <a href="58fed3ab-91fe-43a8-bebb-447eb2f8f694" data-linktype="relative-path">3.1.4.2.10</a>.</p><p>The SetAuditFilter method is used to set the audit filter
+value that is passed in by the client. The audit filter value is used to
+determine which actions are audited.</p><p>The CA server MUST start auditing the methods based on the
+value of the <i>dwFilter</i> parameter. The list of methods for the value is
+specified in section 3.1.4.2.10. The CA server SHOULD enforce that the <i>dwFilter</i>
+parameter contains only bitwise OR combinations of the values specified in
+section 3.1.4.2.10; otherwise, it SHOULD return a suitable error.</p><p>If Config_CA_Interface_Flags contains the value
+IF_ENABLEADMINASAUDITOR and the caller does not have administrator permissions
+(as defined in section <a href="509360cf-9797-491e-9dd1-795f63cb1538" data-linktype="relative-path">3.1.1.7</a>),
+the server MUST return an error. In Windows, the error is E_ACCESSDENIED
+(0x80070005).</p></div>

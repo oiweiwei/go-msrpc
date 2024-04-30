@@ -1,0 +1,40 @@
+<div class="content"><p> </p><p>The DFS_INFO_50 structure is used to get the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_e8de88fd-d760-46fa-ad77-76961fa20aea" data-linktype="relative-path">DFS
+metadata</a></span> version and the capability information of an existing <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS
+namespace</a></span>.</p><p>The DFS_INFO_50 structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_50 {
+   unsigned long NamespaceMajorVersion;
+   unsigned long NamespaceMinorVersion;
+   unsigned __int64 NamespaceCapabilities;
+ } DFS_INFO_50;
+</pre></div>
+</dd></dl><p><b>NamespaceMajorVersion:</b>  A value
+containing the major version number used to determine the DFS metadata format
+supported in a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_133ab305-ad75-4b38-8ec9-40bc0dc3b594" data-linktype="relative-path">domain-based DFS namespace</a></span>
+or a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_701a2cc1-eb5a-400f-b394-5bad264ec8f6" data-linktype="relative-path">stand-alone
+DFS namespace</a></span>.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p><p><b>NamespaceMinorVersion:</b>  A value
+containing the minor version number used to determine the DFS metadata format
+supported in a domain-based DFS namespace or stand-alone DFS namespace.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p><p><b>NamespaceCapabilities:</b>  A value
+containing the capability information of a DFS namespace.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DFS__NAMESPACE_CAPABILITY_ABDE</p>
+  <p>0x0000000000000001</p>
+  </td>
+  <td>
+  <p>The specified <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span> supports
+  using <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6e5829b2-eaaf-4afc-9afd-31c74b49f803" data-linktype="relative-path">Access Based Directory
+  Enumeration (ABDE) mode</a></span>.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

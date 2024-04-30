@@ -1,0 +1,115 @@
+<div class="content"><p>The LINEAPPINFO packet contains information about the
+application that is currently running. The <a href="dd2ca0fa-f2fe-46a1-8cc9-8ce8a58b9b47" data-linktype="relative-path">LINEDEVSTATUS</a> packet can
+contain an array of LINEAPPINFO packets. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMachineNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMachineNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUserNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUserNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwModuleFilenameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwModuleFilenameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwFriendlyNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwFriendlyNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMediaModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressID</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwMachineNameSize (4 bytes): </b>The size, in
+bytes, of the computer name string, including the null terminator. </p><p><b>dwMachineNameOffset (4 bytes): </b>The offset,
+from the beginning of the LINEDEVSTATUS packet to a string specifying the name
+of the computer on which the application is executing. The size of the field is
+specified by <b>dwMachineNameSize</b>. </p><p><b>dwUserNameSize (4 bytes): </b>The size, in bytes,
+of the user name string, including the null terminator. </p><p><b>dwUserNameOffset (4 bytes): </b>The offset, from
+the beginning of the LINEDEVSTATUS packet to a string specifying the user name
+under whose account the application is running. The size of the field is
+specified by <b>dwUserNameSize</b>. </p><p><b>dwModuleFilenameSize (4 bytes): </b>The size, in
+bytes, of the module file name string. </p><p><b>dwModuleFilenameOffset (4 bytes): </b>The offset,
+from the beginning of LINEDEVSTATUS to a string specifying the module file name
+of the application. The size of the field is specified by <b>dwModuleFilenameSize</b>.
+</p><p><b>dwFriendlyNameSize (4 bytes): </b>The size, in
+bytes, of the display name string. </p><p><b>dwFriendlyNameOffset (4 bytes): </b>The offset,
+from the beginning of LINEDEVSTATUS to the string provided by the application
+to line <a href="9d8eb7cd-3245-4e44-97e0-42f7b89c9424" data-linktype="relative-path">Initialize</a>,
+which is used in any display to the user. The size of the field is specified by
+<b>dwFriendlyNameSize</b>. </p><p><b>dwMediaModes (4 bytes): </b>The media types for
+which the application has requested ownership of new calls; 0 if <b>dwPrivileges</b>
+in line <a href="6b5ee45e-b5c8-4148-a9b2-b16b9b995c3f" data-linktype="relative-path">Open</a> did not
+include LINECALLPRIVILEGE_OWNER. </p><p><b>dwAddressID (4 bytes): </b>If the line handle was
+opened using LINEOPENOPTION_SINGLEADDRESS, then this field contains the address
+identifier specified; set to 0xFFFFFFFF if the single address option was not
+used. </p><dl>
+<dd>
+<p>An address identifier is permanently associated with
+an address; the identifier remains constant across operating system upgrades.</p>
+</dd></dl></div>

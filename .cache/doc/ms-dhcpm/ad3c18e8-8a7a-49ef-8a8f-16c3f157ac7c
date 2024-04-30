@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p> The <b>DHCP_IP_RESERVATION</b> structure defines an IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservation</a></span>
+for a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_c35fc04f-54fe-4570-afd3-c96ca84c8d83" data-linktype="relative-path">DHCPv4 client</a></span>. This
+is used in structure <span><a href="5ce2002b-fd0c-4776-805a-e87546616581" data-linktype="relative-path">DHCP_SUBNET_ELEMENT_DATA (section 2.2.1.2.33)</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_IP_RESERVATION {
+   DHCP_IP_ADDRESS ReservedIpAddress;
+   DHCP_CLIENT_UID* ReservedForClient;
+ } DHCP_IP_RESERVATION,
+  *LPDHCP_IP_RESERVATION;
+</pre></div>
+</dd></dl><p><b>ReservedIpAddress:</b>  This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>
+that contains the IPv4 address of the DHCPv4 client for which a reservation is
+created.</p><p><b>ReservedForClient:</b>  This is a
+pointer of type <span><a href="b4da2d52-9737-46ec-8bc2-1c598fc3b8c8" data-linktype="relative-path">DHCP_CLIENT_UID (section 2.2.1.2.5)</a></span>
+that represents the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_195d8585-7de6-4574-9abf-9db104aaa40c" data-linktype="relative-path">DHCPv4 client identifier</a></span>
+(section <span><a href="7c88f58b-c615-4386-a643-ab05b860a003" data-linktype="relative-path">2.2.1.2.5.1</a></span>).</p></div>

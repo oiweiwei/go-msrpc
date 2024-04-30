@@ -1,0 +1,93 @@
+<div class="content"><p> </p><p>The ElfrReadELA (Opnum 17) method reads events from the <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_bb3fad7e-60bf-46d4-9c3f-7caea47a743e" data-linktype="relative-path">event log</a></span>;
+the server transmits these events to the client and advances the reader&#39;s
+position within the event log associated with the server context handle that is
+passed in the <i>LogHandle</i> parameter. The strings in the returned events
+MUST be ANSI.</p><dl>
+<dd>
+<div><pre> NTSTATUS ElfrReadELA(
+   [in] IELF_HANDLE LogHandle,
+   [in] unsigned long ReadFlags,
+   [in] unsigned long RecordOffset,
+   [in] RULONG NumberOfBytesToRead,
+   [out, size_is(NumberOfBytesToRead)] 
+     unsigned char* Buffer,
+   [out] unsigned long* NumberOfBytesRead,
+   [out] unsigned long* MinNumberOfBytesNeeded
+ );
+</pre></div>
+</dd></dl><p><b>LogHandle: </b>Handle to an event log to read. This
+parameter is a server context handle, as specified in section <span><a href="de54bfbc-fbe4-43b8-b8e1-b8a6b2189604" data-linktype="relative-path">2.2.6</a></span>.</p><p><b>ReadFlags: </b>The caller MUST specify if the read is to
+start at a specific record, or is to proceed from the last record read. The
+value MUST be one and only one of the following flags.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>EVENTLOG_SEQUENTIAL_READ</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Read operation proceeds sequentially from the last
+  call to the ElfrReadELA (section 3.1.4.8) method or the <span><a href="1898e85b-10a1-43b9-a27e-92fc833cebea" data-linktype="relative-path">ElfrReadELW (section 3.1.4.7)</a></span>
+  method, using this handle. This flag cannot be used with EVENTLOG_SEEK_READ. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EVENTLOG_SEEK_READ</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Read operation proceeds from the record specified by
+  the RecordOffset parameter. This flag cannot be used with
+  EVENTLOG_SEQUENTIAL_READ. </p>
+  </td>
+ </tr></tbody></table><p>Because the method reads as many records as can fit in the
+buffer, the caller MUST also set one and only one of the following flags to
+indicate the direction for successive read operations.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>EVENTLOG_FORWARDS_READ</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Log is read in chronological order. This flag cannot
+  be used with EVENTLOG_BACKWARDS_READ. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EVENTLOG_BACKWARDS_READ</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Log is read in reverse chronological order. This flag
+  cannot be used with EVENTLOG_FORWARDS_READ. </p>
+  </td>
+ </tr></tbody></table><p><b>RecordOffset: </b>Log entry record number at which the
+read operation is to start. Each event in a log has a record number. This
+parameter MUST be ignored unless the EVENTLOG_SEEK_READ bit is set in the <i>ReadFlags</i>
+parameter.</p><p><b>NumberOfBytesToRead: </b>Size of the buffer in bytes.
+This is the maximum amount of data that can be read.</p><p><b>Buffer: </b>Data read from the event log.</p><p><b>NumberOfBytesRead: </b>Number of bytes read by the method.</p><p><b>MinNumberOfBytesNeeded: </b>If the method fails because
+the buffer is too small to fit even a single record, this MUST be set to the
+minimum number of bytes needed to fit the next record. Otherwise, this MUST NOT
+be set, and MUST be ignored by the caller.</p><p><b>Return Values: </b>The method MUST return STATUS_SUCCESS
+(0x00000000) on success. The method MUST return STATUS_BUFFER_TOO_SMALL
+(0xC0000023) if the buffer is too small to fit even one record. Otherwise, it
+MUST return any other implementation-based, nonzero NTSTATUS value specified in
+<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>This is identical to the
+ElfrReadELW (section 3.1.4.7) method except that the events placed in
+the buffer MUST be ANSI strings rather than <span><a href="https://go.microsoft.com/fwlink/?LinkId=90550" data-linktype="external">[UNICODE]</a></span>
+strings.</p></div>

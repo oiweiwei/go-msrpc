@@ -1,0 +1,125 @@
+<div class="content"><p>The IScheduleCollection interface is used to manage a
+collection of Schedule objects</p><p>The following properties MUST be implemented by the objects
+that implement the IScheduleCollection interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>_NewEnum</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>An enumeration object of type IEnumVariant containing
+  a snapshot of the <a href="6822e6fc-c23e-4ca3-9164-2d9b19eaa727" data-linktype="relative-path">ISchedule</a>
+  objects in this collection. The enumeration object is specified in <a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a>
+  section <a href="../ms-oaut/716d04d1-cd16-4065-9b19-1b8808b3df31" data-linktype="relative-path">3.3</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Count</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>Number of schedules in this collection.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Item</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>Retrieves the requested schedule from the collection.</p>
+  </td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="11254511-4701-4f07-86d2-b28008e2cefa" data-linktype="relative-path">Count
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Count property.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="a3c2e7df-bf9f-4fa0-b210-fd309011b976" data-linktype="relative-path">Item
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Item property.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="a0482d47-58fd-4426-93a4-a92c89503659" data-linktype="relative-path">_NewEnum
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the NewEnum property.</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="6e9b5447-4eea-4e91-8c31-56f5d0196a26" data-linktype="relative-path">Add</a></p>
+  </td>
+  <td>
+  <p>Adds a schedule to the collection.</p>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="aac7338d-32fe-4967-ae52-05e18bec0643" data-linktype="relative-path">Remove</a></p>
+  </td>
+  <td>
+  <p>Removes a schedule from the collection.</p>
+  <p>Opnum: 11</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="1dfe39d3-2c4a-4659-a46e-f7ca3ef818d5" data-linktype="relative-path">Clear</a></p>
+  </td>
+  <td>
+  <p>Removes all schedules from the collection.</p>
+  <p>Opnum: 12</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="49279ff6-62f7-4522-90f2-f955a9a45df1" data-linktype="relative-path">AddRange</a></p>
+  </td>
+  <td>
+  <p>Adds one or more schedules to the collection.</p>
+  <p>Opnum: 13</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="fce80865-21a9-4373-ad61-b3fbfb794bc4" data-linktype="relative-path">CreateSchedule</a></p>
+  </td>
+  <td>
+  <p>Creates a schedule object.</p>
+  <p>Opnum: 14</p>
+  </td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface. </p></div>

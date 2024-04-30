@@ -1,0 +1,81 @@
+<div class="content"><p> </p><p>The Distributed Link Tracking: Central Manager Protocol is
+based on the Remote Procedure Call Protocol Extensions, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+The primary purpose of this protocol is to allow clients of the Distributed
+Link Tracking: Workstation Protocol to determine the correct server to contact
+when searching for a file. To accomplish this, the Distributed Link Tracking
+(DLT) Central Manager server accepts notifications of file and <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>
+moves, in addition to other relevant information from participating computers.
+This information can be queried by clients to get the file&#39;s current location
+in <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_c9507dca-291d-4fd6-9cba-a9ee7da8c908" data-linktype="relative-path">UNC</a></span>
+form.</p><p>The following is a scenario of this protocol working
+together with the Distributed Link Tracking: Workstation Protocol:</p><ul><li><p><span><span> 
+</span></span>A file is created on computer M1. M1 assigns identifiers,
+specifically <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_3b097896-b707-47b5-b1bb-384867a453ea" data-linktype="relative-path">FileID</a></span> and <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_d0fe4e63-48a5-4d63-9d51-d4f99306046e" data-linktype="relative-path">FileLocation</a></span>,
+to the file.</p>
+</li><li><p><span><span> 
+</span></span>Computer M0 makes note of the file, locally storing its identifiers.</p>
+</li><li><p><span><span> 
+</span></span>The file is moved from computer M1 to M2 and from there to M3. In
+conjunction with these moves, the file maintains its FileID value, but a new
+FileLocation identifier is assigned.</p>
+</li><li><p><span><span> 
+</span></span>To find the file in its new location, M0 contacts a DLT Central
+Manager server to query the current location of the file.</p>
+</li><li><p><span><span> 
+</span></span>The DLT Central Manager server queries its tables, and determines
+that the file is currently on computer M3.</p>
+</li><li><p><span><span> 
+</span></span>M0 contacts the Distributed Link Tracking: Central Manager
+Protocol on M3, and learns the file&#39;s new name and location.</p>
+</li></ul><p>The following diagram shows the machine configuration for
+this example. The list after the diagram walks through the scenario, and
+describes in more detail how the Distributed Link Tracking: Central Manager
+Protocol is used.</p><p><img id="MS-DLTM_pictc971091c-1eaa-7b33-303b-7f26c5128d49.png" src="ms-dltm_files/image001.png" alt="Distributed Link Tracking (DLT) process" title="Distributed Link Tracking (DLT) process" data-linktype="relative-path"/></p><p><b>Figure 1: Distributed Link Tracking (DLT) process</b></p><ul><li><p><span><span> 
+</span></span>A file named F1.txt starts on a computer with <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_e15432dc-30dd-4e3d-8757-19b639769c95" data-linktype="relative-path">MachineID</a></span>
+M1, on a volume with <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_3b3c1be2-035c-4823-afeb-10edbd6bb288" data-linktype="relative-path">VolumeID</a></span> V1, and
+with an <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_4d73c422-8089-444c-a40a-64511c1a3b75" data-linktype="relative-path">ObjectID</a></span> of O1. </p>
+</li><li><p><span><span> 
+</span></span>The file is first moved to a computer with MachineID M2. On M2,
+the file has a new name, F2.txt, and a new ObjectID of O2. The volume on that
+computer has a VolumeID of V2. </p>
+</li><li><p><span><span> 
+</span></span>M1 sends a notification to the DLT Central Manager server
+indicating that the file with FileLocation V1O1 and FileID V1O1 has been moved
+to M2, where it now has the FileLocation V2O2.</p>
+</li><li><p><span><span> 
+</span></span>The file is next moved to computer M3. On that computer, the file
+has the name F3.txt, and new ObjectID O3. The volume on that computer has a
+VolumeID of V3.</p>
+</li><li><p><span><span> 
+</span></span>M2 sends a notification to the DLT Central Manager server
+indicating that the file with FileLocation V2O2 and FileID V1O1 has been moved
+to M3, where it now has the FileLocation V3O3. Note that this notification is
+sent to the same DLT Central Manager server instance as the notification from
+M1.</p>
+</li><li><p><span><span> 
+</span></span>Before the file is moved, a user on computer M0 requests that
+information about the file be saved, so that its location can be determined
+after it has been moved.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="e89fb7a4-4550-40c5-91e8-94a66665b499#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a> As a result,
+M0 stores the UNC, the MachineID, the FileLocation, and the FileID.</p>
+</li><li><p><span><span> 
+</span></span>After the file has been moved both times, and after M0 attempts
+to open the file, the DLT <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_8d715ee8-6e10-41fd-b452-39f6014de7ed" data-linktype="relative-path">Workstation</a></span> client
+on M0 sends a query to the DLT Workstation server on M1, requesting the new UNC
+for the file with FileID V1O1.<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="e89fb7a4-4550-40c5-91e8-94a66665b499#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a> That server
+responds that the file has been moved to M2, with a new FileLocation of V2O2.</p>
+</li><li><p><span><span> 
+</span></span>Rather than contacting M2, M0 then sends a request to a DLT
+Central Manager server. Note that this is the same server that received the
+move notifications from M1 and M2, or a server instance that shares tables with
+the servers that received those notifications.</p>
+</li><li><p><span><span> 
+</span></span>The DLT Central Manager server returns the file&#39;s current
+information, according to its tables, that the file is now on computer M3, with
+FileLocation V3O3.</p>
+</li><li><p><span><span> 
+</span></span>M0 then makes a request to the DLT Workstation server on M3,
+which indicates that the file now has the UNC &#34;\\M3\share\F3.txt&#34;.</p>
+</li><li><p><span><span> 
+</span></span>M0 updates its store of information for the file with these
+updated UNC and FileLocation values.<a id="Appendix_A_Target_3"></a><a aria-label="Product behavior note 3" href="e89fb7a4-4550-40c5-91e8-94a66665b499#Appendix_A_3" data-linktype="relative-path">&lt;3&gt;</a></p>
+</li></ul></div>

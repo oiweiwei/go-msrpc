@@ -1,0 +1,38 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/8c7808e5-4e5c-420e-9c90-47286da2218f" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_LOGON_INFO_CLASS </b>enumeration SHOULD<a id="Appendix_A_Target_48"></a><a aria-label="Product behavior note 48" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_48" data-linktype="relative-path">&lt;48&gt;</a> identify a particular type of
+logon information block. </p><dl>
+<dd>
+<div><pre> typedef  enum _NETLOGON_LOGON_INFO_CLASS
+ {
+   NetlogonInteractiveInformation = 1,
+   NetlogonNetworkInformation = 2,
+   NetlogonServiceInformation = 3,
+   NetlogonGenericInformation = 4,
+   NetlogonInteractiveTransitiveInformation = 5,
+   NetlogonNetworkTransitiveInformation = 6,
+   NetlogonServiceTransitiveInformation = 7
+ } NETLOGON_LOGON_INFO_CLASS;
+</pre></div>
+</dd></dl><p><b>NetlogonInteractiveInformation: </b>Logon
+information pertains to an interactive account logon. Interactive account logon
+requires a user to physically input <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b505ab37-868d-426c-bb19-af21e675e0b8" data-linktype="relative-path">credentials</a> to the client
+that are then authenticated by the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a>.</p><p><b>NetlogonNetworkInformation: </b>Logon information
+pertains to a network account logon. <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_c020fc9f-456f-4fd0-8e25-001ef6b8acf2" data-linktype="relative-path">Network logon</a> is
+transparent to the user. The user has already input his or her credentials
+during <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9360639b-135c-46dc-9f9e-85728008146f" data-linktype="relative-path">interactive logon</a>
+and has been authenticated by the server or DC. These credentials are used
+again to log the user onto another network resource without prompting the user
+for his or her credentials.</p><p><b>NetlogonServiceInformation: </b>Logon information
+pertains to a service account logon. A service account acts as a non-privileged
+user on the local computer and presents anonymous credentials to any remote
+server.</p><p><b>NetlogonGenericInformation: </b>Logon information
+pertains to a generic account logon. This type of account logon is for generic
+pass-through authentication, as specified in section <a href="fe2775d4-a3e2-4971-a255-8eef8dd27a27" data-linktype="relative-path">3.2.4.1</a>, that enables
+servers to forward NTLM and Digest authentication credentials to a DC for
+authorization.</p><p><b>NetlogonInteractiveTransitiveInformation: </b>Logon
+information pertains to a transitive interactive account logon and can be
+passed through <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_1c9fbb3f-ba87-419f-bd0c-39f73cee86f7" data-linktype="relative-path">transitive
+trust</a> links.</p><p><b>NetlogonNetworkTransitiveInformation: </b>Logon
+information pertains to a transitive network account logon and can be passed
+through transitive trust links.</p><p><b>NetlogonServiceTransitiveInformation: </b>Logon
+information pertains to a transitive service account logon and can be passed
+through transitive trust links.</p></div>

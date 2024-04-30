@@ -1,0 +1,55 @@
+<div class="content"><p>This method is called by a client to create an alternate
+launch configuration, as specified in section <a href="26570279-a894-4fae-bfa7-e539a42f1efc" data-linktype="relative-path">3.1.1.4</a>, for a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_ea5c531f-5dd5-43aa-9da1-2ae068c622db" data-linktype="relative-path">conglomeration</a>.</p><dl>
+<dd>
+<div><pre> HRESULT CreateConfiguration(
+   [in] GUID ConglomerationIdentifier,
+   [in] BSTR bstrConfigurationName,
+   [in] DWORD dwStartType,
+   [in] DWORD dwErrorControl,
+   [in] BSTR bstrDependencies,
+   [in] BSTR bstrRunAs,
+   [in] BSTR bstrPassword,
+   [in] VARIANT_BOOL bDesktopOk
+ );
+</pre></div>
+</dd></dl><p><b>ConglomerationIdentifier:</b> The <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0ab5119e-c719-4a5c-9198-55a0a2fb508a" data-linktype="relative-path">conglomeration identifier</a>
+of a conglomeration on the server.</p><p><b>bstrConfigurationName: </b>A value to be used as
+the AlternateLaunchName property of the alternate launch configuration.</p><p><b>dwStartType: </b>A value to be used as the
+StartType property of the alternate launch configuration.</p><p><b>dwErrorControl: </b>A value to be used as the
+ErrorControl property of the alternate launch configuration.</p><p><b>bstrDependencies: </b>A value to be used as the
+Dependencies property of the alternate launch configuration.</p><p><b>bstrRunAs: </b>A value to be used as the
+AlternateLaunchRunAs property of the alternate launch configuration.</p><p><b>bstrPassword: </b>A value to be used as the
+AlternateLaunchPassword property of the alternate launch configuration.</p><p><b>bDesktopOk: </b>A value to be used as the
+DesktopOk property of the alternate launch configuration.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>,
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving a call to this method, the server MUST verify
+that <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0944227d-0566-49e1-989f-2fff6e02542d" data-linktype="relative-path">catalog</a> version
+negotiation has been performed by checking the negotiated catalog version, as
+specified in section <a href="a667265b-22a8-43bb-b462-13528061e009" data-linktype="relative-path">3.1.1.5</a>,
+and fail the call if not.</p><p>The server then MUST verify that there exists in the
+Conglomerations Table a conglomeration identified by <i>ConglomerationIdentifier</i>,
+that this conglomeration allows updates, and that this conglomeration does not
+have an alternate launch configuration, failing the call if not.</p><p>The server then MUST attempt to create an alternate launch
+configuration for the conglomeration, using the values specified for the
+properties, and fail the call if it cannot.</p></div>

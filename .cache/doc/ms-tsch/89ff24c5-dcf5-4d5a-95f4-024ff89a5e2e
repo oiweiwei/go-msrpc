@@ -1,0 +1,123 @@
+<div class="content"><p> </p><p>When <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_5245e0f1-e443-4a8b-968c-61c736f61fe0" data-linktype="relative-path">trigger</a></span> type is
+MONTHLYDOW (monthly day of week), the five fields are interpreted as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Trigger
+  Type</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>WhichWeek</p>
+  </td>
+  <td colspan="16">
+  <p>DaysOfTheWeek</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Months</p>
+  </td>
+  <td colspan="16">
+  <p>Padding</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Reserved2</p>
+  </td>
+  <td colspan="16">
+  <p>Reserved3</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Trigger Type (4 bytes): </b>Trigger frequency
+type. Set to 0x00000004 for the MONTHLYDOW trigger type.</p><p><b>WhichWeek (2 bytes):</b>  Set to one of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FIRST_WEEK</p>
+  </td>
+  <td>
+  <p>0x0001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SECOND_WEEK</p>
+  </td>
+  <td>
+  <p>0x0002</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>THIRD_WEEK</p>
+  </td>
+  <td>
+  <p>0x0003</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FOURTH_WEEK</p>
+  </td>
+  <td>
+  <p>0x0004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LAST_WEEK</p>
+  </td>
+  <td>
+  <p>0x0005</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>DaysOfTheWeek (2 bytes): </b> Bit flags that
+specify on which days of the week the trigger fires, which are interpreted as
+specified in section <span><a href="b7a0fc39-b43a-435a-9f37-60e48f340b9b" data-linktype="relative-path">2.4.2.11.3</a></span>. </p><p><b>Months (2 bytes): </b> Bit flags that specify on
+which months of the year the trigger fires, which are interpreted as specified
+in section <span><a href="5ba70e9b-c0f1-49f6-9aae-b52231346108" data-linktype="relative-path">2.4.2.11.4</a></span>. </p><p><b>Padding (2 bytes): </b>MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>Reserved2 (2 bytes): </b>MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>Reserved3 (2 bytes): </b>MUST be set to zero when
+sent and MUST be ignored on receipt.</p></div>

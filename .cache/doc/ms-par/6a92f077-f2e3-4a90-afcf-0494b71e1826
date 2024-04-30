@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p><b>RpcAsyncEnumPrinterKey</b> enumerates the subkeys of a
+specified key for a specified printer.</p><p>The counterpart of this method in the Print System Remote
+Protocol is <b>RpcEnumPrinterKey</b>. All parameters not defined below are
+specified in <span><a href="../ms-rprn/d42db7d5-f141-4466-8f47-0a4be14e2fc1" data-linktype="relative-path">[MS-RPRN]</a></span>
+section <span><a href="../ms-rprn/128ff57d-a4a4-4a23-b2ee-36f71ca5c0d5" data-linktype="relative-path">3.1.4.2.21</a></span>.</p><dl>
+<dd>
+<div><pre> DWORD RpcAsyncEnumPrinterKey(
+   [in] PRINTER_HANDLE hPrinter,
+   [in, string] const wchar_t* pKeyName,
+   [out, size_is(cbSubkey/sizeof(wchar_t))] 
+     wchar_t* pSubkey,
+   [in] DWORD cbSubkey,
+   [out] DWORD* pcbSubkey
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object that
+has been opened using either <b>RpcAsyncOpenPrinter</b> (section <span><a href="feddac6a-bd88-4989-95fb-715bd6ca796a" data-linktype="relative-path">3.1.4.1.1</a></span>)
+or <b>RpcAsyncAddPrinter</b> (section <span><a href="1e5e5498-e646-4fdf-8181-98862a3d6ec8" data-linktype="relative-path">3.1.4.1.2</a></span><b>)</b>.</p><p><b>Return V</b>a<b>lues: </b>This method returns zero to
+indicate successful completion or a nonzero Win32 error code (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>)
+to indicate failure. Aside from the specific nonzero return values documented
+in section <span><a href="93d1915d-4d9f-4ceb-90a7-e8f2a59adc29" data-linktype="relative-path">3.1.4</a></span>, the client
+MUST treat any nonzero return value as a fatal error.</p><p><b>Exceptions Thrown:</b> This method MUST NOT throw any
+exceptions other than those that are thrown by the underlying <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method MUST adhere to the parameter validation,
+processing, and response requirements that are specified in [MS-RPRN] section
+3.1.4.2.21.</p></div>

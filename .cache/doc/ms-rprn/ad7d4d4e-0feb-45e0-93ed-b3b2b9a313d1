@@ -1,0 +1,63 @@
+<div class="content"><p>The <b>PRINTER_CONTAINER</b> structure provides information
+about printer properties and state information, using <b>PRINTER_INFO</b>
+structures (section <a href="125fb29b-3c51-41fc-a333-b1e0e8794a91" data-linktype="relative-path">2.2.1.10</a>).
+The <b>PrinterInfo</b> member specifies the structure that defines the printer
+properties.</p><dl>
+<dd>
+<div><pre> typedef struct _PRINTER_CONTAINER {
+   DWORD Level;
+   [switch_is(Level)] union {
+     [case(0)] 
+       PRINTER_INFO_STRESS* pPrinterInfoStress;
+     [case(1)] 
+       PRINTER_INFO_1* pPrinterInfo1;
+     [case(2)] 
+       PRINTER_INFO_2* pPrinterInfo2;
+     [case(3)] 
+       PRINTER_INFO_3* pPrinterInfo3;
+     [case(4)] 
+       PRINTER_INFO_4* pPrinterInfo4;
+     [case(5)] 
+       PRINTER_INFO_5* pPrinterInfo5;
+     [case(6)] 
+       PRINTER_INFO_6* pPrinterInfo6;
+     [case(7)] 
+       PRINTER_INFO_7* pPrinterInfo7;
+     [case(8)] 
+       PRINTER_INFO_8* pPrinterInfo8;
+     [case(9)] 
+       PRINTER_INFO_9* pPrinterInfo9;
+   } PrinterInfo;
+ } PRINTER_CONTAINER;
+</pre></div>
+</dd></dl><p><b>Level:</b> Specifies the information level of
+the <b>PrinterInfo</b> data. The value of this member MUST be in the range
+0x00000000 to 0x00000009 inclusive.</p><p><b>PrinterInfo:</b> Provides printer information
+using a container structure that corresponds to the value specified by the <b>Level</b>
+member.</p><p><b>pPrinterInfoStress:</b> If the <b>Level</b>
+member is 0x00000000, this member is a pointer to a <b>PRINTER_INFO_STRESS</b>
+structure (section <a href="9e94b8f4-a84b-4c96-b9ae-4b4acb3469b8" data-linktype="relative-path">2.2.1.10.1</a>),
+which provides diagnostic printer information. </p><p><b>pPrinterInfo1:</b> If the <b>Level</b> member
+is 0x00000001, this member is a pointer to a <b>PRINTER_INFO_1</b> (section <a href="0d1a296b-7027-441c-8393-8aa5c3764b27" data-linktype="relative-path">2.2.1.10.2</a>) structure,
+which provides printer information. </p><p><b>pPrinterInfo2:</b>If the <b>Level</b> member is
+0x00000002, this member is a pointer to a <b>PRINTER_INFO_2</b> (section <a href="d40734e1-ac9b-4b2a-8628-83a1bc7bbeed" data-linktype="relative-path">2.2.1.10.3</a>) structure,
+which provides detailed printer information. </p><p><b>pPrinterInfo3:</b> If the <b>Level</b> member
+is 0x00000003, this member is a pointer to a <b>PRINTER_INFO_3</b> (section <a href="00af009b-231e-4ae6-bfd7-cb8476c32c19" data-linktype="relative-path">2.2.1.10.4</a>) structure,
+which provides printer security information.</p><p><b>pPrinterInfo4:</b> If the <b>Level</b> member
+is 0x00000004, this member is a pointer to a <b>PRINTER_INFO_4</b> (section <a href="ac391864-cd99-4509-9ff3-ea0366dd9b2b" data-linktype="relative-path">2.2.1.10.5</a>) structure,
+which provides a subset of the printer information.</p><p><b>pPrinterInfo5:</b> If the <b>Level</b> member
+is 0x00000005, this member is a pointer to a <b>PRINTER_INFO_5</b> (section <a href="d7e5feaa-16be-4dbd-b6d9-22f62f69afbb" data-linktype="relative-path">2.2.1.10.6</a>) structure,
+which provides information about the printer attributes.</p><p><b>pPrinterInfo6:</b> If the <b>Level</b> member
+is 0x00000006, this member is a pointer to a <b>PRINTER_INFO_6</b> (section <a href="436ef388-39cd-4992-95ac-02ddd2a51193" data-linktype="relative-path">2.2.1.10.7</a>) structure,
+which provides information about the status of the printer.</p><p><b>pPrinterInfo7:</b> If the <b>Level</b> member
+is 0x00000007, this member is a pointer to a <b>PRINTER_INFO_7</b> (section <a href="91a6cb80-8df7-43d0-8a5d-8f1d23f96de6" data-linktype="relative-path">2.2.1.10.8</a>) structure,
+which provides <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_c36db657-3138-4d9a-9289-ded5cbb8b40e" data-linktype="relative-path">directory
+service (DS)</a> information.</p><p><b>pPrinterInfo8:</b> If the <b>Level</b> member
+is 0x00000008, this member is a pointer to a <b>PRINTER_INFO_8</b> (section <a href="abe75b29-b092-4398-a5af-9d639f430cde" data-linktype="relative-path">2.2.1.10.9</a>) structure,
+which provides information about the global <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer driver</a> settings for
+a printer.</p><p><b>pPrinterInfo9:</b> If the <b>Level</b> member
+is 0x00000009, this member is a pointer to a <b>PRINTER_INFO_9</b> (section <a href="6a5df266-40c9-4661-966f-27caa209b1fd" data-linktype="relative-path">2.2.1.10.10</a>) structure.
+The <b>PRINTER_INFO_9</b> structure is not used remotely, but it is included in
+this structure to yield a compatible <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a> file. The <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a> MUST respond with
+ERROR_NOT_SUPPORTED if it receives a <b>PRINTER_CONTAINER</b> structure with a <b>Level</b>
+value equal to 0x00000009.</p></div>

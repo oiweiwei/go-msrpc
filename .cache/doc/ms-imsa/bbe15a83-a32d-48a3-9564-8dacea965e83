@@ -1,0 +1,74 @@
+<div class="content"><p>The IIS_CRYPTO_BLOB message defines a block of data,
+possibly encrypted, that is transferred between client and server. It is used
+to transfer <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public keys</a>,
+hash information, and encrypted and cleartext data.</p><dl>
+<dd>
+<div><pre> typedef struct _IIS_CRYPTO_BLOB{
+     DWORD BlobSignature;
+     DWORD BlobDataLength;
+     [size_is(BlobDataLength)] unsigned char BlobData[*];
+ } IIS_CRYPTO_BLOB;
+</pre></div>
+</dd></dl><p><b>BlobSignature:</b>  The structure signature for
+this binary large object (BLOB).</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SESSION_KEY_BLOB_SIGNATURE</p>
+  <p>0x624b6349</p>
+  </td>
+  <td>
+  <p>The <b>BlobData</b> member contains the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_4f67a585-fb00-4166-93e8-cf4abca8226d" data-linktype="relative-path">session key</a> used to
+  encrypt sensitive data exchanged between client and server. See <a href="ef23205f-50b4-4e93-9986-26427f1afd8d" data-linktype="relative-path">SESSION_KEY_BLOB (section 2.2.2.2)</a>
+  for more information about the <b>BlobData</b> layout.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PUBLIC_KEY_BLOB_SIGNATURE</p>
+  <p>0x62506349</p>
+  </td>
+  <td>
+  <p>The <b>BlobData</b> member contains the public key for
+  a particular IIS <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_8312d817-fdc5-4a49-8894-729b7b9e0ce5" data-linktype="relative-path">encryption</a>
+  behavior. See <a href="7dd8a51c-c922-4580-956e-100e0c30271f" data-linktype="relative-path">PUBLIC_KEY_BLOB (section 2.2.2.1)</a>
+  for more information about the <b>BlobData</b> layout.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ENCRYPTED_DATA_BLOB_SIGNATURE</p>
+  <p>0x62446349</p>
+  </td>
+  <td>
+  <p>The <b>BlobData</b> member contains encrypted data.
+  See <a href="57e60305-43f8-4fae-a0f3-4cead01a2298" data-linktype="relative-path">ENCRYPTED_DATA_BLOB (section 2.2.2.5)</a>
+  for more information about the <b>BlobData</b> layout.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>HASH_BLOB_SIGNATURE</p>
+  <p>0x62486349</p>
+  </td>
+  <td>
+  <p>The <b>BlobData</b> member contains a hash. See <a href="1463ca0c-8f30-4fe9-be5b-fffcf3f27b17" data-linktype="relative-path">HASH_BLOB (section 2.2.2.3)</a>
+  for more information about the <b>BlobData</b> layout.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLEARTEXT_DATA_BLOB_SIGNATURE</p>
+  <p>0x62436349</p>
+  </td>
+  <td>
+  <p>The <b>BlobData</b> member contains cleartext data.
+  See <a href="bf3af72b-33bf-42af-8259-22f6966b6ac7" data-linktype="relative-path">CLEARTEXT
+  DATA_BLOB (section 2.2.2.4)</a> for more information about the <b>BlobData</b>
+  layout.</p>
+  </td>
+ </tr></tbody></table><p><b>BlobDataLength:</b>  The size, in bytes, of <b>BlobData</b>.</p><p><b>BlobData:</b>  A block of bytes that can be
+interpreted based on <b>BlobSignature</b>.</p></div>

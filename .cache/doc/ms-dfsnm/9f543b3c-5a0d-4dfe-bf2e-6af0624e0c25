@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The DFS_STORAGE_INFO structure relates to the <span><a href="f9dedb71-7575-4a50-9576-5f0f59891da4" data-linktype="relative-path">NetrDfsEnum</a></span>,
+<span><a href="1e01d0ba-76f3-4346-9db3-c7cc61009054" data-linktype="relative-path">NetrDfsEnumEx</a></span>,
+and <span><a href="b5dd4568-3ea4-4f27-ae03-3ebb19fa4b13" data-linktype="relative-path">NetrDfsGetInfo</a></span>
+methods when used to enumerate <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS links</a></span> and <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_a2c6d1c9-deea-427c-91ee-56f6e726eabd" data-linktype="relative-path">DFS
+targets</a></span> in a namespace or to get information about a DFS link. The
+structure contains information about the target of a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span> or DFS
+link. </p><p>The DFS_STORAGE_INFO structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_STORAGE_INFO {
+   unsigned long State;
+   [string] WCHAR* ServerName;
+   [string] WCHAR* ShareName;
+ } DFS_STORAGE_INFO;
+</pre></div>
+</dd></dl><p><b>State:</b>  Refers to the <b>State</b>
+field of <span><a href="cda396f3-e11c-4921-9781-582a7419934f" data-linktype="relative-path">DFS_INFO_106</a></span>. For
+more information, see section 2.2.4.6.</p><p><b>ServerName:</b>  The pointer to a
+null-terminated <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> string
+containing the DFS target <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_fe6fd875-b30a-44bb-850e-10733990f04c" data-linktype="relative-path">host name</a></span>.</p><p><b>ShareName:</b>  The pointer to a
+null-terminated Unicode string containing the DFS target <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_3c179f10-1793-4268-96eb-de4d85a32060" data-linktype="relative-path">share
+name</a></span>.</p><p><span><a href="83704eb6-a3bc-4eac-8164-9625c2f2081e" data-linktype="relative-path">DFS_INFO_3</a></span> and <span><a href="827866a0-973a-43a3-8df5-c5e1dd437320" data-linktype="relative-path">DFS_INFO_4</a></span>
+structures contain one or more DFS_STORAGE_INFO structures, one for each DFS
+target.</p></div>

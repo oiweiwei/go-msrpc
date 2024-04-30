@@ -1,0 +1,47 @@
+<div class="content"><p> </p><p>The GetVolumeDeviceName method retrieves the Windows NT
+operating system device name of a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_80affbd0-04b4-489e-be50-ddf9383e5d28" data-linktype="relative-path">dynamic volume</a></span> on
+the server.</p><dl>
+<dd>
+<div><pre> HRESULT GetVolumeDeviceName(
+   [in] LdmObjectId _volumeId,
+   [out] unsigned long* cchVolumeDevice,
+   [out, size_is(,*cchVolumeDevice)] 
+     WCHAR** pwszVolumeDevice
+ );
+</pre></div>
+</dd></dl><p><b>_volumeId: </b>Specifies the OID of the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>
+whose path name is being returned.</p><p><b>cchVolumeDevice: </b>Number of characters returned
+in <i>pwszVolumeDevice</i>, including the terminating null character.</p><p><b>pwszVolumeDevice: </b>Pointer to a null-terminated
+array of characters that stores the Windows NT device name of the volume
+specified by <i>volumeId</i>. The device name is in the format
+\Device\DeviceName. Memory for the array is allocated by the server and freed
+by the client.</p><p><b>Return Values: </b>The method MUST return 0 or a
+nonerror <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path"><span>HRESULT</span></a> on success, or
+an implementation-specific nonzero error code on failure (as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>;
+see also section <span><a href="31eea9e6-25b0-4309-8f4a-50c74fbedc9b" data-linktype="relative-path">2.2.1</a></span> for HRESULT
+values predefined by the Disk Management Remote Protocol).</p><p>Upon receiving this message, the server MUST validate
+parameters:</p><ol><li><p><span>    </span>Verify that <i>cchVolumeDevice</i>
+and <i>pwszVolumeDevice</i> are not NULL.</p>
+</li><li><p><span>    </span>Verify that the
+dynamic volume specified by <i>volumeId</i> is in the list of storage objects.</p>
+</li></ol><p>If parameter validation fails, the server MUST fail the
+operation immediately, returning an appropriate error as its response to the
+client.</p><p>Otherwise, the server MUST compose a response to the client
+as follows:</p><ol><li><p><span>    </span>Retrieve the
+device name of the dynamic volume specified by <i>volumeId</i>. The device name
+is an OS-specific name that can be used to access the device from the kernel.</p>
+</li><li><p><span>    </span>Allocate a
+buffer large enough to contain the device name, including the terminating null
+character.</p>
+</li><li><p><span>    </span>Populate the
+buffer with the device name, including the terminating null character.</p>
+</li><li><p><span>    </span>The buffer MUST
+be returned to the client in the output parameter <i>pwszVolumeDevice</i>. </p>
+</li><li><p><span>    </span>The number of
+characters in the buffer, including the terminating null character, MUST be
+returned in the output parameter <i>cchVolumeDevice</i>. </p>
+</li><li><p><span>    </span>Return a
+response that contains the preceding output parameters and the status of the
+operation. </p>
+</li></ol><p>The server MUST NOT change the list of storage objects as
+part of processing this message.</p></div>

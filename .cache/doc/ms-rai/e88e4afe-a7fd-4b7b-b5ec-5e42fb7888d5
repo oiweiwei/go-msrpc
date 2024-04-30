@@ -1,0 +1,45 @@
+<div class="content"><p>The IRASrv interface is implemented by the <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_d27bcedc-ae63-4e15-a0cb-9b371f1820dc" data-linktype="relative-path">novice</a> computer to allow
+the <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_64520114-7ddc-4f5a-b63d-81d79b9a6693" data-linktype="relative-path">expert</a> computer to
+request a <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_9d7b1eb9-8131-4eb3-ad5b-08792b014893" data-linktype="relative-path">Remote Assistance
+Connection</a> String.<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="90b2d2e5-7931-4762-8949-04617e1d9089#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p><p>The <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a>
+for this interface is: &#34;F120A684-B926-447F-9DF4-C966CB785648&#34;.</p><p><a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">Opnums</a>
+3 and 4 are not used across the network. These opnums are reserved and MUST NOT
+be reused by non-Microsoft implementations.<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="90b2d2e5-7931-4762-8949-04617e1d9089#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a></p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="be1fdfb6-7e79-4eb7-af5b-c5ae0e2fa373" data-linktype="relative-path">GetNoviceUserInfo</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Remote Assistance Connection String
+  information for a specified <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b" data-linktype="relative-path">terminal
+  services</a> session.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="0c4cd71a-0c75-4008-9ccf-4d5f8bb685b9" data-linktype="relative-path">GetSessionInfo</a></p>
+  </td>
+  <td>
+  <p>Returns the collection of the terminal services
+  sessions on the remote novice computer. This method also returns the number
+  of terminal services sessions running on the novice computer. All the
+  terminal services session information is returned as a SAFEARRAY. The
+  elements of this SAFEARRAY are strings with information about the DomainName,
+  UserName, and SessionID for each terminal services session.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the
+IUnknown_QueryInterface, AddRef, and Release methods used by the standard COM
+IUnknown interface, as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">3.1.1.5.8</a>.
+Opnums 5 and 6 are reserved for the GetIDsOfNames, and Invoke methods in the
+IDispatch interface, as specified in <a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a>
+section <a href="../ms-oaut/c2c7dbe2-bafa-49da-93a7-7b75499ef90a" data-linktype="relative-path">3.1</a>.</p></div>

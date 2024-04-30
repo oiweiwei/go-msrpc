@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The SESSION_RANK enumeration provides 4-byte signed integer
+values that describe whether the machine is a <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7e81ed8f-e4a4-49ff-b7d8-cce6005ad036" data-linktype="relative-path">primary partner</a></span> or a
+<span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_b4738f56-9936-4714-beb6-1c861116dd5c" data-linktype="relative-path">secondary
+partner</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum _SessionRank
+ {
+   SRANK_PRIMARY = 0x00000001,
+   SRANK_SECONDARY = 0x00000002
+ } SESSION_RANK;
+</pre></div>
+</dd></dl><p><b>SRANK_PRIMARY:</b>  Primary partner.</p><p><b>SRANK_SECONDARY:</b>  Secondary partner.</p></div>

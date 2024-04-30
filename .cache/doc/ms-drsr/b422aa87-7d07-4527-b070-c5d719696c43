@@ -1,0 +1,241 @@
+<div class="content"><p> </p><p>The nonreplicated, multivalued <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span> <span><a href="../ms-ada3/36e092bf-22bd-4bbe-8b05-b61c1fcd6c90" data-linktype="relative-path">repsTo</a></span>
+is an optional attribute on the root <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> of every <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_325d116f-cdbe-4dbd-b7e6-769ba75bf210" data-linktype="relative-path">NC
+replica</a></span>. It is stored with the structure of the REPS_TO <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete
+type</a></span>, which is represented by the following diagram.</p><p>This structure is used for both repsTo values and <span><a href="../ms-ada3/8a9018ac-1d10-4bae-8141-04822a5f51f2" data-linktype="relative-path">repsFrom</a></span>
+values. Many of the fields are unused in repsTo values, and some of the field
+names are misleading (for example, <b>timeLastSuccess</b>).</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwReserved0</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cb</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cConsecutiveFailures</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>timeLastSuccess</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>timeLastAttempt</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulResultLastAttempt</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cbOtherDraOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cbOtherDra</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulReplicaFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>rtSchedule
+  (84 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwReserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>usnVec (24
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uuidDsaObj
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uuidInvocId
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uuidTransportObj
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwReserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cbPasDataOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwVersion (4 bytes): </b>The version of this
+structure. The value must be 1 or 2.<a id="Appendix_A_Target_50"></a><a aria-label="Product behavior note 50" href="e3b89556-4e48-467c-87b3-b4a737cc4999#Appendix_A_50" data-linktype="relative-path">&lt;50&gt;</a></p><p><b>dwReserved0 (4 bytes): </b>Unused. MUST be 0 and
+ignored.</p><p><b>cb (4 bytes): </b>The total number of bytes in the
+REPS_TO structure.</p><p><b>cConsecutiveFailures (4 bytes): </b>An unsigned
+long that contains the number of unsuccessful consecutive attempts to send a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span>
+notification to the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span> identified by
+uuidDsaObj.</p><p><b>timeLastSuccess (8 bytes): </b>A <span><a href="a72a16b9-73e4-41ca-a5c1-afc5fc54e175" data-linktype="relative-path">DSTIME</a></span>
+structure that contains the time when the last successful replication
+notification to the DC identified by uuidDsaObj was sent, or 0 if no
+replication notification has been sent successfully.</p><p><b>timeLastAttempt (8 bytes): </b>A DSTIME structure
+that contains the last time when an attempt was made to send a replication
+notification to the DC identified by uuidDsaObj, or 0 if no attempt has been
+made.</p><p><b>ulResultLastAttempt (4 bytes): </b>An unsigned
+long that contains the result of the last attempt to send a replication notification
+to the DC identified by uuidDsaObj. It has a value of 0 if the last
+notification was sent successfully or a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows error code</a></span>
+(as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>)
+otherwise.</p><p><b>cbOtherDraOffset (4 bytes): </b>The offset from
+the start of the structure to a location in the data field, specifying the
+start of a structure that contains a <span><a href="3d0d3777-9358-47dd-b555-34405f57f912" data-linktype="relative-path">NetworkAddress</a></span>. If <b>dwVersion</b>
+is 1, it is an <span><a href="107b7c0e-0f0d-4fe2-8232-14ec3b78f40d" data-linktype="relative-path">MTX_ADDR</a></span> structure.
+If <b>dwVersion</b> is 2, it is a <span><a href="88a39619-6dbe-4ba1-8435-5966c1a490a7" data-linktype="relative-path">DSA_RPC_INST</a></span>
+structure.</p><p><b>cbOtherDra (4 bytes): </b>The size of the
+structure pointed to by <b>cbOtherDraOffset</b>.</p><p><b>ulReplicaFlags (4 bytes): </b>A <span><a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">ULONG</a></span>.
+This set contains DRS_WRIT_REP (section <span><a href="ac9c8a11-cd46-4080-acbf-9faa86344030" data-linktype="relative-path">5.41</a></span>) if this <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ea02e669-2dda-460c-9992-b12a23caeeac" data-linktype="relative-path">replica</a></span>
+is writable. This set never contains any other elements.</p><p><b>rtSchedule (84 bytes): </b>A <span><a href="42d7d8e8-794e-4279-9802-8b5916e8b099" data-linktype="relative-path">REPLTIMES</a></span>
+structure. Not used.</p><p><b>dwReserved1 (4 bytes): </b>Unused. MUST be 0 and
+ignored.</p><p><b>usnVec (24 bytes): </b>A <span><a href="595d11b8-6ca7-4a61-bd56-3e6a2b99b76b" data-linktype="relative-path">USN_VECTOR</a></span>
+structure. Not used.</p><p><b>uuidDsaObj (16 bytes): </b>A <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>.
+A <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_736b1076-d1cb-40b9-9247-d66cca6819d1" data-linktype="relative-path">DSA
+GUID</a></span> that identifies a DC.</p><p><b>uuidInvocId (16 bytes): </b>A GUID. Not used.</p><p><b>uuidTransportObj (16 bytes): </b>A GUID. Not used.</p><p><b>dwReserved (4 bytes): </b>Unused. MUST be 0 and
+ignored.</p><p><b>cbPasDataOffset (4 bytes): </b>Not used.</p><p><b>data (variable): </b>The storage for the rest of the
+structure. The structure pointed to by <b>cbOtherDraOffset</b> is packed into
+this field and can be referenced using the offset.</p></div>

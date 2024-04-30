@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The TRKSVR_CALL_SEARCH structure is used in <span><a href="cea51ffe-cab6-4b19-93b7-853189437ead" data-linktype="relative-path">LnkSvrMessage</a></span>
+method calls that specify a SEARCH message (see section <span><a href="e6084ee0-fc0d-443e-a4fb-1a792ce70450" data-linktype="relative-path">2.2.11</a></span>),
+to query the DLT Central Manager server for the location of a file. See section
+<span><a href="4064a135-6d84-4f0d-a171-567808d3d310" data-linktype="relative-path">3.2.6.3</a></span>
+for an example of client use of this structure.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned long cSearch;
+   [size_is(cSearch)] TRK_FILE_TRACKING_INFORMATION* pSearches;
+ } TRKSVR_CALL_SEARCH;
+</pre></div>
+</dd></dl><p><b>cSearch:</b>  This value MUST be set to
+one.</p><p><b>pSearches:</b>  A pointer to a single
+search request. See <span><a href="796811d4-40a0-47c5-8a6a-fdca55b8fa16" data-linktype="relative-path">TRK_FILE_TRACKING_INFORMATION (section 2.2.8)</a></span>.</p></div>

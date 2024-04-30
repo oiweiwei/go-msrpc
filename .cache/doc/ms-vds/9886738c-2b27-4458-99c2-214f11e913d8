@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The VDS_PROVIDER_TYPE enumeration defines the set of valid
+types for a provider.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_PROVIDER_TYPE
+ {
+   VDS_PT_UNKNOWN = 0x00000000,
+   VDS_PT_SOFTWARE = 0x00000001,
+   VDS_PT_HARDWARE = 0x00000002,
+   VDS_PT_VIRTUALDISK = 0x00000003,
+   VDS_PT_MAX = 0x00000004
+ } VDS_PROVIDER_TYPE;
+</pre></div>
+</dd></dl><p><b>VDS_PT_UNKNOWN:  </b>The type is neither a
+software nor a hardware provider.</p><p><b>VDS_PT_SOFTWARE:  </b>The type indicates a program
+that is responsible for <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> management.</p><p><b>VDS_PT_HARDWARE:  </b>The type indicates a program
+that is responsible for aspects of hardware storage management.</p><p><b>VDS_PT_VIRTUALDISK:  </b>The type indicates a
+program that is responsible for aspects of hardware storage management.</p><p><b>VDS_PT_MAX:  </b>Denotes the maximum acceptable
+value for this type. VDS_PT_MAX - 1, (&#39;3&#39;), is the maximum acceptable value.</p></div>

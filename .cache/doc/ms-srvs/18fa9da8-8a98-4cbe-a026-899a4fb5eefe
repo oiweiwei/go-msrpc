@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The SHARE_INFO_501_CONTAINER structure contains a value that
+indicates the number of entries that the <span><a href="c4a98e7b-d416-439c-97bd-4d9f52f8ba52" data-linktype="relative-path">NetrShareEnum</a></span>
+method returns and a pointer to the buffer that contains the entries.</p><dl>
+<dd>
+<div><pre> typedef struct _SHARE_INFO_501_CONTAINER {
+   DWORD EntriesRead;
+   [size_is(EntriesRead)] LPSHARE_INFO_501 Buffer;
+ } SHARE_INFO_501_CONTAINER,
+  *PSHARE_INFO_501_CONTAINER,
+  *LPSHARE_INFO_501_CONTAINER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  The number of entries
+returned by the method.</p><p><b>Buffer:</b>  A pointer to the <span><a href="bd6fb43c-a7fc-4430-8567-bf558552dea3" data-linktype="relative-path">SHARE_INFO_501</a></span>
+entries returned by the method.</p></div>

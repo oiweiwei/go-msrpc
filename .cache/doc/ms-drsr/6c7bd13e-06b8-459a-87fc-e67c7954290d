@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The DS_REPL_CURSOR_3W structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span>
+cursor for a given <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_325d116f-cdbe-4dbd-b7e6-769ba75bf210" data-linktype="relative-path">NC replica</a></span>. This
+structure is a concrete representation of a <span><a href="8cb40d62-a51d-47e3-9b4e-0837edffd61c" data-linktype="relative-path">ReplUpToDateVector</a></span>
+value; it is a superset of <span><a href="40366a5b-9a48-465f-b7ac-03f56334f76d" data-linktype="relative-path">DS_REPL_CURSOR_2</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   UUID uuidSourceDsaInvocationID;
+   USN usnAttributeFilter;
+   FILETIME ftimeLastSyncSuccess;
+   [string] LPWSTR pszSourceDsaDN;
+ } DS_REPL_CURSOR_3W;
+</pre></div>
+</dd></dl><p><b>uuidSourceDsaInvocationID:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_e7869b9a-61fa-46e3-89dd-fb3f57d1ba7a" data-linktype="relative-path">invocation
+ID</a></span> of a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>.</p><p><b>usnAttributeFilter:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_01936446-8739-4b98-b83f-fb5e2a53ce4c" data-linktype="relative-path">USN</a></span>
+at which an <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b242435b-73cc-4c4e-95f0-b2a2ff680493" data-linktype="relative-path">update</a></span> was applied
+on the DC.</p><p><b>ftimeLastSyncSuccess:</b>  The time at
+which the last successful replication occurred from the DC identified by
+uuidDsa. Used for <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_2352e9b3-ae08-4b5f-8858-bbca4ff4dd97" data-linktype="relative-path">replication latency</a></span>
+reporting only.</p><p><b>pszSourceDsaDN:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a></span>
+of the <span><a href="../ms-adsc/5a79757d-2412-4846-bd7c-7585838a5a44" data-linktype="relative-path">nTDSDSA</a></span>
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>
+with an <span><a href="../ms-ada1/3ac24cae-9ec7-4ba7-9878-21fd42a0371b" data-linktype="relative-path">invocationId</a></span>
+of <b>uuidSourceDsaInvocationID</b>.</p></div>

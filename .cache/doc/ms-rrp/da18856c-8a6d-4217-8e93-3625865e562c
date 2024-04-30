@@ -1,0 +1,70 @@
+<div class="content"><p> </p><p>The BaseRegSetKeySecurity method is called by the client. In
+response, the server sets the security descriptor that protects the specified
+open registry key.</p><dl>
+<dd>
+<div><pre> error_status_t BaseRegSetKeySecurity(
+   [in] RPC_HKEY hKey,
+   [in] SECURITY_INFORMATION SecurityInformation,
+   [in] PRPC_SECURITY_DESCRIPTOR pRpcSecurityDescriptor
+ );
+</pre></div>
+</dd></dl><p><b>hKey: </b>A handle to a key that MUST have been
+opened previously by using one of the open methods that are specified in
+section <span><a href="053e8515-dbae-47ea-a7c6-6dc054e3a48f" data-linktype="relative-path">3.1.5</a></span>: <span><a href="956a3052-6580-43ee-91aa-aaf61726149b" data-linktype="relative-path">OpenClassesRoot</a></span>,
+<span><a href="ec140ed9-4d00-4c03-a15c-c7245a497ed5" data-linktype="relative-path">OpenCurrentUser</a></span>,
+<span><a href="6cef29ae-21ba-423f-9158-05145ac80a5b" data-linktype="relative-path">OpenLocalMachine</a></span>,
+<span><a href="7b514c63-6cad-4fe1-9780-743959e377e6" data-linktype="relative-path">OpenPerformanceData</a></span>,
+<span><a href="694e57f4-da3e-4285-8b71-3181d71d6cd1" data-linktype="relative-path">OpenUsers</a></span>,
+<span><a href="c7186ae2-1c82-45e9-933b-97d9873657e8" data-linktype="relative-path">BaseRegCreateKey</a></span>,
+<span><a href="8cb48f55-19e1-4ea2-8d76-dd0f6934f0d9" data-linktype="relative-path">BaseRegOpenKey</a></span>,
+<span><a href="160767d7-83cf-4718-a4f3-d864faee3bb1" data-linktype="relative-path">OpenCurrentConfig</a></span>,
+<span><a href="44954f6d-ef2c-4ec1-a27d-32b9b87e3c8a" data-linktype="relative-path">OpenPerformanceText</a></span>,
+<span><a href="3626fa8a-b20f-4243-bf85-cdb615ed2ca0" data-linktype="relative-path">OpenPerformanceNlsText</a></span>.</p><p><b>SecurityInformation: </b>The <span><a href="aa272b32-d7b9-4080-8195-f1bd6c33c6d7" data-linktype="relative-path">SECURITY_INFORMATION</a></span>
+that specifies the content of the <i>pRpcSecurityDescriptor</i> parameter.</p><p><b>pRpcSecurityDescriptor: </b>A pointer to the <span><a href="9729e781-8eb9-441b-82ca-e898f98d29c2" data-linktype="relative-path">RPC_SECURITY_DESCRIPTOR</a></span>
+to set for the supplied key.</p><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000013</p>
+  <p>ERROR_WRITE_PROTECT</p>
+  </td>
+  <td>
+  <p>A read or write operation was attempted to a volume
+  after it was dismounted. The server can no longer service registry requests
+  because server shutdown has been initiated.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Server Operations</p><p>If the registry server can no longer service registry
+requests because server shutdown has been initiated (<b>SHUTDOWNINPROGRESS</b>
+is set to TRUE), the server MUST return ERROR_WRITE_PROTECT.</p><p>The server MUST first validate that the <i>hKey</i>
+parameter is currently an open handle which MUST have been opened previously
+using one of the methods specified in section 3.1.5. If the <i>hKey</i> parameter
+is not an already opened handle, the server MUST return
+ERROR_INVALID_PARAMETER.</p><p>If the <i>pRpcSecurityDescriptor</i> parameter does not
+specify a valid security descriptor, the server MUST return
+ERROR_INVALID_PARAMETER.</p><p>In response to this request from the client, for a
+successful operation, the server MUST set the <span><a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">SECURITY_DESCRIPTOR</a></span>
+that is specified in the <i>pRpcSecurityDescriptor</i> parameter on the key
+that is specified in the <i>hKey</i> parameter of the request. </p><p>The server MUST return 0 to indicate success or an
+appropriate error code (as specified in [MS-ERREF]) to indicate an error.</p></div>

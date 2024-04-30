@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The VDS_ISCSI_INITIATOR_PORTAL_PROP structure defines the
+properties of an <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_928ab82e-b1fd-4441-b739-175e2d3d7840" data-linktype="relative-path">iSCSI initiator portal</a></span>.<a id="Appendix_A_Target_42"></a><a aria-label="Product behavior note 42" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_42" data-linktype="relative-path">&lt;42&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _VDS_ISCSI_INITIATOR_PORTAL_PROP {
+   VDS_OBJECT_ID id;
+   VDS_IPADDRESS address;
+   unsigned long ulPortIndex;
+ } VDS_ISCSI_INITIATOR_PORTAL_PROP;
+</pre></div>
+</dd></dl><p><b>id:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS object</a></span> ID of the
+initiator portal object.</p><p><b>address:</b>  The IP address and port of
+the portal.</p><p><b>ulPortIndex:</b>  The port index that
+the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_daaa5b4b-e3f0-4df2-94b2-332d6d84cf80" data-linktype="relative-path">iSCSI
+initiators</a></span> service assigned to the portal.</p></div>

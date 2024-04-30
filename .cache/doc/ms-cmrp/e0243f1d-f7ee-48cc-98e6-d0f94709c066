@@ -1,0 +1,19 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/e0243f1d-f7ee-48cc-98e6-d0f94709c066" data-linktype="external">msdn link</a></p><p>The <b>CLUS_FLAGS</b> enumeration is a bitmask of the
+possible <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">values</a> for the
+flags associated with a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_94e97f15-2f1a-406f-a740-607bb97761ec" data-linktype="relative-path">resource</a>,
+<a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_597fe367-f504-4295-9ed9-92cd892796cd" data-linktype="relative-path">resource type</a>, or <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_51c51c14-7f9d-4c0b-a69c-d3e059bfffac" data-linktype="relative-path">group</a> object.</p><p>The following table specifies valid constant values for <b>CLUS_FLAGS</b>
+that are interpreted by the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>.
+Entities external to the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_feef37b3-c173-4f51-aab6-b55a6366259b" data-linktype="relative-path">cluster</a>
+can define other values. If they do, these values MUST be written as defined in
+section <a href="8b036565-d723-464a-9af6-7dd68b27d869" data-linktype="relative-path">3.1.4.3.1.3</a> and
+section <a href="f75d44ad-f3f1-429a-ae88-657b8770477a" data-linktype="relative-path">3.1.4.3.2.3</a>.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   CLUS_FLAG_CORE = 0x00000001
+ } CLUS_FLAGS;
+</pre></div>
+</dd></dl><p><b>CLUS_FLAG_CORE: </b>The object is core to the
+operation of the cluster and cannot be deleted from the non-volatile <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_93ba0f62-7125-4a3e-ab60-5fd4f504bc8c" data-linktype="relative-path">cluster state</a>. When the
+flags are associated with a resource object, the resource is designated as a
+core resource, as defined in section <a href="cd7638de-f218-44e7-a677-9ca15df02704" data-linktype="relative-path">3.1.1.1.1</a>.</p></div>

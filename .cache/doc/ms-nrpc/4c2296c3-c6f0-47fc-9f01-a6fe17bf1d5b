@@ -1,0 +1,81 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/4c2296c3-c6f0-47fc-9f01-a6fe17bf1d5b" data-linktype="external">msdn link</a></p><p>The <b>NetrServerGetTrustInfo</b> method SHOULD<a id="Appendix_A_Target_230"></a><a aria-label="Product behavior note 230" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_230" data-linktype="relative-path">&lt;230&gt;</a> return an information block
+from a specified server. The information includes encrypted current and
+previous passwords for a particular account and additional trust data. The
+account name requested MUST be the name used when the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure channel</a> was created,
+unless the method is called on a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a> by a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a>, in which
+case it can be any valid account name. </p><dl>
+<dd>
+<div><pre> NTSTATUS NetrServerGetTrustInfo(
+   [in, unique, string] LOGONSRV_HANDLE TrustedDcName,
+   [in, string] wchar_t* AccountName,
+   [in] NETLOGON_SECURE_CHANNEL_TYPE SecureChannelType,
+   [in, string] wchar_t* ComputerName,
+   [in] PNETLOGON_AUTHENTICATOR Authenticator,
+   [out] PNETLOGON_AUTHENTICATOR ReturnAuthenticator,
+   [out] PENCRYPTED_NT_OWF_PASSWORD EncryptedNewOwfPassword,
+   [out] PENCRYPTED_NT_OWF_PASSWORD EncryptedOldOwfPassword,
+   [out] PNL_GENERIC_RPC_DATA* TrustInfo
+ );
+</pre></div>
+</dd></dl><p><b>TrustedDcName: </b>The custom binding handle, as
+defined in section <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>.</p><p><b>AccountName: </b>The null-terminated Unicode
+string that contains the name of the client account in the domain.</p><p><b>SecureChannelType: </b>A <a href="4d1235e3-2c96-4e9f-a147-3cb338a0d09f" data-linktype="relative-path">NETLOGON_SECURE_CHANNEL_TYPE</a>
+enumerated value, as specified in section 2.2.1.3.13, that indicates the type
+of the secure channel being established by this call.</p><p><b>ComputerName: </b>The null-terminated Unicode
+string that contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS
+name</a> of the client computer, for which the trust information MUST be
+returned.</p><p><b>Authenticator: </b>A pointer to a <a href="76c93227-942a-4687-ab9d-9d972ffabdab" data-linktype="relative-path">NETLOGON_AUTHENTICATOR</a>
+structure, as specified in section 2.2.1.1.5, that contains the client <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e72a2c02-84a2-4ce3-b66f-86f725642dc3" data-linktype="relative-path">authenticator</a>.</p><p><b>ReturnAuthenticator: </b>A pointer to a
+NETLOGON_AUTHENTICATOR structure, as specified in section 2.2.1.1.5, that
+contains the server return authenticator.</p><p><b>EncryptedNewOwfPassword: </b>A pointer to an <a href="f7458576-d538-47cd-b387-b6f98449a0ee" data-linktype="relative-path">ENCRYPTED_NT_OWF_PASSWORD</a>
+structure, as specified in <a href="../ms-samr/4df07fab-1bbc-452f-8e92-7853a3c7e380" data-linktype="relative-path">[MS-SAMR]</a>
+section <a href="../ms-samr/ce061fef-6d4f-4802-bd5d-26b11f14f4a6" data-linktype="relative-path">2.2.7.3</a>,
+that contains the NTOWFv1 (as specified in NTLM v1 Authentication in <a href="../ms-nlmp/b38c36ed-2804-4868-a9ff-8dd3182128e4" data-linktype="relative-path">[MS-NLMP]</a>
+section <a href="../ms-nlmp/464551a8-9fc4-428e-b3d3-bc5bfb2e73a5" data-linktype="relative-path">3.3.1</a>)
+of the current password, encrypted as specified in [MS-SAMR] section <a href="../ms-samr/a5252e8c-25e7-4616-a375-55ced086b19b" data-linktype="relative-path">2.2.11.1.1</a>,
+Encrypting an NT Hash or LM Hash Value with a specified key. The <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_4f67a585-fb00-4166-93e8-cf4abca8226d" data-linktype="relative-path">session key</a> is the
+specified 16-byte key that is used to derive its keys via the 16-byte value
+process, as specified in [MS-SAMR] section <a href="../ms-samr/ba437786-7de8-47b4-b269-5a595c255327" data-linktype="relative-path">2.2.11.1.4</a>.</p><p><b>EncryptedOldOwfPassword: </b>A pointer to an
+ENCRYPTED_NT_OWF_PASSWORD structure, as specified in [MS-SAMR] section 2.2.7.3,
+that contains the NTOWFv1 (as specified in NTLM v1 Authentication in [MS-NLMP]
+section 3.3.1) of the old password, encrypted as specified in [MS-SAMR] section
+2.2.11.1.1, Encrypting an NT Hash or LM Hash Value with a specified key. The
+session key is the specified 16-byte key that is used to derive its keys via
+the 16-byte value process, as specified in [MS-SAMR] section 2.2.11.1.4.</p><p><b>TrustInfo: </b>A pointer to an <a href="a1c7f3ca-c8b1-4514-9fd5-ed3460c83a4d" data-linktype="relative-path">NL_GENERIC_RPC_DATA</a>
+structure, as specified in section 2.2.1.6.4, that contains a block of generic
+RPC data with trust information for the specified server.</p><p><b>Return Values: </b>The method returns 0x00000000
+to indicate success; otherwise, it returns a nonzero error code.</p><p>On receiving this call, the server MUST perform the
+following validation steps:</p><ul><li><p><span><span> 
+</span></span>Apply Common Error Processing Rule A, specified in section <a href="2d776bfc-e81f-4c8f-9da8-4c2920f65413" data-linktype="relative-path">3</a>.</p>
+</li><li><p><span><span> 
+</span></span>Using the <i>ComputerName</i> for the secure channel to find the
+corresponding record in the ClientSessionInfo table, verify the <i>Authenticator</i>
+parameter (section <a href="da7acaa3-030b-481e-979b-f58f89389806" data-linktype="relative-path">3.1.4.5</a>).
+If the <i>Authenticator</i> parameter is valid, compute the <i>ReturnAuthenticator</i>
+parameter returned (section 3.1.4.5). Otherwise, the server MUST return
+STATUS_ACCESS_DENIED.</p>
+</li></ul><p>If the <i>TrustedDcName</i> parameter is not NULL, it is
+compared against the server&#39;s <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9a7bc8b3-3374-4608-8f73-be20a90b898b" data-linktype="relative-path">computer
+name</a>. If the <i>TrustedDcName</i> parameter does not match the server&#39;s computer
+name, or is NULL, then the server MUST return STATUS_INVALID_COMPUTER_NAME. If
+the <i>TrustedDcName</i> parameter matches the server&#39;s computer name,
+processing proceeds.</p><p>The server MUST retrieve the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9a5d11c7-eea9-4217-b9a8-478c6786e9e8" data-linktype="relative-path">OWF</a> of the current password
+for the account identified by the <i>AccountName</i> and <i>SecureChannelType</i>
+parameters. If the <i>SecureChannelType</i> is <b>TrustedDnsDomainSecureChannel</b>
+or <b>TrustedDomainSecureChannel</b>, then the SharedSecret of the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a> will be used and the
+OWF of the previous password MUST also be retrieved. All other types of <i>SecureChannelType</i>
+require that the SharedSecret of the computer account be used, and that an
+empty string MUST be used when calculating the OWF of the previous password. </p><p>The NTOWFv1 of the current and previous passwords MUST be
+encrypted as specified in [MS-SAMR] section 2.2.11.1.1, Encrypting an NT Hash
+or LM Hash Value with a specified key. The session key is the specified 16-byte
+key used to derive its keys via the 16-byte value process, as specified in
+[MS-SAMR] section 2.2.11.1.4. The encrypted versions of the NTOWFv1 for the
+current password and previous password MUST be returned in the parameters <i>EncryptedNewOwfPassword</i>
+and <i>EncryptedOldOwfPassword</i>, respectively.</p><p>If the <i>TrustInfo</i> parameter is not NULL, the structure
+is generated by setting NL_GENERIC_RPC_DATA.UlongEntryCount to 1 and setting
+NL_GENERIC_RPC_DATA.UlongData to a 32-bit value that contains the trust attributes.
+The trust attributes themselves are defined in <a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a>
+section <a href="../ms-lsad/f28f42b7-173c-4cda-9809-3fe4a5213ab3" data-linktype="relative-path">2.2.7.9</a>
+as the TrustAttributes member, as part of the
+LSAPR_TRUSTED_DOMAIN_INFORMATION_EX structure.</p><p>This method SHOULD only be called by a machine that has
+established a secure channel with the server.</p></div>

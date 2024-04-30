@@ -1,0 +1,41 @@
+<div class="content"><p>The LastReportPathWithoutExtension (get) method retrieves
+the <b>last report directory without extension</b> where the generated
+report(s) was (were) stored when the file management job was previously run and
+returns S_OK upon successful completion.</p><dl>
+<dd>
+<div><pre> [propget, id(FSRM_PROPERTY(FSRM_DISPID_FILE_MANAGEMENT_JOB | 0x15))] HRESULT LastReportPathWithoutExtension(
+   [out, retval] BSTR* path
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>Pointer to a variable that upon
+completion contains the <b>last report directory without extension</b> where
+the generated report(s) was (were) stored when the file management job was
+previously run.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>path</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>path</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST set <i>path</i> to the file management task
+object&#39;s <b>Last report directory without extension</b>.</p></div>

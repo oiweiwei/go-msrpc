@@ -1,0 +1,65 @@
+<div class="content"><p> </p><p>The LSAPR_TRANSLATED_NAME_EX structure contains information
+about a <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+along with the human-readable identifier for that security principal. This
+structure MUST always be accompanied by an <span><a href="3a52af31-247a-4b08-91a0-1d46b2cc49b2" data-linktype="relative-path">LSAPR_REFERENCED_DOMAIN_LIST</a></span>
+structure when <b>DomainIndex</b> is not -1, which contains the <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>
+information for the security principals.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_TRANSLATED_NAME_EX {
+   SID_NAME_USE Use;
+   RPC_UNICODE_STRING Name;
+   long DomainIndex;
+   unsigned long Flags;
+ } LSAPR_TRANSLATED_NAME_EX,
+  *PLSAPR_TRANSLATED_NAME_EX;
+</pre></div>
+</dd></dl><p><b>Use:</b>  Defines the type of the
+security principal, as specified in section <span><a href="171e9a87-8e01-4bd8-a35e-3468128c8fc4" data-linktype="relative-path">2.2.13</a></span>.</p><p><b>Name:</b>  Contains the name of the
+security principal. The RPC_UNICODE_STRING structure is defined in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/94a16bb6-c610-4cb9-8db6-26f15f560061" data-linktype="relative-path">2.3.10</a></span>.</p><p><b>DomainIndex:</b>  Contains the index
+into the corresponding LSAPR_REFERENCED_DOMAIN_LIST structure that specifies
+the domain that the security principal is in. A <b>DomainIndex</b> value of -1
+MUST be used to specify that there are no corresponding domains. Other negative
+values MUST NOT be used.</p><p><b>Flags:</b>  Contains bitmapped values
+that define the properties of this translation. The value MUST be the logical
+OR of zero or more of the following flags. These flags communicate the
+following additional information about how the <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span> was resolved.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The SID was not found by matching against the security
+  principal SID property.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The SID might be found by traversing a <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_035d9ce5-f117-4251-8d4d-127c462ec4a0" data-linktype="relative-path">forest
+  trust</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The SID was found by matching against the last
+  database view, defined in section <span><a href="e09da72e-e6c9-4f91-aa64-68b0475719b6" data-linktype="relative-path">3.1.1.1.1</a></span>.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be 0 and ignored on receipt.<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="d2715572-2c9b-4198-ace9-316a2fb5d7f5#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p>
+</dd></dl></div>

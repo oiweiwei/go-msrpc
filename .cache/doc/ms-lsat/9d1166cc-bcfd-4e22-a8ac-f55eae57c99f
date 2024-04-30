@@ -1,0 +1,87 @@
+<div class="content"><p> </p><p>The LSAP_LOOKUP_LEVEL enumeration defines different scopes
+for searches during translation.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="d2715572-2c9b-4198-ace9-316a2fb5d7f5#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p><dl>
+<dd>
+<div><pre> typedef  enum _LSAP_LOOKUP_LEVEL
+ {
+   LsapLookupWksta = 1,
+   LsapLookupPDC,
+   LsapLookupTDL,
+   LsapLookupGC,
+   LsapLookupXForestReferral,
+   LsapLookupXForestResolve,
+   LsapLookupRODCReferralToFullDC
+ } LSAP_LOOKUP_LEVEL,
+  *PLSAP_LOOKUP_LEVEL;
+</pre></div>
+</dd></dl><p><b>LsapLookupWksta:</b> <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SIDs</a></span> MUST be
+searched in the views under the Security Principal SID and Security Principal
+SID History columns in the following order:</p><ul><li><p><span><span>  </span></span>Predefined
+Translation View, as specified in section <span><a href="e09da72e-e6c9-4f91-aa64-68b0475719b6" data-linktype="relative-path">3.1.1.1.1</a></span>.</p>
+</li><li><p><span><span>  </span></span>Configurable
+Translation View, as specified in section <span><a href="252cb6b0-2edc-4403-9d75-5b2786ba859e" data-linktype="relative-path">3.1.1.1.2</a></span>.</p>
+</li><li><p><span><span>  </span></span>Builtin
+Domain Principal View of the account database on the <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_ae65dac0-cd24-4e83-a946-6d1097b71553" data-linktype="relative-path">RPC server</a></span>, as
+specified in section <span><a href="871df7fe-3470-4b69-9e59-15db70e8d4c6" data-linktype="relative-path">3.1.1.1.3</a></span>.</p>
+</li><li><p><span><span>  </span></span>Account
+Domain View of account database on that machine, as specified in section <span><a href="1777c886-7e47-40a0-979e-da0d76fd6d5c" data-linktype="relative-path">3.1.1.1.6</a></span>.</p>
+<ul><li><p><span><span> 
+</span></span>If the machine is not joined to a <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>, the search
+ends here.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the machine is not a <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a></span>:
+the Account Domain View of the domain to which this machine is joined.</p>
+</li><li><p><span><span>  </span></span>Forest
+View (section <span><a href="c69c5834-39c0-430c-9e14-98f3fd7ccfde" data-linktype="relative-path">3.1.1.1.9</a></span>) of the <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a></span>
+of the domain to which this machine is joined, unless <i>ClientRevision</i> is
+0x00000001 and the machine is joined to a mixed mode domain, as specified in <span><a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a></span>
+section <span><a href="../ms-adts/b40f9606-812d-4b76-924e-55a5401e2bc8" data-linktype="relative-path">6.1.4.1</a></span>.</p>
+</li><li><p><span><span>  </span></span>Forest
+Views of <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_3b76a71f-9697-4836-9c69-09899b23c21b" data-linktype="relative-path">trusted forests</a></span> for
+the forest of the domain to which this machine is joined, unless ClientRevision
+is 0x00000001 and the machine is joined to a mixed mode domain, as specified in
+[MS-ADTS] section 6.1.4.1.</p>
+</li><li><p><span><span>  </span></span>Account
+Domain Views of externally <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted domains</a></span> for
+the domain to which this machine is joined.</p>
+</li></ul><p><b>LsapLookupPDC:</b> SIDs MUST be searched in the
+views under the Security Principal SID and Security Principal SID History
+columns in the following order:</p><ul><li><p><span><span>  </span></span>Account
+Domain View of the domain to which this machine is joined.</p>
+</li><li><p><span><span>  </span></span>Forest
+View of the forest of the domain to which this machine is joined, unless <i>ClientRevision</i>
+is 0x00000001 and the machine is joined to a mixed mode domain, as specified in
+[MS-ADTS] section 6.1.4.1.</p>
+</li><li><p><span><span>  </span></span>Forest
+Views of trusted forests for the forest of the domain to which this machine is
+joined, unless <i>ClientRevision</i> is 0x00000001 and the machine is joined to
+a mixed mode domain, as specified in [MS-ADTS] section 6.1.4.1.</p>
+</li><li><p><span><span>  </span></span>Account
+Domain Views of externally trusted domains for the domain to which this machine
+is joined.</p>
+</li></ul><p><b>LsapLookupRODCReferralToFullDC:</b> SIDs MUST be
+searched in the databases under the Security Principal SID and Security
+Principal SID History columns in the following order:</p><ul><li><p><span><span>  </span></span>Forest
+Views of trusted forests for the forest of the domain to which this machine is
+joined, unless ClientRevision is 0x00000001 and the machine is joined to a
+mixed mode domain, as specified in [MS-ADTS] section 6.1.4.1.</p>
+</li><li><p><span><span>  </span></span>Account
+Domain Views of externally trusted domains for the domain to which this machine
+is joined.</p>
+</li></ul><p><b>LsapLookupTDL:</b> SIDs MUST be searched in the
+databases under the Security Principal SID column in the following view:</p><ul><li><p><span><span>  </span></span>Account
+Domain View of the <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_40a58fa4-953e-4cf3-96c8-57dba60237ef" data-linktype="relative-path">domain NC</a></span> for the
+domain to which this machine is joined.</p>
+</li></ul><p><b>LsapLookupGC:</b> SIDs MUST be searched in the
+databases under the Security Principal SID and Security Principal SID History
+columns in the following view:</p><ul><li><p><span><span>  </span></span>Forest
+View of the forest of the domain to which this machine is joined.</p>
+</li></ul><p><b>LsapLookupXForestReferral:</b> SIDs MUST be
+searched in the databases under the Security Principal SID and Security
+Principal SID History columns in the following views:</p><ul><li><p><span><span>  </span></span>Forest
+Views of trusted forests for the forest of the domain to which this machine is
+joined.</p>
+</li></ul><p><b>LsapLookupXForestResolve:</b> SIDs MUST be
+searched in the databases under the Security Principal SID and Security
+Principal SID History columns in the following view:</p><ul><li><p><span><span>  </span></span>Forest
+View of the forest of the domain to which this machine is joined.</p>
+</li></ul></div>

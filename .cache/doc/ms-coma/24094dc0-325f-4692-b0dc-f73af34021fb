@@ -1,0 +1,20 @@
+<div class="content"><p> The InstanceContainer structure represents an <a href="3f01a312-3391-4109-a96e-95358babf191#gt_791190e6-1e02-42cb-bd25-5aee3ab516ed" data-linktype="relative-path">instance container</a>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   GUID ConglomerationID;
+   GUID PartitionID;
+   GUID ContainerID;
+   DWORD dwProcessID;
+   BOOL bPaused;
+   BOOL bRecycled;
+ } InstanceContainer;
+</pre></div>
+</dd></dl><p><b>ConglomerationID:</b>   The <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0ab5119e-c719-4a5c-9198-55a0a2fb508a" data-linktype="relative-path">conglomeration identifier</a>
+of the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_ea5c531f-5dd5-43aa-9da1-2ae068c622db" data-linktype="relative-path">conglomeration</a>
+associated with the instance container.</p><p><b>PartitionID:</b>   The <a href="3f01a312-3391-4109-a96e-95358babf191#gt_9587a9d3-3fd7-45c6-aab1-c74ff17a22b7" data-linktype="relative-path">partition identifier</a> of the
+<a href="3f01a312-3391-4109-a96e-95358babf191#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a> that contains
+the conglomeration associated with the instance container.</p><p><b>ContainerID:</b>   The <a href="3f01a312-3391-4109-a96e-95358babf191#gt_a1710eb6-236d-435e-a3c9-1672d28ab367" data-linktype="relative-path">activation</a> of the instance
+container.</p><p><b>dwProcessID:</b>   The value of the
+instance container&#39;s ProcessIdentifier property, as described in section <a href="ad6b31b6-6777-46a5-8588-397fe77ffcd9" data-linktype="relative-path">3.1.1.3.21</a>.</p><p><b>bPaused:</b>   A flag that indicates
+whether or not the instance container is <a href="3f01a312-3391-4109-a96e-95358babf191#gt_7a8604c4-deb2-4894-a92a-487e0dfd0536" data-linktype="relative-path">paused</a>.</p><p><b>bRecycled:</b>   A flag that indicates
+whether or not the instance container has been <a href="3f01a312-3391-4109-a96e-95358babf191#gt_89bc6db5-a80f-47a0-9c68-2615e11c6210" data-linktype="relative-path">recycled</a>.</p></div>

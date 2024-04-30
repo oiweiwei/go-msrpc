@@ -1,0 +1,82 @@
+<div class="content"><p> </p><p>The WBEMOBJECT_INSTANCE structure MUST contain a complete <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a99173af-90bf-473d-9a81-ff0ce9a85838" data-linktype="relative-path">CIM</a></span>
+instance.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfHeader</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfData</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>classID (16
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ObjectData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwSizeOfHeader (4 bytes): </b>The size, in bytes,
+of the header, which MUST be 0x00000018.</p><p><b>dwSizeOfData (4 bytes): </b>The size, in bytes, of
+the data that follows the header.</p><p><b>classID (16 bytes): </b>The unique identifier of
+the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_633b12d4-e2c4-442f-95ff-4b2b5d708ed5" data-linktype="relative-path">CIM
+class</a></span> type.</p><p><b>ObjectData (variable): </b>Contains the string of
+bytes that represent the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c4119a8a-24db-40cc-9657-7cb5c23ecf43" data-linktype="relative-path">CIM instance</a></span>,
+encoded as <span><a href="../ms-wmio/3e02b755-3898-4e78-ac6e-83fac8a98896" data-linktype="relative-path">EncodingUnitObjectBlock</a></span>,
+as specified in <span><a href="../ms-wmio/b44d0581-5bd3-40fc-95d7-01c1b1239820" data-linktype="relative-path">[MS-WMIO]</a></span>
+section 2.2.2.</p></div>

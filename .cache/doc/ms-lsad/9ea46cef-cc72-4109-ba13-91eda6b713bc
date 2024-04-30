@@ -1,0 +1,237 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9ea46cef-cc72-4109-ba13-91eda6b713bc" data-linktype="external">msdn link</a></p><p>The LsarSetInformationTrustedDomain method is invoked to set
+information on a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted
+domain object</a>.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarSetInformationTrustedDomain(
+   [in] LSAPR_HANDLE TrustedDomainHandle,
+   [in] TRUSTED_INFORMATION_CLASS InformationClass,
+   [in, switch_is(InformationClass)] 
+     PLSAPR_TRUSTED_DOMAIN_INFO TrustedDomainInformation
+ );
+</pre></div>
+</dd></dl><p><b>TrustedDomainHandle:</b> A handle to a trusted
+domain object.</p><p><b>InformationClass: </b>A value indicating the type
+of information requested by the caller.</p><p><b>TrustedDomainInformation: </b>Used to supply the information
+to be set.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the arguments supplied to the function was
+  invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00000DD</p>
+  <p>STATUS_INVALID_DOMAIN_STATE</p>
+  </td>
+  <td>
+  <p>The <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>
+  is in the wrong state to perform the stated operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>TrustedDomainHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes three arguments:</p><p><i>TrustedDomainHandle</i>: An open handle to a trusted
+domain object. If the handle is not a valid context handle to a trusted domain
+object or <i>TrustedDomainHandle</i>.HandleType does not equal &#34;Trusted
+Domain&#34;, the server MUST return STATUS_INVALID_HANDLE. The server MUST
+verify that <i>TrustedDomainHandle</i> grants access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a>. The following
+table specifies the RequiredAccess value to use in this access check for each <i>InformationClass</i>
+value, or indicates if no processing is supported, regardless of access
+granted. There are several methods in the Local Security Authority (Domain
+Policy) Remote Protocol that set <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted domain</a> information.
+All of them enforce the same rights assignments based on information class.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value of InformationClass parameter</p>
+   </th>
+   <th>
+   <p>RequiredAccess value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TrustedPosixOffsetInformation</p>
+  <p>TrustedDomainInformationEx</p>
+  </td>
+  <td>
+  <p>TRUSTED_SET_POSIX</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TrustedDomainFullInformation</p>
+  <p>TrustedDomainFullInformationInternal</p>
+  </td>
+  <td>
+  <p>TRUSTED_SET_POSIX | TRUSTED_SET_AUTH</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TrustedDomainAuthInformation</p>
+  <p>TrustedDomainAuthInformationInternal</p>
+  </td>
+  <td>
+  <p>TRUSTED_SET_AUTH</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TrustedDomainSupportedEncryptionTypes</p>
+  </td>
+  <td>
+  <p>TRUSTED_SET_POSIX</p>
+  </td>
+ </tr></tbody></table><p><i>InformationClass</i>: A value from the <a href="36069113-6c38-45e8-920e-17f8ef36f578" data-linktype="relative-path">TRUSTED_INFORMATION_CLASS</a>
+enumeration specifying what type of information the caller is setting. Not all
+values are valid. For values outside the TRUSTED_INFORMATION_CLASS range, the
+server MUST reject the request with STATUS_INVALID_PARAMETER. Information class
+values other than the following set SHOULD<a id="Appendix_A_Target_103"></a><a aria-label="Product behavior note 103" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_103" data-linktype="relative-path">&lt;103&gt;</a> be
+rejected with STATUS_INVALID_PARAMETER. The set of allowed information class
+values is:</p><ul><li><p><span><span> 
+</span></span>TrustedPosixOffsetInformation</p>
+</li><li><p><span><span> 
+</span></span>TrustedDomainInformationEx</p>
+</li><li><p><span><span> 
+</span></span>TrustedDomainAuthInformation</p>
+</li><li><p><span><span> 
+</span></span>TrustedDomainFullInformation</p>
+</li><li><p><span><span> 
+</span></span>TrustedDomainAuthInformationInternal</p>
+</li><li><p><span><span> 
+</span></span>TrustedDomainFullInformationInternal</p>
+</li><li><p><span><span> 
+</span></span>TrustedDomainSupportedEncryptionTypes</p>
+</li></ul><p><i>TrustedDomainInformation</i>: Contains information to be
+set, appropriate for the <i>InformationClass</i> parameter. The server MUST
+validate the <i>TrustedDomainInformation</i> parameter according to information
+class–specific rules. The rules for internal consistency checking of trusted domain
+objects are specified in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/fe369d31-cc17-4ad7-849e-769403bc2c41" data-linktype="relative-path">6.1.6</a>.</p><p>Information in the abstract data model specified in section <a href="0228f75e-9725-479c-b4cd-1cacd667343c" data-linktype="relative-path">3.1.1.5</a> MUST be updated
+using <i>TrustedDomainInformation</i> and <i>InformationClass</i> parameters as
+follows:</p><table><thead>
+  <tr>
+   <th>
+   <p>Value of InformationClass parameter </p>
+   </th>
+   <th>
+   <p>Information to set</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TrustedPosixOffsetInformation</p>
+  </td>
+  <td>
+  <p>Posix Offset</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TrustedDomainInformationEx</p>
+  </td>
+  <td>
+  <p>Trust Type</p>
+  <p>Trust Direction</p>
+  <p>Trust Attributes</p>
+  <p>Forest Trust Attributes MUST be set to 0 if new <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_0b8230da-0fd8-492c-b84a-d8467c3dc1ef" data-linktype="relative-path">trust attributes</a> do not
+  contain TRUST_ATTRIBUTE_FOREST_TRANSITIVE flag.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TrustedDomainAuthInformation</p>
+  <p>TrustedDomainAuthInformationInternal</p>
+  </td>
+  <td>
+  <p>Trust Incoming Password</p>
+  <p>Trust Outgoing Password</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TrustedDomainFullInformation</p>
+  <p>TrustedDomainFullInformationInternal</p>
+  </td>
+  <td>
+  <p>Posix Offset</p>
+  <p>Trust Type</p>
+  <p>Trust Direction</p>
+  <p>Trust Attributes</p>
+  <p>Trust Incoming Password</p>
+  <p>Trust Outgoing Password</p>
+  <p>Forest Trust Attributes MUST be set to 0 if new trust
+  attributes do not contain TRUST_ATTRIBUTE_FOREST_TRANSITIVE flag.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TrustedDomainSupportedEncryptionTypes</p>
+  </td>
+  <td>
+  <p>Supported Encryption Types</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Other values</p>
+  </td>
+  <td>
+  <p>Server MUST return STATUS_INVALID_PARAMETER.</p>
+  </td>
+ </tr></tbody></table><p>The server MUST return STATUS_INVALID_DOMAIN_STATE in the
+following cases:</p><ul><li><p><span><span> 
+</span></span>The TrustAttributes TRUST_ATTRIBUTE_FOREST_TRANSITIVE flag is set
+and the forestFunctionality specified in [MS-ADTS] section <a href="../ms-adts/d49624d0-9320-4368-8b0c-a7998ac2abdb" data-linktype="relative-path">3.1.1.3.2.27</a>
+is DS_BEHAVIOR_WIN2003 or higher.</p>
+</li><li><p><span><span> 
+</span></span>The TrustAttributes TRUST_ATTRIBUTE_FOREST_TRANSITIVE flag is set
+and the <b>DnsForestName</b> and <b>DnsDomainName</b> fields in DNS Domain
+Information (see section <a href="c939c70e-8cf0-4d90-a9cc-1c5002951723" data-linktype="relative-path">3.1.1.1</a>)
+do not contain the same value.</p>
+</li><li><p><span><span> 
+</span></span>The TrustAttributes TRUST_ATTRIBUTE_CROSS_ORGANIZATION flag is
+set and the forestFunctionality specified in [MS-ADTS] section 3.1.1.3.2.27 is
+DS_BEHAVIOR_WIN2003 or higher.</p>
+</li></ul><p>If the server is a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8b0a073b-3099-4efe-8b81-c2886b66a870" data-linktype="relative-path">read-only domain controller</a>,
+it MUST return an error.<a id="Appendix_A_Target_104"></a><a aria-label="Product behavior note 104" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_104" data-linktype="relative-path">&lt;104&gt;</a></p><p>If the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a>
+direction is being set to incoming or bidirectional, then the server MUST
+create an <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_ba0d31d7-aa03-4e10-936a-a0ebd276ebc9" data-linktype="relative-path">interdomain trust
+account</a> for this trust, if such an account does not yet exist, and populate
+it as specified in [MS-ADTS] section <a href="../ms-adts/ac527b5b-0e88-48a1-8c73-497d40388d04" data-linktype="relative-path">6.1.6.8</a>.
+The <a href="../ms-ada3/71e64720-be27-463f-9cc5-117f4bc849e1" data-linktype="relative-path">unicodePwd</a>
+attribute of the account is updated (as specified in <a href="../ms-samr/4df07fab-1bbc-452f-8e92-7853a3c7e380" data-linktype="relative-path">[MS-SAMR]</a>
+section <a href="../ms-samr/22b79fa8-13bd-4952-a399-9d5a93b2256f" data-linktype="relative-path">3.1.1.8.7</a>)
+with the clear text password (that is, the password value with AuthType being
+equal to 0x2) in the &#34;Trust Incoming Passwords&#34; information provided.</p></div>

@@ -1,0 +1,42 @@
+<div class="content"><p> </p><p>The <b>R_DnssrvComplexOperation3 </b>method is used to
+invoke a set of server functions specified by the caller. These functions
+generally return more complex structures than simple 32-bit integer values,
+unlike the operations accessible through <span><a href="9500a7e8-165d-4b13-be86-0ddc43100eef" data-linktype="relative-path">R_DnssrvOperation (section
+3.1.4.1)</a></span>. The DNS server SHOULD<a id="Appendix_A_Target_289"></a><a aria-label="Product behavior note 289" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_289" data-linktype="relative-path">&lt;289&gt;</a>
+implement <span><a href="d28e3ba8-5742-417d-ad6d-2e0139ab2ad9" data-linktype="relative-path">R_DnssrvComplexOperation2
+(section 3.1.4.8)</a></span>.</p><p>All parameters are as specified by the <span><a href="864a6971-f664-47b9-b012-826fd2b0a409" data-linktype="relative-path">R_DnssrvComplexOperation
+method (section 3.1.4.3)</a></span> with the following exceptions:</p><dl>
+<dd>
+<div><pre> LONG R_DnssrvComplexOperation3(
+     [in]                                DWORD                   dwClientVersion,
+     [in]                                DWORD                   dwSettingFlags,
+     [in, unique, string]                LPCWSTR                 pwszServerName,
+     [in, unique, string]                LPCWSTR                 pwszVirtualizationInstanceID,
+     [in, unique, string]                LPCSTR                  pszZone,
+     [in, unique, string]                LPCSTR                  pszOperation,
+     [in]                                DWORD                   dwTypeIn,
+     [in, switch_is(dwTypeIn)]           DNSSRV_RPC_UNION        pDataIn,
+     [out]                               PDWORD                  pdwTypeOut,
+     [out, switch_is(*pdwTypeOut)]       DNSSRV_RPC_UNION *      ppDataOut
+     );
+</pre></div>
+</dd></dl><p><b>dwClientVersion:</b> The client version in <span><b><a href="a237781b-b048-495d-844b-10ffb38df2a8" data-linktype="relative-path">DNS_RPC_CURRENT_CLIENT_VER
+(section 2.2.1.2.1)</a></b></span> format. </p><p><b>dwSettingFlags:</b> Reserved for future use only.
+This field MUST be set to zero by clients and ignored by servers.</p><p><b>pwszVirtualizationInstanceID:</b> A pointer to a
+null-terminated Unicode string that contains the name of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1b9d3eb9-dad0-4d1d-acb7-4597e5db641c" data-linktype="relative-path">virtualization
+instance</a></span> configured in the DNS server. For operations specific to a
+virtualization instance, this field MUST contain the name of the virtualization
+instance. If the value is NULL, then the API is as specified in
+R_DnssrvComplexOperation2 (section 3.1.4.8). Apart from the <b>EnumVirtualizationInstances</b>
+operation (section 3.1.4.3<span>)</span>,
+R_DnssrvComplexOperation3 changes the behavior of the following operations:<b>
+EnumZoneScopes</b>, <b>EnumZones2</b>, and <b>EnumZones</b> (section 3.1.4.3),
+if these operation are called with R_DnssrvComplexOperation3 and a non-NULL <i>pwszVirtualizationInstanceID</i>,
+they<b> </b>are performed under the given virtualization instance.</p><p>When processing this call, the server MUST perform the same
+actions as for the R_DnssrvComplexOperation2 method (section 3.1.4.8) with the
+following exceptions: for output structure types with multiple versions, the
+server MUST return the structure type selected by dwClientVersion. In the event
+the dwClientVersion is greater than the server version, the server MUST return
+the highest version number known. If unable to perform the operation, returns
+error EPT_S_CANT_PERFORM_OP (0x000006D8) (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>).</p></div>

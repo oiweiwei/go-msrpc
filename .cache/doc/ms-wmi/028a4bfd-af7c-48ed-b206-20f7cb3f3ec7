@@ -1,0 +1,114 @@
+<div class="content"><p> </p><p>The IWbemServices::GetObjectAsync method is the asynchronous
+version of the <span><a href="85e450fa-520c-4813-a17e-c65bf7be47b5" data-linktype="relative-path">IWbemServices::GetObject</a></span>
+method.</p><dl>
+<dd>
+<div><pre> HRESULT GetObjectAsync(
+   [in] const BSTR strObjectPath,
+   [in] long lFlags,
+   [in] IWbemContext* pCtx,
+   [in] IWbemObjectSink* pResponseHandler
+ );
+</pre></div>
+</dd></dl><p><b>strObjectPath: </b>MUST be the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_775e4b82-5447-4125-b887-b404421e1269" data-linktype="relative-path">CIM path</a></span>
+of the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c1fdd6c7-06cb-4787-8735-4d19a68dd802" data-linktype="relative-path">CIM object</a></span> to be
+retrieved. If this parameter is set to NULL, the server MUST return an <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_b62e7e55-cbf8-4a45-971d-05f59d28d32f" data-linktype="relative-path">empty CIM
+object</a></span>.</p><p><b>lFlags: </b>Specifies the behavior of the
+GetObjectAsync method. Flag behavior MUST be interpreted as specified in the
+following table.</p><dl>
+<dd>
+<p>The server MUST accept a combination of zero or more
+flags from the following table and MUST comply with all the restrictions in a
+flag description. Any other DWORD value that does not match a flag condition
+MUST be treated as not valid.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_USE_AMENDED_QUALIFIERS</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server SHOULD return no <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f82a4363-0099-479c-b42c-a8d398a90443" data-linktype="relative-path">CIM
+  localizable information</a></span>.</p>
+  <p>If this bit is set, the server SHOULD return CIM
+  localizable information for the CIM object, as specified in section <span><a href="2bbdf995-93d8-4902-a39d-38f2a9790b85" data-linktype="relative-path">2.2.6</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_SEND_STATUS</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server MUST make one final
+  <span><a href="479c78dc-73cf-4f5b-85bd-5efb26ab48a6" data-linktype="relative-path">IWbemObjectSink::SetStatus</a></span>
+  call on the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface pointer</a></span>
+  that is provided in the <i>pResponseHandler</i> parameter.</p>
+  <p>If this bit is set, the server MAY make intermediate
+  IWbemObjectSink::SetStatus calls on the interface pointer prior to call
+  completion.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_DIRECT_READ</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the implementer MUST consider
+  the entire class hierarchy when it returns the result.</p>
+  <p>If this bit is set, the server MUST disregard any
+  derived class when it searches the result.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pCtx: </b>MUST be a pointer to an <span><a href="18c8f1a1-652f-43b7-9186-6098bc303a8d" data-linktype="relative-path">IWbemContext</a></span>
+interface, which MUST contain additional information that the client wants to
+provide to the server about the CIM object referred to by <i>strObjectPath</i>.
+If <i>pCtx</i> is NULL, the parameter MUST be ignored.</p><p><b>pResponseHandler: </b>MUST be a pointer to the <span><a href="0ddb4f22-371a-4697-af5b-d4184b179b68" data-linktype="relative-path">IWbemObjectSink</a></span>
+interface that is implemented by the caller, where enumeration results are
+delivered. The parameter MUST NOT be NULL. If the parameter is NULL, the server
+MUST return WBEM_E_INVALID_PARAMETER.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The following validation occurs before an asynchronous
+operation is started:</p><p>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that makes the call MUST have WBEM_REMOTE_ENABLE and WBEM_ENABLE accesses to
+the namespace; otherwise, WBEM_E_ACCESS_DENIED MUST be returned.</p><p>Requirements mentioned in the parameter definitions are also
+checked before an asynchronous operation is started.</p><p>If successful, the server MUST create a new entry in <b>AsyncOperationTable</b>
+as specified in section <span><a href="83a955c3-2fba-4d06-bd88-76ed9bbada43" data-linktype="relative-path">3.1.1.1.3</a></span>.</p><p>The following validation happens asynchronously.</p><p>In response to IwbemServices::GetObjectAsync method, the
+server MUST interpret <i>strObjectPath</i>as defined in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89848" data-linktype="external">[DMTF-DSP0004]</a></span>
+section 8.5. If the path refers to a class, the server MUST look it up in the <b>ClassTable</b>.
+If found, the server MUST return an object that represents the <b>ClassDeclaration</b>.
+If <i>strObjectPath</i> refers to an instance, the server MUST check the <b>InstanceProviderId</b>
+for the class. If <b>InstanceProviderId</b> is NULL, then the server MUST look
+up the CIM database and return the CIM instance. If <b>InstanceProviderId</b>
+is not NULL, then the server MUST use the abstract interface specified as part
+of section <span><a href="6f83f654-6c58-4c8f-8d94-e9de51776d16" data-linktype="relative-path">3.1.4.18</a></span> to
+communicate with the provider, and find the provider entry corresponding to the
+<b>InstanceProviderId</b> in the <b>ProviderTable</b>.</p><ul><li><p><span><span> 
+</span></span>If found:</p>
+<ul><li><p><span><span>  </span></span>If <b>SupportsGet</b>
+is FALSE, the server MUST return WBEM_E_PROVIDER_NOT_CAPABLE.</p>
+</li><li><p><span><span>  </span></span>Else,
+the server MUST use the abstract interface specified in section <span><a href="ce1462a6-73be-4960-b2c1-c2cb08a24e36" data-linktype="relative-path">3.1.4.17</a></span>
+to communicate with the provider, and return the appropriate results or the
+error code.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If not found, the server MUST return WBEM_E_PROVIDER_NOT_FOUND.</p>
+</li></ul><p>The method MUST fail if the CIM object that is referred to
+by <i>strObjectPath</i> does not exist, if the method parameters are not valid
+as specified in the preceding list, or if the server is unable to execute the
+method. The failed method execution MUST set the output parameters to NULL and
+MUST return an error in the format specified in section 2.2.11.</p><p>If a class is marked by a Singleton qualifier, the server
+MUST treat &#34;Class-Name = @&#34; in the object path as referencing the
+singleton instance of the class.</p></div>

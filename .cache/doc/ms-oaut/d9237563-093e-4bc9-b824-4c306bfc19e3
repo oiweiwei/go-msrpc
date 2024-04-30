@@ -1,0 +1,34 @@
+<div class="content"><p> </p><p>The _wireBRECORD structure is the wire representation of a
+collection of <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_10a36f2b-2a1d-4d7f-b57d-261afca73727" data-linktype="relative-path">UDTs</a></span> of the same
+type. This representation MUST be used when the UDTs appear inside a <span><a href="2e87a537-9305-41c6-a88b-b79809b3703a" data-linktype="relative-path">SAFEARRAY (section 2.2.30.10)</a></span>
+or inside a <span><a href="a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT (section 2.2.29.2)</a></span>.
+Otherwise, the UDTs MUST be <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_9ebf9540-2c31-43bc-bc56-4a932faabf2d" data-linktype="relative-path">NDR</a></span>-marshaled as
+specified by their <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span>. For more
+information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> section
+14.</p><dl>
+<dd>
+<div><pre> typedef struct _wireBRECORD {
+   ULONG fFlags;
+   ULONG clSize;
+   MInterfacePointer* pRecInfo;
+   [size_is(clSize)] byte* pRecord;
+ } wireBRECORDStr;
+</pre></div>
+</dd></dl><p><b>fFlags:</b>   MUST be 0 if pRecord is
+NULL. Otherwise, the value MUST be 1. </p><p><b>clSize:</b>  MUST be 0 if <b>pRecord</b>
+is NULL. Otherwise, the value MUST equal the size (in bytes) of the UDTs
+contained in <b>pRecord</b>, plus 4 bytes to account for the prefix contained
+in <b>pRecord</b>. </p><p><b>pRecInfo:</b>   MUST specify an MInterfacePointer
+that MUST contain an OBJREF_CUSTOM with a CLSID field set to CLSID_RecordInfo (<span><a href="58504586-e4af-44a3-be04-f1dc281b7429" data-linktype="relative-path">1.9</a></span>)
+and a pObjectData field that MUST contain a RecordInfoData binary large object
+(BLOB) (<span><a href="deb939df-ef4d-49c3-8467-7265669e89ed" data-linktype="relative-path">2.2.31</a></span>). The iid
+field of the OBJREF portion of the structure MUST be set to IID_IRecordInfo
+(1.9). An implementation MAY use this value as the IID of a local-only
+interface.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p><p><b>pRecord:</b>  MUST be NULL if there are
+no UDTs. Otherwise, the value MUST contain the NDR-marshaled representation of
+the UDTs, prefixed by a 4-byte unsigned integer that specifies the size, in
+bytes. This integer MUST equal the value of <b>clSize</b>.</p><p>Data of this type MUST be marshaled as specified in [C706]
+section 14, with the exception that the fields <b>fFlags</b>, <b>clSize</b>,
+and the 4-byte prefix in <b>pRecord</b> MUST be marshaled by using a
+little-endian data representation, regardless of the data representation format
+label. For more information, see [C706] section 14.2.5.</p></div>

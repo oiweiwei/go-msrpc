@@ -1,0 +1,12 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/82d47318-c4d8-4583-86a6-ce186504bcba" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_DELTA_ENUM_ARRAY</b> structure defines an
+array of <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_bac72edb-4ce9-4baa-8977-f33e331b2b5e" data-linktype="relative-path">delta</a> objects.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_DELTA_ENUM_ARRAY {
+   DWORD CountReturned;
+   [size_is(CountReturned)] PNETLOGON_DELTA_ENUM Deltas;
+ } NETLOGON_DELTA_ENUM_ARRAY,
+  *PNETLOGON_DELTA_ENUM_ARRAY;
+</pre></div>
+</dd></dl><p><b>CountReturned:</b> The number of elements in the
+Deltas field.</p><p><b>Deltas:</b> An array of <b>NETLOGON_DELTA_ENUM</b>
+structures, as specified in section <a href="20e5863c-0142-40f6-a914-f352a9d66047" data-linktype="relative-path">2.2.1.5.11</a>.</p></div>

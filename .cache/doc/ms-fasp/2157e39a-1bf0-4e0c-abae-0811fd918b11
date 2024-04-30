@@ -1,0 +1,39 @@
+<div class="content"><p> </p><p>The RRPC_FWOpenPolicyStore method requests the server to
+open a specified policy store. The store can be opened for reading or for
+editing the firewall policy. The method also returns a handle to the opened
+store with which the client can then perform operations on this policy store.
+The server allocates a <b>PolicyStoreConnection</b> object to track the policy
+store type and the binary version associated with the handle.</p><dl>
+<dd>
+<div><pre> unsigned long RRPC_FWOpenPolicyStore(
+   [in] FW_CONN_HANDLE rpcConnHandle,
+   [in] unsigned short BinaryVersion,
+   [in, range(FW_STORE_TYPE_INVALID+1, FW_STORE_TYPE_MAX-1)] 
+     FW_STORE_TYPE StoreType,
+   [in, range(FW_POLICY_ACCESS_RIGHT_INVALID+1, FW_POLICY_ACCESS_RIGHT_MAX-1)] 
+     FW_POLICY_ACCESS_RIGHT AccessRight,
+   [in] unsigned long dwFlags,
+   [out] PFW_POLICY_STORE_HANDLE phPolicyStore
+ );
+</pre></div>
+</dd></dl><p><b>rpcConnHandle: </b>This parameter is an <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle that connects to the RPC interface of the Firewall and Advanced
+Security Protocol.</p><p><b>BinaryVersion: </b>This parameter specifies the
+RPC interface binary version. This implies versions of the methods and versions
+of the structures. This value MUST be a valid protocol Version (see section <span><a href="6b14b8f9-91ab-4f09-873f-9e2334196cdc" data-linktype="relative-path">1.7</a></span>
+for capability negotiation details and section <span><a href="faf4ffbe-1d51-40ad-ae90-2230f2c0b6a9" data-linktype="relative-path">2.2.42</a></span> for
+translating Protocol versions to binary and schema versions).</p><p><b>StoreType: </b>This parameter specifies the policy
+store type that the client wants to open.</p><p><b>AccessRight: </b>This parameter specifies the read
+or read/write access rights that the client is requesting on the store.</p><p><b>dwFlags: </b>This parameter is not used. The
+server MUST ignore this parameter. The client SHOULD pass a value of zero.</p><p><b>phPolicyStore: </b>This is an output parameter
+that provides a pointer to an <span><a href="88f6ea4a-a946-4747-bb93-f142f1760752" data-linktype="relative-path">FW_POLICY_STORE_HANDLE</a></span>
+data type. If successful, this parameter contains a handle to the opened store.</p><p><b>Return Values: </b>The method returns 0 if
+successful; if failed, it returns a nonzero error code. The field can take any
+specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+</p><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+If any lower-layer errors are reported by RPC exception, this exception is
+converted to an error code and reported to higher-layer protocols via the
+return value. </p><p>The server MUST validate that the client is authorized to
+perform the requested operation (as defined in section <span><a href="b0c93352-8371-4d63-abca-b0cc8dbcc3d7" data-linktype="relative-path">3.1.4</a></span>)
+before executing this method.</p></div>

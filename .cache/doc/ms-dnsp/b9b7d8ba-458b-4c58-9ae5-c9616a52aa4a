@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_SIGNING_VALIDATION_ERROR</b> structure
+describes an error that occurred during the use of an SKD.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcSigningValidationError {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   GUID guidSKD;
+   [string] wchar_t* pwszSigningKeyPointerString;
+   DWORD dwExtendedError;
+   DWORD dwReserved;
+ } DNS_RPC_SIGNING_VALIDATION_ERROR,
+  *PDNS_RPC_SIGNING_VALIDATION_ERROR;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The structure
+version number; this MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>guidSKD:</b> The unique identifier for the
+signing key descriptor that caused the validation error.</p><p><b>pwszSigningKeyPointerString:</b> The signing
+key pointer string of the signing key that caused the validation error.</p><p><b>dwExtendedError:</b> MUST be set to zero when
+sent.</p><p><b>dwReserved:</b> MUST be set to zero when sent
+and MUST be ignored on receipt.</p></div>

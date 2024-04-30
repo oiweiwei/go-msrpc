@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>The DSROLE_UPGRADE_STATUS_INFO structure contains
+information about the status of a pending <span><a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_5f20a152-dcb9-40a4-9c34-9ba11c74f8e6" data-linktype="relative-path">operating system upgrade</a></span>,
+if any, for the computer. This structure is intended to store only the status
+of an operating system upgrade of a <span><a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_139e2549-b8bc-41c3-9db8-940d99c3eb57" data-linktype="relative-path">legacy domain controller</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DSROLE_UPGRADE_STATUS_INFO {
+   unsigned __int32 OperationState;
+   DSROLE_SERVER_STATE PreviousServerState;
+ } DSROLE_UPGRADE_STATUS_INFO,
+  *PDSROLE_UPGRADE_STATUS_INFO;
+</pre></div>
+</dd></dl><p><b>OperationState:</b>  The current status
+of the upgrade. Valid values are shown in the following table.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="9eaff666-129a-486e-ba94-1193d51f5a5b#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No upgrade is currently in progress.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DSROLE_UPGRADE_IN_PROGRESS</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>An upgrade is currently in progress.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>PreviousServerState:</b>  The role of
+the computer prior to the upgrade. The value of this member is valid only if an
+upgrade is in progress (that is, if the <b>OperationState</b> member is set to
+DSROLE_UPGRADE_IN_PROGRESS).</p></div>

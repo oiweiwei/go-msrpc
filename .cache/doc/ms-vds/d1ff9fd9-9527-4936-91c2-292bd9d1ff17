@@ -1,0 +1,90 @@
+<div class="content"><p> </p><p>The VDS_VDISK_STATE enumeration describes the state of a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual
+disk</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_VDISK_STATE
+ {
+   VDS_VST_UNKNOWN = 0,
+   VDS_VST_ADDED,
+   VDS_VST_OPEN,
+   VDS_VST_ATTACH_PENDING,
+   VDS_VST_ATTACHED_NOT_OPEN,
+   VDS_VST_ATTACHED,
+   VDS_VST_DETACH_PENDING,
+   VDS_VST_COMPACTING,
+   VDS_VST_MERGING,
+   VDS_VST_EXPANDING,
+   VDS_VST_DELETED,
+   VDS_VST_MAX
+ } VDS_VDISK_STATE;
+</pre></div>
+</dd></dl><p><b>VDS_VST_UNKNOWN:  </b>VDS was not able to identify
+the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk&#39;s</a></span>
+current status.</p><p><b>VDS_VST_ADDED:  </b>The virtual disk is added to
+the service&#39;s list of objects.</p><p><b>VDS_VST_OPEN:  </b>The virtual disk has been added
+to the service&#39;s list of objects, and the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_5dcddf1d-f76c-48ea-aef3-208bbc2eea77" data-linktype="relative-path">virtual disk file</a></span>
+has been opened using <span><a href="a0ad8aa3-805f-4af9-af3b-748520427819" data-linktype="relative-path">IVdsVDisk::Open</a></span>.</p><p><b>VDS_VST_ATTACH_PENDING:  </b>The virtual disk has
+been added to the service&#39;s list of objects, the virtual disk file has been
+opened using IVdsVDisk::Open, and the virtual disk is in the process of being <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_d9c0ca19-3589-453a-b579-e66dbf6c98b2" data-linktype="relative-path">attached</a></span>.</p><p><b>VDS_VST_ATTACHED_NOT_OPEN:  </b>The virtual disk
+has been added to the service&#39;s list of objects and the virtual disk is
+attached, but the virtual disk file is not open.</p><p><b>VDS_VST_ATTACHED:  </b>The virtual disk has been
+added to the service&#39;s list of objects, the virtual disk file has been opened
+using IVdsVDisk::Open, and the virtual disk is attached.</p><p><b>VDS_VST_DETACH_PENDING:  </b>The virtual disk has
+been added to the service&#39;s list of objects, the virtual disk file has been
+opened using IVdsVDisk::Open, and the virtual disk is in the process of being <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_01bb6a9d-fdc8-4f50-86fc-6be3ac327119" data-linktype="relative-path">detached</a></span>.</p><p><b>VDS_VST_COMPACTING:  </b>The virtual disk has been
+added to the service&#39;s list of objects, the virtual disk file has been opened
+using IVdsVDisk::Open, and the virtual disk is being compacted.</p><p><b>VDS_VST_MERGING:  </b>The virtual disk has been
+added to the service&#39;s list of objects, the virtual disk file has been opened
+using IVdsVDisk::Open, and the virtual disk is being merged.</p><p><b>VDS_VST_EXPANDING:  </b>The virtual disk has been
+added to the service&#39;s list of objects, the virtual disk file has been opened
+using IVdsVDisk::Open, and the virtual disk is being expanded.</p><p><b>VDS_VST_DELETED:  </b>The virtual disk has been
+deleted.</p><p><b>VDS_VST_MAX:  </b>Denotes the maximum acceptable
+value for this type. VDS_VST_MAX - 1 is the maximum acceptable value.</p><p>When the service has been made aware of a virtual disk, the
+state is set to VDS_VST_ADDED. In order to perform any operations on the
+virtual disk such as attaching it, detaching it, merging, compacting, or
+expanding, the virtual disk file is opened using IVdsVDisk::Open. Once the
+virtual disk is opened, its state transitions to VDS_VST_OPEN.</p><p>Attach: To attach a virtual disk, the virtual disk object is
+first added to the service&#39;s list of objects and its state is set to
+VDS_VS_ADDED. Next IVdsVDisk::Open MUST be called against the virtual disk, and
+the state transitions to VDS_VST_OPEN. When the attach operation is initiated
+against the virtual disk, the state of the virtual disk transitions to VDS_VST_ATTACH_PENDING.
+The virtual disk remains in this state until the operating system disk object
+corresponding to the virtual disk has been instantiated. Once this object is
+instantiated, the virtual disk object&#39;s state transitions to VDS_VST_ATTACHED.
+The <span><a href="01ea51d6-09e2-4364-90af-32f8efb5b892" data-linktype="relative-path">IVdsOpenVDisk</a></span>
+interface is then released, the OpenVirtualDisk object is removed, and the
+state transitions to VDS_VST_ATTACHED_NOT_OPEN.</p><p>Detach: To detach a virtual disk, the virtual disk object is
+first added to the service&#39;s list of objects and its state is set to
+VDS_VST_ADDED. Next IVdsVDisk::Open MUST be called against the virtual disk,
+and the state transitions to VDS_VST_OPEN. When the detach operation is
+initiated against the virtual disk, the state of the virtual disk transitions
+to VDS_VST_DETACH_PENDING. The virtual disk remains in this state until the
+operating system disk object corresponding to the virtual disk has been
+removed. Once this object is removed, the virtual disk object&#39;s state
+transitions to VDS_VST_OPEN. The IVdsOpenVDisk interface is then released, the
+OpenVirtualDisk object is removed, and the state transitions to VDS_VST_ADDED.</p><p><b>Compact:</b> A compact operation is performed against
+either an attached virtual disk or a detached virtual disk. To compact a
+virtual disk, the virtual disk object is first added to the service&#39;s list of
+objects and its state is set to VDS_VST_ADDED.</p><p>To compact a detached virtual disk, IVdsVDisk::Open MUST be
+called against the virtual disk, and the state transitions to VDS_VST_OPEN.
+When the compact operation is initiated against the virtual disk, the state
+transitions to VDS_VST_COMPACTING. Once the compact operation has completed,
+the state then transitions back to VDS_VST_OPEN. The IVdsOpenVDisk interface is
+then released, the OpenVirtualDisk object is removed, and the new state is
+VDS_VST_ADDED.</p><p>An attached virtual disk for which there is no
+OpenVirtualDisk object will have the state VDS_VST_ATTACHED_NOT_OPEN. To
+compact an attached virtual disk, IVdsVDisk::Open MUST be called against the
+virtual disk, and the state transitions to VDS_VST_ATTACHED. When the compact
+operation is initiated against the virtual disk, the state transitions to
+VDS_VST_COMPACTING. Once the compact operation has completed, the state then
+transitions back to VDS_VST_ATTACHED. The IVdsOpenVDisk interface is then
+released, the OpenVirtualDisk object is removed, and the new state is
+VDS_VST_ATTACHED_NOT_OPEN.</p><p>Merge or Expand: Merge and expand operate on detached
+virtual disks. To merge or expand a virtual disk, the virtual disk object is
+first added to the service&#39;s list of objects and its state is set to
+VDS_VS_ADDED. Next IVdsVDisk::Open MUST be called against the virtual disk, and
+the state transitions to VDS_VST_OPEN. When the merge or expand operation is
+initiated against the virtual disk, the state of the virtual disk transitions
+to VDS_VST_MERGING or VDS_VST_EXPANDING. Once the merge or expand operation has
+completed, the state then transitions back to VDS_VST_OPEN. The IVdsOpenVDisk
+interface is then released, the OpenVirtualDisk object is removed, and the new
+state is VDS_VST_ADDED.</p></div>

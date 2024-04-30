@@ -1,0 +1,271 @@
+<div class="content"><p> </p><p>The NetrDfsAddRootTarget method is used to create a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_701a2cc1-eb5a-400f-b394-5bad264ec8f6" data-linktype="relative-path">stand-alone
+DFS namespace</a></span>, a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_2aad5e61-ffe9-406e-a192-328c5327ee72" data-linktype="relative-path">domainv1-based DFS namespace</a></span>,
+or a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8099f7c1-2a31-4a20-81e6-824689bd9c5a" data-linktype="relative-path">domainv2-based
+DFS namespace</a></span>.<a id="Appendix_A_Target_73"></a><a aria-label="Product behavior note 73" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_73" data-linktype="relative-path">&lt;73&gt;</a></p><p>The NetrDfsAddRootTarget method uses the following <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a></span>
+syntax.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrDfsAddRootTarget(
+   [in, unique, string] LPWSTR pDfsPath,
+   [in, unique, string] LPWSTR pTargetPath,
+   [in] ULONG MajorVersion,
+   [in, unique, string] LPWSTR pComment,
+   [in] BOOLEAN NewNamespace,
+   [in] ULONG Flags
+ );
+</pre></div>
+</dd></dl><p><b>pDfsPath: </b>The pointer to a null-terminated <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string. This MUST be <code>\\&lt;domain&gt;\&lt;dfsname&gt;</code>
+for domain-based <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0b8086c9-d025-45b8-bf09-6b5eca72713e" data-linktype="relative-path">DFS</a></span> or <code>\\&lt;server&gt;\&lt;share&gt;</code> for stand-alone DFS.</p><p><b>pTargetPath: </b>The pointer to a null-terminated
+Unicode string. This MUST be <code>\\&lt;server&gt;\&lt;share&gt;[\&lt;path&gt;]</code>
+for domain-based DFS or NULL for stand-alone DFS. The latter restriction is
+required to ensure that a typographic error in the domain name, while
+attempting to create a domain-based DFS, does not result in a stand-alone DFS
+namespace being created on the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ac90b498-3ba4-48d6-bcd6-5495f1654671" data-linktype="relative-path">DFS root target</a></span>
+server, if the first pathname component of the <i>pDfsPath</i> parameter is
+used to detect whether a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_133ab305-ad75-4b38-8ec9-40bc0dc3b594" data-linktype="relative-path">domain-based DFS namespace</a></span>
+or stand-alone DFS namespace is being created. When <i>pTargetPath</i> is not
+NULL, the &lt;server&gt; MUST be used as the host name of the new DFS root
+target in the metadata.</p><p><b>MajorVersion: </b>The <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_e8de88fd-d760-46fa-ad77-76961fa20aea" data-linktype="relative-path">DFS metadata</a></span> version
+to use to create the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS namespace</a></span>. When
+adding a DFS root target to an existing DFS namespace, <i>MajorVersion</i> MUST
+be either 0 or the major version number of the existing DFS namespace.
+Otherwise, the call MUST fail. </p><p><b>pComment: </b>The pointer to a null-terminated
+Unicode string that contains a comment associated with this root or link. This
+string has no protocol-specified restrictions on length or content. The comment
+is meant for human consumption and does not affect server functionality. The
+comment MUST be ignored when adding a target to an existing link.</p><p><b>NewNamespace: </b>A Boolean value that, if TRUE,
+indicates a request to create a new root. If FALSE, this value indicates a
+request to add a new root target to an existing root.</p><p><b>Flags: </b>This parameter MUST be zero for a
+domain-based DFS namespace and MUST be ignored for a stand-alone DFS namespace.</p><p><b>Return Values: </b>The method MUST return 0 on
+success and a nonzero error code on failure. The method can return any specific
+error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Successful completion.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Permission to perform the operation was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000B7</p>
+  <p>ERROR_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>The specified namespace already exists on this server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000906</p>
+  <p>NERR_NetNameNotFound</p>
+  </td>
+  <td>
+  <p>The share that the TargetPath parameter specifies does
+  not already exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The following table summarizes the various actions that the
+NetrDfsAddRootTarget method takes based on the parameter values.</p><table><thead>
+  <tr>
+   <th>
+   <p>pDfsPath parameter</p>
+   </th>
+   <th>
+   <p>pTargetPath parameter</p>
+   </th>
+   <th>
+   <p>MajorVersion parameter</p>
+   </th>
+   <th>
+   <p>Explanation</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>\\&lt;domain&gt;\&lt;dfsname&gt;</p>
+  </td>
+  <td>
+  <p>\\&lt;server&gt;\&lt;share&gt;</p>
+  </td>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>Creates a new domainv1-based DFS namespace or adds a
+  new root target to an existing domainv1-based DFS namespace. If a DFS
+  namespace already exists, the version specified MUST match the DFS namespace;
+  otherwise, the call fails.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>\\&lt;domain&gt;\&lt;dfsname&gt;</p>
+  </td>
+  <td>
+  <p>\\&lt;server&gt;\&lt;share&gt;</p>
+  </td>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>Creates a new domainv2-based DFS namespace or adds a
+  new root target to an existing domainv2-based DFS namespace. If a DFS
+  namespace already exists, the version specified MUST match the DFS namespace;
+  otherwise, the call fails.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>\\&lt;domain&gt;\&lt;dfsname&gt;</p>
+  </td>
+  <td>
+  <p>\\&lt;server&gt;\&lt;share&gt;</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>Adds a new root target to an existing domain-based DFS
+  namespace or a domainv2-based DFS namespace. If a DFS namespace does not
+  already exist, the call fails.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>\\&lt;server&gt;\&lt;share&gt;</p>
+  </td>
+  <td>
+  <p>NULL</p>
+  </td>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>Creates a new stand-alone DFS namespace.</p>
+  </td>
+ </tr></tbody></table><p>The following scheme is used to create a new domainv2-based
+DFS namespace:</p><ul><li><p><span><span> 
+</span></span><span><a href="7c34ae60-9d4d-46b5-b2e1-e8ca09ac4d10" data-linktype="relative-path">NetrDfsGetSupportedNamespaceVersion</a></span>
+is called to determine an appropriate version number to pass to the
+NetrDfsAddRootTarget() method.</p>
+</li><li><p><span><span> 
+</span></span>The client-side method creates a DFS metadata, format-independent
+<span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a></span>
+entry called the DFS namespace anchor. It contains only the DFS metadata major
+version number.</p>
+</li><li><p><span><span> 
+</span></span>Updates the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_9f92aa05-dd0a-45f2-88d6-89f1fb654395" data-linktype="relative-path">access control list (ACL)</a></span>
+on the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> of the DFS
+namespace to permit read/write access by the DFS root target server.</p>
+</li><li><p><span><span> 
+</span></span>The client-side method then issues an <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> call to the DFS
+root target server.</p>
+</li><li><p><span><span> 
+</span></span>The <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_3de8e640-501a-4b25-80a7-0ba769f3c0b9" data-linktype="relative-path">DFS server</a></span> creates a
+new DFS namespace LDAP entry with the DFS namespace anchor LDAP entry as its
+parent.</p>
+</li><li><p><span><span> 
+</span></span>All <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS links</a></span> are
+created with the DFS namespace LDAP entry as the parent. For more information,
+see section <span><a href="6317bce5-9588-421d-a007-f61e459b4083" data-linktype="relative-path">2.3.2</a></span>.</p>
+</li></ul><p>This results in two LDAP entries in domainv2 corresponding
+to the single LDAP entry in domainv1.</p><p>If the domain-based DFS namespace already exists, and the <i>ServerName</i>
+and <b>RootShare</b> parameters are a root target, the server MUST fail with
+ERROR_ALREADY_EXISTS.</p><p>If the share that the <i>pTargetPath</i> parameter specifies
+does not already exist, the RPC method MUST fail with NERR_NetNameNotFound
+(0x00000906).</p><p>The server MUST synchronously update the following fields in
+the stand-alone DFS metadata.</p><table><thead>
+  <tr>
+   <th>
+   <p>Operation </p>
+   </th>
+   <th>
+   <p>DFS metadata changes required.</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Adding a new namespace</p>
+  </td>
+  <td>
+  <p>Creates a new <b>Namespace</b> object for the
+  namespace, and inserts the object into <b>NamespaceList</b>.</p>
+  </td>
+ </tr></tbody></table><p>The server MUST update the following fields in the
+domainv1-based DFS metadata.</p><table><thead>
+  <tr>
+   <th>
+   <p>Operation </p>
+   </th>
+   <th>
+   <p>DFS metadata changes required </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Adding a new namespace</p>
+  </td>
+  <td>
+  <p>Creates new DFS metadata.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Adding a new root target</p>
+  </td>
+  <td>
+  <p>Updates the TargetCount field of the
+  DFSTargetListBLOB, creates a new TargetEntryBLOB, updates the
+  DFSTargetListBLOBSize, updates the BLOBDataSize of the DFSNamespaceRootBLOB,
+  and adds the DFSRootTarget to the remoteServerName attribute in the object.</p>
+  </td>
+ </tr></tbody></table><p>The server MUST update the following fields in the
+domainv2-based DFS metadata.</p><table><thead>
+  <tr>
+   <th>
+   <p>Operation </p>
+   </th>
+   <th>
+   <p>DFS metadata changes required </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Adding a new namespace</p>
+  </td>
+  <td>
+  <p>Creates new DFS namespace LDAP entry with the DFS
+  namespace anchor LDAP as its parent.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Adding a new root target</p>
+  </td>
+  <td>
+  <p>Updates the msDFS-TargetListv2 attribute, which is
+  stored as an XML document, by adding *server* into the list of root targets.</p>
+  </td>
+ </tr></tbody></table><p>The server MUST synchronously update the DFS metadata of a
+domain-based DFS namespace. </p><p>If <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_cf94d206-f71c-4ca1-891a-24c83f533e45" data-linktype="relative-path">DFS root scalability mode</a></span>
+is not enabled for the domain-based DFS namespace, the server MUST notify other
+DFS root targets of the change in DFS metadata by asynchronously issuing a
+NetrDfsSetInfo (Opnum 3) method with the Level parameter 101 and with the <b>State</b>
+field of <span><a href="af9d607e-04e5-4722-8d00-76cf9c7b69f9" data-linktype="relative-path">DFS_INFO_101</a></span> set to
+DFS_VOLUME_STATE_RESYNCHRONIZE.</p></div>

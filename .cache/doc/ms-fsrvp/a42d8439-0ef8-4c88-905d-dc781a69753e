@@ -1,0 +1,83 @@
+<div class="content"><p> </p><p>The <b>IsPathShadowCopied</b> method is invoked by the
+client to query if any <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow copy</a></span> for a
+share already exists.</p><dl>
+<dd>
+<div><pre> DWORD IsPathShadowCopied(
+         [in] handle_t hBinding,
+         [in] [string] LPWSTR ShareName,
+         [out] BOOL* ShadowCopyPresent,
+         [out] long* ShadowCopyCompatibility);
+  
+</pre></div>
+</dd></dl><p><b>hBinding:</b>  An RPC binding handle (as defined
+in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>).</p><p><b>ShareName:</b> The full path of the share in UNC
+format.</p><p><b>ShadowCopyPresent:</b> This value is set to TRUE
+if the <i>ShareName</i> specified has a shadow copy; otherwise set to FALSE.</p><p><b>ShadowCopyCompatibility:</b> This value indicates
+whether certain I/O operations on the <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_220dcaa3-364d-4de3-9752-82c053762cb6" data-linktype="relative-path">file store</a></span>
+containing the shadow copy are disabled. This MUST be zero or a combination of
+the values as specified in section <span><a href="67c091da-9a2b-413a-a2bb-346751513c19" data-linktype="relative-path">2.2.2.3</a></span>.</p><p><b>Return Values:</b>  The method returns one of the
+values as specified in section <span><a href="b45c794e-9362-42b7-80c6-7dae3382acf0" data-linktype="relative-path">2.2.4</a></span>. The most
+common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ZERO</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>E_ACCESSDENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  the operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG </p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST verify that the share identified by <i>ShareName</i>
+exists on the server by invoking the event as specified in <span><a href="../ms-smb2/5606ad47-5ee0-437a-817e-70c366052962" data-linktype="relative-path">[MS-SMB2]</a></span>
+section <span><a href="../ms-smb2/13acd5bf-3518-4dfd-8e06-a2e5cc45bf04" data-linktype="relative-path">3.3.4.16</a></span>
+or <span><a href="../ms-cifs/d416ff7c-c536-406e-a951-4f04b2fd1d2b" data-linktype="relative-path">[MS-CIFS]</a></span>
+section <span><a href="../ms-cifs/c5193839-4cd5-4f95-8ada-df13584251ce" data-linktype="relative-path">3.3.4.12</a></span>.
+If the share does not exist, the server MUST fail the call with FSRVP_E_OBJECT_NOT_FOUND.</p><p>The server MUST identify the file store on which the <i>ShareName</i>
+share is hosted, in an implementation-defined manner.</p><p>For each <b>ShadowCopySet</b> in the <b>GlobalShadowCopySetTable</b>,
+where <b>ShadowCopySet.Status</b> is &#34;Committed&#34;,
+&#34;Exposed&#34;, or &#34;Recovered&#34;, the server MUST iterate over all
+the <b>ShadowCopy</b> objects in <b>ShadowCopySet.ShadowCopyList</b> and verify
+if any <b>ShadowCopy</b> exists where <b>ShadowCopy.VolumeName</b> matches the
+file store on which <i>ShareName</i> is hosted. If no entry is found, the
+server MUST set <i>ShadowCopyPresent</i> to FALSE. If an entry is found, the
+server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Set <i>ShadowCopyPresent</i> to TRUE.</p>
+</li><li><p><span><span> 
+</span></span>Query the properties of the file store in an
+implementation-defined manner.</p>
+</li><li><p><span><span> 
+</span></span>If the shadow copy provider does not support defragmentation
+operations on the file store, set the DISABLE_DEFRAG bit of <i>ShadowCopyCompatibility</i>.</p>
+</li><li><p><span><span> 
+</span></span>If the shadow copy provider does not support <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_bd4ca8ab-6338-4eb5-95a9-6f90f728d21e" data-linktype="relative-path">indexing</a></span>
+(see the definition in section <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b" data-linktype="relative-path">1.1</a></span>) on the file
+store, the server MUST set the DISABLE_CONTENTINDEX bit of <i>ShadowCopyCompatibility</i>.
+</p>
+</li></ul><p>The server MUST return ZERO to the caller.</p></div>

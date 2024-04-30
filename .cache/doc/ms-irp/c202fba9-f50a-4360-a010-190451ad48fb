@@ -1,0 +1,51 @@
+<div class="content"><p> </p><p>The <b>FTP_STATISTICS_0</b> structure contains statistics on
+the usage of the FTP server.</p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _FTP_STATISTICS_0 {
+   LARGE_INTEGER TotalBytesSent;
+   LARGE_INTEGER TotalBytesReceived;
+   DWORD TotalFilesSent;
+   DWORD TotalFilesReceived;
+   DWORD CurrentAnonymousUsers;
+   DWORD CurrentNonAnonymousUsers;
+   DWORD TotalAnonymousUsers;
+   DWORD TotalNonAnonymousUsers;
+   DWORD MaxAnonymousUsers;
+   DWORD MaxNonAnonymousUsers;
+   DWORD CurrentConnections;
+   DWORD MaxConnections;
+   DWORD ConnectionAttempts;
+   DWORD LogonAttempts;
+   DWORD ServiceUptime;
+   DWORD TotalAllowedRequests;
+   DWORD TotalRejectedRequests;
+   DWORD TotalBlockedRequests;
+   DWORD CurrentBlockedRequests;
+   DWORD MeasuredBandwidth;
+   DWORD TimeOfLastClear;
+ } FTP_STATISTICS_0,
+  *LPFTP_STATISTICS_0;
+</pre></div>
+</dd></dl><p><b>TotalBytesSent:</b>  The total number of
+bytes sent.</p><p><b>TotalBytesReceived:</b>  The total
+number of bytes received.</p><p><b>TotalFilesSent:</b>  The total number of
+files sent by the FTP server.</p><p><b>TotalFilesReceived:</b>  The total
+number of files received by the FTP server.</p><p><b>CurrentAnonymousUsers:</b>  The current
+number of anonymous users connected to the FTP server.</p><p><b>CurrentNonAnonymousUsers:</b>  The
+current number of non-anonymous users connected to the FTP server.</p><p><b>TotalAnonymousUsers:</b>  The total
+number of anonymous users that have ever connected to the FTP server.</p><p><b>TotalNonAnonymousUsers:</b>  The total
+number of non-anonymous users that have ever connected to the FTP server.</p><p><b>MaxAnonymousUsers:</b>  The maximum
+number of anonymous users allowed to simultaneously connect to the FTP server.</p><p><b>MaxNonAnonymousUsers:</b>  The maximum
+number of non-anonymous users allowed to simultaneously connect to the FTP
+server.</p><p><b>CurrentConnections:</b>  The current
+number of connections to the FTP server.</p><p><b>MaxConnections:</b>  The maximum number
+of connections to the FTP server.</p><p><b>ConnectionAttempts:</b>  The number of
+connection attempts that have been made to the FTP server.</p><p><b>LogonAttempts:</b>  The number of logon attempts
+that have been made to the FTP server.</p><p><b>ServiceUptime:</b>  The time that the
+FTP server has been operational.</p><p><b>TotalAllowedRequests:</b>  The total
+number of requests allowed to the FTP server.</p><p><b>TotalRejectedRequests:</b>  The total
+number of rejected requests.</p><p><b>TotalBlockedRequests:</b>  The total
+number of blocked requests.</p><p><b>CurrentBlockedRequests:</b>  The current
+number of blocked requests.</p><p><b>MeasuredBandwidth:</b>  The measured
+network bandwidth for the FTP server.</p><p><b>TimeOfLastClear:</b>  The time of the
+last clear.</p></div>

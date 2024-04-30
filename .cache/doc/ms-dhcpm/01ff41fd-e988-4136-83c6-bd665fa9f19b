@@ -1,0 +1,107 @@
+<div class="content"><p> </p><p>The <b>R_DhcpSetSuperScopeV4</b> method adds, modifies, or
+deletes the IPv4 subnet to/from the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b4838551-37f3-47de-a36c-7df328750d6d" data-linktype="relative-path">superscope</a></span>
+information from the DHCPv4 server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpSetSuperScopeV4(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [in, unique, string] WCHAR* SuperScopeName,
+   [in] BOOL ChangeExisting
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SubnetAddress: </b>This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>,
+containing the IPv4 address of the subnet that is being set in a superscope or
+is removed from a superscope.</p><p><b>SuperScopeName: </b>This is of a pointer of <span><a href="../ms-dtyp/7df7c1d5-492c-4db4-a992-5cd9e887c5d7" data-linktype="relative-path">WCHAR</a></span>
+that points to the location that contains the superscope name. If NULL is
+specified in this field, the subnet corresponding to the <i>SubnetAddress</i>
+parameter is removed from any superscope that it was part of.</p><p><b>ChangeExisting: </b>This is a <span><a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">BOOL</a></span>
+that MUST be set to TRUE if the IPv4 subnet is already part of any superscope.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist on the DHCP
+  server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E24</p>
+  <p>ERROR_DHCP_SUBNET_EXITS</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet already exists.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 36.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4Scope</b> ADM element entry corresponding
+to the <i>SubnetAddress</i> parameter from the server ADM element <b>DHCPv4ScopesList</b>.
+If the required <b>DHCPv4Scope</b> ADM element entry is not found, return
+ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>SuperScopeName</i> parameter is specified as NULL, set
+the <b>DHCPv4Scope.SuperScopeId</b> ADM element to 0 and return ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ChangeExisting</i> parameter is set to FALSE and if <b>DHCPv4Scope.SuperScopeId</b>
+ADM element is nonzero, return ERROR_DHCP_SUBNET_EXITS.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4SuperScope</b> ADM element entry
+corresponding to the <i>SuperScopeName</i> parameter from the server ADM
+element <b>DHCPv4SuperScopesList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>DHCPv4SuperScope</b> ADM element entry is not found,
+create a <b>DHCPv4SuperScope</b> ADM element object and insert it into the <b>DHCPv4SuperScopesList</b>
+ADM element. The <b>DHCPv4SuperScope</b> ADM element object is initialized as
+follows:</p>
+<ul><li><p><span><span>  </span></span>The
+<b>DHCPv4SuperScope.SuperScopeName</b> ADM element is set to the <i>SuperScopeName</i>
+input parameter.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4SuperScope.SuperScopeId</b> ADM element is set to the index of this
+entry in the <b>DHCPv4SuperScopesList</b> ADM element.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>In the preceding <b>DHCPv4Scope</b> ADM element entry, set the <b>DHCPv4Scope.SuperScopeId</b>
+ADM element to the <b>SuperScopeId</b> ADM element member of the <b>DHCPv4SuperScope</b>
+ADM element entry corresponding to the <i>SuperScopeName</i> parameter, and
+then return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

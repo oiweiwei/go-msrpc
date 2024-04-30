@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The <b>DHCP_PROPERTY_TYPE</b> enumeration defines the data
+types for DHCP property values and is used in the <span><a href="1ac6e6e5-f2bc-42ef-9d6a-c9457d48c3c3" data-linktype="relative-path">DHCP_PROPERTY (section 2.2.1.2.117)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef enum {
+     DhcpPropTypeByte,
+     DhcpPropTypeWord,
+     DhcpPropTypeDword,
+     DhcpPropTypeString,
+     DhcpPropTypeBinary,
+ } DHCP_PROPERTY_TYPE;
+</pre></div>
+</dd></dl><p><b>DhcpPropTypeByte: </b>The property value is of
+type <b>BYTE</b>.</p><p><b>DhcpPropTypeWord: </b>The property value is of
+type <b>WORD</b>.</p><p><b>DhcpPropTypeDword: </b>The property value is of
+type <b>DWORD</b>.</p><p><b>DhcpPropTypeString: </b>The property value is a
+pointer of type <b>LPWSTR</b> that points to a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+includes the terminating null character.</p><p><b>DhcpPropTypeBinary: </b>The property value is of
+type <span><a href="a2d136fe-4173-400d-aa11-9d146d722260" data-linktype="relative-path">DHCP_BINARY_DATA (section 2.2.1.2.9)</a></span>.</p></div>

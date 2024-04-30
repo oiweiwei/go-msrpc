@@ -1,0 +1,32 @@
+<div class="content"><p> </p><p>The DEPENDENT_DISK_FLAG enumeration contains <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual
+disk</a></span> dependency information flags.</p><dl>
+<dd>
+<div><pre> typedef enum _DEPENDENT_DISK_FLAG
+ {
+   DEPENDENT_DISK_FLAG_NONE = 0x0,
+   DEPENDENT_DISK_FLAG_MULT_BACKING_FILES = 0x1,
+   DEPENDENT_DISK_FLAG_FULLY_ALLOCATED = 0x2,
+   DEPENDENT_DISK_FLAG_READ_ONLY = 0x4,
+   DEPENDENT_DISK_FLAG_REMOTE = 0x8,
+   DEPENDENT_DISK_FLAG_SYSTEM_VOLUME = 0x10,
+   DEPENDENT_DISK_FLAG_SYSTEM_VOLUME_PARENT = 0x20,
+   DEPENDENT_DISK_FLAG_REMOVABLE = 0x40,
+   DEPENDENT_DISK_FLAG_NO_DRIVE_LETTER = 0x80,
+   DEPENDENT_DISK_FLAG_PARENT = 0x100,
+   DEPENDENT_DISK_FLAG_NO_HOST_DISK = 0x200,
+   DEPENDENT_DISK_FLAG_PERMANENT_LIFETIME = 0x400
+ } DEPENDENT_DISK_FLAG;
+</pre></div>
+</dd></dl><p><b>DEPENDENT_DISK_FLAG_NONE:  </b>No flags specified.
+Use system defaults.</p><p><b>DEPENDENT_DISK_FLAG_MULT_BACKING_FILES:  </b>Multiple
+files backing the virtual disk.</p><p><b>DEPENDENT_DISK_FLAG_FULLY_ALLOCATED:  </b>Fully
+allocated virtual disk.</p><p><b>DEPENDENT_DISK_FLAG_READ_ONLY:  </b>Read-only
+virtual disk.</p><p><b>DEPENDENT_DISK_FLAG_REMOTE:  </b>The backing file
+of the virtual disk is not on a local physical <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.</p><p><b>DEPENDENT_DISK_FLAG_SYSTEM_VOLUME:  </b>Reserved.</p><p><b>DEPENDENT_DISK_FLAG_SYSTEM_VOLUME_PARENT:  </b>The
+backing file of the virtual disk is on the system <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>.</p><p><b>DEPENDENT_DISK_FLAG_REMOVABLE:  </b>The backing
+file of the virtual disk is on a removable physical disk.</p><p><b>DEPENDENT_DISK_FLAG_NO_DRIVE_LETTER:  </b>Drive
+letters are not automatically assigned to the volumes on the virtual disk.</p><p><b>DEPENDENT_DISK_FLAG_PARENT:  </b>The virtual disk
+is a parent in a differencing chain.</p><p><b>DEPENDENT_DISK_FLAG_NO_HOST_DISK:  </b>The virtual
+disk is not surfaced on (attached to) the local host. For example, it is
+attached to a guest virtual machine.</p><p><b>DEPENDENT_DISK_FLAG_PERMANENT_LIFETIME:  </b>The
+lifetime of the virtual disk is not tied to any application or process.</p></div>

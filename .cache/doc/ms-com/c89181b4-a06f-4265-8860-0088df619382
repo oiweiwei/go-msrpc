@@ -1,0 +1,82 @@
+<div class="content"><p>To indicate to the server that the client is running within
+an <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_40358b87-f131-4ea9-8e87-51912d97d3cf" data-linktype="relative-path">activity</a>, the client
+MUST include an activity context property as part of the client context in an
+object activation request. </p><p>The <b>policyId</b> field of the <a href="../ms-dcom/6865a1c4-f094-486e-990a-436257db57e5" data-linktype="relative-path">PROPMARSHALHEADER</a>
+instance (<a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section 2.2.20.1) for the activity context property MUST be set to
+guidActivityProperty, as specified in section <a href="738db53c-1600-432e-b288-63679b581471" data-linktype="relative-path">1.9</a>. The <b>CLSID</b>
+field of the PROPMARSHALHEADER instance ([MS-DCOM] section 2.2.20.1) for the
+activity context property MUST be set to GUID_NULL. The activity context
+property MUST be marshaled using the <a href="../ms-dcom/88fdb261-7c9a-41ea-bfac-31583bdc65e6" data-linktype="relative-path">OBJREF_CUSTOM</a>
+format ([MS-DCOM] section 2.2.18.6), and the <b>CLSID</b> field of the
+OBJREF_CUSTOM instance MUST be set to CLSID_ActivityUnmarshal, as specified in
+section 1.9.</p><p>The format of the OBJREF_CUSTOM.pObjectData buffer for
+CLSID_ActivityUnmarshal MUST be specified as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">MaxVersion</p>
+  </td>
+  <td colspan="16">
+  <p align="center">MinVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">ActivityID
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Timeout</p>
+  </td>
+ </tr>
+</tbody></table><p><b>MaxVersion (2 bytes): </b>The major version number
+for this activity context property format. This field MUST be set to 0x0001.</p><p><b>MinVersion (2 bytes): </b>The minor version number
+for this activity context property format. This field MUST be set to 0x0001.</p><p><b>ActivityID (16 bytes): </b>A <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> that MUST specify the <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_4df8c10b-a8c7-456b-87b8-2999db34734a" data-linktype="relative-path">activity ID</a>.</p><p><b>Timeout (4 bytes): </b>An unsigned long that MUST
+specify the activity time-out in milliseconds. A value of 0xFFFFFFFF MUST be
+interpreted to specify an INFINITE time-out.</p></div>

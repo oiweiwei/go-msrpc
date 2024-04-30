@@ -1,0 +1,108 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/f829f4e6-465d-4c77-a9da-74c531a299cd" data-linktype="external">msdn link</a></p><p>(Protocol Version 3) The ApiOpenGroupEx method SHOULD<a id="Appendix_A_Target_98"></a><a aria-label="Product behavior note 98" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_98" data-linktype="relative-path">&lt;98&gt;</a> establish context on the server
+about the interaction of a client with a specified cluster group by means of
+the current <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+connection. ApiOpenGroupEx returns a context handle so that the client can
+refer to the group in subsequent method calls.</p><p>The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+MUST determine the level of access to be granted to the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> (section <a href="a249a463-3d3b-4058-abf6-3024d81806a0" data-linktype="relative-path">3.1.4</a>). Upon success, the
+server MUST associate that level of access with the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_51c51c14-7f9d-4c0b-a69c-d3e059bfffac" data-linktype="relative-path">group</a> context it has
+established.</p><p>The client has two ways to determine the group name to
+specify for the <i>lpszGroupName</i> parameter. A group can have a well-known
+name if it was configured as such using implementation-specific methods between
+servers. Alternatively, a client can use <a href="cac947fb-7066-4d0c-b76d-7d26a89a2d46" data-linktype="relative-path">ApiGetResourceState</a> which
+returns the name of the group in which a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_94e97f15-2f1a-406f-a740-607bb97761ec" data-linktype="relative-path">resource</a> is contained.</p><p>The server SHOULD accept an ApiOpenGroupEx request if its <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_a93e2fea-3006-4a06-b48f-fdb36d9abac9" data-linktype="relative-path">protocol server state</a> is
+read-only and MUST accept the request for processing if it is in the read/write
+state, as specified in section <a href="756547e7-ca64-4b7c-9f1b-2b1fbc6153d3" data-linktype="relative-path">3.1.1</a>.</p><dl>
+<dd>
+<div><pre> HGROUP_RPC ApiOpenGroupEx(
+   [in, string] LPCWSTR lpszGroupName,
+   [in] DWORD dwDesiredAccess,
+   [out] DWORD * lpdwGrantedAccess,
+   [out] error_status_t *Status,
+   [out] error_status_t *rpc_status
+ );
+</pre></div>
+</dd></dl><p><b>lpszGroupName: </b>A <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> that
+contains the name of the group for which to establish context on the server.</p><p><b>dwDesiredAccess: </b>The value for this parameter
+is the same as specified for <i>dwDesiredAccess</i> in <a href="00ce494d-0c74-44fd-8276-c73665cf616b" data-linktype="relative-path">ApiOpenClusterEx</a>.</p><p><b>lpdwGrantedAccess: </b>The value for this
+parameter is the same as specified for <i>lpdwGrantedAccess</i> in
+ApiOpenClusterEx, with the additional stipulation that if the server sets <i>lpdwGrantedAccess</i>
+to GENERIC_READ and if the client has the backup privilege, as defined in <a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a>,
+then the returned context handle can also be used in a subsequent call to <a href="7be857e6-dd01-4209-a0f6-3ca9dc6a6767" data-linktype="relative-path">ApiMoveGroup</a> or <a href="e0485cd4-d941-4496-a443-3d14c206f90d" data-linktype="relative-path">ApiMoveGroupToNode</a>.</p><p><b>Status: </b>Indicates the status of this
+operation. The server MUST set <b>Status</b> to the following error codes for
+the specified conditions.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_SUCCESS</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Success.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p><i>dwDesiredAccess</i> indicates a level of access
+  exceeding what the client is entitled to (section 3.1.4).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_SHARING_PAUSED</p>
+  <p>0x00000046</p>
+  </td>
+  <td>
+  <p>The remote server has been paused or is in the process
+  of being started.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p><i>dwDesiredAccess</i> is invalid, as specified
+  earlier in this section.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RPC_S_PROCNUM_OUT_OF_RANGE</p>
+  <p>0x000006D1</p>
+  </td>
+  <td>
+  <p>The server does not support this method.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_GROUP_NOT_FOUND</p>
+  <p>0x00001395</p>
+  </td>
+  <td>
+  <p>A group that matches the name <i>lpszGroupName</i> was
+  not found in the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_feef37b3-c173-4f51-aab6-b55a6366259b" data-linktype="relative-path">cluster</a>
+  configuration.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, the server sets <i>Status</i>
+to a value that is not one of the values listed in the preceding table. The
+client MUST treat all values that are not listed in the preceding table the
+same, except as specified in section <a href="ca75805a-4b39-4074-8b5b-dbaae6e81b1f" data-linktype="relative-path">3.2.4.6</a>.</p>
+</dd></dl><p><b>rpc_status: </b>A 32-bit integer used to indicate
+success or failure. The RPC runtime MUST indicate, by writing to this
+parameter, whether it succeeded in executing this method on the server. The
+encoding of the value passed in this parameter MUST conform to encoding for
+comm_status and fault_status, as specified in Appendix E of <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>Return Values: </b>The method MUST return a valid <a href="90b10b4b-a957-44a5-a5bc-912fed366161" data-linktype="relative-path">HGROUP_RPC</a> context handle
+(section 2.2.1.3) to indicate success; otherwise, it MUST return NULL.</p></div>

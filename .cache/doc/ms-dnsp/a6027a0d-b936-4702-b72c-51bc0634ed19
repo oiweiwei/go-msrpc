@@ -1,0 +1,67 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_ZONE_DNSSEC_SETTINGS</b> structure SHOULD<a id="Appendix_A_Target_50"></a><a aria-label="Product behavior note 50" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_50" data-linktype="relative-path">&lt;50&gt;</a>  represent the DNSSEC
+properties of a zone.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcZoneDnssecSettings  {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   DWORD fIsSigned;
+   DWORD fSignWithNSEC3;
+   DWORD fNSEC3OptOut;
+   DWORD dwMaintainTrustAnchor;
+   DWORD fParentHasSecureDelegation;
+   DWORD dwDSRecordAlgorithms;
+   DWORD fRFC5011KeyRollovers;
+   BYTE bNSEC3HashAlgorithm;
+   BYTE bNSEC3RandomSaltLength;
+   WORD wNSEC3IterationCount;
+   LPWSTR pwszNSEC3UserSalt;
+   DWORD dwDNSKEYRecordSetTtl;
+   DWORD dwDSRecordSetTtl;
+   DWORD dwSignatureInceptionOffset;
+   DWORD dwSecureDelegationPollingPeriod;
+   DWORD dwPropagationTime;
+   DWORD cbNSEC3CurrentSaltLength;
+   PBYTE pbNSEC3CurrentSalt;
+   GUID CurrentRollingSKDGuid;
+   DWORD dwBufferLength;
+   PBYTE pBuffer;
+   DWORD dwCount;
+   PDNS_RPC_ZONE_SKD pZoneSkdArray[1];
+ } DNS_RPC_ZONE_DNSSEC_SETTINGS,
+  *PDNS_RPC_ZONE_DNSSEC_SETTINGS;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The structure version
+number; this MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> MUST be set to zero when sent and
+MUST be ignored on receipt.</p><p><b>fIsSigned:</b> States whether or not the zone is
+signed.</p><p><b>fSignWithNSEC3:</b> States whether the zone has
+NSEC3 Authenticated Denial of Existence support.</p><p><b>fNSEC3OptOut:</b> States whether the zone has
+unsecure <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_32174781-13ee-48b0-8fc0-ef6bbe207573" data-linktype="relative-path">delegations</a></span>.</p><p><b>dwMaintainTrustAnchor:</b> States whether Trust
+Anchors are maintained for this zone.</p><p><b>fParentHasSecureDelegation:</b> Delegation Status
+(Secure\UnSecure) for this zone from the parent.</p><p><b>dwDSRecordAlgorithms:</b> Algorithms used for
+generating a hash of the DNSKEY record.</p><p><b>fRFC5011KeyRollovers:</b> 5011 rollover status
+(Enabled\Disabled) for this zone.</p><p><b>bNSEC3HashAlgorithm:</b> Algorithm used for
+generating NSEC3 hash (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=225981" data-linktype="external">[RFC5155]</a></span>
+section 5).</p><p><b>bNSEC3RandomSaltLength:</b> Length of Salt used in
+generating NSEC3 records for this zone (see [RFC5155] section 5).</p><p><b>wNSEC3IterationCount:</b> Iteration count for
+generating NSEC3 records for this zone (see [RFC5155] section 5).</p><p><b>pwszNSEC3UserSalt:</b> User defined salt used for
+generating NSEC3 records for this zone (see [RFC5155] section 5).</p><p><b>dwDNSKEYRecordSetTtl:</b> <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_185c4181-772d-4458-bb90-ab0e11370a1c" data-linktype="relative-path">Time-to-live
+(TTL)</a></span> for the DNSKEY resource record.</p><p><b>dwDSRecordSetTtl:</b> TTL for the DS Resource
+Record.</p><p><b>dwSignatureInceptionOffset:</b> Time in seconds
+for Inception of Signatures for RRSIGs as defined in <span><a href="https://go.microsoft.com/fwlink/?LinkId=107052" data-linktype="external">[RFC4034]</a></span>
+section 3.1.5.</p><p><b>dwSecureDelegationPollingPeriod:</b> The interval,
+in seconds, to refresh the set of delegation signer (DS) records in a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_26f7fedd-71a6-47c1-977d-4ef92e768246" data-linktype="relative-path">secure
+delegation</a></span>.</p><p><b>dwPropagationTime:</b> The time, in seconds, that
+it takes for zone data changes to propagate to other copies of the zone.</p><p><b>cbNSEC3CurrentSaltLength:</b> Length of the
+Current User salt for building an NSEC3 chain of zone records.</p><p><b>pbNSEC3CurrentSalt:</b> Pointer to the
+pwszNSEC3UserSalt for building an NSEC3 chain of zone records.</p><p><b>CurrentRollingSKDGuid:</b> Unique identifier of a
+rolling SKD of a zone, if any.</p><p><b>pdwBufferLength:</b> A pointer to an integer that
+on success contains the length of the buffer pointed to by <b>ppBuffer</b>.</p><p><b>ppBuffer:</b> A pointer to a pointer that points
+to a buffer containing the enumerated records. The buffer is a series of
+structures beginning with a <span><a href="cb5539fa-67fd-40e0-9ea5-468ecc56bd66" data-linktype="relative-path">DNS_RPC_NODE
+structure (section 2.2.2.2.3)</a></span>. The records for the node
+will be represented by a series of <span><a href="ac793981-1c60-43b8-be59-cdbb5c4ecb8a" data-linktype="relative-path">DNS_RPC_RECORD
+structures (section 2.2.2.2.5)</a></span>. The number of
+DNS_RPC_RECORD structures following a <b>DNS_RPC_NODE</b> structure is given by
+the wRecordCount member of <b>DNS_RPC_NODE</b>.</p><p><b>dwCount:</b> The number of signing key descriptors
+present in the array of signing key descriptors pointed to by <b>SkdArray</b>.</p><p><b>pZoneSkdArray:</b> A list of SKDs for a zone. This
+is the array of the <b>DNS_RPC_ZONE_SKD</b> structure.</p></div>

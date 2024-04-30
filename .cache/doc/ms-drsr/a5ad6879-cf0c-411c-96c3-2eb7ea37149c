@@ -1,0 +1,251 @@
+<div class="content"><p> </p><p>DRS_SecBuffer is a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> for a
+buffer that contains <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8e961bf0-95ba-4f58-9034-b67ccb27f317" data-linktype="relative-path">authentication</a></span> data.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [range(0,10000)] unsigned long cbBuffer;
+   unsigned long BufferType;
+   [size_is(cbBuffer)] BYTE* pvBuffer;
+ } DRS_SecBuffer;
+</pre></div>
+</dd></dl><p><b>cbBuffer:</b>  The size, in bytes, of
+the pvBuffer array.</p><p><b>BufferType:</b>  A bit field, presented
+in little-endian byte order, that contains the following values:</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>T Y P</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>R O</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>X:</b> Unused. MUST be zero and ignored.</p>
+</dd>
+<dd>
+<p><b>TYP:</b> Can be one of the following values:</p>
+<dl>
+<dd>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SECBUFFER_EMPTY</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>A placeholder in the buffer array. The caller can
+  supply several such entries in the array, and the security package can return
+  data in them.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SECBUFFER_DATA</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Used for common data. The security package can read
+  this data and write it, for example, to encrypt some or all of it.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SECBUFFER_TOKEN</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>This buffer is used to indicate the security token
+  portion of the message. This is read-only for input parameters or read/write
+  for output parameters.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SECBUFFER_PKG_PARAMS</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>These are transport-to-package–specific parameters.
+  For example, the Netware redirector can supply the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_62a8c543-5998-480b-8fa7-41a8f04a18e5" data-linktype="relative-path">server object</a></span>
+  identifier, while DCE <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> can supply an
+  association <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>, and so on.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SECBUFFER_MISSING</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The security package uses this value to indicate the
+  number of missing bytes in a particular message. The <b>pvBuffer</b> member
+  is ignored in this type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SECBUFFER_EXTRA</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The security package uses this value to indicate the
+  number of extra or unprocessed bytes in a message.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SECBUFFER_STREAM_TRAILER</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>Indicates a protocol-specific trailer for a particular
+  record. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SECBUFFER_STREAM_HEADER</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>Indicates a protocol-specific header for a particular
+  record. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd></dl></dd>
+<dd>
+<p><b>RO (SECBUFFER_READONLY, 0x80000000):</b> The
+buffer is read-only. This flag is intended for sending header data to the
+security package for <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_fa444149-ef93-4512-a278-2e756295630c" data-linktype="relative-path">checksumming</a></span>. The
+package can read this buffer but cannot modify it.</p>
+</dd></dl><p><b>pvBuffer:</b>  Authentication data.</p></div>

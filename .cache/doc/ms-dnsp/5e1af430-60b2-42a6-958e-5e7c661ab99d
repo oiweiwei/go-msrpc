@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_POLICY_CONTENT_LIST</b> structure contains a
+list of <b>DNS_RPC_POLICY_CONTENT</b> structures (section <span><a href="dd2e4ce5-6eea-4dc4-b9f7-058eb9703381" data-linktype="relative-path">2.2.15.2.2</a></span>)
+configured for a DNS policy.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcPolicyAction {
+   [range (0,50000)] DWORD dwContentCount;
+   [size_is (dwContentCount)] PDNS_RPC_POLICY_CONTENT pContent[];
+ } DNS_RPC_POLICY_CONTENT_LIST,
+  *PDNS_RPC_POLICY_CONTENT_LIST;
+</pre></div>
+</dd></dl><p><b>dwContentCount:</b> An unsigned integer specifying
+the number of <b>DNS_RPC_POLICY_CONTENT</b> elements present.</p><p><b>pContent:</b> An array of pointers to <b>DNS_RPC_POLICY_CONTENT</b>
+structures.</p></div>

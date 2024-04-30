@@ -1,0 +1,514 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/7de9866e-d3ef-4a9f-98a5-c2dcff1e61c1" data-linktype="external">msdn link</a></p><p>The <b>DS_DOMAIN_TRUSTSW</b> structure defines information
+about a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a>. It is part of the <b>NETLOGON_TRUSTED_DOMAIN_ARRAY</b>
+structure, as specified in section <a href="251cf1be-2932-4d33-8532-595cf42e8091" data-linktype="relative-path">2.2.1.6.3</a>, returned by the
+<b>DsrEnumerateDomainTrusts</b> method, as specified in section <a href="f9823624-2b34-415c-bdca-9f9a6d97016b" data-linktype="relative-path">3.5.4.7.1</a>. This structure
+SHOULD<a id="Appendix_A_Target_54"></a><a aria-label="Product behavior note 54" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_54" data-linktype="relative-path">&lt;54&gt;</a> contain naming information and
+trust-related information for a specific <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted domain</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _DS_DOMAIN_TRUSTSW {
+   [string] wchar_t* NetbiosDomainName;
+   [string] wchar_t* DnsDomainName;
+   ULONG Flags;
+   ULONG ParentIndex;
+   ULONG TrustType;
+   ULONG TrustAttributes;
+   PRPC_SID DomainSid;
+   GUID DomainGuid;
+ } DS_DOMAIN_TRUSTSW,
+  *PDS_DOMAIN_TRUSTSW;
+</pre></div>
+</dd></dl><p><b>NetbiosDomainName:</b> A pointer to a
+null-terminated <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a>
+string that contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS
+name</a> of the trusted domain.</p><p><b>DnsDomainName:</b> A pointer to a null-terminated
+Unicode string that contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a> of the trusted domain.</p><p><b>Flags:</b> A set of bit flags that defines the
+domain trust attributes. A flag is TRUE (or set) if its value is equal to 1.
+The value is constructed from zero or more bit flags from the following table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>Domain is a member of a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>Domain is directly trusted by the current domain.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>Domain is the root of a forests.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>Domain is the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_387021de-3d6b-4372-835f-0d68c50cb496" data-linktype="relative-path">primary domain</a> of the
+  queried server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>Primary domain is running in native mode.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>Domain directly trusts the current domain.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero and MUST be
+ignored on receipt.</p>
+</dd></dl><p><b>ParentIndex:</b> An integer value that contains
+the index in the <b>NETLOGON_TRUSTED_DOMAIN_ARRAY</b> array (returned by <b>DsrEnumerateDomainTrusts
+</b>method) that corresponds to the parent domain of the domain represented by
+this structure. This field is set if all of the following conditions are met:</p><ul><li><p><span><span> 
+</span></span>The A flag is specified in the <i>Flags</i> parameter of the <b>DsrEnumerateDomainTrusts</b>
+method.</p>
+</li><li><p><span><span> 
+</span></span>The <b>Flags</b> field of <b>DS_DOMAIN_TRUSTSW</b> structure does
+not contain the C flag.</p>
+</li></ul><dl>
+<dd>
+<p>Otherwise, it MUST be set to zero and MUST be
+ignored.</p>
+</dd></dl><p><b>TrustType:</b> An integer value that describes the
+type of domain with which the trust is associated. <b>TrustType</b> is one of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Trust is with a domain.<a id="Appendix_A_Target_55"></a><a aria-label="Product behavior note 55" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_55" data-linktype="relative-path">&lt;55&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Trust is with an <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a> domain.<a id="Appendix_A_Target_56"></a><a aria-label="Product behavior note 56" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_56" data-linktype="relative-path">&lt;56&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Trust is with an MIT Kerberos realm.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Trust is with a Distributed Computing Environment
+  (DCE) realm.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other values MUST be ignored on receipt.</p>
+</dd></dl><p><b>TrustAttributes:</b> A set of bit flags describing
+trust link attributes. A flag is true (or set) if its value is equal to 1. The
+value is constructed from zero or more bit flags from the following table, with
+the exception that bit F cannot be combined with E or D.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>I</p>
+  </td>
+  <td>
+  <p>H</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>G</p>
+  </td>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>Trust link MUST NOT allow transitivity.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>Trust link MAY<a id="Appendix_A_Target_57"></a><a aria-label="Product behavior note 57" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_57" data-linktype="relative-path">&lt;57&gt;</a>  be
+  valid.<span> </span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>Trust link MUST be set for <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> filtering of the
+  client domain. For details about SID filtering, see <a href="../ms-pac/166d8064-c863-41e1-9c23-edaaa5f36962" data-linktype="relative-path">[MS-PAC]</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>Trust link can contain <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8c0b82d9-efec-4723-95a9-8564edf9ba44" data-linktype="relative-path">forest trust information</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>Trust link is to either a domain or a forest that is not
+  part of the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e44ff7b5-53ad-4b0c-b82d-f4826008866f" data-linktype="relative-path">enterprise
+  network</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>Trust link is internal to the forest.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>G</p>
+  </td>
+  <td>
+  <p>Trust is to be treated as external for trust boundary
+  purposes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>H</p>
+  </td>
+  <td>
+  <p>Domain is parent domain.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>I</p>
+  </td>
+  <td>
+  <p>Domain is root of another forest.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero and MUST be
+ignored on receipt.</p>
+</dd></dl><p><b>DomainSid:</b> A pointer to a SID structure (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="relative-path">2.4.2.3</a>)
+that identifies the current domain. If the <b>TrustAttributes</b> field is set
+to C or D, the value is 0.</p><p><b>DomainGuid:</b> A <b>GUID</b> structure ([MS-DTYP]
+section <a href="../ms-dtyp/49e490b8-f972-45d6-a3a4-99f924998d97" data-linktype="relative-path">2.3.4.1</a>)
+that identifies the current domain.</p></div>

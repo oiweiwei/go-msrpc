@@ -1,0 +1,217 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/e9ec30d6-4008-4c91-a6b6-fde6a794ce87" data-linktype="external">msdn link</a></p><p>(Protocol Version 3) The ApiOfflineResourceEx SHOULD<a id="Appendix_A_Target_121"></a><a aria-label="Product behavior note 121" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_121" data-linktype="relative-path">&lt;121&gt;</a> instruct the server to make
+the designated resource inactive or unavailable on the node that currently owns
+it.</p><p>The server MUST handle this method in the same manner as <a href="8c984196-b29c-4336-8841-d366770b1e1d" data-linktype="relative-path">ApiOfflineResource (section 3.1.4.2.19)</a>
+except as follows:</p><ul><li><p><span><span> 
+</span></span>If the CLUSAPI_RESOURCE_OFFLINE_IGNORE_RESOURCE_STATUS flag is
+set in the <i>dwOfflineFlags</i> parameter, the server MUST ignore the locked
+mode value of the resource designated by the <i>hResource</i> parameter as well
+as the locked mode value of any of its dependent resources as specified in
+section <a href="5af0b053-32d0-46b8-bb75-898abc5aa958" data-linktype="relative-path">3.1.1.1.2</a>.</p>
+</li><li><p><span><span> 
+</span></span>If the CLUSAPI_RESOURCE_OFFLINE_FORCE_WITH_TERMINATION flag is
+set in the <i>dwOfflineFlags</i> parameter, the server MUST shut down the
+resource designated by the <i>hResource</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>If the CLUSAPI_RESOURCE_OFFLINE_DO_NOT_UPDATE_PERSISTENT_STATE
+flag is set in the <i>dwOfflineFlags</i> parameter, the server MUST not update
+the persistent state of the resource designated by the <i>hResource</i>
+parameter when it is brought offline.</p>
+</li><li><p><span><span> 
+</span></span>If the resource designated by the <i>hResource</i> parameter is
+in the ClusterResourceOnline state (section <a href="cac947fb-7066-4d0c-b76d-7d26a89a2d46" data-linktype="relative-path">3.1.4.2.13</a>), then the
+server MUST provide the buffer designated by the <i>lpInBuffer</i> parameter to
+the server implementation-specific object that controls the resource operation
+while bringing the resource offline. The server MUST also provide this buffer
+to the server implementation-specific objects for any of the designated
+resource&#39;s dependent resources that are also in the ClusterResourceOnline
+state. How the server provides this buffer is implementation-specific.</p>
+</li></ul><p>The server MUST accept an ApiOfflineResourceEx request only
+if it is in the read/write state, as specified in section <a href="756547e7-ca64-4b7c-9f1b-2b1fbc6153d3" data-linktype="relative-path">3.1.1</a>.</p><p>The server MUST require that the access level associated
+with the <i>hResource</i> parameter is &#34;All&#34; (section <a href="a249a463-3d3b-4058-abf6-3024d81806a0" data-linktype="relative-path">3.1.4</a>).</p><dl>
+<dd>
+<div><pre> error_status_t ApiOfflineResourceEx(
+   [in] HRES_RPC hResource,
+   [in] DWORD dwOfflineFlags,
+   [in, size_is(cbInBufferSize)] BYTE* lpInBuffer,
+   [in] DWORD cbInBufferSize,
+   [out] error_status_t *rpc_status
+ );
+</pre></div>
+</dd></dl><p><b>hResource: </b>An HRES_RPC context handle that was
+obtained in a previous call to <a href="181f8de0-f518-4c5b-b98e-ddb18aa325ce" data-linktype="relative-path">ApiOpenResource (section 3.1.4.2.9)</a>,
+<a href="6595931d-2fe5-4097-9270-f6bada5d9242" data-linktype="relative-path">ApiOpenResourceEx (section 3.1.4.2.119)</a>,
+or <a href="bc6ca940-7177-4bef-9567-ae4a692a2ba5" data-linktype="relative-path">ApiCreateResource (section 3.1.4.2.10)</a>.</p><p><b>dwOfflineFlags: </b>A bitwise-OR of zero or more
+of the following flags.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  <p>CLUSAPI_RESOURCE_OFFLINE_IGNORE_RESOURCE_STATUS</p>
+  </td>
+  <td>
+  <p>The server MUST ignore the locked mode value of the
+  resource as well as the locked mode value of any of its dependent resources
+  as specified in section 3.1.1.1.2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  <p>CLUSAPI_RESOURCE_OFFLINE_FORCE_WITH_TERMINATION</p>
+  </td>
+  <td>
+  <p>The server MUST shut down the resource.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  <p>CLUSAPI_RESOURCE_OFFLINE_DO_NOT_UPDATE_PERSISTENT_STATE</p>
+  </td>
+  <td>
+  <p>The server MUST not update the persistent state of the
+  resource when it is brought offline.<a id="Appendix_A_Target_122"></a><a aria-label="Product behavior note 122" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_122" data-linktype="relative-path">&lt;122&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p> </p>
+</dd></dl><p><b>lpInBuffer: </b>A pointer to a buffer that the
+server will provide to implementation-specific objects that control the
+resource operations for each resource in the group. The client SHOULD set this
+parameter to a <a href="7ed348f2-eddf-4c3f-a1cb-b651ec3cff92" data-linktype="relative-path">PROPERTY_LIST (section 2.2.3.10)</a>.
+For each value in this list, the client SHOULD set the property name to the
+name of the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_597fe367-f504-4295-9ed9-92cd892796cd" data-linktype="relative-path">resource type</a>
+of one of the resources in the group. The client MAY provide a buffer that does
+not have a property value corresponding to each resource type in the group, and
+the client MAY provide a buffer that has multiple property values for the same
+resource type. Except for the following property values, the server MUST treat
+all property values provided by the client identically.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Property Name</p>
+   </th>
+   <th>
+   <p>CLUSTER_PROPERTY_FORMAT</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Virtual Machine</p>
+  </td>
+  <td>
+  <p>CLUSPROP_FORMAT_DWORD</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>For a resource of resource type &#34;Virtual
+  Machine&#34; that is in the ClusterResourceOnline state (section
+  3.1.4.2.13), the server MUST turn off the corresponding virtual machine.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Virtual Machine</p>
+  </td>
+  <td>
+  <p>CLUSPROP_FORMAT_DWORD</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>For a resource of resource type &#34;Virtual
+  Machine&#34; that is in the ClusterResourceOnline state (section
+  3.1.4.2.13), the server MUST save the corresponding virtual machine.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Virtual Machine</p>
+  </td>
+  <td>
+  <p>CLUSPROP_FORMAT_DWORD</p>
+  </td>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>For a resource of resource type &#34;Virtual
+  Machine&#34; that is in the ClusterResourceOnline state (section
+  3.1.4.2.13), the server MUST shut down the corresponding virtual machine.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Virtual Machine</p>
+  </td>
+  <td>
+  <p>CLUSPROP_FORMAT_DWORD</p>
+  </td>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>For a resource of resource type &#34;Virtual
+  Machine&#34; that is in the ClusterResourceOnline state (section
+  3.1.4.2.13), the server MUST forcibly shut down the corresponding virtual
+  machine.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Virtual Machine</p>
+  </td>
+  <td>
+  <p>CLUSPROP_FORMAT_DWORD</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Reserved.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cbInBufferSize: </b>The size in bytes of the
+buffer pointed to by the <i>lpInBuffer</i> parameter.</p><p><b>rpc_status: </b>A 32-bit integer used to indicate
+success or failure. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+runtime MUST indicate, by writing to this parameter, whether it succeeded in
+executing this method on the server. The encoding of the value passed in this
+parameter MUST conform to encoding for comm_status and fault_status, as
+specified in Appendix E of <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>Return Values: </b>This method MUST return the same error
+codes returned by the ApiOfflineResource (section 3.1.4.2.19) method,
+in addition to the following return value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The <i>dwOfflineFlags</i> parameter is not one of the
+  specified values.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -1,0 +1,57 @@
+<div class="content"><p> </p><p>The SAGetAccountInformation method MUST retrieve the account
+name for a specified task.</p><dl>
+<dd>
+<div><pre> HRESULT SAGetAccountInformation(
+   [in, string, unique] SASEC_HANDLE Handle,
+   [in, string] const wchar_t* pwszJobName,
+   [in, range(0,MAX_BUFFER_SIZE)] DWORD ccBufferSize,
+   [in, out, size_is(ccBufferSize)] 
+     wchar_t wszBuffer[]
+ );
+</pre></div>
+</dd></dl><p><b>Handle: </b>Pointer to a <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+MUST specify the server. The client MUST map this string to an <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle. The server MUST ignore this parameter. For more details, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+sections 4.3.5 and 5.1.5.2. </p><p><b>pwszJobName: </b>MUST be a pointer to a string
+that specifies a task name, such as &#34;MyJob.job&#34;.</p><p><b>ccBufferSize: </b>MUST contain the number of
+characters in the array supplied by the client and filled by the server. This
+value MUST be the size of the <i>wszBuffer</i> parameter. MAX_BUFFER_SIZE is
+equal to 273. For more information on MAX_BUFFER_SIZE, see the <span><a href="7849c5ca-a8df-4c1d-8565-41a9b979a63d" data-linktype="relative-path">SaSec</a></span>
+interface IDL (section <span><a href="084751bc-8ea4-48d7-8681-66a548842ef6" data-linktype="relative-path">6.2</a></span>).</p><p><b>wszBuffer: </b>Upon input, MUST be an empty array
+of size equal to the <i>ccBufferSize</i> parameter. The client SHOULD
+initialize the array to contain zeroes. Upon return, the array MUST contain the
+name of the account to be used as the context the task runs under.</p><p><b>Return Values: </b>For more information on return
+codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>, or Win32
+Error Codes in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><p>Upon receipt of the SAGetAccountInformation call, the server
+MUST:</p><ul><li><p><span><span> 
+</span></span>Return E_ACCESSDENIED if the caller does not have read access to
+the .JOB <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_08035fe7-a786-4b30-ab60-3fd046060617" data-linktype="relative-path">task store</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Return SCHED_E_CANNOT_OPEN_TASK if the <i>pwszJobName</i>
+parameter is not a file name present in the .JOB task store.</p>
+</li><li><p><span><span> 
+</span></span>Return E_ACCESSDENIED if the caller does not have read access to
+the task file.</p>
+</li><li><p><span><span> 
+</span></span>Return SCHED_E_ACCOUNT_INFORMATION_NOT_SET if there is no mapping
+in the account name store for the task name; otherwise, get the account name
+from the mapping.</p>
+</li><li><p><span><span> 
+</span></span>Return E_INVALIDARG if the <i>wszBuffer</i> parameter is NULL.</p>
+<p><b>Note</b>  When passing
+NULL as a value for this parameter, behavior can change based on the RPC
+Runtime Check. See RPC Runtime Check Notes (section <span><a href="535bb46d-f599-4528-9b02-eb2d391fd361" data-linktype="relative-path">3.3</a></span>).</p>
+</li><li><p><span><span> 
+</span></span>If the account name is &#34;LocalSystem&#34;, set <i>wszBuffer</i>
+to be the empty string and return S_OK.</p>
+</li><li><p><span><span> 
+</span></span>Return the value 0x8007007A, which is the <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+form of the Win32 error ERROR_INSUFFICIENT_BUFFER, if the account name
+(including the terminating zero character) is larger than <i>ccBufferSize</i>.</p>
+</li><li><p><span><span> 
+</span></span>Copy the null-terminated account name to <i>wszBuffer</i> and
+return S_OK.</p>
+</li></ul><p>If any errors are raised during the processing, they are
+returned. For more information about return codes, see section 2.3.14 and Win32
+Error Codes in [MS-ERREF] section 2.1.</p></div>

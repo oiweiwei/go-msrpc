@@ -1,0 +1,456 @@
+<div class="content"><p> </p><p>The <b>FAX_GENERAL_CONFIG</b> data type can be passed as a
+byte–array parameter to <b>FAX_SetGeneralConfiguration</b> (section <span><a href="34e02038-9f56-4c51-abfa-e404cf3b2ffd" data-linktype="relative-path">3.1.4.1.80</a></span>)
+and <b>FAX_GetGeneralConfiguration</b> (section <span><a href="660b4d98-8a20-4391-a232-ca6608e6154f" data-linktype="relative-path">3.1.4.1.40</a></span>) to
+change or to return the current fax server configuration settings.</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (88 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (88 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfStruct</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bUseArchive</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrArchiveLocationOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bSizeQuotaWarning</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeQuotaHighWaterMark</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeQuotaLowWaterMark</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwArchiveAgeLimit</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Padding</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwlArchiveSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwQueueAgeLimit</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRetries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRetryDelay</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bUseDeviceTSID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  of dtDiscountStart</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  of dtDiscountEnd</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bBranding</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bAllowPersonalCP</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwQueueState</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bAutoCreateAccountOnConnect</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bIncomingFaxesArePublic</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Padding</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>dwSizeOfStruct (4 bytes):
+</b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value containing the size, in bytes, of the structure. MUST be set to 88 bytes.</p>
+</dd>
+<dd>
+<p><b>bUseArchive (4 bytes): </b>A
+Boolean value that indicates whether the fax server uses an <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9394bf31-7db9-433c-8d3d-ee6a37bf0848" data-linktype="relative-path">archive</a></span>
+to store fax messages after they are successfully sent or received. If this
+field is TRUE, the fax server MUST archive fax messages. This flag corresponds
+to the <b>Archive Enabled</b> fax server configuration setting (section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>).</p>
+</dd>
+<dd>
+<p><b>lpcwstrArchiveLocationOffset
+(4 bytes): </b>Offset to the <b>lpcwstrArchiveLocation</b> field in the <b>Variable_Data</b>
+block of the structure.</p>
+</dd>
+<dd>
+<p><b>bSizeQuotaWarning (4
+bytes): </b>A Boolean value that indicates whether the fax server MAY issue an
+implementation-specific warning if the archive quota exceeds the watermarks
+defined by the <b>dwSizeQuotaHighWatermark</b> and <b>dwSizeQuotaLowWatermark</b>
+fields. If this field is TRUE, the fax server can issue an
+implementation-specific warning. This flag configures the <b>size quota warning</b>
+fax server configuration setting (section 3.1.1).</p>
+</dd>
+<dd>
+<p><b>dwSizeQuotaHighWaterMark
+(4 bytes): </b>A <b>DWORD</b> value that holds the current value of the fax
+server configuration setting (section 3.1.1). If the size of the archive
+exceeds this value, and if the <b>bSizeQuotaWarning</b> field is set to TRUE,
+an implementation-specific warning can be issued.</p>
+</dd>
+<dd>
+<p><b>dwSizeQuotaLowWaterMark
+(4 bytes): </b>A <b>DWORD</b> value that holds the current value of the <b>size
+quota low watermark</b> fax server configuration setting (section 3.1.1). If
+the size of the archive falls below this value, and if the <b>bSizeQuotaWarning</b>
+field is set to TRUE, an implementation-specific warning can be issued.</p>
+</dd>
+<dd>
+<p><b>dwArchiveAgeLimit (4
+bytes): </b>A <b>DWORD</b> value that holds the current value of the <b>Archive
+Age Limit</b> fax server configuration setting (section 3.1.1).</p>
+</dd>
+<dd>
+<p><b>Padding (4 bytes): </b>Padding
+for data alignment to an 8-byte boundary.</p>
+</dd>
+<dd>
+<p><b>dwlArchiveSize (8 bytes):
+</b>A <b>DWORDLONG</b> ([MS-DTYP] section <span><a href="../ms-dtyp/c575fb47-166c-48cd-a37c-e44cac05c3d6" data-linktype="relative-path">2.2.13</a></span>)
+value that holds the actual size of the archived data contained in the <b>Fax
+Archive Folder</b> (section 3.1.1).</p>
+</dd>
+<dd>
+<p><b>dwQueueAgeLimit (4
+bytes): </b>A <b>DWORD</b> value that specifies the current <b>queue age limit</b>
+fax server configuration setting (section 3.1.1). For an outgoing fax job,
+after this period elapses for a fax job and the fax job is still not
+transmitted to its destination, the fax server SHOULD delete the respective fax
+job from the outgoing <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_0c5e7185-40c3-4e58-a8ac-7626ed078235" data-linktype="relative-path">fax queue</a></span>. For an
+incoming fax job, after this period elapses for a fax job, the fax server
+SHOULD delete the respective fax job from the incoming fax queue. If <b>bUseArchive</b>
+is TRUE, meaning that the <b>Archive Enabled</b> fax server configuration
+setting is enabled, the fax server SHOULD archive incoming and outgoing fax
+messages regardless of whether the time period described by this value (for the
+<b>queue age limit</b> fax server configuration setting) elapses.</p>
+</dd>
+<dd>
+<p><b>dwRetries (4 bytes): </b>A
+<b>DWORD</b> value that specifies the current value of the <b>fax transmission
+retries</b> fax server configuration setting (section 3.1.1).</p>
+</dd>
+<dd>
+<p><b>dwRetryDelay (4 bytes): </b>A
+<b>DWORD</b> value that specifies the current value of the <b>fax transmission
+retry delay</b> fax server configuration setting (section 3.1.1).</p>
+</dd>
+<dd>
+<p><b>bUseDeviceTSID (4 bytes):
+</b>A Boolean value that specifies the current value of the <b>use device&#39;s
+TSID</b> fax server configuration setting (section 3.1.1).</p>
+</dd>
+<dd>
+<p><b>Fixed_Portion of
+dtDiscountStart (4 bytes): </b>The <b>Fixed_Portion</b> block of a <b>FAX_TIME</b>
+(section <span><a href="eb612891-9092-4f9c-a975-db41229afe41" data-linktype="relative-path">2.2.61</a></span>) structure
+that holds the hour and minute values of the <b>start cheap time</b> fax server
+configuration setting (section 3.1.1).</p>
+</dd>
+<dd>
+<p><b>Fixed_Portion of
+dtDiscountEnd (4 bytes): </b>The <b>Fixed_Portion</b> block of a <b>FAX_TIME</b>
+that holds the hour and minute values of the <b>stop cheap time</b> fax server
+configuration setting (section 3.1.1).</p>
+</dd>
+<dd>
+<p><b>bBranding (4 bytes): </b>A
+Boolean value that specifies the current value of the <b>Branding</b> server
+configuration setting (section 3.1.1). If this field is TRUE, the fax server
+SHOULD generate an implementation-specific brand that contains
+transmission-related information, such as the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_3b1ad462-95fc-4739-b942-4a5670d6ae34" data-linktype="relative-path">transmitting subscriber
+identifier</a></span>, date, time, and page count.</p>
+</dd>
+<dd>
+<p><b>bAllowPersonalCP (4
+bytes): </b>A Boolean value that specifies the current value of the <b>personal
+cover page support</b> fax server configuration setting (section 3.1.1). If
+this field is TRUE, the client can provide a personal cover page template. If
+this field is FALSE, the client MUST use a common cover page template stored on
+the fax server.</p>
+</dd>
+<dd>
+<p><b>dwQueueState (4 bytes): </b>A
+<b>DWORD</b> value that contains the current value of the <b>Queue State</b>
+(section 3.1.1). If this value is zero, both the incoming and outgoing <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queues</a></span>
+MUST be unblocked; otherwise, this value MUST be a combination of one or more
+of the following flags.</p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FAX_INCOMING_BLOCKED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Fax service will not receive new incoming faxes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FAX_OUTBOX_BLOCKED</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Fax service will reject submissions of new outgoing
+  faxes to its queue.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FAX_OUTBOX_PAUSED</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Fax service will not remove and execute outgoing fax
+  jobs from its queue.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd>
+<dd>
+<p><b>bAutoCreateAccountOnConnect
+(4 bytes): </b>A Boolean value that contains the current value of the <b>Automatic
+Account Creation</b> fax server configuration setting (section 3.1.1). A value
+of TRUE indicates that the setting is enabled; FALSE means that the setting is
+disabled. For more details, see section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>.</p>
+</dd>
+<dd>
+<p><b>bIncomingFaxesArePublic
+(4 bytes): </b>A Boolean value that contains the current value of the <b>incoming
+fax viewing permission</b> setting (section 3.1.1). When this setting is TRUE,
+all incoming faxes SHOULD be accessible for viewing by all users. When it is
+FALSE, only users whose accounts have FAX_ACCESS_MANAGE_RECEIVE_FOLDER
+permission MUST be able to view the incoming faxes.</p>
+</dd>
+<dd>
+<p><b>Padding (4 bytes): </b>Padding
+for data alignment to an 8-byte boundary.</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrArchiveLocation
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>lpcwstrArchiveLocation
+(variable): </b>A null-terminated character string that indicates the archives
+folder location on the fax server file system. The portion preceding the
+terminating null character of this string MUST NOT end in a backslash (\)
+character.</p>
+</dd></dl></div>

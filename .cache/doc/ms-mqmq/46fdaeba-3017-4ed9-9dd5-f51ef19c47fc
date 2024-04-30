@@ -1,0 +1,102 @@
+<div class="content"><p> </p><p>The TA_ADDRESS structure defines a single transport address
+of a specific type.</p><dl>
+<dd>
+<div><pre> typedef struct _TA_ADDRESS {
+   USHORT AddressLength;
+   USHORT AddressType;
+   UCHAR Address[1];
+ } TA_ADDRESS,
+  *PTA_ADDRESS;
+</pre></div>
+</dd></dl><p><b>AddressLength:</b>  An unsigned 16-bit
+integer that MUST contain the size, in bytes, of the <b>Address</b> field. The
+value MUST be one of the following (by address type).</p><table><thead>
+  <tr>
+   <th>
+   <p>Address type prefix</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IP_</p>
+  </td>
+  <td>
+  <p>4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_</p>
+  </td>
+  <td>
+  <p>10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FOREIGN_</p>
+  </td>
+  <td>
+  <p>16</p>
+  </td>
+ </tr></tbody></table><p><b>AddressType:</b>  An unsigned 16-bit
+integer that MUST contain one of the values in the following table.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IP_ADDRESS_TYPE</p>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>The <b>Address</b> field contains a 32-bit IP address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_RAS_ADDRESS_TYPE</p>
+  <p>0x0002</p>
+  </td>
+  <td>
+  <p>The <b>Address</b> field contains a 32-bit IP address
+  associated with a connection that is established through a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_f8c23490-c220-4d75-a9bd-db04e8fc1c48" data-linktype="relative-path">Remote
+  Access Service (RAS) server</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_ADDRESS_TYPE</p>
+  <p>0x0003</p>
+  </td>
+  <td>
+  <p>The <b>Address</b> field contains a 4-byte netnum
+  followed by a 6-byte nodenum. The netnum identifies the IPX network. The
+  nodenum represents the IPX node address. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FOREIGN_ADDRESS_TYPE</p>
+  <p>0x0005</p>
+  </td>
+  <td>
+  <p>The <b>Address</b> field contains the <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+  of a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_2bf10154-6cb6-401f-8b44-15644784dd4e" data-linktype="relative-path">connected network</a></span>
+  object.</p>
+  </td>
+ </tr></tbody></table><p><b>Address:</b>  The array of bytes that contains
+the address value.</p><dl>
+<dd>
+<p>This MUST be one of the following:</p>
+</dd></dl><ul><li><p><span><span> 
+</span></span>An IP address (as specified in section <span><a href="60f735d6-dc12-41a1-ac4d-234d8c56e524" data-linktype="relative-path">2.2.4.1</a></span>). </p>
+</li><li><p><span><span> 
+</span></span>An IPX address (as specified in section <span><a href="23389465-f580-44cf-8598-0a6aebb16e9c" data-linktype="relative-path">2.2.4.2</a></span>).</p>
+</li><li><p><span><span> 
+</span></span>A FOREIGN address is a <b>GUID</b> object (as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a></span>).</p>
+</li></ul></div>

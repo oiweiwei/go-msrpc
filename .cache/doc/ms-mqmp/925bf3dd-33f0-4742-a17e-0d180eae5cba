@@ -1,0 +1,104 @@
+<div class="content"><p> </p><p>A <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> calls the
+R_QMGetObjectSecurityInternal method to retrieve the security configuration of
+a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_1a7f2b81-359e-4d2f-b4b4-f30bc7dd0d8f" data-linktype="relative-path">private
+queue</a></span> located on the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_2739ef12-a749-4540-9ac3-715968ef4df4" data-linktype="relative-path">supporting server</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT R_QMGetObjectSecurityInternal(
+   [in] handle_t hBind,
+   [in] struct OBJECT_FORMAT* pObjectFormat,
+   [in] DWORD RequestedInformation,
+   [out, size_is(nLength)] unsigned char* pSecurityDescriptor,
+   [in, range(0, 524288)] DWORD nLength,
+   [out] DWORD* lpnLengthNeeded
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST be set to an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle as described in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>pObjectFormat: </b> MUST point to an <span><a href="80b7e1bd-7ce1-40b6-91ae-d2e6fb6bfd10" data-linktype="relative-path">OBJECT_FORMAT</a></span>
+structure which identifies an existing local private queue on the supporting
+server for which the security configuration is to be retrieved. It MUST NOT be
+NULL. The <b>ObjType</b> member of the structure MUST be 0x00000001, and the <b>pQueueFormat</b>
+member MUST NOT be NULL.</p><p><b>RequestedInformation: </b> MUST contain a value
+from the <span><a href="../ms-mqmq/f56a798d-6dbd-4b65-a3aa-a76c0d924738" data-linktype="relative-path">SECURITY_INFORMATION</a></span>
+enumeration which indicates the portions of the <b>SECURITY_DESCRIPTOR</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a></span>)
+to be retrieved from the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span> identified by <i>pObjectFormat</i>.
+The SECURITY_INFORMATION enumeration is defined in <span><a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a></span>
+section 2.2.3.</p><p><b>pSecurityDescriptor: </b> MUST be a pointer to an
+array of bytes into which the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST write a
+self-relative <b>SECURITY_DESCRIPTOR</b> structure. The server MUST NOT write
+more than <i>nLength</i> bytes to the buffer. If the buffer provided by the
+client is too small (as indicated by the <i>nLength</i> parameter) to contain
+the <b>SECURITY_DESCRIPTOR</b> for the queue identified by <i>pObjectFormat</i>,
+the server MUST return MQ_ERROR_SECURITY_DESCRIPTOR_TOO_SMALL (0xc00e0023).
+This parameter can be NULL if <i>nLength</i> is 0x00000000.</p><p>The <b>SECURITY_DESCRIPTOR</b> structure is defined
+in [MS-DTYP] section 2.4.6.</p><p><b>nLength: </b> MUST indicate the byte length of the
+buffer pointed to by <i>pSecurityDescriptor</i>. This value can be 0x00000000.</p><p><b>lpnLengthNeeded: </b>MUST NOT be NULL. The server
+MUST set this <b>DWORD</b> to the byte length of the <b>SECURITY_DESCRIPTOR</b>
+structure for the queue identified by <i>pObjectFormat</i>.</p><p><b>Return Values: </b>On success, this method MUST return
+MQ_OK (0x00000000); otherwise, the server MUST return a failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>,<a id="Appendix_A_Target_33"></a><a aria-label="Product behavior note 33" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_33" data-linktype="relative-path">&lt;33&gt;</a> and the client MUST treat all
+failure HRESULTs identically. Additionally, if a failure HRESULT is returned,
+the client MUST disregard all out-parameter values with the following
+exception:</p><p>If <i>nLength</i> is less than the byte length of the buffer
+required to contain the <b>SECURITY_DESCRIPTOR</b> for the queue identified by <i>pObjectFormat</i>,
+the server MUST return the byte length of the buffer required to contain the <b>SECURITY_DESCRIPTOR</b>
+in the <i>lpnLengthNeeded</i> parameter and MUST return
+MQ_ERROR_SECURITY_DESCRIPTOR_TOO_SMALL (0xc00e0023).</p><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol, as specified in [MS-RPCE].</p><p>This method is invoked at the dynamically assigned <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span>
+returned by the <span><a href="a8c96155-a7e6-41cb-95c7-6ab7e4f8214d" data-linktype="relative-path">R_QMGetRTQMServerPort</a></span>
+method when IP_HANDSHAKE (0x00000000) or IPX_HANDSHAKE (0x00000002) is the
+interface specified by the <i>fIP</i> parameter.</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Determine if input parameter values violate constraints specified
+preceding. If an invalid parameter is detected, the server MUST take no further
+action and return a failure HRESULT.</p>
+</li><li><p><span><span> 
+</span></span>Raise a Get Queue Path event (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section <span><a href="../ms-mqdmpr/69749671-b97c-4780-b72c-4bac217f1a76" data-linktype="relative-path">3.1.7.1.26</a></span>)
+with the following argument:</p>
+<ul><li><p><span><span>  </span></span><i>iFormatName</i>:
+<i>pObjectFormat.pQueueFormat.m_qft</i></p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>rStatus</i> return argument value is not MQ_OK
+(0x00000000) or the <i>rPathName</i> return argument is empty, take no further
+action and return a failure HRESULT.</p>
+</li><li><p><span><span> 
+</span></span>Locate a <b>Queue</b> ([MS-MQDMPR] section <span><a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">3.1.1.2</a></span>)
+ADM element instance in the <b>QueueCollection</b> attribute of the server&#39;s <b>LocalQueueManager</b>
+([MS-MQDMPR] section <span><a href="28d7b06f-debc-45c6-b235-fa5029b10178" data-linktype="relative-path">3.1.1</a></span>) ADM element
+instance identified by the <i>rPathName</i> return argument value.</p>
+</li><li><p><span><span> 
+</span></span>If no entry is resolved, return a failure HRESULT.</p>
+</li><li><p><span><span> 
+</span></span>Let <b>ReturnedDescriptor</b> be a <b>SECURITY_DESCRIPTOR</b>
+initialized to be empty.</p>
+</li><li><p><span><span> 
+</span></span>If the OWNER_SECURITY_INFORMATION bit is set in <i>RequestedInformation</i>:</p>
+<ul><li><p><span><span>  </span></span>Copy
+the contents of the <b>Queue.Security.OwnerSid</b> field ([MS-DTYP] section
+2.4.6) to <b>ReturnedDescriptor.OwnerSid</b>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else If the GROUP_SECURITY_INFORMATION bit is set in <i>RequestedInformation</i>:</p>
+<ul><li><p><span><span>  </span></span>Copy
+the contents of the <b>Queue.Security.GroupSid</b> field ([MS-DTYP] section
+2.4.6) to <b>ReturnedDescriptor.GroupSid</b>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else If the DACL_SECURITY_INFORMATION bit is set in <i>RequestedInformation</i>:</p>
+<ul><li><p><span><span>  </span></span>Copy
+the contents of the <b>Queue.Security.Dacl</b> field ([MS-DTYP] section 2.4.6)
+to <b>ReturnedDescriptor.Dacl</b>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else If the SACL_SECURITY_INFORMATION bit is set in <i>RequestedInformation</i>:</p>
+<ul><li><p><span><span>  </span></span>Copy
+the contents of the <b>Queue.Security.Sacl</b> field ([MS-DTYP] section 2.4.6)
+to <b>ReturnedDescriptor.Sacl</b>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set <i>lpnLengthNeeded</i> to the size in bytes of <b>ReturnedDescriptor</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>lpnLengthNeeded</i> is greater than <i>nLength</i>, return
+MQ_ERROR_SECURITY_DESCRIPTOR_TOO_SMALL(0xc00e0023).</p>
+</li><li><p><span><span> 
+</span></span>Else copy <b>ReturnedDescriptor</b> into the <i>pSecurityDescriptor</i>
+buffer.</p>
+</li><li><p><span><span> 
+</span></span>Return MQ_OK (0x00000000).</p>
+</li></ul></div>

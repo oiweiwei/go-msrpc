@@ -1,0 +1,37 @@
+<div class="content"><p>The IProcessDump interface provides methods for a client to
+request a <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_86177a04-79cb-4afe-803c-be6155b69479" data-linktype="relative-path">process dump</a>
+of a process containing an instance container on the COMT server. This
+interface inherits from <a href="../ms-oaut/ac9c502b-ac1c-4202-8ad4-048ac98afcc9" data-linktype="relative-path">IDispatch</a>,
+as specified in <a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a>
+section 3.1.4. The version for this interface is 0.0.</p><p>To receive incoming remote calls for this interface, the
+server MUST implement a DCOM object class with the <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a> CLSID_ProcessDump (as
+specified in section <a href="7b6d157b-8158-4041-a1b8-186b43a2422c" data-linktype="relative-path">1.9</a>)
+by using the <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a>
+{23C9DD26-2355-4FE2-84DE-F779A238ADBD} for this interface.</p><p>This <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>
+includes the following methods beyond those of IDispatch.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="d909c995-4fc0-4837-bc49-65a8eb7902ab" data-linktype="relative-path">IsSupported</a></p>
+  </td>
+  <td>
+  <p>Returns a result indicating whether or not process
+  dump is supported.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="311e847f-6fc9-4d4f-b481-03b300aa8e80" data-linktype="relative-path">DumpProcess</a></p>
+  </td>
+  <td>
+  <p>Requests a process dump.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr></tbody></table><p>All methods MUST NOT throw exceptions.</p></div>

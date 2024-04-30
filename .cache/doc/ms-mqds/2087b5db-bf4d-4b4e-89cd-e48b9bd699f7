@@ -1,0 +1,40 @@
+<div class="content"><p> </p><p>This method deletes a directory object specified by a <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_c36db657-3138-4d9a-9289-ded5cbb8b40e" data-linktype="relative-path">directory
+service</a></span> pathname.</p><dl>
+<dd>
+<div><pre> HRESULT S_DSDeleteObject(
+   [in] handle_t hBind,
+   [in, range(1,58)] unsigned long dwObjectType,
+   [in] const wchar_t* pwcsPathName
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST specify an <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle,
+as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>dwObjectType: </b> Specifies the type of object to
+delete. MUST be set to one of the directory object types specified in section <span><a href="0d63e0e1-8b17-4103-9080-01e6c7c9f61f" data-linktype="relative-path">2.2.8</a></span>.</p><p><b>pwcsPathName: </b>Pointer to a NULL-terminated 16-bit <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a></span> that MUST contain the directory service pathname, as
+specified in section <span><a href="6e03fb44-a705-4728-acca-7c6d7b8d7396" data-linktype="relative-path">2.2.9</a></span>, to the
+object in the directory service.</p><p><b>Return Values: </b> If the method succeeds, the return
+value is 0. If the method fails, the return value is an implementation-specific
+error code.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>MQ_ERROR_INVALID_PARAMETER</b> (0xC00E0006)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol, as specified in [MS-RPCE].</p><p>The server SHOULD enforce appropriate security measures to
+make sure that the caller has the required permissions to execute this routine.
+If the server enforces security measures, and the caller does not have the
+required credentials, the server MUST return an error.</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>The server MAY<a id="Appendix_A_Target_34"></a><a aria-label="Product behavior note 34" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_34" data-linktype="relative-path">&lt;34&gt;</a> forward
+the delete to another server.</p>
+</li><li><p><span><span> 
+</span></span>Generate the <span><a href="911a5953-7c53-49d1-abf3-fcaec89fa7ef" data-linktype="relative-path">Remove Object from Directory (section 3.1.6.13)</a></span>
+event with the following arguments:</p>
+<ul><li><p><span><span>  </span></span><i>iObjectType</i>
+:= <i>dwObjectType</i></p>
+</li><li><p><span><span>  </span></span><i>iPathName</i>
+:= <i>pwcsPathName</i></p>
+</li><li><p><span><span>  </span></span><i>iGuid</i>
+:= NULL</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <i>rStatus</i> returned by the event is not 0x00000000, return
+<i>rStatus</i> and take no further action.</p>
+</li><li><p><span><span> 
+</span></span>The server MAY<a id="Appendix_A_Target_35"></a><a aria-label="Product behavior note 35" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_35" data-linktype="relative-path">&lt;35&gt;</a> contact
+other servers to propagate the changes.</p>
+</li></ul></div>

@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>The RefreshEx method refreshes the server&#39;s cache of storage
+objects, including regions, <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_58aae236-0186-4ba1-a46b-f0a997e6c6f2" data-linktype="relative-path">removable media</a></span> and
+CD-ROM drive media, file systems, and <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_1b153cd0-e3f3-4383-bc66-d5ad482c9766" data-linktype="relative-path">drive letters</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT RefreshEx(void);
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>The method MUST return 0 or a
+nonerror <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path"><span>HRESULT</span></a> on success, or
+an implementation-specific nonzero error code on failure (as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>;
+see also section <span><a href="31eea9e6-25b0-4309-8f4a-50c74fbedc9b" data-linktype="relative-path">2.2.1</a></span> for HRESULT
+values predefined by the Disk Management Remote Protocol).</p><p>The handling of this message is identical to the handling of
+<span><a href="d5142f0c-20f7-42ab-a0d6-154aa7ac8cad" data-linktype="relative-path">IVolumeClient::Refresh</a></span>
+and <span><a href="d7e35953-5240-48c8-a175-06c78567440b" data-linktype="relative-path">IVolumeClient3::Refresh</a></span>
+except that the server MUST perform an extra low-level refresh of the list of
+storage objects by looking for missing dynamic <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disks</a></span> or dynamic
+disks that were missing and are now present. This verification updates the
+status for missing disks, <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volumes</a></span> that reside
+on missing disks, or <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_753cb2b4-3f5c-48f3-97ef-61612c40499e" data-linktype="relative-path">disk regions</a></span> that
+reside on missing disks.<a id="Appendix_A_Target_228"></a><a aria-label="Product behavior note 228" href="5f5043a3-9e6d-40cc-a05b-1a4a3617df32#Appendix_A_228" data-linktype="relative-path">&lt;228&gt;</a></p><p>In addition to the preceding actions, the server MUST check
+whether the lengths of the disks have changed and make appropriate changes to
+the disk objects in the list of storage objects.</p></div>

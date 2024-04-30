@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c53161a4-38e8-4a28-a33e-0d378fce03dd" data-linktype="external">msdn link</a></p><p>The SAMPR_ENUMERATION_BUFFER structure holds an array of <a href="5c94a35a-e7f2-4675-af34-741f5a8ee1a2" data-linktype="relative-path">SAMPR_RID_ENUMERATION</a>
+elements.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_ENUMERATION_BUFFER {
+   unsigned long EntriesRead;
+   [size_is(EntriesRead)] PSAMPR_RID_ENUMERATION Buffer;
+ } SAMPR_ENUMERATION_BUFFER,
+  *PSAMPR_ENUMERATION_BUFFER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  The number of elements
+in <b>Buffer</b>. If zero, <b>Buffer</b> MUST be ignored. If nonzero, <b>Buffer</b>
+MUST point to at least EntriesRead * sizeof(SAMPR_RID_ENUMERATION) bytes of
+memory.</p><p><b>Buffer:</b>  An array of
+SAMPR_RID_ENUMERATION elements.</p></div>

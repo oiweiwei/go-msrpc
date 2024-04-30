@@ -1,0 +1,18 @@
+<div class="content"><p>The WINSINTF_ADD_T structure defines the IP address
+information of a <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a>
+server. It is used by several data structures including <a href="2772ceb8-1b9f-4766-84e2-af6453f8ba2c" data-linktype="relative-path">WINSINTF_RECORD_ACTION_T</a>
+and <a href="45b9122e-a41c-462e-a5cc-39de09d2e2cb" data-linktype="relative-path">WINSINTF_ADD_VERS_MAP_T</a>
+and by RPC methods like <a href="e231089b-eb49-40d2-8b62-2b1437e9f98a" data-linktype="relative-path">R_WinsTrigger</a>
+and <a href="4cfdacf1-8328-466b-a2e6-711f4e0b354e" data-linktype="relative-path">R_WinsGetDbRecs</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSINTF_ADD_T {
+   BYTE Type;
+   DWORD Len;
+   DWORD IPAdd;
+ } WINSINTF_ADD_T,
+  *PWINSINTF_ADD_T;
+</pre></div>
+</dd></dl><p><b>Type:</b>  Specifies the address type.
+This field MUST be set to zero.</p><p><b>Len:</b>  Indicates the length, in
+bytes, of the IP address that is stored in <b>IPAdd</b>.</p><p><b>IPAdd:</b>  Stores an IP address in <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a> format. For
+example, the IP address 172.22.32.42 is stored as 0xAC16202A.</p></div>

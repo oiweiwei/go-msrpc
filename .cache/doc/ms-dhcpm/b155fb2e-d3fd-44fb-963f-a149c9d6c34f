@@ -1,0 +1,38 @@
+<div class="content"><p> </p><p>The <b>DHCP_SERVER_CONFIG_INFO_V6</b> structure defines the
+settings for the DHCPv6 server. This structure is used in the <span><a href="29668795-cd0d-4762-8a4d-520e8eb3b313" data-linktype="relative-path">R_DhcpServerSetConfigV6 (section 3.2.4.66)</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_SERVER_CONFIG_INFO_V6 {
+   BOOL UnicastFlag;
+   BOOL RapidCommitFlag;
+   DWORD PreferredLifetime;
+   DWORD ValidLifetime;
+   DWORD T1;
+   DWORD T2;
+   DWORD PreferredLifetimeIATA;
+   DWORD ValidLifetimeIATA;
+   BOOL fAuditLog;
+ } DHCP_SERVER_CONFIG_INFO_V6,
+  *LPDHCP_SERVER_CONFIG_INFO_V6;
+</pre></div>
+</dd></dl><p><b>UnicastFlag:</b>  This is of type <span><a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">BOOL</a></span>,
+specifying whether the DHCPv6 client is allowed to send <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e73c7149-240a-4fad-8a27-5c6b7fdc956a" data-linktype="relative-path">unicast</a></span>
+messages <span><a href="https://go.microsoft.com/fwlink/?LinkId=90417" data-linktype="external">[RFC3315]</a></span> to
+the server.</p><p><b>RapidCommitFlag:</b>  This is of type
+BOOL, specifying that server is to skip the AR of the SARR [RFC3315] sequence
+in leasing a DHCPv6 client.</p><p><b>PreferredLifetime:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+specifying the preferred lifetime in seconds for IANA addresses. [RFC3315]</p><p><b>ValidLifetime:</b>  This is of type
+DWORD, specifying the valid lifetime in seconds for IANA addresses. [RFC3315]</p><p><b>T1:</b>  This is of type DWORD,
+specifying the value for time T1 in seconds. [RFC3315]</p><p><b>T2:</b>  This is of type DWORD,
+specifying value for time T2 in seconds. [RFC3315]</p><p><b>PreferredLifetimeIATA:</b>  This is of
+type DWORD. Currently this is not implemented and if used in setting the value
+through the method with any value, the method will return ERROR_SUCCESS without
+any processing. If used in a method to retrieve, the value returned is 86400 (1
+day).<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a></p><p><b>ValidLifetimeIATA:</b>  This is of type
+DWORD. Currently this is not implemented and if used in setting the value
+through the method with any value, the method will return ERROR_SUCCESS without
+any processing. If used in a method to retrieve, the value returned is 259200
+(3 days).<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a></p><p><b>fAuditLog:</b>  This is of type BOOL,
+specifying whether <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_21b83bd2-9daa-48ff-ab4a-656ee9800b64" data-linktype="relative-path">audit logs</a></span> are
+enabled or disabled. The field defaults to true to indicate that the audit logs
+are enabled.</p></div>

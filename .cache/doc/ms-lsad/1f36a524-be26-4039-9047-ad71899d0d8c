@@ -1,0 +1,81 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/1f36a524-be26-4039-9047-ad71899d0d8c" data-linktype="external">msdn link</a></p><p>The LsarLookupPrivilegeValue method is invoked to map the
+name of a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privilege</a> into
+a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_96b64af9-1896-4bde-b988-54d469c5affd" data-linktype="relative-path">locally unique identifier
+(LUID)</a> by which the privilege is known on the server. The locally unique value
+of the privilege can then be used in subsequent calls to other methods, such as
+<a href="8a542f26-243d-4341-ada5-8fed194bfcf8" data-linktype="relative-path">LsarAddPrivilegesToAccount</a>.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarLookupPrivilegeValue(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PRPC_UNICODE_STRING Name,
+   [out] PLUID Value
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>Name: </b>A string containing the name of a
+privilege.</p><p><b>Value: </b>Used to return a LUID assigned by the
+server to the privilege by this name.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One or more of the supplied parameters was invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000060</p>
+  <p>STATUS_NO_SUCH_PRIVILEGE</p>
+  </td>
+  <td>
+  <p>The privilege name is not recognized by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes three arguments:</p><p><i>PolicyHandle</i>: An open handle to the policy object. If
+the handle is not a valid context handle to the policy object or <i>PolicyHandle</i>.HandleType
+does not equal &#34;Policy&#34;, the server MUST return
+STATUS_INVALID_HANDLE. The server MUST verify that <i>PolicyHandle</i> grants
+access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a> with
+RequiredAccess set to POLICY_LOOKUP_NAMES.</p><p><i>Name</i>: The string name of the privilege.</p><p><i>Value</i>: Used to return the LUID corresponding to the <i>Name</i>
+argument.</p><p>If the value in the <i>Name</i> argument is not recognized
+by the server, the server MUST fail the request with STATUS_NO_SUCH_PRIVILEGE.
+The privileges recognized by the server are specified in section <a href="1a92af76-d45f-42c3-b67c-f1dc61bd6ee1" data-linktype="relative-path">3.1.1.2.1</a>.</p></div>

@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p>The RemoteDispatchNotAutoDone method is called by the client
+to invoke a method on the server.</p><dl>
+<dd>
+<div><pre> [id(0x60020001)] HRESULT RemoteDispatchNotAutoDone(
+   [in] BSTR s,
+   [out, retval] BSTR* pRetVal
+ );
+</pre></div>
+</dd></dl><p><b>s: </b>The <i>s</i> parameter contains binary data
+representing the input parameters of the method called on the server. The
+binary data MUST be marshaled as specified in <span><a href="../ms-nrtp/3acb31b0-b873-4aaf-8503-9727ec40fbec" data-linktype="relative-path">[MS-NRTP]</a></span>
+section <span><a href="../ms-nrtp/46561314-4646-44d1-ac88-542fe09bc1ad" data-linktype="relative-path">3.1.5.1.1</a></span>.
+The data is specified as is in the <span><a href="../ms-oaut/1c9d2cfc-cf7d-4f4b-95bf-584be5defd81" data-linktype="relative-path">BSTR</a></span>,
+such that the length of the BSTR is the size of the data divided by 2 (rounded
+up if necessary).</p><p><b>pRetVal: </b>The <i>pRetVal</i> parameter contains
+the binary data representing the output parameters of the method called on the
+server. The binary data MUST be marshaled as specified in [MS-NRTP] section
+3.1.5.1.1. The data is specified as is in the BSTR, such that the length of the
+BSTR is the size of the data divided by 2 (rounded up if necessary).</p><p><b>Return Values: </b>An <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+that specifies success or failure. All success HRESULT values MUST be treated
+as success and all failure HRESULT values MUST be treated as failure.</p><p>When this method is invoked, the server MUST unmarshal the
+method input parameters and formulate a method call request. If the payload is
+a valid method call request for the given server <span><a href="d8eaf696-8591-48a2-9aac-4880847e3632#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> instance, the
+server MUST dispatch the method on the server object instance. Otherwise it
+MUST fail the call. After the server object instance completes the method call,
+the server MUST marshal the output parameters as specified in [MS-NRTP] section
+3.1.5.1.1 and return the encoded reply through the <i>pRetVal</i> argument.</p></div>

@@ -1,0 +1,194 @@
+<div class="content"><p> </p><p>The <b>R_DhcpServerSetConfigV6</b> method sets the DHCPv6
+server configuration data at the scope level or at the server level.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpServerSetConfigV6(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, ref] LPDHCP_OPTION_SCOPE_INFO6 ScopeInfo,
+   [in] DWORD FieldsToSet,
+   [in, ref] LPDHCP_SERVER_CONFIG_INFO_V6 ConfigInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>ScopeInfo: </b>This is a pointer to a <span><a href="35c698cc-7141-4985-9940-87361653c79d" data-linktype="relative-path">LPDHCP_OPTION_SCOPE_INFO6 (section 2.2.1.2.30)</a></span>
+that contains the configuration information at the scope or server level.</p><p><b>FieldsToSet: </b>Specifies the fields to be set
+(see section <span><a href="b155fb2e-d3fd-44fb-963f-a149c9d6c34f" data-linktype="relative-path">2.2.1.2.62</a></span> for
+details of the fields).<a id="Appendix_A_Target_68"></a><a aria-label="Product behavior note 68" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_68" data-linktype="relative-path">&lt;68&gt;</a> Valid
+values are in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Set_UnicastFlag</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Set unicast option.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Set_RapidCommitFlag</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Set rapid commit option.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Set_PreferredLifetime</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Set preferred lifetime value for nontemporary IPv6
+  address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Set_ValidLifetime</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Set valid lifetime value for nontemporary IPv6
+  address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Set_T1</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Set T1 time value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Set_T2</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Set T2 time value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Set_PreferredLifetimeIATA</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>Set preferred lifetime value for temporary IPv6
+  address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Set_ValidLifetimeIATA</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>Set valid lifetime value for temporary IPv6 address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Set_AuditLogState</p>
+  <p>0x00000800</p>
+  </td>
+  <td>
+  <p>Set audit log state in the registry.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ConfigInfo: </b>This is a pointer of type
+LPDHCP_SERVER_CONFIG_INFO_V6 (section 2.2.1.2.62) that contains
+values for the field specified by the <i>FieldsToSet</i>.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 65.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ScopeType</b> field of <i>ScopeInfo</i> is set to
+DhcpScopeOptions6, search for <b>DHCPv6Scope</b> object in <b>DHCPv6ScopeList</b>
+corresponding to the IPv6 address specified in the <b>SubnetScopeInfo</b> field
+of <i>ScopeInfo</i>. If it is not found, then return ERROR_FILE_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>If <i>FieldsToSet</i> is Set_AuditLogState, then the <b>DHCPv6ServerAuditLogState</b>
+object is set with the value in <b>fAuditLog</b> field of <i>ConfigInfo</i>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>FieldsToSet</i> is Set_UnicastFlag, an option is created
+with ID as 0x20000 (following the same procedure as stated in – <span><a href="8e37cf22-b656-44e5-8751-a495f72a8123" data-linktype="relative-path">R_DhcpSetOptionValueV6 (section 3.2.4.53)</a></span>
+– for default user and vendor class) and the value specified in the input <i>ConfigInfo</i>
+<b>UnicastFlag</b>. If the option is already present, the value is updated.</p>
+</li><li><p><span><span> 
+</span></span>If <i>FieldsToSet</i> is Set_RapidCommitFlag, an option is
+created with ID as 0x20001 and the value specified in the input <i>ConfigInfo</i>
+<b>RapidCommitFlag</b>. If the option is already present, the value is updated.</p>
+</li><li><p><span><span> 
+</span></span>If <i>FieldsToSet</i> is Set_ValidLifetime and the <b>ValidLifetime</b>
+in <i>ConfigInfo</i> is greater than the existing value of the preferred lifetime
+(existing value of option ID 0x20002) or the value specified in the <i>ConfigInfo</i>
+<b>PreferredLifetime</b>, create/update the option with ID 0x20003 with the
+value from <i>ConfigInfo</i> <b>ValidLifetime</b>. Otherwise, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If <i>FieldsToSet</i> is Set_PreferredLifetime and the preferred
+lifetime value in <i>ConfigInfo</i> is less than the existing value of the
+valid lifetime (existing value of option ID 0x20003), create/update the option
+with ID 0x20002 with the value from <i>ConfigInfo</i> <b>PreferredLifetime</b>,
+set the <b>T1</b> value (value of option ID 0x20004) to 0.5 and the <b>T2</b>
+value (value of option ID 0x20005) to 0.8 of the new preferred lifetime value.
+Otherwise, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If <i>FieldsToSet</i> is Set_T2, and the <b>T2</b> time value in <i>ConfigInfo</i>
+is less than the existing preferred lifetime value (existing value of option ID
+0x20002) and greater than the existing <b>T1</b> value (value of option ID
+0x20004), create/update the option with ID 0x20005 with the value from <i>ConfigInfo</i>
+<b>T2</b>. Otherwise, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If <i>FieldsToSet</i> is Set_T1, and the <b>T1</b> time value in <i>ConfigInfo</i>
+is less than the existing <b>T2</b> time value (value of option ID 0x20005),
+create/update the option with ID 0x20004 with the value from <i>ConfigInfo</i> <b>T1</b>.
+Otherwise, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If <i>FieldsToSet</i> is Set_ValidLifetimeIATA or
+Set_PreferredLifetimeIATA, the method returns ERROR_SUCCESS without any
+processing.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

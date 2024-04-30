@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>NETSETUP_JOIN_STATUS</b> enumeration specifies
+details about the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span> join status
+of a machine.</p><dl>
+<dd>
+<div><pre> typedef  enum _NETSETUP_JOIN_STATUS
+ {
+   NetSetupUnknownStatus = 0,
+   NetSetupUnjoined,
+   NetSetupWorkgroupName,
+   NetSetupDomainName
+ } NETSETUP_JOIN_STATUS,
+  *PNETSETUP_JOIN_STATUS;
+</pre></div>
+</dd></dl><p><b>NetSetupUnknownStatus: </b>Domain join status of the machine
+is unknown.</p><p><b>NetSetupUnjoined: </b>Machine is not joined to a domain
+or to a workgroup.</p><p><b>NetSetupWorkgroupName: </b>Machine is joined to a
+workgroup.</p><p><b>NetSetupDomainName: </b>Machine is joined to a domain.</p></div>

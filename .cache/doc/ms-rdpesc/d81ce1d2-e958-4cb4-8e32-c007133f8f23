@@ -1,0 +1,82 @@
+<div class="content"><p>Access mode flags provide possible values for applications
+to connect to the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">smart card</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AccessModeFlag</p>
+  </td>
+ </tr>
+</tbody></table><p><b>AccessModeFlag (4 bytes): </b>One of the following
+possible values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SCARD_SHARE_EXCLUSIVE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>This application is not willing to share this smart
+  card with other applications.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_SHARE_SHARED</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>This application is willing to share this smart card
+  with other applications.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_SHARE_DIRECT</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>This application demands direct control of the smart
+  card reader; therefore, it is not available to other applications.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

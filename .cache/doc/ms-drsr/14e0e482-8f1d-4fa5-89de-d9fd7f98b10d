@@ -1,0 +1,68 @@
+<div class="content"><p> </p><p><b>PAS_DATA</b> is a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> for a
+list of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attributes</a></span> in a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_2b3cc270-8a21-4402-bb8b-9bebac24bdaa" data-linktype="relative-path">partial
+attribute set</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>version</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>size</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>flag</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>pas
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>version (4 bytes): </b>The version of the
+structure; MUST be 1.</p><p><b>size (4 bytes): </b>The size of the entire
+structure.</p><p><b>flag (4 bytes): </b>Unused. MUST be 0 and ignored.</p><p><b>pas (variable): </b>A <span><a href="1d5c1b34-daa4-4761-a8b5-d3c0146a0e30" data-linktype="relative-path">PARTIAL_ATTR_VECTOR_V1_EXT</a></span>
+structure, which specifies the additional attributes being requested as part of
+a PAS <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_e14454ba-5d3b-4fdb-99e5-50ecf632bd16" data-linktype="relative-path">cycle</a></span>.</p></div>

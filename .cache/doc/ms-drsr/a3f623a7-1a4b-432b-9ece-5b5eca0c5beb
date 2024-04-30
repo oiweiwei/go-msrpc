@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The DRS_MSG_FINISH_DEMOTIONREQ union defines the request
+messages sent to the <span><a href="0bf530e8-1be0-4f48-b8c2-208031a8725f" data-linktype="relative-path">IDL_DRSFinishDemotion</a></span>
+method. Only one version, identified by <i>dwInVersion</i> = 1, is currently
+defined.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_FINISH_DEMOTIONREQ_V1 V1;
+ } DRS_MSG_FINISH_DEMOTIONREQ;
+</pre></div>
+</dd></dl><p><b>V1:</b>  Version 1 request. Currently,
+only one version is defined.</p></div>

@@ -1,0 +1,11 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/5140443c-ef1e-48e8-b9c7-15d34cb91423" data-linktype="external">msdn link</a></p><p>The <b>UAS_INFO_0</b> structure was for the support of LAN
+Manager products and is beyond the scope of this document.</p><dl>
+<dd>
+<div><pre> typedef struct _UAS_INFO_0 {
+   CHAR ComputerName[16];
+   ULONG TimeCreated;
+   ULONG SerialNumber;
+ } UAS_INFO_0,
+  *PUAS_INFO_0;
+</pre></div>
+</dd></dl></div>

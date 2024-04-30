@@ -1,0 +1,21 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/6d981290-a203-4080-94b0-4a26de22d8c5" data-linktype="external">msdn link</a></p><p>The SamrAddMultipleMembersToAlias method adds multiple
+members to an alias.</p><dl>
+<dd>
+<div><pre> long SamrAddMultipleMembersToAlias(
+   [in] SAMPR_HANDLE AliasHandle,
+   [in] PSAMPR_PSID_ARRAY MembersBuffer
+ );
+</pre></div>
+</dd></dl><p><b>AliasHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing an <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_0387e636-5654-4910-9519-1f8326cf5ec0" data-linktype="relative-path">alias object</a>.</p><p><b>MembersBuffer: </b>A structure containing a list
+of <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SIDs</a> to add as
+members to the alias.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>The server MUST behave as with N successive message calls to
+<a href="9a5d2c35-e84b-4e59-b7b0-96c6fa0fc8d7" data-linktype="relative-path">SamrAddMemberToAlias</a>,
+once for each SID value in <i>MembersBuffer</i>, where <i>MembersBuffer</i>
+contains N elements. The server MUST ignore the processing error of a member
+value already being present in the member attribute and abort the request on
+any other processing error.</p></div>

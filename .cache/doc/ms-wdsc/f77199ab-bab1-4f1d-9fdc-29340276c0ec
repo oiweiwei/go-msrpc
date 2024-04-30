@@ -1,0 +1,89 @@
+<div class="content"><p>The <a href="c9ecc8ee-2046-4ef2-b2ec-329fde7f8b01#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">Endpoint</a>
+Header is defined as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">Size-Of-Header</p>
+  </td>
+  <td colspan="16">
+  <p align="center">Version</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Packet-Size</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Endpoint-GUID
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Size-Of-Header (2 bytes): </b>MUST be set to the
+size of header in bytes, which is 0x0028.</p><p><b>Version (2 bytes):</b> MUST be set to 0x0100.</p><p><b>Packet-Size (4 bytes): </b>MUST be set to the
+number of bytes being transmitted for the packet. It MUST be the arithmetic sum
+of the sizes in bytes of Endpoint Header, Operation Header, and Variables
+Section.</p><p><b>Endpoint-GUID (16 bytes): </b>MUST be set to the <a href="c9ecc8ee-2046-4ef2-b2ec-329fde7f8b01#gt_3996e5d9-beae-47cc-bf9d-dd0c570fbff5" data-linktype="relative-path">Endpoint GUID</a>, as specified
+in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/001eec5a-7f8b-4293-9e21-ca349392db40" data-linktype="relative-path">2.3.4.2</a>,
+of the Service Provider, which provides the service to be invoked.</p><p><b>Reserved (16 bytes): </b>MUST be set to zeros.</p></div>

@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p>The <b>CORE_PRINTER_DRIVER</b> structure specifies
+information that identifies a specific <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_d4010501-f6e4-4cba-817b-403a9c5ea41c" data-linktype="relative-path">core printer driver</a></span>.
+See the <b>RpcAsyncGetCorePrinterDrivers </b>method (section <span><a href="4c8086cd-72f5-443c-97be-08d66d60c482" data-linktype="relative-path">3.1.4.2.9</a></span>)
+for an example of its use.</p><dl>
+<dd>
+<div><pre> typedef struct _CORE_PRINTER_DRIVER {
+   GUID CoreDriverGUID;
+   FILETIME ftDriverDate;
+   DWORDLONG dwlDriverVersion;
+   wchar_t szPackageID[260];
+ } CORE_PRINTER_DRIVER;
+</pre></div>
+</dd></dl><p><b>CoreDriverGUID: </b>A <b>GUID</b> value (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+sections <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a></span>,
+<span><a href="../ms-dtyp/001eec5a-7f8b-4293-9e21-ca349392db40" data-linktype="relative-path">2.3.4.2</a></span>,
+and <span><a href="../ms-dtyp/222af2d3-5c00-4899-bc87-ed4c6515e80d" data-linktype="relative-path">2.3.4.3</a></span>)
+that uniquely identifies the package.</p><p><b>ftDriverDate: </b>A <b>FILETIME</b> value
+([MS-DTYP] section <span><a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">2.3.3</a></span>)
+that specifies the date this package was published.</p><p><b>dwlDriverVersion: </b>A 64-bit value that
+specifies the version of the core printer driver. This version number MAY be
+used to match the driver version in the driver installation control file.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p><p><b>szPackageID: </b>A string that specifies the
+package name. The server MUST generate a unique package name when the package
+is uploaded using the <b>RpcAsyncUploadPrinterDriverPackage</b> method (section
+<span><a href="cdb3054e-db6e-4d08-ab8c-2282375b1f8c" data-linktype="relative-path">3.1.4.2.8</a></span>).
+The length of the string MUST not exceed the maximum path size, which is 260
+characters, including a null-terminated character.</p></div>

@@ -1,0 +1,129 @@
+<div class="content"><p> </p><p>The IRPCAsyncNotify_GetNotification method returns <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_4571dc27-4115-4cdf-8dc3-f8fe410a9966" data-linktype="relative-path">notification</a></span>
+data from the <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a></span>. This
+method MUST NOT be used with <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_b1d50fe5-0a8c-44fe-8802-3382d1af77e5" data-linktype="relative-path">bidirectional communication
+mode</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT IRPCAsyncNotify_GetNotification(
+   [in] PRPCREMOTEOBJECT pRemoteObj,
+   [out] PrintAsyncNotificationType** ppOutNotificationType,
+   [out] unsigned long* pOutSize,
+   [out, size_is(, *pOutSize)] byte** ppOutNotificationData
+ );
+</pre></div>
+</dd></dl><p><b>pRemoteObj: </b>MUST be the <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_96e6d133-8e9c-4258-ae03-65cb549bce90" data-linktype="relative-path">remote
+object</a></span> context handle. This remote object MUST have been registered
+for <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_d203482a-15ef-4528-9064-68b0f2e0c5fa" data-linktype="relative-path">unidirectional
+communication mode</a></span> by a prior successful call to <span><a href="fd00091c-2da3-4966-84ef-b1b75edb66b4" data-linktype="relative-path">IRPCAsyncNotify_RegisterClient (section 3.1.1.4.1)</a></span>.</p><p><b>ppOutNotificationType: </b>MUST return a pointer
+to the <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_928ce1b5-ae98-4601-b500-48cb24b2affc" data-linktype="relative-path">notification type identifier</a></span>
+of the server-to-client notification. If the registered remote object has been
+deleted, the value MUST be <b>NOTIFICATION_RELEASE</b> (section <span><a href="89ef806f-96ee-4178-9f36-3e1420820a4f" data-linktype="relative-path">2.2.1</a></span>).
+In all other cases the value MUST be the same as the notification type
+identifier of the <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_ad9bb1cf-c546-4d8a-8caa-09856386eae0" data-linktype="relative-path">notification type</a></span>
+for which the <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_3b2da3d1-c159-4399-a6dd-dfd5f76fa2f5" data-linktype="relative-path">print client</a></span> has
+registered.</p><p><b>pOutSize: </b>MUST be the length of
+server-to-client notification data, in number of bytes. The client MAY impose
+an upper limit on this value that is smaller than the maximum unsigned 32-bit
+integer.</p><p><b>ppOutNotificationData: </b>MUST be a pointer to
+server-to-client notification data in a format that MUST conform to the
+channel&#39;s notification type.</p><p><b>Return Values: </b>This method MUST return zero to
+indicate success, or an <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> error value
+(<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a></span>)
+to indicate failure. Protocol-specific error values are defined in the
+following table. The client SHOULD treat all error return values the same,
+except where noted.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8004000C</p>
+  </td>
+  <td>
+  <p>The server has not yet returned from a previous call
+  to this method with the same remote object.</p>
+  <p>If this error value is returned, the client SHOULD NOT
+  retry this call before the previous call to this method with the specified
+  remote object has completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007000E</p>
+  </td>
+  <td>
+  <p>The server does not have enough memory to complete the
+  request.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007071A</p>
+  </td>
+  <td>
+  <p>Incoming notifications have been terminated. Upon
+  completion of this call with this return value, the server MUST fail
+  subsequent calls to this method with the same remote object.</p>
+  <p>If this error value is returned, the client SHOULD NOT
+  retry this call.</p>
+  </td>
+ </tr></tbody></table><p><b>Exceptions Thrown:</b> An exception code of
+0x08004000C or 0x8007071A SHOULD be thrown by the server under the
+circumstances described in the preceding table for the corresponding return
+values. The client MUST treat these exception codes exactly as it would treat
+the same return values. No additional exceptions are thrown beyond those thrown
+by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>Unless specified otherwise, if a failure is indicated by an
+error return or an exception, the client SHOULD retry this method call by
+performing the following steps:</p><ol><li><p><span>    </span>Call <span><a href="e3786f60-0b93-4c5e-8cd1-3f0487e4310a" data-linktype="relative-path">IRPCRemoteObject_Create (section 3.1.2.4.1)</a></span>
+to generate a new <span><a href="a47aca7c-fcc3-4151-8fb6-1de5225ecfa5" data-linktype="relative-path">PRPCREMOTEOBJECT (section 2.2.4)</a></span>.</p>
+</li><li><p><span>    </span>Call
+IRPCAsyncNotify_RegisterClient with the new PRPCREMOTEOBJECT.</p>
+</li><li><p><span>    </span>Call
+IRPCAsyncNotify_GetNotification with the new PRPCREMOTEOBJECT.</p>
+</li></ol><p>Retries SHOULD be separated by time intervals decaying from
+1 second to 1 minute to reduce a potential burden on the server. Retries SHOULD
+terminate when the above sequence succeeds or the client determines that it is
+no longer interested in notifications for the particular combination of
+notification type, <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_569f1f1c-f426-46fa-91d2-3d1eb0b19aa1" data-linktype="relative-path">print queue</a></span> name,
+conversation style, and <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_7b73a4fc-912a-412a-9b0f-d021a1e6df13" data-linktype="relative-path">user identity filter</a></span>
+that were originally specified in the call to IRPCAsyncNotify_RegisterClient.</p><p>The IRPCAsyncNotify_GetNotification method MUST return data
+from the server that matches the registration for the given remote object.</p><p>A server MUST NOT do the following:</p><ul><li><p><span><span> 
+</span></span>Indicate success to a client call of
+IRPCAsyncNotify_GetNotification unless a prior call to
+IRPCAsyncNotify_RegisterClient succeeded using the same PRPCREMOTEOBJECT value.</p>
+</li><li><p><span><span> 
+</span></span>Indicate success to a client call of
+IRPCAsyncNotify_GetNotification following a prior successful call to <span><a href="20fa79b6-4905-4a50-83d5-2bc76525b3c9" data-linktype="relative-path">IRPCAsyncNotify_UnregisterClient</a></span>
+using the same PRPCREMOTEOBJECT value.</p>
+</li><li><p><span><span> 
+</span></span>Complete a call to IRPCAsyncNotify_GetNotification until the <b>Unidirectional
+Notification Queue</b> associated with the <b>Client Registration</b> (<span><a href="bd69159c-f3d8-4f7b-b2c3-f9efec7c9f62" data-linktype="relative-path">Abstract
+Data Model (section 3.1.1.1)</a></span>) contains an unreturned
+notification, or an abnormal condition occurs. An example of an abnormal
+condition is an initiated server shutdown sequence or remote object
+unregistration. An abnormal condition will result in a failure error code
+returned prior to the server having data.</p>
+</li></ul><p>A server SHOULD do the following:</p><ul><li><p><span><span> 
+</span></span>Discard unidirectional notifications in the absence of
+corresponding registered clients.</p>
+</li><li><p><span><span> 
+</span></span>Buffer unidirectional notifications, up to some
+implementation-defined limit,<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="cdec7a7c-2b2c-4b81-a40a-b12d69f880ee#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a> for each
+registered client that does not have pending IRPCAsyncNotify_GetNotification
+calls.</p>
+</li></ul><p>If a client wants to receive further notifications from the
+server, the client SHOULD call IRPCAsyncNotify_GetNotification in response to a
+prior successful return from IRPCAsyncNotify_GetNotification. When the client
+no longer wants to receive notifications from the server, it SHOULD call
+IRPCAsyncNotify_UnregisterClient, either before or after the return from
+IRPCAsyncNotify_GetNotification.</p><p>A client MUST NOT do the following:</p><ul><li><p><span><span> 
+</span></span>Call IRPCAsyncNotify_GetNotification unless a prior call to
+IRPCAsyncNotify_RegisterClient succeeded, using the same PRPCREMOTEOBJECT
+value.</p>
+</li><li><p><span><span> 
+</span></span>Call IRPCAsyncNotify_GetNotification following a prior call to
+IRPCAsyncNotify_UnregisterClient by using the same PRPCREMOTEOBJECT value.</p>
+</li></ul></div>

@@ -1,0 +1,23 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/2561f160-11f9-43a7-bad4-5721a05e8ad8" data-linktype="external">msdn link</a></p><p>The <b>NetrServerAuthenticate</b> method<a id="Appendix_A_Target_177"></a><a aria-label="Product behavior note 177" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_177" data-linktype="relative-path">&lt;177&gt;</a> is a predecessor to the <a href="3a9ed16f-8014-45ae-80af-c0ecb06e2db9" data-linktype="relative-path">NetrServerAuthenticate3</a>
+method (section 3.5.4.4.2). All parameters of this method have the same
+meanings as the identically named parameters of the NetrServerAuthenticate3
+method. </p><dl>
+<dd>
+<div><pre> NTSTATUS NetrServerAuthenticate(
+   [in, unique, string] LOGONSRV_HANDLE PrimaryName,
+   [in, string] wchar_t* AccountName,
+   [in] NETLOGON_SECURE_CHANNEL_TYPE SecureChannelType,
+   [in, string] wchar_t* ComputerName,
+   [in] PNETLOGON_CREDENTIAL ClientCredential,
+   [out] PNETLOGON_CREDENTIAL ServerCredential
+ );
+</pre></div>
+</dd></dl><p>Message processing is identical to NetrServerAuthenticate3,
+as specified in section 3.5.4.4.2, except for the following:</p><ul><li><p><span><span> 
+</span></span>The <i>NegotiateFlags</i> parameter is not present in
+NetrServerAuthenticate. Message processing would be identical to an invocation
+of NetrServerAuthenticate3 with the <i>NegotiateFlags</i> parameter set to 0. </p>
+</li><li><p><span><span> 
+</span></span>The <i>AccountRid</i> parameter is not present in
+NetrServerAuthenticate.</p>
+</li></ul></div>

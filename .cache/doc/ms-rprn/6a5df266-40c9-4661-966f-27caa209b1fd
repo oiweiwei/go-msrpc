@@ -1,0 +1,7 @@
+<div class="content"><p>The <b>PRINTER_INFO_9</b> structure is not used remotely.<a id="Appendix_A_Target_64"></a><a aria-label="Product behavior note 64" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_64" data-linktype="relative-path">&lt;64&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _PRINTER_INFO_9 {
+   ULONG_PTR pDevMode;
+ } PRINTER_INFO_9;
+</pre></div>
+</dd></dl></div>

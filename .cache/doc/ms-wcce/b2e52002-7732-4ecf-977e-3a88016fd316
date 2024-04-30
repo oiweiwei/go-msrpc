@@ -1,0 +1,63 @@
+<div class="content"><p>The Windows Client Certificate Enrollment Protocol is built
+from two <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a>
+interfaces: <a href="dbb2e78f-7630-4615-92c4-6734fccfc5a6" data-linktype="relative-path">ICertRequestD</a>
+and <a href="0949770a-30f9-4e12-a317-39aa6f46c4f9" data-linktype="relative-path">ICertRequestD2</a>,
+successive versions. The two DCOM interfaces allow a client to interact with a
+CA to request a <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a>
+and to obtain certain information about the CA. This document specifies the
+protocol, the Windows Client Certificate Enrollment Protocol, but also
+specifies certain elements of the behavior of the client and the CA (the
+server), because those behaviors are reflected in or influence protocol
+behavior.</p><p>The Windows Client Certificate Enrollment Protocol occurs
+between one client and one server. However, the client and the server are
+subject to variation, so the enrollment process can appear very complex. Other
+machines and services can also interact with the client and/or the server
+during enrollment, but those interactions depend on the particular variations
+in use.</p><p>Two elements of a server are subject to variation. These
+elements are independent of each other and independent of the implementation of
+the Windows Client Certificate Enrollment Protocol stack. This protocol
+specification refers to these elements as follows: </p><ul><li><p><span><span> 
+</span></span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_cd0e4dab-0331-4123-a538-df8e4e626a71" data-linktype="relative-path">CA policy
+algorithm</a></p>
+<p>This algorithm determines 1)
+whether to issue the certificate requested, and 2) how to populate the fields
+of a certificate that is issued.</p>
+</li><li><p><span><span> 
+</span></span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_240a9746-c99e-4765-a9ee-6d60f1a9ffd1" data-linktype="relative-path">CA exit
+algorithm</a></p>
+<p>The optional algorithm that is
+invoked when a certificate is issued. This algorithm might store a copy of that
+certificate in one or more repositories, or the algorithm might make a log
+entry or notify some person of the <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_71f399e7-7026-46bb-b7c2-8fd4872b900f" data-linktype="relative-path">issuance</a> of the
+certificate.</p>
+</li></ul><p>The variants of interest in the CA policy algorithm are as
+follows:</p><ul><li><p><span><span> 
+</span></span>Hard-coded</p>
+<p>A policy algorithm that performs
+the same operation on certificate requests regardless of the information
+specified in the request is called a hard-coded policy algorithm. A simple,
+hard-coded policy algorithm might issue any certificate that is requested.</p>
+</li><li><p><span><span> 
+</span></span>Manual</p>
+<p>A policy algorithm that requires
+human intervention in order to determine whether or not to issue a certificate
+is called a manual policy algorithm. A simple manual policy algorithm accepts
+the requester&#39;s choice of certificate fields, presents the requested
+certificate to an administrator, and asks the administrator whether or not to
+issue the certificate.</p>
+</li><li><p><span><span> 
+</span></span>Policy-driven via <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_9c47ca85-9343-4e01-96d4-53d96d3df60e" data-linktype="relative-path">certificate templates</a></p>
+<p>A policy algorithm that determines
+whether or not to issue certificates based on enrollment policies specified in
+a certificate template <a href="../ms-crtd/4c6950e4-1dc2-4ae3-98c3-b8919bb73822" data-linktype="relative-path">[MS-CRTD]</a>.
+Each certificate template in a collection of certificate templates describes a
+kind of certificate with its fields. The security descriptor on the certificate
+template provides an <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_9f92aa05-dd0a-45f2-88d6-89f1fb654395" data-linktype="relative-path">access
+control list (ACL)</a> that can include the Enroll permission for an individual
+or, more typically, a group of individuals. A policy algorithm that strictly
+implements a policy stored as certificate templates is described in section <a href="e8e51249-b699-4004-97de-cb8cbe2c4c9c" data-linktype="relative-path">3.2.2.6.2.1.4</a>. </p>
+<p><b>Note</b>  The
+capability to base certificate policy on user types is not available for a <a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_6593a312-1130-482c-aa85-6840f7b1859f" data-linktype="relative-path">standalone CA</a> since
+standalone CAs do not support the use of certificate templates.</p>
+</li></ul><p>One aspect of a client subject to variation is whether
+certificate templates are used to form certificate requests.</p></div>

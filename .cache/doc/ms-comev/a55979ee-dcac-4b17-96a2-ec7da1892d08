@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The IEventSystemInitialize interface is used to initialize
+the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>
+implementing this protocol. As this is a DCOM interface, Opnum 0 to Opnum 2 are
+IUnknown methods, which MUST be implemented by means of <span><a href="../ms-dcom/7f621d16-8448-4f9a-9567-793845db2bc7" data-linktype="relative-path">IRemUnknown</a></span>,
+as specified in <span><a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a></span>
+section 3.1.1.5.6. The version for this interface is 0.0. </p><p>To receive incoming remote calls for this interface, the
+server MUST implement a DCOM <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_a224e395-3fea-48bd-b141-3dd9bee2136a" data-linktype="relative-path">object class</a></span> with
+the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a></span>
+CLSID_EventSystem (see section <span><a href="25e89236-b0b3-4d8b-b1fb-64e0e9f0e156" data-linktype="relative-path">1.9</a></span>) using the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+{a0e8f27a-888c-11d1-b763-00c04fb926af} for this interface .</p><p>The interface contains the following methods beyond those of
+IUnknown.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span><a href="17bed20c-7841-436b-a4c3-3924864828a6" data-linktype="relative-path">SetCOMCatalogBehaviour</a></span></p>
+  </td>
+  <td>
+  <p>Initializes the server.</p>
+  <p>Opnum: 3</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

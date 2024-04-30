@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The <b>INET_INFO_IP_SEC_ENTRY</b> structure contains
+Internet Protocol Security (IPv4) entries.</p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _INET_INFO_IP_SEC_ENTRY {
+   DWORD dwMask;
+   DWORD dwNetwork;
+ } INET_INFO_IP_SEC_ENTRY,
+  *LPINET_INFO_IP_SEC_ENTRY;
+</pre></div>
+</dd></dl><p><b>dwMask:</b>  The subnet mask. Data is
+stored in <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_502de58c-ffc0-4dda-8fcb-b152b2c31fba" data-linktype="relative-path">network byte order</a></span>.</p><p><b>dwNetwork:</b>  The IP address. Data is
+stored in network byte order.</p></div>

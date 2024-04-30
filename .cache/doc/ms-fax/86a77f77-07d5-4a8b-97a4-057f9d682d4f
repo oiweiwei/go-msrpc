@@ -1,0 +1,97 @@
+<div class="content"><p> </p><p>The fax client application calls the <b>FAX_SetMessage
+(Opnum 103)</b> method to set the specific message properties for the message
+identified by its ID.<a id="Appendix_A_Target_162"></a><a aria-label="Product behavior note 162" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_162" data-linktype="relative-path">&lt;162&gt;</a> The <i>dwlMessageId</i>
+parameter specifies a particular message and can be obtained using the <b>FAX_EnumMessages</b> (section
+<span><a href="365c2295-c0f9-44bd-a72b-6db0b16c0f8f" data-linktype="relative-path">3.1.4.1.24</a></span>)
+method or the <b>FAX_EnumMessagesEx</b> (section <span><a href="43cf8eed-1cf3-4240-80c5-6f8d1d082084" data-linktype="relative-path">3.1.4.1.25</a></span>) method.</p><p>In response, the server MUST validate whether the client&#39;s
+fax user account has access to set the message properties. The server MUST also
+confirm if the dwlMessageId specified by the client refers to a valid message
+and the client&#39;s fax user account has access to this message in the specified
+folder. On success, the server MUST set the specified message properties,
+enabled using the <b>dwValidityMask</b> member of the <b>FAX_MESSAGE_PROPS</b> (section
+<span><a href="f7328ae4-0a62-4381-9e6b-14c306a3b065" data-linktype="relative-path">2.2.15</a></span>)
+structure, for the fax message.</p><p>Protocol version FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), and FAX_API_VERSION_2 (0x00020000) fax servers
+SHOULD NOT implement this call. The fax client MUST NOT call this method if the
+protocol version reported by the server is FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), or FAX_API_VERSION_2 (0x00020000). For more
+information, see <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>).</p><dl>
+<dd>
+<div><pre> error_status_t FAX_SetMessage(
+   [in] handle_t hFaxHandle,
+   [in] DWORDLONG dwlMessageId,
+   [in] FAX_ENUM_MESSAGE_FOLDER Folder,
+   [in, ref] PFAX_MESSAGE_PROPS lpMessageProps
+ );
+</pre></div>
+</dd></dl><p><b>hFaxHandle: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> or <b>FAX_ConnectionRefCount</b> (section
+<span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>)
+method call used to connect to the fax server. </p><p><b>dwlMessageId: </b>The unique ID number of the fax
+message.</p><p><b>Folder: </b>Identifies the location of the fax
+message. The value in this parameter MUST come from the <b>FAX_ENUM_MESSAGE_FOLDER</b>
+(section <span><a href="1c7a6f3f-1e5b-40a2-bc48-0729f3a6cf0d" data-linktype="relative-path">2.2.2</a></span>) enumeration.
+It can be set to the FAX_MESSAGE_FOLDER_INBOX or FAX_MESSAGE_FOLDER_SENTITEMS
+constant.</p><p><b>lpMessageProps: </b>This MUST be a pointer to a <b>FAX_MESSAGE_PROPS</b>.
+Contains the property settings for the fax message identified by dwlMessageId.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The client&#39;s fax user account does
+  not have the <b>ALL_FAX_USER_ACCESS_RIGHTS</b> access rights required for
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. This error code is
+  returned if any of the following conditions are met:</p>
+  <p><span>§<span>  
+  </span></span>The structure pointed to by the <i>lpMessageProps</i> argument
+  contains invalid data.</p>
+  <p><span>§<span>  
+  </span></span>The <i>Folder</i> argument has an invalid value (a value other
+  than FAX_MESSAGE_FOLDER_INBOX or FAX_MESSAGE_FOLDER_SENTITEMS).</p>
+  <p><span>§<span>  
+  </span></span>The <i>dwlMessageId</i> parameter is zero.</p>
+  <p><span>§<span>  
+  </span></span>In the structure pointed at by the <i>lpMessageProps</i>
+  argument, the <b>dwValidityMask</b> field contains the
+  FAX_MSG_PROP_FIELD_MSG_FLAGS, and the <b>dwMsgFlags</b> field does not
+  contain the FAX_MSG_ALL_FLAGS flag.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FAX_ERR_MESSAGE_NOT_FOUND</p>
+  <p>0x00001B61</p>
+  </td>
+  <td>
+  <p>The fax message specified by the <i>dwlMessageId</i>
+  argument cannot be found by the fax server in the folder specified by the <i>Folder</i>
+  argument.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

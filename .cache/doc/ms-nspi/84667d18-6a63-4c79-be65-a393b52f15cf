@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The LongArray_r structure encodes an array of 32-bit
+integers.</p><dl>
+<dd>
+<div><pre> typedef struct _LongArray_r {
+   [range(0,100000)] DWORD cValues;
+   [size_is(cValues)] long* lpl;
+ } LongArray_r;
+</pre></div>
+</dd></dl><p><b>cValues:</b>  The number of 32-bit
+integers represented in this structure. This value MUST NOT exceed 100,000.</p><p><b>lpl:</b>  The 32-bit integer values.</p></div>

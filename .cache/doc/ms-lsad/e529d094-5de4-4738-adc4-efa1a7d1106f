@@ -1,0 +1,18 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/e529d094-5de4-4738-adc4-efa1a7d1106f" data-linktype="external">msdn link</a></p><p>The LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION2 structure is used
+to communicate identification, POSIX compatibility, and authentication
+information for a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted
+domain</a>. The following structure corresponds to the
+TrustedDomainFullInformation2Internal information class.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION2 {
+   LSAPR_TRUSTED_DOMAIN_INFORMATION_EX2 Information;
+   TRUSTED_POSIX_OFFSET_INFO PosixOffset;
+   LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION AuthInformation;
+ } LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION2,
+  *PLSAPR_TRUSTED_DOMAIN_FULL_INFORMATION2;
+</pre></div>
+</dd></dl><p><b>Information:</b>  A structure containing
+name, <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a>, and <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_0b8230da-0fd8-492c-b84a-d8467c3dc1ef" data-linktype="relative-path">trust attributes</a>, as
+specified in section <a href="dd92d4d9-227f-4ef1-b42b-ef3f056f8aaa" data-linktype="relative-path">2.2.7.10</a>.</p><p><b>PosixOffset:</b>  Any offset required
+for POSIX compliance, as specified in section <a href="b091ee7e-f5c3-4b48-8567-1b08ea002221" data-linktype="relative-path">2.2.7.6</a>.</p><p><b>AuthInformation:</b>  Authentication
+material, as specified in section <a href="084fdb6b-5bc3-4912-9aed-0257159996dd" data-linktype="relative-path">2.2.7.11</a>.</p></div>

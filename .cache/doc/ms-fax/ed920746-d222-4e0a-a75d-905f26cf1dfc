@@ -1,0 +1,288 @@
+<div class="content"><p> </p><p>The <b>_FAX_PORT_INFO</b> data structure is the
+custom-marshaled variant of the <b>FAX_PORT_INFO</b> (section <span><a href="2b46d16c-e74a-4e3b-b50c-0b94f78bebd0" data-linktype="relative-path">2.2.7</a></span>)
+data structure. This structure describes one fax port. The data includes, among
+other items, a device identifier, the port&#39;s name and current status, and
+subscriber identifiers.</p><p>If an application calls the <b>FAX_EnumPorts</b> (section <span><a href="7143a58b-d7c5-4353-8857-39c7f708e778" data-linktype="relative-path">3.1.4.1.28</a></span>)
+function to enumerate all the fax devices currently attached to a fax server,
+the function returns a byte array of <b>_FAX_PORT_INFO</b> structures. Each
+structure describes one device in detail. </p><p>If an application calls the <b>FAX_GetPort</b> (section <span><a href="f7fa6fcf-ace1-47a2-b2a4-f5e408212d78" data-linktype="relative-path">3.1.4.1.51</a></span>)
+function to query one device, that function returns information about the
+device in one <b>_FAX_PORT_INFO</b>.</p><p>This structure is also returned as a single structure by the
+<b>FaxObs_GetPort</b> (section <span><a href="d321c037-bf10-425c-ac43-6d09d65359b0" data-linktype="relative-path">3.1.4.2.16</a></span>) method
+and as an array of structures by the <b>FaxObs_EnumPorts</b> (section <span><a href="d9e71aba-137d-455b-9ca8-8d89c89b2db7" data-linktype="relative-path">3.1.4.2.15</a></span>)
+method.</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (36 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (36 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SizeOfStruct</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DeviceId</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>State</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Rings</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Priority</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DeviceNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TsidOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CsidOffset</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>SizeOfStruct (4 bytes): </b>A
+<b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that holds the size of the <b>Fixed_Portion</b> block, in bytes. This value
+MUST be 36 bytes.</p>
+</dd>
+<dd>
+<p><b>DeviceId (4 bytes): </b>See
+the <b>DeviceId</b> field for <b>FAX_PORT_INFO</b>.</p>
+</dd>
+<dd>
+<p><b>State (4 bytes): </b>See
+the <b>State</b> field for <b>FAX_PORT_INFO</b>.</p>
+</dd>
+<dd>
+<p><b>Flags (4 bytes): </b>See
+the <b>Flags</b> field for <b>FAX_PORT_INFO</b>.</p>
+</dd>
+<dd>
+<p><b>Rings (4 bytes): </b>See
+the <b>Rings</b> field for <b>FAX_PORT_INFO</b>.</p>
+</dd>
+<dd>
+<p><b>Priority (4 bytes): </b>See
+the <b>Priority</b> field for <b>FAX_PORT_INFO</b>.</p>
+</dd>
+<dd>
+<p><b>DeviceNameOffset (4
+bytes): </b>Offset to the <b>DeviceName</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>TsidOffset (4 bytes): </b>Offset
+to the <b>Tsid</b> field in the <b>Variable_Data</b> portion of the structure.</p>
+</dd>
+<dd>
+<p><b>CsidOffset (4 bytes): </b>Offset
+to the <b>Csid</b> field in the <b>Variable_Data</b> portion of the structure.</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DeviceName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Tsid (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Csid
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>DeviceName (variable): </b>A
+null-terminated string that holds the name of the fax device of interest.</p>
+</dd>
+<dd>
+<p><b>Tsid (variable): </b>A
+null-terminated string that holds the transmitting subscriber identifier (TSID)
+with same description as for the <b>Tsid</b> field of <b>FAX_PORT_INFO</b>.</p>
+</dd>
+<dd>
+<p><b>Csid (variable): </b>A
+null-terminated string that holds the called subscriber identifier (CSID) with
+same description as for the <b>Csid</b> field of <b>FAX_PORT_INFO</b>.</p>
+</dd></dl></div>

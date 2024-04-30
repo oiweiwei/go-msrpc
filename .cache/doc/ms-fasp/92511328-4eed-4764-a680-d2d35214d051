@@ -1,0 +1,44 @@
+<div class="content"><p> </p><p>This enumeration describes the operations used in the <span><a href="aac2be8c-f4ab-4b0a-9957-74462137fd8a" data-linktype="relative-path">FW_OS_PLATFORM</a></span>
+structure to determine if an object should be applied to a specified operating
+system platform.</p><dl>
+<dd>
+<div><pre> typedef  enum
+ {
+   FW_OS_PLATFORM_OP_EQ = 0,
+   FW_OS_PLATFORM_OP_GTEQ = 1,
+   FW_OS_PLATFORM_OP_MAX = 2
+ } FW_OS_PLATFORM_OP;
+</pre></div>
+</dd></dl><p><b>FW_OS_PLATFORM_OP_EQ:  </b>The operating system
+platform MUST be the same as the one specified. This is satisfied when the
+following occurs:</p><dl>
+<dd>
+<p>If ( ((bPlatform &amp; 0x7) == platform type)
+&amp;&amp; (bMajorVersion == major version) &amp;&amp; (bMinorVersion == minor
+version) ).</p>
+</dd>
+<dd>
+<p>Otherwise, the operating system is not equal to the
+one specified. This symbolic constant has a value of 0.</p>
+</dd></dl><p><b>FW_OS_PLATFORM_OP_GTEQ:  </b>The operating system
+MUST be greater than or equal to the one specified. This is satisfied when any
+of the following occur:</p><dl>
+<dd>
+<p>If (bPlatform &amp; 0x7) &gt; platform type</p>
+</dd>
+<dd>
+<p>If (((bPlatform &amp; 0x7) == platform type)
+&amp;&amp; (bMajorVersion &gt; major version))</p>
+</dd>
+<dd>
+<p>If (((bPlatform &amp; 0x7) == platform type)
+&amp;&amp; (bMajorVersion == major version) &amp;&amp; (bMinorVersion &gt;=
+minor version))</p>
+</dd>
+<dd>
+<p>Otherwise, the operation system is not greater than
+or equal to the one specified. This symbolic constant has a value of 1.</p>
+</dd></dl><p><b>FW_OS_PLATFORM_OP_MAX:  </b>This value and values
+that exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 2.</p></div>

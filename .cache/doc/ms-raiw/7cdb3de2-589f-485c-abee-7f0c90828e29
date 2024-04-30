@@ -1,0 +1,13 @@
+<div class="content"><p>The WINSINTF_PRIORITY_CLASS_E enumeration defines the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8c20289f-af0c-4920-ab82-9584fd52ffa3" data-linktype="relative-path">priority class</a> of a <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a> process. It is used by
+the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> method <a href="f97e9f43-4bf8-4335-95e9-cae00e7ccf98" data-linktype="relative-path">R_WinsSetPriorityClass</a>.</p><dl>
+<dd>
+<div><pre> typedef  enum _WINSINTF_PRIORITY_CLASS_E
+ {
+   WINSINTF_E_NORMAL = 0,
+   WINSINTF_E_HIGH
+ } WINSINTF_PRIORITY_CLASS_E,
+  *PWINSINTF_PRIORITY_CLASS_E;
+</pre></div>
+</dd></dl><p><b>WINSINTF_E_NORMAL:  </b>WINS process is assigned
+normal priority class.</p><p><b>WINSINTF_E_HIGH:  </b>WINS process is assigned
+high priority class.</p></div>

@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>USE_INFO_2</b> structure specifies details about the
+connection between a machine on which the workstation service is running and a
+shared resource, including user name and domain name.</p><dl>
+<dd>
+<div><pre> typedef struct _USE_INFO_2 {
+   USE_INFO_1 ui2_useinfo;
+   [string] wchar_t* ui2_username;
+   [string] wchar_t* ui2_domainname;
+ } USE_INFO_2,
+  *PUSE_INFO_2,
+  *LPUSE_INFO_2;
+</pre></div>
+</dd></dl><p><b>ui2_useinfo:</b> A pointer to the <b>USE_INFO_1</b>
+structure (section <span><a href="969d330b-fffa-4c4f-8331-62b3989086ff" data-linktype="relative-path">2.2.5.23</a></span>) that the
+method returns.</p><p><b>ui2_username:</b> A pointer to a string that
+contains the name of the user who initiated the connection.</p><p><b>ui2_domainname:</b> A pointer to a string that
+contains the domain name of the remote resource.</p></div>

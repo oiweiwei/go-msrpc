@@ -1,0 +1,139 @@
+<div class="content"><p> </p><p>The <b>R_DhcpServerGetConfigV6</b> method retrieves the
+configuration information about the DHCPv6 server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpServerGetConfigV6(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, ref] LPDHCP_OPTION_SCOPE_INFO6 ScopeInfo,
+   [out] LPDHCP_SERVER_CONFIG_INFO_V6* ConfigInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>ScopeInfo: </b>This is a pointer of type <span><a href="35c698cc-7141-4985-9940-87361653c79d" data-linktype="relative-path">DHCP_OPTION_SCOPE_INFO6 (section 2.2.1.2.30)</a></span>
+that is used to identify the scope whose configuration information is to be
+retrieved.</p><p><b>ConfigInfo: </b>This is a pointer of type <span><a href="b155fb2e-d3fd-44fb-963f-a149c9d6c34f" data-linktype="relative-path">LPDHCP_SERVER_CONFIG_INFO_V6</a></span>
+that points to a location that contains the configuration information. </p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 66.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read access per section
+<span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not, return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv6OptionValue</b> objects (corresponding to
+default user and vendor class) with <b>DHCPv6OptionValue.OptionId</b> having
+value as described in the table shown. Always return ERROR_SUCCESS from this
+method.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv6OptionValue.OptionData.Elements.Element</b>
+object depending on <b>DHCPv6OptionValue.OptionData.Elements.ObjectType</b> and
+fill it in the adequate field of <i>ConfigInfo</i> (see section 2.2.1.2.62 for
+details of the fields). Valid values are in the following table.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Field set as option</p>
+   </th>
+   <th>
+   <p>Value returned</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  <p>Set_UnicastFlag</p>
+  </td>
+  <td>
+  <p>Value set in UNICAST option (0x20000). In case of
+  error the value returned is FALSE.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  <p>Set_RapidCommitFlag</p>
+  </td>
+  <td>
+  <p>Value set in RapidCommit option (0x20001). In case of
+  error the value returned is FALSE.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  <p>Set_PreferredLifetime</p>
+  </td>
+  <td>
+  <p>Value set in PREFERREDLIFETIME option (0x20002). In
+  case of error the value returned is 8 days.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  <p>Set_ValidLifetime</p>
+  </td>
+  <td>
+  <p>Value set in VALIDLIFETIME option (0x20003). In case
+  of error the value returned is 12 days.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000010</p>
+  <p>Set_T1</p>
+  </td>
+  <td>
+  <p>Value set in T1 option (0x20004). In case of error
+  while retrieving the data from the database, the value returned is 4 days.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000020</p>
+  <p>Set_T2</p>
+  </td>
+  <td>
+  <p>Value set in T2 option (0x20005). In case of error
+  while retrieving the data from the database, the value returned is 6.4 days.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000040</p>
+  <p>Set_PreferredLifetimeIATA</p>
+  </td>
+  <td>
+  <p>Value set in PREFERREDLIFETIME_IATA option (0x20006).
+  In case of error while retrieving the data from the database, the value
+  returned is 1 day.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000080</p>
+  <p>Set_ValidLifetimeIATA</p>
+  </td>
+  <td>
+  <p>Value set in VALIDLIFETIME_IATA option (0x20007). In
+  case of error while retrieving the data from the database, the value returned
+  is 3 days.</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

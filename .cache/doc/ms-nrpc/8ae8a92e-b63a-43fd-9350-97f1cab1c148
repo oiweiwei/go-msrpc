@@ -1,0 +1,17 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/8ae8a92e-b63a-43fd-9350-97f1cab1c148" data-linktype="external">msdn link</a></p><p>The <b>NL_DNS_NAME_INFO_ARRAY</b> structure provides the
+information on <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a> names
+(records) to be updated by the <b>DsrUpdateReadOnlyServerDnsRecords</b>
+(section <a href="e83df161-5c13-4520-ae5a-79218ed0bb19" data-linktype="relative-path">3.5.4.3.11)</a>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _NL_DNS_NAME_INFO_ARRAY {
+   ULONG EntryCount;
+   [size_is(EntryCount)] PNL_DNS_NAME_INFO DnsNamesInfo;
+ } NL_DNS_NAME_INFO_ARRAY,
+  *PNL_DNS_NAME_INFO_ARRAY;
+</pre></div>
+</dd></dl><p><b>EntryCount:</b> The number of entries in the <b>DnsNamesInfo</b>
+field.</p><p><b>DnsNamesInfo:</b> A pointer to an array of the <b>NL_DNS_NAME_INFO</b>
+(section <a href="1c7e6520-45a2-43e1-ac0b-43e771f85b14" data-linktype="relative-path">2.2.1.2.5)</a>
+structure, which SHOULD<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a> contain
+DNS name information.</p></div>

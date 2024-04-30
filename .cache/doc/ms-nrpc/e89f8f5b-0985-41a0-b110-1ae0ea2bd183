@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/e89f8f5b-0985-41a0-b110-1ae0ea2bd183" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_VALIDATION_GENERIC_INFO2</b> structure
+defines a structure that contains account information in binary format. This
+structure is used by authentication protocols to return generic account
+information upon successful logon validation. For an example of using the <b>NETLOGON_VALIDATION_GENERIC_INFO2</b>
+structure, see any of the examples in <a href="../ms-apds/dd444344-fd7e-430e-b313-7e95ab9c338e" data-linktype="relative-path">[MS-APDS]</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_VALIDATION_GENERIC_INFO2 {
+   ULONG DataLength;
+   [size_is(DataLength)] UCHAR * ValidationData;
+ } NETLOGON_VALIDATION_GENERIC_INFO2,
+  *PNETLOGON_VALIDATION_GENERIC_INFO2;
+</pre></div>
+</dd></dl><p><b>DataLength:</b> An integer value that contains the
+length of the data referenced by <b>ValidationData</b>, in bytes.</p><p><b>ValidationData:</b> A pointer to a buffer that
+contains the logon validation information.</p></div>

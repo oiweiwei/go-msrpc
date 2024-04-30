@@ -1,0 +1,103 @@
+    // XXX: irpcremoteobject.idl embedded.
+    // import "ms-pan_irpcremoteobject.idl";
+    // XXX: import
+    import "ms-dtyp.idl";
+
+[
+    uuid(ae33069b-a2a8-46ee-a235-ddfd339be281),
+    version(1.0),
+    pointer_default(unique)
+]
+ 
+interface IRPCRemoteObject
+{
+// [MS-PAN] data types
+typedef [context_handle] void* PRPCREMOTEOBJECT;
+ 
+// [MS-PAN] methods
+HRESULT
+IRPCRemoteObject_Create(
+    [in]     handle_t          hRemoteBinding,
+    [out]    PRPCREMOTEOBJECT* ppRemoteObj
+);
+ 
+void
+IRPCRemoteObject_Delete(
+    [in,out] PRPCREMOTEOBJECT* ppRemoteObj
+);
+}
+ 
+[
+    uuid(0b6edbfa-4a24-4fc6-8a23-942b1eca65d1),
+    version(1.0),
+    pointer_default(unique)
+]
+interface IRPCAsyncNotify {   
+ 
+// [MS-PAN] enumerations
+typedef [v1_enum] enum {
+    kBiDirectional = 0,
+    kUniDirectional = 1,
+} PrintAsyncNotifyConversationStyle;
+ 
+typedef [v1_enum] enum {
+    kPerUser = 0,
+    kAllUsers = 1,
+} PrintAsyncNotifyUserFilter;
+ 
+// [MS-PAN] data types
+typedef GUID  PrintAsyncNotificationType;
+typedef [context_handle] void* PNOTIFYOBJECT;
+ 
+// [MS-PAN] methods
+HRESULT
+IRPCAsyncNotify_RegisterClient(
+    [in] PRPCREMOTEOBJECT pRegistrationObj,
+    [in,string,unique] const wchar_t* pName,
+    [in] PrintAsyncNotificationType* pInNotificationType,
+    [in] PrintAsyncNotifyUserFilter NotifyFilter,
+    [in] PrintAsyncNotifyConversationStyle conversationStyle,
+    [out, string] wchar_t** ppRmtServerReferral
+);
+ 
+HRESULT
+IRPCAsyncNotify_UnregisterClient(
+    [in] PRPCREMOTEOBJECT pRegistrationObj
+);
+ 
+void Opnum2NotUsedOnWire(void);
+ 
+HRESULT
+IRPCAsyncNotify_GetNewChannel(
+    [in] PRPCREMOTEOBJECT pRemoteObj,
+    [out] unsigned long* pNoOfChannels,
+    [out,size_is( , *pNoOfChannels)] PNOTIFYOBJECT** ppChannelCtxt
+);
+ 
+HRESULT
+IRPCAsyncNotify_GetNotificationSendResponse(
+    [in, out] PNOTIFYOBJECT* pChannel,
+    [in, unique] PrintAsyncNotificationType* pInNotificationType,
+    [in] unsigned long InSize,
+    [in, size_is(InSize), unique] byte* pInNotificationData,
+    [out] PrintAsyncNotificationType** ppOutNotificationType,
+    [out] unsigned long* pOutSize,
+    [out, size_is( , *pOutSize)]  byte** ppOutNotificationData
+);    
+ 
+HRESULT
+IRPCAsyncNotify_GetNotification(
+    [in] PRPCREMOTEOBJECT pRemoteObj,
+    [out] PrintAsyncNotificationType** ppOutNotificationType,
+    [out] unsigned long* pOutSize,
+    [out, size_is( , *pOutSize)] byte** ppOutNotificationData
+);    
+ 
+HRESULT
+IRPCAsyncNotify_CloseChannel(
+    [in, out] PNOTIFYOBJECT* pChannel,
+    [in] PrintAsyncNotificationType* pInNotificationType,
+    [in] unsigned long InSize,
+    [in, size_is(InSize), unique] byte* pReason
+);  
+};

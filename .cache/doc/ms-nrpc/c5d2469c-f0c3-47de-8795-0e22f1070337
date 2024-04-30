@@ -1,0 +1,30 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c5d2469c-f0c3-47de-8795-0e22f1070337" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_CONTROL_QUERY_INFORMATION</b> union selects
+an appropriate <b>NETLOGON_INFO</b> data type, based on the value of the <i>QueryLevel</i>
+parameter to the <b>NetrLogonControl2Ex</b> method described in section <a href="df7e5dd1-ebcc-4754-9da0-2e0bded82d29" data-linktype="relative-path">3.5.4.9.1</a>.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union _NETLOGON_CONTROL_QUERY_INFORMATION {
+   [case(1)] 
+     PNETLOGON_INFO_1 NetlogonInfo1;
+   [case(2)] 
+     PNETLOGON_INFO_2 NetlogonInfo2;
+   [case(3)] 
+     PNETLOGON_INFO_3 NetlogonInfo3;
+   [case(4)] 
+     PNETLOGON_INFO_4 NetlogonInfo4;
+   [default]     ;
+ } NETLOGON_CONTROL_QUERY_INFORMATION,
+  *PNETLOGON_CONTROL_QUERY_INFORMATION;
+</pre></div>
+</dd></dl><p><b>NetlogonInfo1:</b> This field is selected when the
+switched DWORD (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+value is 1. For more details about <b>NETLOGON_INFO_1 </b>structure, see
+section <a href="afeb873c-4826-4beb-a35c-ae73a708b108" data-linktype="relative-path">2.2.1.7.2</a>.</p><p><b>NetlogonInfo2:</b> This field is selected when the
+switched DWORD value is 2. For more details about <b>NETLOGON_INFO_2 </b>structure,
+see section <a href="c48a8700-4c17-4afb-8866-f0cfc0c0a671" data-linktype="relative-path">2.2.1.7.3</a>.</p><p><b>NetlogonInfo3:</b> This field is selected when the
+switched DWORD value is 3. For more details about <b>NETLOGON_INFO_3 </b>structure,
+see section <a href="be92a2cd-950c-4b26-8cd3-475065406b92" data-linktype="relative-path">2.2.1.7.4</a>.</p><p><b>NetlogonInfo4:</b> This field is selected when the
+switched DWORD value is 4. For more details about <b>NETLOGON_INFO_4 </b>structure,
+see section <a href="a2b4c311-1831-4de6-bf5e-fe8427323144" data-linktype="relative-path">2.2.1.7.5</a>.</p></div>

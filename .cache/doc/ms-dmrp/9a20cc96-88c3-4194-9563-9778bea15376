@@ -1,0 +1,312 @@
+<div class="content"><p> </p><p>The REGION_INFO_EX structure provides information about a
+region.</p><dl>
+<dd>
+<div><pre> struct regioninfoex {
+   LdmObjectId id;
+   LdmObjectId diskId;
+   LdmObjectId volId;
+   LdmObjectId fsId;
+   LONGLONG start;
+   LONGLONG length;
+   REGIONTYPE regionType;
+   PARTITIONSTYLE partitionStyle;
+   [switch_is(partitionStyle)] union {
+     [case(PARTITIONSTYLE_MBR)] 
+       struct {
+       unsigned long partitionType;
+       boolean isActive;
+     } mbr;
+     [case(PARTITIONSTYLE_GPT)] 
+       struct {
+       GUID partitionType;
+       GUID partitionId;
+       ULONGLONG attributes;
+     } gpt;
+     [default]       ;
+   };
+   REGIONSTATUS status;
+   hyper lastKnownState;
+   LdmObjectId taskId;
+   unsigned long rflags;
+   unsigned long currentPartitionNumber;
+   int cchName;
+   [size_is(cchName)] wchar_t* name;
+ };
+ typedef struct regioninfoex REGION_INFO_EX;
+</pre></div>
+</dd></dl><p><b>id:</b>  Specifies the region&#39;s OID.</p><p><b>diskId:</b>   Specifies the OID of the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>
+on which the region resides.</p><p><b>volId:</b>  Specifies the OID of the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>
+on the region, if any.</p><p><b>fsId:</b>  Specifies the OID of the file
+system on the region, if any.</p><p><b>start:</b>  Byte offset of the region on
+the disk.</p><p><b>length:</b>  Length of the region in
+bytes.</p><p><b>regionType:</b>  Value from the <span><a href="27b250fb-e8f3-425c-9688-a55b97e4ecf0" data-linktype="relative-path">REGIONTYPE</a></span>
+enumeration that indicates the region type.</p><p><b>partitionStyle:</b>   Value from the <span><a href="c17c0433-880e-4f57-9b71-23e9379d0594" data-linktype="relative-path">PARTITIONSTYLE</a></span>
+enumeration that indicates the region&#39;s partitioning style.</p><p><b>(unnamed union):</b>  A union that
+contains either a <b>partitionType</b> of type <span><a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">ULONG</a></span>
+and an <b>isActive</b>, or a <b>partitionType</b> of type <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a></span>,
+a <b>partitionId</b>, and an <b>attributes</b>, depending on the value of <b>partitionStyle:</b></p><p><b>partitionType:</b>  Windows NT 3.1
+operating system, Windows NT 3.5 operating system, Windows NT 3.51 operating
+system, and Windows NT 4.0 operating system partition style for the region.
+This field contains one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PARTITION_ENTRY_UNUSED</p>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p> An unused entry partition.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PARTITION_EXTENDED</p>
+  <p>0x05</p>
+  </td>
+  <td>
+  <p> An extended partition.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PARTITION_FAT_12</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p> A <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_5173ca58-7cec-499e-ae5a-c07d81ff5676" data-linktype="relative-path">FAT12 file system</a></span>
+  partition.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PARTITION_FAT_16</p>
+  <p>0x04</p>
+  </td>
+  <td>
+  <p> A FAT16 file system partition.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PARTITION_FAT32</p>
+  <p>0x0B</p>
+  </td>
+  <td>
+  <p> A <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_6508b992-aee3-43e5-93a7-1de08f7e28d5" data-linktype="relative-path">FAT32 file system</a></span>
+  partition.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PARTITION_IFS</p>
+  <p>0x07</p>
+  </td>
+  <td>
+  <p> An IFS partition.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PARTITION_LDM</p>
+  <p>0x42</p>
+  </td>
+  <td>
+  <p> An <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_2624008c-5791-49f7-868e-29f2d8f9be3f" data-linktype="relative-path">LDM</a></span> partition.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PARTITION_NTFT</p>
+  <p>0x80</p>
+  </td>
+  <td>
+  <p> A Windows NT operating system <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_98c2ba19-d0f7-4db1-b6c1-4e7323cc5bc0" data-linktype="relative-path">fault-tolerant
+  (FT)</a></span> partition.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VALID_NTFT</p>
+  <p>0xC0</p>
+  </td>
+  <td>
+  <p> A valid Windows NT FT partition.</p>
+  <p> The high bit of a partition type code indicates that
+  a partition is part of an NTFT mirror or striped array.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>isActive:</b>  Boolean value that
+indicates whether the partition is active. The partition MUST be marked as
+active in order for the BIOS to start from the partition on x86 and x64
+platforms.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0</p>
+  </td>
+  <td>
+  <p>Partition is not active.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  <p>1</p>
+  </td>
+  <td>
+  <p>Partition is active.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>partitionType:</b>  Windows NT partition
+style for the disk. This field contains one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PARTITION_BASIC_DATA_GUID</p>
+  <p>ebd0a0a2-b9e5-4433-87c0-68b6b72699c7</p>
+  </td>
+  <td>
+  <p> The data partition type that is created and
+  recognized by Windows.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PARTITION_ENTRY_UNUSED_GUID</p>
+  <p>00000000-0000-0000-0000-000000000000</p>
+  </td>
+  <td>
+  <p> There is no partition.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PARTITION_SYSTEM_GUID</p>
+  <p>c12a7328-f81f-11d2-ba4b-00a0c93ec93b</p>
+  </td>
+  <td>
+  <p> The partition is an Extensible Firmware Interface
+  (EFI) system partition.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PARTITION_MSFT_RESERVED_GUID</p>
+  <p>e3c9e316-0b5c-4db8-817d-f92df00215ae</p>
+  </td>
+  <td>
+  <p> The partition is a Microsoft reserved partition.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PARTITION_LDM_METADATA_GUID</p>
+  <p>5808c8aa-7e8f-42e0-85d2-e1e90434cfb3</p>
+  </td>
+  <td>
+  <p> The partition is an LDM metadata partition on a
+  dynamic disk.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PARTITION_LDM_DATA_GUID</p>
+  <p>af9b60a0-1431-4f62-bc68-3311714a69ad</p>
+  </td>
+  <td>
+  <p> The partition is an LDM data partition on a dynamic
+  disk.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PARTITION_MSFT_RECOVERY_GUID</p>
+  <p>de94bba4-06d1-4d40-a16a-bfd50179d6ac</p>
+  </td>
+  <td>
+  <p> The partition is a Microsoft recovery partition.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>partitionId:</b>  A <span><a href="../ms-dtyp/49e490b8-f972-45d6-a3a4-99f924998d97" data-linktype="relative-path">GUID</a></span>
+that uniquely identifies a partition on a disk.</p><p><b>attributes:</b>  Bitmap of partition <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_425bcab9-7911-4eae-b414-624b7a51eb5f" data-linktype="relative-path">flags</a></span>.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="5f5043a3-9e6d-40cc-a05b-1a4a3617df32#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p><p><b>status:</b>  Value from the <span><a href="cea81200-e262-4b51-8624-990e4d36e799" data-linktype="relative-path">REGIONSTATUS</a></span>
+enumeration that indicates the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_a6ad00bd-9921-4266-9410-fe2325bbd503" data-linktype="relative-path">region&#39;s status</a></span>.</p><p><b>lastKnownState:</b>  <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_5a574d80-6bdb-4fb0-a0dd-b0601d16b4cd" data-linktype="relative-path">Modification
+sequence number</a></span> of the region.</p><p><b>taskId:</b>   This <span><a href="eec70191-9e68-471a-9974-9f62947291ef" data-linktype="relative-path">LdmObjectId</a></span>
+is the task identifier of the associated user request. If no request is made,
+the value MUST be 0.</p><p><b>rflags:</b>  Bitmap of <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_0891007f-6974-44c8-94e3-22771c5a1bc3" data-linktype="relative-path">region
+flags</a></span>. The value of this field is generated by combining zero or
+more of the applicable flags with a logical OR operation.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>REGION_FORMAT_IN_PROGRESS</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Region is currently being formatted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REGION_IS_SYSTEM_PARTITION</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p><span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_6f13fe5f-8747-4ae0-9375-814bf0528197" data-linktype="relative-path">Region</a></span> contains
+  the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_6a25fd9f-d620-491c-88c8-fde36bc070c5" data-linktype="relative-path">system directory</a></span>.
+  The system directory has the operating system installed on it. This is not
+  necessarily the &#34;active&#34; partition that contains the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_d266f686-e53f-46d7-8376-8ab26ece4e08" data-linktype="relative-path">boot
+  loader file</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REGION_HAS_PAGEFILE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Region contains the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_d359150b-3c93-451c-a6b4-e77255c9f212" data-linktype="relative-path">paging file</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REGION_HAD_BOOT_INI</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p><span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_0b9b79b8-fa7d-464b-91f4-623b6e8cfbe6" data-linktype="relative-path">Boot.ini</a></span> file was
+  located in this region when the operating system was last started. This is
+  the &#34;active&#34; partition that contains the boot loader file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REGION_HIDDEN</p>
+  <p>0x00040000</p>
+  </td>
+  <td>
+  <p>This region is part of a volume that is not accessible
+  through any user-available path names.<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="5f5043a3-9e6d-40cc-a05b-1a4a3617df32#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>currentPartitionNumber:</b>  Number of
+the partition on the region, if any.</p><p><b>cchName:</b>   Length of the region&#39;s
+name, including the terminating null character.</p><p><b>name:</b>   Null-terminated name of the
+region.</p></div>

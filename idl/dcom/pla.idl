@@ -1,0 +1,750 @@
+import "ms-dtyp.idl";
+import "ms-oaut.idl";
+
+// XXX: SAFEARRAY macro expanded.
+// #define SAFEARRAY(item) SAFEARRAY
+ 
+ typedef byte BYTE;
+ 
+ 
+interface IDataCollectorSet;
+interface IDataManager;
+interface IFolderAction;
+interface IFolderActionCollection;
+interface IDataCollector;
+interface IPerformanceCounterDataCollector;
+interface ITraceDataCollector;
+interface IConfigurationDataCollector;
+interface IAlertDataCollector;
+interface IApiTracingDataCollector;
+interface IDataCollectorCollection;
+interface IDataCollectorSetCollection;
+interface ITraceDataProvider;
+interface ITraceDataProviderCollection;
+interface ISchedule;
+interface IScheduleCollection;
+interface IValueMapItem;
+interface IValueMap;
+ 
+typedef enum{
+        plaPerformanceCounter   = 0,
+        plaTrace                = 1,
+        plaConfiguration        = 2,
+        plaAlert                = 3,
+        plaApiTrace             = 4
+    } DataCollectorType;
+ 
+    typedef enum {
+        plaCommaSeparated = 0,
+        plaTabSeparated = 1,
+        plaSql = 2,
+        plaBinary = 3
+    } FileFormat;
+ 
+    typedef enum {
+        plaNone                = 0x0000,
+        plaPattern             = 0x0001,
+        plaComputer            = 0x0002,
+        plaMonthDayHour        = 0x0100,
+        plaSerialNumber        = 0x0200,
+        plaYearDayOfYear       = 0x0400,
+        plaYearMonth           = 0x0800,
+        plaYearMonthDay        = 0x1000,
+        plaYearMonthDayHour    = 0x2000,
+        plaMonthDayHourMinute  = 0x4000
+    } AutoPathFormat;
+ 
+    typedef enum {
+        plaStopped   = 0,
+        plaRunning   = 1,
+        plaCompiling = 2,
+        plaPending   = 3,
+        plaUndefined = 4
+    } DataCollectorSetStatus;
+ 
+    typedef enum {
+        plaTimeStamp = 0,
+        plaPerformance = 1,
+        plaSystem = 2,
+        plaCycle = 3
+    } ClockType;
+ 
+    typedef enum {
+        plaFile      = 0x0001,
+        plaRealTime  = 0x0002,
+        plaBoth      = 0x0003,
+        plaBuffering = 0x0004
+    } StreamMode;
+ 
+    typedef enum {
+        plaCreateNew                = 0x0001,
+        plaModify                   = 0x0002,
+        plaCreateOrModify           = 0x0003,
+        plaUpdateRunningInstance    = 0x0010,
+        plaFlushTrace               = 0x0020,
+        plaValidateOnly             = 0x1000
+    } CommitMode;
+ 
+    typedef enum {
+        plaIndex = 1,       
+        plaFlag = 2,            
+        plaFlagArray = 3,      
+        plaValidation = 4      
+    } ValueMapType;
+ 
+    typedef enum {
+        plaRunOnce      = 0x00,
+        plaSunday       = 0x01,
+        plaMonday       = 0x02,
+        plaTuesday      = 0x04,
+        plaWednesday    = 0x08,
+        plaThursday     = 0x10,
+        plaFriday       = 0x20,
+        plaSaturday     = 0x40,
+        plaEveryday     = 0x7F
+    } WeekDays;
+ 
+    typedef enum {
+        plaDeleteLargest = 0,
+        plaDeleteOldest  = 1
+    } ResourcePolicy;
+ 
+    typedef enum {
+        plaCreateReport    = 0x01,
+        plaRunRules        = 0x02,
+        plaCreateHtml      = 0x04,
+        plaFolderActions   = 0x08,
+        plaResourceFreeing = 0x10
+    } DataManagerSteps;
+ 
+    typedef enum {
+        plaCreateCab    = 0x01,
+        plaDeleteData   = 0x02,
+        plaSendCab      = 0x04,
+        plaDeleteCab    = 0x08,
+        plaDeleteReport = 0x10
+    } FolderActionSteps;
+ 
+    [
+        object,
+        uuid(03837520-098b-11d8-9414-505054503030),
+        dual,
+        oleautomation,
+ 
+    ]
+    interface IDataCollectorSet : IDispatch
+    {
+        [propget] HRESULT DataCollectors([out, retval]IDataCollectorCollection** collectors);
+ 
+        [propget] HRESULT Duration([out, retval]unsigned long* seconds);
+        [propput] HRESULT Duration([in]unsigned long seconds);
+ 
+        [propget] HRESULT Description([out, retval]BSTR* description);
+        [propput] HRESULT Description([in]BSTR description);
+        [propget] HRESULT DescriptionUnresolved([out, retval] BSTR *Descr);
+ 
+        [propget] HRESULT DisplayName([out, retval]BSTR *DisplayName);
+        [propput] HRESULT DisplayName([in]BSTR DisplayName);
+        [propget] HRESULT DisplayNameUnresolved([out, retval] BSTR *name);
+ 
+        [propget] HRESULT Keywords([out, retval] [safearray(BSTR)] SAFEARRAY * keywords);
+        [propput] HRESULT Keywords([in][safearray(BSTR)] SAFEARRAY keywords);
+ 
+        [propget] HRESULT LatestOutputLocation([out, retval]BSTR* path);
+        [propput] HRESULT LatestOutputLocation([in]BSTR path);
+ 
+        [id(DISPID_VALUE), propget] HRESULT Name([out, retval]BSTR* name);
+ 
+        [propget] HRESULT OutputLocation([out, retval]BSTR* path);
+ 
+        [propget] HRESULT RootPath([out, retval]BSTR* folder);
+        [propput] HRESULT RootPath([in]BSTR folder);
+ 
+        [propget] HRESULT Segment([out, retval]VARIANT_BOOL* segment);
+        [propput] HRESULT Segment([in]VARIANT_BOOL segment);
+ 
+        [propget] HRESULT SegmentMaxDuration([out, retval]unsigned long* seconds);
+        [propput] HRESULT SegmentMaxDuration([in]unsigned long seconds);
+ 
+        [propget] HRESULT SegmentMaxSize([out, retval]unsigned long* size);
+        [propput] HRESULT SegmentMaxSize([in]unsigned long size);
+ 
+        [propget] HRESULT SerialNumber([out, retval]unsigned long* index);
+        [propput] HRESULT SerialNumber([in]unsigned long index);
+ 
+        [propget] HRESULT Server([out, retval]BSTR* server);
+ 
+        [propget] HRESULT Status([out, retval]DataCollectorSetStatus* status);
+ 
+        [propget] HRESULT Subdirectory([out, retval]BSTR* folder);
+        [propput] HRESULT Subdirectory([in]BSTR folder);
+ 
+        [propget] HRESULT SubdirectoryFormat([out, retval]AutoPathFormat* format);
+        [propput] HRESULT SubdirectoryFormat([in]AutoPathFormat format);
+ 
+        [propget] HRESULT SubdirectoryFormatPattern([out, retval]BSTR* pattern);
+        [propput] HRESULT SubdirectoryFormatPattern([in]BSTR pattern);
+ 
+        [propget] HRESULT Task([out, retval]BSTR* task);
+        [propput] HRESULT Task([in]BSTR task);
+ 
+        [propget] HRESULT TaskRunAsSelf([out, retval]VARIANT_BOOL *RunAsSelf);
+        [propput] HRESULT TaskRunAsSelf([in] VARIANT_BOOL RunAsSelf);
+ 
+        [propget] HRESULT TaskArguments([out, retval]BSTR* task);
+        [propput] HRESULT TaskArguments([in]BSTR task);
+ 
+        [propget] HRESULT TaskUserTextArguments([out, retval]BSTR *UserText);
+        [propput] HRESULT TaskUserTextArguments([in]BSTR UserText);
+ 
+        [propget] HRESULT Schedules([out, retval]IScheduleCollection** ppSchedules);
+ 
+        [propget] HRESULT SchedulesEnabled([out, retval]VARIANT_BOOL* enabled);
+        [propput] HRESULT SchedulesEnabled([in]VARIANT_BOOL enabled);
+ 
+        [propget] HRESULT UserAccount([out, retval]BSTR* user);
+ 
+        [propget] HRESULT Xml([out, retval]BSTR* xml);
+ 
+        [propget] HRESULT Security([out, retval]BSTR *pbstrSecurity);
+        [propput] HRESULT Security([in]BSTR bstrSecurity);
+ 
+        [propget] HRESULT StopOnCompletion([out, retval]VARIANT_BOOL *Stop);
+        [propput] HRESULT StopOnCompletion([in]VARIANT_BOOL Stop);
+ 
+        [propget] HRESULT DataManager([out, retval] IDataManager **DataManager);
+ 
+        HRESULT SetCredentials(BSTR user, BSTR password);
+        HRESULT Query([in] BSTR name, [in, unique] BSTR server);
+        HRESULT Commit([in] BSTR name, [in, unique] BSTR server, CommitMode mode, [out, retval]IValueMap** validation);
+        HRESULT Delete();
+        HRESULT Start([in] VARIANT_BOOL Synchronous);
+        HRESULT Stop([in] VARIANT_BOOL Synchronous);
+ 
+        HRESULT SetXml([in]BSTR xml, [out, retval]IValueMap** validation);
+ 
+        HRESULT SetValue(BSTR key, BSTR value);
+        HRESULT GetValue(BSTR key, [out, retval] BSTR* value);
+    }
+ 
+    [
+        object,
+        uuid(03837541-098b-11d8-9414-505054503030),
+        dual,
+        oleautomation,
+    ]
+    interface IDataManager : IDispatch
+    {
+        [propget] HRESULT Enabled([out, retval] VARIANT_BOOL *pfEnabled);
+        [propput] HRESULT Enabled([in] VARIANT_BOOL fEnabled);
+ 
+        [propget] HRESULT CheckBeforeRunning([out, retval] VARIANT_BOOL *pfCheck);
+        [propput] HRESULT CheckBeforeRunning([in] VARIANT_BOOL fCheck);
+ 
+        [propget] HRESULT MinFreeDisk([out, retval] ULONG *MinFreeDisk);
+        [propput] HRESULT MinFreeDisk([in] ULONG MinFreeDisk);
+ 
+        [propget] HRESULT MaxSize([out, retval] ULONG *pulMaxSize);
+        [propput] HRESULT MaxSize([in] ULONG ulMaxSize);
+ 
+        [propget] HRESULT MaxFolderCount([out, retval] ULONG *pulMaxFolderCount);
+        [propput] HRESULT MaxFolderCount([in] ULONG ulMaxFolderCount);
+ 
+        [propget] HRESULT ResourcePolicy([out, retval] ResourcePolicy *pPolicy);
+        [propput] HRESULT ResourcePolicy ([in] ResourcePolicy Policy);
+ 
+        [propget] HRESULT FolderActions([out, retval] IFolderActionCollection **Actions);
+ 
+        [propget] HRESULT ReportSchema([out, retval] BSTR *ReportSchema);
+        [propput] HRESULT ReportSchema([in] BSTR ReportSchema);
+ 
+        [propget] HRESULT ReportFileName([out, retval] BSTR *pbstrFilename);
+        [propput] HRESULT ReportFileName([in] BSTR pbstrFilename);
+ 
+        [propget] HRESULT RuleTargetFileName([out, retval] BSTR *Filename);
+        [propput] HRESULT RuleTargetFileName([in] BSTR Filename);
+ 
+        [propget] HRESULT EventsFileName([out, retval] BSTR *pbstrFilename);
+        [propput] HRESULT EventsFileName([in] BSTR pbstrFilename);
+ 
+        [propget] HRESULT Rules([out, retval] BSTR *pbstrXml);
+        [propput] HRESULT Rules([in] BSTR bstrXml);
+ 
+        HRESULT Run([in] DataManagerSteps Steps, [in] BSTR bstrFolder, [out, retval] IValueMap **Errors);
+ 
+        HRESULT Extract([in] BSTR CabFilename, [in] BSTR DestinationPath);
+    }
+ 
+    [
+        object,
+        uuid(03837543-098b-11d8-9414-505054503030),
+        dual,
+        oleautomation,
+    ]
+    interface IFolderAction : IDispatch
+    {
+        [propget] HRESULT Age([out, retval] ULONG *pulAge);
+        [propput] HRESULT Age([in] ULONG ulAge);
+ 
+        [propget] HRESULT Size([out, retval] ULONG *pulAge);
+        [propput] HRESULT Size([in] ULONG ulAge);
+ 
+        [propget] HRESULT Actions([out, retval] FolderActionSteps *Steps);
+        [propput] HRESULT Actions([in] FolderActionSteps Steps);
+ 
+        [propget] HRESULT SendCabTo([out, retval] BSTR *pbstrDestination);
+        [propput] HRESULT SendCabTo([in] BSTR bstrDestination);
+    }
+ 
+    [
+        object,
+        uuid(03837544-098b-11d8-9414-505054503030),
+        dual,
+        oleautomation,
+        nonextensible
+    ]
+    interface IFolderActionCollection : IDispatch
+    {
+        [propget, id(1)] HRESULT Count([out, retval] ULONG *Count);
+        [propget, id(DISPID_VALUE)] HRESULT Item([in] VARIANT Index, [out, retval] IFolderAction **Action);
+        [propget, id(DISPID_NEWENUM)] HRESULT _NewEnum([out, retval] IUnknown **Enum);
+ 
+        HRESULT Add(IFolderAction *Action);
+        HRESULT Remove(VARIANT Index);
+        HRESULT Clear();
+        HRESULT AddRange(IFolderActionCollection *Actions);
+        HRESULT CreateFolderAction([out, retval] IFolderAction **FolderAction);
+    }
+ 
+    [
+        object,
+        uuid(038374ff-098b-11d8-9414-505054503030),
+        dual
+    ]
+    interface IDataCollector : IDispatch
+    {
+        [propget] HRESULT DataCollectorSet([out, retval]IDataCollectorSet** group);
+        HRESULT Opnum8NotUsedOnWire(void); 
+ 
+        [propget] HRESULT DataCollectorType([out, retval]DataCollectorType* type);
+ 
+        [propget] HRESULT FileName([out, retval]BSTR* name);
+        [propput] HRESULT FileName([in]BSTR name);
+ 
+        [propget] HRESULT FileNameFormat([out, retval]AutoPathFormat* format);
+        [propput] HRESULT FileNameFormat([in]AutoPathFormat format);
+ 
+        [propget] HRESULT FileNameFormatPattern([out, retval]BSTR* pattern);
+        [propput] HRESULT FileNameFormatPattern([in]BSTR pattern);
+ 
+        [propget] HRESULT LatestOutputLocation([out, retval]BSTR* path);
+        [propput] HRESULT LatestOutputLocation([in]BSTR path);
+ 
+        [propget] HRESULT LogAppend([out, retval]VARIANT_BOOL* append);
+        [propput] HRESULT LogAppend([in]VARIANT_BOOL append);
+ 
+        [propget] HRESULT LogCircular([out, retval]VARIANT_BOOL* circular);
+        [propput] HRESULT LogCircular([in]VARIANT_BOOL circular);
+ 
+        [propget] HRESULT LogOverwrite([out, retval]VARIANT_BOOL* overwrite);
+        [propput] HRESULT LogOverwrite([in]VARIANT_BOOL overwrite);
+ 
+        [propget] HRESULT Name([out, retval]BSTR* name);
+        [propput] HRESULT Name([in]BSTR name);
+ 
+        [propget] HRESULT OutputLocation([out, retval]BSTR* path);
+ 
+        [propget] HRESULT Index([out, retval]long* index);
+        HRESULT Opnum28NotUsedOnWire(void); 
+ 
+        [propget] HRESULT Xml([out, retval]BSTR *Xml);
+ 
+        HRESULT SetXml([in]BSTR Xml, [out, retval]IValueMap** Validation);
+ 
+        HRESULT Opnum31NotUsedOnWire(void); 
+    };
+ 
+    [
+        object,
+        uuid(03837506-098b-11d8-9414-505054503030),
+        dual
+    ]
+    interface IPerformanceCounterDataCollector : IDataCollector
+    {
+        [propget] HRESULT DataSourceName([out, retval]BSTR* dsn);
+        [propput] HRESULT DataSourceName([in]BSTR dsn);
+ 
+        [propget] HRESULT PerformanceCounters([out, retval][safearray(BSTR)] SAFEARRAY* counters);
+        [propput] HRESULT PerformanceCounters([in][safearray(BSTR)] SAFEARRAY counters);
+ 
+        [propget] HRESULT LogFileFormat([out, retval]FileFormat* format);
+        [propput] HRESULT LogFileFormat([in]FileFormat format);
+ 
+        [propget] HRESULT SampleInterval([out, retval]unsigned long* interval);
+        [propput] HRESULT SampleInterval([in]unsigned long interval);
+ 
+        [propget] HRESULT SegmentMaxRecords([out, retval]unsigned long* records);
+        [propput] HRESULT SegmentMaxRecords([in]unsigned long records);
+ 
+    };
+ 
+    [
+        object,
+        uuid(03837514-098b-11d8-9414-505054503030),
+        dual
+    ]
+    interface IConfigurationDataCollector : IDataCollector
+    {
+        [propget] HRESULT FileMaxCount([out, retval] unsigned long* count);
+        [propput] HRESULT FileMaxCount([in] unsigned long count);
+ 
+        [propget] HRESULT FileMaxRecursiveDepth([out, retval] unsigned long* depth);
+        [propput] HRESULT FileMaxRecursiveDepth([in] unsigned long depth);
+ 
+        [propget] HRESULT FileMaxTotalSize([out, retval] unsigned long* size);
+        [propput] HRESULT FileMaxTotalSize([in] unsigned long size);
+ 
+        [propget] HRESULT Files([out, retval] [safearray(BSTR)] SAFEARRAY *Files);
+        [propput] HRESULT Files([in] [safearray(BSTR)] SAFEARRAY Files);
+ 
+        [propget] HRESULT ManagementQueries([out, retval] [safearray(BSTR)] SAFEARRAY *Queries);
+        [propput] HRESULT ManagementQueries([in] [safearray(BSTR)] SAFEARRAY Queries);
+ 
+        [propget] HRESULT QueryNetworkAdapters([out, retval] VARIANT_BOOL *network);
+        [propput] HRESULT QueryNetworkAdapters([in] VARIANT_BOOL network);
+ 
+        [propget] HRESULT RegistryKeys([out, retval] [safearray(BSTR)] SAFEARRAY *query);
+        [propput] HRESULT RegistryKeys([in] [safearray(BSTR)] SAFEARRAY query);
+ 
+        [propget] HRESULT RegistryMaxRecursiveDepth([out, retval] unsigned long* depth);
+        [propput] HRESULT RegistryMaxRecursiveDepth([in] unsigned long depth);
+ 
+        [propget] HRESULT SystemStateFile([out, retval] BSTR *FileName);
+        [propput] HRESULT SystemStateFile([in] BSTR FileName);
+    };
+ 
+    [
+        object,
+        uuid(03837516-098b-11d8-9414-505054503030),
+        dual
+    ]
+    interface IAlertDataCollector : IDataCollector
+    {
+        [propget] HRESULT AlertThresholds([out, retval][safearray(BSTR)] SAFEARRAY* alerts);
+        [propput] HRESULT AlertThresholds([in][safearray(BSTR)] SAFEARRAY alerts);
+ 
+        [propget] HRESULT EventLog([out, retval]VARIANT_BOOL* log);
+        [propput] HRESULT EventLog([in]VARIANT_BOOL log);
+ 
+        [propget] HRESULT SampleInterval([out, retval]unsigned long* interval);
+        [propput] HRESULT SampleInterval([in]unsigned long interval);
+ 
+        [propget] HRESULT Task([out, retval]BSTR* task);
+        [propput] HRESULT Task([in]BSTR task);
+ 
+        [propget] HRESULT TaskRunAsSelf([out, retval]VARIANT_BOOL *RunAsSelf);
+        [propput] HRESULT TaskRunAsSelf([in] VARIANT_BOOL RunAsSelf);
+ 
+        [propget] HRESULT TaskArguments([out, retval]BSTR* task);
+        [propput] HRESULT TaskArguments([in]BSTR task);
+ 
+        [propget] HRESULT TaskUserTextArguments([out, retval]BSTR* task);
+        [propput] HRESULT TaskUserTextArguments([in]BSTR task);
+ 
+        [propget] HRESULT TriggerDataCollectorSet([out, retval]BSTR* name);
+        [propput] HRESULT TriggerDataCollectorSet([in]BSTR name);
+    };
+ 
+    [
+        object,
+        uuid(0383750b-098b-11d8-9414-505054503030),
+        dual
+    ]
+    interface ITraceDataCollector : IDataCollector
+    {
+        [propget] HRESULT BufferSize([out, retval]unsigned long* size);
+        [propput] HRESULT BufferSize([in]unsigned long size);
+ 
+        [propget] HRESULT BuffersLost([out, retval]unsigned long* buffers);
+        HRESULT Opnum35NotUsedOnWire(void); 
+ 
+        [propget] HRESULT BuffersWritten([out, retval]unsigned long* buffers);
+        HRESULT Opnum37NotUsedOnWire(void); 
+ 
+        [propget] HRESULT ClockType([out, retval]ClockType* clock);
+        [propput] HRESULT ClockType([in]ClockType clock);
+ 
+        [propget] HRESULT EventsLost([out, retval]unsigned long* events);
+        HRESULT Opnum41NotUsedOnWire(void); 
+ 
+        [propget] HRESULT ExtendedModes([out, retval]unsigned long* mode);
+        [propput] HRESULT ExtendedModes([in]unsigned long mode);
+ 
+        [propget] HRESULT FlushTimer([out, retval]unsigned long* seconds);
+        [propput] HRESULT FlushTimer([in]unsigned long seconds);
+ 
+        [propget] HRESULT FreeBuffers([out, retval]unsigned long* buffers);
+        HRESULT Opnum47NotUsedOnWire(void); 
+ 
+        [propget] HRESULT Guid([out, retval]GUID* guid);
+        [propput] HRESULT Guid([in]GUID guid);
+ 
+        [propget] HRESULT IsKernelTrace([out, retval]VARIANT_BOOL* kernel);
+ 
+        [propget] HRESULT MaximumBuffers([out, retval]unsigned long* buffers);
+        [propput] HRESULT MaximumBuffers([in]unsigned long buffers);
+ 
+        [propget] HRESULT MinimumBuffers([out, retval]unsigned long* buffers);
+        [propput] HRESULT MinimumBuffers([in]unsigned long buffers);
+ 
+        [propget] HRESULT NumberOfBuffers([out, retval]unsigned long* buffers);
+        [propput] HRESULT NumberOfBuffers([in]unsigned long buffers);
+ 
+        [propget] HRESULT PreallocateFile([out, retval]VARIANT_BOOL* allocate);
+        [propput] HRESULT PreallocateFile([in]VARIANT_BOOL allocate);
+ 
+        [propget] HRESULT ProcessMode([out, retval]VARIANT_BOOL* process);
+        [propput] HRESULT ProcessMode([in]VARIANT_BOOL process);
+ 
+        [propget] HRESULT RealTimeBuffersLost([out, retval]unsigned long* buffers);
+        HRESULT Opnum62NotUsedOnWire(void); 
+ 
+        [propget] HRESULT SessionId([out, retval]ULONG64* id);
+        HRESULT Opnum64NotUsedOnWire(void); 
+ 
+        [propget] HRESULT SessionName([out, retval]BSTR* name);
+        [propput] HRESULT SessionName([in]BSTR name);
+ 
+        [propget] HRESULT SessionThreadId([out, retval]unsigned long* tid);
+        HRESULT Opnum68NotUsedOnWire(void); 
+ 
+        [propget] HRESULT StreamMode([out, retval]StreamMode* mode);
+        [propput] HRESULT StreamMode([in]StreamMode mode);
+ 
+        [propget] HRESULT TraceDataProviders([out, retval]ITraceDataProviderCollection** providers);
+    };
+ 
+    [
+        object,
+        uuid(0383751a-098b-11d8-9414-505054503030),
+        dual
+    ]
+    interface IApiTracingDataCollector : IDataCollector
+    {
+        [propget] HRESULT LogApiNamesOnly([out, retval]VARIANT_BOOL* logapinames);
+        [propput] HRESULT LogApiNamesOnly([in]VARIANT_BOOL logapinames);
+ 
+        [propget] HRESULT LogApisRecursively([out, retval]VARIANT_BOOL* logrecursively);
+        [propput] HRESULT LogApisRecursively([in]VARIANT_BOOL logrecursively);
+ 
+        [propget] HRESULT ExePath([out, retval]BSTR* exepath);
+        [propput] HRESULT ExePath([in]BSTR exepath);
+ 
+        [propget] HRESULT LogFilePath([out, retval]BSTR* logfilepath);
+        [propput] HRESULT LogFilePath([in]BSTR logfilepath);
+ 
+        [propget] HRESULT IncludeModules([out, retval][safearray(BSTR)] SAFEARRAY* includemodules);
+        [propput] HRESULT IncludeModules([in][safearray(BSTR)] SAFEARRAY includemodules);
+ 
+        [propget] HRESULT IncludeApis([out, retval][safearray(BSTR)] SAFEARRAY* includeapis);
+        [propput] HRESULT IncludeApis([in][safearray(BSTR)] SAFEARRAY includeapis);
+ 
+        [propget] HRESULT ExcludeApis([out, retval][safearray(BSTR)] SAFEARRAY* excludeapis);
+        [propput] HRESULT ExcludeApis([in][safearray(BSTR)] SAFEARRAY excludeapis);
+    };
+ 
+    [
+        object,
+        uuid(03837512-098b-11d8-9414-505054503030),
+        dual
+    ]
+    interface ITraceDataProvider : IDispatch
+    {
+        [propget] HRESULT DisplayName([out, retval]BSTR* name);
+        [propput] HRESULT DisplayName([in]BSTR name);
+ 
+        [propget] HRESULT Guid([out, retval]GUID* guid);
+        [propput] HRESULT Guid([in]GUID guid);
+ 
+        [propget] HRESULT Level([out, retval] IValueMap **ppLevel);
+        [propget] HRESULT KeywordsAny([out, retval] IValueMap **ppKeywords);
+        [propget] HRESULT KeywordsAll([out, retval] IValueMap **ppKeywords);
+        [propget] HRESULT Properties([out, retval] IValueMap **ppProperties);
+ 
+        [propget] HRESULT FilterEnabled([out, retval] VARIANT_BOOL *FilterEnabled);
+        [propput] HRESULT FilterEnabled([in] VARIANT_BOOL FilterEnabled);
+ 
+        [propget] HRESULT FilterType([out, retval] ULONG *pulType);
+        [propput] HRESULT FilterType([in] ULONG ulType);
+ 
+        [propget] HRESULT FilterData([out, retval] [safearray(BYTE)] SAFEARRAY*ppData);
+        [propput] HRESULT FilterData([in] [safearray(BYTE)] SAFEARRAY pData);
+ 
+        HRESULT Query([in] BSTR bstrName, [in, unique] BSTR bstrServer);
+        HRESULT Resolve([in] IDispatch* pFrom);
+ 
+        HRESULT SetSecurity([in] BSTR Sddl);
+        HRESULT GetSecurity([in] ULONG SecurityInfo, [out, retval] BSTR *Sddl);
+ 
+        HRESULT GetRegisteredProcesses([out] IValueMap **Processes);
+    };
+ 
+    [
+        object,
+        uuid(0383753a-098b-11d8-9414-505054503030),
+        dual
+    ]
+    interface ISchedule : IDispatch
+    {
+        [propget] HRESULT StartDate([out, retval]VARIANT* start);
+        [propput] HRESULT StartDate([in]VARIANT start);
+ 
+        [propget] HRESULT EndDate([out, retval]VARIANT* end);
+        [propput] HRESULT EndDate([in]VARIANT end);
+ 
+        [propget] HRESULT StartTime([out, retval]VARIANT* start);
+        [propput] HRESULT StartTime([in]VARIANT start);
+ 
+        [propget] HRESULT Days([out, retval]WeekDays* days);
+        [propput] HRESULT Days([in]WeekDays days );
+    };
+ 
+    [
+        object,
+        uuid(03837510-098b-11d8-9414-505054503030),
+        dual,
+        oleautomation,
+        nonextensible
+    ]
+    interface ITraceDataProviderCollection : IDispatch
+    {
+        [propget, id(1)] HRESULT Count([out, retval] long* retVal);
+        [propget, id(DISPID_VALUE)] HRESULT Item([in] VARIANT index, [out, retval] ITraceDataProvider** ppProvider);
+        [propget, id(DISPID_NEWENUM)] HRESULT _NewEnum([out, retval] IUnknown** retVal);
+ 
+        HRESULT Add(ITraceDataProvider* pProvider);
+        HRESULT Remove(VARIANT vProvider);
+        HRESULT Clear();
+        HRESULT AddRange(ITraceDataProviderCollection* providers);
+        HRESULT CreateTraceDataProvider([out, retval] ITraceDataProvider **Provider);
+ 
+        HRESULT GetTraceDataProviders([in, unique] BSTR server);
+        HRESULT GetTraceDataProvidersByProcess([in, unique] BSTR Server, [in] ULONG Pid);
+    }
+ 
+    [
+        object,
+        uuid(0383753d-098b-11d8-9414-505054503030),
+        dual,
+        oleautomation,
+        nonextensible
+    ]
+    interface IScheduleCollection : IDispatch
+    {
+        [propget, id(1)] HRESULT Count([out, retval] long* retVal);
+        [propget, id(DISPID_VALUE)] HRESULT Item([in] VARIANT index, [out, retval] ISchedule** ppSchedule);
+        [propget, id(DISPID_NEWENUM)] HRESULT _NewEnum([out, retval] IUnknown** retVal);
+ 
+        HRESULT Add(ISchedule* pSchedule);
+        HRESULT Remove(VARIANT vSchedule);
+        HRESULT Clear();
+        HRESULT AddRange(IScheduleCollection* pSchedules);
+        HRESULT CreateSchedule([out, retval] ISchedule **Schedule);
+    }
+ 
+    [
+        object,
+        uuid(03837502-098b-11d8-9414-505054503030),
+        dual,
+        oleautomation,
+        nonextensible
+    ]
+    interface IDataCollectorCollection : IDispatch
+    {
+        [propget, id(1)] HRESULT Count([out, retval] long* retVal);
+        [propget, id(DISPID_VALUE)] HRESULT Item([in] VARIANT index, [out, retval] IDataCollector** collector);
+        [propget, id(DISPID_NEWENUM)] HRESULT _NewEnum([out, retval] IUnknown** retVal);
+ 
+        HRESULT Add(IDataCollector* collector);
+        HRESULT Remove(VARIANT collector);
+        HRESULT Clear();
+        HRESULT AddRange(IDataCollectorCollection* collectors);
+ 
+        HRESULT CreateDataCollectorFromXml([in] BSTR bstrXml, [out] IValueMap** pValidation, [out, retval] IDataCollector **pCollector);
+        HRESULT CreateDataCollector([in] DataCollectorType Type, [out,retval] IDataCollector **Collector);
+    }
+ 
+    [
+        object,
+        uuid(03837524-098b-11d8-9414-505054503030),
+        dual,
+        oleautomation,
+        nonextensible
+    ]
+    interface IDataCollectorSetCollection : IDispatch
+    {
+        [propget, id(1)] HRESULT Count([out, retval] long* retVal);
+        [propget, id(DISPID_VALUE)] HRESULT Item([in] VARIANT index, [out, retval] IDataCollectorSet** set);
+        [propget, id(DISPID_NEWENUM)] HRESULT _NewEnum([out, retval] IUnknown** retVal);
+ 
+        HRESULT Add(IDataCollectorSet* set);
+        HRESULT Remove(VARIANT set);
+        HRESULT Clear();
+        HRESULT AddRange(IDataCollectorSetCollection* sets);
+ 
+        HRESULT GetDataCollectorSets([in, unique] BSTR server, [in, unique] BSTR filter);
+    }
+ 
+    [
+        object,
+        uuid(03837533-098b-11d8-9414-505054503030),
+        dual,
+        oleautomation,
+        nonextensible
+    ]
+    interface IValueMapItem : IDispatch
+    {
+        [propget] HRESULT Description([out, retval]BSTR* description);
+        [propput] HRESULT Description([in]BSTR description);
+ 
+        [propget] HRESULT Enabled([out, retval]VARIANT_BOOL* enabled);
+        [propput] HRESULT Enabled([in]VARIANT_BOOL enabled);
+ 
+        [propget] HRESULT Key([out, retval]BSTR* key);
+        [propput] HRESULT Key([in]BSTR key);
+ 
+        [propget] HRESULT Value([out, retval] VARIANT *Value);
+        [propput] HRESULT Value([in] VARIANT Value);
+ 
+        [propget] HRESULT ValueMapType([out, retval]ValueMapType* type);
+        [propput] HRESULT ValueMapType([in]ValueMapType type);
+    }
+ 
+    [
+        object,
+        uuid(03837534-098b-11d8-9414-505054503030),
+        dual,
+        oleautomation,
+        nonextensible
+    ]
+    interface IValueMap : IDispatch
+    {
+        [propget, id(1)] HRESULT Count([out, retval] long* retVal);
+        [propget, id(DISPID_VALUE)] HRESULT Item([in] VARIANT index, [out, retval] IValueMapItem** value);
+        [propget, id(DISPID_NEWENUM)] HRESULT _NewEnum([out, retval] IUnknown** retVal);
+ 
+        [propget] HRESULT Description([out, retval]BSTR* description);
+        [propput] HRESULT Description([in]BSTR description);
+ 
+        [propget] HRESULT Value([out, retval] VARIANT *Value);
+        [propput] HRESULT Value([in] VARIANT Value);
+ 
+        [propget] HRESULT ValueMapType([out, retval]ValueMapType* type);
+        [propput] HRESULT ValueMapType([in]ValueMapType type);
+ 
+        HRESULT Add(VARIANT value);
+        HRESULT Remove(VARIANT value);
+        HRESULT Clear();
+        HRESULT AddRange(IValueMap* map);
+        HRESULT CreateValueMapItem([out, retval] IValueMapItem **Item);
+    }

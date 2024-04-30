@@ -1,0 +1,31 @@
+<div class="content"><p> </p><p>This structure is used to generically store different data
+types.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_MATCH_VALUE {
+   FW_DATA_TYPE type;
+   [switch_type(FW_DATA_TYPE), switch_is(type)] 
+     union {
+     [case(FW_DATA_TYPE_UINT8)] 
+       unsigned CHAR uInt8;
+     [case(FW_DATA_TYPE_UINT16)] 
+       unsigned SHORT uInt16;
+     [case(FW_DATA_TYPE_UINT32)] 
+       unsigned LONG uInt32;
+     [case(FW_DATA_TYPE_UINT64)] 
+       unsigned __int64 uInt64;
+     [case(FW_DATA_TYPE_UNICODE_STRING)] 
+       struct {
+       [string, range(1,10001)] wchar_t* wszString;
+     };
+     [case(FW_DATA_TYPE_EMPTY)] 
+             ;
+   };
+ } FW_MATCH_VALUE;
+</pre></div>
+</dd></dl><p><b>type:</b>  This field identifies the
+data type that is stored in the structure.</p><p><b>uInt8:</b>  This field contains an 8-bit
+unsigned integer.</p><p><b>uInt16:</b>  This field contains a
+16-bit unsigned integer.</p><p><b>uInt32:</b>  This field contains a
+32-bit unsigned integer.</p><p><b>uInt64:</b>  This field contains a
+64-bit unsigned integer.</p><p><b>wszString:</b>  This field contains a
+pointer to a <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> string.</p></div>

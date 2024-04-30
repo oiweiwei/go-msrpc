@@ -1,0 +1,29 @@
+import "ms-dtyp.idl";
+ 
+[uuid(22e5386d-8b12-4bf0-b0ec-6a1ea419e366)]
+[version(1.0)]
+ 
+interface NetEventForwarder {
+ 
+   typedef [context_handle] void* PSESSION_HANDLE;
+ 
+   typedef struct _EVENT_BUFFER {
+      unsigned long BufferLength;
+      [size_is(BufferLength)] byte* Buffer;
+   } EVENT_BUFFER;   
+ 
+   DWORD RpcNetEventOpenSession(
+      [in] handle_t BindingHandle,
+      [in] [string] wchar_t* LoggerName,
+      [out] PSESSION_HANDLE* SessionHandle
+   );
+ 
+   DWORD RpcNetEventReceiveData(
+      [in] PSESSION_HANDLE SessionHandle,
+      [out] EVENT_BUFFER* EventBuffer
+   );
+ 
+   void RpcNetEventCloseSession(
+      [in, out] PSESSION_HANDLE* SessionHandle
+   );
+};

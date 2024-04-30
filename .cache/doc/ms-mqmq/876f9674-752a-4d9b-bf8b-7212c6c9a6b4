@@ -1,0 +1,52 @@
+<div class="content"><p> </p><p>The following values are used in the discriminant field, <b>vt</b>,
+of the <span><a href="420dd41a-b8ee-493b-87c4-d4bab2b9379f" data-linktype="relative-path">PROPVARIANT (section 2.2.13)</a></span>
+type. </p><p>The PROPVARIANT (section 2.2.13) type constants
+are defined in the VARENUM enumeration, as follows:</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+     VT_EMPTY           = 0,
+     VT_NULL            = 1,
+     VT_I2              = 2,
+     VT_I4              = 3,
+     VT_BOOL            = 11,
+     VT_VARIANT         = 12,
+     VT_I1              = 16,
+     VT_UI1             = 17,
+     VT_UI2             = 18,
+     VT_UI4             = 19,
+     VT_I8              = 20,
+     VT_UI8             = 21,
+     VT_LPWSTR          = 31,
+     VT_BLOB            = 65,
+     VT_CLSID           = 72,
+  
+     VT_VECTOR          = 0x1000,
+ } VARENUM;
+</pre></div>
+</dd></dl><p><b>VT_EMPTY:  </b>(0x0000): The type of the contained
+field is undefined. When this flag is specified, the
+PROPVARIANT (section 2.2.13) MUST NOT contain a data field.</p><p><b>VT_NULL:  </b>(0x0001): The type of the contained
+field is NULL. When this flag is specified, the PROPVARIANT (section 2.2.13)
+MUST NOT contain a data field.</p><p><b>VT_I2:  </b>(0x0002): The type of the contained
+field MUST be a 2-byte signed integer.</p><p><b>VT_I4:  </b>(0x0003): The type of the contained
+field MUST be a 4-byte signed integer.</p><p><b>VT_BOOL:  </b>(0x000B): The type of the contained
+field MUST be <span><a href="54be9c2f-36b6-4b3d-8cec-ebeae0fdde6d" data-linktype="relative-path">VARIANT_BOOL (section 2.2.14)</a></span>.</p><p><b>VT_VARIANT:  </b>(0x000C): The type of the
+contained field MUST be <span><a href="40a8da49-ff56-4dee-bc99-b96e520f896c" data-linktype="relative-path">CAPROPVARIANT (section 2.2.16.8)</a></span>.
+It MUST appear with the bit flag VT_VECTOR.</p><p><b>VT_I1:  </b>(0x0010): The type of the contained
+field MUST be a 1-byte integer.</p><p><b>VT_UI1:  </b>(0x0011): The type of the contained
+field MUST be a 1-byte unsigned integer.</p><p><b>VT_UI2:  </b>(0x0012): The type of the contained
+field MUST be a 2-byte unsigned integer.</p><p><b>VT_UI4:  </b>(0x0013): The type of the contained
+field MUST be a 4-byte unsigned integer.</p><p><b>VT_I8:  </b>(0x0014): The type of the contained
+field MUST be an 8-byte signed integer.</p><p><b>VT_UI8:  </b>(0x0015): The type of the contained
+field MUST be an 8-byte unsigned integer.</p><p><b>VT_LPWSTR:  </b>(0x001F): The type of the
+contained field MUST be an <b>LPWSTR</b> (as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">2.2.36</a></span>),
+a null-terminated <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> string.</p><p><b>VT_BLOB:  </b>(0x0041): The type of the contained
+field MUST be a <span><a href="95305a27-ad52-4d1c-b553-27fd3351a39c" data-linktype="relative-path">binary large object
+(BLOB) (section 2.2.15)</a></span>. </p><p><b>VT_CLSID:  </b>(0x0048): The type of the contained
+field MUST be a pointer to a <b>GUID</b> (as specified in [MS-DTYP] section <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a></span>)
+value.</p><p><b>VT_VECTOR:  </b> (0x1000): The type of the
+contained field MUST be combined with other values by using the bitwise OR
+operation to indicate a counted field. The type of the contained field MUST be
+a <span><a href="d032254f-b07a-4806-a951-f49a7ac6f824" data-linktype="relative-path">COUNTEDARRAY (section 2.2.16)</a></span>.</p></div>

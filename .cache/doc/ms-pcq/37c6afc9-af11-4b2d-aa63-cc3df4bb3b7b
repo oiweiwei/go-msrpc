@@ -1,0 +1,673 @@
+<div class="content"><p>The PerflibV2QueryCounterData method retrieves data for the <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance counters</a>
+associated with the query. Performance counters can be added or removed from
+queries by calling <a href="894ec446-089e-4efb-a9cc-69c97083bd1d" data-linktype="relative-path">PerflibV2ValidateCounters</a>.</p><dl>
+<dd>
+<div><pre> error_status_t PerflibV2QueryCounterData(
+   [in] RPC_HQUERY hQuery,
+   [in, range(0, 1073741824)] DWORD dwInSize,
+   [out] DWORD* pdwOutSize,
+   [out] DWORD* pdwRtnSize,
+   [out, size_is(dwInSize), length_is(* pdwOutSize)] 
+     unsigned char* lpData
+ );
+</pre></div>
+</dd></dl><p><b>hQuery: </b>The handle returned by the <a href="89060095-8806-47ce-80da-9d03cedcb9a6" data-linktype="relative-path">PerflibV2OpenQueryHandle</a>
+method; an exception is thrown or an error is returned by RPC if the handle did
+not originate from the PerflibV2OpenQueryHandle method.</p><p><b>dwInSize: </b>The size, in bytes, of the buffer.</p><p><b>pdwOutSize: </b>The size, in bytes, of the data
+that is returned and written to the buffer.</p><p><b>pdwRtnSize: </b>The necessary size, in bytes, to
+retrieve all the requested data.</p><p><b>lpData: </b>The buffer that contains the requested
+counter information.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) for success; otherwise, it MUST return one of the standard
+Windows error codes, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The return value indicates success.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The server returns this value to the client if the
+  authentication level of the client is less than
+  RPC_C_AUTHN_LEVEL_PKT_PRIVACY. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>The server will return this value to the client if the
+  size of the buffer pointed to by lpData is not of sufficient size to return
+  the performance counter values to the client.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST return a <a href="b9920496-d161-4d50-83de-5ca15d54c696" data-linktype="relative-path">_PERF_DATA_HEADER</a>
+structure that is followed by a set of <a href="43839154-f7c2-4f86-b10a-d6fa145c5337" data-linktype="relative-path">_PERF_COUNTER_HEADER</a>
+blocks. The format of the _PERF_COUNTER_HEADER block MUST be determined by the <b>dwType</b>
+field of the _PERF_COUNTER_HEADER structure.</p><p><img id="MS-PCQ_pict1f9dce92-69c9-3e4f-5232-75808e2daaa9.png" src="ms-pcq_files/image005.png" alt="PerflibV2QueryCounterData return" title="PerflibV2QueryCounterData return" data-linktype="relative-path"/></p><p><b>Figure 5: PerflibV2QueryCounterData return</b></p><p>The following diagram illustrates data size, alignment, and
+endianness.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_DATA_HEADER
+  (row 1, <b>dwTotalSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_DATA_HEADER
+  (row 2, <b>dwNumCounter</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_DATA_HEADER
+  (row 3, <b>PerfTimeStamp</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_DATA_HEADER
+  (row 4, <b>PerfTimeStamp</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_DATA_HEADER
+  (row 5, <b>PerfTime100NSec</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_DATA_HEADER
+  (row 6, <b>PerfTime100NSec</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_DATA_HEADER
+  (row 7, <b>PerfFreq</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_DATA_HEADER
+  (row 8, <b>PerfFreq</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_DATA_HEADER
+  (row 9, <b>SystemTime</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_DATA_HEADER
+  (row 10, <b>SystemTime</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_DATA_HEADER
+  (row 11, <b>SystemTime</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_DATA_HEADER
+  (row 12, <b>SystemTime</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_DATA_HEADER
+  (row 13, <b>SystemTime</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_DATA_HEADER
+  (row 14, <b>SystemTime</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_DATA_HEADER
+  (row 15, <b>SystemTime</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_DATA_HEADER
+  (row 16, <b>SystemTime</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_HEADER
+  blocks</p>
+  </td>
+ </tr>
+</tbody></table><ul><li><p><span><span> 
+</span></span>If <b>dwType</b> = PERF_ERROR_RETURN (0x00000000), the
+_PERF_COUNTER_HEADER block MUST contain one _PERF_COUNTER_HEADER structure, and
+the <b>dwStatus</b> field of the structure indicates the error by using a Win32
+error code. Win32 error codes are specified in [MS-ERREF].</p>
+</li><li><p><span><span> 
+</span></span>If <b>dwType</b> = PERF_SINGLE_COUNTER (0x00000001), the
+_PERF_COUNTER_HEADER block MUST contain a _PERF_COUNTER_HEADER structure that
+is followed by a <a href="397120a3-db59-4527-ab85-cb3c32aa3a00" data-linktype="relative-path">_PERF_COUNTER_DATA</a>
+structure and then followed by the counter value.</p>
+</li></ul><dl>
+<dd>
+<p><img id="MS-PCQ_pictd2a0d9ca-8f42-ae5d-35c5-ea260296613b.png" src="ms-pcq_files/image006.png" alt="PerflibV2QueryCounterData return if dwType = PERF_SINGLE_COUNTER" title="PerflibV2QueryCounterData return if dwType = PERF_SINGLE_COUNTER" data-linktype="relative-path"/></p>
+</dd></dl><p><b>Figure 6: PerflibV2QueryCounterData return if dwType =
+PERF_SINGLE_COUNTER</b></p><p>The following diagram illustrates data size, alignment, and endianness.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_HEADER
+  (row 1, <b>dwStatus</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_HEADER
+  (row 2, <b>dwType</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_HEADER
+  (row 3, <b>dwSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_HEADER
+  (row 4, <b>Reserved</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_DATA
+  (row 1, <b>dwDataSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_DATA
+  (row 2, <b>dwSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Counter
+  value (Will be two rows if the counter value is 64-bits)</p>
+  </td>
+ </tr>
+</tbody></table><ul><li><p><span><span> 
+</span></span>If <b>dwType</b> = <a href="fe08ddd6-d6c9-49fd-bbd4-0066c305bea4" data-linktype="relative-path">PERF_MULTI_COUNTERS</a>
+(0x00000002), the _PERF_COUNTER_HEADER block MUST contain a
+_PERF_COUNTER_HEADER structure that is followed by a _PERF_MULTI_COUNTERS
+structure, followed by an array of performance counter IDs, followed by a
+sequence of _PERF_COUNTER_DATA blocks. Each _PERF_COUNTER_DATA block MUST
+contain a _PERF_COUNTER_DATA structure that is followed by the performance
+counter value. The order of the elements in the array of counter IDs MUST be
+the same as the order of the corresponding performance counter values. The
+number of _PERF_COUNTER_DATA structures and the length of the performance
+counter ID array MUST be equal to the <b>dwCounters</b> field of the
+_PERF_MULTI_COUNTERS structure.</p>
+</li></ul><dl>
+<dd>
+<p><img id="MS-PCQ_pict1bf75f41-7774-8158-af61-9400202005e8.png" src="ms-pcq_files/image007.png" alt="PerflibV2QueryCounterData return if dwType = _PERF_MULTI_COUNTERS" title="PerflibV2QueryCounterData return if dwType = _PERF_MULTI_COUNTERS" data-linktype="relative-path"/></p>
+</dd></dl><p><b>Figure 7: PerflibV2QueryCounterData return if dwType =
+_PERF_MULTI_COUNTERS</b></p><p>The following diagram
+illustrates data size, alignment, and endianness.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_HEADER
+  (row 1, <b>dwStatus</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_HEADER
+  (row 2, <b>dwType</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_HEADER
+  (row 3, <b>dwSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_HEADER
+  (row 4, <b>Reserved</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_MULTI_COUNTERS
+  (row 1, <b>dwSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_MULTI_COUNTERS
+  (row 2, <b>dwCounters</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Counter
+  ID array (Each element is one row, number of rows depends on number of
+  counters)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_DATA
+  (row 1, <b>dwDataSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_DATA
+  (row 2, <b>dwSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Counter
+  value (Will be two rows if the counter value is 64-bits)</p>
+  </td>
+ </tr>
+</tbody></table><ul><li><p><span><span> 
+</span></span>If <b>dwType</b> = <a href="e247163a-6a59-45aa-99f5-1ea844191900" data-linktype="relative-path">_PERF_MULTI_INSTANCES</a>
+(0x00000004), the _PERF_COUNTER_HEADER block MUST contain a _PERF_COUNTER_HEADER
+structure that is followed by a _PERF_MULTI_INSTANCES structure and then
+followed by a sequence of <a href="d78bcdce-a620-475b-b0dd-7eb9d2ed09f3" data-linktype="relative-path">_PERF_INSTANCE_HEADER</a>
+blocks. Each _PERF_INSTANCE_HEADER block MUST contain a _PERF_INSTANCE_HEADER
+structure that is followed by a _PERF_COUNTER_DATA structure and then followed
+by the performance counter value. The number of _PERF_INSTANCE_HEADER blocks
+MUST be equal to the <b>dwInstances</b> field of the _PERF_MULTI_INSTANCES
+structure.</p>
+</li></ul><p>The following diagram illustrates data size, alignment, and
+endianness.</p><p><img id="MS-PCQ_picta55e3afc-5cb5-c065-9794-6124a40ae74f.png" src="ms-pcq_files/image008.png" alt="PerflibV2QueryCounterData return if dwType = _PERF_MULTI_INSTANCES" title="PerflibV2QueryCounterData return if dwType = _PERF_MULTI_INSTANCES" data-linktype="relative-path"/></p><p><b>Figure 8: PerflibV2QueryCounterData return if dwType =
+_PERF_MULTI_INSTANCES</b></p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_HEADER
+  (row 1, <b>dwStatus</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_HEADER
+  (row 2, <b>dwType</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_HEADER
+  (row 3, <b>dwSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_HEADER
+  (row 4, <b>Reserved</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_MULTI_INSTANCES
+  (row 1, <b>dwTotalSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_MULTI_INSTANCES
+  (row 2, <b>dwInstances</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_INSTANCE_HEADER
+  (row 1, <b>Size</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_INSTANCE_HEADER
+  (row 2, <b>InstanceId</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Unicode
+  string of Instance Name (row 1)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">Instance
+  Name (row 2)</p>
+  </td>
+  <td colspan="16">
+  <p align="center">Padding
+  (MUST be set to 0)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_DATA
+  (row 1, <b>dwDataSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_DATA
+  (row 2, <b>dwSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Counter
+  value (Will be two rows if the counter value is 64-bits)</p>
+  </td>
+ </tr>
+</tbody></table><ul><li><p><span><span> 
+</span></span>If <b>dwType</b> = PERF_COUNTERSET (0x00000006), the
+_PERF_COUNTER_HEADER block MUST contain the following, in order: a
+_PERF_COUNTER_HEADER structure, a _PERF_MULTI_COUNTERS structure, the
+performance counter ID array, a _PERF_MULTI_INSTANCES structure, and a set of
+_PERF_INSTANCE_HEADER blocks. Each _PERF_INSTANCE_HEADER block MUST contain a
+_PERF_INSTANCE_HEADER structure that is followed by a sequence of
+_PERF_COUNTER_DATA blocks, and each _PERF_COUNTER_DATA block MUST contain a
+_PERF_COUNTER_DATA structure that is followed by the performance counter value.
+The number of _PERF_COUNTER_DATA blocks MUST be equal to the <b>dwCounters</b>
+field of the _PERF_MULTI_COUNTERS structure and the length of the performance
+counter ID array. The order of the elements in the array of counter IDs MUST be
+the same as the order of the corresponding performance counter values. The
+number of _PERF_INSTANCE_HEADER blocks MUST be equal to the <b>dwInstances</b>
+field of the _PERF_MULTI_INSTANCES structure. </p>
+</li></ul><p><img id="MS-PCQ_pict72373677-0428-8e4d-b8f2-5e926deef713.png" src="ms-pcq_files/image009.png" alt="PerflibV2QueryCounterData return if dwType = PERF_COUNTERSET" title="PerflibV2QueryCounterData return if dwType = PERF_COUNTERSET" data-linktype="relative-path"/></p><p><b>Figure 9: PerflibV2QueryCounterData return if dwType =
+PERF_COUNTERSET</b></p><p>The following diagram illustrates data size, alignment, and
+endianness.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_HEADER
+  (row 1, <b>dwStatus</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_HEADER
+  (row 2, <b>dwType</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_HEADER
+  (row 3, <b>dwSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_HEADER
+  (row 4, <b>Reserved</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_MULTI_COUNTERS
+  (row 1, <b>dwSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_MULTI_COUNTERS
+  (row 2, <b>dwCounters</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Counter
+  ID array (Each element is one row; number of rows depends on number of
+  counters)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_MULTI_INSTANCES
+  (row 1, <b>dwTotalSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_MULTI_INSTANCES
+  (row 2, <b>dwInstances</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_INSTANCE_HEADER
+  (row 1, <b>Size</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_INSTANCE_HEADER
+  (row 2, <b>InstanceId</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_DATA
+  (row 1, <b>dwDataSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_PERF_COUNTER_DATA
+  (row 2, <b>dwSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Counter
+  value (Will be two rows if the counter value is 64-bits)</p>
+  </td>
+ </tr>
+</tbody></table><p> </p></div>

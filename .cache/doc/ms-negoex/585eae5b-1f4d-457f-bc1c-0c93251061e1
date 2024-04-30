@@ -1,0 +1,34 @@
+<div class="content"><p> </p><p>The <b>NEGO_MESSAGE</b> structure message is used to begin
+and exchange negotiation of security mechanisms. This message is sent from the
+initiator to the acceptor with the message type set to MESSAGE_TYPE_INITIATOR_NEGO
+to begin the negotiation. The initiator uses this message to specify the set of
+supported security mechanisms. The acceptor then responds with a <b>NEGO_MESSAGE</b>
+message, with the message type set to MESSAGE_TYPE_ACCEPTOR_NEGO and with its
+own list of supported security mechanisms. This message contains signatures for
+protecting the NEGOEX negotiation and might also contain the optimistic
+mechanism token.  </p><p>The <b>NEGO_MESSAGE</b> structure has the following
+definition. </p><dl>
+<dd>
+<div><pre> struct
+ {
+   MESSAGE_HEADER Header;
+   UCHAR Random[32];
+   ULONG64 ProtocolVersion;
+   AUTH_SCHEME_VECTOR AuthSchemes;
+   EXTENSION_VECTOR Extensions;
+} NEGO_MESSAGE; 
+</pre></div>
+</dd></dl><p><b>Header:</b> A <b>MESSAGE_HEADER</b> structure, as
+specified in section <span><a href="1f4a4b47-6e44-4427-9028-e384a4ca1fda" data-linktype="relative-path">2.2.6.2</a></span>. Its <b>MessageType</b>
+field can carry from the <b>MESSAGE_TYPE</b> enumeration (section <span><a href="3a77a20d-9746-4e79-8f06-b241263e3da3" data-linktype="relative-path">2.2.6.1</a></span>)
+either the value MESSAGE_TYPE_INITIATOR_NEGO for the initiator or the value
+MESSAGE_TYPE_ACCEPTOR_NEGO for the acceptor.  </p><p><b>Random:</b> A UCHAR integer array. The <b>Random</b>
+field is filled using a secure random number generator, as specified in section
+<span><a href="0520cf4a-0a5d-42c0-82ec-81fa2ca0d875" data-linktype="relative-path">2.2.4</a></span>. 
+</p><p><b>ProtocolVersion:</b> A ULONG64 type that indicates
+the numbered version of this protocol. This field contains 0.  </p><p><b>AuthSchemes:</b> An <b>AUTH_SCHEME_VECTOR</b>
+structure, as specified in section <span><a href="640dca14-6065-40fc-a710-3d9665d6bc1f" data-linktype="relative-path">2.2.5.2.2</a></span>, that
+contains an ordered list of available, supported security mechanism IDs in
+decreasing order of preference.  </p><p><b>Extensions:</b> All negative extension types are
+critical (the highest bit is set to 1). If the receiver does not understand a
+critical extension, the authentication attempt MUST be rejected. </p></div>

@@ -1,0 +1,79 @@
+<div class="content"><p> </p><p>The <b>FAX_EnumOutboundGroups (Opnum 54)</b> method is
+called by the client.</p><p>In response, the server MUST validate that the client&#39;s fax
+user account has access to enumerate the outbound <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_20b15ad8-82b1-47ef-a494-561c9cdee7fa" data-linktype="relative-path">routing groups</a></span>.</p><p>On success, the server MUST return information about all its
+outbound routing groups in ppData. It MUST also return the size of the
+information returned and the number of outbound routing groups for which it
+enumerated information successfully.</p><p>The client SHOULD free ppData buffer.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_EnumOutboundGroups(
+   [in] handle_t hFaxHandle,
+   [out, size_is(, *lpdwDataSize)] 
+     LPBYTE* ppData,
+   [out, ref] LPDWORD lpdwDataSize,
+   [out, ref] LPDWORD lpdwNumGroups
+ );
+</pre></div>
+</dd></dl><p><b>hFaxHandle: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>)
+or <b>FAX_ConnectionRefCoun</b>t (section <span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>) method
+call used to connect to the fax server.</p><p><b>ppData: </b>The address of a pointer to a buffer
+containing an array of <b>_RPC_FAX_OUTBOUND_ROUTING_GROUPW</b> (section <span><a href="493290c8-eb67-4470-a53f-15ba8f33f1e0" data-linktype="relative-path">2.2.40</a></span>)
+structures.</p><p><b>lpdwDataSize: </b>The size, in bytes, of the
+returned <i>ppData</i> buffer.</p><p><b>lpdwNumGroups: </b>The number of groups that are
+returned.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The client&#39;s fax user account does
+  not have the access rights (FAX_ACCESS_QUERY_CONFIG) required for this
+  operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>This error code is returned under any of the following
+  conditions:</p>
+  <p><span>§<span>  
+  </span></span>The pointer referenced by the <b>ppData</b> argument is NULL.<a id="Appendix_A_Target_92"></a><a aria-label="Product behavior note 92" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_92" data-linktype="relative-path">&lt;92&gt;</a></p>
+  <p><span>§<span>  
+  </span></span>The fax server tried to return
+  FAX_ERR_NOT_SUPPORTED_ON_THIS_SKU, but the client fax API version
+  (FAX_API_VERSION_0, described in section 3.1.4.1.10) does not support this
+  error code.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FAX_ERR_NOT_SUPPORTED_ON_THIS_SKU</p>
+  <p>0x00001B63</p>
+  </td>
+  <td>
+  <p>The fax client module&#39;s API version (described in
+  section 3.1.4.1.10) is FAX_API_VERSION_1 or above, and the fax server is
+  running. on a version of the operating system that does not support the
+  requested operation.<a id="Appendix_A_Target_93"></a><a aria-label="Product behavior note 93" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_93" data-linktype="relative-path">&lt;93&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown: </b>No exceptions are thrown except
+those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,12 @@
+<div class="content"><p>The STRING_PTRSA structure defines a pointer to an ANSI
+character string.</p><dl>
+<dd>
+<div><pre> typedef struct _STRING_PTRSA {
+   [string, range(0, SC_MAX_ARGUMENT_LENGTH)] 
+     LPSTR StringPtr;
+ } STRING_PTRSA,
+  *PSTRING_PTRSA,
+  *LPSTRING_PTRSA;
+</pre></div>
+</dd></dl><p><b>StringPtr:</b>  Pointer to an ANSI
+character string.</p></div>

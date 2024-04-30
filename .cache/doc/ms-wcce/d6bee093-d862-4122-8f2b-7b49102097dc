@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The <b>CERTTRANSBLOB</b> structure defines a byte buffer
+that is used to store <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a></span>,
+request certificates, transmit responses, manipulate <span><a href="https://go.microsoft.com/fwlink/?LinkId=90550" data-linktype="external">[UNICODE]</a></span>
+strings, and marshal property values.</p><dl>
+<dd>
+<div><pre> typedef struct _CERTTRANSBLOB {
+   ULONG cb;
+   [size_is(cb), unique] BYTE* pb;
+ } CERTTRANSBLOB;
+</pre></div>
+</dd></dl><p><b>cb:</b>  Unsigned integer value that
+MUST contain the length of the buffer pointed to by <b>pb</b> in bytes.</p><p><b>pb:</b>  Byte buffer that MUST contain
+the binary contents being transported in this CERTTRANSBLOB. </p><p>CERTTRANSBLOB is empty when both <b>cb</b> and <b>pb</b> are
+set to 0.</p><p>The following sections specify marshaling of all supported
+structures that can be passed in the <b>pb</b> Byte buffer of CERTTRANSBLOB.</p><p>All instances of CERTTRANSBLOB used by this protocol MUST
+use one of the marshaling rules described in the following sections.</p></div>

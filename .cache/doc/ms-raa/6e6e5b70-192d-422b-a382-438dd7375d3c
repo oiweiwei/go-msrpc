@@ -1,0 +1,18 @@
+<div class="content"><p>The AUTHZR_SECURITY_ATTRUBUTES_INFORMATION structure
+specifies one or more security attributes.</p><dl>
+<dd>
+<div><pre> typedef struct _AUTHZR_SECURITY_ATTRIBUTES_INFORMATION {
+     USHORT Version;
+     USHORT Reserved;
+     [range(0, 1024)] ULONG AttributeCount;
+     [size_is(AttributeCount)] AUTHZR_SECURITY_ATTRIBUTE_V1* Attributes;
+ } AUTHZR_SECURITY_ATTRIBUTES_INFORMATION;
+  
+  
+</pre></div>
+</dd></dl><p><b>Version:</b>  The version of this structure. This
+value MUST be set to 0x0001.</p><p><b>Reserved:</b>  Reserved.  This member MUST be set
+to zero when sent and MUST be ignored when received. </p><p><b>AttributeCount:</b>  The number of attributes
+specified by the <b>Attribute</b> member. The number of attributes MUST be
+between zero and 1,024, inclusive.</p><p><b>Attributes:</b> A pointer to an array of
+AUTHZR_SECURITY_ATTRIBUTE_V1 structures, defined in section <a href="cdb0ca44-e019-4e58-bc44-9ff330cc4895" data-linktype="relative-path">2.2.3.5</a>.</p></div>

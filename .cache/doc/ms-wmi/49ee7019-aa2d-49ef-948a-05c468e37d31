@@ -1,0 +1,282 @@
+<div class="content"><p> </p><p>The IWbemServices::ExecQuery method returns an enumerable
+collection of <span><a href="46710c5c-d7ab-4e4c-b4a5-ebff311fdcd1" data-linktype="relative-path">IWbemClassObject</a></span>
+interface objects based on a query.</p><dl>
+<dd>
+<div><pre> HRESULT ExecQuery(
+   [in] const BSTR strQueryLanguage,
+   [in] const BSTR strQuery,
+   [in] long lFlags,
+   [in] IWbemContext* pCtx,
+   [out] IEnumWbemClassObject** ppEnum
+ );
+</pre></div>
+</dd></dl><p><b>strQueryLanguage: </b>MUST be set to
+&#34;WQL&#34;.</p><p><b>strQuery: </b>MUST contain the &#34;<span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_46e519f1-d1f0-4dcc-bd02-9a2638c03d98" data-linktype="relative-path">WQL</a></span>&#34;
+query text as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90550" data-linktype="external">[UNICODE]</a></span>
+(UTF-16) and in section <span><a href="6c8a38f4-4ee1-47cb-99f1-b42718a575ce" data-linktype="relative-path">2.2.1</a></span>. This
+parameter MUST NOT be NULL.</p><p><b>lFlags: </b>Specifies the behavior of the
+IWbemServices::ExecQuery method. Flag behavior MUST be interpreted as specified
+in the following table.</p><dl>
+<dd>
+<p>The server MUST allow any combination of zero or
+more flags from the following table and MUST comply with all the restrictions
+in a flag description. Any other DWORD value that does not match a flag
+condition MUST be treated as not valid.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_USE_AMENDED_QUALIFIERS</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server SHOULD not return <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f82a4363-0099-479c-b42c-a8d398a90443" data-linktype="relative-path">CIM
+  localizable information</a></span>.</p>
+  <p>If this bit is set, the server SHOULD return CIM
+  localizable information for the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c1fdd6c7-06cb-4787-8735-4d19a68dd802" data-linktype="relative-path">CIM object</a></span>, as
+  specified in section <span><a href="2bbdf995-93d8-4902-a39d-38f2a9790b85" data-linktype="relative-path">2.2.6</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server MUST make the
+  method call synchronously.</p>
+  <p>If this bit is set, the server MUST make the method
+  call semisynchronously.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_DIRECT_READ</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server MUST consider the
+  entire class hierarchy when it returns the result.</p>
+  <p>If this bit is set, the server MUST disregard any
+  derived class when it searches the result.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_PROTOTYPE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server MUST run the query.</p>
+  <p>If this bit is set, the server MUST only return the
+  class schema of the resulting objects.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_FORWARD_ONLY</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server MUST return an enumerator
+  that has reset capability.</p>
+  <p>If this bit is set, the server MUST return an
+  enumerator without reset capability, as specified in section <span><a href="56022f1e-3761-4c17-8d55-8e62dc334b86" data-linktype="relative-path">3.1.4.4</a></span>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pCtx: </b>MUST be a pointer to an <span><a href="18c8f1a1-652f-43b7-9186-6098bc303a8d" data-linktype="relative-path">IWbemContext</a></span>
+interface, which MUST contain additional information that the client wants to
+pass to the server. If <i>pCtx</i> is NULL, the parameter MUST be ignored.</p><p><b>ppEnum: </b>MUST receive the pointer to the
+IEnumWbemClassObject that is used to enumerate through the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_8d8f4b2c-bf33-4964-b55c-96ac2cc999bb" data-linktype="relative-path">CIM
+objects</a></span> that are returned for the query result set. This parameter
+MUST NOT be NULL.</p><p><b>Return Values: </b>This method MUST return an HRESULT
+value that MUST indicate the status of the method call. The server MUST return
+WBEM_S_NO_ERROR (as specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that makes the call MUST have WBEM_ENABLE and WBEM_REMOTE_ENABLE accesses to
+the namespace; otherwise, WBEM_E_ACCESS_DENIED MUST be returned.</p><p>In response to IWbemServices::ExecQuery, the server MUST
+evaluate the <i>strQuery</i> and <i>strQueryLanguage</i> parameters (as
+specified in this section) and MUST return all instances that match the
+provided query. The method MUST fail if the method parameters or their
+combinations are not valid, as specified earlier in this section, or if the
+server is unable to execute the method.</p><p>The server SHOULD enforce a maximum length for the <i>strQuery</i>
+parameter, and return WBEM_E_QUOTA_VIOLATION if the limit is exceeded.<a id="Appendix_A_Target_48"></a><a aria-label="Product behavior note 48" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_48" data-linktype="relative-path">&lt;48&gt;</a></p><p>If the <i>strQuery</i> is not syntactically valid or one or
+more elements in &lt;PROPERTY-LIST&gt; contains undefined properties, the
+server MUST return WBEM_E_INVALID_QUERY.</p><p>If <i>strQuery</i> is evaluated successfully, the following
+processing rules MUST be applied. These rules use the following state
+variables:</p><dl>
+<dd>
+<p><b>QueryPropertyList: </b>A
+list of properties to be retrieved, from the WQL SELECT query.</p>
+</dd>
+<dd>
+<p><b>QueryWhereFilter: </b>The
+WHERE clause of the query.</p>
+</dd></dl><ol><li><p><span>    </span>If <i>strQuery</i>
+begins with SELECT, the server MUST do the following:</p>
+<ol><li><p><span>   
+</span>Find the <b>NamespaceConnection</b> matching the current session.</p>
+</li><li><p><span>   
+</span>Populate the <b>QueryPropertyList</b> and <b>QueryWhereFilter</b> data
+from the query.</p>
+</li><li><p><span>   
+</span>Search the <b>ClassTable</b> for the class-name specified in the FROM
+clause and find all the classes in the inheritance hierarchy (through the <b>DerivedClassTable</b>).</p>
+</li><li><p><span>   
+</span>For each class:</p>
+<ul><li><p><span><span> 
+</span></span>If <b>InstanceProviderId</b> is not zero:</p>
+<ul><li><p><span><span> 
+</span></span>Find <b>QuerySupportLevels</b> corresponding to the given <b>ProviderId</b>
+in the <b>ProviderTable</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <b>QuerySupportLevels</b> contains &#34;WQL:UnarySelect&#34;
+or &#34;WQL:V1ProviderDefined&#34;, the server MUST call the provider method
+specified in <span><a href="24fe98fa-dcd1-4266-94e1-da648693b370" data-linktype="relative-path">3.1.4.17.15</a></span> by
+passing the <i>strQuery</i>.</p>
+</li><li><p><span><span> 
+</span></span>If the results are returned from the provider, then the server
+MUST skip the remaining steps.</p>
+</li><li><p><span><span> 
+</span></span>If the provider returned WBEM_E_PROVIDER_NOT_CAPABLE, the server
+MUST call the provider method specified in <span><a href="4f3643bf-887d-4d4c-9e62-0003920cfcb4" data-linktype="relative-path">3.1.4.17.1</a></span> to
+obtain the instances of the class.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <b>InstanceProviderId</b> is zero:</p>
+<ul><li><p><span><span> 
+</span></span>The server MUST find the instances for the class in <b>ClassInstancesTable</b>
+in the <b>ClassTable</b> corresponding to the class.</p>
+</li></ul></li></ul></li></ol></li><li><p><span>    </span>Filter the
+enumerated instances using the <b>QueryWhereFilter</b> (see WQL
+Query (section 2.2.1)).</p>
+</li><li><p><span>    </span>From the
+filtered instances, select only the properties on the <b>QueryPropertyList</b>
+to form the result of the query.</p>
+</li><li><p><span>    </span>If <i>strQuery</i>
+begins with ASSOCIATORS OF, the server MUST do the following:</p>
+<ol><li><p><span>    </span>Find the <b>NamespaceConnection</b>
+matching the current session.</p>
+</li><li><p><span>    </span>Populate the <b>QueryWhereFilter</b>
+data from the query.</p>
+</li><li><p><span>    </span>Get all the WMI
+instances matching the object-path in the query.</p>
+</li><li><p><span>    </span>From the __CLASS
+property of each instance, get the class-name of all returned WMI objects.</p>
+</li><li><p><span>    </span>Search in the <b>NamespaceConnection.ClassTable</b>
+for those classes with properties of type REF <span><a href="https://go.microsoft.com/fwlink/?LinkId=89848" data-linktype="external">[DMTF-DSP0004]</a></span>
+with the class-name matching one of the class names from step 4. Call the
+resulting list <b>AssociationClasses</b>.</p>
+</li><li><p><span>    </span>For each <b>RequiredAssocQualifier</b>
+clause in the query, remove from <b>AssociationClasses</b> any class not
+containing the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e7791691-ba28-437f-85aa-4422aaa52b44" data-linktype="relative-path">qualifier</a></span> value
+specified with <b>RequiredAssocQualifier</b>.</p>
+</li><li><p><span>    </span>For each class
+in <b>AssociationClasses:</b></p>
+<ul><li><p><span><span> 
+</span></span>If <b>InstanceProviderId</b> is not zero:</p>
+<ul><li><p><span><span> 
+</span></span>Find <b>QuerySupportLevels</b> corresponding to the given <b>ProviderId</b>
+in the <b>ProviderTable</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <b>QuerySupportLevels</b> contains &#34;WQL:UnarySelect&#34;
+or &#34;WQL:V1ProviderDefined&#34;, the server MUST call the provider method
+specified in 3.1.4.17.15 by passing the <i>strQuery</i>.</p>
+</li><li><p><span><span> 
+</span></span>If the results are returned from the provider, then the server
+MUST skip the remaining steps.</p>
+</li><li><p><span><span> 
+</span></span>If the provider returned WBEM_E_PROVIDER_NOT_CAPABLE, the server
+MUST call the provider method specified in 3.1.4.17.1 to obtain the instances
+of the class.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <b>InstanceProviderId</b> is zero:</p>
+<ul><li><p><span><span> 
+</span></span>The server MUST find the instances for the class in <b>ClassInstancesTable</b>
+in the <b>ClassTable</b> corresponding to the class.</p>
+</li></ul></li></ul><ol><li><p><span>   
+</span>After all the instances are obtained from the preceding step, select the
+instances where the REF property matched one of the instances from step 3.</p>
+</li><li><p><span>   
+</span>For each remaining instance, look for all other ref properties in the
+instance and get the object referenced by them.</p>
+</li><li><p><span>   
+</span>Filter this list of instances using the <b>QueryWhereFilter</b>.</p>
+</li><li><p><span>   
+</span>The server SHOULD<a id="Appendix_A_Target_49"></a><a aria-label="Product behavior note 49" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_49" data-linktype="relative-path">&lt;49&gt;</a> process
+the following step. If <b>KeysOnly</b> is specified as part of the <b>QueryWhereFilter</b>,
+search the class table again for the classes of the filtered instances and get
+the list of key properties from <b>ClassDeclaration</b> (key properties will
+have a qualifier &#39;key&#39;). Select the values of (only) the key properties to form
+the result of the query.</p>
+</li><li><p><span>   
+</span>If <b>ClassDefsOnly</b> is specified as part of the <b>QueryWhereFilter</b>,
+search the <b>ClassTable</b> again for the <b>classDeclaration</b> of the
+filtered instances and return the class declaration instead of the instances as
+the result of the query.</p>
+</li></ol></li></ol></li><li><p><span>    </span>If <i>strQuery</i>
+begins with <b>REFERENCES OF</b>, the server MUST do the following:</p>
+<ol><li><p><span>   
+</span>Find the <b>NamespaceConnection</b> matching the current session.</p>
+</li><li><p><span>   
+</span>Populate the <b>QueryWhereFilter</b> data from the query.</p>
+</li><li><p><span>   
+</span>Get all the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a91c415c-4797-4cc4-a49a-896bacb217a5" data-linktype="relative-path">WMI</a></span> instances
+matching the object-path in the query.</p>
+</li><li><p><span>   
+</span>From the __CLASS property, get the class-name of all returned WMI
+objects.</p>
+</li><li><p><span>   
+</span>Search in the <b>NamespaceConnection.ClassTable</b> for those classes
+with properties of type REF [DMTF-DSP0004] with the class-name matching one of
+the class names from step 4. Call the resulting list <b>AssociationClasses</b>.</p>
+</li><li><p><span>   
+</span>For each class in <b>AssociationClasses:</b></p>
+<ul><li><p><span><span> 
+</span></span>If <b>InstanceProviderId</b> is not zero:</p>
+<ul><li><p><span><span> 
+</span></span>Find <b>QuerySupportLevels</b> corresponding to the given <b>ProviderId</b>
+in the <b>ProviderTable</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <b>QuerySupportLevels</b>  contains
+&#34;WQL:UnarySelect&#34; or &#34;WQL:V1ProviderDefined&#34;, the server
+MUST call the Provider method specified in 3.1.4.17.15 by passing the <i>strQuery</i>.</p>
+</li><li><p><span><span> 
+</span></span>If the results are returned from the provider, then the server
+MUST skip the remaining steps.</p>
+</li><li><p><span><span> 
+</span></span>If the provider returned WBEM_E_PROVIDER_NOT_CAPABLE, the server
+MUST call the provider method specified in 3.1.4.17.1 to obtain the instances
+of the class.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <b>InstanceProviderId</b> is zero:</p>
+<ul><li><p><span><span> 
+</span></span>The server MUST find the instances for the class in <b>ClassInstancesTable</b>
+in the <b>ClassTable</b> corresponding to the class.</p>
+</li></ul></li></ul></li></ol></li><li><p><span>  </span>After all the instances are
+obtained from the above step, select the instances where the REF property
+matched one of the instances from step 3.</p>
+</li><li><p><span>  </span>Filter this list of
+instances using the <b>QueryWhereFilter</b>.</p>
+</li><li><p><span>  </span>The server SHOULD<a id="Appendix_A_Target_50"></a><a aria-label="Product behavior note 50" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_50" data-linktype="relative-path">&lt;50&gt;</a> process the following step. If <b>Keysonly</b>
+is specified as part of <b>QueryWhereFilter</b>, search the <b>ClassTable</b>
+again for the classes of the filtered instances and get the list of keys from <b>ClassDeclaration</b>
+(key properties will have a qualifier &#39;key&#39;). Select the values of (only) the
+key properties to form the result of the query.</p>
+</li><li><p><span>  </span>If <b>classdefsonly</b> is
+specified as part of the <b>QueryWhereFilter</b>, search the <b>ClassTable</b>
+again for the <b>ClassDeclaration</b> of the filtered instances and return the
+class declaration instead of the instances as the result of the query.</p>
+</li></ol><p>The successful synchronous method execution MUST fill the <i>ppEnum</i>
+parameter with a IEnumWbemClassObject <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface pointer</a></span>
+after all instances are collected and MUST return WBEM_S_NO_ERROR.</p><p>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_51f3288a-1aea-49f6-96a1-91f368e8b49b" data-linktype="relative-path">semisynchronous</a></span>
+method execution MUST follow the rules that are specified in section <span><a href="c40421d8-b195-4268-884f-a4e74ea58dce" data-linktype="relative-path">3.1.1.1.2</a></span>.</p><p>The failed method execution MUST set the value that is
+referenced by the output parameters to NULL and MUST return an error in the
+format specified in section 2.2.11.</p></div>

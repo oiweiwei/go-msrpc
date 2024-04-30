@@ -1,0 +1,67 @@
+<div class="content"><p> </p><p>When the IWbemObjectSink::SetStatus method is called, the
+parameter MUST contain the result of the operation or the progress status
+information.</p><dl>
+<dd>
+<div><pre> HRESULT SetStatus(
+   [in] long lFlags,
+   [in] HRESULT hResult,
+   [in] BSTR strParam,
+   [in] IWbemClassObject* pObjParam
+ );
+</pre></div>
+</dd></dl><p><b>lFlags: </b>Flags that give information about the
+operation status. The flags MUST be interpreted as specified in the following
+table.</p><dl>
+<dd>
+<p><b>Note</b>  The flags are not bit flags
+and cannot be combined.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_STATUS_COMPLETE </p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Indicates the end of the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3e8fe01-6cfc-4f21-a5c6-a97abf2b6f7e" data-linktype="relative-path">asynchronous operation</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_STATUS_PROGRESS </p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Indicates the progress state of the asynchronous
+  operation.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Any other DWORD value that does
+not match the condition shown MUST be treated as not valid and an error MUST be
+returned.</p>
+</dd></dl><p><b>hResult: </b>The HRESULT value of the asynchronous
+operation or notification. This hResult MUST be the same HRESULT that the WMI
+client gets from the matching <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_4dccb43d-a5c2-450f-9c9c-cadb68ecbd3e" data-linktype="relative-path">synchronous operation</a></span>
+when the WMI client makes an asynchronous request to the WMI server.</p><p><b>strParam: </b>If the parameter is NULL, the server
+MUST ignore the parameter. If the parameter is not NULL, it MUST represent the
+operational result of the asynchronous operation. The string MUST be the same
+as the string that is returned from the IWbemCallResult::GetResultString (Opnum
+4) method when the operation is executed synchronously.</p><p><b>pObjParam: </b>If the parameter is NULL, the
+server MUST ignore the parameter. If the parameter is not NULL, the object MUST
+contain additional error information for the asynchronous operation failure.</p><p><b>Return Values: </b>This method MUST return an <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+value that MUST indicate the status of the method call. The server MUST return <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">WBEM_S_NO_ERROR</a></span>
+(specified in section 2.2.11) to indicate the successful completion of the
+method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl></div>

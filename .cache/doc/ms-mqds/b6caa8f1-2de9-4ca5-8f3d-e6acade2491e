@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>This method closes the <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+returned by a previous call to <span><a href="0e3ad7d0-6a64-480a-9f13-e94dd608d79d" data-linktype="relative-path">S_DSValidateServer</a></span>.
+The server releases resources associated with the RPC context handle.</p><dl>
+<dd>
+<div><pre> HRESULT S_DSCloseServerHandle(
+   [in, out] PPCONTEXT_HANDLE_SERVER_AUTH_TYPE pphServerAuth
+ );
+</pre></div>
+</dd></dl><p><b>pphServerAuth: </b> The <span><a href="c28a1e6b-4092-4443-b69f-5814d5c4f9e4" data-linktype="relative-path">PCONTEXT_HANDLE_SERVER_AUTH_TYPE</a></span>
+RPC context handle to close. It MUST have been acquired from the <i>pphServerAuth</i>
+parameter in a previous call to S_DSValidateServer, and MUST NOT have been
+closed through a previous call to S_DSCloseServerHandle. The server MUST set
+this parameter to NULL.</p><p><b>Return Values: </b> If the method succeeds, the return
+value is 0. If the method fails, the return value is an implementation-specific
+error code.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>The server MUST use the <i>pphServerAuth</i> parameter as a
+key into the security context table. The server MUST delete the GSS security
+context associated with the security context entry through a call to
+GSS_Delete_sec_context, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90378" data-linktype="external">[RFC2743]</a></span>
+section 2.2.3. The server MUST remove the security context entry from the
+security context table.</p><p>On return from this call, the client SHOULD delete the GSS
+security context associated with dwContext through a call to
+GSS_Delete_sec_context, as specified in [RFC2743] section 2.2.3.</p></div>

@@ -1,0 +1,88 @@
+<div class="content"><p> </p><p>The IEventClass2 interface provides additional methods that
+are used by the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> to manipulate
+<span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e8df25db-9bff-46df-b607-d072dd29c02b" data-linktype="relative-path">event
+class</a></span> properties on the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>. This
+interface inherits opnums 0 through 20 from <span><a href="e9e3062a-41dc-43eb-8495-eb6cb70945e6" data-linktype="relative-path">IEventClass</a></span> as
+specified in section 3.1.4.2. The version for this interface is 0.0.</p><p>To receive incoming remote calls for this interface, the
+server MUST implement a DCOM <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_a224e395-3fea-48bd-b141-3dd9bee2136a" data-linktype="relative-path">object class</a></span> with
+the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">class
+ID</a></span> CLSID_EventClass (see section <span><a href="25e89236-b0b3-4d8b-b1fb-64e0e9f0e156" data-linktype="relative-path">1.9</a></span>) using the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+{fb2b72a1-7a68-11d1-88f9-0080c7d771bf} for this interface.</p><p>This interface includes the following methods beyond those
+in IEventClass.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span><a href="a2cb3268-2d30-42b1-acb0-b3979b87ed7f" data-linktype="relative-path">get_PublisherID</a></span></p>
+  </td>
+  <td>
+  <p>Gets the PublisherID property of the event class.</p>
+  <p>Opnum: 21</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="0936641d-3f97-4e5a-af46-110a221c8a49" data-linktype="relative-path">put_PublisherID</a></span></p>
+  </td>
+  <td>
+  <p>Sets the PublisherID property of the event class.</p>
+  <p>Opnum: 22</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="4f95ada6-e6e6-4ae0-a4aa-3b452c7999f0" data-linktype="relative-path">get_MultiInterfacePublisherFilterCLSID</a></span></p>
+  </td>
+  <td>
+  <p>Gets the MultiInterfacePublisherFilterCLSID property
+  of the event class.</p>
+  <p>Opnum: 23</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="37f14ece-3b3a-45e5-a355-9f10c527136a" data-linktype="relative-path">put_MultiInterfacePublisherFilterCLSID</a></span></p>
+  </td>
+  <td>
+  <p>Sets the MultiInterfacePublisherFilterCLSID property
+  of the event class.</p>
+  <p>Opnum: 24</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="a5af16d3-2ad7-4445-8df3-6aab32077972" data-linktype="relative-path">get_AllowInprocActivation</a></span></p>
+  </td>
+  <td>
+  <p>Gets the AllowInprocActivation property of the event
+  class.</p>
+  <p>Opnum: 25</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="5c256979-6c94-4f3d-a41c-fbabd154efb8" data-linktype="relative-path">put_AllowInprocActivation</a></span></p>
+  </td>
+  <td>
+  <p>Sets the AllowInprocActivation property of the event
+  class.</p>
+  <p>Opnum: 26</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="6ec3830c-36c6-4d15-8170-e7d68162be4e" data-linktype="relative-path">get_FireInParallel</a></span></p>
+  </td>
+  <td>
+  <p>Gets the FireInParallel property of the event class.</p>
+  <p>Opnum: 27</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="b1cb506c-8c15-445a-8b32-eee4e96e2022" data-linktype="relative-path">put_FireInParallel</a></span></p>
+  </td>
+  <td>
+  <p>Sets the FireInParallel property of the event class.</p>
+  <p>Opnum: 28</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

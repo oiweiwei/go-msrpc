@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The <b>DHCP_SUPER_SCOPE_TABLE</b> structure defines an array
+of <span><a href="f570d6aa-155a-441f-ab5f-844cfa0f99e7" data-linktype="relative-path">DHCP_SUPER_SCOPE_TABLE_ENTRY (section 2.2.1.2.85)</a></span>
+structures. This contains information about more than one subnet within a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b4838551-37f3-47de-a36c-7df328750d6d" data-linktype="relative-path">superscope</a></span>.
+The first member contains the number of IPv4 subnets present, and the second
+member points to the array of length <b>cEntries</b> containing all subnet
+information. This structure is used in the <span><a href="29770649-f023-4c4f-a7ca-9073febfdafd" data-linktype="relative-path">R_DhcpGetSuperScopeInfoV4 (section 3.1.4.38)</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_SUPER_SCOPE_TABLE {
+   DWORD cEntries;
+   [size_is(cEntries)] DHCP_SUPER_SCOPE_TABLE_ENTRY* pEntries;
+ } DHCP_SUPER_SCOPE_TABLE,
+  *LPDHCP_SUPER_SCOPE_TABLE;
+</pre></div>
+</dd></dl><p><b>cEntries:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+containing the number of superscope entries in the subsequent field the <b>pEntries</b>
+member.</p><p><b>pEntries:</b>  This is a pointer of type
+DHCP_SUPER_SCOPE_TABLE_ENTRY (section 2.2.1.2.85) structure that
+points to an array of length <b>cEntries</b> containing superscope-specific
+subnet information.</p></div>

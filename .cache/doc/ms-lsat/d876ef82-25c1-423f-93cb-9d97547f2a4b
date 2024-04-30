@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The STRING structure defines a string along with the number
+of characters in the string, as specified in <span><a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a></span>
+section <span><a href="../ms-lsad/94a41a4f-bd5d-4c3e-afd4-cc17e83a6e01" data-linktype="relative-path">2.2.3.1</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _STRING {
+   unsigned short Length;
+   unsigned short MaximumLength;
+   [size_is(MaximumLength), length_is(Length)] 
+     char* Buffer;
+ } STRING,
+  *PSTRING;
+</pre></div>
+</dd></dl><p>Individual member semantics are specified in [MS-LSAD]
+section 2.2.3.1.</p></div>

@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The NSI_UUID_VECTOR_T type defines an array of <span><a href="db06f354-93a3-43a5-9878-08505a933690" data-linktype="relative-path">NSI_UUID_P_T</a></span>
+structures.</p><dl>
+<dd>
+<div><pre> typedef struct _NSI_UUID_VECTOR_T {
+   unsigned long count;
+   [size_is(count)] NSI_UUID_P_T uuid[*];
+ } NSI_UUID_VECTOR_T;
+</pre></div>
+</dd></dl><p><b>count:</b>  MUST specify the number of
+NSI_UUID_P_T elements in the <b>uuid</b> member.</p><p><b>uuid:</b>  An array of NSI_UUID_P_T
+entries.</p></div>

@@ -1,0 +1,60 @@
+<div class="content"><p>This structure describes a reauthentication message.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>hdr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>reauthTunnelContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>hdr (8 bytes): </b>An <a href="158c24f6-cabc-4c48-b429-28509f9b4f5d" data-linktype="relative-path">HTTP_PACKET_HEADER (section
+2.2.10.9)</a> structure. Its <b>packetType</b> field is set to
+PKT_TYPE_REAUTH_MESSAGE.</p><p><b>reauthTunnelContext (8 bytes): </b>An unsigned
+long representing which <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_1ebdc9c6-bb01-455e-98f7-8930618bb601" data-linktype="relative-path">tunnel
+(2)</a> is being <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_a010756e-fca1-42cc-94a6-9a8195016b54" data-linktype="relative-path">reauthenticated</a>.</p></div>

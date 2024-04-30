@@ -1,0 +1,112 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/a4e292f9-e4c1-4664-b042-3aaf5ffba423" data-linktype="external">msdn link</a></p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x01</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cbNonce</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Nonce
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SID
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Pad
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Hash
+  (20 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>cbNonce (4 bytes): </b>A 32-bit unsigned integer.
+It MUST be the length of <b>Nonce</b>, in bytes. This field is encoded using <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a> format. </p><p><b>Nonce (variable): </b>This MUST contain an
+arbitrary value chosen by the client, as specified in section <a href="cfe5dba9-8cc9-4765-9b67-c5e1deae0af8" data-linktype="relative-path">3.2.4.1</a>.</p><p><b>SID (variable): </b>This MUST be a variable-length
+<a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a>, marshaled in an <a href="../ms-dtyp/5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="relative-path"><b>RPC_SID</b></a>
+structure (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <b>2.4.2.3</b>).</p><p><b>Pad (variable): </b>This field MUST be 0 to 7
+bytes long, such that the length of the AccessCheck structure is a multiple of
+8 bytes.</p><p><b>Hash (20 bytes): </b>This MUST be the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_168fbe0c-fc02-4722-979e-b0261766ac9c" data-linktype="relative-path">SHA-1 hash</a> <a href="https://go.microsoft.com/fwlink/?LinkId=89868" data-linktype="external">[FIPS180-2]</a> computed
+over all the preceding fields in the AccessCheck structure.</p></div>

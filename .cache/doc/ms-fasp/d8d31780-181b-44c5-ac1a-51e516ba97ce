@@ -1,0 +1,61 @@
+<div class="content"><p> </p><p>This enumeration describes the keys that a query is allowed
+to match.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_MATCH_KEY
+ {
+   FW_MATCH_KEY_PROFILE = 0,
+   FW_MATCH_KEY_STATUS = 1,
+   FW_MATCH_KEY_OBJECTID = 2,
+   FW_MATCH_KEY_FILTERID = 3,
+   FW_MATCH_KEY_APP_PATH = 4,
+   FW_MATCH_KEY_PROTOCOL = 5,
+   FW_MATCH_KEY_LOCAL_PORT = 6,
+   FW_MATCH_KEY_REMOTE_PORT = 7,
+   FW_MATCH_KEY_GROUP = 8,
+   FW_MATCH_KEY_SVC_NAME = 9,
+   FW_MATCH_KEY_DIRECTION = 10,
+   FW_MATCH_KEY_LOCAL_USER_OWNER = 11,
+   FW_MATCH_KEY_PACKAGE_ID = 12,
+   FW_MATCH_KEY_FQBN = 13,
+   FW_MATCH_KEY_COMPARTMENT_ID = 14,
+   FW_MATCH_KEY_MAX = 15
+ } FW_MATCH_KEY;
+</pre></div>
+</dd></dl><p><b>FW_MATCH_KEY_PROFILE:  </b>This key matches the
+profile conditions of the queried object. This symbolic constant has a value of
+0.</p><p><b>FW_MATCH_KEY_STATUS:  </b>This key matches the
+status conditions of the queried object. This symbolic constant has a value of
+1.</p><p><b>FW_MATCH_KEY_OBJECTID:  </b>This key matches the
+object ID (rule ID or set ID) of the queried object. This symbolic constant has
+a value of 2.</p><p><b>FW_MATCH_KEY_FILTERID:  </b>This value is not used
+on the wire. This symbolic constant has a value of 3.</p><p><b>FW_MATCH_KEY_APP_PATH:  </b>This key matches the
+application condition of the queried object. This symbolic constant has a value
+of 4.</p><p><b>FW_MATCH_KEY_PROTOCOL:  </b>This key matches the
+protocol condition of the queried object. This symbolic constant has a value of
+5.</p><p><b>FW_MATCH_KEY_LOCAL_PORT:  </b>This key matches the
+<span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_b08d36f6-b5c6-4ce4-8d2d-6f2ab75ea4cb" data-linktype="relative-path">TCP</a></span>
+or UDP local port condition of the queried object. This symbolic constant has a
+value of 6.</p><p><b>FW_MATCH_KEY_REMOTE_PORT:  </b>This key matches
+the TCP or UDP remote port condition of the queried object. This symbolic
+constant has a value of 7.</p><p><b>FW_MATCH_KEY_GROUP:  </b>This key matches the
+group name (the Embedded context field) of the queried object. This symbolic
+constant has a value of 8.</p><p><b>FW_MATCH_KEY_SVC_NAME:  </b>This key matches the
+service name condition of the queried object. This symbolic constant has a
+value of 9.</p><p><b>FW_MATCH_KEY_DIRECTION:  </b>This key matches the
+direction condition of the queried object. This symbolic constant has a value
+of 10.</p><p><b>FW_MATCH_KEY_LOCAL_USER_OWNER:  </b>This key
+matches the local user owner condition of the queried object. For schema
+versions 0x0200, 0x0201, and 0x020A, this value is invalid and MUST NOT be
+used. This symbolic constant has a value of 11.</p><p><b>FW_MATCH_KEY_PACKAGE_ID:  </b>This key matches the
+package ID condition of the queried object. For schema versions 0x0200, 0x0201,
+and 0x020A, this value is invalid and MUST NOT be used. This symbolic constant
+has a value of 12.</p><p><b>FW_MATCH_KEY_FQBN:  </b>This key matches the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_bbf47ea1-11e7-447c-848d-5a1277648312" data-linktype="relative-path">fully
+qualified binary name (FQBN)</a></span> condition of the queried object. For
+schema versions 0x0200 through 0x021A, this value is invalid and MUST NOT be
+used. This symbolic constant has a value of 13.</p><p><b>FW_MATCH_KEY_COMPARTMENT_ID: 
+</b>This key matches the compartment ID condition of the queried object. For
+schema versions 0x0200 through 0x021A, this value is invalid and MUST NOT be
+used. This symbolic constant has a value of 14.</p><p><b>FW_MATCH_KEY_MAX:  </b>This value and values that
+exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 15.</p></div>

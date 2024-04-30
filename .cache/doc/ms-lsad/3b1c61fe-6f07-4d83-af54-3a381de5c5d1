@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/3b1c61fe-6f07-4d83-af54-3a381de5c5d1" data-linktype="external">msdn link</a></p><p>The LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL structure
+communicates authentication material. The following structure corresponds to
+the TrustedDomainAuthInformationInternal information class. For more
+information about <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>
+<a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a> authentication
+material, see <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/c964fca9-c50e-426a-9173-5bf3cb720e2e" data-linktype="relative-path">6.1.6.9.1</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL {
+   LSAPR_TRUSTED_DOMAIN_AUTH_BLOB AuthBlob;
+ } LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL,
+  *PLSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL;
+</pre></div>
+</dd></dl><p><b>AuthBlob:</b>  An <a href="da8f32a1-0a16-4194-810d-06cc0698595a" data-linktype="relative-path">LSAPR_TRUSTED_DOMAIN_AUTH_BLOB</a>.</p></div>

@@ -1,0 +1,27 @@
+<div class="content"><p>The <a href="ab2191b0-371a-497a-b184-eba073d04269#gt_bc2f6b5e-e5c0-408b-8f55-0350c24b9838" data-linktype="relative-path">SPNEGO</a>
+Extended Negotiation Security Mechanism (NEGOEX) extends Simple and Protected
+GSS-API Negotiation Mechanism (SPNEGO) described in <a href="https://go.microsoft.com/fwlink/?LinkId=90461" data-linktype="external">[RFC4178]</a>. SPNEGO
+provides a negotiation mechanism for <a href="ab2191b0-371a-497a-b184-eba073d04269#gt_95f6b299-ec2f-4cef-87df-217f95bd9e14" data-linktype="relative-path">Generic Security Services (GSS)</a>
+API (GSS-API), as described in <a href="https://go.microsoft.com/fwlink/?LinkId=90378" data-linktype="external">[RFC2743]</a>. NEGOEX is
+based on the NEGOEX version 4 draft <a href="https://go.microsoft.com/fwlink/?linkid=2112888" data-linktype="external">[IETFDRAFT-NEGOEX-04]</a>
+that enhances the capabilities of SPNEGO and provides a security mechanism that
+can be negotiated by the SPNEGO protocol. NEGOEX defines a few new GSS-API
+extensions that a security mechanism MUST support to be negotiated by NEGOEX.
+This document defines these GSS-API extensions. Unlike SPNEGO, NEGOEX defines
+its own way for signing the protocol messages to protect the protocol
+negotiation.</p><p>The NEGOEX protocol is designed to address
+the drawbacks of the SPNEGO negotiation model. When negotiated by SPNEGO,
+NEGOEX uses the concepts developed in the GSS-API specification. The
+negotiation data is encapsulated in context-level tokens. Therefore, callers of
+the GSS-API do not need to be aware of the existence of the negotiation tokens
+but only of the SPNEGO pseudo-security mechanism. When selected, NEGOEX
+provides a method that allows selection of a common <a href="ab2191b0-371a-497a-b184-eba073d04269#gt_8e961bf0-95ba-4f58-9034-b67ccb27f317" data-linktype="relative-path">authentication</a> protocol. It
+preserves the optimistic token semantics of SPNEGO and applies that
+recursively. Accordingly, a context establishment mechanism token can be
+included in the initial NEGOEX message, such that NEGOEX does not require an
+extra round trip when the initiator’s or client’s optimistic token is accepted
+by the target (or server acceptor).</p><p>Standard GSS has a strict interpretation of client (<a href="ab2191b0-371a-497a-b184-eba073d04269#gt_c66d2bda-f3e1-4d01-aa9e-8d790d3be5ab" data-linktype="relative-path">initiator</a>) and server (<a href="ab2191b0-371a-497a-b184-eba073d04269#gt_8dc36a3e-0f28-44b3-be31-c974593b62ad" data-linktype="relative-path">acceptor</a>). SPNEGO Extension
+(SPNG) has extended [RFC4178] to allow the server to initiate SPNG message
+flow. The message flow can begin from either the client or the server as the
+initiator, whereas the receiver is the acceptor. See <a href="../ms-spng/f377a379-c24f-4a0f-a3eb-0d835389e28a" data-linktype="relative-path">[MS-SPNG]</a>
+for client/server roles and variations.</p></div>

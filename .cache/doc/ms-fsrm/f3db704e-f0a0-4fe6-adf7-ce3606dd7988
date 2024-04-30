@@ -1,0 +1,78 @@
+<div class="content"><p>The VerifyNamespaces method checks that all namespaces
+passed in exist and are valid <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_2cd71385-2d9c-4ab8-bf4a-7b258816d613" data-linktype="relative-path">paths</a>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_REPORT_SCHEDULER | 0x01)] HRESULT VerifyNamespaces(
+   [in] VARIANT* namespacesSafeArray
+ );
+</pre></div>
+</dd></dl><p><b>namespacesSafeArray: </b>Pointer to a variable that
+contains a <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a>
+structure, which contains a <a href="../ms-oaut/04e72b3f-5731-4508-9bb4-de29fbd0f781" data-linktype="relative-path">SAFEARRAY</a>
+of VARIANT structures. The VARIANT structures contained in the SAFEARRAY MUST
+be <a href="../ms-dtyp/692a42a9-06ce-4394-b9bc-5d2a50440168" data-linktype="relative-path">BSTR</a>
+string values, each representing a local directory path that needs to be
+verified as supported by the File Server Resource Manager Protocol storage
+reports.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045304</p>
+  <p>FSRM_E_PATH_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified path could not be found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045306</p>
+  <p>FSRM_E_INVALID_PATH</p>
+  </td>
+  <td>
+  <p>The supplied path is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045315</p>
+  <p>FSRM_E_VOLUME_UNSUPPORTED</p>
+  </td>
+  <td>
+  <p>The volume is not an NTFS volume.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8004531F</p>
+  <p>FSRM_E_FILE_SYSTEM_CORRUPT</p>
+  </td>
+  <td>
+  <p>The file system is corrupt.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>namespacesSafeArray</i>
+  parameter is NULL.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>namespacesSafeArray</i>
+  parameter does not contain a variant array of <b>BSTR</b>s.</span></p>
+  </li></ul></td>
+ </tr></tbody></table><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>namespacesSafeArray</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST verify that each local directory path
+contained in <i>namespacesSafeArray</i> is valid and supported for the File
+Server Resource Manager Protocol storage reports and return zero or return a
+nonzero error code on failure.</p></div>

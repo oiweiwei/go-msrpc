@@ -1,0 +1,32 @@
+<div class="content"><p>The GetRawReportEx method is not currently in use and has
+never been implemented in any version of the DFS-R Helper Protocol. It is
+reserved for future use.</p><dl>
+<dd>
+<div><pre> HRESULT GetRawReportEx(
+   [in] GUID replicationGroupGuid,
+   [in] SAFEARRAY (VARIANT)* reportOptions,
+   [out] SAFEARRAY (VARIANT)* report
+ );
+</pre></div>
+</dd></dl><p><b>replicationGroupGuid:</b> Not implemented.</p><p><b>reportOptions: </b>Not implemented.</p><p><b>report: </b>Not implemented.</p><p><b>Return Values: </b>The server MUST return the
+E_NOTIMPL error code (numeric value 0x80004001) and take no action.<a id="Appendix_A_Target_60"></a><a aria-label="Product behavior note 60" href="70b8d14d-a366-4156-a2ad-eedb63aec058#Appendix_A_60" data-linktype="relative-path">&lt;60&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80004001</p>
+  <p>E_NOTIMPL</p>
+  </td>
+  <td>
+  <p>Not implemented.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

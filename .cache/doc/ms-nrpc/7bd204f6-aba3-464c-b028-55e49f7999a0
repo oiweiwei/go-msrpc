@@ -1,0 +1,24 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/7bd204f6-aba3-464c-b028-55e49f7999a0" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_VALIDATION_UAS_INFO</b> structure was for
+the support of LAN Manager products and is beyond the scope of this document.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_VALIDATION_UAS_INFO {
+   [string] wchar_t* usrlog1_eff_name;
+   DWORD usrlog1_priv;
+   DWORD usrlog1_auth_flags;
+   DWORD usrlog1_num_logons;
+   DWORD usrlog1_bad_pw_count;
+   DWORD usrlog1_last_logon;
+   DWORD usrlog1_last_logoff;
+   DWORD usrlog1_logoff_time;
+   DWORD usrlog1_kickoff_time;
+   DWORD usrlog1_password_age;
+   DWORD usrlog1_pw_can_change;
+   DWORD usrlog1_pw_must_change;
+   [string] wchar_t* usrlog1_computer;
+   [string] wchar_t* usrlog1_domain;
+   [string] wchar_t* usrlog1_script_path;
+   DWORD usrlog1_reserved1;
+ } NETLOGON_VALIDATION_UAS_INFO,
+  *PNETLOGON_VALIDATION_UAS_INFO;
+</pre></div>
+</dd></dl></div>

@@ -1,0 +1,6 @@
+<div class="content"><p>The Service Control Manager Remote Protocol is a <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a>–based
+client/server protocol that is used for remotely managing the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">Service Control Manager (SCM)</a>.
+The SCM is an RPC server that enables service configuration and control of <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_2dc07ca2-2b40-437e-a5ec-ed28ebfb116a" data-linktype="relative-path">service</a> programs. For more
+information, see <a href="https://go.microsoft.com/fwlink/?LinkId=90701" data-linktype="external">[MSDN-WINSVC]</a>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

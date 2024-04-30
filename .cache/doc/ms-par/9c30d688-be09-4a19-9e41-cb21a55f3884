@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The <b>EPrintPropertyType</b> enumeration defines the data
+types for different printing properties.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   kPropertyTypeString = 1,
+   kPropertyTypeInt32,
+   kPropertyTypeInt64,
+   kPropertyTypeByte,
+   kPropertyTypeTime,
+   kPropertyTypeDevMode,
+   kPropertyTypeSD,
+   kPropertyTypeNotificationReply,
+   kPropertyTypeNotificationOptions
+ } EPrintPropertyType;
+</pre></div>
+</dd></dl><p><b>kPropertyTypeString: </b>A string data type.</p><p><b>kPropertyTypeInt32: </b>A 32-bit signed integer.</p><p><b>kPropertyTypeInt64: </b>A 64-bit signed integer.</p><p><b>kPropertyTypeByte: </b>A <b>BYTE</b>.</p><p><b>kPropertyTypeTime: </b>The <b>SYSTEMTIME_CONTAINER
+</b>data type, as specified in <span><a href="../ms-rprn/d42db7d5-f141-4466-8f47-0a4be14e2fc1" data-linktype="relative-path">[MS-RPRN]</a></span>
+section <span><a href="../ms-rprn/1438066b-4b56-4888-9821-3e2432dc0f07" data-linktype="relative-path">2.2.1.2.16</a></span>.</p><p><b>kPropertyTypeDevMode: </b>The <b>DEVMODE_CONTAINER</b>
+data type, as specified in [MS-RPRN] section <span><a href="../ms-rprn/c2b14fe7-6479-4460-a7ba-633a845dd61a" data-linktype="relative-path">2.2.1.2.1</a></span>.</p><p><b>kPropertyTypeSD: </b>The <b>SECURITY_CONTAINER</b>
+data type, as specified in [MS-RPRN] section <span><a href="../ms-rprn/6cf2b4ff-1b2b-453c-87f9-85243823cea8" data-linktype="relative-path">2.2.1.2.13</a></span>.</p><p><b>kPropertyTypeNotificationReply: </b>The <b>NOTIFY_REPLY_CONTAINER</b>
+data type, as specified in section <span><a href="2fb421b4-f70b-4469-a636-38d6cda0aae6" data-linktype="relative-path">2.2.7</a></span>.</p><p><b>kPropertyTypeNotificationOptions: </b>The <b>NOTIFY_OPTIONS_CONTAINER</b>
+data type, as specified in section <span><a href="3d4eaab6-2323-4f04-a6af-bb09f23b7897" data-linktype="relative-path">2.2.6</a></span>.</p></div>

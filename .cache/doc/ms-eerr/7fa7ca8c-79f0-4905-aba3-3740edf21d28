@@ -1,0 +1,10 @@
+<div class="content"><p>This specification for encoding extended error information
+assumes that the reader has familiarity with the concepts and the requirements
+that are detailed in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+and <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p>The purpose of the encoding that this specification defines
+is to allow a software agent on one network node to communicate a rich (or
+extended) error to a software agent on another network node. This specification
+does not define how an extended error is transmitted between network nodes. A
+protocol outside this specification is used for that purpose. This specification
+only defines the encoding rules for an extended error.</p><p>Sections 1.7 and 2 of this specification are normative. All
+other sections and examples in this specification are informative.</p></div>

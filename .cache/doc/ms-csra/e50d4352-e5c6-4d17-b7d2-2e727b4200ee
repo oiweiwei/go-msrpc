@@ -1,0 +1,151 @@
+<div class="content"><p>The packet containing an array of some number,
+&#34;N&#34;, of <a href="e5a321ec-89a5-4a2a-be22-9d87b4566e80" data-linktype="relative-path">CERTTRANSDBATTRIBUTE</a>
+structures (section 2.2.1.8) is specified in the following packet diagrams. The
+actual value of &#34;N&#34; is a separate return parameter for the <a href="f1d53c8f-b586-4485-8764-25a46d9fbe76" data-linktype="relative-path">EnumAttributesOrExtensions</a>
+method (section 3.1.4.1.11).</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">CERTTRANSDBATTRIBUTE
+  Structures (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Attribute_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p><b>CERTTRANSDBATTRIBUTE Structures (variable):</b> An
+array of <b>CERTTRANSDBATTRIBUTE</b> structures. These structures MUST be
+contiguous and MUST NOT be padded. All <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a> headers MUST
+appear prior to any attribute data, which appears in the attribute data byte
+array at the end of the packet.</p><dl>
+<dd>
+<p>Each of the structures is marshaled in the following
+manner. The fields in the following diagram correspond to the similarly named
+members of the <b>CERTTRANSDBATTRIBUTE</b> structure.</p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Attribute obwzName</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Attribute obwzValue</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Attribute obwzName (4
+bytes): </b>The offset from the beginning of the byte array buffer that is
+pointed to by the <b>pb</b> member in the containing <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure
+(section 2.2.1.4) to where the string that contains the name of this attribute
+can be found. The format is a null-terminated UNICODE string. The offset MUST
+be divisible by 4. The offset MUST be <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a> encoded.</p>
+</dd>
+<dd>
+<p><b>Attribute obwzValue (4
+bytes): </b>The offset from the beginning of the byte array buffer that is
+pointed to by the <b>pb</b> member in the containing CERTTRANSBLOB structure to
+where the string that contains the value of this attribute can be found. The
+format is a null-terminated UNICODE string. The offset MUST be divisible by 4.
+The offset MUST be little-endian encoded.</p>
+</dd></dl><p><b>Attribute_Data (variable): </b>Contains the data
+for all attributes. Data for individual attributes MUST NOT overlap with any
+other attribute data. Attribute name and value are string type. The data MUST
+use little-endian encoding format for a null-terminated UNICODE string.</p></div>

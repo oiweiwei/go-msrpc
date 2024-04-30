@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The EXPAND_VIRTUAL_DISK_FLAG enumeration defines options for
+expanding a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual disk</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum _EXPAND_VIRTUAL_DISK_FLAG
+ {
+   EXPAND_VIRTUAL_DISK_FLAG_NONE = 0x00000000
+ } EXPAND_VIRTUAL_DISK_FLAG;
+</pre></div>
+</dd></dl><p><b>EXPAND_VIRTUAL_DISK_FLAG_NONE:  </b>Indicates that
+no flag has been specified. Currently, this is the only flag defined.</p></div>

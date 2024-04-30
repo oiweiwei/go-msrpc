@@ -1,0 +1,90 @@
+<div class="content"><p>The CreateRule method creates a blank <a href="3ce18cd8-2937-4162-897f-6b1fb425fd71" data-linktype="relative-path">Non-Persisted Rule
+Instance (section 3.2.1.6.3.2)</a> with the specified <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_4bd4bf29-9046-4cb8-b637-fd107cd756aa" data-linktype="relative-path">classification rule</a> type
+and returns S_OK upon successful completion.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_CLASSIFICATION_MANAGER | 0x05)] HRESULT CreateRule(
+   [in] FsrmRuleType ruleType,
+   [out, retval] IFsrmRule** Rule
+ );
+</pre></div>
+</dd></dl><p><b>ruleType: </b>Contains the <a href="95a2996f-d7ec-4169-a964-d9abf4ec3b6f" data-linktype="relative-path">FsrmRuleType (section 2.2.1.2.11)</a>
+of the classification rule to create.</p><p><b>Rule: </b>Pointer to an <b>IFsrmRule</b> interface
+pointer (section <a href="66f78e6a-9759-47b8-a679-71cf142f48bc" data-linktype="relative-path">3.2.4.2.41</a>)
+that upon completion points to a blank classification rule. To have the rule
+added to the server&#39;s <b>List of Persisted Rules</b> (section <a href="a4da1447-54a5-4b37-b135-bfa7481aed1c" data-linktype="relative-path">3.2.1.6</a>) the client MUST
+call <a href="cd15b727-39a4-4ccd-9fd4-5a0563f903f7" data-linktype="relative-path">Commit (section 3.2.4.2.10.5)</a>
+on the rule. The caller MUST release the rule when the caller is done with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>ruleType</i> parameter is
+  not <b>FsrmRuleType_Classification</b>.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>rule</i> parameter is
+  NULL.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>Rule</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>ruleType</i> equals <b>FsrmRuleType_Classification</b>.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+perform the following actions.</p><ul><li><p><span><span> 
+</span></span>Create a new Non-Persisted Rule Instance of the specified type.</p>
+<ul><li><p><span><span>  </span></span>Set
+<b>FSRM Base Object.Id</b> to a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>FSRM Base Object.Description</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>FSRM Base Object.Deleted</b> to false.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Rule.Name</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Rule type</b> to <i>ruleType</i>.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Module definition name</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Namespace roots</b> to an empty list.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Enabled/disabled</b> to enabled.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Valid/invalid</b> to valid.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Rule.Parameters</b> to an empty list.</p>
+</li><li><p><span><span>  </span></span><b>Last
+modified time</b> is unspecified until the rule is committed by calling <b>Commit</b>
+(section <a href="59204786-13ab-43af-ad19-4264a11f15e5" data-linktype="relative-path">3.2.4.2.44.1</a>).</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Execution option</b> to <b>Evaluate unset</b>.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Rule.Value</b> to an empty list.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Rule.Deprecated</b> to false.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Rule.ClearAutoProperty</b> to false.<a id="Appendix_A_Target_69"></a><a aria-label="Product behavior note 69" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_69" data-linktype="relative-path">&lt;69&gt;</a></p>
+</li><li><p><span><span>  </span></span>Set
+<b>Rule.ClearManualProperty</b> to false.<a id="Appendix_A_Target_70"></a><a aria-label="Product behavior note 70" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_70" data-linktype="relative-path">&lt;70&gt;</a></p>
+</li><li><p><span><span>  </span></span>Set
+<b>Property Affected</b> to an empty string.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set <i>Rule</i> to the <b>IFsrmRule</b> interface pointer for the
+newly created Non-Persisted Rule Instance.</p>
+</li></ul></div>

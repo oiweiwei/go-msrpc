@@ -1,0 +1,83 @@
+<div class="content"><p>The IRegister2 <a href="3f01a312-3391-4109-a96e-95358babf191#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+for <a href="3f01a312-3391-4109-a96e-95358babf191#gt_79adca18-e44d-48a5-8f9c-60e53a6fd378" data-linktype="relative-path">registration</a>, as specified
+in section <a href="25f10016-a2de-4fde-9e61-a6d0e05e9381" data-linktype="relative-path">1.3.6</a>, and
+creating <a href="3f01a312-3391-4109-a96e-95358babf191#gt_670903d8-6f25-4b7e-b038-a09194865d4a" data-linktype="relative-path">component
+configurations</a>. This interface inherits from <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>,
+as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section 3.1.1.5.8.</p><p>To receive incoming remote calls for this interface, the
+server MUST implement a DCOM Object Class with the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a> CLSID_COMAServer, as
+specified in section <a href="3afd05f6-01a3-4920-951f-f9c703a3b0f1" data-linktype="relative-path">1.9</a>,
+using the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a>
+{971668DC-C3FE-4EA1-9643-0C7230F494A1} for this interface.</p><p>This interface includes the following methods beyond those
+of IUnknown.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="b489dc5b-f746-471e-92c4-d46733272fb9" data-linktype="relative-path">CreateFullConfiguration</a></p>
+  </td>
+  <td>
+  <p>Creates a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_10747afc-d8b7-4515-b00f-a31037201a38" data-linktype="relative-path">component full configuration</a>
+  for an existing component.</p>
+  <p>Opnum: 3</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="7c351028-c56f-4277-86c0-7fc00a4ba053" data-linktype="relative-path">CreateLegacyConfiguration</a></p>
+  </td>
+  <td>
+  <p>Creates a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_13923d88-12fd-47b0-b406-ade71fa5963b" data-linktype="relative-path">component legacy
+  configuration</a> for an existing component.</p>
+  <p>Opnum: 4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="daf3384b-d392-4b0b-98a2-dde3790d5f25" data-linktype="relative-path">PromoteLegacyConfiguration</a></p>
+  </td>
+  <td>
+  <p>Converts a component legacy configuration into a
+  component full configuration.</p>
+  <p>Opnum: 5</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Opnum6NotUsedOnWire</p>
+  </td>
+  <td>
+  <p>Reserved for local use.</p>
+  <p>Opnum: 6</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Opnum7NotUsedOnWire</p>
+  </td>
+  <td>
+  <p>Reserved for local use.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="8a4305f0-e75f-4527-8eed-16b2ad99f586" data-linktype="relative-path">RegisterModule2</a></p>
+  </td>
+  <td>
+  <p>Registers the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_71669ed9-7eaf-4328-9e2e-4d3430f0f9bf" data-linktype="relative-path">components</a> in one or more
+  <a href="3f01a312-3391-4109-a96e-95358babf191#gt_3f7df968-a51b-4dea-9f2c-4cf6ce65ccc1" data-linktype="relative-path">modules</a>.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Opnum9NotUsedOnWire</p>
+  </td>
+  <td>
+  <p>Reserved for local use.</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr></tbody></table><p>In the previous table, the phrase &#34;Reserved for local
+use&#34; means that the client MUST NOT send the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>, and the server
+behavior is undefined since it does not affect interoperability.<a id="Appendix_A_Target_324"></a><a aria-label="Product behavior note 324" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_324" data-linktype="relative-path">&lt;324&gt;</a></p><p>All methods MUST NOT throw exceptions. </p></div>

@@ -1,0 +1,51 @@
+<div class="content"><p>The Dynamic Host Configuration Protocol (DHCP) Server
+Management Protocol is a client/server protocol that is used to remotely
+configure, manage, and monitor the <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_746786e7-458f-45aa-ab24-5534a94b4fb3" data-linktype="relative-path">DHCP server</a>. This protocol
+allows a client to view and update the server configuration settings as well as
+to create, modify, and delete <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_c35fc04f-54fe-4570-afd3-c96ca84c8d83" data-linktype="relative-path">DHCP
+client</a> <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6d76b31-2852-4bd5-8fbb-8e82a3cedb29" data-linktype="relative-path">lease records</a>.
+The protocol allows a client to access and modify DHCP server settings,
+enumerate and modify DHCP server configuration (DHCP <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_128cd76b-eecb-41e6-96f7-f73c2bf9235a" data-linktype="relative-path">scopes</a>, <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservations</a>, <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_64d30865-9640-4009-a80a-861966749767" data-linktype="relative-path">exclusions</a>, <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_da9bfcf7-a7e0-4cf0-ac87-ffdd83a5f25b" data-linktype="relative-path">option definition</a>, and
+option values), and monitor DHCP client lease records.</p><p>The DHCP Server Management Protocol (DHCPM) is a stateless
+protocol with no state shared across <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> method calls. Each RPC
+method call contains one complete request. Output from one method call can be
+used as an input to another call, but the protocol does not provide for locking
+of the DHCP server configuration or state data across method calls. For
+example, a client enumerates DHCP subnets with one call and then retrieves the
+properties of one or more DHCP subnets with another call. However, the protocol
+does not guarantee that the specified subnet has not been deleted by another
+client between the two method calls.</p><p><img id="MS-DHCPM_pict5f2891f7-1058-4cc2-7de8-6f90b25eba72.png" src="ms-dhcpm_files/image001.png" alt="Relationship of DHCP Server Management Protocol to RPC" title="Relationship of DHCP Server Management Protocol to RPC" data-linktype="relative-path"/></p><p><b>Figure 1: Relationship of DHCP Server Management Protocol
+to RPC</b></p><p>A typical application of this protocol involves the client
+querying or setting the configuration parameters of the DHCP server. The client
+also enumerates the list of subnets serviced by the DHCPv4 server and then
+enumerates the list of DHCPv4 clients with active IP address leases in a
+specified IPv4 subnet or IPv6 prefix. The client can modify the configuration of
+the DHCP server as required. The client can also add, delete, or modify DHCPv4
+subnets or IPv6 prefix, or DHCP client lease records held in that DHCP subnet.
+A remote management client can do the following operations:</p><ol><li><p><span>    </span>Set, create,
+retrieve, or delete the configuration information for the DHCP server.</p>
+</li><li><p><span>    </span>Set, create,
+retrieve, or delete the subnet.</p>
+</li><li><p><span>    </span>Set, create,
+retrieve, or delete DHCP clients&#39; lease records in a subnet.</p>
+</li><li><p><span>    </span>Retrieve
+counters kept by the DHCP server.</p>
+</li></ol><p>To perform any of the above operations usually involves
+sending a request to the DHCP server and specifying the type of operation
+(enumerate, get, and set) to perform along with any parameters associated with
+the requested operation. The DHCP server responds with the results of the
+operation. The following diagram shows an example of a remote client using the
+DHCPM to enumerate the DHCP option values configured for a specific <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_45d20b00-7166-4f94-b679-4cc5a7835a3a" data-linktype="relative-path">vendor class</a> and <a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_713c7395-9431-4d67-bab1-a069ae7461e2" data-linktype="relative-path">user class</a>. The client
+sends a request to the DHCP server with an operation type of enumerate, as well
+as the vendor class and user class. The DHCP server responds with a return
+value of ERROR_SUCCESS or a Win32 error code. If the operation is successful,
+the DHCP server fills in the option values for the specified vendor class and
+user class in an array. The details of the various operations are defined in
+section <a href="9d081706-a675-4a5e-808d-703b8a55ae0b" data-linktype="relative-path">3.1.4</a>, and the
+corresponding parameters are defined in section <a href="36dd24fa-d9d1-4586-bdba-2fb6b6ea50ba" data-linktype="relative-path">2.2</a>.</p><p><b>Note</b>  The DHCP Server Management Protocol
+consists of two interfaces. The interface dhcpsrv provides the basic management
+functionality originally supported and also includes the quarantine APIs,
+whereas the interface <a href="0c37c300-00ae-4005-bc33-51cf8ab00d47" data-linktype="relative-path">dhcpsrv2</a>
+supports enhanced functionality added in later server releases. For more
+information on what opnums are supported in each interface see Protocol Details
+section <a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a>.</p><p><img id="MS-DHCPM_pict3305db40-8118-ab2a-8d08-961752e38953.png" src="ms-dhcpm_files/image002.png" alt="Client/server message exchange" title="Client/server message exchange" data-linktype="relative-path"/></p><p><b>Figure 2: Client/server message exchange</b></p></div>

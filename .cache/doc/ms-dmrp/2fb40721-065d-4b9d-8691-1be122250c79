@@ -1,0 +1,30 @@
+<div class="content"><p> </p><p>The Disk Management Remote Protocol provides a set of DCOM
+interfaces for managing storage objects, such as disks and <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volumes</a></span>.
+The protocol also enables clients to obtain notifications of changes to storage
+objects. The server end of the protocol implements supports that let the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a></span>
+interface handle requests for storage management services for a server system
+over the network. The client end of the protocol is an application that invokes
+method calls on the interface to perform various <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span> and volume
+configuration tasks.</p><p>This protocol includes the following six DCOM interfaces:</p><ul><li><p><span><span> 
+</span></span><span><a href="e31bc7db-aca1-4ca1-9d32-77b1415f8584" data-linktype="relative-path">IVolumeClient</a></span></p>
+</li><li><p><span><span> 
+</span></span><span><a href="575cc030-9a49-40c8-9a6c-0c3de32ce514" data-linktype="relative-path">IVolumeClient2</a></span></p>
+</li><li><p><span><span> 
+</span></span><span><a href="be8a9c4c-f7b2-496c-a0e1-cb0655cea66f" data-linktype="relative-path">IVolumeClient3</a></span></p>
+</li><li><p><span><span> 
+</span></span><span><a href="7993e053-3bd7-4a09-ab55-209d2d31be6f" data-linktype="relative-path">IVolumeClient4</a></span></p>
+</li><li><p><span><span> 
+</span></span><span><a href="d7504302-df62-40a1-b3c1-7a44302559e7" data-linktype="relative-path">IDMRemoteServer</a></span></p>
+</li><li><p><span><span> 
+</span></span><span><a href="65b511db-f735-4225-856b-022bfd7a1a50" data-linktype="relative-path">IDMNotify</a></span></p>
+</li></ul><p>The IVolumeClient and IVolumeClient2 interfaces provide
+methods for managing storage objects, such as disks and volumes. </p><p>IVolumeClient3 supersedes IVolumeClient and IVolumeClient2,
+and contains new functionality related to the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GUID partition table (GPT)</a></span>
+disk-partitioning style. The IVolumeClient and IVolumeClient2 interfaces do not
+support the GPT disk-partitioning style and cannot be used with GPT partitioned
+disks.</p><p>IVolumeClient4 includes additional functionality to augment
+what is provided by IVolumeClient3; IVolumeClient4 verifies that disk access
+and disk media record information is valid when the cache is refreshed, and it
+queries the device <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_2cd71385-2d9c-4ab8-bf4a-7b258816d613" data-linktype="relative-path">path</a></span> for a volume.</p><p>IDMRemoteServer includes functionality to create an instance
+of the Disk Management server on a remote machine.</p><p>IDMNotify is the interface implemented by the client to
+receive notifications from the Disk Management server.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="5f5043a3-9e6d-40cc-a05b-1a4a3617df32#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a></p></div>

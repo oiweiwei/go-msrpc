@@ -1,0 +1,7 @@
+<div class="content"><p>The Wire Format Protocol is used by a client to communicate
+with a server to access personal messaging data by using <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote
+procedure call (RPC)</a></span> interfaces. The Wire Format Protocol uses the <b>EMSMDB</b>
+and <b>AsyncEMSMDB</b> protocol interfaces between a client and server. This
+protocol extends DCE 1.1: Remote Procedure Call, as described in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

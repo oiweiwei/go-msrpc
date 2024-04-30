@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The DFSM_ROOT_LIST structure relates to the <span><a href="eff0144e-26d7-485c-aeed-caa737bcd7d2" data-linktype="relative-path">NetrDfsAdd2</a></span>,
+<span><a href="eddab804-70e9-4b78-9763-d4cb6f052496" data-linktype="relative-path">NetrDfsAddFtRoot</a></span>,
+and <span><a href="d2d8d56c-7ff6-4674-8193-313ddf1f1c3b" data-linktype="relative-path">NetrDfsSetInfo2</a></span>
+methods when used to add a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS link</a></span> or a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ac90b498-3ba4-48d6-bcd6-5495f1654671" data-linktype="relative-path">DFS root
+target</a></span>, or to modify the configuration of a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_133ab305-ad75-4b38-8ec9-40bc0dc3b594" data-linktype="relative-path">domain-based
+DFS namespace</a></span>. The structure contains an array of <span><a href="6ea1250f-867e-4d69-8e63-a8446329ffd0" data-linktype="relative-path">DFSM_ROOT_LIST_ENTRY</a></span>
+structures, each of which contains information about a DFS root target. </p><p>The DFSM_ROOT_LIST structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFSM_ROOT_LIST {
+   DWORD cEntries;
+   [size_is(cEntries)] DFSM_ROOT_LIST_ENTRY Entry[];
+ } DFSM_ROOT_LIST;
+</pre></div>
+</dd></dl><p><b>cEntries:</b>  The number of <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_a2c6d1c9-deea-427c-91ee-56f6e726eabd" data-linktype="relative-path">DFS
+targets</a></span>. The value of this member indicates the size of the array in
+the Entry member.</p><p><b>Entry:</b>  An array of
+DFSM_ROOT_LIST_ENTRY structures. Each structure provides information about one
+DFS target. For more information, see section 2.2.2.10.</p></div>

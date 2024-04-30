@@ -1,0 +1,20 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/cde2d512-3a15-43f7-94fc-cfac5588adaf" data-linktype="external">msdn link</a></p><p>The <b>CLAIMS_SET</b> structure specifies <a href="41b2b30c-2dd4-475d-b024-67dd9ad5d020" data-linktype="relative-path">CLAIMS_ARRAY</a> structures,
+each from a different <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_d5c7aa9b-65be-4dd4-a686-cd5253eb203d" data-linktype="relative-path">claims</a>
+source.</p><dl>
+<dd>
+<div><pre> typedef struct _CLAIMS_SET {
+   ULONG ulClaimsArrayCount;
+   [size_is(ulClaimsArrayCount)] PCLAIMS_ARRAY ClaimsArrays;
+   USHORT usReservedType;
+   ULONG ulReservedFieldSize;
+   [size_is(ulReservedFieldSize)] BYTE* ReservedField;
+ } CLAIMS_SET,
+  *PCLAIMS_SET;
+</pre></div>
+</dd></dl><p><b>ulClaimsArrayCount:</b>  Specifies the
+number of CLAIMS_ARRAY elements that are in the <b>ClaimsArrays</b> member.
+This field MUST be greater than or equal to 1.</p><p><b>ClaimsArrays:</b>  An array containing <b>ulClaimsArrayCount</b>
+number of CLAIMS_ARRAY structures.</p><p><b>usReservedType:</b>  This field is not
+used.</p><p><b>ulReservedFieldSize:</b>  Specifies the
+length, in bytes, of the <b>ReservedField</b> member.</p><p><b>ReservedField:</b>  A byte array
+containing <b>ulReservedFieldSize</b> bytes.</p></div>

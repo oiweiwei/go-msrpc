@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The DRS_MSG_EXISTREQ_V1 structure defines the request
+message sent to the <span><a href="6355d4f5-f556-4527-adde-37afba2fcf56" data-linktype="relative-path">IDL_DRSGetObjectExistence</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   UUID guidStart;
+   DWORD cGuids;
+   DSNAME* pNC;
+   UPTODATE_VECTOR_V1_EXT* pUpToDateVecCommonV1;
+   UCHAR Md5Digest[16];
+ } DRS_MSG_EXISTREQ_V1;
+</pre></div>
+</dd></dl><p><b>guidStart:</b>  The <span><a href="../ms-ada3/937eb5c6-f6b3-4652-a276-5d6bb8979658" data-linktype="relative-path">objectGUID</a></span>
+of the first <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> in the
+client&#39;s object sequence.</p><p><b>cGuids:</b>  The number of objects in
+the client&#39;s object sequence.</p><p><b>pNC:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_784c7cce-f782-48d8-9444-c9030ba86942" data-linktype="relative-path">NC</a></span> containing the
+objects in the sequence.</p><p><b>pUpToDateVecCommonV1:</b>  The filter
+excluding objects from the client&#39;s object sequence.</p><p><b>Md5Digest:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_1c222b9e-7176-4840-9d19-e65895b9fc62" data-linktype="relative-path">digest</a></span>
+of the objectGUID values of the objects in the client&#39;s object sequence.</p></div>

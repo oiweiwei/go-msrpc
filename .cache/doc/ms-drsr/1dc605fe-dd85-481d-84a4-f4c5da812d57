@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The DRS_MSG_CRACKREPLY union defines the response messages
+received from the <span><a href="9b4bfb44-6656-4404-bcc8-dc88111658b3" data-linktype="relative-path">IDL_DRSCrackNames</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_CRACKREPLY_V1 V1;
+ } DRS_MSG_CRACKREPLY;
+</pre></div>
+</dd></dl><p><b>V1:</b>  Version 1 reply.</p></div>

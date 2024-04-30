@@ -1,0 +1,55 @@
+<div class="content"><p>The Transmit_Call structure is used to send data to the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">smart card</a> associated with
+a valid context. </p><dl>
+<dd>
+<div><pre> typedef struct _Transmit_Call {
+   REDIR_SCARDHANDLE hCard;
+   SCardIO_Request ioSendPci;
+   [range(0,66560)] unsigned long cbSendLength;
+   [size_is(cbSendLength)] const byte* pbSendBuffer;
+   [unique] SCardIO_Request* pioRecvPci;
+   long fpbRecvBufferIsNULL;
+   unsigned long cbRecvLength;
+ } Transmit_Call;
+</pre></div>
+</dd></dl><p><b>hCard:</b>  A handle, as specified in
+section <a href="b6276356-7c5f-4d3e-be92-a6c85e58d008" data-linktype="relative-path">2.2.1.2</a>.</p><p><b>ioSendPci:</b>  A packet specifying
+input header information as specified in section <a href="f6e15da8-5bc0-4ef6-b28a-ce88e8415621" data-linktype="relative-path">2.2.1.8</a>.</p><p><b>cbSendLength:</b>  The length, in bytes,
+of the <b>pbSendBuffer</b> field.</p><p><b>pbSendBuffer:</b>  The data to be
+written to the card. The format of the data is specific to an individual card.
+For more information about data formats, see <a href="https://go.microsoft.com/fwlink/?LinkId=89919" data-linktype="external">[ISO/IEC-7816-4]</a>
+sections 5 through 7.</p><p><b>pioRecvPci:</b>  If non-NULL, this field
+is an <b>SCardIO_Request</b> packet that is set up in the same way as the <b>ioSendPci</b>
+field and passed as the <i>pioRecvPci</i> parameter of the Transmit call. If
+the value of this is NULL, the caller is not requesting the <b>pioRecvPci</b>
+value to be returned.</p><p><b>fpbRecvBufferIsNULL:</b>  A Boolean
+value specifying whether the caller wants to retrieve the length of the data.
+MUST be set to TRUE (0x00000001) if the caller wants only to retrieve the
+length of the data; otherwise, it MUST be set to FALSE (0x00000000).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cbRecvLength:</b>  The maximum size of
+the buffer to be returned. MUST be ignored if <b>fpbRecvBufferIsNULL</b> is set
+to TRUE (0x00000001).</p></div>

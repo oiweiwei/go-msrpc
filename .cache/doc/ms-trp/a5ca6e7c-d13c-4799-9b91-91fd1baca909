@@ -1,0 +1,131 @@
+<div class="content"><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">TotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">InitContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">PostProcessProcContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hDevice</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Msg</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">OpenContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>TotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, of this packet and any trailing
+variable-length data. </p><p><b>InitContext (4 bytes): </b>An unsigned 32-bit
+integer. An opaque, client-specified session value that MUST be equal to the
+InitContext value specified in the original scoping of the line <a href="9d8eb7cd-3245-4e44-97e0-42f7b89c9424" data-linktype="relative-path">Initialize</a> or the phone <a href="a600d262-0bb1-447b-8a0d-6f57d3a8ec18" data-linktype="relative-path">Initialize</a> requests.</p><p><b>PostProcessProcContext (4 bytes): </b>An unsigned
+32-bit integer. An opaque, client-specified value that MUST be equal to the <b>lpContext</b>
+value in the original request.</p><p><b>hDevice (4 bytes): </b>An unsigned 32-bit integer.
+The handle of the object that pertains to the packet. For instance, hCall for
+the <a href="0a8905e3-647f-4e98-aca8-2fa77eedb2e7" data-linktype="relative-path">LINE_CALLSTATE</a>
+packet. </p><dl>
+<dd>
+<p>This field is unused for some packets, for example, <a href="8f5bc349-fd55-46f2-b0bc-dc9f757317a9" data-linktype="relative-path">LINE_REPLY</a> or <a href="b0508c16-f090-4562-b367-50ea4adf8c35" data-linktype="relative-path">PHONE_REPLY</a>.</p>
+</dd>
+<dd>
+<p>If <b>hDevice</b> refers to a line device handle and
+the <b>hRemoteLine</b> value specified in the original scoping of the line <a href="2759c744-e040-4c5d-b4b5-215d391f0490" data-linktype="relative-path">Open</a> request was nonzero,
+then the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST set
+this field to the <b>hRemoteLine</b> value.</p>
+</dd>
+<dd>
+<p>If <b>hDevice</b> refers to a phone device handle
+and the <b>hRemotePhone</b> value specified in the original scoping of the
+phone <a href="6b5ee45e-b5c8-4148-a9b2-b16b9b995c3f" data-linktype="relative-path">Open</a> request was
+nonzero, then the server MUST set this field to the <b>hRemotePhone</b> value.</p>
+</dd></dl><p><b>Msg (4 bytes): </b>An unsigned 32-bit integer. The
+packet type identifier. The value MUST be one of the packet type identifier
+values in the completion packets in section <a href="b0b9df28-beb0-471c-91e1-4bcd64e75e2c" data-linktype="relative-path">2.2.4.2.1</a>.</p><p><b>OpenContext (4 bytes): </b>An unsigned 32-bit
+integer. An opaque, client-specified value that MUST be equal to the
+OpenContext value specified in the original scoping of the line Open or the
+phone Open requests.</p><p><b>Param1 (4 bytes): </b>An unsigned 32-bit integer.
+An event-specific value.</p><p><b>Param2 (4 bytes): </b>An unsigned 32-bit integer.
+An event-specific value.</p><p><b>Param3 (4 bytes): </b>An unsigned 32-bit integer.
+An event-specific value.</p><p><b>Param4 (4 bytes): </b>An unsigned 32-bit integer.
+An event-specific value.</p><p><b>VarData (variable): </b>Any variable length data.
+This field is an optional and dependent on packet usage</p><p>This packet serves as a template for the <a href="144f52ba-9252-4e9e-aa6d-7646d8b99f84" data-linktype="relative-path">Response Packets</a>.</p></div>

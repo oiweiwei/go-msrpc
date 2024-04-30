@@ -1,0 +1,10 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/60f42175-eff8-40cd-a083-6ee43a64fcbd" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_LOGOFF_UAS_INFO</b> structure was for the
+support of LAN Manager products and is beyond the scope of this document.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_LOGOFF_UAS_INFO {
+   DWORD Duration;
+   USHORT LogonCount;
+ } NETLOGON_LOGOFF_UAS_INFO,
+  *PNETLOGON_LOGOFF_UAS_INFO;
+</pre></div>
+</dd></dl></div>

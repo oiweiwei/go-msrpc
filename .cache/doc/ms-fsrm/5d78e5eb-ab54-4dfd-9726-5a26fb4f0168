@@ -1,0 +1,36 @@
+<div class="content"><p>The Count method returns the number of objects in the
+collection of <b>Objects Being Enumerated</b>.</p><dl>
+<dd>
+<div><pre> [propget, id(FSRM_PROPERTY(FSRM_DISPID_COLLECTION | 0x01))] HRESULT Count(
+   [out, retval] long* count
+ );
+</pre></div>
+</dd></dl><p><b>count: </b>Pointer to a variable that upon
+successful completion receives the number of objects in the collection of <b>Objects
+Being Enumerated</b>.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80004003</p>
+  <p>E_POINTER</p>
+  </td>
+  <td>
+  <p>The <i>count</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>count</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST set <i>count</i> to the number of objects in
+the collection of <b>Objects Being Enumerated</b>.</p></div>

@@ -1,0 +1,50 @@
+<div class="content"><p> </p><p>The FUNCDESC structure is used by an <span><a href="7894019f-de1e-455e-b2aa-3b899c2e50f6" data-linktype="relative-path">ITypeComp
+server</a></span> or <span><a href="99504cf9-16d8-401e-a873-83b85d1ee4aa" data-linktype="relative-path">ITypeInfo server</a></span> to
+describe a method, as specified in sections <span><a href="476f00da-0806-40d9-bbf3-6059154abbb7" data-linktype="relative-path">3.5.4.1</a></span> and <span><a href="d54aca09-0565-4fa8-b5e4-cf87723a89ed" data-linktype="relative-path">3.7.4.3</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct tagFUNCDESC {
+   MEMBERID memid;
+   [size_is(cReserved2)] SCODE* lReserved1;
+   [size_is(cParams)] ELEMDESC* lprgelemdescParam;
+   FUNCKIND funckind;
+   INVOKEKIND invkind;
+   CALLCONV callconv;
+   SHORT cParams;
+   SHORT cParamsOpt;
+   SHORT oVft;
+   SHORT cReserved2;
+   ELEMDESC elemdescFunc;
+   WORD wFuncFlags;
+ } FUNCDESC,
+  *LPFUNCDESC;
+</pre></div>
+</dd></dl><p><b>memid:</b>  MUST be set to the <span><a href="ace8758f-ee2b-4cb6-8645-973994d12530" data-linktype="relative-path">MEMBERID (section 2.2.35)</a></span>
+of the method. </p><p><b>lReserved1:</b>  MUST be set to 0 and
+ignored on receipt. An <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> value is
+closely related, or identical to an <span><a href="7d93a429-b652-4c77-9b63-d7a762521e4d" data-linktype="relative-path">SCODE</a></span>.</p><p><b>lprgelemdescParam:</b>  MUST refer to an
+array of <span><a href="e14ff3cf-034a-4884-a498-fc7586f7160c" data-linktype="relative-path">ELEMDESC</a></span> that
+contains one entry for each element in the method&#39;s parameter table.</p><dl>
+<dd>
+<p>The lprgelemdescParam array MUST NOT include
+parameters that are declared with the [lcid] or [retval] attributes if the
+value of funckind is FUNC_DISPATCH (as specified in section <span><a href="9cf379f7-fb31-41fe-9f9c-c9a0136616e0" data-linktype="relative-path">3.1.4.4.2</a></span>).</p>
+</dd></dl><p><b>funckind:</b>  MUST be set to one of the
+values of the <span><a href="a33ebe36-0f9d-4230-bcbc-466136f45e58" data-linktype="relative-path">FUNCKIND (section 2.2.12)</a></span>
+enumeration.</p><p><b>invkind:</b>  MUST be set to one of the
+values of the <span><a href="a0d3598d-a3ee-4401-87fd-17a7031b0b9a" data-linktype="relative-path">INVOKEKIND (section 2.2.14)</a></span>
+enumeration. </p><p><b>callconv:</b>  MUST be set to one of the
+values of the <span><a href="2e3cc990-94f2-41e5-ae6f-cdd00414b776" data-linktype="relative-path">CALLCONV (section 2.2.10)</a></span>
+enumeration.</p><p><b>cParams:</b>  MUST be set to the length
+of the lprgelemdescParam array.</p><p><b>cParamsOpt:</b>  SHOULD be set to the
+number of optional VARIANT parameters<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a>. MUST be
+set to -1 if the method was declared with the [vararg] attribute. Otherwise,
+MUST be set to 0.</p><p><b>oVft:</b>  MUST be set to either 0 or to
+the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a></span>
+of the interface method multiplied by the system pointer size value (as specified
+in sections <span><a href="0ca10d08-61d2-4059-9109-7bbaf545715e" data-linktype="relative-path">2.2.44</a></span> and <span><a href="87fd9a39-6067-42a7-b8e6-13637df3bd0d" data-linktype="relative-path">3.11.1</a></span>).
+</p><p><b>cReserved2:</b>  MUST be set to 0, and
+ignored on receipt.</p><p><b>elemdescFunc:</b>  MUST contain an
+ELEMDESC that specifies the return type of the method, as specified in section
+2.2.41. </p><p><b>wFuncFlags:</b>  MUST be set to a
+combination of the <span><a href="be8732b4-f8d9-4e6d-a946-311958d8173f" data-linktype="relative-path">FUNCFLAGS</a></span> bit flags
+(as specified in section 2.2.11), or set to 0. </p></div>

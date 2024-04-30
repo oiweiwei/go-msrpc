@@ -1,0 +1,139 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/dfe16abb-4dfb-402d-bc54-84fcc9932fad" data-linktype="external">msdn link</a></p><p>The format of the LSAPR_AUTH_INFORMATION structure is as
+follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LastUpdateTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AuthType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AuthInfoLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AuthInfo
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Padding
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>LastUpdateTime (8 bytes): </b>This <a href="../ms-dtyp/e904b1ba-f774-4203-ba1b-66485165ab1a" data-linktype="relative-path">LARGE_INTEGER</a>
+value represents the last time that the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_8e961bf0-95ba-4f58-9034-b67ccb27f317" data-linktype="relative-path">authentication</a> information
+was set, in <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a>
+format, as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/ad05c0d3-1a4f-4799-80d1-ffc5299da73e" data-linktype="relative-path">2.3</a>.</p><p><b>AuthType (4 bytes): </b>This <a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">ULONG</a>
+value dictates the type of <b>AuthInfo</b> that is being stored. There are four
+values that are recognized by Windows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Possible Values</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUST_AUTH_TYPE_NONE</p>
+  <p>0</p>
+  </td>
+  <td>
+  <p><b>AuthInfo</b> byte field is invalid/not relevant.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUST_AUTH_TYPE_NT4OWF</p>
+  <p>1</p>
+  </td>
+  <td>
+  <p><b>AuthInfo</b> byte field contains an RC4 Key <a href="https://go.microsoft.com/fwlink/?LinkId=90488" data-linktype="external">[RFC4757]</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUST_AUTH_TYPE_CLEAR</p>
+  <p>2</p>
+  </td>
+  <td>
+  <p><b>AuthInfo</b> byte field contains a cleartext
+  password, encoded as a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a>
+  string.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUST_AUTH_TYPE_VERSION</p>
+  <p>3</p>
+  </td>
+  <td>
+  <p><b>AuthInfo</b> byte field contains a version number,
+  used by <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_70771a5a-04a3-447d-981b-e03098808c32" data-linktype="relative-path">Netlogon</a> for
+  versioning interdomain <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_21512d2e-0206-469a-a37b-a19850a6fdc3" data-linktype="relative-path">trust
+  secrets</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>AuthInfoLength (4 bytes): </b>A ULONG count of
+bytes in <b>AuthInfo</b>.</p><p><b>AuthInfo (variable): </b>A <a href="../ms-dtyp/d7edc080-e499-4219-a837-1bc40b64bb04" data-linktype="relative-path">BYTE</a>
+field containing authentication data. Its size is [1...<b>AuthInfoLength</b>].</p><p><b>Padding (variable): </b>Some number of bytes used
+to align the end of the LSAPR_AUTH_INFORMATION structure to a ULONG boundary.
+This padding is not included in the <b>AuthInfoLength</b> and consists of
+zeros.</p></div>

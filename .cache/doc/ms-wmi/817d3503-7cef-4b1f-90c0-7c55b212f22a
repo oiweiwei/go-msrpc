@@ -1,0 +1,44 @@
+<div class="content"><p> </p><p>The IEnumWbemClassObject::Clone method makes a logical copy
+of the entire enumerator. The cloned enumerator MUST have the same current
+position as the source enumerator.</p><dl>
+<dd>
+<div><pre> HRESULT Clone(
+   [out] IEnumWbemClassObject** ppEnum
+ );
+</pre></div>
+</dd></dl><p><b>ppEnum: </b>Upon return, MUST contain a pointer to
+an <span><a href="56022f1e-3761-4c17-8d55-8e62dc334b86" data-linktype="relative-path">IEnumWbemClassObject</a></span>
+interface <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c1fdd6c7-06cb-4787-8735-4d19a68dd802" data-linktype="relative-path">CIM object</a></span> that is a
+logical copy of the entire enumerator that made the Clone method call,
+retaining the current position in an enumeration. This parameter MUST NOT be
+NULL. When returned by the server, this parameter can be NULL if a failure
+occurred or if there are no results.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The server MUST locate the entry in <b>EnumWbemClassObjectTable</b>
+with <b>EnumWbemClassObjectPointer</b> matching the IEnumWbemClassObject.</p><p>The server MUST validate that the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that makes the call is the same as the <b>ClientSecurityContext</b> of the <b>SemiSinkResultSetObject</b>
+pointed to by the entry in <b>EnumWbemClassObjectTable</b>; otherwise,
+WBEM_E_ACCESS_DENIED MUST be returned.</p><p>If the earlier <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_51f3288a-1aea-49f6-96a1-91f368e8b49b" data-linktype="relative-path">semisynchronous operation</a></span>
+is created by using WBEM_FLAG_FORWARD_ONLY, then IEnumWbemClassObject::Clone is
+not supported and the server MUST return WBEM_E_INVALID_OPERATION.</p><p>The server MUST serialize execution of <span><a href="141623d4-a170-4b09-8fea-3cb8f78fbbfe" data-linktype="relative-path">IEnumWbemClassObject::Next</a></span>
+call, asynchronous callbacks related to <span><a href="109d2cfc-1054-42e2-b92f-f8d381c97770" data-linktype="relative-path">IEnumWbemClassObject::NextAsync</a></span>
+call, <span><a href="8dfc5221-4cdb-44af-8acf-89dcbffae41f" data-linktype="relative-path">IEnumWbemClassObject::Reset</a></span>
+call, and IEnumWbemClassObject::Clone call.</p><p>As part of IEnumWbemClassObject::Clone, the server MUST
+create a new IEnumWbemClassObject enumerator as follows. Create a new entry in
+the <b>EnumWbemClassObjectTable</b> and store a reference to the newly created
+enumerator in <b>EnumWbemClassObjectPointer</b>. The new entry in <b>EnumWbemClassObjectTable</b>
+will copy the current pointer index value from the earlier enumerator. The new
+entry <b>ResultSetPointer</b> will point to <b>SemiSinkResultSetObject</b> that
+was created as part of an earlier semisynchronous operation and increment the <b>RefCount</b>
+of <b>SemiSinkResultSetObject</b> by one.</p><p>The successful method execution MUST fill the <i>ppEnum</i>
+parameter with an IEnumWbemClassObject <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface pointer</a></span>,
+as specified in section 3.1.4.4, which MUST be a copy of the source enumerator
+that retains the current position in an enumeration. The method MUST return
+WBEM_S_NO_ERROR.</p><p>If the original semisynchronous operation fails, the server
+MUST return the error code that the original method would have returned in its
+synchronous version.</p><p>The failed method execution MUST return an error in the
+format that is specified in section 2.2.11.</p></div>

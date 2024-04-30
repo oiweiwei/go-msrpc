@@ -1,0 +1,62 @@
+<div class="content"><p> </p><p>The MQDSPUBLICKEYS structure defines a set of <span><a href="686a51fe-40cf-49d6-b4b0-576b1a5e59c2" data-linktype="relative-path">MQDSPUBLICKEY (section 2.2.1)</a></span>
+structures.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cNumofKeys</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>aPublicKeys
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>ulLen (4 bytes): </b>An unsigned 32-bit integer
+that MUST contain the size, in bytes, of the MQDSPUBLICKEYS structure.</p><p><b>cNumofKeys (4 bytes): </b>An unsigned 32-bit
+integer that MUST contain the count of MQDSPUBLICKEY (section 2.2.1) structures
+in the array aPublicKeys.</p><p><b>aPublicKeys (variable): </b>An array of
+MQDSPUBLICKEY (section 2.2.1) structures.</p></div>

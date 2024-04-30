@@ -1,0 +1,136 @@
+<div class="content"><p> </p><p>The <b>R_DhcpDeleteClientInfoV6</b> method deletes the
+specified DHCPv6 client address lease record from the DHCPv6 server database.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpDeleteClientInfoV6(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, ref] LPDHCP_SEARCH_INFO_V6 ClientInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>ClientInfo: </b>This is a pointer to a structure <span><a href="181ee972-b76b-45dd-a460-bcc37bbb92dd" data-linktype="relative-path">DHCP_SEARCH_INFO_V6 (section 2.2.1.2.69)</a></span>
+that defines the key to be used to search the DHCPv6 client lease record that
+needs to be deleted on the DHCPv6 server.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database or the client entry is not present in the database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E36</p>
+  <p>ERROR_DHCP_RESERVEDIP_EXISTS</p>
+  </td>
+  <td>
+  <p>There exists a reservation for the leased address.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 73.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If <b>SearchType</b> is not Dhcpv6ClientIpAddress, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ClientInfo</b> corresponds to a <b>DHCPv6ClientInfo</b>
+object that corresponds to an entry in <b>DHCPv6Scope.DHCPv6ReservationList</b>,
+return ERROR_DHCP_RESERVEDIP_EXITS.<a id="Appendix_A_Target_70"></a><a aria-label="Product behavior note 70" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_70" data-linktype="relative-path">&lt;70&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If the DHCPv6 client lease address state as specified in <b>DHCPv6Scope.DHCPv6ClientInfoList.DHCPv6ClientInfo.DHCPv6ClientInfoAddressState</b>
+has DHCPV6_ADDRESS_BIT_BOTH_REC and DHCPV6_ADDRESS_BIT_CLEANUP (section <span><a href="4160ac0a-5613-46d5-adb7-da3e39657ed8" data-linktype="relative-path">3.1.1.32</a></span>)
+set to 1, then delete both AAAA and PTR resource records by sending the message
+for DNS PTR and AAAA (<span><a href="https://go.microsoft.com/fwlink/?LinkId=107027" data-linktype="external">[RFC3596]</a></span>
+section 2) resource record deletion (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90264" data-linktype="external">[RFC1035]</a></span>
+sections 3.3 and 4.1, and <span><a href="https://go.microsoft.com/fwlink/?LinkId=107017" data-linktype="external">[RFC2136]</a></span>
+sections 2.5 and 3.4) with the data shown in the table that follows. If the
+DHCPv6 client lease address state as specified in <b>DHCPv6Scope.DHCPv6ClientInfoList.DHCPv6ClientInfo.DHCPv6ClientInfoAddressState</b>
+has DHCPV6_ADDRESS_BIT_CLEANUP set to 1 and DHCPV6_ADDRESS_BIT_BOTH_REC
+(section 3.1.1.32) set to 0, then delete PTR resource record by sending the
+message for DNS PTR resource record deletion ([RFC1035] sections 3.3 and 4.1,
+and [RFC2136] sections 2.5 and 3.4) with the data shown in the table that follows.
+The message for deletion of the DNS PTR record is sent to the DNS server(s)
+configured as the DNS server option (option 23) value (<span><a href="https://go.microsoft.com/fwlink/?LinkId=200601" data-linktype="external">[RFC3646]</a></span>
+section 3) in <b>DHCPv6Scope.DHCPv6ScopeOptValuesList</b>. If the DNS server
+option value is not found in <b>DHCPv6Scope.DHCPv6ScopeOptValuesList</b>, then
+the message for deletion of the DNS resource record is sent to the DNS
+server(s) configured as DNS server option value in <b>DHCPv6ServerOptValueList</b>.
+If the DNS server option value is also not found in <b>DHCPv6ServerOptValueList</b>,
+then the message for deletion of the DNS resource record is sent to the DNS
+server configured on the network interface(s) of the DHCP server.</p>
+<p>The DNS message is sent to
+the DNS server by using the transport specified in [RFC1035] section 4.2.</p>
+<p>The DNS AAAA resource
+record is populated with the following information for a delete message:</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>DNS Fields</p>
+   </th>
+   <th>
+   <p>Values</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NAME ([RFC1035] sections 3.3 and 4.1, [RFC2136]
+  section 2, and [RFC3596])</p>
+  </td>
+  <td>
+  <p>If the <i>ClientInfo</i> parameter has <b>SearchType</b>
+  as Dhcpv6ClientIpAddress, then obtain the client name from the <b>DHCPv6ClientInfo</b>
+  ADM element to populate this field.</p>
+  </td>
+ </tr></tbody></table>
+<p>The DNS PTR resource
+record is populated with the following information for delete message:</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>DNS Fields</p>
+   </th>
+   <th>
+   <p>Values</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NAME ([RFC1035] sections 3.3 and 4.1, [RFC2136]
+  section 2.5, and [RFC3596])</p>
+  </td>
+  <td>
+  <p>The IPv6 address in the <b>ClientIpAddress</b> field
+  of the <i>ClientInfo</i> parameter is used to populate this field.</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span><span> 
+</span></span>Delete the <b>DHCPv6ClientInfo</b> object from <b>DHCPv6ClientInfoList</b>.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

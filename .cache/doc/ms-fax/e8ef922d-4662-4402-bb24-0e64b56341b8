@@ -1,0 +1,31 @@
+<div class="content"><p> </p><p>The <b>FAX_SPECIFIC_ACCESS_RIGHTS_2</b> enumeration defines
+specific access rights, which provide security when users query and manage fax
+jobs, fax devices, and <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_cce65523-bec8-486a-8c6c-6091c52af3d3" data-linktype="relative-path">fax document</a></span>. The
+access rights specified below define access rights in addition to those
+specified in <b>FAX_SPECIFIC_ACCESS_RIGHTS</b> (section <span><a href="cc7b2b35-92b8-456c-8a1d-c2264b8f038c" data-linktype="relative-path">2.2.21</a></span>).</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FAX_ACCESS_QUERY_OUT_JOBS = 0x0008,
+   FAX_ACCESS_MANAGE_OUT_JOBS = 0x0010,
+   FAX_ACCESS_QUERY_ARCHIVES = 0x0080,
+   FAX_ACCESS_MANAGE_ARCHIVES = 0x0100,
+   FAX_ACCESS_MANAGE_RECEIVE_FOLDER = 0x0200,
+   FAX_GENERIC_READ_2 = FAX_ACCESS_QUERY_CONFIG | FAX_ACCESS_MANAGE_RECEIVE_FOLDER,
+   FAX_GENERIC_WRITE_2 = FAX_ACCESS_MANAGE_CONFIG,
+   FAX_GENERIC_EXECUTE_2 = FAX_ACCESS_SUBMIT,
+   FAX_GENERIC_ALL_2 = FAX_ACCESS_SUBMIT          | FAX_ACCESS_SUBMIT_NORMAL |                                           FAX_ACCESS_SUBMIT_HIGH     | FAX_ACCESS_QUERY_OUT_JOBS |
+    FAX_ACCESS_MANAGE_OUT_JOBS | FAX_ACCESS_QUERY_CONFIG |
+    FAX_ACCESS_MANAGE_CONFIG   | FAX_ACCESS_QUERY_ARCHIVES |
+    FAX_ACCESS_MANAGE_ARCHIVES
+ } FAX_SPECIFIC_ACCESS_RIGHTS_2;
+</pre></div>
+</dd></dl><p><b>FAX_ACCESS_QUERY_OUT_JOBS: </b>The user MAY view
+all the outgoing jobs in the server&#39;s <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>.</p><p><b>FAX_ACCESS_MANAGE_OUT_JOBS: </b>The user MAY
+manage all the outgoing jobs in the server&#39;s queue.</p><p><b>FAX_ACCESS_QUERY_ARCHIVES: </b>The user MAY view
+all the messages (Inbox and Sent Items) in the server&#39;s <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9394bf31-7db9-433c-8d3d-ee6a37bf0848" data-linktype="relative-path">archive</a></span>.</p><p><b>FAX_ACCESS_MANAGE_ARCHIVES: </b>The user MAY
+manage all the messages (Inbox and Sent Items) in the server&#39;s archive.</p><p><b>FAX_ACCESS_MANAGE_RECEIVE_FOLDER: </b>The user MAY
+view and manage the server&#39;s incoming queue.</p><p><b>FAX_GENERIC_READ_2: </b>Access rights needed to
+read faxes.</p><p><b>FAX_GENERIC_WRITE_2: </b>Access rights needed to
+write faxes.</p><p><b>FAX_GENERIC_EXECUTE_2: </b>Access rights needed to
+execute faxes.</p><p><b>FAX_GENERIC_ALL_2: </b>All access rights.</p></div>

@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>DHCP_IP_RANGE_V6</b> structure defines the IPv6 range
+for an IPv6 subnet. This is used in the <span><a href="69f63a7f-55f2-4b1e-bc01-96c9ed3c92d9" data-linktype="relative-path">DHCP_SUBNET_ELEMENT_DATA_V6 (section 2.2.1.2.60)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_IP_RANGE_V6 {
+   DHCP_IPV6_ADDRESS StartAddress;
+   DHCP_IPV6_ADDRESS EndAddress;
+ } DHCP_IP_RANGE_V6,
+  *LPDHCP_IP_RANGE_V6;
+</pre></div>
+</dd></dl><p><b>StartAddress:</b>   This is of type <span><a href="48b74c46-bf64-40db-92b9-6e61cee1bd33" data-linktype="relative-path">DHCP_IPV6_ADDRESS (section 2.2.1.2.28)</a></span>
+structure, containing the first IPv6 address in the IPv6 range.</p><p><b>EndAddress:</b>  This is of type
+DHCP_IPV6_ADDRESS (section 2.2.1.2.28) structure, containing the last
+IPv6 address in the IPv6 range.</p></div>

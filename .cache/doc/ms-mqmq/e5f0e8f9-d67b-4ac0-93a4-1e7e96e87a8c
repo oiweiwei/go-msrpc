@@ -1,0 +1,49 @@
+<div class="content"><p> </p><p>The MQQUEUEACCESSMASK bitfield enumeration values can be
+used to set the value of an <b>ACCESS_MASK</b> structure (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/7a53f60e-e730-4dfe-bbe9-b21b62eb790b" data-linktype="relative-path">2.4.3</a></span>),
+which is used to constrain the permissions for a Queue.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   MQSEC_DELETE_MESSAGE = 0x00000001,
+   MQSEC_PEEK_MESSAGE = 0x00000002,
+   MQSEC_WRITE_MESSAGE = 0x00000004,
+   MQSEC_DELETE_JOURNAL_MESSAGE = 0x00000008,
+   MQSEC_SET_QUEUE_PROPERTIES = 0x00000010,
+   MQSEC_GET_QUEUE_PROPERTIES = 0x00000020,
+   MQSEC_DELETE_QUEUE = 0x00010000,
+   MQSEC_GET_QUEUE_PERMISSIONS = 0x00020000,
+   MQSEC_CHANGE_QUEUE_PERMISSIONS = 0x00040000,
+   MQSEC_TAKE_QUEUE_OWNERSHIP = 0x00080000,
+   MQSEC_RECEIVE_MESSAGE = (MQSEC_DELETE_MESSAGE    | MQSEC_PEEK_MESSAGE),
+   MQSEC_RECEIVE_JOURNAL_MESSAGE = (MQSEC_DELETE_JOURNAL_MESSAGE    | MQSEC_PEEK_MESSAGE),
+   MQSEC_QUEUE_GENERIC_READ = (MQSEC_GET_QUEUE_PROPERTIES    | MQSEC_GET_QUEUE_PERMISSIONS    | MQSEC_RECEIVE_MESSAGE    | MQSEC_RECEIVE_JOURNAL_MESSAGE),
+   MQSEC_QUEUE_GENERIC_WRITE = (MQSEC_GET_QUEUE_PROPERTIES    | MQSEC_GET_QUEUE_PERMISSIONS    | MQSEC_WRITE_MESSAGE),
+   MQSEC_QUEUE_GENERIC_ALL = (MQSEC_RECEIVE_MESSAGE    | MQSEC_RECEIVE_JOURNAL_MESSAGE    | MQSEC_WRITE_MESSAGE | MQSEC_SET_QUEUE_PROPERTIES    | MQSEC_GET_QUEUE_PROPERTIES    | MQSEC_DELETE_QUEUE    | MQSEC_GET_QUEUE_PERMISSIONS    | MQSEC_CHANGE_QUEUE_PERMISSIONS    | MQSEC_TAKE_QUEUE_OWNERSHIP)
+ } MQQUEUEACCESSMASK;
+</pre></div>
+</dd></dl><p><b>MQSEC_DELETE_MESSAGE:  </b>Specifies the permission
+required by a security principal to delete <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">messages</a></span> from the <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>.</p><p><b>MQSEC_PEEK_MESSAGE:  </b>Specifies the permission
+required by a security principal to peek messages from the queue.</p><p><b>MQSEC_WRITE_MESSAGE:  </b>Specifies the permission
+required by a security principal to insert messages into the queue.</p><p><b>MQSEC_DELETE_JOURNAL_MESSAGE:  </b>Specifies the
+permission required by a security principal to delete messages from the <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_89cac287-8784-4fdf-893f-739cd0ef3785" data-linktype="relative-path">queue
+journal</a></span> associated with the queue.</p><p><b>MQSEC_SET_QUEUE_PROPERTIES:  </b>Specifies the permission
+required by a security principal to modify the properties of the queue.</p><p><b>MQSEC_GET_QUEUE_PROPERTIES:  </b>Specifies the permission
+required by a security principal to read the properties of the queue.</p><p><b>MQSEC_DELETE_QUEUE:  </b>Specifies the permission
+required by a security principal to delete a queue.</p><p><b>MQSEC_GET_QUEUE_PERMISSIONS:  </b>Specifies the
+permission required by a security principal to read the permissions for the
+queue.</p><p><b>MQSEC_CHANGE_QUEUE_PERMISSIONS:  </b>Specifies the
+permission required by a security principal to modify the permissions for the
+queue.</p><p><b>MQSEC_TAKE_QUEUE_OWNERSHIP:  </b>Specifies the permission
+required by a security principal to change the owner for the queue.</p><p><b>MQSEC_RECEIVE_MESSAGE:  </b>Specifies the permission
+required by a security principal to destructively read a message from the
+queue.</p><p><b>MQSEC_RECEIVE_JOURNAL_MESSAGE:  </b>Specifies the
+permission required by a security principal to destructively read a message
+from the queue journal associated with the queue.</p><p><b>MQSEC_QUEUE_GENERIC_READ:  </b>Specifies the permission
+required by a security principal to read the queue properties, read the queue
+permissions, and destructively receive messages from the queue or the
+associated queue journal.</p><p><b>MQSEC_QUEUE_GENERIC_WRITE:  </b>Specifies the permission
+required by a security principal to read the queue properties, read the queue
+permissions, and insert messages into the queue.</p><p><b>MQSEC_QUEUE_GENERIC_ALL:  </b>Specifies the permission
+required by a security principal to perform all of the operations listed
+previously.</p></div>

@@ -1,0 +1,174 @@
+<div class="content"><p> </p><p>Following is the table of elements in the Elliptic Curve
+Diffie-Hellman (ECDH) <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private key</a></span> <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_ad861812-8cb0-497a-80bb-13c95aa4e425" data-linktype="relative-path">BLOB</a></span>
+that MUST be passed to the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Magic</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Length</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>XParam
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>YParam
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PrivateExp
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Magic (4 bytes): </b>The length of this field MUST
+be 4 bytes.</p><dl>
+<dd>
+<p>This field MUST be an unsigned integer in <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a></span>
+format.</p>
+</dd>
+<dd>
+<p>Value MUST specify the type of <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a></span>
+that this BLOB represents. The possible values for this member MUST be one of
+the following.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x314B4345</p>
+  </td>
+  <td>
+  <p>The key is a 256-bit ECDH <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public key</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x324B4345</p>
+  </td>
+  <td>
+  <p>The key is a 256-bit ECDH private key.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x334B4345</p>
+  </td>
+  <td>
+  <p>The key is a 384-bit ECDH public key.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x344B4345</p>
+  </td>
+  <td>
+  <p>The key is a 384-bit ECDH private key.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x354B4345</p>
+  </td>
+  <td>
+  <p>The key is a 521-bit ECDH public key.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x364B4345</p>
+  </td>
+  <td>
+  <p>The key is a 521-bit ECDH private key.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Length (4 bytes): </b>The length of this field
+MUST be 4 bytes.</p><dl>
+<dd>
+<p>This field MUST be an unsigned integer in
+little-endian format.</p>
+</dd>
+<dd>
+<p>Value MUST be the length, in bytes, of the ECDH key.</p>
+</dd></dl><p><b>XParam (variable): </b>The length of this field
+MUST be equal to the <b>Length</b> field value.</p><dl>
+<dd>
+<p>This field MUST be bytes in little-endian format.</p>
+</dd>
+<dd>
+<p>Value MUST be the elliptical curve X parameter.</p>
+</dd></dl><p><b>YParam (variable): </b>The length of this field
+MUST be equal to the <b>Length</b> field value.</p><dl>
+<dd>
+<p>This field MUST be bytes in little-endian format.</p>
+</dd>
+<dd>
+<p>Value MUST be the elliptical curve Y parameter.</p>
+</dd></dl><p><b>PrivateExp (variable): </b>The length of this
+field MUST be equal to the <b>Length</b> field value.</p><dl>
+<dd>
+<p>This field MUST be bytes in little-endian format.</p>
+</dd>
+<dd>
+<p>Value MUST be the elliptical curve private exponent.</p>
+</dd></dl></div>

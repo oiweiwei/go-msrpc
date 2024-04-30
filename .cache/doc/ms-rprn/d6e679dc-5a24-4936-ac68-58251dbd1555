@@ -1,0 +1,30 @@
+<div class="content"><p>The <b>RPC_BIDI_DATA</b> structure is used to store the
+values of a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_604aaee0-7ad4-46a3-932f-8d2def6615ad" data-linktype="relative-path">bidirectional</a>
+<a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_fd49ea36-576c-4417-93bd-d1ac63e71093" data-linktype="relative-path">schema</a>.<a id="Appendix_A_Target_72"></a><a aria-label="Product behavior note 72" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_72" data-linktype="relative-path">&lt;72&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _RPC_BIDI_DATA {
+   DWORD dwBidiType;
+   [switch_is(dwBidiType)] union {
+     [case(BIDI_NULL,BIDI_BOOL)] 
+       int bData;
+     [case(BIDI_INT)] 
+       long iData;
+     [case(BIDI_STRING,BIDI_TEXT,BIDI_ENUM)] 
+       [string, unique] wchar_t* sData;
+     [case(BIDI_FLOAT)] 
+       float fData;
+     [case(BIDI_BLOB)] 
+       RPC_BINARY_CONTAINER biData;
+   } u;
+ } RPC_BIDI_DATA;
+</pre></div>
+</dd></dl><p><b>dwBidiType:</b> The type of data in a
+bidirectional request. The value of this member specifies a valid structure for
+the <b>u</b> union. The value of this member MUST be one of the <b>BIDI_TYPE</b>
+enumeration values specified in section <a href="4ebaf547-61f6-4b2e-b328-72c1a5dc685d" data-linktype="relative-path">2.2.3.13</a>.</p><p><b>u:</b> The bidirectional data in the format
+specified by the value of the <b>dwBidiType</b> member.</p><p><b>bData:</b> This case indicates that either
+there is no bidirectional data, or the bidirectional data is a Boolean value.</p><p><b>iData:</b> This case indicates that the
+bidirectional data is an integer.</p><p><b>sData:</b> This case indicates that the
+bidirectional data is either a string, text data, or an enumeration.</p><p><b>fData:</b> The bidirectional data is a
+floating-point number.</p><p><b>biData:</b> This case indicates that the
+bidirectional data is an <b>RPC_BINARY_CONTAINER</b> structure.</p></div>

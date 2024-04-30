@@ -1,0 +1,151 @@
+<div class="content"><p> </p><p>The <b>R_DhcpGetAllOptionValues</b> method retrieves the
+option values for all the options configured at the DHCPv4 server from the
+specific scope for all <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_713c7395-9431-4d67-bab1-a069ae7461e2" data-linktype="relative-path">user classes</a></span> and <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_45d20b00-7166-4f94-b679-4cc5a7835a3a" data-linktype="relative-path">vendor
+classes</a></span>. <i>ScopeInfo</i> defines the scope from which this option
+values are retrieved. The caller of this method can free the memory pointed to
+by <i>Values</i>, its <b>Options</b> member, and the members of each element in
+the <b>Options</b> array, by calling the function <b>midl_user_free </b>(section
+<span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpGetAllOptionValues(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DWORD Flags,
+   [in] LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+   [out] LPDHCP_ALL_OPTION_VALUES* Values
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>Flags: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and is reserved for future use. Currently it is not used, and any value set to
+this parameter will not affect the behavior of this method.</p><p><b>ScopeInfo: </b>This is a pointer to a <span><a href="177415f4-85c1-4496-a414-4938dca18b93" data-linktype="relative-path">DHCP_OPTION_SCOPE_INFO (section 2.2.1.2.41)</a></span>
+structure that contains information describing the DHCPv4 scope the option
+values are retrieved on. This value defines that option values are being
+retrieved from the default, server, multicast scope, or scope level, or for an
+IPv4 reservation.</p><p><b>Values: </b>This is a pointer to type <span><a href="e9cf1506-47f6-4d93-9893-a0b97b36425a" data-linktype="relative-path">LPDHCP_ALL_OPTION_VALUES</a></span>
+in which a list of vendor-specific option values and default option values is
+retrieved.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist on the DHCP
+  server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E32</p>
+  <p>ERROR_DHCP_NOT_RESERVED_CLIENT</p>
+  </td>
+  <td>
+  <p>The specified DHCP client is not a reserved client.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 30.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read access per section
+<span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not, return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ScopeType</b> is specified as DhcpDefaultOptions, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Allocate memory to the address pointed to by <i>Values</i>, which
+is equal to the size of the data type DHCP_ALL_OPTION_VALUES. Initialize its
+members as: Flags equal to zero, NumElements equal to zero, and Options equal
+to NULL.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ScopeType</b> is specified as DhcpGlobalOptions, retrieve
+the server ADM element <b>DHCPv4ServerOptValueList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ScopeType</b> is specified as DhcpSubnetOptions, retrieve
+the <b>DHCPv4Scope</b> entry corresponding to the <i>ScopeInfo</i> parameter
+from the server ADM element <b>DHCPv4ScopesList</b>. If the <b>DHCPv4Scope</b>
+entry is not present, free the memory allocated to the address pointed to by <i>Values</i>
+and return ERROR_DHCP_SUBNET_NOT_PRESENT. Otherwise retrieve <b>DHCPv4ScopeOptValueList</b>
+from the <b>DHCPv4Scope</b> entry.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ScopeType</b> is specified as DhcpMScopeOptions, retrieve
+the <b>DHCPv4MScope</b> entry corresponding to the <i>ScopeInfo</i> parameter
+from the server ADM element <b>DHCPv4MScopesList</b>. If the <b>DHCPv4MScope</b>
+entry is not present, free the memory allocated to the address pointed to by <i>Values</i>
+and return ERROR_DHCP_SUBNET_NOT_PRESENT. Otherwise retrieve <b>DHCPv4ScopeOptValueList</b>
+from the <b>DHCPv4MScope</b> entry.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ScopeType</b> is specified as DhcpReservedOptions, retrieve
+the <b>DHCPv4Scope</b> entry from the server ADM element <b>DHCPv4ScopesList</b>
+that contains the <i>ReservedIpAddress</i> field of the <i>ScopeInfo</i>
+parameter. Retrieve the <b>DHCPv4Reservation</b> entry from <b>DHCPv4Scope.DHCPv4ReservationsList</b>
+corresponding to the <i>ReservedIpAddress</i>.</p>
+<p>If the ReservedIpAddress is not
+part of <b>DHCPv4Scope</b>, or if there is no <b>DHCPv4Reservation</b>
+corresponding to <i>ReservedIpAddress</i>, free the memory allocated to the
+address pointed to by <i>Values</i> and return ERROR_DHCP_NOT_RESERVED_CLIENT.</p>
+<p>If the <b>DHCPv4Scope</b> entry is
+found and if <b>ScopeInfo.SubnetAddress</b> does not match with <i>ScopeInfo&#39;s </i><b>ReservedIpSubnetAddress</b>
+field, free the memory allocated to the address pointed to by <i>Values</i> and
+then return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+<p>Retrieve DHCPv4ResvOptValueList
+from the <b>DHCPv4Reservation</b> entry.</p>
+</li><li><p><span><span> 
+</span></span>Get the number of <b>DHCPv4OptionValue</b> objects in the
+retrieved list: <b>DHCPv4ServerOptValueList</b>, <b>DHCPv4ScopeOptValueList</b>,
+<b>DHCPv4MScopeOptValueList</b>, or <b>DHCPv4ResvOptValueList</b>. Allocate
+memory to Options whose size is equal to (2 * (number of <b>DHCPv4OptionValue</b>
+objects) * (size of the structure pointed to by <i>Options</i>)).</p>
+</li><li><p><span><span> 
+</span></span>For each <b>DHCPv4OptionValue</b> object in the retrieved list do
+the following:</p>
+<ul><li><p><span><span>  </span></span>Get
+the first two non-filled indices in the array pointed to by <i>Options</i>. Set
+<i>IsVendor</i> to FALSE for the first one and to TRUE for the second one. For
+both of them, allocate required memory to <i>ClassName</i> and <i>VendorName</i>
+and copy values in <b>DHCPv4OptionValue.UserClass</b> and <b>DHCPv4OptionValue.VendorClass</b>
+objects into them respectively. Also allocate memory to <i>OptionsArray</i>
+whose size is equal to the size of the data type <span><a href="313eaf77-256b-44d3-b303-8cca3f158939" data-linktype="relative-path">DHCP_OPTION_VALUE_ARRAY</a></span>
+for both of them. Initialize <i>NumElements</i> in <i>OptionsArray</i> to zero
+and <i>Values</i> to NULL.</p>
+</li><li><p><span><span>  </span></span>Go
+through each <b>DHCPv4ClassedOptValue</b> object in <b>DHCPv4ClassedOptValueList</b>
+and count the number of such objects that have <i>OptionId</i> less than or
+equal to 256. For the first non-filled index obtained above, set <i>NumElements</i>
+in <i>OptionsArray</i> equal to the count and allocate memory to <i>Values</i>
+in <i>OptionArray</i> whose size is equal to the size of the data type <span><a href="fa30c949-e063-4aea-b839-a6210e77741e" data-linktype="relative-path">DHCP_OPTION_VALUE</a></span>
+multiplied by the count. Copy the <b>DHCPv4ClassedOptValue</b> objects in <b>DHCPv4ClassedOptValueList</b>
+having <i>OptionId</i> less than or equal to 256 to <i>OptionsArray</i>.</p>
+</li><li><p><span><span>  </span></span>Go
+through each <b>DHCPv4ClassedOptValue</b> object in <b>DHCPv4ClassedOptValueList</b>
+and count the number of such objects that have <i>OptionId</i> greater than
+256. For the second non-filled index obtained above, set <i>NumElements</i> in <i>OptionsArray</i>
+equal to the count and allocate memory to Values in <i>OptionArray</i> whose
+size is equal to the size of the data type DHCP_OPTION_VALUE multiplied by the
+count. Copy the <b>DHCPv4ClassedOptValue</b> objects in <b>DHCPv4ClassedOptValueList</b>
+having  <i>OptionId</i> greater than 256 to <i>OptionsArray.</i></p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

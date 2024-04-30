@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The DS_REPL_CURSORS_3W structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span>
+cursor for a given <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_325d116f-cdbe-4dbd-b7e6-769ba75bf210" data-linktype="relative-path">NC replica</a></span>. This
+structure is a concrete representation of a sequence of <span><a href="8cb40d62-a51d-47e3-9b4e-0837edffd61c" data-linktype="relative-path">ReplUpToDateVector</a></span>
+values; it is a superset of <span><a href="40366a5b-9a48-465f-b7ac-03f56334f76d" data-linktype="relative-path">DS_REPL_CURSORS_2</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD cNumCursors;
+   DWORD dwEnumerationContext;
+   [size_is(cNumCursors)] DS_REPL_CURSOR_3W rgCursor[];
+ } DS_REPL_CURSORS_3W;
+</pre></div>
+</dd></dl><p><b>cNumCursors:</b>  The count of items in
+the <b>rgCursor</b> array.</p><p><b>dwEnumerationContext:</b>  The value a
+client uses to populate the <b>dwEnumerationContext</b> field of the request on
+a future call to <span><a href="dd29f9ce-b30b-411e-bd54-b77634eded47" data-linktype="relative-path">IDL_DRSGetReplInfo</a></span>
+to retrieve additional results.  For an informative description of the
+sequencing issues associated with this field, see section <span><a href="67c5a415-a6c7-4098-8cf3-6ef8d173cfe8" data-linktype="relative-path">1.3.2</a></span>.</p><p><b>rgCursor:</b>  A set of replication
+cursors.</p></div>

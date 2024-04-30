@@ -1,0 +1,131 @@
+<div class="content"><p> </p><p>The fax client application calls the <b>FAX_SetQueue (Opnum
+33)</b> method to change the state of the server <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>. In response,
+the server MUST validate whether the client&#39;s fax user account has
+authorization to set the <b>Queue State </b>of the server. On success, the
+server MUST set its <b>Queue State</b> as specified by the client. </p><dl>
+<dd>
+<div><pre> error_status_t FAX_SetQueue(
+   [in] handle_t hFaxHandle,
+   [in] const DWORD dwQueueStates
+ );
+</pre></div>
+</dd></dl><p><b>hFaxHandle: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>)
+or <b>FAX_ConnectionRefCount</b> (section <span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>) method
+call used to connect to the fax server.</p><p><b>dwQueueStates: </b>A pointer to a <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that contains state information about the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_0c5e7185-40c3-4e58-a8ac-7626ed078235" data-linktype="relative-path">fax queue</a></span>. If this
+value is zero, both the incoming and outgoing queues are unblocked. Otherwise,
+this value is a combination of one or more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FAX_INCOMING_BLOCKED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The fax service will not receive new incoming faxes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FAX_OUTBOX_BLOCKED</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The fax service will reject submissions of new
+  outgoing faxes to its queue.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FAX_OUTBOX_PAUSED</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The fax service will not dequeue and execute outgoing
+  fax jobs from its queue.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The client&#39;s fax user account does
+  not have the required FAX_ACCESS_MANAGE_CONFIG authorization for this
+  operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_OUTOFMEMORY</p>
+  <p>0x0000000E</p>
+  </td>
+  <td>
+  <p>The fax server cannot allocate sufficient memory for a
+  <b>FAX_EVENT_EX_1</b> (section <span><a href="425c3686-00b8-493d-bba5-d4ce677e47db" data-linktype="relative-path">2.2.68</a></span>) structure
+  that describes a <b>FAX_EVENT_QUEUE_TYPE_QUEUE_STATE</b> event to be signaled
+  to the client. For more details, see <b>FAX_ClientEventQueueEx</b> (section
+  <span><a href="d1ec6615-73e1-4c86-aef9-c738c71f08d1" data-linktype="relative-path">3.2.4.3</a></span>).
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. The <i>dwQueueStates</i>
+  parameter is set to a combination of values that does not contain any of the
+  supported values: <b>FAX_INCOMING_BLOCKED</b>, <b>FAX_OUTBOX_BLOCKED</b>, or <b>FAX_OUTBOX_PAUSED</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_REGISTRY_CORRUPT</p>
+  <p>0x000003F7</p>
+  </td>
+  <td>
+  <p>The registry is corrupted. The structure of one of the
+  files containing registry data is corrupted, or the system&#39;s memory image of
+  the file is corrupted, or the file could not be recovered because the
+  alternate copy or log was absent or corrupted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RPC_E_SYS_CALL_FAILED</p>
+  <p>0x80010100</p>
+  </td>
+  <td>
+  <p><i>dwQueueStates</i> includes the <b>FAX_OUTBOX_PAUSED</b>
+  value and the fax server cannot pause the server queue, or <i>dwQueueStates</i>
+  does not include the <b>FAX_OUTBOX_PAUSED</b> value and the fax server cannot
+  resume the server queue.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

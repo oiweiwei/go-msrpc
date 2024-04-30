@@ -1,0 +1,353 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/73d7a7d4-fef2-46e4-bd90-4c2e645094f3" data-linktype="external">msdn link</a></p><p>(Protocol Version 3) The ApiAddNotifyV2 method SHOULD<a id="Appendix_A_Target_123"></a><a aria-label="Product behavior note 123" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_123" data-linktype="relative-path">&lt;123&gt;</a> register for notifications
+for the object and type specified on an HNOTIFY_RPC context handle previously
+returned by a call to <a href="deeb2cd8-1135-4f9c-9f2b-824db8b44a5d" data-linktype="relative-path">ApiCreateNotifyV2 (section 3.1.4.2.136)</a>.
+Clients can use this method to register for multiple notifications for a given
+object in a single call. However, clients MUST call this method for every
+object for which it needs to receive notifications.</p><p>Clients MUST only call this method with an HNOTIFY_RPC
+handle returned by the ApiCreateNotifyV2 (section 3.1.4.2.136)
+method. The server MUST use the root key of the cluster registry as the key for
+which state and configuration changes are monitored if the object type
+specified in the <i>filter</i> parameter is CLUSTER_OBJECT_TYPE_REGISTRY.</p><p>If the filter includes the
+CLUSTER_CHANGE_REGISTRY_SUBTREE_V2 value, the server MUST extend the scope of
+monitoring to include all subkeys, all subkey security descriptors, and all
+values under the root key. The server MUST also report changes under the
+specified key and all subkeys.</p><p>The server SHOULD accept an ApiAddNotifyV2 request if its <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_a93e2fea-3006-4a06-b48f-fdb36d9abac9" data-linktype="relative-path">protocol server state</a> is
+read-only and MUST accept the request if its state is read/write, as specified
+in section <a href="756547e7-ca64-4b7c-9f1b-2b1fbc6153d3" data-linktype="relative-path">3.1.1</a>.</p><p>The server SHOULD accept an ApiAddNotifyV2 request if the
+client&#39;s access level is at least &#34;Read&#34; (section <a href="a249a463-3d3b-4058-abf6-3024d81806a0" data-linktype="relative-path">3.1.4</a>).</p><dl>
+<dd>
+<div><pre> error_status_t ApiAddNotifyV2(
+   [in] HNOTIFY_RPC hNotify,
+   [in] HGENERIC_RPC hObject,
+   [in] NOTIFY_FILTER_AND_TYPE_RPC filter,
+   [in] DWORD dwNotifyKey,
+   [in] DWORD dwVersion,
+   [in] BOOL isTargetedAtObject,
+   [out] error_status_t *rpc_status
+ );
+</pre></div>
+</dd></dl><p><b>hNotify: </b>An HNOTIFY_RPC context handle that
+was obtained in a previous call to ApiCreateNotifyV2 (section 3.1.4.2.136).</p><p><b>hObject: </b>A context handle. The type of handle
+depends on the value of the <i>filter</i> parameter.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Filter</p>
+   </th>
+   <th>
+   <p>Context handle</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_CLUSTER</p>
+  </td>
+  <td>
+  <p>An HCLUSTER_RPC context handle that was obtained from
+  a call to <a href="19800483-bf86-42ec-8dcc-9af3ed8339e8" data-linktype="relative-path">ApiOpenCluster (section 3.1.4.2.1)</a>
+  or <a href="00ce494d-0c74-44fd-8276-c73665cf616b" data-linktype="relative-path">ApiOpenClusterEx (section 3.1.4.2.116)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_QUORUM</p>
+  </td>
+  <td>
+  <p>An HCLUSTER_RPC context handle that was obtained from
+  a call to ApiOpenCluster (section 3.1.4.2.1) or
+  ApiOpenClusterEx (section 3.1.4.2.116).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_RESOURCE_TYPE</p>
+  </td>
+  <td>
+  <p>An HCLUSTER_RPC context handle that was obtained from
+  a call to ApiOpenCluster (section 3.1.4.2.1) or
+  ApiOpenClusterEx (section 3.1.4.2.116).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_GROUP</p>
+  </td>
+  <td>
+  <p>An HGROUP_RPC context handle that was obtained from a
+  call to <a href="6e23a55f-d94e-454c-9168-ed97840ad53c" data-linktype="relative-path">ApiOpenGroup (section 3.1.4.2.42)</a>,
+  <a href="f829f4e6-465d-4c77-a9da-74c531a299cd" data-linktype="relative-path">ApiOpenGroupEx (section 3.1.4.2.118)</a>,
+  or <a href="e02d79c2-ae0b-4812-8919-9f2dbc223eb6" data-linktype="relative-path">ApiCreateGroup (section 3.1.4.2.43)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_RESOURCE</p>
+  </td>
+  <td>
+  <p>An HRES_RPC context handle that was obtained from a
+  call to <a href="181f8de0-f518-4c5b-b98e-ddb18aa325ce" data-linktype="relative-path">ApiOpenResource (section 3.1.4.2.9)</a>,
+  <a href="6595931d-2fe5-4097-9270-f6bada5d9242" data-linktype="relative-path">ApiOpenResourceEx (section 3.1.4.2.119)</a>,
+  or <a href="bc6ca940-7177-4bef-9567-ae4a692a2ba5" data-linktype="relative-path">ApiCreateResource (section 3.1.4.2.10)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_NETWORK</p>
+  </td>
+  <td>
+  <p>An HNETWORK_RPC context handle that was obtained from
+  a call to <a href="dadcfc79-4a9d-4992-b416-4eb4a14fe0c3" data-linktype="relative-path">ApiOpenNetwork (section 3.1.4.2.81)</a>
+  or <a href="a7608585-2c80-44cf-99a0-94d818f6c5ec" data-linktype="relative-path">ApiOpenNetworkEx (section 3.1.4.2.120)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_NETWORK_INTERFACE</p>
+  </td>
+  <td>
+  <p>An HNETINTERFACE_RPC context handle that was obtained
+  from a call to <a href="03ed58e7-e724-459a-bd45-8344d60758b7" data-linktype="relative-path">ApiOpenNetInterface (section 3.1.4.2.92)</a>
+  or <a href="153dd985-2c75-4486-b98c-9b3f06bc6dc6" data-linktype="relative-path">ApiOpenNetInterfaceEx (section 3.1.4.2.121)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_NODE</p>
+  </td>
+  <td>
+  <p>An HNODE_RPC context handle that was obtained from a
+  call to <a href="8b8f2dd1-7ead-4467-baa8-402175c3f1e6" data-linktype="relative-path">ApiOpenNode (section 3.1.4.2.67)</a>
+  or <a href="a4e4a533-09b5-4b69-b4ae-3e5436ae2390" data-linktype="relative-path">ApiOpenNodeEx (section 3.1.4.2.117)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_REGISTRY</p>
+  </td>
+  <td>
+  <p>An HKEY_RPC context handle that was obtained from a
+  call to <a href="8b07215b-bf64-44cd-b6db-de347f237d25" data-linktype="relative-path">ApiGetRootKey (section 3.1.4.2.29)</a>,
+  <a href="74d389fd-e811-4372-8753-147c492e6bca" data-linktype="relative-path">ApiCreateKey (section 3.1.4.2.30)</a>,
+  or <a href="2afc42d3-a41c-40ce-911b-945f0e602ce0" data-linktype="relative-path">ApiOpenKey (section 3.1.4.2.31)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_SHARED_VOLUME</p>
+  </td>
+  <td>
+  <p>An <b>HCLUSTER_RPC</b> context handle that was
+  obtained from a call to <b>ApiOpenCluster</b> (section 3.1.4.2.1) or <b>ApiOpenClusterEx</b>
+  (section 3.1.4.2.116).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_SPACEPORT</p>
+  </td>
+  <td>
+  <p>An <b>HCLUSTER_RPC</b> context handle that was
+  obtained from a call to <b>ApiOpenCluster</b> or <b>ApiOpenClusterEx</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_UPGRADE</p>
+  </td>
+  <td>
+  <p>An <b>HCLUSTER_RPC</b> context handle that was
+  obtained from a call to <b>ApiOpenCluster</b> or <b>ApiOpenClusterEx</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_GROUPSET</p>
+  </td>
+  <td>
+  <p>An <b>HGROUPSET_RPC</b> context handle that was
+  obtained from a call to <b>ApiOpenGroupSet</b> (section <a href="89fae9f5-68cd-4eea-a823-3a4b01b398a8" data-linktype="relative-path">3.1.4.2.147</a>) or <b>ApiCreateGroupSet</b>
+  (section <a href="51dfd025-2196-43fb-960f-bceb42606d59" data-linktype="relative-path">3.1.4.2.146</a>).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>filter: </b>Identifies the notifications for the
+specified object type that the client is registering for. For details of the
+NOTIFY_FILTER_AND_TYPE_RPC structure, see section <a href="15725520-381d-43b7-9ed6-129dde1e86c7" data-linktype="relative-path">2.2.3.22</a>. Clients MUST set
+this structure with the object type, as specified in section <a href="d529b7a9-9f5b-4191-b093-dbb38ffa4277" data-linktype="relative-path">2.2.2.12</a>, and a bitwise-OR
+of flags from enumerations that correspond to the desired notifications. For
+some notifications, certain flags are disallowed.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Notification type</p>
+   </th>
+   <th>
+   <p>Enumeration</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_CLUSTER</p>
+  </td>
+  <td>
+  <p>CLUSTER_CHANGE_CLUSTER_V2 (section 2.2.2.12)</p>
+  <p>The client MUST NOT set the following flags: CLUSTER_CHANGE_CLUSTER_RECONNECT_V2,
+  CLUSTER_CHANGE_CLUSTER_HANDLE_CLOSE_V2, CLUSTER_CHANGE_CLUSTER_STATE_V2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_QUORUM</p>
+  </td>
+  <td>
+  <p><a href="50b36dc3-da43-40c1-a690-891deabd642f" data-linktype="relative-path">CLUSTER_CHANGE_QUORUM_V2 (section 2.2.2.20)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_RESOURCE_TYPE</p>
+  </td>
+  <td>
+  <p><a href="aec62676-9b9f-4d49-914c-dd3d5bd7fcb3" data-linktype="relative-path">CLUSTER_CHANGE_RESOURCE_TYPE_V2 (section 2.2.2.15)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_GROUP</p>
+  </td>
+  <td>
+  <p><a href="a4c12a3c-3c9b-4b81-ac40-79cb5018474a" data-linktype="relative-path">CLUSTER_CHANGE_GROUP_V2 (section 2.2.2.13)</a></p>
+  <p>The client MUST NOT set the
+  CLUSTER_CHANGE_GROUP_HANDLE_CLOSE_V2 flag.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_RESOURCE</p>
+  </td>
+  <td>
+  <p><a href="95b267da-b5d7-4788-acd0-1a0815579e61" data-linktype="relative-path">CLUSTER_CHANGE_RESOURCE_V2 (section 2.2.2.14)</a></p>
+  <p>The client MUST NOT set the CLUSTER_CHANGE_RESOURCE_HANDLE_CLOSE_V2
+  flag.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_NETWORK</p>
+  </td>
+  <td>
+  <p><a href="e6d7a85b-b667-420d-8b0a-7f2f738c6215" data-linktype="relative-path">CLUSTER_CHANGE_NETWORK_V2 (section 2.2.2.17)</a></p>
+  <p>The client MUST NOT set the
+  CLUSTER_CHANGE_NETWORK_HANDLE_CLOSE_V2 flag.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_NETWORK_INTERFACE</p>
+  </td>
+  <td>
+  <p><a href="866c77e9-f692-4ecb-982b-38b682895492" data-linktype="relative-path">CLUSTER_CHANGE_NETINTERFACE_V2 (section 2.2.2.16)</a></p>
+  <p>The client MUST NOT set the
+  CLUSTER_CHANGE_NETINTERFACE_HANDLE_CLOSE_V2 flag.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_NODE</p>
+  </td>
+  <td>
+  <p><a href="7db74409-6418-40f6-aa53-f323bdc6e346" data-linktype="relative-path">CLUSTER_CHANGE_NODE_V2 (section 2.2.2.18)</a></p>
+  <p>The client MUST NOT set the
+  CLUSTER_CHANGE_NODE_HANDLE_CLOSE_V2 flag.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_REGISTRY</p>
+  </td>
+  <td>
+  <p><a href="3ec56e14-7d7c-461a-95bf-9650d73876ff" data-linktype="relative-path">CLUSTER_CHANGE_REGISTRY_V2 (section 2.2.2.19)</a></p>
+  <p>The client MUST NOT set the
+  CLUSTER_CHANGE_REGISTRY_HANDLE_CLOSE_V2 flag.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_SHARED_VOLUME</p>
+  </td>
+  <td>
+  <p><a href="f84ad01b-d0e5-4dc1-945c-4c39d90fab13" data-linktype="relative-path">CLUSTER_CHANGE_SHARED_VOLUME_V2 (section 2.2.2.21</a>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_SPACEPORT</p>
+  </td>
+  <td>
+  <p><b>CLUSTER_CHANGE_SPACEPORT_V2</b> (section <a href="9da10263-2f20-4848-a7f6-a91c18e838d9" data-linktype="relative-path">2.2.2.25</a>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_UPGRADE</p>
+  </td>
+  <td>
+  <p><b>CLUSTER_CHANGE_NODE_UPGRADE_PHASE_V2</b> (section <a href="46981925-d4cd-4f9d-b1cb-15fc18dc6320" data-linktype="relative-path">2.2.2.26</a>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_OBJECT_TYPE_GROUPSET</p>
+  </td>
+  <td>
+  <p><b>CLUSTER_CHANGE_GROUPSET_V2</b> (section <a href="5ff3904d-93a2-4015-83f1-5b14e45cd998" data-linktype="relative-path">2.2.2.24</a>).</p>
+  <p>The client MUST NOT set the CLUSTER_CHANGE_GROUPSET_HANDLE_CLOSE_v2
+  flag.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwNotifyKey: </b>A 32-bit integer context value
+chosen by the client. This value MUST be returned to the client via a
+subsequent completion of the <a href="491227be-d055-4140-8b85-35cf29f31166" data-linktype="relative-path">ApiGetNotifyV2 (section 3.1.4.2.138)</a>
+method, if the name of the object pertaining to the event matches the name of
+the object indicated by the <i>hObject</i> parameter.</p><p><b>dwVersion: </b>Clients MUST set this value to 2.</p><p><b>isTargetedAtObject: </b>A value of TRUE indicates
+that the client is registering for notification for a particular object that it
+MUST specify in the <i>hObject</i> parameter. A value of FALSE indicates that
+the <i>hObject</i> parameter contains an HCLUSTER_RPC context handle that the
+client has previously obtained from a call to
+ApiOpenCluster (section 3.1.4.2.1) or
+ApiOpenClusterEx (section 3.1.4.2.116).</p><p><b>rpc_status: </b>A 32-bit integer used to indicate
+success or failure. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+runtime MUST indicate, by writing to this parameter, whether it succeeded in
+executing this method on the server. The encoding of the value passed in this
+parameter MUST conform to encoding for comm_status and fault_status, as
+specified in Appendix E of <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>Return Values: </b>This method MUST return one of
+the following error codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000006</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>Either the <i>hNotify</i> parameter does not represent
+  a valid HNOTIFY_RPC context handle, or the <i>hObject</i> parameter does not
+  represent a valid HGENERIC_RPC context handle, or both.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>Any of the following conditions:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>filter</i> parameter
+  contains invalid flags.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>filter</i> parameter
+  specifies an invalid object type.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>dwVersion</i> parameter
+  contains an invalid value.</span></p>
+  </li></ul><p> </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>For any other condition, the server returns a value that is
+not one of the values listed in the above table. The client MUST treat all
+values that are not listed in the preceding table identically, except for
+recoverable errors specified in section <a href="ca75805a-4b39-4074-8b5b-dbaae6e81b1f" data-linktype="relative-path">3.2.4.6</a>, for which the
+client SHOULD initiate the reconnect procedure.</p></div>

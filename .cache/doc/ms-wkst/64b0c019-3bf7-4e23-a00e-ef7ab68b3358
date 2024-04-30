@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The <b>WKSTA_INFO_1013</b> structure specifies details about
+the state of the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_09dbec39-5e75-4d9a-babf-1c9f1d499625" data-linktype="relative-path">SMB</a></span> <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_15c89cb5-6767-49e7-b461-66acaf6c06c8" data-linktype="relative-path">network
+redirector</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _WKSTA_INFO_1013 {
+   unsigned long wki1013_keep_conn;
+ } WKSTA_INFO_1013,
+  *PWKSTA_INFO_1013,
+  *LPWKSTA_INFO_1013;
+</pre></div>
+</dd></dl><p><b>wki1013_keep_conn:</b> The number of seconds the
+SMB network redirector maintains an inactive <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_e1d88514-18e6-4e2e-a459-20d5e17e9078" data-linktype="relative-path">SMB connection</a></span> to a
+remote computer’s resource before closing it.</p></div>

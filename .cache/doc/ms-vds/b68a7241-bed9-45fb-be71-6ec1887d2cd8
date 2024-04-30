@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The VDS_FILE_SYSTEM_TYPE_PROP structure provides information
+about a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file system</a></span> format.<a id="Appendix_A_Target_30"></a><a aria-label="Product behavior note 30" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_30" data-linktype="relative-path">&lt;30&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _VDS_FILE_SYSTEM_TYPE_PROP {
+   VDS_FILE_SYSTEM_TYPE type;
+   WCHAR wszName[8];
+   unsigned long ulFlags;
+   unsigned long ulCompressionFlags;
+   unsigned long ulMaxLabelLength;
+   [string] WCHAR* pwszIllegalLabelCharSet;
+ } VDS_FILE_SYSTEM_TYPE_PROP,
+  *PVDS_FILE_SYSTEM_TYPE_PROP;
+</pre></div>
+</dd></dl><p><b>type:</b>  A value from the <span><a href="81d04cc8-5492-442e-a0c4-86b7148140a3" data-linktype="relative-path">VDS_FILE_SYSTEM_TYPE</a></span>
+enumeration that indicates the file system <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_ea22e521-1a4e-4ceb-8d64-f65fa6d0e63b" data-linktype="relative-path">format</a></span> type.</p><p><b>wszName:</b>  A null-terminated Unicode
+name of the file system format, for example, <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_86f79a17-c0be-4937-8660-0cf6ce5ddc1a" data-linktype="relative-path">NTFS</a></span> or <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_6508b992-aee3-43e5-93a7-1de08f7e28d5" data-linktype="relative-path">FAT32</a></span>.</p><p><b>ulFlags:</b>  A combination of any
+values, by using a bitwise OR operator, that are defined in the <span><a href="2e9e6402-774d-46a1-bd67-dee28ee34f86" data-linktype="relative-path">VDS_FILE_SYSTEM_FLAG</a></span>
+enumeration.</p><p><b>ulCompressionFlags:</b>  A bitwise OR
+operator of any allocation units that are defined in the <span><a href="565ffe67-6e77-42f1-bd75-8c761b4138fd" data-linktype="relative-path">VDS_FILE_SYSTEM_PROP_FLAG</a></span>
+enumeration.</p><p><b>ulMaxLabelLength:</b>  The maximum
+allowable length of a label for the file system format. </p><p><b>pwszIllegalLabelCharSet:</b>  A
+null-terminated sequence of Unicode characters that are not allowed in the
+label of the file system format.</p></div>

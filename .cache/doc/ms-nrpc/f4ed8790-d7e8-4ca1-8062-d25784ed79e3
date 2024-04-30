@@ -1,0 +1,33 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/f4ed8790-d7e8-4ca1-8062-d25784ed79e3" data-linktype="external">msdn link</a></p><p>The <b>NL_IN_CHAIN_SET_CLIENT_ATTRIBUTES_V1</b> structure
+specifies the values to update on the client&#39;s computer account object in <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a> on a
+normal (writable) <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain
+controller</a>.<a id="Appendix_A_Target_41"></a><a aria-label="Product behavior note 41" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_41" data-linktype="relative-path">&lt;41&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _NL_IN_CHAIN_SET_CLIENT_ATTRIBUTES_V1 {
+   [unique, string] wchar_t* ClientDnsHostName;
+   [unique] NL_OSVERSIONINFO_V1* OsVersionInfo_V1;
+   [unique, string] wchar_t* OsName;
+ } NL_IN_CHAIN_SET_CLIENT_ATTRIBUTES_V1;
+</pre></div>
+</dd></dl><p><b>ClientDnsHostName:</b> A NULL or null-terminated <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> that is used
+to update the attribute <b>dNSHostName</b> on the client&#39;s computer account
+object in Active Directory.</p><p><b>OsVersionInfo_V1:</b> If not NULL, the attribute <b>operatingSystemVersion</b>
+on the client&#39;s computer account in Active Directory (using the ABNF Syntax as
+specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90323" data-linktype="external">[RFC2234]</a>)
+is set to:</p><ul><li><p><span><span>  </span></span>If
+OsVersionInfo_V1.dwBuildNumber is 0:</p>
+<div><pre>          operatingSystemVersion = MajorVersion &#34;.&#34; MinorVersion
+          MajorVersion = &#34;OsVersionInfo_V1.dwMajorVersion&#34;
+          MinorVersion = &#34;OsVersionInfo_V1.dwMinorVersion&#34;
+</pre></div>
+</li><li><p><span><span>  </span></span>Otherwise:</p>
+<div><pre>          operatingSystemVersion = MajorVersion &#34;.&#34; MinorVersion &#34;.&#34;
+                                   BuildNumber
+          MajorVersion = &#34;OsVersionInfo_V1.dwMajorVersion&#34;
+          MinorVersion = &#34;OsVersionInfo_V1.dwMinorVersion&#34;
+          BuildNumber = &#34;OsVersionInfo_V1.dwBuildNumber&#34;
+</pre></div>
+</li></ul><p><b>OsName:</b> A NULL or a null-terminated Unicode
+string that SHOULD<a id="Appendix_A_Target_42"></a><a aria-label="Product behavior note 42" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_42" data-linktype="relative-path">&lt;42&gt;</a> be used to update the attribute
+<b>operatingSystem</b> on the client&#39;s computer account object in Active
+Directory.</p></div>

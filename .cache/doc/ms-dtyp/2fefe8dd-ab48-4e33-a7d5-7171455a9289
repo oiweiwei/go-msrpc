@@ -1,0 +1,18 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/2fefe8dd-ab48-4e33-a7d5-7171455a9289" data-linktype="external">msdn link</a></p><p> The SYSTEMTIME structure is a date and time, in Coordinated
+Universal Time (UTC), represented by using individual <a href="f8573df3-a44a-4a50-b070-ac4c3aa78e3c" data-linktype="relative-path">WORD</a>-sized structure
+members for the month, day, year, day of week, hour, minute, second, and
+millisecond.</p><dl>
+<dd>
+<div><pre> typedef struct _SYSTEMTIME {
+   WORD wYear;
+   WORD wMonth;
+   WORD wDayOfWeek;
+   WORD wDay;
+   WORD wHour;
+   WORD wMinute;
+   WORD wSecond;
+   WORD wMilliseconds;
+ } SYSTEMTIME,
+  *PSYSTEMTIME;
+</pre></div>
+</dd></dl></div>

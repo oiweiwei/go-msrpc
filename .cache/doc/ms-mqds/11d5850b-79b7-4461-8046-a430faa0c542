@@ -1,0 +1,76 @@
+<div class="content"><p> </p><p>This method returns a list of <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_9da6f094-50ed-4640-9b01-0cc4f7681fbf" data-linktype="relative-path">Backup Site Controllers (BSCs)</a></span>
+associated with a specified site. The client calls this method to enumerate the
+BSCs associated with sites in the configured list of sites in the <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_7f2ba744-a8fa-4793-9e7a-c14471e313ff" data-linktype="relative-path">enterprise</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT S_DSCreateServersCache(
+   [in] handle_t hBind,
+   [in, out] unsigned long* pdwIndex,
+   [in, out, ptr, string] wchar_t** lplpSiteServers,
+   [in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth,
+   [out, size_is(*pdwServerSignatureSize)] 
+     unsigned char* pbServerSignature,
+   [in, out] LPBOUNDED_SIGNATURE_SIZE pdwServerSignatureSize
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST specify an <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle,
+as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>pdwIndex: </b> Pointer to an unsigned long that contains
+an index into the configured list of sites in the enterprise indicating the
+site to which the list of BSCs is to be returned.</p><p><b>lplpSiteServers: </b> Pointer to a pointer to a string
+that contains the list of servers associated with the indexed site. The string
+MUST be in <span><a href="5448873a-5fa3-41ff-87ad-96e341520cf3" data-linktype="relative-path">Server List
+String (section 2.2.17)</a></span> format.</p><p><b>phServerAuth: </b><span><a href="c28a1e6b-4092-4443-b69f-5814d5c4f9e4" data-linktype="relative-path">PCONTEXT_HANDLE_SERVER_AUTH_TYPE</a></span>
+RPC context handle acquired from the <i>pphServerAuth</i> parameter in a
+previous call to <span><a href="0e3ad7d0-6a64-480a-9f13-e94dd608d79d" data-linktype="relative-path">S_DSValidateServer</a></span>.
+The server MUST use this parameter as a key to locate the GSS security context
+used to compute the signature returned in <i>pbServerSignature</i>. See section
+3.1.4.2.</p><p><b>pbServerSignature: </b> MUST be set by the server to a
+buffer that contains a signed hash over the server list returned in <i>lplpSiteServers</i>.
+The server MUST construct this signature by creating a hash by using the <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_1535fdac-8d46-4605-96af-252907c4a593" data-linktype="relative-path">MD5</a></span>
+algorithm (as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90275" data-linktype="external">[RFC1321]</a></span>) and
+sealing it, as specified by the following pseudocode.</p><dl>
+<dd>
+<div><pre> Initialize an MD5 hash context
+ Add to the hash context the DWORD value 0x00000002
+  
+ Construct a PROPVARIANT apVar as follows
+ SET apVar.vt to VT_UI4
+ SET apVar.ulVal to the contents of pdwIndex
+  
+ Add to the hash context the property value apVar where 
+        the length is defined as appropriate for the variant type
+        apVar.vt
+  
+ Construct a PROPVARIANT apVar as follows
+ SET apVar.vt to VT_LPWSTR
+ SET apVar.pwszVal to the contents of lplpSiteServers
+      
+ Add to the hash context the property value apVar where 
+        the length is defined as appropriate for the variant type 
+        apVar.vt
+  
+ Call GSS_Wrap using the output_context_handle from GSS 
+        security context and the computed MD5 hash
+  
+ SET pbServerSignature to the wrapped MD5 hash
+ SET *pdwServerSignatureSize to the size of the wrapped MD5 hash
+  
+</pre></div>
+</dd></dl><p><b>pdwServerSignatureSize: </b> MUST be set by the client to
+point to an unsigned <span><a href="../ms-dtyp/29d44d70-382f-4998-9d76-8a1fe93e445c" data-linktype="relative-path">LONG</a></span>
+that contains the maximum length in bytes of the server signature to return.
+MUST be set by the server to the actual length in bytes of the server signature
+on output. If the server signature is larger than the supplied buffer, the
+server MUST return MQ_ERROR_USER_BUFFER_TOO_SMALL (0xC00E0028).</p><p><b>Return Values: </b> If the method succeeds, the return
+value is 0. If the method fails, the return value is an implementation-specific
+error code. The server MUST return MQDS_E_NO_MORE_DATA (0xC00E0523), if <i>pdwIndex</i>
+is an invalid index, into the configured list of sites in the enterprise.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>MQDS_E_NO_MORE_DATA</b> (0xC00E0523)</p><p><b>MQ_ERROR_USER_BUFFER_TOO_SMALL</b> (0xC00E0028)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC extension protocol, as specified in
+[MS-RPCE].</p><p>The S_DSCreateServersCache method returns information on
+Backup Site Controllers (BSCs) associated with sites in the enterprise. The
+client uses this method to iterate through the list of sites in the enterprise
+by calling the method repeatedly. Before the first invocation, the client sets
+the <i>pdwIndex</i> parameter to 0. After each successful invocation, the
+client increments the <i>pdwIndex</i> parameter by 1 and calls the method
+again. The client repeats this sequence until the method call returns an error.
+</p></div>

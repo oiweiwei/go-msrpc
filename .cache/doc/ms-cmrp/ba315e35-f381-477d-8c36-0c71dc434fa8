@@ -1,0 +1,277 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/ba315e35-f381-477d-8c36-0c71dc434fa8" data-linktype="external">msdn link</a></p><p>(Protocol Version 3) The ApiMoveGroupEx method SHOULD<a id="Appendix_A_Target_114"></a><a aria-label="Product behavior note 114" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_114" data-linktype="relative-path">&lt;114&gt;</a> instruct the server to move
+ownership of the specified group to another node in the cluster.</p><p>The server MUST handle this method in the same manner as <a href="7be857e6-dd01-4209-a0f6-3ca9dc6a6767" data-linktype="relative-path">ApiMoveGroup (section 3.1.4.2.52)</a>
+except as follows:</p><ul><li><p><span><span> 
+</span></span>If the CLUSAPI_GROUP_MOVE_IGNORE_RESOURCE_STATUS flag is set in
+the <i>dwMoveFlags</i> parameter, the server MUST ignore the locked mode value
+of the group designated by the <i>hGroup</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>If the CLUSAPI_GROUP_MOVE_RETURN_TO_SOURCE_NODE_ON_ERROR flag is
+set in the <i>dwMoveFlags</i> parameter, and if the designated group cannot be
+brought to its persistent state on the destination node selected by the server,
+the server MUST move the group back to the source node and bring the group to
+its persistent state on the source node.</p>
+</li><li><p><span><span> 
+</span></span>If the CLUSAPI_GROUP_MOVE_QUEUE_ENABLED flag is set in the <i>dwMoveFlags</i>
+parameter, and if server implementation-specific policies preclude the move
+operation from proceeding, the server MUST retry the move operation until
+either the move succeeds, or the move fails due to a different reason, or the
+move is canceled.</p>
+</li><li><p><span><span> 
+</span></span>If the CLUSAPI_GROUP_MOVE_HIGH_PRIORITY_START flag is set in the <i>dwMoveFlags</i>
+parameter, then on the destination node when bringing the group to its
+persistent state, the server SHOULD bring this group to its persistent state as
+soon as possible, regardless of other implementation-specific policies that
+govern the ordering and/or prioritization of bringing groups to their
+persistent states.</p>
+</li><li><p><span><span> 
+</span></span>If the CLUSAPI_GROUP_MOVE_FAILBACK flag is set in the <i>dwMoveFlags</i>
+parameter, and if move group operation fails, the server MUST perform failback
+operation.</p>
+</li><li><p><span><span> 
+</span></span>If the CLUSAPI_GROUP_MOVE_IGNORE_AFFINITY_RULE flag is set in the
+<i>dwMoveFlags</i> parameter, the server MUST ignore the affinity rule of the
+group designated by the <i>hGroup</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>For each resource contained in the group designated by <i>hGroup</i>
+that is in the state ClusterResourceOnline (section <a href="cac947fb-7066-4d0c-b76d-7d26a89a2d46" data-linktype="relative-path">3.1.4.2.13</a>), the server
+MUST provide the buffer designated by the lpInBuffer parameter to the server
+implementation-specific object that controls the resource operation while
+bringing the resource offline on the current node and when bringing the
+resource online on the destination node. How the server provides this buffer is
+implementation-specific.</p>
+</li></ul><p>The server accepts an ApiMoveGroupEx request only if it is
+in the read/write state, as specified in section <a href="756547e7-ca64-4b7c-9f1b-2b1fbc6153d3" data-linktype="relative-path">3.1.1</a>.</p><p>The server MUST require that the access level associated
+with the <i>hGroup</i> parameter is &#34;All&#34; (section <a href="a249a463-3d3b-4058-abf6-3024d81806a0" data-linktype="relative-path">3.1.4</a>).</p><dl>
+<dd>
+<div><pre> error_status_t ApiMoveGroupEx(
+   [in] HGROUP_RPC hGroup,
+   [in] DWORD dwMoveFlags,
+   [in, size_is(cbInBufferSize)] BYTE* lpInBuffer,
+   [in] DWORD cbInBufferSize,
+   [out] error_status_t *rpc_status
+ );
+</pre></div>
+</dd></dl><p><b>hGroup: </b>An HGROUP_RPC context handle that was
+obtained in a previous call to <a href="6e23a55f-d94e-454c-9168-ed97840ad53c" data-linktype="relative-path">ApiOpenGroup (section 3.1.4.2.42)</a>,
+<a href="f829f4e6-465d-4c77-a9da-74c531a299cd" data-linktype="relative-path">ApiOpenGroupEx (section 3.1.4.2.118)</a>,
+or <a href="e02d79c2-ae0b-4812-8919-9f2dbc223eb6" data-linktype="relative-path">ApiCreateGroup (section 3.1.4.2.43)</a>.</p><p><b>dwMoveFlags: </b>A bitwise-OR of zero or more of
+the following flags, with the exception that
+CLUSAPI_GROUP_MOVE_IGNORE_RESOURCE_STATUS and CLUSAPI_GROUP_MOVE_QUEUE_ENABLED
+cannot be specified together and MUST be rejected by the server with the error
+0x00000057 (ERROR_INVALID_PARAMETER).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  <p>CLUSAPI_GROUP_MOVE_IGNORE_RESOURCE_STATUS</p>
+  </td>
+  <td>
+  <p>The server MUST ignore the group locked mode as
+  specified in section <a href="2cec8d2a-040c-4741-8bf0-ecd4b33de67f" data-linktype="relative-path">3.1.1.1.4</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  <p>CLUSAPI_GROUP_MOVE_RETURN_TO_SOURCE_NODE_ON_ERROR</p>
+  </td>
+  <td>
+  <p>If the designated group cannot be brought to its
+  persistent state on the destination node selected by the server, the server MUST
+  move the group back to the source node and bring the group to its persistent
+  state on the source node.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  <p>CLUSAPI_GROUP_MOVE_QUEUE_ENABLED</p>
+  </td>
+  <td>
+  <p>If server implementation-specific policies preclude
+  the move operation from proceeding, the server MUST retry the move operation
+  until either the move succeeds, or the move fails due to a different reason,
+  or the move is canceled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  <p>CLUSAPI_GROUP_MOVE_HIGH_PRIORITY_START</p>
+  </td>
+  <td>
+  <p>When bringing the group to its persistent state on the
+  destination node, the server SHOULD bring this group to its persistent state
+  as soon as possible without regard to implementation-specific policies that
+  govern the ordering and/or prioritization of bringing groups to their
+  persistent states.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSAPI_GROUP_MOVE_FAILBACK</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>If move group operation fails, the server MUST perform
+  failback operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSAPI_GROUP_MOVE_IGNORE_AFFINITY_RULE</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The server MUST ignore the affinity rule while
+  performing move group operation.<a id="Appendix_A_Target_115"></a><a aria-label="Product behavior note 115" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_115" data-linktype="relative-path">&lt;115&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>lpInBuffer: </b>A pointer to a buffer that the
+server will provide to implementation-specific objects that control the
+resource operations for each resource in the group. The client SHOULD set this
+parameter to a <a href="7ed348f2-eddf-4c3f-a1cb-b651ec3cff92" data-linktype="relative-path">PROPERTY_LIST (section 2.2.3.10)</a>.
+For each value in this list, the client sets the property name to the name of
+the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_597fe367-f504-4295-9ed9-92cd892796cd" data-linktype="relative-path">resource type</a> of one
+of the resources in the group. The client MAY provide a buffer that does not
+have a property value corresponding to each resource type in the group, and the
+client MAY provide a buffer that has multiple property values for the same
+resource type. Except for the following property values, the server MUST treat
+all property values provided by the client identically.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Property Name</p>
+   </th>
+   <th>
+   <p>CLUSTER_PROPERTY_FORMAT</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Virtual Machine</p>
+  </td>
+  <td>
+  <p>CLUSPROP_FORMAT_DWORD</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>For a resource of resource type &#34;Virtual
+  Machine&#34; in the group that is in the ClusterResourceOnline state
+  (section 3.1.4.2.13), the server MUST turn off the corresponding virtual
+  machine on the source node of the move operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Virtual Machine</p>
+  </td>
+  <td>
+  <p>CLUSPROP_FORMAT_DWORD</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>For a resource of resource type &#34;Virtual
+  Machine&#34; in the group that is in the ClusterResourceOnline state
+  (section 3.1.4.2.13), the server MUST save the corresponding virtual machine
+  on the source node of the move operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Virtual Machine</p>
+  </td>
+  <td>
+  <p>CLUSPROP_FORMAT_DWORD</p>
+  </td>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>For a resource of resource type &#34;Virtual
+  Machine&#34; in the group that is in the ClusterResourceOnline state
+  (section 3.1.4.2.13), the server MUST shut down the corresponding virtual
+  machine on the source node of the move operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Virtual Machine</p>
+  </td>
+  <td>
+  <p>CLUSPROP_FORMAT_DWORD</p>
+  </td>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>For a resource of resource type &#34;Virtual
+  Machine&#34; in the group that is in the ClusterResourceOnline state
+  (section 3.1.4.2.13), the server MUST forcibly shut down the corresponding
+  virtual machine on the source node of the move operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Virtual Machine</p>
+  </td>
+  <td>
+  <p>CLUSPROP_FORMAT_DWORD</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>For a resource of resource type &#34;Virtual
+  Machine&#34; in the group that is in the ClusterResourceOnline state
+  (section 3.1.4.2.13), the server MUST migrate the corresponding virtual
+  machine to a destination node chosen by the server.</p>
+  <p>If the client includes this property value in the <i>lpInBuffer</i>
+  parameter, the client SHOULD also enable the
+  CLUSAPI_GROUP_MOVE_RETURN_TO_SOURCE_NODE_ON_ERROR,
+  CLUSAPI_GROUP_MOVE_QUEUE_ENABLED, and CLUSAPI_GROUP_MOVE_HIGH_PRIORITY_START
+  flags in the <i>dwMoveFlags</i> parameter.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cbInBufferSize: </b>The size in bytes of the
+buffer pointed to by the <i>lpInBuffer</i> parameter.</p><p><b>rpc_status: </b>A 32-bit integer used to indicate
+success or failure. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+runtime MUST indicate, by writing to this parameter, whether it succeeded in
+executing this method on the server. The encoding of the value passed in this
+parameter MUST conform to encoding for comm_status and fault_status, as specified
+in Appendix E of <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>Return Values: </b>This method MUST return the
+same error codes as specified for ApiMoveGroup (section 3.1.4.2.52),
+in addition to the following return value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The client included both the
+  CLUSAPI_GROUP_MOVE_IGNORE_RESOURCE_STATUS and
+  CLUSAPI_GROUP_MOVE_QUEUE_ENABLED flags in the <i>dwMoveFlags</i> parameter.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

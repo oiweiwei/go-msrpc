@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/4a896c09-a39c-4878-94f0-9e4f8a419f32" data-linktype="external">msdn link</a></p><p>The <b>STRING</b> structure contains the length, the maximum
+length, and a pointer to a buffer containing the string.</p><dl>
+<dd>
+<div><pre> typedef struct _STRING {
+   USHORT Length;
+   USHORT MaximumLength;
+   [size_is(MaximumLength), length_is(Length)] 
+     CHAR * Buffer;
+ } STRING,
+  *PSTRING;
+</pre></div>
+</dd></dl><p><b>Length:</b> The length of the data pointed to by <b>Buffer</b>,
+in bytes.</p><p><b>MaximumLength:</b> The total allocated length of
+the data pointed to by <b>Buffer</b>, in bytes.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><p><b>Buffer:</b> A pointer to a buffer containing the
+character string.</p></div>

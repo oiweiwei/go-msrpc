@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_ENUM_SCOPE_LIST</b> structure<a id="Appendix_A_Target_89"></a><a aria-label="Product behavior note 89" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_89" data-linktype="relative-path">&lt;89&gt;</a> contains the list of <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_b20e1dd4-e2fb-44d4-8508-9d9c8ac7ebd7" data-linktype="relative-path">server
+scopes</a></span> configured on the DNS server.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcEnumScopeList {
+   DWORD dwRpcStructureVersion;
+   DWORD dwScopeCount;
+   LPWSTR ScopeArray[1];
+ } DNS_RPC_ENUM_SCOPE_LIST,
+  *PDNS_RPC_ENUM_SCOPE_LIST;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The DNS management
+structure version number. This value MUST be set to 0x00000000.</p><p><b>dwScopeCount:</b> The number of server scopes.</p><p><b>ScopeArray:</b> An array containing the names of
+server scopes.</p></div>

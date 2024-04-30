@@ -1,0 +1,33 @@
+<div class="content"><p> </p><p>The TASK_INFO structure provides information about a task on
+the server.</p><dl>
+<dd>
+<div><pre> struct taskinfo {
+   LdmObjectId id;
+   LdmObjectId storageId;
+   LONGLONG createTime;
+   LdmObjectId clientID;
+   unsigned long percentComplete;
+   REQSTATUS status;
+   DMPROGRESS_TYPE type;
+   HRESULT error;
+   unsigned long tflag;
+ };
+ typedef struct taskinfo TASK_INFO
+</pre></div>
+</dd></dl><p><b>id:</b>  Specifies the OID for the task.</p><p><b>storageId:</b>  Specifies the OID of the
+object associated with the task.</p><p><b>createTime:</b>  Unused. This field MUST
+be set to 0 by servers and ignored by clients.</p><p><b>clientID:</b>  Specifies the OID of the
+client that requested the task.</p><p><b>percentComplete:</b>  Percentage of the
+task that is complete. This field MUST be between 0 and 100, inclusive.</p><p><b>status:</b>  Specifies the status of the
+request.</p><p><b>type:</b>  Specifies the kind of
+operation referred to by the <b>percentComplete</b> member. For more
+information, see section <span><a href="0fb0a211-01c5-4a2b-93cc-a8a9a667f8b7" data-linktype="relative-path">2.2.18</a></span>.</p><p><b>error:</b>  The <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path"><span>HRESULT</span></a> error if the
+value of the <b>status</b> member is REQ_FAILED.</p><p><b>tflag:</b>  Unused. This field MUST be
+set to 0 by servers and ignored by clients.</p><p>A TASK_INFO structure is returned by all Disk Management
+methods that perform configuration operations. The TASK_INFO structure provides
+information about the task that is being performed by the server in response to
+the request. The <b>id</b> member of this structure identifies this task from
+all other tasks being performed by the server. Notifications received by the
+client as a task progresses can be associated with the original request by
+comparing the <b>taskId</b> member of the notification structure with the <b>id</b>
+member of this structure. </p></div>

@@ -1,0 +1,19 @@
+<div class="content"><p>RpcScheduleJob does not perform any function, but returns a
+nonzero Windows error code to indicate failure.</p><dl>
+<dd>
+<div><pre> DWORD RpcScheduleJob(
+   [in] PRINTER_HANDLE hPrinter,
+   [in] DWORD JobId
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object that
+was opened using <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter</a>,
+<a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx</a>, <a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter</a>, or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx</a>.</p><p><b>JobId: </b>The identifier of the print job.</p><p><b>Return Values: </b>This method MUST return a
+nonzero Windows error code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server SHOULD validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps specified in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE
+Parameters (section 3.1.4.1.11)</a>.</p>
+</li></ul><p>If parameter validation fails, the server SHOULD fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST return ERROR_SPL_NO_ADDJOB.</p><p>This method MUST be implemented to ensure compatibility with
+protocol clients.</p></div>

@@ -1,0 +1,30 @@
+<div class="content"><p> </p><p>The VDS_IPADDRESS structure defines an IP address and port.<a id="Appendix_A_Target_41"></a><a aria-label="Product behavior note 41" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_41" data-linktype="relative-path">&lt;41&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _VDS_IPADDRESS {
+   VDS_IPADDRESS_TYPE type;
+   unsigned long ipv4Address;
+   unsigned char ipv6Address[16];
+   unsigned long ulIpv6FlowInfo;
+   unsigned long ulIpv6ScopeId;
+   WCHAR wszTextAddress[256 + 1];
+   unsigned long ulPort;
+ } VDS_IPADDRESS;
+</pre></div>
+</dd></dl><p><b>type:</b>  The type of address as
+enumerated by <span><a href="b2c24d65-ab4c-4975-ad50-51a2a95c995b" data-linktype="relative-path">VDS_IPADDRESS_TYPE</a></span>.</p><p><b>ipv4Address:</b>  If the type member is
+VDS_IPT_IPV4, this member contains the binary IPv4 address in network byte
+order. The field 3 (last octet) byte value is contained in bits 0 through 7.
+The byte value for field 2 is contained in bits 8 through 15. The byte value
+for field 1 is contained in bits 16 through 23. The byte value for field 0 is
+contained in bits 24 through 31. Otherwise, this value is ignored.</p><p><b>ipv6Address:</b>  If the type member is
+VDS_IPT_IPV6, this member contains the binary IPv6 address in network byte
+order. Otherwise, this value is ignored.</p><p><b>ulIpv6FlowInfo:</b>  If the type member
+is VDS_IPT_IPV6, this member contains the flow information as defined in IPv6.
+Otherwise, this value is ignored.</p><p><b>ulIpv6ScopeId:</b>  If the type member
+is VDS_IPT_IPV6, this member contains the scope ID as defined in IPv6.
+Otherwise, this value is ignored.</p><p><b>wszTextAddress:</b>  If the type member
+is VDS_IPT_TEXT, this member contains the null-terminated Unicode text address,
+which is either a DNS address, an IPv4 dotted address, or an IPv6 hexadecimal
+address. Otherwise, this value is ignored.</p><p><b>ulPort:</b>  If the type member is
+VDS_IPT_IPV4, VDS_IPT_IPV6, or VDS_IPT_TEXT, this member contains the TCP port
+number. Otherwise, this value is ignored.</p></div>

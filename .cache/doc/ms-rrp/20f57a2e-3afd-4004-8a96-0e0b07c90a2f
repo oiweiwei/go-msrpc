@@ -1,0 +1,110 @@
+<div class="content"><p> </p><p>The BaseRegReplaceKey method is called by the client. In
+response, the server MUST read the <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_2d67ea57-10e6-422f-985e-694834945a02" data-linktype="relative-path">registry</a></span> information
+from the specified file and replace the specified key with the content of the
+file. When the system is started again, the key and subkeys have the same
+values as those in the specified file.</p><dl>
+<dd>
+<div><pre> error_status_t BaseRegReplaceKey(
+   [in] RPC_HKEY hKey,
+   [in] PRRP_UNICODE_STRING lpSubKey,
+   [in] PRRP_UNICODE_STRING lpNewFile,
+   [in] PRRP_UNICODE_STRING lpOldFile
+ );
+</pre></div>
+</dd></dl><p><b>hKey: </b>A handle to a key that MUST have been
+opened previously by using one of the open methods that are specified in
+section <span><a href="053e8515-dbae-47ea-a7c6-6dc054e3a48f" data-linktype="relative-path">3.1.5</a></span>: <span><a href="956a3052-6580-43ee-91aa-aaf61726149b" data-linktype="relative-path">OpenClassesRoot</a></span>,
+<span><a href="ec140ed9-4d00-4c03-a15c-c7245a497ed5" data-linktype="relative-path">OpenCurrentUser</a></span>,
+<span><a href="6cef29ae-21ba-423f-9158-05145ac80a5b" data-linktype="relative-path">OpenLocalMachine</a></span>,
+<span><a href="7b514c63-6cad-4fe1-9780-743959e377e6" data-linktype="relative-path">OpenPerformanceData</a></span>,
+<span><a href="694e57f4-da3e-4285-8b71-3181d71d6cd1" data-linktype="relative-path">OpenUsers</a></span>,
+<span><a href="c7186ae2-1c82-45e9-933b-97d9873657e8" data-linktype="relative-path">BaseRegCreateKey</a></span>,
+<span><a href="8cb48f55-19e1-4ea2-8d76-dd0f6934f0d9" data-linktype="relative-path">BaseRegOpenKey</a></span>,
+<span><a href="160767d7-83cf-4718-a4f3-d864faee3bb1" data-linktype="relative-path">OpenCurrentConfig</a></span>,
+<span><a href="44954f6d-ef2c-4ec1-a27d-32b9b87e3c8a" data-linktype="relative-path">OpenPerformanceText</a></span>,
+<span><a href="3626fa8a-b20f-4243-bf85-cdb615ed2ca0" data-linktype="relative-path">OpenPerformanceNlsText</a></span>.</p><p><b>lpSubKey:</b> A pointer to an <span><a href="c0c90f11-a4c4-496a-ac09-8a8a3697ceef" data-linktype="relative-path">RRP_UNICODE_STRING</a></span>
+structure that MUST either contain the name of the key whose subkeys and values
+are replaced by this method (as specified in section <span><a href="508e3d3e-1225-4075-be04-67680ea80497" data-linktype="relative-path">3.1.1</a></span>), or be NULL.</p><p><b>lpNewFile: </b>A pointer to an RRP_UNICODE_STRING
+structure that MUST contain a registry file name with the registration
+information, as specified in section 3.1.1. The format of the file name is
+implementation-specific, but both <i>lpNewFile</i> and <i>lpOldFile</i> SHOULD<a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="85f43046-e27d-4122-93ba-bc278f986fbe#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a> be in the same format.</p><p><b>lpOldFile: </b>A pointer to an RRP_UNICODE_STRING
+structure that MUST contain the registry file name that receives a backup copy
+of the replaced registry information. The format of the file name is
+implementation-specific, but is in the same format as <i>lpNewFile</i>.</p><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000013</p>
+  <p>ERROR_WRITE_PROTECT</p>
+  </td>
+  <td>
+  <p>A read or write operation was attempted to a volume
+  after it was dismounted. The server can no longer service registry requests
+  because server shutdown has been initiated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000011</p>
+  <p>ERROR_NOT_SAME_DEVICE</p>
+  </td>
+  <td>
+  <p>The file indicated by <i>lpOldFile</i> is not on the
+  same physical volume as the file indicated by <i>lpNewFile</i>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Server Operations</p><p>The server MUST delete the <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_a5a62cd8-d275-44c1-bf4d-af707404db1e" data-linktype="relative-path">subkeys</a></span> and values
+specified by <i>lpSubKey</i> even if the subkeys to be deleted are already in
+use and initialized in the Data Store before the deletion happens. The delete
+function will be successful even if other handles are open to the key. The data
+inside the hive is revoked at delete key time and is not deferred until the
+last handle close operation.</p><p>The file specified by the <b>BaseRegReplaceKey</b> method is
+used as a registry hive, and its contents are loaded into the registry,
+replacing the existing key and subkeys. The top-level key of the file replaces
+the key specified in the method.</p><p>If the registry server can no longer service registry
+requests because server shutdown has been initiated (<b>SHUTDOWNINPROGRESS</b>
+is set to TRUE), the server MUST return ERROR_WRITE_PROTECT.</p><p>In response to this request from the client, for a
+successful operation, the server MUST replace the file that backs up the
+specified registry key and all its subkeys with another file.</p><p>The key that is specified by <i>lpSubKey</i> in the request
+MUST be a subkey of the key that is identified by the <i>hKey</i> parameter. If
+the specified key is not the root of the tree, the server MUST traverse up the
+tree structure until it encounters the root. After the root is found, the
+server MUST replace the resulting contents of that traversal (starting at the
+root) by using the contents of the backing store that is specified by <i>lpNewFile</i>,
+which results in the root key specified in <i>lpNewFile</i> becoming the new
+root of the <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_0e82f121-9fab-40e4-a8d9-aee009aa57b9" data-linktype="relative-path">hive</a></span>. (For instance
+in a hive with Red-&gt;White-&gt;Blue, if White is the <i>lpSubKey</i>
+parameter, and the backing store contains Alpha-&gt;Beta-&gt;Gamma, the server
+MUST first traverse up to the root of the hive Red and then replace that with
+Alpha-&gt;Beta-&gt;Gamma).</p><p>If <i>lpSubKey</i> is NULL, the server MUST replace the file
+that is backing up the <i>hKey</i> parameter. Changes to the registry
+information take effect after restarting the computer.</p><p>If the file indicated by <i>lpNewFile</i> does not exist,
+the server MUST fail the method and return ERROR_FILE_NOT_FOUND.</p><p>If the file that receives the backup copy of the replaced
+registry information indicated by <i>lpOldFile</i> already exists, the server
+MUST fail the method and return ERROR_ALREADY_EXISTS.</p><p>The server MUST store a backup copy of the replaced registry
+information in the file that is pointed to by the <i>lpOldFile</i> parameter.</p><p>The server SHOULD<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="85f43046-e27d-4122-93ba-bc278f986fbe#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a> check for
+a location relationship between the files to protect against malicious or
+accidental change while in use, and to ensure ready access.</p><p>The server MUST return 0 to indicate success, or an
+appropriate error code (as specified in [MS-ERREF]) to indicate an error.</p><p>If any of the parameters <i>lpNewFile</i>, <i>lpOldFile</i>,
+or <i>lpSubKey</i> are NULL or reference a buffer that is NULL, the server MUST
+return ERROR_INVALID_PARAMETER.</p></div>

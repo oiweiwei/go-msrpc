@@ -1,0 +1,12 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/dc0d27ac-5218-4709-9d1b-cab6f6d90b10" data-linktype="external">msdn link</a></p><p>The GROUP_MEMBERSHIP structure holds information on a group
+membership.</p><dl>
+<dd>
+<div><pre> typedef struct _GROUP_MEMBERSHIP {
+   unsigned long RelativeId;
+   unsigned long Attributes;
+ } GROUP_MEMBERSHIP,
+  *PGROUP_MEMBERSHIP;
+</pre></div>
+</dd></dl><p><b>RelativeId:</b>  A <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RID</a> that represents one
+membership value.</p><p><b>Attributes:</b>  Characteristics about
+the membership represented as a bitmask. Values are defined in section <a href="9e093bd2-e451-4dd5-9700-97b977d7ebb2" data-linktype="relative-path">2.2.1.10</a>.</p></div>

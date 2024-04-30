@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The BYTE_SIZEDARR structure specifies a BYTE array.</p><dl>
+<dd>
+<div><pre> typedef struct _BYTE_SIZEDARR {
+   unsigned long clSize;
+   [size_is(clSize)] byte* pData;
+ } BYTE_SIZEDARR;
+</pre></div>
+</dd></dl><p><b>clSize:</b>  MUST be set to the total
+number of elements in the array. This MUST be nonzero.</p><p><b>pData:</b>  MUST be an array of BYTEs.</p><p>Data of this type MUST be marshaled as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+section 14, with the exception that it MUST be marshaled by using a
+little-endian data representation, regardless of the data representation format
+label. For more information, see [C706] section 14.2.5.</p></div>

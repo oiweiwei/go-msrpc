@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p>The Ping method performs a request response test (ping) to
+the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT Ping(
+   [in, string, unique, range(1, 1536)] wchar_t const * pwszAuthority
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>A null-terminated <span><a href="https://go.microsoft.com/fwlink/?LinkId=90550" data-linktype="external">[UNICODE]</a></span>
+string that MUST contain the name of the CA. The CA name MUST be the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_a86706d6-bcdf-4107-be38-d2f08a7eaa68" data-linktype="relative-path">CN</a></span>
+value in the <b>Subject</b> field of the CA <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_6a2366ee-fc9c-4406-963d-eac335ed8fc5" data-linktype="relative-path">signing certificates</a></span>
+or its <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_de084567-c0d0-4b19-8612-aa88b38ef7c8" data-linktype="relative-path">sanitized name</a></span>. The
+sanitized names algorithm is specified in section <span><a href="bb738507-c9c3-4175-baf2-fe21f17c076c" data-linktype="relative-path">3.1.1.4.1.1</a></span>.</p><p><b>Return Values: </b>For a successful invocation,
+the CA MUST return 0; otherwise, the CA MUST return a nonzero value.</p><p>The processing rules for this method are as follows.</p><p>If Config_CA_Interface_Flags contains the value
+IF_NOREMOTEICERTREQUEST, the server SHOULD return 0x80094011
+(CERTSRV_E_ENROLL_DENIED) to the client.<a id="Appendix_A_Target_84"></a><a aria-label="Product behavior note 84" href="c8bec234-0a53-4a7c-859d-2bb7b2537da5#Appendix_A_84" data-linktype="relative-path">&lt;84&gt;</a></p><p>If Config_CA_Interface_Flags contains the value
+IF_ENFORCEENCRYPTICERTREQUEST and the RPC_C_AUTHN_LEVEL_PKT_PRIVACY
+authentication level, as defined in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/425a7c53-c33a-4868-8e5b-2a850d40dc73" data-linktype="relative-path">2.2.1.1.8</a></span>,
+is not specified on the RPC connection from the client, the CA MUST refuse to
+establish a connection with the client by returning a nonzero error.<a id="Appendix_A_Target_85"></a><a aria-label="Product behavior note 85" href="c8bec234-0a53-4a7c-859d-2bb7b2537da5#Appendix_A_85" data-linktype="relative-path">&lt;85&gt;</a></p><p>Upon receiving this invocation, the CA MUST verify the CA
+name that is passed in the <i>pwszAuthority</i> parameter by invoking the
+processing rules in section <span><a href="a7fdfc72-b1e0-4882-93da-9aefdf468b83" data-linktype="relative-path">3.2.1.4.2.1.1</a></span> with
+the <i>CANameString</i> input parameter set to the CA name passed in the <i>pwszAuthority</i>
+parameter and the <i>EmptyNameAllowed</i> input parameter set to true. If false
+is returned, the CA MUST return the E_INVALIDARG (0x80070057) error code to the
+client. </p></div>

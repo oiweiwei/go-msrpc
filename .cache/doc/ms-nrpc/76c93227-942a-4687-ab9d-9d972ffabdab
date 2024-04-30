@@ -1,0 +1,16 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/76c93227-942a-4687-ab9d-9d972ffabdab" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_AUTHENTICATOR</b> structure defines an
+authentication <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b505ab37-868d-426c-bb19-af21e675e0b8" data-linktype="relative-path">credential</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_AUTHENTICATOR {
+   NETLOGON_CREDENTIAL Credential;
+   DWORD Timestamp;
+ } NETLOGON_AUTHENTICATOR,
+  *PNETLOGON_AUTHENTICATOR;
+</pre></div>
+</dd></dl><p><b>Credential:</b> A <b>NETLOGON_CREDENTIAL</b>
+(section <a href="d55e2632-7163-4f6c-b662-4b870e8cc1cd" data-linktype="relative-path">2.2.1.3.4</a>)
+structure that contains the encrypted portion of the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e72a2c02-84a2-4ce3-b66f-86f725642dc3" data-linktype="relative-path">authenticator</a>.</p><p><b>Timestamp:</b> An integer value that contains the
+time of day at which the client constructed this authentication credential,
+represented as the number of elapsed seconds since 00:00:00 of January 1, 1970.
+The authenticator is constructed just before making a call to a method that
+requires its usage.</p></div>

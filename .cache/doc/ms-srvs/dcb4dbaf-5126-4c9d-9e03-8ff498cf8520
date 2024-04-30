@@ -1,0 +1,57 @@
+<div class="content"><p> </p><p>The NetrDfsCreateExitPoint method creates a <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS link</a></span>
+on the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>. An
+implementation MAY<a id="Appendix_A_Target_146"></a><a aria-label="Product behavior note 146" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_146" data-linktype="relative-path">&lt;146&gt;</a> choose to support this
+method.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrDfsCreateExitPoint(
+   [in, string, unique] SRVSVC_HANDLE ServerName,
+   [in] GUID* Uid,
+   [in, string] WCHAR* Prefix,
+   [in] unsigned long Type,
+   [in, range(0,32)] DWORD ShortPrefixLen,
+   [out, size_is(ShortPrefixLen)] WCHAR* ShortPrefix
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>An <span><a href="5f8329ee-1965-4ea1-ad35-3b29fbb63232" data-linktype="relative-path">SRVSVC_HANDLE (section 2.2.1.1)</a></span>
+pointer that identifies the server. The <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> MUST map this
+structure to an RPC binding handle (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> sections
+4.3.5 and 5.1.5.2). The server MUST ignore this parameter.</p><p><b>Uid: </b>Specifies the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> for the DFS
+link. This GUID MUST be obtained by using the NetrDfsGetInfo (Opnum 4) method,
+which is specified in <span><a href="../ms-dfsnm/95a506a8-cae6-4c42-b19d-9c1ed1223979" data-linktype="relative-path">[MS-DFSNM]</a></span>
+section <span><a href="../ms-dfsnm/b5dd4568-3ea4-4f27-ae03-3ebb19fa4b13" data-linktype="relative-path">3.1.4.1.6</a></span>.</p><p><b>Prefix: </b>A pointer to a null-terminated UTF-16
+string that specifies the path of the DFS link.</p><p><b>Type: </b>This parameter MUST be one of the values
+that are specified in section <span><a href="299f5114-40c1-4dc8-bfb8-e8598d27933e" data-linktype="relative-path">2.2.2.13</a></span>.</p><p><b>ShortPrefixLen: </b>Specifies the size of the
+buffer passed in the <i>ShortPrefix</i>. The value of this field MUST be within
+the range 0 through 32, inclusive.</p><p><b>ShortPrefix: </b>A pointer to a null-terminated
+UTF-16 string that is the buffer where the name of the DFS namespace root or
+link is returned.<a id="Appendix_A_Target_147"></a><a aria-label="Product behavior note 147" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_147" data-linktype="relative-path">&lt;147&gt;</a></p><p><b>Return Values: </b>The method returns 0x00000000
+(NERR_Success) to indicate success; otherwise, it returns a nonzero error code.
+The method can take any specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><p>In response to a NetrDfsCreateExitPoint message, the server
+SHOULD<a id="Appendix_A_Target_148"></a><a aria-label="Product behavior note 148" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_148" data-linktype="relative-path">&lt;148&gt;</a> choose to perform no
+processing and return an implementation-specific error code when this method is
+called. If the server supports <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_0b8086c9-d025-45b8-bf09-6b5eca72713e" data-linktype="relative-path">DFS</a></span>, the server MAY
+create a DFS link, as specified in <span><a href="../ms-dfsc/3109f4be-2dbb-42c9-9b8e-0b34f7a2135e" data-linktype="relative-path">[MS-DFSC]</a></span>.</p><p>The <i>Uid</i> parameter specifies the GUID to be assigned
+to the new link.</p><p>The <i>Prefix</i> parameter specifies the path of the DFS
+link. The string MUST be in one of two forms: </p><ul><li><p><span><span> 
+</span></span>The first form is \Dfsname\sharename\path_to_link, where <i>Dfsname</i>
+is the name of the storage server that hosts the root of a <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_07f90715-4bf2-479d-9c9d-1b2cd585a280" data-linktype="relative-path">standalone
+DFS implementation</a></span>; <i>sharename</i> is the name of a shared folder
+that is published on the DFS host server; and <i>path_to_link</i> specifies the
+path on the physical network share.</p>
+</li><li><p><span><span> 
+</span></span>The second form is \DomainName\DomDfsname\path_to_link, where <i>DomainName</i>
+is the name of the domain that hosts the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span>; <i>DomDfsname</i>
+is the root name of a domain-based DFS implementation that is published in the
+directory service of the domain; and <i>path_to_link</i> specifies the path on
+the physical network share.</p>
+</li></ul><p>The <i>Type</i> parameter specifies the type of the new link
+and MUST be one of the values listed in section 2.2.2.13. If the value of this
+parameter is PKT_ENTRY_TYPE_MACHINE, the server MUST fail the call and return
+an implementation-specific error code.</p><p>The <i>ShortPrefixLen</i> parameter specifies the length of
+the <i>ShortPrefix</i> parameter that specifies a short name for the new link
+in the 8.3 format.</p><p>The server MAY<a id="Appendix_A_Target_149"></a><a aria-label="Product behavior note 149" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_149" data-linktype="relative-path">&lt;149&gt;</a>
+enforce security measures to verify that the caller has the required
+permissions to execute this call. If the server enforces these security
+measures and the caller does not have the required credentials, the server
+SHOULD<a id="Appendix_A_Target_150"></a><a aria-label="Product behavior note 150" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_150" data-linktype="relative-path">&lt;150&gt;</a> fail the call.</p></div>

@@ -1,0 +1,34 @@
+<div class="content"><p> </p><p>The Advise method registers a notification callback with the
+server. Clients pass the callback object to the server to receive
+notifications.</p><dl>
+<dd>
+<div><pre> HRESULT Advise(
+   [in] IVdsAdviseSink* pSink,
+   [out] DWORD* pdwCookie
+ );
+</pre></div>
+</dd></dl><p><b>pSink: </b>A pointer to an <span><a href="731af954-1530-470d-bc06-31f0c34ae932" data-linktype="relative-path">IVdsAdviseSink</a></span>
+interface of the callback object to register with the server for notification
+of object changes.</p><p><b>pdwCookie: </b>A pointer to a variable that, if
+the operation is successfully completed, receives a unique cookie value that
+the client can later use to unregister the callback object from receiving
+notification changes from the service. For information about how to register
+callback objects, see section <span><a href="1596a078-354c-42bd-bdea-fb604bb317cc" data-linktype="relative-path">3.3.1.1</a></span>.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>pSink</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>pdwCookie</i> is not NULL.</p>
+</li></ul><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>Point <i>pdwCookie</i> to a unique cookie value that is
+associated with the IVdsAdviseSink interface that <i>pSink</i> specifies.</p>
+</li><li><p><span><span> 
+</span></span>Add the IVdsAdviseSink interface that <i>pSink</i> specifies to
+the list of callback objects.</p>
+</li><li><p><span><span> 
+</span></span>Return an HRESULT indicating failure or success.</p>
+</li></ul></div>

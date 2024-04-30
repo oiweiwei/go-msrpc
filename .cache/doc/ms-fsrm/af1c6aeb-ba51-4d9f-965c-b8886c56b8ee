@@ -1,0 +1,24 @@
+<div class="content"><p>The FsrmReportFilter enumeration defines the set of filters
+that can be used to limit the files listed in a report.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmReportFilter
+ {
+   FsrmReportFilter_MinSize = 1,
+   FsrmReportFilter_MinAgeDays = 2,
+   FsrmReportFilter_MaxAgeDays = 3,
+   FsrmReportFilter_MinQuotaUsage = 4,
+   FsrmReportFilter_FileGroups = 5,
+   FsrmReportFilter_Owners = 6,
+   FsrmReportFilter_NamePattern = 7,
+   FsrmReportFilter_Property = 8
+ } FsrmReportFilter;
+</pre></div>
+</dd></dl><p><b>FsrmReportFilter_MinSize:  </b>The report will
+only show files that meet a minimum size.</p><p><b>FsrmReportFilter_MinAgeDays:  </b>The report will
+only show files that were accessed more than a minimum number of days ago.</p><p><b>FsrmReportFilter_MaxAgeDays:  </b>The report will
+only show files that were accessed prior to a maximum number of days ago.</p><p><b>FsrmReportFilter_MinQuotaUsage:  </b>The report
+will only show quotas that meet a certain disk space usage level.</p><p><b>FsrmReportFilter_FileGroups:  </b>The report will
+only show files from a given set of groups.</p><p><b>FsrmReportFilter_Owners:  </b>The report will only
+show files that belong to a certain set of owners.</p><p><b>FsrmReportFilter_NamePattern:  </b>The report will
+only show files whose name matches the given pattern.</p><p><b>FsrmReportFilter_Property:  </b>The report will
+show only files whose property matches the given property name.</p></div>

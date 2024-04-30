@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The VDS_DISK_EXTENT structure provides information about a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7bdb0d0a-b0eb-4312-b663-3bb24fdd35e0" data-linktype="relative-path">disk
+extent</a></span>. </p><dl>
+<dd>
+<div><pre> typedef struct _VDS_DISK_EXTENT {
+   VDS_OBJECT_ID diskId;
+   VDS_DISK_EXTENT_TYPE type;
+   ULONGLONG ullOffset;
+   ULONGLONG ullSize;
+   VDS_OBJECT_ID volumeId;
+   VDS_OBJECT_ID plexId;
+   unsigned long memberIdx;
+ } VDS_DISK_EXTENT,
+  *PVDS_DISK_EXTENT;
+</pre></div>
+</dd></dl><p><b>diskId:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS
+object</a></span> ID of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span> object on which
+the extent resides.</p><p><b>type:</b>  The value from the <span><a href="7d16348c-bb33-4812-a31f-c9883d9aa6b3" data-linktype="relative-path">VDS_DISK_EXTENT_TYPE</a></span>
+enumeration that indicates the type of the extent.</p><p><b>ullOffset:</b>  The byte offset of the
+disk extent from the beginning of the disk.</p><p><b>ullSize:</b>  The size, in bytes, of the
+extent.</p><p><b>volumeId:</b>  The VDS object ID of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>
+object to which the extent belongs, if any.</p><p><b>plexId:</b>  The VDS object ID of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7d1df68a-9ec5-4f84-a64f-67888f39405d" data-linktype="relative-path">volume
+plex</a></span> object to which the extent belongs, if it belongs to a volume.</p><p><b>memberIdx:</b>  The zero-based index of
+the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_23f2445d-28b8-4741-a3a1-9ab90e17d5c0" data-linktype="relative-path">volume
+plex member</a></span> to which the extent belongs, if it belongs to a volume
+plex.</p></div>

@@ -1,0 +1,54 @@
+<div class="content"><p> </p><p>The QueryMedia method identifies the media in the drive. </p><dl>
+<dd>
+<div><pre> HRESULT QueryMedia();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p><b>ERROR_SUCCESS</b> (0x00000000)</p><p>When the server receives this message, it MUST perform the
+following:</p><ul><li><p><span><span> 
+</span></span>Refresh any cached <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span> and <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>
+properties of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_58aae236-0186-4ba1-a46b-f0a997e6c6f2" data-linktype="relative-path">removable media</a></span>
+drive.</p>
+</li><li><p><span><span> 
+</span></span>If the disk properties (<span><a href="50cad7a2-1c57-432d-af75-2e2577419206" data-linktype="relative-path">VDS_DISK_PROP</a></span>
+values) for the media have changed, for each callback object registered in the
+list of callback objects, call the callback object&#39;s <span><a href="04a70bf6-208d-463a-b0a4-cc96e198ded1" data-linktype="relative-path">IVdsAdviseSink::OnNotify</a></span>
+method with a <span><a href="4f29057f-ab32-4a3d-9fcb-00ba3457cb42" data-linktype="relative-path">VDS_NOTIFICATION</a></span> structure
+with the following attributes:</p>
+<ul><li><p><span><span>  </span></span><b>objectType</b>
+member is VDS_NTT_DISK.</p>
+</li><li><p><span><span>  </span></span><b>Disk</b>
+member is a <span><a href="1478f791-1ebd-421c-ba87-5fd7493dafd1" data-linktype="relative-path">VDS_DISK_NOTIFICATION</a></span>
+with the following attributes:</p>
+<ul><li><p><span><span> 
+</span></span><b>ulEvent</b> is VDS_NF_DISK_MODIFY.</p>
+</li><li><p><span><span> 
+</span></span><b>diskId</b> is the <span><a href="9186f1ce-04de-4df2-a8cf-3925a02fcd47" data-linktype="relative-path">VDS_OBJECT_ID</a></span> of
+this disk object.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>If the volume properties (<span><a href="32e600c2-6afa-4ea3-aa7d-16b69729b348" data-linktype="relative-path">VDS_VOLUME_PROP</a></span>
+values) for the media have changed, for each callback object registered in the
+list of callback objects, call the callback object&#39;s IVdsAdviseSink::OnNotify
+method with a VDS_NOTIFICATION structure with the following attributes:</p>
+<ul><li><p><span><span>  </span></span><b>objectType</b>
+member is VDS_NTT_VOLUME.</p>
+</li><li><p><span><span>  </span></span><b>Volume</b>
+member is a VDS_VOLUME_NOTIFICATION with the following attributes:</p>
+<ul><li><p><span><span> 
+</span></span><b>ulEvent</b> is VDS_NF_VOLUME_MODIFY.</p>
+</li><li><p><span><span> 
+</span></span><b>volumeId</b> is the VDS_OBJECT_ID of the volume object
+corresponding to the removable media drive.</p>
+</li><li><p><span><span> 
+</span></span><b>plexId</b> is NULL GUID, but it is not relevant when ulEvent
+is VDS_NF_VOLUME_MODIFY.</p>
+</li><li><p><span><span> 
+</span></span><b>ulPercentCompleted</b> range is 0-100 and is
+implementation-specific; however, it is not relevant when ulEvent is
+VDS_NF_VOLUME_MODIFY.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Return an HRESULT indicating failure or success.</p>
+</li></ul></div>

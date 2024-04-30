@@ -1,0 +1,65 @@
+<div class="content"><p> </p><p>The <b>R_DhcpGetAllOptions</b> method retrieves all default
+option definitions, as well as specific user class and vendor class option
+definitions. The caller of this function can free the memory pointed to by <i>OptionStruct</i>,
+<b>NonVendorOptions</b> and other Options by calling the function <b>midl_user_free</b>
+(section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpGetAllOptions(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DWORD Flags,
+   [out] LPDHCP_ALL_OPTIONS* OptionStruct
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>Flags: </b>This field MUST be set to zero.</p><p><b>OptionStruct: </b>This is a pointer of type <span><a href="167abd91-539e-4844-93cf-5ff413cc9dd6" data-linktype="relative-path">LPDHCP_ALL_OPTIONS (section 2.2.1.2.27)</a></span>
+that points to a location that contains all the option definitions defined for
+a vendor class or default class.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 29.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read access per section
+<span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not, return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Validate if the Flags field is not 0, then return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Iterate though the server ADM element <b>DHCPv4OptionDefList</b>
+and retrieve the <b>DHCPv4OptionDef.DHCPv4ClassedOptDefList</b> corresponding
+to the default vendor class configured on the DHCPv4 Server. If more than zero
+entries are retrieved, allocate the memory for the number of <b>DHCPv4ClassedOptDef</b>
+entries in this retrieved list, and copy the <b>DHCPv4ClassedOptDef</b> entries
+in the allocated memory.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve all the <b>DHCPv4OptDef</b> entries corresponding to the
+non-default vendor class. Calculate the number of <b>DHCPv4ClassedOptDef</b>
+entries in all <b>DHCPv4ClassedOptDefList</b> lists, and if there are more than
+zero entries, allocate the memory for these <b>DHCPv4ClassedOptDef</b> entries.</p>
+</li><li><p><span><span> 
+</span></span>Copy the retrieved <b>DHCPv4ClassedOptDef</b> entries in the <i>OptionStruct</i>
+parameter and return it to the caller.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

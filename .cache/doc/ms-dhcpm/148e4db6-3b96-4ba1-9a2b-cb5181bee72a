@@ -1,0 +1,129 @@
+<div class="content"><p> </p><p>The <b>R_DhcpEnumClassesV6</b> method enumerates user or
+vendor classes configured for the DHCPv6 server. The caller of this function
+can free the memory pointed to by <i>ClassInfoArray</i> and its <b>Classes</b>
+member by calling the function <b>midl_user_free</b> (section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpEnumClassesV6(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DWORD ReservedMustBeZero,
+   [in, out] DHCP_RESUME_HANDLE* ResumeHandle,
+   [in] DWORD PreferredMaximum,
+   [out] LPDHCP_CLASS_INFO_ARRAY_V6* ClassInfoArray,
+   [out] DWORD* nRead,
+   [out] DWORD* nTotal
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>ReservedMustBeZero: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and SHOULD be set to 0. Currently it is not used, and any value set to this
+parameter will not affect the behavior of this method.</p><p><b>ResumeHandle: </b>This is a pointer of type <span><a href="a6e4cdc0-4f71-4922-ade1-7a5392f9e920" data-linktype="relative-path">DHCP_RESUME_HANDLE (section 2.2.1.2.6)</a></span>
+that identifies the enumeration operation. Initially, this value MUST be set to
+zero, with a successful call returning the handle value used for subsequent enumeration
+requests (for example, if <i>PreferredMaximum</i> is set to 100 and 200 classes
+are stored). On the DHCPv6 server, the resume handle can be used after the
+first 100 classes are retrieved to obtain the next 100 on a subsequent call,
+and so forth.</p><p><b>PreferredMaximum: </b>This is of type DWORD,
+specifying the preferred maximum number of bytes to be returned. If the number
+of bytes required in memory for the remaining unenumerated classes is less than
+the value of this parameter, then all the classes for the DHCPv6 server are
+returned. To retrieve all the classes defined on the DHCPv6 server, 0xFFFFFFFF
+is specified.</p><p><b>ClassInfoArray: </b>This is a pointer of type <span><a href="5d1ef878-5559-43da-820c-970cb2597206" data-linktype="relative-path">LPDHCP_CLASS_INFO_ARRAY_V6</a></span>
+in which information of all the classes defined on the DHCPv6 server is
+retrieved.</p><p><b>nRead: </b>This is a pointer to a DWORD value that
+specifies the number of classes returned in <i>ClassInfoArray</i>. The caller
+must allocate memory for this parameter that is equal to the size of data type
+DWORD.</p><p><b>nTotal: </b>This is a pointer to a DWORD value
+that specifies the number of classes defined on the DHCPv6 server that have not
+yet been enumerated. The caller must allocate memory for this parameter that is
+equal to the size of data type DWORD.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000EA</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>There are more elements available to enumerate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  </td>
+  <td>
+  <p>There are no more elements left to enumerate.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 77.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>If <b>ClassInfoArray</b>, <b>ResumeHandle</b>, <b>nRead</b>, and <i>nTotal</i>
+are NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Validate if this method is authorized for read access per section
+<span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not, return the error <i>ERROR_ACCESS_DENIED</i>.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv6ClassDefList</b> object, and in it, start
+enumerating from <i>ResumeHandle</i>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ResumeHandle</b> parameter points to 0x00000000, the
+enumeration MUST start from the beginning of <b>DHCPv6ClassDefList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ResumeHandle</i> parameter points to a nonzero value,
+the server MUST continue enumeration based on the value of <b>ResumeHandle</b>.
+If the <b>ResumeHandle</b> is greater than or equal to the number of <b>DHCPv6ClassDef</b>
+objects in <b>DHCPv6ClassDefList</b>, then return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>If <b>PreferredMaximum</b> is 0 and the number of entries
+remaining in <b>DHCPv6ClassDefList</b> is greater than 0, then ERROR_MORE_DATA
+is returned.</p>
+</li><li><p><span><span> 
+</span></span>If <b>PreferredMaximum</b> is 0 and the number of entries
+remaining in <b>DHCPv6ClassDefList</b> is 0, then ERROR_NO_MORE_ITEMS is
+returned.</p>
+</li><li><p><span><span> 
+</span></span>Allocate the memory for
+DHCP_CLASS_INFO_ARRAY_V6 (section 2.2.1.2.87) and for total number of
+<b>DHCPv6ClassDef</b> objects type <span><a href="0f8461a3-14ad-4b60-a398-553b199ecfc0" data-linktype="relative-path">DHCP_CLASS_INFO (section 2.2.1.2.75)</a></span>
+from <b>ResumeHandle</b> to the end of <b>DHCPv6ClassDefList</b>.</p>
+</li><li><p><span><span> 
+</span></span>The <b>PreferredMaximum</b> parameter specifies the maximum
+number of bytes that the server can allocate and return to the caller
+containing the data related to the <b>DHCPv6ClassDef</b> objects. In case <b>PreferredMaximum</b>
+is 0xFFFFFFFF, the server must allocate memory for all remaining <b>DHCPv6ClassDef</b>
+objects. If <b>PreferredMaximum</b> is unable to hold all the entries being
+retrieved, the server must store as many entries as will fit into the <b>ClassInfoArray</b>
+parameter and return ERROR_MORE_DATA.</p>
+</li><li><p><span><span> 
+</span></span>Read the class information from <b>ResumeHandle</b> to the end of
+<b>DHCPv6ClassDefList</b>, copy it into the allocated memory, and return it to
+the caller until the copied data length is less than <b>PreferredMaximum</b>.</p>
+</li><li><p><span><span> 
+</span></span>Fill the number of read <b>DHCPv6ClassDef</b> objects in <b>nRead</b>,
+and fill the number of <b>DHCPv6ClassDef</b> objects in <b>DHCPv6ClassDefList</b>
+that have not yet been enumerated in <b>nTotal</b>. Update the <b>ResumeHandle</b>
+to the index of the last <b>DHCPv6ClassDef</b> object read plus one.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

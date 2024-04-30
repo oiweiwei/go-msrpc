@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The BitMaskRestriction_r structure is an encoding of the <b>BitMaskRestriction</b>
+data structure defined in <span><a href="/en-us/openspecs/exchange_server_protocols/MS-OXCDATA/1afa0cd9-b1a0-4520-b623-bf15030af5d8" data-linktype="absolute-path">[MS-OXCDATA]</a></span>.
+The semantic meaning is unchanged from the <b>BitMaskRestriction</b> data
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _BitMaskRestriction_r {
+   DWORD relBMR;
+   DWORD ulPropTag;
+   DWORD ulMask;
+ } BitMaskRestriction_r;
+</pre></div>
+</dd></dl><p><b>relBMR:</b>  Encodes the <b>BitmapRelOp</b>
+field of the <b>BitMaskRestriction</b> data structure.</p><p><b>ulPropTag:</b>  Encodes the <b>PropTag</b>
+field of the <b>BitMaskRestriction</b> data structure.</p><p><b>ulMask:</b>  Encodes the <b>Mask</b>
+field of the <b>BitMaskRestriction</b> data structure.</p></div>

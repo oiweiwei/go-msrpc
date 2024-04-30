@@ -1,0 +1,302 @@
+<div class="content"><p>This method is called by a client to <a href="3f01a312-3391-4109-a96e-95358babf191#gt_ec8a6199-20ef-4b34-ba68-bc134f6a5721" data-linktype="relative-path">import</a> one or more <a href="3f01a312-3391-4109-a96e-95358babf191#gt_ea5c531f-5dd5-43aa-9da1-2ae068c622db" data-linktype="relative-path">conglomerations</a> from an <a href="3f01a312-3391-4109-a96e-95358babf191#gt_b1856eaa-54fc-49af-a38c-55cc86e7b93e" data-linktype="relative-path">installer package file</a>.
+Importing a conglomeration from an installer package file conceptually consists
+of installation of <a href="3f01a312-3391-4109-a96e-95358babf191#gt_3f7df968-a51b-4dea-9f2c-4cf6ce65ccc1" data-linktype="relative-path">modules</a>,
+including the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_79adca18-e44d-48a5-8f9c-60e53a6fd378" data-linktype="relative-path">registration</a>
+of the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_71669ed9-7eaf-4328-9e2e-4d3430f0f9bf" data-linktype="relative-path">components</a> in
+those modules, and creating a conglomeration and component configurations
+equivalent to the conglomeration and the component configurations that were <a href="3f01a312-3391-4109-a96e-95358babf191#gt_f0e19764-1f7d-4410-beca-8a76aa3c9c85" data-linktype="relative-path">exported</a> to create the
+installer package file. As a side effect, this method returns
+implementation-specific detailed results of the registration operation for
+informational purposes.</p><dl>
+<dd>
+<div><pre> HRESULT ImportFromFile(
+   [in, string, unique] WCHAR* pwszModuleDestination,
+   [in, string] WCHAR* pwszInstallerPackage,
+   [in, string, unique] WCHAR* pwszUser,
+   [in, string, unique] WCHAR* pwszPassword,
+   [in, string, unique] WCHAR* pwszRemoteServerName,
+   [in] DWORD dwFlags,
+   [in] GUID* reserved1,
+   [in] DWORD reserved2,
+   [out] DWORD* pcModules,
+   [out, size_is(,*pcModules)] DWORD** ppModuleFlags,
+   [out, string, size_is(,*pcModules)] 
+     LPWSTR** ppModules,
+   [out] DWORD* pcComponents,
+   [out, size_is(,*pcComponents)] GUID** ppResultCLSIDs,
+   [out, string, size_is(,*pcComponents)] 
+     LPWSTR** ppResultNames,
+   [out, size_is(,*pcComponents)] DWORD** ppResultFlags,
+   [out, size_is(,*pcComponents)] LONG** ppResultHRs
+ );
+</pre></div>
+</dd></dl><p><b>pwszModuleDestination: </b> Either a path in <a href="3f01a312-3391-4109-a96e-95358babf191#gt_c9507dca-291d-4fd6-9cba-a9ee7da8c908" data-linktype="relative-path">UNC</a> to a directory that is
+to be used as the installation target location for modules and other files, or
+NULL to indicate that a directory is to be selected by the server.</p><p><b>pwszInstallerPackage: </b>A path in UNC to a file
+that the server will recognize as an installer package file.</p><p><b>pwszUser: </b>Either a user account name to be
+used as the RunAsUser property (see section <a href="f5f5c289-85a2-44d8-9e72-58271a1862d8" data-linktype="relative-path">3.1.1.3.6</a>) for the newly
+created conglomerations, or NULL to specify that the RunAsUser property for
+each conglomeration represented in the installer package file is to be used.</p><p><b>pwszPassword: </b>Either a password to be used as
+the Password property (see section <a href="cee9f1e5-9412-4a19-8a34-17d041112b87" data-linktype="relative-path">3.1.1.3.3</a>) for the newly
+created conglomerations, or NULL to specify that the Password property is to be
+set to NULL.</p><p><b>pwszRemoteServerName: </b> Either a remote server
+name to be used as the ServerName property (see section 3.1.1.3.6) for the
+newly created conglomerations if the conglomerations represented in the
+installer package file are proxy conglomerations; that is, if they have the
+IsProxyApp property (see section <a href="78e5366e-f73e-4131-bf49-319f0e71d92c" data-linktype="relative-path">3.1.1.3.27</a>) set to TRUE
+(0x00000001)), or NULL for nonproxy conglomerations.</p><p><b>dwFlags: </b>MUST be a combination of zero or more
+of the following flags.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Flag</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>fIMPORT_OVERWRITE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The server is requested to overwrite existing files
+  when installing modules.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>fIMPORT_WITHUSERS</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The server is requested to create the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_160679ad-a30b-4bd7-962a-8635b7d36372" data-linktype="relative-path">role members</a> represented
+  in the installer package file.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>reserved1: </b> A pointer to a <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a>
+value that MUST be <a href="3f01a312-3391-4109-a96e-95358babf191#gt_b9d97d88-9398-4450-9e92-247073ce0362" data-linktype="relative-path">GUID_NULL</a>
+and MUST be ignored on receipt.</p><p><b>reserved2: </b>MUST be set to zero when sent and
+MUST be ignored on receipt.</p><p><b>pcModules: </b> A pointer to a variable that, upon
+successful completion, MUST be set to the number of modules installed from the
+installer package file.</p><p><b>ppModuleFlags: </b> A pointer to a variable that
+upon successful completion, MUST be set to an array of <a href="3e4ce66c-3e29-47fc-9329-55eb90008d02" data-linktype="relative-path">fModuleStatus (section 2.2.3)</a>
+values representing the detailed results of registration for the modules in <i>ppModules</i>,
+in the same order.</p><p><b>ppModules: </b> A pointer to a variable that, upon
+successful completion, MUST be set to an array of strings representing file
+names of modules installed from the installer package file.</p><p><b>pcComponents: </b> A pointer to a variable that,
+upon successful completion, MUST be set to the number of components that the
+server registered or attempted to register.</p><p><b>ppResultCLSIDs: </b> A pointer to a variable that,
+upon successful completion, MUST be set to an array of <a href="3f01a312-3391-4109-a96e-95358babf191#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> values, each being the
+<a href="3f01a312-3391-4109-a96e-95358babf191#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a> of a component
+that the server registered or attempted to register.</p><p><b>ppResultNames: </b> A pointer to a variable that,
+upon successful completion, SHOULD be set to an array of string values, each
+being an implementation-specific name of a component that the server registered
+or attempted to register, in the same order as <i>ppResultClsids</i>.</p><p><b>ppResultFlags: </b> A pointer to a variable that,
+upon successful completion, SHOULD be set to an array of <a href="65d60086-97d7-4658-8cf4-fa1d6114b47a" data-linktype="relative-path">fComponentStatus (section 2.2.4)</a>
+values, each representing detailed results for a component that the server
+registered or attempted to register, in the same order as <i>ppResultClsids</i>.</p><p><b>ppResultHRs: </b> A pointer to a variable that,
+upon successful completion, SHOULD be set to an array of LONG values, each
+representing an HRESULT (<a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>)
+for a component that the server registered or attempted to register, in the
+same order as <i>ppResultClsids</i>.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in [MS-ERREF]
+section 2.1, on failure. All failure results MUST be treated identically.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving a call to this method, the server MUST verify
+that <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0944227d-0566-49e1-989f-2fff6e02542d" data-linktype="relative-path">catalog</a> version
+negotiation has been performed by checking the negotiated catalog version (see
+section <a href="a667265b-22a8-43bb-b462-13528061e009" data-linktype="relative-path">3.1.1.5</a>), and
+fail the call if not.</p><p>The server then MUST perform parameter validation as
+follows:</p><ul><li><p><span><span> 
+</span></span>If <i>pwszModuleDestination</i> is not NULL, the server SHOULD<a id="Appendix_A_Target_335"></a><a aria-label="Product behavior note 335" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_335" data-linktype="relative-path">&lt;335&gt;</a> verify that it is a path in
+UNC, and fail the call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_336"></a><a aria-label="Product behavior note 336" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_336" data-linktype="relative-path">&lt;336&gt;</a> verify
+that <i>pwszInstallerPackage</i> is a path in UNC, and fail the call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_337"></a><a aria-label="Product behavior note 337" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_337" data-linktype="relative-path">&lt;337&gt;</a> verify
+that <i>dwFlags</i> is a valid combination of the flags specified previously,
+and fail the call if not.</p>
+</li></ul><p>The server then MUST verify that the file located by the
+path exists and is accessible, and that the server recognizes the file as an
+installer package file, and fail the call if not.</p><p>The server then MUST select a GUID to use as the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_9587a9d3-3fd7-45c6-aab1-c74ff17a22b7" data-linktype="relative-path">partition identifier</a> for
+the target partition, as follows:</p><ul><li><p><span><span> 
+</span></span>If the <b>import target partition identifier</b> (section
+3.1.1.5) is not the partition identifier of the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_24b2810b-e5ab-4886-9577-a2757b9f29f9" data-linktype="relative-path">global partition</a>, the
+server MUST select the <b>import target partition identifier</b>. This behavior
+enables clients to explicitly specify a target partition.</p>
+</li><li><p><span><span> 
+</span></span>If the client did not explicitly specify a target partition by
+setting the import target partition identifier, but the installer package file
+was created by a call to IExport2::ExportPartition (opnum
+3) (section <a href="03d02da1-1d05-4535-8d96-810022c613d3" data-linktype="relative-path">3.1.4.15.1)</a>,
+the server MUST select the partition identifier of the exported <a href="3f01a312-3391-4109-a96e-95358babf191#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a>.</p>
+</li><li><p><span><span> 
+</span></span>If the target partition is not explicitly specified by the client
+or by an installer package file created by a call to, the server MUST select
+the partition identifier of the global partition.</p>
+</li></ul><p>The remainder of the protocol behavior specified for this
+method SHOULD be performed as an <a href="3f01a312-3391-4109-a96e-95358babf191#gt_6db11d6b-d493-46d4-ab87-2429ca8bcb1e" data-linktype="relative-path">atomic transaction</a>, in
+other words either the operation fully succeeds or the server makes no changes
+to the catalog. This described behavior is provided to facilitate the
+explanation of how the protocol behaves. This document does not mandate that
+implementations adhere to this model as long as their external behavior is
+consistent with that described in this document.</p><p>The server MUST select an existing partition as the target
+partition, or create a new partition, which will be the target partition, as
+follows:</p><ul><li><p><span><span> 
+</span></span>If the GUID selected previously is the partition identifier of an
+existing partition on the server, the server MUST perform the following:</p>
+<ul><li><p><span><span>  </span></span>If
+the value of the Changeable property (see section 3.1.1.3.6) of the partition
+is TRUE (0x00000001), the server MUST select the partition as the target
+partition.</p>
+</li><li><p><span><span>  </span></span>Otherwise,
+the server MUST fail the call.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the GUID selected previously is not the partition identifier
+of an existing partition, the server MUST perform the following:</p>
+<ul><li><p><span><span>  </span></span>If
+the server does not support the multiple-partition capability, as specified in
+section <a href="bf483305-7f33-4db3-8681-9ca98bb6c058" data-linktype="relative-path">3.1.4.3</a>, the
+server MUST fail the call.</p>
+</li><li><p><span><span>  </span></span>If
+the value of the PartitionsEnabled property (see section <a href="36b8ca0d-2ffd-4207-9b11-d608fc9d1cba" data-linktype="relative-path">3.1.1.3.8</a>) of the machine
+settings is FALSE (0x00000000), the server MUST fail the call.</p>
+</li><li><p><span><span>  </span></span>Otherwise,
+the server MUST attempt to create a new partition with the selected GUID as the
+partition identifier and implementation-specific default values for the rest of
+the properties, and fail the call if it cannot.</p>
+</li></ul></li></ul><p>Having selected a target partition, the server then MUST
+select a GUID to be used as the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0ab5119e-c719-4a5c-9198-55a0a2fb508a" data-linktype="relative-path">conglomeration identifier</a>
+for each conglomeration represented in the installer package file as follows:</p><ul><li><p><span><span> 
+</span></span>For each conglomeration represented in the installer package file,
+the server MUST perform the following:</p>
+<ul><li><p><span><span>  </span></span>If
+the conglomeration identifier of the conglomeration represented in the
+installer package file is equal to the conglomeration identifier of an existing
+conglomeration on the server, the server MUST perform the following:</p>
+<ul><li><p><span><span> 
+</span></span>If the existing conglomeration is in the target partition, the
+server MUST fail the call.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the server MUST attempt to generate a GUID using the
+mechanism as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> section A.2.5,
+and fail the call if it cannot.</p>
+</li></ul></li><li><p><span><span>  </span></span>Otherwise,
+the server MUST select the conglomeration identifier of the conglomeration
+represented in the installer package file.</p>
+</li></ul></li></ul><p>For each conglomeration represented in the installer package
+file, the server then MUST attempt to perform an implementation-specific import
+procedure, and fail the call if it cannot. This document does not specify how
+this procedure is performed, except that the implementation&#39;s export and import
+procedures SHOULD have round-trip consistency, defined as follows:</p><ul><li><p><span><span> 
+</span></span>If a conglomeration on a server is successfully exported to an
+installer package file by a call to either IExport::ExportConglomeration (opnum
+3) (section <a href="6fd01e9b-3cec-421a-9307-b4f5973d8b65" data-linktype="relative-path">3.1.4.14.1)</a>
+or a call to IExport2::ExportPartition (opnum 3)), and the conglomeration is
+then successfully imported onto a second server, identical to the first except
+that the conglomeration possibly does not exist on the second server, then the
+newly created conglomeration on the second server SHOULD have identical
+configuration as visible via COMA, with the following exceptions:</p>
+<ul><li><p><span><span>  </span></span>The
+partition in which the conglomeration is created MUST be selected as specified
+previously.</p>
+</li><li><p><span><span>  </span></span>The
+conglomeration identifier of the newly created conglomeration MUST be selected
+as specified previously.</p>
+</li><li><p><span><span>  </span></span>The
+locations of the files, including modules, created as part of the import
+operation SHOULD be the location specified by <i>pwszModuleDestination</i> if
+so specified, and an implementation-specific location if not. Those properties
+of the entries created that represent paths to files (properties of type
+ImplementationSpecificPathProperty) SHOULD therefore be based on this
+destination regardless of their original values on the first server.</p>
+</li><li><p><span><span>  </span></span>Files
+that already exist at the location specified above SHOULD be overwritten only
+if at least one of the following is true:</p>
+<ul><li><p><span><span> 
+</span></span>The fIMPORT_OVERWRITE flag is set in the dwFlags parameter.</p>
+</li><li><p><span><span> 
+</span></span>The installer package file contains an overwrite directive taht
+was set by a call to IExport::ExportConglomeration (opnum 3) with
+fEXPORT_OVERWRITE passed in its dwFlags Parameter</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+neither of the previous conditions is true, and if the import requires that
+existing files be overwritten, then the server SHOULD fail the call.</p>
+</li><li><p><span><span>  </span></span>The
+RunAsUser property (see section 3.1.1.3.6) SHOULD be the value specified by <i>pwszUser</i>
+if not NULL.</p>
+</li><li><p><span><span>  </span></span>The
+Password property (see section 3.1.1.3.3) SHOULD be the value specified by <i>pwszPassword</i>.</p>
+</li><li><p><span><span>  </span></span>If
+the exported conglomeration was created as a proxy (see sections 3.1.4.14.1 and
+3.1.4.15.1) the IsProxyApp property SHOULD be set to TRUE (0x00000001).</p>
+</li><li><p><span><span>  </span></span>The
+ServerName property (see section 3.1.1.3.6) SHOULD be the value specified by <i>pwszRemoteServerName</i>.</p>
+</li><li><p><span><span>  </span></span>If
+the fIMPORT_WITHUSERS (0x00000010) flag is not set in <i>dwFlags</i>, or if the
+installer package file was created without exporting user account information
+(see sections 3.1.4.14.1 and 3.1.4.15.1), each of the newly created
+conglomeration&#39;s <a href="3f01a312-3391-4109-a96e-95358babf191#gt_8b0f612e-1393-4768-981f-23b40e3f9c28" data-linktype="relative-path">roles</a>
+SHOULD be empty.</p>
+</li></ul></li></ul><p>The server then SHOULD construct detailed results to return
+to the client for informational purposes. If the server constructs detailed
+results, this MUST be performed as follows:</p><ul><li><p><span><span> 
+</span></span>If the import was a success, the server MUST select as the set of
+<i>processed CLSIDs</i> the set of CLSIDs of components that were registered as
+part of the import. Otherwise, the set of processed CLSIDs SHOULD represent the
+components that the server attempted to register as part of the import.</p>
+</li><li><p><span><span> 
+</span></span>For each component, the server MUST perform the following:</p>
+<ul><li><p><span><span>  </span></span>The
+server SHOULD select an implementation-specific name string for the CLSID. If
+the CLSID is the CLSID of a successfully registered component, this SHOULD be
+the value of the ProgID (see section <a href="62d84857-e39e-4879-a46d-8583e355521e" data-linktype="relative-path">3.1.1.3.1</a>) property of the
+component.</p>
+</li><li><p><span><span>  </span></span>The
+server SHOULD select an implementation-specific DWORD value representing
+detailed results of the registration or verification attempt for the CLSID for
+informational purposes.</p>
+</li><li><p><span><span>  </span></span>The
+server MUST select an HRESULT value representing the result of the registration
+or verification attempt for the CLSID. This MUST be S_OK (0x00000000) to
+represent success, or a failure result, as specified in [MS-ERREF] section 2.1,
+to represent failure.</p>
+</li></ul></li></ul><p>The server then MUST set the values referenced by the out
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>The server SHOULD set the value reference by <i>ppModules</i> to
+an array of strings representing file names of modules in the import package
+file.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD set the value referenced by <i>ppModuleFlags</i>
+to an array of fModuleStatus values, each of which represents the detailed
+results of the registration or attempt to register a module. If the server
+constructed detailed results, it MUST set the values referenced by <i>pcResults</i>,
+<i>pcResultCLSIDs</i>, <i>pcResultNames</i>,<i>pcResultFlags</i>, and <i>pcResultHRs</i>
+to represent the detailed results. Otherwise, the server MUST set the value
+referenced by <i>pcResults</i> to zero and the values referenced by <i>pcResultCLSIDs</i>,
+<i>pcResultNames</i>,<i>pcResultFlags</i>, and <i>pcResultHRs</i> to NULL.</p>
+</li></ul><p>The server MUST then return S_OK (0x00000000) on successful
+completion, and an implementation-specific failure result, as specified in
+[MS-ERREF] section 2.1, on failure.</p></div>

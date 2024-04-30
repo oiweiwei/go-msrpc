@@ -1,0 +1,30 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/d5cf869d-6744-49cc-a677-30ccb9217def" data-linktype="external">msdn link</a></p><p>The LSAPR_SECURITY_DESCRIPTOR structure defines an object&#39;s <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a>.</p><p>This structure has no effect on message processing in any
+environment.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_SECURITY_DESCRIPTOR {
+   unsigned char Revision;
+   unsigned char Sbz1;
+   SECURITY_DESCRIPTOR_CONTROL Control;
+   PRPC_SID Owner;
+   PRPC_SID Group;
+   PLSAPR_ACL Sacl;
+   PLSAPR_ACL Dacl;
+ } LSAPR_SECURITY_DESCRIPTOR,
+  *PLSAPR_SECURITY_DESCRIPTOR;
+</pre></div>
+</dd></dl><p><b>Revision:</b>  The security descriptor
+revision level. This field MUST be ignored. The content is unspecified, and no
+requirements are placed on its value because it is never used.</p><p><b>Sbz1:</b>  This field is used for
+alignment. This field MUST be ignored. The content is unspecified, and no
+requirements are placed on its value because it is never used.</p><p><b>Control:</b>  A set of flags (as
+specified in section <a href="c704a67c-9836-41d9-9b18-acd596cc884e" data-linktype="relative-path">2.2.3.3</a>)
+that qualify the meaning of the security descriptor or its individual fields.</p><p><b>Owner:</b>  A pointer to the <a href="../ms-dtyp/5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="relative-path">RPC_SID</a>
+structure that represents an object&#39;s owner as a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a>.</p><p><b>Group:</b>  A pointer to the RPC_SID
+structure that represents an object&#39;s primary group as a SID.</p><p><b>Sacl:</b>  A pointer to an <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_9f92aa05-dd0a-45f2-88d6-89f1fb654395" data-linktype="relative-path">ACL</a> structure (as specified
+in <a href="a9a03a85-5b08-4bb5-81c9-2c68751693ac" data-linktype="relative-path">2.2.3.2</a>) that contains
+a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_c189801e-3752-4715-88f4-17804dad5782" data-linktype="relative-path">system access control list
+(SACL)</a>.</p><p><b>Dacl:</b>  A pointer to an ACL structure
+that contains a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d727f612-7a45-48e4-9d87-71735d62b321" data-linktype="relative-path">discretionary
+access control list (DACL)</a>.</p><p>The <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">SECURITY_DESCRIPTOR</a>
+structure is specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section 2.4.6.</p></div>

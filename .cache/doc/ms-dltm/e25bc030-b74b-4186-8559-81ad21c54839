@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The TRKSVR_CALL_SYNC_VOLUMES structure is used in <span><a href="cea51ffe-cab6-4b19-93b7-853189437ead" data-linktype="relative-path">LnkSvrMessage</a></span>
+method calls that specify a SYNC_VOLUMES message (see section <span><a href="e6084ee0-fc0d-443e-a4fb-1a792ce70450" data-linktype="relative-path">2.2.11</a></span>),
+to synchronize <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volumes</a></span> between the
+client and server. For example, this structure is used by the client to request
+that the server create an entry in its <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_bf94bb8e-16ee-4f51-974b-1ab8e4f71bc8" data-linktype="relative-path">ServerVolumeTable</a></span>.</p><p>This structure holds an array of independent requests. Each
+of those individual requests is termed a <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_29963f91-492c-4c33-ae33-c5185ac9315c" data-linktype="relative-path">subrequest</a></span> in this
+protocol specification. See section <span><a href="c518a41f-fef5-4926-b6a8-13920e84fcca" data-linktype="relative-path">2.2.14</a></span> for more
+information about the individual subrequest data structures. See sections <span><a href="82fb1177-fa78-42b8-ae3b-40b29192556e" data-linktype="relative-path">3.2.5.3</a></span>
+and <span><a href="8a5ae52a-3302-46a3-8beb-e01223b28f73" data-linktype="relative-path">3.2.6.4</a></span>
+for examples of the client using this structure.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned long cVolumes;
+   [size_is(cVolumes)] TRKSVR_SYNC_VOLUME* pVolumes;
+ } TRKSVR_CALL_SYNC_VOLUMES;
+</pre></div>
+</dd></dl><p><b>cVolumes:</b>  On input, the number of
+subrequests in this message. On return, this is the number of subrequests that
+the server processed. The details of this usage are specified in sections <span><a href="e7a9a393-4ea6-4d5e-b2e9-5ad7de390abd" data-linktype="relative-path">3.1.4.4</a></span>
+and <span><a href="310e8c2f-81d0-44d3-935c-6dc298dcab47" data-linktype="relative-path">3.2.4.4</a></span>.</p><p><b>pVolumes:</b>  An array of subrequests.</p></div>

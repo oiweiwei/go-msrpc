@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The <b>INET_INFO_SITE_ENTRY</b> structure contains
+information describing an <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_1623705d-a7a0-4e46-9a66-66e9ee63d961" data-linktype="relative-path">Internet protocol server
+instance</a></span>.</p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _INET_INFO_SITE_ENTRY {
+   [string] LPWSTR pszComment;
+   DWORD dwInstance;
+ } INET_INFO_SITE_ENTRY,
+  *LPINET_INFO_SITE_ENTRY;
+</pre></div>
+</dd></dl><p>pszComment:  The server instance comment.</p><p>dwInstance:  The server instance
+identifier.</p></div>

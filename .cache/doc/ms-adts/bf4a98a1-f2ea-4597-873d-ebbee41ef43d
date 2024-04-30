@@ -1,0 +1,25 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/bf4a98a1-f2ea-4597-873d-ebbee41ef43d" data-linktype="external">msdn link</a></p><p>The <b>CLAIMS_SET_METADATA</b> structure specifies an
+encoded CLAIMS_SET structure with information about the encoding.</p><dl>
+<dd>
+<div><pre> typedef struct _CLAIMS_SET_METADATA {
+   ULONG ulClaimsSetSize;
+   [size_is(ulClaimsSetSize)] BYTE* ClaimsSet;
+   CLAIMS_COMPRESSION_FORMAT usCompressionFormat;
+   ULONG ulUncompressedClaimsSetSize;
+   USHORT usReservedType;
+   ULONG ulReservedFieldSize;
+   [size_is(ulReservedFieldSize)] BYTE* ReservedField;
+ } CLAIMS_SET_METADATA,
+  *PCLAIMS_SET_METADATA;
+</pre></div>
+</dd></dl><p><b>ulClaimsSetSize:</b>  Contains the size,
+in bytes, of the <b>ClaimsSet</b> member.</p><p><b>ClaimsSet:</b>  A byte array of length <b>ulClaimsSetSize</b>
+bytes. This field contains a <a href="cde2d512-3a15-43f7-94fc-cfac5588adaf" data-linktype="relative-path">CLAIMS_SET</a>
+structure that is encoded as described in section <a href="2385fdc2-b3ff-4892-96c0-66bc1bb4afd8" data-linktype="relative-path">3.1.1.11.2.5</a>.</p><p><b>usCompressionFormat:</b>  Specifies the
+compression algorithm used for encoding a CLAIMS_SET structure, as specified in
+section 3.1.1.11.2.5.</p><p><b>ulUncompressedClaimsSetSize:</b>  Specifies
+the size of the partially encoded CLAIMS_SET structure before compression, the
+fully encoded version of which is stored in the <b>ClaimsSet</b> member.</p><p><b>usReservedType:</b>  The server MUST set
+this member to 0. The client MUST ignore this member.</p><p><b>ulReservedFieldSize:</b>  Specifies the
+size, in bytes, of the <b>ReservedField</b> member.</p><p><b>ReservedField:</b>  A byte array
+containing <b>ulReservedFieldSize</b> elements.</p></div>

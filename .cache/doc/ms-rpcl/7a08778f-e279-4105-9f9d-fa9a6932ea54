@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The MAILSLOT_ENTRY_TYPE enumeration defines the type of
+response being sent as a response to the <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_a33485fd-4392-4219-83f8-d65cfa0e9674" data-linktype="relative-path">master locator</a></span>
+request.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   MailslotServerEntryType = 1
+ } MAILSLOT_ENTRY_TYPE;
+</pre></div>
+</dd></dl><p><b>MailslotServerEntryType:  </b>Server entry is
+contained in this response.</p></div>

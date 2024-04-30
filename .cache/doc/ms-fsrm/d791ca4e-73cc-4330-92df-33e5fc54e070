@@ -1,0 +1,51 @@
+<div class="content"><p>The Item method returns a pointer to the object at the
+requested position in the collection of <b>Objects Being Enumerated</b>.</p><dl>
+<dd>
+<div><pre> [propget, id(DISPID_VALUE)] HRESULT Item(
+   [in] long index,
+   [out, retval] VARIANT* item
+ );
+</pre></div>
+</dd></dl><p><b>index: </b>The position of the item in the
+collection of <b>Objects Being Enumerated</b> to return.</p><p><b>item: </b>Pointer to a <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a>
+structure. Upon successful completion, receives the pointer to the <a href="../ms-oaut/ac9c502b-ac1c-4202-8ad4-048ac98afcc9" data-linktype="relative-path">IDispatch</a>
+interface for the object.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80004003</p>
+  <p>E_POINTER</p>
+  </td>
+  <td>
+  <p>The <i>item</i> parameter is NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80131502</p>
+  <p>COR_E_ARGUMENTOUTOFRANGE</p>
+  </td>
+  <td>
+  <p>The value of the <i>index</i> parameter is greater
+  than the number of <b>Objects Being Enumerated</b> in the collection.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>index</i> is not greater than the number of <b>Objects
+Being Enumerated</b> in the collection.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>item</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST set <i>item</i> to the IDispatch interface
+of the corresponding object at the index location in the collection of <b>Objects
+Being Enumerated</b>.</p></div>

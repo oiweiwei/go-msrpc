@@ -1,0 +1,184 @@
+<div class="content"><p> </p><p>This enumeration identifies each of the per-profile
+configuration options supported by this protocol. Each configuration option has
+a merge law that is used to determine how to merge the values of these options
+across stores.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_PROFILE_CONFIG
+ {
+   FW_PROFILE_CONFIG_INVALID = 0,
+   FW_PROFILE_CONFIG_ENABLE_FW = 1,
+   FW_PROFILE_CONFIG_DISABLE_STEALTH_MODE = 2,
+   FW_PROFILE_CONFIG_SHIELDED = 3,
+   FW_PROFILE_CONFIG_DISABLE_UNICAST_RESPONSES_TO_MULTICAST_BROADCAST = 4,
+   FW_PROFILE_CONFIG_LOG_DROPPED_PACKETS = 5,
+   FW_PROFILE_CONFIG_LOG_SUCCESS_CONNECTIONS = 6,
+   FW_PROFILE_CONFIG_LOG_IGNORED_RULES = 7,
+   FW_PROFILE_CONFIG_LOG_MAX_FILE_SIZE = 8,
+   FW_PROFILE_CONFIG_LOG_FILE_PATH = 9,
+   FW_PROFILE_CONFIG_DISABLE_INBOUND_NOTIFICATIONS = 10,
+   FW_PROFILE_CONFIG_AUTH_APPS_ALLOW_USER_PREF_MERGE = 11,
+   FW_PROFILE_CONFIG_GLOBAL_PORTS_ALLOW_USER_PREF_MERGE = 12,
+   FW_PROFILE_CONFIG_ALLOW_LOCAL_POLICY_MERGE = 13,
+   FW_PROFILE_CONFIG_ALLOW_LOCAL_IPSEC_POLICY_MERGE = 14,
+   FW_PROFILE_CONFIG_DISABLED_INTERFACES = 15,
+   FW_PROFILE_CONFIG_DEFAULT_OUTBOUND_ACTION = 16,
+   FW_PROFILE_CONFIG_DEFAULT_INBOUND_ACTION = 17,
+   FW_PROFILE_CONFIG_DISABLE_STEALTH_MODE_IPSEC_SECURED_PACKET_EXEMPTION = 18,
+   FW_PROFILE_CONFIG_MAX = 19
+ } FW_PROFILE_CONFIG;
+</pre></div>
+</dd></dl><p><b>FW_PROFILE_CONFIG_INVALID:  </b>This value is
+invalid and MUST NOT be used. It is defined for simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span>
+definitions and code. This symbolic constant has a value of 0.</p><p><b>FW_PROFILE_CONFIG_ENABLE_FW:  </b>This value is an
+on/off switch for the firewall and advanced security enforcement. It is a <b>DWORD</b>
+type value; 0x00000000 is off; 0x00000001 is on. If this value is off, the
+server MUST NOT block any network traffic, regardless of other policy settings.
+The merge law for this option is to let the value of the <b>GroupPolicyRSoPStore</b>
+win if it is configured; otherwise, the local store value is used. This
+symbolic constant has a value of 1.</p><p><b>FW_PROFILE_CONFIG_DISABLE_STEALTH_MODE:  </b>This
+value is a <b>DWORD</b> used as an on/off switch. When this option is off, the
+server operates in <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_60f8407f-3974-42e5-b542-9156dcd18b82" data-linktype="relative-path">stealth mode</a></span>. The
+firewall rules used to enforce stealth mode are implementation-specific.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="1da2ee70-a6ae-4f76-b08f-fdc25c77d8a0#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a> The merge law for this option is
+to let the value of the <b>GroupPolicyRSoPStore</b> win if it is configured;
+otherwise, the local store value is used. This symbolic constant has a value of
+2.</p><p><b>FW_PROFILE_CONFIG_SHIELDED:  </b>This value is a <b>DWORD</b>
+used as an on/off switch. If this value is on and FW_PROFILE_CONFIG_ENABLE_FW
+is on, the server MUST block all incoming traffic regardless of other policy
+settings. The merge law for this option is to let &#34;on&#34; values win.
+This symbolic constant has a value of 3.</p><p><b>FW_PROFILE_CONFIG_DISABLE_UNICAST_RESPONSES_TO_MULTICAST_BROADCAST: 
+</b>This value is a <b>DWORD</b> used as an on/off switch. If it is on, unicast
+responses to multicast broadcast traffic is blocked. The merge law for this
+option is to let the value of the <b>GroupPolicyRSoPStore</b> win if it is
+configured; otherwise, the local store value is used. This symbolic constant
+has a value of 4.</p><p><b>FW_PROFILE_CONFIG_LOG_DROPPED_PACKETS:  </b>This
+value is a <b>DWORD</b> used as an on/off switch. If this value is on, the
+firewall logs all the dropped packets. The merge law for this option is to let
+&#34;on&#34; values win. This symbolic constant has a value of 5.</p><p><b>FW_PROFILE_CONFIG_LOG_SUCCESS_CONNECTIONS:  </b>This
+value is a <b>DWORD</b> used as an on/off switch. If this value is on, the
+firewall logs all successful inbound connections. The merge law for this option
+is to let &#34;on&#34; values win. This symbolic constant has a value of 6.</p><p><b>FW_PROFILE_CONFIG_LOG_IGNORED_RULES:  </b>This
+value is a <b>DWORD</b> used as an on/off switch. The server MAY use this value
+in an implementation-specific way to control logging of events if a rule is not
+enforced for any reason. The merge law for this option is to let &#34;on&#34;
+values win. This symbolic constant has a value of 7.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="1da2ee70-a6ae-4f76-b08f-fdc25c77d8a0#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p><p><b>FW_PROFILE_CONFIG_LOG_MAX_FILE_SIZE:  </b>This
+value is a <b>DWORD</b> and specifies the size, in kilobytes, of the log where
+dropped packets and successful connections are logged. The merge law for this
+option is to let the value of the <b>GroupPolicyRSoPStore</b> win if it is
+configured; otherwise, the local store value is used. This symbolic constant
+has a value of 8.</p><p><b>FW_PROFILE_CONFIG_LOG_FILE_PATH:  </b>This
+configuration value is a string that represents a file path to the log for when
+the firewall logs dropped packets and successful connections. The merge law for
+this option is to let the value of the <b>GroupPolicyRSoPStore</b> win if it is
+configured; otherwise, the local store value is used. This symbolic constant
+has a value of 9.</p><p><b>FW_PROFILE_CONFIG_DISABLE_INBOUND_NOTIFICATIONS:  </b>This
+value is a <b>DWORD</b> used as an on/off switch. If this value is off, the
+firewall MAY display a notification to the user when an application is blocked
+from listening on a port.<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="1da2ee70-a6ae-4f76-b08f-fdc25c77d8a0#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a>  If this
+value is on, the firewall MUST NOT display such a notification. The merge law
+for this option is to let the value of the <b>GroupPolicyRSoPStore</b> win if
+it is configured; otherwise, the local store value is used. This symbolic
+constant has a value of 10.</p><p><b>FW_PROFILE_CONFIG_AUTH_APPS_ALLOW_USER_PREF_MERGE: 
+</b>This value is a <b>DWORD</b> used as an on/off switch. If this value is
+off, authorized application firewall rules in the local store are ignored and
+not enforced. The merge law for this option is to let the value of the <b>GroupPolicyRSoPStore</b>
+win if it is configured; otherwise, the local store value is used. This
+symbolic constant has a value of 11.</p><dl>
+<dd>
+<p>The authorized application firewall rules consist of
+the <span><a href="8c008258-166d-46d4-9090-f2ffaa01be4b" data-linktype="relative-path">FW_RULE</a></span>
+objects where all of the following are true:</p>
+</dd>
+<dd>
+<p><b>wszLocalApplication</b> is not NULL</p>
+</dd>
+<dd>
+<p><b>wszLocalService</b> == NULL</p>
+</dd>
+<dd>
+<p>(<b>wIpProtocol</b> == 6) || (<b>wIpProtocol</b> ==
+17)</p>
+</dd>
+<dd>
+<p><b>LocalPorts.Ports.dwNumEntries</b> == 0</p>
+</dd>
+<dd>
+<p><b>LocalPorts.wPortKeywords</b> ==
+FW_PORT_KEYWORD_NONE</p>
+</dd>
+<dd>
+<p>Note that for the <b>wIpProtocol</b> condition, the
+numbers 6 and 17 are the assigned Internet protocol numbers for <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_b08d36f6-b5c6-4ce4-8d2d-6f2ab75ea4cb" data-linktype="relative-path">TCP</a></span>
+and UDP respectively (for more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89889" data-linktype="external">[IANA-PROTO-NUM]</a></span>).</p>
+</dd></dl><p><b>FW_PROFILE_CONFIG_GLOBAL_PORTS_ALLOW_USER_PREF_MERGE: 
+</b>This value is a <b>DWORD</b> used as an on/off switch. If this value is
+off, global port firewall rules in the local store are ignored and not
+enforced. The setting only has meaning if it is set or enumerated in the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_defe8c22-1365-4e5e-abf7-46ad112d3bda" data-linktype="relative-path">Group
+Policy</a></span> store or if it is enumerated from the <b>GroupPolicyRSoPStore</b>.
+The merge law for this option is to let the value <b>GroupPolicyRSoPStore</b>
+win if it is configured; otherwise, the local store value is used. This
+symbolic constant has a value of 12.</p><dl>
+<dd>
+<p>The global port firewall rules consist of the
+FW_RULE objects where all of the following are true:</p>
+</dd>
+<dd>
+<p><b>wszLocalApplication</b> == NULL</p>
+</dd>
+<dd>
+<p><b>wszLocalService</b> == NULL</p>
+</dd>
+<dd>
+<p>(<b>wIpProtocol</b> == 6) || (<b>wIpProtocol</b> ==
+17)</p>
+</dd>
+<dd>
+<p><b>LocalPorts.Ports.dwNumEntries</b> == 1</p>
+</dd>
+<dd>
+<p><b>LocalPorts.wPortKeywords</b> ==
+FW_PORT_KEYWORD_NONE</p>
+</dd>
+<dd>
+<p>Note that for the <b>wIpProtocol</b> condition, the
+numbers 6 and 17 are the assigned Internet protocol numbers for TCP and UDP
+respectively (for more information, see [IANA-PROTO-NUM]).</p>
+</dd></dl><p><b>FW_PROFILE_CONFIG_ALLOW_LOCAL_POLICY_MERGE:  </b>This
+value is a <b>DWORD</b> used as an on/off switch. If this value is off,
+firewall rules from the local store are ignored and not enforced. The merge law
+for this option is to always use the value of the <b>GroupPolicyRSoPStore</b>.
+This value is valid for all schema versions. This symbolic constant has a value
+of 13.</p><p><b>FW_PROFILE_CONFIG_ALLOW_LOCAL_IPSEC_POLICY_MERGE: 
+</b>This value is a <b>DWORD</b>; it is an on/off switch. If this value is off,
+connection security rules from the local store are ignored and not enforced,
+regardless of the schema version and connection security rule version. The
+merge law for this option is to always use the value of the <b>GroupPolicyRSoPStore</b>.
+This symbolic constant has a value of 14.</p><p><b>FW_PROFILE_CONFIG_DISABLED_INTERFACES:  </b>This
+value is an <span><a href="ea420d0f-03ed-48e5-b786-621db56419d5" data-linktype="relative-path">FW_INTERFACE_LUIDS</a></span>
+structure that represents the network adapters where the firewall (only the
+firewall rules and actions) is off. The merge law for this option is to let the
+value of the <b>GroupPolicyRSoPStore</b> win if it is configured; otherwise,
+the local store value is used. This symbolic constant has a value of 15.</p><p><b>FW_PROFILE_CONFIG_DEFAULT_OUTBOUND_ACTION:  </b>This
+value is the action that the firewall does by default (and evaluates at the
+very end) on outbound connections. The allow action is represented by
+0x00000000; 0x00000001 represents a block action. The merge law for this option
+is to let the value of the <b>GroupPolicyRSoPStore</b> win if it is configured;
+otherwise, the local store value is used. This symbolic constant has a value of
+16.</p><p><b>FW_PROFILE_CONFIG_DEFAULT_INBOUND_ACTION:  </b>This
+value is the action that the firewall does by default (and evaluates at the
+very end) on inbound connections. The allow action is represented by 0x00000000;
+0x00000001 represents a block action. The merge law for this option is to let
+the value of the <b>GroupPolicyRSoPStore</b>.win if it is configured;
+otherwise, the local store value is used. This symbolic constant has a value of
+17.</p><p><b>FW_PROFILE_CONFIG_DISABLE_STEALTH_MODE_IPSEC_SECURED_PACKET_EXEMPTION: 
+</b>This value is a <b>DWORD</b> used as an on/off switch. This option is
+ignored if <b>FW_PROFILE_CONFIG_DISABLE_STEALTH_MODE</b> is on. Otherwise, when
+this option is on, the firewall&#39;s stealth mode rules MUST NOT prevent the host
+computer from responding to unsolicited network traffic if that traffic is
+secured by <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span>. The merge law
+for this option is to let the value of the <b>GroupPolicyRSoPStore</b> win if
+it is configured; otherwise, the local store value is used. For schema versions
+0x0200, 0x0201, and 0x020A, this value is invalid and MUST NOT be used. This
+symbolic constant has a value of 18.</p><p><b>FW_PROFILE_CONFIG_MAX:  </b>This value and values
+that exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing IDL definitions and code. This symbolic constant has a
+value of 19.</p></div>

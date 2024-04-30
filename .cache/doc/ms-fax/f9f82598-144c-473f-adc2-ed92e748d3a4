@@ -1,0 +1,287 @@
+<div class="content"><p> </p><p>The <b>FAX_ROUTING_EXTENSION_INFO</b> data type defines the
+format in which the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_efaa1290-6d4b-4f44-9e84-35a867069d45" data-linktype="relative-path">routing</a></span> extensions
+are enumerated and can be returned by a call to <b>FAX_EnumRoutingExtensions</b>
+(section <span><a href="10213abf-224c-435d-a77c-8cd5b80a9479" data-linktype="relative-path">3.1.4.1.30</a></span>). The
+call can return a pointer to an array of routing extensions, where each element
+of the array is of this type. The information contained in each <b>FAX_ROUTING_EXTENSION_INFO</b>
+structure describes one <b>Fax Routing Extension</b> (section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>).</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (44 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (44 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfStruct</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrFriendlyNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrImageNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrExtensionNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Version
+  (20 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Status</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwLastError</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>dwSizeOfStruct (4 bytes):
+</b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that holds the size, in bytes, of the size of the structure. MUST be set to 44
+bytes.</p>
+</dd>
+<dd>
+<p><b>lpcwstrFriendlyNameOffset
+(4 bytes): </b>Offset to the <b>lpcwstrFriendlyName</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpcwstrImageNameOffset (4
+bytes): </b>Offset to the <b>lpcwstrImageName</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpcwstrExtensionNameOffset
+(4 bytes): </b>Offset to the <b>lpcwstrExtensionName</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>Version (20 bytes): </b>A
+<b>FAX_VERSION</b> (section <span><a href="7ef8f9ec-366f-4414-9583-4d8962c00e87" data-linktype="relative-path">2.2.22</a></span>) structure
+that holds version information for the fax routing execution component.<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p>
+</dd>
+<dd>
+<p><b>Status (4 bytes): </b>A <b>FAX_ENUM_PROVIDER_STATUS</b>
+(section <span><a href="587dd2a3-6fbc-4a22-ac03-fb14e05b6ffa" data-linktype="relative-path">2.2.57</a></span>) enumeration
+which holds load status of the fax extension.</p>
+</dd>
+<dd>
+<p><b>dwLastError (4 bytes): </b>A
+<b>DWORD</b> value that holds the Win32 error code that was encountered while
+the extension was loaded and initialized.</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrFriendlyName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrImageName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrExtensionName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>lpcwstrFriendlyName
+(variable): </b>A null-terminated string which holds the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_2ba66d72-d766-440f-b5ea-0333759b147c" data-linktype="relative-path">FSP</a></span>
+user-friendly name, suitable for display.</p>
+</dd>
+<dd>
+<p><b>lpcwstrImageName
+(variable): </b>A null-terminated string which holds the full path and file
+name for the FSP binary.</p>
+</dd>
+<dd>
+<p><b>lpcwstrExtensionName
+(variable): </b>A null-terminated string which holds the name of the telephony
+service provider associated with the devices for the FSP.</p>
+</dd></dl></div>

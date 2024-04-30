@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The GetInitiatorName method returns the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7204775b-b69b-4097-b3b9-06707940dbda" data-linktype="relative-path">iSCSI</a></span>
+name of the initiator service.</p><dl>
+<dd>
+<div><pre> HRESULT GetInitiatorName(
+   [out, string] WCHAR** ppwszIscsiName
+ );
+</pre></div>
+</dd></dl><p><b>ppwszIscsiName: </b>A pointer that, if the
+operation is successfully completed, receives a null-terminated Unicode string
+with the iSCSI name.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameter:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>ppwszIscsiName</i> is not NULL.</p>
+</li></ul><p>The server MUST set <i>ppwszIscsiName</i> to point to a
+string that contains the iSCSI name of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_daaa5b4b-e3f0-4df2-94b2-332d6d84cf80" data-linktype="relative-path">iSCSI initiator</a></span> on
+the system and return an HRESULT indicating failure or success.</p></div>

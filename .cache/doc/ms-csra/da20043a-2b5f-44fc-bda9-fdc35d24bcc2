@@ -1,0 +1,63 @@
+<div class="content"><p>The GetArchivedKey method is used to retrieve an archived <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private key</a> and the
+associated <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetArchivedKey(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] DWORD dwRequestId,
+   [out, ref] CERTTRANSBLOB* pctbArchivedKey
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.
+</p><p><b>dwRequestId: </b>An unsigned integer value that
+specifies the RequestId of the certificate request for which the archived
+private key and associated certificate are being requested.</p><p><b>pctbArchivedKey: </b>A pointer to a <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure
+that MUST contain, on successful response, the archived private key and
+associated certificate.</p><p>ArchivedKey Property Value Processing and Format</p><p>The <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a>
+server MUST create the ArchivedKey property value by using the following
+processing rules:</p><ol><li><p><span>    </span>The server MUST
+read the value from the Request_Raw_Archived_Key column of the Request table
+where the value of the Request_Request_ID column matches the value of the <i>dwRequestId</i>
+parameter. If no such record exists or the value of the
+Request_Raw_Archived_Key column is empty, the CA MUST return a nonzero error to
+the client. </p>
+</li><li><p><span>    </span>The server MUST
+construct a PKCS #7 with the following requirements:</p>
+<ul><li><p><span><span>  </span></span>ContentInfo:
+This field MUST have the following values: </p>
+<ul><li><p><span><span> 
+</span></span>ContentType: This field MUST be SignedData (1.2.840.113549.1.7.2
+PKCS#7 Signed).</p>
+</li><li><p><span><span> 
+</span></span>Content: This field MUST be the value that was read in step 1
+from the Request_Raw_Archived_Key column.</p>
+</li></ul></li><li><p><span><span>  </span></span>Certificates:
+This field MUST include the current CA <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_6a2366ee-fc9c-4406-963d-eac335ed8fc5" data-linktype="relative-path">signing certificate</a> that is
+used to verify this PKCS#7 message.</p>
+</li><li><p><span><span>  </span></span>SignerInfos:
+The first SignerInfo in the SignerInfos collection MUST use the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a> that is associated with
+the current CA signing certificate.</p>
+</li></ul></li><li><p><span>    </span>The ASN.1
+DER–encoded PKCS#7 signed data that was created in step 2 MUST be the value of
+the ArchivedKey property in the request table (see section <a href="8cde1de4-9e58-4250-b8fe-4f0da15127ed" data-linktype="relative-path">3.1.1</a>). </p>
+</li></ol><p>The GetArchivedKey method is used to retrieve the archived
+private key and issued certificate from the CA&#39;s database.</p><p>The CA server MUST enforce the following processing rules:</p><ul><li><p><span><span> 
+</span></span>The CA MUST look up the request based on the provided <i>dwRequestId</i>
+parameter in the CA database Request table.</p>
+</li><li><p><span><span> 
+</span></span>If the request is not found, the CA MUST fail the request with
+the error CERTSRV_E_PROPERTY_EMPTY.</p>
+</li><li><p><span><span> 
+</span></span>If the request is found, the CA MUST ensure that the value of the
+Request.Disposition column in the identified row is &#34;certificate
+issued&#34;.</p>
+</li><li><p><span><span> 
+</span></span>The CA MUST also ensure that the identified request has the
+ArchivedKey property value. Otherwise, the CA server MUST fail with the error
+CERTSRV_E_PROPERTY_EMPTY.</p>
+</li><li><p><span><span> 
+</span></span>The <b>pb</b> member of the <i>pctbArchivedBlob</i> parameter
+MUST reference the value of the ArchivedKey property, and the <b>cb</b> member
+of the <i>pctbArchivedBlob</i> parameter MUST contain the length, in bytes, of
+the ArchivedKey property value.</p>
+</li></ul></div>

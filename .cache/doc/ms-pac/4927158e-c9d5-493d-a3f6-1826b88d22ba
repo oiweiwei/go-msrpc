@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The <b>PAC_CREDENTIAL_DATA</b> structure defines an array of
+security package-specific credentials that are provided to the Kerberos client.
+The <b>PAC_CREDENTIAL_DATA</b> structure is marshaled by <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+<span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>The <b>PAC_CREDENTIAL_DATA</b> structure is defined as
+follows.</p><dl>
+<dd>
+<div><pre> typedef struct _PAC_CREDENTIAL_DATA {
+   ULONG CredentialCount;
+   [size_is(CredentialCount)] SECPKG_SUPPLEMENTAL_CRED Credentials[*];
+ } PAC_CREDENTIAL_DATA, *PPAC_CREDENTIAL_DATA;
+</pre></div>
+</dd></dl><p><b>CredentialCount:</b> A 32-bit unsigned integer
+that defines the number of elements in the <b>Credentials</b> member.</p><p><b>Credentials:</b> An array of <span><a href="50974dc7-6bce-4db5-805b-8dca924ad5a4" data-linktype="relative-path">SECPKG_SUPPLEMENTAL_CRED (section 2.6.3)</a></span>
+structures that define the supplemental credentials.</p><p><b>Note:</b> As specified in section <span><a href="cc919d0c-f2eb-4f21-b487-080c486d85fe" data-linktype="relative-path">2.6.1</a></span>,
+this structure is encrypted prior to being encoded in any other structures.
+Encryption is performed by first serializing the data structure via <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_9ebf9540-2c31-43bc-bc56-4a932faabf2d" data-linktype="relative-path">Network
+Data Representation (NDR)</a></span> encoding, as specified in [MS-RPCE]. Once
+serialized, the data is encrypted using the key and cryptographic system
+selected through the AS protocol and the KRB_AS_REP message (as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90458" data-linktype="external">[RFC4120]</a></span>
+section 3.1.3 and <span><a href="https://go.microsoft.com/fwlink/?LinkId=90482" data-linktype="external">[RFC4556]</a></span>).
+Fields (for capturing this information) and cryptographic parameters are
+specified in PAC_CREDENTIAL_INFO (section 2.6.1).</p></div>

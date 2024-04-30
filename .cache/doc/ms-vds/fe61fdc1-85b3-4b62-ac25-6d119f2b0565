@@ -1,0 +1,40 @@
+<div class="content"><p> </p><p>The VDS_LUN_INFORMATION structure provides information about
+a SCSI-2 device. For information about a SCSI-2 device, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90512" data-linktype="external">[ANSI-131-1994]</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_LUN_INFORMATION 
+ {
+   unsigned long m_version;
+   byte m_DeviceType;
+   byte m_DeviceTypeModifier;
+   long m_bCommandQueuing;
+   VDS_STORAGE_BUS_TYPE m_BusType;
+   [string] char * m_szVendorId;
+   [string] char * m_szProductId;
+   [string] char * m_szProductRevision;
+   [string] char * m_szSerialNumber;
+   GUID m_diskSignature;
+   VDS_STORAGE_DEVICE_ID_DESCRIPTOR m_deviceIdDescriptor;
+   unsigned long m_cInterconnects;
+   [size_is(m_cInterconnects)] VDS_INTERCONNECT * m_rgInterconnects;
+ } VDS_LUN_INFORMATION;
+</pre></div>
+</dd></dl><p><b>m_version:</b>  The version number of
+the VDS_LUN_INFORMATION structure. As of the current version of this protocol,
+this value is always VER_VDS_LUN_INFORMATION (0x00000001).</p><p><b>m_DeviceType:</b>  The SCSI-2 device
+type of the device, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90528" data-linktype="external">[SPC-3]</a></span>.</p><p><b>m_DeviceTypeModifier:</b>  The SCSI-2
+device type modifier, if any, as specified in [SPC-3].</p><p><b>m_bCommandQueuing:</b>  A Boolean value
+that indicates whether the device supports multiple outstanding commands.</p><p><b>m_BusType:</b>  A value from the <span><a href="6aeda351-afcc-4818-81c8-d1f9804e5b37" data-linktype="relative-path">VDS_STORAGE_BUS_TYPE</a></span>
+enumeration that indicates the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_36805c8d-5505-4906-986b-8b08a4f0741e" data-linktype="relative-path">bus</a></span> type of the
+device.</p><p><b>m_szVendorId:</b>  The null-terminated
+vendor identification Unicode string of the device. This value is NULL if no
+vendor ID exists.</p><p><b>m_szProductId:</b>  The null-terminated
+product identification Unicode string of the device. This value is NULL if no
+product ID exists.</p><p><b>m_szProductRevision:</b>  The
+null-terminated product revision Unicode string of the device. This value is
+NULL if no product revision information exists.</p><p><b>m_szSerialNumber:</b>  The
+null-terminated serial number of the device. This value is NULL if no serial
+number exists.</p><p><b>m_diskSignature:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_0e4c21af-021e-4059-ae9a-7821ec3c2e39" data-linktype="relative-path">disk
+signature</a></span> of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>. </p><p><b>m_deviceIdDescriptor:</b>  A <span><a href="b30d8cb1-1cbf-4ca7-b145-9c8accd75e9d" data-linktype="relative-path">VDS_STORAGE_DEVICE_ID_DESCRIPTOR</a></span>
+structure that contains the identification descriptor of the device.</p><p><b>m_cInterconnects:</b>  The number of
+elements in the m_rgInterconnects array.</p><p><b>m_rgInterconnects:</b>  Any array of <span><a href="3f864c2c-704e-4608-8d4a-850a971ae4c6" data-linktype="relative-path">VDS_INTERCONNECT</a></span>
+structures that describe the physical interconnects to the device.</p></div>

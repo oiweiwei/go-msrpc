@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The <b>DHCP_POLICY_FIELDS_TO_UPDATE</b> enumeration defines
+the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_52323544-69e0-4172-8921-2711cbda988e" data-linktype="relative-path">policy</a></span>
+fields to be updated during a set operation using the <b>R_Dhcpv4SetPolicy</b>
+method specified in section <span><a href="c5ca9a61-44c6-4214-9b3c-170f08895fcc" data-linktype="relative-path">3.2.4.111</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum {
+     DhcpUpdatePolicyName     = 0x00000001,
+     DhcpUpdatePolicyOrder    = 0x00000002,
+     DhcpUpdatePolicyExpr     = 0x00000004,
+     DhcpUpdatePolicyRanges   = 0x00000008,
+     DhcpUpdatePolicyDescr    = 0x00000010,
+     DhcpUpdatePolicyStatus   = 0x00000020,
+     DhcpUpdatePolicyDnsSuffix = 0x00000040
+ } DHCP_POLICY_FIELDS_TO_UPDATE;
+</pre></div>
+</dd></dl><p><b>DhcpUpdatePolicyName:</b>  Updates the name of the
+policy.</p><p><b>DhcpUpdatePolicyOrder: </b>Updates the processing
+order of the policy.</p><p><b>DhcpUpdatePolicyExpr: </b>Updates the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_6d43b116-acad-45af-aea5-a8e7240a1106" data-linktype="relative-path">expressions</a></span>
+and <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_9a1c3bd3-d971-482a-adfe-6f41e427b95f" data-linktype="relative-path">conditions</a></span>
+of the policy.</p><p><b>DhcpUpdatePolicyRanges: </b>Updates the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b63eb4e5-64bf-40a5-bc59-12b83ad184cb" data-linktype="relative-path">IP ranges</a></span>
+of the policy.</p><p><b>DhcpUpdatePolicyDescr: </b>Updates the description
+of the policy.</p><p><b>DhcpUpdatePolicyStatus: </b>Updates the state
+(enabled/disabled) of the policy.</p><p><b>DhcpUpdatePolicyDnsSuffix: </b>Updates the DNS
+suffix for the policy.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p></div>

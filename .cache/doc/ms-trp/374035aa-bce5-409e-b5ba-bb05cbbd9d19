@@ -1,0 +1,78 @@
+<div class="content"><p>The LINEAGENTSESSIONENTRY packet describes an ACD agent
+session. The <a href="c447791a-7248-4aad-b7d2-94484b4a8c7f" data-linktype="relative-path">LINEAGENTSESSIONLIST</a>
+packet can contain an array of LINEAGENTSESSIONENTRY packets. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>hAgentSession</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>hAgent</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>GroupID (16
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwWorkingAddressID</p>
+  </td>
+ </tr>
+</tbody></table><p><b>hAgentSession (4 bytes): </b>An <a href="48b4be6d-870c-4ee8-b991-1c849e393060" data-linktype="relative-path">HAGENTSESSION</a>. The unique
+identifier for an agent session. It is the responsibility of the agent handler
+to generate and maintain the uniqueness of these identifiers. </p><p><b>hAgent (4 bytes): </b>An unsigned 32-bit integer.
+The unique identifier for an agent. It is the responsibility of the agent
+handler to generate and maintain the uniqueness of these identifiers.</p><p><b>GroupID (16 bytes): </b>An unsigned 32-bit
+integer. The <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a> for an
+ACD group. It is the responsibility of the agent handler to generate and
+maintain the uniqueness of this identifier. </p><p><b>dwWorkingAddressID (4 bytes): </b>An unsigned
+32-bit integer. The address identifier on which the agent will receive calls
+for this session.</p></div>

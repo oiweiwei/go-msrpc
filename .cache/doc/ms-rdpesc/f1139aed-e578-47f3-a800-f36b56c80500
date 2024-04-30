@@ -1,0 +1,54 @@
+<div class="content"><p>Status_Call obtains the status of a connection for a valid <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_5cddf14c-b925-4494-9b55-d2c8259f9ad0" data-linktype="relative-path">smart card reader</a> handle.</p><dl>
+<dd>
+<div><pre> typedef struct _Status_Call {
+   REDIR_SCARDHANDLE hCard;
+   long fmszReaderNamesIsNULL;
+   unsigned long cchReaderLen;
+   unsigned long cbAtrLen;
+ } Status_Call;
+</pre></div>
+</dd></dl><p><b>hCard:</b>  A handle, as specified in
+section <a href="b6276356-7c5f-4d3e-be92-a6c85e58d008" data-linktype="relative-path">2.2.1.2</a>.</p><p><b>fmszReaderNamesIsNULL:</b>  A Boolean
+value specifying whether the caller wants to retrieve the length of the data.
+Set to FALSE (0x00000000) to allow the data to be returned. Set to TRUE
+(0x00000001), and only the length of the data will be returned. Also, <b>cchReaderLen</b>
+is ignored if this value is TRUE (0x00000001).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cchReaderLen:</b>  The length of the
+string buffer specified on the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_37eb268d-1dd2-4413-9fa6-3af2cab291d3" data-linktype="relative-path">TS server</a> side. If
+cchReaderLen is set to SCARD_AUTOALLOCATE with a value of 0xFFFFFFFF, a string
+of any length can be returned. Otherwise, the returned string MUST NOT exceed <b>cchReaderLen</b>
+characters in length, including any null characters. When the string to be
+returned exceeds <b>cchReaderLen</b> characters in length, including any null
+characters, <a href="987c1358-ad6b-4c8e-88e1-06210c28a66f" data-linktype="relative-path">Status_Return</a>.<b>ReturnCode</b>
+MUST be set to SCARD_E_INSUFFICIENT_BUFFER (0x80100008). The <b>cchReaderLen</b>
+field MUST be ignored if <b>fmszReaderNamesIsNULL</b> is TRUE (0x00000001).
+Also, if <b>fmszReaderNamesIsNULL</b> is set to FALSE (0x00000000) but <b>cchReaderLen</b>
+is set to 0x00000000, then the call MUST succeed, Status_Return.<b>cbAtrLen</b>
+MUST be set to the length of the data in bytes, and Status_Return.<b>pbAtr</b>
+MUST be set to NULL.</p><p><b>cbAtrLen:</b>  Unused. MUST be ignored
+upon receipt. </p></div>

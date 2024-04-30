@@ -1,0 +1,75 @@
+<div class="content"><p> </p><p>The ChangeAttributes method changes the attributes of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span>
+at byte offset <i>ullOffset</i> on the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT ChangeAttributes(
+   [in] ULONGLONG ullOffset,
+   [in] CHANGE_ATTRIBUTES_PARAMETERS* para
+ );
+</pre></div>
+</dd></dl><p><b>ullOffset: </b>The byte offset of the partition,
+from the beginning of the disk. This offset MUST be the offset of the start of
+a partition.</p><p><b>para: </b>A pointer to a <span><a href="158976c6-bcea-424d-9116-f58ddd85620a" data-linktype="relative-path">CHANGE_ATTRIBUTES_PARAMETERS</a></span>
+structure that describes the attributes to change.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><dl>
+<dd>
+<p><b>Note</b>  This method is not valid on
+CD/DVD or <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_a2b20515-dc69-4674-b74e-91c8f24e3003" data-linktype="relative-path">super floppy</a></span>
+devices. These devices do not support <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_cee39671-0b98-4ca3-904d-018780e7042f" data-linktype="relative-path">partition tables</a></span>.</p>
+</dd></dl><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <b>para</b> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the partition format in input parameter <b>para</b>
+matches the current partition format of the disk.</p>
+</li></ul><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>Change the attributes of the partition following the parameters
+specified to the method. If the disk partitioning format is MBR, the only value
+that can be changed is the bootIndicator. If the disk partitioning format is
+GPT, the only value that can be changed is the GPT attributes. The disk
+partitioning format cannot be changed using this method. For information on
+changing partition attributes, see section 2.2.2.11.1.1.</p>
+</li><li><p><span><span> 
+</span></span>If attributes on the partition were successfully changed, for
+each callback object that is registered in the list of callback objects, call
+the callback object&#39;s IVdsAdviseSink::OnNotify (Opnum 3) method by using a <span><a href="4f29057f-ab32-4a3d-9fcb-00ba3457cb42" data-linktype="relative-path">VDS_NOTIFICATION</a></span>
+structure that has the following attributes:</p>
+<ul><li><p><span><span>  </span></span><b>objectType</b>
+member is VDS_NTT_PARTITION.</p>
+</li><li><p><span><span>  </span></span><b>Partition</b>
+member is a <span><a href="72738b43-1afe-4b36-9978-eddcbcbfca55" data-linktype="relative-path">VDS_PARTITION_NOTIFICATION</a></span>
+that has the following attributes:</p>
+<ul><li><p><span><span> 
+</span></span><b>ulEvent</b> is VDS_NF_PARTITION_MODIFY.</p>
+</li><li><p><span><span> 
+</span></span><b>diskId</b> is the VDS_OBJECT_ID of the disk object
+corresponding to the disk on which the partition attribute was modified.</p>
+</li><li><p><span><span> 
+</span></span><b>ullOffset</b> is the byte offset where the partition started
+on the disk.<a id="Appendix_A_Target_96"></a><a aria-label="Product behavior note 96" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_96" data-linktype="relative-path">&lt;96&gt;</a></p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>If attributes on the partition were successfully changed, and a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>
+exists on the partition, for each callback object registered in the list of
+callback objects, call the callback object&#39;s IVdsAdviseSink::OnNotify (Opnum 3)
+method by using a VDS_NOTIFICATION structure that has the following attributes:</p>
+<ul><li><p><span><span>  </span></span><b>objectType</b>
+member is VDS_NTT_VOLUME.</p>
+</li><li><p><span><span>  </span></span><b>Volume</b>
+member is a <span><a href="410540de-982d-4db1-991e-a73efed4e6f0" data-linktype="relative-path">VDS_VOLUME_NOTIFICATION</a></span>
+that has the following attributes:</p>
+<ul><li><p><span><span> 
+</span></span><b>ulEvent</b> is VDS_NF_VOLUME_MODIFY.</p>
+</li><li><p><span><span> 
+</span></span><b>volumeId</b> is the VDS_OBJECT_ID of this volume object.</p>
+</li><li><p><span><span> 
+</span></span><b>plexId</b> is NULL GUID, but it is not relevant when ulEvent
+is VDS_NF_VOLUME_MODIFY.</p>
+</li><li><p><span><span> 
+</span></span><b>ulPercentCompleted</b> range is 0-100 and is implementation
+specific; however, it is not relevant when ulEvent is VDS_NF_VOLUME_MODIFY.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Return an HRESULT indicating failure or success.</p>
+</li></ul></div>

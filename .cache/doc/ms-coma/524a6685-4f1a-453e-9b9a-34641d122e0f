@@ -1,0 +1,61 @@
+<div class="content"><p>The TableDetailedError structure represents a record of an
+error related to a particular property of a particular table entry, which
+contributed to a partial failure in a read from a table (see section <a href="ba9d3f6d-94d8-4e1f-b31e-122ec038eca7" data-linktype="relative-path">3.1.4.8.1</a>) or a failure in
+a write to a table (see section <a href="3fe6b10a-65d3-4bcd-8897-f84512d52f3b" data-linktype="relative-path">3.1.4.9.1</a>).</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EntryIndex</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Reason</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PropertyIndex</p>
+  </td>
+ </tr>
+</tbody></table><p><b>EntryIndex (4 bytes): </b> An unsigned integer
+that represents the zero-based index of the entry to which this error
+corresponds.</p><p><b>Reason (4 bytes): </b> An HRESULT value that
+represents the reason for failure. MUST be a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.
+</p><p><b>PropertyIndex (4 bytes): </b> An unsigned integer
+that represents the zero-based index of the property to which this error
+corresponds.</p></div>

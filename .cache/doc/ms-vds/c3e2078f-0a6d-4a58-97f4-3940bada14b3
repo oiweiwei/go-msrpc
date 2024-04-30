@@ -1,0 +1,45 @@
+<div class="content"><p> </p><p>The VDS_DRIVE_LETTER_NOTIFICATION structure provides
+information about a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1b153cd0-e3f3-4383-bc66-d5ad482c9766" data-linktype="relative-path">drive letter</a></span>
+notification.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_DRIVE_LETTER_NOTIFICATION {
+   unsigned long ulEvent;
+   WCHAR wcLetter;
+   VDS_OBJECT_ID volumeId;
+ } VDS_DRIVE_LETTER_NOTIFICATION;
+</pre></div>
+</dd></dl><p><b>ulEvent:</b>  Determines the
+drive-letter event for which an application will be notified; it MUST be one of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>VDS_NF_DRIVE_LETTER_FREE</p>
+  <p>0x000000C9</p>
+  </td>
+  <td>
+  <p>The drive letter is no longer in use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VDS_NF_DRIVE_LETTER_ASSIGN</p>
+  <p>0x000000CA</p>
+  </td>
+  <td>
+  <p>The drive letter has been assigned to a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>wcLetter:</b>  The drive letter that
+triggered the event, as a single uppercase or lowercase alphabetical (A-Z)
+Unicode character.</p><p><b>volumeId:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS
+object</a></span> ID of the volume object to which the drive letter is
+assigned. If the drive letter is freed, the volume identifier is GUID_NULL.</p></div>

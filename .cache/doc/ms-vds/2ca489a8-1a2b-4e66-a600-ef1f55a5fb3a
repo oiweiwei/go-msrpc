@@ -1,0 +1,46 @@
+<div class="content"><p> </p><p>The VDS_HBAPORT_SPEED_FLAG enumeration type defines the set
+of valid flags for determining the speeds that an <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_49b98426-c07d-42ab-8ebc-bd088b107c24" data-linktype="relative-path">HBA</a></span> port supports.
+These values are used in the ulPortSpeed member of the VDS_HBAPORT_PROP
+structure. These flags correspond to the HBA_PORTSPEED flags, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89878" data-linktype="external">[HBAAPI]</a></span>.<a id="Appendix_A_Target_36"></a><a aria-label="Product behavior note 36" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_36" data-linktype="relative-path">&lt;36&gt;</a></p><dl>
+<dd>
+<div><pre> typedef  enum _VDS_HBAPORT_SPEED_FLAG
+ {
+   VDS_HSF_UNKNOWN = 0x00000000,
+   VDS_HSF_1GBIT = 0x00000001,
+   VDS_HSF_2GBIT = 0x00000002,
+   VDS_HSF_10GBIT = 0x00000004,
+   VDS_HSF_4GBIT = 0x00000008,
+   VDS_HSF_NOT_NEGOTIATED = 0x00008000
+ } VDS_HBAPORT_SPEED_FLAG;
+</pre></div>
+</dd></dl><p><b>VDS_HSF_UNKNOWN:  </b>The HBA port speed is
+unknown.</p><dl>
+<dd>
+<p>Corresponding HBA_PORTSPEED value:
+HBA_PORTSPEED_UNKNOWN</p>
+</dd></dl><p><b>VDS_HSF_1GBIT:  </b>The HBA port supports a
+transfer rate of 1 gigabit per second.</p><dl>
+<dd>
+<p>Corresponding HBA_PORTSPEED value:
+HBA_PORTSPEED_1GBIT</p>
+</dd></dl><p><b>VDS_HSF_2GBIT:  </b>The HBA port supports a transfer
+rate of 2 gigabits per second.</p><dl>
+<dd>
+<p>Corresponding HBA_PORTSPEED value:
+HBA_PORTSPEED_2GBIT</p>
+</dd></dl><p><b>VDS_HSF_10GBIT:  </b>The HBA port supports a
+transfer rate of 10 gigabits per second.</p><dl>
+<dd>
+<p>Corresponding HBA_PORTSPEED value:
+HBA_PORTSPEED_10GBIT</p>
+</dd></dl><p><b>VDS_HSF_4GBIT:  </b>The HBA port supports a
+transfer rate of 4 gigabits per second.</p><dl>
+<dd>
+<p>Corresponding HBA_PORTSPEED value:
+HBA_PORTSPEED_4GBIT</p>
+</dd></dl><p><b>VDS_HSF_NOT_NEGOTIATED:  </b>The HBA port speed
+has not been established.</p><dl>
+<dd>
+<p>Corresponding HBA_PORTSPEED value:
+HBA_PORTSPEED_NOT_NEGOTIATED</p>
+</dd></dl></div>

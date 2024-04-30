@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The Cookie structure is a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> that
+contains information about the cookie in the LDAP_SERVER_DIRSYNC_OID control
+value.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   UCHAR signature[4];
+   ULONG version;
+   FILETIME creationTime;
+   ULONGLONG reserved;
+   ULONG utdVectorSize;
+   USN_VECTOR usnVector;
+   UUID uuidSourceDsaInvocationID;
+   UCHAR utdVector[variable];
+ } Cookie;
+</pre></div>
+</dd></dl><p><b>signature:</b>  Cookie signature.</p><p><b>version:</b>  The version number.</p><p><b>creationTime:</b>  The creation time.</p><p><b>reserved:</b>  Unused.</p><p><b>utdVectorSize:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_42564a26-2ae7-41a2-a67c-3c74381d8538" data-linktype="relative-path">up-to-date
+vector</a></span> size.</p><p><b>usnVector:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_01936446-8739-4b98-b83f-fb5e2a53ce4c" data-linktype="relative-path">USN</a></span>
+vector.</p><p><b>uuidSourceDsaInvocationID:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_e7869b9a-61fa-46e3-89dd-fb3f57d1ba7a" data-linktype="relative-path">invocation
+ID</a></span> (a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>) of the source
+DSA.</p><p><b>utdVector:</b>  The up-to-date vector.</p></div>

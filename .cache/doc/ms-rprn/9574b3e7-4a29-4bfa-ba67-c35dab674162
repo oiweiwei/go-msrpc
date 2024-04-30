@@ -1,0 +1,57 @@
+<div class="content"><p>RpcEnumPrinterDataEx enumerates all value names and data for
+a specified printer and key.<a id="Appendix_A_Target_304"></a><a aria-label="Product behavior note 304" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_304" data-linktype="relative-path">&lt;304&gt;</a> This
+method is similar to <a href="51bfa051-e7e4-4fc4-b79e-ea9d4b08cb84" data-linktype="relative-path">RpcEnumPrinterData</a>
+(section 3.1.4.2.16) but also allows the caller to specify the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_2d67ea57-10e6-422f-985e-694834945a02" data-linktype="relative-path">registry</a> key from which to
+enumerate the data, and allows retrieving several values in a single call.</p><dl>
+<dd>
+<div><pre> DWORD RpcEnumPrinterDataEx(
+   [in] PRINTER_HANDLE hPrinter,
+   [in, string] const wchar_t* pKeyName,
+   [out, size_is(cbEnumValues)] BYTE* pEnumValues,
+   [in] DWORD cbEnumValues,
+   [out] DWORD* pcbEnumValues,
+   [out] DWORD* pnEnumValues
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object that
+was opened by <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter (section 3.1.4.2.3)</a>,
+<a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx (section 3.1.4.2.15)</a>,
+<a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter (section 3.1.4.2.2)</a>,
+or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx (section 3.1.4.2.14)</a>.</p><p><b>pKeyName: </b>A pointer to a string that specifies
+the key containing the values to enumerate. A key name is an arbitrary string
+defined by the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer
+driver</a> associated with the printer object. For rules governing key names,
+see section <a href="c35aab90-57fc-4099-b388-6ec323ded6ec" data-linktype="relative-path">2.2.4.7</a>.</p><p><b>pEnumValues: </b>A pointer to <a href="6f493533-1432-4438-bd59-40f97a02e688" data-linktype="relative-path">BUFFER</a> as specified in
+PRINTER_ENUM_VALUES Structures Query Parameters (section 3.1.4.1.10).</p><dl>
+<dd>
+<p>This parameter can be NULL if <i>cbEnumValues</i>
+equals zero.</p>
+</dd></dl><p><b>cbEnumValues: </b>A parameter specified in
+PRINTER_ENUM_VALUES Structures Query Parameters.</p><p><b>pcbEnumValues: </b>A parameter specified in
+PRINTER_ENUM_VALUES Structures Query Parameters.</p><p><b>pnEnumValues: </b>A parameter specified in
+PRINTER_ENUM_VALUES Structures Query Parameters.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps specified in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE
+Parameters (section 3.1.4.1.11)</a>. This method SHOULD assume that
+the handle to the printer object can be used without further access checks.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the <i>pKeyName</i> parameter points to a string that
+complies with the rules for key names specified in section 2.2.4.7. If this
+verification fails, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps specified in PRINTER_ENUM_VALUES
+Structures Query Parameters.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Enumerate all the values referenced by the specified printer data
+key.</p>
+</li><li><p><span><span> 
+</span></span>Using the enumerated objects, perform the processing and response
+steps specified in PRINTER_ENUM_VALUES Structures Query Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

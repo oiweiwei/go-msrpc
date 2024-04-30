@@ -1,0 +1,37 @@
+<div class="content"><p> </p><p>The ElfrOpenELA (Opnum 14) method instructs the server to
+return a server context handle to a <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_3c0e011b-e37d-40ef-90d6-1ed516f06b1c" data-linktype="relative-path">live event log</a></span>. For
+this to succeed, the caller MUST have permission to read the file that contains
+the <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_bb3fad7e-60bf-46d4-9c3f-7caea47a743e" data-linktype="relative-path">event
+log</a></span>.</p><dl>
+<dd>
+<div><pre> NTSTATUS ElfrOpenELA(
+   [in] EVENTLOG_HANDLE_A UNCServerName,
+   [in] PRPC_STRING ModuleName,
+   [in] PRPC_STRING RegModuleName,
+   [in] unsigned long MajorVersion,
+   [in] unsigned long MinorVersion,
+   [out] IELF_HANDLE* LogHandle
+ );
+</pre></div>
+</dd></dl><p><b>UNCServerName: </b>A server interface handle. A pointer
+to an ANSI string (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89952" data-linktype="external">[MSDN-ANSI]</a></span>)
+specifying the server, as specified in section <span><a href="12315f0e-4143-45ee-bcda-490a80e5bed5" data-linktype="relative-path">2.2.7</a></span>. The client
+MUST map this string to an <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle,
+and the server MUST ignore this argument, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+sections 4.3.5 and 5.1.5.2. </p><p><b>ModuleName: </b>Specifies the event log name, as defined
+in section <span><a href="c32280b0-471d-41b7-b146-7ac496708c26" data-linktype="relative-path">1.8.2</a></span> and specified
+in section <span><a href="1f02c63c-f59f-40b2-8046-c624f18e7e84" data-linktype="relative-path">2.2.12</a></span>, for which a
+handle is needed. </p><p><b>RegModuleName: </b>This parameter MUST be ignored by the
+server. Clients MUST specify an empty string.</p><p><b>MajorVersion: </b>Major version of the client. This value
+MUST be set to 1. </p><p><b>MinorVersion: </b>Minor version of the client. This value
+MUST be set to 1. </p><p><b>LogHandle: </b>Pointer to an event log handle. This
+parameter is a server context handle, as specified in section <span><a href="de54bfbc-fbe4-43b8-b8e1-b8a6b2189604" data-linktype="relative-path">2.2.6</a></span>.
+This handle MUST be closed by using the <span><a href="e6b61523-8e7a-4279-a90f-2600b7e9da5d" data-linktype="relative-path">ElfrCloseEL (section 3.1.4.21</a></span><a href="e6b61523-8e7a-4279-a90f-2600b7e9da5d" data-linktype="relative-path">)</a> method once the handle
+is no longer needed. In the case when the client cannot call the ElfrCloseEL
+function, such as the abnormal termination of the client, this context handle
+will be revoked by the server so that there will not be any resource leaks.</p><p><b>Return Values: </b>The method MUST return STATUS_SUCCESS
+(0x00000000) on success; otherwise, it MUST return an implementation-based,
+nonzero NTSTATUS value specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+</p><p>This is identical to the <span><a href="ea6c92d3-05d1-4194-b5a0-686847cd8574" data-linktype="relative-path">ElfrOpenELW (section 3.1.4.3)</a></span>
+method except that the <i>ModuleName</i>, <i>RegModuleName</i>, and the
+UNCServerName are ANSI strings in this case. </p></div>

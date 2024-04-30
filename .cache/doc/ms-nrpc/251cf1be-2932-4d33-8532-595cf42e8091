@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/251cf1be-2932-4d33-8532-595cf42e8091" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_TRUSTED_DOMAIN_ARRAY</b> structure SHOULD<a id="Appendix_A_Target_58"></a><a aria-label="Product behavior note 58" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_58" data-linktype="relative-path">&lt;58&gt;</a> define information returned by
+the <b>NetrEnumerateTrustedDomainsEx</b> method, as specified in section <a href="c3e9870a-0943-4d45-be94-edb9419a1c11" data-linktype="relative-path">3.5.4.7.2</a>. </p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_TRUSTED_DOMAIN_ARRAY {
+   DWORD DomainCount;
+   [size_is(DomainCount)] PDS_DOMAIN_TRUSTSW Domains;
+ } NETLOGON_TRUSTED_DOMAIN_ARRAY,
+  *PNETLOGON_TRUSTED_DOMAIN_ARRAY;
+</pre></div>
+</dd></dl><p><b>DomainCount:</b> The number of entries in the <b>Domains</b>
+field.</p><p><b>Domains:</b> An array of <b>DS_DOMAIN_TRUSTSW</b>
+structures (section <a href="7de9866e-d3ef-4a9f-98a5-c2dcff1e61c1" data-linktype="relative-path">2.2.1.6.2</a>)
+that describe <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domains</a> <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trusted</a> by the server
+processing the <b>NetrEnumerateTrustedDomainsEx</b> method call.</p></div>

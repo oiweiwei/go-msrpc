@@ -1,0 +1,40 @@
+<div class="content"><p> </p><p>The TLIBATTR structure is used to specify the attributes of
+an <span><a href="5daecf67-bc6e-4e17-bcf8-797bdba1748b" data-linktype="relative-path">ITypeLib
+server</a></span>, as specified in section <span><a href="a1436b20-e676-495a-b4f3-9e9251a40e7b" data-linktype="relative-path">3.11.4</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct tagTLIBATTR {
+   GUID guid;
+   LCID lcid;
+   SYSKIND syskind;
+   unsigned short wMajorVerNum;
+   unsigned short wMinorVerNum;
+   unsigned short wLibFlags;
+ } TLIBATTR,
+  *LPTLIBATTR;
+</pre></div>
+</dd></dl><p><b>guid:</b>  MUST be set to the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+of the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_07ad91dc-c12a-44f7-9c64-7e496933183a" data-linktype="relative-path">automation scope</a></span>
+that is associated with the ITypeLib server, as specified in section <span><a href="b64411f3-9767-4fa3-a62f-aa35d2209cc1" data-linktype="relative-path">2.2.49.1</a></span>.</p><p><b>lcid:</b>  MUST be set to the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_c7f99c66-592f-4053-b62a-878c189653b6" data-linktype="relative-path">LCID</a></span>
+of the automation scope that is associated with the ITypeLib server, as
+specified in section 2.2.49.1.</p><p><b>syskind:</b>  MUST be set to a value of
+the <span><a href="0d81289e-f0ef-474d-8e61-dedae9ea5a08" data-linktype="relative-path">SYSKIND</a></span>
+enumeration, as specified in section 2.2.21.</p><dl>
+<dd>
+<p>The value of syskind specifies the system
+pointer-size value. If syskind is SYS_WIN32, the system pointer-size value is
+4. If syskind is SYS_WIN64, the system pointer-size value is 8.</p>
+</dd>
+<dd>
+<p>The system pointer-size value MUST be the size, in
+bytes, of the VT_INT_PTR and VT_UINT_PTR type variables created by the server
+(see section <span><a href="3fe7db9f-5803-4dc4-9d14-5425d3f5461f" data-linktype="relative-path">2.2.7</a></span>). It is used
+as a multiplier in the <b>oVft</b> field of a <span><a href="d3349d25-e11d-4095-ba86-de3fda178c4e" data-linktype="relative-path">FUNCDESC</a></span> (see
+section 2.2.42) and in the <b>cbSizeVft</b> field of a <span><a href="0ca10d08-61d2-4059-9109-7bbaf545715e" data-linktype="relative-path">TYPEATTR</a></span>
+(see section 2.2.44).</p>
+</dd></dl><p><b>wMajorVerNum:</b>  MUST be set to the
+major version number of the automation scope that is associated with the
+ITypeLib server, as specified in section <span><a href="ae4d27fa-faaa-4d5f-b0f9-15bfbaaae9b4" data-linktype="relative-path">2.2.49.2</a></span>.</p><p><b>wMinorVerNum:</b>  MUST be set to the
+minor version number of the automation scope that is associated with the
+ITypeLib server, as specified in section 2.2.49.2.</p><p><b>wLibFlags:</b>  MUST be either a
+combination of the LIBFLAGS bit flags (as specified in section <span><a href="08ca1c9a-5ac5-4630-aeaf-b09d495640b1" data-linktype="relative-path">2.2.20</a></span>)
+or 0.</p></div>

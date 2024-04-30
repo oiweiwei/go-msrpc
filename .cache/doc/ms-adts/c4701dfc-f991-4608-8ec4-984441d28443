@@ -1,0 +1,135 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c4701dfc-f991-4608-8ec4-984441d28443" data-linktype="external">msdn link</a></p><p>The format of a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_0a5fd868-ff77-4beb-838e-79f98cbe3898" data-linktype="relative-path">mailslot ping</a> as documented
+in section <a href="2cff75a9-5871-4493-a704-017b506f8df0" data-linktype="relative-path">6.3.5</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Opcode</p>
+  </td>
+  <td colspan="16">
+  <p>RequestCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UnicodeComputerName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UnicodeUserName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MailslotName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AllowableAccountControlBits</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DomainSidSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DomainSid
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NtVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>LmNtToken</p>
+  </td>
+  <td colspan="16">
+  <p>Lm20Token</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Opcode (2 bytes): </b>Operation code (see section <a href="07133ff2-a9a3-4aa9-8896-a7dcb53bdfe9" data-linktype="relative-path">6.3.1.3</a>). Set to
+LOGON_SAM_LOGON_REQUEST.</p><p><b>RequestCount (2 bytes): </b>A <a href="../ms-dtyp/c0618c5b-362b-4e06-9cb0-8720d240cf12" data-linktype="relative-path">USHORT</a>
+that contains the number of times the user has repeated this request.</p><p><b>UnicodeComputerName (variable): </b>Null-terminated
+<a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> value of the
+NETBIOS name of the client. This field MUST contain at least one character: the
+null terminator. Each Unicode value is encoded as 2 bytes. </p><p><b>UnicodeUserName (variable): </b>Null-terminated
+Unicode value of the account name of the user being queried. This field MUST
+contain at least one character: the null terminator. Each Unicode value is
+encoded as 2 bytes.</p><p><b>MailslotName (variable): </b>Null-terminated ASCII
+value of the name of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_f53fe4b9-8e1d-4366-9254-3c4f73269e78" data-linktype="relative-path">mailslot</a>
+the client listens on.</p><p><b>AllowableAccountControlBits (4 bytes): </b>Represents
+the <a href="../ms-ada3/01cf3969-bc7f-4294-9223-f15668557f5f" data-linktype="relative-path">userAccountControl</a>
+<a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a> of an account.</p><p><b>DomainSidSize (4 bytes): </b>A <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a>
+that contains the size of the DomainSid field.</p><p><b>DomainSid (variable): </b>The <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>, specified as a <a href="../ms-dtyp/78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">SID</a>
+structure, which is defined in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section 2.4.2. Its length is defined in the <b>DomainSidSize</b> field. This
+field is padded as necessary so that it is aligned on a DWORD boundary.</p><p><b>NtVersion (4 bytes): </b>NETLOGON_NT_VERSION
+Options (see <a href="8e6a9efa-6312-44e2-af12-06ad73afbfa5" data-linktype="relative-path">6.3.1.1</a>).</p><p><b>LmNtToken (2 bytes): </b>This MUST be set to
+0xFFFF.</p><p><b>Lm20Token (2 bytes): </b>This MUST be set to
+0xFFFF.</p><p><b>Note</b>  Except as noted earlier in this
+section, there is no padding for alignment. Therefore, except as otherwise
+specified, all fields after <b>MailslotName</b> can occur on odd byte
+boundaries.</p><p>All multibyte quantities are represented in little-endian
+byte order.</p></div>

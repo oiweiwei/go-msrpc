@@ -1,0 +1,125 @@
+<div class="content"><p> </p><p>A <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> calls the
+R_QMQueryQMRegistryInternal method to retrieve various string values from the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_2739ef12-a749-4540-9ac3-715968ef4df4" data-linktype="relative-path">supporting
+server</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT R_QMQueryQMRegistryInternal(
+   [in] handle_t hBind,
+   [in] DWORD dwQueryType,
+   [out, string] WCHAR** lplpMQISServer
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b>MUST be set to an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle as described in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>dwQueryType: </b>Specifies the type and format of
+the data to return to the caller via the <i>lplpMQISServer</i> parameter. MUST
+be one of the values in the following table:</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>A comma-delimited list of MQIS <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>
+  names configured on the supporting server. This value is retrieved from the <b>DirectoryServerList</b>
+  attribute of the server&#39;s <b>LocalQueueManager</b> ADM element instance. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The server&#39;s default time-to-reach-queue <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span>
+  property value, expressed in seconds, converted to a string.<a id="Appendix_A_Target_59"></a><a aria-label="Product behavior note 59" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_59" data-linktype="relative-path">&lt;59&gt;</a><a id="Appendix_A_Target_60"></a><a aria-label="Product behavior note 60" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_60" data-linktype="relative-path">&lt;60&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> that
+  represents the entire <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_70ce3665-ae64-44b4-88fe-7c1dcdcd5417" data-linktype="relative-path">MSMQ</a></span> forest.<a id="Appendix_A_Target_61"></a><a aria-label="Product behavior note 61" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_61" data-linktype="relative-path">&lt;61&gt;</a> See following for the curly
+  braced GUID string representation to use. The string uses the
+  &#34;braceless&#34; format.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>A string representation of the supporting server
+  version.<a id="Appendix_A_Target_62"></a><a aria-label="Product behavior note 62" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_62" data-linktype="relative-path">&lt;62&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The content of the <b>Identifier</b> attribute of the
+  server&#39;s <b>LocalQueueManager</b> ADM element instance. The curly braced GUID
+  string representation uses a &#34;braceless&#34; format given following.<a id="Appendix_A_Target_63"></a><a aria-label="Product behavior note 63" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_63" data-linktype="relative-path">&lt;63&gt;</a><a id="Appendix_A_Target_64"></a><a aria-label="Product behavior note 64" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_64" data-linktype="relative-path">&lt;64&gt;</a></p>
+  </td>
+ </tr></tbody></table><p>The format for the comma-delimited list of MQIS server names
+(0x00000000) is given by the following augmented BNF:</p><dl>
+<dd>
+<div><pre> list = [list &#34;,&#34;] computer-name
+ computer-name = 1*15digit
+ digit = num-digit / uppercase-alpha-digit / lowercase-alpha-digit 
+                   / special-digit
+ num-digit = %x30-39
+ uppercase-alpha-digit = %x41-5Alowercase-alpha-digit = %x61-7A
+ special-digit = &#34;!&#34; / &#34;@&#34; / &#34;#&#34; / &#34;$&#34; / &#34;%&#34; / &#34;^&#34; / &#34;&amp;&#34; / &#34;&#39;&#34; 
+                 / &#34;)&#34; / &#34;(&#34; / &#34;.&#34; / &#34;-&#34; / &#34;_&#34; / &#34;{&#34; / &#34;}&#34; / &#34;~&#34;
+  
+</pre></div>
+</dd></dl><p>The GUID string for the MSMQ forest (0x00000002) uses the
+&#34;braceless&#34; format depicted in the following augmented BNF:</p><dl>
+<dd>
+<div><pre>  
+ braceless-guid = dword-part &#34;-&#34; word-part &#34;-&#34; word-part &#34;-&#34; 
+                  2byte-part &#34;-&#34; 6byte-part
+ dword-part = 2word-part
+ word-part = 2byte-part
+ byte-part = 2hex-digit
+ hex-digit = %x30-39 / %x41-46 / %x61-66
+  
+</pre></div>
+</dd></dl><p>The string format used for the supporting server version
+(0x00000003), depicted in augmented BNF, is as follows:</p><dl>
+<dd>
+<div><pre>  
+ version = version-part &#34;.&#34; version-part &#34;.&#34; version-part
+ version-part = 1*4num-digit
+ num-digit = %x30-39
+</pre></div>
+</dd></dl><p>The GUID for the server <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue manager</a></span>
+(0x00000004) uses the following &#34;braceless&#34; format, depicted in
+augmented BNF:</p><dl>
+<dd>
+<div><pre>  
+ braceless-guid = dword-part &#34;-&#34; word-part &#34;-&#34; word-part &#34;-&#34; 
+                  2byte-part &#34;-&#34; 6byte-part
+ dword-part = 2word-part
+ word-part = 2byte-part
+ byte-part = 2hex-digit
+ hex-digit = %x30-39 / %x41-46 / %x61-66
+  
+</pre></div>
+</dd></dl><p><b>lplpMQISServer: </b> On success, the server
+returns the string indicated by dwQueryType through this parameter. The server
+can set this parameter to NULL in the event of an error.</p><p><b>Return Values: </b>On success, this method MUST return
+MQ_OK (0x00000000).</p><p>If input parameter values violate constraints specified
+above, the server MUST take no further action and return a failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>.</p><p>If any other error occurs, the server MUST return a failure
+HRESULT, and the client MUST treat all other failure HRESULTs identically.
+Additionally, if any other failure HRESULT is returned, the client MUST
+disregard all out-parameter values.</p><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol, as specified in [MS-RPCE]. </p><p>This method is invoked at the dynamically assigned <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span>
+returned by the <span><a href="a8c96155-a7e6-41cb-95c7-6ab7e4f8214d" data-linktype="relative-path">R_QMGetRTQMServerPort</a></span>
+method when IP_HANDSHAKE (0x00000000) or IPX_HANDSHAKE (0x00000002) is the
+interface specified by the <i>fIP</i> parameter.</p></div>

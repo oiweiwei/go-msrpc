@@ -1,0 +1,47 @@
+<div class="content"><p> </p><p>The <b>DHCP_SUBNET_INFO_VQ</b> structure contains the
+information about an IPv4 subnet. This structure is an extension of the <span><a href="e25ab58d-3e8b-4530-8ed8-8338850278ef" data-linktype="relative-path">DHCP_SUBNET_INFO (section 2.2.1.2.8)</a></span>
+structure, adding information on <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_f30fdc41-d7c1-422e-b5a8-9dcce071ebeb" data-linktype="relative-path">NAP</a></span> state for the
+IPv4 subnet. This structure is used in the <span><a href="e8cdbe00-e7be-457b-866e-b3b7311ad0e5" data-linktype="relative-path">R_DhcpCreateSubnetVQ (section 3.1.4.49)</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_SUBNET_INFO_VQ {
+   DHCP_IP_ADDRESS SubnetAddress;
+   DHCP_IP_MASK SubnetMask;
+   LPWSTR SubnetName;
+   LPWSTR SubnetComment;
+   DHCP_HOST_INFO PrimaryHost;
+   DHCP_SUBNET_STATE SubnetState;
+   DWORD QuarantineOn;
+   DWORD Reserved1;
+   DWORD Reserved2;
+   INT64 Reserved3;
+   INT64 Reserved4;
+ } DHCP_SUBNET_INFO_VQ,
+  *LPDHCP_SUBNET_INFO_VQ;
+</pre></div>
+</dd></dl><p><b>SubnetAddress:</b>  This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>,
+a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+specifying the IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6a800ef-fd8a-4d87-834c-131e58f304ea" data-linktype="relative-path">subnet ID</a></span>.</p><p><b>SubnetMask:</b>  This is of type <span><a href="5cd312d5-c29f-4352-9fbb-8119ce48082b" data-linktype="relative-path">DHCP_IP_MASK (section 2.2.1.2.2)</a></span>,
+a DWORD specifying the IPv4 subnet mask.</p><p><b>SubnetName:</b>  A pointer of type <span><a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a></span>
+to a null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+points to the name of this IPv4 subnet. There is no restriction on the length
+of this Unicode string.</p><p><b>SubnetComment:</b>  A pointer of type
+LPWSTR to a null-terminated Unicode string that points to an optional comment
+specific to this IPv4 subnet. There is no restriction on the length of this
+Unicode string.</p><p><b>PrimaryHost:</b>  This is of type <span><a href="51e16f4a-cb1d-400a-85c7-defe4cba1609" data-linktype="relative-path">DHCP_HOST_INFO (section 2.2.1.2.7)</a></span>
+structure that contains information about the DHCPv4 server servicing this IPv4
+subnet.</p><p><b>SubnetState:</b>  This is of type <span><a href="03ebc39d-3f99-4b33-9f57-2f00ae9d3e33" data-linktype="relative-path">DHCP_SUBNET_STATE (section 2.2.1.1.2)</a></span>
+enumeration that indicates the current state of this IPv4 subnet.</p><p><b>QuarantineOn:</b>  The information
+relating to the NAP state of this IPv4 subnet.</p><p><b>Reserved1:</b>  This is of type DWORD.
+Currently it is not used, and any value set to this field will not affect the
+behavior of the method that uses this structure. The value returned in this
+parameter from the server is ignored.</p><p><b>Reserved2:</b>  This is of type DWORD.
+Currently it is not used, and any value set to this field will not affect the
+behavior of the method that uses this structure. The value returned in this
+parameter from the server is ignored.</p><p><b>Reserved3:</b>  This is of type <span><a href="../ms-dtyp/cfb2030b-0d7a-4808-8539-32f35bd9325f" data-linktype="relative-path">INT64</a></span>.
+Currently it is not used, and any value set to this field will not affect the
+behavior of the method that uses this structure. The value returned in this
+parameter from the server is ignored.</p><p><b>Reserved4:</b>  This is of type INT64.
+Currently it is not used, and any value set to this field will not affect the
+behavior of the method that uses this structure. The value returned in this
+parameter from the server is ignored.</p></div>

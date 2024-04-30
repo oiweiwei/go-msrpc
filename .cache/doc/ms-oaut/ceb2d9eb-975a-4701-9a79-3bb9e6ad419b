@@ -1,0 +1,112 @@
+<div class="content"><p>The GetDocumentation method retrieves the documentation
+resources associated with the <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_4057fc86-007f-496f-a966-01c762088a8e" data-linktype="relative-path">automation
+type library</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetDocumentation(
+   [in] INT index,
+   [in] DWORD refPtrFlags,
+   [out] BSTR* pBstrName,
+   [out] BSTR* pBstrDocString,
+   [out] DWORD* pdwHelpContext,
+   [out] BSTR* pBstrHelpFile
+ );
+</pre></div>
+</dd></dl><p><b>index: </b>MUST equal the ordinal position of an <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_fb6a1829-c102-482c-902f-51c197b22860" data-linktype="relative-path">automation type description</a>
+in the type information table, or –1. If index is –1, the values of <i>pBstrName</i>,
+<i>pBstrDocString</i>, <i>pdwHelpContext</i>, and <i>pBstrHelpFile</i> MUST
+correspond to the attributes declared with the Type library, as specified in
+section <a href="ae4d27fa-faaa-4d5f-b0f9-15bfbaaae9b4" data-linktype="relative-path">2.2.49.2</a>.
+Otherwise, they MUST correspond to the attributes declared with the specified
+type.</p><p><b>refPtrFlags: </b>MUST be a combination of 0, or
+the bit flags specified in the following table.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TYPELIB_NameArg</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>MUST specify that the client is interested in the
+  actual <i>pBstrName</i> [out] argument.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TYPELIB_DocStringArg</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>MUST specify that the client is interested in the
+  actual <i>pBstrDocString</i> [out] argument.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TYPELIB_HelpContextArg</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>MUST specify that the client is interested in the
+  actual <i>pdwHelpContext</i> [out] argument.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TYPELIB_HelpFileArg</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>MUST specify that the client is interested in the
+  actual <i>pBstrHelpFile</i> [out] argument.</p>
+  </td>
+ </tr></tbody></table><p><b>pBstrName: </b>MUST be set to a BSTR that contains
+the name of the specified type or Type library if the TYPELIB_NameArg bit flag
+is set in <i>refPtrFlags</i>. MUST be set to a NULL BSTR otherwise.</p><p><b>pBstrDocString: </b>MUST be set to the
+documentation string that was associated with the specified type or Type
+library using the [helpstring] attribute (see section 2.2.49.2), if the
+TYPELIB_DocStringArg bit flag is set in <i>refPtrFlags</i>. MAY be set to an
+implementation-specific string<a id="Appendix_A_Target_61"></a><a aria-label="Product behavior note 61" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_61" data-linktype="relative-path">&lt;61&gt;</a> if no
+[helpstring] attribute is specified. MUST be set to a NULL BSTR otherwise.</p><p><b>pdwHelpContext: </b>MUST be set to the value that
+was associated with the specified type or Type library using the [helpcontext]
+attribute (see section 2.2.49.2), if the TYPELIB_HelpContextArg bit flag is set
+in <i>refPtrFlags</i>. MUST be set to 0 otherwise.</p><p><b>pBstrHelpFile: </b>MUST be set to the
+documentation string that was associated with the specified type or Type
+library using the [helpfile] attribute (see section 2.2.49.2), if the
+TYPELIB_HelpFileArg bit flag is set in <i>refPtrFlags</i>. MUST be set to a
+NULL BSTR otherwise.</p><p><b>Return Values: </b>The method MUST return
+information in an HRESULT data structure, defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.
+The severity bit in the structure identifies the following conditions: </p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire <b>HRESULT</b>
+DWORD does not match a value in the following table, a fatal failure occurred.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire <b>HRESULT</b>
+DWORD matches a value in the following table, a failure occurred. </p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8002802B</p>
+  <p>TYPE_E_ELEMENTNOTFOUND</p>
+  </td>
+  <td>
+  <p>The value of <i>index</i> was not –1 and did not
+  specify the ordinal position of an element in the type information table. See
+  [MS-ERREF].</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p> </p></div>

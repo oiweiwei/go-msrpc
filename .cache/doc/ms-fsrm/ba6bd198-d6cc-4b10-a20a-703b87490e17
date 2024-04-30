@@ -1,0 +1,82 @@
+<div class="content"><p>The ImportFileGroups method imports <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_1f828be2-7a1b-4671-b82d-76b974874edc" data-linktype="relative-path">file groups</a> from the <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a> string of file groups.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_FILEGROUP_MANAGER | 0x05)] HRESULT ImportFileGroups(
+   [in] BSTR serializedFileGroups,
+   [in, defaultvalue(NULL)] VARIANT* fileGroupNamesArray,
+   [out, retval] IFsrmCommittableCollection** fileGroups
+ );
+</pre></div>
+</dd></dl><p><b>serializedFileGroups: </b>Contains the XML string
+representation of a list of file groups. There is no maximum length for this
+string.</p><p><b>fileGroupNamesArray: </b>Pointer to a <a href="../ms-oaut/2e87a537-9305-41c6-a88b-b79809b3703a" data-linktype="relative-path">SAFEARRAY</a>
+that contains the names of file groups to import.</p><p><b>fileGroups: </b>Pointer to an <b>IFsrmCommittableCollection</b>
+interface pointer (section <a href="854116b8-04aa-4342-a308-da8b524ec0d9" data-linktype="relative-path">3.2.4.2.3</a>)
+that upon completion contains an <b>IFsrmFileGroup</b> interface pointer
+(section <a href="3cd77924-5b8d-4695-997e-df13e335c67f" data-linktype="relative-path">3.2.4.2.23</a>)
+for each of the imported file groups. The caller MUST release the collection
+when it is done with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>This specified file group could not be found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8004530B</p>
+  <p>FSRM_E_INVALID_IMPORT_VERSION</p>
+  </td>
+  <td>
+  <p>The version of the imported objects is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>serializedFileGroups</i>
+  parameter is NULL.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>fileGroups</i> parameter
+  is NULL.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>fileGroupNamesArray</i>
+  parameter is not a variant array of <b>BSTRs</b>.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>serializedFileGroups</i> is not NULL or empty.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>fileGroups</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+perform one of the following actions.</p><ul><li><p><span><span> 
+</span></span>If <i>fileGroupNamesArray</i> is NULL, the server MUST create new
+<a href="f9b05999-4313-400a-bd0e-58d02c9eb118" data-linktype="relative-path">Non-Persisted File Group
+Instances (section 3.2.1.3.4.2)</a> for each file group in the XML
+string, and populate <i>fileGroups</i> with the <b>IFsrmFileGroup</b> interface
+pointers for those Non-Persisted File Group Instances.</p>
+</li><li><p><span><span> 
+</span></span>If <i>fileGroupNamesArray</i> is not NULL, the server MUST create
+new Non-Persisted File Group Instances for file groups in the XML string, whose
+names are included in <i>fileGroupNamesArray</i>, and populate <i>fileGroups</i>
+with the <b>IFsrmFileGroup</b> interface pointers for those Non-Persisted File
+Group Instances.</p>
+</li></ul></div>

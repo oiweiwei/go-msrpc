@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The CALLCONV enumeration values are used in the <b>callconv</b>
+field of a FUNCDESC to identify the calling convention of a local method
+defined in the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_4057fc86-007f-496f-a966-01c762088a8e" data-linktype="relative-path">automation type library</a></span>
+module, as specified in sections <span><a href="d3349d25-e11d-4095-ba86-de3fda178c4e" data-linktype="relative-path">2.2.42</a></span> and <span><a href="82f9465b-ae46-474e-87ff-e65e9751affb" data-linktype="relative-path">2.2.49.9</a></span>
+.</p><p>The following calling convention constants are defined in
+the CALLCONV enumeration:</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum tagCALLCONV
+ {
+   CC_CDECL = 1,
+   CC_PASCAL = 2,
+   CC_STDCALL = 4
+ } CALLCONV;
+</pre></div>
+</dd></dl><p><b>CC_CDECL:  </b>MUST be set if the method was
+declared with the cdecl keyword.</p><p><b>CC_PASCAL:  </b>MUST be set if the method was
+declared with the pascal keyword.</p><p><b>CC_STDCALL:  </b>MUST be set if the method was
+declared with the stdcall keyword.</p></div>

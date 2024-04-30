@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The SESSION_ENUM_UNION union contains information about
+sessions. It is used in the definition of the <span><a href="e560d8c6-13e1-47b6-bde3-5377251ab5ff" data-linktype="relative-path">SESSION_ENUM_STRUCT</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union _SESSION_ENUM_UNION {
+   [case(0)] 
+     SESSION_INFO_0_CONTAINER* Level0;
+   [case(1)] 
+     SESSION_INFO_1_CONTAINER* Level1;
+   [case(2)] 
+     SESSION_INFO_2_CONTAINER* Level2;
+   [case(10)] 
+     SESSION_INFO_10_CONTAINER* Level10;
+   [case(502)] 
+     SESSION_INFO_502_CONTAINER* Level502;
+ } SESSION_ENUM_UNION;
+</pre></div>
+</dd></dl><p><b>Level0:</b>  A pointer to a structure
+that contains information about sessions, as specified in section <span><a href="008091bb-e34b-4d18-9718-855a10e5e9ba" data-linktype="relative-path">2.2.4.16</a></span>.</p><p><b>Level1:</b>  A pointer to a structure
+that contains information about sessions, as specified in section <span><a href="f50dd0c2-db75-4fbe-9e14-c5a1cc31aa18" data-linktype="relative-path">2.2.4.17</a></span>.</p><p><b>Level2:</b>  A pointer to a structure
+that contains information about sessions, as specified in section <span><a href="382eb968-8fd5-46fd-a439-ddfc8ee653dd" data-linktype="relative-path">2.2.4.18</a></span>.</p><p><b>Level10:</b>  A pointer to a structure
+that contains information about sessions, as specified in section <span><a href="4cddb417-ad2c-4334-b488-ce6659bced18" data-linktype="relative-path">2.2.4.19</a></span>.</p><p><b>Level502:</b>  A pointer to a structure
+that contains information about sessions, as specified in section <span><a href="2f95d8a6-1ce6-4338-ba7a-799f107059db" data-linktype="relative-path">2.2.4.20</a></span>.</p></div>

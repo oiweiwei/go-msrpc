@@ -1,0 +1,48 @@
+<div class="content"><p> </p><p>The VDS_ASYNC_OUTPUT_TYPE enumeration defines the types of
+operation information that the <span><a href="d21dadd7-b2ed-4c02-8fd2-83264272d277" data-linktype="relative-path">VDS_ASYNC_OUTPUT</a></span>
+structure returns.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_ASYNC_OUTPUT_TYPE
+ {
+   VDS_ASYNCOUT_UNKNOWN = 0,
+   VDS_ASYNCOUT_CREATEVOLUME = 1,
+   VDS_ASYNCOUT_EXTENDVOLUME = 2,
+   VDS_ASYNCOUT_SHRINKVOLUME = 3,
+   VDS_ASYNCOUT_ADDVOLUMEPLEX = 4,
+   VDS_ASYNCOUT_BREAKVOLUMEPLEX = 5,
+   VDS_ASYNCOUT_REMOVEVOLUMEPLEX = 6,
+   VDS_ASYNCOUT_REPAIRVOLUMEPLEX = 7,
+   VDS_ASYNCOUT_RECOVERPACK = 8,
+   VDS_ASYNCOUT_REPLACEDISK = 9,
+   VDS_ASYNCOUT_CREATEPARTITION = 10,
+   VDS_ASYNCOUT_CLEAN = 11,
+   VDS_ASYNCOUT_CREATELUN = 50,
+   VDS_ASYNCOUT_FORMAT = 101,
+   VDS_ASYNCOUT_CREATE_VDISK = 200,
+   VDS_ASYNCOUT_SURFACE_VDISK = 201,
+   VDS_ASYNCOUT_COMPACT_VDISK = 202,
+   VDS_ASYNCOUT_MERGE_VDISK = 203,
+   VDS_ASYNCOUT_EXPAND_VDISK = 204
+ } VDS_ASYNC_OUTPUT_TYPE;
+</pre></div>
+</dd></dl><p><b>VDS_ASYNCOUT_UNKNOWN:  </b>Information is about an
+unknown type of operation.</p><p><b>VDS_ASYNCOUT_CREATEVOLUME:  </b>Information is
+about creating a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>.</p><p><b>VDS_ASYNCOUT_EXTENDVOLUME:  </b>Information is
+about extending the size of a volume.</p><p><b>VDS_ASYNCOUT_SHRINKVOLUME:  </b>Information is
+about shrinking the size of a volume.</p><p><b>VDS_ASYNCOUT_ADDVOLUMEPLEX:  </b>Information is
+about adding a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7d1df68a-9ec5-4f84-a64f-67888f39405d" data-linktype="relative-path">volume plex</a></span>.</p><p><b>VDS_ASYNCOUT_BREAKVOLUMEPLEX:  </b>Information is
+about breaking a volume plex.</p><p><b>VDS_ASYNCOUT_REMOVEVOLUMEPLEX:  </b>Information is
+about removing a volume plex.</p><p><b>VDS_ASYNCOUT_REPAIRVOLUMEPLEX:  </b>Information is
+about repairing a volume plex.</p><p><b>VDS_ASYNCOUT_RECOVERPACK:  </b>Information is
+about recovering a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_890bb28d-df68-420f-a8bc-83899d34ad5c" data-linktype="relative-path">pack</a></span>.</p><p><b>VDS_ASYNCOUT_REPLACEDISK:  </b>Information is
+about replacing a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.</p><p><b>VDS_ASYNCOUT_CREATEPARTITION:  </b>Information is
+about creating a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span>.</p><p><b>VDS_ASYNCOUT_CLEAN:  </b>Information is about
+cleaning a disk.</p><p><b>VDS_ASYNCOUT_CREATELUN:  </b>Information is about
+creating a LUN.</p><p><b>VDS_ASYNCOUT_FORMAT:  </b>Information is about
+formatting a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file system</a></span>.</p><p><b>VDS_ASYNCOUT_CREATE_VDISK:  </b>Information is about
+creating a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual disk</a></span>.</p><p><b>VDS_ASYNCOUT_SURFACE_VDISK:  </b>Information is
+about <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_d9c0ca19-3589-453a-b579-e66dbf6c98b2" data-linktype="relative-path">attaching</a></span> a virtual
+disk.</p><p><b>VDS_ASYNCOUT_COMPACT_VDISK:  </b>Information is
+about compacting a virtual disk.</p><p><b>VDS_ASYNCOUT_MERGE_VDISK:  </b>Information is
+about merging a virtual disk.</p><p><b>VDS_ASYNCOUT_EXPAND_VDISK:  </b>Information is
+about expanding a virtual disk.</p></div>

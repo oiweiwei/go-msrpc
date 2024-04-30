@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The DRS_MSG_REPVERIFYOBJ_V1 structure defines a request
+message sent to the <span><a href="8dba150d-50f6-47f1-941e-1a606c30db0b" data-linktype="relative-path">IDL_DRSReplicaVerifyObjects</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [ref] DSNAME* pNC;
+   UUID uuidDsaSrc;
+   ULONG ulOptions;
+ } DRS_MSG_REPVERIFYOBJ_V1;
+</pre></div>
+</dd></dl><p><b>pNC:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_784c7cce-f782-48d8-9444-c9030ba86942" data-linktype="relative-path">NC</a></span> to verify.</p><p><b>uuidDsaSrc:</b>  The <span><a href="../ms-ada3/937eb5c6-f6b3-4652-a276-5d6bb8979658" data-linktype="relative-path">objectGUID</a></span>
+of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_dc90b593-841f-4c6d-8032-b32e58e887a8" data-linktype="relative-path">nTDSDSA object</a></span> for
+the reference <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>. </p><p><b>ulOptions:</b>  0 to <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_c947d085-898e-44c0-a849-47c3b817b7b7" data-linktype="relative-path">expunge</a></span>
+each <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>
+that is not verified, or 1 to log an event that identifies each such object.</p></div>

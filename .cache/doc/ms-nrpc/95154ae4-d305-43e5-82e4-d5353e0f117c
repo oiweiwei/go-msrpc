@@ -1,0 +1,21 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/95154ae4-d305-43e5-82e4-d5353e0f117c" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_VALIDATION_INFO_CLASS</b> enumeration SHOULD<a id="Appendix_A_Target_49"></a><a aria-label="Product behavior note 49" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_49" data-linktype="relative-path">&lt;49&gt;</a> select the type of logon
+information block being used.</p><dl>
+<dd>
+<div><pre> typedef  enum _NETLOGON_VALIDATION_INFO_CLASS
+ {
+   NetlogonValidationUasInfo = 1,
+   NetlogonValidationSamInfo = 2,
+   NetlogonValidationSamInfo2 = 3,
+   NetlogonValidationGenericInfo = 4,
+   NetlogonValidationGenericInfo2 = 5,
+   NetlogonValidationSamInfo4 = 6
+ } NETLOGON_VALIDATION_INFO_CLASS;
+</pre></div>
+</dd></dl><p><b>NetlogonValidationUasInfo: </b>Associated
+structure is <b>NETLOGON_VALIDATION_UAS_INFO</b> (section <a href="7bd204f6-aba3-464c-b028-55e49f7999a0" data-linktype="relative-path">2.2.1.8.1</a>).</p><p><b>NetlogonValidationSamInfo: </b>Associated
+structure is <b>NETLOGON_VALIDATION_SAM_INFO</b> (section <a href="142a277f-e161-45ac-8b95-b94bb169b5da" data-linktype="relative-path">2.2.1.4.11</a>).</p><p><b>NetlogonValidationSamInfo2: </b>Associated
+structure is <b>NETLOGON_VALIDATION_SAM_INFO2</b> (section <a href="2a12e289-7904-4ecb-9d83-6732200230c0" data-linktype="relative-path">2.2.1.4.12</a>).</p><p><b>NetlogonValidationGenericInfo: </b>Associated
+structure is <b>NETLOGON_VALIDATION_GENERIC_INFO2</b> (section <a href="e89f8f5b-0985-41a0-b110-1ae0ea2bd183" data-linktype="relative-path">2.2.1.4.8</a>).</p><p><b>NetlogonValidationGenericInfo2: </b>Associated
+structure is <b>NETLOGON_VALIDATION_GENERIC_INFO2</b>.</p><p><b>NetlogonValidationSamInfo4: </b>Associated
+structure is <b>NETLOGON_VALIDATION_SAM_INFO4</b><span> (</span>section
+<a href="bccfdba9-0c38-485e-b751-d4de1935781d" data-linktype="relative-path">2.2.1.4.13</a><span>)</span>.</p></div>

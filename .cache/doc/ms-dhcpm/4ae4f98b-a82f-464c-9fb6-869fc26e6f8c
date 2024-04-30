@@ -1,0 +1,161 @@
+<div class="content"><p> </p><p>The <b>R_DhcpRemoveOptionValueV6</b> method deletes the
+option value of a specific option on the DHCPv6 server for a specific user and
+vendor class. <i>ScopeInfo</i> defines the scope from which this option value
+is removed. If the user class or vendor class is not provided, the default user
+or vendor class is taken.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpRemoveOptionValueV6(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DWORD Flags,
+   [in] DHCP_OPTION_ID OptionID,
+   [in, string, unique] WCHAR* ClassName,
+   [in, string, unique] WCHAR* VendorName,
+   [in] LPDHCP_OPTION_SCOPE_INFO6 ScopeInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>Flags: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+specifying that the option values are removed for a specific or default vendor
+class.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DHCP_FLAGS_OPTION_DEFAULT</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Option definition is removed for the default vendor
+  class.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DHCP_FLAGS_OPTION_IS_VENDOR</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>If a bitwise AND operation with this bitmask yields a
+  nonzero value, it indicates that the option definition is removed for a
+  specific vendor class.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>OptionID: </b> This is of type <span><a href="4a0bb785-ceec-4f7a-b4a7-64555f6e0b62" data-linktype="relative-path">DHCP_OPTION_ID (section 2.2.1.2.3)</a></span>,
+containing the option identifier for the option being removed.</p><p><b>ClassName: </b>A pointer to a null-terminated
+Unicode string that contains the name of the user class from which the option
+value is being deleted.</p><p><b>VendorName: </b>A pointer to a null-terminated
+Unicode string that contains the name of the vendor class from which the option
+value is being deleted.</p><p><b>ScopeInfo: </b>This is a pointer to a <span><a href="35c698cc-7141-4985-9940-87361653c79d" data-linktype="relative-path">DHCP_OPTION_SCOPE_INFO6 (section 2.2.1.2.30)</a></span>
+structure that contains information describing the DHCPv6 scope this option
+value deleted on. This value defines that option values are being retrieved
+from the default level, server level, scope level or for an IPv6 reservation.<a id="Appendix_A_Target_58"></a><a aria-label="Product behavior note 58" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_58" data-linktype="relative-path">&lt;58&gt;</a></p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2A</p>
+  <p>ERROR_DHCP_OPTION_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified option does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 54.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>The Flags parameter MUST pass one of the validations given in the
+Flags field description. Otherwise, the method returns ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ClassName</i> is not NULL, retrieve the <b>DHCPv6ClassDef</b>
+entry corresponding to the <i>ClassName</i> from the server ADM element <b>DHCPv6ClassDefList</b>.
+If the <b>DHCPv6ClassDef</b> entry is not found, return ERROR_FILE_NOT_FOUND.
+If <i>ClassName</i> is NULL, it refers to the default user class (section <span><a href="8a151805-0803-42fe-b201-e2ff378ffa8b" data-linktype="relative-path">3.1.1.17</a></span>).</p>
+</li><li><p><span><span> 
+</span></span>If <i>VendorName</i> is not NULL, retrieve the <b>DHCPv6ClassDef</b>
+entry corresponding to the <i>VendorName</i> from the server ADM element <b>DHCPv6ClassDefList</b>.
+If the <b>DHCPv6ClassDef</b> entry is not found, return ERROR_FILE_NOT_FOUND.
+If <i>VendorName</i> is NULL, it refers to the default vendor class (section
+3.1.1.17).</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv6ClassedOptionDef</b> object from <b>DHCPv6ClassedOptionDefList</b>
+for the specified user class and vendor class. If it is not found, return
+ERROR_FILE_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv6OptionDef</b> object corresponding to <b>OptionID</b>
+from <b>DHCPv6ClassedOptionDef.DHCPv6OptionDefList</b>. If it is not found,
+return ERROR_DHCP_OPTION_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ScopeInfo</b> contains DhcpGlobalOptions6 or
+DhcpDefaultOptions6:</p>
+<ul><li><p><span><span>  </span></span>Retrieve
+the <b>DHCPv6ClassedOptValue</b> object from <b>DHCPv6ServerClassedOptValueList</b>
+corresponding to the specific user class and vendor class. If it is not found,
+return ERROR_DHCP_CLASS_NOT_FOUND.<a id="Appendix_A_Target_59"></a><a aria-label="Product behavior note 59" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_59" data-linktype="relative-path">&lt;59&gt;</a></p>
+</li><li><p><span><span>  </span></span>Retrieve
+the <b>DHCPv6OptionValue</b> object corresponding to <b>OptionId</b> from <b>DHCPv6ClassedOptValue.DHCPv6OptionValueList</b>.
+If it is not found, return ERROR_FILE_NOT_FOUND. If found, remove it from <b>DHCPv6OptionValueList</b>.</p>
+</li><li><p><span><span>  </span></span>Return
+ERROR_SUCCESS.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <b>ScopeInfo</b> contains DhcpScopeOptions6:</p>
+<ul><li><p><span><span>  </span></span>Retrieve
+the <b>DHCPv6Scope</b> object from <b>DHCPv6ScopeList</b> corresponding to <b>ScopeInfo</b>.
+If the corresponding entry is not present, return ERROR_FILE_NOT_FOUND.</p>
+</li><li><p><span><span>  </span></span>Retrieve
+the <b>DHCPv6ClassedOptValue</b> object from <b>DHCPv6Scope.DHCPv6ScopeClassedOptValueList</b>
+corresponding to the specific user class and vendor class. If it is not found,
+return ERROR_DHCP_CLASS_NOT_FOUND.</p>
+</li><li><p><span><span>  </span></span>Retrieve
+the <b>DHCPv6OptionValue</b> object corresponding to <b>OptionId</b> from <b>DHCPv6ClassedOptValue.DHCPv6OptionValueList</b>.
+If it is not found, return ERROR_FILE_NOT_FOUND. If found, remove it from <b>DHCPv6OptionValueList</b>.</p>
+</li><li><p><span><span>  </span></span>Return
+ERROR_SUCCESS.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <b>ScopeInfo</b> contains DhcpReservedOptions6:</p>
+<ul><li><p><span><span>  </span></span>Retrieve
+the <b>DHCPv6Scope</b> object and then retrieve the <b>DHCPv6Scope.DHCPv6ReservationList.DHCPv6Reservation</b>
+object corresponding to <b>ScopeInfo</b>. If the corresponding <b>DHCPv6Scope</b>
+object is not present, return ERROR_FILE_NOT_FOUND. If the corresponding <b>DHCPv6Reservation</b>
+object is not present, return ERROR_SUCCESS.</p>
+</li><li><p><span><span>  </span></span>Retrieve
+the <b>DHCPv6ClassedOptValue</b> object from <b>DHCPv6Reservation.DHCPv6ResvClassedOptValueList</b>
+corresponding to the specific user class and vendor class. If it is not found,
+return ERROR_DHCP_CLASS_NOT_FOUND.</p>
+</li><li><p><span><span>  </span></span>Retrieve
+the <b>DHCPv6OptionValue</b> object corresponding to <b>OptionId</b> from <b>DHCPv6ClassedOptValue.DHCPv6OptionValueList</b>.
+If it is not found, return ERROR_FILE_NOT_FOUND. If found, remove it from <b>DHCPv6OptionValueList</b>.</p>
+</li><li><p><span><span>  </span></span>Return
+ERROR_SUCCESS.</p>
+</li></ul></li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

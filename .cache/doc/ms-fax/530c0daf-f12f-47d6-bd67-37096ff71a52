@@ -1,0 +1,48 @@
+<div class="content"><p> </p><p>The <b>FAX_PORT_INFO_EXW</b> structure defines information
+about a single fax device, known as a port. This structure is used for <b>FAX_SetPortEx</b>
+(section <span><a href="221078fd-e713-4c33-8f00-f8b373a7d8e9" data-linktype="relative-path">3.1.4.1.89</a></span>).</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwSizeOfStruct;
+   DWORD dwDeviceID;
+   [string] LPCWSTR lpcwstrDeviceName;
+   [string] LPWSTR lpwstrDescription;
+   [string] LPCWSTR lpcwstrProviderName;
+   [string] LPCWSTR lpcwstrProviderGUID;
+   BOOL bSend;
+   FAX_ENUM_DEVICE_RECEIVE_MODE ReceiveMode;
+   DWORD dwStatus;
+   DWORD dwRings;
+   [string] LPWSTR lpwstrCsid;
+   [string] LPWSTR lpwstrTsid;
+ } FAX_PORT_INFO_EXW,
+  *PFAX_PORT_INFO_EXW;
+</pre></div>
+</dd></dl><p><b>dwSizeOfStruct:</b> <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that holds the total size of the structure, in bytes. This value MUST be
+48 or 72 bytes. When filled in on a 32-bit implementation, this value SHOULD be
+48 bytes. When filled in on a 64-bit implementation, this value SHOULD be 72
+bytes.</p><p><b>dwDeviceID:</b> A <b>DWORD</b> that holds the line
+identifier for the specified fax device (port).</p><p><b>lpcwstrDeviceName:</b> A null-terminated character
+string that holds the name of the fax device.</p><p><b>lpwstrDescription:</b> A null-terminated character
+string that holds the description of the fax device. The length of this string
+MUST NOT exceed <b>MAX_FAX_STRING_LEN</b> (section <span><a href="f14dea0f-f40e-453e-8514-c82d485b8791" data-linktype="relative-path">2.2.86</a></span>) characters,
+including the length of the terminating null character.</p><p><b>lpcwstrProviderName:</b> A null-terminated
+character string that holds the name of the fax device provider.</p><p><b>lpcwstrProviderGUID:</b> A null-terminated
+character string that holds the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> of the fax
+device provider.</p><p><b>bSend:</b> A Boolean value that indicates whether
+the fax device is enabled to send faxes.</p><p><b>ReceiveMode:</b> An <b>FAX_ENUM_DEVICE_RECEIVE_MODE</b>
+(section <span><a href="d80da1ab-ab00-44b7-81ff-41f7783b94e2" data-linktype="relative-path">2.2.55</a></span>) enumeration
+value that indicates whether the fax device is enabled to receive faxes and
+whether the calls are manually or automatically answered.</p><p><b>dwStatus:</b> A <b>DWORD</b> that holds the
+current status of the device. It SHOULD contain any combination of values from
+the <b>FAX_ENUM_DEVICE_STATUS</b> (section <span><a href="267364f2-e9ba-460c-a4b4-10faf8fc8920" data-linktype="relative-path">2.2.64</a></span>) enumeration
+or 0 (meaning: status unknown).</p><p><b>dwRings:</b> A <b>DWORD</b> that holds the number
+of times an incoming fax call rings before the specified device answers the
+call.</p><p><b>lpwstrCsid:</b> A null-terminated character string
+that holds the called subscriber identifier for faxes sent using this device.
+This identifier can be a telephone number.</p><p><b>lpwstrTsid:</b> A null-terminated character string
+that holds the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_3b1ad462-95fc-4739-b942-4a5670d6ae34" data-linktype="relative-path">transmitting subscriber
+identifier</a></span> for faxes sent using this device. This identifier can be
+a telephone number.</p></div>

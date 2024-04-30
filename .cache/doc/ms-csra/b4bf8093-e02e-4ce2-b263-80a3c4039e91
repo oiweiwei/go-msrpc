@@ -1,0 +1,87 @@
+<div class="content"><p>The ImportKey method adds an encrypted <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a> set to an item in the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> database.</p><dl>
+<dd>
+<div><pre> HRESULT ImportKey(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] DWORD dwRequestId,
+   [in, string, unique] wchar_t const* pwszCertHash,
+   [in] DWORD dwFlags,
+   [in, ref] CERTTRANSBLOB* pctbKey
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.
+</p><p><b>dwRequestId: </b>An unsigned integer value that
+represents the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a>
+request ID in the CA database.</p><p><b>pwszCertHash: </b>A null-terminated Unicode string
+value that represents the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_168fbe0c-fc02-4722-979e-b0261766ac9c" data-linktype="relative-path">SHA-1
+hash</a> of the ASN.1 DER–encoded certificate data (as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90592" data-linktype="external">[X660]</a>) and that is
+formatted as a hexadecimal string.</p><p><b>dwFlags: </b>An unsigned integer that specifies
+the optional flags for this method.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00010000</p>
+  </td>
+  <td>
+  <p>Overwrite the
+  existing archived key, if present.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pctbKey: </b>A <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure
+that contains the ASN.1 DER–encoded (as specified in [X660] and <a href="https://go.microsoft.com/fwlink/?LinkId=90593" data-linktype="external">[X690]</a>) <b>PKCS#7</b>
+message (as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90334" data-linktype="external">[RFC2315]</a>)
+that contains the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private
+key</a> to be archived. The content of the enveloped PKCS#7 is as specified in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>
+section <a href="../ms-wcce/2d0705e9-9189-4fd4-a51e-6e88d86cefeb" data-linktype="relative-path">3.2.1.4.2.1.4</a>.</p><p>The following processing rules apply:</p><ol><li><p><span>    </span>The CA MUST
+process the enveloped PKCS#7 in the <i>pctbKey</i> parameter as specified in
+[MS-WCCE] section 3.2.1.4.2.1.4.</p>
+</li><li><p><span>    </span>If the Request
+ID is 0 or 4294967295 and <i>pwszCertHash</i> is null, the CA server MUST fail
+with the error ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span>    </span>If <i>pwszCertHash</i>
+is non-null, the CA MUST look up the request based on the provided <i>pwszCertHash</i>
+parameter value in the CA Request table by computing the SHA-1 hash of each
+issued certificate in the Request table and comparing the hexadecimal string
+form of it with the value that is specified in <i>pwszCertHash</i>.</p>
+<ol><li><p><span>   
+</span>If the request is not found, the CA server MUST fail the request with
+the error ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span>   
+</span>If the request is found, the CA MUST verify that the private key
+(decrypted in step 1) is cryptographically related to the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public key</a> in the
+certificate. If the keys are not related, the method MUST fail with the error
+ERROR_INVALID_PARAMETER.</p>
+</li></ol></li><li><p><span>    </span>If <i>pwszCertHash</i>
+is null, the CA MUST look up the request based on the provided <i>dwRequestId</i>
+parameter in the CA database Request table: </p>
+<ol><li><p><span>   
+</span>If the request is not found, the method MUST fail with the error
+CERTSRV_E_PROPERTY_EMPTY.</p>
+</li><li><p><span>   
+</span>If the request is found, the CA MUST verify that the private key
+(decrypted in step 1) is cryptographically related to the public key in the
+private key. If the keys are not related, the method MUST fail with the error
+ERROR_INVALID_PARAMETER.</p>
+</li></ol></li><li><p><span>    </span>If the request
+is found, has an encrypted private key associated with it, and the value of <i>dwFlags</i>
+is not 0x00010000, the CA MUST fail with the error ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span>    </span>If the request
+is found, has an encrypted private key associated with it, and the value of <i>dwFlags</i>
+is 0x00010000, the CA MUST replace the encrypted private key (in the request
+stored in the Request table) with the encrypted private key that is specified
+in the <i>pctbKey</i> parameter.</p>
+</li><li><p><span>    </span>If the request
+is found and does not have an encrypted private key that is associated with it,
+the CA MUST replace the encrypted private key (in the request that is stored in
+the Request table) with the encrypted private key that is specified in the <i>pctbKey</i>
+parameter.</p>
+</li></ol></div>

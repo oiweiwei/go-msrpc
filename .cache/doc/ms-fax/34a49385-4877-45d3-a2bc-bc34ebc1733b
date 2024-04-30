@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The <b>PRODUCT_SKU_TYPE</b> enumeration provides values that
+identify the different <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_dcea8721-5213-4954-bc73-d75ad6cb5591" data-linktype="relative-path">Stock Keeping Unit (SKU)</a></span>
+versions of an operating system.<a id="Appendix_A_Target_28"></a><a aria-label="Product behavior note 28" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_28" data-linktype="relative-path">&lt;28&gt;</a></p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   PRODUCT_SKU_UNKNOWN = 0x00000000,
+   PRODUCT_SKU_PERSONAL = 0x00000001,
+   PRODUCT_SKU_PROFESSIONAL = 0x00000002,
+   PRODUCT_SKU_SERVER = 0x00000004,
+   PRODUCT_SKU_ADVANCED_SERVER = 0x00000008,
+   PRODUCT_SKU_DATA_CENTER = 0x00000010,
+   PRODUCT_SKU_DESKTOP_EMBEDDED = 0x00000020,
+   PRODUCT_SKU_SERVER_EMBEDDED = 0x00000040,
+   PRODUCT_SKU_WEB_SERVER = 0x00000080
+ } PRODUCT_SKU_TYPE;
+</pre></div>
+</dd></dl><p><b>PRODUCT_SKU_UNKNOWN:</b> The operating system is
+unknown.</p><p><b>PRODUCT_SKU_PERSONAL:</b> Client Personal Edition.</p><p><b>PRODUCT_SKU_PROFESSIONAL:</b> Client Professional
+Edition.</p><p><b>PRODUCT_SKU_SERVER:</b> Server Standard Edition.</p><p><b>PRODUCT_SKU_ADVANCED_SERVER:</b> Server Advanced
+Edition</p><p><b>PRODUCT_SKU_DATA_CENTER:</b> Server Datacenter
+Edition.</p><p><b>PRODUCT_SKU_DESKTOP_EMBEDDED:</b> Client Embedded
+Edition.</p><p><b>PRODUCT_SKU_SERVER_EMBEDDED:</b> Server Embedded
+Edition.</p><p><b>PRODUCT_SKU_WEB_SERVER:</b> Server Web Server
+Edition.</p></div>

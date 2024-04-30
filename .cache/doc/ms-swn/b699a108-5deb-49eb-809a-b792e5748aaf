@@ -1,0 +1,57 @@
+<div class="content"><p>The WitnessrUnRegister method allows the client to
+unregister for notifications from the server. The Witness Service removes its
+internal state of the registration and no longer notifies the client in the
+event of any resource state changes.</p><dl>
+<dd>
+<div><pre> DWORD WitnessrUnRegister(
+         [in] handle_t Handle,
+         [in] PCONTEXT_HANDLE pContext);
+            
+</pre></div>
+</dd></dl><p><b>Handle:</b> An RPC binding handle <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>pContext:</b> A context handle of type
+PCONTEXT_HANDLE, specified in section <a href="e061b05d-229d-4844-bd94-0b5476e39101" data-linktype="relative-path">2.2.1.1</a>, that identifies
+the client on the server.</p><p><b>Return Values:</b> Returns 0x00000000
+(ERROR_SUCCESS) on success or a nonzero error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p> ERROR_SUCCESS </p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p> ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000490</p>
+  <p>ERROR_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified CONTEXT_HANDLE is not found.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST search for the <b>WitnessRegistration</b> in
+<b>WitnessRegistrationList</b>, where <b>WitnessRegistration.RegistrationKey</b>
+matches the <i>pContext</i> parameter. </p><p>If no matching entry is found, the server SHOULD<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="67e3c09b-4fe1-48c8-90c2-5be07d91b806#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a> stop processing the request and
+return the error code ERROR_INVALID_PARAMETER. </p><p>If the matching entry is found, the server MUST remove the <b>WitnessRegistration</b>
+entry from the <b>WitnessRegistrationList</b> and return ERROR_SUCCESS to the
+caller.</p></div>

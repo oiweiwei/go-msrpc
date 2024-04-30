@@ -1,0 +1,5 @@
+<div class="content"><p>This document specifies the Component Object Model Plus
+(COM+) Remote Administration Protocol (COMA), which allows clients to manage
+the configuration of software <a href="3f01a312-3391-4109-a96e-95358babf191#gt_71669ed9-7eaf-4328-9e2e-4d3430f0f9bf" data-linktype="relative-path">components</a>
+and to control running instances of these components.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are normative.
+All other sections and examples in this specification are informative.</p></div>

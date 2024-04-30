@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_BUFFER</b> structure contains a set of a
+specific type of structures. The DNS Server Management Protocol uses this
+structure to return information from the server, while processing
+R_DnssrvComplexOperation2 (section <span><a href="d28e3ba8-5742-417d-ad6d-2e0139ab2ad9" data-linktype="relative-path">3.1.4.8</a></span>) method
+calls with operation type &#34;Statistics&#34;.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcBuffer {
+   DWORD dwLength;
+   [size_is(dwLength)] BYTE Buffer[];
+ } DNS_RPC_BUFFER,
+  *PDNS_RPC_BUFFER;
+</pre></div>
+</dd></dl><p><b>dwLength:</b> The length, in bytes, of the
+data stored in Buffer.</p><p><b>Buffer:</b> A variable length array of bytes
+of length specified by <i>dwLength</i>. The buffer can contain one or more
+DNS_RPC_NODE structures (section <span><a href="cb5539fa-67fd-40e0-9ea5-468ecc56bd66" data-linktype="relative-path">2.2.2.2.3</a></span>). Each
+DNS_RPC_NODE contains the length of that <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_762051d8-4fdc-437e-af9d-3f4da77c3c7d" data-linktype="relative-path">node</a></span>, so the
+DNS_RPC_BUFFER dwLength can be larger to indicate multiple DNS_RPC_NODE
+structures.</p></div>

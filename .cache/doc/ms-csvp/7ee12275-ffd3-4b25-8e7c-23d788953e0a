@@ -1,0 +1,25 @@
+<div class="content"><p>A client uses a <b>NODE_ROUTE_INFO</b> structure<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="6ea29e14-9c33-4927-90a8-258fd1d6d042#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a> to add routes that <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_a49a79ea-dac7-4016-9a84-cf87161db7e3" data-linktype="relative-path">share</a> the same
+remoteVirtualIP IP address field.</p><p>The IP addresses in the <b>remoteVirtualIP</b> field and the
+elements of the <b>localUnicastIPs</b> array and the <b>remoteUnicastIPs</b>
+array can be either <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_0f25c9b5-dc73-4c3e-9433-f09d1f62ea8e" data-linktype="relative-path">IPv4</a>
+or <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_64c29bb6-c8b2-4281-9f3a-c1eb5d2288aa" data-linktype="relative-path">IPv6</a> and are
+contained in Unicode strings. IPv4 addresses MUST be represented in dotted
+decimal notation. IPv6 addresses MUST be represented in the form specified by <a href="https://go.microsoft.com/fwlink/?LinkId=108348" data-linktype="external">[RFC1924]</a>.</p><dl>
+<dd>
+<div><pre> typedef struct NODE_ROUTE_INFO {
+   BSTR remoteVirtualIP;
+   SAFEARRAY(BSTR) localUnicastIPs;
+   SAFEARRAY(BSTR) remoteUnicastIPs;
+   SAFEARRAY(ULONG) indices;
+ } NODE_ROUTE_INFO;
+</pre></div>
+</dd></dl><p><b>remoteVirtualIP:</b>  An IP address that
+is common to all routes designated by the <b>NODE_ROUTE_INFO</b> data
+structure. A client uses a <b>remoteVirtualIP</b> as the common identifier for
+all communication routes to a remote host.</p><p><b>localUnicastIPs:</b>  An array of IP
+addresses. A client sets the elements of <b>localUnicastIPs</b> to the IP
+addresses from which the server can send network traffic to a remote host.</p><p><b>remoteUnicastIPs:</b>  An array of IP
+addresses. A client sets the elements of <b>remoteUnicastIPs</b> to the IP
+address to which network traffic can be sent on a remote host.</p><p><b>indices:</b>  An array of unsigned
+integers that MUST be unique among all indices specified in all <b>NODE_ROUTE_INFO</b>
+structures contained in an <b>ADD_ROUTES_REQUEST</b> structure.</p></div>

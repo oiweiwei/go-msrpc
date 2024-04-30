@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The EvtRpcClose (Opnum 13) method is used by a client to
+close context handles that are opened by other methods in this protocol.</p><dl>
+<dd>
+<div><pre> error_status_t EvtRpcClose(
+   [in, out, context_handle] void** handle
+ );
+</pre></div>
+</dd></dl><p><b>handle: </b>This parameter is an <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+context handle, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>, Context
+Handles.</p><p><b>Return Values: </b>The method MUST return ERROR_SUCCESS
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+nonzero value as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>In response to this request from the client, the server MUST
+first validate the handle. The server SHOULD save the handle value in its
+handle table (as specified in section <span><a href="32102cb3-ea77-4171-bd1a-33c8c4d882aa" data-linktype="relative-path">3.1.1.12</a></span>) when the
+handle is created so that it can look up the handle in its table to determine
+if it is valid.<a id="Appendix_A_Target_66"></a><a aria-label="Product behavior note 66" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_66" data-linktype="relative-path">&lt;66&gt;</a> The server MUST fail the
+operation with the error ERROR_INVALID_PARAMETER (0x00000057) if the handle is
+not in its handle table. For more information on handle security and
+authentication considerations, see sections <span><a href="ef007e79-0549-446f-a928-379f47d57cfd" data-linktype="relative-path">2.2.20</a></span> and <span><a href="f4145058-63b4-4c32-816d-a26b3ea6bd7d" data-linktype="relative-path">5.1</a></span>.</p><p>If the above check succeeds, the server MUST remove the
+handle from its handle table. The server SHOULD NOT fail the operation of
+removing the handle.</p><p>The server MUST return a value indicating success or failure
+for this operation.</p></div>

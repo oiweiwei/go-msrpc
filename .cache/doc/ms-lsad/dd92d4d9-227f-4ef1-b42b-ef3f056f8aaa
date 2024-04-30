@@ -1,0 +1,41 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/dd92d4d9-227f-4ef1-b42b-ef3f056f8aaa" data-linktype="external">msdn link</a></p><p>The LSAPR_TRUSTED_DOMAIN_INFORMATION_EX2 structure
+communicates properties of a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted
+domain</a>. The following structure corresponds to the
+TrustedDomainInformationEx2Internal information class. <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">Domain</a> <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trusts</a> are specified in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/fe369d31-cc17-4ad7-849e-769403bc2c41" data-linktype="relative-path">6.1.6</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_TRUSTED_DOMAIN_INFORMATION_EX2 {
+   RPC_UNICODE_STRING Name;
+   RPC_UNICODE_STRING FlatName;
+   PRPC_SID Sid;
+   unsigned long TrustDirection;
+   unsigned long TrustType;
+   unsigned long TrustAttributes;
+   unsigned long ForestTrustLength;
+   [size_is(ForestTrustLength)] unsigned char* ForestTrustInfo;
+ } LSAPR_TRUSTED_DOMAIN_INFORMATION_EX2,
+  *PLSAPR_TRUSTED_DOMAIN_INFORMATION_EX2;
+</pre></div>
+</dd></dl><p><b>Name:</b>  The <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_102a36e2-f66f-49e2-bee3-558736b2ecd5" data-linktype="relative-path">DNS name</a> of the domain.
+Maps to the <b>Name</b> field, as specified in section <a href="0228f75e-9725-479c-b4cd-1cacd667343c" data-linktype="relative-path">3.1.1.5</a>.</p><p><b>FlatName:</b>  The NetBIOS name of the
+trusted domain, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90266" data-linktype="external">[RFC1088]</a>. Maps to the
+<b>Flat Name</b> field, as specified in section 3.1.1.5.</p><p><b>Sid:</b>  The domain <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a>. Maps to the <b>Security
+Identifier</b> field, as specified in section 3.1.1.5.</p><p><b>TrustDirection:</b>  This field contains
+bitmapped values that define the properties of the direction of trust between
+the local domain and the named domain. See section <a href="f28f42b7-173c-4cda-9809-3fe4a5213ab3" data-linktype="relative-path">2.2.7.9</a> for valid values
+and a description of each flag. Maps to the Trusted Direction field, as
+specified in section 3.1.1.5.</p><p><b>TrustType:</b>  This field specifies the
+type of trust between the local domain and the named domain. See section 2.2.7.9
+for valid values and a description of each value. Maps to the Trusted Type
+field, as specified in section 3.1.1.5.</p><p><b>TrustAttributes:</b>  This field
+contains bitmapped values that define the attributes of the trust. See section
+2.2.7.9 for valid values and a description of each flag. Maps to the Trusted
+Attributes field, as specified in section 3.1.1.5.</p><p><b>ForestTrustLength:</b>  The count of
+bytes in <b>ForestTrustInfo</b>.</p><p><b>ForestTrustInfo:</b>  Binary data for
+the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_035d9ce5-f117-4251-8d4d-127c462ec4a0" data-linktype="relative-path">forest trust</a>. For
+more information, see &#34;Trust Objects&#34; in [MS-ADTS] section 6.1.6.
+Maps to the Forest Trust Information field, as specified in section 3.1.1.5.
+Conversion from this binary format to the <a href="2993ffab-c0c8-4643-9a79-4ff7d31922dc" data-linktype="relative-path">LSA_FOREST_TRUST_INFORMATION</a>
+format is specified in [MS-ADTS] section <a href="../ms-adts/96e44639-eb3e-48c3-a565-1d67cceb3bad" data-linktype="relative-path">6.1.6.9.3</a>.
+If the <b>ForestTrustLength</b> field has a value other than 0, this field MUST
+NOT be NULL.</p></div>

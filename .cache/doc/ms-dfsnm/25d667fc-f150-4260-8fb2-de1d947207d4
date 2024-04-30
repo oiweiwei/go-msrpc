@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The DFS_INFO_102 structure contains a time-out value for a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span>
+or a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS
+link</a></span>. </p><p>The DFS_INFO_102 structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_102 {
+   unsigned long Timeout;
+ } DFS_INFO_102;
+</pre></div>
+</dd></dl><p><b>Timeout:</b>   The time-out, in seconds,
+associated with the root or link and used in a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c6f2eabf-2138-4f97-a788-5d6a41a27bdd" data-linktype="relative-path">DFS referral</a></span>
+response to a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c2787719-60e0-4b69-8efe-c33edf9b40b2" data-linktype="relative-path">DFS client</a></span>. </p></div>

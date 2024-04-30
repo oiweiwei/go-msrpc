@@ -1,0 +1,56 @@
+<div class="content"><p> </p><p>The DFS_INFO_ENUM_STRUCT union relates to the <span><a href="f9dedb71-7575-4a50-9576-5f0f59891da4" data-linktype="relative-path">NetrDfsEnum</a></span>
+and <span><a href="1e01d0ba-76f3-4346-9db3-c7cc61009054" data-linktype="relative-path">NetrDfsEnumEx</a></span>
+methods when used to enumerate the configuration of the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_3de8e640-501a-4b25-80a7-0ba769f3c0b9" data-linktype="relative-path">DFS
+server</a></span>.</p><p>The DFS_INFO_ENUM_STRUCT union structure has the following
+format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_ENUM_STRUCT {
+   DWORD Level;
+   [switch_is(Level)] union {
+     [case(1)] 
+       DFS_INFO_1_CONTAINER* DfsInfo1Container;
+     [case(2)] 
+       DFS_INFO_2_CONTAINER* DfsInfo2Container;
+     [case(3)] 
+       DFS_INFO_3_CONTAINER* DfsInfo3Container;
+     [case(4)] 
+       DFS_INFO_4_CONTAINER* DfsInfo4Container;
+     [case(5)] 
+       DFS_INFO_5_CONTAINER* DfsInfo5Container;
+     [case(6)] 
+       DFS_INFO_6_CONTAINER* DfsInfo6Container;
+     [case(8)] 
+       DFS_INFO_8_CONTAINER* DfsInfo8Container;
+     [case(9)] 
+       DFS_INFO_9_CONTAINER* DfsInfo9Container;
+     [case(200)] 
+       DFS_INFO_200_CONTAINER* DfsInfo200Container;
+     [case(300)] 
+       DFS_INFO_300_CONTAINER* DfsInfo300Container;
+   } DfsInfoContainer;
+ } DFS_INFO_ENUM_STRUCT;
+</pre></div>
+</dd></dl><p><b>Level:</b>  Specifies the case of the <b>DfsInfoContainer</b>
+union.</p><p><b>DfsInfoContainer:</b>  Union of the
+possible enumeration containers.</p><p><b>DfsInfo1Container:</b>  The <span><a href="86f8a757-66b7-4fc4-85e4-a8837044ba61" data-linktype="relative-path">DFS_INFO_1_CONTAINER</a></span>
+structure contains an array of the names of <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS roots</a></span> or <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS links</a></span>.
+For more information, see section 2.2.6.1.</p><p><b>DfsInfo2Container:</b>  The <span><a href="772be16e-1e5f-41c1-856a-3ec3cde72069" data-linktype="relative-path">DFS_INFO_2_CONTAINER</a></span>
+structure contains an array of information for DFS roots or DFS links. For more
+information, see section 2.2.6.2.</p><p><b>DfsInfo3Container:</b>  The <span><a href="9a12a1d5-16ff-4f8a-8cd3-acc875700d93" data-linktype="relative-path">DFS_INFO_3_CONTAINER</a></span>
+structure contains an array of information for DFS roots or DFS links. For more
+information, see section 2.2.6.3.</p><p><b>DfsInfo4Container:</b>  The <span><a href="e11b7458-397f-412e-a692-76e9f04bca62" data-linktype="relative-path">DFS_INFO_4_CONTAINER</a></span>
+structure contains an array of information for DFS roots or DFS links. For more
+information, see section 2.2.6.4.</p><p><b>DfsInfo5Container:</b>  The <span><a href="a3814032-9c84-4095-ac8c-07345f0636c6" data-linktype="relative-path">DFS_INFO_5_CONTAINER</a></span>
+structure contains an array of information for DFS roots or DFS links. For more
+information, see section 2.2.6.5.</p><p><b>DfsInfo6Container:</b>  The <span><a href="e45ff57b-64a4-43e1-b42b-9e5263fc808b" data-linktype="relative-path">DFS_INFO_6_CONTAINER</a></span>
+structure contains an array of information for DFS roots or DFS links. For more
+information, see section 2.2.6.6.</p><p><b>DfsInfo8Container:</b>  The <span><a href="7fd611c3-f699-42df-8c5e-a70e57d0cda4" data-linktype="relative-path">DFS_INFO_8_CONTAINER</a></span>
+structure contains an array of information for DFS roots or DFS links. For more
+information, see section 2.2.6.7.</p><p><b>DfsInfo9Container:</b>  The <span><a href="5d12396d-6338-4f4a-a5ed-938e9ef036fb" data-linktype="relative-path">DFS_INFO_9_CONTAINER</a></span>
+structure contains an array of information for DFS roots or DFS links. For more
+information, see section 2.2.6.8.</p><p><b>DfsInfo200Container:</b>  The <span><a href="255feec9-f3dc-47bd-98a5-cb237b5f01b7" data-linktype="relative-path">DFS_INFO_200_CONTAINER</a></span>
+structure contains an array of the names of <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c37de1c8-4bd3-406f-ad8c-50c877666f91" data-linktype="relative-path">domain-based DFS namespaces</a></span>
+in a domain-based <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0b8086c9-d025-45b8-bf09-6b5eca72713e" data-linktype="relative-path">DFS</a></span>. For more
+information, see section 2.2.6.9.</p><p><b>DfsInfo300Container:</b>  The <span><a href="eb0a25c2-c512-483c-800b-2b3a36778924" data-linktype="relative-path">DFS_INFO_300_CONTAINER</a></span>
+structure contains an array of the DFS roots hosted on a server. For more
+information, see section 2.2.6.10.</p></div>

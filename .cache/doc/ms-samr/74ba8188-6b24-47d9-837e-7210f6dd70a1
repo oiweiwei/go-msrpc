@@ -1,0 +1,23 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/74ba8188-6b24-47d9-837e-7210f6dd70a1" data-linktype="external">msdn link</a></p><p>The SAM_VALIDATE_PASSWORD_RESET_INPUT_ARG structure holds
+various information about a password reset request.</p><dl>
+<dd>
+<div><pre> typedef struct _SAM_VALIDATE_PASSWORD_RESET_INPUT_ARG {
+   SAM_VALIDATE_PERSISTED_FIELDS InputPersistedFields;
+   RPC_UNICODE_STRING ClearPassword;
+   RPC_UNICODE_STRING UserAccountName;
+   SAM_VALIDATE_PASSWORD_HASH HashedPassword;
+   unsigned char PasswordMustChangeAtNextLogon;
+   unsigned char ClearLockout;
+ } SAM_VALIDATE_PASSWORD_RESET_INPUT_ARG,
+  *PSAM_VALIDATE_PASSWORD_RESET_INPUT_ARG;
+</pre></div>
+</dd></dl><p><b>InputPersistedFields:</b>  Password
+state. See section <a href="e0b2d21d-0b1c-4fc0-8f4a-895bef6ffc4e" data-linktype="relative-path">2.2.9.2</a>.</p><p><b>ClearPassword:</b>  The cleartext
+password of the reset-password operation.</p><p><b>UserAccountName:</b>  The
+application-specific logon name of the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_8d10bd9d-392e-431b-8218-742bdac19815" data-linktype="relative-path">account</a> performing the
+reset-password operation.</p><p><b>HashedPassword:</b>  See the
+specification for <a href="c2efbd27-7166-4305-a33d-e2519a1dc2cf" data-linktype="relative-path">SAM_VALIDATE_PASSWORD_CHANGE_INPUT_ARG (section 2.2.9.6)</a>
+for the field with the same name.</p><p><b>PasswordMustChangeAtNextLogon:</b>  Nonzero
+indicates that a password change MUST occur before an authentication request
+can succeed.</p><p><b>ClearLockout:</b>  Nonzero indicates
+that the lockout state is to be reset.</p></div>

@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>This method returns a value that indicates if that server is
+a <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_a5a99ce4-e206-42dc-8874-e103934c5b0d" data-linktype="relative-path">Global
+Catalog Server</a></span>.</p><dl>
+<dd>
+<div><pre> long S_DSIsServerGC(
+   [in] handle_t hBind
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST specify an <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle,
+as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>Return Values: </b> This method returns TRUE (0x00000001)
+if the Directory Service server is also a Global Catalog Server; otherwise, it
+returns FALSE (0x00000000).</p><p><b>TRUE</b> (0x00000001)</p><p><b>FALSE</b> (0x00000000)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC extension protocol, as specified in
+[MS-RPCE].</p></div>

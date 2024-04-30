@@ -1,0 +1,2866 @@
+import "ms-dtyp.idl";
+    
+    // XXX: L.0001: #define LPWSTR [string] wchar_t*
+    typedef [string] wchar_t *LPWSTR;
+    typedef [handle] LPWSTR DHCP_SRV_HANDLE;
+    typedef DWORD DHCP_IP_ADDRESS, *PDHCP_IP_ADDRESS, *LPDHCP_IP_ADDRESS;
+    typedef DWORD DHCP_IP_MASK;
+    typedef DWORD DHCP_RESUME_HANDLE;
+    typedef DWORD DHCP_OPTION_ID;
+    typedef struct _DHCP_BINARY_DATA {
+      DWORD DataLength;
+      [size_is(DataLength)] BYTE *Data;
+    } DHCP_BINARY_DATA, *LPDHCP_BINARY_DATA;
+    typedef DHCP_BINARY_DATA DHCP_CLIENT_UID;
+    
+    typedef enum _DHCP_SUBNET_STATE {
+        DhcpSubnetEnabled,
+        DhcpSubnetDisabled,
+        DhcpSubnetEnabledSwitched,
+        DhcpSubnetDisabledSwitched,
+        DhcpSubnetInvalidState
+    } DHCP_SUBNET_STATE, *LPDHCP_SUBNET_STATE;
+    
+    typedef enum _DHCP_SUBNET_ELEMENT_TYPE {
+       DhcpIpRanges,
+       DhcpSecondaryHosts,
+       DhcpReservedIps,
+       DhcpExcludedIpRanges,
+       DhcpIpUsedClusters,
+       DhcpIpRangesDhcpOnly,
+       DhcpIpRangesDhcpBootp,
+       DhcpIpRangesBootpOnly,
+   } DHCP_SUBNET_ELEMENT_TYPE, *LPDHCP_SUBNET_ELEMENT_TYPE;
+   
+    // XXX: L.0001: #define ELEMENT_MASK(E) ((((E) <= DhcpIpRangesBootpOnly) && (DhcpIpRangesDhcpOnly <= (E)))?(0):(E))
+
+    typedef enum _DHCP_FORCE_FLAG 
+    {
+        DhcpFullForce,
+        DhcpNoForce,
+        DhcpFailoverForce
+    } DHCP_FORCE_FLAG, *LPDHCP_FORCE_FLAG;
+    
+    typedef enum _DHCP_OPTION_TYPE {
+        DhcpUnaryElementTypeOption,
+        DhcpArrayTypeOption
+    } DHCP_OPTION_TYPE, *LPDHCP_OPTION_TYPE;
+    
+    typedef enum _DHCP_OPTION_DATA_TYPE {
+        DhcpByteOption,
+        DhcpWordOption,
+        DhcpDWordOption,
+        DhcpDWordDWordOption,
+        DhcpIpAddressOption,
+        DhcpStringDataOption,
+        DhcpBinaryDataOption,
+        DhcpEncapsulatedDataOption,
+     DhcpIpv6AddressOption
+    } DHCP_OPTION_DATA_TYPE, *LPDHCP_OPTION_DATA_TYPE;
+    
+    typedef enum _DHCP_OPTION_SCOPE_TYPE {
+        DhcpDefaultOptions,
+        DhcpGlobalOptions,
+        DhcpSubnetOptions,
+        DhcpReservedOptions,
+        DhcpMScopeOptions
+    } DHCP_OPTION_SCOPE_TYPE, *LPDHCP_OPTION_SCOPE_TYPE;
+    
+    typedef enum _DHCP_CLIENT_SEARCH_TYPE {
+        DhcpClientIpAddress,
+        DhcpClientHardwareAddress,
+        DhcpClientName
+    } DHCP_SEARCH_INFO_TYPE, *LPDHCP_SEARCH_INFO_TYPE;
+    
+    typedef enum _DHCP_SCAN_FLAG {
+        DhcpRegistryFix,
+        DhcpDatabaseFix
+    } DHCP_SCAN_FLAG, *LPDHCP_SCAN_FLAG;
+    
+    typedef enum _QuarantineStatus {
+        NOQUARANTINE = 0,
+        RESTRICTEDACCESS,
+        DROPPACKET,
+        PROBATION,
+        EXEMPT,
+        DEFAULTQUARSETTING,
+        NOQUARINFO
+    }QuarantineStatus;
+    
+    typedef struct _DHCP_HOST_INFO {
+        DHCP_IP_ADDRESS IpAddress;
+        LPWSTR NetBiosName;
+        LPWSTR HostName;
+    } DHCP_HOST_INFO, *LPDHCP_HOST_INFO;
+    
+    typedef struct _DHCP_SUBNET_INFO {
+        DHCP_IP_ADDRESS SubnetAddress;
+        DHCP_IP_MASK SubnetMask;
+        LPWSTR SubnetName;
+        LPWSTR SubnetComment;
+        DHCP_HOST_INFO PrimaryHost;
+        DHCP_SUBNET_STATE SubnetState; 
+    } DHCP_SUBNET_INFO, *LPDHCP_SUBNET_INFO;
+    
+    typedef struct _DHCP_IP_ARRAY {
+        DWORD NumElements;
+        [size_is(NumElements)]    LPDHCP_IP_ADDRESS Elements;
+    } DHCP_IP_ARRAY, *LPDHCP_IP_ARRAY;
+    
+    typedef struct _DHCP_IP_RANGE {
+        DHCP_IP_ADDRESS StartAddress;
+        DHCP_IP_ADDRESS EndAddress;
+    } DHCP_IP_RANGE, *LPDHCP_IP_RANGE;
+    
+    typedef struct _DHCP_IP_RESERVATION {
+        DHCP_IP_ADDRESS ReservedIpAddress;
+        DHCP_CLIENT_UID *ReservedForClient;
+    } DHCP_IP_RESERVATION, *LPDHCP_IP_RESERVATION;
+    
+    typedef struct _DHCP_IP_CLUSTER {
+        DHCP_IP_ADDRESS ClusterAddress;
+        DWORD ClusterMask;
+    } DHCP_IP_CLUSTER, *LPDHCP_IP_CLUSTER;
+    
+    typedef struct _DHCP_BOOTP_IP_RANGE {
+        DHCP_IP_ADDRESS StartAddress;
+        DHCP_IP_ADDRESS EndAddress;
+        ULONG BootpAllocated;
+        ULONG MaxBootpAllowed;
+    } DHCP_BOOTP_IP_RANGE, *LPDHCP_BOOT_IP_RANGE;
+    
+    typedef struct _DHCP_SUBNET_ELEMENT_DATA {
+        DHCP_SUBNET_ELEMENT_TYPE ElementType;
+        // XXX: L.0001: ELEMENT_MASK expanded.
+        [switch_is(((((ElementType) <= DhcpIpRangesBootpOnly) && (DhcpIpRangesDhcpOnly <= (ElementType)))?(0):(ElementType))), switch_type(DHCP_SUBNET_ELEMENT_TYPE)]
+        union _DHCP_SUBNET_ELEMENT_UNION {
+            [case(DhcpIpRanges)] DHCP_IP_RANGE *IpRange;
+            [case(DhcpSecondaryHosts)] DHCP_HOST_INFO *SecondaryHost;
+            [case(DhcpReservedIps)] DHCP_IP_RESERVATION *ReservedIp;
+            [case(DhcpExcludedIpRanges)] DHCP_IP_RANGE *ExcludeIpRange;
+            [case(DhcpIpUsedClusters)] DHCP_IP_CLUSTER *IpUsedCluster;
+        } Element;
+    } DHCP_SUBNET_ELEMENT_DATA, *LPDHCP_SUBNET_ELEMENT_DATA;
+    
+    typedef struct _DHCP_SUBNET_ELEMENT_INFO_ARRAY {
+        DWORD    NumElements;
+        [size_is(NumElements)] LPDHCP_SUBNET_ELEMENT_DATA    Elements; 
+    } DHCP_SUBNET_ELEMENT_INFO_ARRAY, *LPDHCP_SUBNET_ELEMENT_INFO_ARRAY;
+    
+    typedef struct _DWORD_DWORD {
+        DWORD DWord1;
+        DWORD DWord2;
+    } DWORD_DWORD, *LPDWORD_DWORD;
+    
+    typedef struct _DHCP_OPTION_DATA_ELEMENT {
+        DHCP_OPTION_DATA_TYPE OptionType;
+        [switch_is(OptionType), switch_type(DHCP_OPTION_DATA_TYPE)]
+        union _DHCP_OPTION_ELEMENT_UNION {
+            [case(DhcpByteOption)]  BYTE ByteOption;
+            [case(DhcpWordOption)]  WORD WordOption;
+            [case(DhcpDWordOption)]  DWORD DWordOption;
+            [case(DhcpDWordDWordOption)] DWORD_DWORD DWordDWordOption;
+            [case(DhcpIpAddressOption)]  DHCP_IP_ADDRESS IpAddressOption;
+            [case(DhcpStringDataOption)] LPWSTR StringDataOption;
+            [case(DhcpBinaryDataOption)] DHCP_BINARY_DATA BinaryDataOption;
+            [case(DhcpEncapsulatedDataOption)] DHCP_BINARY_DATA EncapsulatedDataOption;
+            [case(DhcpIpv6AddressOption)] LPWSTR     Ipv6AddressDataOption;
+        } Element;
+    } DHCP_OPTION_DATA_ELEMENT, *LPDHCP_OPTION_DATA_ELEMENT;
+    
+    typedef struct _DHCP_OPTION_DATA {
+        DWORD    NumElements;
+        [size_is(NumElements)] LPDHCP_OPTION_DATA_ELEMENT    Elements;
+    } DHCP_OPTION_DATA, *LPDHCP_OPTION_DATA;
+    
+    typedef struct _DHCP_OPTION {
+        DHCP_OPTION_ID OptionID;
+        LPWSTR OptionName;
+        LPWSTR OptionComment;
+        DHCP_OPTION_DATA DefaultValue;
+        DHCP_OPTION_TYPE OptionType;
+     } DHCP_OPTION, *LPDHCP_OPTION;
+    
+    typedef struct _DHCP_RESERVED_SCOPE {
+        DHCP_IP_ADDRESS ReservedIpAddress;
+        DHCP_IP_ADDRESS ReservedIpSubnetAddress;
+    } DHCP_RESERVED_SCOPE, *LPDHCP_RESERVED_SCOPE;
+    
+    typedef struct _DHCP_OPTION_SCOPE_INFO {
+        DHCP_OPTION_SCOPE_TYPE ScopeType;
+        [switch_is(ScopeType), switch_type(DHCP_OPTION_SCOPE_TYPE)]
+        union _DHCP_OPTION_SCOPE_UNION {
+            [case(DhcpDefaultOptions)] ;
+            [case(DhcpGlobalOptions)] ;
+            [case(DhcpSubnetOptions)] DHCP_IP_ADDRESS SubnetScopeInfo;
+            [case(DhcpReservedOptions)] DHCP_RESERVED_SCOPE ReservedScopeInfo;
+            [case(DhcpMScopeOptions)] LPWSTR MScopeInfo;
+        } ScopeInfo;
+    } DHCP_OPTION_SCOPE_INFO, *LPDHCP_OPTION_SCOPE_INFO;
+    
+    typedef struct _DHCP_OPTION_VALUE {
+        DHCP_OPTION_ID OptionID;
+        DHCP_OPTION_DATA Value;
+    } DHCP_OPTION_VALUE, *LPDHCP_OPTION_VALUE;
+    
+    typedef struct _DHCP_OPTION_VALUE_ARRAY {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCP_OPTION_VALUE Values;
+    } DHCP_OPTION_VALUE_ARRAY, *LPDHCP_OPTION_VALUE_ARRAY;
+    
+   #define DHCP_DATE_TIME_ZERO_HIGH        0
+   #define DHCP_DATE_TIME_ZERO_LOW         0
+   
+   #define DHCP_DATE_TIME_INFINIT_HIGH     0x7FFFFFFF
+   #define DHCP_DATE_TIME_INFINIT_LOW      0xFFFFFFFF
+    
+    typedef struct _DATE_TIME {
+        DWORD dwLowDateTime;
+        DWORD dwHighDateTime;
+    } DATE_TIME, *LPDATE_TIME;
+    
+    typedef struct _DHCP_CLIENT_INFO {
+        DHCP_IP_ADDRESS ClientIpAddress;
+        DHCP_IP_MASK SubnetMask;
+        DHCP_CLIENT_UID ClientHardwareAddress;
+        LPWSTR ClientName;
+        LPWSTR ClientComment;
+        DATE_TIME ClientLeaseExpires;
+        DHCP_HOST_INFO OwnerHost;
+    } DHCP_CLIENT_INFO, *LPDHCP_CLIENT_INFO;
+    
+    typedef struct _DHCP_SEARCH_INFO {
+        DHCP_SEARCH_INFO_TYPE SearchType;
+        [switch_is(SearchType), switch_type(DHCP_SEARCH_INFO_TYPE)]
+        union _DHCP_CLIENT_SEARCH_UNION {
+            [case(DhcpClientIpAddress)]  DHCP_IP_ADDRESS  ClientIpAddress;
+            [case(DhcpClientHardwareAddress)]  DHCP_CLIENT_UID  ClientHardwareAddress;
+            [case(DhcpClientName)]  LPWSTR  ClientName;
+        } SearchInfo;
+    } DHCP_SEARCH_INFO, *LPDHCP_SEARCH_INFO;
+    
+    typedef struct _DHCP_CLIENT_INFO_ARRAY {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCP_CLIENT_INFO *Clients;
+    } DHCP_CLIENT_INFO_ARRAY, *LPDHCP_CLIENT_INFO_ARRAY;
+    
+    typedef struct _DHCP_OPTION_LIST {
+        DWORD NumOptions;
+        [size_is(NumOptions)] DHCP_OPTION_VALUE *Options;     
+    } DHCP_OPTION_LIST, *LPDHCP_OPTION_LIST;
+    
+    typedef struct _SCOPE_MIB_INFO {
+        DHCP_IP_ADDRESS Subnet;
+        DWORD NumAddressesInuse;
+        DWORD NumAddressesFree;
+        DWORD NumPendingOffers;
+    } SCOPE_MIB_INFO, *LPSCOPE_MIB_INFO;
+    
+    typedef struct _DHCP_MIB_INFO {
+        DWORD Discovers;
+        DWORD Offers;
+        DWORD Requests;
+        DWORD Acks;
+        DWORD Naks;
+        DWORD Declines;
+        DWORD Releases;
+        DATE_TIME ServerStartTime;
+        DWORD Scopes;
+        [size_is(Scopes)] LPSCOPE_MIB_INFO ScopeInfo;
+    } DHCP_MIB_INFO, *LPDHCP_MIB_INFO;
+    
+    typedef struct _DHCP_OPTION_ARRAY {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCP_OPTION Options;
+     } DHCP_OPTION_ARRAY, *LPDHCP_OPTION_ARRAY;
+    
+    //
+    // LOW WORD bit mask (0x0000FFFF) for low frequency debug output.
+    //
+    
+    // XXX: L.0005: replaced `int const` with `const int`
+    const int DEBUG_ADDRESS          = 0x00000001;  // subnet address
+    const int DEBUG_CLIENT           = 0x00000002;  // client API
+    const int DEBUG_PARAMETERS       = 0x00000004;  // dhcp server parameter
+    const int DEBUG_OPTIONS          = 0x00000008;  // dhcp option
+    
+    const int DEBUG_ERRORS           = 0x00000010;  // hard error
+    const int DEBUG_STOC             = 0x00000020;  // protocol error
+    const int DEBUG_INIT             = 0x00000040;  // init error
+    const int DEBUG_SCAVENGER        = 0x00000080;  // scavenger error
+    
+    const int DEBUG_TIMESTAMP        = 0x00000100;  // debug message timing
+    const int DEBUG_APIS             = 0x00000200;  // Dhcp APIs
+    const int DEBUG_REGISTRY         = 0x00000400;  // Registry operation
+    const int DEBUG_JET              = 0x00000800;  // JET error
+    
+    const int DEBUG_THREADPOOL       = 0x00001000;  // thread pool operation
+    const int DEBUG_AUDITLOG         = 0x00002000;  // audit log operation
+    const int DEBUG_QUARANTINE       = 0x00004000;  // Quarantine
+    const int DEBUG_MISC             = 0x00008000;  // misc info.
+    
+    //
+    // HIGH WORD bit mask (0x0000FFFF) for high frequency debug output.
+    // ie more verbose.
+    //
+    
+    const int DEBUG_MESSAGE          = 0x00010000;  // dhcp message output.
+    const int DEBUG_API_VERBOSE      = 0x00020000;  // Dhcp API verbose
+    const int DEBUG_DNS              = 0x00040000;  // Dns related messages
+    const int DEBUG_MSTOC            = 0x00080000;  // multicast stoc
+    
+    const int DEBUG_TRACK            = 0x00100000;  // tracking specific problems
+    const int DEBUG_ROGUE            = 0x00200000;  // rogue stuff printed out
+    const int DEBUG_PNP              = 0x00400000;  // pnp interface stuff
+    
+    const int DEBUG_PERF             = 0x01000000;  // Printfs for performance work.
+    const int DEBUG_ALLOC            = 0x02000000;  // Print allocations de-allocations..
+    const int DEBUG_PING             = 0x04000000;  // Asynchronous ping details
+    const int DEBUG_THREAD           = 0x08000000;  // Thread.c stuff
+    
+    const int DEBUG_TRACE            = 0x10000000;  // Printfs for tracing throug code.
+    const int DEBUG_TRACE_CALLS      = 0x20000000;  // Trace through piles of junk
+    const int DEBUG_STARTUP_BRK      = 0x40000000;  // breakin debugger during startup.
+    const int DEBUG_LOG_IN_FILE      = 0x80000000;  // log debug output in a file.
+    
+    const int DHCP_SERVER_USE_RPC_OVER_TCPIP  = 0x1;
+    const int DHCP_SERVER_USE_RPC_OVER_NP     = 0x2;
+    const int DHCP_SERVER_USE_RPC_OVER_LPC    = 0x4;
+    
+    const int DHCP_SERVER_USE_RPC_OVER_ALL = (DHCP_SERVER_USE_RPC_OVER_TCPIP | DHCP_SERVER_USE_RPC_OVER_NP | DHCP_SERVER_USE_RPC_OVER_LPC);
+    
+   #define DHCP_DATABASE_CLEANUP_INTERVAL 3*60*60*1000    // in msecs. 3hrs
+   #define DEFAULT_BACKUP_INTERVAL        15*60*1000      // in msecs. 15 mins
+   
+    
+    //
+    // Bitmasks for FieldsToSet member of R_DhcpServerSetConfig methods
+    //
+    
+    const int Set_APIProtocolSupport          = 0x00000001;
+    const int Set_DatabaseName                = 0x00000002;
+    const int Set_DatabasePath                = 0x00000004;
+    const int Set_BackupPath                  = 0x00000008;
+    const int Set_BackupInterval              = 0x00000010;
+    const int Set_DatabaseLoggingFlag         = 0x00000020;
+    const int Set_RestoreFlag                 = 0x00000040;
+    const int Set_DatabaseCleanupInterval     = 0x00000080;
+    const int Set_DebugFlag                   = 0x00000100;
+    const int Set_PingRetries                 = 0x00000200;
+    const int Set_BootFileTable               = 0x00000400;
+    const int Set_AuditLogState               = 0x00000800;
+    const int Set_QuarantineON                = 0x00001000;
+    const int Set_QuarantineDefFail           = 0x00002000;
+    
+    typedef struct _DHCP_SERVER_CONFIG_INFO {
+        DWORD APIProtocolSupport;
+        LPWSTR DatabaseName;
+        LPWSTR DatabasePath;
+        LPWSTR BackupPath;
+        DWORD BackupInterval;
+        DWORD DatabaseLoggingFlag;
+        DWORD RestoreFlag;
+        DWORD DatabaseCleanupInterval;
+        DWORD DebugFlag;
+    } DHCP_SERVER_CONFIG_INFO, *LPDHCP_SERVER_CONFIG_INFO;
+    
+    typedef struct _DHCP_SCAN_ITEM {
+        DHCP_IP_ADDRESS IpAddress;
+        DHCP_SCAN_FLAG ScanFlag;
+    } DHCP_SCAN_ITEM, *LPDHCP_SCAN_ITEM;
+    
+    typedef struct _DHCP_SCAN_LIST {
+        DWORD NumScanItems;
+        [size_is(NumScanItems)] DHCP_SCAN_ITEM *ScanItems;
+    } DHCP_SCAN_LIST, *LPDHCP_SCAN_LIST;
+    
+    const int CLIENT_TYPE_UNSPECIFIED    = 0x0; // for backward compatibility
+    const int CLIENT_TYPE_DHCP           = 0x1;
+    const int CLIENT_TYPE_BOOTP          = 0x2;
+    
+    const int CLIENT_TYPE_BOTH           = ( CLIENT_TYPE_DHCP | CLIENT_TYPE_BOOTP );
+    
+    typedef struct _DHCP_IP_RESERVATION_V4 {
+        DHCP_IP_ADDRESS  ReservedIpAddress;
+        DHCP_CLIENT_UID *ReservedForClient;
+        BYTE             bAllowedClientTypes;
+    } DHCP_IP_RESERVATION_V4, *LPDHCP_IP_RESERVATION_V4;
+    
+    typedef struct _DHCP_SUBNET_ELEMENT_DATA_V4 {
+        DHCP_SUBNET_ELEMENT_TYPE ElementType;
+        // XXX: L.0001: ELEMENT_MASK expanded.
+        [switch_is(((((ElementType) <= DhcpIpRangesBootpOnly) && (DhcpIpRangesDhcpOnly <= (ElementType)))?(0):(ElementType))), switch_type(DHCP_SUBNET_ELEMENT_TYPE)]
+        union _DHCP_SUBNET_ELEMENT_UNION_V4 {
+            [case(DhcpIpRanges)] DHCP_IP_RANGE *IpRange;
+            [case(DhcpSecondaryHosts)]  DHCP_HOST_INFO *SecondaryHost;
+            [case(DhcpReservedIps)] DHCP_IP_RESERVATION_V4 *ReservedIp;
+            [case(DhcpExcludedIpRanges)] DHCP_IP_RANGE *ExcludeIpRange;
+            [case(DhcpIpUsedClusters)] DHCP_IP_CLUSTER *IpUsedCluster;
+        } Element;
+    } DHCP_SUBNET_ELEMENT_DATA_V4, *LPDHCP_SUBNET_ELEMENT_DATA_V4;
+    
+    typedef struct _DHCP_SUBNET_ELEMENT_INFO_ARRAY_V4 {
+        DWORD     NumElements;
+        [size_is(NumElements)] LPDHCP_SUBNET_ELEMENT_DATA_V4  Elements;
+    } DHCP_SUBNET_ELEMENT_INFO_ARRAY_V4, *LPDHCP_SUBNET_ELEMENT_INFO_ARRAY_V4;
+    
+    typedef struct _DHCP_CLIENT_INFO_V4 {
+        DHCP_IP_ADDRESS ClientIpAddress;
+        DHCP_IP_MASK SubnetMask;
+        DHCP_CLIENT_UID ClientHardwareAddress;
+        LPWSTR ClientName;
+        LPWSTR ClientComment;
+        DATE_TIME ClientLeaseExpires;
+        DHCP_HOST_INFO OwnerHost;
+        BYTE   bClientType;
+    } DHCP_CLIENT_INFO_V4, *LPDHCP_CLIENT_INFO_V4;
+    
+    typedef struct _DHCP_CLIENT_INFO_ARRAY_V4 {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCP_CLIENT_INFO_V4 *Clients;
+    } DHCP_CLIENT_INFO_ARRAY_V4, *LPDHCP_CLIENT_INFO_ARRAY_V4;
+    
+    typedef struct _DHCP_SUPER_SCOPE_TABLE_ENTRY {
+        DHCP_IP_ADDRESS SubnetAddress; 
+        DWORD  SuperScopeNumber;
+        DWORD  NextInSuperScope;
+        LPWSTR SuperScopeName;
+    } DHCP_SUPER_SCOPE_TABLE_ENTRY, *LPDHCP_SUPER_SCOPE_TABLE_ENTRY;
+    
+    typedef struct _DHCP_SUPER_SCOPE_TABLE {
+        DWORD    cEntries;
+        [size_is(cEntries)] DHCP_SUPER_SCOPE_TABLE_ENTRY*    pEntries;
+    } DHCP_SUPER_SCOPE_TABLE, *LPDHCP_SUPER_SCOPE_TABLE;
+    
+   #define MAX_DETECT_CONFLICT_RETRIES                     5
+   #define MIN_DETECT_CONFLICT_RETRIES                     0
+    
+    typedef struct _DHCP_SERVER_CONFIG_INFO_V4 {
+        DWORD APIProtocolSupport;
+        LPWSTR DatabaseName;
+        LPWSTR DatabasePath;
+        LPWSTR BackupPath;
+        DWORD BackupInterval;
+        DWORD DatabaseLoggingFlag;
+        DWORD RestoreFlag;
+        DWORD DatabaseCleanupInterval;
+        DWORD DebugFlag;
+        DWORD dwPingRetries;
+        DWORD cbBootTableString;
+        [size_is(cbBootTableString)] WCHAR  *wszBootTableString; 
+        BOOL   fAuditLog;
+    } DHCP_SERVER_CONFIG_INFO_V4, *LPDHCP_SERVER_CONFIG_INFO_V4;
+    
+    typedef struct _DHCP_SERVER_CONFIG_INFO_VQ {
+        DWORD APIProtocolSupport;
+        LPWSTR DatabaseName;
+        LPWSTR DatabasePath;
+        LPWSTR BackupPath;
+        DWORD BackupInterval;
+        DWORD DatabaseLoggingFlag;
+        DWORD RestoreFlag;
+        DWORD DatabaseCleanupInterval;
+        DWORD DebugFlag;
+        DWORD  dwPingRetries;
+        DWORD  cbBootTableString;
+        [size_is(cbBootTableString)] WCHAR  *wszBootTableString;
+        BOOL   fAuditLog;
+        BOOL    QuarantineOn;
+        DWORD   QuarDefFail;
+        BOOL    QuarRuntimeStatus;
+    } DHCP_SERVER_CONFIG_INFO_VQ, *LPDHCP_SERVER_CONFIG_INFO_VQ;
+    
+    typedef struct _SCOPE_MIB_INFO_VQ {
+        DHCP_IP_ADDRESS Subnet;
+        DWORD NumAddressesInuse;
+        DWORD NumAddressesFree;
+        DWORD NumPendingOffers;
+        DWORD QtnNumLeases;
+        DWORD QtnPctQtnLeases;
+        DWORD QtnProbationLeases;
+        DWORD QtnNonQtnLeases;
+        DWORD QtnExemptLeases;
+        DWORD QtnCapableClients;
+    } SCOPE_MIB_INFO_VQ, *LPSCOPE_MIB_INFO_VQ;
+    
+    typedef struct _DHCP_MIB_INFO_VQ {
+        DWORD Discovers;
+        DWORD Offers;
+        DWORD Requests;
+        DWORD Acks;
+        DWORD Naks;
+        DWORD Declines;
+        DWORD Releases;
+        DATE_TIME ServerStartTime;
+        DWORD QtnNumLeases;
+        DWORD QtnPctQtnLeases;
+        DWORD QtnProbationLeases;
+        DWORD QtnNonQtnLeases;
+        DWORD QtnExemptLeases;
+        DWORD QtnCapableClients;
+        DWORD QtnIASErrors;
+        DWORD Scopes;
+        [size_is(Scopes)] LPSCOPE_MIB_INFO_VQ ScopeInfo;
+    } DHCP_MIB_INFO_VQ, *LPDHCP_MIB_INFO_VQ;
+    
+    typedef struct _DHCP_CLIENT_INFO_VQ {
+        DHCP_IP_ADDRESS ClientIpAddress;
+        DHCP_IP_MASK SubnetMask;
+        DHCP_CLIENT_UID ClientHardwareAddress;
+        LPWSTR ClientName; 
+        LPWSTR ClientComment;
+        DATE_TIME ClientLeaseExpires;
+        DHCP_HOST_INFO OwnerHost;
+        BYTE   bClientType;
+        BYTE   AddressState; 
+        QuarantineStatus Status;
+        DATE_TIME ProbationEnds;
+        BOOL QuarantineCapable;
+    } DHCP_CLIENT_INFO_VQ, *LPDHCP_CLIENT_INFO_VQ;
+    
+    typedef struct _DHCP_CLIENT_INFO_ARRAY_VQ {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCP_CLIENT_INFO_VQ *Clients;
+    } DHCP_CLIENT_INFO_ARRAY_VQ, *LPDHCP_CLIENT_INFO_ARRAY_VQ;
+    
+    typedef struct _DHCP_SUBNET_INFO_VQ{
+        DHCP_IP_ADDRESS SubnetAddress;
+        DHCP_IP_MASK SubnetMask;
+        LPWSTR SubnetName;
+        LPWSTR SubnetComment;
+        DHCP_HOST_INFO PrimaryHost;
+        DHCP_SUBNET_STATE SubnetState;
+        DWORD QuarantineOn;
+        DWORD Reserved1;
+        DWORD Reserved2;
+        INT64 Reserved3;
+        INT64 Reserved4;
+    } DHCP_SUBNET_INFO_VQ, *LPDHCP_SUBNET_INFO_VQ;
+    
+    typedef [string] LPWSTR LPWSTR_RPC_STRING;
+    typedef ULONG DHCP_ATTRIB_ID, *PDHCP_ATTRIB_ID, *LPDHCP_ATTRIB_ID;
+    
+    typedef enum _DHCP_OPTION_SCOPE_TYPE6 {
+        DhcpDefaultOptions6,
+        DhcpScopeOptions6,
+        DhcpReservedOptions6,
+        DhcpGlobalOptions6
+    } DHCP_OPTION_SCOPE_TYPE6, *LPDHCP_OPTION_SCOPE_TYPE6;
+    
+    typedef enum _DHCP_SUBNET_ELEMENT_TYPE_V6 {
+        Dhcpv6IpRanges,
+        Dhcpv6ReservedIps,
+        Dhcpv6ExcludedIpRanges
+    } DHCP_SUBNET_ELEMENT_TYPE_V6, *LPDHCP_SUBNET_ELEMENT_TYPE_V6;
+    
+    typedef enum _DHCP_CLIENT_SEARCH_TYPE_V6 {
+        Dhcpv6ClientIpAddress,
+        Dhcpv6ClientDUID,
+        Dhcpv6ClientName
+    } DHCP_SEARCH_INFO_TYPE_V6, *LPDHCP_SEARCH_INFO_TYPE_V6;
+    
+    // Structures
+    typedef struct _DHCP_IPV6_ADDRESS {
+        ULONGLONG HighOrderBits;
+        ULONGLONG LowOrderBits;
+    } DHCP_IPV6_ADDRESS, *LPDHCP_IPV6_ADDRESS, *PDHCP_IPV6_ADDRESS;
+    
+    const int CLIENT_TYPE_RESERVATION_FLAG = 0x4;
+    const int CLIENT_TYPE_NONE             = 0x64;
+    
+    const int ADDRESS_STATE_OFFERED        = 0;
+    const int ADDRESS_STATE_ACTIVE         = 1;
+    const int ADDRESS_STATE_DECLINED       = 2;
+    const int ADDRESS_STATE_DOOM           = 3;
+    
+    const int DHCP_ATTRIB_TYPE_BOOL        = 0x01;
+    const int DHCP_ATTRIB_TYPE_ULONG       = 0x02;
+    
+    typedef struct _DHCP_CLIENT_INFO_V5 {
+        DHCP_IP_ADDRESS ClientIpAddress;
+        DHCP_IP_MASK SubnetMask;
+        DHCP_CLIENT_UID ClientHardwareAddress;
+        LPWSTR ClientName;
+        LPWSTR ClientComment;
+        DATE_TIME ClientLeaseExpires;
+        DHCP_HOST_INFO OwnerHost;
+        BYTE bClientType;
+        BYTE AddressState;
+    } DHCP_CLIENT_INFO_V5, *LPDHCP_CLIENT_INFO_V5;
+    
+    typedef struct _DHCP_CLIENT_INFO_ARRAY_V5 {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCP_CLIENT_INFO_V5 *Clients;
+    } DHCP_CLIENT_INFO_ARRAY_V5, *LPDHCP_CLIENT_INFO_ARRAY_V5;
+     
+    typedef struct _DHCP_MSCOPE_INFO {
+        LPWSTR MScopeName;
+        LPWSTR MScopeComment;
+        DWORD  MScopeId;
+        DWORD  MScopeAddressPolicy;
+        DHCP_HOST_INFO PrimaryHost;
+        DHCP_SUBNET_STATE MScopeState;
+        DWORD  MScopeFlags;
+        DATE_TIME   ExpiryTime;
+        LPWSTR  LangTag;
+        BYTE    TTL;
+    } DHCP_MSCOPE_INFO, *LPDHCP_MSCOPE_INFO;
+    
+    typedef struct _DHCP_MSCOPE_TABLE {
+        DWORD NumElements;
+        [size_is(NumElements)] LPWSTR *pMScopeNames;
+    } DHCP_MSCOPE_TABLE, *LPDHCP_MSCOPE_TABLE;
+    
+     typedef struct _DHCP_MCLIENT_INFO {
+        DHCP_IP_ADDRESS ClientIpAddress;
+        DWORD   MScopeId;
+        DHCP_CLIENT_UID ClientId;
+        LPWSTR ClientName;
+        DATE_TIME ClientLeaseStarts;
+        DATE_TIME ClientLeaseEnds;
+        DHCP_HOST_INFO OwnerHost;
+        DWORD   AddressFlags;
+        BYTE    AddressState;
+    } DHCP_MCLIENT_INFO, *LPDHCP_MCLIENT_INFO;
+    
+     typedef struct _DHCP_MCLIENT_INFO_ARRAY {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCP_MCLIENT_INFO *Clients;
+    } DHCP_MCLIENT_INFO_ARRAY, *LPDHCP_MCLIENT_INFO_ARRAY;
+    
+     typedef struct _DHCP_RESERVED_SCOPE6 {
+        DHCP_IPV6_ADDRESS ReservedIpAddress;
+        DHCP_IPV6_ADDRESS ReservedIpSubnetAddress;
+    } DHCP_RESERVED_SCOPE6, *LPDHCP_RESERVED_SCOPE6;
+    
+    typedef struct _DHCP_OPTION_SCOPE_INFO6 {
+        DHCP_OPTION_SCOPE_TYPE6 ScopeType;
+        [switch_is(ScopeType), switch_type(DHCP_OPTION_SCOPE_TYPE)]
+        union _DHCP_OPTION_SCOPE_UNION6 {
+            [case(DhcpDefaultOptions6)] ;
+            [case(DhcpScopeOptions6)]  DHCP_IPV6_ADDRESS  SubnetScopeInfo;
+            [case(DhcpReservedOptions6)]  DHCP_RESERVED_SCOPE6 ReservedScopeInfo;
+            [case(DhcpGlobalOptions6)] ;
+        } ScopeInfo;
+    } DHCP_OPTION_SCOPE_INFO6, *LPDHCP_OPTION_SCOPE_INFO6;
+    
+    typedef struct _DHCP_CLASS_INFO {
+        LPWSTR ClassName;
+        LPWSTR ClassComment;
+        DWORD ClassDataLength;
+        BOOL IsVendor;
+        DWORD Flags;
+        [size_is(ClassDataLength)] LPBYTE ClassData;
+    } DHCP_CLASS_INFO, *LPDHCP_CLASS_INFO;
+    
+    typedef struct _DHCP_CLASS_INFO_ARRAY {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCP_CLASS_INFO Classes;
+    } DHCP_CLASS_INFO_ARRAY, *LPDHCP_CLASS_INFO_ARRAY;
+    
+    typedef struct _DHCP_ALL_OPTIONS {
+        DWORD Flags;
+        LPDHCP_OPTION_ARRAY NonVendorOptions;
+        DWORD NumVendorOptions;
+        [size_is(NumVendorOptions)] struct {
+            DHCP_OPTION Option;
+            LPWSTR VendorName;
+            LPWSTR ClassName;
+        } *VendorOptions;
+    } DHCP_ALL_OPTIONS, *LPDHCP_ALL_OPTIONS;
+    
+    typedef  struct _DHCP_ALL_OPTION_VALUES {
+        DWORD Flags;
+        DWORD NumElements;
+        [size_is(NumElements)] struct {
+            LPWSTR ClassName;
+            LPWSTR VendorName;
+            BOOL IsVendor;
+            LPDHCP_OPTION_VALUE_ARRAY OptionsArray;
+       } *Options;
+    } DHCP_ALL_OPTION_VALUES, *LPDHCP_ALL_OPTION_VALUES;
+    
+    typedef struct _MSCOPE_MIB_INFO {
+       DWORD MScopeId;
+       LPWSTR MScopeName;
+       DWORD NumAddressesInuse;
+       DWORD NumAddressesFree;
+       DWORD NumPendingOffers;
+    } MSCOPE_MIB_INFO, *LPMSCOPE_MIB_INFO;
+    
+    typedef struct _DHCP_MCAST_MIB_INFO {
+       DWORD Discovers;
+       DWORD Offers;
+       DWORD Requests;
+       DWORD Renews;
+       DWORD Acks;
+       DWORD Naks;
+       DWORD Releases;
+       DWORD Informs;
+       DATE_TIME ServerStartTime;
+       DWORD Scopes;
+       [size_is(Scopes)] LPMSCOPE_MIB_INFO ScopeInfo;
+    } DHCP_MCAST_MIB_INFO, *LPDHCP_MCAST_MIB_INFO;
+    
+    typedef struct _DHCP_ATTRIB {
+        DHCP_ATTRIB_ID DhcpAttribId;
+        ULONG DhcpAttribType;
+        [switch_is(DhcpAttribType), switch_type(ULONG)]
+        union                          {
+        [case(DHCP_ATTRIB_TYPE_BOOL)] BOOL DhcpAttribBool;
+        [case(DHCP_ATTRIB_TYPE_ULONG)] ULONG DhcpAttribUlong;
+        };
+    }   DHCP_ATTRIB, *PDHCP_ATTRIB, *LPDHCP_ATTRIB;
+    
+    typedef struct _DHCP_ATTRIB_ARRAY {
+        ULONG NumElements;
+        [size_is(NumElements)] LPDHCP_ATTRIB DhcpAttribs;
+    }   DHCP_ATTRIB_ARRAY, *PDHCP_ATTRIB_ARRAY, *LPDHCP_ATTRIB_ARRAY;
+    
+    typedef struct _DHCP_SUBNET_ELEMENT_DATA_V5 {
+        DHCP_SUBNET_ELEMENT_TYPE ElementType;
+        // XXX: L.0001: ELEMENT_MASK expanded.
+        [switch_is(((((ElementType) <= DhcpIpRangesBootpOnly) && (DhcpIpRangesDhcpOnly <= (ElementType)))?(0):(ElementType))), switch_type(DHCP_SUBNET_ELEMENT_TYPE)]
+        union _DHCP_SUBNET_ELEMENT_UNION_V5 {
+            [case(DhcpIpRanges)] DHCP_BOOTP_IP_RANGE *IpRange;
+            [case(DhcpSecondaryHosts)] DHCP_HOST_INFO *SecondaryHost;
+            [case(DhcpReservedIps)] DHCP_IP_RESERVATION_V4 *ReservedIp;
+            [case(DhcpExcludedIpRanges)] DHCP_IP_RANGE *ExcludeIpRange;
+            [case(DhcpIpUsedClusters)] DHCP_IP_CLUSTER *IpUsedCluster;
+        } Element;
+    } DHCP_SUBNET_ELEMENT_DATA_V5, *LPDHCP_SUBNET_ELEMENT_DATA_V5;
+    
+    typedef struct _DHCP_SUBNET_ELEMENT_INFO_ARRAY_V5 {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCP_SUBNET_ELEMENT_DATA_V5   Elements; 
+    } DHCP_SUBNET_ELEMENT_INFO_ARRAY_V5, *LPDHCP_SUBNET_ELEMENT_INFO_ARRAY_V5;
+    
+    const int DHCP_ENDPOINT_FLAG_CANT_MODIFY = 0x01;
+    
+    typedef struct _DHCP_BIND_ELEMENT {
+        ULONG Flags;
+        BOOL fBoundToDHCPServer;
+        DHCP_IP_ADDRESS AdapterPrimaryAddress;
+        DHCP_IP_ADDRESS AdapterSubnetAddress;
+        LPWSTR IfDescription;
+        ULONG IfIdSize;
+        [size_is(IfIdSize)] LPBYTE IfId;
+    } DHCP_BIND_ELEMENT, *LPDHCP_BIND_ELEMENT;
+    
+    typedef struct _DHCP_BIND_ELEMENT_ARRAY {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCP_BIND_ELEMENT Elements; 
+    } DHCP_BIND_ELEMENT_ARRAY, *LPDHCP_BIND_ELEMENT_ARRAY;
+    
+    typedef struct _DHCP_SERVER_SPECIFIC_STRINGS {
+        LPWSTR DefaultVendorClassName;
+        LPWSTR DefaultUserClassName;
+    } DHCP_SERVER_SPECIFIC_STRINGS, *LPDHCP_SERVER_SPECIFIC_STRINGS;
+    
+    typedef struct _SCOPE_MIB_INFO_V5 {
+        DHCP_IP_ADDRESS Subnet;
+        DWORD NumAddressesInuse;
+        DWORD NumAddressesFree;
+        DWORD NumPendingOffers;
+    } SCOPE_MIB_INFO_V5, *LPSCOPE_MIB_INFO_V5;
+    
+    typedef struct _DHCP_MIB_INFO_V5 {
+        DWORD Discovers;
+        DWORD Offers;
+        DWORD Requests;
+        DWORD Acks;
+        DWORD Naks;
+        DWORD Declines;
+        DWORD Releases;
+        DATE_TIME ServerStartTime;
+        DWORD QtnNumLeases;
+        DWORD QtnPctQtnLeases;
+        DWORD QtnProbationLeases;
+        DWORD QtnNonQtnLeases;
+        DWORD QtnExemptLeases;
+        DWORD QtnCapableClients;
+        DWORD QtnIASErrors; 
+        DWORD DelayedOffers;
+        DWORD ScopesWithDelayedOffers;
+        DWORD Scopes;
+       [size_is(Scopes)] LPSCOPE_MIB_INFO_V5 ScopeInfo; 
+    } DHCP_MIB_INFO_V5, *LPDHCP_MIB_INFO_V5;
+    
+    const int MAX_PATTERN_LENGTH   = 255;
+   #define MAC_ADDRESS_LENGTH 6
+   #define HWTYPE_ETHERNET_10MB 1
+    
+    typedef enum _DHCP_FILTER_LIST_TYPE {
+        Deny,
+        Allow
+    } DHCP_FILTER_LIST_TYPE, *LPDHCP_FILTER_LIST_TYPE;
+    
+    typedef struct _DHCP_ADDR_PATTERN {
+        BOOL MatchHWType;
+        BYTE HWType;
+        BOOL IsWildcard;
+        BYTE Length;
+        BYTE Pattern[MAX_PATTERN_LENGTH];
+    } DHCP_ADDR_PATTERN, *LPDHCP_ADDR_PATTERN;
+    
+    typedef struct _DHCP_FILTER_ADD_INFOV4 {
+        DHCP_ADDR_PATTERN AddrPatt;
+        LPWSTR Comment;
+        DHCP_FILTER_LIST_TYPE ListType;
+    } DHCP_FILTER_ADD_INFO, *LPDHCP_FILTER_ADD_INFO;
+    
+    typedef struct _DHCP_FILTER_GLOBAL_INFO {
+        BOOL EnforceAllowList;
+        BOOL EnforceDenyList;
+    } DHCP_FILTER_GLOBAL_INFO, *LPDHCP_FILTER_GLOBAL_INFO;
+    
+    typedef struct _DHCP_FILTER_RECORD {
+        DHCP_ADDR_PATTERN AddrPatt;
+        LPWSTR Comment;
+    } DHCP_FILTER_RECORD, *LPDHCP_FILTER_RECORD;
+    
+    typedef struct _DHCP_FILTER_ENUM_INFO {
+        DWORD NumElements;
+        [size_is( NumElements)] LPDHCP_FILTER_RECORD pEnumRecords;
+    } DHCP_FILTER_ENUM_INFO, *LPDHCP_FILTER_ENUM_INFO;
+    
+    typedef struct _DHCP_SUBNET_INFO_V6 {
+        DHCP_IPV6_ADDRESS SubnetAddress;
+        ULONG Prefix;
+        USHORT Preference;
+        LPWSTR SubnetName;
+        LPWSTR SubnetComment;
+        DWORD State;
+        DWORD ScopeId;
+    } DHCP_SUBNET_INFO_V6, *PDHCP_SUBNET_INFO_V6,*LPDHCP_SUBNET_INFO_V6;
+    
+    typedef struct _DHCPV6_IP_ARRAY {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCP_IPV6_ADDRESS Elements; 
+    } DHCPV6_IP_ARRAY, *LPDHCPV6_IP_ARRAY;
+    
+    typedef struct _DHCP_IP_RANGE_V6 {
+        DHCP_IPV6_ADDRESS StartAddress;
+        DHCP_IPV6_ADDRESS EndAddress;
+    } DHCP_IP_RANGE_V6, *LPDHCP_IP_RANGE_V6;
+    
+    typedef struct _DHCP_IP_RESERVATION_V6 {
+        DHCP_IPV6_ADDRESS  ReservedIpAddress;
+        DHCP_CLIENT_UID *ReservedForClient;
+        DWORD InterfaceId;
+    } DHCP_IP_RESERVATION_V6, *LPDHCP_IP_RESERVATION_V6;
+    
+    typedef struct _DHCP_SUBNET_ELEMENT_DATA_V6 {
+        DHCP_SUBNET_ELEMENT_TYPE_V6 ElementType;
+        // XXX: L.0001: ELEMENT_MASK expanded.
+        [switch_is(((((ElementType) <= DhcpIpRangesBootpOnly) && (DhcpIpRangesDhcpOnly <= (ElementType)))?(0):(ElementType))), switch_type(DHCP_SUBNET_ELEMENT_TYPE_V6)]
+        union _DHCP_SUBNET_ELEMENT_UNION_V6 {
+            [case(Dhcpv6IpRanges)] DHCP_IP_RANGE_V6      *IpRange;
+            [case(Dhcpv6ReservedIps)] DHCP_IP_RESERVATION_V6 *ReservedIp;
+            [case(Dhcpv6ExcludedIpRanges)] DHCP_IP_RANGE_V6 *ExcludeIpRange;
+        } Element;
+    } DHCP_SUBNET_ELEMENT_DATA_V6, *LPDHCP_SUBNET_ELEMENT_DATA_V6;
+    
+    typedef struct _DHCP_SUBNET_ELEMENT_INFO_ARRAY_V6 {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCP_SUBNET_ELEMENT_DATA_V6   Elements; 
+    } DHCP_SUBNET_ELEMENT_INFO_ARRAY_V6, *LPDHCP_SUBNET_ELEMENT_INFO_ARRAY_V6;
+    
+    typedef DHCP_IPV6_ADDRESS DHCP_RESUME_IPV6_HANDLE;
+    
+    typedef struct _DHCP_HOST_INFO_V6 {
+        DHCP_IPV6_ADDRESS IpAddress;
+        LPWSTR NetBiosName;
+        LPWSTR HostName;
+    } DHCP_HOST_INFO_V6, *LPDHCP_HOST_INFO_V6;
+    
+    typedef struct _DHCP_CLIENT_INFO_V6 {
+        DHCP_IPV6_ADDRESS ClientIpAddress;
+        DHCP_CLIENT_UID ClientDUID;
+        DWORD AddressType;
+        DWORD IAID;
+        LPWSTR ClientName;
+        LPWSTR ClientComment;
+        DATE_TIME ClientValidLeaseExpires;
+        DATE_TIME ClientPrefLeaseExpires;
+        DHCP_HOST_INFO_V6 OwnerHost;
+    } DHCP_CLIENT_INFO_V6, *LPDHCP_CLIENT_INFO_V6;
+    
+    typedef struct _DHCP_CLIENT_INFO_ARRAY_V6 {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCP_CLIENT_INFO_V6 *Clients;
+    } DHCP_CLIENT_INFO_ARRAY_V6, *LPDHCP_CLIENT_INFO_ARRAY_V6;
+    
+    typedef struct _DHCP_SERVER_CONFIG_INFO_V6 {
+        BOOL UnicastFlag;
+        BOOL RapidCommitFlag;
+        DWORD PreferredLifetime;
+        DWORD ValidLifetime;
+        DWORD T1;
+        DWORD T2;
+        DWORD PreferredLifetimeIATA;
+        DWORD ValidLifetimeIATA;
+        BOOL fAuditLog;
+    } DHCP_SERVER_CONFIG_INFO_V6, *LPDHCP_SERVER_CONFIG_INFO_V6;
+    
+    typedef struct _SCOPE_MIB_INFO_V6 {
+        DHCP_IPV6_ADDRESS Subnet;
+        ULONGLONG NumAddressesInuse;
+        ULONGLONG NumAddressesFree;
+        ULONGLONG NumPendingAdvertises;
+    } SCOPE_MIB_INFO_V6, *LPSCOPE_MIB_INFO_V6;
+    
+    typedef struct _DHCP_MIB_INFO_V6 {
+        DWORD Solicits;
+        DWORD Advertises;
+        DWORD Requests;
+        DWORD Renews;
+        DWORD Rebinds;
+        DWORD Replies;
+        DWORD Confirms;
+        DWORD Declines;
+        DWORD Releases;
+        DWORD Informs;
+        DATE_TIME ServerStartTime;
+        DWORD Scopes;
+        [size_is(Scopes)] LPSCOPE_MIB_INFO_V6 ScopeInfo; 
+    } DHCP_MIB_INFO_V6, *LPDHCP_MIB_INFO_V6;
+    
+    typedef struct _DHCPV6_BIND_ELEMENT {
+        ULONG Flags;
+        BOOL fBoundToDHCPServer;
+        DHCP_IPV6_ADDRESS AdapterPrimaryAddress;
+        DHCP_IPV6_ADDRESS AdapterSubnetAddress;
+        LPWSTR IfDescription;
+        DWORD IpV6IfIndex;
+        ULONG IfIdSize;
+        [size_is(IfIdSize)] LPBYTE IfId;
+    } DHCPV6_BIND_ELEMENT, *LPDHCPV6_BIND_ELEMENT;
+    
+    typedef struct _DHCPV6_BIND_ELEMENT_ARRAY {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCPV6_BIND_ELEMENT Elements;
+    } DHCPV6_BIND_ELEMENT_ARRAY, *LPDHCPV6_BIND_ELEMENT_ARRAY;
+    
+    typedef struct _DHCP_SEARCH_INFO_V6 {
+        DHCP_SEARCH_INFO_TYPE_V6 SearchType;
+        [switch_is(SearchType), switch_type(DHCP_SEARCH_INFO_TYPE_V6)]
+        union _DHCP_CLIENT_SEARCH_UNION_V6 {
+            [case(Dhcpv6ClientIpAddress)] 
+     DHCP_IPV6_ADDRESS ClientIpAddress;
+            [case(Dhcpv6ClientDUID)] DHCP_CLIENT_UID ClientDUID;
+            [case(Dhcpv6ClientName)] LPWSTR ClientName;
+        } SearchInfo;
+    } DHCP_SEARCH_INFO_V6, *LPDHCP_SEARCH_INFO_V6;
+    
+    typedef struct _DHCP_CLASS_INFO_V6 {
+        LPWSTR ClassName;
+        LPWSTR ClassComment;
+        DWORD ClassDataLength;
+        BOOL IsVendor;
+        DWORD EnterpriseNumber;
+        DWORD Flags;
+        [size_is(ClassDataLength)] LPBYTE ClassData;
+    } DHCP_CLASS_INFO_V6, *LPDHCP_CLASS_INFO_V6;
+    
+    typedef struct _DHCP_CLASS_INFO_ARRAY_V6 {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCP_CLASS_INFO_V6 Classes;
+    } DHCP_CLASS_INFO_ARRAY_V6, *LPDHCP_CLASS_INFO_ARRAY_V6;
+    
+    typedef struct _DHCP_CLIENT_FILTER_STATUS_INFO  {
+        DHCP_IP_ADDRESS              ClientIpAddress;
+        DHCP_IP_MASK                 SubnetMask;
+        DHCP_CLIENT_UID              ClientHardwareAddress;
+        LPWSTR                       ClientName;
+        LPWSTR                       ClientComment;
+        DATE_TIME                    ClientLeaseExpires;
+        DHCP_HOST_INFO               OwnerHost;
+        BYTE                         bClientType;
+        BYTE                         AddressState;
+        QuarantineStatus             Status;
+        DATE_TIME                    ProbationEnds;
+        BOOL                         QuarantineCapable;
+        DWORD                        FilterStatus;
+    }  DHCP_CLIENT_FILTER_STATUS_INFO,  *LPDHCP_CLIENT_FILTER_STATUS_INFO;
+    
+    typedef struct _DHCP_CLIENT_FILTER_STATUS_INFO_ARRAY  {
+        DWORD                               NumElements;
+        [size_is(NumElements)] LPDHCP_CLIENT_FILTER_STATUS_INFO    *Clients;
+    }  DHCP_CLIENT_FILTER_STATUS_INFO_ARRAY, 
+           *LPDHCP_CLIENT_FILTER_STATUS_INFO_ARRAY;
+    typedef enum _DHCP_FAILOVER_MODE {
+        LoadBalance =  0x00000000,
+        HotStandby = 0x00000001
+    } DHCP_FAILOVER_MODE, *LPDHCP_FAILOVER_MODE;
+    
+    typedef enum _DHCP_FAILOVER_SERVER {
+        PrimaryServer =  0x00000000,
+        SecondaryServer =  0x00000001
+    } DHCP_FAILOVER_SERVER, *LPDHCP_FAILOVER_SERVER;
+    
+    typedef enum _FSM_STATE{
+        NO_STATE = 0x00000000,
+        INIT,
+        STARTUP,
+        NORMAL,
+        COMMUNICATION_INT,
+        PARTNER_DOWN,
+        POTENTIAL_CONFLICT,
+        CONFLICT_DONE,
+        RESOLUTION_INT,
+        RECOVER,
+        RECOVER_WAIT,
+        RECOVER_DONE,
+    } FSM_STATE;
+    
+    typedef struct _DHCP_FAILOVER_RELATIONSHIP {
+        DHCP_IP_ADDRESS            primaryServer;
+        DHCP_IP_ADDRESS            secondaryServer;
+        DHCP_FAILOVER_MODE         mode;
+        DHCP_FAILOVER_SERVER       serverType;                       
+        FSM_STATE                  state;
+        FSM_STATE                  prevState;       
+        DWORD                      mclt;
+        DWORD                      safePeriod;  
+        LPWSTR                     relationshipName; 
+        LPWSTR                     primaryServerName;
+        LPWSTR                     secondaryServerName;     
+        LPDHCP_IP_ARRAY            pScopes;
+        BYTE                       percentage;      
+        LPWSTR                     pSharedSecret;
+    } DHCP_FAILOVER_RELATIONSHIP, *LPDHCP_FAILOVER_RELATIONSHIP;
+    
+    typedef struct _DHCP_FAILOVER_RELATIONSHIP_ARRAY {
+        DWORD                         numElements;
+        [size_is(numElements)]        LPDHCP_FAILOVER_RELATIONSHIP pRelationships;
+    } DHCP_FAILOVER_RELATIONSHIP_ARRAY , *LPDHCP_FAILOVER_RELATIONSHIP_ARRAY;
+    
+    typedef struct _DHCP_FAILOVER_STATISTICS {
+        DWORD       numAddr;
+        DWORD       addrFree;
+        DWORD       addrInUse;  
+        DWORD       partnerAddrFree;
+        DWORD       thisAddrFree; 
+        DWORD       partnerAddrInUse;
+        DWORD       thisAddrInUse; 
+    } DHCP_FAILOVER_STATISTICS, *LPDHCP_FAILOVER_STATISTICS;
+    
+    typedef struct _DHCPV4_FAILOVER_CLIENT_INFO {
+        DHCP_IP_ADDRESS        ClientIpAddress;
+        DHCP_IP_MASK     SubnetMask;
+        DHCP_CLIENT_UID  ClientHardwareAddress;
+        LPWSTR           ClientName;                  
+        LPWSTR           ClientComment;
+        DATE_TIME        ClientLeaseExpires;       
+        DHCP_HOST_INFO   OwnerHost;           
+        BYTE             bClientType;          
+        BYTE             AddressState;        
+        QuarantineStatus Status;
+        DATE_TIME        ProbationEnds;
+        BOOL             QuarantineCapable;
+        DWORD            SentPotExpTime;
+        DWORD            AckPotExpTime;
+        DWORD            RecvPotExpTime;
+        DWORD            StartTime;
+        DWORD            CltLastTransTime;    
+        DWORD            LastBndUpdTime;
+        DWORD            bndMsgStatus;    
+        LPWSTR           PolicyName;    
+        BYTE             flags; 
+    } DHCPV4_FAILOVER_CLIENT_INFO, *LPDHCPV4_FAILOVER_CLIENT_INFO;
+    
+    typedef struct _DHCP_IP_RESERVATION_INFO {
+        DHCP_IP_ADDRESS   ReservedIpAddress;
+        DHCP_CLIENT_UID   ReservedForClient;
+        LPWSTR            ReservedClientName;
+        LPWSTR            ReservedClientDesc;
+        BYTE              bAllowedClientTypes;
+        BYTE              fOptionsPresent;
+    } DHCP_IP_RESERVATION_INFO, *LPDHCP_IP_RESERVATION_INFO;
+    
+    
+    typedef struct _DHCP_RESERVATION_INFO_ARRAY {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCP_IP_RESERVATION_INFO *Elements; 
+    } DHCP_RESERVATION_INFO_ARRAY, *LPDHCP_RESERVATION_INFO_ARRAY;
+    
+    typedef     struct _DHCP_ALL_OPTION_VALUES_PB {
+        DWORD                          Flags;
+        DWORD                          NumElements;
+        [size_is(NumElements)]
+        struct                         /* anonymous */ {
+            LPWSTR                     PolicyName;
+            LPWSTR                     VendorName;
+            BOOL                       IsVendor;
+            LPDHCP_OPTION_VALUE_ARRAY  OptionsArray;
+        }                             *Options;
+    } DHCP_ALL_OPTION_VALUES_PB, *LPDHCP_ALL_OPTION_VALUES_PB;
+    
+    typedef enum {
+        DhcpAttrHWAddr,
+        DhcpAttrOption,
+        DhcpAttrSubOption,
+        DhcpAttrFqdn,
+        DhcpAttrFqdnSingleLabel, } DHCP_POL_ATTR_TYPE;
+    
+    typedef enum {
+        DhcpCompEqual,
+        DhcpCompNotEqual,
+        DhcpCompBeginsWith,
+        DhcpCompNotBeginWith,
+        DhcpCompEndsWith,
+        DhcpCompNotEndWith
+    } DHCP_POL_COMPARATOR;
+    
+    typedef enum {
+        DhcpLogicalOr,
+        DhcpLogicalAnd,
+    } DHCP_POL_LOGIC_OPER; 
+    
+    typedef enum {
+        DhcpUpdatePolicyName     = 0x00000001,
+        DhcpUpdatePolicyOrder    = 0x00000002,
+        DhcpUpdatePolicyExpr     = 0x00000004,
+        DhcpUpdatePolicyRanges   = 0x00000008,
+        DhcpUpdatePolicyDescr    = 0x00000010,
+        DhcpUpdatePolicyStatus   = 0x00000020,
+        DhcpUpdatePolicyDnsSuffix = 0x00000040
+    } DHCP_POLICY_FIELDS_TO_UPDATE;
+    
+    
+    typedef struct _DHCP_POL_COND {
+        DWORD               ParentExpr;
+        DHCP_POL_ATTR_TYPE  Type;
+        DWORD               OptionID;
+        DWORD               SubOptionID;
+        LPWSTR              VendorName;
+        DHCP_POL_COMPARATOR Operator;
+        [ size_is( ValueLength ) ] 
+        LPBYTE              Value;
+        DWORD               ValueLength; 
+    } DHCP_POL_COND, *PDHCP_POL_COND, *LPDHCP_POL_COND;
+    
+    typedef struct _DHCP_POL_COND_ARRAY {
+        DWORD               NumElements;
+        [ size_is( NumElements ) ]
+        LPDHCP_POL_COND     Elements;
+    } DHCP_POL_COND_ARRAY, *PDHCP_POL_COND_ARRAY, *LPDHCP_POL_COND_ARRAY;
+    
+    typedef struct _DHCP_POL_EXPR {
+        DWORD               ParentExpr;
+        DHCP_POL_LOGIC_OPER Operator;
+    } DHCP_POL_EXPR, *PDHCP_POL_EXPR, *LPDHCP_POL_EXPR;
+    
+    typedef struct _DHCP_POL_EXPR_ARRAY {
+        DWORD               NumElements;
+        [ size_is( NumElements ) ]
+        LPDHCP_POL_EXPR     Elements;
+    } DHCP_POL_EXPR_ARRAY, *PDHCP_POL_EXPR_ARRAY, *LPDHCP_POL_EXPR_ARRAY;
+    
+    typedef struct _DHCP_IP_RANGE_ARRAY {
+        DWORD           NumElements;
+        [ size_is( NumElements ) ]
+        LPDHCP_IP_RANGE  Elements;
+    } DHCP_IP_RANGE_ARRAY, *PDHCP_IP_RANGE_ARRAY, *LPDHCP_IP_RANGE_ARRAY;
+    
+    typedef struct _DHCP_POLICY {
+        LPWSTR                  PolicyName;
+        BOOL                    IsGlobalPolicy;
+        DHCP_IP_ADDRESS         Subnet;
+        DWORD                   ProcessingOrder;
+        LPDHCP_POL_COND_ARRAY   Conditions;
+        LPDHCP_POL_EXPR_ARRAY   Expressions;
+        LPDHCP_IP_RANGE_ARRAY   Ranges;
+        LPWSTR                  Description;
+        BOOL                    Enabled;
+    } DHCP_POLICY, *PDHCP_POLICY, *LPDHCP_POLICY;
+    
+    typedef struct _DHCP_POLICY_ARRAY {
+        DWORD       NumElements;
+        [ size_is( NumElements ) ]
+        LPDHCP_POLICY    Elements;
+    } DHCP_POLICY_ARRAY, *PDHCP_POLICY_ARRAY, *LPDHCP_POLICY_ARRAY;
+    
+   #define DHCP_MAX_FREE_ADDRESSES_REQUESTED 1024
+   
+    typedef struct _DHCPV6_STATELESS_PARAMS {
+        BOOL    Status;
+        DWORD   PurgeInterval; 
+    } DHCPV6_STATELESS_PARAMS, *PDHCPV6_STATELESS_PARAMS, 
+     *LPDHCPV6_STATELESS_PARAMS;
+    
+    typedef struct _DHCPV6_STATELESS_SCOPE_STATS {
+        DHCP_IPV6_ADDRESS   SubnetAddress;
+        ULONGLONG           NumStatelessClientsAdded;
+        ULONGLONG           NumStatelessClientsRemoved;
+    } DHCPV6_STATELESS_SCOPE_STATS, *PDHCPV6_STATELESS_SCOPE_STATS, *LPDHCPV6_STATELESS_SCOPE_STATS;
+    
+    typedef struct _DHCPV6_STATELESS_STATS {
+        DWORD NumScopes;
+        [size_is(NumScopes)] LPDHCPV6_STATELESS_SCOPE_STATS ScopeStats;
+    } DHCPV6_STATELESS_STATS, *PDHCPV6_STATELESS_STATS, 
+     *LPDHCPV6_STATELESS_STATS;
+    
+    typedef struct _DHCP_CLIENT_INFO_PB {
+        DHCP_IP_ADDRESS   ClientIpAddress;
+        DHCP_IP_MASK      SubnetMask;
+        DHCP_CLIENT_UID   ClientHardwareAddress;
+        LPWSTR            ClientName;
+        LPWSTR            ClientComment;
+        DATE_TIME         ClientLeaseExpires;
+        DHCP_HOST_INFO    OwnerHost;
+        BYTE              bClientType;          
+        BYTE              AddressState;         
+        QuarantineStatus  Status;
+        DATE_TIME         ProbationEnds;
+        BOOL              QuarantineCapable;
+        DWORD             FilterStatus;
+        LPWSTR            PolicyName;
+    } DHCP_CLIENT_INFO_PB, *LPDHCP_CLIENT_INFO_PB;
+    
+    typedef struct _DHCP_CLIENT_INFO_PB_ARRAY {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCP_CLIENT_INFO_PB *Clients; // array of pointers
+    } DHCP_CLIENT_INFO_PB_ARRAY, *LPDHCP_CLIENT_INFO_PB_ARRAY;
+    
+    typedef enum {
+        DhcpPropTypeByte,
+        DhcpPropTypeWord,
+        DhcpPropTypeDword,
+        DhcpPropTypeString,
+        DhcpPropTypeBinary,
+    } DHCP_PROPERTY_TYPE;
+    
+    typedef enum {
+        DhcpPropIdPolicyDnsSuffix,
+        DhcpPropIdClientAddressStateEx,
+    } DHCP_PROPERTY_ID;
+    
+    typedef struct _DHCP_PROPERTY {
+        DHCP_PROPERTY_ID ID;
+        DHCP_PROPERTY_TYPE Type;
+        [switch_is(Type), switch_type(DHCP_PROPERTY_TYPE)]
+        union _DHCP_PROPERTY_VALUE_UNION {
+            [case(DhcpPropTypeByte)]   BYTE             ByteValue;
+            [case(DhcpPropTypeWord)]   WORD             WordValue;
+            [case(DhcpPropTypeDword)]  DWORD            DWordValue;
+            [case(DhcpPropTypeString)] LPWSTR           StringValue;
+            [case(DhcpPropTypeBinary)] DHCP_BINARY_DATA BinaryValue;
+        } Value;
+    } DHCP_PROPERTY, *PDHCP_PROPERTY, *LPDHCP_PROPERTY;
+    
+    typedef struct _DHCP_PROPERTY_ARRAY {
+        DWORD NumElements;
+        [ size_is( NumElements ) ] LPDHCP_PROPERTY     Elements;
+    } DHCP_PROPERTY_ARRAY, *PDHCP_PROPERTY_ARRAY, *LPDHCP_PROPERTY_ARRAY;
+    
+    typedef struct DHCP_CLIENT_INFO_EX {
+        DHCP_IP_ADDRESS ClientIpAddress;
+        DHCP_IP_MASK SubnetMask;
+        DHCP_CLIENT_UID ClientHardwareAddress;
+        LPWSTR ClientName;
+        LPWSTR ClientComment;
+        DATE_TIME ClientLeaseExpires;
+        DHCP_HOST_INFO OwnerHost;
+        BYTE bClientType;
+        BYTE AddressState;
+        QuarantineStatus Status;
+        DATE_TIME ProbationEnds;
+        BOOL QuarantineCapable;
+        DWORD FilterStatus;
+        LPWSTR PolicyName;
+        LPDHCP_PROPERTY_ARRAY Properties;
+    } DHCP_CLIENT_INFO_EX, *LPDHCP_CLIENT_INFO_EX;
+    
+    typedef struct DHCP_CLIENT_INFO_EX_ARRAY {
+        DWORD NumElements;
+        [size_is (NumElements)] LPDHCP_CLIENT_INFO_EX *Clients; // array of pointers
+    } DHCP_CLIENT_INFO_EX_ARRAY, *LPDHCP_CLIENT_INFO_EX_ARRAY;
+    
+    typedef struct _DHCP_POLICY_EX {
+        LPWSTR PolicyName;
+        BOOL IsGlobalPolicy;
+        DHCP_IP_ADDRESS Subnet;
+        DWORD ProcessingOrder;
+        LPDHCP_POL_COND_ARRAY Conditions;
+        LPDHCP_POL_EXPR_ARRAY Expressions;
+        LPDHCP_IP_RANGE_ARRAY Ranges;
+        LPWSTR Description;
+        BOOL Enabled;
+        LPDHCP_PROPERTY_ARRAY Properties;
+    } DHCP_POLICY_EX, *PDHCP_POLICY_EX, *LPDHCP_POLICY_EX;
+    
+    typedef struct _DHCP_POLICY_EX_ARRAY {
+        DWORD NumElements;
+        [size_is(NumElements)] LPDHCP_POLICY_EX Elements;
+    } DHCP_POLICY_EX_ARRAY, 
+     *PDHCP_POLICY_EX_ARRAY, 
+     *LPDHCP_POLICY_EX_ARRAY;
+     
+    [
+        uuid(6BFFD098-A112-3610-9833-46C3F874532D),
+        version(1.0),
+        pointer_default(unique)
+    ]
+    
+    interface dhcpsrv
+    {
+    
+    DWORD
+    R_DhcpCreateSubnet(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS  SubnetAddress,
+        [in, ref]    LPDHCP_SUBNET_INFO  SubnetInfo
+    );
+    
+    DWORD
+    R_DhcpSetSubnetInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS  SubnetAddress,
+        [in, ref]    LPDHCP_SUBNET_INFO  SubnetInfo
+    );
+    
+    DWORD
+    R_DhcpGetSubnetInfo(
+         [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS  SubnetAddress,
+        [out]    LPDHCP_SUBNET_INFO  *SubnetInfo
+    );
+    
+    DWORD
+    R_DhcpEnumSubnets(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in, out]    DHCP_RESUME_HANDLE  *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out]    LPDHCP_IP_ARRAY     *EnumInfo,
+        [out]    DWORD *ElementsRead,
+        [out]    DWORD *ElementsTotal
+    );
+    
+    DWORD
+    R_DhcpAddSubnetElement(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]   DHCP_IP_ADDRESS      SubnetAddress,
+        [in, ref]   LPDHCP_SUBNET_ELEMENT_DATA  AddElementInfo
+    );
+    
+    DWORD
+    R_DhcpEnumSubnetElements(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]   DHCP_IP_ADDRESS      SubnetAddress,
+        [in]   DHCP_SUBNET_ELEMENT_TYPE  EnumElementType,
+        [in, out]   DHCP_RESUME_HANDLE     *ResumeHandle,
+        [in]   DWORD PreferredMaximum,
+        [out] LPDHCP_SUBNET_ELEMENT_INFO_ARRAY  *EnumElementInfo,
+        [out]   DWORD *ElementsRead,
+        [out]   DWORD *ElementsTotal
+    );
+    
+    DWORD
+    R_DhcpRemoveSubnetElement (
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS  SubnetAddress,
+        [in, ref] LPDHCP_SUBNET_ELEMENT_DATA RemoveElementInfo,
+        [in]    DHCP_FORCE_FLAG ForceFlag
+        );
+    
+    DWORD
+    R_DhcpDeleteSubnet(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS SubnetAddress,
+        [in]    DHCP_FORCE_FLAG ForceFlag
+        );
+    
+    DWORD
+    R_DhcpCreateOption(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]    DHCP_OPTION_ID OptionID,
+        [in, ref]    LPDHCP_OPTION OptionInfo
+        );
+    
+    DWORD
+    R_DhcpSetOptionInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]    DHCP_OPTION_ID OptionID,
+        [in, ref]    LPDHCP_OPTION OptionInfo
+        );
+     
+    DWORD
+    R_DhcpGetOptionInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]    DHCP_OPTION_ID OptionID,
+        [out]    LPDHCP_OPTION *OptionInfo
+        );
+    
+    DWORD
+    R_DhcpRemoveOption(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]    DHCP_OPTION_ID OptionID
+        );
+    
+    DWORD
+    R_DhcpSetOptionValue(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]    DHCP_OPTION_ID OptionID,
+        [in, ref]    LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+        [in, ref]    LPDHCP_OPTION_DATA OptionValue
+        );
+    
+    DWORD
+    R_DhcpGetOptionValue(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]    DHCP_OPTION_ID OptionID,
+        [in, ref]    LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+        [out]    LPDHCP_OPTION_VALUE *OptionValue
+        );
+    
+    DWORD
+    R_DhcpEnumOptionValues(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in, ref]    LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+        [in, out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out]    LPDHCP_OPTION_VALUE_ARRAY *OptionValues,
+        [out]    DWORD *OptionsRead,
+        [out]    DWORD *OptionsTotal
+        );
+    
+    DWORD
+    R_DhcpRemoveOptionValue(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]    DHCP_OPTION_ID OptionID,
+        [in, ref]    LPDHCP_OPTION_SCOPE_INFO ScopeInfo
+        );
+    
+    DWORD
+    R_DhcpCreateClientInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in, ref]    LPDHCP_CLIENT_INFO ClientInfo
+        );
+    
+    DWORD
+    R_DhcpSetClientInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in, ref]    LPDHCP_CLIENT_INFO ClientInfo
+        );
+    
+    DWORD
+    R_DhcpGetClientInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in, ref]    LPDHCP_SEARCH_INFO SearchInfo,
+        [out]    LPDHCP_CLIENT_INFO *ClientInfo
+        );
+    
+    DWORD
+    R_DhcpDeleteClientInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in, ref]    LPDHCP_SEARCH_INFO ClientInfo
+        );
+    
+    DWORD
+    R_DhcpEnumSubnetClients(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS SubnetAddress,
+        [in, out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out]    LPDHCP_CLIENT_INFO_ARRAY *ClientInfo,
+        [out]    DWORD *ClientsRead,
+        [out]    DWORD *ClientsTotal
+        );
+    
+    DWORD
+    R_DhcpGetClientOptions(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS ClientIpAddress,
+        [in]    DHCP_IP_MASK ClientSubnetMask,
+        [out]    LPDHCP_OPTION_LIST *ClientOptions
+        ); 
+    
+    DWORD
+    R_DhcpGetMibInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE    ServerIpAddress,
+        [out]    LPDHCP_MIB_INFO *MibInfo
+        );
+    
+    DWORD
+    R_DhcpEnumOptions(
+        [in, unique, string]  DHCP_SRV_HANDLE    ServerIpAddress,
+        [in, out]    DHCP_RESUME_HANDLE  *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out]    LPDHCP_OPTION_ARRAY *Options,
+        [out]    DWORD *OptionsRead,
+        [out]    DWORD *OptionsTotal
+        );
+    
+    DWORD
+    R_DhcpSetOptionValues(
+        [in, unique, string]  DHCP_SRV_HANDLE    ServerIpAddress,
+        [in, ref]    LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+        [in, ref]    LPDHCP_OPTION_VALUE_ARRAY OptionValues
+        );
+    
+    DWORD
+    R_DhcpServerSetConfig(
+        [in, unique, string]  DHCP_SRV_HANDLE    ServerIpAddress,
+        [in]    DWORD FieldsToSet,
+        [in, ref]    LPDHCP_SERVER_CONFIG_INFO ConfigInfo
+        );
+    
+    DWORD
+    R_DhcpServerGetConfig(
+        [in, unique, string]  DHCP_SRV_HANDLE    ServerIpAddress,
+        [out]    LPDHCP_SERVER_CONFIG_INFO *ConfigInfo
+        );
+    
+    DWORD
+    R_DhcpScanDatabase(
+        [in, unique, string]  DHCP_SRV_HANDLE    ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS SubnetAddress,
+        [in]    DWORD FixFlag,
+        [out]    LPDHCP_SCAN_LIST *ScanList
+        );
+    
+    DWORD
+    R_DhcpGetVersion(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [out]    LPDWORD MajorVersion,
+        [out]    LPDWORD MinorVersion
+        );
+    
+    DWORD
+    R_DhcpAddSubnetElementV4(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS  SubnetAddress,
+        [in, ref] LPDHCP_SUBNET_ELEMENT_DATA_V4  AddElementInfo
+        );
+    
+    DWORD
+    R_DhcpEnumSubnetElementsV4(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS SubnetAddress,
+        [in]    DHCP_SUBNET_ELEMENT_TYPE EnumElementType,
+        [in, out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out]      LPDHCP_SUBNET_ELEMENT_INFO_ARRAY_V4  *EnumElementInfo,
+        [out]    DWORD *ElementsRead,
+        [out]    DWORD *ElementsTotal
+        );
+    
+    DWORD
+    R_DhcpRemoveSubnetElementV4(
+        [in, unique, string]  DHCP_SRV_HANDLE    ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS  SubnetAddress,
+        [in, ref] LPDHCP_SUBNET_ELEMENT_DATA_V4    RemoveElementInfo,
+        [in]    DHCP_FORCE_FLAG    ForceFlag
+        );
+    
+    DWORD
+    R_DhcpCreateClientInfoV4(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref]    LPDHCP_CLIENT_INFO_V4 ClientInfo
+        );
+    
+    DWORD
+    R_DhcpSetClientInfoV4(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref]    LPDHCP_CLIENT_INFO_V4 ClientInfo
+        );
+    
+    DWORD
+    R_DhcpGetClientInfoV4(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref]    LPDHCP_SEARCH_INFO SearchInfo,
+        [out]    LPDHCP_CLIENT_INFO_V4 *ClientInfo
+        );
+    
+    DWORD
+    R_DhcpEnumSubnetClientsV4(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS SubnetAddress,
+        [in, out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out]  LPDHCP_CLIENT_INFO_ARRAY_V4  *ClientInfo,
+        [out]    DWORD *ClientsRead,
+        [out]    DWORD *ClientsTotal
+        );
+    
+    DWORD
+    R_DhcpSetSuperScopeV4(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS SubnetAddress,
+        [in, unique, string]   WCHAR *SuperScopeName,
+        [in]    BOOL ChangeExisting
+        );
+    
+    DWORD
+    R_DhcpGetSuperScopeInfoV4(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [out]    LPDHCP_SUPER_SCOPE_TABLE *SuperScopeTable
+        );
+    
+    DWORD
+    R_DhcpDeleteSuperScopeV4(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref, string]    WCHAR *SuperScopeName
+        );
+    
+    DWORD
+    R_DhcpServerSetConfigV4(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD FieldsToSet,
+        [in, ref] LPDHCP_SERVER_CONFIG_INFO_V4  ConfigInfo
+        );
+    
+    DWORD
+    R_DhcpServerGetConfigV4(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [out]  LPDHCP_SERVER_CONFIG_INFO_V4 *ConfigInfo
+        );
+    
+    DWORD
+    R_DhcpServerSetConfigVQ(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD FieldsToSet,
+        [in, ref] LPDHCP_SERVER_CONFIG_INFO_VQ ConfigInfo
+        );
+    
+    DWORD
+    R_DhcpServerGetConfigVQ(
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [out] LPDHCP_SERVER_CONFIG_INFO_VQ *ConfigInfo
+        );
+    
+    DWORD
+    R_DhcpGetMibInfoVQ(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [out]    LPDHCP_MIB_INFO_VQ *MibInfo
+        );
+    
+    DWORD
+    R_DhcpCreateClientInfoVQ(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref]    LPDHCP_CLIENT_INFO_VQ ClientInfo
+        );
+    
+    DWORD
+    R_DhcpSetClientInfoVQ(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref]    LPDHCP_CLIENT_INFO_VQ ClientInfo
+        );
+    
+    DWORD
+    R_DhcpGetClientInfoVQ(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref]    LPDHCP_SEARCH_INFO SearchInfo,
+        [out]    LPDHCP_CLIENT_INFO_VQ *ClientInfo
+        );
+    
+    DWORD
+    R_DhcpEnumSubnetClientsVQ(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS SubnetAddress,
+        [in, out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out] LPDHCP_CLIENT_INFO_ARRAY_VQ *ClientInfo,
+        [out]    DWORD *ClientsRead,
+        [out]    DWORD *ClientsTotal
+        );
+    
+    DWORD
+    R_DhcpCreateSubnetVQ(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS SubnetAddress,
+        [in, ref]    LPDHCP_SUBNET_INFO_VQ SubnetInfoVQ
+        );
+    
+    DWORD
+    R_DhcpGetSubnetInfoVQ(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS SubnetAddress,
+        [out]    LPDHCP_SUBNET_INFO_VQ *SubnetInfoVQ
+        );
+    
+    DWORD
+    R_DhcpSetSubnetInfoVQ(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS SubnetAddress,
+        [in, ref]    LPDHCP_SUBNET_INFO_VQ SubnetInfoVQ
+        );
+    };
+    [
+        uuid(5b821720-f63b-11d0-aad2-00c04fc324db),
+        version(1.0),
+        pointer_default(unique)
+    ]
+    
+    interface dhcpsrv2
+    {
+    
+     DWORD
+    R_DhcpEnumSubnetClientsV5(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS SubnetAddress,
+        [in, out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out]    LPDHCP_CLIENT_INFO_ARRAY_V5 *ClientInfo,
+        [out]    DWORD *ClientsRead,
+        [out]    DWORD *ClientsTotal
+        );
+    
+    //
+    // MDHCP APIs
+    //
+    DWORD
+    R_DhcpSetMScopeInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref, string]    LPWSTR *MScopeName,
+        [in, ref]    LPDHCP_MSCOPE_INFO MScopeInfo,
+        [in]    BOOL NewScope
+        );
+    
+    DWORD
+    R_DhcpGetMScopeInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref, string]    LPWSTR *MScopeName,
+        [out]    LPDHCP_MSCOPE_INFO *MScopeInfo
+        );
+    
+    DWORD
+    R_DhcpEnumMScopes(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out]    LPDHCP_MSCOPE_TABLE *MScopeTable,
+        [out]    DWORD *ElementsRead,
+        [out]    DWORD *ElementsTotal
+        );
+    
+    DWORD
+    R_DhcpAddMScopeElement(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref, string]    LPWSTR *MScopeName,
+        [in, ref] LPDHCP_SUBNET_ELEMENT_DATA_V4 AddElementInfo
+        );
+    
+    DWORD
+    R_DhcpEnumMScopeElements(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref, string]    LPWSTR *MScopeName,
+        [in]    DHCP_SUBNET_ELEMENT_TYPE EnumElementType,
+        [in, out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out] LPDHCP_SUBNET_ELEMENT_INFO_ARRAY_V4 *EnumElementInfo,
+        [out]    DWORD *ElementsRead,
+        [out]    DWORD *ElementsTotal
+        );
+    
+    DWORD
+    R_DhcpRemoveMScopeElement(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in, ref, string]    LPWSTR      *MScopeName,
+        [in, ref]   LPDHCP_SUBNET_ELEMENT_DATA_V4    RemoveElementInfo,
+        [in]    DHCP_FORCE_FLAG      ForceFlag
+        );
+    
+    DWORD
+    R_DhcpDeleteMScope(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref, string]    LPWSTR *MScopeName,
+        [in]    DHCP_FORCE_FLAG ForceFlag
+        );
+    
+    DWORD
+    R_DhcpScanMDatabase(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref, string]    LPWSTR *MScopeName,
+        [in]    DWORD FixFlag,
+        [out]    LPDHCP_SCAN_LIST *ScanList
+        );
+    
+    //
+    // Client APIs
+    //
+    
+    DWORD
+    R_DhcpCreateMClientInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref, string]    LPWSTR *MScopeName,
+        [in, ref]    LPDHCP_MCLIENT_INFO ClientInfo
+        );
+   
+   // Opnum 10 
+    DWORD
+    R_DhcpSetMClientInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref]    LPDHCP_MCLIENT_INFO ClientInfo
+        );
+    
+    DWORD
+    R_DhcpGetMClientInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref]    LPDHCP_SEARCH_INFO SearchInfo,
+        [out]    LPDHCP_MCLIENT_INFO *ClientInfo
+        );
+    
+    DWORD
+    R_DhcpDeleteMClientInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref]    LPDHCP_SEARCH_INFO ClientInfo
+        );
+    
+    DWORD
+    R_DhcpEnumMScopeClients(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref, string]    LPWSTR *MScopeName,
+        [in, out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out]    LPDHCP_MCLIENT_INFO_ARRAY *ClientInfo,
+        [out]    DWORD *ClientsRead,
+        [out]    DWORD *ClientsTotal
+        );
+    
+    DWORD 
+    R_DhcpCreateOptionV5(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in]    DHCP_OPTION_ID OptionId,
+        [in, string, unique]   WCHAR *ClassName,
+        [in, string, unique]   WCHAR *VendorName,
+        [in]    LPDHCP_OPTION OptionInfo
+    );
+    
+    DWORD
+    R_DhcpSetOptionInfoV5(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in]    DHCP_OPTION_ID OptionID,
+        [in, string, unique]   WCHAR *ClassName,
+        [in, string, unique]   WCHAR *VendorName,
+        [in]    LPDHCP_OPTION OptionInfo
+    );
+    
+    DWORD
+    R_DhcpGetOptionInfoV5(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in]    DHCP_OPTION_ID OptionID,
+        [in, string, unique]   WCHAR *ClassName,
+        [in, string, unique]   WCHAR *VendorName,
+        [out]    LPDHCP_OPTION *OptionInfo
+    );
+    
+    DWORD
+    R_DhcpEnumOptionsV5(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in, string, unique]   WCHAR *ClassName,
+        [in, string, unique]   WCHAR *VendorName,
+        [in, out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out]    LPDHCP_OPTION_ARRAY *Options,
+        [out]    DWORD *OptionsRead,
+        [out]    DWORD *OptionsTotal   
+    ) ; 
+    
+    DWORD
+    R_DhcpRemoveOptionV5(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in]    DHCP_OPTION_ID OptionID,
+        [in, string, unique]   WCHAR *ClassName,
+        [in, string, unique]   WCHAR *VendorName
+    );
+    
+    DWORD
+    R_DhcpSetOptionValueV5(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in]    DHCP_OPTION_ID OptionId,
+        [in, string, unique]   WCHAR *ClassName,
+        [in, string, unique]   WCHAR *VendorName,
+        [in]    LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+        [in]    LPDHCP_OPTION_DATA OptionValue
+    );
+    
+    // Opnum 20 
+    DWORD
+    R_DhcpSetOptionValuesV5(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in, string, unique]   WCHAR *ClassName,
+        [in, string, unique]   WCHAR *VendorName,
+        [in]    LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+        [in]    LPDHCP_OPTION_VALUE_ARRAY OptionValues
+    );
+    
+    DWORD
+    R_DhcpGetOptionValueV5(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in]    DHCP_OPTION_ID OptionID,
+        [in, string, unique]   WCHAR *ClassName,
+        [in, string, unique]   WCHAR *VendorName,
+        [in]    LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+        [out]   LPDHCP_OPTION_VALUE *OptionValue
+    );
+    
+    DWORD
+    R_DhcpEnumOptionValuesV5(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in, string, unique]   WCHAR *ClassName,
+        [in, string, unique]   WCHAR *VendorName,
+        [in]    LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+        [in,out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out]    LPDHCP_OPTION_VALUE_ARRAY *OptionValues,
+        [out]    DWORD *OptionsRead,
+        [out]    DWORD *OptionsTotal
+    );
+    
+    DWORD
+    R_DhcpRemoveOptionValueV5(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in]    DHCP_OPTION_ID OptionID,
+        [in, string, unique]   WCHAR *ClassName,
+        [in, string, unique]   WCHAR *VendorName,
+        [in]    LPDHCP_OPTION_SCOPE_INFO ScopeInfo
+    );
+    
+    DWORD
+    R_DhcpCreateClass(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD ReservedMustBeZero,
+        [in]    LPDHCP_CLASS_INFO ClassInfo
+    );
+    
+    DWORD
+    R_DhcpModifyClass(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD ReservedMustBeZero,
+        [in]    LPDHCP_CLASS_INFO ClassInfo
+    );
+    
+    DWORD
+    R_DhcpDeleteClass(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD ReservedMustBeZero,
+        [in, string, unique]   WCHAR *ClassName
+    ); 
+    
+    DWORD
+    R_DhcpGetClassInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD ReservedMustBeZero,
+        [in]    LPDHCP_CLASS_INFO PartialClassInfo,
+        [out]   LPDHCP_CLASS_INFO *FilledClassInfo
+    );
+    
+    DWORD
+    R_DhcpEnumClasses(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD     ReservedMustBeZero,
+        [in,out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out]    LPDHCP_CLASS_INFO_ARRAY *ClassInfoArray,
+        [out]    DWORD *nRead,
+        [out]    DWORD *nTotal
+    ); 
+    
+    DWORD
+    R_DhcpGetAllOptions(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [out]    LPDHCP_ALL_OPTIONS *OptionStruct
+    );
+    
+    // Opnum 30 
+    DWORD
+    R_DhcpGetAllOptionValues(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in]    LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+        [out]    LPDHCP_ALL_OPTION_VALUES *Values
+    );
+    
+    DWORD
+    R_DhcpGetMCastMibInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [out]    LPDHCP_MCAST_MIB_INFO *MibInfo
+    );
+    
+    DWORD
+    R_DhcpAuditLogSetParams(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in, string]    LPWSTR AuditLogDir,
+        [in]    DWORD DiskCheckInterval,
+        [in]    DWORD MaxLogFilesSize,
+        [in]    DWORD MinSpaceOnDisk
+    );
+    
+    DWORD
+    R_DhcpAuditLogGetParams(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [out]    LPWSTR_RPC_STRING *AuditLogDir,
+        [out]    DWORD *DiskCheckInterval,
+        [out]    DWORD *MaxLogFilesSize,
+        [out]    DWORD *MinSpaceOnDisk
+    );
+    
+    DWORD
+    R_DhcpServerQueryAttribute(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    ULONG dwReserved,
+        [in]    DHCP_ATTRIB_ID DhcpAttribId,
+        [out]   LPDHCP_ATTRIB *pDhcpAttrib
+    );
+    
+    DWORD
+    R_DhcpServerQueryAttributes (
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    ULONG dwReserved,
+        [in, range(0,6)]    ULONG dwAttribCount,
+        [in, size_is(dwAttribCount)] LPDHCP_ATTRIB_ID pDhcpAttribs,
+        [out]    LPDHCP_ATTRIB_ARRAY *pDhcpAttribArr
+    );
+    
+    DWORD
+    R_DhcpServerRedoAuthorization(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    ULONG dwReserved
+    );
+    
+    DWORD
+    R_DhcpAddSubnetElementV5(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS SubnetAddress,
+        [in, ref] LPDHCP_SUBNET_ELEMENT_DATA_V5 AddElementInfo
+        );
+    
+    DWORD
+    R_DhcpEnumSubnetElementsV5(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS SubnetAddress,
+        [in]    DHCP_SUBNET_ELEMENT_TYPE EnumElementType,
+        [in, out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out] LPDHCP_SUBNET_ELEMENT_INFO_ARRAY_V5 *EnumElementInfo,
+        [out]    DWORD *ElementsRead,
+        [out]    DWORD *ElementsTotal
+        );
+    
+    DWORD
+    R_DhcpRemoveSubnetElementV5(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS SubnetAddress,
+        [in, ref]     LPDHCP_SUBNET_ELEMENT_DATA_V5  RemoveElementInfo,
+        [in]    DHCP_FORCE_FLAG ForceFlag
+        );
+    
+    // Opnum 40 
+    DWORD
+    R_DhcpGetServerBindingInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    ULONG Flags,
+        [out]    LPDHCP_BIND_ELEMENT_ARRAY  *BindElementsInfo
+    );
+    
+    DWORD
+    R_DhcpSetServerBindingInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    ULONG Flags,
+        [in, ref]    LPDHCP_BIND_ELEMENT_ARRAY BindElementsInfo
+    );
+    
+    DWORD
+    R_DhcpQueryDnsRegCredentials(
+        [in, unique, string] DHCP_SRV_HANDLE  ServerIpAddress,
+        [in, range( 0, 1024 )] ULONG          UnameSize,
+        [out, size_is(UnameSize)] wchar_t*      Uname,
+        [in, range( 0, 1024 )] ULONG          DomainSize,
+        [out, size_is(DomainSize)] wchar_t*     Domain
+        );
+    
+    DWORD
+    R_DhcpSetDnsRegCredentials(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, string, unique]   LPWSTR Uname,
+        [in, string, unique]   LPWSTR Domain,
+        [in, string, unique]   LPWSTR Passwd
+        );
+    
+    DWORD
+    R_DhcpBackupDatabase(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, string]    LPWSTR Path
+        );
+    
+    DWORD
+    R_DhcpRestoreDatabase(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, string]    LPWSTR Path
+        );
+    
+    DWORD
+    R_DhcpGetServerSpecificStrings(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [out]    LPDHCP_SERVER_SPECIFIC_STRINGS  *ServerSpecificStrings
+    );
+    
+    DWORD
+    R_DhcpCreateOptionV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in]    DHCP_OPTION_ID OptionId,
+        [in, string, unique]   WCHAR* ClassName,
+        [in, string, unique]   WCHAR* VendorName,
+        [in]    LPDHCP_OPTION OptionInfo
+    );
+    
+    DWORD
+    R_DhcpSetOptionInfoV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]                    DWORD Flags,
+        [in]                    DHCP_OPTION_ID OptionID,
+        [in, string, unique]    WCHAR* ClassName,
+        [in, string, unique]    WCHAR* VendorName,
+        [in]                    LPDHCP_OPTION OptionInfo
+    );
+    
+    DWORD
+    R_DhcpGetOptionInfoV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in]    DHCP_OPTION_ID OptionID,
+        [in, string, unique]   WCHAR *ClassName,
+        [in, string, unique]   WCHAR *VendorName,
+        [out]    LPDHCP_OPTION *OptionInfo
+    );
+   
+    // Opnum 50 
+   DWORD
+    R_DhcpEnumOptionsV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in, string, unique]   WCHAR *ClassName,
+        [in, string, unique]   WCHAR *VendorName,
+        [in, out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum, 
+        [out]    LPDHCP_OPTION_ARRAY *Options,
+        [out]    DWORD *OptionsRead,
+        [out]    DWORD *OptionsTotal
+    );
+    
+    DWORD
+    R_DhcpRemoveOptionV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in]    DHCP_OPTION_ID OptionID,
+        [in, string, unique]   WCHAR* ClassName,
+        [in, string, unique]   WCHAR* VendorName
+    );
+    
+    DWORD
+    R_DhcpSetOptionValueV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in]    DHCP_OPTION_ID OptionId,
+        [in, string, unique]   WCHAR *ClassName,
+        [in, string, unique]   WCHAR *VendorName,
+        [in]    LPDHCP_OPTION_SCOPE_INFO6 ScopeInfo,
+        [in]    LPDHCP_OPTION_DATA OptionValue
+    );
+    
+    DWORD
+    R_DhcpEnumOptionValuesV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in, string, unique]   WCHAR *ClassName,
+        [in, string, unique]   WCHAR *VendorName,
+        [in]    LPDHCP_OPTION_SCOPE_INFO6 ScopeInfo,
+        [in,out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out] LPDHCP_OPTION_VALUE_ARRAY *OptionValues,
+        [out]    DWORD *OptionsRead,
+        [out]    DWORD *OptionsTotal
+    );
+    
+    DWORD
+    R_DhcpRemoveOptionValueV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in]    DHCP_OPTION_ID OptionID,
+        [in, string, unique]   WCHAR *ClassName,
+        [in, string, unique]   WCHAR *VendorName,
+        [in]    LPDHCP_OPTION_SCOPE_INFO6 ScopeInfo
+    ); 
+    
+    DWORD
+    R_DhcpGetAllOptionsV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [out]   LPDHCP_ALL_OPTIONS *OptionStruct
+    );
+    
+    DWORD
+    R_DhcpGetAllOptionValuesV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in]    LPDHCP_OPTION_SCOPE_INFO6 ScopeInfo,
+        [out]    LPDHCP_ALL_OPTION_VALUES *Values
+    );
+    
+    DWORD
+    R_DhcpCreateSubnetV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IPV6_ADDRESS SubnetAddress,
+        [in, ref]    LPDHCP_SUBNET_INFO_V6 SubnetInfo
+    );
+    
+    DWORD
+    R_DhcpEnumSubnetsV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out]    LPDHCPV6_IP_ARRAY *EnumInfo,
+        [out]    DWORD *ElementsRead,
+        [out]    DWORD *ElementsTotal
+    );
+    
+    DWORD
+    R_DhcpAddSubnetElementV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IPV6_ADDRESS SubnetAddress,
+        [in, ref] LPDHCP_SUBNET_ELEMENT_DATA_V6 AddElementInfo
+    );
+         
+    // Opnum 60 
+    DWORD
+    R_DhcpEnumSubnetElementsV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IPV6_ADDRESS SubnetAddress,
+        [in] DHCP_SUBNET_ELEMENT_TYPE_V6 EnumElementType,
+        [in, out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out] LPDHCP_SUBNET_ELEMENT_INFO_ARRAY_V6 *EnumElementInfo,
+        [out]    DWORD *ElementsRead,
+        [out]    DWORD *ElementsTotal
+    );
+    
+    DWORD
+    R_DhcpRemoveSubnetElementV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IPV6_ADDRESS SubnetAddress,
+        [in, ref]  LPDHCP_SUBNET_ELEMENT_DATA_V6    RemoveElementInfo,
+        [in]    DHCP_FORCE_FLAG ForceFlag
+    );
+    
+    DWORD
+    R_DhcpDeleteSubnetV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IPV6_ADDRESS SubnetAddress,
+        [in]    DHCP_FORCE_FLAG ForceFlag
+    );
+    
+    DWORD
+    R_DhcpGetSubnetInfoV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IPV6_ADDRESS SubnetAddress,
+        [out]    LPDHCP_SUBNET_INFO_V6 *SubnetInfo
+    );
+    
+    DWORD
+    R_DhcpEnumSubnetClientsV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IPV6_ADDRESS SubnetAddress,
+        [in, out]   DHCP_RESUME_IPV6_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out]  LPDHCP_CLIENT_INFO_ARRAY_V6  *ClientInfo,
+        [out]    DWORD *ClientsRead,
+        [out]    DWORD *ClientsTotal
+    );
+    
+    DWORD
+    R_DhcpServerSetConfigV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref]    LPDHCP_OPTION_SCOPE_INFO6 ScopeInfo,
+        [in]   DWORD FieldsToSet,
+        [in, ref] LPDHCP_SERVER_CONFIG_INFO_V6  ConfigInfo
+    );
+    
+    DWORD
+    R_DhcpServerGetConfigV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref]    LPDHCP_OPTION_SCOPE_INFO6 ScopeInfo,    
+        [out] LPDHCP_SERVER_CONFIG_INFO_V6  *ConfigInfo
+    );
+    
+    DWORD
+    R_DhcpSetSubnetInfoV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IPV6_ADDRESS SubnetAddress,
+        [in, ref]    LPDHCP_SUBNET_INFO_V6 SubnetInfo
+    );
+    
+    DWORD
+    R_DhcpGetMibInfoV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [out]    LPDHCP_MIB_INFO_V6 *MibInfo
+    );
+    
+    DWORD
+    R_DhcpGetServerBindingInfoV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    ULONG Flags,
+        [out]  LPDHCPV6_BIND_ELEMENT_ARRAY *BindElementsInfo
+    );
+         
+    // Opnum 70
+    DWORD
+    R_DhcpSetServerBindingInfoV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    ULONG Flags,
+        [in, ref]  LPDHCPV6_BIND_ELEMENT_ARRAY BindElementsInfo
+    );
+    
+    DWORD
+    R_DhcpSetClientInfoV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref]    LPDHCP_CLIENT_INFO_V6 ClientInfo
+    );
+    
+    DWORD
+    R_DhcpGetClientInfoV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref]    LPDHCP_SEARCH_INFO_V6 SearchInfo,
+        [out]    LPDHCP_CLIENT_INFO_V6 *ClientInfo
+    );
+    
+    DWORD
+    R_DhcpDeleteClientInfoV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref]    LPDHCP_SEARCH_INFO_V6 ClientInfo
+    );
+    
+    DWORD
+    R_DhcpCreateClassV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]   DWORD ReservedMustBeZero,
+        [in]       LPDHCP_CLASS_INFO_V6 ClassInfo
+    );
+    
+    DWORD
+    R_DhcpModifyClassV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD ReservedMustBeZero,
+        [in]    LPDHCP_CLASS_INFO_V6 ClassInfo
+    );
+    
+    DWORD
+    R_DhcpDeleteClassV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]       DWORD ReservedMustBeZero,
+        [in, string, unique]   WCHAR *ClassName
+    );
+    
+    DWORD
+    R_DhcpEnumClassesV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD ReservedMustBeZero,
+        [in,out]    DHCP_RESUME_HANDLE *ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [out]    LPDHCP_CLASS_INFO_ARRAY_V6 *ClassInfoArray,
+        [out]    DWORD *nRead,
+        [out]    DWORD *nTotal
+    );
+    
+    DWORD
+    R_DhcpGetOptionValueV6(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DWORD Flags,
+        [in]    DHCP_OPTION_ID OptionID,
+        [in, string, unique]   WCHAR *ClassName,
+        [in, string, unique]   WCHAR *VendorName,
+        [in]    LPDHCP_OPTION_SCOPE_INFO6 ScopeInfo,
+        [out]      LPDHCP_OPTION_VALUE OptionValue
+    );
+    
+    DWORD
+    R_DhcpSetSubnetDelayOffer(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_IP_ADDRESS SubnetAddress,
+        [in]    USHORT TimeDelayInMilliseconds
+    );
+    
+    // Opnum 80
+    DWORD
+    R_DhcpGetSubnetDelayOffer(
+        [in, unique, string] DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]                 DHCP_IP_ADDRESS  SubnetAddress,
+        [out]                USHORT          *TimeDelayInMilliseconds
+    );
+    
+    DWORD
+    R_DhcpGetMibInfoV5(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [out]    LPDHCP_MIB_INFO_V5 *MibInfo
+    );
+    
+    DWORD
+    R_DhcpAddFilterV4(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_FILTER_ADD_INFO *AddFilterInfo,
+        [in]    BOOL ForceFlag    
+    );
+    
+    DWORD
+    R_DhcpDeleteFilterV4(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]    DHCP_ADDR_PATTERN *DeleteFilterInfo
+    );
+    
+    DWORD
+    R_DhcpSetFilterV4(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in] DHCP_FILTER_GLOBAL_INFO *GlobalFilterInfo
+    );
+    
+    DWORD
+    R_DhcpGetFilterV4(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [out]    DHCP_FILTER_GLOBAL_INFO *GlobalFilterInfo
+    );
+    
+    DWORD
+    R_DhcpEnumFilterV4(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in,out]    LPDHCP_ADDR_PATTERN ResumeHandle,
+        [in]    DWORD PreferredMaximum,
+        [in]   DHCP_FILTER_LIST_TYPE ListType,
+        [out] LPDHCP_FILTER_ENUM_INFO *EnumFilterInfo,
+        [out]    DWORD *ElementsRead,
+        [out]    DWORD *ElementsTotal
+    );
+    
+    DWORD 
+    R_DhcpSetDnsRegCredentialsV5(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in, string, unique]   LPWSTR Uname,
+        [in, string, unique]   LPWSTR Domain,
+        [in, string, unique]   LPWSTR Passwd
+    );
+    
+    DWORD
+    R_DhcpEnumSubnetClientsFilterStatusInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE            ServerIpAddress,
+        [in]  DHCP_IP_ADDRESS                            SubnetAddress,
+        [in, out]  DHCP_RESUME_HANDLE*                   ResumeHandle,
+        [in]  DWORD                                      PreferredMaximum,
+        [out]  LPDHCP_CLIENT_FILTER_STATUS_INFO_ARRAY*   ClientInfo,
+        [out]  DWORD*                                    ClientRead,
+        [out]  DWORD*                                    ClientsTotal
+    );
+    
+    // Opnum 89
+    DWORD
+    R_DhcpV4FailoverCreateRelationship(
+        [in, unique, string]  DHCP_SRV_HANDLE   ServerIpAddress,
+        [in]     LPDHCP_FAILOVER_RELATIONSHIP    pRelationship
+    );
+    
+    // Opnum 90
+    DWORD
+    R_DhcpV4FailoverSetRelationship(
+        [in, unique, string] DHCP_SRV_HANDLE   ServerIpAddress,
+        [in]                 DWORD             Flags,
+        [in]   LPDHCP_FAILOVER_RELATIONSHIP   pRelationship
+    );
+    
+    // Opnum 91
+    DWORD
+    R_DhcpV4FailoverDeleteRelationship(
+        [in, unique, string]  DHCP_SRV_HANDLE   ServerIpAddress,
+        [in, string, unique]   LPWSTR    pRelationshipName
+    );
+    
+    // Opnum 92
+    DWORD
+    R_DhcpV4FailoverGetRelationship(
+        [in, unique, string]  DHCP_SRV_HANDLE   ServerIpAddress, 
+        [in, string, unique]   LPWSTR            pRelationshipName,
+        [out]    LPDHCP_FAILOVER_RELATIONSHIP   *pRelationship
+    );
+    
+    // Opnum 93
+    DWORD
+    R_DhcpV4FailoverEnumRelationship(
+        [in, unique, string] DHCP_SRV_HANDLE   ServerIpAddress, 
+        [in, out] DHCP_RESUME_HANDLE          *ResumeHandle,
+        [in]      DWORD                        preferredMaximum,
+        [out]     LPDHCP_FAILOVER_RELATIONSHIP_ARRAY  *pRelationship,
+        [out]     LPDWORD                      relationshipRead,
+        [out]     LPDWORD                      relationshipTotal 
+    );
+    
+    // Opnum 94
+    DWORD
+    R_DhcpV4FailoverAddScopeToRelationship(
+        [in, unique, string]  DHCP_SRV_HANDLE   ServerIpAddress, 
+        [in]     LPDHCP_FAILOVER_RELATIONSHIP    pRelationship
+    );
+    
+    
+    // Opnum 95
+    DWORD
+    R_DhcpV4FailoverDeleteScopeFromRelationship(
+        [in, unique, string]  DHCP_SRV_HANDLE   ServerIpAddress,
+        [in]   LPDHCP_FAILOVER_RELATIONSHIP      pRelationship
+    );
+    // Opnum 96
+    DWORD
+    R_DhcpV4FailoverGetScopeRelationship(
+        [in, unique, string]  DHCP_SRV_HANDLE   ServerIpAddress,
+        [in]               DHCP_IP_ADDRESS       scopeId,
+        [out]    LPDHCP_FAILOVER_RELATIONSHIP   *pRelationship
+    );
+    
+    // Opnum 97
+    DWORD
+    R_DhcpV4FailoverGetScopeStatistics(
+        [in, unique, string]  DHCP_SRV_HANDLE   ServerIpAddress,
+        [in]                   DHCP_IP_ADDRESS   scopeId,
+        [out]       LPDHCP_FAILOVER_STATISTICS   *pStats
+    );
+    
+    // Opnum 98
+    DWORD
+    R_DhcpV4FailoverGetClientInfo(
+        [in, unique, string]  DHCP_SRV_HANDLE   ServerIpAddress,
+        [in, ref]           LPDHCP_SEARCH_INFO   SearchInfo,
+        [out]    LPDHCPV4_FAILOVER_CLIENT_INFO   *ClientInfo
+     );
+    
+    // Opnum 99
+    DWORD
+    R_DhcpV4FailoverGetSystemTime(
+        [in, unique, string]  DHCP_SRV_HANDLE   ServerIpAddress,
+        [out]   LPDWORD   pTime
+    );
+    
+    //Opnum 100
+    DWORD 
+    R_DhcpV4FailoverTriggerAddrAllocation(
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in, unique, string] LPWSTR          FailRelName   
+    );
+    
+    // Opnum 101
+    DWORD
+    R_DhcpV4SetOptionValue(
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in] DWORD Flags,
+        [in] DHCP_OPTION_ID OptionID,
+        [in, string, unique] WCHAR* PolicyName,
+        [in, string, unique] WCHAR* VendorName,
+        [in] LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+        [in] LPDHCP_OPTION_DATA OptionValue
+    ) ;
+    
+    // Opnum 102
+    DWORD
+    R_DhcpV4SetOptionValues(
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in] DWORD Flags,
+        [in, string, unique] WCHAR* PolicyName,
+        [in, string, unique] WCHAR* VendorName,
+        [in] LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+        [in] LPDHCP_OPTION_VALUE_ARRAY OptionValues
+    ) ;
+    
+    // Opnum 103
+    DWORD
+    R_DhcpV4GetOptionValue(
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in] DWORD Flags,
+        [in] DHCP_OPTION_ID OptionID,
+        [in, string, unique] WCHAR* PolicyName,
+        [in, string, unique] WCHAR* VendorName,
+        [in] LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+        [out] LPDHCP_OPTION_VALUE *OptionValue
+    ) ;
+    
+    // Opnum 104
+    DWORD
+    R_DhcpV4RemoveOptionValue(
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in] DWORD Flags,
+        [in] DHCP_OPTION_ID OptionID,
+        [in, string, unique] WCHAR* PolicyName,
+        [in, string, unique] WCHAR* VendorName,
+        [in] LPDHCP_OPTION_SCOPE_INFO ScopeInfo
+    ) ;
+    
+    // Opnum 105
+    DWORD
+    R_DhcpV4GetAllOptionValues(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in] DWORD Flags,
+        [in] LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+        [out] LPDHCP_ALL_OPTION_VALUES_PB *Values
+    ) ;
+    
+    // Opnum 106
+    DWORD
+    R_DhcpV4QueryPolicyEnforcement (
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]                    BOOL            ServerPolicy,
+        [in]                    DHCP_IP_ADDRESS SubnetAddress,
+        [out]                   BOOL           *Enabled
+    );
+    
+    // Opnum 107
+    DWORD
+    R_DhcpV4SetPolicyEnforcement(
+        [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+        [in]                    BOOL            ServerPolicy,
+        [in]                    DHCP_IP_ADDRESS SubnetAddress,
+        [in]                    BOOL            Enable
+    );
+    
+    // Opnum 108
+    DWORD
+    R_DhcpV4CreatePolicy (
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]                  LPDHCP_POLICY    pPolicy
+    );
+    
+    // Opnum 109
+    DWORD
+    R_DhcpV4GetPolicy (
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in] BOOL ServerPolicy,
+        [in] DHCP_IP_ADDRESS  SubnetAddress,
+        [in, unique, string] LPWSTR PolicyName,
+        [out] LPDHCP_POLICY *Policy
+    );
+    
+    //Opnum 110
+    DWORD
+    R_DhcpV4SetPolicy (
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in] DWORD FieldsModified,
+        [in] BOOL ServerPolicy,
+        [in] DHCP_IP_ADDRESS  SubnetAddress,
+        [in, unique, string] LPWSTR PolicyName,
+        [in] LPDHCP_POLICY Policy
+    );
+    
+    // Opnum 111
+    DWORD
+    R_DhcpV4DeletePolicy (
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in] BOOL ServerPolicy,
+        [in] DHCP_IP_ADDRESS SubnetAddress,
+        [in, unique, string] LPWSTR PolicyName
+    );
+    
+    // Opnum 112
+    DWORD
+    R_DhcpV4EnumPolicies (
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in, out] LPDWORD ResumeHandle,
+        [in] DWORD PreferredMaximum,
+        [in] BOOL ServerPolicy,    
+          [in] DHCP_IP_ADDRESS SubnetAddress,
+        [out] LPDHCP_POLICY_ARRAY  EnumInfo,
+        [out] DWORD *ElementsRead,
+        [out] DWORD *ElementsTotal
+    );
+    
+    // Opnum 113
+    DWORD
+    R_DhcpV4AddPolicyRange (
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in] DHCP_IP_ADDRESS SubnetAddress,
+        [in, unique, string] LPWSTR PolicyName,
+        [in] LPDHCP_IP_RANGE Range
+    );
+    
+    // Opnum 114
+    DWORD
+    R_DhcpV4RemovePolicyRange (
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in] DHCP_IP_ADDRESS SubnetAddress,
+        [in, unique, string] LPWSTR PolicyName,
+        [in] LPDHCP_IP_RANGE Range
+    );
+    
+    // Opnum 115
+    DWORD
+    R_DhcpV4EnumSubnetClients(
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in] DHCP_IP_ADDRESS SubnetAddress,
+        [in, out] DHCP_RESUME_HANDLE *ResumeHandle,
+        [in] DWORD PreferredMaximum,
+        [out] LPDHCP_CLIENT_INFO_PB_ARRAY *ClientInfo,
+        [out] DWORD *ClientsRead,
+        [out] DWORD *ClientsTotal
+    );
+    
+    // Opnum 116
+    DWORD R_DhcpV6SetStatelessStoreParams(
+      [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+      [in] BOOL fServerLevel,
+      [in] DHCP_IPV6_ADDRESS SubnetAddress,
+      [in] DWORD FieldModified,
+      [in] LPDHCPV6_STATELESS_PARAMS Params
+    );
+    
+    // Opnum 117
+    DWORD R_DhcpV6GetStatelessStoreParams(
+      [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+      [in] BOOL fServerLevel,
+      [in] DHCP_IPV6_ADDRESS SubnetAddress,
+      [out] LPDHCPV6_STATELESS_PARAMS Params
+    );
+    
+    // Opnum 118
+    DWORD R_DhcpV6GetStatelessStatistics(
+      [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+      [out] LPDHCPV6_STATELESS_STATS *StatelessStats
+    );
+    
+    // Opnum 119
+    DWORD
+    R_DhcpV4EnumSubnetReservations(
+        [in, unique, string]  DHCP_SRV_HANDLE  ServerIpAddress,
+        [in]                  DHCP_IP_ADDRESS      SubnetAddress,
+        [in, out]             DHCP_RESUME_HANDLE  *ResumeHandle,
+        [in]                  DWORD                PreferredMaximum,
+        [out]      LPDHCP_RESERVATION_INFO_ARRAY   EnumElementInfo,
+        [out]                 DWORD               *ElementsRead,
+        [out]                 DWORD               *ElementsTotal
+    );
+    
+    // Opnum 120
+    DWORD R_DhcpV4GetFreeIPAddress(
+      [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+      [in] DHCP_IP_ADDRESS ScopeId,
+      [in] DHCP_IP_ADDRESS startIP,
+      [in] DHCP_IP_ADDRESS endIP,
+      [in] DWORD numFreeAddr,
+      [out] LPDHCP_IP_ARRAY *IPAddrList
+    );
+    
+    // Opnum 121
+    DWORD R_DhcpV6GetFreeIPAddress(
+      [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+      [in] DHCP_IPV6_ADDRESS ScopeId,
+      [in] DHCP_IPV6_ADDRESS startIP,
+      [in] DHCP_IPV6_ADDRESS endIP,
+      [in] DWORD numFreeAddr,
+      [out] LPDHCPV6_IP_ARRAY *IPAddrList
+    );
+    
+    // Opnum 122
+    DWORD
+    R_DhcpV4CreateClientInfo(
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref] LPDHCP_CLIENT_INFO_PB  ClientInfo
+    );
+    
+    // Opnum 123
+    DWORD
+    R_DhcpV4GetClientInfo(
+        [in, unique, string] DHCP_SRV_HANDLE    ServerIpAddress,
+        [in, ref]     LPDHCP_SEARCH_INFO SearchInfo,
+        [out] LPDHCP_CLIENT_INFO_PB *ClientInfo
+    );
+    
+    // Opnum 124
+    DWORD
+    R_DhcpV6CreateClientInfo(
+        [in, unique, string] DHCP_SRV_HANDLE  ServerIpAddress,
+        [in, ref] LPDHCP_CLIENT_INFO_V6  ClientInfo
+    );
+    
+     // Opnum 125
+    DWORD
+    R_DhcpV4FailoverGetAddressStatus(
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in] DHCP_IP_ADDRESS SubnetAddress,
+        [out] LPDWORD pStatus
+    );
+    
+    // Opnum 126
+    DWORD
+    R_DhcpV4CreatePolicyEx (
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in] LPDHCP_POLICY_EX pPolicy
+    );
+    
+    // Opnum 127
+    DWORD
+    R_DhcpV4GetPolicyEx (
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in] BOOL ServerPolicy,
+        [in] DHCP_IP_ADDRESS SubnetAddress,
+        [in, unique, string] LPWSTR PolicyName,
+        [out] LPDHCP_POLICY_EX *Policy
+    );
+    
+    //Opnum 128
+    DWORD
+    R_DhcpV4SetPolicyEx (
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in] DWORD FieldsModified,
+        [in] BOOL ServerPolicy,
+        [in] DHCP_IP_ADDRESS SubnetAddress,
+        [in, unique, string] LPWSTR PolicyName,
+        [in] LPDHCP_POLICY_EX Policy
+    );
+    
+    // Opnum 129
+    DWORD
+    R_DhcpV4EnumPoliciesEx (
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in, out] LPDWORD ResumeHandle,
+        [in] DWORD PreferredMaximum,
+        [in] BOOL ServerPolicy,
+        [in] DHCP_IP_ADDRESS SubnetAddress,
+        [out] LPDHCP_POLICY_EX_ARRAY EnumInfo,
+        [out] DWORD *ElementsRead,
+        [out] DWORD  *ElementsTotal
+    );
+    
+    // Opnum 130
+    DWORD
+    R_DhcpV4EnumSubnetClientsEx (
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in] DHCP_IP_ADDRESS SubnetAddress,
+        [in, out] DHCP_RESUME_HANDLE *ResumeHandle,
+        [in] DWORD PreferredMaximum,
+        [out] LPDHCP_CLIENT_INFO_EX_ARRAY *ClientInfo,
+        [out] DWORD *ClientsRead,
+        [out] DWORD *ClientsTotal
+    );
+    
+    // Opnum 131
+    DWORD
+    R_DhcpV4CreateClientInfoEx (
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref] LPDHCP_CLIENT_INFO_EX ClientInfo
+    );
+    
+    // Opnum 132
+    DWORD
+    R_DhcpV4GetClientInfoEx (
+        [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+        [in, ref] LPDHCP_SEARCH_INFO SearchInfo,
+        [out] LPDHCP_CLIENT_INFO_EX *ClientInfo
+    );
+    }

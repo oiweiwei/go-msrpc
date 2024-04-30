@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The NT4SID structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> for a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   char Data[28];
+ } NT4SID;
+</pre></div>
+</dd></dl><p><b>Data:</b>  Bytes that make up a SID
+structure, as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">2.4.2</a></span>,
+in little-endian byte order.</p></div>

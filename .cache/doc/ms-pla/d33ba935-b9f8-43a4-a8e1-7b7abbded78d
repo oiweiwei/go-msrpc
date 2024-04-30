@@ -1,0 +1,14 @@
+<div class="content"><p>The GetTraceDataProvidersByProcess method populates the
+collection with the list of providers that were registered by the given
+process.</p><dl>
+<dd>
+<div><pre> HRESULT GetTraceDataProvidersByProcess(
+   [in, unique] BSTR Server,
+   [in] ULONG Pid
+ );
+</pre></div>
+</dd></dl><p><b>Server: </b>Not used.</p><p><b>Pid: </b>The Process identifier of the process
+that registered the providers.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT with the severity bit clear on success as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>;
+otherwise, it MUST return one of the errors as defined in <a href="590752a5-ddc3-49e4-9914-147a90bd0193" data-linktype="relative-path">2.2.1</a> or one of the errors
+as defined in [MS-ERREF] section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p></div>

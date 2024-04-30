@@ -1,0 +1,72 @@
+<div class="content"><p> </p><p>The IEventSystem interface provides methods to create,
+query, delete, and update <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e8df25db-9bff-46df-b607-d072dd29c02b" data-linktype="relative-path">event classes</a></span> and <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_f362c255-5746-44db-aa04-e8060543a19c" data-linktype="relative-path">subscriptions</a></span>.
+The interface inherits opnums 0 through 6 from <span><a href="../ms-oaut/ac9c502b-ac1c-4202-8ad4-048ac98afcc9" data-linktype="relative-path">IDispatch</a></span>
+as specified in <span><a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a></span>
+section 3.1.4. The version for this interface is 0.0.</p><p>To receive incoming remote calls for this interface, the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>
+MUST implement a DCOM <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_a224e395-3fea-48bd-b141-3dd9bee2136a" data-linktype="relative-path">object class</a></span> with
+the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a></span>
+CLSID_EventSystem (see section <span><a href="25e89236-b0b3-4d8b-b1fb-64e0e9f0e156" data-linktype="relative-path">1.9</a></span>) using the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+{4E14FB9F-2E22-11D1-9964-00C04FBBB345} for this interface.</p><p>The interface includes the following methods beyond those in
+IDispatch.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span><a href="2929ddac-3b08-4976-be20-876189da05b3" data-linktype="relative-path">Query</a></span></p>
+  </td>
+  <td>
+  <p>Queries for a collection of event classes or
+  subscriptions based on a query string.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="10fc4a01-54db-4af3-adcc-9b6055fea293" data-linktype="relative-path">Store</a></span></p>
+  </td>
+  <td>
+  <p>Stores an event class or subscription.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="cd7bc370-47dc-4086-a590-74c3c758ab70" data-linktype="relative-path">Remove</a></span></p>
+  </td>
+  <td>
+  <p>Removes a collection of event classes or subscriptions
+  based on a query.</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="71c39ee6-4e83-40f9-bc60-dbb088f48fdd" data-linktype="relative-path">get_EventObjectChangeEventClassID</a></span></p>
+  </td>
+  <td>
+  <p>Returns the CLSID for the event class that notifies
+  when a subscription or an event class has changed.</p>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="97e295e1-cfea-41b0-aa46-3c37e42f1080" data-linktype="relative-path">QueryS</a></span></p>
+  </td>
+  <td>
+  <p>Queries for a single event class or subscription based
+  on a query string.</p>
+  <p>Opnum: 11</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="5f5714e1-bad6-4abc-a6f1-f9d25fd3494d" data-linktype="relative-path">RemoveS</a></span></p>
+  </td>
+  <td>
+  <p>Removes a single event class or subscription based on
+  a query.</p>
+  <p>Opnum: 12</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

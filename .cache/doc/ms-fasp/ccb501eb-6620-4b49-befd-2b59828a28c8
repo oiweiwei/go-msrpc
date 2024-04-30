@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>This structure represents an IPv6 subnet.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_IPV6_SUBNET {
+   unsigned char Address[16];
+   [range(0, 128)] unsigned long dwNumPrefixBits;
+ } FW_IPV6_SUBNET,
+  *PFW_IPV6_SUBNET;
+</pre></div>
+</dd></dl><p><b>Address:</b>  This field contains a
+16-octet IPv6 address.</p><p><b>dwNumPrefixBits:</b>  This field
+contains the number of more-significant bits that represent the IPv6 subnet.</p><dl>
+<dd>
+<p>The <b>dwNumPrefixBits</b> MUST NOT be greater than
+128 and not less than 1. The address SHOULD NOT be an unspecified address (an
+address composed of all zeros),<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="1da2ee70-a6ae-4f76-b08f-fdc25c77d8a0#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a> and it MUST
+not be a loopback address. </p>
+</dd></dl></div>

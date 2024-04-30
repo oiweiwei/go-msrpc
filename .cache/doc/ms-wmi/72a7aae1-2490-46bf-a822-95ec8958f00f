@@ -1,0 +1,49 @@
+<div class="content"><p> </p><p>The IWbemServices::CancelAsyncCall method cancels a
+currently pending asynchronous method call identified by the <span><a href="0ddb4f22-371a-4697-af5b-d4184b179b68" data-linktype="relative-path">IWbemObjectSink</a></span>
+pointer passed to the initial asynchronous method. </p><dl>
+<dd>
+<div><pre> HRESULT CancelAsyncCall(
+   [in] IWbemObjectSink* pSink
+ );
+</pre></div>
+</dd></dl><p><b>pSink: </b>MUST be a pointer to the
+IWbemObjectSink interface object that was passed to the asynchronous method
+that the client wants to cancel. This parameter MUST NOT be NULL.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR (as specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00</p>
+  <p>WBEM_S_NO_ERROR</p>
+  </td>
+  <td>
+  <p>Indicates a successful completion to the method call.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to the IWbemServices::CancelAsyncCall method,
+the server MUST identify and cancel all pending <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3e8fe01-6cfc-4f21-a5c6-a97abf2b6f7e" data-linktype="relative-path">asynchronous operations</a></span>
+initiated by an asynchronous method execution, such as <span><a href="028a4bfd-af7c-48ed-b206-20f7cb3f3ec7" data-linktype="relative-path">IWbemServices::GetObjectAsync</a></span>,
+which used the <i>pSink</i> <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface pointer</a></span>
+parameter as their response handler. The server MUST return an error if the
+interface pointer is NULL, and it MUST return an error if the <i>pSink</i>
+parameter is not associated with an entry in AsyncOperationTable.</p><p>As part of the IWbemServices::CancelAsyncCall method, the
+server MUST set the CallCancelled value for this asynchronous operation entry
+in the AsyncOperationTable to TRUE. Setting CallCancelled to TRUE ensures that
+no new IWbemObjectSink::Indicate messages or progress messages using
+IWbemObjectSink::SetStatus are called to the client. If <b>SetStatusWithFinalResultCalled</b>
+is FALSE, the server MUST set <b>SetStatusWithFinalResultCalled</b> to TRUE and
+return the error WBEM_E_CALL_CANCELLED.</p><p>The server MUST NOT wait for any response from the client to
+complete the cancellation to prevent protocol performance degradation.</p><p>The successful method execution MUST return WBEM_S_NO_ERROR.
+</p><p>The failed method execution MUST return an error in the
+format specified in section 2.2.11. </p></div>

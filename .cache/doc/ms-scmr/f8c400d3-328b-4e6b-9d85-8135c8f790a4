@@ -1,0 +1,42 @@
+<div class="content"><p>The SC_RPC_CONFIG_INFOA structure defines the service
+configuration based on a supplied level. String values are stored in ANSI. </p><dl>
+<dd>
+<div><pre> typedef struct _SC_RPC_CONFIG_INFOA {
+   DWORD dwInfoLevel;
+   [switch_is(dwInfoLevel)] union {
+     [case(1)] 
+       LPSERVICE_DESCRIPTIONA psd;
+     [case(2)] 
+       LPSERVICE_FAILURE_ACTIONSA psfa;
+     [case(3)] 
+       LPSERVICE_DELAYED_AUTO_START_INFO psda;
+     [case(4)] 
+       LPSERVICE_FAILURE_ACTIONS_FLAG psfaf;
+     [case(5)] 
+       LPSERVICE_SID_INFO pssid;
+     [case(6)] 
+       LPSERVICE_RPC_REQUIRED_PRIVILEGES_INFO psrp;
+     [case(7)] 
+       LPSERVICE_PRESHUTDOWN_INFO psps;
+     [case(8)] 
+       PSERVICE_TRIGGER_INFO psti;
+     [case(9)] 
+       LPSERVICE_PREFERRED_NODE_INFO pspn;
+   };
+ } SC_RPC_CONFIG_INFOA;
+</pre></div>
+</dd></dl><p><b>dwInfoLevel:</b>  A <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a>
+value that indicates the type of configuration information in the included
+data.</p><p><b>psd:</b>  A structure that contains a
+description of the service, as specified in section <a href="91a48e76-b6b8-43eb-9ea1-0757c4aa9260" data-linktype="relative-path">2.2.34</a>.</p><p>The following structures SHOULD<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a> be
+available:</p><p><b>psfa:</b>  A structure that contains a
+list of failure actions, as specified in section <a href="a5b207c7-114e-48ae-a1c6-ef79c1fe1854" data-linktype="relative-path">2.2.39</a>.</p><p><b>psda:</b>  A structure that defines
+whether or not the service is part of the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_09e2f255-29ce-44c5-82eb-a601ce39ec56" data-linktype="relative-path">delayed start group</a>, as
+specified in section <a href="805b8296-863d-4d1e-8ae8-f639adf8c6cb" data-linktype="relative-path">2.2.33</a>.</p><p><b>psfaf:</b>  A structure that defines if
+failure actions are queued when the service exits with a nonzero error code, as
+specified in section <a href="9b244e2e-82fc-4c54-8f4f-b19034faa2c4" data-linktype="relative-path">2.2.41</a>.</p><p><b>pssid:</b>  A structure that defines the
+type of service SID, as specified in section <a href="ea1a9acd-4bb2-473f-ae5b-55969c5960fc" data-linktype="relative-path">2.2.46</a>.</p><p><b>psrp:</b>  A structure that defines the
+privileges required by the service, as specified in section <a href="2917121d-bbe1-47d2-ad55-7bce44a127e6" data-linktype="relative-path">2.2.48</a>.</p><p><b>psps:</b>  A structure that defines the
+pre-shutdown settings for the service, as specified in section <a href="6b55ad95-df3e-498f-b107-e77f831ba467" data-linktype="relative-path">2.2.45</a>.</p><p><b>psti:</b>  A structure that defines the
+trigger settings for the service, as specified in section <a href="a56f5538-d13b-49bf-bd7c-2c5b213fc0f1" data-linktype="relative-path">2.2.54</a>.</p><p><b>pspn:</b>  A structure that defines the preferred
+node information for the service, as specified in section <a href="3767259f-f054-4076-acd3-9f7ecb79cab3" data-linktype="relative-path">2.2.55</a>.</p><p> </p></div>

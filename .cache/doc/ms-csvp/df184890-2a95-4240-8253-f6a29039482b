@@ -1,0 +1,68 @@
+<div class="content"><p>The <b>RetrieveClusterCertV2</b> method<a id="Appendix_A_Target_39"></a><a aria-label="Product behavior note 39" href="6ea29e14-9c33-4927-90a8-258fd1d6d042#Appendix_A_39" data-linktype="relative-path">&lt;39&gt;</a> SHOULD return the certificate
+and <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_12ee6a09-989b-4841-a48b-9d89e06a63cd" data-linktype="relative-path">cluster secret</a>
+stored on the server.</p><dl>
+<dd>
+<div><pre> HRESULT RetrieveClusterCertV2 {
+   [ out ] CLUSTER_CERT* ClusterCert,
+   [ in ] CLUSTER_CERTTYPE certType
+ };
+</pre></div>
+</dd></dl><p><b>ClusterCert:</b> The certificate and cluster secret for
+the cluster that is stored in the node. The <b>CLUSTER_CERT</b> structure is
+defined in section <a href="bcec2abc-1a37-4b67-8574-71affa665d4c" data-linktype="relative-path">2.2.23</a>.</p><p><b>CertType:</b> Type of certificate used by the cluster, as
+specified in section <a href="d6db7291-5f55-4098-9557-711cbe52692c" data-linktype="relative-path">2.2.26</a>.</p><p><b>Return Values:</b> A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method implementation.
+For more information about Win32 error codes and HRESULT values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections 2.1 and 2.2.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The certificate or cluster secret has not yet been
+  configured by a previous call to <b>ConfigClusterCertV2</b>.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The opnum field value for this method is 15.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>If <i>certType</i> is Cluster_SChannel or ClusterSet_SChannel,
+retrieve the certificate and cluster secret from storage in an
+implementation-specific manner.</p>
+</li><li><p><span><span> 
+</span></span>If <i>certType</i> is Cluster_PKU2U or ClusterSet_PKU2U, retrieve
+the certificate and cluster secret from the PKU2U local root store in an
+implementation-specific manner.</p>
+</li><li><p><span><span> 
+</span></span>If the certificate or cluster secret was not previously set by a
+call to <b>ConfigClusterCertV2</b>, the server MUST return 0x80070002
+(ERROR_FILE_NOT_FOUND).</p>
+</li></ul><p>The server returns the certificate and cluster secret to the
+client.</p></div>

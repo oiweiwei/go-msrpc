@@ -1,0 +1,40 @@
+<div class="content"><p>This method is called by a client to set the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_ec8a6199-20ef-4b34-ba68-bc134f6a5721" data-linktype="relative-path">import</a> target <a href="3f01a312-3391-4109-a96e-95358babf191#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a> (as specified in
+section <a href="a667265b-22a8-43bb-b462-13528061e009" data-linktype="relative-path">3.1.1.5</a>).</p><dl>
+<dd>
+<div><pre> HRESULT SetPartition(
+   [in] GUID* pPartitionIdentifier,
+   [out] GUID* pReserved
+ );
+</pre></div>
+</dd></dl><p><b>pPartitionIdentifier: </b>A pointer to a variable
+containing a <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a> to
+be used as the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_9587a9d3-3fd7-45c6-aab1-c74ff17a22b7" data-linktype="relative-path">partition
+identifier</a> for the import target partition.</p><p><b>pReserved: </b>A pointer to a variable that is set
+to any arbitrary value when sent by the server and MUST be ignored on receipt
+by the client.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result (as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>,
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>)
+on failure. All failure results MUST be treated identically.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving a call to this method, the server MUST
+attempt to set the import target partition identifier (as specified in section
+3.1.1.5) to the value specified in <i>pPartitionIdentifier</i>, and fail the
+call if it cannot.</p></div>

@@ -1,0 +1,26 @@
+<div class="content"><p>The Print System Asynchronous Remote Protocol provides the
+following functions:</p><ul><li><p><span><span> 
+</span></span>Management of the <a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_b49fcfa1-e15c-4dce-be33-d74d5bfda785" data-linktype="relative-path">print system</a> of a <a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a> from a client.</p>
+</li><li><p><span><span> 
+</span></span>Communication of <a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print job</a> data from a
+client to a print server.</p>
+</li><li><p><span><span> 
+</span></span>Notifications to the client of changes in the print server&#39;s
+print system.</p>
+</li></ul><p>Server processing instructions are specified by the
+parameters that are used in the protocol methods. These parameters include: </p><ul><li><p><span><span> 
+</span></span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">Printer driver</a>
+configuration information.</p>
+</li><li><p><span><span> 
+</span></span>The <a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_4b720910-6e5b-495d-b1ce-19087ae36922" data-linktype="relative-path">spool file
+format</a> for the print data that is sent by the client.</p>
+</li><li><p><span><span> 
+</span></span>The <a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_54c8a9d7-fa94-444b-b8d8-f6485bad223f" data-linktype="relative-path">access
+level</a> of the connection.</p>
+</li><li><p><span><span> 
+</span></span>The target <a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_569f1f1c-f426-46fa-91d2-3d1eb0b19aa1" data-linktype="relative-path">print
+queue</a> name for name-based methods.</p>
+</li><li><p><span><span> 
+</span></span>A handle to the target print queue for handle-based methods.</p>
+</li></ul><p>Status information is communicated back to the client in the
+return codes from calls that are made to the print server.</p><p>The following sections give an overview of these functions.</p></div>

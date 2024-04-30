@@ -1,0 +1,82 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/74b98583-4718-4c98-a88a-474042d2e1e6" data-linktype="external">msdn link</a></p><p>The <b>SR_RESOURCE_TYPE_QUERY_ELIGIBLE_TARGET_DATADISKS</b>
+structure SHOULD<a id="Appendix_A_Target_35"></a><a aria-label="Product behavior note 35" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_35" data-linktype="relative-path">&lt;35&gt;</a> be used to query eligible
+target disks, given a source disk, for storage replication. It is a
+custom-marshalled structure that has fields as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SourceDataDiskGuid
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>SkipConnectivityCheck</p>
+  </td>
+  <td colspan="8">
+  <p>IncludeOfflineDisks</p>
+  </td>
+  <td colspan="8">
+  <p>Reserved1</p>
+  </td>
+  <td colspan="8">
+  <p>Reserved2</p>
+  </td>
+ </tr>
+</tbody></table><p><b>SourceDataDiskGuid (16 bytes):</b> A <b>GUID</b>,
+as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/001eec5a-7f8b-4293-9e21-ca349392db40" data-linktype="relative-path">2.3.4.2</a>,
+that contains the resource ID of the storage class resource that is the
+replication source.</p><p><b>SkipConnectivityCheck (1 byte):</b> The client
+sets this field to 0x01 to request that the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> not consider
+connectivity of disks to cluster nodes when preparing results. The client sets
+this field to 0x00 to request that the server return only disks that are not
+connected to any of the cluster nodes that are connected to the disk
+represented by <b>SourceDataDiskGuid</b>.</p><p><b>IncludeOfflineDisks (1 byte):</b> The client sets
+this field to 0x01 to request that results include disks whose resource state
+is ClusterResourceOffline. Otherwise, the client sets this field to 0x00.</p><p><b>Reserved1 (1 byte):</b> This field MUST be
+ignored.</p><p><b>Reserved2 (1 byte):</b> This field MUST be
+ignored.</p></div>

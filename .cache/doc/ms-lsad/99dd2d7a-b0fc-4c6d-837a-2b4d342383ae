@@ -1,0 +1,50 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/99dd2d7a-b0fc-4c6d-837a-2b4d342383ae" data-linktype="external">msdn link</a></p><p>The LsarClose method frees the resources held by a context
+handle that was opened earlier. After response, the context handle will no
+longer be usable, and any subsequent uses of this handle will fail.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarClose(
+   [in, out] LSAPR_HANDLE* ObjectHandle
+ );
+</pre></div>
+</dd></dl><p><b>ObjectHandle: </b>The context handle to be freed.
+On response, it MUST be set to 0.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>ObjectHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>A handle of any type can be closed by calling LsarClose.
+Successful calls to <a href="8d0aa2dc-22b6-4bc3-b5d2-79b4b0ad7bce" data-linktype="relative-path">LsarDeleteObject</a>,
+which deletes an object to which the caller has an open handle, will also close
+the handle.</p><p>If <i>ObjectHandle</i> is invalid, the server MUST return
+STATUS_INVALID_HANDLE.</p><p>The server MUST free any resources associated with the
+LsaContextHandle element (section <a href="1011130b-0413-460d-81ed-d1821d141639" data-linktype="relative-path">3.1.1.7</a>) that is
+represented by <i>ObjectHandle</i>, as specified in section <a href="2184a151-ce74-4e1e-8ba7-25384f51dbf8" data-linktype="relative-path">3.1.6.1</a>,
+LSAPR_HANDLE_rundown.</p><p>The fact that a handle is closed is communicated to the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_c2eeb200-3cd0-4916-966e-d7d6bff1737a" data-linktype="relative-path">RPC transport</a> by returning
+a NULL value in the handle parameter, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> section 5.1.6.</p><p>Closing one handle MUST NOT affect any other handle on the
+server; that is, handles obtained using a policy handle MUST continue to be
+valid after that policy handle is closed.</p></div>

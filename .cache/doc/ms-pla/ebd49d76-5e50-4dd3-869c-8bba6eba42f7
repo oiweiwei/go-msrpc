@@ -1,0 +1,370 @@
+<div class="content"><p>The ITraceDataProvider interface is used to specify the
+details on each provider that is to be enabled to an event trace session.</p><p>The following properties MUST be implemented by objects that
+implement the ITraceDataProvider interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property name </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DisplayName</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>The name of the provider. The name is provided by the
+  user and can be read by the user but is otherwise ignored by the PLA
+  protocol. The field exists so that the user can attach a semantically
+  meaningful name to the ITraceDataProvider if he or she so chooses rather than
+  having to differentiate providers based on the Guid property, defined below.
+  The Guid in this context refers to the COM interface property, which is used
+  as a <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_1a61d947-4d31-4365-b2b4-5249de682b56" data-linktype="relative-path">PLA-UID</a> and does
+  not comply with the semantics of <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Guid</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>The PLA-UID of the provider. On collection, this
+  PLA-UID uniquely identifies the provider to be enabled. The value
+  0000-0000-0000-0000-0000-0000-0000-0000 is never a valid provider PLA-UID,
+  and therefore the Guid property is set to
+  0000-0000-0000-0000-0000-0000-0000-0000 when no provider is specified. The
+  Guid in this context refers to the COM interface property, which is used as a
+  PLA-UID and does not comply with the semantics of GUID specified in [C706].</p>
+  <p>The valid range for this property is from
+  0000-0000-0000-0000-0000-0000-0000-0001 to
+  FFFF-FFFF-FFFF-FFFF-FFFF-FFFF-FFFF-FFFF. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Level</p>
+  </td>
+  <td>
+  <p>R </p>
+  </td>
+  <td>
+  <p>The list of levels for the provider. On collection,
+  events from this provider are collected only if their levels are less than or
+  equal to the value of the enabled level; this property is used in conjunction
+  with the KeywordsAny and KeywordsAll properties to control which events are
+  collected from a provider. The enabled level is stored in the Value property
+  of the Level property. The level denotes the severity of event (as defined by
+  the event provider). There are predefined trace levels that can be used to
+  control tracing; there can be more trace levels that are defined in addition
+  to these predefined levels. The maximum value of a level is 0x000000FF. The
+  possible pre-defined levels are:</p>
+  <ol><li><p><span><span>    
+  </span></span><span>Log Always</span></p>
+  </li><li><p><span><span>    
+  </span></span><span>Critical</span></p>
+  </li><li><p><span><span>    
+  </span></span><span>Error</span></p>
+  </li><li><p><span><span>    
+  </span></span><span>Warning</span></p>
+  </li><li><p><span><span>    
+  </span></span><span>Informational</span></p>
+  </li></ol><p> </p>
+  <p>If the enabled level has the value of 3, all events
+  with level 3, 2, or 1 will be collected. These levels semantically represent
+  Warning, Error, and Critical events. If the enabled level has the value of 0,
+  then events with any level will be collected. Setting the enabled level to 0
+  is equivalent to setting the enabled level to 0x000000FF. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>KeywordsAny</p>
+  </td>
+  <td>
+  <p>R </p>
+  </td>
+  <td>
+  <p>The list of keywords of the provider. The keywords
+  determine the category of events for the provider to write; this property is
+  used in conjunction with the Level and KeywordsAll properties. On collection,
+  events from this provider are collected only if their keywords include at
+  least one of the keywords in KeywordsAny and all of the keywords in
+  KeywordsAll. If KeywordsAny is zero, then the provider will successfully
+  write all events assuming that the event&#39;s keywords pass the KeywordsAll
+  check. The Value property of the KeywordsAny property stores the bitwise-or
+  of the keywords in the KeywordsAny property.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>KeywordsAll</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>The list of keywords of the provider. The keywords
+  determine the category of events for the provider to write; this is used in
+  conjunction with the KeywordsAny and Level properties. On collection, events
+  from this provider are collected only if their keywords include all of the
+  keywords in KeywordsAll. The Value property of the KeywordsAll property
+  stores the bitwise-or of the keywords in the KeywordsAll property. If
+  KeywordsAll is zero, then the provider will successfully write all events
+  assuming that the event&#39;s keywords pass the KeywordsAny check.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Properties</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>The list of extra information that can be collected
+  when events from this provider are collected. The possible properties are the
+  user&#39;s security identifier, as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+  section <a href="../ms-dtyp/5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="relative-path">2.4.2.3</a>,
+  (value 1), or the session identifier that is assigned by either the Remote
+  Desktop Session Host server, Remote Desktop Virtualization Host server, or
+  virtual machine (value 2).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FilterEnabled</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Determines whether provider-side filtering MUST be
+  enabled. If the FilterEnabled property is set to VARIANT_TRUE, the filter
+  stored in the FilterData property (as specified in section <a href="bb286c78-586c-4071-865a-1b1b5165bcd6" data-linktype="relative-path">3.2.4.11.10</a>) will be
+  used to filter the provider. Otherwise, the FilterData property will be
+  ignored.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FilterType</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Not used. Because the value is currently not used, any
+  ULONG is a valid value, so validation will always succeed for the property.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FilterData</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>When the client enables tracing for a provider on the
+  server, it has the option of passing back data to that provider. This data is
+  provider-specific, and the client MUST know how the provider expects the
+  FilterData to be formatted. The FilterData property can contain any arbitrary
+  type that is understood by the trace provider but MUST NOT exceed 1 KB in
+  total size. The PLA protocol has no knowledge of how this FilterData is
+  constructed and what are its possible values. This data is opaque to the
+  protocol. It serves as the transport for this data between the client and the
+  server, and the PLA protocol only restriction on this property is that this
+  data MUST NOT exceed 1 KB in size. </p>
+  <p>The FilterData that is specified by the client will be
+  sent back to the server trace provider being enabled if the FilterEnabled
+  property is set to VARIANT_TRUE. Upon receiving this FilterData, the provider
+  MUST use it to control which events are logged; this property serves as a
+  filter on the events that are logged by the provider. The PLA protocol has no
+  knowledge of whether or not the provider did use the FilterData to control
+  which events it logs.</p>
+  <p>For example, the client can specify an IP address as
+  the value of the FilterData. When the trace provider receives this
+  FilterData, it can only log events that have a matching IP address. </p>
+  </td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="732bba5d-a982-4377-a663-e116903b1574" data-linktype="relative-path">DisplayName
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the DisplayName property.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="04aef395-53e3-4d74-80d7-3e98de767696" data-linktype="relative-path">DisplayName
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the DisplayName property.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="a83c07cf-df6d-4f1b-9b47-9cb0cf78cb1c" data-linktype="relative-path">Guid
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Guid property.</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="f0c87922-a27b-4eb9-996e-a5ff58035fcf" data-linktype="relative-path">Guid
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the Guid property.</p>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="075034e9-d905-4ced-a6b3-ddc7a83db246" data-linktype="relative-path">Level
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Level property.</p>
+  <p>Opnum: 11</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="c263d8d0-f97c-4d20-bf9d-386331db6741" data-linktype="relative-path">KeywordsAny
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the KeywordsAny property.</p>
+  <p>Opnum: 12</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="451feb4b-e34f-4f9b-931c-7f7f0065570e" data-linktype="relative-path">KeywordsAll
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the KeywordsAll property.</p>
+  <p>Opnum: 13</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="96e59f79-0d8f-4919-a4bf-941dcde51bd6" data-linktype="relative-path">Properties
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Properties property.</p>
+  <p>Opnum: 14</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b34e24b2-a13a-43f3-b0da-643feee8d605" data-linktype="relative-path">FilterEnabled
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the FilterEnabled property.</p>
+  <p>Opnum: 15</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FilterEnabled (Put)</p>
+  </td>
+  <td>
+  <p>Sets the FilterEnabled property.</p>
+  <p>Opnum: 16</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="93cd650c-7e72-45c3-bec6-fb40e833bccb" data-linktype="relative-path">FilterType
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the FilterType property.</p>
+  <p>Opnum: 17</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="669cfdc1-1223-46fc-912b-99099f941344" data-linktype="relative-path">FilterType
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the FilterType property.</p>
+  <p>Opnum: 18</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="d14f6480-f721-4bd0-85fa-1b00f55a8a46" data-linktype="relative-path">FilterData
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the FilterData property.</p>
+  <p>Opnum: 19</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="af0591d8-8062-4ea6-b8f7-e4c07f4f7d3a" data-linktype="relative-path">FilterData
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the FilterData property.</p>
+  <p>Opnum: 20</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="53519c3b-18ba-4550-a275-153ca2058494" data-linktype="relative-path">Query</a></p>
+  </td>
+  <td>
+  <p>Populates the other properties based on the local
+  repository of providers.</p>
+  <p>Opnum: 21</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="243ca3a4-9a04-4107-be87-1dc82c89115b" data-linktype="relative-path">Resolve</a></p>
+  </td>
+  <td>
+  <p>Used to resolve the properties.</p>
+  <p>Opnum: 22</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="df242abf-5f8d-483f-93fd-eeb534bbcfde" data-linktype="relative-path">SetSecurity</a></p>
+  </td>
+  <td>
+  <p>Updates the system-wide security descriptor of the
+  provider.</p>
+  <p>Opnum: 23</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b60f9122-f799-433f-9e4d-70823e32823a" data-linktype="relative-path">GetSecurity</a></p>
+  </td>
+  <td>
+  <p>Retrieves the system-wide security descriptor of the
+  provider.</p>
+  <p>Opnum: 24</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="7c453741-7660-49f0-9bb8-169fa23bf10d" data-linktype="relative-path">GetRegisteredProcesses</a></p>
+  </td>
+  <td>
+  <p>Retrieves a list of processes that have registered as
+  an event trace data provider.</p>
+  <p>Opnum: 25</p>
+  </td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface. </p></div>

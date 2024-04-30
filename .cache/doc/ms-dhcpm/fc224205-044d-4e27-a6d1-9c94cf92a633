@@ -1,0 +1,111 @@
+<div class="content"><p> </p><p>The <b>R_DhcpEnumSubnets</b> method enumerates IPv4 subnets
+configured on the DHCPv4 server. The caller of this function can free the
+memory pointed to by the <i>EnumInfo</i> parameter and its member the <b>Elements</b>
+array by calling the function <b>midl_user_free</b> (section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpEnumSubnets(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, out] DHCP_RESUME_HANDLE* ResumeHandle,
+   [in] DWORD PreferredMaximum,
+   [out] LPDHCP_IP_ARRAY* EnumInfo,
+   [out] DWORD* ElementsRead,
+   [out] DWORD* ElementsTotal
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused. </p><p><b>ResumeHandle: </b>This is a pointer of type <span><a href="a6e4cdc0-4f71-4922-ade1-7a5392f9e920" data-linktype="relative-path">DHCP_RESUME_HANDLE (section 2.2.1.2.6)</a></span>,
+a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+that identifies the enumeration operation. Initially, this value MUST be set to
+zero, with a successful call returning the handle value used for subsequent
+enumeration requests. For example, if <i>PreferredMaximum</i> is set to 100,
+and 200 IPv4 subnet addresses are stored on the DHCPv4 server, the resume
+handle can be used after the first 100 IPv4 subnets are retrieved to obtain the
+next 100 on a subsequent call.</p><p><b>PreferredMaximum: </b>This is of type DWORD,
+specifying the preferred maximum number of IPv4 subnet addresses to return. If
+the number of remaining unenumerated IPv4 subnets is less than this value, all
+the IPv4 subnets configured on DHCPv4 server are returned. To retrieve all the
+IPv4 subnets defined on the DHCPv4 server, 0xFFFFFFFF is specified.</p><p><b>EnumInfo: </b>This is a pointer of type <span><a href="02f31ed9-7e21-4347-885b-d95462df387d" data-linktype="relative-path">LPDHCP_IP_ARRAY</a></span>
+that points to the location in which the IPv4 subnet configured on the DHCPv4
+server is returned.</p><p><b>ElementsRead: </b>This is a pointer to a DWORD
+value that specifies the number of IPv4 subnet addresses returned in <i>EnumInfo</i>.
+The caller MUST allocate memory for this parameter equal to the size of data
+type DWORD.</p><p><b>ElementsTotal: </b>This is a pointer to a DWORD
+value that specifies the number of IPv4 subnets defined on the DHCPv4 server
+that have not yet been enumerated with respect to the resume handle that is
+returned. The caller MUST allocate memory for this parameter equal to the size
+of data type DWORD.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  </td>
+  <td>
+  <p>There are no more elements left to enumerate.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 3.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate that this method is authorized for read access as
+specified in section <span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve all the entries in the server ADM element <b>DHCPv4ScopesList</b>
+as specified in section <span><a href="035c335d-267c-4a6a-94dc-842e9dfddf0e" data-linktype="relative-path">3.1.1.1</a></span>. </p>
+</li><li><p><span><span> 
+</span></span>If the <i>ResumeHandle</i> parameter points to 0x00000000, the
+enumeration MUST start from the first entry of the <b>DHCPv4ScopesList</b> ADM
+element.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ResumeHandle</i> parameter points to a nonzero value,
+the server MUST continue enumeration based on the value of the <i>ResumeHandle</i>
+parameter. If the <i>ResumeHandle</i> parameter is equal to or greater than the
+number of entries in the <b>DHCPv4ScopesList</b> ADM element, return
+ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>The <i>PreferredMaximum</i> parameter specifies the maximum
+number of IPv4 subnets that the server can allocate and assign to the output
+parameter <i>EnumInfo</i>, which will be used by the client to enumerate the
+IPv4 subnets.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>PreferredMaximum</i> parameter is 0,
+ERROR_NO_MORE_ITEMS is returned.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>PreferredMaximum</i> parameter is less than the number
+of remaining entries in the <b>DHCPv4ScopesList</b> ADM element, allocate
+memory for that number of subnets; otherwise, allocate memory for all remaining
+subnets and assign to the output parameter <i>EnumInfo</i>.</p>
+</li><li><p><span><span> 
+</span></span>Fill the information from <b>DHCPv4Scope</b> ADM element entries
+in the <i>EnumInfo</i> parameter, fill numbers of read <b>DHCPv4Scope</b> ADM
+element entries in the <i>ElementsRead</i> parameter, and fill the numbers of <b>DHCPv4Scope</b>
+ADM element entries in the <b>DHCPv4ScopesList</b> ADM elements that have not been
+enumerated in the <i>ElementsTotal</i> parameter. Update the <i>ResumeHandle</i>
+parameter to the index of the last <b>DHCPv4Scope</b> ADM element entry read
+plus one.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>In the <b>DNS_RPC_ZONE_SECONDARIES_DOTNET</b> structure all
+fields have same definition as specified in section <b>DNS_RPC_ZONE_SECONDARIES_W2K</b>
+(section <span><a href="0961e81f-542f-48c7-8043-bd420d104101" data-linktype="relative-path">2.2.5.2.5.1</a></span>), with
+the following exceptions:</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcZoneSecondariesDotNet {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   DWORD fSecureSecondaries;
+   DWORD fNotifyLevel;
+   PIP4_ARRAY aipSecondaries;
+   PIP4_ARRAY aipNotify;
+ } DNS_RPC_ZONE_SECONDARIES_DOTNET,
+  *PDNS_RPC_ZONE_SECONDARIES_DOTNET;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The DNS server
+management structure version number. It MUST be set to 0x00000001</p><p><b>dwReserved0:</b> Reserved for future use.
+Sender MUST set to zero and receiver MUST ignore this value. </p></div>

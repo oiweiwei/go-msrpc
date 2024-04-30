@@ -1,0 +1,33 @@
+<div class="content"><p>The BackupReadFile method reads the database file and loads
+the contents into the buffer that is provided. The file MUST be initialized by
+a prior call to <a href="f5fc08ea-2f9f-438d-93d2-4f8e6813df46" data-linktype="relative-path">BackupOpenFile</a>.
+</p><dl>
+<dd>
+<div><pre> HRESULT BackupReadFile(
+   [ref, out, size_is(cbBuffer)] BYTE* pbBuffer,
+   [in] LONG cbBuffer,
+   [out] LONG* pcbRead
+ );
+</pre></div>
+</dd></dl><p><b>pbBuffer: </b>A pointer to the buffer that
+receives the read data.</p><p><b>cbBuffer: </b>The size, in bytes, of the preceding
+buffer. This parameter MUST be a multiple of the page size of the operating
+system.</p><p><b>pcbRead: </b>A pointer to an integer that receives
+the actual number of bytes read.</p><p>The <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a>
+server MUST enforce the sequencing rules for the BackupReadFile, as specified
+in section <a href="e37640b4-b2e1-4bac-89d2-61fc5a5e6c1d" data-linktype="relative-path">3.1.4.1.18</a>.<a id="Appendix_A_Target_56"></a><a aria-label="Product behavior note 56" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_56" data-linktype="relative-path">&lt;56&gt;</a></p><p>The CA server MUST apply the following processing rules:</p><ul><li><p><span><span> 
+</span></span>If Config_CA_Interface_Flags contains the value
+IF_NOREMOTEICERTADMINBACKUP, the server SHOULD return an error. <a id="Appendix_A_Target_57"></a><a aria-label="Product behavior note 57" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_57" data-linktype="relative-path">&lt;57&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If the BackupReadFile is called for the first time after the
+BackupOpenFile, the CA MUST read the content, in bytes, from the start of the
+file up to, at maximum, the value of the <i>cbBuffer</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Upon a subsequent call to the BackupReadFile, the CA MUST read
+the content, starting from a 1-byte offset of the last byte read in the
+previous call to the BackupReadFile.</p>
+</li><li><p><span><span> 
+</span></span>If the CA has already reached end-of-file, the call MUST succeed
+with 0 as the value of <i>*pcbRead</i>; otherwise, <i>*pcbRead</i> MUST contain
+the actual number of bytes read from the file.</p>
+</li></ul></div>

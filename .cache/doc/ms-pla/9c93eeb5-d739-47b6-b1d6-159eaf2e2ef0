@@ -1,0 +1,14 @@
+<div class="content"><p>The CreateValueMapItem method creates an object implementing
+the <a href="9786577c-9ac8-44d5-a29f-3f14514af0d8" data-linktype="relative-path">IValueMapItem</a>
+interface. This object can be configured and then passed to <a href="949a411c-62ff-4b5b-a839-b79df2885fde" data-linktype="relative-path">IValueMap::Add</a>. This
+method exists to provide a means for populating ValueMaps.</p><dl>
+<dd>
+<div><pre> HRESULT CreateValueMapItem(
+   [out, retval] IValueMapItem** Item
+ );
+</pre></div>
+</dd></dl><p><b>Item: </b>Receives the newly created value map
+item.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT with the severity bit clear on success as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>;
+otherwise, it MUST return one of the errors as defined in <a href="590752a5-ddc3-49e4-9914-147a90bd0193" data-linktype="relative-path">2.2.1</a> or one of the errors
+as defined in [MS-ERREF] section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p></div>

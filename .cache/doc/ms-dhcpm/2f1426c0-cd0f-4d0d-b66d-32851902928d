@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>DHCP_FILTER_ENUM_INFO</b> structure contains
+information regarding the number of link-layer filter records.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_FILTER_ENUM_INFO {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_FILTER_RECORD pEnumRecords;
+ } DHCP_FILTER_ENUM_INFO,
+  *LPDHCP_FILTER_ENUM_INFO;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+which specifies the number of link-layer filter records contained in the array
+specified by the <b>pEnumRecords</b> member.</p><p><b>pEnumRecords:</b>  This is a pointer to
+an array of <span><a href="0b075377-a495-400d-9d8f-94141735ce60" data-linktype="relative-path">DHCP_FILTER_RECORD (section 2.2.1.2.92)</a></span>
+structures that contains link-layer filter records.</p></div>

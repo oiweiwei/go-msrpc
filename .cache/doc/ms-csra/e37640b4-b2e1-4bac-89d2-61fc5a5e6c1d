@@ -1,0 +1,83 @@
+<div class="content"><p>The BackupPrepare method is used to prepare the database for
+performing further backup operations, such as <a href="904dffb3-b842-4e36-8006-26e0805576c4" data-linktype="relative-path">BackupEnd</a>, <a href="10ff12aa-8a06-446f-8bc4-94e7f76e3332" data-linktype="relative-path">BackupGetAttachmentInformation</a>,
+<a href="93becc1c-0daf-4891-ab1c-b887c95b0fcd" data-linktype="relative-path">BackupGetBackupLogs</a>, <a href="f5fc08ea-2f9f-438d-93d2-4f8e6813df46" data-linktype="relative-path">BackupOpenFile</a>, <a href="85d2255e-0017-4a6a-8934-e54b0231b061" data-linktype="relative-path">BackupReadFile</a>, <a href="f9137a7a-f47e-41c9-a4ae-61f1757e908b" data-linktype="relative-path">BackupCloseFile</a>, and <a href="ba476e8e-6078-4283-8afa-53b96a71e9cd" data-linktype="relative-path">BackupTruncateLogs</a>.</p><dl>
+<dd>
+<div><pre> HRESULT BackupPrepare(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] unsigned long grbitJet,
+   [in] unsigned long dwBackupFlags,
+   [in] WCHAR const * pwszBackupAnnotation,
+   [in] DWORD dwClientIdentifier
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.</p><p><b>grbitJet: </b>An unsigned long value. This MUST be
+one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Prepare for full backup of the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Prepare for an incremental backup as opposed to a full
+  backup. This means that only the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_51672e1d-fd88-4417-aa0b-5aef67742a29" data-linktype="relative-path">log files</a> since the last
+  full or incremental backup will be backed up.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwBackupFlags: </b>An unsigned long value. MUST be
+0. MUST be ignored on receipt.</p><p><b>pwszBackupAnnotation: </b>Not Used. Can be set to
+any arbitrary value, and MUST be ignored on receipt.</p><p><b>dwClientIdentifier: </b>An unsigned long value.
+Not used. MUST be 0. MUST be ignored on receipt.</p><p>If Config_CA_Interface_Flags contains the value
+IF_NOREMOTEICERTADMINBACKUP, the server SHOULD return an error.<a id="Appendix_A_Target_46"></a><a aria-label="Product behavior note 46" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_46" data-linktype="relative-path">&lt;46&gt;</a></p><p>The CA server MUST enforce the following sequencing rules:<a id="Appendix_A_Target_47"></a><a aria-label="Product behavior note 47" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_47" data-linktype="relative-path">&lt;47&gt;</a></p><ul><li><p><span><span> 
+</span></span>Before a CA backup can occur, BackupPrepare MUST be called by the
+client to notify the CA that a backup of the CA is about to happen:</p>
+<ul><li><p><span><span>  </span></span>If
+BackupGetAttachmentInformation is called without a previous call to
+BackupPrepare with the <i>grbitJet</i> parameter set to 0 (for a full backup),
+the CA MUST fail. The error code SHOULD be 0xc8000209.</p>
+</li><li><p><span><span>  </span></span>If
+BackupPrepare is not called, the remaining database backup-related APIs
+(BackupGetAttachmentInformation, BackupGetBackupLogs,
+BackupOpenFile/BackupReadFile, BackupCloseFile, and BackupEnd) MUST fail.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If BackupPrepare is called again by the same client (before
+calling BackupEnd), the CA MUST fail.</p>
+</li><li><p><span><span> 
+</span></span>If BackupReadFile is called before BackupOpenFile, the CA MUST
+fail.</p>
+</li><li><p><span><span> 
+</span></span>If BackupCloseFile is called before BackupOpenFile, the CA MUST
+fail.</p>
+</li><li><p><span><span> 
+</span></span>If BackupOpenFile is called again (before calling
+BackupCloseFile), the CA MUST fail.</p>
+</li><li><p><span><span> 
+</span></span>BackupReadFile MUST be called after BackupOpenFile and before
+BackupCloseFile; otherwise, the CA MUST fail.</p>
+</li><li><p><span><span> 
+</span></span>BackupEnd MUST be the final API for a backup session.</p>
+</li><li><p><span><span> 
+</span></span>If BackupTruncateLogs is called before all the log files returned
+by BackupGetBackupLogs and all of the database files returned by
+BackupGetAttachmentInformation are backed up, the CA MUST fail.</p>
+</li></ul><p>If the preceding sequencing rules are not met, the server
+MUST return ERROR_UNEXPECTED_ERROR. </p><p>The CA server MUST take into account the <i>grbitJet</i>
+value to account for an incremental backup versus a full backup. If a full
+backup has not taken place, the CA MUST return failure if the method is invoked
+for an incremental backup (<i>grbitJet</i> parameter value 1).</p></div>

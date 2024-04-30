@@ -1,0 +1,42 @@
+<div class="content"><p> </p><dl>
+<dd>
+<div><pre> This structure describes a connection security rule that is used by the 2.10 binary version for servers and clients (see sections 2.2.42 and 2.2.38). The fields of this structure are identical to the FW_CS_RULE structure, and their meanings are covered in section 2.2.55.
+  
+ typedef struct _tag_FW_CS_RULE2_10 {
+   struct _tag_FW_CS_RULE2_10* pNext;
+   unsigned short wSchemaVersion;
+   [string, range(1,10001), ref] wchar_t* wszRuleId;
+   [string, range(1,10001)] wchar_t* wszName;
+   [string, range(1,10001)] wchar_t* wszDescription;
+   unsigned long dwProfiles;
+   FW_ADDRESSES Endpoint1;
+   FW_ADDRESSES Endpoint2;
+   FW_INTERFACE_LUIDS LocalInterfaceIds;
+   unsigned long dwLocalInterfaceTypes;
+   unsigned long dwLocalTunnelEndpointV4;
+   unsigned char LocalTunnelEndpointV6[16];
+   unsigned long dwRemoteTunnelEndpointV4;
+   unsigned char RemoteTunnelEndpointV6[16];
+   FW_PORTS Endpoint1Ports;
+   FW_PORTS Endpoint2Ports;
+   [range(0,256)] unsigned short wIpProtocol;
+   [string, range(1,10001)] wchar_t* wszPhase1AuthSet;
+   [string, range(1,10001)] wchar_t* wszPhase2CryptoSet;
+   [string, range(1,10001)] wchar_t* wszPhase2AuthSet;
+   [range(FW_CS_RULE_ACTION_SECURE_SERVER, FW_CS_RULE_ACTION_MAX)] 
+     FW_CS_RULE_ACTION Action;
+   unsigned short wFlags;
+   [string, range(1,10001)] wchar_t* wszEmbeddedContext;
+   FW_OS_PLATFORM_LIST PlatformValidityList;
+   [range(FW_RULE_ORIGIN_INVALID, FW_RULE_ORIGIN_MAX-1)] 
+     FW_RULE_ORIGIN_TYPE Origin;
+   [string, range(1,10001)] wchar_t* wszGPOName;
+   FW_RULE_STATUS Status;
+   [string, range(1,512)] wchar_t* wszMMParentRuleId;
+   unsigned long Reserved;
+   [size_is((Reserved &amp; FW_OBJECT_CTRL_FLAG_INCLUDE_METADATA) ? 1 : 0)] 
+     PFW_OBJECT_METADATA pMetaData;
+ } FW_CS_RULE2_10,
+  *PFW_CS_RULE2_10;
+</pre></div>
+</dd></dl></div>

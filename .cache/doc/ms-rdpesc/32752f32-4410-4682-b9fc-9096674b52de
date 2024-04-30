@@ -1,0 +1,14 @@
+<div class="content"><p>The Connect_Common structure contains information common to
+both versions of the Connect function (for more information, see sections <a href="5201b332-299b-4b6a-9733-94e873ffe8cc" data-linktype="relative-path">2.2.2.13</a> and <a href="fd06f6a0-a9ea-478c-9b5e-470fd9cde5a6" data-linktype="relative-path">2.2.2.14</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _Connect_Common {
+   REDIR_SCARDCONTEXT Context;
+   unsigned long dwShareMode;
+   unsigned long dwPreferredProtocols;
+ } Connect_Common;
+</pre></div>
+</dd></dl><p><b>Context:</b>  A valid context, as
+specified in section <a href="060abee1-e520-4149-9ef7-ce79eb500a59" data-linktype="relative-path">2.2.1.1</a>.</p><p><b>dwShareMode:</b>  A flag that indicates
+whether other applications are allowed to form connections to the card.
+Possible values of this field are specified in section <a href="d81ce1d2-e958-4cb4-8e32-c007133f8f23" data-linktype="relative-path">2.2.6</a>.</p><p><b>dwPreferredProtocols:</b>  A bitmask of
+acceptable protocols for the connection, as specified in section <a href="41673567-2710-4e86-be87-7b6f46fe10af" data-linktype="relative-path">2.2.5</a>. </p></div>

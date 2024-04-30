@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p>The R_DnssrvUpdateRecord2 method is used to add a new DNS
+record or modify/delete an existing DNS record at the server. The DNS server
+SHOULD implement R_ DnssrvEnumRecords2.<a id="Appendix_A_Target_282"></a><a aria-label="Product behavior note 282" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_282" data-linktype="relative-path">&lt;282&gt;</a></p><p>All parameters are as specified by the <span><a href="37eea101-00b8-4958-99eb-de8cda4b8417" data-linktype="relative-path">R_DnssrvUpdateRecord
+method (section 3.1.4.5)</a></span> with the following exceptions:</p><dl>
+<dd>
+<div><pre> LONG R_DnssrvUpdateRecord2(
+   [in]                       handle_t               hBindingHandle,
+   [in]                       DWORD                  dwClientVersion,
+   [in]                       DWORD                  dwSettingFlags,
+   [in, unique, string]       LPCWSTR                pwszServerName,
+   [in, unique, string]       LPCSTR                 pszZone,
+   [in, string]               LPCSTR                 pszNodeName,
+   [in, unique]               PDNS_RPC_RECORD        pAddRecord,
+   [in, unique]               PDNS_RPC_RECORD        pDeleteRecord
+ );
+</pre></div>
+</dd></dl><p><b>dwClientVersion: </b>The client version in <b>DNS_RPC_CURRENT_CLIENT_VER</b>
+(section <span><a href="a237781b-b048-495d-844b-10ffb38df2a8" data-linktype="relative-path">2.2.1.2.1</a></span>) format.</p><p><b>dwSettingFlags: </b>Reserved for future use only.
+This field MUST be set to zero by clients and ignored by servers.</p><p><b>Return Values: </b>The method MUST return
+ERROR_SUCCESS (0x00000000) on success or a nonzero Win32 error code if an error
+occurred. See <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>
+or section <span><a href="aa521c99-3e44-4b75-9faa-c0c1ebcca5b6" data-linktype="relative-path">2.2.1.1.5</a></span>. All
+error values MUST be treated the same. All record types SHOULD be supported,
+but if an operation is attempted on an unsupported record type, the method MUST
+return a nonzero Win32 error code.</p><p>When processing this call, the server MUST perform the same
+actions as for the R_DnssrvUpdateRecord method (section 3.1.4.5).</p></div>

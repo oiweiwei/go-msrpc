@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The AndRestriction_r, OrRestriction_r restriction types
+share a single <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> encoding. The <b>AndOrRestriction_r</b>
+structure is an encoding of the both the <b>AndRestriction</b> data structure
+and the <b>OrRestriction</b> data structure defined in <span><a href="/en-us/openspecs/exchange_server_protocols/MS-OXCDATA/1afa0cd9-b1a0-4520-b623-bf15030af5d8" data-linktype="absolute-path">[MS-OXCDATA]</a></span>.
+These two data structures share the same data layout, so a single encoding is
+included in the NSPI Protocol. The sense of the data structure&#39;s use is derived
+from the context of its inclusion in the <span><a href="9378e9b2-b1df-4086-9023-f609e727e904" data-linktype="relative-path">RestrictionUnion_r</a></span>
+data structure defined in this specification. </p><p>The permissible number of Restriction structures in the
+AndRestriction_r and OrRestriction_r data structures exceeds that of the <b>AndRestriction</b>
+and <b>OrRestriction</b> structures. The semantic meaning is otherwise
+unchanged from the <b>AndRestriction</b> and <b>OrRestriction</b> data
+structures, as context dictates.</p><dl>
+<dd>
+<div><pre> typedef struct _AndOrRestriction_r {
+   [range(0,100000)] DWORD cRes;
+   [size_is(cRes)] Restriction_r* lpRes;
+ } AndRestriction_r,
+  OrRestriction_r;
+</pre></div>
+</dd></dl><p><b>cRes:</b>  Encodes the <b>RestrictCount</b>
+field of the <b>AndRestriction</b> and <b>OrRestriction</b> data structures.
+This value MUST NOT exceed 100,000.</p><p><b>lpRes:</b>  Encodes the <b>Restricts</b>
+field of the <b>AndRestriction</b> and <b>OrRestriction</b> data structures. </p></div>

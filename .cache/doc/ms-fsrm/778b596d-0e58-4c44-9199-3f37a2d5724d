@@ -1,0 +1,63 @@
+<div class="content"><p>The SetOutputDirectory method sets the output directory
+where storage <b>reports</b> generated with the specified context will be
+stored.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_REPORT_MANAGER | 0x05)] HRESULT SetOutputDirectory(
+   [in] FsrmReportGenerationContext context,
+   [in] BSTR path
+ );
+</pre></div>
+</dd></dl><p><b>context: </b>Contains the value from the <a href="4477f327-f8b1-46c8-b8fa-8d96eeabe421" data-linktype="relative-path">FsrmReportGenerationContext (section 2.2.1.2.15)</a>
+enumeration of the context to set.</p><p><b>path: </b>Contains the output directory where
+storage <b>reports</b> generated with the specified context will be stored. The
+maximum length of this string MUST be 150 characters.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>path</i> parameter is
+  NULL.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The content of the <i>path</i>
+  parameter exceeds the maximum length of 150 characters.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>context</i> parameter is
+  not a valid FsrmReportGenerationContext (section 2.2.1.2.15) value.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>path</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that context contains a valid FsrmReportGenerationContext
+value.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+perform one of the following actions:</p><ul><li><p><span><span> 
+</span></span>If <i>context</i> is equal to
+FsrmReportGenerationContext_ScheduledReport then the server MUST use  <i>path</i>
+as the <b>Scheduled output directory</b> for <b>reports</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>context</i> is equal to
+FsrmReportGenerationContext_InteractiveReport then the server MUST use <i>path</i>
+as the <b>Interactive output directory</b> for <b>reports</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>context</i> is equal to
+FsrmReportGenerationContext_IncidentReport then the server MUST use <i>path</i>
+as the <b>Incident output directory</b> for <b>reports</b>.</p>
+</li></ul></div>

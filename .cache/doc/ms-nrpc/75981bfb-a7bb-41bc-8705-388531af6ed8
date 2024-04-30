@@ -1,0 +1,64 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/75981bfb-a7bb-41bc-8705-388531af6ed8" data-linktype="external">msdn link</a></p><p>The <b>IPv4 Address </b>structure specifies the format of an
+IPv4 socket address. This structure is built as if on a little-endian machine
+and is treated as a byte array. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>AddressFamily</p>
+  </td>
+  <td colspan="16">
+  <p>Port</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Address</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Padding</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>AddressFamily (2 bytes): </b>The address family;
+MUST be 0x0002.</p><p><b>Port (2 bytes):</b> An IP port number.</p><p><b>Address (4 bytes):</b> An IP address, as specified
+in <a href="https://go.microsoft.com/fwlink/?LinkId=392659" data-linktype="external">[RFC791]</a>.</p><p><b>Padding (8 bytes):</b> This field is set to zero
+and ignored by the server.</p></div>

@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The <b>DHCPV6_STATELESS_STATS</b> structure represents an
+array of <span><a href="5bf48f24-547a-454d-aa09-0e53deaa41e2" data-linktype="relative-path">DHCPV6_STATELESS_SCOPE_STATS (section 2.2.1.2.113)</a></span>
+structures. This structure is used with the <span><a href="0103e640-eb83-40c1-886e-4a78709a0e88" data-linktype="relative-path">R_DhcpV6GetStatelessStatistics (section 3.2.4.119)</a></span>
+method. The server uses this array for statistical analysis.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCPV6_STATELESS_STATS {
+     DWORD NumScopes;
+     [size_is(NumScopes)] LPDHCPV6_STATELESS_SCOPE_STATS ScopeStats;
+ } DHCPV6_STATELESS_STATS, *PDHCPV6_STATELESS_STATS, *LPDHCPV6_STATELESS_STATS;
+</pre></div>
+</dd></dl><p><b>NumScopes:</b>  The number of elements
+in the ScopeStats member.</p><p><b>ScopeStats:</b>  A pointer to an array
+of DHCPV6_STATELESS_SCOPE_STATS (section 2.2.1.2.113) structures,
+each one representing an IPv6 stateless prefix serviced by the current DHCPv6
+server.</p></div>

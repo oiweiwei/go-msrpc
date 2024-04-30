@@ -1,0 +1,360 @@
+<div class="content"><p>This method is called by a client to write entries to a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0944227d-0566-49e1-989f-2fff6e02542d" data-linktype="relative-path">catalog</a> table.</p><dl>
+<dd>
+<div><pre> HRESULT WriteTable(
+   [in] GUID* pCatalogIdentifier,
+   [in] GUID* pTableIdentifier,
+   [in] DWORD tableFlags,
+   [in, size_is(cbQueryCellArray), unique] 
+     char* pQueryCellArray,
+   [in] ULONG cbQueryCellArray,
+   [in, size_is(cbQueryComparison), unique] 
+     char* pQueryComparison,
+   [in] ULONG cbQueryComparison,
+   [in] DWORD eQueryFormat,
+   [in, size_is(cbTableDataFixedWrite)] 
+     char* pTableDataFixedWrite,
+   [in] ULONG cbTableDataFixedWrite,
+   [in, size_is(cbTableDataVariable)] 
+     char* pTableDataVariable,
+   [in] ULONG cbTableDataVariable,
+   [in, size_is(cbReserved1)] char* pReserved1,
+   [in] ULONG cbReserved1,
+   [in, size_is(cbReserved2)] char* pReserved2,
+   [in] ULONG cbReserved2,
+   [in, size_is(cbReserved3)] char* pReserved3,
+   [in] ULONG cbReserved3,
+   [out, size_is(, *pcbTableDetailedErrors)] 
+     char** ppTableDetailedErrors,
+   [out] ULONG* pcbTableDetailedErrors
+ );
+</pre></div>
+</dd></dl><p><b>pCatalogIdentifier: </b> The catalog identifier of
+the COMA catalog. MUST be {6E38D3C4-C2A7-11D1-8DEC-00C04FC2E0C7}.</p><p><b>pTableIdentifier: </b> The table identifier for
+one of the tables defined in section <a href="9029dd8c-1f42-432f-ad41-a2369b32bd79" data-linktype="relative-path">3.1.1.3</a> for the negotiated
+catalog version.</p><p><b>tableFlags: </b> An <a href="19308cf6-7832-4aef-a61e-cbf8a402989f" data-linktype="relative-path">fTableFlags (section 2.2.1.1)</a>
+value supported (see section <a href="84e5214c-959e-4d7f-a393-5a4f233b09f7" data-linktype="relative-path">3.1.1.2.3</a>)
+by the table identified by <i>pTableIdentifier</i>.</p><p><b>pQueryCellArray: </b> A <a href="042e9c68-552b-48a9-adb6-f0d903653fa0" data-linktype="relative-path">QueryCellArray</a> structure,
+marshaled in the negotiated format as specified in section 2.2.1.5, for a
+supported query (see section <a href="e4b4604d-c088-4239-a095-acbc33fab663" data-linktype="relative-path">3.1.1.2.2</a>)
+on the table identified by <i>pTableIdentifier</i>.</p><p><b>cbQueryCellArray: </b> The size in bytes of <i>pQueryCellArray</i>.</p><p><b>pQueryComparison: </b> A <a href="ee38b86f-4f17-4c3d-b71f-5b7ae876eb54" data-linktype="relative-path">QueryComparisonData (section 2.2.1.6)</a>
+structure for a supported query (see section <a href="25044da8-32e2-4322-aa95-6347a0ca3bb1" data-linktype="relative-path">3.1.1.2</a>) on the table
+identified by <i>pTableIdentifier</i>.</p><p><b>cbQueryComparison: </b> The size in bytes of <i>pQueryComparison</i>.</p><p><b>eQueryFormat: </b> MUST be set to eQUERYFORMAT_1
+(0x00000001).</p><p><b>pTableDataFixedWrite: </b> A <a href="fbf92afa-d059-47e1-a877-ef6979b549a4" data-linktype="relative-path">TableDataFixedWrite</a>
+structure, marshaled as specified in section 2.2.1.13.</p><p><b>cbTableDataFixedWrite: </b> The length in bytes of
+the TableDataFixedWrite structure passed in <i>pTableDataFixedWrite</i>.</p><p><b>pTableDataVariable: </b> A <a href="bc492521-2a4b-4776-84a0-ce20e81d692a" data-linktype="relative-path">TableDataVariable</a>
+structure, marshaled as specified in section 2.2.1.15.</p><p><b>cbTableDataVariable: </b> The length in bytes of
+the TableDataVariable structure passed in <i>pTableDataVariable</i>.</p><p><b>pReserved1: </b>MUST be set to NULL when sent and
+MUST be ignored on receipt.</p><p><b>cbReserved1: </b>MUST be set to zero when sent and
+MUST be ignored on receipt.</p><p><b>pReserved2: </b>MUST be set to NULL when sent and
+MUST be ignored on receipt.</p><p><b>cbReserved2: </b>MUST be set to zero when sent and
+MUST be ignored on receipt.</p><p><b>pReserved3: </b>MUST be set to NULL when sent and
+MUST be ignored on receipt.</p><p><b>cbReserved3: </b>MUST be set to zero when sent and
+MUST be ignored on receipt.</p><p><b>ppTableDetailedErrors: </b> A pointer to a
+variable that, upon successful completion, MUST be set to NULL, and that, upon
+partial failure, MAY<a id="Appendix_A_Target_297"></a><a aria-label="Product behavior note 297" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_297" data-linktype="relative-path">&lt;297&gt;</a> be set
+to a <a href="757f1161-bac7-45fe-974d-6d5010c119cc" data-linktype="relative-path">TableDetailedErrorArray</a>
+structure, marshaled as specified in section 2.2.1.17.</p><p><b>pcbTableDetailedErrors: </b> A pointer to a
+variable that, upon completion, MUST be set to the length in bytes of the
+TableDetailedErrorArray structure returned in <i>ppTableDetailedErrors</i> if
+such a structure was returned and MUST be set to zero otherwise.</p><p><b>Return Values: </b> This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically, with the exception
+of E_DETAILEDERRORS (0x80110802).</p><p>Upon receiving a call to this method, the server MUST verify
+that catalog version negotiation has been performed by checking the negotiated
+catalog version (see section <a href="a667265b-22a8-43bb-b462-13528061e009" data-linktype="relative-path">3.1.1.5</a>),
+and fail the call if not.</p><p>The server then MUST perform parameter validation as
+follows:</p><ul><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_298"></a><a aria-label="Product behavior note 298" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_298" data-linktype="relative-path">&lt;298&gt;</a> verify
+that the value referenced by <i>pCatalogIdentifier</i> is the catalog
+identifier of the COMA catalog {6E38D3C4-C2A7-11D1-8DEC-00C04FC2E0C7}, and fail
+the call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_299"></a><a aria-label="Product behavior note 299" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_299" data-linktype="relative-path">&lt;299&gt;</a> verify
+that the value referenced by <i>pTableIdentifier</i> is the table identifier of
+a table defined in section 3.1.1.3 for the negotiated catalog version, and fail
+the call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_300"></a><a aria-label="Product behavior note 300" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_300" data-linktype="relative-path">&lt;300&gt;</a> verify
+that <i>tableFlags</i> is a supported table flags value (see section 3.1.1.2.3)
+for the table identified by <i>pTableIdentifier</i>, and fail the call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_301"></a><a aria-label="Product behavior note 301" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_301" data-linktype="relative-path">&lt;301&gt;</a> verify
+that the query represented by the parameters <i>pQueryCellArray</i>, <i>cbQueryCellArray</i>,
+<i>pQueryComparison</i>, and <i>cbQueryComparison</i> are a supported query
+(see section 3.1.1.2.2) on the table identified by <i>pTableIdentifier</i>, and
+fail the call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST verify that all other parameters meet the
+preceding constraints.</p>
+</li></ul><p>The server then SHOULD verify that the client is authorized
+to write to the table identified by <i>pTableIdentifier</i>. Authorization MAY<a id="Appendix_A_Target_302"></a><a aria-label="Product behavior note 302" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_302" data-linktype="relative-path">&lt;302&gt;</a> be determined differently for
+different tables.</p><p>The server then MAY verify that previously in the session, <a href="ba9d3f6d-94d8-4e1f-b31e-122ec038eca7" data-linktype="relative-path">ICatalogTableRead::ReadTable (section 3.1.4.8.1)</a>
+was called for the same table and with an identical query.</p><p>The parameters <i>pTableDataFixedWrite</i>, <i>cbTableDataFixedWrite</i>,
+<i>pTableDataVariable</i>, and <i>cbTableDataVariable</i> specify writes to
+zero or more entries in the table identified by <i>pTableIdentifier</i>. Each <a href="183fb968-7cab-4684-be5e-35469ed9df6c" data-linktype="relative-path">TableEntryFixedWrite (section 2.2.1.12)</a>
+structure and the corresponding <a href="c0c52d81-93f3-494f-904a-f119eef4f41c" data-linktype="relative-path">TableEntryVariable (section 2.2.1.14)</a>
+together specify a write to a single entry, known as an <i>entry write</i>. The
+server MUST verify that these parameters are a properly formatted representation
+of zero entry writes for the table and fail the call if not. A call to
+WriteTable specifying zero entry writes is explicitly legal, although it
+results in no changes to the catalog. If a server receives a call specifying
+zero entry writes, it MUST NOT make any changes to the catalog and MUST return
+S_OK (0x00000000).</p><p>The server MUST validate and attempt to perform the
+specified entry writes, as described later in this section. If validation fails
+for any of the entry writes (for example, if performing the entry write would
+result in the constraints for one or more of the properties in the table being
+violated), the server MAY<a id="Appendix_A_Target_303"></a><a aria-label="Product behavior note 303" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_303" data-linktype="relative-path">&lt;303&gt;</a> add
+one or more <a href="524a6685-4f1a-453e-9b9a-34641d122e0f" data-linktype="relative-path">TableDetailedError (section 2.2.1.16)</a>
+records to the detailed error results, using the zero-based index of the entry
+write and the zero-based index of a property to indicate to the client which
+specific change caused the failure. Additionally, if the server fails to
+perform an entry write (for example, if the server is unable to write a
+property value to its data store), the server MAY add one or more
+TableDetailedError records. Whether the server returns immediately upon
+generating a TableDetailedError or continues to validate entry writes in order
+to generate a more complete record of the reason for failure is
+implementation-specific.<a id="Appendix_A_Target_304"></a><a aria-label="Product behavior note 304" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_304" data-linktype="relative-path">&lt;304&gt;</a></p><p>For the following description, each entry write is an <i>add</i>,
+<i>update</i>, or <i>remove</i>, indicated by the value of the <b>Action</b>
+field of the TableEntryFixedWrite structure for the entry write, taken from the
+<a href="bbd0a961-3b76-4967-af6b-1a3d44f84373" data-linktype="relative-path">eTableEntryAction (section 2.2.1.11)</a>
+enumeration.</p><p>The server MUST validate the entry writes and, for updates
+and removes, select a target from the existing entries in the table, as
+follows:</p><ul><li><p><span><span> 
+</span></span>If one or more adds are specified, the server SHOULD<a id="Appendix_A_Target_305"></a><a aria-label="Product behavior note 305" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_305" data-linktype="relative-path">&lt;305&gt;</a> verify that adds are
+supported for the table, as specified in the table&#39;s definition (as specified
+in section 3.1.1.3), and fail the call if not.</p>
+</li><li><p><span><span> 
+</span></span>If one or more updates are specified, the server SHOULD<a id="Appendix_A_Target_306"></a><a aria-label="Product behavior note 306" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_306" data-linktype="relative-path">&lt;306&gt;</a> verify that updates are
+supported for the table, as specified in the table&#39;s definition (as specified
+in section 3.1.1.3), and fail the call if not.</p>
+</li><li><p><span><span> 
+</span></span>If one or more removes are specified, the server SHOULD<a id="Appendix_A_Target_307"></a><a aria-label="Product behavior note 307" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_307" data-linktype="relative-path">&lt;307&gt;</a> verify that removes are
+supported for the table, as specified in the table&#39;s definition (as specified
+in section 3.1.1.3), and fail the call if not.</p>
+</li><li><p><span><span> 
+</span></span>For each entry write, the server MUST perform the following:</p>
+<ul><li><p><span><span>  </span></span>For
+each <a href="0f823212-7c71-4f6a-91b7-fb709d827b97" data-linktype="relative-path">QueryCell (section 2.2.1.4)</a>
+structure and its corresponding comparison value (together known as a <i>query
+element</i>) in the query represented by the parameters <i>pQueryCellArray</i>,
+<i>cbQueryCellArray</i>, <i>pQueryComparison</i>, and <i>cbQueryComparison</i>,
+the server MUST perform the following:</p>
+<ul><li><p><span><span> 
+</span></span>If the <b>IndexOrOption</b> field of the QueryCell structure is a
+special query option value (indicated by a value greater than or equal to
+0xF00000000), the query element represents a special option rather than a
+constraint. If this value is eSQO_OPTHINT (see section <a href="1b4bac57-96ca-4f15-8a90-60fbd75aabe8" data-linktype="relative-path">2.2.1.3</a>), this option is
+an optimization hint and MUST NOT affect the results of validation. Behavior of
+the server on receipt of special options other than eSQO_OPTHINT is undefined,
+because clients MUST NOT send these values, and they do not affect
+interoperability.<a id="Appendix_A_Target_308"></a><a aria-label="Product behavior note 308" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_308" data-linktype="relative-path">&lt;308&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If the <b>IndexOrOption</b> field of the QueryCell structure is
+an index of a property in the table (indicated by a value strictly less than
+0xF00000000), the query element represents a constraint on the property. The
+server MUST verify that the value of this property in the entry write conforms
+to the constraint specified by the query element, and fail the call if not.</p>
+</li></ul></li><li><p><span><span>  </span></span>The
+server MUST make a <i>preliminary selection</i> of zero or one existing entries
+in the table for the entry write based on the primary key properties specified
+in the table&#39;s definition (as specified in section 3.1.1.3), as follows:</p>
+<ul><li><p><span><span> 
+</span></span>If there exists an existing entry in the table for which the values
+of each primary key property are equal to the values specified for the
+properties in the entry write, the server MUST preliminarily select that entry
+for the entry write (note that due to the primary key constraints on the table,
+it is guaranteed that there will be at most one such entry).</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the server MUST preliminarily select no entry for that
+entry write.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>The server then MUST verify that each existing entry was
+preliminarily selected for at most one entry write, and fail the call if not.</p>
+</li><li><p><span><span> 
+</span></span>For each add, the server MUST perform the following:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST verify that no entry was preliminarily selected for the entry
+write, and fail the call if not.</p>
+</li><li><p><span><span>  </span></span>For
+each primary key property and for each property constrained in the query (note
+that these sets of properties will possibly overlap), the server MUST perform
+the following:</p>
+<ul><li><p><span><span> 
+</span></span>The server MUST verify that the Changed bit (see section <a href="b937e959-9866-45b1-a4c0-bf1165792a3c" data-linktype="relative-path">2.2.1.8</a>) is set in the <b>Status</b>
+field for the property in the entry write, and fail the call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_309"></a><a aria-label="Product behavior note 309" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_309" data-linktype="relative-path">&lt;309&gt;</a>
+perform validation of constraints that are specified as a server validation
+requirement in the definition of the property and its type and fail the call if
+any constraint enforced by the server is violated.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>For each update or remove, the server MUST perform the following:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST verify that an existing entry was preliminarily selected for the
+entry write, and fail the call if not. This entry is now said to be <i>selected</i>
+for the entry write.</p>
+</li><li><p><span><span>  </span></span>For
+each primary key property and for each property constrained in the query (note
+that these sets of properties will possibly overlap), the server MUST perform
+the following:</p>
+<ul><li><p><span><span> 
+</span></span>The server MUST verify that the Changed bit (see section 2.2.1.8)
+is cleared in the <b>Status</b> field for the property in the entry write, and
+fail the call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_310"></a><a aria-label="Product behavior note 310" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_310" data-linktype="relative-path">&lt;310&gt;</a>
+perform validation of constraints that are specified as a server validation
+requirement in the definition of the property and its type and fail the call if
+any constraint enforced by the server is violated.</p>
+</li></ul></li></ul></li></ul><p>The remainder of the protocol behavior specified for this
+method SHOULD be performed as an <a href="3f01a312-3391-4109-a96e-95358babf191#gt_6db11d6b-d493-46d4-ab87-2429ca8bcb1e" data-linktype="relative-path">atomic transaction</a>; that
+is, either the operation SHOULD fully succeed or the server SHOULD make no
+changes to the catalog. This described behavior is provided to facilitate the
+explanation of how the protocol behaves. This document does not mandate that
+implementations adhere to this model as long as their external behavior is
+consistent with that described in this document.</p><p>The server MUST attempt to perform each of the entry writes,
+specified as follows for each type of entry write, in an order arbitrarily
+selected by the server.</p><p>For each add, the server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>The server MUST attempt to create a new entry in the table, and
+fail if it cannot.</p>
+</li><li><p><span><span> 
+</span></span>For each property in the table, in a trigger-consistent order
+(see section <a href="02cf021f-6f7a-436e-ba1e-ea307d539336" data-linktype="relative-path">3.1.1.2.8</a>)
+arbitrarily selected by the server, the server MUST then perform the following:</p>
+<ul><li><p><span><span>  </span></span>If
+the Changed bit (see section 2.2.1.8) is set in the <b>Status</b> field for the
+property in the entry write, the server MUST perform the following:</p>
+<ul><li><p><span><span> 
+</span></span>If the property is a read-only property (see section 3.1.1.2.8),
+the server SHOULD<a id="Appendix_A_Target_311"></a><a aria-label="Product behavior note 311" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_311" data-linktype="relative-path">&lt;311&gt;</a> fail the call. If the server
+does not fail the call, the server&#39;s behavior is undefined as this does not
+affect interoperability.</p>
+</li><li><p><span><span> 
+</span></span>If the property is an internal property (see section <a href="bd994ce8-2c3a-492a-96b6-c53f9f423f9a" data-linktype="relative-path">3.1.1.2.7</a>), the server&#39;s
+behavior is undefined as this does not affect interoperability. In particular,
+the server MAY fail the call.</p>
+</li><li><p><span><span> 
+</span></span>If the property is neither a read-only property nor an internal
+property, the server MUST attempt to set the value of the property in the newly
+created entry to the value specified in the entry write, and fail the call if
+it cannot.</p>
+</li><li><p><span><span> 
+</span></span>If the server has a trigger (see section 3.1.1.2.8) for the
+property, the server MUST attempt to perform the trigger, and fail the call if
+it cannot.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the Changed bit (see section 2.2.1.8) is cleared in the Status field for the
+property, the server MUST attempt to set the value of the property in the newly
+created entry to an implementation-specific default value (see section <a href="b32713d1-61b8-48c7-9fd2-d79ec7eee1fc" data-linktype="relative-path">3.1.1.2.6</a>), and fail the
+call if it cannot.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The server MUST verify that the newly created entry conforms to
+the constraints specified in the table definition and any
+implementation-specific additional constraints (see section <a href="ed2925d7-c81e-4ee0-9f1d-263e8337db0d" data-linktype="relative-path">3.1.1.2.5</a>), and fail the
+call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST verify that the newly created entry conforms to
+the add restrictions specified in the table definition, and fail the call if
+not.</p>
+</li><li><p><span><span> 
+</span></span>If the table definition specifies an optional populate (see
+section <a href="2e712b84-5dff-4b07-b2c6-c163c26401aa" data-linktype="relative-path">3.1.1.2.11</a>),
+the server MAY<a id="Appendix_A_Target_312"></a><a aria-label="Product behavior note 312" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_312" data-linktype="relative-path">&lt;312&gt;</a> attempt to perform this
+populate as specified in the table definition. If the server attempts to
+perform a populate and is unable to do so, it SHOULD fail the call.</p>
+</li></ul><p>For each update, the server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>The server MUST verify that the selected entry conforms to the
+update restrictions specified in the table definition, and fail the call if
+not.</p>
+</li><li><p><span><span> 
+</span></span>For each property in the table, in a trigger-consistent order
+(see section 3.1.1.2.8) arbitrarily selected by the server, the server MUST
+then perform the following:</p>
+<ul><li><p><span><span>  </span></span>If
+the Changed bit (see section 2.2.1.8) is set in the Status field for the
+property in the entry write, the server MUST perform the following:</p>
+<ul><li><p><span><span> 
+</span></span>If the property is a read-only property (see section 3.1.1.2.8),
+the server SHOULD<a id="Appendix_A_Target_313"></a><a aria-label="Product behavior note 313" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_313" data-linktype="relative-path">&lt;313&gt;</a> fail the call. If the server
+does not fail the call, the server&#39;s behavior is undefined as this does not
+affect interoperability.</p>
+</li><li><p><span><span> 
+</span></span>If the property is an internal property (see section 3.1.1.2.7),
+the server&#39;s behavior is undefined, because this does not affect
+interoperability. In particular, the server MAY fail the call. </p>
+</li><li><p><span><span> 
+</span></span>If the property is neither a read-only property nor an internal
+property, the server MUST attempt to set the value of the property in the entry
+prototype to the value specified in the entry write, and fail the call if it
+cannot.</p>
+</li><li><p><span><span> 
+</span></span>If the server has a trigger (see section 3.1.1.2.8) for the
+property, the server MUST attempt to perform the trigger, and fail the call if
+it cannot.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>The server MUST verify that the entry represented by the <b>Entry</b>
+field of the TableEntryFixedWrite structure and the TableEntryVariable
+structure conforms to the query specified in <i>pQueryCellArray</i>, <i>cbQueryCellArray</i>,
+<i>pQueryComparison</i>, and <i>cbQueryComparison</i>.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST verify that there currently exists in the table
+an entry for which the values of the primary key properties, as specified in
+the table&#39;s definition (as specified in section 3.1.1.3), are equal to the
+values specified for these properties in the write entry.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST verify that the existing entry allows updates,
+according to properties of the entry and possibly properties of entries in
+other tables, as specified in the table&#39;s definition (as specified in section
+3.1.1.3).</p>
+</li><li><p><span><span> 
+</span></span>The server then MUST make changes to the entry as follows:</p>
+<ul><li><p><span><span>  </span></span>Each
+property for which the Changed bit (see section 2.2.1.8) is set in the
+corresponding Status subfield in the <b>Entry</b> field of the
+TableEntryFixedWrite structure is said to be marked for update. For each
+property marked for update, the server MUST perform the following:</p>
+<ul><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_314"></a><a aria-label="Product behavior note 314" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_314" data-linktype="relative-path">&lt;314&gt;</a> verify
+that the property supports updates, as specified in the table&#39;s definition, as
+specified in section 3.1.1.3.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST attempt to set the value of the property in the
+entry to the value specified in the write, and fail the call if it cannot.</p>
+</li><li><p><span><span> 
+</span></span>If an add/update trigger is specified for the property in the
+table&#39;s definition, as specified in section 3.1.1.3, the server MUST attempt to
+modify the entry as specified for that trigger, based on the value of the
+property, and fail the call if it cannot.</p>
+</li></ul></li><li><p><span><span>  </span></span>The
+server MUST verify that the modified entry conforms to the constraints
+specified for the table in its definition, as specified in section 3.1.1.3.</p>
+</li></ul></li></ul><p>For each remove, the server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>The server MUST verify that the selected entry conforms to the
+remove restrictions specified in the table definition, and fail the call if
+not.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST attempt to remove the selected entry from the
+table and fail the call if it cannot.</p>
+</li><li><p><span><span> 
+</span></span>If a cascade (see section <a href="8e2113a2-1ae9-4d4c-b109-11e1acab09d2" data-linktype="relative-path">3.1.1.2.10</a>) is specified
+for the table in its definition, as specified in section 3.1.1.3, the server
+MUST attempt to perform the cascade, and fail the call if not.</p>
+</li></ul><p>The server MUST then set the values referenced by the out
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>If the server generated any
+TableDetailedError (section 2.2.1.16) records, it MUST set the values
+referenced by <i>ppTableDetailedErrors</i> and <i>pcbDetailedErrors</i> to the
+constructed TableDetailedErrorArray (section 2.2.1.17) structure.
+Otherwise, it MUST set the value referenced by <i>ppTableDetailedErrors</i> to
+NULL and the value referenced by <i>pcbDetailedErrors</i> to zero.</p>
+</li></ul><p>Upon success, before returning from the call, the server
+SHOULD guarantee that the changes will be written to its data store. However,
+the server MAY<a id="Appendix_A_Target_315"></a><a aria-label="Product behavior note 315" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_315" data-linktype="relative-path">&lt;315&gt;</a> actually write changes to the
+data store asynchronously after returning. For example, a server might write
+changes to a temporary store and integrate these changes with its main data
+store asynchronously. In this case, it is possible for the changes not to be
+visible to the client immediately. For more details about synchronization, see
+section <a href="ee18e8db-6ad9-4468-8624-a4982125ddc2" data-linktype="relative-path">3.1.4.17.2</a>.</p><p>Upon success, the server MUST return S_OK (0x00000000). Upon
+failure in which detailed error results are returned, the server MUST return
+E_DETAILEDERRORS (0x80110802).</p></div>

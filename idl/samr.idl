@@ -1,0 +1,1376 @@
+import "ms-dtyp.idl";
+ 
+[
+    uuid(12345778-1234-ABCD-EF00-0123456789AC),
+    version(1.0),
+    ms_union,
+    pointer_default(unique)
+]
+ 
+interface samr{
+ 
+typedef struct _RPC_STRING {
+    unsigned short Length;
+    unsigned short MaximumLength;
+    [size_is(MaximumLength), length_is(Length)] char * Buffer;
+} RPC_STRING, *PRPC_STRING;
+ 
+ 
+typedef struct _OLD_LARGE_INTEGER {
+    unsigned long LowPart;
+    long HighPart;
+} OLD_LARGE_INTEGER, *POLD_LARGE_INTEGER;
+ 
+typedef [handle] wchar_t * PSAMPR_SERVER_NAME;
+ 
+typedef [context_handle] void * SAMPR_HANDLE;
+ 
+typedef struct _ENCRYPTED_LM_OWF_PASSWORD {
+    char data[16];
+} ENCRYPTED_LM_OWF_PASSWORD,
+  *PENCRYPTED_LM_OWF_PASSWORD,
+  ENCRYPTED_NT_OWF_PASSWORD,
+  *PENCRYPTED_NT_OWF_PASSWORD;
+ 
+typedef struct _SAMPR_ULONG_ARRAY {
+    unsigned long Count;
+    [size_is(Count)] unsigned long * Element;
+} SAMPR_ULONG_ARRAY, *PSAMPR_ULONG_ARRAY;
+ 
+typedef struct _SAMPR_SID_INFORMATION {
+    PRPC_SID    SidPointer;
+} SAMPR_SID_INFORMATION, *PSAMPR_SID_INFORMATION;
+ 
+typedef struct _SAMPR_PSID_ARRAY {
+    [range(0, 1024)] unsigned long Count;
+    [size_is(Count)] PSAMPR_SID_INFORMATION Sids;
+} SAMPR_PSID_ARRAY, *PSAMPR_PSID_ARRAY;
+ 
+typedef struct _SAMPR_PSID_ARRAY_OUT {
+    unsigned long Count;
+    [size_is(Count)] PSAMPR_SID_INFORMATION Sids;
+} SAMPR_PSID_ARRAY_OUT, *PSAMPR_PSID_ARRAY_OUT;
+ 
+typedef struct _SAMPR_RETURNED_USTRING_ARRAY {
+    unsigned long Count;
+    [size_is(Count)] PRPC_UNICODE_STRING  Element;
+} SAMPR_RETURNED_USTRING_ARRAY, *PSAMPR_RETURNED_USTRING_ARRAY;
+ 
+ 
+typedef enum _SID_NAME_USE {
+    SidTypeUser = 1,
+    SidTypeGroup,
+    SidTypeDomain,
+    SidTypeAlias,
+    SidTypeWellKnownGroup,
+    SidTypeDeletedAccount,
+    SidTypeInvalid,
+    SidTypeUnknown,
+    SidTypeComputer,  // Not used.
+    SidTypeLabel  // Not used.
+} SID_NAME_USE, *PSID_NAME_USE;
+ 
+typedef struct _RPC_SHORT_BLOB {
+    unsigned short Length;
+    unsigned short MaximumLength;
+    [size_is(MaximumLength/2), length_is(Length/2)]
+    unsigned short* Buffer;
+} RPC_SHORT_BLOB, *PRPC_SHORT_BLOB;
+ 
+typedef struct _SAMPR_RID_ENUMERATION {
+    unsigned long RelativeId;
+    RPC_UNICODE_STRING Name;
+} SAMPR_RID_ENUMERATION, *PSAMPR_RID_ENUMERATION;
+ 
+typedef struct _SAMPR_ENUMERATION_BUFFER {
+    unsigned long EntriesRead;
+    [size_is(EntriesRead)] PSAMPR_RID_ENUMERATION Buffer;
+} SAMPR_ENUMERATION_BUFFER, *PSAMPR_ENUMERATION_BUFFER;
+ 
+typedef struct _SAMPR_SR_SECURITY_DESCRIPTOR {
+    [range(0, 256 * 1024)] unsigned long Length;
+    [size_is(Length)] unsigned char* SecurityDescriptor;
+} SAMPR_SR_SECURITY_DESCRIPTOR, *PSAMPR_SR_SECURITY_DESCRIPTOR;
+ 
+typedef struct _GROUP_MEMBERSHIP {
+    unsigned long RelativeId;
+    unsigned long Attributes;
+} GROUP_MEMBERSHIP, *PGROUP_MEMBERSHIP;
+ 
+typedef struct _SAMPR_GET_GROUPS_BUFFER {
+    unsigned long MembershipCount;
+    [size_is(MembershipCount)] PGROUP_MEMBERSHIP Groups;
+} SAMPR_GET_GROUPS_BUFFER, *PSAMPR_GET_GROUPS_BUFFER;
+ 
+typedef struct _SAMPR_GET_MEMBERS_BUFFER {
+    unsigned long MemberCount;
+    [size_is(MemberCount)] unsigned long* Members;
+    [size_is(MemberCount)] unsigned long* Attributes;
+} SAMPR_GET_MEMBERS_BUFFER, *PSAMPR_GET_MEMBERS_BUFFER;
+ 
+typedef struct _SAMPR_REVISION_INFO_V1 {
+    unsigned long Revision;
+    unsigned long SupportedFeatures;
+} SAMPR_REVISION_INFO_V1, *PSAMPR_REVISION_INFO_V1;
+ 
+typedef [switch_type(unsigned long)] union {
+    [case(1)] SAMPR_REVISION_INFO_V1 V1;
+}SAMPR_REVISION_INFO, *PSAMPR_REVISION_INFO;
+ 
+typedef struct _USER_DOMAIN_PASSWORD_INFORMATION {
+    unsigned short MinPasswordLength;
+    unsigned long PasswordProperties;
+} USER_DOMAIN_PASSWORD_INFORMATION,
+  *PUSER_DOMAIN_PASSWORD_INFORMATION;
+ 
+typedef enum _DOMAIN_SERVER_ENABLE_STATE {
+    DomainServerEnabled = 1,
+    DomainServerDisabled
+} DOMAIN_SERVER_ENABLE_STATE, *PDOMAIN_SERVER_ENABLE_STATE;
+ 
+typedef struct _DOMAIN_STATE_INFORMATION {
+    DOMAIN_SERVER_ENABLE_STATE DomainServerState;
+} DOMAIN_STATE_INFORMATION, *PDOMAIN_STATE_INFORMATION;
+ 
+typedef enum _DOMAIN_SERVER_ROLE {
+    DomainServerRoleBackup = 2,
+    DomainServerRolePrimary = 3
+} DOMAIN_SERVER_ROLE, *PDOMAIN_SERVER_ROLE;
+ 
+typedef struct _DOMAIN_PASSWORD_INFORMATION {
+    unsigned short MinPasswordLength;
+    unsigned short PasswordHistoryLength;
+    unsigned long PasswordProperties;
+    OLD_LARGE_INTEGER MaxPasswordAge;
+    OLD_LARGE_INTEGER MinPasswordAge;
+} DOMAIN_PASSWORD_INFORMATION, *PDOMAIN_PASSWORD_INFORMATION;
+ 
+typedef struct _DOMAIN_LOGOFF_INFORMATION {
+    OLD_LARGE_INTEGER ForceLogoff;
+} DOMAIN_LOGOFF_INFORMATION, *PDOMAIN_LOGOFF_INFORMATION;
+ 
+typedef struct _DOMAIN_SERVER_ROLE_INFORMATION {
+    DOMAIN_SERVER_ROLE DomainServerRole;
+} DOMAIN_SERVER_ROLE_INFORMATION, *PDOMAIN_SERVER_ROLE_INFORMATION;
+ 
+typedef struct _DOMAIN_MODIFIED_INFORMATION {
+    OLD_LARGE_INTEGER DomainModifiedCount;
+    OLD_LARGE_INTEGER CreationTime;
+} DOMAIN_MODIFIED_INFORMATION, *PDOMAIN_MODIFIED_INFORMATION;
+ 
+typedef struct _DOMAIN_MODIFIED_INFORMATION2 {
+    OLD_LARGE_INTEGER DomainModifiedCount;
+    OLD_LARGE_INTEGER CreationTime;
+    OLD_LARGE_INTEGER ModifiedCountAtLastPromotion;
+} DOMAIN_MODIFIED_INFORMATION2, *PDOMAIN_MODIFIED_INFORMATION2;
+ 
+#pragma pack(4)
+typedef struct _SAMPR_DOMAIN_GENERAL_INFORMATION {
+    OLD_LARGE_INTEGER  ForceLogoff;
+    RPC_UNICODE_STRING OemInformation;
+    RPC_UNICODE_STRING DomainName;
+    RPC_UNICODE_STRING ReplicaSourceNodeName;
+    OLD_LARGE_INTEGER  DomainModifiedCount;
+    unsigned long      DomainServerState;
+    unsigned long      DomainServerRole;
+    unsigned char      UasCompatibilityRequired;
+    unsigned long      UserCount;
+    unsigned long      GroupCount;
+    unsigned long      AliasCount;
+} SAMPR_DOMAIN_GENERAL_INFORMATION,
+  *PSAMPR_DOMAIN_GENERAL_INFORMATION;
+#pragma pack()
+ 
+#pragma pack(4)
+typedef struct _SAMPR_DOMAIN_GENERAL_INFORMATION2 {
+    SAMPR_DOMAIN_GENERAL_INFORMATION  I1;
+    LARGE_INTEGER LockoutDuration;
+    LARGE_INTEGER LockoutObservationWindow;
+    unsigned short LockoutThreshold;
+} SAMPR_DOMAIN_GENERAL_INFORMATION2,
+  *PSAMPR_DOMAIN_GENERAL_INFORMATION2;
+#pragma pack()
+ 
+typedef struct _SAMPR_DOMAIN_OEM_INFORMATION {
+    RPC_UNICODE_STRING OemInformation;
+} SAMPR_DOMAIN_OEM_INFORMATION, *PSAMPR_DOMAIN_OEM_INFORMATION;
+ 
+typedef struct _SAMPR_DOMAIN_NAME_INFORMATION {
+    RPC_UNICODE_STRING DomainName;
+} SAMPR_DOMAIN_NAME_INFORMATION, *PSAMPR_DOMAIN_NAME_INFORMATION;
+ 
+typedef struct SAMPR_DOMAIN_REPLICATION_INFORMATION {
+    RPC_UNICODE_STRING ReplicaSourceNodeName;
+} SAMPR_DOMAIN_REPLICATION_INFORMATION,
+  *PSAMPR_DOMAIN_REPLICATION_INFORMATION;
+ 
+typedef struct _SAMPR_DOMAIN_LOCKOUT_INFORMATION {
+    LARGE_INTEGER LockoutDuration;
+    LARGE_INTEGER LockoutObservationWindow;
+    unsigned short LockoutThreshold;
+} SAMPR_DOMAIN_LOCKOUT_INFORMATION,
+  *PSAMPR_DOMAIN_LOCKOUT_INFORMATION;
+ 
+typedef enum _DOMAIN_INFORMATION_CLASS {
+    DomainPasswordInformation = 1,
+    DomainGeneralInformation = 2,
+    DomainLogoffInformation = 3,
+    DomainOemInformation = 4,
+    DomainNameInformation = 5,
+    DomainReplicationInformation = 6,
+    DomainServerRoleInformation = 7,
+    DomainModifiedInformation = 8,
+    DomainStateInformation = 9,
+    DomainGeneralInformation2 = 11,
+    DomainLockoutInformation = 12,
+    DomainModifiedInformation2 = 13
+} DOMAIN_INFORMATION_CLASS;
+ 
+typedef [switch_type(DOMAIN_INFORMATION_CLASS)] union
+_SAMPR_DOMAIN_INFO_BUFFER {
+    [case(DomainPasswordInformation)]
+        DOMAIN_PASSWORD_INFORMATION          Password;
+    [case(DomainGeneralInformation)]
+        SAMPR_DOMAIN_GENERAL_INFORMATION     General;
+    [case(DomainLogoffInformation)]
+        DOMAIN_LOGOFF_INFORMATION            Logoff;
+    [case(DomainOemInformation)]
+        SAMPR_DOMAIN_OEM_INFORMATION         Oem;
+    [case(DomainNameInformation)]
+        SAMPR_DOMAIN_NAME_INFORMATION        Name;
+    [case(DomainServerRoleInformation)]
+        DOMAIN_SERVER_ROLE_INFORMATION       Role;
+    [case(DomainReplicationInformation)]
+        SAMPR_DOMAIN_REPLICATION_INFORMATION Replication;
+    [case(DomainModifiedInformation)]
+        DOMAIN_MODIFIED_INFORMATION          Modified;
+    [case(DomainStateInformation)]
+        DOMAIN_STATE_INFORMATION             State;
+    [case(DomainGeneralInformation2)]
+        SAMPR_DOMAIN_GENERAL_INFORMATION2    General2;
+    [case(DomainLockoutInformation)]
+        SAMPR_DOMAIN_LOCKOUT_INFORMATION     Lockout;
+    [case(DomainModifiedInformation2)]
+        DOMAIN_MODIFIED_INFORMATION2         Modified2;
+} SAMPR_DOMAIN_INFO_BUFFER, *PSAMPR_DOMAIN_INFO_BUFFER;
+ 
+typedef enum _DOMAIN_DISPLAY_INFORMATION {
+    DomainDisplayUser = 1,
+    DomainDisplayMachine,
+    DomainDisplayGroup,
+    DomainDisplayOemUser,
+    DomainDisplayOemGroup
+} DOMAIN_DISPLAY_INFORMATION, *PDOMAIN_DISPLAY_INFORMATION;
+ 
+typedef struct _SAMPR_DOMAIN_DISPLAY_USER {
+    unsigned long      Index;
+    unsigned long      Rid;
+    unsigned long      AccountControl;
+    RPC_UNICODE_STRING AccountName;
+    RPC_UNICODE_STRING AdminComment;
+    RPC_UNICODE_STRING FullName;
+} SAMPR_DOMAIN_DISPLAY_USER, *PSAMPR_DOMAIN_DISPLAY_USER;
+ 
+typedef struct _SAMPR_DOMAIN_DISPLAY_MACHINE {
+    unsigned long      Index;
+    unsigned long      Rid;
+    unsigned long      AccountControl;
+    RPC_UNICODE_STRING AccountName;
+    RPC_UNICODE_STRING AdminComment;
+} SAMPR_DOMAIN_DISPLAY_MACHINE, *PSAMPR_DOMAIN_DISPLAY_MACHINE;
+ 
+typedef struct _SAMPR_DOMAIN_DISPLAY_GROUP {
+    unsigned long      Index;
+    unsigned long      Rid;
+    unsigned long      Attributes;
+    RPC_UNICODE_STRING AccountName;
+    RPC_UNICODE_STRING AdminComment;
+} SAMPR_DOMAIN_DISPLAY_GROUP, *PSAMPR_DOMAIN_DISPLAY_GROUP;
+ 
+typedef struct _SAMPR_DOMAIN_DISPLAY_OEM_USER {
+    unsigned long           Index;
+    RPC_STRING              OemAccountName;
+} SAMPR_DOMAIN_DISPLAY_OEM_USER, *PSAMPR_DOMAIN_DISPLAY_OEM_USER;
+ 
+typedef struct _SAMPR_DOMAIN_DISPLAY_OEM_GROUP {
+    unsigned long           Index;
+    RPC_STRING              OemAccountName;
+} SAMPR_DOMAIN_DISPLAY_OEM_GROUP, *PSAMPR_DOMAIN_DISPLAY_OEM_GROUP;
+ 
+typedef struct _SAMPR_DOMAIN_DISPLAY_USER_BUFFER {
+    unsigned long EntriesRead;
+    [size_is(EntriesRead)] PSAMPR_DOMAIN_DISPLAY_USER Buffer;
+} SAMPR_DOMAIN_DISPLAY_USER_BUFFER,
+  *PSAMPR_DOMAIN_DISPLAY_USER_BUFFER;
+ 
+typedef struct _SAMPR_DOMAIN_DISPLAY_MACHINE_BUFFER {
+    unsigned long EntriesRead;
+    [size_is(EntriesRead)] PSAMPR_DOMAIN_DISPLAY_MACHINE Buffer;
+} SAMPR_DOMAIN_DISPLAY_MACHINE_BUFFER,
+  *PSAMPR_DOMAIN_DISPLAY_MACHINE_BUFFER;
+ 
+typedef struct _SAMPR_DOMAIN_DISPLAY_GROUP_BUFFER {
+    unsigned long EntriesRead;
+    [size_is(EntriesRead)] PSAMPR_DOMAIN_DISPLAY_GROUP Buffer;
+} SAMPR_DOMAIN_DISPLAY_GROUP_BUFFER,
+  *PSAMPR_DOMAIN_DISPLAY_GROUP_BUFFER;
+ 
+typedef struct _SAMPR_DOMAIN_DISPLAY_OEM_USER_BUFFER {
+    unsigned long EntriesRead;
+    [size_is(EntriesRead)] PSAMPR_DOMAIN_DISPLAY_OEM_USER Buffer;
+} SAMPR_DOMAIN_DISPLAY_OEM_USER_BUFFER,
+  *PSAMPR_DOMAIN_DISPLAY_OEM_USER_BUFFER;
+ 
+typedef struct _SAMPR_DOMAIN_DISPLAY_OEM_GROUP_BUFFER {
+    unsigned long EntriesRead;
+    [size_is(EntriesRead)] PSAMPR_DOMAIN_DISPLAY_OEM_GROUP Buffer;
+} SAMPR_DOMAIN_DISPLAY_OEM_GROUP_BUFFER,
+  *PSAMPR_DOMAIN_DISPLAY_OEM_GROUP_BUFFER;
+ 
+typedef [switch_type(DOMAIN_DISPLAY_INFORMATION)] union
+_SAMPR_DISPLAY_INFO_BUFFER {
+    [case(DomainDisplayUser)]
+        SAMPR_DOMAIN_DISPLAY_USER_BUFFER      UserInformation;
+    [case(DomainDisplayMachine)]
+        SAMPR_DOMAIN_DISPLAY_MACHINE_BUFFER   MachineInformation;
+    [case(DomainDisplayGroup)]
+        SAMPR_DOMAIN_DISPLAY_GROUP_BUFFER     GroupInformation;
+    [case(DomainDisplayOemUser)]
+        SAMPR_DOMAIN_DISPLAY_OEM_USER_BUFFER  OemUserInformation;
+    [case(DomainDisplayOemGroup)]
+        SAMPR_DOMAIN_DISPLAY_OEM_GROUP_BUFFER OemGroupInformation;
+} SAMPR_DISPLAY_INFO_BUFFER, *PSAMPR_DISPLAY_INFO_BUFFER;
+ 
+typedef struct _GROUP_ATTRIBUTE_INFORMATION {
+    unsigned long Attributes;
+} GROUP_ATTRIBUTE_INFORMATION, *PGROUP_ATTRIBUTE_INFORMATION;
+ 
+typedef struct _SAMPR_GROUP_GENERAL_INFORMATION {
+    RPC_UNICODE_STRING Name;
+    unsigned long Attributes;
+    unsigned long MemberCount;
+    RPC_UNICODE_STRING AdminComment;
+} SAMPR_GROUP_GENERAL_INFORMATION, 
+  *PSAMPR_GROUP_GENERAL_INFORMATION;
+ 
+typedef struct _SAMPR_GROUP_NAME_INFORMATION {
+    RPC_UNICODE_STRING Name;
+} SAMPR_GROUP_NAME_INFORMATION, *PSAMPR_GROUP_NAME_INFORMATION;
+ 
+typedef struct _SAMPR_GROUP_ADM_COMMENT_INFORMATION {
+    RPC_UNICODE_STRING AdminComment;
+} SAMPR_GROUP_ADM_COMMENT_INFORMATION,
+  *PSAMPR_GROUP_ADM_COMMENT_INFORMATION;
+ 
+typedef enum _GROUP_INFORMATION_CLASS {
+    GroupGeneralInformation = 1,
+    GroupNameInformation,
+    GroupAttributeInformation,
+    GroupAdminCommentInformation,
+    GroupReplicationInformation
+} GROUP_INFORMATION_CLASS;
+ 
+typedef [switch_type(GROUP_INFORMATION_CLASS)] union
+_SAMPR_GROUP_INFO_BUFFER {
+    [case(GroupGeneralInformation)]
+        SAMPR_GROUP_GENERAL_INFORMATION     General;
+    [case(GroupNameInformation)]
+        SAMPR_GROUP_NAME_INFORMATION        Name;
+    [case(GroupAttributeInformation)]
+        GROUP_ATTRIBUTE_INFORMATION         Attribute;
+    [case(GroupAdminCommentInformation)]
+        SAMPR_GROUP_ADM_COMMENT_INFORMATION AdminComment;
+    [case(GroupReplicationInformation)]
+        SAMPR_GROUP_GENERAL_INFORMATION     DoNotUse;
+} SAMPR_GROUP_INFO_BUFFER, *PSAMPR_GROUP_INFO_BUFFER;
+ 
+typedef struct _SAMPR_ALIAS_GENERAL_INFORMATION {
+    RPC_UNICODE_STRING Name;
+    unsigned long MemberCount;
+    RPC_UNICODE_STRING AdminComment;
+} SAMPR_ALIAS_GENERAL_INFORMATION,
+  *PSAMPR_ALIAS_GENERAL_INFORMATION;
+ 
+typedef struct _SAMPR_ALIAS_NAME_INFORMATION {
+    RPC_UNICODE_STRING Name;
+} SAMPR_ALIAS_NAME_INFORMATION, *PSAMPR_ALIAS_NAME_INFORMATION;
+ 
+typedef struct _SAMPR_ALIAS_ADM_COMMENT_INFORMATION {
+    RPC_UNICODE_STRING AdminComment;
+} SAMPR_ALIAS_ADM_COMMENT_INFORMATION,
+  *PSAMPR_ALIAS_ADM_COMMENT_INFORMATION;
+ 
+typedef enum _ALIAS_INFORMATION_CLASS {
+    AliasGeneralInformation = 1,
+    AliasNameInformation,
+    AliasAdminCommentInformation
+} ALIAS_INFORMATION_CLASS;
+ 
+typedef [switch_type(ALIAS_INFORMATION_CLASS)] union
+_SAMPR_ALIAS_INFO_BUFFER {
+    [case(AliasGeneralInformation)]
+        SAMPR_ALIAS_GENERAL_INFORMATION     General;
+    [case(AliasNameInformation)]
+        SAMPR_ALIAS_NAME_INFORMATION        Name;
+    [case(AliasAdminCommentInformation)]
+        SAMPR_ALIAS_ADM_COMMENT_INFORMATION AdminComment;
+} SAMPR_ALIAS_INFO_BUFFER, *PSAMPR_ALIAS_INFO_BUFFER;
+ 
+typedef struct _SAMPR_ENCRYPTED_USER_PASSWORD {
+    unsigned char Buffer[ (256 * 2) + 4 ];
+} SAMPR_ENCRYPTED_USER_PASSWORD, *PSAMPR_ENCRYPTED_USER_PASSWORD;
+ 
+typedef struct _SAMPR_ENCRYPTED_USER_PASSWORD_NEW {
+    unsigned char Buffer[ (256 * 2) + 4 + 16];
+} SAMPR_ENCRYPTED_USER_PASSWORD_NEW,
+  *PSAMPR_ENCRYPTED_USER_PASSWORD_NEW;
+ 
+typedef struct _USER_PRIMARY_GROUP_INFORMATION {
+    unsigned long PrimaryGroupId;
+} USER_PRIMARY_GROUP_INFORMATION, *PUSER_PRIMARY_GROUP_INFORMATION;
+ 
+typedef struct _USER_CONTROL_INFORMATION {
+    unsigned long UserAccountControl;
+} USER_CONTROL_INFORMATION, *PUSER_CONTROL_INFORMATION;
+ 
+typedef struct _USER_EXPIRES_INFORMATION {
+    OLD_LARGE_INTEGER AccountExpires;
+} USER_EXPIRES_INFORMATION, *PUSER_EXPIRES_INFORMATION;
+ 
+typedef struct _SAMPR_LOGON_HOURS {
+    unsigned short UnitsPerWeek;
+    [size_is(1260), length_is((UnitsPerWeek+7)/8)]
+        unsigned char*  LogonHours;
+} SAMPR_LOGON_HOURS, *PSAMPR_LOGON_HOURS;
+ 
+typedef struct _SAMPR_USER_ALL_INFORMATION {
+    OLD_LARGE_INTEGER LastLogon;
+    OLD_LARGE_INTEGER LastLogoff;
+    OLD_LARGE_INTEGER PasswordLastSet;
+    OLD_LARGE_INTEGER AccountExpires;
+    OLD_LARGE_INTEGER PasswordCanChange;
+    OLD_LARGE_INTEGER PasswordMustChange;
+    RPC_UNICODE_STRING UserName;
+    RPC_UNICODE_STRING FullName;
+    RPC_UNICODE_STRING HomeDirectory;
+    RPC_UNICODE_STRING HomeDirectoryDrive;
+    RPC_UNICODE_STRING ScriptPath;
+    RPC_UNICODE_STRING ProfilePath;
+    RPC_UNICODE_STRING AdminComment;
+    RPC_UNICODE_STRING WorkStations;
+    RPC_UNICODE_STRING UserComment;
+    RPC_UNICODE_STRING Parameters;
+    RPC_SHORT_BLOB LmOwfPassword;
+    RPC_SHORT_BLOB NtOwfPassword;
+    RPC_UNICODE_STRING PrivateData;
+    SAMPR_SR_SECURITY_DESCRIPTOR SecurityDescriptor;
+    unsigned long UserId;
+    unsigned long PrimaryGroupId;
+    unsigned long UserAccountControl;
+    unsigned long WhichFields;
+    SAMPR_LOGON_HOURS LogonHours;
+    unsigned short BadPasswordCount;
+    unsigned short LogonCount;
+    unsigned short CountryCode;
+    unsigned short CodePage;
+    unsigned char LmPasswordPresent;
+    unsigned char NtPasswordPresent;
+    unsigned char PasswordExpired;
+    unsigned char PrivateDataSensitive;
+} SAMPR_USER_ALL_INFORMATION, *PSAMPR_USER_ALL_INFORMATION;
+ 
+typedef struct _SAMPR_USER_GENERAL_INFORMATION {
+    RPC_UNICODE_STRING UserName;
+    RPC_UNICODE_STRING FullName;
+    unsigned long PrimaryGroupId;
+    RPC_UNICODE_STRING AdminComment;
+    RPC_UNICODE_STRING UserComment;
+} SAMPR_USER_GENERAL_INFORMATION, *PSAMPR_USER_GENERAL_INFORMATION;
+ 
+typedef struct _SAMPR_USER_PREFERENCES_INFORMATION {
+    RPC_UNICODE_STRING UserComment;
+    RPC_UNICODE_STRING Reserved1;
+    unsigned short CountryCode;
+    unsigned short CodePage;
+} SAMPR_USER_PREFERENCES_INFORMATION,
+  *PSAMPR_USER_PREFERENCES_INFORMATION;
+ 
+typedef struct _SAMPR_USER_PARAMETERS_INFORMATION {
+    RPC_UNICODE_STRING Parameters;
+} SAMPR_USER_PARAMETERS_INFORMATION,
+  *PSAMPR_USER_PARAMETERS_INFORMATION;
+ 
+typedef struct _SAMPR_USER_LOGON_INFORMATION {
+    RPC_UNICODE_STRING UserName;
+    RPC_UNICODE_STRING FullName;
+    unsigned long UserId;
+    unsigned long PrimaryGroupId;
+    RPC_UNICODE_STRING HomeDirectory;
+    RPC_UNICODE_STRING HomeDirectoryDrive;
+    RPC_UNICODE_STRING ScriptPath;
+    RPC_UNICODE_STRING ProfilePath;
+    RPC_UNICODE_STRING WorkStations;
+    OLD_LARGE_INTEGER LastLogon;
+    OLD_LARGE_INTEGER LastLogoff;
+    OLD_LARGE_INTEGER PasswordLastSet;
+    OLD_LARGE_INTEGER PasswordCanChange;
+    OLD_LARGE_INTEGER PasswordMustChange;
+    SAMPR_LOGON_HOURS LogonHours;
+    unsigned short BadPasswordCount;
+    unsigned short LogonCount;
+    unsigned long UserAccountControl;
+} SAMPR_USER_LOGON_INFORMATION, *PSAMPR_USER_LOGON_INFORMATION;
+ 
+typedef struct _SAMPR_USER_ACCOUNT_INFORMATION {
+    RPC_UNICODE_STRING UserName;
+    RPC_UNICODE_STRING FullName;
+    unsigned long UserId;
+    unsigned long PrimaryGroupId;
+    RPC_UNICODE_STRING HomeDirectory;
+    RPC_UNICODE_STRING HomeDirectoryDrive;
+    RPC_UNICODE_STRING ScriptPath;
+    RPC_UNICODE_STRING ProfilePath;
+    RPC_UNICODE_STRING AdminComment;
+    RPC_UNICODE_STRING WorkStations;
+    OLD_LARGE_INTEGER LastLogon;
+    OLD_LARGE_INTEGER LastLogoff;
+    SAMPR_LOGON_HOURS LogonHours;
+    unsigned short BadPasswordCount;
+    unsigned short LogonCount;
+    OLD_LARGE_INTEGER PasswordLastSet;
+    OLD_LARGE_INTEGER AccountExpires;
+    unsigned long UserAccountControl;
+} SAMPR_USER_ACCOUNT_INFORMATION, *PSAMPR_USER_ACCOUNT_INFORMATION;
+ 
+typedef struct _SAMPR_USER_A_NAME_INFORMATION {
+    RPC_UNICODE_STRING UserName;
+} SAMPR_USER_A_NAME_INFORMATION, *PSAMPR_USER_A_NAME_INFORMATION;
+ 
+typedef struct _SAMPR_USER_F_NAME_INFORMATION {
+    RPC_UNICODE_STRING FullName;
+} SAMPR_USER_F_NAME_INFORMATION, *PSAMPR_USER_F_NAME_INFORMATION;
+ 
+typedef struct _SAMPR_USER_NAME_INFORMATION {
+    RPC_UNICODE_STRING UserName;
+    RPC_UNICODE_STRING FullName;
+} SAMPR_USER_NAME_INFORMATION, *PSAMPR_USER_NAME_INFORMATION;
+ 
+typedef struct _SAMPR_USER_HOME_INFORMATION {
+    RPC_UNICODE_STRING HomeDirectory;
+    RPC_UNICODE_STRING HomeDirectoryDrive;
+} SAMPR_USER_HOME_INFORMATION, *PSAMPR_USER_HOME_INFORMATION;
+ 
+typedef struct _SAMPR_USER_SCRIPT_INFORMATION {
+    RPC_UNICODE_STRING ScriptPath;
+} SAMPR_USER_SCRIPT_INFORMATION, *PSAMPR_USER_SCRIPT_INFORMATION;
+ 
+typedef struct _SAMPR_USER_PROFILE_INFORMATION {
+    RPC_UNICODE_STRING ProfilePath;
+} SAMPR_USER_PROFILE_INFORMATION, *PSAMPR_USER_PROFILE_INFORMATION;
+ 
+typedef struct _SAMPR_USER_ADMIN_COMMENT_INFORMATION {
+    RPC_UNICODE_STRING AdminComment;
+} SAMPR_USER_ADMIN_COMMENT_INFORMATION,
+  *PSAMPR_USER_ADMIN_COMMENT_INFORMATION;
+ 
+typedef struct _SAMPR_USER_WORKSTATIONS_INFORMATION {
+    RPC_UNICODE_STRING WorkStations;
+} SAMPR_USER_WORKSTATIONS_INFORMATION,
+  *PSAMPR_USER_WORKSTATIONS_INFORMATION;
+ 
+typedef struct _SAMPR_USER_LOGON_HOURS_INFORMATION {
+    SAMPR_LOGON_HOURS LogonHours;
+} SAMPR_USER_LOGON_HOURS_INFORMATION,
+  *PSAMPR_USER_LOGON_HOURS_INFORMATION;
+ 
+typedef struct _SAMPR_USER_INTERNAL1_INFORMATION {
+    ENCRYPTED_NT_OWF_PASSWORD  EncryptedNtOwfPassword;
+    ENCRYPTED_LM_OWF_PASSWORD  EncryptedLmOwfPassword;
+    unsigned char              NtPasswordPresent;
+    unsigned char              LmPasswordPresent;
+    unsigned char              PasswordExpired;
+} SAMPR_USER_INTERNAL1_INFORMATION,
+  *PSAMPR_USER_INTERNAL1_INFORMATION;
+ 
+typedef struct _SAMPR_USER_INTERNAL4_INFORMATION {
+    SAMPR_USER_ALL_INFORMATION I1;
+    SAMPR_ENCRYPTED_USER_PASSWORD UserPassword;
+} SAMPR_USER_INTERNAL4_INFORMATION, 
+  *PSAMPR_USER_INTERNAL4_INFORMATION;
+ 
+typedef struct _SAMPR_USER_INTERNAL4_INFORMATION_NEW {
+    SAMPR_USER_ALL_INFORMATION I1;
+    SAMPR_ENCRYPTED_USER_PASSWORD_NEW UserPassword;
+} SAMPR_USER_INTERNAL4_INFORMATION_NEW,
+  *PSAMPR_USER_INTERNAL4_INFORMATION_NEW;
+ 
+typedef struct _SAMPR_USER_INTERNAL5_INFORMATION {
+    SAMPR_ENCRYPTED_USER_PASSWORD UserPassword;
+    unsigned char                 PasswordExpired;
+} SAMPR_USER_INTERNAL5_INFORMATION,
+  *PSAMPR_USER_INTERNAL5_INFORMATION;
+ 
+typedef struct _SAMPR_USER_INTERNAL5_INFORMATION_NEW {
+    SAMPR_ENCRYPTED_USER_PASSWORD_NEW UserPassword;
+    unsigned char                      PasswordExpired;
+} SAMPR_USER_INTERNAL5_INFORMATION_NEW,
+  *PSAMPR_USER_INTERNAL5_INFORMATION_NEW;
+ 
+typedef enum _USER_INFORMATION_CLASS {
+    UserGeneralInformation = 1,
+    UserPreferencesInformation = 2,
+    UserLogonInformation = 3,
+    UserLogonHoursInformation = 4,
+    UserAccountInformation = 5,
+    UserNameInformation = 6,
+    UserAccountNameInformation = 7,
+    UserFullNameInformation = 8,
+    UserPrimaryGroupInformation = 9,
+    UserHomeInformation = 10,
+    UserScriptInformation = 11,
+    UserProfileInformation = 12,
+    UserAdminCommentInformation = 13,
+    UserWorkStationsInformation = 14,
+    UserControlInformation = 16,
+    UserExpiresInformation = 17,
+    UserInternal1Information = 18,
+    UserParametersInformation = 20,
+    UserAllInformation = 21,
+    UserInternal4Information = 23,
+    UserInternal5Information = 24,
+    UserInternal4InformationNew = 25,
+    UserInternal5InformationNew = 26
+} USER_INFORMATION_CLASS, *PUSER_INFORMATION_CLASS;
+ 
+typedef [switch_type(USER_INFORMATION_CLASS)] union
+_SAMPR_USER_INFO_BUFFER {
+    [case(UserGeneralInformation)]
+        SAMPR_USER_GENERAL_INFORMATION        General;
+    [case(UserPreferencesInformation)]
+        SAMPR_USER_PREFERENCES_INFORMATION    Preferences;
+    [case(UserLogonInformation)]
+        SAMPR_USER_LOGON_INFORMATION          Logon;
+    [case(UserLogonHoursInformation)]
+        SAMPR_USER_LOGON_HOURS_INFORMATION    LogonHours;
+    [case(UserAccountInformation)]
+        SAMPR_USER_ACCOUNT_INFORMATION        Account;
+    [case(UserNameInformation)]
+        SAMPR_USER_NAME_INFORMATION           Name;
+    [case(UserAccountNameInformation)]
+        SAMPR_USER_A_NAME_INFORMATION         AccountName;
+    [case(UserFullNameInformation)]
+        SAMPR_USER_F_NAME_INFORMATION         FullName;
+    [case(UserPrimaryGroupInformation)]
+        USER_PRIMARY_GROUP_INFORMATION        PrimaryGroup;
+    [case(UserHomeInformation)]
+        SAMPR_USER_HOME_INFORMATION           Home;
+    [case(UserScriptInformation)]
+        SAMPR_USER_SCRIPT_INFORMATION         Script;
+    [case(UserProfileInformation)]
+        SAMPR_USER_PROFILE_INFORMATION        Profile;
+    [case(UserAdminCommentInformation)]
+        SAMPR_USER_ADMIN_COMMENT_INFORMATION  AdminComment;
+    [case(UserWorkStationsInformation)]
+        SAMPR_USER_WORKSTATIONS_INFORMATION   WorkStations;
+    [case(UserControlInformation)]
+        USER_CONTROL_INFORMATION              Control;
+    [case(UserExpiresInformation)]
+        USER_EXPIRES_INFORMATION              Expires;
+    [case(UserInternal1Information)]
+        SAMPR_USER_INTERNAL1_INFORMATION      Internal1;
+    [case(UserParametersInformation)]
+        SAMPR_USER_PARAMETERS_INFORMATION     Parameters;
+    [case(UserAllInformation)]
+        SAMPR_USER_ALL_INFORMATION            All;
+    [case(UserInternal4Information)]
+        SAMPR_USER_INTERNAL4_INFORMATION      Internal4;
+    [case(UserInternal5Information)]
+        SAMPR_USER_INTERNAL5_INFORMATION      Internal5;
+    [case(UserInternal4InformationNew)]
+        SAMPR_USER_INTERNAL4_INFORMATION_NEW  Internal4New;
+    [case(UserInternal5InformationNew)]
+        SAMPR_USER_INTERNAL5_INFORMATION_NEW  Internal5New;
+} SAMPR_USER_INFO_BUFFER, *PSAMPR_USER_INFO_BUFFER;
+ 
+typedef enum _PASSWORD_POLICY_VALIDATION_TYPE{
+    SamValidateAuthentication = 1,
+    SamValidatePasswordChange,
+    SamValidatePasswordReset
+} PASSWORD_POLICY_VALIDATION_TYPE;
+ 
+typedef struct _SAM_VALIDATE_PASSWORD_HASH{
+    unsigned long Length;
+    [unique,size_is(Length)]
+    unsigned char* Hash;
+} SAM_VALIDATE_PASSWORD_HASH, *PSAM_VALIDATE_PASSWORD_HASH;
+ 
+typedef struct _SAM_VALIDATE_PERSISTED_FIELDS{
+    unsigned long PresentFields;
+    LARGE_INTEGER PasswordLastSet;
+    LARGE_INTEGER BadPasswordTime;
+    LARGE_INTEGER LockoutTime;
+    unsigned long BadPasswordCount;
+    unsigned long PasswordHistoryLength;
+    [unique,size_is(PasswordHistoryLength)]
+    PSAM_VALIDATE_PASSWORD_HASH PasswordHistory;
+} SAM_VALIDATE_PERSISTED_FIELDS, *PSAM_VALIDATE_PERSISTED_FIELDS;
+ 
+typedef enum _SAM_VALIDATE_VALIDATION_STATUS{
+    SamValidateSuccess = 0,
+    SamValidatePasswordMustChange,
+    SamValidateAccountLockedOut,
+    SamValidatePasswordExpired,
+    SamValidatePasswordIncorrect,
+    SamValidatePasswordIsInHistory,
+    SamValidatePasswordTooShort,
+    SamValidatePasswordTooLong,
+    SamValidatePasswordNotComplexEnough,
+    SamValidatePasswordTooRecent,
+    SamValidatePasswordFilterError
+} SAM_VALIDATE_VALIDATION_STATUS, *PSAM_VALIDATE_VALIDATION_STATUS;
+ 
+typedef struct _SAM_VALIDATE_STANDARD_OUTPUT_ARG{
+    SAM_VALIDATE_PERSISTED_FIELDS ChangedPersistedFields;
+    SAM_VALIDATE_VALIDATION_STATUS ValidationStatus;
+} SAM_VALIDATE_STANDARD_OUTPUT_ARG,
+  *PSAM_VALIDATE_STANDARD_OUTPUT_ARG;
+ 
+typedef struct _SAM_VALIDATE_AUTHENTICATION_INPUT_ARG{
+    SAM_VALIDATE_PERSISTED_FIELDS InputPersistedFields;
+    unsigned char PasswordMatched;
+} SAM_VALIDATE_AUTHENTICATION_INPUT_ARG,
+  *PSAM_VALIDATE_AUTHENTICATION_INPUT_ARG;
+ 
+typedef struct  _SAM_VALIDATE_PASSWORD_CHANGE_INPUT_ARG{
+    SAM_VALIDATE_PERSISTED_FIELDS InputPersistedFields;
+    RPC_UNICODE_STRING ClearPassword;
+    RPC_UNICODE_STRING UserAccountName;
+    SAM_VALIDATE_PASSWORD_HASH HashedPassword;
+    unsigned char PasswordMatch;
+} SAM_VALIDATE_PASSWORD_CHANGE_INPUT_ARG,
+  *PSAM_VALIDATE_PASSWORD_CHANGE_INPUT_ARG;
+ 
+typedef struct _SAM_VALIDATE_PASSWORD_RESET_INPUT_ARG{
+    SAM_VALIDATE_PERSISTED_FIELDS InputPersistedFields;
+    RPC_UNICODE_STRING ClearPassword;
+    RPC_UNICODE_STRING UserAccountName;
+    SAM_VALIDATE_PASSWORD_HASH HashedPassword;
+    unsigned char  PasswordMustChangeAtNextLogon;
+    unsigned char  ClearLockout;
+} SAM_VALIDATE_PASSWORD_RESET_INPUT_ARG,
+  *PSAM_VALIDATE_PASSWORD_RESET_INPUT_ARG;
+ 
+typedef
+[switch_type(PASSWORD_POLICY_VALIDATION_TYPE)]
+union _SAM_VALIDATE_INPUT_ARG{
+    [case(SamValidateAuthentication)]
+        SAM_VALIDATE_AUTHENTICATION_INPUT_ARG
+        ValidateAuthenticationInput;
+    [case(SamValidatePasswordChange)]
+        SAM_VALIDATE_PASSWORD_CHANGE_INPUT_ARG
+        ValidatePasswordChangeInput;
+    [case(SamValidatePasswordReset)]
+        SAM_VALIDATE_PASSWORD_RESET_INPUT_ARG
+        ValidatePasswordResetInput;
+} SAM_VALIDATE_INPUT_ARG, *PSAM_VALIDATE_INPUT_ARG;
+ 
+typedef
+[switch_type(PASSWORD_POLICY_VALIDATION_TYPE)]
+union _SAM_VALIDATE_OUTPUT_ARG{
+    [case(SamValidateAuthentication)]
+        SAM_VALIDATE_STANDARD_OUTPUT_ARG
+        ValidateAuthenticationOutput;
+    [case(SamValidatePasswordChange)]
+        SAM_VALIDATE_STANDARD_OUTPUT_ARG
+        ValidatePasswordChangeOutput;
+    [case(SamValidatePasswordReset)]
+        SAM_VALIDATE_STANDARD_OUTPUT_ARG
+        ValidatePasswordResetOutput;
+} SAM_VALIDATE_OUTPUT_ARG, *PSAM_VALIDATE_OUTPUT_ARG;
+ 
+ 
+// opnum 0
+long SamrConnect(
+    [in, unique] PSAMPR_SERVER_NAME ServerName,
+    [out] SAMPR_HANDLE * ServerHandle,
+    [in] unsigned long DesiredAccess
+    );
+ 
+// opnum 1
+long
+SamrCloseHandle(
+    [in,out] SAMPR_HANDLE * SamHandle
+    );
+ 
+// opnum 2
+long
+SamrSetSecurityObject(
+    [in] SAMPR_HANDLE ObjectHandle,
+    [in] SECURITY_INFORMATION SecurityInformation,
+    [in] PSAMPR_SR_SECURITY_DESCRIPTOR SecurityDescriptor
+    );
+ 
+// opnum 3
+long
+SamrQuerySecurityObject(
+    [in] SAMPR_HANDLE ObjectHandle,
+    [in] SECURITY_INFORMATION SecurityInformation,
+    [out] PSAMPR_SR_SECURITY_DESCRIPTOR * SecurityDescriptor
+    );
+ 
+// opnum 4
+void Opnum4NotUsedOnWire(void);
+ 
+// opnum 5
+long
+SamrLookupDomainInSamServer(
+    [in] SAMPR_HANDLE ServerHandle,
+    [in] PRPC_UNICODE_STRING  Name,
+    [out] PRPC_SID * DomainId
+    );
+ 
+// opnum 6
+long
+SamrEnumerateDomainsInSamServer(
+    [in] SAMPR_HANDLE ServerHandle,
+    [in,out] unsigned long * EnumerationContext,
+    [out] PSAMPR_ENUMERATION_BUFFER * Buffer,
+    [in] unsigned long PreferedMaximumLength,
+    [out] unsigned long * CountReturned
+    );
+ 
+// opnum 7
+long
+SamrOpenDomain(
+    [in] SAMPR_HANDLE ServerHandle,
+    [in] unsigned long   DesiredAccess,
+    [in] PRPC_SID DomainId,
+    [out] SAMPR_HANDLE * DomainHandle
+    );
+ 
+// opnum 8
+long
+SamrQueryInformationDomain(
+    [in] SAMPR_HANDLE DomainHandle,
+    [in] DOMAIN_INFORMATION_CLASS DomainInformationClass,
+    [out, switch_is(DomainInformationClass)]
+        PSAMPR_DOMAIN_INFO_BUFFER * Buffer
+    );
+ 
+// opnum 9
+long
+SamrSetInformationDomain(
+    [in] SAMPR_HANDLE DomainHandle,
+    [in] DOMAIN_INFORMATION_CLASS DomainInformationClass,
+    [in, switch_is(DomainInformationClass)]
+        PSAMPR_DOMAIN_INFO_BUFFER DomainInformation
+    );
+ 
+// opnum 10
+long
+SamrCreateGroupInDomain(
+    [in] SAMPR_HANDLE DomainHandle,
+    [in] PRPC_UNICODE_STRING Name,
+    [in] unsigned long   DesiredAccess,
+    [out] SAMPR_HANDLE  * GroupHandle,
+    [out] unsigned long * RelativeId
+    );
+ 
+// opnum 11
+long
+SamrEnumerateGroupsInDomain(
+    [in] SAMPR_HANDLE DomainHandle,
+    [in,out] unsigned long  * EnumerationContext,
+    [out] PSAMPR_ENUMERATION_BUFFER * Buffer,
+    [in] unsigned long    PreferedMaximumLength,
+    [out] unsigned long  * CountReturned
+    );
+ 
+// opnum 12
+long
+SamrCreateUserInDomain(
+    [in] SAMPR_HANDLE DomainHandle,
+    [in] PRPC_UNICODE_STRING Name,
+    [in] unsigned long   DesiredAccess,
+    [out] SAMPR_HANDLE  * UserHandle,
+    [out] unsigned long * RelativeId
+    );
+ 
+// opnum 13
+long
+SamrEnumerateUsersInDomain(
+    [in] SAMPR_HANDLE DomainHandle,
+    [in,out] unsigned long  * EnumerationContext,
+    [in] unsigned long    UserAccountControl,
+    [out] PSAMPR_ENUMERATION_BUFFER * Buffer,
+    [in] unsigned long    PreferedMaximumLength,
+    [out] unsigned long  * CountReturned
+    );
+ 
+// opnum 14
+long
+SamrCreateAliasInDomain(
+    [in] SAMPR_HANDLE DomainHandle,
+    [in] PRPC_UNICODE_STRING AccountName,
+    [in] unsigned long   DesiredAccess,
+    [out] SAMPR_HANDLE  * AliasHandle,
+    [out] unsigned long * RelativeId
+    );
+ 
+// opnum 15
+long
+SamrEnumerateAliasesInDomain(
+    [in] SAMPR_HANDLE DomainHandle,
+    [in,out] unsigned long  * EnumerationContext,
+    [out] PSAMPR_ENUMERATION_BUFFER * Buffer,
+    [in] unsigned long    PreferedMaximumLength,
+    [out] unsigned long  * CountReturned
+    );
+ 
+// opnum 16
+long
+SamrGetAliasMembership(
+    [in] SAMPR_HANDLE DomainHandle,
+    [in] PSAMPR_PSID_ARRAY SidArray,
+    [out] PSAMPR_ULONG_ARRAY Membership
+    );
+ 
+// opnum 17
+long
+SamrLookupNamesInDomain(
+    [in] SAMPR_HANDLE DomainHandle,
+    [in, range(0, 1000)] unsigned long Count,
+    [in, size_is(1000), length_is(Count)] RPC_UNICODE_STRING Names[*],
+    [out] PSAMPR_ULONG_ARRAY RelativeIds,
+    [out] PSAMPR_ULONG_ARRAY Use
+    );
+ 
+// opnum 18
+long
+SamrLookupIdsInDomain(
+    [in] SAMPR_HANDLE DomainHandle,
+    [in, range(0, 1000)] unsigned long    Count,
+    [in, size_is(1000), length_is(Count)] unsigned long *RelativeIds,
+    [out] PSAMPR_RETURNED_USTRING_ARRAY   Names,
+    [out] PSAMPR_ULONG_ARRAY Use
+    );
+ 
+// opnum 19
+long
+SamrOpenGroup(
+    [in] SAMPR_HANDLE DomainHandle,
+    [in] unsigned long   DesiredAccess,
+    [in] unsigned long   GroupId,
+    [out] SAMPR_HANDLE  * GroupHandle
+    );
+ 
+// opnum 20
+long
+SamrQueryInformationGroup(
+    [in] SAMPR_HANDLE GroupHandle,
+    [in] GROUP_INFORMATION_CLASS GroupInformationClass,
+    [out, switch_is(GroupInformationClass)]
+        PSAMPR_GROUP_INFO_BUFFER * Buffer
+    );
+ 
+// opnum 21
+long
+SamrSetInformationGroup(
+    [in] SAMPR_HANDLE GroupHandle,
+    [in] GROUP_INFORMATION_CLASS GroupInformationClass,
+    [in, switch_is(GroupInformationClass)]
+        PSAMPR_GROUP_INFO_BUFFER Buffer
+    );
+ 
+// opnum 22
+long
+SamrAddMemberToGroup(
+    [in] SAMPR_HANDLE GroupHandle,
+    [in] unsigned long   MemberId,
+    [in] unsigned long   Attributes
+    );
+ 
+// opnum 23
+long
+SamrDeleteGroup(
+    [in,out] SAMPR_HANDLE  * GroupHandle
+    );
+ 
+// opnum 24
+long
+SamrRemoveMemberFromGroup(
+    [in] SAMPR_HANDLE GroupHandle,
+    [in] unsigned long   MemberId
+    );
+ 
+// opnum 25
+long
+SamrGetMembersInGroup(
+    [in] SAMPR_HANDLE GroupHandle,
+    [out] PSAMPR_GET_MEMBERS_BUFFER * Members
+    );
+ 
+// opnum 26
+long
+SamrSetMemberAttributesOfGroup(
+    [in] SAMPR_HANDLE GroupHandle,
+    [in] unsigned long   MemberId,
+    [in] unsigned long   Attributes
+    );
+ 
+// opnum 27
+long
+SamrOpenAlias(
+    [in] SAMPR_HANDLE DomainHandle,
+    [in] unsigned long   DesiredAccess,
+    [in] unsigned long   AliasId,
+    [out] SAMPR_HANDLE  * AliasHandle
+    );
+ 
+// opnum 28
+long
+SamrQueryInformationAlias(
+    [in] SAMPR_HANDLE AliasHandle,
+    [in] ALIAS_INFORMATION_CLASS AliasInformationClass,
+    [out, switch_is(AliasInformationClass)]
+        PSAMPR_ALIAS_INFO_BUFFER * Buffer
+    );
+ 
+// opnum 29
+long
+SamrSetInformationAlias(
+    [in] SAMPR_HANDLE AliasHandle,
+    [in] ALIAS_INFORMATION_CLASS AliasInformationClass,
+    [in, switch_is(AliasInformationClass)]
+        PSAMPR_ALIAS_INFO_BUFFER Buffer
+    );
+ 
+// opnum 30
+long
+SamrDeleteAlias(
+    [in, out] SAMPR_HANDLE  * AliasHandle
+    );
+ 
+// opnum 31
+long
+SamrAddMemberToAlias(
+    [in] SAMPR_HANDLE AliasHandle,
+    [in] PRPC_SID MemberId
+    );
+ 
+// opnum 32
+long
+SamrRemoveMemberFromAlias(
+    [in] SAMPR_HANDLE AliasHandle,
+    [in] PRPC_SID MemberId
+    );
+ 
+// opnum 33
+long
+SamrGetMembersInAlias(
+    [in] SAMPR_HANDLE AliasHandle,
+    [out] PSAMPR_PSID_ARRAY_OUT Members
+    );
+ 
+// opnum 34
+long
+SamrOpenUser(
+    [in] SAMPR_HANDLE DomainHandle,
+    [in] unsigned long   DesiredAccess,
+    [in] unsigned long   UserId,
+    [out] SAMPR_HANDLE  * UserHandle
+    );
+ 
+// opnum 35
+long
+SamrDeleteUser(
+    [in,out] SAMPR_HANDLE  * UserHandle
+    );
+ 
+// opnum 36
+long
+SamrQueryInformationUser(
+    [in] SAMPR_HANDLE UserHandle,
+    [in] USER_INFORMATION_CLASS  UserInformationClass,
+    [out, switch_is(UserInformationClass)]
+        PSAMPR_USER_INFO_BUFFER * Buffer
+    );
+ 
+// opnum 37
+long
+SamrSetInformationUser(
+    [in] SAMPR_HANDLE UserHandle,
+    [in] USER_INFORMATION_CLASS  UserInformationClass,
+    [in, switch_is(UserInformationClass)]
+        PSAMPR_USER_INFO_BUFFER Buffer
+    );
+ 
+// opnum 38
+long
+SamrChangePasswordUser(
+    [in] SAMPR_HANDLE UserHandle,
+    [in] unsigned char    LmPresent,
+    [in, unique] PENCRYPTED_LM_OWF_PASSWORD OldLmEncryptedWithNewLm,
+    [in, unique] PENCRYPTED_LM_OWF_PASSWORD NewLmEncryptedWithOldLm,
+    [in] unsigned char    NtPresent,
+    [in, unique] PENCRYPTED_NT_OWF_PASSWORD OldNtEncryptedWithNewNt,
+    [in, unique] PENCRYPTED_NT_OWF_PASSWORD NewNtEncryptedWithOldNt,
+    [in] unsigned char    NtCrossEncryptionPresent,
+    [in, unique] PENCRYPTED_NT_OWF_PASSWORD NewNtEncryptedWithNewLm,
+    [in] unsigned char    LmCrossEncryptionPresent,
+    [in, unique] PENCRYPTED_LM_OWF_PASSWORD NewLmEncryptedWithNewNt
+    );
+ 
+// opnum 39
+long
+SamrGetGroupsForUser(
+    [in] SAMPR_HANDLE UserHandle,
+    [out] PSAMPR_GET_GROUPS_BUFFER * Groups
+    );
+ 
+// opnum 40
+long
+SamrQueryDisplayInformation (
+    [in] SAMPR_HANDLE DomainHandle,
+    [in] DOMAIN_DISPLAY_INFORMATION DisplayInformationClass,
+    [in] unsigned long    Index,
+    [in] unsigned long    EntryCount,
+    [in] unsigned long    PreferredMaximumLength,
+    [out] unsigned long  * TotalAvailable,
+    [out] unsigned long  * TotalReturned,
+    [out, switch_is(DisplayInformationClass)]
+        PSAMPR_DISPLAY_INFO_BUFFER Buffer
+    );
+ 
+// opnum 41
+long
+SamrGetDisplayEnumerationIndex (
+    [in] SAMPR_HANDLE DomainHandle,
+    [in] DOMAIN_DISPLAY_INFORMATION DisplayInformationClass,
+    [in] PRPC_UNICODE_STRING  Prefix,
+    [out] unsigned long  * Index
+    );
+ 
+// opnum 42
+void Opnum42NotUsedOnWire(void);
+ 
+// opnum 43
+void Opnum43NotUsedOnWire(void);
+ 
+// opnum 44
+long
+SamrGetUserDomainPasswordInformation (
+    [in] SAMPR_HANDLE UserHandle,
+    [out] PUSER_DOMAIN_PASSWORD_INFORMATION PasswordInformation
+    );
+ 
+// opnum 45
+long
+SamrRemoveMemberFromForeignDomain (
+    [in] SAMPR_HANDLE DomainHandle,
+    [in] PRPC_SID MemberSid
+    );
+ 
+// opnum 46
+long
+SamrQueryInformationDomain2(
+    [in] SAMPR_HANDLE DomainHandle,
+    [in] DOMAIN_INFORMATION_CLASS DomainInformationClass,
+    [out, switch_is(DomainInformationClass)]
+        PSAMPR_DOMAIN_INFO_BUFFER * Buffer
+    );
+ 
+// opnum 47
+long
+SamrQueryInformationUser2(
+    [in] SAMPR_HANDLE UserHandle,
+    [in] USER_INFORMATION_CLASS  UserInformationClass,
+    [out, switch_is(UserInformationClass)]
+        PSAMPR_USER_INFO_BUFFER * Buffer
+    );
+ 
+// opnum 48
+long
+SamrQueryDisplayInformation2 (
+    [in] SAMPR_HANDLE DomainHandle,
+    [in] DOMAIN_DISPLAY_INFORMATION DisplayInformationClass,
+    [in] unsigned long  Index,
+    [in] unsigned long  EntryCount,
+    [in] unsigned long  PreferredMaximumLength,
+    [out] unsigned long  *TotalAvailable,
+    [out] unsigned long  *TotalReturned,
+    [out, switch_is(DisplayInformationClass)]
+        PSAMPR_DISPLAY_INFO_BUFFER Buffer
+    );
+ 
+// opnum 49
+long
+SamrGetDisplayEnumerationIndex2 (
+    [in] SAMPR_HANDLE DomainHandle,
+    [in] DOMAIN_DISPLAY_INFORMATION DisplayInformationClass,
+    [in] PRPC_UNICODE_STRING Prefix,
+    [out] unsigned long  * Index
+    );
+ 
+// opnum 50
+long
+SamrCreateUser2InDomain(
+    [in] SAMPR_HANDLE DomainHandle,
+    [in] PRPC_UNICODE_STRING Name,
+    [in] unsigned long   AccountType,
+    [in] unsigned long   DesiredAccess,
+    [out] SAMPR_HANDLE  * UserHandle,
+    [out] unsigned long * GrantedAccess,
+    [out] unsigned long * RelativeId
+    );
+ 
+// opnum 51
+long
+SamrQueryDisplayInformation3 (
+    [in] SAMPR_HANDLE DomainHandle,
+    [in] DOMAIN_DISPLAY_INFORMATION DisplayInformationClass,
+    [in] unsigned long    Index,
+    [in] unsigned long    EntryCount,
+    [in] unsigned long    PreferredMaximumLength,
+    [out] unsigned long  * TotalAvailable,
+    [out] unsigned long  * TotalReturned,
+    [out, switch_is(DisplayInformationClass)]
+        PSAMPR_DISPLAY_INFO_BUFFER Buffer
+    );
+ 
+// opnum 52
+long
+SamrAddMultipleMembersToAlias(
+    [in] SAMPR_HANDLE AliasHandle,
+    [in] PSAMPR_PSID_ARRAY MembersBuffer
+    );
+ 
+// opnum 53
+long
+SamrRemoveMultipleMembersFromAlias(
+    [in] SAMPR_HANDLE AliasHandle,
+    [in] PSAMPR_PSID_ARRAY MembersBuffer
+    );
+ 
+// opnum 54
+long
+SamrOemChangePasswordUser2(
+    [in] handle_t BindingHandle,
+    [in,unique] PRPC_STRING ServerName,
+    [in] PRPC_STRING UserName,
+    [in,unique]
+        PSAMPR_ENCRYPTED_USER_PASSWORD NewPasswordEncryptedWithOldLm,
+    [in,unique]
+        PENCRYPTED_LM_OWF_PASSWORD OldLmOwfPasswordEncryptedWithNewLm
+    );
+ 
+// opnum 55
+long
+SamrUnicodeChangePasswordUser2(
+    [in] handle_t BindingHandle,
+    [in,unique] PRPC_UNICODE_STRING ServerName,
+    [in] PRPC_UNICODE_STRING UserName,
+    [in,unique]
+        PSAMPR_ENCRYPTED_USER_PASSWORD NewPasswordEncryptedWithOldNt,
+    [in,unique]
+        PENCRYPTED_NT_OWF_PASSWORD OldNtOwfPasswordEncryptedWithNewNt,
+    [in] unsigned char LmPresent,
+    [in,unique]
+        PSAMPR_ENCRYPTED_USER_PASSWORD NewPasswordEncryptedWithOldLm,
+    [in,unique]
+        PENCRYPTED_LM_OWF_PASSWORD OldLmOwfPasswordEncryptedWithNewNt
+    );
+ 
+// opnum 56
+long
+SamrGetDomainPasswordInformation (
+    [in] handle_t  BindingHandle,
+    [in,unique] PRPC_UNICODE_STRING Unused,
+    [out] PUSER_DOMAIN_PASSWORD_INFORMATION PasswordInformation
+    );
+ 
+// opnum 57
+long
+SamrConnect2(
+    [in,unique,string]  PSAMPR_SERVER_NAME ServerName,
+    [out] SAMPR_HANDLE *ServerHandle,
+    [in] unsigned long  DesiredAccess
+    );
+ 
+// opnum 58
+long
+SamrSetInformationUser2(
+    [in] SAMPR_HANDLE UserHandle,
+    [in] USER_INFORMATION_CLASS UserInformationClass,
+    [in, switch_is(UserInformationClass)]
+        PSAMPR_USER_INFO_BUFFER Buffer
+    );
+ 
+// opnum 59
+void Opnum59NotUsedOnWire(void);
+ 
+// opnum 60
+void Opnum60NotUsedOnWire(void);
+ 
+// opnum 61
+void Opnum61NotUsedOnWire(void);
+ 
+// opnum 62
+long
+SamrConnect4(
+    [in,unique,string] PSAMPR_SERVER_NAME ServerName,
+    [out] SAMPR_HANDLE *ServerHandle,
+    [in] unsigned long ClientRevision,
+    [in] unsigned long DesiredAccess
+    );
+ 
+// opnum 63
+void Opnum63NotUsedOnWire(void);
+ 
+// opnum 64
+long
+SamrConnect5(
+    [in,unique,string] PSAMPR_SERVER_NAME ServerName,
+    [in] unsigned long DesiredAccess,
+    [in] unsigned long InVersion,
+    [in] [switch_is(InVersion)] SAMPR_REVISION_INFO *InRevisionInfo,
+    [out] unsigned long *OutVersion,
+    [out] [switch_is(*OutVersion)]
+        SAMPR_REVISION_INFO *OutRevisionInfo,
+    [out] SAMPR_HANDLE *ServerHandle
+    );
+ 
+// opnum 65
+long
+SamrRidToSid(
+    [in] SAMPR_HANDLE ObjectHandle,
+    [in] unsigned long Rid,
+    [out] PRPC_SID * Sid
+    );
+ 
+// opnum 66
+long
+SamrSetDSRMPassword(
+    [in] handle_t BindingHandle,
+    [in,unique] PRPC_UNICODE_STRING Unused,
+    [in] unsigned long    UserId,
+    [in,unique] PENCRYPTED_NT_OWF_PASSWORD EncryptedNtOwfPassword
+    );
+ 
+// opnum 67
+long
+SamrValidatePassword(
+    [in]  handle_t Handle,
+    [in]  PASSWORD_POLICY_VALIDATION_TYPE ValidationType,
+    [in, switch_is(ValidationType)] PSAM_VALIDATE_INPUT_ARG InputArg,
+    [out, switch_is(ValidationType)]
+        PSAM_VALIDATE_OUTPUT_ARG * OutputArg
+    );
+ 
+// Opnum 68
+void Opnum68NotUsedOnWire(void);
+ 
+// Opnum 69
+void Opnum69NotUsedOnWire(void);
+ 
+}

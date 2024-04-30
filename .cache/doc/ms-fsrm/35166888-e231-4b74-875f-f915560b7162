@@ -1,0 +1,18 @@
+<div class="content"><p>The FsrmEventType enumeration defines the set of event types
+that can be logged as part of an FsrmActionType_EventLog action.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmEventType
+ {
+   FsrmEventType_Unknown = 0,
+   FsrmEventType_Information = 1,
+   FsrmEventType_Warning = 2,
+   FsrmEventType_Error = 3
+ } FsrmEventType;
+</pre></div>
+</dd></dl><p><b>FsrmEventType_Unknown:  </b>This enumeration value
+is not used by FSRM and MUST NOT be referenced. If the server receives this
+enumeration value, it MUST consider the value invalid and not apply any
+changes.</p><p><b>FsrmEventType_Information:  </b>The event is an
+information event.</p><p><b>FsrmEventType_Warning:  </b>The event is a warning
+event.</p><p><b>FsrmEventType_Error:  </b>The event is an error
+event.</p></div>

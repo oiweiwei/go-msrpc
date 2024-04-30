@@ -1,0 +1,121 @@
+<div class="content"><p> </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cPublicRefs</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>oxid</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>oid</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ipid
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>flags (4 bytes): </b> This can be one of the
+following values. Any other value MUST be ignored by the client.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The client is requested to perform <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_de1d493f-c1c1-49ec-8b1c-ddba164a7b10" data-linktype="relative-path">garbage
+  collection</a></span> <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_41d5cd1c-3517-4e4b-92f8-7adac59bfe1b" data-linktype="relative-path">pinging</a></span> (see
+  section <span><a href="8abedee5-e226-43e7-bb7c-34d0ac6a3c38" data-linktype="relative-path">3.2.6.1</a></span>) for this
+  <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_aaaf2f1a-0b0a-487e-a0f0-c3510a6091b2" data-linktype="relative-path">object
+  identifier (OID)</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SORF_NOPING</p>
+  <p>0x00001000</p>
+  </td>
+  <td>
+  <p>The client is requested to not perform garbage
+  collection pinging (see section 3.2.6.1) for this object identifier (OID).<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="acc42954-4073-4f05-b850-efd562022077#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cPublicRefs (4 bytes): </b>The number of public
+references on the server object, which MUST be released later. For more
+information, see section <span><a href="32539d39-9070-4e3a-845f-6047d245f8e4" data-linktype="relative-path">3.2.4.4.2</a></span>.</p><p><b>oxid (8 bytes): </b> This MUST be an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_602b473b-557d-40cc-8217-2cbdaa04c78d" data-linktype="relative-path">OXID</a></span>
+identifying the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_5b284f60-ee33-4d15-9a7b-0fb82d7c6b68" data-linktype="relative-path">object exporter</a></span> that
+contains the object.</p><p><b>oid (8 bytes): </b> This MUST be an OID
+identifying the object.</p><p><b>ipid (16 bytes): </b> This MUST be an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_74540339-daab-46ea-a8f9-fe8fca3b150c" data-linktype="relative-path">IPID</a></span>
+identifying a specific interface on the object.</p></div>

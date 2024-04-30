@@ -1,0 +1,135 @@
+<div class="content"><p> </p><p>The <b>PAC_CREDENTIAL_INFO</b> structure serves as the
+header for the credential information. The <b>PAC_CREDENTIAL_INFO</b> header
+indicates the encryption algorithm that was used to encrypt the data that
+follows it. The data that follows is an encrypted, <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span>-serialized <span><a href="4927158e-c9d5-493d-a3f6-1826b88d22ba" data-linktype="relative-path">PAC_CREDENTIAL_DATA</a></span>
+structure that contains the user&#39;s actual credentials. Note that this structure
+cannot be used by protocols other than the <span><a href="../ms-kile/2a32282e-dd48-4ad9-a542-609804b02cc9" data-linktype="relative-path">[MS-KILE]</a></span>
+protocol; the encryption method relies on the encryption key currently in use
+by the Kerberos AS-REQ (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90458" data-linktype="external">[RFC4120]</a></span>
+section 3.1 and [MS-KILE]) message.<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="a1c36b00-1fca-415c-a4ca-e66e98844760#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a></p><p>A <b>PAC_CREDENTIAL_INFO</b> structure contains the user&#39;s
+encrypted  credentials. The Key Usage Number [RFC4120] used in the encryption
+is KERB_NON_KERB_SALT [16] [MS-KILE] section <span><a href="../ms-kile/b760e935-5fb0-4380-a60a-52c267563a61" data-linktype="relative-path">3.1.5.9</a></span>.
+The encryption key used is the AS reply key. The PAC credentials buffer is
+included only when PKINIT <span><a href="https://go.microsoft.com/fwlink/?LinkId=90482" data-linktype="external">[RFC4556]</a></span> is
+used. Therefore, the AS reply key is derived based on PKINIT.</p><p>The <b>PAC_CREDENTIAL_INFO</b> structure is defined as
+follows.</p><p>The format of the <b>PAC_CREDENTIAL_INFO</b> structure is
+defined as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Version</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EncryptionType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SerializedData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Version (4 bytes): </b>A 32-bit unsigned integer
+in little-endian format that defines the version. MUST be 0x00000000.</p><p><b>EncryptionType (4 bytes): </b>A 32-bit unsigned
+integer in little-endian format that indicates the Kerberos encryption type used
+to encode the <b>SerializedData</b> array. This value MUST be one of the
+following encryption types, which are a subset of the possible encryption types
+supported in Kerberos authentication (as specified in [RFC4120], <span><a href="https://go.microsoft.com/fwlink/?LinkId=90488" data-linktype="external">[RFC4757]</a></span>,
+and [RFC4556]). Note that the Key Usage Number ([RFC4120] sections 4 and 7.5.1)
+is KERB_NON_KERB_SALT [16] [MS-KILE] section 3.1.5.9.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="a1c36b00-1fca-415c-a4ca-e66e98844760#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p><span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_f5de5dd3-8f77-46a7-8756-05fbc0dcd9a9" data-linktype="relative-path">Data Encryption Standard
+  (DES)</a></span> in cipher block chaining (CBC) mode with cyclic redundancy
+  check (CRC).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>DES in CBC mode with MD5.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000011</p>
+  </td>
+  <td>
+  <p>AES128_CTS_HMAC_SHA1_96 (128-bit encryption key in
+  clear to send (CTS) encryption mode with integrity check algorithm
+  HMAC_SHA1_96).<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="a1c36b00-1fca-415c-a4ca-e66e98844760#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000012</p>
+  </td>
+  <td>
+  <p>AES256_CTS_HMAC_SHA1_96 (256-bit encryption key in CTS
+  encryption mode with integrity check algorithm HMAC_SHA1_96).<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="a1c36b00-1fca-415c-a4ca-e66e98844760#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000017</p>
+  </td>
+  <td>
+  <p>RC4 with hashed message authentication code (HMAC)
+  key.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>SerializedData (variable): </b>A variable length
+PAC_CREDENTIAL_DATA structure that contains credentials encrypted using the
+mechanism specified by the <b>EncryptionType</b> field. The byte array of
+encrypted data is computed according to the procedures specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90450" data-linktype="external">[RFC3961]</a></span>.</p></div>

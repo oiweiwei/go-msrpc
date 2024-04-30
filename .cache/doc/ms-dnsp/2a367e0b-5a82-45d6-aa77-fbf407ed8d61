@@ -1,0 +1,84 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_IP_VALIDATE</b> structure is used to request
+that the DNS server validate a number of IP addresses. This can be used by
+clients to determine if an IP address is suitable for use as a DNS server in
+the context specified by the dwContext member (see below). This structure is to
+request IP validation while processing the <span><a href="d28e3ba8-5742-417d-ad6d-2e0139ab2ad9" data-linktype="relative-path">R_DnssrvComplexOperation2 (section 3.1.4.8)</a></span>
+method call with operation type IpValidate.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcIPValidate {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   DWORD dwContext;
+   DWORD dwReserved1;
+   [string] char* pszContextName;
+   PDNS_ADDR_ARRAY aipValidateAddrs;
+ } DNS_RPC_IP_VALIDATE,
+  *PDNS_RPC_IP_VALIDATE;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The DNS management
+structure version number. This value MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> This field is unused. The
+client MUST set this value to zero and the server MUST ignore it.</p><p><b>dwContext:</b> The context or purpose for
+which addresses present in aipValidateAddrs MUST be validated by the DNS server.
+This field MUST be set to one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DNS_IPVAL_DNS_SERVERS</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Validate that IP addresses are reachable and
+  operational by the DNS servers.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_IPVAL_DNS_ROOTHINTS</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Validate that IP addresses are suitable as <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_87238b98-87ff-4d10-bc86-06cd6b3bad5c" data-linktype="relative-path">root
+  hints</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_IPVAL_DNS_FORWARDERS</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Validate that IP addresses are server level <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_025cfacf-ebc5-4659-971a-ee2ab5903575" data-linktype="relative-path">forwarders</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_IPVAL_DNS_ZONE_MASTERS</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Validate that IP addresses are remote DNS servers
+  hosting a zone, named as pointed to by pszContextName.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_IPVAL_DNS_DELEGATIONS</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Validate that IP addresses are remote DNS servers are
+  name-server for the delegated zone, named as pointed to by <b>pszContextName</b>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwReserved1:</b> This field is unused. The
+client MUST set this to zero and the server MUST ignore it.</p><p><b>pszContextName:</b> A pointer to a
+null-terminated <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_79fa85ca-ac61-467c-b819-e97dc1a7a599" data-linktype="relative-path">ASCII</a></span> character
+string that specifies a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span> name. The use
+of this zone name is specified by the dwContext member.</p><p><b>aipValidateAddrs:</b> A pointer to a <span><a href="56ba5fab-f304-4866-99a4-4f1c1f9247a3" data-linktype="relative-path">DNS_ADDR_ARRAY
+structure (section 2.2.3.2.3)</a></span> contains a list of IP
+addresses to be validated by the DNS server.</p></div>

@@ -1,0 +1,307 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/81c44fa0-0a27-41b3-b607-de39cce7ea1d" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_LOGON_IDENTITY_INFO</b> structure defines a
+logon identity within a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_LOGON_IDENTITY_INFO {
+   RPC_UNICODE_STRING LogonDomainName;
+   ULONG ParameterControl;
+   OLD_LARGE_INTEGER Reserved;
+   RPC_UNICODE_STRING UserName;
+   RPC_UNICODE_STRING Workstation;
+ } NETLOGON_LOGON_IDENTITY_INFO,
+  *PNETLOGON_LOGON_IDENTITY_INFO;
+</pre></div>
+</dd></dl><p><b>LogonDomainName:</b> Contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a> of the domain
+of the account. The case of the domain name MUST be preserved across all
+messages.</p><p><b>ParameterControl:</b> A set of bit flags that
+contain information pertaining to the logon validation processing. A flag is
+TRUE (or set) if its value is equal to 1. The value is constructed from zero or
+more bit flags from the following table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>W</p>
+  </td>
+  <td>
+  <p>V</p>
+  </td>
+  <td>
+  <p>U</p>
+  </td>
+  <td>
+  <p>T</p>
+  </td>
+  <td>
+  <p>S</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>Q</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>P</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>O</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>N</p>
+  </td>
+  <td>
+  <p>M</p>
+  </td>
+  <td>
+  <p>L</p>
+  </td>
+  <td>
+  <p>K</p>
+  </td>
+  <td>
+  <p>J</p>
+  </td>
+  <td>
+  <p>I</p>
+  </td>
+  <td>
+  <p>H</p>
+  </td>
+  <td>
+  <p>G</p>
+  </td>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>Clear text passwords can be transmitted for this logon
+  identity.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>Update the logon statistics for this account upon
+  successful logon.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>Return the user parameter list for this account upon
+  successful logon.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>Do not attempt to log this account on as a guest upon
+  logon failure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>Allow this account to log on with the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a>
+  account.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>Return the password expiration date and time upon
+  successful logon.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>G</p>
+  </td>
+  <td>
+  <p>Send a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_54ceb15a-5c0f-4099-8d9f-71f7b91b0473" data-linktype="relative-path">client challenge</a> upon
+  logon request.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>H</p>
+  </td>
+  <td>
+  <p>Attempt logon as a guest for this account only.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>I</p>
+  </td>
+  <td>
+  <p>Return the profile path upon successful logon.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>J</p>
+  </td>
+  <td>
+  <p>Attempt logon to the specified domain only.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>K</p>
+  </td>
+  <td>
+  <p>Allow this account to log on with the computer
+  account.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>L</p>
+  </td>
+  <td>
+  <p>Disable allowing fallback to guest account for this
+  account.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>M</p>
+  </td>
+  <td>
+  <p>Force the logon of this account as a guest if the
+  password is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>N</p>
+  </td>
+  <td>
+  <p>This account has supplied a clear text password.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>O</p>
+  </td>
+  <td>
+  <p>Allow NTLMv1 authentication (<a href="../ms-nlmp/b38c36ed-2804-4868-a9ff-8dd3182128e4" data-linktype="relative-path">[MS-NLMP]</a>)
+  when only NTLMv2 (<a href="https://go.microsoft.com/fwlink/?LinkId=90235" data-linktype="external">[NTLM]</a>)
+  is allowed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>P</p>
+  </td>
+  <td>
+  <p>Use <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_704fc38e-bf60-44b9-adbf-4b842d6141ed" data-linktype="relative-path">sub-authentication</a>
+  (<a href="../ms-apds/dd444344-fd7e-430e-b313-7e95ab9c338e" data-linktype="relative-path">[MS-APDS]</a>
+  section <a href="../ms-apds/e376df86-6783-4b59-83ad-c8a639a06906" data-linktype="relative-path">3.1.5.2.1</a>).
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Q - X</p>
+  </td>
+  <td>
+  <p>Encode the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b1331d67-e2ca-45e1-af31-50f52659a0c2" data-linktype="relative-path">sub-authentication package</a>
+  identifier. Bits Q–X are used to encode the integer value of the
+  sub-authentication package identifier (this is in little-endian order).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved:</b> MUST be set to zero when sent and
+MUST be ignored on receipt.</p><p><b>UserName:</b> Contains the name of the user.</p><p><b>Workstation:</b> Contains the NetBIOS name of the
+workstation from which the user is logging on.</p></div>

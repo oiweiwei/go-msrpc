@@ -1,0 +1,9 @@
+<div class="content"><p> </p><p>The RefreshedSingeInstance MUST be encoded as a sequence of
+bytes representing the following elements of the original <span><a href="46710c5c-d7ab-4e4c-b4a5-ebff311fdcd1" data-linktype="relative-path">IWbemClassObject</a></span>,
+without any padding:</p><ol><li><p><span>    </span>InstanceHeap
+size (encoded as 4 bytes)</p>
+</li><li><p><span>    </span>NdTable</p>
+</li><li><p><span>    </span>InstanceData</p>
+</li><li><p><span>    </span>InstanceQualifierSet</p>
+</li><li><p><span>    </span>InstanceHeap</p>
+</li></ol><p>The elements of IWbemClassObject are defined in <span><a href="../ms-wmio/b44d0581-5bd3-40fc-95d7-01c1b1239820" data-linktype="relative-path">[MS-WMIO]</a></span>.</p></div>

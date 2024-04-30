@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The <b>ALERT_MESSAGE</b> structure message is sent by the
+initiator or the acceptor requesting that the peer resend the message. The <b>ALERT_MESSAGE</b>
+might not always be sent.  </p><dl>
+<dd>
+<div><pre> struct
+ {
+   MESSAGE_HEADER Header;
+   AUTH_SCHEME AuthScheme;
+   ULONG ErrorCode;
+   ALERT_VECTOR Alerts;
+ } ALERT_MESSAGE; 
+</pre></div>
+</dd></dl><p><b>Header:</b> A <b>MESSAGE_HEADER</b> structure, as
+specified in section <span><a href="1f4a4b47-6e44-4427-9028-e384a4ca1fda" data-linktype="relative-path">2.2.6.2</a></span>. The
+header’s message type MUST be set to the MESSAGE_TYPE_ALERT value from the <b>MESSAGE_TYPE</b>
+enumeration, as specified in section <span><a href="3a77a20d-9746-4e79-8f06-b241263e3da3" data-linktype="relative-path">2.2.6.1</a></span>.  </p><p><b>AuthScheme:</b> An <b>AUTH_SCHEME</b> GUID, as
+specified in section <span><a href="fa13c53c-f15c-4506-9679-c8cd69684463" data-linktype="relative-path">2.2.2</a></span>, that
+indicates the security mechanism ID to which the alert message is targeted.  </p><p><b>ErrorCode:</b> A ULONG type indicating an NTSTATUS
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/87fba13e-bf06-450e-83b1-9241dc81e781" data-linktype="relative-path">2.3</a></span>. 
+</p><p><b>Alerts:</b> An <b>ALERT_VECTOR</b> structure, as
+specified in section <span><a href="8067eb02-8ecb-438b-9664-eb13cfdf79b3" data-linktype="relative-path">2.2.5.2.1</a></span>, that
+contains <b>ALERT</b> structures, as specified in section <span><a href="8a38aece-3356-450b-8de5-f846572dc34c" data-linktype="relative-path">2.2.5.1.1</a></span>. 
+</p></div>

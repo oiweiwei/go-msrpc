@@ -1,0 +1,13 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/a44c2dc1-8a3a-4eb8-9c4d-2e9f6eb07f78" data-linktype="external">msdn link</a></p><p>The SAMPR_PSID_ARRAY_OUT structure holds an array of <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> values.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_PSID_ARRAY_OUT {
+   unsigned long Count;
+   [size_is(Count)] PSAMPR_SID_INFORMATION Sids;
+ } SAMPR_PSID_ARRAY_OUT,
+  *PSAMPR_PSID_ARRAY_OUT;
+</pre></div>
+</dd></dl><p><b>Count:</b>  The number of elements in <b>Sids</b>.
+If zero, <b>Sids</b> MUST be ignored. If nonzero, <b>Sids</b> MUST point to at
+least <b>Count</b> * sizeof(<a href="1d40622e-52e4-4aaa-bc77-aa626089f116" data-linktype="relative-path">SAMPR_SID_INFORMATION</a>)
+bytes of memory.</p><p><b>Sids:</b>  An array of pointers to SID
+values. For more information, see section 2.2.7.5.</p></div>

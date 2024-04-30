@@ -1,0 +1,306 @@
+<div class="content"><p> </p><p>The SchRpcRun method MUST run a task specified by a path.</p><dl>
+<dd>
+<div><pre> HRESULT SchRpcRun(
+   [in, string] const wchar_t* path,
+   [in] DWORD cArgs,
+   [in, string, size_is(cArgs), unique] 
+     const wchar_t** pArgs,
+   [in] DWORD flags,
+   [in] DWORD sessionId,
+   [in, unique, string] const wchar_t* user,
+   [out] GUID* pGuid
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>MUST be the full path to a task using
+the format specified in section <span><a href="fa8809c8-4f0f-4c6d-994a-6c10308757c1" data-linktype="relative-path">2.3.11</a></span>.</p><p><b>cArgs: </b>MUST be the number of strings supplied
+in <i>pArgs</i>.</p><p><b>pArgs: </b>MUST be an array of strings of size <i>cArgs</i>.
+This parameter MUST supply string values for parameter substitution, as
+specified in section <span><a href="33a2cfe4-4a86-4da0-b1a7-5be512d0fa8d" data-linktype="relative-path">2.5.9</a></span>.</p><p><b>flags: </b>The flags field MUST contain individual
+bit flags that MUST have one or more of the following values.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>U S</p>
+  </td>
+  <td>
+  <p>S<br/>
+  I</p>
+  </td>
+  <td>
+  <p>I<br/>
+  C</p>
+  </td>
+  <td>
+  <p>A S</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Flags</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>AS</p>
+  <p>TASK_RUN_AS_SELF</p>
+  </td>
+  <td>
+  <p>If set to 1, the server MUST run the task in the context
+  of the caller.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IC</p>
+  <p>TASK_RUN_IGNORE_CONSTRAINTS</p>
+  </td>
+  <td>
+  <p>If set to 1, the server MUST ignore the conditions in
+  the task definition.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SI</p>
+  <p>TASK_RUN_USE_SESSION_ID</p>
+  </td>
+  <td>
+  <p>If set to 1, the server MUST run the task in the login
+  session specified by the <i>sessionId</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>US</p>
+  <p>TASK_RUN_USER_SID</p>
+  </td>
+  <td>
+  <p>If set to 1, the <i>userId</i> parameter MUST contain
+  a <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span>
+  string.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Undefined bits MUST be set to 0
+when sent and the server MUST return an error if undefined bits are set to 1.</p>
+</dd></dl><p><b>sessionId: </b>MUST specify a <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal
+server</a></span> session in which to run the task. The server MUST ignore this
+parameter unless the TASK_RUN_USE_SESSION_ID bit in the <i>flags</i> parameter
+is set. For more information on terminal server sessions, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90170" data-linktype="external">[MSDN-WSI]</a></span>.</p><p><b>user: </b>If non-NULL, MUST specify the user
+context under which to run the task. If the TASK_RUN_USER_SID bit in the <i>flags</i>
+parameter is set, <i>userID</i> MUST contain a SID string. Otherwise, <i>userID</i>
+MUST contain an account name. If the TASK_RUN_AS_SELF bit in the <i>flag</i>
+parameter is set, the server MUST ignore the <i>userId</i> parameter.</p><p><b>pGuid: </b>MUST contain a <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+for the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_cbc13b29-4954-4944-8865-eb8a2a550ffa" data-linktype="relative-path">task instance</a></span>
+created as result of this call.</p><p><b>Return Values: </b>For more information on return
+codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>, or Win32
+Error Codes in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><p>Upon receipt of the SchRpcRun call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Return E_INVALIDARG if any bits other than TASK_RUN_AS_SELF,
+TASK_RUN_IGNORE_CONSTRAINTS, TASK_RUN_USE_SESSION_ID, or TASK_RUN_USER_SID are
+set in the <i>flags</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return E_ACCESSDENIED if the caller does not have read or execute
+access to the path in the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a></span> <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_08035fe7-a786-4b30-ab60-3fd046060617" data-linktype="relative-path">task
+store</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Return 0x8007007B, the <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+form of the Win32 error <b>ERROR_INVALID_NAME</b>, if the specified <i>path</i>
+is not in the format specified in section 2.3.11.</p>
+</li><li><p><span><span> 
+</span></span>Return the value 0x80070003, the HRESULT form of the Win32 error
+ERROR_PATH_NOT_FOUND, if the specified <i>path</i> does not exist on the server
+in the XML task store.</p>
+</li><li><p><span><span> 
+</span></span>Return the HRESULT form of the Win32 error ERROR_FILE_NOT_FOUND
+if the specified file does not exist on the server in the XML task store.</p>
+</li><li><p><span><span> 
+</span></span>Return SCHED_E_START_ON_DEMAND if the task&#39;s definition does not
+specify AllowStartOnDemand (section <span><a href="eff67b34-134d-44df-a923-30e3a80ec846" data-linktype="relative-path">2.5.4.1</a></span>).</p>
+</li><li><p><span><span> 
+</span></span>Return SCHED_E_TASK_DISABLED if the value of the enabled/disabled
+<b>Boolean</b> associated with the task in the task store is disabled.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK but not start the task if the task&#39;s conditions
+(DisallowStartIfOnBatteries, RunOnNetworkAvailable, RunOnlyIfIdle; see section <span><a href="2e1de7c6-804e-40db-8aeb-9e0df2b9bb02" data-linktype="relative-path">2.5.4</a></span>)
+do not allow the task to be started, unless the TASK_RUN_IGNORE_CONSTRAINTS bit
+is set in the <i>flags</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return E_INVALIDARG if the caller does not have administrative
+privileges on the server and the caller is not the task&#39;s registered user
+unless the TASK_RUN_AS_SELF bit is set in the <i>flags</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return E_INVALIDARG if the TASK_RUN_USE_SESSION_ID bit is set in
+the <i>flags</i> parameter and the caller does not have administrative
+privileges on the server and the user specified in the <i>userId</i> parameter
+is not the user running in the logon session identified by the <i>sessionId</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return E_INVALIDARG if both the TASK_RUN_USE_SESSION_ID and
+TASK_RUN_AS_SELF bits are set in the <i>flags</i> parameter and the caller does
+not have administrative privileges on the server and the caller is not the user
+running in the logon session identified by the <i>sessionId</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return RPC_E_INVALID_PARAMETER if <i>pArgs</i> is not of the size
+specified by <i>cArgs</i>.</p>
+</li><li><p><span><span> 
+</span></span>Select the user to be used to run the task:</p>
+<ul><li><p><span><span>  </span></span>If
+a user is specified in the <i>userId</i> parameter, use that.</p>
+</li><li><p><span><span>  </span></span>Otherwise,
+if the TASK_RUN_AS_SELF bit is set in the <i>flags</i> parameter, use the
+caller&#39;s identity.</p>
+</li><li><p><span><span>  </span></span>Otherwise,
+if the TASK_RUN_USE_SESSION_ID bit is set in the <i>flags</i> parameter, use
+the user in the logon session identified by the <i>sessionId</i> parameter.</p>
+</li><li><p><span><span>  </span></span>Otherwise,
+use the user in the task&#39;s XML definition.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Parameterize the task definition by modifying specific fields in
+the task XML definition using the <i>cArgs</i> and <i>pArgs</i> parameters, as
+specified in section 2.5.9.</p>
+</li><li><p><span><span> 
+</span></span>Start the task using the selected user (section <span><a href="1d1f2fa4-5bda-45d1-9a7c-3d8cf5ada97c" data-linktype="relative-path">3.2.5.1.2</a></span>).</p>
+</li><li><p><span><span> 
+</span></span>Return S_FALSE upon failure.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK upon success.</p>
+<p>S_OK is also returned when the
+Task Scheduler service attempted to run the task, but the task did not run due
+to one of the constraints in the task definition and the <b>TASK_RUN_IGNORE_CONSTRAINTS</b>
+bit was not set to ignore those conditions. Constraints in the task definition
+include DisallowStartIfOnBatteries, RunOnNetworkAvailable, and RunOnlyIfIdle.</p>
+<p>S_OK is also returned if another
+instance of the task is already running, and a new instance was not started due
+to the IgnoreNew condition being set in the multiple instance policy specified
+in section <span><a href="4d66523e-affc-4d4d-9c52-94ca94e8488b" data-linktype="relative-path">2.5.4.3</a></span>.</p>
+</li></ul><p>If any errors are raised during the processing, they are
+returned. For more information about return codes, see section 2.3.14 and Win32
+Error Codes in [MS-ERREF] section 2.1.</p></div>

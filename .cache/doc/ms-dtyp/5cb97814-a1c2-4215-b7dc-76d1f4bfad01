@@ -1,0 +1,21 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="external">msdn link</a></p><p>The RPC_SID structure is an IDL representation of the <a href="78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">SID</a> type (as specified in 
+section 2.4.2) for use by RPC-based protocols.</p><dl>
+<dd>
+<div><pre> typedef struct _RPC_SID {
+   unsigned char Revision;
+   unsigned char SubAuthorityCount;
+   RPC_SID_IDENTIFIER_AUTHORITY IdentifierAuthority;
+   [size_is(SubAuthorityCount)] unsigned long SubAuthority[];
+ } RPC_SID,
+  *PRPC_SID,
+  *PSID;
+</pre></div>
+</dd></dl><p><b>Revision:</b>  An 8-bit unsigned integer
+that specifies the revision level of the SID. This value MUST be set to 0x01.</p><p><b>SubAuthorityCount:</b>  An 8-bit
+unsigned integer that specifies the number of elements in the <b>SubAuthority</b>
+array. The maximum number of elements allowed is 15.</p><p><b>IdentifierAuthority:</b>  An <a href="d7e6e5a5-437c-41e5-8ba1-bdfd43e96cbc" data-linktype="relative-path">RPC_SID_IDENTIFIER_AUTHORITY</a>
+structure that indicates the authority under which the SID was created. It
+describes the entity that created the SID. The Identifier Authority value
+{0,0,0,0,0,5} denotes SIDs created by the NT SID authority.</p><p><b>SubAuthority:</b>  A variable length
+array of unsigned 32-bit integers that uniquely identifies a principal relative
+to the <b>IdentifierAuthority</b>. Its length is determined by <b>SubAuthorityCount</b>.</p></div>

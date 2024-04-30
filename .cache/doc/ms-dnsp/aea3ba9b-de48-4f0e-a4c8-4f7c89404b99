@@ -1,0 +1,84 @@
+<div class="content"><p> </p><p>The <b>DNS ADDR</b> structure is an IPv4 or IPv6 address
+used by <span><a href="835c236a-4d35-4a1e-bc4c-f5eb27bfb06d" data-linktype="relative-path">DNS_ADDR</a></span> <b>MaxSa</b>
+field (section 2.2.3.2.2).</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Address
+  Family</p>
+  </td>
+  <td colspan="16">
+  <p>Port Number</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IPv4
+  Address</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IPv6
+  Address (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Padding</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Address Family (2 bytes): </b>This MUST be set to
+0x0002 if this is an IPv4 address or 0x0017 if this is an IPv6 address.</p><p><b>Port Number (2 bytes): </b>Senders MUST set this
+to zero, and receivers MUST ignore it. </p><p><b>IPv4 Address (4 bytes): </b>An IPv4 address in
+network byte order value for the host pointed to by DNS_ADDR structure.</p><p><b>IPv6 Address (16 bytes): </b>An IPv6 address in
+network byte order value for the host pointed to by DNS_ADDR structure.</p><p><b>Padding (8 bytes): </b>Senders MUST set this to
+zero, and receivers MUST ignore it. </p></div>

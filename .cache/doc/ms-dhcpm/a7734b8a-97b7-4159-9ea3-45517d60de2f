@@ -1,0 +1,120 @@
+<div class="content"><p> </p><p>The <b>R_DhcpEnumFilterV4</b> method enumerates all the
+filter records from either allow list or deny list. It also returns a list of
+hardware types presently exempted from filtering. These entries are present in
+the allow list. Exemption entries have a pattern of <b>Length</b> 0 and <b>IsWildCard</b>
+set to TRUE; both are specified in the <b>AddrPatt</b> field of the <span><a href="0b075377-a495-400d-9d8f-94141735ce60" data-linktype="relative-path">DHCP_FILTER_RECORD (section 2.2.1.2.92)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpEnumFilterV4(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, out] LPDHCP_ADDR_PATTERN ResumeHandle,
+   [in] DWORD PreferredMaximum,
+   [in] DHCP_FILTER_LIST_TYPE ListType,
+   [out] LPDHCP_FILTER_ENUM_INFO* EnumFilterInfo,
+   [out] DWORD* ElementsRead,
+   [out] DWORD* ElementsTotal
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>ResumeHandle: </b>This is a pointer of type <span><a href="a45ad236-6c42-42eb-9e67-c9335b61b7a7" data-linktype="relative-path">DHCP_ADDR_PATTERN (section 2.2.1.2.89)</a></span>
+which identifies the enumeration operation. Initially, this value MUST be set
+to zero, with a successful call returning the address/pattern value used for
+subsequent enumeration requests.</p><p><b>PreferredMaximum: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+which specifies the preferred maximum number of bytes to return. If the number
+of remaining unenumerated filter information size is less than this value, then
+all the filters configured on the specific list on the DHCPv4 server are
+returned. The maximum value for this is 64 kilobytes and the minimum value is 1
+kilobyte. To retrieve all filter records, 0xFFFFFFFF is specified.</p><p><b>ListType: </b>This is of type <span><a href="0e19e8f5-c954-49dc-953d-79333debd863" data-linktype="relative-path">DHCP_FILTER_LIST_TYPE (section 2.2.1.1.17)</a></span>,
+which specifies the list to be enumerated.</p><p><b>EnumFilterInfo: </b>This is a pointer of type <span><a href="2f1426c0-cd0f-4d0d-b66d-32851902928d" data-linktype="relative-path">LPDHCP_FILTER_ENUM_INFO</a></span>
+that points to the location in which the link-layer filter info configured on
+the DHCPv4 server is returned.</p><p><b>ElementsRead: </b>This is a pointer to a DWORD
+value that specifies the number of link-layer filter entries returned in
+EnumFilterInfo. The caller must allocate memory for this parameter that is
+equal to the size of data type DWORD.</p><p><b>ElementsTotal: </b>This is a pointer to a DWORD
+value that specifies the number of link-layer filter entries defined on the
+DHCPv4 server that have not yet been enumerated with respect to the resume
+handle that is returned. The caller must allocate memory for this parameter
+that is equal to the size of data type DWORD.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_NO_MORE_ITEMS (0x00000103)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x000000EA</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>There are more elements available to enumerate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  </td>
+  <td>
+  <p>There are no more elements left to enumerate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 86.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read access per
+section <span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>. If not,
+return error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve all the <b>DHCPv4Filter</b> entries in which the <i>ListType</i>
+field is equal to the <i>ListType</i> input parameter from the server ADM
+element <b>DHCPv4FiltersList</b> and start enumerating from <i>ResumeHandle</i>
+filter.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ResumeHandle</i> parameter points to 0x00000000, the
+enumeration MUST start from the first entry in the retrieved list.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ResumeHandle</i> parameter points to a nonzero value,
+the server MUST continue enumeration based on the value of <i>ResumeHandle</i>.
+If the <i>ResumeHandle</i> is greater than the number of <b>DHCPv4Filter</b>
+entries, then return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>The <i>PreferredMaximum</i> parameter specifies the maximum
+number of bytes that the server can allocate and return to the caller
+containing the data related to the configured link-layer filters.</p>
+</li><li><p><span><span> 
+</span></span>If <i>PreferredMaximum</i> is less than 1024, it is assigned
+1024, and if <i>PreferredMaximum</i> is greater than 65536, it is assigned
+65536.</p>
+</li><li><p><span><span> 
+</span></span>Allocate memory for <i>EnumFilterInfo</i> equal to the size of
+structure DHCP_FILTER_ENUM_INFO.</p>
+</li><li><p><span><span> 
+</span></span>Copy the retrieved <b>DHCPv4Filter</b> entries in <i>EnumFilterInfo</i>,
+copy the numbers of read <b>DHCPv4Filter</b> entries in <i>ElementsRead</i>,
+and copy the numbers of <b>DHCPv4Filter</b> entries that have not been
+enumerated in <i>ElementsTotal</i>. Update the <i>ResumeHandle</i> to the <b>AddrPatt</b>
+field of the last <b>DHCPv4Filter</b> entry read. If the size of link-layer
+filters to be enumerated exceeds <i>PreferredMaximum</i>, enumerate <b>DHCPv4Filter</b>
+entries with total size less than or equal to <i>PreferredMaximum</i> and
+return ERROR_MORE_DATA. If the size of <b>DHCPv4Filter</b> entries to be
+enumerated is less than or equal to <i>PreferredMaximum</i>, enumerate all the <b>DHCPv4Filter</b>
+entries and return ERROR_NO_MORE_ITEMS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

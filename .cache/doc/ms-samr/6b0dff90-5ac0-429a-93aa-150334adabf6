@@ -1,0 +1,86 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/6b0dff90-5ac0-429a-93aa-150334adabf6" data-linktype="external">msdn link</a></p><p>The USER_INFORMATION_CLASS enumeration indicates how to
+interpret the <i>Buffer</i> parameter for <a href="538222f7-1b89-4811-949a-0eac62e38dce" data-linktype="relative-path">SamrSetInformationUser</a>, <a href="4ad8d54c-0d5a-4d5a-9e9a-1bc9ee008d47" data-linktype="relative-path">SamrQueryInformationUser</a>, <a href="99ee9f39-43e8-4bba-ac3a-82e0c0e0699e" data-linktype="relative-path">SamrSetInformationUser2</a>,
+and <a href="29ab27f6-61da-4c7d-863c-e228ee798f4d" data-linktype="relative-path">SamrQueryInformationUser2</a>.
+For a list of associated structures, see section <a href="9496c26e-490b-4e76-827f-2695fc216f35" data-linktype="relative-path">2.2.6.29</a>.</p><dl>
+<dd>
+<div><pre> typedef  enum _USER_INFORMATION_CLASS
+ {
+   UserGeneralInformation = 1,
+   UserPreferencesInformation = 2,
+   UserLogonInformation = 3,
+   UserLogonHoursInformation = 4,
+   UserAccountInformation = 5,
+   UserNameInformation = 6,
+   UserAccountNameInformation = 7,
+   UserFullNameInformation = 8,
+   UserPrimaryGroupInformation = 9,
+   UserHomeInformation = 10,
+   UserScriptInformation = 11,
+   UserProfileInformation = 12,
+   UserAdminCommentInformation = 13,
+   UserWorkStationsInformation = 14,
+   UserControlInformation = 16,
+   UserExpiresInformation = 17,
+   UserInternal1Information = 18,
+   UserParametersInformation = 20,
+   UserAllInformation = 21,
+   UserInternal4Information = 23,
+   UserInternal5Information = 24,
+   UserInternal4InformationNew = 25,
+   UserInternal5InformationNew = 26
+   UserInternal7Information = 31,
+   UserInternal8Information = 32
+ } USER_INFORMATION_CLASS,
+  *PUSER_INFORMATION_CLASS;
+</pre></div>
+</dd></dl><p><b>UserGeneralInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_GENERAL_INFORMATION</b>
+structure (see section <a href="d74231bd-81e2-4229-9e82-ce6d3713cc62" data-linktype="relative-path">2.2.6.7</a>).</p><p><b>UserPreferencesInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_PREFERENCES_INFORMATION</b>
+structure (see section <a href="551365bd-d06d-4e0c-a72a-41567e008f1e" data-linktype="relative-path">2.2.6.8</a>).</p><p><b>UserLogonInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_LOGON_INFORMATION</b>
+structure (see section <a href="29b54f06-8961-43fd-8ecb-4b2a8020d474" data-linktype="relative-path">2.2.6.10</a>).</p><p><b>UserLogonHoursInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_LOGON_HOURS_INFORMATION</b>
+structure (see section <a href="094647ad-db36-47b6-956d-e672b13ec3e6" data-linktype="relative-path">2.2.6.20</a>).</p><p><b>UserAccountInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_ACCOUNT_INFORMATION</b>
+structure (see section <a href="7aef58f2-474a-46ab-aa2a-54f7eb8625e9" data-linktype="relative-path">2.2.6.11</a>).</p><p><b>UserNameInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_NAME_INFORMATION</b>
+structure (see section <a href="400d937e-66e5-44af-929d-13dfab550d46" data-linktype="relative-path">2.2.6.14</a>).</p><p><b>UserAccountNameInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_A_NAME_INFORMATION</b>
+structure (see section <a href="89a41331-72c7-4814-af39-79bdba0d822f" data-linktype="relative-path">2.2.6.12</a>).</p><p><b>UserFullNameInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_F_NAME_INFORMATION</b>
+structure (see section <a href="22f073f5-5e93-4009-8c9a-8569e910f379" data-linktype="relative-path">2.2.6.13</a>).</p><p><b>UserPrimaryGroupInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>USER_PRIMARY_GROUP_INFORMATION</b>
+structure (see section <a href="3fd86f83-f5ad-4bb4-814a-6554f5797b34" data-linktype="relative-path">2.2.6.2</a>).</p><p><b>UserHomeInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_HOME_INFORMATION</b>
+structure (see section <a href="c42b2b9d-301d-40b7-ad4c-257f31904602" data-linktype="relative-path">2.2.6.15</a>).</p><p><b>UserScriptInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_SCRIPT_INFORMATION</b>
+structure (see section <a href="4e55e798-c587-4e0c-bcfd-944e7480dc22" data-linktype="relative-path">2.2.6.16</a>).</p><p><b>UserProfileInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_PROFILE_INFORMATION</b>
+structure (see section <a href="53883066-b329-4193-8a9f-cbf53927804d" data-linktype="relative-path">2.2.6.17</a>).</p><p><b>UserAdminCommentInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_ADMIN_COMMENT_INFORMATION</b>
+structure (see section <a href="fd4e8928-c370-4d0c-b0fb-5c781128cccb" data-linktype="relative-path">2.2.6.18</a>).</p><p><b>UserWorkStationsInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_WORKSTATIONS_INFORMATION</b>
+structure (see section <a href="f991ad1b-f9b0-43ac-853b-4d900c7618f0" data-linktype="relative-path">2.2.6.19</a>).</p><p><b>UserControlInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>USER_CONTROL_INFORMATION</b> structure
+(see section <a href="eb5f1508-ede1-4ff1-be82-55f3e2ef1633" data-linktype="relative-path">2.2.6.3</a>).</p><p><b>UserExpiresInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>USER_EXPIRES_INFORMATION</b> structure
+(see section <a href="8c1308e0-723e-4170-8170-45a6a723989a" data-linktype="relative-path">2.2.6.4</a>).</p><p><b>UserInternal1Information:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_INTERNAL1_INFORMATION</b>
+structure (see section <a href="50d17755-c6b8-40bd-8cac-bd6cfa31adf2" data-linktype="relative-path">2.2.6.23</a>).</p><p><b>UserParametersInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_PARAMETERS_INFORMATION</b>
+structure (see section <a href="05f1ac12-c90f-4aed-8821-d211a9c834b3" data-linktype="relative-path">2.2.6.9</a>).</p><p><b>UserAllInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_ALL_INFORMATION</b> structure
+(see section <a href="dc966b81-da27-4dae-a28c-ec16534f1cb9" data-linktype="relative-path">2.2.6.6</a>).</p><p><b>UserInternal4Information:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_INTERNAL4_INFORMATION</b>
+structure (see section <a href="e28bf420-8989-44fb-8b08-f5a7c2f2e33c" data-linktype="relative-path">2.2.6.24</a>).</p><p><b>UserInternal5Information:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_INTERNAL5_INFORMATION</b>
+structure (see section <a href="1d2be36a-754e-46b1-8697-d8aaa62bc450" data-linktype="relative-path">2.2.6.26</a>).</p><p><b>UserInternal4InformationNew:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_INTERNAL4_INFORMATION_NEW</b>
+structure (see section <a href="b2f614b9-0312-421a-abed-10ee002ef780" data-linktype="relative-path">2.2.6.25</a>).</p><p><b>UserInternal5InformationNew:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_USER_INTERNAL5_INFORMATION_NEW</b>
+structure (see section <a href="563cc049-5e46-49a1-b0e0-86efe4bc6e19" data-linktype="relative-path">2.2.6.27</a>).</p><p><b>UserInternal7Information:</b> Indicates the <i>Buffer</i>
+parameter is to be interpreted as a SAMPR_USER_INTERNAL7_INFORMATION structure
+(see section section <a href="fec80c3f-1004-4166-a729-2a06d0a856c5" data-linktype="relative-path">2.2.6.30</a>).</p><p><b>UserInternal8Information:</b> Indicates the <i>Buffer</i>
+parameter is to be interpreted as a SAMPR_USER_INTERNAL8_INFORMATION structure
+(see section section <a href="1d946f0c-c099-42f2-87ec-0206d5680c2f" data-linktype="relative-path">2.2.6.31</a>).</p></div>

@@ -1,0 +1,165 @@
+import "ms-dtyp.idl";
+ 
+[
+    uuid (D049B186-814F-11D1-9A3C-00C04FC9B232), version(1.1),
+    pointer_default (unique)
+] interface NtFrsApi
+ 
+{
+// This method is not used over the wire
+    unsigned long Opnum0NotUsedOnWire(
+    void
+    );
+ 
+// This method is not used over the wire
+    unsigned long Opnum1NotUsedOnWire(
+        void
+        );
+ 
+// This method is not used over the wire
+    unsigned long Opnum2NotUsedOnWire(
+        void
+        );
+ 
+// This method is not used over the wire
+    unsigned long Opnum3NotUsedOnWire(
+        void
+        );
+ 
+    unsigned long NtFrsApi_Rpc_Set_DsPollingIntervalW(
+        [in] handle_t Handle,
+        [in] unsigned long UseShortInterval,
+        [in] unsigned long LongInterval,
+        [in] unsigned long ShortInterval
+        );
+ 
+    unsigned long NtFrsApi_Rpc_Get_DsPollingIntervalW(
+        [in] handle_t Handle,
+        [out] unsigned long *Interval,
+        [out] unsigned long *LongInterval,
+        [out] unsigned long *ShortInterval
+        );
+ 
+    // This method is not used over the wire
+    unsigned long Opnum6NotUsedOnWire(
+    void
+        );
+ 
+    unsigned long NtFrsApi_Rpc_InfoW(
+        [in] handle_t Handle,
+        [in, range(0,65536)] unsigned long BlobSize,
+        [in, out, size_is(BlobSize), unique] unsigned char *Blob
+        );
+ 
+    unsigned long NtFrsApi_Rpc_IsPathReplicated(
+       [in] handle_t Handle,
+       [in, string, unique] PWCHAR Path,
+       [in] unsigned long ReplicaSetTypeOfInterest,
+       [out] unsigned long *Replicated,
+       [out] unsigned long *Primary,
+       [out] unsigned long *Root,
+       [out] GUID  *ReplicaSetGuid
+       );
+ 
+    unsigned long NtFrsApi_Rpc_WriterCommand(
+       [in] handle_t Handle,
+       [in] unsigned long Command
+       );
+    
+    unsigned long NtFrsApi_Rpc_ForceReplication(
+       [in] handle_t Handle,
+       [in, unique] GUID *ReplicaSetGuid,
+       [in, unique] GUID *CxtionGuid,
+       [in, string, unique] PWCHAR ReplicaSetName,
+       [in, string, unique] PWCHAR PartnerDnsName
+       );
+ };
+
+[
+    uuid (F5CC59B4-4264-101A-8C59-08002B2F8426), version(1.1),
+    pointer_default (unique)
+] interface frsrpc
+{
+    typedef struct _COMM_PACKET {
+        unsigned long   Major;
+        unsigned long   Minor;
+        unsigned long   CsId;
+        unsigned long   MemLen;
+        [range(0, 256 * 1024)]  unsigned long   PktLen;
+        unsigned long   UpkLen;
+        [size_is(PktLen)]      unsigned char  *Pkt;
+        [ignore]               void   *DataName;
+        [ignore]               void   *DataHandle;
+    } COMM_PACKET, *PCOMM_PACKET;
+ 
+    unsigned long
+    FrsRpcSendCommPkt(
+            [in] handle_t Handle,
+            [in] PCOMM_PACKET CommPkt
+        );
+ 
+    unsigned long
+    FrsRpcVerifyPromotionParent(
+        [in] handle_t Handle,
+        [in, string, unique] PWCHAR ParentAccount,
+        [in, string, unique] PWCHAR ParentPassword,
+        [in, string, unique] PWCHAR ReplicaSetName,
+        [in, string, unique] PWCHAR ReplicaSetType,
+        [in] unsigned long PartnerAuthLevel,
+        [in] unsigned long GuidSize
+        );
+ 
+    unsigned long
+    FrsRpcStartPromotionParent(
+        [in] handle_t Handle,
+        [in, string, unique] PWCHAR ParentAccount,
+        [in, string, unique] PWCHAR ParentPassword,
+        [in, string, unique] PWCHAR ReplicaSetName,
+        [in, string, unique] PWCHAR ReplicaSetType,
+        [in, string, unique] PWCHAR CxtionName,
+        [in, string, unique] PWCHAR PartnerName,
+        [in, string, unique] PWCHAR PartnerPrincName,
+        [in] unsigned long PartnerAuthLevel,
+        [in,  range(sizeof(GUID),sizeof(GUID))] unsigned long GuidSize,
+        [in,  size_is(GuidSize), unique] unsigned char *CxtionGuid,
+        [in,  size_is(GuidSize), unique] unsigned char *PartnerGuid,
+        [in, out, size_is(GuidSize), unique] unsigned char *ParentGuid
+        );
+ 
+    unsigned long FrsNOP();
+ 
+    // This method is not implemented
+    unsigned long Opnum4NotUsedOnWire(
+        void
+        );
+ 
+    // This method is not implemented
+    unsigned long Opnum5NotUsedOnWire(
+        void
+        );
+ 
+    // This method is not implemented
+    unsigned long Opnum6NotUsedOnWire(
+        void
+        );
+ 
+    // This method is not implemented
+    unsigned long Opnum7NotUsedOnWire(
+        void
+        );
+ 
+    // This method is not implemented
+    unsigned long Opnum8NotUsedOnWire(
+        void
+        );
+ 
+    // This method is not implemented
+    unsigned long Opnum9NotUsedOnWire(
+        void
+        );
+ 
+    // This method is not implemented
+    unsigned long Opnum10NotUsedOnWire(
+        void
+        );
+}

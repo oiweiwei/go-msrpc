@@ -1,0 +1,20 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/1c9f2af2-e164-4548-9428-eae68a03537e" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_SERVICE_INFO</b> structure defines
+information about a service account logon. Operating system services use
+service accounts as their run-time security identity.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_SERVICE_INFO {
+   NETLOGON_LOGON_IDENTITY_INFO Identity;
+   LM_OWF_PASSWORD LmOwfPassword;
+   NT_OWF_PASSWORD NtOwfPassword;
+ } NETLOGON_SERVICE_INFO,
+  *PNETLOGON_SERVICE_INFO;
+</pre></div>
+</dd></dl><p><b>Identity:</b> <b>NETLOGON_LOGON_IDENTITY_INFO</b>
+structure, as specified in section <a href="81c44fa0-0a27-41b3-b607-de39cce7ea1d" data-linktype="relative-path">2.2.1.4.15</a>, that contains
+information about the logon identity.</p><p><b>LmOwfPassword:</b> <b>LM_OWF_PASSWORD</b>
+structure, as specified in section <a href="30a12be7-a4ed-4ef2-bd88-83961edb8f26" data-linktype="relative-path">2.2.1.1.3</a>, that contains
+the LMOWFv1 of a password. LMOWFv1 is specified in NTLM v1 Authentication in <a href="../ms-nlmp/b38c36ed-2804-4868-a9ff-8dd3182128e4" data-linktype="relative-path">[MS-NLMP]</a>
+section <a href="../ms-nlmp/464551a8-9fc4-428e-b3d3-bc5bfb2e73a5" data-linktype="relative-path">3.3.1</a>.</p><p><b>NtOwfPassword:</b> <b>NT_OWF_PASSWORD</b>
+structure, as specified in section <a href="f7458576-d538-47cd-b387-b6f98449a0ee" data-linktype="relative-path">2.2.1.1.4</a>, that contains
+the NTOWFv1 of a password. NTOWFv1 is specified in NTLM v1 Authentication in
+[MS-NLMP] section 3.3.1.</p></div>

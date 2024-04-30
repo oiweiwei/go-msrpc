@@ -1,0 +1,20 @@
+<div class="content"><p>The WINSINTF_CMD_E enumeration is used by the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> methods to retrieve the
+configuration of a particular <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a>
+server. This enumeration is used in conjunction with the <a href="88f3968f-9516-41a4-80b4-7c0e7afb0676" data-linktype="relative-path">WINSINTF_RESULTS_T</a> and <a href="5e0a0782-cec0-4cce-ac6d-01b36923a8db" data-linktype="relative-path">WINSINTF_RESULTS_NEW_T</a>
+structures.</p><dl>
+<dd>
+<div><pre> typedef  enum _WINSINTF_CMD_E
+ {
+   WINSINTF_E_ADDVERSMAP = 0,
+   WINSINTF_E_CONFIG,
+   WINSINTF_E_STAT,
+   WINSINTF_E_CONFIG_ALL_MAPS
+ } WINSINTF_CMD_E,
+  *PWINSINTF_CMD_E;
+</pre></div>
+</dd></dl><p><b>WINSINTF_E_ADDVERSMAP:</b>  Gets an entry from the
+<a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_57b996ea-5019-4e6e-8848-1f850bcac53d" data-linktype="relative-path">owner version map</a> of the
+<a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target WINS server</a>.</p><p><b>WINSINTF_E_CONFIG:</b>  Get the configuration
+details of the target WINS server.</p><p><b>WINSINTF_E_STAT:</b>   Get statistics for the
+target WINS server.</p><p><b>WINSINTF_E_CONFIG_ALL_MAPS:</b>  Get all owner
+version map entries from the target WINS server.</p></div>

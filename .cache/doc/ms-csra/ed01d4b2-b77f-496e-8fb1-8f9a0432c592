@@ -1,0 +1,837 @@
+<div class="content"><p>The ImportCertificate method imports a <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> into the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> database.</p><dl>
+<dd>
+<div><pre> HRESULT ImportCertificate(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in, ref] CERTTRANSBLOB* pctbCertificate,
+   [in] LONG dwFlags,
+   [out] LONG* pdwRequestId
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.
+</p><p><b>pctbCertificate: </b>A <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> that
+contains an ASN.1 DER–encoded (as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90592" data-linktype="external">[X660]</a> and <a href="https://go.microsoft.com/fwlink/?LinkId=90593" data-linktype="external">[X690]</a>) certificate
+that is inserted into the CA database.</p><p><b>dwFlags: </b>A <a href="../ms-dtyp/29d44d70-382f-4998-9d76-8a1fe93e445c" data-linktype="relative-path">LONG</a>
+value that MUST take one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>If this value
+  is set, the CA server does not allow certificates that are not issued by it
+  to be imported into its database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FLAG_ALLOW_IMPORT_FOREIGN</p>
+  <p>0x00010000</p>
+  </td>
+  <td>
+  <p>A request to
+  the CA server to allow certificates that are not issued by it to be imported
+  into its database. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ICF_EXISTINGROW</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>A request to
+  the CA to associate the imported certificates with an existing request row.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pdwRequestId: </b>Returns the request ID for the
+imported certificate. This is used to refer to the certificate after it is
+imported into the database. </p><p>ImportCertificate imports a certificate into the CA database
+Request table.</p><p>The CA server MUST apply the following processing rules:</p><ol><li><p><span>    </span>The CA server
+MUST enforce that the <i>pctbCertificate</i> parameter value represents an
+ASN.1 DER–encoded certificate (as specified in [X660]). If not, it MUST fail
+with the error ERROR_INVALID_DATA (0x8007000D). </p>
+</li><li><p><span>    </span>The CA server
+MUST validate the signature on the certificate by using the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public key</a> that is
+associated with the CA&#39;s <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_6a2366ee-fc9c-4406-963d-eac335ed8fc5" data-linktype="relative-path">signing
+certificates</a>.</p>
+</li><li><p><span>    </span>If the
+ICF_EXISTINGROW flag is not passed as the value of <i>dwFlags</i>, if the
+signature validation succeeds (at step 2), and if the certificate does not
+already exist in the Request table (this is checked by searching on the
+Serial_Number in the certificate in the database), the certificate MUST be
+added to the Request table as a new row and the CA MUST return the resulting
+Request_Request_ID to the client. For processing rules for each data element in
+the Request table, see the ImportCertificate data element in the following
+table.</p>
+</li><li><p><span>    </span>If the
+ICF_EXISTINGROW flag is not passed as the value of <i>dwFlags</i>, if the
+signature validation succeeds (at step 2), and if the certificate is already
+present in the Request table, the CA MUST fail with the error
+ERROR_OBJECT_EXISTS.</p>
+</li><li><p><span>    </span>If the
+ICF_EXISTINGROW flag is passed as the value of <i>dwFlags</i>, if the signature
+validation succeeds (at step 2), and if the certificate does not already exist
+in the Request table (this is checked by searching on the Serial_Number in the
+certificate in the database):</p>
+<p>The CA MUST locate an entry in the
+Request table whose Request_Disposition is &#34;request pending&#34; and
+whose Request_ID has an entry in the Extensions table with a Subject Key
+Identifier equal to the SubjectKeyIdentifier extension of the certificate that
+is passed as pctbCertificate.</p>
+<ol><li><p><span>   
+</span>If the entry is found in the Request Table, the CA MUST update the
+fields from the information in the certificate. For processing rules for each
+data element in the Request table, see the ImportCertificate processing rules
+in the following table. The CA MUST return the Request_Request_ID of the
+updated Request table row as the <i>pdwRequestId</i> parameter.</p>
+</li><li><p><span>   
+</span>If the entry is not found in the Request table, the CA MUST fail with
+the error 0x80092009 (CRYPT_E_NO_MATCH).</p>
+</li></ol></li><li><p><span>    </span>If the signature
+validation fails (at step 2) and FLAG_ALLOW_IMPORT_FOREIGN is not passed as a
+value of <i>dwFlags</i>, the CA MUST fail with the error 0x800b0107, according
+to the ImportCertificate data element processing rules in the following table.</p>
+</li><li><p><span>    </span>If the signature
+validation fails (at step 2) and FLAG_ALLOW_IMPORT_FOREIGN is passed as value
+of <i>dwFlags</i> and the certificate is already present in the Request table,
+the CA SHOULD return the resulting Request_Request_ID to the client. For
+processing rules for each data element in the Request table, see the
+ImportCertificate processing rules in the following table.<a id="Appendix_A_Target_61"></a><a aria-label="Product behavior note 61" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_61" data-linktype="relative-path">&lt;61&gt;</a></p>
+</li><li><p><span>    </span>If the signature
+validation fails (at step 2), if FLAG_ALLOW_IMPORT_FOREIGN is passed as the
+value of <i>dwFlags</i>, and if the certificate is not already present in the
+Request table, the certificate SHOULD be added to the Request table as a new
+row and the CA SHOULD return the resulting Request_Request_ID to the client.
+For processing rules for each data element in the Request table, see the
+ImportCertificate data element in the following table.<a id="Appendix_A_Target_62"></a><a aria-label="Product behavior note 62" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_62" data-linktype="relative-path">&lt;62&gt;</a></p>
+</li></ol><p>The certificate fields and extensions SHOULD be processed
+and stored in individual Request table fields according to the rules in the
+following table.</p><table><thead>
+  <tr>
+   <th>
+   <p>Data type</p>
+   </th>
+   <th>
+   <p>Maximum
+   size of data</p>
+   </th>
+   <th>
+   <p>Data
+   element name</p>
+   </th>
+   <th>
+   <p>Processing
+   rule or x.509 certificate field or extension</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x10001 long
+  indexed</p>
+  </td>
+  <td>
+  <p>4 bytes</p>
+  </td>
+  <td>
+  <p>Request_Request_ID</p>
+  </td>
+  <td>
+  <p>The next
+  sequential number after Request_Request_ID of the last database row.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x1 long</p>
+  </td>
+  <td>
+  <p>4 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Status_Code&#34;</p>
+  </td>
+  <td>
+  <p>If the import
+  is successful, the CA SHOULD set this value to 0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x10001 long
+  indexed</p>
+  </td>
+  <td>
+  <p>4 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Disposition&#34;</p>
+  </td>
+  <td>
+  <p>If the
+  certificate being imported was issued by a foreign CA, set
+  Request_Disposition to &#34;foreign certificate&#34;. The Microsoft CA uses
+  a DB_DISP_FOREIGN value that is equal to decimal 12 for &#34;foreign
+  certificate&#34;.</p>
+  <p>Otherwise,
+  set to &#34;certificate issued&#34;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Disposition_Message&#34;</p>
+  </td>
+  <td>
+  <p>The CA SHOULD
+  set the value of the Request_Disposition_Message column to any value the
+  implementer considers informative for presentation to a human. The Microsoft
+  CA sets Request_Disposition_Message in this case to &#34;certificate
+  issued&#34;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x10002 date
+  indexed</p>
+  </td>
+  <td>
+  <p>8 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Submitted_When&#34;</p>
+  </td>
+  <td>
+  <p>The time when
+  the method is invoked.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x10002 date
+  indexed</p>
+  </td>
+  <td>
+  <p>8 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Resolved_When&#34;</p>
+  </td>
+  <td>
+  <p>The time when
+  the method is invoked.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x10004
+  string indexed</p>
+  </td>
+  <td>
+  <p>2048 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Requester_Name&#34;</p>
+  </td>
+  <td>
+  <p>The identity
+  of the caller invoking the method.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x10004
+  string indexed</p>
+  </td>
+  <td>
+  <p>2048 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Caller_Name&#34;</p>
+  </td>
+  <td>
+  <p>The identity
+  of the caller invoking the method.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x3 bin</p>
+  </td>
+  <td>
+  <p>4096 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Raw_Name&#34;</p>
+  </td>
+  <td>
+  <p>The raw
+  subject information from the certificate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Country&#34;</p>
+  </td>
+  <td>
+  <p>The country <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a> of the
+  certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Organization&#34;</p>
+  </td>
+  <td>
+  <p>The
+  organization attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Org_Unit&#34;</p>
+  </td>
+  <td>
+  <p>The
+  organizational-unit attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Common_Name&#34;</p>
+  </td>
+  <td>
+  <p>The <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_a86706d6-bcdf-4107-be38-d2f08a7eaa68" data-linktype="relative-path">common name</a> attribute of
+  the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Locality&#34;</p>
+  </td>
+  <td>
+  <p>The locality
+  attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_State&#34;</p>
+  </td>
+  <td>
+  <p>The state or
+  province name attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Title&#34;</p>
+  </td>
+  <td>
+  <p>The title
+  attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Given_Name&#34;</p>
+  </td>
+  <td>
+  <p>The given
+  name attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Initials&#34;</p>
+  </td>
+  <td>
+  <p>The initials
+  attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_SurName&#34;</p>
+  </td>
+  <td>
+  <p>The surname attribute
+  of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Domain_Component&#34;</p>
+  </td>
+  <td>
+  <p>The
+  domainComponent attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_EMail&#34;</p>
+  </td>
+  <td>
+  <p>The <a href="https://go.microsoft.com/fwlink/?LinkId=90497" data-linktype="external">[RFC822]</a> Name from
+  Subject Alternative Name.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_Device_Serial_Number&#34;</p>
+  </td>
+  <td>
+  <p>The serial
+  number attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x10001 long
+  indexed</p>
+  </td>
+  <td>
+  <p>4 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Request_ID&#34;</p>
+  </td>
+  <td>
+  <p>The next
+  sequential number after Request_Request_ID of the last database row.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x3 bin</p>
+  </td>
+  <td>
+  <p>16384 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Raw_Certificate&#34;
+  </p>
+  </td>
+  <td>
+  <p>The byte
+  stream that is pointed to in the parameter <i>pctbCertificate</i> -&gt;pb
+  member.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x10004
+  string indexed</p>
+  </td>
+  <td>
+  <p>128 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Certificate_Hash&#34;</p>
+  </td>
+  <td>
+  <p>The <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_168fbe0c-fc02-4722-979e-b0261766ac9c" data-linktype="relative-path">SHA-1 hash</a> over the value
+  of &#34;Raw_Certificate&#34;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x10004
+  string indexed</p>
+  </td>
+  <td>
+  <p>254 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Certificate_Template&#34;</p>
+  </td>
+  <td>
+  <p>The extnValue
+  of extension with <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_aaaf2f1a-0b0a-487e-a0f0-c3510a6091b2" data-linktype="relative-path">OID (1)</a>
+  1.3.6.1.4.1.311.20.2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x10004
+  string indexed</p>
+  </td>
+  <td>
+  <p>128 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Serial_Number&#34;</p>
+  </td>
+  <td>
+  <p>The serial
+  number (<a href="https://go.microsoft.com/fwlink/?LinkId=90414" data-linktype="external">[RFC3280]</a>
+  section 4.1.2.2) of the certificate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x2 date</p>
+  </td>
+  <td>
+  <p>8 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Not_Before&#34;</p>
+  </td>
+  <td>
+  <p>The
+  Validity::notBefore ([RFC3280] section 4.1.2.5) field of the certificate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x10002 date
+  indexed</p>
+  </td>
+  <td>
+  <p>8 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Not_After&#34;</p>
+  </td>
+  <td>
+  <p>The
+  Validity::notAfter ([RFC3280] section 4.1.2.5) field of the certificate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>128 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Subject_Key_Identifier&#34;</p>
+  </td>
+  <td>
+  <p>The Value of
+  the SubjectKeyIdentifier ([RFC3280] section 4.2.1.2) extension of the
+  certificate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x3 bin</p>
+  </td>
+  <td>
+  <p>4096 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Raw_Public_Key&#34;</p>
+  </td>
+  <td>
+  <p>The raw value
+  of the public key that is associated with the certificate.
+  (SubjectPublicKeyInfo-&gt;subjectPublicKey).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x1 long</p>
+  </td>
+  <td>
+  <p>4 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Public_Key_Length&#34;</p>
+  </td>
+  <td>
+  <p>The length,
+  in bits, of the public key that is associated with the certificate
+  (SubjectPublicKeyInfo-&gt;subjectPublicKey).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>254 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Public_Key_Algorithm&#34;</p>
+  </td>
+  <td>
+  <p>The name of
+  the algorithm that is associated with the public key of the certificate
+  (SubjectPublicKeyInfo-&gt;algorithm-&gt;algorithm).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x3 bin</p>
+  </td>
+  <td>
+  <p>4096 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Raw_Public_Key_Algorithm_Parameters&#34;</p>
+  </td>
+  <td>
+  <p>The raw value
+  of the parameters that are associated with the public key of the certificate
+  (SubjectPublicKeyInfo-&gt;algorithm-&gt;parameters).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Distinguished_Name&#34;</p>
+  </td>
+  <td>
+  <p>The Subject
+  ([RFC3280] section 4.1.2.6) field of the certificate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Country&#34;</p>
+  </td>
+  <td>
+  <p>The country
+  attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Organization&#34;</p>
+  </td>
+  <td>
+  <p>The
+  organization attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;OrgUnit&#34;</p>
+  </td>
+  <td>
+  <p>The
+  organizational-unit attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x10004
+  string indexed</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Common_Name&#34;</p>
+  </td>
+  <td>
+  <p>The common
+  name (CN) attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Locality&#34;</p>
+  </td>
+  <td>
+  <p>The locality
+  attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;State&#34;</p>
+  </td>
+  <td>
+  <p>The state or
+  province name attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Title&#34;</p>
+  </td>
+  <td>
+  <p>The title
+  attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Given_Name&#34;</p>
+  </td>
+  <td>
+  <p>The given
+  name attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Initials&#34;</p>
+  </td>
+  <td>
+  <p>The initials
+  attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;SurName&#34;</p>
+  </td>
+  <td>
+  <p>The surname
+  attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Domain_Component&#34;</p>
+  </td>
+  <td>
+  <p>The
+  DomainComponent attribute of the certificate Subject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;EMail&#34;</p>
+  </td>
+  <td>
+  <p>The [RFC822]
+  Name from Subject Alternative Name.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4 string</p>
+  </td>
+  <td>
+  <p>8192 bytes</p>
+  </td>
+  <td>
+  <p>&#34;Device_Serial_Number&#34;</p>
+  </td>
+  <td>
+  <p>The serial
+  number attribute of the certificate Subject.</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

@@ -1,0 +1,87 @@
+<div class="content"><p> </p><p>The <b>FAX_EnumRoutingExtensions (Opnum 78)</b> function is
+called by the client to enumerate all the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_efaa1290-6d4b-4f44-9e84-35a867069d45" data-linktype="relative-path">routing</a></span> extensions
+that are registered with the specified fax server. The function returns
+detailed information about each of the routing extensions.</p><p>In response, the server MUST validate whether the client&#39;s
+fax user account has access to enumerate all the routing extensions on the
+server. On success, the server MUST return information about all its routing
+extensions in <i>Buffer</i>. The server MUST also return the size of the
+returned information and the number of routing extensions for which it
+successfully enumerated information.</p><p>The client SHOULD free the returned buffer.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_EnumRoutingExtensions(
+   [in] handle_t hFaxHandle,
+   [out, size_is(, *BufferSize)] LPBYTE* Buffer,
+   [out, ref] LPDWORD BufferSize,
+   [out, ref] LPDWORD lpdwNumExts
+ );
+</pre></div>
+</dd></dl><p><b>hFaxHandle: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>) or <b>FAX_ConnectionRefCount</b>
+(section <span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>) method
+call used to connect to the fax server.</p><p><b>Buffer: </b>A pointer to the address of a buffer
+to receive an array of <b>FAX_ROUTING_EXTENSION_INFO</b> (section <span><a href="f9f82598-144c-473f-adc2-ed92e748d3a4" data-linktype="relative-path">2.2.49</a></span>)
+structures. Each structure contains information about one <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_170298f8-e4d3-4ece-92a1-2e28c974734f" data-linktype="relative-path">fax
+routing extension</a></span>, as it pertains to the entire Fax Service. </p><p><b>BufferSize: </b>A pointer to a <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+in which to return the size, in bytes, of the buffer.</p><p><b>lpdwNumExts: </b>A pointer to a <b>DWORD</b>
+variable to receive the number of <b>FAX_ROUTING_EXTENSION_INFO</b> that the
+method returns in the <i>ppRoutingExtensions</i> parameter. This number MUST
+equal the total number of fax device routing extensions that are installed on
+the target server.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The client&#39;s fax user account does
+  not have the access rights (<b>FAX_ACCESS_QUERY_CONFIG</b>) required for this
+  operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Not enough storage is available to process this
+  command. The fax server cannot allocate sufficient memory to hold the array
+  of <b>FAX_ROUTING_EXTENSION_INFO</b> structures to be returned to the client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The <i>Buffer</i> parameter is set to a NULL pointer
+  value. <a id="Appendix_A_Target_97"></a><a aria-label="Product behavior note 97" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_97" data-linktype="relative-path">&lt;97&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INTERNAL_ERROR</p>
+  <p>0x0000054F</p>
+  </td>
+  <td>
+  <p>The fax server failed to custom marshal the array of <b>FAX_ROUTING_EXTENSION_INFO</b>
+  structures to be returned to the client.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

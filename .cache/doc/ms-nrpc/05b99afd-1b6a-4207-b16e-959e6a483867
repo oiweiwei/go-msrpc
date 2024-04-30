@@ -1,0 +1,157 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/05b99afd-1b6a-4207-b16e-959e6a483867" data-linktype="external">msdn link</a></p><p>The <b>NL_AUTH_SIGNATURE</b> structure is a security token
+that defines the authentication signature used by Netlogon to execute Netlogon
+methods over a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure
+channel</a>. It follows the security trailer that a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_05fd3925-0672-4f24-9dd9-2b9d441eb333" data-linktype="relative-path">security provider</a> MUST associate
+with a signed or encrypted message. A security trailer or sec_trailer structure
+(<a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/ab45c6a5-951a-4096-b805-7347674dc6ab" data-linktype="relative-path">2.2.2.11</a>)
+has syntax equivalent to the auth_verifier_co_t structure, as specified in
+&#34;Common Authentication Verifier Encodings&#34; in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> section
+13.2.6.1. When Netlogon is functioning as its own SSP for the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> connection, this
+structure contains the signature, a sequence number, and if encryption is
+requested, a confounder. See section <a href="2af2dc5f-7941-43ab-a6d0-63161a591a6e" data-linktype="relative-path">3.3.4.2</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>SignatureAlgorithm</p>
+  </td>
+  <td colspan="16">
+  <p>SealAlgorithm</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Pad</p>
+  </td>
+  <td colspan="16">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SequenceNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Checksum</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Confounder</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>SignatureAlgorithm (2 bytes): </b>A 16-bit
+little-endian integer that identifies the algorithm that is used for signature
+computation. The only supported signature algorithm is <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_ba024019-a866-41df-99a5-764b7eab2e1e" data-linktype="relative-path">HMAC-MD5</a>, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90314" data-linktype="external">[RFC2104]</a>. The <b>SignatureAlgorithm</b>
+field MUST contain the following value. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0077</p>
+  </td>
+  <td>
+  <p>The packet is signed using HMAC-MD5.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>SealAlgorithm (2 bytes): </b>A 16-bit
+little-endian integer that identifies the algorithm used for encryption. The
+only supported encryption algorithm is RSA-<a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_d57eac33-f561-4a08-b148-dfcf29cfb4d8" data-linktype="relative-path">RC4</a> (for more information
+about RC4, see <a href="https://go.microsoft.com/fwlink/?LinkId=817338" data-linktype="external">[SCHNEIER]</a>
+section 17.1). The <b>SealAlgorithm</b> field MUST contain one of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0xFFFF</p>
+  </td>
+  <td>
+  <p>The packet is not encrypted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x007A</p>
+  </td>
+  <td>
+  <p>The packet is encrypted using RC4.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Pad (2 bytes): </b>A 2-byte padding field. Both
+bytes MUST be set to 0xFF.</p><p><b>Flags (2 bytes): </b>Specifies properties of the
+structure. No flags are currently defined. Both bytes MUST be set to zero and
+MUST be ignored on receipt.</p><p><b>SequenceNumber (8 bytes): </b>A 64-bit
+little-endian integer containing the sequence number of the RPC message. For
+more details about how to calculate the <b>SequenceNumber</b>, see section <a href="0593a87c-7a83-4232-80f8-571e34220fed" data-linktype="relative-path">3.3.4.2.1</a>.</p><p><b>Checksum (8 bytes): </b>A 64-bit value containing
+the final checksum of the signature and the RPC message. For more details about
+how to calculate the checksum, see section 3.3.4.2.1.</p><p><b>Confounder (8 bytes): </b>A buffer used when the
+structure is used for encryption in addition to signing. The bytes are filled
+with random data that is used by the encryption algorithm. If the structure is
+used only for signing, the confounder is not included. For details about the
+confounder and encrypting the data, see section 3.3.4.2.1.</p></div>

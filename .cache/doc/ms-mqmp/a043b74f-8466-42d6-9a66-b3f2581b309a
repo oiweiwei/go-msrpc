@@ -1,0 +1,306 @@
+<div class="content"><p> </p><p>A <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> calls the
+rpc_ACSendMessageEx method to place a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span> into a
+message <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span> for delivery.</p><dl>
+<dd>
+<div><pre> HRESULT rpc_ACSendMessageEx(
+   [in] RPC_QUEUE_HANDLE hQueue,
+   [in] struct CACTransferBufferV2* ptb,
+   [in, out, unique] OBJECTID* pMessageID
+ );
+</pre></div>
+</dd></dl><p><b>hQueue: </b> MUST be an <span><a href="1482aa96-e1e2-40e9-8fb8-b35895ca5b4a" data-linktype="relative-path">RPC_QUEUE_HANDLE (section 2.2.1.1.2)</a></span>
+obtained from the <i>phQueue</i> parameter of the <span><a href="de086803-3f83-44ec-9bd3-417216c171c8" data-linktype="relative-path">rpc_QMOpenQueueInternal (section 3.1.4.17)</a></span>
+method called with the <i>dwDesiredAccess</i> parameter set to MQ_SEND_ACCESS.
+Prior to this method being invoked, the queue MUST NOT have been deleted, and
+the queue handle MUST NOT have been closed.</p><p><b>ptb: </b>MUST NOT be NULL. ptb points to a <span><a href="4debed0c-8ae5-4629-86d5-a0b1f273afb3" data-linktype="relative-path">CACTransferBufferV2 (section 2.2.3.3)</a></span>
+structure. Refer to section 2.2.3.3 for definitions of the CACTransferBufferV2
+members. Constraints for the members are defined following. In the section
+following, &#34;ptb.old&#34; is used as shorthand to refer to the <b>CACTransferBufferOld</b>
+member of the CACTransferBufferV2 structure.</p><dl>
+<dd>
+<p>ptb.old.uTransferType MUST be CACTB_SEND
+(0x00000000).</p>
+</dd>
+<dd>
+<p>ptb.old.Send.pAdminQueueFormat can be NULL, in which
+case no <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_de288973-200c-431f-99be-2165bb440243" data-linktype="relative-path">administration queue</a></span>
+<span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_390ae273-7109-44eb-981f-aa157e6b37c0" data-linktype="relative-path">format
+name</a></span> is associated with the message. If not NULL,
+ptb.old.Send.pAdminQueueFormat MUST point to a <b>QUEUE_FORMAT</b> (<span><a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a></span>
+section <span><a href="../ms-mqmq/905e154a-6123-42a9-86cb-e0a3169820f2" data-linktype="relative-path">2.2.7</a></span>)
+structure.</p>
+</dd>
+<dd>
+<p>ptb.old.Send.pResponseQueueFormat can be NULL, in
+which case no response queue format name is associated with the message. If not
+NULL, ptb.old.Send.pResponseQueueFormat MUST point to a <b>QUEUE_FORMAT</b>
+structure.</p>
+</dd>
+<dd>
+<p>If the queue identified <i>hQueue</i> was opened
+using a direct format name, as specified in [MS-MQMQ] section <span><a href="../ms-mqmq/0f7c2894-f918-4e96-a4bb-93e2b3cfd18f" data-linktype="relative-path">2.1.2</a></span>,
+ptb.old.pulPrivLevel MUST be NULL or, if not NULL, MUST point to the value
+MQMSG_PRIV_LEVEL_NONE (0x00000000). Encryption MUST NOT be requested for queues
+opened with direct format name.</p>
+</dd>
+<dd>
+<p>If the queue identified by <i>hQueue</i> is not an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_311107bb-e41a-4794-82b6-9ebf83172cb5" data-linktype="relative-path">outgoing
+queue</a></span> (rather, it is a queue which is local to the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_2739ef12-a749-4540-9ac3-715968ef4df4" data-linktype="relative-path">supporting
+server</a></span>), and ptb.bEncrypted is not 0x00, the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>
+MAY return STATUS_RETRY (0xc000022d) and take no action.<a id="Appendix_A_Target_68"></a><a aria-label="Product behavior note 68" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_68" data-linktype="relative-path">&lt;68&gt;</a></p>
+</dd>
+<dd>
+<p>ptb.old.pPriority can be NULL; otherwise, the value
+MUST be from 0x00 to 0x07 inclusive. If the value is NULL, the server MUST
+substitute the default value of 0x03.</p>
+</dd>
+<dd>
+<p>ptb.old.pTrace can be NULL, in which case the server
+MUST substitute the default value of 0x00.</p>
+</dd>
+<dd>
+<p>If ptb.old.ulAbsoluteTimeToQueue is 0x00000000, the
+server MUST substitute the default value of 0xffffffff.</p>
+</dd>
+<dd>
+<p>ptb.old.ppMessageID can be NULL. If not NULL, the
+server MUST ignore the in-value.</p>
+</dd>
+<dd>
+<p>ptb.old.ppConnectorType can be NULL. If NULL, then
+no connector type value is associated with the message.</p>
+</dd>
+<dd>
+<p>ptb.old.pDelivery can be NULL, in which case the
+server MUST substitute the default value of 0x00. However, if ptb.old.pUow
+contains a nonzero value, the server MUST substitute the value 0x01 for
+ptb.old.pDelivery, since transactional messages are by definition stored as
+recoverable.</p>
+</dd>
+<dd>
+<p>ptb.old.pAuditing can be NULL, in which case the
+server MUST substitute the default value of 0x00.</p>
+</dd>
+<dd>
+<p>ptb.old.pClass can be NULL, in which case the server
+MUST substitute the default value of 0x0000. This field can be used by
+connector applications to produce acknowledgment messages. Typical applications
+will always specify MQMSG_CLASS_NORMAL (0x0000).</p>
+</dd>
+<dd>
+<p>ptb.old.ppCorrelationID can be NULL, in which case
+the server MUST substitute the default value by filling the array of bytes with
+hexadecimal zeros (0x00).</p>
+</dd>
+<dd>
+<p>ptb.old.pAcknowledge can be NULL, in which case the
+server MUST substitute the default value of 0x00.</p>
+</dd>
+<dd>
+<p>ptb.old.pApplicationTag can be NULL, in which case
+the server MUST substitute the default value of 0x00000000.</p>
+</dd>
+<dd>
+<p>ptb.old.ppTitle can be NULL, in which case the
+server MUST treat the value as an empty string and MUST ignore the value of
+ptb.old.ulTitleBufferSizeInWCHARs. If ptb.old.ppTitle is NOT NULL, the server
+MUST take the number of Unicode characters indicated by
+ptb.old.ulTitleBufferSizeInWCHARs. If ptb.old.ulTitleBufferSizeInWCHARs is
+greater than 250, the value MUST be truncated to 250. The server MUST
+null-terminate the resulting character array.</p>
+</dd>
+<dd>
+<p>ptb.old.ppMsgExtension can be NULL, in which case no
+extension array is associated with the message and the server MUST ignore the
+value of ptb.old.ulMsgExtensionBufferInBytes. If ptb.old.<i>ppMsgExtension</i>
+is NOT NULL, the server MUST take the number of bytes indicated by
+ptb.old.ulMsgExtensionBufferInBytes. The buffer is an opaque array of bytes and
+a terminating null character is not required.</p>
+</dd>
+<dd>
+<p>ptb.old.ppBody can be NULL, in which case no body
+array is associated with the message and the server MUST ignore the values of
+ptb.old.ulBodyBufferSizeInBytes and ptb.old.ulAllocBodyBufferInBytes. If
+ptb.old.ppBody is NOT NULL, the server MUST take the number of bytes indicated
+by ptb.old.ulBodyBufferSizeInBytes, and allocate body storage for the number of
+bytes indicated by ptb.old.ulAllocBodyBufferInBytes. The message body is an opaque
+array of bytes and a terminating null character is not required.</p>
+</dd>
+<dd>
+<p>ptb.old.pulPrivLevel can be NULL, in which case the
+server MUST substitute the default value of 0x00000000.</p>
+</dd>
+<dd>
+<p>ptb.old.pulHashAlg can be NULL if
+ptb.old.ulSignatureSize is 0x00000000; otherwise, it MUST be set to the hash
+algorithm used to produce the signature of the message, as specified in section
+<span><a href="08791447-2c3c-48d4-98ab-ce9dd28a9509" data-linktype="relative-path">2.2.3.2</a></span>.<a id="Appendix_A_Target_69"></a><a aria-label="Product behavior note 69" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_69" data-linktype="relative-path">&lt;69&gt;</a> If it is set to NULL, the
+server MUST substitute the value of 0x00000000.</p>
+</dd>
+<dd>
+<p>ptb.old.pulEncryptAlg can be NULL if
+ptb.old.pulPrivLevel is set to NULL; otherwise, it MUST be set to the
+encryption algorithm associated with ptb.old.pulPrivLevel, as specified in section
+2.2.3.2.<a id="Appendix_A_Target_70"></a><a aria-label="Product behavior note 70" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_70" data-linktype="relative-path">&lt;70&gt;</a> If it is set to NULL, the
+server MUST substitute the value of 0x00000000.</p>
+</dd>
+<dd>
+<p>ptb.old.pulBodyType can be NULL, in which case the
+server MUST substitute the default value of 0x00000000.</p>
+</dd>
+<dd>
+<p>ptb.old.ppSenderCert can be NULL if
+ptb.old.ulSenderCertLen is 0x00000000, in which case an X509 certificate for
+the sender is not associated with the message.</p>
+</dd>
+<dd>
+<p>ptb.old.pulSenderIDType MUST NOT be NULL if
+ptb.old.uSenderIDLen is nonzero.</p>
+</dd>
+<dd>
+<p>ptb.old.pSenderID can be NULL if
+ptb.old.uSenderIDLen is zero and ptb.old.pulSenderIDType is
+MQMSG_SENDERID_TYPE_NONE (0x00000000), in which case a <span><a href="../ms-dtyp/78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">SID</a></span>
+is not associated with the message.</p>
+</dd>
+<dd>
+<p>ptb.old.ppSymmKeys can be NULL if
+ptb.old.ulSymmKeysSize is zero (0x00000000), in which case an encrypted
+symmetric key is not associated with the message. Otherwise, ptb.old.ppSymKeys
+MUST contain the symmetric key used to encrypt the message body. The symmetric
+key MUST be encrypted with the public key of the recipient QM. The manner by
+which the public key for the recipient QM is obtained is beyond the scope of
+this network protocol.</p>
+</dd>
+<dd>
+<p>If ptb.old.ulSignatureSize is 0x00000000: no digital
+signature is associated with the message.</p>
+</dd>
+<dd>
+<p>Else, if ptb.old.ulSignatureSize is not 0x00000000:</p>
+</dd></dl><ul><li><p><span><span>  </span></span>If
+ptb.old.fDefaultProvider is 0x00000000, ptb.old.ppwcsProvName MUST NOT be NULL.
+If ptb.old.pulProvType is NOT NULL, it MUST specify the provider type of the
+CSP named by ptb.old.ppwcsProvName; otherwise, the server MUST substitute the
+value of 0x00000000. Note that ptb.old.ulProvNameLen is used only to affect <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+marshaling of the ptb.old.ppwcsProvName buffer. The server MUST otherwise
+ignore ptb.old.ulProvNameLen and treat ptb.old.ppwcsProvName as a
+null-terminated string.</p>
+</li><li><p><span><span>  </span></span>If
+ptb.old.fDefaultProvider is not 0x00000000, ptb.old.pulProvType MUST NOT be
+NULL, and MUST contain PROV_RSA_FULL (0x00000001).</p>
+</li><li><p><span><span>  </span></span>If
+ptb.old.pulAuthProvNameLenProp is NULL:</p>
+<ul><li><p><span><span> 
+</span></span>If not NULL, the ptb.old.ppSignature buffer contains a simple
+array of bytes containing the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_cf9a8e0f-8060-464b-a673-fe4f815d3d8a" data-linktype="relative-path">MSMQ 1.0 digital signature</a></span>.
+The byte length of the buffer is indicated by ptb.old.ulSignatureSize.</p>
+</li></ul></li><li><p><span><span>  </span></span>Else,
+if ptb.old.pulAuthProvNameLenProp is NOT NULL:</p>
+<ul><li><p><span><span> 
+</span></span>If not NULL, the ptb.old.ppSignature buffer contains two distinct
+byte array parts. The first part MUST be ignored by the server. The second part
+contains an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_46782277-690b-4a09-ad6d-8c36b11e51cd" data-linktype="relative-path">MSMQ 2.0 digital signature</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>The byte length of the first part is indicated by subtracting the
+length of the second part from ptb.old.ulSignatureSize. (Thus, length( [first
+part] ) + length( [second part] ) = ptb.old.ulSignatureSize.)</p>
+</li><li><p><span><span> 
+</span></span>The byte length of the second part is indicated by subtracting
+ptb.old.ulProvNameLen from ptb.old.pulAuthProvNameLenProp.</p>
+</li><li><p><span><span> 
+</span></span>The second part begins immediately after the first.</p>
+</li></ul></li></ul><dl>
+<dd>
+<p>The following members MUST be
+ignored by the server:</p>
+</dd></dl><ul><li><p><span><span>  </span></span>ptb.old.Receive</p>
+</li><li><p><span><span>  </span></span>ptb.old.CreateCursor</p>
+</li><li><p><span><span>  </span></span>ptb.old.pSentTime</p>
+</li><li><p><span><span>  </span></span>ptb.old.pArrivedTime</p>
+</li><li><p><span><span>  </span></span>ptb.old.pBodySize</p>
+</li><li><p><span><span>  </span></span>ptb.old.pulTitleBufferSizeInWCHARs</p>
+</li><li><p><span><span>  </span></span>ptb.old.pulRelativeTimeToQueue</p>
+</li><li><p><span><span>  </span></span>ptb.old.pulRelativeTimeToLive</p>
+</li><li><p><span><span>  </span></span>ptb.old.pulSenderIDLenProp</p>
+</li><li><p><span><span>  </span></span>ptb.old.ulAuthLevel</p>
+</li><li><p><span><span>  </span></span>ptb.old.pAuthenticated</p>
+</li><li><p><span><span>  </span></span>ptb.old.bAuthenticated</p>
+</li><li><p><span><span>  </span></span>ptb.old.pulSenderCertLenProp</p>
+</li><li><p><span><span>  </span></span>ptb.old.pulSymmKeysSizeProp</p>
+</li><li><p><span><span>  </span></span>ptb.old.pulSignatureSizeProp</p>
+</li><li><p><span><span>  </span></span>ptb.old.ppSrcQMID</p>
+</li><li><p><span><span>  </span></span>ptb.old.pMsgExtensionSize</p>
+</li><li><p><span><span>  </span></span>ptb.old.pulVersion</p>
+</li><li><p><span><span>  </span></span>ptb.pbFirstInXact</p>
+</li><li><p><span><span>  </span></span>ptb.pbLastInXact</p>
+</li><li><p><span><span>  </span></span>ptb.ppXactID</p>
+</li></ul><dl>
+<dd>
+<p>The <b>ptb.old.pulAuthProvNameLenProp</b> field
+SHOULD be interpreted as specified in section 3.1.5.2.<a id="Appendix_A_Target_71"></a><a aria-label="Product behavior note 71" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_71" data-linktype="relative-path">&lt;71&gt;</a></p>
+</dd></dl><p><b>pMessageID: </b>An OBJECTID as defined in
+[MS-MQMQ] section <span><a href="../ms-mqmq/653f80a3-6585-4cca-bb7f-5154b4ad0fab" data-linktype="relative-path">2.2.8</a></span>.
+This value can be NULL. If not NULL, the server MUST return a message
+identifier for the new message if this method succeeds.</p><p><b>Return Values: </b>On success, this method MUST return
+MQ_OK (0x00000000); otherwise, the server MUST return a failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>,<a id="Appendix_A_Target_72"></a><a aria-label="Product behavior note 72" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_72" data-linktype="relative-path">&lt;72&gt;</a> and the client MUST treat all
+failure <b>HRESULT</b>s identically. Additionally, if a failure <b>HRESULT</b>
+is returned, the client MUST disregard all out-parameter values.</p><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method is invoked at the dynamically assigned <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span>
+returned by the <span><a href="a8c96155-a7e6-41cb-95c7-6ab7e4f8214d" data-linktype="relative-path">R_QMGetRTQMServerPort (section 3.1.4.24)</a></span>
+method when IP_HANDSHAKE (0x00000000) or IPX_HANDSHAKE (0x00000002) is the
+interface specified by the <i>fIP</i> parameter.</p><p> Security Considerations: The caller can request that the
+server perform security related operations such as signing and encrypting the
+message. These operations are requested by setting members of the
+ptb.CACTransferBufferOld structure.</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Determine if the input parameter values violate the constraints
+previously specified. If an invalid parameter is detected, the server MUST take
+no further action and return a failure <b>HRESULT</b>.</p>
+</li><li><p><span><span> 
+</span></span>Locate a <span><a href="910315e4-d43e-4c99-b086-555cc271563f" data-linktype="relative-path">LocalQueueContextHandle (section 3.1.1.3)</a></span>
+ADM element instance in the server&#39;s <i>iLocalQueueContextHandleTable</i>
+(section <span><a href="6d5edb49-62b1-46de-a235-f2cc97df6a31" data-linktype="relative-path">3.1.1.2</a></span>) where the
+value of the <b>Handle</b> attribute of the <b>LocalQueueContextHandle</b> ADM
+element instance equals <i>hQueue</i>.</p>
+</li><li><p><span><span> 
+</span></span>If no such <b>LocalQueueContextHandle</b> ADM element instance
+exists, take no further action and return a failure <b>HRESULT</b>.</p>
+</li><li><p><span><span> 
+</span></span>Declare <i>iLocatedLocalQueueContextHandle</i> and set it to a
+reference to the located <b>LocalQueueContextHandle</b> ADM element instance.</p>
+</li><li><p><span><span> 
+</span></span>If ptb.old.pUow is non-NULL:</p>
+<ul><li><p><span><span>  </span></span>Look
+up a <b>Transaction</b> (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section <span><a href="../ms-mqdmpr/977818a4-098a-44f4-a6e2-97b8e8b1bb6b" data-linktype="relative-path">3.1.1.14</a></span>)
+ADM element instance in the server&#39;s <b>LocalQueueManager.TransactionCollection</b>
+with an identifier matching ptb.old.pUow. If no such entry exists, the client
+did not enlist the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a></span> before
+attempting to perform a transactional send operation. In this event, return a
+failure <b>HRESULT</b>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Create a new <b>Message</b> ([MS-MQDMPR] section <span><a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">3.1.1.12</a></span>)
+ADM element instance with contents from ptb using the defined translation
+table.</p>
+</li><li><p><span><span> 
+</span></span>If the message body is encrypted (ptb.old.bEncrypted is not 0x00,
+<i>ppSymmKeys</i> is not NULL, and ppSymmKeysSize is not 0x00000000) and the
+destination queue is located on the supporting server, the message body MUST be
+decrypted. Using the algorithm indicated by ptb.old.pulEncryptAlg, decrypt the
+symmetric key that is contained in ppSymmKeysSize with the server&#39;s private
+key. Finally, use the decrypted symmetric key to decrypt the message body.</p>
+</li><li><p><span><span> 
+</span></span>Generate an <span><a href="../ms-mqdmpr/acfc0306-33e2-4edd-9e4c-8c67f98373b1" data-linktype="relative-path">Enqueue
+Message To An Open Queue</a></span> ([MS-MQDMPR] section 3.1.7.1.27) event with
+the following argument values:</p>
+<ul><li><p><span><span>  </span></span><i>iOpenQueueDescriptor</i>
+:= <i>iLocatedLocalQueueContextHandle</i>.<b>OpenQueueDescriptorReference</b></p>
+</li><li><p><span><span>  </span></span><i>iMessage</i>
+:= The <b>Message</b> ADM element instance previously created.</p>
+</li><li><p><span><span>  </span></span><i>iTransaction</i>
+:= The <b>Transaction</b> ADM element instance previously resolved; or, if
+ptb.old.pUow is NULL, this optional argument is not specified.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>rStatus</i> result of the  Enqueue Message To An Open
+Queue event is zero, return MQ_OK (0x00000000); otherwise, return a failure <b>HRESULT</b>.</p>
+</li></ul></div>

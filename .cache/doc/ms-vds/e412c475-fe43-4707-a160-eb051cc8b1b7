@@ -1,0 +1,29 @@
+<div class="content"><p> </p><p> The QueryFileSystemTypes method returns property details
+for all <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file systems</a></span> that
+are known to <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_97581c48-09dd-4bc4-a379-a846cbf4cc39" data-linktype="relative-path">VDS</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT QueryFileSystemTypes(
+   [out, size_is(,*plNumberOfFileSystems)] 
+     VDS_FILE_SYSTEM_TYPE_PROP** ppFileSystemTypeProps,
+   [out] long* plNumberOfFileSystems
+ );
+</pre></div>
+</dd></dl><p><b>ppFileSystemTypeProps: </b>A pointer to an array
+of <span><a href="b68a7241-bed9-45fb-be71-6ec1887d2cd8" data-linktype="relative-path">VDS_FILE_SYSTEM_TYPE_PROP</a></span>
+structures that, if the operation is successfully completed, receives the array
+of file system type properties.</p><p><b>plNumberOfFileSystems: </b>A pointer to a variable
+that, if the operation is successfully completed, receives the total number of
+elements returned in <i>ppFileSystemTypeProps</i>.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>ppFileSystemTypeProps</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>plNumberOfFileSystems</i> is not NULL.</p>
+</li></ul><p>The server MUST point <i>ppFileSystemTypeProps</i> to an
+array of VDS_FILE_SYSTEM_TYPE_PROP structures containing information about each
+file system that VDS is aware of, point <i>plNumberOfFileSystems</i> to the
+size of the array, and return an HRESULT indicating failure or success.<a id="Appendix_A_Target_72"></a><a aria-label="Product behavior note 72" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_72" data-linktype="relative-path">&lt;72&gt;</a></p></div>

@@ -1,0 +1,40 @@
+<div class="content"><p> </p><p>The DS_REPL_VALUE_META_DATA_2 structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8878eaba-14b8-463b-94be-5784c1d24a85" data-linktype="relative-path">link
+value stamp</a></span>. This structure is a concrete representation of <span><a href="6a951789-7afa-47dd-a96c-83fc0e30aa3d" data-linktype="relative-path">LinkValueStamp</a></span>;
+it is a superset of <span><a href="8e53006b-9e1d-48e6-ba5f-c675c0a98b3a" data-linktype="relative-path">DS_REPL_VALUE_META_DATA</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [string] LPWSTR pszAttributeName;
+   [string] LPWSTR pszObjectDn;
+   DWORD cbData;
+   [size_is(cbData), ptr] BYTE* pbData;
+   FILETIME ftimeDeleted;
+   FILETIME ftimeCreated;
+   DWORD dwVersion;
+   FILETIME ftimeLastOriginatingChange;
+   UUID uuidLastOriginatingDsaInvocationID;
+   USN usnOriginatingChange;
+   USN usnLocalChange;
+   [string] LPWSTR pszLastOriginatingDsaDN;
+ } DS_REPL_VALUE_META_DATA_2;
+</pre></div>
+</dd></dl><p><b>pszAttributeName:</b>  The <span><a href="../ms-ada1/0a4cbb52-338f-4965-859e-cdd7fd1bbf8b" data-linktype="relative-path">lDAPDisplayName</a></span>
+of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span>.</p><p><b>pszObjectDn:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a></span>
+of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>.</p><p><b>cbData:</b>  The size, in bytes, of the <b>pbData</b>
+array.</p><p><b>pbData:</b>  The binary_value portion of
+the attribute value if the attribute is of syntax Object(DN-Binary), or the
+string_value portion of the attribute value if the attribute is of syntax
+Object(DN-String); null otherwise.</p><p><b>ftimeDeleted:</b>  The date and time at
+which the last <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_2a923099-db0a-4932-af28-4354601e85c4" data-linktype="relative-path">replicated update</a></span>
+was made that deleted the value, or 0 if the value is not currently deleted.</p><p><b>ftimeCreated:</b>  The date and time at
+which the first <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_119f7bf0-9100-4f4a-b593-ab4e6ccfea20" data-linktype="relative-path">originating update</a></span>
+was made.</p><p><b>dwVersion:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ff635a35-a17d-477b-a30d-9723b415bf00" data-linktype="relative-path">stamp</a></span>
+version.</p><p><b>ftimeLastOriginatingChange:</b>  The
+date and time at which the last originating update was made.</p><p><b>uuidLastOriginatingDsaInvocationID:</b>  The
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_e7869b9a-61fa-46e3-89dd-fb3f57d1ba7a" data-linktype="relative-path">invocation
+ID</a></span> of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span> that performed
+the last originating update.</p><p><b>usnOriginatingChange:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_01936446-8739-4b98-b83f-fb5e2a53ce4c" data-linktype="relative-path">USN</a></span>
+assigned to the last originating update by the DC that performed the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b242435b-73cc-4c4e-95f0-b2a2ff680493" data-linktype="relative-path">update</a></span>.</p><p><b>usnLocalChange:</b>  An
+implementation-specific value.</p><p><b>pszLastOriginatingDsaDN:</b>  The DN of
+the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_dc90b593-841f-4c6d-8032-b32e58e887a8" data-linktype="relative-path">nTDSDSA
+object</a></span> with an <span><a href="../ms-ada1/3ac24cae-9ec7-4ba7-9878-21fd42a0371b" data-linktype="relative-path">invocationId</a></span>
+of <b>uuidLastOriginatingDsaInvocationID</b>.</p></div>

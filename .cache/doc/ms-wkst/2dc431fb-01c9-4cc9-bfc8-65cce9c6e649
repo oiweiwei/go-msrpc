@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The <b>NET_COMPUTER_NAME_ARRAY</b> structure specifies the
+number of names associated with a computer and a buffer containing the names.</p><dl>
+<dd>
+<div><pre> typedef struct _NET_COMPUTER_NAME_ARRAY {
+   unsigned long EntryCount;
+   [size_is(EntryCount)] PUNICODE_STRING ComputerNames;
+ } NET_COMPUTER_NAME_ARRAY,
+  *PNET_COMPUTER_NAME_ARRAY;
+</pre></div>
+</dd></dl><p><b>EntryCount:</b> The number of entries that the
+method call returns.</p><p><b>ComputerNames:</b> The names as an array of <b>UNICODE_STRING</b>
+structures (section <span><a href="edf6cfc6-80b6-4998-a1cf-43bc5dabc042" data-linktype="relative-path">2.2.5.20</a></span>) that are
+associated with a machine.</p></div>

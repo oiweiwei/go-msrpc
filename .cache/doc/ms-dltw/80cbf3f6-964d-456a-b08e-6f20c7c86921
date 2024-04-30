@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The CDomainRelativeObjId structure is used to represent a
+file&#39;s <span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_d0fe4e63-48a5-4d63-9d51-d4f99306046e" data-linktype="relative-path">FileLocation</a></span> or its <span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_3b097896-b707-47b5-b1bb-384867a453ea" data-linktype="relative-path">FileID</a></span>,
+which is the FileLocation of a file at the time it was originally created.</p><dl>
+<dd>
+<div><pre> typedef struct CDomainRelativeObjId {
+   CVolumeId _volume;
+   CObjId _object;
+ } CDomainRelativeObjId;
+</pre></div>
+</dd></dl><p><b>_volume:</b>  A <span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>
+identifier for the volume that contains the file, as specified in section <span><a href="4a6f00d9-a2ac-4876-95ea-5cd6772dcafa" data-linktype="relative-path">2.2.4</a></span>.</p><p><b>_object:</b>  A file identifier for the
+file, as specified in section <span><a href="b930d3cd-82a2-44ec-8500-774bfc451b01" data-linktype="relative-path">2.2.5</a></span>.</p></div>

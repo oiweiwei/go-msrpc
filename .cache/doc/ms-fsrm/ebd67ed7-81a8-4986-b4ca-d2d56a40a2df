@@ -1,0 +1,22 @@
+<div class="content"><p>The FsrmStorageModuleType enumeration defines the possible
+storage module types. </p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmStorageModuleType
+ {
+   FsrmStorageModuleType_Unknown = 0x00000000,
+   FsrmStorageModuleType_Cache = 0x00000001,
+   FsrmStorageModuleType_InFile = 0x00000002,
+   FsrmStorageModuleType_Database = 0x00000003,
+   FsrmStorageModuleType_System = 0x00000064
+ } FsrmStorageModuleType;
+</pre></div>
+</dd></dl><p><b>FsrmStorageModuleType_Unknown:  </b>The module
+type is unknown. Do not use this value.</p><p><b>FsrmStorageModuleType_Cache:  </b>If the <b>FsrmStorageModuleType_Cache</b>
+flag is set, the classification properties are cached for quick access by storage
+module.</p><p><b>FsrmStorageModuleType_InFile:  </b>If the <b>FsrmStorageModuleType_InFile</b>
+flag is set, the classification properties are cached within the file itself by
+storage. </p><p><b>FsrmStorageModuleType_Database:  </b>If the <b>FsrmStorageModuleType_Database</b>
+flag is set, the classification properties are cached outside the file (such as
+using a local database) by storage module.</p><p><b>FsrmStorageModuleType_System:  </b>If the <b>FsrmStorageModuleType_
+System</b> flag is set, the classification properties are cached in a
+system-specific storage.</p></div>

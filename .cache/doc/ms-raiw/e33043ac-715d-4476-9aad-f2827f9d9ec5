@@ -1,0 +1,99 @@
+<div class="content"><p>The R_WinsDoStaticInit method performs static initialization
+of a <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a> database by
+registering the names specified in a data file.</p><dl>
+<dd>
+<div><pre> DWORD R_WinsDoStaticInit(
+   [in] handle_t ServerHdl,
+   [in, unique, string] LPWSTR pDataFilePath,
+   [in] DWORD fDel
+ );
+</pre></div>
+</dd></dl><p><b>ServerHdl: </b>An <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding over IP
+address/HostName to the WINS server. RPC uses this binding internally to
+resolve which WINS server the call is directed to.</p><p><b>pDataFilePath: </b>A pointer to a <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> containing
+the path to a text file on the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target WINS server</a>. The
+file SHOULD contain entries that map <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_b86c44e6-57df-4c48-8163-5e3fa7bdcff4" data-linktype="relative-path">NetBIOS</a> names to <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_4e201ead-736f-4aed-bd66-4ff53468bf06" data-linktype="relative-path">IPv4 addresses in string format</a>
+using the following syntax:</p><dl>
+<dd>
+<dl>
+<dd>
+<div><pre>  
+ &lt;IPv4 address 1&gt; &lt;one or more spaces&gt; &lt;NetBIOS name 1&gt;
+ &lt;IPv4 address 2&gt; &lt;one or more spaces&gt; &lt;NetBIOS name 2&gt;
+ ...
+ &lt;IPv4 address N&gt; &lt;one or more spaces&gt; &lt;NetBIOS name N&gt;
+  
+</pre></div>
+</dd></dl></dd>
+<dd>
+<p>An example of this syntax can be
+found in the Windows <b>LMHOSTS</b> file, as specified in <a href="../ms-nbte/3461cfa8-3d28-4fa3-8163-131bf1046fa3" data-linktype="relative-path">[MS-NBTE]</a>
+section <a href="../ms-nbte/c5693938-5750-4e6c-9ff2-beaa83e90cba" data-linktype="relative-path">2.2.3</a>
+LMHOSTS File Syntax. See <a href="https://go.microsoft.com/fwlink/?LinkId=200063" data-linktype="external">[LMHOSTS]</a> for more
+information.</p>
+</dd>
+<dd>
+<p>If this pointer value is NULL, the target WINS
+server SHOULD use the following default path:
+&#34;%systemroot%\system32\drivers\etc\lmhosts&#34;.</p>
+</dd></dl><p><b>fDel: </b>Value specifying whether or not to
+delete the file specified by <i>pDataFilePath</i> from the target WINS server.
+A non-zero value deletes the file from the target WINS server after the
+database initialization is complete.</p><p><b>Return Values: </b>A 32 bit unsigned integer value
+that indicates the return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation completed successfully. Any other return value is
+a Win32 error code as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following Win32 error codes can be returned:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000FA2</p>
+  <p>ERROR_STATIC_INIT_FAILED</p>
+  </td>
+  <td>
+  <p>An error occurred during static initialization of the
+  database file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have sufficient permissions.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Processing and Response Requirements:</b></p><p>The following requirements and recommendations apply to a
+WINS server that processes a call to R_WinsDoStaticInit:</p><ul><li><p><span><span> 
+</span></span>The R_WinsDoStaticInit caller SHOULD have control level access.
+If an RPC client with a lower access level calls this method, the server SHOULD
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>The WINS server retrieves the entries from the specified file and
+registers the retrieved names into the WINS database.</p>
+</li><li><p><span><span> 
+</span></span>After the WINS server finishes the initialization, it removes the
+file if <i>fDel</i> is set to a nonzero value.</p>
+</li><li><p><span><span> 
+</span></span>The WINS server SHOULD return ERROR_STATIC_INIT_FAILED if any
+error occurs while the server is reading the file or registering the names in
+the database.</p>
+</li></ul></div>

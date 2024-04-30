@@ -1,0 +1,49 @@
+<div class="content"><p> </p><p>The <b>DHCP_MIB_INFO</b> structure contains counter values
+for the DHCPv4 server. This structure is used by <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> methods like <span><a href="40d52ecd-a27a-4378-9e82-15bb3d3f91c2" data-linktype="relative-path">R_DhcpGetMibInfo (section 3.1.4.23)</a></span>
+to find the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_6d17f76c-f1e3-4268-a6e6-bbf652550015" data-linktype="relative-path">DHCPv4 server statistics</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_MIB_INFO {
+   DWORD Discovers;
+   DWORD Offers;
+   DWORD Requests;
+   DWORD Acks;
+   DWORD Naks;
+   DWORD Declines;
+   DWORD Releases;
+   DATE_TIME ServerStartTime;
+   DWORD Scopes;
+   [size_is(Scopes)] LPSCOPE_MIB_INFO ScopeInfo;
+ } DHCP_MIB_INFO,
+  *LPDHCP_MIB_INFO;
+</pre></div>
+</dd></dl><p><b>Discovers:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>;
+it contains the number of <b>DHCPDISCOVER</b> messages <span><a href="https://go.microsoft.com/fwlink/?LinkId=90318" data-linktype="external">[RFC2131]</a></span>
+received by the DHCPv4 server from the DHCPv4 clients since the DHCPv4 server
+was last started. This is used for statistical analysis by the DHCPv4 server.</p><p><b>Offers:</b>  This is of type DWORD,
+containing the number of <b>DHCPOFFER</b> messages sent by the DHCPv4 server to
+the DHCPv4 client that the DHCPv4 client has not confirmed since the DHCP
+server was last started. This is used for statistical analysis by the DHCPv4
+server. </p><p><b>Requests:</b>  This is of type DWORD,
+containing the number of <b>DHCPREQUEST</b> messages received by the DHCPv4
+server from the DHCPv4 clients since the DHCP server was last started. This is
+used for statistical analysis by the DHCPv4 server.</p><p><b>Acks:</b>  This is of type DWORD,
+containing the number of <b>DHCPACK</b> messages sent by the DHCPv4 server to
+DHCPv4 clients since the DHCPv4 server was last started. This is used for
+statistical analysis by the DHCPv4 server.</p><p><b>Naks:</b>  This is of type DWORD,
+containing the number of <b>DHCPNAK</b> messages sent by the DHCPv4 server to
+DHCPv4 clients since the DHCP server was last started. This is used for
+statistical analysis by the DHCPv4 server.</p><p><b>Declines:</b>  This is of type DWORD,
+containing the number of <b>DHCPDECLINE</b> messages received by the DHCPv4
+server from the DHCPv4 client since the DHCP server was last started. This is
+used for statistical analysis by the DHCPv4 server.</p><p><b>Releases:</b>  This is of type DWORD,
+containing the number of <b>DHCPRELEASE</b> messages received by the DHCPv4
+server from the DHCPv4 client since the DHCP server was last started. This is
+used for statistical analysis by the DHCPv4 server.</p><p><b>ServerStartTime:</b>  This is of type <span><a href="0f93bea1-8172-4efa-826a-e12667e1bcee" data-linktype="relative-path">DATE_TIME (section 2.2.1.2.11)</a></span>,
+containing the start time of the DHCPv4 server.</p><p><b>Scopes:</b>  This is of type DWORD,
+containing the number of IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_128cd76b-eecb-41e6-96f7-f73c2bf9235a" data-linktype="relative-path">scopes</a></span> configured on
+the current DHCPv4 server. This is used for statistical analysis by the DHCPv4
+server. This field defines the number of DHCPv4 scopes in the subsequent field,
+<i>ScopeInfo</i>.</p><p><b>ScopeInfo:</b>  This is a pointer to an
+array of <span><a href="d0be0bd8-4780-49b3-8284-42369f38839d" data-linktype="relative-path">SCOPE_MIB_INFO (section 2.2.1.2.47)</a></span>
+structures of length <b>Scopes</b> that contains the information about the IPv4
+scopes configured on the DHCPv4 server.</p></div>

@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The Disk Management Remote Protocol is a set of <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">Distributed
+Component Object Model (DCOM)</a></span> interfaces, as specified in <span><a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a></span>,
+built for managing storage objects on a machine. The Disk Management Remote
+Protocol relies on detailed, low-level operating system and storage concepts.
+While the basic concepts are outlined in this specification, it is assumed that
+the reader has familiarity with these technologies.</p><p>For background information on storage, <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>,
+and <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>
+concepts, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89992" data-linktype="external">[MSDN-DISKMAN]</a></span>
+and <span><a href="https://go.microsoft.com/fwlink/?LinkId=90154" data-linktype="external">[MSDN-VOLMAN]</a></span>.
+For the IDL specification, see sections <span><a href="7e922a2f-7189-4bef-aa77-2fb58c41676e" data-linktype="relative-path">6.1</a></span> and <span><a href="192d0aac-41a1-4e3d-9c01-8e2daddecdfd" data-linktype="relative-path">6.2</a></span>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

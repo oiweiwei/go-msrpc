@@ -1,0 +1,82 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/7c0f2eca-1783-450b-b5a0-754cf11f22c9" data-linktype="external">msdn link</a></p><p>The USER_PROPERTY structure defines an array element that
+contains a single property name and value for the <b>supplementalCredentials</b>
+attribute.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>NameLength</p>
+  </td>
+  <td colspan="16">
+  <p>ValueLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Reserved</p>
+  </td>
+  <td colspan="16">
+  <p>PropertyName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PropertyValue
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>NameLength (2 bytes): </b>The number of bytes, in
+little-endian byte order, of <b>PropertyName</b>. The property name is located
+at an offset of zero bytes just following the <b>Reserved</b> field. For more
+information, see the message processing section for <a href="0705f888-62e1-4a4c-bac0-b4d427f396f8" data-linktype="relative-path">supplementalCredentials
+(section 3.1.1.8.11)</a>.</p><p><b>ValueLength (2 bytes): </b>The number of bytes
+contained in <b>PropertyValue</b>.</p><p><b>Reserved (2 bytes): </b>This value MUST be ignored
+by the recipient and MAY<a id="Appendix_A_Target_24"></a><a aria-label="Product behavior note 24" href="fa61e5fc-f8fb-4d5b-9695-c724af0c3829#Appendix_A_24" data-linktype="relative-path">&lt;24&gt;</a> be set to
+arbitrary values on update.</p><p><b>PropertyName (variable): </b>The name of this
+property as a UTF-16 encoded string.</p><p><b>PropertyValue (variable): </b>The value of this
+property. The value MUST be hexadecimal-encoded using an 8-bit character size,
+and the values &#39;0&#39; through &#39;9&#39; inclusive and &#39;a&#39; through &#39;f&#39; inclusive (the
+specification of &#39;a&#39; through &#39;f&#39; is case-sensitive).</p></div>

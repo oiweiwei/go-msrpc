@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The PARTIAL_ATTR_VECTOR_V1_EXT structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete
+type</a></span> for a set of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attributes</a></span> to be
+replicated to a given partial <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ea02e669-2dda-460c-9992-b12a23caeeac" data-linktype="relative-path">replica</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwVersion;
+   DWORD dwReserved1;
+   [range(1,1048576)] DWORD cAttrs;
+   [size_is(cAttrs)] ATTRTYP rgPartialAttr[];
+ } PARTIAL_ATTR_VECTOR_V1_EXT;
+</pre></div>
+</dd></dl><p><b>dwVersion:</b>  The version of this
+structure; MUST be 1.</p><p><b>dwReserved1:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>cAttrs:</b>  The number of attributes in
+the rgPartialAttr array.</p><p><b>rgPartialAttr:</b>  The attributes in
+the set.</p></div>

@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The DISPPARAMS structure is used by the Invoke method (see
+section <span><a href="5c2a1997-60d7-496d-8d9a-ed940bbb82eb" data-linktype="relative-path">3.1.4.4</a></span>) to contain
+the arguments passed to a method or property.</p><dl>
+<dd>
+<div><pre> typedef struct tagDISPPARAMS {
+   [size_is(cArgs)] VARIANT* rgvarg;
+   [size_is(cNamedArgs)] DISPID* rgdispidNamedArgs;
+   UINT cArgs;
+   UINT cNamedArgs;
+ } DISPPARAMS;
+</pre></div>
+</dd></dl><p><b>rgvarg:</b>  MUST be the array of
+arguments passed to the method or property call.</p><p><b>rgdispidNamedArgs:</b>  MUST be the
+array of <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_3792c5cc-783c-4b2a-a71e-c1ec3f432474" data-linktype="relative-path">DISPIDs</a></span>
+corresponding to the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_0d91f93b-e04c-47d2-ae86-35d7e1bf382a" data-linktype="relative-path">named arguments</a></span> (see
+section 3.1.4.4).</p><p><b>cArgs:</b>  MUST equal the number of
+arguments passed to the method.</p><p><b>cNamedArgs:</b>  MUST equal the number
+of named arguments passed to the method. This value MUST be less than or equal
+to the value of <b>cArgs</b>.</p><p>The arguments passed in DISPPARAMS MUST be stored as
+specified in section <span><a href="9cf379f7-fb31-41fe-9f9c-c9a0136616e0" data-linktype="relative-path">3.1.4.4.2</a></span>.</p></div>

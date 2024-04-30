@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The DateTimeArray_r structure encodes an array of <span><a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a></span>
+structures.</p><dl>
+<dd>
+<div><pre> typedef struct _DateTimeArray_r {
+   [range(0,100000)] DWORD cValues;
+   [size_is(cValues)] FILETIME* lpft;
+ } DateTimeArray_r;
+</pre></div>
+</dd></dl><p><b>cValues:</b>  The number of FILETIME
+data structures represented in the DateTimeArray_r structure. This value MUST
+NOT exceed 100,000.</p><p><b>lpft:</b>  The FILETIME data structures.</p></div>

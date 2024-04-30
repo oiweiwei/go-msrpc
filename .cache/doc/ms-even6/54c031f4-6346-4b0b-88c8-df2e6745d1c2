@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The EvtRpcAssertConfigFlags Enumeration members specify how
+the <i>path</i> and <i>channelPath</i> parameters (used by a number of the
+methods in <span><a href="836e2e00-f150-4a32-9a06-f32e38a1879d" data-linktype="relative-path">3.1.4</a></span>) are to be
+interpreted.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum tag_EvtRpcAssertConfigFlags
+ {
+   EvtRpcChannelPath = 0,
+   EvtRpcPublisherName = 1
+ } EvtRpcAssertConfigFlags;
+</pre></div>
+</dd></dl><p><b>EvtRpcChannelPath:  </b>The associated parameter
+string contains a path to a channel.</p><p><b>EvtRpcPublisherName:  </b>The associated parameter
+string contains a <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_7db8a6a0-d924-48bb-b9f3-08fcd58d0dc5" data-linktype="relative-path">publisher</a></span> name.</p></div>

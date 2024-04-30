@@ -1,0 +1,7 @@
+<div class="content"><p>The Internet Information Services (IIS) IMSAdminBaseW Remote
+Protocol defines interfaces that provide Unicode-compliant methods for remotely
+accessing and administering the IIS <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_086b13f2-2715-4000-a16c-6acc3d59cc19" data-linktype="relative-path">metabase</a> associated with an
+application that manages IIS configuration, such as the IIS snap-in for <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_1eeec2c8-ece5-4700-860c-7f87a7487bf5" data-linktype="relative-path">Microsoft Management Console
+(MMC)</a>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

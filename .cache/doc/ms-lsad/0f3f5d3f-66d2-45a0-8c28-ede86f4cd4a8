@@ -1,0 +1,17 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/0f3f5d3f-66d2-45a0-8c28-ede86f4cd4a8" data-linktype="external">msdn link</a></p><p>The LSAPR_POLICY_PRIMARY_DOM_INFO structure defines the
+server&#39;s <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_387021de-3d6b-4372-835f-0d68c50cb496" data-linktype="relative-path">primary domain</a>.
+</p><p>The following structure corresponds to the
+PolicyPrimaryDomainInformation information class.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_POLICY_PRIMARY_DOM_INFO {
+   RPC_UNICODE_STRING Name;
+   PRPC_SID Sid;
+ } LSAPR_POLICY_PRIMARY_DOM_INFO,
+  *PLSAPR_POLICY_PRIMARY_DOM_INFO;
+</pre></div>
+</dd></dl><p><b>Name:</b>  This field contains a name
+for the primary domain that is subject to the restrictions of a NetBIOS name,
+as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90266" data-linktype="external">[RFC1088]</a>.
+The value SHOULD be used (by implementations external to this protocol) to
+identify the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> via
+the NetBIOS API, as specified in [RFC1088].</p><p><b>Sid:</b>  The <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> of the primary domain.</p></div>

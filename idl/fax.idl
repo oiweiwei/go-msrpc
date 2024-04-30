@@ -1,0 +1,1471 @@
+// import "ms-fax_faxdatatypes.idl";
+
+import "ms-dtyp.idl";
+ 
+#define FAX_MAX_DEVICES_IN_GROUP          1000  
+      
+typedef [context_handle] HANDLE RPC_FAX_HANDLE;
+typedef [ref] RPC_FAX_HANDLE* PRPC_FAX_HANDLE;
+ 
+typedef [context_handle] HANDLE RPC_FAX_PORT_HANDLE;
+typedef RPC_FAX_PORT_HANDLE* PRPC_FAX_PORT_HANDLE;
+ 
+typedef [context_handle] HANDLE RPC_FAX_SVC_HANDLE;
+typedef RPC_FAX_SVC_HANDLE* PRPC_FAX_SVC_HANDLE;
+ 
+typedef [context_handle] HANDLE RPC_FAX_MSG_ENUM_HANDLE;
+typedef RPC_FAX_MSG_ENUM_HANDLE* PRPC_FAX_MSG_ENUM_HANDLE;
+ 
+typedef [context_handle] HANDLE RPC_FAX_COPY_HANDLE;
+typedef RPC_FAX_COPY_HANDLE* PRPC_FAX_COPY_HANDLE;
+ 
+typedef [context_handle] HANDLE RPC_FAX_EVENT_HANDLE;
+typedef RPC_FAX_EVENT_HANDLE* PRPC_FAX_EVENT_HANDLE;
+ 
+typedef [context_handle] HANDLE RPC_FAX_EVENT_EX_HANDLE;
+typedef RPC_FAX_EVENT_EX_HANDLE* PRPC_FAX_EVENT_EX_HANDLE;
+// FIXME: server_stub ??
+// #ifdef SERVER_STUB
+//  typedef [range(0, RPC_COPY_BUFFER_SIZE)]    DWORD    RANGED_DWORD;
+//  typedef RANGED_DWORD *    LPRANGED_DWORD;
+// #else
+  typedef DWORD *    LPRANGED_DWORD;
+// #endif
+ 
+typedef struct {
+  DWORD dwSizeOfStruct;
+  DWORD dwCoverPageFormat;
+  [string] LPWSTR lpwstrCoverPageFileName;
+  BOOL bServerBased;
+  [string] LPWSTR lpwstrNote;
+  [string] LPWSTR lpwstrSubject;
+} FAX_COVERPAGE_INFO_EXW, 
+  *PFAX_COVERPAGE_INFO_EXW, 
+  *LPCFAX_COVERPAGE_INFO_EXW;
+ 
+typedef struct {
+    DWORD SizeOfStruct;
+    [string] LPCWSTR RecipientNumber;
+    [string] LPCWSTR RecipientName;
+    [string] LPCWSTR Tsid;
+    [string] LPCWSTR SenderName;
+    [string] LPCWSTR SenderCompany;
+    [string] LPCWSTR SenderDept;
+    [string] LPCWSTR BillingCode;
+    DWORD ScheduleAction;
+    SYSTEMTIME ScheduleTime;
+    DWORD DeliveryReportType;
+    [string] LPCWSTR DeliveryReportAddress;
+    [string] LPCWSTR DocumentName;
+    HCALL CallHandle;
+    DWORD_PTR Reserved[3];
+} FAX_JOB_PARAMW, *PFAX_JOB_PARAMW;
+ 
+typedef enum 
+{
+  FAX_DEVICE_RECEIVE_MODE_OFF = 0,
+  FAX_DEVICE_RECEIVE_MODE_AUTO = 1,
+  FAX_DEVICE_RECEIVE_MODE_MANUAL = 2
+}FAX_ENUM_DEVICE_RECEIVE_MODE;
+ 
+typedef enum
+{
+    FAX_GROUP_STATUS_ALL_DEV_VALID = 0x00000000,
+    FAX_GROUP_STATUS_EMPTY = 0x00000001,
+    FAX_GROUP_STATUS_ALL_DEV_NOT_VALID = 0x00000002,
+    FAX_GROUP_STATUS_SOME_DEV_NOT_VALID = 0x00000003
+} FAX_ENUM_GROUP_STATUS;
+ 
+typedef enum
+{
+    FAX_MESSAGE_FOLDER_INBOX = 0x00000000,
+    FAX_MESSAGE_FOLDER_SENTITEMS = 0x00000001,
+    FAX_MESSAGE_FOLDER_QUEUE = 0x00000002
+} FAX_ENUM_MESSAGE_FOLDER;
+ 
+typedef enum 
+{
+  RECIPIENT_PERSONAL_PROF = 1,
+  SENDER_PERSONAL_PROF = 2
+}FAX_ENUM_PERSONAL_PROF_TYPES;
+ 
+typedef enum
+{
+    FAX_PRIORITY_TYPE_LOW = 0x00000000,
+    FAX_PRIORITY_TYPE_NORMAL = 0x00000001,
+    FAX_PRIORITY_TYPE_HIGH = 0x00000002
+} FAX_ENUM_PRIORITY_TYPE;
+ 
+typedef enum 
+{
+  FAX_SMTP_AUTH_ANONYMOUS = 0,
+  FAX_SMTP_AUTH_BASIC = 1,
+  FAX_SMTP_AUTH_NTLM = 2
+}FAX_ENUM_SMTP_AUTH_OPTIONS;
+ 
+typedef enum 
+{
+  PRODUCT_SKU_UNKNOWN = 0x00000000,
+  PRODUCT_SKU_PERSONAL = 0x00000001,
+  PRODUCT_SKU_PROFESSIONAL = 0x00000002,
+  PRODUCT_SKU_SERVER = 0x00000004,
+  PRODUCT_SKU_ADVANCED_SERVER = 0x00000008,
+  PRODUCT_SKU_DATA_CENTER = 0x00000010,
+  PRODUCT_SKU_DESKTOP_EMBEDDED = 0x00000020,
+  PRODUCT_SKU_SERVER_EMBEDDED = 0x00000040,
+  PRODUCT_SKU_WEB_SERVER = 0x00000080
+}PRODUCT_SKU_TYPE;
+ 
+typedef enum 
+{
+  FAX_CONFIG_OPTION_ALLOW_PERSONAL_CP = 0x00000000,
+  FAX_CONFIG_OPTION_QUEUE_STATE = 0x00000001,
+  FAX_CONFIG_OPTION_ALLOWED_RECEIPTS = 0x00000002,
+  FAX_CONFIG_OPTION_INCOMING_FAXES_PUBLIC = 0x00000003
+}FAX_ENUM_CONFIG_OPTION;
+ 
+typedef struct {
+  WORD Hour;
+  WORD Minute;
+} FAX_TIME, 
+ *PFAX_TIME;
+ 
+typedef struct {
+  DWORD dwSizeOfStruct;
+  DWORD dwAllowedReceipts;
+  FAX_ENUM_SMTP_AUTH_OPTIONS SMTPAuthOption;
+  [string] LPWSTR lpwstrReserved;
+  [string] LPWSTR lpwstrSMTPServer;
+  DWORD dwSMTPPort;
+  [string] LPWSTR lpwstrSMTPFrom;
+  [string] LPWSTR lpwstrSMTPUserName;
+  [string] LPWSTR lpwstrSMTPPassword;
+  BOOL bIsToUseForMSRouteThroughEmailMethod;
+} FAX_RECEIPTS_CONFIGW, 
+  *PFAX_RECEIPTS_CONFIGW;
+ 
+typedef struct {
+   DWORD SizeOfStruct;
+   DWORD Retries;
+   DWORD RetryDelay;
+   DWORD DirtyDays;
+   BOOL Branding;
+   BOOL UseDeviceTsid;
+   BOOL ServerCp;
+   BOOL PauseServerQueue;
+   FAX_TIME StartCheapTime;
+   FAX_TIME StopCheapTime;
+   BOOL ArchiveOutgoingFaxes;
+   [string] LPCWSTR ArchiveDirectory;
+   [string] LPCWSTR ProfileName;
+} FAX_CONFIGURATIONW, 
+  *PFAX_CONFIGURATIONW;
+ 
+typedef struct {
+  DWORD SizeOfStruct;
+  DWORD Priority;
+  [string] LPCWSTR Guid;
+  [string] LPCWSTR FriendlyName;
+  [string] LPCWSTR FunctionName;
+  [string] LPCWSTR ExtensionImageName;
+  [string] LPCWSTR ExtensionFriendlyName;
+} FAX_GLOBAL_ROUTING_INFOW,
+  *PFAX_GLOBAL_ROUTING_INFOW;
+ 
+typedef struct {
+ 
+        DWORD                   dwSizeOfStruct;
+        DWORD                   dwScheduleAction;
+        SYSTEMTIME              tmSchedule;
+        DWORD                   dwReceiptDeliveryType;
+        [string] LPWSTR                  lpwstrReceiptDeliveryAddress;
+        FAX_ENUM_PRIORITY_TYPE  Priority;
+        HCALL                   hCall;
+        DWORD_PTR               dwReserved[4];
+        [string] LPWSTR                  lpwstrDocumentName;
+        DWORD                   dwPageCount;
+} FAX_JOB_PARAM_EXW, 
+  *PFAX_JOB_PARAM_EXW, 
+  *LPCFAX_JOB_PARAM_EXW;
+ 
+typedef struct {
+ 
+    DWORD                                      dwSizeOfStruct;
+    [string] LPWSTR                            lpwstrGroupName;
+    [range(0,FAX_MAX_DEVICES_IN_GROUP)]DWORD   dwNumDevices;
+    [unique, size_is(dwNumDevices)] LPDWORD    lpdwDevices;
+    FAX_ENUM_GROUP_STATUS                      Status;
+} RPC_FAX_OUTBOUND_ROUTING_GROUPW,
+  *PRPC_FAX_OUTBOUND_ROUTING_GROUPW;
+ 
+typedef struct {
+   DWORD                           SizeOfStruct;
+   DWORD                           DeviceId;
+   DWORD                           State;
+   DWORD                           Flags;
+   DWORD                           Rings;
+   DWORD                           Priority;
+   [string] LPCWSTR                DeviceName;
+   [string] LPCWSTR                Tsid;
+   [string] LPCWSTR                Csid;
+}  FAX_PORT_INFO,
+  *PFAX_PORT_INFO;
+ 
+typedef
+[switch_type(int)]
+union {
+    [case(0)]
+        DWORD               dwDeviceId;
+    [default]
+        [string] LPWSTR     lpwstrGroupName;
+} FAX_RULE_DESTINATION;
+ 
+typedef enum {
+  FAX_RULE_STATUS_VALID = 0x00000000,
+  FAX_RULE_STATUS_EMPTY_GROUP = 0x00000001,
+  FAX_RULE_STATUS_ALL_GROUP_DEV_NOT_VALID = 0x00000002,
+  FAX_RULE_STATUS_SOME_GROUP_DEV_NOT_VALID = 0x00000003,
+  FAX_RULE_STATUS_BAD_DEVICE = 0x00000004
+} FAX_ENUM_RULE_STATUS;
+ 
+typedef struct {
+    DWORD                                        dwSizeOfStruct;
+    DWORD                                        dwAreaCode;
+    DWORD                                        dwCountryCode;
+    [string] LPWSTR                          lpwstrCountryName;
+    [switch_is(bUseGroup)]            FAX_RULE_DESTINATION  Destination;
+    BOOL                                            bUseGroup;
+} RPC_FAX_OUTBOUND_ROUTING_RULEW,
+  *RPC_PFAX_OUTBOUND_ROUTING_RULEW;
+ 
+typedef struct {
+  DWORD dwSizeOfStruct;
+  BOOL bValid;
+  WORD wMajorVersion;
+  WORD wMinorVersion;
+  WORD wMajorBuildNumber;
+  WORD wMinorBuildNumber;
+  DWORD dwFlags;
+} FAX_VERSION, 
+ *PFAX_VERSION;
+ 
+typedef struct {
+  DWORD dwSizeOfStruct;
+  BOOL bAllowPersonalCP;
+  BOOL bUseDeviceTSID;
+  DWORD dwRetries;
+  DWORD dwRetryDelay;
+  FAX_TIME dtDiscountStart;
+  FAX_TIME dtDiscountEnd;
+  DWORD dwAgeLimit;
+  BOOL bBranding;
+} FAX_OUTBOX_CONFIG, 
+ *PFAX_OUTBOX_CONFIG;
+ 
+typedef struct {
+  DWORD dwSizeOfStruct;
+  BOOL bLogIncoming;
+  BOOL bLogOutgoing;
+  [string] LPWSTR lpwstrDBPath;
+} FAX_ACTIVITY_LOGGING_CONFIGW, 
+ *PFAX_ACTIVITY_LOGGING_CONFIGW;
+ 
+typedef struct {
+  DWORD dwSizeOfStruct;
+  DWORD dwDeviceID;
+  [string] LPCWSTR lpcwstrDeviceName;
+  [string] LPWSTR lpwstrDescription;
+  [string] LPCWSTR lpcwstrProviderName;
+  [string] LPCWSTR lpcwstrProviderGUID;
+  BOOL bSend;
+  FAX_ENUM_DEVICE_RECEIVE_MODE ReceiveMode;
+  DWORD dwStatus;
+  DWORD dwRings;
+  [string] LPWSTR lpwstrCsid;
+  [string] LPWSTR lpwstrTsid;
+} FAX_PORT_INFO_EXW, 
+ *PFAX_PORT_INFO_EXW;
+ 
+typedef struct {
+  DWORD dwSizeOfStruct;
+  DWORD dwIncomingMessages;
+  DWORD dwRoutingMessages;
+  DWORD dwOutgoingMessages;
+  DWORD dwDelegatedOutgoingMessages;
+  DWORD dwQueuedMessages;
+  DWORD dwErrorEvents;
+  DWORD dwWarningEvents;
+  DWORD dwInformationEvents;
+} FAX_SERVER_ACTIVITY, 
+ *PFAX_SERVER_ACTIVITY;
+ 
+typedef struct {
+  [string] LPCWSTR lpcwstrRecipients;
+  [string] LPCWSTR lpcwstrSenderName;
+  [string] LPCWSTR lpcwstrSenderFaxNumber;
+  [string] LPCWSTR lpcwstrSubject;
+  BOOL bHasCoverPage;
+} FAX_REASSIGN_INFO, 
+ *PFAX_REASSIGN_INFO;
+ 
+typedef struct  {
+  DWORD dwValidityMask;
+  DWORD dwMsgFlags;
+} FAX_MESSAGE_PROPS, 
+ *PFAX_MESSAGE_PROPS;
+ 
+typedef struct {
+  DWORD SizeOfStruct;
+  DWORD JobId;
+  LPCWSTR UserName;
+  DWORD JobType;
+  DWORD QueueStatus;
+  DWORD Status;
+  DWORD Size;
+  DWORD PageCount;
+  LPCWSTR RecipientNumber;
+  LPCWSTR RecipientName;
+  LPCWSTR Tsid;
+  LPCWSTR SenderName;
+  LPCWSTR SenderCompany;
+  LPCWSTR SenderDept;
+  LPCWSTR BillingCode;
+  DWORD ScheduleAction;
+  SYSTEMTIME ScheduleTime;
+  DWORD DeliveryReportType;
+  LPCWSTR DeliveryReportAddress;
+  LPCWSTR DocumentName;
+} FAX_JOB_ENTRY, 
+ *PFAX_JOB_ENTRY;
+
+#define HCALL DWORD
+// XXX: empty: #define _FAX_RPC_LIMIT_H
+#define FAX_MAX_RPC_BUFFER                (1024*1024)
+#define FAX_MAX_RECIPIENTS                 10000
+#define RPC_COPY_BUFFER_SIZE   16384  
+
+
+[
+   uuid(ea0a3165-4834-11d2-a6f8-00c04fa346cc),
+   version(4.0),
+   pointer_default(unique)
+]
+
+interface fax
+
+{
+
+
+error_status_t
+FAX_GetServicePrinters(
+   [in] handle_t hBinding,
+   [out, size_is(,*lpdwBufferSize)] LPBYTE *lpBuffer,
+   [out, ref] LPDWORD lpdwBufferSize,
+   [out, ref] LPDWORD lpdwPrintersReturned
+   );
+
+
+error_status_t
+FAX_ConnectionRefCount(
+   [in] handle_t hBinding,
+   [in, out] PRPC_FAX_SVC_HANDLE Handle,
+   [in] DWORD Connect,
+   [out] LPDWORD CanShare
+   );
+
+error_status_t
+FAX_OpenPort(
+  [in] handle_t hBinding,
+  [in] DWORD DeviceId,
+  [in] DWORD Flags,
+  [out] PRPC_FAX_PORT_HANDLE FaxPortHandle
+  );
+
+error_status_t
+FAX_ClosePort(
+  [in,out] PRPC_FAX_PORT_HANDLE FaxPortHandle
+  );
+
+error_status_t
+FAX_EnumJobs(
+  [in] handle_t hBinding,
+  [out, size_is(,*BufferSize)] LPBYTE *Buffer,
+  [out, ref] LPDWORD BufferSize,
+  [out, ref] LPDWORD JobsReturned
+  );
+
+error_status_t
+FAX_GetJob(
+  [in] handle_t hBinding,
+  [in] DWORD JobId,
+  [out, size_is(,*BufferSize)] LPBYTE *Buffer,
+  [out, ref] LPDWORD BufferSize
+  );
+
+error_status_t
+FAX_SetJob(
+  [in] handle_t hBinding,
+  [in] DWORD JobId,
+  [in] DWORD Command
+  );
+
+error_status_t
+FAX_GetPageData(
+  [in] handle_t hBinding,
+  [in] DWORD JobId,
+  [out, size_is(,*BufferSize)] LPBYTE *Buffer,
+  [out, ref] LPDWORD BufferSize,
+  [in, out] LPDWORD ImageWidth,
+  [in, out] LPDWORD ImageHeight
+  );
+
+error_status_t
+FAX_GetDeviceStatus(
+  [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+  [out, size_is(,*BufferSize)] LPBYTE*StatusBuffer,
+  [out, ref] LPDWORD BufferSize
+  );
+
+error_status_t
+FAX_Abort(
+  [in] handle_t hBinding,
+  [in] DWORD JobId
+  );
+
+error_status_t
+FAX_EnumPorts(
+  [in] handle_t hBinding,
+  [out, size_is(,*BufferSize)] LPBYTE *PortBuffer,
+  [out, ref] LPDWORD BufferSize,
+  [out, ref] LPDWORD PortsReturned
+  );
+
+error_status_t
+FAX_GetPort(
+  [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+  [out, size_is(,*BufferSize)] LPBYTE *PortBuffer,
+  [out, ref] LPDWORD BufferSize
+  );
+
+error_status_t
+FAX_SetPort(
+  [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+  [in] const FAX_PORT_INFO *PortInfo
+  );
+
+error_status_t
+FAX_EnumRoutingMethods(
+   [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+   [out, size_is(,*RoutingInfoBufferSize)] LPBYTE *RoutingInfoBuffer,
+   [out, ref] LPDWORD RoutingInfoBufferSize,
+   [out, ref] LPDWORD PortsReturned
+   );
+
+error_status_t
+FAX_EnableRoutingMethod(
+   [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+   [in, string, unique] LPCWSTR RoutingGuid,
+   [in] BOOL Enabled
+   );
+
+error_status_t
+FAX_GetRoutingInfo(
+   [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+   [in, string, unique] LPCWSTR RoutingGuid,
+   [out, size_is(,*RoutingInfoBufferSize)] LPBYTE *RoutingInfoBuffer,
+   [out, ref] LPDWORD RoutingInfoBufferSize
+   );
+
+error_status_t
+FAX_SetRoutingInfo(
+  [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+  [in, string, unique] LPCWSTR RoutingGuid,
+  [in, unique, size_is(RoutingInfoBufferSize)] const BYTE *RoutingInfoBuffer,
+  [in, range(0,FAX_MAX_RPC_BUFFER)] DWORD RoutingInfoBufferSize
+  );
+
+
+error_status_t
+FAX_EnumGlobalRoutingInfo(
+   [in] handle_t hBinding,
+   [out, size_is(,*RoutingInfoBufferSize)] LPBYTE *RoutingInfoBuffer,
+   [out, ref] LPDWORD RoutingInfoBufferSize,
+   [out, ref] LPDWORD MethodsReturned
+   );
+
+error_status_t
+FAX_SetGlobalRoutingInfo(
+   [in] handle_t hBinding,
+   [in] const FAX_GLOBAL_ROUTING_INFOW *RoutingInfo
+   );
+
+error_status_t
+FAX_GetConfiguration(
+  [in] handle_t hBinding,
+  [out, size_is(,*BufferSize)] LPBYTE *Buffer,
+  [out, ref] LPDWORD BufferSize
+  );
+
+error_status_t
+FAX_SetConfiguration(
+  [in] handle_t hBinding,
+  [in] const FAX_CONFIGURATIONW *FaxConfig
+  );
+
+error_status_t
+FAX_GetLoggingCategories(
+   [in] handle_t hBinding,
+   [out, size_is(,*BufferSize)] LPBYTE *Buffer,
+   [out, ref] LPDWORD BufferSize,
+   [out, ref] LPDWORD NumberCategories
+   );
+
+error_status_t
+FAX_SetLoggingCategories(
+   [in] handle_t hBinding,
+   [in, unique, size_is(BufferSize)] const LPBYTE Buffer,
+   [in, range(0,FAX_MAX_RPC_BUFFER)] DWORD BufferSize,
+   [in] DWORD NumberCategories
+   );
+
+error_status_t
+FAX_GetSecurity(
+   [in] handle_t hBinding,
+   [out, size_is(,*lpdwBufferSize)] LPBYTE * pSecurityDescriptor,
+   [out, ref] LPDWORD lpdwBufferSize
+   );
+
+error_status_t
+FAX_SetSecurity(
+   [in] handle_t hBinding,
+   [in] SECURITY_INFORMATION SecurityInformation,
+   [in, unique, size_is(dwBufferSize)] const LPBYTE pSecurityDescriptor,
+   [in, range(0,FAX_MAX_RPC_BUFFER)] DWORD dwBufferSize
+   );
+
+error_status_t
+FAX_AccessCheck(
+   [in] handle_t hBinding,
+   [in] DWORD AccessMask,
+   [out, ref] BOOL* pfAccess,
+   [in, out, unique] LPDWORD  lpdwRights
+   );
+
+error_status_t
+FAX_CheckServerProtSeq(
+   [in] handle_t hbinding,
+   [in, out, unique] LPDWORD lpdwProtSeq
+   );
+
+
+error_status_t
+FAX_SendDocumentEx
+(
+   [in] handle_t hBinding,
+   [in, string, unique] LPCWSTR lpcwstrFileName,
+   [in] LPCFAX_COVERPAGE_INFO_EXW  lpcCoverPageInfo,
+   [in] LPBYTE   lpcSenderProfile,
+   [in, range(0,FAX_MAX_RECIPIENTS) ] DWORD dwNumRecipients,
+   [in, size_is(dwNumRecipients)] LPBYTE * lpcRecipientList,
+   [in] LPCFAX_JOB_PARAM_EXW lpJobParams,
+   [in, out, unique] LPDWORD lpdwJobId,
+   [out] PDWORDLONG lpdwlMessageId,
+   [out, size_is(dwNumRecipients)] PDWORDLONG lpdwlRecipientMessageIds
+);
+
+error_status_t
+FAX_EnumJobsEx(
+  [in] handle_t hBinding,
+  [in] DWORD dwJobTypes,
+  [out, size_is(,*BufferSize)] LPBYTE *Buffer,
+  [out, ref] LPDWORD BufferSize,
+  [out, ref] LPDWORD lpdwJobs
+  );
+
+error_status_t
+FAX_GetJobEx(
+  [in] handle_t hBinding,
+  [in] DWORDLONG dwlMessageID,
+  [out, size_is(,*BufferSize)] LPBYTE *Buffer,
+  [out, ref] LPDWORD BufferSize
+  );
+
+
+error_status_t
+FAX_GetCountryList(
+   [in] handle_t    FaxHandle,
+   [out, size_is(,*BufferSize)] LPBYTE *Buffer,
+   [out, ref] LPDWORD BufferSize
+  );
+
+error_status_t
+FAX_GetPersonalProfileInfo
+(
+   [in] handle_t hBinding,
+   [in] DWORDLONG dwlMessageId,
+   [in] FAX_ENUM_MESSAGE_FOLDER   dwFolder,
+   [in] FAX_ENUM_PERSONAL_PROF_TYPES  ProfType,
+   [out, size_is(,*BufferSize)] LPBYTE *Buffer,
+   [out, ref] LPDWORD BufferSize
+);
+
+
+error_status_t
+FAX_GetQueueStates (
+   [in]  handle_t    hFaxHandle,
+   [out] LPDWORD     pdwQueueStates
+);
+
+error_status_t
+FAX_SetQueue (
+   [in] handle_t       hFaxHandle,
+   [in] const DWORD    dwQueueStates
+);
+
+
+error_status_t
+FAX_GetReceiptsConfiguration (
+   [in]  handle_t    hFaxHandle,
+   [out, size_is(,*BufferSize)] LPBYTE *Buffer,
+   [out, ref] LPDWORD BufferSize
+);
+
+error_status_t
+FAX_SetReceiptsConfiguration (
+   [in] handle_t       hFaxHandle,
+   [in, ref] const PFAX_RECEIPTS_CONFIGW pReceipts
+);
+
+error_status_t
+FAX_GetReceiptsOptions (
+   [in] handle_t       hFaxHandle,
+   [out, ref]  LPDWORD lpdwReceiptsOptions  
+);
+
+
+error_status_t
+FAX_GetVersion (
+   [in]  handle_t      hFaxHandle,
+   [in, out] PFAX_VERSION  pVersion
+);
+
+error_status_t
+FAX_GetOutboxConfiguration (
+   [in]  handle_t    hFaxHandle,
+   [out, size_is(,*BufferSize)] LPBYTE *Buffer,
+   [out, ref] LPDWORD BufferSize
+);
+
+error_status_t
+FAX_SetOutboxConfiguration (
+   [in] handle_t       hFaxHandle,
+   [in, ref] const PFAX_OUTBOX_CONFIG pOutboxCfg
+);
+
+error_status_t
+FAX_GetPersonalCoverPagesOption (
+   [in] handle_t       hFaxHandle,
+   [out, ref] LPBOOL   lpbPersonalCPAllowed
+);
+
+error_status_t
+FAX_GetArchiveConfiguration (
+   [in] handle_t                                    hFaxHandle,
+   [in] FAX_ENUM_MESSAGE_FOLDER                     Folder,
+   [out, size_is(,*BufferSize)] LPBYTE              *Buffer,
+   [out, ref] LPDWORD                               BufferSize
+);
+
+error_status_t
+FAX_SetArchiveConfiguration (
+   [in] handle_t                        hFaxHandle,
+   [in] FAX_ENUM_MESSAGE_FOLDER         Folder,
+   [in, ref] const LPBYTE pArchiveCfg
+);
+
+error_status_t
+FAX_GetActivityLoggingConfiguration (
+   [in] handle_t                                    hFaxHandle,
+   [out, size_is(,*BufferSize)] LPBYTE              *Buffer,
+   [out, ref] LPDWORD                               BufferSize
+);
+
+error_status_t
+FAX_SetActivityLoggingConfiguration (
+   [in] handle_t                                    hFaxHandle,
+   [in, ref] const PFAX_ACTIVITY_LOGGING_CONFIGW    pActivLogCfg
+);
+
+error_status_t
+FAX_EnumerateProviders (
+   [in] handle_t                                    hFaxHandle,
+   [out, size_is(,*BufferSize)]                     LPBYTE *Buffer,
+   [out, ref] LPDWORD                               BufferSize,
+   [out, ref] LPDWORD                               lpdwNumProviders
+);
+
+error_status_t
+FAX_GetPortEx (
+   [in] handle_t                                    hFaxHandle,
+   [in] DWORD                                       dwDeviceId,
+   [out, size_is(,*BufferSize)] LPBYTE              *Buffer,
+   [out, ref] LPDWORD                               BufferSize
+);
+
+error_status_t
+FAX_SetPortEx (
+   [in] handle_t                                    hFaxHandle,
+   [in] DWORD                                       dwDeviceId,
+   [in, ref] const PFAX_PORT_INFO_EXW               pPortInfo
+);
+
+error_status_t
+FAX_EnumPortsEx (
+   [in] handle_t                                    hFaxHandle,
+   [out, size_is(,*BufferSize)]                     LPBYTE *Buffer,
+   [out, ref] LPDWORD                               BufferSize,
+   [out, ref] LPDWORD                               lpdwNumPorts
+);
+
+error_status_t
+FAX_GetExtensionData (
+   [in] handle_t                                       hFaxHandle,
+   [in] DWORD                                          dwDeviceId,
+   [in,string,ref] LPCWSTR                             lpcwstrNameGUID,
+   [out, size_is(,*lpdwDataSize)] LPBYTE               *ppData,
+   [out, ref] LPDWORD                                  lpdwDataSize
+);
+
+error_status_t
+FAX_SetExtensionData (
+   [in] handle_t                           hFaxHandle,
+   [in,string] LPCWSTR                     lpcwstrComputerName,
+   [in] DWORD                              dwDeviceId,
+   [in,string] LPCWSTR                     lpcwstrNameGUID,
+   [in, ref, size_is(dwDataSize)] LPBYTE   pData,
+   [in,range(0,FAX_MAX_RPC_BUFFER)] DWORD    dwDataSize
+);
+
+error_status_t
+FAX_AddOutboundGroup (
+   [in] handle_t               hFaxHandle,
+   [in, string,ref] LPCWSTR    lpwstrGroupName
+   );
+
+error_status_t
+FAX_SetOutboundGroup (
+   [in] handle_t                                 hFaxHandle,
+   [in, ref] PRPC_FAX_OUTBOUND_ROUTING_GROUPW    pGroup
+   );
+
+error_status_t
+FAX_RemoveOutboundGroup (
+   [in] handle_t               hFaxHandle,
+   [in, string, ref] LPCWSTR   lpwstrGroupName
+   );
+
+error_status_t
+FAX_EnumOutboundGroups (
+   [in] handle_t                                       hFaxHandle,
+   [out, size_is(,*lpdwDataSize)] LPBYTE               *ppData,
+   [out, ref] LPDWORD                                  lpdwDataSize,
+   [out, ref] LPDWORD                                  lpdwNumGroups
+   );
+
+error_status_t
+FAX_SetDeviceOrderInGroup (
+   [in] handle_t               hFaxHandle,
+   [in, string, ref] LPCWSTR   lpwstrGroupName,
+   [in] DWORD                  dwDeviceId,
+   [in] DWORD                  dwNewOrder
+   );
+
+error_status_t
+FAX_AddOutboundRule (
+   [in] handle_t                   hFaxHandle,
+   [in] DWORD                      dwAreaCode,
+   [in] DWORD                      dwCountryCode,
+   [in] DWORD                      dwDeviceId,
+   [in, string, unique] LPCWSTR    lpwstrGroupName,
+   [in] BOOL                       bUseGroup
+   );
+
+error_status_t
+FAX_RemoveOutboundRule (
+   [in] handle_t                   hFaxHandle,
+   [in] DWORD                      dwAreaCode,
+   [in] DWORD                      dwCountryCode
+   );
+
+error_status_t
+FAX_SetOutboundRule (
+   [in] handle_t                                   hFaxHandle,
+   [in, ref]     RPC_FAX_OUTBOUND_ROUTING_RULEW*   pRule
+   );
+
+error_status_t
+FAX_EnumOutboundRules (
+   [in] handle_t                                       hFaxHandle,
+   [out, size_is(,*lpdwDataSize)] LPBYTE               *ppData,
+   [out, ref] LPDWORD                                  lpdwDataSize,
+   [out, ref] LPDWORD                                  lpdwNumRules
+   );
+
+error_status_t
+FAX_RegisterServiceProviderEx (
+   [in] handle_t           hFaxHandle,
+   [in,string,ref] LPCWSTR lpcwstrGUID,
+   [in,string,ref] LPCWSTR lpcwstrFriendlyName,
+   [in,string,ref] LPCWSTR lpcwstrImageName,
+   [in,string,ref] LPCWSTR lpcwstrTspName,
+   [in] DWORD              dwFSPIVersion,
+   [in] DWORD              dwCapabilities
+);
+
+error_status_t
+FAX_UnregisterServiceProviderEx (
+   [in] handle_t             hFaxHandle,
+   [in,string,ref] LPCWSTR   lpcwstrGUID
+);
+
+
+error_status_t
+FAX_UnregisterRoutingExtension (
+   [in] handle_t           hFaxHandle,
+   [in,string,ref] LPCWSTR lpcwstrExtensionName
+);
+
+error_status_t
+FAX_StartMessagesEnum (
+   [in] handle_t                       hFaxHandle,
+   [in] FAX_ENUM_MESSAGE_FOLDER        Folder,
+   [out,ref] PRPC_FAX_MSG_ENUM_HANDLE lpHandle
+);
+
+error_status_t
+FAX_EndMessagesEnum (
+   [in,out,ref] PRPC_FAX_MSG_ENUM_HANDLE lpHandle
+);
+
+error_status_t
+FAX_EnumMessages(
+   [in,ref] RPC_FAX_MSG_ENUM_HANDLE                    hEnum,
+   [in] DWORD                                           dwNumMessages,
+   [out, size_is(,*lpdwBufferSize)]                     LPBYTE *lppBuffer,
+   [out, ref] LPDWORD                                   lpdwBufferSize,
+   [out, ref] LPDWORD                                   lpdwNumMessagesRetrieved
+);
+
+error_status_t
+FAX_GetMessage (
+   [in] handle_t                                        hFaxHandle,
+   [in] DWORDLONG                                       dwlMessageId,
+   [in] FAX_ENUM_MESSAGE_FOLDER                         Folder,
+   [out, size_is(,*lpdwBufferSize)] LPBYTE              *lppBuffer,
+   [out, ref] LPDWORD                                   lpdwBufferSize
+);
+
+error_status_t
+FAX_RemoveMessage (
+   [in] handle_t                                        hFaxHandle,
+   [in] DWORDLONG                                       dwlMessageId,
+   [in] FAX_ENUM_MESSAGE_FOLDER                         Folder
+);
+
+error_status_t
+FAX_StartCopyToServer (
+   [in] handle_t                   hFaxHandle,           
+   [in,string,ref] LPCWSTR         lpcwstrFileExt,        
+   [in,out,string,ref] LPWSTR lpwstrServerFileName, 
+   [out,ref] PRPC_FAX_COPY_HANDLE lpHandle              
+);
+
+error_status_t
+FAX_StartCopyMessageFromServer (
+   [in] handle_t                   hFaxHandle,             
+   [in] DWORDLONG                  dwlMessageId,           
+   [in] FAX_ENUM_MESSAGE_FOLDER    Folder,                 
+   [out,ref] PRPC_FAX_COPY_HANDLE lpHandle               
+);
+
+error_status_t
+FAX_WriteFile (
+   [in,ref] RPC_FAX_COPY_HANDLE               hCopy,        
+   [in,ref,size_is(dwDataSize)] const LPBYTE    lpbData,      
+   [in, range(0,RPC_COPY_BUFFER_SIZE)] DWORD   dwDataSize    
+);
+
+error_status_t
+FAX_ReadFile (
+   [in,ref]    RPC_FAX_COPY_HANDLE hCopy,                          
+   [in]  DWORD   dwMaxDataSize,                                    
+   [out,ref,size_is(*lpdwDataSize)]    LPBYTE  lpbData,            
+   [in,out,ref]   LPRANGED_DWORD lpdwDataSize                      
+);
+
+error_status_t
+FAX_EndCopy (
+   [in,out,ref] PRPC_FAX_COPY_HANDLE lphCopy
+);
+
+error_status_t
+FAX_StartServerNotification(
+  [in] handle_t hBinding,
+  [in, string, ref] LPCWSTR        lpcwstrMachineName,
+  [in, string, ref] LPCWSTR        lpcwstrEndPoint,
+  [in] ULONG64                     Context,
+  [in, ref, string] LPCWSTR         lpcwstrProtseqString,
+  [in] BOOL                        bEventEx,
+  [in] DWORD                       dwEventTypes,
+  [out,ref] PRPC_FAX_EVENT_HANDLE lpHandle
+  );
+
+error_status_t
+FAX_StartServerNotificationEx(
+  [in] handle_t hBinding,
+  [in, string, ref] LPCWSTR            lpcwstrMachineName,
+  [in, string, ref] LPCWSTR            lpcwstrEndPoint,
+  [in] ULONG64                         Context,
+  [in, ref, string] LPCWSTR             lpcwstrProtSeq, 
+  [in] BOOL                            bEventEx,
+  [in] DWORD                           dwEventTypes,
+  [out,ref] PRPC_FAX_EVENT_EX_HANDLE  lpHandle
+  );
+
+error_status_t
+FAX_EndServerNotification (
+   [in,out,ref] PRPC_FAX_EVENT_EX_HANDLE lpHandle
+);
+
+error_status_t
+FAX_GetServerActivity(
+   [in] handle_t                   hFaxHandle,
+   [in, out, ref] PFAX_SERVER_ACTIVITY  pServerActivity
+);
+
+error_status_t
+FAX_SetConfigWizardUsed (
+   [in] handle_t   hFaxHandle,
+   [in] BOOL       bConfigWizardUsed
+);
+
+error_status_t
+FAX_EnumRoutingExtensions (
+   [in] handle_t                                    hFaxHandle,
+   [out, size_is(,*BufferSize)]                     LPBYTE *Buffer,
+   [out, ref] LPDWORD                               BufferSize,
+   [out, ref] LPDWORD                               lpdwNumExts
+);
+
+
+error_status_t
+FAX_ConnectFaxServer(
+   [in] handle_t                       hBinding,
+   [in] DWORD                          dwClientAPIVersion,
+   [out, ref] LPDWORD                  lpdwServerAPIVersion,
+   [out, ref] PRPC_FAX_SVC_HANDLE     pHandle
+   );
+
+error_status_t
+FAX_GetSecurityEx(
+   [in] handle_t hBinding,
+   [in] SECURITY_INFORMATION SecurityInformation,
+   [out, size_is(,*lpdwBufferSize)] LPBYTE * pSecurityDescriptor,
+   [out, ref] LPDWORD lpdwBufferSize
+   );
+
+error_status_t
+FAX_RefreshArchive(
+   [in]  handle_t                 hFaxHandle,
+   [in]  FAX_ENUM_MESSAGE_FOLDER  Folder
+);
+
+error_status_t
+FAX_SetRecipientsLimit(
+   [in] handle_t hbinding,
+   [in] DWORD dwRecipientsLimit
+);
+
+error_status_t
+FAX_GetRecipientsLimit(
+   [in] handle_t hbinding,
+   [out, ref] LPDWORD lpdwRecipientsLimit
+);
+
+error_status_t
+FAX_GetServerSKU(
+   [in] handle_t hbinding,
+   [out, ref] PRODUCT_SKU_TYPE* pServerSKU
+);
+
+error_status_t
+FAX_CheckValidFaxFolder(
+  [in] handle_t hBinding,
+  [in, string, ref] LPCWSTR        lpcwstrPath
+);
+
+error_status_t
+FAX_GetJobEx2(
+  [in] handle_t hBinding,
+  [in] DWORDLONG dwlMessageID,
+  [in]    DWORD      level,    
+  [out, size_is(,*BufferSize)] LPBYTE *Buffer,
+  [out, ref] LPDWORD BufferSize
+);
+
+error_status_t
+FAX_EnumJobsEx2(
+  [in] handle_t hBinding,
+  [in] BOOL fAllAccounts,
+  [in, string, unique] LPCWSTR lpcwstrAccountName,   
+  [in] DWORD dwJobTypes,
+  [in]    DWORD level,
+  [out, size_is(,*BufferSize)] LPBYTE *Buffer,
+  [out, ref] LPDWORD BufferSize,
+  [out, ref] LPDWORD lpdwJobs
+);
+
+error_status_t
+FAX_GetMessageEx (
+   [in] handle_t                                        hFaxHandle,
+   [in] DWORDLONG                                       dwlMessageId,
+   [in] FAX_ENUM_MESSAGE_FOLDER                         Folder,
+   [in] DWORD                                           level,
+   [out, size_is(,*lpdwBufferSize)] LPBYTE              *lppBuffer,
+   [out, ref] LPDWORD                                   lpdwBufferSize
+);
+
+error_status_t
+FAX_StartMessagesEnumEx (
+   [in] handle_t                       hFaxHandle,
+   [in] BOOL                           fAllAccounts,
+   [in, string, unique] LPCWSTR        lpcwstrAccountName,
+   [in] FAX_ENUM_MESSAGE_FOLDER        Folder,
+   [in] DWORD                          level,    
+   [out,ref] PRPC_FAX_MSG_ENUM_HANDLE lpHandle
+);
+
+error_status_t
+FAX_EnumMessagesEx(
+   [in,ref] RPC_FAX_MSG_ENUM_HANDLE                    hEnum,
+   [in] DWORD                                           dwNumMessages,
+   [out, size_is(,*lpdwBufferSize)]                     LPBYTE *lppBuffer,
+   [out, ref] LPDWORD                                   lpdwBufferSize,
+   [out, ref] LPDWORD                                   lpdwNumMessagesRetrieved,
+   [out, ref] LPDWORD                                   lpdwLevel    
+);
+
+error_status_t
+FAX_StartServerNotificationEx2(
+  [in] handle_t                        hBinding,
+  [in, string, unique] LPCWSTR         lpcwstrAccountName,   
+  [in, string, ref] LPCWSTR            lpcwstrMachineName,
+  [in, string, ref] LPCWSTR            lpcwstrEndPoint,
+  [in] ULONG64                         Context,
+  [in, ref, string] LPCWSTR         lpcwstrProtseqString,
+  [in] DWORD                           dwEventTypes,   
+  [in] DWORD                           level,   
+  [out,ref] PRPC_FAX_EVENT_EX_HANDLE  lpHandle
+  );
+
+error_status_t
+FAX_CreateAccount(
+   [in] handle_t hBinding,
+   [in] DWORD level,
+   [in, ref, size_is(BufferSize)] const LPBYTE   Buffer,
+   [in,range(0,FAX_MAX_RPC_BUFFER)] DWORD    BufferSize
+);
+
+error_status_t
+FAX_DeleteAccount(
+   [in] handle_t hBinding,
+   [in, string, unique] LPCWSTR         lpcwstrAccountName
+);
+
+error_status_t
+FAX_EnumAccounts(
+   [in] handle_t hBinding,
+   [in] DWORD level,
+   [out, size_is(,*BufferSize)] LPBYTE *Buffer,
+   [out, ref] LPDWORD BufferSize,
+   [out, ref] LPDWORD lpdwAccounts
+);
+
+error_status_t
+FAX_GetAccountInfo(
+   [in] handle_t hBinding,
+   [in, string, unique] LPCWSTR  lpcwstrAccountName,
+   [in] DWORD level,
+   [out, size_is(,*BufferSize)] LPBYTE *Buffer,
+   [out, ref] LPDWORD BufferSize
+);
+
+error_status_t
+FAX_GetGeneralConfiguration(
+   [in] handle_t   hBinding,
+   [in] DWORD      level,
+   [out, size_is(,*BufferSize)] LPBYTE *Buffer,
+   [out, ref] LPDWORD BufferSize
+);
+
+error_status_t
+FAX_SetGeneralConfiguration(
+   [in] handle_t   hBinding,
+   [in] DWORD      level,
+   [in, ref, size_is(BufferSize)] const LPBYTE Buffer,
+   [in,range(0,FAX_MAX_RPC_BUFFER)] DWORD      BufferSize
+);
+
+error_status_t
+FAX_GetSecurityEx2(
+   [in] handle_t hBinding,
+   [in] SECURITY_INFORMATION SecurityInformation,
+   [out, size_is(,*lpdwBufferSize)] LPBYTE * pSecurityDescriptor,
+   [out, ref] LPDWORD lpdwBufferSize
+   );
+
+error_status_t
+FAX_SetSecurityEx2(
+   [in] handle_t hBinding,
+   [in] SECURITY_INFORMATION SecurityInformation,
+   [in, unique, size_is(dwBufferSize)] const LPBYTE pSecurityDescriptor,
+   [in, range(0,FAX_MAX_RPC_BUFFER)] DWORD dwBufferSize
+   );
+
+error_status_t
+FAX_AccessCheckEx2(
+   [in] handle_t hBinding,
+   [in] DWORD AccessMask,
+   [out, ref] BOOL* pfAccess,
+   [in, out, unique] LPDWORD  lpdwRights
+   );
+
+error_status_t
+FAX_ReAssignMessage(
+   [in] handle_t hBinding,
+   [in] DWORDLONG dwlMessageId,
+   [in, ref] PFAX_REASSIGN_INFO pReAssignInfo
+   );
+
+error_status_t
+FAX_SetMessage(
+   [in] handle_t                   hFaxHandle,
+   [in] DWORDLONG                  dwlMessageId,
+   [in] FAX_ENUM_MESSAGE_FOLDER    Folder,
+   [in, ref] PFAX_MESSAGE_PROPS    lpMessageProps
+);
+
+error_status_t
+FAX_GetConfigOption(
+   [in]  handle_t                  hFaxHandle,
+   [in]  FAX_ENUM_CONFIG_OPTION    option,
+   [out] LPDWORD                   lpdwValue);
+
+};
+
+[
+   uuid(ea0a3165-4834-11d2-a6f8-00c04fa346cc),
+   version(4.0),
+   pointer_default(unique)
+]
+
+interface faxobs
+
+{
+
+error_status_t
+FaxObs_ConnectionRefCount(
+   [in] handle_t hBinding,
+   [in, out] PRPC_FAX_SVC_HANDLE Handle,
+   [in] DWORD Connect,
+   [out] LPDWORD CanShare
+   );
+
+error_status_t
+FaxObs_GetVersion(
+  [in] handle_t hBinding,
+  [out] LPDWORD Version
+  );
+
+error_status_t
+FaxObs_GetInstallType(
+  [in] handle_t hBinding,
+  [out] LPDWORD InstallType,
+  [out] LPDWORD InstalledPlatforms,
+  [out] LPDWORD ProductType
+  );
+
+error_status_t
+FaxObs_OpenPort(
+  [in] handle_t hBinding,
+  [in] DWORD DeviceId,
+  [in] DWORD Flags,
+  [out] PRPC_FAX_PORT_HANDLE FaxPortHandle
+  );
+
+error_status_t
+FaxObs_ClosePort(
+  [in,out] PRPC_FAX_PORT_HANDLE FaxPortHandle
+  );
+
+error_status_t
+FaxObs_SendDocument(
+  [in] handle_t hBinding,
+  [in, string, unique] LPCWSTR FileName,
+  [in] const FAX_JOB_PARAMW *JobParams,
+  [out] LPDWORD FaxJobId
+  );
+
+error_status_t
+FaxObs_GetQueueFileName(
+  [in] handle_t hBinding,
+  [in, out, unique, size_is(FileNameSize)] LPWSTR FileName,
+  [in] DWORD FileNameSize
+  );
+
+error_status_t
+FaxObs_EnumJobs(
+  [in] handle_t hBinding,
+  [in, out, unique, size_is(,*BufferSize)] LPBYTE *Buffer,
+  [in,out] LPDWORD BufferSize,
+  [out] LPDWORD JobsReturned
+  );
+
+error_status_t
+FaxObs_GetJob(
+  [in] handle_t hBinding,
+  [in] DWORD JobId,
+  [in, out, unique, size_is(,*BufferSize)] LPBYTE *Buffer,
+  [in,out] LPDWORD BufferSize
+  );
+
+error_status_t
+FaxObs_SetJob(
+  [in] handle_t hBinding,
+  [in] DWORD JobId,
+  [in] DWORD Command,
+  [in] const FAX_JOB_ENTRY *JobEntry
+  );
+
+error_status_t
+FaxObs_GetPageData(
+  [in] handle_t hBinding,
+  [in] DWORD JobId,
+  [in, out, unique, size_is(,*BufferSize)] LPBYTE *Buffer,
+  [in,out] LPDWORD BufferSize,
+  [in,out] LPDWORD ImageWidth,
+  [in,out] LPDWORD ImageHeight
+  );
+
+error_status_t
+FaxObs_GetDeviceStatus(
+  [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+  [in, out, unique, size_is(,*BufferSize)] LPBYTE*StatusBuffer,
+  [in,out] LPDWORD BufferSize
+  );
+
+error_status_t
+FaxObs_Abort(
+  [in] handle_t hBinding,
+  [in] DWORD JobId
+  );
+
+error_status_t
+FaxObs_EnumPorts(
+  [in] handle_t hBinding,
+  [in, out, unique, size_is(,*BufferSize)] LPBYTE *PortBuffer,
+  [in,out] LPDWORD BufferSize,
+  [out] LPDWORD PortsReturned
+  );
+
+error_status_t
+FaxObs_GetPort(
+  [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+  [in, out, unique, size_is(,*BufferSize)] LPBYTE *PortBuffer,
+  [in,out] LPDWORD BufferSize
+  );
+
+error_status_t
+FaxObs_SetPort(
+  [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+  [in] const FAX_PORT_INFO *PortInfo
+  );
+
+error_status_t
+FaxObs_EnumRoutingMethods(
+   [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+   [in, out, unique, size_is(,*RoutingInfoBufferSize)] LPBYTE *RoutingInfoBuffer,
+   [in,out] LPDWORD RoutingInfoBufferSize,
+   [out] LPDWORD PortsReturned
+   );
+
+error_status_t
+FaxObs_EnableRoutingMethod(
+   [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+   [in, string, unique] LPCWSTR RoutingGuid,
+   [in] BOOL Enabled    
+   );
+
+error_status_t
+FaxObs_GetRoutingInfo(
+   [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+   [in, string, unique] LPCWSTR RoutingGuid,
+   [in, out, unique, size_is(,*RoutingInfoBufferSize)] LPBYTE *RoutingInfoBuffer,
+   [in,out] LPDWORD RoutingInfoBufferSize
+   );
+
+error_status_t
+FaxObs_SetRoutingInfo(
+  [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+  [in, string, unique] LPCWSTR RoutingGuid,
+  [in, unique, size_is(RoutingInfoBufferSize)] const BYTE *RoutingInfoBuffer,
+  [in] DWORD RoutingInfoBufferSize
+  );
+
+error_status_t
+FaxObs_EnumGlobalRoutingInfo(
+   [in] handle_t hBinding,
+   [in, out, unique, size_is(,*RoutingInfoBufferSize)] LPBYTE *RoutingInfoBuffer,
+   [in,out] LPDWORD RoutingInfoBufferSize,
+   [out] LPDWORD MethodsReturned
+   );
+
+error_status_t
+FaxObs_SetGlobalRoutingInfo(
+   [in] handle_t hBinding,
+   [in] const FAX_GLOBAL_ROUTING_INFOW *RoutingInfo
+   );
+
+error_status_t
+FaxObs_GetConfiguration(
+  [in] handle_t hBinding,
+  [in, out, unique, size_is(,*BufferSize)] LPBYTE *Buffer,
+  [in,out] LPDWORD BufferSize
+  );
+
+error_status_t
+FaxObs_SetConfiguration(
+  [in] handle_t hBinding,
+  [in] const FAX_CONFIGURATIONW *FaxConfig
+  );
+
+error_status_t
+FaxObs_GetLoggingCategories(
+   [in] handle_t hBinding,
+   [in, out, unique, size_is(,*BufferSize)] LPBYTE *Buffer,
+   [in,out] LPDWORD BufferSize,
+   [in,out] LPDWORD NumberCategories
+   );
+
+error_status_t
+FaxObs_SetLoggingCategories(
+   [in] handle_t hBinding,
+   [in, unique, size_is(BufferSize)] const LPBYTE Buffer,
+   [in] DWORD BufferSize,
+   [in] DWORD NumberCategories
+   );
+
+error_status_t
+FaxObs_GetTapiLocations(
+  [in] handle_t hBinding,
+  [in, out, unique, size_is(,*BufferSize)] LPBYTE *Buffer,
+  [in,out] LPDWORD BufferSize
+  );
+
+error_status_t
+FaxObs_SetTapiLocations(
+  [in] handle_t hBinding,
+  [in, unique, size_is(BufferSize)] LPBYTE Buffer,
+  [in] DWORD BufferSize
+  );
+
+error_status_t
+FaxObs_GetMapiProfiles(
+  [in] handle_t hBinding,
+  [in, out, unique, size_is(,*BufferSize)] LPBYTE *MapiProfiles,
+  [in,out] LPDWORD BufferSize
+  );
+
+error_status_t
+FaxObs_StartClientServer(
+  [in] handle_t hBinding,
+  [in, string, unique] LPCWSTR MachineName,
+  [in, string, unique] LPCWSTR ClientName,
+  [in] ULONG64 Context
+  );
+
+void Opnum30NotUsedOnWire(void);
+
+error_status_t
+FaxObs_GetSecurityDescriptor(
+   [in] handle_t hBinding,
+   [in] DWORD Id,
+   [in, out, unique, size_is(,*BufferSize)] LPBYTE * FaxSecurityDescriptor,
+   [in, out] LPDWORD BufferSize
+   );
+
+error_status_t
+FaxObs_SetSecurityDescriptor(
+   [in] handle_t hBinding,
+   [in, unique, size_is(BufferSize)] const LPBYTE FaxSecurityDescriptor,
+   [in] DWORD BufferSize
+   );
+
+error_status_t
+FaxObs_GetSecurityDescriptorCount(
+   [in] handle_t hBinding,
+   [out] LPDWORD Count
+   );
+
+error_status_t
+FaxObs_AccessCheck(
+   [in] handle_t hBinding,
+   [in] DWORD AccessMask,
+   [out] LPDWORD fAccess
+   );
+
+};
+
+typedef struct {
+ DWORD SizeOfStruct;
+ FILETIME TimeStamp;
+ DWORD  DeviceId;
+ DWORD EventId;
+ DWORD JobId;
+} FAX_EVENT,
+*PFAX_EVENT;
+
+
+[
+   uuid(6099fc12-3eff-11d0-abd0-00c04fd91a4e),
+   version(3.0),
+   pointer_default(unique)
+]
+
+interface faxclient
+{
+ error_status_t
+ FAX_OpenConnection(
+    [in] handle_t hBinding,
+    [in] unsigned __int64  Context,
+    [out] PRPC_FAX_HANDLE FaxHandle
+    );
+
+ error_status_t
+ FAX_ClientEventQueue(
+    [in] RPC_FAX_HANDLE FaxPortHandle,
+    [in] FAX_EVENT       FaxEvent
+    );
+
+ error_status_t
+ FAX_CloseConnection(
+    [in,out] PRPC_FAX_HANDLE FaxHandle
+    );
+
+ error_status_t
+ FAX_ClientEventQueueEx(
+    [in, ref] RPC_FAX_HANDLE hClientContext,
+    [in, ref, size_is(dwDataSize)]  const LPBYTE lpbData,
+    [in] DWORD dwDataSize
+    );
+}

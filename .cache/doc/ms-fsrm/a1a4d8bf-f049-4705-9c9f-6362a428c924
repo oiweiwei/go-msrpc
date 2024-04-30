@@ -1,0 +1,13 @@
+<div class="content"><p>The FsrmRuleFlags enumeration defines the possible states of
+the rule objects in the File Server Resource Manager Protocol.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmRuleFlags
+ {
+   FsrmRuleFlags_Disabled = 0x00000100,
+   FsrmRuleFlags_Invalid = 0x00001000
+ } FsrmRuleFlags;
+</pre></div>
+</dd></dl><p><b>FsrmRuleFlags_Disabled:  </b>If set, the server
+does not run the rule when classifying a file.</p><p><b>FsrmRuleFlags_Invalid:  </b>If the
+FsrmRuleFlags_Invalid flag is set, the rule defines an invalid set of
+parameters and will not be run when classifying a file.</p></div>

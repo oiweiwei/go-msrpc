@@ -1,0 +1,101 @@
+<div class="content"><p>The GetCertInfoRemote method retrieves properties from a <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> associated with
+the specified <i>InstanceName</i>.</p><dl>
+<dd>
+<div><pre> [id(10)] HRESULT GetCertInfoRemote(
+   [out, retval] VARIANT* BinaryVariant
+ );
+</pre></div>
+</dd></dl><p><b>BinaryVariant: </b> A pointer to a <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a>
+that will contain the certificate data. If the method returns S_OK, <i>BinaryVariant</i>
+contains a single dimension <a href="../ms-oaut/04e72b3f-5731-4508-9bb4-de29fbd0f781" data-linktype="relative-path">SAFEARRAY</a>
+of VT_UI1 elements as defined in <a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a>.
+The data contained in the array is a null-terminated <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string containing
+attribute data from the certificate. The format and contents are described
+further in the method details.</p><p><b>Return Values: </b> A signed 32-bit value that
+indicates return status. If the method returns a negative value, it failed. If
+the 12-bit facility code (bits 16–27) is set to 0x007, the value contains a
+Win32 error code in the lower 16 bits. Zero or positive values indicate
+success, with the lower 16 bits in positive nonzero values containing warnings
+or flags defined in the method implementation. For more information about Win32
+error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  <p>S_FALSE</p>
+  </td>
+  <td>
+  <p>The call was successful. No data was returned.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The <b>opnum</b> field value for this method is 16. </p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>If the <a href="4deea6fc-b771-4e03-a7b8-52adff24f271" data-linktype="relative-path">InstanceName
+(Set)</a> method has not been called to set the web <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_1623705d-a7a0-4e46-9a66-66e9ee63d961" data-linktype="relative-path">server instance</a>, return
+E_INVALIDARG.</p>
+</li><li><p><span><span> 
+</span></span>Attempt to retrieve the certificate referenced at the specified <i>InstanceName</i>.
+If the certificate cannot be retrieved on the target system or if no
+certificate is referenced at the specified <i>InstanceName</i>, return S_FALSE.</p>
+</li><li><p><span><span> 
+</span></span>Attempt to retrieve the <b>Subject</b> field from the certificate
+(<a href="https://go.microsoft.com/fwlink/?LinkId=90414" data-linktype="external">[RFC3280]</a> section
+4.1.2.6). For each <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_22198321-b40b-4c24-b8a2-29e44d9d92b9" data-linktype="relative-path">relative
+distinguished name (RDN)</a> contained in the <b>Subject</b> field, append the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_aaaf2f1a-0b0a-487e-a0f0-c3510a6091b2" data-linktype="relative-path">object identifier (OID)</a> for
+the attribute type and the attribute value to a Unicode string separated by the
+equals character, &#39;=&#39; (0x003D). If there is more than one RDN contained in the <b>Subject</b>
+field, separate the type/value pairs with a newline character, &#39;\n&#39; (0x000A).
+Append a newline to the string.</p>
+</li><li><p><span><span> 
+</span></span>Attempt to retrieve the <b>Issuer</b> field from the certificate
+([RFC3280] section 4.1.2.4). Retrieve the attribute value for one of the RDNs
+in the <b>Issuer</b> field and append the characters &#39;4&#39; (0x0034), &#39;=&#39;
+(0x003D), the retrieved attribute value, and &#39;\n&#39; (0x000A) to the Unicode data
+string.<a id="Appendix_A_Target_34"></a><a aria-label="Product behavior note 34" href="88fd1df0-e63e-41ca-9bf3-bedcab57cd86#Appendix_A_34" data-linktype="relative-path">&lt;34&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Attempt to retrieve the notAfter value from the <b>Validity</b>
+field of the certificate ([RFC3280]  section 4.1.2.5). The time portion of this
+value is discarded and the date is converted to a Unicode string using the
+server&#39;s system locale. The characters &#39;6&#39; (0x0036), &#39;=&#39; (0x003D), the
+converted date string, and &#39;\n&#39; (0x000A) are then appended to the Unicode data
+string.<a id="Appendix_A_Target_35"></a><a aria-label="Product behavior note 35" href="88fd1df0-e63e-41ca-9bf3-bedcab57cd86#Appendix_A_35" data-linktype="relative-path">&lt;35&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Attempt to retrieve the Extended Key Usage values for the
+certificate ([RFC3280] section 4.2.1.13). The Unicode string
+&#34;2.5.29.37=&#34; is appended to the data string followed by descriptive
+names for the specific key usage object identifiers. For example the
+id-kp-serverAuth OID (&#34;1.3.6.1.5.5.7.3.1&#34;) SHOULD be represented as
+the string &#34;Server Authentication&#34;.<a id="Appendix_A_Target_36"></a><a aria-label="Product behavior note 36" href="88fd1df0-e63e-41ca-9bf3-bedcab57cd86#Appendix_A_36" data-linktype="relative-path">&lt;36&gt;</a> Multiple
+usages are separated by the comma &#39;,&#39; space &#39; &#39; (0x0027, 0x0020) character
+sequence. </p>
+</li><li><p><span><span> 
+</span></span>If there are no errors encountered in accessing the certificate
+data, the Unicode string is converted into a SAFEARRAY of VT_UI1 and returned
+to the client in the <i>BinaryVariant</i> parameter. Otherwise, S_FALSE is
+returned.</p>
+</li></ul></div>

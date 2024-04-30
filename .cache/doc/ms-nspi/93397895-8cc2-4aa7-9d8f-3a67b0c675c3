@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The ShortArray_r structure encodes an array of 16-bit
+integers.</p><dl>
+<dd>
+<div><pre> typedef struct ShortArray_r {
+   [range(0,100000)] DWORD cValues;
+   [size_is(cValues)] short int* lpi;
+ } ShortArray_r;
+</pre></div>
+</dd></dl><p><b>cValues:</b>  The number of 16-bit
+integer values represented in the ShortArray_r structure. This value MUST NOT
+exceed 100,000.</p><p><b>lpi:</b>  The 16-bit integer values.</p></div>

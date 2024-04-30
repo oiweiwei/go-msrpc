@@ -1,0 +1,70 @@
+<div class="content"><p> </p><p>The <b>R_DhcpDeleteMClientInfo</b> method deletes the
+specified MADCAP client lease record from the MADCAP server. It also frees up
+the MADCAP client IPv4 address for redistribution.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpDeleteMClientInfo(
+     [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+     [in, ref]    LPDHCP_SEARCH_INFO ClientInfo
+ );
+  
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the MADCAP server. This parameter is unused.</p><p><b>ClientInfo: </b>This is a pointer of type <span><a href="f8ab6a93-be31-4643-b32c-e0ae6ba95a44" data-linktype="relative-path">DHCP_SEARCH_INFO (section 2.2.1.2.18)</a></span>,
+defining the key to be used to search the MADCAP client lease record that needs
+to be deleted from the MADCAP server.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the MADCAP server
+  database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 12.</p><p>When processing this call, the MADCAP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If <b>SearchType</b> contains DhcpClientName, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the <b>DHCPv4MClientsList</b> ADM element of all
+the <b>DHCPv4MScope</b> entries in server ADM element <b>DHCPv4MScopesList</b>
+and retrieve the <b>DHCPv4MClient</b> entry corresponding to the <b>ClientIpAddress</b>
+or <b>ClientHardwareAddress</b> as specified by the <b>SearchType</b> in the <i>SearchInfo</i>
+(section 2.2.1.2.18).</p>
+</li><li><p><span><span> 
+</span></span>If the <b>DHCPv4MClient</b> entry is not found, return
+ERROR_DHCP_JET_ERROR.</p>
+</li><li><p><span><span> 
+</span></span>Delete the <b>DHCPv4MClient</b> entry from the <b>DHCPv4MClientsList</b>.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p>The VDS_STORAGE_IDENTIFIER_TYPE enumeration defines the
+types of storage device identifiers, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90528" data-linktype="external">[SPC-3]</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_STORAGE_IDENTIFIER_TYPE
+ {
+   VDSStorageIdTypeVendorSpecific = 0x00000000,
+   VDSStorageIdTypeVendorId = 0x00000001,
+   VDSStorageIdTypeEUI64 = 0x00000002,
+   VDSStorageIdTypeFCPHName = 0x00000003,
+   VDSStorageIdTypePortRelative = 0x00000004,
+   VDSStorageIdTypeTargetPortGroup = 0x00000005,
+   VDSStorageIdTypeLogicalUnitGroup = 0x00000006,
+   VDSStorageIdTypeMD5LogicalUnitIdentifier = 0x00000007,
+   VDSStorageIdTypeScsiNameString = 0x00000008
+ } VDS_STORAGE_IDENTIFIER_TYPE;
+</pre></div>
+</dd></dl><p><b>VDSStorageIdTypeVendorSpecific:  </b>Storage
+identifier is vendor-specific.</p><p><b>VDSStorageIdTypeVendorId:  </b>Storage identifier
+is a vendor identifier.</p><p><b>VDSStorageIdTypeEUI64:  </b>Storage identifier is
+a 64-bit <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_ca150449-2584-4908-b329-e98fe2739db1" data-linktype="relative-path">extended unique identifier
+(EUI-64)</a></span>.</p><p><b>VDSStorageIdTypeFCPHName:  </b>Storage identifier
+is a Fibre Channel Physical and Signaling Interface (FC-PH) identifier.</p><p><b>VDSStorageIdTypePortRelative:  </b>Storage
+identifier is a relative target port identifier.</p><p><b>VDSStorageIdTypeTargetPortGroup:  </b>Storage
+identifier is a target port group number.</p><p><b>VDSStorageIdTypeLogicalUnitGroup:  </b>Storage
+identifier is a logical unit group number.</p><p><b>VDSStorageIdTypeMD5LogicalUnitIdentifier:  </b>Storage
+identifier is an MD5 <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7593b869-71a9-4a02-bab3-377e51729067" data-linktype="relative-path">logical unit number (LUN)</a></span>.</p><p><b>VDSStorageIdTypeScsiNameString:  </b>Storage
+identifier is an <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_ffc774d9-3be4-41f0-b479-cb90454a7908" data-linktype="relative-path">SCSI name string identifier</a></span>.</p></div>

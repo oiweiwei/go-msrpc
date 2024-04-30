@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The VDS_VOLUME_PLEX_TYPE enumeration defines the set of
+valid types for a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7d1df68a-9ec5-4f84-a64f-67888f39405d" data-linktype="relative-path">volume plex</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_VOLUME_PLEX_TYPE
+ {
+   VDS_VPT_UNKNOWN = 0x00000000,
+   VDS_VPT_SIMPLE = 0x0000000A,
+   VDS_VPT_SPAN = 0x0000000B,
+   VDS_VPT_STRIPE = 0x0000000C,
+   VDS_VPT_PARITY = 0x0000000E
+ } VDS_VOLUME_PLEX_TYPE;
+</pre></div>
+</dd></dl><p><b>VDS_VPT_UNKNOWN:  </b>The volume plex type is
+unknown.</p><p><b>VDS_VPT_SIMPLE:  </b>The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_d864e01b-9fb1-4beb-9864-8221d293445a" data-linktype="relative-path">plex</a></span> type is simple;
+it is composed of extents from exactly one <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.</p><p><b>VDS_VPT_SPAN:  </b>The plex type is spanned; it is
+composed of extents from more than one disk.</p><p><b>VDS_VPT_STRIPE:  </b>The plex type is striped,
+which is equivalent to <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_eebb19ad-46a7-42e4-8a55-f377d895a862" data-linktype="relative-path">RAID-0</a></span>.</p><p><b>VDS_VPT_PARITY:  </b>The plex type is striped with
+parity, which accounts for <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1c16ca36-c1ca-4bdb-9c4e-6b899fbb8435" data-linktype="relative-path">RAID</a></span> levels 3, 4, 5,
+and 6.</p></div>

@@ -1,0 +1,20 @@
+<div class="content"><p>The ReaderState_Common_Call structure contains the state of
+the reader at the time of the call as seen by the caller.</p><dl>
+<dd>
+<div><pre> typedef struct _ReaderState_Common_Call {
+   unsigned long dwCurrentState;
+   unsigned long dwEventState;
+   [range(0,36)] unsigned long cbAtr;
+   byte rgbAtr[36];
+ } ReaderState_Common_Call;
+</pre></div>
+</dd></dl><p><b>dwCurrentState:</b>  A bitmap that
+specifies the current reader state according to the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_b9854a6a-0613-4b7a-95e4-c2b359b6021a" data-linktype="relative-path">TS client</a>. Possible values
+are specified in section <a href="3a235960-2fec-446b-8ed1-50bcc70e3c5f" data-linktype="relative-path">2.2.7</a>.
+</p><p><b>dwEventState:</b>  A bitmap that defines
+the state of the reader after a state change. Possible values are specified in
+section 2.2.7. </p><p><b>cbAtr:</b>  The number of bytes used in
+the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_2a8fc201-65aa-4040-980c-f4843467e6bf" data-linktype="relative-path">ATR</a> string.</p><p><b>rgbAtr:</b>  The value for the card&#39;s
+ATR string. If <b>cbAtr</b> is NOT zero, this value MUST be formatted in
+accordance to <a href="https://go.microsoft.com/fwlink/?LinkId=89918" data-linktype="external">[ISO/IEC-7816-3]</a>
+section 8. Unused bytes MUST be set to 0 and MUST be ignored.</p></div>

@@ -1,0 +1,194 @@
+<div class="content"><p> </p><p>The <b>R_DhcpScanDatabase</b> method is used by DHCP servers
+that enumerate and/or fix inconsistencies between the ADM elements DHCPv4
+client <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6d76b31-2852-4bd5-8fbb-8e82a3cedb29" data-linktype="relative-path">lease records</a></span>
+specified in <b>DHCPv4Scope.DHCPv4ClientsList</b> and the bitmask
+representation in memory specified in <b>DHCPv4IpRange.BitMask</b>. The caller
+of this function can free the memory pointed to by the <i>ScanList</i>
+parameter and its member the <b>ScanItems</b> array by calling the function <b>midl_user_free</b>
+(section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpScanDatabase(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [in] DWORD FixFlag,
+   [out] LPDHCP_SCAN_LIST* ScanList
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SubnetAddress: </b>This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>,
+containing the IPv4 subnet ID of the subnet in which the scan is done for the
+IPv4 addresses that are not in sync.</p><p><b>FixFlag: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+defining the behavior of this method. This method enumerates the DHCPv4 client
+IPv4 addresses that are not in sync in both the stores, and if the <i>FixFlag</i>
+parameter is set to TRUE, it fixes those unmatched IPv4 addresses also.</p><p><b>ScanList: </b>This is a pointer of type <span><a href="bc78876c-bf97-49a7-9093-e772920b7ca1" data-linktype="relative-path">LPDHCP_SCAN_LIST</a></span>
+that points to the location containing the DHCPv4 client IPv4 addresses that
+are not in sync in both the stores.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist on the DHCP
+  server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 27.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4Scope</b> ADM element entry corresponding
+to the <i>SubnetAddress</i> parameter from the server ADM element <b>DHCPv4ScopesList</b>.
+If the <b>DHCPv4Scope</b> ADM element entry is not found, return
+ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4IpRange.BitMask</b> ADM element from memory
+for each element in the <b>DHCPv4Scope.DHCPv4IpRangesList</b> ADM element. </p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4ClientsList</b> ADM element from the
+specified <b>DHCPv4Scope</b> ADM element.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4ReservationsList</b> ADM element from the
+specified <b>DHCPv4Scope</b> ADM element.</p>
+</li><li><p><span><span> 
+</span></span>Allocate memory to the <i>ScanList</i> parameter, which is equal
+to the size of type DHCP_SCAN_LIST, and set its members <b>NumScanItems</b> to
+zero and <b>ScanItems</b> to NULL.</p>
+</li><li><p><span><span> 
+</span></span>Allocate memory to the <b>ScanItems</b> member for 100 entries at
+a time. As entries are added to <i>ScanList</i> in the instructions that
+follow, continue incrementing the <b>NumScanItems</b> member. If <b>NumScanItems</b>
+reaches a value of 100, then allocate memory for 200 entries and copy the first
+100 entries to the new memory and then free the old memory. Continue similarly
+until all elements are added to the <i>ScanList</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the <b>DHCPv4ClientsList</b> ADM element; for
+each <b>DHCPv4Client</b> ADM element that has the corresponding bit set to 0 in
+the retrieved <b>DHCPv4IpRange.Bitmask</b> ADM element and there exists no <b>DHCPv4Reservation</b>
+ADM element corresponding to that IPv4 address, add the IPv4 address in the <i>ScanList</i>
+parameter, and set the <b>ScanFlag</b> member as DhcpRegistryFix. Increment the
+<b>NumScanItems</b> member.</p>
+</li><li><p><span><span> 
+</span></span>For all the DHCPv4 client Ipv4 addresses that have the corresponding
+bit set to 1 in the retrieved <b>DHCPv4IpRange.BitMask</b> ADM element, if
+there is no corresponding <b>DHCPv4Client</b> ADM element entry in the <b>DHCPv4ClientsList</b>
+ADM element, and if the IPv4 address does not fall within the range specified
+by any of the entries of <b>DHCPv4Scope.DHCPv4ExclusionRangesList</b> ADM
+element, add the IPv4 address in the <i>ScanList</i> parameter and set the <b>ScanFlag</b>
+member as DhcpDatabaseFix. Increment the <b>NumScanItems</b> member.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>NumScanItems</b> member is zero, return ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>For all the DHCPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservations</a></span> in <b>DHCPv4Scope.DHCPv4ReservationsList</b>
+ADM element, if there exists no corresponding entry in <b>DHCPv4Scope.DHCPv4ClientsList</b> 
+ADM element, add the IPv4 address in the <i>ScanList</i> parameter and set the <b>ScanFlag</b>
+member as DhcpDatabaseFix. This is done in order to locate addresses that are
+reserved but do not have corresponding DHCPv4 client lease records.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>NumScanItems</b> member is greater than zero and the <i>FixFlag</i>
+parameter is set to FALSE, return ERROR_SUCCESS to the caller.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>NumScanItems</b> member is greater than zero and the <i>FixFlag</i>
+parameter is set to TRUE, traverse <i>ScanList</i>, and for each entry that
+contains a <b>ScanFlag</b> member equal to DhcpDatabaseFix, create a <b>DHCPv4Client</b>
+ADM element object and insert it into the <b>DHCPv4ClientsList</b> ADM element.
+The <b>DHCPv4Client</b> ADM element object is initialized as follows: </p>
+<ul><li><p><span><span>  </span></span><b>DHCPv4Client.ClientIpAddress</b>
+ADM element is set to the <b>ScanList.IpAddress</b> member.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4Client.SubnetMask</b>
+ADM element is set to the <b>DHCPv4Scope.SubnetMask</b> ADM element.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4Client.ClientName</b>
+ADM element is set to a string representation of the <b>ScanList.IpAddress</b>
+member.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4Client.OwnerHost.NetBiosName</b>
+ADM element is set to the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b86c44e6-57df-4c48-8163-5e3fa7bdcff4" data-linktype="relative-path">NetBIOS</a></span> name of the
+DHCPv4 Server. <b>OwnerHost.IpAddress</b> ADM element is set to the <i>ServerIpAddress</i>
+parameter in case an IP address is passed.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4Client.bClientType</b>
+ADM element is set to CLIENT_TYPE_BOTH.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4Client.AddressState</b>
+ADM element is set to ADDRESS_STATE_ACTIVE.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4Client.QuarantineCapable</b>
+ADM element is set to FALSE.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4Client.Status</b>
+ADM element is set to NOQUARANTINE.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4Client.ProbationEnds</b>
+ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.SentPotExpTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.AckPotExpTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.RecvPotExpTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.StartTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.CltLastTransTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.LastBndUpdTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.flags</b> ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.bndMsgStatus</b> ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.PolicyName</b> ADM element is set to NULL.</p>
+</li><li><p><span><span>  </span></span>If
+there is a <b>DHCPv4Reservation</b> ADM element entry corresponding to the <b>ScanList.IpAddress</b>
+member in the <b>DHCPv4ReservationsList</b> ADM element, then the specific
+fields are initialized as follows:</p>
+<ul><li><p><span><span> 
+</span></span><b>DHCPv4Client.ClientHardwareAddress</b> ADM element is set to
+the <b>DHCPv4Reservation.ReservedForClient</b> ADM element.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4Client.ClientLeaseExpires</b> ADM element is set to 0.</p>
+</li></ul></li><li><p><span><span>  </span></span>Otherwise,
+the specific fields are initialized as follows: </p>
+<ul><li><p><span><span> 
+</span></span><b>DHCPv4Client.ClientHardwareAddress</b> ADM element is set to
+the binary encoding of the string representation of the <b>ScanList.IpAddress</b>
+member.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4Client.ClientLeaseExpires</b> ADM element is set to the
+default lease duration for the specified subnet.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>For each entry that contains a <b>ScanFlag</b> member equal to
+DhcpRegistryFix, set the bit corresponding to that IP address in the <b>DHCPv4IpRange.BitMask</b>
+ADM element to 1.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

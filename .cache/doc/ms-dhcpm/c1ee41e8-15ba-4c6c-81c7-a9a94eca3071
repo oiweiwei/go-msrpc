@@ -1,0 +1,120 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4FailoverEnumRelationship</b> method
+enumerates all the failover relationships on the DHCPv4 server. The caller of
+this function can free the memory pointed to by the <i>pRelationship</i>
+parameter by calling the function <b>midl_user_free</b> (section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4FailoverEnumRelationship(
+     [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+     [in, out] DHCP_RESUME_HANDLE *ResumeHandle,
+     [in] DWORD preferredMaximum,
+     [out] LPDHCP_FAILOVER_RELATIONSHIP_ARRAY *pRelationship,
+     [out] LPDWORD relationshipRead,
+     [out] LPDWORD relationshipTotal
+);
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>ResumeHandle: </b>This is a pointer of type <b>DHCP_RESUME_HANDLE</b>
+(section <span><a href="a6e4cdc0-4f71-4922-ade1-7a5392f9e920" data-linktype="relative-path">2.2.1.2.6</a></span>) that
+identifies the enumeration operation. Initially, this value MUST be set to
+zero, with a successful call returning the handle value used for subsequent
+enumeration requests.</p><p><b>preferredMaximum: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+specifying the preferred maximum number of bytes to be returned. If the number
+of bytes required in memory for the remaining unenumerated failover
+relationships is less than the <i>PreferredMaximum</i> parameter value, then
+all the remaining failover relationships for the DHCP server are returned.</p><p><b>pRelationship: </b>This is a pointer of type <b>LPDHCP_FAILOVER_RELATIONSHIP_ARRAY</b>
+(section <span><a href="5e36e768-b54a-47ba-9591-1241fe43ae73" data-linktype="relative-path">2.2.1.2.99</a></span>) in
+which information about all the failover relationships defined on the DHCP
+server is retrieved.</p><p><b>relationshipRead: </b>This is a pointer to a DWORD
+value that specifies the number of failover relationships returned in the <i>pRelationship</i>
+parameter. The caller MUST allocate memory for this parameter equal to the size
+of data type DWORD.</p><p><b>relationshipTotal: </b>This is a pointer to a
+DWORD value that specifies the number of failover relationships defined on the
+DHCP server that have not yet been enumerated. The caller MUST allocate memory
+for this parameter equal to the size of data type DWORD.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20123, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000EA</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>There are more elements available to enumerate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  </td>
+  <td>
+  <p>There are no more elements left to enumerate.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 93.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Return ERROR_INVALID_PARAMETER if any of the following are true:</p>
+<ul><li><p><span><span>  </span></span><i>pRelationship</i>
+parameter is NULL.</p>
+</li><li><p><span><span>  </span></span><i>relationshipRead</i>
+parameter is NULL.</p>
+</li><li><p><span><span>  </span></span><i>relationshipTotal</i>
+parameter is NULL.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4FailoverRelationshipList</b> ADM element.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ResumeHandle</i> parameter points to 0x00000000, the
+enumeration MUST start from the first entry of <b>DHCPv4FailoverRelationshipList</b>
+ADM element. Otherwise, if the <i>ResumeHandle</i> parameter points to a
+nonzero value, the server MUST continue enumeration based on the value of <i>ResumeHandle</i>
+parameter. If <i>ResumeHandle</i> parameter is greater than or equal to the
+number of entries in the <b>DHCPv4FailoverRelationshipList</b> ADM element or
+if the <b>DHCPv4FailoverRelationshipList</b> ADM element is empty, return
+ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>The <i>PreferredMaximum</i> parameter specifies the maximum
+number of bytes that the server can allocate and return to the caller
+containing the data related to the <b>DHCPv4FailoverRelationship</b> ADM
+element objects retrieved. If the <i>PreferredMaximum</i> parameter is unable
+to hold all the entries being retrieved, then the server must allocate the <i>PreferredMaximum</i>
+parameter number of bytes for the <i>pRelationship</i> parameter and store as
+many <b>DHCPv4FailoverRelationship</b> ADM element entries as will fit into the
+<i>pRelationship</i> parameter; else, allocate the memory for the <b>DHCP_FAILOVER_RELATIONSHIP_ARRAY</b>
+structure (section 2.2.1.2.99) for the total number of <b>DHCPv4FailoverRelationship</b>
+ADM element entries available in the retrieved list, starting from the index
+specified by the <i>ResumeHandle</i> parameter and continuing to the end of the
+failover relationship list.</p>
+</li><li><p><span><span> 
+</span></span>Copy the information in the retrieved <b>DHCPv4FailoverRelationship</b>
+ADM element entries in the <i>pRelationship</i> parameter, copy the number of
+read <b>DHCPv4FailoverRelationship</b> ADM element entries in the <i>relationshipRead</i>
+parameter, and copy the number of the <b>DHCPv4FailoverRelationship</b> ADM
+element entries not yet enumerated in the <i>relationshipTotal</i> parameter.
+Update the <i>ResumeHandle</i> parameter to the value obtained by adding 1 to
+the index of the <b>DHCPv4FailoverRelationship</b> ADM element entry read.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>PreferredMaximum</i> parameter was able to hold all the
+entries being retrieved, return ERROR_SUCCESS; otherwise return
+ERROR_MORE_DATA.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

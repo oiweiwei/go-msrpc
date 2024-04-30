@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_ENUM_VIRTUALIZATION_INSTANCE_LIST</b>
+structure contains information about all the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1b9d3eb9-dad0-4d1d-acb7-4597e5db641c" data-linktype="relative-path">virtualization instances</a></span>
+in a DNS server (section <span><a href="4edb00e2-9dee-4e26-9584-8933f3299ebe" data-linktype="relative-path">3.1.4.15</a></span>).</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcEnumVirtualizationInstanceList
+ {
+     DWORD       dwRpcStructureVersion;
+     DWORD       dwVirtualizationInstanceCount;
+     PDNS_RPC_VIRTUALIZATION_INSTANCE_INFO VirtualizationInstanceArray[1];
+ }
+ DNS_RPC_ENUM_VIRTUALIZATION_INSTANCE_LIST, *PDNS_RPC_ENUM_VIRTUALIZATION_INSTANCE_LIST;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The DNS management
+structure version number. This value MUST be set to 0x00000000.</p><p><b>dwVirtualizationInstanceCount:</b> An unsigned
+integer that specifies the total number of <span><a href="b786dbf5-dc85-4559-90a9-e962e316a9e5" data-linktype="relative-path">DNS_RPC_VIRTUALIZATION_INSTANCE_INFO
+(section 2.2.17.1.2)</a></span> elements.</p><p><b>VirtualizationInstanceArray:</b> An array of pointers
+to DNS_RPC_VIRTUALIZATION_INSTANCE_INFO (section 2.2.17.1.2) structures.</p></div>

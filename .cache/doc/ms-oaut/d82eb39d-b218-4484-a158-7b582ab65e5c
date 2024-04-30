@@ -1,0 +1,112 @@
+<div class="content"><p> </p><p>The GetDllEntry method retrieves values associated with a
+local-only method defined in a module.</p><dl>
+<dd>
+<div><pre> HRESULT GetDllEntry(
+   [in] MEMBERID memid,
+   [in] INVOKEKIND invKind,
+   [in] DWORD refPtrFlags,
+   [out] BSTR* pBstrDllName,
+   [out] BSTR* pBstrName,
+   [out] WORD* pwOrdinal
+ );
+</pre></div>
+</dd></dl><p><b>memid: </b>MUST be the <span><a href="ace8758f-ee2b-4cb6-8645-973994d12530" data-linktype="relative-path">MEMBERID</a></span> of a
+method member of the module defined in the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_4057fc86-007f-496f-a966-01c762088a8e" data-linktype="relative-path">automation type library</a></span>.</p><p><b>invKind: </b>MUST be a value of the <span><a href="a0d3598d-a3ee-4401-87fd-17a7031b0b9a" data-linktype="relative-path">INVOKEKIND (section 2.2.14)</a></span>
+enumeration that specifies a single property accessor method, if <i>memid</i>
+corresponds to a property with multiple accessors.</p><p><b>refPtrFlags: </b>MUST be a combination of the bit
+flags specified in the following table, or 0.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TYPEINFO_DLLNameArg</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>MUST specify that the client is interested in the
+  actual <i>pBstrDllName</i> [out] argument.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TYPEINFO_NameArg</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>MUST specify that the client is interested in the
+  actual <i>pBstrName</i> [out] argument.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TYPEINFO_OrdinalArg</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>MUST specify that the client is interested in the
+  actual <i>pwOrdinal</i> [out] argument.</p>
+  </td>
+ </tr></tbody></table><p><b>pBstrDllName: </b>MUST be set to the value
+associated with the method using the [dllname] attribute (see section <span><a href="82f9465b-ae46-474e-87ff-e65e9751affb" data-linktype="relative-path">2.2.49.9</a></span>)
+if the TYPEINFO_DllNameArg bit flag is set in <i>refPtrFlags</i>. MUST be set
+to a NULL BSTR otherwise.</p><p><b>pBstrName: </b>MUST be set to the value associated
+with the method using the [entry] attribute (see section 2.2.49.9), if the
+associated value is a string and the TYPEINFO_NameArg bit flag is set in <i>refPtrFlags</i>.
+MUST be set to a NULL BSTR otherwise.</p><p><b>pwOrdinal: </b>MUST be set to the value associated
+with the method using the [entry] attribute (see section 2.2.49.9), if the
+associated value is an integer and the TYPEINFO_OrdinalArg bit flag is set in <i>refPtrFlags</i>.
+MUST be set to 0 otherwise.</p><p><b>Return Values: </b>The method MUST return
+information in an HRESULT data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions: </p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD does
+not match a value in the following table, a fatal failure occurred.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD
+matches a value in the following table, a failure occurred. </p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x800288BD</p>
+  <p>TYPE_E_BADMODULEKIND</p>
+  </td>
+  <td>
+  <p>The type is not a module. See [MS-ERREF].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8002802C</p>
+  <p>TYPE_E_AMBIGUOUSNAME</p>
+  </td>
+  <td>
+  <p>The values of <i>memid</i> and <i>invKind</i> match
+  more than one element in the binding context. See [MS-ERREF].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8002802B</p>
+  <p>TYPE_E_ELEMENTNOTFOUND</p>
+  </td>
+  <td>
+  <p>The value of <i>memid</i> and <i>invKind</i> did not
+  specify the ordinal position of an element in the interface table, or the
+  type is not a <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_670b0ee2-d101-41b0-ac77-6ac7dbeee7dc" data-linktype="relative-path">coclass</a></span>. See
+  [MS-ERREF].</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p> </p></div>

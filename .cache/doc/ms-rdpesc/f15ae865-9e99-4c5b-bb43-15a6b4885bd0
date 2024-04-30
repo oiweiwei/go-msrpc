@@ -1,0 +1,57 @@
+<div class="content"><p>The HCardAndDisposition_Call structure defines the action
+taken on the disposition of a <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">smart
+card</a> associated with a valid context when a connection is terminated.</p><dl>
+<dd>
+<div><pre> typedef struct _HCardAndDisposition_Call {
+   REDIR_SCARDHANDLE hCard;
+   unsigned long dwDisposition;
+ } HCardAndDisposition_Call;
+</pre></div>
+</dd></dl><p><b>hCard:</b>  A handle, as specified in
+section <a href="b6276356-7c5f-4d3e-be92-a6c85e58d008" data-linktype="relative-path">2.2.1.2</a>.</p><p><b>dwDisposition:</b>  The action to take
+on the card in the connected reader upon close. This value is ignored on a
+BeginTransaction message call, as specified in section <a href="5b433f97-d57a-439f-8020-f3d10493c790" data-linktype="relative-path">3.2.5.3.61</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SCARD_LEAVE_CARD </p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Do not do anything.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_RESET_CARD </p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Reset the smart card. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_UNPOWER_CARD </p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Turn off and reset the smart card.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_EJECT_CARD </p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Eject the smart card.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

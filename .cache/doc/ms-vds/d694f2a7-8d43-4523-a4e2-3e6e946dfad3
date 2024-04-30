@@ -1,0 +1,50 @@
+<div class="content"><p> </p><p>The Compact method reduces the size of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_5dcddf1d-f76c-48ea-aef3-208bbc2eea77" data-linktype="relative-path">virtual
+disk file</a></span> (the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_432d7a86-d2ca-4977-8189-d28b54883d09" data-linktype="relative-path">backing store</a></span>). This
+requires that the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual disk</a></span> be <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_01bb6a9d-fdc8-4f50-86fc-6be3ac327119" data-linktype="relative-path">detached</a></span>.
+Compact is applicable only to <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_f738286f-68d6-4890-a658-efcf815313ae" data-linktype="relative-path">differencing</a></span> type
+virtual disks and virtual disks created using CREATE_VIRTUAL_DISK_FLAG_NONE.
+The Compact method does not change the size of the virtual disk.</p><dl>
+<dd>
+<div><pre> HRESULT Compact(
+   [in] COMPACT_VIRTUAL_DISK_FLAG Flags,
+   [in] ULONG Reserved,
+   [out] IVdsAsync** ppAsync
+ );
+</pre></div>
+</dd></dl><p><b>Flags: </b>A <span><a href="28d10840-60ea-4987-80d0-53aa7dcb938d" data-linktype="relative-path">COMPACT_VIRTUAL_DISK_FLAG (section 2.2.2.20.1.3)</a></span>
+enumeration value that specifies how the virtual disk is to be compacted.</p><p><b>Reserved: </b>This parameter is reserved for
+system use and MUST be ignored.</p><p><b>ppAsync: </b>A pointer to an <span><a href="97ea9c0f-5c8a-43e9-a9ee-deda29e2a09e" data-linktype="relative-path">IVdsAsync (section 3.1.3.1)</a></span>
+interface that if the operation is successfully completed receives the
+IVdsAsync interface to monitor and control this operation. Callers MUST release
+the interface when they are done with it.</p><p><b>Return Values: </b>The method MUST return zero to
+indicate success, or return an implementation-specific nonzero error code to
+indicate failure.</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>Flags</i> is a bitwise OR of values from the
+COMPACT_VIRTUAL_DISK_FLAG enumeration.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>ppAsync</i> is not NULL.</p>
+</li></ul><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>Create a new async object implementing the IVdsAsync interface
+with an output type of VDS_ASYNCOUT_COMPACT_VDISK and set the pointer <i>ppAsync</i>
+to the interface.</p>
+</li><li><p><span><span> 
+</span></span>Return an <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path"><span>HRESULT</span></a> indicating
+failure or success. Any errors encountered up through this point in processing
+the operation are returned in this HRESULT.</p>
+</li></ul><p>The server MUST then perform the following in sequence.
+Errors generated in this sequence of steps are returned in the pHrResult
+parameter to the IVdsAsync::Wait or IVdsAsyncQueryStatus methods.</p><ul><li><p><span><span> 
+</span></span>Pass the input parameters to the operating system to compact the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Set the return code in the async object to an HRESULT indicating
+failure or success of the operating system.</p>
+</li><li><p><span><span> 
+</span></span>If the task completed successfully, set the percentage completed
+value in the async object to 100.</p>
+</li><li><p><span><span> 
+</span></span> Set the signal state in the async object to TRUE.</p>
+</li></ul><p>At any point in the preceding sequence--before the
+percentage completed value in the async object is 100--the server MUST update
+the percentage completed value if forward progress is made during the compact
+operation.</p></div>

@@ -1,0 +1,170 @@
+<div class="content"><p> </p><p>The DRS_MSG_NT4_CHGLOG_REQ_V1 structure defines the request
+message sent to the <span><a href="6e000eb6-60fd-4d6c-ae82-bb6479df02fa" data-linktype="relative-path">IDL_DRSGetNT4ChangeLog</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwFlags;
+   DWORD PreferredMaximumLength;
+   [range(0,10485760)] DWORD cbRestart;
+   [size_is(cbRestart)] BYTE* pRestart;
+ } DRS_MSG_NT4_CHGLOG_REQ_V1;
+</pre></div>
+</dd></dl><p><b>dwFlags:</b>  Zero or more of the
+following bit flags, which are presented in little-endian byte order:</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>S N</p>
+  </td>
+  <td>
+  <p>C L</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>X:</b> Unused. MUST be
+zero and ignored.</p>
+</dd>
+<dd>
+<p><b>CL
+(DRS_NT4_CHGLOG_GET_CHANGE_LOG, 0x00000001):</b> If set, the server returns the
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a></span>
+change log.</p>
+</dd>
+<dd>
+<p><b>SN
+(DRS_NT4_CHGLOG_GET_SERIAL_NUMBERS, 0x00000002):</b> If set, the server returns
+the NT4 <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span> state.</p>
+</dd></dl><p><b>PreferredMaximumLength:</b>  The maximum
+size, in bytes, of the change log data that is to be retrieved in a single
+operation.</p><p><b>cbRestart:</b> Zero if <b>pRestart</b> =
+null. Otherwise, the size, in bytes, of <b>pRestart</b>^.</p><p><b>pRestart:</b> Null to request the change log
+from the beginning. Otherwise, a pointer to an opaque value, returned in some
+previous call to IDL_DRSGetNT4ChangeLog, identifying the last change log entry
+returned in that previous call.</p></div>

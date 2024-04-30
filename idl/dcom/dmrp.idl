@@ -1,0 +1,1303 @@
+import "ms-dtyp.idl";
+import "ms-dcom.idl";
+ 
+typedef LONGLONG LdmObjectId;
+ 
+typedef enum _REGIONTYPE { REGION_UNKNOWN, 
+                           REGION_FREE, 
+                           REGION_EXTENDED_FREE,
+                           REGION_PRIMARY, 
+                           REGION_LOGICAL, 
+                           REGION_EXTENDED,
+                           REGION_SUBDISK, 
+                           REGION_CDROM,  
+                           REGION_REMOVABLE 
+                          } REGIONTYPE;
+ 
+typedef enum _VOLUMETYPE {  VOLUMETYPE_UNKNOWN, 
+                            VOLUMETYPE_PRIMARY_PARTITION,
+                            VOLUMETYPE_LOGICAL_DRIVE, 
+                            VOLUMETYPE_FT,
+                            VOLUMETYPE_VM, 
+                            VOLUMETYPE_CDROM,
+                            VOLUMETYPE_REMOVABLE 
+                          } VOLUMETYPE;
+ 
+typedef enum _VOLUMELAYOUT { VOLUMELAYOUT_UNKNOWN, 
+                             VOLUMELAYOUT_PARTITION,
+                             VOLUMELAYOUT_SIMPLE, 
+                             VOLUMELAYOUT_SPANNED,
+                             VOLUMELAYOUT_MIRROR, VOLUMELAYOUT_STRIPE,
+                             VOLUMELAYOUT_RAID5
+                           } VOLUMELAYOUT;
+ 
+typedef enum _REQSTATUS { REQ_UNKNOWN,
+                          REQ_STARTED,
+                          REQ_IN_PROGRESS, 
+                          REQ_COMPLETED,
+                          REQ_ABORTED, 
+                          REQ_FAILED 
+                         } REQSTATUS;
+ 
+typedef enum _REGIONSTATUS { REGIONSTATUS_UNKNOWN, 
+                             REGIONSTATUS_OK,
+                             REGIONSTATUS_FAILED, 
+                             REGIONSTATUS_FAILING,
+                             REGIONSTATUS_REGENERATING,
+                             REGIONSTATUS_NEEDSRESYNC 
+                            } REGIONSTATUS;
+ 
+typedef enum _VOLUMESTATUS {
+                            VOLUME_STATUS_UNKNOWN,
+                            VOLUME_STATUS_HEALTHY,
+                            VOLUME_STATUS_FAILED,
+                            VOLUME_STATUS_FAILED_REDUNDANCY,
+                            VOLUME_STATUS_FAILING,
+                            VOLUME_STATUS_FAILING_REDUNDANCY,
+                            VOLUME_STATUS_FAILED_REDUNDANCY_FAILING,
+                            VOLUME_STATUS_SYNCHING,
+                            VOLUME_STATUS_REGENERATING,
+                            VOLUME_STATUS_INITIALIZING,
+                            VOLUME_STATUS_FORMATTING
+                            } VOLUMESTATUS;
+ 
+typedef enum _LDMACTION { LDMACTION_UNKNOWN, 
+                          LDMACTION_CREATED, 
+                          LDMACTION_DELETED,
+                          LDMACTION_MODIFIED, 
+                          LDMACTION_FAILED 
+                         } LDMACTION;
+ 
+typedef enum _dmNotifyInfoType { DMNOTIFY_UNKNOWN_INFO, 
+                                 DMNOTIFY_DISK_INFO, 
+                                 DMNOTIFY_VOLUME_INFO,
+                                 DMNOTIFY_REGION_INFO, 
+                                 DMNOTIFY_TASK_INFO, 
+                                 DMNOTIFY_DL_INFO,
+                                 DMNOTIFY_FS_INFO, 
+                                 DMNOTIFY_SYSTEM_INFO } DMNOTIFY_INFO_TYPE;
+ 
+ 
+typedef enum _dmProgressType { PROGRESS_UNKNOWN, 
+                               PROGRESS_FORMAT, 
+                               PROGRESS_SYNCHING } DMPROGRESS_TYPE;
+ 
+const DWORD DISK_AUDIO_CD              = 0x1;
+const DWORD DISK_NEC98                 = 0x2;
+ 
+#define DEVICETYPE_UNKNOWN            0x00000000
+#define DEVICETYPE_VM                 0x00000001
+#define DEVICETYPE_REMOVABLE   0x00000002
+#define DEVICETYPE_CDROM              0x00000003
+#define DEVICETYPE_FDISK              0x00000004
+#define DEVICETYPE_DVD                0x00000005
+ 
+#define DEVICESTATE_UNKNOWN                 0x00000000
+#define DEVICESTATE_HEALTHY                 0x00000001
+#define DEVICESTATE_NO_MEDIA          0x00000002
+#define DEVICESTATE_NOSIG                   0x00000004
+#define DEVICESTATE_BAD                     0x00000008
+#define DEVICESTATE_NOT_READY         0x00000010
+#define DEVICESTATE_MISSING                 0x00000020
+#define DEVICESTATE_OFFLINE                 0x00000040
+#define DEVICESTATE_FAILING                 0x00000080
+#define DEVICESTATE_IMPORT_FAILED     0x00000100
+#define DEVICESTATE_UNCLAIMED         0x00000200
+ 
+#define BUSTYPE_UNKNOWN 0x00000000
+#define BUSTYPE_IDE            0x00000001
+#define BUSTYPE_SCSI    0x00000002
+#define BUSTYPE_FIBRE   0x00000003
+#define BUSTYPE_USB            0x00000004
+#define BUSTYPE_SSA            0x00000005
+#define BUSTYPE_1394    0x00000006
+ 
+#define DEVICEATTR_NONE        0x00000000
+#define DEVICEATTR_RDONLY      0x00000001
+#define DEVICEATTR_NTMS        0x00000002
+ 
+#define CONTAINS_FT                                0x00000001
+#define CONTAINS_RAID5                      0x00000002
+#define CONTAINS_REDISTRIBUTION             0x00000004
+#define CONTAINS_BOOTABLE_PARTITION   0x00000008
+#define CONTAINS_LOCKED_PARTITION     0x00000010
+#define CONTAINS_NO_FREE_SPACE        0x00000020
+#define CONTAINS_EXTENDED_PARTITION   0x00000040
+#define PARTITION_NUMBER_CHANGE             0x00000080
+#define CONTAINS_BOOTINDICATOR        0x00000100
+#define CONTAINS_BOOTLOADER                 0x00000200
+#define CONTAINS_SYSTEMDIR                  0x00000400
+#define CONTAINS_MIXED_PARTITIONS     0x00000800
+ 
+ 
+const unsigned long PARTITION_OS2_BOOT   = 0xa;
+const unsigned long     PARTITION_EISA                              = 0x12;
+const unsigned long PARTITION_HIBERNATION= 0x84;
+const unsigned long PARTITION_DIAGNOSTIC    = 0xA0;
+const unsigned long PARTITION_DELL                           = 0xDE;
+const unsigned long PARTITION_IBM                             = 0xFE;
+ 
+ 
+const DWORD REGION_FORMAT_IN_PROGRESS   = 0x1;
+const DWORD VOLUME_FORMAT_IN_PROGRESS   = 0x1;
+const DWORD REGION_IS_SYSTEM_PARTITION  = 0x2;  
+const DWORD REGION_HAS_PAGEFILE         = 0x4;
+const DWORD VOLUME_HAS_PAGEFILE         = 0x4;
+const DWORD REGION_HAD_BOOT_INI         = 0x40;
+const DWORD VOLUME_IS_BOOT_VOLUME       = 0x100;
+const DWORD VOLUME_IS_RESTARTABLE       = 0x400;
+const DWORD VOLUME_IS_SYSTEM_VOLUME     = 0x800;
+const DWORD VOLUME_HAS_RETAIN_PARTITION = 0x1000;
+const DWORD VOLUME_HAD_BOOT_INI         = 0x2000;
+const DWORD VOLUME_CORRUPT              = 0x4000;
+const DWORD VOLUME_HAS_CRASHDUMP        = 0x8000;
+const DWORD VOLUME_IS_CURR_BOOT_VOLUME  = 0x10000;
+const DWORD VOLUME_HAS_HIBERNATION      = 0x20000;
+ 
+const DWORD NO_FORCE_OPERATION          = 0;
+const DWORD FORCE_OPERATION             = 1;
+ 
+const DWORD DL_PENDING_REMOVAL          = 0x1;
+ 
+const DWORD SYSFLAG_SERVER              = 0x1;
+const DWORD SYSFLAG_ALPHA               = 0x2;
+const DWORD SYSFLAG_SYSPART_SECURE      = 0x4;
+const DWORD SYSFLAG_NEC_98              = 0x8;
+const DWORD SYSFLAG_LAPTOP              = 0x10;
+const DWORD SYSFLAG_WOLFPACK            = 0x20;
+ 
+const DWORD DSKMERGE_DELETE             = 0x1; 
+const DWORD DSKMERGE_DELETE_REDUNDANCY  = 0x2; 
+const DWORD DSKMERGE_STALE_DATA         = 0x4; 
+const DWORD DSKMERGE_RELATED            = 0x8; 
+ 
+const DWORD DSKMERGE_IN_NO_UNRELATED    = 1;
+const DWORD DSKMERGE_OUT_NO_PRIMARY_DG  = 1;
+ 
+const DWORD FTREPLACE_FORCE             = 0x1; 
+const DWORD FTREPLACE_DELETE_ON_FAIL    = 0x2; 
+ 
+const DWORD CREATE_ASSIGN_ACCESS_PATH   = 0x1;
+ 
+typedef struct volumespec {
+    VOLUMETYPE      type;             
+    VOLUMELAYOUT    layout;           
+    REGIONTYPE      partitionType;    
+    LONGLONG        length;           
+    LONGLONG        lastKnownState;   
+}
+VOLUME_SPEC;
+ 
+typedef struct volumeinfo {
+    LdmObjectId     id;               
+    VOLUMETYPE      type;             
+    VOLUMELAYOUT    layout;           
+    LONGLONG        length;           
+    LdmObjectId     fsId;             
+    unsigned long   memberCount;
+    VOLUMESTATUS    status;
+    LONGLONG        lastKnownState;
+    LdmObjectId     taskId;        
+    unsigned long   vflags;
+}
+VOLUME_INFO;
+ 
+struct diskspec
+{
+    LdmObjectId diskId;
+    LONGLONG    length;
+    boolean     needContiguous;
+    LONGLONG    lastKnownState;
+};
+typedef struct diskspec DISK_SPEC;
+ 
+struct diskinfo {
+    LdmObjectId     id;
+    LONGLONG        length;
+    LONGLONG        freeBytes;
+    unsigned long           bytesPerTrack;
+    unsigned long           bytesPerCylinder;
+    unsigned long           bytesPerSector;
+    unsigned long           regionCount;
+    unsigned long           dflags;     
+    unsigned long           deviceType; 
+    unsigned long           deviceState;
+    unsigned long           busType;
+    unsigned long           attributes;
+    boolean         isUpgradeable;
+    int             portNumber;
+    int             targetNumber;
+    int             lunNumber;
+    LONGLONG        lastKnownState;
+    LdmObjectId     taskId;
+    int             cchName;
+    int             cchVendor;
+    int             cchDgid;
+    int             cchAdapterName;
+    int             cchDgName;
+    [size_is(cchName)] wchar_t * name;
+    [size_is(cchVendor)] wchar_t *vendor;
+    [size_is(cchDgid)] byte *dgid;
+    [size_is(cchAdapterName)] wchar_t *adapterName;
+    [size_is(cchDgName)] wchar_t *dgName;
+};
+ 
+typedef struct diskinfo DISK_INFO;
+ 
+struct regionspec {
+    LdmObjectId     regionId;
+    REGIONTYPE      regionType;
+    LdmObjectId     diskId;
+    LONGLONG        start;
+    LONGLONG        length;
+    LONGLONG        lastKnownState;
+};
+typedef struct regionspec REGION_SPEC;
+ 
+struct regioninfo {
+    LdmObjectId     id;
+    LdmObjectId     diskId;
+    LdmObjectId     volId;
+    LdmObjectId     fsId;
+    LONGLONG        start;
+    LONGLONG        length;
+    REGIONTYPE      regionType;
+    unsigned long   partitionType;
+    boolean         isActive;
+    REGIONSTATUS    status;
+    hyper           lastKnownState;
+    LdmObjectId     taskId;
+    unsigned long   rflags;
+    unsigned long   currentPartitionNumber;
+};
+typedef struct regioninfo REGION_INFO;
+ 
+struct driveletterinfo {
+    wchar_t         letter;
+    LdmObjectId     storageId;
+    boolean         isUsed;
+    hyper           lastKnownState;
+    LdmObjectId     taskId;
+    unsigned long   dlflags;
+};
+typedef struct driveletterinfo DRIVE_LETTER_INFO;
+ 
+struct filesysteminfo {
+    LdmObjectId     id;
+    LdmObjectId     storageId;
+    LONGLONG        totalAllocationUnits;
+    LONGLONG        availableAllocationUnits;
+    unsigned long   allocationUnitSize;
+    unsigned long   fsflags;
+    hyper           lastKnownState;
+    LdmObjectId     taskId;
+    long            fsType;
+    int             cchLabel;
+    [size_is(cchLabel)] wchar_t * label;
+};
+typedef struct filesysteminfo FILE_SYSTEM_INFO;
+ 
+const DWORD ENABLE_VOLUME_COMPRESSION   = 1;
+ 
+const DWORD MAX_FS_NAME_SIZE            = 8;
+struct ifilesysteminfo {
+    long            fsType;
+    WCHAR           fsName[MAX_FS_NAME_SIZE];
+    unsigned long   fsFlags;
+    unsigned long   fsCompressionFlags;
+    int             cchLabelLimit;
+    int             cchLabel;
+    [size_is(cchLabel)] wchar_t *iLabelChSet;
+};
+ 
+typedef struct ifilesysteminfo IFILE_SYSTEM_INFO;
+ 
+const unsigned long FSF_FMT_OPTION_COMPRESS     = 0x00000001;
+const unsigned long FSF_FMT_OPTION_LABEL        = 0x00000002;
+const unsigned long FSF_MNT_POINT_SUPPORT       = 0x00000004;
+const unsigned long FSF_REMOVABLE_MEDIA_SUPPORT = 0x00000008;
+const unsigned long FSF_FS_GROW_SUPPORT         = 0x00000010;
+const unsigned long FSF_FS_QUICK_FORMAT_ENABLE  = 0x00000020;
+const unsigned long FSF_FS_ALLOC_SZ_512         = 0x00000040;
+const unsigned long FSF_FS_ALLOC_SZ_1K          = 0x00000080;
+const unsigned long FSF_FS_ALLOC_SZ_2K          = 0x00000100;
+const unsigned long FSF_FS_ALLOC_SZ_4K          = 0x00000200;
+const unsigned long FSF_FS_ALLOC_SZ_8K          = 0x00000400;
+const unsigned long FSF_FS_ALLOC_SZ_16K         = 0x00000800;
+const unsigned long FSF_FS_ALLOC_SZ_32K         = 0x00001000;
+const unsigned long FSF_FS_ALLOC_SZ_64K         = 0x00002000;
+const unsigned long FSF_FS_ALLOC_SZ_128K        = 0x00004000;
+const unsigned long FSF_FS_ALLOC_SZ_256K        = 0x00008000;
+const unsigned long FSF_FS_ALLOC_SZ_OTHER       = 0x00010000;
+const unsigned long FSF_FS_FORMAT_SUPPORTED     = 0x00020000;
+const unsigned long FSF_FS_VALID_BITS           = 0x0003FFFF;
+ 
+const long FSTYPE_UNKNOWN               = 0x00000000;
+const long FSTYPE_NTFS                  = 0x00000001;
+const long FSTYPE_FAT                   = 0x00000002;
+const long FSTYPE_FAT32                 = 0x00000003;
+const long FSTYPE_CDFS                  = 0x00000004;
+const long FSTYPE_UDF                   = 0x00000005;
+const long FSTYPE_OTHER                 = 0x80000000;
+ 
+struct taskinfo {
+    LdmObjectId     id;
+    LdmObjectId     storageId;
+    LONGLONG        createTime;
+    LdmObjectId     clientID;
+    unsigned long   percentComplete;
+    REQSTATUS       status;
+    DMPROGRESS_TYPE type;
+    HRESULT         error;
+    unsigned long   tflag;
+};
+typedef struct taskinfo TASK_INFO;
+ 
+struct countedstring {
+    LdmObjectId sourceId;
+    LdmObjectId targetId;
+    int cchString;
+    [size_is(cchString)] wchar_t *sstring;
+};
+ 
+typedef struct countedstring COUNTED_STRING;
+ 
+ 
+struct mergeobjectinfo
+{
+    DWORD type;
+    DWORD flags;
+    VOLUMELAYOUT layout;
+    LONGLONG length;
+};
+typedef struct mergeobjectinfo MERGE_OBJECT_INFO;
+ 
+const DWORD ENCAP_INFO_CANT_PROCEED   = 0x1;
+const DWORD ENCAP_INFO_NO_FREE_SPACE  = 0x2;
+const DWORD ENCAP_INFO_BAD_ACTIVE     = 0x4;
+                                            
+const DWORD ENCAP_INFO_UNKNOWN_PART   = 0x8;
+const DWORD ENCAP_INFO_FT_UNHEALTHY   = 0x10;
+const DWORD ENCAP_INFO_FT_QUERY_FAILED= 0x20;
+const DWORD ENCAP_INFO_FT_HAS_RAID5   = 0x40;
+const DWORD ENCAP_INFO_FT_ON_BOOT     = 0x80;
+                                             
+const DWORD ENCAP_INFO_REBOOT_REQD    = 0x100;
+const DWORD ENCAP_INFO_CONTAINS_FT    = 0x200;
+const DWORD ENCAP_INFO_VOLUME_BUSY    = 0x400;
+const DWORD ENCAP_INFO_PART_NR_CHANGE = 0x800;
+ 
+[ object, uuid(D2D79DF5-3400-11d0-B40B-00AA005FF586), 
+pointer_default(unique) ]
+interface IVolumeClient : IUnknown
+{
+ 
+    HRESULT EnumDisks([out] unsigned long *diskCount,
+                      [out, size_is(,*diskCount)] DISK_INFO 
+**diskList);
+ 
+    HRESULT EnumDiskRegions([in] LdmObjectId diskId,
+                            [in, out] unsigned long *numRegions,
+                            [out, size_is(,*numRegions)] REGION_INFO 
+**regionList);
+ 
+    HRESULT CreatePartition([in] REGION_SPEC partitionSpec,
+                            [out] TASK_INFO *tinfo);
+ 
+    HRESULT CreatePartitionAssignAndFormat([in] REGION_SPEC 
+partitionSpec,
+                            [in] wchar_t letter,
+                            [in] hyper letterLastKnownState,
+                            [in] FILE_SYSTEM_INFO fsSpec,
+                            [in] boolean quickFormat,
+                            [out] TASK_INFO *tinfo);
+ 
+    HRESULT CreatePartitionAssignAndFormatEx([in] REGION_SPEC 
+partitionSpec,
+                            [in] wchar_t letter,
+                            [in] hyper letterLastKnownState,
+                            [in] int cchAccessPath,
+                            [in, size_is(cchAccessPath)] wchar_t 
+*AccessPath,
+                            [in] FILE_SYSTEM_INFO fsSpec,
+                            [in] boolean quickFormat,
+                            [in] DWORD dwFlags,
+                            [out] TASK_INFO *tinfo);
+ 
+    HRESULT DeletePartition([in] REGION_SPEC partitionSpec,
+                            [in] boolean force,
+                            [out] TASK_INFO *tinfo);
+ 
+    HRESULT WriteSignature( [in] LdmObjectId diskId,
+                            [in] hyper diskLastKnownState,
+                            [out] TASK_INFO *tinfo );
+ 
+    HRESULT MarkActivePartition([in] LdmObjectId regionId,
+                                [in] hyper regionLastKnownState,
+                                [out] TASK_INFO *tinfo );
+ 
+    HRESULT Eject( [in] LdmObjectId diskId,
+                   [in] hyper diskLastKnownState,
+                   [out] TASK_INFO *tinfo );
+ 
+    HRESULT Reserved_Opnum12(void);
+ 
+    HRESULT FTEnumVolumes([in, out] unsigned long   *volumeCount,
+        [out, size_is(,*volumeCount)] VOLUME_INFO **ftVolumeList);
+ 
+    HRESULT FTEnumLogicalDiskMembers([in] LdmObjectId volumeId,
+        [in, out] unsigned long *memberCount,
+        [out, size_is(,*memberCount)] LdmObjectId **memberList);
+ 
+    HRESULT FTDeleteVolume([in] LdmObjectId volumeId,
+                         [in] boolean force,
+                         [in] hyper volumeLastKnownState,
+                         [out] TASK_INFO *tinfo);
+ 
+    HRESULT FTBreakMirror([in] LdmObjectId volumeId,
+                        [in] hyper volumeLastKnownState,
+                        [in] boolean bForce,
+                        [out] TASK_INFO *tinfo);
+ 
+    HRESULT FTResyncMirror([in] LdmObjectId volumeId,
+                         [in] hyper volumeLastKnownState,
+                         [out] TASK_INFO *tinfo);
+ 
+    HRESULT FTRegenerateParityStripe([in] LdmObjectId volumeId,
+                                   [in] hyper volumeLastKnownState,
+                                   [out] TASK_INFO *tinfo);
+ 
+    HRESULT FTReplaceMirrorPartition([in] LdmObjectId volumeId,
+                                   [in] hyper volumeLastKnownState,
+                                   [in] LdmObjectId oldMemberId,
+                                   [in] hyper oldMemberLastKnownState,
+                                   [in] LdmObjectId newRegionId,
+                                   [in] hyper newRegionLastKnownState,
+                                   [in] DWORD flags,
+                                   [out] TASK_INFO *tinfo);
+ 
+    HRESULT FTReplaceParityStripePartition([in] LdmObjectId volumeId,
+                                   [in] hyper volumeLastKnownState,
+                                   [in] LdmObjectId oldMemberId,
+                                   [in] hyper oldMemberLastKnownState,
+                                   [in] LdmObjectId newRegionId,
+                                   [in] hyper newRegionLastKnownState,
+                                   [in] DWORD flags,
+                                   [out] TASK_INFO *tinfo);
+ 
+    HRESULT EnumDriveLetters([in, out] unsigned long * 
+driveLetterCount,
+        [out, size_is(,*driveLetterCount)] DRIVE_LETTER_INFO 
+**driveLetterList);
+ 
+    HRESULT AssignDriveLetter([in] wchar_t letter,
+                              [in] unsigned long forceOption,
+                              [in] hyper letterLastKnownState,
+                              [in] LdmObjectId storageId,
+                              [in] hyper storageLastKnownState,
+                              [out] TASK_INFO *tinfo);
+ 
+    HRESULT FreeDriveLetter([in] wchar_t letter,
+                            [in] unsigned long forceOption,
+                            [in] hyper letterLastKnownState,
+                            [in] LdmObjectId storageId,
+                            [in] hyper storageLastKnownState,
+                            [out] TASK_INFO *tinfo);
+ 
+    HRESULT EnumLocalFileSystems([out] unsigned long * 
+fileSystemCount,
+        [out, size_is(,*fileSystemCount)] FILE_SYSTEM_INFO 
+**fileSystemList);
+ 
+    HRESULT GetInstalledFileSystems([out] unsigned long *fsCount,
+        [out, size_is(,*fsCount)] IFILE_SYSTEM_INFO **fsList);
+ 
+    HRESULT Format([in] LdmObjectId storageId,
+                   [in] FILE_SYSTEM_INFO fsSpec,
+                   [in] boolean quickFormat,
+                   [in] boolean force,
+                   [in] hyper storageLastKnownState,
+                   [out] TASK_INFO *tinfo);
+ 
+    HRESULT Reserved27(
+      void
+    );
+ 
+    HRESULT EnumVolumes(
+        [in, out] unsigned long *volumeCount,
+        [out, size_is(,*volumeCount)] VOLUME_INFO **LdmVolumeList);
+ 
+    HRESULT EnumVolumeMembers([in] LdmObjectId volumeId,
+        [in, out] unsigned long * memberCount,
+        [out, size_is(,*memberCount)] LdmObjectId ** memberList);
+ 
+    HRESULT CreateVolume([in] VOLUME_SPEC volumeSpec,
+            [in] unsigned long diskCount,
+            [in, size_is(diskCount)] DISK_SPEC *diskList,
+            [out] TASK_INFO *tinfo );
+ 
+    HRESULT CreateVolumeAssignAndFormat([in] VOLUME_SPEC volumeSpec,
+                         [in] unsigned long diskCount,
+                         [in, size_is(diskCount)] DISK_SPEC *diskList,
+                         [in] wchar_t letter,
+                         [in] hyper letterLastKnownState,
+                         [in] FILE_SYSTEM_INFO fsSpec,
+                         [in] boolean quickFormat,
+                         [out] TASK_INFO *tinfo);
+ 
+    HRESULT CreateVolumeAssignAndFormatEx([in] VOLUME_SPEC volumeSpec,
+                         [in] unsigned long diskCount,
+                         [in, size_is(diskCount)] DISK_SPEC *diskList,
+                         [in] wchar_t letter,
+                         [in] hyper letterLastKnownState,
+                         [in] int cchAccessPath,
+                         [in, size_is(cchAccessPath)] wchar_t 
+*AccessPath,
+                         [in] FILE_SYSTEM_INFO fsSpec,
+                         [in] boolean quickFormat,
+                         [in] DWORD dwFlags,
+                         [out] TASK_INFO *tinfo);
+ 
+ 
+    HRESULT GetVolumeMountName( [in] LdmObjectId volumeId, 
+[out] unsigned long *cchMountName,
+                        [out, size_is( ,*cchMountName)] WCHAR 
+**mountName);
+ 
+    HRESULT GrowVolume( [in] LdmObjectId volumeId,
+            [in] VOLUME_SPEC volumeSpec,
+            [in] unsigned long diskCount,
+            [in, size_is(diskCount)] DISK_SPEC *diskList,
+            [in] boolean force,
+            [out] TASK_INFO *tinfo );
+ 
+    HRESULT DeleteVolume([in] LdmObjectId volumeId,
+                         [in] boolean force,
+                         [in] hyper volumeLastKnownState,
+                         [out] TASK_INFO *tinfo );
+ 
+    HRESULT AddMirror([in] LdmObjectId volumeId,
+                      [in] hyper volumeLastKnownState,
+                      [in] DISK_SPEC diskSpec,
+                      [in, out] int *diskNumber,
+                      [out] int *partitionNumber,
+                      [out] TASK_INFO *tinfo );
+ 
+    HRESULT RemoveMirror([in] LdmObjectId volumeId,
+                         [in] hyper volumeLastKnownState,
+                         [in] LdmObjectId diskId,
+                         [in] hyper diskLastKnownState,
+                         [out] TASK_INFO *tinfo );
+ 
+    HRESULT SplitMirror( [in] LdmObjectId volumeId,
+                         [in] hyper volumeLastKnownState,
+                         [in] LdmObjectId diskId,
+                         [in] hyper diskLastKnownState,
+                         [in] wchar_t letter,
+                         [in] hyper letterLastKnownState,
+                         [in, out] TASK_INFO *tinfo );
+ 
+    HRESULT InitializeDisk([in] LdmObjectId diskId,
+                           [in] hyper diskLastKnownState,
+                           [out] TASK_INFO *tinfo );
+ 
+    HRESULT UninitializeDisk([in] LdmObjectId diskId,
+                             [in] hyper diskLastKnownState,
+                             [out] TASK_INFO *tinfo );
+ 
+    HRESULT ReConnectDisk( [in] LdmObjectId diskId,
+                           [out] TASK_INFO *tinfo );
+ 
+    HRESULT Reserved_Opnum42( void );
+ 
+    HRESULT ImportDiskGroup ([in] int cchDgid,
+                             [in, size_is( cchDgid)] byte *dgid,
+                             [out] TASK_INFO *tinfo);
+ 
+    HRESULT DiskMergeQuery([in] int cchDgid,
+[in, size_is( cchDgid)] byte *dgid,
+[in] int numDisks,
+[in, size_is( numDisks)]  LdmObjectId *diskList,
+[out] hyper *merge_config_tid,
+[out] int *numRids,
+[out, size_is(,*numRids)] hyper **merge_dm_rids,
+[out] int *numObjects,
+[out, size_is(,*numObjects)] MERGE_OBJECT_INFO 
+**mergeObjectInfo,
+[in, out] unsigned long *flags,
+[out] TASK_INFO *tinfo);
+ 
+    HRESULT DiskMerge([in] int cchDgid,
+[in, size_is( cchDgid)] byte *dgid,
+[in] int numDisks,
+[in, size_is( numDisks)]  LdmObjectId *diskList,
+[in] hyper merge_config_tid,
+[in] int numRids,
+[in, size_is(numRids)] hyper *merge_dm_rids,
+[out] TASK_INFO *tinfo);
+ 
+    HRESULT Reserved_Opnum46( void );
+ 
+    HRESULT ReAttachDisk([in] LdmObjectId diskId,
+                         [in] hyper diskLastKnownState,
+                         [out] TASK_INFO *tinfo );
+ 
+    HRESULT Reserved_Opnum48(void);
+ 
+    HRESULT Reserved_Opnum49(void);
+ 
+    HRESULT Reserved_Opnum50(void);
+ 
+    HRESULT ReplaceRaid5Column([in] LdmObjectId volumeId,
+                               [in] hyper volumeLastKnownState,
+                               [in] LdmObjectId newDiskId,
+                               [in] hyper diskLastKnownState,
+                               [out] TASK_INFO *tinfo );
+ 
+    HRESULT RestartVolume([in] LdmObjectId volumeId,
+                          [in] hyper volumeLastKnownState,
+                          [out] TASK_INFO *tinfo );
+ 
+    HRESULT GetEncapsulateDiskInfo( [in] unsigned long diskCount,
+                  [in, size_is(diskCount)] DISK_SPEC *diskSpecList,
+                  [out] unsigned long *encapInfoFlags,
+                  [out] unsigned long *affectedDiskCount,
+                  [out, size_is( ,*affectedDiskCount)] DISK_INFO 
+**affectedDiskList,
+                  [out, size_is( ,*affectedDiskCount)] unsigned long 
+**affectedDiskFlags,
+                  [out] unsigned long *affectedVolumeCount,
+                  [out, size_is( ,*affectedVolumeCount)] VOLUME_INFO 
+**affectedVolumeList,
+                  [out] unsigned long *affectedRegionCount,
+                  [out, size_is( ,*affectedRegionCount)] REGION_INFO 
+**affectedRegionList,
+                  [out] TASK_INFO *tinfo );
+ 
+    HRESULT EncapsulateDisk([in] unsigned long affectedDiskCount,
+                  [in, size_is(affectedDiskCount)] DISK_INFO 
+*affectedDiskList,
+                  [in] unsigned long affectedVolumeCount,
+                  [in, size_is(affectedVolumeCount)] VOLUME_INFO 
+*affectedVolumeList,
+                  [in] unsigned long affectedRegionCount,
+                  [in, size_is(affectedRegionCount)] REGION_INFO 
+*affectedRegionList,
+                  [out] unsigned long *encapInfoFlags,
+                  [out] TASK_INFO *tinfo );
+ 
+    HRESULT QueryChangePartitionNumbers([out] int *oldPartitionNumber,
+                        [out] int *newPartitionNumber );
+ 
+    HRESULT DeletePartitionNumberInfoFromRegistry();
+ 
+    HRESULT SetDontShow([in] boolean bSetNoShow);
+ 
+    HRESULT GetDontShow([out] boolean *bGetNoShow);
+ 
+    HRESULT Reserved0(
+void
+);
+ 
+    HRESULT Reserved1(
+void
+);
+ 
+    HRESULT Reserved2(
+void
+);
+ 
+    HRESULT Reserved3(
+void
+);
+ 
+    HRESULT Reserved4(
+void
+);
+ 
+    HRESULT Reserved5(
+void
+);
+ 
+    HRESULT Reserved6(
+void
+);
+ 
+    HRESULT Reserved7(
+void
+);
+ 
+    HRESULT EnumTasks(  [in, out] unsigned long *taskCount,
+                        [out, size_is(,*taskCount)] TASK_INFO 
+**taskList);
+ 
+    HRESULT GetTaskDetail([in] LdmObjectId id,
+                          [in, out] TASK_INFO *tinfo);
+ 
+    HRESULT AbortTask([in] LdmObjectId id);
+ 
+    HRESULT HrGetErrorData( [in]  HRESULT hr,
+                            [in]  DWORD dwFlags,
+                            [out] DWORD *pdwStoredFlags,
+                            [out] int * pcszw,
+                            [out, string, size_is(,*pcszw,)] wchar_t 
+*** prgszw );
+ 
+    HRESULT Initialize([in] IUnknown *notificationInterface,
+                       [out] unsigned long *ulIDLVersion,
+                       [out] DWORD *pdwFlags,
+                       [out] LdmObjectId * clientId,
+                       [in] unsigned long cRemote);
+ 
+    HRESULT Uninitialize();
+ 
+    HRESULT Refresh();
+    HRESULT RescanDisks();
+    HRESULT RefreshFileSys();
+ 
+    HRESULT SecureSystemPartition();
+    HRESULT ShutDownSystem();
+ 
+    HRESULT  EnumAccessPath([in, out] int *lCount,
+                            [out, size_is(,*lCount)] COUNTED_STRING 
+**paths);
+    HRESULT  EnumAccessPathForVolume([in] LdmObjectId VolumeId,
+                                     [in, out] int *lCount,
+                                     [out, size_is(,*lCount)] 
+COUNTED_STRING **paths);
+    HRESULT  AddAccessPath([in] int cch_path,
+                           [in , size_is (cch_path)] WCHAR *path,
+                           [in] LdmObjectId targetId);
+    HRESULT  DeleteAccessPath([in] LdmObjectId volumeId,
+                              [in] int cch_path,
+                              [in , size_is (cch_path)] WCHAR *path);
+}
+ 
+ 
+[ object, uuid(D2D79DF7-3400-11d0-B40B-00AA005FF586), 
+pointer_default(unique) ]
+interface IDMNotify : IUnknown
+{
+    typedef [unique] IDMNotify *LPIDMNOTIFY;
+ 
+    HRESULT ObjectsChanged([in] DWORD ByteCount,
+[in, size_is(ByteCount)] byte *ByteStream);
+ 
+}
+ 
+[ object, uuid(3A410F21-553F-11d1-8E5E-00A0C92C9D5D), 
+pointer_default(unique) ]
+interface IDMRemoteServer : IUnknown
+{
+     HRESULT CreateRemoteObject([in] unsigned long cMax,
+                       [in, max_is(cMax)] wchar_t 
+*RemoteComputerName);
+}
+ 
+[ object, uuid(4BDAFC52-FE6A-11d2-93F8-00105A11164A), 
+pointer_default(unique) ]
+interface IVolumeClient2 : IUnknown
+{
+HRESULT GetMaxAdjustedFreeSpace([in] LdmObjectId diskId, 
+                    [out] LONGLONG* maxAdjustedFreeSpace);
+};
+
+const DWORD SYSFLAG_NO_DYNAMIC  = 0x10;
+const DWORD SYSFLAG_IA64    = 0x40;
+const DWORD SYSFLAG_UNINSTALL_VALID = 0x80;
+const DWORD SYSFLAG_DYNAMIC_1394 = 0x100;
+ 
+typedef enum _PARTITIONSTYLE { 
+PARTITIONSTYLE_UNKNOWN = 0, 
+PARTITIONSTYLE_MBR = 1,
+PARTITIONSTYLE_GPT = 2
+} PARTITIONSTYLE;
+ 
+struct diskinfoex {
+    LdmObjectId     id;
+    LONGLONG        length;
+    LONGLONG        freeBytes;
+    unsigned long   bytesPerTrack;
+    unsigned long   bytesPerCylinder;
+    unsigned long   bytesPerSector;
+    unsigned long   regionCount;
+    unsigned long   dflags;
+    unsigned long   deviceType;
+    unsigned long   deviceState;
+    unsigned long   busType;
+    unsigned long   attributes;
+    unsigned long   maxPartitionCount;
+    boolean         isUpgradeable;
+    boolean         maySwitchStyle;
+    PARTITIONSTYLE  partitionStyle;
+    [switch_is(partitionStyle)] union {
+        [case(PARTITIONSTYLE_MBR)] struct _diskinfoex_mbr { // XXX: add tag.
+            unsigned long   signature;
+            
+        } mbr;
+        [case(PARTITIONSTYLE_GPT)] struct _diskinfoex_gpt { // XXX: add tag.
+            GUID    diskId;
+        } gpt;
+[default]
+;
+    };
+    int             portNumber;
+    int             targetNumber;
+    int             lunNumber;
+    LONGLONG        lastKnownState;
+    LdmObjectId     taskId;
+    int             cchName;
+    int             cchVendor;
+    int             cchDgid;
+    int             cchAdapterName;
+    int             cchDgName;
+    int             cchDevInstId;
+    [size_is(cchName)] wchar_t * name;
+    [size_is(cchVendor)] wchar_t *vendor;
+    [size_is(cchDgid)] byte *dgid;
+    [size_is(cchAdapterName)] wchar_t *adapterName;
+    [size_is(cchDgName)] wchar_t *dgName;
+    [size_is(cchDevInstId)] wchar_t *devInstId;
+};
+typedef struct diskinfoex DISK_INFO_EX;
+ 
+const DWORD DISK_FORMATTABLE_DVD    = 0x4;
+const DWORD DISK_MEMORY_STICK       = 0x8;
+const DWORD DISK_NTFS_NOT_SUPPORTED = 0x10;
+ 
+struct regioninfoex {
+    LdmObjectId     id;
+    LdmObjectId     diskId;
+    LdmObjectId     volId;
+    LdmObjectId     fsId;
+    LONGLONG        start;
+    LONGLONG        length;
+    REGIONTYPE      regionType;
+    PARTITIONSTYLE partitionStyle;
+    [switch_is(partitionStyle)] union {
+        [case(PARTITIONSTYLE_MBR)] struct _regioninfoex_mbr {  // XXX: add tag.
+            unsigned long   partitionType;
+            boolean isActive;
+        } mbr;
+        [case(PARTITIONSTYLE_GPT)] struct _regioninfoex_gpt { // XXX: add tag.
+            GUID    partitionType;
+            GUID    partitionId;
+            ULONGLONG attributes;
+        } gpt;
+[default]
+;
+    };
+    REGIONSTATUS    status;
+    hyper           lastKnownState;
+    LdmObjectId     taskId;
+    unsigned long   rflags;
+    unsigned long   currentPartitionNumber;
+    int             cchName;
+    [size_is(cchName)] wchar_t *name;
+};
+typedef struct regioninfoex REGION_INFO_EX;
+ 
+const DWORD REGION_HIDDEN      = 0x40000;
+ 
+const DWORD ENCAP_INFO_MIXED_PARTITIONS = 0x1000;
+const DWORD ENCAP_INFO_OPEN_FAILED  = 0x2000;
+ 
+[ object, uuid(135698D2-3A37-4d26-99DF-E2BB6AE3AC61), 
+pointer_default(unique) ]
+interface IVolumeClient3 : IUnknown
+{
+    HRESULT EnumDisksEx([out] unsigned long *diskCount,
+                        [out, size_is(,*diskCount)] DISK_INFO_EX 
+**diskList);
+ 
+    HRESULT EnumDiskRegionsEx([in] LdmObjectId diskId,
+                              [in, out] unsigned long *numRegions,
+                              [out, size_is(,*numRegions)] 
+REGION_INFO_EX **regionList);
+ 
+    HRESULT CreatePartition([in] REGION_SPEC partitionSpec,
+                            [out] TASK_INFO *tinfo);
+ 
+    HRESULT CreatePartitionAssignAndFormat([in] REGION_SPEC 
+partitionSpec,
+                            [in] wchar_t letter,
+                            [in] hyper letterLastKnownState,
+                            [in] FILE_SYSTEM_INFO fsSpec,
+                            [in] boolean quickFormat,
+                            [out] TASK_INFO *tinfo);
+ 
+    HRESULT CreatePartitionAssignAndFormatEx([in] REGION_SPEC 
+partitionSpec,
+                            [in] wchar_t letter,
+                            [in] hyper letterLastKnownState,
+                            [in] int cchAccessPath,
+                            [in, size_is(cchAccessPath)] wchar_t 
+*AccessPath,
+                            [in] FILE_SYSTEM_INFO fsSpec,
+                            [in] boolean quickFormat,
+                            [in] DWORD dwFlags,
+                            [out] TASK_INFO *tinfo);
+ 
+    HRESULT DeletePartition([in] REGION_SPEC partitionSpec,
+                            [in] boolean force,
+                            [out] TASK_INFO *tinfo);
+ 
+    HRESULT InitializeDiskStyle([in] LdmObjectId diskId,
+                                [in] PARTITIONSTYLE style,
+                                [in] hyper diskLastKnownState,
+                                [out] TASK_INFO *tinfo);
+ 
+    HRESULT MarkActivePartition([in] LdmObjectId regionId,
+                                [in] hyper regionLastKnownState,
+                                [out] TASK_INFO *tinfo );
+ 
+    HRESULT Eject( [in] LdmObjectId diskId,
+                   [in] hyper diskLastKnownState,
+                   [out] TASK_INFO *tinfo );
+ 
+    HRESULT Reserved_Opnum12(void);
+ 
+    HRESULT FTEnumVolumes([in, out] unsigned long   *volumeCount,
+        [out, size_is(,*volumeCount)] VOLUME_INFO **ftVolumeList);
+ 
+    HRESULT FTEnumLogicalDiskMembers([in] LdmObjectId volumeId,
+        [in, out] unsigned long *memberCount,
+        [out, size_is(,*memberCount)] LdmObjectId **memberList);
+ 
+    HRESULT FTDeleteVolume([in] LdmObjectId volumeId,
+                         [in] boolean force,
+                         [in] hyper volumeLastKnownState,
+                         [out] TASK_INFO *tinfo);
+ 
+    HRESULT FTBreakMirror([in] LdmObjectId volumeId,
+                        [in] hyper volumeLastKnownState,
+                        [in] boolean bForce,
+                        [out] TASK_INFO *tinfo);
+ 
+    HRESULT FTResyncMirror([in] LdmObjectId volumeId,
+                         [in] hyper volumeLastKnownState,
+                         [out] TASK_INFO *tinfo);
+ 
+    HRESULT FTRegenerateParityStripe([in] LdmObjectId volumeId,
+                                   [in] hyper volumeLastKnownState,
+                                   [out] TASK_INFO *tinfo);
+ 
+    HRESULT FTReplaceMirrorPartition([in] LdmObjectId volumeId,
+                                   [in] hyper volumeLastKnownState,
+                                   [in] LdmObjectId oldMemberId,
+                                   [in] hyper oldMemberLastKnownState,
+                                   [in] LdmObjectId newRegionId,
+                                   [in] hyper newRegionLastKnownState,
+                                   [in] DWORD flags,
+                                   [out] TASK_INFO *tinfo);
+ 
+    HRESULT FTReplaceParityStripePartition([in] LdmObjectId volumeId,
+                                   [in] hyper volumeLastKnownState,
+                                   [in] LdmObjectId oldMemberId,
+                                   [in] hyper oldMemberLastKnownState,
+                                   [in] LdmObjectId newRegionId,
+                                   [in] hyper newRegionLastKnownState,
+                                   [in] DWORD flags,
+                                   [out] TASK_INFO *tinfo);
+ 
+    HRESULT EnumDriveLetters([in, out] unsigned long * 
+driveLetterCount,
+        [out, size_is(,*driveLetterCount)] DRIVE_LETTER_INFO 
+**driveLetterList);
+ 
+    HRESULT AssignDriveLetter([in] wchar_t letter,
+                              [in] unsigned long forceOption,
+                              [in] hyper letterLastKnownState,
+                              [in] LdmObjectId storageId,
+                              [in] hyper storageLastKnownState,
+                              [out] TASK_INFO *tinfo);
+ 
+    HRESULT FreeDriveLetter([in] wchar_t letter,
+                            [in] unsigned long forceOption,
+                            [in] hyper letterLastKnownState,
+                            [in] LdmObjectId storageId,
+                            [in] hyper storageLastKnownState,
+                            [out] TASK_INFO *tinfo);
+ 
+HRESULT EnumLocalFileSystems([out] unsigned long * fileSystemCount,
+        [out, size_is(,*fileSystemCount)] FILE_SYSTEM_INFO 
+**fileSystemList);
+ 
+    HRESULT GetInstalledFileSystems([out] unsigned long *fsCount,
+        [out, size_is(,*fsCount)] IFILE_SYSTEM_INFO **fsList);
+ 
+    HRESULT Format([in] LdmObjectId storageId,
+                   [in] FILE_SYSTEM_INFO fsSpec,
+                   [in] boolean quickFormat,
+                   [in] boolean force,
+                   [in] hyper storageLastKnownState,
+                   [out] TASK_INFO *tinfo);
+ 
+    HRESULT EnumVolumes(
+        [in, out] unsigned long *volumeCount,
+        [out, size_is(,*volumeCount)] VOLUME_INFO **LdmVolumeList);
+ 
+    HRESULT EnumVolumeMembers([in] LdmObjectId volumeId,
+        [in, out] unsigned long * memberCount,
+        [out, size_is(,*memberCount)] LdmObjectId ** memberList);
+ 
+    HRESULT CreateVolume([in] VOLUME_SPEC volumeSpec,
+            [in] unsigned long diskCount,
+            [in, size_is(diskCount)] DISK_SPEC *diskList,
+            [out] TASK_INFO *tinfo );
+ 
+    HRESULT CreateVolumeAssignAndFormat([in] VOLUME_SPEC volumeSpec,
+                         [in] unsigned long diskCount,
+                         [in, size_is(diskCount)] DISK_SPEC *diskList,
+                         [in] wchar_t letter,
+                         [in] hyper letterLastKnownState,
+                         [in] FILE_SYSTEM_INFO fsSpec,
+                         [in] boolean quickFormat,
+                         [out] TASK_INFO *tinfo);
+ 
+    HRESULT CreateVolumeAssignAndFormatEx([in] VOLUME_SPEC volumeSpec,
+                         [in] unsigned long diskCount,
+                         [in, size_is(diskCount)] DISK_SPEC *diskList,
+                         [in] wchar_t letter,
+                         [in] hyper letterLastKnownState,
+                         [in] int cchAccessPath,
+                         [in, size_is(cchAccessPath)] wchar_t 
+*AccessPath,
+                         [in] FILE_SYSTEM_INFO fsSpec,
+                         [in] boolean quickFormat,
+                         [in] DWORD dwFlags,
+                         [out] TASK_INFO *tinfo);
+ 
+ 
+    HRESULT GetVolumeMountName( [in] LdmObjectId volumeId,
+[out] unsigned long *cchMountName,
+                                [out, size_is( ,*cchMountName)] 
+WCHAR **mountName);
+ 
+    HRESULT GrowVolume( [in] LdmObjectId volumeId,
+            [in] VOLUME_SPEC volumeSpec,
+            [in] unsigned long diskCount,
+            [in, size_is(diskCount)] DISK_SPEC *diskList,
+            [in] boolean force,
+            [out] TASK_INFO *tinfo );
+ 
+    HRESULT DeleteVolume([in] LdmObjectId volumeId,
+                         [in] boolean force,
+                         [in] hyper volumeLastKnownState,
+                         [out] TASK_INFO *tinfo );
+ 
+    HRESULT CreatePartitionsForVolume([in] LdmObjectId volumeId,
+                         [in] boolean active,
+                         [in] hyper volumeLastKnownState,
+                         [out] TASK_INFO *tinfo );
+ 
+    HRESULT DeletePartitionsForVolume([in] LdmObjectId volumeId,
+                         [in] hyper volumeLastKnownState,
+                         [out] TASK_INFO *tinfo );
+ 
+    HRESULT GetMaxAdjustedFreeSpace([in] LdmObjectId diskId, 
+                    [out] LONGLONG* maxAdjustedFreeSpace);
+    
+    HRESULT AddMirror([in] LdmObjectId volumeId,
+                      [in] hyper volumeLastKnownState,
+                      [in] DISK_SPEC diskSpec,
+                      [in, out] int *diskNumber,
+                      [out] int *partitionNumber,
+                      [out] TASK_INFO *tinfo );
+ 
+    HRESULT RemoveMirror([in] LdmObjectId volumeId,
+                         [in] hyper volumeLastKnownState,
+                         [in] LdmObjectId diskId,
+                         [in] hyper diskLastKnownState,
+                         [out] TASK_INFO *tinfo );
+ 
+    HRESULT SplitMirror( [in] LdmObjectId volumeId,
+                         [in] hyper volumeLastKnownState,
+                         [in] LdmObjectId diskId,
+                         [in] hyper diskLastKnownState,
+                         [in] wchar_t letter,
+                         [in] hyper letterLastKnownState,
+                         [in, out] TASK_INFO *tinfo );
+ 
+    HRESULT InitializeDiskEx([in] LdmObjectId diskId,
+                             [in] PARTITIONSTYLE style,
+                             [in] hyper diskLastKnownState,
+                             [out] TASK_INFO *tinfo );
+ 
+    HRESULT UninitializeDisk([in] LdmObjectId diskId,
+                             [in] hyper diskLastKnownState,
+                             [out] TASK_INFO *tinfo );
+ 
+    HRESULT ReConnectDisk( [in] LdmObjectId diskId,
+                           [out] TASK_INFO *tinfo );
+ 
+    HRESULT ImportDiskGroup ([in] int cchDgid,
+                             [in, size_is( cchDgid)] byte *dgid,
+                             [out] TASK_INFO *tinfo);
+ 
+    HRESULT DiskMergeQuery([in] int cchDgid,
+[in, size_is( cchDgid)] byte *dgid,
+[in] int numDisks,
+[in, size_is( numDisks)]  LdmObjectId *diskList,
+[out] hyper *merge_config_tid,
+[out] int *numRids, 
+[out, size_is(,*numRids)] hyper **merge_dm_rids,
+[out] int *numObjects,
+[out, size_is(,*numObjects)] MERGE_OBJECT_INFO 
+**mergeObjectInfo,
+[in, out] unsigned long *flags,
+[out] TASK_INFO *tinfo);
+ 
+    HRESULT DiskMerge([in] int cchDgid,
+[in, size_is( cchDgid)] byte *dgid,
+[in] int numDisks,
+[in, size_is( numDisks)]  LdmObjectId *diskList,
+[in] hyper merge_config_tid,
+[in] int numRids,
+[in, size_is(numRids)] hyper *merge_dm_rids,
+[out] TASK_INFO *tinfo);
+ 
+    HRESULT ReAttachDisk([in] LdmObjectId diskId,
+                         [in] hyper diskLastKnownState,
+                         [out] TASK_INFO *tinfo );
+ 
+    HRESULT ReplaceRaid5Column([in] LdmObjectId volumeId,
+                               [in] hyper volumeLastKnownState,
+                               [in] LdmObjectId newDiskId,
+                               [in] hyper diskLastKnownState,
+                               [out] TASK_INFO *tinfo );
+ 
+    HRESULT RestartVolume([in] LdmObjectId volumeId,
+                          [in] hyper volumeLastKnownState,
+                          [out] TASK_INFO *tinfo );
+ 
+    HRESULT GetEncapsulateDiskInfoEx( [in] unsigned long diskCount,
+                  [in, size_is(diskCount)] DISK_SPEC *diskSpecList,
+                  [out] unsigned long *encapInfoFlags,
+                  [out] unsigned long *affectedDiskCount,
+                  [out, size_is( ,*affectedDiskCount)] DISK_INFO_EX 
+**affectedDiskList,
+                  [out, size_is( ,*affectedDiskCount)] unsigned long 
+**affectedDiskFlags,
+                  [out] unsigned long *affectedVolumeCount,
+                  [out, size_is( ,*affectedVolumeCount)] VOLUME_INFO 
+**affectedVolumeList,
+                  [out] unsigned long *affectedRegionCount,
+                  [out, size_is( ,*affectedRegionCount)] 
+REGION_INFO_EX **affectedRegionList,
+                  [out] TASK_INFO *tinfo );
+ 
+    HRESULT EncapsulateDiskEx([in] unsigned long affectedDiskCount,
+                  [in, size_is(affectedDiskCount)] DISK_INFO_EX 
+*affectedDiskList,
+                  [in] unsigned long affectedVolumeCount,
+                  [in, size_is(affectedVolumeCount)] VOLUME_INFO 
+*affectedVolumeList,
+                  [in] unsigned long affectedRegionCount,
+                  [in, size_is(affectedRegionCount)] REGION_INFO_EX 
+*affectedRegionList,
+                  [out] unsigned long *encapInfoFlags,
+                  [out] TASK_INFO *tinfo );
+ 
+    HRESULT QueryChangePartitionNumbers([out] int *oldPartitionNumber,
+                        [out] int *newPartitionNumber );
+ 
+    HRESULT DeletePartitionNumberInfoFromRegistry();
+ 
+    HRESULT SetDontShow([in] boolean bSetNoShow);
+ 
+    HRESULT GetDontShow([out] boolean *bGetNoShow);
+ 
+    HRESULT Reserved0(
+void
+);
+ 
+    HRESULT Reserved1(
+void
+);
+ 
+    HRESULT Reserved2(
+void
+);
+ 
+    HRESULT Reserved3(
+void
+);
+ 
+    HRESULT Reserved4(
+void
+);
+ 
+    HRESULT Reserved5(
+void
+);
+ 
+    HRESULT Reserved6(
+void
+);
+ 
+    HRESULT Reserved7(
+void
+);
+ 
+    HRESULT EnumTasks(  [in, out] unsigned long *taskCount,
+                        [out, size_is(,*taskCount)] TASK_INFO 
+**taskList);
+ 
+    HRESULT GetTaskDetail([in] LdmObjectId id,
+                          [in, out] TASK_INFO *tinfo);
+ 
+    HRESULT AbortTask([in] LdmObjectId id);
+ 
+    HRESULT HrGetErrorData( [in]  HRESULT hr,
+                            [in]  DWORD dwFlags,
+                            [out] DWORD *pdwStoredFlags,
+                            [out] int * pcszw,
+                            [out, string, size_is(,*pcszw,)] wchar_t 
+*** prgszw );
+ 
+    HRESULT Initialize([in] IUnknown *notificationInterface,
+                       [out] unsigned long *ulIDLVersion,
+                       [out] DWORD *pdwFlags,
+                       [out] LdmObjectId * clientId,
+                       [in] unsigned long cRemote);
+ 
+    HRESULT Uninitialize();
+ 
+    HRESULT Refresh();
+    HRESULT RescanDisks();
+    HRESULT RefreshFileSys();
+ 
+    HRESULT SecureSystemPartition();
+    HRESULT ShutDownSystem();
+ 
+    HRESULT  EnumAccessPath([in, out] int *lCount,
+                            [out, size_is(,*lCount)] COUNTED_STRING 
+**paths);
+    HRESULT  EnumAccessPathForVolume([in] LdmObjectId VolumeId,
+                                     [in, out] int *lCount,
+                                     [out, size_is(,*lCount)] 
+COUNTED_STRING **paths);
+    HRESULT  AddAccessPath([in] int cch_path,
+                           [in , size_is (cch_path)] WCHAR *path,
+                           [in] LdmObjectId targetId);
+    HRESULT  DeleteAccessPath([in] LdmObjectId volumeId,
+                              [in] int cch_path,
+                              [in , size_is (cch_path)] WCHAR *path);
+}
+ 
+ 
+ 
+[ object, uuid(DEB01010-3A37-4d26-99DF-E2BB6AE3AC61), 
+pointer_default(unique) ]
+interface IVolumeClient4 : IUnknown
+{
+    HRESULT RefreshEx( void );
+ 
+    HRESULT GetVolumeDeviceName( 
+[in] LdmObjectId            _volumeId, 
+[out] unsigned long                                                            *cchVolumeDevice,
+                    [out, size_is( ,*cchVolumeDevice)] WCHAR     
+**pwszVolumeDevice
+);
+}

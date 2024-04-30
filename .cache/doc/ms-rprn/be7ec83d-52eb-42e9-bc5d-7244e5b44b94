@@ -1,0 +1,49 @@
+<div class="content"><p>RpcFlushPrinter is used by <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer drivers</a> to send a
+buffer of bytes to a specified <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a> to cleanly abort a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print job</a>.<a id="Appendix_A_Target_378"></a><a aria-label="Product behavior note 378" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_378" data-linktype="relative-path">&lt;378&gt;</a> It also allows delaying the
+I/O line to the printer.</p><dl>
+<dd>
+<div><pre> DWORD RpcFlushPrinter(
+   [in] PRINTER_HANDLE hPrinter,
+   [in, size_is(cbBuf)] BYTE* pBuf,
+   [in] DWORD cbBuf,
+   [out] DWORD* pcWritten,
+   [in] DWORD cSleep
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a port object that was
+opened by <a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter (section 3.1.4.2.2)</a>
+or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx (section 3.1.4.2.14)</a>.</p><p><b>pBuf: </b>A pointer to the array of bytes
+containing the data to be written to the printer. This parameter can be NULL if
+the value of the <i>cbBuf</i> parameter is zero.</p><p><b>cbBuf: </b>The size, in bytes, of the array
+pointed to by the <i>pBuf</i> parameter.</p><p><b>pcWritten: </b>A pointer to a variable that
+receives the number of bytes of data that were written to the printer.</p><p><b>cSleep: </b>The time, in milliseconds, to delay
+the I/O line to the printer port. A value of zero indicates no delay.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE
+Parameters (section 3.1.4.1.11)</a>. This method SHOULD assume that
+the handle to the port object can be used without further access checks.</p>
+</li><li><p><span><span> 
+</span></span>Verify that a previous <a href="6dd263aa-c8b5-4774-8d21-1daa0d0d9920" data-linktype="relative-path">RpcWritePrinter (section 3.1.4.9.3)</a>
+on the same port object has failed due to job cancellation, and if that
+verification fails, return ERROR_INVALID_HANDLE as specified in [MS-ERREF].</p>
+</li><li><p><span><span> 
+</span></span>If the value of the <i>cbBuf</i> parameter is not zero, verify
+that the <i>pBuf</i> parameter is not NULL.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Send the contents of the buffer that is pointed to by the <i>pBuf</i>
+parameter to the port.</p>
+</li><li><p><span><span> 
+</span></span>If the value of the <i>cSleep</i> parameter is not zero, the
+server MUST halt operations to the port for the number of milliseconds
+specified by the value of the <i>cSleep</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Write the number of bytes that were written to the port, to the
+variable that is pointed to by the <i>pcWritten</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

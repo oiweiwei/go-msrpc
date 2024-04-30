@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/77dbfdbb-6627-4871-ab12-5333929347dc" data-linktype="external">msdn link</a></p><p>The RPC_SHORT_BLOB structure holds a counted array of
+unsigned short values.</p><dl>
+<dd>
+<div><pre> typedef struct _RPC_SHORT_BLOB {
+   unsigned short Length;
+   unsigned short MaximumLength;
+   [size_is(MaximumLength/2), length_is(Length/2)] 
+     unsigned short* Buffer;
+ } RPC_SHORT_BLOB,
+  *PRPC_SHORT_BLOB;
+</pre></div>
+</dd></dl><p><b>Length:</b>  The number of bytes of data
+contained in the <b>Buffer</b> member.</p><p><b>MaximumLength:</b>  The length, in
+bytes, of the <b>Buffer</b> member.</p><p><b>Buffer:</b>  A buffer containing <b>Length</b>/2
+unsigned short values.</p></div>

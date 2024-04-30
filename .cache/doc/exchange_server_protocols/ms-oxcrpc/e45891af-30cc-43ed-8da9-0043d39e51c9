@@ -1,0 +1,95 @@
+<div class="content"><p> </p><p>The <b>EcDoAsyncWaitEx</b> method is an asynchronous call
+that the server does not complete until events are pending on the <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_d08d95ee-5936-47d8-9f35-49e4159354a6" data-linktype="relative-path">Session
+Context</a></span>, up to a 5-minute duration of no client activity. If no
+events are available within 5 minutes of the time that the client last accessed
+the server<a id="Appendix_A_Target_36"></a><a aria-label="Product behavior note 36" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_36" data-linktype="relative-path">&lt;36&gt;</a> through a call to the <b>EcDoRpcExt2</b>
+method, as specified in section <span><a href="1842194b-c530-4b64-a778-0e663029785c" data-linktype="relative-path">3.1.4.2</a></span>, the server
+returns the call and does not set the <b>NotificationPending</b> flag in the <i>pulFlagsOut</i>
+parameter. If an event is pending, the server completes the call immediately and
+returns the <b>NotificationPending</b> flag in the <i>pulFlagsOut</i>
+parameter. This call requires an active <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_e288b075-2751-413d-981e-272b350b37c4" data-linktype="relative-path">asynchronous context handle</a></span>
+to be returned from the <b>EcDoAsyncConnectEx</b> method on the <b>EMSMDB</b>
+interface, as specified in section <span><a href="59d638fe-e63d-422a-b51d-6210b2155138" data-linktype="relative-path">3.1.4.1</a></span>. The
+asynchronous context handle is associated with the Session Context.</p><p>This method is part of notification handling. For more
+information about notifications, see <span><a href="../ms-oxcnotif/7c7d1653-5dfb-42f1-9410-fc4e48e10731" data-linktype="relative-path">[MS-OXCNOTIF]</a></span>.</p><dl>
+<dd>
+<div><pre> long __stdcall EcDoAsyncWaitEx(
+      [in] ACXH acxh,
+      [in] unsigned long ulFlagsIn,
+      [out] unsigned long *pulFlagsOut
+ );
+</pre></div>
+</dd></dl><p><i>acxh:</i> An asynchronous context handle. On input, the
+client MUST pass a valid asynchronous context handle that was created by
+calling the <b>EcDoAsyncConnectEx</b> method on the <b>EMSMDB</b> interface.
+The server uses the asynchronous context handle to identify the Session Context
+to use for this call. If the asynchronous context handle is not valid, the
+server successfully completes the call, setting the <b>NotificationPending </b>flag
+in the <i>pulFlagsOut</i> parameter.</p><p><i>ulFlagsIn:</i> Unused. Reserved for future use. Client
+MUST pass a value of 0x00000000.</p><p><i>pulFlagsOut:</i> The output <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_425bcab9-7911-4eae-b414-624b7a51eb5f" data-linktype="relative-path">flags</a></span> for the
+client. Flag values are specified in the following table.</p><table><thead>
+  <tr>
+   <th>
+   <p>Flag name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><b>NotificationPending</b></p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Signals that events are pending for the client on the
+  Session Context on the server. The client MUST call the <b>EcDoRpcExt2</b>
+  method<b> </b>(with additional data in the <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_b17e14f5-0f03-4447-8a9f-0f1bd0a2f886" data-linktype="relative-path">ROP request buffer</a></span>
+  if there is additional data to send to the server, or with an empty ROP
+  request buffer if there is no additional data to send to the server). The
+  server will return the event details in the <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_02eede81-2ef5-4994-8791-5f0cd780c225" data-linktype="relative-path">ROP response buffer</a></span>.</p>
+  </td>
+ </tr></tbody></table><p><b>Return Values:</b> If the method succeeds, the return
+value is 0. If the method fails, the return value is an implementation-specific
+error code or one of the protocol-defined error codes listed in the following
+table.</p><table><thead>
+  <tr>
+   <th>
+   <p>Error code name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><b>Rejected</b></p>
+  </td>
+  <td>
+  <p>0x000007EE</p>
+  </td>
+  <td>
+  <p>An <b>EcDoAsyncWaitEx</b> method call is already
+  outstanding on this asynchronous context handle.<a id="Appendix_A_Target_37"></a><a aria-label="Product behavior note 37" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_37" data-linktype="relative-path">&lt;37&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>Exiting</b></p>
+  </td>
+  <td>
+  <p>0x000003ED</p>
+  </td>
+  <td>
+  <p>The server is shutting down.</p>
+  </td>
+ </tr></tbody></table><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol as
+specified in <span><a href="/en-us/openspecs/windows_protocols/MS-RPCE/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="absolute-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,21 @@
+<div class="content"><p>This method is called by a client to determine whether <a href="3f01a312-3391-4109-a96e-95358babf191#gt_9e740bb8-bc2c-4d50-9819-0002e28a1958" data-linktype="relative-path">instance load balancing</a> is
+installed.</p><dl>
+<dd>
+<div><pre> HRESULT IsInstalled(
+   [in] CatSrvServices i_css,
+   [out] ULONG* pulStatus
+ );
+</pre></div>
+</dd></dl><p><b>i_css: </b>MUST be set to css_lb (see section <a href="11054f83-ae02-4a2d-8976-c0d14611985c" data-linktype="relative-path">2.2.7</a>).</p><p><b>pulStatus: </b>A pointer to a variable that, upon
+a successful return, MUST be set to TRUE (0x00000001) or FALSE (0x000000000) to
+indicate whether <a href="3f01a312-3391-4109-a96e-95358babf191#gt_71669ed9-7eaf-4328-9e2e-4d3430f0f9bf" data-linktype="relative-path">component</a>
+load balancing support is installed.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server MUST verify
+that the parameters are valid, as specified previously, and fail the call if
+not.</p><p>If the server does not support instance load balancing, the
+server MUST immediately fail the call.</p><p>Otherwise, the server MUST attempt to determine whether
+instance load balancing support is already installed, and fail the call if it
+cannot.</p><p>The server then MUST set the value referenced by <i>pulStatus</i>
+to indicate whether instance load balancing support is installed.</p></div>

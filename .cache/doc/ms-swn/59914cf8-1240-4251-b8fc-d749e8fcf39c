@@ -1,0 +1,13 @@
+<div class="content"><p>The WITNESS_INTERFACE_LIST structure specifies the list of
+interfaces available for witness registration.  </p><dl>
+<dd>
+<div><pre> typedef struct _WITNESS_INTERFACE_LIST {
+     UINT NumberOfInterfaces;
+     [size_is(NumberOfInterfaces)] [unique] PWITNESS_INTERFACE_INFO InterfaceInfo;
+ } WITNESS_INTERFACE_LIST, *PWITNESS_INTERFACE_LIST;
+  
+  
+</pre></div>
+</dd></dl><p><b>NumberOfInterfaces:</b>  The number of
+WITNESS_INTERFACE_INFO structures in <b>InterfaceInfo</b>.</p><p><b>InterfaceInfo:</b>  Contains an array of
+WITNESS_INTERFACE_INFO structures, as specified in section <a href="0721326e-3806-40fc-9fb8-e2986d266f77" data-linktype="relative-path">2.2.2.5</a>.</p></div>

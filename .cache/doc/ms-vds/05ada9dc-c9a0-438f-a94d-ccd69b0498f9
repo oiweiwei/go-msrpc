@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The VDS_PACK_FLAG enumeration defines the set of valid flags
+for a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_a6543827-8d70-4e5a-a982-2fdc2e7f8bca" data-linktype="relative-path">disk pack</a></span> object.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_PACK_FLAG
+ {
+   VDS_PKF_FOREIGN = 0x00000001,
+   VDS_PKF_NOQUORUM = 0x00000002,
+   VDS_PKF_POLICY = 0x00000004,
+   VDS_PKF_CORRUPTED = 0x00000008,
+   VDS_PKF_ONLINE_ERROR = 0x00000010
+ } VDS_PACK_FLAG;
+</pre></div>
+</dd></dl><p><b>VDS_PKF_FOREIGN:  </b>If set, an external disk
+pack is eligible for <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_783ae2e4-7c04-40ba-a974-f95a30aa1ab2" data-linktype="relative-path">online</a></span> status.</p><p><b>VDS_PKF_NOQUORUM:  </b>If set, a dynamic disk pack
+lacks the required <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_a23b080d-2b58-4d0c-b43f-9b1acce8b8ef" data-linktype="relative-path">disk quorum</a></span>.</p><p><b>VDS_PKF_POLICY:  </b>If set, management policy
+forbids the disk pack from gaining online status.</p><p><b>VDS_PKF_CORRUPTED:  </b>If set, a disk pack
+contains a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span> that has a
+corrupted <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2624008c-5791-49f7-868e-29f2d8f9be3f" data-linktype="relative-path">LDM</a></span> database.</p><p><b>VDS_PKF_ONLINE_ERROR:  </b>If set, a disk pack
+with sufficient disk quorum failed to achieve online status due to an error.</p></div>

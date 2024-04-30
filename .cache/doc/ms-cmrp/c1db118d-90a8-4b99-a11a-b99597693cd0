@@ -1,0 +1,23 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c1db118d-90a8-4b99-a11a-b99597693cd0" data-linktype="external">msdn link</a></p><p>The <b>RESOURCE_ENUM_ENTRY</b> (section 2.2.3.27) structure
+represents information for each resource in the enumeration list returned by <b>ApiCreateResourceEnum</b>
+(section <a href="ee51adff-a3ac-4676-8972-418dff630174" data-linktype="relative-path">3.1.4.2.140</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _RESOURCE_ENUM_ENTRY {
+   [string] LPWSTR Name;
+   [string] LPWSTR Id;
+   [string] LPWSTR OwnerName;
+   [string] LPWSTR OwnerId;
+   DWORD cbProperties;
+   [size_is(cbProperties)] UCHAR* Properties;
+   DWORD cbRoProperties;
+   [size_is(cbRoProperties)] UCHAR* RoProperties;
+ } RESOURCE_ENUM_ENTRY,
+  *PRESOURCE_ENUM_ENTRY;
+</pre></div>
+</dd></dl><p><b>Name:</b> The name of the resource.</p><p><b>Id:</b> The Id of the resource.</p><p><b>OwnerName:</b> The name of the group that contains
+this resource.</p><p><b>OwnerId:</b> The Id of the group that contains
+this resource.</p><p><b>cbProperties:</b> The size in bytes of the buffer
+pointed to by the <b>Properties</b> field.</p><p><b>Properties:</b> A <b>PROPERTY_LIST</b> (section <a href="7ed348f2-eddf-4c3f-a1cb-b651ec3cff92" data-linktype="relative-path">2.2.3.10</a>) containing the
+common properties of the resource.</p><p><b>cbRoProperties:</b> The size in bytes of the
+buffer pointed to by the <b>RoProperties</b> field.</p><p><b>RoProperties:</b> A <b>PROPERTY_LIST</b>
+containing the common read-only properties of the resource.</p></div>

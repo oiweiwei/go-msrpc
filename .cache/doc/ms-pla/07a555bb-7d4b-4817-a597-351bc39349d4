@@ -1,0 +1,13 @@
+<div class="content"><p>The ResourcePolicy enumeration defines the order in which
+folders are deleted when one of the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a> resource limits is
+exceeded. </p><dl>
+<dd>
+<div><pre> typedef  enum
+ {
+   plaDeleteLargest = 0,
+   plaDeleteOldest = 1
+ } ResourcePolicy;
+</pre></div>
+</dd></dl><p><b>plaDeleteLargest:  </b>Deletes the largest folders
+first.</p><p><b>plaDeleteOldest:  </b>Deletes the oldest folders
+first.</p></div>

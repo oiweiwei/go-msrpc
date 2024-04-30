@@ -1,0 +1,71 @@
+<div class="content"><p> </p><p>The <b>FAX_ENUM_EVENT_TYPE</b> enumeration defines types of
+events that the caller can specify to receive.<a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a></p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FAX_EVENT_TYPE_LEGACY = 0x00000000,
+   FAX_EVENT_TYPE_IN_QUEUE = 0x00000001,
+   FAX_EVENT_TYPE_OUT_QUEUE = 0x00000002,
+   FAX_EVENT_TYPE_CONFIG = 0x00000004,
+   FAX_EVENT_TYPE_ACTIVITY = 0x00000008,
+   FAX_EVENT_TYPE_QUEUE_STATE = 0x00000010,
+   FAX_EVENT_TYPE_IN_ARCHIVE = 0x00000020,
+   FAX_EVENT_TYPE_OUT_ARCHIVE = 0x00000040,
+   FAX_EVENT_TYPE_FXSSVC_ENDED = 0x00000080,
+   FAX_EVENT_TYPE_DEVICE_STATUS = 0x00000100,
+   FAX_EVENT_TYPE_NEW_CALL = 0x00000200,
+   FAX_EVENT_TYPE_LOCAL_ONLY = 0x80000000
+ } FAX_ENUM_EVENT_TYPE;
+</pre></div>
+</dd></dl><p><b>FAX_EVENT_TYPE_LEGACY: </b>The type used for all
+legacy events. Legacy events are events that are requested by fax API version
+FAX_API_VERSION_0 (0x00000000) and FAX_API_VERSION_1 (0x00010000) fax clients
+to protocol version FAX_API_VERSION_2 (0x00020000) and FAX_API_VERSION_3
+(0x00030000) fax servers. For more information, see <b>FAX_ConnectFaxServer</b>
+(section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>), <b>FAX_StartServerNotification</b>
+(section <span><a href="693ea4ae-60cd-4043-b775-1a1f19920cbb" data-linktype="relative-path">3.1.4.1.100</a></span>), <b>FAX_StartServerNotificationEx</b>
+(section <span><a href="b73163aa-5f4b-45b3-9c5b-f95077f103c2" data-linktype="relative-path">3.1.4.1.101</a></span>), <b>FaxObs_StartClientServer</b>
+(section <span><a href="ea706138-77df-41dd-b862-767c4baedf54" data-linktype="relative-path">3.1.4.2.31</a></span>), and <b>FAX_ClientEventQueue</b>
+(section <span><a href="c123443a-b672-4bce-ad30-50d2eb4d6cf9" data-linktype="relative-path">3.2.4.2</a></span>) methods. A
+legacy event signaled with a <b>FAX_ClientEventQueue</b> call is described by a
+<b>FAX_EVENT</b> (section <span><a href="26974d69-9306-4683-b4b8-23fda467e717" data-linktype="relative-path">2.2.66</a></span>) structure
+that does not include a member that describes the event type (the legacy events
+do not have event types; thus the need to describe their type by a common,
+generic, <b>FAX_ENUM_EVENT_TYPE</b> (section 2.2.63) value). This value SHOULD
+NOT be supported by protocol version FAX_API_VERSION_0 (0x00000000) and
+FAX_API_VERSION_1 (0x00010000) fax servers.<a id="Appendix_A_Target_26"></a><a aria-label="Product behavior note 26" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_26" data-linktype="relative-path">&lt;26&gt;</a></p><dl>
+<dd>
+<p>The following <b>FAX_ENUM_EVENT_TYPE</b> values
+describe the type of the extended events. For more information about extended
+events, see the <b>FAX_StartServerNotificationEx</b>, <b>FAX_StartServerNotificationEx2</b>
+(section <span><a href="55770fa2-8c93-40c1-a56e-2c17e8ff707b" data-linktype="relative-path">3.1.4.1.102</a></span>), and <b>FAX_ClientEventQueueEx</b>
+(section <span><a href="d1ec6615-73e1-4c86-aef9-c738c71f08d1" data-linktype="relative-path">3.2.4.3</a></span>) methods.
+An extended event signaled with a <b>FAX_ClientEventQueueEx</b> call is
+described by a <b>FAX_EVENT_EX</b> (section <span><a href="3a9ae7f7-9825-43cd-aa78-1c077fd99bd2" data-linktype="relative-path">2.2.67</a></span>) or <b>FAX_EVENT_EX_1</b>
+(section <span><a href="425c3686-00b8-493d-bba5-d4ce677e47db" data-linktype="relative-path">2.2.68</a></span>) structure,
+each of these structures including a member (called <b>EventType</b> for <b>FAX_EVENT_EX</b>
+and <b>EventType4</b> for <b>FAX_EVENT_EX_1</b>) containing the <b>FAX_ENUM_EVENT_TYPE</b>
+value describing the type of the respective extended event.</p>
+</dd></dl><p><b>FAX_EVENT_TYPE_IN_QUEUE: </b>Requests notification
+about fax jobs in the incoming <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>. Whenever the
+state of an incoming fax job changes, a notification of that type is issued.</p><p><b>FAX_EVENT_TYPE_OUT_QUEUE: </b>Requests
+notification about fax jobs in the outgoing queue. Whenever the state of an
+outgoing fax job changes, a notification of that type is issued.</p><p><b>FAX_EVENT_TYPE_CONFIG: </b>Requests notifications
+about fax server configuration changes. Whenever the configuration of the fax
+server changes, a notification of that type is issued.</p><p><b>FAX_EVENT_TYPE_ACTIVITY: </b>Requests
+notifications about the fax server activity. Whenever the activity state of the
+fax server changes, a notification of that type is issued.</p><p><b>FAX_EVENT_TYPE_QUEUE_STATE: </b>Requests
+notifications about the fax <b>Queue State</b> (section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>).
+Whenever the state of the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_0c5e7185-40c3-4e58-a8ac-7626ed078235" data-linktype="relative-path">fax queue</a></span> changes, a
+notification of that type is issued.</p><p><b>FAX_EVENT_TYPE_IN_ARCHIVE: </b>Requests
+notifications about the removal of fax messages from the incoming messages <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9394bf31-7db9-433c-8d3d-ee6a37bf0848" data-linktype="relative-path">archive</a></span>.
+Whenever a message is removed from the archive, the archive type and the
+message unique identifier are issued in a notification message.</p><p><b>FAX_EVENT_TYPE_OUT_ARCHIVE: </b>Requests
+notifications about the removal of fax messages from the outgoing messages
+archive. Whenever a message is removed from the archive, the archive type and
+the message unique identifier are issued in a notification message.</p><p><b>FAX_EVENT_TYPE_FXSSVC_ENDED: </b>Specifies the
+shutdown of the fax server.</p><p><b>FAX_EVENT_TYPE_DEVICE_STATUS: </b>Specifies that
+the status of a device has changed.</p><p><b>FAX_EVENT_TYPE_NEW_CALL: </b>Specifies that a new
+incoming call was detected by the fax service.</p><p><b>FAX_EVENT_TYPE_LOCAL_ONLY: </b>Specifies that the
+fax client (acting as <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> server) needs to
+accept only local (same computer) notifications.<a id="Appendix_A_Target_27"></a><a aria-label="Product behavior note 27" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_27" data-linktype="relative-path">&lt;27&gt;</a></p></div>

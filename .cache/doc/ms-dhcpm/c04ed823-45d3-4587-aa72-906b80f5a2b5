@@ -1,0 +1,60 @@
+<div class="content"><p> </p><p>The <b>DHCP_MIB_INFO_V6</b> structure contains the DHCPv6
+server counter values for the DHCPv6 server. This structure is used in the <span><a href="c51883c1-bc27-473c-ad67-22078f5b3ee5" data-linktype="relative-path">R_DhcpGetMibInfoV6 (section 3.2.4.69)</a></span>
+method to find DHCPv6 server statistics.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_MIB_INFO_V6 {
+   DWORD Solicits;
+   DWORD Advertises;
+   DWORD Requests;
+   DWORD Renews;
+   DWORD Rebinds;
+   DWORD Replies;
+   DWORD Confirms;
+   DWORD Declines;
+   DWORD Releases;
+   DWORD Informs;
+   DATE_TIME ServerStartTime;
+   DWORD Scopes;
+   [size_is(Scopes)] LPSCOPE_MIB_INFO_V6 ScopeInfo;
+ } DHCP_MIB_INFO_V6,
+  *LPDHCP_MIB_INFO_V6;
+</pre></div>
+</dd></dl><p><b>Solicits:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and contains the number of <b>DHCPSOLICIT</b> message received by the DHCPv6
+server from DHCPv6 clients since the DHCP server was last started. This is used
+for statistical analysis by the DHCPv6 server.</p><p><b>Advertises:</b>  This is of type DWORD
+and contains the number of <b>DHCPADVERTISE</b> message sent by DHCPv6 server
+to DHCPv6 clients since the DHCP server was last started. This is used for
+statistical analysis by the DHCPv6 server.</p><p><b>Requests:</b>  This is of type DWORD and
+contains the number of <b>DHCPREQUEST</b> messages received by the DHCPv6
+server from DHCPv6 clients since the DHCP server was last started. This is used
+for statistical analysis by the DHCPv6 server.</p><p><b>Renews:</b>  This is of type DWORD and
+contains the number of <b>DHCPRENEW</b> message received by the DHCPv6 server
+from DHCPv6 clients since the DHCP server was last started. This is used for
+statistical analysis by the DHCPv6 server.</p><p><b>Rebinds:</b>  This is of type DWORD and
+contains the number of <b>DHCPREBIND</b> messages received by the DHCPv6 server
+from DHCPv6 clients since the DHCP server was last started. This is used for
+statistical analysis by the DHCPv6 server.</p><p><b>Replies:</b>  This is of type DWORD and
+contains the number of <b>DHCPREPLY</b> messages sent by the DHCPv6 server to <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e1d03cee-86a5-42f7-913f-8cf4e50b0d21" data-linktype="relative-path">DHCP
+clients</a></span> since the DHCP server was last started. This is used for
+statistical analysis by the DHCPv6 server.</p><p><b>Confirms:</b>  This is of type DWORD and
+contains the number of <b>DHCPCONFIRM</b> messages received by the DHCPv6
+server from DHCPv6 clients since the DHCP server was last started. This is used
+for statistical analysis by the DHCPv6 server.</p><p><b>Declines:</b>  This is of type DWORD and
+contains the number of <b>DHCPDECLINES</b> messages received by the DHCPv6
+server from DHCPv6 clients since the DHCP server was last started. This is used
+for statistical analysis by the DHCPv6 server.</p><p><b>Releases:</b>  This is of type DWORD and
+contains the number of <b>DHCPRELEASE</b> messages received by the DHCPv6
+server from DHCPv6 clients since the DHCP server was last started. This is used
+for statistical analysis by the DHCPv6 server.</p><p><b>Informs:</b>  This is of type DWORD and
+contains the number of <b>DHCPINFORM</b> messages received by the DHCPv6 server
+from DHCPv6 clients since the DHCP server was last started. This is used for
+statistical analysis by the DHCPv6 server.</p><p><b>ServerStartTime:</b>  This is of type <span><a href="0f93bea1-8172-4efa-826a-e12667e1bcee" data-linktype="relative-path">DATE_TIME (section 2.2.1.2.11)</a></span>,
+a structure containing the start time of the DHCPv6 server.</p><p><b>Scopes:</b>  This is of type DWORD,
+containing the number of IPv6 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_128cd76b-eecb-41e6-96f7-f73c2bf9235a" data-linktype="relative-path">scopes</a></span> configured on
+the current DHCPv6 server. This is used for statistical analysis by the DHCPv6
+server. This field defines the number of DHCPv6 scopes in the subsequent field
+the <b>ScopeInfo</b> member.</p><p><b>ScopeInfo:</b>  This is a pointer to an
+array of <span><a href="069b4591-536d-4640-813d-029fbe887400" data-linktype="relative-path">SCOPE_MIB_INFO_V6 (section 2.2.1.2.67)</a></span>
+structures that points to an array of length <b>Scopes</b>, containing the information
+about the IPv6 scopes configured on the DHCPv6 server.</p></div>

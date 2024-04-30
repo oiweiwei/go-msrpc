@@ -1,0 +1,183 @@
+<div class="content"><p> </p><p>This structure is used to encapsulate the information
+necessary to perform operations <span><a href="aab4d8fa-3a56-483c-ac61-4172a09fc199" data-linktype="relative-path">RemoteQMStartReceive</a></span>,
+<span><a href="a0df225e-80ea-4242-90e5-9891bfa9ebfb" data-linktype="relative-path">RemoteQMStartReceive2</a></span>,
+and <span><a href="b8a82b34-6feb-4057-8f7f-48275fa65068" data-linktype="relative-path">RemoteQMStartReceiveByLookupId</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _REMOTEREADDESC {
+   DWORD hRemoteQueue;
+   DWORD hCursor;
+   DWORD ulAction;
+   DWORD ulTimeout;
+   [range(0, 4325376)] DWORD dwSize;
+   DWORD dwQueue;
+   DWORD dwRequestID;
+   DWORD Reserved;
+   DWORD dwArriveTime;
+   REMOTEREADACK eAckNack;
+   [unique, size_is(dwSize), length_is(dwSize)] 
+     byte* lpBuffer;
+ } REMOTEREADDESC;
+</pre></div>
+</dd></dl><p><b>hRemoteQueue:</b>   A handle to the <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>
+as obtained from the <i>phQueue</i> parameter of the <b>qmcomm:R_QMOpenRemoteQueue</b>
+method, as specified in <span><a href="../ms-mqmp/8e379aa2-802d-4fcc-b6a6-6203e4606fa9" data-linktype="relative-path">[MS-MQMP]</a></span>
+section <span><a href="../ms-mqmp/47482511-3c4a-4d7e-8edb-46715e89e4af" data-linktype="relative-path">3.1.4.2</a></span>.
+This value is set by the client.</p><p><b>hCursor:</b>   If nonzero, specifies a
+handle to a <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a></span> that MUST
+have been obtained from the <i>phCursor</i> parameter of the <b>qmcomm:R_QMCreateRemoteCursor</b>
+method, as specified in [MS-MQMP] section <span><a href="../ms-mqmp/bbf4bc8a-e697-4720-8015-d249a716371d" data-linktype="relative-path">3.1.4.4</a></span>.
+This value is set by the client.</p><p><b>ulAction:</b>   The following table
+describes possible actions. The Peek and Receive operations both enable access
+to the contents of a <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span>. This value
+is set by the client.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Type/Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQ_ACTION_RECEIVE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Type = Receive</p>
+  <p>Reads and removes a message from the current cursor
+  location if <b>hCursor</b> is nonzero or from the front of the queue if <b>hCursor</b>
+  is set to zero.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_ACTION_PEEK_CURRENT</p>
+  <p>0x80000000</p>
+  </td>
+  <td>
+  <p>Type = Peek</p>
+  <p>Reads a message from the current cursor location if <b>hCursor</b>
+  is nonzero or from the front of the queue if <b>hCursor</b> is set to zero
+  but does not remove it from the queue.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_ACTION_PEEK_NEXT</p>
+  <p>0x80000001</p>
+  </td>
+  <td>
+  <p>Type = Peek</p>
+  <p>Reads a message following the message at the current
+  cursor location but does not remove it from the queue.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_LOOKUP_PEEK_CURRENT</p>
+  <p>0x40000010</p>
+  </td>
+  <td>
+  <p>Type = Peek</p>
+  <p>Reads the message specified by a lookup identifier but
+  does not remove it from the queue.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_LOOKUP_PEEK_NEXT</p>
+  <p>0x40000011</p>
+  </td>
+  <td>
+  <p>Type = Peek</p>
+  <p>Reads the message following the message specified by a
+  lookup identifier but does not remove it from the queue.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_LOOKUP_PEEK_PREV</p>
+  <p>0x40000012</p>
+  </td>
+  <td>
+  <p>Type = Peek</p>
+  <p>Reads the message preceding the message specified by a
+  lookup identifier but does not remove it from the queue.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_LOOKUP_RECEIVE_CURRENT</p>
+  <p>0x40000020</p>
+  </td>
+  <td>
+  <p>Type = Receive</p>
+  <p>Reads the message specified by a lookup identifier and
+  removes it from the queue. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_LOOKUP_RECEIVE_NEXT</p>
+  <p>0x40000021</p>
+  </td>
+  <td>
+  <p>Type = Receive</p>
+  <p>Reads the message following the message specified by a
+  lookup identifier and removes it from the queue.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_LOOKUP_RECEIVE_PREV</p>
+  <p>0x40000022</p>
+  </td>
+  <td>
+  <p>Type = Receive</p>
+  <p>Reads the message preceding the message specified by a
+  lookup identifier and removes it from the queue.</p>
+  </td>
+ </tr></tbody></table><p><b>ulTimeout:</b>   Specifies a time-out in
+milliseconds for the server to wait for a message to become available in the
+queue. This value is set by the client. To specify an infinite time-out, the
+client MUST set this field to 0xFFFFFFFF.</p><p><b>dwSize:</b>   Specifies the size, in
+bytes, of <b>lpBuffer</b>. The valid range is 0 to 0x00420000. This value is
+set by the server and MUST be set to 0 by the client.</p><p><b>dwQueue:</b>   A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+pointed to by the <i>dwpQueue</i> parameter of the <b>qmcomm:R_QMOpenRemoteQueue</b>
+method, as specified in [MS-MQMP] section 3.1.4.2. This value is set by the
+client.</p><p><b>dwRequestID:</b>  The client MUST set
+this member to a unique identifier for the receive request, which could later
+be used to identify and cancel the receive request. This value is set by the
+client. The client SHOULD NOT<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="d6c5ba0a-aaf8-489d-baf2-fdc286b4bea4#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a> reuse this
+identifier until a call to the RemoteQMEndReceive (Opnum 1) method or to the
+RemoteQMCancelReceive (Opnum 5) method has been made for that receive request.</p><p><b>Reserved:</b>  This is a reserved field
+of type <b>DWORD</b> that MUST be ignored.</p><dl>
+<dd>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Returned by client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Returned by server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd></dl><p><b>dwArriveTime:</b>   The server MUST set
+this value to the time that the message was added to the queue. The time MUST
+be expressed as the number of seconds elapsed since 00:00:00.0, January 1, 1970
+Coordinated Universal Time (UTC). </p><p><b>eAckNack:</b>  This is a reserved field
+and MUST be ignored by the client and the server.</p><p><b>lpBuffer:</b>  This field represents a
+pointer to a buffer containing the <span><a href="../ms-mqmq/56bae708-1289-48ff-a411-bf3782602476" data-linktype="relative-path">UserMessage
+Packet</a></span> (<span><a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a></span>
+section 2.2.20). The size of this field is specified by <b>dwSize</b>. This
+value is set by the server and MUST be set to NULL by the client.</p></div>

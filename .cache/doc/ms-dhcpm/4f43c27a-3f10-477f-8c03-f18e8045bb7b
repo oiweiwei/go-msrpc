@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The <b>DHCP_CLIENT_INFO_EX_ARRAY</b> structure encapsulates
+an array of <span><a href="99021b06-24d3-4edf-b673-0316e85cf28d" data-linktype="relative-path">DHCP_CLIENT_INFO_EX (section 2.2.1.2.119)</a></span>
+structures.</p><dl>
+<dd>
+<div><pre> typedef struct DHCP_CLIENT_INFO_EX_ARRAY {
+     DWORD NumElements;
+     [size_is (NumElements)] LPDHCP_CLIENT_INFO_EX *Clients; // array of pointers
+ } DHCP_CLIENT_INFO_EX_ARRAY, *LPDHCP_CLIENT_INFO_EX_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  The number of elements
+in the Clients member.</p><p><b>Clients:</b>  An array of pointers to
+DHCP_CLIENT_INFO_EX (section 2.2.1.2.119) structures.</p></div>

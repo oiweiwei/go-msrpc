@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>This enumeration defines the possible keying modules that
+the policy rule applies to.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FW_KEY_MODULE_DEFAULT = 0,
+   FW_KEY_MODULE_IKEv1 = 1,
+   FW_KEY_MODULE_AUTHIP = 2,
+   FW_KEY_MODULE_IKEv2 = 3,
+   FW_KEY_MODULE_MAX = 4
+ } FW_KEY_MODULE;
+</pre></div>
+</dd></dl><p><b>FW_KEY_MODULE_DEFAULT:  </b>This value represents
+the default keying modules. The default keying modules are
+implementation-specific.<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="1da2ee70-a6ae-4f76-b08f-fdc25c77d8a0#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a></p><p><b>FW_KEY_MODULE_IKEv1:  </b>This value represents a
+keying module implementing the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_294fef97-5790-4d41-971e-dd255b783e68" data-linktype="relative-path">Internet Key Exchange (IKE)</a></span>
+protocol as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90349" data-linktype="external">[RFC2409]</a></span>.</p><p><b>FW_KEY_MODULE_AUTHIP:  </b>This value represents a
+keying module implementing the Authenticated Internet protocol as specified in <span><a href="../ms-aips/eee3de64-3847-4451-978e-9513ff187d30" data-linktype="relative-path">[MS-AIPS]</a></span>.</p><p><b>FW_KEY_MODULE_IKEv2:  </b>This value represents a
+keying module implementing the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_2cd83a7f-fc17-4283-b3f3-59feb25114bf" data-linktype="relative-path">Internet Key Exchange (IKEv2)</a></span>
+protocol as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90469" data-linktype="external">[RFC4306]</a></span>.</p><p><b>FW_KEY_MODULE_MAX:  </b>This value and values that
+exceed this value are not valid and MUST NOT be used. It is defined to provide
+for simplicity when writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 4.</p></div>

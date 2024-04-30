@@ -1,0 +1,44 @@
+<div class="content"><p>RpcSetPort sets the status associated with a printer <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a>.<a id="Appendix_A_Target_361"></a><a aria-label="Product behavior note 361" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_361" data-linktype="relative-path">&lt;361&gt;</a></p><dl>
+<dd>
+<div><pre> DWORD RpcSetPort(
+   [in, string, unique] STRING_HANDLE pName,
+   [in, string, unique] wchar_t* pPortName,
+   [in] PORT_CONTAINER* pPortContainer
+ );
+</pre></div>
+</dd></dl><p><b>pName: </b>A parameter that adheres to the
+specification in <a href="acb355a4-913b-4abb-8cb5-415aea160015" data-linktype="relative-path">Print
+Server Name Parameters (section 3.1.4.1.4)</a>.</p><p><b>pPortName: </b>A pointer to a string that
+specifies the name of the printer port. For rules governing port names, see
+section <a href="03c5feb7-4fbb-4569-b064-9eb6ad833f50" data-linktype="relative-path">2.2.4.10</a>.</p><p><b>pPortContainer: </b>A parameter that adheres to
+the specification in <a href="fff791a0-fcab-420a-b1b1-be6eca61d301" data-linktype="relative-path">PORT_CONTAINER
+Parameters (section 3.1.4.1.8.5)</a>. The level as specified in the <b>Level</b>
+member of the <a href="e05adf6c-a04e-4e39-8b34-e7c118ce2bc8" data-linktype="relative-path">PORT_CONTAINER</a>
+structure MUST be 0x00000003.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Verify that the string that is referenced by <i>pPortName</i>
+represents a port installed on the server, and if validation fails, the server
+MUST fail the operation immediately and return ERROR_UNKNOWN_PORT.</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in Print Server
+Name Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in PORT_CONTAINER
+Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Additional validation MAY<a id="Appendix_A_Target_362"></a><a aria-label="Product behavior note 362" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_362" data-linktype="relative-path">&lt;362&gt;</a> be
+performed.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>The <i>pPortContainer</i> parameter points to a PORT_CONTAINER
+structure. This structure references a <a href="05c1a8d2-0bcb-4292-bc65-c8cc2e7f90cf" data-linktype="relative-path">PORT_INFO</a> structure that
+contains members <b>dwStatus</b>, <b>pszStatus</b>, and <b>dwSeverity</b>. Copy
+these members to the port object that is referenced by the <i>pPortName</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

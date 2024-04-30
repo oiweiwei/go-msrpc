@@ -1,0 +1,575 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_RECURSE_STATS</b> structure has the DNS
+server&#39;s statistics related to recursive <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_49c03845-ca86-48f5-9cbf-ab86c624aa29" data-linktype="relative-path">resource record</a></span>
+lookups. This structure SHOULD<a id="Appendix_A_Target_69"></a><a aria-label="Product behavior note 69" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_69" data-linktype="relative-path">&lt;69&gt;</a>  be
+formatted as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ReferralPasses</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>QueriesRecursed</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>OriginalQuestionRecursed</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AdditionalRecursed</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TotalQuestionsRecursed</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Retries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LookupPasses</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Forwards</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Sends</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Responses</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ResponseUnmatched</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ResponseMismatched
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ResponseFromForwarder</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ResponseAuthoritative</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ResponseNotAuth</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ResponseAnswer</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ResponseNameError</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ResponseRcode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ResponseEmpty</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ResponseDelegation</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ResponseNonZoneData</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ResponseUnsecure</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ResponseBadPacket</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SendResponseDirect</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ContinueCurrentRecursion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ContinueCurrentLookup</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ContinueNextLookup</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RootNsQuery</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RootNsResponse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CacheUpdateAlloc</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CacheUpdateResponse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CacheUpdateFree</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CacheUpdateRetry</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SuspendedQuery</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ResumeSuspendedQuery</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PacketTimeout</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>FinalTimeoutQueued</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>FinalTimeoutExpired</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Failures</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecursionFailure</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ServerFailure</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PartialFailure</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CacheUpdateFailure</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecursePassFailure</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>FailureReachAuthority</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>FailureReachPreviousResponse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>FailureRetryCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpTry</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpConnectFailure</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpConnect</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpQuery</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpResponse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpDisconnect</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DiscardedDuplicateQueries
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DuplicateCoalesedQueries
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>GnzLocalQuery
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>GnzRemoteQuery
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>GnzRemoteResponse
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>GnzRemoteResponseCacheSuccess
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>GnzRemoteResponseCacheFailure
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CacheLockingDiscards
+  (optional)</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>ReferralPasses (4 bytes): </b>The number of times
+the server returned a referral value, as an unsigned 32-bit integer. If the
+value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored
+in the field.</p><p><b>QueriesRecursed (4 bytes): </b>The number of
+queries received that required recursive lookups, as an unsigned 32-bit
+integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p><p><b>OriginalQuestionRecursed (4 bytes): </b>The number
+of new recursive queries initiated, as an unsigned 32-bit integer. If the value
+is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>AdditionalRecursed (4 bytes): </b>The number of
+recursions performed to return additional data or CNAME, as an unsigned 32-bit
+integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p><p><b>TotalQuestionsRecursed (4 bytes): </b>The number
+of total recursions including original and additional, as an unsigned 32-bit
+integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p><p><b>Retries (4 bytes): </b>The number of retries
+performed for recursive queries sent by the server, as an unsigned 32-bit
+integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p><p><b>LookupPasses (4 bytes): </b>The number of
+recursive lookups performed, as an unsigned 32-bit integer. If the value is
+greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>Forwards (4 bytes): </b>The number of recursive
+queries sent to forwarding servers, as an unsigned 32-bit integer. If the value
+is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>Sends (4 bytes): </b>The total number of recursive
+queries sent by the server, as an unsigned 32-bit integer. If the value is
+greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>Responses (4 bytes): </b>The number of query
+responses received by the server, as an unsigned 32-bit integer. If the value
+is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>ResponseUnmatched (4 bytes): </b>The number of
+responses received for which an outstanding query with a matching
+transaction-id could not be located, as an unsigned 32-bit integer. If the
+value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored
+in the field.</p><p><b>ResponseMismatched (4 bytes): </b>The number of
+responses received for which an outstanding query with a matching
+transaction-id was located but response was invalid for the query, as an
+unsigned 32-bit integer. If the value is greater than 0xFFFFFFFF, then the
+value modulo 0x100000000 is stored in the field. This field SHOULD be present.
+A client can tell whether the field is present based on the size of the buffer
+holding this structure.</p><p><b>ResponseFromForwarder (4 bytes): </b>The number of
+responses received from <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_025cfacf-ebc5-4659-971a-ee2ab5903575" data-linktype="relative-path">forwarders</a></span>, as an
+unsigned 32-bit integer. If the value is greater than 0xFFFFFFFF, then the
+value modulo 0x100000000 is stored in the field.</p><p><b>ResponseAuthoritative (4 bytes): </b>The number of
+responses received from the server <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_ed54858d-02e4-4de3-b65b-e0b81c4185c7" data-linktype="relative-path">authoritative</a></span> for
+the zone, as an unsigned 32-bit integer. If the value is greater than
+0xFFFFFFFF, then the value modulo 0x100000000 is stored in the field.</p><p><b>ResponseNotAuth (4 bytes): </b>The number of
+responses received from a server not authoritative for the zone, as an unsigned
+32-bit integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p><p><b>ResponseAnswer (4 bytes): </b>The number of
+responses received from other servers for recursive queries, as an unsigned
+32-bit integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p><p><b>ResponseNameError (4 bytes): </b>The number of
+name errors received by the server, as an unsigned 32-bit integer. If the value
+is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>ResponseRcode (4 bytes): </b>The number of errors
+other than name errors received by the server, as an unsigned 32-bit integer.
+If the value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is
+stored in the field.</p><p><b>ResponseEmpty (4 bytes): </b>The number of empty
+responses received from other servers, as an unsigned 32-bit integer. If the
+value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored
+in the field.</p><p><b>ResponseDelegation (4 bytes): </b>The number of
+delegation responses received by the server, as an unsigned 32-bit integer. If
+the value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is
+stored in the field.</p><p><b>ResponseNonZoneData (4 bytes): </b>The number of
+error responses when a name is not found in the zone, as an unsigned 32-bit
+integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p><p><b>ResponseUnsecure (4 bytes): </b>The number of
+unsecure responses received when the server is configured to receive secure
+responses, as an unsigned 32-bit integer. If the value is greater than
+0xFFFFFFFF, then the value modulo 0x100000000 is stored in the field.</p><p><b>ResponseBadPacket (4 bytes): </b>The number of bad
+response packets received, as an unsigned 32-bit integer. If the value is
+greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>SendResponseDirect (4 bytes): </b>The number of
+responses that the DNS server received from remote servers and sent directly to
+clients, as an unsigned 32-bit integer. If the value is greater than
+0xFFFFFFFF, then the value modulo 0x100000000 is stored in the field.</p><p><b>ContinueCurrentRecursion (4 bytes): </b>The number
+of additional remote queries generated by the DNS server during normal query
+processing, as an unsigned 32-bit integer. If the value is greater than
+0xFFFFFFFF, then the value modulo 0x100000000 is stored in the field.</p><p><b>ContinueCurrentLookup (4 bytes): </b>The number of
+times the server received a response from a remote DNS server while processing
+a client query and restarted recursion, as an unsigned 32-bit integer. If the
+value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored
+in the field.</p><p><b>ContinueNextLookup (4 bytes): </b>The number of
+times the server started a lookup with the next query, as an unsigned 32-bit
+integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p><p><b>RootNsQuery (4 bytes): </b>The number of times the
+server sent a query for a root name server, as an unsigned 32-bit integer. If
+the value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is
+stored in the field.</p><p><b>RootNsResponse (4 bytes): </b>The number of times
+the server processed a response from one of its root servers, as an unsigned
+32-bit integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p><p><b>CacheUpdateAlloc (4 bytes): </b>The number of
+times the server allocated a query to be sent to update a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_2f48e305-acf2-470e-b481-a0b7cc5fae4f" data-linktype="relative-path">cache</a></span>
+entry, as an unsigned 32-bit integer. If the value is greater than 0xFFFFFFFF,
+then the value modulo 0x100000000 is stored in the field.</p><p><b>CacheUpdateResponse (4 bytes): </b>The number of
+times the server received responses for a query sent to update a cache entry,
+as an unsigned 32-bit integer. If the value is greater than 0xFFFFFFFF, then
+the value modulo 0x100000000 is stored in the field.</p><p><b>CacheUpdateFree (4 bytes): </b>The number of times
+the server released a query request or response packet sent to update a cache
+entry, as an unsigned 32-bit integer. If the value is greater than 0xFFFFFFFF,
+then the value modulo 0x100000000 is stored in the field.</p><p><b>CacheUpdateRetry (4 bytes): </b>The number of
+times the server reattempted a query to update cache entry information, as an
+unsigned 32-bit integer. If the value is greater than 0xFFFFFFFF, then the
+value modulo 0x100000000 is stored in the field.</p><p><b>SuspendedQuery (4 bytes): </b>The number of times
+the server suspended sending a query needed to update cache entry information,
+as an unsigned 32-bit integer. If the value is greater than 0xFFFFFFFF, then
+the value modulo 0x100000000 is stored in the field.</p><p><b>ResumeSuspendedQuery (4 bytes): </b>The number of
+times the server resumed a suspended query that was needed to update cache
+entry information, as an unsigned 32-bit integer. If the value is greater than
+0xFFFFFFFF, then the value modulo 0x100000000 is stored in the field.</p><p><b>PacketTimeout (4 bytes): </b>The number of
+timed-out recursive queries, as an unsigned 32-bit integer. If the value is
+greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>FinalTimeoutQueued (4 bytes): </b>The number of
+recursive queries enlisted to wait for final time-out before they expire, as an
+unsigned 32-bit integer. If the value is greater than 0xFFFFFFFF, then the
+value modulo 0x100000000 is stored in the field.</p><p><b>FinalTimeoutExpired (4 bytes): </b>The number of
+recursive queries expired without the server receiving any response, as an unsigned
+32-bit integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p><p><b>Failures (4 bytes): </b>Not used. Senders MUST set
+this value to zero, and receivers MUST ignore it.</p><p><b>RecursionFailure (4 bytes): </b>The number of
+times the server received failures for recursion queries to remote servers, as
+an unsigned 32-bit integer. If the value is greater than 0xFFFFFFFF, then the
+value modulo 0x100000000 is stored in the field.</p><p><b>ServerFailure (4 bytes): </b>The number of times
+the server sent failures to the client, as an unsigned 32-bit integer. If the
+value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored
+in the field.</p><p><b>PartialFailure (4 bytes): </b>The number of times
+the server received failures for recursion queries to remote servers, when it
+had already received an answer but was looking up additional records, as an
+unsigned 32-bit integer. If the value is greater than 0xFFFFFFFF, then the
+value modulo 0x100000000 is stored in the field.</p><p><b>CacheUpdateFailure (4 bytes): </b>The number of
+times the server received failure for self-generated cache update recursion
+queries to remote servers, as an unsigned 32-bit integer. If the value is
+greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>RecursePassFailure (4 bytes): </b>The number of
+times the server failed to perform recursive lookups on queries, as an unsigned
+32-bit integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p><p><b>FailureReachAuthority (4 bytes): </b>The number of
+times the server failed to perform recursive lookups on queries, because it
+failed to reach an authoritative server, as an unsigned 32-bit integer. If the
+value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored
+in the field.</p><p><b>FailureReachPreviousResponse (4 bytes): </b>The
+number of times the server received failure while performing recursive lookup
+on queries, because the query recursed back to the domain from which a name
+server had already responded, as an unsigned 32-bit integer. If the value is
+greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>FailureRetryCount (4 bytes): </b>Not used. Senders
+MUST set this value to zero, and receivers MUST ignore it.</p><p><b>TcpTry (4 bytes): </b>The number of times the
+server started a recursive query over TCP, as an unsigned 32-bit integer. If
+the value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is
+stored in the field.</p><p><b>TcpConnectFailure (4 bytes): </b>Not used. Senders
+MUST set this value to zero, and receivers MUST ignore it.</p><p><b>TcpConnect (4 bytes): </b>The number of times the
+server successfully established a TCP connection to send a recursive query, as
+an unsigned 32-bit integer. If the value is greater than 0xFFFFFFFF, then the
+value modulo 0x100000000 is stored in the field.</p><p><b>TcpQuery (4 bytes): </b>The number of times the
+server sent a recursive query over TCP, as an unsigned 32-bit integer. If the
+value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored
+in the field.</p><p><b>TcpResponse (4 bytes): </b>The number of times the
+server received a recursive query response over TCP, as an unsigned 32-bit
+integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p><p><b>TcpDisconnect (4 bytes): </b>The number of times
+the server disconnected a connection that was established to send a recursive
+query over TCP to a remote server, as an unsigned 32-bit integer. If the value
+is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>DiscardedDuplicateQueries (4 bytes): </b>The
+number of times the server discarded a query that was received from the same
+client with the same transaction ID when there was already a query with the
+same query name, type ID, and transaction ID outstanding, as an unsigned 32-bit
+integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field. This field MUST be present only if
+ResponseMismatched is present. A client can tell whether the field is present
+based on the size of the buffer holding this structure.</p><p><b>DuplicateCoalesedQueries (4 bytes): </b>The number
+of times the server coalesced a query that was received from a client while
+another query with the same query name and type ID was outstanding at the
+server for processing, as an unsigned 32-bit integer. If the value is greater
+than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the field. This
+field MUST be present if and only if ResponseMismatched is present. A client
+can tell whether the field is present based on the size of the buffer holding
+this structure. </p><p><b>GnzLocalQuery (4 bytes): </b>The number of times a
+<span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_4b2ec78c-50a1-4093-8005-d59ecb829f49" data-linktype="relative-path">global
+name zone (GNZ)</a></span> lookup query was answered locally, as an unsigned
+32-bit integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field. This field SHOULD be present but MUST be
+absent if ResponseMismatched is absent. A client can tell whether the field is
+present based on the size of the buffer holding this structure.</p><p><b>GnzRemoteQuery (4 bytes): </b>The number of times
+a GNZ lookup query was sent to a remote server, as an unsigned 32-bit integer.
+If the value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is
+stored in the field. This field MUST be present if and only if GnzLocalQuery is
+present. A client can tell whether the field is present based on the size of
+the buffer holding this structure.</p><p><b>GnzRemoteResponse (4 bytes): </b>The number of
+times a GNZ lookup query response was received from a remote server, as an
+unsigned 32-bit integer. If the value is greater than 0xFFFFFFFF, then the
+value modulo 0x100000000 is stored in the field. This field MUST be present if
+and only if GnzLocalQuery is present. A client can tell whether the field is
+present based on the size of the buffer holding this structure.</p><p><b>GnzRemoteResponseCacheSuccess (4 bytes): </b>The
+number of times a GNZ cache update query response was successfully received
+from a remote server, as an unsigned 32-bit integer. If the value is greater
+than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the field. This
+field MUST be present if and only if GnzLocalQuery is present. A client can
+tell whether the field is present based on the size of the buffer holding this
+structure.</p><p><b>GnzRemoteResponseCacheFailure (4 bytes): </b>The
+number of times the server received failure for GNZ cache update query requests
+sent to a remote server, as an unsigned 32-bit integer. If the value is greater
+than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the field. This
+field MUST be present if and only if GnzLocalQuery is present. A client can
+tell whether the field is present based on the size of the buffer holding this
+structure.</p><p><b>CacheLockingDiscards (4 bytes): </b>The number of
+times the server discarded a cache update due to cache record locking, as an
+unsigned 32-bit integer. If the value is greater than 0xFFFFFFFF, then the
+value modulo 0x100000000 is stored in the field. This field SHOULD<a id="Appendix_A_Target_70"></a><a aria-label="Product behavior note 70" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_70" data-linktype="relative-path">&lt;70&gt;</a> be present. A client can tell
+whether the field is present based on the size of the buffer holding this
+structure.</p></div>

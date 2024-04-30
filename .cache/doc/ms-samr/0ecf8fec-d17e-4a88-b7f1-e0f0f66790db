@@ -1,0 +1,82 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/0ecf8fec-d17e-4a88-b7f1-e0f0f66790db" data-linktype="external">msdn link</a></p><p>The SamrQuerySecurityObject method queries the access
+control on a server, <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>,
+user, group, or <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_0387e636-5654-4910-9519-1f8326cf5ec0" data-linktype="relative-path">alias object</a>.</p><dl>
+<dd>
+<div><pre> long SamrQuerySecurityObject(
+   [in] SAMPR_HANDLE ObjectHandle,
+   [in] SECURITY_INFORMATION SecurityInformation,
+   [out] PSAMPR_SR_SECURITY_DESCRIPTOR* SecurityDescriptor
+ );
+</pre></div>
+</dd></dl><p><b>ObjectHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a server, domain, user, group, or alias object.</p><p><b>SecurityInformation: </b>A bit field that
+specifies which fields of <i>SecurityDescriptor</i> the client is requesting to
+be returned.</p><dl>
+<dd>
+<p>The SECURITY_INFORMATION type is defined in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/23e75ca3-98fd-4396-84e5-86cd9d40d343" data-linktype="relative-path">2.4.7</a>.
+The following bits are valid; all other bits MUST be zero when sent and ignored
+on receipt.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>OWNER_SECURITY_INFORMATION</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>If this bit is set, the client requests that the <b>Owner</b>
+  member be returned.</p>
+  <p>If this bit is not set, the client requests that the <b>Owner</b>
+  member not be returned.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GROUP_SECURITY_INFORMATION</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>If this bit is set, the client requests that the <b>Group</b>
+  member be returned.</p>
+  <p>If this bit is not set, the client requests that the <b>Group</b>
+  member not be returned.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DACL_SECURITY_INFORMATION</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>If this bit is set, the client requests that the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_d727f612-7a45-48e4-9d87-71735d62b321" data-linktype="relative-path">DACL</a> be returned.</p>
+  <p>If this bit is not set, the client requests that the
+  DACL not be returned.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SACL_SECURITY_INFORMATION</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>If this bit is set, the client requests that the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_c189801e-3752-4715-88f4-17804dad5782" data-linktype="relative-path">SACL</a> be returned.</p>
+  <p>If this bit is not set, the client requests that the
+  SACL not be returned.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>SecurityDescriptor: </b>A <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a>
+expressing accesses that are specific to the <i>ObjectHandle</i> and the owner
+and group of the object. [MS-DTYP] section <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a>
+contains the specification for a valid security descriptor.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Message processing for this method is specified in the
+following two sections.</p></div>

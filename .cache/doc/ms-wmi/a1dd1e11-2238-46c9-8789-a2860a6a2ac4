@@ -1,0 +1,31 @@
+<div class="content"><p> </p><p>The WBEM_QUERY_FLAG_TYPE enumeration gives information about
+the type of the flag.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum tag_WBEM_QUERY_FLAG_TYPE
+ {
+   WBEM_FLAG_DEEP = 0,
+   WBEM_FLAG_SHALLOW = 1,
+   WBEM_FLAG_PROTOTYPE = 2
+ } WBEM_QUERY_FLAG_TYPE;
+</pre></div>
+</dd></dl><p><b>WBEM_FLAG_DEEP:  </b>If used in <span><a href="b05b1315-0d1f-46a6-8541-df2f72207a96" data-linktype="relative-path">IWbemServices::CreateClassEnum</a></span>
+or <span><a href="efd7250b-a5cf-459d-a2ef-c7b246a94449" data-linktype="relative-path">IWbemServices::CreateClassEnumAsync</a></span>,
+the WBEM_FLAG_DEEP constant causes the enumeration to return all the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_fbb1e623-a709-400d-8d4a-85df94ad58c3" data-linktype="relative-path">subclasses</a></span>
+in the hierarchy of a specified class but to not return the class itself.</p><dl>
+<dd>
+<p>If used in <span><a href="c479d344-73a3-4a0d-9920-45205f57305d" data-linktype="relative-path">IWbemServices::CreateInstanceEnum</a></span>
+or <span><a href="5b3541b9-4cb8-4530-aff1-de422ed2c93f" data-linktype="relative-path">IWbemServices::CreateInstanceEnumAsync</a></span>,
+this constant causes the enumeration to return the instances of this class and
+also the instances of subclasses in the hierarchy of the class.</p>
+</dd></dl><p><b>WBEM_FLAG_SHALLOW:  </b>If used in
+IWbemServices::CreateClassEnum or IWbemServices::CreateClassEnumAsync, the
+WBEM_FLAG_SHALLOW constant causes the enumeration to return the immediate
+subclasses of a specified class.</p><dl>
+<dd>
+<p>If used in IWbemServices::CreateInstanceEnum or
+IWbemServices::CreateInstanceEnumAsync, this constant causes the enumeration to
+return only the instances of this class and excludes all instances of
+subclasses.</p>
+</dd></dl><p><b>WBEM_FLAG_PROTOTYPE:  </b>This flag is used for
+prototyping. It does not run the query; instead, it returns the <span><a href="88a002c1-c7bb-4acb-884c-976cbd0e8e94" data-linktype="relative-path">Prototype
+Result Object</a></span> as specified in section 2.2.4.1.</p></div>

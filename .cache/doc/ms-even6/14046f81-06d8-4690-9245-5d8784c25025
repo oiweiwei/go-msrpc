@@ -1,0 +1,270 @@
+<div class="content"><p> </p><p>The EvtRpcMessageRender (Opnum 9) method is used by a client
+to get localized descriptive strings for an event.</p><dl>
+<dd>
+<div><pre> error_status_t EvtRpcMessageRender(
+   [in, context_handle] PCONTEXT_HANDLE_PUBLISHER_METADATA pubCfgObj,
+   [in, range(1, MAX_RPC_EVENT_ID_SIZE)] 
+     DWORD sizeEventId,
+   [in, size_is(sizeEventId)] BYTE* eventId,
+   [in] DWORD messageId,
+   [in] EvtRpcVariantList* values,
+   [in] DWORD flags,
+   [in] DWORD maxSizeString,
+   [out] DWORD* actualSizeString,
+   [out] DWORD* neededSizeString,
+   [out, size_is(,*actualSizeString), range(0, MAX_RPC_RENDERED_STRING_SIZE)] 
+     BYTE** string,
+   [out] RpcInfo* error
+ );
+</pre></div>
+</dd></dl><p><b>pubCfgObj: </b>A handle to a publisher object.
+This parameter is an <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle,
+as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>, Context
+Handles. This value comes from the return parameter <i>pubMetadata</i> of the
+function <span><a href="0011377c-12f8-4440-8629-568b1ec5bcf2" data-linktype="relative-path">EvtRpcGetPublisherMetadata (section 3.1.4.25)</a></span>.</p><p><b>sizeEventId: </b>A 32-bit unsigned integer that
+contains the size, in bytes, of the data in the <i>eventId</i> field. The
+server MUST ignore this value if EvtFormatMessageId is specified as the <i>flags</i>
+parameter. If EvtFormatMessageId is not specified in the <i>flags</i>
+parameter, the server MUST use the <i>sizeEventId</i> parameter and ignore the <i>messageId</i>
+parameter.</p><p><b>eventId: </b>A pointer to an <b>EVENT_DESCRIPTOR</b>
+structure, as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/a6110d36-28c1-4290-b79e-26aa95a0b1a0" data-linktype="relative-path">2.3.1</a></span>.
+</p><p><b>messageId: </b>A 32-bit unsigned integer that
+specifies the required message. This is an alternative to using the <i>eventID</i>
+parameter used by a client application that has obtained the value through some
+method outside those documented by this protocol. The server MUST ignore this
+value unless the <i>flags</i> value is set to EvtFormatMessageId; in which
+case, the server MUST use this value to determine the required message and
+ignore the <i>eventID</i> parameter.</p><p><b>values: </b>An array of strings used as
+substitution values for event description strings. The number of strings
+submitted is determined by the number of description strings contained in the
+event message specified by the <i>eventID</i> or <i>messageId</i> parameter.<a id="Appendix_A_Target_62"></a><a aria-label="Product behavior note 62" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_62" data-linktype="relative-path">&lt;62&gt;</a></p><p><b>flags: </b>For all options except
+EvtFormatMessageId, the <i>eventId</i> parameter is used to specify an event
+descriptor. For the EvtFormatMessageId option, the <i>messageId</i> is used for
+locating the message. This MUST be set to one of the values in the following
+table, which indicates the action a server is requested to perform.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>EvtFormatMessageEvent</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Locate the message for the event that corresponds to <i>eventID</i>,
+  and then insert the values specified by the values parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtFormatMessageLevel</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Extract the <b>level</b> field from <i>eventID</i>,
+  and then return the localized name for that level.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtFormatMessageTask</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Extract the <b>task</b> field from <i>eventID</i>, and
+  then return the localized name for that task.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtFormatMessageOpcode</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Extract the <b>opcode</b> field from <i>eventID</i>,
+  and then return the localized name for that opcode.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtFormatMessageKeyword</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Extract the <b>keyword</b> field from <i>eventID</i>,
+  and then return the localized name for that keyword.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtFormatMessageChannel</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>Extract the <b>channel</b> field from <i>eventID</i>,
+  and then return the localized name for that channel.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtFormatMessageProvider</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>Return the localized name of the publisher.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtFormatMessageId</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Locate the message for the event corresponding to the <i>messageId</i>
+  parameter, and then insert the values specified by the values parameter.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>maxSizeString: </b>A 32-bit unsigned integer that
+contains the size, in bytes, of the string that is provided by the caller.</p><p><b>actualSizeString: </b>A pointer to a 32-bit
+unsigned integer that, on return, contains the actual size, in bytes, of the
+resulting description (including null termination).</p><p><b>neededSizeString: </b>A pointer to a 32-bit
+unsigned integer that, on return, contains the needed size, in bytes (including
+null termination).</p><p><b>string: </b>A pointer to a bytearray that, on
+return, contains a localized string containing the message requested. This can
+contain a simple string, such as the localized name of a keyword, or a fully
+rendered message that contains multiple inserts.</p><p><b>error: </b>A pointer to an <span><a href="94a5d4d1-0f80-4af3-b7c6-d61a6aa60b7b" data-linktype="relative-path">RpcInfo (section 2.2.1)</a></span>
+structure in which to place error information in the case of a failure. The
+RpcInfo (section 2.2.1) structure fields MUST be set to nonzero
+values if the error is related to loading the necessary resource. All nonzero
+values MUST be treated the same. If the method succeeds, the server MUST set
+all the fields in the structure to 0.</p><p><b>Return Values: </b>The method MUST return ERROR_SUCCESS
+(0x00000000) on success. The method MUST return ERROR_INSUFFICIENT_BUFFER
+(0x0000007A) if <i>maxSizeString</i> is too small to hold the result string. In
+that case, <i>neededSizeString</i> MUST be set to the necessary size.
+Otherwise, the method MUST return a different implementation-specific nonzero
+value as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>In response to this request from the client, the server MUST
+first validate the handle. The server SHOULD save the context handle value it
+creates in the <b>EvtRpcGetPublisherList</b> method (as specified in section
+3.1.4.25) in its handle table (as specified in <span><a href="32102cb3-ea77-4171-bd1a-33c8c4d882aa" data-linktype="relative-path">3.1.1.12</a></span>) and
+compare it with the handle passed here to perform the handle validation work.<a id="Appendix_A_Target_63"></a><a aria-label="Product behavior note 63" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_63" data-linktype="relative-path">&lt;63&gt;</a> The server MUST return
+ERROR_INVALID_PARAMETER (0x00000057) if the handle is invalid or there is no
+such handle on the server. </p><p>The server MUST then check the <i>flags</i> parameter. If <i>flags</i>
+is not one of the 8 values in the flags table in this section, the server MUST
+fail the method with the error ERROR_INAVLID_PARAMETER(0x00000057).</p><p>The server MUST ignore the <i>eventId</i> parameter if <b>EvtFormatMessageId</b>
+is specified as the flags parameter. If <b>EvtFormatMessageId</b> is not
+specified in the <i>flags</i> parameter, the server MUST use <i>eventId</i>
+parameter and ignore the <i>messageId</i> parameter.</p><p>If validation is successful, the server SHOULD cast the
+pubCfgObj context handle into the publisher metadata object. The publisher
+metadata object contains the ResourceFileHandle which the server SHOULD use to
+read the publisher resource information (as specified in section <span><a href="df904dfb-00f8-4457-abe0-d7907c64dc71" data-linktype="relative-path">3.1.1.14</a></span>)
+to serve this method. The server MUST attempt to return a localized string. If
+the string being requested is for the level, task, opcode, and keyword choices,
+the server MUST use its own localized string table if the value is within the
+range of the server (the value is retrieved from the <i>eventId</i> parameter).
+The server MUST define range values as the following:</p><ul><li><p><span><span> 
+</span></span>Levels 0 through 15</p>
+</li><li><p><span><span> 
+</span></span>Task 0</p>
+</li><li><p><span><span> 
+</span></span>Opcodes 0 through 9, and 240</p>
+</li><li><p><span><span> 
+</span></span>The following keywords for levels 0 through 15.</p>
+<ul><li><p><span><span>  </span></span>0</p>
+</li><li><p><span><span>  </span></span>0x1000000000000</p>
+</li><li><p><span><span>  </span></span>0x2000000000000</p>
+</li><li><p><span><span>  </span></span>0x4000000000000</p>
+</li><li><p><span><span>  </span></span>0x8000000000000</p>
+</li><li><p><span><span>  </span></span>0x10000000000000</p>
+</li><li><p><span><span>  </span></span>0x20000000000000</p>
+</li><li><p><span><span>  </span></span>0x40000000000000</p>
+</li><li><p><span><span>  </span></span>0x80000000000000.</p>
+</li></ul></li></ul><p>For example, if the level requested is 2, the server&#39;s list
+of strings for levels MUST be used since 2 is in the range [0,15]. The server
+MUST NOT change any state.</p><p>The server MUST prepare the description strings for these
+defined values itself. There are no formal recommendations about what strings
+to assign for these reserved values. The server can assign any strings for the
+keywords for the levels 0 through 15 values or it can assign part of them for
+its own development purpose and leave the remaining as dummy strings. The
+assigned strings MUST be kept by the server in dedicated files. The dedicated
+files which keep the predefined strings are the server&#39;s own localized string
+tables. Thus the server can be a default publisher. It maintains these
+predefined strings for every language. The server can then have multiple
+language-specific resource files and each language-specific resource file
+contains all the predefined strings for one language. For more information on
+language-specific resource files, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=206467" data-linktype="external">[MSDN-MUIResrcMgmt]</a></span>.</p><p>When the EvtFormatMessageId is specified in the <i>flags</i>
+parameter, the server SHOULD use the <i>messageId</i> parameter and search
+through the language-specific resource file (as specified in section <span><a href="5a876f59-c828-4c0a-a4d8-03cbf2e99dbc" data-linktype="relative-path">3.1.1.13</a></span>)
+to find the <i>messageId</i> that the client specified. Once the server locates
+the <i>messageId</i> in the language-specific resource file, it gets the
+localized string associated with that <i>messageId</i> and returns the result
+to the client.<a id="Appendix_A_Target_64"></a><a aria-label="Product behavior note 64" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_64" data-linktype="relative-path">&lt;64&gt;</a></p><p>When the EvtFormatMessageId is not specified in the <i>flags</i>
+parameter, the server SHOULD first use the <i>eventId</i> parameter to find the
+<i>messageId</i> in the publisher resource file. Depending on the <i>flags</i>
+value, processing is as follows:</p><ul><li><p><span><span> 
+</span></span>If EvtFormatMessageEvent is specified in the <i>flags</i>
+parameter, the server SHOULD search the events information (as specified in
+section 3.1.1.14) in the publisher resource file to get the <i>messageId</i>
+for that event and then get the event description string from the
+language-specific resource file using the <i>messageId</i>.</p>
+</li><li><p><span><span> 
+</span></span>If EvtFormatMessageLevel, EvtFormatMessageTask,
+EvtFormatMessageOpcode, or EvtFormatMessageKeyword is specified in the <i>flags</i>
+parameter, the server SHOULD first get the event information based on the <i>eventId</i>
+and then locate the level <i>messageId</i>, task <i>messageId</i>, opcode <i>messageId</i>,
+or the keyword <i>messageId</i> for that event based on the <i>flags</i> value.
+Next, it uses the <i>messageId</i> to get the description string from the
+language-specific resource file.</p>
+</li><li><p><span><span> 
+</span></span>If EvtFormatMessageProvider is specified in the <i>flags</i>
+parameter, the server SHOULD first get the events information (as specified in
+section 3.1.1.14) based on the <i>eventId</i>. Next, it SHOULD search the
+publisher information (as specified in the section 3.1.1.14) in the publisher
+resource file to get the <i>messageId</i> for that publisher name based on the
+publisher identifier it gets from the first step and then get the publisher
+name string from the language-specific resource file using the <i>messageId</i>.</p>
+</li><li><p><span><span> 
+</span></span>If EvtFormatMessageChannel is specified in the <i>flags</i>
+parameter, the server SHOULD first get the events information (as specified in
+section 3.1.1.14) based on the eventId. Next, it SHOULD search the channel
+information (as specified in section 3.1.1.14) in the publisher resource file
+to get the <i>messageId</i> parameter for that channel name based on the
+publisher identifier it gets from the first step and then get the localized
+channel name string from the language-specific resource file using the <i>messageId</i>
+parameter.</p>
+</li></ul><p>The message string that the server gets is from the
+publisher localized string table on the server. Because the publisher object
+contains the locale value that the client requires when opening the publisher
+through the EvtRpcGetPublisherMetadata function, the server determines which
+localized string table (as specified in section 3.1.1.13) is needed to fetch
+the localized string.</p><p>If the server can&#39;t find the localized string either because
+it can&#39;t find the corresponding <i>messageId</i> or the localized string is
+missing for the <i>messageId</i>, it SHOULD fail the method with the error code
+ERROR_EVT_MESSAGE_ID_NOT_FOUND (0x00003AB4) or ERROR_EVT_MESSAGE_NOT_FOUND
+(0x00003AB3).</p><p>The message strings that the server gets from the
+language-specific resource file can contain some &#34;%&#34; symbols, which
+are symbol indicators of substitutions. If the client specifies the values
+parameter, which is an array of string values, those values will replace the
+&#34;%&#34; symbols in the message string. For example, the following could
+be a raw message string:</p><ul><li><p><span><span> 
+</span></span>&#34;The file system has failed to locate the file %1 with the
+error %2.&#34; And if the values contain 2 elements, one is
+&#34;sample.evtx&#34;, the other is &#34;access denied&#34;. Then the
+string will be expanded into &#34;The file system has failed to locate the
+file sample.evtx with the error access denied&#34;. If the values array
+contains more elements than the required substitution, the server SHOULD
+discard the extra ones. If the values array contains less elements than the
+required substitution, the server SHOULD replace with as many as possible and
+leave the left one as %number for the final result string. The server SHOULD
+NOT fail the method regardless of what is specified for the values parameter.</p>
+</li></ul><p>By checking the <i>flags</i> parameter, the server knows
+which information (level, task, opcode, keywords, and so on) the client
+requests. The server MUST fail the method with the error
+ERROR_INVALID_PARAMETER(0x00000057) if the <i>flags</i> parameter is not one of
+the values specified in this section.</p><p>When EvtFormatMessageId is specified in the <i>flags</i>
+parameter, the server SHOULD use the <i>messageId</i> parameter and search
+through the publisher resource file to find the <i>messageId</i> the client
+specified. Once the server locates the <i>messageId</i> in the publisher
+resource file, it will get the localized string associated with that <i>messageId</i>
+and return the result to the client.<a id="Appendix_A_Target_65"></a><a aria-label="Product behavior note 65" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_65" data-linktype="relative-path">&lt;65&gt;</a></p><p>The server MUST return a value indicating success or failure
+for this operation.</p></div>

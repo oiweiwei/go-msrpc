@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The <b>EcDoDisconnect</b> method closes a <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_d08d95ee-5936-47d8-9f35-49e4159354a6" data-linktype="relative-path">Session
+Context</a></span> with the server. The server destroys the Session Context and
+releases all associated server state, objects, and resources that are
+associated with the Session Context. This call requires an active <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_1f0ab616-f876-47ff-9cf1-6f24c0255ccc" data-linktype="relative-path">session
+context handle</a></span> from the <b>EcDoConnectEx</b> method, as specified in
+section <span><a href="59d638fe-e63d-422a-b51d-6210b2155138" data-linktype="relative-path">3.1.4.1</a></span>.</p><dl>
+<dd>
+<div><pre> long __stdcall EcDoDisconnect(
+     [in, out, ref] CXH * pcxh
+ );
+</pre></div>
+</dd></dl><p><i>pcxh: </i>A session context handle. On input, this
+parameter is the session context handle of the Session Context that the client
+is disconnecting. On output, the server MUST set the <i>pcxh</i> parameter to a
+zero value. Setting the value to zero instructs the <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> layer of the
+server to destroy the RPC context <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>.</p><p><b>Return Values:</b> If the method succeeds, the return
+value is 0. If the method fails, the return value is an implementation-specific
+error code.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol as specified in <span><a href="/en-us/openspecs/windows_protocols/MS-RPCE/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="absolute-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,9 @@
+<div class="content"><p>The Context_Call structure contains <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_c6f0d1a4-ae75-40b9-beef-baa419cb33b9" data-linktype="relative-path">Smart Cards for Windows</a>
+context.</p><dl>
+<dd>
+<div><pre> typedef struct _Context_Call {
+   REDIR_SCARDCONTEXT Context;
+ } Context_Call;
+</pre></div>
+</dd></dl><p><b>Context:</b>  A valid context, as
+specified in section <a href="060abee1-e520-4149-9ef7-ce79eb500a59" data-linktype="relative-path">2.2.1.1</a>.</p></div>

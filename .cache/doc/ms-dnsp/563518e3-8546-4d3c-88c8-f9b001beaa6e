@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_ZONE_EXPORT_INFO</b> structure contains the
+information file to which a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span> is exported on
+the DNS server.<a id="Appendix_A_Target_44"></a><a aria-label="Product behavior note 44" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_44" data-linktype="relative-path">&lt;44&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcZoneExport {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   [string] char* pszZoneExportFile;
+ } DNS_RPC_ZONE_EXPORT_INFO,
+  *PDNS_RPC_ZONE_EXPORT_INFO;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The structure
+version number; this MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> MUST be set to zero when
+sent and MUST be ignored on receipt</p><p><b>pszZoneExportFile:</b> A pointer to a
+null-terminated UTF-8 string that specifies the name of the file to which a
+zone is exported by the DNS server.</p></div>

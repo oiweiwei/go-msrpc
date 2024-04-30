@@ -1,0 +1,157 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4FailoverSetRelationship</b> method is used to
+modify an existing failover relationship on the DHCPv4 server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4FailoverSetRelationship(
+     [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+     [in] DWORD  Flags,
+     [in] LPDHCP_FAILOVER_RELATIONSHIP pRelationship
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>Flags: </b>A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+type that contains the bitmask of the members in the <i>pRelationship</i> parameter
+structure to be updated. The bit mapping for the various values for the <i>flags</i>
+parameter is listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MCLT</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Update the <b>mclt</b> member of <b>DHCP_FAILOVER_RELATIONSHIP</b>
+  structure (section <span><a href="9153f2b7-e4df-4475-9275-d2092a93bd51" data-linktype="relative-path">2.2.1.2.98</a></span>) to
+  the value specified in the <b>mclt</b> member in <i>pRelationship</i>
+  parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SAFEPERIOD</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Update the <b>safePeriod</b> member of <b>DHCP_FAILOVER_RELATIONSHIP</b>
+  structure (section 2.2.1.2.98) to the value specified in the <b>safePeriod</b>
+  member in <i>pRelationship</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CHANGESTATE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Update the <b>state</b> member of <b>DHCP_FAILOVER_RELATIONSHIP</b>
+  structure (section 2.2.1.2.98) to the value specified in the <b>state</b>
+  member in <i>pRelationship</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERCENTAGE</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Update the <b>percentage</b> member of <b>DHCP_FAILOVER_RELATIONSHIP</b>
+  structure (section 2.2.1.2.98) to the value specified in the <b>percentage</b>
+  member in <i>pRelationship</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MODE</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Update the <b>mode</b> member of <b>DHCP_FAILOVER_RELATIONSHIP</b>
+  structure (section 2.2.1.2.98) to the value specified in the <b>mode</b>
+  member in <i>pRelationship</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PREVSTATE</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Update the <b>prevState</b> member of <b>DHCP_FAILOVER_RELATIONSHIP</b>
+  structure (section 2.2.1.2.98) to the value specified in the <b>prevState</b>
+  member in <i>pRelationship</i> parameter.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pRelationship: </b>This is a pointer to a type <b>DHCP_FAILOVER_RELATIONSHIP</b>
+structure (section 2.2.1.2.98) that contains information about the failover
+relationship to be modified on the DHCPv4 server.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. The return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20123, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E92</p>
+  <p>ERROR_DHCP_FO_RELATIONSHIP_DOES_NOT_EXIST</p>
+  </td>
+  <td>
+  <p>The failover relationship doesn’t exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 90.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Return ERROR_INVALID_PARAMETER if any of the following are true:</p>
+<ul><li><p><span><span>  </span></span><i>pRelationship</i>
+parameter is NULL.</p>
+</li><li><p><span><span>  </span></span><i>relationshipName</i>
+member of <i>pRelationship</i> parameter is NULL.</p>
+</li><li><p><span><span>  </span></span><i>flags</i>
+parameter is 0.</p>
+</li><li><p><span><span>  </span></span><i>flags</i>
+parameter is set to any value other than the valid bitmasks as specified in the
+preceding table .</p>
+</li><li><p><span><span>  </span></span>PERCENTAGE
+constant is set in the <i>flags</i> parameter and <b>percentage</b> member of <i>pRelationship</i>
+parameter is greater than 100.</p>
+</li><li><p><span><span>  </span></span>MODE
+constant is set in the <i>flags</i> parameter and the <b>mode</b> member of <i>pRelationship</i>
+parameter is not set to LoadBalance enumeration value and is not set to
+HotStandby enumeration value.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read/write access
+as specified in section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through all the elements in <b>DHCPv4FailoverRelationshipList</b>
+ADM element and retrieve the <b>DHCPv4FailoverRelationship</b> ADM element
+corresponding to the <b>relationshipName</b> member in <i>pRelationship</i>
+parameter. If the corresponding <b>DHCPv4FailoverRelationship</b> ADM element
+is not found return ERROR_DHCP_FO_RELATIONSHIP_DOES_NOT_EXIST, else update the
+retrieved <b>DHCPv4FailoverRelationship</b> ADM element based on the passed in <i>flags</i>
+parameter and corresponding values in <i>pRelationship</i> parameter object as
+described in the preceding table.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

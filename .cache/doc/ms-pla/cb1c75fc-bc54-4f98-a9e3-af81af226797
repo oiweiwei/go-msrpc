@@ -1,0 +1,19 @@
+<div class="content"><p>The DataCollectorSetStatus enumeration defines the running
+status of the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data collector
+set</a>.</p><dl>
+<dd>
+<div><pre> typedef  enum
+ {
+   plaStopped = 0,
+   plaRunning = 1,
+   plaCompiling = 2,
+   plaPending = 3,
+   plaUndefined = 4
+ } DataCollectorSetStatus;
+</pre></div>
+</dd></dl><p><b>plaStopped:  </b>The data collector set is stopped.</p><p><b>plaRunning:  </b>The data collector set is running.</p><p><b>plaCompiling:  </b>The data collector set is
+performing <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_7159c556-babb-45a8-9bc6-fcfbc9244f17" data-linktype="relative-path">data management</a>
+(see section <a href="16c70f7d-0f0e-4ae6-9785-be0032013c9f" data-linktype="relative-path">3.2.4.2</a>).
+A running data collector set transitions from running to compiling if the data
+manager is enabled.</p><p><b>plaPending:  </b>Not used.</p><p><b>plaUndefined:  </b>Cannot determine the status but
+no error has occurred. Typically, this status is set for boot trace sessions.</p></div>

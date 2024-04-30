@@ -1,0 +1,68 @@
+<div class="content"><p>The LINEGENERATETONE packet contains information about a
+tone to be generated. This packet is used by the <a href="d67f7840-ddd8-4262-bae4-ec70aa383839" data-linktype="relative-path">GenerateTone</a> packet. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwFrequency</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCadenceOn</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCadenceOff</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwVolume</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwFrequency (4 bytes): </b>An unsigned 32-bit
+integer. The frequency, in hertz, of this tone component. A service provider
+can adjust (round up or down) the frequency specified by the application to fit
+its resolution.</p><p><b>dwCadenceOn (4 bytes): </b>An unsigned 32-bit
+integer. The length, in milliseconds, of the &#34;on&#34; duration of the
+cadence of the custom tone to be generated. Zero means no tone is generated. </p><p><b>dwCadenceOff (4 bytes): </b>An unsigned 32-bit
+integer. The length, in milliseconds, of the &#34;off&#34; duration of the
+cadence of the custom tone to be generated. Zero means no off time, that is, a
+constant tone. </p><p><b>dwVolume (4 bytes): </b>An unsigned 32-bit
+integer. The volume level at which the tone is to be generated. A value of
+0x0000FFFF represents full volume and a value of 0x00000000 is silence. </p><p>This packet cannot be extended. This packet is used only for
+the generation of tones. It MUST NOT be used for tone monitoring.</p></div>

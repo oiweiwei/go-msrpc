@@ -1,0 +1,97 @@
+<div class="content"><p>RpcOpenPrinterEx retrieves a handle for a printer, <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a>, port monitor, <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print job</a>, or <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a>.<a id="Appendix_A_Target_287"></a><a aria-label="Product behavior note 287" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_287" data-linktype="relative-path">&lt;287&gt;</a></p><dl>
+<dd>
+<div><pre> DWORD RpcOpenPrinterEx(
+   [in, string, unique] STRING_HANDLE pPrinterName,
+   [out] PRINTER_HANDLE* pHandle,
+   [in, string, unique] wchar_t* pDatatype,
+   [in] DEVMODE_CONTAINER* pDevModeContainer,
+   [in] DWORD AccessRequired,
+   [in] SPLCLIENT_CONTAINER* pClientInfo
+ );
+</pre></div>
+</dd></dl><p><b>pPrinterName: </b>A <a href="59883eb8-5ce6-4ad4-bdd2-599434cfdcf2" data-linktype="relative-path">STRING_HANDLE (section 2.2.1.1.7)</a>
+for a printer connection, printer object, server object, job object, port
+object, or port monitor object. For opening a server object, this parameter
+MUST adhere to the specification in <a href="acb355a4-913b-4abb-8cb5-415aea160015" data-linktype="relative-path">Print Server Name
+Parameters (section 3.1.4.1.4)</a>; for opening all other objects, it
+MUST adhere to the specification in <a href="3f2d41eb-30e1-47e1-93bb-534ea50cf8eb" data-linktype="relative-path">Printer Name
+Parameters (section 3.1.4.1.5)</a>.</p><p><b>pHandle: </b>A pointer to a <a href="9c5d49b8-6920-47b0-9466-87ba910e6071" data-linktype="relative-path">PRINTER_HANDLE (section 2.2.1.1.4)</a>
+that MUST receive the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_9dfe84e3-a772-4ad1-9a25-1255c1dc0f84" data-linktype="relative-path">RPC
+context handle</a> <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+to the object identified by the <i>pPrinterName</i> parameter.</p><p><b>pDatatype: </b>A pointer to a string that
+specifies the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_0d327bc0-a461-4723-8beb-d935fdab4895" data-linktype="relative-path">data type</a>
+to be associated with the printer handle. This parameter MUST adhere to the
+specification in <a href="c31e2dab-a809-474c-9864-0cbb61068903" data-linktype="relative-path">Datatype
+Name Parameters (section 3.1.4.1.1)</a>.</p><p><b>pDevModeContainer: </b>A pointer to a <a href="c2b14fe7-6479-4460-a7ba-633a845dd61a" data-linktype="relative-path">DEVMODE_CONTAINER</a>
+structure. This parameter MUST adhere to the specification in <a href="bf31abc0-da86-4ac6-8ebc-8be665e11503" data-linktype="relative-path">DEVMODE_CONTAINER
+Parameters (section 3.1.4.1.8.1)</a>.</p><p><b>AccessRequired: </b>The <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_54c8a9d7-fa94-444b-b8d8-f6485bad223f" data-linktype="relative-path">access level</a> that the
+client requires for interacting with the object to which a handle is being
+opened. The value of this parameter is one of those specified in <a href="945c4df5-4969-49c5-b1ce-59c1b3f35024" data-linktype="relative-path">Access
+Values (section 2.2.3.1)</a>. For rules governing access values, see
+section <a href="f5b6c93c-0453-4c28-a11c-a9f966c4e3aa" data-linktype="relative-path">2.2.4.1</a>.</p><dl>
+<dd>
+<p>If no specific access level is requested, the server
+MUST assume a generic read access level.</p>
+</dd></dl><p><b>pClientInfo: </b>A pointer to a <a href="cca15c72-57d3-42fc-91e7-49442b623c11" data-linktype="relative-path">SPLCLIENT_CONTAINER (section 2.2.1.2.14)</a>
+structure. This parameter MUST adhere to the specification in <a href="e6a9e216-bc2c-4320-9f67-ac3866fb2bc5" data-linktype="relative-path">SPLCLIENT_CONTAINER
+Parameters (section 3.1.4.1.8.8)</a>.</p><dl>
+<dd>
+<p>The value of the <b>Level</b> member of the
+container that is pointed to by <i>pClientInfo</i> MUST be 0x00000001.</p>
+</dd></dl><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>For opening a server object, perform the validation steps
+specified in Print Server Name Parameters; for opening all other objects,
+perform the validation steps specified in Printer Name Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in Datatype Name
+Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in
+DEVMODE_CONTAINER Parameters (section 3.1.4.1.8.1).</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in
+SPLCLIENT_CONTAINER Parameters (section 3.1.4.1.8.8).</p>
+</li><li><p><span><span> 
+</span></span>Verify that the client issuing the call has authorization
+equivalent to the value of the <i>AccessRequired</i> parameter. If verification
+fails, return ERROR_ACCESS_DENIED.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the client
+as follows:</p><ul><li><p><span><span> 
+</span></span>Locate one of the following objects that correspond to the
+request:</p>
+<ul><li><p><span><span>  </span></span>The
+printer in the &#34;List of Printers&#34;, or a job queued for that printer;</p>
+</li><li><p><span><span>  </span></span>The
+server in the &#34;List of Print Server Names&#34;; or</p>
+</li><li><p><span><span>  </span></span>The
+port monitor in the &#34;List of Port Monitors&#34;; or</p>
+</li><li><p><span><span>  </span></span>The
+port in the &#34;List of Ports&#34;.</p>
+<p>These lists are specified
+in section <a href="1bd61448-db4b-4284-a4b1-8346732402d4" data-linktype="relative-path">3.1.1</a>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Create an implementation-specific representation of the printer,
+server, job, port monitor, or port (&#34;the object&#34;) that MUST include:</p>
+<ul><li><p><span><span>  </span></span>An <b>RPC
+handle</b>, which is a snapshot of the printer, server, job, port monitor, or
+port data that is specific to this instance of the invocation.</p>
+</li><li><p><span><span>  </span></span>The
+data from <i>pDatatype</i> and <i>pDevModeContainer</i>, if they are not NULL.</p>
+</li><li><p><span><span>  </span></span>All
+other relevant, implementation-specific data that is required to process all
+other protocol methods that pass in a PRINTER_HANDLE.</p>
+</li><li><p><span><span>  </span></span>The
+data from <i>pClientInfo</i>, if it is not NULL.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Increment the object&#39;s reference count to prevent deletion.</p>
+</li><li><p><span><span> 
+</span></span>Store the <b>RPC handle</b> for the session in the output
+parameter <i>pHandle</i>.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/0ef0845f-f20e-4897-ad29-88c0c07be0f4" data-linktype="external">msdn link</a></p><p>The POLICY_AUDIT_FULL_QUERY_INFO structure is used to query
+information about the state of the audit log on the server. The following
+structure corresponds to the PolicyAuditFullQueryInformation information class.
+</p><p>This information class is obsolete and exists for backward
+compatibility purposes only.</p><dl>
+<dd>
+<div><pre> typedef struct _POLICY_AUDIT_FULL_QUERY_INFO {
+   unsigned char ShutDownOnFull;
+   unsigned char LogIsFull;
+ } POLICY_AUDIT_FULL_QUERY_INFO,
+  *PPOLICY_AUDIT_FULL_QUERY_INFO;
+</pre></div>
+</dd></dl><p><b>ShutDownOnFull:</b>  This field indicates
+whether the system MUST shut down when the event log is full.</p><p><b>LogIsFull:</b>  This field indicates
+whether the event log is full or not.</p></div>

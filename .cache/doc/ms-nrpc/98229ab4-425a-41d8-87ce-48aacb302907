@@ -1,0 +1,69 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/98229ab4-425a-41d8-87ce-48aacb302907" data-linktype="external">msdn link</a></p><p>The <b>NL_OSVERSIONINFO_V1</b> structure specifies the
+values used to update the <b>operatingSystemVersion</b> and <b>operatingSystem</b>
+attributes on the client&#39;s computer account object in <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a> on a
+normal (writable) <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a>.<a id="Appendix_A_Target_35"></a><a aria-label="Product behavior note 35" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_35" data-linktype="relative-path">&lt;35&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _NL_OSVERSIONINFO_V1 {
+   DWORD dwOSVersionInfoSize;
+   DWORD dwMajorVersion;
+   DWORD dwMinorVersion;
+   DWORD dwBuildNumber;
+   DWORD dwPlatformId;
+   wchar_t szCSDVersion[128];
+   USHORT wServicePackMajor;
+   USHORT wServicePackMinor;
+   USHORT wSuiteMask;
+   UCHAR wProductType;
+   UCHAR wReserved;
+ } NL_OSVERSIONINFO_V1;
+</pre></div>
+</dd></dl><p><b>dwOSVersionInfoSize:</b> The size, in bytes, of
+this data structure. Set this member to sizeof(NL_OSVERSIONINFO_V1).</p><p><b>dwMajorVersion:</b> The implementation-specific
+major version number of the operating system.<a id="Appendix_A_Target_36"></a><a aria-label="Product behavior note 36" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_36" data-linktype="relative-path">&lt;36&gt;</a></p><p><b>dwMinorVersion:</b> The implementation-specific
+minor version number of the operating system.<a id="Appendix_A_Target_37"></a><a aria-label="Product behavior note 37" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_37" data-linktype="relative-path">&lt;37&gt;</a> </p><p><b>dwBuildNumber:</b> The build number of the
+operating system.</p><p><b>dwPlatformId:</b> The operating system platform.<a id="Appendix_A_Target_38"></a><a aria-label="Product behavior note 38" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_38" data-linktype="relative-path">&lt;38&gt;</a></p><p><b>szCSDVersion:</b> A null-terminated string, such
+as &#34;Service Pack 3&#34;, that indicates the latest service pack installed
+on the system. If no service pack has been installed, the string is empty.</p><p><b>wServicePackMajor:</b> The major version number of
+the latest service pack installed on the system. For example, for &#34;Service
+Pack 3&#34;, the major version number is 3. If no service pack has been
+installed, the value is 0.</p><p><b>wServicePackMinor:</b> The minor version number of
+the latest service pack installed on the system. For example, for &#34;Service
+Pack 3&#34;, the minor version number is 0.</p><p><b>wProductType: </b>Any additional information about
+the system. This member can be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>VER_NT_DOMAIN_CONTROLLER</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The system is a DC.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VER_NT_SERVER</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The system is a server. Note that a server that is
+  also a DC is reported as VER_NT_DOMAIN_CONTROLLER, not VER_NT_SERVER.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VER_NT_WORKSTATION </p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Identifies the operating system.<a id="Appendix_A_Target_39"></a><a aria-label="Product behavior note 39" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_39" data-linktype="relative-path">&lt;39&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>wReserved:</b> Reserved for future use.<a id="Appendix_A_Target_40"></a><a aria-label="Product behavior note 40" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_40" data-linktype="relative-path">&lt;40&gt;</a></p></div>

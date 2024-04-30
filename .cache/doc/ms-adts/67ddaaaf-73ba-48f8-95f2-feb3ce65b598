@@ -1,0 +1,11 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/67ddaaaf-73ba-48f8-95f2-feb3ce65b598" data-linktype="external">msdn link</a></p><p>The <b>CLAIMS_SOURCE_TYPE</b> enumeration specifies the
+source of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_d5c7aa9b-65be-4dd4-a686-cd5253eb203d" data-linktype="relative-path">claims</a>.</p><dl>
+<dd>
+<div><pre> typedef  enum _CLAIMS_SOURCE_TYPE
+ {
+   CLAIMS_SOURCE_TYPE_AD = 1,
+   CLAIMS_SOURCE_TYPE_CERTIFICATE
+ } CLAIMS_SOURCE_TYPE;
+</pre></div>
+</dd></dl><p><b>Note</b>  No semantics are to be attached to
+these values other than those specified in section <a href="c4084c23-aa9c-47a7-bdba-9d6bd7a16e24" data-linktype="relative-path">3</a>.</p></div>

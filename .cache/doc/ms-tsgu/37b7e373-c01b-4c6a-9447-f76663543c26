@@ -1,0 +1,17 @@
+<div class="content"><p>The TSG_PACKET_CAPS_RESPONSE structure contains the response
+of the RDG server, which supports Consent Signing capability, to the RDG client
+for the <a href="0386b24c-4603-400d-a79e-11fd9518e34e" data-linktype="relative-path">TsProxyCreateTunnel</a>
+method call. This structure contains <a href="511efcd7-8aff-4246-939d-6a456f910bcb" data-linktype="relative-path">TSG_PACKET_QUARENC_RESPONSE</a>
+followed by the consent signing string. The value of the <b>packetId</b> field
+in <a href="4c505da0-93c2-4a2f-9329-6174bbaa481b" data-linktype="relative-path">TSG_PACKET</a> MUST be
+set to <a href="159e314f-4ad9-4f77-8e43-e8fcc3b585a6" data-linktype="relative-path">TSG_PACKET_TYPE_CAPS_RESPONSE</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _TSG_PACKET_CAPS_RESPONSE {
+   TSG_PACKET_QUARENC_RESPONSE pktQuarEncResponse;
+   TSG_PACKET_MSG_RESPONSE pktConsentMessage;
+ } TSG_PACKET_CAPS_RESPONSE,
+  *PTSG_PACKET_CAPS_RESPONSE;
+</pre></div>
+</dd></dl><p><b>pktQuarEncResponse:</b>  A
+TSG_PACKET_QUARENC_RESPONSE structure as specified in section 2.2.9.2.1.6.</p><p><b>pktConsentMessage:</b>  A <a href="3c1fe8d7-1a20-4971-baba-7acd84d7f34a" data-linktype="relative-path">TSG_PACKET_MSG_RESPONSE</a>
+structure as specified in section 2.2.9.2.1.9.</p></div>

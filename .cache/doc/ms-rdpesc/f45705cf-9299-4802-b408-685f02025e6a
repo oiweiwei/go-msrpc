@@ -1,0 +1,12 @@
+<div class="content"><p>The ReadCacheW_Call structure is used to obtain the card and
+reader information from the cache.</p><dl>
+<dd>
+<div><pre> typedef struct _ReadCacheW_Call {
+   [string] wchar_t* szLookupName;
+   ReadCache_Common Common;
+ } ReadCacheW_Call;
+</pre></div>
+</dd></dl><p><b>szLookupName:</b>  A <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> containing
+the lookup name.</p><p><b>Common:</b>  Additional parameters for
+the Read Cache call (for additional information, see section <a href="8436548a-a41f-4759-a7ee-2d0341fa1d5d" data-linktype="relative-path">3.1.4.43</a>), as specified in
+section <a href="3f9e07fa-66e2-498b-920c-39531709116b" data-linktype="relative-path">2.2.1.9</a>.</p></div>

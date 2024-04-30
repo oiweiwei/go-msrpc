@@ -1,0 +1,20 @@
+<div class="content"><p>The FsrmPipelineModuleType enumeration defines the set of
+types of modules used in the File Server Resource Manager classification
+pipeline.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmPipelineModuleType
+ {
+   FsrmPipelineModuleType_Unknown = 0,
+   FsrmPipelineModuleType_Storage = 1,
+   FsrmPipelineModuleType_Classifier = 2,
+ } FsrmPipelineModuleType;
+</pre></div>
+</dd></dl><p><b>FsrmPipelineModuleType_Unknown:  </b>This
+enumeration value is not used by FSRM and MUST NOT be referenced. If the server
+receives this enumeration value, it MUST consider the value invalid and not
+apply any changes.</p><p><b>FsrmPipelineModuleType_Storage:  </b>The module is
+a <b>storage module</b>, which can persist or retrieve property values for
+files that it processes.</p><p><b>FsrmPipelineModuleType_Classifier:  </b>The module
+is a classifier, which can assign property values to files that it processes
+based on <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_4bd4bf29-9046-4cb8-b637-fd107cd756aa" data-linktype="relative-path">classification
+rules</a>.</p></div>

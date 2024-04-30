@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The PropertyName_r structure is an encoding of the <b>PropertyName</b>
+data structure defined in <span><a href="/en-us/openspecs/exchange_server_protocols/MS-OXCDATA/1afa0cd9-b1a0-4520-b623-bf15030af5d8" data-linktype="absolute-path">[MS-OXCDATA]</a></span>.
+The semantic meaning is unchanged from the <b>PropertyName</b> data structure.</p><dl>
+<dd>
+<div><pre> typedef struct PropertyName_r {
+   FlatUID_r* lpguid;
+   DWORD ulReserved;
+   long lID;
+ } PropertyName_r;
+</pre></div>
+</dd></dl><p><b>lpguid:</b>  Encodes the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+field of the <b>PropertyName</b> data structure. This field is encoded as a <span><a href="09f5370d-05ee-459e-903a-4e63e1928169" data-linktype="relative-path">FlatUID_r</a></span>
+data structure.</p><p><b>ulReserved:</b>  Reserved. All clients
+and servers MUST set this value to the constant 0x00000000.</p><p><b>lID:</b>  Encodes the <b>lID</b> field
+of the <b>PropertyName</b> data structure. In addition to the definition of the
+<b>LID</b> field, this field is always present in the PropertyName_r data
+structure; it is not optional.</p></div>

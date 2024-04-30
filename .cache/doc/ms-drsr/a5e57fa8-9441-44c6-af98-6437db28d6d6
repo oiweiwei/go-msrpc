@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The DRS_MSG_QUERYSITESREQ_V1 structure defines a request
+message sent to the <span><a href="2c3faba2-d64e-4866-b8f1-fc8d5f4ec710" data-linktype="relative-path">IDL_DRSQuerySitesByCost</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [string] const WCHAR* pwszFromSite;
+   [range(1,10000)] DWORD cToSites;
+   [string, size_is(cToSites)] WCHAR** rgszToSites;
+   DWORD dwFlags;
+ } DRS_MSG_QUERYSITESREQ_V1;
+</pre></div>
+</dd></dl><p><b>pwszFromSite:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_22198321-b40b-4c24-b8a2-29e44d9d92b9" data-linktype="relative-path">RDN</a></span>
+of the <span><a href="../ms-adsc/c44def4a-5465-472c-95f3-2792bfd820d1" data-linktype="relative-path">site</a></span>
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>
+of the &#34;from&#34; <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8abdc986-5679-42d9-ad76-b11eb5a0daba" data-linktype="relative-path">site</a></span>.</p><p><b>cToSites:</b>  The number of items in
+the <b>rgszToSites</b> array (the count of &#34;to&#34; sites).</p><p><b>rgszToSites:</b>  The RDNs of the site
+objects of the &#34;to&#34; sites.</p><p><b>dwFlags:</b>  Unused. MUST be 0 and
+ignored.</p></div>

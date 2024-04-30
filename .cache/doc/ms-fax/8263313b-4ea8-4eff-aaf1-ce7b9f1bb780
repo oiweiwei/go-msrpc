@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>FAX_ENUM_JOB_EVENT_TYPE</b> enumeration defines types
+of events for a single job.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FAX_JOB_EVENT_TYPE_ADDED = 0x00000000,
+   FAX_JOB_EVENT_TYPE_REMOVED = 0x00000001,
+   FAX_JOB_EVENT_TYPE_STATUS = 0x00000002,
+   FAX_JOB_EVENT_TYPE_CHANGED = 0x00000003
+ } FAX_ENUM_JOB_EVENT_TYPE;
+</pre></div>
+</dd></dl><p><b>FAX_JOB_EVENT_TYPE_ADDED: </b>A job was added to
+the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>
+or a message was added to the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9394bf31-7db9-433c-8d3d-ee6a37bf0848" data-linktype="relative-path">archive</a></span>.</p><p><b>FAX_JOB_EVENT_TYPE_REMOVED: </b>A job was removed
+from the queue or a message was removed from the archive. </p><p><b>FAX_JOB_EVENT_TYPE_STATUS: </b>The job has changed
+its status. This does not apply to archive messages. </p><p><b>FAX_JOB_EVENT_TYPE_CHANGED: </b>An archives
+message has changed.</p></div>

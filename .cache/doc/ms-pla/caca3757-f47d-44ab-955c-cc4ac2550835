@@ -1,0 +1,21 @@
+<div class="content"><p>The SetCredentials method specifies the user account under
+which the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data collector set</a>
+runs. If both parameters are set to NULL, the Performance Logs and Alerts
+Protocol MUST clear the existing cached credentials. If no credentials are
+cached, the data collector set runs with the credentials for the &#39;LocalSystem&#39;
+account. Changing the credentials under which the data collector set runs will
+impact future runs of the data collector set, irrespective of whether they are
+started locally or remotely. <a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="905cad7f-1a12-49b4-a263-461a2977ab71#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a></p><dl>
+<dd>
+<div><pre> HRESULT SetCredentials(
+   BSTR user,
+   BSTR password
+ );
+</pre></div>
+</dd></dl><p><b>user: </b>Supplies the user account under which
+the data collector set runs. The user name can be specified in the following
+forms: domain\user or user@domain.</p><p><b>password: </b> Supplies the password of the user
+account.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT with the severity bit clear on success as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>;
+otherwise, it MUST return one of the errors as defined in <a href="590752a5-ddc3-49e4-9914-147a90bd0193" data-linktype="relative-path">2.2.1</a> or one of the errors
+as defined in [MS-ERREF] section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p></div>

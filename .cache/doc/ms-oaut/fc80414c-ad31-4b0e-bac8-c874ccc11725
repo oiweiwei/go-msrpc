@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The IEnumVARIANT::Reset method resets the enumeration
+sequence to the beginning.</p><dl>
+<dd>
+<div><pre> HRESULT Reset();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul><p>A static server MUST reset its current position in the
+sequence. </p><p>A semi-static or dynamic server MUST update the sequence of
+elements it maintains and MUST reset the current position in the sequence to
+the beginning. </p></div>

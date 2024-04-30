@@ -1,0 +1,13 @@
+<div class="content"><p>The ConnectW_Call structure is used to open a connection to
+the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">smart card</a> located
+in the reader identified by a <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_8b790ccb-84c6-49fa-b1ed-4fc7c4e1841f" data-linktype="relative-path">reader
+name</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _ConnectW_Call {
+   [string] const wchar_t* szReader;
+   Connect_Common Common;
+ } ConnectW_Call;
+</pre></div>
+</dd></dl><p><b>szReader:</b>  A <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> specifying
+the reader name to connect to.</p><p><b>Common:</b>  Additional parameters that
+are required for the Connect call. For more information, see sections <a href="07f33762-7d81-4795-81ab-351c674e5282" data-linktype="relative-path">3.1.4.29</a> and <a href="32752f32-4410-4682-b9fc-9096674b52de" data-linktype="relative-path">2.2.1.3</a>.</p></div>

@@ -1,0 +1,77 @@
+<div class="content"><p> </p><p>FOREST_TRUST_INFORMATION is a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> for
+state information about trust relationships with other <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forests</a></span>.
+This data is stored in <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_c2c67596-8d8f-42b9-9c70-1c4f7c952200" data-linktype="relative-path">objects of class</a></span> <span><a href="../ms-adsc/8dccfa3a-9f60-4691-919b-7851ea6c83a9" data-linktype="relative-path">trustedDomain</a></span>
+in the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_40a58fa4-953e-4cf3-96c8-57dba60237ef" data-linktype="relative-path">domain NC</a></span> <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ea02e669-2dda-460c-9992-b12a23caeeac" data-linktype="relative-path">replica</a></span>
+of the forest root domain. Specifically, the <span><a href="../ms-ada2/9680ad8c-af93-4ac1-b5f6-a4af90df7c84" data-linktype="relative-path">msDS-TrustForestTrustInfo</a></span>
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span>
+on such <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">objects</a></span> contains
+information about the trusted forest or realm. The structure of the information
+contained in this attribute is represented in the following manner.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Version</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Records
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Version (4 bytes): </b> The version of the data
+structure. The only supported version of the data structure is 1.</p><p><b>RecordCount (4 bytes): </b>The number of records
+present in the data structure.</p><p><b>Records (variable): </b>Variable-length records
+that each contain a specific type of data about the forest trust relationship.</p><dl>
+<dd>
+<p><b>Note</b>  Records are not necessarily
+aligned to 32-bit boundaries. Each record starts at the next byte after the
+previous record ends.</p>
+</dd>
+<dd>
+<p>Each record is represented as described in section <span><a href="2a16b808-322f-433a-b5a6-71eefba82b5a" data-linktype="relative-path">5.64.1</a></span>.</p>
+</dd></dl><p><b>Note</b>  All
+fields have little-endian byte ordering.</p></div>

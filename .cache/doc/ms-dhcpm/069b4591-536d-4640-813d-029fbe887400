@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The <b>SCOPE_MIB_INFO_V6</b> structure defines a structure
+that contains the address counters for a specific IPv6 prefix. The numbers of
+free, used, and offered IPv6 addresses are stored in this structure. This
+structure is used in the <span><a href="c04ed823-45d3-4587-aa72-906b80f5a2b5" data-linktype="relative-path">DHCP_MIB_INFO_V6 (section 2.2.1.2.68)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _SCOPE_MIB_INFO_V6 {
+   DHCP_IPV6_ADDRESS Subnet;
+   ULONGLONG NumAddressesInuse;
+   ULONGLONG NumAddressesFree;
+   ULONGLONG NumPendingAdvertises;
+ } SCOPE_MIB_INFO_V6,
+  *LPSCOPE_MIB_INFO_V6;
+</pre></div>
+</dd></dl><p><b>Subnet:</b>  This is of type <span><a href="48b74c46-bf64-40db-92b9-6e61cee1bd33" data-linktype="relative-path">DHCP_IPV6_ADDRESS (section 2.2.1.2.28)</a></span>,
+a structure specifying the IPv6 prefix for the scope.</p><p><b>NumAddressesInuse:</b>  This is of type <span><a href="../ms-dtyp/c57d9fba-12ef-4853-b0d5-a6f472b50388" data-linktype="relative-path">ULONGLONG</a></span>,
+containing the number of IPv6 addresses that have been leased to the DHCPv6
+clients from the current prefix.</p><p><b>NumAddressesFree:</b>  This is of type
+ULONGLONG, containing the number of addresses that are free and can be leased
+out to DHCPv6 clients in the current subnet.</p><p><b>NumPendingAdvertises:</b>  This is of
+type ULONGLONG, containing the number of IPv6 addresses that are advertised to
+the DHCPv6 clients from the prefix but that have not yet been confirmed by the
+DHCPv6 client.</p></div>

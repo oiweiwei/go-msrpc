@@ -1,0 +1,117 @@
+<div class="content"><p> </p><p>The SessionHeader is used to acknowledge express and
+recoverable <span><a href="56bae708-1289-48ff-a411-bf3782602476" data-linktype="relative-path">UserMessage Packets</a></span>
+received by the <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_1c892b3d-e961-498c-9f84-30a652a70341" data-linktype="relative-path">message transfer protocols</a></span>.
+This header is present in stand-alone SessionAck Packet as defined in <span><a href="../ms-mqqb/85498b96-f2c8-43b3-a108-c9d6269dc4af" data-linktype="relative-path">[MS-MQQB]</a></span>
+(section <span><a href="../ms-mqqb/d0fe7287-c493-4d9a-92bd-91d791e18d67" data-linktype="relative-path">2.2.6</a></span>)
+and is optional in a UserMessage Packet.</p><p> This header contains a session acknowledgment. For more
+details, see [MS-MQQB] sections <span><a href="../ms-mqqb/cfa8a3f1-e839-4ebe-bc2a-296e0645db05" data-linktype="relative-path">3.1.1.7</a></span>,
+and <span><a href="../ms-mqqb/83f2d3a6-d9ea-451f-9e99-6c290d5d0d72" data-linktype="relative-path">3.1.1.6.1</a></span>.</p><p> The set of UserMessage Packets sent on a session represent
+a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span>
+sequence. There is a local-to-remote and remote-to-local sequence. These
+message sequences exist for the lifetime of the session. The local and remote
+protocols MUST maintain counts of the UserMessage Packets sent and received. A
+message MUST be associated with a sequence number that corresponds to its
+position within the sequence. Sequence numbers MUST begin with 1 and MUST
+increment by 1 with each subsequent message. For example, the third message
+sent on a session has a sequence number of 3.</p><p>The protocols MUST also maintain a count of recoverable
+UserMessage Packets sent and associates recoverable sequence numbers with those
+messages. For example, the fifth recoverable message sent on a session has a
+sequence number of 5.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>AckSequenceNumber</p>
+  </td>
+  <td colspan="16">
+  <p>RecoverableMsgAckSeqNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecoverableMsgAckFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>UserMsgSequenceNumber</p>
+  </td>
+  <td colspan="16">
+  <p>RecoverableMsgSeqNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>WindowSize</p>
+  </td>
+  <td colspan="16">
+  <p>Reserved</p>
+  </td>
+ </tr>
+</tbody></table><p><b>AckSequenceNumber (2 bytes): </b>A 16-bit unsigned
+integer that specifies a count of messages received. This field MUST be set to
+the count of UserMessage Packets received on this session. This field
+acknowledges all messages up to and including the specified sequence number.
+This field has a valid range from 0x0000 to 0xFFFF, inclusive.</p><p><b>RecoverableMsgAckSeqNumber (2 bytes): </b>A 16-bit
+unsigned integer that specifies a recoverable message sequence number. This
+field MUST be set to the lowest unacknowledged recoverable message sequence
+number that has been persisted for reliable recovery. If no recoverable
+messages have been received by the receiver since the last SessionHeader was
+sent, this field MUST be set to 0. This field has a valid range from 0x0000 to
+0xFFFF, inclusive.</p><p><b>RecoverableMsgAckFlags (4 bytes): </b>A 32-bit
+unsigned integer bit field representing messages. This bit field represents up
+to 32 recoverable UserMessage Packets that are being acknowledged as written to
+disk. Bit 0 of this field represents the UserMessage Packet whose sequence
+number is specified in the <b>RecoverableMsgAckSeqNumber</b> field. A given bit
+k of this field represents a recoverable UserMessage Packet with a sequence
+number of <b>RecoverableMsgAckSeqNumber</b> + k. The corresponding bit for a
+UserMessage Packet that has been persisted for reliable recovery MUST be set in
+the bit field.</p><p><b>UserMsgSequenceNumber (2 bytes): </b>A 16-bit
+unsigned integer that is the count of messages sent. This field SHOULD<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a> be set to the count of
+UserMessage Packets sent on this session. When the <b>UserMsgSequenceNumber</b>
+is not set to the count of UserMessage Packets sent on a session, the user
+message is sent to the destination <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>, and the
+session is closed by the receiver. This field has a valid range from 0x0000 to
+0xFFFF, inclusive.</p><p><b>RecoverableMsgSeqNumber (2 bytes): </b>A 16-bit
+unsigned integer that is the count of recoverable messages sent. This field
+MUST be set to the count of recoverable UserMessage Packets sent on this
+session. This value MUST be 0 if no recoverable UserMessage Packets have been
+sent. This field has a valid range from 0x0000 to 0xFFFF, inclusive.</p><p><b>WindowSize (2 bytes): </b>A 16-bit unsigned
+integer field that specifies the acknowledgment window size. The window size
+controls the frequency at which the message transfer protocols send
+acknowledgment packets.<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a> The value
+of this field SHOULD be set to 0x0040.<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a> This
+field has a valid range from 0x0001 to 0xFFFF, inclusive.<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a></p><p><b>Reserved (2 bytes): </b>Reserved. Can be set to
+any arbitrary value when sent and MUST be ignored on receipt.</p></div>

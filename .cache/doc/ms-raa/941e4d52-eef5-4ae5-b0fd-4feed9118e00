@@ -1,0 +1,50 @@
+<div class="content"><p>The AuthzrInitializeCompoundContext method (opnum 2) creates
+a compound context from two specified context handles.</p><dl>
+<dd>
+<div><pre> DWORD AuthzrInitializeCompoundContext(
+         [in] AUTHZR_HANDLE UserContextHandle,
+         [in] AUTHZR_HANDLE DeviceContextHandle,
+         [out] AUTHZR_HANDLE* CompoundContextHandle);
+  
+</pre></div>
+</dd></dl><p><b>UserContextHandle:</b> An AUTHZR_HANDLE structure,
+as defined in section <a href="4c1628c5-8093-471e-a3b8-8437420063ba" data-linktype="relative-path">2.2.1.1</a>,
+that represents the user context for the compound context.</p><p><b>DeviceContextHandle:</b> An AUTHZR_HANDLE
+structure, as defined in section 2.2.1.1, that represents the device context
+for the compound context.</p><p><b>CompoundContextHandle:</b> A pointer to an
+AUTHZR_HANDLE structure, as defined in section 2.2.1.1.</p><p><b>Return Values:</b></p><p>If the function succeeds, the function MUST return
+0x00000000. If the function fails, it MUST return a nonzero value.</p><p>When a RAZA server receives this message, the server MUST
+perform the following:</p><ol><li><p><span>    </span>Allocate a new <b>ImpersonationAccessToken</b>.</p>
+</li><li><p><span>    </span>Copy the <b>ImpersonationAccessToken.Sids</b>
+array in the <b>ImpersonationAccessToken</b> of the <b>UserContextHandle</b>
+into the <b>ImpersonationAccessToken.Sids</b> array in the <b>ImpersonationAccessToken</b>
+created in step 1.</p>
+</li><li><p><span>    </span>Copy the <b>ImpersonationAccessToken.UserIndex</b>
+field in the <b>ImpersonationAccessToken</b> of the <b>UserContextHandle</b> to
+the <b>ImpersonationAccessToken.UserIndex</b> field in the <b>ImpersonationAccessToken</b>
+created in step 1.</p>
+</li><li><p><span>    </span>Copy the <b>ImpersonationAccessToken.UserClaims</b>
+array in the <b>ImpersonationAccessToken</b> of the <b>UserContextHandle</b> to
+the <b>ImpersonationAccessToken.UserClaims</b> array in the <b>ImpersonationAccessToken</b>
+created in step 1.</p>
+</li><li><p><span>    </span>Copy the <b>ImpersonationAccessToken.Sids</b>
+array in the <b>ImpersonationAccessToken</b> of the <i>DeviceContextHandle</i>
+into the <b>ImpersonationAccessToken.DeviceSids</b> array in the <b>ImpersonationAccessToken</b>
+created in step 1.</p>
+</li><li><p><span>    </span>Copy the <b>ImpersonationAccessToken.UserIndex</b>
+field in the <b>ImpersonationAccessToken</b> of the <i>DeviceContextHandle</i>
+to the <b>ImpersonationAccessToken.DeviceIndex</b> field in the <b>ImpersonationAccessToken</b>
+created in step 1.</p>
+</li><li><p><span>    </span>Copy the <b>ImpersonationAccessToken.UserClaims</b>
+array in the <b>ImpersonationAccessToken</b> of the <i>DeviceContextHandle</i>
+to the <b>ImpersonationAccessToken.DeviceClaims</b> array in the <b>ImpersonationAccessToken</b>
+created in step 1.</p>
+</li><li><p><span>    </span>Allocate and
+initialize a new AUTHZR_HANDLE structure.</p>
+</li><li><p><span>    </span>Allocate a new <b>ClientContext</b>
+object, set the <b>RPCClient</b> member to the AUTHZR_HANDLE allocated in step
+8, and set the <b>AuthzContext</b> member to the <b>ImpersonationAccessToken</b>
+created in step 1.</p>
+</li><li><p><span>  </span>Add the new <b>ClientContext</b>
+object to the <b>ClientContextList.</b></p>
+</li></ol></div>

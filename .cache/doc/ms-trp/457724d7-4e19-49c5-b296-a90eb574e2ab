@@ -1,0 +1,93 @@
+<div class="content"><p>The LINEAGENTACTIVITYLIST packet describes a list of ACD
+agent activities. This packet can contain an array of <a href="da1ab691-bab0-46e6-8f02-8652ead0f2ad" data-linktype="relative-path">LINEAGENTACTIVITYENTRY</a>
+packets. LINEAGENTACTIVITYLIST is supplied by the server in the field VarData
+of the completion packet of the <a href="e56024a8-a442-4afb-9534-416489f65df2" data-linktype="relative-path">GetAgentActivityList</a>
+request.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumEntries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwListSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwListOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>The total size, in
+bytes, allocated to this packet. </p><p><b>dwNeededSize (4 bytes): </b>The size, in bytes,
+needed to hold all the information requested. </p><p><b>dwUsedSize (4 bytes): </b>The size, in bytes, of
+the portion of this packet that contains useful information.</p><p><b>dwNumEntries (4 bytes): </b>The number of
+LINEAGENTACTIVITYENTRY packets that appear in the list array. The value is 0 if
+no agent activity codes are available. </p><p><b>dwListSize (4 bytes): </b>The size, in bytes, of
+the activity list array.</p><p><b>dwListOffset (4 bytes): </b>The offset from the
+beginning of the packet to an array of LINEAGENTACTIVITYENTRY packets that
+indicate information about an activity that could be specified for the current
+logged-on agent. This MUST be <b>dwNumEntries</b> times
+SIZEOF(LINEAGENTACTIVITYENTRY). The size of the array MUST be specified by <b>dwListSize</b>.</p><p><b>VarData (variable): </b>An array of
+LINEAGENTACTIVITYENTRY packets that indicate information about an activity that
+could be specified for the current logged-on agent, as specified by <b>dwListOffset</b>.</p></div>

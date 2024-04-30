@@ -1,0 +1,39 @@
+<div class="content"><p> </p><p>The NetrJobDel method MUST delete a specified range of tasks
+from the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_08035fe7-a786-4b30-ab60-3fd046060617" data-linktype="relative-path">task store</a></span>. The
+method is capable of deleting all AT tasks or just a subset of the tasks, as
+determined by the values of the <i>MinJobId</i> and <i>MaxJobId</i> parameters.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrJobDel(
+   [in, string, unique] ATSVC_HANDLE ServerName,
+   [in] DWORD MinJobId,
+   [in] DWORD MaxJobId
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b> Pointer to a <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a></span> that MUST specify the server. The client MUST map this string
+to an <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle.
+The server MUST ignore this parameter. For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+sections 4.3.5 and 5.1.5.2. </p><p><b>MinJobId: </b>MUST specify the low end of the
+range of tasks to be deleted. This parameter MUST NOT be greater than <i>MaxJobId</i>.</p><p><b>MaxJobId: </b>MUST specify the high end of the
+range of tasks to be deleted. This parameter MUST NOT be smaller than <i>MinJobId</i>.</p><p><b>Return Values: </b>For more information on return
+codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>, or Win32
+Error Codes in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><p>To delete all tasks, specify MinJobId as 0 and MaxJobId as
+0xFFFFFFFF.</p><p>In response to this request, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Return ERROR_ACCESS_DENIED if the caller does not have
+administrative privileges on the server.</p>
+</li><li><p><span><span> 
+</span></span>Traverse the AT task store and delete each task whose ID is in
+the range specified by <i>MinJobId</i> through <i>MaxJobId</i> inclusively.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS if the call was successful.</p>
+</li><li><p><span><span> 
+</span></span>Return an error if <i>MinJobId</i> is greater than MaxJobId.</p>
+</li><li><p><span><span> 
+</span></span>Return an error if <i>MaxJobId</i> is smaller than MinJobId.</p>
+</li><li><p><span><span> 
+</span></span>Return an error APE_AT_ID_NOT_FOUND (0x00000EDE) if no ID was
+valid in the specified range.</p>
+</li></ul><p>If any errors are raised during the processing, they are
+returned. For more information about return codes, see section 2.3.14 and Win32
+Error Codes in [MS-ERREF] section 2.1.</p></div>

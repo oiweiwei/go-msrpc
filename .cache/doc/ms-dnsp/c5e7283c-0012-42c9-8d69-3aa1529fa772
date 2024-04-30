@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The <b>ImportOpResult</b> enumeration SHOULD<a id="Appendix_A_Target_47"></a><a aria-label="Product behavior note 47" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_47" data-linktype="relative-path">&lt;47&gt;</a> define the operations to be
+executed when the DNS_RPC_ZONE_DNSSEC_SETTINGS structure (section <span><a href="a6027a0d-b936-4702-b72c-51bc0634ed19" data-linktype="relative-path">2.2.6.2.9</a></span>)
+is imported on a zone.</p><dl>
+<dd>
+<div><pre> typedef enum ImportOperationResult
+ {
+     IMPORT_STATUS_NOOP,
+     IMPORT_STATUS_SIGNING_READY,
+     IMPORT_STATUS_UNSIGNING_READY,
+     IMPORT_STATUS_CHANGED
+ } ImportOpResult;
+  
+</pre></div>
+</dd></dl><p><b>IMPORT_STATUS_NOOP:</b> No change was detected in
+the imported signing settings or the signing settings of the zone.</p><p><b>IMPORT_STATUS_SIGNING_READY:</b> The zone is
+marked for re-signing.</p><p><b>IMPORT_STATUS_UNSIGNING_READY:</b> The zone is
+marked for unsigning.</p><p><b>IMPORT_STATUS_CHANGED:</b> The change was detected
+in signing settings imported and were incorporated, but no re-signing or
+unsigning is required.</p></div>

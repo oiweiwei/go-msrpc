@@ -1,0 +1,188 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/7cd1c6d0-8819-4a58-9721-5be588c1d4ad" data-linktype="external">msdn link</a></p><p>The SamrQueryDisplayInformation3 method obtains a listing of
+accounts in ascending name-sorted order, starting at a specified index.</p><dl>
+<dd>
+<div><pre> long SamrQueryDisplayInformation3(
+   [in] SAMPR_HANDLE DomainHandle,
+   [in] DOMAIN_DISPLAY_INFORMATION DisplayInformationClass,
+   [in] unsigned long Index,
+   [in] unsigned long EntryCount,
+   [in] unsigned long PreferredMaximumLength,
+   [out] unsigned long* TotalAvailable,
+   [out] unsigned long* TotalReturned,
+   [out, switch_is(DisplayInformationClass)] 
+     PSAMPR_DISPLAY_INFO_BUFFER Buffer
+ );
+</pre></div>
+</dd></dl><p><b>DomainHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_2346e8d0-b0a0-481f-b644-85c45c60d4d1" data-linktype="relative-path">domain object</a>.</p><p><b>DisplayInformationClass: </b>An enumeration (see
+section <a href="929775e0-0339-4f0b-8161-6d3699c18185" data-linktype="relative-path">2.2.8.12</a>) that
+indicates the type of accounts, as well as the type of attributes on the
+accounts, to return via the <i>Buffer</i> parameter.</p><p><b>Index: </b>A cursor into an account-name–sorted
+list of accounts.</p><p><b>EntryCount: </b>The number of accounts that the
+client is requesting on output.</p><p><b>PreferredMaximumLength: </b>The requested maximum
+number of bytes to return in <i>Buffer</i>; this value overrides <i>EntryCount</i>
+if this value is reached before <i>EntryCount</i> is reached.</p><p><b>TotalAvailable: </b>The number of bytes required
+to see a complete listing of accounts specified by the <i>DisplayInformationClass</i>
+parameter.</p><p><b>TotalReturned: </b>The number of bytes returned.<a id="Appendix_A_Target_53"></a><a aria-label="Product behavior note 53" href="fa61e5fc-f8fb-4d5b-9695-c724af0c3829#Appendix_A_53" data-linktype="relative-path">&lt;53&gt;</a></p><p><b>Buffer: </b>The accounts that are returned.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>The server MUST
+return an error if <i>DomainHandle.HandleType</i> is not equal to
+&#34;Domain&#34;.</p>
+</li><li><p><span>    </span><i>DomainHandle.GrantedAccess</i>
+MUST have the required access specified in section <a href="87bacbd0-7b8b-429f-abc6-4b3d895d4e90" data-linktype="relative-path">3.1.2.2</a>. Otherwise, the
+server MUST return STATUS_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>This method MUST
+return a set of <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_60122e64-9d34-40ee-a387-782eaf7adf2f" data-linktype="relative-path">database
+objects</a>, sorted by their <b>sAMAccountName</b> attribute value, that match
+the following criteria for the given <i>DisplayInformationClass</i>.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>DisplayInformationClass</p>
+   </th>
+   <th>
+   <p>Database object criteria</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DomainDisplayUser</p>
+  </td>
+  <td>
+  <p>All <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_e767a471-c3fa-4e4b-a40c-daeb08f82a17" data-linktype="relative-path">user
+  objects</a> (or those derived from user) in the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> referenced by <i>DomainHandle.Object</i>
+  with <b>userAccountControl</b> containing the UF_NORMAL_ACCOUNT bit.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainDisplayMachine</p>
+  </td>
+  <td>
+  <p>All user objects (or those derived from user) in the
+  domain referenced by <i>DomainHandle.Object</i> with <b>userAccountControl</b>
+  containing the UF_WORKSTATION_TRUST_ACCOUNT or UF_SERVER_TRUST_ACCOUNT bit.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainDisplayGroup</p>
+  </td>
+  <td>
+  <p>All <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_7ce4771c-2043-49b8-85d3-0c60c7789f9a" data-linktype="relative-path">group
+  objects</a> (or those derived from group) in the domain referenced by <i>DomainHandle.Object</i>
+  with <b>groupType</b> equal to GROUP_TYPE_SECURITY_UNIVERSAL or
+  GROUP_TYPE_SECURITY_ACCOUNT.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainDisplayOemUser</p>
+  </td>
+  <td>
+  <p> All user objects (or those derived from user) in both
+  the account domain and the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_22904540-f2fb-470e-af48-ce1b0e9a02b8" data-linktype="relative-path">built-in
+  domain</a> with <b>userAccountControl</b> containing the UF_NORMAL_ACCOUNT
+  bit.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainDisplayOemGroup</p>
+  </td>
+  <td>
+  <p>All group objects (or those derived from group) in
+  both the account domain and the built-in domain with <b>groupType</b> equal
+  to GROUP_TYPE_SECURITY_UNIVERSAL or GROUP_TYPE_SECURITY_ACCOUNT.</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span>    </span>Let L be a list
+of accounts, sorted by <b>sAMAccountName</b>, that match the above criteria. If
+the <i>Index</i> parameter is nonzero, the server MUST return objects starting
+from the position in L implied by the implementation-specific cookie (carried
+in the <i>Index</i> parameter). If the <i>Index</i> parameter is zero, the server
+MUST start at the beginning of L. If the implementation-specific cookie refers
+to an object that has been deleted since the time at which the cookie was
+created, the server MUST return objects, if any, starting from the next
+position in L.</p>
+</li><li><p><span>    </span>For each candidate
+object to return, the server MUST fill an element in the <i>Buffer</i> output
+parameter according to the following table.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Element field</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Index</p>
+  </td>
+  <td>
+  <p>Any unsigned integer such that there are no duplicates
+  in the set of values returned in <i>Buffer</i>; that is, each element has a
+  unique <i>Index</i>. There is no requirement on the ordering of Index values.<a id="Appendix_A_Target_54"></a><a aria-label="Product behavior note 54" href="fa61e5fc-f8fb-4d5b-9695-c724af0c3829#Appendix_A_54" data-linktype="relative-path">&lt;54&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Rid</p>
+  </td>
+  <td>
+  <p><a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RID</a>
+  of the <b>objectSid</b> attribute.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AccountControl</p>
+  </td>
+  <td>
+  <p><b>userAccountControl</b> attribute value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AccountName</p>
+  </td>
+  <td>
+  <p><b>sAMAccountName</b> attribute value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AdminComment</p>
+  </td>
+  <td>
+  <p><b>description</b> attribute value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FullName</p>
+  </td>
+  <td>
+  <p><b>displayName</b> attribute value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Attributes</p>
+  </td>
+  <td>
+  <p>See section <a href="87988bdd-b100-4b19-874e-9fce919d9114" data-linktype="relative-path">3.1.5.14.7</a> for a message
+  processing specification.</p>
+  </td>
+ </tr></tbody></table>
+<p>A call with <i>DisplayInformationClass</i>
+set to DomainDisplayOemUser or DomainDisplayOemGroup MUST behave identically to
+a call with <i>DisplayInformationClass</i> set to DomainDisplayUser or
+DomainDisplayGroup, respectively, with the following exceptions: </p>
+<ul><li><p><span><span> 
+</span></span>The <a href="../ms-dtyp/94a16bb6-c610-4cb9-8db6-26f15f560061" data-linktype="relative-path">RPC_UNICODE_STRING</a>
+structures in the Oem cases of <i>DisplayInformationClass</i> MUST be
+translated to <a href="28330caf-78c4-49e0-91c1-46bbfeed633b" data-linktype="relative-path">RPC_STRING</a>
+structures using the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_442ab13f-d2c1-4128-b1db-f3bea4b8224e" data-linktype="relative-path">OEM
+code page</a>.</p>
+</li><li><p><span><span> 
+</span></span>The value returned in TotalAvailable MUST be set to zero.</p>
+</li></ul></li><li><p><span>    </span>If a processing
+error occurs, the server MUST return that error. Otherwise, the server MUST
+return STATUS_SUCCESS.</p>
+</li></ol></div>

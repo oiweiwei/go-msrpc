@@ -1,0 +1,136 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4FailoverAddScopeToRelationship</b> method
+adds scopes to an existing failover relationship.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4FailoverAddScopeToRelationship(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] LPDHCP_FAILOVER_RELATIONSHIP pRelationship
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>pRelationship: </b>This is a pointer to a type <b>DHCP_FAILOVER_RELATIONSHIP</b>
+structure (section <span><a href="9153f2b7-e4df-4475-9275-d2092a93bd51" data-linktype="relative-path">2.2.1.2.98</a></span>) that
+contains information about the failover relationship to which scopes as
+specified in the <b>pScopes</b> member of the <i>pRelationship</i> parameter
+are to be added.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20123, or to any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>IPv4 scope does not exist on the DHCPv4 server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E91</p>
+  <p>ERROR_DHCP_FO_SCOPE_ALREADY_IN_RELATIONSHIP</p>
+  </td>
+  <td>
+  <p>IPv4 scope is already part of another failover
+  relationship.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E92</p>
+  <p>ERROR_DHCP_FO_RELATIONSHIP_DOES_NOT_EXIST</p>
+  </td>
+  <td>
+  <p>Failover relationship does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004EA5</p>
+  <p>ERROR_DHCP_FO_SCOPE_SYNC_IN_PROGRESS</p>
+  </td>
+  <td>
+  <p>Failover relationship is being re-integrated with the
+  failover partner server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E98</p>
+  <p>ERROR_DHCP_FO_STATE_NOT_NORMAL</p>
+  </td>
+  <td>
+  <p>Failover relationship is not in the NORMAL state.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 94.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Return ERROR_INVALID_PARAMETER if any of the following are true:</p>
+<ul><li><p><span><span>  </span></span>The
+<i>pRelationship</i> parameter is NULL.</p>
+</li><li><p><span><span>  </span></span>The
+<b>relationshipName</b> member of the <i>pRelationship</i> parameter is NULL.</p>
+</li><li><p><span><span>  </span></span>The
+<b>pScopes</b> member of the <i>pRelationship</i> parameter is NULL.</p>
+</li><li><p><span><span>  </span></span>The
+<b>NumElements</b> member of the <b>pScopes</b> member of the <i>pRelationship</i>
+parameter is 0.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read/write access
+as specified in section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the <b>DHCPv4ScopesList</b> ADM element on the
+DHCPv4 server, and if any of the IPv4 subnet addresses in the <b>pScopes</b>
+member of the <i>pRelationship</i> parameter does not have a corresponding <b>DHCPv4ScopesList.DHCPv4Scope</b>
+ADM element on the DHCPv4 server, return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>For any of the IPv4 subnet addresses passed in the <b>pScopes</b>
+member of the <i>pRelationship</i> parameter, if the corresponding <b>DHCPv4Scope.DHCPv4IpRange</b>
+ADM element is of type DhcpIpRangesBootpOnly enumeration value (section <span><a href="0a196713-4790-412f-a2d7-893cbad301da" data-linktype="relative-path">2.2.1.2.38</a></span>),
+return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If there are no elements in the <b>DHCPv4FailoverRelationshipList</b>
+ADM element, return ERROR_FILE_NOT_FOUND; otherwise, iterate through the <b>DHCPv4FailoverRelationshipList</b>
+ADM elements, and if any input IPv4 subnet passed in the <b>pScopes</b> member
+of the <i>pRelationship</i> parameter is already part of the IPv4 subnets
+configured on the <b>DHCPv4FailoverRelationshipList.DHCPv4FailoverRelationship</b>
+ADM element, return <b>ERROR_DHCP_FO_SCOPE_ALREADY_IN_RELATIONSHIP</b>.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server ADM element <b>DHCPv4FailoverRelationshipList</b>,
+and retrieve the <b>DHCPv4FailoverRelationship</b> ADM element corresponding to
+the <b>relationshipName</b> member of the <i>pRelationship</i> parameter. If
+the corresponding <b>DHCPv4FailoverRelationship</b> ADM element is not found,
+return ERROR_DHCP_FO_RELATIONSHIP_DOES_NOT_EXIST.</p>
+</li><li><p><span><span> 
+</span></span>If the retrieved <b>DHCPv4FailoverRelationship</b> ADM element&#39;s <b>state</b>
+member is not a NORMAL enumeration value, return
+ERROR_DHCP_FO_STATE_NOT_NORMAL, or, if the relationship is re-integrating with
+the partner server, return ERROR_DHCP_FO_SCOPE_SYNC_IN_PROGRESS. Otherwise, add
+the IPv4 subnets passed in the <b>pScopes</b> member of the <i>pRelationship</i>
+parameter to the retrieved <b>DHCPv4FailoverRelationship</b> ADM element&#39;s <b>pScope</b>
+member.</p>
+</li><li><p><span><span> 
+</span></span>For each of the input IPv4 subnet addresses passed in the <b>pScopes</b>
+member of the <i>pRelationship</i> parameter, iterate through the <b>DHCPv4ScopesList</b>
+ADM element and retrieve the corresponding <b>DHCPv4Scope</b> ADM element, and
+set the <b>DHCPv4Scope.IsFailover</b> ADM element to TRUE.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

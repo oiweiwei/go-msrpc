@@ -1,0 +1,28 @@
+<div class="content"><p>The TSG_PACKET_QUARREQUEST structure<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a> contains information about the
+RDG client&#39;s <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_224be10f-c4fe-4db7-9d3a-1b16680219e9" data-linktype="relative-path">statement of
+health (SoH)</a> and the name of the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> machine. The value
+of the <b>packetId</b> field in <a href="4c505da0-93c2-4a2f-9329-6174bbaa481b" data-linktype="relative-path">TSG_PACKET</a> MUST be set to <a href="a89de1f3-1dfb-476c-813d-e9e2a6167f84" data-linktype="relative-path">TSG_PACKET_TYPE_QUARREQUEST</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _TSG_PACKET_QUARREQUEST {
+   unsigned long flags;
+   [string, size_is(nameLength)] wchar_t* machineName;
+   [range(0, 512 + 1)] unsigned long nameLength;
+   [unique, size_is(dataLen)] byte* data;
+   [range(0, 8000)] unsigned long dataLen;
+ } TSG_PACKET_QUARREQUEST,
+  *PTSG_PACKET_QUARREQUEST;
+</pre></div>
+</dd></dl><p><b>flags:</b>  This field can be any value
+when sending and ignored on receipt.</p><p><b>machineName:</b>  A string representing
+the name of the RDG <b>Client Machine name</b> (section <a href="a4c784de-d788-4a67-8559-8259ac1a5731" data-linktype="relative-path">3.5.1</a>).<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a> This field can be ignored. The
+length of the name, including the terminating null character, MUST be equal to
+the size specified by the <b>nameLength</b> field.</p><p><b>nameLength:</b>  An unsigned long
+specifying the number of characters in <b>machineName</b>, including the terminating
+null character. The specified value MUST be in the range from 0 to 513
+characters.</p><p><b>data:</b>  An array of bytes that
+specifies the statement of health prepended with nonce, which is obtained in <a href="511efcd7-8aff-4246-939d-6a456f910bcb" data-linktype="relative-path">TSG_PACKET_QUARENC_RESPONSE (section 2.2.9.2.1.6)</a>
+from the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in
+response to <a href="0386b24c-4603-400d-a79e-11fd9518e34e" data-linktype="relative-path">TsProxyCreateTunnel</a>.<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a> This field can be ignored. The
+length of this data is specified by the <b>dataLen</b> field.</p><p><b>dataLen:</b>  The length, in bytes, of
+the <b>data</b> field. This value MUST be in the range between 0 and 8000, both
+inclusive.</p></div>

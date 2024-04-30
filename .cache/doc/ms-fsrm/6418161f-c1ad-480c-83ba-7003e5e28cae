@@ -1,0 +1,34 @@
+<div class="content"><p>The RefreshUsageProperties method refreshes the <b>quota usage</b>
+information for the caller&#39;s copy of the object.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_QUOTA | 0x02)] HRESULT RefreshUsageProperties();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified quota could not be found.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>There are no parameters for this method.</p><p>If no <a href="4a94faeb-8aed-46fa-9d03-479f6708995a" data-linktype="relative-path">Persisted
+Directory Quota</a> exists that has the same <a href="592dad39-f14e-4c5b-b7bc-a1c0bc4724b3" data-linktype="relative-path">Directory Quota.Folder path</a>
+property as <a href="428a07ce-42ef-4822-98ba-c298c26adbb3" data-linktype="relative-path">Non-Persisted
+Directory Quota Instance</a>, the server MUST return FSRM_E_NOT_FOUND.</p><p>Otherwise, the server MUST reset the <b>quota usage</b>, <b>quota
+peak usage</b>, and <b>quota peak usage time</b> of the Non-Persisted Directory
+Quota Instance to the current values stored in the corresponding properties of
+the Persisted Directory Quota that has the same Directory Quota.Folder path
+property as this Non-Persisted Directory Quota Instance.</p></div>

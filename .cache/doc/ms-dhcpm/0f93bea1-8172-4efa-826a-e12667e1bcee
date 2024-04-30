@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The <b>DATE_TIME</b> structure contains a 64-bit value
+interpreted as an unsigned number that represents the number of 100-nanosecond
+intervals since January 1, 1601 (UTC).</p><dl>
+<dd>
+<div><pre> typedef struct _DATE_TIME {
+   DWORD dwLowDateTime;
+   DWORD dwHighDateTime;
+ } DATE_TIME,
+  *LPDATE_TIME;
+</pre></div>
+</dd></dl><p><b>dwLowDateTime:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+containing the lower 32 bits of the time value.</p><p><b>dwHighDateTime:</b>  This is of type
+DWORD, containing the upper 32 bits of the time value.</p></div>

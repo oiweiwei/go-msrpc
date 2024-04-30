@@ -1,0 +1,20 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/148786a8-e4f5-4355-8905-a08d212cb081" data-linktype="external">msdn link</a></p><p>The <b>MAINTENANCE_MODE_TYPE</b> enumeration defines the
+possible states in which this <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_94e97f15-2f1a-406f-a740-607bb97761ec" data-linktype="relative-path">resource</a>
+in the storage class can be placed when marked for maintenance.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><p>The valid constant <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">values</a> for <b>MAINTENANCE_MODE_TYPE</b>
+are as follows. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+MUST return only these values. All other values are reserved.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   MaintenanceModeTypeDisableIsAliveCheck = 1,
+   MaintenanceModeTypeOfflineResource = 2,
+   MaintenanceModeTypeUnclusterResource = 3
+ } MAINTENANCE_MODE_TYPE;
+</pre></div>
+</dd></dl><p><b>MaintenanceModeTypeDisableIsAliveCheck: </b>Indicates
+that the server is ignoring the result of the resource&#39;s health check.</p><p><b>MaintenanceModeTypeOfflineResource: </b>Indicates
+that the server has internally performed the operations to bring the storage
+resource to the ClusterResourceOffline state without changing the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> visible state of the
+resource.</p><p><b>MaintenanceModeTypeUnclusterResource: </b>Indicates
+that the server has released ownership of the storage resource. ClusAPI
+Protocol version 2.0 servers do not support this value.</p></div>

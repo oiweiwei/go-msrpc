@@ -1,0 +1,259 @@
+<div class="content"><p>The SERVICE_TRIGGER <a id="Appendix_A_Target_26"></a><a aria-label="Product behavior note 26" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_26" data-linktype="relative-path">&lt;26&gt;</a> structure
+contains information about one trigger of a service.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVICE_TRIGGER {
+   DWORD dwTriggerType;
+   DWORD dwAction;
+   GUID* pTriggerSubtype;
+   [range(0, 64)] DWORD cDataItems;
+   [size_is(cDataItems)] PSERVICE_TRIGGER_SPECIFIC_DATA_ITEM pDataItems;
+ } SERVICE_TRIGGER,
+  *PSERVICE_TRIGGER;
+</pre></div>
+</dd></dl><p><b>dwTriggerType:</b>  The type of trigger.
+This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>SERVICE_TRIGGER_TYPE_DEVICE_INTERFACE_ARRIVAL</p>
+  <p>The event is triggered when a device of the specified <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_0b3a092c-d22a-46f6-9111-dfa1506a8661" data-linktype="relative-path">device interface class</a>
+  arrives or is present when the system starts. This trigger event is commonly
+  used to start a service.</p>
+  <p>Interface arrival occurs when a device belonging to a
+  device interface class has been inserted.</p>
+  <p>The <b>pTriggerSubtype</b> member specifies the device
+  interface class <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>,
+  as defined in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+  section <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a>.
+  These GUIDs are defined in device-specific header files provided with the
+  Windows Driver Kit (WDK) <a href="https://go.microsoft.com/fwlink/?LinkId=151330" data-linktype="external">[MSDN-WinDriverKit]</a>.</p>
+  <p>The <b>pDataItems</b> member specifies one or more
+  hardware ID and compatible ID strings for the device interface class. Strings
+  MUST be <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a>. If
+  more than one string is specified, the event is triggered if any one of the
+  strings matches. For example, the Wpdbusenum service is started when a device
+  of device interface class GUID_DEVINTERFACE_DISK
+  {53f56307-b6bf-11d0-94f2-00a0c91efb8b} and a hardware ID string of
+  &#34;USBSTOR\GenDisk&#34; arrives.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>SERVICE_TRIGGER_TYPE_IP_ADDRESS_AVAILABILITY</p>
+  <p>The event is triggered when the first IP address on
+  the TCP/IP networking stack becomes available or the last IP address on the
+  stack becomes unavailable. This trigger event can be used to start or stop a
+  service. </p>
+  <p>The <b>pTriggerSubtype</b> member specifies
+  NETWORK_MANAGER_FIRST_IP_ADDRESS_ARRIVAL_GUID or NETWORK_MANAGER_LAST_IP_ADDRESS_REMOVAL_GUID.
+  </p>
+  <p>The <b>pDataItems</b> member is not used. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>SERVICE_TRIGGER_TYPE_DOMAIN_JOIN</p>
+  <p>The event is triggered when the computer joins or
+  leaves a domain. This trigger event can be used to start or stop a service. </p>
+  <p>The <b>pTriggerSubtype</b> member specifies
+  DOMAIN_JOIN_GUID or DOMAIN_LEAVE_GUID. </p>
+  <p>The <b>pDataItems</b> member is not used. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>SERVICE_TRIGGER_TYPE_FIREWALL_PORT_EVENT</p>
+  <p>The event is triggered when a firewall port is opened
+  or approximately 60 seconds after the firewall port is closed. This trigger
+  event can be used to start or stop a service.</p>
+  <p>The <b>pTriggerSubtype</b> member specifies
+  FIREWALL_PORT_OPEN_GUID or FIREWALL_PORT_CLOSE_GUID. </p>
+  <p>The <b>pDataItems</b> member specifies the port, the
+  protocol, and optionally the executable path and user information (SID string
+  or name) of the service listening on the event. The &#34;RPC&#34; token can
+  be used in place of the port to specify any listening socket used by RPC. The
+  &#34;system&#34; token can be used in place of the executable path to specify
+  ports created by and listened on by the Windows kernel. </p>
+  <p>The event is triggered only if all strings match. For
+  example, if MyService hosted inside Svchost.exe is to be trigger-started when
+  port UDP 5001 opens, the trigger-specific data would be the Unicode
+  representation of
+  &#34;5001\0UDP\0%systemroot%\system32\svchost.exe\0MyService\0\0&#34;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>SERVICE_TRIGGER_TYPE_GROUP_POLICY</p>
+  <p>The event is triggered when a machine policy or user
+  policy change occurs. This trigger event is commonly used to start a service.
+  </p>
+  <p>The <b>pTriggerSubtype</b> member specifies
+  MACHINE_POLICY_PRESENT_GUID or USER_POLICY_PRESENT_GUID. </p>
+  <p>The <b>pDataItems</b> member is not used. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>SERVICE_TRIGGER_TYPE_CUSTOM</p>
+  <p>The event is a custom event generated by an Event
+  Tracing for Windows (ETW) provider. This trigger event can be used to start
+  or stop a service.</p>
+  <p>The <b>pTriggerSubtype</b> member specifies the event
+  provider&#39;s GUID. </p>
+  <p>The <b>pDataItems</b> member specifies
+  trigger-specific data defined by the provider.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwAction:</b>  The type of action to be
+taken on the trigger arrival. This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>SERVICE_TRIGGER_ACTION_SERVICE_START</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>SERVICE_TRIGGER_ACTION_SERVICE_STOP</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pTriggerSubtype:</b>  Points to a GUID
+that identifies the trigger event subtype. The value of this member depends on
+the value of the <b>dwTriggerType</b> member.</p><p>If <b>dwTriggerType</b> is
+SERVICE_TRIGGER_TYPE_CUSTOM, <b>pTriggerSubtype</b> is the GUID that identifies
+the custom event provider.</p><p>If <b>dwTriggerType</b> is
+SERVICE_TRIGGER_TYPE_DEVICE_INTERFACE_ARRIVAL, <b>pTriggerSubtype</b> is the
+GUID that identifies the device interface class.</p><dl>
+<dd>
+<p>For other trigger event types, <b>pTriggerSubtype</b>
+can be one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DOMAIN_JOIN_GUID</p>
+  <p>1ce20aba-9851-4421-9430-1ddeb766e809</p>
+  </td>
+  <td>
+  <p>The event is triggered when the computer joins a
+  domain. The <b>dwTriggerType</b> member MUST be
+  SERVICE_TRIGGER_TYPE_DOMAIN_JOIN.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DOMAIN_LEAVE_GUID</p>
+  <p>ddaf516e-58c2-4866-9574-c3b615d42ea1</p>
+  </td>
+  <td>
+  <p>The event is triggered when the computer leaves a
+  domain. The <b>dwTriggerType</b> member MUST be
+  SERVICE_TRIGGER_TYPE_DOMAIN_JOIN.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FIREWALL_PORT_OPEN_GUID</p>
+  <p>b7569e07-8421-4ee0-ad10-86915afdad09</p>
+  </td>
+  <td>
+  <p>The event is triggered when the specified firewall
+  port is opened. The <b>dwTriggerType</b> member MUST be SERVICE_TRIGGER_TYPE_FIREWALL_PORT_EVENT.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FIREWALL_PORT_CLOSE_GUID</p>
+  <p>a144ed38-8e12-4de4-9d96-e64740b1a524</p>
+  </td>
+  <td>
+  <p>The event is triggered approximately 60 seconds after
+  the specified firewall port is closed. The <b>dwTriggerType</b> member MUST
+  be SERVICE_TRIGGER_TYPE_FIREWALL_PORT_EVENT.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MACHINE_POLICY_PRESENT_GUID</p>
+  <p>659FCAE6-5BDB-4DA9-B1FF-CA2A178D46E0</p>
+  </td>
+  <td>
+  <p>The event is triggered when the machine policy has
+  changed. The <b>dwTriggerType</b> member MUST be
+  SERVICE_TRIGGER_TYPE_GROUP_POLICY.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETWORK_MANAGER_FIRST_IP_ADDRESS_ARRIVAL_GUID</p>
+  <p>4f27f2de-14e2-430b-a549-7cd48cbc8245</p>
+  </td>
+  <td>
+  <p>The event is triggered when the first IP address on
+  the TCP/IP networking stack becomes available. The <b>dwTriggerType</b>
+  member MUST be SERVICE_TRIGGER_TYPE_IP_ADDRESS_AVAILABILITY.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETWORK_MANAGER_LAST_IP_ADDRESS_REMOVAL_GUID</p>
+  <p>cc4ba62a-162e-4648-847a-b6bdf993e335</p>
+  </td>
+  <td>
+  <p>The event is triggered when the last IP address on the
+  TCP/IP networking stack becomes unavailable. The <b>dwTriggerType</b> member
+  MUST be SERVICE_TRIGGER_TYPE_IP_ADDRESS_AVAILABILITY.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>USER_POLICY_PRESENT_GUID</p>
+  <p>54FB46C8-F089-464C-B1FD-59D1B62C3B50</p>
+  </td>
+  <td>
+  <p>The event is triggered when the user policy has
+  changed. The <b>dwTriggerType</b> member MUST be
+  SERVICE_TRIGGER_TYPE_GROUP_POLICY.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cDataItems:</b>  Number of data items in
+the <i>pDataItems</i> array.</p><p><b>pDataItems:</b>  Array of <a href="8c33ca40-ac7d-413d-a768-71fc2c36d6bd" data-linktype="relative-path">SERVICE_TRIGGER_SPECIFIC_DATA_ITEM</a>
+structures.</p></div>

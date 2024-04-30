@@ -1,0 +1,13 @@
+<div class="content"><p>The Virtual Disk Service Remote Protocol provides a
+mechanism for remote configuration of <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disks</a>, <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partitions</a>, <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volumes</a>, and <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_daaa5b4b-e3f0-4df2-94b2-332d6d84cf80" data-linktype="relative-path">iSCSI initiators</a> on a
+server. Through the Virtual Disk Service Remote Protocol, a client can change
+the configuration of disks into partitions, partitions into volumes, and volumes
+into <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file systems</a>. The
+protocol also enables clients to obtain notifications of changes to these
+storage objects. </p><p>In the Virtual Disk Service Remote Protocol, two entities
+are involved: the server, whose storage is configured, and the client, which
+accesses and requests changes to the server storage configuration. </p><p>The Virtual Disk Service Remote Protocol is expressed as a
+set of <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a> <a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interfaces</a>. For a server,
+this protocol implements support for the DCOM interface in order to manage
+storage. For a client, this protocol invokes method calls on the interface in
+order to perform disk and volume configuration tasks on the server.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a></p></div>

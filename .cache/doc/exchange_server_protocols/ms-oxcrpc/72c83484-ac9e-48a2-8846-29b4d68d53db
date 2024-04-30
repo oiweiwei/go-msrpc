@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The <b>EcDummyRpc</b> method returns a SUCCESS. A client can
+use it to determine whether it can communicate with the server.</p><dl>
+<dd>
+<div><pre> long __stdcall EcDummyRpc(
+     [in] handle_t hBinding
+ );
+</pre></div>
+</dd></dl><p><i>hBinding:</i> A valid <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_44deb72d-c62b-4335-90e4-b9fd4dd782ed" data-linktype="relative-path">binding
+handle</a></span>.</p><p><b>Return Values:</b> The function MUST succeed and return
+0.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol as specified in <span><a href="/en-us/openspecs/windows_protocols/MS-RPCE/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="absolute-path">[MS-RPCE]</a></span>.</p></div>

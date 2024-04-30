@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>The GetVolume method retrieves the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> that the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7d1df68a-9ec5-4f84-a64f-67888f39405d" data-linktype="relative-path">volume
+plex</a></span> belongs to.</p><dl>
+<dd>
+<div><pre> HRESULT GetVolume(
+   [out] IVdsVolume** ppVolume
+ );
+</pre></div>
+</dd></dl><p><b>ppVolume: </b>A pointer to an <span><a href="555601e2-1103-4423-b62b-0b1f3d3370e6" data-linktype="relative-path">IVdsVolume</a></span>
+interface that, if the operation is successfully completed, receives the
+IVdsVolume interface of the volume object that the volume plex belongs to.
+Callers MUST release the interface when they are done with it.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameter:</p><ul><li><p><span><span> 
+</span></span>Verify that <b>ppVolume</b> is not NULL.</p>
+</li></ul><p>The server MUST point <b>ppVolume</b> to an IVdsVolume
+interface of the volume object that the volume plex object&#39;s volume pointer
+refers. The server MUST then return an HRESULT indicating failure or success.</p></div>

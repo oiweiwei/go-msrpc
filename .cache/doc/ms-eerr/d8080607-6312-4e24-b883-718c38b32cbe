@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The EEComputerNamePresent enumeration defines the allowed
+values for the <b>Type</b> field in the <span><a href="55afeb54-05fe-4f0c-a31f-a932d1be0164" data-linktype="relative-path">EEComputerName</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef  enum tagEEComputerNamePresent
+ {
+   eecnpPresent = 1,
+   eecnpNotPresent
+ } EEComputerNamePresent;
+</pre></div>
+</dd></dl><p><b>eecnpPresent:  Name</b> member of the
+EEComputerName structure is valid and contains a network node identifier.</p><p><b>eecnpNotPresent:  </b>This structure does not
+contain a network node identifier.</p></div>

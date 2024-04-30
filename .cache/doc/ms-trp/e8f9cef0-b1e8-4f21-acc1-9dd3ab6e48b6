@@ -1,0 +1,251 @@
+<div class="content"><p>The SetDevConfig packet is transmitted from a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call</a>.
+Sending this packet MUST restore the configuration of a device that is
+associated one-to-one with the line device.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDeviceID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpDeviceConfig</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpszDeviceClass</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved5</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved6</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved7</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved8</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved9</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved10</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>An unsigned 32-bit
+integer. The identifier of the function that will be invoked on the remote
+server. This value MUST be set to 77.</p><dl>
+<dd>
+<p><b>Return Values</b></p>
+</dd>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>, this field
+MUST contain the result of the encapsulated telephony request. A value of 0
+indicates success, and a <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path">LINEERR_Constants</a>
+value indicates failure. The remote server MUST complete this call
+synchronously.</p>
+</dd>
+<dd>
+<p>Returns zero if the function succeeds or an error
+number if an error occurs. Common return values are:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>LINEERR_INVALDEVICECLASS</p>
+  </td>
+  <td>
+  <p>0x80000023</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_NOMEM</p>
+  </td>
+  <td>
+  <p>0x80000044</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALPOINTER</p>
+  </td>
+  <td>
+  <p>0x80000035</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x80000049</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALPARAM</p>
+  </td>
+  <td>
+  <p>0x80000032</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONFAILED</p>
+  </td>
+  <td>
+  <p>0x80000048</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALLINESTATE</p>
+  </td>
+  <td>
+  <p>0x8000002C</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_RESOURCEUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x8000004B</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_NODRIVER</p>
+  </td>
+  <td>
+  <p>0x80000043</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>dwDeviceID (4 bytes): </b>An unsigned 32-bit
+integer. The line device to be configured. A valid value of dwDeviceID is in
+the range 0 to dwNumDevs –1. The client obtains dwNumDevs by sending a <a href="9d8eb7cd-3245-4e44-97e0-42f7b89c9424" data-linktype="relative-path">Initialize</a> packet to the
+remote server.</p><p><b>lpDeviceConfig (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, in the VarData field of the device configuration
+data structure <a href="6f9a33e6-6c4c-4d2a-91ee-fb1bf1e7fc20" data-linktype="relative-path">VARSTRING</a>
+that was returned by the GetDevConfig packet. </p><p><b>dwSize (4 bytes): </b>An unsigned 32-bit integer.
+The number of bytes in the packet that is pointed to by lpDeviceConfig.</p><p><b>lpszDeviceClass (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, in the VarData field of a null-terminated
+Unicode string that specifies the device class of the device whose
+configuration will be restored.</p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit integer.
+This field is used for padding and MUST be ignored on receipt. It can be any
+value.</p><p><b>Reserved5 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved6 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved7 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved8 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved9 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved10 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>VarData (variable): </b>MUST contain a
+configuration data packet VARSTRING that is indicated by the lpDeviceConfig
+field and a null-terminated Unicode string that is indicated by the
+lpszDeviceClass field in the original request. This field is not present in the
+response.</p><dl>
+<dd>
+<p>The contents of this field are DWORD-aligned.</p>
+</dd></dl></div>

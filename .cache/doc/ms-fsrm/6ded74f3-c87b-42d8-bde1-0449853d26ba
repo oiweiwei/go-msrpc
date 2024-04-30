@@ -1,0 +1,59 @@
+<div class="content"><p>The WaitForClassificationCompletion method blocks the caller
+for the specified time period or until the running job associated with the
+single class (section <a href="d55c8773-28bd-4cc3-a4c7-e8284f68fb50" data-linktype="relative-path">3.2.1.12.2</a>),
+if present, completes, whichever occurs first.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_CLASSIFICATION_MANAGER | 0x0B)] HRESULT WaitForClassificationCompletion(
+   [in] long waitSeconds,
+   [out, retval] VARIANT_BOOL* completed
+ );
+</pre></div>
+</dd></dl><p><b>waitSeconds: </b>Contains the maximum number of
+seconds the call will block before returning.</p><p><b>completed: </b>Pointer to a <a href="../ms-oaut/7b39eb24-9d39-498a-bcd8-75c38e5823d0" data-linktype="relative-path">VARIANT_BOOL</a>
+variable that upon completion contains an indication of whether the <b>running
+classification task</b> has completed.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>waitSeconds</i> parameter is not a valid value;
+  the number of seconds to wait must be in the range of -1 through 2,147,483.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>waitSeconds</i> is greater than &#34;-2&#34;.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST monitor the <a href="c398aaa3-93ae-458d-8284-bfc5a463847d" data-linktype="relative-path">Default Classification Job&#39;s</a>
+<b>Running status</b> for a maximum of <i>waitSeconds</i> if <i>waitSeconds</i>
+is greater than -1, forever if <i>waitSeconds</i> equals -1, or until the <b>Running
+status</b> is <b>FsrmReportRunningStatus_NotRunning</b>, whichever is sooner,
+or return a nonzero error code.</p><ul><li><p><span><span> 
+</span></span>If there is no Running Job in the <b>Classification Job Queue</b>,
+the server MUST return FSRM_E_CLASSIFICATION_NOT_RUNNING.</p>
+</li><li><p><span><span> 
+</span></span>If the Default Classification Job&#39;s <b>Running status</b> changes
+to <b>FsrmReportRunningStatus_NotRunning</b> before <i>waitSeconds</i>, the
+server MUST set <i>completed</i> to VARIANT_TRUE.</p>
+</li><li><p><span><span> 
+</span></span>If the Default Classification Job&#39;s <b>Running status</b> does
+not change to <b>FsrmReportRunningStatus_NotRunning</b> before <i>waitSeconds</i>,
+the server MUST set <i>completed</i> to VARIANT_FALSE.</p>
+</li></ul><p>To implement the time-out behavior driven by the <i>waitSeconds</i>
+parameter, a compliant implementation of this routine can simply poll for the
+Default Classification Job&#39;s <b>Running status</b> value for a maximum period
+of time, or use an internal timer, or mix polling with a timer-driven
+architecture.</p></div>

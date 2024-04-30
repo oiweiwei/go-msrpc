@@ -1,0 +1,61 @@
+<div class="content"><p>The LINEPROVIDERENTRY packet provides the information for a
+single service provider entry. An array of these packets is returned as part of
+the <a href="f07ec04a-a84f-47cf-86c9-658f10630ba2" data-linktype="relative-path">LINEPROVIDERLIST</a>
+packet returned by <a href="6ba67daf-004b-4da5-ae46-b83e89272ac9" data-linktype="relative-path">GetProviderList</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwPermanentProviderID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwProviderFilenameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwProviderFilenameOffset</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwPermanentProviderID (4 bytes): </b>An unsigned
+32-bit integer. The permanent provider identifier of the entry. </p><p><b>dwProviderFilenameSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the provider file name string, including
+the null terminator. </p><p><b>dwProviderFilenameOffset (4 bytes): </b>An
+unsigned 32-bit integer. The offset from the beginning of the LINEPROVIDERLIST
+packet to a null-terminated string containing the file name (path) of the
+service provider DLL (.tsp) file. The size of the string is specified by <b>dwProviderFilenameSize</b>.
+</p></div>

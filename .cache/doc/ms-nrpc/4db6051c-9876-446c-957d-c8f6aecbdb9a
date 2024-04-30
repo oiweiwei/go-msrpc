@@ -1,0 +1,10 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/4db6051c-9876-446c-957d-c8f6aecbdb9a" data-linktype="external">msdn link</a></p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrLogonUasLogon(
+   [in, unique, string] LOGONSRV_HANDLE ServerName,
+   [in, string] wchar_t* UserName,
+   [in, string] wchar_t* Workstation,
+   [out] PNETLOGON_VALIDATION_UAS_INFO* ValidationInformation
+ );
+</pre></div>
+</dd></dl></div>

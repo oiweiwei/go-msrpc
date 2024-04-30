@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The CONNECTION_INFO_0 structure contains the identifier of a
+connection.</p><dl>
+<dd>
+<div><pre> typedef struct _CONNECTION_INFO_0 {
+   DWORD coni0_id;
+ } CONNECTION_INFO_0,
+  *PCONNECTION_INFO_0,
+  *LPCONNECTION_INFO_0;
+</pre></div>
+</dd></dl><p><b>coni0_id:</b>  Specifies a connection
+identifier. For more information, see <span><a href="6abb30a6-9f6d-4339-b022-81f3f78b11f8" data-linktype="relative-path">Abstract Data
+Model (section 3.1.1)</a></span>.</p></div>

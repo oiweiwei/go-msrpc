@@ -1,0 +1,245 @@
+<div class="content"><p>The FLOWSPEC packet allows the changing of Quality of
+Service (QoS) settings for a particular flow. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">TokenRate</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">TokenBucketSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">PeakBandwidth</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Latency</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">DelayVariation</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">ServiceType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">MaxSduSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">MinimumPolicedSize</p>
+  </td>
+ </tr>
+</tbody></table><p><b>TokenRate (4 bytes): </b>An unsigned 32-bit
+integer. Specifies the permitted rate at which data can be transmitted over the
+life of the flow. </p><p><b>TokenBucketSize (4 bytes): </b>An unsigned 32-bit
+integer. The maximum amount of credits, in bytes, that a particular direction
+of a flow can accrue, regardless of time. </p><p><b>PeakBandwidth (4 bytes): </b>An unsigned 32-bit
+integer. The upper limit, in bytes per second, on time-based transmission
+permission for a particular flow. <b>PeakBandwidth</b> restricts flows that can
+have accrued a significant amount of transmission credits, or tokens from
+overburdening network resources with one-time or cyclical data bursts, by
+enforcing a per-second data transmission ceiling. Some intermediate systems can
+take advantage of this information, resulting in more efficient resource
+allocation. </p><p><b>Latency (4 bytes): </b>An unsigned 32-bit integer.
+The maximum acceptable delay, in microseconds, between transmission of a bit by
+the sender and its receipt by one or more intended receivers. The precise
+interpretation of this number depends on the level of guarantee that is
+specified in the QoS request. </p><p><b>DelayVariation (4 bytes): </b>An unsigned 32-bit
+integer. The difference between the maximum and minimum possible delay, in
+microseconds, that a packet will experience. <b>DelayVariation</b> is used to
+determine the amount of packet space that is needed at the receiving end of the
+flow. This packet space information can be used to restore the original data
+transmission pattern. </p><p><b>ServiceType (4 bytes): </b>An unsigned 32-bit
+integer. Specifies the level of service to negotiate for the flow. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SERVICETYPE_NOTRAFFIC</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Indicates that no traffic will be transmitted in the
+  specified direction. On duplex-capable media, this value signals underlying
+  software to set up unidirectional connections only.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICETYPE_BESTEFFORT</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Results in no action taken. However, traffic control
+  does create a BESTEFFORT flow, and traffic on the flow is handled by traffic
+  control similarly to other BESTEFFORT traffic.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICETYPE_CONTROLLEDLOAD</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Provides an end-to-end QoS that closely approximates
+  transmission quality that is provided by best-effort service, as expected
+  under unloaded conditions from the associated network components along the
+  data path. Therefore, applications that use SERVICETYPE_CONTROLLEDLOAD can
+  assume the following: </p>
+  <ul><li><p><span><span>  
+  </span></span><span>The network will deliver a high
+  percentage of transmitted packets to its intended receivers. In other words,
+  packet loss will closely approximate the basic packet error rate of the
+  transmission medium.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>Transmission delay for a high
+  percentage of the delivered packets will not greatly exceed the minimum
+  transit delay that is experienced by any successfully delivered packet.</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>SERVICETYPE_GUARANTEED</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Guarantees that datagrams arrive within the guaranteed
+  delivery time and are not discarded because of queue overflows—provided the
+  flow&#39;s traffic stays within its specified traffic parameters. This service is
+  intended for applications that need a firm guarantee that a datagram arrives
+  no later than a certain time after it was transmitted by its source.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICETYPE_NETWORK_UNAVAILBLE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Used to notify network changes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICETYPE_GENERAL_INFORMATION</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Specifies that all service types are supported for a
+  flow. Can be used on the sender side only.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICETYPE_NOCHANGE</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>Indicates that the Quality of Service (QoS) in a
+  transmission that uses this ServiceType value is not changed.
+  SERVICETYPE_NOCHANGE can be used when requesting a change in the QoS for one
+  direction only or when requesting a change only within the ProviderSpecific
+  parameters of a QoS specification and not in the SendingFlowspec or
+  ReceivingFlowspec.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICETYPE_NONCONFORMING</p>
+  <p>0x00000009</p>
+  </td>
+  <td>
+  <p>Used to indicate nonconforming traffic.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICETYPE_NETWORK_CONTROL</p>
+  <p>0x0000000A</p>
+  </td>
+  <td>
+  <p>Used only for transmission of control packets, such as
+  Resource Reservation Protocol (RSVP) signaling packets <a href="https://go.microsoft.com/fwlink/?LinkId=120109" data-linktype="external">[RFC2205]</a>. This
+  ServiceType has the highest priority.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICETYPE_QUALITATIVE</p>
+  <p>0x0000000D</p>
+  </td>
+  <td>
+  <p>Requires better than BESTEFFORT transmission but
+  cannot quantify its transmission requirements. Traffic control treats flows
+  of this type with the same priority as BESTEFFORT traffic.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_NO_TRAFFIC_CONTROL</p>
+  <p>0x81000000</p>
+  </td>
+  <td>
+  <p>Indicates that traffic control is not to be invoked in
+  the specified direction.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_NO_QOS_SIGNALING</p>
+  <p>0x40000000</p>
+  </td>
+  <td>
+  <p>Suppresses RSVP signaling in the specified direction.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>MaxSduSize (4 bytes): </b>An unsigned 32-bit
+integer. Specifies the maximum packet size, in bytes, that is permitted or used
+in the traffic flow. </p><p><b>MinimumPolicedSize (4 bytes): </b>An unsigned
+32-bit integer. Specifies the minimum packet size, in bytes, for which the
+requested Quality of Service is provided. Packets smaller than this size are
+treated by traffic control as <b>MinimumPolicedSize</b>. When using the
+FLOWSPEC packet together with RSVP, the value of <b>MinimumPolicedSize</b>
+cannot be zero. </p></div>

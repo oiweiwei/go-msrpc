@@ -1,0 +1,24 @@
+<div class="content"><p>The GetDataCollectorSets method populates <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data collector set</a>
+collection with the persisted data collector sets. A data collector set is
+considered to be persisted if either of the following conditions is met: </p><ol><li><p><span>    </span>The data
+collector set is in a running state. A data collector set is considered to be
+in a running state if a call to <a href="695c56b5-8762-419d-a047-aa9762d188c4" data-linktype="relative-path">IDataCollectorSet::getState</a>
+returns plaRunning. A data collector set enters a running state by calling <a href="d2ebf91b-9e67-440d-90e9-3134ee1613a0" data-linktype="relative-path">IDataCollectorSet::Start</a>.
+A data collector set can be removed from a running state by calling <a href="2617595b-63fc-4c23-b674-4cb3e062eb6f" data-linktype="relative-path">IDataCollectorSet::Stop</a>.</p>
+</li><li><p><span>    </span>The data
+collector set is committed. A data collector set is committed after a
+successful call to <a href="b7b0e0f8-327c-46de-b034-3d598306890e" data-linktype="relative-path">IDataCollectorSet::Commit</a>
+where the CommitMode has any value other than plaValidateOnly. A data collector
+set can be removed from a committed state by calling <a href="305c3442-6a96-43b6-8144-c0cfb1ebbec1" data-linktype="relative-path">IDataCollectorSet::Delete</a>.</p>
+</li></ol><p>Semantically, a data collector set is persisted if it has
+been committed to a permanent store, such as the filesystem.<a id="Appendix_A_Target_35"></a><a aria-label="Product behavior note 35" href="905cad7f-1a12-49b4-a263-461a2977ab71#Appendix_A_35" data-linktype="relative-path">&lt;35&gt;</a> </p><dl>
+<dd>
+<div><pre> HRESULT GetDataCollectorSets(
+   [in, unique] BSTR server,
+   [in, unique] BSTR filter
+ );
+</pre></div>
+</dd></dl><p><b>server: </b>Not used.</p><p><b>filter: </b>Not used.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT with the severity bit clear on success as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>;
+otherwise, it MUST return one of the errors as defined in <a href="590752a5-ddc3-49e4-9914-147a90bd0193" data-linktype="relative-path">2.2.1</a> or one of the errors
+as defined in [MS-ERREF] section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p></div>

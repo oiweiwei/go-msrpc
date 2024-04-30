@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The SEQUENCE_INFO structure stores the sequence information
+about the applicable <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span> in a message
+stream sent from a given sending computer to a given destination <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct tagSEQUENCE_INFO {
+   LONGLONG SeqID;
+   ULONG SeqNo;
+   ULONG PrevNo;
+ } SEQUENCE_INFO;
+</pre></div>
+</dd></dl><p><b>SeqID:</b>  Specifies a sequence
+identifier.</p><p><b>SeqNo:</b>  Specifies the sequence
+number of a message within the sequence identified by the <b>SeqID</b> member.</p><p><b>PrevNo:</b>  Specifies the sequence
+number of the message previous to the message indicated by the <b>SeqNo</b>
+member within the sequence identified by the <b>SeqID</b> member.</p></div>

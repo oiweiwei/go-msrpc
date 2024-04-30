@@ -1,0 +1,51 @@
+<div class="content"><p> </p><p>The ElfrRegisterEventSourceW (Opnum 8) method instructs the
+server to return a server context handle to an <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_bb3fad7e-60bf-46d4-9c3f-7caea47a743e" data-linktype="relative-path">event log</a></span> for
+writing. The caller MUST have permission to write to the file containing the
+event log for this to succeed. The module name argument specifies the <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_efdc035d-100a-4568-a67f-69fb726fadcb" data-linktype="relative-path">event
+source</a></span> that is used to determine the relevant event log as specified
+below.</p><dl>
+<dd>
+<div><pre> NTSTATUS ElfrRegisterEventSourceW(
+   [in] EVENTLOG_HANDLE_W UNCServerName,
+   [in] PRPC_UNICODE_STRING ModuleName,
+   [in] PRPC_UNICODE_STRING RegModuleName,
+   [in] unsigned long MajorVersion,
+   [in] unsigned long MinorVersion,
+   [out] IELF_HANDLE* LogHandle
+ );
+</pre></div>
+</dd></dl><p><b>UNCServerName: </b>A server interface handle. A pointer
+to a <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+(as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>)
+string specifying the server, as specified in section <span><a href="12315f0e-4143-45ee-bcda-490a80e5bed5" data-linktype="relative-path">2.2.7</a></span>. The client
+MUST map this string to an <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle,
+and the server MUST ignore this argument, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+sections 4.3.5 and 5.1.5.2.</p><p><b>ModuleName: </b>Specifies the event source, as defined in
+section <span><a href="de62a032-2db0-42ff-a7d0-63f55b9c5e39" data-linktype="relative-path">1.8.3</a></span> and specified
+in section <span><a href="40e4e566-b7fb-46e2-b179-893231f39e8d" data-linktype="relative-path">2.2.11</a></span>, for which a
+handle is needed.</p><p><b>RegModuleName: </b>This parameter MUST be ignored by the
+server. Clients MUST specify an empty string.</p><p><b>MajorVersion: </b>Major version of the client. This value
+MUST be set to 1. </p><p><b>MinorVersion: </b>Minor version of the client. This value
+MUST be set to 1. </p><p><b>LogHandle: </b>Pointer to an event log handle. This
+parameter is a server context handle, as specified in section <span><a href="de54bfbc-fbe4-43b8-b8e1-b8a6b2189604" data-linktype="relative-path">2.2.6</a></span>.</p><p><b>Return Values: </b>The method MUST return STATUS_SUCCESS
+(0x00000000) on success; otherwise, it MUST return an implementation-based,
+nonzero NTSTATUS value specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>In response to this request from the client, the server MUST
+determine what event log the client is requesting the handle for. The server
+MUST treat the <i>ModuleName</i> parameter as the event source name, as
+specified in section 1.8.3. If the <i>ModuleName</i> parameter does not specify
+a known event source, the server MUST default to requesting access to the
+application log that MUST always exist. As to the known application logs, refer
+to section <span><a href="ea6c92d3-05d1-4194-b5a0-686847cd8574" data-linktype="relative-path">3.1.4.3</a></span>. Note that
+the server checks the known event source by going over the registry sub keys
+under the event log registry key. As to how the event sources are registered
+under an event log key, refer to section <span><a href="ac5ffa75-d036-4302-b008-ce9e0bcd60e3" data-linktype="relative-path">3.1.1.3</a></span>.</p><p>The client SHOULD know the configured event log source names
+in the server before issuing this call. The client SHOULD NOT call this
+function unless the given event source name exists in the server.</p><p>Then the server MUST verify that the caller has write access
+to the event log, and the server MUST fail the operation if the caller does not
+have write access to the log. The server SHOULD return STATUS_ACCESS_DENIED
+(0xC0000022) to indicate this failure.</p><p>If the checks above are successful, the server MUST attempt
+to create a handle to the wanted log and if successful, the server MUST return
+the handle via the <i>LogHandle</i> parameter. Creating the handle only fails
+in the case where the server runs out of memory resources, if that happens, the
+server returns STATUS_NO_MEMORY (0xC0000017).</p><p>The server MUST return a value indicating success or failure
+for this operation.</p></div>

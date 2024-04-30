@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>This enumeration is used to represent the two current IP
+protocol versions in use: IP version 4 and IP version 6.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_IP_VERSION
+ {
+   FW_IP_VERSION_INVALID = 0,
+   FW_IP_VERSION_V4,
+   FW_IP_VERSION_V6 = 2,
+   FW_IP_VERSION_MAX = 3
+ } FW_IP_VERSION;
+</pre></div>
+</dd></dl><p><b>FW_IP_VERSION_INVALID:  </b>This value MUST NOT be
+used. It is defined for simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 0.</p><p><b>FW_IP_VERSION_V4:  </b>This value represents IPv4.
+This symbolic constant has a value of 1.</p><p><b>FW_IP_VERSION_V6:  </b>This value represents the
+IPv6. This symbolic constant has a value of 2.</p><p><b>FW_IP_VERSION_MAX:  </b>This value and values that
+exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing IDL definitions and code. This symbolic constant has a
+value of 3.</p></div>

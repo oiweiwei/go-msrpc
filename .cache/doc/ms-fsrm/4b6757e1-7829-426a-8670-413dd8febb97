@@ -1,0 +1,73 @@
+<div class="content"><p>The GetPropertyDefinition method returns a pointer to the <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_56f7f556-18df-4592-8e2e-68d81fbed565" data-linktype="relative-path">property definition</a> from
+the <b>List of Persisted Property Definitions</b> (section <a href="a4da1447-54a5-4b37-b135-bfa7481aed1c" data-linktype="relative-path">3.2.1.6</a>) with the
+specified name.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_CLASSIFICATION_MANAGER | 0x03)] HRESULT GetPropertyDefinition(
+   [in] BSTR propertyName,
+   [out, retval] IFsrmPropertyDefinition** propertyDefinition
+ );
+</pre></div>
+</dd></dl><p><b>propertyName: </b>Contains the name of the
+property definition to return.</p><p><b>propertyDefinition: </b>Pointer to an <b>IFsrmPropertyDefinition</b>
+interface pointer (section <a href="d6a2c986-14d7-4a53-be09-ed52b5ac5033" data-linktype="relative-path">3.2.4.2.37</a>)
+that upon completion points to the <b>IFsrmPropertyDefinition</b> with the
+specified name. Additionally, the server SHOULD implement <a href="1546f68c-b242-48b0-8782-099bda212c97" data-linktype="relative-path">IFsrmPropertyDefinition2</a>
+for the same interface pointer.<a id="Appendix_A_Target_68"></a><a aria-label="Product behavior note 68" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_68" data-linktype="relative-path">&lt;68&gt;</a> The
+caller MUST release the property definition when the caller is done with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified property definition could not be found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045308</p>
+  <p>FSRM_E_INVALID_NAME</p>
+  </td>
+  <td>
+  <p>The <i>propertyName</i> parameter is empty or NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>propertyDefinition</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>propertyName</i> is not empty or NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>propertyDefinition</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+perform the following actions.</p><ul><li><p><span><span> 
+</span></span>Create a new <a href="5d17b734-466f-4c07-9328-adc8cde6ba5a" data-linktype="relative-path">Non-Persisted
+Property Definition Instance (section 3.2.1.6.1.2)</a>.</p>
+</li><li><p><span><span> 
+</span></span>Populate its configuration data from the <a href="00194c43-c91d-447d-9c24-0725f48d4219" data-linktype="relative-path">Persisted Property
+Definition (section 3.2.1.6.1.1)</a> in the <b>List of Persisted
+Property Definitions</b> whose <b>Property Definition.Name</b> is equivalent to
+<i>propertyName</i>.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>propertyDefinition</i> to the <b>IFsrmPropertyDefinition</b>
+interface pointer of the newly created Non-Persisted Property Definition
+Instance.</p>
+</li></ul><p>If a property definition with the specified name does not
+exist, the server MUST return <b>FSRM_E_NOT_FOUND</b>.</p></div>

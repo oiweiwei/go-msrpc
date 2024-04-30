@@ -1,0 +1,20 @@
+<div class="content"><p>The ENUM_SERVICE_STATUS_PROCESSW structure contains information
+used by the <a href="fdb7df2e-341e-4dcc-ad5f-d16c2ac51466" data-linktype="relative-path">REnumServicesStatusExW</a>
+method to return the name of a service in an SCM database. The structure also
+returns information about the service. String values are stored in Unicode.</p><dl>
+<dd>
+<div><pre> typedef struct _ENUM_SERVICE_STATUS_PROCESSW {
+   LPWSTR lpServiceName;
+   LPWSTR lpDisplayName;
+   SERVICE_STATUS_PROCESS ServiceStatusProcess;
+ } ENUM_SERVICE_STATUS_PROCESSW,
+  *LPENUM_SERVICE_STATUS_PROCESSW;
+</pre></div>
+</dd></dl><p><b>lpServiceName:</b>  A pointer to a
+null-terminated string that names a service in an SCM database.</p><dl>
+<dd>
+<p>The forward slash, back slash, comma, and space
+characters are illegal in service names.</p>
+</dd></dl><p><b>lpDisplayName:</b>  A pointer to a
+null-terminated string that contains the display name of the service.</p><p><b>ServiceStatusProcess:</b>  A <a href="c2f0ab87-eb16-4371-8380-ddf9cd29931e" data-linktype="relative-path">SERVICE_STATUS_PROCESS (section 2.2.49)</a>
+structure that contains status information for the lpServiceName service.</p></div>

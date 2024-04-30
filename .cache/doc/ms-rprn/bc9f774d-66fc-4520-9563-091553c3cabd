@@ -1,0 +1,11 @@
+<div class="content"><p>The <b>RPC_BINARY_CONTAINER</b> structure is a container for
+binary printer data and is used in the <b>RPC_BIDI_DATA</b> (section <a href="d6e679dc-5a24-4936-ac68-58251dbd1555" data-linktype="relative-path">2.2.1.12.3)</a> structure.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _RPC_BINARY_CONTAINER {
+   DWORD cbBuf;
+   [size_is(cbBuf), unique] BYTE* pszString;
+ } RPC_BINARY_CONTAINER;
+</pre></div>
+</dd></dl><p><b>cbBuf:</b> This member specifies the size, in
+bytes, of the buffer that is pointed to by the <b>pszString</b> member.</p><p><b>pszString:</b> A pointer to an array of bytes
+that contain binary printer data.</p></div>

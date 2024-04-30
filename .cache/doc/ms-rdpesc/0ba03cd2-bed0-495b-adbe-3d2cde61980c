@@ -1,0 +1,13 @@
+<div class="content"><p>The ReaderStateW structure is a <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> representation of
+the state of a <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_5cddf14c-b925-4494-9b55-d2c8259f9ad0" data-linktype="relative-path">smart card
+reader</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _ReaderStateW {
+   [string] const wchar_t* szReader;
+   ReaderState_Common_Call Common;
+ } ReaderStateW;
+</pre></div>
+</dd></dl><p><b>szReader:</b>  A <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> specifying
+the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_8b790ccb-84c6-49fa-b1ed-4fc7c4e1841f" data-linktype="relative-path">reader name</a>.</p><p><b>Common:</b>  A packet that specifies the
+state of the reader at the time of the call. For information about this packet,
+see section <a href="a71e63ba-e58f-487c-a5d2-5a3e48856594" data-linktype="relative-path">2.2.1.5</a>.</p></div>

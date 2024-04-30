@@ -1,0 +1,72 @@
+<div class="content"><p>The R_ WinsCheckAccess method retrieves the level of access
+the client is granted.<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="a76435fe-902a-4235-b12d-3654ac010672#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p><dl>
+<dd>
+<div><pre> DWORD R_WinsCheckAccess(
+   [in] handle_t ServerHdl,
+   [out] DWORD* Access
+ );
+</pre></div>
+</dd></dl><p><b>ServerHdl: </b>An <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding over IP
+address/HostName to the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a>
+server. RPC uses this binding internally to resolve which WINS server the call
+is directed to.</p><p><b>Access: </b>Pointer to the access level value.
+This value MUST not be NULL. The following values are possible as output.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>No access</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Control level access</p>
+  </td>
+  <td>
+  <p>1</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Query level access</p>
+  </td>
+  <td>
+  <p>2</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates the return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation completed successfully. Any other return value is
+a Win32 error code as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following Win32 error codes can be returned:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Processing and Response Requirements:</b></p><p><a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">Clients</a>
+with any access level can call this method.</p></div>

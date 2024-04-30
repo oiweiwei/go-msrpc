@@ -1,0 +1,71 @@
+<div class="content"><p>The InitializeNode method prepares the server in an
+implementation-specific way to execute the other methods in the <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>. It also informs
+the client about what port will be used and version information.</p><dl>
+<dd>
+<div><pre> HRESULT InitializeNode(
+   [in] unsigned short RequestUDPPort,
+   [out] unsigned short* BoundUDPPort,
+   [out] unsigned long* NodeMajorVersion,
+   [out] unsigned long* NodeMinorVersion,
+   [out] unsigned long* ClusprepVersion
+ );
+</pre></div>
+</dd></dl><p><b>RequestUDPPort: </b>A value that the client
+provides that affects the value of <i>BoundUDPPort</i>.</p><p><b>BoundUDPPort: </b> This parameter is currently not
+used by the protocol.</p><p><b>NodeMajorVersion: </b>The server’s operating
+system major version value.</p><p><b>NodeMinorVersion: </b>The server’s operating
+system minor version value.</p><p><b>ClusprepVersion: </b>The cluster prepare version.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method
+implementation. For more information about Win32 error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 4.</p><p>When processing this call the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Set the server <b>Initialization State</b> to TRUE. The
+initialized state remains TRUE until either the <a href="c7948aa2-7325-471f-90e3-503c34c89f4c" data-linktype="relative-path">CleanupNode (section 3.6.4.4)</a>
+method is called or the <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a>
+object exporter removes the application-specific state associated with the <a href="b5dc0b38-af0f-401c-8f46-3dac0c43e212" data-linktype="relative-path">IClusterNetwork2</a>
+interface, as defined in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section <a href="../ms-dcom/69771298-e621-4b37-85fe-f97f8dad4974" data-linktype="relative-path">1.3.6</a>.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>NodeMajorVersion</i> to an implementation-specific value.<a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="6ea29e14-9c33-4927-90a8-258fd1d6d042#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Set <i>NodeMinorVersion</i> to an implementation-specific value.<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="6ea29e14-9c33-4927-90a8-258fd1d6d042#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Set <i>ClusprepVersion</i> to an implementation-specific value.<a id="Appendix_A_Target_24"></a><a aria-label="Product behavior note 24" href="6ea29e14-9c33-4927-90a8-258fd1d6d042#Appendix_A_24" data-linktype="relative-path">&lt;24&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If <i>RequestUDPPort</i> is nonzero, set <i>BoundUDPPort</i> to <i>RequestUDPPort</i>;
+else set <i>BoundUDPPort</i> to 3343.</p>
+</li></ul><p>The server returns the following information to the client:</p><ul><li><p><span><span> 
+</span></span>The output parameters set to the values specified previously</p>
+</li></ul></div>

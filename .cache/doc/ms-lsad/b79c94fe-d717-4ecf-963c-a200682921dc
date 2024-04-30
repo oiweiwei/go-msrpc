@@ -1,0 +1,80 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/b79c94fe-d717-4ecf-963c-a200682921dc" data-linktype="external">msdn link</a></p><p>The LsarStorePrivateData method is invoked to store a secret
+value.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarStorePrivateData(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PRPC_UNICODE_STRING KeyName,
+   [in, unique] PLSAPR_CR_CIPHER_VALUE EncryptedData
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>KeyName: </b>The name under which private data
+will be stored.</p><p><b>EncryptedData: </b>The secret value to be stored.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One or more of the supplied parameters was invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes three arguments:</p><p><i>PolicyHandle</i>: An open handle to the policy object. If
+the handle is not a valid context handle to the policy object or <i>PolicyHandle</i>.HandleType
+does not equal &#34;Policy&#34;, the server MUST return
+STATUS_INVALID_HANDLE. The server MUST verify that <i>PolicyHandle</i> grants
+access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a> with
+RequiredAccess set to POLICY_CREATE_SECRET.</p><p><i>KeyName</i>: A string identifying the name of the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_9720ddb8-c802-40b7-8dba-5e7520c3396d" data-linktype="relative-path">secret object</a> under which
+the private data would be stored. The server MUST verify that <i>KeyName</i> is
+syntactically valid and reject the request with STATUS_INVALID_PARAMETER
+otherwise. If a secret object by this name does not exist and the <i>EncryptedData</i>
+parameter is not NULL, the server MUST verify that the caller has
+POLICY_CREATE_SECRET access. If the secret does exist and the <i>EncryptedData</i>
+parameter is not NULL, the access check is performed for the SECRET_SET_VALUE
+right against the secret&#39;s <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security
+descriptor</a>. If the access check fails, the server MUST return
+STATUS_ACCESS_DENIED. If the <i>EncryptedData</i> parameter is NULL, the server
+MUST check that the caller has DELETE access to the secret object and, if so,
+delete the secret object from the policy database.</p><p><i>EncryptedData</i>: The value of the secret to be stored.
+This value is encrypted as specified in section <a href="cce8ae78-0138-4129-954e-c65e0c0bffed" data-linktype="relative-path">5.1.2</a>. As mentioned
+already, a caller that wants the secret to be deleted simply passes NULL for
+this value. If decryption fails, the server must return an
+implementation-specific error.<a id="Appendix_A_Target_83"></a><a aria-label="Product behavior note 83" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_83" data-linktype="relative-path">&lt;83&gt;</a></p></div>

@@ -1,0 +1,52 @@
+<div class="content"><p>The Results (get) method returns the collection <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULTS</a>
+received when committing derived objects that were updated as a result of the
+source template&#39;s call to <b>CommitAndUpdateDerived</b>.</p><dl>
+<dd>
+<div><pre> [propget, id(FSRM_PROPERTY(FSRM_DISPID_DERIVEDOBJECTSRESULT | 0x02))] HRESULT Results(
+   [out, retval] IFsrmCollection** results
+ );
+</pre></div>
+</dd></dl><p><b>results: </b>Pointer to an <b>IFsrmCollection</b>
+interface pointer (section <a href="171d3b3c-0f4d-40b9-8f48-0e97f9ff17be" data-linktype="relative-path">3.2.4.2.1</a>)
+that upon completion contains HRESULTS for the committing of derived objects
+that were updated as a result of the source template&#39;s call to <b>CommitAndUpdateDerived</b>.
+A caller MUST release the collection interface received when it is done with
+it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>results</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>results</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST set <i>results</i> to <a href="707fee73-0603-4756-b039-b45b05c9a401" data-linktype="relative-path">DerivedQuotaResults</a>.</p><p>The server MUST do one of the following or return a nonzero
+error code:</p><ul><li><p><span><span> 
+</span></span>Set <i>results</i> to <a href="673869d0-b96e-4e50-abcf-acee7008fc40" data-linktype="relative-path">DerivedAutoApplyQuotaResults</a>
+if the calling template is <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_81039d49-4277-4f11-8251-7f1ab55eef77" data-linktype="relative-path">auto
+apply quota</a>.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>results</i> to <a href="bce23173-0549-4440-a0d2-51e747aa4b2c" data-linktype="relative-path">DerivedQuotaResults</a> if the
+calling template is a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_de8f825c-1256-4d47-9b99-df9c4827c2e0" data-linktype="relative-path">directory
+quota template</a>.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>results</i> to <a href="0e47ee3b-413c-4106-a511-b1f647e094b8" data-linktype="relative-path">DerivedFileScreenResults</a>
+if the calling template is a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_85abb42f-bb8d-4858-a712-3bfe855bb9fd" data-linktype="relative-path">file
+screen template</a>.</p>
+</li></ul></div>

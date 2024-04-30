@@ -1,0 +1,78 @@
+<div class="content"><p> </p><p>The <b>DHCP_MIB_INFO_VQ</b> structure contains the counter
+values for the DHCP server. This structure is an extension of the <span><a href="b4db5a54-5df7-4a88-99dd-d782787c41a0" data-linktype="relative-path">DHCP_MIB_INFO (section 2.2.1.2.48)</a></span>
+structure. This structure is used by an <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> method like <span><a href="dd7b7312-1474-4169-8a92-55fc94b1b9ef" data-linktype="relative-path">R_DhcpGetMibInfoVQ (section 3.1.4.44)</a></span>
+to return <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_6d17f76c-f1e3-4268-a6e6-bbf652550015" data-linktype="relative-path">DHCP server statistics</a></span>.
+</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_MIB_INFO_VQ {
+   DWORD Discovers;
+   DWORD Offers;
+   DWORD Requests;
+   DWORD Acks;
+   DWORD Naks;
+   DWORD Declines;
+   DWORD Releases;
+   DATE_TIME ServerStartTime;
+   DWORD QtnNumLeases;
+   DWORD QtnPctQtnLeases;
+   DWORD QtnProbationLeases;
+   DWORD QtnNonQtnLeases;
+   DWORD QtnExemptLeases;
+   DWORD QtnCapableClients;
+   DWORD QtnIASErrors;
+   DWORD Scopes;
+   [size_is(Scopes)] LPSCOPE_MIB_INFO_VQ ScopeInfo;
+ } DHCP_MIB_INFO_VQ,
+  *LPDHCP_MIB_INFO_VQ;
+</pre></div>
+</dd></dl><p><b>Discovers:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+containing the number of <b>DHCPDISCOVER</b> messages <span><a href="https://go.microsoft.com/fwlink/?LinkId=90318" data-linktype="external">[RFC2131]</a></span>
+received by the DHCPv4 server from the DHCPv4 clients since the DHCP server was
+last started. This is used for statistical analysis by the DHCPv4 server.</p><p><b>Offers:</b>  This is of type DWORD,
+containing the number of <b>DHCPOFFER</b> messages sent by the DHCPv4 server to
+the DHCPv4 client that the DHCPv4 client has not confirmed since the DHCP
+server was last started. This is used for statistical analysis by the DHCPv4
+server.</p><p><b>Requests:</b>   This is of type DWORD,
+containing the number of <b>DHCPREQUEST</b> messages received by the DHCPv4
+server from the DHCPv4 clients since the DHCP server was last started. This is
+used for statistical analysis by the DHCPv4 server.</p><p><b>Acks:</b>  This is of type DWORD,
+containing the number of <b>DHCPACK</b> messages sent by the DHCPv4 server to
+the DHCPv4 client since the DHCP server was last started. This is used for
+statistical analysis by the DHCPv4 server.</p><p><b>Naks:</b>  This is of type DWORD,
+containing the number of <b>DHCPNAK</b> messages sent by the DHCPv4 server to
+DHCPv4 clients since the DHCP server was last started. This is used for
+statistical analysis by the DHCPv4 server.</p><p><b>Declines:</b>   This is of type DWORD,
+containing the number of <b>DHCPDECLINE</b> messages received by the DHCPv4
+server from DHCPv4 clients since the DHCP server was last started. This is used
+for statistical analysis by the DHCPv4 server.</p><p><b>Releases:</b>  This is of type DWORD,
+containing the number of <b>DHCPRELEASE</b> messages received by the DHCPv4
+server from DHCP clients since the DHCP server was last started. This is used
+for statistical analysis by the DHCPv4 server.</p><p><b>ServerStartTime:</b>  This is of type <span><a href="0f93bea1-8172-4efa-826a-e12667e1bcee" data-linktype="relative-path">DATE_TIME (section 2.2.1.2.11)</a></span>,
+containing the start time of the DHCPv4 server.</p><p><b>QtnNumLeases:</b>  This is an unused
+field; it MUST be initialized to zero in an RPC method that modifies the DHCPv4
+server configuration and treated as an error if it is nonzero in an RPC method
+that queries DHCPv4 server configuration.</p><p><b>QtnPctQtnLeases:</b>  This is an unused
+field; it MUST be initialized to zero in an RPC method that modifies the DHCPv4
+server configuration and treated as an error if it is nonzero in an RPC method
+that queries DHCPv4 server configuration.</p><p><b>QtnProbationLeases:</b>  This is an
+unused field; it MUST be initialized to zero in an RPC method that modifies the
+DHCPv4 server configuration and treated as an error if nonzero in an RPC method
+that queries DHCPv4 server configuration.</p><p><b>QtnNonQtnLeases:</b>  This is an unused
+field; it MUST be initialized to zero in an RPC method that modifies the DHCPv4
+server configuration and treated as an error if it is nonzero in an RPC method
+that queries DHCPv4 server configuration.</p><p><b>QtnExemptLeases:</b>  This is an unused
+field; it MUST be initialized to zero in an RPC method that modifies the DHCPv4
+server configuration and treated as an error if it is nonzero in an RPC method
+that queries DHCPv4 server configuration.</p><p><b>QtnCapableClients:</b>  This is an
+unused field; it MUST be initialized to zero in an RPC method that modifies the
+DHCPv4 server configuration and treated as an error if nonzero in an RPC method
+that queries DHCPv4 server configuration.</p><p><b>QtnIASErrors:</b>  This is an unused
+field; it MUST be initialized to zero in an RPC method that modifies the DHCPv4
+server configuration and treated as an error if nonzero in an RPC method that
+queries DHCPv4 server configuration.</p><p><b>Scopes:</b>  This is of type DWORD,
+containing the number of DHCPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_128cd76b-eecb-41e6-96f7-f73c2bf9235a" data-linktype="relative-path">scopes</a></span> configured on
+the current DHCPv4 server. This is used for statistical analysis by the DHCPv4
+server. This field defines the number of DHCPv4 scopes in the subsequent field <i>ScopeInfo</i>.</p><p><b>ScopeInfo:</b>  This is a pointer to an
+array <span><a href="d516b200-2f69-4ba0-81df-4bcc9b1222ca" data-linktype="relative-path">SCOPE_MIB_INFO_VQ (section 2.2.1.2.49)</a></span>
+of length <b>Scopes</b> that contains the information about the IPv4 scopes
+configured on DHCPv4 server.</p></div>

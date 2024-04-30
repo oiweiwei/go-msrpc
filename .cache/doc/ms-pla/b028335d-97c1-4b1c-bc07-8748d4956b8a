@@ -1,0 +1,228 @@
+<div class="content"><p>The IValueMap interface is used to manage a collection of
+named-value pairs.</p><p>Objects that implement this interface represent value maps.
+The following properties MUST be implemented by the objects that implement the
+IValueMap interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>_NewEnum</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>An enumeration object of type IEnumVariant containing
+  a snapshot of the <a href="9786577c-9ac8-44d5-a29f-3f14514af0d8" data-linktype="relative-path">IValueMapItem</a>
+  objects in this collection. The enumeration object is specified in <a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a>
+  section <a href="../ms-oaut/716d04d1-cd16-4065-9b19-1b8808b3df31" data-linktype="relative-path">3.3</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Count</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>The number of value map items in the value map.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Description</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the description of the value map.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Item</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>Retrieves the requested value map item from the value
+  map.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Value</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the value of the value map. The value is
+  stored in a VARIANT. Any VARIANT is a legal value for this type. The Value
+  property can be used for several purposes. Most commonly, the APIs described
+  in this document use the Value property to indicate which ValueMapItem is
+  considered to be currently selected. In these cases, the ValueMapItems each
+  represent a possible value for a ValueMap, and the Value property stores the
+  key to the ValueMapItem that is currently selected.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ValueMapType</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the type of the value map. The possible
+  types of the value map are specified in section <a href="f8a66399-fa9d-4535-8528-fd57adfabf6c" data-linktype="relative-path">2.2.2.11</a>. </p>
+  </td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="5f733b3a-6a8e-48f9-901d-0f340a1aca1a" data-linktype="relative-path">Count
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Count property.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="1f6df91b-2a96-42a1-98ae-3ccba274c2ec" data-linktype="relative-path">Item
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Item property.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="8eb60a0b-7155-4cc4-b583-a3b2f5f21c51" data-linktype="relative-path">_NewEnum
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the NewEnum property.</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="d69a7094-6cd5-48e4-96ed-fe6f774fb269" data-linktype="relative-path">Description
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Description property.</p>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="d0724a9c-a5e5-4c0c-9f83-8afbe464978d" data-linktype="relative-path">Description
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the Description property.</p>
+  <p>Opnum: 11</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="bcf5c970-d7d6-45f6-8e35-2d4820e104e7" data-linktype="relative-path">Value
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Value property.</p>
+  <p>Opnum: 12</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="01c38320-f2ac-4b18-9fbb-4accfafa1967" data-linktype="relative-path">Value
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the Value property.</p>
+  <p>Opnum: 13</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="3ebe907b-0e8c-4b3e-b5bd-796cea414aa1" data-linktype="relative-path">ValueMapType
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the ValueMapType property.</p>
+  <p>Opnum: 14</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b0823e78-4739-4eb5-ad04-5dd99af112c7" data-linktype="relative-path">ValueMapType
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the ValueMapType property.</p>
+  <p>Opnum: 15</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="949a411c-62ff-4b5b-a839-b79df2885fde" data-linktype="relative-path">Add</a></p>
+  </td>
+  <td>
+  <p>Adds an item to the collection.</p>
+  <p>Opnum: 16</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="0c50415d-7494-4f09-8e52-ab024a3fa811" data-linktype="relative-path">Remove</a></p>
+  </td>
+  <td>
+  <p>Removes an item from the collection.</p>
+  <p>Opnum: 17</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="2ec29f59-f6d5-4c13-8e8c-9acf6115f349" data-linktype="relative-path">Clear</a></p>
+  </td>
+  <td>
+  <p>Removes all items from the collection</p>
+  <p>Opnum: 18</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b42086e9-914b-4640-a79b-5047e0e37fc8" data-linktype="relative-path">AddRange</a></p>
+  </td>
+  <td>
+  <p>Adds one or more items to the collection.</p>
+  <p>Opnum: 19</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="9c93eeb5-d739-47b6-b1d6-159eaf2e2ef0" data-linktype="relative-path">CreateValueMapItem</a></p>
+  </td>
+  <td>
+  <p>Creates a value map item object.</p>
+  <p>Opnum: 20</p>
+  </td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface.</p><p>The IValueMap is used by the Performance Logs and Alerts
+Protocol for primarily two purposes. The first use of the IValueMap is to
+return properties of the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data
+collector set</a> (or its encapsulated objects) that could not be set by the
+server. Sections <a href="b7b0e0f8-327c-46de-b034-3d598306890e" data-linktype="relative-path">3.2.4.1.54</a>,
+<a href="dc40db82-6894-4e47-96f8-df0ba863594d" data-linktype="relative-path">3.2.4.1.58</a>, <a href="f84a6227-7a15-4704-ae99-098934876f4f" data-linktype="relative-path">3.2.4.2.24</a>, <a href="6f99ca8b-2197-43eb-b17a-7761c529787c" data-linktype="relative-path">3.2.4.5.22</a>, and <a href="bf21bda1-fd42-4796-ad06-1933e7e1aa96" data-linktype="relative-path">3.2.4.15.8</a> provide more
+information on how the IValueMap is used for this purpose. The second primary
+use of IValueMap in the Performance Logs and Alerts Protocol is to return
+information about a trace provider in the ITraceDataProvider interface.
+Sections <a href="075034e9-d905-4ced-a6b3-ddc7a83db246" data-linktype="relative-path">3.2.4.11.5</a>, <a href="c263d8d0-f97c-4d20-bf9d-386331db6741" data-linktype="relative-path">3.2.4.11.6</a>, and <a href="451feb4b-e34f-4f9b-931c-7f7f0065570e" data-linktype="relative-path">3.2.4.11.7</a> detail how
+information about the trace provider is returned using the IValueMap. </p></div>

@@ -1,0 +1,34 @@
+<div class="content"><p> </p><p>The SESSION_INFO_2 structure contains information about the
+session, including the name of the computer; name of the user; open files,
+pipes, and devices that are on the computer; session active and idle times; how
+the user established the session; and the type of <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> that
+established the session.</p><dl>
+<dd>
+<div><pre> typedef struct _SESSION_INFO_2 {
+   [string] wchar_t* sesi2_cname;
+   [string] wchar_t* sesi2_username;
+   DWORD sesi2_num_opens;
+   DWORD sesi2_time;
+   DWORD sesi2_idle_time;
+   DWORD sesi2_user_flags;
+   [string] wchar_t* sesi2_cltype_name;
+ } SESSION_INFO_2,
+  *PSESSION_INFO_2,
+  *LPSESSION_INFO_2;
+</pre></div>
+</dd></dl><p><b>sesi2_cname:</b>  A pointer to a
+null-terminated Unicode UTF-16 <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_4d5d5403-372f-4f9f-8d7a-65c310c807d9" data-linktype="relative-path">Internet host name</a></span>
+or <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_150cc108-7e58-4fdb-957d-2a3734ba15f5" data-linktype="relative-path">NetBIOS
+host name</a></span> of the computer that established the session.</p><p><b>sesi2_username:</b>  A pointer to a
+null-terminated Unicode UTF-16 string that specifies the name of the user who
+established the session.</p><p><b>sesi2_num_opens:</b>  Specifies a DWORD
+value that contains the number of files, devices, and pipes that were opened
+during the session.</p><p><b>sesi2_time:</b>  Specifies a DWORD value
+that contains the number of seconds the session has been active.</p><p><b>sesi2_idle_time:</b>  Specifies a DWORD
+value that contains the number of seconds the session has been idle.</p><p><b>sesi2_user_flags:</b>  Specifies a DWORD
+value that describes how the user established the session. This member MUST be
+a combination of one or more of the values that are defined in section <span><a href="d5369e4e-cdcd-4d77-aab6-d35b90e676ed" data-linktype="relative-path">2.2.2.3</a></span>.</p><p><b>sesi2_cltype_name:</b>  A pointer to a
+null-terminated Unicode UTF-16 string that specifies the type of client that
+established the session. The <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> simply stores
+this string, as specified in section <span><a href="e14094cc-247e-4704-bbf2-b9aca7904513" data-linktype="relative-path">2.2.2.1</a></span>, and its
+value does not modify the behavior of the protocol. <a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p></div>

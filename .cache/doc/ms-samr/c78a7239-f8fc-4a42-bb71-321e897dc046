@@ -1,0 +1,174 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c78a7239-f8fc-4a42-bb71-321e897dc046" data-linktype="external">msdn link</a></p><p>The SamrValidatePassword method validates an application
+password against the locally stored policy.</p><dl>
+<dd>
+<div><pre> long SamrValidatePassword(
+   [in] handle_t Handle,
+   [in] PASSWORD_POLICY_VALIDATION_TYPE ValidationType,
+   [in, switch_is(ValidationType)] 
+     PSAM_VALIDATE_INPUT_ARG InputArg,
+   [out, switch_is(ValidationType)] 
+     PSAM_VALIDATE_OUTPUT_ARG* OutputArg
+ );
+</pre></div>
+</dd></dl><p><b>Handle: </b>An RPC binding handle parameter, as
+specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+section 1.</p><p><b>ValidationType: </b>The password policy validation
+requested.</p><p><b>InputArg: </b>The password-related material to
+validate.</p><p><b>OutputArg: </b>The result of the validation.</p><p>On receiving this message, the server MUST process the data
+from the message subject to the following constraints:</p><ol><li><p><span>    </span>The client MUST
+have SAM_SERVER_LOOKUP_DOMAIN access on the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_62a8c543-5998-480b-8fa7-41a8f04a18e5" data-linktype="relative-path">server object</a> and
+DOMAIN_READ_PASSWORD_PARAMETERS on the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_3ff707e8-0783-4b16-9370-2899f1078c87" data-linktype="relative-path">account domain object</a>. To
+implement the SAM_SERVER_LOOKUP_DOMAIN <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_d7906f17-bb2c-4193-a3f0-848bcc351dec" data-linktype="relative-path">access check</a>, the server
+MUST internally invoke <a href="c842a897-0a42-4ca5-a607-2afd05271dae" data-linktype="relative-path">SamrConnect5 (section 3.1.5.1.1)</a>
+with <i>DesiredAccess</i> set to SAM_SERVER_LOOKUP_DOMAIN. To implement the
+DOMAIN_READ_PASSWORD_PARAMETERS access check, the server MUST internally invoke
+<a href="ba710c90-5b12-42f8-9e5a-d4aacc1329fa" data-linktype="relative-path">SamrOpenDomain (section 3.1.5.1.5)</a>
+with <i>ServerHandle</i> set to the handle returned by SamrConnect5, and with <i>DesiredAccess</i>
+set to DOMAIN_READ_PASSWORD_PARAMETERS. If both calls succeed, the client is granted
+access.</p>
+</li><li><p><span>    </span>Let the
+following symbolic names correspond to the values specified in the table.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Symbolic name</p>
+   </th>
+   <th>
+   <p>Attribute value on the account domain object</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DomainPasswordHistoryLength</p>
+  </td>
+  <td>
+  <p>pwdHistoryLength</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainLockoutDuration</p>
+  </td>
+  <td>
+  <p>lockoutDuration </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainLockoutObservationWindow</p>
+  </td>
+  <td>
+  <p>lockOutObservationWindow</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainLockoutThreshold</p>
+  </td>
+  <td>
+  <p>lockoutThreshold</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainMinimumPasswordLength</p>
+  </td>
+  <td>
+  <p>minPwdLength</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainMaximumPasswordAge</p>
+  </td>
+  <td>
+  <p>maxPwdAge</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainMinimumPasswordAge</p>
+  </td>
+  <td>
+  <p>minPwdAge</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span>    </span>Any field of
+OutputArg that is modified MUST cause the associated bit in PresentFields (in
+the <a href="e0b2d21d-0b1c-4fc0-8f4a-895bef6ffc4e" data-linktype="relative-path">SAM_VALIDATE_PERSISTED_FIELDS</a>
+structure) to be set according to the following table.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Bit</p>
+   </th>
+   <th>
+   <p>Corresponding field</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SAM_VALIDATE_PASSWORD_LAST_SET</p>
+  </td>
+  <td>
+  <p>PasswordLastSet</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SAM_VALIDATE_BAD_PASSWORD_TIME</p>
+  </td>
+  <td>
+  <p>BadPasswordTime</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SAM_VALIDATE_LOCKOUT_TIME</p>
+  </td>
+  <td>
+  <p>LockoutTime</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SAM_VALIDATE_BAD_PASSWORD_COUNT</p>
+  </td>
+  <td>
+  <p>BadPasswordCount</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SAM_VALIDATE_PASSWORD_HISTORY</p>
+  </td>
+  <td>
+  <p>PasswordHistoryLength</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span>    </span>Additional
+constraints in the following sections MUST be satisfied based on the <i>ValidationType</i>
+input parameter according to the following table. If the <i>ValidationType</i>
+input parameter does not match a row in the table, an error MUST be returned.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>ValidationType</p>
+   </th>
+   <th>
+   <p>Section</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SamValidateAuthentication</p>
+  </td>
+  <td>
+  <p><a href="6f716311-e64a-4d83-b00a-8d74fb9b9fd4" data-linktype="relative-path">3.1.5.13.7.1</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SamValidatePasswordChange</p>
+  </td>
+  <td>
+  <p><a href="f9f32118-aa9f-45fa-8573-9777118deb0e" data-linktype="relative-path">3.1.5.13.7.2</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SamValidatePasswordReset</p>
+  </td>
+  <td>
+  <p><a href="6b1f62f2-c340-4035-9c1a-f42b0af33398" data-linktype="relative-path">3.1.5.13.7.3</a></p>
+  </td>
+ </tr></tbody></table>
+</li></ol><p> </p></div>

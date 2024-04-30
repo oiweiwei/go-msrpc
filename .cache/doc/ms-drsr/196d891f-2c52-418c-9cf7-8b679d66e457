@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The DRS_MSG_QUERYSITESREQ union defines the request message
+versions sent to the <span><a href="2c3faba2-d64e-4866-b8f1-fc8d5f4ec710" data-linktype="relative-path">IDL_DRSQuerySitesByCost</a></span>
+method. Only one version, identified by <i>dwInVersion</i> = 1, is currently
+defined.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_QUERYSITESREQ_V1 V1;
+ } DRS_MSG_QUERYSITESREQ;
+</pre></div>
+</dd></dl><p><b>V1:</b>  The version 1 request.</p></div>

@@ -1,0 +1,64 @@
+<div class="content"><p> </p><p>The IWbemLevel1Login::EstablishPosition method does not
+perform any action. The return value and output parameter are used in locale
+negotiation as specified in section <span><a href="38d52a83-1613-4c56-8418-12ad1145eeaa" data-linktype="relative-path">3.2.3</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT EstablishPosition(
+   [in, unique, string] wchar_t* reserved1,
+   [in] DWORD reserved2,
+   [out] DWORD* LocaleVersion
+ );
+</pre></div>
+</dd></dl><p><b>reserved1: </b>MUST be set to NULL when sent and MUST be
+ignored on receipt.</p><p><b>reserved2: </b>MUST be set to 0 when sent and MUST be
+ignored on receipt.</p><p><b>LocaleVersion: </b>The server MUST set the value
+of <i>LocaleVersion</i> based on the server behavior when <span><a href="40d194a2-c28a-485b-97f6-11a7c08f147e" data-linktype="relative-path">IWbemLevel1Login::NTLMLogin</a></span>
+is passed an unrecognized locale name in the <i>wszPreferredLocale</i>
+parameter:</p><dl>
+<dd>
+<p>The return value and <i>LocaleVersion</i> are used
+for Locale capability negotiation before calling IWbemLevel1Login::NTLMLogin,
+as specified in section 3.2.3.</p>
+</dd></dl><ul><li><p><span><span>  </span></span>If
+the server ignores an unrecognized locale name in the Locale Name Format, as
+specified in section <span><a href="259edd31-d6eb-4bc9-a2c4-2891b78bb51d" data-linktype="relative-path">2.2.29</a></span>, passed to
+IWbemLevel1Login::NTLMLogin while all other parameters are valid, and completes
+the execution of the IWbemLevel1Login::NTLMLogin method, the server MUST set
+the <i>LocaleVersion</i> parameter to 1.</p>
+</li><li><p><span><span>  </span></span>If
+the server returns an error for an unrecognized locale name in Locale Name
+Format, as specified in section 2.2.29, passed to IWbemLevel1Login::NTLMLogin,
+while all other parameters are valid, the server MUST set the <i>LocaleVersion</i>
+parameter to 0.</p>
+</li></ul><p><b>Return Values: </b>The server MUST return one of
+the following values, based on server behavior for the <i>wszPreferredLocale</i>
+parameter in IWbemLevel1Login::NTLMLogin.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00</p>
+  <p>WBEM_S_NO_ERROR</p>
+  </td>
+  <td>
+  <p>The connection was established and no error occurred.<a id="Appendix_A_Target_27"></a><a aria-label="Product behavior note 27" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_27" data-linktype="relative-path">&lt;27&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80004001</p>
+  <p>E_NOTIMPL</p>
+  </td>
+  <td>
+  <p>The attempted operation is not implemented. The value
+  of this element is as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+  section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.<a id="Appendix_A_Target_28"></a><a aria-label="Product behavior note 28" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_28" data-linktype="relative-path">&lt;28&gt;</a> </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -1,0 +1,42 @@
+<div class="content"><p> </p><p>The Dismount method dismounts a mounted <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT Dismount(
+   [in] long bForce,
+   [in] long bPermanent
+ );
+</pre></div>
+</dd></dl><p><b>bForce: </b>A Boolean that determines whether the
+current volume is dismounted unconditionally, even if the volume is in use.</p><p><b>bPermanent: </b>A Boolean that determines whether
+a volume MUST be dismounted permanently by taking the volume offline after
+dismounting it.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following:</p><ul><li><p><span><span> 
+</span></span>Attempt to get exclusive access to the volume. If the server
+fails to get exclusive access to the volume, and the <i>bForce</i> parameter is
+not set to a non-zero value, then the server MUST return VDS_E_DEVICE_IN_USE.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the volume is not currently temporarily dismounted. </p>
+</li><li><p><span><span> 
+</span></span>If <b>bPermanent</b> is set, verify that the volume supports
+permanent dismount by checking the volume flag
+VDS_VF_PERMANENT_DISMOUNT_SUPPORTED.</p>
+</li><li><p><span><span> 
+</span></span>If <b>bPermanent</b> is set, verify that the volume does not have
+any access paths. </p>
+</li><li><p><span><span> 
+</span></span>If <b>bPermanent</b> is not set, verify that the volume is not
+currently permanently dismounted.</p>
+</li></ul><p>The server MUST then perform the following in sequence:</p><ul><li><p><span><span> 
+</span></span>Dismount the volume.</p>
+</li><li><p><span><span> 
+</span></span>If <b>bForce</b> is set, force the dismount, even if the volume
+is in use. </p>
+</li><li><p><span><span> 
+</span></span>If <b>bPermanent</b> is set, take the volume offline.<a id="Appendix_A_Target_133"></a><a aria-label="Product behavior note 133" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_133" data-linktype="relative-path">&lt;133&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Return an HRESULT indicating failure or success.</p>
+</li></ul></div>

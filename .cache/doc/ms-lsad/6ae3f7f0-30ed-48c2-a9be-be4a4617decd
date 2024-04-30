@@ -1,0 +1,96 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/6ae3f7f0-30ed-48c2-a9be-be4a4617decd" data-linktype="external">msdn link</a></p><p>The LsarLookupPrivilegeDisplayName method is invoked to map
+the name of a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privilege</a>
+into a display text string in the caller&#39;s language.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarLookupPrivilegeDisplayName(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PRPC_UNICODE_STRING Name,
+   [in] short ClientLanguage,
+   [in] short ClientSystemDefaultLanguage,
+   [out] PRPC_UNICODE_STRING* DisplayName,
+   [out] unsigned short* LanguageReturned
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>Name: </b>A string containing the name of a privilege.</p><p><b>ClientLanguage: </b>An identifier of the client&#39;s
+language.</p><p><b>ClientSystemDefaultLanguage: </b>An identifier of
+the default language of the caller&#39;s machine.</p><p><b>DisplayName: </b>Used to return the display name
+of the privilege in the language pointed to by the <i>LanguageReturned</i>
+value.</p><p><b>LanguageReturned: </b>An identifier of the
+language in which <i>DisplayName</i> was returned.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One or more of the supplied parameters was invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000060</p>
+  <p>STATUS_NO_SUCH_PRIVILEGE</p>
+  </td>
+  <td>
+  <p>The supplied <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_96b64af9-1896-4bde-b988-54d469c5affd" data-linktype="relative-path">LUID</a> is not recognized by
+  the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This method takes six arguments:</p><p><i>PolicyHandle</i>: An open handle to the policy object. If
+the handle is not a valid context handle to the policy object or <i>PolicyHandle</i>.HandleType
+does not equal &#34;Policy&#34;, the server MUST return STATUS_INVALID_HANDLE.
+The server MUST verify that <i>PolicyHandle</i> grants access as specified in
+section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a> with
+RequiredAccess set to POLICY_LOOKUP_NAMES.</p><p><i>Name</i>: A string name of the privilege. The server MUST
+attempt to locate the entry with the same name in the data store specified in
+section <a href="1a92af76-d45f-42c3-b67c-f1dc61bd6ee1" data-linktype="relative-path">3.1.1.2.1</a>. If
+the entry cannot be located, the server MUST return STATUS_NO_SUCH_PRIVILEGE.</p><p><i>ClientLanguage</i>: A numerical identifier of the
+language in which the caller wishes to receive the display name. The server
+MUST try to locate the privilege description in the language that is identified
+by this parameter. If the data store does not have this language, the server
+MUST try the next parameter.</p><p><i>ClientSystemDefaultLanguage</i>: An identifier of the
+default language of the caller. This might be different than the <i>ClientLanguage</i>
+parameter. If the data store does not have the description in the previous
+language, the server MUST try to find the description in this language.</p><p><i>DisplayName</i>: Used to return the description of the
+privilege. If neither <i>ClientLanguage</i> nor <i>ClientSystemDefaultLanguage</i>
+can be found, the server MUST return the description in the server&#39;s own
+language.</p><p><i>LanguageReturned</i>: Used to return the language ID of <i>DisplayName</i>.
+This might be different from the language ID that was requested.</p></div>

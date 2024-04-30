@@ -1,0 +1,35 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4CreateClientInfoEx</b> method creates a
+DHCPv4 client lease record on the DHCP server.</p><p>The <b>R_DhcpV4CreateClientInfoEx</b> method is an extension
+of the <b>R_DhcpV4CreateClientInfo</b> (Opnum
+122) (section 3.2.4.132) method, where a <span><a href="99021b06-24d3-4edf-b673-0316e85cf28d" data-linktype="relative-path">DHCP_CLIENT_INFO_EX (section 2.2.1.2.119)</a></span>
+structure is specified, rather than a
+DHCP_CLIENT_INFO_PB (section 2.2.1.2.119) structure. The structure
+contains a list of <span><a href="1ac6e6e5-f2bc-42ef-9d6a-c9457d48c3c3" data-linktype="relative-path">DHCP_PROPERTY (section 2.2.1.2.117)</a></span>
+elements that can be associated with the given DHCPv4 client.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4CreateClientInfoEx(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, ref] LPDHCP_CLIENT_INFO_EX ClientInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>As specified in <b>R_DhcpV4CreateClientInfo</b>
+(Opnum 122).</p><p><b>ClientInfo: </b>A pointer to a <b>DHCP_CLIENT_INFO_EX</b>
+structure that contains the DHCPv4 client lease record information to be set on
+the DHCPv4 server. The caller MUST pass the <b>ClientIPAddress</b> and <b>ClientHardwareAddress</b>
+members when adding a DHCPv4 client lease record to the DHCPv4 server. The <b>ClientHardwareAddress</b>
+member represents a DHCPv4 client-identifier as specified in section <span><a href="7c88f58b-c615-4386-a643-ab05b860a003" data-linktype="relative-path">2.2.1.2.5.1</a></span>.
+The <b>ClientName</b>, <b>ClientComment</b>, <b>ClientLeaseExpires</b>, <b>bClientType</b>,
+<b>AddressState</b>, <b>Status</b>, <b>ProbationEnds</b>, <b>QuarantineCapable</b>,
+<b>PolicyName</b>, and <b>OwnerHost</b> members are modified on the DHCPv4
+client lease record identified by the <b>ClientIpAddress</b> member. <a id="Appendix_A_Target_89"></a><a aria-label="Product behavior note 89" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_89" data-linktype="relative-path">&lt;89&gt;</a> </p><dl>
+<dd>
+<p>The <b>DHCP_PROPERTY</b> elements that are supported
+are as follows:</p>
+</dd>
+<dd>
+<p><b>AddressStateEx: </b>The <b>DHCP_PROPERTY</b>
+element specifies the extended address state flags for the client when the ID
+value is DhcpPropIdClientAddressStateEx and the Type value is
+DhcpPropTypeDword.</p>
+</dd></dl><p>The opnum field value for this method is 131.</p><p>The remainder of the processing behavior for this method is
+as defined for the <b>R_DhcpV4CreateClientInfo</b> method.</p></div>

@@ -1,0 +1,50 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/3db726ac-0d1b-43be-bd6f-923d97768436" data-linktype="external">msdn link</a></p><p>The <b>NetrGetAnyDCName</b> method MAY<a id="Appendix_A_Target_162"></a><a aria-label="Product behavior note 162" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_162" data-linktype="relative-path">&lt;162&gt;</a> be used to retrieve the name
+of a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a>
+in the specified primary or directly <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trusted</a> domain. Only DCs
+can return the name of a DC in a specified directly trusted domain. </p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrGetAnyDCName(
+   [in, unique, string] LOGONSRV_HANDLE ServerName,
+   [in, unique, string] wchar_t* DomainName,
+   [out, string] wchar_t** Buffer
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>The custom <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_44deb72d-c62b-4335-90e4-b9fd4dd782ed" data-linktype="relative-path">binding handle</a>, as defined
+in section <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>.</p><p><b>DomainName: </b>A null-terminated <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string that
+contains the name of the primary or directly trusted domain. If the string is
+NULL or empty (that is, the first character in the string is the
+null-terminator character), the primary <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_45a1c9f1-0263-49a8-97c7-7aca1a99308c" data-linktype="relative-path">domain name</a> is assumed.</p><p><b>Buffer: </b>A pointer to an allocated buffer that
+contains the null-terminated Unicode string containing the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a> of a DC in the
+specified domain. The DC name is prefixed by two backslashes (\\).</p><p><b>Return Values: </b>The method returns 0x00000000
+on success; otherwise, it MUST return a nonzero error code and SHOULD return
+the following error code.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return Value/Code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000712</p>
+  <p>ERROR_DOMAIN_TRUST_INCONSISTENT</p>
+  </td>
+  <td>
+  <p>The name or security ID (<a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a>) of the domain
+  specified is inconsistent with the trust information for that domain.</p>
+  </td>
+ </tr></tbody></table><dl>
+<dd>
+<p> </p>
+</dd></dl><p>The server MUST attempt to locate a DC for the domain
+specified by the client. The server SHOULD<a id="Appendix_A_Target_163"></a><a aria-label="Product behavior note 163" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_163" data-linktype="relative-path">&lt;163&gt;</a>
+implement alternate means to locate domain controllers: for example, a static
+list in a file, or the two methods detailed in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/3e9711af-9067-435e-93fb-09182053cef7" data-linktype="relative-path">6.3.6</a>.
+If the server that receives this call is the PDC for the domain specified in
+DomainName, the server MUST return ERROR_NO_SUCH_DOMAIN.</p><p>If the <i>ServerName</i> parameter is not a valid binding
+handle (as defined in section 3.5.4.1), the server MUST return
+ERROR_INVALID_COMPUTERNAME.</p><p>This method also returns errors based on Common Error
+Processing Rule E, specified in section <a href="2d776bfc-e81f-4c8f-9da8-4c2920f65413" data-linktype="relative-path">3</a>.</p><p>NetrGetAnyDcName returns the name of the discovered DC.</p></div>

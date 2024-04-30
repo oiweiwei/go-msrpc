@@ -1,0 +1,282 @@
+<div class="content"><p> </p><p>The GetCACert method returns property values on the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span>.
+The main use of this method is to enable clients to diagnose issues and the
+state of the server. In addition, one of the properties returned by this method
+is required to support the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_456bc2c5-d6e8-4ff7-a723-1a08e6d3cf09" data-linktype="relative-path">advanced CA</a></span>
+functionality (GETCERT_CAXCHGCERT).</p><dl>
+<dd>
+<div><pre> HRESULT GetCACert(
+   [in] DWORD fchain,
+   [in, string, unique, range(1, 1536)] wchar_t const * pwszAuthority,
+   [out, ref] CERTTRANSBLOB* pctbOut
+ );
+</pre></div>
+</dd></dl><p><b>fchain: </b>Specifies the type of information to
+include in the output parameter.</p><p><b>pwszAuthority: </b>Contains the name of the CA.</p><p><b>pctbOut: </b> If the function returns success (0)
+this parameter is a pointer to a <span><a href="d6bee093-d862-4122-8f2b-7b49102097dc" data-linktype="relative-path">CERTTRANSBLOB</a></span>
+structure containing the returned value.</p><p><b>Return Values: </b>For a successful invocation,
+the CA MUST return 0; otherwise, the CA MUST return a nonzero value.</p><p>The processing rules for this method are as follows.</p><p>If the server implements the advanced CA functionality, it
+MUST implement the GETCERT_CAXCHGCERT property specified as follows.</p><p>If Config_CA_Interface_Flags contains the value
+IF_NOREMOTEICERTREQUEST, the server SHOULD return 0x80094011
+(CERTSRV_E_ENROLL_DENIED) to the client.<a id="Appendix_A_Target_81"></a><a aria-label="Product behavior note 81" href="c8bec234-0a53-4a7c-859d-2bb7b2537da5#Appendix_A_81" data-linktype="relative-path">&lt;81&gt;</a></p><p>If Config_CA_Interface_Flags contains the value
+IF_ENFORCEENCRYPTICERTREQUEST and the RPC_C_AUTHN_LEVEL_PKT_PRIVACY
+authentication level, as defined in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/425a7c53-c33a-4868-8e5b-2a850d40dc73" data-linktype="relative-path">2.2.1.1.8</a></span>,
+is not specified on the RPC connection from the client, the CA MUST refuse to
+establish a connection with the client by returning a nonzero error.<a id="Appendix_A_Target_82"></a><a aria-label="Product behavior note 82" href="c8bec234-0a53-4a7c-859d-2bb7b2537da5#Appendix_A_82" data-linktype="relative-path">&lt;82&gt;</a></p><ol><li><p><span>    </span>The <i>fchain</i>
+parameter MUST be one of the values in the first table that follows, or the two
+most significant bytes of fchain MUST be one of the values in the second table
+that follows.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>GETCERT_CASIGCERT 0x00000000 </p>
+  </td>
+  <td>
+  <p>The request is for a CA <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_6a2366ee-fc9c-4406-963d-eac335ed8fc5" data-linktype="relative-path">signing certificate</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GETCERT_CAXCHGCERT 0x00000001 </p>
+  </td>
+  <td>
+  <p>The request is for a CA <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_d3e1039c-49e0-4ccf-bb89-67829214a190" data-linktype="relative-path">exchange certificate</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GETCERT_CURRENTCRL 0x6363726C </p>
+  </td>
+  <td>
+  <p>The request is for the current <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_4f22841f-249b-42fb-a31a-5049c00be939" data-linktype="relative-path">CRL</a></span>
+  in ASN.1 format encoded by using <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_25428624-f292-4134-8f6c-85ba65a6d472" data-linktype="relative-path">DER</a></span> for the latest
+  CA signing certificates.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GETCERT_FILEVERSION 0x66696C65</p>
+  </td>
+  <td>
+  <p>The request is for a string value containing the
+  version number of the CA implementation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GETCERT_CAINFO 0x696E666F</p>
+  </td>
+  <td>
+  <p>The request is for a specific CA informational block,
+  marshaled as a <span><a href="4fa5241c-d10e-4011-87e0-c74753d725a3" data-linktype="relative-path">CAINFO</a></span> structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GETCERT_CANAME 0x6E616D65 </p>
+  </td>
+  <td>
+  <p>The request is for the CA name. The CA name is a <span><a href="https://go.microsoft.com/fwlink/?LinkId=90550" data-linktype="external">[UNICODE]</a></span>
+  string that contains the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_a86706d6-bcdf-4107-be38-d2f08a7eaa68" data-linktype="relative-path">CN</a></span> of the CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GETCERT_PARENTCONFIG 0x70617265 </p>
+  </td>
+  <td>
+  <p>The request is for the name of the parent CA to the
+  current CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GETCERT_POLICYVERSION 0x706F6C69 </p>
+  </td>
+  <td>
+  <p>The request is for the policy algorithm description.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GETCERT_PRODUCTVERSION 0x70726F64 </p>
+  </td>
+  <td>
+  <p>The request is for a string value that contains the
+  product version (build number) of the CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GETCERT_SANITIZEDCANAME 0x73616E69 </p>
+  </td>
+  <td>
+  <p>The request is for the CA <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_de084567-c0d0-4b19-8612-aa88b38ef7c8" data-linktype="relative-path">sanitized name</a></span>.
+  The sanitized name algorithm is specified in section <span><a href="bb738507-c9c3-4175-baf2-fe21f17c076c" data-linktype="relative-path">3.1.1.4.1.1</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GETCERT_SHAREDFOLDER 0x73686172 </p>
+  </td>
+  <td>
+  <p>The request is for a common shared folder location.
+  The shared folder is a <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_c9507dca-291d-4fd6-9cba-a9ee7da8c908" data-linktype="relative-path">UNC</a></span> path name.
+  This property was implemented for CAs deployed in a network without <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+  Directory</a></span>. For more information on implementation and usage for
+  shared folders, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90207" data-linktype="external">[MSFT-SHAREDFOLDER]</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GETCERT_CATYPE 0x74797065 </p>
+  </td>
+  <td>
+  <p>The request is for the CA type.</p>
+  </td>
+ </tr></tbody></table>
+<p>The values in the following
+table define the indexed properties for the <i>fchain</i> parameter. The two
+most significant bytes of <i>fchain</i> define the property type, and the two
+least significant bytes of <i>fchain</i> define the index required for these
+properties.</p>
+<p>For example, a property
+with the value 0x636C0002 is the GETCERT_CRLBYINDEX value with the index value
+of 0x0002. </p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>GETCERT_CRLBYINDEX 0x636C </p>
+  </td>
+  <td>
+  <p>The request is for the CRL at the specified index. The
+  index of the CRL MUST represent the CA certificate that is associated with
+  the CRL. Because each CRL has an index, this method provides the means to
+  retrieve a specific CRL based on its index. The CA Abstract Data Model is
+  specified in section <span><a href="58b3e648-dcfa-41f2-b575-51599dc94e51" data-linktype="relative-path">3.1.1.1</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GETCERT_CACERTBYINDEX 0x6374 </p>
+  </td>
+  <td>
+  <p>The request is for the CA certificate at the specified
+  index. The index MUST refer to the number of the certificate of the CA.
+  Because each CA certificate has an index, this method provides the means to
+  retrieve a specific certificate based on its index.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GETCERT_EXITVERSIONBYINDEX 0x6578 </p>
+  </td>
+  <td>
+  <p>The request is for the exit algorithm description at
+  the specified index.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GETCERT_CRLSTATEBYINDEX 0x736C </p>
+  </td>
+  <td>
+  <p>The request is for the CRL state at the specified
+  index.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GETCERT_CACERTSTATEBYINDEX 0x7374 </p>
+  </td>
+  <td>
+  <p>The request is for the CA certificate state at the
+  specified index.</p>
+  </td>
+ </tr></tbody></table>
+<p>If the value is not one of
+the preceding specified values, the server MUST return an error, which SHOULD
+be 0x80070057.</p>
+</li><li><p><span>    </span>If <i>fchain</i>
+doesn&#39;t equal GETCERT_SANITIZEDCANAME (0x73616E69) or GETCERT_CANAME
+(0x6E616D65), the server MUST invoke the processing rules in section <span><a href="a7fdfc72-b1e0-4882-93da-9aefdf468b83" data-linktype="relative-path">3.2.1.4.2.1.1</a></span>
+with the <i>CANameString</i> input parameter set to the CA name passed in the <i>pwszAuthority</i>
+parameter and the <i>EmptyNameAllowed</i> input parameter set to false. If
+false is returned, the CA MUST return the E_INVALIDARG (0x80070057) error code
+to the client.</p>
+</li><li><p><span>    </span>Returned data
+type:</p>
+<p>The data type of the value
+returned depends on the value specified in the <i>fchain</i> parameter:</p>
+<ul><li><p><span><span>  </span></span>A
+[UNICODE] null-terminated string: A [UNICODE] string MUST be returned if <i>fchain</i>
+is equal to one of the following values:</p>
+<ul><li><p><span><span> 
+</span></span>GETCERT_FILEVERSION</p>
+</li><li><p><span><span> 
+</span></span>GETCERT_CANAME</p>
+</li><li><p><span><span> 
+</span></span>GETCERT_PARENTCONFIG</p>
+</li><li><p><span><span> 
+</span></span>GETCERT_POLICYVERSION</p>
+</li><li><p><span><span> 
+</span></span>GETCERT_PRODUCTVERSION</p>
+</li><li><p><span><span> 
+</span></span>GETCERT_SANITIZEDCANAME</p>
+</li><li><p><span><span> 
+</span></span>GETCERT_SHAREDFOLDER</p>
+</li><li><p><span><span> 
+</span></span>GETCERT_EXITVERSIONBYINDEX</p>
+<p>Marshaling rules for [UNICODE] strings MUST be as
+specified in section <span><a href="2689e825-038f-4640-b138-82c0dfa3278d" data-linktype="relative-path">2.2.2.2.1</a></span>.</p>
+</li></ul></li><li><p><span><span>  </span></span>A
+CAINFO structure: A CAINFO structure MUST be returned if <i>fchain</i> is equal
+to the following:</p>
+<p>GETCERT_CAINFO</p>
+<p>Marshaling rules for CAINFO MUST be as specified in
+section <span><a href="cd9656c0-6be3-4887-84b0-aacedc017b0b" data-linktype="relative-path">2.2.2.2.5</a></span>.</p>
+</li><li><p><span><span>  </span></span>A
+CRL: A CRL MUST be returned if <i>fchain</i> is equal to the following:</p>
+<p>GETCERT_CURRENTCRL</p>
+<p>GETCERT_CRLBYINDEX</p>
+<p>Marshaling rules for a CRL MUST be as specified in
+section <span><a href="8d8693ad-39f9-464f-9225-26c7e754e3cf" data-linktype="relative-path">2.2.2.2.3</a></span>.</p>
+</li><li><p><span><span>  </span></span><span><a href="https://go.microsoft.com/fwlink/?LinkId=90590" data-linktype="external">[X509]</a></span>
+Certificate: A certificate MUST be returned if <i>fchain</i> is equal to the
+following:</p>
+<p>GETCERT_CASIGCERT</p>
+<p>GETCERT_CAXCHGCERT</p>
+<p>GETCERT_CACERTBYINDEX</p>
+<p>Marshaling rules for [X509] certificates MUST be as
+specified in section <span><a href="213be3a0-7895-446a-ad9e-6847447ff295" data-linktype="relative-path">2.2.2.2.2</a></span>.</p>
+</li><li><p><span><span>  </span></span>Byte
+array: A byte array MUST be returned if <i>fchain</i> is equal to the
+following:</p>
+<p>GETCERT_CRLSTATEBYINDEX</p>
+<p>GETCERT_CACERTSTATEBYINDEX</p>
+<p>Marshaling: pctbOut MUST be a pointer to a
+CERTTRANSBLOB structure. The pb member of the structure MUST point to the byte
+array.</p>
+</li><li><p><span><span>  </span></span>An
+unsigned integer: An unsigned integer MUST be returned if <i>fchain</i> is
+equal to the following:</p>
+<p>GETCERT_CATYPE</p>
+<p>Marshaling: pctbOut MUST be a pointer to a
+CERTTRANSBLOB structure. The pb member of the structure MUST point to an
+unsigned integer in <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a></span>
+format.</p>
+<p><b>Note</b>  The numeric values for these
+constants are defined in the preceding table.</p>
+</li></ul></li><li><p><span>    </span>Computing the
+returned values:</p>
+<ul><li><p><span><span>  </span></span>Sections
+<span><a href="340d45ef-e8ae-4688-9e5b-5f576fc7b128" data-linktype="relative-path">3.2.1.4.2.2.1</a></span>
+to <span><a href="9072a750-830c-4655-a436-83629cbe8ae9" data-linktype="relative-path">3.2.1.4.2.2.12</a></span>
+define the possible values for the <i>fchain</i> parameter.</p>
+</li><li><p><span><span>  </span></span>Sections
+<span><a href="0242c855-1187-4a73-b554-50d7ccd4d324" data-linktype="relative-path">3.2.1.4.2.2.13</a></span>
+to <span><a href="49babccf-1ba0-4f4c-ad19-d906d6d71940" data-linktype="relative-path">3.2.1.4.2.2.17</a></span>
+define the possible values for the most significant two bytes of the <i>fchain</i>
+parameter.</p>
+</li></ul></li></ol></div>

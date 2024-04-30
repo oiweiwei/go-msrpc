@@ -1,0 +1,17 @@
+<div class="content"><p>The Distributed Component Object Model (DCOM) Remote
+Protocol extends the <a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_ef2ebebc-1760-407a-9ace-af48f9050e02" data-linktype="relative-path">Component
+Object Model (COM)</a> over a network by providing facilities for creating and
+activating objects, and for managing object references, <a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a> lifetimes, and
+object <a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>
+queries. The DCOM Remote Protocol is built on top of Remote Procedure Call
+Protocol Extensions, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>,
+and relies on its authentication, authorization, and message integrity
+capabilities. The DCOM Remote Protocol is also referred to as <a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_d4ad46fe-cbab-43f2-a125-b2f125824f33" data-linktype="relative-path">Object RPC</a> or ORPC. The
+following diagram shows the layering of the protocol stack.</p><p><img id="MS-DCOM_pictcf6d6eb1-38cd-2b0e-a0fe-7e755fdcdb5a.png" src="ms-dcom_files/image001.png" alt="DCOM protocol stack" title="DCOM protocol stack" data-linktype="relative-path"/></p><p><b>Figure 1: DCOM protocol stack</b></p><p>The following diagram presents an overview of the protocol.</p><p><img id="MS-DCOM_pict59e37fb1-26bd-8f4c-4893-62c691990b48.png" src="ms-dcom_files/image002.png" alt="DCOM protocol overview" title="DCOM protocol overview" data-linktype="relative-path"/></p><p><b>Figure 2: DCOM protocol overview</b></p><p>Higher-level applications use the DCOM <a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to obtain object
+references and make ORPC calls on the object. The DCOM client in turn uses the
+Remote Procedure Call Protocol Extensions, as specified in [MS-RPCE], to
+communicate with the <a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_1a04bcc5-87d0-4719-81c3-1cb9bb5c5695" data-linktype="relative-path">object
+server</a>.</p><p>The object server constitutes an <a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_19f75354-9b0b-47cb-a00b-4ff196883b32" data-linktype="relative-path">object resolver</a> service and
+one or more <a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_5b284f60-ee33-4d15-9a7b-0fb82d7c6b68" data-linktype="relative-path">object exporters</a>.
+Objects are contained in object exporters. Objects are the target of the ORPC
+calls from the client.</p></div>

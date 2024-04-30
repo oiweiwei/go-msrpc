@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The QueryPacket structure defines the format of the messages
+sent by the <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_a33485fd-4392-4219-83f8-d65cfa0e9674" data-linktype="relative-path">master locator</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   RPC_SYNTAX_IDENTIFIER Interface;
+   GUID Object;
+   WCHAR WkstaName[20];
+   WCHAR EntryName[100];
+ } QueryPacket;
+</pre></div>
+</dd></dl><p><b>Interface:</b>  Optionally MUST specify
+the identifier and version for the interface being queried. MUST be filled with
+zeros to indicate that no interface identifier is specified. The type of the
+structure is specified in section <span><a href="1831bd1c-738c-45dc-a2af-5d0b835af6f5" data-linktype="relative-path">2.2.4.1.2</a></span>.</p><p><b>Object:</b>  Optionally MUST specify the
+<span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+for the object being queried. MUST be filled with zeros to indicate that no <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_0a38e28d-7525-4d2d-8c62-43aedaf47b74" data-linktype="relative-path">object
+UUID</a></span> is specified.</p><p><b>WkstaName:</b>  MUST be a <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_f53fe4b9-8e1d-4366-9254-3c4f73269e78" data-linktype="relative-path">Mailslot</a></span>
+sender as specified in section <span><a href="783ca657-3dc5-4d65-a5ab-a81bd65c12a1" data-linktype="relative-path">2.2.4.1.1</a></span>. This
+parameter is limited to 20 characters including the null terminator.</p><p><b>EntryName:</b>  MUST specify the <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_6cfe4abe-94bd-43b6-b666-3618d9093373" data-linktype="relative-path">name
+service entry</a></span> being looked for. This parameter MUST conform to the
+RPC_C_NS_SYNTAX_DCE syntax as specified in section <span><a href="99becf64-89ed-4bd8-adf0-470add859d15" data-linktype="relative-path">2.2.2</a></span>. MUST be
+filled with all zeros to indicate that no name service entry is specified.</p></div>

@@ -1,0 +1,34 @@
+<div class="content"><p> </p><p>The BindType method retrieves a reference to an <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_fb6a1829-c102-482c-902f-51c197b22860" data-linktype="relative-path">automation
+type description</a></span> whose name corresponds to a specified string.</p><dl>
+<dd>
+<div><pre> HRESULT BindType(
+   [in] LPOLESTR szName,
+   [in] ULONG lHashVal,
+   [out] ITypeInfo** ppTInfo
+ );
+</pre></div>
+</dd></dl><p><b>szName: </b>MUST be set to a string.</p><p><b>lHashVal: </b>MUST be the hash value associated
+with the value of <i>szName</i> as specified in section <span><a href="7a8ed4c3-14a4-433c-baa5-b6ec88135352" data-linktype="relative-path">2.2.51</a></span>,
+or 0. The server MUST return the same values in <i>ppTInfo</i> in either case.</p><p><b>ppTInfo: </b>MUST be set to a reference to an <span><a href="99504cf9-16d8-401e-a873-83b85d1ee4aa" data-linktype="relative-path">ITypeInfo
+server</a></span> instance, or NULL.</p><dl>
+<dd>
+<p>If the <span><a href="7894019f-de1e-455e-b2aa-3b899c2e50f6" data-linktype="relative-path">ITypeComp server</a></span> is
+associated with an <span><a href="5daecf67-bc6e-4e17-bcf8-797bdba1748b" data-linktype="relative-path">ITypeLib server</a></span>, <i>ppTInfo</i>
+MUST specify a type defined in its <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_07ad91dc-c12a-44f7-9c64-7e496933183a" data-linktype="relative-path">automation scope</a></span>
+whose name matches the value of <i>szName</i> according to the string-matching
+criteria specified in section <span><a href="ef05bc9b-062d-467b-ad88-0f19e3e545f6" data-linktype="relative-path">2.2.50</a></span>, or be set
+to NULL if no such type exists.</p>
+</dd>
+<dd>
+<p>MUST be set to NULL if the ITypeComp server is
+associated with an ITypeInfo server.</p>
+</dd></dl><p><b>Return Values: </b>The method MUST return information
+in an <b>HRESULT</b> data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul></div>

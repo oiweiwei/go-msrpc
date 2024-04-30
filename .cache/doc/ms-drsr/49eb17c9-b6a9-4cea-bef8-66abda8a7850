@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The IDL_DRSUnbind method destroys a context handle
+previously created by the <span><a href="605b1ea1-9cdc-428f-ab7a-70120e020a3d" data-linktype="relative-path">IDL_DRSBind</a></span> method.</p><dl>
+<dd>
+<div><pre> ULONG IDL_DRSUnbind(
+   [in, out, ref] DRS_HANDLE* phDrs
+ );
+</pre></div>
+</dd></dl><p><b>phDrs: </b>A pointer to the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+context handle returned by the IDL_DRSBind method. The value is set to null on
+return.</p><p><b>Return Values: </b>0 if successful, or a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows
+error code</a></span> if a failure occurs.</p><p><b>Exceptions Thrown:</b> This method might throw the
+following exception beyond those thrown by the underlying RPC protocol (as
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>):
+ERROR_INVALID_HANDLE.</p></div>

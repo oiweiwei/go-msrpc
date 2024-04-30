@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The <b>DHCP_POL_EXPR_ARRAY</b> structure specifies the array
+of expressions of a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_52323544-69e0-4172-8921-2711cbda988e" data-linktype="relative-path">policy</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_POL_EXPR_ARRAY {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_POL_EXPR Elements;
+ } DHCP_POL_EXPR_ARRAY,
+  *PDHCP_POL_EXPR_ARRAY,
+  *LPDHCP_POL_EXPR_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This member is of type
+<span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and contains the number of expression elements in the array.</p><p><b>Elements:</b>  This member is a pointer
+of type LPDHCP_POL_EXPR (section <span><a href="4a35c636-24e6-43e9-aa47-45e34e457934" data-linktype="relative-path">2.2.1.2.107</a></span>) that
+points to an array of <b>DHCP_POL_EXPR</b> (section 2.2.1.2.107) elements.</p></div>

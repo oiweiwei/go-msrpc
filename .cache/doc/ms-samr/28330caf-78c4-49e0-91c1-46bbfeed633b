@@ -1,0 +1,16 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/28330caf-78c4-49e0-91c1-46bbfeed633b" data-linktype="external">msdn link</a></p><p>The RPC_STRING structure holds a counted string encoded in
+the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_442ab13f-d2c1-4128-b1db-f3bea4b8224e" data-linktype="relative-path">OEM code page</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _RPC_STRING {
+   unsigned short Length;
+   unsigned short MaximumLength;
+   [size_is(MaximumLength), length_is(Length)] 
+     char* Buffer;
+ } RPC_STRING,
+  *PRPC_STRING;
+</pre></div>
+</dd></dl><p><b>Length:</b>  The size, in bytes, not
+including a terminating null character, of the string contained in <b>Buffer</b>.</p><p><b>MaximumLength:</b>  The size, in bytes,
+of the <b>Buffer</b> member.</p><p><b>Buffer:</b>  A buffer containing a
+string encoded in the OEM code page. The string is counted (by the <b>Length</b>
+member), and therefore is not null-terminated.</p></div>

@@ -1,0 +1,72 @@
+<div class="content"><p>This method is called by a client to perform capability
+negotiation for the <a href="bf483305-7f33-4db3-8681-9ca98bb6c058" data-linktype="relative-path">Multiple-partition
+Support Capability Negotiation (section 3.1.4.3)</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetServerInformation(
+   [out] long* plReserved1,
+   [out] long* plReserved2,
+   [out] long* plReserved3,
+   [out] long* plMultiplePartitionSupport,
+   [out] long* plReserved4,
+   [out] long* plReserved5
+ );
+</pre></div>
+</dd></dl><p><b>plReserved1: </b>A pointer to a variable that is
+set to any arbitrary value when sent by the server and MUST be ignored on
+receipt by the client. </p><p><b>plReserved2: </b>A pointer to a variable that is
+set to any arbitrary value when sent by the server and MUST be ignored on
+receipt by the client.</p><p><b>plReserved3: </b>A pointer to a variable that is
+set to any arbitrary value when sent by the server and MUST be ignored on
+receipt by the client.</p><p><b>plMultiplePartitionSupport: </b>A pointer to a
+value that, upon successful completion, MUST be set to one of the following
+values indicating support of multiple <a href="3f01a312-3391-4109-a96e-95358babf191#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partitions</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>The server does not support multiple partitions.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>The server supports multiple partitions.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p>The server supports multiple partitions and is also
+  capable of managing the domain-controlled <a href="dd5b0f7e-45bb-4e22-933b-db6ec891a93f" data-linktype="relative-path">PartitionRoles (section 3.1.1.3.17)</a>,
+  <a href="04e2333f-97d0-444c-9a3d-896f9d7be63b" data-linktype="relative-path">PartitionRoleMembers (section 3.1.1.3.18)</a>,
+  and <a href="63e78320-0dae-437d-97f2-7f7aa8d20b7b" data-linktype="relative-path">PartitionUsers (section 3.1.1.3.16)</a>
+  tables for other servers. This value SHOULD be treated the same as 2, because
+  it does not affect interoperability.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>plReserved4: </b>A pointer to a variable that is
+set to any arbitrary value when sent by the server and MUST be ignored on
+receipt by the client.</p><p><b>plReserved5: </b>A pointer to a variable that is
+set to any arbitrary value when sent by the server and MUST be ignored on
+receipt by the client.</p><p><b>Return Values: </b> This method MUST return S_OK
+(0x00000000) on success and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically. </p><p>A server that does not support catalog version 4.00 or
+catalog version 5.00 SHOULD immediately return E_NOTIMPL (0x80004001) instead
+of implementing this method.</p><p> Otherwise, the server MUST attempt to set the value
+referenced by <i>plMultiplePartitionSupport</i> to the previously specified
+value that indicates its support of multiple partitions, and fail the call if
+it cannot set the value.</p></div>

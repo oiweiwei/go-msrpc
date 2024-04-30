@@ -1,0 +1,48 @@
+<div class="content"><p>The Add method adds the specified object to the collection
+of <b>Objects Being Enumerated</b>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_COLLECTION_MUTABLE | 0x01)] HRESULT Add(
+   [in] VARIANT item
+ );
+</pre></div>
+</dd></dl><p><b>item: </b>A <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a>
+structure that contains the <a href="../ms-oaut/ac9c502b-ac1c-4202-8ad4-048ac98afcc9" data-linktype="relative-path">IDispatch</a>
+interface of the object to add to the collection of <b>Objects Being Enumerated</b>.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045303</p>
+  <p>FSRM_E_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>The object pointed to by the IDispatch pointer that is
+  contained in the VARIANT structure already exists in the collection of <b>Objects
+  Being Enumerated</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>item</i> parameter is not a value type.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server SHOULD validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that the object pointed to by the IDispatch pointer
+contained in the VARIANT structure is the same type of object as other <b>Objects
+Being Enumerated</b> in the collection.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST add <i>item</i> to the collection of <b>Objects
+Being Enumerated</b>.</p></div>

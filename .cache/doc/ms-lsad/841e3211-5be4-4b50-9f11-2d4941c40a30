@@ -1,0 +1,102 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/841e3211-5be4-4b50-9f11-2d4941c40a30" data-linktype="external">msdn link</a></p><p>The LsarCreateAccount method is invoked to create a new <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b76eee27-064e-461b-81a9-fbf41e49928b" data-linktype="relative-path">account object</a> in the
+server&#39;s database.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarCreateAccount(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PRPC_SID AccountSid,
+   [in] ACCESS_MASK DesiredAccess,
+   [out] LSAPR_HANDLE* AccountHandle
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>AccountSid: </b>The <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security identifier (SID)</a>
+of the account to be created.</p><p><b>DesiredAccess: </b>A bitmask specifying accesses
+to be granted to the newly created and opened account at this time.</p><p><b>AccountHandle: </b>Used to return a handle to the
+newly created account object.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000035</p>
+  <p>STATUS_OBJECT_NAME_COLLISION</p>
+  </td>
+  <td>
+  <p>An account with this SID already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>Some of the parameters supplied were invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes four arguments:</p><p><i>PolicyHandle</i>: A handle to an open policy object. If
+the handle is not a valid context handle to the policy object or <i>PolicyHandle</i>.HandleType
+does not equal &#34;Policy&#34;, the server MUST return
+STATUS_INVALID_HANDLE. The server MUST verify that <i>PolicyHandle</i> grants
+access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a> with
+RequiredAccess set to POLICY_CREATE_ACCOUNT.</p><p><i>AccountSid</i>: The SID of the account to be created. The
+server MUST validate that <i>AccountSid</i> represents a valid SID and fail the
+request with STATUS_INVALID_PARAMETER if it is not.<a id="Appendix_A_Target_66"></a><a aria-label="Product behavior note 66" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_66" data-linktype="relative-path">&lt;66&gt;</a></p><p><i>DesiredAccess</i>: A set of access bits that the caller
+attempts to receive from the account object after it has been created, which is
+access-checked according to section 3.1.4.2.2. The method-specific portion of
+the check is the following.</p><dl>
+<dd>
+<div><pre> IF (IsRequestorAnonymous() and LsaRestrictAnonymous is set to TRUE) THEN
+     Return STATUS_OBJECT_NAME_NOT_FOUND
+ END IF
+</pre></div>
+</dd></dl><p>The valid account-rights bits are specified in section <a href="fc3b5e24-b1a2-4c79-83d7-256ceaef8ff4" data-linktype="relative-path">2.2.1.1.3</a>, and the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a> is
+specified in section <a href="d1a82c1b-4d2b-456f-b4df-c70b461f3d42" data-linktype="relative-path">3.1.1.3</a>.
+The IsRequestorAnonymous procedure is specified in section <a href="5d50b55f-e9c7-4af6-bf85-02e8043f66ea" data-linktype="relative-path">3.1.4.2.3</a>.</p><p><i>AccountHandle</i>: If the request is successful, the
+server MUST create and return a context handle (section <a href="1011130b-0413-460d-81ed-d1821d141639" data-linktype="relative-path">3.1.1.7</a>) via <i>AccountHandle</i>,
+with its fields initialized as follows:</p><ul><li><p><span><span> 
+</span></span>LsaContextHandle.HandleType = &#34;Account&#34;</p>
+</li><li><p><span><span> 
+</span></span>LsaContextHandle.Object = the account object</p>
+</li><li><p><span><span> 
+</span></span>LsaContextHandle.GrantedAccess = as specified in section <a href="e5e1e32e-4066-435d-b669-044fe997eaf7" data-linktype="relative-path">3.1.4.2.1</a></p>
+</li></ul><p>This mechanism allows the caller to skip the additional step
+of opening the account object after creating it.</p><p>The server MUST check whether another account object already
+exists in its policy database with the same SID, and fail the request with
+STATUS_OBJECT_NAME_COLLISION if it does.</p><p>The server MUST associate a security descriptor with a newly
+created account object. See section 3.1.1.3 for the data model of this object
+type.</p></div>

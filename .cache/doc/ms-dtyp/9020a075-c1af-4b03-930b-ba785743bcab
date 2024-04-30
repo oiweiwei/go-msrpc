@@ -1,0 +1,13 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9020a075-c1af-4b03-930b-ba785743bcab" data-linktype="external">msdn link</a></p><p>The CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_RELATIVE structure
+specifies an octet string.<a id="Appendix_A_Target_78"></a><a aria-label="Product behavior note 78" href="11e1608c-6169-4fbc-9c33-373fc9b224f4#Appendix_A_78" data-linktype="relative-path">&lt;78&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_RELATIVE {
+   DWORD Length;
+   BYTE OctetString[];
+ } CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_RELATIVE,
+  *PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_RELATIVE;
+</pre></div>
+</dd></dl><p><b>Length:</b>  The length, in bytes, of
+the value contained in the <b>OctetString</b> field.</p><p><b>OctetString:</b>  An array of bytes containing
+the octet string value. The length of the value is specified by the <b>Length</b>
+field.</p></div>

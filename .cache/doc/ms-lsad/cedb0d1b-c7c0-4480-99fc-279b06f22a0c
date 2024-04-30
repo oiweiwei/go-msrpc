@@ -1,0 +1,126 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/cedb0d1b-c7c0-4480-99fc-279b06f22a0c" data-linktype="external">msdn link</a></p><p>The LSAPR_AUTH_INFORMATION structure communicates
+information about authentication between <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted domains</a>. <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">Domain</a> <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a> authentication is
+specified in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/c964fca9-c50e-426a-9173-5bf3cb720e2e" data-linktype="relative-path">6.1.6.9.1</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_AUTH_INFORMATION {
+   LARGE_INTEGER LastUpdateTime;
+   unsigned long AuthType;
+   [range(0,65536)] unsigned long AuthInfoLength;
+   [size_is(AuthInfoLength)] unsigned char* AuthInfo;
+ } LSAPR_AUTH_INFORMATION,
+  *PLSAPR_AUTH_INFORMATION;
+</pre></div>
+</dd></dl><p><b>LastUpdateTime:</b>  The date and time
+when this authentication information was last updated. It is a 64-bit value
+that represents the number of 100-nanosecond intervals since January 1, 1601, <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">UTC</a>.</p><p><b>AuthType:</b>  A type for the AuthInfo,
+as specified in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>This type MUST be ignored.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Derived RC4HMAC key. For more information, see <a href="https://go.microsoft.com/fwlink/?LinkId=90488" data-linktype="external">[RFC4757]</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>A plaintext password. Indicates that the information
+  stored in the attribute is a Unicode plaintext password. If this AuthType is
+  present, Kerberos can then use this password to derive additional key types
+  that are needed to encrypt and decrypt cross-realm TGTs.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>A plaintext password version number that is a single,
+  unsigned long integer consisting of 32 bits.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>AuthInfoLength:</b>  The count of bytes
+in AuthInfo buffer.<a id="Appendix_A_Target_36"></a><a aria-label="Product behavior note 36" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_36" data-linktype="relative-path">&lt;36&gt;</a></p><p><b>AuthInfo:</b>  Authentication data that
+depends on the <b>AuthType</b>.</p><p>The self-relative form of the LSAPR_AUTH_INFORMATION
+structure is used in <a href="da8f32a1-0a16-4194-810d-06cc0698595a" data-linktype="relative-path">LSAPR_TRUSTED_DOMAIN_AUTH_BLOB</a>;
+in that case, the structure memory layout looks like the following.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LastUpdateTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AuthType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AuthInfoLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AuthInfo
+  [1 ... AuthInfoLength]</p>
+  </td>
+ </tr>
+</tbody></table><p> </p></div>

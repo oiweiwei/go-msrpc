@@ -1,0 +1,42 @@
+<div class="content"><p>The PropertyConditions (get) method retrieves all the <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_df6b8dff-0b24-42b4-bd78-ce0b12141ba0" data-linktype="relative-path">property conditions</a>
+configured for the file management job and returns S_OK upon successful
+completion.</p><dl>
+<dd>
+<div><pre> [propget, id(FSRM_PROPERTY(FSRM_DISPID_FILE_MANAGEMENT_JOB | 0x0f))] HRESULT PropertyConditions(
+   [out, retval] IFsrmCollection** propertyConditions
+ );
+</pre></div>
+</dd></dl><p><b>propertyConditions: </b>Pointer to an <b>IFsrmCollection</b>
+interface pointer (section <a href="171d3b3c-0f4d-40b9-8f48-0e97f9ff17be" data-linktype="relative-path">3.2.4.2.1</a>)
+that upon completion contains pointers to the property conditions configured
+for the file management job. A caller MUST release the collection received when
+the caller is done with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>propertyConditions</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>propertyCondtions</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST populate <i>propertyCondtions</i> with the <b>IFsrmPropertyCondition</b>
+interface pointer (section <a href="0ea95a53-f2ba-4337-b171-b2224031d0c5" data-linktype="relative-path">3.2.4.2.49</a>)
+of each property condition configured for the file management job.</p><p>If there are no property conditions configured for the file
+management job, the server MUST return an <b>IFsrmCollection</b> object that
+contains zero objects.</p></div>

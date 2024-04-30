@@ -1,0 +1,66 @@
+<div class="content"><p>The LINEMEDIACONTROLMEDIA packet describes a media action to
+be executed when detecting a media type change. It is used as an entry in an
+array. The <a href="b3f7fcb1-4451-4179-ab85-a10ea0f7fa06" data-linktype="relative-path">SetMediaControl</a>
+packet uses this packet. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwMediaModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwDuration</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwMediaControl</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwMediaModes (4 bytes): </b>An unsigned 32-bit
+integer. This field specifies one or more media types. This member MUST use one
+of the <a href="e3b2104f-131d-4ead-9ded-45654ebfeac0" data-linktype="relative-path">LINEMEDIAMODE_Constants</a>.
+</p><p><b>dwDuration (4 bytes): </b>An unsigned 32-bit
+integer. The duration of time, in milliseconds, during which the media type
+SHOULD be present before the application SHOULD be notified or media control
+action SHOULD be taken. </p><p><b>dwMediaControl (4 bytes): </b>An unsigned 32-bit
+integer. The media control action. This member MUST use one of the <a href="3e050929-c418-49ee-b0d9-45e33e6c6f0f" data-linktype="relative-path">LINEMEDIACONTROL_Constants</a>.
+</p><p>This packet cannot be extended.</p><p>The LINEMEDIACONTROLMEDIA packet defines a triple &lt;media
+types, duration, media-control action&gt;. An array of these triples is passed
+to the SetMediaControl packet to set the media control actions triggered by
+media type changes for a given call. When a change to a listed media type is
+detected, then the corresponding action on the media stream MUST be invoked.</p></div>

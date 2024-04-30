@@ -1,0 +1,8 @@
+<div class="content"><p>The Component Object Model Plus (COM+) Protocol consists of
+a DCOM interface, and remote protocol extensions described in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>,
+used for adding <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transactions</a>,
+implementing synchronization, managing multiple <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_a224e395-3fea-48bd-b141-3dd9bee2136a" data-linktype="relative-path">object class</a>
+configurations, enforcing security, and providing additional functionality and
+attributes to DCOM-based distributed object applications.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

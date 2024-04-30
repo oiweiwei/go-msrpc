@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The DRS_MSG_ADDENTRYREPLY_V3 structure defines the response
+message received from the <span><a href="06764fc5-4df6-4104-b6af-a92bdaa81f6e" data-linktype="relative-path">IDL_DRSAddEntry</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DSNAME* pdsErrObject;
+   DWORD dwErrVer;
+   [switch_is(dwErrVer)] DRS_ERROR_DATA* pErrData;
+   [range(0,10000)] ULONG cObjectsAdded;
+   [size_is(cObjectsAdded)] ADDENTRY_REPLY_INFO* infoList;
+ } DRS_MSG_ADDENTRYREPLY_V3;
+</pre></div>
+</dd></dl><p><b>pdsErrObject:</b>  Null, or the identity
+of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> that was
+being added when an error occurred.</p><p><b>dwErrVer:</b>  MUST be set to 1.</p><p><b>pErrData:</b>  Null, or an error that
+occurred while processing the request.</p><p><b>cObjectsAdded:</b>  The count of items
+in the <b>infoList</b> array.</p><p><b>infoList:</b>  The identities of the
+added objects. The item order matches the item order of values in the <b>EntInfList</b>
+field in the request structure.</p></div>

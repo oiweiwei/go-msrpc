@@ -1,0 +1,51 @@
+<div class="content"><p>The EstablishContext_Call structure is used to specify the
+scope of <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_c6f0d1a4-ae75-40b9-beef-baa419cb33b9" data-linktype="relative-path">Smart Cards for
+Windows</a> context to be created (for more information, see section <a href="ea15ee61-9fac-40ac-96eb-d9d63deee760" data-linktype="relative-path">3.1.4.1</a>). </p><dl>
+<dd>
+<div><pre> typedef struct _EstablishContext_Call {
+   unsigned long dwScope;
+ } EstablishContext_Call;
+</pre></div>
+</dd></dl><p><b>dwScope:</b>  The scope of the context
+that will be established. The following table shows valid values of this field.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SCARD_SCOPE_USER</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The context is a user context; any database operations
+  MUST be performed with the domain of the user.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_SCOPE_TERMINAL</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The context is a terminal context; any database
+  operations MUST be performed with the domain of the terminal. This flag is
+  currently unused; it is here for compatibility with <a href="https://go.microsoft.com/fwlink/?LinkId=90245" data-linktype="external">[PCSC5]</a> section
+  3.1.3.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_SCOPE_SYSTEM</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The context is the system context; any database
+  operations MUST be performed within the domain of the system.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

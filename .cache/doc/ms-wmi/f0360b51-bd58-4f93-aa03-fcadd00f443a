@@ -1,0 +1,48 @@
+<div class="content"><p> </p><p>When the IWbemCallResult::GetResultServices method is
+called, the server MUST retrieve a pointer to the <span><a href="7a50647a-5311-41c2-8f4f-83bcfb497877" data-linktype="relative-path">IWbemServices</a></span>
+interface that results from a semisynchronous call to the <span><a href="8d31827c-31e0-4bb5-a351-cc9cf70f1140" data-linktype="relative-path">IWbemServices::OpenNamespace</a></span>
+method.</p><dl>
+<dd>
+<div><pre> HRESULT GetResultServices(
+   [in] long lTimeout,
+   [out] IWbemServices** ppServices
+ );
+</pre></div>
+</dd></dl><p><b>lTimeout: </b>MUST be the time, in milliseconds,
+that the call to GetResultServices allows to pass before timing out. If the
+constant WBEM_INFINITE (0xFFFFFFFF) is used, the Skip method call MUST wait
+until the operation succeeds.</p><p><b>ppServices: </b>MUST be a pointer to the
+IWbemServices interface that is requested by the original call to
+IWbemServices::OpenNamespace when that interface becomes available. If the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_51f3288a-1aea-49f6-96a1-91f368e8b49b" data-linktype="relative-path">semisynchronous
+operation</a></span> fails, the returned parameter MUST be NULL. When sent by
+the client, this pointer parameter MUST NOT be NULL. If the original operation
+does not return an <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface pointer</a></span>,
+the returned parameter MUST be NULL.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The server MUST locate the entry in <b>WbemCallResultTable</b>
+with WbemCallResultPointer matching <span><a href="23ec4065-3fbe-4e39-baef-69e22c285623" data-linktype="relative-path">IWbemCallResult</a></span>.
+The IWbemCallResult::GetResultServices method MUST be called on the interface
+that is obtained in response to a previous call to a semisynchronous operation
+that returns an IWbemCallResult interface.</p><p>IWbemCallResult::GetResultServices MUST be called to obtain
+the IWbemServices interface pointer that is returned by the
+IWbemServices::OpenNamespace execution. In response to the
+IWbemCallResult::GetResultServices method, the server MUST wait for the
+operation to finish in <i>lTimeout</i> time. The operation is finished when <b>OperationFinished</b>
+is TRUE. If the operation is not finished in <i>lTimeout</i> time, the server
+MUST return WBEM_S_TIMEDOUT. If the operation is finished successfully in <i>lTimeout</i>
+time, the server MUST return the IWbemServices interface pointer result stored
+in ResultService of the operation in the <i>ppServices</i> parameter. The
+method MUST fail if the method parameters are not valid, as specified earlier
+in this section, or if the server is unable to execute the method.</p><p> The successful method execution MUST fill the <i>ppServices</i>
+parameter with an IWbemServices interface pointer and MUST return
+WBEM_S_NO_ERROR.</p><p>The failed method execution sets the value that is
+referenced by the output parameters to NULL and MUST return an error in the
+format that is specified in section 2.2.11. If the operation does not complete
+within <i>lTimeout</i> milliseconds, the server MUST return WBEM_S_TIMEDOUT and
+MUST allow for further retries to be made.</p><p>If the original semisynchronous operation fails, the IWbemCallResult::GetResultServices
+method MUST return the error code that the original method would have returned
+in its synchronous version.</p></div>

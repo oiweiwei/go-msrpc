@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>This <b>DNS_ADDR</b> structure is used to represent an IP
+address. The IP address is either IPv4 or IPv6.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsAddr {
+   CHAR MaxSa[32];
+   DWORD DnsAddrUserDword[8];
+ } DNS_ADDR,
+  *PDNS_ADDR;
+</pre></div>
+</dd></dl><p><b>MaxSa:</b> This field MUST be constructed as
+specified in <span><a href="aea3ba9b-de48-4f0e-a4c8-4f7c89404b99" data-linktype="relative-path">DNS ADDR</a></span>.</p><p><b>DnsAddrUserDword:</b> This field MUST be
+constructed as specified in <span><a href="6e041c76-3b55-480a-84fb-feebcb0cc9db" data-linktype="relative-path">DNS ADD USER</a></span>.</p><p>Any field not specified above MUST be set to zero by the
+sender and ignored by the receiver.</p></div>

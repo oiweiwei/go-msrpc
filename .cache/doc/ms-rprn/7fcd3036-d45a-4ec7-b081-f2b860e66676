@@ -1,0 +1,40 @@
+<div class="content"><p>RpcReplyOpenPrinter establishes a context handle from a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a> to a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_3b2da3d1-c159-4399-a6dd-dfd5f76fa2f5" data-linktype="relative-path">print client</a>.<a id="Appendix_A_Target_412"></a><a aria-label="Product behavior note 412" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_412" data-linktype="relative-path">&lt;412&gt;</a> The server uses the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_9dfe84e3-a772-4ad1-9a25-1255c1dc0f84" data-linktype="relative-path">RPC context handle</a> returned
+by this method to send notification data to the client machine. </p><dl>
+<dd>
+<div><pre> DWORD RpcReplyOpenPrinter(
+   [in, string] STRING_HANDLE pMachine,
+   [out] PRINTER_HANDLE* phPrinterNotify,
+   [in] DWORD dwPrinterRemote,
+   [in] DWORD dwType,
+   [in, range(0,512)] DWORD cbBuffer,
+   [in, unique, size_is(cbBuffer), disable_consistency_check] 
+     BYTE* pBuffer
+ );
+</pre></div>
+</dd></dl><p><b>pMachine: </b>A string that specifies the print
+client computer name. It is synonymous with <i>pName</i>, as specified in <a href="acb355a4-913b-4abb-8cb5-415aea160015" data-linktype="relative-path">Print Server Name
+Parameters (section 3.1.4.1.4)</a>.</p><p><b>phPrinterNotify: </b>A pointer to a remote printer
+RPC context handle that is used by a print server to send notifications to a
+print client. RPC context handles are specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>dwPrinterRemote: </b>A value that is supplied to
+the server by the <i>dwPrinterLocal</i> parameter of a corresponding call to <a href="b8b414d9-f1cd-4191-bb6b-87d09ab2fd83" data-linktype="relative-path">RpcRemoteFindFirstPrinterChangeNotification (section 3.1.4.10.3)</a>
+or <a href="eb66b221-1c1f-4249-b8bc-c5befec2314d" data-linktype="relative-path">RpcRemoteFindFirstPrinterChangeNotificationEx (section 3.1.4.10.4)</a>.
+This value MUST NOT be zero.</p><p><b>dwType: </b>A value that MUST be 0x00000001.</p><p><b>cbBuffer: </b>A value that SHOULD be set to zero
+when sent and MUST be ignored on receipt.</p><p><b>pBuffer: </b>A pointer that SHOULD be set to NULL
+when sent and MUST be ignored on receipt.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the client MUST validate
+parameters by verifying that the <i>pMachine</i> parameter corresponds to the
+current machine.</p><p>This method SHOULD execute without further access checks.</p><p>If parameter validation fails, the client MUST fail the
+operation immediately and return a nonzero error response to the server.
+Otherwise, the client MUST process the message as follows:</p><ul><li><p><span><span> 
+</span></span>Locate the notification state that is identified by the <i>dwPrinterRemote</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Create a back channel RPC context handle and associate it with
+this notification state.</p>
+</li><li><p><span><span> 
+</span></span>Store the back channel RPC context handle in the handle pointed
+to by <i>phPrinterNotify</i>.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.<a id="Appendix_A_Target_413"></a><a aria-label="Product behavior note 413" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_413" data-linktype="relative-path">&lt;413&gt;</a></p>
+</li></ul></div>

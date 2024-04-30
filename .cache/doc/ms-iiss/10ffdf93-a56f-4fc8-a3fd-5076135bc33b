@@ -1,0 +1,70 @@
+<div class="content"><p>This method is used to terminate the <a href="546d32cd-905e-4f34-b023-2be4b5e16413#gt_866d4b3a-f5b8-4518-853e-6f2991a8f4e2" data-linktype="relative-path">Internet services</a> processes.
+This erases the <a href="546d32cd-905e-4f34-b023-2be4b5e16413#gt_f31d61e4-7dc6-4710-ba18-944e0dbc2a11" data-linktype="relative-path">IIS</a>
+processes from memory, and is used to recover from failed instances of IIS
+processes. </p><p>The server can have all functionality through this interface
+disabled using actions taken local to the server machine. In this case the
+function MUST return an error when called (E_ERROR_RESOURCE_DISABLED) and MUST
+NOT perform any other action.</p><p>If the interface functionality is not disabled, the
+following SHOULD take place on the server when this method is called:</p><ul><li><p><span><span> 
+</span></span>The method SHOULD terminate all processes involved in supporting
+the Internet services on the server. </p>
+</li></ul><p>How the processes are terminated is
+implementation-dependent.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="5c517f8f-7847-402a-b79e-4dbbf517997e#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p><dl>
+<dd>
+<div><pre> HRESULT Kill();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>A signed, 32-bit value
+indicating return status. If the method returns a negative value, it has
+failed. If the 12-bit facility code (bits 16–27) is set to 0x007, the value
+contains a Win32 error code in the lower 16 bits. 0 or positive values indicate
+success, with the lower 16 bits in positive nonzero values containing warnings
+or flags defined in the method implementation. For more information about <b>HRESULT</b>,
+see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<p>Each of the values that follow where the first byte
+contains 0x8007 is the <b>HRESULT</b> derived from the Win32 error code with
+the specified name.</p>
+</dd>
+<dd>
+<p>The method MUST return S_OK (0x00000000) upon
+success.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>E_ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>Not enough memory is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D5</p>
+  <p>E_ERROR_RESOURCE_DISABLED</p>
+  </td>
+  <td>
+  <p>The <a href="fb0c3533-c603-4ba1-8ac5-7426df68ef90" data-linktype="relative-path"><b>IIisServiceControl</b></a>
+  interface is disabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

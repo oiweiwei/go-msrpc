@@ -1,0 +1,34 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/a4c12a3c-3c9b-4b81-ac40-79cb5018474a" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_CHANGE_GROUP_V2</b> enumeration SHOULD<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a> define the list of
+notifications that are generated for a group. These notifications are available
+only with <b>ApiGetNotifyV2</b> (section <a href="491227be-d055-4140-8b85-35cf29f31166" data-linktype="relative-path">3.1.4.2.138</a>). The object
+type is CLUSTER_OBJECT_TYPE_GROUP. ClusAPI Protocol version 2.0 servers do not
+support this value.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   CLUSTER_CHANGE_GROUP_DELETED_V2 = 0x00000001,
+   CLUSTER_CHANGE_GROUP_COMMON_PROPERTY_V2 = 0x00000002,
+   CLUSTER_CHANGE_GROUP_PRIVATE_PROPERTY_V2 = 0x00000004,
+   CLUSTER_CHANGE_GROUP_STATE_V2 = 0x00000008,
+   CLUSTER_CHANGE_GROUP_OWNER_NODE_V2 = 0x00000010,
+   CLUSTER_CHANGE_GROUP_PREFERRED_OWNERS_V2 = 0x00000020,
+   CLUSTER_CHANGE_GROUP_RESOURCE_ADDED_V2 = 0x00000040,
+   CLUSTER_CHANGE_GROUP_RESOURCE_GAINED_V2 = 0x00000080,
+   CLUSTER_CHANGE_GROUP_RESOURCE_LOST_V2 = 0x00000100,
+   CLUSTER_CHANGE_GROUP_HANDLE_CLOSE_V2 = 0x00000200
+ } CLUSTER_CHANGE_GROUP_V2;
+</pre></div>
+</dd></dl><p><b>CLUSTER_CHANGE_GROUP_DELETED_V2: </b>This
+notification indicates that a group was deleted.</p><p><b>CLUSTER_CHANGE_GROUP_COMMON_PROPERTY_V2: </b>This
+notification indicates that a group&#39;s common property has changed. For details
+of group property lists, see section <a href="7ed348f2-eddf-4c3f-a1cb-b651ec3cff92" data-linktype="relative-path">2.2.3.10</a>.</p><p><b>CLUSTER_CHANGE_GROUP_PRIVATE_PROPERTY_V2: </b>This
+notification indicates that a group&#39;s <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_c7c52d99-72e6-42b7-9b8f-84276d320cee" data-linktype="relative-path">private property</a> has
+changed. For details of group property lists, see section 2.2.3.10.</p><p><b>CLUSTER_CHANGE_GROUP_STATE_V2: </b>This
+notification indicates that the state of the group has changed. For details on
+group states, see section <a href="8e73b5c0-2b5f-47bc-961f-7daf623da339" data-linktype="relative-path">3.1.4.2.46</a>.</p><p><b>CLUSTER_CHANGE_GROUP_OWNER_NODE_V2: </b>This
+notification indicates that the group&#39;s owner node has changed.</p><p><b>CLUSTER_CHANGE_GROUP_PREFERRED_OWNERS_V2: </b>This
+notification indicates that the group&#39;s preferred owners have changed.</p><p><b>CLUSTER_CHANGE_GROUP_RESOURCE_ADDED_V2: </b>This notification
+indicates that a resource was added to the group.</p><p><b>CLUSTER_CHANGE_GROUP_RESOURCE_GAINED_V2: </b>This
+notification indicates that the group gained a resource.</p><p><b>CLUSTER_CHANGE_GROUP_RESOURCE_LOST_V2: </b>This
+notification indicates that a resource is no longer part of the group.</p><p><b>CLUSTER_CHANGE_GROUP_HANDLE_CLOSE_V2: </b>For
+details of this notification, see section <a href="2f7e3a15-1ca9-4e9e-9560-2eee1a62de88" data-linktype="relative-path">3.2.4.7</a>.</p></div>

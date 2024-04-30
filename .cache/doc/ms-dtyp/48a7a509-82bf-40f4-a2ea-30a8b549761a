@@ -1,0 +1,5 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/48a7a509-82bf-40f4-a2ea-30a8b549761a" data-linktype="external">msdn link</a></p><p>This document provides a collection of commonly used data
+types, which are categorized into two basic types: common base types and common
+data types. The common base types are those types that Microsoft compilers
+natively support. The common data types are data types that are frequently used
+by many protocols. These data types are user-defined types.</p></div>

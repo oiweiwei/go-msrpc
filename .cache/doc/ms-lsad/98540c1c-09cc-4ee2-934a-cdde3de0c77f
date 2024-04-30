@@ -1,0 +1,9 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/98540c1c-09cc-4ee2-934a-cdde3de0c77f" data-linktype="external">msdn link</a></p><p>The LSAPR_ACCOUNT_INFORMATION structure specifies a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a> <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security identifier (SID)</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_ACCOUNT_INFORMATION {
+   PRPC_SID Sid;
+ } LSAPR_ACCOUNT_INFORMATION,
+  *PLSAPR_ACCOUNT_INFORMATION;
+</pre></div>
+</dd></dl><p><b>Sid:</b>  This field contains the SID of
+the security principal. This field MUST NOT be NULL.</p></div>

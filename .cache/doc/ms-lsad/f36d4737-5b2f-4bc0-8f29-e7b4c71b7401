@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/f36d4737-5b2f-4bc0-8f29-e7b4c71b7401" data-linktype="external">msdn link</a></p><p>The LSAPR_POLICY_PRIVILEGE_DEF structure specifies a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privilege</a> definition, which
+consists of a pairing of a human-readable name with a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_96b64af9-1896-4bde-b988-54d469c5affd" data-linktype="relative-path">locally unique identifier
+(LUID)</a>. </p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_POLICY_PRIVILEGE_DEF {
+   RPC_UNICODE_STRING Name;
+   LUID LocalValue;
+ } LSAPR_POLICY_PRIVILEGE_DEF,
+  *PLSAPR_POLICY_PRIVILEGE_DEF;
+</pre></div>
+</dd></dl><p><b>Name:</b>  An <a href="../ms-dtyp/94a16bb6-c610-4cb9-8db6-26f15f560061" data-linktype="relative-path">RPC_UNICODE_STRING</a>
+that contains the privilege name.</p><p><b>LocalValue:</b>  This field contains the
+LUID value assigned locally for efficient representation of the privilege. This
+value is meaningful only on the system where it was assigned.</p></div>

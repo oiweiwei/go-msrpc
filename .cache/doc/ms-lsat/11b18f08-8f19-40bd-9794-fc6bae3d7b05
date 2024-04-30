@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The LSAPR_OBJECT_ATTRIBUTES structure specifies an object
+and its properties as specified in <span><a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a></span>
+section <span><a href="../ms-lsad/ad9e183d-6474-4641-a6d9-d3796d2d604b" data-linktype="relative-path">2.2.2.4</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_OBJECT_ATTRIBUTES {
+   unsigned long Length;
+   unsigned char* RootDirectory;
+   PSTRING ObjectName;
+   unsigned long Attributes;
+   PLSAPR_SECURITY_DESCRIPTOR SecurityDescriptor;
+   PSECURITY_QUALITY_OF_SERVICE SecurityQualityOfService;
+ } LSAPR_OBJECT_ATTRIBUTES,
+  *PLSAPR_OBJECT_ATTRIBUTES;
+</pre></div>
+</dd></dl><p>Individual member semantics are specified in [MS-LSAD]
+section 2.2.2.4.</p></div>

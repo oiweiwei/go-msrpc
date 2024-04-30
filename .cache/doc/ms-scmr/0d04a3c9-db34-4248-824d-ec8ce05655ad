@@ -1,0 +1,79 @@
+<div class="content"><p>The RGetServiceKeyNameA method returns the ServiceName of
+the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_1fbb7936-8437-4e3d-b62f-47df3be07721" data-linktype="relative-path">service record</a> with
+the specified DisplayName.</p><dl>
+<dd>
+<div><pre> DWORD RGetServiceKeyNameA(
+   [in] SC_RPC_HANDLE hSCManager,
+   [in, string, range(0, SC_MAX_NAME_LENGTH)] 
+     LPSTR lpDisplayName,
+   [out, string, size_is(*lpcchBuffer)] 
+     LPSTR lpKeyName,
+   [in, out] LPBOUNDED_DWORD_4K lpcchBuffer
+ );
+</pre></div>
+</dd></dl><p><b>hSCManager: </b>An <a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">SC_RPC_HANDLE</a> (section
+2.2.4) data type that defines the handle to the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a> database created
+previously, using one of the open methods specified in section <a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a>.</p><p><b>lpDisplayName: </b>A pointer to a null-terminated
+ANSI string that specifies the service display name.</p><p><b>lpKeyName: </b>A pointer to a buffer that receives
+the null-terminated ANSI string that contains the service name.</p><p><b>lpcchBuffer: </b>An <a href="d5e2cc22-7db6-4101-b36f-f4377e836b4c" data-linktype="relative-path">LPBOUNDED_DWORD_4K</a>
+(section 2.2.7) data type that defines the pointer to a variable that specifies
+the size, in <a href="../ms-dtyp/77e1033f-b31d-4bd2-b3d5-9f3c9faa22eb" data-linktype="relative-path">char</a>s,
+of the buffer. On output, this variable receives the size of the service name,
+excluding the terminating null character.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns one of the following error
+codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>122</p>
+  <p>ERROR_INSUFFICIENT_BUFFER</p>
+  </td>
+  <td>
+  <p>The data area passed to a system call is too small.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>123</p>
+  <p>ERROR_INVALID_NAME</p>
+  </td>
+  <td>
+  <p>The name specified in <i>lpDisplayName</i> is invalid
+  or set to NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1060</p>
+  <p>ERROR_SERVICE_DOES_NOT_EXIST</p>
+  </td>
+  <td>
+  <p>The service record with the DisplayName matching the
+  specified <i>lpDisplayName</i> does not exist in the SCM database identified
+  by the <i>hSCManager</i> parameter.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation the server MUST look up the service record with
+DisplayName matching the display name specified by the <i>lpDisplayName</i>
+parameter in the SCM database identified by <i>hSCManager</i>.</p><p>The server MUST return the ServiceName from the found
+service record in the <i>lpKeyName</i> parameter and set the size in chars of
+the service name excluding the terminating null character in <i>lpcchBuffer</i>.</p><p>If the <i>lpKeyName</i> buffer is insufficient to hold the
+complete service name of the service, the server MUST fail the call with
+ERROR_INSUFFICIENT_BUFFER (122) and set the required size in chars of the
+service name excluding the terminating null character in <i>lpcchBuffer</i>.<a id="Appendix_A_Target_50"></a><a aria-label="Product behavior note 50" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_50" data-linktype="relative-path">&lt;50&gt;</a> If the size is sufficient for
+data returned, the server also returns the size that was set in <i>lpcchBuffer</i>.</p><p>If a service record is created with a <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a>-encoded display
+name using the <a href="6a8ca926-9477-4dd4-b766-692fab07227e" data-linktype="relative-path">RCreateServiceW</a>
+method, then the server MUST convert the service name to an <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_100cd8a6-5cb1-4895-9de6-e4a3c224a583" data-linktype="relative-path">ANSI</a> string before
+returning it. The conversion process is specified in <a href="../ms-ucoderef/4a045e08-fc29-4f22-baf4-16f38c2825fb" data-linktype="relative-path">[MS-UCODEREF]</a>
+section <a href="../ms-ucoderef/5b099932-364d-4ab4-8f41-3d0c8d69b463" data-linktype="relative-path">3.1.5.1.1.2</a>,
+Pseudocode for Mapping a UTF-16 String to an ANSI Codepage.</p><p>The server MUST use the process described in <a href="f9ddeebe-b05e-423c-9440-84fd3d14bee9" data-linktype="relative-path">Conversion Between ANSI and
+Unicode String Formats (section 3.1.7)</a> to convert a string to the
+appropriate format.</p></div>

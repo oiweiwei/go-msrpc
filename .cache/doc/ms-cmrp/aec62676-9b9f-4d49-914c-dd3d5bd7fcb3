@@ -1,0 +1,25 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/aec62676-9b9f-4d49-914c-dd3d5bd7fcb3" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_CHANGE_RESOURCE_TYPE_V2</b> enumeration
+SHOULD<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a> define the set of notifications
+that are generated for a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_597fe367-f504-4295-9ed9-92cd892796cd" data-linktype="relative-path">resource
+type</a>. ClusAPI Protocol version 2.0 servers do not support this value. These
+notifications are only available with <b>ApiGetNotifyV2</b> (section <a href="491227be-d055-4140-8b85-35cf29f31166" data-linktype="relative-path">3.1.4.2.138</a>). The object
+type is CLUSTER_OBJECT_TYPE_RESOURCE_TYPE. The ParentId is not set for these
+notifications.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   CLUSTER_CHANGE_RESOURCE_TYPE_DELETED_V2 = 0x00000001,
+   CLUSTER_CHANGE_RESOURCE_TYPE_COMMON_PROPERTY_V2 = 0x00000002,
+   CLUSTER_CHANGE_RESOURCE_TYPE_PRIVATE_PROPERTY_V2 = 0x00000004,
+   CLUSTER_CHANGE_RESOURCE_TYPE_POSSIBLE_OWNERS_V2 = 0x00000008,
+   CLUSTER_CHANGE_RESOURCE_TYPE_DLL_UPGRADED_V2 = 0x00000010,
+   CLUSTER_RESOURCE_TYPE_SPECIFIC_V2 = 0x00000020
+ } CLUSTER_CHANGE_RESOURCE_TYPE_V2;
+</pre></div>
+</dd></dl><p><b>CLUSTER_CHANGE_RESOURCE_TYPE_DELETED_V2: </b>This
+notification indicates that the resource type has been deleted.</p><p><b>CLUSTER_CHANGE_RESOURCE_TYPE_COMMON_PROPERTY_V2: </b>This
+notification indicates that the resource type common properties have changed.</p><p><b>CLUSTER_CHANGE_RESOURCE_TYPE_PRIVATE_PROPERTY_V2: </b>This
+notification indicates that the resource type private properties have changed.</p><p><b>CLUSTER_CHANGE_RESOURCE_TYPE_POSSIBLE_OWNERS_V2: </b>This
+notification indicates that the possible owners for the resource type have changed.</p><p><b>CLUSTER_CHANGE_RESOURCE_TYPE_DLL_UPGRADED_V2: </b>This
+notification indicates that the resource type DLL has been upgraded.</p><p><b>CLUSTER_RESOURCE_TYPE_SPECIFIC_V2:</b> This
+notification indicates a resource DLL has raised a notification.</p></div>

@@ -1,0 +1,11 @@
+<div class="content"><p>The Dynamic Host Configuration Protocol (DHCP) Server
+Management Protocol (DHCPM) defines remote procedure call (RPC) interfaces that
+provide methods for remotely accessing and administering the DHCP server. This
+RPC-based client/server protocol is used to configure, manage, and monitor a
+DHCP server.</p><p>An application implementing this protocol can remotely
+administer the DHCP server. This protocol enables service monitoring as well as
+creating, updating, and deleting DHCP scopes and associated configuration
+options; retrieving and setting DHCP server bindings; and retrieving and
+creating DHCP client lease records.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

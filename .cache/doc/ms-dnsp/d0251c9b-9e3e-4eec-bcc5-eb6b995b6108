@@ -1,0 +1,169 @@
+<div class="content"><p> </p><p>The R_DnssrvEnumRecords method enumerates DNS records on the
+server.</p><dl>
+<dd>
+<div><pre> LONG R_DnssrvEnumRecords(
+   [in]                                    handle_t             hBindingHandle,
+   [in, unique, string]                    LPCWSTR              pwszServerName,
+   [in, unique, string]                    LPCSTR               pszZone,
+   [in, unique, string]                    LPCSTR               pszNodeName,
+   [in, unique, string]                    LPCSTR               pszStartChild,
+   [in]                                    WORD                 wRecordType,
+   [in]                                    DWORD                fSelectFlag,
+   [in, unique, string]                    LPCSTR               pszFilterStart,
+   [in, unique, string]                    LPCSTR               pszFilterStop,
+   [out]                                   PDWORD               pdwBufferLength,
+   [out, size_is(, *pdwBufferLength)]      PBYTE*               ppBuffer
+ );
+</pre></div>
+</dd></dl><p><b>hBindingHandle: </b>An RPC binding handle to the
+server. Details concerning binding handles are specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+section 2.3.</p><p><b>pwszServerName: </b>The client SHOULD pass a
+pointer to the FQDN of the target server as a null-terminated <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_69864bcc-33be-41c9-9486-e18618ee3dd0" data-linktype="relative-path">UTF-16LE</a></span>
+character string. The server MUST ignore this value. </p><p><b>pszZone: </b>A pointer to a null-terminated
+character string that contains the name of the zone to be queried. For
+operations specific to a particular zone, this field MUST contain the name of
+the zone in UTF-8 format. For all other operations, this field MUST be NULL. </p><p><b>pszNodeName: </b>A pointer to a null-terminated
+character string that contains the node name at which to modify a record. A
+string that is not dot-terminated indicates a name relative to the zone root. A
+value of &#34;@&#34; indicates the zone root itself. A dot-terminated string
+indicates the name is an FQDN.</p><p><b>pszStartChild: </b>A pointer to a null-terminated
+character string that contains the name of the child node at which to start
+enumeration. A NULL value indicates to start a new record enumeration. The
+client application can pass the last retrieved child node of pszNodeName to
+continue a previous enumeration.</p><p><b>wRecordType: </b>An integer value that indicates
+the type of record to enumerate. Any value can be used, as specified in <span><a href="39b03b89-2264-4063-8198-d62f62a6441a" data-linktype="relative-path">DNS_RECORD_TYPE (section 2.2.2.1.1)</a></span>.
+The query-only value DNS_TYPE_ALL indicates all types of records.</p><p><b>fSelectFlag: </b>An integer value that specifies
+what records are included in the response. Any combination of the values below
+MUST be supported. Values not listed below MUST be ignored.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DNS_RPC_VIEW_AUTHORITY_DATA</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Include records from <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_ed54858d-02e4-4de3-b65b-e0b81c4185c7" data-linktype="relative-path">authoritative</a></span>
+  zones.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_RPC_VIEW_CACHE_DATA</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Include records from the DNS server&#39;s cache.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_RPC_VIEW_GLUE_DATA</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Include <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_5aa9e7c0-e2fd-45f3-9edd-076147deba0a" data-linktype="relative-path">glue records</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_RPC_VIEW_ROOT_HINT_DATA</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Include root hint records.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_RPC_VIEW_ADDITIONAL_DATA</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Include additional records.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_RPC_VIEW_NO_CHILDREN</p>
+  <p>0x00010000</p>
+  </td>
+  <td>
+  <p>Do not include any records from child nodes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_RPC_VIEW_ONLY_CHILDREN</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>Include only children nodes of the specified node in
+  the results. For example: if a zone, &#34;example.com&#34;, has child
+  nodes, &#34;a.example.com&#34; and &#34;b.example.com&#34;, calling
+  R_DnssrcEnumRecords(…,&#34;example.com&#34;, &#34;example.com&#34;, NULL,
+  DNS_TYPE_ALL, DNS_RPC_VIEW_ONLY_CHILDREN, …, …, …, …) will return
+  DNS_RPC_NODES for &#34;a&#34; and &#34;b&#34;.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pszFilterStart: </b>Reserved for future use only.
+This MUST be set to NULL by clients and ignored by servers.</p><p><b>pszFilterStop: </b>Reserved for future use only.
+This MUST be set to NULL by clients and ignored by servers.</p><p><b>pdwBufferLength: </b>A pointer to an integer that
+on success contains the length of the buffer pointed to by ppBuffer.</p><p><b>ppBuffer: </b>A pointer to a pointer that on
+success points to a buffer containing the enumerated records. The buffer is a
+series of structures beginning with a DNS_RPC_NODE structure (section <span><a href="cb5539fa-67fd-40e0-9ea5-468ecc56bd66" data-linktype="relative-path">2.2.2.2.3</a></span>).
+The records for the node will be represented by a series of DNS_RPC_RECORD
+(section <span><a href="ac793981-1c60-43b8-be59-cdbb5c4ecb8a" data-linktype="relative-path">2.2.2.2.5</a></span>)
+structures. The number of DNS_RPC_RECORD structures following a DNS_RPC_NODE
+structure is given by the wRecordCount member of DNS_RPC_NODE.</p><p><b>Return Values: </b>The method MUST return
+ERROR_SUCCESS (0x00000000) on success or a non-zero Win32 error code if an
+error occurred. <a id="_Hlk58961966">See </a><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+or section <a href="aa521c99-3e44-4b75-9faa-c0c1ebcca5b6" data-linktype="relative-path">2.2.1.1.5</a>.
+All error values MUST be treated the same, except that if the return code is
+ERROR_MORE_DATA (0x000000EA) then the enumeration contains more results than
+can fit into a single RPC buffer. In this case the client application can call
+this method again passing the last retrieved child as the pszStartChild
+argument to retrieve the next set of results.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>If the Global Server State (section <span><a href="bdac5142-4baf-4b62-bcce-d49eafc9c3e6" data-linktype="relative-path">3.1</a></span>) is not
+&#34;Running&#34;, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Check that the input parameters conform to the syntax
+requirements above, and if not return a failure.</p>
+</li><li><p><span><span> 
+</span></span>If pszZone is not NULL, search the DNS Zone Table for a zone with
+a name matching the value of pszZone. If a matching zone cannot be found,
+return a failure. If pszZone is NULL, assume for the operations below that
+pszZone specifies the cache zone.</p>
+</li><li><p><span><span> 
+</span></span>Validate, as specified in section <span><a href="7ba0801d-74f1-499e-81a3-00231ef31952" data-linktype="relative-path">3.1.6.1</a></span>, that the
+client has permissions to perform the attempted operation. The DNS server MUST
+perform the Phase 2 authorization test using the Zone Access Control List for
+the zone specified by pszZone. Read privilege MUST be tested for this
+operation. If the client does not have permission to perform the operation, the
+server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Locate the node indicated by pszNodeName in the zone indicated by
+pszZoneName. If no such node is found, then return
+DNS_ERROR_NAME_DOES_NOT_EXIST (9714) and set the output buffer length to zero.</p>
+</li><li><p><span><span> 
+</span></span>If pszStartChild is non-NULL it indicates that this call is in
+continuation of an earlier call to R_DnssrvEnumRecords (section 3.1.4.4) that
+returned ERROR_MORE_DATA (0x000000EA), hence the server MUST attempt to locate
+this node and return failure if it cannot be found. The server MUST then
+continue the enumeration from there. </p>
+</li><li><p><span><span> 
+</span></span>Return output records that meet the criteria specified by the
+value of fSelectFlag, in parameters pointed to by pdwBufferLength and ppBuffer,
+and return success. If these criteria are met--the zone is stored in a
+directory server; the DsMinimumBackgroundLoadThreads server property (section <span><a href="8903e50a-9183-4a7d-9640-53f6f5a91481" data-linktype="relative-path">3.1.1.1.1</a></span>)
+is not 0x00000000; the zone is currently loading in the background; and the
+node indicated by pszNodeName has not yet been loaded into memory--the DNS
+server MUST behave as if the requested data does not exist in the zone.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST return matching records for any <b>wType</b>
+value that is explicitly defined in the DNS_RECORD_TYPE structure. The server
+MUST also respond to type values exceeding 0x0031 that have matching records.</p>
+</li></ul></div>

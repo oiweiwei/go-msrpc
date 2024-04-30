@@ -1,0 +1,147 @@
+<div class="content"><p> </p><p>PROPMARSHALHEADER is the marshaled representation of a <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_dc143034-cb8f-4d90-87ef-0fa96333807f" data-linktype="relative-path">context
+property</a></span>. It contains a <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_9965a333-52dd-4195-9d0f-8e04c8c6e365" data-linktype="relative-path">context property identifier</a></span>
+and a context property data buffer supplied by an application or higher-layer
+protocol. The data buffer contains either an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_d2b5b331-4e5f-417f-92c5-38eef54176c2" data-linktype="relative-path">OBJREF</a></span> that can be
+of any valid OBJREF format representing a client or prototype context property,
+or it contains opaque data representing an envoy context property.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>clsid
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>policyId
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cb</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ctxProperty
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>clsid (16 bytes): </b> This field MUST be either
+GUID_NULL or a <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a></span> supplied by
+the application or higher-layer protocol identifying an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_a224e395-3fea-48bd-b141-3dd9bee2136a" data-linktype="relative-path">object
+class</a></span> associated with the data in the <b>ctxProperty</b> field. If
+this field is GUID_NULL, <b>ctxProperty</b> MUST contain an OBJREF representing
+the marshaled client or prototype context property; otherwise, <b>ctxProperty</b>
+MUST contain opaque data representing the marshaled envoy context property.</p><p><b>policyId (16 bytes): </b> A <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+supplied by the application or higher-layer protocol containing a context
+property identifier for the marshaled context property in ctxProperty.</p><p><b>flags (4 bytes): </b>This MUST be set to one of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CPFLAG_PROPAGATE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>This context property is part of a <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_3b138442-c9c6-4f0f-bb59-66c783ed4d65" data-linktype="relative-path">prototype
+  context</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CPFLAG_EXPOSE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>This context property is part of a <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_519bff3c-1c9f-4d5a-aa88-a3c820a4ff3a" data-linktype="relative-path">client
+  context</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CPFLAG_ENVOY</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>This context property is part of an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_a61f46c9-edea-481b-b494-517f3b05e88a" data-linktype="relative-path">envoy
+  context</a></span>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cb (4 bytes): </b>The unsigned size, in bytes, of
+the <b>ctxProperty</b> field.</p><p><b>ctxProperty (variable): </b> A buffer of cb bytes
+supplied by the application or higher-layer protocol. This buffer MUST contain
+an OBJREF representing the marshaled client or prototype context property if <b>clsid</b>
+is GUID_NULL; otherwise, it MUST contain opaque data representing the marshaled
+envoy context property.</p></div>

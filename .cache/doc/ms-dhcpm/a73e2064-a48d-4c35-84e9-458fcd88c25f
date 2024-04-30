@@ -1,0 +1,147 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4GetFreeIPAddress</b> method retrieves the
+list of IPv4 addresses available to be leased out to the clients. The caller of
+this function can free the memory pointed to by the <i>IPAddrList</i> parameter
+by calling the function <b>midl_user_free</b> (section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4GetFreeIPAddress(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_IP_ADDRESS ScopeId,
+   [in] DHCP_IP_ADDRESS startIP,
+   [in] DHCP_IP_ADDRESS endIP,
+   [in] DWORD numFreeAddr,
+   [out] LPDHCP_IP_ARRAY *IPAddrList
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address of the DHCP
+server. This parameter is unused.</p><p><b>ScopeId: </b>The IPv4 subnet ID that contains the
+addresses available to be leased out.</p><p><b>startIP: </b>The IPv4 address at the start of the
+range of IPv4 addresses available to be leased out. A value of 0 indicates that
+the method uses the starting address of the IPv4 range of the scope specified
+by the <i>ScopeId</i> parameter.</p><p><b>endIP: </b>The IPv4 address at the end of the
+range of IPv4 addresses available to be leased out. A value of 0 indicates that
+the method uses the ending address of the IPv4 range of the scope specified by
+the <i>ScopeId</i> parameter.</p><p><b>numFreeAddr: </b>The number of IPv4 addresses to
+obtain from the specified scope. If this parameter is 0, only one IPv4 address
+is returned.</p><p><b>IpAddrList: </b>A pointer to the location at which
+the list of IPv4 addresses available to be leased out will be returned.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20123, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>No more elements are left to enumerate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00020126</p>
+  <p>ERROR_DHCP_REACHED_END_OF_SELECTION</p>
+  </td>
+  <td>
+  <p>The specified DHCP server has reached the end of the
+  selected range while finding the free IP addresses.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 120.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Return ERROR_INVALID_PARAMETER if any of the following conditions
+are true:</p>
+<ul><li><p><span><span>  </span></span>The
+<i>IPAddrList</i> parameter is NULL.</p>
+</li><li><p><span><span>  </span></span>The
+<i>ScopeId</i> parameter is 0.</p>
+</li><li><p><span><span>  </span></span>The
+<i>NumFreeAddr</i> parameter is greater than DHCP_MAX_FREE_ADDRESSES_REQUESTED.</p>
+</li><li><p><span><span>  </span></span>The
+<i>startIP</i> and <i>endIP</i> parameters are nonzero, and <i>startIP</i> is
+greater than <i>endIP</i>.</p>
+</li><li><p><span><span>  </span></span>The
+<i>startIP</i> and <i>endIP</i> parameters are nonzero, and the number of IPv4
+addresses in the range defined by those parameters is less than the value of
+the <i>NumFreeAddr</i> parameter.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Validate that the method is authorized for read access as
+specified in section <span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>. If not,
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4Scope</b> ADM element entry corresponding
+to the <i>ScopeId</i> parameter from the <b>DHCPv4ScopesList</b> server ADM
+element.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>DHCPv4Scope</b> entry is not found, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve all the entries in the <b>DHCPv4Scope.DHCPv4IpRangesList</b>
+ADM element. If there are no <b>DHCPv4IpRange</b> ADM element entries in the
+retrieved list, return ERROR_FILE_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>If the IPv4 addresses specified by the <i>startIP</i> and <i>endIP</i>
+parameters do not belong to the IPv4 subnet specified by the <i>ScopeId</i>
+parameter, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the IPv4 addresses specified by the <i>startIP</i> and <i>endIP</i>
+parameters are nonzero and fall outside all the <b>DHCPv4IpRange</b> objects
+retrieved in the preceding step, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Allocate memory for the location pointed to by the <i>IPAddrList</i>
+parameter to accommodate <i>NumFreeAddr</i> number of IPv4 addresses.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve all the entries in the <b>DHCPv4Scope.DHCPv4ClientsList</b>
+and <b>DHCPv4Scope.DHCPv4ExclusionRangesList</b> ADM elements.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>startIP</i> parameter is nonzero, iterate over IPv4
+addresses starting from the IPv4 address specified by the <i>startIP</i>
+parameter. Otherwise, if the <i>startIP</i> parameter is 0, iterate over the
+IPv4 addresses starting from the <b>StartAddress</b> of the first <b>DHCPv4IpRange</b>
+ADM element object in the <b>DHCPv4IpRangesList</b> ADM element.</p>
+</li><li><p><span><span> 
+</span></span>For each IPv4 address, if there is no <b>DHCPv4Client</b> ADM
+element object in the <b>DHCPv4ClientsList</b> corresponding to the IPv4
+address and there is no <b>DHCPv4ExclusionRange</b> ADM element object in the <b>DHCPv4ExclusionRangesList</b>
+that contains the IPv4 address, copy the IPv4 address to the output <i>IPAddrList</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>If the number of IPv4 addresses retrieved has reached the number
+of IPv4 addresses requested by the caller, return ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>endIP</i> parameter is nonzero and all the available
+IPv4 addresses up to the IPv4 address specified by the <i>endIP</i> parameter
+have been retrieved or if the <i>endIP</i> parameter is 0, and all the
+available IPv4 addresses up to the <b>EndAddress</b> of the last <b>DHCPv4IpRange</b>
+ADM element object in the <b>DHCPv4IpRangesList</b> have been retrieved (that
+is, all free IPv4 addresses available in the specified range have been
+enumerated), enumerate any IPv4 addresses in the DOOMED state by iterating over
+all the entries in the <b>DHCPv4Scope.DHCPv4ClientsList</b> ADM element object.</p>
+</li><li><p><span><span> 
+</span></span>Copy the <b>DHCPv4Client.ClientIpAddress</b> from the <b>DHCPv4Client</b>
+ADM element entry in the <b>DHCPv4ClientsList</b> ADM element entries that have
+their <b>AddressState</b> field set to ADDRESS_STATE_DOOM, and then proceed to
+the next record.</p>
+</li><li><p><span><span> 
+</span></span>If the number of IPv4 addresses retrieved is less than the number
+of IPv4 addresses requested, return ERROR_DHCP_REACHED_END_OF_SELECTION.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

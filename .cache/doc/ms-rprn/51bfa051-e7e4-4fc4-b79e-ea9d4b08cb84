@@ -1,0 +1,74 @@
+<div class="content"><p>RpcEnumPrinterData enumerates configuration data for a
+specified printer.<a id="Appendix_A_Target_292"></a><a aria-label="Product behavior note 292" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_292" data-linktype="relative-path">&lt;292&gt;</a></p><dl>
+<dd>
+<div><pre> DWORD RpcEnumPrinterData(
+   [in] PRINTER_HANDLE hPrinter,
+   [in] DWORD dwIndex,
+   [out, size_is(cbValueName/sizeof(wchar_t))] 
+     wchar_t* pValueName,
+   [in] DWORD cbValueName,
+   [out] DWORD* pcbValueName,
+   [out] DWORD* pType,
+   [out, size_is(cbData)] BYTE* pData,
+   [in] DWORD cbData,
+   [out] DWORD* pcbData
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object that
+was opened by <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter (section 3.1.4.2.3)</a>,
+<a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx (section 3.1.4.2.15)</a>,
+<a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter (section 3.1.4.2.2)</a>,
+or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx (section 3.1.4.2.14)</a>.</p><p><b>dwIndex: </b>The index of the configuration data
+value to retrieve. The value MUST be greater than or equal to zero and less
+than the total number of configuration data values for the printer. The client
+SHOULD use <b>RpcEnumPrinterKeys</b> to determine the total number of
+configuration data values for the printer.</p><p><b>pValueName: </b>A pointer to a buffer that
+receives a string specifying the name of the configuration data value. For
+rules governing value names, see section <a href="cd9850cf-1e6c-4875-9b65-e159cf2d83d6" data-linktype="relative-path">2.2.4.18</a>.</p><dl>
+<dd>
+<p>This parameter can be NULL if <i>cbValueName</i>
+equals zero.</p>
+</dd></dl><p><b>cbValueName: </b>The size, in bytes, of the buffer
+that is pointed to by the <i>pValueName</i> parameter.</p><p><b>pcbValueName: </b>A pointer to a variable that
+receives the number of bytes stored in the buffer that is pointed to by the <i>pValueName</i>
+parameter.</p><p><b>pType: </b>A parameter specified in <a href="183564fd-8a69-4fa2-a01e-51cebc7fb475" data-linktype="relative-path">Dynamically Typed Query
+Parameters (section 3.1.4.1.2)</a>.</p><p><b>pData: </b>A pointer to BUFFER as specified in
+Dynamically Typed Query Parameters. This parameter can be NULL if <i>cbData</i>
+equals zero.</p><p><b>cbData: </b>A parameter specified in Dynamically
+Typed Query Parameters.</p><p><b>pcbData: </b>A parameter specified in Dynamically
+Typed Query Parameters.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps specified in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE
+Parameters (section 3.1.4.1.11)</a>. This method SHOULD assume that
+the handle to the printer object can be used without further access checks.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the value of the <i>cbValueName</i> parameter is not
+smaller than the number of bytes required to hold the string that specifies the
+name of the value. If that verification fails, the server MUST update the
+variable that is pointed to by the <i>pcbValueName</i> parameter with the
+number of bytes required and return ERROR_MORE_DATA [MS-ERREF].</p>
+</li><li><p><span><span> 
+</span></span>Verify that the value of the <i>dwIndex</i> parameter is greater
+than or equal to zero, and smaller than the total number of values for the
+printer. If <i>dwIndex</i> is greater than or equal to the number of values
+available for the printer, the server MUST return ERROR_NO_MORE_ITEMS, as
+specified in [MS-ERREF]</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps specified in Dynamically Typed Query
+Parameters.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Store the name of the printer property in the string buffer that
+is pointed to by the <i>pValueName</i> parameter and store the length of the
+name stored in the variable that is pointed to by the <i>pcbValueName</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Using the data identified by <i>pValueName</i>,<a id="Appendix_A_Target_293"></a><a aria-label="Product behavior note 293" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_293" data-linktype="relative-path">&lt;293&gt;</a> perform the processing and
+response steps specified in Dynamically Typed Query Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

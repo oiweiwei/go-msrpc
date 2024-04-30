@@ -1,0 +1,10 @@
+<div class="content"><p>The SERVICE_DESCRIPTIONW structure contains the description
+of the service. String values are in Unicode.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVICE_DESCRIPTIONW {
+   [string, range(0, 8 * 1024)] LPWSTR lpDescription;
+ } SERVICE_DESCRIPTIONW,
+  *LPSERVICE_DESCRIPTIONW;
+</pre></div>
+</dd></dl><p><b>lpDescription:</b>  A pointer to a
+string that contains the description of the service in Unicode.</p></div>

@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The <b>FAX_ENUM_COVERPAGE_FORMAT</b> enumeration defines the
+types of cover page templates that the server MUST support. Each cover page
+MUST be described by one of the following values:</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FAX_COVERPAGE_FMT_COV = 0x00000001,
+   FAX_COVERPAGE_FMT_COV_SUBJECT_ONLY = 0x00000002
+ } FAX_ENUM_COVERPAGE_FORMATS;
+</pre></div>
+</dd></dl><p><b>FAX_COVERPAGE_FMT_COV: </b>Indicates it is a
+normal cover-page template.</p><p><b>FAX_COVERPAGE_FMT_COV_SUBJECT_ONLY: </b>Indicates
+it is a subject-only cover-page template.</p></div>

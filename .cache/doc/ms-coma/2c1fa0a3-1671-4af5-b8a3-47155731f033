@@ -1,0 +1,16 @@
+<div class="content"><p>This method is called by a client to stop <a href="3f01a312-3391-4109-a96e-95358babf191#gt_9e740bb8-bc2c-4d50-9819-0002e28a1958" data-linktype="relative-path">instance load balancing</a>.</p><dl>
+<dd>
+<div><pre> HRESULT Stop(
+   [in] CatSrvServices i_css
+ );
+</pre></div>
+</dd></dl><p><b>i_css: </b>MUST be set to css_lb (see section <a href="11054f83-ae02-4a2d-8976-c0d14611985c" data-linktype="relative-path">2.2.7</a>).</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server MUST verify
+that the parameters are valid, as specified previously, and fail the call if
+not.</p><p>If the server does not support instance load balancing, the
+server MUST immediately fail the call.</p><p>Otherwise, the server MUST attempt to determine if instance
+load balancing support is running, and fail the call if it cannot.</p><p>If instance load balancing support is not running, the
+server MUST return S_OK (0x00000000).</p><p>Otherwise, the server MUST attempt to stop instance load
+balancing support, and fail the call if it cannot.</p></div>

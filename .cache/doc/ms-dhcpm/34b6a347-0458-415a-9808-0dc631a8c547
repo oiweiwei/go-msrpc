@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The <b>DHCP_OPTION_ARRAY</b> structure contains an array of
+the DHCP server option definition. This structure is used in the <span><a href="167abd91-539e-4844-93cf-5ff413cc9dd6" data-linktype="relative-path">DHCP_ALL_OPTIONS (section 2.2.1.2.27)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_OPTION_ARRAY {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_OPTION Options;
+ } DHCP_OPTION_ARRAY,
+  *LPDHCP_OPTION_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+containing the number of <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_da9bfcf7-a7e0-4cf0-ac87-ffdd83a5f25b" data-linktype="relative-path">option definitions</a></span>
+in the subsequent field, the <b>Options</b> member. </p><p><b>Options:</b>  This is a pointer of type <span><a href="855b6a9a-e6e4-4c9d-a732-aadad749ca03" data-linktype="relative-path">DHCP_OPTION (section 2.2.1.2.25)</a></span>
+that points to an array of length <b>NumElements</b> containing DHCP server
+option definitions.</p></div>

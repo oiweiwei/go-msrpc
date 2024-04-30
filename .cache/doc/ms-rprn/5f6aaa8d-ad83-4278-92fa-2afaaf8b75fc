@@ -1,0 +1,11 @@
+<div class="content"><p>The <b>STRING_CONTAINER</b> structure contains a string.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _STRING_CONTAINER {
+   DWORD cbBuf;
+   [size_is(cbBuf/2), unique] WCHAR* pszString;
+ } STRING_CONTAINER;
+</pre></div>
+</dd></dl><p><b>cbBuf:</b> This member specifies the size, in
+bytes, of the buffer that is pointed to by the <b>pszString</b> member. The
+value of this number MUST be an even number.</p><p><b>pszString:</b> A pointer to a string. The
+string that is referenced by this member MUST NOT be empty.</p></div>

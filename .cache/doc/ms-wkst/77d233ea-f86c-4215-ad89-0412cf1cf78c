@@ -1,0 +1,81 @@
+<div class="content"><p> </p><p>The <b>NetrWorkstationStatisticsGet</b> method returns
+various statistics about the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_09dbec39-5e75-4d9a-babf-1c9f1d499625" data-linktype="relative-path">SMB</a></span> <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_15c89cb5-6767-49e7-b461-66acaf6c06c8" data-linktype="relative-path">network
+redirector</a></span> on a remote computer.</p><dl>
+<dd>
+<div><pre> unsigned long NetrWorkstationStatisticsGet(
+   [in, string, unique] WKSSVC_IDENTIFY_HANDLE ServerName,
+   [in, string, unique] wchar_t* ServiceName,
+   [in] unsigned long Level,
+   [in] unsigned long Options,
+   [out] LPSTAT_WORKSTATION_0* Buffer
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>A <b>WKSSVC_IDENTIFY_HANDLE</b>
+structure (section <span><a href="9ef94a11-0e5c-49d7-9ac7-68d6f03565de" data-linktype="relative-path">2.2.2.1</a></span>) that
+identifies the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server (2)</a></span>. The <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>
+MUST map this structure to an <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>
+(<span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> sections
+4.3.5 and 5.1.5.2). The server MUST ignore this parameter.</p><p><b>ServiceName: </b>A pointer to a string specifying
+the name of the workstation service. This value MUST be ignored on receipt.</p><p><b>Level: </b>The information level of the data. This
+value MUST be zero.</p><p><b>Options: </b>This value MUST be zero.</p><p><b>Buffer: </b>A pointer to a <b>STAT_WORKSTATION_0</b>
+structure (section <span><a href="8948defb-d618-4997-828c-4bfc662b60e3" data-linktype="relative-path">2.2.5.11</a></span>) that
+contains the statistical information.</p><p><b>Return Values: </b>When the message processing
+result matches the description in column two of the following table, this
+method MUST return one of the following values (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NERR_Success</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_LEVEL</p>
+  <p>0x0000007C</p>
+  </td>
+  <td>
+  <p>The information level is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>One of the function parameters is invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>If the <i>Level</i> parameter does not equal 0x00000000, the
+server MUST fail the call and return ERROR_INVALID_LEVEL.</p><p>If the <i>Options</i> parameter does not equal 0x00000000,
+the server MUST fail the call and return ERROR_INVALID_PARAMETER. The server
+SHOULD<a id="Appendix_A_Target_54"></a><a aria-label="Product behavior note 54" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_54" data-linktype="relative-path">&lt;54&gt;</a> enforce security measures to
+verify that the caller has the required permissions to execute this routine. If
+the server enforces security measures and the caller does not have the required
+credentials, the server MUST fail the call and return ERROR_ACCESS_DENIED.</p><p>The server MUST fill in all the members of the <b>STAT_WORKSTATION_0</b>
+structure that the <i>Buffer</i> parameter points to with the corresponding
+statistics about the SMB network redirector.</p><p>Some members of the <b>STAT_WORKSTATION_0</b> structure
+(section 2.2.5.11) are implementation-specific values<a id="Appendix_A_Target_55"></a><a aria-label="Product behavior note 55" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_55" data-linktype="relative-path">&lt;55&gt;</a> that indicate certain
+performance characteristics of an operating system and do not apply to all
+servers. If a member value does not apply to the server, it MUST be set to
+zero. </p></div>

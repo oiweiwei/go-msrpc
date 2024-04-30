@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The PARTITIONSTYLE enumeration defines the style of a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum _PARTITIONSTYLE
+ {
+   PARTITIONSTYLE_UNKNOWN = 0,
+   PARTITIONSTYLE_MBR = 1,
+   PARTITIONSTYLE_GPT = 2
+ } PARTITIONSTYLE;
+</pre></div>
+</dd></dl><p><b>PARTITIONSTYLE_UNKNOWN:  </b>Partition is of an
+unknown style.</p><p><b>PARTITIONSTYLE_MBR:  </b>Partition is of the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_b251c771-5ccf-40f2-b98d-0119db210b4b" data-linktype="relative-path">MBR</a></span>
+style.</p><p><b>PARTITIONSTYLE_GPT:  </b>Partition is of the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GPT</a></span>
+style.</p></div>

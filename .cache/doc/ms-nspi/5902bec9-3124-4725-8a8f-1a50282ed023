@@ -1,0 +1,58 @@
+<div class="content"><p> </p><p>The STAT structure is used to specify the state of a table
+and location information that applies to that table. It appears as both an
+input parameter and an output parameter in many <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_e63aea5b-046b-4176-9359-fde82613a406" data-linktype="relative-path">Name Service Provider Interface
+(NSPI)</a></span> methods.</p><dl>
+<dd>
+<div><pre> typedef struct _STAT {
+   DWORD SortType;
+   DWORD ContainerID;
+   DWORD CurrentRec;
+   long Delta;
+   DWORD NumPos;
+   DWORD TotalRecs;
+   DWORD CodePage;
+   DWORD TemplateLocale;
+   DWORD SortLocale;
+ } STAT;
+</pre></div>
+</dd></dl><p><b>SortType:</b>  This field contains a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+representing a sort order. The client sets this field to specify the sort type
+of this table. Possible values are specified in <span><a href="512a0ac7-5b58-432a-b242-31e237436dad" data-linktype="relative-path">Table Sort
+Orders (section 2.2.10)</a></span>. The server MUST NOT modify this
+field.</p><p><b>ContainerID:</b>  This field contains a <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_42ecf4ed-a7e5-4044-a1f0-f67ca58fb4b6" data-linktype="relative-path">MId</a></span>.
+The client sets this field to specify the MId of the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_a34b031c-18b2-40e1-acfa-3b73cc71e80b" data-linktype="relative-path">address book container</a></span>
+that this STAT represents. The client obtains these MIds from the server&#39;s <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_814ecf9d-9ad2-4576-9ce9-cf4e2a17bb62" data-linktype="relative-path">address
+book hierarchy table</a></span>. The server MUST NOT modify this field in any
+NSPI method except <span><a href="ea3de2da-7b66-47b4-b6b4-9f22164e0b40" data-linktype="relative-path">NspiGetMatches</a></span>.</p><p><b>CurrentRec:</b>  This field contains a
+MId. The client sets this field to specify a beginning position in the table
+for the start of an NSPI method. The server sets this field to report the end
+position in the table after processing an NSPI method.</p><p><b>Delta:</b>  This field contains a long
+value. The client sets this field to specify an offset from the beginning
+position in the table for the start of an NSPI method. If the NSPI method
+returns a success value, the server MUST set this field to 0.</p><p><b>NumPos:</b>  This field contains a DWORD
+value specifying a position in the table. The client sets this field to specify
+a fractional position for the beginning position in the table for the start of
+an NSPI method (section <span><a href="fb0f38c4-3bcc-4572-9417-fcbedc6e216f" data-linktype="relative-path">3.1.1.4.2</a></span>). The
+server sets this field to specify the approximate fractional position at the
+end of an NSPI method. This value is a zero index; the first element in a table
+has the numeric position 0. Although the protocol places no boundary or
+requirements on the accuracy of the approximation the server reports, it is
+recommended that implementations maximize the accuracy of the approximation to
+improve usability of the NSPI server for clients.</p><p><b>TotalRecs:</b>  This field contains a
+DWORD specifying the number of rows in the table. The client sets this field to
+specify a fractional position for the beginning position in the table for the
+start of an NSPI method (section 3.1.1.4.2). The server sets this field to
+specify the total number of rows in the table. Unlike the <b>NumPos</b> field,
+the server MUST report this number accurately; an approximation is
+insufficient.</p><p><b>CodePage:</b>  This field contains a
+DWORD value representing a <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_210637d9-9634-4652-a935-ded3cd434f38" data-linktype="relative-path">codepage</a></span>. The client
+sets this field to specify the codepage the client uses for non-<span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+strings. The server MUST use this value during string handling (section <span><a href="522c7a16-a670-4bea-9c11-74a3d7dfedbe" data-linktype="relative-path">3.1.1.2</a></span>).
+The server MUST NOT modify this field.</p><p><b>TemplateLocale:</b>  This field contains
+a DWORD value representing a <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_c7f99c66-592f-4053-b62a-878c189653b6" data-linktype="relative-path">language code identifier (LCID)</a></span>.
+The client sets this field to specify the LCID associated with the template the
+client wishes the server to return. The server MUST NOT modify this field.</p><p><b>SortLocale:</b>  This field contains a
+DWORD value representing an LCID. The client sets this field to specify the
+LCID that it wishes the server to use when sorting any strings. The server MUST
+use this value during sorting (section 3.1.1.2). The server MUST NOT modify
+this field.</p></div>

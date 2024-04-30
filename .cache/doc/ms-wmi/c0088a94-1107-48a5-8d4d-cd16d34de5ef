@@ -1,0 +1,63 @@
+<div class="content"><p>The Windows Management Instrumentation (WMI) Remote Protocol
+is used to communicate management data conforming to <a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a99173af-90bf-473d-9a81-ff0ce9a85838" data-linktype="relative-path">Common Information Model (CIM)</a>,
+as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89848" data-linktype="external">[DMTF-DSP0004]</a>.
+The Windows Management Instrumentation Remote Protocol uses CIM as the
+conceptual model for representing enterprise management information that can be
+managed by an administrator. However WMI is not fully compliant with
+[DMTF-DSP0004]. The exceptions are documented where applicable in the WMI
+Remote Protocol.</p><p>The Windows Management Instrumentation Remote Protocol is
+implemented as a three-tier architecture, as illustrated in the following
+figure.</p><p><img id="MS-WMI_pictc62c4553-bd7b-164c-5cb8-3287b2656e74.png" src="ms-wmi_files/image001.png" alt="Windows Management Instrumentation Remote Protocol architecture" title="Windows Management Instrumentation Remote Protocol architecture" data-linktype="relative-path"/></p><p><b>Figure 1: Windows Management Instrumentation Remote
+Protocol architecture</b></p><p>At layer 3, the Providers are designed to interact locally
+with WMI Management Data Sources. Providers implement abstract interface as
+specified in section <a href="ce1462a6-73be-4960-b2c1-c2cb08a24e36" data-linktype="relative-path">3.1.4.17</a>.
+Windows Management Instrumentation Remote Protocol management data sources are
+designed to interact locally with <a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_98bd5533-34e4-49a5-8ad6-f1648011a21d" data-linktype="relative-path">manageable entities</a>. Layer
+2 supports the core of the Windows Management Instrumentation Remote Protocol
+service and is called the CIM Object Manager (CIMOM). CIMOM interacts with CIM
+database for storing or accessing CIM class and CIM instances that are <a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_07c174c0-2df7-4fd9-a568-058e585c44ab" data-linktype="relative-path">static CIM object</a>; CIM
+providers for storing or accessing CIM class and CIM instances that are dynamic
+from the [DMTF-DSP0004]. WMI DCOM Client Interfaces in Layer 1 and WMI DCOM
+Server Interfaces in Layer 2 implement the <a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">Distributed Component Object
+Model</a> interfaces (as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>])
+that are used by the Windows Management Instrumentation Remote Protocol to
+communicate over the network between Windows Management Instrumentation Remote
+Protocol <a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">clients</a> and <a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">servers</a>. This layer is the
+only layer that communicates over the network. Network communication is achieved
+by using the Distributed Component Object Model (DCOM) Remote Protocol and a
+set of Windows Management Instrumentation Remote Protocol DCOM interfaces, as
+specified in section <a href="632666ed-b696-49db-bd11-e76b912da16f" data-linktype="relative-path">3.1.4</a>.</p><p><img id="MS-WMI_pictfedfc670-e89e-48d4-b093-c24bca4f29f2.png" src="ms-wmi_files/image002.png" alt="Clients can be local or remote from the server" title="Clients can be local or remote from the server" data-linktype="relative-path"/></p><p><b>Figure 2: Clients can be local or remote from the server</b></p><p>Windows Management Instrumentation Remote Protocol clients
+can be local or remote from the server, as illustrated in the preceding figure.
+In either case, the same set of Windows Management Instrumentation Remote
+Protocol interfaces is used.</p><p>The communication works the same way between clients and
+server; all interactions between clients and server are made through the DCOM
+Remote Protocol locally or remotely. Therefore, clients are always acting in a
+message submission mode through the DCOM Remote Protocol to leverage the
+Windows Management Instrumentation Remote Protocol interfaces that are
+implemented on the server side.</p><p>The client can call the server in one of the following ways:</p><ul><li><p><span><span> 
+</span></span>Synchronous calls</p>
+</li><li><p><span><span> 
+</span></span>Semisynchronous calls</p>
+</li><li><p><span><span> 
+</span></span>Asynchronous calls</p>
+</li></ul><p>The server APIs for synchronous and semisynchronous APIs are
+the same, but the call is executed synchronously if the flags do not contain
+WBEM_FLAG_RETURN_IMMEDIATELY. If the flag WBEM_FLAG_RETURN_IMMEDIATELY is
+specified, the call is executed semisynchronously. Examples of such APIs
+include <a href="85e450fa-520c-4813-a17e-c65bf7be47b5" data-linktype="relative-path">IWbemServices::GetObject (section 3.1.4.3.4)</a>,
+<a href="92f52cfe-fde5-43de-8dcb-6e3d50650fc5" data-linktype="relative-path">IWbemServices::PutClass (section 3.1.4.3.6)</a>,
+and so on. </p><p>The IWbemServices methods that end with Async are
+asynchronous counterparts for their synchronous APIs. Example of async APIs are
+<a href="028a4bfd-af7c-48ed-b206-20f7cb3f3ec7" data-linktype="relative-path">IWbemServices::GetObjectAsync (section 3.1.4.3.5)</a>,
+<a href="efa6fc62-70f9-405e-a745-fdebb40de5b5" data-linktype="relative-path">IWbemServices::PutClassAsync (section 3.1.4.3.7)</a>,
+and so on</p><p>The management information that is exchanged between clients
+and server (and server and clients) is transmitted over the network by the
+Windows Management Instrumentation Remote Protocol as a custom-marshaled
+payload, as specified in [MS-DCOM] section <a href="../ms-dcom/88fdb261-7c9a-41ea-bfac-31583bdc65e6" data-linktype="relative-path">2.2.18.6</a>.
+</p><p>The Windows Management Instrumentation Remote Protocol
+serializes the management information that is transmitted, as specified in <a href="../ms-wmio/b44d0581-5bd3-40fc-95d7-01c1b1239820" data-linktype="relative-path">[MS-WMIO]</a>.
+Before reading this Windows Management Instrumentation Remote Protocol
+document, acquire a working knowledge of the concepts, structures, and
+communication protocols as specified in [MS-DCOM], [DMTF-DSP0004], and
+[MS-WMIO]. Namespace security is controlled by using security descriptors, as specified
+in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>.</p></div>

@@ -1,0 +1,8 @@
+<div class="content"><p>The main objective of the CIFS Browser Auxiliary Protocol is
+to provide a method for the <a href="48f4ceaf-3cd0-4964-a964-2f4682b8d2f0#gt_542ffc1e-9bbc-47f9-a6ca-284d0a39c680" data-linktype="relative-path">master
+browser server</a> of a subnet to query specific additional information from
+the <a href="48f4ceaf-3cd0-4964-a964-2f4682b8d2f0#gt_ef026994-26e6-4c9d-b34b-dfb7f1f80d6f" data-linktype="relative-path">domain master browser
+server</a> for a given <a href="48f4ceaf-3cd0-4964-a964-2f4682b8d2f0#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>.
+Selection of the master browser server and domain master <a href="48f4ceaf-3cd0-4964-a964-2f4682b8d2f0#gt_3bd1e44e-100e-4f13-ad44-fc267e627495" data-linktype="relative-path">browser server</a> and the
+roles that these <a href="48f4ceaf-3cd0-4964-a964-2f4682b8d2f0#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">servers</a>
+play are as specified in <a href="../ms-brws/d2d83b29-4b62-479e-b427-9b750303387b" data-linktype="relative-path">[MS-BRWS]</a>.</p></div>

@@ -1,0 +1,26 @@
+<div class="content"><p>The TSG_PACKET_STRING_MESSAGE structure contains either the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_5e2f6dca-bfb9-4f57-9f15-c94b03757ba0" data-linktype="relative-path">Consent Signing Message</a> or
+the Administrative Message that is being sent from the RDG server to the
+client.</p><dl>
+<dd>
+<div><pre> typedef struct _TSG_PACKET_STRING_MESSAGE {
+   long isDisplayMandatory;
+   long isConsentMandatory;
+   [range(0,65536)] unsigned long msgBytes;
+   [size_is(msgBytes)] wchar_t* msgBuffer;
+ } TSG_PACKET_STRING_MESSAGE,
+  *PTSG_PACKET_STRING_MESSAGE;
+</pre></div>
+</dd></dl><p><b>isDisplayMandatory:</b>  A Boolean that
+specifies whether the client needs to display this message.</p><p><b>isConsentMandatory:</b>  A Boolean that
+specifies whether the user needs to give its consent before the connection can
+proceed.</p><p><b>msgBytes:</b>  An unsigned long
+specifying the number of characters in <b>msgBuffer</b>, including the
+terminating null character. The size of the message SHOULD<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a> be determined by the <b>serverCert</b>
+field in the HTTP_TUNNEL_RESPONSE_OPTIONAL structure (section <a href="1e6be853-9f5d-41eb-81ba-bf8d1298c6d8" data-linktype="relative-path">2.2.10.21</a>). The consent
+message is embedded in the HTTP_TUNNEL_RESPONSE as part of the
+HTTP_TUNNEL_RESPONSE_OPTIONAL structure. When the
+HTTP_TUNNEL_RESPONSE_FIELD_CONSENT_MSG flag is set in the
+HTTP_TUNNEL_RESPONSE_FIELDS_PRESENT_FLAGS (section <a href="8ea18228-f3f9-4849-9edb-2de1e950946b" data-linktype="relative-path">2.2.5.3.8</a>), the
+HTTP_TUNNEL_RESPONSE_OPTIONAL data structure contains a consent message in the
+HTTP_UNICODE_STRING format (section <a href="d530627f-edfe-426f-b968-965c34c3693d" data-linktype="relative-path">2.2.10.22</a>).</p><p><b>msgBuffer:</b>  An array of wchar_t
+specifying the string. The size of the buffer is as indicated by <b>msgBytes</b>.</p></div>

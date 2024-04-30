@@ -1,0 +1,33 @@
+<div class="content"><p>This method returns the <a href="../ms-dtco/d3244003-a8f5-4791-9f68-6ac96524a28d" data-linktype="relative-path">STxInfo</a>
+instance (as specified in <a href="../ms-dtco/c367c571-33f3-44ac-85cb-4b9ebbb2779d" data-linktype="relative-path">[MS-DTCO]</a>
+section 2.2.5.10) of the currently active transaction or returns an error if
+the specified <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_ef97ef16-ebb2-45e5-8543-d1b189bdb659" data-linktype="relative-path">TSN</a> is not
+the same as the CurrentTSN value. </p><dl>
+<dd>
+<div><pre> HRESULT GetTxViaExport(
+   [in] unsigned long ulRequestSeq,
+   [in] unsigned long ulcbWhereabouts,
+   [in, size_is(ulcbWhereabouts)] BYTE* rgbWhereabouts,
+   [out] unsigned long* pulcbExportCookie,
+   [out, size_is(,*pulcbExportCookie)] 
+     BYTE** prgbExportCookie
+ );
+</pre></div>
+</dd></dl><p><b>ulRequestSeq: </b>The caller&#39;s CurrentTSN value of
+the currently active <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a>.</p><p><b>ulcbWhereabouts: </b>The unsigned size, in bytes,
+of <i>rgbWhereabouts</i>.</p><p><b>rgbWhereabouts: </b>The <a href="../ms-dtco/f5ab2327-10b0-469c-ac79-f35da8daa3ff" data-linktype="relative-path">SWhereabouts</a>
+instance ([MS-DTCO] section 2.2.5.11) of the caller&#39;s local DTCO transaction
+manager implementation.</p><p><b>pulcbExportCookie: </b>The unsigned size, in
+bytes, of <i>prgbExportCookie</i>.</p><p><b>prgbExportCookie: </b>An STxInfo instance of the
+currently active transaction (as specified in [MS-DTCO] section 2.2.5.10).</p><p><b>Return Values: </b>The method MUST return a
+positive value or zero to indicate successful completion, or a negative value
+to indicate failure. The client MUST treat any negative return value as a fatal
+error.</p><p>When processing this <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_d4ad46fe-cbab-43f2-a125-b2f125824f33" data-linktype="relative-path">ORPC</a> call, if <i>ulRequestSeq</i>
+is the same as the CurrentTSN value, the <a href="e105692e-61da-49dd-9bb1-09cd6b8c67bc" data-linktype="relative-path">ITransactionStream
+Server (section 3.23)</a> MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Set <i>pulcbExportCookie</i> to the size of <i>prgbExportCookie</i>.</p>
+</li><li><p><span><span> 
+</span></span>Copy STxInfo of the currently active transaction to the <i>prgbExportCookie</i>
+out parameter.</p>
+</li></ul><p>Otherwise, the ITransactionStream Server MUST return
+CONTEXT_E_ABORTED.</p></div>

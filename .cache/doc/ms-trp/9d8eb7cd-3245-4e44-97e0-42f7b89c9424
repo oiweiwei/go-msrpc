@@ -1,0 +1,253 @@
+<div class="content"><p>The Initialize packet is transmitted from a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call</a>.
+Sending this packet initializes application use of TAPI for subsequent use of
+the line abstraction. It registers the specified notification mechanism of the
+application and returns the number of line devices that are available to the
+application. A line device is any device that provides an implementation for
+the line-prefixed functions in TAPI. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hLineApp</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hInstance</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">InitContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwFriendlyNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumDevs</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwModuleNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAPIVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved5</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved6</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved7</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>An unsigned 32-bit
+integer. The identifier of the function that is invoked on the remote server.
+This value MUST be set to 47. </p><dl>
+<dd>
+<p><b>Return Values</b></p>
+</dd>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>, this field
+contains the result of the encapsulated telephony request. A value of zero
+indicates success, and a <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path">LINEERR_Constants</a>
+value indicates failure. The remote server MUST complete this call
+synchronously.</p>
+</dd>
+<dd>
+<p>Zero indicates success. A negative error number
+indicates that an error occurred. The following table shows the return values
+for this function. </p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>LINEERR_INVALAPPNAME</p>
+  <p>0x80000015</p>
+  </td>
+  <td>
+  <p>An invalid application name.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONFAILED</p>
+  <p>0x80000048</p>
+  </td>
+  <td>
+  <p>The operation failed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INIFILECORRUPT</p>
+  <p>0x8000000E</p>
+  </td>
+  <td>
+  <p>The INI file is corrupted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALPOINTER</p>
+  <p>0x80000035</p>
+  </td>
+  <td>
+  <p>An invalid pointer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_REINIT</p>
+  <p>0x80000052</p>
+  </td>
+  <td>
+  <p>The application attempted to initialize TAPI twice.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_NOMEM</p>
+  <p>0x80000044</p>
+  </td>
+  <td>
+  <p>No memory available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALPARAM</p>
+  <p>0x80000032</p>
+  </td>
+  <td>
+  <p>An invalid parameter.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>hLineApp (4 bytes): </b>An <a href="c12b4793-3220-4f9e-aa86-8edd3e7020d4" data-linktype="relative-path">HLINEAPP</a>. Upon successful
+completion of the request, this field contains the client&#39;s usage handle for
+TAPI line requests.</p><p><b>hInstance (4 bytes): </b>An unsigned 32-bit
+integer. This field is an instance handle of the client application. The
+application can pass NULL for this parameter, in which case, TAPI uses the
+module handle of the root executable of the process (for purposes of
+identifying call handoff targets and media mode priorities).</p><p><b>InitContext (4 bytes): </b>An unsigned 32-bit
+integer. This field is an opaque value that the server uses for
+ASYNCEVENTMSG.InitContext for all line packets that are intended for this
+client within the scope of the hLineApp.</p><p><b>dwFriendlyNameOffset (4 bytes): </b>An unsigned
+32-bit integer. This field is the offset, in bytes, from the beginning of the
+variable data area to a NULL-terminated Unicode string that contains the
+display name of the client. For remote clients, this MUST be the remote
+computer name.</p><p><b>dwNumDevs (4 bytes): </b>An unsigned 32-bit
+integer. Upon successful completion of the request, this field MUST contain the
+number of line devices that are available to the client.</p><p><b>dwModuleNameOffset (4 bytes): </b>An unsigned
+32-bit integer. This field is the offset, in bytes, from the beginning of the
+variable data area to a null-terminated Unicode string that contains the
+display name of the client. For remote clients, this MUST be the remote
+computer name.</p><p><b>dwAPIVersion (4 bytes): </b>An unsigned 32-bit
+integer. This field is the highest TAPI version that is supported by the
+client.</p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved5 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved6 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved7 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>VarData (variable): </b>Contains the
+null-terminated Unicode strings that are indicated by the <b>dwFriendlyNameOffset</b>
+and <b>dwModuleNameOffset</b> fields. </p><dl>
+<dd>
+<p>The contents of this field MUST be DWORD-aligned, as
+specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>.</p>
+</dd></dl></div>

@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The <b>FAX_ENUM_JOB_OP</b> enumeration specifies the
+possible operations available on the current job. Security considerations (that
+is, access rights of the caller) are not taken into account.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FAX_JOB_OP_VIEW = 0x00000001,
+   FAX_JOB_OP_PAUSE = 0x00000002,
+   FAX_JOB_OP_RESUME = 0x00000004,
+   FAX_JOB_OP_RESTART = 0x00000008,
+   FAX_JOB_OP_DELETE = 0x00000010,
+   FAX_JOB_OP_RECIPIENT_INFO = 0x00000020,
+   FAX_JOB_OP_SENDER_INFO = 0x00000040
+ } FAX_ENUM_JOB_OP;
+</pre></div>
+</dd></dl><p><b>FAX_JOB_OP_VIEW: </b>Indicates that the job can be
+viewed.</p><p><b>FAX_JOB_OP_PAUSE: </b>Indicates that the job can
+be paused.</p><p><b>FAX_JOB_OP_RESUME: </b>Indicates that the job can
+be resumed.</p><p><b>FAX_JOB_OP_RESTART: </b>Indicates that the job can
+be restarted.</p><p><b>FAX_JOB_OP_DELETE: </b>Indicates that the job can
+be deleted.</p><p><b>FAX_JOB_OP_RECIPIENT_INFO: </b>Indicates that the
+job has <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_53dfe4f3-05d0-41aa-8217-ecd1962b340b" data-linktype="relative-path">recipient</a></span> info.</p><p><b>FAX_JOB_OP_SENDER_INFO: </b>Indicates that the job
+has sender info.</p></div>

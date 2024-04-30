@@ -1,0 +1,11 @@
+<div class="content"><p>The Print System Remote Protocol is a synchronous Remote
+Procedure Call (RPC)-based protocol used by a print client to send print jobs
+to a print server, to direct their processing, to add or remove print queues,
+and to perform other print system management functions. </p><p>An enhanced replacement for this protocol is specified in
+[MS-PAR] The Print System Asynchronous Remote Protocol. It provides asynchronous
+forms of the synchronous operations supported by the Print System Remote
+Protocol and extends them with additional asynchronous operations. It also
+provides for higher-level authentication in RPC calls between client and
+server.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

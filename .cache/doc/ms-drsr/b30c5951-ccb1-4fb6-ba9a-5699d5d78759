@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The DS_DOMAIN_CONTROLLER_INFO_1W structure defines <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>
+information that is returned as a part of the response to an InfoLevel = 1
+request. The struct contains information about a single DC in the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [string, unique] WCHAR* NetbiosName;
+   [string, unique] WCHAR* DnsHostName;
+   [string, unique] WCHAR* SiteName;
+   [string, unique] WCHAR* ComputerObjectName;
+   [string, unique] WCHAR* ServerObjectName;
+   BOOL fIsPdc;
+   BOOL fDsEnabled;
+ } DS_DOMAIN_CONTROLLER_INFO_1W;
+</pre></div>
+</dd></dl><p><b>NetbiosName:</b>  NetBIOS name of the
+DC.</p><p><b>DnsHostName:</b>  DNS host name of the
+DC.</p><p><b>SiteName:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_22198321-b40b-4c24-b8a2-29e44d9d92b9" data-linktype="relative-path">RDN</a></span> of the <span><a href="../ms-adsc/c44def4a-5465-472c-95f3-2792bfd820d1" data-linktype="relative-path">site</a></span>
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>.</p><p><b>ComputerObjectName:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a></span>
+of the <span><a href="../ms-adsc/142185a8-2e23-4628-b002-cf31d57bb37a" data-linktype="relative-path">computer</a></span>
+object that corresponds to the DC.</p><p><b>ServerObjectName:</b>  DN of the <span><a href="../ms-adsc/96cab7b4-83eb-4879-b352-56ad8d19f1ac" data-linktype="relative-path">server</a></span>
+object that corresponds to the DC.</p><p><b>fIsPdc:</b>  True if and only if the DC
+is the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a></span> <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_de81e9fd-25f5-4e90-aadb-1d35c5e8a06b" data-linktype="relative-path">FSMO role
+owner</a></span>.</p><p><b>fDsEnabled:</b>  A Boolean value that
+indicates whether or not the machine is a domain controller. This value MUST be
+TRUE.</p></div>

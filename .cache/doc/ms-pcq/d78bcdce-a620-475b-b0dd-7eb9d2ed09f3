@@ -1,0 +1,17 @@
+<div class="content"><p>The _PERF_INSTANCE_HEADER structure is used at the beginning
+of an instance block that is returned when enumerating <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_5ad9937c-a24e-4274-92c8-50ff5f97bf19" data-linktype="relative-path">counterset</a> instances or
+when returning <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance
+counter</a> data from multiple instances.</p><dl>
+<dd>
+<div><pre> typedef struct _PERF_INSTANCE_HEADER {
+   unsigned long Size;
+   unsigned long InstanceId;
+ } PERF_INSTANCE_HEADER,
+  *PPERF_INSTANCE_HEADER;
+</pre></div>
+</dd></dl><p><b>Size:</b>  The total size, in bytes, of the
+structure and the instance name.</p><p><b>InstanceId:</b>  The counterset instance
+identifier. Each active instance of a counterset can be identified by the
+combination of its instance name and instance identifier. Two active instances
+of a counterset SHOULD NOT have the same combination of instance name and
+instance identifier. <a id="Appendix_A_Target_3"></a><a aria-label="Product behavior note 3" href="74af7798-f739-49d0-b16f-6899a9f92a8a#Appendix_A_3" data-linktype="relative-path">&lt;3&gt;</a></p></div>

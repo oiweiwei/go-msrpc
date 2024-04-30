@@ -1,0 +1,80 @@
+<div class="content"><p>The R_WinsGetDbRecs method returns the records whose version
+numbers are within a specified range and that are owned by a specified <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_f2f9c250-6c9e-445f-b677-376f23f77d87" data-linktype="relative-path">WINS server</a>.</p><dl>
+<dd>
+<div><pre> DWORD R_WinsGetDbRecs(
+   [in] handle_t ServerHdl,
+   [in, ref] PWINSINTF_ADD_T pWinsAdd,
+   [in] WINSINTF_VERS_NO_T MinVersNo,
+   [in] WINSINTF_VERS_NO_T MaxVersNo,
+   [out] PWINSINTF_RECS_T pRecs
+ );
+</pre></div>
+</dd></dl><p><b>ServerHdl: </b>An <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding over IP
+address/HostName to the WINS server. RPC uses this binding to resolve which
+WINS server the call is directed to.</p><p><b>pWinsAdd: </b>Address of an <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_5adb42e6-46b8-4a71-b98c-f997bf00db61" data-linktype="relative-path">owner WINS server</a> whose
+records are retrieved from the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target WINS server</a>.</p><p><b>MinVersNo: </b>The lower bound on the version
+range of the records to be retrieved.</p><p><b>MaxVersNo: </b>The upper bound on the version
+range of the records to be retrieved.</p><p><b>pRecs: </b>Pointer to a structure of type <a href="cbac7a9a-0b9a-449c-96c3-d51261c95650" data-linktype="relative-path">WINSINTF_RECS_T</a>, which
+contains the records retrieved from the target WINS server.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates the return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation finished successfully. Any nonzero value is a
+Win32 error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following Win32 error codes can be returned:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000FA0</p>
+  <p>ERROR_WINS_INTERNAL</p>
+  </td>
+  <td>
+  <p>An error occurred while processing the RPC call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have sufficient permissions.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Processing and Response Requirements:</b></p><p>The following requirements and recommendations apply to a
+WINS server that processes a call to <a href="e231089b-eb49-40d2-8b62-2b1437e9f98a" data-linktype="relative-path">R_WinsGetDbRecs</a>:</p><ul><li><p><span><span> 
+</span></span>The RPC method caller SHOULD have query-level access.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="a76435fe-902a-4235-b12d-3654ac010672#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a> If an RPC client with a lower
+access level calls R_WinsGetDbRecs, the server SHOULD return
+ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>In response to a R_WinsGetDbRecs call, records are retrieved from
+the target WINS server database if their version numbers fall between <i>MinVersNo</i>
+and <i>MaxVersNo</i>, and if the records are owned by the owner WINS server
+whose address is specified by <i>pWinsAdd</i>.</p>
+</li><li><p><span><span> 
+</span></span>If the R_WinsGetDbRecs caller specifies zero for both <i>MinVersNo</i>
+and <i>MaxVersNo</i>, all records owned by the WINS server specified by <i>pWinsAdd</i>
+are retrieved from the target WINS server&#39;s database.</p>
+</li><li><p><span><span> 
+</span></span>The <i>MinVersNo</i> value MUST be less than or equal to <i>MaxVersNo</i>
+value for the R_WinsGetDbRecs call to succeed; otherwise, the server SHOULD
+return ERROR_WINS_INTERNAL.</p>
+</li></ul><p>The R_WinsGetDbRecs caller is responsible for freeing the
+memory pointed to by <i>pRecs-&gt;pRow-&gt;pName</i> and <i>pRecs-&gt;pRow-&gt;pAdd</i>
+for each record, then using the <b>midl_user_free</b> function (section <a href="571bb9e9-1416-426a-8a2e-e5be5d4a9002" data-linktype="relative-path">3</a>) to free the <i>pRecs-&gt;pRow</i>
+and <i>pRecs</i> pointers themselves.</p></div>

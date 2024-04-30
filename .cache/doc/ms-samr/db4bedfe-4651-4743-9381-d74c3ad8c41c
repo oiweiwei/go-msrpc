@@ -1,0 +1,42 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/db4bedfe-4651-4743-9381-d74c3ad8c41c" data-linktype="external">msdn link</a></p><p>The SamrGetUserDomainPasswordInformation method obtains
+select password policy information (without requiring a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> handle).</p><dl>
+<dd>
+<div><pre> long SamrGetUserDomainPasswordInformation(
+   [in] SAMPR_HANDLE UserHandle,
+   [out] PUSER_DOMAIN_PASSWORD_INFORMATION PasswordInformation
+ );
+</pre></div>
+</dd></dl><p><b>UserHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_e767a471-c3fa-4e4b-a40c-daeb08f82a17" data-linktype="relative-path">user object</a>.</p><p><b>PasswordInformation: </b>Password policy
+information from the user&#39;s domain.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>On receiving this message, the server MUST process the data
+from the message subject to the following constraints:</p><ol><li><p><span>    </span>The server MUST
+return an error if <i>UserHandle.HandleType</i> is not equal to
+&#34;User&#34;.</p>
+</li><li><p><span>    </span>The security
+identity of the client MUST have DOMAIN_READ_PASSWORD_PARAMETERS access to the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_3ff707e8-0783-4b16-9370-2899f1078c87" data-linktype="relative-path">account domain object</a>; if
+not, the server MUST abort processing and return STATUS_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>If the
+RelativeId of the <b>objectSid</b> attribute of the user object referenced by <i>UserHandle.Object</i>
+is DOMAIN_USER_RID_KRBTGT, or if the <b>userAccountControl</b> attribute
+contains UF_INTERDOMAIN_TRUST_ACCOUNT, UF_WORKSTATION_TRUST_ACCOUNT, or
+UF_SERVER_TRUST_ACCOUNT, then <i>PasswordInformation</i> MUST be set to all
+zeros, and the server MUST end processing and return STATUS_SUCCESS.</p>
+</li><li><p><span>    </span>The output
+parameter <b>PasswordInformation.MinPasswordLength</b> MUST be set to the
+Effective-MinimumPasswordLength attribute value (see section <a href="6da47028-e678-475e-b015-a5a15ee98212" data-linktype="relative-path">3.1.1.5</a>).</p>
+</li><li><p><span>    </span>The output
+parameter <b>PasswordInformation.PasswordProperties</b> MUST be set to the <b>pwdProperties</b>
+attribute value on the account domain object. In addition:</p>
+<ol><li><p><span>   
+</span>If the Effective-PasswordComplexityEnabled value (see section 3.1.1.5)
+is set, <b>PasswordInformation.PasswordProperties</b> MUST contain
+DOMAIN_PASSWORD_COMPLEX.</p>
+</li><li><p><span>   
+</span>If the Effective-PasswordReversibleEncryptionEnabled value (see section
+3.1.1.5) is set, <b>PasswordInformation.PasswordProperties</b> MUST contain
+DOMAIN_PASSWORD_STORE_CLEARTEXT.</p>
+</li></ol></li></ol></div>

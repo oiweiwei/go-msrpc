@@ -1,0 +1,22 @@
+<div class="content"><p>The SERVICE_FAILURE_ACTIONS_WOW64 structure defines the
+action that the service controller takes on each failure of a service.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwResetPeriod;
+   DWORD dwRebootMsgOffset;
+   DWORD dwCommandOffset;
+   DWORD cActions;
+   DWORD dwsaActionsOffset;
+ } SERVICE_FAILURE_ACTIONS_WOW64;
+</pre></div>
+</dd></dl><p><b>dwResetPeriod:</b>  The time, in
+seconds, after which to reset the failure count to zero if there are no
+failures.</p><p><b>dwRebootMsgOffset:</b>  The offset for
+the buffer containing the message that is broadcast in response to the
+SC_ACTION_REBOOT service controller action (section <a href="7e3bf33c-ed3d-4bc6-8781-cc9fe092de9e" data-linktype="relative-path">2.2.18</a>) to all server
+users prior to a server reboot.</p><p><b>dwCommandOffset:</b>  The offset for the
+buffer that contains the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a>
+command line of the process that the process creation function executes in
+response to the SC_ACTION_RUN_COMMAND service controller action (section 2.2.18).</p><p><b>cActions:</b>  The number of <a href="5e3e9ca1-6c33-4c94-bf36-c5b75262d7d6" data-linktype="relative-path">SC_ACTION (section 2.2.19)</a>
+structures in the array that is offset by the value of <b>dwsaActionsOffset</b>.</p><p><b>dwsaActionsOffset:</b>  The offset for
+the buffer that contains an array of SC_ACTION structures. </p></div>

@@ -1,0 +1,66 @@
+<div class="content"><p>The OLE Automation Protocol extends the use of <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a> by providing support
+for marshaling an additional set of types (known as <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_30a4192b-9daa-4a21-bd87-6cb0908a2a9e" data-linktype="relative-path">automation types</a>) and by
+providing support for exposing COM components to <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_1beeac58-f059-4b12-ad3d-79384cb65c28" data-linktype="relative-path">automation clients</a> (such as
+scripting engines) through a late-bound calling alternative to the traditional
+COM calls. Additionally, the OLE Automation Protocol specifies how a type
+browser can discover and interpret type information provided by a type
+description <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>.</p><p>The automation client and server can be present on the same
+machine, or on different machines connected by a network. Automation takes
+advantage of functionality provided by the Microsoft Component Object Model
+(for more information, see <a href="https://go.microsoft.com/fwlink/?LinkId=89977" data-linktype="external">[MSDN-COM]</a>) and the
+Microsoft Distributed Component Object Model (as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>)
+for creating, activating, and managing the lifetime of the objects exposed by
+an <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_5dcdba04-9cfd-40b3-b0e1-0b8e4374aeaa" data-linktype="relative-path">automation server</a>.</p><p>To support late-bound calling, the OLE Automation Protocol
+specifies the following:</p><ul><li><p><span><span> 
+</span></span>How a server defines a set of automation methods that can be
+dispatched, based on a <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_3792c5cc-783c-4b2a-a71e-c1ec3f432474" data-linktype="relative-path">dispatch
+ID (DISPID)</a>.</p>
+</li><li><p><span><span> 
+</span></span>How the server provides a way to map a method name to the DISPID.</p>
+</li><li><p><span><span> 
+</span></span>How the server performs the late-bound call, based on the DISPID.</p>
+</li></ul><p>The automation methods are defined by using extensions to
+the <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a> language
+specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+sections 6, 7, 8, 9, 10, 11, 12, 13, and 14. These extensions provide the
+definition of <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_db2ca497-c239-403c-81a7-78b0cecb5ced" data-linktype="relative-path">automation
+interfaces</a> containing automation methods and properties. Each IDL
+definition of an automation method and <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_f930baab-25f1-4142-bced-5effc9f62d45" data-linktype="relative-path">property</a> can have a unique
+(per <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>) integer
+value associated with it. This value is defined as a DISPID and is statically
+discoverable (from the IDL specification of the method), and dynamically
+discoverable (through a call to <a href="7166d6ff-b851-4216-bfaa-34128274a242" data-linktype="relative-path">IDispatch::GetIDsOfNames (section 3.1.4.3)</a>).
+This value is then used by automation clients to invoke the automation method,
+or to set or retrieve an automation property (through a call to
+IDispatch::Invoke).</p><p>To support this late-bound calling mechanism, Automation
+defines a set of types, <a href="b2ee2b50-665e-43e6-a92c-8f2a29fd7add" data-linktype="relative-path">VARIANT (section 2.2.29)</a>
+being the most important of them. A VARIANT can be thought of as a
+discriminated union of all automation-supported types. The OLE Automation
+Protocol imposes the following restriction on the automation interfaces: All
+types of method arguments and properties can be stored as VARIANT structures. </p><p>The following illustration shows a generic automation call
+sequence:</p><p><img id="MS-OAUT_pict7caa3571-4b5b-82fe-21d8-b488bb2be2b8.png" src="ms-oaut_files/image001.png" alt="Generic Automation call" title="Generic Automation call" data-linktype="relative-path"/></p><p><b>Figure 1: Generic Automation call</b></p><p>This automation call response can be optimized if the
+automation client knows the DISPIDs associated with an automation server&#39;s
+method at compile time, and forgoes the initial call to GetIDsOfNames:</p><p><img id="MS-OAUT_pict8edbf564-dd45-3b47-42c3-1ece0d9f9278.png" src="ms-oaut_files/image002.png" alt="Optimized Automation call" title="Optimized Automation call" data-linktype="relative-path"/></p><p><b>Figure 2: Optimized Automation call</b></p><p>To support type description and discovery, the OLE
+Automation Protocol specifies:</p><ul><li><p><span><span> 
+</span></span>How the automation server supports queries for type-description
+support.</p>
+</li><li><p><span><span> 
+</span></span>How to specify an extended set of capabilities and relationships
+using automation IDL extensions.</p>
+</li><li><p><span><span> 
+</span></span>How a server can provide access to the information specified in
+the IDL.</p>
+</li></ul><p>An automation server specifies that it provides type
+information by implementing <a href="d3233e5b-657f-4c98-8a61-56449c96fe16" data-linktype="relative-path">IDispatch::GetTypeInfoCount (section 3.1.4.1)</a>,
+and exposes access to the type description server that describes the server&#39;s <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_35b38e6d-42ee-4b7b-8ca1-ab93308458d5" data-linktype="relative-path">dispinterface</a> by
+implementing <a href="d1791851-6491-4289-8c57-25967ef7b9ed" data-linktype="relative-path">IDispatch::GetTypeInfo (section 3.1.4.2)</a>.</p><p>The following diagram illustrates a generic query for type
+information.</p><p><img id="MS-OAUT_pictc4804ff4-8396-bb3f-b2f0-9e81a1fa4997.png" src="ms-oaut_files/image003.png" alt="Generic query for type information" title="Generic query for type information" data-linktype="relative-path"/></p><p><b>Figure 3: Generic query for type information</b></p><p>To support exposing type information related to <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_afe9a4a6-56fc-4162-8c9b-ca7c7e44449c" data-linktype="relative-path">COM servers</a>, the OLE
+Automation Protocol specifies the set of types that are used to encapsulate
+semantic information associated with a COM server, with the interfaces it
+implements, and with the methods and properties defined on those interfaces (<a href="0ca10d08-61d2-4059-9109-7bbaf545715e" data-linktype="relative-path">TYPEATTR (section 2.2.44)</a>,
+<a href="d3349d25-e11d-4095-ba86-de3fda178c4e" data-linktype="relative-path">FUNCDESC (section 2.2.42)</a>,
+and <a href="ae7791d2-4399-4dff-b7c6-b0d4f3dce982" data-linktype="relative-path">VARDESC (section 2.2.43)</a>
+being the most important), in addition to the set of interfaces that a server
+has to implement to provide COM clients with access to the type information
+(ITypeInfo being the central one).</p><p><img id="MS-OAUT_pict4573bf22-f480-7a4c-6f50-a2efdd44185f.png" src="ms-oaut_files/image004.png" alt="Generic query for type information related to COM servers" title="Generic query for type information related to COM servers" data-linktype="relative-path"/></p><p><b>Figure 4: Generic query for type information related to COM
+servers</b></p></div>

@@ -1,0 +1,119 @@
+<div class="content"><p>The TableDataFixedWrite structure represents the fixed-size
+parts of the data, along with write actions, for a write to zero or more
+entries in a table, as used in the <a href="3fe6b10a-65d3-4bcd-8897-f84512d52f3b" data-linktype="relative-path">ICatalogTableWrite::WriteTable (section 3.1.4.9.1)</a>
+method. It is always used along with a <a href="bc492521-2a4b-4776-84a0-ce20e81d692a" data-linktype="relative-path">TableDataVariable (section 2.2.1.15)</a>
+structure.</p><p>TableDataFixedWrite is a custom-marshaled type that is
+passed in a char* parameter. A TableDataFixedWrite structure is marshaled as a
+sequence of zero or more <a href="183fb968-7cab-4684-be5e-35469ed9df6c" data-linktype="relative-path">TableEntryFixedWrite (section 2.2.1.12)</a>
+structures (a write with zero table entries MUST be represented by a NULL
+pointer).</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">EntryWrite
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>EntryWrite (variable): </b> A sequence of zero or
+more TableEntryFixedWrite structures. The order in which these structures
+appear MUST be the same as the order in which the corresponding <a href="c0c52d81-93f3-494f-904a-f119eef4f41c" data-linktype="relative-path">TableEntryVariable (section
+2.2.1.14)</a> structures appear in the associated TableDataVariable structure.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">EntryWrite
+  0 (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">EntryWrite
+  1 (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">EntryWrite
+  n (variable)</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p> </p></div>

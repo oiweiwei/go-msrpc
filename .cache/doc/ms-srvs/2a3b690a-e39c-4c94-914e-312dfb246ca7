@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The CONNECT_ENUM_UNION union contains information about a <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_866b0055-ceba-4acf-a692-98452943b981" data-linktype="relative-path">connection</a></span>.
+It is used in the definition of the <span><a href="9f2c5d5c-dc41-4d31-b81f-6bf6fa0fe8c3" data-linktype="relative-path">CONNECTION_ENUM_STRUCT</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union _CONNECT_ENUM_UNION {
+   [case(0)] 
+     CONNECT_INFO_0_CONTAINER* Level0;
+   [case(1)] 
+     CONNECT_INFO_1_CONTAINER* Level1;
+ } CONNECT_ENUM_UNION;
+</pre></div>
+</dd></dl><p><b>Level0:</b>  A pointer to a structure
+containing information about a connection, as specified in section <span><a href="eeb410c8-f932-451a-931f-e98a3d6c0e93" data-linktype="relative-path">2.2.4.3</a></span>.</p><p><b>Level1:</b>  A pointer to a structure
+containing information about a connection, as specified in section <span><a href="a7d955fb-f062-405b-b93f-45f0face4398" data-linktype="relative-path">2.2.4.4</a></span>.</p></div>

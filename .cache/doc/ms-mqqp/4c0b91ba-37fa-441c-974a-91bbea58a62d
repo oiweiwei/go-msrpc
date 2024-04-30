@@ -1,0 +1,88 @@
+<div class="content"><p> </p><p>The client MUST invoke the RemoteQMEndReceive method to
+advise the server that the <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span> packet
+returned by the <span><a href="aab4d8fa-3a56-483c-ac61-4172a09fc199" data-linktype="relative-path">RemoteQMStartReceive</a></span>,
+<span><a href="a0df225e-80ea-4242-90e5-9891bfa9ebfb" data-linktype="relative-path">RemoteQMStartReceive2</a></span>,
+or <span><a href="b8a82b34-6feb-4057-8f7f-48275fa65068" data-linktype="relative-path">RemoteQMStartReceiveByLookupId</a></span>
+method has been received.</p><p>The combination of the RemoteQMStartReceive,
+RemoteQMStartReceive2, or RemoteQMStartReceiveByLookupId method and the
+positive acknowledgment of the RemoteQMEndReceive method ensures that a message
+packet is not lost in transit from the server to the client due to a network
+outage during the call sequence.</p><p>Before calling this method, the following methods MUST be
+called:</p><ul><li><p><span><span> 
+</span></span>RemoteQMOpenQueue</p>
+</li><li><p><span><span> 
+</span></span>RemoteQMStartReceive, RemoteQMStartReceive2, or
+RemoteQMStartReceiveByLookupId</p>
+<div><pre> HRESULT RemoteQMEndReceive(
+   [in] handle_t hBind,
+   [in, out] PCTX_REMOTEREAD_HANDLE_TYPE* pphContext,
+   [in, range(1, 2)] DWORD dwAck
+ );
+</pre></div>
+</li></ul><p><b>hBind: </b>MUST be an <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle
+parameter for use by the server, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>pphContext: </b>A pointer to a context handle of a
+pending remote read operation.</p><p><b>dwAck: </b>An ACK or NACK about the status of the
+message packet of the pending remote read operation.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>RR_NACK</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The client acknowledges that the message packet was
+  not delivered successfully.</p>
+  <p>The server MUST keep the message in the <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>
+  and make it available for subsequent consumption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RR_ACK</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The client acknowledges that the message packet was
+  delivered successfully.</p>
+  <p>The server MUST remove the message from the queue and
+  make it unavailable for subsequent consumption.</p>
+  </td>
+ </tr></tbody></table><p><b>Return Values: </b>The method MUST return MQ_OK
+(0x00000000) on success; otherwise, it MUST return a failure HRESULT, and the
+client MUST treat all failure HRESULTs identically.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>MQ_ERROR_INVALID_HANDLE</b> (0xC00E0007)</p><p><b>MQ_ERROR_INVALID_PARAMETER</b> (0xC00E0006)</p><p><b>MQ_ERROR_TRANSACTION_SEQUENCE</b> (0xC00E0051)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown except
+those thrown by the underlying RPC protocol, [MS-RPCE].</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Return MQ_ERROR_INVALID_HANDLE (0xc00e0007) if <i>pphContext</i>
+is NULL.</p>
+</li><li><p><span><span> 
+</span></span>Use <i>pphContext</i> as <b>RemoteReadEntry</b>.</p>
+</li><li><p><span><span> 
+</span></span>The server MAY search <b>rRemoteReadEntryCollection</b> where <b>OpenQueueDescriptorHandle</b>
+= <b>RemoteReadEntry.OpenQueueDescriptorHandle</b> and return
+MQ_ERROR_INVALID_PARAMETER (0xC00E0006) if the <b>OpenQueueDescriptorHandle</b>
+is not found.<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="d6c5ba0a-aaf8-489d-baf2-fdc286b4bea4#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Within the <b>OpenQueueDescriptorCollection</b> properties of all
+queues present in <b>QueueManager.QueueCollection</b>, find the <b>OpenQueueDescriptor</b>
+where <b>OpenQueueDescriptor.Handle</b> = <b>RemoteReadEntry.OpenQueueDescriptorHandle</b>
+and generate a <span><a href="../ms-mqdmpr/fafcf10f-d43b-475a-908c-fc39bbe9272b" data-linktype="relative-path">Dequeue
+Message End</a></span> event with the following inputs:</p>
+<ul><li><p><span><span>  </span></span>iQueueDesc:=
+reference to <b>OpenQueueDescriptor</b> obtained.</p>
+</li><li><p><span><span>  </span></span>iMessage:=
+<b>RemoteReadEntry.UserMessagePacket</b>.</p>
+</li><li><p><span><span>  </span></span>iDeleteMessage:=
+true if <i>dwAck</i> is equal to RR_ACK, and false if <i>dwAck</i> is equal to
+RR_NACK.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Delete the <b>RemoteReadEntry</b>, and set <i>pphContext</i> to
+NULL.</p>
+</li><li><p><span><span> 
+</span></span>Return rStatus.</p>
+</li></ul></div>

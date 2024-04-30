@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p>The CACTransferBufferV2 structure is used to send and receive
+<span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">messages</a></span>
+via <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_70ce3665-ae64-44b4-88fe-7c1dcdcd5417" data-linktype="relative-path">MSMQ</a></span>.</p><p>Following is the layout of the CACTransferBufferV2 structure
+followed by descriptions of the structure members.</p><dl>
+<dd>
+<div><pre> typedef struct CACTransferBufferV2 {
+   struct CACTransferBufferV1 old;
+   unsigned char* pbFirstInXact;
+   unsigned char* pbLastInXact;
+   OBJECTID** ppXactID;
+ } CACTransferBufferV2;
+</pre></div>
+</dd></dl><p><b>old:</b>   The <b>CACTransferBufferOld</b>
+MUST be a <span><a href="08791447-2c3c-48d4-98ab-ce9dd28a9509" data-linktype="relative-path">CACTransferBufferV1</a></span>,
+as defined in section 2.2.3.2. </p><p><b>pbFirstInXact:</b>   The <b>pbFirstInXact</b>
+member MUST be a single byte. The <b>pbFirstInXact</b> member MUST be set to a
+value of 0x00 (FALSE) when the associated message is not the first message in a
+<span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a></span>.
+A value other than 0x00 MUST be interpreted as indicating (TRUE) that the
+associated message is the first message in a transaction.</p><p><b>pbLastInXact:</b>   The <b>pbLastInXact</b>
+member MUST be a single byte. The <b>pbLastInXact</b> member MUST be set to a
+value of 0x00 (FALSE) when the associated message is not the last message in a
+transaction. A value other than 0x00 MUST be interpreted as indicating (TRUE)
+that the associated message is the last message in a transaction.</p><p><b>ppXactID:</b>   The <b>ppXactID</b>
+member, if present, MUST be an <span><a href="../ms-mqmq/653f80a3-6585-4cca-bb7f-5154b4ad0fab" data-linktype="relative-path">OBJECTID</a></span>
+structure, as specified in <span><a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a></span>
+section 2.2.8.</p></div>

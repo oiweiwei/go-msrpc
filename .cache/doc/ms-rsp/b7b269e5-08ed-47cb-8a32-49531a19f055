@@ -1,0 +1,255 @@
+<div class="content"><p>The <b>WsdrInitiateShutdown</b> method is used to initiate
+the shutdown of the remote computer.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="226cc244-36f0-441f-8ce9-57e616e8409b#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a></p><dl>
+<dd>
+<div><pre> unsigned long WsdrInitiateShutdown(
+   [ in ] handle_t Binding,
+   [ in, unique ] PREG_UNICODE_STRING lpMessage,
+   [ in ] unsigned long dwGracePeriod,
+   [ in ] unsigned long dwShudownFlags,
+   [ in ] unsigned long dwReason,
+   [ in, unique ] PREG_UNICODE_STRING lpClientHint);
+</pre></div>
+</dd></dl><p><b>Binding: </b>Primitive <a href="7a7ca3c2-1346-417b-93e8-e8940a524da6#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> <a href="7a7ca3c2-1346-417b-93e8-e8940a524da6#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a> that identifies a
+particular client/server binding.</p><p><b>lpMessage: </b>Null-terminated Unicode string that
+contains the message to display during the shutdown waiting period. If this
+parameter is NULL, no message MUST be displayed.</p><p><b>dwGracePeriod: </b>Number of seconds to wait
+before shutting down. </p><p><b>dwShudownFlags: </b>A set of bit flags in
+little-endian format used as a mask to indicate shutdown options. The value is
+constructed from zero or more bit flags from the following table, with the
+exception that flag &#34;B&#34; cannot be combined with &#34;C&#34; or
+&#34;D&#34;.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">G</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">E</p>
+  </td>
+  <td>
+  <p align="center">D</p>
+  </td>
+  <td>
+  <p align="center">C</p>
+  </td>
+  <td>
+  <p align="center">B</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">A</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>The bits are defined as follows.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>All applications SHOULD be terminated unconditionally.
+  An alternate for this field is SHUTDOWN_FORCE_OTHERS.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Restart computer. Cannot be used with &#34;C&#34; or
+  &#34;D&#34;. An alternate name for this field is SHUTDOWN_RESTART.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>C</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The shutdown SHOULD turn off the computer. Cannot be
+  used with &#34;B&#34; or &#34;D&#34;. An alternate name for this field is
+  SHUTDOWN_POWEROFF.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>D</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The shutdown SHOULD leave the computer powered but
+  SHOULD NOT cause a reboot. Cannot be used with &#34;B&#34; or
+  &#34;C&#34;. An alternate name for this field is SHUTDOWN_NOREBOOT.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>If a shutdown is currently in progress, setting this
+  bit on a subsequent shutdown request SHOULD cause the ongoing request&#39;s
+  waiting period to be ignored and SHOULD cause an immediate shutdown. An
+  alternate name for this field is SHUTDOWN_GRACE_OVERRIDE.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>The shutdown SHOULD install pending software updates
+  before proceeding. An alternate name for this field is
+  SHUTDOWN_INSTALL_UPDATES.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>G</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>The shutdown SHOULD restart the computer and then
+  restart any applications that have registered for restart. An alternate name
+  for this field is SHUTDOWN_RESTARTAPPS.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be zero and
+ignored upon receipt.</p>
+</dd></dl><p><b>dwReason: </b>Reason for initiating the shutdown
+(section <a href="d74aa51d-d481-4dc5-b0a2-750871916106" data-linktype="relative-path">2.3</a>). The <b>dwReason</b>
+SHOULD be used for log entries for the shutdown event.</p><p><b>lpClientHint: </b>Used only for diagnostic
+purposes (logging the image file name of the process initiating a shutdown).</p><p><b>Return Values: </b>The method returns
+ERROR_SUCCESS (0x00000000) on success; otherwise, it returns a nonzero error code.</p><p>On receiving this call, the server MUST perform the
+following validation step:</p><ul><li><p><span><span> 
+</span></span>Verify that the caller has sufficient privileges to shut down the
+computer; otherwise, the server MUST return ERROR_BAD_NETPATH. </p>
+</li></ul><p>If there are other sessions logged on and &#34;A&#34; is
+not set, the server MUST return ERROR_SHUTDOWN_USERS_LOGGED_ON.</p><p>The shutdown SHOULD turn off the computer when
+&#34;B,&#34; &#34;C,&#34; and &#34;D&#34; are not set or when multiple
+bits are set.</p></div>

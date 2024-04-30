@@ -1,0 +1,751 @@
+<div class="content"><p> </p><p>The <b>FAX_JOB_STATUS</b> data type can be passed as a
+pointer reference inside <b>FAX_JOB_ENTRY_EXW</b> (section <span><a href="0c0c6cad-4f41-4b3f-b9ed-2383cf318d44" data-linktype="relative-path">2.2.35</a></span>)
+or <b>FAX_JOB_ENTRY_EX_1</b> (section <span><a href="b02b56af-005a-4326-bfee-63613abf911d" data-linktype="relative-path">2.2.34</a></span>).</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (120 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (120 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfStruct</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwValidityMask</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwJobID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwJobType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwQueueStatus</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwExtendedStatus</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrExtendedStatusOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwPageCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCurrentPage</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrTsidOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrCsidOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>tmScheduleTime
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>tmTransmissionStartTime
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>tmTransmissionEndTime
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwDeviceID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrDeviceNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRetries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrCallerIDOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrRoutingInfoOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAvailableJobOperations</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>dwSizeOfStruct (4 bytes):
+</b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that indicates the size, in bytes, of the structure. MUST be set to 120 bytes.</p>
+</dd>
+<dd>
+<p><b>dwValidityMask (4 bytes):
+</b>A <b>DWORD</b> value that holds a bitwise OR of valid fields in <b>FAX_ENUM_JOB_FIELDS</b>
+(section <span><a href="d14835c7-77df-4772-bdde-6612312cb237" data-linktype="relative-path">2.2.77</a></span>).</p>
+</dd>
+<dd>
+<p><b>dwJobID (4 bytes): </b>A <b>DWORD</b>
+that contains the session job identifier of the fax job.</p>
+</dd>
+<dd>
+<p><b>dwJobType (4 bytes): </b>A
+<b>DWORD</b> that holds the type of the fax job. It is one of the following
+values; see section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span> for more
+information.</p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The job type is JT_UNKNOWN.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The jobtype is JT_SEND.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The job type is JT_RECEIVE.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The job type is JT_ROUTING.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The job type is JT_FAIL_RECEIVE.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The job type is JT_BROADCAST.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd></dl><p><b>dwQueueStatus (4
+bytes): </b>A <b>DWORD</b> that holds a bitwise OR combination of the <b>Job
+Status</b> bit flags listed in section 3.1.1.</p><p><b>dwExtendedStatus (4
+bytes): </b>A <b>DWORD</b> that holds a predefined fax-extended status code as
+described in the following table.</p><dl>
+<dd>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>JS_EX_NONE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No extended status code is available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_DISCONNECTED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The sender or the caller disconnected the fax call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_INITIALIZING</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The device is initializing a call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_DIALING</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The device is dialing a fax number.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_TRANSMITTING</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The device is sending a <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_cce65523-bec8-486a-8c6c-6091c52af3d3" data-linktype="relative-path">fax document</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_ANSWERED </p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The device answered a new call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_RECEIVING</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>The device is receiving a fax document.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_LINE_UNAVAILABLE</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>The device is not available because it is in use by
+  another application. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_BUSY</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The device encountered a busy signal.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_NO_ANSWER</p>
+  <p>0x00000009</p>
+  </td>
+  <td>
+  <p>The receiving device did not answer the call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_BAD_ADDRESS</p>
+  <p>0x0000000A</p>
+  </td>
+  <td>
+  <p>The device dialed an invalid fax number.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_NO_DIAL_TONE</p>
+  <p>0x0000000B</p>
+  </td>
+  <td>
+  <p>The sending device cannot complete the call because it
+  does not detect a dial tone.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_FATAL_ERROR</p>
+  <p>0x0000000C</p>
+  </td>
+  <td>
+  <p>The device has encountered a fatal protocol error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_CALL_DELAYED</p>
+  <p>0x0000000D</p>
+  </td>
+  <td>
+  <p>The device delayed a fax call because the sending
+  device received a busy signal multiple times. The device cannot retry the
+  call because dialing restrictions exist (some countries and regions restrict
+  the number of retry attempts when a number is busy).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_CALL_BLACKLISTED</p>
+  <p>0x0000000E</p>
+  </td>
+  <td>
+  <p>The device could not complete a call because the
+  telephone number was blocked or reserved; emergency numbers such as 911 are
+  blocked.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_NOT_FAX_CALL </p>
+  <p>0x0000000F</p>
+  </td>
+  <td>
+  <p>The device received a call that was a data call or a
+  voice call. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_PARTIALLY_RECEIVED</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The incoming fax was partially received. Some (but not
+  all) of the pages are available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_HANDLED</p>
+  <p>0x00000011</p>
+  </td>
+  <td>
+  <p>The fax service processed the outbound fax document;
+  the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_2ba66d72-d766-440f-b5ea-0333759b147c" data-linktype="relative-path">fax service provider (FSP)</a></span>
+  MAY transmit the fax document.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_CALL_COMPLETED</p>
+  <p>0x00000012</p>
+  </td>
+  <td>
+  <p>The call was completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JS_EX_CALL_ABORTED</p>
+  <p>0x00000013</p>
+  </td>
+  <td>
+  <p>The call was terminated.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd>
+<dd>
+<p><b>lpcwstrExtendedStatusOffset
+(4 bytes): </b>Offset to the <b>lpcwstrExtendedStatus</b> field in the <b>Variable_Data</b>
+portion of the structure. If this offset is zero, the extended status is a
+standard extended status described by a greater than zero <b>dwExtendedStatus</b>.
+If this offset is not zero, the offset points to a valid NULL-terminated
+character string in the <b>Variable_Data</b> of this structure that describes a
+proprietary (custom) extended status for the respective FSP.</p>
+</dd>
+<dd>
+<p><b>dwSize (4 bytes): </b>A <b>DWORD</b>
+that holds the size, in bytes, of the fax document to transmit.</p>
+</dd>
+<dd>
+<p><b>dwPageCount (4 bytes): </b>A
+<b>DWORD</b> that holds the total number of pages in the fax transmission.</p>
+</dd>
+<dd>
+<p><b>dwCurrentPage (4 bytes): </b>A
+<b>DWORD</b> that holds the index of the page that the fax device is currently
+sending or receiving in the fax transmission. This page index is a 1-based
+index value (1 for the first page transmitted, 2 for the second, and so on; it
+is not 0 for the first page transmitted, 1 for the second page transmitted, and
+so on).</p>
+</dd>
+<dd>
+<p><b>lpcwstrTsidOffset (4
+bytes): </b>Offset to the <b>lpcwstrTsid</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpcwstrCsidOffset (4
+bytes): </b>Offset to the <b>lpcwstrCsid</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>tmScheduleTime (16
+bytes): </b>For outgoing faxes only. This field is a <b>SYSTEMTIME</b>
+([MS-DTYP] section <span><a href="../ms-dtyp/2fefe8dd-ab48-4e33-a7d5-7171455a9289" data-linktype="relative-path">2.3.13</a></span>)
+structure that holds the date and time to send the fax message. This time is
+expressed in <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_6189b117-ca53-47a1-9eb3-7ea5ddc215dd" data-linktype="relative-path">Coordinated Universal Time</a></span>
+(<span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">UTC</a></span>).</p>
+</dd>
+<dd>
+<p><b>tmTransmissionStartTime
+(16 bytes): </b>A <b>SYSTEMTIME</b> that holds the date and time when the fax
+message’s transmission started. This time is expressed in UTC.</p>
+</dd>
+<dd>
+<p><b>tmTransmissionEndTime (16
+bytes): </b>A <b>SYSTEMTIME</b> that holds the date and time when the fax
+message’s transmission ended. This time is expressed in UTC.</p>
+</dd>
+<dd>
+<p><b>dwDeviceID (4 bytes): </b>A
+<b>DWORD</b> that holds the identifier of the device used to receive or send
+the fax messages.</p>
+</dd>
+<dd>
+<p><b>lpcwstrDeviceNameOffset
+(4 bytes): </b>Offset to the <b>lpcwstrDeviceName</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>dwRetries (4 bytes): </b>For
+outgoing faxes only. This field is a <b>DWORD</b> that holds the number of
+failed transmission retries counted for the current fax job.</p>
+</dd>
+<dd>
+<p><b>lpcwstrCallerIDOffset (4
+bytes): </b>Offset to the <b>lpcwstrCallerId</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpcwstrRoutingInfoOffset
+(4 bytes): </b>Offset to the <b>lpcwstrRoutingInfo</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>dwAvailableJobOperations
+(4 bytes): </b>A <b>DWORD</b> containing a bitwise combination of values
+defined in <b>FAX_ENUM_JOB_OP</b> (section <span><a href="c89f06e9-cb0d-4a62-a2bb-a21c38ae93a8" data-linktype="relative-path">2.2.58</a></span>). This
+combination value describes the operations available on the current job. The
+access rights of the caller are not taken into account.</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrExtendedStatus
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrTsid
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrCsid
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrDeviceName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrCallerID
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrRoutingInfo
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>lpcwstrExtendedStatus
+(variable): </b>A null-terminated string that holds a fax-extended status
+provided by the Fax Service Provider (FSP). If this field is not present, the
+extended status MUST be a standard extended status described by a greater than
+zero <b>dwExtendedStatus</b>. If this field is present it MUST contain a valid
+NULL-terminated character string that describes a proprietary (custom) extended
+status for the respective FSP.</p>
+</dd>
+<dd>
+<p><b>lpcwstrTsid (variable): </b>A
+null-terminated character string that holds the identifier of the transmitting
+subscriber. This identifier can be a telephone number.</p>
+</dd>
+<dd>
+<p><b>lpcwstrCsid (variable): </b>A
+null-terminated character string that holds the called subscriber identifier.
+This identifier can be a telephone number.</p>
+</dd>
+<dd>
+<p><b>lpcwstrDeviceName
+(variable): </b>A null-terminated character string that holds the name of the
+device used to receive or send the fax message.</p>
+</dd>
+<dd>
+<p><b>lpcwstrCallerID
+(variable): </b>For incoming faxes only. A null-terminated character string
+that contains the caller ID of the calling device that sent the fax. This
+string can include the telephone number of the calling device.</p>
+</dd>
+<dd>
+<p><b>lpcwstrRoutingInfo
+(variable): </b>For incoming faxes only. A null-terminated character string
+that identifies the routing string for the fax. This string can include the
+telephone number of the called device.</p>
+</dd></dl></div>

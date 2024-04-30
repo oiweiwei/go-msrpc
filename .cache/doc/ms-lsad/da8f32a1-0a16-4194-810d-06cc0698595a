@@ -1,0 +1,263 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/da8f32a1-0a16-4194-810d-06cc0698595a" data-linktype="external">msdn link</a></p><p>The LSAPR_TRUSTED_DOMAIN_AUTH_BLOB structure contains a
+counted buffer of authentication material. <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">Domain</a> <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a> authentication is
+specified in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/c964fca9-c50e-426a-9173-5bf3cb720e2e" data-linktype="relative-path">6.1.6.9.1</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_TRUSTED_DOMAIN_AUTH_BLOB {
+   [range(0,65536)] unsigned long AuthSize;
+   [size_is(AuthSize)] unsigned char* AuthBlob;
+ } LSAPR_TRUSTED_DOMAIN_AUTH_BLOB,
+  *PLSAPR_TRUSTED_DOMAIN_AUTH_BLOB;
+</pre></div>
+</dd></dl><p><b>AuthSize:</b>  The count of bytes in <b>AuthBlob</b>.<a id="Appendix_A_Target_35"></a><a aria-label="Product behavior note 35" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_35" data-linktype="relative-path">&lt;35&gt;</a></p><p><b>AuthBlob:</b>  An array of bytes
+containing the authentication material. If the <b>AuthSize</b> field has a
+value other than 0, this field MUST NOT be NULL. Always encrypted using
+algorithms, as specified in section <a href="1f5bd3ed-cfdd-42ab-a2ac-f0786082bb21" data-linktype="relative-path">5.1.1</a>. The plaintext
+layout is in the following format.</p><dl>
+<dd>
+<p>The incoming and outgoing authentication information
+buffer size included at the end of the LSAPR_TRUSTED_DOMAIN_AUTH_BLOB can be
+used to extract the incoming and outgoing authentication information buffers
+from the LSAPR_TRUSTED_DOMAIN_AUTH_BLOB. Each of these buffers contains the
+byte offset to both the current and the previous authentication information.
+This information can be used to extract current and (if any) previous
+authentication information.</p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>512 bytes
+  of random data (512 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CountOutgoingAuthInfos</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ByteOffsetCurrentOutgoingAuthInfo</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ByteOffsetPreviousOutgoingAuthInfo</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CurrentOutgoingAuthInfos
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PreviousOutgoingAuthInfos
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CountIncomingAuthInfos</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ByteOffsetCurrentIncomingAuthInfo</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ByteOffsetPreviousIncomingAuthInfo</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CurrentIncomingAuthInfos
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PreviousIncomingAuthInfos
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>OutgoingAuthInfoSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IncomingAuthInfoSize</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>CountOutgoingAuthInfos (4 bytes):</b> Specifies
+the count of entries present in the CurrentOutgoingAuthInfos field. If optional
+field PreviousOutgoingAuthInfos is present, the number of entries in
+PreviousOutgoingAuthInfos is also equal to CountOutgoingAuthInfos.</p>
+</dd>
+<dd>
+<p><b>ByteOffsetCurrentOutgoingAuthInfo (4 bytes):</b>
+Specifies the byte offset from the beginning of CountOutgoingAuthInfos to the
+start of the CurrentOutgoingAuthInfos field. If CountOutgoingAuthInfos is 0,
+this field MUST be ignored.</p>
+</dd>
+<dd>
+<p><b>ByteOffsetPreviousOutgoingAuthInfo (4 bytes):</b>
+Specifies the byte offset from the beginning of CountOutgoingAuthInfos to the
+start of the PreviousOutgoingAuthInfos field. If the difference between
+ByteOffsetPreviousOutgoingAuthInfo and OutgoingAuthInfoSize is 0, the
+PreviousOutgoingAuthInfos field has zero entries.</p>
+</dd>
+<dd>
+<p><b>CurrentOutgoingAuthInfo</b>s: Contains an array
+of CountOutgoingAuthInfos of <a href="cedb0d1b-c7c0-4480-99fc-279b06f22a0c" data-linktype="relative-path">LSAPR_AUTH_INFORMATION (section 2.2.7.17)</a>
+entries in self-relative format. Each LSAPR_AUTH_INFORMATION entry in the array
+MUST be 4-byte aligned. When it is necessary to insert unused padding bytes
+into a buffer for data alignment, such bytes MUST be set to 0.</p>
+</dd>
+<dd>
+<p><b>PreviousOutgoingAuthInfos:</b> Contains an array
+of <b>CountOutgoingAuthInfos</b> LSAPR_AUTH_INFORMATION entries in
+self-relative format. See the comments for the <b>ByteOffsetPreviousOutgoingAuthInfo</b>
+field to determine when this field is present. Each LSAPR_AUTH_INFORMATION
+entry in the array MUST be 4-byte aligned. When it is necessary to insert
+unused padding bytes into a buffer for data alignment, such bytes MUST be set
+to 0.</p>
+</dd>
+<dd>
+<p><b>CountIncomingAuthInfos (4 bytes):</b> Specifies
+the count of entries present in the <b>CurrentIncomingAuthInfos</b> field. If
+optional field <b>PreviousIncomingAuthInfos</b> is present, the number of
+entries in <b>PreviousIncomingAuthInfos</b> is also equal to <b>CountIncomingAuthInfos</b>.</p>
+</dd>
+<dd>
+<p><b>ByteOffsetCurrentIncomingAuthInfo (4 bytes):</b>
+Specifies the byte offset from the beginning of <b>CountIncomingAuthInfos</b>
+to the start of the <b>CurrentIncomingAuthInfos</b> field. If <b>CountIncomingAuthInfos</b>
+is 0, this field MUST be ignored.</p>
+</dd>
+<dd>
+<p><b>ByteOffsetPreviousIncomingAuthInfo (4 bytes):</b>
+Specifies the byte offset from the beginning of <b>CountIncomingAuthInfos</b>
+to the start of the <b>PreviousIncomingAuthInfos</b> field. If the difference
+between <b>ByteOffsetPreviousIncomingAuthInfo</b> and <b>IncomingAuthInfoSize</b>
+is 0, the <b>PreviousIncomingAuthInfos</b> field has zero entries.</p>
+</dd>
+<dd>
+<p><b>CurrentIncomingAuthInfos:</b> Contains an array
+of <b>CountIncomingAuthInfos</b> LSAPR_AUTH_INFORMATION entries in
+self-relative format. Each LSAPR_AUTH_INFORMATION entry in the array MUST be
+4-byte aligned. When it is necessary to insert unused padding bytes into a
+buffer for data alignment, such bytes MUST be set to 0.</p>
+</dd>
+<dd>
+<p><b>PreviousIncomingAuthInfos:</b> Contains an array
+of <b>CountIncomingAuthInfos</b> LSAPR_AUTH_INFORMATION entries in
+self-relative format. See the comments for the <b>ByteOffsetPreviousIncomingAuthInfo</b>
+field to determine when this field is present. Each LSAPR_AUTH_INFORMATION
+entry in the array MUST be 4-byte aligned. When it is necessary to insert
+unused padding bytes into a buffer for data alignment, such bytes MUST be set
+to 0.</p>
+</dd>
+<dd>
+<p><b>OutgoingAuthInfoSize (4 bytes):</b> Specifies the
+size, in bytes, of the subportion of the structure from the beginning of the <b>CountOutgoingAuthInfos</b>
+field through the end of the of the <b>PreviousOutgoingAuthInfos</b> field.</p>
+</dd>
+<dd>
+<p><b>IncomingAuthInfoSize (4 bytes):</b> Specifies the
+size, in bytes, of the sub-portion of the structure from the beginning of the <b>CountIncomingAuthInfos</b>
+field through the end of the of the <b>PreviousIncomingAuthInfos</b> field.</p>
+</dd></dl></div>

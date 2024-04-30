@@ -1,0 +1,177 @@
+<div class="content"><p> </p><p>The EvtRpcQuerySeek (Opnum 12) method is used by a client to
+move a query <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a></span> within a
+result set. </p><dl>
+<dd>
+<div><pre> error_status_t EvtRpcQuerySeek(
+   [in, context_handle] PCONTEXT_HANDLE_LOG_QUERY logQuery,
+   [in] __int64 pos,
+   [in, unique, range(0, MAX_RPC_BOOKMARK_LENGTH), string] 
+     LPCWSTR bookmarkXml,
+   [in] DWORD timeOut,
+   [in] DWORD flags,
+   [out] RpcInfo* error
+ );
+</pre></div>
+</dd></dl><p><b>logQuery: </b>A handle to an <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_bb3fad7e-60bf-46d4-9c3f-7caea47a743e" data-linktype="relative-path">event log</a></span>.
+This parameter is an <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle,
+as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>, Context
+Handles. </p><p><b>pos: </b>The number of records in the result set
+to move by. If the number is positive, the movement is the same as the
+direction of the query that was specified in the <span><a href="c7a37af2-fb11-4c26-b3af-694183bfdd68" data-linktype="relative-path">EvtRpcRegisterLogQuery (section 3.1.4.12)</a></span>
+method call that was used to obtain the handle specified by the <i>logQuery</i>
+parameter. If the number is negative, the movement is in the opposite direction
+of the query.</p><p><b>bookmarkXml: </b>A pointer to a string that
+contains a <span><a href="726c3b3b-eaa6-48f2-a592-519459a4eeb1" data-linktype="relative-path">bookmark</a></span>.</p><p><b>timeOut: </b>A 32-bit unsigned integer that MUST
+be set to 0x00000000 when sent and MAY be ignored on receipt.</p><p><b>flags: </b>This MUST be set as follows: this
+32-bit unsigned integer contains flags that describe the absolute position from
+which EvtRpcQuerySeek (Opnum 12) starts its seek. The origin flags (the first
+four flags that follow) are mutually exclusive; however, the last flag can be
+set independently. The <i>pos</i> parameter specifies the offset used in the
+definitions of these flags.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>EvtSeekRelativeToFirst</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The offset is relative to the first entry in the
+  result set and SHOULD be nonnegative. Therefore, if an offset of 0 is
+  specified, the cursor is moved to the first entry in the result set. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtSeekRelativeToLast</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The offset is relative to the last entry in the result
+  set and SHOULD be nonpositive. Therefore, if an offset of 0 is specified, the
+  cursor is moved to the last entry in the result set. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtSeekRelativeToCurrent</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The offset is relative to the current cursor location.
+  If an offset of 0 is specified, the cursor is not to be moved. A positive or
+  negative number can be used in this case to move the cursor to any other
+  location. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtSeekRelativeToBookmark</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The offset is relative to the bookmark location. If an
+  offset of 0 is specified, the cursor is positioned at the bookmark. A
+  positive or negative number can be used in this case to move the cursor to
+  any other location. The server MUST fail the operation if the <i>bookmarkXml</i>
+  parameter does not specify a valid position in the log.</p>
+  <p>The presence of the EvtSeekStrict flag SHOULD
+  influence the behavior of this flag, as specified below.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtSeekStrict</p>
+  <p>0x00010000</p>
+  </td>
+  <td>
+  <p>If this is set, the query fails if the seek cannot go
+  to the <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_dca3e776-890f-48c8-be62-094a5f2fcf71" data-linktype="relative-path">record</a></span> indicated
+  by the other flags/parameters. If not set, the seek uses a best effort. </p>
+  <p>For example, if 99 records remain in the result set
+  and the <i>pos</i> parameter specifies 100 with the EvtSeekRelativeToCurrent
+  flag set, the 99th record is selected.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>error: </b>A pointer to an <span><a href="94a5d4d1-0f80-4af3-b7c6-d61a6aa60b7b" data-linktype="relative-path">RpcInfo (section 2.2.1)</a></span>
+structure in which to place error information in the case of a failure. The
+RpcInfo structure fields MUST be set to nonzero values if the error is related
+to parsing the query. In addition, the server MAY set the structure fields to
+nonzero values for errors unrelated to query parsing. All nonzero values MUST
+be treated the same by the client.</p><p>If the method succeeds, the server MUST set all the
+values in the structure to zero.</p><p><b>Return Values: </b>The method MUST return ERROR_SUCCESS
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+nonzero value as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>In response to this request from the client, the server MUST
+first validate the handle. For processing rules for handle validation, see the
+remarks in section <span><a href="f659a847-abbb-4f4f-b173-42b18565cebd" data-linktype="relative-path">3.1.4.13</a></span>. The
+server SHOULD fail the method with the return code ERROR_INVALID_PARAMETER
+(0x00000057) if the handle is invalid.</p><p>The server SHOULD<a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a> validate
+that the sign of the <i>pos</i> parameter makes sense for the search direction.
+That is, the server returns ERROR_INVALID_PARAMETER (0x00000057) if a negative <i>pos</i>
+value is specified along with the EvtSeekRelativeToFirst flag and if a positive
+<i>pos</i> value is specified along with the EvtSeekRelativeToLast flag.</p><p>The server SHOULD validate that the <i>bookmarkXML</i>
+parameter has the correct syntax for the book mark. If it is not correct, the
+server SHOULD return ERROR_INVALID_PARAMETER (0x00000057).</p><p>The server MUST validate that one and only one of the
+mutually exclusive flags are specified and return ERROR_INVALID_PARAMETER
+(0x00000057) if this condition is not met. The mutually exclusive flags are:</p><ul><li><p><span><span> 
+</span></span>EvtSeekRelativeToFirst</p>
+</li><li><p><span><span> 
+</span></span>EvtSeekRelativeToLast</p>
+</li><li><p><span><span> 
+</span></span>EvtSeekRelativeToCurrent</p>
+</li><li><p><span><span> 
+</span></span>EvtSeekRelativeToBookmark</p>
+</li></ul><p>If validation succeeds, the server uses the address of the
+logQuery context handle as a pointer to the log query object, with
+implementation-specific typecasting as necessary. Then the following operations
+SHOULD be done:</p><ol><li><p><span>    </span>Set the position
+value in the log query object to the initial value based on the flags.</p>
+<ol><li><p><span>   
+</span>EvtSeekRelativeToFirst: Position set to 0.</p>
+</li><li><p><span>   
+</span>EvtSeekRelativeToLast: Position set to the number of records in the
+channel.</p>
+</li><li><p><span>   
+</span>EvtSeekRelativeToCurrent: Position unchanged.</p>
+</li><li><p><span>   
+</span>EvtSeekRelativeToBookmark: Read the event record Id from the bookmark
+XML, read every event from the beginning and try to find the same event record
+Id as specified in the bookmark XML. The position is the value of how many
+records the server has read before finding the same event record Ids.</p>
+</li></ol></li><li><p><span>    </span>When <i>pos</i>
+parameter is bigger than 0, the server reads one event record from its current
+position and increments the position value by 1. With the event record, the
+server tries to match the query filter (the XPath expression). If the event
+matches the filter requirement, the server decreases the <i>pos</i> value by 1.
+If the event does not match, the <i>pos</i> value is kept the same. Then the
+server reads the next record, and repeats the process until the <i>pos</i>
+value becomes 0. Then the server returns to the client indicating the seek
+operation is finished.</p>
+</li><li><p><span>    </span>When <i>pos</i>
+parameter is a negative value, the server reads the event record in reverse
+order. It reads the previous event record from its current position and
+decrements the position value by 1 each time it reads a previous record. With
+the record it reads, it tries to match the query filter (the XPath expression).
+If the event matches the filter requirement, the server increases the <i>pos</i>
+value by 1. If the event does not match, the <i>pos</i> value is kept the same.
+Next, the server reads the next previous record. This process is repeated until
+the <i>pos</i> value becomes 0. Then the server returns the value to the client
+indicating that the seek operation is finished.</p>
+</li></ol><p>If the client specifies the EvtSeekRelativeToBookmark flag
+and the server can&#39;t find the event record Id that matches the record Id in the
+bookmark XML, the server SHOULD return ERROR_NOT_FOUND (0x00000490) if the
+client specifies the EvtSeekStrict at the same time. Otherwise, the server
+tries to set the position to the nearest record matching the record Id
+specified in the bookmark. For example, if the record Id in the bookmark is
+1000, and the event records in the log only has 999, 1002, 1003 as the record
+Ids, the server SHOULD stops at the event record whose record Id is 999.</p><p>In the previous server mutually exclusive flags validation,
+steps 2 or 3, if the server reaches either the beginning or the end of the
+event log file before the <i>pos</i> parameter reaches 0, the server SHOULD
+check if the client has specified the flag EvtSeekSrict. If so, the server will
+not return error. Otherwise, the server SHOULD return ERROR_NOT_FOUND
+(0x00000490).</p><p>The server MUST return a value indicating success or failure
+for this operation.</p></div>

@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>SYSKIND is used in the <b>syskind</b> field of a <span><a href="b568f4be-95e5-431b-bb3b-08dc56e9b224" data-linktype="relative-path">TLIBATTR</a></span>
+to specify the system pointer size value, as specified in section 2.2.45.</p><p>The system pointer size constants are defined in the SYSKIND
+enumeration.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum tagSYSKIND
+ {
+   SYS_WIN32 = 1,
+   SYS_WIN64 = 3
+ } SYSKIND;
+</pre></div>
+</dd></dl><p><b>SYS_WIN32:  </b>MUST be set if the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_4057fc86-007f-496f-a966-01c762088a8e" data-linktype="relative-path">automation
+type library</a></span> uses 32 bits for pointer-sized values.</p><p><b>SYS_WIN64:  </b>MUST be set if the automation type
+library uses 64 bits for pointer-sized values.</p></div>

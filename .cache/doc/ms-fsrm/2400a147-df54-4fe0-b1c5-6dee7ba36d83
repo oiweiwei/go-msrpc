@@ -1,0 +1,78 @@
+<div class="content"><p>The GetFileScreen method returns the <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_4029e82b-3938-41a4-9a52-dff21ec37dcb" data-linktype="relative-path">file screen</a> from the <b>List
+of Persisted File Screens</b> (section <a href="6226bc6a-8346-416f-83f9-3c121bdd6e59" data-linktype="relative-path">3.2.1.3</a>) for the specified
+path.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_FILESCREEN_MANAGER | 0x02)] HRESULT GetFileScreen(
+   [in] BSTR path,
+   [out, retval] IFsrmFileScreen** fileScreen
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>Contains the path of the file screen to
+return. </p><p><b>fileScreen: </b>Pointer to an <b>IFsrmFileScreen</b>
+interface pointer (section <a href="ad685a32-0761-44ed-b10c-0c26de4934f0" data-linktype="relative-path">3.2.4.2.27</a>)
+that upon completion contains a pointer to the file screen for the specified
+path. The caller MUST release the file screen when it is done with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045304</p>
+  <p>FSRM_E_PATH_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The file screen for the specified path could not be
+  found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045306</p>
+  <p>FSRM_E_INVALID_PATH</p>
+  </td>
+  <td>
+  <p>The content of the <i>path</i> parameter exceeds the
+  maximum length of 260 characters.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>path</i> parameter is
+  NULL.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>fileScreen</i> parameter
+  is NULL.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>path</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>fileScreen</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+perform the following actions.</p><ul><li><p><span><span> 
+</span></span>Create a new <a href="2356ea87-e273-444a-81e7-dac2a7dcd804" data-linktype="relative-path">Non-Persisted
+File Screen Instance (section 3.2.1.3.1.2)</a>.</p>
+</li><li><p><span><span> 
+</span></span>Populate the configuration data of the Non-Persisted File Screen
+Instance from the <a href="73d37c2e-5d40-4074-96dd-39cf217cdb52" data-linktype="relative-path">Persisted
+File Screen (section 3.2.1.3.1.1)</a> in the <b>List of Persisted
+File Screens</b> with the specified path.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>fileScreen</i> to the <b>IFsrmFileScreen</b> interface
+pointer of the newly created Non-Persisted File Screen Instance.</p>
+</li></ul><p>If a file screen does not exist for the specified path, the
+server MUST return FSRM_E_NOT_FOUND.</p></div>

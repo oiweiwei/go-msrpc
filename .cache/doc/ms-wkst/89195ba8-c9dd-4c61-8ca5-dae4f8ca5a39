@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The <b>WKSTA_TRANSPORT_INFO_0</b> structure specifies
+details about the network transport protocol that the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_09dbec39-5e75-4d9a-babf-1c9f1d499625" data-linktype="relative-path">SMB</a></span> <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_15c89cb5-6767-49e7-b461-66acaf6c06c8" data-linktype="relative-path">network
+redirector</a></span> uses.</p><dl>
+<dd>
+<div><pre> typedef struct _WKSTA_TRANSPORT_INFO_0 {
+   unsigned long wkti0_quality_of_service;
+   unsigned long wkti0_number_of_vcs;
+   [string] wchar_t* wkti0_transport_name;
+   [string] wchar_t* wkti0_transport_address;
+   unsigned long wkti0_wan_ish;
+ } WKSTA_TRANSPORT_INFO_0,
+  *PWKSTA_TRANSPORT_INFO_0,
+  *LPWKSTA_TRANSPORT_INFO_0;
+</pre></div>
+</dd></dl><p><b>wkti0_quality_of_service:</b> Unused. Any value
+when sent, and MUST be ignored on receipt.</p><p><b>wkti0_number_of_vcs:</b> The current number of
+remote connections using this transport protocol.</p><p><b>wkti0_transport_name:</b> The null-terminated,
+implementation-specific<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a> name of the device that
+implements the transport protocol.</p><p><b>wkti0_transport_address:</b> The null-terminated,
+implementation-specific<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a> string that represents the
+address of the transport protocol.</p><p><b>wkti0_wan_ish:</b> Whether the transport protocol
+is a <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_c03f5a4a-2515-46c7-b530-3353057b82c9" data-linktype="relative-path">routable
+protocol</a></span>. If set to TRUE, this is a routable protocol. If set to
+FALSE, this is not a routable protocol.</p></div>

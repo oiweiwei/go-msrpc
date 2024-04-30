@@ -1,0 +1,39 @@
+<div class="content"><p>The FsrmPropertyConditionType enumeration defines the set of
+comparison operations that can be used to determine whether a property value of
+a file meets a particular condition.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmPropertyConditionType
+ {
+   FsrmPropertyConditionType_Unknown = 0,
+   FsrmPropertyConditionType_Equal = 1,
+   FsrmPropertyConditionType_NotEqual = 2,
+   FsrmPropertyConditionType_GreaterThan = 3,
+   FsrmPropertyConditionType_LessThan = 4,
+   FsrmPropertyConditionType_Contain = 5,
+   FsrmPropertyConditionType_Exist = 6,
+   FsrmPropertyConditionType_NotExist = 7,
+   FsrmPropertyConditionType_StartWith = 8,
+   FsrmPropertyConditionType_EndWith = 9,
+   FsrmPropertyConditionType_ContainedIn = 10,
+   FsrmPropertyConditionType_PrefixOf = 11,
+   FsrmPropertyConditionType_SuffixOf = 12
+ } FsrmPropertyConditionType;
+</pre></div>
+</dd></dl><p><b>FsrmPropertyConditionType_Unknown:</b>  The <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_df6b8dff-0b24-42b4-bd78-ce0b12141ba0" data-linktype="relative-path">property condition</a> type is
+unknown.</p><p><b>FsrmPropertyConditionType_Equal:</b>  This
+property condition is met if the property value is equal to a specified value.</p><p><b>FsrmPropertyConditionType_NotEqual:</b>  This
+property condition is met if the property value is not equal to a specified
+value.</p><p><b>FsrmPropertyConditionType_GreaterThan:</b>  This
+property condition is met if the property value is greater than a specified
+value.</p><p><b>FsrmPropertyConditionType_LessThan:</b>  This
+property condition is met if the property value is less than a specified value.</p><p><b>FsrmPropertyConditionType_Contain:</b>  This
+property condition is met if the property value is contains a specified value.</p><p><b>FsrmPropertyConditionType_Exist:</b>  This
+property condition is met if the property value exists.</p><p><b>FsrmPropertyConditionType_NotExist:</b>  This
+property condition is met if the property value does not exist.</p><p><b>FsrmPropertyConditionType_StartWith:</b>  This
+property condition is met if the property value starts with a specified value.</p><p><b>FsrmPropertyConditionType_EndWith:</b>  This
+property condition is met if the property value ends with a specified value.</p><p><b>FsrmPropertyConditionType_ContainedIn:</b>  This
+property condition is met if the property value is one of a specified value.</p><p><b>FsrmPropertyConditionType_PrefixOf:</b>  This
+property condition is met if the property value is the prefix of a specified
+value.</p><p><b>FsrmPropertyConditionType_SuffixOf:</b>  This
+property condition is met if the property value is the suffix of a specified
+value.</p></div>

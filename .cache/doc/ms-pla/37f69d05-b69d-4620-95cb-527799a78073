@@ -1,0 +1,13 @@
+<div class="content"><p>The ExtendedModes (Put) method sets the ExtendedModes
+property, as specified in the property table in section <a href="94e049b9-532a-4c3a-ada2-43c75802e825" data-linktype="relative-path">3.2.4.9</a>.</p><dl>
+<dd>
+<div><pre> [propput] HRESULT ExtendedModes(
+   [in] unsigned long mode
+ );
+</pre></div>
+</dd></dl><p><b>mode: </b>Supplies the log file modes not already
+set by other methods. The valid values for ExtendedModes are specified in
+section <a href="6cd66703-239a-446c-98d2-bf65687112e6" data-linktype="relative-path">2.2.9</a>.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT with the severity bit clear on success as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>;
+otherwise, it MUST return one of the errors as defined in <a href="590752a5-ddc3-49e4-9914-147a90bd0193" data-linktype="relative-path">2.2.1</a> or one of the errors
+as defined in [MS-ERREF] section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p></div>

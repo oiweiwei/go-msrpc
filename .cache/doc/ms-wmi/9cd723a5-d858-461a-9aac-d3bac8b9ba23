@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The _WBEM_RECONNECT_INFO structure MUST contain the type for
+the information about the target <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a99173af-90bf-473d-9a81-ff0ce9a85838" data-linktype="relative-path">CIM</a></span> instance.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   long m_lType;
+   [string] LPCWSTR m_pwcsPath;
+ } _WBEM_RECONNECT_INFO;
+</pre></div>
+</dd></dl><p><b>m_lType:</b>  MUST be one of the <span><a href="09e91961-27b6-48ae-bc56-a62e4f3289d7" data-linktype="relative-path">WBEM_RECONNECT_TYPE</a></span>
+enumeration values.</p><p><b>m_pwcsPath :</b>  MUST be a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_775e4b82-5447-4125-b887-b404421e1269" data-linktype="relative-path">CIM path</a></span>
+to the remote CIM instance to be added to the refresher.</p></div>

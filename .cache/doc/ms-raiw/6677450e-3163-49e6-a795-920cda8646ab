@@ -1,0 +1,16 @@
+<div class="content"><p>The WINSINTF_TRIG_TYPE_E enumeration defines the type of <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a> to be done. It
+is used by the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+method <a href="e231089b-eb49-40d2-8b62-2b1437e9f98a" data-linktype="relative-path">R_WinsTrigger</a>.</p><dl>
+<dd>
+<div><pre> typedef  enum _WINSINTF_TRIG_TYPE_E
+ {
+   WINSINTF_E_PULL = 0,
+   WINSINTF_E_PUSH,
+   WINSINTF_E_PUSH_PROP
+ } WINSINTF_TRIG_TYPE_E,
+  *PWINSINTF_TRIG_TYPE_E;
+</pre></div>
+</dd></dl><p><b>WINSINTF_E_PULL:  </b>The <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target WINS server</a> performs
+pull replication with the specified <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a> server.</p><p><b>WINSINTF_E_PUSH:  </b>The target WINS server
+performs push replication with the specified WINS server.</p><p><b>WINSINTF_E_PUSH_PROP:  </b>The target WINS server
+performs propagating push replication with the specified WINS server.</p></div>

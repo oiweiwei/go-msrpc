@@ -1,0 +1,32 @@
+<div class="content"><p> </p><p>The Reset method resets the enumerator back to the first
+element in the collection.</p><dl>
+<dd>
+<div><pre> [id(4), helpstring(&#34;method Reset&#34;)] HRESULT Reset();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>An <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+specifying success or failure. All success codes other than S_FALSE MUST be
+treated the same, and all failure codes MUST be treated the same.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  <p>S_FALSE</p>
+  </td>
+  <td>
+  <p>The enumeration sequence was reset, but there are no
+  items in the enumerator.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>When this method is invoked, the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST attempt
+to reset the enumerator back to the first element in the collection, and fail
+the call, returning a failure HRESULT back to the client if it cannot. If there
+are no elements in this collection, the function MUST return a success.</p></div>

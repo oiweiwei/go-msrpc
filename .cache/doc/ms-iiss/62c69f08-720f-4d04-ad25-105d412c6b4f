@@ -1,0 +1,10 @@
+<div class="content"><p>The IIS ServiceControl Protocol provides a mechanism for
+remote control of <a href="546d32cd-905e-4f34-b023-2be4b5e16413#gt_866d4b3a-f5b8-4518-853e-6f2991a8f4e2" data-linktype="relative-path">Internet
+services</a> as a single unit on a server. Through the IIS ServiceControl
+Protocol, a client can start or stop the services. The client can also
+terminate processes hosting the Internet services functionality or reboot the
+computer. Lastly, the client can also retrieve status about the services. </p><p>The IIS ServiceControl Protocol is expressed as a set of <a href="546d32cd-905e-4f34-b023-2be4b5e16413#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a> interfaces. The server
+end of the protocol implements support for the DCOM interface to manage the
+Internet services. The client end of the protocol invokes method calls on the
+interface to control the services on the server. The DCOM calls use standard
+DCOM marshaling.</p></div>

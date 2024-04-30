@@ -1,0 +1,76 @@
+<div class="content"><p> </p><p>The <b>R_DhcpGetClientInfo</b> method retrieves <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_c35fc04f-54fe-4570-afd3-c96ca84c8d83" data-linktype="relative-path">DHCPv4
+client</a></span> <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6d76b31-2852-4bd5-8fbb-8e82a3cedb29" data-linktype="relative-path">lease record</a></span>
+information from the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_005ffc96-bb67-44ca-938f-dd7ec3c95cab" data-linktype="relative-path">DHCPv4 server database</a></span>.
+The caller of this function can free the memory pointed to by the <i>ClientInfo</i>
+parameter by calling the function <b>midl_user_free</b> (section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpGetClientInfo(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, ref] LPDHCP_SEARCH_INFO SearchInfo,
+   [out] LPDHCP_CLIENT_INFO* ClientInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SearchInfo: </b>This is a pointer of type <span><a href="f8ab6a93-be31-4643-b32c-e0ae6ba95a44" data-linktype="relative-path">DHCP_SEARCH_INFO (section 2.2.1.2.18)</a></span>
+structure that defines the key to be used to search the DHCPv4 client lease
+record on the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_746786e7-458f-45aa-ab24-5534a94b4fb3" data-linktype="relative-path">DHCPv4 server</a></span>. In
+case the <b>SearchType</b> member is DhcpClientName and there are multiple
+lease records with the same <b>ClientName</b>, the server will return client
+information for the client having the lowest numerical IP address.</p><p><b>ClientInfo: </b>This is a pointer of type <span><a href="91d65e7e-d5c5-443e-a863-781dba950962" data-linktype="relative-path">LPDHCP_CLIENT_INFO</a></span>
+that points to the location in which specific DHCPv4 client lease record
+information is retrieved. The <b>ClientHardwareAddress</b> member represents a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4c35997a-5d90-4d7e-96c8-346f4ad0a63f" data-linktype="relative-path">DHCPv4
+client unique ID</a></span> (section <span><a href="651865ec-6404-4191-ad30-113578a94556" data-linktype="relative-path">2.2.1.2.5.2</a></span>)</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database, or the client entry is not present in the database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 18.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read access per
+section <span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the <b>DHCPv4ClientsList</b> ADM element of all
+the <b>DHCPv4Scope</b> ADM element entries in the server ADM element <b>DHCPv4ScopesList</b>,
+and retrieve the first <b>DHCPv4Client</b> ADM element entry corresponding to
+the <b>ClientIpAddress</b> member, <b>ClientHardwareAddress</b> member, or <b>ClientName</b>
+member as specified by the <b>SearchType</b> member in the <i>SearchInfo</i>
+parameter (section 2.2.1.2.18). If the <b>DHCPv4Client</b> ADM element entry is
+not found, return ERROR_DHCP_JET_ERROR.</p>
+</li><li><p><span><span> 
+</span></span>Allocate memory for the out parameter <i>ClientInfo</i> (section
+2.2.1.2.12), copy the information in the <b>DHCPv4Client</b> ADM element entry
+in <i>ClientInfo</i>, and return ERROR_SUCCESS (0x00000000). The <b>HostName</b>
+member in <span><a href="51e16f4a-cb1d-400a-85c7-defe4cba1609" data-linktype="relative-path">DHCP_HOST_INFO (section 2.2.1.2.7)</a></span>
+is unused.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,13 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/4c5fb44a-6d68-420d-970e-68ad5436bbd3" data-linktype="external">msdn link</a></p><p>The <b>NL_SITE_NAME_ARRAY</b> structure defines an array of <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8abdc986-5679-42d9-ad76-b11eb5a0daba" data-linktype="relative-path">site</a> names.</p><dl>
+<dd>
+<div><pre> typedef struct _NL_SITE_NAME_ARRAY {
+   ULONG EntryCount;
+   [size_is(EntryCount)] PRPC_UNICODE_STRING SiteNames;
+ } NL_SITE_NAME_ARRAY,
+  *PNL_SITE_NAME_ARRAY;
+</pre></div>
+</dd></dl><p><b>EntryCount:</b> The number of entries in <b>SiteNames</b>.</p><p><b>SiteNames:</b> A pointer to an array of
+null-terminated <a href="../ms-dtyp/94a16bb6-c610-4cb9-8db6-26f15f560061" data-linktype="relative-path"><b><span>RPC_UNICODE_STRING</span></b></a>
+structures (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section 2.3.10) that contain site names. For more information about sites, see <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/cdacdd51-f324-41e9-b83f-71263902dabe" data-linktype="relative-path">6.1.1.2.2.1</a>.</p></div>

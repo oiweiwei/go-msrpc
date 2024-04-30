@@ -1,0 +1,25 @@
+<div class="content"><p>The W32TIME_NTP_PROVIDER_DATA structure defines the state of
+an NTP <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9338a1cf-ec11-4e27-a042-dda5324a44fb" data-linktype="relative-path">time provider</a>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned __int32 ulSize;
+   unsigned __int32 ulError;
+   unsigned __int32 ulErrorMsgId;
+   unsigned __int32 cPeerInfo;
+   [size_is(cPeerInfo)] PW32TIME_NTP_PEER_INFO pPeerInfo;
+ } W32TIME_NTP_PROVIDER_DATA,
+  *PW32TIME_NTP_PROVIDER_DATA;
+</pre></div>
+</dd></dl><p><b>ulSize:</b>  The size, in bytes, of this
+structure.</p><p><b>ulError:</b>  The <b>LastError</b>
+element value (see section <a href="8dd91cfb-5de2-4094-8cba-137400f963a3" data-linktype="relative-path">3.2.1.2</a>).
+Because the values transmitted in this field are implementation-specific, all
+nonzero values MUST be treated as equivalent for protocol purposes.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><p><b>ulErrorMsgId:</b>  The <b>LastErrorMessageId</b>
+element value (see section 3.2.1.2). The values in this field are
+implementation-specific. If an implementation receives a value it does not
+understand, the implementation MUST ignore the value.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p><p><b>cPeerInfo:</b>  The number of active <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_684a23b5-7485-4418-a83c-b843541673ac" data-linktype="relative-path">time peers</a> that synchronize
+with this NTP time provider. This value also indicates the number of structures
+in <b>pPeerInfo</b>.</p><p><b>pPeerInfo:</b>  The <b>PeerList</b>
+element value (see section 3.2.1.2). A pointer to <a href="123072f7-8031-4e17-b1ae-f1c04348332e" data-linktype="relative-path">W32TIME_NTP_PEER_INFO</a>
+structures representing the time peers with which this time provider is
+currently synchronizing.</p></div>

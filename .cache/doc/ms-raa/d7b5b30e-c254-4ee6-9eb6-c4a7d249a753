@@ -1,0 +1,12 @@
+<div class="content"><p>The AUTHZR_TOKEN_USER structure identifies the user
+associated with a token.</p><dl>
+<dd>
+<div><pre> typedef struct _AUTHZR_TOKEN_USER {
+     AUTHZR_SID_AND_ATTRIBUTES User;
+ } AUTHZR_TOKEN_USER;
+  
+  
+</pre></div>
+</dd></dl><p><b>User:</b>  Contains an AUTHZR_SID_AND_ATTRIBUTES
+structure (section <a href="87d5987b-6f24-4906-8935-ac10fa494cdc" data-linktype="relative-path">2.2.3.8</a>)
+representing the user associated with the access token.</p></div>

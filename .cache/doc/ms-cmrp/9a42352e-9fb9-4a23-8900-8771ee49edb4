@@ -1,0 +1,92 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9a42352e-9fb9-4a23-8900-8771ee49edb4" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_CHANGE</b> enumeration defines the possible
+values for a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_aedc8c3e-1557-4dfc-a89c-ff6f04345886" data-linktype="relative-path">notification
+port</a> event filter. A client specifies one or more values to indicate the
+types of event indication it is interested in. A server returns only one such
+value for each indication it posts to the notification port.</p><p>The constant values for <b>CLUSTER_CHANGE</b> are listed
+here. All other values are reserved.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   CLUSTER_CHANGE_NODE_STATE = 0x00000001,
+   CLUSTER_CHANGE_NODE_DELETED = 0x00000002,
+   CLUSTER_CHANGE_NODE_ADDED = 0x00000004,
+   CLUSTER_CHANGE_NODE_PROPERTY = 0x00000008,
+   CLUSTER_CHANGE_REGISTRY_NAME = 0x00000010,
+   CLUSTER_CHANGE_REGISTRY_ATTRIBUTES = 0x00000020,
+   CLUSTER_CHANGE_REGISTRY_VALUE = 0x00000040,
+   CLUSTER_CHANGE_REGISTRY_SUBTREE = 0x00000080,
+   CLUSTER_CHANGE_RESOURCE_STATE = 0x00000100,
+   CLUSTER_CHANGE_RESOURCE_DELETED = 0x00000200,
+   CLUSTER_CHANGE_RESOURCE_ADDED = 0x00000400,
+   CLUSTER_CHANGE_RESOURCE_PROPERTY = 0x00000800,
+   CLUSTER_CHANGE_GROUP_STATE = 0x00001000,
+   CLUSTER_CHANGE_GROUP_DELETED = 0x00002000,
+   CLUSTER_CHANGE_GROUP_ADDED = 0x00004000,
+   CLUSTER_CHANGE_GROUP_PROPERTY = 0x00008000,
+   CLUSTER_CHANGE_RESOURCE_TYPE_DELETED = 0x00010000,
+   CLUSTER_CHANGE_RESOURCE_TYPE_ADDED = 0x00020000,
+   CLUSTER_CHANGE_RESOURCE_TYPE_PROPERTY = 0x00040000,
+   CLUSTER_CHANGE_CLUSTER_RECONNECT = 0x00080000,
+   CLUSTER_CHANGE_NETWORK_STATE = 0x00100000,
+   CLUSTER_CHANGE_NETWORK_DELETED = 0x00200000,
+   CLUSTER_CHANGE_NETWORK_ADDED = 0x00400000,
+   CLUSTER_CHANGE_NETWORK_PROPERTY = 0x00800000,
+   CLUSTER_CHANGE_NETINTERFACE_STATE = 0x01000000,
+   CLUSTER_CHANGE_NETINTERFACE_DELETED = 0x02000000,
+   CLUSTER_CHANGE_NETINTERFACE_ADDED = 0x04000000,
+   CLUSTER_CHANGE_NETINTERFACE_PROPERTY = 0x08000000,
+   CLUSTER_CHANGE_QUORUM_STATE = 0x10000000,
+   CLUSTER_CHANGE_CLUSTER_STATE = 0x20000000,
+   CLUSTER_CHANGE_CLUSTER_PROPERTY = 0x40000000,
+   CLUSTER_CHANGE_HANDLE_CLOSE = 0x80000000
+ } CLUSTER_CHANGE;
+</pre></div>
+</dd></dl><p><b>CLUSTER_CHANGE_NODE_STATE: </b>The state of the
+specified <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_762051d8-4fdc-437e-af9d-3f4da77c3c7d" data-linktype="relative-path">node</a> has
+changed.</p><p><b>CLUSTER_CHANGE_NODE_DELETED: </b>The specified
+node (2) was removed from the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_feef37b3-c173-4f51-aab6-b55a6366259b" data-linktype="relative-path">cluster</a>
+nonvolatile <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_93ba0f62-7125-4a3e-ab60-5fd4f504bc8c" data-linktype="relative-path">cluster state</a>.</p><p><b>CLUSTER_CHANGE_NODE_ADDED: </b>The specified node
+was added to the cluster nonvolatile cluster state.</p><p><b>CLUSTER_CHANGE_NODE_PROPERTY: </b>A property of
+the specified node has changed value.</p><p><b>CLUSTER_CHANGE_REGISTRY_NAME: </b>The specified <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_13de67f6-ac9d-491f-8dfb-12601a8b0838" data-linktype="relative-path">cluster registry</a> key either
+has been created or deleted.</p><p><b>CLUSTER_CHANGE_REGISTRY_ATTRIBUTES: </b>The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a> of the
+specified cluster registry key has changed.</p><p><b>CLUSTER_CHANGE_REGISTRY_VALUE: </b>A value of the
+specified cluster registry key has changed or been deleted.</p><p><b>CLUSTER_CHANGE_REGISTRY_SUBTREE: </b>(Client only)
+Instructs the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> to
+post an event indication if any name, attribute, or value under either the root
+cluster registry key or the specified cluster registry key has changed.</p><p><b>CLUSTER_CHANGE_RESOURCE_STATE: </b>The state of
+the specified resource has changed.</p><p><b>CLUSTER_CHANGE_RESOURCE_DELETED: </b>The specified
+resource was removed from the cluster nonvolatile cluster state.</p><p><b>CLUSTER_CHANGE_RESOURCE_ADDED: </b>The specified
+resource was added to the cluster nonvolatile cluster state.</p><p><b>CLUSTER_CHANGE_RESOURCE_PROPERTY: </b>A property
+value, dependency relationship, or the set of hosting nodes of the specified
+resource has changed.</p><p><b>CLUSTER_CHANGE_GROUP_STATE: </b>The state of the specified
+<a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_51c51c14-7f9d-4c0b-a69c-d3e059bfffac" data-linktype="relative-path">group</a> has changed.</p><p><b>CLUSTER_CHANGE_GROUP_DELETED: </b>The specified
+group was removed from the cluster nonvolatile cluster state.</p><p><b>CLUSTER_CHANGE_GROUP_ADDED: </b>The specified
+group was added to the cluster nonvolatile cluster state.</p><p><b>CLUSTER_CHANGE_GROUP_PROPERTY: </b>A property
+value of the specified group has changed or a resource has been moved either
+into or out of the group.</p><p><b>CLUSTER_CHANGE_RESOURCE_TYPE_DELETED: </b>The
+specified <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_597fe367-f504-4295-9ed9-92cd892796cd" data-linktype="relative-path">resource type</a>
+was removed from the cluster nonvolatile cluster state.</p><p><b>CLUSTER_CHANGE_RESOURCE_TYPE_ADDED: </b>The
+specified resource type was added to the cluster nonvolatile cluster state.</p><p><b>CLUSTER_CHANGE_RESOURCE_TYPE_PROPERTY: </b>A
+property of the specified resource type has changed value.</p><p><b>CLUSTER_CHANGE_CLUSTER_RECONNECT: </b>When
+generated by a client, this value indicates that the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> connection to a server
+has been reconnected to another server for the specified cluster. When
+generated by the server, this value indicates that notification events were
+dropped by the server for the port.</p><p><b>CLUSTER_CHANGE_NETWORK_STATE: </b>The state of the
+specified <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_5d7cd0af-d5a4-4a59-bb13-9c57663c5ea7" data-linktype="relative-path">cluster network</a>
+has changed.</p><p><b>CLUSTER_CHANGE_NETWORK_DELETED: </b>The specified
+cluster network was removed from the cluster nonvolatile cluster state.</p><p><b>CLUSTER_CHANGE_NETWORK_ADDED: </b>The specified
+cluster network was added to the cluster nonvolatile cluster state.</p><p><b>CLUSTER_CHANGE_NETWORK_PROPERTY: </b>A property of
+the specified cluster network has changed value.</p><p><b>CLUSTER_CHANGE_NETINTERFACE_STATE: </b>The state
+of the specified <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_1e84f613-804f-42bb-a523-658b8ab0df6a" data-linktype="relative-path">cluster
+network interface</a> has changed.</p><p><b>CLUSTER_CHANGE_NETINTERFACE_DELETED: </b>The
+specified cluster network interface was removed from the cluster nonvolatile
+cluster state.</p><p><b>CLUSTER_CHANGE_NETINTERFACE_ADDED: </b>The
+specified cluster network interface was added to the cluster nonvolatile
+cluster state.</p><p><b>CLUSTER_CHANGE_NETINTERFACE_PROPERTY: </b>A
+property of the specified cluster network interface has changed value.</p><p><b>CLUSTER_CHANGE_QUORUM_STATE: </b>The quorum
+configuration of the cluster has changed. ClusAPI Protocol version 2.0 servers
+do not support this value.</p><p><b>CLUSTER_CHANGE_CLUSTER_STATE: </b>(Client only)
+The connection to the specified cluster is no longer available.</p><p><b>CLUSTER_CHANGE_CLUSTER_PROPERTY: </b>A property of
+the specified cluster has changed value.</p><p><b>CLUSTER_CHANGE_HANDLE_CLOSE: </b>(Client only) The
+cluster object context handle associated with this notification port has been
+closed.</p></div>

@@ -1,0 +1,152 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4EnumSubnetReservations</b> method enumerates
+all the reservation information on the DHCPv4 server for a given IPv4 subnet
+address. The caller of this function can free the memory pointed to by the <i>EnumElementInfo</i>
+parameter by calling the function <b>midl_user_free</b> (section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4EnumSubnetReservations(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [in, out] DHCP_RESUME_HANDLE* ResumeHandle,
+   [in] DWORD PreferredMaximum,
+   [out] LPDHCP_RESERVATION_INFO_ARRAY EnumElementInfo,
+   [out] DWORD* ElementsRead,
+   [out] DWORD* ElementsTotal
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SubnetAddress: </b>This is of type <b>DHCP_IP_ADDRESS</b>
+structure (section <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">2.2.1.2.1</a></span>) that
+contains the IPv4 subnet address for which DHCPv4 reservations information is
+retrieved.</p><p><b>ResumeHandle: </b>This is a pointer of <b>DHCP_RESUME_HANDLE</b>
+data type (section <span><a href="a6e4cdc0-4f71-4922-ade1-7a5392f9e920" data-linktype="relative-path">2.2.1.2.6</a></span>) that
+identifies the enumeration operation. Initially, this value MUST be set to
+zero, with a successful call returning the handle value used for subsequent
+enumeration requests.</p><p><b>PreferredMaximum: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+specifying the preferred maximum number of bytes to be returned. If the number
+of bytes required in memory for the remaining unenumerated DHCPv4 reservations
+is less than the <i>PreferredMaximum</i> parameter value, then all the
+remaining DHCPv4 reservations are returned.</p><p><b>EnumElementInfo: </b>This is a pointer of type <b>LPDHCP_RESERVATION_INFO_ARRAY</b>
+(section <span><a href="384fb610-0668-45ca-8a74-13176ad9fce8" data-linktype="relative-path">2.2.1.2.103</a></span>) in
+which information for all the reservations on the DHCPv4 server for the given <i>SubnetAddress</i>
+parameter is retrieved.</p><p><b>ElementsRead: </b>This is a pointer to a DWORD
+value that specifies the number of DHCPv4 reservations returned in the <i>EnumElementInfo</i>
+parameter. The caller MUST allocate memory for this parameter equal to the size
+of data type DWORD.</p><p><b>ElementsTotal: </b>This is a pointer to a DWORD
+value that specifies the number of DHCPv4 reservations that have not yet been
+enumerated. The caller MUST allocate memory for this parameter equal to the
+size of data type DWORD.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20123, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000EA</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>There are more elements available to enumerate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  </td>
+  <td>
+  <p>There are no more elements left to enumerate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>IPv4 subnet does not exist on the DHCPv4 server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 119.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Return ERROR_INVALID_PARAMETER if any of the following are true:</p>
+<ul><li><p><span><span>  </span></span>The
+<i>EnumElementInfo</i> parameter is NULL</p>
+</li><li><p><span><span>  </span></span>The
+<i>ElementsRead</i> parameter is NULL.</p>
+</li><li><p><span><span>  </span></span>The
+<i>ElementsTotal</i> parameter is NULL.</p>
+</li><li><p><span><span>  </span></span>The
+<i>ResumeHandle</i> parameter is NULL.</p>
+</li><li><p><span><span>  </span></span>The
+<i>SubnetAddress</i> parameter is 0.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read access as
+specified in section <span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>. If not, then
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server ADM element <b>DHCPv4ScopesList</b>,
+and retrieve the <b>DHCPv4Scope</b> ADM element corresponding to the <i>SubnetAddress</i>
+parameter. If the corresponding ADM element <b>DHCPv4Scope</b> is not found,
+return ERROR_DHCP_SUBNET_NOT_PRESENT else retrieve the <b>DHCPv4ReservationsList</b>
+ADM element and <b>DHCPv4ClientsList</b> ADM element of the matching <b>DHCPv4Scope</b>
+ADM element.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ResumeHandle</i> parameter points to 0x00000000, the
+enumeration MUST start from the first entry of retrieved <b>DHCPv4ReservationsList</b>
+ADM element. Otherwise, if the <i>ResumeHandle</i> parameter points to a
+nonzero value, the server MUST continue enumeration based on the value of the <i>ResumeHandle</i>
+parameter. If the <i>ResumeHandle</i> parameter is greater than or equal to the
+number of entries in <b>DHCPv4ReservationsList</b> ADM element or if the <b>DHCPv4ReservationsList</b>
+ADM element is empty, return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>The <i>PreferredMaximum</i> parameter specifies the maximum
+number of bytes that the server can allocate and return to the caller
+containing the data related to <b>DHCP_IP_RESERVATION_INFO</b> ADM element
+objects. If the <i>PreferredMaximum</i> parameter is unable to hold all the
+entries, then the server MUST allocate <i>PreferredMaximum</i> parameter number
+of bytes for the <i>EnumElementInfo</i> parameter and store as many <b>DHCP_IP_RESERVATION_INFO</b>
+ADM element entries as will fit into the <i>EnumElementInfo</i> parameter;
+else, allocate the memory for the <b>DHCP_RESERVATION_INFO_ARRAY</b> ADM
+element for the total number of <b>DHCP_IP_RESERVATION_INFO</b> ADM element
+entries available, starting from the index specified by <i>ResumeHandle</i>
+parameter and continuing to the end of the reservation list.</p>
+</li><li><p><span><span> 
+</span></span>For each ADM element <b>DHCPv4Reservation</b> in <b>DHCPv4ReservationsList</b>
+ADM element, copy <b>DHCPv4Reservation.ReservedIpAddress</b> ADM element to
+DHCP_IP_RESERVATION_INFO.ReservedIpAddress ADM element, <b>DHCPv4Reservation.ReservedForClient</b>
+ADM element to <b>DHCP_IP_RESERVATION_INFO.ReservedForClient</b> ADM element
+and <b>DHCPv4Reservation.bAllowedClientTypes</b> ADM element to <b>DHCP_IP_RESERVATION_INFO.bAllowedClientTypes</b>
+ADM element. For each ADM element <b>DHCPv4Client</b> in <b>DHCPv4ClientsList</b>
+ADM element for which <b>DHCPv4Client.ClientIpAddress</b> ADM element is equal
+to <b>DHCPv4Reservation.ReservedIpAddress</b> ADM element, copy <b>DHCPv4Client.ClientName</b>
+ADM element to <b>DHCP_IP_RESERVATION_INFO.ReservedClientName</b> ADM element
+and <b>DHCPv4Client.ClientComment</b> ADM element to <b>DHCP_IP_RESERVATION_INFO.ReservedClientDesc</b>
+ADM element. If there is any element in <b>DHCPv4Reservation.DHCPv4ResvOptValuesList</b>
+ADM element, set <b>DHCP_IP_RESERVATION_INFO. fOptionsPresent</b> to 1 else 0.</p>
+</li><li><p><span><span> 
+</span></span>Copy the number of read <b>DHCPv4Reservation</b> ADM element
+entries in <i>ElementsRead</i> parameter, and copy the number of the <b>DHCPv4Reservation</b>
+ADM element entries not yet enumerated in <i>ElementsTotal</i> parameter.
+Update <i>ResumeHandle</i> parameter to the value obtained by adding 1 to the
+index of the <b>DHCPv4Reservation</b> ADM element entry read.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>PreferredMaximum</i> parameter was able to hold all the
+entries being retrieved return ERROR_SUCCESS, otherwise return ERROR_MORE_DATA.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

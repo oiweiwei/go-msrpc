@@ -1,0 +1,367 @@
+<div class="content"><p>This section specifies data structures that are custom-<a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_37e89d91-2800-49d1-9d17-45ebe167ad87" data-linktype="relative-path">marshaled</a>, including those
+that contain &#34;_INFO&#34; in their names. All custom-marshaled <b>INFO</b>
+data structures MUST be completely ignored on input, and validation of their
+contents MUST NOT take place.</p><p>Custom-marshaled <b>INFO</b> data structures consist of
+single <b>Fixed_Portion</b> blocks for methods accepting or returning a single
+structure, and arrays of one or more <b>Fixed_Portion</b> blocks for methods
+accepting or returning an array of structures. The size of the <b>Fixed_Portion</b>
+data is the size of a single <b>Fixed_Portion</b> block multiplied by the
+number of <b>Fixed_Portion</b> blocks returned. The <b>Fixed_Portion</b> data
+is followed by a single <b>Variable_Data</b> block, which contains
+variable-length fields. The size of the <b>Variable_Data</b> block is the size
+specified by the caller in the <i>cbBuf</i> parameter of the call minus the
+size of the <b>Fixed_Portion</b> data.</p><p>For each field in a <b>Variable_Data</b> block, a
+corresponding offset value is specified in a field of a <b>Fixed_Portion</b>
+block. A <b>Variable_Data</b> field is located by adding that offset value to
+the address of the start of the <b>Fixed_Portion</b> block in which that offset
+is defined.</p><p>This generic structure of custom-marshaled <b>INFO</b> data
+structures is represented by the following diagram.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Fixed_Portion
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (variable): </b>An array of one or
+more <b>Fixed_Portion</b> blocks, each consisting of one or more fixed-length
+fields. The specific structure of the <b>Fixed_Portion</b> block is defined for
+each <b>INFO</b> structure.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion_Block_1
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion_Block_2
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Fixed_Portion_Block_1
+(variable): Fixed_Portion</b> block 1.</p>
+<dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion_Block_1_Field_1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion_Block_1_Field_2</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Fixed_Portion_Block_1_Field_1
+(4 bytes): </b>Fixed-length field 1 of <b>Fixed_Portion</b> block 1. Although
+the length of this field is shown as 4 bytes, its actual length is
+indeterminate in this generic structure.</p>
+</dd>
+<dd>
+<p><b>Fixed_Portion_Block_1_Field_2
+(4 bytes): </b>Fixed-length field 2 of <b>Fixed_Portion</b> block 1. This field
+contains an offset to <b>Variable_Data_Field_1</b>, which is relative to the
+start of <b>Fixed_Portion</b> block 1.</p>
+</dd></dl></dd>
+<dd>
+<p><b>Fixed_Portion_Block_2
+(variable): </b>Optional <b>Fixed_Portion</b> block 2.</p>
+<dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion_Block_2_Field_1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion_Block_2_Field_2</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Fixed_Portion_Block_2_Field_1
+(4 bytes): </b>Fixed-length field 1 of <b>Fixed_Portion</b> block 2. Although
+the length of this field is shown as 4 bytes, its actual length is
+indeterminate in this generic structure.</p>
+</dd>
+<dd>
+<p><b>Fixed_Portion_Block_2_Field_2
+(4 bytes): </b>Fixed-length field 2 of <b>Fixed_Portion</b> block 2. This field
+contains an offset to <b>Variable_Data_Field_2</b>, which is relative to the
+start of <b>Fixed_Portion</b> block 2.</p>
+</dd></dl></dd></dl><p><b>Variable_Data (variable): </b>A data block of
+variable length. Because the data is not necessarily aligned on 16-bit
+boundaries, it is specified as an array of bytes of arbitrary length; however,
+data fields in the <b>Variable_Data</b> block MUST be aligned on natural
+boundaries matching their data type. That is, <b>WCHAR</b> fields MUST be
+aligned on 2-byte boundaries, <b>DWORD</b> fields MUST be aligned on 4-byte
+boundaries, and so on.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data_Field_1
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data_Field_2
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Variable_Data_Field_1
+(variable): </b>Variable-length field 1 of the <b>Variable_Data</b> block.</p>
+</dd>
+<dd>
+<p><b>Variable_Data_Field_2
+(variable): </b>Variable-length field 2 of the <b>Variable_Data</b> block.</p>
+</dd>
+<dd>
+<p>The following characteristics
+apply to the fields in custom-marshaled <b>INFO</b> data structures:</p>
+</dd></dl><ul><li><p><span><span>  </span></span>The
+start of the <b>Fixed_Portion</b> block MUST be 32-bit aligned.</p>
+</li><li><p><span><span>  </span></span>The
+order of fields in the <b>Fixed_Portion</b> block is defined by the specific <b>INFO</b>
+structure layout.</p>
+</li><li><p><span><span>  </span></span>Data
+fields in the <b>Variable_Data</b> block can appear in arbitrary order.</p>
+</li><li><p><span><span>  </span></span>One
+or more offsets in <b>Fixed_Portion</b> blocks can locate the same field in the
+<b>Variable_Data</b> block; or there can be a one-to-one correspondence between
+offsets and <b>Variable_Data</b> fields.</p>
+</li><li><p><span><span>  </span></span>The
+<b>Variable_Data</b> fields SHOULD be packed tightly in the <b>Variable_Data</b>
+block, filling the <b>Variable_Data</b> block from the end toward the
+beginning, such that, if the <i>cbBuf</i> parameter specified by the caller is
+larger than the sum of all <b>Fixed_Portion</b> blocks and all <b>Variable_Data</b>
+fields, the unused space in the <b>[out]</b> buffer receiving the custom-marshaled
+<b>INFO</b> structure forms a gap between the end of the last <b>Fixed_Portion</b>
+block and the beginning of the first <b>Variable_Data</b> field; however,
+client-side unmarshaling code that processes a custom-marshaled <b>INFO</b>
+structure SHOULD be prepared to correctly handle data that does not fill the <b>Variable_Data</b>
+block from the end toward the beginning, or is not tightly packed and includes
+unused space in arbitrary positions of the <b>Variable_Data</b> block.<a id="Appendix_A_Target_92"></a><a aria-label="Product behavior note 92" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_92" data-linktype="relative-path">&lt;92&gt;</a></p>
+</li></ul></div>

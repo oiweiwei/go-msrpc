@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The LSA_TRANSLATED_SID structure contains information about
+a <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security
+principal</a></span> after translation from a name to a <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span>.
+This structure MUST always be accompanied by an <span><a href="3a52af31-247a-4b08-91a0-1d46b2cc49b2" data-linktype="relative-path">LSAPR_REFERENCED_DOMAIN_LIST</a></span>
+structure when <b>DomainIndex</b> is not -1.</p><dl>
+<dd>
+<div><pre> typedef struct _LSA_TRANSLATED_SID {
+   SID_NAME_USE Use;
+   unsigned long RelativeId;
+   long DomainIndex;
+ } LSA_TRANSLATED_SID,
+  *PLSA_TRANSLATED_SID;
+</pre></div>
+</dd></dl><p><b>Use:</b>  Defines the type of the
+security principal, as specified in section <span><a href="171e9a87-8e01-4bd8-a35e-3468128c8fc4" data-linktype="relative-path">2.2.13</a></span>.</p><p><b>RelativeId:</b>  Contains the <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">relative
+identifier (RID)</a></span> of the security principal with respect to its <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>.</p><p><b>DomainIndex:</b>  Contains the index
+into an LSAPR_REFERENCED_DOMAIN_LIST structure that specifies the domain that
+the security principal is in. A <b>DomainIndex</b> value of -1 MUST be used to
+specify that there are no corresponding domains. Other negative values MUST NOT
+be returned.</p></div>

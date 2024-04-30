@@ -1,0 +1,66 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/3a416e82-0299-4ff0-a25d-223f972ba1d6" data-linktype="external">msdn link</a></p><p>The <b>NetrChainSetClientAttributes</b> method SHOULD<a id="Appendix_A_Target_198"></a><a aria-label="Product behavior note 198" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_198" data-linktype="relative-path">&lt;198&gt;</a> be invoked by an <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8b0a073b-3099-4efe-8b81-c2886b66a870" data-linktype="relative-path">RODC</a>  on a normal
+(writable) DC to update to a client&#39;s computer account object in <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a> when it
+receives either the <a href="3a9ed16f-8014-45ae-80af-c0ecb06e2db9" data-linktype="relative-path"><b>NetrServerAuthenticate3</b></a>
+method or the <a href="7c3ad0cc-ee05-4643-b773-4d84e1d431dc" data-linktype="relative-path"><b>NetrLogonGetDomainInfo</b></a>
+method with updates requested. </p><dl>
+<dd>
+<div><pre> NTSTATUS NetrChainSetClientAttributes(
+   [in, string, ref] LOGONSRV_HANDLE PrimaryName,
+   [in, string, ref] wchar_t* ChainedFromServerName,
+   [in, string, ref] wchar_t* ChainedForClientName,
+   [in, ref] PNETLOGON_AUTHENTICATOR Authenticator,
+   [in, out, ref] PNETLOGON_AUTHENTICATOR ReturnAuthenticator,
+   [in] DWORD dwInVersion,
+   [in, ref] [switch_is(dwInVersion)] 
+     NL_IN_CHAIN_SET_CLIENT_ATTRIBUTES* pmsgIn,
+   [in, out, ref] DWORD* pdwOutVersion,
+   [in, out, ref] [switch_is(*pdwOutVersion)] 
+     NL_OUT_CHAIN_SET_CLIENT_ATTRIBUTES* pmsgOut
+ );
+</pre></div>
+</dd></dl><p><b>PrimaryName: </b>The custom binding handle, as
+defined in section <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>.</p><p><b>ChainedFromServerName: </b>The null-terminated
+Unicode string that contains the name of the read-only DC that issues the
+request.</p><p><b>ChainedForClientName: </b>The null-terminated
+Unicode string that contains the name of the client computer that called
+NetrServerAuthenticate3 or NetrLogonGetDomainInfo on the RODC.</p><p><b>Authenticator: </b>A pointer to a <a href="76c93227-942a-4687-ab9d-9d972ffabdab" data-linktype="relative-path">NETLOGON_AUTHENTICATOR</a>
+structure that contains the client <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e72a2c02-84a2-4ce3-b66f-86f725642dc3" data-linktype="relative-path">authenticator</a>.</p><p><b>ReturnAuthenticator: </b>A pointer to a <b>NETLOGON_AUTHENTICATOR</b>
+structure that contains the server return authenticator.</p><p><b>dwInVersion: </b>One of the <a href="548d7519-53d1-4891-92d5-f7d240c73496" data-linktype="relative-path">NL_IN_CHAIN_SET_CLIENT_ATTRIBUTES</a>
+union types selected based on the value of the <i>pmsgIn</i> field. The value
+MUST be 1.</p><p><b>pmsgIn: </b>A pointer to an <a href="f4ed8790-d7e8-4ca1-8062-d25784ed79e3" data-linktype="relative-path">NL_IN_CHAIN_SET_CLIENT_ATTRIBUTES_V1</a>
+structure that contains the values to update on the client&#39;s computer account
+object in Active Directory on the normal (writable) DC.</p><p><b>pdwOutVersion: </b>A pointer to one of the <a href="b8491488-cbb6-452b-bab1-b0f4390bca59" data-linktype="relative-path">NL_OUT_CHAIN_SET_CLIENT_ATTRIBUTES</a>
+union types selected based on the value of the <i>pmsgIn</i> field. The value
+MUST be 1.</p><p><b>pmsgOut: </b>A pointer to an <a href="ab43a762-24e2-45c3-8701-1838589d80fe" data-linktype="relative-path">NL_OUT_CHAIN_SET_CLIENT_ATTRIBUTES_V1</a>
+structure that contains information on the client workstation and the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9d964ddb-09d6-4a1b-b27b-42adabc07993" data-linktype="relative-path">writable domain controller</a>.
+For how it is populated by the server, see below.</p><p><b>Return Values: </b>The method returns 0x00000000
+on success.</p><p>On receiving this call, the normal (writable) DC MUST
+perform the following validation steps.</p><ul><li><p><span><span> 
+</span></span>Verify that the server is a normal (writable) DC machine;
+otherwise, the server MUST return STATUS_NOT_SUPPORTED.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the <i>dwInVersion</i> parameter is set to 1. All
+other values are invalid and STATUS_NOT_SUPPORTED MUST be returned.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the <i>pdwOutVersion</i> parameter is set to 1. All
+other values are invalid and STATUS_NOT_SUPPORTED MUST be returned.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the <i>Authenticator</i> passed, and compute the <i>ReturnAuthenticator</i>,
+as specified in section <a href="da7acaa3-030b-481e-979b-f58f89389806" data-linktype="relative-path">3.1.4.5</a>.
+If the <i>Authenticator</i> verification fails, the server MUST return
+STATUS_ACCESS_DENIED.</p>
+<p>STATUS_ACCESS_DENIED is returned
+if the RODC, <i>ChainedFromServerName</i>, does not have permission to
+replicate the secrets for the client&#39;s computer account identified by <i>ChainedForClientName</i>.</p>
+</li></ul><p>The return structure MUST be generated as follows:</p><ul><li><p><span><span> 
+</span></span>NL_OUT_CHAIN_SET_CLIENT_ATTRIBUTES.HubName MUST be set to the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a> of the
+writable domain controller.</p>
+</li><li><p><span><span> 
+</span></span>If NL_OUT_CHAIN_SET_CLIENT_ATTRIBUTES.OldDnsHostName is not NULL,
+it MUST be set to the client&#39;s <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a> host name, if any. If
+there was a change in domain naming, this value holds the previous DNS host
+name.</p>
+</li><li><p><span><span> 
+</span></span>If NL_OUT_CHAIN_SET_CLIENT_ATTRIBUTES.SupportedEncTypes is not
+NULL, it MUST be set to the supported encryption algorithms.</p>
+</li></ul></div>

@@ -1,0 +1,87 @@
+<div class="content"><p>The GetModuleDefinition method returns a pointer to the <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_1f95e02d-f9e8-432b-85bc-df07c9dde274" data-linktype="relative-path">module definition</a> with the
+specified <b>Name</b> and <b>Module type</b> from the <b>List of Persisted
+Module Definitions</b> (section <a href="a4da1447-54a5-4b37-b135-bfa7481aed1c" data-linktype="relative-path">3.2.1.6</a>).</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_CLASSIFICATION_MANAGER | 0x09)] HRESULT GetModuleDefinition(
+   [in] BSTR moduleName,
+   [in] FsrmPipelineModuleType moduleType,
+   [out, retval] IFsrmPipelineModuleDefinition** moduleDefinition
+ );
+</pre></div>
+</dd></dl><p><b>moduleName: </b>Contains the name of the module
+definition to retrieve.</p><p><b>moduleType: </b>Contains the type of the module
+definition to retrieve. For possible types, see the <a href="4688adcd-859d-4ef4-bf52-bcfe0367bd68" data-linktype="relative-path">FsrmPipelineModuleType (section 2.2.1.2.12)</a>
+enumeration.</p><p><b>moduleDefinition: </b>An <b>IFsrmPipelineModuleDefinition</b>
+interface pointer (section <a href="7b7cf0e7-75c5-40b4-a418-de1259a62c94" data-linktype="relative-path">3.2.4.2.43</a>)
+to the module definition. Query the <b>IFsrmPipelineModuleDefinition</b>
+interface to get the interface pointer for the specified module.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified module definition could not be found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045308</p>
+  <p>FSRM_E_INVALID_NAME</p>
+  </td>
+  <td>
+  <p>The specified name is empty or NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>moduleType</i> parameter
+  is not a valid FsrmPipelineModuleType (section 2.2.1.2.12) value.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The specified name exceeds the
+  maximum length of 100 characters.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>moduleDefinitions</i>
+  parameter is NULL.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>moduleName</i> is not empty or NULL and does not
+exceed the maximum length of 100 characters.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>moduleDefinition</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>moduleType</i> contains a valid
+FsrmPipelineModuleType value. If <i>moduleType</i> is <b>FsrmPipelineModuleType_Unknown</b>,
+the parameter MUST be considered an invalid value.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+perform the following actions.</p><ul><li><p><span><span> 
+</span></span>Create a new <a href="daf23529-163e-44d5-819b-6ebdfe2850d3" data-linktype="relative-path">Non-Persisted
+Module Definition Instance (section 3.2.1.6.2.2)</a>.</p>
+</li><li><p><span><span> 
+</span></span>Populate the configuration data of the Non-Persisted Module
+Definition Instance from the <a href="290f855d-d55d-4b16-8617-255931e1be9d" data-linktype="relative-path">Persisted
+Module Definition (section 3.2.1.6.2.1)</a> in the <b>List of
+Persisted Module Definitions</b> with the specified module name.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>moduleDefinition</i> to the <b>IFsrmPipelineModuleDefinition</b>
+interface pointer of the newly created Non-Persisted Module Definition
+Instance.</p>
+</li></ul></div>

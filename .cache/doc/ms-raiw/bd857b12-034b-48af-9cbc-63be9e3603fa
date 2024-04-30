@@ -1,0 +1,69 @@
+<div class="content"><p>The R_WinsStatusNew method retrieves configuration settings
+and statistics from a <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a>
+server.</p><dl>
+<dd>
+<div><pre> DWORD R_WinsStatusNew(
+   [in] handle_t ServerHdl,
+   [in] WINSINTF_CMD_E Cmd_e,
+   [out] PWINSINTF_RESULTS_NEW_T pResults
+ );
+</pre></div>
+</dd></dl><p><b>ServerHdl: </b>An <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding over IP
+address/HostName to the WINS server. RPC uses this binding internally to
+determine which WINS server the call is directed to.</p><p><b>Cmd_e: </b>The command to be executed on the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target WINS server</a>, from
+the <a href="53011990-bbf6-417a-83b2-0fd4fdfe09dc" data-linktype="relative-path">WINSINTF_CMD_E</a>
+enumeration (section 2.2.1.5).</p><p><b>pResults: </b>A pointer to a <a href="5e0a0782-cec0-4cce-ac6d-01b36923a8db" data-linktype="relative-path">WINSINTF_RESULTS_NEW_T</a>
+structure (section 2.2.2.11), which contains the results of the command
+execution.</p><p><b>Return Values: </b>A 32-bit unsigned integer that
+indicates the return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that operation completed successfully. A nonzero return value is a
+Win32 error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following Win32 error codes can be returned:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have sufficient permissions.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000FA0</p>
+  <p>ERROR_WINS_INTERNAL</p>
+  </td>
+  <td>
+  <p>An error occurred while processing the RPC call.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Processing and Response Requirements:</b></p><ul><li><p><span><span> 
+</span></span>The behavior of this method is exactly same as that of <a href="785bf8ff-085d-4813-a767-10e2c7e840e3" data-linktype="relative-path">R_WinsStatus</a> except for
+the following:</p>
+<ul><li><p><span><span>  </span></span>There
+is no limit on the number of entries in the address-version map array.</p>
+</li><li><p><span><span>  </span></span>This
+method SHOULD NOT be called with <b>Cmd_e</b> set to WINSINTF_E_ADDVERSMAP. If
+it is, the server returns an ERROR_WINS_INTERNAL error.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Refer to R_WinsStatus and WINSINTF_RESULTS_NEW_T for the details
+of the behavior of this method.</p>
+</li></ul></div>

@@ -1,0 +1,14 @@
+<div class="content"><p>The FsrmTemplateApplyOptions enumeration defines the
+different options that are available when applying changes that have been made
+to a template to the objects derived from that template.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmTemplateApplyOptions
+ {
+   FsrmTemplateApplyOptions_ApplyToDerivedMatching = 1,
+   FsrmTemplateApplyOptions_ApplyToDerivedAll = 2
+ } FsrmTemplateApplyOptions;
+</pre></div>
+</dd></dl><p><b>FsrmTemplateApplyOptions_ApplyToDerivedMatching:  </b>Apply
+template changes only to derived objects whose properties match the template.</p><p><b>FsrmTemplateApplyOptions_ApplyToDerivedAll:  </b>Apply
+template changes to all derived objects, whether their properties match the
+template&#39;s or not.</p></div>

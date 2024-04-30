@@ -1,0 +1,40 @@
+<div class="content"><p> </p><p>The IRPCAsyncNotify_UnregisterClient method is called by
+registered clients to unregister previously-registered <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_96e6d133-8e9c-4258-ae03-65cb549bce90" data-linktype="relative-path">remote
+objects</a></span>. For this call to succeed, the remote object MUST have
+already successfully called <span><a href="fd00091c-2da3-4966-84ef-b1b75edb66b4" data-linktype="relative-path">IRPCAsyncNotify_RegisterClient</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT IRPCAsyncNotify_UnregisterClient(
+   [in] PRPCREMOTEOBJECT pRegistrationObj
+ );
+</pre></div>
+</dd></dl><p><b>pRegistrationObj: </b>MUST be the remote object
+context handle that MUST have been successfully registered by a prior call to
+IRPCAsyncNotify_RegisterClient. This value MUST NOT be NULL.</p><p><b>Return Values: </b>This method MUST return an <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span>
+success value (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a></span>)
+to indicate success, or an HRESULT error value to indicate failure. The client
+MUST consider all error return values fatal and report them to the higher-level
+caller.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>If a client call to <span><a href="0851fada-b2ca-441f-835a-2503d3862a1f" data-linktype="relative-path">IRPCAsyncNotify_GetNewChannel</a></span>
+or <span><a href="80f655e8-5c58-4d5a-bcb7-51d9e66d7a5c" data-linktype="relative-path">IRPCAsyncNotify_GetNotification</a></span>
+is blocked on the server waiting for a <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_31f349c9-3af0-4057-9d90-5ecb958398a5" data-linktype="relative-path">notification channel</a></span>
+or <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_4571dc27-4115-4cdf-8dc3-f8fe410a9966" data-linktype="relative-path">notification</a></span>
+to become available, the server MUST process a client call to
+IRPCAsyncNotify_UnregisterClient without waiting for the notification channel
+or notification.</p><p>A server MUST NOT do the following:</p><ul><li><p><span><span> 
+</span></span>Indicate success to a client call of
+IRPCAsyncNotify_UnregisterClient unless a prior call to
+IRPCAsyncNotify_RegisterClient succeeded using the same <span><a href="a47aca7c-fcc3-4151-8fb6-1de5225ecfa5" data-linktype="relative-path">PRPCREMOTEOBJECT</a></span>
+value.</p>
+</li><li><p><span><span> 
+</span></span>Indicate success to a client call of
+IRPCAsyncNotify_UnregisterClient following a prior successful call to
+IRPCAsyncNotify_UnregisterClient by using the same PRPCREMOTEOBJECT value.</p>
+</li></ul><p>A client MUST NOT do the following:</p><ul><li><p><span><span> 
+</span></span>Call IRPCAsyncNotify_UnregisterClient, unless a prior call to
+IRPCAsyncNotify_RegisterClient succeeded by using the same PRPCREMOTEOBJECT
+value.</p>
+</li><li><p><span><span> 
+</span></span>Call IRPCAsyncNotify_UnregisterClient following a prior call to
+IRPCAsyncNotify_UnregisterClient by using the same PRPCREMOTEOBJECT value.</p>
+</li></ul></div>

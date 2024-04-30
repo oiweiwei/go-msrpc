@@ -1,0 +1,51 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/599d6624-d93b-46de-827a-58eb0e7527bd" data-linktype="external">msdn link</a></p><p>The SamrQueryInformationAlias method obtains attributes from
+an <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_0387e636-5654-4910-9519-1f8326cf5ec0" data-linktype="relative-path">alias object</a>.</p><dl>
+<dd>
+<div><pre> long SamrQueryInformationAlias(
+   [in] SAMPR_HANDLE AliasHandle,
+   [in] ALIAS_INFORMATION_CLASS AliasInformationClass,
+   [out, switch_is(AliasInformationClass)] 
+     PSAMPR_ALIAS_INFO_BUFFER* Buffer
+ );
+</pre></div>
+</dd></dl><p><b>AliasHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing an alias object.</p><p><b>AliasInformationClass: </b>An enumeration
+indicating which attributes to return. See section <a href="c57a00ed-d492-43e7-9be5-6170e5d89150" data-linktype="relative-path">2.2.5.5</a> for a listing of
+possible values.</p><p><b>Buffer: </b>The requested attributes on output.
+See section <a href="aaf25a55-22c3-4639-96c3-ef5ae3362cf4" data-linktype="relative-path">2.2.5.6</a> for
+structure details.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>The server MUST
+return an error if <i>AliasHandle.HandleType</i> is not equal to
+&#34;Alias&#34;.</p>
+</li><li><p><span>    </span><i>AliasHandle.GrantedAccess</i>
+MUST have the required access specified in section <a href="87bacbd0-7b8b-429f-abc6-4b3d895d4e90" data-linktype="relative-path">3.1.2.2</a>. Otherwise, the
+server MUST return STATUS_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>The following
+information levels MUST be processed by setting the appropriate output field
+name to the associated database attribute, as specified in section <a href="81a0becd-1e83-4043-b665-07afdd6a4064" data-linktype="relative-path">3.1.5.14.10</a>. Processing is
+completed by returning 0 on success. If the presented information level is not
+in the following table, the server MUST return an error.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>AliasInformationClass</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>AliasGeneralInformation</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AliasNameInformation</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AliasAdminCommentInformation</p>
+  </td>
+ </tr></tbody></table>
+</li></ol><p> </p></div>

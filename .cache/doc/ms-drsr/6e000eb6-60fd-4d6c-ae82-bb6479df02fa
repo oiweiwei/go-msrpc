@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p>If the server is the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_48b8ecd1-32ae-4593-88e6-346ece75ef34" data-linktype="relative-path">PDC emulator</a></span> <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_de81e9fd-25f5-4e90-aadb-1d35c5e8a06b" data-linktype="relative-path">FSMO role
+owner</a></span>, the IDL_DRSGetNT4ChangeLog method returns either a sequence
+of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a></span>
+change log entries or the NT4 <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span> state,
+or both, as requested by the client.</p><dl>
+<dd>
+<div><pre> ULONG IDL_DRSGetNT4ChangeLog(
+   [in, ref] DRS_HANDLE hDrs,
+   [in] DWORD dwInVersion,
+   [in, ref, switch_is(dwInVersion)] 
+     DRS_MSG_NT4_CHGLOG_REQ* pmsgIn,
+   [out, ref] DWORD* pdwOutVersion,
+   [out, ref, switch_is(*pdwOutVersion)] 
+     DRS_MSG_NT4_CHGLOG_REPLY* pmsgOut
+ );
+</pre></div>
+</dd></dl><p><b>hDrs: </b>The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+returned by the <span><a href="605b1ea1-9cdc-428f-ab7a-70120e020a3d" data-linktype="relative-path">IDL_DRSBind</a></span> method.</p><p><b>dwInVersion: </b>The version of the request
+message.</p><p><b>pmsgIn: </b>A pointer to the request message.</p><p><b>pdwOutVersion: </b>A pointer to the version of the
+response message.</p><p><b>pmsgOut: </b>A pointer to the response message.</p><p><b>Return Values: </b>0 or ERROR_MORE_DATA if
+successful; another <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows error code</a></span>
+if a failure occurred.</p><p><b>Exceptions Thrown:</b> This method might throw the
+following exceptions beyond those thrown by the underlying RPC protocol (as
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>):
+ERROR_INVALID_HANDLE, ERROR_DS_DRS_EXTENSIONS_CHANGED,
+ERROR_DS_DIFFERENT_REPL_EPOCHS, and  ERROR_INVALID_PARAMETER.</p></div>

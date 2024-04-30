@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The Detach method removes the operating system disk device
+that represents a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual disk</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT Detach(
+   [in] DETACH_VIRTUAL_DISK_FLAG Flags,
+   [in] ULONG ProviderSpecificFlags
+ );
+</pre></div>
+</dd></dl><p><b>Flags: </b>A <span><a href="ea5c8e13-eb24-405d-aebe-a3fe7233e449" data-linktype="relative-path">DETACH_VIRTUAL_DISK_FLAG (section 2.2.2.20.1.2)</a></span>
+enumeration value that specifies how the virtual disk is to be detached.</p><p><b>ProviderSpecificFlags: </b>Flags specific to the
+type of virtual disk being detached.<a id="Appendix_A_Target_143"></a><a aria-label="Product behavior note 143" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_143" data-linktype="relative-path">&lt;143&gt;</a></p><p><b>Return Values: </b>The method MUST return zero to
+indicate success, or return an implementation-specific nonzero error code to indicate
+failure.</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>Flags</i> contains a bitwise OR of values from the
+DETACH_VIRTUAL_DISK_FLAG enumeration.</p>
+</li></ul><p>The server MUST then perform the following in sequence:</p><ul><li><p><span><span> 
+</span></span>Pass the input parameters to the operating system to detach the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Return any success or failure based on the operating system&#39;s
+response.</p>
+</li></ul></div>

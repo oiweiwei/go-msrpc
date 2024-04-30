@@ -1,0 +1,89 @@
+<div class="content"><p>The <b>OSVERSIONINFOEX</b> structure specifies extended
+operating system (OS) version information for use with <a href="1393a76f-5851-49a5-bf14-7188ca6763b2" data-linktype="relative-path">Server Handle Key Values (section 2.2.3.10)</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">OSVersionInfo
+  (276 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">wServicePackMajor</p>
+  </td>
+  <td colspan="16">
+  <p align="center">wServicePackMinor</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">wSuiteMask</p>
+  </td>
+  <td colspan="8">
+  <p align="center">wProductType</p>
+  </td>
+  <td colspan="8">
+  <p align="center">wReserved</p>
+  </td>
+ </tr>
+</tbody></table><p><b>OSVersionInfo (276 bytes): </b>An <b>OSVERSIONINFO</b>
+structure (section <a href="5942648e-b54f-4e22-a0e2-2d000e084b23" data-linktype="relative-path">2.2.3.10.1)</a>,
+which specifies basic OS version information.</p><p><b>wServicePackMajor (2 bytes): </b>The major version
+number of the latest Service Pack installed on the system. For example, for
+Service Pack 3, the major version number is 3. If no Service Pack has been
+installed, the value is zero.</p><p><b>wServicePackMinor (2 bytes): </b>The minor version
+number of the latest Service Pack installed on the system. For example, for
+Service Pack 3, the minor version number is 0.</p><p><b>wSuiteMask (2 bytes): </b>A value that identifies
+the product suites available on the system, consisting of <a href="90be334a-e4ab-46a0-ba72-ec6ed8706606" data-linktype="relative-path">Product Suite Flags (section
+2.2.3.10.5)</a>.</p><p><b>wProductType (1 byte): </b>Additional information
+about the OS, which MUST be an <a href="682158a5-b093-400b-8dd9-b31f3fdd04d5" data-linktype="relative-path">OS_TYPE enumeration (section
+2.2.3.10.3)</a> value.</p><p><b>wReserved (1 byte): </b>A field that SHOULD be
+initialized to zero when sent and MUST be ignored on receipt.</p></div>

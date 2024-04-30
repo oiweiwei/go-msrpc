@@ -1,0 +1,206 @@
+<div class="content"><p> </p><p>The RemoteQMStartReceive method peeks or receives a <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span>
+from an open <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>.</p><p>If RemoteQMStartReceive is invoked with a Peek action type,
+as specified in the <i>ulAction</i> member of the <i>lpRemoteReadDesc</i>
+parameter, the operation completes when RemoteQMStartReceive returns.</p><p>If RemoteQMStartReceive is invoked with a Receive action
+type, as specified in the <i>ulAction</i> member of the <i>lpRemoteReadDesc</i>
+parameter, the client MUST pair each call to RemoteQMStartReceive with a call
+to <span><a href="4c0b91ba-37fa-441c-974a-91bbea58a62d" data-linktype="relative-path">RemoteQMEndReceive</a></span>
+to complete the operation, or to <span><a href="76f56b96-7c8d-432e-a169-a1b750e20527" data-linktype="relative-path">RemoteQMCancelReceive</a></span>
+to cancel the operation.</p><p>For each call to RemoteQMCancelReceive, the <i>dwRequestID</i>
+parameter MUST match the <i>dwRequestID</i> member of the <i>lpRemoteReadDesc</i>
+parameter in a previous call to RemoteQMStartReceive.</p><p>If the client specifies a nonzero value for the <b>ulTimeout</b>
+member of the <i>lpRemoteReadDesc</i> parameter, and a message is not available
+in the queue at the time of the call, the server waits up to the specified
+time-out for a message to become available in the queue before responding to
+the call. The client can call RemoteQMCancelReceive with a matching <b>REMOTEREADDESC</b>.<b>dwRequestID</b>
+to cancel the pending RemoteQMStartReceive request.</p><p>Before calling this method, the client MUST have already
+called <span><a href="0dbcb6fd-ed56-44c3-9c02-e9fa2d7798b3" data-linktype="relative-path">RemoteQMOpenQueue</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT RemoteQMStartReceive(
+   [in] handle_t hBind,
+   [out] PCTX_REMOTEREAD_HANDLE_TYPE* pphContext,
+   [in, out] REMOTEREADDESC* lpRemoteReadDesc
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b>An <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle
+parameter, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>,
+that MUST be specified.</p><p><b>pphContext: </b>The server MUST return a non-NULL
+value for this handle upon success for receive calls. This handle will be used
+by the client in subsequent calls to RemoteQMEndReceive. This handle MUST NOT
+be set upon failure, or for peek calls. If this method returns an error, <i>pphContext</i>
+is undefined and MUST NOT be used as an argument for a call to RemoteQMEndReceive.</p><p><b>lpRemoteReadDesc: </b>A pointer to an instance of
+a <span><a href="645e7b85-18f0-4f50-a905-1dd55565728b" data-linktype="relative-path">REMOTEREADDESC (section 2.2.2.1)</a></span>
+structure.</p><p>In addition, the <i>ulAction</i> member of the <i>lpRemoteReadDesc</i>
+parameter MUST be one of the following values.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value of ulAction</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQ_ACTION_RECEIVE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>If <i>hCursor</i> is nonzero, read and remove the
+  first message available at the current <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a></span>&#39;s location
+  walking towards the end of the queue.</p>
+  <p>If <i>hCursor</i> is zero, read and remove the message
+  from the front of the queue.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_ACTION_PEEK_CURRENT </p>
+  <p>0x80000000</p>
+  </td>
+  <td>
+  <p>If <i>hCursor</i> is nonzero, read the message at the
+  current cursor location, but do not remove it from the queue. The cursor
+  location does not change after the operation.</p>
+  <p>If <i>hCursor</i> is zero, read the message at the
+  front of the queue, but do not remove it from the queue.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_ACTION_PEEK_NEXT</p>
+  <p>0x80000001</p>
+  </td>
+  <td>
+  <p>Read the message following the message at the current
+  cursor location, but do not remove it. The cursor location will then change
+  to the next available message, walking towards the end of the queue.</p>
+  <p>The <i>hCursor</i> parameter MUST be set to a nonzero
+  cursor handle.</p>
+  </td>
+ </tr></tbody></table><p>The <i>hCursor</i> member of <i>lpRemoteReadDesc</i>
+specifies a handle to an opened cursor. A value of zero indicates that a cursor
+is not used for this operation.</p><p>The <i>dwRequestID</i> member of the <i>lpRemoteReadDesc</i>
+parameter is used in a subsequent call to RemoteQMCancelReceive to correlate
+that call with the call to RemoteQMStartReceive.</p><p><b>Return Values: </b>The method MUST return MQ_OK
+(0x00000000) on success; otherwise, it MUST return a failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>,
+and the client MUST treat all failure HRESULTs identically.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>MQ_ERROR_INVALID_HANDLE</b> (0xC00E0007)</p><p><b>MQ_ERROR_INVALID_PARAMETER</b> (0xC00E0006)</p><p><b>STATUS_INVALID_PARAMETER</b> (0xC000000D)</p><p><b>Exceptions Thrown:</b> None except those thrown by the
+underlying RPC protocol, as specified in [MS-RPCE].</p><p>While processing this method, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Return MQ_ERROR_INVALID_HANDLE (0xC00E0007) if <i>lpRemoteReadDesc</i>
+is NULL.</p>
+</li><li><p><span><span> 
+</span></span>Return MQ_ERROR_INVALID_PARAMETER (0xC00E0006) if <i>lpRemoteReadDesc</i>.<b>dwQueue</b>
+is set to 0x00000000 or <i>lpRemoteReadDesc</i>.<b>dwQueue</b> is not equal to 
+<i>lpRemoteReadDesc</i>.<b>hRemoteQueue</b>.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD return MQ_ERROR_INVALID_PARAMETER (0xC00E0006)
+if the  <i>lpRemoteReadDesc</i>.<b>dwRequestID</b> does not uniquely identify
+the receive request. This duplicate detection is performed by searching for a <span><a href="3c58d8eb-2fb1-473d-8f61-c8ddc7b0f85d" data-linktype="relative-path">RemoteReadEntry (section 3.1.1.2)</a></span>
+ADM element instance, referred to as <b>rRemoteReadEntry</b>, in <b>rRemoteReadEntryCollection</b>
+such that <b>rRemoteReadEntry.OpenQueueDescriptorHandle</b> =  <i>lpRemoteReadDesc</i>.<b>hRemoteQueue</b>
+and <b>rRemoteReadEntry.RequestId</b> = <i>lpRemoteReadDesc</i>.<b>dwRequestID</b>.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="d6c5ba0a-aaf8-489d-baf2-fdc286b4bea4#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Return STATUS_INVALID_PARAMETER (0xC000000D) if <i>lpRemoteReadDesc</i>.<b>hCursor</b>
+is set to 0x00000000 and the  <i>lpRemoteReadDesc</i>.<b>ulAction</b> is set to
+MQ_ACTION_PEEK_NEXT.</p>
+</li><li><p><span><span> 
+</span></span>Search the <b>rOpenQueueEntryCollection</b> where <b>OpenQueueEntry.OpenQueueDescriptorHandle</b>
+= <i>lpRemoteReadDesc</i>.<b>hRemoteQueue</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>OpenQueueDescriptorHandle</b> is not found, return
+MQ_ERROR_INVALID_PARAMETER (0xc00e0006).</p>
+</li><li><p><span><span> 
+</span></span>Find the <b>OpenQueueDescriptor</b>, referred to as <b>rOpenQueueDescriptor</b>,
+in the <b>Queue.OpenQueueDescriptorCollection</b> of each queue object in <b>QueueManager.QueueCollection</b>
+such that <b>rOpenQueueDescriptor.Handle</b> = <i>lpRemoteReadDesc</i>.<b>hRemoteQueue</b>.</p>
+</li><li><p><span><span> 
+</span></span>If  <i>lpRemoteReadDesc</i>.<b>hCursor</b> is not 0x00000000,
+find the cursor object, referred to as <i>rCursor</i>, in the <b>rOpenQueueDescriptor.CursorCollection</b>
+with a Handle property equal to  <i>lpRemoteReadDesc</i>.<b>hCursor</b>.</p>
+</li><li><p><span><span> 
+</span></span>If no cursor object is found, return STATUS_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If <i>lpRemoteReadDesc</i>.<b>hCursor</b> is 0x00000000, set <i>rCursor</i>
+to NULL.</p>
+</li><li><p><span><span> 
+</span></span>Create a new <b>RemoteReadEntry</b> ADM element instance,
+referred to as <i>rrEntry</i>, with the following attributes:</p>
+<ul><li><p><span><span>  </span></span><b>OpenQueueDescriptorHandle</b>
+=  <i>lpRemoteReadDesc</i>.<b>hRemoteQueue</b></p>
+</li><li><p><span><span>  </span></span><b>Timeout</b>
+= <i>lpRemoteReadDesc</i>.<b>ulTimeout</b></p>
+</li><li><p><span><span>  </span></span><b>UserMessagePacket</b>
+= <i>lpRemoteReadDesc</i>.<b>lpBuffer</b></p>
+</li><li><p><span><span>  </span></span><b>Action</b>
+= <i>lpRemoteReadDesc</i>.<b>ulAction</b></p>
+</li><li><p><span><span>  </span></span><b>RequestId</b>
+= <i>lpRemoteReadDesc</i>.<b>dwRequestID</b></p>
+</li></ul></li><li><p><span><span> 
+</span></span>Add <i>rrEntry</i> to <b>rRemoteReadEntryCollection</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ulAction</b> member of the <i>lpRemoteReadDesc</i>
+parameter is MQ_ACTION_RECEIVE, generate a <span><a href="../ms-mqdmpr/e322d06b-5bd6-4cb0-abbb-4485526834a6" data-linktype="relative-path">Dequeue
+Message Begin</a></span> event (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section 3.1.7.1.11) with the following inputs:</p>
+<ul><li><p><span><span>  </span></span><i>iQueueDesc</i>
+:= reference to <b>OpenQueueDescriptor</b> obtained earlier.</p>
+</li><li><p><span><span>  </span></span><i>iTimeout</i>
+:= <i>lpRemoteReadDesc</i>.<b>ulTimeout</b></p>
+</li><li><p><span><span>  </span></span><i>iTag</i>
+:= <i>lpRemoteReadDesc</i>.<b>dwRequestID</b></p>
+</li><li><p><span><span>  </span></span><i>iCursor</i>
+:= <i>rCursor</i></p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <b>ulAction</b> member of the <i>lpRemoteReadDesc</i>
+parameter is MQ_ACTION_PEEK_CURRENT, generate a <span><a href="../ms-mqdmpr/658f62aa-ac0f-4916-b6dc-d4fa7539b62d" data-linktype="relative-path">Peek
+Message</a></span> event with the following inputs:</p>
+<ul><li><p><span><span>  </span></span><i>iQueueDesc</i>
+:= reference to <b>OpenQueueDescriptor</b> obtained earlier.</p>
+</li><li><p><span><span>  </span></span><i>iTimeout</i>
+:= <i>lpRemoteReadDesc</i>.<b>ulTimeout</b></p>
+</li><li><p><span><span>  </span></span><i>iCursor</i>
+:= <i>rCursor</i></p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <b>ulAction</b> member of the <i>lpRemoteReadDesc</i>
+parameter is MQ_ACTION_PEEK_NEXT, generate a <span><a href="../ms-mqdmpr/032bebe9-fbdc-4cb4-a10a-f3fcad2314f5" data-linktype="relative-path">Peek Next
+Message</a></span> event with the following inputs:</p>
+<ul><li><p><span><span>  </span></span><i>iQueueDesc</i>
+:= reference to <b>OpenQueueDescriptor</b> obtained earlier.</p>
+</li><li><p><span><span>  </span></span><i>iTimeout</i>
+:= <i>lpRemoteReadDesc</i>.<b>ulTimeout</b></p>
+</li><li><p><span><span>  </span></span><i>iCursor</i>
+:= <i>rCursor</i></p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>rStatus</i> value returned from the preceding events is
+MQ_OK (0x00000000), the server MUST process the returned <i>rMessage</i> as
+follows:</p>
+<ul><li><p><span><span>  </span></span>Generate
+a <span><a href="../ms-mqdmpr/e7e9aebc-e278-4a85-baa5-9caf1548dcee" data-linktype="relative-path">Construct
+a UserMessage Packet</a></span> ([MS-MQDMPR] section 3.1.7.1.30) event with the
+following argument:</p>
+<ul><li><p><span><span> 
+</span></span><i>iMessage</i> := <i>rMessage</i></p>
+</li></ul></li><li><p><span><span>  </span></span>Generate
+a <span><a href="../ms-mqdmpr/b0e19729-af80-4cca-841f-865d8fc4a028" data-linktype="relative-path">Serialize
+Message to Buffer</a></span> ([MS-MQDMPR] section 3.1.7.1.32) event with the
+following arguments:</p>
+<ul><li><p><span><span> 
+</span></span><i>iMessage</i> := <i>rMessage</i></p>
+</li><li><p><span><span> 
+</span></span><i>iBuffer</i> := <i>rUserMessage</i> returned by the Construct a
+UserMessage Packet event.</p>
+</li></ul></li><li><p><span><span>  </span></span>Assign
+<i>rUserMessage</i> to the <b>lpBuffer</b> member of the <i>lpRemoteReadDesc</i>
+parameter.</p>
+</li><li><p><span><span>  </span></span>Assign
+<i>rUserMessage</i>.<b>BaseHeader</b>.<b>PacketSize</b> to <i>lpRemoteReadDesc</i>.<b>dwSize</b>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Remove the <b>RemoteReadEntry</b> ADM element instance from <b>rRemoteReadEntryCollection</b>
+for which <b>RemoteReadEntry</b>.<b>RequestId</b> equals <i>lpRemoteReadDesc</i>.<b>dwRequestID</b>
+and <b>RemoteReadEntry</b>.<b>OpenQueueDescriptorHandle</b> equals <i>lpRemoteReadDesc</i>.<b>hRemoteQueue</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>rStatus</i> is MQ_OK (0x00000000) and <i>lpRemoteReadDesc</i>.<b>ulAction</b>
+is MQ_ACTION_RECEIVE, set <i>pphContext</i> to <i>rrEntry</i>; otherwise,
+delete <i>rrEntry</i>.</p>
+</li><li><p><span><span> 
+</span></span>Return <i>rStatus</i>.</p>
+</li></ul></div>

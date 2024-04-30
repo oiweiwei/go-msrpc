@@ -1,0 +1,9 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/d37e0ce7-a358-4c07-a5c4-59c8b5da8b08" data-linktype="external">msdn link</a></p><p>The ULARGE_INTEGER structure is used to represent a 64-bit
+unsigned integer value. </p><dl>
+<dd>
+<div><pre> typedef struct _ULARGE_INTEGER {
+   unsigned __int64 QuadPart;
+ } ULARGE_INTEGER,
+  *PULARGE_INTEGER;
+</pre></div>
+</dd></dl></div>

@@ -1,0 +1,109 @@
+<div class="content"><p> </p><p>The <b>R_DhcpEnumSubnetsV6</b> method enumerates all IPv6
+prefixes configured on the DHCPv6 server. The caller of this function can free
+the memory pointed to by <i>EnumInfo</i> by calling the function <b>midl_user_free</b>
+(section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpEnumSubnetsV6(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, out] DHCP_RESUME_HANDLE* ResumeHandle,
+   [in] DWORD PreferredMaximum,
+   [out] LPDHCPV6_IP_ARRAY* EnumInfo,
+   [out] DWORD* ElementsRead,
+   [out] DWORD* ElementsTotal
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>ResumeHandle: </b>This is a pointer of type <span><a href="a6e4cdc0-4f71-4922-ade1-7a5392f9e920" data-linktype="relative-path">DHCP_RESUME_HANDLE (section 2.2.1.2.6)</a></span>
+that identifies the enumeration operation. Initially, this value MUST be set to
+zero, with a successful call returning the handle value used for subsequent
+enumeration requests. For example, if <i>PreferredMaximum</i> is set to 100,
+and 200 IPv6 prefix addresses are stored on the DHCPv6 server, the resume
+handle can be used after the first 100 IPv6 prefixes are retrieved to obtain
+the next 100 on a subsequent call, and so forth.</p><p><b>PreferredMaximum: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+specifying the preferred maximum number of IPv6 prefix addresses to return. If
+the number of remaining unenumerated options is less than this value, all the
+IPv6 prefixes are returned. To retrieve all the IPv6 prefixes, 0xFFFFFFFF is
+specified.</p><p><b>EnumInfo: </b>This is a pointer of type <span><a href="125bc7ca-38b4-48f8-b11c-a4e2a4a2833f" data-linktype="relative-path">LPDHCPV6_IP_ARRAY</a></span>
+in which the IPv6 prefix configured on the DHCPv6 server is returned.</p><p><b>ElementsRead: </b>This is a pointer to a DWORD
+value that specifies the number of IPv6 prefix addresses returned in <i>EnumInfo</i>.
+The caller MUST allocate memory for this parameter equal to the size of data
+type DWORD.</p><p><b>ElementsTotal: </b>This is a pointer to a DWORD
+value that specifies the number of IPv6 prefixes defined on the DHCPv6 server
+that have not yet been enumerated with respect to the resume handle that is
+returned. The caller MUST allocate memory for this parameter equal to the size
+of data type DWORD.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  </td>
+  <td>
+  <p>There are no more elements left to enumerate.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 58.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read access per section
+<span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not, return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv6ScopeList</b> object.</p>
+</li><li><p><span><span> 
+</span></span>Validate that <b>ResumeHandle</b> is greater than or equal to the
+number of <b>DHCPv6Scope</b> objects in <b>DHCPv6ScopeList</b>. If the number
+of <b>DHCPv6Scope</b> objects found is 0, return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>In <b>DHCPv6ScopeList</b>, start enumerating from the <b>ResumeHandle</b>
+number of <b>DHCPv6Scope</b> objects.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ResumeHandle</b> parameter points to 0x00000000, the
+enumeration MUST start from the beginning of <b>DHCPv6ScopeList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ResumeHandle</b> parameter points to a nonzero value,
+the server MUST continue enumeration based on the value of <b>ResumeHandle</b>.
+If the <b>ResumeHandle</b> is greater than or equal to the number of <b>DHCPv6Scope</b>
+objects in <b>DHCPv6ScopeList</b>, then return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>If <b>PreferredMaximum</b> is 0, then return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>The <b>PreferredMaximum</b> parameter specifies the maximum
+number of <b>DHCPv6Scope</b> objects that the server can allocate and assign to
+the output parameter <b>EnumInfo</b>, which will be used by the client to
+enumerate the subnets.</p>
+</li><li><p><span><span> 
+</span></span>If <b>PreferredMaximum</b> is less than the number of remaining <b>DHCPv6Scope</b>
+objects in the list, allocate memory for that number of <b>DHCPv6Scope</b>
+objects and return the corresponding <b>DHCPv6Scope</b> objects from <b>DHCPv6ScopeList</b>
+along with ERROR_SUCCESS; else allocate memory for all remaining <b>DHCPv6Scope</b>
+objects.</p>
+</li><li><p><span><span> 
+</span></span>Fill the <b>DHDPv6Scope</b> objects&#39; information in <b>EnumInfo</b>,
+fill the number of such objects read in <b>ElementsRead</b>, and fill the
+number of such objects in <b>DHCPv6ScopeList</b> that have not yet been
+enumerated in <b>ElementsTotal</b>. Update the <b>ResumeHandle</b> to the index
+of the last <b>DHCPv6Scope</b> object read plus one.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

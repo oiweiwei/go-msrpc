@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/ab6e857a-df5e-4e3d-af1e-a878abd37b7d" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_DUMMY1</b> union MAY<a id="Appendix_A_Target_64"></a><a aria-label="Product behavior note 64" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_64" data-linktype="relative-path">&lt;64&gt;</a> serve as a placeholder.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     ULONG Dummy;
+ } NETLOGON_DUMMY1,
+  *PNETLOGON_DUMMY1;
+</pre></div>
+</dd></dl><p><b>Dummy:</b> The field is selected when the switched
+DWORD (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+value is 1.</p></div>

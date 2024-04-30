@@ -1,0 +1,26 @@
+typedef struct _GUID
+{
+    unsigned long  Data1;
+    unsigned short Data2;
+    unsigned short Data3;
+    byte           Data4[8];
+} GUID;
+ 
+typedef GUID UUID;
+ 
+typedef struct _FILETIME
+{
+    unsigned long dwLowDateTime;
+    unsigned long dwHighDateTime;
+} FILETIME;
+ 
+typedef struct _LARGE_INTEGER 
+{
+    __int64 QuadPart;
+} LARGE_INTEGER;
+ 
+typedef __int64 LONGLONG;
+typedef unsigned __int64 ULONGLONG;
+typedef long NTSTATUS;
+ 
+typedef unsigned long DWORD;

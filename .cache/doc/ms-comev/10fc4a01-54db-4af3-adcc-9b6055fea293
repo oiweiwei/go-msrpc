@@ -1,0 +1,131 @@
+<div class="content"><p> </p><p>The Store method is called by a <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> to store
+either an <span><a href="66217d57-8c60-4423-9b24-52923f4c2afa" data-linktype="relative-path">event class</a></span> or a <span><a href="0d617a76-fc58-455c-9e30-1a8436c5f73a" data-linktype="relative-path">subscription</a></span>.</p><dl>
+<dd>
+<div><pre> [id(2), helpstring(&#34;method Store&#34;)] HRESULT Store(
+   [in] BSTR ProgID,
+   [in] IUnknown* pInterface
+ );
+</pre></div>
+</dd></dl><p><b>ProgID: </b>A string that uniquely identifies the
+kind of <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> that the
+client is trying to store. It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&#34;EventSystem.EventClass&#34;</p>
+  </td>
+  <td>
+  <p>The store for <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e8df25db-9bff-46df-b607-d072dd29c02b" data-linktype="relative-path">event classes</a></span>, as
+  specified in section 3.1.1.1. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;EventSystem.EventSubscription&#34;</p>
+  </td>
+  <td>
+  <p>The store for <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_f362c255-5746-44db-aa04-e8060543a19c" data-linktype="relative-path">subscriptions</a></span>, as
+  specified in section 3.1.1.2.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pInterface: </b>An <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface pointer</a></span> to
+a DCOM object that was created by performing DCOM <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_a1710eb6-236d-435e-a3c9-1672d28ab367" data-linktype="relative-path">activation</a></span> on the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>
+by the client by using either the CLSID_EventClass (as specified in section <span><a href="25e89236-b0b3-4d8b-b1fb-64e0e9f0e156" data-linktype="relative-path">1.9</a></span>),
+which represents the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a></span> for event
+class, or CLSID_Subscription (as specified in section 1.9), which represents
+the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_6d17ce3a-aa95-4db2-83f1-09d5feef3f95" data-linktype="relative-path">subscriber</a></span>.</p><p><b>Return Values: </b>An <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+that specifies success or failure. All success codes MUST be treated the same,
+and all failure codes other than EVENT_E_INVALID_PER_USER_SID MUST be treated
+the same.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80040207</p>
+  <p>EVENT_E_INVALID_PER_USER_SID</p>
+  </td>
+  <td>
+  <p>The owner <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span>, as defined in
+  <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+  section <span><a href="../ms-dtyp/78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">2.4.2</a></span>,
+  on a per-user subscription does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>When this method is called, the server MUST verify that all
+the required properties of the event class or of the subscription (properties
+of the DCOM object that is passed in as part of the <i>pInterface</i>
+parameter) are specified and are correct.</p><p>If this DCOM object is an event class, the server MUST set
+the EventClassID property to an internally generated value if it has not
+already been set, it MUST verify that the EventClassName property is set, and
+it MUST verify that either the Typelib or the FiringInterfaceID property is
+set. If these verifications fail, the server MUST fail the call and return an
+HRESULT to the client.</p><p>If this DCOM object is a subscription, the server MUST set
+the SubscriptionID property to an internally generated value if it has not already
+been set; it MUST verify that the SubscriptionName property is set; it MUST
+verify that either the EventClassID, the PublisherID, or the InterfaceID
+property is set; and it MUST verify that the subscription is either transient
+or persistent. A <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_5f3bbd2c-d1c5-439c-b635-0dce5adb3701" data-linktype="relative-path">transient subscription</a></span>
+has the SubscriberInterface property set but neither the SubscriberCLSID nor
+the SubscriberMoniker property set. A <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_699c661c-5557-4d08-9891-75c08fd40e90" data-linktype="relative-path">persistent subscription</a></span>
+has one or both of the SubscriberCLSID and SubscriberMoniker properties set,
+but the SubscriberInterface property is not set. If these verifications fail,
+the server MUST fail the call and return an HRESULT to the client.</p><p>Otherwise, it MUST take the individual properties of the
+event class or the subscription, based on the type of store requested, MUST
+attempt to store these properties in its internal store and MUST fail the call
+if it cannot. If an entry already exists in the store for the particular object
+that is represented by the DCOM object instance, the server MUST update its
+internal store entry with the new values of the subscription or the event
+class, as specified in the DCOM object instance. If the <i>RetainSubKeys</i>
+state variable is TRUE, any PublisherProperties or SubscriberProperties within
+the existing entry that do not exist within the new object instance MUST NOT be
+deleted by the server. If the <i>RetainSubKeys</i> state variable is FALSE, all
+PublisherProperties or SubscriberProperties in the existing entry MUST be
+deleted and replaced by the values in the new object instance. The <i>RetainSubKeys</i>
+state variable MUST have no effect on entries that do not already exist in the
+store.</p><p>Additional verifications might be required depending on the
+protocol version and the state of the <i>CatalogMode</i> variable. See the
+individual cases below for details.</p><ul><li><p><span><span> 
+</span></span><b>Protocol version is 1; CatalogMode is TRUE</b></p>
+<p>The DCOM object MUST be a
+transient subscription, meaning that it has the SubscriberInterface property
+set and neither the SubscriberCLSID nor the SubscriberMoniker property set. If
+not, the server MAY fail the call, returning a failure HRESULT to the client.
+If the server does not fail the call, the server behavior is undefined.</p>
+</li><li><p><span><span> 
+</span></span><b>Protocol version is 1; CatalogMode is FALSE</b></p>
+<p>No additional
+verification.</p>
+</li><li><p><span><span> 
+</span></span><b>Protocol version is 2; CatalogMode is TRUE</b></p>
+<p>The DCOM object MUST be a
+transient subscription, meaning that it has the SubscriberInterface property
+set and neither the SubscriberCLSID nor the SubscriberMoniker property set. If
+not, the server MAY fail the call, returning a failure HRESULT to the client.
+If the server does not fail the call, the server behavior is undefined.</p>
+<p>If the PartitionID
+property of the object is equal to <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_b9d97d88-9398-4450-9e92-247073ce0362" data-linktype="relative-path">GUID_NULL</a></span> or has not
+been set, the server MUST treat the PartitionID property as if it were set to
+the default <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_9587a9d3-3fd7-45c6-aab1-c74ff17a22b7" data-linktype="relative-path">partition identifier</a></span>
+value {41E90F3E-56C1-4633-81C3-6E8BAC8BDD70}.</p>
+</li><li><p><span><span> 
+</span></span><b>Protocol version is 2; CatalogMode is FALSE</b></p>
+<p>The DCOM object MUST have
+a PartitionID property equal to GUID_NULL. If not, the server SHOULD fail the
+call, returning a failure HRESULT to the client.</p>
+</li></ul></div>

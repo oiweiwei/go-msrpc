@@ -1,0 +1,130 @@
+<div class="content"><p>RpcEnumPrinters enumerates available printers, <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print servers</a>, <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domains</a>, or <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_8ba4eb41-4adc-4272-ae1a-456870ad8cde" data-linktype="relative-path">print providers</a>.</p><dl>
+<dd>
+<div><pre> DWORD RpcEnumPrinters(
+   [in] DWORD Flags,
+   [in, string, unique] STRING_HANDLE Name,
+   [in] DWORD Level,
+   [in, out, unique, size_is(cbBuf), disable_consistency_check] 
+     BYTE* pPrinterEnum,
+   [in] DWORD cbBuf,
+   [out] DWORD* pcbNeeded,
+   [out] DWORD* pcReturned
+ );
+</pre></div>
+</dd></dl><p><b>Flags: </b>The types of print objects that this
+method enumerates. The value of this parameter is the result of a bitwise OR of
+one or more of the <a href="2a1fe8a4-e8be-4cf3-8b37-8d19f9a2edcd" data-linktype="relative-path">Printer
+Enumeration Flags (section 2.2.3.7)</a>, with the following
+additional specifications:</p><ul><li><p><span><span>  </span></span><b>PRINTER_ENUM_NAME:</b>
+If the <i>Name</i> parameter is NULL or points to an empty string, and the <i>Level</i>
+parameter value is 0x00000001, available print providers SHOULD be enumerated.
+If this flag is not set, the server SHOULD ignore the <i>Name</i> parameter.</p>
+</li><li><p><span><span>  </span></span><b>PRINTER_ENUM_REMOTE:</b>
+The <i>Level</i> parameter value MUST be 0x00000001.</p>
+</li><li><p><span><span>  </span></span><b>PRINTER_ENUM_NETWORK:</b>
+The <i>Level</i> parameter value MUST be 0x00000001.</p>
+</li></ul><p><b>Name: </b>NULL or a server name parameter as
+specified in <a href="acb355a4-913b-4abb-8cb5-415aea160015" data-linktype="relative-path">Printer Server
+Name Parameters (section 3.1.4.1.4)</a>. If the <i>Flags</i>
+parameter contains the <b>PRINTER_ENUM_NAME</b> flag, the <i>Name</i> parameter
+value controls where the server SHOULD enumerate. The server SHOULD enumerate
+locally if the <i>Name</i> parameter is either NULL or an empty string;
+otherwise, remotely on the server whose name is specified by the <i>Name</i>
+string.</p><p><b>Level: </b>The level of printer information
+structure, as follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p><a href="b026cf5c-680f-464a-8e08-675228ddd42c" data-linktype="relative-path">_PRINTER_INFO_STRESS (section 2.2.2.9.1)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p><a href="39aa2f28-ffe0-4f91-8bdd-c0fa5dee40c5" data-linktype="relative-path">_PRINTER_INFO_1 (section 2.2.2.9.2)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p><a href="9e327375-7ac9-419f-a610-61b88bbbd918" data-linktype="relative-path">_PRINTER_INFO_2 (section 2.2.2.9.3)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p><a href="b7394523-48b7-4e16-bc9d-3c87d8a5f0c0" data-linktype="relative-path">_PRINTER_INFO_4 (section 2.2.2.9.5)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p><a href="68a546b0-d748-4a3d-a5d7-37f713e037d9" data-linktype="relative-path">_PRINTER_INFO_5 (section 2.2.2.9.6)</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pPrinterEnum: </b>A pointer to a <a href="f29e9057-df29-40d4-9c51-c615c0da62a1" data-linktype="relative-path">BUFFER</a> defined in INFO
+Structures Query Parameters (section 3.1.4.1.9).</p><p><b>BUFFER TYPE:</b> _PRINTER_INFO.</p><dl>
+<dd>
+<p>This parameter can be NULL if the value of <i>cbBuf</i>
+is zero.</p>
+</dd></dl><p><b>cbBuf: </b>An input parameter that adheres to the
+specification in INFO Structures Query Parameters.</p><p><b>pcbNeeded: </b>An output parameter that adheres to
+the specification in INFO Structures Query Parameters.</p><p><b>pcReturned: </b>An output parameter that adheres
+to the specification in INFO Structures Query Parameters.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion and SHOULD<a id="Appendix_A_Target_264"></a><a aria-label="Product behavior note 264" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_264" data-linktype="relative-path">&lt;264&gt;</a> return a nonzero Windows
+error code (<a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>)
+to indicate failure.</p><p>Upon receiving this message, the server SHOULD validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform validation steps as specified in Print Server Name
+Parameters (section 3.1.4.1.4).</p>
+</li><li><p><span><span> 
+</span></span>Perform validation steps as specified in INFO Structures Query
+Parameters (section 3.1.4.1.9).</p>
+</li><li><p><span><span> 
+</span></span>If the <b>PRINTER_ENUM_NETWORK</b> or <b>PRINTER_ENUM_REMOTE</b>
+flag is set, verify that the value of the <i>Level</i> parameter is 0x00000001.
+Otherwise, the server SHOULD return ERROR_INVALID_LEVEL.</p>
+</li><li><p><span><span> 
+</span></span>Additional validation MAY<a id="Appendix_A_Target_265"></a><a aria-label="Product behavior note 265" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_265" data-linktype="relative-path">&lt;265&gt;</a> be
+performed.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>If the value of the <i>Level</i> parameter is 0x00000001 and the <b>PRINTER_ENUM_NETWORK</b>
+bit is set in the <i>Flags</i> parameter, the server SHOULD enumerate all
+printers from the &#34;List of Known Printers&#34; (section <a href="1bd61448-db4b-4284-a4b1-8346732402d4" data-linktype="relative-path">3.1.1</a>).<a id="Appendix_A_Target_266"></a><a aria-label="Product behavior note 266" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_266" data-linktype="relative-path">&lt;266&gt;</a></p>
+<p>If the server does not maintain a
+list of known printers, or if the list has not contained at least one entry for
+an implementation-specific period of time, the server SHOULD return
+ERROR_CAN_NOT_COMPLETE.<a id="Appendix_A_Target_267"></a><a aria-label="Product behavior note 267" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_267" data-linktype="relative-path">&lt;267&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>For any other validated values for the <i>Level</i> and <i>Flags</i>
+parameters, the server SHOULD enumerate all printers in the &#34;List of
+Printers&#34; (section 3.1.1) on the print server or print provider that
+comply with the value of the <i>Flags</i> parameter. This information SHOULD be
+restricted for security reasons.<a id="Appendix_A_Target_268"></a><a aria-label="Product behavior note 268" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_268" data-linktype="relative-path">&lt;268&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Using the enumerated objects, perform the processing and response
+steps specified in INFO Structures Query
+Parameters (section 3.1.4.1.9).</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

@@ -1,0 +1,17 @@
+<div class="content"><p>The ReadCache_Return structure is used to obtain the data
+that corresponds to the lookup item requested in ReadCacheA_Call as specified
+in section <a href="ba203dba-d546-4e9d-b8cf-afa22cf88c3d" data-linktype="relative-path">2.2.2.25</a>, or
+ReadCacheW_Call as specified in section <a href="f45705cf-9299-4802-b408-685f02025e6a" data-linktype="relative-path">2.2.2.26</a>. For more call
+information, see sections <a href="e3339457-7699-4cfb-a3ef-6eed3e849350" data-linktype="relative-path">3.1.4.42</a>
+and <a href="8436548a-a41f-4759-a7ee-2d0341fa1d5d" data-linktype="relative-path">3.1.4.43</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _ReadCache_Return {
+   long ReturnCode;
+   [range(0,65536)] unsigned long cbDataLen;
+   [unique] [size_is(cbDataLen)] byte *pbData;
+ } ReadCache_Return;
+</pre></div>
+</dd></dl><p><b>ReturnCode:</b>  <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a> or Win32 Error
+codes. Zero indicates success; any other value indicates failure. </p><p><b>cbDataLen:</b>  The number of bytes in
+the <b>pbData</b> field.</p><p><b>pbData:</b>  The value of the look up
+item.</p></div>

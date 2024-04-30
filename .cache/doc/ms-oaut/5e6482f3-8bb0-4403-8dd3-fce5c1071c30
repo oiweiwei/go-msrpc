@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The GetTypeFlags method returns the TYPEFLAGS value
+associated with the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_fb6a1829-c102-482c-902f-51c197b22860" data-linktype="relative-path">automation type description</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT GetTypeFlags(
+   [out] ULONG* pTypeFlags
+ );
+</pre></div>
+</dd></dl><p><b>pTypeFlags: </b>MUST be set either to a
+combination of the TYPEFLAGS type feature constants specified in section <span><a href="155c66e2-ffe1-4f18-b849-f827ca989aa7" data-linktype="relative-path">2.2.16</a></span>,
+or to 0.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul></div>

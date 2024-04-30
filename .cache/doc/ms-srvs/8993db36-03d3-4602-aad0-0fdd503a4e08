@@ -1,0 +1,24 @@
+<div class="content"><p>The Server Service Remote Protocol is designed for remotely
+querying and configuring a <a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_09dbec39-5e75-4d9a-babf-1c9f1d499625" data-linktype="relative-path">Server
+Message Block (SMB)</a> <a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+on a remote computer. By using this protocol, a <a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> can query and
+configure information on the server such as active <a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_866b0055-ceba-4acf-a692-98452943b981" data-linktype="relative-path">connections</a>, sessions,
+shares, files, and transport protocols. Clients can also query and configure
+the server itself, for instance by setting the server&#39;s type, changing the services
+that are running on the server, or getting a list of all servers of a specific
+type in a domain.</p><p>A server can be configured to present different resources
+based on the name the client connects with, allowing it to appear as multiple,
+distinct servers. This is achieved by scoping a share to a specific name, and
+hosting all of the names on the same server.</p><p>The server can also configure one or more aliases,
+identifying that multiple distinct names present the same resources. For
+example, the administrator could choose to expose the same shares for the name
+&#34;server&#34; and &#34;server.example.com&#34; by creating an alias
+indicating that &#34;server. example.com&#34; is the same as
+&#34;server&#34;. The SMB client will connect using the name provided by the
+calling applications, and is not aware whether the name is the server&#39;s default
+machine name, an additionally configured name, or an alias. For more
+information, see the example in section <a href="8fe9cf03-e546-4638-8242-5964948ec896" data-linktype="relative-path">4.3</a>.</p><p>This is an <a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>-based
+protocol. The server does not maintain client state information. No sequence of
+method calls is imposed on this protocol, with the exception of net share
+deletion, which requires a two-phase commit, net file get information, and net
+file close.</p></div>

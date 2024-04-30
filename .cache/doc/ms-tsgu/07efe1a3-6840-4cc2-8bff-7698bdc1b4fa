@@ -1,0 +1,32 @@
+<div class="content"><p>The TSG_PACKET_HEADER structure contains information about
+the <b>ComponentId</b> and <b>PacketId</b> fields of the <a href="4c505da0-93c2-4a2f-9329-6174bbaa481b" data-linktype="relative-path">TSG_PACKET</a> structure. The
+value of <b>PacketId</b> in TSG_PACKET MUST be set to <a href="58fc0781-ad5c-411c-880a-dfffa2a75bbe" data-linktype="relative-path">TSG_PACKET_TYPE_HEADER</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _TSG_PACKET_HEADER {
+   unsigned short ComponentId;
+   unsigned short PacketId;
+ } TSG_PACKET_HEADER,
+  *PTSG_PACKET_HEADER;
+</pre></div>
+</dd></dl><p><b>ComponentId:</b>  Represents the
+component sending the packet. This MUST be the following value:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x5452</p>
+  </td>
+  <td>
+  <p>TS Gateway Transport</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>PacketId:</b>  Unused.</p><p>This structure cannot be used by itself as part of any
+method call. It can be used only in the context of other structures.</p></div>

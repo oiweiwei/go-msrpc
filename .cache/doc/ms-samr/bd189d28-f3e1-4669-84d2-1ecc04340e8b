@@ -1,0 +1,22 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/bd189d28-f3e1-4669-84d2-1ecc04340e8b" data-linktype="external">msdn link</a></p><p>The SAMPR_DISPLAY_INFO_BUFFER union is a union of display
+structures returned by the SamrQueryDisplayInformation family of methods (see
+section <a href="f1970f00-e3d5-4ec4-85bc-2caf0bf18f6d" data-linktype="relative-path">3.1.5.3</a>). For
+details on each field, see the associated section for the field structure.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DOMAIN_DISPLAY_INFORMATION)] 
+ union _SAMPR_DISPLAY_INFO_BUFFER {
+   [case(DomainDisplayUser)] 
+     SAMPR_DOMAIN_DISPLAY_USER_BUFFER UserInformation;
+   [case(DomainDisplayMachine)] 
+     SAMPR_DOMAIN_DISPLAY_MACHINE_BUFFER MachineInformation;
+   [case(DomainDisplayGroup)] 
+     SAMPR_DOMAIN_DISPLAY_GROUP_BUFFER GroupInformation;
+   [case(DomainDisplayOemUser)] 
+     SAMPR_DOMAIN_DISPLAY_OEM_USER_BUFFER OemUserInformation;
+   [case(DomainDisplayOemGroup)] 
+     SAMPR_DOMAIN_DISPLAY_OEM_GROUP_BUFFER OemGroupInformation;
+ } SAMPR_DISPLAY_INFO_BUFFER,
+  *PSAMPR_DISPLAY_INFO_BUFFER;
+</pre></div>
+</dd></dl></div>

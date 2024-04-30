@@ -1,0 +1,67 @@
+<div class="content"><p>The PHONEEXTENSIONID packet describes an extension
+identifier. Extension identifiers are used to identify service
+provider-specific extensions for phone device classes. PHONEEXTENSIONID is
+supplied by the server in the field VarData of the returned version of the
+phone <a href="59e34869-7701-4eb5-95d4-f8ce908ce17a" data-linktype="relative-path">NegotiateAPIVersion</a>
+packet if the request is completed successfully.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwExtensionID0</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwExtensionID1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwExtensionID2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwExtensionID3</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwExtensionID0 (4 bytes): </b>An unsigned 32-bit
+integer. The first part of the extension identifier. </p><p><b>dwExtensionID1 (4 bytes): </b>An unsigned 32-bit
+integer. The second part of the extension identifier. </p><p><b>dwExtensionID2 (4 bytes): </b>An unsigned 32-bit
+integer. The third part of the extension identifier. </p><p><b>dwExtensionID3 (4 bytes): </b>An unsigned 32-bit
+integer. The fourth part of the extension identifier. </p><p>These four members together specify a universally unique
+extension identifier that identifies a phone device class extension. This
+packet cannot be extended.</p></div>

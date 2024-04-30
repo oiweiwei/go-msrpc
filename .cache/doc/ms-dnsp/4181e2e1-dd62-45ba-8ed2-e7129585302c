@@ -1,0 +1,50 @@
+<div class="content"><p>The <a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a>
+Server Management Protocol is a client/server protocol that is used to remotely
+query, monitor and configure DNS server settings, its <a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zones</a>, and <a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_49c03845-ca86-48f5-9cbf-ab86c624aa29" data-linktype="relative-path">resource records</a>. The
+protocol allows a client to access DNS server settings and properties and also
+to enumerate all DNS data stored on the server (DNS zones and DNS records).</p><p>The DNS Server Management Protocol is a simple protocol with
+no state shared across <a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+method calls. Each RPC method call contains one complete request. Output from
+one method call can be used as input to another call but the DNS Server
+Management Protocol does not provide for locking of DNS data across method calls.
+For example, a client can enumerate DNS zones with one call and retrieve the
+properties of one or more of the enumerated DNS zones with another call.
+However, no guarantee is made that the zone has not been deleted by another DNS
+Server Management Protocol client between these two method calls.</p><p>When the DNS server is <a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0f196310-8f7b-462b-af06-6d955831d6f9" data-linktype="relative-path">directory server-integrated</a>,
+some client requests can require or trigger <a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">Lightweight Directory Access
+Protocol (LDAP)</a> requests from the DNS server to the <a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_7d2b136f-4948-4166-9a7b-dc39ff5d10f3" data-linktype="relative-path">local directory server</a> or
+another directory server.</p><p>In particular, the DNS server can use the defaultNamingContext
+of the directory server&#39;s <a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_29942b69-e0ed-4fe7-bbbf-1a6a3f9eeeb6" data-linktype="relative-path">rootDSE</a>,
+a <a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_24873c07-a6aa-4d4b-8064-fa64dff80204" data-linktype="relative-path">DNS domain partition</a>
+named DnsDomainZones, or a <a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_6e0d87be-b750-4025-9241-0d1ba904f1f8" data-linktype="relative-path">DNS
+forest partition</a> named DnsForestZones to store zone information and zone
+records. (See section <a href="74db40e1-0917-4ecb-863d-9bce5165ebf3" data-linktype="relative-path">2.3</a>
+for a discussion of the schemas used to store this information.) A DNS Server
+integrated with a <a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_04fd0982-6bb6-44f1-817e-795715049c50" data-linktype="relative-path">directory
+server</a> creates and automatically enlists itself in these default <a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_68dc613a-d602-41ae-9acc-76ffe97877c4" data-linktype="relative-path">application directory
+partitions</a>. Alternatively, zone information and zone records can be stored
+in additional application directory partitions, which can be created (and
+removed) by the DNS Server Management Protocol client in order to control the granularity
+of zone replication. Zones created in these additional application directory
+partitions will only be visible to directory servers enlisted in those
+partitions, thus allowing for granular control over replication.</p><p>A typical remote management involves the client querying or
+setting the configuration parameters of the DNS server. The client can also
+enumerate DNS zones and the DNS records stored in one or more zones. The client
+can modify the configuration of the DNS server as required. The client can also
+add, delete, or modify DNS zones or the DNS records held in zones as required.
+For example, a remote management client can:</p><ul><li><p><span><span> 
+</span></span>Set or retrieve the server&#39;s <a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_025cfacf-ebc5-4659-971a-ee2ab5903575" data-linktype="relative-path">forwarders</a>.</p>
+</li><li><p><span><span> 
+</span></span>Set or retrieve various DNS server settings.</p>
+</li><li><p><span><span> 
+</span></span>Create or modify zones.</p>
+</li><li><p><span><span> 
+</span></span>Create or modify zone records.</p>
+</li></ul><p>This usually involves sending a request to the DNS server
+specifying the type of operation (get, set and execute are examples of types of
+operations) to perform and any specific parameters that are associated with
+that operation. The DNS server responds to the client with the result of the
+operation.</p><p>The following diagram shows an example of a remote client
+creating a zone on the DNS server using the DNS server Management Protocol. The
+client sends a request to the server with the operation type and parameters.
+The server responds with a success or an error.</p><p><img id="MS-DNSP_pict86641eb5-5753-2fa5-e872-ab62617cdc1a.png" src="ms-dnsp_files/image001.png" alt="DNS Server Management Protocol" title="DNS Server Management Protocol" data-linktype="relative-path"/></p><p><b>Figure 1: DNS Server Management Protocol</b></p></div>

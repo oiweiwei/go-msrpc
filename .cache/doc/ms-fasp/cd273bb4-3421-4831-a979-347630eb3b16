@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>This structure describes an <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span> Phase 1 (or
+main mode) cryptographic suite. A cryptographic suite is a proposal of a set of
+algorithms and parameters that specify how different types of enforcement and
+protection are suggested to be performed. </p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_PHASE1_CRYPTO_SUITE {
+   [range(FW_CRYPTO_KEY_EXCHANGE_NONE, FW_CRYPTO_KEY_EXCHANGE_MAX-1)] 
+     FW_CRYPTO_KEY_EXCHANGE_TYPE KeyExchange;
+   [range(FW_CRYPTO_ENCRYPTION_NONE+1, FW_CRYPTO_ENCRYPTION_MAX-1)] 
+     FW_CRYPTO_ENCRYPTION_TYPE Encryption;
+   [range(FW_CRYPTO_HASH_NONE+1, FW_CRYPTO_HASH_MAX-1)] 
+     FW_CRYPTO_HASH_TYPE Hash;
+   unsigned long dwP1CryptoSuiteFlags;
+ } FW_PHASE1_CRYPTO_SUITE,
+  *PFW_PHASE1_CRYPTO_SUITE;
+</pre></div>
+</dd></dl><p><b>KeyExchange:</b>  This field is of type <span><a href="b4000087-96b0-46c7-b152-09a55d985f0f" data-linktype="relative-path">FW_CRYPTO_KEY_EXCHANGE_TYPE</a></span>.
+It specifies the key exchange algorithm for this suite proposal. </p><p><b>Encryption:</b>  This field is of type <span><a href="a74eafcd-19ff-4305-b105-0952ae20a2dd" data-linktype="relative-path">FW_CRYPTO_ENCRYPTION_TYPE</a></span>.
+It specifies the encryption algorithm for this suite proposal. </p><p><b>Hash:</b>  This field is of type <span><a href="eae09dba-8bed-43e3-85bd-dce8497de9a1" data-linktype="relative-path">FW_CRYPTO_HASH_TYPE</a></span>.
+It specifies the hash (integrity protection) algorithm for this suite proposal.
+</p><p><b>dwP1CryptoSuiteFlags:</b>  This is a
+reserved value and is not used. It MUST be set to 0x00000000.</p></div>

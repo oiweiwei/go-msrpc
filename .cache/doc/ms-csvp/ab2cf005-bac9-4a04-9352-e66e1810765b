@@ -1,0 +1,89 @@
+<div class="content"><p>The <b>CprepDiskOnline</b> method begins the transition of a
+<b>ClusPrepDisk.OnlineState</b> to Online and then waits for the transition to
+complete.</p><dl>
+<dd>
+<div><pre> HRESULT CprepDiskOnline(
+   [in] CPREP_DISKID DiskId,
+   [out] unsigned long* MaxPartitionNumber
+ );
+</pre></div>
+</dd></dl><p><b>DiskId: </b>The identifier of the <b>ClusPrepDisk</b>
+representing the disk whose associated volumes will become <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_783ae2e4-7c04-40ba-a974-f95a30aa1ab2" data-linktype="relative-path">online</a>.</p><p><b>MaxPartitionNumber: </b> The number of partitions
+on the disk.</p><p><b>Return Values: </b> A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method
+implementation. For more information about Win32 error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The disk was not found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007139F</p>
+  <p>ERROR_INVALID_STATE</p>
+  </td>
+  <td>
+  <p>The value of <b>ClusPrepDisk.OwnedState</b> is not
+  equal to OwnedByThisServer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070548</p>
+  <p>ERROR_INVALID_SERVER_STATE</p>
+  </td>
+  <td>
+  <p>The server&#39;s <b>Prepare State</b> is not Online.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The opnum field value for this method is 13.</p><p>When processing this call, the server MUST do the following:
+</p><ul><li><p><span><span> 
+</span></span>Obtain the <b>ClusPrepDisk</b> identified by the <i>DiskId</i>
+parameter as specified in section <a href="c17ce220-d244-45c9-95c0-4c31942253ee" data-linktype="relative-path">3.2.4</a>.</p>
+</li><li><p><span><span> 
+</span></span>Start the online process in the same way that <a href="cf8ac20d-82d6-4fa3-8818-61a3242f66da" data-linktype="relative-path">CprepDiskSetOnline</a> does.</p>
+</li><li><p><span><span> 
+</span></span>Wait for the implementation-specific process where volumes on the
+disk become online, to complete.</p>
+</li><li><p><span><span> 
+</span></span>If the online process is successful, then count the number of
+partitions on the disk.</p>
+</li><li><p><span><span> 
+</span></span>Set <b>ClusPrepDisk.OnlineState</b> to Online.</p>
+</li></ul><p>The server returns the following information to the client:</p><ul><li><p><span><span> 
+</span></span>The number of partitions on the disk</p>
+</li></ul><p>If the <b>ClusPrepDisk.OnlineState</b> was already Online,
+then the online process is not performed and the method returns S_OK.</p></div>

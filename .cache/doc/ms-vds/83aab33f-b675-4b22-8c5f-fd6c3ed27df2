@@ -1,0 +1,50 @@
+<div class="content"><p> </p><p>The VIRTUAL_STORAGE_TYPE structure specifies the device and
+vendor of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual disk</a></span>.<a id="Appendix_A_Target_26"></a><a aria-label="Product behavior note 26" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_26" data-linktype="relative-path">&lt;26&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _VIRTUAL_STORAGE_TYPE {
+   ULONG DeviceId;
+   GUID VendorId;
+ } VIRTUAL_STORAGE_TYPE;
+</pre></div>
+</dd></dl><p><b>DeviceId:</b>  The virtual disk type. It
+can have one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>VIRTUAL_STORAGE_TYPE_DEVICE_UNKNOWN</p>
+  <p>0</p>
+  </td>
+  <td>
+  <p>The virtual disk type is unknown.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VIRTUAL_STORAGE_TYPE_DEVICE_ISO</p>
+  <p>1</p>
+  </td>
+  <td>
+  <p>The virtual disk is an ISO image (.iso) file. For more
+  information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=208348" data-linktype="external">[ECMA-119]</a></span>
+  and <span><a href="https://go.microsoft.com/fwlink/?LinkId=208349" data-linktype="external">[OSTA-UDFS]</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VIRTUAL_STORAGE_TYPE_DEVICE_VHD</p>
+  <p>2</p>
+  </td>
+  <td>
+  <p>The virtual disk is a virtual <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_511ca852-83e7-4a0c-8081-06e36436876b" data-linktype="relative-path">hard
+  disk</a></span> (.vhd) file.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>VendorId:</b>  A <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path"><span>GUID</span></a> that uniquely
+identifies the virtual disk vendor.</p></div>

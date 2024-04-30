@@ -1,0 +1,70 @@
+rename:
+  ndr_context_handle: [Context, Handle]
+  NetrGetDCName: [Get, Netr, DC, Name]
+  NetrGetForestTrustInformation: [Get, Netr, Forest, Trust, Information]
+  UlongData: [Data]
+  UlongEntryCount: [Entry, Count]
+  DnsAddrUserDword: [DNS, Addr, User]
+  atsvc: [AT, Svc]
+  ptr: [Array]
+  hRpc: [Handle]
+  para: [Parameters]
+  rpc_status: [RPC, Status]
+  RPC_FAX_HANDLE: [Fax]
+  FAX_EVENT: [Completion, Event]
+  SizeOfStruct: [Structure, Size]
+  dwSizeOfStruct: [Structure, Size]
+  pb: [Buffer]
+  CAL: [Long, Array]
+  cal: [Long, Array]
+  PCTX_OPENREMOTE_HANDLE_TYPE: [Context]
+  PCTX_REMOTEREAD_HANDLE_TYPE: [Context]
+  PCTX_RRSESSION_HANDLE_TYPE: [Session]
+  pQueue: [Queue, ID]
+  dwpQueue: [Queue, ID]
+  dwpContext: [Context, ID]
+  pdwContext: [Context, ID]
+  pszStatus: [Status, String]
+  pPrinter: [Printer, Buffer]
+  __pStatus: [Status, String]
+  hServiceStatus: [Service]
+  pBSTR: [String]
+  s: [String]
+rotate:
+  ob: Offset
+  obwsz: Offset
+  id: ID
+  c: Count
+  cdroid: Count
+  cl: Size
+  cch: Length
+  pc: Count
+  pcwc: Length
+  lpcch: Length
+  pcch: Length
+  cb: Length
+  Cb: Length
+  ulcb: Length
+  pulcb: Length
+  pcb: Length
+  num: Length
+  Num: Length
+  lpc: Count
+  lpcb: Length
+  v4: V4
+  v6: V6
+  V4: V4
+  V6: V6
+  replica: Replica
+  Replica: Replica
+  #h: Handle
+  phk: Key
+  dwc: Count
+  pdwc: Count
+trim:
+  word:
+  - struct
+  - t
+  suffix:
+  - DRS_WIRE_V1
+  - _r

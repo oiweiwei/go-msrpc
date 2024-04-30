@@ -1,0 +1,46 @@
+<div class="content"><p> </p><p>This method is a callback method called by the server during
+a client call to <span><a href="0e3ad7d0-6a64-480a-9f13-e94dd608d79d" data-linktype="relative-path">S_DSValidateServer</a></span>.
+These two methods are used to tunnel a GSS (as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90378" data-linktype="external">[RFC2743]</a></span>)
+security negotiation to provide mutual authentication between the client and
+server.</p><dl>
+<dd>
+<div><pre> [callback] HRESULT S_InitSecCtx(
+   [in] unsigned long dwContext,
+   [in, size_is(dwServerBuffSize)] 
+     unsigned char* pServerbuff,
+   [in, range(0,524288)] unsigned long dwServerBuffSize,
+   [in, range(0,524288)] unsigned long dwClientBuffMaxSize,
+   [out, size_is(dwClientBuffMaxSize), length_is(*pdwClientBuffSize)] 
+     unsigned char* pClientBuff,
+   [out] unsigned long* pdwClientBuffSize
+ );
+</pre></div>
+</dd></dl><p><b>dwContext: </b> MUST be set by the caller to the
+correlation value supplied by the client in the <i>dwContext</i> parameter in
+the corresponding call to S_DSValidateServer. This parameter provides a way for
+the receiver to correlate the callback with the receiver&#39;s in-progress call to
+S_DSValidateServer.</p><p><b>pServerbuff: </b> MUST be set by the caller to point to a
+buffer that contains the output_token from the GSS_Accept_sec_context, as
+specified in [RFC2743].</p><p><b>dwServerBuffSize: </b> MUST be set by the caller to the
+length, in bytes, of the output_token within <i>pServerBuff</i>.</p><p><b>dwClientBuffMaxSize: </b> MUST be set by the caller to
+the size, in bytes, of the buffer to be returned in <i>pClientBuff</i>.</p><p><b>pClientBuff: </b> MUST be set by the caller to point to a
+buffer to hold the returned token. MUST be set by the receiver to the
+output_token from a call to GSS_Init_sec_context. The buffer length MUST NOT
+exceed the value specified by <i>dwClientBuffMaxSize</i>. If the negotiated
+token is larger than the supplied buffer, the server MUST return
+MQ_ERROR_USER_BUFFER_TOO_SMALL (0xC00E0028).</p><p><b>pdwClientBuffSize: </b> MUST be set by the receiver to
+the actual size, in bytes, of the token in <i>pClientBuff</i>.</p><p><b>Return Values: </b> If the method succeeds, and the
+negotiation is complete, the return value is 0. If the method succeeds, and the
+negotiation is not complete, the return value is SEC_I_CONTINUE_NEEDED
+(0x00090312). If the method fails, the return value is an
+implementation-specific error code.</p><p><b>ERROR_SUCCESS</b> (0x00000000)</p><p><b>SEC_I_CONTINUE_NEEDED</b> (0x00090312)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> extension
+protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>The caller MUST supply an input_token in <i>pServerBuff</i>
+computed through a call to GSS_Accept_sec_context. The receiver MUST process
+this input_token through a call to GSS_Init_sec_context, generating an
+output_token that MUST be returned in <i>pServerBuff</i>.</p><p>If GSS_Init_sec_context returns GSS_S_CONTINUE_NEEDED, this
+is a signal that the negotiation is not complete. The receiver MUST return
+SEC_I_CONTINUE_NEEDED (0x00090312).</p><p>If GSS_Init_sec_context returns GSS_S_COMPLETE, the
+negotiation is complete. The receiver MUST save the output context handle in
+the GSS security context state associated with the <i>dwContext</i> parameter.
+The receiver MUST return SEC_E_OK (0x00000000).</p></div>

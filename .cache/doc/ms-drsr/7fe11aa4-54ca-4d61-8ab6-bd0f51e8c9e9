@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The DS_REPL_CLIENT_CONTEXTS structure defines a set of active
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+client connections. This structure is a concrete representation of <span><a href="65d838f5-2f69-4c22-8b26-3340182dcde1" data-linktype="relative-path">RPCClientContexts</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [range(0,10000)] DWORD cNumContexts;
+   DWORD dwReserved;
+   [size_is(cNumContexts)] DS_REPL_CLIENT_CONTEXT rgContext[];
+ } DS_REPL_CLIENT_CONTEXTS;
+</pre></div>
+</dd></dl><p><b>cNumContexts:</b>  The number of items
+in the <b>rgContext</b> array.</p><p><b>dwReserved:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>rgContext:</b>  A set of active RPC
+client connections.</p></div>

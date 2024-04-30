@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DHCP_CLIENT_INFO_ARRAY_VQ</b> structure defines an
+array of <span><a href="6a445cf3-6e6c-4e29-9817-ac78adc50336" data-linktype="relative-path">DHCP_CLIENT_INFO_VQ (section 2.2.1.2.19)</a></span>
+structures. This structure is used by methods, such as <span><a href="2012ba07-9fe0-4576-a262-0f52b6feab4e" data-linktype="relative-path">R_DhcpEnumSubnetClientsVQ (section 3.1.4.48)</a></span>,
+that retrieve information for more than one DHCPv4 client. </p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_CLIENT_INFO_ARRAY_VQ {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_CLIENT_INFO_VQ* Clients;
+ } DHCP_CLIENT_INFO_ARRAY_VQ,
+  *LPDHCP_CLIENT_INFO_ARRAY_VQ;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>   This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+containing the number of <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">clients</a></span> in the
+specific IPv4 subnet, which is also the number of entries in the <b>Clients</b>
+member element.</p><p><b>Clients:</b>  This is a pointer of type DHCP_CLIENT_INFO_VQ
+that points to the array of length <b>NumElements</b> containing the DHCP
+client information.</p></div>

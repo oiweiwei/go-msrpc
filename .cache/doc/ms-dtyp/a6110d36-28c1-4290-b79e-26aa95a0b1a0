@@ -1,0 +1,27 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/a6110d36-28c1-4290-b79e-26aa95a0b1a0" data-linktype="external">msdn link</a></p><p>The EVENT_DESCRIPTOR structure specifies the metadata that
+defines an event.</p><dl>
+<dd>
+<div><pre> typedef struct _EVENT_DESCRIPTOR {
+   USHORT Id;
+   UCHAR Version;
+   UCHAR Channel;
+   UCHAR Level;
+   UCHAR Opcode;
+   USHORT Task;
+   ULONGLONG Keyword;
+ } EVENT_DESCRIPTOR,
+  *PEVENT_DESCRIPTOR,
+  *PCEVENT_DESCRIPTOR;
+</pre></div>
+</dd></dl><p><b>Id:</b>  The event identifier.</p><p><b>Version:</b>  The version of the event,
+which indicates a revision to the event definition. The Version and Id members
+uniquely identify the event within the scope of a provider.</p><p><b>Channel:</b>  Defines the audience for
+the event (for example, administrator or developer).</p><p><b>Level:</b>  Specifies the severity or
+level of detail included in the event (for example, informational or fatal).</p><p><b>Opcode:</b>  Identifies a step in a
+sequence of operations being performed within a Task.</p><p><b>Task:</b>  Identifies a larger unit of
+work within an application or component (broader in scope than the Opcode).</p><p><b>Keyword:</b>  A bitmask that specifies a
+logical group of related events. Each bit corresponds to one group. An event
+can belong to one or more groups. The keyword can contain one or more
+provider-defined keywords, standard keywords, or both.</p><p>This structure represents an event defined in a manifest and
+is included in the <a href="fa4f7836-06ee-4ab6-8688-386a5a85f8c5" data-linktype="relative-path">EVENT_HEADER</a>
+structure.</p></div>

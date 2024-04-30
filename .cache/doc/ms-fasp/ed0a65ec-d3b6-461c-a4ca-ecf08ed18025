@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>This structure defines IPv4 subnets. It is used in policy
+rules.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_IPV4_SUBNET {
+   unsigned long dwAddress;
+   unsigned long dwSubNetMask;
+ } FW_IPV4_SUBNET,
+  *PFW_IPV4_SUBNET;
+</pre></div>
+</dd></dl><p><b>dwAddress:</b>   This field represents
+the IPv4 address.</p><p><b>dwSubNetMask:</b>  This field contains
+the subnet mask in host network order. If it contains ones, they MUST be
+contiguous and shifted to the most significant bits.</p><dl>
+<dd>
+<p>A <b>dwSubNetMask</b> of 0x00000000 is invalid. A
+subnet mask of 0xFFFFFFFF means that the subnet mask represents a single
+address. </p>
+</dd></dl></div>

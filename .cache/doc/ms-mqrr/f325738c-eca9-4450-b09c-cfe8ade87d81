@@ -1,0 +1,31 @@
+<div class="content"><p> </p><p>The <b>SectionType</b> enumeration defines the available <span><a href="4b1768af-6e95-42e5-b18b-b6e3cf778456" data-linktype="relative-path">SectionBuffer (section 2.2.6)</a></span>
+types.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   stFullPacket = 0,
+   stBinaryFirstSection = 1,
+   stBinarySecondSection = 2,
+   stSrmpFirstSection = 3,
+   stSrmpSecondSection = 4
+ } SectionType;
+</pre></div>
+</dd></dl><p><b>stFullPacket:  </b>The <b>pSectionBuffer</b>
+member of the <b>SectionBuffer</b> structure contains a complete <span><a href="f9e71595-339a-4cc4-8341-371e0a4cb232" data-linktype="relative-path">Message
+Packet Structure (section 2.2.5)</a></span>. The <span><a href="90345101-8295-4912-b1b2-bbe88531af93" data-linktype="relative-path">UserMessage (section 2.2.5.1)</a></span>
+is either that specified in section <span><a href="f58c6a50-d82e-45e5-a237-d02e23c4e30f" data-linktype="relative-path">2.2.5.1.1</a></span> or in
+section <span><a href="33a3ca7d-5869-4478-9472-7f0e01711ca3" data-linktype="relative-path">2.2.5.1.2</a></span>.</p><p><b>stBinaryFirstSection:  </b>The <b>pSectionBuffer</b>
+member of the <b>SectionBuffer</b> structure contains the first section of the
+Binary Message (section 2.2.5.1.1) packet up to, but not beyond, the <b>MessagePropertiesHeader</b>
+(<span><a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a></span>
+section <span><a href="../ms-mqmq/b219bdf4-1bf6-4688-94d8-25fdba45e5ec" data-linktype="relative-path">2.2.19.3</a></span>)
+in the <b>UserMessage</b>.</p><p><b>stBinarySecondSection:  </b>The <b>pSectionBuffer</b>
+member of the <b>SectionBuffer</b> structure contains the second section of the
+<b>Binary Message</b> packet from beyond the end of the <b>MessagePropertiesHeader</b>
+in the <b>UserMessage</b> to the end of the packet.</p><p><b>stSrmpFirstSection:  </b>The <b>pSectionBuffer</b>
+member of the <b>SectionBuffer</b> structure contains the first section of the
+SRMP Message packet up to, but not beyond, the <span><a href="ecf70c09-d312-4afc-9e2c-f61a5c827f47" data-linktype="relative-path">CompoundMessageHeader (section 2.2.5.1.2.2)</a></span>
+in the <b>UserMessage</b>.</p><p><b>stSrmpSecondSection:  </b>The <b>pSectionBuffer</b>
+member of the <b>SectionBuffer</b> structure contains the second section of the
+SRMP Message packet from beyond the end of the <b>CompoundMessageHeader</b> in
+the <b>UserMessage</b> to the end of the packet.</p></div>

@@ -1,0 +1,82 @@
+<div class="content"><p> </p><p>The NetprNameCompare method does comparison of two names of
+a specific name type.</p><dl>
+<dd>
+<div><pre> long NetprNameCompare(
+   [in, string, unique] SRVSVC_HANDLE ServerName,
+   [in, string] WCHAR* Name1,
+   [in, string] WCHAR* Name2,
+   [in] DWORD NameType,
+   [in] DWORD Flags
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>An <span><a href="5f8329ee-1965-4ea1-ad35-3b29fbb63232" data-linktype="relative-path">SRVSVC_HANDLE (section 2.2.1.1)</a></span>
+pointer that identifies the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>. The <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>
+MUST map this structure to an RPC binding handle (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> sections
+4.3.5 and 5.1.5.2). The server MUST ignore this parameter.</p><p><b>Name1: </b>A pointer to a null-terminated UTF-16
+string that contains the first name to compare.</p><p><b>Name2: </b>A pointer to a null-terminated UTF-16
+string that contains the second name to compare.</p><p><b>NameType: </b>The type of names, as specified in
+section <span><a href="2e2d2fb6-3448-4213-94b3-89dcb772d3e6" data-linktype="relative-path">2.2.2.8</a></span>.</p><p><b>Flags: </b>A bitmask that MUST contain the bitwise
+OR of zero or more of the following values, which specify controlling flags.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80000000</p>
+  </td>
+  <td>
+  <p>Enable LM2.x compatibility.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>SHOULD be set if both names have already been canonicalized
+  (by using NetprNameCanonicalize).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>MUST return 0 if both paths are
+the same. Other values indicate that either the paths are different or an error
+occurred when the client request was processed.</p><p>In response to a NetprNameCompare message, the server MUST
+compare the two names that are specified as parameters to ensure that they
+contain only the characters that are allowed for the specified NameType and
+that the length is no greater than the maximum allowed length for its NameType
+(as specified in section 2.2.2.8). If the supplied names are not canonicalized,
+the server MUST do the canonicalization of the names. </p><p>The <i>Name1</i> parameter and <i>Name2</i> parameter
+specify the two names to be compared.</p><p>The <i>Flags</i> parameter is a bitmask that specifies
+certain controlling flags that affect how the server processes this message.
+The valid bits are 0x80000000 and 0x1. If any other bit is set, the server MUST
+fail the call with an ERROR_INVALID_PARAMETER error code.</p><p>If (<i>Flags</i> &amp; 0x80000000) is true, it implies that
+the server MUST enable NTLM version 2.x compatibility. This implies that the
+rules that are used for comparison and canonicalization (if needed) MUST be
+those that are defined for NTLM version 2.x. For details about the effect on
+canonicalization, see NetprNameCanonicalize (Opnum 34) (section <span><a href="e79aaff9-ba49-4548-8cc6-7041a7fcf907" data-linktype="relative-path">3.1.4.33)</a></span>.
+With respect to comparison, if (<i>Flags</i> &amp; 0x80000000) is true and the
+NameType being compared is NAMETYPE_PASSWORD, NAMETYPE_SHAREPASSWORD,
+NAMETYPE_MESSAGE, or NAMETYPE_MESSAGEDEST, the server MUST perform a
+case-sensitive comparison. Otherwise, the server MUST perform a
+case-insensitive comparison.</p><p>If (<i>Flags</i> &amp; 0x1) is true, the names that are
+specified by <i>Name1</i> and <i>Name2</i> are already canonicalized, and the <i>NameType</i>
+parameter MUST specify the name type for the two names. Valid values for the <i>NameType</i>
+parameter are listed in Name Types (section 2.2.2.8). If the <i>NameType</i>
+parameter does not have a valid value, the server MUST fail the call with an
+ERROR_INVALID_PARAMETER error code.</p><p>If (<i>Flags</i> &amp; 0x1) is not true, the server MUST
+canonicalize the specified names and obtain their name types, as specified in
+NetprNameCanonicalize (section 3.1.4.33). If this fails, the server
+MUST fail the call with an ERROR_INVALID_PARAMETER error code.</p><p>The server MUST compare the canonicalized version of the
+names, if the names were not already canonicalized; otherwise, it MUST compare
+the original names and MUST return 0 if both names are the same, –1 if <i>Name1</i>
+is less than <i>Name2</i>, and 1 if <i>Name1</i> is greater than <i>Name2</i>.
+The comparison is implementation-specific.<a id="Appendix_A_Target_124"></a><a aria-label="Product behavior note 124" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_124" data-linktype="relative-path">&lt;124&gt;</a></p><p>The server MAY<a id="Appendix_A_Target_125"></a><a aria-label="Product behavior note 125" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_125" data-linktype="relative-path">&lt;125&gt;</a>
+enforce security measures to verify that the caller has the required
+permissions to execute this call. If the caller does not have the required
+credentials, the server SHOULD<a id="Appendix_A_Target_126"></a><a aria-label="Product behavior note 126" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_126" data-linktype="relative-path">&lt;126&gt;</a> fail
+the call.</p></div>

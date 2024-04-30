@@ -1,0 +1,62 @@
+<div class="content"><p>The GetFileManagementJob method returns a pointer to the <i>fileManagementJob</i>
+with the specified <b>name</b> from the <b>List of Persisted File Management
+Jobs</b> (section <a href="560c1a3c-d465-4127-8cf0-bb84487cb162" data-linktype="relative-path">3.2.1.7</a>)
+and returns S_OK upon successful completion.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_FILE_MANAGEMENT_JOB_MANAGER | 0x3)] HRESULT GetFileManagementJob(
+   [in] BSTR name,
+   [out, retval] IFsrmFileManagementJob** fileManagementJob
+ );
+</pre></div>
+</dd></dl><p><b>name: </b>Contains the <b>name</b> of the <i>fileManagementJob</i>
+to return.</p><p><b>fileManagementJob: </b>Pointer to an <b>IFsrmFileManagementJob</b>
+interface pointer (section <a href="d78faa27-efe9-4f89-8bc4-1094f37219bb" data-linktype="relative-path">3.2.4.2.48</a>)
+that upon completion points to the <i>fileManagementJob</i> with the specified <b>name</b>.
+A caller MUST release the <i>fileManagementJob</i> received when the caller is
+done with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified file management job could not be found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>fileManagementJob</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>fileManagementJob</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+perform the following actions or return a nonzero error code.</p><ul><li><p><span><span> 
+</span></span>Create a new <a href="e135942c-2c50-4fcc-a768-aef45332e9fd" data-linktype="relative-path">Non-Persisted
+File Management Job Instance (section 3.2.1.7.1.2)</a>.</p>
+</li><li><p><span><span> 
+</span></span>Populate its configuration and state data from the <a href="78082f67-e548-48d8-9f9a-a840c1936acd" data-linktype="relative-path">Persisted File Management
+Job (section 3.2.1.7.1.1)</a> in the <b>List of Persisted File
+Management Jobs</b> with the specified name.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>fileManagementJob</i> to the <b>IFsrmFileManagementJob</b>
+interface pointer of the newly created Non-Persisted File Management Job
+Instance.</p>
+</li></ul><p>If a Persisted File Management Job with the specified <b>name</b>
+does not exist, the server MUST return FSRM_E_NOT_FOUND.</p></div>

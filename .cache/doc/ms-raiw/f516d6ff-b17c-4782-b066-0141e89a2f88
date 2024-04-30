@@ -1,0 +1,34 @@
+<div class="content"><p>The Remote Administrative
+Interface: WINS protocol is a client/server protocol that is used to remotely
+configure, manage, and monitor the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_f2f9c250-6c9e-445f-b677-376f23f77d87" data-linktype="relative-path">WINS server</a>. This protocol
+allows a <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to view
+and update the server configuration settings as well as to create, modify, and
+delete <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a> database
+records. It also allows clients to trigger <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_345c3de7-adfa-4386-9ba5-f5f572af489c" data-linktype="relative-path">scavenging</a> and replicating
+operations and to query the database.</p><p>The Remote Administrative Interface: WINS protocol is
+stateless with no state shared across <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> method calls. Each RPC
+method call contains one complete request. Output from one method call can be
+used as an input to another call, but the protocol does not provide methods for
+locking the WINS server con figuration or state data across method calls. For
+example, a client can pull a range of records from the database and delete some
+of them using another RPC call. However, the protocol does not guarantee that
+the specified record has not been modified by another client between the two
+method calls.</p><table><thead>
+  <tr>
+   <th colspan="2">
+   <p>Remote Administrative Interface: WINS</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td colspan="2">
+  <p>Remote Procedure Call (RPC)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TCP</p>
+  </td>
+  <td>
+  <p>Named Pipes</p>
+  </td>
+ </tr></tbody></table><p><b>Figure 1: Relationship of Remote Administrative
+Interface: WINS to RPC</b></p></div>

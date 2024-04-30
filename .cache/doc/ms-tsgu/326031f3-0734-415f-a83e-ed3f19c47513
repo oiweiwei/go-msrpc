@@ -1,0 +1,226 @@
+<div class="content"><p>The TsProxyMakeTunnelCall method is designed to be used as a
+general purpose API. If both the client and the server support the
+administrative message, the client MAY request the same from the RDG server. If
+the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> has any
+administrative messages, it SHOULD complete the pending call at this point in
+time. After a call to TsProxyMakeTunnelCall returns, the RDG client SHOULD
+queue up another request at this point in time. During the shutdown sequence,
+the client MUST make this call, if a request is pending on the RDG server, to
+cancel the administrative message request.</p><p>Prerequisites: The connection MUST be in Authorized state or
+Channel Created state or Pipe Created state or Channel Close Pending state or
+Tunnel Close Pending state. If this call is made in any other state, the error
+ERROR_ACCESS_DENIED is returned.</p><p>Sequential Processing Rules:</p><ol><li><p><span>    </span>The RDG server
+MUST verify that the <i>procId</i> parameter is either <a href="60c4785c-222a-4edc-a8bf-3a0daa894e95" data-linktype="relative-path">TSG_TUNNEL_CALL_ASYNC_MSG_REQUEST</a>
+or <a href="977dae7e-d5f7-49eb-9442-566ef54a24cc" data-linktype="relative-path">TSG_TUNNEL_CANCEL_ASYNC_MSG_REQUEST</a>.
+Otherwise, it MUST return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>The RDG server
+MUST verify that the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_1ebdc9c6-bb01-455e-98f7-8930618bb601" data-linktype="relative-path">tunnel
+(2)</a> has been authorized. Otherwise, it MUST return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>The RDG server
+MUST verify that the ADM element <b>Reauthentication Connection</b> is FALSE.
+Otherwise, it MUST return ERROR_ACCESS_DENIED. TsProxyMakeTunnelCall is not
+valid on <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_a010756e-fca1-42cc-94a6-9a8195016b54" data-linktype="relative-path">reauthentication</a>
+tunnels.</p>
+</li><li><p><span>    </span>If <i>procId</i>
+is TSG_TUNNEL_CALL_ASYNC_MSG_REQUEST:</p>
+<ol><li><p><span>   
+</span>If a TsProxyMakeTunnelCall has already been made and not yet returned,
+the RDG server MUST return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span>   
+</span>If there is already a pending <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_8dbce44f-286a-49cd-8499-23b2a6d394bf" data-linktype="relative-path">administrative message</a> or
+reauthentication message to the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a>, the RDG server MUST
+fill <i>TSGPacketResponse</i> and return ERROR_SUCCESS.</p>
+</li><li><p><span>   
+</span>If there is no pending administrative message or a reauthentication
+message, the RDG server MUST wait until one of the following events occurs:</p>
+<ul><li><p><span><span> 
+</span></span>Reauthentication starts because the session timeout timer
+expires.</p>
+</li><li><p><span><span> 
+</span></span>The RDG server administrator sets the administrative message.</p>
+</li><li><p><span><span> 
+</span></span>The RDG client cancels the call.</p>
+</li><li><p><span><span> 
+</span></span>The connection shutdown sequence is initiated.</p>
+<p>If any of the preceding
+events occurs, then the following steps MUST be performed:</p>
+</li></ul><ol><li><p><span>    </span>If reauthentication
+is started because of session timeout timer expiration, then the RDG server
+MUST return the TsProxyMakeTunnelCall as explained in section <a href="b0c72357-ea2d-4cf5-8761-b51620c9e50d" data-linktype="relative-path">3.2.7.1</a>.</p>
+</li><li><p><span>    </span>Or else, if the
+RDG administrator has set the administrative message, then the RDG server MUST
+do the following:</p>
+<ol><li><p><span>    </span>The RDG server
+MUST set the <b>packetId</b> member of the <i>TSGPacketResponse</i> out
+parameter of TsProxyMakeTunnelCall to <a href="c3e742af-c1a2-4332-82eb-052a8c7b3dbb" data-linktype="relative-path">TSG_PACKET_TYPE_MESSAGE_PACKET</a>.</p>
+</li><li><p><span>    </span>The RDG server
+MUST set TSGPacketResponse-&gt;packetMsgResponse-&gt;msgType to <a href="240f3ece-cf55-45a0-962a-60baf57d046d" data-linktype="relative-path">TSG_ASYNC_MESSAGE_SERVICE_MESSAGE</a>.</p>
+</li><li><p><span>    </span>The RDG server
+MUST initialize
+TSGPacketResponse-&gt;packetMsgResponse-&gt;messagePacket.serviceMessage-&gt;isDisplayMandatory
+to TRUE.</p>
+</li><li><p><span>    </span>The RDG server
+MUST initialize
+TSGPacketResponse-&gt;packetMsgResponse-&gt;messagePacket.serviceMessage-&gt;isConsentMandatory
+to FALSE.</p>
+</li><li><p><span>    </span>The RDG server
+MUST initialize
+TSGPacketResponse-&gt;packetMsgResponse-&gt;messagePacket.serviceMessage-&gt;msgBuffer
+with the administrative message.</p>
+</li><li><p><span>    </span>The RDG server
+MUST initialize
+TSGPacketResponse-&gt;packetMsgResponse-&gt;messagePacket.serviceMessage-&gt;msgBytes
+with the number of characters in TSGPacketResponse-&gt;packetMsgResponse-&gt;messagePacket.serviceMessage-&gt;msgBuffer.</p>
+</li><li><p><span>    </span>The RDG server
+MUST complete the TsProxyMakeTunnelCall with error code ERROR_SUCCESS.</p>
+</li></ol></li><li><p><span>    </span>Or else, if the
+RDG client cancels the call by calling another TsProxyMakeTunnelCall with <i>procId</i>
+TSG_TUNNEL_CANCEL_ASYNC_MSG_REQUEST, then the RDG server MUST return
+HRESULT_FROM_WIN32(RPC_S_CALL_CANCELLED).</p>
+</li><li><p><span>    </span>Or else, if the
+connection shutdown sequence is initiated, then the RDG server MUST return
+HRESULT_FROM_WIN32(RPC_S_CALL_CANCELLED).</p>
+</li></ol></li></ol></li><li><p><span>    </span>If <i>procId</i>
+is TSG_TUNNEL_CANCEL_ASYNC_MSG_REQUEST:</p>
+<ol><li><p><span>   
+</span>If there is no unreturned TsProxyMakeTunnelCall call which is called
+with the <i>procId</i> value TSG_TUNNEL_CALL_ASYNC_MSG_REQUEST, the RDG server
+MUST return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span>   
+</span>Otherwise, the RDG server MUST notify the waiting TsProxyMakeTunnelCall
+call, which is called with the <i>procId</i> value
+TSG_TUNNEL_CALL_ASYNC_MSG_REQUEST, that the RDG client is canceling the call. </p>
+</li><li><p><span>   
+</span>The RDG server MUST return ERROR_SUCCESS.</p>
+</li></ol><div><pre> HRESULT TsProxyMakeTunnelCall(
+   [in] PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE tunnelContext,
+   [in] unsigned long procId,
+   [in, ref] PTSG_PACKET TSGPacket,
+   [out, ref] PTSG_PACKET* TSGPacketResponse
+ );
+</pre></div>
+</li></ol><p><b>tunnelContext: </b>The RDG client MUST provide the
+RDG server with the same context <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a> it received from the
+<a href="0386b24c-4603-400d-a79e-11fd9518e34e" data-linktype="relative-path">TsProxyCreateTunnel</a>
+method call. The RDG server SHOULD throw an exception if the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> validation and
+verification fail.</p><p><b>procId: </b>This field identifies the work that is
+performed by the API. This field can have the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TSG_TUNNEL_CALL_ASYNC_MSG_REQUEST</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Used to request an administrative message when the
+  same is available on the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TSG_TUNNEL_CANCEL_ASYNC_MSG_REQUEST</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Used to cancel a pending administrative message
+  request.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>TSGPacket: </b>Pointer to the <a href="4c505da0-93c2-4a2f-9329-6174bbaa481b" data-linktype="relative-path">TSG_PACKET</a> structure. The
+value of the <b>packetId</b> field MUST be set to <a href="4ea53727-29f1-4fae-90ac-dd6d8b3246a5" data-linktype="relative-path">TSG_PACKET_TYPE_MSGREQUEST_PACKET</a>.
+The <b>packetMsgRequest</b> field of the <b>TSGPacket</b> union field MUST be a
+pointer to the <a href="e18506c3-23e0-4448-a449-6371b6f74d63" data-linktype="relative-path">TSG_PACKET_MSG_REQUEST</a>
+structure.</p><p><b>TSGPacketResponse: </b>Pointer to the TSG_PACKET
+structure. If <i>procId</i> is TSG_TUNNEL_CANCEL_ASYNC_MSG_REQUEST or if the
+return value is HRESULT_FROM_WIN32(RPC_S_CALL_CANCELLED), <i>*TSGPacketResponse</i>
+MUST be set to NULL. Otherwise, the value of the <b>packetId</b> field MUST be
+TSG_PACKET_TYPE_MESSAGE_PACKET. The <b>packetMsgResponse</b> field of the <b>TSGPacket</b>
+union field MUST be a pointer to the <a href="3c1fe8d7-1a20-4971-baba-7acd84d7f34a" data-linktype="relative-path">TSG_PACKET_MSG_RESPONSE</a>
+structure.</p><p><b>Return Values: </b>The method MUST return
+ERROR_SUCCESS on success. Other failures MUST be one of the codes listed. The
+client MAY interpret failures in any way it deems appropriate. See section <a href="38d327b5-e131-4fa3-9a46-7e3ac20e0a4f" data-linktype="relative-path">2.2.6</a> for details on these
+errors. The connection MUST NOT transition its state after completing the
+TsProxyMakeTunnelCall.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value</p>
+   </th>
+   <th>
+   <p>State transition</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_SUCCESS (0x00000000)</p>
+  </td>
+  <td>
+  <p>The connection MUST NOT transition its state.</p>
+  </td>
+  <td>
+  <p>Returned when a call to the TsProxyMakeTunnelCall
+  method succeeds.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED (0x00000005)</p>
+  </td>
+  <td>
+  <p>The connection MUST NOT transition its state.</p>
+  </td>
+  <td>
+  <p>Returned in the following cases.</p>
+  <ul><li><p><span><span>  
+  </span></span><span>When the call is made in any
+  state other than Authorized, Channel Created, Pipe Created, Channel Close
+  Pending, or Tunnel Close Pending.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>If <b>procId</b> is neither
+  TSG_TUNNEL_CALL_ASYNC_MSG_REQUEST nor TSG_TUNNEL_CANCEL_ASYNC_MSG_REQUEST.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>If <b>procId</b> is
+  TSG_TUNNEL_CALL_ASYNC_MSG_REQUEST and there is already a call to TsProxyMakeTunnelCall
+  made earlier with <b>procId</b> TSG_TUNNEL_CALL_ASYNC_MSG_REQUEST and it is
+  not yet returned.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>If <b>procId</b> is
+  TSG_TUNNEL_CANCEL_ASYNC_MSG_REQUEST  and there is no call to
+  TsProxyMakeTunnelCall made earlier with <b>procId</b>
+  TSG_TUNNEL_CALL_ASYNC_MSG_REQUEST that is not yet returned.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>If the <i>tunnelContext</i>
+  parameter is NULL.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>If the tunnel is not authorized.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>If the <b>Reauthentication
+  Connection</b> ADM element is TRUE.</span></p>
+  </li></ul><p> </p>
+  <p>The RDG client MUST end the protocol when this error
+  is received.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>HRESULT_FROM_WIN32(RPC_S_CALL_CANCELLED)(0x8007071A)</p>
+  </td>
+  <td>
+  <p>The connection MUST not transition its state.</p>
+  </td>
+  <td>
+  <p>Returned when the call is canceled by the RDG client
+  or the call is canceled because a shutdown sequence is initiated.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

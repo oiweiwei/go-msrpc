@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>The IWbemLoginHelper::SetEvent MUST return WBEM_S_NO_ERROR.
+The SetEvent method SHOULD NOT perform any action.<a id="Appendix_A_Target_57"></a><a aria-label="Product behavior note 57" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_57" data-linktype="relative-path">&lt;57&gt;</a></p><p>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a></span> of the
+SetEvent method equals 3.</p><dl>
+<dd>
+<div><pre> HRESULT SetEvent(
+   [in] LPCSTR sEventToSet
+ );
+</pre></div>
+</dd></dl><p><b>sEventToSet: </b>MUST contain the name of the
+event to be signaled. This parameter MUST NOT be NULL.</p><p><b>Return Values: </b>This method MUST return an <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">HRESULT</a></span>
+value that MUST indicate the status of the method call. The server MUST return
+WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p>If the method fails, the server MUST return an
+HRESULT whose S (severity) bit is set as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section 2.1. The actual HRESULT value is implementation dependent.</p>
+</dd>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl></div>

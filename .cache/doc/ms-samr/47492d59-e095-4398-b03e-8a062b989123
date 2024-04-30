@@ -1,0 +1,72 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/47492d59-e095-4398-b03e-8a062b989123" data-linktype="external">msdn link</a></p><p>The SamrLookupDomainInSamServer method obtains the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> of a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_2346e8d0-b0a0-481f-b644-85c45c60d4d1" data-linktype="relative-path">domain object</a>, given the
+object&#39;s name.</p><dl>
+<dd>
+<div><pre> long SamrLookupDomainInSamServer(
+   [in] SAMPR_HANDLE ServerHandle,
+   [in] PRPC_UNICODE_STRING Name,
+   [out] PRPC_SID* DomainId
+ );
+</pre></div>
+</dd></dl><p><b>ServerHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_62a8c543-5998-480b-8fa7-41a8f04a18e5" data-linktype="relative-path">server object</a>.</p><p><b>Name: </b>A UTF-16 encoded string.</p><p><b>DomainId: </b>A SID value of a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> that corresponds to
+the <i>Name</i> passed in. The match MUST be exact (no wildcard characters are
+permitted). See message processing later in this section for more details.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a different
+RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>The server MUST
+return an error if <i>ServerHandle.HandleType</i> is not equal to
+&#34;Server&#34;.</p>
+</li><li><p><span>    </span><i>ServerHandle.GrantedAccess</i>
+MUST have the required access specified in section <a href="87bacbd0-7b8b-429f-abc6-4b3d895d4e90" data-linktype="relative-path">3.1.2.2</a>. Otherwise, the
+server MUST return STATUS_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>If the <i>Name</i>
+input parameter matches an attribute value as shown in the following table, the
+associated value in the &#34;Return attribute&#34; column MUST be returned
+via the <i>DomainId</i> parameter.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Matching object</p>
+   </th>
+   <th>
+   <p>Matching attribute</p>
+   </th>
+   <th>
+   <p>Return object</p>
+   </th>
+   <th>
+   <p>Return attribute</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>domain object</p>
+  </td>
+  <td>
+  <p>name</p>
+  </td>
+  <td>
+  <p>domain object</p>
+  </td>
+  <td>
+  <p>objectSid</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>built-in object </p>
+  </td>
+  <td>
+  <p>name</p>
+  </td>
+  <td>
+  <p>built-in object</p>
+  </td>
+  <td>
+  <p>objectSid</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span>    </span>If there is no
+match, an error MUST be returned.</p>
+</li></ol></div>

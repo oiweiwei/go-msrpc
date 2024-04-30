@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The <b>DHCP_OPTION_TYPE</b> enumeration specifies whether
+the option value for a specific standard or vendor-specific option is
+single-valued or multivalued. The following structure specifies the values
+defined for this.</p><dl>
+<dd>
+<div><pre> typedef  enum _DHCP_OPTION_TYPE
+ {
+   DhcpUnaryElementTypeOption,
+   DhcpArrayTypeOption
+ } DHCP_OPTION_TYPE,
+  *LPDHCP_OPTION_TYPE;
+</pre></div>
+</dd></dl><p><b>DhcpUnaryElementTypeOption: </b>The option value
+is single-valued.</p><p><b>DhcpArrayTypeOption: </b>The option value is
+multivalued.</p></div>

@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The SERVER_ENUM_STRUCT structure defines the layout for a
+structure with a value to indicate the information level submitted to the
+method and a pointer to a data structure that contains an array of data
+structures returned by the method. This structure is used by
+I_BrowserrQueryOtherDomains.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVER_ENUM_STRUCT {
+   DWORD Level;
+   [switch_is(Level)] union _SERVER_ENUM_UNION {
+     [case(100)] 
+       LPSERVER_INFO_100_CONTAINER Level100;
+     [default]
+        ;
+   } ServerInfo;
+ } SERVER_ENUM_STRUCT,
+  *PSERVER_ENUM_STRUCT,
+  *LPSERVER_ENUM_STRUCT;
+</pre></div>
+</dd></dl><p><b>Level:</b>  The information level of the
+data. This member MUST be 100.</p><p><b>ServerInfo:</b>  A structure that
+contains an array of data structures. The <b>Level</b> member determines the
+data type of the members of this array.</p><p><b>Level100:</b>  A pointer to a <span><a href="de65e9a3-06dc-4bbd-a442-e63f06765489" data-linktype="relative-path">SERVER_INFO_100_CONTAINER</a></span>
+structure that contains the number of entries returned by the method and a
+pointer to an array of SERVER_INFO_100 structures (as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/007c654b-7d78-49d4-9f4d-0da7c1889727" data-linktype="relative-path">2.3.11</a></span>).</p></div>

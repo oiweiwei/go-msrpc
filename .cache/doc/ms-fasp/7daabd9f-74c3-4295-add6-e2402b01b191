@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p>This enumeration identifies specific traffic to be exempted
+from performing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum _FW_GLOBAL_CONFIG_IPSEC_EXEMPT_VALUES
+ {
+   FW_GLOBAL_CONFIG_IPSEC_EXEMPT_NONE = 0x0000,
+   FW_GLOBAL_CONFIG_IPSEC_EXEMPT_NEIGHBOR_DISC = 0x0001,
+   FW_GLOBAL_CONFIG_IPSEC_EXEMPT_ICMP = 0x0002,
+   FW_GLOBAL_CONFIG_IPSEC_EXEMPT_ROUTER_DISC = 0x0004,
+   FW_GLOBAL_CONFIG_IPSEC_EXEMPT_DHCP = 0x0008,
+   FW_GLOBAL_CONFIG_IPSEC_EXEMPT_MAX = 0x0010,
+   FW_GLOBAL_CONFIG_IPSEC_EXEMPT_MAX_V2_0 = 0x0004
+ } FW_GLOBAL_CONFIG_IPSEC_EXEMPT_VALUES;
+</pre></div>
+</dd></dl><p><b>FW_GLOBAL_CONFIG_IPSEC_EXEMPT_NONE:</b>  No IPsec
+exemptions.</p><p><b>FW_GLOBAL_CONFIG_IPSEC_EXEMPT_NEIGHBOR_DISC:</b> 
+Exempt neighbor discover IPv6 ICMP type-codes from IPsec.</p><p><b>FW_GLOBAL_CONFIG_IPSEC_EXEMPT_ICMP:</b>  Exempt
+ICMP from IPsec.</p><p><b>FW_GLOBAL_CONFIG_IPSEC_EXEMPT_ROUTER_DISC:</b> 
+Exempt router discover IPv6 ICMP type-codes from IPsec.</p><p><b>FW_GLOBAL_CONFIG_IPSEC_EXEMPT_DHCP:</b>  Exempt
+both IPv4 and IPv6 DHCP traffic from IPsec.</p><p><b>FW_GLOBAL_CONFIG_IPSEC_EXEMPT_MAX: </b> This value
+and values that exceed this value are not valid and MUST NOT be used. It is
+defined for simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 0x0010.</p><p><b>FW_GLOBAL_CONFIG_IPSEC_EXEMPT_MAX_V2_0:</b>  This
+value and values that exceed this value are not valid and MUST NOT be used by
+servers and clients with schema version 0x0200 and earlier. It is defined for
+simplicity in writing IDL definitions and code. This symbolic constant has a
+value of 0x0004.</p></div>

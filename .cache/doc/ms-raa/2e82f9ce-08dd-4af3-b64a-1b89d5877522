@@ -1,0 +1,23 @@
+<div class="content"><p>The AUTHZ_SECURITY_ATTRIBUTE_OPERATION enumeration structure
+is used with the AuthzrModifyClaims operation (section <a href="edf561e0-1004-4fbe-82f9-edd496111613" data-linktype="relative-path">3.1.4.6</a>) to identify
+operation types on a <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_519bff3c-1c9f-4d5a-aa88-a3c820a4ff3a" data-linktype="relative-path">client
+context</a> object.</p><dl>
+<dd>
+<div><pre> typedef enum _AUTHZ_SECURITY_ATTRIBUTE_OPERATION {
+     AUTHZ_SECURITY_ATTRIBUTE_OPERATION_NONE = 0,
+     AUTHZ_SECURITY_ATTRIBUTE_OPERATION_REPLACE_ALL = 1,
+     AUTHZ_SECURITY_ATTRIBUTE_OPERATION_ADD = 2,
+     AUTHZ_SECURITY_ATTRIBUTE_OPERATION_DELETE = 3,
+     AUTHZ_SECURITY_ATTRIBUTE_OPERATION_REPLACE = 4
+ } AUTHZ_SECURITY_ATTRIBUTE_OPERATION;
+  
+</pre></div>
+</dd></dl><p><b>AUTHZ_SECURITY_ATTRIBUTE_OPERATION_NONE:</b> No operation
+will be performed.</p><p><b>AUTHZ_SECURITY_ATTRIBUTE_OPERATION_REPLACE_ALL:</b>
+The ImpersonationAccessToken on the specified client context will be replaced.</p><p><b>AUTHZ_SECURITY_ATTRIBUTE_OPERATION_ADD:</b> A new
+claim will be added to the server&#39;s ImpersonationAccessToken associated with
+the specified client context. </p><p><b>AUTHZ_SECURITY_ATTRIBUTE_OPERATION_DELETE:</b> An
+existing claim will be deleted from the <b>ImpersonationAccessToken</b> array
+associated with the specified client context if it is present in that array. </p><p><b>AUTHZ_SECURITY_ATTRIBUTE_OPERATION_REPLACE:</b> An
+existing claim will be replaced in the <b>ImpersonationAccessToken</b> array
+associated with the specified client context if it is present in the array.</p></div>

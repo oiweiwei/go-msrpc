@@ -1,0 +1,73 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_DBASE_STATS</b> structure has DNS server
+statistics related to the database tree. This structure MUST be formatted as
+follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NodeMemory</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NodeInUse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NodeUsed</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NodeReturn</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>NodeMemory (4 bytes):</b> The total size, in
+bytes, of server memory currently used for nodes.</p><p><b>NodeInUse (4 bytes): </b>The number of nodes
+currently allocated for use in the record database.</p><p><b>NodeUsed (4 bytes): </b>The cumulative number of
+nodes allocated for use in the record database. </p><p><b>NodeReturn (4 bytes): </b>The cumulative number of
+nodes freed from the record database.</p></div>

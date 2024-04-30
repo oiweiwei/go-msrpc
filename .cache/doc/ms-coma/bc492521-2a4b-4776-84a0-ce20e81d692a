@@ -1,0 +1,118 @@
+<div class="content"><p>The TableDataVariable structure represents the variable-size
+parts of the data in zero or more entries in a table, as returned by the <a href="ba9d3f6d-94d8-4e1f-b31e-122ec038eca7" data-linktype="relative-path">ICatalogTableRead::ReadTable (section 3.1.4.8.1)</a>
+method, or in a write to zero or more entries in a table, as used in the <a href="3fe6b10a-65d3-4bcd-8897-f84512d52f3b" data-linktype="relative-path">ICatalogTableWrite::WriteTable (section 3.1.4.9.1)</a>
+method. It is always used along with a <a href="a2feb769-c1fc-44fb-b40d-b3bc03b486b0" data-linktype="relative-path">TableDataFixed (section 2.2.1.10)</a>
+or <a href="fbf92afa-d059-47e1-a877-ef6979b549a4" data-linktype="relative-path">TableDataFixedWrite (section 2.2.1.13)</a>
+structure, which specifies the offsets to each of the values in this structure.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Entry
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Entry (variable): </b> A sequence of zero or more <a href="c0c52d81-93f3-494f-904a-f119eef4f41c" data-linktype="relative-path">TableEntryVariable (section
+2.2.1.14)</a> structures. The order in which these structures appear MUST be
+the same as the order in which the corresponding <a href="60d1432d-84ca-4b03-a5a3-55e93f2ac624" data-linktype="relative-path">TableEntryFixed (section
+2.2.1.9)</a> or <a href="183fb968-7cab-4684-be5e-35469ed9df6c" data-linktype="relative-path">TableEntryFixedWrite
+(section 2.2.1.12)</a> structures appear in the associated TableDataFixed or
+TableDataFixedWrite structure.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Entry 0
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Entry 1
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Entry n
+  (variable)</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p> </p></div>

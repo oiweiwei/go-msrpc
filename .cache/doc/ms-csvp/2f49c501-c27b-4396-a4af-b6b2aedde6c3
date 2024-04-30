@@ -1,0 +1,118 @@
+<div class="content"><p>The <b>CprepDiskGetUniqueIds3</b> method returns <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_4712ded2-d927-4930-9450-29499f98cef4" data-linktype="relative-path">device</a> ID data about the <b>ClusPrepDisk</b>.</p><dl>
+<dd>
+<div><pre> HRESULT CprepDiskGetUniqueIds3(
+   [in] CPREP_DISKID DiskId,
+   [out, size_is(,*pcbDihSize)] BYTE** ppbDeviceIdHeader,
+   [out] ULONG* pcbDihSize,
+   [out, size_is(,* pcbDdSize)] BYTE** ppDeviceDescriptor,
+   [out] ULONG* pcbDdSize
+ );
+</pre></div>
+</dd></dl><p><b>DiskId: </b>The identifier representing the <b>ClusPrepDisk</b>
+for which to retrieve the device ID data.</p><p><b>ppbDeviceIdHeader: </b>On successful return, the
+address of a pointer to a <i>*pcbDihSize</i>-sized block of <a href="../ms-dtyp/d7edc080-e499-4219-a837-1bc40b64bb04" data-linktype="relative-path">BYTEs</a>.
+The server allocates and initializes the returned buffer. Callers MUST free
+this memory when they are finished with it. On unsuccessful return, the client
+MUST ignore this value.</p><p><b>pcbDihSize: </b>On successful return, the number
+of BYTEs returned in <i>ppbDeviceIdHeader</i>. On unsuccessful return, the
+client MUST ignore this value.</p><p><b>ppDeviceDescriptor: </b>On successful return, the
+address of a pointer to a <i>*pcbDdSize</i>-sized block of BYTEs. The server
+allocates and initializes the returned buffer. Callers MUST free this memory
+when they are finished with it. On unsuccessful return, the client MUST ignore
+this value.</p><p><b>pcbDdSize: </b>On successful return, the number of
+BYTEs returned in <i>ppDeviceDescriptor</i>. On unsuccessful return, the client
+MUST ignore this value.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method
+implementation. For more information about Win32 error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070032</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The disk does not support device ID data.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 3. </p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Obtain the <b>ClusPrepDisk</b> identified by the <i>DiskId</i>
+parameter as described in section <a href="c17ce220-d244-45c9-95c0-4c31942253ee" data-linktype="relative-path">3.2.4</a>.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the page 83h <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_c8818c63-7458-4054-a17d-bea04fa50618" data-linktype="relative-path">SCSI</a> data described in <a href="https://go.microsoft.com/fwlink/?LinkId=90528" data-linktype="external">[SPC-3]</a> section
+7.6.3.1 in an implementation-specific way for the given disk.</p>
+</li><li><p><span><span> 
+</span></span>If the retrieved 83h SCSI data does not contain at least one
+identifier of the types SCSI name string, EUI-64 based, or NAA as described in
+[SPC-3] section 7.6.3.1, with device-specific association, return
+ERROR_NOT_SUPPORTED.</p>
+</li><li><p><span><span> 
+</span></span>Allocate a block of <b>BYTE</b>s large enough to store the SCSI
+page 83h data formatted as a <a href="e5ba2b9b-bbf6-451e-8641-d8a4cfa3013d" data-linktype="relative-path">STORAGE_DEVICE_ID_DESCRIPTOR</a>
+structure.</p>
+</li><li><p><span><span> 
+</span></span>Copy the data formatted as a <a href="40cfac80-a434-44e8-a802-79f36e2b5d7f" data-linktype="relative-path">STORAGE_DEVICE_ID_DESCRIPTOR</a>
+structure into the <i>ppbDeviceIdHeader</i> buffer. </p>
+</li><li><p><span><span> 
+</span></span>Initialize <i>*pcbDihSize</i>  to the number of <b>BYTE</b>s
+being returned.</p>
+</li></ul><p>When processing this call, the server MAY do the following: </p><ul><li><p><span><span> 
+</span></span>Retrieve the <b>SCSI page 80h Unit Serial Number</b>, as
+described in [SPC-3], in an implementation-specific way for the given disk.</p>
+</li><li><p><span><span> 
+</span></span>If the retrieved <b>80h Unit Serial Number</b> is available,
+allocate a block of BYTEs large enough to store the <b>SCSI page 80h Unit
+Serial Number</b>, formatted as a <b>STORAGE_DEVICE_DESCRIPTOR</b> structure
+(as specified in section <a href="4391d6be-a3f7-4d10-b889-4fce1c9415ec" data-linktype="relative-path">2.2.27</a>).</p>
+</li><li><p><span><span> 
+</span></span>Copy the data formatted as a <b>STORAGE_DEVICE_DESCRIPTOR</b>
+structure into the <i>ppDeviceDescriptor</i> buffer.</p>
+</li><li><p><span><span> 
+</span></span>Initialize <i>*pcbDdSize</i> to the number of <b>BYTE</b>s being
+returned.</p>
+</li></ul><p>If no <b>SCSI page 80h Unit Serial Number</b> is available,
+the server MUST initialize <i>*pcbDdSize</i> to zero, and <i>*ppDeviceDescriptor</i>
+to <b>NULL</b>.</p><p>The server returns the following data to the client:</p><ul><li><p><span><span> 
+</span></span>A STORAGE_DEVICE_ID_DESCRIPTOR with SCSI page <code>80h</code> serial number for the disk.</p>
+</li><li><p><span><span> 
+</span></span>A <b>STORAGE_DEVICE_DESCRIPTOR</b> with SCSI page <code>80h</code> serial number for the disk. </p>
+</li></ul><p>The client is responsible for freeing the returned memory
+allocation.</p></div>

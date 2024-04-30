@@ -1,0 +1,56 @@
+<div class="content"><p> </p><p>The EEComputerName structure identifies the network node on
+which the <span><a href="ba724cab-c810-480e-ae60-f61f3952c492#gt_54409f9a-49d4-4e6e-ab75-5bd013dc5416" data-linktype="relative-path">error record</a></span> was
+generated.</p><dl>
+<dd>
+<div><pre> typedef struct tagEEComputerName {
+   EEComputerNamePresent Type;
+   [switch_type(short), switch_is(Type)] 
+     union {
+     [case(1)] 
+       EEUString Name;
+     [case(2)] 
+             ;
+   };
+ } EEComputerName;
+</pre></div>
+</dd></dl><p><b>Type:</b>  Indicates the contents of a
+union.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>eecnpPresent</p>
+  <p>1</p>
+  </td>
+  <td>
+  <p>Network Node Identifier</p>
+  <p><b>Name</b> member of the union is valid and contains
+  a network node identifier.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>eecnNotPresent</p>
+  <p>2</p>
+  </td>
+  <td>
+  <p>No Network Node Identifier</p>
+  <p>This structure does not contain a network node
+  identifier.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Name:</b>  <span><a href="ba724cab-c810-480e-ae60-f61f3952c492#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> string that
+identifies the network node on which the error record was generated. The format
+in which the network node is identified is implementation-specific, and this
+information MUST be used for display purposes only. This specification does not
+define what the format is. Software agents who use this structure SHOULD use a
+network node identifier that is unique within a specific topology and is
+descriptive to a human reader. If <b>Type</b> is equal to <b>eecnpNotPresent</b>,
+the error record MUST be interpreted as generated on the local network node.</p></div>

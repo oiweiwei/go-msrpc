@@ -1,0 +1,129 @@
+<div class="content"><p> </p><p>The <b>RpcPrintNamedProperty</b> structure specifies a
+name/typed-value pair that defines a single property.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [string] wchar_t* propertyName;
+   RpcPrintPropertyValue propertyValue;
+ } RpcPrintNamedProperty;
+</pre></div>
+</dd></dl><p><b>propertyName: </b>A pointer to a string that
+specifies the name of the property.</p><p><b>propertyValue: </b>An <b>RpcPrintPropertyValue</b>
+structure (section <span><a href="2f6e0429-64ba-41ea-b7af-92d6173256c0" data-linktype="relative-path">2.2.2</a></span>).</p><p>When used as an input value, the <b>propertyName</b> member
+and the <b>ePropertyType</b> member of <b>propertyValue</b> MUST be one of the
+following pairs:</p><table><thead>
+  <tr>
+   <th>
+   <p>propertyName</p>
+   </th>
+   <th colspan="2">
+   <p>propertyValue</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p><b>ePropertyType</b></p>
+  </td>
+  <td>
+  <p><b>value</b></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;RemoteNotifyFilter Flags&#34;</p>
+  </td>
+  <td>
+  <p>kPropertyTypeInt32</p>
+  </td>
+  <td>
+  <p>Same as <i>fdwFlags</i> (<span><a href="../ms-rprn/d42db7d5-f141-4466-8f47-0a4be14e2fc1" data-linktype="relative-path">[MS-RPRN]</a></span>
+  section <span><a href="../ms-rprn/eb66b221-1c1f-4249-b8bc-c5befec2314d" data-linktype="relative-path">3.1.4.10.4</a></span>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;RemoteNotifyFilter Options&#34;</p>
+  </td>
+  <td>
+  <p>kPropertyTypeInt32</p>
+  </td>
+  <td>
+  <p>Same as <i>fdwOptions</i> ([MS-RPRN] section
+  3.1.4.10.4).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;RemoteNotifyFilter NotifyOptions&#34;</p>
+  </td>
+  <td>
+  <p>kPropertyTypeNotificationOptions</p>
+  </td>
+  <td>
+  <p>Same as <i>pOptions</i> ([MS-RPRN] section
+  3.1.4.10.4).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;RemoteNotifyFilter Color&#34;</p>
+  </td>
+  <td>
+  <p>kPropertyTypeInt32</p>
+  </td>
+  <td>
+  <p>Same as <i>dwColor</i> ([MS-RPRN] section <span><a href="../ms-rprn/cb5d22ed-0352-4303-83d5-b5afd32fb461" data-linktype="relative-path">3.1.4.10.5</a></span>).</p>
+  </td>
+ </tr></tbody></table><p>When used as an output value, the <b>propertyName</b> and
+the <b>ePropertyType</b> member of <b>propertyValue</b> MUST be one of the
+following pairs:</p><table><thead>
+  <tr>
+   <th>
+   <p>propertyName</p>
+   </th>
+   <th colspan="2">
+   <p>propertyValue</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p><b>ePropertyType</b></p>
+  </td>
+  <td>
+  <p><b>value</b></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;RemoteNotifyData Flags&#34;</p>
+  </td>
+  <td>
+  <p>kPropertyTypeInt32</p>
+  </td>
+  <td>
+  <p>Same as <i>fdwFlags</i> ([MS-RPRN] section <span><a href="../ms-rprn/1b44cb82-95b5-485c-9ec9-0360c3a3ecb0" data-linktype="relative-path">3.2.4.1.4</a></span>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;RemoteNotifyData Info&#34;</p>
+  </td>
+  <td>
+  <p> kPropertyTypeNotificationReply</p>
+  </td>
+  <td>
+  <p>Same as the <b>pInfo</b> member of the <b>RPC_V2_UREPLY_PRINTER</b>
+  union ([MS-RPRN] section <span><a href="../ms-rprn/1ccdac5b-0b2a-4bd3-8afd-d2c2589130fc" data-linktype="relative-path">2.2.1.13.6</a></span>),
+  specified by the <i>Reply</i> parameter of the <b>RpcRouterReplyPrinterEx</b>
+  method ([MS-RPRN] section 3.2.4.1.4).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;RemoteNotifyData Color&#34;</p>
+  </td>
+  <td>
+  <p>kPropertyTypeInt32</p>
+  </td>
+  <td>
+  <p>Same as <i>dwColor</i> ([MS-RPRN] section 3.2.4.1.4).</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

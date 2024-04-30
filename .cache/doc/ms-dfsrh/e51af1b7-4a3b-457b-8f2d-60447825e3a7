@@ -1,0 +1,57 @@
+<div class="content"><p>The VersionVectorData structure provides information about
+the <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_8f3c866a-07d2-4921-98ba-f5d376bfdba5" data-linktype="relative-path">DFS-R</a> <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_5407529a-4f36-4308-8060-63bbe7bac215" data-linktype="relative-path">version vector</a>. The DFS-R
+version vector is an array of identifiers and versions of modified files in a <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_064adaf1-86c7-43e5-a157-b0949980181e" data-linktype="relative-path">replicated folder</a>. The
+version vector is specified in <a href="../ms-frs2/9914bdd4-9579-43a7-9f2d-9efe2e162944" data-linktype="relative-path">[MS-FRS2]</a>
+section <a href="../ms-frs2/42bbbd7f-0078-4a48-8043-03c7cec67d3c" data-linktype="relative-path">2.2.1.4.1</a>.
+The <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a> for this
+structure is {7A2323C7-9EBE-494a-A33C-3CC329A18E1D}.</p><dl>
+<dd>
+<div><pre> typedef[uuid(7A2323C7-9EBE-494a-A33C-3CC329A18E1D)] 
+    struct VersionVectorData {
+   long uncompressedSize;
+   long backlogCount;
+   BSTR contentSetGuid;
+   VARIANT versionVector;
+ } _VersionVectorData;
+</pre></div>
+</dd></dl><p><b>uncompressedSize:</b>  MUST be the
+number of bytes in the uncompressed version vector. The version vector is
+defined by FRS_ASYNC_VERSION_VECTOR_RESPONSE, as specified in [MS-FRS2] section
+<a href="../ms-frs2/75a379c2-c5e1-4398-919a-c232d780f6bc" data-linktype="relative-path">2.2.1.4.12</a>.</p><p><b>backlogCount:</b>  MUST be the number of
+backlogged transactions for the replicated folder on the server.</p><p><b>contentSetGuid:</b>  MUST be a string
+representation of the <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>
+of the replicated folder.</p><p><b>versionVector:</b>  MUST be the version
+vector for the replicated folder whose GUID is specified by the <b>contentSetGuid</b>
+field.</p><dl>
+<dd>
+<p>The version vector is either compressed (that is, an
+encoded field whose format is specified by the DFS-R compression algorithm (as
+specified in [MS-FRS2] section <a href="../ms-frs2/a6715af1-8c14-416c-bc41-60b2ed2ebd25" data-linktype="relative-path">3.1.1.1</a>)
+or uncompressed. The version vector MUST be represented by a VARIANT field that
+has a VT_BSTR variant type.</p>
+</dd>
+<dd>
+<p>The client MUST determine whether the version vector
+is compressed by applying the following rules:</p>
+</dd></dl><ul><li><p><span><span> 
+</span></span>If the sum of the number of characters, including the terminating
+null character in the <a href="../ms-dtyp/692a42a9-06ce-4394-b9bc-5d2a50440168" data-linktype="relative-path">BSTR</a>,
+multiplied by the size, in bytes, of a <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> character (2 bytes)
+is less than the value of the <b>uncompressedSize</b> field, the version vector
+is sent in compressed form. See <a href="https://go.microsoft.com/fwlink/?LinkId=90552" data-linktype="external">[UNICODE4.0]</a>.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the version vector is uncompressed.</p>
+<p>The compressed or uncompressed version vector MUST
+be encoded in a BSTR and passed by using the <b>versionVector.bstrVal</b>
+field.</p>
+<p>The compressed or uncompressed version vector buffer
+MUST be encoded in a BSTR by applying the following rules:</p>
+</li><li><p><span><span> 
+</span></span>The length, in bytes, of the BSTR buffer MUST be greater than or
+equal to the value of the size of the binary data that is to be encoded.</p>
+</li><li><p><span><span> 
+</span></span>The part of the BSTR buffer between offsets 0 and &#34;length -
+1&#34; MUST be filled by the compressed or uncompressed data, as specified
+previously. The remainder of the BSTR buffer (if any) MUST be ignored by the
+server.</p>
+</li></ul></div>

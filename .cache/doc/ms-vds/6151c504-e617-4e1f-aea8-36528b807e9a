@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The OPEN_VIRTUAL_DISK_FLAG enumeration defines flags that
+are used to open a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual disk</a></span> object.</p><dl>
+<dd>
+<div><pre> typedef enum _OPEN_VIRTUAL_DISK_FLAG
+ {
+   OPEN_VIRTUAL_DISK_FLAG_NONE = 0x0,
+   OPEN_VIRTUAL_DISK_FLAG_NO_PARENTS = 0x1,
+   OPEN_VIRTUAL_DISK_FLAG_BLANK_FILE = 0x2,
+   OPEN_VIRTUAL_DISK_FLAG_BOOT_DRIVE = 0x4
+ } OPEN_VIRTUAL_DISK_FLAG;
+</pre></div>
+</dd></dl><p><b>OPEN_VIRTUAL_DISK_FLAG_NONE:  </b>Indicates that
+no flag has been specified.</p><p><b>OPEN_VIRTUAL_DISK_FLAG_NO_PARENTS:  </b>Applicable
+only to differencing type virtual disks. Opens the backing store without
+opening the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_432d7a86-d2ca-4977-8189-d28b54883d09" data-linktype="relative-path">backing store</a></span> for
+any <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_bded4a57-f841-4b1e-a981-579bec032bc8" data-linktype="relative-path">differencing
+chain</a></span> parents.</p><p><b>OPEN_VIRTUAL_DISK_FLAG_BLANK_FILE:  </b>Opens the
+backing store as an empty file without performing virtual disk verification.</p><p><b>OPEN_VIRTUAL_DISK_FLAG_BOOT_DRIVE:  </b>This flag
+MUST not be used by VDS virtual disk providers or their clients.<a id="Appendix_A_Target_51"></a><a aria-label="Product behavior note 51" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_51" data-linktype="relative-path">&lt;51&gt;</a></p></div>

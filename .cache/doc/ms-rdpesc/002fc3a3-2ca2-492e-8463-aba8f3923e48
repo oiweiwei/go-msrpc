@@ -1,0 +1,53 @@
+<div class="content"><p>Normally, communication is to the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">smart card</a> via the reader.
+However, in some cases, the ability to communicate directly with the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_5cddf14c-b925-4494-9b55-d2c8259f9ad0" data-linktype="relative-path">smart card reader</a> is
+requested. The Control_Call structure provides the ability to talk to the
+reader.</p><dl>
+<dd>
+<div><pre> typedef struct _Control_Call {
+   REDIR_SCARDHANDLE hCard;
+   unsigned long dwControlCode;
+   [range(0,66560)] unsigned long cbInBufferSize;
+   [unique] [size_is(cbInBufferSize)] const byte *pvInBuffer;
+   long fpvOutBufferIsNULL;
+   unsigned long cbOutBufferSize;
+ } Control_Call;
+</pre></div>
+</dd></dl><p><b>hCard:</b>  A handle, as specified in
+section <a href="b6276356-7c5f-4d3e-be92-a6c85e58d008" data-linktype="relative-path">2.2.1.2</a>.</p><p><b>dwControlCode:</b>  The control code for
+the operation. These values are specific to the hardware <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_4712ded2-d927-4930-9450-29499f98cef4" data-linktype="relative-path">device</a>. This protocol MUST
+NOT restrict or define any values for this control codes.</p><p><b>cbInBufferSize:</b>  The size in bytes
+of the <b>pvInBuffer</b> field.</p><p><b>pvInBuffer:</b>  A buffer that contains
+the data required to perform the operation. This field SHOULD be NULL if the <b>dwControlCode</b>
+field specifies an operation that does not require input data. Otherwise, this
+data is specific to the function being performed.</p><p><b>fpvOutBufferIsNULL:</b>  A Boolean value
+specifying whether the caller wants to retrieve the length of the data. MUST be
+set to TRUE (0x00000001) if the caller wants only to retrieve the length of the
+data; otherwise, it MUST be set to FALSE (0x00000000). </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cbOutBufferSize:</b>  The maximum size
+of the buffer to be returned. This field MUST be ignored if fpvOutBufferIsNULL
+is set to TRUE (0x00000001).</p></div>

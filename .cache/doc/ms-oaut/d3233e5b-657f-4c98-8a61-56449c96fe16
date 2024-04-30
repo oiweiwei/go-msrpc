@@ -1,0 +1,19 @@
+<div class="content"><p>The GetTypeInfoCount method specifies whether the <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_5dcdba04-9cfd-40b3-b0e1-0b8e4374aeaa" data-linktype="relative-path">automation server</a> provides
+Type description information.</p><dl>
+<dd>
+<div><pre> HRESULT GetTypeInfoCount(
+   [out] UINT* pctinfo
+ );
+</pre></div>
+</dd></dl><p><b>pctinfo: </b>MUST be set to 0 if the automation
+server does not provide Type description information. Otherwise, it MUST be set
+to 1.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul></div>

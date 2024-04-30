@@ -1,0 +1,12 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/d4859b44-b776-4237-baa1-12dc28c19634" data-linktype="external">msdn link</a></p><p>The LSA_FOREST_TRUST_BINARY_DATA structure is used to
+communicate a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_035d9ce5-f117-4251-8d4d-127c462ec4a0" data-linktype="relative-path">forest trust</a>
+record. This structure is not used in the current version of the protocol.</p><dl>
+<dd>
+<div><pre> typedef struct _LSA_FOREST_TRUST_BINARY_DATA {
+   [range(0,131072)] unsigned long Length;
+   [size_is(Length)] unsigned char* Buffer;
+ } LSA_FOREST_TRUST_BINARY_DATA,
+  *PLSA_FOREST_TRUST_BINARY_DATA;
+</pre></div>
+</dd></dl><p><b>Length:</b>  The count of bytes in <b>Buffer</b>.<a id="Appendix_A_Target_37"></a><a aria-label="Product behavior note 37" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_37" data-linktype="relative-path">&lt;37&gt;</a></p><p><b>Buffer:</b>  The <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a> record. If the <b>Length</b>
+field has a value other than 0, this field MUST NOT be NULL.</p></div>

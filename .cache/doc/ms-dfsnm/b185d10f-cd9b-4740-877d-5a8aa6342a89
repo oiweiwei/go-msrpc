@@ -1,0 +1,108 @@
+<div class="content"><p> </p><p>The NetrDfsSetDcAddress (Opnum 17) method instructs the
+server receiving the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> method to use
+the specified <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span> for <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_e8de88fd-d760-46fa-ad77-76961fa20aea" data-linktype="relative-path">DFS
+metadata</a></span> accesses for <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c37de1c8-4bd3-406f-ad8c-50c877666f91" data-linktype="relative-path">domain-based DFS namespaces</a></span>.<a id="Appendix_A_Target_132"></a><a aria-label="Product behavior note 132" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_132" data-linktype="relative-path">&lt;132&gt;</a></p><p>The NetrDfsSetDcAddress method uses the following <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a></span>
+syntax.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrDfsSetDcAddress(
+   [in, string] WCHAR* ServerName,
+   [in, string] WCHAR* DcName,
+   [in] DWORD Timeout,
+   [in] DWORD Flags
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>The pointer to a null-terminated <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string. This is the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_fe6fd875-b30a-44bb-850e-10733990f04c" data-linktype="relative-path">host name</a></span> of the
+server to which the RPC method is issued.</p><p><b>DcName: </b>The pointer to a null-terminated
+Unicode DC host name string.</p><p><b>Timeout: </b>The time period, in seconds, that the
+server uses the specified DC when storing and retrieving domain-based DFS
+metadata. This is valid only when the NET_DFS_SETDC_TIMEOUT bit of the <i>Flags</i>
+parameter is set.</p><p><b>Flags: </b>The bit field specifying additional
+operations to perform. Possible values are as follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NET_DFS_SETDC_FLAGS</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Indicates that no additional operation is requested.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NET_DFS_SETDC_TIMEOUT</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Sets the time-out value based on the <i>Timeout</i>
+  parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NET_DFS_SETDC_INIT_PKT</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Instructs the called server to reload its DFS metadata
+  from the specified DC.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits are reserved and MUST NOT be used. If
+reserved bits are specified, the server MAY fail the call with an
+implementation-defined failure value.<a id="Appendix_A_Target_133"></a><a aria-label="Product behavior note 133" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_133" data-linktype="relative-path">&lt;133&gt;</a></p>
+</dd></dl><p><b>Return Values: </b>The method MUST return 0 on
+success and a nonzero error code on failure. The method can return any specific
+error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Successful completion.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Permission to perform the operation was denied.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Servers MAY choose not to implement this method or implement
+it as a method with no effect that returns ERROR_SUCCESS.<a id="Appendix_A_Target_134"></a><a aria-label="Product behavior note 134" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_134" data-linktype="relative-path">&lt;134&gt;</a></p><p>Otherwise, the server MUST update the DC it uses for
+accessing DFS metadata for the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_133ab305-ad75-4b38-8ec9-40bc0dc3b594" data-linktype="relative-path">domain-based DFS namespace</a></span>
+it is hosting with the specified DC. If no time-out is specified in the <i>Timeout</i>
+parameter (NET_DFS_SETDC_TIMEOUT is not set in the <i>Flags</i> parameter), the
+server MUST use its default time-out. The DC the server uses at the end of this
+time-out is implementation-defined.</p><p>When NET_DFS_SETDC_INIT_PKT is set in the <i>Flags</i>
+parameter, the server SHOULD initiate a background synchronization of the
+domain-based DFS namespace it is hosting with either the DC specified by this
+method or the default DC the server is using. This MUST be treated as
+functionally equivalent to receiving a NetrDfsSetInfo (Opnum 3) method with the
+<i>Level</i> parameter value 101 and the <b>State</b> field of <span><a href="af9d607e-04e5-4722-8d00-76cf9c7b69f9" data-linktype="relative-path">DFS_INFO_101</a></span>
+set to DFS_VOLUME_STATE_RESYNCHRONIZE.<a id="Appendix_A_Target_135"></a><a aria-label="Product behavior note 135" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_135" data-linktype="relative-path">&lt;135&gt;</a></p></div>

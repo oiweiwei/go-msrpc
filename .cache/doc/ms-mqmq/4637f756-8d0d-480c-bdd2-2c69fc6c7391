@@ -1,0 +1,261 @@
+<div class="content"><p> </p><p>The DebugHeader specifies the <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span> to receive
+trace <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">messages</a></span> for this <span><a href="56bae708-1289-48ff-a411-bf3782602476" data-linktype="relative-path">UserMessage
+Packet</a></span>. For details about how this header is used when tracing is
+enabled<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a> see <span><a href="../ms-mqqb/85498b96-f2c8-43b3-a108-c9d6269dc4af" data-linktype="relative-path">[MS-MQQB]</a></span>
+section <span><a href="../ms-mqqb/c056032e-5eec-4d59-a2d9-d3096b6c22e9" data-linktype="relative-path">3.1.5.8.9</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Flags</p>
+  </td>
+  <td colspan="16">
+  <p>Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>QueueIdentifier
+  (16 bytes, optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Flags (2 bytes): </b>A 16-bit unsigned short
+integer field that provides bit flags containing additional information about
+the packet.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="2">
+  <p>QT</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>G</p>
+  </td>
+  <td>
+  <p>H</p>
+  </td>
+  <td>
+  <p>I</p>
+  </td>
+  <td>
+  <p>J</p>
+  </td>
+  <td>
+  <p>K</p>
+  </td>
+  <td>
+  <p>L</p>
+  </td>
+  <td>
+  <p>M</p>
+  </td>
+  <td>
+  <p>N</p>
+  </td>
+  
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>QT (2 bits): </b>Specifies
+the queue type. This field MUST be set to one of the following values.</p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0</p>
+  </td>
+  <td>
+  <p>No queue. The <b>QueueIdentifier</b> field is not
+  present.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x1</p>
+  </td>
+  <td>
+  <p><span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_bb49bace-e853-4c7a-b4ab-59f1097c3dc8" data-linktype="relative-path">Public queue</a></span>. The <b>QueueIdentifier</b>
+  field contains a 16-byte queue <b>GUID</b>, as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+  section <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a></span>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd>
+<dd>
+<p><b>A - X2 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>B - X3 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>C - X4 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>D - X5 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>E - X6 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>F - X7 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>G - X8 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>H - X9 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>I - X10 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>J - X11 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>K - X12 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>L - X13 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>M - X14 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>N - X15 (1 bit): </b>Unused
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd></dl><p><b>Reserved (2 bytes): </b>A 16-bit unsigned integer
+field that is reserved for future use. The sender SHOULD set this field to
+0x0000, and the receiver MUST ignore it on receipt.</p><p><b>QueueIdentifier (16 bytes): </b>An optional field
+that contains a <b>GUID</b>, as specified in [MS-DTYP] section 2.3.4, which is
+the identifier of the queue that is used to store trace messages. This field
+MUST be present when <b>DebugHeader.Flags.QT</b> is set to 0x1; otherwise, it
+MUST NOT be present.</p></div>

@@ -1,0 +1,76 @@
+<div class="content"><p> </p><p>The <b>R_DhcpSetSubnetInfoV6</b> method sets/modifies the
+information for an IPv6 prefix defined on the DHCPv6 server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpSetSubnetInfoV6(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_IPV6_ADDRESS SubnetAddress,
+   [in, ref] LPDHCP_SUBNET_INFO_V6 SubnetInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SubnetAddress: </b>This is of the type
+DHCP_IPV6_ADDRESS, containing the IPv6 prefix ID for which the subnet
+information is modified.</p><p><b>SubnetInfo: </b>This is a pointer to structure <span><a href="9c609d1d-6ed0-40f6-bb2c-5228a8da03ea" data-linktype="relative-path">DHCP_SUBNET_INFO_V6 (section 2.2.1.2.56)</a></span>
+that contains information of the IPv6 prefix that is modified in the existing
+IPv6 prefix identified by <i>SubnetAddress</i>.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv6 prefix does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 67.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>SubnetInfo</b> input parameter is NULL, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv6Scope</b> object from <b>DHDPv6ScopeList</b>
+that has a <b>SubnetAddress</b> field of <b>SubnetInfoV6</b> equal to the <b>SubnetAddress</b>
+passed in as a parameter to the current API. </p>
+</li><li><p><span><span> 
+</span></span>If the <b>DHCPv6Scope</b> object corresponding to <b>SubnetAddress</b>
+is not found, return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>Modify the <b>DHCPv6Scope</b> object information from <b>SubnetInfo</b>
+in <b>DHCPv6ScopeList</b>.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

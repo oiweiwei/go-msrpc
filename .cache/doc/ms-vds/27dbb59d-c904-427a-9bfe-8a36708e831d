@@ -1,0 +1,90 @@
+<div class="content"><p> </p><p>The MigrateDisks method migrates a set of <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disks</a></span>
+from one <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_890bb28d-df68-420f-a8bc-83899d34ad5c" data-linktype="relative-path">pack</a></span> to another
+pack.<a id="Appendix_A_Target_83"></a><a aria-label="Product behavior note 83" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_83" data-linktype="relative-path">&lt;83&gt;</a></p><dl>
+<dd>
+<div><pre> HRESULT MigrateDisks(
+   [in, size_is(lNumberOfDisks)] VDS_OBJECT_ID* pDiskArray,
+   [in] long lNumberOfDisks,
+   [in] VDS_OBJECT_ID TargetPack,
+   [in] long bForce,
+   [in] long bQueryOnly,
+   [out, size_is(lNumberOfDisks)] HRESULT* pResults,
+   [out] long* pbRebootNeeded
+ );
+</pre></div>
+</dd></dl><p><b>pDiskArray: </b>A pointer to an array of <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS
+object</a></span> IDs--one for each disk object that corresponds to the disks
+to migrate.</p><p><b>lNumberOfDisks: </b>The number of disks specified
+in pDiskArray.</p><p><b>TargetPack: </b>The VDS object ID of the pack
+object.</p><p><b>bForce: </b>A Boolean that determines whether disk
+migration is forced. When the client makes the call to migrate disks, the
+provider(s) that owns the disks is notified by the server that the disks are
+about to be migrated. The provider(s) can respond to this notification with an
+error.</p><dl>
+<dd>
+<p>If this parameter is set to a nonzero value, the
+migration operation will continue. If the parameter is set to zero and the
+provider(s) owning the disks responds to the notification with an error, the
+call to migrate the disks will fail.</p>
+</dd></dl><p><b>bQueryOnly: </b>A Boolean that determines whether
+the disk migration will actually happen.</p><p><b>pResults: </b>A pointer to an array of <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span>
+values that, if the operation is successfully completed, receives the HRESULTs
+returned by each disk migration request. There MUST be one HRESULT value in the
+array for each disk in pDiskArray. If any of the disks fail to migrate
+properly, the specific error code for that failure is received in the
+corresponding entry in pResults.</p><p><b>pbRebootNeeded: </b>A pointer to a Boolean that,
+if the operation is successfully completed, receives an indication of whether
+the user needs to reboot the remote machine in order to complete the migration
+process.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error HRESULT (as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><dl>
+<dd>
+<p>The HRESULTs in the array that pResults references
+return zero to indicate success or an implementation-specific nonzero error
+code if the migration operation on the associated disk fails.</p>
+</dd></dl><p><b>ERROR_SUCCESS</b> (0x00000000)</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <b>pDiskArray</b> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <b>pResults</b> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <b>pbRebootNeeded</b> is not NULL.</p>
+</li></ul><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>If this method is called against a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b11172af-9369-448d-9722-444eb52b21cb" data-linktype="relative-path">dynamic disk</a></span> which
+contains <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> extents, and
+the target pack is a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_425be2e8-ca0d-45db-afba-d9daee040d07" data-linktype="relative-path">basic disk</a></span> pack,
+then this method MUST return VDS_E_DISK_NOT_EMPTY.<a id="Appendix_A_Target_84"></a><a aria-label="Product behavior note 84" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_84" data-linktype="relative-path">&lt;84&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>For each VDS object identifier in the specified pDiskArray,
+migrate the disk that corresponds to the identifier to this pack. Set the
+status of each migrate operation to the corresponding value in the array that
+pResults specifies.</p>
+</li><li><p><span><span> 
+</span></span>For each successfully migrated disk, set the disk object&#39;s pack
+pointer to this pack object.</p>
+</li><li><p><span><span> 
+</span></span>If the disk migrations require a restart to take full effect, set
+the value of the Boolean that <b>pbRebootNeeded</b> references to TRUE;
+otherwise, FALSE.</p>
+</li><li><p><span><span> 
+</span></span>Return an HRESULT indicating failure or success; also return an
+HRESULT for each disk that is involved in the migration by using the pResults
+output parameter.</p>
+</li></ul><p>The server MAY perform the following:</p><ul><li><p><span><span> 
+</span></span>For each callback object that is registered in the list of
+callback objects, call the callback object&#39;s <span><a href="04a70bf6-208d-463a-b0a4-cc96e198ded1" data-linktype="relative-path">IVdsAdviseSink::OnNotify (section 3.3.4.3.1)</a></span>
+method by using a <span><a href="4f29057f-ab32-4a3d-9fcb-00ba3457cb42" data-linktype="relative-path">VDS_NOTIFICATION (section 2.2.1.3.9)</a></span>
+structure that has the following attributes:</p>
+<ul><li><p><span><span>  </span></span><b>objectType</b>
+member is the value VDS_NTT_PACK.</p>
+</li><li><p><span><span>  </span></span><b>Pack</b>
+member is a <span><a href="d502258f-be31-4298-882b-581f4804a344" data-linktype="relative-path">VDS_PACK_NOTIFICATION (section 2.2.1.3.2)</a></span>
+structure that has the following attributes:</p>
+<ul><li><p><span><span> 
+</span></span><b>ulEvent</b> is the value VDS_NF_PACK_MODIFY.</p>
+</li><li><p><span><span> 
+</span></span><b>packId</b> is the <span><a href="9186f1ce-04de-4df2-a8cf-3925a02fcd47" data-linktype="relative-path">VDS_OBJECT_ID (section 2.2.1.1.3)</a></span>
+value of this pack object.</p>
+</li></ul></li></ul></li></ul></div>

@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The TASK_XML_ERROR_INFO structure is a return value from the
+SchRpcRegisterTask (Opnum 1) method that contains additional information about
+an error in the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a></span> task definition.</p><dl>
+<dd>
+<div><pre> typedef struct _TASK_XML_ERROR_INFO {
+   DWORD line, column;
+   [string] wchar_t* node;
+   [string] wchar_t* value;
+ } TASK_XML_ERROR_INFO,
+  *PTASK_XML_ERROR_INFO;
+</pre></div>
+</dd></dl><p><b>line:</b>  Contains the line number
+where parsing failed. Carriage returns in the XML separate the string into
+lines. The first line is &#34;line one&#34;.</p><p><b>column:</b>  Contains the column where
+parsing failed. Indicates the character within the line, where the first
+character is &#34;column one&#34;.</p><p><b>node:</b>  Contains the attribute or
+element name that caused the error, or which is missing.</p><p><b>value:</b>  When this field is not
+empty, it contains the invalid value that caused the error.</p></div>

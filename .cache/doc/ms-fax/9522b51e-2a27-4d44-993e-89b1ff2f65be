@@ -1,0 +1,91 @@
+<div class="content"><p> </p><p>The <b>FAX_SetLoggingCategories (Opnum 22)</b> method is
+called by the client. On success, the server MUST modify the current logging
+categories for the fax server to which the client has connected. A logging
+category determines the errors or other events that the fax server records in
+the application event log.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_SetLoggingCategories(
+   [in] handle_t hBinding,
+   [in, unique, size_is(BufferSize)] 
+     const LPBYTE Buffer,
+   [in, range(0,FAX_MAX_RPC_BUFFER)] 
+     DWORD BufferSize,
+   [in] DWORD NumberCategories
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>)
+or <b>FAX_ConnectionRefCount</b> (section <span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>) method
+call used to connect to the fax server.</p><p><b>Buffer: </b>A pointer to an array of the <b>FAX_LOG_CATEGORY</b> (section
+<span><a href="6c692dec-d375-41f6-a6b8-670416245b9f" data-linktype="relative-path">2.2.11</a></span>)
+structure. Each structure contains the data to modify one logging category. The
+data includes a friendly name of the logging category, a numeric identifier for
+the category, and the current severity-level threshold for the category. For
+more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90011" data-linktype="external">[MSDN-FSCAR]</a></span>.</p><p><b>BufferSize: </b>A variable to return the size, in
+bytes, of the job information buffer. This variable MUST be set to a value
+between 1 and 1,048,576. The maximum size is <b>FAX_MAX_RPC_BUFFER</b> (section
+<span><a href="8bb4ba82-db45-44ea-9caa-af64d7448e6d" data-linktype="relative-path">2.2.82</a></span>).</p><p><b>NumberCategories: </b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+variable that contains the number of <b>FAX_LOG_CATEGORY</b> items that
+the method passes in the <i>Buffer</i> parameter.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The client&#39;s fax user account does
+  not have the <b>FAX_ACCESS_MANAGE_CONFIG</b> access rights required for this
+  call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. This error code is
+  returned under any of the following conditions: </p>
+  <p><span>§<span>  
+  </span></span>The value specified for the <i>Buffer</i> parameter is NULL.</p>
+  <p><span>§<span>  
+  </span></span>The value specified for the <i>BufferSize</i> parameter is 0.</p>
+  <p><span>§<span>  
+  </span></span>The fax server cannot parse the <b>FAX_LOG_CATEGORY</b> pointed
+  at by <i>Buffer</i>, possibly because the buffer data is corrupted.</p>
+  <p><span>§<span>  
+  </span></span>One of the pointer fields of one of the <b>FAX_LOG_CATEGORY</b>
+  pointed at by <i>Buffer</i> point to memory locations outside of the memory
+  block specified by the <i>Buffer</i> and <i>BufferSize</i> parameters.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_REGISTRY_CORRUPT</p>
+  <p>0x000003F7</p>
+  </td>
+  <td>
+  <p>The registry is corrupted. The fax server cannot write
+  to register the modified logging categories.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>The <b>FAX_LOG_CATEGORY</b> array MUST be serialized. For
+more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90003" data-linktype="external">[MSDN-FAX_LOG_CATEGORY]</a></span>.
+The variable data fields, such as strings, SHOULD be filled with the offset to
+the string from the beginning of the buffer and not the actual address.</p></div>

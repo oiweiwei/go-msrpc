@@ -1,0 +1,96 @@
+<div class="content"><p>The EnumFileScreenExceptions method returns all the <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_285a588e-ca67-4d67-90ec-c182c60c9d66" data-linktype="relative-path">file screen exceptions</a> from
+the <b>List of Persisted File Screen Exceptions</b> (section <a href="6226bc6a-8346-416f-83f9-3c121bdd6e59" data-linktype="relative-path">3.2.1.3</a>) that fall under
+the specified <i>path</i>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_FILESCREEN_MANAGER | 0x06)] HRESULT EnumFileScreenExceptions(
+   [in, defaultvalue(L&#34;&#34;)] BSTR path,
+   [in, defaultvalue(FsrmEnumOptions_None)] 
+     FsrmEnumOptions options,
+   [out, retval] IFsrmCommittableCollection** fileScreenExceptions
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>Contains the path for which to limit the
+return of file screen exceptions. Supports wildcards.</p><p><b>options: </b>Contains the <a href="d01ee30b-4ef8-4eec-8026-3b5a1ccda298" data-linktype="relative-path">FsrmEnumOptions (section 2.2.1.2.5)</a>
+to use when enumerating the file screen exception.</p><p><b>fileScreenExceptions: </b>Pointer to an <b>IFsrmCommittableCollection</b>
+interface pointer (section <a href="854116b8-04aa-4342-a308-da8b524ec0d9" data-linktype="relative-path">3.2.4.2.3</a>)
+that upon completion contains pointers to every file screen exception belonging
+to a path that is part of the specified path. The caller MUST release the
+collection when the caller is done with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>A file screen exception has not been applied to the
+  specified directory.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>fileScreenExceptions</i> parameter is NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045311</p>
+  <p>FSRM_E_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>This <i>options</i> parameter contains invalid <b>FsrmEnumOptions
+  </b>(section 2.2.1.2.5) values.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>If <i>fileScreenExceptions</i> is NULL, the server MUST return
+E_INVALIDARG.</p>
+</li><li><p><span><span> 
+</span></span>If <i>options</i> contains <b>FsrmEnumOptions_Asynchronous</b> or
+any value other than what is specified in section 2.2.1.2.5, the server MUST
+return FSRM_E_NOT_SUPPORTED.</p>
+</li></ul><p>Upon successful validation of parameters, the server MUST
+perform the following actions:</p><ul><li><p><span><span> 
+</span></span>Create a new <b>List of Non-Persisted File Screen Exception Instances</b>
+(section 3.2.1.3).</p>
+</li><li><p><span><span> 
+</span></span>Populate it with <a href="0902b6bb-43d6-4d38-bc17-a691e9245855" data-linktype="relative-path">Non-Persisted File Screen
+Exception Instances (section 3.2.1.3.2.2)</a> copied from the <a href="19db08c4-2033-47fc-b307-66b0488efcac" data-linktype="relative-path">Persisted File Screen
+Exceptions (section 3.2.1.3.2.1)</a> in the <b>List of Persisted File
+Screen Exceptions</b> according to the following rules:</p>
+<ul><li><p><span><span>  </span></span>If <i>path</i>
+ends with &#34;\*&#34;, the server MUST populate this new <b>List of
+Non-Persisted File Screen Exception Instances</b> with a copy of every
+Persisted File Screen Exception from the <b>List of Persisted File Screen
+Exceptions</b> that belongs to an immediate subdirectory of <i>path</i>.</p>
+</li><li><p><span><span>  </span></span>If <i>path</i>
+ends with &#34;\...&#34;, the server MUST populate this new <b>List of
+Non-Persisted File Screen Exception Instances</b> with a copy of every
+Persisted File Screen Exception from the <b>List of Persisted File Screen
+Exceptions</b> that recursively belongs to a subdirectory of <i>path</i>.</p>
+</li><li><p><span><span>  </span></span>If <i>path</i>
+does not end with &#34;\*&#34; or &#34;\...&#34;, the server MUST populate
+this new <b>List of Non-Persisted File Screen Exception Instances</b> with a
+copy of the only Persisted File Screen Exception for <i>path</i>.</p>
+</li><li><p><span><span>  </span></span>If
+a file screen exception does not exist for <i>path</i>, the server MUST return
+S_OK and MUST set <i>fileScreenExceptions</i> to an empty <b>IFsrmCommittableCollection</b>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Populate <i>fileScreenExceptions</i> with the <b>IFsrmFileScreenException</b>
+interface pointer (section <a href="4885c84b-4016-4d2d-8166-c60a540ec473" data-linktype="relative-path">3.2.4.2.28</a>)
+of every Non-Persisted File Screen Exception Instance in this <b>List of
+Non-Persisted File Screen Exception Instances</b>.</p>
+</li></ul></div>

@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>In the <b>DNS_RPC_FORWARDERS_DOTNET</b> structure all fields
+have same definition as specified in section <b>DNS_RPC_FORWARDERS_W2K</b>
+(section <span><a href="7c71bbd3-a46d-4f8e-bca7-9bc9e153454f" data-linktype="relative-path">2.2.5.2.10.1</a></span>), with
+the following exceptions:</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcForwardersDotNet {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   DWORD fRecurseAfterForwarding;
+   DWORD dwForwardTimeout;
+   PIP4_ARRAY aipForwarders;
+ } DNS_RPC_FORWARDERS_DOTNET,
+  *PDNS_RPC_FORWARDERS_DOTNET;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The structure
+version number. It MUST be set to 0x00000001. </p><p><b>dwReserved0:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p></div>

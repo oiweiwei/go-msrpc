@@ -1,0 +1,16 @@
+<div class="content"><p>This method is called by a client to request that the server
+clear its local cache of the entries in domain-controlled <a href="dd5b0f7e-45bb-4e22-933b-db6ec891a93f" data-linktype="relative-path">PartitionRoles (section 3.1.1.3.17)</a>,
+<a href="04e2333f-97d0-444c-9a3d-896f9d7be63b" data-linktype="relative-path">PartitionRoleMembers (section 3.1.1.3.18)</a>,
+and <a href="63e78320-0dae-437d-97f2-7f7aa8d20b7b" data-linktype="relative-path">PartitionUsers (section 3.1.1.3.16)</a>
+tables, if the server does such lookups with an active directory.</p><dl>
+<dd>
+<div><pre> HRESULT FlushPartitionCache();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, if the server is not
+configured to use active directory lookups for these tables (see the
+DSPartitionLookupEnabled property in the table in section <a href="36b8ca0d-2ffd-4207-9b11-d608fc9d1cba" data-linktype="relative-path">3.1.1.3.8</a>), it SHOULD
+immediately return S_OK.</p><p>Otherwise, the server SHOULD remove all entries from its
+cache, and fail if it cannot do so.</p></div>

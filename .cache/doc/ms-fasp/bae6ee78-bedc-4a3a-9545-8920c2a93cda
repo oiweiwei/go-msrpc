@@ -1,0 +1,38 @@
+<div class="content"><p> </p><p>This structure describes an <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span> authentication
+suite. An authentication suite is a proposal of a set of algorithms and
+parameters that specify the authentication method to be used. It also includes
+some modifiers and parameters for the authentication method.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_AUTH_SUITE2_10 {
+   [range(FW_AUTH_METHOD_INVALID+1, FW_AUTH_METHOD_MAX)] 
+     FW_AUTH_METHOD Method;
+   unsigned short wFlags;
+   [switch_type(FW_AUTH_METHOD), switch_is(Method)] 
+     union {
+     [case(FW_AUTH_METHOD_MACHINE_CERT,FW_AUTH_METHOD_USER_CERT)] 
+       struct {
+       [ref, string] wchar_t* wszCAName;
+     };
+     [case(FW_AUTH_METHOD_MACHINE_SHKEY)] 
+       struct {
+       [ref, string] wchar_t* wszSHKey;
+     };
+     [default]       ;
+   };
+ } FW_AUTH_SUITE2_10,
+  *PFW_AUTH_SUITE2_10;
+</pre></div>
+</dd></dl><p><b>Method:</b>  This field is of type <span><a href="59e71d46-4407-47d2-9cf5-8889fd3a74f2" data-linktype="relative-path">FW_AUTH_METHOD</a></span>.
+It specifies the authentication method that is suggested by this proposal
+suite.</p><p><b>wFlags:</b>  This flag is a combination
+of flags from <span><a href="ff03b48b-87cf-4020-bf0b-7f4c680d9b02" data-linktype="relative-path">FW_AUTH_SUITE_FLAGS</a></span>.</p><p><b>wszCAName:</b>  A pointer to a <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string. This string represents the name of the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">certificate authority</a></span>
+to be used to authenticate when using machine or user certificate methods.</p><p><b>wszSHKey:</b>  A pointer to a Unicode
+string. This string is the previous, manually shared secret that is used to
+authenticate when using preshared key methods.</p><p>If the method is machine certificate or user certificate,
+the <b>wszCAName</b> string MUST NOT be NULL, MUST be at least 1 character long,
+MUST NOT be greater than or equal to 10,000 characters, MUST NOT contain the
+pipe(|) character, and MUST be a CERT_X500_NAME_STR string type name encoded
+with X509_ASN_ENCODING. If the method is SHKEY, the <b>wszSHKey</b> string MUST
+NOT be NULL, MUST be at least 1 character long, MUST NOT be greater than or
+equal to 10,000 characters, and MUST NOT contain the pipe (|) character.</p></div>

@@ -1,0 +1,189 @@
+<div class="content"><p> </p><p>The NetrFileEnum method MUST return information about some
+or all open files on a <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>, depending on
+the parameters specified, or return an error code.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrFileEnum(
+   [in, string, unique] SRVSVC_HANDLE ServerName,
+   [in, string, unique] WCHAR* BasePath,
+   [in, string, unique] WCHAR* UserName,
+   [in, out] PFILE_ENUM_STRUCT InfoStruct,
+   [in] DWORD PreferedMaximumLength,
+   [out] DWORD* TotalEntries,
+   [in, out, unique] DWORD* ResumeHandle
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>An <span><a href="5f8329ee-1965-4ea1-ad35-3b29fbb63232" data-linktype="relative-path">SRVSVC_HANDLE (section 2.2.1.1)</a></span>
+pointer that identifies the server. The <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> MUST map this
+structure to an RPC binding handle (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> sections
+4.3.5 and 5.1.5.2). The server MUST ignore this parameter.</p><p><b>BasePath: </b>A pointer to a null-terminated
+UTF-16 string that specifies a path component.</p><p><b>UserName: </b>A pointer to a null-terminated
+UTF-16 string that specifies the name of a user.</p><p><b>InfoStruct: </b>A pointer to a structure, in the
+format of a <span><a href="91c92279-331e-4dba-8573-4aff01c0d859" data-linktype="relative-path">FILE_ENUM_STRUCT</a></span>.
+The FILE_ENUM_STRUCT structure has a <b>Level</b> field that specifies the type
+of structure to return. The <b>Level</b> member MUST be one of the values
+specified in section 2.2.4.10. </p><p><b>PreferedMaximumLength: </b>Specifies the preferred
+maximum length, in bytes, of returned data. If the value that is specified is <span><a href="789ec187-e01b-4da6-a7ff-9cb9e0857230" data-linktype="relative-path">MAX_PREFERRED_LENGTH</a></span>,
+the method MUST attempt to return all entries.</p><p><b>TotalEntries: </b>The total number of entries that
+could have been enumerated if the buffer had been big enough to hold all the
+entries.</p><p><b>ResumeHandle: </b>A pointer to a value that
+contains a handle that is used to continue an Open <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_866b0055-ceba-4acf-a692-98452943b981" data-linktype="relative-path">connection</a></span> search.
+The handle MUST be zero on the first call and left unchanged for subsequent
+calls. If ResumeHandle is NULL, a resume handle MUST NOT be stored. If this
+parameter is not NULL and the method returns ERROR_MORE_DATA, this parameter
+receives an implementation-specific nonzero value that can be passed in
+subsequent calls to this method to continue with the enumeration.</p><dl>
+<dd>
+<p>If this parameter is NULL or points to 0x00000000,
+the enumeration starts from the beginning of the list of the currently active
+connections.</p>
+</dd></dl><p><b>Return Values: </b>The method returns 0x00000000
+(NERR_Success) to indicate success; otherwise, it returns a nonzero error code.
+The method can take any specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>NERR_Success</p>
+  </td>
+  <td>
+  <p>The client request succeeded.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000007C</p>
+  <p>ERROR_INVALID_LEVEL</p>
+  </td>
+  <td>
+  <p>The system call level is not correct.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000EA</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>The client request succeeded. More entries are
+  available. Not all entries could be returned in the buffer size that is
+  specified by <i>PreferedMaximumLength</i>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>Not enough storage is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000084B</p>
+  <p>NERR_BufTooSmall</p>
+  </td>
+  <td>
+  <p>The client request succeeded. More entries are
+  available. The buffer size that is specified by <i>PreferedMaximumLength</i>
+  was too small to fit even a single entry.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to a NetrFileEnum message, the server MUST
+enumerate <b>Open</b> entries in <b>FileList</b> based on the value of the <i>ResumeHandle</i>
+parameter. For each entry, the server MUST query open properties by invoking
+the underlying server events as specified in <span><a href="../ms-cifs/d416ff7c-c536-406e-a951-4f04b2fd1d2b" data-linktype="relative-path">[MS-CIFS]</a></span>
+section <span><a href="../ms-cifs/ad0c8f3f-6d3e-4db1-8ca8-c50976e87d2e" data-linktype="relative-path">3.3.4.16</a></span>
+and <span><a href="../ms-smb2/5606ad47-5ee0-437a-817e-70c366052962" data-linktype="relative-path">[MS-SMB2]</a></span>
+section <span><a href="../ms-smb2/154b1eef-6580-44aa-ac57-f1f41874d693" data-linktype="relative-path">3.3.4.20</a></span>,
+providing <i>Open.GlobalFileId</i> as the input parameter. When the server
+receives STATUS_SUCCESS for an <b>Open.GlobalFileId</b> from either a CIFS or
+SMB2 server, the server MUST consider the received FILE_INFO_3 structure as
+valid, and the server MUST continue to query all other open entries on the
+server. The server MUST then return the information about some or all valid
+open entries on a server, depending on the qualifier parameters that are
+specified.</p><p>The <i>BasePath</i> parameter specifies a qualifier for the
+returned information. If this parameter is not NULL, the server MUST return
+only those FILE_INFO_3 structures received from CIFS and SMB2 servers, where
+the field fi3_path_name contains BasePath as the prefix. (A prefix is the path
+component up to a backslash.) If the <i>BasePath</i> parameter is not NULL and
+if the length of the BasePath string, including the terminating null character,
+is greater than 1,024, the server MUST fail the call with
+ERROR_INVALID_PARAMETER.</p><p>The <i>UserName</i> parameter MUST specify the name of a
+user. If this parameter is specified, the server MUST return only those
+FILE_INFO_3 structures received from CIFS and SMB2 servers where the field
+fi3_username  matches UserName. If the <i>UserName</i> parameter is not NULL
+and if the length of the UserName string, including the terminating null
+character, is greater than 1,024, the server MUST fail the call with
+ERROR_INVALID_PARAMETER.</p><p>The <i>BasePath</i> and <i>UserName</i> parameters have no
+role in determining the value of <i>ResumeHandle</i>. The server uses the <i>ResumeHandle</i>
+parameter to start the enumeration (as described in the rules that follow for
+processing the <i>ResumeHandle</i> parameter), and then applies these qualifier
+parameters, if specified, to restrict the returned results to only those items
+that pass the qualifier test (as described previously in this topic for <i>BasePath</i>
+and <i>UserName</i>) for returned information.</p><p>The <i>InfoStruct</i> parameter has a <b>Level</b> member.
+The valid values of <b>Level</b> are 2 and 3. If the <b>Level</b> member is not
+equal to one of the valid values, the server MUST fail the call with
+ERROR_INVALID_LEVEL.</p><p>The server MUST fill the return structures as follows.</p><p>If the <b>Level</b> member is 2, the server MUST return the
+information about <b>Opens</b> by filling the <span><a href="125dffd4-a09b-4842-b4f5-9eee7bbd4d6d" data-linktype="relative-path">FILE_INFO_2_CONTAINER</a></span>
+structure in the FileInfo field of the <i>InfoStruct</i> parameter as follows.
+The FILE_INFO_2_CONTAINER structure contains an array of <span><a href="b64cd630-e38a-49b8-9f35-bfd81d674892" data-linktype="relative-path">FILE_INFO_2</a></span>
+structures.</p><ul><li><p><span><span> 
+</span></span><b>fi2_id</b> MUST be set to <b>open.fi3_id</b>. </p>
+</li></ul><p>If the <b>Level</b> member is 3, the server MUST return <b>Opens</b>
+directly by filling the <span><a href="1f3c8ddb-08d2-4e4f-8dfc-9da13c46d161" data-linktype="relative-path">FILE_INFO_3_CONTAINER</a></span>
+structure in the <b>FileInfo</b> field of the <i>InfoStruct</i> parameter. The FILE_INFO_3_CONTAINER
+structure contains an array of <span><a href="1ce89330-a817-408d-975b-eb2852481238" data-linktype="relative-path">FILE_INFO_3</a></span>
+structures.</p><p>The <i>PreferedMaximumLength</i> parameter specifies the
+maximum number of bytes that the server can return for the <b>FileInfo</b> buffer.</p><p>If <i>PreferedMaximumLength</i> is insufficient to hold all
+the entries, the server MUST return the maximum number of entries that will fit
+in the <b>FileInfo</b> buffer and return ERROR_MORE_DATA. If this parameter is
+equal to MAX_PREFERRED_LENGTH, the server MUST return all the requested data.</p><p>If the server returns NERR_Success or ERROR_MORE_DATA, it
+MUST set the <i>TotalEntries</i> parameter equal to the total number of entries
+passing the qualifier filter (<i>BasePath</i> or <i>UserName</i>) that could
+have been enumerated from the current resume position.</p><p>If the <i>PreferedMaximumLength</i> is insufficient to hold
+all the entries and if the client has specified a <i>ResumeHandle</i>, the
+server MUST set <i>ResumeHandle</i> to some implementation-specific value that
+allows the server to continue with this enumeration on a subsequent call to
+this method with the same value for <i>ResumeHandle</i>.</p><p>The following rules specify processing of the <i>ResumeHandle</i>
+parameter:</p><ul><li><p><span><span> 
+</span></span>If the <i>ResumeHandle</i> parameter is either NULL or points to
+0x00000000, the enumeration MUST start from the beginning of the <b>FileList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ResumeHandle</i> parameter points to a nonzero value,
+the server MUST validate the  <i>ResumeHandle</i>.</p>
+<ul><li><p><span><span>  </span></span>If
+the value of <i>ResumeHandle</i> is less than the size of the <b>FileList</b>,
+the server MUST continue enumeration based on the value of <i>ResumeHandle</i>.
+The value of <i>ResumeHandle</i> specifies the index into the <b>FileList</b>
+after which enumeration is to begin.</p>
+</li><li><p><span><span>  </span></span>If
+the value of <i>ResumeHandle</i> is greater than or equal to the size of the <b>FileList</b>,
+the server MUST return NERR_Success and zero entries.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the client specified a <i>ResumeHandle</i> and if the server
+returns ERROR_MORE_DATA (0x000000EA), the server MUST set the <i>ResumeHandle</i>
+to the index of the last enumerated file open in the <b>FileList</b>.</p>
+</li></ul><p>Because the <i>ResumeHandle</i> specifies the index into the
+<b>FileList</b>, and the <b>FileList</b> can be modified between multiple
+requests, the results of a query spanning multiple requests using the <i>ResumeHandle</i>
+can be unreliable, offering either duplicate or missed open files.</p><p>The server SHOULD<a id="Appendix_A_Target_45"></a><a aria-label="Product behavior note 45" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_45" data-linktype="relative-path">&lt;45&gt;</a> enforce
+security measures to verify that the caller has the required permissions to
+execute this routine. If the caller does not have the required credentials, the
+server SHOULD<a id="Appendix_A_Target_46"></a><a aria-label="Product behavior note 46" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_46" data-linktype="relative-path">&lt;46&gt;</a> fail the call.</p></div>

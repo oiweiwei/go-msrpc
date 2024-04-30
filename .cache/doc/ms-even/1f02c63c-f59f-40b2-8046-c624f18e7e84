@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>EventLog Remoting Protocol APIs use the RPC_STRING to
+specify an ANSI string parameter.</p><dl>
+<dd>
+<div><pre> typedef struct _RPC_STRING {
+   unsigned short Length;
+   unsigned short MaximumLength;
+   [size_is(MaximumLength)] char* Buffer;
+ } RPC_STRING,
+  *PRPC_STRING;
+</pre></div>
+</dd></dl><p><b>Length:</b>  The number of bytes (not
+the number of characters) in the string. This does not include the null
+terminator.</p><p><b>MaximumLength:</b>  If the string is the
+empty string, this MUST be set to zero. Otherwise, it MUST be the number of
+bytes in the string, including the null terminator (that is, it MUST be equal
+to the <b>Length</b> member plus 1).</p><p><b>Buffer:</b>  Either a pointer to a
+buffer containing a null-terminated non-empty ANSI string or NULL to indicate
+an empty string.</p></div>

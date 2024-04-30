@@ -1,0 +1,244 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_SKD_STATE</b> structure contains information
+about the current state of a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_621e5d7b-d764-4196-b838-b52bf82b9380" data-linktype="relative-path">signing key descriptor</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcSigningKeyDescriptorState {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   GUID Guid;
+   FILETIME ftLastRolloverTime;
+   FILETIME ftNextRolloverTime;
+   DWORD dwState;
+   DWORD dwCurrentRolloverStatus;
+   [string] wchar_t* pwszActiveKey;
+   [string] wchar_t* pwszStandbyKey;
+   [string] wchar_t* pwszNextKey;
+   DWORD dwReserved;
+ } DNS_RPC_SKD_STATE,
+  *PDNS_RPC_SKD_STATE;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The structure
+version number; this MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>Guid:</b> A unique identifier for this
+signing key descriptor.</p><p><b>ftLastRolloverTime:</b> The time at which the
+last successful rollover event was performed for this signing key descriptor.
+This value MUST be 0 if no rollover has been performed on this signing key
+descriptor.</p><p><b>ftNextRolloverTime:</b> The time at which the
+next rollover for this signing key descriptor is scheduled. This MAY be 0 if no
+rollover event is scheduled. When the time comes for a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bba25ad2-df77-44a6-80ce-527528948f8e" data-linktype="relative-path">key
+rollover</a></span> to start, the signing key descriptor is added to the
+Rollover Queue, and its <b>dwCurrentRolloverStatus</b> is changed to DNS_SKD_STATUS_QUEUED.
+If another signing key descriptor in the zone is in the process of rolling, <b>ftNextRolloverTime</b>
+MAY represent a time in the past.</p><p><b>dwState:</b> The current state of this
+signing key descriptor. This MUST be set to one of the following values.<a id="Appendix_A_Target_49"></a><a aria-label="Product behavior note 49" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_49" data-linktype="relative-path">&lt;49&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DNS_SKD_STATE_ACTIVE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The signing key descriptor is active and in use for <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_d4d668bc-02db-4c88-a2e8-255f067104b4" data-linktype="relative-path">online
+  signing</a></span> of the zone.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_SKD_STATE_RETIRED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The signing key descriptor is no longer in use for
+  online signing.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwCurrentRolloverStatus:</b> The current
+rollover status of this signing key descriptor. This MUST be set to one of the
+following values, representing the various stages of key rollover as described
+in <span><a href="https://go.microsoft.com/fwlink/?LinkId=225979" data-linktype="external">[RFC4641]</a></span> and <span><a href="https://go.microsoft.com/fwlink/?LinkId=225980" data-linktype="external">[RFC5011]</a></span>:
+</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DNS_SKD_STATUS_NOT_ROLLING</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The signing key descriptor is not currently in the
+  process of rolling over keys.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_SKD_STATUS_QUEUED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>This signing key descriptor is waiting for another
+  rollover to complete before its rollover can begin. After the signing key
+  descriptor reaches the head of the Rollover Queue, the signing key descriptor
+  will move into the DNS_SKD_STATUS_ROLL_STARTED state.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_SKD_STATUS_ROLL_STARTED</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>This signing key descriptor has begun the process of
+  key rollover. Signing key descriptors representing <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_14f37d22-0ca6-4a19-b423-9b40463092b6" data-linktype="relative-path">ZSKs</a></span> will move
+  from this state to the DNS_SKD_STATUS_ZSK_WAITING_FOR_DNSKEY_TTL state, and
+  signing key descriptors representing KSKs will move from this state to the
+  DNS_SKD_STATUS_KSK_WAITING_FOR_DS_UPDATE state.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_SKD_STATUS_ZSK_WAITING_FOR_DNSKEY_TTL</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>This ZSK signing key descriptor is waiting for the
+  previous key to expire in all caching resolvers (it is waiting for the DNSKEY
+  <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_185c4181-772d-4458-bb90-ab0e11370a1c" data-linktype="relative-path">TTL</a></span>
+  to expire). The signing key descriptor will next move into the
+  DNS_SKD_STATUS_ZSK_WAITING_FOR_MAXZONE_TTL state.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_SKD_STATUS_ZSK_WAITING_FOR_MAXZONE_TTL</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>This ZSK signing key descriptor is waiting for the
+  signatures using the previous key to expire in all caching resolvers (it is
+  waiting for the largest record TTL to expire). This is the final state for
+  ZSK rollovers. The signing key descriptor will move into the
+  DNS_SKD_STATUS_NOT_ROLLING state when this portion of key rollover is
+  complete.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_SKD_STATUS_KSK_WAITING_FOR_DS_UPDATE</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>This KSK signing key descriptor is waiting for a DS
+  record corresponding to the new key to appear in the parent zone. If DS
+  records are found in the parent zone, the server MUST set the zone&#39;s
+  &#34;ParentHasSecureDelegation&#34; property to 0x00000001 and continue to
+  wait until the parent&#39;s DS record set includes the new key, at which point
+  the signing key descriptor will move into the
+  DNS_SKD_STATUS_KSK_WAITING_FOR_DS_TTL state. If no DS records are found in
+  the parent zone, the server MUST set the zone&#39;s &#34;ParentHasSecureDelegation&#34;
+  property to 0x00000000 and transition the signing key descriptor into the
+  DNS_SKD_STATUS_KSK_WAITING_FOR_DNSKEY_TTL state. If there is an error or if
+  the presence of a DS record set in the parent zone cannot be determined, the
+  server MUST continue to attempt to query for this record set for up to 15
+  minutes if the zone&#39;s &#34;ParentHasSecureDelegation&#34; property is
+  0x00000000 or until the PokeZoneKeyRollover command is received if it is
+  0x00000001.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_SKD_STATUS_KSK_WAITING_FOR_DS_TTL</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>This KSK signing key descriptor is waiting for the DS
+  record set in the parent zone to expire in all caching resolvers (it is
+  waiting for the parent DS TTL to expire). If the zone&#39;s
+  &#34;RFC5011KeyRollovers&#34; property is TRUE, the signing key descriptor
+  will next move into the DNS_SKD_STATUS_WAITING_FOR_5011_REMOVE_HOLD_DOWN
+  state. Otherwise, this is a final state for KSK rollovers, and signing key
+  descriptors will move into the DNS_SKD_STATUS_NOT_ROLLING state when this
+  portion of key rollover is complete.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_SKD_STATUS_KSK_WAITING_FOR_DNSKEY_TTL</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>This KSK signing key descriptor is waiting for the
+  previous key to expire in all caching resolvers (it is waiting for the DNSKEY
+  TTL to expire). This is a final state for KSK rollovers, and signing key
+  descriptors will move into the DNS_SKD_STATUS_NOT_ROLLING state when this
+  portion of key rollover is complete.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_SKD_STATUS_KSK_WAITING_FOR_5011_REMOVE_HOLD_DOWN</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>This KSK signing key descriptor is waiting for the
+  RFC5011 remove hold-down time before the revoked previous key can be removed.
+  This is a final state for KSK rollovers, and signing key descriptors will
+  move into the DNS_SKD_STATUS_NOT_ROLLING state when this portion of key
+  rollover is complete.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_SKD_STATUS_ROLL_ERROR</p>
+  <p>0x00000009</p>
+  </td>
+  <td>
+  <p>This signing key descriptor experienced an
+  unrecoverable error during the key rollover.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pwszActiveKey:</b> Signing key pointer string
+for the signing key descriptor&#39;s currently active key. This is the key that is
+currently being used to sign zone records.</p><p><b>pwszStandbyKey:</b> Signing key pointer
+string for the signing key descriptor&#39;s standby key. The key represented by
+this string has several different roles depending on the associated signing key
+descriptor&#39;s fIsKSK flag and its dwRolloverStatus:</p><ul><li><p><span><span> 
+</span></span>If the signing key descriptor&#39;s fIsKSK flag is TRUE,
+pwszStandbyKey represents the &#34;double signature&#34; key as described in
+[RFC4641] section 4.2.2, also depicted as the &#34;standby&#34; key in
+[RFC5011] section 6.</p>
+</li><li><p><span><span> 
+</span></span>If the signing key descriptor&#39;s fIsKSK flag is FALSE, <b>pwszStandbyKey</b>
+will generally be NULL unless the SKD is in the process of key rollover:</p>
+<ul><li><p><span><span>  </span></span>If
+the signing key descriptor&#39;s dwRolloverStatus is
+DNS_SKD_STATUS_ZSK_WAITING_FOR_DNSKEY_TTL, <b>pwszStandbyKey</b> represents the
+&#34;pre-publish&#34; key as described in [RFC4641] section 4.2.1.1.</p>
+</li><li><p><span><span>  </span></span>If
+the signing key descriptor&#39;s dwRolloverStatus is
+DNS_SKD_STATUS_ZSK_WAITING_FOR_MAXZONE_TTL, <b>pwszStandbyKey</b> represents
+the previously active key during the &#34;new RRSIGs&#34; phase of
+Pre-Publish Key Rollover, as described in [RFC4641] section 4.2.1.1. </p>
+</li></ul></li></ul><p><b>pwszNextKey:</b> Signing key pointer string
+for the signing key descriptor&#39;s next key. The key represented by this string
+has several different roles depending on the associated signing key
+descriptor&#39;s fIsKSK flag:</p><ul><li><p><span><span> 
+</span></span>If the signing key descriptor&#39;s fIsKSK flag is TRUE, <b>pwszNextKey</b>
+represents the next key that will be consumed during key rollover. It is not
+published in the zone and is not used to sign any other records. If the zone&#39;s
+&#34;RFC5011KeyRollovers&#34; property is TRUE, this key becomes the next
+&#34;standby&#34; key according to [RFC5011]. Otherwise, this key is used as
+the &#34;double signature&#34; key according to [RFC4641] as the signing key
+descriptor&#39;s key rollover process begins.</p>
+</li><li><p><span><span> 
+</span></span>If the signing key descriptor&#39;s fIsKSK flag is FALSE, <b>pwszNextKey</b>
+represents the &#34;pre-publish&#34; key as described in [RFC4641] section
+4.2.1.1. When the SKD is in the process of key rollover, <b>pwszNextKey</b> can
+be populated with a newly generated post-rollover &#34;pre-publish&#34; key.</p>
+</li></ul><p><b>dwReserved:</b> MUST be set to zero when sent
+and MUST be ignored on receipt.</p></div>

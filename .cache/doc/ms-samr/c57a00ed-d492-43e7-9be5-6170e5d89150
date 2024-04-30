@@ -1,0 +1,19 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c57a00ed-d492-43e7-9be5-6170e5d89150" data-linktype="external">msdn link</a></p><p>The ALIAS_INFORMATION_CLASS enumeration indicates how to
+interpret the <i>Buffer</i> parameter for <a href="599d6624-d93b-46de-827a-58eb0e7527bd" data-linktype="relative-path">SamrQueryInformationAlias</a>
+and <a href="ba787e4e-3a4b-47a2-aca3-c3ac2d2c511e" data-linktype="relative-path">SamrSetInformationAlias</a>.
+For a list of the structures associated with each enumeration, see section <a href="aaf25a55-22c3-4639-96c3-ef5ae3362cf4" data-linktype="relative-path">2.2.5.6</a>.</p><dl>
+<dd>
+<div><pre> typedef  enum _ALIAS_INFORMATION_CLASS
+ {
+   AliasGeneralInformation = 1,
+   AliasNameInformation,
+   AliasAdminCommentInformation
+ } ALIAS_INFORMATION_CLASS;
+</pre></div>
+</dd></dl><p><b>AliasGeneralInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_ALIAS_GENERAL_INFORMATION</b>
+structure (see section <a href="025890e9-c483-47e0-8761-632caf30be3f" data-linktype="relative-path">2.2.5.2</a>).</p><p><b>AliasNameInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_ALIAS_NAME_INFORMATION</b>
+structure (see section <a href="e32831e5-429e-493d-8cd2-297236f0792c" data-linktype="relative-path">2.2.5.3</a>).</p><p><b>AliasAdminCommentInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_ALIAS_ADM_COMMENT_INFORMATION</b>
+structure (see section <a href="0968f7a5-d87c-4fec-85c4-5287a7be6cf4" data-linktype="relative-path">2.2.5.4</a>).</p></div>

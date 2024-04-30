@@ -1,0 +1,68 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/8a542f26-243d-4341-ada5-8fed194bfcf8" data-linktype="external">msdn link</a></p><p>The LsarAddPrivilegesToAccount method is invoked to add new <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privileges</a> to an existing <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b76eee27-064e-461b-81a9-fbf41e49928b" data-linktype="relative-path">account object</a>.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarAddPrivilegesToAccount(
+   [in] LSAPR_HANDLE AccountHandle,
+   [in] PLSAPR_PRIVILEGE_SET Privileges
+ );
+</pre></div>
+</dd></dl><p><b>AccountHandle: </b>An open account object handle
+obtained from either <a href="841e3211-5be4-4b50-9f11-2d4941c40a30" data-linktype="relative-path">LsarCreateAccount (section 3.1.4.5.1)</a>
+or <a href="355e2952-abe4-47c3-96d9-a2f4bd01cf3d" data-linktype="relative-path">LsarOpenAccount (section 3.1.4.5.3)</a>.</p><p><b>Privileges: </b>Contains a list of privileges to
+add to the account.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have permissions to perform this
+  operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>Some of the parameters supplied were invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>AccountHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes two arguments:</p><p><i>AccountHandle</i>: An open handle to an account object.
+If the handle is not a valid context handle to an account object or <i>AccountHandle</i>.HandleType
+does not equal &#34;Account&#34;, the server MUST return
+STATUS_INVALID_HANDLE. The server MUST verify that <i>AccountHandle</i> grants
+access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a> with
+RequiredAccess set to ACCOUNT_ADJUST_PRIVILEGES.</p><p><i>Privileges</i>: A set of privileges to add to an account.
+Each privilege is a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_96b64af9-1896-4bde-b988-54d469c5affd" data-linktype="relative-path">LUID</a>-Attributes
+pair where the <b>Luid</b> field MUST match a LUID of a privilege on the server.
+The attributes replace any attributes of the privilege if one was associated
+with the account previously. Any LUID not recognized as valid by the server
+SHOULD cause the message to be rejected with STATUS_INVALID_PARAMETER.<a id="Appendix_A_Target_67"></a><a aria-label="Product behavior note 67" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_67" data-linktype="relative-path">&lt;67&gt;</a></p></div>

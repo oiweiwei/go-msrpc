@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The <b>DHCP_BIND_ELEMENT_ARRAY</b> structure defines an
+array of <span><a href="5e3cdfa2-d94f-48bb-a39e-676c3de13e1d" data-linktype="relative-path">DHCP_BIND_ELEMENT (section 2.2.1.2.80)</a></span>
+structures. This contains an array of IPv4 interface bindings over which the
+DHCP server receives DHCP packets. The first member contains the number of IPv4
+interface bindings present, and the second member points to the array of
+interface bindings over which the DHCP server is receiving DHCP packets.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_BIND_ELEMENT_ARRAY {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_BIND_ELEMENT Elements;
+ } DHCP_BIND_ELEMENT_ARRAY,
+  *LPDHCP_BIND_ELEMENT_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and specifies the number of interface bindings listed in the subsequent field
+the <b>Elements</b> member.</p><p><b>Elements:</b>  This is a pointer to an
+array of type DHCP_BIND_ELEMENT (section 2.2.1.2.80) structure and of
+length <b>NumElements</b> that contains information about the interface
+bindings of a DHCP server.</p></div>

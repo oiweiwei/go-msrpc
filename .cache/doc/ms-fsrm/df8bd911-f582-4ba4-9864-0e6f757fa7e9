@@ -1,0 +1,17 @@
+<div class="content"><p>The FsrmCollectionState enumeration defines the possible
+states of <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_c1e4c9ff-40a2-4abd-80db-3543889d80ca" data-linktype="relative-path">collection objects</a>
+in the File Server Resource Manager Protocol.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmCollectionState
+ {
+   FsrmCollectionState_Fetching = 1,
+   FsrmCollectionState_Committing = 2,
+   FsrmCollectionState_Complete = 3,
+   FsrmCollectionState_Cancelled = 4
+ } FsrmCollectionState;
+</pre></div>
+</dd></dl><p><b>FsrmCollectionState_Fetching: </b> The collection
+object is currently fetching data.</p><p><b>FsrmCollectionState_Committing:</b>  The collection
+object is currently committing its data.</p><p><b>FsrmCollectionState_Complete: </b> The collection
+object is complete and has stopped fetching or committing data.</p><p><b>FsrmCollectionState_Canceled:</b>  The
+collection&#39;s fetching or committing action was canceled.</p></div>

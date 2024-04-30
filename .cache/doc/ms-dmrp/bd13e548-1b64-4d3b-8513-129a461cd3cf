@@ -1,0 +1,50 @@
+<div class="content"><p> </p><p>The EnumDiskRegions method enumerates all used and free
+regions of a specified <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT EnumDiskRegions(
+   [in] LdmObjectId diskId,
+   [in, out] unsigned long* numRegions,
+   [out, size_is(,*numRegions)] REGION_INFO** regionList
+ );
+</pre></div>
+</dd></dl><p><b>diskId: </b>Specifies the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_aaaf2f1a-0b0a-487e-a0f0-c3510a6091b2" data-linktype="relative-path">OID</a></span>
+of the disk for which regions are being enumerated.</p><p><b>numRegions: </b>Pointer to the number of regions
+in <i>regionList</i>.</p><p><b>regionList: </b>Pointer to an array of <span><a href="5b6f15d9-489d-404c-88e8-64569315c65c" data-linktype="relative-path">REGION_INFO</a></span>
+structures.</p><p><b>Return Values: </b>The method MUST return 0 or a
+nonerror <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path"><span>HRESULT</span></a> on success, or
+an implementation-specific nonzero error code on failure (as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>;
+see also section <span><a href="31eea9e6-25b0-4309-8f4a-50c74fbedc9b" data-linktype="relative-path">2.2.1</a></span> for HRESULT
+values predefined by the Disk Management Remote Protocol).</p><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that the disk specified by <i>diskId</i> is in the list of
+storage objects.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>numRegions</i> and <i>regionList</i> are not NULL.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately, returning an appropriate error as its response to the
+client.</p><p>Otherwise, the server MUST compose a response to the client
+as follows:</p><ol><li><p><span>    </span>Enumerate all <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_753cb2b4-3f5c-48f3-97ef-61612c40499e" data-linktype="relative-path">disk
+region</a></span> objects residing on the specified disk.</p>
+</li><li><p><span>    </span>Allocate a
+buffer large enough to contain REGION_INFO structures describing all regions
+residing on the disk. </p>
+</li><li><p><span>    </span>The buffer MUST
+be populated with regions in the ascending order of the byte offset of the
+region relative to the beginning of the disk. </p>
+<p>All fields MUST contain meaningful
+values. If no <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> is
+associated, <b>volId</b> is 0. If there is no associated task, <b>taskId</b> is
+zero.</p>
+</li><li><p><span>    </span>Populate each
+REGION_INFO structure in the buffer with information about the region. </p>
+</li><li><p><span>    </span>The buffer MUST
+be returned to the client in the output parameter <i>regionList</i>. </p>
+</li><li><p><span>    </span>The number of
+REGION_INFO structures in the buffer MUST be returned in the output parameter <i>numRegions</i>.
+</p>
+</li><li><p><span>    </span>Return a
+response to the client that contains the output parameters mentioned previously
+and the status of the operation. </p>
+</li></ol><p>The server MUST NOT change the list of storage objects as
+part of processing this message.</p></div>

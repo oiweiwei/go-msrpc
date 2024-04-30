@@ -1,0 +1,16 @@
+<div class="content"><p>The <b>OS_TYPE</b> enumeration specifies information about
+the operating system (OS) type for use with Server Handle Key
+Values (section <a href="1393a76f-5851-49a5-bf14-7188ca6763b2" data-linktype="relative-path">2.2.3.10</a>).<a id="Appendix_A_Target_184"></a><a aria-label="Product behavior note 184" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_184" data-linktype="relative-path">&lt;184&gt;</a></p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   VER_NT_WORKSTATION = 0x00000001,
+   VER_NT_DOMAIN_CONTROLLER = 0x00000002,
+   VER_NT_SERVER = 0x00000003
+ } OS_TYPE;
+</pre></div>
+</dd></dl><p><b>VER_NT_WORKSTATION:  </b>The OS is a Windows NT
+operating system workstation.</p><p><b>VER_NT_DOMAIN_CONTROLLER:  </b>The OS is a Windows
+NT <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a>.</p><p><b>VER_NT_SERVER:  </b>The OS is a Windows NT server.
+A server that is also a domain controller is reported as <b>VER_NT_DOMAIN_CONTROLLER</b>,
+not <b>VER_NT_SERVER</b>.</p></div>

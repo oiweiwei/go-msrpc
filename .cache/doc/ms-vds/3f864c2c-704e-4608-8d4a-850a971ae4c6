@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The VDS_INTERCONNECT structure defines the address data of a
+physical interconnect, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90528" data-linktype="external">[SPC-3]</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_INTERCONNECT {
+   VDS_INTERCONNECT_ADDRESS_TYPE m_addressType;
+   unsigned long m_cbPort;
+   [size_is(m_cbPort)] byte* m_pbPort;
+   unsigned long m_cbAddress;
+   [size_is(m_cbAddress)] byte* m_pbAddress;
+ } VDS_INTERCONNECT;
+</pre></div>
+</dd></dl><p><b>m_addressType:</b>  A <span><a href="62160649-47bb-481c-a9f0-35f4c62bce1e" data-linktype="relative-path">VDS_INTERCONNECT_ADDRESS_TYPE</a></span>
+structure that stores the address type of the interconnect.</p><p><b>m_cbPort:</b>  The size, in bytes, of
+the interconnect address data for the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7593b869-71a9-4a02-bab3-377e51729067" data-linktype="relative-path">LUN</a></span> port to which <b>m_pbPort</b>
+refers.</p><p><b>m_pbPort:</b>  A pointer to the
+interconnect address data for the LUN port.</p><p><b>m_cbAddress:</b>  The size, in bytes, of
+the interconnect address data for the LUN to which <b>m_pbAddress</b> refers.</p><p><b>m_pbAddress:</b>  A pointer to the
+interconnect address data for the LUN.</p></div>

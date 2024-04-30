@@ -1,0 +1,60 @@
+<div class="content"><p> </p><p>A <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> calls
+R_QMGetObjectProperties to retrieve properties from a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_1a7f2b81-359e-4d2f-b4b4-f30bc7dd0d8f" data-linktype="relative-path">private queue</a></span>
+located on a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_2739ef12-a749-4540-9ac3-715968ef4df4" data-linktype="relative-path">supporting server</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT R_QMGetObjectProperties(
+   [in] handle_t hBind,
+   [in] struct OBJECT_FORMAT* pObjectFormat,
+   [in, range(1, 128)] DWORD cp,
+   [in, size_is(cp )] DWORD aProp[],
+   [in, out, size_is(cp )] PROPVARIANT apVar[]
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST be set to an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle as described in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>pObjectFormat: </b> MUST point to an <span><a href="80b7e1bd-7ce1-40b6-91ae-d2e6fb6bfd10" data-linktype="relative-path">OBJECT_FORMAT</a></span>
+structure which identifies an existing local private queue on the supporting
+server. MUST NOT be NULL. The <b>ObjType</b> member of the structure MUST be
+0x00000001. The <b>pQueueFormat</b> member MUST NOT be NULL.</p><p><b>cp: </b> MUST be set to the size (in elements) of
+the arrays <i>aProp</i> and <i>apVar</i>. The arrays <i>aProp</i> and <i>apVar</i>
+MUST have an identical number of elements and MUST contain at least one
+element.</p><p><b>aProp: </b> MUST be an array of <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_1eb17224-1b51-44ab-9bc3-7ad17ba87517" data-linktype="relative-path">queue
+property</a></span> identifiers of properties to retrieve. Each element MUST
+specify a value from the queue property identifiers table defined in <span><a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a></span>
+section <span><a href="../ms-mqmq/9d5bf18a-5c7d-4df0-9e92-014ac661ae8a" data-linktype="relative-path">2.3.1</a></span>.
+Each element MUST specify the queue property identifier for the corresponding
+queue property value at the same element index in <i>apVar</i>. MUST contain at
+least one element.</p><p><b>apVar: </b>MUST contain at least one element. On
+input, each element MUST be initialized to the appropriate VARTYPE for the
+associated property specified by the same element in <i>aProp</i>, or VT_NULL.
+Otherwise, the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> SHOULD return
+the failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+MQ_ERROR_PROPERTY (0xc00e0002).<a id="Appendix_A_Target_36"></a><a aria-label="Product behavior note 36" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_36" data-linktype="relative-path">&lt;36&gt;</a> On
+success, the server MUST populate the elements of this array with property
+values for the properties identified by the corresponding elements of <i>aProp</i>.</p><p><b>Return Values: </b> On success, this method MUST return
+MQ_OK (0x00000000); otherwise, the server MUST return a failure HRESULT,<a id="Appendix_A_Target_37"></a><a aria-label="Product behavior note 37" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_37" data-linktype="relative-path">&lt;37&gt;</a><a id="Appendix_A_Target_38"></a><a aria-label="Product behavior note 38" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_38" data-linktype="relative-path">&lt;38&gt;</a> and the
+client MUST treat all failure HRESULTs identically. Additionally, if a failure
+HRESULT is returned, the client MUST disregard all out-parameter values.</p><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol, as specified in [MS-RPCE].</p><p>This method is invoked at the dynamically assigned <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span>
+returned by the <span><a href="a8c96155-a7e6-41cb-95c7-6ab7e4f8214d" data-linktype="relative-path">R_QMGetRTQMServerPort</a></span>
+method when IP_HANDSHAKE (0x00000000) or IPX_HANDSHAKE (0x00000002) is the
+interface specified by the <i>fIP</i> parameter.</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Determine if input parameter values violate constraints specified
+above. If an invalid parameter is detected, the server MUST take no further
+action and return a failure HRESULT.</p>
+</li><li><p><span><span> 
+</span></span>Locate a <b>Queue</b> (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section <span><a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">3.1.1.2</a></span>)
+ADM element instance in the <b>QueueCollection</b> attribute of the server&#39;s <b>LocalQueueManager</b>
+([MS-MQDMPR] section <span><a href="28d7b06f-debc-45c6-b235-fa5029b10178" data-linktype="relative-path">3.1.1</a></span>) ADM element
+instance identified by the <i>pObjectFormat</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>If no entry is resolved, return a failure HRESULT.</p>
+</li><li><p><span><span> 
+</span></span>Copy the values of the <b>Queue</b> ADM element instance
+attributes indicated by <i>aProp</i> into <i>apVar</i>. Queue property
+identifiers and their associated <b>Queue</b> ADM element attributes are
+specified in section <span><a href="c8f396b4-83a8-4547-ae25-12171a66b9c7" data-linktype="relative-path">3.1.1.12</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Return MQ_OK (0x00000000).</p>
+</li></ul></div>

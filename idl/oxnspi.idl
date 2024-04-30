@@ -1,0 +1,409 @@
+import "ms-dtyp.idl";
+ 
+
+[
+ uuid (F5CC5A18-4264-101A-8C59-08002B2F8426),
+ version(56.0)
+ ]
+ 
+interface nspi {
+ 
+  typedef struct {
+    BYTE ab[16];
+  } FlatUID_r;
+ 
+  typedef struct PropertyTagArray_r {
+    DWORD cValues;
+    [range(0, 100001)] 
+[size_is(cValues + 1),
+length_is(cValues)] DWORD aulPropTag[];
+  } PropertyTagArray_r;
+ 
+  typedef struct Binary_r {
+    [range(0, 2097152)] DWORD cb;
+    [size_is(cb)] BYTE * lpb;
+  } Binary_r;
+ 
+  typedef struct ShortArray_r {
+    [range(0, 100000)] DWORD cValues;
+    [size_is(cValues)] short int * lpi;
+  } ShortArray_r;
+ 
+  typedef struct _LongArray_r {
+    [range(0, 100000)] DWORD cValues;
+    [size_is(cValues)] long * lpl;
+  } LongArray_r;
+ 
+  typedef struct _StringArray_r {
+    [range(0, 100000)] DWORD cValues;
+    [size_is(cValues)] [string] char ** lppszA;
+  } StringArray_r;
+ 
+  typedef struct _BinaryArray_r {
+    [range(0, 100000)] DWORD cValues;
+    [size_is(cValues)] Binary_r * lpbin;
+  } BinaryArray_r;
+ 
+  typedef struct _FlatUIDArray_r {
+    [range(0, 100000)] DWORD cValues;
+    [size_is(cValues)] FlatUID_r** lpguid;
+  } FlatUIDArray_r;
+ 
+  typedef struct _WStringArray_r {
+    [range(0, 100000)] DWORD cValues;
+    [size_is(cValues)] [string] wchar_t ** lppszW;
+  } WStringArray_r;
+ 
+  typedef struct _DateTimeArray_r {
+    [range(0, 100000)] DWORD cValues;
+    [size_is(cValues)] FILETIME * lpft;
+  } DateTimeArray_r;
+ 
+  typedef struct _PropertyValue_r PropertyValue_r;
+ 
+  typedef struct _PropertyRow_r {
+    DWORD Reserved;
+    [range(0, 100000)] DWORD cValues;
+    [size_is(cValues)] PropertyValue_r * lpProps;
+  } PropertyRow_r;
+ 
+  typedef struct _PropertyRowSet_r {
+    [range(0, 100000)] DWORD cRows;
+    [size_is(cRows)] PropertyRow_r aRow[];
+  } PropertyRowSet_r;
+ 
+  typedef struct _Restriction_r Restriction_r;
+ 
+  typedef struct _AndOrRestriction_r {
+    [range(0, 100000)] DWORD cRes;
+    [size_is(cRes)] Restriction_r * lpRes;
+  } AndRestriction_r, OrRestriction_r;
+ 
+  typedef struct _NotRestriction_r {
+    Restriction_r * lpRes;
+  } NotRestriction_r;
+ 
+  typedef struct _ContentRestriction_r {
+    DWORD ulFuzzyLevel;
+    DWORD ulPropTag;
+    PropertyValue_r * lpProp;
+  } ContentRestriction_r;
+ 
+  typedef struct _BitMaskRestriction_r {
+    DWORD relBMR;
+    DWORD ulPropTag;
+    DWORD ulMask;
+  } BitMaskRestriction_r;
+ 
+  typedef struct _PropertyRestriction_r {
+    DWORD relop;
+    DWORD ulPropTag;
+    PropertyValue_r * lpProp;
+  } PropertyRestriction_r;
+ 
+  typedef struct _ComparePropsRestriction_r {
+    DWORD relop;
+    DWORD ulPropTag1;
+    DWORD ulPropTag2;
+  } ComparePropsRestriction_r;
+ 
+  typedef struct _SubRestriction_r {
+    DWORD ulSubObject;
+    Restriction_r * lpRes;
+  } SubRestriction_r;
+ 
+  typedef struct _SizeRestriction_r {
+    DWORD relop;
+    DWORD ulPropTag;
+    DWORD cb;
+  } SizeRestriction_r;
+ 
+  typedef struct _ExistRestriction_r {
+    DWORD ulReserved1;
+    DWORD ulPropTag;
+    DWORD ulReserved2;
+  } ExistRestriction_r;
+ 
+ 
+  typedef [switch_type(long)] union _RestrictionUnion_r {
+    [case (0x00000000)] AndRestriction_r resAnd;
+    [case (0x00000001)] OrRestriction_r resOr;
+    [case (0x00000002)] NotRestriction_r resNot;
+    [case (0x00000003)] ContentRestriction_r resContent;
+    [case (0x00000004)] PropertyRestriction_r resProperty;
+    [case (0x00000005)] ComparePropsRestriction_r resCompareProps;
+    [case (0x00000006)] BitMaskRestriction_r resBitMask;
+    [case (0x00000007)] SizeRestriction_r resSize;
+    [case (0x00000008)] ExistRestriction_r resExist;
+    [case (0x00000009)] SubRestriction_r resSubRestriction;
+  } RestrictionUnion_r;
+ 
+  struct _Restriction_r {
+    DWORD rt;
+    [switch_is(/* XXX: type-cast: (long)*/rt)] RestrictionUnion_r res;
+  };
+ 
+  typedef struct PropertyName_r {
+    FlatUID_r * lpguid;
+    DWORD ulReserved;
+    long lID;
+  } PropertyName_r;
+ 
+ 
+  typedef struct _StringsArray {
+    [range(0, 100000)] DWORD Count;
+    [size_is(Count)] [string] char * Strings[];
+  } StringsArray_r;
+ 
+ 
+  typedef struct _WStringsArray {
+    [range(0, 100000)] DWORD Count;
+    [size_is(Count)] [string] wchar_t * Strings[];
+  } WStringsArray_r;
+ 
+  typedef struct _STAT {
+    DWORD SortType;
+    DWORD ContainerID;
+    DWORD CurrentRec;
+    long Delta;
+    DWORD NumPos;
+    DWORD TotalRecs;
+    DWORD CodePage;
+    DWORD TemplateLocale;
+    DWORD SortLocale;
+  }STAT;
+ 
+ 
+  typedef [switch_type(long)] union _PV_r {
+    [case (0x00000002)] short int i;
+    [case (0x00000003)] long l;
+    [case (0x0000000B)] unsigned short int b;
+    [case (0x0000001E)] [string] char * lpszA;
+    [case (0x00000102)] Binary_r bin;
+    [case (0x0000001F)] [string] wchar_t * lpszW;
+    [case (0x00000048)] FlatUID_r * lpguid;
+    [case (0x00000040)] FILETIME ft;
+    [case (0x0000000A)] long err;
+    [case (0x00001002)] ShortArray_r MVi;
+    [case (0x00001003)] LongArray_r MVl;
+    [case (0x0000101E)] StringArray_r MVszA;
+    [case (0x00001102)] BinaryArray_r MVbin;
+    [case (0x00001048)] FlatUIDArray_r MVguid;
+    [case (0x0000101F)] WStringArray_r MVszW;
+    [case (0x00001040)] DateTimeArray_r MVft;
+    [case (0x00000001, 0x0000000D)] long lReserved;
+  } PROP_VAL_UNION;
+ 
+  struct _PropertyValue_r {
+    DWORD ulPropTag;
+    DWORD ulReserved;
+    [switch_is (/* XXX: type-cast: (long)*/(ulPropTag & 0x0000FFFF))] 
+PROP_VAL_UNION Value;
+  };
+ 
+  typedef [context_handle ] void * NSPI_HANDLE;
+ 
+ 
+ 
+//opnum 0
+long 
+   NspiBind(
+     [in] handle_t hRpc,
+     [in] DWORD dwFlags,
+     [in] STAT * pStat,
+     [in,out,unique] FlatUID_r * pServerGuid,
+     [out,ref] NSPI_HANDLE * contextHandle 
+     );
+ 
+//opnum 1
+DWORD
+    NspiUnbind(
+       [in,out] NSPI_HANDLE * contextHandle, 
+       [in] DWORD Reserved
+       );
+ 
+  //opnum 2
+  long
+    NspiUpdateStat(
+   [in] NSPI_HANDLE hRpc,
+   [in] DWORD Reserved,
+   [in,out] STAT * pStat,
+   [in,out,unique] long * plDelta
+   );
+ 
+  //opnum 3
+  long
+    NspiQueryRows(
+  [in] NSPI_HANDLE hRpc,
+  [in] DWORD dwFlags, 
+  [in, out] STAT * pStat,
+  [in, range(0, 100000)] DWORD dwETableCount,
+  [in, unique, size_is(dwETableCount)] DWORD * lpETable,
+  [in] DWORD Count,
+  [in,unique] PropertyTagArray_r * pPropTags,
+  [out] PropertyRowSet_r ** ppRows 
+  );
+ 
+  //opnum 4
+  long
+    NspiSeekEntries(
+    [in] NSPI_HANDLE hRpc,
+    [in] DWORD Reserved, 
+    [in,out] STAT * pStat,
+    [in] PropertyValue_r * pTarget,
+    [in, unique] PropertyTagArray_r * lpETable,
+    [in,unique] PropertyTagArray_r * pPropTags,
+    [out] PropertyRowSet_r ** ppRows 
+    );
+ 
+  //opnum 5
+  long
+    NspiGetMatches(
+   [in] NSPI_HANDLE hRpc,
+   [in] DWORD Reserved1,
+   [in,out] STAT * pStat,
+   [in, unique] PropertyTagArray_r * pReserved,
+   [in] DWORD Reserved2,
+   [in,unique] Restriction_r * Filter,
+   [in,unique] PropertyName_r * lpPropName,
+   [in] DWORD ulRequested,
+   [out] PropertyTagArray_r ** ppOutMIds,
+   [in,unique] PropertyTagArray_r * pPropTags,
+   [out] PropertyRowSet_r ** ppRows 
+   );
+ 
+  //opnum 6
+  long
+    NspiResortRestriction(
+  [in] NSPI_HANDLE hRpc,
+  [in] DWORD Reserved,
+  [in,out] STAT * pStat,
+  [in] PropertyTagArray_r * pInMIds,
+  [in,out] PropertyTagArray_r ** ppOutMIds
+  );
+ 
+  //opnum 7
+  long
+    NspiDNToMId(
+[in] NSPI_HANDLE hRpc,
+[in] DWORD Reserved,
+[in] StringsArray_r * pNames,
+[out] PropertyTagArray_r ** ppOutMIds
+);
+ 
+  //opnum 8
+  long
+     NspiGetPropList(
+    [in] NSPI_HANDLE hRpc,
+    [in] DWORD dwFlags,
+    [in] DWORD dwMId,
+    [in] DWORD CodePage,
+    [out] PropertyTagArray_r ** ppPropTags 
+    );
+ 
+  //opnum 9
+  long
+    NspiGetProps(
+ [in] NSPI_HANDLE hRpc,
+ [in] DWORD dwFlags, 
+ [in] STAT * pStat,
+ [in,unique] PropertyTagArray_r * pPropTags,
+ [out] PropertyRow_r ** ppRows
+ );
+ 
+  //opnum 10
+  long
+    NspiCompareMIds(
+    [in] NSPI_HANDLE hRpc,
+    [in] DWORD Reserved,
+    [in] STAT * pStat,
+    [in] DWORD MId1,
+    [in] DWORD MId2,
+    [out] long * plResult
+    );
+ 
+  //opnum 11
+  long
+    NspiModProps(
+    [in] NSPI_HANDLE hRpc,
+    [in] DWORD Reserved, 
+    [in] STAT * pStat,
+    [in, unique] PropertyTagArray_r * pPropTags,
+    [in] PropertyRow_r * pRow
+    );
+ 
+  //opnum 12
+  long
+    NspiGetSpecialTable(
+   [in] NSPI_HANDLE hRpc,
+   [in] DWORD dwFlags,
+   [in] STAT * pStat,
+   [in, out] DWORD * lpVersion, 
+   [out] PropertyRowSet_r ** ppRows
+   );
+ 
+  //opnum 13
+  long
+    NspiGetTemplateInfo(
+   [in] NSPI_HANDLE hRpc,
+   [in] DWORD dwFlags, 
+   [in] DWORD ulType,
+   [in,unique] [string] char * pDN,
+   [in] DWORD dwCodePage,
+   [in] DWORD dwLocaleID,
+   [out] PropertyRow_r ** ppData
+);
+ 
+  //opnum 14
+  long
+    NspiModLinkAtt(
+    [in] NSPI_HANDLE hRpc,
+    [in] DWORD dwFlags, 
+    [in] DWORD ulPropTag,
+    [in] DWORD dwMId,
+    [in] BinaryArray_r * lpEntryIds
+    );
+ 
+// opnum 15
+void Opnum15NotUsedOnWire(void);
+ 
+  //opnum 16
+  long
+    NspiQueryColumns(
+     [in] NSPI_HANDLE hRpc,
+     [in] DWORD Reserved,
+     [in] DWORD dwFlags, 
+     [out] PropertyTagArray_r ** ppColumns
+     );
+ 
+// opnum 17
+void Opnum17NotUsedOnWire(void);
+ 
+// opnum 18
+void Opnum18NotUsedOnWire(void);
+ 
+  //opnum 19
+  long
+    NspiResolveNames(
+     [in] NSPI_HANDLE hRpc,
+     [in] DWORD Reserved, 
+     [in] STAT * pStat,
+     [in, unique] PropertyTagArray_r * pPropTags,
+     [in] StringsArray_r * paStr,
+     [out] PropertyTagArray_r ** ppMIds,
+     [out] PropertyRowSet_r ** ppRows
+     );
+ 
+  //opnum 20
+  long
+    NspiResolveNamesW(
+      [in] NSPI_HANDLE hRpc,
+      [in] DWORD Reserved, 
+      [in] STAT * pStat,
+      [in, unique] PropertyTagArray_r * pPropTags,
+      [in] WStringsArray_r * paWStr,
+      [out] PropertyTagArray_r ** ppMIds,
+      [out] PropertyRowSet_r ** ppRows
+      );
+ 
+}

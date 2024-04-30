@@ -1,0 +1,295 @@
+<div class="content"><p>The SetMediaControl packet is transmitted from a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call</a>.
+Sending this packet MUST enable or disable control actions on the media stream
+that is associated with the specified line, address, or call. </p><p>Media control actions can be triggered by the detection of
+specified digits, media types, custom tones, and call states. The new specified
+media controls replace all the ones that were in effect for this line, address,
+or call prior to this request.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hLine</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hCall</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSelect</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpDigitList</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDigitNumEntries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpMediaList</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMediaNumEntries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpToneList</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwToneNumEntries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpCallStateList</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallStateNumEntries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>An unsigned 32-bit
+integer. The identifier of the function that will be invoked on the remote
+server. This value MUST be set to 79.</p><dl>
+<dd>
+<p><b>Return Values</b></p>
+</dd>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>, this field
+MUST contain the result of the encapsulated telephony request. A value of 0
+indicates success, and a <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path">LINEERR_Constants</a>
+value indicates failure. The remote server MUST complete this call
+synchronously.</p>
+</dd>
+<dd>
+<p>Returns zero if the function succeeds or an error
+number if an error occurs. Common return values are as follows:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>LINEERR_INVALADDRESSID</p>
+  </td>
+  <td>
+  <p>0x80000011</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALPOINTER</p>
+  </td>
+  <td>
+  <p>0x80000035</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALCALLHANDLE</p>
+  </td>
+  <td>
+  <p>0x80000018</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALTONELIST</p>
+  </td>
+  <td>
+  <p>0x8000003D</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALCALLSELECT</p>
+  </td>
+  <td>
+  <p>0x8000001B</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_NOMEM</p>
+  </td>
+  <td>
+  <p>0x80000044</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALCALLSTATELIST</p>
+  </td>
+  <td>
+  <p>0x8000001D</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x80000049</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALDIGITLIST</p>
+  </td>
+  <td>
+  <p>0x80000026</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONFAILED</p>
+  </td>
+  <td>
+  <p>0x80000048</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALLINEHANDLE</p>
+  </td>
+  <td>
+  <p>0x8000002B</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_RESOURCEUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x8000004B</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALMEDIALIST</p>
+  </td>
+  <td>
+  <p>0x8000002E</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>hLine (4 bytes): </b>An <a href="9a80ee5c-cf55-4a86-bd67-173059d6ff3c" data-linktype="relative-path">HLINE</a>. The handle to a
+line. This field MUST have been obtained by sending the <a href="2759c744-e040-4c5d-b4b5-215d391f0490" data-linktype="relative-path">Open</a> packet.</p><p><b>dwAddressID (4 bytes): </b>An unsigned 32-bit
+integer. An address on the particular open line device. An address identifier
+is permanently associated with an address; the identifier remains constant
+across operating system upgrades. TAPI does not validate this parameter when
+this function is called. A valid value of dwAddressID is in the range 0 to
+dwNumAddresses –1. The client obtains dwNumAddresses from the <a href="f236ea7a-c8a2-4681-b87c-9f0e07a01dc6" data-linktype="relative-path">LINEDEVCAPS</a> obtained by
+sending a <a href="ee317c21-100e-48a3-bcce-e9991efff889" data-linktype="relative-path">GetDevCaps</a>
+packet to the remote server.</p><p><b>hCall (4 bytes): </b>An <a href="7f4089a0-7432-4ef0-8eeb-5aafe407c07e" data-linktype="relative-path">HCALL</a>. The handle to a
+call. One way of obtaining a valid hCall is by sending the <a href="c9acdfde-22de-43ff-b491-23a9ed72fb31" data-linktype="relative-path">MakeCall</a> packet. Also a
+valid hCall can be obtained from <a href="0a8905e3-647f-4e98-aca8-2fa77eedb2e7" data-linktype="relative-path">LINE_CALLSTATE</a> packet sent
+by the remote server. The call state of hCall can be any state.</p><p><b>dwSelect (4 bytes): </b>An unsigned 32-bit
+integer. Specifies whether the requested media control is associated with a
+single call; is the default for all calls on an address; or is the default for
+all calls on a line. This parameter MUST use the <a href="204f1186-238f-4465-8c1c-db5e56a185ab" data-linktype="relative-path">LINECALLSELECT_Constants</a>. </p><p><b>lpDigitList (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, of a <a href="fc6813e6-e786-4e9e-8351-27108a62ab7a" data-linktype="relative-path">LINEMEDIACONTROLDIGIT</a>
+packet in the VarData field that contains the digits to trigger media control
+actions. </p><p><b>dwDigitNumEntries (4 bytes): </b>An unsigned
+32-bit integer. This value is equal to the number of entries in the <b>lpDigitList</b>
+multiplied by the size of LINEMEDIACONTROLDIGIT. TAPI does not validate this
+parameter when this function is called. </p><p><b>lpMediaList (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, of a <a href="3f91331f-86b3-47ed-bd8b-23bb19e94cc5" data-linktype="relative-path">LINEMEDIACONTROLMEDIA</a>
+packet in the VarData field that contains a media type to monitor, media-type
+specific information such as duration, and a media control field. </p><p><b>dwMediaNumEntries (4 bytes): </b>An unsigned
+32-bit integer. This value is equal to the number of entries in the <b>lpMediaList</b>
+multiplied by the size of LINEMEDIACONTROLMEDIA. TAPI does not validate this
+parameter when this function is called. </p><p><b>lpToneList (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, of a <a href="3bf6a9c0-885f-41db-81c8-02cf14066ddd" data-linktype="relative-path">LINEMEDIACONTROLTONE</a>
+packet in the VarData field that contains a description of a tone to monitor,
+the duration of the tone, and a media-control field. </p><p><b>dwToneNumEntries (4 bytes): </b>An unsigned 32-bit
+integer. This value is equal to the number of entries in the <b>lpToneList</b>
+multiplied by the size of LINEMEDIACONTROLTONE. TAPI does not validate this
+parameter when this function is called. </p><p><b>lpCallStateList (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, of a <a href="b0cbbe11-1eee-431d-a8c2-1512557764d9" data-linktype="relative-path">LINEMEDIACONTROLCALLSTATE</a>
+packet in the VarData field that contains a call state and a media control
+action. </p><p><b>dwCallStateNumEntries (4 bytes): </b>An unsigned
+32-bit integer. This value is equal to the number of entries in the <b>lpCallStateList</b>
+multiplied by the size of LINEMEDIACONTROLCALLSTATE. TAPI does not validate
+this parameter when this function is called.</p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>VarData (variable): </b>MUST Contain an array of
+LINEMEDIACONTROLDIGIT packets that is indicated in the lpDigitList field; an
+array of LINEMEDIACONTROLMEDIA packets that is indicated in the lpMediaList
+field; an array of LINEMEDIACONTROLTONE packets that is indicated in the
+lpToneList field; and an array of LINEMEDIACONTROLCALLSTATE packets that is
+indicated in the lpCallStateList field.</p><dl>
+<dd>
+<p>The contents of this field are DWORD-aligned.</p>
+</dd></dl></div>

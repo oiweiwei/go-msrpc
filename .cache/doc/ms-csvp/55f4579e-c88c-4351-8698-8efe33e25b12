@@ -1,0 +1,76 @@
+<div class="content"><p>The CprepCreateNewSmbShares3 method retrieves the list of IP
+addresses, with <code>\\</code> prepended. This method can be
+used to access a <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_a49a79ea-dac7-4016-9a84-cf87161db7e3" data-linktype="relative-path">share</a>
+via an implementation-specific mechanism. </p><p>The output strings have the form </p><ul><li><p><span><span> 
+</span></span><code>\\&lt;IPv4 address&gt;</code>  </p>
+</li></ul><p>or</p><ul><li><p><span><span> 
+</span></span><code>\\[&lt;IPv6 address&gt;]</code>. </p>
+<div><pre> HRESULT CprepCreateNewSmbShares3(
+   [out, string, size_is(,*pdwNumberOfPaths)] 
+     LPWSTR** ppwszSharePaths,
+   [out] DWORD* pdwNumberOfPaths
+ );
+</pre></div>
+</li></ul><p><b>ppwszSharePaths: </b>On successful return,
+specifies the address of a pointer to a <i>*pdwNumberOfPaths</i>-sized block of
+<a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a>s.
+The server allocates and initializes the returned buffer. Callers MUST free
+this memory when they are finished with it.</p><p><b>pdwNumberOfPaths: </b>The number of file share
+path names returned in <i>ppwszSharePaths</i>.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method implementation.
+For more information about <i>Win32</i> error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 7.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Construct or retrieve one or more IP addresses that are prepended
+with <code>\\</code>, for the server, that allow access to
+shares on that server represented by <b>ClusPrepShares</b> in the <b>ClusPrepShareList</b>,
+via an implementation-specific mechanism.</p>
+</li><li><p><span><span> 
+</span></span>Allocate a buffer, and copy the list of IP address strings to the
+buffer. Each IP address string MUST have at least one NULL terminator character
+appended to the file share path name string.</p>
+</li><li><p><span><span> 
+</span></span>Initialize <i>pdwNumberOfPaths</i> to the number of <a href="../ms-dtyp/d7edc080-e499-4219-a837-1bc40b64bb04" data-linktype="relative-path">BYTE</a>s
+being returned.</p>
+</li></ul><p>The client is responsible for freeing the returned memory
+allocation.</p></div>

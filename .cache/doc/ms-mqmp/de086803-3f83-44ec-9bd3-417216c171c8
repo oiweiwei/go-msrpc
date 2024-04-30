@@ -1,0 +1,372 @@
+<div class="content"><p> </p><p>A <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> calls
+rpc_QMOpenQueueInternal to obtain a local <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span> context
+handle, to determine if a queue is located at a remote <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue
+manager</a></span> (section <span><a href="b2fc68c7-ba87-47ec-9b98-780f1202282a" data-linktype="relative-path">4.2</a></span>), or to obtain
+a local context handle for an opened <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_91d29587-3e24-439b-8f2c-c2a43be99afc" data-linktype="relative-path">remote queue</a></span>. If the
+call to RemoteQMOpenQueue (<span><a href="../ms-mqqp/c9a334a7-89b4-4e75-902a-bc029e29a072" data-linktype="relative-path">[MS-MQQP]</a></span>
+section <span><a href="../ms-mqqp/0dbcb6fd-ed56-44c3-9c02-e9fa2d7798b3" data-linktype="relative-path">3.1.4.3</a></span>)
+fails, the result MUST be returned to the client, and the remote open queue
+sequence is discontinued. In the case of failure, any state changes need to be
+rolled back.</p><dl>
+<dd>
+<div><pre> HRESULT rpc_QMOpenQueueInternal(
+   [in] handle_t hBind,
+   [in] QUEUE_FORMAT* pQueueFormat,
+   [in] DWORD dwDesiredAccess,
+   [in] DWORD dwShareMode,
+   [in] DWORD hRemoteQueue,
+   [in, out, ptr, string] WCHAR** lplpRemoteQueueName,
+   [in] DWORD* dwpQueue,
+   [in] GUID* pLicGuid,
+   [in, string] WCHAR* lpClientName,
+   [out] DWORD* pdwQMContext,
+   [out] RPC_QUEUE_HANDLE* phQueue,
+   [in] DWORD dwRemoteProtocol,
+   [in] DWORD dwpRemoteContext
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b>MUST be set to an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle as described in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>pQueueFormat: </b>MUST be a pointer to a <b>QUEUE_FORMAT</b>
+(<span><a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a></span>
+section <span><a href="../ms-mqmq/905e154a-6123-42a9-86cb-e0a3169820f2" data-linktype="relative-path">2.2.7</a></span>)
+structure, which identifies an existing queue to be opened. MUST NOT be NULL
+and MUST conform to the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_390ae273-7109-44eb-981f-aa157e6b37c0" data-linktype="relative-path">format name</a></span> syntax
+rules defined in [MS-MQMQ].</p><p><b>dwDesiredAccess: </b>A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+that specifies the access mode requested for the queue. The access mode defines
+the set of operations which can be invoked using the returned queue handle. The
+value MUST be one of the following: </p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQ_RECEIVE_ACCESS</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST permit
+  only the following operations using the returned queue handle:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>Message peek</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>Message receive (peek and delete)</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>Queue purge</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>MQ_SEND_ACCESS</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The server MUST permit only message send operations
+  using the returned queue handle.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_PEEK_ACCESS</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The server MUST permit only message peek operations
+  using the returned queue handle.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_RECEIVE_ACCESS|MQ_ADMIN_ACCESS</p>
+  <p>0x00000081</p>
+  </td>
+  <td>
+  <p>The returned queue handle MUST perform operations on
+  the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_311107bb-e41a-4794-82b6-9ebf83172cb5" data-linktype="relative-path">outgoing queue</a></span>
+  associated with the queue identified by <i>pQueueFormat</i>. Additionally,
+  the server MUST permit only the following operations using the returned queue
+  handle:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>Message peek</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>Message receive (peek and delete)</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>Queue purge</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>MQ_PEEK_ACCESS|MQ_ADMIN_ACCESS</p>
+  <p>0x000000a0</p>
+  </td>
+  <td>
+  <p>The returned queue handle MUST perform operations on
+  the outgoing queue associated with the queue identified by <i>pQueueFormat</i>.
+  Additionally, the server MUST permit only message peek operations using the
+  returned queue handle.</p>
+  </td>
+ </tr></tbody></table><dl>
+<dd>
+<p>If <i>pQueueFormat</i> contains an HTTP or multicast
+format name, <span><a href="47482511-3c4a-4d7e-8edb-46715e89e4af" data-linktype="relative-path">R_QMOpenRemoteQueue (section 3.1.4.2)</a></span>
+MUST be MQ_SEND_ACCESS (0x00000002).</p>
+</dd>
+<dd>
+<p>If <i>pQueueFormat</i> identifies a sub-queue, <i>dwDesiredAccess</i>
+MUST NOT be MQ_SEND_ACCESS (0x00000002).</p>
+</dd>
+<dd>
+<p>If <i>pQueueFormat</i> identifies a system, journal,
+machine, or connector queue, <i>dwDesiredAccess</i> MUST be MQ_RECEIVE_ACCESS
+(0x00000001) or MQ_PEEK_ACCESS (0x00000020).</p>
+</dd>
+<dd>
+<p>If <i>pQueueFormat</i> identifies a remote queue, <i>dwDesiredAccess</i>
+MUST be MQ_RECEIVE_ACCESS (0x00000001) or MQ_PEEK_ACCESS (0x00000020).</p>
+</dd></dl><p><b>dwShareMode: </b> Specifies the exclusivity level
+for the opened queue. The value MUST be one of the following: </p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQ_DENY_NONE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The queue is not opened exclusively.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_DENY_RECEIVE_SHARE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The queue is opened for exclusive read access. If the
+  queue has already been opened for read access, the server MUST return a
+  failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>.
+  If the queue is opened successfully for exclusive read access, subsequent
+  attempts to open the same queue for read access MUST return a failure HRESULT
+  until the queue has been closed.</p>
+  </td>
+ </tr></tbody></table><dl>
+<dd>
+<p>If <i>dwDesiredAccess</i> is MQ_SEND_ACCESS (0x00000002),
+<i>dwShareMode</i> MUST be MQ_DENY_NONE (0x00000000).</p>
+</dd></dl><p><b>hRemoteQueue: </b>MUST be 0x00000000, or MUST
+contain a <b>DWORD</b> value obtained from the <i>phQueue</i> out-parameter of
+the R_QMOpenRemoteQueue method invoked at a remote queue manager. </p><p><b>lplpRemoteQueueName: </b> On input, the server
+MUST ignore <i>lplpRemoteQueueName</i>. If <i>hRemoteQueue</i> is 0x00000000
+and the queue identified by <i>pQueueFormat</i> is located at a remote queue
+manager, the server MUST set this string to a null-terminated <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_78c4af57-f564-4aa9-a40d-f54ea6bd8766" data-linktype="relative-path">path name</a></span>,
+from which the client can determine the computer name of the remote queue
+manager, as specified in [MS-MQMQ] section <span><a href="../ms-mqmq/0f858702-0f3d-471a-972c-e6706906fa4d" data-linktype="relative-path">2.1.1</a></span>.</p><dl>
+<dd>
+<p>If <i>pQueueFormat</i> identifies a queue local to
+the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_2739ef12-a749-4540-9ac3-715968ef4df4" data-linktype="relative-path">supporting
+server</a></span>, the server MUST set <i>lplpRemoteQueueName</i> to NULL.</p>
+</dd></dl><p><b>dwpQueue: </b>If <i>hRemoteQueue</i> is
+0x00000000, <i>dwpQueue</i> MUST be NULL; otherwise, <i>dwpQueue</i> MUST
+contain a <b>DWORD</b> value obtained from the <i>dwpQueue</i> out-parameter of
+the R_QMOpenRemoteQueue method invoked at a remote queue manager. </p><p><b>pLicGuid: </b> MUST be a pointer to a valid <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+which uniquely identifies the client.<a id="Appendix_A_Target_45"></a><a aria-label="Product behavior note 45" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_45" data-linktype="relative-path">&lt;45&gt;</a><a id="Appendix_A_Target_46"></a><a aria-label="Product behavior note 46" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_46" data-linktype="relative-path">&lt;46&gt;</a> The server MAY ignore this
+parameter.<a id="Appendix_A_Target_47"></a><a aria-label="Product behavior note 47" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_47" data-linktype="relative-path">&lt;47&gt;</a></p><p><b>lpClientName: </b> MUST be a null-terminated
+string containing the client&#39;s computer name.<a id="Appendix_A_Target_48"></a><a aria-label="Product behavior note 48" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_48" data-linktype="relative-path">&lt;48&gt;</a> Servers
+MAY use this parameter in concert with the <i>pLicGuid</i> parameter to
+implement limits on the number of unique clients which can open queue handles.<a id="Appendix_A_Target_49"></a><a aria-label="Product behavior note 49" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_49" data-linktype="relative-path">&lt;49&gt;</a> Implementing connection limits
+is optional and not recommended.</p><p><b>pdwQMContext: </b>A pointer to a variable to
+receive a <b>DWORD</b> value that identifies either an <b>OpenQueueDescriptor</b>
+(<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section <span><a href="../ms-mqdmpr/e2005510-8785-414e-9a71-fa313fa6e119" data-linktype="relative-path">3.1.1.16</a></span>)
+ADM element instance at the server or a <span><a href="01412cba-2803-4644-be30-76cdb8560cec" data-linktype="relative-path">RemoteQueueProxyHandle (section 3.1.1.5)</a></span>
+ADM element instance that contains information pertaining to an <b>OpenQueueDescriptor</b>
+ADM element instance at a remote server. When the client calls <span><a href="328a5652-db8d-4426-b01c-2c1e499086df" data-linktype="relative-path">rpc_ACReceiveMessageEx (section 3.1.5.3)</a></span>,
+it specifies a queue by providing the value that is returned by this parameter.
+On return, the client MUST ignore <i>pdwQMContext</i> if the value returned via
+<i>lplpRemoteQueueName</i> is non-NULL. </p><p><b>phQueue: </b> A pointer to a variable to receive a
+new <span><a href="1482aa96-e1e2-40e9-8fb8-b35895ca5b4a" data-linktype="relative-path">RPC_QUEUE_HANDLE (section 2.2.1.1.2)</a></span>
+context handle. On return, the client MUST ignore <i>phQueue</i> if the value
+returned via <i>lplpRemoteQueueName</i> is non-NULL.</p><p><b>dwRemoteProtocol: </b>Clients MUST set this
+parameter to 0x00000000. Servers SHOULD ignore this parameter.<a id="Appendix_A_Target_50"></a><a aria-label="Product behavior note 50" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_50" data-linktype="relative-path">&lt;50&gt;</a></p><dl>
+<dd>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The TCP/IP protocol sequence is to be used.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The IPX/SPX protocol sequence is to be used.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd></dl><p><b>dwpRemoteContext: </b>If <i>hRemoteQueue</i> is
+0x00000000, <i>dwpRemoteContext</i> MUST contain 0x000000000; otherwise, <i>dwpRemoteContext</i>
+MUST contain a <b>DWORD</b> value obtained from the <i>pdwContext</i>
+out-parameter of the R_QMOpenRemoteQueue (section 3.1.4.2) method
+invoked at a remote queue manager. </p><p><b>Return Values: </b> On success, this method MUST return
+MQ_OK (0x00000000); otherwise, if an error occurs, the server MUST return a
+failure HRESULT,<a id="Appendix_A_Target_51"></a><a aria-label="Product behavior note 51" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_51" data-linktype="relative-path">&lt;51&gt;</a> and the client MUST treat all
+failure HRESULTs identically. Additionally, if a failure HRESULT is returned,
+the client MUST disregard all out-parameter values.</p><p>Exceptions Thrown: In addition to the exceptions thrown by
+the underlying RPC protocol, as specified in [MS-RPCE], the method can throw
+HRESULT failure codes as RPC exceptions. The client MUST treat all thrown
+HRESULT codes identically. Additionally, the client MUST disregard all
+out-parameter values when any failure HRESULT is thrown.</p><p>This method is invoked at the dynamically assigned <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span>
+returned by the <span><a href="a8c96155-a7e6-41cb-95c7-6ab7e4f8214d" data-linktype="relative-path">R_QMGetRTQMServerPort (section 3.1.4.24)</a></span>
+method when IP_HANDSHAKE (0x00000000) or IPX_HANDSHAKE (0x00000002) is the
+interface specified by the <i>fIP</i> parameter.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Determine if input parameter values violate constraints specified
+above. If an invalid parameter is detected, the server MUST take no further
+action and return a failure HRESULT.</p>
+</li><li><p><span><span> 
+</span></span>If <i>hRemoteQueue</i> is nonzero:</p>
+<ul><li><p><span><span>  </span></span>By
+providing a nonzero value for <i>hRemoteQueue</i>, the client indicates that it
+has successfully obtained a <span><a href="13e09f92-a54f-4066-90af-026e8ca0ae18" data-linktype="relative-path">PCTX_OPENREMOTE_HANDLE_TYPE (section 2.2.1.1.3)</a></span>
+by invoking R_QMOpenRemoteQueue (section 3.1.4.2) at a remote server.
+In response, this server attempts to contact the remote server to validate the
+provided handle, and to return a new RPC_QUEUE_HANDLE to the client.</p>
+</li><li><p><span><span>  </span></span>Raise
+a <span><a href="../ms-mqdmpr/69749671-b97c-4780-b72c-4bac217f1a76" data-linktype="relative-path">Get Queue
+Path</a></span> ([MS-MQDMPR] section 3.1.7.1.26) event with the input argument <i>iFormatName</i>
+set to <i>pQueueFormat</i>. If the <i>rStatus</i> returned by the event is not
+MQ_OK (0x00000000) or the <i>rPathName</i> return argument is empty, take no
+further action and return a failure HRESULT; otherwise, set <i>remoteServer</i>
+to the <i>rMachineName</i> return argument value.</p>
+</li><li><p><span><span>  </span></span>Declare
+the <i>iPathName</i> variable and set its value to the <i>rPathName</i> return
+argument value obtained from the Get Queue Path event.</p>
+</li><li><p><span><span>  </span></span>Invoke
+the MSMQ: Queue Manager to Queue Manager Protocol to open the queue, as
+specified in [MS-MQQP] section <span><a href="../ms-mqqp/cd31c3d0-bb47-434e-81cd-8105bc05291b" data-linktype="relative-path">3.2.4.1</a></span>,
+and provide the following inputs:</p>
+<ul><li><p><span><span> 
+</span></span><i>RemoteServer</i> set to <i>remoteServer</i></p>
+</li><li><p><span><span> 
+</span></span><i>QueueHandle</i> set to <i>hRemoteQueue</i></p>
+</li><li><p><span><span> 
+</span></span><i>QueueDescriptor</i> set to <i>dwpQueue</i></p>
+</li><li><p><span><span> 
+</span></span><i>OpenContext</i> set to the value pointed to by <i>dwpRemoteContext</i></p>
+<p>If the method is
+unsuccessful for any reason, including transport failures, errors raised by
+[MS-MQQP], timeouts, and unbind, take no further action, and return a failure <b>HRESULT</b>.</p>
+</li></ul></li><li><p><span><span>  </span></span>Declare
+<i>iNewRemoteQueueProxyHandle</i> as a <b>RemoteQueueProxyHandle</b> ADM
+element instance and set its attributes to the following values:</p>
+<ul><li><p><span><span> 
+</span></span><b>Handle</b> := New RPC_QUEUE_HANDLE context handle.</p>
+</li><li><p><span><span> 
+</span></span><b>Context</b> := A new <b>DWORD</b> value that uniquely
+identifies the <b>RemoteQueueProxyHandle</b> ADM element instance within <i>iRemoteQueueProxyHandleTable</i>.</p>
+</li><li><p><span><span> 
+</span></span><b>RemoteHandle</b> := The <i>phContext</i> out-parameter value
+received from RemoteQMOpenQueue.</p>
+</li><li><p><span><span> 
+</span></span><b>RemoteBindingHandle</b> := The binding handle established
+preceding.</p>
+</li><li><p><span><span> 
+</span></span><b>RemoteContext</b> := <i>hRemoteQueue</i></p>
+</li><li><p><span><span> 
+</span></span><b>FormatName</b> := <i>pQueueFormat</i></p>
+</li><li><p><span><span> 
+</span></span><b>PathName</b> := <i>iPathName</i></p>
+</li></ul></li><li><p><span><span>  </span></span>Add
+<i>iNewRemoteQueueProxyHandle</i> to <i>iRemoteQueueProxyHandleTable</i>
+(section <span><a href="50eab75b-1cc0-4023-bb19-a20975e50883" data-linktype="relative-path">3.1.1.4</a></span>).</p>
+</li><li><p><span><span>  </span></span>Set
+<i>lplpRemoteQueueName</i> to NULL.</p>
+</li><li><p><span><span>  </span></span>Set
+<i>phQueue</i> to <i>iNewRemoteQueueProxyHandle</i>.<b>Handle</b>.</p>
+</li><li><p><span><span>  </span></span>Set
+<i>pdwQMContext</i> to <i>iNewRemoteQueueProxyHandle</i>.<b>Context</b>.</p>
+</li><li><p><span><span>  </span></span>Take
+no further action and return MQ_OK (0x00000000).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else: <i>hRemoteQueue</i> is 0x00000000.</p>
+<ul><li><p><span><span>  </span></span>Generate
+an <span><a href="../ms-mqdmpr/0fc165fd-317a-49ab-919d-3911da6da6d6" data-linktype="relative-path">Open Queue</a></span>
+([MS-MQDMPR] section 3.1.7.1.5) event with the following argument values:</p>
+<ul><li><p><span><span> 
+</span></span><i>iFormatName</i> := <i>pQueueFormat</i></p>
+</li><li><p><span><span> 
+</span></span><i>iRequiredAccess</i> := <i>dwDesiredAccess</i>, according to
+the following values:</p>
+<ul><li><p><span><span> 
+</span></span>MQ_RECEIVE_ACCESS (0x00000001): ReceiveAccess</p>
+</li><li><p><span><span> 
+</span></span>MQ_SEND_ACCESS (0x00000002): SendAccess</p>
+</li><li><p><span><span> 
+</span></span>MQ_PEEK_ACCESS (0x00000020): PeekAccess</p>
+</li></ul></li><li><p><span><span> 
+</span></span><i>iSharedMode</i> := <i>dwShareMode</i>, according to the
+following values:</p>
+<ul><li><p><span><span> 
+</span></span>MQ_DENY_NONE (0x00000000): DenyNone</p>
+</li><li><p><span><span> 
+</span></span>MQ_DENY_RECEIVE_SHARE (0x00000001): DenyReceive</p>
+</li></ul></li></ul></li><li><p><span><span>  </span></span>If
+the <i>rStatus</i> out-argument of the Open Queue event indicates success:</p>
+<ul><li><p><span><span> 
+</span></span>Add a new <span><a href="910315e4-d43e-4c99-b086-555cc271563f" data-linktype="relative-path">LocalQueueContextHandle (section 3.1.1.3)</a></span>
+ADM element instance to the server&#39;s <i>iLocalQueueContextHandleTable</i>
+(section <span><a href="6d5edb49-62b1-46de-a235-f2cc97df6a31" data-linktype="relative-path">3.1.1.2</a></span>) with the
+following values:</p>
+<ul><li><p><span><span> 
+</span></span><b>Handle</b> := New RPC_QUEUE_HANDLE context handle.</p>
+</li><li><p><span><span> 
+</span></span><b>OpenQueueDescriptorReference</b> := The <i>rOpenQueueDescriptor</i>
+out-argument of the Open Queue event.</p>
+</li></ul></li><li><p><span><span> 
+</span></span> Set <i>lplpRemoteQueueName</i> to NULL.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>phQueue</i> to the <i>iLocalQueueContextHandleTable</i>.<b>Handle</b>.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>pdwQMContext</i> to <b>rOpenQueueDescriptor.Handle</b>.</p>
+</li><li><p><span><span> 
+</span></span> Take no further action and return MQ_OK (0x00000000).</p>
+</li></ul></li><li><p><span><span>  </span></span>Else,
+if rStatus indicates MQ_ERROR_QUEUE_NOT_FOUND, and <i>dwDesiredAccess</i> is
+not MQ_SEND_ACCESS (0x00000002):</p>
+<ul><li><p><span><span> 
+</span></span>Attempt to resolve the format name in <i>pQueueFormat</i> to a
+path name by raising a Get Queue Path event ([MS-MQDMPR] section 3.1.7.1.26)
+with the input argument <i>iFormatName</i> set to <i>pQueueFormat</i>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>rStatus</i> returned in the preceding step is not MQ_OK
+(0x00000000) or the <i>rPathName</i> return argument is empty, take no further
+action and return a failure <b>HRESULT</b>.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>lplpRemoteQueueName</i> to the resolved path name.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>phQueue</i> to NULL.</p>
+</li><li><p><span><span> 
+</span></span> Set <i>pdwQMContext</i> to zero (0x00000000).</p>
+</li><li><p><span><span> 
+</span></span>Take no further action and return MQ_OK (0x00000000).</p>
+</li></ul></li><li><p><span><span>  </span></span>Else:</p>
+<ul><li><p><span><span> 
+</span></span>Return rStatus.</p>
+</li></ul></li></ul></li></ul></div>

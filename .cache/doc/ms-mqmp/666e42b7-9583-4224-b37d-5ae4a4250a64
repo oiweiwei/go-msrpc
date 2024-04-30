@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The CACCreateRemoteCursor structure contains the elements
+necessary for creating a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a></span> on a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct CACCreateRemoteCursor {
+   DWORD hCursor;
+   DWORD srv_hACQueue;
+   DWORD cli_pQMQueue;
+ } CACCreateRemoteCursor;
+  
+</pre></div>
+</dd></dl><p><b>hCursor:</b>   The value for this field
+returned from <span><a href="e8d526c6-a119-4d27-8fac-bf59bab72f30" data-linktype="relative-path">rpc_ACCreateCursorEx (section 3.1.5.4)</a></span>
+contains a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value representing an opened cursor.</p><p><b>srv_hACQueue:</b>  The value for this
+field returned from rpc_ACCreateCursorEx is passed to the <i>hQueue</i>
+parameter of <span><a href="bbf4bc8a-e697-4720-8015-d249a716371d" data-linktype="relative-path">R_QMCreateRemoteCursor (section 3.1.4.4)</a></span>
+when invoked as part of a remote cursor creation call sequence.</p><p><b>cli_pQMQueue:</b>  The value for this
+field returned from rpc_ACCreateCursorEx is passed to the <i>pQueue</i>
+parameter of <span><a href="5e6d9f10-6747-487b-b5b0-b3cdd7fe3c65" data-linktype="relative-path">R_QMGetRemoteQueueName (section 3.1.4.1)</a></span>
+when invoked as part of a remote cursor creation call sequence.</p></div>

@@ -1,0 +1,28 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/797e1033-d40b-400b-a71a-522f820bac33" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_DELTA_ID_UNION</b> union defines an account
+identifier type that is selected based on the requested <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_00f35ba3-4dbb-4ff9-8e27-572a6aea1b15" data-linktype="relative-path">database</a> change.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(NETLOGON_DELTA_TYPE)] 
+ union _NETLOGON_DELTA_ID_UNION {
+   [case(AddOrChangeDomain,  AddOrChangeGroup,  DeleteGroup,  RenameGroup,  AddOrChangeUser,  DeleteUser,  RenameUser,  ChangeGroupMembership,  AddOrChangeAlias,  DeleteAlias,  RenameAlias,  ChangeAliasMembership,  DeleteGroupByName,  DeleteUserByName)] 
+     ULONG Rid;
+   [case(AddOrChangeLsaPolicy,  AddOrChangeLsaTDomain,  DeleteLsaTDomain,  AddOrChangeLsaAccount,  DeleteLsaAccount)] 
+     PRPC_SID Sid;
+   [case(AddOrChangeLsaSecret,  DeleteLsaSecret)] 
+     [string] wchar_t* Name;
+   [default]     ;
+ } NETLOGON_DELTA_ID_UNION,
+  *PNETLOGON_DELTA_ID_UNION;
+</pre></div>
+</dd></dl><p><b>Rid:</b> A 32-bit <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RID</a> whose type is selected
+when the following <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_bac72edb-4ce9-4baa-8977-f33e331b2b5e" data-linktype="relative-path">delta</a>
+types are switched: AddOrChangeDomain(1), AddOrChangeGroup(2), RenameGroup(4),
+DeleteGroup(3), AddOrChangeUser(5), DeleteUser(6), RenameUser(7),
+ChangeGroupMembership(8), AddOrChangeAlias(9), DeleteAlias(10),
+RenameAlias(11), ChangeAliasMembership(12), DeleteGroupByName(20), and
+DeleteUserByName(21).</p><p><b>Sid:</b> A pointer to a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> whose type is selected
+when the following delta types are switched: AddOrChangeLsaPolicy(13),
+AddOrChangeLsaDomain(14), DeleteLsaTDomain(15), AddOrChangeLsaAccount(16), and
+DeleteLsaAccount(17).</p><p><b>Name:</b> A null-terminated <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> that
+contains an identifier name. This identifier type is selected when the following
+delta types are switched: AddOrChangeLsaSecret(18) and DeleteLsaSecret(19).</p></div>

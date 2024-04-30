@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The SetCOMCatalogBehaviour method controls the event system
+CatalogMode and RetainSubKeys state variables.</p><dl>
+<dd>
+<div><pre> HRESULT SetCOMCatalogBehaviour(
+   BOOL bRetainSubKeys
+ );
+</pre></div>
+</dd></dl><p><b>bRetainSubKeys: </b>This value is copied to the
+RetainSubKeys state variable (see section <span><a href="dc8feb0f-0f6d-4cc8-8068-bef74273e864" data-linktype="relative-path">3.1.1.3</a></span>) of the
+event system.</p><p><b>Return Values:</b> The <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST return
+S_OK.</p><p>After this method is called, the event system CatalogMode
+state variable will be true (server in catalog mode) and the RetainSubKeys
+variable will be set based on the <i>bRetainSubKeys</i> parameter. If the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>
+does not call this method, the server will be in non-catalog mode. The <span><a href="10fc4a01-54db-4af3-adcc-9b6055fea293" data-linktype="relative-path">Store</a></span>,
+<span><a href="cd7bc370-47dc-4086-a590-74c3c758ab70" data-linktype="relative-path">Remove</a></span>,
+and <span><a href="5f5714e1-bad6-4abc-a6f1-f9d25fd3494d" data-linktype="relative-path">RemoveS</a></span>
+methods of <span><a href="e33e278a-55c3-4535-9704-df4d67096aae" data-linktype="relative-path">IEventSystem</a></span> will
+have different behavior when the server is in catalog mode. See section 3.1.1.3
+for more details.</p></div>

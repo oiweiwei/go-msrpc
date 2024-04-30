@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The DSA_MSG_PREPARE_SCRIPT_REQ_V1 structure defines a
+request message sent to the <span><a href="74919784-8e57-4cf5-840f-6f1bd226cf02" data-linktype="relative-path">IDL_DSAPrepareScript</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD Reserved;
+ } DSA_MSG_PREPARE_SCRIPT_REQ_V1;
+</pre></div>
+</dd></dl><p><b>Reserved:</b>  Unused. MUST be 0 and
+ignored.</p></div>

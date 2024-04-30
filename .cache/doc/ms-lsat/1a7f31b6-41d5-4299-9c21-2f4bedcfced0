@@ -1,0 +1,7 @@
+<div class="content"><p> </p><p>The Local Security Authority (Translation Methods) Remote
+Protocol is implemented in Windows products to translate identifiers for <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security
+principals</a></span> between human-readable and machine-readable forms. This
+translation can be used in scenarios such as human management of resource
+access.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

@@ -1,0 +1,95 @@
+<div class="content"><p>This structure is optionally sent by the RDG server in
+response to a <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_1ebdc9c6-bb01-455e-98f7-8930618bb601" data-linktype="relative-path">tunnel (2)</a>
+creation request.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>tunnelId</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>capsFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>nonce (16
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>serverCert
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>consentMsg
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>tunnelId (4 bytes): </b>An unsigned integer
+representing the <b>Tunnel Id</b> ADM element of the corresponding tunnel.</p><p><b>capsFlags (4 bytes): </b>An unsigned integer
+representing the capabilities negotiated by the RDG server. It&#39;s specified in
+the form of an HTTP_CAPABILITY_TYPE Enumeration.</p><p><b>nonce (16 bytes): </b>A <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/001eec5a-7f8b-4293-9e21-ca349392db40" data-linktype="relative-path">2.3.4.2</a>)
+representing the nonce for the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_224be10f-c4fe-4db7-9d3a-1b16680219e9" data-linktype="relative-path">statement of health (SoH)</a>.</p><p><b>serverCert (variable): </b>An <a href="d530627f-edfe-426f-b968-965c34c3693d" data-linktype="relative-path">HTTP_UNICODE_STRING (section 2.2.10.22)</a>
+that is used for SoH encryption.</p><p><b>consentMsg (variable): </b>An
+HTTP_UNICODE_STRING (section 2.2.10.22). It contains the consent
+message set by the admin on the RDG server, that is delivered to the RDG client
+prior to allowing the connection.</p></div>

@@ -1,0 +1,176 @@
+<div class="content"><p> </p><p>The DRS_MSG_REPMOD_V1 structure defines a request message
+for the <span><a href="cd241bf2-56be-4537-86b1-cdbc997b0860" data-linktype="relative-path">IDL_DRSReplicaModify</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [ref] DSNAME* pNC;
+   UUID uuidSourceDRA;
+   [unique, string] char* pszSourceDRA;
+   REPLTIMES rtSchedule;
+   ULONG ulReplicaFlags;
+   ULONG ulModifyFields;
+   ULONG ulOptions;
+ } DRS_MSG_REPMOD_V1;
+</pre></div>
+</dd></dl><p><b>pNC:</b>  A pointer to the <span><a href="a0d5477a-5229-46b9-890a-54b924d487d1" data-linktype="relative-path">DSName</a></span>
+of the root of an <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_325d116f-cdbe-4dbd-b7e6-769ba75bf210" data-linktype="relative-path">NC replica</a></span> on the
+server.</p><p><b>uuidSourceDRA:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_736b1076-d1cb-40b9-9247-d66cca6819d1" data-linktype="relative-path">DSA GUID</a></span>.</p><p><b>pszSourceDRA:</b>  The
+transport-specific <span><a href="3d0d3777-9358-47dd-b555-34405f57f912" data-linktype="relative-path">NetworkAddress</a></span> of a
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>.</p><p><b>rtSchedule:</b>  The periodic <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span>
+schedule.</p><p><b>ulReplicaFlags:</b>  The <span><a href="ac9c8a11-cd46-4080-acbf-9faa86344030" data-linktype="relative-path">DRS_OPTIONS</a></span>
+flags for the <span><a href="../ms-ada3/8a9018ac-1d10-4bae-8141-04822a5f51f2" data-linktype="relative-path">repsFrom</a></span>
+value.</p><p><b>ulModifyFields:</b>  The fields to <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b242435b-73cc-4c4e-95f0-b2a2ff680493" data-linktype="relative-path">update</a></span>(presented
+in little-endian byte order).</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>U S</p>
+  </td>
+  <td>
+  <p>U A</p>
+  </td>
+  <td>
+  <p>U F</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>X:</b> Unused. MUST be zero and ignored.</p>
+</dd>
+<dd>
+<p><b>UF (DRS_UPDATE_FLAGS, 0x00000001):</b> Updates
+the flags associated with the server.</p>
+</dd>
+<dd>
+<p><b>UA (DRS_UPDATE_ADDRESS,
+0x00000002):</b> Updates the transport-specific address associated with the
+server.</p>
+</dd>
+<dd>
+<p><b>US (DRS_UPDATE_SCHEDULE,
+0x00000004):</b> Updates the replication schedule associated with the server.</p>
+</dd></dl><p><b>ulOptions:</b>  The DRS_OPTIONS flags
+for execution of this method.</p></div>

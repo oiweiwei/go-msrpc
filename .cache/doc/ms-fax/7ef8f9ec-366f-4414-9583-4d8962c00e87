@@ -1,0 +1,69 @@
+<div class="content"><p> </p><p>The <b>FAX_VERSION</b> structure contains information about
+the version of the fax server components. This structure is used by <b>FAX_GetVersion</b>
+(section <span><a href="0b626f99-6d34-4fb6-9f13-fbd4d15528a9" data-linktype="relative-path">3.1.4.1.64</a></span>).</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwSizeOfStruct;
+   BOOL bValid;
+   WORD wMajorVersion;
+   WORD wMinorVersion;
+   WORD wMajorBuildNumber;
+   WORD wMinorBuildNumber;
+   DWORD dwFlags;
+ } FAX_VERSION,
+  *PFAX_VERSION;
+</pre></div>
+</dd></dl><p><b>dwSizeOfStruct:</b> A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that holds the total size of the structure, in bytes. This value MUST be
+20 bytes.</p><p><b>bValid:</b> A Boolean value indicating the
+validity of the version information returned.</p><dl>
+<dd>
+<p><b>Note</b>  This value MUST
+be set to false if no version information is returned in this structure.</p>
+</dd></dl><p><b>wMajorVersion:</b> A <b>WORD</b> containing the
+major version number of the fax server component.</p><p><b>wMinorVersion:</b> A <b>WORD</b> containing the
+minor version number of the fax server component.</p><p><b>wMajorBuildNumber:</b> A <b>WORD</b> containing
+the major build number of the fax server component.</p><p><b>wMinorBuildNumber:</b> A <b>WORD</b> containing
+the minor build number of the fax server component.</p><p><b>dwFlags:</b> A <b>DWORD</b> that MUST contain one
+of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Indicates that the server component was built in release
+  mode.</p>
+  <p><b>Note</b>  If built in release mode, this value MUST
+  be zero, which is the default.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FAX_VER_FLAG_CHECKED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Indicates that the server component was built in debug
+  mode.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FAX_VER_FLAG_EVALUATION</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Indicates that the server component was built for
+  evaluation purposes. Reserved for future use.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

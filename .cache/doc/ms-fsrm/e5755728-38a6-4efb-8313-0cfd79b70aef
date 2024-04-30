@@ -1,0 +1,44 @@
+<div class="content"><p>The SetActionRunLimitInterval method sets <b>run limit
+intervals</b> for actions that are configured to use the <b>general setting&#39;s
+run limit interval</b>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_SETTING | 0x02)] HRESULT SetActionRunLimitInterval(
+   [in] FsrmActionType actionType,
+   [in] long delayTimeMinutes
+ );
+</pre></div>
+</dd></dl><p><b>actionType:</b> Contains the action type that this
+run limit interval applies to.</p><p><b>delayTimeMinutes:</b> Contains the run limit
+interval for this action type.</p><p><b>Return Values:</b> The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>actionType</i> parameter is not a valid type.
+  If <i>actionType</i> is FsrmActionType_Unknown, the parameter MUST be
+  considered an invalid value.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>actionType</i> is a valid <a href="0399ffcc-f04b-4dd9-bde7-c336e58eb8d4" data-linktype="relative-path">FsrmActionType (section 2.2.1.2.9)</a>
+value. If <i>actionType</i> is <b>FsrmActionType_Unknown</b>, the parameter
+MUST be considered an invalid value. If <i>actionType</i> contains
+FsrmActionType_Email or FsrmActionType_Report, the server will return <a href="2e43ed63-c771-495c-98d8-58d078d9b978" data-linktype="relative-path">FSRM_E_NOT_SUPPORTED</a>.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>delayTimeMinutes</i> is greater than -1.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST use <i>delayTimeMinutes</i> as the <a href="1dc633f4-9323-435c-8912-d742eed2aed4" data-linktype="relative-path">Run limit intervals</a>.</p></div>

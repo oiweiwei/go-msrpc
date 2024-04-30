@@ -1,0 +1,161 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/03c834c0-f310-4e0c-832e-b6e7688364d1" data-linktype="external">msdn link</a></p><p>The LSAPR_LUID_AND_ATTRIBUTES structure is a tuple defining
+a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_96b64af9-1896-4bde-b988-54d469c5affd" data-linktype="relative-path">locally unique identifier
+(LUID)</a> and a field defining the attributes of the LUID.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_LUID_AND_ATTRIBUTES {
+   LUID Luid;
+   unsigned long Attributes;
+ } LSAPR_LUID_AND_ATTRIBUTES,
+  *PLSAPR_LUID_AND_ATTRIBUTES;
+</pre></div>
+</dd></dl><p><b>Luid:</b>  The locally unique
+identifier.</p><p><b>Attributes:</b>  This field contains
+bitmapped values that define the properties of the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privilege</a> set. One or more
+of the following flags can be set.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>D:</b> The privilege is enabled
+by default.</p>
+</dd>
+<dd>
+<p><b>E:</b> The privilege is
+enabled.</p>
+</dd>
+<dd>
+<p>All other bits SHOULD be 0 and ignored upon receipt.</p>
+</dd></dl></div>

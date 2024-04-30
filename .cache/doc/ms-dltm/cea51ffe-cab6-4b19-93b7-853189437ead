@@ -1,0 +1,116 @@
+<div class="content"><p> </p><p>The LnkSvrMessage method provides a way to send and receive
+messages to the DLT Central Manager server to query or update information.</p><dl>
+<dd>
+<div><pre> HRESULT LnkSvrMessage(
+   [in] handle_t IDL_handle,
+   [in, out] TRKSVR_MESSAGE_UNION* pMsg
+ );
+</pre></div>
+</dd></dl><p><b>IDL_handle: </b>For information about the handle_t
+data type, see <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/03c032cd-c1d1-4bbe-b00c-bb1f8da5155b" data-linktype="relative-path">2.1.3</a></span>.</p><p><b>pMsg: </b>Pointer to a message, in the format of a
+<span><a href="2f32d86a-18ea-472f-99d3-e9f3a333e329" data-linktype="relative-path">TRKSVR_MESSAGE_UNION</a></span>
+structure. If this method fails, as indicated by a failure return value, the
+client MUST ignore any changes made by the server to this structure.</p><p><b>Return Values: </b>See the following table and the
+explanation after it for more information on return values.</p><p>Exceptions Thrown: None.</p><p>The following table contains failure and success return
+values that have special behavior in this protocol. All failure values not
+listed in this table MUST be treated identically. Similarly, all success values
+not listed in this table MUST be treated identically. Except where otherwise
+stated, a return value MUST NOT be a value from this table. Except where
+otherwise specified, the server MUST return a success value.</p><table><thead>
+  <tr>
+   <th>
+   <p>Constant/value </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRK_E_NOT_FOUND</p>
+  <p>0x8DEAD01B</p>
+  </td>
+  <td>
+  <p>A requested object was not found. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRK_E_VOLUME_QUOTA_EXCEEDED</p>
+  <p>0x8DEAD01C</p>
+  </td>
+  <td>
+  <p>The server received a CREATE_VOLUME <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_29963f91-492c-4c33-ae33-c5185ac9315c" data-linktype="relative-path">subrequest</a></span>
+  of a SYNC_VOLUMES request, but the <b>ServerVolumeTable</b> size limit for
+  the <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_1f01f5db-e541-4571-bfaf-c0e32e6fafc7" data-linktype="relative-path">RequestMachine</a></span>
+  value has already been reached.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRK_E_SERVER_TOO_BUSY</p>
+  <p>0x8DEAD01E</p>
+  </td>
+  <td>
+  <p>The server is busy, and the client is to retry the
+  request at a later time.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRK_S_OUT_OF_SYNC</p>
+  <p>0x0DEAD100</p>
+  </td>
+  <td>
+  <p>The <b>VolumeSequenceNumber</b> of a MOVE_NOTIFICATION
+  request is incorrect. See section <span><a href="00acb3e1-334b-4675-9097-618d69d7a8e1" data-linktype="relative-path">3.1.4.2</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRK_S_VOLUME_NOT_FOUND</p>
+  <p>0x0DEAD102</p>
+  </td>
+  <td>
+  <p>The <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_3b3c1be2-035c-4823-afeb-10edbd6bb288" data-linktype="relative-path">VolumeID</a></span> in a
+  request was not found in the server&#39;s <b>ServerVolumeTable</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRK_S_VOLUME_NOT_OWNED</p>
+  <p>0x0DEAD103</p>
+  </td>
+  <td>
+  <p>A notification was sent to the LnkSvrMessage method,
+  but the RequestMachine for the request was not the <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_d223806a-659f-49b5-af12-620e3ea1363d" data-linktype="relative-path">VolumeOwner</a></span> for a
+  VolumeID in the request.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRK_S_NOTIFICATION_QUOTA_EXCEEDED</p>
+  <p>0x0DEAD107</p>
+  </td>
+  <td>
+  <p>The server received a MOVE_NOTIFICATION request, but
+  the <b>FileTable</b> size limit has already been reached.</p>
+  </td>
+ </tr></tbody></table><p>The LnkSvrMessage method has only a single parameter, a
+union of type TRKSVR_MESSAGE_UNION (see section 2.2.12). But that union is
+defined to hold one of several types of requests, referred to in this protocol
+specification as messages. The message type for a given request is specified in
+the MessageType field of the TRKSVR_MESSAGE_UNION. The possible message types
+are defined in section <span><a href="e6084ee0-fc0d-443e-a4fb-1a792ce70450" data-linktype="relative-path">2.2.11</a></span>. The formats
+of the different messages are defined in the sub-sections of section 2.2.12.
+The responses by the server to those different messages are specified in the
+remaining subsections of section <span><a href="d96cc3e8-c3b1-4b4f-b621-c5a39622768c" data-linktype="relative-path">3.1.4</a></span>, according to
+the <b>MessageType</b> field of the union.</p><p>Except where otherwise noted, the server that receives a
+request MUST ignore and leave unmodified all fields in the TRKSVR_MESSAGE_UNION
+structure of the <i>pMsg</i> parameter, as well as the structures referenced by
+the <b>MessageUnion</b> field of the TRKSVR_MESSAGE_UNION.</p><p>For security purposes, the server SHOULD restrict access to
+clients that are members of the <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_9027fac6-fece-4e93-b2f8-9dd5bc949ff3" data-linktype="relative-path">authenticated users</a></span>
+built-in security group. The client&#39;s identity is determined as described in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>,
+section <span><a href="../ms-rpce/29b8217a-0bda-4fdb-a3ea-48560125ae8d" data-linktype="relative-path">3.3.3.4.3</a></span>.<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="e89fb7a4-4550-40c5-91e8-94a66665b499#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a></p><p>The TRKSVR_MESSAGE_UNION structure of the <i>pMsg</i>
+parameter contains a Priority field. The server MAY use this value to decide to
+reject some requests with a TRK_E_SERVER_TOO_BUSY return value, but it MUST NOT
+use this value to change the ordering of processing of messages from a caller.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="e89fb7a4-4550-40c5-91e8-94a66665b499#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p><p>In this processing of this method call, the <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_e15432dc-30dd-4e3d-8757-19b639769c95" data-linktype="relative-path">MachineID</a></span>
+of the client that makes the request MUST be used as the RequestMachine value.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="e89fb7a4-4550-40c5-91e8-94a66665b499#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><p><b>Note</b>  During the processing of a
+LnkSvrMessage call, the server can call back to the client by using the <span><a href="f3d9aff9-dc5d-40a8-89db-31d03304682c" data-linktype="relative-path">LnkSvrMessageCallback</a></span>
+method. See sections <span><a href="e7a9a393-4ea6-4d5e-b2e9-5ad7de390abd" data-linktype="relative-path">3.1.4.4</a></span> and 3.2.4.1
+for more information.</p></div>

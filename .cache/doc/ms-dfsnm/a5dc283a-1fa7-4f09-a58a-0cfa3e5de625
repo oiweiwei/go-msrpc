@@ -1,0 +1,111 @@
+<div class="content"><p> </p><p>The DFS_INFO_2 structure contains information for a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span>
+or <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS
+link</a></span>. </p><p>The DFS_INFO_2 structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_2 {
+   [string] WCHAR* EntryPath;
+   [string] WCHAR* Comment;
+   DWORD State;
+   DWORD NumberOfStorages;
+ } DFS_INFO_2;
+</pre></div>
+</dd></dl><p><b>EntryPath:</b>  A pointer to a DFS root
+or a DFS link path.</p><p><b>Comment:</b>  A pointer to a
+null-terminated <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> string
+containing a comment that is used for informational purposes and is associated
+with the DFS root or DFS link. This string has no protocol-specified
+restrictions on length or content. The comment is meant for human consumption
+and does not affect server functionality.</p><p><b>State:</b>   This field has the state of
+the DFS root or DFS link. For a DFS root, this field also specifies whether the
+<span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS
+namespace</a></span> is <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_701a2cc1-eb5a-400f-b394-5bad264ec8f6" data-linktype="relative-path">stand-alone</a></span> or <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c37de1c8-4bd3-406f-ad8c-50c877666f91" data-linktype="relative-path">domain-based</a></span>.</p><dl>
+<dd>
+<p>The DFS_VOLUME_STATES bitmask (0x0000000F) MUST be
+used to extract the following DFS root or DFS link state from this field. For
+more information about some of these states, see section <span><a href="23dff7a2-3ba8-4fd7-95dd-8e518024362b" data-linktype="relative-path">2.2.2.13</a></span>.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DFS_VOLUME_STATE_OK</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The specified DFS root or DFS link is in the normal
+  state.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RESERVED</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>This value is reserved and MUST NOT be used.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_VOLUME_STATE_OFFLINE</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The DFS link is offline, and none of the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_a2c6d1c9-deea-427c-91ee-56f6e726eabd" data-linktype="relative-path">DFS
+  targets</a></span> will be included in the referral response. This flag is
+  valid only for a DFS link and cannot be set on a DFS root.</p>
+  <p>This state is persisted to the DFS metadata.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_VOLUME_STATE_ONLINE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The DFS link is online and available for referral
+  request. This flag is valid only for a DFS link and cannot be set on a DFS
+  root.</p>
+  <p>This state is persisted to the DFS metadata.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The DFS_VOLUME_FLAVORS bitmask (0x00000300) MUST be
+used to extract the following DFS namespace flavor from this field. </p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DFS_VOLUME_FLAVOR_STANDALONE</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>Stand-alone DFS namespace.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_VOLUME_FLAVOR_AD_BLOB</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p><span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_2aad5e61-ffe9-406e-a192-328c5327ee72" data-linktype="relative-path">domainv1-based</a></span> or <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8099f7c1-2a31-4a20-81e6-824689bd9c5a" data-linktype="relative-path">domainv2-based
+  DFS namespace</a></span>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>NumberOfStorages:</b>  Number of DFS
+targets for the root or link.</p></div>

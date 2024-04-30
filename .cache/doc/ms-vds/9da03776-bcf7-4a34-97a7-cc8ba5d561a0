@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The VDS_VOLUME_PLEX_STATUS enumeration defines the set of
+object status values for a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7d1df68a-9ec5-4f84-a64f-67888f39405d" data-linktype="relative-path">volume plex</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_VOLUME_PLEX_STATUS
+ {
+   VDS_VPS_UNKNOWN = 0x00000000,
+   VDS_VPS_ONLINE = 0x00000001,
+   VDS_VPS_NO_MEDIA = 0x00000003,
+   VDS_VPS_FAILED = 0x00000005
+ } VDS_VOLUME_PLEX_STATUS;
+</pre></div>
+</dd></dl><p><b>VDS_VPS_UNKNOWN:  </b>The status of the volume
+plex is unknown.</p><p><b>VDS_VPS_ONLINE:  </b>The volume plex is available.</p><p><b>VDS_VPS_NO_MEDIA:  </b>The volume plex has no
+media.</p><p><b>VDS_VPS_FAILED:  </b>The volume plex is
+unavailable.</p></div>

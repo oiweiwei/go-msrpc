@@ -1,0 +1,617 @@
+<div class="content"><p>The PerflibV2QueryCounterSetRegistrationInfo method allows a
+client to enumerate metadata about a <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_5ad9937c-a24e-4274-92c8-50ff5f97bf19" data-linktype="relative-path">counterset</a> or <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance counter</a> on a
+server. </p><dl>
+<dd>
+<div><pre> error_status_t PerflibV2QueryCounterSetRegistrationInfo(
+   [in, string] wchar_t* szMachine,
+   [in] GUID* CounterSetGuid,
+   [in] DWORD RequestCode,
+   [in] DWORD RequestLCID,
+   [in, range(0, 134217728)] DWORD dwInSize,
+   [out] DWORD* pdwOutSize,
+   [out] DWORD* pdwRtnSize,
+   [out, size_is(dwInSize), length_is(* pdwOutSize)] 
+     unsigned char* lpData
+ );
+</pre></div>
+</dd></dl><p><b>szMachine: </b>A <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> specifying a
+server name, which is passed directly to the counter providers. Counter
+providers can ignore the server name provided by <b>szMachine</b>.</p><p><b>CounterSetGuid: </b>The <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> of the counterset
+whose information needs to be retrieved; this can also be the GUID of the
+counterset to which the performance counters whose information is being queried
+belong.</p><p><b>RequestCode: </b>The type of information on the
+counterset to retrieve. The value MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Return information about the counterset.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Return information about a performance counter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Return the name of the counterset.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Return the description of the counterset.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Return the names of the performance counters.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>Return the descriptions of the performance counters.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>Return the name of the provider.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Return the GUID of the provider.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000009</p>
+  </td>
+  <td>
+  <p>Return the English-language name of the counterset.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000000A</p>
+  </td>
+  <td>
+  <p>Return the English-language names of the performance
+  counters.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>RequestLCID: </b>When the value of <i>RequestCode</i>
+is 0x00000003, 0x00000004, 0x00000005, or 0x00000006, RequestLCID specifies the
+locale ID (as specified in <a href="../ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f" data-linktype="relative-path">[MS-LCID]</a>),
+or is set to 0 to instruct the server to use its default language.</p><dl>
+<dd>
+<p>When the value of <i>RequestCode</i> is 0x00000002,
+RequestLCID specifies the counter ID.</p>
+</dd>
+<dd>
+<p>When the value of <i>RequestCode</i> is 0x00000001,
+0x00000007, 0x00000008, 0x00000009, or 0x0000000A, RequestLCID MUST be set to
+zero and ignored upon receipt.<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="74af7798-f739-49d0-b16f-6899a9f92a8a#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a></p>
+</dd></dl><p><b>dwInSize: </b>The size, in bytes, of the buffer.</p><p><b>pdwOutSize: </b>The size, in bytes, of the data in the
+buffer pointed to by <b>lpData</b>.</p><p><b>pdwRtnSize: </b>The necessary size, in bytes, to retrieve
+all the requested data.</p><p><b>lpData: </b>The buffer that returns the requested data.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) for success; otherwise, it MUST return one of the standard
+Windows errors, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The return value indicates success.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The server returns this value to the client if the
+  authentication level of the client is less than
+  RPC_C_AUTHN_LEVEL_PKT_PRIVACY.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>This return value indicates that there was a problem
+  with the parameter that was passed by the client to the server. The server
+  MUST return this value when:</p>
+  <ul><li><p><span><span>  
+  </span></span><i><span>RequestCode</span></i><span> (the <b>RequestCode</b> is not between 0x00000001
+  and 0x0000000A inclusive). </span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>0x00001068</p>
+  <p>ERROR_WMI_GUID_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The server returns this value if it does not have a
+  counterset with the same GUID as the one passed by the client through the <b>CounterSetGuid</b>
+  parameter of the method.</p>
+  <p>The server will also return this value if it cannot
+  find the GUID of the provider to which the counterset belongs. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>The server will return this value to the client if the
+  <i>RequestCode</i> parameter is valid, but the buffer pointed to by <b>lpData</b>
+  is not of sufficient size.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000106A</p>
+  <p>ERROR_WMI_ITEMID_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The server returns this error code when the value of <i>RequestCode</i>
+  is 0x02 and a counterset with the GUID provided through the <i>CounterSetGuid</i>
+  parameter exists, but the counter identifier is not found in the counterset.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The data that this method returns depends on the type of
+information that is requested, as denoted by the <i>RequestCode</i> parameter. </p><ul><li><p><span><span> 
+</span></span>If the value of <i>RequestCode</i> is 0x00000003, 0x00000004,
+0x00000005, or 0x00000006, and the language specified by <b>RequestLCID</b> is
+not installed on the server, an error MUST be returned.</p>
+</li><li><p><span><span> 
+</span></span>If <i>RequestCode</i> = 0x00000001, the server returns
+information about the counterset. The server MUST return a <a href="a2745a4d-3428-4804-868d-b0208e469fa2" data-linktype="relative-path">_PERF_COUNTERSET_REG_INFO</a>
+structure that is followed by a set of <a href="a89712bd-4ba1-4dab-8dbb-dea712c237ba" data-linktype="relative-path">_PERF_COUNTER_REG_INFO</a>
+structures. The number of _PERF_COUNTER_REG_INFO structures MUST be equal to
+the <b>NumCounters</b> field of the PERF_COUNTERSET_REG_INFO structure.</p>
+</li></ul><dl>
+<dd>
+<p><img id="MS-PCQ_pictcd263daa-4f2f-3acf-cd8e-d24066e2b691.png" src="ms-pcq_files/image001.png" alt="PerflibV2QueryCounterSetRegistrationInfo return if RequestCode = 0x00000001" title="PerflibV2QueryCounterSetRegistrationInfo return if RequestCode = 0x00000001" data-linktype="relative-path"/></p>
+</dd></dl><p><b>Figure 1: PerflibV2QueryCounterSetRegistrationInfo return
+if RequestCode = 0x00000001</b></p><p>The following diagram illustrates data size, alignment, and
+endianness. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTERSET_REG_INFO
+  (row 1, <b>CounterSetGuid</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTERSET_REG_INFO
+  (row 2, <b>CounterSetGuid</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTERSET_REG_INFO
+  (row 3, <b>CounterSetGuid</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTERSET_REG_INFO
+  (row 4, <b>CounterSetGuid</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTERSET_REG_INFO
+  (row 5, <b>CounterSetType</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTERSET_REG_INFO
+  (row 6, <b>DetailLevel</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTERSET_REG_INFO
+  (row 7, <b>NumCounters</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTERSET_REG_INFO
+  (row 8, <b>InstanceType</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 1, <b>CounterId</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 2, <b>Type</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 3, <b>Attrib</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 4, <b>Attrib</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 5, <b>DetailLevel</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 6, <b>DefaultScale</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 7, <b>BaseCounterId</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 8, <b>PerfTimeId</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 9, <b>PerfFreqId</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 10, <b>MultiId</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 11, <b>AggregateFunc</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 12, <b>Reserved</b>)</p>
+  </td>
+ </tr>
+</tbody></table><ul><li><p><span><span> 
+</span></span>If <i>RequestCode</i> = 0x00000002, the server returns
+information about a performance counter. The server MUST return a _PERF_COUNTER_REG_INFO
+structure.</p>
+</li></ul><p>The following diagram illustrates data size, alignment, and
+endianness.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 1, <b>CounterId</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 2, <b>Type</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 3, <b>Attrib</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 4, <b>Attrib</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 5, <b>DetailLevel</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 6, <b>DefaultScale</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 7, <b>BaseCounterId</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 8, <b>PerfTimeId</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 9, <b>PerfFreqId</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 10, <b>MultiId</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 11, <b>AggregateFunc</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>_PERF_COUNTER_REG_INFO
+  (row 12, <b>Reserved</b>)</p>
+  </td>
+ </tr>
+</tbody></table><ul><li><p><span><span> 
+</span></span>If <i>RequestCode</i> = 0x00000003, 0x00000004, or 0x00000009,
+the server returns either the localized name (<i>RequestCode</i> = 0x00000003)
+or description (<i>RequestCode</i> = 0x00000004). The <i>RequestCode</i>
+0x00000009 specifies returning the name as an English-language string. The
+server MUST return a null-terminated Unicode string.</p>
+</li><li><p><span><span> 
+</span></span>If <i>RequestCode</i> = 0x00000005, 0x00000006, or 0x0000000A,
+the server returns either the localized names (<i>RequestCode</i> = 0x00000005)
+or descriptions (<i>RequestCode</i> = 0x00000006). The <i>RequestCode</i>
+0x0000000A specifies returning the names of the counters as English-language
+strings. The server MUST return a <a href="c646d3d6-7941-49bc-a86b-ab3cf9536918" data-linktype="relative-path">_STRING_BUFFER_HEADER</a>
+structure that is followed by a set of <a href="698b9e29-2d05-4510-af1a-a34b80de81e9" data-linktype="relative-path">_STRING_COUNTER_HEADER</a>
+structures and then a set of null-terminated Unicode strings and MUST be 8-byte
+aligned. The number of _STRING_COUNTER_HEADER structures MUST be equal to the <b>dwCounters</b>
+field of the _STRING_BUFFER_HEADER structure. The offset to the beginning of a
+string is the size of the _STRING_BUFFER_HEADER plus the size of the
+_STRING_COUNTER_HEADER structures that are multiplied by the number of counters
+plus the <b>dwOffset</b> value of the _STRING_COUNTER_HEADER structure.</p>
+</li></ul><dl>
+<dd>
+<p><img id="MS-PCQ_pict72ebd1be-ec50-c4b6-715f-e012c25b16c2.png" src="ms-pcq_files/image002.png" alt="PerflibV2QueryCounterSetRegistrationInfo return if RequestCode = 0x00000005" title="PerflibV2QueryCounterSetRegistrationInfo return if RequestCode = 0x00000005" data-linktype="relative-path"/></p>
+</dd></dl><p><b>Figure 2: PerflibV2QueryCounterSetRegistrationInfo return
+if RequestCode = 0x00000005</b></p><p>The following diagram illustrates data size, alignment, and
+endianness. In this example, the names of two performance counters are returned
+(STRING_BUFFER_HEADER.dwCounters == 2). The name of the first counter is 6
+bytes in length, while the name of the second counter is 8 bytes in length. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_STRING_BUFFER_HEADER
+  (row 1, <b>dwSize</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_STRING_BUFFER_HEADER
+  (row 2, <b>dwCounters</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_STRING_COUNTER_HEADER
+  (row 1, <b>dwCounterId</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_STRING_COUNTER_HEADER
+  (row 2, <b>dwOffset</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_STRING_COUNTER_HEADER
+  (row 1, <b>dwCounterId</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">_STRING_COUNTER_HEADER
+  (row 2, <b>dwOffset</b>)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Unicode
+  String Name of the first counter</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">Name of
+  the First Counter</p>
+  </td>
+  <td colspan="16">
+  <p align="center">Unicode
+  String Name of the Second Counter</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Unicode
+  String Name of the second counter</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">Name of
+  the Second Counter</p>
+  </td>
+  <td colspan="16">
+  <p align="center">Padding
+  (MUST be uninitialized)</p>
+  </td>
+ </tr>
+</tbody></table><ul><li><p><span><span> 
+</span></span>If <i>RequestCode</i> = 0x00000007, the server returns the name
+of the performance counter provider. The server MUST return a null-terminated
+Unicode string.</p>
+</li><li><p><span><span> 
+</span></span>If <i>RequestCode</i> = 0x00000008, the server returns the GUID
+of the performance counter provider. The server MUST return a GUID.</p>
+</li></ul></div>

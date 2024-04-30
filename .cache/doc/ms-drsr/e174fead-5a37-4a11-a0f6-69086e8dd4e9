@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The DS_NAME_RESULT_ITEMW structure defines the translated
+name returned by the <span><a href="9b4bfb44-6656-4404-bcc8-dc88111658b3" data-linktype="relative-path">IDL_DRSCrackNames</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD status;
+   [string, unique] WCHAR* pDomain;
+   [string, unique] WCHAR* pName;
+ } DS_NAME_RESULT_ITEMW,
+  *PDS_NAME_RESULT_ITEMW;
+</pre></div>
+</dd></dl><p><b>status:</b>  Status of the crack name
+operation for the corresponding element of the <b>rpNames</b> field in the
+request. The status is one of the values from the enumeration <span><a href="7f70adbb-1598-44f9-9df1-5c89ca87225f" data-linktype="relative-path">DS_NAME_ERROR</a></span>.</p><p><b>pDomain:</b>  DNS <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>
+name of the domain in which the named <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> resides.</p><p><b>pName:</b>  Object name in the requested
+format.</p></div>

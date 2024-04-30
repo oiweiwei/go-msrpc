@@ -1,0 +1,59 @@
+<div class="content"><p> </p><p>In the <b>DNS_RPC_ZONE_CREATE_INFO_LONGHORN</b> structure
+all fields have same definition as specified in section <b>DNS_RPC_ZONE_CREATE_INFO_DOTNET</b>
+(section <span><a href="f0a44576-1d3f-43cc-bece-07ae958f5b36" data-linktype="relative-path">2.2.5.2.7.2</a></span>), with
+the following exceptions:</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcZoneCreateInfoLonghorn {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   [string] char* pszZoneName;
+   DWORD dwZoneType;
+   DWORD fAllowUpdate;
+   DWORD fAging;
+   DWORD dwFlags;
+   [string] char* pszDataFile;
+   DWORD fDsIntegrated;
+   DWORD fLoadExisting;
+   [string] char* pszAdmin;
+   PDNS_ADDR_ARRAY aipMasters;
+   PDNS_ADDR_ARRAY aipSecondaries;
+   DWORD fSecureSecondaries;
+   DWORD fNotifyLevel;
+   DWORD dwTimeout;
+   DWORD fRecurseAfterForwarding;
+   DWORD dwDpFlags;
+   [string] char* pszDpFqdn;
+   DWORD dwReserved[32];
+ } DNS_RPC_ZONE_CREATE_INFO_LONGHORN,
+  *PDNS_RPC_ZONE_CREATE_INFO_LONGHORN,
+  DNS_RPC_ZONE_CREATE_INFO,
+  *PDNS_RPC_ZONE_CREATE_INFO;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> As specified in section
+<span><a href="23a085bf-d814-45e3-943f-8bbdc32a5dae" data-linktype="relative-path">2.2.5.2.4.3</a></span>.</p><p><b>aipMasters:</b> As specified in section
+2.2.5.2.4.3.</p><p><b>aipSecondaries:</b> As specified in section
+2.2.5.2.4.3.</p><p>If the DNS RPC client sends an older version of
+DNS_RPC_ZONE_CREATE_INFO structure such as DNS_RPC_ZONE_CREATE_INFO_W2K
+(section <span><a href="780eba26-15ea-43d3-a2b3-77ed9ab00690" data-linktype="relative-path">2.2.5.2.7.1</a></span>) or
+DNS_RPC_ZONE_CREATE_INFO_DOTNET (section 2.2.5.2.7.2), then the DNS RPC server
+MUST construct a current version of DNS_RPC_ZONE_CREATE_INFO structure such as
+DNS_RPC_ZONE_CREATE_INFO_LONGHORN, using steps as specified below:</p><ol><li><p><span>    </span>Copy the same
+value for fields that are common to input and current version of
+DNS_RPC_ZONE_CREATE_INFO structures.</p>
+</li><li><p><span>    </span>dwRpcStructureVersion
+field MUST be set to 2.</p>
+</li><li><p><span>    </span>The values for
+aipMasters and aipSecondaries fields MUST be obtained from input structure as
+IP4_ARRAY type and MUST be converted to DNS_ADDR_ARRAY type, and then assigned
+to aipMasters and aipSecondaries fields in the DNS_RPC_ZONE_CREATE_INFO_LONGHORN
+structure.</p>
+<p><b>Note</b>  DNS_RPC_ZONE_CREATE_INFO_W2K
+(section 2.2.5.2.7.1) and DNS_RPC_ZONE_CREATE_INFO_DOTNET (section
+2.2.5.2.7.2), do not support <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_64c29bb6-c8b2-4281-9f3a-c1eb5d2288aa" data-linktype="relative-path">IPv6</a></span> address list of
+<b>aipMasters</b> and <b>aipSecondaries</b>.</p>
+</li><li><p><span>    </span>All other fields
+that are defined only in DNS_RPC_ZONE_CREATE_INFO_LONGHORN and are not defined
+in DNS_RPC_ZONE_CREATE_INFO_W2K (section 2.2.5.2.7.1) or
+DNS_RPC_ZONE_CREATE_INFO_DOTNET (section 2.2.5.2.7.2) structure MUST be set to
+0.</p>
+</li></ol></div>

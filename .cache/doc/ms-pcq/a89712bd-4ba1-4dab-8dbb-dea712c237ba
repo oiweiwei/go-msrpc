@@ -1,0 +1,683 @@
+<div class="content"><p>The _PERF_COUNTER_REG_INFO structure contains information on
+the counter and is used when enumerating <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance counter</a>
+information on the server.</p><dl>
+<dd>
+<div><pre> typedef struct _PERF_COUNTER_REG_INFO {
+   unsigned long CounterId;
+   unsigned long Type;
+   unsigned __int64 Attrib;
+   unsigned long DetailLevel;
+   long DefaultScale;
+   unsigned long BaseCounterId;
+   unsigned long PerfTimeId;
+   unsigned long PerfFreqId;
+   unsigned long MultiId;
+   unsigned long AggregateFunc;
+   unsigned long Reserved;
+ } PERF_COUNTER_REG_INFO,
+  *PPERF_COUNTER_REG_INFO;
+</pre></div>
+</dd></dl><p><b>CounterId:</b>  The numeric identifier
+of the counter. A performance counter&#39;s <b>CounterId</b> value MUST be unique
+within its counterset.</p><p><b>Type:</b>  The type of counter. The
+client MAY need to perform numeric operations on the value of the counter that
+is retrieved from the server to use it for analysis. Unless explicitly stated
+as an instantaneous value, the client MAY need to cache the value of the
+counter to compare it with the value from the next query. The value MUST be one
+of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PERF_COUNTER_COUNTER</p>
+  <p>0x10410400</p>
+  </td>
+  <td>
+  <p>The counter data is a 32-bit value that indicates the
+  rate of events being counted per second. To get the rate, the client takes
+  the difference between counter values from two subsequent queries and divides
+  it by the time difference between the two query time stamps. The unit of time
+  is <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_096fab38-b9b5-434e-8bd9-95927f8d8686" data-linktype="relative-path">system time</a>. The
+  value is displayed as a rate of counts per second.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_COUNTER_TIMER</p>
+  <p>0x20410500</p>
+  </td>
+  <td>
+  <p>The counter data is a 64-bit value that indicates the
+  percentage of time that the server component updating the counter data was
+  active over the sample interval. The client takes the difference in this
+  value between subsequent queries and divides it by the sample interval; it
+  displays this ratio as a percentage.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_COUNTER_QUEUELEN_TYPE</p>
+  <p>0x00450400</p>
+  </td>
+  <td>
+  <p>The counter data is a 32-bit value that indicates the
+  average change in the length of a queue over the sample interval. The client
+  takes the difference in this value between subsequent queries and divides it
+  by the sample interval.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_COUNTER_LARGE_QUEUELEN_TYPE</p>
+  <p>0x00450500</p>
+  </td>
+  <td>
+  <p>This counter is similar to PERF_COUNTER_QUEUELEN_TYPE,
+  except that the counter data is a 64-bit value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_COUNTER_100NS_QUEUELEN_TYPE</p>
+  <p>0x00550500</p>
+  </td>
+  <td>
+  <p>This counter is similar to
+  PERF_COUNTER_LARGE_QUEUELEN_TYPE, except that the client assumes its clock is
+  updated at a frequency of 100 nanoseconds for this calculation. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_COUNTER_OBJ_TIME_QUEUELEN_TYPE</p>
+  <p>0x00650500</p>
+  </td>
+  <td>
+  <p>The counter data is a 32-bit value that indicates the
+  average change in the length of a queue over the sample interval. The client
+  takes the difference in this value between subsequent queries and divides it
+  by the time difference that the server provides through the <b>PerfTimeId</b>
+  counter, which contains the time stamp, and the PerfFreqId counter, which
+  contains the frequency at which the server updates the time.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_COUNTER_BULK_COUNT</p>
+  <p>0x10410500</p>
+  </td>
+  <td>
+  <p>This counter is similar to PERF_COUNTER_COUNTER,
+  except that the counter data is a 64-bit value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_COUNTER_TEXT</p>
+  <p>0X00000B00</p>
+  </td>
+  <td>
+  <p>This counter is not a numeric counter, but rather
+  Unicode text. The value is displayed as text.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_COUNTER_RAWCOUNT</p>
+  <p>0x00010000</p>
+  </td>
+  <td>
+  <p>The counter data is an instantaneous 32-bit value and
+  is not divided by a sample interval to calculate the average.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_COUNTER_LARGE_RAWCOUNT</p>
+  <p>0x00010100</p>
+  </td>
+  <td>
+  <p>This counter is similar to PERF_COUNTER_RAWCOUNT,
+  except that the counter data is a 64-bit value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_COUNTER_RAWCOUNT_HEX</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The counter data is an instantaneous 32-bit value and
+  is not divided by a sample interval to calculate the average. The value is
+  displayed as a hexadecimal number.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_COUNTER_LARGE_RAWCOUNT_HEX</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>This counter is similar to PERF_COUNTER_RAWCOUNT_HEX,
+  except that the counter data is a 64-bit value. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_SAMPLE_FRACTION</p>
+  <p>0x20C20400</p>
+  </td>
+  <td>
+  <p>The counter data is a 32-bit value that is used with
+  another counter to calculate a ratio that is displayed as a percentage. The
+  client takes the difference between this counter data value and divides it by
+  the difference between the data value queries of the BaseCounterId counter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_SAMPLE_COUNTER</p>
+  <p>0x00410400</p>
+  </td>
+  <td>
+  <p>The 32-bit counter data is similar to the
+  PERF_COUNTER_COUNTER, except that the <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_2d1079f2-b58a-4ee1-aa75-50f92cd7b3cc" data-linktype="relative-path">system performance time</a>
+  is used to calculate the sample interval instead of the system time.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_COUNTER_TIMER_INV</p>
+  <p>0x21410500</p>
+  </td>
+  <td>
+  <p>The 64-bit counter data is generally used to show
+  inactive time. The client takes the difference in the counter data between
+  two queries and then divides that by the sample interval, which is calculated
+  by using the system performance time. This ratio is then subtracted from 1
+  and displayed as a percentage.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_ELAPSED_TIME</p>
+  <p>0x30240500</p>
+  </td>
+  <td>
+  <p>The 64-bit counter data contains a time value from
+  which the value of the <b>PerfTimeId</b> counter is subtracted. This
+  difference is then divided by the value of the PerfFreqId counter, which
+  contains the frequency at which the server updates the time.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_SAMPLE_BASE</p>
+  <p>0x40030401</p>
+  </td>
+  <td>
+  <p>The 32-bit counter data is used as the BaseCounterId
+  for calculations that involve PERF_SAMPLE_FRACTION and MUST be greater than
+  0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_AVERAGE_TIMER</p>
+  <p>0x30020400</p>
+  </td>
+  <td>
+  <p>The 32-bit counter data is generally used to indicate
+  the average time for an operation. The client takes the difference in the
+  counter data between subsequent queries and divides that by the frequency of
+  the system clock. It then divides this value by the value of the difference
+  between subsequent queries of the BaseCounterId counter, which would contain
+  the number of operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_AVERAGE_BASE</p>
+  <p>0x40030402</p>
+  </td>
+  <td>
+  <p>The 32-bit counter data is used as the BaseCounterId
+  counter in calculations that involve PERF_AVERAGE_TIMER or PERF_AVERAGE_BULK.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_AVERAGE_BULK</p>
+  <p>0x40020500</p>
+  </td>
+  <td>
+  <p>The 64-bit counter data is generally used to show an
+  average metric, such as bytes, for an operation. The client takes the
+  difference in this value between subsequent queries and divides that value by
+  the difference in the value of the BaseCounterId counter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_OBJ_TIME_TIMER</p>
+  <p>0x20610500</p>
+  </td>
+  <td>
+  <p>The 64-bit counter data is used as a server-specific
+  timer. The client takes the difference in the counter data between subsequent
+  queries and then divides that by the difference in time. The time difference
+  is calculated by taking the difference of the <b>PerfTimeId</b> counter
+  between subsequent queries and dividing it by the value of the PerfFreqId
+  counter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_PRECISION_100NS_TIMER</p>
+  <p>0x20570500</p>
+  </td>
+  <td>
+  <p>The 64-bit counter data is used as a precise elapsed
+  timer. The client takes the difference in the counter data between subsequent
+  queries and then divides that by the value of the difference in the
+  BaseCounterId counter; the BaseCounterId counter represents a clock time that
+  is assumed to be updated at a frequency of 100 nanoseconds. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_PRECISION_SYSTEM_TIMER</p>
+  <p>0x20470500</p>
+  </td>
+  <td>
+  <p>The 64-bit counter data is used as an elapsed timer.
+  The client takes the difference in the counter data from subsequent queries
+  and divides it by the difference in the counter data of the BaseCounterId
+  counter, which serves as a timestamp counter. The client assumes the
+  frequency of the clock is the same as the system performance timer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_PRECISION_OBJECT_TIMER</p>
+  <p>0x20670500</p>
+  </td>
+  <td>
+  <p>The 64-bit counter data is used as a precise elapsed
+  timer. The client takes the difference in the counter data between subsequent
+  queries and divides that by the value of the difference in time. This
+  difference is calculated by taking the difference between subsequent queries
+  of the <b>PerfTimeId</b> counter and dividing it by the frequency, which is
+  the value of the PerfFreqId counter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> PERF_100NSEC_TIMER</p>
+  <p>0x20510500</p>
+  </td>
+  <td>
+  <p>The 64-bit counter data is used to indicate the ratio
+  of active time over elapsed time. The client takes the difference in the
+  counter data between subsequent queries and then divides that by the sample
+  interval; the frequency of the client clock is assumed to be 100 nanoseconds.
+  The value is displayed as a percentage.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> PERF_100NSEC_TIMER_INV</p>
+  <p>0x21510500</p>
+  </td>
+  <td>
+  <p>The 64-bit counter data is the inverse of the
+  PERF_100NSEC_TIMER; it shows the ratio of inactive time over elapsed time.
+  The client takes the difference in this counter value between subsequent
+  queries and then divides it by the sample interval; this result is subtracted
+  from 1 and then displayed as a percentage. The frequency of the client clock
+  in this calculation is assumed to be 100 nanoseconds. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_COUNTER_MULTI_TIMER</p>
+  <p>0x22410500</p>
+  </td>
+  <td>
+  <p>The 64-bit counter data is used to indicate the
+  average ratio of active time over elapsed time; it is used when there are
+  multiple instances, such as disks that are being monitored. The client takes
+  the difference in the counter data between subsequent queries and divides it
+  by the sample interval. The client uses the frequency of the system
+  performance time to calculate elapsed time. This ratio is then divided by the
+  value of the MultiId counter and is displayed as a percentage. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_COUNTER_MULTI_TIMER_INV</p>
+  <p>0x23410500</p>
+  </td>
+  <td>
+  <p>The 64-bit counter data is the inverse of the
+  PERF_COUNTER_MULTI_TIMER. The client takes the difference in the counter data
+  between subsequent queries and divides it by the sample interval. The client
+  uses the frequency of the system performance time. This value is then subtracted
+  from the value of the MultiId counter and is displayed as a percentage. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> PERF_100NSEC_MULTI_TIMER</p>
+  <p>0x22510500</p>
+  </td>
+  <td>
+  <p>The 64-bit counter data is used to indicate the
+  average ratio of active time over elapsed time; it is used when there are
+  multiple instances, such as disks that are being monitored. The client takes
+  the difference in the counter data between subsequent queries and divides it
+  by the sample interval. The client uses the frequency of 100 nanoseconds to
+  calculate elapsed time. This ratio is then divided by the value of the
+  MultiId counter and is displayed as a percentage. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> PERF_100NSEC_MULTI_TIMER_INV</p>
+  <p>0x23510500</p>
+  </td>
+  <td>
+  <p>The 64-bit counter data is the inverse of the
+  PERF_100NSEC_MULTI_TIMER. The client takes the difference in the counter data
+  between subsequent queries and then divides it by the sample interval; the
+  client uses the frequency of 100 nanoseconds to calculate elapsed time. This
+  value is then subtracted from the value of the MultiId counter; it is
+  displayed as a percentage.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_RAW_FRACTION</p>
+  <p>0x20020400</p>
+  </td>
+  <td>
+  <p>The 32-bit counter data is used to show a ratio
+  between two values. The client takes the counter data and divides it by the
+  value of the BaseCounterId counter; it displays this ratio as a percentage. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_RAW_BASE</p>
+  <p>0x40030403</p>
+  </td>
+  <td>
+  <p>The 32-bit counter data is used by the client in
+  calculations involving the PERF_RAW_FRACTION counter. The client SHOULD NOT
+  display this counter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_LARGE_RAW_FRACTION</p>
+  <p>0x20020500</p>
+  </td>
+  <td>
+  <p>The counter data is similar to PERF_RAW_FRACTION,
+  except that it is a 64-bit value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_LARGE_RAW_BASE</p>
+  <p>0x40030500</p>
+  </td>
+  <td>
+  <p>The 64-bit counter data is used by the client in
+  calculations that involve PERF_LARGE_RAW_FRACTION,
+  PERF_PRECISION_SYSTEM_TIMER, and PERF_PRECISION_100NS_TIMER counters. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Attrib:</b>  The counter attributes
+describe certain properties that can be combined in certain cases. The value
+MUST be one or more of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0000000000000001</p>
+  </td>
+  <td>
+  <p>Reference. The query on the server MUST dereference
+  the counter to obtain the value.<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="74af7798-f739-49d0-b16f-6899a9f92a8a#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000000000000002</p>
+  </td>
+  <td>
+  <p>No display. Instructs the client consumer querying for
+  performance counter data not to display the counter value. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000000000000004</p>
+  </td>
+  <td>
+  <p>No group separator. Instructs the client consumer
+  querying performance counter data to display the counter values as a single
+  number without commas between digits. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000000000000008</p>
+  </td>
+  <td>
+  <p>Display as real. Instructs the client consumer
+  querying performance counter to display the counter value as a real number. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000000000000010</p>
+  </td>
+  <td>
+  <p>Display as hexadecimal. Instructs the client consumer
+  querying performance counter to display the counter value as a hexadecimal
+  number.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Note that only certain
+combinations of the preceding possible values are allowed. </p>
+</dd></dl><ul><li><p><span><span>  </span></span>The
+&#34;Reference&#34; value (0x0000000000000001) can be specified with any
+other value.</p>
+</li><li><p><span><span>  </span></span>The
+&#34;No display&#34; value (0x0000000000000002) MUST NOT be specified with
+the &#34;No group separator&#34;, &#34;Display as real&#34; or
+&#34;Display as hex&#34; values.</p>
+</li><li><p><span><span>  </span></span>The
+&#34;No group separator&#34; (0x0000000000000004) or the &#34;Display as
+real&#34; (0x0000000000000008) values MUST NOT be specified with the
+&#34;Display as hex&#34; value.</p>
+</li></ul><p><b>DetailLevel:</b>  The detail level of the
+counter. The value MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000064</p>
+  </td>
+  <td>
+  <p>Novice level. Designed to be accessed by casual users
+  who do not have detailed system knowledge. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000C8</p>
+  </td>
+  <td>
+  <p>Advanced level. Designed to be accessed by IT
+  administrators who are monitoring multiple machines. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>DefaultScale:</b>  Indicates the amount
+by which the counter value is scaled. Valid values are from 0xFFFFFFF6 to
+0x0000000A (-10 to 10 decimal). For example, if the value of the counter is
+0x0000000A (10 decimal) and the default scale is 0x00000002 (2 decimal), the
+counter value that is calculated by the client MUST be 0x000003E8 (1000
+decimal).</p><p><b>BaseCounterId:</b>  The <b>CounterId</b>
+of another counter in the <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_5ad9937c-a24e-4274-92c8-50ff5f97bf19" data-linktype="relative-path">counterset</a>
+whose value is used by the client in calculating this counter&#39;s value. The type
+of calculation depends of the type of the performance counter.</p><dl>
+<dd>
+<p>For example, the difference in the value between
+queries of a counter are divided by the difference in the value between queries
+of the counter whose <b>CounterId</b> is BaseCounterId.</p>
+</dd>
+<dd>
+<p>The following counter types require a <b>BaseCounterId</b>.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Counter type </p>
+   </th>
+   <th>
+   <p>Base counter type </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PERF_AVERAGE_TIMER</p>
+  </td>
+  <td>
+  <p>PERF_AVERAGE_BASE</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_AVERAGE_BULK </p>
+  </td>
+  <td>
+  <p>PERF_AVERAGE_BASE </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_LARGE_RAW_FRACTION </p>
+  </td>
+  <td>
+  <p>PERF_LARGE_RAW_BASE </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_PRECISION_SYSTEM_TIMER</p>
+  </td>
+  <td>
+  <p>PERF_LARGE_RAW_BASE</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_PRECISION_100NS_TIMER </p>
+  </td>
+  <td>
+  <p>PERF_LARGE_RAW_BASE</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_RAW_FRACTION </p>
+  </td>
+  <td>
+  <p>PERF_RAW_BASE </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_SAMPLE_FRACTION </p>
+  </td>
+  <td>
+  <p>PERF_SAMPLE_BASE </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>PerfTimeId:</b>  The <b>CounterId</b> of
+another counter in the counterset whose time value is used to calculate the
+value of this counter.</p><dl>
+<dd>
+<p>In certain cases, such as when calculating rate, it
+is necessary to gather a time value and take the difference between subsequent
+queries of this time value to calculate elapsed time on the client. <b>PerfTimeId</b>
+specifies the <b>CounterId</b> of the counter, which MUST be of type
+PERF_COUNTER_LARGE_RAWCOUNT, in the counterset that will contain the time value
+that is used to calculate the rate of this counter. The following counter types
+require a <b>PerfTimeId</b> (for more information, see <a href="https://go.microsoft.com/fwlink/?LinkId=90180" data-linktype="external">[MSFT-COUNTERTYPES]</a>):</p>
+</dd></dl><p><span>§<span>  </span></span>PERF_COUNTER_OBJ_TIME_QUEUELEN_TYPE</p><p><span>§<span>  </span></span>PERF_ELAPSED_TIME</p><p><span>§<span>  </span></span>PERF_OBJ_TIME_TIMER</p><p><span>§<span>  </span></span>PERF_PRECISION_OBJECT_TIMER</p><p><b>PerfFreqId:</b>  The <b>CounterId</b> of
+another counter in the counterset whose frequency value is used to calculate
+the value of this counter.</p><dl>
+<dd>
+<p>In certain cases, such as when rate is calculated,
+it is necessary to gather a time value and take the difference between
+subsequent queries of this time value. The time value is then divided by the
+frequency at which time is updated to calculate the elapsed time, in seconds,
+on the client. <b>PerfFreqId</b> specifies the <b>CounterId</b> of the counter,
+which MUST be of type PERF_COUNTER_LARGE_RAWCOUNT, in the counterset whose
+value will contain the frequency at which time is updated to calculate the rate
+of this counter. The following counter types require a <b>PerfFreqId</b> (for
+more information, see [MSFT-COUNTERTYPES]): </p>
+</dd></dl><p><span>§<span>  </span></span>PERF_COUNTER_OBJ_TIME_QUEUELEN_TYPE</p><p><span>§<span>  </span></span>PERF_ELAPSED_TIME</p><p><span>§<span>  </span></span>PERF_OBJ_TIME_TIMER</p><p><span>§<span>  </span></span>PERF_PRECISION_OBJECT_TIMER</p><p><b>MultiId:</b>  The <b>CounterId</b> of
+another counter within the current counterset that is used to calculate the
+value of this counter.</p><dl>
+<dd>
+<p>In certain cases, such as when rate counters are
+scaled, it is necessary to divide the difference in this counter value between
+queries by an additional value on the client. The <b>CounterId</b> of the
+counter is specified by <b>MultiId</b>. It MUST be of type
+PERF_COUNTER_RAWCOUNT in the counterset that is used as a divisor to this
+counter value. The following counter types require a <b>MultiId</b> (for more
+information, see [MSFT-COUNTERTYPES]): </p>
+</dd></dl><p><span>§<span>  </span></span>PERF_COUNTER_MULTI_TIMER</p><p><span>§<span>  </span></span>PERF_100NSEC_MULTI_TIMER</p><p><span>§<span>  </span></span>PERF_100NSEC_MULTI_TIMER_INV</p><p><span>§<span>  </span></span>PERF_COUNTER_MULTI_TIMER_INV</p><p><b>AggregateFunc:</b>  The aggregation
+function to be performed by the client on the counter if the counterset to
+which the counter belongs is of type Global Aggregate, Multiple Instance
+Aggregate, or Global Aggregate History. The client specifies across which counter
+instances the aggregation are performed if the counterset type is Multiple
+Instance Aggregate; otherwise, the client MUST aggregate values across all
+instances of the counterset. One of the following values MUST be specified.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Undefined. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Total. The sum of the values of the returned counter
+  instances.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Average. The average of the values of the returned
+  counter instances.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Minimum. The minimum value of the returned counter
+  instance values.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Maximum. The maximum value of the returned counter
+  instance values.</p>
+  </td>
+ </tr></tbody></table><p><b>Reserved:</b>  This is a reserved field. It
+MUST be set to 0, and MUST be ignored on receipt.</p></div>

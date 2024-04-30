@@ -1,0 +1,71 @@
+<div class="content"><p> </p><p>The VDS_ SERVICE _NOTIFICATION structure provides
+information about state changes to the service object.<a id="Appendix_A_Target_19"></a><a aria-label="Product behavior note 19" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_19" data-linktype="relative-path">&lt;19&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _VDS_SERVICE_NOTIFICATION {
+   ULONG ulEvent;
+   VDS_RECOVER_ACTION action;
+ } VDS_SERVICE_NOTIFICATION;
+</pre></div>
+</dd></dl><p><b>ulEvent:</b>  The type of service
+notification; it MUST be set to the following value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>VDS_NF_SERVICE_OUT_OF_SYNC</p>
+  <p>0x0000012D</p>
+  </td>
+  <td>
+  <p>The service&#39;s cache has become inconsistent or the
+  service has encountered an error requiring client action.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>action:</b>  The type of action required
+by the client to return the service to a functioning, consistent state; it MUST
+be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>VDS_RA_UNKNOWN</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The client corrective action is unknown.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VDS_RA_REFRESH</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The client corrective action is to call the <span><a href="d1f1720b-56d0-426c-8966-39016275912c" data-linktype="relative-path">IVdsService::Refresh (section 3.4.5.2.4.10)</a></span>
+  method.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VDS_RA_RESTART</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The client corrective action is to restart the
+  service.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

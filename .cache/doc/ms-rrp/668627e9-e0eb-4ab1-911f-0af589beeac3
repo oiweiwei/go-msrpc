@@ -1,0 +1,136 @@
+<div class="content"><p> </p><p>The BaseRegEnumKey method is called by the client in order
+to enumerate a subkey. In response, the server returns a requested subkey.</p><dl>
+<dd>
+<div><pre> error_status_t BaseRegEnumKey(
+   [in] RPC_HKEY hKey,
+   [in] DWORD dwIndex,
+   [in] PRRP_UNICODE_STRING lpNameIn,
+   [out] PRRP_UNICODE_STRING lpNameOut,
+   [in, unique] PRRP_UNICODE_STRING lpClassIn,
+   [out] PRPC_UNICODE_STRING* lplpClassOut,
+   [in, out, unique] PFILETIME lpftLastWriteTime
+ );
+</pre></div>
+</dd></dl><p><b>hKey: </b>A handle to a key that MUST have been
+opened previously by using one of the open methods that are specified in
+section <span><a href="053e8515-dbae-47ea-a7c6-6dc054e3a48f" data-linktype="relative-path">3.1.5</a></span>: <span><a href="956a3052-6580-43ee-91aa-aaf61726149b" data-linktype="relative-path">OpenClassesRoot</a></span>,
+<span><a href="ec140ed9-4d00-4c03-a15c-c7245a497ed5" data-linktype="relative-path">OpenCurrentUser</a></span>,
+<span><a href="6cef29ae-21ba-423f-9158-05145ac80a5b" data-linktype="relative-path">OpenLocalMachine</a></span>,
+<span><a href="7b514c63-6cad-4fe1-9780-743959e377e6" data-linktype="relative-path">OpenPerformanceData</a></span>,
+<span><a href="694e57f4-da3e-4285-8b71-3181d71d6cd1" data-linktype="relative-path">OpenUsers</a></span>,
+<span><a href="c7186ae2-1c82-45e9-933b-97d9873657e8" data-linktype="relative-path">BaseRegCreateKey</a></span>,
+<span><a href="8cb48f55-19e1-4ea2-8d76-dd0f6934f0d9" data-linktype="relative-path">BaseRegOpenKey</a></span>,
+<span><a href="160767d7-83cf-4718-a4f3-d864faee3bb1" data-linktype="relative-path">OpenCurrentConfig</a></span>,
+<span><a href="44954f6d-ef2c-4ec1-a27d-32b9b87e3c8a" data-linktype="relative-path">OpenPerformanceText</a></span>,
+<span><a href="3626fa8a-b20f-4243-bf85-cdb615ed2ca0" data-linktype="relative-path">OpenPerformanceNlsText</a></span>.</p><p><b>dwIndex: </b>The index of the subkey to retrieve,
+as specified in section <span><a href="77526078-ea8b-4090-884f-ed4fb24596c2" data-linktype="relative-path">3.1.1.1</a></span>.</p><p><b>lpNameIn: </b>A pointer to an RRP_UNICODE_STRING
+structure (section <span><a href="c0c90f11-a4c4-496a-ac09-8a8a3697ceef" data-linktype="relative-path">2.2.4</a></span>) that
+contains the key name to be retrieved, as specified in section 3.1.1.1. This is
+used by the server to determine the maximum length for the output name
+parameter and to allocate space accordingly. The content is ignored, and only
+the maximum length is significant. The Length field MUST be set to 0.</p><p><b>lpNameOut: </b>A pointer to an RRP_UNICODE_STRING
+structure that receives the name of the retrieved key, as specified in section
+3.1.1.1. All fields MUST be set to 0.</p><p><b>lpClassIn: </b>A pointer to an RRP_UNICODE_STRING
+structure (section 2.2.4) that contains the class to be retrieved, as specified
+in section <span><a href="93f88852-a82a-48d5-8af5-dab65db108a6" data-linktype="relative-path">3.1.1.6</a></span>. This is
+used by the server to determine the maximum length for the output class
+parameter and to allocate space accordingly. The content is ignored.</p><p><b>lplpClassOut: </b>A pointer to a
+PRPC_UNICODE_STRING structure (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/94a16bb6-c610-4cb9-8db6-26f15f560061" data-linktype="relative-path">2.3.10</a></span>),
+that receives the class of the retrieved key, as specified in section 3.1.1.6.
+This parameter is optional.</p><p><b>lpftLastWriteTime:</b> MUST be the time when the <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">value</a></span>
+was last written (set or created). </p><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have KEY_ENUMERATE_SUB_KEYS access
+  rights.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000000E</p>
+  <p>ERROR_OUTOFMEMORY</p>
+  </td>
+  <td>
+  <p>Not enough storage is available to complete this
+  operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  </td>
+  <td>
+  <p>No more data is available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000013</p>
+  <p>ERROR_WRITE_PROTECT</p>
+  </td>
+  <td>
+  <p>A read or write operation was attempted to a volume
+  after it was dismounted. The server can no longer service registry requests
+  because server shutdown has been initiated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000EA</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>The size of the buffer is not large enough to hold the
+  requested data.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Server Operations</p><p>If the registry server can no longer service registry
+requests because server shutdown has been initiated, the server MUST return
+ERROR_WRITE_PROTECT.</p><p>If the <i>dwIndex</i> parameter is beyond the range of
+subkeys, the server MUST return ERROR_NO_MORE_ITEMS to indicate that
+enumeration is complete.</p><p>If the <i>lplpClassOut</i> parameter does not contain enough
+space for the class name, the server MUST return ERROR_MORE_DATA.</p><p>The server MUST first validate that the <i>hKey</i>
+parameter is currently an open handle which MUST have been opened previously
+using one of the methods specified in section 3.1.5. If the <i>hKey</i>
+parameter is not an already opened handle, the server MUST return
+ERROR_INVALID_PARAMETER.</p><p>The <i>lpNameIn</i> parameter specifies (in the <b>MaxmimumLength</b>
+member of the RRP_UNICODE_STRING structure) the length of the buffer allocated
+by the RPC client. This string is transferred as an in parameter to the server.
+Its maximum length is used to allocate the output Unicode string (<i>lpNameOut</i>)
+that transfers data back to the client.</p><p>In response to this request from the client, for a
+successful operation, the server MUST return the subkey at the index that is
+specified by the <i>dwIndex</i> parameter for the key that is specified by the <i>hKey</i>
+parameter.</p><p>The server MUST copy the name of the retrieved subkey (as
+specified in section 3.1.1.1), including the terminating null character, to the
+buffer that is pointed to by the <i>lpNameOut</i> parameter in the client
+request. The server MUST not copy the full key hierarchy to the buffer. If a
+class is associated with the key, the server MUST copy this class to the buffer
+that is pointed to by the <i>lpClassOut</i> parameter. The server MUST return
+the time a value was last modified in the <i>lpftLastWriteTime</i> parameter.</p><p>The caller MUST have KEY_ENUMERATE_SUB_KEYS access rights to
+invoke this method. For more information, see section <span><a href="fefbc801-b141-4bb1-9dcb-bf366da3ae7e" data-linktype="relative-path">2.2.4</a></span>.</p><p>The server MUST return 0 to indicate success or an
+appropriate error code (as specified in [MS-ERREF]) to indicate an error.</p><p>If the caller does not have access, the server MUST return
+ERROR_ACCESS_DENIED.</p></div>

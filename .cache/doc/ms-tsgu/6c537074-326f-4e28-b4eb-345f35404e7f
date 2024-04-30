@@ -1,0 +1,74 @@
+<div class="content"><p>The TsProxyCloseChannel method is used to terminate the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_9964c8b0-1d25-4e8e-9dd1-4a51577698f5" data-linktype="relative-path">channel</a> from the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>. This SHOULD be
+called only if the RDG client has not received the RPC response PDU with the
+PFC_LAST_FRAG bit set in the <b>pfc_flags</b> field. All communication between
+the RDG client and the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_3657ab68-5a60-4cee-8082-dfc2e67435e9" data-linktype="relative-path">target
+server</a> MUST stop after the RDG server executes this method. The RDG client
+MUST NOT use this context <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a>
+in any subsequent operations after calling this method. This will terminate the
+channel between the RDG client and the target server. If the RDG server has not
+already sent the RPC response PDU with the PFC_LAST_FRAG bit set in the <b>pfc_flags</b>
+field, which happens if the RDG server initiated the disconnect, the RDG client
+will also receive a return code for <a href="8147cb81-042f-48a3-a7ff-9f12ab73e048" data-linktype="relative-path">TsProxySetupReceivePipe</a> in
+an RPC response PDU with the PFC_LAST_FRAG bit set in the <b>pfc_flags</b>. For
+a description of RPC response PDU, pfc_flags, and PFC_LAST_FRAG, refer to <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> sections 12.6.2
+and 12.6.14.10.</p><p>The RDG server completes the TsProxyCloseChannel only after
+sending all of the data it received before this call was made. The RDG client
+receives the call complete notification only after it receives all of the data
+that was sent by the RDG server before completing TsProxyCloseChannel. Please
+refer to section 3.2.6.2.2 for details on how the data is ensured to reach the
+destination.</p><p>Prerequisites: The connection MUST be in Channel Created
+state or Pipe Created state or Channel Close Pending state.</p><p>Sequential Processing Rules:</p><ol><li><p><span>    </span>The RDG server
+MUST check whether the channel context handle is NULL or not a valid context
+handle. If so, the TSGU server MUST return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>The RDG server
+MUST disconnect the connection to the target server.</p>
+</li><li><p><span>    </span>The RDG server
+MUST send all data received from the target server to the RDG client and MUST
+end TsProxySetupReceivePipe with ERROR_GRACEFUL_DISCONNECT.</p>
+</li><li><p><span>    </span>The RDG server
+MUST return ERROR_SUCCESS.</p>
+<div><pre> HRESULT TsProxyCloseChannel(
+   [in, out] PCHANNEL_CONTEXT_HANDLE_NOSERIALIZE* context
+ );
+</pre></div>
+</li></ol><p><b>context: </b>The RDG client MUST provide the RDG
+server with the same context handle it received from the <a href="99458693-7c7e-45fb-abf8-2328439a4b35" data-linktype="relative-path">TsProxyCreateChannel</a>
+method call.</p><p><b>Return Values: </b></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value</p>
+   </th>
+   <th>
+   <p>State transition</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_SUCCESS (0x00000000)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to Tunnel Close Pending
+  state.</p>
+  </td>
+  <td>
+  <p>Returned when the call to the TsProxyCloseChannel
+  method succeeds.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED (0x00000005)</p>
+  </td>
+  <td>
+  <p>The connection MUST NOT transition its state.</p>
+  </td>
+  <td>
+  <p>Returned when the provided context parameter is NULL
+  or not a valid channel context handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

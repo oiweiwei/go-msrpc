@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The SERVER_XPORT_ENUM_UNION union contains information about
+file <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>
+transports.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union _SERVER_XPORT_ENUM_UNION {
+   [case(0)] 
+     PSERVER_XPORT_INFO_0_CONTAINER Level0;
+   [case(1)] 
+     PSERVER_XPORT_INFO_1_CONTAINER Level1;
+   [case(2)] 
+     PSERVER_XPORT_INFO_2_CONTAINER Level2;
+   [case(3)] 
+     PSERVER_XPORT_INFO_3_CONTAINER Level3;
+ } SERVER_XPORT_ENUM_UNION;
+</pre></div>
+</dd></dl><p><b>Level0:</b>  A pointer to a structure
+containing information about file server transports, as specified in section <span><a href="9b769044-bfdb-4064-bf40-33f2e5db648d" data-linktype="relative-path">2.2.4.97</a></span>.</p><p><b>Level1:</b>  A pointer to a structure
+containing information about file server transports, as specified in section <span><a href="9a006cfe-f31c-4754-9558-c7c4a84a11af" data-linktype="relative-path">2.2.4.98</a></span>.</p><p><b>Level2:</b>  A pointer to a structure
+containing information about file server transports, as specified in section <span><a href="917c56d5-74dd-47d8-803f-620daca128d0" data-linktype="relative-path">2.2.4.99</a></span>.</p><p><b>Level3:</b>  A pointer to a structure
+containing information about file server transports, as specified in section <span><a href="2cb6846c-a11f-44aa-a875-050d485150f2" data-linktype="relative-path">2.2.4.100</a></span>.</p></div>

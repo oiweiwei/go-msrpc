@@ -1,0 +1,75 @@
+<div class="content"><p> </p><p>The <b>INET_INFO_CAPABILITIES_STRUCT</b> structure specifies
+the features supported by an <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_d9a0cf88-f6d7-4c52-a9fc-4ce5a7cb7260" data-linktype="relative-path">Internet protocol server</a></span>
+implementation.</p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _INET_INFO_CAPABILITIES_STRUCT {
+   DWORD CapVersion;
+   DWORD ProductType;
+   DWORD MajorVersion;
+   DWORD MinorVersion;
+   DWORD BuildNumber;
+   DWORD NumCapFlags;
+   [size_is(NumCapFlags)] LPINET_INFO_CAP_FLAGS CapFlags;
+ } INET_INFO_CAPABILITIES_STRUCT,
+  *LPINET_INFO_CAPABILITIES_STRUCT;
+</pre></div>
+</dd></dl><p><b>CapVersion:</b>  The version number of
+this structure. MUST be 1.</p><p><b>ProductType:</b>  The value that
+indicates the Windows operating system product type hosting the implementation.
+This field MUST be set to one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>INET_INFO_PRODUCT_NTSERVER</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The operating system product type is a
+  Windows server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>INET_INFO_PRODUCT_NTWKSTA</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The operating system product type is a
+  Windows client or Windows NT Workstation operating system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>INET_INFO_PRODUCT_UNKNOWN</p>
+  <p>0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>The operating system product type is unknown.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>INET_INFO_PRODUCT_WINDOWS95</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The operating system product type is Windows 95
+  operating system.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>MajorVersion:</b>   The major version
+number of the Internet Information Services (IIS) Inetinfo Remote Protocol
+server.</p><p><b>MinorVersion:</b>  The minor version
+number of the Internet Information Services (IIS) Inetinfo Remote Protocol
+server.</p><p><b>BuildNumber:</b>  The build number of
+the version of the Windows operating system running on the Internet Information
+Services (IIS) Inetinfo Remote Protocol server. </p><p><b>NumCapFlags:</b>  The number of <span><b><a href="2b6b8e78-6390-4781-9f69-b6e5f49561ac" data-linktype="relative-path">INET_INFO_CAP_FLAGS</a></b></span>
+structures pointed to by the CapFlags member. MUST be 1.</p><p><b>CapFlags:</b>  The pointer to an array
+of <b>INET_INFO_CAP_FLAGS</b> structures that defines the server&#39;s
+capabilities.</p></div>

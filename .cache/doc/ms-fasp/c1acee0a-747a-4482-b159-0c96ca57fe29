@@ -1,0 +1,168 @@
+<div class="content"><p> </p><p>This structure contains a list of <span><a href="bae6ee78-bedc-4a3a-9545-8920c2a93cda" data-linktype="relative-path">FW_AUTH_SUITE2_10</a></span>
+elements that are ordered from highest to lowest preference and are negotiated
+with remote peers to establish authentication algorithms.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_AUTH_SET2_10 {
+   struct _tag_FW_AUTH_SET2_10* pNext;
+   unsigned short wSchemaVersion;
+   [range(FW_IPSEC_PHASE_INVALID+1, FW_IPSEC_PHASE_MAX-1)] 
+     FW_IPSEC_PHASE IpSecPhase;
+   [string, range(1,255), ref] wchar_t* wszSetId;
+   [string, range(1,10001)] wchar_t* wszName;
+   [string, range(1,10001)] wchar_t* wszDescription;
+   [string, range(1,10001)] wchar_t* wszEmbeddedContext;
+   [range(0,1000)] unsigned long dwNumSuites;
+   [size_is(dwNumSuites)] PFW_AUTH_SUITE pSuites;
+   [range(FW_RULE_ORIGIN_INVALID,FW_RULE_ORIGIN_MAX-1)] 
+     FW_RULE_ORIGIN_TYPE Origin;
+   [string, range(1,10001)] wchar_t* wszGPOName;
+   FW_RULE_STATUS Status;
+   unsigned long dwAuthSetFlags;
+ } FW_AUTH_SET2_10,
+  *PFW_AUTH_SET2_10;
+</pre></div>
+</dd></dl><p><b>pNext:</b>  A pointer to the next
+FW_AUTH_SET2_10 in the list.</p><p><b>wSchemaVersion:</b>  Specifies the
+version of the set. </p><p><b>IpSecPhase:</b>  This field is of type <span><a href="e23d75ab-c5f1-4b77-b290-f0e0e25d72e1" data-linktype="relative-path">FW_IPSEC_PHASE</a></span>,
+and it specifies if this authentication set applies for first or second
+authentications.</p><p><b>wszSetId:</b>  A pointer to a <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string that uniquely identifies the set. The default set for this policy object
+is identified with the &#34;{E5A5D32A-4BCE-4e4d-B07F-4AB1BA7E5FE3}&#34;
+string for Phase1 and the &#34;{E5A5D32A-4BCE-4e4d-B07F-4AB1BA7E5FE4}&#34;
+string for Phase2. Default sets are merged across policy stores, and only one
+is enforced according to predefined merge logic rules.</p><p><b>wszName:</b>  A pointer to a Unicode
+string that provides a friendly name for the set.</p><p><b>wszDescription:</b>  A pointer to a
+Unicode string that provides a friendly description for the set.</p><p><b>wszEmbeddedContext:</b>  A pointer to a
+Unicode string that provides a way for applications to store relevant
+application-specific context that is related to the set.</p><p><b>dwNumSuites:</b>  Specifies the number
+of authentication suites that the structure contains.</p><p><b>pSuites:</b>  A pointer to an array of <span><a href="447c3a4c-9543-495d-ab7d-b7ca639712ef" data-linktype="relative-path">FW_AUTH_SUITE</a></span>
+elements. The number of elements is given by <b>dwNumSuites</b>.</p><p><b>Origin:</b>  This field is the set
+origin, as specified in the <span><a href="9d295321-d75c-41c0-ab0d-7a78df40f77c" data-linktype="relative-path">FW_RULE_ORIGIN_TYPE</a></span>
+enumeration. It MUST be filled on enumerated rules and ignored on input.</p><p><b>wszGPOName:</b>  A Unicode string that
+represents the name of the originating <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_dec32233-8776-4151-91a0-8624a2b9abb0" data-linktype="relative-path">GPO</a></span>. It MUST be set
+if the origin is <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_defe8c22-1365-4e5e-abf7-46ad112d3bda" data-linktype="relative-path">Group Policy</a></span>;
+otherwise, it MUST be NULL. </p><p><b>Status:</b>  A status code of the set,
+as specified by the <span><a href="c4fd81e6-38dd-47c5-8a0f-a98a11cf190e" data-linktype="relative-path">FW_RULE_STATUS</a></span>
+enumeration. This field is filled out when the structure is returned as output.
+On input, this field MUST be set to FW_RULE_STATUS_OK.</p><p><b>dwAuthSetFlags:</b>  A reserved value
+and not currently used. It MUST be set to 0.</p><p>The following are semantic checks that authentication sets
+MUST pass:</p><ul><li><p><span><span> 
+</span></span>The <b>wSchemaVersion</b> field MUST NOT be less than 0x000200.</p>
+</li><li><p><span><span> 
+</span></span>The <b>wszSetId</b> field MUST NOT contain the pipe (|)
+character, MUST NOT be NULL, MUST be a string of at least 1 character long, and
+MUST NOT be greater than or equal to 255 characters.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>wszName</b> field string is not NULL, it MUST be at
+least 1 character long, MUST NOT be greater than or equal to 10,000 characters,
+and MUST NOT contain the pipe (|) character.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>wszDescription</b> field string is not NULL, it MUST be
+at least 1 character long, MUST NOT be greater than or equal to 10,000
+characters, and MUST NOT contain the pipe (|) character.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>wszEmbeddedContext</b> field string is not NULL, it
+MUST be at least 1 character long, MUST NOT be greater than or equal to 10,000
+characters, and MUST NOT contain the pipe (|) character.</p>
+</li><li><p><span><span> 
+</span></span>The <b>IpSecPhase</b> field MUST have valid FW_IPSEC_PHASE
+values.</p>
+</li><li><p><span><span> 
+</span></span>If <b>IpSecPhase</b> is FW_IPSEC_PHASE_1:</p>
+<ul><li><p><span><span>  </span></span>The
+<b>wszSetId</b> field MUST NOT have the default phase 1 authentication set ID
+as a prefix.</p>
+</li><li><p><span><span>  </span></span>The
+authentication set MUST have at least one authentication suite. </p>
+</li><li><p><span><span>  </span></span>The
+<b>dwNumSuites</b> field MUST agree with the <b>pSuites</b> field.</p>
+</li><li><p><span><span>  </span></span>The
+authentication suites methods MUST only be FW_AUTH_METHOD_ANONYMOUS,
+FW_AUTH_METHOD_MACHINE_KERB, FW_AUTH_METHOD_MACHINE_NTLM,
+FW_AUTH_METHOD_MACHINE_CERT, or FW_AUTH_METHOD_MACHINE_SHKEY.</p>
+</li><li><p><span><span>  </span></span>Authentication
+suites that have a method other than machine certificate MUST have the <b>wFlags</b>
+field of the same suite set to 0.</p>
+</li><li><p><span><span>  </span></span>If
+the set schema policy version is 0x200, the <b>wFlags</b> field MUST NOT
+contain the FW_AUTH_SUITE_FLAGS_CERT_SIGNING_ECDSA256 or the
+FW_AUTH_SUITE_FLAGS_CERT_SIGNING_ECDSA384 flags.</p>
+</li><li><p><span><span>  </span></span>The
+<b>wFlags</b> field MUST NOT contain both the FW_AUTH_SUITE_FLAGS_CERT_SIGNING_ECDSA256
+and the FW_AUTH_SUITE_FLAGS_CERT_SIGNING_ECDSA384 flags.</p>
+</li><li><p><span><span>  </span></span>All
+suites that have the FW_AUTH_METHOD_MACHINE_CERT method and a <b>wFlags</b>
+field with the FW_AUTH_SUITE_FLAGS_CERT_SIGNING_ECDSA256 flag set, MUST be
+contiguous. The same applies for those suites that have the
+FW_AUTH_SUITE_FLAGS_CERT_SIGNING_ECDSA384 flag set, and those suites that have
+neither flag set (they default to <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_3f85a24a-f32a-4322-9e99-eba6ae802cd6" data-linktype="relative-path">RSA</a></span> signing).</p>
+</li><li><p><span><span>  </span></span>All
+such contiguous suites that have a specific signing flag (either none,
+ECDSA256, or ECDSA384) MUST have the same value for the
+FW_AUTH_SUITE_FLAGS_HEALTH_CERT flag. It MUST be set either in all or in none.</p>
+</li><li><p><span><span>  </span></span>The
+set MUST NOT have more than one suite that has the anonymous method (FW_AUTH_METHOD_ANONYMOUS),
+or that has the machine kerb method (FW_AUTH_METHOD_MACHINE_KERB), or that has
+the machine ntlm method (FW_AUTH_METHOD_MACHINE_NTLM), or that has the machine
+shkey method (FW_AUTH_METHOD_MACHINE_SHKEY), as defined in section <span><a href="59e71d46-4407-47d2-9cf5-8889fd3a74f2" data-linktype="relative-path">2.2.60</a></span>.<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="1da2ee70-a6ae-4f76-b08f-fdc25c77d8a0#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a></p>
+</li><li><p><span><span>  </span></span>The
+set MUST NOT have a suite that has an NTLM Authentication Protocol method (as
+specified in <span><a href="../ms-nlmp/b38c36ed-2804-4868-a9ff-8dd3182128e4" data-linktype="relative-path">[MS-NLMP]</a></span>)
+and a suite SHKey method.</p>
+</li><li><p><span><span>  </span></span>If
+the set has a machine certificate suite that has a <b>wFlags</b> field that
+contains the flag FW_AUTH_SUITE_FLAGS_HEALTH_CERT, all machine certificate
+method suites in the set MUST also have this flag.</p>
+</li><li><p><span><span>  </span></span>If
+the set schema policy version is less than 0x214, the set MUST NOT have suites
+that contain the FW_AUTH_METHOD_MACHINE_NEGOEX authentication method.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <b>IpSecPhase</b> is FW_IPSEC_PHASE_2:</p>
+<ul><li><p><span><span>  </span></span>The
+<b>wszSetId</b> MUST NOT have the default phase 2 authentication set ID as a
+prefix.</p>
+</li><li><p><span><span>  </span></span>The
+<b>dwNumSuites</b> field MUST agree with the <b>pSuites</b> field.</p>
+</li><li><p><span><span>  </span></span>The
+authentication suites methods MUST only be FW_AUTH_METHOD_ANONYMOUS,
+FW_AUTH_METHOD_USER_KERB, FW_AUTH_METHOD_USER_NTLM, FW_AUTH_METHOD_USER_CERT, or
+FW_AUTH_METHOD_MACHINE_CERT.</p>
+</li><li><p><span><span>  </span></span>The
+set MUST NOT have a suite that has the anonymous method as the only suite.</p>
+</li><li><p><span><span>  </span></span>Suites
+in the set MUST NOT contain FW_AUTH_SUITE_FLAGS_CERT_EXCLUDE_CA_NAME.</p>
+</li><li><p><span><span>  </span></span>Suites
+that have user certificate methods MUST NOT contain the FW_AUTH_SUITE_FLAGS_HEALTH_CERT
+flag; however, suites that have machine certificate methods MUST contain it.</p>
+</li><li><p><span><span>  </span></span>Authentication
+suites that have a method other than machine certificate or user certificate
+MUST have the <b>wFlags</b> field of the same suite set to 0. </p>
+</li><li><p><span><span>  </span></span>If
+the set schema policy version is 0x200, the <b>wFlags</b> field MUST NOT
+contain the FW_AUTH_SUITE_FLAGS_CERT_SIGNING_ECDSA256 or the
+FW_AUTH_SUITE_FLAGS_CERT_SIGNING_ECDSA384 flags.</p>
+</li><li><p><span><span>  </span></span>The
+<b>wFlags</b> field MUST NOT contain both the
+FW_AUTH_SUITE_FLAGS_CERT_SIGNING_ECDSA256 and the
+FW_AUTH_SUITE_FLAGS_CERT_SIGNING_ECDSA384 flags.</p>
+</li><li><p><span><span>  </span></span>All
+suites that have a FW_AUTH_METHOD_MACHINE_CERT method and a <b>wFlags</b> field
+with the FW_AUTH_SUITE_FLAGS_CERT_SIGNING_ECDSA256 flag set, MUST be
+contiguous. The same applies to those suites that have the
+FW_AUTH_SUITE_FLAGS_CERT_SIGNING_ECDSA384 flag set and those suites that have
+neither flag set (they default to RSA signing).</p>
+</li><li><p><span><span>  </span></span>The
+set MUST NOT have more than one suite that has the anonymous method
+(FW_AUTH_METHOD_ANONYMOUS), or that has the user kerb method
+(FW_AUTH_METHOD_USER_KERB), or that has the user ntlm method
+(FW_AUTH_METHOD_USER_NTLM), as defined in section 2.2.60.<a id="Appendix_A_Target_18"></a><a aria-label="Product behavior note 18" href="1da2ee70-a6ae-4f76-b08f-fdc25c77d8a0#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a></p>
+</li><li><p><span><span>  </span></span>A
+set that contains a suite that has the machine certificate method MUST NOT
+contain suites that have the user certificate method.</p>
+</li><li><p><span><span>  </span></span>A
+set that contains a suite that has the machine certificate method MUST only
+contain more suites that have machine certificate or anonymous methods. </p>
+</li><li><p><span><span>  </span></span>If
+the set schema policy version is less than 0x214, the set MUST NOT have suites
+that contain the FW_AUTH_METHOD_USER_NEGOEX authentication method.</p>
+</li></ul></li></ul></div>

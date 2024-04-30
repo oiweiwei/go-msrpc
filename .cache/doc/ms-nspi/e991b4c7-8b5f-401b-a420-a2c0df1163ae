@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The WStringArray_r structure encodes an array of references
+to <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+strings.</p><dl>
+<dd>
+<div><pre> typedef struct _WStringArray_r {
+   [range(0,100000)] DWORD cValues;
+   [size_is(cValues)] [string] wchar_t** lppszW;
+ } WStringArray_r;
+</pre></div>
+</dd></dl><p><b>cValues:</b>  The number of Unicode
+character strings references represented in the WStringArray_r structure. This
+value MUST NOT exceed 100,000.</p><p><b>lppszW:</b>  The Unicode character
+string references. The strings referred to are NULL-terminated.</p></div>

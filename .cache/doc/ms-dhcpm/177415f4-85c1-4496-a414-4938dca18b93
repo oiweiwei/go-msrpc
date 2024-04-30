@@ -1,0 +1,33 @@
+<div class="content"><p> </p><p>The <b>DHCP_OPTION_SCOPE_INFO</b> structure defines the
+information about the option. The information consists of the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_ca9b17a6-e7db-4ada-99f2-82257fa92ecb" data-linktype="relative-path">option
+type</a></span> and the level of the option (server level, <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_128cd76b-eecb-41e6-96f7-f73c2bf9235a" data-linktype="relative-path">scope</a></span>
+level, or <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservation</a></span> level).</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_OPTION_SCOPE_INFO {
+   DHCP_OPTION_SCOPE_TYPE ScopeType;
+   [switch_is(ScopeType), switch_type(DHCP_OPTION_SCOPE_TYPE)] 
+     union _DHCP_OPTION_SCOPE_UNION {
+     [case(DhcpDefaultOptions)] 
+             ;
+     [case(DhcpGlobalOptions)] 
+             ;
+     [case(DhcpSubnetOptions)] DHCP_IP_ADDRESS SubnetScopeInfo;
+     [case(DhcpReservedOptions)] 
+       DHCP_RESERVED_SCOPE ReservedScopeInfo;
+     [case(DhcpMScopeOptions)] 
+       LPWSTR MScopeInfo;
+   } ScopeInfo;
+ } DHCP_OPTION_SCOPE_INFO,
+  *LPDHCP_OPTION_SCOPE_INFO;
+</pre></div>
+</dd></dl><p><b>ScopeType:</b>  This is of type <span><a href="34075f91-50f1-4216-b61f-44f0f5ab3679" data-linktype="relative-path">DHCP_OPTION_SCOPE_TYPE (section 2.2.1.1.4)</a></span>
+enumeration, defining the scope of the DHCP option and indicating which of the
+following fields in the union is used.</p><p><b>ScopeInfo:</b>  This is a union from
+which one of the following fields is used based on the value of the <b>ScopeType</b>
+member:</p><p><b>SubnetScopeInfo:</b>  This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>,
+containing the IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6a800ef-fd8a-4d87-834c-131e58f304ea" data-linktype="relative-path">subnet ID</a></span> as a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>.</p><p><b>ReservedScopeInfo:</b>  This is a <span><a href="c395e6fa-6b06-4b12-b1f5-f6c4f7e7a733" data-linktype="relative-path">DHCP_RESERVED_SCOPE (section 2.2.1.2.40)</a></span>
+structure that contains an IPv4 reservation and its corresponding IPv4 subnet
+ID.</p><p><b>MScopeInfo:</b>  This is a pointer to a
+null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+contains the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_04286a2c-1484-44d0-9854-7c57c8b4118c" data-linktype="relative-path">multicast scope</a></span>
+name.</p></div>

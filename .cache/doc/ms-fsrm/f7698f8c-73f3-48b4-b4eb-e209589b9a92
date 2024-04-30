@@ -1,0 +1,12 @@
+<div class="content"><p>The FCI_ADS_SECURE_PROPERTY_TYPE enumeration defines bitmasks
+for the possible types of the secure property of the FCIADS.</p><dl>
+<dd>
+<div><pre> typedef  enum FCI_ADS_SECURE_PROPERTY_TYPE
+ {
+   FCI_ADS_SECURE_PROPERTY_TYPE_INT64 = 1,
+   FCI_ADS_SECURE_PROPERTY_TYPE_STRING = 2
+ } FCI_ADS_SECURE_PROPERTY_TYPE;
+</pre></div>
+</dd></dl><p><b>FCI_ADS_SECURE_PROPERTY_TYPE_INT64:  </b>If this
+flag is set, the property definition is of integer type.</p><p><b>FCI_ADS_SECURE_PROPERTY_TYPE_STRING:  </b>If this
+flag is set, the property definition is of string type.</p></div>

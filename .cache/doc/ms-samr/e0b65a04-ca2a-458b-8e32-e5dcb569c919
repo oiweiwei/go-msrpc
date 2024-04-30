@@ -1,0 +1,32 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/e0b65a04-ca2a-458b-8e32-e5dcb569c919" data-linktype="external">msdn link</a></p><p>The SAM_VALIDATE_VALIDATION_STATUS enumeration defines
+policy evaluation outcomes.</p><dl>
+<dd>
+<div><pre> typedef  enum _SAM_VALIDATE_VALIDATION_STATUS
+ {
+   SamValidateSuccess = 0,
+   SamValidatePasswordMustChange,
+   SamValidateAccountLockedOut,
+   SamValidatePasswordExpired,
+   SamValidatePasswordIncorrect,
+   SamValidatePasswordIsInHistory,
+   SamValidatePasswordTooShort,
+   SamValidatePasswordTooLong,
+   SamValidatePasswordNotComplexEnough,
+   SamValidatePasswordTooRecent,
+   SamValidatePasswordFilterError
+ } SAM_VALIDATE_VALIDATION_STATUS,
+  *PSAM_VALIDATE_VALIDATION_STATUS;
+</pre></div>
+</dd></dl><p><b>SamValidateSuccess:  </b>Password validation
+succeeded.</p><p><b>SamValidatePasswordMustChange:  </b>The password
+must be changed.</p><p><b>SamValidateAccountLockedOut:  </b>The account is
+locked out.</p><p><b>SamValidatePasswordExpired:  </b>The password has
+expired.</p><p><b>SamValidatePasswordIncorrect:  </b>The password is
+incorrect.</p><p><b>SamValidatePasswordIsInHistory:  </b>The password
+is in the password history.</p><p><b>SamValidatePasswordTooShort:  </b>The password is
+too short.</p><p><b>SamValidatePasswordTooLong:  </b>The password is
+too long.</p><p><b>SamValidatePasswordNotComplexEnough:  </b>The
+password is not complex enough.</p><p><b>SamValidatePasswordTooRecent:  </b>The password
+was changed recently.</p><p><b>SamValidatePasswordFilterError:  </b>The password
+filter failed to validate the password.</p><p>See the message processing of <a href="c78a7239-f8fc-4a42-bb71-321e897dc046" data-linktype="relative-path">SamrValidatePassword (section 3.1.5.13.7)</a>
+for the semantic meanings of the enumeration values.</p></div>

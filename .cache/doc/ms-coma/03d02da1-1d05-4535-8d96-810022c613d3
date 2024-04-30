@@ -1,0 +1,87 @@
+<div class="content"><p>This method is called by a client to <a href="3f01a312-3391-4109-a96e-95358babf191#gt_f0e19764-1f7d-4410-beca-8a76aa3c9c85" data-linktype="relative-path">export</a> all <a href="3f01a312-3391-4109-a96e-95358babf191#gt_ea5c531f-5dd5-43aa-9da1-2ae068c622db" data-linktype="relative-path">conglomerations</a> in a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a> at once to an <a href="3f01a312-3391-4109-a96e-95358babf191#gt_b1856eaa-54fc-49af-a38c-55cc86e7b93e" data-linktype="relative-path">installer package file</a>.</p><dl>
+<dd>
+<div><pre> HRESULT ExportPartition(
+   [in] GUID* pPartitionIdentifier,
+   [in] LPCWSTR pwszInstallerPackage,
+   [in] LPCWSTR pwszReserved,
+   [in] DWORD dwFlags
+ );
+</pre></div>
+</dd></dl><p><b>pPartitionIdentifier:</b> The <a href="3f01a312-3391-4109-a96e-95358babf191#gt_9587a9d3-3fd7-45c6-aab1-c74ff17a22b7" data-linktype="relative-path">partition identifier</a> of a
+partition other than the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_24b2810b-e5ab-4886-9577-a2757b9f29f9" data-linktype="relative-path">global
+partition</a> on the server.</p><p><b>pwszInstallerPackage: </b> A path in <a href="3f01a312-3391-4109-a96e-95358babf191#gt_c9507dca-291d-4fd6-9cba-a9ee7da8c908" data-linktype="relative-path">UNC</a> that is to be used as
+the location for the server to create an installer package file.</p><p><b>pwszReserved: </b> MUST be an empty (zero-length)
+string.</p><p><b>dwFlags: </b> MUST be a combination of zero or
+more of the following flags.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Flag</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>fEXPORT_OVERWRITE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The server SHOULD mark the installer package file with
+  a directive that existing files be overwritten on import (section <a href="c81e49b8-6ffa-4872-a3ad-ef423fd58bdc" data-linktype="relative-path">3.1.4.12.1</a>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>fEXPORT_WITHUSERS</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The server SHOULD include user account information in
+  the installer package file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>fEXPORT_PROXY</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The server SHOULD mark the exported conglomeration as
+  a proxy conglomeration by setting the IsProxyApp property is set to TRUE
+  (0x00000001).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>,
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving a call to this method, the server MUST verify
+that <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0944227d-0566-49e1-989f-2fff6e02542d" data-linktype="relative-path">catalog</a> version
+negotiation has been performed by checking the negotiated catalog version, as
+specified in section <a href="a667265b-22a8-43bb-b462-13528061e009" data-linktype="relative-path">3.1.1.5</a>,
+and fail the call if not.</p><p>The server MUST then attempt to perform an
+implementation-specific<a id="Appendix_A_Target_342"></a><a aria-label="Product behavior note 342" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_342" data-linktype="relative-path">&lt;342&gt;</a>export
+procedure that creates an installer package file that the server will
+recognize. This document does not specify the contents of this file, except
+that it SHOULD contain enough information to make round-trip consistent <a href="3f01a312-3391-4109-a96e-95358babf191#gt_ec8a6199-20ef-4b34-ba68-bc134f6a5721" data-linktype="relative-path">import</a> (see section
+3.1.4.12.1) possible.</p></div>

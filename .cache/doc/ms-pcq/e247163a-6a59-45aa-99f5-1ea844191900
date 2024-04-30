@@ -1,0 +1,12 @@
+<div class="content"><p>The _PERF_MULTI_INSTANCES structure is used in the counter
+header block.</p><dl>
+<dd>
+<div><pre> typedef struct _PERF_MULTI_INSTANCES {
+   unsigned long dwTotalSize;
+   unsigned long dwInstances;
+ } PERF_MULTI_INSTANCES,
+  *PPERF_MULTI_INSTANCES;
+</pre></div>
+</dd></dl><p><b>dwTotalSize:</b>  The size, in bytes, of the
+header and data.</p><p><b>dwInstances:</b>  The number of instances from
+which data is collected.</p></div>

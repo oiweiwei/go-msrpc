@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The DRS_MSG_GETREPLINFO_REQ union defines the request
+message versions sent to the <span><a href="dd29f9ce-b30b-411e-bd54-b77634eded47" data-linktype="relative-path">IDL_DRSGetReplInfo</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_GETREPLINFO_REQ_V1 V1;
+   [case(2)] 
+     DRS_MSG_GETREPLINFO_REQ_V2 V2;
+ } DRS_MSG_GETREPLINFO_REQ;
+</pre></div>
+</dd></dl><p><b>V1:</b>  Version 1 request.</p><p><b>V2:</b>  Version 2 request. The V2
+request structure is a superset of the V1 request structure.</p></div>

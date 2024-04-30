@@ -1,0 +1,103 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/3a9ed16f-8014-45ae-80af-c0ecb06e2db9" data-linktype="external">msdn link</a></p><p>The <b>NetrServerAuthenticate3</b> method SHOULD<a id="Appendix_A_Target_173"></a><a aria-label="Product behavior note 173" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_173" data-linktype="relative-path">&lt;173&gt;</a> mutually authenticate the
+client and the server and establish the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_4f67a585-fb00-4166-93e8-cf4abca8226d" data-linktype="relative-path">session key</a> to be used for
+the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure channel</a>
+message protection between the client and the server. It is called after the <a href="5ad9db9f-7441-4ce5-8c7b-7b771e243d32" data-linktype="relative-path">NetrServerReqChallenge</a>
+method, as specified in section 3.5.4.4.1. </p><dl>
+<dd>
+<div><pre> NTSTATUS NetrServerAuthenticate3(
+   [in, unique, string] LOGONSRV_HANDLE PrimaryName,
+   [in, string] wchar_t* AccountName,
+   [in] NETLOGON_SECURE_CHANNEL_TYPE SecureChannelType,
+   [in, string] wchar_t* ComputerName,
+   [in] PNETLOGON_CREDENTIAL ClientCredential,
+   [out] PNETLOGON_CREDENTIAL ServerCredential,
+   [in, out] ULONG * NegotiateFlags,
+   [out] ULONG * AccountRid
+ );
+</pre></div>
+</dd></dl><p><b>PrimaryName: </b>The custom <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_44deb72d-c62b-4335-90e4-b9fd4dd782ed" data-linktype="relative-path">binding handle</a>, as defined
+in section <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>.</p><p><b>AccountName: </b>A null-terminated <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string that
+identifies the name of the account that contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_dc4cd75d-71f9-4ceb-8938-504d0c6b2fbf" data-linktype="relative-path">secret key</a> (password) that
+is shared between the client and the server.<a id="Appendix_A_Target_174"></a><a aria-label="Product behavior note 174" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_174" data-linktype="relative-path">&lt;174&gt;</a></p><p><b>SecureChannelType: </b>A <a href="4d1235e3-2c96-4e9f-a147-3cb338a0d09f" data-linktype="relative-path">NETLOGON_SECURE_CHANNEL_TYPE</a>
+enumerated value, as specified in section 2.2.1.3.13, that indicates the type
+of the secure channel being established by this call.</p><p><b>ComputerName: </b>A null-terminated Unicode string
+that contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS
+name</a> of the client computer calling this method.</p><p><b>ClientCredential: </b>A pointer to a <a href="d55e2632-7163-4f6c-b662-4b870e8cc1cd" data-linktype="relative-path">NETLOGON_CREDENTIAL</a>
+structure, as specified in section 2.2.1.3.4, that contains the supplied client
+<a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b505ab37-868d-426c-bb19-af21e675e0b8" data-linktype="relative-path">credentials</a>, as
+specified in section <a href="594909fd-725f-45ac-9799-62e4aefe0585" data-linktype="relative-path">3.1.4.4</a>.</p><p><b>ServerCredential: </b>A pointer to a
+NETLOGON_CREDENTIAL structure, as specified in section 2.2.1.3.4, that contains
+the returned server credentials.</p><p><b>NegotiateFlags: </b>A pointer to a 32-bit set of
+bit flags in little-endian format that indicate features supported. As input,
+the flags are those requested by the client and are the same as <a href="fd1e9181-35a0-45d3-b39c-b7453dfc0af5" data-linktype="relative-path">ClientCapabilities</a>. As
+output, they are the bit-wise AND of the client&#39;s requested capabilities and
+the server&#39;s <a href="b8d168ac-ebb6-42f4-bfb2-7a84377f2cbc" data-linktype="relative-path">ServerCapabilities</a>.
+For more details, see section <a href="5805bc9f-e4c9-4c8a-b191-3c3a7de7eeed" data-linktype="relative-path">3.1.4.2</a>.</p><p><b>AccountRid: </b>A pointer that receives the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RID</a> of the account
+specified by the <i>AccountName</i> parameter. (<a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/4abb8593-61c9-4da2-83c4-72d19760508d" data-linktype="relative-path">3.1.1.5.2.4</a>
+specifies how this RID is assigned at account creation time.) This value is
+stored in the <b>AccountRid</b> ADM element within the ClientSessionInfo table.</p><p><b>Return Values: </b>The method returns 0x00000000
+on success; otherwise, it returns a nonzero error code.</p><p>On receiving this call, the server MUST perform the
+following validation steps:</p><ul><li><p><span><span> 
+</span></span>Apply Common Error Processing Rule A, specified in section <a href="2d776bfc-e81f-4c8f-9da8-4c2920f65413" data-linktype="relative-path">3</a>.</p>
+</li><li><p><span><span> 
+</span></span>Apply Common Error Processing Rule B, specified in section 3, to
+the <i>PrimaryName</i> parameter.</p>
+</li></ul><p>If the <i>AccountName</i> parameter is the name of a domain
+trust object, and there is a period at the end of the parameter name, the
+period is ignored during processing.</p><p>The server SHOULD<a id="Appendix_A_Target_175"></a><a aria-label="Product behavior note 175" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_175" data-linktype="relative-path">&lt;175&gt;</a> check
+the <i>SecureChannelType</i> parameter.</p><p>The server MUST compute the mask of supported Netlogon
+Options.</p><p>If <b>RejectDES</b> is set to TRUE and neither flag O nor
+flag W is specified by the client, the server MUST fail the session-key
+negotiation and return STATUS_DOWNGRADE_DETECTED.</p><p>If <b>RejectMD5Clients</b> is set to TRUE and flag W is not
+specified by the client, the server MUST fail the session-key negotiation and
+return STATUS_DOWNGRADE_DETECTED.</p><p>The server MUST set <b>ClientStoredCredential</b> to 0.</p><p>The server MUST set <b>ServerStoredCredential</b> to the
+value of the <i>ClientCredential</i> parameter.</p><p>The server MUST compute or retrieve the NTOWFv1 (as
+specified in NTLM v1 Authentication in <a href="../ms-nlmp/b38c36ed-2804-4868-a9ff-8dd3182128e4" data-linktype="relative-path">[MS-NLMP]</a>
+section <a href="../ms-nlmp/464551a8-9fc4-428e-b3d3-bc5bfb2e73a5" data-linktype="relative-path">3.3.1</a>)
+of the client computer password and use it to compute a session key, as
+specified in section <a href="5e979847-5b2a-4148-b6e9-047c65a8ae63" data-linktype="relative-path">3.1.4.3</a>.
+If the server cannot compute or retrieve the NTOWFv1 of the client computer
+password, it MUST return STATUS_NO_TRUST_SAM_ACCOUNT.</p><p>The server MUST compute the client Netlogon credential as
+specified in section 3.1.4.4 and compare the result with the client Netlogon
+credential passed from the client for verification. The computation is
+performed using the <i>ClientChallenge</i> from the <b>ChallengeTable</b>. If
+the comparison fails, session-key negotiation fails, and the server MUST return
+STATUS_ACCESS_DENIED.</p><p>The server MUST compute the server Netlogon credential to be
+returned to the client.</p><p>The server MUST obtain the RID to be returned in the <i>AccountRid</i>
+parameter by performing external behavior consistent with locally invoking <b>SamrLookupNamesInDomain</b>
+(<a href="../ms-samr/4df07fab-1bbc-452f-8e92-7853a3c7e380" data-linktype="relative-path">[MS-SAMR]</a>
+section <a href="../ms-samr/d91271c6-7b2e-4194-9927-8fabfa429f90" data-linktype="relative-path">3.1.5.11.2</a>),
+using the following parameters:</p><ul><li><p><span><span> 
+</span></span><i>DomainHandle</i> is set to the value received by performing
+external behavior consistent with locally invoking <b>SamrOpenDomain</b>
+([MS-SAMR] section <a href="../ms-samr/ba710c90-5b12-42f8-9e5a-d4aacc1329fa" data-linktype="relative-path">3.1.5.1.5</a>).</p>
+</li><li><p><span><span> 
+</span></span><i>Count</i> is set to the value of 1.</p>
+</li><li><p><span><span> 
+</span></span><i>Names</i> is set to an array with a length of 1 and is the
+only array element set to the value of &lt;AccountName&gt;.</p>
+</li></ul><p>If the call returns any error code other than
+STATUS_SUCCESS, the server MUST return that error code.</p><p>The server MUST obtain the value of the DomainHandle
+parameter used when invoking <b>SamrLookupNamesInDomain</b> by performing
+external behavior consistent with locally invoking <b>SamrOpenDomain</b>
+([MS-SAMR] section 3.1.5.1.5), using the following parameters:</p><ul><li><p><span><span> 
+</span></span><i>ServerHandle</i> is set to the value returned by performing
+external behavior consistent with locally invoking <b>SamrConnect</b>
+([MS-SAMR] section <a href="../ms-samr/defe2091-0a61-4dfa-be9a-2c1206d53a1f" data-linktype="relative-path">3.1.5.1.4</a>).</p>
+</li><li><p><span><span> 
+</span></span><i>DesiredAccess</i> is set to the value DOMAIN_LOOKUP.</p>
+</li><li><p><span><span> 
+</span></span><i>DomainId</i> is set to the value of DomainSid (section 3.5.1).</p>
+</li></ul><p>If the call returns any error code other than
+STATUS_SUCCESS, the server MUST return that error code.</p><p>The server MUST obtain the value of the <i>ServerHandle</i>
+parameter used when invoking <b>SamrOpenDomain</b> by performing external behavior
+consistent with locally invoking <b>SamrConnect</b> ([MS-SAMR] section
+3.1.5.1.4), using the following parameters:</p><ul><li><p><span><span> 
+</span></span><i>ServerName</i> is set to the value of the NetBIOS form of the
+server <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9a7bc8b3-3374-4608-8f73-be20a90b898b" data-linktype="relative-path">computer name</a>.</p>
+</li><li><p><span><span> 
+</span></span><i>DesiredAccess</i> is set to the value
+SAM_SERVER_LOOKUP_DOMAIN.</p>
+</li></ul><p>If the call returns any error code other than
+STATUS_SUCCESS, the server MUST return that error code.</p></div>

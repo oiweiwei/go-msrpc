@@ -1,0 +1,86 @@
+<div class="content"><p> </p><p>The PROP_VAL_UNION structure encodes a single instance of
+any type of property value. It is an aggregation data structure, allowing a
+single parameter to an <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_e63aea5b-046b-4176-9359-fde82613a406" data-linktype="relative-path">NSPI</a></span> method to
+contain any type of property value.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(long)] 
+ union _PV_r {
+   [case(0x00000002)] 
+     short int i;
+   [case(0x00000003)] 
+     long l;
+   [case(0x0000000B)] 
+     unsigned short int b;
+   [case(0x0000001E)] 
+     [string] char* lpszA;
+   [case(0x00000102)] 
+     Binary_r bin;
+   [case(0x0000001F)] 
+     [string] wchar_t* lpszW;
+   [case(0x00000048)] 
+     FlatUID_r* lpguid;
+   [case(0x00000040)] 
+     FILETIME ft;
+   [case(0x0000000A)] 
+     long err;
+   [case(0x00001002)] 
+     ShortArray_r MVi;
+   [case(0x00001003)] 
+     LongArray_r MVl;
+   [case(0x0000101E)] 
+     StringArray_r MVszA;
+   [case(0x00001102)] 
+     BinaryArray_r MVbin;
+   [case(0x00001048)] 
+     FlatUIDArray_r MVguid;
+   [case(0x0000101F)] 
+     WStringArray_r MVszW;
+   [case(0x00001040)] 
+     DateTimeArray_r MVft;
+   [case(0x00000001, 0x0000000D)] 
+     long lReserved;
+ } PROP_VAL_UNION;
+</pre></div>
+</dd></dl><p><b>i:</b>  PROP_VAL_UNION contains an
+encoding of the value of a property that can contain a single 16-bit integer
+value.</p><p><b>l:</b>  PROP_VAL_UNION contains an
+encoding of the value of a property that can contain a single 32-bit integer
+value.</p><p><b>b:</b>  PROP_VAL_UNION contains an
+encoding of the value of a property that can contain a single Boolean value.
+The client and server MUST NOT set this to values other than 1 or 0.</p><p><b>lpszA:</b>  PROP_VAL_UNION contains an
+encoding of the value of a property that can contain a single 8-bit character
+string value. This value is NULL-terminated.</p><p><b>bin:</b>  PROP_VAL_UNION contains an
+encoding of the value of a property that can contain a single binary data
+value. The number of bytes that can be encoded in this structure is 2,097,152.</p><p><b>lpszW:</b>  PROP_VAL_UNION contains an
+encoding of the value of a property that can contain a single <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string value. This value is NULL-terminated.</p><p><b>lpguid:</b>  PROP_VAL_UNION contains an
+encoding of the value of a property that can contain a single <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+value. The value is encoded as a <span><a href="09f5370d-05ee-459e-903a-4e63e1928169" data-linktype="relative-path">FlatUID_r</a></span> data
+structure.</p><p><b>ft:</b>  PROP_VAL_UNION contains an
+encoding of the value of a property that can contain a single 64-bit integer
+value. The value is encoded as a <span><a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a></span>
+structure. </p><p><b>err:</b>  PROP_VAL_UNION contains an
+encoding of the value of a property that can contain a single PtypErrorCode
+value.</p><p><b>MVi:</b>  PROP_VAL_UNION contains an
+encoding of the values of a property that can contain multiple 16-bit integer
+values. The number of values that can be encoded in this structure is 100,000.</p><p><b>MVl:</b>  PROP_VAL_UNION contains an
+encoding of the values of a property that can contain multiple 32-bit integer
+values. The number of values that can be encoded in this structure is 100,000.</p><p><b>MVszA:</b>  PROP_VAL_UNION contains an
+encoding of the values of a property that can contain multiple 8-bit character
+string values. These string values are NULL-terminated. The number of values
+that can be encoded in this structure is 100,000.</p><p><b>MVbin:</b>  PROP_VAL_UNION contains an
+encoding of the values of a property that can contain multiple binary data
+values. The number of bytes that can be encoded in each value of this structure
+is 2,097,152. The number of values that can be encoded in this structure is
+100,000.</p><p><b>MVguid:</b>  PROP_VAL_UNION contains an
+encoding of the values of a property that can contain multiple GUID values. The
+values are encoded as FlatUID_r data structures. The number of values that can
+be encoded in this structure is 100,000.</p><p><b>MVszW:</b>  PROP_VAL_UNION contains an
+encoding of the values of a property that can contain multiple Unicode string
+values. These string values are NULL-terminated. The number of values that can
+be encoded in this structure is 100,000.</p><p><b>MVft:</b>  PROP_VAL_UNION contains an
+encoding of the value of a property that can contain multiple 64-bit integer
+values. The values are encoded as FILETIME structures. The number of values
+that can be encoded in this structure is 100,000.</p><p><b>lReserved:</b>  Reserved. All clients
+and servers MUST set this value to the constant 0x00000000.</p></div>

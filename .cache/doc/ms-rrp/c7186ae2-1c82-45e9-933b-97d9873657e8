@@ -1,0 +1,321 @@
+<div class="content"><p> </p><p>The BaseRegCreateKey method is called by the client. In
+response, the server creates the specified registry key and returns a handle to
+the newly created key. If the key already exists in the registry, a handle to
+the existing key is opened and returned.</p><dl>
+<dd>
+<div><pre> error_status_t BaseRegCreateKey(
+   [in] RPC_HKEY hKey,
+   [in] PRRP_UNICODE_STRING lpSubKey,
+   [in] PRRP_UNICODE_STRING lpClass,
+   [in] DWORD dwOptions,
+   [in] REGSAM samDesired,
+   [in, unique] PRPC_SECURITY_ATTRIBUTES lpSecurityAttributes,
+   [out] PRPC_HKEY phkResult,
+   [in, out, unique] LPDWORD lpdwDisposition
+ );
+</pre></div>
+</dd></dl><p><b>hKey: </b>A handle to a key that MUST have been
+opened previously by using one of the open methods that are specified in
+section <span><a href="053e8515-dbae-47ea-a7c6-6dc054e3a48f" data-linktype="relative-path">3.1.5</a></span>:
+BaseRegCreateKey, <span><a href="956a3052-6580-43ee-91aa-aaf61726149b" data-linktype="relative-path">OpenClassesRoot</a></span>, <span><a href="ec140ed9-4d00-4c03-a15c-c7245a497ed5" data-linktype="relative-path">OpenCurrentUser</a></span>,
+<span><a href="6cef29ae-21ba-423f-9158-05145ac80a5b" data-linktype="relative-path">OpenLocalMachine</a></span>,
+<span><a href="7b514c63-6cad-4fe1-9780-743959e377e6" data-linktype="relative-path">OpenPerformanceData</a></span>,
+<span><a href="694e57f4-da3e-4285-8b71-3181d71d6cd1" data-linktype="relative-path">OpenUsers</a></span>,
+<span><a href="8cb48f55-19e1-4ea2-8d76-dd0f6934f0d9" data-linktype="relative-path">BaseRegOpenKey</a></span>,
+<span><a href="160767d7-83cf-4718-a4f3-d864faee3bb1" data-linktype="relative-path">OpenCurrentConfig</a></span>,
+<span><a href="44954f6d-ef2c-4ec1-a27d-32b9b87e3c8a" data-linktype="relative-path">OpenPerformanceText</a></span>,
+<span><a href="3626fa8a-b20f-4243-bf85-cdb615ed2ca0" data-linktype="relative-path">OpenPerformanceNlsText</a></span>.</p><p><b>lpSubKey: </b>A pointer to an <span><a href="c0c90f11-a4c4-496a-ac09-8a8a3697ceef" data-linktype="relative-path">RRP_UNICODE_STRING</a></span>
+structure that specifies the name of the key (as specified in section <span><a href="77526078-ea8b-4090-884f-ed4fb24596c2" data-linktype="relative-path">3.1.1.1</a></span>)
+that this method opens or creates. The name of the key specified is relative to
+the key specified by the <i>hkey</i> parameter.</p><p><b>lpClass: </b>A pointer to an RRP_UNICODE_STRING
+structure that specifies the <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_18393bbe-0c06-42b7-890d-b94a9a40b6e0" data-linktype="relative-path">class</a></span> of the key (as
+specified in section <span><a href="93f88852-a82a-48d5-8af5-dab65db108a6" data-linktype="relative-path">3.1.1.6</a></span>).<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="85f43046-e27d-4122-93ba-bc278f986fbe#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a></p><p><b>dwOptions: </b><span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_2d67ea57-10e6-422f-985e-694834945a02" data-linktype="relative-path">Registry</a></span> key
+options. MUST be the bitwise OR of one of the key types defined in section <span><a href="164ac3fc-9cfb-4724-85d7-78d04d39004d" data-linktype="relative-path">3.1.1.2</a></span>,
+and any or none of the following options. The BaseRegCreateKey method fails
+with ERROR_INVALID_PARAMETER if an unlisted value is specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p><b><span>Value</span></b></p>
+   </th>
+   <th>
+   <p><b><span>Meaning</span></b></p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span>REG_OPTION_BACKUP_RESTORE</span></p>
+  <p><span>0x00000004</span></p>
+  </td>
+  <td>
+  <p><span>Indicates that the caller wishes to assert its backup and/or restore
+  privileges.</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>REG_OPTION_OPEN_LINK</span></p>
+  <p><span>0x00000008</span></p>
+  </td>
+  <td>
+  <p><span>Indicates that the caller wishes to open the targeted symlink source
+  rather than the symlink target.</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>REG_OPTION_DONT_VIRTUALIZE</span></p>
+  <p><span>0x00000010</span></p>
+  </td>
+  <td>
+  <p><span>Indicates that the caller wishes to disable limited user access
+  virtualization for this operation.</span></p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p> </p>
+</dd></dl><p><b>samDesired: </b>A bit field that describes the
+wanted security access for the handle to the key that is being created or
+opened. It MUST be constructed from one or more of the values that are
+specified in section <span><a href="fefbc801-b141-4bb1-9dcb-bf366da3ae7e" data-linktype="relative-path">2.2.3</a></span>.</p><p><b>lpSecurityAttributes: </b>A pointer to an <span><a href="bc37b8cf-8c94-4804-ad53-0aaf5eaf0ecb" data-linktype="relative-path">RPC_SECURITY_ATTRIBUTES</a></span>
+structure for the new subkey provided a new subkey is created.</p><p><b>phkResult: </b>A pointer to a variable that
+receives a handle to the opened or created key.</p><p><b>lpdwDisposition: </b>The disposition of the
+returned key indicated by <i>phkResult</i>. The value of this parameter set by
+the client is ignored by the server. Its value MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>REG_CREATED_NEW_KEY</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The key did not exist and was created.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REG_OPENED_EXISTING_KEY</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The key already existed and was opened without being
+  changed. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have KEY_CREATE_SUB_KEY access
+  rights.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000013</p>
+  <p>ERROR_WRITE_PROTECT</p>
+  </td>
+  <td>
+  <p>A read or write operation was attempted to a volume
+  after it was dismounted. The server can no longer service registry requests
+  because server shutdown has been initiated.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Server Operations</p><p>If the registry server can no longer service registry
+requests because server shutdown has been initiated (<b>SHUTDOWNINPROGRESS</b>
+is set to TRUE), the server MUST return ERROR_WRITE_PROTECT.</p><p>If the value of the <i>lpSubKey</i> parameter is NULL, the
+server MUST fail the method and return ERROR_INVALID_PARAMETER.</p><p>If this method fails, and the server returns a failure error
+code, the <i>lpdwDisposition</i> parameter is unchanged from the value set by
+the client.</p><p>The server then determines which key namespace to operate on
+(KEYS32 or KEYS64) by inspecting the value of the <i>samDesired</i> parameter.
+If the server does not support the 64-bit key namespace (see section <span><a href="d962e3a6-30e1-4bb3-9663-cd4751604212" data-linktype="relative-path">3.1.1.4</a></span>),
+the server MUST operate on the 32-bit key namespace (KEYS32).</p><p>If the server is a 64-bit registry server and supports both
+the 32-bit and 64-bit key namespaces, as defined in section 3.1.1.4, the server
+MUST first check if both the KEY_WOW64_64KEY and KEY_WOW64_32KEY bits are set
+in the <i>samDesired</i> parameter. If both KEY_WOW64_64KEY and KEY_WOW64_32KEY
+are set, the server SHOULD<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="85f43046-e27d-4122-93ba-bc278f986fbe#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a> fail the
+method and return ERROR_INVALID_PARAMETER.</p><p>The server then checks to see if the key specified by the <i>hKey</i>
+parameter is a key that can only be operated on in the 64-bit key namespace
+(KEYS64). See section 3.1.1.4.</p><p>If the key specified by the <i>hKey</i> parameter is a key
+only to be operated on in the 64-bit key namespace (KEYS64), the server MUST
+ignore the KEY_WOW64_64KEY and KEY_WOW64_32KEY bits in the <i>samDesired</i>
+parameter and operate on and create or open the key in the 64-bit namespace
+(KEYS64).</p><p>Next, the server checks if the KEY_WOW64_32KEY is set in the
+<i>samDesired</i> parameter. If the KEY_WOW64_32KEY is set in the <i>samDesired</i>
+parameter, the server MUST create the key in the 32-bit key namespace (KEYS32).
+If the KEY_WOW64_32KEY is not set in the <i>samDesired</i> parameter, the
+server MUST create the key in the 64-bit key namespace (KEYS64).</p><p>Next, the server determines if the key supports subkey
+creation. If the key indicated by <i>hKey</i> refers to the predefined key <b>HKEY_LOCAL_MACHINE</b>
+or <b>HKEY_USERS</b> and <i>lpSubKey</i> is not specified (the key is to be
+created under <b>HKEY_LOCAL_MACHINE</b> or <b>HKEY_USERS</b> in the registry
+key hierarchy), the server MUST fail the method and return
+ERROR_INVALID_PARAMETER.</p><p>Then, the server MUST determine if the key path indicated by
+<i>hKey</i> and <i>lpSubKey</i> refer to a path that is within the subset of
+registry paths that support both the 64-bit and 32-bit key namespaces (see
+section 3.1.1.4). If the key path indicated by <i>hKey</i> and <i>lpSubKey</i>
+are within the subset of registry paths that support both the 64-bit and 32-bit
+key namespaces, the server MUST open or create the registry key within the
+appropriate path in the 64-bit key namespace. For example, if <i>hKey</i>
+refers to HKEY_LOCAL_MACHINE\Software; and the value of the <i>lpSubKey</i>
+parameter is &#34;TEST_KEY&#34;; and the server MUST operate on the 32-bit
+key namespace, then the server MUST open or create the
+HKEY_LOCAL_MACHINE\Software\Wow6432Node\TEST_KEY key.</p><p>The server MUST determine if the key indicated by <i>lpSubKey</i>
+already exists within the set of children keys for the key indicated by <i>hKey</i>.
+If the key indicated by <i>lpSubKey</i> exists within the set of children keys
+for the key indicated by <i>hKey</i>, the server MUST create a new open handle
+to the key indicated by <i>lpSubKey</i> and return the handle in the <i>phkResult</i>
+parameter. The server MUST insert the new open handle in the handle table
+(HANDLETABLE). If the key already exists, the key type in the <i>dwOptions</i>
+parameter in the client request MUST be ignored.</p><p>If the key that is specified by the <i>lpSubKey</i>
+parameter already exists, the key on the server is opened, the key type in the <i>dwOptions</i>
+parameter in the client request is ignored, and REG_OPENED_EXISTING_KEY
+(0x00000002) is returned in the <i>lpdwDisposition</i> parameter.</p><p>The server MUST determine whether the client is requesting a
+nonvolatile key to be created as a child of a volatile key. If the key
+indicated by <i>hKey</i> or any of the intermediate keys specified by <i>lpSubKey</i>
+are volatile and the value of the <i>dwOptions</i> parameter is not equal to
+0x00000001, the server MUST fail the method and return
+ERROR_CHILD_MUST_BE_VOLATILE (0x000003FD).</p><p>If the key indicated by <i>lpSubKey</i> does not exist
+within the set of children keys for the key indicated by <i>hKey</i>, the
+server MUST create a new key in the registry <b>Data Store</b> with a name
+equal to the name indicated by <i>lpSubKey</i>. If the client has set <i>dwOptions</i>
+to a value of 0x00000002, the server MUST create the new key with a KEYTYPE of
+symbolic link.</p><p>If the client has set <i>dwOptions</i> to a value of
+0x00000002 (which specifies access to create a symbolic link) and the key
+indicated by <i>lpSubKey</i> already exists, the server MUST fail the method
+and return ERROR_ALREADY_EXISTS.</p><p>The server MUST open a handle to the newly created key and
+return the handle in the <i>phkResult</i> parameter. The server MUST insert the
+new open handle in the handle table (HANDLETABLE). The server MUST set the
+value of the <i>lpdwDisposition</i> parameter to REG_CREATED_NEW_KEY
+(0x00000001). If the key that is specified by the <i>lpSubKey</i> parameter
+already exists, the key on the server is opened, the <i>dwOptions</i> parameter
+in the client request is ignored, and 0x00000002 is returned in the <i>lpdwDisposition</i>
+parameter.</p><p>If the key indicated by <i>lpSubKey</i> exists within the
+set of registry paths for which keys and values are copied between the 32-bit
+and 64-bit key namespaces, the server MUST set the UPDATECOPY column in the
+HANDLETABLE to TRUE. The value of the UPDATECOPY column is inspected when the
+handle is closed to determine whether keys and values are to be copied between
+the 32-bit and 64-bit key namespaces.</p><p>For new keys that are created, if <i>lpClass</i> is not
+NULL, the server MUST set the class associated with the newly created key to
+the value of the Unicode string indicated by <i>lpClass</i>. The default class
+of registry keys is specified to be NULL.</p><p>For new keys that are created, the server MUST create the
+key based on the wanted key type that is specified in the dwOptions parameter.
+For key types, see section 3.1.1.2.</p><p>For new keys that are created, the server MUST set to TRUE
+the <span><a href="3c984c3e-3e2a-40b8-b479-d4ddcfc50edb" data-linktype="relative-path">KEYISMODIFIED</a></span>
+property of the new key.</p><p>If the <i>dwOptions</i> parameter specifies the
+REG_OPTION_BACKUP_RESTORE option, the server MUST ignore all bits set in the <i>samDesired</i>
+parameter except for KEY_WOW64_32KEY and KEY_WOW64_64KEY. The desired key
+access MUST be computed based on whether the caller holds the backup and
+restore privileges as outlined in the table below. If the caller holds neither
+privilege, the server MUST fail the method and return STATUS_ACCESS_DENIED.</p><table><thead>
+  <tr>
+   <th>
+   <p>Privileges Held</p>
+   </th>
+   <th>
+   <p>Desired Access</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Backup and Restore</p>
+  </td>
+  <td>
+  <p>STANDARD_RIGHTS_READ</p>
+  <p>KEY_QUERY_VALUE</p>
+  <p>KEY_ENUMERATE_SUB_KEYS</p>
+  <p>KEY_NOTIFY</p>
+  <p>STANDARD_RIGHTS_WRITE</p>
+  <p>KEY_SET_VALUE</p>
+  <p>KEY_CREATE_SUB_KEY</p>
+  <p>ACCESS_SYSTEM_SECURITY</p>
+  <p>WRITE_DAC</p>
+  <p>WRITE_OWNER</p>
+  <p>DELETE</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Only Backup</p>
+  </td>
+  <td>
+  <p>STANDARD_RIGHTS_READ</p>
+  <p>KEY_QUERY_VALUE</p>
+  <p>KEY_ENUMERATE_SUB_KEYS</p>
+  <p>KEY_NOTIFY</p>
+  <p>ACCESS_SYSTEM_SECURITY</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Only Restore</p>
+  </td>
+  <td>
+  <p>STANDARD_RIGHTS_WRITE</p>
+  <p>KEY_SET_VALUE</p>
+  <p>KEY_CREATE_SUB_KEY</p>
+  <p>ACCESS_SYSTEM_SECURITY</p>
+  <p>WRITE_DAC</p>
+  <p>WRITE_OWNER</p>
+  <p>DELETE</p>
+  </td>
+ </tr></tbody></table><p>If a new key is to be created, the server MUST validate that
+the client has access to create the registry key indicated by the <i>lpSubKey</i>
+parameter using the security descriptor of the immediate parent key. If <i>dwOptions</i>
+specifies REG_OPTION_CREATE_LINK as the key type, an access mask of KEY_CREATE_SUB_KEY
+| KEY_CREATE_LINK is used for this comparison; otherwise, an access mask of
+KEY_CREATE_SUB_KEY is used. The access granted to the returned registry handle
+is the access specified in the <i>samDesired</i> parameter.</p><p>If an existing key is to be opened, the server MUST validate
+that the client has access to open the registry key indicated by the <i>lpSubKey</i>
+parameter using the security descriptor of the key to be opened and the access
+mask specified in the <i>samDesired</i> parameter. The access granted to the
+returned registry handle is the access specified in the <i>samDesired</i>
+parameter.</p><p>The REG_OPTION_DONT_VIRTUALIZE flag specified in the
+description of <i>dwOptions</i> SHOULD be ignored by the server.</p><p>If the client does not have permission to open or create the
+key, the server MUST fail the method and return ERROR_ACCESS_DENIED.</p><p>If the <i>lpSecurityAttributes</i> parameter is NULL and the
+subkey does not exist, then a created subkey gets a default security
+descriptor; the access control list (ACL) (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/20233ed8-a6c6-4097-aafa-dd545ed24428" data-linktype="relative-path">2.4.5</a></span>)
+in the default security descriptor for a newly created subkey is inherited from
+the security descriptor of its direct parent key.</p><p>If the client sets the <i>lpSubKey</i> parameter to the
+empty string, the server MUST open a new handle to the key indicated by <i>hKey</i>
+and return the new handle in the <i>phkResult</i> parameter. For a successful
+operation, the server MUST return an open handle to the new <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a></span>
+in the <i>phkResult</i> parameter in the event of success.</p></div>

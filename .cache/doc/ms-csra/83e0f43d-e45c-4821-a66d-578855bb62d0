@@ -1,0 +1,14 @@
+<div class="content"><p>The Ping method is used to test whether the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> server is
+alive.</p><dl>
+<dd>
+<div><pre> HRESULT Ping(
+   [in, string, unique] wchar_t const* pwszAuthority
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b> See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.
+</p><p>Windows formats return values per the definition of HRESULT
+as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+Negative values indicate errors, positive values indicate success. Specific
+values are as specified in [MS-ERREF].</p><p>The ICertAdminD::Ping method is as specified in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>
+section <a href="../ms-wcce/d01c6184-610d-4592-b61c-e4af8125bb1b" data-linktype="relative-path">3.2.1.4.2.3</a>.</p></div>

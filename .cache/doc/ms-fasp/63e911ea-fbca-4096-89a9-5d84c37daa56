@@ -1,0 +1,91 @@
+<div class="content"><p> </p><p>The RRPC_FWEnumCryptoSets method requests the server to
+return all the cryptographic sets of the specified <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span> phase
+contained in the store referenced by the <i>hPolicy</i> handle. The method
+returns a linked list of all these cryptographic objects.</p><dl>
+<dd>
+<div><pre> unsigned long RRPC_FWEnumCryptoSets(
+   [in] FW_CONN_HANDLE rpcConnHandle,
+   [in] FW_POLICY_STORE_HANDLE hPolicy,
+   [in, range(FW_IPSEC_PHASE_INVALID+1, FW_IPSEC_PHASE_MAX-1)] 
+     FW_IPSEC_PHASE IpSecPhase,
+   [in] unsigned long dwFilteredByStatus,
+   [in] unsigned short wFlags,
+   [out, ref] unsigned long* pdwNumSets,
+   [out] PFW_CRYPTO_SET* ppCryptoSets
+ );
+</pre></div>
+</dd></dl><p><b>rpcConnHandle: </b>This parameter is an <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle that connects to the RPC interface of the Firewall and Advanced
+Security Protocol.</p><p><b>hPolicy: </b>This input parameter is an <span><a href="88f6ea4a-a946-4747-bb93-f142f1760752" data-linktype="relative-path">FW_POLICY_STORE_HANDLE</a></span>
+data type. The data type MUST contain an opened policy store handle,
+successfully opened with the RRPC_FWOpenPolicyStore (Opnum 0) method. The
+handle MUST have read or read/write access rights.</p><p><b>IpSecPhase: </b>This parameter specifies the
+specific IPsec negotiation phase to which this set applies.</p><p><b>dwFilteredByStatus: </b>This parameter is a
+combination of flags from the <span><a href="81877aa6-34c7-4664-adf4-ff8d5e0c0bc6" data-linktype="relative-path">FW_RULE_STATUS_CLASS</a></span>
+enumeration. This method uses this bitmask to determine which rules will be
+returned. Sets that contain a status code of the class specified by matches to
+this parameter will be returned in the linked list.</p><p><b>wFlags: </b>This parameter is a combination of
+flags from the <span><a href="aff3633c-43b2-4cef-ba63-f35b204a8a08" data-linktype="relative-path">FW_ENUM_RULES_FLAGS</a></span>
+that modifies the behavior of the method and performs operations on the sets
+before returning them in the linked list.</p><p><b>pdwNumSets: </b>This is an output parameter that
+on success MUST be equal to the number of sets returned.</p><p><b>ppCryptoSets: </b>This is an output parameter that
+on success contains a linked list of <span><a href="a468fe9e-113b-4155-a63d-0db3aac12619" data-linktype="relative-path">FW_CRYPTO_SET</a></span> data
+types.</p><p><b>Return Values: </b>The method returns 0 if successful;
+if failed, it returns a nonzero error code. The field can take any specific
+error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+The following return values are common.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The client does not have the required credentials to
+  call the method.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the parameters of this method is incorrect, or
+  is required and not specified. This error can be returned because:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>IpSecPhase</i> parameter
+  specifies an invalid IPsec negotiation phase.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>One of the required values is not
+  specified.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+If any lower-layer errors are reported by RPC exception, this exception is
+converted to an error code and reported to higher-layer protocols via the
+return value.</p><p>The server MUST validate that the client is authorized to
+perform the requested operation (as defined in section <span><a href="b0c93352-8371-4d63-abca-b0cc8dbcc3d7" data-linktype="relative-path">3.1.4</a></span>)
+before executing this method.</p><p>When this method is called, the server looks for the binary
+version of the client, which was associated with the hPolicy handle when the
+client sent the <span><a href="2157e39a-1bf0-4e0c-abae-0811fd918b11" data-linktype="relative-path">RRPC_FWOpenPolicyStore()</a></span>
+call. The server compares this binary version parameter with the schema version
+that it supports. If the server has a schema version of 0x0201 and the client
+passed a 0x0200 binary version, the server removes all values that are not
+valid for a FW_CRYPTO_SET (section 2.2.74) structure that has a
+0x0200 schema version. If the removed value was present on one or more suites
+of the set, the server removes those suites as a whole, leaving the remaining
+suites intact. For each set that had a value removed, the server sets a
+FW_RULE_STATUS_PARTIALLY_IGNORED value on the <b>Status</b> field of the set.
+The client then receives cryptographic sets with values that correspond to the
+correct schema version, but the client recognizes that the information it has
+about the sets is potentially incomplete.</p></div>

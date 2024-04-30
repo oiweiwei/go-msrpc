@@ -1,0 +1,47 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/d8111882-f0fa-46db-8273-49b5667f5247" data-linktype="external">msdn link</a></p><p>The <b>CLUS_MAINTENANCE_MODE_INF</b>O structure represents
+the maintenance mode setting for a storage class <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_94e97f15-2f1a-406f-a740-607bb97761ec" data-linktype="relative-path">resource</a>.</p><p><b>CLUS_MAINTENANCE_MODE_INFO</b> is a custom-marshaled
+structure that has fields as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>InMaintenance</p>
+  </td>
+ </tr>
+</tbody></table><p><b>InMaintenance (4 bytes): </b>A 32-bit integer that
+indicates the current maintenance mode state when written by the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> or the target
+maintenance mode state when provided by the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> for a storage class
+resource. Zero indicates that the resource is not in maintenance mode and one
+indicates that the storage resource is in maintenance mode.</p></div>

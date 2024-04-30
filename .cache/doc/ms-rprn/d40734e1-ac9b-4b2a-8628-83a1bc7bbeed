@@ -1,0 +1,64 @@
+<div class="content"><p>The <b>PRINTER_INFO_2</b> structure provides information
+about a printer.</p><dl>
+<dd>
+<div><pre> typedef struct _PRINTER_INFO_2 {
+   [string] wchar_t* pServerName;
+   [string] wchar_t* pPrinterName;
+   [string] wchar_t* pShareName;
+   [string] wchar_t* pPortName;
+   [string] wchar_t* pDriverName;
+   [string] wchar_t* pComment;
+   [string] wchar_t* pLocation;
+   ULONG_PTR pDevMode;
+   [string] wchar_t* pSepFile;
+   [string] wchar_t* pPrintProcessor;
+   [string] wchar_t* pDatatype;
+   [string] wchar_t* pParameters;
+   ULONG_PTR pSecurityDescriptor;
+   DWORD Attributes;
+   DWORD Priority;
+   DWORD DefaultPriority;
+   DWORD StartTime;
+   DWORD UntilTime;
+   DWORD Status;
+   DWORD cJobs;
+   DWORD AveragePPM;
+ } PRINTER_INFO_2;
+</pre></div>
+</dd></dl><p><b>pShareName:</b> An optional pointer to a
+string that specifies the share name for the printer. This string MUST be
+ignored unless the <b>Attributes</b> member contains the <b>PRINTER_ATTRIBUTE_SHARED</b>
+flag. For rules governing path names, see section <a href="1d75f622-d07c-45cc-bf1e-a6191e408516" data-linktype="relative-path">2.2.4.9</a>.</p><p><b>pDriverName:</b> This member is a pointer to
+a string that specifies the name of the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer driver</a>. For rules
+governing printer driver names, see section <a href="a4c7686f-a88c-48f9-96eb-bf4dfc3fe519" data-linktype="relative-path">2.2.4.3</a>.</p><p><b>pLocation:</b> An optional pointer to a
+string that specifies the location of the printer.</p><p><b>pSepFile:</b> An optional pointer to a string
+that specifies the name of a file whose contents are used to create a separator
+page. This page is used to separate <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print jobs</a> sent to the
+printer. For rules governing path names, see section 2.2.4.9.</p><p><b>pPrintProcessor:</b> An optional pointer to a
+string that specifies the name of the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_062f3e76-3149-468c-bf64-1535651725d1" data-linktype="relative-path">print processor</a> used by the
+printer. For rules governing print processor names, see section <a href="807e0bdd-21a5-4a72-9a6a-1a7fb1b08a8e" data-linktype="relative-path">2.2.4.11</a>.</p><dl>
+<dd>
+<p>If this member is NULL on input, the server SHOULD
+use the print processor that is associated with the printer driver identified
+by the string pointed to by the <b>pDriverName</b> member.</p>
+</dd></dl><p><b>pDatatype:</b> An optional pointer to a
+string that specifies the default data format used to record print jobs on the
+printer. For rules governing <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_0d327bc0-a461-4723-8beb-d935fdab4895" data-linktype="relative-path">data
+type</a> names, see section <a href="f40cbad0-88dd-4e86-a16b-cf62c3b17c52" data-linktype="relative-path">2.2.4.2</a>.</p><dl>
+<dd>
+<p>If this member is NULL on input, the server MUST
+choose a default data type from one of the data types supported by the print
+processor associated with the printer.<a id="Appendix_A_Target_58"></a><a aria-label="Product behavior note 58" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_58" data-linktype="relative-path">&lt;58&gt;</a></p>
+</dd></dl><p><b>pParameters:</b> An optional pointer to a
+string that specifies the default print processor parameters.</p><p><b>Priority:</b> The value of this member
+specifies a priority value that the spooler uses to route each print job. The
+value of this member MUST be from 0 through 99, inclusive.</p><p><b>DefaultPriority:</b> The value of this member
+specifies the default priority value assigned to each print job. The value of
+this member MUST be from 0 through 99, inclusive.</p><p><b>StartTime:</b> The value of this member
+specifies the earliest time that a job can be printed. The time is expressed as
+the number of minutes after 12:00 AM GMT within a 24-hour boundary.</p><p><b>UntilTime:</b> The value of this member
+specifies the latest time that a job can be printed. The time is expressed as
+the number of minutes after 12:00 AM GMT within a 24-hour boundary.</p><p><b>cJobs:</b> The value of this member specifies
+the number of print jobs that have been queued for the printer.</p><p><b>AveragePPM:</b> The value of this member
+specifies the average pages per minute that have been printed on the printer.</p><p>All members not defined in this section are specified in
+sections <a href="c07c2bfd-e2c9-4d36-9259-354a229d645d" data-linktype="relative-path">2.2.1.3.6</a> and <a href="964b517f-6730-4b4a-99ed-ee9648e7f1f7" data-linktype="relative-path">2.2.1.3</a>.</p></div>

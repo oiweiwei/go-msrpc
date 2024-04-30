@@ -1,0 +1,35 @@
+<div class="content"><p> </p><p>The CREATE_VIRTUAL_DISK_FLAG enumeration defines the
+properties of a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual disk</a></span> that is
+being created.</p><dl>
+<dd>
+<div><pre> typedef enum _CREATE_VIRTUAL_DISK_FLAG
+ {
+   CREATE_VIRTUAL_DISK_FLAG_NONE = 0x0,
+   CREATE_VIRTUAL_DISK_FLAG_FULL_PHYSICAL_ALLOCATION = 0x1
+ } CREATE_VIRTUAL_DISK_FLAG;
+</pre></div>
+</dd></dl><p><b>CREATE_VIRTUAL_DISK_FLAG_NONE:  </b>Indicates to
+the server that no flags have been specified. CREATE_VIRTUAL_DISK_FLAG_NONE
+specifies that a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_5dcddf1d-f76c-48ea-aef3-208bbc2eea77" data-linktype="relative-path">virtual disk file</a></span>
+will be allocated as the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_432d7a86-d2ca-4977-8189-d28b54883d09" data-linktype="relative-path">backing store</a></span> for
+the virtual disk and that this file will automatically increase in size to
+accommodate the allocated data.</p><dl>
+<dd>
+<p>A virtual disk created using the CREATE_
+VIRTUAL_DISK_FLAG_NONE flag has a virtual disk file backing store that at any
+given time is as large as the actual data written to it, plus the size of the
+header and footer. As more data is written, the virtual disk file automatically
+increases in size.</p>
+</dd>
+<dd>
+<p>For example, if the CREATE_VIRTUAL_DISK_FLAG_NONE
+flag is used to create a virtual disk that is 2 gigabytes in size, the initial
+size of the virtual disk file backing store can only be 2 megabytes. As data is
+written to this disk, the virtual disk file backing store increases in size,
+with a maximum size of 2 gigabytes.</p>
+</dd></dl><p><b>CREATE_VIRTUAL_DISK_FLAG_FULL_PHYSICAL_ALLOCATION: 
+</b>Specifies that the server preallocates all physical space necessary for the
+virtual size of the virtual disk. A fixed size virtual disk file will be
+allocated as the backing store for the virtual disk. For example, creating a
+fixed size virtual disk that is 2 gigabytes in size using this flag will result
+in a virtual disk file that is approximately 2 gigabytes in size.</p></div>

@@ -1,0 +1,21 @@
+<div class="content"><p>The methods in this RPC interface MUST return ZERO
+(0x00000000) or a nonerror <a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+(as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>)
+to indicate success or a nonzero error code as specified in section <a href="b45c794e-9362-42b7-80c6-7dae3382acf0" data-linktype="relative-path">2.2.4</a>, to indicate
+failure. Unless otherwise specified in section <a href="c0a9237b-ecc5-4481-afba-f875a3ffafa7" data-linktype="relative-path">3.2.4</a>, the client-side of
+the File Server Remote VSS Protocol MUST NOT interpret returned error codes and
+MUST simply return error codes to the invoking application.</p><p>The following diagram describes the typical client and
+server environments and the interactions between various components.</p><p><img src="ms-fsrvp_files/image001.png" alt="FSRVP client and server environments and components" title="FSRVP client and server environments and components" data-linktype="relative-path"/></p><p><b>Figure 1: FSRVP client and server environments and
+components</b></p><p>The application server hosts VSS writers that are components
+of the applications accessing their data from a remote file share. The
+backup/restore tools interact with the <a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_b3f0aa95-0afc-49e3-a5d5-aa465c3bc385" data-linktype="relative-path">shadow copy utility</a> on the
+application server to perform backup of the application&#39;s data on the remote
+file server. When the storage location supplied by the backup tool is a UNC
+path, the shadow copy utility directs the backup requests to the FSRVP client.
+The FSRVP client exchanges messages with the FSRVP server on the file server to
+query, create, or delete the shadow copies. The FSRVP server acts as a backup
+tool on the file server and interacts with the local shadow copy utility to
+respond to client&#39;s requests. The server&#39;s processing behavior is outlined in
+section <a href="9a2ac3dd-8ce5-4254-af0e-b215be446007" data-linktype="relative-path">3.1</a> and the
+client&#39;s processing behavior is outlined in section <a href="fcbee070-deb4-4723-bfa3-fba2b5d65335" data-linktype="relative-path">3.2</a>.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="97e8cd5d-666b-428d-b701-ebd48fb59e16#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a></p></div>

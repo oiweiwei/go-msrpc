@@ -1,0 +1,433 @@
+import "ms-dtyp.idl";
+import "ms-mqmq.idl";
+ 
+const unsigned long PRLT        = 0;
+const unsigned long PRLE        = 1;
+const unsigned long PRGT        = 2;
+const unsigned long PRGE        = 3;
+const unsigned long PREQ        = 4;
+const unsigned long PRNE        = 5;
+ 
+ 
+typedef struct  tagMQPROPERTYRESTRICTION
+{
+        unsigned long rel;
+        unsigned long prop;
+        PROPVARIANT   prval;
+} MQPROPERTYRESTRICTION;
+ 
+typedef struct  tagMQRESTRICTION
+{
+        [range(0,128)] unsigned long cRes;
+        [size_is(cRes)] MQPROPERTYRESTRICTION  * paPropRes;
+ 
+}       MQRESTRICTION;
+ 
+typedef struct  tagMQCOLUMNSET
+{
+    [range(0,128)] unsigned long cCol;
+    [size_is(cCol)] PROPID  *aCol;
+} MQCOLUMNSET;
+ 
+const unsigned long QUERY_SORTASCEND     = 0;
+const unsigned long QUERY_SORTDESCEND    = 1;
+ 
+typedef struct  tagMQSORTKEY
+{
+    unsigned long propColumn;
+    unsigned long dwOrder;
+} MQSORTKEY;
+ 
+typedef struct  tagMQSORTSET
+{
+    [range(0,128)] unsigned long cCol;
+    [size_is(cCol)] MQSORTKEY  *aCol;
+} MQSORTSET; 
+ 
+[
+version(1.0),
+uuid(77df7a80-f298-11d0-8358-00a024c480a8),
+pointer_default(unique)
+]
+ 
+interface dscomm
+{
+/*==================================================
+ Structures
+===================================================*/
+
+typedef [range(0, 128*1024)] unsigned long BOUNDED_SIGNATURE_SIZE;
+typedef BOUNDED_SIGNATURE_SIZE * LPBOUNDED_SIGNATURE_SIZE;
+ 
+typedef [range(0, 128)] DWORD BOUNDED_PROPERTIES;
+typedef BOUNDED_PROPERTIES * LPBOUNDED_PROPERTIES;
+ 
+/*==================================================
+ RPC Context Handles
+===================================================*/
+typedef [context_handle] void * PCONTEXT_HANDLE_TYPE;
+typedef [ref] PCONTEXT_HANDLE_TYPE * PPCONTEXT_HANDLE_TYPE;
+ 
+typedef [context_handle] void * PCONTEXT_HANDLE_SERVER_AUTH_TYPE;
+typedef [ref] PCONTEXT_HANDLE_SERVER_AUTH_TYPE 
+              *PPCONTEXT_HANDLE_SERVER_AUTH_TYPE;
+ 
+typedef [context_handle] void * PCONTEXT_HANDLE_DELETE_TYPE;
+typedef [ref] PCONTEXT_HANDLE_DELETE_TYPE 
+              *PPCONTEXT_HANDLE_DELETE_TYPE;
+ 
+/*=======================================================================
+ MQDS API
+========================================================================*/
+ 
+HRESULT
+S_DSCreateObject(
+    [in] handle_t hBind,
+    [in, range(1,58)] unsigned long dwObjectType,
+    [in, unique] [string] const wchar_t * pwcsPathName,
+    [in, range(0,524288)] unsigned long dwSDLength,
+    [in, size_is(dwSDLength), unique] unsigned char * SecurityDescriptor,
+    [in, range(1,128)] unsigned long cp,
+    [in, size_is(cp)] unsigned long aProp[],
+    [in, size_is(cp)] PROPVARIANT apVar[],
+    [in, out, unique] GUID* pObjGuid
+);
+ 
+HRESULT
+S_DSDeleteObject(
+    [in] handle_t hBind,
+    [in, range(1,58)] unsigned long dwObjectType,
+    [in] [string] const wchar_t * pwcsPathName
+);
+ 
+HRESULT
+S_DSGetProps(
+    [in] handle_t hBind,
+    [in, range(1, 58)] unsigned long dwObjectType,
+    [in] [string] const wchar_t * pwcsPathName,
+    [in, range(1,128)] unsigned long cp,
+    [in, size_is(cp)] unsigned long aProp[],
+    [in, out, size_is(cp)] PROPVARIANT apVar[],
+    [in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth,
+    [out, size_is(*pdwServerSignatureSize)] 
+          unsigned char * pbServerSignature,
+    [in, out] LPBOUNDED_SIGNATURE_SIZE pdwServerSignatureSize
+);
+ 
+HRESULT
+S_DSSetProps(
+    [in] handle_t hBind,
+    [in, range(1,58)] unsigned long dwObjectType,
+    [in] [string] const wchar_t * pwcsPathName,
+    [in, range(1,128)] unsigned long cp,
+    [in, size_is(cp)] unsigned long aProp[],
+    [in, size_is(cp)] PROPVARIANT apVar[]
+);
+ 
+HRESULT
+S_DSGetObjectSecurity(
+    [in] handle_t hBind,
+    [in, range(1,58)] unsigned long dwObjectType,
+    [in] [string] const wchar_t * pwcsPathName,
+    [in] unsigned long SecurityInformation,
+    [out, size_is(nLength)] unsigned char* pSecurityDescriptor,
+    [in , range(0,524288)] unsigned long nLength,
+    [out] unsigned long* lpnLengthNeeded,
+    [in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth,
+    [out, size_is(*pdwServerSignatureSize)] 
+          unsigned char * pbServerSignature,
+    [in, out] LPBOUNDED_SIGNATURE_SIZE pdwServerSignatureSize
+);
+ 
+HRESULT
+S_DSSetObjectSecurity(
+    [in] handle_t hBind,
+    [in, range(1,58)] unsigned long dwObjectType,
+    [in] [string] const wchar_t * pwcsPathName,
+    [in] unsigned long SecurityInformation,
+    [in, unique, size_is(nLength)] unsigned char* pSecurityDescriptor,
+    [in , range(0,524288)] unsigned long nLength
+);
+ 
+HRESULT
+S_DSLookupBegin(
+    [in] handle_t hBind,
+    [out] PPCONTEXT_HANDLE_TYPE pHandle,
+    [in, unique] wchar_t * pwcsContext,
+    [in, unique] MQRESTRICTION* pRestriction,
+    [in, ref] MQCOLUMNSET* pColumns,
+    [in, unique] MQSORTSET* pSort,
+    [in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth
+);
+ 
+HRESULT
+S_DSLookupNext(
+    [in] handle_t hBind,
+    [in] PCONTEXT_HANDLE_TYPE Handle,
+    [in] LPBOUNDED_PROPERTIES dwSize,
+    [out] unsigned long* dwOutSize,
+    [out, size_is(*dwSize), length_is(*dwOutSize)] PROPVARIANT pbBuffer[],
+    [in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth,
+    [out, size_is(*pdwServerSignatureSize)] 
+          unsigned char * pbServerSignature,
+    [in, out] LPBOUNDED_SIGNATURE_SIZE pdwServerSignatureSize
+);
+ 
+HRESULT
+S_DSLookupEnd(
+    [in] handle_t hBind,
+    [in, out] PPCONTEXT_HANDLE_TYPE phContext
+);
+ 
+void Opnum9NotUsedOnWire(void);
+ 
+HRESULT
+S_DSDeleteObjectGuid(
+    [in] handle_t hBind,
+    [in , range(1,58)] unsigned long dwObjectType,
+    [in] const GUID* pGuid
+ );
+ 
+HRESULT
+S_DSGetPropsGuid(
+    [in] handle_t hBind,
+    [in , range(1,58)] unsigned long dwObjectType,
+    [in, unique] const GUID* pGuid,
+    [in , range(1,128)] unsigned long cp,
+    [in, size_is(cp)] unsigned long aProp[],
+    [in, out, size_is(cp)] PROPVARIANT apVar[],
+    [in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth,
+    [out, size_is(*pdwServerSignatureSize)] 
+          unsigned char * pbServerSignature,
+    [in, out] LPBOUNDED_SIGNATURE_SIZE pdwServerSignatureSize
+);
+ 
+HRESULT
+S_DSSetPropsGuid(
+    [in] handle_t hBind,
+    [in , range(1,58)] unsigned long dwObjectType,
+    [in] const GUID * pGuid,
+    [in , range(1,128)] unsigned long cp,
+    [in, size_is(cp)] unsigned long aProp[],
+    [in, size_is(cp)] PROPVARIANT apVar[]
+);
+ 
+HRESULT
+S_DSGetObjectSecurityGuid(
+    [in] handle_t hBind,
+    [in , range(1,58)] unsigned long dwObjectType,
+    [in] const GUID * pGuid,
+    [in] unsigned long SecurityInformation,
+    [out, size_is(nLength)] unsigned char* pSecurityDescriptor,
+    [in , range(0,524288)] unsigned long nLength,
+    [out] unsigned long* lpnLengthNeeded,
+    [in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth,
+    [out, size_is(*pdwServerSignatureSize)] 
+          unsigned char * pbServerSignature,
+    [in, out] LPBOUNDED_SIGNATURE_SIZE pdwServerSignatureSize
+);
+ 
+HRESULT
+S_DSSetObjectSecurityGuid(
+    [in] handle_t hBind,
+    [in , range(1,58)] unsigned long dwObjectType,
+    [in] const GUID * pGuid,
+    [in] unsigned long SecurityInformation,
+    [in, unique, size_is(nLength)] 
+         unsigned char* pSecurityDescriptor,
+    [in , range(0,524288)] unsigned long nLength
+);
+ 
+void Opnum15NotUsedOnWire(void);
+ 
+void Opnum16NotUsedOnWire(void);
+ 
+void Opnum17NotUsedOnWire(void);
+ 
+void Opnum18NotUsedOnWire(void);
+ 
+HRESULT
+S_DSQMSetMachineProperties(
+    [in] handle_t hBind,
+    [in] [string] const wchar_t * pwcsPathName,
+    [in , range(1,128)] unsigned long cp,
+    [in, size_is(cp)] unsigned long aProp[],
+    [in, size_is(cp)] PROPVARIANT apVar[],
+    [in] unsigned long dwContext
+);
+ 
+HRESULT
+S_DSCreateServersCache(
+    [in] handle_t hBind,
+    [in, out] unsigned long * pdwIndex,
+    [in, out, ptr, string] wchar_t * * lplpSiteServers,
+    [in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth,
+    [out, size_is(*pdwServerSignatureSize)] 
+         unsigned char * pbServerSignature,
+    [in, out] LPBOUNDED_SIGNATURE_SIZE pdwServerSignatureSize
+);
+ 
+[callback]
+HRESULT
+S_DSQMSetMachinePropertiesSignProc(
+    [in, size_is(dwCallengeSize)] byte *abChallenge,
+    [in , range(0,32)] unsigned long dwCallengeSize,
+    [in] unsigned long dwContext,
+    [in, out, size_is(dwSignatureMaxSize), length_is(*pdwSignatureSize)] 
+         byte * abSignature,
+    [in, out] unsigned long * pdwSignatureSize,
+    [in , range(0,128)] unsigned long dwSignatureMaxSize
+);
+ 
+HRESULT
+S_DSQMGetObjectSecurity(
+    [in] handle_t hBind,
+    [in , range(1,58)] unsigned long dwObjectType,
+    [in] const GUID * pGuid,
+    [in] unsigned long SecurityInformation,
+    [out, size_is(nLength)] unsigned char* pSecurityDescriptor,
+    [in, range(0,524288)] unsigned long nLength,
+    [out] unsigned long* lpnLengthNeeded,
+    [in] unsigned long dwContext,
+    [in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth,
+    [out, size_is(*pdwServerSignatureSize)] 
+         unsigned char * pbServerSignature,
+    [in, out] LPBOUNDED_SIGNATURE_SIZE pdwServerSignatureSize
+);
+ 
+[callback]
+HRESULT
+S_DSQMGetObjectSecurityChallengeResponceProc(
+    [in, size_is(dwCallengeSize)] byte * abChallenge,
+    [in , range(0,32)] unsigned long dwCallengeSize,
+    [in] unsigned long dwContext,
+    [in, out, size_is(dwCallengeResponceMaxSize), 
+              length_is(*pdwCallengeResponceSize)] 
+              byte * abCallengeResponce,
+    [in, out] unsigned long *pdwCallengeResponceSize,
+    [in , range(0,128)] unsigned long dwCallengeResponceMaxSize
+);
+ 
+[callback]
+HRESULT
+S_InitSecCtx(
+    [in] unsigned long dwContext,
+    [in, size_is(dwServerBuffSize)] unsigned char * pServerbuff,
+    [in , range(0,524288)] unsigned long dwServerBuffSize,
+    [in , range(0,524288)] unsigned long dwClientBuffMaxSize,
+    [out, size_is(dwClientBuffMaxSize), length_is(*pdwClientBuffSize)] 
+          unsigned char * pClientBuff,
+    [out] unsigned long * pdwClientBuffSize
+);
+ 
+HRESULT
+S_DSValidateServer(
+    [in] handle_t hBind,
+    [in] const GUID * pguidEnterpriseId,
+    [in] BOOL fSetupMode,
+    [in] unsigned long dwContext,
+    [in , range(0,524288)] unsigned long dwClientBuffMaxSize,
+    [in, size_is(dwClientBuffMaxSize), length_is(dwClientBuffSize)] 
+         unsigned char * pClientBuff,
+    [in , range(0,524288)] unsigned long dwClientBuffSize,
+    [out] PPCONTEXT_HANDLE_SERVER_AUTH_TYPE pphServerAuth
+);
+ 
+HRESULT
+S_DSCloseServerHandle(
+    [in, out] PPCONTEXT_HANDLE_SERVER_AUTH_TYPE pphServerAuth
+);
+ 
+void Opnum24NotUsedOnWire(void);
+ 
+void Opnum25NotUsedOnWire(void);
+ 
+void Opnum26NotUsedOnWire(void);
+ 
+unsigned long
+S_DSGetServerPort(
+    [in] handle_t hBind,
+    [in , range(0,1)] unsigned long fIP
+);
+ 
+}
+ 
+[
+    version(1.0),
+    uuid(708cca10-9569-11d1-b2a5-0060977d8118),
+    pointer_default(unique)
+]
+interface dscomm2
+{
+HRESULT S_DSGetComputerSites(
+[in] handle_t hBind,
+    [in, unique] [string] const wchar_t * pwcsPathName,
+    [out] DWORD * pdwNumberOfSites,
+    [out, size_is(,*pdwNumberOfSites), length_is(,*pdwNumberOfSites)] 
+          GUID ** ppguidSites,
+    [in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth,
+    [out, size_is(*pdwServerSignatureSize)] 
+          unsigned char * pbServerSignature,
+    [in, out] LPBOUNDED_SIGNATURE_SIZE pdwServerSignatureSize
+);
+ 
+HRESULT S_DSGetPropsEx(
+[in] handle_t hBind,
+[in, range(1, 58)] DWORD dwObjectType,
+[in] [string] const wchar_t * pwcsPathName,
+[in, range(1,128)] DWORD cp,
+[in, size_is(cp)] PROPID aProp[],
+[in, out, size_is(cp)] PROPVARIANT apVar[],
+[in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth,
+[out, size_is(*pdwServerSignatureSize)] 
+      unsigned char * pbServerSignature,
+[in, out] LPBOUNDED_SIGNATURE_SIZE pdwServerSignatureSize
+);
+ 
+HRESULT S_DSGetPropsGuidEx(
+[in] handle_t hBind,
+[in, range(1, 58)] DWORD dwObjectType,
+[in, unique] const GUID * pGuid,
+[in, range(1,128)] DWORD cp,
+[in, size_is(cp)] PROPID aProp[],
+[in, out, size_is(cp)] PROPVARIANT apVar[],
+[in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth,
+[out, size_is(*pdwServerSignatureSize)] 
+      unsigned char * pbServerSignature,
+[in, out] LPBOUNDED_SIGNATURE_SIZE pdwServerSignatureSize
+);
+ 
+HRESULT S_DSBeginDeleteNotification(
+[in] handle_t hBind,
+[in] [string] const wchar_t * pwcsPathName,
+[out] PPCONTEXT_HANDLE_DELETE_TYPE pHandle,
+[in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth
+);
+ 
+HRESULT S_DSNotifyDelete(
+[in] handle_t hBind,
+[in] PCONTEXT_HANDLE_DELETE_TYPE Handle
+);
+ 
+void S_DSEndDeleteNotification(
+[in] handle_t hBind,
+[in, out] PPCONTEXT_HANDLE_DELETE_TYPE pHandle
+);
+ 
+long S_DSIsServerGC( 
+[in] handle_t hBind 
+);
+ 
+void Opnum7NotUsedOnWire(void);
+ 
+HRESULT S_DSGetGCListInDomain(
+[in] handle_t hBind,
+[in, ptr] [string] const wchar_t * lpwszComputerName,
+[in, ptr] [string] const wchar_t * lpwszDomainName,
+[out, string] wchar_t ** lplpwszGCList,
+[in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth,
+[out, size_is(*pdwServerSignatureSize)] 
+      unsigned char * pbServerSignature,
+[in, out] LPBOUNDED_SIGNATURE_SIZE pdwServerSignatureSize
+);
+}

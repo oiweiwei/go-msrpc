@@ -1,0 +1,217 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c48a8700-4c17-4afb-8866-f0cfc0c0a671" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_INFO_2</b> structure defines information
+returned as part of an administrative query of the status of the Netlogon
+server, as detailed in the description of the <b>NetrLogonControl2Ex</b> method
+in section <a href="df7e5dd1-ebcc-4754-9da0-2e0bded82d29" data-linktype="relative-path">3.5.4.9.1</a>.
+This structure is used to convey information about the status and properties of
+the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure channel</a> to a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a> in the primary or
+directly <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trusted</a> <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> specified by the
+caller of <b>NetrLogonControl2Ex </b>method.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_INFO_2 {
+   DWORD netlog2_flags;
+   NET_API_STATUS netlog2_pdc_connection_status;
+   [string] wchar_t* netlog2_trusted_dc_name;
+   NET_API_STATUS netlog2_tc_connection_status;
+ } NETLOGON_INFO_2,
+  *PNETLOGON_INFO_2;
+</pre></div>
+</dd></dl><p><b>netlog2_flags: </b>A set of bit flags describing
+the following control query responses from the DC. A flag is TRUE (or set) if
+its value is equal to 1. The value is constructed from zero or more bit flags
+from the following table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the flags SHOULD<a id="Appendix_A_Target_62"></a><a aria-label="Product behavior note 62" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_62" data-linktype="relative-path">&lt;62&gt;</a> be
+defined as shown in the following table.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>The DC used on the secure channel has an IP address
+  (either IPv4 or IPv6).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>The DC used on the secure channel runs <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_43e51d0a-ac6a-4662-a99a-8f3029b78caf" data-linktype="relative-path">W32Time</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>Signifies that the trust verification status was
+  returned in the netlog2_pdc_connection_status field.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero and MUST be
+ignored on receipt.</p>
+</dd></dl><p><b>netlog2_pdc_connection_status:</b> Unless the C
+bit is set in <b>netlog2_flags</b> field, this field indicates the connection
+status, as described in <b>Setting ConnectionStatus</b> (section <a href="739115d0-0d16-460f-96c8-775fde606bd5" data-linktype="relative-path">3.4.5.3.1</a>), of the secure
+channel to a DC in the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_387021de-3d6b-4372-835f-0d68c50cb496" data-linktype="relative-path">primary
+domain</a> of the queried server. If the C bit is set in <b>netlog2_flags</b>
+field, this field indicates the connection status of verifying the secure
+channel to the DC in the specified domain specified by the caller of <b>NetrLogonControl2Ex
+</b>method (section 3.5.4.9.1).</p><p><b>netlog2_trusted_dc_name:</b> A pointer to a
+null-terminated <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a>
+string that contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a>
+or <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a> of the
+DC used on the secure channel for the specified domain. The name is the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a> if the DC was
+discovered using the discovery mechanism based on the DNS query and LDAP ping (<a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/895a7744-aff3-4f64-bcfa-f8c05915d2e9" data-linktype="relative-path">6.3.3</a>).
+The name is the NetBIOS name if the DC was discovered using the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_f53fe4b9-8e1d-4366-9254-3c4f73269e78" data-linktype="relative-path">mailslot</a>-based mechanism
+([MS-ADTS] section <a href="../ms-adts/2cff75a9-5871-4493-a704-017b506f8df0" data-linktype="relative-path">6.3.5</a>).</p><p><b>netlog2_tc_connection_status:</b> An integer value
+that indicates the connection status, described in <b>Setting ConnectionStatus</b>
+(section 3.4.5.3.1), of the secure channel to the DC in the specified domain.</p></div>

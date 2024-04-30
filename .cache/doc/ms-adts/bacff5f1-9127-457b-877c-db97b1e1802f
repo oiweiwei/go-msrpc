@@ -1,0 +1,186 @@
+<div class="content"><p>This is the primary specification for <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a>, both <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_2e72eeeb-aee9-4b0a-adc6-4476bacf5024" data-linktype="relative-path">Active Directory Domain
+Services (AD DS)</a> and <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_afdbd6cd-9f55-4d2f-a98e-1207985534ab" data-linktype="relative-path">Active
+Directory Lightweight Directory Services (AD LDS)</a>. When the specification
+does not refer specifically to AD DS or AD LDS, it applies to both. The state
+model for this specification is prerequisite to the other specifications for
+Active Directory: <a href="../ms-drsr/f977faaa-673e-4f66-b9bf-48c640241d47" data-linktype="relative-path">[MS-DRSR]</a>
+and <a href="../ms-srpl/ec69eea5-0d5e-428a-b5bc-66732aaeb866" data-linktype="relative-path">[MS-SRPL]</a>.</p><p>When no operating system version information is specified,
+information in this document applies to all relevant versions of Windows.
+Similarly, when no <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_a98902f5-21e9-470f-b56b-cc6f8fde2141" data-linktype="relative-path">DC
+functional level</a> is specified, information in this document applies to all
+DC functional levels.</p><p>The information in this specification is applicable to the
+following Microsoft products or supplemental software. References to product
+versions include released service packs.</p><p><b>Note:</b> The terms &#34;earlier&#34; and
+&#34;later&#34;, when used with a product version, refer to either all
+preceding versions or all subsequent versions, respectively. The term
+&#34;through&#34; refers to the inclusive range of versions. Applicable
+Microsoft products are listed chronologically in this section.</p><ul><li><p><span><span> 
+</span></span>Windows 2000 Server operating system</p>
+</li><li><p><span><span> 
+</span></span>Windows Server 2003 operating system</p>
+</li><li><p><span><span> 
+</span></span>Windows Server 2003 R2 operating system</p>
+</li><li><p><span><span> 
+</span></span>Windows Server 2008 operating system</p>
+</li><li><p><span><span> 
+</span></span>Windows Server 2008 R2 operating system</p>
+</li><li><p><span><span> 
+</span></span>Windows Server 2012 operating system</p>
+</li><li><p><span><span> 
+</span></span>Windows Server 2012 R2 operating system</p>
+</li><li><p><span><span> 
+</span></span>Windows Server 2016 operating system</p>
+</li><li><p><span><span> 
+</span></span>Windows Server v1709 operating system</p>
+</li><li><p><span><span> 
+</span></span>Windows Server v1803 operating system</p>
+</li><li><p><span><span> 
+</span></span>Windows Server v1809 operating system</p>
+</li><li><p><span><span> 
+</span></span>Windows Server 2019 operating system</p>
+</li><li><p><span><span> 
+</span></span>Windows Server v1903 operating system </p>
+</li><li><p><span><span> 
+</span></span>Windows Server 2022 operating system</p>
+</li><li><p><span><span> 
+</span></span>Windows 11, version 24H2 operating system</p>
+</li><li><p><span><span> 
+</span></span>Windows Server 2025 operating system </p>
+</li></ul><p>AD DS first became available as part of Microsoft Windows
+2000 operating system and is available as part of Windows 2000 Server, Windows
+Server 2003, and Windows Server 2003 R2 products; in these products it is
+called &#34;Active Directory&#34;. It is also available as part of Windows
+Server 2008 and later. AD DS is not present in Windows NT 3.1 operating system,
+Windows NT 3.51 operating system, Windows NT 4.0 operating system, or Windows
+XP operating system.</p><p>AD LDS first became available during the release of Windows
+Server 2003. In Windows XP, Windows Server 2003, and Windows Server 2003 R2, it
+is a standalone application called &#34;Active Directory Application Mode
+(ADAM)&#34;. AD LDS is also available as part of Windows Server 2008 and
+later. Unless otherwise specified, information in this specification is also
+applicable to AD LDS. There are two versions of ADAM, ADAM RTW (introduced in
+the same timeframe as Windows Server 2003 operating system with Service Pack 1
+(SP1)) and ADAM SP1 (introduced in the same timeframe as Windows Server 2003 operating
+system with Service Pack 2 (SP2)); unless otherwise specified, where ADAM is
+discussed in this document it refers to both versions of ADAM.</p><p>AD LDS for a particular Windows client is a standalone
+application that provides AD LDS capabilities for that Windows client.
+Information that is applicable to AD LDS on applicable Windows Server releases
+is generally also applicable to AD LDS on Windows clients, including Windows 11
+operating system and later, except where it is explicitly specified that such information
+is not applicable to that product. The following list provides a mapping of
+this applicability:</p><ul><li><p><span><span> 
+</span></span>Information that is applicable to AD LDS on Windows Server 2008
+is also applicable to Active Directory Lightweight Directory Services (AD LDS)
+for Windows Vista.</p>
+</li><li><p><span><span> 
+</span></span>Information that is applicable to AD LDS on Windows Server 2008
+R2 is also applicable to Active Directory Lightweight Directory Services (AD
+LDS) for Windows 7.</p>
+</li><li><p><span><span> 
+</span></span>Information that is applicable to AD LDS on Windows Server 2012
+is also applicable to Active Directory Lightweight Directory Services (AD LDS)
+for Windows 8 operating system.</p>
+</li><li><p><span><span> 
+</span></span>Information that is applicable to AD LDS on Windows Server 2012
+R2 is also applicable to Active Directory Lightweight Directory Services (AD
+LDS) for Windows 8.1 operating system.</p>
+</li><li><p><span><span> 
+</span></span>Information that is applicable to AD LDS on Windows Server 2016
+is also applicable to Active Directory Lightweight Directory Services (AD LDS)
+for Windows 10 operating system.</p>
+</li><li><p><span><span> 
+</span></span>Information that is applicable to AD LDS on Windows Server v1709
+is also applicable to AD LDS for Windows 10 v1703 operating system and Windows
+10 v1709 operating system.</p>
+</li><li><p><span><span> 
+</span></span>Information that is applicable to AD LDS on Windows Server v1803
+is also applicable to AD LDS for Windows 10 v1803 operating system.</p>
+</li><li><p><span><span> 
+</span></span>Information that is applicable to AD LDS on Windows Server v1809
+and Windows Server 2019 is also applicable to AD LDS for Windows 10 v1809
+operating system.</p>
+</li><li><p><span><span> 
+</span></span>Information that is applicable to AD LDS on Windows Server v1903
+is also applicable to AD LDS for Windows 10 v1903 operating system.</p>
+</li><li><p><span><span> 
+</span></span>Information that is applicable to AD LDS on Windows Server 2022
+is also applicable to AD LDS for Windows 10 v21H1 operating system and Windows
+10 v21H2 operating system.</p>
+</li></ul><p>State is included in the state model for this specification
+only as necessitated by the requirement that a licensee implementation of the
+protocols of applicable Windows Server releases has to be capable of receiving
+messages and responding in the same manner as applicable Windows Server
+releases. Behavior is specified in terms of request message received,
+processing based on current state, resulting state transformation, and response
+message sent. Unless otherwise specified in the sections that follow, all of
+the behaviors are required for interoperability.</p><p>The following typographical convention is used to indicate
+the special meaning of certain names:</p><ul><li><p><span><span> 
+</span></span>Underline, as in <a href="../ms-ada1/3c95bace-a9bd-4227-9c32-de1015d2bcd2" data-linktype="relative-path">instanceType</a>:
+the name of an <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a>
+or <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_a224e395-3fea-48bd-b141-3dd9bee2136a" data-linktype="relative-path">object class</a> whose
+interpretation is specified in the following documents:</p>
+<ul><li><p><span><span>  </span></span><a href="../ms-ada1/19528560-f41e-4623-a406-dabcfff0660f" data-linktype="relative-path">[MS-ADA1]</a>
+Attribute names for AD DS whose initial letter is A through L.</p>
+</li><li><p><span><span>  </span></span><a href="../ms-ada2/e20ebc4e-5285-40ba-b3bd-ffcb81c2783e" data-linktype="relative-path">[MS-ADA2]</a>
+Attribute names for AD DS whose initial letter is M.</p>
+</li><li><p><span><span>  </span></span><a href="../ms-ada3/4517e835-3ee6-44d4-bb95-a94b6966bfb0" data-linktype="relative-path">[MS-ADA3]</a>
+Attribute names for AD DS whose initial letter is N through Z.</p>
+</li><li><p><span><span>  </span></span><a href="../ms-adsc/9abb5e97-123d-4da9-9557-b353ab79b830" data-linktype="relative-path">[MS-ADSC]</a>
+<a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_c363e559-ed0b-4227-8e6a-bf7e01be0ee0" data-linktype="relative-path">Object class names</a> for
+AD DS.</p>
+</li><li><p><span><span>  </span></span><a href="../ms-adls/94279943-25ab-4c13-9bf2-6d411cc2f796" data-linktype="relative-path">[MS-ADLS]</a>
+Object class names and attribute names for AD LDS.</p>
+</li></ul></li></ul><p>For clarity, bit flags are sometimes shown as bit field
+diagrams. In the case of bit flags for <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">Lightweight Directory Access
+Protocol (LDAP)</a> attributes, these diagrams take on <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_6f6f9e8e-5966-4727-8527-7e02fb864e7e" data-linktype="relative-path">big-endian</a> characteristics
+but do not reflect the actual byte ordering of integers over the wire, because
+LDAP transfers an integer as the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_409411c4-b4ed-4ab6-b0ee-6d7815f85a35" data-linktype="relative-path">UTF-8</a> string of the decimal
+representation of that integer, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90326" data-linktype="external">[RFC2252]</a>.</p><p><b>Pervasive Concepts</b></p><p>The following concepts are pervasive throughout this
+specification.</p><p>This specification uses [KNUTH1] section 2.3.4.2 as a
+reference for the graph-related terms <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_c62abd7d-b916-4873-9251-7781d497af27" data-linktype="relative-path">oriented tree</a>, root,
+vertex, arc, initial vertex, and final vertex.</p><p>Authentication concepts for domains, account domains, domain
+controllers, security principals, and user objects can be found in <a href="../ms-authsod/953d700a-57cb-4cf7-b0c3-a64f34581cc9" data-linktype="relative-path">[MS-AUTHSOD]</a>
+section <a href="../ms-authsod/f214117a-74df-40e3-bdd6-de4e843d0f28" data-linktype="relative-path">1.1.1</a>
+and subsections.</p><p><b>replica: </b>A variable containing a set of <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">objects</a>.</p><p><b>attribute: </b>An identifier for a value or set of
+values. See also attribute in the Glossary (section <a href="b645c125-a7da-4097-84a1-2fa7cea07714" data-linktype="relative-path">1.1</a>).</p><p><b>object: </b>A set of attributes, each with its
+associated values. Two attributes of an object have special significance:</p><ul><li><p><span><span>  </span></span>Identifying
+attribute: A designated single-valued attribute appears on every object. The
+value of this attribute identifies the object. For the set of objects in a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_ea02e669-2dda-460c-9992-b12a23caeeac" data-linktype="relative-path">replica</a>, the values of the
+identifying attribute are distinct.</p>
+</li><li><p><span><span>  </span></span>Parent-identifying
+attribute: A designated single-valued attribute appears on every object. The
+value of this attribute identifies the object&#39;s parent. That is, this attribute
+contains the value of the parent&#39;s identifying attribute or a reserved value
+identifying no object (for more information, see section <a href="dd4dc725-021b-4c8c-a44a-49b3235836b7" data-linktype="relative-path">3.1.1.1.3</a>). For the set of
+objects in a replica, the values of this parent-identifying attribute define an
+oriented tree with objects as vertices and child-parent references as directed
+arcs, with the child as an arc&#39;s initial vertex and the parent as an arc&#39;s
+final vertex.</p>
+</li></ul><dl>
+<dd>
+<p>Note that an object is a value, not a variable; a
+replica is a variable. The process of adding, modifying, or deleting an object
+in a replica replaces the entire value of the replica with a new value.</p>
+</dd>
+<dd>
+<p>As the term &#34;replica&#34; suggests, it is
+often the case that two replicas contain &#34;the same objects&#34;. In this
+usage, objects in two replicas are considered &#34;the same&#34; if they have
+the same value of the identifying attribute and if there is a process in place
+(that is, <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a>)
+to converge the values of the remaining attributes. When the members of a set
+of replicas are considered to be the same, it is common to say &#34;an
+object&#34; as a shorthand way of referring to the set of corresponding
+objects in the replicas.</p>
+</dd></dl><p><b>object class: </b>A set of restrictions on the
+construction and <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_b242435b-73cc-4c4e-95f0-b2a2ff680493" data-linktype="relative-path">update</a>
+of objects. An object class MUST be specified when an object is created. An
+object class specifies a set of required attributes (every object of the class
+MUST have at least one value of each) and may-have attributes (every object of
+the class may have a value of each). An object class also specifies a set of
+possible superiors (the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_0d41951a-62f0-4fbd-bb23-22f645ae3bf5" data-linktype="relative-path">parent
+object</a> of an object of the class MUST have one of these classes). An object
+class is defined by a <a href="../ms-adsc/6354fe66-74ee-4132-81c6-7d9a9e229070" data-linktype="relative-path">classSchema</a>
+object.</p><p><b>parent object: </b>See &#34;object&#34;, above.</p><p><b>child object, children: </b>An object that is not
+the root of its oriented tree. The children of an object O is the set of all
+objects whose parent object is <i>O</i>.</p><p>See section 3.1.1.1.3 for the particular use made of these
+definitions in this specification.</p></div>

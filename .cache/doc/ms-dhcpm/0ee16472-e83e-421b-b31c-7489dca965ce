@@ -1,0 +1,46 @@
+<div class="content"><p> </p><p>The <b>R_DhcpServerRedoAuthorization</b> method attempts to
+determine whether the DHCP server is authorized and restores the leasing
+operation if the server is not authorized. The rogue detection mechanism is
+outlined in <span><a href="../ms-dhcpe/2e71d5c8-44c6-4416-97b0-0be64cad472c" data-linktype="relative-path">[MS-DHCPE]</a></span>
+(section <span><a href="../ms-dhcpe/8f730fca-2fe1-4db0-a454-a4b0dd0d50ba" data-linktype="relative-path">3.3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpServerRedoAuthorization(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] ULONG dwReserved
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>dwReserved: </b>This flag SHOULD be set to 0.
+Currently it is not used, and any value set to this parameter will not affect
+the behavior of this method.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 36.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

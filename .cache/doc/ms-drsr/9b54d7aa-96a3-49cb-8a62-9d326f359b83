@@ -1,0 +1,109 @@
+<div class="content"><p> </p><p>The CONTREF_DRS_WIRE_V1 structure defines a linked list
+entry for a continuation referral.</p><dl>
+<dd>
+<div><pre> typedef struct CONTREF_DRS_WIRE_V1 {
+   DSNAME* pTarget;
+   NAMERESOP_DRS_WIRE_V1 OpState;
+   USHORT aliasRDN;
+   USHORT RDNsInternal;
+   USHORT refType;
+   USHORT count;
+   DSA_ADDRESS_LIST_DRS_WIRE_V1* pDAL;
+   struct CONTREF_DRS_WIRE_V1* pNextContRef;
+   BOOL bNewChoice;
+   UCHAR choice;
+ } CONTREF_DRS_WIRE_V1;
+</pre></div>
+</dd></dl><p><b>pTarget:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>
+to which the referral is directed.</p><p><b>OpState:</b>  The operation state.</p><p><b>aliasRDN:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>RDNsInternal:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>refType:</b>  The type of referral. This
+field MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CH_REFTYPE_SUPERIOR</p>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>A referral to a superior <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CH_REFTYPE_SUBORDINATE</p>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>A referral to a subordinate DC (for example, to a
+  child <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CH_REFTYPE_NSSR</p>
+  <p>0x0002</p>
+  </td>
+  <td>
+  <p>Not in use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CH_REFTYPE_CROSS</p>
+  <p>0x0003</p>
+  </td>
+  <td>
+  <p>A referral to an external <span><a href="../ms-adsc/297f7940-d70e-4eef-ad44-be56d5d6b117" data-linktype="relative-path">crossRef</a></span>
+  object. See <span><a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a></span>
+  section <span><a href="../ms-adts/d869c56e-4dd8-4579-9420-53d603c21494" data-linktype="relative-path">6.1.1.2.1.1.1</a></span>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>count:</b>  The count of items in the <b>pDAL</b>
+linked list.</p><p><b>pDAL:</b>  A list of network names of
+the DCs to which the referral is directed.</p><p><b>pNextContRef:</b>  Null, or the next
+item in the linked list.</p><p><b>bNewChoice:</b>  True if and only if a
+new choice is specified.</p><p><b>choice:</b>  The choice to use in the
+continuation referral. This field MUST be one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SE_CHOICE_BASE_ONLY</p>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>A base search is to be performed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SE_CHOICE_IMMED_CHLDRN</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>A one-level search is to be performed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SE_CHOICE_WHOLE_SUBTREE</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>A subtree search is to be performed.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>The VDS_CREATE_VDISK_PARAMETERS structure contains the
+parameters to be used when a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual disk</a></span> is
+created.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_CREATE_VDISK_PARAMETERS {
+   GUID UniqueId;
+   ULONGLONG MaximumSize;
+   ULONG BlockSizeInBytes;
+   ULONG SectorSizeInBytes;
+   [string] LPWSTR pParentPath;
+   [string] LPWSTR pSourcePath;
+ } VDS_CREATE_VDISK_PARAMETERS,
+  *PVDS_CREATE_VDISK_PARAMETERS;
+</pre></div>
+</dd></dl><p><b>UniqueId:</b>  A unique and non-zero <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path"><span>GUID</span></a> value to be
+assigned to the virtual disk.</p><p><b>MaximumSize:</b>  The maximum virtual
+size, in bytes, of the virtual disk object.</p><p><b>BlockSizeInBytes:</b>  The internal
+block size, in bytes, of the virtual disk object. If the virtual disk object
+being created is a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_f738286f-68d6-4890-a658-efcf815313ae" data-linktype="relative-path">differencing disk</a></span>,
+this value MUST be 0. If the virtual disk object being created is not a
+differencing disk, setting this value to 0 causes the virtual disk object being
+created to use the default block size.<a id="Appendix_A_Target_50"></a><a aria-label="Product behavior note 50" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_50" data-linktype="relative-path">&lt;50&gt;</a></p><p><b>SectorSizeInBytes:</b>  Internal sector
+size, in bytes, of the virtual disk object. This value MUST be set to 512
+(CREATE_VIRTUAL_DISK_PARAMETERS_DEFAULT_SECTOR_SIZE).</p><p><b>pParentPath:</b>  A null-terminated
+wide-character string containing an optional path to a parent virtual disk
+object. This member associates the new virtual <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_511ca852-83e7-4a0c-8081-06e36436876b" data-linktype="relative-path">hard disk</a></span> with an
+existing virtual hard disk. Used when creating a differencing disk. The
+differencing disk gets its size from its parent.</p><dl>
+<dd>
+<p>A differencing disk represents the current state of
+the virtual disk as a set of modified blocks in comparison to a parent disk. A
+differencing disk is not independent; it depends on the parent disk to be fully
+functional. A differencing disk MUST be created using the
+CREATE_VIRTUAL_DISK_FLAG_NONE flag. The parent disk can be created using either
+the CREATE_VIRTUAL_DISK_FLAG_NONE or
+CREATE_VIRTUAL_DISK_FLAG_FULL_PHYSICAL_ALLOCATION flag. The parent disk can be
+another differencing disk.</p>
+</dd></dl><p><b>pSourcePath:</b>  A null-terminated
+wide-character string containing an optional path to a source of data to be
+copied to the new virtual hard disk. When <i>pSourcePath</i> is specified, data
+from the input <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_5dcddf1d-f76c-48ea-aef3-208bbc2eea77" data-linktype="relative-path">virtual disk file</a></span> is
+copied block for block from the input virtual disk file to the created virtual
+disk file. There is no parent-child relationship established.</p></div>

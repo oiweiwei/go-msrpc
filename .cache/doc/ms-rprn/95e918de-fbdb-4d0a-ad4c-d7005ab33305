@@ -1,0 +1,280 @@
+<div class="content"><p>The <b>_FORM_INFO_1</b> structure specifies printer media
+information. It is a custom-<a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_37e89d91-2800-49d1-9d17-45ebe167ad87" data-linktype="relative-path">marshaled</a>
+form of the <b>_FORM_INFO_1 </b>(section <a href="78219302-59dd-4d3f-82d7-3a2e95466c28" data-linktype="relative-path">2.2.1.6.1)</a> structure.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (variable): </b>An array of one or
+more groups of fixed-size fields, which are defined as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Size.cx</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Size.cy</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ImageableArea.left</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ImageableArea.top</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ImageableArea.right</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ImageableArea.bottom</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Flags (4
+bytes):</b> The form property from the following table.</p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FORM_USER</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The form has been defined by the user and appears in
+  the registry.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FORM_BUILTIN</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The form is part of the spooler and does not appear in
+  the registry.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FORM_PRINTER</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The form is associated with a particular printer and
+  appears in the registry.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd>
+<dd>
+<p><b>NameOffset (4 bytes): </b>An
+unsigned integer that specifies the number of bytes from the start of the
+structure to the start of the <b>NameArray</b> member. </p>
+</dd>
+<dd>
+<p><b>Size.cx (4 bytes):</b> A
+long integer. The form&#39;s width in thousandths of millimeters using a <a href="c76b61d3-1665-43f5-9584-a40d42bf05c5" data-linktype="relative-path">SIZE</a> structure, as
+specified in section 2.2.1.1.6.</p>
+</dd>
+<dd>
+<p><b>Size.cy (4 bytes): </b>A
+long integer. The form&#39;s height in thousandths of millimeters using a SIZE
+structure, as specified in section 2.2.1.1.6.</p>
+</dd>
+<dd>
+<p><b>ImageableArea:</b>
+The part of the form that the printer can print on as a rectangle in
+thousandths of millimeters using a <b>RECTL</b> structure, as specified in
+section <a href="d81607da-4aa7-44b0-ae44-07d0c2227b34" data-linktype="relative-path">2.2.1.1.5</a>.</p>
+<dl>
+<dd>
+<p><b>ImageableArea.left
+(4 bytes):</b> The x-coordinate of the upper-left corner of the rectangle
+relative to the top edge of the form.</p>
+</dd>
+<dd>
+<p><b>ImageableArea.top (4
+bytes): </b>The y-coordinate of the upper-left corner of the rectangle relative
+to the top edge of the form.</p>
+</dd>
+<dd>
+<p><b>ImageableArea.right (4
+bytes): </b>The x-coordinate of the lower-right corner of the rectangle
+relative to the left edge of the form.</p>
+</dd>
+<dd>
+<p><b>ImageableArea.bottom
+(4 bytes): </b>The y-coordinate of the lower-right corner of the rectangle
+relative to the top edge of the form.</p>
+</dd></dl></dd></dl><p><b>Variable_Data (variable): </b>An array of zero or
+more optional, variable-size fields, which are defined as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NameArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>NameArray (variable): </b>This
+member MUST contain a string that specifies the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_062f3e76-3149-468c-bf64-1535651725d1" data-linktype="relative-path">print processor</a> name. The
+location of this buffer is determined by the value of the <b>NameOffset</b>
+member. For rules governing print processor names, see section <a href="807e0bdd-21a5-4a72-9a6a-1a7fb1b08a8e" data-linktype="relative-path">2.2.4.11</a>.</p>
+</dd></dl><p>All members not defined in this section are specified in
+sections <a href="84fe09fa-ea4b-4cc5-8ae4-9c8582fd1ffe" data-linktype="relative-path">2.2.1.3.2</a> and <a href="7224d5ea-c0e1-474b-8e24-034f0032e09c" data-linktype="relative-path">2.2.2.3</a>.</p></div>

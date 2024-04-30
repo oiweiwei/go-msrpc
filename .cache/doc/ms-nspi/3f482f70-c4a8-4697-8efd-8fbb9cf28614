@@ -1,0 +1,116 @@
+<div class="content"><p> </p><p>The NspiGetProps method returns an address book row
+containing a set of the properties and values that exist on an object.</p><dl>
+<dd>
+<div><pre> long NspiGetProps(
+   [in] NSPI_HANDLE hRpc,
+   [in] DWORD dwFlags,
+   [in] STAT* pStat,
+   [in, unique] PropertyTagArray_r* pPropTags,
+   [out] PropertyRow_r** ppRows
+ );
+</pre></div>
+</dd></dl><p><b>hRpc: </b>An <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+as specified in section <span><a href="67195f6a-2002-4d81-b279-ba8b0aefb4af" data-linktype="relative-path">2.3.9</a></span>.</p><p><b>dwFlags: </b>A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value, containing a set of bit flags. The server MUST ignore values other than
+the bit flags <b>fEphID</b> and <b>fSkipObjects</b>.</p><p><b>pStat: </b>A pointer to a <span><a href="5902bec9-3124-4725-8a8f-1a50282ed023" data-linktype="relative-path">STAT</a></span>
+block describing a logical position in a specific <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_a34b031c-18b2-40e1-acfa-3b73cc71e80b" data-linktype="relative-path">address book container</a></span>.
+This parameter is used to both specify input parameters from the client and
+return values from the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_e63aea5b-046b-4176-9359-fde82613a406" data-linktype="relative-path">NSPI</a></span> server.</p><p><b>pPropTags: </b>The value NULL or a reference to a <span><a href="9dc42856-90da-4df9-85ca-f8307db84659" data-linktype="relative-path">PropertyTagArray_r</a></span>
+value. Contains list of the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_7eb84614-827d-4b68-a71c-dd94eb0ad27f" data-linktype="relative-path">proptags</a></span> of the
+properties that the client wants to be returned.</p><p><b>ppRows: </b>A reference to a <span><a href="e627a2d6-4a92-42f7-b1e6-54400373f371" data-linktype="relative-path">PropertyRow_r</a></span>
+value. Contains the address book container row the server returns in response
+to the request.</p><p><b>Return Values: </b>The server returns a long value
+specifying the return status of the method.</p><p>Exceptions Thrown</p><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>Server Processing Rules</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>If the <b>CodePage</b>
+field of the input parameter <i>pStat</i> is set to the value CP_WINUNICODE and
+the type of the proptags in the input parameter pPropTags is PtypString8, then
+the server MUST return one of the return values specified in section <span><a href="03bb2ea3-f2e9-4adb-ab46-751aca824b72" data-linktype="relative-path">2.2.2</a></span>.
+No further constraints are applied to server processing of this method; in this
+case server behavior is undefined. Note especially that there is no constraint
+on the data the server returns in any output parameter other than the return
+value, nor is there any constraint on how or if the server changes its state.</p>
+</li><li><p><span>    </span>If the server
+returns any return values other than ErrorsReturned or Success, the server MUST
+return a NULL for the output parameter <i>ppRows</i>. </p>
+</li><li><p><span>    </span>The server MAY
+make additional validations according to section <span><a href="39bcbcd7-fa18-4eb2-a2ae-c598b6683185" data-linktype="relative-path">5</a></span>. If the server
+chooses to limit the visibility of data based on these validations, the server
+MUST proceed as if that data did not exist in the address book. See the product
+behavior note cited in section <span><a href="36c0f768-1fdd-4709-9875-6c387b107560" data-linktype="relative-path">5.1</a></span> for more
+information.</p>
+</li><li><p><span>    </span>If the server is
+unable to locate the address book container specified by the <b>ContainerID</b>
+field in the input parameter <i>pStat</i>, the server MUST return the return
+value InvalidBookmark.</p>
+</li><li><p><span>    </span>The server
+constructs a list of proptags for which it will return property values as
+follows:</p>
+<ol><li><p><span>   
+</span>If the input parameter <i>pPropTags</i> is not NULL, the client is
+requesting the server return only those properties and their values in the
+output parameter <i>ppRows</i>. The server MUST use this list.</p>
+</li><li><p><span>   
+</span>If the input parameter <i>pPropTags</i> is NULL, the client is
+requesting that the server constructs a list of proptags on its behalf. The
+server MUST construct a proptag list that is exactly the same list that would
+be returned to the client in the <i>pPropTags</i> output parameter of the
+method <span><a href="d65b7e5b-a4c5-473a-bf96-82b70a1abb43" data-linktype="relative-path">NspiGetPropList</a></span>
+(section 3.1.4.6) using the following parameters as inputs to method
+NspiGetPropList:</p>
+<ol><li><p><span>    </span>The NspiGetProps
+parameter <i>hRpc</i> is used as the NspiGetPropList parameter <i>hRpc</i>. </p>
+</li><li><p><span>    </span>The NspiGetProps
+parameter <i>dwFlags</i> is used as the NspiGetPropList parameter <i>dwFlags</i>.
+</p>
+</li><li><p><span>    </span>The field <b>CurrentRec</b>
+of the NspiGetProps parameter <i>pStat</i> is used as the NspiGetPropList
+parameter <i>dwMId</i>.</p>
+</li><li><p><span>    </span>The field <b>CodePage</b>
+of the NspiGetProps parameter <i>pStat</i> is used as the NspiGetPropList
+parameter <i>CodePage</i>.</p>
+<p>If a call to the NspiGetPropList method with these
+parameters and relaxed constraints would return anything other than Success,
+the server MUST return that error code as the return value for the NspiGetProps
+method.</p>
+</li></ol></li></ol></li><li><p><span>    </span>If the length of
+the list of proptags for which the server will return property values is
+excessive, the server MUST return the return value TableBig. The NSPI Protocol
+does not prescribe what constitutes an excessive length.</p>
+</li><li><p><span>    </span>If input
+parameter <i>dwFlags</i> contains the bit flag <b>fEphID</b> and the property <b>PidTagEntryId</b>
+is present in the list of proptags, the server MUST return the values of the
+property <b>PidTagEntryId</b> in the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_5a44d162-70af-46a6-a40a-b544e6861e21" data-linktype="relative-path">Ephemeral Entry ID</a></span>
+format as specified in section <span><a href="189d269e-cc2b-41f9-8432-649876acf15d" data-linktype="relative-path">2.3.8.2</a></span>.</p>
+</li><li><p><span>    </span>If input
+parameter <i>dwFlags</i> does not contain the bit flag <b>fEphID</b> and the
+property <b>PidTagEntryId</b> is present in the list of proptags, the server
+MUST return the values of the property <b>PidTagEntryId</b> in the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_8cfe7d12-6482-4e5b-8ac2-5d6057eeeb39" data-linktype="relative-path">Permanent
+Entry ID</a></span> format as specified in section <span><a href="32c84190-f94e-4da5-919e-726f173dcad2" data-linktype="relative-path">2.3.8.3</a></span>.</p>
+</li><li><p><span>    </span>The server MUST
+return string-valued properties in the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_210637d9-9634-4652-a935-ded3cd434f38" data-linktype="relative-path">codepage</a></span> specified
+in <b>CodePage</b> field of the input parameter <i>pStat</i>, as specified in
+section <span><a href="522c7a16-a670-4bea-9c11-74a3d7dfedbe" data-linktype="relative-path">3.1.1.2</a></span>.</p>
+</li><li><p><span>  </span>If the server is able to
+locate the object specified in the <b>CurrentRec</b> field of the input
+parameter <i>pStat</i>, the server MUST return values associated with this
+object.</p>
+</li><li><p><span>  </span>If the server is unable to
+locate the object specified in the <b>CurrentRec</b> field of the input
+parameter <i>pStat</i>, the server MUST proceed as if the object was located
+but had no values for any properties.</p>
+</li><li><p><span>  </span>If a property in the proptag
+list has no value on the object specified by the <b>CurrentRec</b> field, the
+server MUST return the error code ErrorsReturned. The server MUST set the <b>aulPropTag</b>
+member corresponding to the proptag with no value with the proptag that has no
+value with the Property Type <b>PtypErrorCode</b>. Subject to the prior
+constraints, the server constructs a list of properties and their values as a
+single PropertyRow_r with a one-to-one order preserving correspondence between
+the values in the proptag list specified by input parameters and the returned
+properties and values in the RowSet. If there are duplicate properties in the
+proptag list, the server MUST create duplicate values in the parameter RowSet.
+The server MUST return this RowSet in the output parameter <i>ppRows</i>.</p>
+</li><li><p><span>  </span>If no other return values
+have been specified by these constraints, the server MUST return the return
+value Success.</p>
+</li></ol></div>

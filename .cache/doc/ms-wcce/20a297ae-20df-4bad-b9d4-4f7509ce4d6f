@@ -1,0 +1,101 @@
+<div class="content"><p> </p><p>The KeyAttestationStatement structure is defined as follows:<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="c8bec234-0a53-4a7c-859d-2bb7b2537da5#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct  {
+   UINT32 Magic;
+   UINT32 Version;
+   UINT32 Platform;
+   UINT32 HeaderSize;
+   UINT32 cbIdBinding;
+   UINT32 cbKeyAttestation;
+   UINT32 cbAIKOpaque;
+   BYTE idBinding[cbIdBinding];
+   BYTE keyAttestation[cbKeyAttestation];
+   BYTE aikOpaque[cbAIKOpaque];
+ } KeyAttestationStatement;
+</pre></div>
+</dd></dl><p><b>Magic:</b>  The value MUST be
+0x5453414B.</p><p><b>Version:</b>  The value MUST be 1.</p><p><b>Platform:</b>  The value MUST be either
+1 or 2 indicating the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_7288388e-5351-4538-bcb0-deb95e2abced" data-linktype="relative-path">TPM</a></span> platform.</p><p><b>HeaderSize:</b>  An integer value
+denoting the size of the header.</p><p><b>cbIdBinding:</b>  An integer value
+denoting the size of the <b>idBinding</b> field.</p><p><b>cbKeyAttestation:</b>  An integer value
+denoting the size of the <b>keyAttestation</b> field.</p><p><b>cbAIKOpaque:</b>  An integer value
+denoting the size of the <b>aikOpaque</b> field.</p><p><b>idBinding:</b>  When the <b>Platform</b>
+member equals 1, a byte array containing the signature of a <b>TPM_IDENTITY_CONTENTS</b>
+structure, as defined in <span><a href="https://go.microsoft.com/fwlink/?LinkId=301946" data-linktype="external">[TCG-Struct]</a></span>
+section 12.5. When <b>Platform</b> equals 2, a byte array containing a
+concatenation of the following structures:<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="c8bec234-0a53-4a7c-859d-2bb7b2537da5#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p><ul><li><p><span><span>  </span></span>A
+TPM2B_PUBLIC structure defined in <span><a href="https://go.microsoft.com/fwlink/?LinkId=522455" data-linktype="external">[TCG-Struct-V2]</a></span>
+section 12.2.5.</p>
+</li><li><p><span><span>  </span></span>A
+TPM2B_CREATION_DATA structure defined in [TCG-Struct-V2] section 15.2.</p>
+</li><li><p><span><span>  </span></span>A
+TPM2B_ATTEST structure defined in [TCG-Struct-V2] section 10.12.9.</p>
+</li><li><p><span><span>  </span></span>A
+TPMT_SIGNATURE structure defined in [TCG-Struct-V2] section 11.3.4.</p>
+</li></ul><dl>
+<dd>
+<p>For information on how this
+signature is constructed, see the following references:</p>
+</dd></dl><ul><li><p><span><span>  </span></span>When
+<b>Platform</b> equals 1, <span><a href="https://go.microsoft.com/fwlink/?LinkId=389726" data-linktype="external">[TCG-Commands]</a></span>
+section 15.1.</p>
+</li><li><p><span><span>  </span></span>When
+<b>Platform</b> equals 2, <span><a href="https://go.microsoft.com/fwlink/?LinkID=522454" data-linktype="external">[TCG-Commands-V2]</a></span>
+section 12.1.</p>
+</li></ul><p><b>keyAttestation:</b>  A structure that is
+defined as follows:</p><dl>
+<dd>
+<div><pre> typedef struct {
+   UINT32 Magic;
+   UINT32 Platform;
+   UINT32 HeaderSize;
+   UINT32 cbKeyAttest;
+   UINT32 cbSignature;
+   UINT32 cbKeyBlob;
+   BYTE keyAttest[cbKeyAttest];
+   BYTE signature[cbSignature];
+   BYTE keyBlob[cbKeyBlob];
+ } keyAttestation;
+</pre></div>
+</dd>
+<dd>
+<p><b>Magic:</b>  The
+value MUST be 0x5344414B.</p>
+</dd>
+<dd>
+<p><b>Platform:</b>  The
+value MUST be either 1 or 2 indicating the TPM platform.</p>
+</dd>
+<dd>
+<p><b>HeaderSize:</b>  An
+integer value denoting the size of the header.</p>
+</dd>
+<dd>
+<p><b>cbKeyAttest:</b>  An
+integer value denoting the size of the <b>keyAttest</b> array.</p>
+</dd>
+<dd>
+<p><b>cbSignature:</b>  An
+integer value denoting the size of the <b>signature</b> array.</p>
+</dd>
+<dd>
+<p><b>cbKeyBlob:</b>  An
+integer value denoting the size of the <b>keyBlob</b> array.</p>
+</dd>
+<dd>
+<p><b>keyAttest:</b>  MUST
+be a TPM_CERTIFY_INFO structure if the <b>Platform</b> field equals 1, or a
+TPM_CERTIFY_INFO2 structure if <b>Platform</b> equals 2, as defined in
+[TCG-Struct] sections 11.1 and 11.2.</p>
+</dd>
+<dd>
+<p><b>signature:</b>  Contains
+the signature of the keyAttest array using the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_70efa425-6b46-462f-911d-d399404529ab" data-linktype="relative-path">AIK</a></span> <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private
+key</a></span>.</p>
+</dd>
+<dd>
+<p><b>keyBlob:</b>  Contains
+a <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_c9b94107-addb-4246-85b2-6c1cab7d492e" data-linktype="relative-path">CSP</a></span>-specific
+opaque format of the attested key.</p>
+</dd></dl><p><b>aikOpaque:</b>  Contains a CSP-specific
+opaque format of the AIK private key.</p></div>

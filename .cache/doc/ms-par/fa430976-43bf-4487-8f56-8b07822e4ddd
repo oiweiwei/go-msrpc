@@ -1,0 +1,80 @@
+<div class="content"><p> </p><p><b>RpcAsyncCorePrinterDriverInstalled</b> determines if a
+specific <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_d4010501-f6e4-4cba-817b-403a9c5ea41c" data-linktype="relative-path">core printer driver</a></span>
+is installed.</p><dl>
+<dd>
+<div><pre> HRESULT RpcAsyncCorePrinterDriverInstalled(
+   [in] handle_t hRemoteBinding,
+   [in, string, unique] const wchar_t* pszServer,
+   [in, string] const wchar_t* pszEnvironment,
+   [in] GUID CoreDriverGUID,
+   [in] FILETIME ftDriverDate,
+   [in] DWORDLONG dwlDriverVersion,
+   [out] int* pbDriverInstalled
+ );
+</pre></div>
+</dd></dl><p><b>hRemoteBinding: </b>An <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> explicit binding
+handle.</p><p><b>pszServer: </b>A pointer to a string that contains
+the name of the <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a></span> to
+check and determine if a core printer driver is installed. This server name
+MUST be identical to the server name that was used to create the <i>hRemoteBinding</i>
+parameter. For details on RPC bind handles, see <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+For rules governing print server names, see <span><a href="../ms-rprn/d42db7d5-f141-4466-8f47-0a4be14e2fc1" data-linktype="relative-path">[MS-RPRN]</a></span>
+section <span><a href="../ms-rprn/9b3f8135-7022-4b72-accb-aefcc360c83b" data-linktype="relative-path">2.2.4.16</a></span>.</p><p><b>pszEnvironment: </b>A pointer to a string that
+contains the environment name of the core printer driver. For rules governing
+environment names and behaviors, see [MS-RPRN] section <span><a href="../ms-rprn/ad775893-8a19-4786-ab46-34731f52d1af" data-linktype="relative-path">2.2.4.4</a></span>.</p><p><b>CoreDriverGUID: </b>The <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> of the core
+printer driver. </p><p><b>ftDriverDate: </b>The date of the core printer
+driver.<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a></p><p><b>dwlDriverVersion: </b>The version<a id="Appendix_A_Target_24"></a><a aria-label="Product behavior note 24" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_24" data-linktype="relative-path">&lt;24&gt;</a> of the core printer driver.</p><p><b>pbDriverInstalled: </b>A pointer to a variable
+that receives one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>The driver, or a newer version of the driver, is not
+  installed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>The driver, or a newer version of the driver, is
+  installed.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method returns either an HRESULT
+success value (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>)
+or an HRESULT error value to indicate failure.</p><p><b>Exceptions Thrown:</b> This method MUST NOT throw any
+exceptions other than those that are thrown by the underlying RPC protocol [MS-RPCE].</p><p><b>Parameter Validation Requirements:</b> Upon receiving
+this method call, the server MUST validate parameters as follows: </p><ul><li><p><span><span> 
+</span></span>The string pointed to by the <i>pszEnvironment</i> parameter
+specifies one of the supported environment names on the server for that type of
+driver; otherwise the server MUST return ERROR_INVALID_ENVIRONMENT.</p>
+</li><li><p><span><span> 
+</span></span>The <i>pbDriverInstalled</i> parameter MUST NOT be NULL;
+otherwise the server MUST return ERROR_INVALID_PARAMETER.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately, and return a nonzero error response to the client.</p><p><b>Processing and Response Requirements:</b> If parameter
+validation succeeds, the server MUST process the method call by:</p><ul><li><p><span><span> 
+</span></span>Searching for the core printer driver with the specified
+CoreDriverGUID, ftDriverDate, and dwlDriverVersion in the list of installed
+core printer drivers on the print server.</p>
+</li><li><p><span><span> 
+</span></span>Setting the value of the variable pointed to by <i>pbDriverInstalled</i>
+to 1 if the search succeeded or to zero if not.</p>
+</li><li><p><span><span> 
+</span></span>Returning a response that contains the output parameters
+mentioned above and the status of the operation.</p>
+</li></ul><p>The server MUST NOT change the <b>List of Core Printer
+Drivers</b> as part of processing this method call.</p></div>

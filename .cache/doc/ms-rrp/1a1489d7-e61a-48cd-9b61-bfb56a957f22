@@ -1,0 +1,135 @@
+<div class="content"><p> </p><p>The RVALENT structure is used to store the <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">values</a></span>
+and data that are associated with a <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a></span>, as specified in
+section <span><a href="1cb48b52-d32d-4a2a-9533-250f595078b8" data-linktype="relative-path">3.1.5.26</a></span>. The
+format of the RVALENT structure is as follows.</p><dl>
+<dd>
+<div><pre> typedef struct value_ent {
+   PRPC_UNICODE_STRING ve_valuename;
+   DWORD ve_valuelen;
+   LPDWORD ve_valueptr;
+   DWORD ve_type;
+ } RVALENT,
+  *PRVALENT;
+</pre></div>
+</dd></dl><p><b>ve_valuename:</b>  A pointer to an <span><a href="c0c90f11-a4c4-496a-ac09-8a8a3697ceef" data-linktype="relative-path">RRP_UNICODE_STRING</a></span>
+structure that MUST contain the name of the specified value to be retrieved.</p><p><b>ve_valuelen:</b>   The length in bytes
+of the <b>ve_valueptr</b> buffer. </p><p><b>ve_valueptr:</b>  A pointer to the data
+that is associated with a specified value.</p><p><b>ve_type:</b>  The type of the data that is
+associated with a specified value. For additional specification of the possible
+values, see section <span><a href="3d64dbea-f016-4373-8cac-e43bf343837d" data-linktype="relative-path">3.1.1.5</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>REG_BINARY</p>
+  <p>3</p>
+  </td>
+  <td>
+  <p>Binary data in any form.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REG_DWORD</p>
+  <p>4</p>
+  </td>
+  <td>
+  <p>A 32-bit number.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REG_DWORD_LITTLE_ENDIAN</p>
+  <p>4</p>
+  </td>
+  <td>
+  <p>A 32-bit number in little-endian format. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REG_DWORD_BIG_ENDIAN</p>
+  <p>5</p>
+  </td>
+  <td>
+  <p>A 32-bit number in big-endian format.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REG_EXPAND_SZ</p>
+  <p>2</p>
+  </td>
+  <td>
+  <p>A null-terminated string that contains unexpanded
+  references to environment variables (for example, &#34;%PATH%&#34;). It
+  will be a Unicode or system code page string, depending on the functions used
+  to manipulate the string.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REG_LINK</p>
+  <p>6</p>
+  </td>
+  <td>
+  <p>A symbolic link.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REG_MULTI_SZ</p>
+  <p>7</p>
+  </td>
+  <td>
+  <p>A sequence of null-terminated strings, terminated by
+  an empty string (\0). </p>
+  <p>For example: </p>
+  <dl>
+<dd>
+<div><pre> String1\0String2\0String3\0LastString\0\0
+</pre></div>
+</dd></dl>
+  <p>The first \0 terminates the first string, the second
+  to the last \0 terminates the last string, and the final \0 terminates the
+  sequence. Note that the final terminator MUST be factored into the length of
+  the string. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REG_NONE</p>
+  <p>0</p>
+  </td>
+  <td>
+  <p>No defined value type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REG_QWORD</p>
+  <p>11</p>
+  </td>
+  <td>
+  <p>A 64-bit number.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REG_QWORD_LITTLE_ENDIAN</p>
+  <p>11</p>
+  </td>
+  <td>
+  <p>A 64-bit number in little-endian format.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REG_SZ</p>
+  <p>1</p>
+  </td>
+  <td>
+  <p>A null-terminated string. This string is either a
+  Unicode or an system code page string, depending on the functions used to
+  manipulate the string.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

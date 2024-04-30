@@ -1,0 +1,312 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/b3a7e5f3-d669-4f54-acb8-e85580eaf46d" data-linktype="external">msdn link</a></p><p>The NETLOGON_DB_CHANGE message is used to indicate that one
+or more changes have taken place in the account <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_00f35ba3-4dbb-4ff9-8e27-572a6aea1b15" data-linktype="relative-path">database</a>, and carries an
+indication of the changes from the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a> to the backup domain
+controller (BDC). Because it is sent in the open, this is a hint, and the BDC
+MUST connect to the PDC over a reliable transport and secure connection to
+obtain the actual change. The following is the format of the payload of a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_f53fe4b9-8e1d-4366-9254-3c4f73269e78" data-linktype="relative-path">mailslot</a> message that is
+used in <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_70771a5a-04a3-447d-981b-e03098808c32" data-linktype="relative-path">Netlogon</a>
+replication, as specified in section <a href="f28f9dc8-eeb2-4112-9eec-a466f639c761" data-linktype="relative-path">3.6</a>.</p><p>The <b>DBChangeInfo</b> field represents information about a
+state of one of the databases (<a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_6bb6ffcf-2a22-4989-89ef-6c9937f91b8b" data-linktype="relative-path">security account manager (SAM)
+built-in database</a>, <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0b53d5bb-74ab-4705-8657-c22d32781103" data-linktype="relative-path">Security
+Account Manager (SAM)</a> database, or <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9e5f2104-d6df-4ae7-8a5c-6bd14a0da8fa" data-linktype="relative-path">Local Security Authority (LSA)</a>
+database). The number of <b>DBChangeInfo</b> fields is specified by the <b>DBCount</b>
+field. The format of the <b>DBChangeInfo</b> field is described below.</p><p>The fields are in little-endian format and have the
+following meanings.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>MessageType</p>
+  </td>
+  <td colspan="16">
+  <p>LowSerialNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>...</p>
+  </td>
+  <td colspan="16">
+  <p>DateAndTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>...</p>
+  </td>
+  <td colspan="16">
+  <p>Pulse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>...</p>
+  </td>
+  <td colspan="16">
+  <p>Random</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>...</p>
+  </td>
+  <td colspan="16">
+  <p>PrimaryDCName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DomainName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UnicodePrimaryDCName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UnicodeDomainName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DBCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DBChangeInfo
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DomainSidSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DomainSid
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MessageFormatVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MessageToken</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p><b>MessageType (2 bytes): </b>A two-byte field that
+identifies the message. MUST be set to 0x000A.</p><p><b>LowSerialNumber (4 bytes): </b>The low DWORD (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+part of the 64-bit <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0b04ee8e-be04-4d04-94c4-90e58390f83d" data-linktype="relative-path">database
+serial number</a> of the SAM database.</p><p><b>DateAndTime (4 bytes): </b>An unsigned 32-bit
+value that represents the time stamp for the SAM database creation time. This
+MUST be expressed as the number of seconds elapsed since midnight of January 1,
+1970.</p><p><b>Pulse (4 bytes): </b>An unsigned 32-bit value that
+specifies the message interval in seconds between change announcements sent to
+the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_ce1138c6-7ab4-4c37-98b4-95599071c3c3" data-linktype="relative-path">BDCs</a>.</p><p><b>Random (4 bytes): </b>An unsigned 32-bit value
+that indicates the number of seconds the recipient of the message waits before
+contacting the sender.</p><p><b>PrimaryDCName (variable): </b>The null-terminated
+name of the  PDC that sends the message. MUST be encoded in the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_3240e34e-920e-40ac-a672-342ac34a5e22" data-linktype="relative-path">original equipment manufacturer
+(OEM) character set</a>.</p><p><b>DomainName (variable): </b>The null-terminated <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_45a1c9f1-0263-49a8-97c7-7aca1a99308c" data-linktype="relative-path">domain name</a> that is encoded
+in the OEM character set. The domain name is padded to a multiple of 2 bytes
+for alignment reasons.</p><p><b>UnicodePrimaryDCName (variable): </b>The
+null-terminated name of the PDC that sends the message. MUST be encoded in the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> character set.</p><p><b>UnicodeDomainName (variable): </b>The
+null-terminated domain name. MUST be encoded in the Unicode character set.</p><p><b>DBCount (4 bytes): </b>An unsigned 32-bit value
+that represents the number of <b>DBChangeInfo</b> fields in the message.</p><p><b>DBChangeInfo (variable): </b>A set of <b>DBChangeInfo</b>
+messages, as specified below, that indicates the changes that are pending
+replication. There are <b>DBCount</b> entries in this set.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DBIndex</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LargeSerialNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DateAndTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>DBIndex (4 bytes): </b>A
+32-bit value that identifies the database as follows.</p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Indicates the SAM database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Indicates the SAM built-in database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Indicates the LSA database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd>
+<dd>
+<p><b>LargeSerialNumber (8
+bytes): </b>A 64-bit value that contains the database serial number for the
+database identified by the <b>DBIndex</b> field.</p>
+</dd>
+<dd>
+<p><b>DateAndTime (8 bytes): </b>The
+time in UTC of the database creation expressed as an 8-byte value in the time
+format in a <b>FILETIME</b> structure, as specified in [MS-DTYP] section <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">2.3.3</a>. </p>
+<dl>
+<dd>
+<p>In what follows, the
+preceding message is referred to as the announcement message.</p>
+</dd></dl></dd></dl><p><b>DomainSidSize (4 bytes): </b>An unsigned 32-bit
+value that specifies the size in bytes of the <b>DomainSid</b> field.</p><p><b>DomainSid (variable): </b>The <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a>, as specified in
+[MS-DTYP] section <a href="../ms-dtyp/5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="relative-path">2.4.2.3</a>.</p><p><b>MessageFormatVersion (4 bytes): </b>An unsigned
+32-bit value that contains the version of the message format. MUST be set to
+0x00000001.</p><p><b>MessageToken (4 bytes): </b>An unsigned 32-bit
+field that identifies the message. MUST be set to 0xFFFFFFFF.</p></div>

@@ -1,0 +1,67 @@
+<div class="content"><p> </p><p>A <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> calls
+R_QMGetTmWhereabouts to obtain <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_4553803e-9d8d-407c-ad7d-9e65e01d6eb3" data-linktype="relative-path">transaction manager</a></span>
+whereabouts, as specified in <span><a href="../ms-dtco/c367c571-33f3-44ac-85cb-4b9ebbb2779d" data-linktype="relative-path">[MS-DTCO]</a></span>,
+from the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_2739ef12-a749-4540-9ac3-715968ef4df4" data-linktype="relative-path">supporting server</a></span>.
+The whereabouts enable callers to generate exported <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a></span> cookies,
+which are required to enlist the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_7bc5d175-2fa4-481e-893c-6f3eb2862fa4" data-linktype="relative-path">supporting server&#39;s</a></span> <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_a7d0361f-8608-454d-9a52-67d4d181ae09" data-linktype="relative-path">resource
+manager (RM)</a></span> in an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_04fa7698-4cbc-4e38-bcc3-58135b87cbe0" data-linktype="relative-path">external transaction</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT R_QMGetTmWhereabouts(
+   [in] handle_t hBind,
+   [in, range(0,131072)] DWORD cbBufSize,
+   [out, size_is(cbBufSize)] unsigned char* pbWhereabouts,
+   [out] DWORD* pcbWhereabouts
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST be set to an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle as described in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>cbBufSize: </b> MUST be set to the byte length of
+the buffer pointed to by <i>pbWhereabouts</i>. If this value is 0x00000000, the
+<span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>
+MUST ignore the <i>pbWhereabouts</i> parameter.</p><p><b>pbWhereabouts: </b> On success, points to an array
+of bytes containing a Distributed Transaction Coordinator (DTC) <b>SWhereabouts</b>
+structure, as specified in [MS-DTCO] section <span><a href="../ms-dtco/f5ab2327-10b0-469c-ac79-f35da8daa3ff" data-linktype="relative-path">2.2.5.11</a></span>.</p><p><b>pcbWhereabouts: </b> On success, or
+ifMQ_ERROR_USER_BUFFER_TOO_SMALL (0xc00e0028) is returned, <i>pcbWhereabouts</i>
+points to a <b>DWORD</b> containing the byte length of the <b>SWhereabouts</b>
+structure retrieved from the DTC; otherwise, this parameter MUST be ignored.</p><p><b>Return Values: </b>On success, this method MUST return
+MQ_OK (0x00000000); otherwise, the server MUST return a failure HRESULT. The
+client MUST treat all failure HRESULTs identically and disregard all
+out-parameter values, with the following exception:</p><p>If <i>cbBufSize</i> is less than the size of the <b>SWhereabouts</b>
+structure returned by the DTC, the server MUST return 
+MQ_ERROR_USER_BUFFER_TOO_SMALL (0xc00e0028).</p><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol, as specified in [MS-RPCE].</p><p>This method is invoked at the dynamically assigned <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span>
+returned by the <span><a href="a8c96155-a7e6-41cb-95c7-6ab7e4f8214d" data-linktype="relative-path">R_QMGetRTQMServerPort</a></span>
+method when IP_HANDSHAKE (0x00000000) or IPX_HANDSHAKE (0x00000002) is the
+interface specified by the <i>fIP</i> parameter.</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>If input parameter values violate the constraints specified
+above, the server MUST take no further action and return a failure HRESULT.</p>
+</li><li><p><span><span> 
+</span></span>Raise the <span><a href="../ms-dtco/018dad28-6b07-4a73-884c-326e91882ca7" data-linktype="relative-path">Obtaining
+Extended Whereabouts Using CONNTYPE_TXUSER_EXTENDEDWHEREABOUTS</a></span> event
+as specified in [MS-DTCO] section 3.3.4.10 to obtain an <b>SWhereabouts</b>
+structure from the DTC.</p>
+</li><li><p><span><span> 
+</span></span>If the server successfully retrieves the <b>SWhereabouts</b>
+structure from the DTC, but the size of the buffer provided by the caller (as
+indicated by the <i>cbBufSize</i> parameter) is too small to contain the entire
+<b>SWhereabouts</b> structure, the server MUST take the following actions:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST ignore the <i>pbWhereabouts</i> pointer.</p>
+</li><li><p><span><span>  </span></span>The
+server MUST set the <i>pcbWhereabouts</i> parameter to the size of the <b>SWhereabouts</b>
+structure retrieved from the DTC.</p>
+</li><li><p><span><span>  </span></span>The
+server MUST return MQ_ERROR_USER_BUFFER_TOO_SMALL (0xc00e0028). This return
+value indicates to the caller that a larger buffer is required for this
+function to succeed.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If any other error occurs, the server MUST return a failure
+HRESULT.</p>
+</li><li><p><span><span> 
+</span></span>Place the entire <b>SWhereabouts</b> structure retrieved from the
+DTC into the <i>pbWhereabouts</i> buffer provided by the caller. The server
+MUST also return the byte length of the <b>SWhereabouts</b> structure in the <i>pcbWhereabouts</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return MQ_OK (0x00000000).</p>
+</li></ul></div>

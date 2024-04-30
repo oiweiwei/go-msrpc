@@ -1,0 +1,58 @@
+<div class="content"><p> </p><p>This method performs a query over the directory objects and
+returns an <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+that can be used to retrieve the result set through a subsequent series of
+calls to <span><a href="1e6d1db6-ede3-4c9a-a4ec-4f1d2ab22c98" data-linktype="relative-path">S_DSLookupNext (section 3.1.4.18)</a></span>.
+When the client has no further use of the RPC context handle returned from this
+method, the client can close the context handle through a call to <span><a href="216a94b4-77a2-418e-98b9-e9c37b6ed9ea" data-linktype="relative-path">S_DSLookupEnd (section 3.1.4.19)</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT S_DSLookupBegin(
+   [in] handle_t hBind,
+   [out] PPCONTEXT_HANDLE_TYPE pHandle,
+   [in, unique] wchar_t* pwcsContext,
+   [in, unique] MQRESTRICTION* pRestriction,
+   [in, ref] MQCOLUMNSET* pColumns,
+   [in, unique] MQSORTSET* pSort,
+   [in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b>MUST specify an RPC binding handle, as
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>pHandle: </b> MUST be set by the server to point to an
+RPC context handle to be used in subsequent calls to S_DSLookupNext and
+S_DSLookupEnd.</p><p><b>pwcsContext: </b> <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+specifies a starting point of the query within the <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_c36db657-3138-4d9a-9289-ded5cbb8b40e" data-linktype="relative-path">directory service</a></span>.
+The client SHOULD set this parameter to NULL, and the server MUST ignore it.</p><p><b>pRestriction: </b>A pointer to an <span><a href="398b88dd-033f-4ed3-b775-b8d8152636f5" data-linktype="relative-path">MQRESTRICTION (section 2.2.12)</a></span>
+structure specifying a set of constraints over the objects to be returned. The
+server MUST restrict the query results to include only objects that have
+properties that satisfy all of the restrictions specified in this parameter.
+See section 2.2.12.</p><p><b>pColumns: </b>A pointer to an <span><a href="0aef4573-d4dc-4720-b9d1-1d0b0242d578" data-linktype="relative-path">MQCOLUMNSET (section 2.2.13)</a></span>
+structure that specifies the object properties to be returned. The server MUST
+return (in the result set) only the properties specified by this parameter in
+the order specified by this parameter. See section 2.2.13.</p><p><b>pSort: </b>A pointer to an <span><a href="aa2233fa-fc49-41d4-ab58-5ab9c2e4f374" data-linktype="relative-path">MQSORTSET (section 2.2.15)</a></span>
+structure that defines the sort order of the result set. The server MUST sort
+the objects in the result set according to this multikey sort order. See
+section 2.2.15.</p><p><b>phServerAuth: </b>A <span><a href="c28a1e6b-4092-4443-b69f-5814d5c4f9e4" data-linktype="relative-path">PCONTEXT_HANDLE_SERVER_AUTH_TYPE (section 2.2.5)</a></span>
+RPC context handle acquired from the <i>pphServerAuth</i> parameter in a
+previous call to <span><a href="0e3ad7d0-6a64-480a-9f13-e94dd608d79d" data-linktype="relative-path">S_DSValidateServer (section 3.1.4.2)</a></span>.</p><p><b>Return Values: </b> If the method succeeds, the return
+value is 0. If the method fails, the return value is an implementation-specific
+error code.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC extension protocol, as specified in
+[MS-RPCE].</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Generate a <span><a href="a6f886bd-4752-4a68-8406-1ed882593410" data-linktype="relative-path">Begin Directory
+Lookup (section 3.1.6.7)</a></span> event with the following
+arguments:</p>
+<ul><li><p><span><span>  </span></span><i>iRestriction</i>
+:= <i>pRestriction</i></p>
+</li><li><p><span><span>  </span></span><i>iColumnSet</i>
+:= <i>pColumns</i></p>
+</li><li><p><span><span>  </span></span><i>iSort</i>
+:= <i>pSort</i></p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <i>rStatus</i> of the preceding event is not MQ_OK, return <i>rStatus</i>
+and take no further action.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>pHandle</i> to the reference of <i>rLookupDescriptor</i>
+returned by the event.</p>
+</li><li><p><span><span> 
+</span></span>Return MQ_OK (0x00000000).</p>
+</li></ul></div>

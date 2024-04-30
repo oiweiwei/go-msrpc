@@ -1,0 +1,11 @@
+<div class="content"><p>The Group Key Distribution Protocol is used by clients to
+obtain cryptographic keys that correspond to arbitrary <a href="c001759a-376b-4582-bb38-9fd1336ce4e3#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptors</a> that
+can be evaluated by an <a href="c001759a-376b-4582-bb38-9fd1336ce4e3#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+Directory</a> <a href="c001759a-376b-4582-bb38-9fd1336ce4e3#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain
+controller (DC)</a>. These keys can then be used by the client for various
+purposes, including encrypting data such that it can only be decrypted by a
+desired set of <a href="c001759a-376b-4582-bb38-9fd1336ce4e3#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security
+principals</a>.</p><p>Familiarity with cryptography concepts such as asymmetric
+and symmetric cryptography is required for a complete understanding of this
+specification. For more information about cryptography concepts, see <a href="https://go.microsoft.com/fwlink/?LinkId=89841" data-linktype="external">[CRYPTO]</a>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are informative.</p></div>

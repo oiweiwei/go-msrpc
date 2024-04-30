@@ -1,0 +1,179 @@
+<div class="content"><p>This PerflibV2ValidateCounters method either adds or removes
+<a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance counters</a>
+from the query.</p><dl>
+<dd>
+<div><pre> error_status_t PerflibV2ValidateCounters(
+   [in] RPC_HQUERY hQuery,
+   [in, range(0, 67108864)] DWORD dwInSize,
+   [in, out, size_is(dwInSize)] unsigned char* lpData,
+   [in] DWORD dwAdd
+ );
+</pre></div>
+</dd></dl><p><b>hQuery: </b>The handle that is created by the <a href="89060095-8806-47ce-80da-9d03cedcb9a6" data-linktype="relative-path">PerflibV2OpenQueryHandle</a>
+method; an exception is thrown or an error is returned by RPC if the handle did
+not originate from the PerflibV2OpenQueryHandle method.</p><p><b>dwInSize: </b>The size, in bytes, of the buffer.</p><p><b>lpData: </b>The buffer that contains the counter
+information to add to, or remove from, the query. The server will return this
+buffer after it has attempted to add or remove the specified counters; the <b>Status</b>
+field of each <a href="4a5671fe-b75c-44ee-96da-edc9d51ee6a9" data-linktype="relative-path">_PERF_COUNTER_IDENTIFIER</a>
+structure will contain information about whether or not the server was
+successful.</p><p><b>dwAdd: </b>A Boolean value that indicates if
+counters are being added to, or removed from, the query. If counters are being
+added, this MUST be set to TRUE; otherwise, it MUST be set to FALSE. </p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) for success; otherwise, it MUST return one of the standard
+Windows error codes, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The return value indicates success.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The server returns this value to the client if the
+  authentication level of the client is less than
+  RPC_C_AUTHN_LEVEL_PKT_PRIVACY.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The server returns this value to the client for any of
+  the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>dwSize is less than the size of
+  the _PERF_COUNTER_IDENTIFIER structure (this condition would prevent the
+  server from returning information about one counter).</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The size of a single
+  _PERF_COUNTER_IDENTIFIER structure that is passed into the buffer by the
+  client is smaller than the expected size of a _PERF_COUNTER_IDENTIFIER
+  structure. </span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>0x0000000E</p>
+  <p>ERROR_OUTOFMEMORY</p>
+  </td>
+  <td>
+  <p>The server will return this value to the client if, in
+  the process of completing the client&#39;s request of adding or removing
+  performance counters from the query, a memory allocation fails.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Errors are returned to the client by the server in one of
+two ways: the first is if the performance counter infrastructure on the server
+could not add or remove performance counters from the query; the second is if
+the <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_8b44f0c1-d7dc-4fb8-8e6c-104b88d62ecf" data-linktype="relative-path">provider</a> that is
+exposing the performance counter returns an error, in which case the
+performance counter infrastructure passes the error back to the client.</p><p>When the PerflibV2ValidateCounters method returns, the <b>Status</b>
+field of each _PERF_COUNTER_IDENTIFIER sent to the server will have the result
+of whether or not the server was able to successfully add or remove that
+particular performance counter from the query that is identified by the handle
+hQuery. </p><p>If the performance counter infrastructure is setting the
+Status field to an error value, then it MUST be one of the following values.</p><table><thead>
+  <tr>
+   <th>
+   <p> Return value/code</p>
+   </th>
+   <th>
+   <p> Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_STATUS</p>
+  </td>
+  <td>
+  <p>The return value indicates success. The counter was
+  either successfully added or removed from the query.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00001068</p>
+  <p>ERROR_WMI_GUID_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The server cannot find the GUID that was passed by the
+  client in the CounterSetGuid field of the _PERF_COUNTER_IDENTIFIER structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000106A</p>
+  <p>ERROR_WMI_ITEMID_NOT_ FOUND</p>
+  </td>
+  <td>
+  <p>The server cannot find the counter whose numeric
+  identifier is in the CounterId field of the _PERF_COUNTER_IDENTIFIER
+  structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  <p>ERROR_PATH_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The server cannot find an active instance with the
+  name that was placed after the _PERF_COUNTER_IDENTIFIER structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000B7</p>
+  <p>ERROR_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>The client tried to add a performance counter that has
+  already been added in a previous call to PerflibV2ValidateCounters.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The server will return this value in the Status field
+  of the _PERF_COUNTER_IDENTIFIER either when the _PERF_COUNTER_IDENTIFIER is
+  corrupt, or if the server cannot find the counter to delete from the query
+  that is specified by the structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000000E</p>
+  <p>ERROR_OUTOFMEMORY</p>
+  </td>
+  <td>
+  <p>The server will return this value to the client if,
+  either in the process of adding or removing a counter from a query, a memory
+  allocation failure occurred.</p>
+  </td>
+ </tr></tbody></table><p>When this method is called, the buffer MUST contain an array
+of _PERF_COUNTER_IDENTIFIER blocks that reference the performance counters to
+add to, or remove from, the query. Each _PERF_COUNTER_IDENTIFIER block MUST
+contain a _PERF_COUNTER_IDENTIFIER structure; a multiple-instance counter set
+_PERF_COUNTER_IDENTIFIER structure MUST be followed by a null-terminated <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string instance
+name, while a single-instance counter set _PERF_COUNTER_IDENTIFIER structure
+MUST be followed by a string instance name. Setting the <b>CounterId</b> field
+of the _PERF_COUNTER_IDENTIFIER structure to 0xFFFFFFFF indicates a wildcard
+character. Setting the instance name string to &#34;*&#34; indicates a
+wildcard character.</p><p>When the method returns, the <b>Status</b> field of each
+_PERF_COUNTER_IDENTIFIER structure in the array MUST specify if the operation
+succeeded for the counters that are referenced by that structure.</p></div>

@@ -1,0 +1,46 @@
+<div class="content"><p> </p><p>The <b>FAX_SERVER_ACTIVITY</b> structure defines information
+about the server&#39;s <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_0c5e7185-40c3-4e58-a8ac-7626ed078235" data-linktype="relative-path">fax queue</a></span> activity
+and the events reported by the fax server. This structure is used as an argument
+for <b>FAX_GetServerActivity</b> (section <span><a href="ac6ac87f-f612-4d90-8d2a-64528c07d153" data-linktype="relative-path">3.1.4.1.61</a></span>).</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwSizeOfStruct;
+   DWORD dwIncomingMessages;
+   DWORD dwRoutingMessages;
+   DWORD dwOutgoingMessages;
+   DWORD dwDelegatedOutgoingMessages;
+   DWORD dwQueuedMessages;
+   DWORD dwErrorEvents;
+   DWORD dwWarningEvents;
+   DWORD dwInformationEvents;
+ } FAX_SERVER_ACTIVITY,
+  *PFAX_SERVER_ACTIVITY;
+</pre></div>
+</dd></dl><p><b>dwSizeOfStruct:</b> A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that holds the total size of the structure, in bytes. This value MUST be
+36 bytes.</p><p><b>dwIncomingMessages:</b> A <b>DWORD</b> that
+indicates the number of messages currently being received by the fax server.
+This variable MAY also be set to the count of the number of incoming messages
+that were successfully received and are currently being routed using an inbound
+<span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_efaa1290-6d4b-4f44-9e84-35a867069d45" data-linktype="relative-path">routing</a></span>
+method. If the routing fails, the incoming job SHOULD be marked for a routing
+retry and the <b>dwRoutingMessages</b> member used to count this job when the
+routing restarts. If this value is nonzero, stopping the server MAY result in
+the loss of incoming messages.</p><p><b>dwRoutingMessages:</b> A <b>DWORD</b> that
+indicates the number of incoming messages being rerouted after a routing
+failure.</p><p><b>dwOutgoingMessages:</b> A <b>DWORD</b> that
+indicates the number of messages currently being sent by the fax server. If
+this value is nonzero, stopping the server MAY result in the loss of outgoing
+messages.</p><p><b>dwDelegatedOutgoingMessages:</b> A <b>DWORD</b>
+that indicates the number of messages currently being sent by a <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_2ba66d72-d766-440f-b5ea-0333759b147c" data-linktype="relative-path">Fax
+Service Provider</a></span> on behalf of the fax server. The fax server is not
+currently sending these messages.</p><p><b>dwQueuedMessages:</b> A <b>DWORD</b> that
+indicates the number of outgoing messages waiting to be processed in the
+server&#39;s fax queue.</p><p><b>dwErrorEvents:</b> A <b>DWORD</b> that indicates
+the number of error entries added to the system event log since the last time
+the fax server was started.</p><p><b>dwWarningEvents:</b> A <b>DWORD</b> that indicates
+the number of warning entries added to the system event log since the last time
+the fax server was started.</p><p><b>dwInformationEvents:</b> A <b>DWORD</b> that
+indicates the number of information entries added to the system event log since
+the last time the fax server was started.</p></div>

@@ -1,0 +1,16 @@
+<div class="content"><p>The WINSINTF_BIND_DATA_T structure defines the binding
+information of the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a>
+server to which the client connects.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSINTF_BIND_DATA_T {
+   DWORD fTcpIp;
+   [string] LPSTR pServerAdd;
+   [string] LPSTR pPipeName;
+ } WINSINTF_BIND_DATA_T,
+  *PWINSINTF_BIND_DATA_T;
+</pre></div>
+</dd></dl><p><b>fTcpIp:</b>  The transport mechanism to
+be used. If this value is 0x00000001, then TCP/IP is selected; otherwise, the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_34f1dfa8-b1df-4d77-aa6e-d777422f9dca" data-linktype="relative-path">named pipe</a> is selected.</p><p><b>pServerAdd:</b>  A NULL-terminated
+string that specifies the server IP address.</p><p><b>pPipeName:</b>  A NULL-terminated string
+that specifies the pipe name. This value MUST be NULL when <i>fTcpIP</i> is
+0x00000001.</p></div>

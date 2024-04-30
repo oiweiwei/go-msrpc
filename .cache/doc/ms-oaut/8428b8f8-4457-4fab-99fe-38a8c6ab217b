@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The GetRefTypeInfo method retrieves an <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_fb6a1829-c102-482c-902f-51c197b22860" data-linktype="relative-path">automation
+type description</a></span> that describes a type that is inherited,
+implemented, or referenced by the <span><a href="99504cf9-16d8-401e-a873-83b85d1ee4aa" data-linktype="relative-path">ITypeInfo server</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT GetRefTypeInfo(
+   [in] HREFTYPE hRefType,
+   [out] ITypeInfo** ppTInfo
+ );
+</pre></div>
+</dd></dl><p><b>hRefType: </b>MUST be an <span><a href="ed6620b1-6b23-4fa1-99e6-781832999f93" data-linktype="relative-path">HREFTYPE (section 2.2.36)</a></span>
+that has been provided by the ITypeInfo server instance whose GetRefTypeInfo method
+is being called.</p><p><b>ppTInfo: </b>MUST be set to a reference to an
+ITypeInfo server instance that provides an automation type description of the
+inherited or referenced interface, or NULL if <i>hRefType</i> does not specify
+an available interface.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul></div>

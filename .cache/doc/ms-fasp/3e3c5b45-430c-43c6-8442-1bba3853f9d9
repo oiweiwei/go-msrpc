@@ -1,0 +1,50 @@
+<div class="content"><p>A host firewall is a software component that runs on host
+computers. It provides a layer of defense that can add depth to the collection
+of security measures when combined with other security measures, such as <a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_beea3068-6e40-41b8-93ae-167e6de94db3" data-linktype="relative-path">edge firewalls</a>. Any threats
+that manage to get through the edge firewall, or those that are launched from
+within a corporate network, can still be defended against when host firewalls
+are used. Host firewalls are also useful in consumer scenarios in which there
+is, typically, no edge firewall to protect the home network.</p><p><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">Internet
+Protocol Security (IPsec)</a> is a host-based, policy-driven security solution
+for protecting the host from all network access. IPsec focuses on connection
+security, which includes authentication, integrity protection, and
+confidentiality (encryption) of communication. </p><p>Because both IPsec and firewalls are host-based policy
+security technologies that operate in the network stack, they are managed
+together to avoid conflicts. Furthermore, firewall and connection security
+(IPsec) can interact, providing deeper and more effective filtering
+capabilities based on identities that are negotiated by IPsec as well as other
+IPsec state information. This document refers to this combined security
+solution as the firewall and advanced security components.</p><p>Firewall and advanced security components can be governed by
+policy that is received from local users or from network-wide policy that is
+distributed by an administrator, or both. There is a need in managed
+environments for a network administrator to be able to monitor the policies in
+effect on hosts, assuming that hosts might have received policies from both
+sources.</p><p>Network-wide policies are usually distributed by using <a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_dec32233-8776-4151-91a0-8624a2b9abb0" data-linktype="relative-path">Group Policy Objects (GPOs)</a>
+that live on active directories of domains. However, some workgroups or
+networks might not have a domain infrastructure. Even in non-domain joined
+environments, the network administrator needs to be able to remotely manage the
+advanced firewall and IPsec policy of a host.</p><p>Lastly, the network administrator might also be required to
+diagnose problems on the remote hosts. A common technique is to create
+temporary changes and then see if the changes fix the problem. This is the
+third scenario that warrants the capability to remotely administer host
+policies.</p><p>The Firewall and Advanced Security Protocol is designed and
+used to address the three needs previously mentioned. That is, its purpose is
+to monitor and manage remote host policies. It can manage all the policies that
+an administrator can manage locally. It can also monitor the specific policies
+coming from the different sources or monitor them aggregated, that is, all
+together, to understand and predict expected behavior. Lastly, it can make
+temporary modifications on the remote host policy to test online fixes and see
+whether they are effective.</p><p>The Firewall and Advanced Security Protocol is a
+client/server, <a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>-based
+protocol. It consists of data types and methods. The data types are used to
+represent the different types of policy components that compose policy objects
+and policy configuration options. The methods are operations that are used to
+read and manage the different available policies. Therefore, the user can make
+method calls that pass new policy objects to be added to the policy, delete
+from the policy, or modify an existing object within the policy. The user can
+also call methods to retrieve all the policy objects of interest. The following
+illustration shows read and write operations and their message sequences.</p><p><img id="MS-FASP_pictd517bf8f-e5c7-f083-958c-6b8b1c557ce1.png" src="ms-fasp_files/image001.png" alt="Read and write operations and their message sequences" title="Read and write operations and their message sequences" data-linktype="relative-path"/></p><p><b>Figure 1: Read and write operations and their message
+sequences</b></p><p>The server role is represented by the host firewall, which
+contains the policy and enforces it. The client role is represented by the
+management console (or other user management tool), which sends, retrieves, and
+modifies the policies on the remote host firewall.</p></div>

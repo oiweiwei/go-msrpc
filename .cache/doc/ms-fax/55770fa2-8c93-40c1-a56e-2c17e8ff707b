@@ -1,0 +1,174 @@
+<div class="content"><p> </p><p>The <b>FAX_StartServerNotificationEx2 (Opnum 92)</b> method
+is called by the client to get notification about extended events. On success,
+the server MUST start to notify the fax client about the occurring fax events.</p><p>Protocol version FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), and FAX_API_VERSION_2 (0x00020000) fax servers
+SHOULD NOT implement this call. The fax client MUST NOT call this method if the
+protocol version reported by the server is FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), or FAX_API_VERSION_2 (0x00020000). For more
+information, see <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>).</p><dl>
+<dd>
+<div><pre> error_status_t FAX_StartServerNotificationEx2(
+   [in] handle_t hBinding,
+   [in, string, unique] LPCWSTR lpcwstrAccountName,
+   [in, string, ref] LPCWSTR lpcwstrMachineName,
+   [in, string, ref] LPCWSTR lpcwstrEndPoint,
+   [in] ULONG64 Context,
+   [in, ref, string] LPCWSTR lpcwstrProtseqString,
+   [in] DWORD dwEventTypes,
+   [in] DWORD level,
+   [out, ref] PRPC_FAX_EVENT_EX_HANDLE lpHandle
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> or <b>FAX_ConnectionRefCount</b> (section
+<span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>)
+method call used to connect to the fax server.</p><p><b>lpcwstrAccountName: </b>A pointer to a constant
+null-terminated character string that indicates which account to enumerate. If
+this value is NULL, the current account&#39;s jobs are enumerated. Cross-account
+enumeration currently is not supported.</p><p><b>lpcwstrMachineName: </b>A pointer to a
+null-terminated string that contains the name of the fax client machine.</p><p><b>lpcwstrEndPoint: </b>A pointer to a
+null-terminated string that contains the client machine <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+server <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span> string.</p><p><b>Context: </b>A <b>ULONG64</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/2dc4c492-95db-4fa6-ae2b-8546b13c9141" data-linktype="relative-path">2.2.54</a></span>)
+value that can be passed to <b>FAX_OpenConnection</b> (section <span><a href="6a8d8440-25a7-49aa-a4a1-7043b040dde4" data-linktype="relative-path">3.2.4.5</a></span>)
+as a notification context.</p><p><b>lpcwstrProtseqString: </b>A pointer to a
+null-terminated string that contains the fax client RPC server&#39;s protocol
+sequence string. The protocol that is used for sending the notifications is
+always TCP/IP.<a id="Appendix_A_Target_176"></a><a aria-label="Product behavior note 176" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_176" data-linktype="relative-path">&lt;176&gt;</a></p><p><b>dwEventTypes: </b>A <b>DWORD</b> ([MS-DTYP]
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that indicates which events the client needs to receive. For more
+information, see <b>FAX_ENUM_EVENT_TYPE</b> (section <span><a href="bc289dcf-1675-403e-9060-bb2743fe0352" data-linktype="relative-path">2.2.63</a></span>).
+During registration the client is allowed to register for multiple events, so
+that if any of them occur the client will get a notification. Hence bitwise
+ORing of events is allowed in this case. This value cannot be
+FAX_EVENT_TYPE_LEGACY because the method only supports extended events.</p><p><b>level: </b>A <b>DWORD</b> value that indicates the
+structure to return. The value MUST be set to 1.</p><p><b>lpHandle: </b>A pointer to an <b>RPC_FAX_EVENT_EX_HANDLE</b> (<b>Fax
+Data Types</b> (section <span><a href="46c77dee-7306-4b22-a407-070b221ae620" data-linktype="relative-path">2.2.74</a></span>)) that
+returns a <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_34431739-568a-4d53-b449-2a771383922e" data-linktype="relative-path">subscription context</a></span>
+handle. This handle can be used in the <b>FAX_EndServerNotification</b> (section
+<span><a href="59663586-4f1a-4f10-a548-c9b088995028" data-linktype="relative-path">3.1.4.1.17</a></span>)
+method.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. This error is returned when any of
+  the following conditions occur:</p>
+  <p><span>§<span>  
+  </span></span>The <i>dwEventTypes</i> parameter is set to a value containing
+  the <b>FAX_EVENT_TYPE_NEW_CALL</b> or <b>FAX_EVENT_TYPE_IN_QUEUE</b> flags,
+  the incoming faxes are not public (accessible to all users), and the client&#39;s
+  fax user account does not have the <b>FAX_ACCESS_MANAGE_RECEIVE_FOLDER</b>
+  permission.</p>
+  <p><span>§<span>  
+  </span></span><i>dwEventTypes</i> is set to a value containing the <b>FAX_EVENT_TYPE_CONFIG</b>,
+  <b>FAX_EVENT_TYPE_DEVICE_STATUS</b>, or <b>FAX_EVENT_TYPE_ACTIVITY</b> flags
+  and the client&#39;s fax user account does not have the <b>FAX_ACCESS_QUERY_CONFIG</b>
+  permission.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_OUTOFMEMORY</p>
+  <p>0x0000000E</p>
+  </td>
+  <td>
+  <p>The fax server failed to allocate the memory required
+  for the internal server&#39;s execution of this operation request.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_GEN_FAILURE</p>
+  <p>0x0000001F</p>
+  </td>
+  <td>
+  <p>The server threw internally an exception during the
+  execution of this operation, and the server handled this exception.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. This error code is
+  returned under any of the following conditions:</p>
+  <p><span>§<span>  
+  </span></span><i>dwEventTypes</i> is set to a value containing the
+  FAX_EVENT_TYPE_LEGACY or FAX_EVENT_TYPE_LOCAL_ONLY flags, or to another value
+  that is not a combination made exclusively from the flags valid for this
+  operation: FAX_EVENT_TYPE_IN_QUEUE, FAX_EVENT_TYPE_OUT_QUEUE,
+  FAX_EVENT_TYPE_CONFIG, FAX_EVENT_TYPE_ACTIVITY, FAX_EVENT_TYPE_QUEUE_STATE,
+  FAX_EVENT_TYPE_IN_ARCHIVE, FAX_EVENT_TYPE_OUT_ARCHIVE,
+  FAX_EVENT_TYPE_FXSSVC_ENDED, FAX_EVENT_TYPE_DEVICE_STATUS, or
+  FAX_EVENT_TYPE_NEW_CALL.</p>
+  <p><span>§<span>  
+  </span></span>The <i>level</i> parameter is not set to 1.</p>
+  <p><span>§<span>  
+  </span></span>One or more of the following parameters are set to NULL pointer
+  values: <i>lpcwstrEndpoint</i>, <i>lpcwstrMachineName</i>, or <i>lpHandle</i>.<a id="Appendix_A_Target_177"></a><a aria-label="Product behavior note 177" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_177" data-linktype="relative-path">&lt;177&gt;</a></p>
+  <p><span>§<span>  
+  </span></span>The <i>lpcwstrAccountName</i> parameter is set to a non-null
+  character string pointer value which does not specify a valid fax account
+  name.</p>
+  <p><span>§<span>  
+  </span></span><i>lpcwstrAccountName</i> is set to a non-null character string
+  pointer value which specifies a valid fax account name for a different user
+  than the user who is currently logged on the client.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying RPC protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>The account name is the one on which to listen for events
+and a level that specifies the type of the structure that describes each event.
+The name <i>lpcwstrAccountName</i> is accessed only for account-based events.</p><p>The account name that <i>lpcwstrAccountName</i> indicates
+MUST be in one of the following formats. Any other format is invalid.</p><table><thead>
+  <tr>
+   <th>
+   <p>Format</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&lt;machine_name&gt;\&lt;user_name&gt;</p>
+  </td>
+  <td>
+  <p>For a local user that has machine_name as the name of
+  the local machine.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&lt;domain_name&gt;\&lt;user_name&gt;</p>
+  </td>
+  <td>
+  <p>For a nonlocal user.</p>
+  </td>
+ </tr></tbody></table><p>A fax client calls <b>FAX_StartServerNotificationEx2</b> (section
+3.1.4.1.102) to inform the server that it needs to receive notifications of
+extended fax events. The fax server SHOULD call <b>FAX_OpenConnection</b> on
+the client by using the supplied endpoint, protocol sequence information, and
+context handle information. The server then sends notification of events to the
+client by using <b>FAX_ClientEventQueueEx</b> (section <span><a href="d1ec6615-73e1-4c86-aef9-c738c71f08d1" data-linktype="relative-path">3.2.4.3</a></span>).
+When the client no longer needs to receive notifications, it calls <b>FAX_EndServerNotification</b>
+(section 3.1.4.1.17), and the server SHOULD call <b>FAX_CloseConnection</b> (section
+<span><a href="71fcdc39-0e2a-4025-96f8-f96d81d8694b" data-linktype="relative-path">3.2.4.4</a></span>)
+to close the connection.</p></div>

@@ -1,0 +1,68 @@
+<div class="content"><p>The <b>STORAGE_DEVICE_ID_DESCRIPTOR</b> structure contains
+identifiers for a given storage device.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Version</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Size</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NumberOfIdentifiers</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Identifiers
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Version (4 bytes):</b> This field MUST be set to
+13, indicating the size of this structure through the first byte of the <b>Identifiers</b>
+field. </p><p><b>Size (4 bytes):</b> The size of the structure, in
+bytes, including the <b>Identifiers </b>field.</p><p><b>NumberOfIdentifiers (4 bytes): </b> The number of
+identifiers in the <b>Identifiers</b> field of the structure.</p><p><b>Identifiers (variable): </b> A set of <a href="7a3e576f-3f0a-4a6f-8f7c-d0956ce778ba" data-linktype="relative-path">STORAGE_IDENTIFIER</a>
+structures. The first structure starts at the start of this field.</p></div>

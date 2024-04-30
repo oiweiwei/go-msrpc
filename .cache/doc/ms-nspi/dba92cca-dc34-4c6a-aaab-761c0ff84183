@@ -1,0 +1,7 @@
+<div class="content"><p>Messaging clients that implement a browsable address book
+need a way to communicate with a data store that holds addressing data to
+access and manipulate that data. The NSPI Protocol enables communication
+between a messaging client and a data store.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="c89d64b3-3ccf-427b-a6b2-f40178dec51a#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a></p><p>The NSPI Protocol is a protocol layer that uses the <a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a>
+protocol as a transport, with a series of interface methods as specified in
+this document, that clients can use to communicate with an <a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_e63aea5b-046b-4176-9359-fde82613a406" data-linktype="relative-path">NSPI</a> server.</p><p>The following diagram is a graphical representation of a
+typical communication sequence between a messaging client and an NSPI server.</p><p><img id="MS-NSPI_pict09150e56-c3bb-18ed-d99c-05724e2365de.png" src="ms-nspi_files/image001.png" alt="NSPI Protocol message sequence" title="NSPI Protocol message sequence" data-linktype="relative-path"/></p><p><b>Figure 1: NSPI Protocol message sequence</b></p></div>

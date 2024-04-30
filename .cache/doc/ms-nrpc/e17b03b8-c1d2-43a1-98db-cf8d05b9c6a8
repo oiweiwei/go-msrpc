@@ -1,0 +1,22 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/e17b03b8-c1d2-43a1-98db-cf8d05b9c6a8" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_NETWORK_INFO</b> structure defines
+information that describes a network account logon.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_NETWORK_INFO {
+   NETLOGON_LOGON_IDENTITY_INFO Identity;
+   LM_CHALLENGE LmChallenge;
+   STRING NtChallengeResponse;
+   STRING LmChallengeResponse;
+ } NETLOGON_NETWORK_INFO,
+  *PNETLOGON_NETWORK_INFO;
+</pre></div>
+</dd></dl><p><b>Identity:</b> <b>NETLOGON_LOGON_IDENTITY_INFO</b>
+structure, as specified in section <a href="81c44fa0-0a27-41b3-b607-de39cce7ea1d" data-linktype="relative-path">2.2.1.4.15</a>, that contains
+information about the logon identity. The <b>Identity.LogonDomainName</b> field
+MUST match the <b>DomainName </b>field of the authenticate message received by
+the client. The authenticate message is defined in <a href="../ms-nlmp/b38c36ed-2804-4868-a9ff-8dd3182128e4" data-linktype="relative-path">[MS-NLMP]</a>
+section <a href="../ms-nlmp/033d32cc-88f9-4483-9bf2-b273055038ce" data-linktype="relative-path">2.2.1.3</a>.</p><p><b>LmChallenge:</b> <b>LM_CHALLENGE</b> structure, as
+specified in section <a href="bb8eca90-41bc-4ca4-8419-defdf043e01b" data-linktype="relative-path">2.2.1.4.1</a>,
+that contains the network authentication challenge. For details about
+challenges, see [MS-NLMP].</p><p><b>NtChallengeResponse:</b> String that contains the
+NT response (see [MS-NLMP]) to the network authentication challenge.</p><p><b>LmChallengeResponse:</b> String that contains the
+LAN Manager response (see [MS-NLMP]) to the network authentication challenge.</p></div>

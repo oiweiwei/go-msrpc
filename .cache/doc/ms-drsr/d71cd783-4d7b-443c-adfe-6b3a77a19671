@@ -1,0 +1,9 @@
+<div class="content"><p> </p><p>The DRS_MSG_INIT_DEMOTIONREQ_V1 structure defines a request
+message sent to the <span><a href="faca17da-3f7f-4092-98db-fd2ce7d98b8c" data-linktype="relative-path">IDL_DRSInitDemotion</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwReserved;
+ } DRS_MSG_INIT_DEMOTIONREQ_V1;
+</pre></div>
+</dd></dl><p><b>dwReserved:</b>  Unused. MUST be 0.</p></div>

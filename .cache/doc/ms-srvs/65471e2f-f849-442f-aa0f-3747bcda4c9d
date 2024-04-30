@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>The SESSION_INFO_10 structure contains information about the
+session, including the name of the computer, the name of the user, and the
+active and idle times for the session.</p><dl>
+<dd>
+<div><pre> typedef struct _SESSION_INFO_10 {
+   [string] wchar_t* sesi10_cname;
+   [string] wchar_t* sesi10_username;
+   DWORD sesi10_time;
+   DWORD sesi10_idle_time;
+ } SESSION_INFO_10,
+  *PSESSION_INFO_10,
+  *LPSESSION_INFO_10;
+</pre></div>
+</dd></dl><p><b>sesi10_cname:</b>  A pointer to a
+null-terminated Unicode UTF-16 <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_4d5d5403-372f-4f9f-8d7a-65c310c807d9" data-linktype="relative-path">Internet host name</a></span>
+or <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_150cc108-7e58-4fdb-957d-2a3734ba15f5" data-linktype="relative-path">NetBIOS
+host name</a></span> of the computer that established the session.</p><p><b>sesi10_username:</b>  A pointer to a
+null-terminated Unicode UTF-16 string specifying the name of the user who
+established the session.</p><p><b>sesi10_time:</b>  Specifies the number
+of seconds the session has been active.</p><p><b>sesi10_idle_time:</b>  Specifies the
+number of seconds the session has been idle.</p></div>

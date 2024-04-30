@@ -1,0 +1,225 @@
+<div class="content"><p> </p><p>The SchRpcSetSecurity method MUST set a <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security
+descriptor</a></span> on a task or folder.</p><dl>
+<dd>
+<div><pre> HRESULT SchRpcSetSecurity(
+   [in, string] const wchar_t* path,
+   [in, string] const wchar_t* sddl,
+   [in] DWORD flags
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>MUST contain the full path associated
+with a task or folder in the format specified in section <span><a href="fa8809c8-4f0f-4c6d-994a-6c10308757c1" data-linktype="relative-path">2.3.11</a></span>).</p><p><b>sddl: </b>MUST be a security descriptor in <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_e013f36f-8a39-4689-ab87-520e389cfee3" data-linktype="relative-path">SDDL</a></span>
+format as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>.</p><p><b>flags: </b>The flags field MUST contain individual
+bit flags that MUST have one or more of the following values:</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>F T</p>
+  </td>
+  <td>
+  <p>F<br/>
+  F</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>D A</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DA</p>
+  <p>TASK_DONT_ADD_PRINCIPAL_ACE</p>
+  </td>
+  <td>
+  <p>If set to 1, the server MUST NOT add the &#39;Allow&#39; <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_b581857f-39aa-4979-876b-daba67a40f15" data-linktype="relative-path">ACE</a></span>
+  for the task <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_8492780e-99e2-47ba-8553-aedb8de9f9c0" data-linktype="relative-path">principal</a></span> to the
+  security descriptor.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FF</p>
+  <p>SCH_FLAG_FOLDER</p>
+  </td>
+  <td>
+  <p>If set to 1, the server MUST apply the security
+  descriptor to folders.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FT</p>
+  <p>SCH_FLAG_TASK</p>
+  </td>
+  <td>
+  <p>If set to 1, the server MUST apply the security
+  descriptor to tasks.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>For more information on return
+codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>, or Win32
+Error Codes in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><p>Upon receipt of the SchRpcSetSecurity call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Return E_INVALIDARG if any bits other than SCH_FLAG_TASK,
+SCH_FLAG_FOLDER, or TASK_DONT_ADD_PRINCIPAL_ACE are set in the <i>flags</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return 0x8007007B, the <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+form of the Win32 error <b>ERROR_INVALID_NAME</b>, if the specified <i>path</i>
+is not in the format specified in section 2.3.11.</p>
+</li><li><p><span><span> 
+</span></span>Return the value 0x80070003, the HRESULT form of the Win32 error
+ERROR_PATH_NOT_FOUND, if the specified <i>path</i> does not exist on the server
+in the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a></span> <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_08035fe7-a786-4b30-ab60-3fd046060617" data-linktype="relative-path">task
+store</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Return the value 0x80070003, the HRESULT form of the Win32 error
+ERROR_PATH_NOT_FOUND, if the task specified in <i>path</i> does not exist on
+the server in the XML task store.</p>
+</li><li><p><span><span> 
+</span></span>Return E_ACCESSDENIED if caller does not have write access to the
+task or folder specified in the <i>path</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return E_INVALIDARG if the <i>SDDL</i> parameter is null.</p>
+<p><b>Note</b>  When
+passing NULL as a value for parameters, behavior can change based on the RPC
+Runtime Check. See <span><a href="535bb46d-f599-4528-9b02-eb2d391fd361" data-linktype="relative-path">RPC Runtime Check
+Notes (section 3.3)</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Set the security descriptor of the task or folder specified in
+the <i>path</i> parameter in the task store according to the <i>sddl</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK.</p>
+</li></ul></div>

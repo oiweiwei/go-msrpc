@@ -1,0 +1,24 @@
+<div class="content"><p>The FsrmPropertyDefinitionFlags enumeration defines bitmasks
+for the possible states of the property definition objects in the File Server
+Resource Manager protocol.</p><dl>
+<dd>
+<div><pre> typedef  enum FsrmPropertyDefinitionFlags
+ {
+   FsrmPropertyDefinitionFlags Global = 0x00000001,
+   FsrmPropertyDefinitionFlags_Deprecated = 0x00000002,
+   FsrmPropertyDefinitionFlags_Secure = 0x00000004
+ } FsrmPropertyDefinitionFlags;
+</pre></div>
+</dd></dl><p><b>FsrmPropertyDefinitionFlags Global:  </b>If the <b>FsrmPropertyDefinitionFlags_Global</b>
+bitmask is set as part of the <b>PropertyDefinitionFlags</b> property of an <a href="a283400d-61d6-4fed-b14c-ce2e74bc7bc1" data-linktype="relative-path">IFsrmPropertyDefinition2</a>
+object, the server will not allow an <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_73a40546-08bc-472c-a4ff-b0eb4b7270cf" data-linktype="relative-path">API</a> to modify the object.</p><p><b>FsrmPropertyDefinitionFlags_Deprecated:  </b>If
+the <b>FsrmPropertyDefinitionFlags_Deprecated</b> bitmask is set as part of the
+<b>PropertyDefinitionFlags</b> property of an <b>IFsrmPropertyDefinition2</b>
+object, the server will not allow an API to modify the object but will allow
+the removal of the object from the server. Any other objects that reference
+this <b>IFsrmPropertyDefinition2</b> object need to consider their
+configuration invalid.</p><p><b>FsrmPropertyDefinitionFlags_Secure:  </b>If the <b>FsrmPropertyDefinitionFlags_Secure</b>
+bitmask is set as part of the <b>PropertyDefinitionFlags</b> property of a <b>PropertyDefinitionFlags</b>
+object, the server will use instances of the <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_56f7f556-18df-4592-8e2e-68d81fbed565" data-linktype="relative-path">property definition</a> for
+security purposes. This flag is stored within the <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_e372b5a9-ad05-454a-9518-3e8373c0faf3" data-linktype="relative-path">file security descriptor</a> of
+the file. </p></div>

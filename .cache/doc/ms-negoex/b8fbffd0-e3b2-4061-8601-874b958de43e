@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The <b>ALERT_PULSE</b> structure is used in the <b>ALERT_MESSAGE</b>
+structure message, as specified in section <span><a href="bb13c832-61fe-4d4f-a1d8-0ac0a54408cd" data-linktype="relative-path">2.2.6.6</a></span>.  </p><dl>
+<dd>
+<div><pre> struct
+ {
+   ULONG cbHeaderLength;
+   ULONG Reason;
+} ALERT_PULSE; 
+</pre></div>
+</dd></dl><p><b>cbHeaderLength:</b> A ULONG that contains the
+header length of this message.   </p><p><b>Reason:</b> A ULONG that contains the reason code
+for the heartbeat message ALERT_VERIFY_NO_KEY, as specified in section <span><a href="c361c09b-7a4f-4575-b4eb-2320388fa0aa" data-linktype="relative-path">2.2.3</a></span>. 
+</p></div>

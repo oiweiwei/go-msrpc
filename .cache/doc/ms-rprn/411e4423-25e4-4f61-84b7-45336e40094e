@@ -1,0 +1,166 @@
+<div class="content"><p>The <b>PORT_INFO_3</b> structure provides information about
+a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a>.<a id="Appendix_A_Target_49"></a><a aria-label="Product behavior note 49" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_49" data-linktype="relative-path">&lt;49&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _PORT_INFO_3 {
+   DWORD dwStatus;
+   [string] wchar_t* pszStatus;
+   DWORD dwSeverity;
+ } PORT_INFO_3;
+</pre></div>
+</dd></dl><p><b>dwStatus:</b> The new port status. This value
+MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PORT_STATUS_CLEAR</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Clears the printer port status.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PORT_STATUS_OFFLINE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The port’s printer is offline.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PORT_STATUS_PAPER_JAM</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The port’s printer has a paper jam.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PORT_STATUS_PAPER_OUT</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The port’s printer is out of paper.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PORT_STATUS_OUTPUT_BIN_FULL</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The port’s printer&#39;s output bin is full.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PORT_STATUS_PAPER_PROBLEM</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The port’s printer has a paper problem.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PORT_STATUS_NO_TONER</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>The port’s printer is out of toner.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PORT_STATUS_DOOR_OPEN</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>The door of the port’s printer is open.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PORT_STATUS_USER_INTERVENTION</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The port’s printer requires user intervention.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PORT_STATUS_OUT_OF_MEMORY</p>
+  <p>0x00000009</p>
+  </td>
+  <td>
+  <p>The port’s printer is out of memory.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PORT_STATUS_TONER_LOW</p>
+  <p>0x0000000A</p>
+  </td>
+  <td>
+  <p>The port’s printer is low on toner.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PORT_STATUS_WARMING_UP</p>
+  <p>0x0000000B</p>
+  </td>
+  <td>
+  <p>The port’s printer is warming up.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PORT_STATUS_POWER_SAVE</p>
+  <p>0x0000000C</p>
+  </td>
+  <td>
+  <p>The port’s printer is in a power-conservation mode.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pszStatus:</b> An optional pointer to a
+string that specifies a status description.</p><p><b>dwSeverity:</b> The severity of the port
+status value. This value MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PORT_STATUS_TYPE_ERROR</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The port status value indicates an error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PORT_STATUS_TYPE_WARNING</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The port status value is a warning.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PORT_STATUS_TYPE_INFO</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The port status value is informational.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>All members not defined in this section are specified in
+sections <a href="2607e270-ebe6-4d84-a2f7-12b056fae964" data-linktype="relative-path">2.2.1.3.5</a> and <a href="964b517f-6730-4b4a-99ed-ee9648e7f1f7" data-linktype="relative-path">2.2.1.3</a>.</p></div>

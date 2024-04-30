@@ -1,0 +1,30 @@
+<div class="content"><p> </p><p>The <b>RpcPrintPropertiesCollection</b> structure holds a
+collection of name/typed-value pairs.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [range(0,50)] DWORD numberOfProperties;
+   [size_is(numberOfProperties), unique] 
+     RpcPrintNamedProperty* propertiesCollection;
+ } RpcPrintPropertiesCollection;
+</pre></div>
+</dd></dl><p><b>numberOfProperties: </b>The number of properties
+in the collection, which MUST be between zero and 50, inclusive.</p><p><b>propertiesCollection: </b>A pointer to an array of
+<b>RpcPrintNamedProperty</b> structures (section <span><a href="79410372-3605-4f52-8420-d494cc2b4a8b" data-linktype="relative-path">2.2.3</a></span>).</p><p>When used as input to specify notification filter settings,
+the following properties MUST be present in the collection pointed to by the <b>propertiesCollection</b>
+member:</p><ul><li><p><span><span> 
+</span></span>&#34;RemoteNotifyFilter Flags&#34;</p>
+</li><li><p><span><span> 
+</span></span>&#34;RemoteNotifyFilter Options&#34;</p>
+</li><li><p><span><span> 
+</span></span>&#34;RemoteNotifyFilter NotifyOptions&#34;</p>
+</li><li><p><span><span> 
+</span></span>&#34;RemoteNotifyFilter Color&#34;</p>
+</li></ul><p>When used as output to return notification data, the
+following properties MUST be present in the collection pointed to by the <b>propertiesCollection</b>
+member:</p><ul><li><p><span><span> 
+</span></span>&#34;RemoteNotifyData Flags&#34;</p>
+</li><li><p><span><span> 
+</span></span>&#34;RemoteNotifyData Info&#34;</p>
+</li><li><p><span><span> 
+</span></span>&#34;RemoteNotifyData Color&#34;</p>
+</li></ul></div>

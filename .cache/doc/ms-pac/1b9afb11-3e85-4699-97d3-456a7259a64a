@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DOMAIN_GROUP_MEMBERSHIP</b> structure identifies a
+domain and groups to which an account belongs. It is sent within the <span><a href="31405771-207a-4855-aba8-b785beaa9d6c" data-linktype="relative-path">PAC_DEVICE_INFO (section 2.12)</a></span>
+structure.<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="a1c36b00-1fca-415c-a4ca-e66e98844760#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a></p><p>The <b>DOMAIN_GROUP_MEMBERSHIP</b> structure is defined as
+follows.</p><dl>
+<dd>
+<div><pre> typedef struct DOMAIN_GROUP_MEMBERSHIP {
+     PISID DomainId;
+     ULONG GroupCount;
+     [size_is(GroupCount)] PGROUP_MEMBERSHIP GroupIds;
+ } DOMAIN_GROUP_MEMBERSHIP, *PDOMAIN_GROUP_MEMBERSHIP;
+</pre></div>
+</dd></dl><p><b>DomainId:</b> A <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span> structure that
+contains the SID for the domain. This member is used in conjunction with the
+GroupIds members to create group SIDs for the device.</p><p><b>GroupCount:</b> A 32-bit unsigned integer that
+contains the number of groups within the domain to which the account belongs.</p><p><b>GroupIds:</b> A pointer to a list of <span><a href="40526584-1565-4fb1-97b7-eb38fd880595" data-linktype="relative-path">GROUP_MEMBERSHIP</a></span>
+structures that contain the groups to which the account belongs in the domain.
+The number of groups in this list MUST be equal to GroupCount.</p></div>

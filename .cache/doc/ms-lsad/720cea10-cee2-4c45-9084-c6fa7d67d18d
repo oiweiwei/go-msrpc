@@ -1,0 +1,23 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/720cea10-cee2-4c45-9084-c6fa7d67d18d" data-linktype="external">msdn link</a></p><p>The SECURITY_IMPERSONATION_LEVEL enumeration defines a set
+of values that specifies security impersonation levels. These levels govern the
+degree to which a server process can act on behalf of a client process.</p><p>This enumeration has no effect on message processing in any
+environment.</p><dl>
+<dd>
+<div><pre> typedef  enum _SECURITY_IMPERSONATION_LEVEL
+ {
+   SecurityAnonymous = 0,
+   SecurityIdentification = 1,
+   SecurityImpersonation = 2,
+   SecurityDelegation = 3
+ } SECURITY_IMPERSONATION_LEVEL,
+  *PSECURITY_IMPERSONATION_LEVEL;
+</pre></div>
+</dd></dl><p><b>SecurityAnonymous:  </b>The server cannot obtain
+information about the client and cannot impersonate the client.</p><p><b>SecurityIdentification:  </b>The server can obtain
+information such as <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security
+identifiers</a> and <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privileges</a>,
+but the server cannot impersonate the client.</p><p><b>SecurityImpersonation:  </b>The server can
+impersonate the client&#39;s security context on its local system, but cannot
+impersonate the client when communicating with <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_2dc07ca2-2b40-437e-a5ec-ed28ebfb116a" data-linktype="relative-path">services</a> on remote systems.</p><p><b>SecurityDelegation:  </b>The server can
+impersonate the client&#39;s security context when communicating with services on
+remote systems.</p></div>

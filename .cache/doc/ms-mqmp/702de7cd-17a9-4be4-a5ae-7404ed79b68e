@@ -1,0 +1,57 @@
+<div class="content"><p> </p><p>A <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> calls the
+R_QMEnlistTransaction method to enlist the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_7bc5d175-2fa4-481e-893c-6f3eb2862fa4" data-linktype="relative-path">supporting server&#39;s</a></span> <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_a7d0361f-8608-454d-9a52-67d4d181ae09" data-linktype="relative-path">resource
+manager (RM)</a></span> in an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_04fa7698-4cbc-4e38-bcc3-58135b87cbe0" data-linktype="relative-path">external transaction</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT
+ R_QMEnlistTransaction(
+     [in] handle_t hBind,
+     [in] XACTUOW* pUow,
+     [in, range(0, 131072)] DWORD cbCookie,
+     [in, size_is (cbCookie)]  unsigned char* pbCookie 
+     );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST be set to an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle as described in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>pUow: </b> MUST point to an <span><a href="../ms-mqmq/711d679b-e7b1-4e0c-8e51-f7529bfbc02f" data-linktype="relative-path">XACTUOW</a></span>
+structure (<span><a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a></span>
+section 2.2.18.1.8) that identifies the external transaction in which the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>
+is to enlist, as specified in section <span><a href="78c32848-fe1e-4217-8d88-12a4341c3828" data-linktype="relative-path">2.2.3.1</a></span>.</p><p><b>cbCookie: </b> MUST be set to the byte length of
+the buffer pointed to by <i>pbCookie</i>.</p><p><b>pbCookie: </b>MUST be a pointer to an array of
+bytes containing an exported <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a></span> cookie,
+which can be obtained as specified in <span><a href="../ms-dtco/c367c571-33f3-44ac-85cb-4b9ebbb2779d" data-linktype="relative-path">[MS-DTCO]</a></span>
+section <span><a href="../ms-dtco/13b482ba-605a-408e-8564-dc3ce6eb18a5" data-linktype="relative-path">3.3.4.14</a></span>.
+</p><p><b>Return Values: </b> On success, this method MUST return
+MQ_OK (0x00000000); otherwise, the server MUST return a failure HRESULT,<a id="Appendix_A_Target_43"></a><a aria-label="Product behavior note 43" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_43" data-linktype="relative-path">&lt;43&gt;</a> and the client MUST treat all
+failure HRESULTs identically.</p><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol, as specified in [MS-RPCE].</p><p>This method is invoked at the dynamically assigned <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span>
+returned by the <span><a href="a8c96155-a7e6-41cb-95c7-6ab7e4f8214d" data-linktype="relative-path">R_QMGetRTQMServerPort</a></span>
+method when IP_HANDSHAKE (0x00000000) or IPX_HANDSHAKE (0x00000002) is the
+interface specified by the <i>fIP</i> parameter.</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Look up a <b>Transaction</b> (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section <span><a href="../ms-mqdmpr/977818a4-098a-44f4-a6e2-97b8e8b1bb6b" data-linktype="relative-path">3.1.1.14</a></span>)
+ADM element instance in the server&#39;s <b>LocalQueueManager.TransactionCollection</b>
+where <b>Transaction.Identifier</b> matches the <i>pUow</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>If found:</p>
+<ul><li><p><span><span>  </span></span>The
+transaction has already been enlisted. Take no further action and return MQ_OK
+(0x00000000).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>Raise
+the Importing a Transaction event as specified in [MS-DTCO] section <span><a href="../ms-dtco/335b593a-ae8e-454b-b36c-e0d9e72767a5" data-linktype="relative-path">3.3.4.6</a></span>.
+Provide <i>pbCookie</i> as the <b>STxInfo</b> structure.</p>
+</li><li><p><span><span>  </span></span>Raise
+the Enlisting on a Specific Transaction event as specified in [MS-DTCO] section
+<span><a href="../ms-dtco/7edb35d0-f167-49f1-bf7e-a671fb28464c" data-linktype="relative-path">3.5.4.3</a></span>.
+Provide the transaction object that was created while importing the transaction
+in the previous step as the transaction object argument to this event.</p>
+</li><li><p><span><span>  </span></span>Generate
+a <span><a href="../ms-mqdmpr/a44b2ff2-c914-44e2-ac21-4855718b39aa" data-linktype="relative-path">Create
+Transaction</a></span> ([MS-MQDMPR] section 3.1.7.1.8) event with the following
+argument value:</p>
+<ul><li><p><span><span> 
+</span></span><i>iTransactionIdentifier</i> := <i>pUow</i></p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Return MQ_OK (0x00000000).</p>
+</li></ul></div>

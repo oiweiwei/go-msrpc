@@ -1,0 +1,53 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/85bfd283-d97f-4ead-8b11-9dfe2c3103dd" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_REG_BATCH_COMMAND</b> enumeration defines the
+possible values that are specified in a cluster registry batch update command
+block. The valid constant values are as follows. All other values are reserved.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   CLUSREG_SET_VALUE = 1,
+   CLUSREG_CREATE_KEY = 2,
+   CLUSREG_DELETE_KEY = 3,
+   CLUSREG_DELETE_VALUE = 4,
+   CLUSREG_VALUE_DELETED = 6,
+   CLUSREG_READ_KEY = 7,
+   CLUSREG_READ_VALUE = 8,
+   CLUSREG_READ_ERROR = 9,
+   CLUSREG_CONTROL_COMMAND = 10, 
+   CLUSREG_CONDITION_EXISTS = 11,
+   CLUSREG_CONDITION_NOT_EXISTS = 12,
+   CLUSREG_CONDITION_IS_EQUAL = 13,
+   CLUSREG_CONDITION_IS_NOT_EQUAL = 14,
+   CLUSREG_CONDITION_IS_GREATER_THAN = 15,
+   CLUSREG_CONDITION_IS_LESS_THAN = 16,
+   CLUSREG_CONDITION_KEY_EXISTS = 17,
+   CLUSREG_CONDITION_KEY_NOT_EXISTS = 18
+ } CLUSTER_REG_BATCH_COMMAND;
+</pre></div>
+</dd></dl><p><b>CLUSREG_SET_VALUE: </b>Instructs the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> to create a value
+with the name and data set to the respective values stored in the batch command
+data block.</p><p><b>CLUSREG_CREATE_KEY: </b>Instructs the server to
+create a new subkey, or to open an existing subkey by using the name stored in
+the batch command data block.</p><p><b>CLUSREG_DELETE_KEY: </b>Instructs the server to
+delete the subkey using the name stored in the batch command data block.</p><p><b>CLUSREG_DELETE_VALUE: </b>Instructs the server to
+delete the value using the name stored in the batch command data block.</p><p><b>CLUSREG_VALUE_DELETED: </b>Indicates that the
+named value has either been deleted from the registry or the value data has
+been changed. Returned only through a batch update notification port.</p><p><b>CLUSREG_READ_KEY: </b>Instructs the server to
+execute future operations on a key, and indicates that the server has executed
+operations on a key.</p><p><b>CLUSREG_READ_VALUE: </b>Instructs the server to
+read the specified value of the current key, and represents that the server has
+read a value.</p><p><b>CLUSREG_READ_ERROR: </b>Indicates that a
+CLUSREG_READ_VALUE operation on the server has failed.</p><p><b>CLUSREG_CONTROL_COMMAN</b>D<b>:</b> A value of 1
+indicates to synchronize the registry write to all nodes, a value of 2
+indicates the batch can be executed in isolation without synchronizing the
+registry to all nodes.</p><p><b>CLUSREG_CONDITION_EXISTS:</b> Indicates to
+successfully complete the batch if the specified value exists.</p><p><b>CLUSREG_CONDITION_NOT_EXISTS:</b> Indicates to
+successfully complete the batch if the specified value does not exist.</p><p><b>CLUSREG_CONDITION_IS_EQUAL:</b> Indicates to
+successfully complete the batch if the specified value is equal to the value in
+the registry.</p><p><b>CLUSREG_CONDITION_IS_NOT_EQUAL:</b> Indicates to
+successfully complete the batch if the specified value is not the same.</p><p><b>CLUSREG_CONDITION_IS_GREATER_THAN:</b> Indicates
+to successfully complete the batch if the registry value is greater than the
+specified value.</p><p><b>CLUSREG_CONDITION_IS_LESS_THAN:</b> Indicates to
+successfully complete the batch if the registry value is less than the
+specified value.</p><p><b>CLUSREG_CONDITION_KEY_EXISTS:</b> Indicates to
+successfully complete the batch if the specified key exists.</p><p><b>CLUSREG_CONDITION_KEY_NOT_EXISTS:</b> Indicates to
+successfully complete the batch if the specified value does not exist.</p></div>

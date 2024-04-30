@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p><b>RpcAsyncEnumJobNamedProperties</b> enumerates the <b>Job
+Named Property</b> (section <span><a href="cdefc872-f844-4b8d-92ca-e8c6e413bcf2" data-linktype="relative-path">3.1.1</a></span>) for the
+specified <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print job</a></span>.<a id="Appendix_A_Target_34"></a><a aria-label="Product behavior note 34" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_34" data-linktype="relative-path">&lt;34&gt;</a></p><p>The counterpart of this method in the Print System Remote
+Protocol is <b>RpcEnumJobNamedProperties</b> (section <span><a href="../ms-rprn/6b1559f9-9349-4d90-b8cf-24292ab736ad" data-linktype="relative-path">3.1.4.12.4</a></span>).
+All parameters not defined below are specified in <span><a href="../ms-rprn/d42db7d5-f141-4466-8f47-0a4be14e2fc1" data-linktype="relative-path">[MS-RPRN]</a></span>
+section 3.1.4.12.4.</p><dl>
+<dd>
+<div><pre> DWORD RpcAsyncEnumJobNamedProperties(
+   [in] PRINTER_HANDLE hPrinter,
+   [in] DWORD JobId,
+   [out] DWORD* pcProperties,
+   [out, size_is, (*pcProperties)] 
+     RPC_PrintNamedProperty** ppProperties
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object or
+server object that has been opened by using either <b>RpcAsyncOpenPrinter</b>
+(section <span><a href="feddac6a-bd88-4989-95fb-715bd6ca796a" data-linktype="relative-path">3.1.4.1.1</a></span>) or <b>RpcAsyncAddPrinter</b>
+(section <span><a href="1e5e5498-e646-4fdf-8181-98862a3d6ec8" data-linktype="relative-path">3.1.4.1.2</a></span>).</p><p><b>Return Values: </b>This method returns zero to indicate
+successful completion or a nonzero Win32 error code (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>)
+to indicate failure. The client MUST treat any nonzero return value as a fatal
+error.</p><p><b>Exceptions Thrown:</b> This method MUST NOT throw any
+exceptions other than those that are thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method MUST adhere to the parameter validation,
+processing, and response requirements that are specified in [MS-RPRN] section
+3.1.4.12.4.</p></div>

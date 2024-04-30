@@ -1,0 +1,52 @@
+import "ms-dtyp.idl";
+import "ms-mqmq.idl";
+ 
+[
+    uuid(41208ee0-e970-11d1-9b9e-00e02c064c39),  
+    version(1.0), 
+    pointer_default(unique)
+]
+interface qmmgmt
+{
+    typedef enum __MgmtObjectType {
+        MGMT_MACHINE = 1,
+        MGMT_QUEUE = 2,
+        MGMT_SESSION = 3,
+    } MgmtObjectType;
+ 
+ 
+ 
+ 
+    typedef struct _MGMT_OBJECT {
+        MgmtObjectType type;
+        [switch_is(type)] union
+        {
+            [case(MGMT_QUEUE)]
+                QUEUE_FORMAT* pQueueFormat;
+            [case(MGMT_MACHINE)]
+                DWORD         Reserved1;
+            [case(MGMT_SESSION)]
+                DWORD         Reserved2;
+        };
+    } MGMT_OBJECT;
+ 
+ 
+    /*===================================================================
+        QM Management functions
+    ===================================================================*/
+ 
+    HRESULT R_QMMgmtGetInfo(
+        [in] handle_t hBind,
+        [in] const MGMT_OBJECT* pObjectFormat,
+        [in, range(1,128)] DWORD cp,
+        [in, size_is (cp)] ULONG aProp[],
+        [in, out, size_is(cp)] PROPVARIANT apVar[]
+        );
+ 
+    HRESULT R_QMMgmtAction(
+        [in] handle_t hBind,
+        [in] const MGMT_OBJECT* pObjectFormat,
+        [in] [string] const wchar_t * lpwszAction
+        );
+}
+ 

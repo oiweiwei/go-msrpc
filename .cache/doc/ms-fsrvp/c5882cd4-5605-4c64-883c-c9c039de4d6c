@@ -1,0 +1,100 @@
+<div class="content"><p> </p><p>The <b>ExposeShadowCopySet</b> method exposes all the shadow
+copies in a <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow copy</a></span> set as
+file shares on the file server.</p><dl>
+<dd>
+<div><pre> DWORD ExposeShadowCopySet(
+         [in] handle_t hBinding,
+         [in] GUID ShadowCopySetId,
+         [in] unsigned long TimeOutInMilliseconds);
+  
+</pre></div>
+</dd></dl><p><b>hBinding:</b>  An RPC binding handle (as defined
+in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>).</p><p><b>ShadowCopySetId:</b> The GUID of the shadow copy
+set. </p><p><b>TimeOutInMilliseconds:</b>  The maximum time, in
+milliseconds, for which the server MUST wait for completion of the expose
+operation. </p><p><b>Return Values:</b> The method returns one of the
+values specified in section <span><a href="b45c794e-9362-42b7-80c6-7dae3382acf0" data-linktype="relative-path">2.2.4</a></span>. The most
+common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>E_ACCESSDENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  the operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG </p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80042301</p>
+  <p>FSRVP_E_BAD_STATE</p>
+  </td>
+  <td>
+  <p>The method call is invalid because of the server&#39;s state.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80042501</p>
+  <p>FSRVP_E_SHADOWCOPYSET_ID_MISMATCH</p>
+  </td>
+  <td>
+  <p>The provided ShadowCopySetId does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST look up the <b>ShadowCopySet</b> from <b>GlobalShadowCopysetTable</b>
+using the index <i>ShadowCopySetId.</i> If no shadow copy set is found, the
+server MUST fail the call with FSRVP_E_SHADOWCOPYSET_ID_MISMATCH.</p><p>If <b>ShadowCopySet.Status</b> is not &#34;Committed&#34;,
+the server MUST fail the call with FSRVP_E_BAD_STATE.</p><p>The server MUST stop the Message Sequence Timer specified in
+section <span><a href="d88b9fb3-aa00-4396-91e5-f3db036d4a74" data-linktype="relative-path">3.1.2</a></span>.</p><p>The server MUST initiate the shadow copy expose process for
+the <b>ShadowCopySet</b>, which includes the following steps:</p><ul><li><p><span><span> 
+</span></span>For each <b>ShadowCopy</b> in <b>ShadowCopySet.ShadowCopyList:</b></p>
+</li><li><p><span><span> 
+</span></span>For each <b>MappedShare</b> in <b>ShadowCopy.ShareMappingList:</b></p>
+</li><li><p><span><span> 
+</span></span>Expose the shadow copy of the share as a new share with a UNC
+name of the form \\hostname\sharename@{ShadowCopy.ShadowCopyId}. The hostname
+portion of the path can be different from the hostname portion of <b>MappedShare.ShareName</b>.
+The sharename portion (prior to the @ suffix) of the exposed share name MUST
+match the sharename portion of <b>MappedShare.ShareName</b>.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="97e8cd5d-666b-428d-b701-ebd48fb59e16#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Set the access permissions for the exposed shadow copy share to
+be same as that of <b>MappedShare.ShareName</b></p>
+</li><li><p><span><span> 
+</span></span>If the ATTR_AUTO_RECOVERY bit is set in <b>ShadowCopySet.Context</b>,
+enable read-write mode for the exposed shadow copy share until a <b>RecoveryCompleteShadowCopySet</b>
+message is received.</p>
+</li><li><p><span><span> 
+</span></span>Set <b>MappedShare.ShadowCopyShareName</b> to the share name of
+the shadow copy exposed as above, and set <b>ShareMapping.IsExposed</b> to
+TRUE.</p>
+</li></ul><p>The server MUST wait for the completion of the expose
+process for the entire ShadowCopySet.</p><p>If the wait for the expose process fails, the server MUST
+start the Message Sequence Timer as specified in section 3.1.2 with a timeout
+value of 180 seconds, and fail the call with FSRVP_E_WAIT_FAILED.</p><p>If the expose operation does not complete within <i>TimeOutInMilliseconds,</i>
+the server MUST start the Message Sequence Timer as specified in section 3.1.2
+with a timeout value of 180 seconds, and fail the call with
+FSRVP_E_WAIT_TIMEOUT.</p><p>If the expose operation returns success within <i>TimeOutInMilliseconds,</i>
+the server MUST update <b>ShadowCopySet.Status</b> to &#34;Exposed&#34;,
+start the Message Sequence Timer as specified in section 3.1.2 with a timeout
+value of 180 seconds, and return ZERO to the caller.</p><p>If the expose operation returns an error within <i>TimeOutInMilliseconds</i>,
+the server MUST start the Message Sequence Timer as specified in section 3.1.2
+with a timeout value of 180 seconds, and fail the call with the same error
+code.</p></div>

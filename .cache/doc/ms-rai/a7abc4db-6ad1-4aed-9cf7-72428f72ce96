@@ -1,0 +1,65 @@
+<div class="content"><p>The RemoteUserSessionInfo method returns the collection of
+the <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b" data-linktype="relative-path">terminal services</a>
+sessions on the remote <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_d27bcedc-ae63-4e15-a0cb-9b371f1820dc" data-linktype="relative-path">novice</a>
+machine. All the terminal services session information is returned as a
+standard IPCHCollection interface. The members of this collection are objects
+of type ISAFSession. ISAFSession includes the DomainName, SessionID,
+SessionState, and UserName for each session.</p><dl>
+<dd>
+<div><pre> [id(DISPID_PCH_SVC__REMOTEUSERSESSIONINFO)] HRESULT RemoteUserSessionInfo(
+   [out, retval] IPCHCollection** pVal
+ );
+</pre></div>
+</dd></dl><p><b>pVal: </b>A pointer to an <a href="972bb921-7382-4fb7-b105-76ad31551206" data-linktype="relative-path">IPCHCollection</a> interface
+containing terminal services sessions information on the server.</p><p><b>Return Values: </b>A signed 32-bit value
+indicating return status. This method MUST return zero to indicate success, or
+an <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+error value (as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+to indicate failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>E_ACCESSDENIED</p>
+  </td>
+  <td>
+  <p>General access denied error. <a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="90b2d2e5-7931-4762-8949-04617e1d9089#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007000E</p>
+  <p>E_OUTOFMEMORY</p>
+  </td>
+  <td>
+  <p>Out of memory.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800704EC</p>
+  <p>ERROR_ACCESS_DISABLED_BY_POLICY</p>
+  </td>
+  <td>
+  <p>The program cannot be opened because of a software restriction
+  policy. For more information, contact the system administrator.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b></p><p>No exceptions are thrown beyond those thrown by the
+underlying <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>The DRS_MSG_RMSVRREQ_V1 structure defines a request message
+sent to the <span><a href="d5c310ae-347a-49d4-a78e-6ffb2eecd581" data-linktype="relative-path">IDL_DRSRemoveDsServer</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [string] LPWSTR ServerDN;
+   [string] LPWSTR DomainDN;
+   BOOL fCommit;
+ } DRS_MSG_RMSVRREQ_V1;
+</pre></div>
+</dd></dl><p><b>ServerDN:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a></span>
+of the <span><a href="../ms-adsc/96cab7b4-83eb-4879-b352-56ad8d19f1ac" data-linktype="relative-path">server</a></span>
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>
+of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span> to remove.</p><p><b>DomainDN:</b>  The DN of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_784c7cce-f782-48d8-9444-c9030ba86942" data-linktype="relative-path">NC</a></span>
+root of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span> that the DC
+to be removed belongs to. Can be set to null if the client does not want the
+server to compute the value of pmsgOut^.V1.fLastDCInDomain.</p><p><b>fCommit:</b>  True if the DC&#39;s metadata
+should actually be removed from the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_49ce3946-04d2-4cc9-9350-ebcd952b9ab9" data-linktype="relative-path">directory</a></span>. False if
+the metadata should not be removed. (This is used by a client that wants to
+determine the value of pmsgOut^.V1.fLastDcInDomain without altering the
+directory.)</p></div>

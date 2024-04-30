@@ -1,0 +1,26 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/be92a2cd-950c-4b26-8cd3-475065406b92" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_INFO_3</b> structure defines information
+returned as part of an administrative query of the status of the Netlogon
+server, as detailed in the description of the <b>NetrLogonControl2Ex </b>method
+in section <a href="df7e5dd1-ebcc-4754-9da0-2e0bded82d29" data-linktype="relative-path">3.5.4.9.1</a>.
+This structure is used to return the number of NTLM logons attempted on the
+queried server since the last restart.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_INFO_3 {
+   DWORD netlog3_flags;
+   DWORD netlog3_logon_attempts;
+   DWORD netlog3_reserved1;
+   DWORD netlog3_reserved2;
+   DWORD netlog3_reserved3;
+   DWORD netlog3_reserved4;
+   DWORD netlog3_reserved5;
+ } NETLOGON_INFO_3,
+  *PNETLOGON_INFO_3;
+</pre></div>
+</dd></dl><p><b>netlog3_flags:</b> MUST be set to zero and MUST be
+ignored on receipt.</p><p><b>netlog3_logon_attempts:</b> The number of NTLM
+logon attempts made on the server since the last restart.</p><p><b>netlog3_reserved1:</b> MUST be set to zero and
+MUST be ignored on receipt.</p><p><b>netlog3_reserved2:</b> MUST be set to zero and
+MUST be ignored on receipt.</p><p><b>netlog3_reserved3:</b> MUST be set to zero and
+MUST be ignored on receipt.</p><p><b>netlog3_reserved4:</b> MUST be set to zero and
+MUST be ignored on receipt.</p><p><b>netlog3_reserved5:</b> MUST be set to zero and
+MUST be ignored on receipt.</p></div>

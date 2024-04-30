@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The VDS_LUN_RESERVE_MODE enumeration defines the sharing
+mode of a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_LUN_RESERVE_MODE
+ {
+   VDS_LRM_NONE = 0x00000000,
+   VDS_LRM_EXCLUSIVE_RW = 0x00000001,
+   VDS_LRM_EXCLUSIVE_RO = 0x00000002,
+   VDS_LRM_SHARED_RO = 0x00000003,
+   VDS_LRM_SHARED_RW = 0x00000004
+ } VDS_LUN_RESERVE_MODE;
+</pre></div>
+</dd></dl><p><b>VDS_LRM_NONE:  </b>The disk has no assigned
+sharing mode.</p><p><b>VDS_LRM_EXCLUSIVE_RW:  </b>The disk is reserved
+for exclusive access.</p><p><b>VDS_LRM_EXCLUSIVE_RO:  </b>The disk is available
+for read access.</p><p><b>VDS_LRM_SHARED_RO:  </b>The disk is available for
+shared read access.</p><p><b>VDS_LRM_SHARED_RW:  </b>The disk is available for
+shared read/write access.</p></div>

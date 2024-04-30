@@ -1,0 +1,25 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/f7458576-d538-47cd-b387-b6f98449a0ee" data-linktype="external">msdn link</a></p><p>The <b>NT_OWF_PASSWORD</b> structure SHOULD<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a> define a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9a5d11c7-eea9-4217-b9a8-478c6786e9e8" data-linktype="relative-path">one-way function (OWF)</a> of a
+<a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> password. The <b>NT_OWF_PASSWORD</b>
+structure SHOULD be encrypted, as specified by each method that uses this
+structure. When this structure is encrypted, Netlogon methods uses the DES
+encryption algorithm in ECB mode, as specified in <a href="../ms-samr/4df07fab-1bbc-452f-8e92-7853a3c7e380" data-linktype="relative-path">[MS-SAMR]</a>
+section <a href="../ms-samr/a5252e8c-25e7-4616-a375-55ced086b19b" data-linktype="relative-path">2.2.11.1.1</a>
+Encrypting an NT Hash or LM Hash Value with a specified key. The <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_4f67a585-fb00-4166-93e8-cf4abca8226d" data-linktype="relative-path">session key</a> is the
+specified 16-byte key used to derive its keys using the 16-byte value process,
+as specified in [MS-SAMR] section <a href="../ms-samr/ba437786-7de8-47b4-b269-5a595c255327" data-linktype="relative-path">2.2.11.1.4</a>.
+For specific encryption information, see the individual methods, such as <b>NetrServerTrustPasswordsGet</b>
+(section <a href="84b0d22a-9b2c-4432-8ae0-4a72eda28ea4" data-linktype="relative-path">3.5.4.4.8</a>) and
+<b>NetrServerGetTrustInfo</b> (section <a href="4c2296c3-c6f0-47fc-9f01-a6fe17bf1d5b" data-linktype="relative-path">3.5.4.7.6</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _NT_OWF_PASSWORD {
+   CYPHER_BLOCK data[2];
+ } NT_OWF_PASSWORD,
+  *PNT_OWF_PASSWORD,
+  ENCRYPTED_NT_OWF_PASSWORD,
+  *PENCRYPTED_NT_OWF_PASSWORD;
+</pre></div>
+</dd></dl><p><b>data:</b> An array of <b>CYPHER_BLOCK </b>structures
+(section <a href="56a8d298-dbeb-4eb5-ad98-76536ec352f8" data-linktype="relative-path">2.2.1.1.1</a>)
+that contains the NTOWFv1 of a password. NTOWFv1 is specified in NTLM v1
+Authentication in <a href="../ms-nlmp/b38c36ed-2804-4868-a9ff-8dd3182128e4" data-linktype="relative-path">[MS-NLMP]</a>
+section <a href="../ms-nlmp/464551a8-9fc4-428e-b3d3-bc5bfb2e73a5" data-linktype="relative-path">3.3.1</a>.</p></div>

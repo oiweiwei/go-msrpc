@@ -1,0 +1,45 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_ZONE_FLAGS</b> is a bit-mask value used by
+the <b>DNS_RPC_ZONE</b> structure (section <span><a href="f22773ca-bfbf-46a5-8042-fbda1f3c4ad2" data-linktype="relative-path">2.2.5.2.1</a></span>) to
+indicate <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span> properties and
+state.</p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef DWORD DNS_RPC_ZONE_FLAGS, *PDNS_RPC_ZONE_FLAGS;
+</pre></div>
+</dd></dl><p><img id="MS-DNSP_pict04e3c55a-bdfa-c9b6-250d-602811d12d3e.png" src="ms-dnsp_files/image005.png" alt="DNS_RPC_ZONE_FLAGS Bit-Mask" title="DNS_RPC_ZONE_FLAGS Bit-Mask" data-linktype="relative-path"/></p><p><b>Figure 5: DNS_RPC_ZONE_FLAGS Bit-Mask</b></p><p><b>A (Paused):</b>
+If set to 1, indicates that this zone is currently administratively paused. The
+DNS server will not use this zone to respond to queries, will not accept updates
+in this zone, and will suspend all other functions related to this zone. The
+default value for this flag is 0.</p><p><b>B (Shutdown):</b> If set to 1, indicates that an
+error occurred that caused the DNS server to be unable to load a complete copy
+of the zone into memory. For primary zones, the DNS server MUST set this flag
+to 1 if an error occurred while loading the zone or its records from persistent
+storage. If the zone is <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0f196310-8f7b-462b-af06-6d955831d6f9" data-linktype="relative-path">directory server-integrated</a></span>,
+the DNS server MUST retry loading the zone at an interval specified by the
+DsPollingInterval property (section <span><a href="c4833797-156c-4c48-a380-d40dd1760eb9" data-linktype="relative-path">3.1.1.1</a></span>) and set
+this flag to zero if a subsequent loading attempt succeeds. If the server is
+not directory server-integrated the DNS server MUST NOT automatically retry
+loading the zone. For secondary and stub zones, the DNS server MUST set this
+flag to 1 if <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_67ea3c5b-6b1e-40a3-ac20-3f7eaf056504" data-linktype="relative-path">zone transfer</a></span> was refused
+by all of the master servers or if zone transfer could not be successfully
+completed. The DNS server MUST retry zone transfer as specified by <span><a href="https://go.microsoft.com/fwlink/?LinkId=90263" data-linktype="external">[RFC1034]</a></span>
+and set this flag to zero if a subsequent zone transfer attempt succeeds. The
+default value of this field MUST be 1 and the value MUST be set to zero if the
+zone is successfully loaded during initialization (section <span><a href="007efcd2-2955-46dd-a59e-f83ae88f4678" data-linktype="relative-path">3.1.3</a></span>).</p><p><b>C (Reverse):</b> If set to 1, indicates that this
+is a reverse lookup zone.</p><p><b>D (AutoCreated):</b> If set to 1, indicates that
+zone was auto-created. A DNS server MAY automatically create certain zones at
+boot time or when a virtualization instance is created via the <b>CreateVirtualizationInstance</b>
+RPC operation (section <span><a href="9500a7e8-165d-4b13-be86-0ddc43100eef" data-linktype="relative-path">3.1.4.1</a></span>), and flag
+these zones as &#34;AutoCreated&#34;. Such zones are never written to
+persistent storage, and the DNS Server MUST NOT perform any DNS Server
+Management Protocol RPC operations on such zones.<a id="Appendix_A_Target_39"></a><a aria-label="Product behavior note 39" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_39" data-linktype="relative-path">&lt;39&gt;</a></p><p><b>E (DsIntegrated):</b> If set to 1, indicates that
+zone is stored in a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_04fd0982-6bb6-44f1-817e-795715049c50" data-linktype="relative-path">directory server</a></span>.</p><p><b>F (Aging):</b> If set to 1, indicates that zone
+has <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0288f9f1-b244-4551-8638-a2280001b531" data-linktype="relative-path">aging</a></span>
+enabled for resource records.</p><p><b>G (Update):</b> The type of updates that are
+supported on this zone. This value MUST be set to one of the possible value
+from DNS_ZONE_UPDATE (section <span><a href="d4b84209-f00c-478f-80d7-8dd0f1633d9e" data-linktype="relative-path">2.2.6.1.1</a></span>).</p><p><b>H (ReadOnly):</b> If set to 1, indicates that this
+zone is operating in read-only mode. The DNS server SHOULD<a id="Appendix_A_Target_40"></a><a aria-label="Product behavior note 40" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_40" data-linktype="relative-path">&lt;40&gt;</a> support read-only zones. If the
+<span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a></span>
+server supports read-only zones, it MUST set this flag to 1 if the zone is
+loaded from a directory server that is read-only, and in all other cases it
+MUST set the flag to 0.</p><p><b>I (Unused):</b> MUST be set to zero when sent and
+MUST be ignored on receipt.</p></div>

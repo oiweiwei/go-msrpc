@@ -1,0 +1,73 @@
+<div class="content"><p> </p><p>The NetrDfsRemoveStdRoot (Opnum 13) method deletes the
+specified <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_701a2cc1-eb5a-400f-b394-5bad264ec8f6" data-linktype="relative-path">stand-alone DFS namespace</a></span>.<a id="Appendix_A_Target_122"></a><a aria-label="Product behavior note 122" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_122" data-linktype="relative-path">&lt;122&gt;</a> The <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS namespace</a></span> can be
+removed without first removing all of the links in it. </p><p>The NetrDfsRemoveStdRoot method uses the following <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a></span>
+syntax.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrDfsRemoveStdRoot(
+   [in, string] WCHAR* ServerName,
+   [in, string] WCHAR* RootShare,
+   [in] DWORD ApiFlags
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>The pointer to a null-terminated <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string. This is the host name of the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ac90b498-3ba4-48d6-bcd6-5495f1654671" data-linktype="relative-path">DFS root target</a></span> to
+be removed.</p><p><b>RootShare: </b>The pointer to a null-terminated
+Unicode DFS root target <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_3c179f10-1793-4268-96eb-de4d85a32060" data-linktype="relative-path">share name</a></span> string.
+This is also the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_76c9958a-125f-41b6-ae65-6663f270f873" data-linktype="relative-path">DFS namespace name</a></span>.
+The <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_a49a79ea-dac7-4016-9a84-cf87161db7e3" data-linktype="relative-path">share</a></span>
+is not removed automatically when the method is successful; it MUST be removed
+explicitly, as needed.</p><p><b>ApiFlags: </b>This parameter is reserved for
+future use and is ignored by the server.</p><p><b>Return Values: </b>The method MUST return 0 on
+success and a nonzero error code on failure. The method can return any specific
+error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Successful completion.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Permission to perform the operation was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000490</p>
+  <p>ERROR_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The DFS namespace that the <i>ServerName</i> and <i>RootShare</i>
+  parameters specify does not already exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST support the removal of a DFS namespace
+without requiring that all of the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS links</a></span> be removed
+first.</p><p>On receiving this method, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>If there is no entry in the <b>NamespaceList</b> with the <b>NamespaceName</b>
+matching <i>RootShare</i>, then the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> method MUST fail
+with ERROR_NOT_FOUND (0x00000490).</p>
+</li><li><p><span><span> 
+</span></span>Remove the <b>Namespace</b> object corresponding to the <i>RootShare</i>
+from the <b>NamespaceList</b>.</p>
+</li><li><p><span><span> 
+</span></span>Remove the <b>Namespace</b> object from the local information store.</p>
+</li></ul><p>The server SHOULD remove any intermediate directories and
+reparse points that were part of the namespace.</p></div>

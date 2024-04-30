@@ -1,0 +1,274 @@
+typedef struct {
+    unsigned __int32 ulSize;
+    unsigned __int32 ulResolveAttempts;
+    unsigned __int64 u64TimeRemaining;
+    unsigned __int64 u64LastSuccessfulSync;
+    unsigned __int32 ulLastSyncError;
+    unsigned __int32 ulLastSyncErrorMsgId;
+    unsigned __int32 ulValidDataCounter;
+    unsigned __int32 ulAuthTypeMsgId;
+    [string, unique] wchar_t* wszUniqueName;
+    unsigned char ulMode;
+    unsigned char ulStratum;
+    unsigned char ulReachability;
+    unsigned char ulPeerPollInterval;
+    unsigned char ulHostPollInterval;
+} W32TIME_NTP_PEER_INFO, *PW32TIME_NTP_PEER_INFO;
+ 
+typedef struct {
+    unsigned __int32 ulSize;
+    unsigned __int32 ulError;
+    unsigned __int32 ulErrorMsgId;
+    unsigned __int32 cPeerInfo;
+    [size_is(cPeerInfo)] PW32TIME_NTP_PEER_INFO pPeerInfo;
+} W32TIME_NTP_PROVIDER_DATA, *PW32TIME_NTP_PROVIDER_DATA;
+ 
+typedef struct {
+    unsigned __int32 ulSize;
+    unsigned __int32 ulError;
+    unsigned __int32 ulErrorMsgId;
+    [string, unique] wchar_t* wszReferenceIdentifier;
+} W32TIME_HARDWARE_PROVIDER_DATA, *PW32TIME_HARDWARE_PROVIDER_DATA;
+ 
+typedef
+[switch_type(unsigned __int32)]
+union {
+    [case(0)] W32TIME_NTP_PROVIDER_DATA* pNtpProviderData;
+    [case(1)] W32TIME_HARDWARE_PROVIDER_DATA* pHardwareProviderData;
+} W32TIME_PROVIDER_DATA;
+ 
+typedef struct {
+    unsigned __int32 ulProviderType;
+    [switch_is(ulProviderType)] W32TIME_PROVIDER_DATA ProviderData;
+} W32TIME_PROVIDER_INFO, *PW32TIME_PROVIDER_INFO;
+ 
+typedef struct {
+    unsigned __int32 ulSize;
+    [string, unique] wchar_t* wszName;
+    [string, unique] wchar_t* wszValue;
+    [string, unique] wchar_t* wszHelp;
+} W32TIME_ENTRY, *PW32TIME_ENTRY;
+ 
+typedef struct {
+    unsigned __int32 ulSize;
+    unsigned __int32 ulAllowNonstandardModeCombinations;
+    unsigned __int32 ulCrossSiteSyncFlags;
+    unsigned __int32 ulResolvePeerBackoffMinutes;
+    unsigned __int32 ulResolvePeerBackoffMaxTimes;
+    unsigned __int32 ulCompatibilityFlags;
+    unsigned __int32 ulEventLogFlags;
+    unsigned __int32 ulLargeSampleSkew;
+    unsigned __int32 ulSpecialPollInterval;
+    [string, unique] wchar_t* wszType;
+    [string, unique] wchar_t* wszNtpServer;
+    unsigned __int32 ulAllowNonstandardModeCombinationsFlag;
+    unsigned __int32 ulCrossSiteSyncFlagsFlag;
+    unsigned __int32 ulResolvePeerBackoffMinutesFlag;
+    unsigned __int32 ulResolvePeerBackoffMaxTimesFlag;
+    unsigned __int32 ulCompatibilityFlagsFlag;
+    unsigned __int32 ulEventLogFlagsFlag;
+    unsigned __int32 ulLargeSampleSkewFlag;
+    unsigned __int32 ulSpecialPollIntervalFlag;
+    unsigned __int32 ulTypeFlag;
+    unsigned __int32 ulNtpServerFlag;
+    unsigned __int32 cEntries;    
+    [size_is(cEntries)] PW32TIME_ENTRY pEntries; 
+} W32TIME_NTPCLIENT_PROVIDER_CONFIG_DATA,
+  *PW32TIME_NTPCLIENT_PROVIDER_CONFIG_DATA;
+ 
+typedef struct {
+    unsigned __int32 ulSize;
+    unsigned __int32 ulAllowNonstandardModeCombinations;
+    unsigned __int32 ulAllowNonstandardModeCombinationsFlag;
+    unsigned __int32 ulEventLogFlags;
+    unsigned __int32 ulEventLogFlagsFlag;
+    unsigned __int32 cEntries;    
+    [size_is(cEntries)] PW32TIME_ENTRY pEntries; 
+} W32TIME_NTPSERVER_PROVIDER_CONFIG_DATA,
+  *PW32TIME_NTPSERVER_PROVIDER_CONFIG_DATA;
+ 
+typedef 
+[switch_type(unsigned __int32)] 
+union {
+    [case(0)] PW32TIME_NTPCLIENT_PROVIDER_CONFIG_DATA
+        pNtpClientProviderConfigData;
+    [case(1)] PW32TIME_NTPSERVER_PROVIDER_CONFIG_DATA
+        pNtpServerProviderConfigData;
+} W32TIME_PROVIDER_CONFIG_DATA, *PW32TIME_PROVIDER_CONFIG_DATA;
+ 
+typedef struct {
+    unsigned __int32 ulSize;
+    unsigned __int32 ulProviderType;
+    [switch_is(ulProviderType)]
+        PW32TIME_PROVIDER_CONFIG_DATA pProviderConfigData;
+} W32TIME_PROVIDER_CONFIG, *PW32TIME_PROVIDER_CONFIG;
+ 
+typedef struct {
+    unsigned __int32 ulSize;
+    unsigned __int32 ulEventLogFlags;
+    unsigned __int32 ulAnnounceFlags;
+    unsigned __int32 ulTimeJumpAuditOffset;
+    unsigned __int32 ulMinPollInterval;
+    unsigned __int32 ulMaxPollInterval;
+    unsigned __int32 ulMaxNegPhaseCorrection;
+    unsigned __int32 ulMaxPosPhaseCorrection;
+    unsigned __int32 ulMaxAllowedPhaseOffset;
+    unsigned __int32 ulEventLogFlagsFlag; 
+    unsigned __int32 ulAnnounceFlagsFlag;
+    unsigned __int32 ulTimeJumpAuditOffsetFlag;
+    unsigned __int32 ulMinPollIntervalFlag;
+    unsigned __int32 ulMaxPollIntervalFlag;
+    unsigned __int32 ulMaxNegPhaseCorrectionFlag;
+    unsigned __int32 ulMaxPosPhaseCorrectionFlag;
+    unsigned __int32 ulMaxAllowedPhaseOffsetFlag;
+} W32TIME_CONFIGURATION_BASIC, *PW32TIME_CONFIGURATION_BASIC;
+ 
+typedef struct {
+    unsigned __int32 ulSize;
+    unsigned __int32 ulFrequencyCorrectRate;
+    unsigned __int32 ulPollAdjustFactor;
+    unsigned __int32 ulLargePhaseOffset;
+    unsigned __int32 ulSpikeWatchPeriod;
+    unsigned __int32 ulLocalClockDispersion;
+    unsigned __int32 ulHoldPeriod;
+    unsigned __int32 ulPhaseCorrectRate;
+    unsigned __int32 ulUpdateInterval;    
+    unsigned __int32 ulFrequencyCorrectRateFlag;
+    unsigned __int32 ulPollAdjustFactorFlag;
+    unsigned __int32 ulLargePhaseOffsetFlag;
+    unsigned __int32 ulSpikeWatchPeriodFlag;
+    unsigned __int32 ulLocalClockDispersionFlag;
+    unsigned __int32 ulHoldPeriodFlag;
+    unsigned __int32 ulPhaseCorrectRateFlag;
+    unsigned __int32 ulUpdateIntervalFlag;    
+} W32TIME_CONFIGURATION_ADVANCED, *PW32TIME_CONFIGURATION_ADVANCED;
+ 
+typedef struct {
+    unsigned __int32 ulSize;
+    [string, unique] wchar_t* wszFileLogName;
+    [string, unique] wchar_t* wszFileLogEntries;
+    unsigned __int32 ulFileLogSize;    
+    unsigned __int32 ulFileLogFlags;
+    unsigned __int32 ulFileLogNameFlag;    
+    unsigned __int32 ulFileLogEntriesFlag;    
+    unsigned __int32 ulFileLogSizeFlag;
+    unsigned __int32 ulFileLogFlagsFlag; 
+} W32TIME_CONFIGURATION_DEFAULT, *PW32TIME_CONFIGURATION_DEFAULT;
+ 
+typedef struct {
+    unsigned __int32 ulSize;
+    unsigned __int32 ulInputProvider;
+    unsigned __int32 ulEnabled;
+    [string, unique] wchar_t* wszDllName;
+    [string, unique] wchar_t* wszProviderName; 
+    unsigned __int32 ulDllNameFlag;
+    unsigned __int32 ulProviderNameFlag;
+    unsigned __int32 ulInputProviderFlag;
+    unsigned __int32 ulEnabledFlag;
+    PW32TIME_PROVIDER_CONFIG pProviderConfig; 
+} W32TIME_CONFIGURATION_PROVIDER, *PW32TIME_CONFIGURATION_PROVIDER;
+ 
+typedef struct {
+    unsigned __int32 ulSize;
+    W32TIME_CONFIGURATION_BASIC basicConfig;
+    W32TIME_CONFIGURATION_ADVANCED advancedConfig;
+    W32TIME_CONFIGURATION_DEFAULT defaultConfig; 
+    unsigned __int32 cProviderConfig;
+    [size_is(cProviderConfig)]
+        PW32TIME_CONFIGURATION_PROVIDER* pProviderConfig;
+    unsigned __int32 cEntries;
+    [size_is(cEntries)] PW32TIME_ENTRY pEntries;
+} W32TIME_CONFIGURATION_INFO, *PW32TIME_CONFIGURATION_INFO;
+ 
+typedef struct {
+    unsigned __int32 ulSize;
+    unsigned __int32 eLeapIndicator;
+    unsigned __int32 nStratum;
+    signed __int32 nPollInterval;
+    unsigned __int32 refidSource;
+    unsigned __int64 qwLastSyncTicks;
+    signed __int64 toRootDelay; 
+    unsigned __int64 tpRootDispersion;
+    signed __int32 nClockPrecision;
+    [string, unique] wchar_t* wszSource;
+    signed __int64 toSysPhaseOffset;
+    unsigned __int32 ulLcState; 
+    unsigned __int32 ulTSFlags;
+    unsigned __int32 ulClockRate; 
+    unsigned __int32 ulNetlogonServiceBits;    
+    unsigned __int32 eLastSyncResult;
+    unsigned __int64 tpTimeLastGoodSync;
+    unsigned __int32 cEntries;    
+    [size_is(cEntries)] PW32TIME_ENTRY pEntries; 
+} W32TIME_STATUS_INFO, *PW32TIME_STATUS_INFO;
+ 
+ 
+[
+    uuid(8fb6d884-2388-11d0-8c35-00c04fda2795),
+    version(4.1),
+    pointer_default(unique)
+]
+interface W32Time
+{
+ 
+// Opnum 0
+unsigned long 
+W32TimeSync(
+    [in] handle_t hBinding,
+    [in] unsigned long uWait,
+    [in] unsigned long ulFlags
+    );
+ 
+// Opnum 1
+unsigned long 
+W32TimeGetNetlogonServiceBits(
+    [in] handle_t hBinding
+    );
+ 
+// Opnum 2
+unsigned long 
+W32TimeQueryProviderStatus(
+    [in] handle_t hRPCBinding,
+    [in] unsigned __int32 ulFlags,
+    [in, string] wchar_t* pwszProvider,
+    [out, ref] PW32TIME_PROVIDER_INFO* pProviderInfo
+    );
+ 
+// Opnum 3
+unsigned long
+W32TimeQuerySource(
+    [in] handle_t hBinding,
+    [out, string] wchar_t** pwszSource
+    );
+ 
+// Opnum 4
+unsigned long
+W32TimeQueryProviderConfiguration(
+    [in] handle_t hBinding,
+    [in] unsigned __int32 ulFlags, 
+    [in, string] wchar_t* pwszProvider, 
+    [out, ref] PW32TIME_CONFIGURATION_PROVIDER*
+        pConfigurationProviderInfo
+    );
+ 
+// Opnum 5
+unsigned long
+W32TimeQueryConfiguration(
+    [in] handle_t hBinding,
+    [out, ref] PW32TIME_CONFIGURATION_INFO* pConfigurationInfo
+    );
+ 
+// Opnum 6
+unsigned long
+W32TimeQueryStatus(
+    [in] handle_t hBinding,
+    [out, ref] PW32TIME_STATUS_INFO* pStatusInfo
+    );
+ 
+// Opnum 7
+unsigned long
+W32TimeLog(
+    [in] handle_t hBinding
+    );
+ 
+}

@@ -1,0 +1,52 @@
+<div class="content"><p> </p><p>All <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS objects</a></span> that are
+listed in <span><a href="7ed78a49-0ecc-42bd-9614-38b48676ebff" data-linktype="relative-path">Storage Management Objects</a></span>--except
+for the service object--are returned by means of enumeration objects. For an
+example of how these objects are created and used, see section <span><a href="65d3d695-dbbb-490c-9cd3-9d813865029b" data-linktype="relative-path">4.3</a></span>.</p><p>When the client calls a method to request an enumeration,
+the server creates an enumeration object that implements the <span><a href="29084d98-40c8-4a10-a45e-4cfc0d8f8f03" data-linktype="relative-path">IEnumVdsObject</a></span>
+interface and returns the interface pointer to the client to allow it to
+enumerate through the requested objects. The server maintains this object until
+the client releases all references to the interface. For each enumeration
+object, the server maintains the following information:</p><p>Objects Being Enumerated: A list of pointers to the VDS
+objects being enumerated.</p><ul><li><p><span><span> 
+</span></span>When the enumeration object is created, the server populates this
+list with the objects to return, dictated by the particular specification of
+the method that the client calls.</p>
+</li><li><p><span><span> 
+</span></span>The server does not list the same object more than once.</p>
+</li><li><p><span><span> 
+</span></span>After the list is populated, the server does not reorder the
+entries in the list.</p>
+</li><li><p><span><span> 
+</span></span>If a new VDS object is added to the server, the server does not
+add the object to the list of objects being enumerated.</p>
+</li><li><p><span><span> 
+</span></span>If a VDS object is removed from the server, the server does not
+remove the object from the list of objects being enumerated. If the client
+later accesses the removed object, the server returns VDS_E_OBJECT_DELETED
+whenever the client attempts to access the object interface methods.</p>
+</li></ul><p>Index: A value that keeps track of which object to return
+next to the client, when the client requests more objects from the enumeration.</p><ul><li><p><span><span> 
+</span></span>When the enumeration object is created, this value is initialized
+to the index of the first VDS object (whether this is 0, 1, or any other value
+is an implementation detail) in the list of objects being enumerated.</p>
+</li><li><p><span><span> 
+</span></span>If the client requests a certain number of objects from the
+enumeration by means of the IEnumVdsObject::Next (Opnum 3) method, the server
+returns the requested number of pointers to the objects in the list, starting
+at the current index value. However, if the server reaches the end of the list,
+the server returns the remaining pointers to the objects in the list, and
+indicates the actual number of objects that are returned to the client and the
+return code of S_FALSE. The server increments the index by the number of
+objects that are returned to the client.</p>
+</li><li><p><span><span> 
+</span></span>If the client requests to skip a certain number of objects in the
+enumeration by means of the IEnumVdsObject::Skip (Opnum 4) method, the server
+increments the index by that number.</p>
+</li><li><p><span><span> 
+</span></span>If the index goes past the end of the list, all subsequent
+requests for more objects from the enumeration will return zero pointers and a
+return code of S_FALSE until the enumeration is reset.</p>
+</li><li><p><span><span> 
+</span></span>If the client calls the IEnumVdsObject::Reset (Opnum 5) method,
+the server sets the index back to the first object in the list.</p>
+</li></ul></div>

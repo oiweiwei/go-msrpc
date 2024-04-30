@@ -1,0 +1,620 @@
+<div class="content"><p> </p><p>Each Record is represented in the following manner.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Timestamp</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>RecordType</p>
+  </td>
+  <td colspan="24">
+  <p>ForestTrustData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>RecordLen (4 bytes): </b>The length, in bytes, of
+the entire record.</p><p><b>Flags (4 bytes): </b>Individual bit flags that
+control how the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a></span> trust
+information in this record can be used.</p><dl>
+<dd>
+<p>If <b>RecordType</b> = 0 or 1, the <b>Flags</b>
+field can have one or more of the following bits, which are presented in
+little-endian byte order.</p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>T<br/>
+  D<br/>
+  C</p>
+  </td>
+  <td>
+  <p>T<br/>
+  D<br/>
+  A</p>
+  </td>
+  <td>
+  <p>T<br/>
+  DN</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>X:</b> Unused. Must be zero and
+ignored.</p>
+</dd>
+<dd>
+<p><b>TDN (LSA_TLN_DISABLED_NEW,
+0x00000001):</b> The entry is not yet enabled.</p>
+</dd>
+<dd>
+<p><b>TDA (LSA_TLN_DISABLED_ADMIN,
+0x00000002):</b> The entry is disabled by the administrator.</p>
+</dd>
+<dd>
+<p><b>TDC
+(LSA_TLN_DISABLED_CONFLICT, 0x00000004):</b> The entry is disabled due to a
+conflict with another trusted <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>.</p>
+</dd>
+<dd>
+<p>If <b>RecordType</b> = 2, the <b>Flags</b> field can
+have one or more of the following bits, which are presented in little-endian
+byte order.</p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>N D C</p>
+  </td>
+  <td>
+  <p>N D A</p>
+  </td>
+  <td>
+  <p>S D C</p>
+  </td>
+  <td>
+  <p>S D A</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>X:</b> Unused. MUST be zero and
+ignored.</p>
+</dd>
+<dd>
+<p><b>SDA
+(LSA_SID_DISABLED_ADMIN, 0x00000001):</b> The entry is disabled for <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span>-based
+matches by the administrator.</p>
+</dd>
+<dd>
+<p><b>SDC
+(LSA_SID_DISABLED_CONFLICT, 0x00000002):</b> The entry is disabled due to a SID
+conflict with another trusted domain.</p>
+</dd>
+<dd>
+<p><b>NDA
+(LSA_NB_DISABLED_ADMIN, 0x00000004):</b> The entry is disabled for NetBIOS
+name-based matches by the administrator.</p>
+</dd>
+<dd>
+<p><b>NDC
+(LSA_NB_DISABLED_CONFLICT, 0x00000008):</b> The entry is disabled due to a
+NetBIOS domain name conflict with another trusted domain.</p>
+</dd>
+<dd>
+<p>For RecordType = 2, NETBIOS_DISABLED_MASK is defined
+as a mask on the lower 4 bits of the <b>Flags</b> field.</p>
+</dd>
+<dd>
+<p>For all record types, LSA_FTRECORD_DISABLED_REASONS
+is defined as a mask on the lower 16 bits of the <b>Flags</b> field. Unused
+bits covered by the mask are reserved for future use.</p>
+</dd></dl><p><b>Timestamp (8 bytes): </b>A <span><a href="70ee934b-c9b9-4449-8aa3-6dfe9cef3eff" data-linktype="relative-path">FILETIME
+(section 5.59)</a></span> that contains the time when this entry was created.</p><p><b>RecordType (1 byte): </b>An 8-bit value that
+specifies the type of record contained in this specific entry. The allowed
+values are specified in section <span><a href="5514b72b-8452-446a-aa64-abb35536baca" data-linktype="relative-path">5.65</a></span>.</p><p><b>ForestTrustData (variable): </b>A variable length,
+type-specific record, depending on the RecordType value, that contains the
+specific type of data about the forest trust relationship.</p><dl>
+<dd>
+<p><b>Important</b>  The type-specific
+ForestTrustData record is not necessarily aligned to a 32-bit boundary. Each
+record starts at the byte following the <b>RecordType</b> field.</p>
+</dd>
+<dd>
+<p>There are three different type-specific records.
+Depending on the value of the <b>RecordType</b> field, the structure of the
+type-specific record differs as described below.</p>
+</dd></dl><ul><li><p><span><span>  </span></span>If
+RecordType = 0 or RecordType = 1, then the type-specific record is represented
+in the following manner.</p>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NameLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Name
+  (variable length)...</p>
+  </td>
+ </tr>
+</tbody></table>
+<p><b>NameLen:</b> The length, in bytes, of the <b>Name</b>
+field.</p>
+<p><b>Name:</b> The top-level name of the trusted
+forest, in UTF-8 format.</p>
+</li><li><p><span><span>  </span></span>If
+RecordType = 2, then the type-specific record is represented in the following
+manner. Note that the record contains the following structures one after
+another. It is important to note that none of the data shown below is
+necessarily aligned to 32-bit boundaries.</p>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SidLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Sid
+  (variable length)...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DnsNameLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DnsName
+  (variable length)...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NetbiosNameLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NetbiosName
+  (variable length)...</p>
+  </td>
+ </tr>
+</tbody></table>
+<p><b>SidLen:</b> The length, in bytes, of the <b>Sid</b>
+field.</p>
+<p><b>Sid:</b> The SID of a
+domain in the trusted forest, specified as a <span><a href="13560cc2-27ff-43a0-9d6f-d686bccc5f3c" data-linktype="relative-path">SID</a></span> structure,
+which is defined in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">2.4.2</a></span>.</p>
+<p><b>DnsNameLen:</b> The length, in bytes, of the <b>DnsName</b>
+field.</p>
+<p><b>DnsName:</b> The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN (1)</a></span> of a domain
+in the trusted forest, in UTF-8 format.</p>
+<p><b>NetbiosNameLen:</b> The length, in bytes, of the <b>NetbiosName</b>
+field.</p>
+<p><b>NetbiosName:</b> The NetBIOS name of a domain in
+the trusted forest, in UTF-8 format.</p>
+</li></ul><ul><li><p><span><span> 
+</span></span>If RecordType is not one of the preceding values, then the
+type-specific record is represented in the following manner.</p>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BinaryDataLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BinaryData
+  (variable length)...</p>
+  </td>
+ </tr>
+</tbody></table>
+<p><b>BinaryDataLen:</b> The length, in bytes, of the <b>BinaryData</b>
+field.</p>
+<p><b>BinaryData:</b> Trusted forest data.</p>
+</li></ul></div>

@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p>The <b>TRUSTPOINT_STATE</b> enumeration identifies the
+current state of the life cycle of a DNSSEC trust point. The state of the trust
+point is determined by the states of its trust anchors and is given for
+informational purposes only; it does not affect the DNS or <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a></span>
+protocol.</p><dl>
+<dd>
+<div><pre> typedef enum
+ {
+     TRUSTPOINT_STATE_INITIALIZED,
+     TRUSTPOINT_STATE_DSPENDING,
+     TRUSTPOINT_STATE_ACTIVE,
+     TRUSTPOINT_STATE_DELETE_PENDING,
+     TRUSTPOINT_STATE_DELETED
+ }
+ TRUSTPOINT_STATE, *PTRUSTPOINT_STATE;
+</pre></div>
+</dd></dl><p><b>TRUSTPOINT_STATE_INITIALIZED:</b> Indicates a trust
+point that has no trust anchors but has child nodes that do have trust anchors.</p><p><b>TRUSTPOINT_STATE_DSPENDING:</b> Indicates a trust point
+that has only DS trust anchors and is therefore ineffective for DNSSEC
+operations.</p><p><b>TRUSTPOINT_STATE_ACTIVE:</b> Indicates a trust point
+that has one or more DNSKEY trust anchors. Queries covered by this trust point
+will be validated using the DNSKEY trust anchors.</p><p><b>TRUSTPOINT_STATE_DELETE_PENDING:</b> Indicates a
+trust point containing only revoked DNSKEY trust anchors. When the <span><a href="https://go.microsoft.com/fwlink/?LinkId=225980" data-linktype="external">[RFC5011]</a></span>
+remove-hold-down time is exceeded for all revoked trust anchors, this trust
+point will be deleted.</p><p><b>TRUSTPOINT_STATE_DELETED:</b> Reserved. MUST NOT be
+sent by the server, MUST be ignored by the receiver.</p><p><b>  </b></p></div>

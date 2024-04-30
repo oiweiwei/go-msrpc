@@ -1,0 +1,86 @@
+<div class="content"><p> </p><p>The NspiResortRestriction method applies a sort order to the
+objects in a restricted <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_a34b031c-18b2-40e1-acfa-3b73cc71e80b" data-linktype="relative-path">address book container</a></span>.</p><dl>
+<dd>
+<div><pre> long NspiResortRestriction(
+   [in] NSPI_HANDLE hRpc,
+   [in] DWORD Reserved,
+   [in, out] STAT* pStat,
+   [in] PropertyTagArray_r* pInMIds,
+   [in, out] PropertyTagArray_r** ppOutMIds
+ );
+</pre></div>
+</dd></dl><p><b>hRpc: </b>An <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+as specified in section <span><a href="67195f6a-2002-4d81-b279-ba8b0aefb4af" data-linktype="relative-path">2.3.9</a></span>.</p><p><b>Reserved: </b>A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value reserved for future use. Ignored by the server.</p><p><b>pStat: </b>A reference to a <span><a href="5902bec9-3124-4725-8a8f-1a50282ed023" data-linktype="relative-path">STAT</a></span>
+block describing a logical position in a specific address book container.</p><p><b>pInMIds: </b>A <span><a href="9dc42856-90da-4df9-85ca-f8307db84659" data-linktype="relative-path">PropertyTagArray_r</a></span>
+value. It holds a list of <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_42ecf4ed-a7e5-4044-a1f0-f67ca58fb4b6" data-linktype="relative-path">MIds</a></span> that comprise a
+restricted address book container.</p><p><b>ppOutMIds: </b>A PropertyTagArray_r value. On
+return, it holds a list of MIds that comprise a restricted address book
+container.</p><p><b>Return Values: </b>The server returns a long value
+specifying the return status of the method.</p><p>Exceptions Thrown</p><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>Server Processing Rules</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints: </p><ol><li><p><span>    </span>If the <b>CodePage</b>
+field of the input parameter <i>pStat</i> contains the value CP_WINUNICODE, the
+server MUST return one of the return values documented in section <span><a href="03bb2ea3-f2e9-4adb-ab46-751aca824b72" data-linktype="relative-path">2.2.2</a></span>. 
+No further constraints are applied to server processing of this method; in this
+case server behavior is undefined.  Note especially that there is no constraint
+on the data the server returns in any output parameter other than the return
+value, nor is there any constraint on how or if the server changes its state.</p>
+</li><li><p><span>    </span>If the <b>SortType</b>
+field of the input parameter <i>pStat</i> contains any value other than
+SortTypeDisplayName or SortTypePhoneticDisplayName, the server MUST return one
+of the return values documented in section 2.2.2.  No further constraints are
+applied to server processing of this method; in this case server behavior is
+undefined.  Note especially that there is no constraint on the data the server
+returns in any output parameter other than the return value, nor is there any
+constraint on how or if the server changes its state.</p>
+</li><li><p><span>    </span>If the server
+returns any return values other than Success, the server MUST return a NULL for
+the output parameter <i>ppOutMIds</i> and MUST NOT modify the value of the
+parameter <i>pStat</i></p>
+</li><li><p><span>    </span>The server MAY
+make additional validations as described in section <span><a href="39bcbcd7-fa18-4eb2-a2ae-c598b6683185" data-linktype="relative-path">5</a></span>. If the server
+chooses to limit the visibility of data based on these validations, the server
+MUST proceed as if that data did not exist in the address book. See the product
+behavior note cited in section <span><a href="36c0f768-1fdd-4709-9875-6c387b107560" data-linktype="relative-path">5.1</a></span> for more
+information.</p>
+</li><li><p><span>    </span>If the server
+does not support the SortTypePhoneticDisplayName and the <b>SortType</b> field
+of the input parameter <i>pStat</i> has the value SortTypePhoneticDisplayName,
+the server MUST return the value GeneralFailure.</p>
+</li><li><p><span>    </span>The server
+constructs an Explicit Table as follows:</p>
+<ol><li><p><span>   
+</span>The server locates all the objects specified in the Explicit Table
+specified by the input value <i>pInMIds</i>. The server MUST ignore any MIds
+that do not specify an object.</p>
+</li><li><p><span>   
+</span>For each such object located, a row is inserted into the constructed
+Explicit Table.</p>
+</li><li><p><span>   
+</span>The server MUST sort the rows in the constructed explicit table by the
+property specified in the <b>SortType</b> field of the input parameter <i>pStat</i>.</p>
+</li></ol></li><li><p><span>    </span>The server MUST
+return the constructed Explicit Table in the output parameter <i>ppOutMIds</i>.</p>
+</li><li><p><span>    </span>The server MUST
+update the output parameter <i>pStat</i> as follows:</p>
+<ol><li><p><span>   
+</span>The <b>TotalRecs</b> field is set to the number of objects in the
+constructed Explicit Table.</p>
+</li><li><p><span>   
+</span>If the object specified by the <b>CurrentRec</b> field of the input
+parameter <i>pStat</i> is not in the constructed Explicit Table, the <b>CurrentRec</b>
+field of the output parameter <i>pStat</i> is set to the value
+MID_BEGINNING_OF_TABLE and the <b>NumPos</b> field of the output parameter <i>pStat</i>
+is set to the value 0.</p>
+</li><li><p><span>   
+</span>If the object specified by the <b>CurrentRec</b> field of the input
+parameter <i>pStat</i> is in the constructed Explicit Table, the <b>NumPos</b>
+field of the output parameter <i>pStat</i> is set to the numeric position in
+the Explicit Table.</p>
+</li><li><p><span>   
+</span>The server MUST NOT modify any other fields of the output parameter <i>pStat</i>.</p>
+</li></ol></li><li><p><span>    </span>If no other
+return values have been specified by these constraints, the server MUST return
+the return value Success.</p>
+</li></ol></div>

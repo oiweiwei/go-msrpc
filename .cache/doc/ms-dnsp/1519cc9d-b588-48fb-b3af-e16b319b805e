@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_POLICY_LEVEL</b> enumeration specifies that
+the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_5076749f-34a6-48a6-b051-8968a55f4d7b" data-linktype="relative-path">DNS
+Policy</a></span> is applied for a zone, <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_2f48e305-acf2-470e-b481-a0b7cc5fae4f" data-linktype="relative-path">cache</a></span> zone, or at server
+level.</p><dl>
+<dd>
+<div><pre> typedef enum
+ {
+     DnsPolicyServerLevel,
+     DnsPolicyZoneLevel,
+     DnsPolicyLevelMax
+ }DNS_RPC_POLICY_LEVEL;
+</pre></div>
+</dd></dl><p><b>DnsPolicyServerLevel:</b> The DNS Policy is
+applicable at the server level for all DNS operations.</p><p><b>DnsPolicyZoneLevel:</b> The DNS Policy is applicable
+only for a specified zone. It is applicable for all <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_8536bec5-df4d-4463-82bc-4434a7ea493f" data-linktype="relative-path">DNS operations</a></span>
+allowed for any zone. </p><dl>
+<dd>
+<p><b>Note</b>  For all DNS operations,
+Recursive Query is not possible for a zone because the zone never recurses for
+records it owns.</p>
+</dd></dl><p><b>DnsPolicyLevelMax:</b> Shows the maximum level
+types supported.</p></div>

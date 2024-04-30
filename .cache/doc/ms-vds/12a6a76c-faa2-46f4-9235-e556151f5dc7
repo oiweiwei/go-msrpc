@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The VDS_RECOVER_ACTION enumeration defines the set of valid
+client actions to be taken in response to a notification with target type
+VDS_NTT_SERVICE.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_RECOVER_ACTION
+ {
+   VDS_RA_UNKNOWN = 0,
+   VDS_RA_REFRESH = 1,
+   VDS_RA_RESTART = 2
+ } VDS_RECOVER_ACTION;
+</pre></div>
+</dd></dl><p><b>VDS_RA_UNKNOWN:  </b>Client action to be taken is
+unknown.</p><p><b>VDS_RA_REFRESH:  </b>Client action to be taken is
+to call the <span><a href="d1f1720b-56d0-426c-8966-39016275912c" data-linktype="relative-path">IVdsService::Refresh (section 3.4.5.2.4.10)</a></span>
+method.</p><p><b>VDS_RA_RESTART:  </b>Client action to be taken is
+to restart the service.</p></div>

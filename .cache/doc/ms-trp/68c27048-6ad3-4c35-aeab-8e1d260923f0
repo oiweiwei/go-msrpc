@@ -1,0 +1,669 @@
+<div class="content"><p>The LINEPROXYREQUEST packet contains parameter values of the
+application making the proxy request. Multiple TAPI call center functions
+generate a <a href="5221aa4e-0034-4756-bbc7-35c6c14b69a2" data-linktype="relative-path">LINE_PROXYREQUEST</a>
+packet that references a LINEPROXYREQUEST packet. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwClientMachineNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwClientMachineNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwClientUserNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwClientUserNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwClientAppAPIVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwRequestType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressIDSETAGENTGROUP
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">GroupListSETAGENTGROUP
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressIDSETAGENTSTATE
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAgentStateSETAGENTSTATE
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNextAgentStateSETAGENTSTATE
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressIDSETAGENTACTIVITY
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwActivityIDSETAGENTACTIVITY
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressIDGETAGENTCAPS
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">AgentCapsGETAGENTCAPS
+  (72 bytes, optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressIDGETAGENTSTATUS
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">AgentStatusGETAGENTSTATUS
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressIDAGENTSPECIFIC
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAgentExtensionIDIndexAGENTSPECIFIC
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSizeAGENTSPECIFIC
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">ParamsAGENTSPECIFIC
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressIDGETAGENTACTIVITYLIST
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">ActivityListGETAGENTACTIVITYLIST
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressIDGETAGENTGROUPLIST
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">GroupListGETAGENTACTIVITYLIST
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hAgentCREATEAGENT
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAgentIDSizeCREATEAGENT
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAgentIDOffsetCREATEAGENT
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAgentPINSizeCREATEAGENT
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAgentPINOffsetCREATEAGENT
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hAgentSETAGENTSTATEEX
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAgentStateSETAGENTSTATEEX
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNextAgentStateSETAGENTSTATEEX
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hAgentSETAGENTMEASUREMENTPERIOD
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMeasurementPeriodSETAGENTMEASUREMENTPERIOD
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hAgentGETAGENTINFO
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">AgentInfoGETAGENTINFO
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hAgentSessionCREATEAGENTSESSION
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAgentPINSizeCREATEAGENTSESSION
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAgentPINOffsetCREATEAGENTSESSION
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hAgentCREATEAGENTSESSION
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">GroupIDCREATEAGENTSESSION
+  (16 bytes, optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwWorkingAddressIDCREATEAGENTSESSION
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hAgentGETAGENTSESSIONLIST
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">SessionListGETAGENTSESSIONLIST
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hAgentSessionGETAGENTSESSIONINFO
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">SessionInfoGETAGENTSESSIONINFO
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hAgentSessionSETAGENTSESSIONSTATE
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAgentSessionStateSETAGENTSESSIONSTATE
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNextAgentSessionStateSETAGENTSESSIONSTATE
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">GroupIDGETQUEUELIST
+  (16 bytes, optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">QueueListGETQUEUELIST
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwQueueIDSETQUEUEMEASUREMENTPERIOD
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMeasurementPeriodSETQUEUEMEASUREMENTPERIOD
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwQueueIDGETQUEUEINFO
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">QueueInfoGETQUEUEINFO
+  (52 bytes, optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">GroupListGETGROUPLIST
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwSize (4 bytes): </b>An unsigned 32-bit integer.
+The total number of bytes allocated by TAPI to contain the LINEPROXYREQUEST
+packet. The <b>dwTotalSize </b> member of any packet contained within
+LINEPROXYREQUEST (for example, <a href="038bbda5-b88d-43d0-965e-983579f9ed7e" data-linktype="relative-path">LINEAGENTCAPS</a>) reflects
+only the number of bytes allocated for that specific packet. The total size, in
+bytes, of the <i>Params</i> parameter block. </p><p><b>dwClientMachineNameSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> machine name string,
+including the terminating null character. </p><p><b>dwClientMachineNameOffset (4 bytes): </b>An
+unsigned 32-bit integer. The offset from the beginning of the packet to a
+null-terminated string identifying the client machine that made this request.
+The size of the string MUST be specified by <b>dwClientMachineNameSize</b>. </p><p><b>dwClientUserNameSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the client user name string, including
+the terminating null character.</p><p><b>dwClientUserNameOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of the packet to a
+null-terminated string identifying the user under whose account the application
+is running on the client machine. The size of the string MUST be specified by <b>dwClientUserNameSize</b>.</p><p><b>dwClientAppAPIVersion (4 bytes): </b>An unsigned
+32-bit integer. The highest TAPI version supported by the application that made
+the request. The proxy handler SHOULD restrict the contents of any data
+returned to the application to those members and values that were defined in
+this, or earlier, versions of TAPI. </p><p><b>dwRequestType (4 bytes): </b>An unsigned 32-bit
+integer. This field MUST use one of the <a href="58b3ad5f-8226-4568-b430-c01ad945d26f" data-linktype="relative-path">LINEPROXYREQUEST_Constants</a>.
+Identifies the type of function and the union component that defines the
+remaining data in the packet. </p><p><b>dwAddressIDSETAGENTGROUP (4 bytes): </b>An
+unsigned 32-bit integer. The identifier of the address for which the agent is
+to be set. This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_SETAGENTGROUP.</p><p><b>GroupListSETAGENTGROUP (variable): </b>A packet of
+type <a href="3c5e122b-b903-48c9-8b97-0078eae5c896" data-linktype="relative-path">LINEAGENTGROUPLIST</a>.
+The offsets within this packet are relative to the beginning of
+SetAgent.GroupList rather than to the beginning of the LINEPROXYREQUEST packet.
+This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_SETAGENTGROUP.</p><p><b>dwAddressIDSETAGENTSTATE (4 bytes): </b>An
+unsigned 32-bit integer. The identifier of the address for which the agent
+state is to be set. This field is present only when <b>dwRequestType</b> is set
+to LINEPROXYREQUEST_SETAGENTSTATE.</p><p><b>dwAgentStateSETAGENTSTATE (4 bytes): </b>An
+unsigned 32-bit integer. The new agent state, or 0 to leave the agent state
+unchanged. This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_SETAGENTSTATE.</p><p><b>dwNextAgentStateSETAGENTSTATE (4 bytes): </b>An
+unsigned 32-bit integer. The new next agent state, or 0 to use the default next
+state associated with the specified agent state. This field is present only
+when <b>dwRequestType</b> is set to LINEPROXYREQUEST_SETAGENTSTATE.</p><p><b>dwAddressIDSETAGENTACTIVITY (4 bytes): </b>An
+unsigned 32-bit integer. The identifier of the address for which the agent
+activity is to be set. This field is present only when <b>dwRequestType</b> is
+set to LINEPROXYREQUEST_SETAGENTACTIVITY.</p><p><b>dwActivityIDSETAGENTACTIVITY (4 bytes): </b>An
+unsigned 32-bit integer. The identifier for the activity being selected. This
+field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_SETAGENTACTIVITY.</p><p><b>dwAddressIDGETAGENTCAPS (4 bytes): </b>An unsigned
+32-bit integer. The identifier of the address for which the agent capabilities
+are to be retrieved. This field is present only when <b>dwRequestType</b> is
+set to LINEPROXYREQUEST_GETAGENTCAPS.</p><p><b>AgentCapsGETAGENTCAPS (72 bytes): </b>The packet
+of type LINEAGENTCAPS. The offsets within this packet are relative to the
+beginning of GetAgentCaps.AgentCaps rather than to the beginning of the
+LINEPROXYREQUEST packet. This field is present only when <b>dwRequestType</b>
+is set to LINEPROXYREQUEST_GETAGENTCAPS.</p><p><b>dwAddressIDGETAGENTSTATUS (4 bytes): </b>An
+unsigned 32-bit integer. The identifier of the address for which the agent
+status is to be retrieved. This field is present only when <b>dwRequestType</b>
+is set to LINEPROXYREQUEST_GETAGENTSTATUS. </p><p><b>AgentStatusGETAGENTSTATUS (variable): </b>The
+packet of type <a href="5f081918-c52e-4f6a-b000-ed75d4f64fa5" data-linktype="relative-path">LINEAGENTSTATUS</a>.
+The offsets within this packet are relative to the beginning of
+SetAgentStatus.AgentStatus rather than to the beginning of the LINEPROXYREQUEST
+packet. This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_GETAGENTSTATUS.</p><p><b>dwAddressIDAGENTSPECIFIC (4 bytes): </b>An
+unsigned 32-bit integer. The identifier of the address for which the agent
+status is to be retrieved. This field is present only when <b>dwRequestType</b>
+is set to LINEPROXYREQUEST_AGENTSPECIFIC.</p><p><b>dwAgentExtensionIDIndexAGENTSPECIFIC (4 bytes): </b>An
+unsigned 32-bit integer. The index of the handler extension being invoked; the
+identifier&#39;s position within the array of extension identifiers returned in
+LINEAGENTCAPS. This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_AGENTSPECIFIC.</p><p><b>dwSizeAGENTSPECIFIC (4 bytes): </b>An unsigned
+32-bit integer. The total size, in bytes, of the <i>Params</i> parameter block.
+This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_AGENTSPECIFIC.</p><p><b>ParamsAGENTSPECIFIC (variable): </b>The block of
+memory that includes the contents passed to the handler from the application.
+This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_AGENTSPECIFIC.</p><p><b>dwAddressIDGETAGENTACTIVITYLIST (4 bytes): </b>An
+unsigned 32-bit integer. The identifier of the address for which the agent
+activity list is to be retrieved. This field is present only when <b>dwRequestType</b>
+is set to LINEPROXYREQUEST_GETAGENTACTIVITYLIST. </p><p><b>ActivityListGETAGENTACTIVITYLIST (variable): </b>The
+packet of type <a href="457724d7-4e19-49c5-b296-a90eb574e2ab" data-linktype="relative-path">LINEAGENTACTIVITYLIST</a>.
+The offsets within this packet are relative to the beginning of
+GetAgentActivityList.ActivityList rather than to the beginning of the
+LINEPROXYREQUEST packet. This field is present only when <b>dwRequestType</b>
+is set to LINEPROXYREQUEST_GETAGENTACTIVITYLIST.</p><p><b>dwAddressIDGETAGENTGROUPLIST (4 bytes): </b>An
+unsigned 32-bit integer. Identifier of the address for which the agent group
+list is to be retrieved. This field is present only when dwRequestType is set
+to LINEPROXYREQUEST_GETAGENTGROUPLIST. </p><p><b>GroupListGETAGENTACTIVITYLIST (variable): </b>The
+packet of type LINEAGENTGROUPLIST. The offsets within this packet are relative
+to the beginning of GetAgentGroupList.GroupList rather than to the beginning of
+the LINEPROXYREQUEST packet. This field is present only when <b>dwRequestType</b>
+is set to LINEPROXYREQUEST_GETAGENTGROUPLIST.</p><p><b>hAgentCREATEAGENT (4 bytes): </b>A <a href="cfff4a62-a169-4ddf-9047-7695b4488044" data-linktype="relative-path">HAGENT</a>. The unique
+identifier for an agent. It is the responsibility of the agent handler to
+generate and maintain the uniqueness of this identifier. This field is present
+only when <b>dwRequestType</b> is set to LINEPROXYREQUEST_CREATEAGENT. </p><p><b>dwAgentIDSizeCREATEAGENT (4 bytes): </b>An
+unsigned 32-bit integer. The size, in bytes, of the agent ID string. This field
+is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_CREATEAGENT.</p><p><b>dwAgentIDOffsetCREATEAGENT (4 bytes): </b>An
+unsigned 32-bit integer. The offset from the beginning of the field <b>hAgentCREATEAGENT</b>
+to a null-terminated string that specifies the ID of the agent. The size of the
+string MUST be specified by <b>dwAgentIDSize</b>. This field is present only
+when <b>dwRequestType</b> is set to LINEPROXYREQUEST_CREATEAGENT.</p><p><b>dwAgentPINSizeCREATEAGENT (4 bytes): </b>An
+unsigned 32-bit integer. The size, in bytes, of the PIN string, including the
+null terminator. This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_CREATEAGENT.</p><p><b>dwAgentPINOffsetCREATEAGENT (4 bytes): </b>An
+unsigned 32-bit integer. The offset from the beginning of the field <b>hAgentCREATEAGENT</b>
+to a null-terminated string that specifies the PIN or password of the agent.
+The size of the string MUST be specified by <b>dwAgentPINSize</b>. This field
+is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_CREATEAGENT.</p><p><b>hAgentSETAGENTSTATEEX (4 bytes): </b>A HAGENT. The
+unique identifier for an agent. It is the responsibility of the agent handler
+to generate and maintain the uniqueness of this identifier. This field is
+present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_SETAGENTSTATEEX.</p><p><b>dwAgentStateSETAGENTSTATEEX (4 bytes): </b>An
+unsigned 32-bit integer. MUST use one of the <a href="f62aec17-f4d9-45a2-b1c3-9303eaa4841a" data-linktype="relative-path">LINEAGENTSTATEEX_Constants</a>.
+This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_SETAGENTSTATEEX.</p><p><b>dwNextAgentStateSETAGENTSTATEEX (4 bytes): </b>An
+unsigned 32-bit integer. This field MUST use one of the
+LINEAGENTSTATEEX_Constants. This field is present only when <b>dwRequestType</b>
+is set to LINEPROXYREQUEST_SETAGENTSTATEEX.</p><p><b>hAgentSETAGENTMEASUREMENTPERIOD (4 bytes): </b>A
+HAGENT. The unique identifier for an agent. It is the responsibility of the
+agent handler to generate and maintain the uniqueness of this identifier. This field
+is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_SETAGENTMEASUREMENTPERIOD.</p><p><b>dwMeasurementPeriodSETAGENTMEASUREMENTPERIOD (4
+bytes): </b>An unsigned 32-bit integer. The period, in seconds, for which the
+switch or implementation stores and calculates information. For example, <b>dwNumberOfACDCalls</b>
+holds the number of calls the agent handled; <b>dwMeasurementPeriod</b>
+indicates if this value referenced the calls handled in the last hour, day, or
+month. This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_SETAGENTMEASUREMENTPERIOD.</p><p><b>hAgentGETAGENTINFO (4 bytes): </b>A HAGENT. The
+unique identifier for an agent. It is the responsibility of the agent handler
+to generate and maintain the uniqueness of this identifier. This field is
+present only when <b>dwRequestType</b> is set to LINEPROXYREQUEST_GETAGENTINFO.</p><p><b>AgentInfoGETAGENTINFO (variable): </b>The packet
+of type <a href="d63ca30a-2d14-481c-8735-cfd09249eba8" data-linktype="relative-path">LINEAGENTINFO</a>.
+This field is present only when <b>dwRequestType</b> is set to LINEPROXYREQUEST_GETAGENTINFO.</p><p><b>hAgentSessionCREATEAGENTSESSION (4 bytes): </b>A <a href="48b4be6d-870c-4ee8-b991-1c849e393060" data-linktype="relative-path">HAGENTSESSION</a>. The unique
+identifier for an agent session. This field is present only when <b>dwRequestType</b>
+is set to LINEPROXYREQUEST_CREATEAGENTSESSION.</p><p><b>dwAgentPINSizeCREATEAGENTSESSION (4 bytes): </b>An
+unsigned 32-bit integer. The size, in bytes, of the agent PIN string, including
+the null terminator. This field is present only when <b>dwRequestType</b> is
+set to LINEPROXYREQUEST_CREATEAGENTSESSION.</p><p><b>dwAgentPINOffsetCREATEAGENTSESSION (4 bytes): </b>An
+unsigned 32-bit integer. The offset from the beginning of the field <b>hAgentSessionCREATEAGENTSESSION</b>
+to a null-terminated string that specifies the PIN or password of the agent.
+The size of this string MUST be specified by <b>dwAgentPINSize</b>. This field
+is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_CREATEAGENTSESSION.</p><p><b>hAgentCREATEAGENTSESSION (4 bytes): </b>A HAGENT.
+The unique identifier for an agent. It is the responsibility of the agent
+handler to generate and maintain the uniqueness of this identifier. This field
+is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_CREATEAGENTSESSION.</p><p><b>GroupIDCREATEAGENTSESSION (16 bytes): </b><a href="../ms-dtyp/001eec5a-7f8b-4293-9e21-ca349392db40" data-linktype="relative-path">GUID</a> for
+an ACD group. It is the responsibility of the agent handler to generate and
+maintain the uniqueness of this identifier. This field is present only when <b>dwRequestType</b>
+is set to LINEPROXYREQUEST_CREATEAGENTSESSION.</p><p><b>dwWorkingAddressIDCREATEAGENTSESSION (4 bytes): </b>An
+unsigned 32-bit integer. The identifier of the address on which the agent will
+receive calls for this session. This field is present only when <b>dwRequestType</b>
+is set to LINEPROXYREQUEST_CREATEAGENTSESSION.</p><p><b>hAgentGETAGENTSESSIONLIST (4 bytes): </b>A HAGENT.
+The unique identifier for an agent. It is the responsibility of the agent
+handler to generate and maintain the uniqueness of this identifier. This field
+is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_GETAGENTSESSIONLIST. </p><p><b>SessionListGETAGENTSESSIONLIST (variable): </b>The
+packet of type <a href="c447791a-7248-4aad-b7d2-94484b4a8c7f" data-linktype="relative-path">LINEAGENTSESSIONLIST</a>.
+This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_GETAGENTSESSIONLIST.</p><p><b>hAgentSessionGETAGENTSESSIONINFO (4 bytes): </b>A
+HAGENTSESSION. The unique identifier for an agent session. It is the
+responsibility of the agent handler to generate and maintain the uniqueness of
+this identifier. This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_GETAGENTSESSIONINFO.</p><p><b>SessionInfoGETAGENTSESSIONINFO (variable): </b>The
+packet of type <a href="ea2e1321-b8eb-4a80-a484-e2704f8d8021" data-linktype="relative-path">LINEAGENTSESSIONINFO</a>.
+This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_GETAGENTSESSIONINFO.</p><p><b>hAgentSessionSETAGENTSESSIONSTATE (4 bytes): </b>A
+HAGENTSESSION. The unique identifier for an agent session. It is the
+responsibility of the agent handler to generate and maintain the uniqueness of
+this identifier. This field is present only when <b>dwRequestType</b>e is set
+to LINEPROXYREQUEST_SETAGENTSESSIONSTATE.</p><p><b>dwAgentSessionStateSETAGENTSESSIONSTATE (4 bytes):
+</b>An unsigned 32-bit integer. This field MUST use one of the <a href="af467253-1bf4-44a1-ae13-fd834de31bc8" data-linktype="relative-path">LINEAGENTSESSIONSTATE_Constants</a>.
+This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_SETAGENTSESSIONSTATE.</p><p><b>dwNextAgentSessionStateSETAGENTSESSIONSTATE (4
+bytes): </b>An unsigned 32-bit integer. This field MUST use one of the
+LINEAGENTSESSIONSTATE_Constants. This field is present only when <b>dwRequestType</b>
+is set to LINEPROXYREQUEST_SETAGENTSESSIONSTATE.</p><p><b>GroupIDGETQUEUELIST (16 bytes): </b>GUID for an
+ACD group. It is the responsibility of the agent handler to generate and
+maintain the uniqueness of this identifier. This field is present only when <b>dwRequestType</b>
+is set to LINEPROXYREQUEST_GETQUEUELIST. </p><p><b>QueueListGETQUEUELIST (variable): </b>The packet
+of type <a href="0e6c4e43-ab80-40f1-82af-d09bc8684512" data-linktype="relative-path">LINEQUEUELIST</a>.
+This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_GETQUEUELIST.</p><p><b>dwQueueIDSETQUEUEMEASUREMENTPERIOD (4 bytes): </b>An
+unsigned 32-bit integer. The unique identifier for a queue. It is the
+responsibility of the agent handler to generate and maintain the uniqueness of
+this identifier. This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_SETQUEUEMEASUREMENTPERIOD. </p><p><b>dwMeasurementPeriodSETQUEUEMEASUREMENTPERIOD (4
+bytes): </b>An unsigned 32-bit integer. The period, in seconds, for which the
+switch or implementation stores and calculates information. This field is
+present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_SETQUEUEMEASUREMENTPERIOD.</p><p><b>dwQueueIDGETQUEUEINFO (4 bytes): </b>An unsigned
+32-bit integer. The unique identifier for a queue. It is the responsibility of
+the agent handler to generate and maintain the uniqueness of this identifier.
+This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_GETQUEUEINFO.</p><p><b>QueueInfoGETQUEUEINFO (52 bytes): </b>The packet
+of type <a href="62e31f34-57b7-4a5b-a1ff-1ab52b669e26" data-linktype="relative-path">LINEQUEUEINFO</a>.
+This field is present only when <b>dwRequestType</b> is set to
+LINEPROXYREQUEST_GETQUEUEINFO.</p><p><b>GroupListGETGROUPLIST (variable): </b>The packet
+of type LINEAGENTGROUPLIST. This field is present only when <b>dwRequestType</b>
+is set to LINEPROXYREQUEST_GETGROUPLIST.</p><p>An address identifier is permanently associated with an
+address; the identifier remains constant across operating system upgrades.</p></div>

@@ -1,0 +1,77 @@
+<div class="content"><p>The ModifyNotification method modifies the value of an
+existing <b>notification period</b> in the file management job&#39;s list of <b>notification
+periods</b>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_FILE_MANAGEMENT_JOB | 0x06)] HRESULT ModifyNotification(
+   [in] long days,
+   [in] long newDays
+ );
+</pre></div>
+</dd></dl><p><b>days: </b>Contains the value of the <b>notification
+period</b> to modify.</p><p><b>newDays: </b>Contains the new value of the <b>notification
+period</b>.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_ NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified notification could not be found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045303</p>
+  <p>FSRM_E_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>The object already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons: </p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>days</i> parameter is not
+  a valid value; it is less than zero.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>newDays</i> parameter is
+  not a valid value; it is less than zero.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>days</i> is greater than or equal to 0.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>newDays</i> is greater than or equal to 0.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST perform the following steps in sequence or
+return a nonzero error code as follows:</p><ul><li><p><span><span> 
+</span></span>Find the <b>Notification period</b>, if any, in the file
+management job&#39;s list of <b>notification periods</b> whose <b>Notification
+Interval</b> is equivalent to <i>days</i>. For the remainder of these steps,
+this will be referred to as the <b>affected notification period</b>.</p>
+</li><li><p><span><span> 
+</span></span>If there is no <b>affected notification period</b>, the server
+MUST return FSRM_E_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>If the file management job&#39;s list of <b>notification periods</b>
+contains a <b>Notification period</b> whose <b>Notification Interval</b> is
+equivalent to <i>newDays</i>, the server MUST return FSRM_E_ALREADY_EXISTS.</p>
+</li><li><p><span><span> 
+</span></span>Set the <b>affected notification period&#39;s Notification interval</b>
+to <i>newDays</i>.</p>
+</li></ul></div>

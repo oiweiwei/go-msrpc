@@ -1,0 +1,118 @@
+<div class="content"><p> </p><p>The BaseRegDeleteKeyEx method is called by the client. In
+response, the server deletes the specified registry key.</p><dl>
+<dd>
+<div><pre> error_status_t BaseRegDeleteKeyEx(
+   [in] RPC_HKEY hKey,
+   [in] PRRP_UNICODE_STRING lpSubKey,
+   [in] REGSAM AccessMask,
+   [in] DWORD Reserved
+ );
+</pre></div>
+</dd></dl><p><b>hKey: </b>A handle to a key that MUST have been
+opened previously by using one of the open methods that are specified in
+section <span><a href="053e8515-dbae-47ea-a7c6-6dc054e3a48f" data-linktype="relative-path">3.1.5</a></span>: <span><a href="956a3052-6580-43ee-91aa-aaf61726149b" data-linktype="relative-path">OpenClassesRoot</a></span>,
+<span><a href="ec140ed9-4d00-4c03-a15c-c7245a497ed5" data-linktype="relative-path">OpenCurrentUser</a></span>,
+<span><a href="6cef29ae-21ba-423f-9158-05145ac80a5b" data-linktype="relative-path">OpenLocalMachine</a></span>,
+<span><a href="7b514c63-6cad-4fe1-9780-743959e377e6" data-linktype="relative-path">OpenPerformanceData</a></span>,
+<span><a href="694e57f4-da3e-4285-8b71-3181d71d6cd1" data-linktype="relative-path">OpenUsers</a></span>,
+<span><a href="c7186ae2-1c82-45e9-933b-97d9873657e8" data-linktype="relative-path">BaseRegCreateKey</a></span>,
+<span><a href="8cb48f55-19e1-4ea2-8d76-dd0f6934f0d9" data-linktype="relative-path">BaseRegOpenKey</a></span>,
+<span><a href="160767d7-83cf-4718-a4f3-d864faee3bb1" data-linktype="relative-path">OpenCurrentConfig</a></span>,
+<span><a href="44954f6d-ef2c-4ec1-a27d-32b9b87e3c8a" data-linktype="relative-path">OpenPerformanceText</a></span>,
+<span><a href="3626fa8a-b20f-4243-bf85-cdb615ed2ca0" data-linktype="relative-path">OpenPerformanceNlsText</a></span>.</p><p><b>lpSubKey: </b>A pointer to an <span><a href="c0c90f11-a4c4-496a-ac09-8a8a3697ceef" data-linktype="relative-path">RRP_UNICODE_STRING</a></span>
+structure that MUST specify the name of the key (as specified in section <span><a href="508e3d3e-1225-4075-be04-67680ea80497" data-linktype="relative-path">3.1.1</a></span>)
+to delete.</p><p><b>AccessMask: </b>A bit field that describes the wanted
+security access for the key.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>KEY_WOW64_64KEY</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>Explicitly delete the key in the 64-bit key namespace.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>KEY_WOW64_32KEY</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>Explicitly delete the key in the 32-bit key namespace.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved: </b>SHOULD be sent as 0 and MUST be
+ignored on receipt.</p><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000013</p>
+  <p>ERROR_WRITE_PROTECT</p>
+  </td>
+  <td>
+  <p>A read or write operation was attempted to a volume
+  after it was dismounted. The server can no longer service registry requests
+  because server shutdown has been initiated.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Server Operations</p><p>First, if the registry server can no longer service registry
+requests because server shutdown has been initiated (<b>SHUTDOWNINPROGRESS</b>
+is set to TRUE), the server MUST return ERROR_WRITE_PROTECT.</p><p>If the handle provided in the <i>hKey</i> parameter is not a
+valid open handle to a registry key, the server MUST then fail the method and
+return ERROR_INVALID_HANDLE.</p><p>The server then determines which key namespace to operate on
+(KEYS32 or KEYS64) by inspecting the value of the <i>AccessMask</i> parameter.
+the server MUST first check if both the KEY_WOW64_64KEY and KEY_WOW64_32KEY
+bits are set in the <i>AccessMask</i> parameter. If both KEY_WOW64_64KEY and
+KEY_WOW64_32KEY are set, the server MUST fail the method and return
+ERROR_INVALID_PARAMETER.</p><p>The server MUST then check to see if the key specified by
+the <i>hKey</i> parameter is a key that can only be operated on in the 64-bit
+key namespace (KEYS64). See section <span><a href="d962e3a6-30e1-4bb3-9663-cd4751604212" data-linktype="relative-path">3.1.1.4</a></span>.</p><p>If the key specified by the <i>hKey</i> parameter is a key
+that can only be operated on in the 64-bit key namespace (KEYS64), the server
+MUST ignore the KEY_WOW64_64KEY and KEY_WOW64_32KEY bits in the <i>AccessMask</i>
+parameter and operate on and delete the key in the 64-bit namespace (KEYS64).</p><p>Next, the server checks if the KEY_WOW64_32KEY is set in the
+<i>AccessMask</i> parameter. If the KEY_WOW64_32KEY is set in the <i>AccessMask</i>
+parameter, the server MUST operate on and delete the key in the 32-bit key
+namespace (KEYS32). If the KEY_WOW64_32KEY is not set in the <i>AccessMask</i>
+parameter, the server MUST operate on and delete the key in the 64-bit key
+namespace (KEYS64).</p><p>If the value of the <i>lpSubKey</i> parameter is NULL, the
+server MUST fail the method and return ERROR_INVALID_PARAMETER.</p><p>The server MUST then validate that the key indicated by <i>lpSubKey</i>
+does not have subkeys of its own. If the key indicated by <i>lpSubKey</i> does
+have child subkeys, then the server MUST fail the method and return
+ERROR_ACCESS_DENIED.</p><p>In response to this request from the client, for a
+successful operation, the server MUST delete the key specified by the <i>lpSubKey</i>
+parameter and return 0 to indicate success or an appropriate error code (as
+specified in [MS-ERREF]) to indicate an error.</p><p>The server MUST delete the registry key even if the subkey
+to be deleted is already in use and initialized in the Data Store before the deletion
+happens. The delete function will be successful even if other handles are open
+to the key. The data inside the <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_0e82f121-9fab-40e4-a8d9-aee009aa57b9" data-linktype="relative-path">hive</a></span> is revoked at
+delete key time and is not deferred until the last handle close operation.</p></div>

@@ -1,0 +1,99 @@
+import "ms-dtyp.idl";
+ 
+typedef struct _RPC_VERSION {
+    unsigned short MajorVersion;
+    unsigned short MinorVersion;
+} RPC_VERSION;
+ 
+typedef struct _RPC_SYNTAX_IDENTIFIER {
+    GUID        SyntaxGUID;
+    RPC_VERSION SyntaxVersion;
+} RPC_SYNTAX_IDENTIFIER;
+ 
+typedef [string, unique] wchar_t *STRING_T;
+ 
+typedef [string] wchar_t *NSI_STRING_BINDING_T;
+ 
+typedef [context_handle] void *NSI_NS_HANDLE_T;
+ 
+typedef [unique] GUID *NSI_UUID_P_T;
+ 
+typedef struct _NSI_BINDING_T {
+    NSI_STRING_BINDING_T string;
+    unsigned long   entry_name_syntax;
+    STRING_T        entry_name;
+} NSI_BINDING_T;
+ 
+typedef struct _NSI_BINDING_VECTOR_T {
+    unsigned long count;
+    [size_is(count)] NSI_BINDING_T binding[*];
+} NSI_BINDING_VECTOR_T;
+ 
+typedef [unique] NSI_BINDING_VECTOR_T *NSI_BINDING_VECTOR_P_T;
+ 
+typedef struct _NSI_UUID_VECTOR_T {
+    unsigned long count;
+    [size_is(count)] NSI_UUID_P_T uuid[*];
+} NSI_UUID_VECTOR_T;
+ 
+typedef [unique] NSI_UUID_VECTOR_T *NSI_UUID_VECTOR_P_T;
+ 
+ 
+[
+    uuid (e33c0cc4-0482-101a-bc0c-02608c6ba218),
+    version (1.0),
+    pointer_default (unique)
+]
+interface LocToLoc
+{
+    void I_nsi_lookup_begin(
+        [in]        handle_t              hrpcPrimaryLocatorHndl,
+        [in]        unsigned long         entry_name_syntax,
+        [in]        STRING_T               entry_name,
+        [in,unique] RPC_SYNTAX_IDENTIFIER *interfaceid,
+        [in,unique] RPC_SYNTAX_IDENTIFIER *xfersyntax,
+        [in]        NSI_UUID_P_T          obj_uuid,
+        [in]        unsigned long         binding_max_count,
+        [in]        unsigned long         MaxCacheAge,
+        [out]       NSI_NS_HANDLE_T       *import_context,
+        [out]       unsigned short        *status
+    );
+ 
+    void I_nsi_lookup_done(
+        [in]     handle_t        hrpcPrimaryLocatorHndl,
+        [in,out] NSI_NS_HANDLE_T *import_context,
+        [out]    unsigned short  *status
+    );
+ 
+    void I_nsi_lookup_next(
+        [in]  handle_t               hrpcPrimaryLocatorHndl,
+        [in]  NSI_NS_HANDLE_T        import_context,
+        [out] NSI_BINDING_VECTOR_P_T *binding_vector,
+        [out] unsigned short         *status
+    );
+ 
+    void I_nsi_entry_object_inq_next(
+        [in]  handle_t            hrpcPrimaryLocatorHndl,
+        [in]  NSI_NS_HANDLE_T     InqContext,
+        [out] NSI_UUID_VECTOR_P_T *uuid_vec,
+        [out] unsigned short      *status
+    );
+ 
+    void I_nsi_ping_locator(
+        [in]  handle_t      hLocatortoPing,
+        [out] error_status_t *status
+    );
+ 
+    void I_nsi_entry_object_inq_done(
+        [in,out] NSI_NS_HANDLE_T *InqContext,
+        [out]    unsigned short  *status
+    );
+ 
+    void I_nsi_entry_object_inq_begin(
+        [in]  handle_t        hrpcPrimaryLocatorHndl,
+        [in]  unsigned long   EntryNameSyntax,
+        [in]  STRING_T         EntryName,
+        [out] NSI_NS_HANDLE_T *InqContext,
+        [out] unsigned short  *status
+    );
+}

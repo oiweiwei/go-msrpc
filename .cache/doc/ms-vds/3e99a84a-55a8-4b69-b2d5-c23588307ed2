@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The VDS_PACK_STATUS enumeration defines the set of object
+status values for a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_a6543827-8d70-4e5a-a982-2fdc2e7f8bca" data-linktype="relative-path">disk pack</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_PACK_STATUS
+ {
+   VDS_PS_UNKNOWN = 0x00000000,
+   VDS_PS_ONLINE = 0x00000001,
+   VDS_PS_OFFLINE = 0x00000004
+ } VDS_PACK_STATUS;
+</pre></div>
+</dd></dl><p><b>VDS_PS_UNKNOWN:  </b>The status of the disk pack
+cannot be determined.</p><p><b>VDS_PS_ONLINE:  </b>The disk pack is available.</p><p><b>VDS_PS_OFFLINE:  </b>The disk pack is unavailable;
+the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disks</a></span>
+are not accessible.</p></div>

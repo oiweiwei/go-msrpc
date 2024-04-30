@@ -1,0 +1,32 @@
+<div class="content"><p> </p><p>The VDS_OBJECT_TYPE enumeration defines the set of valid <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS
+object</a></span> types.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_OBJECT_TYPE
+ {
+   VDS_OT_UNKNOWN = 0x00000000,
+   VDS_OT_PROVIDER = 0x00000001,
+   VDS_OT_PACK = 0x0000000A,
+   VDS_OT_VOLUME = 0x0000000B,
+   VDS_OT_VOLUME_PLEX = 0x0000000C,
+   VDS_OT_DISK = 0x0000000D,
+   VDS_OT_HBAPORT = 0x0000005A,
+   VDS_OT_INIT_ADAPTER = 0x0000005B,
+   VDS_OT_INIT_PORTAL = 0x0000005C,
+   VDS_OT_ASYNC = 0x00000064,
+   VDS_OT_ENUM = 0x00000065,
+   VDS_OT_VDISK = 0x000000C8,
+   VDS_OT_OPEN_VDISK = 0x000000C9
+ } VDS_OBJECT_TYPE;
+</pre></div>
+</dd></dl><p><b>VDS_OT_UNKNOWN:  </b>The object has an unknown
+type.</p><p><b>VDS_OT_PROVIDER:  </b>The object is a provider.</p><p><b>VDS_OT_PACK:  </b>The object is a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_890bb28d-df68-420f-a8bc-83899d34ad5c" data-linktype="relative-path">pack</a></span>
+(a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_142c4dda-fa9f-45a4-8dfd-61fb3944261e" data-linktype="relative-path">disk
+group</a></span>).</p><p><b>VDS_OT_VOLUME:  </b>The object is a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>.</p><p><b>VDS_OT_VOLUME_PLEX:  </b>The object is a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_d864e01b-9fb1-4beb-9864-8221d293445a" data-linktype="relative-path">plex</a></span>
+of a volume.</p><p><b>VDS_OT_DISK:  </b>The object is a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.</p><p><b>VDS_OT_HBAPORT:  </b>The object is an <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_49b98426-c07d-42ab-8ebc-bd088b107c24" data-linktype="relative-path">HBA</a></span>
+port.</p><p><b>VDS_OT_INIT_ADAPTER:  </b>The object is an <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9c4c0ab8-4689-4e6e-b774-4698ba30f4cf" data-linktype="relative-path">iSCSI
+initiator adapter</a></span>.</p><p><b>VDS_OT_INIT_PORTAL:  </b>The object is an <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_928ab82e-b1fd-4441-b739-175e2d3d7840" data-linktype="relative-path">iSCSI
+initiator portal</a></span>.</p><p><b>VDS_OT_ASYNC:  </b>The object maintains the status of an
+asynchronous VDS operation.</p><p><b>VDS_OT_ENUM:  </b>The object is an enumerator that
+contains an enumeration of other VDS objects.</p><p><b>VDS_OT_VDISK:  </b>The object is a virtual disk.</p><p><b>VDS_OT_OPEN_VDISK:  </b>The object represents an
+open <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual
+disk</a></span> (an OpenVirtualDisk object).</p></div>

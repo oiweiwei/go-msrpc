@@ -1,0 +1,157 @@
+<div class="content"><p> </p><p>The DRS_MSG_REPLICA_DEMOTIONREQ_V1 structure defines a
+request message sent to the <span><a href="8a2f0388-bdfb-4519-a8c3-384f27c11639" data-linktype="relative-path">IDL_DRSReplicaDemotion</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwFlags;
+   UUID uuidHelperDest;
+   [ref] DSNAME* pNC;
+ } DRS_MSG_REPLICA_DEMOTIONREQ_V1;
+</pre></div>
+</dd></dl><p><b>dwFlags:</b>  Zero or more of the
+following bit flags, which are presented in little-endian byte order.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>T</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>X:</b> Unused. MUST be zero.</p>
+</dd>
+<dd>
+<p><b>T (DS_REPLICA_DEMOTE_TRY_ALL_SRCS, 0x00000001):</b>
+MUST be set.</p>
+</dd></dl><p><b>uuidHelperDest:</b>  Unused. Must be <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ba500a5b-8c29-467c-a335-0980c8b11304" data-linktype="relative-path">NULL GUID</a></span>
+and ignored.</p><p><b>pNC:</b>  The <span><span><a href="385d478f-3eb6-4d2c-ac58-f25c4debdd86" data-linktype="relative-path"><span>DSNAME</span></a></span></span> of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_784c7cce-f782-48d8-9444-c9030ba86942" data-linktype="relative-path">NC</a></span>
+to replicate off.</p></div>

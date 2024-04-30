@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>This enumeration describes the data types that this protocol
+uses in generic structures. It is currently used only in section <span><a href="3af7dd01-b8c6-48b0-b179-824a10464911" data-linktype="relative-path">2.2.89</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_DATA_TYPE
+ {
+   FW_DATA_TYPE_EMPTY,
+   FW_DATA_TYPE_UINT8,
+   FW_DATA_TYPE_UINT16,
+   FW_DATA_TYPE_UINT32,
+   FW_DATA_TYPE_UINT64,
+   FW_DATA_TYPE_UNICODE_STRING
+ } FW_DATA_TYPE;
+</pre></div>
+</dd></dl><p><b>FW_DATA_TYPE_EMPTY:  </b>The value SHOULD be empty
+and not used. This symbolic constant has a value of zero.</p><p><b>FW_DATA_TYPE_UINT8:  </b>This data type is a <span><a href="../ms-dtyp/a88ed362-a905-4ed2-85f5-cfc8692c9842" data-linktype="relative-path">UINT8</a></span>,
+which is an 8-bit unsigned integer. This symbolic constant has a value of 1.</p><p><b>FW_DATA_TYPE_UINT16:  </b>This data type is a <span><a href="../ms-dtyp/6c1609ad-8592-45d3-9dfa-38e6a30ff203" data-linktype="relative-path">UINT16</a></span>,
+which is a 16-bit unsigned integer. This symbolic constant has a value of 2.</p><p><b>FW_DATA_TYPE_UINT32:  </b>This data type is a <span><a href="../ms-dtyp/362b8d72-2245-4c33-84a8-08c69f4c302f" data-linktype="relative-path">UINT32</a></span>,
+which is a 32-bit unsigned integer. This symbolic constant has a value of 3.</p><p><b>FW_DATA_TYPE_UINT64:  </b>This data type is a <span><a href="../ms-dtyp/a7b7720f-87eb-4add-9bcb-c6ff652778ae" data-linktype="relative-path">UINT64</a></span>,
+which is a 64-bit unsigned integer. This symbolic constant has a value of 4.</p><p><b>FW_DATA_TYPE_UNICODE_STRING:  </b>This data type
+is a <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string. This symbolic constant has a value of 5.</p></div>

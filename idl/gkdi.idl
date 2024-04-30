@@ -1,0 +1,17 @@
+import "ms-dtyp.idl";
+[uuid(b9785960-524f-11df-8b6d-83dcded72085)]
+[version(1.0)]
+[pointer_default(unique)]
+interface ISDKey {
+    HRESULT GetKey(
+        [in] handle_t hBinding,
+        [in] ULONG cbTargetSD,
+        [in] [size_is(cbTargetSD)] [ref] char * pbTargetSD,
+        [in] [unique] GUID * pRootKeyID,
+        [in] LONG L0KeyID,
+        [in] LONG L1KeyID,
+        [in] LONG L2KeyID,
+        [out] unsigned long * pcbOut,
+        [out] [size_is(, *pcbOut)] byte ** ppbOut);
+};
+ 

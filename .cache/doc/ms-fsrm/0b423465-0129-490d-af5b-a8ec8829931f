@@ -1,0 +1,37 @@
+<div class="content"><p>The LastModified (get) method retrieves the <b>last modified
+time</b> corresponding to the time the rule was last modified and returns S_OK
+upon successful completion.</p><dl>
+<dd>
+<div><pre> [propget, id(FSRM_PROPERTY(FSRM_DISPID_RULE | 0x07))] HRESULT LastModified(
+   [out, retval] DATE* lastModified
+ );
+</pre></div>
+</dd></dl><p><b>lastModified: </b>Pointer to a variable that upon
+completion contains the <b>last modified time</b> when the rule was last
+modified.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>lastModified</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>lastModified</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST set <i>lastModified</i> to the <b>last
+modified time</b> when the rule was last modified.</p></div>

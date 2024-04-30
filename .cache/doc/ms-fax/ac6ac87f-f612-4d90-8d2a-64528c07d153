@@ -1,0 +1,58 @@
+<div class="content"><p> </p><p>The fax client application calls the <b>FAX_GetServerActivity
+(Opnum 76)</b> method to retrieve the status of the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_0c5e7185-40c3-4e58-a8ac-7626ed078235" data-linktype="relative-path">fax queue</a></span> activity
+and event log reports.</p><p>The client MUST allocate memory for the pServerActivity
+argument. It MUST also set the <b>dwSizeOfStruct</b> field to the correct size,
+in bytes, of the <b>FAX_SERVER_ACTIVITY</b> structure as described in section <span><a href="86c61ea7-73a5-4e3d-a8f2-a293667ebb12" data-linktype="relative-path">2.2.19</a></span>.</p><p>In response, the server MUST validate that the client&#39;s fax
+user account has access to the server logs. On success, the server MUST return
+information about its activity and event logs.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_GetServerActivity(
+   [in] handle_t hFaxHandle,
+   [in, out, ref] PFAX_SERVER_ACTIVITY pServerActivity
+ );
+</pre></div>
+</dd></dl><p><b>hFaxHandle: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>)
+or <b>FAX_ConnectionRefCount</b> (section <span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>) method
+call used to connect to the fax server. </p><p><b>pServerActivity: </b>A pointer to a <b>FAX_SERVER_ACTIVITY</b> object.
+</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The client&#39;s fax user account does
+  not have the FAX_ACCESS_QUERY_CONFIG access rights required for this
+  operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. The <b>dwSizeOfStruct</b>
+  member of the <b>FAX_SERVER_ACTIVITY</b> specified by the <i>pServerActivity</i>
+  parameter on input is set by the client to an incorrect value. For more
+  details about the correct size to be filled in this member, see the <b>FAX_SERVER_ACTIVITY</b>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,32 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/ab0e203d-5f69-469c-8c57-7b6a0b1308b9" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_CONTROL_DATA_INFORMATION</b> union is used
+as input to the <b>NetrLogonControl2</b> method, as specified in section <a href="650a105f-6443-4eb0-839a-188708328fb0" data-linktype="relative-path">3.5.4.9.2</a>, and the <b>NetrLogonControl2Ex</b>
+method, as specified in section <a href="df7e5dd1-ebcc-4754-9da0-2e0bded82d29" data-linktype="relative-path">3.5.4.9.1</a>. This union
+selects a data type, based on the <i>FunctionCode</i> parameter passed to the
+method. For details about <i>FunctionCode</i> values, see <b>NetrLogonControl2Ex</b>,
+section 3.5.4.9.1.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union _NETLOGON_CONTROL_DATA_INFORMATION {
+   [case(5,6,9,10)] 
+     [string] wchar_t* TrustedDomainName;
+   [case(65534)] 
+     DWORD DebugFlag;
+   [case(8)] 
+     [string] wchar_t* UserName;
+   [default]     ;
+ } NETLOGON_CONTROL_DATA_INFORMATION,
+  *PNETLOGON_CONTROL_DATA_INFORMATION;
+</pre></div>
+</dd></dl><p><b>TrustedDomainName:</b> A pointer to a
+null-terminated <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a>
+string that contains a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trusted</a>
+<a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_45a1c9f1-0263-49a8-97c7-7aca1a99308c" data-linktype="relative-path">domain name</a>. Switched on
+the DWORD (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>)
+values 0x00000005, 0x00000006, 0x00000009, and 0x0000000A. The DWORD values are
+equivalent to <i>FunctionCode</i> values. For a complete list of the Netlogon
+function codes and their associated meanings, see the <b>NetrLogonControl2Ex</b>
+method (section 3.5.4.9.1).</p><p><b>DebugFlag:</b> A DWORD that contains an
+implementation-specific debug flag. Switched on the value 0x0000FFFE.</p><p><b>UserName:</b> A pointer to null-terminated Unicode
+string that contains a username. Switched on the DWORD value 0x00000008.</p></div>

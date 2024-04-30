@@ -1,0 +1,161 @@
+<div class="content"><p> </p><p>DSNAME is a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> for
+representing a <span><a href="a0d5477a-5229-46b9-890a-54b924d487d1" data-linktype="relative-path">DSName</a></span>, identifying
+a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_407dbc2c-3140-4e31-9085-0087e2d3bab2" data-linktype="relative-path">directory
+object</a></span> using the values of one or more of its <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a></span>
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attributes</a></span>:
+<span><a href="../ms-ada3/937eb5c6-f6b3-4652-a276-5d6bb8979658" data-linktype="relative-path">objectGUID</a></span>,
+<span><a href="../ms-ada3/afac8414-c614-4c6a-b316-41f5978308bd" data-linktype="relative-path">objectSid</a></span>,
+or <span><a href="../ms-ada1/56da5a9b-485d-4d7c-a226-1a54a43d9013" data-linktype="relative-path">distinguishedName</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned long structLen;
+   unsigned long SidLen;
+   GUID Guid;
+   NT4SID Sid;
+   unsigned long NameLen;
+   [range(0, 10485761)] [size_is(NameLen + 1)] 
+     WCHAR StringName[];
+ } DSNAME;
+</pre></div>
+</dd></dl><p><b>structLen:</b>  The length, in bytes, of
+the entire data structure.</p><p><b>SidLen:</b>  The number of bytes in the
+Sid field used to represent the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object&#39;s</a></span> objectSid
+attribute value. Zero indicates that the DSNAME does not identify the objectSid
+value of the directory object.</p><p><b>Guid:</b>  The value of the object&#39;s
+objectGUID attribute specified as a <span><a href="../ms-dtyp/49e490b8-f972-45d6-a3a4-99f924998d97" data-linktype="relative-path">GUID</a></span>
+structure, which is defined in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a></span>.
+If the values for all fields in the GUID structure are zero, this indicates
+that the DSNAME does not identify the objectGUID value of the directory object.</p><p><b>Sid:</b>  The value of the object&#39;s
+objectSid attribute, its <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security identifier</a></span>,
+specified as a <b>SID</b> structure, which is defined in [MS-DTYP] section <span><a href="../ms-dtyp/78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">2.4.2</a></span>.
+The size of this field is exactly 28 bytes, regardless of the value of <b>SidLen</b>,
+which specifies how many bytes in this field are used. Note that this is
+smaller than the theoretical size limit of a <b>SID</b>, which is 68 bytes.
+While Windows publishes a general SID format, Windows never uses that format in
+its full generality. 28 bytes is sufficient for a Windows SID.</p><p><b>NameLen:</b>  The number of characters
+in the <b>StringName</b> field, not including the terminating null character,
+used to represent the object&#39;s distinguishedName attribute value. Zero
+indicates that the DSNAME does not identify the distinguishedName value of the
+directory object.</p><p><b>StringName:</b>  A null-terminated <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+value of the object&#39;s distinguishedName attribute, as specified in <span><a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a></span>
+section <span><a href="../ms-adts/85397795-f089-4807-89be-24822570bc2c" data-linktype="relative-path">3.1.1.1.4</a></span>.
+This field always contains at least one character: the terminating null
+character. Each Unicode value is encoded as 2 bytes. The byte ordering is
+little-endian.<a id="Appendix_A_Target_48"></a><a aria-label="Product behavior note 48" href="e3b89556-4e48-467c-87b3-b4a737cc4999#Appendix_A_48" data-linktype="relative-path">&lt;48&gt;</a></p><p>The following table shows an alternative representation of
+this structure.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>structLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SidLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Guid.Data1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Guid.Data2</p>
+  </td>
+  <td colspan="16">
+  <p>Guid.Data3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Guid.Data4...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...Guid.Data4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Sid...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...Sid...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...Sid...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...Sid...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...Sid...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...Sid...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...Sid</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NameLen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StringName
+  (Variable Length) ...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Note</b>  All fields have little-endian byte
+ordering.</p></div>

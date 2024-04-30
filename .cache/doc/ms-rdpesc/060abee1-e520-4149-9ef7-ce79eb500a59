@@ -1,0 +1,12 @@
+<div class="content"><p>REDIR_SCARDCONTEXT represents a context to <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_c6f0d1a4-ae75-40b9-beef-baa419cb33b9" data-linktype="relative-path">Smart Cards for Windows</a> on
+the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_b9854a6a-0613-4b7a-95e4-c2b359b6021a" data-linktype="relative-path">TS client</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _REDIR_SCARDCONTEXT {
+   [range(0,16)] unsigned long cbContext;
+   [unique] [size_is(cbContext)] byte *pbContext;
+ } REDIR_SCARDCONTEXT;
+</pre></div>
+</dd></dl><p><b>cbContext:</b>  The number of bytes in
+the <b>pbContext</b> field.</p><p><b>pbContext:</b>  An array of <b>cbContext</b>
+bytes that contains Smart Cards for Windows context. The data is
+implementation-specific and MUST NOT be interpreted or changed on the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_6b91e507-0e17-41de-897c-356606d07088" data-linktype="relative-path">Protocol server</a>.</p></div>

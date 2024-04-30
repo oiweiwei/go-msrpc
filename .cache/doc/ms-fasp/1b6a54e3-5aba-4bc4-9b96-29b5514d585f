@@ -1,0 +1,69 @@
+<div class="content"><p> </p><p>The RRPC_FWDeletePhase2SAs (Opnum 30) method requests the
+server to delete all the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span>
+second-negotiation-phase <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_67cbf867-7a49-41f3-a68f-37b5f9035acb" data-linktype="relative-path">security associations</a></span>
+that match the specified <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoints</a></span>.</p><dl>
+<dd>
+<div><pre> unsigned long RRPC_FWDeletePhase2SAs(
+   [in] FW_CONN_HANDLE rpcConnHandle,
+   [in] FW_POLICY_STORE_HANDLE hPolicy,
+   [in, unique] PFW_ENDPOINTS pEndpoints
+ );
+</pre></div>
+</dd></dl><p><b>rpcConnHandle: </b>This parameter is an <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle that connects to the RPC interface of the Firewall and Advanced
+Security Protocol.</p><p><b>hPolicy: </b>This input parameter is an <span><a href="88f6ea4a-a946-4747-bb93-f142f1760752" data-linktype="relative-path">FW_POLICY_STORE_HANDLE</a></span>
+data type. The data type MUST contain an opened policy store handle,
+successfully opened with the RRPC_FWOpenPolicyStore (Opnum 0) method. This
+handle MUST be of the FW_STORE_TYPE_DYNAMIC store.</p><p><b>pEndpoints: </b>This parameter is a pointer to an <span><a href="2318781e-64bc-475d-9975-02cc9d56ef0b" data-linktype="relative-path">FW_ENDPOINTS</a></span>
+data type that can hold the addresses of the destination and source host. These
+addresses are used to match the security associations that will be deleted. If
+this parameter is NULL, the method deletes all IPsec second-phase security
+associations. If an endpoint is empty (that is, equal to 0), the endpoint
+matches any address.</p><p><b>Return Values: </b>The method returns 0 if
+successful; if failed, it returns a nonzero error code. The field can take any
+specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+The following return values are common.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The client does not have the required credentials to
+  call the method.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000032</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The store handle is not of the dynamic store.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the parameters of this method is incorrect, or
+  is required and not specified.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+If any lower-layer errors are reported by RPC exception, this exception is
+converted to an error code and reported to higher-layer protocols via the
+return value.</p><p>The server MUST validate that the client is authorized to
+perform the requested operation (as defined in section <span><a href="b0c93352-8371-4d63-abca-b0cc8dbcc3d7" data-linktype="relative-path">3.1.4</a></span>)
+before executing this method.</p></div>

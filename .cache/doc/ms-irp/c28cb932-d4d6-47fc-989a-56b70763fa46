@@ -1,0 +1,55 @@
+<div class="content"><p> </p><p> The <b>INETA_CACHE_STATISTICS</b> structure contains
+statistics for the <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_d9a0cf88-f6d7-4c52-a9fc-4ce5a7cb7260" data-linktype="relative-path">Internet protocol server&#39;s</a></span>
+caches.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="29ba1825-00cc-45cb-8b68-4758993395cd#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _INETA_CACHE_STATISTICS {
+   DWORD FilesCached;
+   DWORD TotalFilesCached;
+   DWORD FileHits;
+   DWORD FileMisses;
+   DWORD FileFlushes;
+   DWORDLONG CurrentFileCacheSize;
+   DWORDLONG MaximumFileCacheSize;
+   DWORD FlushedEntries;
+   DWORD TotalFlushed;
+   DWORD URICached;
+   DWORD TotalURICached;
+   DWORD URIHits;
+   DWORD URIMisses;
+   DWORD URIFlushes;
+   DWORD TotalURIFlushed;
+   DWORD BlobCached;
+   DWORD TotalBlobCached;
+   DWORD BlobHits;
+   DWORD BlobMisses;
+   DWORD BlobFlushes;
+   DWORD TotalBlobFlushed;
+ } INETA_CACHE_STATISTICS,
+  *LPINETA_CACHE_STATISTICS;
+</pre></div>
+</dd></dl><p><b>FilesCached:</b>  The current number of
+files whose content is in the Internet protocol server file cache.</p><p><b>TotalFilesCached:</b>  The total number
+of files whose content has been cached since Internet protocol server startup. </p><p><b>FileHits:</b>  The number of successful
+lookups in the Internet protocol server&#39;s file cache.</p><p><b>FileMisses:</b>  The number of
+unsuccessful lookups in the Internet protocol server&#39;s file cache. </p><p><b>FileFlushes:</b>  The number of file
+cache flushes since Internet protocol server startup.</p><p><b>CurrentFileCacheSize:</b>  The current
+number of bytes used for the Internet protocol server&#39;s file cache. </p><p><b>MaximumFileCacheSize:</b>  The maximum
+number of bytes used for the Internet protocol server&#39;s file cache. </p><p><b>FlushedEntries:</b>  The number of files
+that are marked for removal from the Internet protocol server cache after the
+current transfers are complete.</p><p><b>TotalFlushed:</b>  The number of files
+removed from the cache since Internet protocol server startup. </p><p><b>URICached:</b>  The number of URI
+information blocks currently cached by the Internet protocol server. </p><p><b>TotalURICached:</b>  The total number of
+URI information blocks ever added to the cache for the Internet protocol
+server.</p><p><b>URIHits:</b>   The number of successful
+lookups in the Internet protocol server&#39;s URI cache. </p><p><b>URIMisses:</b>  The number of
+unsuccessful lookups in the Internet protocol server&#39;s URI cache. </p><p><b>URIFlushes:</b>  The number of URI cache
+flushes since Internet protocol server startup. </p><p><b>TotalURIFlushed:</b>  The total number
+of URI information blocks that have been removed from the cache since Internet
+protocol server startup. </p><p><b>BlobCached:</b>  The number of <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_ad861812-8cb0-497a-80bb-13c95aa4e425" data-linktype="relative-path">BLOB</a></span>
+information blocks currently cached by the Internet protocol server. </p><p><b>TotalBlobCached:</b>  The total number
+of BLOB information blocks ever added to the Internet protocol server&#39;s cache.</p><p><b>BlobHits:</b>  The number of successful
+lookups in the Internet protocol server&#39;s BLOB cache. </p><p><b>BlobMisses:</b>  The number of
+unsuccessful lookups in the Internet protocol server&#39;s BLOB cache.</p><p><b>BlobFlushes:</b>  The number of BLOB
+cache flushes since Internet protocol server startup.</p><p><b>TotalBlobFlushed:</b>  The total number
+of BLOB information blocks that have been removed from the cache since Internet
+protocol server startup. </p></div>

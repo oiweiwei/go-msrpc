@@ -1,0 +1,450 @@
+<div class="content"><p>The LINECALLPARAMS packet describes parameters supplied when
+making calls using the <a href="c604a75e-13a8-4d2f-b312-fcb60a46df68" data-linktype="relative-path">MakeCall</a>
+packet. The LINECALLPARAMS packet is also used as a parameter in other
+operations, such as line <a href="2759c744-e040-4c5d-b4b5-215d391f0490" data-linktype="relative-path">Open</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwBearerMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMinRate</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMaxRate</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMediaMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallParamFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">DialParams
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwOrigAddressSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwOrigAddressOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDisplayableAddressSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDisplayableAddressOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCalledPartySize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCalledPartyOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCommentSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCommentOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUserUserInfoSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUserUserInfoOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwHighLevelCompSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwHighLevelCompOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwLowLevelCompSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwLowLevelCompOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevSpecificSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevSpecificOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwPredictiveAutoTransferStates</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTargetAddressSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTargetAddressOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSendingFlowspecSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSendingFlowspecOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwReceivingFlowspecSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwReceivingFlowspecOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDeviceClassSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDeviceClassOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDeviceConfigSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDeviceConfigOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallDataSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallDataOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNoAnswerTimeout</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallingPartyIDSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallingPartyIDOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressType
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, allocated to this packet. This size SHOULD
+be large enough to hold all the fixed and variably sized portions of this
+packet. </p><p><b>dwBearerMode (4 bytes): </b>An unsigned 32-bit
+integer. The value that specifies the bearer mode for the call. If <b>dwBearerMode</b>
+is set to any value except LINEBEARERMODE_PASSTHROUGH, the call will attempt to
+complete if that bearer mode is supported on the line being accessed. This
+member MUST use one or more of the <a href="e184f4e2-01dc-4189-859d-62dd27bb632b" data-linktype="relative-path">LINEBEARERMODE_Constants</a>. </p><p>If <b>dwBearerMode</b> is 0, the default value is
+LINEBEARERMODE_VOICE. </p><p><b>dwMinRate (4 bytes): </b>An unsigned 32-bit
+integer. The minimum data rate requested for the call&#39;s data stream, in bits
+per second. When making a call, the service provider attempts to provide the
+highest available rate in the requested range. If a specific data rate is
+required, both <b>dwMinRate</b> and <b>dwMaxRate</b> SHOULD be set to that
+value. If an application works best with one rate but is able to degrade to
+lower rates, the application SHOULD specify these as the maximum and minimum
+rates, respectively.</p><p><b>dwMaxRate (4 bytes): </b>An unsigned 32-bit
+integer. The value that specifies the data rate range requested for the call&#39;s
+data stream in bits per second. When making a call, the service provider
+attempts to provide the highest available rate in the requested range. If a
+specific data rate is required, both <b>dwMinRate</b> and <b>dwMaxRate</b>
+SHOULD be set to that value. If an application works best with one rate but is
+able to degrade to lower rates, the application SHOULD specify these as the
+maximum and minimum rates, respectively. If <b>dwMaxRate</b> is 0, the default
+value is as specified by the <b>dwMaxRate</b> member of the <a href="f236ea7a-c8a2-4681-b87c-9f0e07a01dc6" data-linktype="relative-path">LINEDEVCAPS</a> packet. This
+is the maximum rate supported by the device. </p><p><b>dwMediaMode (4 bytes): </b>An unsigned 32-bit
+integer. The value that specifies the expected media mode of the call. This
+member MUST use one or more of the <a href="e3b2104f-131d-4ead-9ded-45654ebfeac0" data-linktype="relative-path">LINEMEDIAMODE_Constants</a>.
+If <b>dwMediaMode</b> is 0, the default value is
+LINEMEDIAMODE_INTERACTIVEVOICE. </p><p><b>dwCallParamFlags (4 bytes): </b>An unsigned 32-bit
+integer. The value that specifies a collection of Boolean call-setup
+parameters. This member MUST use one or more of the <a href="5b7562da-89e1-4d32-9743-8554f47a17e3" data-linktype="relative-path">LINECALLPARAMFLAGS_Constants</a>.
+</p><p><b>dwAddressMode (4 bytes): </b>An unsigned 32-bit
+integer. The value that specifies the mode by which the originating address is
+specified. The <b>dwAddressMode</b> member cannot be LINEADDRESSMODE_ADDRESSID
+for the Open packet. This member MUST use one or more of the <a href="fa130dd9-e33e-4f7e-8274-574ae8c622d3" data-linktype="relative-path">LINEADDRESSMODE_Constants</a>.
+</p><p><b>dwAddressID (4 bytes): </b>An unsigned 32-bit
+integer. The address identifier of the originating address if <b>dwAddressMode</b>
+is set to LINEADDRESSMODE_ADDRESSID. </p><p><b>DialParams (16 bytes): </b>A <a href="6478c927-0d4b-43eb-8188-e87431058e6a" data-linktype="relative-path">LINEDIALPARAMS</a>. When a
+value of 0 is specified for this field, the default value for the field is used
+as indicated in the <b>DefaultDialParams</b> member of the LINEDEVCAPS packet.
+If a nonzero value is specified for a field that is outside the range specified
+by the corresponding fields in <b>MinDialParams</b> and <b>MaxDialParams</b> in
+the LINEDEVCAPS packet, the nearest value within the valid range is used
+instead. </p><p><b>dwOrigAddressSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field holding the originating
+address. </p><p><b>dwOrigAddressOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. The
+format of this address is dependent on the <b>dwAddressMode</b> member. </p><p><b>dwDisplayableAddressSize (4 bytes): </b>An
+unsigned 32-bit integer. The size, in bytes, of the displayable string
+including the null terminator.</p><p><b>dwDisplayableAddressOffset (4 bytes): </b>An
+unsigned 32-bit integer. The offset, in bytes, from the beginning of this
+packet that specifies the displayable string that is used for logging purposes.
+The content of this string is recorded in the <b>dwDisplayableAddressOffset</b>
+and <b>dwDisplayableAddressSize</b> fields of the call&#39;s <a href="6ff3773f-0fad-451c-bef4-5e225626f9aa" data-linktype="relative-path">LINECALLINFO</a> packet. </p><p><b>dwCalledPartySize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that holds called-party data. </p><p><b>dwCalledPartyOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. This
+data can be specified by the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a>
+that makes the call and is made available in the call&#39;s packet for logging
+purposes. The format of this field is that of <b>dwStringFormat</b>, as
+specified in LINEDEVCAPS. </p><p><b>dwCommentSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the field that holds comments about the call. </p><p><b>dwCommentOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, from the beginning of this packet. This data can
+be specified by the client that makes the call and is made available in the
+call&#39;s packet for logging purposes. The format of this field is that of <b>dwStringFormat</b>,
+as specified in LINEDEVCAPS. </p><p><b>dwUserUserInfoSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that holds user-user data. </p><p><b>dwUserUserInfoOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. The
+protocol discriminator field for the user-user data, if required, SHOULD appear
+as the first byte of the data pointed to by <b>dwUserUserInfoOffset</b> and
+MUST be accounted for in <b>dwUserUserInfoSize</b>. </p><p><b>dwHighLevelCompSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that holds high-level
+compatibility data. </p><p><b>dwHighLevelCompOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet for the
+HighLevelCompOffset. </p><p><b>dwLowLevelCompSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that holds low-level
+compatibility data. </p><p><b>dwLowLevelCompOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet for the
+LowLevelCompOffset. </p><p><b>dwDevSpecificSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that holds device-specific
+data. </p><p><b>dwDevSpecificOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet for the
+DevSpecificOffset. </p><p><b>dwPredictiveAutoTransferStates (4 bytes): </b>An
+unsigned 32-bit integer. The <a href="90b1b6c3-d544-49f4-b868-38aa7ccb7b09" data-linktype="relative-path">LINECALLSTATE_Constants</a>,
+entry into which cause the call to be blind-transferred to the specified target
+address. Set to 0 if automatic transfer is not desired.</p><p><b>dwTargetAddressSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of a string specifying the target address
+that can be dialed not using <b>dwAddressID</b>. Used in the case of certain
+automatic actions. In the case of predictive dialing, specifies the address to
+which the call SHOULD be automatically transferred. Set to 0 if automatic
+transfer is not desired. In the case of a No Hold Conference, specifies the
+address that SHOULD be added to the call. In the case of a One Step Transfer,
+specifies the address to dial on the consultation call. </p><p><b>dwTargetAddressOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of LINECALLPARAMS of a string
+specifying the target-dialable address not using <b>dwAddressID</b>. Used in
+the case of certain automatic actions. In the case of predictive dialing,
+specifies the address to which the call SHOULD be automatically transferred. Set
+to 0 if automatic transfer is not desired. In the case of a No Hold Conference,
+specifies the address that SHOULD be added to the call. In the case of a One
+Step Transfer, specifies the address to dial on the consultation call. </p><p><b>dwSendingFlowspecSize (4 bytes): </b>An unsigned
+32-bit integer. The total size, in bytes, of a Winsock2 <a href="b0353f6f-b187-4357-9b89-e4233f3e9a4b" data-linktype="relative-path">FLOWSPEC</a> packet followed
+by Winsock2 provider-specific data. </p><p><b>dwSendingFlowspecOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of LINECALLPARAMS of a Winsock2
+FLOWSPEC packet followed by Winsock2 provider-specific data. </p><p><b>dwReceivingFlowspecSize (4 bytes): </b>An unsigned
+32-bit integer. The total size, in bytes, of a Winsock2 FLOWSPEC packet. </p><p><b>dwReceivingFlowspecOffset (4 bytes): </b>An
+unsigned 32-bit integer. The offset from the beginning of LINECALLPARAMS of a
+Winsock2 FLOWSPEC packet.</p><p><b>dwDeviceClassSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of a null-terminated <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_79fa85ca-ac61-467c-b819-e97dc1a7a599" data-linktype="relative-path">ASCII</a> string (the size
+includes the NULL) that indicates the device class of the device whose
+configuration is specified in DeviceConfig. Valid device class strings are the
+same as those specified for the <a href="d4c635f0-06eb-4c52-b512-4a94c4bd46bb" data-linktype="relative-path">GetID</a> packet. </p><p><b>dwDeviceClassOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of LINECALLPARAMS of a
+null-terminated ASCII string (the size includes the NULL) that indicates the device
+class of the device whose configuration is specified in DeviceConfig. </p><p><b>dwDeviceConfigSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the opaque configuration packet pointed
+to by <b>dwDevConfigOffset</b>. This value is returned in the <b>dwStringSize</b>
+member in the <a href="6f9a33e6-6c4c-4d2a-91ee-fb1bf1e7fc20" data-linktype="relative-path">VARSTRING</a>
+packet returned by the <a href="84007a86-3773-408f-9e50-ea05ca765175" data-linktype="relative-path">GetDevConfig</a>
+packet. If the size is 0, the default device configuration is used. This
+enables the application to set the device configuration before the call is
+initiated. </p><p><b>dwDeviceConfigOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of LINECALLPARAMS to the opaque
+configuration packet. This value is returned in the <b>dwStringSize</b> field
+in the VARSTRING packet returned by GetDevConfig. If the size is 0, the default
+device configuration is used. This allows the application to set the device
+configuration before the call is initiated. </p><p><b>dwCallDataSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the call data set by the application to be
+initially attached to the call. </p><p><b>dwCallDataOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset from the beginning of LINECALLPARAMS of the call data set
+by the application to be initially attached to the call. </p><p><b>dwNoAnswerTimeout (4 bytes): </b>An unsigned
+32-bit integer. The number of seconds, after the completion of dialing, that
+the call SHOULD wait in the proceeding or ring-back state before it is
+abandoned by the service provider with a LINECALLSTATE_DISCONNECTED and
+LINEDISCONNECTMODE_NOANSWER. A value of 0 indicates that automatic call
+abandonment is not used. </p><p><b>dwCallingPartyIDSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of a null-terminated ASCII string (the size
+includes the NULL) that specifies the identity of the party placing the call. </p><p><b>dwCallingPartyIDOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of LINECALLPARAMS of a
+null-terminated ASCII string (the size includes the NULL) that specifies the
+identity of the party placing the call. If the content of the identifier is
+acceptable and a path is available, the service provider passes the identifier
+to the called party to indicate the identity of the calling party. </p><p><b>dwAddressType (4 bytes): </b>An unsigned 32-bit
+integer. The address type used for the call. This member is available only if
+the negotiated TAPI version is 3.0 or 3.1. </p><p><b>VarData (variable): </b>MUST contain:</p><ul><li><p><span><span>  </span></span>Originating
+address, as specified by <b>dwOrigAddressOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Displayable
+string that is used for logging purposes, as specified by <b>dwDisplayableAddressOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Called-party
+data, as specified by <b>dwCalledPartyOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Comments
+about the call, as specified by <b>dwCommentOffset</b>.</p>
+</li><li><p><span><span>  </span></span>User-user
+data, as specified by <b>dwUserUserInfoOffset</b>. </p>
+</li><li><p><span><span>  </span></span>High-level
+compatibility data, as specified by <b>dwHighLevelCompOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Low-level
+compatibility data, as specified by <b>dwLowLevelCompOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Device-specific
+information, as specified by <b>dwDevSpecificOffset</b>. </p>
+</li><li><p><span><span>  </span></span>Target-dialable
+address, as specified by <b>dwTargetAddressOffset</b>.</p>
+</li><li><p><span><span>  </span></span>A
+FLOWSPEC packet, as specified by <b>dwSendingFlowspecOffset</b> and <b>dwReceivingFlowspecOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Device
+class of the device, as specified by <b>dwDeviceClassOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Opaque
+configuration packet, as specified by <b>dwDeviceConfigOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Call
+data set by the application to be initially attached to the call, as specified
+by <b>dwCallDataOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Identity
+of the party placing the call, as specified by <b>dwCallingPartyIDOffset</b>.</p>
+</li></ul><p>Device-specific extensions SHOULD use the <b>dwDevSpecificSize</b>
+and <b>dwDevSpecificOffset</b> members of this packet. </p><p>This packet is used as a parameter to the MakeCall packet
+when setting up a call. Its fields enable the application to specify a variety
+of ISDN call-setup parameters. If no LINECALLPARAMS packet is supplied to
+MakeCall, a default POTS voice-grade call is requested with the default values
+listed above. </p><p><b>Note</b>  The members <b>dwOrigAddressSize</b>
+through <b>dwDevSpecificOffset</b> are ignored when an <i>lpCallParams</i>
+parameter is specified with the Open function.</p></div>

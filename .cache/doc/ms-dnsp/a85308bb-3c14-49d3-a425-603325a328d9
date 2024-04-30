@@ -1,0 +1,70 @@
+<div class="content"><p> </p><p>The DNS_RPC_RECORD_MAIL_ERROR structure contains information
+about a DNS record of any of the following types: </p><ul><li><p><span><span> 
+</span></span>DNS_TYPE_MINFO</p>
+</li><li><p><span><span> 
+</span></span>DNS_TYPE_RP</p>
+</li></ul><p>This record MUST be formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>nameMailBox
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ErrorMailBox
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>nameMailBox (variable): </b>A structure of type
+DNS_RPC_NAME (section <span><a href="3fd41adc-c69e-407b-979e-721251403132" data-linktype="relative-path">2.2.2.2.1</a></span>)
+containing the RMAILBX value specified in section 3.3.7 of <span><a href="https://go.microsoft.com/fwlink/?LinkId=90264" data-linktype="external">[RFC1035]</a></span>
+for an MINFO record, or the mbox-dname value specified in section 2.2 of <span><a href="https://go.microsoft.com/fwlink/?LinkId=106947" data-linktype="external">[RFC1183]</a></span>
+for an RP record.</p><p><b>ErrorMailBox (variable): </b>A structure of type
+DNS_RPC_NAME (section 2.2.2.2.1) containing the EMAILBX value specified in
+section 3.3.7 of [RFC1035] for an MINFO record, or the txt-dname value
+specified in section 2.2 of [RFC1183] for an RP record.</p></div>

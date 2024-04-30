@@ -1,0 +1,19 @@
+import "ms-dtyp.idl";
+import "ms-lsat.idl";
+ 
+typedef struct _LSAPR_WRAPPED_CAPID_SET {
+    ULONG Entries;
+    [size_is(Entries)] LSAPR_SID_INFORMATION * SidInfo;
+} LSAPR_WRAPPED_CAPID_SET;
+ 
+ 
+[uuid(afc07e2e-311c-4435-808c-c483ffeec7c9)]
+[version(1.0)]
+[pointer_default(unique)]
+[ms_union]
+interface lsacap {
+    NTSTATUS LsarGetAvailableCAPIDs(
+        [in] handle_t BindingHandle,
+        [out] LSAPR_WRAPPED_CAPID_SET * WrappedCAPIDs);
+};
+ 

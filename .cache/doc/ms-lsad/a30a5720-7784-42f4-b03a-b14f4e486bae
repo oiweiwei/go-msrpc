@@ -1,0 +1,159 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/a30a5720-7784-42f4-b03a-b14f4e486bae" data-linktype="external">msdn link</a></p><p>The LSAPR_PRIVILEGE_SET structure defines a set of <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privileges</a> that belong to
+an account.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_PRIVILEGE_SET {
+   [range(0,1000)] unsigned long PrivilegeCount;
+   unsigned long Control;
+   [size_is(PrivilegeCount)] LSAPR_LUID_AND_ATTRIBUTES Privilege[*];
+ } LSAPR_PRIVILEGE_SET,
+  *PLSAPR_PRIVILEGE_SET;
+</pre></div>
+</dd></dl><p><b>PrivilegeCount:</b>  This field contains
+the number of privileges.<a id="Appendix_A_Target_26"></a><a aria-label="Product behavior note 26" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_26" data-linktype="relative-path">&lt;26&gt;</a></p><p><b>Control:</b>  This field contains
+bitmapped values that define the properties of the privilege set. </p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>O</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>O:</b> Valid for a set operation indicating that
+all specified privileges that are not already assigned are to be assigned.</p>
+</dd>
+<dd>
+<p>All other bits SHOULD be set to zero when sent, and
+ignored on receipt.</p>
+</dd></dl><p><b>Privilege:</b>  An array of <a href="03c834c0-f310-4e0c-832e-b6e7688364d1" data-linktype="relative-path">LSAPR_LUID_AND_ATTRIBUTES</a>
+structures. If the <b>PrivilegeCount</b> field has a value different than 0,
+this field MUST NOT be NULL.</p></div>

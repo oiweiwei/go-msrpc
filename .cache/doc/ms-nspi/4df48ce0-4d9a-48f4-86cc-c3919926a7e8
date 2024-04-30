@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The ExistRestriction_r structure is an encoding of the <b>ExistRestriction</b>
+data structure defined in <span><a href="/en-us/openspecs/exchange_server_protocols/MS-OXCDATA/1afa0cd9-b1a0-4520-b623-bf15030af5d8" data-linktype="absolute-path">[MS-OXCDATA]</a></span>.
+The semantic meaning is unchanged from the <b>ExistRestriction</b> data
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _ExistRestriction_r {
+   DWORD ulReserved1;
+   DWORD ulPropTag;
+   DWORD ulReserved2;
+ } ExistRestriction_r;
+</pre></div>
+</dd></dl><p><b>ulReserved1:</b>  Reserved. All clients
+and servers MUST set this value to the constant 0x00000000.</p><p><b>ulPropTag:</b>  Encodes the <b>PropTag</b>
+field of the <b>ExistRestriction</b> data structure.</p><p><b>ulReserved2:</b>  Reserved. All clients
+and servers MUST set this value to the constant 0x00000000.</p></div>

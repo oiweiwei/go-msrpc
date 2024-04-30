@@ -1,0 +1,44 @@
+<div class="content"><p> </p><p>The R_CreateCursor method creates a <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a></span>
+and returns a handle to it. The handle can be used in subsequent calls to the
+R_StartReceive (Opnum 7) (section <span><a href="1bd20827-f774-4279-ae8d-4898d6faf6e9" data-linktype="relative-path">3.1.4.7)</a></span> method or
+the R_StartTransactionalReceive (Opnum 13) (section <span><a href="c5296e0c-9e12-4fe8-a25d-56924982ac3e" data-linktype="relative-path">3.1.4.13)</a></span>
+method to specify a relative location in the <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span> from which to
+receive a <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT R_CreateCursor(
+   [in] handle_t hBind,
+   [in] QUEUE_CONTEXT_HANDLE_NOSERIALIZE phContext,
+   [out] DWORD* phCursor
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b>MUST specify an <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle parameter, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>phContext: </b>MUST be set by the client to the <span><a href="3e818e81-b12a-4ccd-9606-f434c346a3e9" data-linktype="relative-path">QUEUE_CONTEXT_HANDLE_NOSERIALIZE (section 2.2.4.1)</a></span>
+handle with which to associate the cursor. The handle MUST have been returned
+by the server in the <i>pphQueue</i> output parameter of a prior call to the
+R_OpenQueue (Opnum 2) (section <span><a href="b4b3001c-f2ff-4a17-9830-7b21af371dc4" data-linktype="relative-path">3.1.4.2)</a></span> method and
+MUST NOT have been closed through a prior call to the R_CloseQueue (Opnum
+3) (section <span><a href="e480114a-587f-4110-b03b-7a6188cca307" data-linktype="relative-path">3.1.4.3)</a></span> method.
+This value MUST NOT be NULL.</p><p><b>phCursor: </b>MUST be set by the server to a
+handle for the created cursor.</p><p><b>Return Values: </b>On success, this method MUST return
+MQ_OK (0x00000000).</p><p>If an error occurs, the server MUST return a failure, and
+the client MUST treat all failure <b>HRESULTs</b> identically.</p><p>The client MUST disregard all out-parameter values when any
+failure <b>HRESULT</b> is returned.</p><p>Exceptions Thrown:</p><p>No exceptions are thrown except those thrown by the
+underlying RPC protocol, as specified in [MS-RPCE].</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Find the corresponding <b>OpenQueueDescriptor</b> ADM element
+instance by comparing the <i>pphContext</i> parameter with the <b>Handle</b>
+ADM attribute for all <b>OpenQueueDescriptor</b> ADM element instances
+maintained by the local <b>QueueManager</b> ADM element instance.</p>
+</li><li><p><span><span> 
+</span></span>If not found, return a failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Generate an <span><a href="../ms-mqdmpr/7f3a6707-ae54-4751-b199-d4cb15d85a62" data-linktype="relative-path">Open
+Cursor</a></span> (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section 3.1.7.1.1) event with the following inputs: </p>
+<ul><li><p><span><span>  </span></span><i>iQueueDesc</i>
+:= The found <b>OpenQueueDescriptor</b> ADM element instance.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set the <i>phCursor</i> parameter to <i>rCursor</i>.<b>Handle</b>.</p>
+</li><li><p><span><span> 
+</span></span>Return MQ_OK (0x00000000).</p>
+</li></ul></div>

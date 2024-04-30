@@ -1,0 +1,27 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/a2b4c311-1831-4de6-bf5e-fe8427323144" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_INFO_4</b> structure defines information
+that is returned as part of an administrative query of the status of the
+Netlogon server, as detailed in the description of the <b>NetrLogonControl2Ex</b>
+method in section <a href="df7e5dd1-ebcc-4754-9da0-2e0bded82d29" data-linktype="relative-path">3.5.4.9.1</a>.
+This structure is used to convey information about the status and properties of
+the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure channel</a> to a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a> in the primary or
+directly <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trusted</a> <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> containing the user
+account specified by the caller of the <b>NetrLogonControl2Ex</b> method.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_INFO_4 {
+   [string] wchar_t* netlog4_trusted_dc_name;
+   [string] wchar_t* netlog4_trusted_domain_name;
+ } NETLOGON_INFO_4,
+  *PNETLOGON_INFO_4;
+</pre></div>
+</dd></dl><p><b>netlog4_trusted_dc_name:</b> A pointer to a
+null-terminated <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a>
+string that contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a>
+or <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a> of a DC
+that is used on the secure channel for the primary or directly trusted domain
+containing the specified user account. The name is the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a> if the DC was
+discovered using the discovery mechanism based on the DNS query and LDAP ping (<a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/895a7744-aff3-4f64-bcfa-f8c05915d2e9" data-linktype="relative-path">6.3.3</a>).
+The name is the NetBIOS name if the DC was discovered using the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_f53fe4b9-8e1d-4366-9254-3c4f73269e78" data-linktype="relative-path">mailslot</a>-based mechanism
+([MS-ADTS] section <a href="../ms-adts/2cff75a9-5871-4493-a704-017b506f8df0" data-linktype="relative-path">6.3.5</a>).</p><p><b>netlog4_trusted_domain_name:</b> A pointer to a
+null-terminated Unicode string that contains the NetBIOS name of the primary or
+directly trusted domain containing the specified user account.</p></div>

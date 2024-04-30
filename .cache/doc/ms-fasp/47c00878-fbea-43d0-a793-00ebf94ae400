@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>This enumeration specifies how a match key is matched
+against an object.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_MATCH_TYPE
+ {
+   FW_MATCH_TYPE_TRAFFIC_MATCH = 0,
+   FW_MATCH_TYPE_EQUAL = 1,
+   FW_MATCH_TYPE_MAX = 2
+ } FW_MATCH_TYPE;
+</pre></div>
+</dd></dl><p><b>FW_MATCH_TYPE_TRAFFIC_MATCH:  </b>The match
+operation evaluates to TRUE for all objects that match the network traffic that
+is represented by the value matched against. This symbolic constant has a value
+of 0.</p><p><b>FW_MATCH_TYPE_EQUAL:  </b>The match operation
+evaluates to TRUE for all objects that have a value equal to the one matched
+against. This symbolic constant has a value of 1.</p><p><b>FW_MATCH_TYPE_MAX:  </b>This value and values that
+exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 2.</p></div>

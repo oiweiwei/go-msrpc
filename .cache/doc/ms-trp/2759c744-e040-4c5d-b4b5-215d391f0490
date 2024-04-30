@@ -1,0 +1,233 @@
+<div class="content"><p>The Open packet is transmitted from a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call</a>.
+Sending this packet opens the line device that is specified by its device
+identifier and returns a line handle for the corresponding opened line device.
+This line handle is used in subsequent operations on the line device.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hLineApp</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDeviceID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hLine</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNegotiatedVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwExtVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">OpenContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwPrivileges</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMediaModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">pCallParams</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAsciiCallParamsCodePage</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">pGetCallParams</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hRemoteLine</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>An unsigned 32-bit
+integer. The identifier of the function that will be invoked on the remote
+server. This value MUST be set to 54. </p><dl>
+<dd>
+<p>Return Values</p>
+</dd>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>, this field
+will contain the result of the encapsulated telephony request. A value of 0
+indicates success, and a <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path">LINEERR_Constants</a>
+value indicates failure. The remote server MUST complete this call
+synchronously.</p>
+</dd>
+<dd>
+<p>MUST return zero if the function succeeds or an
+error number if an error occurs. Common return values are as follows:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>LINEERR_ALLOCATED</p>
+  </td>
+  <td>
+  <p>0x80000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x80000049</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_NODRIVER</p>
+  </td>
+  <td>
+  <p>0x80000043</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONFAILED</p>
+  </td>
+  <td>
+  <p>0x80000048</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_NOMEM</p>
+  </td>
+  <td>
+  <p>0x80000044</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_RESOURCEUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x8000004B</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>hLineApp (4 bytes): </b>An <a href="c12b4793-3220-4f9e-aa86-8edd3e7020d4" data-linktype="relative-path">HLINEAPP</a>. A handle to the
+client application&#39;s registration with TAPI. This field MUST have been obtained
+by sending the <a href="9d8eb7cd-3245-4e44-97e0-42f7b89c9424" data-linktype="relative-path">Initialize</a>
+packet.</p><p><b>dwDeviceID (4 bytes): </b>An unsigned 32-bit
+integer. Identifies the line device to be opened. A valid value of dwDeviceID
+is in the range 0 to dwNumDevs – 1. The client obtains dwNumDevs by sending a
+Initialize packet to the remote server.</p><p><b>hLine (4 bytes): </b>An <a href="9a80ee5c-cf55-4a86-bd67-173059d6ff3c" data-linktype="relative-path">HLINE</a>. Set to TAPI_NO_DATA
+(0xFFFFFFFF). Upon successful completion of the request, this field MUST
+contain the handle representing the opened line device.</p><p><b>dwNegotiatedVersion (4 bytes): </b>An unsigned
+32-bit integer. The version that is negotiated via the <a href="7c69dced-7bee-4ec8-a02e-f90b7afcfba6" data-linktype="relative-path">NegotiateAPIVersion</a>
+request.</p><p><b>dwExtVersion (4 bytes): </b>An unsigned 32-bit
+integer. The extension version number under which the application and the
+service provider agree to operate. This number is obtained with <a href="5cc40607-c49a-413f-8712-0bd99d6dadd7" data-linktype="relative-path">NegotiateExtVersion</a>.</p><p><b>OpenContext (4 bytes): </b>An unsigned 32-bit
+integer. The Callback instance, set to 0.</p><p><b>dwPrivileges (4 bytes): </b>An unsigned 32-bit
+integer. The privilege that the application requests when notified of a call.</p><p><b>dwMediaModes (4 bytes): </b>An unsigned 32-bit
+integer. The media type or modes of interest to the application.</p><p><b>pCallParams (4 bytes): </b>The offset, in bytes,
+from the beginning of the variable data area to the <a href="c72ece07-095d-441a-93cd-660f09b7826f" data-linktype="relative-path">LINECALLPARAMS</a> packet.
+This field is set to TAPI_NO_DATA (0xFFFFFFFF) if no LINECALLPARAMS packet is
+specified.</p><p><b>dwAsciiCallParamsCodePage (4 bytes): </b>An
+unsigned 32-bit integer. The code page of the <b>pCallParams</b> field, set to
+TAPI_NO_DATA (0xFFFFFFFF).</p><p><b>pGetCallParams (4 bytes): </b>An unsigned 32-bit
+integer. The value of this field is ignored by the server. On successful
+completion, this field is set to TAPI_NO_DATA (0xFFFFFFFF).</p><p><b>hRemoteLine (4 bytes): </b>An unsigned 32-bit
+integer. If this field is nonzero, the server MUST use this value for
+ASYNCEVENTMSG.hDevice for all unsolicited events and completion notifications
+sent to the client, instead of the returned hLine value. </p><dl>
+<dd>
+<p>Similar handle-swapping semantics can exist between
+the TAPI service and telephony service providers.</p>
+</dd></dl><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>VarData (variable): </b>This field MUST contain
+the LINECALLPARAMS packet that is indicated by the <b>pCallParams</b> field.</p><dl>
+<dd>
+<p>The contents of this field MUST be DWORD-aligned, as
+specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>.</p>
+</dd></dl></div>

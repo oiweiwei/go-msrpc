@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The <b>DHCP_HOST_INFO_V6</b> structure contains information
+on the DHCPv6 server. This structure is used in the <span><a href="d07ea139-f254-4076-a2cc-71cefc676683" data-linktype="relative-path">DHCP_CLIENT_INFO_V6 (section 2.2.1.2.64)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_HOST_INFO_V6 {
+   DHCP_IPV6_ADDRESS IpAddress;
+   LPWSTR NetBiosName;
+   LPWSTR HostName;
+ } DHCP_HOST_INFO_V6,
+  *LPDHCP_HOST_INFO_V6;
+</pre></div>
+</dd></dl><p><b>IpAddress:</b>   This is of type <span><a href="48b74c46-bf64-40db-92b9-6e61cee1bd33" data-linktype="relative-path">DHCP_IPV6_ADDRESS</a></span>
+structure, containing the IPv6 address of the DHCPv6 server.</p><p><b>NetBiosName:</b>  A pointer to a
+null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span>.
+Currently not used in any setting method, and if used in get method, the value
+returned is NULL.</p><p><b>HostName:</b>  A pointer to a
+null-terminated Unicode string. Currently not used in any setting method, and
+if used in get method, the value returned is NULL.</p></div>

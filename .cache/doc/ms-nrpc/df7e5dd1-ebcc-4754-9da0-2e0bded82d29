@@ -1,0 +1,448 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/df7e5dd1-ebcc-4754-9da0-2e0bded82d29" data-linktype="external">msdn link</a></p><p>The <b>NetrLogonControl2Ex</b> method SHOULD<a id="Appendix_A_Target_243"></a><a aria-label="Product behavior note 243" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_243" data-linktype="relative-path">&lt;243&gt;</a> execute administrative
+actions that pertain to the Netlogon server operation. It is used to query the
+status and control the actions of the Netlogon server. </p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrLogonControl2Ex(
+   [in, unique, string] LOGONSRV_HANDLE ServerName,
+   [in] DWORD FunctionCode,
+   [in] DWORD QueryLevel,
+   [in, switch_is(FunctionCode)] PNETLOGON_CONTROL_DATA_INFORMATION Data,
+   [out, switch_is(QueryLevel)] PNETLOGON_CONTROL_QUERY_INFORMATION Buffer
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>The custom <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_44deb72d-c62b-4335-90e4-b9fd4dd782ed" data-linktype="relative-path">binding handle</a>, as defined
+in section <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>.</p><p><b>FunctionCode: </b>The control operation to be
+performed; it SHOULD<a id="Appendix_A_Target_244"></a><a aria-label="Product behavior note 244" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_244" data-linktype="relative-path">&lt;244&gt;</a> be one
+of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NETLOGON_CONTROL_QUERY</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>No operation, only the requested information is
+  returned.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETLOGON_CONTROL_REPLICATE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Forces a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_ce1138c6-7ab4-4c37-98b4-95599071c3c3" data-linktype="relative-path">backup domain controller
+  (BDC)</a> to perform an immediate partial synchronization of all databases,
+  as detailed in section <a href="870c890e-74fc-4850-aa8b-5599299e390a" data-linktype="relative-path">3.6.5.2.2</a>.<a id="Appendix_A_Target_245"></a><a aria-label="Product behavior note 245" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_245" data-linktype="relative-path">&lt;245&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETLOGON_CONTROL_SYNCHRONIZE</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Forces a BDC to perform an immediate full
+  synchronization of all databases.<a id="Appendix_A_Target_246"></a><a aria-label="Product behavior note 246" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_246" data-linktype="relative-path">&lt;246&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETLOGON_CONTROL_PDC_REPLICATE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Forces a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a> to immediately send
+  announcement messages to ask each BDC to replicate the database for details
+  (see section <a href="f28f9dc8-eeb2-4112-9eec-a466f639c761" data-linktype="relative-path">3.6</a>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETLOGON_CONTROL_REDISCOVER</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Forces the server to rediscover a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a> in the
+  specified domain and to set up a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure channel</a> to the
+  discovered DC.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETLOGON_CONTROL_TC_QUERY</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>Queries the status of the last usage of the secure
+  channel to the DC. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETLOGON_CONTROL_TRANSPORT_NOTIFY</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>Notifies the Netlogon server that a new network
+  connection has been added and causes the server to flush any DC cache.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETLOGON_CONTROL_FIND_USER</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Queries the name of a trusted domain that contains an
+  account for a user.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETLOGON_CONTROL_CHANGE_PASSWORD</p>
+  <p>0x00000009</p>
+  </td>
+  <td>
+  <p>Causes the server to generate a new <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_ae8614db-83d9-406d-aa79-90b2f07c3ed1" data-linktype="relative-path">shared secret</a> and to set
+  it on the account used by the DC for setting up the secure channel from the
+  server. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETLOGON_CONTROL_TC_VERIFY</p>
+  <p>0x0000000A</p>
+  </td>
+  <td>
+  <p>Verifies the current status of the server&#39;s secure
+  channel to a DC in the specified domain.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETLOGON_CONTROL_FORCE_DNS_REG</p>
+  <p>0x0000000B</p>
+  </td>
+  <td>
+  <p>Triggers the non-timer event, Force Register DNS
+  Records, defined in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+  section <a href="../ms-adts/5214858a-674f-4527-8c93-c7f84e2a035c" data-linktype="relative-path">6.3.2.2.1</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETLOGON_CONTROL_QUERY_DNS_REG</p>
+  <p>0x0000000C</p>
+  </td>
+  <td>
+  <p>SHOULD<a id="Appendix_A_Target_247"></a><a aria-label="Product behavior note 247" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_247" data-linktype="relative-path">&lt;247&gt;</a>
+  query the status of <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a>
+  updates performed by the Netlogon server, as specified in [MS-ADTS] section <a href="../ms-adts/ad6cd52a-a294-407b-a5bd-0ca76569c8e5" data-linktype="relative-path">6.3.2</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETLOGON_CONTROL_BACKUP_CHANGE_LOG</p>
+  <p>0x0000FFFC</p>
+  </td>
+  <td>
+  <p>Used for debugging purposes and does not affect the
+  Netlogon protocol behavior.<a id="Appendix_A_Target_248"></a><a aria-label="Product behavior note 248" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_248" data-linktype="relative-path">&lt;248&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETLOGON_CONTROL_TRUNCATE_LOG</p>
+  <p>0x0000FFFD</p>
+  </td>
+  <td>
+  <p>Used for debugging purposes and does not affect the
+  Netlogon protocol behavior.<a id="Appendix_A_Target_249"></a><a aria-label="Product behavior note 249" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_249" data-linktype="relative-path">&lt;249&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETLOGON_CONTROL_SET_DBFLAG</p>
+  <p>0x0000FFFE</p>
+  </td>
+  <td>
+  <p>Used for debugging purposes and does not affect the
+  Netlogon protocol behavior.<a id="Appendix_A_Target_250"></a><a aria-label="Product behavior note 250" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_250" data-linktype="relative-path">&lt;250&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETLOGON_CONTROL_BREAKPOINT</p>
+  <p>0x0000FFFF</p>
+  </td>
+  <td>
+  <p>Used for debugging purposes and SHOULD<a id="Appendix_A_Target_251"></a><a aria-label="Product behavior note 251" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_251" data-linktype="relative-path">&lt;251&gt;</a> be used only with <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_cd33ef8c-8d58-43b6-9273-fa308fc1caf1" data-linktype="relative-path">checked builds</a>. Calling
+  NetrLogonControl2Ex with this function code does not affect the Netlogon
+  protocol behavior.<a id="Appendix_A_Target_252"></a><a aria-label="Product behavior note 252" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_252" data-linktype="relative-path">&lt;252&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>QueryLevel: </b>Information query level requested
+by the client. The buffer returned in the <i>Buffer</i> parameter contains one
+of the following structures, based on the value of this field.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Buffer Contents</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>A <a href="afeb873c-4826-4beb-a35c-ae73a708b108" data-linktype="relative-path">NETLOGON_INFO_1</a>
+  structure is returned.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>A <a href="c48a8700-4c17-4afb-8866-f0cfc0c0a671" data-linktype="relative-path">NETLOGON_INFO_2</a>
+  structure is returned.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>A <a href="be92a2cd-950c-4b26-8cd3-475065406b92" data-linktype="relative-path">NETLOGON_INFO_3</a>
+  structure is returned.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>A <a href="a2b4c311-1831-4de6-bf5e-fe8427323144" data-linktype="relative-path">NETLOGON_INFO_4</a>
+  structure is returned.<a id="Appendix_A_Target_253"></a><a aria-label="Product behavior note 253" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_253" data-linktype="relative-path">&lt;253&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Data: </b>A <a href="ab0e203d-5f69-469c-8c57-7b6a0b1308b9" data-linktype="relative-path">NETLOGON_CONTROL_DATA_INFORMATION</a>
+structure, as specified in section 2.2.1.7.1, that contains specific data
+required by the query.</p><p><b>Buffer: </b>A <a href="c5d2469c-f0c3-47de-8795-0e22f1070337" data-linktype="relative-path">NETLOGON_CONTROL_QUERY_INFORMATION</a>
+structure, as specified in section 2.2.1.7.6, that contains the specific query
+results, with a level of verbosity as specified in <i>QueryLevel</i>.</p><p><b>Return Values: </b>The method returns 0x00000000
+on success; otherwise, it returns a nonzero error code.</p><p>On receiving this call, the server MUST perform the
+following validation steps:</p><ul><li><p><span><span> 
+</span></span>The server uses the server name passed in the <i>ServerName</i>
+parameter to look up the domain for the request. If the name is not found, the
+server MUST return ERROR_INVALID_COMPUTERNAME.</p>
+</li><li><p><span><span> 
+</span></span>If the client does not have sufficient privilege, the server MUST
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>The <i>QueryLevel</i> parameter MUST contain a value between 1
+and 4; otherwise, the server MUST return ERROR_INVALID_LEVEL.</p>
+<ul><li><p><span><span>  </span></span>When
+the <i>QueryLevel</i> parameter is set to 0x00000004, the <i>FunctionCode</i>
+parameter MUST be set to NETLOGON_CONTROL_FIND_USER (0x00000008); otherwise,
+the server MUST return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span>  </span></span>When
+the <i>QueryLevel</i> parameter is set to 0x00000002, the <i>FunctionCode</i>
+parameter MUST be set to NETLOGON_CONTROL_REDISCOVER (0x00000005),
+NETLOGON_CONTROL_TC_QUERY (0x00000006), or NETLOGON_CONTROL_TC_VERIFY
+(0x0000000A); otherwise, the server MUST return ERROR_INVALID_PARAMETER.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>When the <i>FunctionCode</i> parameter is set to:</p>
+<ul><li><p><span><span>  </span></span>NETLOGON_CONTROL_FIND_USER
+(0x00000008), the <i>QueryLevel</i> parameter MUST be set to 0x00000004;
+otherwise, the server MUST return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span>  </span></span>NETLOGON_CONTROL_TC_VERIFY
+(0x0000000A), the <i>QueryLevel</i> parameter MUST be set to 0x00000002;
+otherwise, the server MUST return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span>  </span></span>NETLOGON_CONTROL_QUERY_DNS_REG
+(0x0000000C), the <i>QueryLevel</i> parameter MUST be set to 0x00000001;
+otherwise, the server MUST return ERROR_INVALID_LEVEL.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The server MUST verify the <i>Data</i> parameter for the
+NETLOGON_CONTROL_REDISCOVER (0x00000005), NETLOGON_CONTROL_TC_QUERY
+(0x00000006), NETLOGON_CONTROL_FIND_USER (0x00000008),
+NETLOGON_CONTROL_CHANGE_PASSWORD (0x00000009), and NETLOGON_CONTROL_TC_VERIFY
+(0x0000000A) function codes:</p>
+<ul><li><p><span><span>  </span></span>If
+the parameter is NULL, the server MUST return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span>  </span></span>For
+the NETLOGON_CONTROL_REDISCOVER (0x00000005), NETLOGON_CONTROL_TC_QUERY
+(0x00000006), NETLOGON_CONTROL_CHANGE_PASSWORD (0x00000009), and
+NETLOGON_CONTROL_TC_VERIFY (0x0000000A) function codes, if the parameter does
+not contain a valid domain name in the trust list, the server MUST return
+ERROR_NO_SUCH_DOMAIN.</p>
+</li><li><p><span><span>  </span></span>For
+the NETLOGON_CONTROL_FIND_USER (0x00000008) function code, if the parameter
+does not contain a valid username, the server MUST return NERR_UserNotFound.</p>
+</li></ul><p>For other function codes, the <i>Data</i>
+parameter is ignored.</p>
+</li></ul><p>Based on the <i>FunctionCode</i> parameter provided by the
+client, the server MUST complete the following before populating the return
+structure: </p><ul><li><p><span><span> 
+</span></span>NETLOGON_CONTROL_QUERY: Nothing.</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_CONTROL_REPLICATE: Return ERROR_NOT_SUPPORTED.<a id="Appendix_A_Target_254"></a><a aria-label="Product behavior note 254" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_254" data-linktype="relative-path">&lt;254&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_CONTROL_SYNCHRONIZE: Return ERROR_NOT_SUPPORTED.<a id="Appendix_A_Target_255"></a><a aria-label="Product behavior note 255" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_255" data-linktype="relative-path">&lt;255&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_CONTROL_PDC_REPLICATE: Return ERROR_NOT_SUPPORTED.<a id="Appendix_A_Target_256"></a><a aria-label="Product behavior note 256" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_256" data-linktype="relative-path">&lt;256&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_CONTROL_REDISCOVER: Force the server to rediscover DCs
+in the domain name provided in the <b>TrustedDomainName</b> field of the <i>Data</i>
+parameter and to set up a secure channel (section <a href="273b6905-782d-4a7e-a2e4-4337816916e0" data-linktype="relative-path">3.1</a>) to the discovered DC.
+DC rediscovery is the same as initial DC discovery (section <a href="00ac739d-274d-434b-9efb-fad10405721a" data-linktype="relative-path">3.1.4.10</a>). If a DC
+discovery and establishment of a secure channel to the DC fails, the error
+ERROR_NO_LOGON_SERVERS is returned.</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_CONTROL_TC_QUERY: Provide return data based on the DC in
+the domain name provided in the <b>TrustedDomainName</b> field of the <i>Data</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_CONTROL_TRANSPORT_NOTIFY: To allow the server to
+immediately retry establishing a secure session over the new network connection
+that became available, the server sets the <b>LastAuthenticationTry</b> member
+of every entry in the ServerSessionInfo table maintained by the Netlogon client
+on the server&#39;s machine to zero, enumerating across every entry in the table.
+Also, if the server has a DC cache, the server flushes the <b>LocatedDCsCache</b>
+and <b>FailedDiscoveryCache</b>.</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_CONTROL_FIND_USER: Query the name of a trusted domain
+that contains an account for a user with the username provided in the <b>UserName</b>
+field of the <i>Data</i> parameter. The server MUST be a DC; otherwise, return
+ERROR_NOT_SUPPORTED.</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_CONTROL_CHANGE_PASSWORD: Generate a new shared secret
+for the domain name provided in the <b>TrustedDomainName</b> field of the <i>Data</i>
+parameter. The server MUST update the <b>SharedSecret</b> (section <a href="708b7132-9e72-447c-992b-d0bef4078f81" data-linktype="relative-path">3.1.1</a>). If the <b>TrustedDomainName</b>
+field of the <i>Data</i> parameter is a trust name and the server is not a PDC
+([MS-ADTS] section <a href="../ms-adts/d142a27c-65fb-49c9-9e4b-6ede5f226c8a" data-linktype="relative-path">6.1.5.3</a>),
+the server MUST return ERROR_INVALID_DOMAIN_ROLE.</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_CONTROL_TC_VERIFY: Call any Netlogon method that
+requires a secure channel (section <a href="f61c3f4a-53ff-4f30-9006-6d93a2162ef8" data-linktype="relative-path">3.1.4.6</a>) to the DC in the
+domain name provided in the <b>TrustedDomainName</b> field of the <i>Data</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_CONTROL_FORCE_DNS_REG: The DC SHOULD<a id="Appendix_A_Target_257"></a><a aria-label="Product behavior note 257" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_257" data-linktype="relative-path">&lt;257&gt;</a> re-register all of its DNS
+records ([MS-ADTS] section 6.3.2).</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_CONTROL_QUERY_DNS_REG: Query the status of DNS updates
+performed by the Netlogon server.<a id="Appendix_A_Target_258"></a><a aria-label="Product behavior note 258" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_258" data-linktype="relative-path">&lt;258&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_CONTROL_BACKUP_CHANGE_LOG: Nothing.</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_CONTROL_TRUNCATE_LOG: Nothing.</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_CONTROL_SET_DBFLAG: Nothing.</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_CONTROL_BREAKPOINT: Nothing.</p>
+</li></ul><p>The following describes the output generated in the <i>Buffer</i>
+parameter based on the <i>FunctionCode</i> and <i>QueryLevel</i> requested.</p><p>For <i>QueryLevel</i> 1, the return structure MUST be
+generated as follows:</p><ul><li><p><span><span> 
+</span></span><b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo1.netlog1_flags</b>
+MUST be set to the <b>netlog1_flags</b> values that are applicable to the
+server. See NETLOGON_INFO_1 (section 2.2.1.7.2) for a description of
+the netlog1_flags field.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>FunctionCode</i> parameter has the value
+NETLOGON_CONTROL_QUERY_DNS_REG (0x0000000C), and any DNS registration or
+deregistration ([MS-ADTS] section 6.3.2) errors occurred on the last completed
+update, then the NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo1.netlog1_flags
+G bit MUST be set. Otherwise, the NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo1.netlog1_flags
+G bit MUST NOT be set.</p>
+</li><li><p><span><span> 
+</span></span>If this is a non-PDC computer, <b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo1.netlog1_pdc_connection_status</b>
+MUST be set to the current connection status of the PDC, which is stored in the
+<b>ConnectionStatus</b> field of the <b>ServerSessionInfo</b> table. This field
+MUST be set to zero if this server is the PDC.</p>
+</li><li><p><span><span> 
+</span></span>If <i>FunctionCode</i> NETLOGON_CONTROL_PDC_REPLICATE
+(0x00000004) is supported and <b>ntMixedDomain</b> is set to zero ([MS-ADTS]
+section <a href="../ms-adts/b40f9606-812d-4b76-924e-55a5401e2bc8" data-linktype="relative-path">6.1.4.1</a>),
+the server MUST return ERROR_NOT_SUPPORTED. Otherwise, the server returns
+ERROR_SUCCESS.</p>
+</li></ul><p>For <i>QueryLevel</i> 2, the return structure MUST be
+generated as follows:</p><ul><li><p><span><span> 
+</span></span><b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo2.netlog2_flags</b>
+MUST be set to the <b>netlog2_flags</b> values that are applicable to the
+server. For a description of the <b>netlog2_flags</b> member, see 2.2.1.7.3.</p>
+</li><li><p><span><span> 
+</span></span><b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo2.netlog2_pdc_connection_status</b>
+MUST be set as follows.</p>
+<ul><li><p><span><span>  </span></span>Call
+NetrServerGetTrustInof to the DC with which it has an established secure
+channel for the domain specified in the <i>Data.TrustedDomainName</i> parameter
+received.</p>
+<ul><li><p><span><span> 
+</span></span>If the server returns STATUS_NOT_SUPPORTED, then
+NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo2.netlog2_pdc_connection_status
+MUST be set to the value of the ConnectionStatus field from the
+ServerSessionInfo table.</p>
+</li><li><p><span><span> 
+</span></span>If the server returns anything else and
+ServerSessionInfo.ConnectionStatus is not STATUS_SUCCESS, then <b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo2.netlog2_pdc_connection_status</b>
+MUST be set to the value of <b>ConnectionStatus</b> field from the <b>ServerSessionInfo</b>
+table.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the <b>ConnectionStatus</b> field of the <b>ServerSessionInfo</b>
+table is STATUS_SUCCESS and the following rules apply:</p>
+<ol><li><p><span>    </span>If the <i>TrustInfo</i>
+value returned by NetrServerGetTrustInfo is not NULL and the <i>UlongEntryCount</i>
+value is greater than 0, then process the first ULONG element in the <i>UlongData</i>
+array as follows:</p>
+<ul><li><p><span><span> 
+</span></span>If the TRUST_ATTRIBUTE_FOREST_TRANSITIVE (0x00000008) bit is set,
+and if the server processing the element is either of the following:</p>
+<ul><li><p><span><span> 
+</span></span>Workstation: <b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo2.netlog2_pdc_connection_status</b>
+MUST be set to STATUS_DOMAIN_TRUST_INCONSISTENT.</p>
+</li><li><p><span><span> 
+</span></span>Domain controller (DC): If the D flag is not set in the
+TrustedDomains.TrustAttributes for the domain specified in the <i>Data.TrustedDomainName</i>
+parameter received, then <b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo2.netlog2_pdc_connection_status</b>
+MUST be set to STATUS_DOMAIN_TRUST_INCONSISTENT.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Otherwise, if the server processing the element is a domain
+controller and the D flag is set in the TrustedDomains.TrustAttributes for the
+domain specified in the <i>Data.TrustedDomainName</i> parameter received, then <b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo2.netlog2_pdc_connection_status</b>
+MUST be set to STATUS_DOMAIN_TRUST_INCONSISTENT.</p>
+</li></ul></li><li><p><span>    </span>Verify that the
+SharedSecret stored locally is the same as what was returned by
+NetrServerGetTrustInfo in EncryptedNewOwfPassword and EncryptedOldOwfPassword.
+If the SecureChannelType returned by NetrServerGetTrustInfo is <b>TrustedDnsDomainSecureChannel</b>
+or <b>TrustedDomainSecureChannel</b>, then verify using the local trust
+secrets. For all other types of <i>SecureChannelType</i> values, verify using
+the <b>SharedSecret</b> of the computer account. If verification fails, then <b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo2.netlog2_pdc_connection_status</b>
+MUST be set to STATUS_WRONG_PASSWORD.</p>
+</li><li><p><span>    </span>If <b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo2.netlog2_pdc_connection_status</b>
+has not been set, then it MUST be set to STATUS_SUCCESS.</p>
+</li></ol></li></ul></li></ul></li><li><p><span><span> 
+</span></span><b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo2.netlog2_trusted_dc_name</b>
+MUST be set to the name of the DC with which the computer has a secure channel
+established, which is stored in the <b>DomainName</b> field of the <b>ServerSessionInfo</b>
+table.</p>
+</li><li><p><span><span> 
+</span></span><b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo2.netlog2_tc_connection_status</b>
+MUST be set to the status of the secure channel, which is stored in the
+ConnectionStatus field of the ServerSessionInfo table.</p>
+</li></ul><p>For <i>QueryLevel</i> 3, the return structure MUST be
+generated as follows:</p><ul><li><p><span><span> 
+</span></span><b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo3.netlog3_flags</b>
+MUST be set to zero.</p>
+</li><li><p><span><span> 
+</span></span><b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo3.netlog3_logon_attempts</b>
+MUST be set to LogonAttempts.</p>
+</li><li><p><span><span> 
+</span></span><b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo3.netlog3_reserved1</b>
+through <b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo3.netlog3_reserved5</b>
+MUST be set to zero.</p>
+</li></ul><p>For <i>QueryLevel</i> 4, the return structure MUST be
+generated as follows:</p><ul><li><p><span><span> 
+</span></span><b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo4.netlog4_trusted_domain_name</b>
+MUST be set to the trusted domain that the user was found in. <b>NETLOGON_CONTROL_QUERY_INFORMATION.NetlogonInfo4.netlog4_trusted_dc_name</b>
+MUST be set to the DC in the trusted domain.</p>
+<p>In addition, the returned <i>Buffer</i>
+structure contains undefined data of varied size at the end, which MUST be
+ignored.</p>
+</li></ul></div>

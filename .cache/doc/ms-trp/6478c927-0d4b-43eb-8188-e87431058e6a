@@ -1,0 +1,71 @@
+<div class="content"><p>The LINEDIALPARAMS packet specifies a collection of
+dialing-related fields. Send the <a href="195b0fa7-17b9-4b69-a0ef-903b27f28d66" data-linktype="relative-path">SetCallParams</a> packet to
+set parameters for a call using the LINEDIALPARAMS packet. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDialPause</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDialSpeed</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDigitDuration</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwWaitForDialtone</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwDialPause (4 bytes): </b>An unsigned 32-bit
+integer. The duration, in milliseconds, of a comma in the dialable address. </p><p><b>dwDialSpeed (4 bytes): </b>An unsigned 32-bit
+integer. The interdigit time period, in milliseconds, between successive
+digits. </p><p><b>dwDigitDuration (4 bytes): </b>An unsigned 32-bit
+integer. The duration, in milliseconds, of a digit.</p><p><b>dwWaitForDialtone (4 bytes): </b>An unsigned
+32-bit integer. The maximum amount of time, in milliseconds, to wait for a dial
+tone when a &#34;W&#34; is used in the dialable address. </p><p>This packet cannot be extended.</p><p>If 0 is specified for a member, the default value is used.
+If a nonzero value is specified for a member that is outside the range
+specified by the <b>MinDialParams</b> and <b>MaxDialParams</b> members in the <a href="f236ea7a-c8a2-4681-b87c-9f0e07a01dc6" data-linktype="relative-path">LINEDEVCAPS</a> packet, the
+nearest value within the valid range is used instead.</p><p>The <a href="c9acdfde-22de-43ff-b491-23a9ed72fb31" data-linktype="relative-path">MakeCall</a>
+packet allows an application to adjust the dialing parameters to be used for
+the call. The SetCallParams packet can be used to adjust the dialing parameters
+of an existing call. The <a href="6ff3773f-0fad-451c-bef4-5e225626f9aa" data-linktype="relative-path">LINECALLINFO</a>
+packet lists the call&#39;s current dialing parameters.</p></div>

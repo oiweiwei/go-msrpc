@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The <b>ALERT_VECTOR</b> structure contains the alert types
+and the count of alerts used in the <b>ALERT_MESSAGE</b> structure, as
+specified in section <span><a href="bb13c832-61fe-4d4f-a1d8-0ac0a54408cd" data-linktype="relative-path">2.2.6.6</a></span>. </p><dl>
+<dd>
+<div><pre> struct
+ {
+   ULONG AlertArrayOffset; 
+   USHORT AlertCount; 
+} ALERT_VECTOR; 
+</pre></div>
+</dd></dl><p><b>AlertArrayOffset:</b> A ULONG that contains array
+of <b>ALERT</b> structures, as specified in section <span><span><a href="8a38aece-3356-450b-8de5-f846572dc34c" data-linktype="relative-path"><span>2.2.5.1.1</span></a></span></span>. </p><p><b>AlertCount:</b> A USHORT that contains the number
+of alerts in the <b>AlertArrayOffset</b> field. </p></div>

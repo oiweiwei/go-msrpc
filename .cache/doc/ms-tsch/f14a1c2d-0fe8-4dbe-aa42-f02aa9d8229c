@@ -1,0 +1,33 @@
+<div class="content"><p> </p><p>The <span><a href="f26923bd-7a47-4c87-9ff2-fe8a58532bb3" data-linktype="relative-path">SchRpcCreateFolder</a></span>
+method creates a new folder.</p><dl>
+<dd>
+<div><pre> HRESULT SchRpcCreateFolder(
+   [in, string] const wchar_t* path,
+   [in, string, unique] const wchar_t* sddl,
+   [in] DWORD flags
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>MUST contain the full path to be
+associated with a folder (section <span><a href="fa8809c8-4f0f-4c6d-994a-6c10308757c1" data-linktype="relative-path">2.3.11</a></span>).</p><p><b>sddl: </b>If non-NULL, MUST be a <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security
+descriptor</a></span> in <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_e013f36f-8a39-4689-ab87-520e389cfee3" data-linktype="relative-path">SDDL</a></span> format as
+specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>.</p><p><b>flags: </b>Unused, MUST be 0.</p><p><b>Return Values: </b>For more information on return
+codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>, or Win32
+Error Codes in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><p>Upon receipt of the SchRpcCreateFolder call, the server
+MUST:</p><ul><li><p><span><span> 
+</span></span>Return E_INVALIDARG if the <i>path</i> parameter is the root or
+if the <i>flags</i> parameter is nonzero.</p>
+</li><li><p><span><span> 
+</span></span>Return E_ACCESSDENIED if the caller does not have access to
+create subfolders in the deepest existing folder specified in the <i>path</i>
+parameter.<a id="Appendix_A_Target_70"></a><a aria-label="Product behavior note 70" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_70" data-linktype="relative-path">&lt;70&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Create deeper subfolders in the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_08035fe7-a786-4b30-ab60-3fd046060617" data-linktype="relative-path">task store</a></span> for the
+path using the security descriptor specified in the <i>sddl</i> parameter
+[MS-DTYP]. If the <i>sddl</i> parameter is NULL, use the security descriptor of
+the deepest existing folder in the <i>path</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK.</p>
+</li></ul><p>If any errors are raised during the processing they are
+returned. For more information on return codes, see section 2.3.14 and Win32
+Error Codes in [MS-ERREF] section 2.1.</p></div>

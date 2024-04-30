@@ -1,0 +1,131 @@
+<div class="content"><p>The TrackingInfoCollection MUST be marshaled using the
+OBJREF_CUSTOM format (as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section <a href="../ms-dcom/88fdb261-7c9a-41ea-bfac-31583bdc65e6" data-linktype="relative-path">2.2.18.6</a>).
+The <b>CLSID</b> field of the OBJREF_CUSTOM instance MUST be set to
+{ECABAFCD-7f19-11D2-978E-0000F8757E2A} (CLSID_TrkInfoCollUnmarshal). The format
+of the OBJREF_CUSTOM.pObjectData buffer for CLSID_TrkInfoCollUnmarshal is as
+follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">MaxVersion</p>
+  </td>
+  <td colspan="16">
+  <p align="center">MinVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">CollectionType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">ObjectCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">PropertyNameCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">PropertyNames
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">ChildObjects
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>MaxVersion (2 bytes): </b>The major version of
+this marshaled format; this MUST be set to 0x0001.</p><p><b>MinVersion (2 bytes): </b>The minor version of
+this marshaled format; this MUST be set to 0x0001.</p><p><b>CollectionType (4 bytes): </b>The type of
+collection; this MUST be one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRKCOLL_PROCESSES</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>A collection of <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_19e873cd-88cc-48df-ad42-912265a8b3bf" data-linktype="relative-path">processes</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRKCOLL_CONTAINERS</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>A collection of <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_791190e6-1e02-42cb-bd25-5aee3ab516ed" data-linktype="relative-path">instance containers</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRKCOLL_COMPONENTS</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>A collection of <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_71669ed9-7eaf-4328-9e2e-4d3430f0f9bf" data-linktype="relative-path">components</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ObjectCount (4 bytes): </b>The (unsigned) number
+of elements in the <b>ChildObjects</b> field.</p><p><b>PropertyNameCount (4 bytes): </b>The (unsigned)
+number of elements in the <b>Properties</b> field.</p><p><b>PropertyNames (variable): </b>An array of <a href="53b25ea4-811c-4948-a9f7-e3ae1a0e170f" data-linktype="relative-path">LengthPrefixedName (section
+2.2.5.1)</a> that contains the descriptive names for the elements in the <b>ChildObjects</b>
+field.</p><p><b>ChildObjects (variable): </b>An array of <a href="ca5a2035-abd6-4f1b-ac60-814ca2175d99" data-linktype="relative-path">TrackingInfoObject (section
+2.2.5.4)</a> structures.</p></div>

@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_POLICY_ACTION_TYPE</b> enumeration specifies
+the action to be applied when a DNS Policy is matched.</p><dl>
+<dd>
+<div><pre> typedef enum
+ {
+     DnsPolicyDeny,
+     DnsPolicyAllow,
+     DnsPolicyIgnore,
+     DnsPolicyActionMax
+ }DNS_RPC_POLICY_ACTION_TYPE;
+</pre></div>
+</dd></dl><p><b>DnsPolicyDeny:</b> Denies the specific DNS
+operation.</p><p><b>DnsPolicyAllow:</b> Allows a specific DNS
+operation.</p><p><b>DNSPolicyIgnore:</b> Ignores a specific DNS operation
+by dropping the related query.</p><p><b>DnsPolicyActionMax:</b> Shows the maximum action
+types supported.</p></div>

@@ -1,0 +1,318 @@
+<div class="content"><p> </p><p>An array of the <b>FAX_DEVICE_PROVIDER_INFO</b> data type
+can be passed as an out parameter (as a byte array) in a <b>FAX_EnumerateProviders</b>
+(section <span><a href="70c68964-884f-4edb-a50b-fe1c0aefa04e" data-linktype="relative-path">3.1.4.1.19</a></span>) call.</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (52 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (52 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfStruct</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrFriendlyNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrImageNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrProviderNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrGUIDOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCapabilities</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Version_Fixed_Portion
+  (20 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Status</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwLastError</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>dwSizeOfStruct (4 bytes):
+</b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that holds the size, in bytes, of the structure. MUST be set to 52 bytes.</p>
+</dd>
+<dd>
+<p><b>lpcwstrFriendlyNameOffset
+(4 bytes): </b>Offset to the <b>lpcwstrFriendlyName</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpcwstrImageNameOffset (4
+bytes): </b>Offset to the <b>lpcwstrImageName</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpcwstrProviderNameOffset
+(4 bytes): </b>Offset to the <b>lpcwstrProviderName</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpcwstrGUIDOffset (4
+bytes): </b>Offset to the <b>lpcwstrGUID</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>dwCapabilities (4 bytes):
+</b>A <b>DWORD</b> variable that holds the bitwise combination of capabilities
+of the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_2ba66d72-d766-440f-b5ea-0333759b147c" data-linktype="relative-path">FSP</a></span>. This value MUST
+be set to zero.</p>
+</dd>
+<dd>
+<p><b>Version_Fixed_Portion (20
+bytes): </b>A <b>FAX_VERSION</b> (section <span><a href="7ef8f9ec-366f-4414-9583-4d8962c00e87" data-linktype="relative-path">2.2.22</a></span>) structure
+that holds the version of the fax service execution components.</p>
+</dd>
+<dd>
+<p><b>Status (4 bytes): </b>A <b>FAX_ENUM_PROVIDER_STATUS</b>
+(section <span><a href="587dd2a3-6fbc-4a22-ac03-fb14e05b6ffa" data-linktype="relative-path">2.2.57</a></span>) enumeration
+which holds the status of the FSP.</p>
+</dd>
+<dd>
+<p><b>dwLastError (4 bytes): </b>A
+<b>DWORD</b> that holds the error code that was encountered while the provider
+was loaded and initialized.</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrFriendlyName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrImageName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrProviderName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcwstrGUID
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>lpcwstrFriendlyName
+(variable): </b>A null-terminated string, which holds the FSP&#39;s user-friendly
+name suitable for display.</p>
+</dd>
+<dd>
+<p><b>lpcwstrImageName
+(variable): </b>A null-terminated string which holds the full path and file name
+for the FSP execution components.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p>
+</dd>
+<dd>
+<p><b>lpcwstrProviderName
+(variable): </b>A null-terminated string which holds the name of the telephony
+service provider associated with the devices for the FSP.</p>
+</dd>
+<dd>
+<p><b>lpcwstrGUID (variable): </b>A
+null-terminated string which holds the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> for the FSP.</p>
+</dd></dl></div>

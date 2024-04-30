@@ -1,0 +1,54 @@
+<div class="content"><p> </p><p>The <b>FSM_STATE</b> enumeration defines a set of possible
+values representing various <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_f9098c6a-2548-43c0-8dd4-4327299e8506" data-linktype="relative-path">failover</a></span> relationship
+states on a DHCPv4 server. For additional information about server state
+transitions, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=217377" data-linktype="external">[IETF-DHCPFOP-12]</a></span>,
+section 9.2.</p><dl>
+<dd>
+<div><pre>  typedef enum _FSM_STATE{
+      NO_STATE = 0x00000000,
+      INIT,
+      STARTUP,
+      NORMAL,
+      COMMUNICATION_INT,
+      PARTNER_DOWN,
+      POTENTIAL_CONFLICT,
+      CONFLICT_DONE,
+      RESOLUTION_INT,
+      RECOVER,
+      RECOVER_WAIT,
+      RECOVER_DONE,
+  } FSM_STATE;
+</pre></div>
+</dd></dl><p><b>NO_STATE: </b>This value means that no state is
+configured for the DHCPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_ba9fcec9-1438-47ec-958c-873c1a0d4c5e" data-linktype="relative-path">failover relationship</a></span>.</p><p><b>INIT: </b>This value means that the failover
+relationship on the DHCPv4 server is in the initializing state.</p><p><b>STARTUP: </b>This value means that each server
+participating in the failover relationship moves into the STARTUP state after
+initializing itself. The STARTUP state enables a server to probe its <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_a454a106-1b85-422c-84ea-9ce5bd6621b8" data-linktype="relative-path">partner
+server</a></span>, before starting DHCP client service.</p><p><b>NORMAL: </b>This value means that each server
+services <b>DHCPDISCOVER</b> messages <span><a href="https://go.microsoft.com/fwlink/?LinkId=90318" data-linktype="external">[RFC2131]</a></span> and
+all other DHCP requests, other than <b>DHCPREQUEST</b>/<b>RENEWAL</b> or <b>DHCPREQUEST</b>/<b>REBINDING</b>
+requests from the client set, as defined by the load balancing algorithm
+specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=217381" data-linktype="external">[RFC3074]</a></span>.
+Each server services <b>DHCPREQUEST</b>/<b>RENEWAL</b> or <b>DHCPDISCOVER</b>/<b>REBINDING</b>
+requests from any client.</p><p><b>COMMUNICATION_INT: </b>This value means that each
+server in a failover relationship is operating independently in the
+COMMUNICATION_INT state, but neither assumes that its partner is not operating.
+The partner server might be operating and simply unable to communicate with
+this server, or it might not be operating at all.</p><p><b>PARTNER_DOWN: </b>This value means that when
+operating in the PARTNER_DOWN state, a server assumes that its partner is not
+currently operating.</p><p><b>POTENTIAL_CONFLICT: </b>This value indicates that
+the failover relationship between two DHCP servers is attempting to
+re-establish itself.</p><p><b>CONFLICT_DONE: </b>This value indicates that
+during the process where two servers in a failover relationship attempt
+reintegration with each other, the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_bb76b8f0-0929-47c8-a06a-d3f9a8761d93" data-linktype="relative-path">primary server</a></span> has
+received all updates from the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_c5baedf3-3fef-4f0e-9a48-79b7cdb04b7f" data-linktype="relative-path">secondary server</a></span>.</p><p><b>RESOLUTION_INT: </b>This value indicates that the
+two servers in a failover relationship were attempting reintegration with each
+other in the POTENTIAL_CONFLICT state, but communications failed prior to
+completion of the reintegration.</p><p><b>RECOVER: </b>This value indicates that a server in
+a failover relationship has no information in its stable storage facility or
+that it is reintegrating with a server in the PARTNER_DOWN state after it has
+been down.</p><p><b>RECOVER_WAIT: </b>This value means that the DHCPv4
+server waits for a time period equal to <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e4be91c7-4c7b-4b4a-8e14-813530d7c34f" data-linktype="relative-path">maximum client lead time (MCLT)</a></span>
+before moving to the RECOVER_DONE state.</p><p><b>RECOVER_DONE: </b>This value enables an
+interlocked transition of one server from the RECOVER state and another server
+from the PARTNER_DOWN or COMMUNICATION-INT state to the NORMAL state.</p></div>

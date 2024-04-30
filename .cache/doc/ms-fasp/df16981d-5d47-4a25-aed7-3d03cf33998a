@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>This structure contains the ports represented statically
+through <span><a href="3122d4b1-9500-43af-900a-27fe64688623" data-linktype="relative-path">FW_PORT_RANGE</a></span>
+structures or symbolically through <span><a href="f2a500d8-b8cb-48e1-b4f2-1f85c89011ad" data-linktype="relative-path">FW_PORT_KEYWORD</a></span>
+enumeration values.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_PORTS {
+   unsigned short wPortKeywords;
+   FW_PORT_RANGE_LIST Ports;
+ } FW_PORTS,
+  *PFW_PORTS;
+</pre></div>
+</dd></dl><p><b>wPortKeywords:</b>  This field is a
+combination of FW_PORT_KEYWORD<span><span> values</span></span>.</p><p><b>Ports:</b>  This field is a list of
+specifically defined ports.</p></div>

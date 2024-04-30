@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The <b>DHCP_OPTION_VALUE</b> structure contains the option
+identifier and its option value. This structure is used in the <span><a href="313eaf77-256b-44d3-b303-8cca3f158939" data-linktype="relative-path">DHCP_OPTION_VALUE_ARRAY (section 2.2.1.2.43)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_OPTION_VALUE {
+   DHCP_OPTION_ID OptionID;
+   DHCP_OPTION_DATA Value;
+ } DHCP_OPTION_VALUE,
+  *LPDHCP_OPTION_VALUE;
+</pre></div>
+</dd></dl><p><b>OptionID:</b>  This is of type <span><a href="4a0bb785-ceec-4f7a-b4a7-64555f6e0b62" data-linktype="relative-path">DHCP_OPTION_ID (section 2.2.1.2.3)</a></span>,
+containing the identifier for a specific option.</p><p><b>Value:</b>  This is of type <span><a href="6b01abaa-f56b-4a9b-9596-64c7813fdfe7" data-linktype="relative-path">DHCP_OPTION_DATA (section 2.2.1.2.24)</a></span>,
+containing the option value for an option.</p></div>

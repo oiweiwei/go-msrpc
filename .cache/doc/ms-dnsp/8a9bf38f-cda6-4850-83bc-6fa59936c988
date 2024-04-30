@@ -1,0 +1,156 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_SKWANSEC_STATS</b> structure has DNS server
+statistics related to <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_88d49f20-6c95-4b64-a52c-c3eca2fe5709" data-linktype="relative-path">security context</a></span> 
+processing. This structure MUST be formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecContextCreate</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecContextFree</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecContextQueue</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecContextQueueInNego</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecContextQueueNegoComplete</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecContextQueueLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecContextDequeue</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecContextTimeout</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecPackAlloc</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecPackFree</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecTkeyInvalid</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecTkeyBadTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecTsigFormerr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecTsigEcho</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecTsigBadKey</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecTsigVerifySuccess</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecTsigVerifyFailed</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>SecContextCreate (4 bytes): </b>The number of
+security contexts created by the server since the server was started.</p><p><b>SecContextFree (4 bytes): </b>The number of
+security contexts released by the server since the server was started.</p><p><b>SecContextQueue (4 bytes): </b>The total number of
+security contexts in the queue for negotiation on the server since the server
+was started.</p><p><b>SecContextQueueInNego (4 bytes): </b>The number of
+security contexts entered in negotiation since the server was started.</p><p><b>SecContextQueueNegoComplete (4 bytes): </b>The
+number of security contexts that have completed negotiation since the server
+was started.</p><p><b>SecContextQueueLength (4 bytes): </b>The number of
+security contexts currently queued.</p><p><b>SecContextDequeue (4 bytes): </b>The total number
+of security contexts removed from the queue for negotiation since the server
+was started.</p><p><b>SecContextTimeout (4 bytes): </b>The total number
+of security contexts in the negotiation list that timed out since the server
+was started.</p><p><b>SecPackAlloc (4 bytes): </b>The number of buffers
+allocated by the server for use with GSS-API signature validation.</p><p><b>SecPackFree (4 bytes): </b>The number of buffers
+for use with GSS-API signature validation released by the server.</p><p><b>SecTkeyInvalid (4 bytes): </b>The number of secure
+DNS update messages from which TKEY was successfully retrieved.</p><p><b>SecTkeyBadTime (4 bytes): </b>The number of secure
+DNS update messages that had TKEY with a skewed <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_391ec606-c265-48f2-aeeb-3245b5503121" data-linktype="relative-path">time stamp</a></span>.</p><p><b>SecTsigFormerr (4 bytes): </b>The number of <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_b6d1e111-4a70-48b1-b302-06372bafec14" data-linktype="relative-path">TSIG</a></span>
+records from which signature extraction failed.</p><p><b>SecTsigEcho (4 bytes): </b>The number of echo TSIG
+records received by the server, indicating that the remote server is not
+security aware. <span><a href="https://go.microsoft.com/fwlink/?LinkId=90388" data-linktype="external">[RFC2845]</a></span></p><p><b>SecTsigBadKey (4 bytes): </b>The number of TSIG
+records received for which the cached security context could not be found.</p><p><b>SecTsigVerifySuccess (4 bytes): </b>The number of
+TSIG records received for which the signature was successfully verified.</p><p><b>SecTsigVerifyFailed (4 bytes): </b>The number of
+TSIG records received for which signature verification failed.</p></div>

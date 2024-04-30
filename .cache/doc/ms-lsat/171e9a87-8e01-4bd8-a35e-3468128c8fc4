@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>The SID_NAME_USE enumeration contains values that specify
+the type of an account.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="d2715572-2c9b-4198-ace9-316a2fb5d7f5#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><dl>
+<dd>
+<div><pre> typedef  enum _SID_NAME_USE
+ {
+   SidTypeUser = 1,
+   SidTypeGroup,
+   SidTypeDomain,
+   SidTypeAlias,
+   SidTypeWellKnownGroup,
+   SidTypeDeletedAccount,
+   SidTypeInvalid,
+   SidTypeUnknown,
+   SidTypeComputer,
+   SidTypeLabel
+ } SID_NAME_USE,
+  *PSID_NAME_USE;
+</pre></div>
+</dd></dl><p>The SidTypeInvalid and SidTypeComputer enumeration values
+are not used in this protocol. Usage information on the remaining enumeration
+values is specified in section <span><a href="fa772a24-55d4-4911-b3d5-eda0bd2ec4e1" data-linktype="relative-path">3.1.1</a></span>.</p></div>

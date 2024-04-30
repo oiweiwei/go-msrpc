@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>The VDS_FORMAT_OPTION_FLAGS enumeration defines the set of
+valid <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_ea22e521-1a4e-4ceb-8d64-f65fa6d0e63b" data-linktype="relative-path">format</a></span> option
+values.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_FORMAT_OPTION_FLAGS
+ {
+   VDS_FSOF_NONE = 0x00000000,
+   VDS_FSOF_FORCE = 0x00000001,
+   VDS_FSOF_QUICK = 0x00000002,
+   VDS_FSOF_COMPRESSION = 0x00000004,
+   VDS_FSOF_DUPLICATE_METADATA = 0x00000008
+ } VDS_FORMAT_OPTION_FLAGS;
+</pre></div>
+</dd></dl><p><b>VDS_ESOF_NONE:  </b>No format options are
+specified.</p><p><b>VDS_ESOF_FORCE:  </b>Determines whether the format
+is forced, regardless of whether the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> is in use.</p><p><b>VDS_ESOF_QUICK:  </b>Determines whether a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file
+system</a></span> is quick formatted. A quick format does not verify each <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b5bbe646-aa5f-4b4e-ae9e-bdae444cbfa2" data-linktype="relative-path">sector</a></span>
+on the volume.</p><p><b>VDS_ESOF_COMPRESSION:  </b>Determines whether a
+file system is created with compression enabled.</p><p><b>VDS_ESOF_DUPLICATE_METADATA:  </b>Determines
+whether the metadata is duplicated (<span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_5068e37f-372c-41df-9357-1072e12ed970" data-linktype="relative-path">UDF</a></span> file system
+only).</p></div>

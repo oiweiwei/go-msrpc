@@ -1,0 +1,171 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_QUERY2_STATS</b> structure contains DNS server
+statistics related to query processing by type. This structure MUST be
+formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TotalQueries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Standard</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Notify</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Update</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TKeyNego (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TypeA</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TypeNs</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TypeSoa</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TypeMx</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TypePtr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TypeSrv</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TypeAll</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TypeIxfr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TypeAxfr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TypeOther</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>TotalQueries (4 bytes): </b>The total number of
+queries received by the server, as an unsigned 32-bit integer. If the value is
+greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>Standard (4 bytes): </b>The number of standard DNS
+queries received by the server, as an unsigned 32-bit integer. If the value is
+greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>Notify (4 bytes): </b>The number of <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span>
+notification requests received by the server, as an unsigned 32-bit integer. If
+the value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is
+stored in the field.</p><p><b>Update (4 bytes): </b>The number of <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_dbff570c-a709-479a-980a-5b74ac7ab2e7" data-linktype="relative-path">dynamic
+update</a></span> requests received by the server, as an unsigned 32-bit
+integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p><p><b>TKeyNego (4 bytes): </b>The number of TKEY <span><a href="https://go.microsoft.com/fwlink/?LinkId=90397" data-linktype="external">[RFC2930]</a></span>
+negotiation requests received by the server, as an unsigned 32-bit integer. If
+the value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is
+stored in the field. This field SHOULD<a id="Appendix_A_Target_68"></a><a aria-label="Product behavior note 68" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_68" data-linktype="relative-path">&lt;68&gt;</a> be
+present. A client can tell whether the field is present based on the size of
+the buffer holding this structure. </p><p><b>TypeA (4 bytes): </b>The number of queries
+received for record type DNS_TYPE_A, as an unsigned 32-bit integer. If the
+value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored
+in the field.</p><p><b>TypeNs (4 bytes): </b>The number of queries
+received for record type DNS_TYPE_NS, as an unsigned 32-bit integer. If the
+value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored
+in the field.</p><p><b>TypeSoa (4 bytes): </b>The number of queries
+received for record type DNS_TYPE_SOA, as an unsigned 32-bit integer. If the
+value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored
+in the field.</p><p><b>TypeMx (4 bytes): </b>The number of queries
+received for record type DNS_TYPE_MX, as an unsigned 32-bit integer. If the
+value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored
+in the field.</p><p><b>TypePtr (4 bytes): </b>The number of queries
+received for record type DNS_TYPE_PTR, as an unsigned 32-bit integer. If the
+value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored
+in the field.</p><p><b>TypeSrv (4 bytes): </b>The number of queries received
+for record type DNS_TYPE_SRV, as an unsigned 32-bit integer. If the value is
+greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored in the
+field.</p><p><b>TypeAll (4 bytes): </b>The number of queries
+received for record type DNS_TYPE_ALL, as an unsigned 32-bit integer. If the
+value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored
+in the field.</p><p><b>TypeIxfr (4 bytes): </b>The number of queries
+received for record type DNS_TYPE_IXFR, as an unsigned 32-bit integer. If the
+value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored
+in the field.</p><p><b>TypeAxfr (4 bytes): </b>The number of queries
+received for record type DNS_TYPE_AXFR, as an unsigned 32-bit integer. If the
+value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is stored
+in the field.</p><p><b>TypeOther (4 bytes): </b>The number of queries
+received for any other record type not mentioned above, as an unsigned 32-bit
+integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p></div>

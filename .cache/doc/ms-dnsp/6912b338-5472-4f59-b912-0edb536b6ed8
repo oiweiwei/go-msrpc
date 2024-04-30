@@ -1,0 +1,101 @@
+<div class="content"><p> </p><p>The <b>dnsRecord</b> attribute is used to store DNS <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_49c03845-ca86-48f5-9cbf-ab86c624aa29" data-linktype="relative-path">resource
+record</a></span> definitions. This attribute MUST be formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>DataLength</p>
+  </td>
+  <td colspan="16">
+  <p>Type</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>Version</p>
+  </td>
+  <td colspan="8">
+  <p>Rank</p>
+  </td>
+  <td colspan="16">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Serial</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TtlSeconds</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TimeStamp</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>DataLength (2 bytes): </b>An unsigned binary
+integer containing the length, in bytes, of the Data field.</p><p><b>Type (2 bytes): </b>The resource record&#39;s type.
+See <span><a href="39b03b89-2264-4063-8198-d62f62a6441a" data-linktype="relative-path">DNS_RECORD_TYPE
+(section 2.2.2.1.1)</a></span>.</p><p><b>Version (1 byte): </b>The version number
+associated with the resource record attribute. The value MUST be 0x05.</p><p><b>Rank (1 byte): </b>The least-significant byte of
+one of the RANK* flag values. See <span><a href="ac793981-1c60-43b8-be59-cdbb5c4ecb8a" data-linktype="relative-path">dwFlags (section 2.2.2.2.5)</a></span>.</p><p><b>Flags (2 bytes): </b>Not used. The value MUST be
+0x0000.</p><p><b>Serial (4 bytes): </b>The <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_9902897a-67ab-4c95-a910-a96bea8ad76e" data-linktype="relative-path">serial
+number</a></span> of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0365bdcc-f1f5-4494-b57c-02c897b7ea8a" data-linktype="relative-path">SOA</a></span> record of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span>
+containing this resource record. See <span><a href="dcd3ec16-d6bf-4bb4-9128-6172f9e5f066" data-linktype="relative-path">DNS_RPC_RECORD_SOA (section
+2.2.2.2.4.3)</a></span>.</p><p><b>TtlSeconds (4 bytes): </b>See dwTtlSeconds
+(section 2.2.2.2.5). This field uses big-endian byte order.</p><p><b>Reserved (4 bytes): </b>This field is reserved for
+future use. The value MUST be 0x00000000.</p><p><b>TimeStamp (4 bytes): </b>See dwTimeStamp (section
+2.2.2.2.5).</p><p><b>Data (variable): </b>The resource record&#39;s data.
+See <span><a href="38b87392-7f61-4e30-9263-9f0fb832d084" data-linktype="relative-path">DNS_RPC_RECORD_DATA
+(section 2.2.2.2.4)</a></span>.</p></div>

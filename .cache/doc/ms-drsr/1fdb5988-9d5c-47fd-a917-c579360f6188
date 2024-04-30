@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The DRS_MSG_QUERYSITESREPLY_V1 structure defines a response
+message received from the <span><a href="2c3faba2-d64e-4866-b8f1-fc8d5f4ec710" data-linktype="relative-path">IDL_DRSQuerySitesByCost</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [range(0,10000)] DWORD cToSites;
+   [size_is(cToSites)] DRS_MSG_QUERYSITESREPLYELEMENT_V1* rgCostInfo;
+   DWORD dwFlags;
+ } DRS_MSG_QUERYSITESREPLY_V1;
+</pre></div>
+</dd></dl><p><b>cToSites:</b>  The number of items in
+the <b>rgCostInfo</b> array.</p><p><b>rgCostInfo:</b>  The sequence of
+computed <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8abdc986-5679-42d9-ad76-b11eb5a0daba" data-linktype="relative-path">site</a></span> costs, in the
+same order as the <b>rgszToSites</b> field in the request message.</p><p><b>dwFlags:</b>  Unused. MUST be 0 and
+ignored.</p></div>

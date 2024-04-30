@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The DRS_MSG_EXISTREQ union defines request messages sent to
+the <span><a href="6355d4f5-f556-4527-adde-37afba2fcf56" data-linktype="relative-path">IDL_DRSGetObjectExistence</a></span>
+method. Only one version, identified by <i>dwInVersion</i> = 1, is currently
+defined.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_EXISTREQ_V1 V1;
+ } DRS_MSG_EXISTREQ;
+</pre></div>
+</dd></dl><p><b>V1:</b>  The version 1 request.</p></div>

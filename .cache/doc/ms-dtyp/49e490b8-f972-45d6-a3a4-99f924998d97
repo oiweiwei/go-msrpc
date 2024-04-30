@@ -1,0 +1,24 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/49e490b8-f972-45d6-a3a4-99f924998d97" data-linktype="external">msdn link</a></p><p>The following structure is an <a href="a66edeb1-52a0-4d64-a93b-2f5c833d7d92#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a> representation of <a href="a66edeb1-52a0-4d64-a93b-2f5c833d7d92#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> equivalent to and
+compatible with a DCE UUID (<a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> section A.1)
+according to the following mappings.</p><dl>
+<dd>
+<div><pre> typedef struct _GUID {
+   unsigned long Data1;
+   unsigned short Data2;
+   unsigned short Data3;
+   byte Data4[8];
+ } GUID,
+   UUID,
+  *PGUID;
+</pre></div>
+</dd></dl><p><b>Data1:</b>  This member is generally
+treated as an opaque value. This member is equivalent to the time_low field of
+a DCE UUID ([C706] section A.1).</p><p><b>Data2:</b>  This member is generally
+treated as an opaque value. This member is equivalent to the time_mid field of
+a DCE UUID ([C706] section A.1).</p><p><b>Data3:</b>  This member is generally
+treated as an opaque value. This member is equivalent to the
+time_hi_and_version field of a DCE UUID ([C706] section A.1).</p><p><b>Data4:</b>  This array is generally
+treated as a sequence of opaque values. This member is equivalent to the
+following sequence of fields of a DCE UUID ([C706] section A.1) in this order:
+clock_seq_hi_and_reserved, clock_seq_low, and the sequence of bytes in the node
+field.</p></div>

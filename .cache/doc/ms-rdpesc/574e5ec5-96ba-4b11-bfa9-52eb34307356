@@ -1,0 +1,19 @@
+<div class="content"><p>The State_Return structure defines return information about
+the state of the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_5cddf14c-b925-4494-9b55-d2c8259f9ad0" data-linktype="relative-path">smart card
+reader</a> (for more information, see section <a href="16756fb5-fd8f-4949-82f8-b480f59d8d13" data-linktype="relative-path">3.1.4.40</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _State_Return {
+   long ReturnCode;
+   unsigned long dwState;
+   unsigned long dwProtocol;
+   [range(0,36)] unsigned long cbAtrLen;
+   [unique] [size_is(cbAtrLen)] byte *rgAtr;
+ } State_Return;
+</pre></div>
+</dd></dl><p><b>ReturnCode:</b>  <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a> or Win32 Error
+code. Zero indicates success; any other value indicates failure.</p><p><b>dwState:</b>  The current state of the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">smart card</a> in the Reader.
+Possible values are specified in section <a href="264bc504-1195-43ff-a057-3d86a02c5d9c" data-linktype="relative-path">2.2.4</a>.</p><p><b>dwProtocol:</b>  The current protocol,
+if any. Possible values are specified in section <a href="41673567-2710-4e86-be87-7b6f46fe10af" data-linktype="relative-path">2.2.5</a>.</p><p><b>cbAtrLen:</b>  The number of bytes in
+the <b>rgAtr</b> field.</p><p><b>rgAtr:</b>  A pointer to a buffer that
+receives the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_2a8fc201-65aa-4040-980c-f4843467e6bf" data-linktype="relative-path">ATR</a> string
+from the currently inserted card, if available.</p></div>

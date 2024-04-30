@@ -1,0 +1,1059 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/fb8e1146-a045-4c31-98d1-c68507ad5620" data-linktype="external">msdn link</a></p><p>The <b>DsrGetDcNameEx2</b> method SHOULD<a id="Appendix_A_Target_147"></a><a aria-label="Product behavior note 147" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_147" data-linktype="relative-path">&lt;147&gt;</a> return information about a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller (DC)</a> in
+the specified domain and site. If the <i>AccountName</i> parameter is not NULL,
+and a DC matching the requested capabilities (as defined in the <i>Flags</i>
+parameter) responds during this method call, then that DC will have verified
+that the DC account database contains an account for the <i>AccountName</i>
+specified. The server that receives this call is not required to be a DC. </p><dl>
+<dd>
+<div><pre> NET_API_STATUS DsrGetDcNameEx2(
+   [in, unique, string] LOGONSRV_HANDLE ComputerName,
+   [in, unique, string] wchar_t* AccountName,
+   [in] ULONG AllowableAccountControlBits,
+   [in, unique, string] wchar_t* DomainName,
+   [in, unique] GUID* DomainGuid,
+   [in, unique, string] wchar_t* SiteName,
+   [in] ULONG Flags,
+   [out] PDOMAIN_CONTROLLER_INFOW* DomainControllerInfo
+ );
+</pre></div>
+</dd></dl><p><b>ComputerName: </b>The custom <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_44deb72d-c62b-4335-90e4-b9fd4dd782ed" data-linktype="relative-path">binding handle</a> defined in
+section <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>.</p><p><b>AccountName: </b>A null-terminated <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string that
+contains the name of the account that MUST exist and be enabled on the DC.</p><p><b>AllowableAccountControlBits: </b>A set of bit
+flags that list properties of the <i>AccountName</i> account. A flag is TRUE
+(or set) if its value is equal to 1. If the flag is set, then the account MUST
+have that property; otherwise, the property is ignored. The value is
+constructed from zero or more bit flags from the following table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>Account for users whose primary account is in another
+  domain. This account provides user access to the domain, but not to any
+  domain that trusts the domain.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>Normal domain user account.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>Interdomain <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a> account.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>Computer account for a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_6234a38c-ed1b-4c69-969f-6e6479566f65" data-linktype="relative-path">domain member</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>Computer account for a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_ce1138c6-7ab4-4c37-98b4-95599071c3c3" data-linktype="relative-path">backup domain controller
+  (BDC)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>Computer account for a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8b0a073b-3099-4efe-8b81-c2886b66a870" data-linktype="relative-path">read-only domain controller
+  (RODC)</a>.<a id="Appendix_A_Target_148"></a><a aria-label="Product behavior note 148" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_148" data-linktype="relative-path">&lt;148&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero and MUST be
+ignored on receipt.</p>
+</dd></dl><p><b>DomainName: </b>A null-terminated Unicode string
+that contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_45a1c9f1-0263-49a8-97c7-7aca1a99308c" data-linktype="relative-path">domain
+name</a>. If the string is NULL or empty (that is, the first character in the
+string is the null-terminator character), then the primary domain name is
+assumed.</p><p><b>DomainGuid: </b>A pointer to a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> structure that
+specifies the GUID of the domain queried. If <i>DomainGuid</i> is not NULL and
+the domain specified by <i>DomainName</i> cannot be found, the DC locator
+attempts to locate a DC in the domain that has the GUID specified by <i>DomainGuid</i>.
+This allows renamed domains to be found by their GUID.</p><p><b>SiteName: </b>A null-terminated string that
+contains the name of the site in which the DC MUST be located.</p><p><b>Flags: </b>A set of bit flags that provide
+additional data that is used to process the request. A flag is TRUE (or set) if
+its value is equal to 1. The value is constructed from zero or more bit flags
+from the following table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>S</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>W</p>
+  </td>
+  <td>
+  <p>V</p>
+  </td>
+  <td>
+  <p>U</p>
+  </td>
+  <td>
+  <p>T</p>
+  </td>
+  <td>
+  <p>Q</p>
+  </td>
+  <td>
+  <p>P</p>
+  </td>
+  <td>
+  <p>O</p>
+  </td>
+  <td>
+  <p>N</p>
+  </td>
+  <td>
+  <p>M</p>
+  </td>
+  <td>
+  <p>L</p>
+  </td>
+  <td>
+  <p>K</p>
+  </td>
+  <td>
+  <p>J</p>
+  </td>
+  <td>
+  <p>I</p>
+  </td>
+  <td>
+  <p>H</p>
+  </td>
+  <td>
+  <p>G</p>
+  </td>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>The server ignores any cached DC data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>The server returns a DC that supports <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_c36db657-3138-4d9a-9289-ded5cbb8b40e" data-linktype="relative-path">directory service</a>
+  functions. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>The server first attempts to find a DC that supports
+  directory service functions.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>The server returns a DC that is a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_4f5d605a-7b3f-4db7-8c21-b146856d7169" data-linktype="relative-path">global catalog</a> server for
+  the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a>. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>The server returns a DC that is the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a> for the domain.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>The server uses cached DC data if available, even if
+  the cached data is expired.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>G</p>
+  </td>
+  <td>
+  <p>The server returns a DC that has an IP (either IPv4 or
+  IPv6) address. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>H</p>
+  </td>
+  <td>
+  <p>The server returns a DC that is currently running the
+  Kerberos <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_6e5aafba-6b66-4fdd-872e-844f142af287" data-linktype="relative-path">Key Distribution
+  Center</a> service.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>I</p>
+  </td>
+  <td>
+  <p>The server returns a DC that is currently running <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_43e51d0a-ac6a-4662-a99a-8f3029b78caf" data-linktype="relative-path">W32Time</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>J</p>
+  </td>
+  <td>
+  <p>The server returns a DC that is writable.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>K</p>
+  </td>
+  <td>
+  <p>The server first attempts to find a DC that is a
+  reliable time server. If a reliable time server is unavailable, the server
+  returns a DC that is currently running W32Time.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>L</p>
+  </td>
+  <td>
+  <p>The server returns a different DC in the domain if one
+  exists. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>M</p>
+  </td>
+  <td>
+  <p>The server returns an LDAP server. The server MAY
+  return a DC. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>N</p>
+  </td>
+  <td>
+  <p>Specifies that the <i>DomainName</i> parameter is a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>O</p>
+  </td>
+  <td>
+  <p>Specifies that the <i>DomainName</i> parameter is a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a> name.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>P</p>
+  </td>
+  <td>
+  <p>The server attempts to find a DC in the next closest
+  site if a DC in the closest site is not available. If a DC in the next
+  closest site is also not available, the server returns any available DC.<a id="Appendix_A_Target_149"></a><a aria-label="Product behavior note 149" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_149" data-linktype="relative-path">&lt;149&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Q</p>
+  </td>
+  <td>
+  <p>The server returns a DC that has a DC functional level
+  of DS_BEHAVIOR_WIN2008 or greater, as specified in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+  section <a href="../ms-adts/8f0d9838-d9f2-44b8-b018-b41b62c0580c" data-linktype="relative-path">6.1.4.2</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>Specifies that the names returned in the <b>DomainControllerName</b>
+  and <b>DomainName</b> fields of <i>DomainControllerInfo</i> are DNS names.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>S</p>
+  </td>
+  <td>
+  <p>Specifies that the names returned in the <b>DomainControllerName</b>
+  and <b>DomainName</b> fields of <i>DomainControllerInfo</i> are NetBIOS
+  names.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>T</p>
+  </td>
+  <td>
+  <p>The server returns a DC that is currently running the
+  Active Directory Web Service.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>U</p>
+  </td>
+  <td>
+  <p>The server returns a DC that has a DC functional level
+  of DS_BEHAVIOR_WIN2012 or greater, as specified in [MS-ADTS] section 6.1.4.2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>V</p>
+  </td>
+  <td>
+  <p>The server returns a DC that has a DC functional level
+  of DS_BEHAVIOR_WIN2012R2 or greater, as specified in [MS-ADTS] section
+  6.1.4.2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>W</p>
+  </td>
+  <td>
+  <p>The server returns a DC that has a DC functional level
+  of DS_BEHAVIOR_WIN2016 or greater, as specified in [MS-ADTS] section 6.1.4.2.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero. The server MUST
+return ERROR_INVALID_FLAGS if any of the unspecified bits are not zero.</p>
+</dd></dl><p><b>DomainControllerInfo: </b>A pointer to a <a href="9b85a7a4-8d34-4b9e-9500-bf8644ebfc06" data-linktype="relative-path">DOMAIN_CONTROLLER_INFOW</a>
+structure (section 2.2.1.2.1) containing data about the DC.</p><p><b>Return Values: </b>The method returns 0x00000000
+on success; otherwise, it returns a nonzero error code.</p><p>On receiving this call, the server MUST perform the
+following <i>Flags</i> parameter validations:</p><ul><li><p><span><span> 
+</span></span>Flags D, E, and H MUST NOT be combined with each other.</p>
+</li><li><p><span><span> 
+</span></span>Flag N MUST NOT be combined with the O flag.</p>
+</li><li><p><span><span> 
+</span></span>Flag R MUST NOT be combined with the S flag.</p>
+</li><li><p><span><span> 
+</span></span>Flags B, Q, U, V, and W MUST NOT be combined with each other.</p>
+</li><li><p><span><span> 
+</span></span>Flag K MUST NOT be combined with any of the flags: B, C, D, E, or
+H.</p>
+</li><li><p><span><span> 
+</span></span>Flag P MUST NOT be set when the SiteName parameter is provided.</p>
+</li></ul><p>The server MUST return ERROR_INVALID_FLAGS for any of the
+previously mentioned conflicting combinations.</p><p>Additionally, the server MUST perform the following parameter
+validations:</p><ul><li><p><span><span> 
+</span></span>If the flag D is set and <i>DomainName</i> parameter is neither
+NULL nor empty, the <i>DomainName</i> is a valid NetBIOS name format or a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a> format, and the <i>DomainName</i>
+is not the FQDN or NetBIOS name of a trusted forest, then the server MUST
+return ERROR_NO_SUCH_DOMAIN. To determine the list of trusted forests, and
+their FQDN) and NetBIOS names, the server MUST use the <b>TrustedDomains</b>
+ADM. The domains from this collection that have the C bit set in the Flags
+field represent the trusted forests.</p>
+</li><li><p><span><span> 
+</span></span>If the flag N is set and <i>DomainName</i> parameter is neither
+NULL nor empty and the <i>DomainName</i> is NOT a valid NetBIOS name format,
+then the server MUST return ERROR_INVALID_DOMAINNAME.</p>
+</li><li><p><span><span> 
+</span></span>If the flag O is set and <i>DomainName</i> parameter is neither
+NULL nor empty and the <i>DomainName</i> is NOT in a valid FQDN format and <b>AllowDnsSuffixSearch</b>
+is FALSE, then the server MUST return ERROR_INVALID_DOMAINNAME.</p>
+</li><li><p><span><span> 
+</span></span>If neither the N flag nor the O flag are specified and <i>DomainName</i>
+parameter is neither NULL nor empty, then the server MUST return
+ERROR_INVALID_DOMAINNAME if the <i>DomainName</i> is neither a valid NetBIOS
+name format nor a valid FQDN format.</p>
+</li></ul><p>If the A bit in <i>Flags</i> is not set, then the server
+attempts to use the <b>LocatedDCsCache</b> and <b>FailedDiscoveryCache</b> if
+it has them, even if the F bit in <i>Flags</i> is not set. The process for this
+is as follows:</p><ul><li><p><span><span> 
+</span></span>If there is no entry for the requested domain in <b>LocatedDCsCache</b>,
+then check if it exists in <b>FailedDiscoveryCache</b>. If an entry is found in
+<b>FailedDiscoveryCache</b>, then find the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_bac72edb-4ce9-4baa-8977-f33e331b2b5e" data-linktype="relative-path">delta</a> between the current
+time and the last failure time for that cache entry. If this delta is less than
+<b>FailedDiscoveryCachePeriod</b>, the server returns an error.</p>
+</li><li><p><span><span> 
+</span></span>If there is an entry for the requested domain in <b>LocatedDCsCache</b>,
+but its capabilities do not include the requested capabilities, then invalidate
+the cached entry and attempt to locate a DC as described below.</p>
+</li><li><p><span><span> 
+</span></span>If the delta between the current time and the creation time for
+the entry in <b>LocatedDCsCache</b> is greater than the <b>CacheEntryValidityPeriod</b>
+and the F bit in the <i>Flags</i> is not set, then invalidate the cached entry
+and attempt to locate a DC as described below.</p>
+</li><li><p><span><span> 
+</span></span>If the difference between the current time and the refresh time
+for the entry in <b>LocatedDCsCache</b> is greater than <b>CacheEntryPingValidityPeriod</b>,
+then the server MUST send a ping message to the DC prior to returning the
+value. The ping mechanism to be used, whether LDAP Ping ([MS-ADTS] section <a href="../ms-adts/895a7744-aff3-4f64-bcfa-f8c05915d2e9" data-linktype="relative-path">6.3.3</a>)
+or Mailslot Ping ([MS-ADTS] section <a href="../ms-adts/2cff75a9-5871-4493-a704-017b506f8df0" data-linktype="relative-path">6.3.5</a>),
+is determined based on the N and O bit settings in the <i>Flags</i>, as
+described below. If a ping of the DC fails, then it MUST invalidate the cache
+entry and attempt to locate a DC as described below. Otherwise update the
+refresh time and return the cached result.</p>
+</li></ul><p>The server MUST attempt to locate a domain controller for
+the domain specified by the client. The server SHOULD<a id="Appendix_A_Target_150"></a><a aria-label="Product behavior note 150" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_150" data-linktype="relative-path">&lt;150&gt;</a> implement alternate means of
+locating a DC: for example, a static list in a file, or the two methods
+detailed in  [MS-ADTS] section <a href="../ms-adts/3e9711af-9067-435e-93fb-09182053cef7" data-linktype="relative-path">6.3.6</a>.</p><p>If the <i>ComputerName</i> parameter is not NULL, it is
+compared against the server&#39;s <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9a7bc8b3-3374-4608-8f73-be20a90b898b" data-linktype="relative-path">computer
+name</a>. If the server is not a DC (section <a href="16f82942-80d6-43ac-8c38-eee3cfe4ac99" data-linktype="relative-path">3.1.4.8</a>) and the <i>ComputerName</i>
+parameter does not match the server&#39;s computer name, the server MUST return
+STATUS_INVALID_COMPUTER_NAME. If the <i>ComputerName</i> parameter matches the
+server&#39;s computer name, the <i>ComputerName</i> parameter is NULL, or the
+server is a DC, then processing proceeds.</p><p>The server uses the DC location protocol ([MS-ADTS] section
+6.3.6) to locate a DC (the located DC is known as the responding DC). There are
+two methods of locating a DC that the DC location protocol supports. One of the
+methods involves the DNS-based discovery mechanism (described below) and then
+the LDAP ping message, and the other method involves the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_f53fe4b9-8e1d-4366-9254-3c4f73269e78" data-linktype="relative-path">mailslot</a> ping message. </p><p>If the N bit is set in the <i>Flags</i> parameter, the
+mailslot message MUST be sent.</p><p>If the O bit is set in the <i>Flags</i> parameter, DNS-based
+discovery MUST be performed, and the LDAP message MUST be sent.</p><ul><li><p><span><span> 
+</span></span>If the <i>DomainName</i> parameter is an FQDN with a single label
+and <b>AllowDnsSuffixSearch</b> is TRUE and <b>AllowSingleLabelDNSDomain</b> is
+FALSE, then a DNS-based discovery is attempted. The DNS SRV queries specified
+below are performed by using FQDNs formed by appending in turn each of the
+server&#39;s DNS suffixes to <i>DomainName</i>.</p>
+</li></ul><p>If neither the N bit nor the O bit are specified, then:</p><ul><li><p><span><span> 
+</span></span>If the <i>DomainName</i> parameter is an FQDN with more than one
+label (as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90264" data-linktype="external">[RFC1035]</a>),
+or if the <b>AllowSingleLabelDNSDomain</b> field is TRUE and the <i>DomainName</i>
+parameter is an FQDN with a single label, then a DNS-based discovery is
+attempted and an LDAP message sent.</p>
+</li><li><p><span><span> 
+</span></span>If the DomainName parameter is a syntactically valid NetBIOS name
+(as specified in <a href="../ms-nbte/3461cfa8-3d28-4fa3-8163-131bf1046fa3" data-linktype="relative-path">[MS-NBTE]</a>),
+then the mailslot message MUST be sent.</p>
+</li></ul><p>If the DNS-based discovery is performed, the server
+identifies the candidate DCs by performing DNS SRV queries as follows:</p><ol><li><p><span>    </span>Based on the
+value of the B, D, E, H, and M bits in the <i>Flags</i> parameter, the
+appropriate query is selected from those listed in [MS-ADTS] section 6.3.6.
+Other bits specified in the <i>Flags</i> parameter do not contribute to the
+selection of this query but are used to validate against the capabilities
+published in the ping response. The table below shows the specific query that
+is used for the different valid combinations of these bits:</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Bits specified</p>
+   </th>
+   <th>
+   <p>Non site-specific query</p>
+   </th>
+   <th>
+   <p>Site-specific query</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>B=0/1, D=0, E=1, H=0, M=0/1</p>
+  </td>
+  <td>
+  <p>_ldap._tcp.pdc._msdcs.&lt;domainname&gt;</p>
+  </td>
+  <td>
+  <p>N/A</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B=0/1, D=0, E=0, H=1, M=0/1</p>
+  </td>
+  <td>
+  <p>_kerberos._tcp.dc._msdcs.&lt;domainname&gt;</p>
+  </td>
+  <td>
+  <p>_kerberos._tcp.&lt;sitename&gt;._sites.dc._msdcs.&lt;domainname&gt;</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B=0/1, D=1, E=0, H=0, M=1</p>
+  </td>
+  <td>
+  <p>_gc._tcp.&lt;forestname&gt;</p>
+  </td>
+  <td>
+  <p>_gc._tcp.&lt;sitename&gt;._sites.&lt;forestname&gt;</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B=0/1, D=0, E=0, H=0, M=1</p>
+  </td>
+  <td>
+  <p>_ldap._tcp.&lt;domainname&gt;</p>
+  </td>
+  <td>
+  <p>_ldap._tcp.&lt;sitename&gt;._sites.&lt;domainname&gt;</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B=0/1, D=1, E=0, H=0, M=0</p>
+  </td>
+  <td>
+  <p>_gc._tcp.dc._msdcs.&lt;forestname&gt;</p>
+  </td>
+  <td>
+  <p>_gc._tcp.&lt;sitename&gt;._sites.dc._msdcs.&lt;forestname&gt;</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B=0/1, D=0, E=0, H=0, M=0</p>
+  </td>
+  <td>
+  <p>_ldap._tcp.dc._msdcs.&lt;domainname&gt;</p>
+  </td>
+  <td>
+  <p>_ldap._tcp.&lt;sitename&gt;._sites.dc._msdcs.&lt;domainname&gt;</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span>    </span>If the SiteName
+parameter is not NULL, the server MUST attempt a site-specific query. For example,
+if the request is to locate a Key Distribution Center (KDC), the following
+query is used: _kerberos._tcp.&lt;<i>SiteName</i>&gt;._sites.dc._msdcs.&lt;<i>DomainName</i>&gt;.</p>
+</li><li><p><span>    </span>If the <i>SiteName</i>
+parameter is NULL, the server MUST attempt to first use a site-specific query
+for the <b>SiteName</b> (ADM element) site where applicable. For example, if
+the request is to locate a KDC, the following query is used:
+_kerberos._tcp.&lt;<b>SiteName</b>&gt;._sites.dc._msdcs.&lt;<i>DomainName</i>&gt;.
+If the site-specific query does not result in any candidate domain controllers,
+or if the candidate domain controllers are not reachable via LDAP ping
+(described below), and if the P bit in the <i>Flags</i> parameter is set, and
+if <b>NextClosestSiteName</b> (ADM element) is not NULL, then the server MUST
+attempt to locate a DC in the next closest site by performing a site-specific
+query for <b>NextClosestSiteName</b>. If a DC in the next closest site is not
+available, or if the P bit in the <i>Flags</i> parameter was not set, or if <b>NextClosestSiteName</b>
+was NULL, the server MUST return any available DC, using a non-site-specific
+query to determine the candidate domain controllers. Using the same KDC example
+as before, the following non-site-specific query is used:
+_kerberos._tcp.dc._msdcs.&lt;<i>DomainName</i>&gt;. </p>
+</li></ol><p>In either mechanism (defined in [MS-ADTS] section 6.3.6), multiple
+candidate DCs can be discovered. The candidate DCs are pinged to determine
+availability and ability to satisfy the specified requirements.</p><p>The LDAP/mailslot ping messages are constructed as follows:</p><p>When using the LDAP ping method ([MS-ADTS] section 6.3.3),
+the server MUST set the parameters of the LDAP message as follows:</p><ul><li><p><span><span> 
+</span></span>The <b>DnsDomain</b> field of the message is set to the <i>DomainName</i>
+parameter of the <b>DsrGetDcNameEx2</b> call. If <i>DomainName</i> is NULL, the
+<b>DnsDomain</b> field of the message is set to <b>DnsDomainName</b> (section <a href="b8d168ac-ebb6-42f4-bfb2-7a84377f2cbc" data-linktype="relative-path">3.5.1</a>). If the <i>DomainName</i>
+parameter is an FQDN with a single label and <b>AllowDnsSuffixSearch</b> is
+TRUE and <b>AllowSingleLabelDNSDomain</b> is FALSE, the <b>DnsDomain</b> field
+of the message is set to the FQDN formed by appending in turn each of the
+server&#39;s DNS suffixes to <i>DomainName</i>.</p>
+</li><li><p><span><span> 
+</span></span>The <b>Host</b> field of the message is set to the <i>ComputerName</i>
+that is sending the message.</p>
+</li><li><p><span><span> 
+</span></span>The <b>User</b> field of the message is not set.</p>
+</li><li><p><span><span> 
+</span></span>The <b>AAC</b> field of the message is not set.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DomainSid</b> field of the message is not set.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>DomainGuid</b> parameter of the <b>DsrGetDcNameEx2</b>
+is not NULL, the <b>DomainGuid</b> field of the message is set to the <i>DomainGuid</i>
+parameter, else the <b>DomainGuid</b> field of the message is not set.</p>
+</li></ul><p>When using the mailslot ping method ([MS-ADTS] section
+6.3.5), the server MUST set the parameters of the mailslot message as follows:</p><ul><li><p><span><span> 
+</span></span>The <b>UnicodeComputerName</b> field of the message is set to the
+<i>ComputerName</i> that is sending the message.</p>
+</li><li><p><span><span> 
+</span></span>The <b>UnicodeUserName</b> field of the message is not set.</p>
+</li><li><p><span><span> 
+</span></span>The <b>AllowableAccountControlBits</b> field of the message is
+not set.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DomainSidSize</b> field of the message is set to
+0x00000000.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DomainSid</b> field of the message is not set.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DomainGuid</b> field of the message is not set.</p>
+</li></ul><p>If the <i>AccountName</i> parameter is specified, the server
+MUST perform the following additional processing that is defined in [MS-ADTS]:</p><ul><li><p><span><span> 
+</span></span>The LDAP and mailslot query message fields are set as specified
+in [MS-ADTS] sections 6.3.3 and 6.3.5, except for the following:</p>
+<ul><li><p><span><span>  </span></span>LDAP
+ping message:</p>
+<ul><li><p><span><span> 
+</span></span>The <b>User</b> field of the message is set to the value of the <i>AccountName</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>The <b>AAC</b> field of the message is mapped from the <i>AllowableAccountControlBits</i>
+parameter, according to the table in <a href="../ms-samr/4df07fab-1bbc-452f-8e92-7853a3c7e380" data-linktype="relative-path">[MS-SAMR]</a>
+section <a href="../ms-samr/8a193181-a7a2-49df-a8b1-f689aaa6987c" data-linktype="relative-path">3.1.5.14.2</a>,
+where the &#34;ProtocolUserAccountControl&#34; column defines the <b>AAC</b>
+field while the &#34;DatabaseUserAccountControl&#34; column defines the <i>AllowableAccountControlBits</i>.</p>
+</li></ul></li><li><p><span><span>  </span></span>Mailslot
+message:</p>
+<ul><li><p><span><span> 
+</span></span>The <b>UnicodeUserName</b> field of the message is set to the
+value of the <i>AccountName</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>The <b>AllowableAccountControlBits</b> field of the message is
+mapped from the <i>AllowableAccountControlBits</i> parameter, according to the
+table in [MS-SAMR] section 3.1.5.14.2, where the
+&#34;ProtocolUserAccountControl&#34; column defines the <b>AAC</b> field
+while the &#34;DatabaseUserAccountControl&#34; column defines the <i>AllowableAccountControlBits</i>.</p>
+</li></ul></li></ul></li></ul><p>LDAP/Mailslot ping responses from the candidate DCs are
+processed (in the order in which they are received) along with the flags to
+determine if the server queried meets all of the requirements, until a server
+that meets the requirements is found or an implementation-specific timeout is reached.</p><p>If the B bit in the <i>Flags</i> is set, the server SHOULD<a id="Appendix_A_Target_151"></a><a aria-label="Product behavior note 151" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_151" data-linktype="relative-path">&lt;151&gt;</a> return a DC that supports
+directory service functions. To determine if a domain controller meets this
+requirement, the server MUST check the value of the <b>NETLOGON_SAM_LOGON_RESPONSE.NtVersion</b>
+field in the message and ensure that NETLOGON_NT_VERSION_5 or greater is
+specified. If a server that meets this requirement cannot be located, the
+server MUST return ERROR_NO_SUCH_DOMAIN.</p><p>If the C bit in the <i>Flags</i> is set, the service MUST
+first attempt to find a DC that supports directory service functions.<a id="Appendix_A_Target_152"></a><a aria-label="Product behavior note 152" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_152" data-linktype="relative-path">&lt;152&gt;</a> To determine if a domain
+controller meets this requirement, the server MUST check the value of the <b>NETLOGON_SAM_LOGON_RESPONSE.NtVersion</b>
+field in the message and ensure that NETLOGON_NT_VERSION_5 or greater is
+specified. If a DC that supports the directory service functions is not
+available, the server MUST return the name of a non–directory service DC.</p><p>If the D bit in the Flags is set, the server MUST return a
+DC that is a global catalog server for the forest of domains. To determine if a
+domain controller is a global catalog server, the server MUST check the value of
+the FG bit in the <i>Flags</i> field of the message as defined in [MS-ADTS]
+section <a href="../ms-adts/f55d3f53-351d-4407-940e-f53eb6154af0" data-linktype="relative-path">6.3.1.2</a>.</p><p>If the E bit in the <i>Flags</i> is set, the server MUST
+return a DC that is the PDC for the domain. To determine if a domain controller
+is a primary domain controller the server MUST check the value of the FP bit in
+the <i>Flags</i> field of the message as defined in [MS-ADTS] section 6.3.1.2.
+If a server that meets this requirement cannot be located, the server MUST
+return ERROR_NO_SUCH_DOMAIN.</p><p>If the G bit in the <i>Flags</i> is set, the server MUST
+return a DC that has an IP (either IPv4 or IPv6) address. The IP address is
+verified by examining the <b>DcIpAddress</b> field of the
+NETLOGON_SAM_LOGON_RESPONSE message ([MS-ADTS] section <a href="../ms-adts/9b333971-6dd7-4003-a898-6e51b2c02110" data-linktype="relative-path">6.3.1.8</a>)
+or the <b>DcSockAddr</b> field of the NETLOGON_SAM_LOGON_RESPONSE_EX message
+([MS-ADTS] section <a href="../ms-adts/8401a33f-34a8-40ca-bf03-c3484b66265f" data-linktype="relative-path">6.3.1.9</a>).
+If a server that meets this requirement cannot be located, the server MUST
+return ERROR_NO_SUCH_DOMAIN.</p><p>If the H bit in the <i>Flags</i> is set, the server MUST
+return a DC that is currently running the Kerberos Key Distribution Center
+service. To determine if a domain controller is currently running the Kerberos
+Key Distribution Center service, the server MUST check the value of the FK bit
+in the <b>Flags</b> field of the message as defined in [MS-ADTS] section
+6.3.1.2. If a server that meets this requirement cannot be located, the server
+MUST return ERROR_NO_SUCH_DOMAIN.</p><p>If the I bit in the <i>Flags</i> is set, then the server
+MUST return a DC that is currently running W32Time. To determine if a domain
+controller is currently running an <a href="../ms-sntp/8106cb73-ab3a-4542-8bc8-784dd32031cc" data-linktype="relative-path">[MS-SNTP]</a>
+implementation, the server MUST check the value of the FT bit in the <i>Flags</i>
+field of the message as defined in [MS-ADTS] section 6.3.1.2. If a server that
+meets this requirement cannot be located, the server MUST return
+ERROR_NO_SUCH_DOMAIN.</p><p>If the J bit in the <i>Flags</i> is set, the server MUST
+return a DC that is writable.<a id="Appendix_A_Target_153"></a><a aria-label="Product behavior note 153" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_153" data-linktype="relative-path">&lt;153&gt;</a> To
+determine if a domain controller is writable, the server MUST check the value
+of the FW bit in the <i>Flags</i> field of the message as defined in [MS-ADTS]
+section 6.3.1.2. If a server that meets this requirement cannot be located, the
+server MUST return ERROR_NO_SUCH_DOMAIN.</p><p>If the K bit in the <i>Flags</i> is set, the server returns
+a DC that is a reliable time server. If a reliable time server is unavailable,
+the server returns a DC that is a time server. To determine whether a domain
+controller is a reliable time server, the server MUST check the value of the
+FGT bit in the <b>Flags</b> field of the message as defined in [MS-ADTS]
+section 6.3.1.2. To determine whether a domain controller is a time server, the
+server MUST check the value of the FT bit in the <b>Flags</b> field of the
+message as defined in [MS-ADTS] section 6.3.1.2. If a domain controller that
+meets either of these requirements cannot be located, the server MUST return
+ERROR_NO_SUCH_DOMAIN.</p><p>If the L bit in the <b>Flags</b> is set, the server MUST
+return a DC in the domain other than the server if one exists. This flag is
+ignored if the recipient if not running as a DC.</p><p>If the M bit in the <i>Flags</i> is set, the server MUST
+return an LDAP server. To determine if a domain controller is an LDAP server,
+the server MUST check the value of the FL bit in the <b>Flags</b> field of the
+message as defined in [MS-ADTS] section 6.3.1.2. The server MAY return a DC. No
+other services are required to be present on the server returned. The server
+MAY return a server that has a writable config container or a writable schema
+container. If the D bit in the <b>Flags</b> is set, the server returned MUST be
+an LDAP server and a global catalog server and might be a DC. No other services
+are implied to be present at the server. If this flag is specified, the B, C, E,
+H, I, J, and T bits in the <b>Flags</b> are ignored along with their respective
+processing requirements.</p><p>If the Q bit in <b>Flags</b> is set, the server MUST return
+a DC that has a functional level of DS_BEHAVIOR_WIN2008 or greater. To
+determine the functional level of a DC, the server MUST locate the DC&#39;s nTDSDSA
+object in the directory and verify the <b>msDS-Behavior-Version</b> attribute
+as specified in [MS-ADTS] section 6.1.4.2.</p><p>If the T bit in the <i>Flags</i> is set, the server SHOULD<a id="Appendix_A_Target_154"></a><a aria-label="Product behavior note 154" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_154" data-linktype="relative-path">&lt;154&gt;</a> return a DC that is currently
+running the Active Directory Web Service. To determine if a domain controller
+is currently running the Active Directory Web Service, the server MUST check
+the value of the FWS bit in the <i>Flags</i> field of the message as defined in
+[MS-ADTS] section 6.3.1.2. If a server that meets this requirement cannot be
+located, the server MUST return ERROR_NO_SUCH_DOMAIN.</p><p>If the U bit in <b>Flags</b> is set, the server MUST return
+a DC that has a functional level of DS_BEHAVIOR_WIN2012 or greater. To
+determine the functional level of a DC, the server MUST locate the DC&#39;s nTDSDSA
+object in the directory and verify the <b>msDS-Behavior-Version</b> attribute
+as specified in [MS-ADTS] section 6.1.4.2.</p><p>If the V bit in <b>Flags</b> is set, the server MUST return
+a DC that has a functional level of DS_BEHAVIOR_WIN2012R2 or greater. To
+determine the functional level of a DC, the server MUST locate the DC&#39;s nTDSDSA
+object in the directory and verify the <b>msDS-Behavior-Version</b> attribute
+as specified in [MS-ADTS] section 6.1.4.2.</p><p>If the W bit in <b>Flags</b> is set, then the server MUST
+return a DC that has a functional level of DS_BEHAVIOR_WIN2016 or greater. To
+determine the functional level of a DC, the server MUST locate the DC&#39;s nTDSDSA
+object in the directory and verify the <b>msDS-Behavior-Version</b> attribute
+as specified in [MS-ADTS] section 6.1.4.2.</p><p>NETLOGON_SAM_LOGON_RESPONSE_EX ([MS-ADTS] section 6.3.1.9)
+and NETLOGON_SAM_LOGON_RESPONSE ([MS-ADTS] section 6.3.1.8) messages are
+received from a DC in response to the LDAP and the mailslot messages,
+respectively. Using these response messages, the <b>DsrGetDcNameEx2</b>
+populates the returned DOMAIN_CONTROLLER_INFOW structure (section 2.2.1.2.1) as
+follows:</p><ul><li><p><span><span> 
+</span></span>The <b>DnsHostName</b>, <b>DnsDomainName</b>, <b>NetbiosComputerName</b>,
+and <b>NetbiosDomainName</b> fields are compressed and MUST be decompressed as
+specified in [MS-ADTS] section <a href="../ms-adts/b0ef9479-78d8-40c1-b6d2-0baad834ed39" data-linktype="relative-path">6.3.7</a>.</p>
+</li><li><p><span><span> 
+</span></span>If the R flag is set in the <i>Flags</i> parameter:</p>
+<ul><li><p><span><span>  </span></span>The
+<b>DomainControllerInfo.DomainControllerName</b> field MUST be set to the value
+of the <b>DnsHostName</b> message field. If the <b>DnsHostName</b> field is not
+set in the message, the error ERROR_NO_SUCH_DOMAIN MUST be returned. </p>
+</li><li><p><span><span>  </span></span>The
+<b>DomainControllerInfo.DomainName</b> field MUST be set to the value of the <b>DnsDomainName</b>
+message field. If the <b>DnsDomainName</b> field is not set in the message, the
+error ERROR_NO_SUCH_DOMAIN MUST be returned. </p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the S flag is set in the <i>Flags</i> parameter:</p>
+<ul><li><p><span><span>  </span></span>The
+<b>DomainControllerInfo.DomainControllerName</b> field MUST be set to the value
+of the <b>NetbiosComputerName</b> message field. </p>
+</li><li><p><span><span>  </span></span>The
+<b>DomainControllerInfo.DomainName</b> field MUST be set to the value of the <b>NetbiosDomainName</b>
+message field. </p>
+</li></ul></li><li><p><span><span> 
+</span></span>If neither the R nor S flags are set in the <i>Flags</i>
+parameter:<a id="Appendix_A_Target_155"></a><a aria-label="Product behavior note 155" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_155" data-linktype="relative-path">&lt;155&gt;</a></p>
+<ul><li><p><span><span>  </span></span>The
+<b>DomainControllerInfo.DomainControllerName</b> field MUST be set to either
+the value of the <b>DnsHostName</b> message field, or to the value of the <b>NetbiosComputerName</b>
+message field.<a id="Appendix_A_Target_156"></a><a aria-label="Product behavior note 156" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_156" data-linktype="relative-path">&lt;156&gt;</a></p>
+</li><li><p><span><span>  </span></span>The
+<b>DomainControllerInfo.DomainName</b> field MUST be set to either the value of
+the <b>DnsDomainName</b> message field, or to the value of the <b>NetbiosDomainName</b>
+message field.<a id="Appendix_A_Target_157"></a><a aria-label="Product behavior note 157" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_157" data-linktype="relative-path">&lt;157&gt;</a></p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the IP address of the DC to which the message was sent is
+known from the underlying transport protocol, the <b>DomainControllerInfo.DomainControllerAddress</b>
+field MUST be set to that address. Otherwise, the field is set from the value
+of the <b>NETLOGON_SAM_LOGON_RESPONSE_EX.DcSockAddr</b> message field if the <b>NETLOGON_SAM_LOGON_RESPONSE_EX.DcSockAddrSize</b>
+message field is not zero.</p>
+</li><li><p><span><span> 
+</span></span>If the IP address of the DC is not available because the
+aforementioned conditions are not met, the <b>DomainControllerInfo.DomainControllerAddress</b>
+field MUST be set to the <b>NETLOGON_SAM_LOGON_RESPONSE_EX.NetbiosComputerName</b>
+field.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DomainControllerInfo.DomainControllerAddressType</b> field
+MUST be set to 0x00000001 if the <b>DomainControllerAddress</b> field is set to
+the IP address of the DC. Otherwise, the <b>DomainControllerInfo.DomainControllerAddressType</b>
+field MUST be set to 0x00000002 for a NETBIOS name.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DomainControllerInfo.DomainGuid</b> field MUST be set to
+the <b>NETLOGON_SAM_LOGON_RESPONSE.DomainGuid</b> or the <b>NETLOGON_SAM_LOGON_RESPONSE_EX.DomainGuid</b>
+field.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DomainControllerInfo.DnsForestName</b> field MUST be set
+to the value of the <b>NETLOGON_SAM_LOGON_RESPONSE.DnsForestName</b> or the <b>NETLOGON_SAM_LOGON_RESPONSE_EX.DnsForestName</b>
+fields if they are present, or to NULL if the <b>NETLOGON_SAM_LOGON_RESPONSE.DnsForestName</b>
+and the <b>NETLOGON_SAM_LOGON_RESPONSE_EX.DnsForestName</b> fields are not
+present.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DomainControllerInfo.Flags</b> field MUST be set to the
+value of the <b>NETLOGON_SAM_LOGON_RESPONSE.Flags</b> or the <b>NETLOGON_SAM_LOGON_RESPONSE_EX.Flags</b>
+field. Additionally, the following flags are set in the <b>DomainControllerInfo.Flags</b>
+field:</p>
+<ul><li><p><span><span>  </span></span>The
+flag M MUST be set if the <b>DomainControllerInfo.DomainControllerName</b>
+field is set to the FQDN of the DC.</p>
+</li><li><p><span><span>  </span></span>The
+flag N MUST be set if the <b>DomainControllerInfo.DomainName</b> field is set
+to the FQDN of the domain.</p>
+</li><li><p><span><span>  </span></span>The
+flag O MUST be set if the <b>DomainControllerInfo.DnsForestName</b> field is
+set.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The <b>DomainControllerInfo.DcSiteName</b> field MUST be set to
+the value of the <b>NETLOGON_SAM_LOGON_RESPONSE_EX.DcSiteName</b> field if it
+is present, or to NULL if the <b>NETLOGON_SAM_LOGON_RESPONSE_EX.DcSiteName</b>
+field is not present.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DomainControllerInfo.ClientSiteName</b> field MUST be set
+to the value of the <b>NETLOGON_SAM_LOGON_RESPONSE_EX.ClientSiteName</b> field
+if it is present, or to NULL if the <b>NETLOGON_SAM_LOGON_RESPONSE_EX.ClientSiteName</b>
+field is not present.</p>
+<ul><li><p><span><span>  </span></span>If
+the <b>NETLOGON_SAM_LOGON_RESPONSE_EX.NextClosestSiteName</b> field is present,
+the value MUST be saved in the <b>NextClosestSiteName</b> ADM element.</p>
+</li></ul></li></ul><p>If a satisfactory NETLOGON_SAM_LOGON_RESPONSE_NT40
+([MS-ADTS] section <a href="../ms-adts/9c5a9e2c-2aae-40e2-8fcb-b9dfc032ac3b" data-linktype="relative-path">6.3.1.7</a>)
+response message is received in response to the mailslot messages, the <b>DsrGetDcNameEx2</b>
+call populates the returned <b>DOMAIN_CONTROLLER_INFOW</b> structure (section
+2.2.1.2.1) as follows:</p><ul><li><p><span><span> 
+</span></span>The <b>DomainControllerInfo.DomainControllerName</b> field MUST
+be set to the <b>NETLOGON_SAM_LOGON_RESPONSE_NT40.UnicodeLogonServer</b> field.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DomainControllerInfo.DomainControllerAddress</b> field
+MUST be set to the <b>NETLOGON_SAM_LOGON_RESPONSE_NT40.UnicodeLogonServer</b>
+field.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DomainControllerInfo.DomainControllerAddressType</b> field
+MUST be set to 0x00000002.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DomainControllerInfo.DomainGuid</b> field MUST be set to
+NULL.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DomainControllerInfo.DomainName</b> field MUST be set to
+the <b>NETLOGON_SAM_LOGON_RESPONSE_NT40.UnicodeLogonServer</b> field.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DomainControllerInfo.DnsForestName</b> field MUST be set
+to NULL.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DomainControllerInfo.Flags</b> field MUST have the A and H
+flags set if the response is to a PDC query; otherwise it MUST be set to
+0x00000000.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DomainControllerInfo.DcSiteName</b> field MUST be set to
+NULL.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DomainControllerInfo.ClientSiteName</b> field MUST be set
+to NULL.</p>
+</li></ul><p>If the <i>AccountName</i> parameter is not NULL, the
+response message validation adds the following check: if the DC response is
+received indicating the lack of an account, as specified in [MS-ADTS] sections
+6.3.3 and 6.3.5, the server MUST return ERROR_NO_SUCH_USER.</p><p>If the server successfully locates a DC for the requested
+capabilities, it saves the result in the <b>LocatedDCsCache</b>. If a DC for
+the domain cannot be located, the server saves the result in the <b>FailedDiscoveryCache</b>.</p></div>

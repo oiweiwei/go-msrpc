@@ -1,0 +1,39 @@
+<div class="content"><p> </p><p>The GetSerializedBuffer method converts the given managed <span><a href="d8eaf696-8591-48a2-9aac-4880847e3632#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>
+to a binary-formatted string representation that can be used to create a
+managed object.</p><dl>
+<dd>
+<div><pre> HRESULT GetSerializedBuffer( 
+   [out] BSTR *pBSTR
+ );
+  
+</pre></div>
+</dd></dl><p><b>pbSTR: </b>The value MUST contain a
+binary-formatted string representation of the class record for the underlying
+managed object, as specified in <span><a href="../ms-nrbf/75b9fe09-be15-475f-85b8-ae7b7558cfe5" data-linktype="relative-path">[MS-NRBF]</a></span>
+section <span><a href="../ms-nrbf/c9bc3af3-5a0c-4b29-b517-1b493b51f7bb" data-linktype="relative-path">2.3</a></span>.
+For more information on binary format mapping, see <span><a href="../ms-nrtp/3acb31b0-b873-4aaf-8503-9727ec40fbec" data-linktype="relative-path">[MS-NRTP]</a></span>
+section <span><a href="../ms-nrtp/7e3db959-3a2a-4a84-8ec4-caf7a9e409de" data-linktype="relative-path">3.1.5.1</a></span>.</p><p><b>Return Values: </b>The method MUST return a
+positive value or 0 to indicate successful completion or a negative value to
+indicate failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Success.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+from this method beyond those thrown by the underlying <span><a href="d8eaf696-8591-48a2-9aac-4880847e3632#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+protocol.</p></div>

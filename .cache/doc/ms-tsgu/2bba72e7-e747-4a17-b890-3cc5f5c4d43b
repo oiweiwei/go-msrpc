@@ -1,0 +1,217 @@
+<div class="content"><p>The TsProxyAuthorizeTunnel method is used to authorize the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_1ebdc9c6-bb01-455e-98f7-8930618bb601" data-linktype="relative-path">tunnel (2)</a> based on rules
+defined by the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>.
+The RDG server SHOULD perform security authorization for the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a>. The RDG server
+SHOULD<a id="Appendix_A_Target_39"></a><a aria-label="Product behavior note 39" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_39" data-linktype="relative-path">&lt;39&gt;</a> also use this method to require
+health checks from the RDG client, which SHOULD result in the RDG client
+performing health remediation.<a id="Appendix_A_Target_40"></a><a aria-label="Product behavior note 40" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_40" data-linktype="relative-path">&lt;40&gt;</a> After
+this method call has successfully been completed, a tunnel (2) shutdown can be
+performed. If there are existing channels within the tunnel, the RDG server
+MUST close all the channels before the tunnel shutdown. The tunnel (2) shutdown
+is accomplished by using the <a href="24d2c05f-a253-47ff-a51d-118d7590c49b" data-linktype="relative-path">TsProxyCloseTunnel</a>
+method call.</p><p>If this method call completes successfully, the ADM element <b>Number
+of Connections</b> MUST be incremented by 1.</p><p>Prerequisites: The connection MUST be in Connected state. If
+this call is made in any other state, the result is undefined.</p><p>Sequential Processing Rules:</p><ol><li><p><span>    </span>The RDG server
+MUST verify that the <b>packetId</b> field of the <i>TSGPacket</i> parameter is
+<a href="a89de1f3-1dfb-476c-813d-e9e2a6167f84" data-linktype="relative-path">TSG_PACKET_TYPE_QUARREQUEST</a>.
+Otherwise, it MUST return HRESULT_CODE(E_PROXY_NOTSUPPORTED).</p>
+</li><li><p><span>    </span>If the
+TSGPacket-&gt;TSGPacket.packetQuarRequest-&gt;dataLen is not zero and
+TSGPacket-&gt;TSGPacket.packetQuarRequest-&gt;data is not NULL, then the
+following.<a id="Appendix_A_Target_41"></a><a aria-label="Product behavior note 41" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_41" data-linktype="relative-path">&lt;41&gt;</a></p>
+<ul><li><p><span><span>  </span></span>The
+RDG server MUST decode the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_224be10f-c4fe-4db7-9d3a-1b16680219e9" data-linktype="relative-path">SoH</a>
+specified in TSGPacket-&gt;TSGPacket.packetQuarRequest-&gt;data with the RDG server
+certificate, which is encoded with one of PKCS #7 or X.509 encoding types,
+whichever is supported by the RDG server certificate. The RDG server MUST
+decrypt the SoH, which is encrypted using the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_f1896d9a-34c2-44a6-917a-759ac77f4cf1" data-linktype="relative-path">Triple Data Encryption Standard</a>
+algorithm.</p>
+</li><li><p><span><span>  </span></span>If
+decoding of the SoH fails, the RDG server MUST return the error code returned
+by the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_1e9dc9e9-1ec2-43fa-80ac-caf013b9f3fc" data-linktype="relative-path">cryptographic service
+provider</a>.</p>
+</li><li><p><span><span>  </span></span>If
+decoding of the SoH succeeds, the RDG server MUST also verify that the decoded
+message is prefixed with the <b>Nonce</b>. Otherwise, it MUST return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span>  </span></span>The
+remaining bytes in the decoded message are the RDG client computer&#39;s <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_1e9f0741-3d86-4a9a-84e1-a9fcf5506d31" data-linktype="relative-path">statement of health response
+(SoHR)</a>. </p>
+</li></ul></li><li><p><span>    </span>The RDG server
+MUST verify that the ADM element <b>Number of Connections</b> has not already
+reached the maximum number of connections configured by the RDG service.
+Otherwise, it MUST return the E_PROXY_MAXCONNECTIONSREACHED error code.</p>
+</li><li><p><span>    </span>The RDG server
+MUST do the user authorization as per policies configured at the RDG server. If
+the user is not authorized, it MUST return E_PROXY_NAP_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>If quarantine is
+configured at the RDG server:<a id="Appendix_A_Target_42"></a><a aria-label="Product behavior note 42" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_42" data-linktype="relative-path">&lt;42&gt;</a></p>
+<ol><li><p><span>   
+</span>The RDG client computer&#39;s SoH SHOULD be passed to a Network Policy
+Server (NPS) using a RADIUS request. The statement of health is carried by the
+MS-Quarantine- SoH RADIUS attribute as specified in <a href="../ms-rnap/e391716b-22f7-4bf7-bb39-202a18598000" data-linktype="relative-path">[MS-RNAP]</a>
+section <a href="../ms-rnap/516768ef-4f09-42ed-bed9-b54818398243" data-linktype="relative-path">2.2.1.19</a>.
+</p>
+</li><li><p><span>   
+</span>After the NPS processes the statement of health request, a statement of
+health response is returned in a RADIUS response. The SoHR is encoded in the
+MS-Quarantine-SoH RADIUS attribute as specified in [MS-RNAP] section 2.2.1.19.</p>
+</li><li><p><span>   
+</span>The RDG server MUST sign the SoHR using <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_168fbe0c-fc02-4722-979e-b0261766ac9c" data-linktype="relative-path">SHA-1 hash</a> and encode it
+with the RDG server certificate using PKCS #7 or X.509 encoding types,
+whichever is supported by the RDG server certificate and append the signed and
+encoded SoHR to
+TSGPacketResponse-&gt;TSGPacket.packetResponse-&gt;responseData, where <i>TSGPacketResponse</i>
+is an output parameter to TsProxyAuthorizeTunnel.</p>
+</li><li><p><span>   
+</span>If the RDG client computer&#39;s health is not compliant to quarantine
+settings:</p>
+<ol><li><p><span>    </span>If the ADM
+element <b>Reauthentication Connection</b> is TRUE:</p>
+<ol><li><p><span>    </span>The RDG server
+MUST find the original connection that has initiated the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_a010756e-fca1-42cc-94a6-9a8195016b54" data-linktype="relative-path">reauthentication</a> using <b>Reauthentication
+Tunnel Context</b> and MUST set its ADM element <b>Reauthentication Status</b>
+to UserAuthorizationCompletedButQuarantineFailed.</p>
+</li><li><p><span>    </span>The RDG server
+MUST return the E_PROXY_QUARANTINE_ACCESSDENIED error code.</p>
+</li></ol></li></ol></li></ol></li><li><p><span>    </span>If the ADM
+element <b>Reauthentication Connection</b> is TRUE:</p>
+<ol><li><p><span>   
+</span>The RDG server MUST find the original connection which has initiated the
+reauthentication using <b>Reauthentication Tunnel Context</b> and MUST set its
+ADM element <b>Reauthentication Status</b> to <i>UserAuthorizationCompleted</i>.</p>
+</li></ol></li><li><p><span>    </span>The RDG server
+MUST set the <b>packetId</b> member of the <i>TSGPacketResponse</i> out
+parameter to <a href="91613bb4-e7d7-487f-ade7-31d015999ffb" data-linktype="relative-path">TSG_PACKET_TYPE_RESPONSE</a>.</p>
+</li><li><p><span>    </span>The RDG server
+MUST increment the ADM element <b>Number of Connections</b> by 1. </p>
+</li><li><p><span>    </span>The RDG server
+MUST return ERROR_SUCCESS.</p>
+<div><pre> HRESULT TsProxyAuthorizeTunnel(
+   [in] PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE tunnelContext,
+   [in, ref] PTSG_PACKET TSGPacket,
+   [out, ref] PTSG_PACKET* TSGPacketResponse
+ );
+</pre></div>
+</li></ol><p><b>tunnelContext: </b>The RDG client MUST provide the
+RDG server with the same context <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a> it received from the
+<a href="0386b24c-4603-400d-a79e-11fd9518e34e" data-linktype="relative-path">TsProxyCreateTunnel</a>
+method call. The RDG server SHOULD throw an exception if the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> validation and
+verification fails.</p><p><b>TSGPacket: </b>Pointer to the <a href="4c505da0-93c2-4a2f-9329-6174bbaa481b" data-linktype="relative-path">TSG_PACKET</a> structure. The
+value of the <b>packetId</b> field MUST be set to TSG_PACKET_TYPE_QUARREQUEST.
+If this is set to any other value, the error E_PROXY_NOT_SUPPORTED is returned.
+The <b>packetQuarRequest</b> field of the <i>TSGPacket</i> union field MUST be
+a pointer to the <a href="25656e76-c6f4-492a-aac9-4bf1f78f6ce4" data-linktype="relative-path">TSG_PACKET_QUARREQUEST</a>
+structure.</p><p><b>TSGPacketResponse: </b>Pointer to the TSG_PACKET
+structure. The value of the <b>packetId</b> field MUST be
+TSG_PACKET_TYPE_RESPONSE. The <b>packetResponse</b> field of the <i>TSGPacket</i>
+union field MUST be a pointer to the <a href="b06fcd1a-05b3-4f82-844d-520bc103ba3d" data-linktype="relative-path">TSG_PACKET_RESPONSE</a>
+structure.</p><p><b>Return Values: </b>The method MUST return
+ERROR_SUCCESS on success. Other failures MUST be one of the codes listed. The
+client MAY interpret failures in any way it deems appropriate. See <a href="38d327b5-e131-4fa3-9a46-7e3ac20e0a4f" data-linktype="relative-path">2.2.6</a> for details on these
+errors.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value</p>
+   </th>
+   <th>
+   <p>State transition</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_SUCCESS (0x00000000)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to the authorized
+  state.</p>
+  </td>
+  <td>
+  <p>Returned when a call to the TsProxyAuthorizeTunnel
+  method succeeds.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E_PROXY_NAP_ACCESSDENIED (0x800759DB)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to Tunnel Close Pending
+  state.</p>
+  </td>
+  <td>
+  <p>Returned when the RDG server denies the RDG client
+  access due to policy. The RDG client MUST end the protocol when this error is
+  received. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>HRESULT_CODE(E_PROXY_NOTSUPPORTED) (0x000059E8)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to Tunnel Close Pending
+  state.</p>
+  </td>
+  <td>
+  <p>Returned if the <b>packetId</b> field of the <i>TSGPacket</i>
+  parameter is not TSG_PACKET_TYPE_QUARREQUEST. The RDG client MUST end the
+  protocol when this error is received. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E_PROXY_QUARANTINE_ACCESSDENIED (0x800759ED)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to Tunnel Close Pending
+  state.</p>
+  </td>
+  <td>
+  <p>Returned when the RDG server rejects the connection
+  due to quarantine policy. The RDG client MUST end the protocol when this
+  error is received. </p>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED (0x00000005)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to Tunnel Close Pending
+  state.</p>
+  </td>
+  <td>
+  <p>Returned when this call is made either in a state
+  other than the Connected state or the <i>tunnelContext</i> parameter is NULL.
+  The RDG client MUST end the protocol when this error is received.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>HRESULT_CODE(E_PROXY_MAXCONNECTIONSREACHED) (0x59E6)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to end state.</p>
+  </td>
+  <td>
+  <p>Returned when the ADM element <b>Number of Connections</b>
+  is equal to the maximum number of connections when the call is made.<a id="Appendix_A_Target_43"></a><a aria-label="Product behavior note 43" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_43" data-linktype="relative-path">&lt;43&gt;</a> The RDG client MUST end the
+  protocol when this error is received. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER (0x00000057)</p>
+  </td>
+  <td>
+  <p>The connection MUST not transition its state.</p>
+  </td>
+  <td>
+  <p>Returned when the <b>Negotiated Capabilities</b> ADM
+  element contains TSG_NAP_CAPABILITY_QUAR_SOH and TSGPacket-&gt;TSGPacket.packetQuarRequest-&gt;dataLen
+  is not zero and TSGPacket-&gt;TSGPacket.packetQuarRequest-&gt;data is not
+  NULL and TSGPacket-&gt;TSGPacket.packetQuarRequest-&gt;data is not prefixed
+  with Nonce.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

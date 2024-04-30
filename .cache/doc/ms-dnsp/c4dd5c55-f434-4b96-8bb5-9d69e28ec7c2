@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_STATS</b> structure carries server statistics
+information. This structure MUST be interpreted as one of the more specific
+statistics structures specified in sections <span><a href="238b54f6-bfdf-4bb8-91cc-c5ddbde6e7ac" data-linktype="relative-path">2.2.10.2.4</a></span> through <span><a href="9502a725-1180-42ed-91d3-62d3d43e2365" data-linktype="relative-path">2.2.10.2.24</a></span>,
+depending upon the StatId value in the Header member. This structure MUST be
+formatted as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _DnsStat {
+   DNSSRV_STAT_HEADER Header;
+   BYTE Buffer[1];
+ } DNSSRV_STAT,
+  *PDNSSRV_STAT,
+  *PDNSSRV_STATS;
+</pre></div>
+</dd></dl><p><b>Header:</b> A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>Buffer:</b> A variable length array of bytes that
+contains information specific to the type of DNS server statistics, as
+specified by the StatId value in the Header.</p></div>

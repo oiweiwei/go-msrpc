@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The VDS_FILE_SYSTEM_PROP_FLAG enumeration defines the set of
+fields for a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file system</a></span>. A value
+that accepts these flags SHOULD have the following flag set.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_FILE_SYSTEM_PROP_FLAG
+ {
+   VDS_FPF_COMPRESSED = 0x00000001
+ } VDS_FILE_SYSTEM_PROP_FLAG;
+</pre></div>
+</dd></dl><p><b>VDS_FPF_COMPRESSED:  </b>If set, the file system
+supports file compression.</p></div>

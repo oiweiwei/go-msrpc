@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The RRPC_FWRestoreDefaults method replaces the contents of <b>LocalStore</b>
+with the contents of <b>DefaultsStore</b>.</p><dl>
+<dd>
+<div><pre> unsigned long RRPC_FWRestoreDefaults(
+   [in] FW_CONN_HANDLE rpcConnHandle
+ );
+</pre></div>
+</dd></dl><p><b>rpcConnHandle: </b>This parameter is an <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle that connects to the RPC interface of the Firewall and Advanced
+Security Protocol.</p><p><b>Return Values: </b>The method returns 0 if
+successful; if failed, it returns a nonzero error code. The field can take any
+specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+</p><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+If any lower-layer errors are reported by RPC exception, this exception is
+converted to an error code and reported to higher-layer protocols via the
+return value.</p><p>The server MUST first validate that the client is authorized
+to perform the requested operation (as defined in section <span><a href="b0c93352-8371-4d63-abca-b0cc8dbcc3d7" data-linktype="relative-path">3.1.4</a></span>)
+before executing this method. Next, the server MUST replace the contents of <b>LocalStore</b>
+with the contents of <b>DefaultsStore</b>. The server then MUST merge the new
+contents of <b>LocalStore</b> with the existing contents of the <b>GroupPolicyRSoPStore</b>
+(as described in section <span><a href="43507d53-8955-416d-b913-dfb27dc76b17" data-linktype="relative-path">3.1.1</a></span>) and store
+the result in <b>DynamicStore</b>. Finally, the server MUST invoke the abstract
+interface <span><a href="0b159c92-16fa-42a6-9a33-b68f0e040a98" data-linktype="relative-path">SetEffectiveFirewallPolicy (section 3.1.6.6)</a></span>
+with the contents of <b>DynamicStore</b>.</p></div>

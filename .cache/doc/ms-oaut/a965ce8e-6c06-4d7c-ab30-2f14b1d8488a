@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The PARAMDESC structure is used in an <span><a href="e14ff3cf-034a-4884-a498-fc7586f7160c" data-linktype="relative-path">ELEMDESC (section 2.2.41)</a></span>
+structure to specify the features of a method parameter.</p><dl>
+<dd>
+<div><pre> typedef struct tagPARAMDESC {
+   PARAMDESCEX* pparamdescex;
+   USHORT wParamFlags;
+ } PARAMDESC;
+</pre></div>
+</dd></dl><p><b>pparamdescex:</b>  MUST refer to a <span><a href="683c767d-2e8e-4d2f-8804-afeb3a73969a" data-linktype="relative-path">PARAMDESCEX</a></span>
+structure that specifies the default value of the parameter if the
+PARAMFLAG_FHASDEFAULT flag is set in the <b>wParamFlags</b> field. MUST be set
+to NULL otherwise.</p><p><b>wParamFlags:</b>  MUST be set to a combination
+of the <span><a href="4ca6f07b-f89f-469b-ba9e-81fda041c8ac" data-linktype="relative-path">PARAMFLAG (section 2.2.15)</a></span>
+bit flags if the PARAMDESC belongs to an element of the lprgelemdescParam array
+in a <span><a href="d3349d25-e11d-4095-ba86-de3fda178c4e" data-linktype="relative-path">FUNCDESC (section 2.2.42)</a></span>
+structure. MUST be set to 0 otherwise.</p></div>

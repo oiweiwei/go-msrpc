@@ -1,0 +1,159 @@
+import "ms-dtyp.idl";
+ 
+[uuid(0b1c2170-5732-4e0e-8cd3-d9b16f3b84d7)]
+[version(0.0)]
+[pointer_default(ptr)]
+[ms_union]
+interface authzr {
+    typedef [context_handle] PVOID AUTHZR_HANDLE;
+    typedef struct _AUTHZR_ACCESS_REQUEST {
+        ACCESS_MASK DesiredAccess;
+        RPC_SID * PrincipalSelfSid;
+        [range(0,256)] DWORD ObjectTypeListLength;
+        [size_is(ObjectTypeListLength)] OBJECT_TYPE_LIST * ObjectTypeList;
+    } AUTHZR_ACCESS_REQUEST;
+ 
+    typedef struct _SR_SD {
+        [range(20,131228)] DWORD dwLength;
+        [size_is(dwLength)] BYTE * pSrSd;
+    } SR_SD;
+ 
+    typedef struct _AUTHZR_ACCESS_REPLY {
+        [range(0,256)] DWORD ResultListLength;
+        [size_is(ResultListLength)] ACCESS_MASK * GrantedAccessMask;
+        [size_is(ResultListLength)] DWORD * Error;
+    } AUTHZR_ACCESS_REPLY;
+ 
+    typedef enum _AUTHZ_CONTEXT_INFORMATION_CLASS {
+        AuthzContextInfoUserSid = 1,
+        AuthzContextInfoGroupsSids = 2,
+        AuthzContextInfoRestrictedSids = 3,
+        ReservedEnumValue4 = 4,
+        ReservedEnumValue5 = 5,
+        ReservedEnumValue6 = 6,
+        ReservedEnumValue7 = 7,
+        ReservedEnumValue8 = 8,
+        ReservedEnumValue9 = 9,
+        ReservedEnumValue10 = 10,
+        ReservedEnumValue11 = 11,
+        AuthzContextInfoDeviceSids = 12,
+        AuthzContextInfoUserClaims = 13,
+        AuthzContextInfoDeviceClaims = 14,
+        ReservedEnumValue15 = 15,
+        ReservedEnumValue16 = 16
+    } AUTHZ_CONTEXT_INFORMATION_CLASS;
+ 
+    typedef struct _AUTHZR_SID_AND_ATTRIBUTES {
+        RPC_SID * Sid;
+        DWORD Attributes;
+    } AUTHZR_SID_AND_ATTRIBUTES;
+ 
+    typedef struct _AUTHZR_TOKEN_USER {
+        AUTHZR_SID_AND_ATTRIBUTES User;
+    } AUTHZR_TOKEN_USER;
+ 
+    typedef struct _AUTHZR_TOKEN_GROUPS {
+        DWORD GroupCount;
+        [size_is(GroupCount)] AUTHZR_SID_AND_ATTRIBUTES Groups[];
+    } AUTHZR_TOKEN_GROUPS;
+ 
+    typedef struct _AUTHZR_SECURITY_ATTRIBUTE_STRING_VALUE {
+        [range(2,32768)] ULONG Length;
+        [string] [size_is(Length)] WCHAR * Value;
+    } AUTHZR_SECURITY_ATTRIBUTE_STRING_VALUE;
+ 
+    typedef struct _AUTHZR_SECURITY_ATTRIBUTE_V1_VALUE {
+        USHORT ValueType;
+        [switch_is(ValueType)] union AUTHZR_SECURITY_ATTRIBUTE_UNION {
+            [case(0x1)]
+                LONG64 Int64;
+            [case(0x2, 0x6)]
+                ULONG64 Uint64;
+            [case(0x3)]
+                AUTHZR_SECURITY_ATTRIBUTE_STRING_VALUE String;
+        } AttributeUnion;
+    } AUTHZR_SECURITY_ATTRIBUTE_V1_VALUE;
+ 
+    typedef struct _AUTHZR_SECURITY_ATTRIBUTE_V1 {
+        [range(2,256)] ULONG Length;
+        [string] [size_is(Length)] WCHAR * Value;
+        USHORT ValueType;
+        USHORT Reserved;
+        ULONG Flags;
+        [range(0,1024)] ULONG ValueCount;
+        [size_is(ValueCount)] AUTHZR_SECURITY_ATTRIBUTE_V1_VALUE * Values;
+    } AUTHZR_SECURITY_ATTRIBUTE_V1;
+ 
+    typedef struct _AUTHZR_SECURITY_ATTRIBUTES_INFORMATION {
+        USHORT Version;
+        USHORT Reserved;
+        [range(0,1024)] ULONG AttributeCount;
+        [size_is(AttributeCount)] AUTHZR_SECURITY_ATTRIBUTE_V1 * Attributes;
+    } AUTHZR_SECURITY_ATTRIBUTES_INFORMATION;
+ 
+    typedef struct _AUTHZR_CONTEXT_INFORMATION {
+        USHORT ValueType;
+        [switch_is(ValueType)] union AUTHZR_CONTEXT_INFORMATION_UNION {
+            [case(0x1)]
+                AUTHZR_TOKEN_USER * pTokenUser;
+            [case(0x2, 0x3, 0xC)]
+                AUTHZR_TOKEN_GROUPS * pTokenGroups;
+            [case(0xD, 0xE)]
+                AUTHZR_SECURITY_ATTRIBUTES_INFORMATION * pTokenClaims;
+        } ContextInfoUnion;
+    } AUTHZR_CONTEXT_INFORMATION;
+ 
+    typedef enum _AUTHZ_SECURITY_ATTRIBUTE_OPERATION {
+        AUTHZ_SECURITY_ATTRIBUTE_OPERATION_NONE = 0,
+        AUTHZ_SECURITY_ATTRIBUTE_OPERATION_REPLACE_ALL = 1,
+        AUTHZ_SECURITY_ATTRIBUTE_OPERATION_ADD = 2,
+        AUTHZ_SECURITY_ATTRIBUTE_OPERATION_DELETE = 3,
+        AUTHZ_SECURITY_ATTRIBUTE_OPERATION_REPLACE = 4
+    } AUTHZ_SECURITY_ATTRIBUTE_OPERATION;
+ 
+    typedef enum _AUTHZ_SID_OPERATION {
+        AUTHZ_SID_OPERATION_NONE = 0,
+        AUTHZ_SID_OPERATION_REPLACE_ALL = 1,
+        AUTHZ_SID_OPERATION_ADD = 2,
+        AUTHZ_SID_OPERATION_DELETE = 3,
+        AUTHZ_SID_OPERATION_REPLACE = 4
+    } AUTHZ_SID_OPERATION;
+ 
+    DWORD AuthzrFreeContext(
+        [in, out] AUTHZR_HANDLE * ContextHandle);
+    DWORD AuthzrInitializeContextFromSid(
+        [in] handle_t Binding,
+        [in] DWORD Flags,
+        [in] RPC_SID * Sid,
+        [in] [unique] LARGE_INTEGER * pExpirationTime,
+        [in] LUID Identifier,
+        [out] AUTHZR_HANDLE * ContextHandle);
+    DWORD AuthzrInitializeCompoundContext(
+        [in] AUTHZR_HANDLE UserContextHandle,
+        [in] AUTHZR_HANDLE DeviceContextHandle,
+        [out] AUTHZR_HANDLE * CompoundContextHandle);
+    DWORD AuthzrAccessCheck(
+        [in] AUTHZR_HANDLE ContextHandle,
+        [in] DWORD Flags,
+        [in] AUTHZR_ACCESS_REQUEST * pRequest,
+        [in] [range(1,16)] DWORD SecurityDescriptorCount,
+        [in] [size_is(SecurityDescriptorCount)] SR_SD * pSecurityDescriptors,
+        [in, out] AUTHZR_ACCESS_REPLY * pReply);
+    DWORD AuthzGetInformationFromContext(
+        [in] AUTHZR_HANDLE ContextHandle,
+        [in] AUTHZ_CONTEXT_INFORMATION_CLASS InfoClass,
+        [out] AUTHZR_CONTEXT_INFORMATION ** ppContextInformation);
+    DWORD AuthzrModifyClaims(
+        [in] AUTHZR_HANDLE ContextHandle,
+        [in] AUTHZ_CONTEXT_INFORMATION_CLASS ClaimClass,
+        [in] [range(1,65535)] DWORD OperationCount,
+        [in] [size_is(OperationCount)] AUTHZ_SECURITY_ATTRIBUTE_OPERATION * pClaimOperations,
+        [in] [unique] AUTHZR_SECURITY_ATTRIBUTES_INFORMATION * pClaims);
+    DWORD AuthzrModifySids(
+        [in] AUTHZR_HANDLE ContextHandle,
+        [in] AUTHZ_CONTEXT_INFORMATION_CLASS SidClass,
+        [in] [range(1,65535)] DWORD OperationCount,
+        [in] [size_is(OperationCount)] AUTHZ_SID_OPERATION * pSidOperations,
+        [in] [unique] AUTHZR_TOKEN_GROUPS * pSids);
+};
+ 

@@ -1,0 +1,109 @@
+<div class="content"><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwPermanentDeviceID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwProviderID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDeviceNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDeviceNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressesSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressesOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDomainUserNamesSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDomainUserNamesOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwFriendlyUserNamesSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwFriendlyUserNamesOffset</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwPermanentDeviceID (4 bytes): </b>An unsigned 32-bit
+integer. The permanent identifier by which the device is known in the computing
+system configuration.</p><p><b>dwProviderID (4 bytes): </b>An unsigned 32-bit
+integer. The provider identifier of the entry.</p><p><b>dwDeviceNameSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the variably sized device field containing a
+user-configurable name for this device.</p><p><b>dwDeviceNameOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of the <a href="21f70f2e-86e7-4ce2-a82d-6c4b0c20cfa0" data-linktype="relative-path">DEVICEINFOLIST</a> packet. </p><p><b>dwAddressesSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the address field.</p><p><b>dwAddressesOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of the DEVICEINFOLIST packet.
+Each address string MUST be null-terminated and the last address string MUST be
+terminated with two null characters. The size, in bytes, includes the
+terminating null characters.</p><p><b>dwDomainUserNamesSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the list of accounts in domain or user
+format. This is a list of users that can access this device. </p><p><b>dwDomainUserNamesOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of the DEVICEINFOLIST packet.
+Each account string MUST be null-terminated and the last account string MUST be
+terminated with two null characters. The size, in bytes, includes the
+terminating null characters.</p><p><b>dwFriendlyUserNamesSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the list of display names corresponding
+to DomainUserNames list entries.</p><p><b>dwFriendlyUserNamesOffset (4 bytes): </b>An
+unsigned 32-bit integer. The offset from the beginning of the DEVICEINFOLIST
+packet. Each display name string MUST be null-terminated and the last display
+name string MUST be terminated with two null characters. The size, in bytes,
+includes the terminating null characters.</p></div>

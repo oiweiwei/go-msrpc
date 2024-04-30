@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>IIS_USER_ENUM_STRUCT</b> structure contains a pointer
+to an <span><b><a href="8c42a10f-34a4-4d2b-8831-a61fdad9bb80" data-linktype="relative-path">IIS_USER_INFO_1_CONTAINER</a></b></span>.</p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _IIS_USER_ENUM_STRUCT {
+     DWORD Level;
+     [switch_is(Level)] union _USER_ENUM_UNION {
+         [case(1)]
+             LPIIS_USER_INFO_1_CONTAINER Level1;
+         [default]            ;
+     } ConfigInfo;
+ } IIS_USER_ENUM_STRUCT,
+  *LPIIS_USER_ENUM_STRUCT;
+</pre></div>
+</dd></dl><p><b>Level:</b>  The value that indicates the
+level of detail in the information provided. This member MUST be set to 1.</p><p><b>ConfigInfo:</b>  The name of the
+contained union.</p><p><b>Level1:</b>  The pointer to an <b>IIS_USER_INFO_1_CONTAINER</b>
+structure that contains the user information collection.</p></div>

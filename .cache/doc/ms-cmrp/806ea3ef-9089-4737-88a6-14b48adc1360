@@ -1,0 +1,31 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/806ea3ef-9089-4737-88a6-14b48adc1360" data-linktype="external">msdn link</a></p><p>The <b>NOTIFICATION_DATA_RPC</b> structure contains the information
+for a specific notification. See <b>ApiGetNotifyV2</b> (section <a href="491227be-d055-4140-8b85-35cf29f31166" data-linktype="relative-path">3.1.4.2.138</a>) for the exact
+values the fields of this structure use for specific notification objects and
+their types.<a id="Appendix_A_Target_28"></a><a aria-label="Product behavior note 28" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_28" data-linktype="relative-path">&lt;28&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _NOTIFICATION_DATA_RPC {
+   NOTIFY_FILTER_AND_TYPE_RPC FilterAndType;
+   [ size_is(dwBufferSize) ] BYTE* buffer;
+   DWORD dwBufferSize;
+   [ string ] LPWSTR ObjectId;
+   [ string ] LPWSTR ParentId;
+   [ string ] LPWSTR Name;
+   [ string ] LPWSTR Type;
+ } NOTIFICATION_DATA_RPC,
+  *PNOTIFICATION_DATA_RPC;
+</pre></div>
+</dd></dl><p><b>FilterAndType:</b> A <b>NOTIFY_FILTER_AND_TYPE_RPC</b>
+(section <a href="15725520-381d-43b7-9ed6-129dde1e86c7" data-linktype="relative-path">2.2.3.22</a>) structure
+containing the object type and notification value.</p><p><b>buffer:</b> A pointer to the payload buffer. The
+format of this buffer is specific to the notification type. For details, see <b>ApiGetNotifyV2</b>.</p><p><b>dwBufferSize:</b> The size in bytes of the <b>buffer</b>
+field.</p><p><b>ObjectId:</b> A buffer of 16-bit <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> characters
+containing the Id of the object for which the notification was generated. This
+field MUST be followed by 0 or more bytes of padding, which MUST be ignored.</p><p><b>ParentId:</b> A buffer of 16-bit Unicode
+characters containing the Id of the parent of the object represented by the <b>ObjectId</b>
+field. This field MUST be followed by 0 or more bytes of padding, which MUST be
+ignored.</p><p><b>Name:</b> A buffer of 16-bit Unicode characters
+containing the name of the object for which the notification was generated.
+This field MUST be followed by 0 or more bytes of padding, which MUST be
+ignored.</p><p><b>Type:</b> A buffer of 16-bit Unicode characters
+containing the object type for which the notification was generated. This field
+MUST be followed by 0 or more bytes of padding, which MUST be ignored.</p></div>

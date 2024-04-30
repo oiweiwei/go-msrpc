@@ -1,0 +1,24 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/32178d2c-ca74-4f53-8264-af1906f95011" data-linktype="external">msdn link</a></p><p>The LSA_FOREST_TRUST_COLLISION_RECORD structure is used to
+communicate <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_035d9ce5-f117-4251-8d4d-127c462ec4a0" data-linktype="relative-path">forest trust</a>
+collision information. For more information about <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted domain objects</a>, see
+<a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/fe369d31-cc17-4ad7-849e-769403bc2c41" data-linktype="relative-path">6.1.6</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _LSA_FOREST_TRUST_COLLISION_RECORD {
+   unsigned long Index;
+   LSA_FOREST_TRUST_COLLISION_RECORD_TYPE Type;
+   unsigned long Flags;
+   LSA_UNICODE_STRING Name;
+ } LSA_FOREST_TRUST_COLLISION_RECORD,
+  *PLSA_FOREST_TRUST_COLLISION_RECORD;
+</pre></div>
+</dd></dl><p><b>Index:</b>  An ordinal number of a
+forest trust record in the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8c0b82d9-efec-4723-95a9-8564edf9ba44" data-linktype="relative-path">forest
+trust information</a> supplied by the caller that suffered a collision. For
+rules about collisions, see sections <a href="16be42bc-e85c-4135-b183-aacb88106306" data-linktype="relative-path">3.1.4.7.16</a> and <a href="f0e0eefd-e53c-463b-b816-86fb21931366" data-linktype="relative-path">3.1.4.7.16.1</a>.</p><p><b>Type:</b>  The type of collision record,
+as specified in section <a href="afc7d769-a317-4805-9f45-85d5393b57af" data-linktype="relative-path">2.2.7.26</a>.
+</p><p><b>Flags:</b>  A set of bits specifying the
+nature of the collision. These flags and the rules for generating them are
+specified in sections 3.1.4.7.16 and 3.1.4.7.16.1.</p><p><b>Name:</b>  The name of the existing
+entity (a top-level name entry, a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> information entry,
+or a top-level name exclusion entry) that caused the collision.</p></div>

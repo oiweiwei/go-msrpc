@@ -1,0 +1,28 @@
+<div class="content"><p>RpcReplyClosePrinter closes the notification channel between
+a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a> and a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_3b2da3d1-c159-4399-a6dd-dfd5f76fa2f5" data-linktype="relative-path">print client</a>.<a id="Appendix_A_Target_415"></a><a aria-label="Product behavior note 415" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_415" data-linktype="relative-path">&lt;415&gt;</a></p><dl>
+<dd>
+<div><pre> DWORD RpcReplyClosePrinter(
+   [in, out] PRINTER_HANDLE* phNotify
+ );
+</pre></div>
+</dd></dl><p><b>phNotify: </b>A pointer to the notification
+context handle to close that was opened by <a href="7fcd3036-d45a-4ec7-b081-f2b860e66676" data-linktype="relative-path">RpcReplyOpenPrinter (section 3.2.4.1.1)</a>.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the client MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Verify that the <i>phNotify</i> parameter is an <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_9dfe84e3-a772-4ad1-9a25-1255c1dc0f84" data-linktype="relative-path">RPC context handle</a> to a
+notification object that was opened using RpcReplyOpenPrinter. If that
+verification fails, ERROR_INVALID_HANDLE MUST be returned. This method SHOULD
+assume that this handle can be used without further access checks.</p>
+</li></ul><p>If parameter validation fails, the client MUST fail the
+operation immediately and return a nonzero error response to the server.
+Otherwise, the client MUST process the message as follows:</p><ul><li><p><span><span> 
+</span></span>Free the context handle associated with the notification state.</p>
+</li><li><p><span><span> 
+</span></span>Return a response to the client containing the output parameters
+and the status of the operation.</p>
+</li><li><p><span><span> 
+</span></span>If the operation is successful, the client MUST modify the
+notification state by removing the back channel context handle associated with
+it.</p>
+</li></ul></div>

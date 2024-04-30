@@ -1,0 +1,18 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/59742407-d756-4aa6-8c31-f3da27fff893" data-linktype="external">msdn link</a></p><p>The RPC representation of the <a href="25fa6565-6cb0-46ab-a30a-016b32c4939a" data-linktype="relative-path">SYSTEM_MANDATORY_LABEL_ACE</a>
+type defines an <a href="d06e5a81-176e-46c6-9cf7-9137aad4455e" data-linktype="relative-path">access
+control entry (ACE)</a> for the <a href="a66edeb1-52a0-4d64-a93b-2f5c833d7d92#gt_c189801e-3752-4715-88f4-17804dad5782" data-linktype="relative-path">system access control list
+(SACL)</a> that specifies the mandatory access level and policy for a securable
+object.</p><dl>
+<dd>
+<div><pre> typedef struct _SYSTEM_MANDATORY_LABEL_ACE {
+   ACE_HEADER Header;
+   ACCESS_MASK Mask;
+   DWORD SidStart;
+ } SYSTEM_MANDATORY_LABEL_ACE,
+  *PSYSTEM_MANDATORY_LABEL_ACE;
+</pre></div>
+</dd></dl><p><b>Header:</b>  An <a href="628ebb1d-c509-4ea0-a10f-77ef97ca4586" data-linktype="relative-path">ACE_HEADER</a> structure, as
+specified in section 2.4.4.13.</p><p><b>Mask:</b>  An <a href="7a53f60e-e730-4dfe-bbe9-b21b62eb790b" data-linktype="relative-path">ACCESS_MASK</a> as specified
+in section 2.4.4.13.</p><p><b>SidStart:</b>  Specifies the first <a href="262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a> of the <a href="78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">SID</a>. The remaining bytes
+of the SID are stored in contiguous memory after the <b>SidStart</b> member.
+The <b>IdentifierAuthority</b> and <b>RID</b> MUST be as specified 2.4.4.13.</p></div>

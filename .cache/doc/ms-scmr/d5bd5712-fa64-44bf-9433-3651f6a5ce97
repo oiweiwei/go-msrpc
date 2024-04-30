@@ -1,0 +1,31 @@
+<div class="content"><p>The Service Control Manager Remote Protocol is a
+client/server protocol used for configuring and controlling <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_2dc07ca2-2b40-437e-a5ec-ed28ebfb116a" data-linktype="relative-path">service</a> programs running on
+a remote computer. A remote service management session begins with the client
+initiating the connection request to the server. If the server grants the
+request, the connection is established. The client can then make multiple
+requests to modify, query the configuration, or start and stop services on the
+server by using the same session until the session is terminated.</p><p>A typical Service Control Manager Remote Protocol session
+involves the client connecting to the server and requesting to open the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a> on the server. If the
+server accepts the request, it responds with an <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_9dfe84e3-a772-4ad1-9a25-1255c1dc0f84" data-linktype="relative-path">RPC context handle</a> to the
+client. The client uses this RPC context handle to operate on the server. This
+usually involves sending another request to the server and specifying the type
+of operation to perform and any specific parameters associated with that
+operation. If the server accepts this request, it attempts to perform the
+specified operation and responds to the client with the result of the
+operation. After the client is finished operating on the server, it terminates
+the protocol by sending a request to close the RPC context handle.</p><p>The Service Control Manager Remote Protocol maintains an
+internal database to store service program configurations and state. The
+Service Control Manager Protocol has exclusive access to this internal
+database. On one operating system instance there is only one SCM and one
+corresponding SCM database. Any updates to this internal database are made only
+through the Service Control Manager Remote Protocol. SCM takes care of
+serializing all concurrent accesses to the SCM database. The SCM database is
+resident in memory; it is recreated every time the SCM restarts (after each
+reboot). Part of the SCM database is retrieved from persistent storage (all
+information regarding registered services) and partially nonpersistent (current
+active state of the services). The persistent information is modified by the
+SCM when a service is added, configured, or deleted. Any attempt to directly
+modify the persistent part of the database directly in the persistent storage
+is not a supported scenario and will result in possible inconsistencies.
+Finally, if SCM were to be forcefully terminated, the operating system will
+shut down and restart.</p></div>

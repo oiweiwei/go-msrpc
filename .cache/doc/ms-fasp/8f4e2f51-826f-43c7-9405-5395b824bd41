@@ -1,0 +1,41 @@
+<div class="content"><p> </p><p>This structure contains fields that are used when selecting
+a local certificate and validating a remote peer&#39;s certificate during
+certificate authentication.</p><dl>
+<dd>
+<div><pre> typedef struct FW_CERT_CRITERIA {
+   WORD wSchemaVersion;
+   WORD wFlags;
+   FW_CERT_CRITERIA_TYPE CertCriteriaType;
+   FW_CERT_CRITERIA_NAME_TYPE NameType;
+   LPWSTR wszName;
+   DWORD dwNumEku;
+   LPSTR ppEku;
+   LPWSTR wszHash;
+ } FW_CERT_CRITERIA,
+  *PFW_CERT_CRITERIA;
+</pre></div>
+</dd></dl><p><b>wSchemaVersion:</b>  Specifies the
+version of the criteria structure.</p><p><b>wFlags:</b>  A <span><a href="../ms-dtyp/f8573df3-a44a-4a50-b070-ac4c3aa78e3c" data-linktype="relative-path">WORD</a></span>
+containing bit flags, whose value is defined in <span><a href="df8aba33-578c-4f01-802c-435306e63409" data-linktype="relative-path">FW_CERT_CRITERIA_FLAGS</a></span>.
+The flag FW_AUTH_CERT_CRITERIA_FLAGS_FOLLOW_RENEWAL MUST NOT be set if the
+field <b>wszHash</b> is null. If specified, the flag
+FW_AUTH_CERT_CRITERIA_FLAGS_FOLLOW_RENEWAL MUST NOT be used if <b>CertCriteriaType</b>
+is equal to FW_CERT_CRITERIA_TYPE_VALIDATION.</p><p><b>CertCriteriaType:</b>  Specifies the
+type of criteria used, as among those specified in the <span><a href="84a1305f-ff3a-4bbe-ba81-e1c111ff5ba4" data-linktype="relative-path">FW_CERT_CRITERIA_TYPE</a></span>
+enumeration. This value MUST be less than FW_CERT_CRITERIA_TYPE_MAX.</p><p><b>NameType:</b>  Specifies the type of
+name, as among those specified in the <span><a href="b83533eb-9e41-4255-8dd4-be8bf75d1053" data-linktype="relative-path">FW_CERT_CRITERIA_NAME_TYPE</a></span>
+enumeration. This value MUST be less than FW_CERT_CRITERIA_NAME_MAX. If the
+value is not equal to FW_CERT_CRITERIA_NAME_NONE, then the value for wszName
+MUST be specified.</p><p><b>wszName:</b>  A <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string that specifies a name corresponding to the <b>NameType</b> specified.
+The length of this Unicode string MUST be less than 10,000 characters. The name
+MUST not contain the pipe &#34;|&#34; character.</p><p><b>dwNumEku:</b>  Specifies the number of <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_06beeb29-6e93-4472-a53d-bbd51eca5759" data-linktype="relative-path">EKU</a></span>
+element entries in the <b>ppEku</b> array.</p><p><b>ppEku:</b>  Pointer to an array of
+pointers to null-terminated strings. Each string in the array MUST contain only
+characters in the range &#34;0&#34; to &#34;9&#34; or the &#34;.&#34;
+character. The number of elements in the array MUST be equal to the value of
+the <b>dwNumEku</b> field.</p><p><b>wszHash:</b>  A Unicode string that
+specifies the hash of the certificate. The number of characters in the string
+MUST be equal to 40. Each character in the string MUST be in one of the
+following ranges: &#34;0&#34; to &#34;9&#34;, &#34;a&#34; to
+&#34;f&#34;, or &#34;A&#34; to &#34;F&#34;.</p></div>

@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The IRPCRemoteObject_Delete method destroys the specified <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_96e6d133-8e9c-4258-ae03-65cb549bce90" data-linktype="relative-path">remote
+object</a></span>.</p><dl>
+<dd>
+<div><pre> void IRPCRemoteObject_Delete(
+   [in, out] PRPCREMOTEOBJECT* ppRemoteObj
+ );
+</pre></div>
+</dd></dl><p><b>ppRemoteObj: </b>MUST be the remote object to
+delete. The handle MUST have been returned by the server in the ppRemoteObj
+output parameter of a prior call to <span><a href="e3786f60-0b93-4c5e-8cd1-3f0487e4310a" data-linktype="relative-path">IRPCRemoteObject_Create</a></span>
+and MUST NOT have been previously deleted. If this handle were previously
+registered by a successful call to <span><a href="fd00091c-2da3-4966-84ef-b1b75edb66b4" data-linktype="relative-path">IRPCAsyncNotify_RegisterClient</a></span>,
+then it MUST have been subsequently unregistered by a call to <span><a href="20fa79b6-4905-4a50-83d5-2bc76525b3c9" data-linktype="relative-path">IRPCAsyncNotify_UnregisterClient</a></span>.
+It MUST NOT be NULL.</p><p>Upon receipt, the server MUST set the ppRemoteObj value to
+NULL.</p><p><b>Return Values: </b>This method has no return
+values.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

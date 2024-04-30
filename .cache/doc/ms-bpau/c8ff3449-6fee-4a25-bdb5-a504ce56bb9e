@@ -1,0 +1,70 @@
+<div class="content"><p> </p><p>The encoded <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a></span> MUST be
+formatted as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Length</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Value
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Reserved (8 bytes): </b>This is a 64-bit unsigned
+integer in little-endian format that MUST be set to 0x0000000100000020.</p><p><b>Length (4 bytes): </b>This MUST contain the length
+of the <b>Value</b> field in bytes. It MUST be an unsigned 32-bit number in
+little-endian format.</p><p><b>Value (variable): </b>This MUST contain the ASN.1
+DER encoding of the <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_2069b65d-b546-4198-abfd-768badc2258e" data-linktype="relative-path">X.509</a></span> certificate of
+the sender. The certificate MUST contain a public key for use with the RSA
+encryption algorithm, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90414" data-linktype="external">[RFC3280]</a></span>
+section 4.</p></div>

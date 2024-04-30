@@ -1,0 +1,12 @@
+<div class="content"><p>This document specifies the ICertPassage Remote Protocol.
+This protocol is a subset of the Windows Client Certificate Enrollment
+Protocol, as specified in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>.
+The difference between this protocol and the Windows Client Certificate
+Enrollment Protocol is that this protocol only allows the <a href="a34f6642-5120-48df-ba4c-e6d671d7a5d0#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to <a href="a34f6642-5120-48df-ba4c-e6d671d7a5d0#gt_cf66f877-3541-4fe8-907a-653989421810" data-linktype="relative-path">enroll</a> <a href="a34f6642-5120-48df-ba4c-e6d671d7a5d0#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a>, whereas the
+Windows Client Certificate Enrollment Protocol provides <a href="a34f6642-5120-48df-ba4c-e6d671d7a5d0#gt_3edb3c30-bb82-4782-9777-19c5006965ef" data-linktype="relative-path">enrollment</a> and additional
+functionality, such as the capability to read <a href="a34f6642-5120-48df-ba4c-e6d671d7a5d0#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">certification authority (CA)</a>
+data and configuration information. Reading and understanding the Windows
+Client Certificate Enrollment Protocol, as specified in [MS-WCCE], is essential
+to understanding the ICertPassage Remote Protocol.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

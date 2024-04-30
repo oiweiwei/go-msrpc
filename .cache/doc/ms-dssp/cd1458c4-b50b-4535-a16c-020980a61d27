@@ -1,0 +1,81 @@
+<div class="content"><p> </p><p>The DSROLER_PRIMARY_DOMAIN_INFO_BASIC structure contains
+basic information, including the role of the computer, domain name, and <span><a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+of the domain.</p><dl>
+<dd>
+<div><pre> typedef struct _DSROLER_PRIMARY_DOMAIN_INFO_BASIC {
+   DSROLE_MACHINE_ROLE MachineRole;
+   unsigned __int32 Flags;
+   [unique, string] wchar_t* DomainNameFlat;
+   [unique, string] wchar_t* DomainNameDns;
+   [unique, string] wchar_t* DomainForestName;
+   GUID DomainGuid;
+ } DSROLER_PRIMARY_DOMAIN_INFO_BASIC,
+  *PDSROLER_PRIMARY_DOMAIN_INFO_BASIC;
+</pre></div>
+</dd></dl><p><b>MachineRole:</b>  The current role of
+the computer, expressed as a <span><a href="09f0677f-52e5-454d-9a65-0e8d8ba6fdeb" data-linktype="relative-path">DSROLE_MACHINE_ROLE</a></span>
+data type.</p><p><b>Flags:</b>  The value that indicates the
+state of the <span><a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_c36db657-3138-4d9a-9289-ded5cbb8b40e" data-linktype="relative-path">directory service</a></span>
+and validity of the information contained in the <b>DomainGuid</b> member. The
+value of this parameter MUST be zero or a combination of one or more individual
+flags in the following table. The combination is the result of a bitwise OR of
+the flags that apply to the computer for which information is being retrieved.
+All undefined bits MUST be 0. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DSROLE_PRIMARY_DS_RUNNING</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The directory service is running on this computer. If
+  this flag is not set, the directory service is not running on this computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DSROLE_PRIMARY_DS_MIXED_MODE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The directory service is running in <span><a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_06c1c70e-f2c6-4efd-bff8-474409e69660" data-linktype="relative-path">mixed
+  mode</a></span>. This flag is valid only if the DSROLE_PRIMARY_DS_RUNNING
+  flag is set and the DSROLE_PRIMARY_DS_READONLY flag is not set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DSROLE_PRIMARY_DS_READONLY</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The computer holds a read-only copy of the <span><a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_49ce3946-04d2-4cc9-9350-ebcd952b9ab9" data-linktype="relative-path">directory</a></span>.
+  This flag is valid only if the DSROLE_PRIMARY_DS_RUNNING flag is set and the
+  DSROLE_PRIMARY_DS_MIXED_MODE flag is not set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DSROLE_PRIMARY_DOMAIN_GUID_PRESENT</p>
+  <p>0x01000000</p>
+  </td>
+  <td>
+  <p>The <b>DomainGuid</b> member contains a valid domain
+  GUID. If this bit is not set, the value in DomainGuid member is undefined.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>DomainNameFlat:</b>  The <span><a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS
+name</a></span> of the domain or non-domain workgroup to which the computer
+belongs. </p><p><b>DomainNameDns:</b>  The domain name of
+the computer. This member MUST be NULL if the <b>MachineRole</b> member is <b>DsRole_RoleStandaloneWorkstation</b>
+or <b>DsRole_RoleStandaloneServer</b> and MUST NOT be NULL otherwise. </p><p><b>DomainForestName:</b>  The name of the <span><a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a></span>
+to which the computer belongs. This member MUST be NULL, if the computer is a
+stand-alone workstation or server.</p><p><b>DomainGuid:</b>   The <span><a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+of the domain to which the computer belongs. The value of this member is valid
+only if the DSROLE_PRIMARY_DOMAIN_GUID_PRESENT flag is set.</p></div>

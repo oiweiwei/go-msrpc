@@ -1,0 +1,81 @@
+<div class="content"><p>The RGetServiceDisplayNameA method returns the display name
+of the specified service.</p><dl>
+<dd>
+<div><pre> DWORD RGetServiceDisplayNameA(
+   [in] SC_RPC_HANDLE hSCManager,
+   [in, string, range(0, SC_MAX_NAME_LENGTH)] 
+     LPSTR lpServiceName,
+   [out, string, size_is(*lpcchBuffer)] 
+     LPSTR lpDisplayName,
+   [in, out] LPBOUNDED_DWORD_4K lpcchBuffer
+ );
+</pre></div>
+</dd></dl><p><b>hSCManager: </b>An <a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">SC_RPC_HANDLE</a> (section
+2.2.4) data type that defines the handle to the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a> database created
+previously, using one of the open methods specified in section <a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a>.</p><p><b>lpServiceName: </b>A pointer to a null-terminated
+ANSI string that specifies the service name.</p><dl>
+<dd>
+<p>The forward slash, back slash, comma, and space
+characters are illegal in service names.</p>
+</dd></dl><p><b>lpDisplayName: </b>A pointer to a buffer that
+receives the null-terminated ANSI string that contains the service display
+name.</p><p><b>lpcchBuffer: </b>An <a href="d5e2cc22-7db6-4101-b36f-f4377e836b4c" data-linktype="relative-path">LPBOUNDED_DWORD_4K</a>
+(section 2.2.7) data type that defines the pointer to a variable that specifies
+the size, in <a href="../ms-dtyp/77e1033f-b31d-4bd2-b3d5-9f3c9faa22eb" data-linktype="relative-path">char</a>s,
+of the buffer. On output, this variable receives the size of the service&#39;s
+display name, excluding the terminating null character. </p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns one of the following error
+codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>122</p>
+  <p>ERROR_INSUFFICIENT_BUFFER</p>
+  </td>
+  <td>
+  <p>The display name does not fit in the buffer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>123</p>
+  <p>ERROR_INVALID_NAME</p>
+  </td>
+  <td>
+  <p>The specified service name is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1060</p>
+  <p>ERROR_SERVICE_DOES_NOT_EXIST</p>
+  </td>
+  <td>
+  <p>The <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_1fbb7936-8437-4e3d-b62f-47df3be07721" data-linktype="relative-path">service
+  record</a> with the specified ServiceName does not exist in the SCM database
+  identified by the <i>hSCManager</i> parameter.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation the server MUST look up the service record with the
+ServiceName matching the specified <i>lpServiceName</i> in the SCM database
+identified by the <i>hSCManager</i> parameter. The server MUST return the
+DisplayName from the found service record in the <i>lpDisplayName</i> parameter
+and set the size in chars of the display name excluding the terminating null
+character in <i>lpcchBuffer</i>.</p><p>If the <i>lpDisplayName</i> buffer is insufficient to hold
+the complete display name of the service, the server MUST fail the call with
+ERROR_INSUFFICIENT_BUFFER (122) and set the required size in chars of the
+display name excluding the terminating null character in <i>lpcchBuffer</i>.<a id="Appendix_A_Target_49"></a><a aria-label="Product behavior note 49" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_49" data-linktype="relative-path">&lt;49&gt;</a> If the size is sufficient for
+data returned, the server also returns the size that was set in <i>lpcchBuffer</i>.</p><p>If a service is created with a Unicode-encoded display name
+using the <b>RCreateServiceW</b> method, then the server MUST convert the
+display name to an ANSI string before returning it. The conversion process is
+specified in <a href="../ms-ucoderef/4a045e08-fc29-4f22-baf4-16f38c2825fb" data-linktype="relative-path">[MS-UCODEREF]</a>
+section <a href="../ms-ucoderef/5b099932-364d-4ab4-8f41-3d0c8d69b463" data-linktype="relative-path">3.1.5.1.1.2</a>,
+Pseudocode for Mapping a UTF-16 String to an ANSI Codepage.</p></div>

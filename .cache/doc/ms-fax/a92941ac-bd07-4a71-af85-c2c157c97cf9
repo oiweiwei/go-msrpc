@@ -1,0 +1,177 @@
+<div class="content"><p> </p><p>The <b>FAX_ConnectionRefCount (Opnum 1)</b> method is called
+by the client.<a id="Appendix_A_Target_73"></a><a aria-label="Product behavior note 73" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_73" data-linktype="relative-path">&lt;73&gt;</a></p><p>In response, the server MUST connect, disconnect, or release
+a connection between the fax client and the fax server. </p><p>If this call is successfully made with a <i>Connect</i>
+argument value of Connect (0x00000001), the client SHOULD retain the RPC
+binding handle used for the <i>hBinding</i> argument and reuse it as the RPC
+binding handle input argument for all subsequent fax server calls made, until
+the connection with the server is disconnected.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_ConnectionRefCount(
+   [in] handle_t hBinding,
+   [in, out] PRPC_FAX_SVC_HANDLE Handle,
+   [in] DWORD Connect,
+   [out] LPDWORD CanShare
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle
+that is provided by the client RPC layer when the RPC call is made. If the <i>Connect</i>
+parameter is set to Disconnect (0x00000000), the client SHOULD reuse the RPC
+binding handle used for the <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>)
+call or for the previous call to this method used to connect to the fax server.</p><p><b>Handle: </b>The connection handle that references
+a connection to the fax server. If <i>Connect</i> is set to 0x00000001
+(Connect), a new handle is returned in this parameter. Otherwise, this
+parameter MUST be set to a handle returned from a previous call to this method,
+or to <b>FAX_ConnectFaxServer</b>.</p><p><b>Connect: </b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that specifies connection information.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Disconnect</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Close the fax server connection.</p>
+  <p>The handle specified in Handle MUST have been returned
+  by a previous call to <b>FAX_ConnectFaxServer</b> or <b>FAX_ConnectionRefCount</b>
+  with a Connect value of 1 (Connect). After this call, the handle in Handle
+  will be invalid and MUST NOT be used in any subsequent calls. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Connect</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Connect to the fax server.</p>
+  <p>Calling <b>FAX_ConnectionRefCount</b> with this value
+  is equivalent to calling <b>FAX_ConnectFaxServer</b> with an API version of
+  FAX_API_VERSION_0. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Release</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Release a connection to the fax server.</p>
+  <p>The handle specified in <i>Handle</i> MUST have been
+  returned by a previous call to <b>FAX_ConnectFaxServer</b> or <b>FAX_ConnectionRefCount</b>
+  with a <i>Connect</i> value of 1 (Connect). After this call, the handle in <i>Handle</i>
+  MUST NOT be used in any subsequent calls except a call to <b>FAX_ConnectionRefCount</b>
+  with a <i>Connect</i> value of 0 (Disconnect).</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If <b>FAX_ConnectionRefCount</b> is called in a
+sequence, and varying values are given for this parameter on the same <i>Handle</i>,
+the following holds true:</p>
+</dd></dl><ol><li><p><span>   
+</span>The call sequence SHOULD have values for the <i>Connect</i> argument in
+the following order:</p>
+<ol><li><p><span>    </span>1 (Connect): To
+obtain a valid <i>Handle</i> and connect to the fax server. (This call is
+optional and can be replaced by a <b>FAX_ConnectFaxServer</b> call.</p>
+</li><li><p><span>    </span>2 (Release):
+Step &#34;1 (Connect)&#34; is mandatory for this call to succeed.</p>
+</li><li><p><span>    </span>0 (Disconnect):
+Step &#34;1 (Connect)&#34; is mandatory for this call to succeed.</p>
+</li></ol></li><li><p><span>   
+</span>The following sequence of calls on the same handle MUST result in an
+ERROR_INVALID_PARAMETER error:</p>
+<ol><li><p><span>    </span>Consecutive
+calls with a <i>Connect</i> argument value of 2 (Release) or 0 (Disconnect) without
+obtaining a valid Handle in between two calls (through step &#34;1
+(Connect)&#34; above).</p>
+</li><li><p><span>    </span>A call with a <i>Connect</i>
+argument value of 0 (Disconnect) following a call with a <i>Connect</i>
+argument value of 2 (Release).</p>
+</li></ol></li></ol><p><b>CanShare: </b>The server MUST return a nonzero
+value in the <b>DWORD</b> referenced by this parameter if the fax <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_569f1f1c-f426-46fa-91d2-3d1eb0b19aa1" data-linktype="relative-path">print
+queues</a></span> can be shared as described in section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>,
+and a zero value otherwise.<a id="Appendix_A_Target_74"></a><a aria-label="Product behavior note 74" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_74" data-linktype="relative-path">&lt;74&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Possible value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The fax print queues can be shared.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001 — 0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>The fax print queues cannot be shared.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The <i>Connect</i> parameter is set
+  to a value of 0x00000001 (Connect), and the client&#39;s fax user account does
+  not have the ALL_FAX_USER_ACCESS_RIGHTS access rights required for the
+  connect operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. This error code is
+  returned if any of the following conditions are met:</p>
+  <p><span>§<span>  
+  </span></span>The <i>Connect</i> parameter is set to a value of 0x00000000
+  (Disconnect) or to a value of 0x00000002 (Release), and the <i>Handle</i>
+  parameter is set to a NULL value.<a id="Appendix_A_Target_75"></a><a aria-label="Product behavior note 75" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_75" data-linktype="relative-path">&lt;75&gt;</a></p>
+  <p><span>§<span>  
+  </span></span>The <i>Connect</i> parameter is set to a value of 0x00000001
+  (Connect), and the <i>CanShare</i> parameter is set to a NULL pointer value.<a id="Appendix_A_Target_76"></a><a aria-label="Product behavior note 76" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_76" data-linktype="relative-path">&lt;76&gt;</a></p>
+  <p><span>§<span>  
+  </span></span>The <i>Connect</i> parameter is set to a value other than
+  0x00000000 (Disconnect), 0x00000001 (Connect), or 0x00000002 (Release).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Fax clients call this method to connect or disconnect from
+the fax server.</p><p><b>Exceptions Thrown: </b>No exceptions are thrown
+except those that are thrown by the underlying RPC protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

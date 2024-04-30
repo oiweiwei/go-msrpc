@@ -1,0 +1,47 @@
+<div class="content"><p> </p><p>This structure is used to query objects from the store. The
+structure contains a number of <span><a href="98765a8c-9a0c-471b-b2ee-56c931ea5604" data-linktype="relative-path">FW_QUERY_CONDITIONS</a></span>
+elements. This structure can evaluate to either TRUE or FALSE. It evaluates to
+TRUE if at least one of the query conditions containers evaluates to TRUE;
+otherwise, if all evaluate to FALSE, it evaluates to FALSE.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_QUERY {
+   unsigned SHORT wSchemaVersion;
+   unsigned LONG dwNumEntries;
+   [size_is(dwNumEntries)] FW_QUERY_CONDITIONS* ORConditions;
+   FW_RULE_STATUS Status;
+ } FW_QUERY,
+  *PFW_QUERY;
+</pre></div>
+</dd></dl><p><b>wSchemaVersion:</b>  The schema version
+of the query object. The version MUST be at least 0x00020A.</p><p><b>dwNumEntries:</b>  This field specifies
+the number of query conditions containers that the structure contains.</p><p><b>ORConditions:</b>  A pointer to an array
+of FW_QUERY_CONDITIONS elements, which are all logically OR&#39;d together. The
+number of elements is given by <b>dwNumEntries</b>.</p><p><b>Status:</b>  The status code of the
+query, as specified by the <span><a href="c4fd81e6-38dd-47c5-8a0f-a98a11cf190e" data-linktype="relative-path">FW_RULE_STATUS</a></span>
+enumeration. This field is filled out when the structure is returned as output.
+On input, this field SHOULD be set to FW_RULE_STATUS_OK.</p><p>The following are semantic checks that query object MUST
+pass:</p><ul><li><p><span><span> 
+</span></span>The <b>wSchemaVersion</b> MUST NOT be less than 0x00020A.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>dwNumEntries</b> field is zero, the <b>ORConditions</b>
+field MUST be NULL, and if the <b>dwNumEntries</b> field is not zero, the <b>ORConditions</b>
+field MUST NOT be NULL.</p>
+</li><li><p><span><span> 
+</span></span>The <b>ORConditions</b> field MUST have valid FW_QUERY_CONDITIONS
+elements.</p>
+</li><li><p><span><span> 
+</span></span>If the query object is used for querying connection security
+rules, it MUST NOT have any conditions with <b>matchKey</b> equal to
+FW_MATCH_KEY_APP_PATH or FW_MATCH_KEY_SVC_NAME.</p>
+</li><li><p><span><span> 
+</span></span>If the query object is being used for querying main mode rules,
+it MUST NOT have any conditions with <b>matchKey</b> equal to
+FW_MATCH_KEY_PROTOCOL, FW_MATCH_KEY_LOCAL_PORT, FW_MATCH_KEY_REMOTE_PORT,
+FW_MATCH_KEY_GROUP, or FW_MATCH_KEY_DIRECTION, or any of the match keys
+disallowed by connection security rules.</p>
+</li><li><p><span><span> 
+</span></span>If the query object is being used for querying authentication or
+cryptographic sets, it MUST NOT have any conditions with <b>matchKey</b> equal
+to FW_MATCH_KEY_PROFILE or FW_MATCH_KEY_FILTERID, or any of the match keys
+disallowed by main mode rules.</p>
+</li></ul></div>

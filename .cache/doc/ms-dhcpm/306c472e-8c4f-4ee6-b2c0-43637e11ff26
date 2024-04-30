@@ -1,0 +1,78 @@
+<div class="content"><p> </p><p>The <b>R_DhcpAuditLogGetParams</b> method retrieves all
+audit log–related settings from the DHCP server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpAuditLogGetParams(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DWORD Flags,
+   [out] LPWSTR_RPC_STRING* AuditLogDir,
+   [out] DWORD* DiskCheckInterval,
+   [out] DWORD* MaxLogFilesSize,
+   [out] DWORD* MinSpaceOnDisk
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>Flags: </b>This flag is not used and MUST be set
+to 0.</p><p><b>AuditLogDir: </b>A pointer to a null-terminated
+Unicode string in which the path where the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_21b83bd2-9daa-48ff-ab4a-656ee9800b64" data-linktype="relative-path">audit logs</a></span> are
+placed is returned.</p><p><b>DiskCheckInterval: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and will contain the number of times the DHCP server writes audit log events to
+the log file before checking for available disk space on the DHCP server. The
+caller must allocate memory for this parameter equal to the size of data type
+DWORD.</p><p><b>MaxLogFilesSize: </b>This is of type DWORD and
+will contain the maximum size restriction (in megabytes) for the total amount
+of disk space available for all audit log files created and stored by the DHCP
+server. The caller must allocate memory for this parameter equal to the size of
+data type DWORD.</p><p><b>MinSpaceOnDisk: </b>This is of type DWORD and will
+contain the minimum size requirement (in megabytes) for server disk space that
+is used during disk checking to determine if sufficient space exists for the
+server to continue audit logging. The caller must allocate memory for this
+parameter equal to the size of data type DWORD.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000) indicates
+that the operation was completed successfully, else it contains a Win32 error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 33.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>If <i>Flags</i> is not 0, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read access per
+section <span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the information stored in the server ADM element <b>DHCPv4AuditLogParams</b>
+and copy them to the corresponding parameter of the API. <i>AuditLogDir</i> is
+allocated required memory and set from <b>DHCPv4AuditLogParams.AuditLogDir</b>,
+<i>DiskCheckInterval</i> is set from <b>DHCPv4AuditLogParams.DiskCheckInterval</b>,
+<i>MaxLogFilesSize</i> is set from <b>DHCPv4AuditLogParams.MaxLogFilesSize</b>,
+and <i>MinSpaceOnDisk</i> is set from <b>DHCPv4AuditLogParams.MinSpaceOnDisk</b>.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

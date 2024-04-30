@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>This enumeration describes bitmask flags that can be set on
+a criteria structure.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FW_AUTH_CERT_CRITERIA_FLAGS_NONE = 0x0000,
+   FW_AUTH_CERT_CRITERIA_FLAGS_FOLLOW_RENEWAL = 0x0001,
+   FW_AUTH_CERT_CRITERIA_FLAGS_MAX = 0x0002
+ } FW_CERT_CRITERIA_FLAGS;
+</pre></div>
+</dd></dl><p><b>FW_AUTH_CERT_CRITERIA_FLAGS_NONE:</b>  No flags
+are set.</p><p><b>FW_AUTH_CERT_CRITERIA_FLAGS_FOLLOW_RENEWAL:</b> 
+The renewal links in a certificate are to be followed, if they are found within
+a certificate.</p><p>F<b>W_AUTH_CERT_CRITERIA_FLAGS_MAX:</b>  To be valid,
+a flag value of this type MUST be less than this constant.</p></div>

@@ -1,0 +1,23 @@
+<div class="content"><p>The AdsCachePropertyFlags enumeration defines bitmasks for
+the possible states of the secure and nonsecure properties of the <b>FCIADS
+stream</b> in the File Server Resource Manager protocol.</p><dl>
+<dd>
+<div><pre> typedef  enum AdsCachePropertyFlags
+ {
+   AdsCachePropertyFlags_None = 0x00000000,
+   AdsCachePropertyFlags_Manual = 0x00000001,
+   AdsCachePropertyFlags_Deleted = 0x00000002,
+   AdsCachePropertyFlags_PolicyDerived = 0x00000004,
+   AdsCachePropertyFlags_Inherited = 0x00000008
+ } AdsCachePropertyFlags;
+</pre></div>
+</dd></dl><p><b>AdsCachePropertyFlags_None:  </b>Indicates that no
+flags are set.</p><p><b>AdsCachePropertyFlags_Manual:  </b>The
+AdsCachePropertyFlags_Manual flag is set to indicate that a property has been
+manually classified.</p><p><b>AdsCachePropertyFlags_Deleted:  </b>The
+AdsCachePropertyFlags_Deleted flag is set to indicate that a property has been
+manually deleted.</p><p><b>AdsCachePropertyFlags_PolicyDerived:  </b>The
+AdsCachePropertyFlags_PolicyDerived flag is set to indicate whether the value
+in the cache was derived from classification properties.</p><p><b>AdsCachePropertyFlags_Inherited:  </b>The
+AdsCachePropertyFlags_Inherited flag is set to indicate whether a property name
+value was inherited from a container.</p></div>

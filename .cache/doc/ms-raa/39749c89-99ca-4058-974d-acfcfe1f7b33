@@ -1,0 +1,31 @@
+<div class="content"><p>The AUTHZ_CONTEXT_INFORMATION_CLASS enumeration is used to
+indicate security attributes of a principal represented by an AUTHZR_HANDLE.</p><dl>
+<dd>
+<div><pre> typedef enum _AUTHZ_CONTEXT_INFORMATION_CLASS {
+     AuthzContextInfoUserSid = 1,
+     AuthzContextInfoGroupsSids = 2,
+     AuthzContextInfoRestrictedSids = 3,
+     ReservedEnumValue4 = 4,
+     ReservedEnumValue5 = 5,
+     ReservedEnumValue6 = 6,
+     ReservedEnumValue7 = 7,
+     ReservedEnumValue8 = 8,
+     ReservedEnumValue9 = 9,
+     ReservedEnumValue10 = 10,
+     ReservedEnumValue11 = 11,
+     AuthzContextInfoDeviceSids = 12,
+     AuthzContextInfoUserClaims = 13,
+     AuthzContextInfoDeviceClaims = 14,
+     ReservedEnumValue15 = 15,
+     ReservedEnumValue16 = 16
+ } AUTHZ_CONTEXT_INFORMATION_CLASS;
+  
+</pre></div>
+</dd></dl><p><b>AuthzContextInfoUserSid:</b> Indicates the principal&#39;s
+user <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> and its
+attribute.</p><p><b>AuthzContextInfoGroupsSids:</b> Indicates the
+groups to which the principal belongs and their attributes.</p><p><b>AuthzContextInfoRestrictedSids:</b> Indicates the
+restricted SIDs in the principal&#39;s security context and their attributes.</p><p><b>ReservedEnumValue4:</b> Not used.</p><p><b>ReservedEnumValue5:</b> Not used.</p><p><b>ReservedEnumValue6:</b> Not used.</p><p><b>ReservedEnumValue7:</b> Not used.</p><p><b>ReservedEnumValue8:</b> Not used.</p><p><b>ReservedEnumValue9:</b> Not used.</p><p><b>ReservedEnumValue10:</b> Not used.</p><p><b>ReservedEnumValue11:</b> Not used.</p><p><b>AuthzContextInfoDeviceSids:</b> Indicates the
+groups to which the device principal belongs and their attributes.</p><p><b>AuthzContextInfoUserClaims:</b> Indicates the
+user&#39;s security attributes information.</p><p><b>AuthzContextInfoDeviceClaims:</b> Indicates the
+device&#39;s security attributes information.</p><p><b>ReservedEnumValue15:</b> Not used.</p><p><b>ReservedEnumValue16:</b> Not used.</p></div>

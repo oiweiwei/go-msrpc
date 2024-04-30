@@ -1,0 +1,135 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/93083f06-d18a-407b-b906-630ed214a7ff" data-linktype="external">msdn link</a></p><p>The <b>DS_REPL_KCC_DSA_FAILUREW_BLOB</b> structure is a
+representation of a tuple from the <i>kCCFailedConnections</i> or <i>kCCFailedLinks</i>
+variables of a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a>. This
+structure, retrieved using an <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a>
+search method, is an alternative representation of DS_REPL_KCC_DSA_FAILUREW,
+retrieved using the IDL_DRSGetReplInfo <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> method.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>oszDsaDN</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uuidDsaObjGuid
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ftimeFirstFailure</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cNumFailures</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwLastResult</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>oszDsaDN (4 bytes): </b>A 32-bit offset, in bytes,
+from the address of this structure to a null-terminated string that contains
+the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a> of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_dc90b593-841f-4c6d-8032-b32e58e887a8" data-linktype="relative-path">nTDSDSA object</a> of the
+source server.</p><p><b>uuidDsaObjGuid (16 bytes): </b>A <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a>
+structure, defined in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section 2.3.4, specifying the <a href="../ms-ada3/937eb5c6-f6b3-4652-a276-5d6bb8979658" data-linktype="relative-path">objectGUID</a>
+of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a>
+represented by the oszDsaDN member.</p><p><b>ftimeFirstFailure (8 bytes): </b>A <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a>
+structure, the content of which depends on the requested binary <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a> data.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Attribute requested</p>
+   </th>
+   <th>
+   <p>Meaning </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="b4a0b2bf-95f9-40b4-9301-834ccadea40c" data-linktype="relative-path">msDS-ReplConnectionFailures</a></p>
+  </td>
+  <td>
+  <p>Contains the date and time that the first failure
+  occurred when attempting to establish a replica link to the source server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>msDS-ReplLinkFailures</p>
+  </td>
+  <td>
+  <p>Contains the date and time that the first failure
+  occurred when replicating from the source server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cNumFailures (4 bytes): </b>A 32-bit unsigned
+integer specifying the number of consecutive failures since the last successful
+replication.</p><p><b>dwLastResult (4 bytes): </b>A 32-bit unsigned
+integer specifying the error code associated with the most recent failure, or
+ERROR_SUCCESS if no failures occurred.</p><p><b>data (variable): </b>The <b>data</b> field
+contains the null-terminated string that contains the DN of the nTDSDSA object
+of the source server.</p><p>All multibyte fields have little-endian byte ordering.</p></div>

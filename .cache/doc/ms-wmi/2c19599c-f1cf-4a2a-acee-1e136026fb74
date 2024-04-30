@@ -1,0 +1,34 @@
+<div class="content"><p> </p><p>On the IWbemBackupRestore::Backup method invocation, the
+server MUST back up the contents of the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a99173af-90bf-473d-9a81-ff0ce9a85838" data-linktype="relative-path">CIM</a></span> database.</p><dl>
+<dd>
+<div><pre> HRESULT Backup(
+   [in, string] LPCWSTR strBackupToFile,
+   [in] long lFlags
+ );
+</pre></div>
+</dd></dl><p><b>strBackupToFile: </b>MUST be a UTF-16 string,
+which MUST contain the name of the file to which the CIM database is backed up.
+This parameter MUST NOT<a id="Appendix_A_Target_58"></a><a aria-label="Product behavior note 58" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_58" data-linktype="relative-path">&lt;58&gt;</a> be NULL. </p><p><b>lFlags: </b> This parameter is not used, and its
+value MUST be 0x0.</p><p><b>Return Values: </b>This method MUST return an <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">HRESULT</a></span>
+value that MUST indicate the status of the method call. The server MUST return
+WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p>In case of failure, the server MUST return an
+HRESULT whose S (severity) bit is set as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section 2.1. The actual HRESULT value is implementation dependent.</p>
+</dd>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The IWbemBackupRestore::Backup method MUST be called on the
+interface that is obtained from the DCOM Remote Protocol <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a1710eb6-236d-435e-a3c9-1672d28ab367" data-linktype="relative-path">activation</a></span>
+of a CLSID_WbemBackupRestore interface, as specified in this section.</p><p>In response to the IWbemBackupRestore::Backup method, the
+server MUST set the <b>BackupInProgress</b> flag to True. The server MUST back
+up the CIM database in a file that is specified in the <i>strBackupToFile</i>
+parameter. The server SHOULD<a id="Appendix_A_Target_59"></a><a aria-label="Product behavior note 59" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_59" data-linktype="relative-path">&lt;59&gt;</a> verify
+that the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+making the call is allowed to back up the CIM database using
+implementation-specific authorization policy. If the security principal is not
+authorized, the server MUST return WBEM_E_ACCESS_DENIED.</p><p>The Backup operation MUST NOT impact the state of the
+incoming calls. After the Backup operation is complete, the server MUST set the
+<b>BackupInProgress</b> flag to False.</p></div>

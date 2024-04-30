@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The Offline method brings a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span> to the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_e42c8573-c14f-4a3d-bd1e-549aa1f7ec13" data-linktype="relative-path">offline</a></span>
+state. An offline disk exposes no <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> devices.</p><dl>
+<dd>
+<div><pre> HRESULT Offline(void);
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span>, as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>,
+to indicate success or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p><b>ERROR_SUCCESS(0x00000000)</b></p><p>The server MUST bring the disk to the offline state by
+removing the volume objects for any volumes with associated extents on the
+given disk. The server MUST send volume removal notifications for any volume
+objects that are removed as a result of bringing the disk to an offline state.
+The server MUST then return an HRESULT indicating failure or success. For more
+information on the <span><a href="1f2c2038-e967-49f6-9365-c7ac47abb496" data-linktype="relative-path">VDS_FILE_SYSTEM_PROP</a></span>
+structure, see 2.2.1.3.17.</p></div>

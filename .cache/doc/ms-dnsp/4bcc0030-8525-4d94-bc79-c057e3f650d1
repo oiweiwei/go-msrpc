@@ -1,0 +1,93 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_TRUST_POINT</b> structure contains
+information about a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_34a102c7-7324-497c-b8d7-699067c619c0" data-linktype="relative-path">trust point</a></span> or a
+node in the <a id="_Hlk61963318">TrustAnchors zone (</a><a href="https://go.microsoft.com/fwlink/?LinkId=225980" data-linktype="external">[RFC5011]</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcTrustPoint {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   [string] char* pszTrustPointName;
+   TRUSTPOINT_STATE eTrustPointState;
+   __int64 i64LastActiveRefreshTime;
+   __int64 i64NextActiveRefreshTime;
+   __int64 i64LastSuccessfulActiveRefreshTime;
+   DWORD dwLastActiveRefreshResult;
+   DWORD dwReserved;
+ } DNS_RPC_TRUST_POINT,
+  *PDNS_RPC_TRUST_POINT;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The structure
+version number; it MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>pszTrustPointName:</b> The <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a></span>
+of the trust point or node in the TrustAnchors zone represented by this
+structure. This MUST be a non-empty, non-NULL string.</p><p><a id="_Hlk61963433"><b>eTrustPointState:</b> A
+<b>TRUSTPOINT_STATE</b> enumeration value (section </a><a href="0b73d83c-a99d-48a7-a65d-be40f3e749e3" data-linktype="relative-path">2.2.1.1.3</a>) containing the
+current trust point state. This MUST be set to one of the following values. For
+the <b>TRUSTANCHOR_STATE</b> enumeration values see section <a href="d84d1ece-610a-4911-8cfc-8f93bc9a870e" data-linktype="relative-path">2.2.1.1.4</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUSTPOINT_STATE_INITIALIZED</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>This structure represents a node in the TrustAnchors
+  zone that does not contain any <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bfdbc40a-da75-45a3-a8bc-50cd4f2f9797" data-linktype="relative-path">trust anchors</a></span>.
+  This node is not a trust point.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUSTPOINT_STATE_DSPENDING</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>This trust point contains only DS trust anchors (trust
+  anchors in the TRUSTANCHOR_STATE_DSPENDING or TRUSTANCHOR_STATE_DSINVALID
+  state), rendering it unusable for DNSSEC proofs.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUSTPOINT_STATE_ACTIVE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>This trust point contains at least one trust anchor in
+  the TRUSTANCHOR_STATE_VALID or TRUSTANCHOR_STATE_MISSING state.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUSTPOINT_STATE_DELETE_PENDING</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>This trust point contains only trust anchors in the
+  TRUSTANCHOR_STATE_REVOKED state.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>i64LastActiveRefreshTime:</b> The time of the
+last <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_79ac1b1f-1063-4f6f-8d2f-ec034c123ec6" data-linktype="relative-path">active
+refresh</a></span>. This is set to zero to indicate that no active refresh has
+occurred. This is a 64-bit value representing the number of 100-nanosecond
+intervals since January 1, 1601 <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">Coordinated Universal Time
+(UTC)</a></span>.</p><p><b>i64NextActiveRefreshTime:</b> The scheduled
+time of the next active refresh, or zero to indicate that no active refresh is
+scheduled. This is a 64-bit value representing the number of 100-nanosecond
+intervals since January 1, 1601 (UTC).</p><p><b>i64LastSuccessfulActiveRefreshTime:</b> The
+time of the last successful active refresh, or zero to indicate that no active
+refresh has occurred. This is a 64-bit value representing the number of
+100-nanosecond intervals since January 1, 1601 (UTC). A successful active
+refresh is defined as an active refresh resulting in retrieval of one or more
+DNSKEY records for the trust point and, if this trust point has trust anchors
+in the TRUSTANCHOR_STATE_VALID state, signifies that one or more of the
+retrieved DNSKEY records was validated by DNSSEC.</p><p><b>dwLastActiveRefreshResult:</b> The result of
+the last active refresh, either ERROR_SUCCESS or a nonzero value to indicate
+that an error has occurred.</p><p><b>dwReserved:</b> MUST be set to zero when sent
+and MUST be ignored on receipt.</p></div>

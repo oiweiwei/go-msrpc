@@ -1,0 +1,11 @@
+<div class="content"><p>The OLE Automation Protocol uses <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">Distributed Component Object
+Model (DCOM)</a> as its transport layer. It provides support for an additional
+set of types, a late-bound calling mechanism, and type description and
+discovery. The late-bound calling mechanism is based on dispatch identifiers
+and a dispatching table that maps the identifiers to specific operations. The
+dispatch identifiers and the dispatching table are specified by using <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a> extensions specified in
+this document. Type description and discovery are based on a set of IDL
+extensions and a set of interfaces that are implemented by type library and
+type description servers.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

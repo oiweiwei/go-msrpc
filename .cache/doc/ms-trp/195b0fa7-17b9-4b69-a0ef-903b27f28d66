@@ -1,0 +1,324 @@
+<div class="content"><p>The SetCallParams packet is transmitted from a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call</a>.
+Sending this packet allows an application to change the bearer mode, rate
+parameters, and dial parameters of an existing call.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwRequestID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hCall</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwBearerMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMinRate</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMaxRate</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpDialParams</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved5</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved6</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved7</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (16 bytes, optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>An unsigned 32-bit
+integer. The identifier of the function that will be invoked on the remote
+server. This value MUST be set to 72. </p><dl>
+<dd>
+<p><b>Return Values</b></p>
+</dd>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>, this field
+contains the result of the encapsulated telephony request. A nonzero request ID
+value indicates that the request is in progress and will complete
+asynchronously, and a <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path">LINEERR_Constants</a>
+value indicates synchronous failure.</p>
+</dd>
+<dd>
+<p>Returns a positive request identifier if the
+function will be completed asynchronously or a negative error number if an
+error occurs. The dwParam2 parameter of the corresponding <a href="8f5bc349-fd55-46f2-b0bc-dc9f757317a9" data-linktype="relative-path">LINE_REPLY</a> packet is zero
+if the function succeeds, or it is a negative error number if an error occurs.
+If the client specified a nonzero value in the dwRequestID field of the packet,
+the same value MUST be used for the returned positive request identifier. The
+following table shows the return values for this function.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>LINEERR_BEARERMODEUNAVAIL</p>
+  <p>0x80000003</p>
+  </td>
+  <td>
+  <p>The bearer mode member in the LINECALLPARAMS packet is
+  invalid, the bearer mode that is specified in LINECALLPARAMS is not
+  available, or the bearer mode of the call cannot be changed to the specified
+  bearer mode. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_NOTOWNER</p>
+  <p>0x80000046</p>
+  </td>
+  <td>
+  <p>The application is not the owner of the call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALBEARERMODE</p>
+  <p>0x80000016</p>
+  </td>
+  <td>
+  <p>The bearer mode is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONUNAVAIL</p>
+  <p>0x80000049</p>
+  </td>
+  <td>
+  <p>The operation is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALCALLHANDLE</p>
+  <p>0x80000018</p>
+  </td>
+  <td>
+  <p>The call handle is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_RATEUNAVAIL</p>
+  <p>0x8000004A</p>
+  </td>
+  <td>
+  <p>The rate is unavailable.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALRATE</p>
+  <p>0x80000037</p>
+  </td>
+  <td>
+  <p>The rate is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_NOMEM</p>
+  <p>0x80000044</p>
+  </td>
+  <td>
+  <p>Not enough memory is available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONFAILED</p>
+  <p>0x80000048</p>
+  </td>
+  <td>
+  <p>The operation failed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_RESOURCEUNAVAIL</p>
+  <p>0x8000004B</p>
+  </td>
+  <td>
+  <p>The resource is unavailable.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_UNINITIALIZED</p>
+  <p>0x80000050</p>
+  </td>
+  <td>
+  <p>The parameter is uninitialized.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALCALLSTATE</p>
+  <p>0x8000001C</p>
+  </td>
+  <td>
+  <p>The call state is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALPOINTER</p>
+  <p>0x80000035</p>
+  </td>
+  <td>
+  <p>The pointer is invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>dwRequestID (4 bytes): </b>An unsigned 32-bit
+integer. The identifier of the asynchronous request. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The server MUST generate a unique positive request ID
+  to return as the Ack_ReturnValue.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001 — 0x7FFFFFFF</p>
+  </td>
+  <td>
+  <p>The server MUST use this value instead of generating a
+  unique positive request ID.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>hCall (4 bytes): </b>An <a href="7f4089a0-7432-4ef0-8eeb-5aafe407c07e" data-linktype="relative-path">HCALL</a>. The handle to the
+call whose parameters are to be changed. One way of obtaining a valid hCall is
+by sending the <a href="c9acdfde-22de-43ff-b491-23a9ed72fb31" data-linktype="relative-path">MakeCall</a>
+packet. Also a valid hCall can be obtained from <a href="0a8905e3-647f-4e98-aca8-2fa77eedb2e7" data-linktype="relative-path">LINE_CALLSTATE</a> packet sent
+by the remote server. The application MUST be an owner of the call. The call
+state of hCall can be any state except idle or disconnected. </p><p><b>dwBearerMode (4 bytes): </b>An unsigned 32-bit
+integer. The new bearer mode for the call. This field MUST use one of the <a href="e184f4e2-01dc-4189-859d-62dd27bb632b" data-linktype="relative-path">LINEBEARERMODE_Constants</a>. </p><p><b>dwMinRate (4 bytes): </b>An unsigned 32-bit
+integer. The lower bound for the new data rate of the call. </p><p><b>dwMaxRate (4 bytes): </b>An unsigned 32-bit
+integer. The upper bound for the new data rate of the call. </p><p><b>lpDialParams (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, in the VarData field of a <a href="6478c927-0d4b-43eb-8188-e87431058e6a" data-linktype="relative-path">LINEDIALPARAMS</a> packet that
+contains the new dial parameters of the call. If this field is -1 (0xFFFFFFFF),
+no call parameter is sent.</p><p><b>dwSize (4 bytes): </b>An unsigned 32-bit integer.
+The size, in bytes, of the packet that is indicated in the lpDialParams field.</p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved5 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved6 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved7 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>VarData (16 bytes): </b>Contains the
+LINEDIALPARAMS packet that specifies a collection of dialing-related fields. </p></div>

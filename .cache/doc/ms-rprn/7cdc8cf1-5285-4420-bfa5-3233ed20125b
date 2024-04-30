@@ -1,0 +1,108 @@
+<div class="content"><p>The <b>CORE_PRINTER_DRIVER</b> structure defines information
+that identifies a specific <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_d4010501-f6e4-4cba-817b-403a9c5ea41c" data-linktype="relative-path">core
+printer driver</a>.<a id="Appendix_A_Target_134"></a><a aria-label="Product behavior note 134" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_134" data-linktype="relative-path">&lt;134&gt;</a> See the <b>RpcGetCorePrinterDrivers</b> method
+(section <a href="3d628232-2aa9-44f4-84e0-1168d3208f27" data-linktype="relative-path">3.1.4.4.9</a>)
+for an example of its use.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">CoreDriverGUID
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">ftDriverDate</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwlDriverVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">szPackageID
+  (520 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>CoreDriverGUID (16 bytes): </b>A <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> that uniquely
+identifies the package.</p><p><b>ftDriverDate (8 bytes): </b>A FILETIME value (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">2.3.3</a>)
+that specifies the date this package was published.<a id="Appendix_A_Target_135"></a><a aria-label="Product behavior note 135" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_135" data-linktype="relative-path">&lt;135&gt;</a></p><p><b>dwlDriverVersion (8 bytes): </b>A 64-bit value
+that specifies the version of the core printer driver that can be used to match
+the driver version in the driver installation control file.<a id="Appendix_A_Target_136"></a><a aria-label="Product behavior note 136" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_136" data-linktype="relative-path">&lt;136&gt;</a></p><p><b>szPackageID (520 bytes): </b>A <b>string</b> that
+specifies the package name.</p></div>

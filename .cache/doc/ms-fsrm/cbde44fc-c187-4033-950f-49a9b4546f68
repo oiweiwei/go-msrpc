@@ -1,0 +1,37 @@
+<div class="content"><p>The ModuleType (get) method retrieves the <b>Module type</b>
+of the <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_1f95e02d-f9e8-432b-85bc-df07c9dde274" data-linktype="relative-path">module definition</a>
+as defined in the <a href="4688adcd-859d-4ef4-bf52-bcfe0367bd68" data-linktype="relative-path">FsrmPipelineModuleType (section </a><a href="4688adcd-859d-4ef4-bf52-bcfe0367bd68" data-linktype="relative-path">2.2.1.2.12</a><a href="4688adcd-859d-4ef4-bf52-bcfe0367bd68" data-linktype="relative-path">)</a> enumeration and returns
+S_OK upon successful completion.</p><dl>
+<dd>
+<div><pre> [propget, id(FSRM_PROPERTY(FSRM_DISPID_PIPELINE_MODULE_DEFINITION | 0x05))] HRESULT ModuleType(
+   [out, retval] FsrmPipelineModuleType* moduleType
+ );
+</pre></div>
+</dd></dl><p><b>moduleType: </b>Pointer to a variable that upon
+completion contains the <b>Module type</b> of the module definition.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>moduleType</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>moduleType</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST set <i>moduleType</i> to the <b>Module type</b>
+of the module definitions as specified in section 2.2.1.2.12.</p></div>

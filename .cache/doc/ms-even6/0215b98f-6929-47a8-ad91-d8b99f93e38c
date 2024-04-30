@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The StringArray structure is defined as follows.</p><dl>
+<dd>
+<div><pre> typedef struct _StringArray {
+   [range(0, MAX_RPC_STRING_ARRAY_COUNT)] 
+     DWORD count;
+   [size_is(count), string] LPWSTR* ptr;
+ } StringArray;
+</pre></div>
+</dd></dl><p><b>count:</b>  A 32-bit unsigned integer
+that contains the number of strings pointed to by ptr.</p><p><b>ptr:</b>  A pointer to an array of
+null-terminated Unicode (as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90550" data-linktype="external">[UNICODE]</a></span>)
+strings.</p></div>

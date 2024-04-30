@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>The <b>DHCP_IP_RESERVATION_V6</b> structure defines an IPv6 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservation</a></span>
+for a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e1d03cee-86a5-42f7-913f-8cf4e50b0d21" data-linktype="relative-path">DHCPv6 client</a></span> in a
+specific IPv6 prefix. This structure is used in the <span><a href="69f63a7f-55f2-4b1e-bc01-96c9ed3c92d9" data-linktype="relative-path">DHCP_SUBNET_ELEMENT_DATA_V6 (section 2.2.1.2.60)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_IP_RESERVATION_V6 {
+   DHCP_IPV6_ADDRESS ReservedIpAddress;
+   DHCP_CLIENT_UID* ReservedForClient;
+   DWORD InterfaceId;
+ } DHCP_IP_RESERVATION_V6,
+  *LPDHCP_IP_RESERVATION_V6;
+</pre></div>
+</dd></dl><p><b>ReservedIpAddress:</b>   This is of type
+<span><a href="48b74c46-bf64-40db-92b9-6e61cee1bd33" data-linktype="relative-path">DHCP_IPV6_ADDRESS (section 2.2.1.2.28)</a></span>
+structure that contains the IPv6 address of the DHCPv6 client for which an IPv6
+reservation is created.</p><p><b>ReservedForClient:</b>  This is a
+pointer of type <span><a href="b4da2d52-9737-46ec-8bc2-1c598fc3b8c8" data-linktype="relative-path">DHCP_CLIENT_UID (section 2.2.1.2.5)</a></span>
+structure that represents the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_6b55682d-9815-4dcd-b990-af62890ca699" data-linktype="relative-path">DHCPv6 client-identifier</a></span>
+(section <span><a href="c3703409-c016-4f58-ba0f-a4da12f605fb" data-linktype="relative-path">2.2.1.2.5.3</a></span>).</p><p><b>InterfaceId:</b>   This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+that specifies the interface identifier for which the IPv6 reservation is
+created.</p></div>

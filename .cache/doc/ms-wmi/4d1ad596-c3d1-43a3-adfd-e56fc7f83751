@@ -1,0 +1,29 @@
+<div class="content"><p> </p><p>The WBEM_CHANGE_FLAG_TYPE enumeration is used to indicate
+and update the type of the flag.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum tag_WBEM_CHANGE_FLAG_TYPE
+ {
+   WBEM_FLAG_CREATE_OR_UPDATE = 0x00,
+   WBEM_FLAG_UPDATE_ONLY = 0x01,
+   WBEM_FLAG_CREATE_ONLY = 0x02,
+   WBEM_FLAG_UPDATE_SAFE_MODE = 0x20,
+   WBEM_FLAG_UPDATE_FORCE_MODE = 0x40
+ } WBEM_CHANGE_FLAG_TYPE;
+</pre></div>
+</dd></dl><p><b>WBEM_FLAG_CREATE_OR_UPDATE:  </b>This flag causes
+the put operation to update the class or instance if it does not exist, or to
+overwrite the class or instance if it exists already.</p><p><b>WBEM_FLAG_UPDATE_ONLY:  </b>This flag causes the
+put operation to update the class or instance. The class or instance MUST exist
+for the call to be successful.</p><p><b>WBEM_FLAG_CREATE_ONLY:  </b>This flag causes the
+put operation to create the class or instance. For the call to be successful,
+the class or instance MUST NOT exist.</p><p><b>WBEM_FLAG_UPDATE_SAFE_MODE:  </b>This flag allows
+updates of classes even if there are child classes, as long as the change does
+not cause any conflicts with child classes. An example of an update that this
+flag allows is the adding of a new property to the base class that was not
+previously mentioned in any of the child classes. If the class has instances,
+the update fails.</p><p><b>WBEM_FLAG_UPDATE_FORCE_MODE:  </b>This flag forces
+updates of classes when conflicting child classes exist. An example of an
+update that this flag forces is when a class qualifier is defined in a child
+class and the base class tries to add the same qualifier that conflicted with
+the existing one. In force mode, this conflict is resolved by deleting the
+conflicting qualifier in the child class.</p></div>

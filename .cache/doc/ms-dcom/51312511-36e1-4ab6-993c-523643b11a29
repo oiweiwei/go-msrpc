@@ -1,0 +1,69 @@
+<div class="content"><p> </p><p>This form of <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_d2b5b331-4e5f-417f-92c5-38eef54176c2" data-linktype="relative-path">OBJREF</a></span> is the
+simplest, combining an <span><a href="ad717638-f105-4256-b552-385b08ef8ebf" data-linktype="relative-path">STDOBJREF</a></span> structure
+with a <span><a href="7fe8200b-dccd-48cf-a2fa-681e3e0a23f4" data-linktype="relative-path">DUALSTRINGARRAY</a></span>
+structure. It is used when there is no need to utilize the extra fields offered
+by the other OBJREF formats.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>std (40
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>saResAddr
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>std (40 bytes): </b> This MUST be an STDOBJREF.</p><p><b>saResAddr (variable): </b> A DUALSTRINGARRAY that
+MUST contain the network and security bindings for the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_19f75354-9b0b-47cb-a00b-4ff196883b32" data-linktype="relative-path">object
+resolver</a></span> service on the server.</p></div>

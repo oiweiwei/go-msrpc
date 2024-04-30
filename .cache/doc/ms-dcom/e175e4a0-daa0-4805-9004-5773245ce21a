@@ -1,0 +1,79 @@
+<div class="content"><p> </p><p>The SpecialPropertiesData structure contains miscellaneous
+parameters specified by the client for an activation request.</p><p>CLSID_SpecialSystemProperties (see section <span><a href="c25391af-f59e-40da-885e-cc84076673e4" data-linktype="relative-path">1.9</a></span>)
+is used to identify this property in the CustomHeader.pclsid array.</p><dl>
+<dd>
+<div><pre> typedef struct tagSpecialPropertiesData {
+   unsigned long dwSessionId;
+   long fRemoteThisSessionId;
+   long fClientImpersonating;
+   long fPartitionIDPresent;
+   DWORD dwDefaultAuthnLvl;
+   GUID guidPartition;
+   DWORD dwPRTFlags;
+   DWORD dwOrigClsctx;
+   DWORD dwFlags;
+   DWORD Reserved1;
+   unsigned __int64 Reserved2;
+   DWORD Reserved3[5];
+ } SpecialPropertiesData;
+</pre></div>
+</dd></dl><p><b>dwSessionId:</b>  A value that uniquely
+identifies a logon session on the server. The value 0xFFFFFFFF indicates that
+any logon session is acceptable to the client.</p><p><b>fRemoteThisSessionId:</b>   This MUST be
+set to TRUE (0x00000001) if <b>dwSessionId</b> is not 0xFFFFFFFF; otherwise
+this MUST be set to FALSE (0x00000000). This field MUST be ignored on receipt.</p><p><b>fClientImpersonating:</b>  This SHOULD
+be set to FALSE (0x00000000) and MUST be ignored on receipt.<a id="Appendix_A_Target_24"></a><a aria-label="Product behavior note 24" href="acc42954-4073-4f05-b850-efd562022077#Appendix_A_24" data-linktype="relative-path">&lt;24&gt;</a></p><p><b>fPartitionIDPresent:</b>  This MUST
+contain an implementation-specific value and MAY be ignored on receipt.<a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="acc42954-4073-4f05-b850-efd562022077#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a></p><p><b>dwDefaultAuthnLvl:</b>  This MUST
+contain an implementation-specific value and MUST be ignored on receipt.<a id="Appendix_A_Target_26"></a><a aria-label="Product behavior note 26" href="acc42954-4073-4f05-b850-efd562022077#Appendix_A_26" data-linktype="relative-path">&lt;26&gt;</a></p><p><b>guidPartition:</b>   This MUST contain
+an implementation-specific value specified by higher-layer protocols and MAY be
+ignored on receipt.<a id="Appendix_A_Target_27"></a><a aria-label="Product behavior note 27" href="acc42954-4073-4f05-b850-efd562022077#Appendix_A_27" data-linktype="relative-path">&lt;27&gt;</a></p><p><b>dwPRTFlags:</b>  This MUST be set to
+zero and MUST be ignored on receipt.</p><p><b>dwOrigClsctx:</b>  This MUST contain an
+implementation-specific value and SHOULD be ignored on receipt.<a id="Appendix_A_Target_28"></a><a aria-label="Product behavior note 28" href="acc42954-4073-4f05-b850-efd562022077#Appendix_A_28" data-linktype="relative-path">&lt;28&gt;</a></p><p><b>dwFlags:</b>  This is a set of bitflags,
+defined as follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SPD_FLAG_USE_CONSOLE_SESSION</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>If this bit is set, the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_19f75354-9b0b-47cb-a00b-4ff196883b32" data-linktype="relative-path">object resolver</a></span> is
+  requested to create the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_5b284f60-ee33-4d15-9a7b-0fb82d7c6b68" data-linktype="relative-path">object exporter</a></span> in
+  the console logon session. If this bit is not set, the object resolver is
+  requested to create the object exporter in the logon session specified in the
+  <b>dwSessionID</b> field.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Object resolvers MUST ignore any other bits that are
+set in the <b>dwFlags</b> field.</p><p><b>Reserved1:</b>  This MUST be set to zero
+when sent and MUST be ignored on receipt.</p><p><b>Reserved2:</b>  This MUST be set to zero
+when sent and MUST be ignored on receipt.</p><p><b>Reserved3:</b>  This can contain
+arbitrary values and MUST be ignored on receipt.</p><p>This structure has an alternate definition that is specified
+as follows.</p><dl>
+<dd>
+<div><pre> typedef struct tagSpecialPropertiesData_Alternate {
+   unsigned long dwSessionId;
+   long fRemoteThisSessionId;
+   long fClientImpersonating;
+   long fPartitionIDPresent;
+   DWORD dwDefaultAuthnLvl;
+   GUID guidPartition;
+   DWORD dwPRTFlags;
+   DWORD dwOrigClsctx;
+   DWORD dwFlags;
+   DWORD Reserved3[8];
+ } SpecialPropertiesData_Alternate;
+</pre></div>
+</dd></dl><p>All the fields have the same meaning as the corresponding
+fields in the first structure. A DCOM server MUST accept as valid both
+definitions. A DCOM client SHOULD<a id="Appendix_A_Target_29"></a><a aria-label="Product behavior note 29" href="acc42954-4073-4f05-b850-efd562022077#Appendix_A_29" data-linktype="relative-path">&lt;29&gt;</a> use <b>SpecialPropertiesData</b>
+in activation requests.</p></div>

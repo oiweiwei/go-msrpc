@@ -1,0 +1,185 @@
+import "ms-dtyp.idl";
+
+// forward declaration
+// typedef tag_inner_PROPVARIANT PROPVARIANT;
+
+
+// basic type aliases
+typedef unsigned long    PROPID;
+typedef short            VARIANT_BOOL;
+
+
+typedef struct {
+  unsigned char rgb[16];
+} XACTUOW;
+
+typedef struct tagBLOB {
+    unsigned long cbSize;
+    [size_is(cbSize)]
+    unsigned char *pBlobData;
+} BLOB;
+
+typedef struct tagCAUB
+{
+    unsigned long   cElems;
+    [size_is( cElems )]
+    unsigned char *  pElems;
+} CAUB;
+
+typedef struct tagCAUI
+{
+    unsigned long   cElems;
+    [size_is( cElems )]
+    unsigned short *  pElems;
+} CAUI;
+
+typedef struct tagCAL
+{
+    unsigned long   cElems;
+    [size_is( cElems )]
+    long  *  pElems;
+} CAL;
+
+typedef struct tagCAUL
+{
+    unsigned long   cElems;
+    [size_is( cElems )]
+    unsigned long *  pElems;
+} CAUL;
+
+typedef struct tagCAUH
+{
+    unsigned long   cElems;
+    [size_is( cElems )]
+    ULARGE_INTEGER *  pElems;
+} CAUH;
+
+typedef struct tagCACLSID
+{
+    unsigned long   cElems;
+    [size_is( cElems )]
+    GUID *  pElems;
+} CACLSID;
+
+typedef struct tagCALPWSTR
+{
+    unsigned long   cElems;
+    [size_is( cElems )]
+    [string] wchar_t **  pElems;
+} CALPWSTR;
+
+typedef struct tagCAPROPVARIANT
+{
+    unsigned long cElems;
+    [size_is( cElems )]
+    PROPVARIANT * pElems;
+} CAPROPVARIANT;
+
+typedef enum 
+{
+    VT_EMPTY           = 0,
+    VT_NULL            = 1,
+    VT_I2              = 2,
+    VT_I4              = 3,
+    VT_BOOL            = 11,
+    VT_VARIANT         = 12,
+    VT_I1              = 16,
+    VT_UI1             = 17,
+    VT_UI2             = 18,
+    VT_UI4             = 19,
+    VT_I8              = 20,
+    VT_UI8             = 21,
+    VT_LPWSTR          = 31,
+    VT_BLOB            = 65,
+    VT_CLSID           = 72,
+
+    VT_VECTOR          = 0x1000,
+} VARENUM;
+
+typedef unsigned short VARTYPE;
+
+typedef struct _tag_inner_PROPVARIANT
+{
+    VARTYPE vt;
+    UCHAR   wReserved1;
+    UCHAR   wReserved2;
+    ULONG   wReserved3;
+    [switch_is(vt)] union
+    {
+        [case (VT_EMPTY, VT_NULL)];
+        [case (VT_I1)]              CHAR            cVal;
+        [case (VT_UI1)]             UCHAR           bVal;
+        [case (VT_I2)]              SHORT           iVal;
+        [case (VT_UI2)]             USHORT          uiVal;
+        [case (VT_I4)]              LONG            lVal;
+        [case (VT_UI4)]             ULONG           ulVal;
+        [case (VT_I8)]              LARGE_INTEGER   hVal;
+        [case (VT_UI8)]             ULARGE_INTEGER  uhVal;        
+        [case (VT_BOOL)]            VARIANT_BOOL    boolVal;        
+        [case (VT_CLSID)]           GUID *          puuid;
+        [case (VT_BLOB)]            BLOB            blob;
+        [case (VT_LPWSTR)]          [string] wchar_t * pwszVal;        
+        [case (VT_VECTOR|VT_UI1)]     CAUB          caub;
+        [case (VT_VECTOR|VT_UI2)]     CAUI          caui;
+        [case (VT_VECTOR|VT_I4)]      CAL           cal;
+        [case (VT_VECTOR|VT_UI4)]     CAUL          caul;
+        [case (VT_VECTOR|VT_UI8)]     CAUH          cauh;
+        [case (VT_VECTOR|VT_CLSID)]   CACLSID       cauuid;
+        [case (VT_VECTOR|VT_LPWSTR)]  CALPWSTR      calpwstr;
+        [case (VT_VECTOR|VT_VARIANT)] CAPROPVARIANT capropvar;
+    } _varUnion;
+} PROPVARIANT; // tag_inner_PROPVARIANT;
+
+typedef struct _DL_ID {
+  GUID m_DlGuid;
+  [string] wchar_t * m_pwzDomain;
+} DL_ID;
+
+typedef struct _MULTICAST_ID {
+  ULONG m_address;
+  ULONG m_port;
+} MULTICAST_ID;
+
+typedef struct _OBJECTID {
+  GUID Lineage;
+  DWORD Uniquifier;
+} OBJECTID;
+
+typedef  enum __QUEUE_FORMAT_TYPE
+{
+  QUEUE_FORMAT_TYPE_UNKNOWN = 0,
+  QUEUE_FORMAT_TYPE_PUBLIC = 1,
+  QUEUE_FORMAT_TYPE_PRIVATE = 2,
+  QUEUE_FORMAT_TYPE_DIRECT = 3,
+  QUEUE_FORMAT_TYPE_MACHINE = 4,
+  QUEUE_FORMAT_TYPE_CONNECTOR = 5,
+  QUEUE_FORMAT_TYPE_DL = 6,
+  QUEUE_FORMAT_TYPE_MULTICAST = 7,
+  QUEUE_FORMAT_TYPE_SUBQUEUE = 8
+} QUEUE_FORMAT_TYPE;
+typedef struct __QUEUE_FORMAT {
+  unsigned char m_qft;
+  unsigned char m_SuffixAndFlags;
+  unsigned short m_reserved;
+  [switch_is(m_qft)] union {
+    [case(QUEUE_FORMAT_TYPE_UNKNOWN)] 
+      ; // No member is set. Selected when an m_qft value
+        // of 0 is returned.
+    [case(QUEUE_FORMAT_TYPE_PUBLIC)] 
+      GUID m_gPublicID;
+    [case(QUEUE_FORMAT_TYPE_PRIVATE)] 
+      OBJECTID m_oPrivateID;
+    [case(QUEUE_FORMAT_TYPE_DIRECT)] 
+      [string] wchar_t* m_pDirectID;
+    [case(QUEUE_FORMAT_TYPE_MACHINE)] 
+      GUID m_gMachineID;
+    [case(QUEUE_FORMAT_TYPE_CONNECTOR)] 
+      GUID m_GConnectorID;
+    [case(QUEUE_FORMAT_TYPE_DL)] 
+      DL_ID m_DlID;
+    [case(QUEUE_FORMAT_TYPE_MULTICAST)] 
+      MULTICAST_ID m_MulticastID;
+    [case(QUEUE_FORMAT_TYPE_SUBQUEUE)] 
+      [string] wchar_t* m_pDirectSubqueueID;
+  };
+} QUEUE_FORMAT;

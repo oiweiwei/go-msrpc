@@ -1,0 +1,78 @@
+<div class="content"><p>The RDG server uses this structure to send a <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_1ebdc9c6-bb01-455e-98f7-8930618bb601" data-linktype="relative-path">tunnel (2)</a> creation
+response to the RDG client.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>hdr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>serverVersion</p>
+  </td>
+  <td colspan="16">
+  <p>statusCode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>...</p>
+  </td>
+  <td colspan="16">
+  <p>fieldsPresent</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>reserved</p>
+  </td>
+  
+ </tr>
+</tbody></table><p><b>hdr  (8 bytes): </b>An <a href="158c24f6-cabc-4c48-b429-28509f9b4f5d" data-linktype="relative-path">HTTP_PACKET_HEADER (section
+2.2.10.9)</a> structure. Its <b>packetType</b> field is set to
+PKT_TYPE_TUNNEL_RESPONSE.</p><p><b>serverVersion (2 bytes): </b>An unsigned integer
+representing the version of the RDGHTTP Protocol.</p><p><b>statusCode (4 bytes): </b>An unsigned integer
+representing errors that are detected by the RDG server in the process of
+creating a tunnel (2).</p><p><b>fieldsPresent (2 bytes): </b>An unsigned short
+representing the flags that specify the optional fields that are present in the
+<a href="1e6be853-9f5d-41eb-81ba-bf8d1298c6d8" data-linktype="relative-path">HTTP_TUNNEL_RESPONSE_OPTIONAL
+Structure (section 2.2.10.21)</a> defined in an <a href="8ea18228-f3f9-4849-9edb-2de1e950946b" data-linktype="relative-path">HTTP_TUNNEL_RESPONSE_FIELDS_PRESENT_FLAGS
+Enumeration (section 2.2.5.3.8)</a>.</p><p><b>reserved (2 bytes): </b>Reserved for future use.</p></div>

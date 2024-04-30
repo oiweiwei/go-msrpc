@@ -1,0 +1,41 @@
+<div class="content"><p>The Commit method updates, validates, or saves a <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data collector set</a>, or
+flushes the event trace <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_3184c8c5-f13b-4d77-b04a-b92feff97f61" data-linktype="relative-path">data
+collectors</a> of a data collector set.</p><dl>
+<dd>
+<div><pre> HRESULT Commit(
+   [in] BSTR name,
+   [in, unique] BSTR server,
+   CommitMode mode,
+   [out, retval] IValueMap** validation
+ );
+</pre></div>
+</dd></dl><p><b>name: </b>Supplies a unique name used to identify
+a data collector set.</p><p><b>server: </b>Supplies a name string that MUST be
+less than 1024 characters in length. PLA MUST return this name from the
+IDataCollectorSet::Server(Get) method defined in section <a href="c05f73b6-c957-4b32-a2a5-bde7d8ba3a46" data-linktype="relative-path">3.2.4.1.26</a>; otherwise,
+this string is not used by PLA.</p><p><b>mode: </b>Supplies the actions to perform. See
+section <a href="a2b45a38-2a72-4553-87ba-132de311b1f1" data-linktype="relative-path">2.2.2.3</a> for a
+description of possible actions.</p><p><b>validation: </b>Receives a validation value map
+with a list of properties for this data collector set (and its encapsulated
+objects) that are invalid or ignored. For each property of the data collector
+set and its associated objects, passed in by the client, that could not be set,
+the server MUST return in an <a href="b028335d-97c1-4b1c-bc07-8748d4956b8a" data-linktype="relative-path">IValueMap</a>.
+Each <a href="9786577c-9ac8-44d5-a29f-3f14514af0d8" data-linktype="relative-path">IValueMapItem</a> in
+the IValueMap represents a property of the data collector set and its
+encapsulated objects that could not be set by the server. The Names property of
+the IValueMapItem represents the property name, while the Values property of
+the IValueMap represents the HRESULT describing the specific property
+corresponding to that property. The ValueMapType property of the IValueMap is
+plaValidation; more information can be found in section <a href="03c8a331-301b-4f37-8af3-1a08d1d0b4ee" data-linktype="relative-path">2.2.11</a>. Note that the
+client MAY choose to ignore any warnings or errors that are returned by the
+server; however, if it does so, the data collector set might not be executed by
+the server as the client expects. The client MUST ignore the validation
+property if the Commit method fails. The validation property will be NULL, and
+an error code returned, in the case that the data collector set contains an
+IApiTracingDataCollectorSet and there are array elements that are part of both
+the IApiTracingDataCollectorSet::IncludeApis array and
+IApiTracingDataCollectorSet::ExcludeApis array (in other words, there is
+overlap between the two arrays). </p><p><b>Return Values: </b>This method MUST return an
+HRESULT with the severity bit clear on success as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>;
+otherwise, it MUST return one of the errors as defined in <a href="590752a5-ddc3-49e4-9914-147a90bd0193" data-linktype="relative-path">2.2.1</a> or one of the errors
+as defined in [MS-ERREF] section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p></div>

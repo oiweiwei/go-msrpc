@@ -1,0 +1,380 @@
+<div class="content"><p> </p><p>The <b>UserMessage</b> structure can be either a <span><a href="f58c6a50-d82e-45e5-a237-d02e23c4e30f" data-linktype="relative-path">Binary
+Message (section 2.2.5.1.1)</a></span> or an <span><a href="33a3ca7d-5869-4478-9472-7f0e01711ca3" data-linktype="relative-path">SRMP
+Message (section 2.2.5.1.2)</a></span>, depending on the transport
+over which the <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span> was
+originally sent. A Binary Message is sent over the MSMQ: Binary Reliable
+Messaging Protocol <span><a href="../ms-mqqb/85498b96-f2c8-43b3-a108-c9d6269dc4af" data-linktype="relative-path">[MS-MQQB]</a></span>,
+while an <b>SRMP Message</b> is sent over HTTP. The message type is indicated
+by the <b>UserHeader.Flags.AH</b> bit field, which is set for <b>SRMP Messages</b>
+as specified in the definition of the <b>UserHeaderEnd</b> field in this
+section.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BaseHeader
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UserHeader
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TransactionHeader
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecurityHeader
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MessagePropertiesHeader
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DebugHeader
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SRMPEnvelopeHeader
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CompoundMessageHeader
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SoapHeader
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MultiQueueFormatHeader
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SessionHeader
+  (16 bytes, optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>BaseHeader (16 bytes): </b>A <b>BaseHeader</b> (<span><a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a></span>
+section <span><a href="../ms-mqmq/058cdeb4-7a3c-405b-989c-d32b9d6bddae" data-linktype="relative-path">2.2.19.1</a></span>).
+The <b>TimeToReachQueue</b> field has the same length and format as that
+specified in [MS-MQMQ] but differs in that it represents the absolute
+expiration time of the message as the number of seconds elapsed since midnight
+(00:00:00), January 1, 1970 <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">Coordinated Universal Time
+(UTC)</a></span>.</p><p><b>UserHeader (variable): </b>A <b>UserHeader</b>
+([MS-MQMQ] section <span><a href="../ms-mqmq/056b43bc-2466-4342-8504-1630310d5965" data-linktype="relative-path">2.2.19.2</a></span>)
+with the following field overlays, which pertain when the <b>UserHeader</b>
+specifies that the destination <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span> is a <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_5209585c-8c60-4a93-9fdd-798a897644ab" data-linktype="relative-path">direct
+format name</a></span>. In this case, the <b>QueueManagerAddress</b> field
+specifies the host address from which a message was received. If the <b>UserHeader</b>
+specifies that the destination queue is anything other than a direct format
+name, the 16 bytes after the <b>SourceQueueManager</b> field are set to the <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a></span>
+of the host from which the message was received, as specified in [MS-MQMQ]
+section 2.2.19.2.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SourceQueueManager
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>AddressLength</p>
+  </td>
+  <td colspan="16">
+  <p>AddressType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AddressScope</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Address</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UserHeaderEnd
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>SourceQueueManager  (16
+bytes): </b>A <b>GUID</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/49e490b8-f972-45d6-a3a4-99f924998d97" data-linktype="relative-path">2.3.4.1</a></span>)
+that identifies the sender of the message. </p>
+</dd>
+<dd>
+<p><b>AddressLength (2 bytes): </b>A
+<b>USHORT</b> ([MS-DTYP] section <span><a href="../ms-dtyp/c0618c5b-362b-4e06-9cb0-8720d240cf12" data-linktype="relative-path">2.2.58</a></span>)
+that MUST be the actual address length in the <b>Address</b> field.</p>
+</dd>
+<dd>
+<p><b>AddressType (2 bytes): </b>A
+<b>USHORT</b> that MUST be set to one of the following values.</p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IP_ADDRESS_TYPE</p>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>The address specified in the <b>Address</b> field is
+  an IPv4 address. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPV6_ADDRESS_TYPE</p>
+  <p>0x0006</p>
+  </td>
+  <td>
+  <p>The address specified in the <b>Address</b> field is
+  an IPv6 address. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd>
+<dd>
+<p><b>AddressScope (4 bytes): </b>A
+<b>ULONG</b> ([MS-DTYP] section <span><a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">2.2.51</a></span>)
+that MUST be set either to the IPv6 address scope if the <b>AddressType</b>
+field is IPV6_ADDRESS_TYPE or otherwise to 0x00000000. More details are
+specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90367" data-linktype="external">[RFC2553]</a></span>
+section 3.3.</p>
+</dd>
+<dd>
+<p><b>Address (8 bytes): </b>An
+8-byte array of <b>UCHAR</b> ([MS-DTYP] section <span><a href="../ms-dtyp/050baef1-f978-4851-a3c7-ad701a90e54a" data-linktype="relative-path">2.2.45</a></span>)
+that MUST contain the address of the host from which the message was received.
+The field MUST contain as much of the address as can fit in the field. More
+details are specified in [RFC2553] section 3.3.</p>
+</dd>
+<dd>
+<p><b>UserHeaderEnd (variable):
+</b>A variable-length buffer mapped by a <b>UserHeader</b> beginning with the <b>TimeToBeReceived</b>
+field. Within the <b>Flags</b> field, the <b>AH</b> bit field MUST be set only
+if both the <b>SOAPEnvelope</b> and the <b>SOAPCompoundMessage</b> ADM
+attributes of the <b>Message</b> (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section <span><a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">3.1.1.12</a></span>)
+ADM element are populated.</p>
+</dd></dl><p><b>TransactionHeader (variable): </b>A <b>TransactionHeader</b>
+([MS-MQMQ] section <span><a href="../ms-mqmq/47f8bbd7-9a41-4a22-ade5-b1c7a1af2f5c" data-linktype="relative-path">2.2.20.5</a></span>).</p><p><b>SecurityHeader (variable): </b>A <b>SecurityHeader</b>
+([MS-MQMQ] section <span><a href="../ms-mqmq/303416bb-b821-4a18-ac0d-adc3ea44cc77" data-linktype="relative-path">2.2.20.6</a></span>).</p><p><b>MessagePropertiesHeader (variable): </b>A <b>MessagePropertiesHeader</b>
+([MS-MQMQ] section <span><a href="../ms-mqmq/b219bdf4-1bf6-4688-94d8-25fdba45e5ec" data-linktype="relative-path">2.2.19.3</a></span>).</p><p><b>DebugHeader (variable): </b>A <b>DebugHeader</b>
+[MS-MQMQ] section <span><a href="../ms-mqmq/4637f756-8d0d-480c-bdd2-2c69fc6c7391" data-linktype="relative-path">2.2.20.8</a></span>).</p><p><b>SRMPEnvelopeHeader (variable): </b>An <span><a href="062b8317-2ade-4b1c-804d-1674b2fdcad3" data-linktype="relative-path">SRMPEnvelopeHeader
+(section 2.2.5.1.2.1)</a></span>.</p><p><b>CompoundMessageHeader (variable): </b>A <span><a href="ecf70c09-d312-4afc-9e2c-f61a5c827f47" data-linktype="relative-path">CompoundMessageHeader
+(section 2.2.5.1.2.2)</a></span>.</p><p><b>SoapHeader (variable): </b>A <b>SoapHeader</b>
+([MS-MQMQ] section <span><a href="../ms-mqmq/bbedcc76-ae38-4a69-94a9-950cd2bc77a7" data-linktype="relative-path">2.2.20.7</a></span>).</p><p><b>MultiQueueFormatHeader (variable): </b>A <b>MultiQueueFormatHeader</b>
+([MS-MQMQ] section <span><a href="../ms-mqmq/790c8148-160e-4650-8530-bb117fee835a" data-linktype="relative-path">2.2.20.1</a></span>).</p><p><b>SessionHeader (16 bytes): </b>A <b>SessionHeader</b>
+([MS-MQMQ] section <span><a href="../ms-mqmq/fd405c40-0c50-4f7e-8096-433d10206fa3" data-linktype="relative-path">2.2.20.4</a></span>).
+The <b>SessionHeader</b> is used to acknowledge express and recoverable <b>UserMessage
+Packet</b>s ([MS-MQMQ] section <span><a href="../ms-mqmq/56bae708-1289-48ff-a411-bf3782602476" data-linktype="relative-path">2.2.20</a></span>)
+when they are sent on a session. This header MUST be present if and only if the
+<b>BaseHeader.Flags.SH</b> bit field of the <b>UserMessage Packet</b> is set.
+This bit is set when the <b>SessionHeader</b> is piggy-backed onto a <b>UserMessage
+Packet</b> instead of sending it in a stand-alone <b>SessionAck Packet</b>
+([MS-MQQB] section <span><a href="../ms-mqqb/d0fe7287-c493-4d9a-92bd-91d791e18d67" data-linktype="relative-path">2.2.6</a></span>).</p><p>More details about the following individual headers, with
+the exceptions of SRMPEnvelopeHeader (section 2.2.5.1.2.1) and
+CompoundMessageHeader (section 2.2.5.1.2.2), are specified in
+[MS-MQQB] section 2.2.20.</p><p>In addition, the following exceptions also exist on the
+field attributes as specified in [MS-MQQB]. The overall structure of the data
+is the same; however, particular fields have been overridden or have different
+meanings in this protocol. The size of each overridden field is the same size
+as the original field.</p><p><b>UserMessage.BaseHeader.TimeToReachQueue</b></p><p>The definition for <b>TimeToReachQueue</b> differs from what
+is specified in [MS-MQQB] section 2.2.20 in the following manner:</p><ul><li><p><span><span> 
+</span></span>In [MS-MQQB], this field indicates the length of time, in
+seconds, that a <b>UserMessage Packet</b> has to reach its destination <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue
+manager</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>In <span><a href="9edbc8fa-02ad-4c79-804f-6bb8f430aac1" data-linktype="relative-path">[MS-MQRR]</a></span>,
+this field indicates the absolute expiration time of the message defined as the
+number of seconds elapsed since midnight (00:00:00), January 1, 1970 UTC.</p>
+</li></ul></div>

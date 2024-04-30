@@ -1,0 +1,36 @@
+<div class="content"><p> </p><p>The <b>MESSAGE_TYPE</b> enumeration defines the types of
+messages sent in the <b>MESSAGE_HEADER</b> structure <b>MessageType</b> field
+in every message, as specified in section <span><a href="1f4a4b47-6e44-4427-9028-e384a4ca1fda" data-linktype="relative-path">2.2.6.2</a></span>.
+MESSAGE_TYPE_INITIATOR_NEGO type has the value 0, and MESSAGE_TYPE_ALERT type
+has the value 7. A value is a 4-octet number encoded in little-endian.</p><dl>
+<dd>
+<div><pre> enum
+ {
+     MESSAGE_TYPE_INITIATOR_NEGO = 0,
+     MESSAGE_TYPE_ACCEPTOR_NEGO,
+     MESSAGE_TYPE_INITIATOR_META_DATA,
+     MESSAGE_TYPE_ACCEPTOR_META_DATA,
+     MESSAGE_TYPE_CHALLENGE,
+     MESSAGE_TYPE_AP_REQUEST,
+     MESSAGE_TYPE_VERIFY,
+     MESSAGE_TYPE_ALERT
+ } MESSAGE_TYPE; 
+</pre></div>
+</dd></dl><p><b>MESSAGE_TYPE_INITIATOR_NEGO:</b> Used in <b>NEGO_MESSAGE</b>,
+as specified in section <span><a href="585eae5b-1f4d-457f-bc1c-0c93251061e1" data-linktype="relative-path">2.2.6.3</a></span>, to begin
+negotiation of security mechanisms. </p><p><b>MESSAGE_TYPE_ACCEPTOR_NEGO:</b> Used in <b>NEGO_MESSAGE</b>,
+as specified in section 2.2.6.3, for the acceptor&#39;s output token. </p><p><b>MESSAGE_TYPE_INITIATOR_META_DATA:</b> Used in <b>EXCHANGE_MESSAGE</b>,
+as specified in section <span><a href="aeeaeae6-1782-4d72-af14-a320ad51f0fa" data-linktype="relative-path">2.2.6.4</a></span>, to return
+a metadata token to NEGOEX for a security mechanism by the initiator.  </p><p><b>MESSAGE_TYPE_ACCEPTOR_META_DATA:</b> Used in <b>EXCHANGE_MESSAGE</b>,
+as specified in section 2.2.6.4, to return a metadata token to NEGOEX for a
+security mechanism by the acceptor. </p><p><b>MESSAGE_TYPE_CHALLENGE:</b> Used in <b>EXCHANGE_MESSAGE</b>,
+as specified in section 2.2.6.4, to encapsulate context tokens of the
+negotiated security mechanism by the acceptor.  </p><p><b>MESSAGE_TYPE_AP_REQUEST:</b> Used in <b>EXCHANGE_MESSAGE</b>,
+as specified in section 2.2.6.4, to encapsulate context tokens of the
+negotiated security mechanism by the initiator. </p><p><b>MESSAGE_TYPE_VERIFY:</b> Used in <b>VERIFY_MESSAGE</b>,
+as specified in section <span><a href="9de2cde2-bd98-40a4-9efa-0f5a1d6cc88e" data-linktype="relative-path">2.2.6.5</a></span>, when there
+is a shared key established that is used to sign all the NEGOEX messages in the
+negotiation context. </p><p><b>MESSAGE_TYPE_ALERT:</b> Used in <b>ALERT_MESSAGE</b>,
+as specified in section <span><a href="bb13c832-61fe-4d4f-a1d8-0ac0a54408cd" data-linktype="relative-path">2.2.6.6</a></span>, to
+indicate that the message needs to be resent. Contains the security mechanism,
+error codes, and various alert types. </p></div>

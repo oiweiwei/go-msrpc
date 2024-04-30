@@ -1,0 +1,6 @@
+<div class="content"><p>The Name Service Provider Interface (NSPI) Protocol provides
+messaging clients a way to access and manipulate addressing data stored by a
+server. This protocol consists of an abstract data model and a single <a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a>
+interface to manipulate data in that model.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

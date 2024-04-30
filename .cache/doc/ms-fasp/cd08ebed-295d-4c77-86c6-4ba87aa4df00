@@ -1,0 +1,41 @@
+<div class="content"><p> </p><p>This structure contains information on the local and remote
+hosts that resulted from the authentication methods performed between them.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_AUTH_INFO {
+   [range(FW_AUTH_METHOD_INVALID + 1, FW_AUTH_METHOD_MAX)] 
+     FW_AUTH_METHOD AuthMethod;
+   [switch_type(FW_AUTH_METHOD), switch_is(AuthMethod)] 
+     union {
+     [case(FW_AUTH_METHOD_MACHINE_CERT,FW_AUTH_METHOD_USER_CERT)] 
+       struct {
+       FW_CERT_INFO MyCert;
+       FW_CERT_INFO PeerCert;
+     };
+     [case(FW_AUTH_METHOD_MACHINE_KERB,FW_AUTH_METHOD_USER_KERB, FW_AUTH_METHOD_MACHINE_NEGOEX,FW_AUTH_METHOD_USER_NEGOEX)] 
+       struct {
+       [string, range(1,10001)] wchar_t* wszMyId;
+       [string, range(1,10001)] wchar_t* wszPeerId;
+     };
+     [default]       ;
+   };
+   unsigned long dwAuthInfoFlags;
+ } FW_AUTH_INFO,
+  *PFW_AUTH_INFO;
+</pre></div>
+</dd></dl><p><b>AuthMethod:</b>  This field contains the
+authentication method used to establish the identities of the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoints</a></span>
+and is stored in the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_67cbf867-7a49-41f3-a68f-37b5f9035acb" data-linktype="relative-path">security association</a></span>.
+The field can take valid values from the <span><a href="59e71d46-4407-47d2-9cf5-8889fd3a74f2" data-linktype="relative-path">FW_AUTH_METHOD</a></span>
+enumeration.</p><p><b>MyCert:</b>  This field contains the
+subject name and certification flags (health, account mapping, exclude <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span>)
+from the certificate of the local host that was used in the authentication
+process when a certificate-based authentication method is used.</p><p><b>PeerCert:</b>  This field contains the
+subject name and certification flags (health, account mapping, exclude CA) from
+the certificate of the remote host that was used in the authentication process
+when a certificate-based authentication method is used.</p><p><b>wszMyId:</b>  A pointer to a <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string representing the identity of the local host when a Kerberos-based
+authentication method, as specified in <span><a href="../ms-kile/2a32282e-dd48-4ad9-a542-609804b02cc9" data-linktype="relative-path">[MS-KILE]</a></span>,
+is used.</p><p><b>wszPeerId:</b>  A pointer to a Unicode
+string representing the identity of the remote host when a Kerberos-based
+authentication method, as specified in [MS-KILE], is used.</p><p><b>dwAuthInfoFlags:</b>  Reserved value and
+not currently used. It MUST be set to 0.</p></div>

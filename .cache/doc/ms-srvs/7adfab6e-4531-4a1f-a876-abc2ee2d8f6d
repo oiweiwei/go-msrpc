@@ -1,0 +1,618 @@
+<div class="content"><p> </p><p>The NetrServerSetInfo method sets <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> operating
+parameters for CIFS and SMB Version 1.0 file servers; it can set them
+individually or collectively. The information is stored in a way that allows it
+to remain in effect after the system is reinitialized.<a id="Appendix_A_Target_81"></a><a aria-label="Product behavior note 81" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_81" data-linktype="relative-path">&lt;81&gt;</a></p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrServerSetInfo(
+   [in, string, unique] SRVSVC_HANDLE ServerName,
+   [in] DWORD Level,
+   [in, switch_is(Level)] LPSERVER_INFO ServerInfo,
+   [in, out, unique] DWORD* ParmErr
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>An <span><a href="5f8329ee-1965-4ea1-ad35-3b29fbb63232" data-linktype="relative-path">SRVSVC_HANDLE (section 2.2.1.1)</a></span>
+pointer that identifies the server. The <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> MUST map this
+structure to an RPC binding handle (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> sections
+4.3.5 and 5.1.5.2). The server MUST ignore this parameter.</p><p><b>Level: </b>Specifies the information level of the
+data. The value of the <i>Level</i> parameter determines the contents of the <i>ServerInfo</i>
+parameter. This parameter MUST be one of the values in the following table. The
+NetrServerSetInfo method does not support a <i>Level</i> value of 103. If a <i>Level</i>
+value of 103 is specified, the server MUST return ERROR_INVALID_LEVEL.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>101</p>
+  </td>
+  <td>
+  <p><span><a href="fcccf874-58c1-4fe5-a492-97d910518447" data-linktype="relative-path">LPSERVER_INFO_101</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>102</p>
+  </td>
+  <td>
+  <p><span><a href="b503efd7-5ec4-48f8-b8d9-e61ca2724eff" data-linktype="relative-path">LPSERVER_INFO_102</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>502</p>
+  </td>
+  <td>
+  <p><span><a href="c4e38a94-4c15-4f55-82a6-79a374d1b409" data-linktype="relative-path">LPSERVER_INFO_502</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>503</p>
+  </td>
+  <td>
+  <p><span><a href="57ab77c4-27b1-4964-ba3a-7a1f5b1bf06d" data-linktype="relative-path">LPSERVER_INFO_503</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>599</p>
+  </td>
+  <td>
+  <p><span><a href="2b55fe85-2de5-4409-87ea-468cb6b35160" data-linktype="relative-path">LPSERVER_INFO_599</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1005</p>
+  </td>
+  <td>
+  <p><span><a href="a2aa98a7-d93c-42bc-8a99-79fa87d20f72" data-linktype="relative-path">LPSERVER_INFO_1005</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1107</p>
+  </td>
+  <td>
+  <p><span><a href="b483cc5c-9a90-4bd2-ae3d-d499805b0366" data-linktype="relative-path">LPSERVER_INFO_1107</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1010</p>
+  </td>
+  <td>
+  <p><span><a href="6f176ef6-1e40-4a77-90d3-c3a6e24bed38" data-linktype="relative-path">LPSERVER_INFO_1010</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1016</p>
+  </td>
+  <td>
+  <p><span><a href="ff90e698-1296-400c-a8c6-afa88943674c" data-linktype="relative-path">LPSERVER_INFO_1016</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1017</p>
+  </td>
+  <td>
+  <p><span><a href="bc37a2aa-bdbb-4d2c-85ce-05a7ef3ed3ec" data-linktype="relative-path">LPSERVER_INFO_1017</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1018</p>
+  </td>
+  <td>
+  <p><span><a href="fceffd49-c692-46fe-b3fc-ee1fb0830d63" data-linktype="relative-path">LPSERVER_INFO_1018</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1501</p>
+  </td>
+  <td>
+  <p><span><a href="a3ba8b29-324f-4ab5-8f46-62216176d066" data-linktype="relative-path">LPSERVER_INFO_1501</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1502</p>
+  </td>
+  <td>
+  <p><span><a href="33b0eeee-023d-492e-a0e8-6908df37072c" data-linktype="relative-path">LPSERVER_INFO_1502</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1503</p>
+  </td>
+  <td>
+  <p><span><a href="cb3ee918-006a-4cd8-a6a0-1e9eced3ec3b" data-linktype="relative-path">LPSERVER_INFO_1503</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1506</p>
+  </td>
+  <td>
+  <p><span><a href="749fdc24-17fe-4bc4-98e2-0f8aeed8ba6f" data-linktype="relative-path">LPSERVER_INFO_1506</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1510</p>
+  </td>
+  <td>
+  <p><span><a href="015e3ff1-105a-4f73-8248-07bdcf0b012b" data-linktype="relative-path">LPSERVER_INFO_1510</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1511</p>
+  </td>
+  <td>
+  <p><span><a href="b93f42c5-1ed3-434d-b48f-0ef1cd475607" data-linktype="relative-path">LPSERVER_INFO_1511</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1512</p>
+  </td>
+  <td>
+  <p><span><a href="9da9755b-d65b-4966-885a-a32440b5ba04" data-linktype="relative-path">LPSERVER_INFO_1512</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1513</p>
+  </td>
+  <td>
+  <p><span><a href="539af8c0-a332-4f96-a136-acad96de4fbd" data-linktype="relative-path">LPSERVER_INFO_1513</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1514</p>
+  </td>
+  <td>
+  <p><span><a href="25668726-307a-4a17-b356-4ce7778d33af" data-linktype="relative-path">LPSERVER_INFO_1514</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1515</p>
+  </td>
+  <td>
+  <p><span><a href="82bae375-291a-487e-a356-d00be9e95ee2" data-linktype="relative-path">LPSERVER_INFO_1515</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1516</p>
+  </td>
+  <td>
+  <p><span><a href="b29dd31e-6e46-4647-8415-ff77754d424e" data-linktype="relative-path">LPSERVER_INFO_1516</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1518</p>
+  </td>
+  <td>
+  <p><span><a href="2e915195-c0f5-4da2-b36b-bc8c782fa368" data-linktype="relative-path">LPSERVER_INFO_1518</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1523</p>
+  </td>
+  <td>
+  <p><span><a href="4fec1dd0-137d-4e87-ada5-36139d13860b" data-linktype="relative-path">LPSERVER_INFO_1523</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1528</p>
+  </td>
+  <td>
+  <p><span><a href="99f6f4b9-874e-49cb-8729-4f17d354f74c" data-linktype="relative-path">LPSERVER_INFO_1528</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1529</p>
+  </td>
+  <td>
+  <p><span><a href="860a80f7-077a-458a-90d2-bbbd934080bc" data-linktype="relative-path">LPSERVER_INFO_1529</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1530</p>
+  </td>
+  <td>
+  <p><span><a href="1096ff89-3ff0-461f-97e5-88877c0b8eac" data-linktype="relative-path">LPSERVER_INFO_1530</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1533</p>
+  </td>
+  <td>
+  <p><span><a href="f4f77876-3a22-4aee-a426-6b047407a017" data-linktype="relative-path">LPSERVER_INFO_1533</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1534</p>
+  </td>
+  <td>
+  <p><span><a href="197b6fdd-13f2-486c-8d9d-58d11f1abc1b" data-linktype="relative-path">LPSERVER_INFO_1534</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1535</p>
+  </td>
+  <td>
+  <p><span><a href="a8558cb4-2bdb-40f0-9635-89f9623c09a4" data-linktype="relative-path">LPSERVER_INFO_1535</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1536</p>
+  </td>
+  <td>
+  <p><span><a href="2751834f-99d0-4814-8247-dd216d97ed11" data-linktype="relative-path">LPSERVER_INFO_1536</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1538</p>
+  </td>
+  <td>
+  <p><span><a href="53487f83-dd7b-4ef8-ae67-b2e782c22ca2" data-linktype="relative-path">LPSERVER_INFO_1538</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1539</p>
+  </td>
+  <td>
+  <p><span><a href="4f3c338b-80a1-4b46-b23a-ed2dcab3c8bb" data-linktype="relative-path">LPSERVER_INFO_1539</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1540</p>
+  </td>
+  <td>
+  <p><span><a href="99309ad8-b6b9-4de2-8004-e8630a4317e4" data-linktype="relative-path">LPSERVER_INFO_1540</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1541</p>
+  </td>
+  <td>
+  <p><span><a href="4fc2bb51-7966-4694-b476-4751fe850774" data-linktype="relative-path">LPSERVER_INFO_1541</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1542</p>
+  </td>
+  <td>
+  <p><span><a href="79d487e1-b2e7-4c13-8327-011e1687b9b6" data-linktype="relative-path">LPSERVER_INFO_1542</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1543</p>
+  </td>
+  <td>
+  <p><span><a href="0534fb1d-2a2b-4320-8a4a-69f53a847d36" data-linktype="relative-path">LPSERVER_INFO_1543</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1544</p>
+  </td>
+  <td>
+  <p><span><a href="91755464-4c78-4987-b887-554f5aed1f93" data-linktype="relative-path">LPSERVER_INFO_1544</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1545</p>
+  </td>
+  <td>
+  <p><span><a href="fb2b0dd9-ff98-4f10-ae1b-f9ba768d87e1" data-linktype="relative-path">LPSERVER_INFO_1545</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1546</p>
+  </td>
+  <td>
+  <p><span><a href="079b25a4-10d5-4fdf-9b10-4eeb31726b8e" data-linktype="relative-path">LPSERVER_INFO_1546</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1547</p>
+  </td>
+  <td>
+  <p><span><a href="3cfd586c-177c-42c8-9f4b-82bdcab1bb05" data-linktype="relative-path">LPSERVER_INFO_1547</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1548</p>
+  </td>
+  <td>
+  <p><span><a href="5036b151-717f-4742-91d7-4411b229fbf1" data-linktype="relative-path">LPSERVER_INFO_1548</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1549</p>
+  </td>
+  <td>
+  <p><span><a href="f70e2cd0-a56c-4b0c-82a5-077fa35ce53b" data-linktype="relative-path">LPSERVER_INFO_1549</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1550</p>
+  </td>
+  <td>
+  <p><span><a href="b79d21f6-9cdf-4695-868a-6e15041bba0d" data-linktype="relative-path">LPSERVER_INFO_1550</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1552</p>
+  </td>
+  <td>
+  <p><span><a href="85f561f7-3142-4f2e-8540-06c54bb46ca6" data-linktype="relative-path">LPSERVER_INFO_1552</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1553</p>
+  </td>
+  <td>
+  <p><span><a href="82e23e2c-5124-4026-b6a4-290aaa748556" data-linktype="relative-path">LPSERVER_INFO_1553</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1554</p>
+  </td>
+  <td>
+  <p><span><a href="b227720e-ba3d-46a6-bced-0036554a4a51" data-linktype="relative-path">LPSERVER_INFO_1554</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1555</p>
+  </td>
+  <td>
+  <p><span><a href="9eb96028-fed5-444c-a18f-5dd2ec7bb756" data-linktype="relative-path">LPSERVER_INFO_1555</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1556</p>
+  </td>
+  <td>
+  <p><span><a href="68628e3d-d13d-4d4f-a598-156d516e1148" data-linktype="relative-path">LPSERVER_INFO_1556</a></span></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ServerInfo: </b>This is a structure of type
+LPSERVER_INFO, as specified in section <span><a href="76d445e9-928d-437d-860d-de5961316a4c" data-linktype="relative-path">2.2.3.7</a></span>. The
+content of the <i>ServerInfo</i> parameter is determined by the <i>Level</i>
+parameter, as the preceding table shows. </p><p><b>ParmErr: </b>A pointer to a value that receives
+the index of the first member of the server information structure that caused
+an ERROR_INVALID_PARAMETER error code, if it occurs.</p><p><b>Return Values: </b>The method returns 0x00000000
+(NERR_Success) to indicate success; otherwise, it returns a nonzero error code.
+The method can take any specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>NERR_Success</p>
+  </td>
+  <td>
+  <p>The client request succeeded.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000007C</p>
+  <p>ERROR_INVALID_LEVEL</p>
+  </td>
+  <td>
+  <p>The system call level is not correct.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The client request failed because the specified
+  parameter is invalid. For details see the description that follows for the <i>ParmErr</i>
+  parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>Not enough storage is available to process this
+  command.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to a NetrServerSetInfo request, the server MUST
+update the <span><a href="53d4f103-312e-4843-8947-168ba54f4a6e" data-linktype="relative-path">ServerConfiguration</a></span>
+object based on the caller-supplied values and the <i>Level</i>. The server can
+set its operating parameters individually or collectively. The information is
+stored in a way that allows it to remain in effect after the system is
+reinitialized.</p><p>The value of the <i>Level</i> parameter can be 101, 102,
+502, 503, 599, 1005, 1107, 1010, 1016, 1017, 1018, 1501, 1502, 1503, 1506,
+1510, 1511, 1512, 1513, 1514, 1515, 1516, 1518, 1523, 1528, 1529, 1530, 1533,
+1534, 1535, 1536, 1538, 1539, 1540, 1541, 1542, 1543, 1544, 1545, 1546, 1547,
+1548, 1549, 1550, 1552, 1553, 1554, 1555, and 1556. </p><p>As previously stated, a <i>Level</i> value of 103 is not
+supported by the NetrServerSetInfo method. If the <i>Level</i> parameter has
+any other value, the server MUST fail the call with an ERROR_INVALID_LEVEL
+error code.</p><p>After receiving the <i>NetrServerSetInfo</i> method, the
+server MUST update the server setting that corresponds to the <i>ServerInfo</i>
+parameter. The format for the <i>ServerInfo</i> parameter is as specified in SERVER_INFO (section 2.2.3.7).</p><p>If the <i>Level</i> parameter is equal to 101, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo103</b> that
+are defined by the SERVER_INFO_101 structure as settable (that is, they are not
+defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 102, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo103</b> that
+are defined by the SERVER_INFO_102 structure as settable (that is, they are not
+defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 502, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_502 structure as settable (that is, they are not
+defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 503, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_503 structure as settable (that is, they are not
+defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 599, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_599 structure as settable (that is, they are not
+defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1005, the server
+MUST update all the settings in ServerConfiguration that are defined by the
+SERVER_INFO_1005 structure as settable (that is, they are not defined as
+ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1107, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo103</b> that
+are defined by the SERVER_INFO_1107 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1016, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo103</b> that
+are defined by the SERVER_INFO_1016 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1017, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo103</b> that
+are defined by the SERVER_INFO_1017 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1018, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo103</b> that
+are defined by the SERVER_INFO_1018 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1501, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1501 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1502, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1502 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1503, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1503 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1506, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1506 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1510, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1510 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1511, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1511 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1512, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1512 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1513, the server
+MUST update all the settings in ServerConfiguration.ServerInfo599 that are
+defined by the SERVER_INFO_1513 structure as settable (that is, they are not
+defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1514, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1514 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1515, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1515 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1516, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1516 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1518, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1518 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1523, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1523 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1528, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1528 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1529, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1529 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1530, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1530 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1533, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1533 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1534, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1534 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1535, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1535 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1536, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1536 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1538, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1538 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1539, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1539 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1540, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1540 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1541, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1541 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1542, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1542 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1543, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1543 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1544, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1544 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1545, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1545 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1546, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1546 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1547, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1547 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1548, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1548 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1549, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1549 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1550, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1550 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1552, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1552 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1553, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1553 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1554, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1554 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1555, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1555 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>If the <i>Level</i> parameter is equal to 1556, the server
+MUST update all the settings in <b>ServerConfiguration.ServerInfo599</b> that
+are defined by the SERVER_INFO_1556 structure as settable (that is, they are
+not defined as ignored on receipt or ignored for the NetrServerSetInfo method).</p><p>The server MUST validate each member of the structure that
+is passed in the <i>ServerInfo</i> parameter. The validation involves making
+sure each member of the structure in the <i>ServerInfo</i> parameter has a
+valid value as specified in the definition of the corresponding SERVER_INFO
+structure. If any member of the structure is not valid and the <i>ParmErr</i>
+parameter is not NULL, the server MUST set <i>ParmErr</i> to a value based on
+the first member of the structure that is not valid and fail the call with an
+ERROR_INVALID_PARAMETER (0x00000057) error code. The mapping between the values
+to set and the corresponding member is listed in section <span><a href="fa3ad1bd-1eb9-4a32-9ca4-6d71241f4602" data-linktype="relative-path">2.2.2.12</a></span>.<a id="Appendix_A_Target_82"></a><a aria-label="Product behavior note 82" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_82" data-linktype="relative-path">&lt;82&gt;</a></p><p>The server MUST construct <span><a href="a8909a6f-0cef-46d1-a85b-f990cd05a739" data-linktype="relative-path">SERVER_INFO_103</a></span> and
+SERVER_INFO_599 structures from <b>ServerConfiguration.ServerInfo103</b> and <b>ServerConfiguration.ServerInfo599</b>
+respectively.</p><p>The server MUST update server configuration by invoking the
+underlying server event as specified in <span><a href="../ms-cifs/d416ff7c-c536-406e-a951-4f04b2fd1d2b" data-linktype="relative-path">[MS-CIFS]</a></span>
+section <span><a href="../ms-cifs/0b3352fb-bdcb-4c0a-bec1-b8243dedec73" data-linktype="relative-path">3.3.4.22</a></span>,
+providing SERVER_INFO_103 and SERVER_INFO_599 structures as input parameters.</p><p>The server MUST update browser configuration by invoking the
+underlying server event specified in <span><a href="../ms-brws/d2d83b29-4b62-479e-b427-9b750303387b" data-linktype="relative-path">[MS-BRWS]</a></span>
+section <span><a href="../ms-brws/d2e11f4e-9614-44cd-8824-4e7577dee06f" data-linktype="relative-path">3.2.4.1</a></span>,
+providing the SERVER_INFO_103 structure as input parameter.</p><p>The server MUST persist the values in <b>ServerConfiguration.ServerInfo103</b>
+and <b>ServerConfiguration.ServerInfo599</b> in a persistent configuration
+store.</p><p>The server SHOULD<a id="Appendix_A_Target_83"></a><a aria-label="Product behavior note 83" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_83" data-linktype="relative-path">&lt;83&gt;</a> enforce
+security measures to verify that the caller has the required permissions to
+execute this routine. If the caller does not have the required credentials, the
+server SHOULD<a id="Appendix_A_Target_84"></a><a aria-label="Product behavior note 84" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_84" data-linktype="relative-path">&lt;84&gt;</a> fail the call.</p></div>

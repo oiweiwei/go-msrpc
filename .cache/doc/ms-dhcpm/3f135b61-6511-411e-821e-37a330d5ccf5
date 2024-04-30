@@ -1,0 +1,166 @@
+<div class="content"><p> </p><p>The <b>R_DhcpSetMScopeInfo</b> method creates/modifies an
+IPv4 multicast subnet on the MADCAP server. The behavior of this method is
+dependent on parameter <i>NewScope</i>.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpSetMScopeInfo(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, ref, string] LPWSTR* MScopeName,
+   [in, ref] LPDHCP_MSCOPE_INFO MScopeInfo,
+   [in] BOOL NewScope
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the MADCAP server. This parameter is unused.</p><p><b>MScopeName: </b>This is a pointer to a Unicode
+string that contains the name of the IPv4 multicast subnet that has to be
+created or modified. The size of the name is limited to MAX_PATH, including the
+terminating NULL character. MAX_PATH is defined as 260 characters.</p><p><b>MScopeInfo: </b>This is a pointer of type <span><a href="d4d52cd0-a5ff-458e-9864-2f78ba2bc230" data-linktype="relative-path">LPDHCP_MSCOPE_INFO (section 2.2.1.2.71)</a></span>,
+providing the IPv4 multicast subnet information that is to be created or
+modified.</p><p><b>NewScope: </b>This is of type <span><a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">BOOL</a></span>.
+A TRUE value indicates that the IPv4 multicast subnet needs to be created, and
+a FALSE value indicates that the existing IPv4 multicast subnet needs to be
+modified.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the MADCAP server
+  database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E4E</p>
+  <p>ERROR_DHCP_SCOPE_NAME_TOO_LONG</p>
+  </td>
+  <td>
+  <p>The specified scope name is too long. The name is
+  limited to a maximum of 256 characters.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E24</p>
+  <p>ERROR_DHCP_SUBNET_EXISTS</p>
+  </td>
+  <td>
+  <p>The specified IPv4 multicast subnet already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E55</p>
+  <p>ERROR_DHCP_MSCOPE_EXISTS</p>
+  </td>
+  <td>
+  <p>The multicast scope parameters are incorrect. Either
+  the scope already exists or its properties are inconsistent with the
+  properties of another existing scope.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 1.</p><p>When processing this call, the MADCAP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Validate the <i>MScopeInfo</i> and <i>MScopeName</i> input
+variables. If they are passed as NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Validate the <i>MScopeName</i> input parameter for length. If the
+length (inclusive of the terminating NULL character) is greater than MAX_PATH,
+return ERROR_DHCP_SCOPE_NAME_TOO_LONG.</p>
+</li><li><p><span><span> 
+</span></span>Validate <i>MScopeInfo&#39;s</i> <b>MscopeId</b> value. If it is 0,
+return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the value of <i>NewScope</i> is set to TRUE, create the new
+IPv4 multicast subnet:</p>
+<ul><li><p><span><span>  </span></span>Iterate
+through the server ADM element <b>DHCPv4MScopesList</b> and if there exists any
+entry corresponding to the <i>MScopeName</i> field of <i>MScopeInfo</i> input
+parameter or any entry corresponding to the <b>MScopeId</b> field of <i>MScopeInfo</i>
+input parameter, return the error ERROR_DHCP_MSCOPE_EXISTS.</p>
+</li><li><p><span><span>  </span></span>Create
+a <b>DHCPv4MScope</b> object and insert it into the <b>DHCPv4MScopesList</b>.
+The <b>DHCPv4MScope.MScopeInfo</b> object is initialized with information in <i>MScopeInfo</i>
+input parameter as follows:</p>
+<ul><li><p><span><span> 
+</span></span><b>DHCPv4MScope.DHCPv4IpRangesList</b> is set to empty list.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4MScope.DHCPv4ExclusionRangesList</b> is set to empty
+list.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4MScope.DHCPv4ReservationsList</b> is set to empty list.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4MScope.DHCPv4MClientsList</b> is set to empty list.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4MScope.DHCPv4MScopeOptValuesList</b> is set to empty
+list.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>If the value of <i>NewScope </i>is set to FALSE, modify the
+existing IPv4 multicast subnet:</p>
+<ul><li><p><span><span>  </span></span>Retrieve
+the <b>DHCPv4MScope</b> entry corresponding to the <i>MScopeName</i> from the
+server ADM element <b>DHCPv4MScopesList</b>. If the <b>DHCPv4MScope</b> entry
+is not found, return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span>  </span></span>If
+the <b>MScopeInfo.MScopeId</b> value of the retrieved <b>DHCPv4MScope</b> entry
+is different from the <b>MscopeId</b> field of the <i>MScopeInfo</i> input
+parameter and there exists another <b>DHCPv4MScope</b> entry in the <b>DHCPv4MScopesList</b>
+that has <b>MScopeInfo.MScopeId</b> equal to the <b>MscopeId</b> field of the <i>MScopeInfo</i>
+input parameter, return ERROR_DHCP_SUBNET_EXISTS.</p>
+</li><li><p><span><span>  </span></span>If
+the <b>MScopeInfo.MScopeId</b> value of the retrieved <b>DHCPv4MScope</b> entry
+is different from the <b>MScopeId</b> field of the <i>MScopeInfo</i> input
+parameter and there exists no <b>DHCHv4MScope</b> entry in the <b>DHCPv4MScopesList</b>
+that has <b>MScopeInfo.MScopeId</b> equal to the <b>MscopeId</b> field of the <i>MScopeInfo</i>
+input parameter, then, for all the entries in the <b>DHCPv4MClientsList</b>,
+modify the <b>DHCPv4MClient.MscopeId</b> field.</p>
+</li><li><p><span><span>  </span></span>If
+there are no entries in the <b>DHCPv4MScope.DHCPv4MClientsList</b>, return
+ERROR_NO_MORE_ITEMS. Otherwise, for all the entries in <b>DHCPv4MClientsList</b>,
+set the <b>DHCPMClient.MScopeId</b> to the <b>MscopeId</b> field of the <i>MScopeInfo</i>
+input parameter.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>MScopeName</i> parameter differs from the <b>MScopeName</b> field of the
+<i>MScopeInfo</i> parameter, this indicates that the IPv4 multicast subnet is
+to be renamed. If there exists a <b>DHCPv4MScope</b> entry with <b>MScopeInfo.MScopeName</b>
+matching the <b>MScopeName</b> field of the <i>MScopeInfo</i> input parameter,
+return ERROR_DHCP_SUBNET_EXISTS.</p>
+</li><li><p><span><span>  </span></span>Modify
+this <b>DHCPv4MScope.MScopeInfo</b> with information from the <i>MScopeInfo</i>
+input parameter, and return ERROR_SUCCESS.</p>
+</li></ul></li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

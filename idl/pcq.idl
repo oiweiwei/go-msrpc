@@ -1,0 +1,88 @@
+import "ms-dtyp.idl";
+ 
+[
+uuid(da5a86c5-12c2-4943-ab30-7f74a813d853),
+    pointer_default(unique),
+    version(1.0)
+]
+ 
+interface PerflibV2
+{
+ 
+typedef [context_handle] HANDLE RPC_HQUERY;
+typedef RPC_HQUERY * PRPC_HQUERY;
+ 
+error_status_t
+PerflibV2EnumerateCounterSet(
+    [ in, string ] wchar_t *   szMachine,
+    [ in, range(0, 256) ] DWORD dwInSize,
+    [ out        ] DWORD * pdwOutSize,
+    [ out        ] DWORD * pdwRtnSize,
+    [ out, size_is(dwInSize), length_is(* pdwOutSize) ] 
+                   GUID * lpData
+);
+ 
+error_status_t
+PerflibV2QueryCounterSetRegistrationInfo(
+    [ in, string  ] wchar_t *   szMachine,
+    [ in          ] GUID *  CounterSetGuid,
+    [ in          ] DWORD   RequestCode,
+    [ in          ] DWORD   RequestLCID,
+    [ in, range(0, 134217728) ] DWORD dwInSize,
+    [ out         ] DWORD * pdwOutSize,
+    [ out         ] DWORD * pdwRtnSize,
+    [ out, size_is(dwInSize), length_is(* pdwOutSize) ] unsigned char *
+                            lpData
+);
+ 
+error_status_t
+PerflibV2EnumerateCounterSetInstances(
+    [ in, string  ] wchar_t *   szMachine,
+    [ in          ] GUID *  CounterSetGuid,
+    [ in, range(0, 67108864) ] DWORD dwInSize,
+    [ out         ] DWORD * pdwOutSize,
+    [ out         ] DWORD * pdwRtnSize,
+    [ out, size_is(dwInSize), length_is(* pdwOutSize) ] unsigned char * 
+                            lpData
+);
+ 
+error_status_t
+PerflibV2OpenQueryHandle(
+    [ in, string  ] wchar_t *       szMachine,
+    [ out         ] PRPC_HQUERY phQuery
+);
+ 
+error_status_t
+PerflibV2CloseQueryHandle(
+    [ in, out ] PRPC_HQUERY phQuery
+);
+ 
+error_status_t
+PerflibV2QueryCounterInfo(
+    [ in  ] RPC_HQUERY hQuery,
+    [ in, range(0, 67108864) ] DWORD dwInSize,
+    [ out ] DWORD *    pdwOutSize,
+    [ out ] DWORD *    pdwRtnSize,
+    [ out, size_is(dwInSize), length_is(* pdwOutSize) ] unsigned char * 
+                       lpData
+);
+ 
+error_status_t
+PerflibV2QueryCounterData(
+    [ in  ] RPC_HQUERY hQuery,
+    [ in, range(0, 1073741824) ] DWORD dwInSize,
+    [ out ] DWORD *    pdwOutSize,
+    [ out ] DWORD *    pdwRtnSize,
+    [ out, size_is(dwInSize), length_is(* pdwOutSize) ] unsigned char * 
+                       lpData
+);
+ 
+error_status_t
+PerflibV2ValidateCounters(
+    [ in  ] RPC_HQUERY hQuery,
+    [ in, range(0, 67108864) ]     DWORD  dwInSize,
+    [ in, out, size_is(dwInSize) ] unsigned char * lpData,
+    [ in  ] DWORD      dwAdd
+);
+ 
+}

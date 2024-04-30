@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>This structure contains the mapping information for a file
+share to its <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow copy</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _FSSAGENT_SHARE_MAPPING_1 {
+     GUID ShadowCopySetId;
+     GUID ShadowCopyId;
+     [string] LPWSTR ShareNameUNC;
+     [string] LPWSTR ShadowCopyShareName;
+     LONGLONG CreationTimestamp;
+ } FSSAGENT_SHARE_MAPPING_1, *PFSSAGENT_SHARE_MAPPING_1;
+  
+  
+</pre></div>
+</dd></dl><p><b>ShadowCopySetId:</b>  The GUID of the shadow copy set.</p><p><b>ShadowCopyId:</b>  The GUID of the shadow copy.</p><p><b>ShareNameUNC:</b>  The name of the share in UNC format.</p><p><b>ShadowCopyShareName:</b>  The name of the share exposing
+the shadow copy of the base share identified by ShareNameUNC, in UNC format.</p><p><b>CreationTimestamp:</b>  The time at which the shadow copy
+of the share is created. This MUST be a 64-bit integer value containing the
+number of 100-nanosecond intervals since January 1, 1601 (UTC).</p></div>

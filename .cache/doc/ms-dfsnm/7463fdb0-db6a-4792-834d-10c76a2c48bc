@@ -1,0 +1,92 @@
+<div class="content"><p> </p><p>The NetrDfsAddStdRootForced (Opnum 15) method creates a new <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_701a2cc1-eb5a-400f-b394-5bad264ec8f6" data-linktype="relative-path">stand-alone
+DFS namespace</a></span> without checking for the availability and
+accessibility of the specified <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_a49a79ea-dac7-4016-9a84-cf87161db7e3" data-linktype="relative-path">share</a></span>.<a id="Appendix_A_Target_123"></a><a aria-label="Product behavior note 123" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_123" data-linktype="relative-path">&lt;123&gt;</a><a id="Appendix_A_Target_124"></a><a aria-label="Product behavior note 124" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_124" data-linktype="relative-path">&lt;124&gt;</a><a id="Appendix_A_Target_125"></a><a aria-label="Product behavior note 125" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_125" data-linktype="relative-path">&lt;125&gt;</a></p><p>The NetrDfsAddStdRootForced method uses the following <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a></span>
+syntax.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrDfsAddStdRootForced(
+   [in, string] WCHAR* ServerName,
+   [in, string] WCHAR* RootShare,
+   [in, string] WCHAR* Comment,
+   [in, string] WCHAR* Share
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>The pointer to a null-terminated <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string. This is the host name of the new <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ac90b498-3ba4-48d6-bcd6-5495f1654671" data-linktype="relative-path">DFS root target</a></span>.</p><p><b>RootShare: </b>The pointer to a null-terminated
+Unicode DFS root target <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_3c179f10-1793-4268-96eb-de4d85a32060" data-linktype="relative-path">share name</a></span> string.
+This is also the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_76c9958a-125f-41b6-ae65-6663f270f873" data-linktype="relative-path">DFS namespace name</a></span>.
+This method does not create the share; it MUST be created separately.</p><p><b>Comment: </b>The pointer to a null-terminated
+Unicode string that contains a comment associated with the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS
+namespace</a></span>. Used for informational purposes, this string has no
+protocol-specified restrictions on length or content. The comment is meant for
+human consumption and does not affect server functionality. This parameter MAY
+be a NULL pointer.</p><p><b>Share: </b> The pointer to a null-terminated
+Unicode string that contains the local <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file system</a></span> path
+corresponding to the share on the server receiving the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+method, in the following form:</p><dl>
+<dd>
+<dl>
+<dd>
+<div><pre> &lt;X&gt;:\&lt;path&gt;
+  
+</pre></div>
+</dd></dl></dd>
+<dd>
+<p>where <i>&lt;X&gt;</i> is a drive
+letter (a single character from A to Z) and <i>&lt;path&gt;</i> is a file
+system path whose leaf component is a directory.</p>
+</dd></dl><p><b>Return Values: </b>The method MUST return 0 on
+success and a nonzero error code on failure. The method can return any specific
+error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Successful completion.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Permission to perform the operation was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000B7</p>
+  <p>ERROR_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>The DFS namespace that the <i>ServerName</i> and <i>RootShare</i>
+  parameters specify already exists.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The support for this method is optional. If supported, then
+the server MUST support the ability to create a DFS namespace even when the
+share that the <i>RootShare</i> parameter specifies is not available or
+accessible.</p><p>On receiving this method, the server MUST do the following.</p><ul><li><p><span><span> 
+</span></span>If there is any entry in the <b>NamespaceList</b> with the <b>NamespaceName</b>
+matching <i>RootShare</i>, then the RPC method MUST fail with
+ERROR_ALREADY_EXISTS (0x000000B7).</p>
+</li><li><p><span><span> 
+</span></span>Create and initialize the <b>Namespace</b> object, as specified
+in section <span><a href="b18ef17a-7a9c-4e22-b1bf-6a4d07e87b2d" data-linktype="relative-path">3.1.4.4.1</a></span>, and
+insert it into the <b>NamespaceList</b>. </p>
+</li><li><p><span><span> 
+</span></span>The server MUST synchronously insert the <b>Namespace</b> object
+into the local information store.</p>
+</li></ul></div>

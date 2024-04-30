@@ -1,0 +1,100 @@
+<div class="content"><p> </p><p>The DNS_RPC_RECORD_SOA structure contains information about
+an <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0365bdcc-f1f5-4494-b57c-02c897b7ea8a" data-linktype="relative-path">SOA</a></span>
+record (section 3.3.13 in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90264" data-linktype="external">[RFC1035]</a></span>).
+This record MUST be formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSerialNo</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRefresh</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRetry</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwExpire</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwMinimumTtl</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>namePrimaryServer
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Zone
+  Administrator Email (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwSerialNo (4 bytes): </b>The <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_9902897a-67ab-4c95-a910-a96bea8ad76e" data-linktype="relative-path">serial
+number</a></span> of the SOA record. </p><p><b>dwRefresh (4 bytes): </b>The interval, in seconds,
+at which a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_85ec490e-c7d1-4b6d-80b3-23320e7e1c9d" data-linktype="relative-path">secondary DNS server</a></span>
+attempts to contact the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_c5f78ae9-df7c-47ee-92f5-5e4f92198cd0" data-linktype="relative-path">primary DNS server</a></span>
+for getting an update. </p><p><b>dwRetry (4 bytes): </b>The interval, in seconds,
+at which a secondary DNS server retries to check with the primary DNS server in
+case of failure.</p><p><b>dwExpire (4 bytes): </b>The duration, in seconds,
+that a secondary DNS server continues attempts to get updates from the primary
+DNS server and if still unsuccessful assumes that the primary DNS server is
+unreachable.</p><p><b>dwMinimumTtl (4 bytes): </b>The minimum duration,
+in seconds, for which record data in the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span> is valid.</p><p><b>namePrimaryServer (variable): </b>The FQDN of the
+primary DNS server for this zone in DNS_RPC_NAME (section <span><a href="3fd41adc-c69e-407b-979e-721251403132" data-linktype="relative-path">2.2.2.2.1</a></span>)
+format.</p><p><b>Zone Administrator Email (variable): </b>The
+contact email address for the zone administrators in a structure of type
+DNS_RPC_NAME (section 2.2.2.2.1).</p></div>

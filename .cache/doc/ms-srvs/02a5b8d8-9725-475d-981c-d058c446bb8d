@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p>The SERVER_ALIAS_INFO_0 structure contains the information
+about alias, including alias name and <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> target name.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVER_ALIAS_INFO_0 {
+   [string] LMSTR srvai0_alias;
+   [string] LMSTR srvai0_target;
+   BOOLEAN srvai0_default;
+   ULONG srvai0_reserved;
+ } SERVER_ALIAS_INFO_0,
+  *PSERVER_ALIAS_INFO_0,
+  *LPSERVER_ALIAS_INFO_0;
+</pre></div>
+</dd></dl><p><b>srvai0_alias:</b>  An empty string or a
+pointer to a null-terminated Unicode UTF-16 string that specifies the name of a
+specified alias. It MUST be an empty string if srvai0_default is nonzero and
+MUST be a non-empty string if <b>srvai0_default</b> is 0.</p><p><b>srvai0_target:</b>  A pointer to a
+null-terminated Unicode UTF-16 string. It specifies the server name that alias
+is attached to. The server MUST ignore this member when processing the <b>NetrServerAliasDel</b>
+method.</p><p><b>srvai0_default:</b>  A <span><a href="../ms-dtyp/51bbfbb1-08e2-4c13-a95e-1eaa7d310670" data-linktype="relative-path">BOOLEAN</a></span>
+value. If it is set to TRUE, <b>srvai0_target</b> MUST replace the default
+server name that is used to locate a <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_ef819d1f-a512-491f-b23f-ada3a61d0eb9" data-linktype="relative-path">scoped share</a></span> in <span><a href="41d02541-d0d2-424f-84f0-c0616fb548f9" data-linktype="relative-path">NetrShareAdd</a></span>/<span><a href="9d316eca-5d20-4618-8044-9e6468f8ebc2" data-linktype="relative-path">NetrShareDel</a></span>/<span><a href="048b35f8-ac41-4b4a-bd4f-408e4d381234" data-linktype="relative-path">NetrShareSetInfo</a></span>.
+If a scoped share cannot be found through a tuple of &lt;share name, server name&gt;
+due to a server name mismatch, the default server name is used in &lt;share
+name, default server name&gt; to continue scoped share searching. The server
+MUST ignore <b>srvai0_default</b> when processing the <span><a href="01cff142-0307-43be-907b-1cc950eb3c34" data-linktype="relative-path">NetrServerAliasDel</a></span>
+method.</p><p><b>srvai0_reserved:</b>  This field is not
+used. The server MUST ignore the value of this parameter on receipt.</p></div>

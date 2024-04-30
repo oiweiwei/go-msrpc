@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The ServerAlive (Opnum 3) method is used by clients to test
+the aliveness of the server using a given <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol. If it
+returns without an error, the server is assumed to be reachable.</p><dl>
+<dd>
+<div><pre> [idempotent] error_status_t ServerAlive(
+   [in] handle_t hRpc
+ );
+</pre></div>
+</dd></dl><p><b>hRpc: </b> This MUST specify an RPC binding handle
+as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/de240b5e-6487-485e-9086-5069977f89db" data-linktype="relative-path">3.2.2.3.1</a></span>
+.</p><p>When processing this call:</p><ul><li><p><span><span> 
+</span></span>The <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_19f75354-9b0b-47cb-a00b-4ff196883b32" data-linktype="relative-path">object resolver</a></span> MUST
+NOT check if the client has the permissions to make this call.</p>
+</li><li><p><span><span> 
+</span></span>The object resolver MUST return an RPC success code of 0.</p>
+</li></ul></div>

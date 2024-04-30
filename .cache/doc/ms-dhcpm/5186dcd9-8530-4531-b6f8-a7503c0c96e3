@@ -1,0 +1,39 @@
+<div class="content"><p> </p><p>The <b>DHCP_POL_COND</b> structure specifies an individual
+condition of a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_52323544-69e0-4172-8921-2711cbda988e" data-linktype="relative-path">policy</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_POL_COND {
+   DWORD ParentExpr;
+   DHCP_POL_ATTR_TYPE Type;
+   DWORD OptionID;
+   DWORD SubOptionID;
+   LPWSTR VendorName;
+   DHCP_POL_COMPARATOR Operator;
+   [size_is(ValueLength)] LPBYTE Value;
+   DWORD ValueLength;
+ } DHCP_POL_COND,
+  *PDHCP_POL_COND,
+  *LPDHCP_POL_COND;
+</pre></div>
+</dd></dl><p><b>ParentExpr:</b>  This member is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and contains the index of the parent expression in the <b>DHCP_POL_EXPR_ARRAY</b>
+(section <span><a href="e24fe009-07df-4476-a36b-9701c6162a19" data-linktype="relative-path">2.2.1.2.108</a></span>)
+structure of the same policy.</p><p><b>Type:</b>  This member is of type <b>DHCP_POL_ATTR_TYPE</b>
+enumeration (section <span><a href="f05fc88f-3ac7-4c44-9998-40e4acaeb776" data-linktype="relative-path">2.2.1.1.23</a></span>) and
+identifies whether the condition is specified for an option, suboption, or
+hardware address.</p><p><b>OptionID:</b>  This member is of type
+DWORD and contains the identifier for the DHCP option if the <b>Type</b> member
+contains the DhcpAttrOption enumeration value.</p><p><b>SubOptionID:</b>  This member is of type
+DWORD and contains the identifier for the DHCP suboption of the option
+contained in the <b>OptionID</b> member, providing that the <b>Type</b> member
+contains the DhcpAttrSubOption enumeration value.</p><p><b>VendorName:</b>  This member is a
+pointer of type <span><a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a></span>
+that points to a NULL terminated Unicode string containing the name of a vendor
+class. This member identifies the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_45d20b00-7166-4f94-b679-4cc5a7835a3a" data-linktype="relative-path">vendor class</a></span> to
+which the <b>OptionID</b> or <b>SubOptionID</b> belongs, in case of a
+vendor-specific option/suboption being specified in the condition. This field
+is currently unused.</p><p><b>Operator:</b>  This member is of type <b>DHCP_POL_COMPARATOR</b>
+enumeration (section <span><a href="92e62ae9-0aae-4c67-b742-17524afe79d7" data-linktype="relative-path">2.2.1.1.22</a></span>) and
+specifies the comparison operator for the condition.</p><p><b>Value:</b>  This member is of type
+LPBYTE and points to an array of bytes containing the value to be used for the
+comparison.</p><p><b>ValueLength:</b>  This member is of type
+DWORD and specifies the length of the <b>Value</b> member.</p></div>

@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The DS_REPL_CURSORS structure defines a set of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span>
+cursors for a given <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_325d116f-cdbe-4dbd-b7e6-769ba75bf210" data-linktype="relative-path">NC replica</a></span>. This
+structure is a concrete representation of a sequence of <span><a href="8cb40d62-a51d-47e3-9b4e-0837edffd61c" data-linktype="relative-path">ReplUpToDateVector</a></span>
+values.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD cNumCursors;
+   DWORD dwReserved;
+   [size_is(cNumCursors)] DS_REPL_CURSOR rgCursor[];
+ } DS_REPL_CURSORS;
+</pre></div>
+</dd></dl><p><b>cNumCursors:</b>  The count of items in
+the <b>rgCursor</b> array.</p><p><b>dwReserved:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>rgCursor:</b>  A set of replication
+cursors.</p></div>

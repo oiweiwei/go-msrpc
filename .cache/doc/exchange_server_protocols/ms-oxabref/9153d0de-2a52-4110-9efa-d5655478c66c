@@ -1,0 +1,17 @@
+<div class="content"><p>This protocol enables clients to retrieve the network name
+of a server from a <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_e63aea5b-046b-4176-9359-fde82613a406" data-linktype="relative-path">name service provider interface
+(NSPI)</a></span> referral server. Clients use this protocol before performing
+any NSPI requests, in order to retrieve the name of the NSPI server to connect
+to. This gives the NSPI referral server the ability to control which NSPI
+server an NSPI client will connect to, for purposes including but not limited
+to balancing the client load across multiple NSPI servers, choosing the best
+version of NSPI server for that particular client, or satisfying network
+requirements that are not discernible by the client. Clients also use this
+protocol to retrieve the <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a></span> of the <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_d3ad0e15-adc9-4174-bacf-d929b57278b3" data-linktype="relative-path">mailbox</a></span>
+server, when only the <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a></span> the mailbox
+server is known. Figure 1 shows the request to the NSPI referral server for the
+name of the NSPI server and the server’s response to the client. Figure 2 shows
+the request to the NSPI referral server for the FQDN of the mailbox server and
+the server’s response to the client.</p><p><img id="MS-OXABREF_pictf49db77c-2490-49eb-96be-4e7f5b764f0e.png" src="ms-oxabref_files/image001.png" alt="Client retrieving NSPI server name from the NSPI referral server" title="Client retrieving NSPI server name from the NSPI referral server" data-linktype="relative-path"/></p><p><b>Figure 1 Client retrieving NSPI server name from the NSPI
+referral server</b></p><p><img id="MS-OXABREF_pict8346fb18-3d4d-42ec-b03f-466c208ea72d.png" src="ms-oxabref_files/image002.png" alt="Client retrieving mailbox server name from the NSPI referral server" title="Client retrieving mailbox server name from the NSPI referral server" data-linktype="relative-path"/></p><p><b>Figure 2 Client retrieving mailbox server name from the
+NSPI referral server</b></p></div>

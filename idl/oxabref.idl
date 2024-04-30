@@ -1,0 +1,20 @@
+import "ms-dtyp.idl";
+[ uuid (1544f5e0-613c-11d1-93df-00c04fd7bd09),
+  version(1.0),
+  pointer_default(unique)]
+interface rfri
+{
+long RfrGetNewDSA(
+ [in]                       handle_t          hRpc,
+ [in]                       unsigned long     ulFlags,
+ [in, string]               unsigned char *   pUserDN,
+ [in,out,unique, string]    unsigned char * * ppszUnused,
+ [in,out,unique, string]    unsigned char * * ppszServer);
+ 
+long RfrGetFQDNFromServerDN(
+   [in]                                     handle_t           hRpc,
+   [in]                                     unsigned long      ulFlags,
+   [in, range(10,1024)]                     unsigned long      cbMailboxServerDN,
+   [in, string, size_is(cbMailboxServerDN)] unsigned char   *  szMailboxServerDN,
+   [out,ref,string]                         unsigned char   ** ppszServerFQDN);
+}

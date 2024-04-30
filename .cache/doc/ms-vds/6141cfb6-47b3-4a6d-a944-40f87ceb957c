@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The VDS_PATH_STATUS enumeration defines the set of status
+values for a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2cd71385-2d9c-4ab8-bf4a-7b258816d613" data-linktype="relative-path">path</a></span> to a storage
+device.</p><dl>
+<dd>
+<div><pre> typedef  enum _VDS_PATH_STATUS
+ {
+   VDS_MPS_UNKNOWN = 0x00000000,
+   VDS_MPS_ONLINE = 0x00000001,
+   VDS_MPS_FAILED = 0x00000005,
+   VDS_MPS_STANDBY = 0x00000007
+ } VDS_PATH_STATUS;
+</pre></div>
+</dd></dl><p><b>VDS_MPS_UNKNOWN:  </b>The status of the path is
+unknown.</p><p><b>VDS_MPS_ONLINE:  </b>The path is available.</p><p><b>VDS_MPS_FAILED:  </b>The path is unavailable.</p><p><b>VDS_MPS_STANDBY:  </b>The path is on standby; it
+is available but will not be used unless other paths fail.</p></div>

@@ -1,0 +1,38 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_SERVER_INFO</b> structure contains
+information about the DNS server&#39;s configuration and state. There are different
+versions of the <b>DNS_RPC_SERVER_INFO</b> structure. The DNS server MUST use
+one of the structures corresponding to the value of the <b>dwClientVersion</b>
+field in DNS Server Management Protocol method calls (section <span><a href="bdffbbf3-e31b-49ba-8b8d-8abde125a9d8" data-linktype="relative-path">3.1.4</a></span>)
+as shown in the following table. If the method call does not specify the value
+of <b>dwClientVersion</b>, the DNS_RPC_SERVER_INFO_W2K version of the structure
+MUST be used.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value </p>
+   </th>
+   <th>
+   <p>Structure </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>DNS_RPC_SERVER_INFO_W2K (section <span><a href="130bd2ca-0764-4ea6-9965-53ca15dd6ed2" data-linktype="relative-path">2.2.4.2.2.1</a></span>)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00060000</p>
+  </td>
+  <td>
+  <p>DNS_RPC_SERVER_INFO_DOTNET (section <span><a href="84f3331d-499d-49fe-9f61-ab4c5dde6377" data-linktype="relative-path">2.2.4.2.2.2</a></span>)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00070000</p>
+  </td>
+  <td>
+  <p>DNS_RPC_SERVER_INFO_LONGHORN (section <span><a href="12233dd4-dd64-4b1c-95fd-6a566e529ac9" data-linktype="relative-path">2.2.4.2.2.3</a></span>)</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

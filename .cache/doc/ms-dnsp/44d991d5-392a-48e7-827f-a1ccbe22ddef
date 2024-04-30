@@ -1,0 +1,59 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_VIRTUALIZATION_INSTANCE</b> structure
+contains details of a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1b9d3eb9-dad0-4d1d-acb7-4597e5db641c" data-linktype="relative-path">virtualization instance</a></span>
+in a DNS server.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcVirtualizationInstance
+ {
+     DWORD                   dwRpcStructureVersion;
+     DWORD                   dwReserved;
+     DWORD                   dwFlags;
+     LPWSTR                  pwszVirtualizationID;
+     LPWSTR                  pwszFriendlyName;
+     LPWSTR                  pwszDescription;
+ }
+ DNS_RPC_VIRTUALIZATION_INSTANCE, *PDNS_RPC_VIRTUALIZATION_INSTANCE;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> Contains the DNS
+management structure version number. This value MUST be set to 0x00000000.</p><p><b>dwReserved:</b> MUST be set to zero when sent and
+MUST be ignored on receipt.</p><p><b>dwFlags:</b> This is used during the modification
+and deletion of a DNS virtualization instance. The various bits show which
+members of the DNS virtualization instance are to be updated and other usage.
+This field is used for updating the properties of a DNS virtualization instance
+with operation <b>UpdateVirtualizationInstance</b> as specified in section <span><a href="9500a7e8-165d-4b13-be86-0ddc43100eef" data-linktype="relative-path">3.1.4.1</a></span>.
+</p><table><thead>
+  <tr>
+   <th>
+   <p><span>PropertyName</span></p>
+   </th>
+   <th>
+   <p><span>Bit Used</span></p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span>DNS_RPC_FLAG_PRESERVE_ZONE_FILE        
+  </span></p>
+  </td>
+  <td>
+  <p><span>0x00000001</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>DNS_RPC_FLAG_FRIENDLY_NAME</span></p>
+  </td>
+  <td>
+  <p><span>0x00000002</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>DNS_RPC_FLAG_DESC</span></p>
+  </td>
+  <td>
+  <p><span>0x00000004</span></p>
+  </td>
+ </tr></tbody></table><p><b>pwszVirtualizationID:</b> A NULL-terminated
+Unicode string that uniquely identifies a particular virtualization instance in
+a DNS server. The maximum length of this identifier is limited to 64
+characters. </p><p><b>pwszFriendlyName:</b> A NULL-terminated Unicode
+string that contains a user friendly name of the DNS virtualization instance.</p><p><b>pwszDescription:</b> A NULL-terminated Unicode
+string that contains description of the DNS virtualization instance.</p></div>

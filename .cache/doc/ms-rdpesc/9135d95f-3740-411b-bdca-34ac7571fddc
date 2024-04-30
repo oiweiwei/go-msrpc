@@ -1,0 +1,11 @@
+<div class="content"><p>The EstablishContext_Return structure is used to provide a
+response to an Establish Context call (for more information, see section <a href="ea15ee61-9fac-40ac-96eb-d9d63deee760" data-linktype="relative-path">3.1.4.1</a>.)</p><dl>
+<dd>
+<div><pre> typedef struct _EstablishContext_Return {
+   long ReturnCode;
+   REDIR_SCARDCONTEXT Context;
+ } EstablishContext_Return;
+</pre></div>
+</dd></dl><p><b>ReturnCode:</b>  <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a> or Win32 Error
+code. Zero indicates success; any other value indicates failure.</p><p><b>Context:</b>  A valid context, as
+specified in section <a href="060abee1-e520-4149-9ef7-ce79eb500a59" data-linktype="relative-path">2.2.1.1</a>.</p></div>

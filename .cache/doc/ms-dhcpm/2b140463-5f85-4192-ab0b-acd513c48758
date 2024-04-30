@@ -1,0 +1,44 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4EnumPoliciesEx</b> method returns an
+enumerated list of all configured server level or scope level policies. The
+caller of this method can free the memory pointed to by the <i>EnumInfo</i>
+parameter by calling the <b>midl_user_free</b> function (section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><p>The <b>R_DhcpV4EnumPoliciesEx</b> method is an extension of
+the <b>R_DhcpV4EnumPolicies</b> (Opnum 112) (section 3.2.4.130)
+method, where an array of <span><a href="a63aaffd-1c6b-4ad8-9d95-c1064b2112ea" data-linktype="relative-path">DHCP_POLICY_EX (section 2.2.1.2.121)</a></span>
+structures is enumerated, rather than an array of <span><a href="77e79969-cedf-4aa9-9059-6223ba815f30" data-linktype="relative-path">DHCP_POLICY (section 2.2.1.2.110)</a></span>
+structures. Each <b>DHCP_POLICY_EX</b> structure contains a list of <span><a href="1ac6e6e5-f2bc-42ef-9d6a-c9457d48c3c3" data-linktype="relative-path">DHCP_PROPERTY (section 2.2.1.2.117)</a></span>
+elements that are associated with the given policy.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4EnumPoliciesEx(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, out] LPDWORD ResumeHandle,
+   [in] DWORD PreferredMaximum,
+   [in] BOOL ServerPolicy,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [out] LPDHCP_POLICY_EX_ARRAY EnumInfo,
+   [out] DWORD* ElementsRead,
+   [out] DWORD* ElementsTotal
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>As specified in <b>R_DhcpV4EnumPolicies</b>
+(Opnum 112).</p><p><b>ResumeHandle: </b>As specified in <b>R_DhcpV4EnumPolicies</b>
+(Opnum 112).</p><p><b>PreferredMaximum: </b>As specified in <b>R_DhcpV4EnumPolicies</b>
+(Opnum 112).</p><p><b>ServerPolicy: </b>As specified in <b>R_DhcpV4EnumPolicies</b>
+(Opnum 112).</p><p><b>SubnetAddress: </b>As specified in <b>R_DhcpV4EnumPolicies</b>
+(Opnum 112).</p><p><b>EnumInfo: </b>This out parameter contains an array
+of <b>DHCP_POLICY_EX</b> structures containing an enumerated list of all
+configured server-level or scope-level policies for the given property. The <b>DHCP_PROPERTY</b>
+elements that are enumerated are as follows:</p><dl>
+<dd>
+<p><b>DNSSuffix: </b>Specifies the DNSSuffix for the
+policy when the <span><a href="64fe0789-4647-4628-a3a2-2ddcc9ae42f0" data-linktype="relative-path">DHCP_PROPERTY_ID (section 2.2.1.1.27)</a></span>
+is DhcpPropIdPolicyDnsSuffix and the value of the <span><a href="1511adaa-15d3-4c19-9521-68fb9870848d" data-linktype="relative-path">DHCP_PROPERTY_TYPE (section 2.2.1.1.26)</a></span>
+is DhcpPropTypeString.</p>
+</dd></dl><p><b>ElementsRead: </b>As specified in <b>R_DhcpV4EnumPolicies</b>
+(Opnum 112).</p><p><b>ElementsTotal: </b>As specified in <b>R_DhcpV4EnumPolicies</b>
+(Opnum 112).</p><p><b>Return Values: </b>As specified in <b>R_DhcpV4EnumPolicies</b>
+(Opnum 112).</p><p>The opnum field value for this method is 129.</p><p>The remainder of the processing behavior for this method is
+as defined for the <b>R_DhcpV4EnumPolicies</b> method, except as follows:</p><ul><li><p><span><span> 
+</span></span>No filtering is applied to the enumerated list of configured
+server-level or scope-level policies returned by the <b>R_DhcpV4EnumPoliciesEx</b>
+method.</p>
+</li></ul></div>

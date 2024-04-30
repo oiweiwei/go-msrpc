@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>The NetrpSetFileSecurity method sets the security of a file
+or directory.</p><dl>
+<dd>
+<div><pre> DWORD NetrpSetFileSecurity(
+   [in, string, unique] SRVSVC_HANDLE ServerName,
+   [in, string, unique] WCHAR* ShareName,
+   [in, string] WCHAR* lpFileName,
+   [in] SECURITY_INFORMATION SecurityInformation,
+   [in] PADT_SECURITY_DESCRIPTOR SecurityDescriptor
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>An <span><a href="5f8329ee-1965-4ea1-ad35-3b29fbb63232" data-linktype="relative-path">SRVSVC_HANDLE (section 2.2.1.1)</a></span>
+pointer that identifies the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>. The <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>
+MUST map this structure to an RPC binding handle (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> sections
+4.3.5 and 5.1.5.2). The server MUST ignore this parameter.</p><p><b>ShareName: </b>A pointer to a null-terminated
+UTF-16 string that specifies the share name on which the file is found.</p><p><b>lpFileName: </b>A pointer to a null-terminated
+UTF-16 string that specifies the name of the file or directory whose security
+is being set.</p><p><b>SecurityInformation: </b>The type of security
+information being set, as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/23e75ca3-98fd-4396-84e5-86cd9d40d343" data-linktype="relative-path">2.4.7</a></span>.</p><p><b>SecurityDescriptor: </b>A pointer to a <span><a href="768762d9-c20f-4a26-8e14-04be6ce6860e" data-linktype="relative-path">PADT_SECURITY_DESCRIPTOR</a></span>
+structure, which provides the security descriptor to set.</p><p><b>Return Values: </b>The method returns 0x00000000
+(NERR_Success) to indicate success; otherwise, it returns a nonzero error code.
+The method can take any specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+</p><p>In response to a NetrpSetFileSecurity message, the server
+MUST set the security descriptor of the specified file or directory on the
+server or return an error code.</p><p>The <i>ShareName</i> parameter specifies a local share name
+on the server. The server MUST locate a <b>Share</b> from <b>ShareList</b>,
+where <i>ShareName</i> matches <b>Share.ShareName</b>. If no share is found,
+the server MUST fail the call with NERR_NetNameNotFound. The server MUST then
+combine <b>Share.LocalPath</b> with the <i>lpFileName</i> parameter to create a
+fully qualified path name that is local to the server. If the file does not
+exist, the server MUST fail the call with ERROR_FILE_NOT_FOUND.</p><p>The <i>SecurityDescriptor</i> parameter has a <b>Buffer</b>
+member that contains a security descriptor in self-relative format and a <b>Length</b>
+member that specifies the length, in bytes, of the <b>Buffer</b> member. The
+server MUST apply the descriptor in the <b>Buffer</b> member to the local file,
+whose <i>PathName</i> was computed as previously specified, by combining the
+local path that corresponds to the <i>ShareName</i> parameter and the <i>lpFileName</i>
+parameter.</p><p>The server SHOULD<a id="Appendix_A_Target_106"></a><a aria-label="Product behavior note 106" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_106" data-linktype="relative-path">&lt;106&gt;</a>
+enforce security measures to verify that the caller has the required
+permissions to execute this call. If the caller does not have the required
+credentials, the server SHOULD<a id="Appendix_A_Target_107"></a><a aria-label="Product behavior note 107" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_107" data-linktype="relative-path">&lt;107&gt;</a> fail
+the call.</p></div>

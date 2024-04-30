@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DHCP_POL_ATTR_TYPE</b> enumeration specifies the
+attribute type for a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_9a1c3bd3-d971-482a-adfe-6f41e427b95f" data-linktype="relative-path">condition</a></span> of a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_52323544-69e0-4172-8921-2711cbda988e" data-linktype="relative-path">policy</a></span>.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p><dl>
+<dd>
+<div><pre> typedef enum {
+     DhcpAttrHWAddr,
+     DhcpAttrOption,
+     DhcpAttrSubOption,
+     DhcpAttrFqdn,
+     DhcpAttrFqdnSingleLabel, 
+ } DHCP_POL_ATTR_TYPE;
+</pre></div>
+</dd></dl><p><b>DhcpAttrHWAddr: </b>Specifies that the condition
+is based on hardware address.</p><p><b>DhcpAttrOption: </b>Specifies that the condition
+is based on a DHCP option.</p><p><b>DhcpAttrSubOption: </b>Specifies that the
+condition is based on a DHCP suboption.</p><p><b>DhcpAttrFqdn: </b>Specifies that the condition is
+based on the fully qualified domain name of the client.</p><p><b>DhcpAttrFqdnSingleLabel: </b>Specifies whether the
+condition is based on the DHCP client being a single-label machine.</p></div>

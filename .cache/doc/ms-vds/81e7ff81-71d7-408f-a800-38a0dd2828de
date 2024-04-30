@@ -1,0 +1,37 @@
+<div class="content"><p> </p><p>The VDS_SAN_POLICY enumeration defines the set of valid SAN
+policy values.</p><dl>
+<dd>
+<div><pre> typedef  enum _VDS_SAN_POLICY
+ {
+   VDS_SP_UNKNOWN = 0x0,
+   VDS_SP_ONLINE = 0x1,
+   VDS_SP_OFFLINE_SHARED = 0x2,
+   VDS_SP_OFFLINE = 0x3,
+   VDS_SP_OFFLINE_INTERNAL = 0x4,
+   VDS_SP_MAX = 0x5
+ } VDS_SAN_POLICY;
+</pre></div>
+</dd></dl><p><b>VDS_SP_UNKNOWN:  </b>The SAN policy is unknown.</p><p><b>VDS_SP_ONLINE:  </b>All newly discovered <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disks</a></span>
+are brought <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_783ae2e4-7c04-40ba-a974-f95a30aa1ab2" data-linktype="relative-path">online</a></span> and made
+WRITABLE. If the disk is <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_e42c8573-c14f-4a3d-bd1e-549aa1f7ec13" data-linktype="relative-path">offline</a></span>, no <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>
+devices are exposed for the disk. If the disk is online, the volume devices for
+the disk are exposed. WRITABLE is the normal state for a disk. A disk can also
+be made READONLY. If the disk is READONLY, disk data and metadata can be read,
+but writes to the disk will fail.</p><p><b>VDS_SP_OFFLINE_SHARED:  </b>All newly discovered
+disks not residing on a shared bus are brought online and made WRITABLE. If the
+disk is offline, no volume devices are exposed for the disk. If the disk is
+online, the volume devices for the disk are exposed. WRITABLE is the normal
+state for a disk. A disk can also be made READONLY. If the disk is READONLY, disk
+data and metadata can be read, but writes to the disk will fail.</p><p><b>VDS_SP_OFFLINE:  </b>All newly discovered disks
+remain offline and READONLY. If the disk is offline, no volume devices are
+exposed for the disk. If the disk is online, the volume devices for the disk
+are exposed. WRITABLE is the normal state for a disk. A disk can also be made
+READONLY. If the disk is READONLY, disk data and metadata can be read, but
+writes to the disk will fail.</p><p><b>VDS_SP_OFFLINE_INTERNAL<a id="Appendix_A_Target_31"></a><a aria-label="Product behavior note 31" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_31" data-linktype="relative-path">&lt;31&gt;</a>:  </b>All newly discovered
+internal disks remain offline and READONLY. If the disk is offline, no volume
+devices are exposed for the disk. If the disk is online, the volume devices for
+the disk are exposed. WRITABLE is the normal state for a disk. A disk can also
+be made READONLY. If the disk is READONLY, disk data and metadata can be read,
+but writes to the disk will fail.</p><p><b>VDS_SP_MAX<a id="Appendix_A_Target_32"></a><a aria-label="Product behavior note 32" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_32" data-linktype="relative-path">&lt;32&gt;</a>:  </b>Denotes
+the maximum acceptable value for this type. VDS_SP_MAX - 1, (&#39;4&#39;), is the
+maximum acceptable value.</p></div>

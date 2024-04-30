@@ -1,0 +1,189 @@
+<div class="content"><p> </p><p>This method sets security properties for a directory object
+specified by a <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_c36db657-3138-4d9a-9289-ded5cbb8b40e" data-linktype="relative-path">directory service</a></span>
+pathname.</p><dl>
+<dd>
+<div><pre> HRESULT S_DSSetObjectSecurity(
+   [in] handle_t hBind,
+   [in, range(1,58)] unsigned long dwObjectType,
+   [in] const wchar_t* pwcsPathName,
+   [in] unsigned long SecurityInformation,
+   [in, unique, size_is(nLength)] unsigned char* pSecurityDescriptor,
+   [in, range(0,524288)] unsigned long nLength
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b>MUST specify an <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle,
+as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>dwObjectType: </b>Specifies the type of object for which
+security properties are to be set. MUST be one of the object types specified in
+section <span><a href="0d63e0e1-8b17-4103-9080-01e6c7c9f61f" data-linktype="relative-path">2.2.8</a></span>.</p><p><b>pwcsPathName: </b>Pointer to a NULL-terminated 16-bit <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a></span> that MUST contain the directory service pathname, as
+specified in section <span><a href="6e03fb44-a705-4728-acca-7c6d7b8d7396" data-linktype="relative-path">2.2.9</a></span>, of the
+object in the directory service.</p><p><b>SecurityInformation: </b>MUST be set by the client to a
+bitwise mask specifying the information to set from the <i>pSecurityDescriptor</i>
+parameter. See the <i>SecurityInformation</i> parameter description in section <span><a href="a7926c44-588a-4347-bed1-6a3ea4dcb281" data-linktype="relative-path">3.1.4.11</a></span>.
+Information in the <i>pSecurityDescriptor</i> parameter not associated with
+bits set in this field MUST be ignored.</p><p><b>pSecurityDescriptor: </b>MUST contain a pointer to a
+security descriptor, as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a></span>,
+or to an <span><a href="10080370-74c8-4325-8d27-35168ff045cb" data-linktype="relative-path">MQDS_PublicKey</a></span>
+structure.<a id="Appendix_A_Target_63"></a><a aria-label="Product behavior note 63" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_63" data-linktype="relative-path">&lt;63&gt;</a> See the <i>pSecurityDescriptor</i>
+parameter description in section 3.1.4.11. Note that where 3.1.4.11 indicates
+that <i>pSecurityDescriptor</i> contains a <span><a href="588d8ab6-a559-4698-af82-8f4d489cfc0e" data-linktype="relative-path">BLOBHEADER</a></span> followed
+by an <span><a href="7567bcfb-7972-4bb9-abcf-c19b2eedf57f" data-linktype="relative-path">RSAPUBKEY (section 2.2.18)</a></span>
+structure, this method actually contains an MQDS_PublicKey structure, which is
+the same structure prefixed by a 4-byte length field.</p><p><b>nLength: </b> MUST be set by the client to the length in
+bytes of the <i>pSecurityDescriptor</i> buffer.</p><p><b>Return Values: </b>If the method succeeds, the return
+value is 0x00000000. If the method fails, the return value is an
+implementation-specific error code.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC extension protocol, as specified in
+[MS-RPCE].</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>The server MAY<a id="Appendix_A_Target_64"></a><a aria-label="Product behavior note 64" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_64" data-linktype="relative-path">&lt;64&gt;</a> forward
+the update to another server.</p>
+</li><li><p><span><span> 
+</span></span>Let <i>dirObject</i> be a directory object and initialized to
+NULL.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>dwObjectType</i> is MQDS_QUEUE:</p>
+<ul><li><p><span><span>  </span></span>Generate
+the <span><a href="d4ae6231-1485-4155-83e2-e6509b3ff5da" data-linktype="relative-path">Get
+Directory Object for Update (section 3.1.6.14)</a></span> event with
+the arguments set to MQDS_QUEUE, <i>pwcsPathName</i>, and NULL respectively. If
+<i>rStatus</i> returned by the event is not MQ_OK, return <i>rStatus</i> and
+take no further action; otherwise, set <i>dirObject</i> to <i>rObject</i>.</p>
+</li><li><p><span><span>  </span></span>Update
+<i>dirObject</i>.<b>Security</b> with information from <i>pSecurityDescriptor</i>
+and <i>SecurityInformation</i>.</p>
+</li><li><p><span><span>  </span></span>Generate
+the <span><a href="2e861a2a-b45d-4268-8403-42e7b2a97a97" data-linktype="relative-path">Commit
+Directory Object Update (section 3.1.6.15)</a></span> event with the
+arguments set to <i>dirObject</i> and &#34;Security&#34; respectively. If <i>rStatus</i>
+returned by the event is not <b>MQ_OK</b>, return <i>rStatus</i> and take no
+further action.</p>
+</li><li><p><span><span>  </span></span>If
+the Computer portion of the <i>dirObject</i>.<b>PathName</b> (as described in <span><a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a></span>
+section <span><a href="../ms-mqmq/0f858702-0f3d-471a-972c-e6706906fa4d" data-linktype="relative-path">2.1.1</a></span>)
+is different from the <b>LocalQueueManager.ComputerName</b>, the server MAY<a id="Appendix_A_Target_65"></a><a aria-label="Product behavior note 65" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_65" data-linktype="relative-path">&lt;65&gt;</a> do the following:</p>
+<ul><li><p><span><span> 
+</span></span>Generate a <span><a href="../ms-mqcn/be84743d-30a7-4fb2-8ec6-7d2443c23913" data-linktype="relative-path">Send Change
+Notification</a></span> event as specified in <span><a href="../ms-mqcn/bacb4ae1-01e4-4eaa-8e1f-c30af0df1a7f" data-linktype="relative-path">[MS-MQCN]</a></span>
+section 3.3.4.1 with the following arguments:</p>
+<ul><li><p><span><span> 
+</span></span><i>iOperation</i> := QueueUpdate</p>
+</li><li><p><span><span> 
+</span></span><i>iDirectoryObject</i> := <i>dirObject</i></p>
+</li></ul></li></ul></li></ul></li><li><p><span><span> 
+</span></span>If the <i>dwObjectType</i> is MQDS_MACHINE:</p>
+<ul><li><p><span><span>  </span></span>If <i>SecurityInformation</i>
+is MQDS_KEYX_PUBLIC_KEY (0x40000000):</p>
+<ul><li><p><span><span> 
+</span></span>Generate the Get Directory Object for Update event with the
+arguments set to MQDS_MACHINE, <i>pwcsPathName</i>, and NULL respectively. If <i>rStatus</i>
+returned by the event is not MQ_OK, return <i>rStatus</i> and take no further
+action; otherwise, set <i>dirObject</i> to <i>rObject</i>.</p>
+</li><li><p><span><span> 
+</span></span>Extract the <b>RSAPUBKEY</b> structure from the <b>abPublicKeyBlob</b>
+field of the MQDS_PublicKey structure to which <i>pSecurityDescriptor</i>
+points. Construct an <span><a href="../ms-mqmq/686a51fe-40cf-49d6-b4b0-576b1a5e59c2" data-linktype="relative-path">MQDSPUBLICKEY</a></span>
+structure, initialized as specified in [MS-MQMQ] section 2.2.1, with the <b>sProviderName</b>
+field set to &#34;Microsoft Base Cryptographic Provider v1.0&#34; and the <b>aBuf</b>
+field set to the <b>RSAPUBKEY</b> structure that was extracted in the previous
+step. Then construct an <span><a href="../ms-mqmq/efa3e184-525e-47da-bf7f-4479444f33df" data-linktype="relative-path">MQDSPUBLICKEYS</a></span>
+structure, initialized as specified in [MS-MQMQ] section 2.2.2, with the
+just-constructed MQDSPUBLICKEY structure as the only element of <b>aPublicKeys</b>.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>dirObject</i>.<b>PublicEncryptionKeyList</b> to the
+MQDSPUBLICKEYS structure.</p>
+</li></ul></li><li><p><span><span>  </span></span>If <i>SecurityInformation</i>
+is MQDS_SIGN_PUBLIC_KEY (0x80000000):</p>
+<ul><li><p><span><span> 
+</span></span>Generate the Get Directory Object for Update event with the
+arguments set to MQDS_MACHINE, <i>pwcsPathName</i>, and NULL respectively. If <i>rStatus</i>
+returned by the event is not <b>MQ_OK</b>, return <i>rStatus</i> and take no
+further action; otherwise, set <i>dirObject</i> to <i>rObject</i>.</p>
+</li><li><p><span><span> 
+</span></span>Extract the <b>RSAPUBKEY</b> structure from the <b>abPublicKeyBlob</b>
+field of the MQDS_PublicKey structure to which <i>pSecurityDescriptor</i>
+points. Construct an MQDSPUBLICKEY structure, initialized as specified in
+[MS-MQMQ] section 2.2.1, with the <b>sProviderName</b> field set to
+&#34;Microsoft Base Cryptographic Provider v1.0&#34; and the <b>aBuf</b>
+field set to the <b>RSAPUBKEY</b> structure that was extracted in the previous
+step. Then construct an MQDSPUBLICKEYS structure, initialized as specified in
+[MS-MQMQ] section 2.2.2, with the just-constructed MQDSPUBLICKEY structure as
+the only element of <b>aPublicKeys</b>.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>dirObject</i>.<b>PublicSigningKeyList</b> to the
+MQDSPUBLICKEYS structure.</p>
+</li></ul></li><li><p><span><span>  </span></span>If <i>SecurityInformation</i>
+is a bitwise OR of any combination of OWNER_SECURITY_INFORMATION,
+GROUP_SECURITY_INFORMATION, SACL_SECURITY_INFORMATION, and
+DACL_SECURITY_INFORMATION:</p>
+<ul><li><p><span><span> 
+</span></span>Generate the Get Directory Object for Update event with the
+arguments set to MQDS_MACHINE, <i>pwcsPathName</i>, and NULL respectively. If <i>rStatus</i>
+returned by the event is not <i>MQ_OK</i>, return <i>rStatus</i> and take no
+further action; otherwise, set <i>dirObject</i> to <i>rObject</i>.</p>
+</li><li><p><span><span> 
+</span></span>Update <i>dirObject</i>.<b>Security</b> with information from <i>pSecurityDescriptor</i>
+and <i>SecurityInformation</i>.</p>
+</li></ul></li><li><p><span><span>  </span></span>If <i>dirObject</i>
+is not NULL:</p>
+<ul><li><p><span><span> 
+</span></span>Generate the Commit Directory Object Update event with the
+arguments set to <i>dirObject</i> and &#34;Security&#34; respectively. If <i>rStatus</i>
+returned by the event is not <i>MQ_OK</i>, return <i>rStatus</i> and take no
+further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the <i>dirObject</i>.<b>Identifier</b> is different from the <b>LocalQueueManager.Identifier</b>,
+the server MAY do the following:<a id="Appendix_A_Target_66"></a><a aria-label="Product behavior note 66" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_66" data-linktype="relative-path">&lt;66&gt;</a></p>
+<ul><li><p><span><span> 
+</span></span>Generate a Send Change Notification event as specified in
+[MS-MQCN] section 3.3.4.1 with the following arguments:</p>
+<ul><li><p><span><span> 
+</span></span><i>iOperation</i> := QueueManagerUpdate</p>
+</li><li><p><span><span> 
+</span></span><i>iDirectoryObject</i> := <i>dirObject</i></p>
+</li></ul></li></ul></li></ul></li><li><p><span><span> 
+</span></span>If the <i>dwObjectType</i> is MQDS_SITE:</p>
+<ul><li><p><span><span>  </span></span>If <i>SecurityInformation</i>
+is MQDS_SIGN_PUBLIC_KEY (0x80000000):</p>
+<ul><li><p><span><span> 
+</span></span>Generate the Get Directory Object for Update event with the
+arguments set to MQDS_SITE, <i>pwcsPathName</i>, and NULL respectively. If <i>rStatus</i>
+returned by the event is not <i>MQ_OK</i>, return <i>rStatus</i> and take no
+further action; otherwise, set <i>dirObject</i> to <i>rObject</i>.</p>
+</li><li><p><span><span> 
+</span></span>Extract the <b>RSAPUBKEY</b> structure from the <b>abPublicKeyBlob</b>
+field of the MQDS_PublicKey structure to which <i>pSecurityDescriptor</i>
+points. Construct an MQDSPUBLICKEY structure, initialized as specified in
+[MS-MQMQ] section 2.2.1, with the <b>sProviderName</b> field set to
+&#34;Microsoft Base Cryptographic Provider v1.0&#34; and the <b>aBuf</b>
+field set to the <b>RSAPUBKEY</b> structure that was extracted in the previous
+step. Then construct an MQDSPUBLICKEYS structure, initialized as specified in
+[MS-MQMQ] section 2.2.2, with the just-constructed MQDSPUBLICKEY structure as
+the only element of <b>aPublicKeys</b>.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>dirObject</i>.<b>PublicSigningKeyList</b> to the
+MQDSPUBLICKEYS structure.</p>
+</li><li><p><span><span> 
+</span></span>Generate the Commit Directory Object Update event with the
+arguments set to <i>dirObject</i> and &#34;Security&#34; respectively. If <i>rStatus</i>
+returned by the event is not MQ_OK, return <i>rStatus</i> and take no further
+action.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>If the <i>dwObjectType</i> is MQDS_CN:</p>
+<ul><li><p><span><span>  </span></span>Generate
+the Get Directory Object for Update event with the arguments set to MQDS_CN, <i>pwcsPathName</i>,
+and NULL respectively. If <i>rStatus</i> returned by the event is not MQ_OK,
+return <i>rStatus</i> and take no further action; otherwise, set <i>dirObject</i>
+to <i>rObject</i>.</p>
+</li><li><p><span><span>  </span></span>Update
+<i>dirObject</i>.<b>Security</b> with information from <i>pSecurityDescriptor</i>
+and <i>SecurityInformation</i>.</p>
+</li><li><p><span><span>  </span></span>Generate
+the Commit Directory Object Update event with the arguments set to <i>dirObject</i>
+and &#34;Security&#34; respectively. If <i>rStatus</i> returned by the event
+is not MQ_OK, return <i>rStatus</i> and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The server MAY<a id="Appendix_A_Target_67"></a><a aria-label="Product behavior note 67" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_67" data-linktype="relative-path">&lt;67&gt;</a> contact
+other servers to propagate the changes.</p>
+</li></ul></div>

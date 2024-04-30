@@ -1,0 +1,44 @@
+<div class="content"><p> </p><p>A <b>SectionBuffer</b> represents a fragment or section of a
+Message Packet (section <span><a href="f9e71595-339a-4cc4-8341-371e0a4cb232" data-linktype="relative-path">2.2.5</a></span>). Operations
+R_StartReceive (Opnum 7) (section <span><a href="1bd20827-f774-4279-ae8d-4898d6faf6e9" data-linktype="relative-path">3.1.4.7</a></span>) and
+R_StartTransactionalReceive (Opnum 13) (section <span><a href="c5296e0c-9e12-4fe8-a25d-56924982ac3e" data-linktype="relative-path">3.1.4.13</a></span>)
+fragment a <b>Message Packet</b> into an array of one or more <b>SectionBuffer</b>
+structures. The client concatenates these fragments to reconstruct a valid <b>Message
+Packet</b>. There can be up to two sections per <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span>. A <b>Message
+Packet</b> is split into two sections only when a subset of the distinguished <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_f8f4c2f5-c760-4abe-a9a1-573302980088" data-linktype="relative-path">message
+body</a></span> property is returned. The first section always contains the
+message body property up to the size requested.</p><dl>
+<dd>
+<div><pre> typedef struct _SectionBuffer {
+   SectionType SectionBufferType;
+   DWORD SectionSizeAlloc;
+   DWORD SectionSize;
+   [unique, size_is(SectionSize)] byte* pSectionBuffer;
+ } SectionBuffer;
+</pre></div>
+</dd></dl><p><b>SectionBufferType:</b>  MUST specify a
+type for the <b>SectionBuffer</b> structure that indicates whether the <b>pSectionBuffer</b>
+member contains the whole <b>Message Packet</b> or MUST indicate which section
+is contained. The SectionType (section <span><a href="f325738c-eca9-4450-b09c-cfe8ade87d81" data-linktype="relative-path">2.2.7</a></span>) enumeration
+lists possible values. More details are specified in 2.2.7.</p><p><b>SectionSizeAlloc:</b>  MUST specify the
+original size (in bytes) of the part of the <b>Message Packet</b> that this <b>SectionBuffer</b>
+represents. When the <b>SectionBuffer</b> represents the first section of the
+message, this field specifies the size that the <b>SectionBuffer</b> would have
+been if the entire message body property were included. The difference between
+the values of the <b>SectionSizeAlloc</b> member and the <b>SectionSize</b>
+member represents the size of the message body that was not transferred.</p><dl>
+<dd>
+<p>If the <b>SectionBufferType</b> member value is
+stFullPacket, stBinarySecondSection, or stSrmpSecondSection, then the <b>SectionSizeAlloc</b>
+member value MUST be equal to the <b>SectionSize</b> member value.</p>
+</dd>
+<dd>
+<p>If the <b>SectionBufferType</b> member value is
+stBinaryFirstSection or stSrmpFirstSection, then the <b>SectionSizeAlloc</b>
+member value MUST be equal to or greater than the <b>SectionSize</b> member
+value. </p>
+</dd></dl><p><b>SectionSize:</b>  MUST be the size (in
+bytes) of the buffer pointed to by the <b>pSectionBuffer</b> member. The <b>SectionSize</b>
+member specifies the size of the part of the <b>Message Packet</b> contained in
+the <b>pSectionBuffer</b> member.</p><p><b>pSectionBuffer:</b>  MUST be a pointer
+to an array of bytes containing a section of the <b>Message Packet</b>.</p></div>

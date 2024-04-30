@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The DRS_MSG_REPSYNC union defines the request messages sent
+to the <span><a href="25c71d91-051f-4c26-977f-a70892f29b00" data-linktype="relative-path">IDL_DRSReplicaSync</a></span>
+method. Only one version, identified by <i>dwVersion</i> = 1, is currently
+defined.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_REPSYNC_V1 V1;
+   [case(2)]
+     DRS_MSG_REPSYNC_V2 V2;
+ } DRS_MSG_REPSYNC;
+</pre></div>
+</dd></dl><p><b>V1:</b>  The version 1 request.</p><p><b>V2:</b>  The version 2 request.</p></div>

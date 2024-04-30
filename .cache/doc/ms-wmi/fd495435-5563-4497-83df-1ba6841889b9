@@ -1,0 +1,34 @@
+<div class="content"><p> </p><p>The <b>SetSD</b> method changes the security descriptor in
+the NamespaceConnection of the namespace. If there is a parent namespace,
+server MUST add access control entries of the parent to the security descriptor
+using the following rules.</p><p>If the Discretionary Access Control List of the parent
+security descriptor is not protected, meaning that if the SE_DACL_PROTECTED bit
+is not set in the parent security descriptor, then execute the following
+algorithm using the DACL of the parent and child security descriptors. </p><p>If the System Access Control List of the parent security
+descriptor is not protected, meaning that if the SE_SACL_PROTECTED bit is not
+set in the parent security descriptor, then execute the following algorithm
+using the SACL of the parent and child security descriptors.</p><ol><li><p><span>    </span>For each Access
+Control Entry of parent ACL, if CONTAINER_INHERIT_ACE bit is not set, then
+ignore this ACE.</p>
+</li><li><p><span>    </span>Otherwise,
+append the parent ACE to the ACL in the child security descriptor. If
+NO_PROPAGATE_INHERIT_ACE bit is set in the parent ACE, server MUST clear the
+CONTAINER_INHERIT_ACE bit from the appended ACE.</p>
+</li><li><p><span>    </span>If
+INHERIT_ONLY_ACE bit is set in the parent ACE, server MUST clear this bit from
+the appended ACE.</p>
+</li></ol><p>This method is called using <span><a href="7a50647a-5311-41c2-8f4f-83bcfb497877" data-linktype="relative-path">IWbemServices</a></span>
+interface as described in section <span><a href="924006e2-78bf-4460-97f0-2e6f4fbb7d51" data-linktype="relative-path">3.2.4.2.5</a></span>.</p><dl>
+<dd>
+<div><pre> void SetSD (
+   [out] Uint32 sd
+ );
+</pre></div>
+</dd></dl><p><b>sd: </b>Exchanges a byte array containing a
+self-relative <span><a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">SECURITY_DESCRIPTOR</a></span>
+structure, as defined in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+(section 2.4.6).</p><dl>
+<dd>
+<p>A return value of 0 indicates success. Any nonzero
+value indicates failure.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p>
+</dd></dl></div>

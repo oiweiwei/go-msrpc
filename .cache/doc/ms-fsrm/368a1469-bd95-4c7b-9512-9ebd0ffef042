@@ -1,0 +1,26 @@
+<div class="content"><p>The FsrmClassificationLoggingFlags enumeration defines the
+different options for logging during automatic classification.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmClassificationLoggingFlags
+ {
+   FsrmClassificationLoggingFlags_None = 0x00000000,
+   FsrmClassificationLoggingFlags_ClassificationsInLogFile = 0x00000001,
+   FsrmClassificationLoggingFlags_ErrorsInLogFile = 0x00000002,
+   FsrmClassificationLoggingFlags_ClassificationsInSystemLog = 0x00000004,
+   FsrmClassificationLoggingFlags_ErrorsInSystemLog = 0x00000008
+ } FsrmClassificationLoggingFlags;
+</pre></div>
+</dd></dl><p><b>FsrmClassificationLoggingFlags_None:</b> 
+Indicates that no flags are set.</p><p><b>FsrmClassificationLoggingFlags_ClassificationsInLogFile:</b> 
+If the FsrmClassificationLoggingFlags_ClassificationsInLogFile flag is set,
+File Server Resource Manager will log how files are classified during automatic
+classification in a log file.</p><p><b>FsrmClassificationLoggingFlags_ErrorsInLogFile:</b> 
+If the FsrmClassificationLoggingFlags_ErrorsInLogFile flag is set, File Server
+Resource Manager will log errors that occur during automatic classification in
+a log file.</p><p><b>FsrmClassificationLoggingFlags_ClassificationsInSystemLog:</b> 
+If the FsrmClassificationLoggingFlags_ClassificationsInSystemLog flag is set,
+File Server Resource Manager will log how files are classified during automatic
+classification in the System event log.</p><p><b>FsrmClassificationLoggingFlags_ErrorsInSystemLog:</b> 
+If the FsrmClassificationLoggingFlags_ErrorsInSystemLog flag is set, File Server
+Resource Manager will log errors that occur during automatic classification in
+the System event log.</p></div>

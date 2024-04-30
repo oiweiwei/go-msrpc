@@ -1,0 +1,43 @@
+<div class="content"><p>The W32TIME_PROVIDER_INFO structure defines information
+about a selected <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9338a1cf-ec11-4e27-a042-dda5324a44fb" data-linktype="relative-path">time
+provider</a> (either an NTP time provider or a hardware time provider).</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned __int32 ulProviderType;
+   [switch_is(ulProviderType)] W32TIME_PROVIDER_DATA ProviderData;
+ } W32TIME_PROVIDER_INFO,
+  *PW32TIME_PROVIDER_INFO;
+</pre></div>
+</dd></dl><p><b>ulProviderType:</b>  The type of time
+provider, which MUST be one of the following values. </p><dl>
+<dd>
+<p>All other values are reserved for
+future use and servers SHOULD NOT send them.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>NTP time provider</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>Hardware time provider</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ProviderData:</b>  A <a href="355526b0-6eca-478b-a936-d2cce25da435" data-linktype="relative-path">W32TIME_PROVIDER_DATA</a>
+union that contains information about the time provider.</p></div>

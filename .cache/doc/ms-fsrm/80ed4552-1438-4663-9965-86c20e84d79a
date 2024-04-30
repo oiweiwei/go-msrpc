@@ -1,0 +1,14 @@
+<div class="content"><p>The File Server Resource Manager (FSRM) Protocol is a set of
+<a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a> <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interfaces</a> for managing the
+configuration of <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_4b48a792-493d-4fa8-9ba8-175d43fb471d" data-linktype="relative-path">directory
+quotas</a>, <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_4029e82b-3938-41a4-9a52-dff21ec37dcb" data-linktype="relative-path">file screens</a>,
+classification properties, <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_4bd4bf29-9046-4cb8-b637-fd107cd756aa" data-linktype="relative-path">classification
+rules</a>, file management jobs, <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_15957e50-08ab-48d2-8824-57a71b23f833" data-linktype="relative-path">report jobs</a>, classifier
+modules, and storage modules on a machine. The File Server Resource Manager
+Protocol deals with operating system, file system, and storage concepts.
+Although the basic concepts are outlined in this specification, the
+specification assumes that the reader has familiarity with these technologies.
+For background information about storage, disk, and <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a> concepts, see <a href="https://go.microsoft.com/fwlink/?LinkId=90139" data-linktype="external">[MSDN-STC]</a>, <a href="https://go.microsoft.com/fwlink/?LinkId=89992" data-linktype="external">[MSDN-DISKMAN]</a>, and <a href="https://go.microsoft.com/fwlink/?LinkId=90059" data-linktype="external">[MSDN-PARTITIONINFO]</a>.</p><p>This protocol is used to programmatically enumerate and
+configure directory quotas, file screens, report jobs, classifier modules, and
+storage modules on local and remote machines.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a></p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are informative.</p></div>

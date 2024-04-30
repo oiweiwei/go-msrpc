@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The DRS_MSG_UPDREFS union defines the request message
+versions sent to the <span><a href="a273bbcf-aeca-4608-8ad4-127d3e597cd4" data-linktype="relative-path">IDL_DRSUpdateRefs</a></span>
+method. Only one version, identified by <i>dwVersion</i> = 1, is currently
+defined.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_UPDREFS_V1 V1;
+   [case(2)]
+     DRS_MSG_UPDREFS_V2 V2;
+ } DRS_MSG_UPDREFS;
+</pre></div>
+</dd></dl><p><b>V1:</b>  The version 1 request.</p><p><b>V2:</b>  The version 2 request.</p></div>

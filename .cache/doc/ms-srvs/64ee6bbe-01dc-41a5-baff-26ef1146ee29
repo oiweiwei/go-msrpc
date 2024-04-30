@@ -1,0 +1,127 @@
+<div class="content"><p> </p><p>The NetrConnectionEnum method lists all the <b>treeconnects</b>
+made to a shared resource on the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> or all <b>treeconnects</b>
+established from a particular computer.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrConnectionEnum(
+   [in, string, unique] SRVSVC_HANDLE ServerName,
+   [in, string, unique] WCHAR* Qualifier,
+   [in, out] LPCONNECT_ENUM_STRUCT InfoStruct,
+   [in] DWORD PreferedMaximumLength,
+   [out] DWORD* TotalEntries,
+   [in, out, unique] DWORD* ResumeHandle
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>An <span><a href="5f8329ee-1965-4ea1-ad35-3b29fbb63232" data-linktype="relative-path">SRVSVC_HANDLE (section 2.2.1.1)</a></span>
+pointer that identifies the server. The <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> MUST map this
+structure to an RPC binding handle (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> sections
+4.3.5 and 5.1.5.2). The server MUST ignore this parameter.</p><p><b>Qualifier: </b>A pointer to a null-terminated
+UTF-16 string that specifies a share name or computer name for the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_866b0055-ceba-4acf-a692-98452943b981" data-linktype="relative-path">connections</a></span>
+of interest to the client.</p><p><b>InfoStruct: </b>A pointer to a structure, in the
+format of a <span><a href="9f2c5d5c-dc41-4d31-b81f-6bf6fa0fe8c3" data-linktype="relative-path">CONNECT_ENUM_STRUCT (section 2.2.4.5)</a></span>.
+The CONNECT_ENUM_STRUCT structure has a <b>Level</b> member that specifies the
+type of structure to return. The <b>Level</b> member MUST be one of the values
+specified in section 2.2.4.5.</p><p><b>PreferedMaximumLength: </b>Specifies the preferred
+maximum length, in bytes, of the returned data. If the value that is specified
+is <span><a href="789ec187-e01b-4da6-a7ff-9cb9e0857230" data-linktype="relative-path">MAX_PREFERRED_LENGTH (section 2.2.2.2)</a></span>,
+the method MUST attempt to return all entries.</p><p><b>TotalEntries: </b>The total number of entries that
+could have been enumerated if the buffer had been big enough to hold all the
+entries.</p><p><b>ResumeHandle: </b>A pointer to a value that
+contains a handle that is used to continue an existing TreeConnect search. The
+handle MUST be zero on the first call and left unchanged for subsequent calls.
+If ResumeHandle is NULL, a resume handle MUST NOT be stored. If this parameter
+is not NULL and the method returns ERROR_MORE_DATA, this parameter receives an
+implementation-specific nonzero value that can be passed in subsequent calls to
+this method to continue with the enumeration.</p><dl>
+<dd>
+<p>If this parameter is NULL or points to 0x00000000,
+the enumeration starts from the beginning of the <b>TreeConnectList</b>.</p>
+</dd></dl><p><b>Return Values: </b>The method returns 0x00000000
+(NERR_Success) to indicate success; otherwise, it returns a nonzero error code.
+The method can take any specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+</p><dl>
+<dd>
+<p>In response to a NetrConnectionEnum request, the
+server MUST enumerate the tree connection entries in <b>TreeConnectList</b>
+based on the value of the <i>ResumeHandle</i> parameter. For each entry, the
+server MUST query <b>treeconnect</b> properties by invoking underlying server
+events as specified in <span><a href="../ms-cifs/d416ff7c-c536-406e-a951-4f04b2fd1d2b" data-linktype="relative-path">[MS-CIFS]</a></span>
+section <span><a href="../ms-cifs/91c2672f-3604-4cc7-8b6e-934ef847d6cc" data-linktype="relative-path">3.3.4.15</a></span>
+and <span><a href="../ms-smb2/5606ad47-5ee0-437a-817e-70c366052962" data-linktype="relative-path">[MS-SMB2]</a></span>
+section <span><a href="../ms-smb2/5ddf1fdc-3b02-45d0-825f-76c296091cc4" data-linktype="relative-path">3.3.4.19</a></span>,
+providing <i>TreeConnect.GlobalTreeConnectId</i> as the input parameter. When
+the server receives STATUS SUCCESS for a <b>treeConnect.GlobalTreeConnectId</b>
+from either a CIFS or SMB2 server, the server MUST consider the received
+CONNECTION_INFO_1 structure as valid, and it MUST continue to query all other <b>treeconnects</b>
+that are established on the server. </p>
+</dd></dl><p>The server MUST filter the results of the queries based on
+the <i>Qualifier</i> input parameter:</p><p>The <i>Qualifier</i> parameter specifies a share name or
+computer name for <b>treeconnects</b> of interest to the client. If the
+Qualifier begins with &#34;\\&#34;, it is considered a computer name. Otherwise,
+it is considered a share name. Share names MUST NOT begin with &#34;\\&#34;.</p><p>If the <i>Qualifier</i> is the name of a share on the
+server, the server MUST return all <b>treeconnects</b> made to that share by
+returning only the entries where <b>treeconnect. coni1_netname</b> matches with
+the Qualifier. </p><p>If the <i>Qualifier</i> is a computer name, the server MUST
+return all <b>treeconnects</b> made from the specified computer to the server
+by returning only the entries where <b>ServerName</b> matches with the <i>Qualifier</i>.</p><p>If the <i>Qualifier</i> parameter is a NULL (zero-length)
+string, or if the length of the <i>Qualifier</i> parameter (including the
+terminating null character) is greater than 1,024, the server MUST fail the
+call with ERROR_INVALID_PARAMETER. </p><p>The <i>Qualifier</i> parameter plays no role in determining
+the value of <i>ResumeHandle</i>. The server uses the <i>ResumeHandle</i>
+parameter to start the enumeration (as described in the processing rules that
+follow for the <i>ResumeHandle</i> parameter), and then applies the <i>Qualifier</i>
+parameter, if specified, to restrict the returned results to only those items
+that pass the qualifier test (as described previously in this topic for <i>Qualifier</i>)
+for share name or computer name.</p><p>The <i>InfoStruct</i> parameter has a <b>Level</b> member.
+The valid values of <b>Level</b> are 0 and 1. If the <b>Level</b> member is not
+equal to one of the valid values, the server MUST fail the call with
+ERROR_INVALID_LEVEL.</p><p>If the <b>Level</b> member is 0, the server MUST return the
+information about <b>treeconnects</b> by filling the <span><a href="eeb410c8-f932-451a-931f-e98a3d6c0e93" data-linktype="relative-path">CONNECT_INFO_0_CONTAINER</a></span>
+structure in the ConnectInfo field of the <i>InfoStruct</i> parameter as
+follows. The CONNECT_INFO_0_CONTAINER structure contains an array of
+CONNECTION_INFO_0 structures.</p><ul><li><p><span><span> 
+</span></span><b>coni0_id</b> MUST be set to <b>treeconnect.GlobalTreeConnectId</b>.</p>
+</li></ul><p>If the <b>Level</b> member is 1, the server MUST return the <b>treeconnects</b>
+by filling the <span><a href="a7d955fb-f062-405b-b93f-45f0face4398" data-linktype="relative-path">CONNECT_INFO_1_CONTAINER</a></span>
+structure in the ConnectInfo field of the <i>InfoStruct</i> parameter. The
+CONNECT_INFO_1_CONTAINER structure contains an array of CONNECTION_INFO_1
+structures.</p><p>The <i>PreferedMaximumLength</i> parameter specifies the
+maximum number of bytes that the server can return for the ConnectInfo buffer.
+If <i>PreferedMaximumLength</i> is insufficient to hold all the entries, the
+server MUST return the maximum number of entries that will fit in the <i>ConnectInfo</i>
+buffer and return ERROR_MORE_DATA. If this parameter is equal to
+MAX_PREFERRED_LENGTH, the server MUST return all the requested data.</p><p>If the server returns NERR_Success or ERROR_MORE_DATA, it
+MUST set the <i>TotalEntries</i> parameter to equal the total number of entries
+passing the qualifier filter that could have been enumerated from the current
+resume position.</p><p>If <i>PreferedMaximumLength</i> is insufficient to hold all
+the entries and if the client has specified a <i>ResumeHandle</i> parameter,
+the server MUST set <i>ResumeHandle</i> to some implementation-specific value
+that allows the server to continue with this enumeration in the <b>TreeConnectList</b>
+on a subsequent call to this method with the same value for the <i>ResumeHandle</i>
+parameter.</p><p>The following rules specify processing of the <i>ResumeHandle</i>
+parameter:</p><ul><li><p><span><span> 
+</span></span>If the <i>ResumeHandle</i> parameter is either NULL or points to
+0x00000000, the enumeration MUST start from the beginning of the <b>TreeConnectList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ResumeHandle</i> parameter points to a nonzero value,
+the server MUST validate the <i>ResumeHandle</i>.</p>
+<ul><li><p><span><span>  </span></span>If
+the value of <i>ResumeHandle</i> is less than the size of the <b>TreeConnectList</b>,
+the server MUST continue enumeration based on the value of <i>ResumeHandle</i>.
+The value of <i>ResumeHandle</i> specifies the index value in the <b>TreeConnectList</b>
+after which enumeration is to begin.</p>
+</li><li><p><span><span>  </span></span>If
+the value of <i>ResumeHandle</i> is greater than or equal to the size of the <b>TreeConnectList</b>,
+the server MUST return NERR_Success and zero entries. fail the call with
+ERROR_INVALID_PARAMETER.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the client specified a <i>ResumeHandle</i> and if the server
+returns ERROR_MORE_DATA (0x000000EA), the server MUST set <i>ResumeHandle</i>
+to the index value of the last enumerated <b>treeconnect</b> in the <b>TreeConnectList</b>.</p>
+</li></ul><p>Because the <i>ResumeHandle</i> specifies the index into the
+<b>TreeConnectList</b>, and the <b>TreeConnectList</b> can be modified between
+multiple requests, the results of a query spanning multiple requests using the <i>ResumeHandle</i>
+can be unreliable, resulting in either duplicate or missed active <b>treeconnects</b>.</p><p>The server SHOULD<a id="Appendix_A_Target_43"></a><a aria-label="Product behavior note 43" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_43" data-linktype="relative-path">&lt;43&gt;</a> enforce
+security measures to verify that the caller has the required permissions to
+execute this routine. If the caller does not have the required credentials, the
+server SHOULD<a id="Appendix_A_Target_44"></a><a aria-label="Product behavior note 44" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_44" data-linktype="relative-path">&lt;44&gt;</a> fail the call.</p></div>

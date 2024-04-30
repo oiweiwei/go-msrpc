@@ -1,0 +1,110 @@
+<div class="content"><p> </p><p>The LsarLookupSids2 method translates a batch of <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security
+principal</a></span> <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SIDs</a></span> to their name
+forms. It also returns the <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domains</a></span> that these
+names are a part of.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarLookupSids2(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PLSAPR_SID_ENUM_BUFFER SidEnumBuffer,
+   [out] PLSAPR_REFERENCED_DOMAIN_LIST* ReferencedDomains,
+   [in, out] PLSAPR_TRANSLATED_NAMES_EX TranslatedNames,
+   [in] LSAP_LOOKUP_LEVEL LookupLevel,
+   [in, out] unsigned long* MappedCount,
+   [in] unsigned long LookupOptions,
+   [in] unsigned long ClientRevision
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>Context handle obtained by an <span><a href="534c8a46-1be7-4065-9f87-e60a1447ae45" data-linktype="relative-path">LsarOpenPolicy</a></span>
+or <span><a href="40a316ae-1bae-4aa1-92cd-650cdaae1863" data-linktype="relative-path">LsarOpenPolicy2</a></span>
+call.</p><p><b>SidEnumBuffer: </b>Contains the SIDs to be
+translated. The SIDs in this structure can be that of users, groups, computers,
+Windows-defined well-known security principals, or domains.</p><p><b>ReferencedDomains: </b>On successful return,
+contains the domain information for the domain to which each security principal
+belongs. The domain information includes a NetBIOS domain name and a domain SID
+for each entry in the list.</p><p><b>TranslatedNames: </b>On successful return,
+contains the corresponding name forms for security principal SIDs in the <i>SidEnumBuffer</i>
+parameter. It MUST be ignored on input.</p><p><b>LookupLevel: </b>Specifies what scopes are to be
+used during translation, as specified in section <span><a href="9d1166cc-bcfd-4e22-a8ac-f55eae57c99f" data-linktype="relative-path">2.2.16</a></span>.</p><p><b>MappedCount: </b>On return, contains the number of
+names that are translated completely to their name forms. It MUST be ignored on
+input.</p><p><b>LookupOptions: </b>Flags that control the lookup
+operation. This parameter is reserved for future use and SHOULD<a id="Appendix_A_Target_33"></a><a aria-label="Product behavior note 33" href="d2715572-2c9b-4198-ace9-316a2fb5d7f5#Appendix_A_33" data-linktype="relative-path">&lt;33&gt;</a> be set to 0.</p><p><b>ClientRevision: </b>Version of the client, which
+implies the client&#39;s capabilities. For possible values and their meanings, see
+section <span><a href="2c0e8a6d-df0f-4c77-bbeb-f7cd0f6b2361" data-linktype="relative-path">3.1.4.5</a></span>.</p><p><b>Return Values: </b>The following table contains a
+summary of the return values that an implementation MUST return, as specified
+by the message processing shown after the table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000107</p>
+  <p>STATUS_SOME_NOT_MAPPED</p>
+  </td>
+  <td>
+  <p>Some of the information to be translated has not been
+  translated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the supplied parameters was invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000073</p>
+  <p>STATUS_NONE_MAPPED</p>
+  </td>
+  <td>
+  <p>None of the information to be translated has been
+  translated.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The behavior required when receiving an LsarLookupSids2
+message MUST be identical to that when receiving an <span><a href="678dd7ed-611b-4d94-8f5c-a06c76ae5c7e" data-linktype="relative-path">LsarLookupSids3</a></span>
+message, with the following exceptions:</p><ul><li><p><span><span> 
+</span></span>This message is valid on non–<span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a></span>
+machines as well as domain controllers.</p>
+</li><li><p><span><span> 
+</span></span><i>LookupLevel</i> values other than LsapLookupWksta are not
+valid if the <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_ae65dac0-cd24-4e83-a946-6d1097b71553" data-linktype="relative-path">RPC server</a></span> is not a
+domain controller. For this condition, the RPC server MUST return an error in
+the return value.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST return STATUS_ACCESS_DENIED if neither of the
+following conditions are true:</p>
+<ol><li><p><span>   
+</span>The RPC_C_AUTHN_NETLOGON security provider (as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/d4097450-c62f-484b-872f-ddf59a7a0d36" data-linktype="relative-path">2.2.1.1.7</a></span>)
+and at least RPC_C_AUTHN_LEVEL_PKT_INTEGRITY authentication level (as specified
+in [MS-RPCE] section <span><a href="../ms-rpce/425a7c53-c33a-4868-8e5b-2a850d40dc73" data-linktype="relative-path">2.2.1.1.8</a></span>)
+were used in this <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> message.</p>
+</li><li><p><span>   
+</span>The PolicyHandle was granted POLICY_LOOKUP_NAMES access.</p>
+</li></ol></li></ul></div>

@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>ORPC_EXTENT_ARRAY is an array of <span><a href="ef4cb798-89e7-40a7-961d-92fafa85f829" data-linktype="relative-path">ORPC_EXTENT</a></span>
+structures.</p><dl>
+<dd>
+<div><pre> typedef struct tagORPC_EXTENT_ARRAY {
+   unsigned long size;
+   unsigned long reserved;
+   [size_is((size+1)&amp;~1,), unique] 
+     ORPC_EXTENT** extent;
+ } ORPC_EXTENT_ARRAY;
+</pre></div>
+</dd></dl><p><b>size:</b>   This MUST specify the number
+of non-NULL elements in the extent field.</p><p><b>reserved:</b>  This MUST be set to zero
+when sent and MUST be ignored on receipt.</p><p><b>extent:</b>   This MUST be an array of
+ORPC_EXTENTs. The array size MUST be a multiple of 2 for alignment reasons.</p></div>

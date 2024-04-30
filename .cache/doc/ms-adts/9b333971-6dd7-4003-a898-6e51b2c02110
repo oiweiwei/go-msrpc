@@ -1,0 +1,187 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9b333971-6dd7-4003-a898-6e51b2c02110" data-linktype="external">msdn link</a></p><p>The NETLOGON_SAM_LOGON_RESPONSE structure is the first
+extended version of the server&#39;s response to an <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_a01cea16-0836-469c-81d4-9eeb52be1ad6" data-linktype="relative-path">LDAP ping</a> (section <a href="895a7744-aff3-4f64-bcfa-f8c05915d2e9" data-linktype="relative-path">6.3.3</a>) or a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_0a5fd868-ff77-4beb-838e-79f98cbe3898" data-linktype="relative-path">mailslot ping</a> (section <a href="2cff75a9-5871-4493-a704-017b506f8df0" data-linktype="relative-path">6.3.5</a>).</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Opcode</p>
+  </td>
+  <td colspan="16">
+  <p>UnicodeLogonServer
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UnicodeUserName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UnicodeDomainName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DomainGuid
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NullGuid
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DnsForestName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DnsDomainName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DnsHostName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DcIpAddress</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NtVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>LmNtToken</p>
+  </td>
+  <td colspan="16">
+  <p>Lm20Token</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Opcode (2 bytes): </b>Operation code (see section <a href="07133ff2-a9a3-4aa9-8896-a7dcb53bdfe9" data-linktype="relative-path">6.3.1.3</a>).</p><p><b>UnicodeLogonServer (variable): </b>Null-terminated
+<a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> value of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_b86c44e6-57df-4c48-8163-5e3fa7bdcff4" data-linktype="relative-path">NetBIOS</a> name of the server.
+This field always contains at least one character: the null terminator. Each
+Unicode value is encoded as 2 bytes.</p><p><b>UnicodeUserName (variable): </b>Null-terminated
+Unicode value of the name of the user copied directly from the client&#39;s
+request. This field always contains at least one character: the null
+terminator. Each Unicode value is encoded as 2 bytes.</p><p><b>UnicodeDomainName (variable): </b>Null-terminated
+Unicode value of the NetBIOS name of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_784c7cce-f782-48d8-9444-c9030ba86942" data-linktype="relative-path">NC</a>. This field always
+contains at least one character: the null terminator. Each Unicode value is
+encoded as 2 bytes.</p><p><b>DomainGuid (16 bytes): </b>The value of the NC&#39;s <b>GUID</b>
+<a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a> specified as a
+<a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> structure, which is
+defined in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a>.</p><p><b>NullGuid (16 bytes): </b>A <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_ba500a5b-8c29-467c-a335-0980c8b11304" data-linktype="relative-path">NULL GUID</a>. The GUID
+structure is defined in [MS-DTYP] section 2.3.4. Always set zero values for all
+fields in the GUID structure.</p><p><b>DnsForestName (variable): </b><a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_409411c4-b4ed-4ab6-b0ee-6d7815f85a35" data-linktype="relative-path">UTF-8</a> encoded value of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a> <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a> name, compressed as
+specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90264" data-linktype="external">[RFC1035]</a>
+section 4.1.4. To get the decompressed string, see section <a href="b0ef9479-78d8-40c1-b6d2-0baad834ed39" data-linktype="relative-path">6.3.7</a>.</p><p><b>DnsDomainName (variable): </b>UTF-8 encoded value
+of the DNS NC name, compressed as specified in [RFC1035] section 4.1.4. To get
+the decompressed string, see section 6.3.7.</p><p><b>DnsHostName (variable): </b>UTF-8 encoded value of
+the DNS server name, compressed as specified in [RFC1035] section 4.1.4. To get
+the decompressed string, see section 6.3.7.</p><p><b>DcIpAddress (4 bytes): </b>The <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a> IP
+address, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=392659" data-linktype="external">[RFC791]</a>.</p><p><b>Flags (4 bytes): </b>DS_FLAG Options (see section <a href="f55d3f53-351d-4407-940e-f53eb6154af0" data-linktype="relative-path">6.3.1.2</a>).</p><p><b>NtVersion (4 bytes): </b>Set to
+NETLOGON_NT_VERSION_1 | NETLOGON_NT_VERSION_5.</p><p><b>LmNtToken (2 bytes): </b>This MUST be set to
+0xFFFF.</p><p><b>Lm20Token (2 bytes): </b>This MUST be set to
+0xFFFF.</p><p><b>Note</b>  All multibyte quantities are
+represented in little-endian byte order.</p></div>

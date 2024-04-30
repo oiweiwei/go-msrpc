@@ -1,0 +1,2425 @@
+import "ms-dtyp.idl";
+import "ms-dcom.idl";
+ 
+interface IEnumVdsObject;
+interface IVdsAdviseSink;
+interface IVdsAsync;
+interface IVdsServiceLoader;
+interface IVdsService;
+interface IVdsServiceInitialization;
+interface IVdsServiceUninstallDisk;
+interface IVdsServiceHba;
+interface IVdsServiceIscsi;
+interface IVdsServiceSAN;
+interface IVdsServiceSw;
+interface IVdsHbaPort;
+interface IVdsIscsiInitiatorAdapter;
+interface IVdsIscsiInitiatorPortal;
+interface IVdsProvider;
+interface IVdsSwProvider;
+interface IVdsHwProvider;
+interface IVdsVdProvider;
+interface IVdsSubSystemImportTarget;
+interface IVdsPack;
+interface IVdsPack2;
+interface IVdsDisk;
+interface IVdsDisk2;
+interface IVdsDisk3;
+interface IVdsAdvancedDisk;
+interface IVdsAdvancedDisk2;
+interface IVdsAdvancedDisk3;
+interface IVdsCreatePartitionEx;
+interface IVdsDiskOnline;
+interface IVdsDiskPartitionMF;
+interface IVdsDiskPartitionMF2;
+interface IVdsRemovable;
+interface IVdsVolume;
+interface IVdsVolume2;
+interface IVdsVolumeMF;
+interface IVdsVolumeMF2;
+interface IVdsVolumeMF3;
+interface IVdsVolumeShrink;
+interface IVdsVolumeOnline;
+interface IVdsVolumePlex;
+interface IVdsVDisk;
+interface IVdsOpenVDisk;
+ 
+ 
+#define MAX_PATH                    0x00000104
+#define MAX_FS_NAME_SIZE            0x00000008
+ 
+typedef GUID                        VDS_OBJECT_ID;
+ 
+const unsigned long VER_VDS_LUN_INFORMATION     = 0x00000001;
+ 
+typedef enum _VDS_HEALTH
+{
+    VDS_H_UNKNOWN                   = 0x00000000,
+    VDS_H_HEALTHY                   = 0x00000001,
+    VDS_H_REBUILDING                = 0x00000002,
+    VDS_H_STALE                     = 0x00000003,
+    VDS_H_FAILING                   = 0x00000004,
+    VDS_H_FAILING_REDUNDANCY        = 0x00000005,
+    VDS_H_FAILED_REDUNDANCY         = 0x00000006,
+    VDS_H_FAILED_REDUNDANCY_FAILING = 0x00000007,
+    VDS_H_FAILED                    = 0x00000008
+} VDS_HEALTH;
+ 
+typedef enum _VDS_NOTIFICATION_TARGET_TYPE
+{
+    VDS_NTT_UNKNOWN                 = 0x00000000,
+    VDS_NTT_PACK                    = 0x0000000A,
+    VDS_NTT_VOLUME                  = 0x0000000B,
+    VDS_NTT_DISK                    = 0x0000000D,
+    VDS_NTT_PARTITION               = 0x0000003C,
+    VDS_NTT_DRIVE_LETTER            = 0x0000003D,
+    VDS_NTT_FILE_SYSTEM             = 0x0000003E,
+    VDS_NTT_MOUNT_POINT             = 0x0000003F,
+    VDS_NTT_SERVICE                 = 0x000000C8
+} VDS_NOTIFICATION_TARGET_TYPE;
+ 
+typedef enum _VDS_ASYNC_OUTPUT_TYPE
+{
+    VDS_ASYNCOUT_UNKNOWN            = 0,
+    VDS_ASYNCOUT_CREATEVOLUME       = 1,
+    VDS_ASYNCOUT_EXTENDVOLUME       = 2,
+    VDS_ASYNCOUT_SHRINKVOLUME       = 3,
+    VDS_ASYNCOUT_ADDVOLUMEPLEX      = 4,
+    VDS_ASYNCOUT_BREAKVOLUMEPLEX    = 5,
+    VDS_ASYNCOUT_REMOVEVOLUMEPLEX   = 6,
+    VDS_ASYNCOUT_REPAIRVOLUMEPLEX   = 7,
+    VDS_ASYNCOUT_RECOVERPACK        = 8,
+    VDS_ASYNCOUT_REPLACEDISK        = 9,
+    VDS_ASYNCOUT_CREATEPARTITION    = 10,
+    VDS_ASYNCOUT_CLEAN              = 11,
+    VDS_ASYNCOUT_CREATELUN          = 50,
+    VDS_ASYNCOUT_FORMAT             = 101,
+    VDS_ASYNCOUT_CREATE_VDISK       = 200,
+    VDS_ASYNCOUT_SURFACE_VDISK      = 201,
+    VDS_ASYNCOUT_COMPACT_VDISK      = 202,
+    VDS_ASYNCOUT_MERGE_VDISK        = 203,
+    VDS_ASYNCOUT_EXPAND_VDISK       = 204
+} VDS_ASYNC_OUTPUT_TYPE;
+ 
+typedef enum _VDS_STORAGE_BUS_TYPE
+{
+    VDSBusTypeUnknown               = 0x00000000,
+    VDSBusTypeScsi                  = 0x00000001,
+    VDSBusTypeAtapi                 = 0x00000002,
+    VDSBusTypeAta                   = 0x00000003,
+    VDSBusType1394                  = 0x00000004,
+    VDSBusTypeSsa                   = 0x00000005,
+    VDSBusTypeFibre                 = 0x00000006,
+    VDSBusTypeUsb                   = 0x00000007,
+    VDSBusTypeRAID                  = 0x00000008,
+    VDSBusTypeiScsi                 = 0x00000009,
+    VDSBusTypeSas                   = 0x0000000A,
+    VDSBusTypeSata                  = 0x0000000B,
+    VDSBusTypeSd                    = 0x0000000C,
+    VDSBusTypeMmc                   = 0x0000000D,
+    VDSBusTypeMax                   = 0x0000000E,
+    VDSBusTypeVirtual               = 0x0000000E,
+    VDSBusTypeFileBackedVirtual     = 0x0000000F,
+    VDSBusTypeSpaces                = 0x00000010,
+    VDSBusTypeMaxReserved           = 0x0000007F
+} VDS_STORAGE_BUS_TYPE;
+ 
+typedef enum _VDS_STORAGE_IDENTIFIER_CODE_SET
+{
+    VDSStorageIdCodeSetReserved     = 0x00000000,
+    VDSStorageIdCodeSetBinary       = 0x00000001,
+    VDSStorageIdCodeSetAscii        = 0x00000002,
+    VDSStorageIdCodeSetUtf8         = 0x00000003
+} VDS_STORAGE_IDENTIFIER_CODE_SET;
+ 
+typedef enum _VDS_STORAGE_IDENTIFIER_TYPE
+{
+    VDSStorageIdTypeVendorSpecific              = 0x00000000,
+    VDSStorageIdTypeVendorId                    = 0x00000001,
+    VDSStorageIdTypeEUI64                       = 0x00000002,
+    VDSStorageIdTypeFCPHName                    = 0x00000003,
+    VDSStorageIdTypePortRelative                = 0x00000004,
+    VDSStorageIdTypeTargetPortGroup             = 0x00000005,
+    VDSStorageIdTypeLogicalUnitGroup            = 0x00000006,
+    VDSStorageIdTypeMD5LogicalUnitIdentifier    = 0x00000007,
+    VDSStorageIdTypeScsiNameString              = 0x00000008
+} VDS_STORAGE_IDENTIFIER_TYPE;
+ 
+typedef enum _VDS_INTERCONNECT_ADDRESS_TYPE
+{
+    VDS_IA_UNKNOWN                  = 0x00000000,
+    VDS_IA_FCFS                     = 0x00000001,
+    VDS_IA_FCPH                     = 0x00000002,
+    VDS_IA_FCPH3                    = 0x00000003,
+    VDS_IA_MAC                      = 0x00000004,
+    VDS_IA_SCSI                     = 0x00000005
+} VDS_INTERCONNECT_ADDRESS_TYPE;
+ 
+typedef enum _VDS_FILE_SYSTEM_TYPE
+{
+    VDS_FST_UNKNOWN                 = 0x00000000,
+    VDS_FST_RAW                     = 0x00000001,
+    VDS_FST_FAT                     = 0x00000002,
+    VDS_FST_FAT32                   = 0x00000003,
+    VDS_FST_NTFS                    = 0x00000004,
+    VDS_FST_CDFS                    = 0x00000005,
+    VDS_FST_UDF                     = 0x00000006,
+    VDS_FST_EXFAT                   = 0x00000007,
+    VDS_FST_CSVFS                   = 0x00000008,
+    VDS_FST_REFS                    = 0x00000009
+} VDS_FILE_SYSTEM_TYPE;
+ 
+typedef enum _VDS_FILE_SYSTEM_FLAG
+{
+    VDS_FSF_SUPPORT_FORMAT          = 0x00000001,
+    VDS_FSF_SUPPORT_QUICK_FORMAT    = 0x00000002,
+    VDS_FSF_SUPPORT_COMPRESS        = 0x00000004,
+    VDS_FSF_SUPPORT_SPECIFY_LABEL   = 0x00000008,
+    VDS_FSF_SUPPORT_MOUNT_POINT     = 0x00000010,
+    VDS_FSF_SUPPORT_REMOVABLE_MEDIA = 0x00000020,
+    VDS_FSF_SUPPORT_EXTEND          = 0x00000040,
+    VDS_FSF_ALLOCATION_UNIT_512     = 0x00010000,
+    VDS_FSF_ALLOCATION_UNIT_1K      = 0x00020000,
+    VDS_FSF_ALLOCATION_UNIT_2K      = 0x00040000,
+    VDS_FSF_ALLOCATION_UNIT_4K      = 0x00080000,
+    VDS_FSF_ALLOCATION_UNIT_8K      = 0x00100000,
+    VDS_FSF_ALLOCATION_UNIT_16K     = 0x00200000,
+    VDS_FSF_ALLOCATION_UNIT_32K     = 0x00400000,
+    VDS_FSF_ALLOCATION_UNIT_64K     = 0x00800000,
+    VDS_FSF_ALLOCATION_UNIT_128K    = 0x01000000,
+    VDS_FSF_ALLOCATION_UNIT_256K    = 0x02000000
+} VDS_FILE_SYSTEM_FLAG;
+ 
+typedef enum _VDS_FILE_SYSTEM_PROP_FLAG
+{
+    VDS_FPF_COMPRESSED              = 0x00000001
+} VDS_FILE_SYSTEM_PROP_FLAG;
+ 
+typedef enum _VDS_FILE_SYSTEM_FORMAT_SUPPORT_FLAG
+{
+    VDS_FSS_DEFAULT                 = 0x00000001,
+    VDS_FSS_PREVIOUS_REVISION       = 0x00000002,
+    VDS_FSS_RECOMMENDED             = 0x00000004
+} VDS_FILE_SYSTEM_FORMAT_SUPPORT_FLAG;
+ 
+typedef enum _VDS_DISK_EXTENT_TYPE
+{
+    VDS_DET_UNKNOWN                 = 0x00000000,
+    VDS_DET_FREE                    = 0x00000001,
+    VDS_DET_DATA                    = 0x00000002,
+    VDS_DET_OEM                     = 0x00000003,
+    VDS_DET_ESP                     = 0x00000004,
+    VDS_DET_MSR                     = 0x00000005,
+    VDS_DET_LDM                     = 0x00000006,
+    VDS_DET_UNUSABLE                = 0x00007FFF
+} VDS_DISK_EXTENT_TYPE;
+ 
+typedef enum _VDS_PARTITION_STYLE
+{
+    VDS_PST_UNKNOWN                 = 0x00000000,
+    VDS_PST_MBR                     = 0x00000001,
+    VDS_PST_GPT                     = 0x00000002
+} VDS_PARTITION_STYLE;
+ 
+typedef enum _VDS_PARTITION_FLAG
+{
+    VDS_PTF_SYSTEM                  = 0x00000001
+} VDS_PARTITION_FLAG;
+ 
+typedef enum _VDS_VOLUME_TYPE
+{
+    VDS_VT_UNKNOWN                  = 0x00000000,
+    VDS_VT_SIMPLE                   = 0x0000000A,
+    VDS_VT_SPAN                     = 0x0000000B,
+    VDS_VT_STRIPE                   = 0x0000000C,
+    VDS_VT_MIRROR                   = 0x0000000D,
+    VDS_VT_PARITY                   = 0x0000000E
+} VDS_VOLUME_TYPE;
+ 
+typedef enum _VDS_TRANSITION_STATE
+{
+    VDS_TS_UNKNOWN                  = 0x00000000,
+    VDS_TS_STABLE                   = 0x00000001,
+    VDS_TS_EXTENDING                = 0x00000002,
+    VDS_TS_SHRINKING                = 0x00000003,
+    VDS_TS_RECONFIGING              = 0x00000004
+} VDS_TRANSITION_STATE;
+ 
+typedef enum _VDS_FORMAT_OPTION_FLAGS
+{
+    VDS_FSOF_NONE                   = 0x00000000,
+    VDS_FSOF_FORCE                  = 0x00000001,
+    VDS_FSOF_QUICK                  = 0x00000002,
+    VDS_FSOF_COMPRESSION            = 0x00000004,
+    VDS_FSOF_DUPLICATE_METADATA     = 0x00000008
+} VDS_FORMAT_OPTION_FLAGS;
+ 
+typedef enum _VDS_DISK_FLAG
+{
+    VDS_DF_AUDIO_CD                 = 0x1,
+    VDS_DF_HOTSPARE                 = 0x2,
+    VDS_DF_RESERVE_CAPABLE          = 0x4,
+    VDS_DF_MASKED                   = 0x8,
+    VDS_DF_STYLE_CONVERTIBLE        = 0x10,
+    VDS_DF_CLUSTERED                = 0x20,
+    VDS_DF_READ_ONLY                = 0x40,
+    VDS_DF_SYSTEM_DISK              = 0x80,
+    VDS_DF_BOOT_DISK                = 0x100,
+    VDS_DF_PAGEFILE_DISK            = 0x200,
+    VDS_DF_HIBERNATIONFILE_DISK     = 0x400,
+    VDS_DF_CRASHDUMP_DISK           = 0x800,
+    VDS_DF_HAS_ARC_PATH             = 0x1000,
+    VDS_DF_DYNAMIC                  = 0x2000,
+    VDS_DF_BOOT_FROM_DISK           = 0x4000,
+    VDS_DF_CURRENT_READ_ONLY        = 0x8000
+} VDS_DISK_FLAG;
+ 
+typedef enum _VDS_DISK_STATUS
+{
+    VDS_DS_UNKNOWN      = 0x00000000,
+    VDS_DS_ONLINE       = 0x00000001,
+    VDS_DS_NOT_READY    = 0x00000002,
+    VDS_DS_NO_MEDIA     = 0x00000003,
+    VDS_DS_OFFLINE      = 0x00000004,
+    VDS_DS_FAILED       = 0x00000005,
+    VDS_DS_MISSING      = 0x00000006
+} VDS_DISK_STATUS;
+ 
+typedef enum _VDS_LUN_RESERVE_MODE
+{
+    VDS_LRM_NONE            = 0x00000000,
+    VDS_LRM_EXCLUSIVE_RW    = 0x00000001,
+    VDS_LRM_EXCLUSIVE_RO    = 0x00000002,
+    VDS_LRM_SHARED_RO       = 0x00000003,
+    VDS_LRM_SHARED_RW       = 0x00000004
+} VDS_LUN_RESERVE_MODE;
+ 
+typedef enum _VDS_VOLUME_STATUS
+{
+    VDS_VS_UNKNOWN                  = 0x00000000,
+    VDS_VS_ONLINE                   = 0x00000001,
+    VDS_VS_NO_MEDIA                 = 0x00000003,
+    VDS_VS_OFFLINE                  = 0x00000004,
+    VDS_VS_FAILED                   = 0x00000005
+} VDS_VOLUME_STATUS;
+ 
+typedef enum _VDS_VOLUME_FLAG
+{
+    VDS_VF_SYSTEM_VOLUME                = 0x00000001,
+    VDS_VF_BOOT_VOLUME                  = 0x00000002,
+    VDS_VF_ACTIVE                       = 0x00000004,
+    VDS_VF_READONLY                     = 0x00000008,
+    VDS_VF_HIDDEN                       = 0x00000010,
+    VDS_VF_CAN_EXTEND                   = 0x00000020,
+    VDS_VF_CAN_SHRINK                   = 0x00000040,
+    VDS_VF_PAGEFILE                     = 0x00000080,
+    VDS_VF_HIBERNATION                  = 0x00000100,
+    VDS_VF_CRASHDUMP                    = 0x00000200,
+    VDS_VF_INSTALLABLE                  = 0x00000400,
+    VDS_VF_LBN_REMAP_ENABLED            = 0x00000800,
+    VDS_VF_FORMATTING                   = 0x00001000,
+    VDS_VF_NOT_FORMATTABLE              = 0x00002000,
+    VDS_VF_NTFS_NOT_SUPPORTED           = 0x00004000,
+    VDS_VF_FAT32_NOT_SUPPORTED          = 0x00008000,
+    VDS_VF_FAT_NOT_SUPPORTED            = 0x00010000,
+    VDS_VF_NO_DEFAULT_DRIVE_LETTER      = 0x00020000,
+    VDS_VF_PERMANENTLY_DISMOUNTED       = 0x00040000,
+    VDS_VF_PERMANENT_DISMOUNT_SUPPORTED = 0x00080000,
+    VDS_VF_SHADOW_COPY                  = 0x00100000,
+    VDS_VF_FVE_ENABLED                  = 0x00200000,
+    VDS_VF_DIRTY                        = 0x00400000,
+    VDS_VF_REFS_NOT_SUPPORTED           = 0x00800000
+} VDS_VOLUME_FLAG;
+ 
+typedef struct _VDS_PACK_NOTIFICATION
+{
+    unsigned long                   ulEvent;
+    VDS_OBJECT_ID                   packId;
+} VDS_PACK_NOTIFICATION;
+ 
+typedef struct _VDS_DISK_NOTIFICATION
+{
+    unsigned long                   ulEvent;
+    VDS_OBJECT_ID                   diskId;
+} VDS_DISK_NOTIFICATION;
+ 
+typedef struct _VDS_VOLUME_NOTIFICATION
+{
+    unsigned long                   ulEvent;  
+    VDS_OBJECT_ID                   volumeId;
+    VDS_OBJECT_ID                   plexId;
+    unsigned long                   ulPercentCompleted;
+} VDS_VOLUME_NOTIFICATION;
+ 
+typedef struct _VDS_PARTITION_NOTIFICATION
+{
+    unsigned long                   ulEvent;  
+    VDS_OBJECT_ID                   diskId;
+    ULONGLONG                       ullOffset;
+} VDS_PARTITION_NOTIFICATION;
+ 
+typedef struct _VDS_DRIVE_LETTER_NOTIFICATION
+{
+    unsigned long                   ulEvent;
+    WCHAR                           wcLetter;
+    VDS_OBJECT_ID                   volumeId;
+} VDS_DRIVE_LETTER_NOTIFICATION;
+ 
+typedef struct _VDS_FILE_SYSTEM_NOTIFICATION
+{
+    unsigned long                   ulEvent;
+    VDS_OBJECT_ID                   volumeId;
+    DWORD                           dwPercentCompleted;
+} VDS_FILE_SYSTEM_NOTIFICATION;
+ 
+typedef struct _VDS_MOUNT_POINT_NOTIFICATION
+{
+    unsigned long                   ulEvent;
+    VDS_OBJECT_ID                   volumeId;
+} VDS_MOUNT_POINT_NOTIFICATION;
+ 
+typedef enum _VDS_RECOVER_ACTION
+{
+    VDS_RA_UNKNOWN  = 0,
+    VDS_RA_REFRESH  = 1,
+    VDS_RA_RESTART  = 2
+} VDS_RECOVER_ACTION;
+ 
+typedef struct _VDS_SERVICE_NOTIFICATION
+{
+    ULONG                           ulEvent;
+    VDS_RECOVER_ACTION              action;
+} VDS_SERVICE_NOTIFICATION;
+ 
+typedef struct _VDS_NOTIFICATION
+{
+    VDS_NOTIFICATION_TARGET_TYPE        objectType;
+    [switch_is(objectType)] union
+    {
+    [case(VDS_NTT_PACK)]
+        VDS_PACK_NOTIFICATION           Pack;
+    [case(VDS_NTT_DISK)]
+        VDS_DISK_NOTIFICATION           Disk;
+    [case(VDS_NTT_VOLUME)]
+        VDS_VOLUME_NOTIFICATION         Volume;
+    [case(VDS_NTT_PARTITION)]
+        VDS_PARTITION_NOTIFICATION      Partition;
+    [case(VDS_NTT_DRIVE_LETTER)]
+        VDS_DRIVE_LETTER_NOTIFICATION   Letter;
+    [case(VDS_NTT_FILE_SYSTEM)]
+        VDS_FILE_SYSTEM_NOTIFICATION    FileSystem;
+    [case(VDS_NTT_MOUNT_POINT)]
+        VDS_MOUNT_POINT_NOTIFICATION    MountPoint;
+    [case(VDS_NTT_SERVICE)]
+        VDS_SERVICE_NOTIFICATION        Service;    };
+} VDS_NOTIFICATION;
+ 
+typedef struct _VDS_ASYNC_OUTPUT {
+    VDS_ASYNC_OUTPUT_TYPE type;
+    [switch_is(type)] union
+    {
+    [case(VDS_ASYNCOUT_CREATEPARTITION)]
+        struct _cp
+        {
+            ULONGLONG         ullOffset;
+            VDS_OBJECT_ID     volumeId;
+        } cp;
+    [case(VDS_ASYNCOUT_CREATEVOLUME)]
+        struct _cv
+        {
+            IUnknown          *pVolumeUnk;
+        } cv;
+    [case(VDS_ASYNCOUT_BREAKVOLUMEPLEX)]
+        struct _bvp
+        {
+            IUnknown          *pVolumeUnk;
+        } bvp;
+    [case(VDS_ASYNCOUT_SHRINKVOLUME)]
+        struct _sv
+        {
+            ULONGLONG         ullReclaimedBytes;
+        } sv;
+    [case(VDS_ASYNCOUT_CREATE_VDISK)]
+        struct _cvd
+        {
+            IUnknown        *pVDiskUnk;
+        } cvd;    
+    [default];
+    } async_output;
+} VDS_ASYNC_OUTPUT;
+ 
+typedef struct _VDS_PARTITION_INFO_MBR
+{
+    byte                            partitionType;
+    boolean                         bootIndicator;
+    boolean                         recognizedPartition;
+    DWORD                           hiddenSectors;
+} VDS_PARTITION_INFO_MBR;
+ 
+typedef struct _VDS_PARTITION_INFO_GPT 
+{
+    GUID                            partitionType;
+    GUID                            partitionId;
+    ULONGLONG                       attributes;
+    WCHAR                           name[36];
+} VDS_PARTITION_INFO_GPT;
+ 
+typedef struct _VDS_STORAGE_IDENTIFIER
+{
+    VDS_STORAGE_IDENTIFIER_CODE_SET m_CodeSet;
+    VDS_STORAGE_IDENTIFIER_TYPE     m_Type;
+    unsigned long                   m_cbIdentifier;
+    [size_is(m_cbIdentifier)] byte  *m_rgbIdentifier;
+} VDS_STORAGE_IDENTIFIER;
+ 
+typedef struct _VDS_STORAGE_DEVICE_ID_DESCRIPTOR
+{
+    unsigned long                   m_version;
+    unsigned long                   m_cIdentifiers;
+    [size_is(m_cIdentifiers)] VDS_STORAGE_IDENTIFIER 
+                                    *m_rgIdentifiers;
+} VDS_STORAGE_DEVICE_ID_DESCRIPTOR;
+ 
+typedef struct _VDS_INTERCONNECT
+{
+    VDS_INTERCONNECT_ADDRESS_TYPE   m_addressType;
+    unsigned long                   m_cbPort;
+    [size_is(m_cbPort)] byte        *m_pbPort;
+    unsigned long                   m_cbAddress;
+    [size_is(m_cbAddress)] byte     *m_pbAddress;
+} VDS_INTERCONNECT;
+ 
+typedef struct _VDS_LUN_INFORMATION
+{
+    unsigned long                       m_version;
+    byte                                m_DeviceType;
+    byte                                m_DeviceTypeModifier;
+    long                                m_bCommandQueuing;
+    VDS_STORAGE_BUS_TYPE                m_BusType;
+    [string] char                       * m_szVendorId;
+    [string] char                       * m_szProductId;
+    [string] char                       * m_szProductRevision;
+    [string] char                       * m_szSerialNumber;
+    GUID                                m_diskSignature;
+    VDS_STORAGE_DEVICE_ID_DESCRIPTOR    m_deviceIdDescriptor;
+    unsigned long                       m_cInterconnects;
+    [size_is(m_cInterconnects)] VDS_INTERCONNECT * 
+                                        m_rgInterconnects;
+} VDS_LUN_INFORMATION;
+ 
+typedef struct _VDS_FILE_SYSTEM_PROP
+{
+    VDS_FILE_SYSTEM_TYPE            type;
+    VDS_OBJECT_ID                   volumeId;
+    unsigned long                   ulFlags;
+    ULONGLONG                       ullTotalAllocationUnits;
+    ULONGLONG                       ullAvailableAllocationUnits;
+    unsigned long                   ulAllocationUnitSize;
+    [string] WCHAR                  *pwszLabel;
+} VDS_FILE_SYSTEM_PROP, *PVDS_FILE_SYSTEM_PROP;
+ 
+typedef struct _VDS_FILE_SYSTEM_FORMAT_SUPPORT_PROP
+{
+    unsigned long                   ulFlags;
+    unsigned short                  usRevision;
+    unsigned long                   ulDefaultUnitAllocationSize;
+    unsigned long               
+                                    rgulAllowedUnitAllocationSizes[32];
+    WCHAR                           wszName[32];
+} VDS_FILE_SYSTEM_FORMAT_SUPPORT_PROP,
+  *PVDS_FILE_SYSTEM_FORMAT_SUPPORT_PROP;
+ 
+typedef struct _VDS_DISK_EXTENT
+{
+    VDS_OBJECT_ID                   diskId;
+    VDS_DISK_EXTENT_TYPE            type;
+    ULONGLONG                       ullOffset;
+    ULONGLONG                       ullSize;
+    VDS_OBJECT_ID                   volumeId;
+    VDS_OBJECT_ID                   plexId;
+    unsigned long                   memberIdx;
+} VDS_DISK_EXTENT, *PVDS_DISK_EXTENT;
+ 
+typedef struct _VDS_DISK_FREE_EXTENT
+{
+    VDS_OBJECT_ID           diskId;
+    ULONGLONG               ullOffset;
+    ULONGLONG               ullSize;
+} VDS_DISK_FREE_EXTENT, *PVDS_DISK_FREE_EXTENT;
+ 
+typedef struct _VDS_PARTITION_PROP
+{
+    VDS_PARTITION_STYLE             PartitionStyle;
+    unsigned long                   ulFlags;
+    unsigned long                   ulPartitionNumber;
+    ULONGLONG                       ullOffset;
+    ULONGLONG                       ullSize;
+    [switch_is(PartitionStyle)] union
+    {
+    [case(VDS_PST_MBR)]
+        VDS_PARTITION_INFO_MBR      Mbr;
+    [case(VDS_PST_GPT)]
+        VDS_PARTITION_INFO_GPT      Gpt;
+    [default];
+    };
+} VDS_PARTITION_PROP;
+ 
+typedef struct _VDS_INPUT_DISK
+{
+    VDS_OBJECT_ID                   diskId;
+    ULONGLONG                       ullSize;
+    VDS_OBJECT_ID                   plexId;
+    unsigned long                   memberIdx;
+} VDS_INPUT_DISK;
+ 
+typedef struct _CREATE_PARTITION_PARAMETERS
+{
+    VDS_PARTITION_STYLE style;
+    [switch_is(style)] union
+    {
+    [case(VDS_PST_MBR)] 
+        struct _MbrPartInfo
+        {
+            byte                    partitionType;
+            boolean                 bootIndicator;
+        } MbrPartInfo;
+    [case(VDS_PST_GPT)] 
+        struct _GptPartInfo
+        {
+            GUID                    partitionType;
+            GUID                    partitionId;
+            ULONGLONG               attributes;
+            WCHAR                   name[24];
+        } GptPartInfo;
+    [default];
+    };
+} CREATE_PARTITION_PARAMETERS;
+ 
+typedef struct _VIRTUAL_STORAGE_TYPE
+{
+    ULONG                           DeviceId;
+    GUID                            VendorId;
+} VIRTUAL_STORAGE_TYPE, *PVIRTUAL_STORAGE_TYPE;
+ 
+typedef enum tag_VDS_PARTITION_STYLE 
+{
+    VDS_PARTITION_STYLE_MBR         = 0,
+    VDS_PARTITION_STYLE_GPT         = 1,
+    VDS_PARTITION_STYLE_RAW         = 2
+} __VDS_PARTITION_STYLE2; /* add 2 */
+ 
+//THEEND
+typedef enum _VDS_OBJECT_TYPE
+{
+    VDS_OT_UNKNOWN                  = 0x00000000,
+    VDS_OT_PROVIDER                 = 0x00000001,
+    VDS_OT_PACK                     = 0x0000000A,
+    VDS_OT_VOLUME                   = 0x0000000B,
+    VDS_OT_VOLUME_PLEX              = 0x0000000C,
+    VDS_OT_DISK                     = 0x0000000D,
+    VDS_OT_HBAPORT                  = 0x0000005A,
+    VDS_OT_INIT_ADAPTER             = 0x0000005B,
+    VDS_OT_INIT_PORTAL              = 0x0000005C,
+    VDS_OT_ASYNC                    = 0x00000064,
+    VDS_OT_ENUM                     = 0x00000065,
+    VDS_OT_VDISK                    = 0x000000C8,
+    VDS_OT_OPEN_VDISK               = 0x000000C9
+} VDS_OBJECT_TYPE;
+ 
+typedef enum _VDS_SERVICE_FLAG
+{
+    VDS_SVF_SUPPORT_DYNAMIC             = 0x00000001,
+    VDS_SVF_SUPPORT_FAULT_TOLERANT      = 0x00000002,
+    VDS_SVF_SUPPORT_GPT                 = 0x00000004,
+    VDS_SVF_SUPPORT_DYNAMIC_1394        = 0x00000008,
+    VDS_SVF_CLUSTER_SERVICE_CONFIGURED  = 0x00000010,
+    VDS_SVF_AUTO_MOUNT_OFF              = 0x00000020,
+    VDS_SVF_OS_UNINSTALL_VALID          = 0x00000040,
+    VDS_SVF_EFI                         = 0x00000080,
+    VDS_SVF_SUPPORT_MIRROR              = 0x00000100,
+    VDS_SVF_SUPPORT_RAIDS               = 0x00000200,
+    VDS_SVF_SUPPORT_REFS                = 0x00000400, //XXX: trim L
+} VDS_SERVICE_FLAG;
+ 
+typedef enum _VDS_PROVIDER_TYPE
+{
+    VDS_PT_UNKNOWN                  = 0x00000000,
+    VDS_PT_SOFTWARE                 = 0x00000001,
+    VDS_PT_HARDWARE                 = 0x00000002,
+    VDS_PT_VIRTUALDISK              = 0x00000003,
+    VDS_PT_MAX                      = 0x00000004
+} VDS_PROVIDER_TYPE;
+ 
+typedef enum _VDS_PROVIDER_FLAG
+{
+    VDS_PF_DYNAMIC                          = 0x00000001,
+    VDS_PF_INTERNAL_HARDWARE_PROVIDER       = 0x00000002,
+    VDS_PF_ONE_DISK_ONLY_PER_PACK           = 0x00000004,
+    VDS_PF_ONE_PACK_ONLINE_ONLY             = 0x00000008,
+    VDS_PF_VOLUME_SPACE_MUST_BE_CONTIGUOUS  = 0x00000010,
+    VDS_PF_SUPPORT_MIRROR                   = 0x00000020,
+    VDS_PF_SUPPORT_RAID5                    = 0x00000040,
+    VDS_PF_SUPPORT_DYNAMIC_1394             = 0x20000000,
+    VDS_PF_SUPPORT_FAULT_TOLERANT           = 0x40000000,
+    VDS_PF_SUPPORT_DYNAMIC                  = 0x80000000
+} VDS_PROVIDER_FLAG;
+ 
+typedef enum _VDS_QUERY_PROVIDER_FLAG
+{
+    VDS_QUERY_SOFTWARE_PROVIDERS    = 0x1,
+    VDS_QUERY_HARDWARE_PROVIDERS    = 0x2,
+    VDS_QUERY_VIRTUALDISK_PROVIDERS = 0x4
+} VDS_QUERY_PROVIDER_FLAG;
+ 
+const unsigned long VDS_NF_PACK_ARRIVE              = 0x00000001;
+const unsigned long VDS_NF_PACK_DEPART              = 0x00000002;
+const unsigned long VDS_NF_PACK_MODIFY              = 0x00000003;
+ 
+const unsigned long VDS_NF_VOLUME_ARRIVE            = 0x00000004;
+const unsigned long VDS_NF_VOLUME_DEPART            = 0x00000005;
+const unsigned long VDS_NF_VOLUME_MODIFY            = 0x00000006;
+const unsigned long VDS_NF_VOLUME_REBUILDING_PROGRESS  
+                                                    = 0x00000007;
+ 
+const unsigned long VDS_NF_DISK_ARRIVE              = 0x00000008;
+const unsigned long VDS_NF_DISK_DEPART              = 0x00000009;
+const unsigned long VDS_NF_DISK_MODIFY              = 0x0000000A;
+ 
+const unsigned long VDS_NF_PARTITION_ARRIVE         = 0x0000000B;
+const unsigned long VDS_NF_PARTITION_DEPART         = 0x0000000C;
+const unsigned long VDS_NF_PARTITION_MODIFY         = 0x0000000D;
+ 
+const unsigned long VDS_NF_DRIVE_LETTER_FREE        = 0x000000C9;
+const unsigned long VDS_NF_DRIVE_LETTER_ASSIGN      = 0x000000CA;
+ 
+const unsigned long VDS_NF_FILE_SYSTEM_MODIFY       = 0x000000CB;
+const unsigned long VDS_NF_FILE_SYSTEM_FORMAT_PROGRESS 
+                                                    = 0x000000CC;
+ 
+const unsigned long VDS_NF_MOUNT_POINTS_CHANGE      = 0x000000CD;
+ 
+ 
+ 
+const ULONG VDS_NF_SERVICE_OUT_OF_SYNC              = 0x0000012D;
+ 
+typedef enum _VDS_DRIVE_LETTER_FLAG
+{
+    VDS_DLF_NON_PERSISTENT  = 0x00000001
+} VDS_DRIVE_LETTER_FLAG;
+ 
+typedef enum _VDS_PACK_STATUS
+{
+    VDS_PS_UNKNOWN  = 0x00000000,
+    VDS_PS_ONLINE   = 0x00000001,
+    VDS_PS_OFFLINE  = 0x00000004
+} VDS_PACK_STATUS;
+ 
+typedef enum _VDS_PACK_FLAG
+{
+    VDS_PKF_FOREIGN         = 0x00000001,
+    VDS_PKF_NOQUORUM        = 0x00000002,
+    VDS_PKF_POLICY          = 0x00000004,
+    VDS_PKF_CORRUPTED       = 0x00000008,
+    VDS_PKF_ONLINE_ERROR    = 0x00000010
+} VDS_PACK_FLAG;
+ 
+typedef enum _VDS_DISK_OFFLINE_REASON
+{
+    VDSDiskOfflineReasonNone            = 0,
+    VDSDiskOfflineReasonPolicy          = 1,
+    VDSDiskOfflineReasonRedundantPath   = 2,
+    VDSDiskOfflineReasonSnapshot        = 3,
+    VDSDiskOfflineReasonCollision       = 4,
+    VDSDiskOfflineReasonResourceExhaustion = 5,
+    VDSDiskOfflineReasonWriteFailure = 6,
+    VDSDiskOfflineReasonDIScan = 7
+  } VDS_DISK_OFFLINE_REASON;
+ 
+typedef enum _VDS_VOLUME_PLEX_TYPE
+{
+    VDS_VPT_UNKNOWN = 0x00000000,
+    VDS_VPT_SIMPLE  = 0x0000000A,
+    VDS_VPT_SPAN    = 0x0000000B,
+    VDS_VPT_STRIPE  = 0x0000000C,
+    VDS_VPT_PARITY  = 0x0000000E
+} VDS_VOLUME_PLEX_TYPE;
+ 
+typedef enum _VDS_VOLUME_PLEX_STATUS
+{
+    VDS_VPS_UNKNOWN     = 0x00000000,
+    VDS_VPS_ONLINE      = 0x00000001,
+    VDS_VPS_NO_MEDIA    = 0x00000003,
+    VDS_VPS_FAILED      = 0x00000005
+} VDS_VOLUME_PLEX_STATUS;
+ 
+typedef enum _VDS_IPADDRESS_TYPE
+{
+    VDS_IPT_TEXT    = 0x00000000,
+    VDS_IPT_IPV4    = 0x00000001,
+    VDS_IPT_IPV6    = 0x00000002,
+    VDS_IPT_EMPTY   = 0x00000003
+} VDS_IPADDRESS_TYPE;
+ 
+typedef enum _VDS_HBAPORT_TYPE
+{
+    VDS_HPT_UNKNOWN     = 0x00000001,
+    VDS_HPT_OTHER       = 0x00000002,
+    VDS_HPT_NOTPRESENT  = 0x00000003,
+    VDS_HPT_NPORT       = 0x00000005,
+    VDS_HPT_NLPORT      = 0x00000006,
+    VDS_HPT_FLPORT      = 0x00000007,
+    VDS_HPT_FPORT       = 0x00000008,
+    VDS_HPT_EPORT       = 0x00000009,
+    VDS_HPT_GPORT       = 0x0000000A,
+    VDS_HPT_LPORT       = 0x00000014,
+    VDS_HPT_PTP         = 0x00000015
+} VDS_HBAPORT_TYPE;
+ 
+typedef enum _VDS_HBAPORT_STATUS
+{
+    VDS_HPS_UNKNOWN     = 0x00000001,
+    VDS_HPS_ONLINE      = 0x00000002,
+    VDS_HPS_OFFLINE     = 0x00000003,
+    VDS_HPS_BYPASSED    = 0x00000004,
+    VDS_HPS_DIAGNOSTICS = 0x00000005,
+    VDS_HPS_LINKDOWN    = 0x00000006,
+    VDS_HPS_ERROR       = 0x00000007,
+    VDS_HPS_LOOPBACK    = 0x00000008
+} VDS_HBAPORT_STATUS;
+ 
+typedef enum _VDS_HBAPORT_SPEED_FLAG
+{
+    VDS_HSF_UNKNOWN         = 0x00000000,
+    VDS_HSF_1GBIT           = 0x00000001,
+    VDS_HSF_2GBIT           = 0x00000002,
+    VDS_HSF_10GBIT          = 0x00000004,
+    VDS_HSF_4GBIT           = 0x00000008,
+    VDS_HSF_NOT_NEGOTIATED  = 0x00008000
+} VDS_HBAPORT_SPEED_FLAG;
+ 
+typedef enum _VDS_PATH_STATUS
+{
+    VDS_MPS_UNKNOWN     = 0x00000000,
+    VDS_MPS_ONLINE      = 0x00000001,
+    VDS_MPS_FAILED      = 0x00000005,
+    VDS_MPS_STANDBY     = 0x00000007
+} VDS_PATH_STATUS;
+ 
+typedef struct VDS_REPARSE_POINT_PROP
+{
+    VDS_OBJECT_ID   SourceVolumeId;
+    [string] WCHAR  *pwszPath;
+} VDS_REPARSE_POINT_PROP, *PVDS_REPARSE_POINT_PROP;
+ 
+typedef struct _VDS_DRIVE_LETTER_PROP
+{
+    WCHAR           wcLetter;
+    VDS_OBJECT_ID   volumeId;
+    unsigned long   ulFlags;
+    long            bUsed;
+} VDS_DRIVE_LETTER_PROP, *PVDS_DRIVE_LETTER_PROP;
+ 
+ 
+// IVdsServiceSAN
+ 
+typedef  enum  _VDS_SAN_POLICY
+{
+    VDS_SP_UNKNOWN                = 0x0,
+    VDS_SP_ONLINE                 = 0x1,
+    VDS_SP_OFFLINE_SHARED         = 0x2,
+    VDS_SP_OFFLINE                = 0x3,
+    VDS_SP_OFFLINE_INTERNAL       = 0x4,
+    VDS_SP_MAX                    = 0x5
+} VDS_SAN_POLICY;
+ 
+ 
+typedef struct _VDS_FILE_SYSTEM_TYPE_PROP
+{
+    VDS_FILE_SYSTEM_TYPE    type;
+    WCHAR                   wszName[8];
+    unsigned long           ulFlags;
+    unsigned long           ulCompressionFlags;
+    unsigned long           ulMaxLabelLength;
+    [string] WCHAR          *pwszIllegalLabelCharSet;
+} VDS_FILE_SYSTEM_TYPE_PROP, *PVDS_FILE_SYSTEM_TYPE_PROP;
+ 
+typedef struct _CHANGE_ATTRIBUTES_PARAMETERS
+{
+    VDS_PARTITION_STYLE style;   // legal values: MBR or GPT
+    [switch_is(style)] union
+    {
+        [case(VDS_PST_MBR)] 
+        struct _MbrPartInfo
+        {
+            boolean     bootIndicator;
+        } MbrPartInfo;
+ 
+        [case(VDS_PST_GPT)] 
+        struct _GptPartInfo
+        {
+            ULONGLONG   attributes;
+        } GptPartInfo;
+ 
+        [default];
+    } change_attributes_parameters;
+} CHANGE_ATTRIBUTES_PARAMETERS;
+ 
+typedef struct _CHANGE_PARTITION_TYPE_PARAMETERS
+{
+    VDS_PARTITION_STYLE style;
+    [switch_is(style)] union
+    {
+        [case(VDS_PST_MBR)]
+        struct _MbrPartInfo
+        {
+            byte        partitionType;
+        } MbrPartInfo;
+ 
+        [case(VDS_PST_GPT)]
+        struct _GptPartInfo
+        {
+            GUID        partitionType;
+        } GptPartInfo;
+ 
+        [default];
+    } change_partition_type_parameters;
+ 
+} CHANGE_PARTITION_TYPE_PARAMETERS;
+ 
+typedef struct _VDS_WWN
+{
+    unsigned char   rguchWwn[8];
+} VDS_WWN;
+ 
+typedef struct _VDS_IPADDRESS
+{
+    VDS_IPADDRESS_TYPE  type;
+    unsigned long       ipv4Address;
+    unsigned char       ipv6Address[16];
+    unsigned long       ulIpv6FlowInfo;
+    unsigned long       ulIpv6ScopeId;
+    WCHAR               wszTextAddress[256 + 1];
+    unsigned long       ulPort;
+} VDS_IPADDRESS;
+ 
+typedef struct _VDS_ISCSI_SHARED_SECRET
+{
+    [size_is(ulSharedSecretSize)] unsigned char *
+        pSharedSecret;
+    unsigned long       ulSharedSecretSize;
+} VDS_ISCSI_SHARED_SECRET;
+ 
+typedef struct _VDS_SERVICE_PROP
+{
+    [string] WCHAR  *pwszVersion;
+    unsigned long   ulFlags;
+} VDS_SERVICE_PROP;
+ 
+typedef struct _VDS_HBAPORT_PROP
+{
+    VDS_OBJECT_ID       id;
+    VDS_WWN             wwnNode;
+    VDS_WWN             wwnPort;
+    VDS_HBAPORT_TYPE    type;
+    VDS_HBAPORT_STATUS  status;
+    unsigned long       ulPortSpeed;
+    unsigned long       ulSupportedPortSpeed;
+} VDS_HBAPORT_PROP;
+ 
+typedef struct _VDS_ISCSI_INITIATOR_ADAPTER_PROP
+{
+    VDS_OBJECT_ID   id;
+    [string] WCHAR  *pwszName;
+} VDS_ISCSI_INITIATOR_ADAPTER_PROP;
+ 
+typedef struct _VDS_ISCSI_INITIATOR_PORTAL_PROP
+{
+    VDS_OBJECT_ID   id;
+    VDS_IPADDRESS   address;
+    unsigned long   ulPortIndex;
+} VDS_ISCSI_INITIATOR_PORTAL_PROP;
+ 
+typedef struct _VDS_PROVIDER_PROP
+{
+    VDS_OBJECT_ID       id;
+    [string] WCHAR      *pwszName;
+    GUID                            guidVersionId;
+    [string] WCHAR                  *pwszVersion;
+    VDS_PROVIDER_TYPE               type;
+    unsigned long                   ulFlags;
+    unsigned long                   ulStripeSizeFlags;
+    short                           sRebuildPriority;
+} VDS_PROVIDER_PROP;
+ 
+typedef struct _VDS_PACK_PROP
+{
+    VDS_OBJECT_ID                   id;
+    [string] WCHAR                  *pwszName;
+    VDS_PACK_STATUS                 status;
+    unsigned long                   ulFlags;
+} VDS_PACK_PROP, *PVDS_PACK_PROP;
+ 
+typedef struct _VDS_DISK_PROP
+{
+    VDS_OBJECT_ID                   id;
+    VDS_DISK_STATUS                 status;
+    VDS_LUN_RESERVE_MODE            ReserveMode;
+    VDS_HEALTH                      health;
+    DWORD                           dwDeviceType;
+    DWORD                           dwMediaType;
+    ULONGLONG                       ullSize;
+    unsigned long                   ulBytesPerSector;
+    unsigned long                   ulSectorsPerTrack;
+    unsigned long                   ulTracksPerCylinder;
+    unsigned long                   ulFlags;
+    VDS_STORAGE_BUS_TYPE            BusType;
+    VDS_PARTITION_STYLE             PartitionStyle;
+    [switch_is(PartitionStyle)] union
+    {
+        [case(VDS_PST_MBR)]
+        DWORD                       dwSignature;
+        [case(VDS_PST_GPT)]
+        GUID                        DiskGuid;
+        [default];
+    };
+    [string] WCHAR                  *pwszDiskAddress;
+    [string] WCHAR                  *pwszName;
+    [string] WCHAR                  *pwszFriendlyName;
+    [string] WCHAR                  *pwszAdaptorName;
+    [string] WCHAR                  *pwszDevicePath;
+} VDS_DISK_PROP, *PVDS_DISK_PROP;
+ 
+typedef struct _VDS_DISK_PROP2
+{
+    VDS_OBJECT_ID                   id;
+    VDS_DISK_STATUS                 status;
+    VDS_LUN_RESERVE_MODE            ReserveMode;
+    VDS_HEALTH                      health;
+    DWORD                           dwDeviceType;
+    DWORD                           dwMediaType;
+    ULONGLONG                       ullSize;
+    unsigned long                   ulBytesPerSector;
+    unsigned long                   ulSectorsPerTrack;
+    unsigned long                   ulTracksPerCylinder;
+    unsigned long                   ulFlags;
+    VDS_STORAGE_BUS_TYPE            BusType;
+    VDS_PARTITION_STYLE             PartitionStyle;
+    [switch_is(PartitionStyle)] union
+    {
+        [case(VDS_PST_MBR)]
+        DWORD                       dwSignature;
+        [case(VDS_PST_GPT)]
+        GUID                        DiskGuid;
+        [default];
+    };
+    [string] WCHAR                  *pwszDiskAddress;
+    [string] WCHAR                  *pwszName;
+    [string] WCHAR                  *pwszFriendlyName;
+    [string] WCHAR                  *pwszAdaptorName;
+    [string] WCHAR                  *pwszDevicePath;
+    [string] WCHAR                  *pwszLocationPath;
+} VDS_DISK_PROP2, *PVDS_DISK_PROP2;
+ 
+typedef struct _VDS_ADVANCEDDISK_PROP
+{
+    [string] LPWSTR     pwszId;
+    [string] LPWSTR     pwszPathname;
+    [string] LPWSTR     pwszLocation;
+    [string] LPWSTR     pwszFriendlyName;
+    [string] LPWSTR     pswzIdentifier;
+    USHORT              usIdentifierFormat;
+    ULONG               ulNumber;
+    [string] LPWSTR     pwszSerialNumber;
+    [string] LPWSTR     pwszFirmwareVersion;
+    [string] LPWSTR     pwszManufacturer;
+    [string] LPWSTR     pwszModel;
+    ULONGLONG           ullTotalSize;
+    ULONGLONG           ullAllocatedSize;
+    ULONG               ulLogicalSectorSize;
+    ULONG               ulPhysicalSectorSize;
+    ULONG               ulPartitionCount;
+    VDS_DISK_STATUS     status;
+    VDS_HEALTH          health;
+    VDS_STORAGE_BUS_TYPE BusType;
+    VDS_PARTITION_STYLE PartitionStyle;
+    [switch_is(PartitionStyle)] union
+    {
+    [case(VDS_PST_MBR)]
+        DWORD               dwSignature;    
+    [case(VDS_PST_GPT)]
+        GUID                DiskGuid;
+    [default];
+    };
+    ULONG               ulFlags;
+    DWORD               dwDeviceType;
+ 
+} VDS_ADVANCEDDISK_PROP, *PVDS_ADVANCEDDISK_PROP;
+ 
+typedef struct _VDS_VOLUME_PROP
+{
+    VDS_OBJECT_ID                  id;
+    VDS_VOLUME_TYPE                type;
+    VDS_VOLUME_STATUS              status;
+    VDS_HEALTH                     health;
+    VDS_TRANSITION_STATE           TransitionState;
+    ULONGLONG                      ullSize;
+    unsigned long                  ulFlags;
+    VDS_FILE_SYSTEM_TYPE           RecommendedFileSystemType;
+    [string] WCHAR                 *pwszName; 
+} VDS_VOLUME_PROP, *PVDS_VOLUME_PROP;
+ 
+typedef struct _VDS_VOLUME_PROP2
+{
+    VDS_OBJECT_ID                  id;
+    VDS_VOLUME_TYPE                type;
+    VDS_VOLUME_STATUS              status;
+    VDS_HEALTH                     health;
+    VDS_TRANSITION_STATE           TransitionState;
+    ULONGLONG                      ullSize;
+    unsigned long                  ulFlags;
+    VDS_FILE_SYSTEM_TYPE           RecommendedFileSystemType;
+    ULONG                          cbUniqueId;
+    [string] WCHAR                 *pwszName;
+    [size_is(cbUniqueId)] BYTE     *pUniqueId; 
+} VDS_VOLUME_PROP2, *PVDS_VOLUME_PROP2;
+ 
+typedef struct _VDS_VOLUME_PLEX_PROP
+{
+    VDS_OBJECT_ID           id;
+    VDS_VOLUME_PLEX_TYPE    type;
+    VDS_VOLUME_PLEX_STATUS  status;
+    VDS_HEALTH              health;
+    VDS_TRANSITION_STATE    TransitionState;
+    ULONGLONG               ullSize;
+    unsigned long           ulStripeSize;
+    unsigned long           ulNumberOfMembers;
+} VDS_VOLUME_PLEX_PROP, *PVDS_VOLUME_PLEX_PROP;
+ 
+typedef enum _CREATE_VIRTUAL_DISK_FLAG
+{
+    CREATE_VIRTUAL_DISK_FLAG_NONE                      = 0x0,
+    CREATE_VIRTUAL_DISK_FLAG_FULL_PHYSICAL_ALLOCATION  = 0x1
+} CREATE_VIRTUAL_DISK_FLAG;
+ 
+typedef enum _OPEN_VIRTUAL_DISK_FLAG
+{
+    OPEN_VIRTUAL_DISK_FLAG_NONE           = 0x0,
+    OPEN_VIRTUAL_DISK_FLAG_NO_PARENTS     = 0x1,
+    OPEN_VIRTUAL_DISK_FLAG_BLANK_FILE     = 0x2,
+    OPEN_VIRTUAL_DISK_FLAG_BOOT_DRIVE     = 0x4
+} OPEN_VIRTUAL_DISK_FLAG;
+ 
+typedef struct _VDS_CREATE_VDISK_PARAMETERS
+{
+    GUID                   UniqueId;  
+    ULONGLONG              MaximumSize;
+    ULONG                  BlockSizeInBytes;
+    ULONG                  SectorSizeInBytes;
+    [string] LPWSTR        pParentPath;
+    [string] LPWSTR        pSourcePath;
+} VDS_CREATE_VDISK_PARAMETERS, *PVDS_CREATE_VDISK_PARAMETERS;
+ 
+typedef enum _VDS_VDISK_STATE 
+{
+    VDS_VST_UNKNOWN        = 0,
+    VDS_VST_ADDED,
+    VDS_VST_OPEN,
+    VDS_VST_ATTACH_PENDING,
+    VDS_VST_ATTACHED_NOT_OPEN,
+    VDS_VST_ATTACHED,
+    VDS_VST_DETACH_PENDING,
+    VDS_VST_COMPACTING,
+    VDS_VST_MERGING,
+    VDS_VST_EXPANDING,
+    VDS_VST_DELETED,
+    VDS_VST_MAX
+} VDS_VDISK_STATE;
+ 
+typedef enum _ATTACH_VIRTUAL_DISK_FLAG
+{
+    ATTACH_VIRTUAL_DISK_FLAG_NONE                  = 0x00000000,
+    ATTACH_VIRTUAL_DISK_FLAG_READ_ONLY             = 0x00000001,
+    ATTACH_VIRTUAL_DISK_FLAG_NO_DRIVE_LETTER       = 0x00000002,
+    ATTACH_VIRTUAL_DISK_FLAG_PERMANENT_LIFETIME    = 0x00000004,
+    ATTACH_VIRTUAL_DISK_FLAG_NO_LOCAL_HOST         = 0x00000008,
+} ATTACH_VIRTUAL_DISK_FLAG;
+ 
+typedef enum _DETACH_VIRTUAL_DISK_FLAG
+{
+    DETACH_VIRTUAL_DISK_FLAG_NONE    = 0x00000000
+} DETACH_VIRTUAL_DISK_FLAG;
+ 
+typedef enum _COMPACT_VIRTUAL_DISK_FLAG
+{
+    COMPACT_VIRTUAL_DISK_FLAG_NONE      = 0x00000000
+} COMPACT_VIRTUAL_DISK_FLAG;
+ 
+typedef enum _MERGE_VIRTUAL_DISK_FLAG
+{
+    MERGE_VIRTUAL_DISK_FLAG_NONE        = 0x00000000
+} MERGE_VIRTUAL_DISK_FLAG;
+ 
+typedef enum _EXPAND_VIRTUAL_DISK_FLAG
+{
+    EXPAND_VIRTUAL_DISK_FLAG_NONE       = 0x00000000
+} EXPAND_VIRTUAL_DISK_FLAG;
+ 
+typedef enum _DEPENDENT_DISK_FLAG
+{
+    DEPENDENT_DISK_FLAG_NONE                   = 0x0,
+    DEPENDENT_DISK_FLAG_MULT_BACKING_FILES     = 0x1,
+    DEPENDENT_DISK_FLAG_FULLY_ALLOCATED        = 0x2,
+    DEPENDENT_DISK_FLAG_READ_ONLY              = 0x4,
+    DEPENDENT_DISK_FLAG_REMOTE                 = 0x8,
+    DEPENDENT_DISK_FLAG_SYSTEM_VOLUME          = 0x10,
+    DEPENDENT_DISK_FLAG_SYSTEM_VOLUME_PARENT   = 0x20,
+    DEPENDENT_DISK_FLAG_REMOVABLE              = 0x40,
+    DEPENDENT_DISK_FLAG_NO_DRIVE_LETTER        = 0x80,
+    DEPENDENT_DISK_FLAG_PARENT                 = 0x100,
+    DEPENDENT_DISK_FLAG_NO_HOST_DISK           = 0x200,
+    DEPENDENT_DISK_FLAG_PERMANENT_LIFETIME     = 0x400
+} DEPENDENT_DISK_FLAG;
+ 
+typedef struct _VDS_VDISK_PROPERTIES
+{
+    VDS_OBJECT_ID             Id;
+    VDS_VDISK_STATE           State;
+    VIRTUAL_STORAGE_TYPE      VirtualDeviceType;
+    ULONGLONG                 VirtualSize;
+    ULONGLONG                 PhysicalSize;
+    [string] LPWSTR           pPath;
+    [string] LPWSTR           pDeviceName;
+    DEPENDENT_DISK_FLAG       DiskFlag;
+    BOOL                      bIsChild;
+    [string] LPWSTR           pParentPath;
+} VDS_VDISK_PROPERTIES, *PVDS_VDISK_PROPERTIES;
+ 
+typedef enum _VIRTUAL_DISK_ACCESS_MASK
+{
+    VIRTUAL_DISK_ACCESS_SURFACE_RO      = 0x00010000,
+    VIRTUAL_DISK_ACCESS_SURFACE_RW      = 0x00020000,
+    VIRTUAL_DISK_ACCESS_UNSURFACE       = 0x00040000,
+    VIRTUAL_DISK_ACCESS_GET_INFO        = 0x00080000,
+    VIRTUAL_DISK_ACCESS_CREATE          = 0x00100000,
+    VIRTUAL_DISK_ACCESS_METAOPS         = 0x00200000,
+    VIRTUAL_DISK_ACCESS_READ            = 0x000d0000,
+    VIRTUAL_DISK_ACCESS_ALL             = 0x003f0000,
+    VIRTUAL_DISK_ACCESS_WRITABLE        = 0x00320000
+} VIRTUAL_DISK_ACCESS_MASK;
+ 
+// XXX: define in other place.
+// typedef struct _VIRTUAL_STORAGE_TYPE *PVIRTUAL_STORAGE_TYPE;
+ 
+ 
+[
+    object,
+    uuid(118610b7-8d94-4030-b5b8-500889788e4e),
+    pointer_default(unique)
+]
+interface IEnumVdsObject : IUnknown
+{
+    [helpstring("method Next")]
+    HRESULT Next(
+                [in]  unsigned long celt,
+                [out, size_is(celt), length_is(*pcFetched)] 
+                    IUnknown        **ppObjectArray,
+                [out] unsigned long *pcFetched
+            );
+ 
+    [helpstring("method Skip")]
+    HRESULT Skip(
+                [in] unsigned long  celt
+            );
+ 
+    [helpstring("method Reset")]
+    HRESULT Reset();
+ 
+    [helpstring("method Clone")]
+    HRESULT Clone(
+                [out] IEnumVdsObject    **ppEnum
+            );
+}
+ 
+[
+    object,
+    uuid(8326cd1d-cf59-4936-b786-5efc08798e25),
+    pointer_default(unique)
+]
+interface IVdsAdviseSink : IUnknown
+{
+    [helpstring("method OnNotify")]
+    HRESULT OnNotify(
+           [in, range(1, 100)] long    lNumberOfNotifications,
+           [in, size_is(lNumberOfNotifications)]
+                VDS_NOTIFICATION       *pNotificationArray
+            );
+}
+ 
+[
+    object,
+    uuid(d5d23b6d-5a55-4492-9889-397a3c2d2dbc),
+    pointer_default(unique)
+]
+interface IVdsAsync : IUnknown
+{
+    [helpstring("method Cancel")]
+    HRESULT Cancel();
+ 
+    [helpstring("method Wait")]
+    HRESULT Wait(
+                [out] HRESULT           *pHrResult,
+                [out] VDS_ASYNC_OUTPUT  *pAsyncOut
+            );
+ 
+    [helpstring("method QueryStatus")]
+    HRESULT QueryStatus(
+                [out] HRESULT       *pHrResult,
+                [out] unsigned long *pulPercentCompleted
+            );
+}
+ 
+[
+    object,
+    uuid(e0393303-90d4-4a97-ab71-e9b671ee2729),
+    pointer_default(unique)
+]
+ 
+interface IVdsServiceLoader : IUnknown
+{
+    [helpstring("method LoadService")]
+    HRESULT LoadService(
+                [in,unique,string] LPWSTR       pwszMachineName,
+                [out] IVdsService               **ppService
+            );
+}
+ 
+ 
+[
+    object,
+    uuid(0818a8ef-9ba9-40d8-a6f9-e22833cc771e),
+    pointer_default(unique)
+]
+interface IVdsService : IUnknown
+{
+    [helpstring("method IsServiceReady")]
+    HRESULT IsServiceReady();
+ 
+    [helpstring("method WaitForServiceReady")]
+    HRESULT WaitForServiceReady();
+ 
+    [helpstring("method GetProperties")]
+    HRESULT GetProperties(
+                [out] VDS_SERVICE_PROP  *pServiceProp
+            );
+ 
+    [helpstring("method QueryProviders")]
+    HRESULT QueryProviders(
+                [in] DWORD masks,
+                [out] IEnumVdsObject    **ppEnum
+            );
+ 
+    HRESULT Opnum07NotUsedOnWire(void);
+ 
+    [helpstring("method QueryUnallocatedDisks")]
+    HRESULT QueryUnallocatedDisks(
+                [out] IEnumVdsObject    **ppEnum
+            );
+ 
+    [helpstring("method GetObject")]
+    HRESULT GetObject(
+                [in] VDS_OBJECT_ID      ObjectId,
+                [in] VDS_OBJECT_TYPE    type,
+                [out] IUnknown          **ppObjectUnk
+            );
+ 
+    [helpstring("method QueryDriveLetters")]
+    HRESULT QueryDriveLetters(
+                [in] WCHAR                  wcFirstLetter,
+                [in] DWORD                  count,
+                [out, size_is(count)]
+                   VDS_DRIVE_LETTER_PROP  *pDriveLetterPropArray
+            );
+ 
+    [helpstring("method QueryFileSystemTypes")]
+    HRESULT QueryFileSystemTypes(
+                [out, size_is(,*plNumberOfFileSystems)]
+                      VDS_FILE_SYSTEM_TYPE_PROP 
+     **ppFileSystemTypeProps,
+                [out] long                 *plNumberOfFileSystems
+            );
+ 
+    [helpstring("method Reenumerate")]
+    HRESULT Reenumerate();
+ 
+    [helpstring("method Refresh")]
+    HRESULT Refresh();
+ 
+    [helpstring("method CleanupObsoleteMountPoints")]
+    HRESULT CleanupObsoleteMountPoints();
+ 
+    [helpstring("method Advise")]
+    HRESULT Advise(
+                [in] IVdsAdviseSink *pSink,
+                [out] DWORD         *pdwCookie
+            );
+ 
+    [helpstring("method Unadvise")]
+    HRESULT Unadvise(
+                [in] DWORD  dwCookie
+            );
+ 
+    [helpstring("method Reboot")]
+    HRESULT Reboot();
+ 
+    [helpstring("method SetFlags")]
+    HRESULT SetFlags(
+                [in] unsigned long  ulFlags
+            );
+ 
+    [helpstring("method ClearFlags")]
+    HRESULT ClearFlags(
+                [in] unsigned long  ulFlags
+            );
+}
+ 
+[
+    object,
+    uuid(4afc3636-db01-4052-80c3-03bbcb8d3c69),
+    pointer_default(unique)
+]
+interface IVdsServiceInitialization : IUnknown
+{
+    [helpstring("method Initialize")]
+    HRESULT Initialize(
+                [in, unique, string] WCHAR  *pwszMachineName
+            );
+}
+ 
+[
+    object,
+    uuid(B6B22DA8-F903-4be7-B492-C09D875AC9DA),
+    pointer_default(unique)
+]
+interface IVdsServiceUninstallDisk : IUnknown
+{
+    [helpstring("method GetDiskIdFromLunInfo")]
+    HRESULT GetDiskIdFromLunInfo(
+                [in] VDS_LUN_INFORMATION    *pLunInfo,
+                [out] VDS_OBJECT_ID         *pDiskId
+            );
+ 
+    [helpstring("method UninstallDisks")]
+    HRESULT UninstallDisks(
+                [in, size_is(ulCount)]    
+                    VDS_OBJECT_ID   *pDiskIdArray,
+                [in] unsigned long  ulCount,
+                [in] boolean        bForce,
+                [out] boolean       *pbReboot,
+                [out, size_is(ulCount)]    
+                    HRESULT         *pResults
+            );
+}
+ 
+[
+    object,
+    uuid(0ac13689-3134-47c6-a17c-4669216801be),
+    pointer_default(unique)
+]
+interface IVdsServiceHba : IUnknown
+{
+    [helpstring("method QueryHbaPorts")]
+    HRESULT QueryHbaPorts(
+                [out] IEnumVdsObject    **ppEnum
+            );
+}
+ 
+[
+    object,
+    uuid(14fbe036-3ed7-4e10-90e9-a5ff991aff01),
+    pointer_default(unique)
+]
+interface IVdsServiceIscsi : IUnknown
+{
+    [helpstring("method GetInitiatorName")]
+    HRESULT GetInitiatorName(
+                [out, string] WCHAR **ppwszIscsiName
+            );
+ 
+    [helpstring("method QueryInitiatorAdapters")]
+    HRESULT QueryInitiatorAdapters(
+                [out] IEnumVdsObject    **ppEnum
+            );
+ 
+    HRESULT Opnum05NotUsedOnWire(void);
+ 
+    HRESULT Opnum06NotUsedOnWire(void);
+ 
+    HRESULT Opnum07NotUsedOnWire(void);
+ 
+    [helpstring("method SetInitiatorSharedSecret")]
+    HRESULT SetInitiatorSharedSecret(
+                [in, unique] VDS_ISCSI_SHARED_SECRET    
+     *pInitiatorSharedSecret,
+                [in] VDS_OBJECT_ID                  targetId
+            );
+ 
+    HRESULT Opnum09NotUsedOnWire(void);
+}
+ 
+[
+    object,
+    uuid(FC5D23E8-A88B-41a5-8DE0-2D2F73C5A630),
+    pointer_default(unique)
+]
+interface IVdsServiceSAN : IUnknown
+{
+    [helpstring("method GetSANPolicy")]
+    HRESULT GetSANPolicy(
+        [out] VDS_SAN_POLICY              *pSanPolicy
+    );
+ 
+    [helpstring("method SetSANPolicy")]
+    HRESULT SetSANPolicy (
+        [in] VDS_SAN_POLICY               SanPolicy
+    );
+}
+[
+    object,
+    uuid(15fc031c-0652-4306-b2c3-f558b8f837e2),
+    pointer_default(unique)
+]
+interface IVdsServiceSw : IUnknown
+{
+    [helpstring("method GetDiskObject")]
+    HRESULT GetDiskObject(
+        [in, string] LPCWSTR pwszDeviceID,
+        [out] IUnknown** ppDiskUnk
+        );
+} 
+[
+    object,
+    uuid(2abd757f-2851-4997-9a13-47d2a885d6ca),
+    pointer_default(unique)
+]
+interface IVdsHbaPort : IUnknown
+{
+    [helpstring("method GetProperties")]
+    HRESULT GetProperties(
+                [out] VDS_HBAPORT_PROP  *pHbaPortProp
+            );
+ 
+    [helpstring("method SetAllPathStatuses")]
+    HRESULT SetAllPathStatuses(
+                [in] VDS_PATH_STATUS    status
+            );
+}
+ 
+[
+    object,
+    uuid(b07fedd4-1682-4440-9189-a39b55194dc5),
+    pointer_default(unique)
+]
+interface IVdsIscsiInitiatorAdapter : IUnknown
+{
+    [helpstring("method GetProperties")]
+    HRESULT GetProperties(
+                [out] VDS_ISCSI_INITIATOR_ADAPTER_PROP  
+     *pInitiatorAdapterProp
+            );
+ 
+    [helpstring("method QueryInitiatorPortals")]
+    HRESULT QueryInitiatorPortals(
+                [out] IEnumVdsObject    **ppEnum
+            );
+ 
+    HRESULT Opnum05NotUsedOnWire(void);
+ 
+    HRESULT Opnum06NotUsedOnWire(void);
+}
+ 
+[
+    object,
+    uuid(38a0a9ab-7cc8-4693-ac07-1f28bd03c3da),
+    pointer_default(unique)
+]
+interface IVdsIscsiInitiatorPortal : IUnknown
+{
+    [helpstring("method GetProperties")]
+    HRESULT GetProperties(
+                [out] VDS_ISCSI_INITIATOR_PORTAL_PROP   
+     *pInitiatorPortalProp
+            );
+ 
+    [helpstring("method GetInitiatorAdapter")]
+    HRESULT GetInitiatorAdapter(
+                [out] IVdsIscsiInitiatorAdapter 
+     **ppInitiatorAdapter
+            );
+ 
+    HRESULT Opnum05NotUsedOnWire(void);
+ 
+    HRESULT Opnum06NotUsedOnWire(void);
+ 
+    HRESULT Opnum07NotUsedOnWire(void);
+ 
+}
+ 
+[
+    object,
+    uuid(10c5e575-7984-4e81-a56b-431f5f92ae42),
+    pointer_default(unique)
+]
+interface IVdsProvider : IUnknown
+{
+    [helpstring("method GetProperties")]
+    HRESULT GetProperties(
+                [out] VDS_PROVIDER_PROP *pProviderProp
+            );
+}
+ 
+[
+    object,
+    uuid(9aa58360-ce33-4f92-b658-ed24b14425b8),
+    pointer_default(unique)
+]
+interface IVdsSwProvider : IUnknown
+{
+    [helpstring("method QueryPacks")]
+    HRESULT QueryPacks(
+                [out] IEnumVdsObject    **ppEnum
+            );
+ 
+    [helpstring("method CreatePack")]
+    HRESULT CreatePack(
+                [out] IVdsPack  **ppPack
+            );
+}
+ 
+[
+    object,
+    uuid(d99bdaae-b13a-4178-9fdb-e27f16b4603e),
+    pointer_default(unique)
+]
+ 
+interface IVdsHwProvider : IUnknown
+{    
+    [helpstring("method QuerySubSystems")]
+    HRESULT QuerySubSystems(
+                [out] IEnumVdsObject **ppEnum
+            );
+ 
+     HRESULT Opnum04NotUsedOnWire(void);
+ 
+     HRESULT Opnum05NotUsedOnWire(void);
+ 
+}
+ 
+[
+    object,
+    uuid(b481498c-8354-45f9-84a0-0bdd2832a91f),
+    pointer_default(unique)
+]
+interface IVdsVdProvider : IUnknown
+{
+    [helpstring("method QueryVDisks")]
+    HRESULT QueryVDisks(
+        [out] IEnumVdsObject**               ppEnum
+    );
+ 
+ 
+    [helpstring("method CreateVDisk")]
+    HRESULT CreateVDisk(
+        [in] PVIRTUAL_STORAGE_TYPE           VirtualDeviceType,
+        [in, string] LPWSTR                  pPath,    
+        [in, string, unique] LPWSTR          pStringSecurityDescriptor,
+        [in] CREATE_VIRTUAL_DISK_FLAG        Flags,
+        [in] ULONG                           ProviderSpecificFlags,
+        [in] ULONG                           Reserved,
+        [in] PVDS_CREATE_VDISK_PARAMETERS    pCreateDiskParameters,
+        [in, out, unique] IVdsAsync**        ppAsync
+    );
+ 
+    [helpstring("method AddVDisk")]
+    HRESULT AddVDisk(
+        [in] PVIRTUAL_STORAGE_TYPE           VirtualDeviceType,
+        [in, string] LPWSTR                  pPath, 
+        [out] IVdsVDisk**                    ppVDisk 
+    );
+ 
+    
+ 
+    HRESULT GetDiskFromVDisk(
+        [in] IVdsVDisk*                      pVDisk,
+        [out] IVdsDisk**                     ppDisk
+    );
+ 
+    HRESULT GetVDiskFromDisk(
+        [in] IVdsDisk*                       pDisk,
+        [out] IVdsVDisk**                    ppVDisk
+    );
+}
+ 
+[
+    object,
+    uuid(83bfb87f-43fb-4903-baa6-127f01029eec),
+    pointer_default(unique)
+]
+ 
+interface IVdsSubSystemImportTarget : IUnknown
+{
+    [helpstring("method GetImportTarget")]
+    HRESULT GetImportTarget(
+                [out,string] LPWSTR *ppwszIscsiName
+            );
+ 
+    [helpstring("method SetImportTarget")]
+    HRESULT SetImportTarget(
+                [in,unique,string] LPWSTR pwszIscsiName
+            );
+ 
+}
+ 
+ 
+[
+    object,
+    uuid(3b69d7f5-9d94-4648-91ca-79939ba263bf),
+    pointer_default(unique)
+]
+interface IVdsPack : IUnknown
+{
+    [helpstring("method GetProperties")]
+    HRESULT GetProperties(
+                [out] VDS_PACK_PROP *pPackProp
+            );
+ 
+    [helpstring("method GetProvider")]
+    HRESULT GetProvider(
+                [out] IVdsProvider  **ppProvider
+            );
+ 
+    [helpstring("method QueryVolumes")]
+    HRESULT QueryVolumes(
+                [out] IEnumVdsObject    **ppEnum
+            );
+ 
+    [helpstring("method QueryDisks")]
+    HRESULT QueryDisks(
+                [out] IEnumVdsObject    **ppEnum
+            );
+ 
+    [helpstring("method CreateVolume")]
+    HRESULT CreateVolume(
+                [in] VDS_VOLUME_TYPE    type,
+                [in, size_is(lNumberOfDisks)] 
+                     VDS_INPUT_DISK     *pInputDiskArray,
+                [in] long               lNumberOfDisks,
+                [in] unsigned long      ulStripeSize,
+                [out] IVdsAsync         **ppAsync
+            );
+ 
+    [helpstring("method AddDisk")]
+    HRESULT AddDisk(
+                [in] VDS_OBJECT_ID          DiskId,
+                [in] VDS_PARTITION_STYLE    PartitionStyle,
+                [in] long                   bAsHotSpare
+            );
+ 
+    [helpstring("method MigrateDisks")]
+    HRESULT MigrateDisks(
+                [in, size_is(lNumberOfDisks)] 
+                     VDS_OBJECT_ID  *pDiskArray,
+                [in] long lNumberOfDisks,
+                [in] VDS_OBJECT_ID  TargetPack,
+                [in] long           bForce,
+                [in] long           bQueryOnly,
+                [out, size_is(lNumberOfDisks)]
+                     HRESULT        *pResults,
+                [out] long          *pbRebootNeeded
+            );
+ 
+    HRESULT Opnum10NotUsedOnWire(void);
+ 
+    [helpstring("method RemoveMissingDisk")]
+    HRESULT RemoveMissingDisk(
+                [in] VDS_OBJECT_ID  DiskId
+            );
+ 
+    [helpstring("method Recover")]
+    HRESULT Recover(
+                [out] IVdsAsync **ppAsync
+            );
+}
+ 
+[
+    object,
+    uuid(13B50BFF-290A-47DD-8558-B7C58DB1A71A),         
+    pointer_default(unique)
+]
+interface IVdsPack2 : IUnknown
+{
+    [helpstring("method CreateVolume2")]
+    HRESULT CreateVolume2(
+                [in] VDS_VOLUME_TYPE    type,
+                [in, size_is(lNumberOfDisks)] 
+                     VDS_INPUT_DISK     *pInputDiskArray,
+                [in] long               lNumberOfDisks,
+                [in] unsigned long      ulStripeSize,
+                [in] unsigned long      ulAlign,
+                [out] IVdsAsync         **ppAsync
+            );
+}
+ 
+[
+    object,
+    uuid(07e5c822-f00c-47a1-8fce-b244da56fd06),
+    pointer_default(unique)
+]
+interface IVdsDisk : IUnknown
+{
+    [helpstring("method GetProperties")]
+    HRESULT GetProperties(
+                [out] VDS_DISK_PROP *pDiskProperties
+            );
+ 
+    [helpstring("method GetPack")]
+    HRESULT GetPack(
+                [out] IVdsPack  **ppPack
+            );
+ 
+    [helpstring("method GetIdentificationData")]
+    HRESULT GetIdentificationData(
+                [out] VDS_LUN_INFORMATION   *pLunInfo
+            );
+ 
+    [helpstring("method QueryExtents")]
+    HRESULT QueryExtents(
+                [out, size_is(,*plNumberOfExtents)]
+                      VDS_DISK_EXTENT   **ppExtentArray,
+                [out] long              *plNumberOfExtents
+            );
+ 
+    [helpstring("method ConvertStyle")]
+    HRESULT ConvertStyle(
+                [in] VDS_PARTITION_STYLE    NewStyle
+            );
+ 
+    [helpstring("method SetFlags")]
+    HRESULT SetFlags(
+                [in] unsigned long  ulFlags
+            );
+ 
+    [helpstring("method ClearFlags")]
+    HRESULT ClearFlags(
+                [in] unsigned long  ulFlags
+            );
+}
+ 
+[
+    object,
+    uuid(40F73C8B-687D-4a13-8D96-3D7F2E683936),
+    pointer_default(unique)
+]
+interface IVdsDisk2 : IUnknown
+{
+    [helpstring("method SetSANMode")]
+    HRESULT SetSANMode(
+        [in] long                   bEnable
+    );
+}
+ 
+[
+    object,
+    uuid(8F4B2F5D-EC15-4357-992F-473EF10975B9),
+    pointer_default(unique)
+]
+interface IVdsDisk3 : IUnknown
+{
+    [helpstring("method GetProperties2")]
+    HRESULT GetProperties2(
+        [out] VDS_DISK_PROP2        *pDiskProperties
+    );
+ 
+    [helpstring("method QueryFreeExtents")]
+    HRESULT QueryFreeExtents(
+                [in]  ULONG ulAlign,
+                [out, size_is(,*plNumberOfFreeExtents)]
+                      VDS_DISK_FREE_EXTENT **ppFreeExtentArray,
+                [out] LONG *plNumberOfFreeExtents
+            );
+ }
+ 
+[
+    object,
+    uuid(6e6f6b40-977c-4069-bddd-ac710059f8c0),
+    pointer_default(unique)
+]
+interface IVdsAdvancedDisk : IUnknown
+{
+    [helpstring("method GetPartitionProperties")]
+    HRESULT GetPartitionProperties(
+                [in] ULONGLONG              ullOffset,
+                [out] VDS_PARTITION_PROP    *pPartitionProp
+            );
+ 
+    [helpstring("method QueryPartitions")]
+    HRESULT QueryPartitions(
+                [out, size_is(, *plNumberOfPartitions)]
+                     VDS_PARTITION_PROP   **ppPartitionPropArray,
+                [out] long                *plNumberOfPartitions
+            );
+ 
+    [helpstring("method CreatePartition")]
+    HRESULT CreatePartition(
+                [in] ULONGLONG                      ullOffset,
+                [in] ULONGLONG                      ullSize,
+                [in] CREATE_PARTITION_PARAMETERS    *para,
+                [out] IVdsAsync                     **ppAsync
+            );
+ 
+    [helpstring("method DeletePartition")]
+    HRESULT DeletePartition(
+                [in] ULONGLONG  ullOffset,
+                [in] long       bForce,
+                [in] long       bForceProtected
+            );
+ 
+    [helpstring("method ChangeAttributes")]
+    HRESULT ChangeAttributes(
+                [in] ULONGLONG                      ullOffset,
+                [in] CHANGE_ATTRIBUTES_PARAMETERS   *para
+            );
+ 
+    [helpstring("method AssignDriveLetter")]
+    HRESULT AssignDriveLetter(
+                [in] ULONGLONG  ullOffset,
+                [in] WCHAR      wcLetter
+            );
+ 
+    [helpstring("method DeleteDriveLetter")]
+    HRESULT DeleteDriveLetter(
+                [in] ULONGLONG  ullOffset,
+                [in] WCHAR      wcLetter
+            );
+ 
+    [helpstring("method GetDriveLetter")]
+    HRESULT GetDriveLetter(
+                [in] ULONGLONG  ullOffset,
+                [out] [format(rune)] WCHAR     *pwcLetter
+            );
+ 
+    [helpstring("method FormatPartition")]
+    HRESULT FormatPartition(
+                [in] ULONGLONG              ullOffset,
+                [in] VDS_FILE_SYSTEM_TYPE   type,
+                [in, string] WCHAR          *pwszLabel,
+                [in] DWORD                  dwUnitAllocationSize,
+                [in] long                   bForce,
+                [in] long                   bQuickFormat,
+                [in] long                   bEnableCompression,
+                [out] IVdsAsync             **ppAsync
+            );
+ 
+    HRESULT Clean(
+                [in] long       bForce,
+                [in] long       bForceOEM,
+                [in] long       bFullClean,
+                [out] IVdsAsync **ppAsync
+            );
+}
+ 
+[
+    object,
+    uuid(9723f420-9355-42de-ab66-e31bb15beeac),
+    pointer_default(unique)
+]
+interface IVdsAdvancedDisk2 : IUnknown
+{    
+    [helpstring("method ChangePartitionType")]    
+    HRESULT ChangePartitionType(
+                [in] ULONGLONG                         ullOffset,
+                [in] long                              bForce,
+                [in] CHANGE_PARTITION_TYPE_PARAMETERS  * para
+            );
+}
+ 
+[
+    object,
+    uuid(3858C0D5-0F35-4BF5-9714-69874963BC36),
+    pointer_default(unique)
+]
+interface IVdsAdvancedDisk3 : IUnknown
+{
+    [helpstring("method GetProperties")]
+    HRESULT GetProperties(
+        [out] VDS_ADVANCEDDISK_PROP  *pAdvDiskProp
+        );
+ 
+    [helpstring("method GetUniqueId")]
+    HRESULT GetUniqueId(
+        [out, string] LPWSTR         *ppwszId
+        );
+}
+ 
+[
+    object,
+    uuid(9882f547-cfc3-420b-9750-00dfbec50662),
+    pointer_default(unique)
+]
+interface IVdsCreatePartitionEx : IUnknown
+{
+    [helpstring("method CreatePartitionEx")]
+    HRESULT CreatePartitionEx(
+                [in] ULONGLONG                    ullOffset,
+                [in] ULONGLONG                    ullSize,
+                [in] unsigned long                ulAlign,
+                [in] CREATE_PARTITION_PARAMETERS  *para,
+                [out] IVdsAsync                   **ppAsync
+            );
+}
+ 
+[
+    object,
+    uuid(90681B1D-6A7F-48e8-9061-31B7AA125322),
+    pointer_default(unique)
+]
+interface IVdsDiskOnline : IUnknown
+{
+    [helpstring("method Online")]
+    HRESULT Online( void );
+ 
+    [helpstring("method Offline")]
+    HRESULT Offline( void );
+}
+ 
+[
+    object,
+    uuid(538684e0-ba3d-4bc0-aca9-164aff85c2a9),
+    pointer_default(unique)
+]
+interface IVdsDiskPartitionMF : IUnknown
+{
+    [helpstring("method GetPartitionFileSystemProperties")]
+    HRESULT GetPartitionFileSystemProperties(
+        [in] ULONGLONG              ullOffset,
+        [out] VDS_FILE_SYSTEM_PROP  *pFileSystemProp
+    );
+ 
+    [helpstring("method GetPartitionFileSystemTypeName")]
+    HRESULT GetPartitionFileSystemTypeName(
+        [in] ULONGLONG             ullOffset,
+        [out, string] WCHAR        **ppwszFileSystemTypeName
+    );
+ 
+    [helpstring("method QueryPartitionFileSystemFormatSupport")]
+    HRESULT QueryPartitionFileSystemFormatSupport(
+        [in] ULONGLONG                           ullOffset,
+        [out, size_is(,*plNumberOfFileSystems)]
+            VDS_FILE_SYSTEM_FORMAT_SUPPORT_PROP  **ppFileSystemSupportProps,
+        [out] long                               *plNumberOfFileSystems
+    );
+ 
+    [helpstring("method FormatPartitionEx")]
+    HRESULT FormatPartitionEx(
+        [in] ULONGLONG              ullOffset,
+        [in, unique, string] WCHAR  *pwszFileSystemTypeName,
+        [in] unsigned short         usFileSystemRevision,
+        [in] unsigned long          ulDesiredUnitAllocationSize,
+        [in, unique, string] WCHAR  *pwszLabel,
+        [in] long                   bForce,
+        [in] long                   bQuickFormat,
+        [in] long                   bEnableCompression,
+        [out] IVdsAsync             **ppAsync
+    );
+}
+ 
+[
+    object,
+    uuid(9CBE50CA-F2D2-4bf4-ACE1-96896B729625),
+    pointer_default(unique)
+]
+interface IVdsDiskPartitionMF2 : IUnknown
+{
+    [helpstring("method FormatPartitionEx2")]
+    HRESULT FormatPartitionEx2(
+        [in] ULONGLONG              ullOffset,
+        [in, unique, string] LPWSTR pwszFileSystemTypeName,
+        [in] unsigned short         usFileSystemRevision,
+        [in] unsigned long          ulDesiredUnitAllocationSize,
+        [in, unique, string] LPWSTR pwszLabel,
+        [in] DWORD                  Options,
+        [out] IVdsAsync             **ppAsync
+    );
+}
+ 
+[
+    object,
+    uuid(0316560b-5db4-4ed9-bbb5-213436ddc0d9),
+    pointer_default(unique)
+]
+interface IVdsRemovable : IUnknown
+{
+    [helpstring("method QueryMedia")]
+    HRESULT QueryMedia();
+ 
+    [helpstring("method Eject")]    
+    HRESULT Eject();
+}
+ 
+[
+    object,
+    uuid(88306bb2-e71f-478c-86a2-79da200a0f11),
+    pointer_default(unique)
+]
+interface IVdsVolume : IUnknown
+{
+    [helpstring("method GetProperties")]
+    HRESULT GetProperties(
+        [out] VDS_VOLUME_PROP       *pVolumeProperties
+    );
+ 
+    [helpstring("method GetPack")]
+    HRESULT GetPack(
+        [out] IVdsPack              **ppPack
+    );
+ 
+    [helpstring("method QueryPlexes")]
+    HRESULT QueryPlexes(
+        [out] IEnumVdsObject        **ppEnum
+    );
+ 
+    [helpstring("method Extend")]
+    HRESULT Extend(
+        [in, unique, size_is(lNumberOfDisks)]
+            VDS_INPUT_DISK         *pInputDiskArray,
+        [in] long                  lNumberOfDisks,
+        [out] IVdsAsync            **ppAsync
+    );
+ 
+    [helpstring("method Shrink")]
+    HRESULT Shrink(
+        [in] ULONGLONG              ullNumberOfBytesToRemove,
+        [out] IVdsAsync             **ppAsync
+    );
+ 
+    [helpstring("method AddPlex")]
+    HRESULT AddPlex(
+        [in] VDS_OBJECT_ID          VolumeId,
+        [out] IVdsAsync             **ppAsync
+    );
+ 
+    [helpstring("BreakPlex")]
+    HRESULT BreakPlex(
+        [in] VDS_OBJECT_ID          plexId,
+        [out] IVdsAsync             **ppAsync
+    );
+ 
+    [helpstring("RemovePlex")]
+    HRESULT RemovePlex(
+        [in] VDS_OBJECT_ID          plexId,
+        [out] IVdsAsync             **ppAsync
+    );
+ 
+    [helpstring("method Delete")]
+    HRESULT Delete(
+        [in] long                   bForce
+    );
+ 
+    [helpstring("method SetFlags")]
+    HRESULT SetFlags(
+        [in] unsigned long          ulFlags,
+        [in] long                   bRevertOnClose
+    );
+ 
+    [helpstring("method ClearFlags")]
+    HRESULT ClearFlags(
+        [in] unsigned long          ulFlags
+    );
+}
+ 
+[
+    object,
+    uuid(72AE6713-DCBB-4a03-B36B-371F6AC6B53D),
+    pointer_default(unique)
+]
+interface IVdsVolume2 : IUnknown
+{
+    [helpstring("method GetProperties2")]
+    HRESULT GetProperties2(
+        [out] VDS_VOLUME_PROP2       *pVolumeProperties
+    );
+}
+ 
+[
+    object,
+    uuid(ee2d5ded-6236-4169-931d-b9778ce03dc6),
+    pointer_default(unique)
+]
+interface IVdsVolumeMF : IUnknown
+{
+    [helpstring("method queryFileSystemProperties")]
+    HRESULT GetFileSystemProperties(
+                [out] VDS_FILE_SYSTEM_PROP  *pFileSystemProp
+            );
+ 
+    [helpstring("method Format")]
+    HRESULT Format(
+                [in] VDS_FILE_SYSTEM_TYPE   type,
+                [in, string] WCHAR          *pwszLabel,
+                [in] DWORD                  dwUnitAllocationSize,
+                [in] long                   bForce,
+                [in] long                   bQuickFormat,
+                [in] long                   bEnableCompression,
+                [out] IVdsAsync             **ppAsync
+            );
+ 
+    [helpstring("method AddAccessPath")]
+    HRESULT AddAccessPath(
+                [in, max_is(MAX_PATH - 1), string] WCHAR
+     *pwszPath
+            );
+ 
+    [helpstring("method QueryAccessPaths")]
+    HRESULT QueryAccessPaths(
+                [out, string, size_is(, *plNumberOfAccessPaths)]
+                      LPWSTR **pwszPathArray,
+                [out] long  *plNumberOfAccessPaths
+            );
+ 
+    [helpstring("method QueryReparsePoints")]
+    HRESULT QueryReparsePoints(
+                [out, size_is(, *plNumberOfReparsePointProps)]
+                    VDS_REPARSE_POINT_PROP **ppReparsePointProps,
+                [out] long                              
+     *plNumberOfReparsePointProps
+            );
+ 
+    [helpstring("method DeleteAccessPath")]
+    HRESULT DeleteAccessPath(
+        [in, max_is(MAX_PATH - 1), string] WCHAR
+     *pwszPath,
+        [in] long           bForce
+            );
+ 
+    [helpstring("method Mount")]
+    HRESULT Mount();
+ 
+    [helpstring("method Dismount")]
+    HRESULT Dismount(
+                [in] long   bForce,
+                [in] long   bPermanent
+            );
+ 
+    [helpstring("method SetFileSystemFlags")]
+    HRESULT SetFileSystemFlags(
+                [in] unsigned long  ulFlags
+            );
+ 
+    [helpstring("method ClearFileSystemFlags")]
+    HRESULT ClearFileSystemFlags(
+                [in] unsigned long  ulFlags
+            );
+}
+ 
+[
+    object,
+    uuid(4dbcee9a-6343-4651-b85f-5e75d74d983c),
+    pointer_default(unique)
+]
+interface IVdsVolumeMF2 : IUnknown
+{
+    [helpstring("method GetFileSystemTypeName")]
+    HRESULT GetFileSystemTypeName(
+                [out, string] WCHAR **ppwszFileSystemTypeName
+            );
+ 
+    [helpstring("method QueryFileSystemFormatSupport")]
+    HRESULT QueryFileSystemFormatSupport(
+        [out, size_is(,*plNumberOfFileSystems)]
+                      VDS_FILE_SYSTEM_FORMAT_SUPPORT_PROP
+     **ppFileSystemSupportProps,
+        [out] long    *plNumberOfFileSystems
+            );
+ 
+    [helpstring("method FormatEx")]
+    HRESULT FormatEx(
+             [in, unique, string] WCHAR  *pwszFileSystemTypeName,
+             [in] unsigned short         usFileSystemRevision,
+             [in] unsigned long                              
+     ulDesiredUnitAllocationSize,
+             [in, unique, string] WCHAR  *pwszLabel,
+             [in] long                   bForce,
+             [in] long                   bQuickFormat,
+             [in] long                   bEnableCompression,
+             [out] IVdsAsync             **ppAsync
+            );
+}
+ 
+[
+    object,
+    uuid(6788FAF9-214E-4b85-BA59-266953616E09),
+    pointer_default(unique)
+]
+interface IVdsVolumeMF3 : IUnknown
+{
+    [helpstring("method QueryVolumeGuidPathnames")]
+    HRESULT QueryVolumeGuidPathnames (
+        [out, string, size_is(,*pulNumberOfPaths)] LPWSTR  **pwszPathArray,
+        [out] ULONG                                        *pulNumberOfPaths
+    );
+ 
+    [helpstring("method FormatEx2")]
+    HRESULT FormatEx2(
+        [in, unique, string] LPWSTR    pwszFileSystemTypeName,
+        [in] USHORT                    usFileSystemRevision,
+        [in] ULONG                     ulDesiredUnitAllocationSize,
+        [in, unique, string] LPWSTR    pwszLabel,
+        [in] DWORD                     Options,
+        [out] IVdsAsync                **ppAsync
+    );
+ 
+    [helpstring("method OfflineVolume")]
+    HRESULT OfflineVolume (
+        void
+    );
+ 
+}
+ 
+[
+    object,
+    uuid(d68168c9-82a2-4f85-b6e9-74707c49a58f),
+    pointer_default(unique)
+]
+interface IVdsVolumeShrink : IUnknown
+{
+    [helpstring("method QueryMaxReclaimableBytes")]
+    HRESULT QueryMaxReclaimableBytes(
+                [out] ULONGLONG *pullMaxNumberOfReclaimableBytes
+    );
+    
+    [helpstring("method Shrink")]
+    HRESULT Shrink(
+        [in] ULONGLONG  ullDesiredNumberOfReclaimableBytes,
+        [in] ULONGLONG  ullMinNumberOfReclaimableBytes,
+        [out] IVdsAsync **ppAsync
+    );
+}
+ 
+[
+    object,
+    uuid(1BE2275A-B315-4f70-9E44-879B3A2A53F2),
+    pointer_default(unique)
+]
+ 
+interface IVdsVolumeOnline : IUnknown
+{
+    [helpstring("method Online")]
+    HRESULT Online();
+}
+ 
+[
+    object,
+    uuid(4daa0135-e1d1-40f1-aaa5-3cc1e53221c3),
+    pointer_default(unique)
+]
+interface IVdsVolumePlex : IUnknown
+{
+    [helpstring("method GetProperties")]
+    HRESULT GetProperties(
+                [out] VDS_VOLUME_PLEX_PROP  *pPlexProperties
+            );
+ 
+    [helpstring("method GetVolume")]
+    HRESULT GetVolume(
+                [out] IVdsVolume    **ppVolume
+            );
+ 
+    [helpstring("method QueryExtents")]
+    HRESULT QueryExtents(
+                [out, size_is(, *plNumberOfExtents)] 
+                      VDS_DISK_EXTENT   **ppExtentArray,
+                [out] long              *plNumberOfExtents
+            );
+ 
+    [helpstring("method Repair")]
+    HRESULT Repair(
+                [in, size_is(lNumberOfDisks)] 
+                     VDS_INPUT_DISK *pInputDiskArray,
+                [in] long           lNumberOfDisks,
+                [out] IVdsAsync     **ppAsync
+            );
+}
+ 
+ 
+[
+    object,
+    uuid(1e062b84-e5e6-4b4b-8a25-67b81e8f13e8),
+    pointer_default(unique)
+]
+interface IVdsVDisk : IUnknown
+{
+ 
+    HRESULT Open(
+        [in] VIRTUAL_DISK_ACCESS_MASK  AccessMask,
+        [in] OPEN_VIRTUAL_DISK_FLAG    Flags,
+        [in] ULONG                     ReadWriteDepth,
+        [out] IVdsOpenVDisk**          ppOpenVDisk
+    );
+    
+    
+    HRESULT GetProperties(
+        [out] PVDS_VDISK_PROPERTIES pDiskProperties
+    );
+ 
+   HRESULT GetHostVolume(
+       [out] IVdsVolume** ppVolume
+   );
+ 
+   HRESULT GetDeviceName(
+           [out, string] LPWSTR *ppDeviceName);
+ 
+}
+ 
+[
+    object,
+    uuid(75c8f324-f715-4fe3-a28e-f9011b61a4a1),
+    pointer_default(unique)
+]
+ 
+interface IVdsOpenVDisk : IUnknown
+{    
+    HRESULT Attach(
+        [in, unique] LPWSTR pStringSecurityDescriptor,
+        [in] ATTACH_VIRTUAL_DISK_FLAG Flags,
+        [in] ULONG ProviderSpecificFlags,
+        [in] ULONG TimeoutInMs,
+        [out] IVdsAsync** ppAsync
+    );
+ 
+    HRESULT Detach(
+        [in] DETACH_VIRTUAL_DISK_FLAG Flags,
+        [in] ULONG ProviderSpecificFlags
+    );
+ 
+    HRESULT DetachAndDelete(
+        [in] DETACH_VIRTUAL_DISK_FLAG Flags,
+        [in] ULONG ProviderSpecificFlags
+    );
+ 
+    HRESULT Compact(
+        [in] COMPACT_VIRTUAL_DISK_FLAG Flags,
+        [in] ULONG Reserved,
+        [out] IVdsAsync** ppAsync
+    );
+ 
+    HRESULT Merge(
+        [in] MERGE_VIRTUAL_DISK_FLAG Flags,
+        [in] ULONG MergeDepth,
+        [out] IVdsAsync** ppAsync
+    );        
+ 
+    HRESULT Expand(
+        [in] EXPAND_VIRTUAL_DISK_FLAG Flags,
+        [in] ULONGLONG NewSize,
+        [out] IVdsAsync** ppAsync
+    );
+} 

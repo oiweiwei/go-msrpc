@@ -1,0 +1,156 @@
+<div class="content"><p>The W32TimeQueryConfiguration method returns the
+configuration data of the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9846d08d-ad98-4bb9-a1e7-1f0bfbdd1113" data-linktype="relative-path">time
+service</a>.<a id="Appendix_A_Target_47"></a><a aria-label="Product behavior note 47" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_47" data-linktype="relative-path">&lt;47&gt;</a> The <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a> syntax of this method
+is specified as follows.</p><dl>
+<dd>
+<div><pre> unsigned long W32TimeQueryConfiguration(
+   [in] handle_t hBinding,
+   [out, ref] PW32TIME_CONFIGURATION_INFO* pConfigurationInfo
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b><a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> primitive binding
+handle, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+part 3, sections Interface Definition Language and Stubs.</p><p><b>pConfigurationInfo: </b>A pointer that receives a
+pointer to a <a href="38aebb61-55fd-40df-8052-e6897b7a7291" data-linktype="relative-path">W32TIME_CONFIGURATION_INFO</a>
+structure containing configuration data for the time service.</p><p><b>Return Values: </b>This method MUST return 0 on
+success; on failure, it returns a nonzero <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_a0f899ec-e1a5-4e04-8abc-80df987c6fb4" data-linktype="relative-path">error code</a>. The values
+transmitted in this field are implementation specific. All nonzero values MUST
+be treated as equivalent for the purposes of this protocol.<a id="Appendix_A_Target_48"></a><a aria-label="Product behavior note 48" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_48" data-linktype="relative-path">&lt;48&gt;</a></p><p>When W32TimeQueryConfiguration is invoked, the server MUST
+return the associated time service configuration data structure, as specified
+in section 2.2.13, and populate it as follows:</p><ol><li><p><span>    </span>pConfigurationInfo.ulSize
+MUST be set with the size, in bytes, of the W32TIME_CONFIGURATION_INFO
+structure.</p>
+</li><li><p><span>    </span>pConfigurationInfo.basicConfig.ulSize
+MUST be set with the size, in bytes, of the W32TIME_CONFIGURATION_BASIC
+structure.</p>
+</li><li><p><span>    </span>pConfigurationInfo.basicConfig.ulEventLogFlags
+MUST be set to the <b>EventLogFlags</b> data element value (section <a href="1da649d7-3edf-4a9a-98c2-907ecacd1633" data-linktype="relative-path">3.2.1.1</a>).</p>
+</li><li><p><span>    </span>pConfigurationInfo.basicConfig.ulAnnounceFlags
+MUST be set to the <b>AnnounceFlags</b> abstract data model element value (see <a href="../ms-sntp/8106cb73-ab3a-4542-8bc8-784dd32031cc" data-linktype="relative-path">[MS-SNTP]</a>
+section <a href="../ms-sntp/af86ea4b-9d57-4dc2-ad16-378edea01fcf" data-linktype="relative-path">3.2.1</a>).</p>
+</li><li><p><span>    </span>pConfigurationInfo.basicConfig.ulTimeJumpAuditOffset
+MUST be set to the <b>TimeJumpAuditOffset</b> data element value (section
+3.2.1.1).</p>
+</li><li><p><span>    </span>pConfigurationInfo.basicConfig.ulMinPollInterval
+MUST be set to Min Polling Interval (NTP.MINPOLL), as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90272" data-linktype="external">[RFC1305]</a> section
+3.2.7, &#34;Parameters&#34;.</p>
+</li><li><p><span>    </span>pConfigurationInfo.basicConfig.ulMaxPollInterval
+MUST be set to Max Polling Interval (NTP.MAXPOLL), as specified in [RFC1305]
+section 3.2.7, &#34;Parameters&#34;.</p>
+</li><li><p><span>    </span>pConfigurationInfo.basicConfig.ulMaxNegPhaseCorrection
+MUST be set to the <b>MaxNegPhaseCorrection</b> data element value (section
+3.2.1.1).</p>
+</li><li><p><span>    </span>pConfigurationInfo.basicConfig.ulMaxPosPhaseCorrection
+MUST be set to the <b>MaxPosPhaseCorrection</b> data element value (section
+3.2.1.1).</p>
+</li><li><p><span>  </span>pConfigurationInfo.basicConfig.ulMaxAllowedPhaseOffset
+MUST be set to the <b>MaxAllowedPhaseOffset</b> data element value (section
+3.2.1.1).</p>
+</li><li><p><span>  </span>pConfigurationInfo.basicConfig.ulEventLogFlagsFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulEventLogFlags</b>,
+as specified in section <a href="cda8dd8e-ef99-4b2d-b747-6077e5d5ddf2" data-linktype="relative-path">2.2.6</a>.</p>
+</li><li><p><span>  </span>pConfigurationInfo.basicConfig.ulAnnounceFlagsFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulAnnounceFlags</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.basicConfig.ulTimeJumpAuditOffsetFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulTimeJumpAuditOffset</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.basicConfig.ulMinPollIntervalFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulMinPollInterval</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.basicConfig.ulMaxPollIntervalFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulMaxPollInterval</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.basicConfig.ulMaxNegPhaseCorrectionFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulMaxNegPhaseCorrection</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.basicConfig.ulMaxPosPhaseCorrectionFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulMaxPosPhaseCorrection</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.basicConfig.ulMaxAllowedPhaseOffsetFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulMaxAllowedPhaseOffset</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.advancedConfig.ulSize
+MUST be set with the size, in bytes, of the W32TIME_CONFIGURATION_ADVANCED
+structure.</p>
+</li><li><p><span>  </span>pConfigurationInfo.advancedConfig.ulFrequencyCorrectRate
+MUST be set to the <b>FrequencyCorrectRate</b> data element value (section
+3.2.1.1).</p>
+</li><li><p><span>  </span>pConfigurationInfo.advancedConfig.ulPollAdjustFactor
+MUST be set to the <b>PollAdjustFactor</b> data element value (section
+3.2.1.1).</p>
+</li><li><p><span>  </span>pConfigurationInfo.advancedConfig.ulLargePhaseOffset
+MUST be set to the <b>LargePhaseOffset</b> data element value (see [MS-SNTP]
+section <a href="../ms-sntp/fef409e4-5297-4f18-850b-e386f7e10fea" data-linktype="relative-path">3.1.1</a>).</p>
+</li><li><p><span>  </span>pConfigurationInfo.advancedConfig.ulSpikeWatchPeriod
+MUST be set to the <b>SpikeWatchPeriod</b> data element value (see [MS-SNTP]
+section 3.1.1).</p>
+</li><li><p><span>  </span>pConfigurationInfo.advancedConfig.ulLocalClockDispersion
+MUST be set to Root Dispersion (sys.rootdispersion), as specified in [RFC1305]
+section 3.2.1, &#34;Common Variables&#34;.</p>
+</li><li><p><span>  </span>pConfigurationInfo.advancedConfig.ulHoldPeriod
+MUST be set to the <b>HoldPeriod</b> data element value (see [MS-SNTP] section
+3.1.1).</p>
+</li><li><p><span>  </span>pConfigurationInfo.advancedConfig.ulPhaseCorrectRate
+MUST be set to the <b>PhaseCorrectRate</b> data element value (section
+3.2.1.1).</p>
+</li><li><p><span>  </span>pConfigurationInfo.advancedConfig.ulUpdateInterval
+MUST be set to the <b>UpdateInterval</b> data element value (section 3.2.1.1).</p>
+</li><li><p><span>  </span>pConfigurationInfo.advancedConfig.ulFrequencyCorrectRateFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulFrequencyCorrectRate</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.advancedConfig.ulPollAdjustFactorFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulPollAdjustFactor</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.advancedConfig.ulLargePhaseOffsetFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulLargePhaseOffset</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.advancedConfig.ulSpikeWatchPeriodFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulSpikeWatchPeriod</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.advancedConfig.ulLocalClockDispersionFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulLocalClockDispersion</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.advancedConfig.ulHoldPeriodFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulHoldPeriod</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.advancedConfig.ulPhaseCorrectRateFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulPhaseCorrectRate</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.advancedConfig.ulUpdateIntervalFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulUpdateInterval</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.defaultConfig.ulSize
+MUST be set with the size, in bytes, of the W32TIME_CONFIGURATION_DEFAULT
+structure.</p>
+</li><li><p><span>  </span>pConfigurationInfo.defaultConfig.wszFileLogName
+MUST be set to the <b>FileLogName</b> data element value (section 3.2.1.1).</p>
+</li><li><p><span>  </span>pConfigurationInfo.defaultConfig.wszFileLogEntries
+MUST be set to the <b>FileLogEntries</b> data element value (section 3.2.1.1).</p>
+</li><li><p><span>  </span>pConfigurationInfo.defaultConfig.ulFileLogSize
+MUST be set to the <b>FileLogSize</b> data element value (section 3.2.1.1).</p>
+</li><li><p><span>  </span>pConfigurationInfo.defaultConfig.ulFileLogFlags
+MUST be set to the <b>FileLogFlags</b> data element value (section 3.2.1.1).</p>
+</li><li><p><span>  </span>pConfigurationInfo.defaultConfig.ulFileLogNameFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>wszFileLogName</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.defaultConfig.ulFileLogEntriesFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>wszFileLogEntries</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.defaultConfig.ulFileLogSizeFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulFileLogSize</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.defaultConfig.ulFileLogFlagsFlag
+MUST be set to an integer indicating the type of the configuration setting for <b>ulFileLogFlags</b>,
+as specified in section 2.2.6.</p>
+</li><li><p><span>  </span>pConfigurationInfo.cProviderConfig
+MUST be set with the number of time providers found in the <b>TimeProviderList</b>
+data element (section 3.2.1.1).</p>
+</li><li><p><span>  </span>For each time provider in <b>TimeProviderList</b>,
+the server MUST provide a W32TIME_CONFIGURATION_PROVIDER element in pConfigurationInfo.pProviderConfig,
+as specified in section <a href="b224e747-4d3a-43ec-b5c5-94ffab593389" data-linktype="relative-path">3.2.5.9.1</a>.</p>
+</li><li><p><span>  </span>pConfigurationInfo.cEntries
+MUST be set to 0.</p>
+</li><li><p><span>  </span>pConfigurationInfo.pEntries
+MUST be set to NULL.</p>
+</li></ol></div>

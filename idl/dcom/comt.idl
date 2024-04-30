@@ -1,0 +1,92 @@
+import "ms-dcom.idl";
+import "ms-dtyp.idl";
+import "ms-oaut.idl";
+ 
+typedef struct {
+  DWORD cCalls;
+  DWORD cComponentInstances;
+  DWORD cComponents;
+  DWORD cCallsPerSecond;
+} ContainerStatistics;
+ 
+typedef struct {
+  DWORD dwLegacyId;
+  WCHAR wszApplicationIdentifier[40];
+  DWORD dwProcessId;
+  ContainerStatistics statistics;
+} ContainerData;
+ 
+typedef struct {
+  GUID  clsid;
+  DWORD cTotalReferences;
+  DWORD cBoundReferences;
+  DWORD cPooledInstances;
+  DWORD cInstancesInCall;
+  DWORD dwResponseTime;
+  DWORD cCallsCompleted;
+  DWORD cCallsFailed;
+} ComponentData;
+ 
+[
+    object,
+    uuid(B60040E0-BCF3-11D1-861D-0080C729264D),
+    pointer_default(unique)
+]
+interface IGetTrackingData: IUnknown
+{
+    HRESULT Opnum3NotUsedOnWire();
+ 
+    HRESULT GetContainerData(
+        [out] DWORD* nContainers,
+        [out, size_is(,(*nContainers))]
+           ContainerData** aContainerData
+    );
+ 
+    HRESULT GetComponentDataByContainer(
+        [in]  DWORD  idContainer,
+        [out] DWORD* nComponents,
+        [out, size_is(,*nComponents)]
+           ComponentData** aComponentData
+    );
+ 
+    HRESULT GetComponentDataByContainerAndCLSID(
+        [in] DWORD idContainer,
+        [in] GUID  clsid,
+        [out] ComponentData** ppComponentData
+    );
+ 
+    HRESULT Opnum7NotUsedOnWire();
+};
+ 
+ 
+[
+    object,
+    uuid(4E6CDCC9-FB25-4FD5-9CC5-C9F4B6559CEC),
+    pointer_default(unique)
+]
+interface IComTrackingInfoEvents: IUnknown
+{
+    HRESULT OnNewTrackingInfo(
+        [in] IUnknown* pToplevelCollection
+    );
+};
+ 
+ 
+[
+    object,
+    uuid(23C9DD26-2355-4FE2-84DE-F779A238ADBD),
+    dual
+]
+interface IProcessDump: IDispatch
+{
+    [id(1)]
+    HRESULT IsSupported();
+ 
+    [id(2)]
+    HRESULT DumpProcess(
+        [in] BSTR bstrContainerID,
+        [in] BSTR bstrDirectory,
+        [in] DWORD dwMaxFiles,
+        [out,retval] BSTR* pbstrDumpFile
+    );
+};

@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>MInterfacePointer is an NDR-marshaled structure that MUST
+contain a hand-marshaled <span><a href="fe6c5e46-adf8-4e34-a8de-3f756c875f31" data-linktype="relative-path">OBJREF</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct tagMInterfacePointer {
+   unsigned long ulCntData;
+   [size_is(ulCntData)] byte abData[];
+ } MInterfacePointer;
+</pre></div>
+</dd></dl><p><b>ulCntData:</b>  This MUST specify the
+size, in bytes, of the <i>abData</i> parameter.</p><p><b>abData:</b>   An array of bytes that
+MUST contain an OBJREF.</p></div>

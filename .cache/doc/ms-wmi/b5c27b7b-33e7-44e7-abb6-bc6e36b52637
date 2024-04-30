@@ -1,0 +1,117 @@
+<div class="content"><p> </p><p>The IWbemServices::ExecNotificationQueryAsync method is the
+asynchronous version of the <span><a href="b83ac7b7-80bf-412e-9a0f-c665fac0b5bf" data-linktype="relative-path">IWbemServices::ExecNotificationQuery</a></span>
+method. The IWbemServices::ExecNotificationQueryAsync method provides
+subscription for asynchronous event notifications. When this method is invoked,
+the server performs the same task as the IWbemServices::ExecNotificationQuery
+method, except that events are supplied to the specified response handler (<i>pResponseHandler</i>)
+until the <span><a href="72a7aae1-2490-46bf-a822-95ec8958f00f" data-linktype="relative-path">IWbemServices::CancelAsyncCall</a></span>
+method is called.</p><dl>
+<dd>
+<div><pre> HRESULT ExecNotificationQueryAsync(
+   [in] const BSTR strQueryLanguage,
+   [in] const BSTR strQuery,
+   [in] long lFlags,
+   [in] IWbemContext* pCtx,
+   [in] IWbemObjectSink* pResponseHandler
+ );
+</pre></div>
+</dd></dl><p><b>strQueryLanguage: </b>MUST be set to
+&#34;WQL&#34;.</p><p><b>strQuery: </b>MUST contain the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_46e519f1-d1f0-4dcc-bd02-9a2638c03d98" data-linktype="relative-path">WQL</a></span>
+event-related query text as specified in section <span><a href="6c8a38f4-4ee1-47cb-99f1-b42718a575ce" data-linktype="relative-path">2.2.1</a></span>. This
+parameter MUST NOT be NULL.</p><p><b>lFlags: </b>Specifies the behavior of the IWbemServices::ExecNotificationQueryAsync
+method. Flag behavior MUST be interpreted as specified in the following table.</p><dl>
+<dd>
+<p>The server MUST allow any combination of zero or
+more flags from the following table and MUST comply with all the restrictions
+in a flag description. Any other DWORD value that does not match a flag
+condition MUST be treated as not valid.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_USE_AMENDED_QUALIFIERS</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server SHOULD return no <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f82a4363-0099-479c-b42c-a8d398a90443" data-linktype="relative-path">CIM
+  localizable information</a></span>.</p>
+  <p>If this bit is set, the server SHOULD return CIM
+  localizable information.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_SEND_STATUS</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>This flag is ignored.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pCtx: </b>MUST be a pointer to an <span><a href="18c8f1a1-652f-43b7-9186-6098bc303a8d" data-linktype="relative-path">IWbemContext</a></span>
+interface, which MUST contain additional information that the client wants to
+pass to the server. If <i>pCtx</i> is NULL, this parameter MUST be ignored.</p><p><b>pResponseHandler: </b>MUST be a pointer to the <span><a href="0ddb4f22-371a-4697-af5b-d4184b179b68" data-linktype="relative-path">IWbemObjectSink</a></span>
+interface that is implemented by the caller, where enumeration results are
+delivered. This parameter MUST NOT be NULL.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR, as specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>, to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The following validation occurs before an asynchronous
+operation is started.</p><p>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that makes the call MUST have WBEM_ENABLE and WBEM_REMOTE_ENABLE accesses to
+the namespace; otherwise, WBEM_E_ACCESS_DENIED MUST be returned.</p><p>This method MUST fail if <i>strQueryLanguage</i> or <i>strQuery</i>
+does not exist.</p><p>The server SHOULD enforce a maximum length for the <i>strQuery</i>
+parameter and return WBEM_E_QUOTA_VIOLATION if the limit is exceeded.<a id="Appendix_A_Target_54"></a><a aria-label="Product behavior note 54" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_54" data-linktype="relative-path">&lt;54&gt;</a></p><p>Requirements mentioned in the parameter definitions are also
+checked before the asynchronous operation is started.</p><p>If successful, the server MUST create a new entry in <b>AsyncOperationTable</b>
+as specified in section <span><a href="83a955c3-2fba-4d06-bd88-76ed9bbada43" data-linktype="relative-path">3.1.1.1.3</a></span>.</p><p>The following validation happens asynchronously.</p><p>In response to IWbemServices::ExecNotificationQueryAsync,
+the server MUST evaluate the <i>strQueryLanguage</i> and <i>strQuery</i>
+parameters (as specified earlier in this section) and MUST start to provide
+events that match the requested query. The method MUST fail if the method
+parameters or their combinations are not valid, as specified earlier in this
+section, or if the server is unable to execute the method.</p><p>For each provider in the <b>ProviderTable</b> where <b>EventQueryList</b>
+is not empty:</p><ul><li><p><span><span> 
+</span></span>For each query in <b>EventQueryList</b>, the server MUST check
+whether the instance of a CIM class passed as part of <i>strQuery</i> is a
+logical subset of the query.</p>
+</li></ul><p>If no query is matched, the server MUST return
+WBEM_E_INVALID_CLASS.</p><p>If the FROM clause of <i>strQuery</i> represents a class
+that is not derived from __Event, the server MUST return WBEM_E_NOT_EVENT_CLASS.</p><p>If the GROUP BY clause of <i>strQuery</i> does not have
+WITHIN specified, the server MUST return WBEM_E_MISSING_GROUP_WITHIN.</p><p>If the GROUP BY clause of <i>strQuery</i> was used with
+aggregation that is not supported, the server MUST return
+WBEM_E_MISSING_AGGREGATION_LIST.</p><p>If the GROUP BY clause of <i>strQuery</i> references an
+object that is an embedded object without using Dot notation, the server MUST
+return WBEM_E_AGGREGATING_BY_OBJECT.</p><p>If WITHIN clause is not specified as part of <i>strQuery</i>
+that contains an intrinsic event class, the server MUST return
+WBEM_E_REGISTRATION_TOO_PRECISE.</p><p>If the <i>strQuery</i> is not syntactically valid or one or
+more elements in &lt;PROPERTY-LIST&gt; contains undefined properties, the
+server MUST return WBEM_E_INVALID_QUERY.</p><p>If method execution succeeds, the server MUST run the
+notification query until the query is canceled or execution fails. The server
+MUST NOT call <span><a href="479c78dc-73cf-4f5b-85bd-5efb26ab48a6" data-linktype="relative-path">IWbemObjectSink::SetStatus</a></span>
+to send success or operation progress information. When query execution fails,
+the server MUST call IWbemObjectSink::SetStatus to send the error to the
+client, and the server MUST release IWbemObjectSink.</p><p>If the <i>strQuery</i> is evaluated successfully, the server
+MUST create an entry (row) in the <i>EventBindingTable</i>. If <i>strQuery</i>
+includes a <b>WITHIN</b> clause, the server MUST create an <b>EventPollingTimer</b>,
+set its interval to the number of seconds specified in the <b>WITHIN</b>
+clause, and start the timer. If <i>strQuery</i> includes a <b>GROUP WITHIN</b>
+clause, then the server MUST create an <b>EventGroupingTimer</b> and set its
+interval to the number of seconds specified in the <b>GROUP WITHIN</b> clause.
+The server MUST set <b>ClientSecurityContext</b> to
+RpcImpersonationAccessToken.Sids[UserIndex]. The server response to
+out-of-range time intervals is implementation-dependent.<a id="Appendix_A_Target_55"></a><a aria-label="Product behavior note 55" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_55" data-linktype="relative-path">&lt;55&gt;</a></p><p>If either WITHIN or GROUP WITHIN clause is specified, the
+server MUST query for the instances of the underlying CIM class (for which the
+notifications are requested) in the <i>strQuery</i> and populate <b>EventBindingTable.PrevInstances</b>
+with the list of instances.</p><p>The server MUST delete the row when the client cancels the
+query. If <i>strQuery</i> specified an <i>EventPollingTimer</i>, the server
+MUST also cancel the timer. If <i>strQuery</i> specified an <i>EventGroupingTimer</i>,
+the server MUST also cancel the timer.</p></div>

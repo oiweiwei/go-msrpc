@@ -1,0 +1,8 @@
+<div class="content"><p>The Distributed File System (DFS): Namespace Management
+Protocol provides a <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote
+procedure call (RPC)</a> interface for administering <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0b8086c9-d025-45b8-bf09-6b5eca72713e" data-linktype="relative-path">DFS</a> configurations. The
+client is an application that issues method calls on the RPC interface to
+administer DFS. The server is a DFS service that implements support for this
+RPC interface for administering DFS.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

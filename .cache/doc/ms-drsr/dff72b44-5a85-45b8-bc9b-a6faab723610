@@ -1,0 +1,10 @@
+<div class="content"><p> </p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   RevealSecretsDeny = 0,
+   RevealSecretsAllow = 1,
+   RevealSecretsNoPolicy = 2
+ } RevealSecretsPolicy;
+</pre></div>
+</dd></dl></div>

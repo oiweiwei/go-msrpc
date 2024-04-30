@@ -1,0 +1,47 @@
+<div class="content"><p> </p><p>The <b>FAX_OUTBOX_CONFIG</b> structure defines information
+about outbox settings of the fax server. This data structure is used as a
+parameter to the <b>FAX_SetOutboxConfiguration</b> (section <span><a href="91edc4a7-06c5-4aa6-86ee-4eb13d7c9559" data-linktype="relative-path">3.1.4.1.87</a></span>)
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwSizeOfStruct;
+   BOOL bAllowPersonalCP;
+   BOOL bUseDeviceTSID;
+   DWORD dwRetries;
+   DWORD dwRetryDelay;
+   FAX_TIME dtDiscountStart;
+   FAX_TIME dtDiscountEnd;
+   DWORD dwAgeLimit;
+   BOOL bBranding;
+ } FAX_OUTBOX_CONFIG,
+  *PFAX_OUTBOX_CONFIG;
+</pre></div>
+</dd></dl><p><b>dwSizeOfStruct:</b> A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that holds the total size of the structure, in bytes. This value MUST be
+36 bytes.</p><p><b>bAllowPersonalCP:</b> A Boolean that indicates
+whether fax client applications can include a user-designed cover page template
+with the fax transmission. If this member is TRUE, the client can provide a
+personal cover page template. If this member is FALSE, the client MUST use a
+common cover page stored on the fax server.</p><p><b>bUseDeviceTSID:</b> A Boolean variable that
+indicates whether the fax server MAY use the devices <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_3b1ad462-95fc-4739-b942-4a5670d6ae34" data-linktype="relative-path">transmitting subscriber
+identifier</a></span> instead of the value specified when submitting a new job.
+If this member is TRUE, the server SHOULD use the devices transmitting
+subscriber identifier.</p><p><b>dwRetries:</b> A <b>DWORD</b> that holds the
+number of times the fax server will attempt to retransmit an outgoing fax if
+the initial transmission fails.</p><p><b>dwRetryDelay:</b> A <b>DWORD</b> that holds the
+minimum number of minutes that will elapse between retransmission attempts by
+the fax server.</p><p><b>dtDiscountStart:</b> A <b>FAX_TIME</b> (section <span><a href="eb612891-9092-4f9c-a975-db41229afe41" data-linktype="relative-path">2.2.61</a></span>)
+structure that MUST specify the hour and minute at which the discount period
+begins. The discount period applies only to outgoing transmissions. </p><p><b>dtDiscountEnd:</b> A <b>FAX_TIME</b> structure
+that holds the hour and minute at which the discount period ends. The discount
+period applies only to outgoing transmissions.</p><p><b>dwAgeLimit:</b> A <b>DWORD</b> variable that holds
+the number of days the fax server will keep unsuccessful fax messages in its
+outbox <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>. If a <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_82c28020-815f-4f69-adf5-7c2b78773b23" data-linktype="relative-path">fax
+message</a></span> stays in the outbox queue longer than the value specified,
+it MAY be automatically deleted. If this value is zero, the time limit MUST NOT
+be used. </p><p><b>bBranding:</b> A Boolean that indicates whether
+the fax server generates a brand (banner) at the top of outgoing fax
+transmissions. If this member is TRUE, the fax server SHOULD generate a brand
+that contains transmission-related information such as the transmitting
+subscriber identifier, date, time, and page count.</p></div>

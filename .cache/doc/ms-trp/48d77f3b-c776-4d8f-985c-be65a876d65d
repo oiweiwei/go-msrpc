@@ -1,0 +1,60 @@
+<div class="content"><p>The LINETERMCAPS packet describes the capabilities of a
+line&#39;s terminal device. The <a href="f236ea7a-c8a2-4681-b87c-9f0e07a01dc6" data-linktype="relative-path">LINEDEVCAPS</a>
+packet can contain an array of LINETERMCAPS packet.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTermDev</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTermModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTermSharing</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTermDev (4 bytes): </b>An unsigned 32-bit
+integer. The device type of the terminal. This member uses one of the <a href="9f1dbbca-a7c7-4863-b3b8-f09fa1845b4a" data-linktype="relative-path">LINETERMDEV_Constants</a>. </p><p><b>dwTermModes (4 bytes): </b>An unsigned 32-bit
+integer. The terminal modes that the terminal device can deal with. This member
+uses one of the <a href="c410cabf-88f3-42b9-94c4-535333526bf7" data-linktype="relative-path">LINETERMMODE_Constants</a>.
+</p><p><b>dwTermSharing (4 bytes): </b>An unsigned 32-bit
+integer. The sharing modes for the terminal device. This member uses one of the
+<a href="47936d9d-8573-499b-a9ab-3255afce0149" data-linktype="relative-path">LINETERMSHARING_Constants</a>.
+</p></div>

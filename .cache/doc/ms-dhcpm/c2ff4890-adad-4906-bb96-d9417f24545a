@@ -1,0 +1,39 @@
+<div class="content"><p> </p><p>The <b>DHCP_SUBNET_ELEMENT_TYPE</b> enumeration defines the
+type of a configuration parameter for a DHCPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_128cd76b-eecb-41e6-96f7-f73c2bf9235a" data-linktype="relative-path">scope</a></span> configured on
+the DHCP server. This value is used in conjunction with other data types to
+specify the configuration parameters for a DHCPv4 scope by the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+methods defined in this specification.</p><dl>
+<dd>
+<div><pre> typedef  enum _DHCP_SUBNET_ELEMENT_TYPE
+ {
+   DhcpIpRanges,
+   DhcpSecondaryHosts,
+   DhcpReservedIps,
+   DhcpExcludedIpRanges,
+   DhcpIpUsedClusters,
+   DhcpIpRangesDhcpOnly,
+   DhcpIpRangesDhcpBootp,
+   DhcpIpRangesBootpOnly,
+ } DHCP_SUBNET_ELEMENT_TYPE,
+  *LPDHCP_SUBNET_ELEMENT_TYPE;
+</pre></div>
+</dd></dl><p><b>DhcpIpRanges: </b>The configuration parameter is
+the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b63eb4e5-64bf-40a5-bc59-12b83ad184cb" data-linktype="relative-path">IP
+range</a></span> of a DHCPv4 scope configured on the DHCP server.</p><p><b>DhcpSecondaryHosts: </b>This enumeration type is
+unused. If this value is passed as a parameter to a method, it will return
+ERROR_CALL_NOT_IMPLEMENTED or ERROR_NOT_SUPPORTED, as specified in the
+processing rules of methods that use the <b>DHCP_SUBNET_ELEMENT_TYPE</b>
+enumeration.</p><p><b>DhcpReservedIps: </b>The configuration parameter
+is a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservation</a></span>
+for a DHCPv4 client in a DHCPv4 scope element configured on the DHCP server.</p><p><b>DhcpExcludedIpRanges: </b>The configuration
+parameter is the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_64d30865-9640-4009-a80a-861966749767" data-linktype="relative-path">exclusion range</a></span> of a
+DHCPv4 scope configured on the DHCPv4 server.</p><p><b>DhcpIpUsedClusters: </b>This enumeration type is
+unused, and the DHCP server returns ERROR_INVALID_PARAMETER when specified. </p><p><b>DhcpIpRangesDhcpOnly: </b>The configuration
+parameter is an IP range of a DHCPv4 scope configured on the DHCPv4 server,
+which MUST be used only for assignment of addresses to DHCPv4 clients on the
+subnet. The IP addresses from this range MUST NOT be assigned to bootstrap
+protocol (BOOTP) clients (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90319" data-linktype="external">[RFC2132]</a></span>).</p><p><b>DhcpIpRangesDhcpBootp: </b>The configuration
+parameter is an IP range of a DHCPv4 scope configured on the DHCPv4 server,
+which can be used for assignment of addresses to both DHCPv4 and BOOTP.</p><p><b>DhcpIpRangesBootpOnly: </b>The configuration
+parameter is an IP range of a DHCPv4 scope configured on the DHCPv4 server,
+which MUST be used only for assignment of IPv4 addresses to BOOTP clients.</p></div>

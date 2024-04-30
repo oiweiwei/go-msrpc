@@ -1,0 +1,188 @@
+<div class="content"><p>The WitnessrRegisterEx method allows the witness client to
+register for resource state change notifications of a NetName, ShareName and
+multiple IPAddresses. The client can subsequently call the WitnessrAsyncNotify
+method to receive notifications when there is a state change on any of these
+resources.</p><dl>
+<dd>
+<div><pre> DWORD WitnessrRegisterEx(
+         [in] handle_t Handle,
+         [out] PPCONTEXT_HANDLE ppContext,
+         [in] ULONG Version,
+         [in] [string] [unique] LPWSTR NetName,
+         [in] [string] [unique] LPWSTR ShareName,
+         [in] [string] [unique] LPWSTR IpAddress,
+         [in] [string] [unique] LPWSTR ClientComputerName,
+         [in] ULONG Flags,
+         [in] ULONG KeepAliveTimeout);
+            
+</pre></div>
+</dd></dl><p><b>Handle:</b>  An RPC binding handle <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>ppContext:</b>  A context handle of type
+PPCONTEXT_HANDLE, as specified in section <a href="de9b6be4-c32d-4187-87b3-5de2a8f48f67" data-linktype="relative-path">2.2.1.2</a>, that identifies
+the client on the server. </p><p><b>Version:</b>  The version of the Witness protocol
+currently in use by the client.</p><p><b>NetName:</b>  A pointer to a null-terminated
+string that specifies the name of the resource for which the client requires
+notifications.</p><p><b>ShareName:</b>  A pointer to a null-terminated
+string that specifies the name of the share resource for which the client
+requires notifications.</p><p><b>IpAddress:</b>  A pointer to a null-terminated
+string that specifies the IP address to which the client application connection
+is established.</p><p><b>ClientComputerName:</b>  A pointer to a
+null-terminated string that is used to identify the Witness client.</p><p><b>Flags:</b>  The type of Witness registration. This
+field MUST be set to one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WITNESS_REGISTER_NONE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>If set, the client requests notifications only for the
+  registered IP address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WITNESS_REGISTER_IP_NOTIFICATION</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>If set, the client requests notifications of any
+  eligible server IP addresses.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>KeepAliveTimeout:</b> The maximum number of
+seconds for any notification response from the server.</p><p><b>Return Values:</b> Returns 0x00000000
+(ERROR_SUCCESS) on success or a nonzero error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000005AA</p>
+  <p>ERROR_NO_SYSTEM_RESOURCES</p>
+  </td>
+  <td>
+  <p>Insufficient system resources exist to complete the
+  requested service.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057 </p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000139F </p>
+  <p>ERROR_INVALID_STATE</p>
+  </td>
+  <td>
+  <p>The specified resource state is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000051A </p>
+  <p>ERROR_REVISION_MISMATCH</p>
+  </td>
+  <td>
+  <p>The client request contains an invalid Witness
+  protocol version.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>This opnum is applicable only to servers that implement
+Witness protocol version 2.</p><p>If the <b>Version</b> field of the request is not
+0x00020000, the server MUST stop processing the request and return the error
+code ERROR_REVISION_MISMATCH.</p><p>If <i>NetName</i>, <i>IpAddress</i>, or <i>ClientComputerName</i>
+is NULL, the server MUST fail the request and return the error code
+ERROR_INVALID_PARAMETER.</p><p>If the <i>NetName</i> parameter is not equal to <b>ServerGlobalName</b>,
+the server MUST fail the request and return the error code
+ERROR_INVALID_PARAMETER. </p><p>If <i>ShareName</i> is not NULL, the server MUST enumerate
+the shares by calling <i>NetrShareEnum</i> as specified in <a href="../ms-srvs/accf23b0-0f57-441c-9185-43041f1b0ee9" data-linktype="relative-path">[MS-SRVS]</a>
+section <a href="../ms-srvs/c4a98e7b-d416-439c-97bd-4d9f52f8ba52" data-linktype="relative-path">3.1.4.8</a>.
+If the enumeration fails or if no shares are returned, the server MUST return
+the error code ERROR_INVALID_STATE. </p><p>If none of the shares in the list has shi*_type set to
+STYPE_CLUSTER_SOFS as specified in [MS-SRVS] section 3.1.4.8, the server MUST
+ignore <b>ShareName</b>. </p><p>Otherwise, the server MUST fail the request with the error
+code ERROR_INVALID_STATE for the following:</p><ul><li><p><span><span> 
+</span></span><b>ShareName</b> does not exist in the enumerated list.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST search for an <b>Interface</b> in <b>InterfaceList</b>,
+where <b>Interface.IPv4Address</b> or <b>Interface.IPv6Address</b> matches the <i>IpAddress</i>
+parameter based on its format. If no matching entry is found and <b>ShareName</b>
+has shi*_type set to STYPE_CLUSTER_SOFS, as specified in [MS-SRVS] section <a href="../ms-srvs/6069f8c0-c93f-43a0-a5b4-7ed447eb4b84" data-linktype="relative-path">2.2.2.4</a>,
+the server MUST fail the request with ERROR_INVALID_STATE.<b> </b></p>
+</li></ul><p>The server MUST create a <b>WitnessRegistration</b> entry as
+follows and insert it into the <b>WitnessRegistrationList</b>. </p><ul><li><p><span><span> 
+</span></span><b>WitnessRegistration.WitnessClientVersion</b> MUST be set to
+the value of the <i>Version</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span><b>WitnessRegistration.WitnessClientName</b> MUST be set to the <i>ClientComputerName</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span><b>WitnessRegistration.LastUseTime</b> MUST be set to the current
+time.</p>
+</li><li><p><span><span> 
+</span></span><b>WitnessRegistration.KeepAliveTime</b> MUST be set to <b>KeepAliveTimeout</b>.
+</p>
+</li><li><p><span><span> 
+</span></span><b>WitnessRegistration.IsAsyncNotifyRegistered</b> MUST be set to
+FALSE.</p>
+</li><li><p><span><span> 
+</span></span><b>WitnessRegistration.NetworkName</b> MUST be set to the <i>NetName</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span><b>WitnessRegistration.ShareName</b> MUST be set to the <i>ShareName</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ShareName</b> is not NULL, <b>WitnessRegistration.ShareNameNotificationRequired</b>
+MUST be set to TRUE; otherwise set to FALSE.</p>
+</li><li><p><span><span> 
+</span></span>If <b>Flags</b> field has WITNESS_REGISTER_IP_NOTIFICATION set, <b>WitnessRegistration.IPNotificationRequired</b>
+MUST be set to TRUE; otherwise set to FALSE.</p>
+</li><li><p><span><span> 
+</span></span><b>WitnessRegistration.IPAddress</b> MUST be set to the <i>IPAddress</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span><b>WitnessRegistration.RegistrationKey</b> MUST be set to a newly
+generated <a href="bdf33531-fabc-46df-8252-1100c9c0da85#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a>.</p>
+</li><li><p><span><span> 
+</span></span><b>WitnessRegistration.PendingChangeNotifications</b>, <b>WitnessRegistration.PendingMoveNotification</b>,
+<b>WitnessRegistration.PendingShareMoveNotification</b>, <b>WitnessRegistration.PendingIPNotification</b>
+MUST be set to empty.</p>
+</li></ul><p>The server MUST copy the <b>WitnessRegistration.RegistrationKey</b>
+into the <i>ppContext</i> parameter.</p><p>The server MUST return ERROR_SUCCESS and the <i>ppContext</i>
+parameter to the caller.</p></div>

@@ -1,0 +1,32 @@
+<div class="content"><p> </p><p>The <b>FAX_CloseConnection (Opnum 2)</b> method is called by
+the fax server (acting as an <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> client for this
+call) when it needs to release the connection to the fax client (acting as an
+RPC server for this call). When the fax client calls <b>FAX_EndServerNotification</b>
+(section <span><a href="59663586-4f1a-4f10-a548-c9b088995028" data-linktype="relative-path">3.1.4.1.17</a></span>), the
+fax server MUST release the RPC connection to the fax client through this call.</p><p>In response, the fax client MUST validate the notification
+context in the FaxPortHandle argument that is sent by the fax server, to ensure
+that this is a valid notification context created with a successful <b>FAX_OpenConnection </b>(section
+<span><a href="6a8d8440-25a7-49aa-a4a1-7043b040dde4" data-linktype="relative-path">3.2.4.5</a></span>)
+method call for which <b>FAX_CloseConnection</b> (section 3.2.4.4) was not
+already successfully called. If validation fails, the fax client MUST abort the
+operation and MUST return ERROR_SUCCESS. If the notification context is valid,
+the fax client MUST close the RPC connection that is identified by the
+argument.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_CloseConnection(
+   [in, out] PRPC_FAX_HANDLE FaxHandle
+ );
+</pre></div>
+</dd></dl><p><b>FaxHandle: </b>A pointer to an RPC_FAX_HANDLE that
+indicates a context handle to close. For more information about RPC_FAX_HANDLE,
+see <b>FAX Data Types</b> (section <span><a href="46c77dee-7306-4b22-a407-070b221ae620" data-linktype="relative-path">2.2.74</a></span>).</p><dl>
+<dd>
+<p>This method returns ERROR_SUCCESS (0x00000000) for
+success. The ERROR_SUCCESS code is also returned for failure when the fax
+handle specified by the <i>FaxHandle</i> argument indicates an invalid
+connection context with the intent to mask the failure for a malicious caller.
+Otherwise, if an unexpected failure happens for a valid fax handle, the method
+returns one of the standard errors that are defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying RPC protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

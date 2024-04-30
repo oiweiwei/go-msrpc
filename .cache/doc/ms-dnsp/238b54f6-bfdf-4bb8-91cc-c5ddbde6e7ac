@@ -1,0 +1,119 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_TIME_STATS</b> structure has the DNS server&#39;s
+time-related statistics. This structure MUST be formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ServerStartTimeSeconds</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LastClearTimeSeconds</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecondsSinceServerStart</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecondsSinceLastClear</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ServerStartTime
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LastClearTime
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>ServerStartTimeSeconds (4 bytes): </b>The number
+of seconds that has elapsed since the server machine was last restarted, that
+is, the operating system uptime in seconds, as a 32-bit unsigned integer. If
+the value is greater than 0xFFFFFFFF, then the value modulo 0x100000000 is
+stored in the field.</p><p><b>LastClearTimeSeconds (4 bytes): </b>The number of
+seconds that elapsed between the time the server machine was restarted and the
+last time the server statistics were cleared, that is, the operating system
+uptime in seconds at the time of the last statistics reset, as a 32-bit
+unsigned integer. If the value is greater than 0xFFFFFFFF, then the value modulo
+0x100000000 is stored in the field.</p><p><b>SecondsSinceServerStart (4 bytes): </b>The number
+of seconds since the server started, that is, the uptime of the DNS server
+software in seconds, as a 32-bit unsigned integer. If the value is greater than
+0xFFFFFFFF, then the value modulo 0x100000000 is stored in the field.</p><p><b>SecondsSinceLastClear (4 bytes): </b>The number of
+seconds since the last time that the server statistics were cleared, as a
+32-bit unsigned integer. If the value is greater than 0xFFFFFFFF, then the
+value modulo 0x100000000 is stored in the field.</p><p><b>ServerStartTime (16 bytes): </b>A <b>DNS_SYSTEMTIME</b>
+structure (section <span><a href="fc487ec4-6e26-482c-a994-4f019afe0e4c" data-linktype="relative-path">2.2.10.2.3</a></span>) that
+contains the time the server started.</p><p><b>LastClearTime (16 bytes): </b>A <b>DNS_SYSTEMTIME</b>
+structure (section 2.2.10.2.3) that contains the time the server statistics was
+last cleared.</p></div>

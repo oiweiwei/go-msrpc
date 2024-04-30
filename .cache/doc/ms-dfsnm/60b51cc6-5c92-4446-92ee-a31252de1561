@@ -1,0 +1,46 @@
+<div class="content"><p> </p><p>The DFS_INFO_9 structure contains information for a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span>
+or a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS
+link</a></span>. </p><p>The DFS_INFO_9 structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_9 {
+   [string] WCHAR* EntryPath;
+   [string] WCHAR* Comment;
+   DWORD State;
+   unsigned long Timeout;
+   GUID Guid;
+   unsigned long PropertyFlags;
+   unsigned long MetadataSize;
+   ULONG SecurityDescriptorLength;
+   [size_is(SecurityDescriptorLength)] 
+     PUCHAR pSecurityDescriptor;
+   DWORD NumberOfStorages;
+   [size_is(NumberOfStorages)] LPDFS_STORAGE_INFO_1 Storage;
+ } DFS_INFO_9,
+  *LPDFS_INFO_9;
+</pre></div>
+</dd></dl><p><b>EntryPath:</b>  A pointer to a DFS root
+or a DFS link path.</p><p><b>Comment:</b>  Pointer to a
+null-terminated <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> string
+containing a comment associated with the DFS root or DFS link that is for
+informational purposes. There are no protocol-specified restrictions on the
+length or content of this string. The comment is meant for human readability
+and has no effect on server functionality.</p><p><b>State:</b>  Refers to the State field of
+<span><a href="a5dc283a-1fa7-4f09-a58a-0cfa3e5de625" data-linktype="relative-path">DFS_INFO_2</a></span>.
+For more information, see section 2.2.3.2.</p><p><b>Timeout:</b>  The time-out, in seconds,
+associated with the root or link and used in a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c6f2eabf-2138-4f97-a788-5d6a41a27bdd" data-linktype="relative-path">DFS referral</a></span>
+response to a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c2787719-60e0-4b69-8efe-c33edf9b40b2" data-linktype="relative-path">DFS client</a></span>.</p><p><b>Guid:</b>  The <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> of this root or
+link.</p><p><b>PropertyFlags:</b>  Refers to the
+PropertyFlags field of <span><a href="00691ea3-6542-44dc-8baf-200a7a747a1d" data-linktype="relative-path">DFS_INFO_5</a></span>. For
+more information, see section 2.2.3.5.</p><p><b>MetadataSize:</b>  The size, in bytes,
+of the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_e8de88fd-d760-46fa-ad77-76961fa20aea" data-linktype="relative-path">DFS metadata</a></span> of the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS
+namespace</a></span>. For a DFS link, this MUST be 0.</p><p><b>SecurityDescriptorLength:</b>  The
+length, in bytes, of the buffer that the <b>pSecurityDescriptor</b> field points
+to.</p><p><b>pSecurityDescriptor:</b>  A
+self-relative security descriptor to be associated with a DFS link. For more
+information on security descriptors, see <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a></span>.</p><p><b>NumberOfStorages:</b>  The number of <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_a2c6d1c9-deea-427c-91ee-56f6e726eabd" data-linktype="relative-path">DFS
+targets</a></span> for this root or link. The protocol imposes no restrictions
+on the number of roots or links.</p><p><b>Storage:</b>  A pointer to an array of <span><a href="2f7fe367-2899-4b76-b5db-0443c4d73a5d" data-linktype="relative-path">DFS_STORAGE_INFO_1</a></span>
+structures containing information about each target. The NumberOfStorages
+member specifies the number of structures within this storage array.</p><p>For information on target priority rank and class
+information, see section 2.2.2.6.</p></div>

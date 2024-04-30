@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The CObjId type is used to represent an <span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_4d73c422-8089-444c-a40a-64511c1a3b75" data-linktype="relative-path">ObjectID</a></span>,
+which is a unique identifier that represents the identity of a file within a
+file system <span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct CObjId {
+   GUID _object;
+ } CObjId;
+</pre></div>
+</dd></dl><p><b>_object:</b>  This field MUST contain an
+identifier for a file. It is unique within the volume on which the file was
+created. Restrictions on the value of a <span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_3b3c1be2-035c-4823-afeb-10edbd6bb288" data-linktype="relative-path">VolumeID</a></span> are defined
+in section <span><a href="d741765a-b678-4dbd-8898-cbc3a02a9438" data-linktype="relative-path">3.1.1</a></span>.</p></div>

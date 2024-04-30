@@ -1,0 +1,63 @@
+<div class="content"><p> </p><p>The GetNames method retrieves the data member name or the
+method and parameter names associated with a specified <span><a href="ace8758f-ee2b-4cb6-8645-973994d12530" data-linktype="relative-path">MEMBERID</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT GetNames(
+   [in] MEMBERID memid,
+   [out, size_is(cMaxNames), length_is(*pcNames)] 
+     BSTR* rgBstrNames,
+   [in] UINT cMaxNames,
+   [out] UINT* pcNames
+ );
+</pre></div>
+</dd></dl><p><b>memid: </b>MUST be a
+MEMBERID (section 2.2.35).</p><p><b>rgBstrNames: </b>MUST be set to an array of <span><a href="9c5a5ce4-ff5b-45ce-b915-ada381b34ac1" data-linktype="relative-path">BSTR</a></span>.
+If <i>pcNames</i> is 0, <i>rgBstrNames</i> MUST be NULL.</p><p><b>cMaxNames: </b>MUST specify the maximum length of
+the <i>rgBstrNames</i> array that the client can accept.</p><p><b>pcNames: </b>MUST be set to the length of the <i>rgBstrNames</i>
+array.</p><p><b>Return Values: </b>The method MUST return
+information in an HRESULT data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions: </p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD does
+not match a value in the following table, a fatal failure occurred.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD
+matches a value in the following table, a failure occurred. </p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8002802B</p>
+  <p>TYPE_E_ELEMENTNOTFOUND</p>
+  </td>
+  <td>
+  <p>The value of memid did not specify the MEMBERID of a
+  member of the type. See [MS-ERREF].</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p>If the <i>memid</i> field corresponds to multiple property
+accessor methods, the contents of <i>rgBstrNames</i> MUST correspond to the
+[propget] property accessor.</p><p>If the <span><a href="99504cf9-16d8-401e-a873-83b85d1ee4aa" data-linktype="relative-path">ITypeInfo server</a></span>
+represents an appobject <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_670b0ee2-d101-41b0-ac77-6ac7dbeee7dc" data-linktype="relative-path">coclass</a></span> (see section
+<span><a href="e86fe771-d836-47b6-b846-846de41d592c" data-linktype="relative-path">2.2.49.8</a></span>)
+and <i>memid</i> is MEMBERID_DEFAULTINST, the first element of <i>rgBstrNames</i>
+MUST be set to the name of the coclass.</p><p>In all other cases, the first element of <i>rgBstrNames</i>
+MUST be set to the name of the method or data element in the binding context of
+the ITypeInfo server that corresponds to the value of <i>memid</i>.</p><p>If <i>memid</i> specifies a method or property accessor
+method, the remaining elements of <i>rgBstrNames</i> MUST be set to the names
+of entries in its parameter table, in the order in which they are stored in the
+parameter table.</p><p>If <i>memid</i> specifies a put or putref property, the <i>rgBstrNames</i>
+array MUST NOT include the name of the [retval] parameter. If <i>memid</i>
+specifies a member of a <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_35b38e6d-42ee-4b7b-8ca1-ab93308458d5" data-linktype="relative-path">dispinterface</a></span>, the <i>rgBstrNames</i>
+array MUST NOT include the names of [lcid] or [retval] parameters (see section <span><a href="5c2a1997-60d7-496d-8d9a-ed940bbb82eb" data-linktype="relative-path">3.1.4.4</a></span>).
+In all other cases, the <i>rgBstrNames</i> array MUST include all members of
+the parameter table.</p></div>

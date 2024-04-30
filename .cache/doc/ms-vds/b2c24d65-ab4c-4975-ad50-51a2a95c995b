@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The VDS_IPADDRESS_TYPE enumeration defines the set of valid
+types for an IP address. These type values are used in the type member of the <span><a href="d624b709-7807-4859-b9c9-764eaa499c2c" data-linktype="relative-path">VDS_IPADDRESS</a></span>
+structure.<a id="Appendix_A_Target_40"></a><a aria-label="Product behavior note 40" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_40" data-linktype="relative-path">&lt;40&gt;</a></p><dl>
+<dd>
+<div><pre> typedef enum _VDS_IPADDRESS_TYPE
+ {
+   VDS_IPT_TEXT = 0x00000000,
+   VDS_IPT_IPV4 = 0x00000001,
+   VDS_IPT_IPV6 = 0x00000002,
+   VDS_IPT_EMPTY = 0x00000003
+ } VDS_IPADDRESS_TYPE;
+</pre></div>
+</dd></dl><p><b>VDS_IPT_TEXT:  </b>The IP address is a text
+string.</p><p><b>VDS_IPT_IPV4:  </b>The IP address is an IPv4
+address.</p><p><b>VDS_IPT_IPV6:  </b>The IP address is an IPv6
+address.</p><p><b>VDS_IPT_EMPTY:  </b>An IP address is not
+specified.</p></div>

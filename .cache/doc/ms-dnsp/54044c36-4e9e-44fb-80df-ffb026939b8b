@@ -1,0 +1,126 @@
+<div class="content"><p> </p><p>The R_DnssrvOperation3 method is used to invoke a set of
+server functions specified by the caller on the zone scope or cache scope if
+specified. The DNS server SHOULD<a id="Appendix_A_Target_285"></a><a aria-label="Product behavior note 285" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_285" data-linktype="relative-path">&lt;285&gt;</a>
+implement R_DnssrvOperation3.</p><p>All parameters are as specified by the methods <span><a href="9500a7e8-165d-4b13-be86-0ddc43100eef" data-linktype="relative-path">R_DnssrvOperation (section 3.1.4.1)</a></span>
+and <span><a href="8c0522b1-97fb-4fa7-b4e2-2c55c0afb0e7" data-linktype="relative-path">R_DnssrvOperation2 (section 3.1.4.6)</a></span>
+with the following exceptions.</p><dl>
+<dd>
+<div><pre> LONG R_DnssrvOperation3(
+   [in]                           handle_t            hBindingHandle,
+   [in]                           DWORD               dwClientVersion,
+   [in]                           DWORD               dwSettingFlags,
+   [in, unique, string]           LPCWSTR             pwszServerName,
+   [in, unique, string]           LPCSTR              pszZone,
+   [in, unique, string]           LPCWSTR             pwszZoneScopeName,
+   [in]                           DWORD               dwContext,
+   [in, unique, string]           LPCSTR              pszOperation,
+   [in]                           DWORD               dwTypeId,
+   [in, switch_is(dwTypeId)]      DNSSRV_RPC_UNION    pData
+ );
+</pre></div>
+</dd></dl><p><b>pwszZoneScopeName: </b>A pointer to a
+null-terminated character string that contains the name of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bbe7722c-420e-48e7-b4bb-9838ff07b9e6" data-linktype="relative-path">zone
+scope</a></span> in the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span> or cache scope
+in a cache zone, or a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_b20e1dd4-e2fb-44d4-8508-9d9c8ac7ebd7" data-linktype="relative-path">server scope</a></span>
+configured on the DNS server in which the operation is to be performed. For
+operations specific to a particular zone scope, this field MUST contain the
+name of the zone scope. If the value is NULL then the API gives the same
+behavior as R_DnssrvOperation2 (section 3.1.4.6). If the value is not NULL then
+pszZone MUST point to a null-terminated character string that contains the name
+of the zone in <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_409411c4-b4ed-4ab6-b0ee-6d7815f85a35" data-linktype="relative-path">UTF-8</a></span> format. In
+this case the type of the zone pointed to by pszZone MUST be a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_7205eedf-f027-4da5-8f65-18966a86a17a" data-linktype="relative-path">primary
+zone</a></span>. It MUST also be a non-<span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_439a7fee-e146-458f-9869-ce2f8983bd0b" data-linktype="relative-path">autocreated zone</a></span>, a
+non-reverse lookup zone, and a non-AD integrated zone. For operations specific
+to server scopes, this field MUST contain the name of the server scope and the <b>pszZone</b>
+field MUST be NULL. For operations specific to cache scopes, this field MUST
+contain the name of the cache scope, and the <b>pszZone</b> field MUST be
+&#34;..cache.&#34;</p><dl>
+<dd>
+<p>If pszZone is not NULL and pwszZoneScopeName is not
+NULL, pszOperation MUST be set to one of the following values:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&#34;DeleteNode&#34;</p>
+  </td>
+  <td>
+  <p>Deletes a node from the given zone scope of a
+  specified zone or a cache scope in a specified cache zone. On input, dwTypeId
+  MUST be set to DNSSRV_TYPEID_NAME_AND_PARAM (section <span><a href="39b03b89-2264-4063-8198-d62f62a6441a" data-linktype="relative-path">2.2.2.1.1</a></span>),
+  and pData MUST point to a structure of type <span><a href="408e91b9-1e53-4631-a051-5e097394f8d8" data-linktype="relative-path">DNS_RPC_NAME_AND_PARAM (section 2.2.1.2.5)</a></span>.
+  That structure contains the name of the node to be deleted as pointed by
+  pszNodeName, and a Boolean flag in dwParam that indicates if the node&#39;s
+  subtree is to be deleted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;DeleteRecordSet&#34;</p>
+  </td>
+  <td>
+  <p>Deletes all the DNS records of a particular type at a
+  particular node that is present in the given zone scope of a specified zone
+  or a cache scope in a specified cache zone. On input, dwTypeId MUST be set to
+  DNSSRV_TYPEID_NAME_AND_PARAM (section 2.2.2.1.1). pData MUST point to a
+  structure of type DNS_RPC_NAME_AND_PARAM (section 2.2.1.2.5). That structure
+  contains the name of the node to be deleted and the DNS record type in the
+  dwParam member. The type MUST be of value of either
+  DNS_RECORD_TYPE (section 2.2.2.1.1) or 0x00FF, which specifies all
+  types.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If pszZone is NULL and pwszZoneScopeName is not
+NULL, pszOperation MUST be set to one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&#34;Forwarders&#34;</p>
+  </td>
+  <td>
+  <p>On input, dwTypeId SHOULD<a id="Appendix_A_Target_286"></a><a aria-label="Product behavior note 286" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_286" data-linktype="relative-path">&lt;286&gt;</a> be set to
+  DNSSRV_TYPEID_FORWARDERS, and pData MUST point to a structure of one of the
+  types specified in <span><a href="83f4bfff-c5fb-4029-aad3-05b3d7f4ef40" data-linktype="relative-path">DNS_RPC_FORWARDERS (section 2.2.5.2.10)</a></span>,
+  which contains information about new IP addresses to which the DNS server
+  SHOULD forward queries. These IP addresses are part of the server scope as
+  specified in the pwszZoneScopeName.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;ResetDwordProperty&#34;</p>
+  </td>
+  <td>
+  <p>Update the value of a (name, value) pair in the DNS
+  Server Configuration. On input, dwTypeId MUST be set to
+  DNSSRV_TYPEID_NAME_AND_PARAM, and pData MUST point to a structure of type
+  DNS_RPC_NAME_AND_PARAM (section 2.2.1.2.5) that specifies the name of a property
+  listed in section <span><a href="73948379-17b0-4011-8080-4feab27d1f1f" data-linktype="relative-path">3.1.1.3.1</a></span> and a
+  new value for that property.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>When processing this call, the server MUST perform the same
+actions as for the R_DnssrvOperation2 method. Operations specific to this
+method are as described in the preceding table. These operations are processed
+as specified in R_DnssrvOperation, in the given zone scope or cache scope
+specified in pwszZoneScopeName of a zone or cache zone specified in pszZone or
+in the server scope specified in pwszZoneScopeName with pszZone being NULL.</p></div>

@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The <b>DHCP_BINARY_DATA</b> structure defines a buffer
+containing binary data. This data structure is generally used by other data
+structures, such as <span><a href="bd62505d-9f25-4449-862f-f903afbc6f5a" data-linktype="relative-path">DHCP_OPTION_DATA_ELEMENT (section 2.2.1.2.23)</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_BINARY_DATA {
+   DWORD DataLength;
+   [size_is(DataLength)] BYTE* Data;
+ } DHCP_BINARY_DATA,
+  *LPDHCP_BINARY_DATA;
+</pre></div>
+</dd></dl><p><b>DataLength:</b>   This is a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+that contains the number of bytes of data stored in the <b>Data</b> member
+buffer. There is no restriction imposed by this protocol on the length of the
+data.<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p><p><b>Data:</b>   This is a pointer to <span><a href="../ms-dtyp/d7edc080-e499-4219-a837-1bc40b64bb04" data-linktype="relative-path">BYTE</a></span>,
+pointing to an array of bytes of length specified by the <b>DataLength</b>
+member.</p></div>

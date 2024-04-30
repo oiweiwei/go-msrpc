@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The GetMops method has no effect when called across the
+wire.</p><dl>
+<dd>
+<div><pre> HRESULT GetMops(
+   [in] MEMBERID memid,
+   [out] BSTR* pBstrMops
+ );
+</pre></div>
+</dd></dl><p><b>memid: </b>MUST be a nonzero <span><a href="ace8758f-ee2b-4cb6-8645-973994d12530" data-linktype="relative-path">MEMBERID</a></span>.</p><p><b>pBstrMops: </b>MUST be set to a NULL BSTR.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul></div>

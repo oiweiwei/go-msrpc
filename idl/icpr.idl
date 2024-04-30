@@ -1,0 +1,25 @@
+// Please refer to [MS-WCCE] for the definition of the 
+// CERTTRANSBLOB
+ 
+import "ms-wcce.idl";
+ 
+ 
+[
+    uuid(91ae6020-9e3c-11cf-8d7c-00aa00c091be),
+    pointer_default(unique)
+]
+interface ICertPassage
+{
+    DWORD CertServerRequest(
+[in]                        handle_t        h,
+[in]                        DWORD           dwFlags,
+[in, string, unique] const  wchar_t         *pwszAuthority,
+[in, out, ref]              DWORD           *pdwRequestId,
+[out]                       DWORD           *pdwDisposition,
+[in, ref]            const  CERTTRANSBLOB   *pctbAttribs,
+[in, ref]            const  CERTTRANSBLOB   *pctbRequest,
+[out, ref]                  CERTTRANSBLOB   *pctbCert,
+[out, ref]                  CERTTRANSBLOB   *pctbEncodedCert,
+[out, ref]                  CERTTRANSBLOB   *pctbDispositionMessage);
+}
+ 

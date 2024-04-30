@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>ORPC_EXTENT is a binary large object (BLOB) of data whose
+format is identified by a <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>. It is used on
+DCOM Remote Protocol calls to pass arbitrary out-of-band data that is not part
+of the explicit method signature. Unless otherwise specified, clients and
+servers MUST ignore ORPC_EXTENTs whose format they do not recognize.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="acc42954-4073-4f05-b850-efd562022077#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct tagORPC_EXTENT {
+   GUID id;
+   unsigned long size;
+   [size_is((size+7) &amp; ~7)] byte data[];
+ } ORPC_EXTENT;
+</pre></div>
+</dd></dl><p><b>id:</b>  This MUST contain a GUID that
+identifies the format of the opaque data in the data field.</p><p><b>size:</b>  This MUST specify the size,
+in bytes, in the data field excluding any padding bytes that were added to
+round the array size to a multiple of 8.</p><p><b>data:</b>  This MUST contain an array of
+bytes that form the extent data. The array size MUST be a multiple of 8 for
+alignment reasons.</p></div>

@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>This document specifies the Messenger Service Remote
+Protocol. The Messenger Service Remote Protocol is a set of <span><a href="1bb1da94-fc7e-484c-ad2a-4e0d257a50ce#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote
+procedure call (RPC)</a></span> interfaces that instruct a <span><a href="1bb1da94-fc7e-484c-ad2a-4e0d257a50ce#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>
+(referred to in this document as a &#34;<span><a href="1bb1da94-fc7e-484c-ad2a-4e0d257a50ce#gt_18623b87-0e55-44bc-a5d3-d49388e1716a" data-linktype="relative-path">message server</a></span>&#34;)
+to perform one or more of the following tasks:</p><ul><li><p><span><span> 
+</span></span>Deliver messages to a local or remote message server for display
+to a console user.</p>
+</li><li><p><span><span> 
+</span></span>Manage the names for which the message server receives messages.</p>
+</li></ul><p>The message server does not maintain <span><a href="1bb1da94-fc7e-484c-ad2a-4e0d257a50ce#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>
+state information.</p><p>It is recommended that this protocol not be implemented due
+to the lack of security features in the protocol, as described in section <span><a href="f97c37cf-50eb-4baf-af65-aafb28a03c39" data-linktype="relative-path">5.1</a></span>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

@@ -1,0 +1,35 @@
+<div class="content"><p> </p><p>The fixed_part_of_reply structure defines the layout of the <b>Buffer</b>
+field in the <span><a href="cb938742-19a3-4303-a1a2-d0b0dd667de1" data-linktype="relative-path">QueryReply</a></span>
+structure that forms the <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_11378cd1-e2d0-4d63-9d15-e2e49215a859" data-linktype="relative-path">server locator&#39;s</a></span>
+response to the <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_a33485fd-4392-4219-83f8-d65cfa0e9674" data-linktype="relative-path">master locator&#39;s</a></span>
+query.</p><dl>
+<dd>
+<div><pre> typedef struct fixed_part_of_reply {
+   MAILSLOT_ENTRY_TYPE type;
+   DWORD unused1[5];
+   unsigned long unused2;
+   unsigned long unused3;
+   RPC_SYNTAX_IDENTIFIER Interface;
+   RPC_SYNTAX_IDENTIFIER XferSyntax;
+   unsigned long BindingLength;
+   DWORD unused4;
+   unsigned long EntryNameLength;
+   DWORD unused5;
+ } fixed_part_of_reply;
+</pre></div>
+</dd></dl><p><b>type:</b>  MUST specify the type of
+response. This MUST contain MailslotServerEntryType as specified in section <span><a href="7a08778f-e279-4105-9f9d-fa9a6932ea54" data-linktype="relative-path">2.2.4.2.2.1</a></span>.</p><p><b>unused1:</b>  Can be set to any
+arbitrary value when set and MUST be ignored on receipt.</p><p><b>unused2:</b>  Can be set to any
+arbitrary value when set and MUST be ignored on receipt.</p><p><b>unused3:</b>  Can be set to any
+arbitrary value when set and MUST be ignored on receipt.</p><p><b>Interface:</b>  Specifies the interface
+being returned. The structure MUST be as specified in section <span><a href="1831bd1c-738c-45dc-a2af-5d0b835af6f5" data-linktype="relative-path">2.2.4.1.2</a></span>.</p><p><b>XferSyntax:</b>  Specifies the <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_01216ea7-ac8a-4cc8-9d19-b901bc424c09" data-linktype="relative-path">transfer
+syntax</a></span> for the interface being returned. The structure is specified
+in section 2.2.4.1.2.</p><p><b>BindingLength:</b>  Specifies the number
+of characters (including the terminating null) in the string <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_1cf35308-abab-4123-9cbd-99c42dc9a6ff" data-linktype="relative-path">binding</a></span>
+that appears in the binding field of the <span><a href="a1a160e1-114f-4967-aad4-a73686ca500f" data-linktype="relative-path">ReplyBuffer</a></span>
+structure that contains this fixed_part_of_reply structure.</p><p><b>unused4:</b>  Can be set to any
+arbitrary value when set and MUST be ignored on receipt.</p><p><b>EntryNameLength:</b>  MUST specify the
+number of characters (including the terminating null) in the entry name that
+appears in the <b>entryName</b> field of the ReplyBuffer structure that
+contains this fixed_part_of_reply structure.</p><p><b>unused5:</b>  Can be set to any
+arbitrary value when set and MUST be ignored on receipt.</p></div>

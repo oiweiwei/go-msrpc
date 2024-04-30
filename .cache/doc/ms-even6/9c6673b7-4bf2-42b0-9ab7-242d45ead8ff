@@ -1,0 +1,79 @@
+<div class="content"><p> </p><p>The EvtRpcVariant structure is defined as follows.</p><dl>
+<dd>
+<div><pre> typedef struct tag_EvtRpcVariant {
+   EvtRpcVariantType type;
+   DWORD flags;
+   [switch_is(type)] union {
+     [case(EvtRpcVarTypeNull)] 
+       int nullVal;
+     [case(EvtRpcVarTypeBoolean)] 
+       boolean booleanVal;
+     [case(EvtRpcVarTypeUInt32)] 
+       DWORD uint32Val;
+     [case(EvtRpcVarTypeUInt64)] 
+       DWORD64 uint64Val;
+     [case(EvtRpcVarTypeString)] 
+       [string] LPWSTR stringVal;
+     [case(EvtRpcVarTypeGuid)] 
+       GUID* guidVal;
+     [case(EvtRpcVarTypeBooleanArray)] 
+       BooleanArray booleanArray;
+     [case(EvtRpcVarTypeUInt32Array)] 
+       UInt32Array uint32Array;
+     [case(EvtRpcVarTypeUInt64Array)] 
+       UInt64Array uint64Array;
+     [case(EvtRpcVarTypeStringArray)] 
+       StringArray stringArray;
+     [case(EvtRpcVarTypeGuidArray)] 
+       GuidArray guidArray;
+   };
+ } EvtRpcVariant;
+</pre></div>
+</dd></dl><p><b>type:</b>  Indicates the actual type of
+the union.</p><p><b>flags:</b>   This flag MUST be set to
+either 0x0000 or 0x0001. If this flag is set to 0x0001, it indicates that an
+EvtRpcVariant structure has been changed by the client. For an example of how
+this flag might be set, suppose the client application retrieved an <span><a href="14ba9fda-3402-44b2-b1cd-5318a6613a7f" data-linktype="relative-path">EvtRpcVariantList</a></span>
+structure by calling <span><a href="f5ae9a61-6f5e-4751-965e-394349c7d950" data-linktype="relative-path">EvtRpcGetChannelConfig</a></span>,
+changed one or more EvtRpcVariant structures in the list, and then sent the
+list back to the server via <span><a href="e02828fd-873d-4cc5-9b60-23ef31987275" data-linktype="relative-path">EvtRpcPutChannelConfig</a></span>.
+In this example, the server updates the values corresponding to the
+EvtRpcVariant structures with this flag set.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>A flag indicating that no instance of an EvtRpcVariant
+  structure was changed by the client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>A flag indicating that an EvtRpcVariant structure was
+  changed by the client.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>RpcVariant:</b>  The data type to be
+passed.</p><p><b>nullVal:</b>  MUST be set to 0x00000000.</p><p><b>booleanVal:</b>  A <span><a href="../ms-dtyp/51bbfbb1-08e2-4c13-a95e-1eaa7d310670" data-linktype="relative-path">BOOLEAN</a></span>
+value.</p><p><b>uint32Val:</b>  A 32-bit unsigned
+integer.</p><p><b>uint64Val:</b>  A 64-bit unsigned
+integer.</p><p><b>stringVal:</b>  A null-terminated <span><a href="../ms-dtyp/845b6fa4-c34a-4b90-824d-60e98533dfb5" data-linktype="relative-path">UNICODE</a></span>
+string.</p><p><b>guidVal:</b>  A <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a></span>.</p><p><b>booleanArray:</b>  An array of BOOLEAN
+values that are stored as a <span><a href="425d7a39-14cc-464b-8b19-de0e3f84a0da" data-linktype="relative-path">BooleanArray</a></span>.</p><p><b>uint32Array:</b>  An array of 32-bit
+unsigned integers that are stored as a <span><a href="b3279ca0-92f1-4bc2-8283-3cab8d2d15f5" data-linktype="relative-path">UInt32Array</a></span>.</p><p><b>uint64Array:</b>  An array of 64-bit
+unsigned integers that are stored as a <span><a href="53fa400c-2bca-4f42-a1e0-9810b52855d6" data-linktype="relative-path">UInt64Array</a></span>.</p><p><b>stringArray:</b>  An array of strings
+that are stored as a <span><a href="0215b98f-6929-47a8-ad91-d8b99f93e38c" data-linktype="relative-path">StringArray</a></span>.</p><p><b>guidArray:</b>  An array of <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUIDs</a></span>
+that are stored as a <span><a href="3a701caf-6c17-4d1c-b4e8-8b2ab2ec8dc9" data-linktype="relative-path">GuidArray</a></span>.</p></div>

@@ -1,0 +1,34 @@
+<div class="content"><p> The R_WinsGetBrowserNames_Old method always returns an
+ERROR_WINS_INTERNAL error code.</p><dl>
+<dd>
+<div><pre> DWORD R_WinsGetBrowserNames_Old(
+   [in] handle_t ServerHdl,
+   [out] PWINSINTF_BROWSER_NAMES_T pNames
+ );
+</pre></div>
+</dd></dl><p><b>ServerHdl: </b>An <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding over IP
+address/HostName to the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a>
+server. RPC uses this binding internally to determine which WINS server the
+call is directed to.</p><p><b>pNames: </b>This field MUST be ignored.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates the return status. The method always returns the
+ERROR_WINS_INTERNAL error code.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000FA0</p>
+  <p>ERROR_WINS_INTERNAL</p>
+  </td>
+  <td>
+  <p>An error occurred while processing the RPC call.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown.</p><p><b>Processing and Response Requirements:</b></p><p>Clients with any access level can call this method. </p></div>

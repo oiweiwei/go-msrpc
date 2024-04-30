@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p>The <b>DHCP_OPTION_SCOPE_TYPE6</b> enumeration defines the
+type of DHCPv6 options being referred to by an <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> method in the
+DHCPM. The DHCP server allows for configuration of standard and vendor-specific
+options at various levels, such as the default level, server level, or <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_128cd76b-eecb-41e6-96f7-f73c2bf9235a" data-linktype="relative-path">scope</a></span>
+level, or for a specific <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservation</a></span>. This
+value is used in conjunction with the <span><a href="35c698cc-7141-4985-9940-87361653c79d" data-linktype="relative-path">DHCP_OPTION_SCOPE_INFO6 (section 2.2.1.2.30)</a></span>
+structure, to specify option values in the RPC methods defined by this
+protocol.</p><dl>
+<dd>
+<div><pre> typedef  enum _DHCP_OPTION_SCOPE_TYPE6
+ {
+   DhcpDefaultOptions6,
+   DhcpScopeOptions6,
+   DhcpReservedOptions6,
+   DhcpGlobalOptions6
+ } DHCP_OPTION_SCOPE_TYPE6,
+  *LPDHCP_OPTION_SCOPE_TYPE6;
+</pre></div>
+</dd></dl><p><b>DhcpDefaultOptions6: </b>Option is defined at the
+default level. The option definition is created or modified on the DHCPv6
+server and the default value of the option is stored.</p><p><b>DhcpScopeOptions6: </b>Option is defined at the
+scope level. The option value is added or modified at the scope and is valid
+for that specific scope.</p><p><b>DhcpReservedOptions6: </b>Option is defined for a
+specific IP address reservation. The option value is added or modified for a
+particular IP reservation in a scope.</p><p><b>DhcpGlobalOptions6: </b>Option is defined at the
+global level. The option value is added or modified at the DHCPv6 server, which
+is valid for all scopes in that server.</p></div>

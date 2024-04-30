@@ -1,0 +1,49 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/caaf6dd2-a2f9-4408-85dd-b00240e5970b" data-linktype="external">msdn link</a></p><p>(Protocol Version 3) The ApiMoveGroupToNodeEx method SHOULD<a id="Appendix_A_Target_116"></a><a aria-label="Product behavior note 116" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_116" data-linktype="relative-path">&lt;116&gt;</a> instructs the server to move
+ownership of a group to the specified node in the cluster.</p><p>The server MUST handle this method in the same manner as <a href="e0485cd4-d941-4496-a443-3d14c206f90d" data-linktype="relative-path">ApiMoveGroupToNode (section 3.1.4.2.53)</a>
+except as follows:</p><ul><li><p><span><span> 
+</span></span>The server handles the <i>dwMoveFlags</i> and <i>lpInBuffer</i>
+parameters as specified for <a href="ba315e35-f381-477d-8c36-0c71dc434fa8" data-linktype="relative-path">ApiMoveGroupEx (section 3.1.4.2.131)</a>,
+with any reference to the destination node now referring to the node designated
+by the <i>hNode</i> parameter.</p>
+</li></ul><p>The server accepts an ApiMoveGroupToNodeEx request only if
+it is in the read/write state, as specified in section <a href="756547e7-ca64-4b7c-9f1b-2b1fbc6153d3" data-linktype="relative-path">3.1.1</a>.</p><p>The server MUST require that the access level associated
+with the <i>hGroup</i> parameter is &#34;All&#34; (section <a href="a249a463-3d3b-4058-abf6-3024d81806a0" data-linktype="relative-path">3.1.4</a>).</p><dl>
+<dd>
+<div><pre> error_status_t ApiMoveGroupToNodeEx(
+   [in] HGROUP_RPC hGroup,
+   [in] HNODE_RPC hNode,
+   [in] DWORD dwMoveFlags,
+   [in, size_is(cbInBufferSize)] BYTE* lpInBuffer,
+   [in] DWORD cbInBufferSize,
+   [out] error_status_t *rpc_status
+ );
+</pre></div>
+</dd></dl><p><b>hGroup: </b>An HGROUP_RPC context handle that was
+obtained in a previous call to <a href="6e23a55f-d94e-454c-9168-ed97840ad53c" data-linktype="relative-path">ApiOpenGroup (section 3.1.4.2.42)</a>,
+<a href="f829f4e6-465d-4c77-a9da-74c531a299cd" data-linktype="relative-path">ApiOpenGroupEx (section 3.1.4.2.118)</a>,
+or <a href="e02d79c2-ae0b-4812-8919-9f2dbc223eb6" data-linktype="relative-path">ApiCreateGroup (section 3.1.4.2.43)</a>.</p><p><b>hNode: </b>An HNODE_RPC context handle that was
+obtained in a previous call to <a href="8b8f2dd1-7ead-4467-baa8-402175c3f1e6" data-linktype="relative-path">ApiOpenNode (section 3.1.4.2.67)</a>
+or <a href="a4e4a533-09b5-4b69-b4ae-3e5436ae2390" data-linktype="relative-path">ApiOpenNodeEx (section 3.1.4.2.117)</a>,
+indicating the node that will take ownership of the group specified in the <i>hGroup</i>
+parameter.</p><p><b>dwMoveFlags: </b>The available values for this
+parameter are identical to those specified for the
+ApiMoveGroupEx (section 3.1.4.2.131) method.</p><p><b>lpInBuffer: </b>A pointer to a buffer that the
+server will provide to implementation-specific objects that control the
+resource operations for each resource in the group. The client SHOULD set this
+parameter to a <a href="7ed348f2-eddf-4c3f-a1cb-b651ec3cff92" data-linktype="relative-path">PROPERTY_LIST (section 2.2.3.10)</a>.
+For each value in this list, the client sets the property name to the name of
+the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_597fe367-f504-4295-9ed9-92cd892796cd" data-linktype="relative-path">resource type</a> of one
+of the resources in the group. The client can provide a buffer that does not
+have a property value corresponding to each resource type in the group, and the
+client can provide a buffer that has multiple property values for the same
+resource type. Except for the following property values, the server MUST treat
+all property values provided by the client identically.</p><p><b>cbInBufferSize: </b>The size in bytes of the
+buffer pointed to by the <i>lpInBuffer</i> parameter.</p><p><b>rpc_status: </b>A 32-bit integer used to indicate
+success or failure. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+runtime MUST indicate, by writing to this parameter, whether it succeeded in
+executing this method on the server. The encoding of the value passed in this
+parameter MUST conform to encoding for comm_status and fault_status, as
+specified in Appendix E of <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>Return Values: </b>This method MUST return the
+same error codes as specified for
+ApiMoveGroupToNode (section 3.1.4.2.53) and
+ApiMoveGroupEx (section 3.1.4.2.131).</p></div>

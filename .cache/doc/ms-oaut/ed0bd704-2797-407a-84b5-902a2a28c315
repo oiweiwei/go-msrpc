@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The SAFEARR_BRECORD structure specifies an array of <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_10a36f2b-2a1d-4d7f-b57d-261afca73727" data-linktype="relative-path">UDTs</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _wireSAFEARR_BRECORD {
+   ULONG Size;
+   [size_is(Size), ref] BRECORD* aRecord;
+ } SAFEARR_BRECORD;
+</pre></div>
+</dd></dl><p><b>Size:</b>  The number of BRECORD
+elements in the aRecord array. This MUST be set to 1.</p><p><b>aRecord:</b>  MUST be the collection of
+UDTs as specified in BRECORD (see section <span><a href="ea064b3d-9fb3-4486-9992-4fe2463e83e8" data-linktype="relative-path">2.2.28.2</a></span>).</p><p>The <b>Size</b> field of this type MUST be marshaled as
+specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> section
+14, with the exception that it MUST be marshaled by using a little-endian data
+representation, regardless of the data representation format label. For more
+information, see [C706] section 14.2.5.</p></div>

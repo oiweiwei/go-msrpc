@@ -1,0 +1,79 @@
+<div class="content"><p> </p><p>The <b>R_DhcpGetClassInfo</b> method retrieves the user
+class or vendor class information configured for the DHCP server. The caller of
+this function can free the memory pointed to by <i>FilledClassInfo</i> by
+calling the function <b>midl_user_free</b> (section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpGetClassInfo(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DWORD ReservedMustBeZero,
+   [in] LPDHCP_CLASS_INFO PartialClassInfo,
+   [out] LPDHCP_CLASS_INFO* FilledClassInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>ReservedMustBeZero: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>and
+is reserved for future use. Currently it is not used, and any value set to this
+parameter will not affect the behavior of this method.</p><p><b>PartialClassInfo: </b>This is of type <span><a href="0f8461a3-14ad-4b60-a398-553b199ecfc0" data-linktype="relative-path">LPDHCP_CLASS_INFO (section 2.2.1.2.75)</a></span>,
+containing the partial information of the class for which full information is
+retrieved in <i>FilledClassInfo</i>. The mandatory fields in this structure are
+<b>ClassName</b>, <b>ClassData</b>, and <b>ClassDataLength</b>.</p><p><b>FilledClassInfo: </b>This is a pointer to type
+LPDHCP_CLASS_INFO (section 2.2.1.2.75) in which the complete
+information of a class is retrieved based on the <i>PartialClassInfo</i>.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E4C</p>
+  <p>ERROR_DHCP_CLASS_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The class name being used is unknown or incorrect.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 27.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>If <i>PartialClassInfo</i> or <i>FilledClassInfo</i> is NULL,
+return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ClassName</b> and <b>ClassData</b> fields in <i>PartialClassInfo</i>
+are NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ClassName</b> field in <i>PartialClassInfo</i> is NULL
+and the <b>ClassDataLength</b> field in <i>PartialClassInfo</i> is 0, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Validate if this method is authorized for read access per section
+<span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not, return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve all the entries in the server ADM element <b>DHCPv4ClassDefList</b>,
+and retrieve the class corresponding to<i>PartialClassInfo</i>. If the ADM
+element <b>DHCPv4ClassDef</b> has no entry that matches all the mandatory fields
+of the <i>PartialClassInfo</i> parameter, return ERROR_DHCP_CLASS_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>Allocate the memory for <i>FilledClassInfo</i>, and copy the
+class information from <b>DHCPv4ClassDef</b> entry in the allocated memory and
+return it to the caller.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

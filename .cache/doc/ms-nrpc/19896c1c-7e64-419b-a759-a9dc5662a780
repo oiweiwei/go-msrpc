@@ -1,0 +1,9 @@
+<div class="content"><p>The Netlogon Remote Protocol is a remote procedure call
+(RPC) interface that is used for user and machine authentication on domain-based
+networks. The Netlogon Remote Protocol RPC interface is also used to replicate
+the database for backup domain controllers (BDCs).</p><p>The Netlogon Remote Protocol is used to maintain domain
+relationships from the members of a domain to the domain controller (DC), among
+DCs for a domain, and between DCs across domains. This RPC interface is used to
+discover and manage these relationships.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

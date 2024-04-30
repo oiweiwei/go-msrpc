@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The EvtRpcVariantList data type is a wrapper for multiple <span><a href="9c6673b7-4bf2-42b0-9ab7-242d45ead8ff" data-linktype="relative-path">EvtRpcVariant (section 2.2.7)</a></span>
+data types.</p><dl>
+<dd>
+<div><pre> typedef struct tag_EvtRpcVariantList {
+   [range(0, MAX_RPC_VARIANT_LIST_COUNT)] 
+     DWORD count;
+   [size_is(count)] EvtRpcVariant* props;
+ } EvtRpcVariantList;
+</pre></div>
+</dd></dl><p><b>count:</b>  Number of EvtRpcVariant
+values pointed to by the <b>props</b> field.</p><p><b>props:</b>  Pointer to an array of
+EvtRpcVariant values.</p></div>

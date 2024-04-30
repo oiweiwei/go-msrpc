@@ -1,0 +1,51 @@
+<div class="content"><p>The CLEARTEXT_DATA_BLOB message stores <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_f6e0fdd0-cbc1-4c9d-93b8-f25125f9c5ef" data-linktype="relative-path">cleartext</a> data that does
+not need <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_8312d817-fdc5-4a49-8894-729b7b9e0ce5" data-linktype="relative-path">encryption</a>, but
+uses the <a href="bbe15a83-a32d-48a3-9564-8dacea965e83" data-linktype="relative-path">IIS_CRYPTO_BLOB</a>
+message to store the data.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ClearTextData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>ClearTextData (variable): </b>A variable-length
+array of bytes that contains cleartext data.</p></div>

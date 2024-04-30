@@ -1,0 +1,31 @@
+<div class="content"><p>The <b>RPC_BranchOfficeJobDataPrinted</b> structure holds a
+single <b>Branch Office Print Remote Log Entry</b> (section <a href="1bd61448-db4b-4284-a4b1-8346732402d4" data-linktype="relative-path">3.1.1</a>).<a id="Appendix_A_Target_88"></a><a aria-label="Product behavior note 88" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_88" data-linktype="relative-path">&lt;88&gt;</a> This entry contains the
+information needed to create <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_0c6539af-aed7-4baa-9d21-4aa5b41d448a" data-linktype="relative-path">event
+ID</a> 307 in the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_e6ccb1c9-7b3e-473c-9e14-0806d19c4337" data-linktype="relative-path">Microsoft-Windows-PrintService</a>/Operational
+<a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_43907602-849d-4d1c-9ff8-a2c3228b3735" data-linktype="relative-path">event channel</a>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD Status;
+   [string] wchar_t* pDocumentName;
+   [string] wchar_t* pUserName;
+   [string] wchar_t* pMachineName;
+   [string] wchar_t* pPrinterName;
+   [string] wchar_t* pPortName;
+   LONGLONG Size;
+   DWORD TotalPages;
+ } RPC_BranchOfficeJobDataPrinted;
+</pre></div>
+</dd></dl><p><b>Status:</b> A 32-bit unsigned integer that
+specifies an implementation-specific error code for the last error that
+occurred during the processing of this <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print job</a>.</p><p><b>pDocumentName:</b> A string that specifies
+the name of the print document for this print job.</p><p><b>pUserName:</b> A pointer to a string that
+specifies the name of the user that owns the print job. For rules governing
+user names, see section <a href="9b19bbdf-64da-407f-a5c6-c6533a041d19" data-linktype="relative-path">2.2.4.17</a>.</p><p><b>pMachineName:</b> A pointer to a string that
+specifies the name of the client computer that owns the print job. For rules
+governing computer names, see section <a href="9b3f8135-7022-4b72-accb-aefcc360c83b" data-linktype="relative-path">2.2.4.16</a>.</p><p><b>pPrinterName:</b> A pointer to a string that
+specifies the name of the printer used for the print job. For rules governing
+printer names, see section <a href="24fcd124-035c-4988-a858-3a7d8d6f7b43" data-linktype="relative-path">2.2.4.14</a>.</p><p><b>pPortName:</b> A pointer to a string that
+specifies a supported printer <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a>.
+For rules governing port names, see section <a href="03c5feb7-4fbb-4569-b064-9eb6ad833f50" data-linktype="relative-path">2.2.4.10</a>.</p><p><b>Size:</b> A 64-bit signed integer that
+specifies the size of the print job, in bytes.</p><p><b>TotalPages:</b> A 32-bit unsigned integer
+that specifies the number of pages the document contains.</p></div>

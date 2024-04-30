@@ -1,0 +1,297 @@
+<div class="content"><p> </p><p>The EncapsulateDisk method converts the specified <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_425be2e8-ca0d-45db-afba-d9daee040d07" data-linktype="relative-path">basic
+disks</a></span> to dynamic <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disks</a></span>. This is a
+synchronous task.</p><dl>
+<dd>
+<div><pre> HRESULT EncapsulateDisk(
+   [in] unsigned long affectedDiskCount,
+   [in, size_is(affectedDiskCount)] 
+     DISK_INFO* affectedDiskList,
+   [in] unsigned long affectedVolumeCount,
+   [in, size_is(affectedVolumeCount)] 
+     VOLUME_INFO* affectedVolumeList,
+   [in] unsigned long affectedRegionCount,
+   [in, size_is(affectedRegionCount)] 
+     REGION_INFO* affectedRegionList,
+   [out] unsigned long* encapInfoFlags,
+   [out] TASK_INFO* tinfo
+ );
+</pre></div>
+</dd></dl><p><b>affectedDiskCount: </b>The number of elements
+passed in the <i>affectedDiskList</i> array.</p><p><b>affectedDiskList: </b>An array of <span><a href="0ddf8059-f404-46a3-9d7e-e3d13c4080e6" data-linktype="relative-path">DISK_INFO</a></span>
+structures that specifies the disks to be encapsulated.</p><p><b>affectedVolumeCount: </b>The number of elements
+passed in the <i>affectedVolumeList</i> array.</p><p><b>affectedVolumeList: </b>An array of <span><a href="651f7cad-50c2-4800-b646-a0c47c138724" data-linktype="relative-path">VOLUME_INFO</a></span>
+structures that represents the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volumes</a></span> affected by
+the encapsulation. If the number of affect volumes is zero, a pointer to a zero
+length array MUST be passed. This pointer MUST NOT be input as NULL.</p><p><b>affectedRegionCount: </b>The number of elements
+passed in the <i>affectedRegionList</i> array.</p><p><b>affectedRegionList: </b>An array of <span><a href="5b6f15d9-489d-404c-88e8-64569315c65c" data-linktype="relative-path">REGION_INFO</a></span>
+structures that represents the regions affected by the encapsulation. If the
+number of affect regions is zero, a pointer to a zero length array MUST be
+passed. This pointer MUST NOT be input as NULL.</p><p><b>encapInfoFlags: </b>Bitmap of <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_425bcab9-7911-4eae-b414-624b7a51eb5f" data-linktype="relative-path">flags</a></span>
+that provide information about the encapsulation. The value of this field is a
+logical &#39;OR&#39; of zero or more of the following applicable flags.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ENCAP_INFO_CANT_PROCEED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Encapsulation for disk did not succeed. The other
+  flags specify the reason.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ENCAP_INFO_NO_FREE_SPACE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_3080678a-2e28-4e28-af89-8c010325a7b2" data-linktype="relative-path">volume manager</a></span>
+  could not find sufficient <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_4932fda9-4823-4a72-b4e7-629f89d8fd90" data-linktype="relative-path">free space</a></span> on the
+  disk for encapsulation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ENCAP_INFO_BAD_ACTIVE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The disk contains an <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_37f8831a-72a8-4808-9a39-6949f7172de9" data-linktype="relative-path">active partition</a></span>
+  from which the current operating system was not started.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ENCAP_INFO_UNKNOWN_PART</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The volume manager was unable to determine the type of
+  a partition on the disk.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ENCAP_INFO_FT_UNHEALTHY</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The disk contains an unhealthy FT set volume.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ENCAP_INFO_FT_QUERY_FAILED</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The volume manager was unable to obtain information
+  about an FT set volume on the disk.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ENCAP_INFO_FT_HAS_RAID5</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>The disk is part of an <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_98c2ba19-d0f7-4db1-b6c1-4e7323cc5bc0" data-linktype="relative-path">FT</a></span> <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_96e19472-82bc-4317-9b5b-8113e2fc6eb8" data-linktype="relative-path">RAID-5</a></span>
+  set, which this interface does not support for encapsulation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ENCAP_INFO_FT_ON_BOOT</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>The disk is part of an FT set volume and bootable,
+  which this interface does not support for encapsulation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ENCAP_INFO_REBOOT_REQD</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>Encapsulation of the disk requires a restart of the
+  computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ENCAP_INFO_CONTAINS_FT</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>The disk is part of an FT set volume.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ENCAP_INFO_VOLUME_BUSY</p>
+  <p>0x00000400</p>
+  </td>
+  <td>
+  <p>The disk is currently in use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ENCAP_INFO_PART_NR_CHANGE</p>
+  <p>0x00000800</p>
+  </td>
+  <td>
+  <p>Encapsulation of the disk requires modification of the
+  boot configuration.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>tinfo: </b>Pointer to a <span><a href="d55c167e-c6ad-445f-951c-9ac2d0de7a11" data-linktype="relative-path">TASK_INFO</a></span> structure
+that the client can use to track the request&#39;s progress.</p><p><b>Return Values: </b>The method MUST return 0 or a
+nonerror <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path"><span>HRESULT</span></a> on success, or
+an implementation-specific nonzero error code on failure (as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>;
+see also section <span><a href="31eea9e6-25b0-4309-8f4a-50c74fbedc9b" data-linktype="relative-path">2.2.1</a></span> for HRESULT
+values predefined by the Disk Management Remote Protocol).</p><p>Upon receiving this message, the server MUST validate
+parameters:</p><ol><li><p><span>    </span>Verify that <i>affectedDiskList</i>
+is not NULL and that <i>affectedDiskCount</i> is not 0.</p>
+</li><li><p><span>    </span>For each
+DISK_INFO structure specified by <i>affectedDiskList</i>, verify that the disk
+specified by <i>diskId</i> is in the list of storage objects and that <b>lastKnownState</b>
+matches the <b>LastKnownState</b> field of the object.</p>
+</li><li><p><span>    </span>For each
+DISK_INFO structure specified by <i>affectedDiskList</i>, verify that the disk
+specified by <i>diskId</i> is not a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GPT</a></span> disk.</p>
+</li><li><p><span>    </span>For each
+REGION_INFO structure specified by <i>affectedRegionList</i>, verify that the
+region&#39;s style field does have the value <span><a href="c17c0433-880e-4f57-9b71-23e9379d0594" data-linktype="relative-path">PARTITIONSTYLE_GPT</a></span>.</p>
+</li><li><p><span>    </span>Verify that no
+other basic disks need to be encapsulated together with the disks specified by <i>affectedDiskList</i>.
+</p>
+</li><li><p><span>    </span>Verify that <i>affectedVolumeList</i>
+is not NULL. If <i>affectedVolumeCount</i> is zero, a valid pointer to a
+zero-length array for the <i>affectVolumeList</i> MUST be passed in.</p>
+</li><li><p><span>    </span>Verify that <i>affectedRegionList</i>
+is not NULL. If <i>affectedRegionCount</i> is zero, a valid pointer to a
+zero-length array for the <i>affectRegionList</i> MUST be passed in.</p>
+</li><li><p><span>    </span>Verify that the
+list of basic volumes specified by <i>affectedVolumeList</i> matches the set of
+<span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_e88c8bcf-42a7-41c6-b59a-e959ae01048d" data-linktype="relative-path">basic
+volumes</a></span> that reside on the disks specified by <i>affectedDiskList</i>.
+</p>
+</li><li><p><span>    </span>Verify that <i>encapInfoFlags</i>
+is not NULL. </p>
+</li><li><p><span>  </span>Verify that <i>tinfo</i> is
+not NULL. </p>
+</li></ol><p>If parameter validation fails, the server MUST fail the
+operation immediately, returning an appropriate error as its response to the
+client.</p><p>Otherwise, the server MUST process the message as follows:</p><ol><li><p><span>    </span>Convert the
+basic disks specified by <i>affectedDiskList</i> to dynamic:</p>
+<ul><li><p><span><span>  </span></span>All
+partitions and <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_a6adfe1b-35d0-404e-b2fb-4d45e9f579e0" data-linktype="relative-path">logical drives</a></span> that
+reside on the basic disk are converted to <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_80affbd0-04b4-489e-be50-ddf9383e5d28" data-linktype="relative-path">dynamic volumes</a></span>.</p>
+</li></ul></li><li><p><span>    </span>Wait for the
+conversion to either succeed or fail.</p>
+</li><li><p><span>    </span> Fill in the <i>encapInfoFlags</i>
+output parameter.</p>
+</li><li><p><span>    </span>Fill in the <i>tinfo</i>
+output parameter. </p>
+<table><thead>
+  <tr>
+   <th>
+   <p>TASK_INFO member</p>
+   </th>
+   <th>
+   <p>Required for this operation</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TASK_INFO::id</p>
+  </td>
+  <td>
+  <p>Required.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TASK_INFO::storageId</p>
+  </td>
+  <td>
+  <p>Not required.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TASK_INFO::createTime</p>
+  </td>
+  <td>
+  <p>Not required.<a id="Appendix_A_Target_167"></a><a aria-label="Product behavior note 167" href="5f5043a3-9e6d-40cc-a05b-1a4a3617df32#Appendix_A_167" data-linktype="relative-path">&lt;167&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TASK_INFO::clientID</p>
+  </td>
+  <td>
+  <p>Not required.<a id="Appendix_A_Target_168"></a><a aria-label="Product behavior note 168" href="5f5043a3-9e6d-40cc-a05b-1a4a3617df32#Appendix_A_168" data-linktype="relative-path">&lt;168&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TASK_INFO::percentComplete</p>
+  </td>
+  <td>
+  <p>Required for any task that returns REQ_IN_PROGRESS.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TASK_INFO::status</p>
+  </td>
+  <td>
+  <p>Required.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TASK_INFO::type</p>
+  </td>
+  <td>
+  <p>Required if PercentageComplete is being used.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TASK_INFO::error</p>
+  </td>
+  <td>
+  <p>Required.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TASK_INFO::tflag</p>
+  </td>
+  <td>
+  <p>Not required.<a id="Appendix_A_Target_169"></a><a aria-label="Product behavior note 169" href="5f5043a3-9e6d-40cc-a05b-1a4a3617df32#Appendix_A_169" data-linktype="relative-path">&lt;169&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span>    </span>Return a
+response to the client containing <i>tinfo</i> and the status of the operation.</p>
+</li><li><p><span>    </span>Send the task
+completion notification.<a id="Appendix_A_Target_170"></a><a aria-label="Product behavior note 170" href="5f5043a3-9e6d-40cc-a05b-1a4a3617df32#Appendix_A_170" data-linktype="relative-path">&lt;170&gt;</a></p>
+</li></ol><p>If the operation is successful, the server MUST make the
+following changes to the list of storage objects before returning the response:</p><ol><li><p><span>    </span>Modify the
+converted disk objects to account for the change in type.</p>
+</li><li><p><span>    </span>Create new
+dynamic volume objects that correspond to the new dynamic volumes. </p>
+</li><li><p><span>    </span>Create new <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_753cb2b4-3f5c-48f3-97ef-61612c40499e" data-linktype="relative-path">disk
+region</a></span> objects for the new dynamic disks.</p>
+</li><li><p><span>    </span>Delete disk
+region objects of the old basic disks.<a id="Appendix_A_Target_171"></a><a aria-label="Product behavior note 171" href="5f5043a3-9e6d-40cc-a05b-1a4a3617df32#Appendix_A_171" data-linktype="relative-path">&lt;171&gt;</a></p>
+</li><li><p><span>    </span>Modify <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_1b153cd0-e3f3-4383-bc66-d5ad482c9766" data-linktype="relative-path">drive
+letter</a></span> objects to account for the change of volume owning them. </p>
+</li><li><p><span>    </span>Modify file
+system objects to account for the change of volume owning them. </p>
+</li></ol><p>If the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_ad3783b1-c0fd-46e0-9910-4a16bc6c9d00" data-linktype="relative-path">boot partition</a></span> is
+among the disks being encapsulated and if the partition number of the boot
+partition changes during the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_ea239252-265b-48d4-a576-398d303c3985" data-linktype="relative-path">disk encapsulation</a></span>,
+the server MUST store boot partition change information on persistent storage
+(registry).</p><p>The information MUST contain the old (pre-encapsulation) and
+new (post-encapsulation) partition number of the boot partition. The
+information is useful in case the client sends an <span><a href="e6cecf71-23b1-4175-84e1-eb43132a3f18" data-linktype="relative-path">IVolumeClient::QueryChangePartitionNumbers</a></span>
+message. The IVolumeClient::QueryChangePartitionNumbers method will return the
+original partition number and the new partition number. This information MAY be
+used to update boot settings if necessary.<a id="Appendix_A_Target_172"></a><a aria-label="Product behavior note 172" href="5f5043a3-9e6d-40cc-a05b-1a4a3617df32#Appendix_A_172" data-linktype="relative-path">&lt;172&gt;</a></p></div>

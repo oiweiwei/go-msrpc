@@ -1,0 +1,63 @@
+import "ms-dtyp.idl";
+import "ms-dcom.idl";
+
+typedef enum _OBJREF_TYPE {
+    OBJREF_TYPE_STANDARD = 0x00000001,
+    OBJREF_TYPE_HANDLER = 0x00000002,
+    OBJREF_TYPE_CUSTOM = 0x00000004,
+    OBJREF_TYPE_EXTENDED = 0x00000008
+} OBJREF_TYPE;
+
+typedef struct _OBJREF_STANDARD
+{
+    STDOBJREF       stdobjref;
+    DUALSTRINGARRAY * saResAddr;
+} OBJREF_STANDARD, *POBJREF_STANDARD;
+
+
+typedef struct _OBJREF_HANDLER
+{
+    STDOBJREF       stdobjref;
+    CLSID           clsid;
+    DUALSTRINGARRAY * saResAddr;
+} OBJREF_HANDLER, *POBJREF_HANDLER;
+
+typedef struct _OBJREF_CUSTOM
+{
+    CLSID           clsid;
+    unsigned long   cbExtension;
+    unsigned long   reserved;
+    [size_is(*)] byte * pObjectData[];
+} OBJREF_CUSTOM, *POBJREF_CUSTOM;
+
+typedef struct _DATAELEMENT {
+    GUID dataID;
+    unsigned long cbSize;
+    unsigned long cbRounded = (cbSize+7)&~7;
+    [size_is((cbSize+7)&~7)] byte * Data;
+} DATAELEMENT, *PDATAELEMENT;
+
+typedef struct _OBJREF_EXTENDED
+{
+    STDOBJREF       stdobjref;
+    byte            Signature1[4];
+    DUALSTRINGARRAY * saResAddr;
+    unsigned long   nElms;
+    byte            Signature2[4];
+    [size_is(nElms)] PDATAELEMENT ElmArray;
+} OBJREF_EXTENDED, *POBJREF_EXTENDED;
+
+typedef [switch_type(DWORD)] union _OBJREF_UNION {
+    [case(OBJREF_TYPE_STANDARD)] OBJREF_STANDARD StdObjRef;
+    [case(OBJREF_TYPE_HANDLER)] OBJREF_HANDLER ObjRefHandler;
+    [case(OBJREF_TYPE_CUSTOM)] OBJREF_CUSTOM ObjRefCustom;
+    [case(OBJREF_TYPE_EXTENDED)] OBJREF_EXTENDED ObjRefExtended;
+    [default];
+} OBJREF_UNION;
+
+typedef struct _OBJREF {
+    byte Signature[4];
+    OBJREF_TYPE Flags;
+    IID IID;
+    [switch_is(Flags)] OBJREF_UNION ObjRef;
+} OBJREF, *POBJREF;

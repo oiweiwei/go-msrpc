@@ -1,0 +1,75 @@
+<div class="content"><p>The RQueryServiceConfigEx  method SHOULD<a id="Appendix_A_Target_82"></a><a aria-label="Product behavior note 82" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_82" data-linktype="relative-path">&lt;82&gt;</a> query the optional
+configuration parameters of a service.</p><dl>
+<dd>
+<div><pre> DWORD RQueryServiceConfigEx(
+   [in] SC_RPC_HANDLE hService,
+   [in] DWORD dwInfoLevel,
+   [out] SC_RPC_CONFIG_INFOW* pInfo
+ );
+</pre></div>
+</dd></dl><p><b>hService: </b>An <a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">SC_RPC_HANDLE (section 2.2.4)</a>
+data type that defines the handle to the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_1fbb7936-8437-4e3d-b62f-47df3be07721" data-linktype="relative-path">service record</a> that MUST
+have been created previously, using one of the open methods specified in
+section <a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a>. The
+SERVICE_QUERY_CONFIG access right MUST have been granted to the caller when the
+<a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_9dfe84e3-a772-4ad1-9a25-1255c1dc0f84" data-linktype="relative-path">RPC context handle</a> was
+created.</p><p><b>dwInfoLevel: </b>The information level for the
+service configuration parameters. This MUST be set to 0x00000008 which
+corresponds to the service&#39;s trigger information.</p><p><b>pInfo: </b>A pointer to an <a href="42257303-29d2-4ea6-b4d2-8d5a95e4e3e0" data-linktype="relative-path">SC_RPC_CONFIG_INFOW (section 2.2.22)</a>
+structure that contains optional configuration information.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns one of the following error
+codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>5</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The SERVICE_QUERY_CONFIG access right had not been
+  granted to the caller when the RPC context handle was created.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The handle is no longer valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>124</p>
+  <p>ERROR_INVALID_LEVEL</p>
+  </td>
+  <td>
+  <p>The <i>dwInfoLevel</i> parameter contains an
+  unsupported value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1115</p>
+  <p>ERROR_SHUTDOWN_IN_PROGRESS</p>
+  </td>
+  <td>
+  <p>The system is shutting down.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation the server MUST query the specific configuration
+information stored in the SCM database in the service record identified by the <i>hService</i>
+parameter, using the information level and the corresponding values associated
+with that information level as specified in the <i>dwInfoLevel</i> parameter of
+the client request. The server MUST return this configuration data by setting
+the <i>pInfo</i> parameter with the appropriate structure filled with the
+configuration data based on <i>dwInfoLevel</i>.</p><p>The server MUST return a service&#39;s trigger information by
+returning a SERVICE_TRIGGER_INFO structure.</p></div>

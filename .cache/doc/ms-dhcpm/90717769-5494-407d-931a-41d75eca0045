@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The <b>DHCP_BOOTP_IP_RANGE</b> structure defines a suite of
+IPv4 addresses that can be leased to BOOTP-specific clients (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90319" data-linktype="external">[RFC2132]</a></span>).
+This structure is an extension of the <span><a href="29a03b34-249e-4bd8-a118-e708dadbf22b" data-linktype="relative-path">DHCP_IP_RANGE (section 2.2.1.2.31)</a></span>
+structure with some additional information for BOOTP-specific clients.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_BOOTP_IP_RANGE {
+   DHCP_IP_ADDRESS StartAddress;
+   DHCP_IP_ADDRESS EndAddress;
+   ULONG BootpAllocated;
+   ULONG MaxBootpAllowed;
+ } DHCP_BOOTP_IP_RANGE,
+  *LPDHCP_BOOT_IP_RANGE;
+</pre></div>
+</dd></dl><p><b>StartAddress:</b>  This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>,
+containing the first IPv4 address in the IPv4 range defined on the DHCPv4
+server for BOOTP clients.</p><p><b>EndAddress:</b>  This is of type <b>DHCP_IP_ADDRESS</b>,
+containing the last IPv4 address in the IPv4 range defined on the DHCPv4 server
+for BOOTP clients.</p><p><b>BootpAllocated:</b>  This is of type <span><a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">ULONG</a></span>,
+specifying the number of BOOTP clients that have been served from this IPv4
+range.</p><p><b>MaxBootpAllowed:</b>  This is of type
+ULONG, specifying the maximum count of BOOTP clients in this IPv4 range that
+the DHCPv4 server is allowed to serve.</p></div>

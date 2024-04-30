@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The <b>DHCP_SERVER_SPECIFIC_STRINGS</b> structure defines
+the names of the default <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_713c7395-9431-4d67-bab1-a069ae7461e2" data-linktype="relative-path">user class</a></span> and <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_45d20b00-7166-4f94-b679-4cc5a7835a3a" data-linktype="relative-path">vendor
+class</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_SERVER_SPECIFIC_STRINGS {
+   LPWSTR DefaultVendorClassName;
+   LPWSTR DefaultUserClassName;
+ } DHCP_SERVER_SPECIFIC_STRINGS,
+  *LPDHCP_SERVER_SPECIFIC_STRINGS;
+</pre></div>
+</dd></dl><p><b>DefaultVendorClassName:</b>  A pointer,
+of type <span><a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a></span>,
+to a null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+contains the name of the default vendor class. The maximum number of characters
+allowed in this string is 255, which includes the terminating null character.</p><p><b>DefaultUserClassName:</b>  A pointer, of
+type LPWSTR, to a null-terminated Unicode string that contains the name of the
+default user class.  The maximum number of characters allowed in this string is
+255, which includes the terminating null character.</p></div>

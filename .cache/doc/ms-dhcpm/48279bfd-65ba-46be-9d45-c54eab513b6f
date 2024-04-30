@@ -1,0 +1,162 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4FailoverCreateRelationship</b> method is used
+to create a new failover relationship on the DHCPv4 server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4FailoverCreateRelationship(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] LPDHCP_FAILOVER_RELATIONSHIP pRelationship
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>pRelationship: </b>This is a pointer to a type <span><a href="9153f2b7-e4df-4475-9275-d2092a93bd51" data-linktype="relative-path">DHCP_FAILOVER_RELATIONSHIP (section 2.2.1.2.98)</a></span>)
+that contains information about the failover relationship to be created on the
+DHCPv4 server.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates the return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20123, or to any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_128cd76b-eecb-41e6-96f7-f73c2bf9235a" data-linktype="relative-path">scope</a></span> does not
+  exist on the DHCPv4 server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E90</p>
+  <p>ERROR_DHCP_FO_SCOPE_ALREADY_IN_RELATIONSHIP</p>
+  </td>
+  <td>
+  <p>IPv4 is already part of another failover relationship.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E91</p>
+  <p>ERROR_DHCP_FO_RELATIONSHIP_EXISTS</p>
+  </td>
+  <td>
+  <p>A failover relationship already exists on the DHCPv4
+  server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E9D</p>
+  <p>ERROR_DHCP_FO_RELATIONSHIP_NAME_TOO_LONG</p>
+  </td>
+  <td>
+  <p>The failover relationship name in the
+  DHCP_FAILOVER_RELATIONSHIP (section 2.2.1.2.98) structure is too
+  long.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004EA0</p>
+  <p>ERROR_DHCP_FO_MAX_RELATIONSHIPS</p>
+  </td>
+  <td>
+  <p>The maximum number of allowed failover relationships
+  configured on the DHCP server has been exceeded.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 89.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read/write access
+as specified in section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_INVALID_PARAMETER if any of the following are true:</p>
+<ul><li><p><span><span>  </span></span>The
+<i>pRelationship</i> parameter is NULL.</p>
+</li><li><p><span><span>  </span></span>The
+<b>relationshipName</b> member of the <i>pRelationship</i> parameter is NULL.</p>
+</li><li><p><span><span>  </span></span>The
+<b>primaryServer</b> member of the <i>pRelationship</i> parameter is 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>secondaryServer</b> member of the <i>pRelationship</i> parameter is 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>pScopes</b> member of the <i>pRelationship</i> parameter is NULL.</p>
+</li><li><p><span><span>  </span></span>The
+<b>NumElements</b> member of the <b>pScopes</b> member of the <i>pRelationship</i>
+parameter is 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>Elements</b> member of the <b>pScopes</b> member of the <i>pRelationship</i>
+parameter is NULL.</p>
+</li><li><p><span><span>  </span></span>The
+<b>percentage</b> member of the <i>pRelationship</i> parameter is greater than
+100.</p>
+</li><li><p><span><span>  </span></span>The
+<b>mode</b> member of the <i>pRelationship</i> parameter is not equal to the
+LoadBalance enumeration value and not equal to the HotStandby enumeration value
+(section <span><a href="e2c0761e-d29f-4cb4-b5c4-6f7bd1037d46" data-linktype="relative-path">2.2.1.1.18</a></span>).</p>
+</li><li><p><span><span>  </span></span>The
+<b>serverType</b> member of the <i>pRelationship</i> parameter is not equal to
+the PrimaryServer enumeration value and not equal to the SecondaryServer
+enumeration value (section <span><a href="eee8266d-700a-4c89-b39d-7e5295f4993b" data-linktype="relative-path">2.2.1.1.19</a></span>).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Iterate through the <b>DHCPv4ScopesList</b> ADM element on the
+DHCPv4 server, and if any of the IPv4 subnet addresses in the <b>pScopes</b>
+member of the <i>pRelationship</i> parameter does not match a corresponding <b>DHCPv4ScopesList.DHCPv4Scope</b>
+ADM element on the DHCPv4 server, return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>For any of the IPv4 subnet addresses passed in the <b>pScopes</b>
+member of the <i>pRelationship</i> parameter, if the corresponding <b>DHCPv4Scope.DHCPv4IpRange</b>
+ADM element is of type DhcpIpRangesBootpOnly enumeration value (section <span><a href="0a196713-4790-412f-a2d7-893cbad301da" data-linktype="relative-path">2.2.1.2.38</a></span>),
+return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the length of the string in the <i>pRelationship</i> parameter
+containing the name of the relationship is greater than 126 Unicode characters,
+return ERROR_DHCP_FO_RELATIONSHIP_NAME_TOO_LONG. The length of the relationship
+name does not include the terminating null character.</p>
+</li><li><p><span><span> 
+</span></span>If the number of <b>DHCPv4FailoverRelationship</b> ADM element
+entries in the <b>DHCPv4FailoverRelationshipList</b> ADM element is equal to
+31, return ERROR_DHCP_FO_MAX_RELATIONSHIPS.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the <b>DHCPv4FailoverRelationshipList</b> ADM
+elements, and check if any input IPv4 subnet passed in the <b>pScopes</b>
+member of the <i>pRelationship</i> parameter is already part of the IPv4
+subnets configured on the <b>DHCPv4FailoverRelationshipList.DHCPv4FailoverRelationship</b>
+ADM element; then return ERROR_DHCP_FO_SCOPE_ALREADY_IN_RELATIONSHIP.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the <b>DHCPv4FailoverRelationshipList</b> ADM
+elements, and if there already exists an ADM element <b>DHCPv4FailoverRelationshipList.DHCPv4FailoverRelationship</b>
+corresponding to the <b>relationshipName</b> member in the <i>pRelationship</i>
+parameter, return ERROR_DHCP_FO_RELATIONSHIP_EXISTS.</p>
+</li><li><p><span><span> 
+</span></span>Create a <b>DHCPv4FailoverRelationship</b> ADM element from the
+input <i>pRelationship</i> parameter (a <b>DHCP_FAILOVER_RELATIONSHIP</b>
+structure; see section 2.2.1.2.98).</p>
+<ul><li><p><span><span>  </span></span>Set
+<b>DHCPv4FailoverRelationship.state</b> to the STARTUP enumeration value and <b>DHCPv4FailoverRelationship.prevState</b>
+to the INIT enumeration value.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <b>safePeriod</b> member is given as 0, set the <b>DHCPv4FailoverRelationship.safePeriod</b>
+ADM element to 0xFFFFFFFF. For each of the input IPv4 subnet addresses passed
+in the <b>pScopes</b> member in the <i>pRelationship</i> parameter, iterate
+through the <b>DHCPv4ScopesList</b> ADM element and retrieve the corresponding <b>DHCPv4Scope</b>
+ADM element, and set the <b>DHCPv4Scope.IsFailover</b> ADM element to TRUE.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

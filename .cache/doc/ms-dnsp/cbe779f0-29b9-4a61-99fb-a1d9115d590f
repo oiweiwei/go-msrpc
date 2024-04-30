@@ -1,0 +1,40 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_ZONE_SCOPE_CREATE_INFO_V1</b> structure<a id="Appendix_A_Target_87"></a><a aria-label="Product behavior note 87" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_87" data-linktype="relative-path">&lt;87&gt;</a> contains the name of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bbe7722c-420e-48e7-b4bb-9838ff07b9e6" data-linktype="relative-path">zone
+scope</a></span> or <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0ceb8c41-16c7-4dd0-8307-d977c30cbbc4" data-linktype="relative-path">cache scope</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcScopeCreate {
+   DWORD dwFlags;
+   LPWSTR pwszScopeName;
+ } DNS_RPC_ZONE_SCOPE_CREATE_INFO_V1,
+  *PDNS_RPC_ZONE_SCOPE_CREATE_INFO_V1;
+</pre></div>
+</dd></dl><p><b>dwFlags:</b> Specifies the behavior that the DNS
+server SHOULD follow when creating the scope. This field is used only when the
+operation is CreateZoneScope. For any other value than the following, a new
+empty zone scope is created:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DNS_ZONE_LOAD_OVERWRITE_MEMORY</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>If this value is specified, the DNS server MUST
+  attempt to find and load the zone scope database from persistent storage
+  instead of creating a new empty zone scope. If a pre-existing zone scope
+  database is not found, or if there is a failure in loading the existing
+  database, the DNS server MUST fail the operation and return an error. If a
+  cache scope is being created, this operation fails on the DNS server and an
+  ERROR_INVALID_PARAMETER error is returned.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pwszScopeName:</b> The name of the zone scope or
+cache scope.</p></div>

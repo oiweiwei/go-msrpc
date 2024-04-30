@@ -1,0 +1,15 @@
+<div class="content"><p>The WINSINTF_ADD_VERS_MAP_T structure defines an <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_15b5e4ab-5cdc-4ef5-8edb-f9ba8625c90c" data-linktype="relative-path">address version map</a> pair.
+This data structure is generally used by other data structures, such as <a href="88f3968f-9516-41a4-80b4-7c0e7afb0676" data-linktype="relative-path">WINSINTF_RESULTS_T</a> and <a href="5e0a0782-cec0-4cce-ac6d-01b36923a8db" data-linktype="relative-path">WINSINTF_RESULTS_NEW_T</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSINTF_ADD_VERS_MAP_T {
+   WINSINTF_ADD_T Add;
+   LARGE_INTEGER VersNo;
+ } WINSINTF_ADD_VERS_MAP_T,
+  *PWINSINTF_ADD_VERS_MAP_T;
+</pre></div>
+</dd></dl><p><b>Add:</b>  A structure containing the IP
+address of a partner <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_f2f9c250-6c9e-445f-b677-376f23f77d87" data-linktype="relative-path">WINS
+server</a>.</p><p><b>VersNo:</b>  The highest version number
+from all of the records owned by a WINS server at the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target WINS server</a>
+database. Each record in the database has a version number and owner Id
+associated with it.</p></div>

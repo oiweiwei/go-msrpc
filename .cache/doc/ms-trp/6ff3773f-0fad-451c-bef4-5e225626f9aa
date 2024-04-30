@@ -1,0 +1,691 @@
+<div class="content"><p>The LINECALLINFO packet MUST contain call data. This data
+remains fixed during the call and is obtained with the <a href="fdcdf2c5-6ef4-4895-86c3-20ce2da10df0" data-linktype="relative-path">GetCallInfo</a> packet. If a
+part of the packet does change, then a <a href="077cbcc4-50cd-4422-b255-aed244902730" data-linktype="relative-path">LINE_CALLINFO</a> packet is
+sent indicating which data item has changed. Dynamically changing call data,
+such as call progress status, is available in the <a href="793dc2d8-b4df-4699-8e49-02f459d9ca12" data-linktype="relative-path">LINECALLSTATUS</a> packet,
+returned with the <a href="431e5691-6b28-4ce6-9987-d0717f38b85f" data-linktype="relative-path">GetCallStatus</a>
+packet. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>hLine</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwLineDeviceID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAddressID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwBearerMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRate</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwMediaMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAppSpecific</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCallID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRelatedCallID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCallParamFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCallStates</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwMonitorDigitModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwMonitorMediaModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DialParams (16
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwOrigin</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwReason</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCompletionID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNumOwners</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNumMonitors</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCountryCode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTrunk</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCallerIDFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCallerIDSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCallerIDOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCallerIDNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCallerIDNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCalledIDFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCalledIDSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCalledIDOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCalledIDNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCalledIDNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwConnectedIDFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwConnectedIDSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwConnectedIDOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwConnectedIDNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwConnectedIDNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRedirectionIDFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRedirectionIDSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRedirectionIDOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRedirectionIDNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRedirectionIDNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRedirectingIDFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRedirectingIDSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRedirectingIDOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRedirectingIDNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRedirectingIDNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAppNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAppNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwDisplayableAddressSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwDisplayableAddressOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCalledPartySize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCalledPartyOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCommentSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCommentOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwDisplaySize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwDisplayOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwUserUserInfoSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwUserUserInfoOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwHighLevelCompSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwHighLevelCompOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwLowLevelCompSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwLowLevelCompOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwChargingInfoSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwChargingInfoOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTerminalModesSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTerminalModesOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwDevSpecificSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwDevSpecificOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCallTreatment
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCallDataSize
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCallDataOffset
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSendingFlowspecSize
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSendingFlowspecOffset
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwReceivingFlowspecSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwReceivingFlowspecOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCallerIDAddressType
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCalledIDAddressType
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwConnectedIDAddressType
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRedirectionIDAddressType
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRedirectingIDAddressType
+  (optional)</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, allocated to this packet. </p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, for this packet needed to contain all the returned
+data. </p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit integer.
+The size, in bytes, of the portion of this packet that contains useful data. </p><p><b>hLine (4 bytes): </b>An unsigned 32-bit integer.
+The handle for the line device with which this call is associated. </p><p><b>dwLineDeviceID (4 bytes): </b>An unsigned 32-bit
+integer. The device identifier of the line device with which this call is
+associated. </p><p><b>dwAddressID (4 bytes): </b>An unsigned 32-bit
+integer. The address identifier of the address on the line on which this call
+exists. </p><p><b>dwBearerMode (4 bytes): </b>An unsigned 32-bit
+integer. The value that specifies the current bearer mode of the call. It MUST
+use LINE_CALLINFO</p><p><b>dwRate (4 bytes): </b>An unsigned 32-bit integer.
+The rate, in bits per second (bps), of the call data stream. </p><p><b>dwMediaMode (4 bytes): </b>An unsigned 32-bit
+integer. The value that specifies the media mode of the data stream currently
+on the call. This is the media mode determined by the owner of the call, which
+is not necessarily the same as that of the last <a href="ea94fc47-5e90-47d1-8822-c93ac02733b5" data-linktype="relative-path">LINE_MONITORMEDIA</a> packet.
+This member is not directly affected by the LINE_MONITORMEDIA packets. It MUST
+use one or more of the <a href="e3b2104f-131d-4ead-9ded-45654ebfeac0" data-linktype="relative-path">LINEMEDIAMODE_Constants</a>.
+</p><p><b>dwAppSpecific (4 bytes): </b>An unsigned 32-bit
+integer. The opaque, client-specified value uninterpreted by the protocol. </p><p><b>dwCallID (4 bytes): </b>An unsigned 32-bit
+integer. In some telephony environments, the switch, or service provider, can
+assign a unique identifier to each call. This enables the call to be tracked
+across transfers, forwards, or other events. The domain of these call
+identifiers and their scope is service provider-defined. The <b>dwCallID</b>
+member makes this unique identifier available. </p><p><b>dwRelatedCallID (4 bytes): </b>An unsigned 32-bit
+integer. Telephony environments that use the call identifier can find it
+necessary to relate one call to another. The <b>dwRelatedCallID</b> member can
+be used by the service provider for this purpose. </p><p><b>dwCallParamFlags (4 bytes): </b>An unsigned 32-bit
+integer. This field specifies a collection of call-related parameters when the
+call is outgoing. These are the same call parameters specified in the <a href="c604a75e-13a8-4d2f-b312-fcb60a46df68" data-linktype="relative-path">MakeCall</a> packet This member
+MUST use <a href="5b7562da-89e1-4d32-9743-8554f47a17e3" data-linktype="relative-path">LINECALLPARAMFLAGS_Constants</a>.
+</p><p><b>dwCallStates (4 bytes): </b>An unsigned 32-bit
+integer. The value that specifies the call states of type <a href="90b1b6c3-d544-49f4-b868-38aa7ccb7b09" data-linktype="relative-path">LINECALLSTATE_Constants</a>
+for which the application can be notified on this call. The <b>dwCallStates</b>
+member is constant in LINECALLINFO and does not change depending on the call
+state. It MUST use LINECALLSTATE_Constants. </p><p><b>dwMonitorDigitModes (4 bytes): </b>An unsigned
+32-bit integer. The value that specifies the various digit modes using <a href="fec875c7-afff-494a-94d1-b9d6fe292d5f" data-linktype="relative-path">LINEDIGITMODE_Constants</a>. </p><p><b>dwMonitorMediaModes (4 bytes): </b>An unsigned
+32-bit integer. This field specifies the various media modes for which
+monitoring is currently enabled using LINEMEDIAMODE_Constants. </p><p><b>DialParams (16 bytes): </b>A <a href="6478c927-0d4b-43eb-8188-e87431058e6a" data-linktype="relative-path">LINEDIALPARAMS</a>. The
+dialing parameters currently in effect on the call, of type LINEDIALPARAMS.
+Unless these parameters are set by either MakeCall or the <a href="195b0fa7-17b9-4b69-a0ef-903b27f28d66" data-linktype="relative-path">SetCallParams</a> packet,
+their values MUST be the same as the defaults used in the <a href="f236ea7a-c8a2-4681-b87c-9f0e07a01dc6" data-linktype="relative-path">LINEDEVCAPS</a> packet.</p><p><b>dwOrigin (4 bytes): </b>An unsigned 32-bit
+integer. The value that identifies where the call originated. It uses  one or
+more of the <a href="8d98ced5-a8d3-46f4-8065-529b0843af26" data-linktype="relative-path">LINECALLORIGIN_Constants</a>.
+</p><p><b>dwReason (4 bytes): </b>An unsigned 32-bit
+integer. The value that specifies the reason why the call occurred. It uses one
+or more of the <a href="5688666f-6c75-48ba-9b7d-f526416d1a8b" data-linktype="relative-path">LINECALLREASON_Constants</a>.
+</p><p><b>dwCompletionID (4 bytes): </b>An unsigned 32-bit
+integer. The value that specifies the completion identifier for the incoming
+call if it is the result of a completion request that terminates. This
+identifier is meaningful only if dwReason is LINECALLREASON_CALLCOMPLETION. </p><p><b>dwNumOwners (4 bytes): </b>An unsigned 32-bit
+integer. The number of application modules with different call handles that
+have owner privilege for the call. </p><p><b>dwNumMonitors (4 bytes): </b>An unsigned 32-bit
+integer. The number of application modules with different call handles with monitor
+privilege for the call. </p><p><b>dwCountryCode (4 bytes): </b>An unsigned 32-bit
+integer. The country or region code of the destination party. Zero if unknown. </p><p><b>dwTrunk (4 bytes): </b>An unsigned 32-bit integer.
+The number of the trunk over which the call is routed. This member is used for
+both incoming and outgoing calls. The <b>dwTrunk</b> member SHOULD be set to
+0xFFFFFFFF if it is unknown. </p><p><b>dwCallerIDFlags (4 bytes): </b>An unsigned 32-bit
+integer. The value that determines the validity and content of the caller party
+identifier data. The caller is the originator of the call. It MUST use one or
+more of the <a href="dc0c01ec-9224-46eb-8596-950c5132db41" data-linktype="relative-path">LINECALLPARTYID_Constants</a>.
+</p><p><b>dwCallerIDSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the field that contains the data identifying
+the caller. </p><p><b>dwCallerIDOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, from the beginning of this packet. </p><p><b>dwCallerIDNameSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that contains the data
+identifying the name of the calling party. </p><p><b>dwCallerIDNameOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. </p><p><b>dwCalledIDFlags (4 bytes): </b>An unsigned 32-bit
+integer. The value that determines the validity and content of the called-party
+identifier data. The called party corresponds to the originally addressed
+party. It uses one or more of the LINECALLPARTYID_Constants. </p><p><b>dwCalledIDSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the field that contains the called-party
+identifier number data. </p><p><b>dwCalledIDOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, from the beginning of this packet. </p><p><b>dwCalledIDNameSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that contains the called-party
+identifier name data. </p><p><b>dwCalledIDNameOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. </p><p><b>dwConnectedIDFlags (4 bytes): </b>An unsigned
+32-bit integer. The value that determines the validity and content of the
+connected-party identifier data. The connected party is the party to which the
+connection was made. This can be different from the called-party identifier if
+the call was diverted. It uses one or more of the LINECALLPARTYID_Constants. </p><p><b>dwConnectedIDSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that contains the
+connected-party identifier number data.</p><p><b>dwConnectedIDOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. </p><p><b>dwConnectedIDNameSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that contains the
+connected-party identifier name data. </p><p><b>dwConnectedIDNameOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. </p><p><b>dwRedirectionIDFlags (4 bytes): </b>An unsigned
+32-bit integer. The value that determines the validity and content of the
+redirection-party identifier data. The redirection party identifies to the
+calling user the number toward which diversion was invoked. It uses one or more
+of the LINECALLPARTYID_Constants. </p><p><b>dwRedirectionIDSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that contains the
+redirection-party identifier number data. </p><p><b>dwRedirectionIDOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. </p><p><b>dwRedirectionIDNameSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that contains the
+redirection-party identifier name data. </p><p><b>dwRedirectionIDNameOffset (4 bytes): </b>An
+unsigned 32-bit integer. The offset, in bytes, from the beginning of this
+packet. </p><p><b>dwRedirectingIDFlags (4 bytes): </b>An unsigned
+32-bit integer. The value that determines the validity and content of the
+redirection-party identifier data. The party that received the call identifies
+the new destination number or whatever data is detected to the call originator.
+It uses one or more of the LINECALLPARTYID_Constants. </p><p><b>dwRedirectingIDSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that contains the
+redirection-party identifier number data. </p><p><b>dwRedirectingIDOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. </p><p><b>dwRedirectingIDNameSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that contains the
+redirection-party identifier name data.</p><p><b>dwRedirectingIDNameOffset (4 bytes): </b>An
+unsigned 32-bit integer. The offset, in bytes, from the beginning of this
+packet. </p><p><b>dwAppNameSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the field that holds the application name of
+the application that first originated, accepted, or answered the call. </p><p><b>dwAppNameOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, from the beginning of this packet. This is the
+name that an application can specify in the <a href="9d8eb7cd-3245-4e44-97e0-42f7b89c9424" data-linktype="relative-path">Initialize</a> packet. If the
+application specifies no such name, then the application&#39;s module file name is
+used. </p><p><b>dwDisplayableAddressSize (4 bytes): </b>An
+unsigned 32-bit integer. This field specifies the displayable string that is
+used for logging purposes. The data is obtained from <a href="c72ece07-095d-441a-93cd-660f09b7826f" data-linktype="relative-path">LINECALLPARAMS</a> for
+functions that initiate calls. </p><p><b>dwDisplayableAddressOffset (4 bytes): </b>An
+unsigned 32-bit integer. This field specifies the displayable string that is
+used for logging purposes. The data is obtained from LINECALLPARAMS for
+functions that initiate calls. </p><p><b>dwCalledPartySize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the field that holds a user-friendly
+description of the called party.</p><p><b>dwCalledPartyOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. This
+data can be specified with the <a href="c9acdfde-22de-43ff-b491-23a9ed72fb31" data-linktype="relative-path">MakeCall</a> packet and can be
+optionally specified in the <i>lpCallParams</i> parameter whenever a new call
+is established. It is useful for call logging purposes. </p><p><b>dwCommentSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the field that holds a comment about the call
+that is provided by the application that originated the call using the MakeCall
+packet. </p><p><b>dwCommentOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, from the beginning of this packet. This data can
+be optionally specified in the <i>lpCallParams</i> parameter using the MakeCall
+packet whenever a new call is established. </p><p><b>dwDisplaySize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the field that holds raw display data. </p><p><b>dwDisplayOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, from the beginning of this packet. Depending on
+the telephony environment, a service provider can extract functional data from
+this member pair for formatting and presentation that is most appropriate for
+this telephony configuration. </p><p><b>dwUserUserInfoSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that holds user-user data. </p><p><b>dwUserUserInfoOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. The
+protocol discriminator field for the user-user data, if used, appears as the
+first byte of the data pointed to by <b>dwUserUserInfoOffset</b> and is
+accounted for in <b>dwUserUserInfoSize</b>. </p><p><b>dwHighLevelCompSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that holds high-level
+compatibility data. </p><p><b>dwHighLevelCompOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. The
+format of this data MUST be specified by other standards (ISDN Q.931). </p><p><b>dwLowLevelCompSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that holds low-level
+compatibility data. </p><p><b>dwLowLevelCompOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. The
+format of this data MUST be specified by other standards (ISDN Q.931). </p><p><b>dwChargingInfoSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that holds charging data. </p><p><b>dwChargingInfoOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. The
+format of this data MUST be specified by other standards (ISDN Q.931). </p><p><b>dwTerminalModesSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the variably sized device field that
+contains an array with DWORD-sized entries. </p><p><b>dwTerminalModesOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. The
+set of LINETERMMODE is indexed by terminal identifiers, in the range from 0 to
+one less than <b>dwNumTerminals</b>. Each entry in the array specifies the
+current terminal modes for the corresponding terminal set with the <a href="ddb98b5d-6c89-413d-8c99-96ac71578c50" data-linktype="relative-path">SetTerminal</a> packet for
+this call&#39;s media stream. The following values are predefined. </p><p><b>dwDevSpecificSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that holds device-specific
+data. </p><p><b>dwDevSpecificOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. </p><p><b>dwCallTreatment (4 bytes): </b>An unsigned 32-bit
+integer. The call treatment currently being applied on the call or that is
+applied when the call enters the next applicable state. Can be 0 if call treatments
+are not supported. </p><p><b>dwCallDataSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the application-settable call data.</p><p><b>dwCallDataOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset from the beginning of the packet to the
+application-settable call data. The size of the field is specified by <b>dwCallDataSize</b>.
+</p><p><b>dwSendingFlowspecSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the quality of service information. </p><p><b>dwSendingFlowspecOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of the packet to a <a href="b0353f6f-b187-4357-9b89-e4233f3e9a4b" data-linktype="relative-path">FLOWSPEC</a> packet followed
+by Winsock provider-specific data, equivalent to what would have been stored in
+SendingFlowspec in a QoS packet. Specifies the quality of service currently in
+effect in the sending direction on the call. The size of the field is specified
+by <b>dwSendingFlowspecSize</b>. </p><p><b>dwReceivingFlowspecSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the QoS information. </p><p><b>dwReceivingFlowspecOffset (4 bytes): </b>An
+unsigned 32-bit integer. The offset from the beginning of the packet to a
+FLOWSPEC packet followed by Winsock provider-specific data, equivalent to what
+would have been stored in ReceivingFlowspec in a QoS packet. Specifies the
+quality of service currently in effect in the receiving direction on the call.
+The size of the field is specified by <b>dwReceivingFlowspecSize</b>. </p><p><b>dwCallerIDAddressType (4 bytes): </b>An unsigned
+32-bit integer. The address type of the caller. This MUST use one of the <a href="72de9d5d-0900-4702-b8bd-ea1d9957ea59" data-linktype="relative-path">LINEADDRESSTYPE_Constants</a>.
+This member of the packet is available only if the negotiated TAPI version is
+3.0 or 3.1. </p><p><b>dwCalledIDAddressType (4 bytes): </b>An unsigned
+32-bit integer. The address type of the called party. This MUST use one of the
+LINEADDRESSTYPE_Constants. This member of the packet is available only if the
+negotiated TAPI version is 3.0 or 3.1. </p><p><b>dwConnectedIDAddressType (4 bytes): </b>An
+unsigned 32-bit integer. The address type of the destination to which the call
+was actually connected. This MUST use one of the LINEADDRESSTYPE_Constants.
+This member of the packet is available only if the negotiated TAPI version is
+3.0 or 3.1. </p><p><b>dwRedirectionIDAddressType (4 bytes): </b>An
+unsigned 32-bit integer. The address type of the new call destination. This
+member of the packet is available only if the negotiated TAPI version is 3.0 or
+3.1. </p><p><b>dwRedirectingIDAddressType (4 bytes): </b>An
+unsigned 32-bit integer. The address type of the location that redirected the
+call. This member of the packet is available only if the negotiated TAPI
+version is 3.0 or 3.1. </p><p>Device-specific extensions SHOULD use the DevSpecific (<b>dwDevSpecificSize</b>
+and <b>dwDevSpecificOffset</b>) variably sized area of this packet. </p><p>The LINECALLINFO packet contains relatively fixed data about
+a call. This packet is returned with the GetCallInfo packet. When data items in
+this packet have changed, a LINECALLINFO packet is sent to the application. A
+parameter to this packet is the data item or field that changed. </p><p>The fields <b>dwCallTreatment</b> through <b>dwReceivingFlowspecOffset</b>
+are available only to applications that open the line device with a TAPI
+version of 2.0, 2.1, 2.2, 3.0, or 3.1. </p><p><b>Note</b>  The preferred format for
+specification of the contents of the <b>dwCallID</b> member and the other five
+similar members (<b>dwCallerIDFlag</b>, <b>dwCallerIDSize</b>, <b>dwCallerIDOffset</b>,
+<b>dwCallerIDNameSize</b>, and <b>dwCallerIDNameOffset</b>) is the TAPI
+canonical number format. For example, an incoming call line identification
+(ICLID) of 5551234567 received from the switch SHOULD be converted to &#34;+1
+(555) 1234567&#34; before being placed in the LINECALLINFO packet. This
+standardized format facilitates searching of databases and call-back functions
+implemented in applications.</p></div>

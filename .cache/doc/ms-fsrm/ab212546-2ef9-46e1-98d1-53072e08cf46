@@ -1,0 +1,22 @@
+<div class="content"><p>The FsrmStorageModuleCaps enumeration defines the
+capabilities of the storage module.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmStorageModuleCaps
+ {
+   FsrmStorageModuleCaps_Unknown = 0x00000000,
+   FsrmStorageModuleCaps_CanGet = 0x00000001,
+   FsrmStorageModuleCaps_CanSet = 0x00000002,
+   FsrmStorageModuleCaps_CanHandleDirectories = 0x00000004,
+   FsrmStorageModuleCaps_CanHandleFiles = 0x00000008
+ } FsrmStorageModuleCaps;
+</pre></div>
+</dd></dl><p><b>FsrmStorageModuleCaps_Unknown:  </b>This
+enumeration value is not used by FSRM and MUST NOT be referenced. If the server
+receives this enumeration value, it MUST consider the value invalid and not
+apply any changes.</p><p><b>FsrmStorageModuleCaps_CanGet:  </b>If the <b>FsrmStorageModuleCaps_CanGet</b>
+flag is set, the storage module is allowed to retrieve classification
+properties. </p><p><b>FsrmStorageModuleCaps_CanSet:  </b>If the <b>FsrmStorageModuleCaps_CanSet</b>
+flag is set, the storage module is allowed to store classification properties.</p><p><b>FsrmStorageModuleCaps_CanHandleDirectories:  </b>If
+the <b>FsrmStorageModuleCaps_CanHandleDirectories</b> flag is set, the storage
+module can process folders.</p><p><b>FsrmStorageModuleCaps_CanHandleFiles:  </b>If the <b>FsrmStorageModuleCaps_CanHandleFiles</b>
+flag is set, the storage module can process files.</p></div>

@@ -1,0 +1,100 @@
+<div class="content"><p> </p><p>The NspiGetSpecialTable method returns the rows of a special
+table to the client. The special table can be an <span><a href="08920b6d-af33-41cc-af85-3ed6e0df99de" data-linktype="relative-path">Address Book Hierarchy Table</a></span>
+or an <span><a href="3bbcfe42-c8bf-4aa1-b0ce-64ccdd83dd0e" data-linktype="relative-path">Address Creation Table</a></span>.</p><dl>
+<dd>
+<div><pre> long NspiGetSpecialTable(
+   [in] NSPI_HANDLE hRpc,
+   [in] DWORD dwFlags,
+   [in] STAT* pStat,
+   [in, out] DWORD* lpVersion,
+   [out] PropertyRowSet_r** ppRows
+ );
+</pre></div>
+</dd></dl><p><b>hRpc: </b>An <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+as specified in section <span><a href="67195f6a-2002-4d81-b279-ba8b0aefb4af" data-linktype="relative-path">2.3.9</a></span>.</p><p><b>dwFlags: </b> A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value containing a set of bit flags. The server MUST ignore values other than
+the bit flags <b>NspiAddressCreationTemplates</b> and <b>NspiUnicodeStrings</b>.</p><p><b>pStat: </b>A pointer to a <span><a href="5902bec9-3124-4725-8a8f-1a50282ed023" data-linktype="relative-path">STAT</a></span>
+block describing a logical position in a specific <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_a34b031c-18b2-40e1-acfa-3b73cc71e80b" data-linktype="relative-path">address book container</a></span>.
+This parameter is used to both specify input parameters from the client and
+return values from the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_e63aea5b-046b-4176-9359-fde82613a406" data-linktype="relative-path">NSPI</a></span> server.</p><p><b>lpVersion: </b>A reference to a DWORD. On input,
+holds the value of the version number of the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_814ecf9d-9ad2-4576-9ce9-cf4e2a17bb62" data-linktype="relative-path">address book hierarchy table</a></span>
+that the client has.</p><p><b>ppRows: </b> An PropertyRowSet_r. On return, holds
+the rows for the table that the client is requesting.</p><p><b>Return Values: </b>The server returns a long value
+specifying the return status of the method.</p><p>Exceptions Thrown</p><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>Server Processing Rules</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>If the input
+parameter <i>dwFlags</i> does not contain the value <b>NspiUnicodeStrings</b>,
+and the input parameter <i>dwFlags</i> does not contain the value <b>NspiAddressCreationTemplates</b>,
+and the <b>CodePage</b> field of the input parameter <i>pStat</i> contains the
+value CP_WINUNICODE, the server MUST return one of the return values documented
+in section <span><a href="03bb2ea3-f2e9-4adb-ab46-751aca824b72" data-linktype="relative-path">2.2.2</a></span>.  No further
+constraints are applied to server processing of this method; in this case
+server behavior is undefined.  Note especially that there is no constraint on
+the data the server returns in any output parameter other than the return
+value, nor is there any constraint on how or if the server changes its state.</p>
+</li><li><p><span>    </span>If the server
+returns any return value other than Success, the server MUST return a NULL for
+the output parameter <i>ppRows</i>.</p>
+</li><li><p><span>    </span>The server MAY
+make additional validations according to section <span><a href="39bcbcd7-fa18-4eb2-a2ae-c598b6683185" data-linktype="relative-path">5</a></span>. If the server
+chooses to limit the visibility of data based on these validations, the server
+MUST proceed as if that data did not exist in the address book. See the product
+behavior note cited in section <span><a href="36c0f768-1fdd-4709-9875-6c387b107560" data-linktype="relative-path">5.1</a></span> for more
+information.</p>
+</li><li><p><span>    </span>If the input
+parameter <i>dwFlags</i> contains both the value <b>NspiAddressCreationTemplates</b>
+and the value <b>NspiUnicodeStrings</b>, the server MUST ignore the value <b>NspiUnicodeStrings</b>
+and proceed as if the parameter <i>dwFlags</i> contained only the value <b>NspiAddressCreationTemplates</b>.</p>
+</li><li><p><span>    </span>If the input
+parameter <i>dwFlags</i> does not contain the value <b>NspiAddressCreationTemplates</b>,
+the client is requesting the rows of the server&#39;s address book hierarchy table
+(section 3.1.1.3.3.1).</p>
+</li><li><p><span>    </span>If the client is
+requesting the rows of the server&#39;s address book hierarchy table and the server
+is not maintaining an address book hierarchy table, the server MUST return the
+error code OutOfResources.</p>
+</li><li><p><span>    </span>If the client is
+requesting the rows of the server&#39;s address book hierarchy table, the input
+parameter <i>lpVersion</i> contains a version number. If the version number of
+the address book hierarchy table the server is holding matches this version
+number, the server MUST proceed as if the address book hierarchy table had no
+rows.</p>
+</li><li><p><span>    </span>If the client is
+requesting the rows of the server&#39;s address book hierarchy table and the server
+returns the value Success, the server MUST set the output parameter <i>lpVersion</i>
+to the version of the server&#39;s address book hierarchy table.</p>
+</li><li><p><span>    </span>If the input
+parameter <i>dwFlags</i> contains the value <b>NspiAddressCreationTemplates</b>,
+the client is requesting the rows of an Address Creation Table (section
+3.1.1.3.3.2).</p>
+</li><li><p><span>  </span>There is no constraint on
+the parameter <i>lpVersion</i> if the client is requesting the rows of an <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_188986ef-1d60-4313-9c3f-21bba9d93892" data-linktype="relative-path">address
+creation table</a></span>.</p>
+</li><li><p><span>  </span>If the client is requesting
+the rows of an address creation table, the <b>TemplateLocale</b> field of the
+input parameter <i>pStat</i> specifies the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_c7f99c66-592f-4053-b62a-878c189653b6" data-linktype="relative-path">LCID</a></span> for which the
+client requires an address creation table. If the server does not maintain an
+address creation table for that LCID, the server MUST proceed as if it
+maintained an address creation table with no rows for that LCID. That is, the
+server MUST NOT return an error code if it does not maintain an address
+creation table for that LCID.</p>
+</li><li><p><span>  </span>If the input parameter <i>dwFlags</i>
+contains the value <b>NspiUnicodeStrings</b> and the client is requesting the
+rows of the server&#39;s address book hierarchy table, the server MUST express
+string-valued properties in the table as <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> values
+(section <span><a href="522c7a16-a670-4bea-9c11-74a3d7dfedbe" data-linktype="relative-path">3.1.1.2</a></span>).</p>
+</li><li><p><span>  </span>If the input parameter <i>dwFlags</i>
+does not contain the value <b>NspiUnicodeStrings</b> and the client is
+requesting the rows of the server&#39;s  hierarchy table, and the <b>CodePage</b>
+field of the input parameter <i>pStat</i> does not contain the value
+CP_WINUNICODE, the server MUST express string-valued properties as 8-bit
+strings in the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_210637d9-9634-4652-a935-ded3cd434f38" data-linktype="relative-path">codepage</a></span> specified
+by the field <b>CodePage</b> in the input parameter <i>pStat</i>. See section
+3.1.1.2.</p>
+</li><li><p><span>  </span>Subject to the prior
+constraints, the server returns the rows of the table requested by the client
+in the output parameter <i>ppRows</i>. </p>
+</li><li><p><span>  </span>If no error condition has
+been specified by the previous constraints, the server MUST return the value
+Success.</p>
+</li></ol></div>

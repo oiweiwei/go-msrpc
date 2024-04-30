@@ -1,0 +1,27 @@
+<div class="content"><p>The Message Queuing (MSMQ): Queue Manager Client Protocol is
+an RPC-based protocol, which enables communication between an <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_15dae0ae-da4d-4984-9c8f-4f337e8e42d2" data-linktype="relative-path">application</a> and an <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_7bc5d175-2fa4-481e-893c-6f3eb2862fa4" data-linktype="relative-path">MSMQ supporting server</a> or a
+remote <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_9cc28d04-4172-4d09-bb36-9f33d073379f" data-linktype="relative-path">MSMQ queue manager</a>.
+Operations that an MSMQ application performs using this protocol include:</p><ul><li><p><span><span> 
+</span></span>Managing <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_1a7f2b81-359e-4d2f-b4b4-f30bc7dd0d8f" data-linktype="relative-path">private
+queues</a> that are <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_a78ebed7-0657-43fa-bcc8-489aa88ba33f" data-linktype="relative-path">local
+queues</a>.</p>
+</li><li><p><span><span> 
+</span></span>Opening and closing local queue handles and <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_91d29587-3e24-439b-8f2c-c2a43be99afc" data-linktype="relative-path">remote queue</a> handles.</p>
+</li><li><p><span><span> 
+</span></span>Enlisting, committing, and aborting <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_fcccf89d-d9c6-44ed-9f8a-13a204fe35b3" data-linktype="relative-path">internal transactions</a>.</p>
+</li><li><p><span><span> 
+</span></span>Enlisting the <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue
+manager</a> in <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_04fa7698-4cbc-4e38-bcc3-58135b87cbe0" data-linktype="relative-path">external
+transactions</a>.</p>
+</li><li><p><span><span> 
+</span></span>Purging <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queues</a>.</p>
+</li><li><p><span><span> 
+</span></span>Creating <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursors</a>
+for local queues and remote queues.</p>
+</li><li><p><span><span> 
+</span></span>Sending <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">messages</a>.</p>
+</li><li><p><span><span> 
+</span></span>Reading messages.</p>
+</li></ul><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

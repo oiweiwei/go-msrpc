@@ -1,0 +1,46 @@
+<div class="content"><p>The Distributed File System: Replication Helper (DFS-R
+Helper) Protocol provides a set of DCOM interfaces for configuring and
+monitoring <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_e210f37a-d573-4389-b295-b7a75d279380" data-linktype="relative-path">Distributed File
+System–Replication (DFS-R)</a> on a server, as specified in <a href="../ms-frs2/9914bdd4-9579-43a7-9f2d-9efe2e162944" data-linktype="relative-path">[MS-FRS2]</a>.
+The server end of the protocol is a DCOM service that implements the DCOM
+interface. The client end of the protocol is an application that invokes
+methods on the interface to make <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_8f3c866a-07d2-4921-98ba-f5d376bfdba5" data-linktype="relative-path">DFS-R</a> configuration changes
+and monitor the status of the DFS-R service on the server.</p><p>The first part of the Distributed File System: Replication
+Helper (DFS-R Helper) Protocol consists of interfaces for creating, modifying,
+and deleting configuration objects in <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a> by using
+the <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_ccf481e1-fb56-43d1-b6c6-0733fb52e001" data-linktype="relative-path">machine account</a> of
+the server.</p><p>For all <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_5084630d-a50a-4a4b-8cbd-908bbc8856ff" data-linktype="relative-path">replication
+members</a>, the configuration related to a member is stored in the <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_d8e8f5a7-db85-40a8-98ed-1abab2237b82" data-linktype="relative-path">computer object</a> for the
+local machine in Active Directory. It is common for system components that are
+unrelated to DFS-R to set permissions on the computer object that will prevent
+modification of the object by some users and still permit modification by using
+the credentials for the computer. Therefore, a server implementation uses the
+credentials of the local machine account when it sends commands to update
+Active Directory objects.</p><p>If a user has sufficient privileges to connect to the server
+that is running the DFS-R Helper Protocol and to invoke methods implemented by
+the DFS-R Helper Protocol interfaces, the server works as a proxy for making
+configuration changes on behalf of the client application that is running under
+the user&#39;s account. </p><p>The client sends the server information about the Active
+Directory operation that the client is trying to accomplish. The server then
+attempts to execute the command by using the machine account and returns
+information about the status of the operation.</p><p>The second part of the Distributed File System: Replication
+Helper (DFS-R Helper) Protocol is an interface for monitoring DFS-R on the
+computer and collecting various statistics about the DFS-R operation.</p><p>The information that is collected by using the Distributed
+File System: Replication Helper (DFS-R Helper) Protocol includes, among other
+types of information, the following statistics:</p><ul><li><p><span><span> 
+</span></span>Information about replication errors that are encountered by
+DFS-R on the server.</p>
+</li><li><p><span><span> 
+</span></span>The count and size of replicated files on the server.</p>
+</li><li><p><span><span> 
+</span></span>Disk use on the server.</p>
+</li><li><p><span><span> 
+</span></span>Information about <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_064adaf1-86c7-43e5-a157-b0949980181e" data-linktype="relative-path">replicated folders</a> on the
+server.</p>
+</li><li><p><span><span> 
+</span></span>Replication backlog—the number of files that are not yet fully
+replicated.</p>
+</li></ul><p>Sections <a href="ec5e5450-cfb2-40cc-be8e-0338eb545afc" data-linktype="relative-path">2</a>
+and <a href="03fb9a59-c98b-4722-a3a0-43ae8af95448" data-linktype="relative-path">3</a> specify the
+Distributed File System: Replication Helper (DFS-R Helper) Protocol and define
+protocol messages, their parameters, and the XML format of the <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_ef63771f-5154-47c0-b0df-c88ce2244ccb" data-linktype="relative-path">health report</a>.</p></div>

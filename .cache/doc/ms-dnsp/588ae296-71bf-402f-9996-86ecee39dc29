@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>IP4_ARRAY</b> structure is used to represent an array
+of IPv4 addresses. This structure cannot represent IPv6 addresses.</p><dl>
+<dd>
+<div><pre> typedef struct _IP4_ARRAY {
+   DWORD AddrCount;
+   [size_is(AddrCount)] DWORD AddrArray[];
+ } IP4_ARRAY,
+  *PIP4_ARRAY;
+</pre></div>
+</dd></dl><p><b>AddrCount:</b> The number of IPv4 addresses
+present in the AddrArray member. </p><p><b>AddrArray:</b> An array of IPv4 addresses. An
+IPv4 address is represented as a 32-bit unsigned integer in network byte order.</p><p>An empty IP4_ARRAY is represented by <b>AddrCount</b> set to
+zero and <b>AddrArray</b> unused. Senders of an empty IP4_ARRAY MUST set <b>AddrArray</b>
+to a single entry containing binary zeros, and receivers MUST ignore it.</p></div>

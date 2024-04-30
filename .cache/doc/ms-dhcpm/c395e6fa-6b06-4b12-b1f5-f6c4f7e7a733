@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The <b>DHCP_RESERVED_SCOPE</b> structure defines an IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservation</a></span>.
+This structure is used in the <span><a href="177415f4-85c1-4496-a414-4938dca18b93" data-linktype="relative-path">DHCP_OPTION_SCOPE_INFO (section 2.2.1.2.41)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_RESERVED_SCOPE {
+   DHCP_IP_ADDRESS ReservedIpAddress;
+   DHCP_IP_ADDRESS ReservedIpSubnetAddress;
+ } DHCP_RESERVED_SCOPE,
+  *LPDHCP_RESERVED_SCOPE;
+</pre></div>
+</dd></dl><p><b>ReservedIpAddress:</b>  This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>,
+containing the IPv4 address of the reservation.</p><p><b>ReservedIpSubnetAddress:</b>  This is of
+type <b>DHCP_IP_ADDRESS</b>, containing the IPv4 address of the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6a800ef-fd8a-4d87-834c-131e58f304ea" data-linktype="relative-path">subnet ID</a></span>.</p></div>

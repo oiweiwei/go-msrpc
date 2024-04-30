@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The <b>MSCOPE_MIB_INFO</b> structure defines the address
+counters for a specific <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_04286a2c-1484-44d0-9854-7c57c8b4118c" data-linktype="relative-path">multicast scope</a></span>. The
+number of free, used, and offered addresses are stored in this structure. This
+structure is used in the <span><a href="926ed263-06bb-417a-9c82-b6d8635b8a33" data-linktype="relative-path">DHCP_MCAST_MIB_INFO (section 2.2.1.2.52)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _MSCOPE_MIB_INFO {
+   DWORD MScopeId;
+   LPWSTR MScopeName;
+   DWORD NumAddressesInuse;
+   DWORD NumAddressesFree;
+   DWORD NumPendingOffers;
+ } MSCOPE_MIB_INFO,
+  *LPMSCOPE_MIB_INFO;
+</pre></div>
+</dd></dl><p><b>MScopeId:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+containing the unique identification of the multicast scope defined on the DHCP
+server.</p><p><b>MScopeName:</b>  This is of type <span><a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a></span>,
+containing a null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+points to the multicast scope name. There is no restriction on the length of
+this Unicode string.</p><p><b>NumAddressesInuse:</b>  This is of type
+DWORD, containing the number of IPv4 multicast addresses that are leased out to
+MADCAP clients from a given multicast scope. </p><p><b>NumAddressesFree:</b>  This is of type
+DWORD, containing the number of IPv4 multicast addresses that are free and can
+be leased out to MADCAP clients from a given multicast scope.</p><p><b>NumPendingOffers:</b>  This is of type
+DWORD, containing the number of IPv4 multicast addresses that are offered to
+MADCAP clients in a specific IPv4 subnet but that the MADCAP client has not
+confirmed. </p></div>

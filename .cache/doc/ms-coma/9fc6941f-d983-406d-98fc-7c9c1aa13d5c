@@ -1,0 +1,25 @@
+<div class="content"><p>The CatSrvServiceState enumeration identifies possible
+run-time states for <a href="3f01a312-3391-4109-a96e-95358babf191#gt_9e740bb8-bc2c-4d50-9819-0002e28a1958" data-linktype="relative-path">instance
+load balancing</a>.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   css_serviceStopped = 0,
+   css_serviceStartPending = 1,
+   css_serviceStopPending = 2,
+   css_serviceRunning = 3,
+   css_serviceContinuePending = 4,
+   css_servicePausePending = 5,
+   css_servicePaused = 6,
+   css_serviceUnknownState = 7
+ } CatSrvServiceState;
+</pre></div>
+</dd></dl><p><b>css_serviceStopped:</b>  Instance load balancing
+is not running.</p><p><b>css_serviceStartPending:  </b>Instance load
+balancing is not yet running, but it is in the process of starting.</p><p><b>css_serviceStopPending:  </b>Instance load
+balancing is running, but it is in the process of stopping.</p><p><b>css_serviceRunning:  </b>Instance load balancing
+is running.</p><p><b>css_serviceContinuePending:  </b>Instance load
+balancing is running, has been paused, and is in the process of resuming.</p><p><b>css_servicePausePending:  </b>Instance load
+balancing is running, but it is in the process of <a href="3f01a312-3391-4109-a96e-95358babf191#gt_e0efaa61-72a4-4dd1-ad76-f887095c82ae" data-linktype="relative-path">pausing</a>.</p><p><b>css_servicePaused:  </b>Instance load balancing is
+running, but it is paused.</p><p><b>css_serviceUnknownState:  </b> The server was
+unable to determine the state of instance load balancing.</p></div>

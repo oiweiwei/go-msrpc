@@ -1,0 +1,45 @@
+<div class="content"><p> </p><p>The TRKSVR_CALL_MOVE_NOTIFICATION structure is used in <span><a href="cea51ffe-cab6-4b19-93b7-853189437ead" data-linktype="relative-path">LnkSvrMessage</a></span>
+method calls that specify a MOVE_NOTIFICATION message (see section <span><a href="e6084ee0-fc0d-443e-a4fb-1a792ce70450" data-linktype="relative-path">2.2.11</a></span>),
+to indicate when one or more files have been moved off a <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>.
+See section <span><a href="5ae9c29a-6cb3-40cc-9531-8dd9d563b90b" data-linktype="relative-path">3.2.6.1</a></span> for an
+example of the client using this structure.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned long cNotifications;
+   unsigned long cProcessed;
+   SequenceNumber seq;
+   long fForceSeqNumber;
+   CVolumeId* pvolid;
+   [size_is(cNotifications)] CObjId* rgobjidCurrent;
+   [size_is(cNotifications)] CDomainRelativeObjId* rgdroidBirth;
+   [size_is(cNotifications)] CDomainRelativeObjId* rgdroidNew;
+ } TRKSVR_CALL_MOVE_NOTIFICATION;
+</pre></div>
+</dd></dl><p><b>cNotifications:</b>  This field MUST contain
+the number of move notifications that were received.</p><p><b>cProcessed:</b>  On return to the
+client, this field MUST indicate the number of notifications from the request
+message that were actually processed.</p><p><b>seq:</b>  This field MUST be set by the
+client to the <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_2d952bfd-b779-4a21-8850-9f91c507d66b" data-linktype="relative-path">VolumeSequenceNumber</a></span>
+for this <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_3b3c1be2-035c-4823-afeb-10edbd6bb288" data-linktype="relative-path">VolumeID</a></span>. This value
+is used by the client and server to detect whether or not notifications have
+been lost. For information about sequence numbering, see sections <span><a href="00acb3e1-334b-4675-9097-618d69d7a8e1" data-linktype="relative-path">3.1.4.2</a></span>
+and <span><a href="dd03a532-8fbb-4f25-b4aa-49323a8deb11" data-linktype="relative-path">3.2.4.2</a></span>.</p><p><b>fForceSeqNumber:</b>  This field MUST be
+set by the client to indicate whether the <b>seq</b> value is to be ignored. If
+set, <b>seq</b> MUST be ignored. Sequence numbering is as specified in sections
+3.1.4.2 and 3.2.4.2.</p><p><b>pvolid:</b>  This field MUST contain the
+VolumeID, which indicates the volume from which the files in this notification
+were moved. <span><a href="../ms-dltw/4a6f00d9-a2ac-4876-95ea-5cd6772dcafa" data-linktype="relative-path">CVolumeId</a></span>
+is as specified in <span><a href="../ms-dltw/fc649f0e-871a-431a-88b5-d5b2f80e9cc9" data-linktype="relative-path">[MS-DLTW]</a></span>
+section 2.2.4.</p><p><b>rgobjidCurrent:</b>  This field MUST
+contain an array of <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_4d73c422-8089-444c-a40a-64511c1a3b75" data-linktype="relative-path">ObjectIDs</a></span> with the
+ObjectID for each file that was moved. <span><a href="../ms-dltw/b930d3cd-82a2-44ec-8500-774bfc451b01" data-linktype="relative-path">CObjId</a></span>
+is as specified in [MS-DLTW] section 2.2.5. Note that the previous <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_d0fe4e63-48a5-4d63-9d51-d4f99306046e" data-linktype="relative-path">FileLocation</a></span>
+of each of the moved files MUST be determined by composing the VolumeID from
+the pvolid value with each of the entries in the rgobjidCurrent array.</p><p><b>rgdroidBirth:</b>  This field MUST
+contain an array of FileIDs with the <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_3b097896-b707-47b5-b1bb-384867a453ea" data-linktype="relative-path">FileID</a></span> for each file
+that was moved in this request. Each element in the rgdroidBirth array
+corresponds to the entry with the same index in the rgobjidCurrent array. <span><a href="../ms-dltw/80cbf3f6-964d-456a-b08e-6f20c7c86921" data-linktype="relative-path">CDomainRelativeObjId</a></span>
+is as specified in [MS-DLTW] section 2.2.3.</p><p><b>rgdroidNew:</b>  This field MUST contain
+an array of FileLocations, with the new FileLocation for each file that was
+moved in this request. Each element in the rgdroidNew array corresponds to the
+entry with the same index in the rgobjidCurrent and rgdroidBirth arrays.</p></div>

@@ -1,0 +1,33 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/03afc843-584d-473b-834a-3f5a1ac86cce" data-linktype="external">msdn link</a></p><p>The SamrRemoveMemberFromForeignDomain method removes a
+member from all aliases.</p><dl>
+<dd>
+<div><pre> long SamrRemoveMemberFromForeignDomain(
+   [in] SAMPR_HANDLE DomainHandle,
+   [in] PRPC_SID MemberSid
+ );
+</pre></div>
+</dd></dl><p><b>DomainHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_2346e8d0-b0a0-481f-b644-85c45c60d4d1" data-linktype="relative-path">domain object</a>.</p><p><b>MemberSid: </b>The <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> to remove from the
+membership.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>The server MUST
+return an error if <i>DomainHandle.HandleType</i> is not equal to
+&#34;Domain&#34;.</p>
+</li><li><p><span>    </span><i>DomainHandle.GrantedAccess</i>
+MUST have the required access specified in section <a href="87bacbd0-7b8b-429f-abc6-4b3d895d4e90" data-linktype="relative-path">3.1.2.2</a>. Otherwise, the
+server MUST return STATUS_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>All database
+operations MUST occur in a single transaction.</p>
+</li><li><p><span>    </span>If the server is
+not a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a>,
+for all <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_0387e636-5654-4910-9519-1f8326cf5ec0" data-linktype="relative-path">alias objects</a> in
+the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> referenced by
+<i>DomainHandle.Object</i>, the server MUST remove any member value that
+references the object with the <b>objectSid</b> attribute value of MemberSid.</p>
+</li><li><p><span>    </span>If the server is
+a domain controller, the server MUST return STATUS_SUCCESS without making any
+modifications to any alias objects.</p>
+</li></ol></div>

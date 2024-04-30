@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>This structure represents information on the certificate
+used in the certificate-based authentication mechanisms.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_CERT_INFO {
+   FW_BYTE_BLOB SubjectName;
+   [range(FW_AUTH_SUITE_FLAGS_NONE, FW_AUTH_SUITE_FLAGS_MAX-1)] 
+     unsigned long dwCertFlags;
+ } FW_CERT_INFO,
+  *PFW_CERT_INFO;
+</pre></div>
+</dd></dl><p><b>SubjectName:</b>  The subject name of
+the certificate represented as a <span><a href="8e7e10f0-5900-4361-8403-d8833934c491" data-linktype="relative-path">FW_BYTE_BLOB</a></span> type.
+This BLOB is an ASN.1-encoded sequence of RDN attributes.</p><p><b>dwCertFlags:</b>  This field can be a
+combination of bit flags from <span><a href="ff03b48b-87cf-4020-bf0b-7f4c680d9b02" data-linktype="relative-path">FW_AUTH_SUITE_FLAGS</a></span>.
+This field MUST use only health certificate or certificate to account mapping
+flags, which represent certificate characteristics.</p></div>

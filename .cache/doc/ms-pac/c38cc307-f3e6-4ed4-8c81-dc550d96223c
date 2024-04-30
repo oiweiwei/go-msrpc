@@ -1,0 +1,10 @@
+<div class="content"><p><a id="_Hlk93324367">The Privilege Attribute Certificate
+(PAC) Data Structure is used by authentication protocols that verify identities
+to transport authorization information, which controls access to resources. The
+Kerberos protocol </a><a href="https://go.microsoft.com/fwlink/?LinkId=90458" data-linktype="external">[RFC4120]</a>
+does not provide authorization. The Privilege Attribute Certificate (PAC) was
+created to provide this authorization data for Kerberos Protocol Extensions <a href="../ms-kile/2a32282e-dd48-4ad9-a542-609804b02cc9" data-linktype="relative-path">[MS-KILE]</a>.
+Into the <b>PAC</b> structure [MS-KILE] encodes authorization information,
+which consists of group memberships, additional credential information, profile
+and policy information, and supporting security metadata.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="a1c36b00-1fca-415c-a4ca-e66e98844760#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a> </p><p>Sections 1.7 and 2 of this specification are normative. All
+other sections and examples in this specification are informative.</p></div>

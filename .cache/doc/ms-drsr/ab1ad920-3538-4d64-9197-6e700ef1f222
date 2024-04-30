@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The PROPERTY_META_DATA structure contains <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span>
+and <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ff635a35-a17d-477b-a30d-9723b415bf00" data-linktype="relative-path">stamp</a></span>
+information. For more details, see section <span><a href="304ea284-592d-430d-8ab6-e9c82a78fa33" data-linktype="relative-path">4.1.10.5.9</a></span>.</p><p>The binary portion of the DNBinary value of the <span><a href="../ms-ada2/15bbd652-7d7d-45e3-a524-b4d037a3b396" data-linktype="relative-path">msDS-RevealedUsers</a></span>
+attribute contains this structure.</p><dl>
+<dd>
+<div><pre> typedef struct PROPERTY_META_DATA {
+   ATTRTYP attrType;
+   PROPERTY_META_DATA_EXT propMetadataExt;
+   LONGLONG llUnused;
+ } PROPERTY_META_DATA;
+</pre></div>
+</dd></dl><p><b>attrType:</b>  The attribute whose value
+was revealed.</p><p><b>propMetadataExt:</b>  The stamp of the
+revealed attribute value. See PROPERTY_META_DATA_EXT in section <span><a href="aef7ebde-c305-4224-95fd-585c86b19c38" data-linktype="relative-path">5.155</a></span>.</p><p><b>llUnused:</b>  An implementation-specific value.
+The specific value has no significance.</p></div>

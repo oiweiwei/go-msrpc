@@ -1,0 +1,35 @@
+<div class="content"><p>The FsrmPropertyDefinitionType enumeration defines the set
+of <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_56f7f556-18df-4592-8e2e-68d81fbed565" data-linktype="relative-path">property definition</a>
+types that can be used to define file classification properties.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmPropertyDefinitionType
+ {
+   FsrmPropertyDefinitionType_Unknown = 0,
+   FsrmPropertyDefinitionType_OrderedList = 1,
+   FsrmPropertyDefinitionType_MultiChoiceList = 2,
+   FsrmPropertyDefinitionType_SingleChoiceList = 3,
+   FsrmPropertyDefinitionType_String = 4,
+   FsrmPropertyDefinitionType_MultiString = 5,
+   FsrmPropertyDefinitionType_Int = 6,
+   FsrmPropertyDefinitionType_Bool = 7,
+   FsrmPropertyDefinitionType_Date = 8
+ } FsrmPropertyDefinitionType;
+</pre></div>
+</dd></dl><p><b>FsrmPropertyDefinitionType_Unknown:</b>  The
+property definition type is unknown.</p><p><b>FsrmPropertyDefinitionType_OrderedList:</b>  The
+property definition defines a list of possible values, one of which can be
+assigned to the property.</p><p><b>FsrmPropertyDefinitionType_MultiChoiceList:</b> 
+The property definition defines a list of possible values, one or more of which
+can be assigned to the property. When a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_13091c0e-746f-478c-b54c-ad0294a94ea8" data-linktype="relative-path">property value</a> of this type
+is set for a file, the individual choices are separated with the &#34;|&#34;
+character.</p><p><b>FsrmPropertyDefinitionType_SingleChoiceList:</b> 
+The property definition defines a list of possible values, one of which can be
+assigned to the property.<a id="Appendix_A_Target_18"></a><a aria-label="Product behavior note 18" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a></p><p><b>FsrmPropertyDefinitionType_String:</b>  The
+property definition type indicates that an arbitrary string value can be
+assigned to the property.</p><p><b>FsrmPropertyDefinitionType_MultiString:</b>  The
+property definition indicates that one or more arbitrary string values can be
+assigned to the property. When a property value of this type is set for a file,
+the individual strings are separated with the &#34;|&#34; character.</p><p><b>FsrmPropertyDefinitionType_Int:</b>  The property
+definition indicates that an integer value can be assigned to the property.</p><p><b>FsrmPropertyDefinitionType_Bool: </b> The property
+definition indicates that a Boolean value can be assigned to the property.</p><p><b>FsrmPropertyDefinitionType_Date:</b>  The property
+definition indicates that a date value can be assigned to the property.</p></div>

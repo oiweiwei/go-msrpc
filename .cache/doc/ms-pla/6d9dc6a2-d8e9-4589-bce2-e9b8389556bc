@@ -1,0 +1,20 @@
+<div class="content"><p>The UserAccount (Get) method retrieves the UserAccount
+property.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT UserAccount(
+   [out, retval] BSTR* user
+ );
+</pre></div>
+</dd></dl><p><b>user: </b>Receives the user account under which
+the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data collector set</a>
+will run. The value of the string that is returned will be that which was
+passed as a parameter to the <a href="caca3757-f47d-44ab-955c-cc4ac2550835" data-linktype="relative-path">IDataCollectorSet::SetCredentials</a>
+method if that method was called after the last <a href="c46b18ee-6f95-4c34-90fc-b597abbe2770" data-linktype="relative-path">IDataCollectorSet::Query</a>
+method was called. If the SetCredentials method was not called, then the string
+that is returned will be that of the user which the data collector set is
+registered to run as. In such a case, if the machine is joined to a domain and
+the user is a member of that domain, then the form of the returned string will
+be domain\user or user@domain.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT with the severity bit clear on success as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>;
+otherwise, it MUST return one of the errors as defined in <a href="590752a5-ddc3-49e4-9914-147a90bd0193" data-linktype="relative-path">2.2.1</a> or one of the errors
+as defined in [MS-ERREF] section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p></div>

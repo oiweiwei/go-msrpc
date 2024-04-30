@@ -1,0 +1,5 @@
+<div class="content"><p>This specification describes how the Task Scheduler Remoting
+Protocol is used to register and configure a <a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_740b149e-e6b4-49f5-bc16-e03ff41def7f" data-linktype="relative-path">task</a> and to inquire about
+the status of running tasks on a remote machine. </p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

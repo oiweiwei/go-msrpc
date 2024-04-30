@@ -1,0 +1,98 @@
+<div class="content"><p> </p><p>The BaseRegUnLoadKey method is called by the client. In
+response, the server removes the specified discrete body of keys, subkeys, and
+values that is rooted at the top of the registry hierarchy.</p><p>The BaseRegUnLoadKey method is designed for use in backup
+and recovery scenarios where the client first loads a registry <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_0e82f121-9fab-40e4-a8d9-aee009aa57b9" data-linktype="relative-path">hive</a></span>
+from a file on disk using the <span><a href="7edbe21a-bfd2-43f5-b49c-3836749cc418" data-linktype="relative-path">BaseRegLoadKey</a></span>
+method. Then, after reading or writing key data from the loaded hive, the
+client uses the BaseRegUnLoadKey method to unload the hive. For example, a
+backup application can load another user hive (another user&#39;s
+HKEY_CURRENT_USER) from a file on disk using the BaseRegLoadKey method. Then,
+after reading key and value data, it will unload the hive using the
+BaseRegUnLoadKey method.</p><dl>
+<dd>
+<div><pre> error_status_t BaseRegUnLoadKey(
+   [in] RPC_HKEY hKey,
+   [in] PRRP_UNICODE_STRING lpSubKey
+ );
+</pre></div>
+</dd></dl><p><b>hKey: </b>A handle to a key that MUST have been
+opened previously by using one of the open methods that are specified in
+section <span><a href="053e8515-dbae-47ea-a7c6-6dc054e3a48f" data-linktype="relative-path">3.1.5</a></span>: <span><a href="ec140ed9-4d00-4c03-a15c-c7245a497ed5" data-linktype="relative-path">OpenCurrentUser</a></span>
+and <span><a href="6cef29ae-21ba-423f-9158-05145ac80a5b" data-linktype="relative-path">OpenLocalMachine</a></span>.
+</p><p><b>lpSubKey: </b>An optional pointer to an <span><a href="c0c90f11-a4c4-496a-ac09-8a8a3697ceef" data-linktype="relative-path">RRP_UNICODE_STRING</a></span>
+structure that MUST contain the relative name, as specified in section <span><a href="ca7680f7-5eca-413d-95e6-f008aebb9a32" data-linktype="relative-path">3.1.1.1.2</a></span>.
+The <i>lpSubKey</i> parameter points to the name of the key that is to be
+unloaded.</p><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000013</p>
+  <p>ERROR_WRITE_PROTECT</p>
+  </td>
+  <td>
+  <p>A read or write operation was attempted to a volume
+  after it was dismounted. The server can no longer service registry requests
+  because server shutdown has been initiated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The key specified by the handle <i>hKey</i> and the <i>lpSubKey</i>
+  parameter does not exist in the key namespace.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The key specified by the handle <i>hKey</i> and the <i>lpSubKey</i>
+  parameter is not a descendent key of the <b>HKEY_LOCAL_MACHINE </b>or <b>HKEY_USERS
+  </b>root keys, or there are open handles to the key or its descendants.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Server Operations</p><p>If the registry server can no longer service registry
+requests because server shutdown has been initiated (<b>SHUTDOWNINPROGRESS</b>
+is set to TRUE), the server MUST return ERROR_WRITE_PROTECT.</p><p>In response to this request from the client, the server MUST
+logically delete the subtree that is specified by the <i>lpSubKey</i> parameter
+in the request. If this parameter is NULL, the server MUST logically delete the
+subtree that is specified by the <i>hKey</i> parameter. Logically deleting a
+subtree removes it from memory but MUST NOT modify the file that backs up the
+subtree. A subtree consists of the specified key and all its child keys that
+are hierarchically below it.</p><p>The server MUST validate that the key specified by the
+handle <i>hKey</i> and the <i>lpSubKey</i> parameter can be unloaded. To be
+unloaded, the key specified by the handle <i>hKey</i> and the <i>lpSubKey</i>
+parameter MUST be a descendent key of the <b>HKEY_LOCAL_MACHINE</b> or <b>HKEY_USERS</b>
+root keys, MUST exist in the key namespace, and there MUST not be any open
+handles to the key or its descendants. </p><p>If the key does not exist in the key namespace, the server
+MUST return ERROR_FILE_NOT_FOUND.</p><p>If there are any open handles to the key or its descendants,
+the server MUST return ERROR_ACCESS_DENIED.</p><p>If the key cannot be unloaded because the key is not a
+descendent key of the <b>HKEY_LOCAL_MACHINE</b> or <b>HKEY_USERS</b> root keys,
+the server MUST return ERROR_ACCESS_DENIED.</p><p>The server MUST return 0 to indicate success or an
+appropriate error code (as specified in [MS-ERREF] section 2.2) to indicate an
+error.</p><p>If the <i>lpSubKey</i> parameter is greater than zero and
+the buffer is NULL, the server MUST return ERROR_INVALID_PARAMETER.</p></div>

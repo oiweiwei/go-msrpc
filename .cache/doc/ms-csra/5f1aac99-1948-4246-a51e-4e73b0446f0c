@@ -1,0 +1,187 @@
+<div class="content"><p>The <a href="2c8a82e0-8d7e-405f-bd86-e59ef4971bf1" data-linktype="relative-path">CERTTRANSDBCOLUMN</a>
+structure (section 2.2.1.7) is encoded within the byte array that is referenced
+by the <b>pb</b> member of a <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a>
+structure (section 2.2.1.4).</p><p>The packet that contains an array of some number,
+&#34;N&#34;, of CERTTRANSDBCOLUMN structures is specified in the following
+packet diagrams. The actual value of &#34;N&#34; is a separate return
+parameter for the <a href="9348f87d-8e7a-4719-b544-8e72df5fa53b" data-linktype="relative-path">EnumViewColumn</a>
+(section 3.1.4.1.9) and <a href="128c162f-91bd-430c-a643-9307744a08b4" data-linktype="relative-path">EnumViewColumnTable</a>
+(section 3.2.4.2.5) methods.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">CERTTRANSDBCOLUMN
+  Structures (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Column_Schema_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p><b>CERTTRANSDBCOLUMN Structures (variable):</b> An
+array of <b>CERTTRANSDBCOLUMN</b> structures. These structures MUST be
+contiguous and MUST NOT be padded. All structures MUST appear prior to any
+information about the column <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_fd49ea36-576c-4417-93bd-d1ac63e71093" data-linktype="relative-path">schema</a>
+data, which appears in the <b>Column_Schema_Data</b> byte array at the end of
+the packet.</p><dl>
+<dd>
+<p>Each of the structures is marshaled in the following
+manner. The fields in the following diagram correspond to the similarly named
+members of the <b>CERTTRANSDBCOLUMN</b> structure.</p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Column_Type_Value</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Column_Index_Value</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Column_cbMax_Value</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Column_obwzName_Offset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Column_obwzDisplayName_Offset</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Column_Type_Value (4
+bytes): </b>The value indicating the type for the column. The value MUST be <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a> encoded.</p>
+</dd>
+<dd>
+<p><b>Column_Index_Value (4
+bytes): </b>The value indicating the ID for the column. The value MUST be
+little-endian encoded.</p>
+</dd>
+<dd>
+<p><b>Column_cbMax_Value (4
+bytes): </b>The maximum length of data that this column can contain. The value
+MUST be little-endian encoded.</p>
+</dd>
+<dd>
+<p><b>Column_obwzName_Offset (4
+bytes): </b>The offset from the beginning of the byte array buffer that is
+pointed to by the <b>pb</b> member in the containing CERTTRANSBLOB structure to
+where the string that contains the name of this column can be found. The format
+is a null-terminated Unicode string. The offset MUST be divisible by 4. The
+offset value MUST be little-endian encoded.</p>
+</dd>
+<dd>
+<p><b>Column_obwzDisplayName_Offset
+(4 bytes): </b>The offset from the beginning of the byte array buffer that is
+pointed to by the <b>pb</b> member in the containing CERTTRANSBLOB structure to
+where the string that contains the display name of this column can be found.
+The format is a null-terminated Unicode string. The offset MUST be divisible by
+4. The offset value MUST be little-endian encoded.</p>
+</dd></dl><p><b>Column_Schema_Data (variable): </b>Contains the
+schema data for all columns that are referenced by the obwzName and
+obwszDisplayName fields of the CERTTRANSDBCOLUMN structures. Schema data for an
+individual column MUST NOT overlap with any other data. Arbitrary padding can
+be inserted between data values. Schema data MUST be little-endian encoded for
+each character of the null-terminated UNICODE string.</p></div>

@@ -1,0 +1,57 @@
+<div class="content"><p>The W32TIME_STATUS_INFO structure defines the current status
+data of the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9846d08d-ad98-4bb9-a1e7-1f0bfbdd1113" data-linktype="relative-path">time service</a>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned __int32 ulSize;
+   unsigned __int32 eLeapIndicator;
+   unsigned __int32 nStratum;
+   signed __int32 nPollInterval;
+   unsigned __int32 refidSource;
+   unsigned __int64 qwLastSyncTicks;
+   signed __int64 toRootDelay;
+   unsigned __int64 tpRootDispersion;
+   signed __int32 nClockPrecision;
+   [string, unique] wchar_t* wszSource;
+   signed __int64 toSysPhaseOffset;
+   unsigned __int32 ulLcState;
+   unsigned __int32 ulTSFlags;
+   unsigned __int32 ulClockRate;
+   unsigned __int32 ulNetlogonServiceBits;
+   unsigned __int32 eLastSyncResult;
+   unsigned __int64 tpTimeLastGoodSync;
+   unsigned __int32 cEntries;
+   [size_is(cEntries)] PW32TIME_ENTRY pEntries;
+ } W32TIME_STATUS_INFO,
+  *PW32TIME_STATUS_INFO;
+</pre></div>
+</dd></dl><p><b>ulSize:</b>  The size, in bytes, of this
+structure.</p><p><b>eLeapIndicator:</b>  An integer that
+warns of an impending leap second in the last minute of the current day, as
+specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90272" data-linktype="external">[RFC1305]</a>
+section 3.2.</p><p><b>nStratum:</b>  An integer that indicates
+the stratum level of the local clock in the time service, as specified in
+[RFC1305] section 3.2.</p><p><b>nPollInterval:</b>  An integer that
+indicates the poll interval of the time service, expressed as specified in
+[RFC1305] section 3.2, using units of seconds given as exponents to a power of
+two.</p><p><b>refidSource:</b>  A 32-bit code that
+identifies the particular reference clock of the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_76c8df1b-52ef-495d-97d9-7c032b1f6ca5" data-linktype="relative-path">time source</a> that the time
+service is synchronizing with, as specified in [RFC1305] section 3.2.</p><p><b>qwLastSyncTicks:</b>  The <b>LastSyncTicks</b>
+element value (see section <a href="1da649d7-3edf-4a9a-98c2-907ecacd1633" data-linktype="relative-path">3.2.1.1</a>).</p><p><b>toRootDelay:</b>  A 64-bit signed
+integer that indicates the total round-trip delay to the primary time source,
+as specified in [RFC1305] section 3.2, in 100-nanosecond units.</p><p><b>tpRootDispersion:</b>  A 64-bit unsigned
+integer that indicates the root dispersion, as specified in [RFC1305] section
+3.2, in 100-nanosecond units.</p><p><b>nClockPrecision:</b>  An integer that
+indicates the time resolution of the local system clock, expressed in the same
+format as poll intervals that are specified in [RFC1305] section 3.2, using
+units of seconds given as exponents to a power of two.</p><p><b>wszSource:</b>  The <b>TimeSourceIPAddress</b>
+element value (see section 3.2.1.1).</p><p><b>toSysPhaseOffset:</b>  The <b>SysPhaseOffset</b>
+element value (see section 3.2.1.1).</p><p><b>ulLcState:</b>  The <b>CurrentState</b>
+element value (see section 3.2.1.1).</p><p><b>ulTSFlags:</b>  The <b>TimeSourceFlags</b>
+element value (see section 3.2.1.1).</p><p><b>ulClockRate:</b>  The <b>ClockRate</b>
+element value (see section 3.2.1.1).</p><p><b>ulNetlogonServiceBits:</b>  An unsigned
+32-bit integer that contains information about the functionality that the time
+service provides, as specified in section <a href="1b85fd82-0302-4b73-968a-3d01c2e184de" data-linktype="relative-path">3.2.5.2</a>.</p><p><b>eLastSyncResult:</b>  An integer that
+indicates the TimeSync_ReturnResult code, as specified in section <a href="e43aa118-82a9-486f-9c74-4a47a0c5e541" data-linktype="relative-path">3.2.5.1</a>.</p><p><b>tpTimeLastGoodSync:</b>  The <b>TimeLastGoodSync</b>
+element value (see section 3.2.1.1).</p><p><b>cEntries:</b>  The number of additional
+configuration entries in <b>pEntries</b>.</p><p><b>pEntries:</b>  A pointer to <a href="c25e944e-fec0-44a5-9414-b7cf63c2f44a" data-linktype="relative-path">W32TIME_ENTRY</a> structures
+that represent additional configuration entries.</p></div>

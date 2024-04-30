@@ -1,0 +1,124 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c870951c-74b3-4714-9857-224595ffc61a" data-linktype="external">msdn link</a></p><p>The SamrLookupIdsInDomain method translates a set of <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RIDs</a> into account names.</p><dl>
+<dd>
+<div><pre> long SamrLookupIdsInDomain(
+   [in] SAMPR_HANDLE DomainHandle,
+   [in, range(0,1000)] unsigned long Count,
+   [in, size_is(1000), length_is(Count)] 
+     unsigned long* RelativeIds,
+   [out] PSAMPR_RETURNED_USTRING_ARRAY Names,
+   [out] PSAMPR_ULONG_ARRAY Use
+ );
+</pre></div>
+</dd></dl><p><b>DomainHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_2346e8d0-b0a0-481f-b644-85c45c60d4d1" data-linktype="relative-path">domain object</a>.</p><p><b>Count: </b>The number of elements in <i>RelativeIds</i>.
+The maximum value of 1,000 is chosen to limit the amount of memory that the
+client can force the server to allocate.</p><p><b>RelativeIds: </b>An array of RIDs that are to be
+mapped to account names.</p><p><b>Names: </b>A structure containing an array of
+account names that correspond to the elements in <i>RelativeIds</i>.</p><p><b>Use: </b>A structure containing an array of
+SID_NAME_USE enumeration values that describe the type of <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_8d10bd9d-392e-431b-8218-742bdac19815" data-linktype="relative-path">account</a> for each entry in <i>RelativeIds</i>.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>On receiving this message, the server MUST process the data
+from the message subject to the following constraints:</p><ol><li><p><span>    </span>The server MUST
+return an error if <i>DomainHandle.HandleType</i> is not equal to
+&#34;Domain&#34;.</p>
+</li><li><p><span>    </span><i>DomainHandle.GrantedAccess</i>
+MUST have the required access specified in section <a href="87bacbd0-7b8b-429f-abc6-4b3d895d4e90" data-linktype="relative-path">3.1.2.2</a>. Otherwise, the
+server MUST return STATUS_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>Let U be the set
+of all <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_60122e64-9d34-40ee-a387-782eaf7adf2f" data-linktype="relative-path">database objects</a>
+whose objectSid&#39;s <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_9066e9dc-8275-4452-9073-daab5fd427c5" data-linktype="relative-path">domain
+prefix</a> matches the domain prefix of the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> referenced by <i>DomainHandle.Object</i>.</p>
+</li><li><p><span>    </span>For each element
+in <i>RelativeIds</i> that matches the RID of a database object&#39;s <b>objectSid</b>
+attribute value in the set U, the server MUST fill in <i>Names</i> and <i>Use</i>
+as follows:</p>
+<ol><li><p><span>   
+</span>Let &#39;i&#39; be the current element of <i>RelativeIds</i>.</p>
+</li><li><p><span>   
+</span><b>Names.Element[i]</b> is the <b>sAMAccoutName</b> attribute value of
+the matched object.</p>
+</li><li><p><span>   
+</span><b>Use.Element[i]</b> is set as follows.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>objectClass</p>
+   </th>
+   <th>
+   <p>GroupType</p>
+   </th>
+   <th>
+   <p>Use</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>User</p>
+  </td>
+  <td>
+  <p>n/a</p>
+  </td>
+  <td>
+  <p>SidTypeUser</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Group</p>
+  </td>
+  <td>
+  <p>GROUP_TYPE_ACCOUNT_GROUP</p>
+  </td>
+  <td>
+  <p>SidTypeGroup</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Group</p>
+  </td>
+  <td>
+  <p>GROUP_TYPE_UNIVERSAL_GROUP</p>
+  </td>
+  <td>
+  <p>SidTypeGroup</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Group</p>
+  </td>
+  <td>
+  <p>Any value not matching the above criteria for Group</p>
+  </td>
+  <td>
+  <p>SidTypeAlias</p>
+  </td>
+ </tr></tbody></table>
+</li></ol></li><li><p><span>    </span>For each element
+in <i>RelativeIds</i> that does not match the RID of a database object&#39;s <b>objectSid</b>
+attribute value, the server MUST fill in <i>Names</i> and <i>Use</i> as
+follows:</p>
+<ol><li><p><span>   
+</span>Let &#39;i&#39; be the current element of <i>RelativeIds</i>.</p>
+</li><li><p><span>   
+</span>All fields of <b>Names.Element[i]</b> MUST be set to 0.</p>
+</li><li><p><span>   
+</span><b>Use.Element[i]</b> is SidTypeUnknown.</p>
+</li></ol></li><li><p><span>    </span>Otherwise:</p>
+<ol><li><p><span>   
+</span><b>Names.Count</b> MUST be set to the input parameter <i>Count</i> on
+successful completion of the method.</p>
+</li><li><p><span>   
+</span><b>Use.Count</b> MUST be set to the input parameter <i>Count</i> on
+successful completion of the method.</p>
+</li><li><p><span>   
+</span>If the number of matched accounts is equal to the input parameter <i>Count</i>,
+0 MUST be returned.</p>
+</li><li><p><span>   
+</span>If the number of matched accounts is less than the input parameter <i>Count</i>
+but greater than 0, STATUS_SOME_NOT_MAPPED MUST be returned. Note that this is
+not an error condition.</p>
+</li><li><p><span>   
+</span>If the number of matched accounts is 0, STATUS_NONE_MAPPED MUST be
+returned.</p>
+</li></ol></li></ol></div>

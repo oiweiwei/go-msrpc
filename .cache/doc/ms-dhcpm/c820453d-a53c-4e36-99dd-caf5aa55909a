@@ -1,0 +1,56 @@
+<div class="content"><p> </p><p>The <b>DHCP_CLASS_INFO_V6</b> structure contains the
+information for a specific <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_713c7395-9431-4d67-bab1-a069ae7461e2" data-linktype="relative-path">user class</a></span> or <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_45d20b00-7166-4f94-b679-4cc5a7835a3a" data-linktype="relative-path">vendor
+class</a></span>. This structure is used in the <span><a href="814d7f45-32df-42cc-93d4-14c73233e199" data-linktype="relative-path">R_DhcpCreateClassV6 (section 3.2.4.75)</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_CLASS_INFO_V6 {
+   LPWSTR ClassName;
+   LPWSTR ClassComment;
+   DWORD ClassDataLength;
+   BOOL IsVendor;
+   DWORD EnterpriseNumber;
+   DWORD Flags;
+   [size_is(ClassDataLength)] LPBYTE ClassData;
+ } DHCP_CLASS_INFO_V6,
+  *LPDHCP_CLASS_INFO_V6;
+</pre></div>
+</dd></dl><p><b>ClassName:</b>  A pointer, of type
+LPWSTR, to a null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+contains the class name. There is no restriction on the length of this Unicode
+string.</p><p><b>ClassComment:</b>  A pointer, of type
+LPWSTR, to a null-terminated Unicode string that contains the comment for the
+class. There is no restriction on the length of this Unicode string.</p><p><b>ClassDataLength:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+containing the length of data as pointed to by the <b>ClassData</b> member.</p><p><b>IsVendor:</b>  This is of type <span><a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">BOOL</a></span>
+and specifies whether the current class is vendor class or user class.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Class specified is a user class.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Class specified is a vendor class.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>EnterpriseNumber:</b>  This is of type
+DWORD, containing the vendor class identifier. It is default 0 for user class.</p><p><b>Flags:</b>  This is of type DWORD.
+Currently it is not used, and any value set to this parameter will not affect
+the behavior of the method that uses this structure.</p><p><b>ClassData:</b>  This is a pointer of
+type <span><a href="../ms-dtyp/d7edc080-e499-4219-a837-1bc40b64bb04" data-linktype="relative-path">BYTE</a></span>
+that points to an array of bytes of length specified by the <b>ClassDataLength</b>
+member. This contains data regarding a user class or a vendor class.</p></div>

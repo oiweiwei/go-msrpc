@@ -1,0 +1,12 @@
+<div class="content"><p>The Remote Desktop Gateway Server Protocol (RDGSP Protocol)<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a>  is used primarily for tunneling
+client to server traffic across firewalls when the Remote Desktop Gateway (RDG)<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a> server is deployed in the neutral
+zone of a network. The primary consumer of the Terminal Services Gateway Server
+Protocol is the Remote Desktop Protocol: Basic Connectivity and Graphics
+Remoting <a href="../ms-rdpbcgr/5073f4ed-1e93-45e1-b039-6e30c385867c" data-linktype="relative-path">[MS-RDPBCGR]</a>.</p><p>The RDGSP Protocol uses either <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_d72f1494-4917-4e9e-a9fd-b8f1b2758dcd" data-linktype="relative-path">Hypertext Transfer Protocol
+(HTTP)</a> or <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote
+procedure call (RPC)</a> over HTTP as the transport for establishing the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_fa319141-96d6-4962-96a4-7cd20c665de9" data-linktype="relative-path">main channel</a>. The protocol
+uses <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_a70f5e84-6960-42f0-a160-ba0281eb548d" data-linktype="relative-path">User Datagram Protocol
+(UDP)</a> as the transport for establishing the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_b4e0a970-8e6e-425a-976e-58a300c2502c" data-linktype="relative-path">side channel</a> which is
+established only when the main channel uses HTTP.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

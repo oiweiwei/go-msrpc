@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The PROBLEMLIST_DRS_WIRE_V1 structure defines an <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span>
+error link entry.</p><dl>
+<dd>
+<div><pre> typedef struct _PROBLEMLIST_DRS_WIRE_V1 {
+   struct _PROBLEMLIST_DRS_WIRE_V1* pNextProblem;
+   INTFORMPROB_DRS_WIRE_V1 intprob;
+ } PROBLEMLIST_DRS_WIRE_V1;
+</pre></div>
+</dd></dl><p><b>pNextProblem:</b>  Null, or a pointer to
+the next item in the list.</p><p><b>intprob:</b>  Attribute error
+description.</p></div>

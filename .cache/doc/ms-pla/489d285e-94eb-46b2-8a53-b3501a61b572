@@ -1,0 +1,192 @@
+<div class="content"><p>The IPerformanceCounterDataCollector interface is used to
+specify the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance
+counters</a> to query and the log file to which the counter data is written.</p><p>The following properties MUST be implemented by the objects
+that implement the IPerformanceCounterDataCollector interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DataSourceName</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>The data source name if the log file is an SQL log
+  file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LogFileFormat</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>The format in which data MUST be stored. The format is
+  specified by the FileFormat enumeration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PerformanceCounters</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>List of performance counters to be collected.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SampleInterval</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>The time, in seconds, between two consecutive samples.
+  The default is 15 seconds. The minimum interval is 1 second. There is no
+  maximum interval.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SegmentMaxRecords</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Maximum number of samples to log in a segment. If set
+  to 0, there is no segment record limit. Any unsigned long is a valid value
+  for this property.</p>
+  </td>
+ </tr></tbody></table><p>A <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_3184c8c5-f13b-4d77-b04a-b92feff97f61" data-linktype="relative-path">data
+collector</a> can be represented as an XML file, which can be used to serialize
+(using Xml (Get) <a href="38b478b4-408e-4702-aecf-946177a9f06b" data-linktype="relative-path">3.2.4.5.21</a>)
+and deserialize (using SetXml <a href="6f99ca8b-2197-43eb-b17a-7761c529787c" data-linktype="relative-path">3.2.4.5.22</a>) it. The format
+of the XML that defines a performance counter data collector is as follows(the
+full XML specification of the data collector set XML is in section <a href="b5be2d38-3f21-478d-a8b9-a61128eb2751" data-linktype="relative-path">3.2.4.19</a>): </p><dl>
+<dd>
+<div><pre> &lt;PerformanceCounterDataCollector&gt;
+    &lt;!-- elements for DataCollectorType --&gt;
+    &lt;DataSourceName/&gt;
+    &lt;SampleInterval/&gt;
+    &lt;SegmentMaxRecords/&gt;
+    &lt;LogFileFormat/&gt;
+    &lt;Counter/&gt;
+    &lt;CounterDisplayName/&gt;
+ &lt;/PerformanceCounterDataCollector&gt;
+  
+</pre></div>
+</dd></dl><p>The XML given above does not show the property elements
+inherited from IDataCollector that also need to be specified.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="bd2ffdde-96fc-49f8-90eb-5912ea5db039" data-linktype="relative-path">DataSourceName
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the DataSourceName property.</p>
+  <p>Opnum: 32</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="9ecdd584-af2b-4b80-854f-d1e2da98521d" data-linktype="relative-path">DataSourceName
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the DataSourceName property.</p>
+  <p>Opnum: 33</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="f78f5a32-4fbb-4991-9618-432968c4b0c4" data-linktype="relative-path">PerformanceCounters
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the PerformanceCounters property.</p>
+  <p>Opnum: 34</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="9cce1255-a3a3-420d-bd3f-42996d685ac8" data-linktype="relative-path">PerformanceCounters
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the PerformanceCounters property.</p>
+  <p>Opnum: 35</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="3ef38758-0514-4315-935a-9cdceb99fce9" data-linktype="relative-path">LogFileFormat
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the LogFileFormat property.</p>
+  <p>Opnum: 36</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="9b096e47-1e77-4cd3-88c9-c6cbb98faf0e" data-linktype="relative-path">LogFileFormat
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the LogFileFormat property.</p>
+  <p>Opnum: 37</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="c42ca82a-1f4e-46ff-8bea-373fa731d75b" data-linktype="relative-path">SampleInterval
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the SampleInterval property.</p>
+  <p>Opnum: 38</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="e4a5dd9e-d6fe-4470-8901-d852ddab1f3e" data-linktype="relative-path">SampleInterval
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the SampleInterval property.</p>
+  <p>Opnum: 39</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="991f1b0c-e059-4ae7-9b2f-9a46d5a10054" data-linktype="relative-path">SegmentMaxRecords
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the SegmentMaxRecords property.</p>
+  <p>Opnum: 40</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="e91b3cd6-8d6b-4eb7-b261-0196cd3e5e91" data-linktype="relative-path">SegmentMaxRecords
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the SegmentMaxRecords property.</p>
+  <p>Opnum: 41</p>
+  </td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface. Opnums 7–31 are
+used by IDataCollector.</p></div>

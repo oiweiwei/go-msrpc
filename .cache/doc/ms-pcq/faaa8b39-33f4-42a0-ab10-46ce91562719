@@ -1,0 +1,48 @@
+<div class="content"><p>The PerflibV2CloseQueryHandle method closes the handle that
+is returned from the <a href="89060095-8806-47ce-80da-9d03cedcb9a6" data-linktype="relative-path">PerflibV2OpenQueryHandle</a>
+method. </p><dl>
+<dd>
+<div><pre> error_status_t PerflibV2CloseQueryHandle(
+   [in, out] PRPC_HQUERY phQuery
+ );
+</pre></div>
+</dd></dl><p><b>phQuery: </b>A handle that is created by the
+PerflibV2OpenQueryHandle method. An exception is thrown or an error is returned
+by <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> if the handle did
+not originate from the PerflibV2OpenQueryHandle method. On method return, <i>phQuery</i>
+MUST be set to NULL.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) for success; otherwise, it MUST return one of the standard
+Windows errors, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The return value indicates success.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The server returns this value to the client if the
+  authentication level of the client is less than
+  RPC_C_AUTHN_LEVEL_PKT_PRIVACY. The opened handle, <i>phQuery</i>, remains in
+  that state until the client calls PerflibV2CloseQueryHandle with
+  authentication level RPC_C_AUTHN_LEVEL_PKT_PRIVACY.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

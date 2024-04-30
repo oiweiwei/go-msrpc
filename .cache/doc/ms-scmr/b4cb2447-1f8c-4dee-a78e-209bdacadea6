@@ -1,0 +1,135 @@
+<div class="content"><p>The RNotifyServiceStatusChange method<a id="Appendix_A_Target_74"></a><a aria-label="Product behavior note 74" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_74" data-linktype="relative-path">&lt;74&gt;</a> allows the client to register
+for notifications and check, via <a href="7020f3e1-17b9-4956-80dc-583ea1509fe6" data-linktype="relative-path">RGetNotifyResults (section 3.1.4.44)</a>,
+when the specified service of type SERVICE_WIN32_OWN_PROCESS or
+SERVICE_WIN32_SHARE_PROCESS is created or deleted or when its status changes.</p><dl>
+<dd>
+<div><pre> DWORD RNotifyServiceStatusChange(
+   [in] SC_RPC_HANDLE hService,
+   [in] SC_RPC_NOTIFY_PARAMS NotifyParams,
+   [in] GUID* pClientProcessGuid,
+   [out] GUID* pSCMProcessGuid,
+   [out] PBOOL pfCreateRemoteQueue,
+   [out] LPSC_NOTIFY_RPC_HANDLE phNotify
+ );
+</pre></div>
+</dd></dl><p><b>hService: </b>An <a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">SC_RPC_HANDLE</a> data type
+that defines the handle to the SCM for SERVICE_NOTIFY_CREATED and
+SERVICE_NOTIFY_DELETED notifications or to the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_1fbb7936-8437-4e3d-b62f-47df3be07721" data-linktype="relative-path">service record</a> for all
+other notification types that MUST have been created previously, using one of
+the open methods specified in section <a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a>. The
+SC_MANAGER_ENUMERATE_SERVICE access right MUST have been granted to the caller
+when the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_9dfe84e3-a772-4ad1-9a25-1255c1dc0f84" data-linktype="relative-path">RPC context handle</a>
+to the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a> was created,
+or the SERVICE_QUERY_STATUS access right MUST have been granted to the caller
+when the RPC context handle to the service record was created.</p><p><b>NotifyParams: </b>An <a href="0e88b912-da92-411d-915a-b9b7df6d64fc" data-linktype="relative-path">SC_RPC_NOTIFY_PARAMS</a>
+(section 2.2.23) data type that defines the service status notification
+information.</p><p><b>pClientProcessGuid: </b>Not used. This MUST be
+ignored.</p><p><b>pSCMProcessGuid: </b>Not used. This MUST be
+ignored.</p><p><b>pfCreateRemoteQueue: </b>Not used. This MUST be
+ignored.</p><p><b>phNotify: </b>An <a href="40e0fec2-d70a-4182-9a45-b5da7e2d0943" data-linktype="relative-path">LPSC_NOTIFY_RPC_HANDLE</a>
+(section 2.2.6) data type that defines a handle to the notification status
+associated with the client for the specified service.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns one of the following error
+codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>5</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The SC_MANAGER_ENUMERATE_SERVICE access right had not
+  been granted to the caller when the RPC context handle to the SCM was
+  created, or the SERVICE_QUERY_STATUS access right had not been granted to the
+  caller when the RPC context handle to the service record was created.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The handle is no longer valid or is not supported for
+  the specified notification.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>50</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The request is not supported.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>87</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter that was specified is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>124</p>
+  <p>ERROR_INVALID_LEVEL</p>
+  </td>
+  <td>
+  <p>The system call level is not correct.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1072</p>
+  <p>ERROR_SERVICE_MARKED_FOR_DELETE</p>
+  </td>
+  <td>
+  <p>The RDeleteService has been called for the service
+  record identified by the <i>hService</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1115</p>
+  <p>ERROR_SHUTDOWN_IN_PROGRESS</p>
+  </td>
+  <td>
+  <p>The system is shutting down.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1242</p>
+  <p>ERROR_ALREADY_REGISTERED</p>
+  </td>
+  <td>
+  <p>A notification status handle has already been created
+  for the service handle passed in the <i>hService</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1294</p>
+  <p>ERROR_SERVICE_NOTIFY_CLIENT_LAGGING</p>
+  </td>
+  <td>
+  <p>The service notification client is lagging too far
+  behind the current state of services in the machine.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation, the server MUST associate NOTIFY_RPC_HANDLE for the
+caller to check for status changes using RGetNotifyResults for the service
+record identified by the <i>hService</i> parameter.</p><p>The server MUST ignore any value set in the <i>ullThreadId</i>
+parameter in <i>NotifyParams</i>.</p><p>The server MUST fail the call and return
+ERROR_INVALID_PARAMETER if <i>dwNotifyMask</i> contains masks for both
+create/delete events and service status events.</p><p>The client can set the value of <i>pClientProcessGuid</i>, <i>pSCMProcessGuid</i>,
+and <i>pfCreatRemoteQueue</i> to any value, such as 0, and the server MUST
+ignore these.</p><p>The server MUST return ERROR_NOT_SUPPORTED (50) if the value
+of <i>dwInfoLevel</i> is greater than SERVICE_NOTIFY_STATUS_CHANGE.</p><p>The server MUST return ERROR_INVALID_LEVEL (124) if the
+value of <i>dwInfoLevel</i> is not SERVICE_NOTIFY_STATUS_CHANGE (0x2) or
+SERVICE_NOTIFY_STATUS_CHANGE_1 (0x1).</p></div>

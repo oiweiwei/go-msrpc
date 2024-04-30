@@ -1,0 +1,24 @@
+<div class="content"><p>The <b>MONITOR_CONTAINER</b> structure provides information
+about <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1b5f368b-942b-40dd-84ea-fa9082916216" data-linktype="relative-path">port monitors</a>,
+using <b>MONITOR_INFO</b> structures. The <b>MonitorInfo</b> member specifies
+the structure that defines the port monitor properties.</p><dl>
+<dd>
+<div><pre> typedef struct _MONITOR_CONTAINER {
+   DWORD Level;
+   [switch_is(Level)] union {
+     [case(1)] 
+       MONITOR_INFO_1* pMonitorInfo1;
+     [case(2)] 
+       MONITOR_INFO_2* pMonitorInfo2;
+   } MonitorInfo;
+ } MONITOR_CONTAINER;
+</pre></div>
+</dd></dl><p><b>Level:</b> Specifies the information level of
+the <b>MonitorInfo</b> data. The value of this member MUST be 0x00000001 or
+0x00000002.</p><p><b>MonitorInfo:</b> Defines port monitor
+properties, using an information structure that corresponds to the value of the
+<b>Level</b> member.</p><p><b>pMonitorInfo1:</b> If the <b>Level</b> member
+is 0x00000001, this member is a pointer to a <b>MONITOR_INFO_1</b> structure
+that provides information about a port monitor. For details, see section <a href="7ee6a75f-9889-41a6-8b14-90d4e378b956" data-linktype="relative-path">2.2.1.8.1</a>.</p><p><b>pMonitorInfo2:</b> If the <b>Level</b> member
+is 0x00000002, this member is a pointer to a <b>MONITOR_INFO_2</b> structure
+that provides information about a port monitor. For details, see section <a href="f05b335b-203c-454f-87da-69ad96930bd7" data-linktype="relative-path">2.2.1.8.2</a>.</p></div>

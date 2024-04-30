@@ -1,0 +1,53 @@
+<div class="content"><p>The State_Call structure defines parameters to the State
+call (as specified in section <a href="16756fb5-fd8f-4949-82f8-b480f59d8d13" data-linktype="relative-path">3.1.4.40</a>) for querying the
+contents of a <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_5cddf14c-b925-4494-9b55-d2c8259f9ad0" data-linktype="relative-path">smart card
+reader</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _State_Call {
+   REDIR_SCARDHANDLE hCard;
+   long fpbAtrIsNULL;
+   unsigned long cbAtrLen;
+ } State_Call;
+</pre></div>
+</dd></dl><p><b>hCard:</b>  A handle, as specified in
+section <a href="b6276356-7c5f-4d3e-be92-a6c85e58d008" data-linktype="relative-path">2.2.1.2</a>.</p><p><b>fpbAtrIsNULL:</b>  A Boolean value
+specifying whether the caller wants to retrieve the length of the data. Set to
+FALSE (0x00000000) to allow the data to be returned. Set to TRUE (0x00000001),
+and only the length of the data will be returned. SHOULD be set to TRUE if <b>cbAtrLen</b>
+is set to SCARD_AUTOALLOCATE (0xFFFFFFFF). </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cbAtrLen:</b>  The length of the buffer
+specified on the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_37eb268d-1dd2-4413-9fa6-3af2cab291d3" data-linktype="relative-path">TS server</a>
+side. If <b>cbAtrLen</b> is set to SCARD_AUTOALLOCATE with a value of
+0xFFFFFFFF, an array of any length can be returned. Otherwise, the returned
+array MUST NOT exceed <b>cbAtrLen</b> bytes in length. When the array to be
+returned exceeds <b>cbAtrLen</b> bytes in length, <a href="574e5ec5-96ba-4b11-bfa9-52eb34307356" data-linktype="relative-path">State_Return</a>.<b>ReturnCode</b>
+MUST be set to SCARD_E_INSUFFICIENT_BUFFER (0x80100008). Also, <b>cbAtrLen</b>
+is ignored if <b>fpbAtrIsNULL</b> is set to TRUE (0x00000001). If <b>fpbAtrIsNULL</b>
+is set to FALSE (0x00000000) but <b>cbAtrLen</b> is set to 0x00000000, then the
+call MUST succeed, State_Return.<b>cbAtrLen</b> MUST be set to the length of
+the data in bytes, and State_Return.<b>rgAtr</b> MUST be set to NULL.</p></div>

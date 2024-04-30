@@ -1,0 +1,32 @@
+<div class="content"><p> </p><p>The GetDriveLetter method retrieves the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1b153cd0-e3f3-4383-bc66-d5ad482c9766" data-linktype="relative-path">drive
+letter</a></span> of an OEM, ESP, or unknown <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span> on the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>
+at a specified byte offset.</p><dl>
+<dd>
+<div><pre> HRESULT GetDriveLetter(
+   [in] ULONGLONG ullOffset,
+   [out] WCHAR* pwcLetter
+ );
+</pre></div>
+</dd></dl><p><b>ullOffset: </b>The byte offset of the partition,
+from the beginning of the disk. This offset MUST be the offset of a start of a
+partition.</p><p><b>pwcLetter: </b>A pointer to a Unicode character
+that will receive an uppercase or lowercase alphabetical (A-Z) drive letter for
+the partition at byte offset <i>ullOffset</i>.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p><b>ERROR_SUCCESS</b> (0x00000000)</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that the partition at the byte offset that is specified by
+<i>ullOffset</i> does not have a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> existing on
+it.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the partition has a drive letter.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the partition is an OEM, ESP, or unknown partition.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>pwcLetter</i> is not NULL.</p>
+</li></ul><p>The server MUST set a value referenced by <i>pwcLetter</i>
+with the drive letter of the partition and return an HRESULT indicating failure
+or success.</p></div>

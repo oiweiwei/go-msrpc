@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The DRS_MSG_EXISTREPLY_V1 structure defines the response
+message received from the <span><a href="6355d4f5-f556-4527-adde-37afba2fcf56" data-linktype="relative-path">IDL_DRSGetObjectExistence</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwStatusFlags;
+   [range(0,10485760)] DWORD cNumGuids;
+   [size_is(cNumGuids)] UUID* rgGuids;
+ } DRS_MSG_EXISTREPLY_V1;
+</pre></div>
+</dd></dl><p><b>dwStatusFlags:</b>  1 if the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_1c222b9e-7176-4840-9d19-e65895b9fc62" data-linktype="relative-path">digests</a></span>
+of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> sequences on
+the client and server are the same, 0 if they are different.</p><p><b>cNumGuids:</b>  The number of items in
+the <b>rgGuids</b> array. Zero if <b>dwStatusFlags</b> = 0.</p><p><b>rgGuids:</b>   The <span><a href="../ms-ada3/937eb5c6-f6b3-4652-a276-5d6bb8979658" data-linktype="relative-path">objectGUID</a></span>s
+of the objects in the server&#39;s object sequence.</p></div>

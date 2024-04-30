@@ -1,0 +1,76 @@
+<div class="content"><p>This method is called by a client to get information about
+the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_e8df25db-9bff-46df-b607-d072dd29c02b" data-linktype="relative-path">event classes</a>
+associated with an IID that are configured in the Global Partition.</p><dl>
+<dd>
+<div><pre> HRESULT GetEventClassesForIID(
+   [in, string, unique] LPWSTR wszIID,
+   [out] DWORD* pcClasses,
+   [out, string, size_is(, *pcClasses)] 
+     LPWSTR** pawszCLSIDs,
+   [out, string, size_is(, *pcClasses)] 
+     LPWSTR** pawszProgIDs,
+   [out, string, size_is(, *pcClasses)] 
+     LPWSTR** pawszDescriptions
+ );
+</pre></div>
+</dd></dl><p><b>wszIID: </b>The Curly Braced GUID String Syntax (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/222af2d3-5c00-4899-bc87-ed4c6515e80d" data-linktype="relative-path">2.3.4.3</a>)
+representation of an IID for which event classes will be retrieved, or NULL for
+an empty (zero-length) string to indicate all event classes.</p><p><b>pcClasses: </b>A pointer to a value that, upon
+successful completion, MUST be set to the number of event classes for which
+information was returned.</p><p><b>pawszCLSIDs: </b>A pointer to a value that, upon
+successful completion, MUST be set to an array of Curly Braced GUID String
+Syntax ([MS-DTYP] section 2.3.4.3) representations of <a href="3f01a312-3391-4109-a96e-95358babf191#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSIDs</a> of event classes.</p><p><b>pawszProgIDs: </b>A pointer to a value that, upon
+successful completion, MUST be set to an array of ProgIDs of event classes, in
+the same order as <i>pawszCLSIDs</i>.</p><p><b>pawszDescriptions: </b>A pointer to a value that,
+upon successful completion, MUST be set to an array of descriptions of event
+classes, in the same order as <i>pawszCLSIDs</i>.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving a call to this method, the server MUST verify
+that <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0944227d-0566-49e1-989f-2fff6e02542d" data-linktype="relative-path">catalog</a> version
+negotiation has been performed by checking the negotiated catalog version (see
+section <a href="a667265b-22a8-43bb-b462-13528061e009" data-linktype="relative-path">3.1.1.5</a>), and
+fail the call if not.</p><p>Upon receiving this method, the server MUST verify that all
+parameters conform to the preceding specifications, and fail the call if not.</p><p>The server then MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>If <i>wszIID</i> is NULL or an empty string, the server MUST
+attempt to retrieve from its catalog the values of the CLSID, ProgID, and
+Description properties of all entries in the <a href="a250b039-56dd-495b-8636-147a989995e0" data-linktype="relative-path">EventClasses
+table (section 3.1.1.3.22)</a> for which the PartitionIdentifier
+property is equal to the partition identifier of the Global partition, and fail
+the call if it cannot.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the server then MUST attempt to select all entries
+from the EventClasses table (section 3.1.1.3.22) for which the IID
+property is equal to that specified in <i>wszIID</i>, and for which the
+PartitionIdentifier property is equal to the partition identifier of the Global
+Partition, and for those entries retrieve the values of the CLSID, ProgID, and
+Description properties, and fail the call if it cannot.</p>
+</li></ul><p>The server then MUST attempt to set the values referenced by
+the out parameters as follows:</p><ul><li><p><span><span> 
+</span></span>The server MUST attempt to set the value referenced by <i>pcClasses</i>
+to the number of event classes selected, and the values referenced by <i>pawszCLSIDs</i>,
+<i>pawszProgIDs</i>, and <i>pawszDescriptions</i> to arrays of values for the
+CLSID, ProgID, and Descriptions properties for the selected event classes, and
+fail the call if it cannot.</p>
+</li></ul></div>

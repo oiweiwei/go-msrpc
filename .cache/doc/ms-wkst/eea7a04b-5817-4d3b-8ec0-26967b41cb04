@@ -1,0 +1,86 @@
+<div class="content"><p> </p><p>The <b>WKSTA_INFO_502</b> structure specifies details about
+a computer environment.</p><dl>
+<dd>
+<div><pre> typedef struct _WKSTA_INFO_502 {
+   unsigned long wki502_char_wait;
+   unsigned long wki502_collection_time;
+   unsigned long wki502_maximum_collection_count;
+   unsigned long wki502_keep_conn;
+   unsigned long wki502_max_cmds;
+   unsigned long wki502_sess_timeout;
+   unsigned long wki502_siz_char_buf;
+   unsigned long wki502_max_threads;
+   unsigned long wki502_lock_quota;
+   unsigned long wki502_lock_increment;
+   unsigned long wki502_lock_maximum;
+   unsigned long wki502_pipe_increment;
+   unsigned long wki502_pipe_maximum;
+   unsigned long wki502_cache_file_timeout;
+   unsigned long wki502_dormant_file_limit;
+   unsigned long wki502_read_ahead_throughput;
+   unsigned long wki502_num_mailslot_buffers;
+   unsigned long wki502_num_srv_announce_buffers;
+   unsigned long wki502_max_illegal_datagram_events;
+   unsigned long wki502_illegal_datagram_event_reset_frequency;
+   int wki502_log_election_packets;
+   int wki502_use_opportunistic_locking;
+   int wki502_use_unlock_behind;
+   int wki502_use_close_behind;
+   int wki502_buf_named_pipes;
+   int wki502_use_lock_read_unlock;
+   int wki502_utilize_nt_caching;
+   int wki502_use_raw_read;
+   int wki502_use_raw_write;
+   int wki502_use_write_raw_data;
+   int wki502_use_encryption;
+   int wki502_buf_files_deny_write;
+   int wki502_buf_read_only_files;
+   int wki502_force_core_create_mode;
+   int wki502_use_512_byte_max_transfer;
+ } WKSTA_INFO_502,
+  *PWKSTA_INFO_502,
+  *LPWKSTA_INFO_502;
+</pre></div>
+</dd></dl><p><b>wki502_char_wait:</b> Any value when sent, and
+MUST be ignored on receipt.</p><p><b>wki502_collection_time:</b> Any value when sent,
+and MUST be ignored on receipt.</p><p><b>wki502_maximum_collection_count:</b> Any value
+when sent, and MUST be ignored on receipt.</p><p><b>wki502_keep_conn:</b> The number of seconds the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_09dbec39-5e75-4d9a-babf-1c9f1d499625" data-linktype="relative-path">SMB</a></span>
+<span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_15c89cb5-6767-49e7-b461-66acaf6c06c8" data-linktype="relative-path">network
+redirector</a></span> maintains an inactive <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_e1d88514-18e6-4e2e-a459-20d5e17e9078" data-linktype="relative-path">SMB connection</a></span> to a
+remote computer’s resource before closing it.</p><p><b>wki502_max_cmds:</b> The number of simultaneous
+network commands that can be sent to the SMB network redirector.</p><p><b>wki502_sess_timeout:</b> The number of seconds the
+<span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server
+(2)</a></span> waits before disconnecting an inactive session.</p><p><b>wki502_siz_char_buf:</b> Any value when sent, and
+MUST be ignored on receipt.</p><p><b>wki502_max_threads:</b> Any value when sent, and
+MUST be ignored on receipt.</p><p><b>wki502_lock_quota:</b> Any value when sent, and
+MUST be ignored on receipt.</p><p><b>wki502_lock_increment:</b> Any value when sent,
+and MUST be ignored on receipt.</p><p><b>wki502_lock_maximum:</b> Any value when sent, and
+MUST be ignored on receipt.</p><p><b>wki502_pipe_increment:</b> Any value when sent,
+and MUST be ignored on receipt.</p><p><b>wki502_pipe_maximum:</b> Any value when sent, and
+MUST be ignored on receipt.</p><p><b>wki502_cache_file_timeout:</b>  Any value
+when sent, and MUST be ignored on receipt.</p><p><b>wki502_dormant_file_limit:</b> The maximum number
+of file or printer handles the SMB network redirector can continue to keep
+open, even after the application has closed the corresponding <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>.</p><p><b>wki502_read_ahead_throughput:</b> Any value when
+sent, and MUST be ignored on receipt.</p><p><b>wki502_num_mailslot_buffers:</b> Any value when
+sent, and MUST be ignored on receipt.</p><p><b>wki502_num_srv_announce_buffers:</b> Any value
+when sent, and MUST be ignored on receipt.</p><p><b>wki502_max_illegal_datagram_events:</b> Any value
+when sent, and MUST be ignored on receipt.</p><p><b>wki502_illegal_datagram_event_reset_frequency:</b>
+Any value when sent, and MUST be ignored on receipt.</p><p><b>wki502_log_election_packets:</b> Any value when
+sent, and MUST be ignored on receipt.</p><p><b>wki502_use_opportunistic_locking:</b> Any value
+when sent, and MUST be ignored on receipt.</p><p><b>wki502_use_unlock_behind:</b> Any value when sent,
+and MUST be ignored on receipt.</p><p><b>wki502_use_close_behind:</b> Any value when sent,
+and MUST be ignored on receipt.</p><p><b>wki502_buf_named_pipes:</b> Any value when sent,
+and MUST be ignored on receipt.</p><p><b>wki502_use_lock_read_unlock:</b> Any value when
+sent, and MUST be ignored on receipt.</p><p><b>wki502_utilize_nt_caching:</b> Any value when sent,
+and MUST be ignored on receipt.</p><p><b>wki502_use_raw_read:</b> Any value when sent, and
+MUST be ignored on receipt.</p><p><b>wki502_use_raw_write:</b>  Any value when
+sent, and MUST be ignored on receipt.</p><p><b>wki502_use_write_raw_data:</b> Any value when
+sent, and MUST be ignored on receipt.</p><p><b>wki502_use_encryption:</b> Any value when sent,
+and MUST be ignored on receipt.</p><p><b>wki502_buf_files_deny_write:</b> Any value when
+sent, and MUST be ignored on receipt.</p><p><b>wki502_buf_read_only_files:</b> Any value when
+sent, and MUST be ignored on receipt.</p><p><b>wki502_force_core_create_mode:</b> Any value when
+sent, and MUST be ignored on receipt.</p><p><b>wki502_use_512_byte_max_transfer:</b> Any value
+when sent, and MUST be ignored on receipt.</p><p>The <b>wki502_keep_conn</b>, <b>wki502_max_cmds</b>, <b>wki502_sess_timeout</b>,
+and <b>wki502_dormant_file_limit</b> are the only values the server (2) can use
+to configure the redirector. The server MUST store all the values and return
+the existing values upon a client’s request.</p></div>

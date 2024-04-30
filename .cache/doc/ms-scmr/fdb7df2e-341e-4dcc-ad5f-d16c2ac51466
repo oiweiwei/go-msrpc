@@ -1,0 +1,237 @@
+<div class="content"><p>The REnumServicesStatusExW method enumerates services in the
+specified <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a> database,
+based on the specified information level.</p><dl>
+<dd>
+<div><pre> DWORD REnumServicesStatusExW(
+   [in] SC_RPC_HANDLE hSCManager,
+   [in] SC_ENUM_TYPE InfoLevel,
+   [in] DWORD dwServiceType,
+   [in] DWORD dwServiceState,
+   [out, size_is(cbBufSize)] LPBYTE lpBuffer,
+   [in, range(0, 1024*256)] DWORD cbBufSize,
+   [out] LPBOUNDED_DWORD_256K pcbBytesNeeded,
+   [out] LPBOUNDED_DWORD_256K lpServicesReturned,
+   [in, out, unique] LPBOUNDED_DWORD_256K lpResumeIndex,
+   [in, string, unique, range(0, SC_MAX_NAME_LENGTH)] 
+     LPCWSTR pszGroupName
+ );
+</pre></div>
+</dd></dl><p><b>hSCManager: </b>An <a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">SC_RPC_HANDLE (section 2.2.4)</a>
+data type that defines the handle to the SCM database that MUST have been
+created previously, using one of the open methods specified in section <a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a>. The
+SC_MANAGER_ENUMERATE_SERVICE access right MUST have been granted to the caller
+when the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_9dfe84e3-a772-4ad1-9a25-1255c1dc0f84" data-linktype="relative-path">RPC context handle</a>
+to the SCM was created.</p><p><b>InfoLevel: </b>An <a href="9ee28cc6-19b7-464b-8464-d645e4189e76" data-linktype="relative-path">SC_ENUM_TYPE (section 2.2.20)</a>
+structure that specifies which service attributes are returned. This MUST be
+SC_ENUM_PROCESS_INFO.</p><p><b>dwServiceType: </b>A value that specifies the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_1fbb7936-8437-4e3d-b62f-47df3be07721" data-linktype="relative-path">service records</a> to
+enumerate based on their Type. This MUST be one or a combination of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SERVICE_KERNEL_DRIVER</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Enumerates services of type SERVICE_KERNEL_DRIVER.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_FILE_SYSTEM_DRIVER</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Enumerates services of type
+  SERVICE_FILE_SYSTEM_DRIVER.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_WIN32_OWN_PROCESS</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Enumerates services of type SERVICE_WIN32_OWN_PROCESS.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_WIN32_SHARE_PROCESS</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Enumerates services of type
+  SERVICE_WIN32_SHARE_PROCESS.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwServiceState: </b>A value that specifies the
+service records to enumerate based on their <b>ServiceStatus.dwCurrentState</b>.
+This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SERVICE_ACTIVE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Enumerates service records with <b>ServiceStatus.dwCurrentState</b>
+  values from the following: SERVICE_START_PENDING, SERVICE_STOP_PENDING,
+  SERVICE_RUNNING, SERVICE_CONTINUE_PENDING, SERVICE_PAUSE_PENDING, and
+  SERVICE_PAUSED.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_INACTIVE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Enumerates service records with the <b>ServiceStatus.dwCurrentState</b>
+  value SERVICE_STOPPED.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_STATE_ALL</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Enumerates service records with <b>ServiceStatus.dwCurrentState</b>
+  values from the following: SERVICE_START_PENDING, SERVICE_STOP_PENDING,
+  SERVICE_RUNNING, SERVICE_CONTINUE_PENDING, SERVICE_PAUSE_PENDING,
+  SERVICE_PAUSED, and SERVICE_STOPPED.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>lpBuffer: </b>A pointer to the buffer that
+contains the status information in the form of an array of <a href="fe73e0f3-7ed1-48eb-8265-a6f8c33e3e05" data-linktype="relative-path">ENUM_SERVICE_STATUS_PROCESSW (section 2.2.13)</a>
+structures.</p><p><b>cbBufSize: </b>The size, in bytes, of the buffer
+pointed to by <i>lpBuffer</i>.</p><p><b>pcbBytesNeeded: </b>An <a href="6c441817-d736-4a94-a444-0c1810a6c473" data-linktype="relative-path">LPBOUNDED_DWORD_256K (section 2.2.9)</a>
+pointer to a variable that contains the number of bytes needed to return the
+configuration information if the method fails.</p><p><b>lpServicesReturned: </b>An
+LPBOUNDED_DWORD_256K (section 2.2.9) pointer to a variable that
+contains the number of service entries returned.</p><p><b>lpResumeIndex: </b>An
+LPBOUNDED_DWORD_256K (section 2.2.9) pointer to a variable that
+contains the current index in the enumerated list of service entries. The
+server MUST assign a unique number to each service for the boot session, in
+increasing order, and increment that number by one for each service addition.
+The value of the <i>lpResumeIndex</i> parameter is one of these numbers, which
+the server can use to determine the resumption point for the enumeration. </p><p><b>pszGroupName: </b>A pointer to a string that
+specifies service records to enumerate based on their <b>ServiceGroup</b>
+values.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) (ERROR_SUCCESS) on success; otherwise, it returns one of the
+following error codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>5</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The SC_MANAGER_ENUMERATE_SERVICE access right had not
+  been granted to the caller when the RPC context handle to the SCM was
+  created.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The handle is no longer valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>87</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter that was specified is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>124</p>
+  <p>ERROR_INVALID_LEVEL</p>
+  </td>
+  <td>
+  <p>The <i>InfoLevel</i> parameter contains an unsupported
+  value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>234</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>More data is available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1060</p>
+  <p>ERROR_SERVICE_DOES_NOT_EXIST</p>
+  </td>
+  <td>
+  <p>The group specified by the <i>pszGroupName</i>
+  parameter does not exist in the SCM GroupList.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1115</p>
+  <p>ERROR_SHUTDOWN_IN_PROGRESS</p>
+  </td>
+  <td>
+  <p>The system is shutting down.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation the server MUST determine the list of service records in
+the SCM database identified by the <i>hSCManager</i> parameter with a <b>ServiceGroup</b>
+value matching the <i>pszGroupName</i> parameter, <b>ServiceStatus.dwCurrentState</b>
+equal to the state specified by <i>dwServiceState</i>, and <b>Type</b> equal to
+<i>dwServiceType</i> of the client request. The server MUST return this list by
+setting the service name, display name, and the appropriate configuration data
+for each of the services in the list in the array of
+ENUM_SERVICE_STATUS_PROCESSW (section 2.2.13) structures pointed to
+by the <i>lpBuffer</i> parameter and MUST set the number of services returned
+in the <i>lpServicesReturned</i> parameter.</p><p>If the <i>lpResumeIndex</i> value is not zero, the server
+MUST use that as the offset to the service list and return only services
+starting at this offset. If the lpResumeIndex value is zero, the server MUST
+return all services. The server MUST set this parameter to zero if the
+operation succeeds. If the <i>lpResumeIndex</i> value is set by the client to
+any nonzero number not returned by the server, the behavior is not defined.</p><p>If the <i>pszGroupName</i> parameter is a nonempty or
+non-NULL string, the server MUST enumerate only the services that belong to the
+group whose name is specified by the <i>pszGroupName</i> parameter. If the <i>pszGroupName</i>
+parameter is an empty string, the server MUST enumerate only the services that
+do not belong to any group. If the <i>pszGroupName</i> parameter is NULL, the
+server MUST ignore the group membership and enumerate all services.</p><p>If the size of the <i>lpBuffer</i> array is insufficient for
+the list of services returned, the server MUST fail the call with
+ERROR_MORE_DATA (234) and return the size in bytes required in the <i>pcbBytesNeeded</i>
+parameter. If the size is sufficient for data returned, the server also returns
+the required size, in bytes.</p><p>If the size of the <i>lpBuffer</i> array is sufficient for
+the list of services returned, the enumerated data MAY be in the buffer in a
+non-contiguous manner, and portions of the <i>lpBuffer</i> array MAY be empty.</p><p>The server MUST return ERROR_INVALID_PARAMETER (87) if a
+bitmask specified in <i>dwServiceState</i> is zero or contains undefined
+values.</p><p>The server MUST return ERROR_INVALID_PARAMETER (87) if a
+bitmask specified in <i>dwServiceType</i> is zero or contains undefined values.</p></div>

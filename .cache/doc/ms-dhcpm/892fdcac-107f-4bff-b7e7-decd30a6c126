@@ -1,0 +1,118 @@
+<div class="content"><p> </p><p>The <b>R_DhcpDeleteFilterV4</b> method is used to delete a
+link-layer address/pattern from allow list or deny list. This method is also
+used to delete an exemption of a hardware type from filtering. However,
+hardware type 1 (Ethernet 10 Mb) cannot be exempted, and this method cannot be
+used to delete them.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpDeleteFilterV4(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_ADDR_PATTERN* DeleteFilterInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused. </p><p><b>DeleteFilterInfo: </b>This is a pointer to a <span><a href="a45ad236-6c42-42eb-9e67-c9335b61b7a7" data-linktype="relative-path">DHCP_ADDR_PATTERN (section 2.2.1.2.89)</a></span>
+that contains link-layer address/pattern information to be deleted from the
+database, from the allow or deny lists. It can also contain hardware type
+information to be deleted from the database, from the allow list.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP Server
+  Database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E7F</p>
+  <p>ERROR_DHCP_LINKLAYER_ADDRESS_DOES_NOT_EXIST</p>
+  </td>
+  <td>
+  <p>Address or Address pattern is not contained in any of
+  the list.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>Invalid input - address/pattern</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E86</p>
+  <p>ERROR_DHCP_UNDEFINED_HARDWARE_ADDRESS_TYPE</p>
+  </td>
+  <td>
+  <p>Hardware type not present in the exemption list.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 83.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read/write access
+per section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If <i>DeleteFilterInfo</i> is NULL, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>MatchHWType</b> field of <i>DeleteFilterInfo</i> is
+FALSE, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>An exemption for hardware types other than hardware type 1
+(Ethernet 10 Mb) can be deleted if the <b>AddrPatt</b> member of the <i>DeleteFilterInfo</i>
+parameter contains an <b>HWType</b> value other than 1 and the value of the <b>IsWildCard</b>
+member of <i>DeleteFilterInfo</i> is TRUE, the hardware type specified by <b>ListType</b>
+is allowed, and the value of the <b>Length</b> member is 0. For any other value
+of <b>IsWildCard</b> or <b>Length</b>, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>AddrPatt</b> member specified in <i>DeleteFilterInfo</i>
+contains an <b>HWType</b> value of 1, the value of the <b>IsWildCard</b> member
+of <i>DeleteFilterInfo</i> is FALSE, and the <b>Length</b> value is not equal
+to 6, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>AddrPatt</b> member specified in <i>DeleteFilterInfo</i>
+contains an <b>HWType</b> value of 1, the value of the <b>IsWildCard</b> member
+of <b>AddFilterInfo</b> is TRUE, and the <b>Length</b> value is greater than 5
+or less than 1, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server ADM element <b>DHCPv4FiltersList</b>
+and if there is no <b>DHCPv4Filter</b> entry that has a <b>AddrPatt.Pattern</b>
+field matching the  <b>AddrPatt.Pattern</b> field of <i>DeleteFilterInfo</i>
+input parameter and the <b>AddrPatt.HwType</b> field matches the <b>AddrPatt.HwType</b>
+field of <i>DeleteFilterInfo</i> input parameter, then return
+ERROR_DHCP_LINKLAYER_ADDRESS_DOES_NOT_EXIST. Else, delete the <b>DHCPv4Filter</b>
+entry from the <b>DHCPv4FiltersList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>AddrPatt.HwType</b> field of the <i>DeleteFilterInfo</i>
+input parameter is not equal to 1 and there is no <b>DHCPv4Filter</b> entry
+that has a <b>AddrPatt.HwType</b> field matching the <b>AddrPatt.HwType</b>
+field of <i>DeleteFilterInfo</i> input parameter, return ERROR_DHCP_UNDEFINED_HARDWARE_ADDRESS_TYPE.
+Else, delete the <b>DHCPv4Filter</b> entry from the <b>DHCPv4FiltersList</b>.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

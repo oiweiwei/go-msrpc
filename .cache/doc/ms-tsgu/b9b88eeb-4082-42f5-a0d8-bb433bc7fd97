@@ -1,0 +1,63 @@
+<div class="content"><p>The AASYNDATARESP structure contains the RDGUDP channel
+properties sent by the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+to the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> during
+the <a href="0fcd8c37-7540-426a-a385-8e6be22611fc" data-linktype="relative-path">Connection Setup
+Phase (section 1.3.1.1.1)</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>uUpStreamMtu</p>
+  </td>
+  <td colspan="16">
+  <p>uDownStreamMtu</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>snRecvISN</p>
+  </td>
+ </tr>
+</tbody></table><p><b>uUpStreamMtu (2 bytes): </b>An unsigned short
+representing the resultant path for the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_03aae42f-32fd-47ab-b413-d5ec92d29d45" data-linktype="relative-path">MTU</a> between the RDG client,
+the RDG server and the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_3657ab68-5a60-4cee-8082-dfc2e67435e9" data-linktype="relative-path">target
+server</a>. The path is detected by the RDG server after establishing a
+connection with the target server.</p><p><b>uDownStreamMtu (2 bytes): </b>An unsigned short
+representing the resultant path for the MTU between the target server, the RDG
+server and the RDG client. The path is detected by the RDG server after
+establishing a connection with the target server.</p><p><b>snRecvISN (4 bytes): </b>An integer representing
+the initial sequence number used by the forward error correction (FEC) receive
+window between the target server and the RDG client. The integer value is sent
+by the target server to the RDG server during the Connection Setup Phase.</p></div>

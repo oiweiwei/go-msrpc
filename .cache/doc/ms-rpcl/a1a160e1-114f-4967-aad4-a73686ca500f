@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The ReplyBuffer structure specifies the layout of the
+response in the <span><a href="cb938742-19a3-4303-a1a2-d0b0dd667de1" data-linktype="relative-path">QueryReply</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   fixed_part_of_reply fpr;
+   wchar_t entryName[fpr.EntryNameLength];
+   long objListSize;
+   DWORD unused;
+   GUID objUUID[objListSize];
+   wchar_t binding[fpr.BindingLength];
+ } ReplyBuffer;
+</pre></div>
+</dd></dl><p><b>fpr:</b>  MUST contain the fixed part of
+the reply. For more information, see section <span><a href="e86e0b71-25e9-4cb0-a23c-8df4ef8b0720" data-linktype="relative-path">2.2.4.2.2.3</a></span>.</p><p><b>entryName:</b>  A null-terminated <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+buffer that MUST contain the name of the <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_6cfe4abe-94bd-43b6-b666-3618d9093373" data-linktype="relative-path">name service entry</a></span>
+as specified by the RPC_C_NS_SYNTAX_DCE syntax. The size (in characters) of
+this buffer, including the terminating null character, MUST be
+fpr.EntryNameLength.</p><p><b>objListSize:</b>  MUST contain the
+number of <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_0a38e28d-7525-4d2d-8c62-43aedaf47b74" data-linktype="relative-path">object UUIDs</a></span> present
+in the objUUID array.</p><p><b>unused:</b>  Senders MUST set this to
+zero, and receivers MUST ignore it.</p><p><b>objUUID:</b>  An array of object UUIDs
+exported on the name service entry. The number of object UUIDs in this buffer
+MUST be equal to the objListSize. The size of this buffer MUST be the number of
+object UUIDs in this buffer.</p><p><b>binding:</b>  A null-terminated Unicode
+buffer that MUST contain a string <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_1cf35308-abab-4123-9cbd-99c42dc9a6ff" data-linktype="relative-path">binding</a></span> exported to
+the name service entry. The size (in characters) of this buffer, including the
+terminating null character, MUST be fpr.BindingLength.</p></div>

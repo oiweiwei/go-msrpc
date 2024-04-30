@@ -1,0 +1,221 @@
+<div class="content"><p>RpcSetPrinter sets the data or state of a specified printer
+by pausing or resuming printing or by clearing all <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print jobs</a>.</p><dl>
+<dd>
+<div><pre> DWORD RpcSetPrinter(
+   [in] PRINTER_HANDLE hPrinter,
+   [in] PRINTER_CONTAINER* pPrinterContainer,
+   [in] DEVMODE_CONTAINER* pDevModeContainer,
+   [in] SECURITY_CONTAINER* pSecurityContainer,
+   [in] DWORD Command
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object or
+server object that was opened by <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter (section 3.1.4.2.3)</a>,
+<a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx (section 3.1.4.2.15)</a>,
+<a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter (section 3.1.4.2.2)</a>,
+or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx (section 3.1.4.2.14)</a>.</p><p><b>pPrinterContainer: </b>A parameter specified in <a href="07b78bd9-247c-4c58-981e-9a77538238ae" data-linktype="relative-path">PRINTER_CONTAINER
+Parameters (section 3.1.4.1.8.6)</a>. If the <i>Command</i> is 0, the
+<b>Level</b> member of the <a href="ad7d4d4e-0feb-45e0-93ed-b3b2b9a313d1" data-linktype="relative-path">PRINTER_CONTAINER</a>
+MUST be 0x00000000 or a number from 0x00000002 to 0x00000007. If the <i>Command</i>
+parameter is 1, 2, or 3, the <b>Level</b> member of the PRINTER_CONTAINER MUST be
+0x00000000.</p><p><b>pDevModeContainer: </b>A parameter specified in <a href="bf31abc0-da86-4ac6-8ebc-8be665e11503" data-linktype="relative-path">DEVMODE_CONTAINER
+Parameters (section 3.1.4.1.8.1)</a>.</p><p><b>pSecurityContainer: </b>A parameter specified in <a href="6c605144-1c00-4365-a6c7-5499676dcb52" data-linktype="relative-path">SECURITY_CONTAINER
+Parameters (section 3.1.4.1.8.7)</a>.</p><p><b>Command: </b>A value that specifies an action to
+perform. If this value is non-zero, it is one of the printer control values in
+the following table, and the <b>Level</b> member of the PRINTER_CONTAINER (section 2.2.1.2.9)
+structure that is pointed to by the <i>pPrinterContainer</i> parameter MUST be
+0x00000000.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PRINTER_CONTROL_PAUSE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Pauses the printer object.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PRINTER_CONTROL_RESUME</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Resumes a paused printer object.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PRINTER_CONTROL_PURGE</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Deletes all print jobs queued for the printer object.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If this value is zero, the <b>PrinterInfo</b>
+member of the PRINTER_CONTAINER structure that is pointed to by the <i>pPrinterContainer</i>
+parameter MUST contain a pointer to a <a href="fc749a27-38ec-4063-b0c1-dc477c120ffd" data-linktype="relative-path">PRINTER_INFO (section 2.2.2.9)</a>
+structure that this method can use. See section <a href="9e94b8f4-a84b-4c96-b9ae-4b4acb3469b8" data-linktype="relative-path">2.2.1.10.1</a> for details.</p>
+</dd></dl><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps specified in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE
+Parameters (section 3.1.4.1.11)</a>.</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps specified in PRINTER_CONTAINER Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the information provided in the PRINTER_CONTAINER
+that is pointed to by the <i>pPrinterContainer</i> parameter is consistent with
+the value in <i>Command</i>, according to the following table:</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Command</p>
+   </th>
+   <th>
+   <p>Level in PRINTER_CONTAINER</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000000 or a number from 0x00000002 to 0x00000007,
+  inclusive.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>0x00000000.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>0x00000000.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>0x00000000.</p>
+  </td>
+ </tr></tbody></table>
+<p>If this verification fails,
+return ERROR_INVALID_LEVEL.</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps specified in DEVMODE_CONTAINER Parameters (section 3.1.4.1.8.1).</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps specified in SECURITY_CONTAINER
+Parameters (section 3.1.4.1.8.7).</p>
+</li><li><p><span><span> 
+</span></span>If the <b>Level</b> member of the PRINTER_CONTAINER is 0x00000007
+and the <b>dwAction</b> field in the <b>PRINTER_INFO_7</b> structure that is
+pointed to by the <b>pPrinterInfo7</b> member of the PRINTER_CONTAINER pointed
+to by <b>pPrinterContainer</b> is DSPRINT_UPDATE (0x00000002):</p>
+<ul><li><p><span><span>  </span></span>Verify
+that <i>hPrinter</i> specifies a printer object that is already published in
+the directory service. If <i>hPrinter</i> represents a printer that is not
+already published in the directory service, the server MUST fail the call by
+returning an HRESULT ([MS-ERREF] section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>)
+code of 0x80070002 with the same meaning as the ERROR_FILE_NOT_FOUND error
+specified in [MS-ERREF].</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Additional validation SHOULD<a id="Appendix_A_Target_274"></a><a aria-label="Product behavior note 274" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_274" data-linktype="relative-path">&lt;274&gt;</a> be
+performed.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>If <i>hPrinter</i> specifies a server object, the server MUST
+only apply the <a href="6cf2b4ff-1b2b-453c-87f9-85243823cea8" data-linktype="relative-path">SECURITY_CONTAINER</a>
+parameter to set the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print
+server&#39;s</a> security descriptor, and MUST not perform the remaining processing
+steps that follow.</p>
+</li><li><p><span><span> 
+</span></span>Perform PRINTER_CONTAINER parameter processing steps that are
+specified in PRINTER_CONTAINER Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Perform the operation from the following table that corresponds
+to the value of the <i>Command</i> parameter.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Operation that is performed</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>No command</p>
+  <p>0x0000000</p>
+  </td>
+  <td>
+  <p>Update the printer configuration using the settings in
+  <i>pPrinterContainer</i>.<a id="Appendix_A_Target_275"></a><a aria-label="Product behavior note 275" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_275" data-linktype="relative-path">&lt;275&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Pause the printer</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Temporarily suspend sending data to the printer
+  without changing the state of any jobs associated with the printer. Clients
+  are allowed to continue adding data to the job.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Resume the printer</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Resume sending data to the printer without changing
+  the state of any jobs associated with the printer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Purge the printer</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Remove all jobs that are currently associated with the
+  printer and mark them as having failed to print.</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span><span> 
+</span></span>If <i>hPrinter</i> specifies a printer object that the print
+server has published in the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+Directory</a>, and as a result of this call the print server has changed the
+printer driver associated with the printer or changed printer configuration
+information that the print server has published in the Active Directory, update
+the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_569f1f1c-f426-46fa-91d2-3d1eb0b19aa1" data-linktype="relative-path">print queue</a> object
+in the directory as specified in section <a href="1c49f084-0f63-4ac4-9e56-6be4c47915e6" data-linktype="relative-path">2.3.3.2</a> with attributes
+obtained from the print queue configuration and the printer driver as specified
+in section <a href="3f4f0a52-e417-495a-ad46-0466a9d0ef9d" data-linktype="relative-path">2.3.3.1</a>.<a id="Appendix_A_Target_276"></a><a aria-label="Product behavior note 276" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_276" data-linktype="relative-path">&lt;276&gt;</a> If the directory service operation
+fails, the print server MUST continue processing the current call and MUST NOT
+return the status of the directory service operation to the client.</p>
+</li><li><p><span><span> 
+</span></span>If any clients registered for notifications of the printer object
+change, a notification MUST be broadcast to them.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

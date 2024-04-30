@@ -1,0 +1,1278 @@
+<div class="content"><p> </p><p>The GetCAProperty method retrieves a property value from the
+<span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT GetCAProperty(
+   [in, string, unique, range(1, 1536)] wchar_t const * pwszAuthority,
+   [in] long PropID,
+   [in] long PropIndex,
+   [in] long PropType,
+   [out, ref] CERTTRANSBLOB* pctbPropertyValue
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>Contains the name of the CA. </p><p><b>PropID: </b> An integer value that specifies the
+property to be returned.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Property name</p>
+   </th>
+   <th>
+   <p>Numerical value</p>
+   </th>
+   <th>
+   <p>Type/Index</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CR_PROP_FILEVERSION</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>String</p>
+  </td>
+  <td>
+  <p>A string that MUST contain the CA version information.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_PRODUCTVERSION</p>
+  </td>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>String</p>
+  </td>
+  <td>
+  <p>A string that MUST contain the build number of the CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_EXITCOUNT</p>
+  </td>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Long</p>
+  </td>
+  <td>
+  <p>MUST be the number of exit algorithms registered on
+  the CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_EXITDESCRIPTION</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>String</p>
+  <p>indexed</p>
+  </td>
+  <td>
+  <p>A string that MUST contain the name of the exit
+  algorithm identified by the <i>PropIndex</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_POLICYDESCRIPTION</p>
+  </td>
+  <td>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>String</p>
+  </td>
+  <td>
+  <p>A string that MUST contain the description of the
+  policy algorithm on the CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CANAME</p>
+  </td>
+  <td>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>String</p>
+  </td>
+  <td>
+  <p>A string that MUST contain the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_a86706d6-bcdf-4107-be38-d2f08a7eaa68" data-linktype="relative-path">CN</a></span>,
+  as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90414" data-linktype="external">[RFC3280]</a></span>, of
+  a CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_SANITIZEDCANAME</p>
+  </td>
+  <td>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>String</p>
+  </td>
+  <td>
+  <p>A string that MUST contain the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_de084567-c0d0-4b19-8612-aa88b38ef7c8" data-linktype="relative-path">sanitized
+  name</a></span> of the CA. More information about sanitized name is specified
+  in section <span><a href="bb738507-c9c3-4175-baf2-fe21f17c076c" data-linktype="relative-path">3.1.1.4.1.1</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_SHAREDFOLDER</p>
+  </td>
+  <td>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>String</p>
+  </td>
+  <td>
+  <p>A string that MUST contain the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_c9507dca-291d-4fd6-9cba-a9ee7da8c908" data-linktype="relative-path">UNC</a></span>
+  path of a folder that contains the CA information and signature <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_PARENTCA</p>
+  </td>
+  <td>
+  <p>0x00000009</p>
+  </td>
+  <td>
+  <p>String</p>
+  </td>
+  <td>
+  <p>A string that MUST contain the name of the parent CA
+  to the current CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CATYPE</p>
+  </td>
+  <td>
+  <p>0x0000000A</p>
+  </td>
+  <td>
+  <p>Long</p>
+  </td>
+  <td>
+  <p>MUST be a <span><a href="4fa5241c-d10e-4011-87e0-c74753d725a3" data-linktype="relative-path">CAINFO</a></span> structure
+  that MUST contain the CA type. More information is specified in section <span><a href="2f6e1dd2-2797-4d47-8567-54e064d18fb0" data-linktype="relative-path">3.2.1.4.3.2.10</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CASIGCERTCOUNT</p>
+  </td>
+  <td>
+  <p>0x0000000B</p>
+  </td>
+  <td>
+  <p>Long</p>
+  </td>
+  <td>
+  <p>MUST be the number of <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_6a2366ee-fc9c-4406-963d-eac335ed8fc5" data-linktype="relative-path">signing certificates</a></span>
+  on the CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CASIGCERT</p>
+  </td>
+  <td>
+  <p>0x0000000C</p>
+  </td>
+  <td>
+  <p>Binary, indexed</p>
+  </td>
+  <td>
+  <p>MUST be a binary object that contains a signing
+  certificate identified by the <i>PropIndex</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CASIGCERTCHAIN</p>
+  </td>
+  <td>
+  <p>0x0000000D</p>
+  </td>
+  <td>
+  <p>Binary, indexed</p>
+  </td>
+  <td>
+  <p>MUST be a binary object that contains the certificate
+  chain for a signing certificate identified by the <i>PropIndex</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CAXCHGCERTCOUNT</p>
+  </td>
+  <td>
+  <p>0x0000000E</p>
+  </td>
+  <td>
+  <p>Long</p>
+  </td>
+  <td>
+  <p>MUST be 0x1.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CAXCHGCERT</p>
+  </td>
+  <td>
+  <p>0x0000000F</p>
+  </td>
+  <td>
+  <p>Binary, indexed</p>
+  </td>
+  <td>
+  <p>MUST be a binary object that contains the CA&#39;s current
+  <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_d3e1039c-49e0-4ccf-bb89-67829214a190" data-linktype="relative-path">exchange
+  certificate</a></span> from the Current_CA_Exchange_Cert datum. The <i>PropIndex</i>
+  parameter MUST be 0x0 or 0xFFFFFFFF.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CAXCHGCERTCHAIN</p>
+  </td>
+  <td>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Binary, indexed</p>
+  </td>
+  <td>
+  <p>MUST be a binary object that contains the certificate
+  chain for the CA&#39;s current exchange certificate from the
+  Current_CA_Exchange_Cert datum. The <i>PropIndex</i> parameter MUST be 0x0 or
+  0xFFFFFFFF.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_BASECRL</p>
+  </td>
+  <td>
+  <p>0x00000011</p>
+  </td>
+  <td>
+  <p>Binary, indexed</p>
+  </td>
+  <td>
+  <p>MUST be a CRL, for a CA signing certificate identified
+  by the <i>PropIndex</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_DELTACRL</p>
+  </td>
+  <td>
+  <p>0x00000012</p>
+  </td>
+  <td>
+  <p>Binary, indexed</p>
+  </td>
+  <td>
+  <p>MUST be a delta CRL, for a CA signing certificate
+  identified by the <i>PropIndex</i> parameter. For more information about
+  delta CRLs, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90181" data-linktype="external">[MSFT-CRL]</a></span>.
+  Additional information is specified in [RFC3280] section 5.2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CACERTSTATE</p>
+  </td>
+  <td>
+  <p>0x00000013</p>
+  </td>
+  <td>
+  <p>Long</p>
+  <p>indexed</p>
+  </td>
+  <td>
+  <p>MUST be a byte array that contains the disposition
+  status of all CA signing certificates. Disposition status is specified in
+  section <span><a href="e4d7cd1e-92f5-4695-a19f-246a3003c7ba" data-linktype="relative-path">3.2.1.4.3.2.19</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CRLSTATE</p>
+  </td>
+  <td>
+  <p>0x00000014</p>
+  </td>
+  <td>
+  <p>Long</p>
+  <p>indexed</p>
+  </td>
+  <td>
+  <p>MUST be a byte array that contains the status for all
+  the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_4f22841f-249b-42fb-a31a-5049c00be939" data-linktype="relative-path">CRLs</a></span> of the CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CAPROPIDMAX</p>
+  </td>
+  <td>
+  <p>0x00000015</p>
+  </td>
+  <td>
+  <p>Long</p>
+  </td>
+  <td>
+  <p>MUST be the maximum property identifier supported by
+  the CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_DNSNAME</p>
+  </td>
+  <td>
+  <p>0x00000016</p>
+  </td>
+  <td>
+  <p>String</p>
+  </td>
+  <td>
+  <p>MUST be the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">fully qualified domain name
+  (FQDN)</a></span> of the computer on which the CA is installed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_ROLESEPARATIONENABLED</p>
+  </td>
+  <td>
+  <p>0x00000017</p>
+  </td>
+  <td>
+  <p>Long</p>
+  </td>
+  <td>
+  <p>Indicates whether administrative role separation has
+  been enabled on the CA. A nonzero return value means that role separation has
+  been enabled. Zero means that role separation has not been enabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_KRACERTUSEDCOUNT</p>
+  </td>
+  <td>
+  <p>0x00000018</p>
+  </td>
+  <td>
+  <p>Long</p>
+  </td>
+  <td>
+  <p>MUST be the minimum number of <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_d0a0d050-0dd5-4620-a7f8-7b3a3b71ae09" data-linktype="relative-path">KRAs</a></span>
+  to use when archiving a <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private key</a></span>. For
+  more information about KRA usage, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90177" data-linktype="external">[MSFT-ARCHIVE]</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_KRACERTCOUNT</p>
+  </td>
+  <td>
+  <p>0x00000019</p>
+  </td>
+  <td>
+  <p>Long</p>
+  </td>
+  <td>
+  <p>MUST be the maximum number of KRA certificates
+  available on the CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_KRACERT</p>
+  </td>
+  <td>
+  <p>0x0000001A</p>
+  </td>
+  <td>
+  <p>Binary, indexed</p>
+  </td>
+  <td>
+  <p>A KRA certificate identified by the <i>PropIndex</i>
+  parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_KRACERTSTATE</p>
+  </td>
+  <td>
+  <p>0x0000001B</p>
+  </td>
+  <td>
+  <p>Long, indexed</p>
+  </td>
+  <td>
+  <p>MUST be a byte array that contains the status of the
+  KRA certificates registered with the CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_ADVANCEDSERVER</p>
+  </td>
+  <td>
+  <p>0x0000001C</p>
+  </td>
+  <td>
+  <p>Long</p>
+  </td>
+  <td>
+  <p>MUST identify whether the CA operating system is an
+  advanced server platform.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_TEMPLATES</p>
+  </td>
+  <td>
+  <p>0x0000001D</p>
+  </td>
+  <td>
+  <p>String</p>
+  </td>
+  <td>
+  <p>MUST be a collection of name and <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_aaaf2f1a-0b0a-487e-a0f0-c3510a6091b2" data-linktype="relative-path">OID</a></span>
+  pairs that identify the templates supported by a CA. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_BASECRLPUBLISHSTATUS</p>
+  </td>
+  <td>
+  <p>0x0000001E</p>
+  </td>
+  <td>
+  <p>Long, indexed</p>
+  </td>
+  <td>
+  <p>MUST be the publishing status of a signing certificate
+  base CRL identified by the <i>PropIndex</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_DELTACRLPUBLISHSTATUS</p>
+  </td>
+  <td>
+  <p>0x0000001F</p>
+  </td>
+  <td>
+  <p>Long, indexed</p>
+  </td>
+  <td>
+  <p>MUST be the publishing status of a signing certificate
+  delta CRL identified by the <i>PropIndex</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CASIGCERTCRLCHAIN</p>
+  </td>
+  <td>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Binary, indexed</p>
+  </td>
+  <td>
+  <p>MUST be a binary object that contains the certificate
+  chain for a signing certificate and the CRL for the certificates in the chain
+  identified by the <i>PropIndex</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CAXCHGCERTCRLCHAIN</p>
+  </td>
+  <td>
+  <p>0x00000021</p>
+  </td>
+  <td>
+  <p>Binary, indexed</p>
+  </td>
+  <td>
+  <p>MUST be a binary object for a chain containing CRLs
+  for the CA&#39;s current exchange certificate from the Current_CA_Exchange_Cert
+  datum. The <i>PropIndex</i> parameter MUST be 0x00000000 or 0xFFFFFFFF.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CACERTSTATUSCODE</p>
+  </td>
+  <td>
+  <p>0x00000022</p>
+  </td>
+  <td>
+  <p>Long, indexed</p>
+  </td>
+  <td>
+  <p>MUST be an <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+  that identifies the result of certificate validation, as specified in
+  [RFC3280], by the CA for the CA signing certificates identified by the <i>PropIndex</i>
+  parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CAFORWARDCROSSCERT</p>
+  </td>
+  <td>
+  <p>0x00000023</p>
+  </td>
+  <td>
+  <p>Binary, indexed</p>
+  </td>
+  <td>
+  <p>MUST be a <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_e05fdeb3-48dd-4be9-afa4-36d5dd196301" data-linktype="relative-path">forward cross certificate</a></span>,
+  by index, from a CA. For more information about <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_60bf6329-b4b4-432a-b7f2-fd352e45dbfb" data-linktype="relative-path">cross certificates</a></span>,
+  see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90182" data-linktype="external">[MSFT-CROSSCERT]</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CABACKWARDCROSSCERT</p>
+  </td>
+  <td>
+  <p>0x00000024</p>
+  </td>
+  <td>
+  <p>Binary, indexed</p>
+  </td>
+  <td>
+  <p>MUST be a <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_86044e30-0ee9-4c80-b3e4-a537619f7c4d" data-linktype="relative-path">backward cross certificate</a></span>,
+  by index, from a CA. For more information about cross certificates.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CAFORWARDCROSSCERTSTATE</p>
+  </td>
+  <td>
+  <p>0x00000025</p>
+  </td>
+  <td>
+  <p>Long, indexed</p>
+  </td>
+  <td>
+  <p>MUST be a byte array that identifies the status of all
+  backward cross certificates for a CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CABACKWARDCROSSCERTSTATE</p>
+  </td>
+  <td>
+  <p>0x00000026</p>
+  </td>
+  <td>
+  <p>Long, indexed</p>
+  </td>
+  <td>
+  <p>MUST be a byte array that identifies the disposition
+  status of all forward cross certificates for a CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CACERTVERSION</p>
+  </td>
+  <td>
+  <p>0x00000027</p>
+  </td>
+  <td>
+  <p>Long, indexed</p>
+  </td>
+  <td>
+  <p>MUST be an indexed 32-bit integer that contains the
+  version number of a CA signing certificate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_SANITIZEDCASHORTNAME</p>
+  </td>
+  <td>
+  <p>0x00000028</p>
+  </td>
+  <td>
+  <p>String</p>
+  </td>
+  <td>
+  <p>The property MUST return the sanitized shortened name
+  of the CA. More information about the sanitized name is specified in section
+  3.1.1.4.1.1.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CERTCDPURLS</p>
+  </td>
+  <td>
+  <p>0x00000029</p>
+  </td>
+  <td>
+  <p>String, indexed</p>
+  </td>
+  <td>
+  <p>MUST be a null-terminated <span><a href="https://go.microsoft.com/fwlink/?LinkId=90550" data-linktype="external">[UNICODE]</a></span>
+  string of the format &#34;String1\nString2\n&#34;, where each string
+  (separated by &#39;\n&#39;) MUST represent a URI to be part of a CRL Distribution
+  Point (CDP) extension, as specified in [RFC3280] section 4.2.1.14.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CERTAIAURLS</p>
+  </td>
+  <td>
+  <p>0x0000002A</p>
+  </td>
+  <td>
+  <p>String, indexed</p>
+  </td>
+  <td>
+  <p>MUST be a null-terminated [UNICODE] string of the
+  format &#34;String1\nString2\n&#34;, where each string (separated by &#39;\n&#39;)
+  MUST represent a URI to be part of Authority Information Access extension, as
+  specified in [RFC3280] section 4.2.2.1.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_CERTAIAOCSPRLS</p>
+  </td>
+  <td>
+  <p>0x0000002B</p>
+  </td>
+  <td>
+  <p>String, indexed</p>
+  </td>
+  <td>
+  <p>MUST be a null-terminated [UNICODE] string of the
+  format &#34;String1\nString2\n&#34;, where each string (separated by &#39;\n&#39;)
+  MUST represent the OCSP URLs configured on the CA, as specified in [RFC3280]
+  section 4.2.2.1.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_LOCALENAME</p>
+  </td>
+  <td>
+  <p>0x0000002C</p>
+  </td>
+  <td>
+  <p>String</p>
+  </td>
+  <td>
+  <p>MUST be a null-terminated [UNICODE] string in the
+  &#39;Language-Region&#39; format (as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=123591" data-linktype="external">[RFC4646]</a></span>)
+  that represents the locale of the CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_SUBJECTTEMPLATE_OIDS</p>
+  </td>
+  <td>
+  <p>0x0000002D</p>
+  </td>
+  <td>
+  <p>String</p>
+  </td>
+  <td>
+  <p>MUST be a null-terminated [UNICODE] string of the
+  format &#34;OID1\nOID2\n&#34;, where each OID (separated by &#39;\n&#39;) MUST
+  represent a <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_22198321-b40b-4c24-b8a2-29e44d9d92b9" data-linktype="relative-path">Relative Distinguished Name</a></span>
+  that is in a certificate Subject Distinguished Name.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>PropIndex: </b>This parameter is used as the index
+to a property that can contain multiple values.</p><p><b>PropType: </b>An integer value that specifies the
+property data type.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PROPTYPE_LONG</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The property type is a signed long integer or a byte
+  array.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PROPTYPE_BINARY</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The property type is binary data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PROPTYPE_STRING</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The property type is a string.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pctbPropertyValue: </b>If the function succeeds,
+this method returns a <span><a href="d6bee093-d862-4122-8f2b-7b49102097dc" data-linktype="relative-path">CERTTRANSBLOB</a></span>
+structure in this parameter that contains the property value. If the function
+fails, the content of this parameter is undefined.</p><dl>
+<dd>
+<p>The data type of the value returned depends on the
+value specified in the <i>PropType</i> parameter and the property specified in
+the <i>PropID</i> parameter.</p>
+</dd></dl><p><b>Return Values: </b>For a successful invocation,
+the CA MUST return 0; otherwise, the CA MUST return a nonzero value.</p><p>The processing rules for this method are as follows:</p><p>If Config_CA_Interface_Flags contains the value
+IF_NOREMOTEICERTREQUEST, the server SHOULD return 0x80094011
+(CERTSRV_E_ENROLL_DENIED) to the client.<a id="Appendix_A_Target_87"></a><a aria-label="Product behavior note 87" href="c8bec234-0a53-4a7c-859d-2bb7b2537da5#Appendix_A_87" data-linktype="relative-path">&lt;87&gt;</a></p><p>If Config_CA_Interface_Flags contains the value
+IF_ENFORCEENCRYPTICERTREQUEST and the RPC_C_AUTHN_LEVEL_PKT_PRIVACY authentication
+level, as defined in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/425a7c53-c33a-4868-8e5b-2a850d40dc73" data-linktype="relative-path">2.2.1.1.8</a></span>,
+is not specified on the RPC connection from the client, the CA MUST refuse to
+establish a connection with the client by returning a non-zero error.<a id="Appendix_A_Target_88"></a><a aria-label="Product behavior note 88" href="c8bec234-0a53-4a7c-859d-2bb7b2537da5#Appendix_A_88" data-linktype="relative-path">&lt;88&gt;</a></p><p>If the server implements <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_456bc2c5-d6e8-4ff7-a723-1a08e6d3cf09" data-linktype="relative-path">advanced CA</a></span>
+functionality, it MUST implement the CR_PROP_CAXCHGCERT property that is
+specified in section <span><a href="585d9359-4bc5-471f-bba7-2d9a336debdc" data-linktype="relative-path">3.2.1.4.3.2.15</a></span>.</p><p>To return server properties to the client using this method,
+the server implementation MUST follow the processing rules specified as
+follows.</p><ol><li><p><span>    </span>Validate
+arguments: The server MUST invoke the processing rules in section <span><a href="a7fdfc72-b1e0-4882-93da-9aefdf468b83" data-linktype="relative-path">3.2.1.4.2.1.1</a></span>
+with the <i>CANameString</i> input parameter set to the CA name passed in the <i>pwszAuthority</i>
+parameter and the <i>EmptyNameAllowed</i> input parameter set to false. If
+false is returned, the CA MUST return the E_INVALIDARG (0x80070057) error code
+to the client.</p>
+</li><li><p><span>    </span> Returned server
+property: The server MUST follow the steps that are specified in section <span><a href="be007c96-88bc-43d8-a577-f0c4cc52e243" data-linktype="relative-path">3.2.1.4.3.2.2</a></span>.
+</p>
+</li></ol><p>The following table defines the values that MUST be set for
+the <i>PropIndex</i> and <i>PropType</i> parameters for each property value
+passed via the <i>PropID</i> parameter.</p><table><thead>
+  <tr>
+   <th>
+   <p>PropID value </p>
+   </th>
+   <th>
+   <p>PropIndex MUST be </p>
+   </th>
+   <th>
+   <p>PropType MUST be </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x03</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x04</p>
+  </td>
+  <td>
+  <p>The minimum index is 0. The maximum value is one less
+  than the value stored in the Config_CA_Exit_Count datum.</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x05</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x06</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x07</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x08</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x09</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0a</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0b</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0c</p>
+  </td>
+  <td>
+  <p>The minimum index is 0. The maximum index is one less
+  than the count of rows in the Signing_Cert table. An index of 0xFFFFFFFF is
+  allowed and indicates the maximum valid index.</p>
+  </td>
+  <td>
+  <p>0x00000003</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0d</p>
+  </td>
+  <td>
+  <p>The minimum index is 0. The maximum index is one less
+  than the count of rows in the Signing_Cert table. An index of 0xFFFFFFFF is
+  allowed and indicates the maximum valid index.</p>
+  </td>
+  <td>
+  <p>0x00000003</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0e</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0f</p>
+  </td>
+  <td>
+  <p>0x00000000. An index of 0xFFFFFFFF is also valid and
+  implies an index of 0x00000000.</p>
+  </td>
+  <td>
+  <p>0x00000003</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x10</p>
+  </td>
+  <td>
+  <p>0x00000000. An index of 0xFFFFFFFF is also valid and
+  implies an index of 0x00000000.</p>
+  </td>
+  <td>
+  <p>0x00000003</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x11</p>
+  </td>
+  <td>
+  <p>The minimum index is 0. The maximum index is one less
+  than the count of rows in the Signing_Cert table. An index of 0xFFFFFFFF is
+  allowed and indicates the maximum valid index.</p>
+  </td>
+  <td>
+  <p>0x00000003</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a id="_Hlk47095801">0x12</a></p>
+  </td>
+  <td>
+  <p>The minimum index is 0. The maximum index is one less
+  than the count of rows in the Signing_Cert table. An index of 0xFFFFFFFF is
+  allowed and indicates the maximum valid index.</p>
+  </td>
+  <td>
+  <p>0x00000003</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x13</p>
+  </td>
+  <td>
+  <p>The minimum index is 0. The maximum index is one less
+  than the count of rows in the Signing_Cert table.</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x14</p>
+  </td>
+  <td>
+  <p>The minimum index is 0. The maximum index is one less
+  than the count of rows in the Signing_Cert table.</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x15</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x16</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x17</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x18</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x19</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x1a</p>
+  </td>
+  <td>
+  <p>The minimum index is 0. The maximum index is one less
+  than value of the Config_CA_KRA_Cert_Count datum.</p>
+  </td>
+  <td>
+  <p>0x00000003</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x1b</p>
+  </td>
+  <td>
+  <p>The minimum index is 0. The maximum index is one less
+  than the value of the Config_CA_KRA_Cert_Count datum.</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x1c</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x1d</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x1e</p>
+  </td>
+  <td>
+  <p>The minimum index is 0. The maximum index is one less
+  than the count of rows in the Signing_Cert table. An index of 0xFFFFFFFF is
+  allowed and indicates the maximum valid index.</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x1f</p>
+  </td>
+  <td>
+  <p>The minimum index is 0. The maximum index is one less
+  than the count of rows in the Signing_Cert table. An index of 0xFFFFFFFF is
+  allowed and indicates the maximum valid index.</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x20</p>
+  </td>
+  <td>
+  <p>The minimum index is 0. The maximum index is one less
+  than the count of rows in the Signing_Cert table. An index of 0xFFFFFFFF is
+  allowed and indicates the maximum valid index.</p>
+  </td>
+  <td>
+  <p>0x00000003</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x21</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000003</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x22</p>
+  </td>
+  <td>
+  <p>The minimum index is 0. The maximum index is one less
+  than the count of rows in the Signing_Cert table. An index of 0xFFFFFFFF is
+  allowed and indicates the maximum valid index.</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x23</p>
+  </td>
+  <td>
+  <p>The index corresponds to a particular CA signing
+  certificate. Since the last CA signing certificate cannot have a forward
+  cross certificate, the minimum index is 0 and the maximum index is two less
+  than the count of rows in the Signing_Cert table.</p>
+  </td>
+  <td>
+  <p>0x00000003</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x24</p>
+  </td>
+  <td>
+  <p>The index corresponds to a particular CA signing
+  certificate. Since the first CA signing certificate cannot have a backward
+  cross certificate, the minimum index is 1 and the maximum index is one less
+  than the count of rows in the Signing_Cert table.</p>
+  </td>
+  <td>
+  <p>0x00000003</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x25</p>
+  </td>
+  <td>
+  <p>The index corresponds to a particular CA signing
+  certificate. Since the last CA signing certificate cannot have a forward
+  cross certificate, the minimum index is 0 and the maximum index is two less
+  than the count of rows in the Signing_Cert table.</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x26</p>
+  </td>
+  <td>
+  <p>The index corresponds to a particular CA signing
+  certificate. Since the first CA signing certificate cannot have a backward
+  cross certificate, the minimum index is 1 and the maximum index is one less
+  than the count of rows in the Signing_Cert table.</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x27</p>
+  </td>
+  <td>
+  <p>The minimum index is 0. The maximum index is one less
+  than the count of rows in the Signing_Cert table.</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x28</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x29</p>
+  </td>
+  <td>
+  <p>The minimum index is 0. The maximum index is one less
+  than the count of rows in the Signing_Cert table. An index of 0xFFFFFFFF is
+  allowed and indicates the maximum valid index.</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x2A</p>
+  </td>
+  <td>
+  <p>The minimum index is 0. The maximum index is one less
+  than the count of rows in the Signing_Cert table. An index of 0xFFFFFFFF is
+  allowed and indicates the maximum valid index.</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x2B</p>
+  </td>
+  <td>
+  <p>The minimum index is 0. The maximum index is one less
+  than the count of rows in the Signing_Cert table. An index of 0xFFFFFFFF is
+  allowed and indicates the maximum valid index.</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a id="_Hlk45635956">0x2C</a></p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x2D</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr></tbody></table><p>When processing the GetCAProperty method, the server MUST
+determine its behavior based on the requested property ID (<i>PropID</i>
+parameter). All valid property IDs are listed in the preceding table.</p><p>The CA MUST return a nonzero error if either of the
+following conditions is met.</p><ul><li><p><span><span> 
+</span></span>The value of <i>PropID</i> is not listed in the preceding table.</p>
+</li><li><p><span><span> 
+</span></span>For a specific <i>PropID</i> value, the <i>PropType</i> value
+does not match the required values that are defined in the preceding table.</p>
+<p>For a specific non-indexed <i>PropID</i>
+value, the <i>PropIndex</i> value does not match the required values that are
+defined in the preceding table.</p>
+</li></ul><p>For a specific indexed <i>PropID</i> value, if the PropIndex
+value does not match the required values that are defined in the preceding
+table, the CA MUST return a nonzero error.</p><p>The following sections specify the CA behavior of the method
+for each requested property ID. The returned property MUST be returned to the
+caller in the <i>pctbPropertyValue</i> parameter as a CERTTRANSBLOB structure.
+The message format for this structure MUST be as specified in section 2.2.2.2
+and its subsections.</p></div>

@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The <b>DHCP_SCAN_ITEM</b> structure defines the type of fix
+that is required for DHCPv4 client <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6d76b31-2852-4bd5-8fbb-8e82a3cedb29" data-linktype="relative-path">lease records</a></span> that
+are missing in the bitmask representation in memory (section <span><a href="3feff318-a575-4a27-8360-5dd3ee7203b5" data-linktype="relative-path">3.1.1.4</a></span>)
+or vice versa.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_SCAN_ITEM {
+   DHCP_IP_ADDRESS IpAddress;
+   DHCP_SCAN_FLAG ScanFlag;
+ } DHCP_SCAN_ITEM,
+  *LPDHCP_SCAN_ITEM;
+</pre></div>
+</dd></dl><p><b>IpAddress:</b>  This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>,
+a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+containing the IPv4 address of the missing DHCPv4 client entry in one of the
+stores.</p><p><b>ScanFlag:</b>  This is of type <span><a href="b55313fb-1cb4-4152-921d-289bd7123994" data-linktype="relative-path">DHCP_SCAN_FLAG (section 2.2.1.1.13)</a></span>
+enumeration, which contains an enumerated value of 0 to fix the bitmask
+representation (section 3.1.1.4) and an enumerated value of 1 to fix the DHCPv4
+client Lease records.</p></div>

@@ -1,0 +1,40 @@
+<div class="content"><p>The Wire Format Protocol enables a client to communicate
+with a server to access personal messaging data. Communications with the server
+are divided into three major functional areas: (1) initiating and establishing
+connection with the server, (2) issuing <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_3369fdd6-36f8-4a62-9cd7-2738ffb5048f" data-linktype="relative-path">remote operations (ROPs)</a></span>
+to the server for <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_d3ad0e15-adc9-4174-bacf-d929b57278b3" data-linktype="relative-path">mailbox</a></span> data, and
+(3) terminating communications with the server. This functionality is contained
+in the <b>EMSMDB</b> interface, as described in section <span><a href="e981832a-87f6-41ca-940e-4bb3cfb24c52" data-linktype="relative-path">3.1</a></span>
+and section <span><a href="49064a53-d210-48f2-8dd9-e21f48c2cb16" data-linktype="relative-path">3.2</a></span>. If events are
+pending on the server that require client action, the client gets notification
+of those pending events by using the functionality contained in the <b>AsyncEMSMDB</b>
+interface, as described in section <span><a href="9a2e324f-50c6-470c-a1fe-085ad99537f1" data-linktype="relative-path">3.3</a></span> and section <span><a href="913b2020-f106-464d-8292-1ee1c6b497e3" data-linktype="relative-path">3.4</a></span>.
+</p><p>The following figure shows a simplified overview of client
+and server communications.</p><p><img id="MS-OXCRPC_pictdb0b19b5-231d-4faa-bd13-6c6c72515fab.png" src="ms-oxcrpc_files/image001.png" alt="Client/server communications" title="Client/server communications" data-linktype="relative-path"/></p><p><b>Figure 1: Client/server communications</b></p><p>Before a client can retrieve private mailbox or <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_94523846-05ff-4a8b-bb73-7b3e5fec19aa" data-linktype="relative-path">public
+folder</a></span> data from a server on the <b>EMSMDB</b> interface, it first
+connects with the server, as described in section <span><a href="e3b8f3aa-c240-4440-84f8-ad272da1c2c7" data-linktype="relative-path">3.2.4.1</a></span>, and
+establishes a <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_1f0ab616-f876-47ff-9cf1-6f24c0255ccc" data-linktype="relative-path">session context handle</a></span>.
+The session context handle is an <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>
+that refers to the <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_d08d95ee-5936-47d8-9f35-49e4159354a6" data-linktype="relative-path">Session Context</a></span>
+created by the server. The client stores this session context handle and uses
+it on subsequent RPCs on the <b>EMSMDB</b> interface.</p><p>After the server has returned the session context handle to
+the client, as described in section <span><a href="59d638fe-e63d-422a-b51d-6210b2155138" data-linktype="relative-path">3.1.4.1</a></span>, the client
+begins issuing ROPs to the server. The client retrieves private mailbox or
+public folder data by using the method described in section <span><a href="11b89104-54e2-4cb0-b009-e144adbcf774" data-linktype="relative-path">3.2.4.2</a></span>.
+This single interface function is used to submit a group of ROP commands to the
+server, and there are no separate interface functions to perform different
+operations against mailbox data. The <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_edeadb0f-6571-49b7-8cce-5dc77b0793d6" data-linktype="relative-path">ROP request</a></span>
+operations are tokenized into a request buffer and sent to the server as a byte
+array. The server parses the <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_b17e14f5-0f03-4447-8a9f-0f1bd0a2f886" data-linktype="relative-path">ROP request buffer</a></span>
+and performs actions. The response to these actions is then serialized into a <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_02eede81-2ef5-4994-8791-5f0cd780c225" data-linktype="relative-path">ROP
+response buffer</a></span> and returned to the client as a byte array. At the <b>EMSMDB</b>
+interface level, the format of these ROP request buffers and ROP response
+buffers is not understood. For more information about ROP commands and how to
+interpret the ROP buffers, see <span><a href="../ms-oxcrops/13af6911-27e5-4aa0-bb75-637b02d4f2ef" data-linktype="relative-path">[MS-OXCROPS]</a></span>.</p><p>To receive notification that events are available on the
+server related to the Session Context, the client establishes an asynchronous
+connection to the server to support notification, as described in sections 3.4
+and <span><a href="dd573ee8-d305-47b3-8fc8-e09811543422" data-linktype="relative-path">3.1.4.4</a></span>.
+Using the asynchronous context handle returned by the server, the client uses
+the <b>AsyncEMSMDB</b> interface to instruct the server to return notification
+of an event, as described in section <span><a href="8eb69252-3e9b-449b-99b3-8ecde884dfe0" data-linktype="relative-path">3.4.4</a></span> and section <span><a href="e45891af-30cc-43ed-8da9-0043d39e51c9" data-linktype="relative-path">3.3.4.1</a></span>.</p><p>When the client is finished with the session, the client
+disconnects from the server as described in section <span><a href="b4487430-4c50-4518-a951-00d016225db5" data-linktype="relative-path">3.2.4.3</a></span>.</p></div>

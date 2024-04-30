@@ -1,0 +1,71 @@
+<div class="content"><p>The Directory Replication Service (DRS) Remote Protocol is
+an <a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol for <a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a> and management
+of data in <a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a>.</p><p>The protocol consists of two RPC interfaces named drsuapi
+and dsaop. The name of each drsuapi method begins with &#34;IDL_DRS&#34;,
+while the name of each dsaop method begins with &#34;IDL_DSA&#34;. This
+protocol was originally implemented in Windows 2000 Server operating system and
+is available in all subsequent server releases. It is not available in Windows
+NT 3.1 operating system, Windows NT 3.51 operating system, or Windows NT 4.0
+operating system.</p><p>Some functionality exposed by these RPC protocols is also
+available using the <a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">Lightweight
+Directory Access Protocol (LDAP)</a> protocol (<a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/3c5916a9-f1a0-429d-b937-f8fe672d777c" data-linktype="relative-path">3.1.1.3</a>);
+the overlap is described in section <a href="0597aff6-0177-4d52-99f2-14a5441bc3c1" data-linktype="relative-path">1.4</a>.</p><p>The special typographical conventions used in this document
+are described in section <a href="d05f9217-c26b-4f64-b16e-2247389319ff" data-linktype="relative-path">3.2</a>.</p><p>State is included in the state model for this specification
+only as necessitated by the requirement that a licensee implementation of the
+protocols of applicable Windows Server releases has to be capable of receiving
+messages and responding in the same manner as applicable Windows Server
+releases. Behavior is specified in terms of request message received,
+processing based on current state, resulting state transformation, and response
+message sent. Unless otherwise specified, all behaviors are required elements
+of the protocol. Any specified behavior not explicitly qualified with MAY or
+SHOULD is to be treated as if it were specified as a MUST behavior.</p><p><b>AD LDS for Windows Client operating systems</b></p><p>Note that information that is applicable to Active Directory
+Lightweight Directory Services (AD LDS) on applicable Windows Server releases
+is also generally applicable to AD LDS on Windows clients. For more
+information, see [MS-ADTS] section <a href="../ms-adts/bacff5f1-9127-457b-877c-db97b1e1802f" data-linktype="relative-path">1</a>.</p><p><b>Pervasive Concepts</b></p><p>The following concepts are pervasive throughout this
+specification.</p><p>This specification uses [KNUTH1] section 2.3.4.2 as a
+reference for the graph-related terms <a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_c62abd7d-b916-4873-9251-7781d497af27" data-linktype="relative-path">oriented tree</a>, root,
+vertex, arc, initial vertex, and final vertex.</p><p><b>replica: </b>A variable containing a set of
+objects.</p><p><b>attribute: </b>An identifier for a value or set of
+values. See also attribute in the <a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb" data-linktype="relative-path">Glossary (section 1.1)</a>.</p><p><b>object: </b>A set of attributes, each with its
+associated values. Two attributes of an object have special significance:</p><ul><li><p><span><span> 
+</span></span>Identifying attribute: A designated single-valued attribute
+appears on every object. The value of this attribute identifies the object. For
+the set of objects in a replica, the values of the identifying attribute are
+distinct.</p>
+</li><li><p><span><span> 
+</span></span>Parent-identifying attribute: A designated single-valued
+attribute appears on every object. The value of this attribute identifies the <a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object&#39;s</a> parent. That is,
+this attribute contains the value of the parent&#39;s identifying attribute or a
+reserved value identifying no object (for more information, see [MS-ADTS]
+section <a href="../ms-adts/dd4dc725-021b-4c8c-a44a-49b3235836b7" data-linktype="relative-path">3.1.1.1.3</a>).
+For the set of objects in a replica, the values of this parent-identifying
+attribute define an oriented tree with objects as vertices and child-parent
+references as directed arcs, with the child as an arc&#39;s initial vertex and the
+parent as an arc&#39;s final vertex.</p>
+<p>Note that an object is a value, not a variable; a <a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ea02e669-2dda-460c-9992-b12a23caeeac" data-linktype="relative-path">replica</a> is a variable. The
+process of adding, modifying, or deleting an object in a replica replaces the
+entire value of the replica with a new value.</p>
+<p>As the term &#34;replica&#34; suggests, it is
+often the case that two replicas contain &#34;the same objects&#34;. In this
+usage, objects in two replicas are considered &#34;the same&#34; if they have
+the same value of the identifying attribute and if there is a process in place
+(that is, replication) to converge the values of the remaining attributes. When
+the members of a set of replicas are considered to be the same, it is common to
+say &#34;an object&#34; as a shorthand way of referring to the set of
+corresponding objects in the replicas.</p>
+</li></ul><p><b>object class: </b>A set of restrictions on the
+construction and <a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b242435b-73cc-4c4e-95f0-b2a2ff680493" data-linktype="relative-path">update</a>
+of objects. An object class must be specified when an object is created. An
+object class specifies a set of must-have attributes (every object of the class
+must have at least one value of each) and may-have attributes (every object of
+the class may have a value of each). An object class also specifies a set of
+possible superiors (the parent object of an object of the class must have one
+of these classes). An object class is defined by a <a href="../ms-adsc/6354fe66-74ee-4132-81c6-7d9a9e229070" data-linktype="relative-path">classSchema</a>
+object.</p><p><b>parent object: </b>See &#34;object&#34;, above.</p><p><b>child object, children: </b>An object that is not
+the root of its oriented tree. The children of an object <i>O</i> is the set of
+all objects whose parent is <i>O</i>.</p><p>See [MS-ADTS] section 3.1.1.1.3 for the particular use made
+of these definitions in this specification.</p><p>Sections <a href="c3379fc5-123d-4f28-922d-97308561d748" data-linktype="relative-path">1.5</a>,
+<a href="9b545b76-247c-44aa-ba77-a3581fa4205a" data-linktype="relative-path">1.8</a>, <a href="063618ed-b2e2-4983-ab13-3ed056700641" data-linktype="relative-path">1.9</a>, <a href="d8a5de32-1b81-441c-b3bc-ce90b1ccd178" data-linktype="relative-path">2</a>, <a href="c56432ff-af88-4443-b500-eecb3047da4d" data-linktype="relative-path">3</a>, <a href="9554afa5-e755-4742-a34b-899fc4e2fd20" data-linktype="relative-path">4</a>, and <a href="c5d90265-1653-4ecc-a0d7-cac691e2d08e" data-linktype="relative-path">5</a> of this specification
+are normative. All other sections and examples in this specification are
+informative.</p></div>

@@ -1,0 +1,109 @@
+<div class="content"><p> </p><p>The <b>R_DhcpSetClientInfo</b> method modifies existing <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_c35fc04f-54fe-4570-afd3-c96ca84c8d83" data-linktype="relative-path">DHCPv4
+client</a></span> <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6d76b31-2852-4bd5-8fbb-8e82a3cedb29" data-linktype="relative-path">lease records</a></span> on the
+<span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_005ffc96-bb67-44ca-938f-dd7ec3c95cab" data-linktype="relative-path">DHCPv4
+server database</a></span>. </p><dl>
+<dd>
+<div><pre> DWORD R_DhcpSetClientInfo(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, ref] LPDHCP_CLIENT_INFO ClientInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>ClientInfo: </b>A pointer of type <span><a href="91d65e7e-d5c5-443e-a863-781dba950962" data-linktype="relative-path">DHCP_CLIENT_INFO (section 2.2.1.2.12)</a></span>
+structure that contains the DHCPv4 client lease record information that needs
+to be modified within the DHCPv4 server database. The caller MUST pass the <b>ClientIPAddress</b>
+and <b>ClientHardwareAddress</b> member fields for modification of a DHCPv4
+client lease record stored in the DHCPv4 server database. The <b>ClientHardwareAddress</b>
+member field represents a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_195d8585-7de6-4574-9abf-9db104aaa40c" data-linktype="relative-path">DHCPv4 client-identifier</a></span>
+(section <span><a href="7c88f58b-c615-4386-a643-ab05b860a003" data-linktype="relative-path">2.2.1.2.5.1</a></span>). The
+members <b>ClientName</b>, <b>ClientComment</b>, <b>ClientLeaseExpires</b>, and
+<b>OwnerHost</b> are modified in the DHCPv4 client lease record identified by
+the <b>ClientIPAddress</b> member.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCPv4 server
+  database or the client entry is not present in the database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 17.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read/write access
+per section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Validate whether the DHCPv4 client&#39;s hardware address data and
+its length are non-NULL. If they are NULL, return the error
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server Abstract Data Model (ADM) element <b>DHCPv4ScopesList</b>,
+and retrieve the <b>DHCPv4Scope</b> ADM element entry when the <b>DHCPv4ClientsList</b>
+ADM element contains the <b>DHCPv4Client</b> ADM element entry corresponding to
+the <b>ClientIpAddress</b> member of the <i>ClientInfo</i> parameter. If the <b>DHCPv4Client</b>
+ADM element entry is not found, return ERROR_DHCP_JET_ERROR. In case of any
+other error, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Create the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4c35997a-5d90-4d7e-96c8-346f4ad0a63f" data-linktype="relative-path">DHCPv4 client unique ID</a></span>
+(section <span><a href="651865ec-6404-4191-ad30-113578a94556" data-linktype="relative-path">2.2.1.2.5.2</a></span>) for
+the DHCPv4 client from the <b>ScopeInfo.SubnetAddress</b> ADM element of the
+specified <b>DHCPv4Scope</b> ADM element and from the DHCPv4 client-identifier,
+which is the <b>ClientHardwareAddress</b> member specified in the <i>ClientInfo</i>
+input parameter. </p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4Client</b> ADM element entry corresponding
+to the <b>ClientIpAddress</b> member of the <i>ClientInfo</i> parameter from
+the <b>DHCPv4Scope.DHCPv4ClientsList</b> ADM element. Set the <b>DHCPv4Client.ClientHardWareAddress</b>
+ADM element with the client unique ID created in the previous step. Set the <b>DHCPv4Client</b>
+ADM element entry with the <b>IPAddress</b> member inside the <b>Ownerhost</b>
+member of the <i>ClientInfo</i> parameter. Other members of <b>OwnerHost</b>,
+namely <b>NetBIOSName</b> and <b>HostName</b> members, are ignored.</p>
+</li><li><p><span><span> 
+</span></span>If there is any <b>DHCPv4Reservation</b> ADM element entry in the
+<b>DHCPv4Scope.DHCPv4ReservationsList</b> ADM element corresponding to the <b>ClientIPAddress</b>
+member of the <i>ClientInfo</i> input parameter, then the <b>DHCPv4Client.ClientLeaseExpires</b>
+ADM element is not modified; otherwise, if there is no such entry, update the <b>DHCPv4Client.ClientLeaseExpires</b>
+ADM element with the lease expiry time specified in the <b>ClientLeaseExpires</b>
+member.</p>
+</li><li><p><span><span> 
+</span></span>The <b>SubnetMask</b> member of the <i>ClientInfo</i> input
+parameter is ignored. The <b>DHCPv4Client.SubnetMask</b> ADM element remains
+unchanged and is equal to <b>ScopeInfo.SubnetAddress</b> ADM element of the
+retrieved <b>DHCPv4Scope</b> ADM element. If the <b>ClientName</b> and <b>ClientComment</b>
+string member fields of the <i>ClientInfo</i> input parameter are equal to
+NULL, then the <b>ClientName</b> and <b>ClientComment</b> member fields of
+retrieved <b>DHCPv4Client</b> ADM element entry are not modified; otherwise, if
+they contain string values, then these parameters update the <b>DHCPv4Client.ClientName</b>
+ADM element and <b>DHCPv4Client.ClientComment</b> ADM element.</p>
+</li><li><p><span><span> 
+</span></span>Set the <b>DHCPv4Client.AddressState</b> ADM element to
+ADDRESS_STATE_ACTIVE.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

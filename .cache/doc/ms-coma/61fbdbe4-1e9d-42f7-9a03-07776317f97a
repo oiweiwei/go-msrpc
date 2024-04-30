@@ -1,0 +1,22 @@
+<div class="content"><p>This method is called by a replication client application to
+obtain the value of the <b>Password</b> property of a conglomeration.</p><dl>
+<dd>
+<div><pre> HRESULT QueryConglomerationPassword(
+   [in] REFGUID ConglomerationId,
+   [out, size_is(, *pcbPassword)] char** ppvPassword,
+   [out] ULONG* pcbPassword
+ );
+</pre></div>
+</dd></dl><p><b>ConglomerationId: </b>The conglomeration
+identifier of the conglomeration whose <b>Password</b> property is requested.</p><p><b>ppvPassword: </b>A pointer to a variable that,
+upon successful completion, MUST be set to an array of bytes containing a
+null-terminated array of wchar_t in little-endian byte order.</p><p><b>pcbPassword: </b>A pointer to a variable that,
+upon successful completion, MUST be set to the length of <i>ppvPassword</i>.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server SHOULD<a id="Appendix_A_Target_354"></a><a aria-label="Product behavior note 354" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_354" data-linktype="relative-path">&lt;354&gt;</a> verify that there exists a
+conglomeration with the conglomeration identifier specified in <i>ConglomerationId</i>,
+and fail the call if not.</p><p>The server then MUST attempt to retrieve the value of the
+conglomeration&#39;s <b>Password</b> property, possibly by accessing an encrypted
+secret store, and fail the call if it cannot.</p><p>The server then MUST set <i>ppvPassword</i> to this value
+and return success.</p></div>

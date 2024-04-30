@@ -1,0 +1,57 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/803be876-d755-4187-a011-eaf5bf2755ab" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_DELTA_DOMAIN</b> structure contains
+information about a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>.
+Most of the fields in this structure are obtained by querying the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_00f35ba3-4dbb-4ff9-8e27-572a6aea1b15" data-linktype="relative-path">database</a>. This structure is
+used to replicate the domain data from the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a> to a BDC, as detailed
+in <b>Netlogon NT Replicaton Details</b> (section <a href="f28f9dc8-eeb2-4112-9eec-a466f639c761" data-linktype="relative-path">3.6</a>).</p><p>All fields of this structure, except the fields detailed
+following the structure definition, have the same meaning as the identically
+named fields in the <b>Domain</b> <b>Fields</b> section in <a href="../ms-samr/4df07fab-1bbc-452f-8e92-7853a3c7e380" data-linktype="relative-path">[MS-SAMR]</a>
+section <a href="../ms-samr/d275ab19-10b0-40e0-94bb-45b7fc130025" data-linktype="relative-path">2.2.3.1</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_DELTA_DOMAIN {
+   RPC_UNICODE_STRING DomainName;
+   RPC_UNICODE_STRING OemInformation;
+   OLD_LARGE_INTEGER ForceLogoff;
+   USHORT MinPasswordLength;
+   USHORT PasswordHistoryLength;
+   OLD_LARGE_INTEGER MaxPasswordAge;
+   OLD_LARGE_INTEGER MinPasswordAge;
+   OLD_LARGE_INTEGER DomainModifiedCount;
+   OLD_LARGE_INTEGER DomainCreationTime;
+   SECURITY_INFORMATION SecurityInformation;
+   ULONG SecuritySize;
+   [size_is(SecuritySize)] UCHAR * SecurityDescriptor;
+   RPC_UNICODE_STRING DomainLockoutInformation;
+   RPC_UNICODE_STRING DummyString2;
+   RPC_UNICODE_STRING DummyString3;
+   RPC_UNICODE_STRING DummyString4;
+   ULONG PasswordProperties;
+   ULONG DummyLong2;
+   ULONG DummyLong3;
+   ULONG DummyLong4;
+ } NETLOGON_DELTA_DOMAIN,
+  *PNETLOGON_DELTA_DOMAIN;
+</pre></div>
+</dd></dl><p><b>SecurityInformation:</b> A <b>SECURITY_INFORMATION</b>
+structure, as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/23e75ca3-98fd-4396-84e5-86cd9d40d343" data-linktype="relative-path">2.4.7</a>,
+that specifies portions of a security descriptor about the domain.</p><p><b>SecuritySize:</b> The size, in bytes, of the <b>SecurityDescriptor</b>
+field.</p><p><b>SecurityDescriptor:</b> A pointer to a <b>SECURITY_DESCRIPTOR</b>
+structure, as specified in [MS-DTYP] section <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a>,
+that contains the security settings for the domain object.</p><p><b>DomainLockoutInformation:</b> An <b>RPC_UNICODE_STRING</b>
+structure, as specified in [MS-DTYP] section <a href="../ms-dtyp/94a16bb6-c610-4cb9-8db6-26f15f560061" data-linktype="relative-path">2.3.10</a>,
+that contains the domain lockout information detailed in [MS-SAMR]. The <b>Buffer</b>
+field points to the <b>SAMPR_DOMAIN_LOCKOUT_INFORMATION</b> structure, as
+specified in [MS-SAMR] section <a href="../ms-samr/c9d789ed-c54a-4450-be56-251e627e1f52" data-linktype="relative-path">2.2.3.15</a>,
+and the <b>Length</b> and <b>MaximumLength</b> fields are set to the size in
+bytes of the <b>SAMPR_DOMAIN_LOCKOUT_INFORMATION</b> structure pointed to by
+the <b>Buffer</b> field.</p><p><b>DummyString2:</b> A <b>STRING</b> structure,
+defined in section <a href="4a896c09-a39c-4878-94f0-9e4f8a419f32" data-linktype="relative-path">2.2.1.1.2</a>,
+that MUST contain 0 for the <b>Length</b> field, 0 for the <b>MaximumLength</b>
+field, and NULL for the <b>Buffer</b> field. It is ignored upon receipt. The
+Netlogon usage of dummy fields is described in section <a href="bbc95890-215e-49a9-8bb8-92e723548046" data-linktype="relative-path">1.3.8.1.2</a>.</p><p><b>DummyString3:</b> See definition for <b>DummyString2</b>
+field.</p><p><b>DummyString4:</b> See definition for <b>DummyString2</b>
+field.</p><p><b>DummyLong2:</b> MUST be set to zero and MUST be
+ignored on receipt. The Netlogon usage of dummy fields is described in section
+1.3.8.1.2.</p><p><b>DummyLong3:</b> See definition for <b>DummyLong2</b>
+field.</p><p><b>DummyLong4:</b> See definition for <b>DummyLong2</b>
+field.</p></div>

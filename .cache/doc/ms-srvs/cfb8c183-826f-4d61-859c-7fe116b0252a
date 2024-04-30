@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The NET_DFS_ENTRY_ID_CONTAINER structure contains a pointer
+to a buffer that contains <span><a href="8a60a434-7ea6-4000-ae4f-17d8f60870b5" data-linktype="relative-path">NET_DFS_ENTRY_ID</a></span>
+entries and a value that indicates the count of entries in the buffer.</p><dl>
+<dd>
+<div><pre> typedef struct _NET_DFS_ENTRY_ID_CONTAINER {
+   unsigned long Count;
+   [size_is(Count)] LPNET_DFS_ENTRY_ID Buffer;
+ } NET_DFS_ENTRY_ID_CONTAINER,
+  *LPNET_DFS_ENTRY_ID_CONTAINER;
+</pre></div>
+</dd></dl><p><b>Count:</b>  The count of buffer array
+entries returned by the method.</p><p><b>Buffer:</b>  An array of
+NET_DFS_ENTRY_ID entries returned by the method.</p></div>

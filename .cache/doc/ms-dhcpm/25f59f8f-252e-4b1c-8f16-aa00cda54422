@@ -1,0 +1,280 @@
+<div class="content"><p> </p><p>The <b>R_DhcpServerSetConfigVQ</b> method sets/modifies the
+DHCPv4 server settings. </p><dl>
+<dd>
+<div><pre> DWORD R_DhcpServerSetConfigVQ(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DWORD FieldsToSet,
+   [in, ref] LPDHCP_SERVER_CONFIG_INFO_VQ ConfigInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>FieldsToSet: </b>A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+that contains the bitmask of the fields in the <i>ConfigInfo</i> parameter to
+set. This method can be called with a value for the <i>FieldsToSet</i>
+parameter.</p><dl>
+<dd>
+<p>The bit mapping for the various values for the <i>FieldsToSet</i>
+parameter is listed in the following table.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>FieldsToSet</p>
+   </th>
+   <th>
+   <p>Bit</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><i>Set_APIProtocolSupport</i></p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Set_DatabaseName</i></p>
+  </td>
+  <td>
+  <p>0x00000002</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Set_DatabasePath</i></p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Set_BackupPath</i></p>
+  </td>
+  <td>
+  <p>0x00000008</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Set_BackupInterval</i></p>
+  </td>
+  <td>
+  <p>0x00000010</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Set_DatabaseLoggingFlag</i></p>
+  </td>
+  <td>
+  <p>0x00000020</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Set_RestoreFlag</i></p>
+  </td>
+  <td>
+  <p>0x00000040</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Set_DatabaseCleanupInterval</i></p>
+  </td>
+  <td>
+  <p>0x00000080</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Set_DebugFlag</i></p>
+  </td>
+  <td>
+  <p>0x00000100</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Set_PingRetries</i></p>
+  </td>
+  <td>
+  <p>0x00000200</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Set_BootFileTable</i></p>
+  </td>
+  <td>
+  <p>0x00000400</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Set_AuditLogState</i></p>
+  </td>
+  <td>
+  <p>0x00000800</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Set_QuarantineON</i></p>
+  </td>
+  <td>
+  <p>0x00001000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Set_QuarantineDefFail</i></p>
+  </td>
+  <td>
+  <p>0x00002000</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Most of the settings are effective immediately. The
+DHCPv4 server needs to be restarted for the following settings to become
+effective:</p>
+</dd></dl><ul><li><p><span><span> 
+</span></span><i>Set_APIProtocolSupport</i></p>
+</li><li><p><span><span> 
+</span></span><i>Set_DatabaseName</i></p>
+</li><li><p><span><span> 
+</span></span><i>Set_DatabasePath</i></p>
+</li><li><p><span><span> 
+</span></span><i>Set_DatabaseLoggingFlag</i></p>
+</li><li><p><span><span> 
+</span></span><i>Set_RestoreFlag</i></p>
+</li></ul><p><b>ConfigInfo: </b>A pointer of type <span><a href="284142af-15f4-4af5-aa03-27652e4de460" data-linktype="relative-path">DHCP_SERVER_CONFIG_INFO_VQ (section 2.2.1.2.55)</a></span>
+structure that contains the settings for the DHCPv4 server. The value that is
+passed here depends on the <i>FieldsToSet</i> parameter. Details of the
+dependencies follow the return value description.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, the return
+value contains a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 41.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Validate the <i>FieldsToSet</i> parameter for nonzero. If it is
+zero, return ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>Ignore bits higher than 13 Least Significant Bits (LSBs).</p>
+</li><li><p><span><span> 
+</span></span>If the <i>Set_APIProtocolSupport</i> bit is set in the <i>FieldsToSet</i>
+parameter and the <b>APIProtocolSupport</b> member in the <i>ConfigInfo</i>
+parameter is set to zero, then return ERROR_INVALID_PARAMETER. Else if the <i>Set_APIProtocolSupport</i>
+bit is set in the <i>FieldsToSet</i> parameter, then set/modify the <b>APIProtocolSupport</b>
+member from the <i>ConfigInfo</i> parameter to the server ADM element <b>DHCPv4ServerConfigInfo</b>.
+If the <b>APIProtocolSupport</b> member is set to values other than 1, 2, 4, or
+7, the DHCP Server behavior is undefined.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>Set_PingRetries</i> bit is set in the <i>FieldsToSet</i>
+parameter and the <b>dwPingRetries</b> member in the <i>ConfigInfo</i>
+parameter is greater than 0x05, return ERROR_INVALID_PARAMETER. Else if the <i>Set_PingRetries</i>
+bit is set in the <i>FieldsToSet</i> parameter, then set/modify the <b>dwPingRetries</b>
+member from the <i>ConfigInfo</i> parameter to the <b>DHCPv4ServerConfigInfo</b>
+ADM element object.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>Set_AuditLogState</i> bit is set in the <i>FieldsToSet</i>
+parameter, set/modify the <b>fAuditLog</b> member from the <i>ConfigInfo</i>
+parameter to the <b>DHCPv4ServerConfigInfo</b> ADM element object.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>Set_BootFileTable</i> bit is set in the <i>FieldsToSet</i>
+parameter and the <b>cbBootTableString</b> member in the <i>ConfigInfo</i>
+parameter is greater than 0x100000, then return ERROR_INVALID_PARAMETER. Else
+if the <i>Set_BootFileTable</i> bit is set in the <i>FieldsToSet</i> parameter,
+then set/modify the <b>wszBootTableString</b> member from the <i>ConfigInfo</i>
+parameter to the <b>DHCPv4ServerConfigInfo</b> ADM element object.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>Set_DatabaseName</i> bit is set in the <i>FieldsToSet</i>
+parameter and the <b>DatabaseName</b> member in the <i>ConfigInfo</i> parameter
+is NULL or is a NULL terminated empty string, then return
+ERROR_INVALID_PARAMETER. Else if the <i>Set_DatabaseName</i> bit is set in the <i>FieldsToSet</i>
+parameter and the <b>DatabaseName</b> member cannot be converted into an <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_3e74a21f-5f75-42f3-9649-b68d9fab18a1" data-linktype="relative-path">OEM</a></span>
+or <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_100cd8a6-5cb1-4895-9de6-e4a3c224a583" data-linktype="relative-path">ANSI</a></span>
+character string, then return ERROR_INVALID_NAME. Else if the <i>Set_DatabaseName</i>
+bit is set in the <i>FieldsToSet</i> parameter, then set/modify the <b>DatabaseName</b>
+member from the <i>ConfigInfo</i> parameter to the <b>DHCPv4ServerConfigInfo</b>
+ADM element object.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>Set_DatabasePath</i> bit is set in the <i>FieldsToSet</i>
+parameter and the <b>DatabasePath</b> member in the <i>ConfigInfo</i> parameter
+is NULL or is a NULL terminated empty string, then return
+ERROR_INVALID_PARAMETER. Else if the <i>Set_DatabasePath</i> bit is set in the <i>FieldsToSet</i>
+parameter and the <b>DatabasePath</b> member cannot be converted into OEM or
+ANSI character string, then return ERROR_INVALID_NAME. Else if the <i>Set_DatabasePath</i>
+bit is set in the <i>FieldsToSet</i> parameter, then create the directory with
+the specified path and set/modify the <b>DatabasePath</b> member from the <i>ConfigInfo</i>
+parameter to the <b>DHCPv4ServerConfigInfo</b> ADM element object.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>Set_BackupPath </i> bit is set in the <i>FieldsToSet</i>
+parameter and the <b>BackupPath</b> member in the <i>ConfigInfo</i> parameter
+is NULL or is a NULL terminated empty string, then return
+ERROR_INVALID_PARAMETER. Else if the <i>Set_BackupPath</i> bit is set in the <i>FieldsToSet</i>
+parameter the <b>BackupPath</b> member cannot be converted into an OEM or ANSI
+character string, then return ERROR_INVALID_NAME. Else if the <i>Set_BackupPath</i>
+bit is set in the <i>FieldsToSet</i> parameter, then create the directory with
+the specified path and set/modify the <b>BackupPath</b> member from the <i>ConfigInfo</i>
+parameter to the <b>DHCPv4ServerConfigInfo</b> ADM element object.</p>
+</li><li><p><span><span> 
+</span></span>If <i>Set_BackupInterval</i> is set in the <i>FieldsToSet</i>
+parameter and the <b>BackupInterval</b> member is zero, return <i>ERROR_INVALID_PARAMETER</i>.
+Else if <i>Set_BackupInterval</i> is set in the <i>FieldsToSet</i> parameter
+and the <b>BackupInterval</b> member (in minutes) after converting to
+milliseconds is greater than 0xFFFFFFFF, return ERROR_ARITHMETIC_OVERFLOW. Else
+if <i>Set_BackupInterval</i> is set in the <i>FieldsToSet</i> parameter, then
+set/modify the <b>BackupInterval</b> member from the <i>ConfigInfo</i>
+parameter to the <b>DHCPv4ServerConfigInfo</b> ADM element object.</p>
+</li><li><p><span><span> 
+</span></span>If <i>Set_DatabaseLoggingFlag</i> is set in the <i>FieldsToSet</i>
+parameter, set/modify the <b>DatabaseLoggingFlag</b> member from the <i>ConfigInfo</i>
+parameter to the <b>DHCPv4ServerConfigInfo</b> ADM element object.</p>
+</li><li><p><span><span> 
+</span></span>If <i>Set_RestoreFlag</i> is set in the <i>FieldsToSet</i>
+parameter, set/modify the <b>RestoreFlag</b> member from the <i>ConfigInfo</i>
+parameter to the <b>DHCPv4ServerConfigInfo</b> ADM element object.</p>
+</li><li><p><span><span> 
+</span></span>If <i>Set_DatabaseCleanupInterval</i> is set in the <i>FieldsToSet</i>
+parameter and the <b>DatabaseCleanupInterval</b> member is zero, return
+ERROR_INVALID_PARAMETER. Else if <i>Set_DatabaseCleanupInterval</i> is set in
+the <i>FieldsToSet</i> parameter and the <b>DatabaseCleanupInterval</b> member
+(in minutes) after converting to milliseconds is greater than 0xFFFFFFFF,
+return ERROR_ARITHMETIC_OVERFLOW. Else if <i>Set_DatabaseCleanupInterval</i> is
+set in the <i>FieldsToSet</i> parameter, then set/modify the <b>DatabaseCleanupInterval</b>
+member from the <i>ConfigInfo</i> parameter to the <b>DHCPv4ServerConfigInfo</b>
+ADM element object.</p>
+</li><li><p><span><span> 
+</span></span>If <i>Set_DebugFlag</i> is set in the <i>FieldsToSet</i>
+parameter, set/modify the <b>DebugFlag</b> member from the <i>ConfigInfo</i>
+parameter to the <b>DHCPv4ServerConfigInfo</b> ADM element object.</p>
+</li><li><p><span><span> 
+</span></span>If <i>Set_QuarantineON</i> is set in the <i>FieldsToSet</i>
+parameter, START/STOP the Internet Authentication Service (IAS) service on the
+DHCPv4 server and set/modify the <b>QuarantineOn</b> member from the <i>ConfigInfo</i>
+parameter to the <b>DHCPv4ServerConfigInfo</b> ADM element object.<a id="Appendix_A_Target_38"></a><a aria-label="Product behavior note 38" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_38" data-linktype="relative-path">&lt;38&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If <i>Set_QuarantineDefFail</i> is set in the <i>FieldsToSet</i>
+parameter, set it in the <b>DHCPv4ServerConfigInfo</b> ADM element object.<a id="Appendix_A_Target_39"></a><a aria-label="Product behavior note 39" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_39" data-linktype="relative-path">&lt;39&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS to the caller.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

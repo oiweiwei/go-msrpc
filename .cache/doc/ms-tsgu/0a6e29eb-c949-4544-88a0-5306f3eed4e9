@@ -1,0 +1,29 @@
+<div class="content"><p>The RDGSP Protocol is designed for remote connections from
+RDG clients originating on the Internet to <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_3657ab68-5a60-4cee-8082-dfc2e67435e9" data-linktype="relative-path">target servers</a> behind a
+firewall.<a id="Appendix_A_Target_3"></a><a aria-label="Product behavior note 3" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_3" data-linktype="relative-path">&lt;3&gt;</a> The protocol establishes a
+connection, called a <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_1ebdc9c6-bb01-455e-98f7-8930618bb601" data-linktype="relative-path">tunnel
+(2)</a>, from an RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a>
+to an RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in the
+neutral zone. The RDG client uses the tunnel to establish a channel between the
+RDG client and the target server with the RDG server acting as a proxy. Data transfer
+between the RDG client and the target server occurs by using the channel. The
+tunnel and channel maintain active connections.</p><p>The RDG client establishes one <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_fa319141-96d6-4962-96a4-7cd20c665de9" data-linktype="relative-path">main channel</a> to the target
+server. The RDG client can establish zero or more <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_b4e0a970-8e6e-425a-976e-58a300c2502c" data-linktype="relative-path">side channels</a> depending on
+the requirements of the Remote Desktop Protocol: UDP Transport Extension
+Protocol <a href="../ms-rdpeudp/2744a3ee-04fb-407b-a9e3-b3b2ded422b1" data-linktype="relative-path">[MS-RDPEUDP]</a>.</p><p>The RDGSP Protocol uses one of the following transports for
+establishing the main channel:</p><ul><li><p><span><span> 
+</span></span>Remote Procedure Call over HTTP Protocol (RPC over HTTP)</p>
+</li><li><p><span><span> 
+</span></span><a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_d72f1494-4917-4e9e-a9fd-b8f1b2758dcd" data-linktype="relative-path">HTTP</a></p>
+</li></ul><p>The RDGSP Protocol uses the UDP transport for establishing
+the side channel.</p><p>In this specification, information that is common to all
+three transport types (<a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+over HTTP, HTTP, and UDP) is provided at the beginning of each main section and
+details for each transport type are defined in transport-specific subsections
+that follow the main section. The subsections are distinguished as follows:</p><ul><li><p><span><span> 
+</span></span>Details specific to the RDGHTTP Protocol are documented in
+subsections that include the phrase &#34;HTTP Transport&#34; in the title.</p>
+</li><li><p><span><span> 
+</span></span>Details specific to the RDGUDP Protocol are documented in
+subsections that include the phrase &#34;UDP Transport&#34; in the title.</p>
+</li></ul></div>

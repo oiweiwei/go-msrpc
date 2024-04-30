@@ -1,0 +1,70 @@
+<div class="content"><p> </p><p>This method is a callback method called by the server during
+a client call to <span><a href="15421af8-4c34-4d45-8ec8-22c50d1fb885" data-linktype="relative-path">S_DSQMSetMachineProperties</a></span>.
+Through this method, the server provides a challenge that the client must sign
+to authenticate itself.</p><dl>
+<dd>
+<div><pre> [callback] HRESULT S_DSQMSetMachinePropertiesSignProc(
+   [in, size_is(dwCallengeSize)] byte* abChallenge,
+   [in, range(0,32)] unsigned long dwCallengeSize,
+   [in] unsigned long dwContext,
+   [in, out, size_is(dwSignatureMaxSize), length_is(*pdwSignatureSize)] 
+     byte* abSignature,
+   [in, out] unsigned long* pdwSignatureSize,
+   [in, range(0,128)] unsigned long dwSignatureMaxSize
+ );
+</pre></div>
+</dd></dl><p><b>abChallenge: </b> MUST be set by the caller to a pointer
+to a buffer that contains the challenge to be signed. The challenge SHOULD be
+cryptographically random.</p><p><b>dwCallengeSize: </b> MUST be set by the caller to the
+size in bytes of the challenge in the <i>abChallenge</i> parameter.</p><p><b>dwContext: </b> MUST be set by the caller to the value
+supplied by the client in the <i>dwContext</i> parameter of the corresponding
+call to the S_DSQMSetMachineProperties method. This parameter provides a way
+for the receiver to correlate the callback with the receiver&#39;s in-progress call
+to S_DSQMSetMachineProperties.</p><p><b>abSignature: </b>MUST be set by the caller to a pointer
+to a buffer to contain the returned signature. MUST be set by the receiver to a
+signature over the challenge in <i>abChallenge</i>. The algorithm for creating
+this signature is specified by the following pseudocode.</p><dl>
+<dd>
+<div><pre> Initialize an MD5 hash context
+  
+ Add to the hash context the byte array abChallenge. The data length
+        is defined by dwCallengeSize.
+  
+ Add to the hash context a DWORD data value equal to the number of 
+        properties being set in the corresponding call to 
+        S_DSQMSetMachineProperties.
+  
+ FOR each property in the corresponding call to 
+     S_DSQMSetMachineProperties
+  
+     Add to the hash context the DWORD value of the property
+            identifier (from aProp[])
+  
+     Add to the hash context the type-specific data value of the
+            property (from apVar[]). The data value and length are
+            defined by the variant type of the property
+            (apVar[].vt)
+ END FOR
+  
+  
+ Sign the MD5 hash using the private key corresponding to the public key
+ stored in the certificate in the property PROPID_QM_SIGN_PK associated
+ with the machine object in the directory service.
+ The machine object is the object specified by the pwcsPathName parameter
+ in the corresponding call to S_DSQMSetMachineProperties.
+ Set abSignature to the signed MD5 hash
+  
+ Set *pdwSignatureSize to the size in bytes of the signed MD5 hash.
+</pre></div>
+</dd></dl><p><b>pdwSignatureSize: </b> Size in bytes of the signature in
+the <i>abSignature</i> parameter. MUST be set by the receiver to the actual
+length in bytes of the signature returned in <i>abSignature</i> on output.</p><p><b>dwSignatureMaxSize: </b> MUST be set by the caller to the
+maximum length in bytes of the server signature to be returned in <i>abSignature</i>.
+If the signature is larger than the supplied buffer, the server MUST return
+MQ_ERROR_USER_BUFFER_TOO_SMALL (0xC00E0028).</p><p><b>Return Values: </b> This method is obsolete. The server
+SHOULD NOT call this method, and the client SHOULD return
+MQ_ERROR_NOT_SUPPORTED (0xC00E03EB).<a id="Appendix_A_Target_146"></a><a aria-label="Product behavior note 146" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_146" data-linktype="relative-path">&lt;146&gt;</a> If the
+method succeeds, the return value is 0. If the method fails, the return value
+is an implementation-specific error code.</p><p><b>ERROR_SUCCESS</b> (0x00000000)</p><p><b>MQ_ERROR_NOT_SUPPORTED</b> (0xC00E03EB)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> extension
+protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

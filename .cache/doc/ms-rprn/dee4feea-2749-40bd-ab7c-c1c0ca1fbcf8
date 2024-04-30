@@ -1,0 +1,37 @@
+<div class="content"><p>RpcAddMonitor installs a local <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1b5f368b-942b-40dd-84ea-fa9082916216" data-linktype="relative-path">port monitor</a> and links the
+configuration, data, and monitor files.</p><dl>
+<dd>
+<div><pre> DWORD RpcAddMonitor(
+   [in, string, unique] STRING_HANDLE Name,
+   [in] MONITOR_CONTAINER* pMonitorContainer
+ );
+</pre></div>
+</dd></dl><p><b>Name: </b>A parameter that adheres to the
+specification in <a href="acb355a4-913b-4abb-8cb5-415aea160015" data-linktype="relative-path">Print
+Server Name Parameters (section 3.1.4.1.4)</a>.</p><p><b>pMonitorContainer: </b>A parameter that adheres to
+the specification in <a href="81865d2c-e108-43ee-ae34-145233434946" data-linktype="relative-path">MONITOR_CONTAINER
+Parameters (section 3.1.4.1.8.9)</a>. The <b>Level</b> member of the <a href="b2338216-5e3e-4379-a722-af2230d06df2" data-linktype="relative-path">MONITOR_CONTAINER</a> MUST be
+0x00000002.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in Print Server
+Name Parameters, section 3.1.4.1.4.</p>
+</li><li><p><span><span> 
+</span></span>Perform validation steps as specified in MONITOR_CONTAINER
+Parameters (section 3.1.4.1.8.9).</p>
+</li><li><p><span><span> 
+</span></span>Verify that the port monitor does not already exist in the
+system, and if that verification fails, return <i>ERROR_PRINT_MONITOR_ALREADY_INSTALLED</i>
+[MS-ERREF].</p>
+</li><li><p><span><span> 
+</span></span>Additional validation MAY<a id="Appendix_A_Target_368"></a><a aria-label="Product behavior note 368" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_368" data-linktype="relative-path">&lt;368&gt;</a> be
+performed.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Create the monitor object.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

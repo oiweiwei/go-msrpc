@@ -1,0 +1,106 @@
+<div class="content"><p>The AuthzrModifyClaims method (opnum 5) modifies information
+about the identified <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_519bff3c-1c9f-4d5a-aa88-a3c820a4ff3a" data-linktype="relative-path">client
+context</a>.</p><dl>
+<dd>
+<div><pre> DWORD AuthzrModifyClaims(
+         [in] AUTHZR_HANDLE ContextHandle,
+         [in] AUTHZ_CONTEXT_INFORMATION_CLASS ClaimClass,
+         [in] [range(1, 65535)] DWORD OperationCount,
+         [in] [size_is(OperationCount)] AUTHZ_SECURITY_ATTRIBUTE_OPERATION* pClaimOperations,
+         [in] [unique] AUTHZR_SECURITY_ATTRIBUTES_INFORMATION* pClaims);
+  
+</pre></div>
+</dd></dl><p><b>ContextHandle:</b> An AUTHZR_HANDLE structure, as
+defined in section <a href="4c1628c5-8093-471e-a3b8-8437420063ba" data-linktype="relative-path">2.2.1.1</a>.
+Represents the client context to modify.</p><p><b>ClaimClass:</b> An AUTHZ_CONTEXT_INFORMATION_CLASS
+enumeration, as defined in section <a href="39749c89-99ca-4058-974d-acfcfe1f7b33" data-linktype="relative-path">2.2.2.1</a>. Indicates the
+claim class.</p><p><b>OperationCount:</b> The number of operations to be
+performed.</p><p><b>pClaimOperations:</b> A pointer to an array of
+AUTHZ_SECURITY_ATTRIBUTE_OPERATION enumerations, as defined in section <a href="2e82f9ce-08dd-4af3-b64a-1b89d5877522" data-linktype="relative-path">2.2.2.2</a>. Specifies the
+operations to be performed on each claim.</p><p><b>pClaims:</b> A pointer to an array of
+AUTHZR_SECURITY_ATTRIBUTES_INFORMATION structures, as defined in section <a href="6e6e5b70-192d-422b-a382-438dd7375d3c" data-linktype="relative-path">2.2.3.7</a>. Contains the
+claim(s) used to modify the client context.</p><p><b>Return Values:</b></p><p>If the function succeeds, the function MUST return
+0x00000000.</p><p>If the function fails, it MUST return a nonzero error code
+value.</p><p>When a RAZA server receives this message, the server MUST
+perform the following:</p><p>If the <i>InfoClass</i> parameter is any value other than
+AuthzContextInfoUserClaims (13) or AuthzContextInfoDeviceClaims (14), the
+requested modification is not supported. When this happens, the RAZA server
+MUST set <i>ppContextInformation</i> to NULL and return FALSE.</p><p>The RAZA server MUST check the first element in the <i>pClaimOperations</i>
+array as indicated by <i>OperationCount</i> and perform operations as follows:</p><ul><li><p><span><span> 
+</span></span>If the value pointed to by the <i>pClaimOperations</i> parameter
+is <b>AUTHZ_SECURITY_ATTRIBUTE_OPERATION_NONE,</b> the RAZA server MUST return
+0x00000000.</p>
+</li><li><p><span><span> 
+</span></span>If the value pointed to by the <i>pClaimsOperations</i> parameter
+is <b>AUTHZ_SECURITY_ATTRIBUTE_OPERATION_REPLACE_ALL,</b> the RAZA server MUST
+perform the following on the <b>ImpersonationAccessToken</b> in the <b>ClientContext</b>
+identified by the <i>ContextHandle</i>:</p>
+<ol><li><p><span>   
+</span>Map the <i>InfoClass</i> parameter value to the corresponding <b>ImpersonationAccessToken</b>
+array according to the following table and replace it with the <i>pClaims</i> <b>Attribute</b>
+member array.</p>
+</li><li><p><span>   
+</span>Return 0x00000000 if the operation was a success; otherwise, return a
+nonzero error code.</p>
+</li></ol></li><li><p><span><span> 
+</span></span>If the value pointed to by the <i>pClaimOperations</i> parameter
+is any other value of AUTHZ_SECURITY_ATTRIBUTE_OPERATION, perform the steps
+prescribed after the next paragraph.</p>
+</li></ul><p>The RAZA server MUST perform the following steps on each
+element in the <i>pClaimOperations</i> array as indicated by <i>OperationCount</i>:</p><ol><li><p><span>    </span>If the element
+is not the first element and the value is <b>AUTHZ_SECURITY_ATTRIBUTE_OPERATION_NONE</b>
+or <b>AUTHZ_SECURITY_ATTRIBUTE_OPERATION_REPLACE_ALL,</b> the RAZA server MUST
+return a nonzero error code. The case in which the first element is one of
+these values is described above.</p>
+</li><li><p><span>    </span>If the element
+is <b>AUTHZ_SECURITY_ATTRIBUTE_OPERATION_ADD,</b> append the corresponding
+element in the <i>pClaims</i> <b>Attributes</b> array to the <b>ImpersonationAccessToken</b>
+array identified according to the following table.</p>
+</li><li><p><span>    </span>If the element
+is <b>AUTHZ_SECURITY_ATTRIBUTE_OPERATION_DELETE</b>, search the <b>ImpersonationAccessToken</b>
+array identified according to the following table for a member whose <b>Value</b>
+member equals the <b>Value</b> member of the corresponding element of the <b>Attributes</b>
+array in the <i>pClaims</i> parameter. If one is found, delete that element
+from the identified <b>ImpersonationAccessToken</b> array and free any memory
+associated with that element.</p>
+</li><li><p><span>    </span>If the element
+is <b>AUTHZ_SECURITY_ATTRIBUTE_OPERATION_REPLACE,</b> search the <b>ImpersonationAccessToken</b>
+array identified according to the following table for a member whose <b>Value</b>
+member equals the <b>Value</b> member of the corresponding element of the <b>Attributes</b>
+array in the <i>pClaims</i> parameter.</p>
+<ol><li><p><span>   
+</span>If the attribute is located, replace the <b>Values</b> member of the
+located attribute with the replacement <b>Values</b> member, which is located
+in the corresponding <b>Attributes</b> array element in the <b>Attributes</b>
+member of <i>pClaims</i>. If the replacement <b>Values</b> member does not
+exist, the located attribute is deleted.</p>
+</li><li><p><span>   
+</span>If the attribute is not located, it is added using the replacement <b>Values</b>
+member, which is located in the corresponding <b>Attributes</b> array element
+in the <b>Attributes</b> member of <i>pClaims</i>. If the replacement <b>Values</b>
+member does not exist, the operation is ignored and no failure is reported.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>ClaimClass parameter value</p>
+   </th>
+   <th>
+   <p>Corresponding ImpersonationAccessToken array</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><i>AuthzContextInfoUserClaims</i></p>
+  </td>
+  <td>
+  <p><b>ImpersonationAccessToken.Claims</b></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>AuthzContextInfoDeviceClaims</i></p>
+  </td>
+  <td>
+  <p><b>ImpersonationAccessToken.DeviceClaims</b></p>
+  </td>
+ </tr></tbody></table>
+</li></ol></li></ol><p> </p></div>

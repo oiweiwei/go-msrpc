@@ -1,0 +1,32 @@
+<div class="content"><p> </p><p>The TYPEDESC structure is used in the <span><a href="2e06e2b6-054e-48b1-b867-ad1e87a7ebe2" data-linktype="relative-path">ARRAYDESC</a></span>,
+<span><a href="e14ff3cf-034a-4884-a498-fc7586f7160c" data-linktype="relative-path">ELEMDESC</a></span>,
+and <span><a href="0ca10d08-61d2-4059-9109-7bbaf545715e" data-linktype="relative-path">TYPEATTR</a></span>
+structures to identify and describe the type of a data member, the return type
+of a method, or the type of a method parameter.</p><dl>
+<dd>
+<div><pre> typedef struct tagTYPEDESC {
+   [switch_type(USHORT), switch_is(vt)] 
+     union {
+     [case(VT_PTR, VT_SAFEARRAY)] 
+       struct tagTYPEDESC* lptdesc;
+     [case(VT_CARRAY)] 
+       struct tagARRAYDESC* lpadesc;
+     [case(VT_USERDEFINED)] 
+       HREFTYPE hreftype;
+     [default]       ;
+   } _tdUnion;
+   USHORT vt;
+ } TYPEDESC;
+</pre></div>
+</dd></dl><p><b>_tdUnion:</b>  MUST contain an instance
+of the type, according to the <span><a href="3fe7db9f-5803-4dc4-9d14-5425d3f5461f" data-linktype="relative-path">VARENUM</a></span> value
+provided in the <b>vt</b> field. </p><p><b>lptdesc:</b>   MUST refer to a TYPEDESC
+that specifies the element type. If the ELEMDESC is contained in a <span><a href="ae7791d2-4399-4dff-b7c6-b0d4f3dce982" data-linktype="relative-path">VARDESC</a></span>
+that describes an appobject <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_670b0ee2-d101-41b0-ac77-6ac7dbeee7dc" data-linktype="relative-path">coclass</a></span>, the
+TYPEDESC MUST specify the type of the coclass.</p><p><b>lpadesc:</b>   MUST refer to an
+ARRAYDESC that describes a fixed-length array.</p><p><b>hreftype:</b>   MUST be set to an
+HREFTYPE that identifies the UDT (see section <span><a href="29ce0a4f-4786-49c9-a312-5522c1e9b44d" data-linktype="relative-path">2.2.28</a></span>).</p><p><b>vt:</b>  MUST be set to one of the
+values that are specified as available to a TYPEDESC and identified with a
+&#34;T&#34; in the Context column of the table in 2.2.7. MUST be set to
+VT_PTR if the ELEMDESC is contained in a VARDESC that describes an appobject
+coclass, as specified in section <span><a href="e86fe771-d836-47b6-b846-846de41d592c" data-linktype="relative-path">2.2.49.8</a></span>. </p></div>

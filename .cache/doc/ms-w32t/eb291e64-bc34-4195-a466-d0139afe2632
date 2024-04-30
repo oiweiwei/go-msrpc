@@ -1,0 +1,35 @@
+<div class="content"><p>The W32TIME_CONFIGURATION_DEFAULT structure defines the
+default configuration data of the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9846d08d-ad98-4bb9-a1e7-1f0bfbdd1113" data-linktype="relative-path">time service</a> as described
+in <a href="https://go.microsoft.com/fwlink/?LinkId=90586" data-linktype="external">[WTSREF]</a>.</p><p>The structure is defined to match the default configuration
+of the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_43e51d0a-ac6a-4662-a99a-8f3029b78caf" data-linktype="relative-path">W32Time</a>
+implementation. Fields in the structure that are not valid in other
+implementations SHOULD have their corresponding configuration-setting type
+fields set to W32TIME_CONFIGURATION_SETTING_UNDEFINED.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned __int32 ulSize;
+   [string, unique] wchar_t* wszFileLogName;
+   [string, unique] wchar_t* wszFileLogEntries;
+   unsigned __int32 ulFileLogSize;
+   unsigned __int32 ulFileLogFlags;
+   unsigned __int32 ulFileLogNameFlag;
+   unsigned __int32 ulFileLogEntriesFlag;
+   unsigned __int32 ulFileLogSizeFlag;
+   unsigned __int32 ulFileLogFlagsFlag;
+ } W32TIME_CONFIGURATION_DEFAULT,
+  *PW32TIME_CONFIGURATION_DEFAULT;
+</pre></div>
+</dd></dl><p><b>ulSize:</b>  The size, in bytes, of this
+structure.</p><p><b>wszFileLogName:</b>  The <b>FileLogName</b>
+element value (see section <a href="1da649d7-3edf-4a9a-98c2-907ecacd1633" data-linktype="relative-path">3.2.1.1</a>).</p><p><b>wszFileLogEntries:</b>  The <b>FileLogEntries</b>
+element value (see section 3.2.1.1).</p><p><b>ulFileLogSize:</b>  The <b>FileLogSize</b>
+element value (see section 3.2.1.1).</p><p><b>ulFileLogFlags:</b>  The <b>FileLogFlags</b>
+element value (see section 3.2.1.1).</p><p><b>ulFileLogNameFlag:</b>  An integer that
+indicates the source of the configuration setting for <b>wszFileLogName</b>, as
+specified in section <a href="cda8dd8e-ef99-4b2d-b747-6077e5d5ddf2" data-linktype="relative-path">2.2.6</a>.</p><p><b>ulFileLogEntriesFlag:</b>  An integer
+that indicates the source of the configuration setting for <b>wszFileLogEntries</b>,
+as specified in section 2.2.6.</p><p><b>ulFileLogSizeFlag:</b>  An integer that
+indicates the source of the configuration setting for <b>ulFileLogSize</b>, as
+specified in section 2.2.6.</p><p><b>ulFileLogFlagsFlag:</b>  An integer that
+indicates the source of the configuration setting for <b>ulFileLogFlags</b>, as
+specified in section 2.2.6.</p></div>

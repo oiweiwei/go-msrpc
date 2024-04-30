@@ -1,0 +1,226 @@
+<div class="content"><p>The SetCallData packet is transmitted from a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call</a>. The
+function service provider stores the indicated call data with its information
+that is related to the call, and subsequently delivers it whenever the <a href="fdcdf2c5-6ef4-4895-86c3-20ce2da10df0" data-linktype="relative-path">GetCallInfo</a> packet is
+sent. The service provider sends a <a href="077cbcc4-50cd-4422-b255-aed244902730" data-linktype="relative-path">LINE_CALLINFO</a> packet
+indicating LINECALLINFOSTATE_CALLDATA to show that the call data has changed. </p><p>Depending on the service provider implementation, the call
+data can be propagated to all entities having handles to the call, including
+those on other machines (through the server), and can travel with the call when
+it is transferred.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwRequestID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hCall</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpCallData</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved5</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved6</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved7</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved8</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved9</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved10</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>An unsigned 32-bit
+integer. The identifier of the function that will be invoked on the remote
+server. This value MUST be set to 71.</p><dl>
+<dd>
+<p><b>Return Values</b></p>
+</dd>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>, this field
+will contain the result of the encapsulated telephony request. A nonzero
+request ID value indicates that the request is in progress and will complete
+asynchronously, and a <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path">LINEERR_Constants</a>
+value indicates synchronous failure.</p>
+</dd>
+<dd>
+<p>Returns a positive request identifier if the
+asynchronous operation starts; otherwise, the function returns one of these
+negative error values:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>LINEERR_INVALCALLSTATE</p>
+  </td>
+  <td>
+  <p>0x8000001C</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALPARAM</p>
+  </td>
+  <td>
+  <p>0x80000032</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_NOMEM</p>
+  </td>
+  <td>
+  <p>0x80000044</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONFAILED</p>
+  </td>
+  <td>
+  <p>0x80000048</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_RESOURCEUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x8000004B</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>dwRequestID (4 bytes): </b>An unsigned 32-bit integer.
+The identifier for reporting asynchronous completion information. </p><p><b>hCall (4 bytes): </b>An <a href="7f4089a0-7432-4ef0-8eeb-5aafe407c07e" data-linktype="relative-path">HCALL</a>. The handle to the
+call. One way of obtaining a valid hCall is by sending the <a href="c9acdfde-22de-43ff-b491-23a9ed72fb31" data-linktype="relative-path">MakeCall</a> packet. Also a
+valid hCall can be obtained from <a href="0a8905e3-647f-4e98-aca8-2fa77eedb2e7" data-linktype="relative-path">LINE_CALLSTATE</a> packet sent
+by the remote server. The application MUST have OWNER privileges. </p><p><b>lpCallData (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, in the <b>VarData</b> field, that contains the
+data to be copied to the CallData field in <a href="6ff3773f-0fad-451c-bef4-5e225626f9aa" data-linktype="relative-path">LINECALLINFO</a>, replacing
+any existing data. </p><p><b>dwSize (4 bytes): </b>An unsigned 32-bit integer.
+The size, in bytes, of the data that is indicated in the lpCallData field.</p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved5 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved6 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved7 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved8 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved9 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved10 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>VarData (variable): </b>Contains data to copy to
+the CallData member of a LINECALLINFO packet.</p><dl>
+<dd>
+<p>The contents of this field MUST be DWORD-aligned, as
+specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>.</p>
+</dd></dl></div>

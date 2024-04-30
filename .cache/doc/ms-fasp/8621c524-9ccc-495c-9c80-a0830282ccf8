@@ -1,0 +1,109 @@
+<div class="content"><p> </p><p>The RRPC_FWSetConfig method modifies the value of a profile
+configuration option. The client specifies to the server in what store and
+profile this value MUST be written and what specific configuration option it is
+interested in modifying.</p><dl>
+<dd>
+<div><pre> unsigned long RRPC_FWSetConfig(
+   [in] FW_CONN_HANDLE rpcConnHandle,
+   [in] FW_POLICY_STORE_HANDLE hPolicyStore,
+   [in, range(FW_PROFILE_CONFIG_ENABLE_FW, FW_PROFILE_CONFIG_MAX-1)] 
+     FW_PROFILE_CONFIG configID,
+   [in] FW_PROFILE_TYPE Profile,
+   [in, switch_is(configID)] FW_PROFILE_CONFIG_VALUE pConfig,
+   [in, range(0, 10*1024)] unsigned long dwBufSize
+ );
+</pre></div>
+</dd></dl><p><b>rpcConnHandle: </b>This parameter is an <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle that connects to the RPC interface of the Firewall and Advanced
+Security Protocol.</p><p><b>hPolicyStore: </b>This input parameter is an <span><a href="88f6ea4a-a946-4747-bb93-f142f1760752" data-linktype="relative-path">FW_POLICY_STORE_HANDLE</a></span>
+data type. The data type MUST contain an opened policy store handle,
+successfully opened with the RRPC_FWOpenPolicyStore (Opnum 0) method. The
+handle MUST have read/write access rights.</p><p><b>configID: </b>This parameter specifies the
+specific profile configuration option the client wants to modify.</p><p><b>Profile: </b>This parameter specifies in which
+specific profile this value MUST be written.</p><p><b>pConfig: </b>This is an input parameter. This
+parameter is a pointer to the buffer that the client provides containing the
+value to write on the configuration option specified. If the buffer is NULL,
+this method deletes the configuration option. The buffer is of type <span><a href="f5af7cf8-f948-4265-b50e-80fd73edf3ad" data-linktype="relative-path">FW_PROFILE_CONFIG_VALUE</a></span>.</p><p><b>dwBufSize: </b>This parameter is the size of the
+buffer that the <i>pConfig</i> parameter points to.</p><p><b>Return Values: </b>The method returns 0 if
+successful; if failed, it returns a nonzero error code. The field can take any
+specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+The following return values are common. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000032</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The method does not support the specified combination
+  of parameters. This can be because:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The store type specified does not
+  support this method.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The Profile parameter contains a
+  combination of profiles (instead of a single profile) or an unknown profile.</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The <i>hPolicyStore</i> handle was not opened with
+  read/write access rights. The error is also returned if the client does not
+  have the required credentials to call the method.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the parameters of this method is incorrect, or
+  is required and not specified. This error can be returned because:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The specific configuration option
+  is not meant to be available in the specified store.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The specified configuration
+  option is not defined.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The size of the buffer does not
+  match the size of the type of the configuration value.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The buffer is null but <i>dwBufSize</i>
+  says otherwise.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The caller wants to set a
+  FW_PROFILE_CONFIG_LOG_MAX_FILE_SIZE that is not within the valid values [min,
+  max].</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The default action configuration
+  value specifies a value that maps to neither allow nor block.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The
+  FW_PROFILE_CONFIG_LOG_FILE_PATH configuration value contains the following
+  invalid characters: /,*,?,&#34;,&lt;,&gt;,|.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol, as specified in [MS-RPCE].
+If any lower-layer errors are reported by RPC exception, this exception is
+converted to an error code and reported to higher-layer protocols via the
+return value.</p><p>This method performs a merge operation of the resultant
+configuration values, as defined in section <span><a href="e8924ac5-aa4a-41d1-bf65-4f46b3d399aa" data-linktype="relative-path">3.1.3</a></span>. It then
+determines what modifications are necessary on the rule objects (for example,
+remove rule enforcement if firewall is off) to make sure the policy is
+enforced.</p><p>The server MUST validate that the client is authorized to
+perform the requested operation (as defined in section <span><a href="b0c93352-8371-4d63-abca-b0cc8dbcc3d7" data-linktype="relative-path">3.1.4</a></span>)
+before executing this method.</p></div>

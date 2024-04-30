@@ -1,0 +1,220 @@
+<div class="content"><p> </p><p>The <b>ExtensionHeader</b> contains information about the
+presence and size of other headers in the <span><a href="f9e71595-339a-4cc4-8341-371e0a4cb232" data-linktype="relative-path">Message Packet
+Structure (section 2.2.5)</a></span>, such as <span><a href="377dc454-43ef-4c48-8c07-692de2fd9ec4" data-linktype="relative-path">DeadLetterHeader (section 2.2.5.4)</a></span>,
+<span><a href="ee62651b-ade2-417c-91af-7a6cf6f3e86a" data-linktype="relative-path">SubqueueHeader (section 2.2.5.3)</a></span>,
+and <span><a href="20119e19-df2d-4c37-a739-eebad84cc83a" data-linktype="relative-path">ExtendedAddressHeader (section 2.2.5.5)</a></span>.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="4108f68e-80f5-40e1-b3df-b713cc4dff79#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>HeaderSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RemainingHeadersSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>Flags</p>
+  </td>
+  <td colspan="24">
+  <p>Reserved</p>
+  </td>
+ </tr>
+</tbody></table><p><b>HeaderSize (4 bytes): </b>A <b>ULONG</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">2.2.51</a></span>)
+that specifies the size in bytes of the <b>ExtensionHeader</b>.</p><p><b>RemainingHeadersSize (4 bytes): </b>A <b>ULONG</b>
+that MUST be the sum of sizes in bytes of all headers that follow the <b>ExtensionHeader</b>.</p><p><b>Flags (1 byte): </b>Indicates the presence or
+absence of other headers in the <b>Message Packet Structure</b>. Any
+combination of the following values is acceptable.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p><br/>
+   0</p>
+   </th>
+   <th>
+   <p><br/>
+   1</p>
+   </th>
+   <th>
+   <p><br/>
+   2</p>
+   </th>
+   <th>
+   <p><br/>
+   3</p>
+   </th>
+   <th>
+   <p><br/>
+   4</p>
+   </th>
+   <th>
+   <p><br/>
+   5</p>
+   </th>
+   <th>
+   <p><br/>
+   6</p>
+   </th>
+   <th>
+   <p><br/>
+   7</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>D</p>
+  <p>L</p>
+  </td>
+  <td>
+  <p>S</p>
+  <p>Q</p>
+  </td>
+  <td>
+  <p>X</p>
+  <p>2</p>
+  </td>
+  <td>
+  <p>D</p>
+  <p>I</p>
+  </td>
+  <td>
+  <p>E</p>
+  <p>A</p>
+  </td>
+  <td>
+  <p>X</p>
+  <p>5</p>
+  </td>
+  <td>
+  <p>X</p>
+  <p>6</p>
+  </td>
+  <td>
+  <p>X</p>
+  <p>7</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DL</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>MUST be set to 1 if the <b>Message Packet Structure</b>
+  contains the <b>DeadLetterHeader</b>. MUST be set to 0 otherwise.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SQ</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>Indicates whether the <b>Message Packet Structure</b>
+  contains a <b>SubqueueHeader</b>. MUST be set to 1. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>X2</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>Unused bit field. MUST be ignored.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DI</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>MUST be set to 1 if the <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_99517f21-e7cf-4c8f-a651-0dd969828cba" data-linktype="relative-path">dead-letter queue</a></span>
+  as specified by the <b>DeadLetterHeader</b> is invalid. MUST be set to 0
+  otherwise. If the <b>DeadLetterHeader</b> is not included, this field MUST be
+  ignored when reading the message packet.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EA</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>Indicates whether the <b>Message Packet Structure</b>
+  contains an <b>ExtendedAddressHeader</b>. MUST be set to 1. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>X5</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>Unused bit field. MUST be ignored.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>X6</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>Unused bit field. MUST be ignored.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>X7</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>Unused bit field. MUST be ignored.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved (3 bytes): </b>MUST be ignored when
+reading the <b>Message Packet Structure</b>.</p></div>

@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p>The <b>DHCP_SUBNET_ELEMENT_DATA_V6</b> structure defines the
+elements of the IPv6 prefix, such as IPv6 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservation</a></span>, IPv6 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_64d30865-9640-4009-a80a-861966749767" data-linktype="relative-path">exclusion
+range</a></span>, or IPv6 range. This is used in the <span><a href="2bb3dac1-b29c-4457-8297-2201f28930f8" data-linktype="relative-path">R_DhcpAddSubnetElementV6 (section 3.2.4.60)</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_SUBNET_ELEMENT_DATA_V6 {
+     DHCP_SUBNET_ELEMENT_TYPE_V6 ElementType;
+     [switch_is(ELEMENT_MASK(ElementType)), switch_type(DHCP_SUBNET_ELEMENT_TYPE_V6)]
+     union _DHCP_SUBNET_ELEMENT_UNION_V6 {
+         [case(Dhcpv6IpRanges)] DHCP_IP_RANGE_V6      *IpRange;
+         [case(Dhcpv6ReservedIps)] DHCP_IP_RESERVATION_V6 *ReservedIp;
+         [case(Dhcpv6ExcludedIpRanges)] DHCP_IP_RANGE_V6 *ExcludeIpRange;
+     } Element;
+ } DHCP_SUBNET_ELEMENT_DATA_V6, *LPDHCP_SUBNET_ELEMENT_DATA_V6;
+</pre></div>
+</dd></dl><p><b>ElementType:</b>  ElementType is of type
+<span><a href="c63ad7cf-0241-42cf-8695-2d44636a19ad" data-linktype="relative-path">DHCP_SUBNET_ELEMENT_TYPE_V6 (section 2.2.1.1.8)</a></span>
+structure defining the set of possible prefix element types. This value defines
+which of the values is chosen from the subsequent union the <b>Element</b>
+member.</p><p><b>Element:</b>  Element is a union of
+different types of IPv6 prefix elements. The value of the union is dependent on
+the previous field the <b>ElementType</b> member.</p><p><b>IpRange:</b>  This is a pointer to a <span><a href="f83f565b-0388-41c4-a40c-aee12a9e0ecf" data-linktype="relative-path">DHCP_IP_RANGE_V6 (section 2.2.1.2.59)</a></span>
+structure that contains the IPv6 range for this IPv6 prefix.</p><p><b>ReservedIp:</b>  This is a pointer to a <span><a href="01fc2011-4b53-4104-a820-df22a5b2bf8e" data-linktype="relative-path">DHCP_IP_RESERVATION_V6 (section 2.2.1.2.58)</a></span>
+structure that contains the information on IPv6 reservations.</p><p><b>ExcludeIpRange:</b>  This is a pointer
+to a DHCP_IP_RANGE_V6 (section 2.2.1.2.59) structure that contains
+information about IPv6 exclusion ranges.</p></div>

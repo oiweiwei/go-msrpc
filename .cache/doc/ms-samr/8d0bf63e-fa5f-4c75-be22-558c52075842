@@ -1,0 +1,59 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/8d0bf63e-fa5f-4c75-be22-558c52075842" data-linktype="external">msdn link</a></p><p>The SamrOemChangePasswordUser2 method changes a user&#39;s
+password. </p><dl>
+<dd>
+<div><pre> long SamrOemChangePasswordUser2(
+   [in] handle_t BindingHandle,
+   [in, unique] PRPC_STRING ServerName,
+   [in] PRPC_STRING UserName,
+   [in, unique] PSAMPR_ENCRYPTED_USER_PASSWORD NewPasswordEncryptedWithOldLm,
+   [in, unique] PENCRYPTED_LM_OWF_PASSWORD OldLmOwfPasswordEncryptedWithNewLm
+</pre></div>
+</dd></dl><p>);</p><p><b>BindingHandle: </b>An RPC binding handle parameter
+as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+section 1.</p><p><b>ServerName: </b>A counted string, encoded in the OEM
+character set, containing the NETBIOS name of the server; this parameter MAY<a id="Appendix_A_Target_65"></a><a aria-label="Product behavior note 65" href="fa61e5fc-f8fb-4d5b-9695-c724af0c3829#Appendix_A_65" data-linktype="relative-path">&lt;65&gt;</a> be ignored by the server.</p><p><b>UserName: </b>A counted string, encoded in the OEM
+character set, containing the name of the user whose password is to be changed;
+see message processing later in this section for details on how this value is
+used as a database key to locate the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_8d10bd9d-392e-431b-8218-742bdac19815" data-linktype="relative-path">account</a> that is the target
+of this password change operation.</p><p><b>NewPasswordEncryptedWithOldLm: </b>A cleartext
+password encrypted according to the specification of <a href="23f9ef4c-cf3e-4330-9287-ea4799b03201" data-linktype="relative-path">SAMPR_ENCRYPTED_USER_PASSWORD (section 2.2.6.21)</a>,
+where the key is the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_58a72159-b1e9-4770-9b06-d7a6b16279a8" data-linktype="relative-path">LM hash</a>
+of the existing password for the target user (as presented by the client). The
+cleartext password MUST be encoded in an <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_442ab13f-d2c1-4128-b1db-f3bea4b8224e" data-linktype="relative-path">OEM code page</a> character set
+(as opposed to UTF-16).</p><p><b>OldLmOwfPasswordEncryptedWithNewLm: </b>The LM
+hash of the target user&#39;s existing password (as presented by the client)
+encrypted according to the specification of <a href="ce061fef-6d4f-4802-bd5d-26b11f14f4a6" data-linktype="relative-path">ENCRYPTED_LM_OWF_PASSWORD (section 2.2.7.3)</a>,
+where the key is the LM hash of the cleartext password obtained from decrypting
+<i>NewPasswordEncryptedWithOldLm</i> (see the preceding description for
+decryption details).</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>On a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a> configuration if <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a> is not
+running, the server MUST abort the request and return an error status.</p>
+</li><li><p><span>    </span>All database
+operations MUST occur in a single transaction.</p>
+</li><li><p><span>    </span>The server MUST
+encode the <i>UserName</i> parameter into UTF-16 using the OEM code page.</p>
+</li><li><p><span>    </span>Let U be the
+user account with the <b>sAMAccountName</b> attribute value of <i>UserName</i>.
+The server MUST return STATUS_WRONG_PASSWORD if no such account exists.</p>
+</li><li><p><span>    </span>Let
+Stored-LM-Hash be the value of the <b>dBCSPwd</b> attribute from the database
+decrypted using the algorithm specified in section <a href="3f5ec79d-b449-4ab2-9423-c4dccbe0b184" data-linktype="relative-path">2.2.11.1</a>, using U&#39;s
+RelativeId as the key. If this attribute does not exist, STATUS_WRONG_PASSWORD
+MUST be returned.</p>
+</li><li><p><span>    </span>Let
+Presented-Clear-Text be the cleartext value sent by the client. This value is
+obtained by decrypting <i>NewPasswordEncryptedWithOldLm</i> according to the
+specification of SAMPR_ENCRYPTED_USER_PASSWORD using Stored-LM-Hash as the key,
+and then translating the result into a UTF-16 encoded string (using the OEM
+code page).</p>
+</li><li><p><span>    </span>Let
+Presented-Old-LM-Hash be the value of <i>OldLmOwfPasswordEncryptedWithNewLm</i>
+that has been decrypted per the specification of ENCRYPTED_LM_OWF_PASSWORD,
+using the LM hash of Presented-Clear-Text as the key.</p>
+</li><li><p><span>    </span>If
+Presented-Old-LM-Hash is not equal to Stored-LM-Hash, the server MUST satisfy
+the constraints in section <a href="11b31f55-f447-4a63-bbf7-be4c4853c23e" data-linktype="relative-path">3.1.5.14.6</a>,
+abort processing, and return STATUS_WRONG_PASSWORD.</p>
+</li><li><p><span>    </span>The server MUST
+update the <b>clearTextPassword</b> attribute with Presented-Clear-Text.</p>
+</li></ol></div>

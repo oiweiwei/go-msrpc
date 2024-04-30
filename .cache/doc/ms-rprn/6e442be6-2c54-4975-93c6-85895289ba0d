@@ -1,0 +1,39 @@
+<div class="content"><p>The <b>RPC_BranchOfficeJobData</b> structure holds a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_9b511320-74d4-4c21-9ee1-935a6476d492" data-linktype="relative-path">branch office print remote
+logging</a> structure that contains the data required to log a single <b>Branch
+Office Print Remote Log Entry</b> (section <a href="1bd61448-db4b-4284-a4b1-8346732402d4" data-linktype="relative-path">3.1.1</a>) corresponding to a
+specific type of <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_b9456a1c-aee2-41aa-af78-a083db7a27c7" data-linktype="relative-path">Windows
+Event</a>.<a id="Appendix_A_Target_85"></a><a aria-label="Product behavior note 85" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_85" data-linktype="relative-path">&lt;85&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct {
+   EBranchOfficeJobEventType eEventType;
+   DWORD JobId;
+   [switch_type(EBranchOfficeJobEventType), switch_is(eEventType)] 
+     union {
+     [case(kLogJobPrinted)] 
+       RPC_BranchOfficeJobDataPrinted LogJobPrinted;
+     [case(kLogJobRendered)] 
+       RPC_BranchOfficeJobDataRendered LogJobRendered;
+     [case(kLogJobError)] 
+       RPC_BranchOfficeJobDataError LogJobError;
+     [case(kLogJobPipelineError)] 
+       RPC_BranchOfficeJobDataPipelineFailed LogPipelineFailed;
+     [case(kLogOfflineFileFull)] 
+       RPC_BranchOfficeLogOfflineFileFull LogOfflineFileFull;
+   } JobInfo;
+ } RPC_BranchOfficeJobData;
+</pre></div>
+</dd></dl><p><b>eEventType:</b> The type of Windows Event to
+which the <b>Branch Office Print Remote Log Entry</b> corresponds, which MUST
+be an <b>EBranchOfficeJobEventType</b> (section <a href="d0701011-80b3-473d-843c-edf7e4c5bc86" data-linktype="relative-path">2.2.1.15.1)</a> value.</p><p><b>JobId:</b> The identifier of a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print job</a>.</p><p><b>JobInfo:</b> The branch office print remote
+logging structure that contains the data required to log a <b>Branch Office
+Print Remote Log Entry</b> corresponding to the <b>eEventType</b> member value.</p><p><b>LogJobPrinted:</b> An <b>RPC_BranchOfficeJobDataPrinted</b> (section <a href="b4a22048-7837-460e-b1bd-8d34f4270f29" data-linktype="relative-path">2.2.1.15.5)</a> structure for
+a <b>Branch Office Print Remote Log Entry</b> corresponding to <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_0c6539af-aed7-4baa-9d21-4aa5b41d448a" data-linktype="relative-path">event ID</a> 307. This
+structure is present only if <b>eEventType</b> is set to <b>kLogJobPrinted</b>.</p><p><b>LogJobRendered:</b> An <b>RPC_BranchOfficeJobDataRendered</b> (section <a href="e90ee32f-12f4-4310-9238-71aca7dd9cb1" data-linktype="relative-path">2.2.1.15.6)</a> structure for
+a <b>Branch Office Print Remote Log Entry</b> corresponding to event ID 805.
+This structure is present only if <b>eEventType</b> is set to <b>kLogJobRendered</b>.</p><p><b>LogJobError:</b> An <b>RPC_BranchOfficeJobDataError</b> (section <a href="d86fd29b-9512-4c80-a14b-5f5fb25e5975" data-linktype="relative-path">2.2.1.15.3)</a> structure for
+a <b>Branch Office Print Remote Log Entry</b> corresponding to event ID 372.
+This structure is present only if <b>eEventType</b> is set to <b>kLogJobError</b>.</p><p><b>LogPipelineFailed:</b> An <b>RPC_BranchOfficeJobDataPipelineFailed</b> (section <a href="31a2aecb-2d7a-4846-a93b-e4fd708863e0" data-linktype="relative-path">2.2.1.15.4)</a> structure for
+a <b>Branch Office Print Remote Log Entry</b> corresponding to event ID 824.
+This structure is present only if <b>eEventType</b> is set to <b>kLogJobPipelineError</b>.</p><p><b>LogOfflineFileFull:</b> An <b>RPC_BranchOfficeLogOfflineFileFull</b> (section <a href="55fcc7c1-d63e-4488-88cd-8ce5d9dd945c" data-linktype="relative-path">2.2.1.15.7)</a> structure for
+a <b>Branch Office Print Remote Log Entry</b> corresponding to event ID 868.
+This structure is present only if <b>eEventType</b> is set to <b>kLogOfflineFileFull</b>.</p></div>

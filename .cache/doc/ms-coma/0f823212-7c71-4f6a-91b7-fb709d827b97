@@ -1,0 +1,165 @@
+<div class="content"><p>The QueryCell structure represents either a constraint on a
+single property in a table, as used to construct a query on the table or,
+alternatively, one of the special query options identified by an <a href="1b4bac57-96ca-4f15-8a90-60fbd75aabe8" data-linktype="relative-path">eSpecialQueryOption (section 2.2.1.3)</a>
+value.</p><p>The QueryCell type is a custom-marshaled type for which two
+custom marshaling formats are specified in this section. The 32-bit QueryCell
+marshaling format is optimized for implementations that use a 32-bit address
+space, and the 64-bit QueryCell marshaling format is optimized for
+implementations that use a 64-bit address space. All implementations MUST support
+the 32-bit format and MAY<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a> additionally
+support the 64-bit format.</p><p>A client and a server optionally perform capability
+negotiation, as specified in section <a href="628ebe08-d6a1-43b1-9d61-8515a23b54c2" data-linktype="relative-path">3.1.4.2</a>, for the 64-bit
+QueryCell marshaling format. If this capability negotiation is performed, and
+if both the client and the server support the 64-bit format, the 64-bit format
+MUST be used. If this capability negotiation is not performed, or if either the
+client or the server does not support the 64-bit format, the 32-bit format MUST
+be used.</p><p>A QueryCell is always associated with a variable-typed
+comparison data value, although this value can be null. The comparison data value
+is not part of the QueryCell marshaling format; instead, it is supplied in a
+separate parameter when marshaling a query, as specified in section <a href="ee38b86f-4f17-4c3d-b71f-5b7ae876eb54" data-linktype="relative-path">2.2.1.6</a>. The QueryCell
+does, however, specify the size, in bytes, of its associated comparison data,
+the data type of the comparison data, and whether the comparison data is
+non-null.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">NonNullComparisonData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">QueryOperator</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">IndexOrOption</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">ComparisonDataType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">ComparisonDataSize</p>
+  </td>
+ </tr>
+</tbody></table><p><b>NonNullComparisonData (variable): </b>Size depends
+on negotiated QueryCell marshaling format. It MUST be 4 bytes in the 32-bit
+format and MUST be 8 bytes in the 64-bit format. It MUST be set to zero if the
+comparison data is null and MUST be set to a nonzero value if the comparison
+data is non-null. On receipt, the server MUST treat all nonzero values
+identically.</p><p><b>QueryOperator (4 bytes): </b>MUST be set to one of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>eOPERATOR_EQUAL</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The QueryCell represents an equality constraint.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>eOPERATOR_NOTEQUAL</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The QueryCell represents an inequality constraint.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IndexOrOption (4 bytes): </b>MUST be set to either
+the zero-based index of a property in a table (values strictly less than
+0xF0000000) or an eSpecialQueryOption value (values greater than or equal to
+0xF0000000).</p><p><b>ComparisonDataType (4 bytes): </b>The <a href="7980c0c5-fa2d-475b-9420-28a4c0e8cbd7" data-linktype="relative-path">eDataType (section 2.2.1.2)</a>
+value that represents the data type of the comparison data.</p><p><b>ComparisonDataSize (4 bytes): </b>The size, in
+bytes, of the comparison data. If the representation of the comparison data in
+a QueryComparisonData (section 2.2.1.6) structure requires padding to a
+multiple of 4 bytes, this size MUST NOT include the padding bytes. If the
+comparison data is null, this MUST be set to zero. If the comparison data is
+non-null and the <b>ComparisonDataType</b> field is one of the following data
+type tags, this field is constrained as follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Data type tag</p>
+   </th>
+   <th>
+   <p>Constraint</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>eDT_ULONG </p>
+  </td>
+  <td>
+  <p>MUST be set to 0x00000004.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>eDT_GUID</p>
+  </td>
+  <td>
+  <p>MUST be set to 0x00000010 (decimal 16).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>eDT_LPWSTR</p>
+  </td>
+  <td>
+  <p>MUST be a multiple of 2.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

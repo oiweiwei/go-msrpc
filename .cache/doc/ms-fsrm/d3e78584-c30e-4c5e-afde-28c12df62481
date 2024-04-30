@@ -1,0 +1,96 @@
+<div class="content"><p>The ClassifyFiles method is used to get or set a specific <a href="666f71d4-2f9d-4a15-9e9a-1a1190cc9313" data-linktype="relative-path">Property Definition Instance</a>
+from/on one or more files/folders.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_CLASSIFICATION_MANAGER2 | 0x01), helpstring(&#34;This method is used to perform bulk enumeration, setting, and clearing of file properties&#34;)] HRESULT ClassifyFiles(
+   [in] SAFEARRAY(VARIANT) filePaths,
+   [in, unique] SAFEARRAY(VARIANT) propertyNames,
+   [in, unique] SAFEARRAY(VARIANT) propertyValues,
+   [in, defaultvalue(FsrmGetFilePropertyOptions_None)] 
+     FsrmGetFilePropertyOptions options
+ );
+</pre></div>
+</dd></dl><p><b>filePaths: </b>The files or folders that contain
+the Property Definition Instances that you want to retrieve or that you want to
+modify. You can specify an absolute or relative path to the files or folders.
+You cannot specify a file share.</p><p><b>propertyNames: </b>Contains the names of the
+Property Definition Instance to retrieve or set.</p><p><b>propertyValues: </b>Contains the value to set the
+Property Definition Instances to.</p><p><b>options: </b>Contains the option to use for
+retrieving the Property Definition Instances. For possible values, see the <a href="b4ce1446-1bf3-4631-86cc-7a5a719f48d7" data-linktype="relative-path">FsrmGetFilePropertyOptions (section 2.2.2.4.1.2)</a>
+enumeration.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>An object with the specified property name was not
+  found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>filePaths</i> parameter is NULL.</p>
+  <p>The <i>propertyNames</i> parameter has a different
+  length than <i>propertyValues</i>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>filePaths</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>If <i>PropertyNames</i> is not NULL, verify that <i>propertyValues</i>
+is not NULL and that the length of the <i>propertyNames</i> array is the same
+as the length of the <i>propertyValues</i> array.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST perform the following steps or return a
+nonzero error code for all files within the <i>filePaths</i> array:</p><ol><li><p><span>    </span>If a Property
+Definition Instance with the Property Definition Instance specified by <b>propertyName</b>
+does not exist, the server MUST return FSRM_E_NOT_FOUND.</p>
+</li><li><p><span>    </span>For each file or
+folder listed in <i>filePaths</i>, the server MUST perform the following steps
+in sequence:</p>
+<ol><li><p><span>   
+</span>Perform the <a href="8fe62844-c8f1-4317-9752-9706ea401638" data-linktype="relative-path">Retrieve
+Stored Classification Properties</a> for the file.</p>
+</li><li><p><span>   
+</span>Iterate over the <i>propertyNames</i> and <i>propertyValues</i> arrays
+in identical manner, selecting a pair of values located at the same index from
+each array (referred to as <b>propertyName</b> and <i>propertyValue</i>), and
+perform the following steps in sequence:</p>
+<ol><li><p><span>    </span>If <b>propertyName</b>
+is not NULL and the <a href="a4da1447-54a5-4b37-b135-bfa7481aed1c" data-linktype="relative-path">List of
+Property Definition Instances</a> contains a Property Definition Instance with
+the <a href="aeb8c879-da1a-4676-8d16-d7f85bac7a04" data-linktype="relative-path">Property
+Definition.Name</a> specified by propertyName, that instance&#39;s <b>property definition
+instance.value</b> MUST be set to <i>PropertyValue</i>.</p>
+</li><li><p><span>    </span>If <i>propertyName</i>
+is NULL and the List of Property Definition Instances contains a Property
+Definition Instance with the Property Definition.Name specified by <b>propertyName</b>,
+the server MUST remove that instance from the List of Property Definition
+Instances.</p>
+</li><li><p><span>    </span>If the List of
+Property Definition Instances does not contain a Property Definition Instance
+with the Property Definition.Name specified by <b>propertyName</b> and <i>propertyValue</i>
+is not NULL, the server MUST create a new Property Definition Instance whose
+Property Definition.Name is set to <b>propertyName</b> and whose <b>property
+definition instance.value</b> is set to <b>PropertyValue</b>. The server MUST
+then add that new instance to the List of Property Definition Instances for the
+file.</p>
+</li><li><p><span>    </span>Perform the <a href="b018899d-6743-410c-9bc2-7d43afa56e50" data-linktype="relative-path">Store classification
+properties action</a> for the file given the List of Property Definition
+Instances from the previous actions.</p>
+</li></ol></li></ol></li></ol></div>

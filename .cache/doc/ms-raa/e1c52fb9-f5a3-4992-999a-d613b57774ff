@@ -1,0 +1,22 @@
+<div class="content"><p>The AUTHZ_SID_OPERATION enumeration indicates the type of
+SID operations that can be made by a call to the <b>AuthzrModifySids</b>
+operation (section <a href="a20613e4-da03-4b9c-bb41-835165af9c67" data-linktype="relative-path">3.1.4.7</a>).</p><dl>
+<dd>
+<div><pre> typedef enum _AUTHZ_SID_OPERATION {
+     AUTHZ_SID_OPERATION_NONE = 0,
+     AUTHZ_SID_OPERATION_REPLACE_ALL = 1,
+     AUTHZ_SID_OPERATION_ADD = 2,
+     AUTHZ_SID_OPERATION_DELETE = 3,
+     AUTHZ_SID_OPERATION_REPLACE = 4
+ } AUTHZ_SID_OPERATION;
+  
+</pre></div>
+</dd></dl><p><b>AUTHZ_SID_OPERATION_NONE:</b> Do not modify
+anything.  </p><p><b>AUTHZ_SID_OPERATION_REPLACE_ALL:</b> Replace the
+existing SIDs with the specified SIDs. If replacement SIDs are not specified,
+delete the existing SIDs. This operation can be specified only once and must be
+the only operation specified. </p><p><b>AUTHZ_SID_OPERATION_ADD:</b> Add a new SID. If the
+SID already exists, fail the call. </p><p><b>AUTHZ_SID_OPERATION_DELETE:</b> Delete the
+specified SID. If the specified SID is not found, fail the call without taking
+action. </p><p><b>AUTHZ_SID_OPERATION_REPLACE:</b> Replace the existing
+SID with the specified SID. If the SID does not exist, add the specified SID. </p></div>

@@ -1,0 +1,34 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/deeb2cd8-1135-4f9c-9f2b-824db8b44a5d" data-linktype="external">msdn link</a></p><p>(Protocol Version 3) The ApiCreateNotifyV2 method uses the
+current <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> connection
+to establish a context on the server about the interaction of a client with a cluster
+version 2 notification port.</p><p>Upon receipt of this method, the server MUST create and
+maintain a queuing mechanism for posting event indications to the notification
+port, as specified in section <a href="b13a58db-3d39-4e2b-916b-78240bf8a7f9" data-linktype="relative-path">3.1.1.8</a>. This mechanism is
+maintained using implementation-specific methods and protocols between servers.</p><p>The server MUST NOT queue any event indications to the port
+until the first event filter has been registered, as specified in <a href="73d7a7d4-fef2-46e4-bd90-4c2e645094f3" data-linktype="relative-path">ApiAddNotifyV2 (section 3.1.4.2.137)</a>.</p><p>When calling
+theApiAddNotifyV2 (section 3.1.4.2.137), <a href="491227be-d055-4140-8b85-35cf29f31166" data-linktype="relative-path">ApiGetNotifyV2 (section 3.1.4.2.138)</a>,
+<a href="dc1cbfcc-936a-4967-9c71-63d34cea71d7" data-linktype="relative-path">ApiCloseNotify (section 3.1.4.2.57)</a>,
+and <a href="e7604a23-c316-4da7-b3b0-d31e2fd9cb5e" data-linktype="relative-path">ApiUnblockGetNotifyCall (section 3.1.4.2.107)</a>
+methods, the client MUST use the HNOTIFY_RPC handle obtained by calling this
+method.</p><p>The server SHOULD accept an ApiCreateNotifyV2 request if its
+<a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_a93e2fea-3006-4a06-b48f-fdb36d9abac9" data-linktype="relative-path">protocol server state</a> is
+read-only. The server MUST accept an ApiCreateNotifyV2 request if it is in the
+read/write state, as specified in section <a href="756547e7-ca64-4b7c-9f1b-2b1fbc6153d3" data-linktype="relative-path">3.1.1</a>.</p><p>The server SHOULD accept an ApiCreateNotifyV2 request if the
+client&#39;s access level is at least &#34;Read&#34; (section <a href="a249a463-3d3b-4058-abf6-3024d81806a0" data-linktype="relative-path">3.1.4</a>).</p><dl>
+<dd>
+<div><pre> HNOTIFY_RPC ApiCreateNotifyV2(
+   [out] error_status_t *rpc_error,
+   [out] error_status_t *rpc_status
+ );
+</pre></div>
+</dd></dl><p><b>rpc_error: </b>Indicates the status of the
+operation. The server MUST set this parameter to the value ERROR_SUCCESS
+(0x00000000) on success, or to one of the values specified in <a href="76051002-0a0a-40b2-bbb3-7eff294026f5" data-linktype="relative-path">ApiCreateNotify (section 3.1.4.2.56)</a>
+for other conditions. Clients MUST treat all values the same except as
+specified in section <a href="ca75805a-4b39-4074-8b5b-dbaae6e81b1f" data-linktype="relative-path">3.2.4.6</a>.</p><p><b>rpc_status: </b>A 32-bit integer used to indicate
+success or failure. The RPC runtime MUST indicate, by writing to this
+parameter, whether it succeeded in executing this method on the server. The
+encoding of the value passed in this parameter MUST conform to encoding for
+comm_status and fault_status, as specified in Appendix E of <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>Return Values: </b>The method MUST return a valid
+HNOTIFY_RPC context handle, as specified in section <a href="966ea108-35bc-41dd-a4a3-853b099e163f" data-linktype="relative-path">2.2.1.6</a>, to indicate
+success. Otherwise, it MUST return NULL.</p></div>

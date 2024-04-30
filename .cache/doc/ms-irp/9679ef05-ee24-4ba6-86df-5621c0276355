@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The <b>INET_INFO_IP_SEC_LIST</b> structure contains a list
+of <span><b><a href="15c4c83e-a5a9-42f4-ae8c-f94764acfc63" data-linktype="relative-path">INET_INFO_IP_SEC_ENTRY</a></b></span>
+entries.</p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _INET_INFO_IP_SEC_LIST {
+   DWORD cEntries;
+   [size_is(cEntries)] INET_INFO_IP_SEC_ENTRY aIPSecEntry[];
+ } INET_INFO_IP_SEC_LIST,
+  *LPINET_INFO_IP_SEC_LIST;
+</pre></div>
+</dd></dl><p><b>cEntries:</b>  The number of entries
+contained in the list.</p><p><b>aIPSecEntry:</b>  An array of <b>INET_INFO_IP_SEC_ENTRY</b>
+entries.</p></div>

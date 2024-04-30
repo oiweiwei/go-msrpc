@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_CRITERIA_COMPARATOR</b> enumeration specifies
+the logical condition which connects the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_71aebfeb-8787-432e-a8c8-5aa8eacd3e0a" data-linktype="relative-path">DNS Policy Criteria</a></span>
+evaluation during DNS Operations.</p><dl>
+<dd>
+<div><pre> typedef enum
+ {
+     Equals=1,
+     NotEquals
+ }
+ DNS_RPC_CRITERIA_COMPARATOR;
+</pre></div>
+</dd></dl><p><b>Equals:</b> Specifies that the values in a
+criteria (<b>DNS_RPC_POLICY</b> section <span><span><a href="89be092d-ec01-4ab3-84e4-5a56622f9de8" data-linktype="relative-path"><span>2.2.15.2.5</span></a></span></span>) of a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_5076749f-34a6-48a6-b051-8968a55f4d7b" data-linktype="relative-path">DNS
+policy</a></span> are connected by a logical OR condition.</p><p><b>NotEquals:</b> Specifies that the values in a
+criteria (<b>DNS_RPC_POLICY</b> section 2.2.15.2.5) of a DNS Policy are
+connected by logical AND condition.</p></div>

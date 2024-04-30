@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The RPC_CLIENT_ID structure is used in the <span><a href="f0235405-2c1f-4c91-ba7b-7457e28040b2" data-linktype="relative-path">ElfrChangeNotify (section 3.1.4.23)</a></span>
+method for local method invocations only. </p><dl>
+<dd>
+<div><pre> typedef struct _RPC_CLIENT_ID {
+   unsigned long UniqueProcess;
+   unsigned long UniqueThread;
+ } RPC_CLIENT_ID,
+  *PRPC_CLIENT_ID;
+</pre></div>
+</dd></dl><p><b>UniqueProcess:</b>  A 32-bit unsigned
+integer. Ignored when ElfrChangeNotify (section 3.1.4.23) is invoked
+remotely. </p><p><b>UniqueThread:</b>  A 32-bit unsigned
+integer. Ignored when ElfrChangeNotify (section 3.1.4.23) is invoked
+remotely.</p></div>

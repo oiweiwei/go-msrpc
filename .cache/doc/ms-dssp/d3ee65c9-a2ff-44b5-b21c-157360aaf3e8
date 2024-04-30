@@ -1,0 +1,7 @@
+<div class="content"><p>The Directory Services Setup Remote Protocol is a
+client/server-based <a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote
+procedure call (RPC)</a> protocol. The protocol exposes an RPC interface that a
+client can call to obtain <a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>-related
+computer state and configuration information.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

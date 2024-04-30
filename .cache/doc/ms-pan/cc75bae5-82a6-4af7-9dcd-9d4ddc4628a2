@@ -1,0 +1,14 @@
+<div class="content"><p>The Print System Asynchronous Notification Protocol is used
+asynchronously by clients to receive print status notifications from a server
+and to send back responses to those notifications. A set of notifications and
+responses are defined together as a <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_ad9bb1cf-c546-4d8a-8caa-09856386eae0" data-linktype="relative-path">notification type</a>. </p><p>This protocol is based on <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a>
+<a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.
+The interfaces and methods defined by this protocol provide a transport
+mechanism for arbitrary notification types.</p><p>The Print System Asynchronous Notification Protocol defines
+a notification type called <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_81b6e252-164f-4c6b-ae77-58a20a38f432" data-linktype="relative-path">AsyncUI</a>.
+The AsyncUI notification type enables a <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_7c039695-d5b5-4f3c-859a-a691d150b289" data-linktype="relative-path">notification source</a> on a
+server to request the display of an informative alert on a client, the client
+to send back user input requested by the alert, and the notification source to
+request the execution of code that is resident on the client.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

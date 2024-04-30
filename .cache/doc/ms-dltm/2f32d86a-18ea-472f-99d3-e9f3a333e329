@@ -1,0 +1,68 @@
+<div class="content"><p> </p><p>The TRKSVR_MESSAGE_UNION structure is used in <span><a href="cea51ffe-cab6-4b19-93b7-853189437ead" data-linktype="relative-path">LnkSvrMessage</a></span>
+method calls to request services. A single LnkSvrMessage method call can
+contain one type of message request, and the type-dependent data for a message
+request is stored in the TRKSVR_MESSAGE_UNION structure. The type of the
+message is indicated in the <b>MessageType</b> field, and the message data is
+stored in the <b>MessageUnion</b> field. The format of the <b>MessageUnion</b>
+field depends on the <b>MessageType</b> field. See section <span><a href="e6084ee0-fc0d-443e-a4fb-1a792ce70450" data-linktype="relative-path">2.2.11</a></span>
+for the definition of the TRKSVR_MESSAGE_TYPE enumeration used by the <b>MessageType</b>
+field. See section 3.1.4.1 for more information on the LnkSvrMessage method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   TRKSVR_MESSAGE_TYPE MessageType;
+   TRKSVR_MESSAGE_PRIORITY Priority;
+   [switch_is(MessageType)] union {
+     [case(old_SEARCH)] 
+       old_TRKSVR_CALL_SEARCH old_Search;
+     [case(MOVE_NOTIFICATION)] 
+       TRKSVR_CALL_MOVE_NOTIFICATION MoveNotification;
+     [case(REFRESH)] 
+       TRKSVR_CALL_REFRESH Refresh;
+     [case(SYNC_VOLUMES)] 
+       TRKSVR_CALL_SYNC_VOLUMES SyncVolumes;
+     [case(DELETE_NOTIFY)] 
+       TRKSVR_CALL_DELETE Delete;
+     [case(STATISTICS)] 
+       TRKSVR_STATISTICS Statistics;
+     [case(SEARCH)] 
+       TRKSVR_CALL_SEARCH Search;
+     [case(WKS_CONFIG)] 
+       TRKWKS_CONFIG WksConfig;
+     [case(WKS_VOLUME_REFRESH)] 
+       unsigned long WksRefresh;
+   };
+   [string] WCHAR* ptszMachineID;
+ } TRKSVR_MESSAGE_UNION;
+</pre></div>
+</dd></dl><p><b>MessageType:</b>  The type of message to
+be selected from the TRKSVR_MESSAGE_TYPE enumeration. The value of this field
+indicates the format of the <b>MessageUnion</b> field.</p><p><b>Priority:</b>  The priority level of the
+operation. Valid values are defined in <span><a href="3c2d91e3-6421-4cef-9844-e5949b2fab8f" data-linktype="relative-path">TRKSVR_MESSAGE_PRIORITY</a></span>.
+Section <span><a href="e1aa1914-4e78-43f3-b8cf-b002119cef0b" data-linktype="relative-path">3.2.5.2</a></span> and <span><a href="82fb1177-fa78-42b8-ae3b-40b29192556e" data-linktype="relative-path">3.2.5.3</a></span>,
+and subsections of section <span><a href="a8b5634c-9147-42a4-bf60-43ba73360de0" data-linktype="relative-path">3.2.6</a></span> specify how
+this field is set for different events.</p><p><b>(unnamed union):</b>  The message data
+for this message request. The <b>MessageType</b> field indicates which of these
+fields is used to format the data. (see section 2.2.11 for more information on
+the TRKSVR_MESSAGE_TYPE enumeration used by the <b>MessageType</b> field). The
+fields are defined as follows:</p><p><b>old_Search:</b>  Unused.</p><p><b>MoveNotification:</b>  If <b>MessageType</b>
+is MOVE_NOTIFICATION, this field contains message data for a MOVE_NOTIFICATION
+message, with the data formatted in the <span><a href="8b877b3f-c314-4c7b-a799-66e86dace612" data-linktype="relative-path">TRKSVR_CALL_MOVE_NOTIFICATION</a></span>
+structure.</p><p><b>Refresh:</b>  If <b>MessageType</b> is
+REFRESH, this field contains message data for a REFRESH message, with the data
+formatted in the <span><a href="c8a5a9cf-67b7-4c3c-8bc1-db593559243a" data-linktype="relative-path">TRKSVR_CALL_REFRESH</a></span>
+structure.</p><p><b>SyncVolumes:</b>  If <b>MessageType</b>
+is SYNC_VOLUMES, this field contains message data for a SYNC_VOLUMES message,
+with the data formatted in the <span><a href="e25bc030-b74b-4186-8559-81ad21c54839" data-linktype="relative-path">TRKSVR_CALL_SYNC_VOLUMES</a></span>
+structure.</p><p><b>Delete:</b>  If <b>MessageType</b> is
+DELETE_NOTIFY, this field contains message data for a DELETE_NOTIFY message,
+with the data formatted in the <span><a href="6d49d78d-cc49-427b-a5b3-be3d666c0917" data-linktype="relative-path">TRKSVR_CALL_DELETE</a></span>
+structure.</p><p><b>Statistics:</b>  If <b>MessageType</b>
+is STATISTICS, this field contains message data for a STATISTICS message, with
+the data formatted in a <span><a href="97e3e52f-1113-4470-89ae-3f370fd4dcae" data-linktype="relative-path">TRKSVR_STATISTICS</a></span>
+structure. This message type is not used in this protocol, but is included in
+this specification because it affects the size of the TRKSVR_MESSAGE_UNION
+structure as it is transmitted over the <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> Protocol.</p><p><b>Search:</b>  If <b>MessageType</b> is
+SEARCH, this field contains message data for a SEARCH message, with the data
+formatted in a <span><a href="eab3383d-fca5-4b4e-bb2d-ec06c9047d48" data-linktype="relative-path">TRKSVR_CALL_SEARCH</a></span>
+structure.</p><p><b>WksConfig:</b>  Unused.</p><p><b>WksRefresh:</b>  Unused.</p><p><b>ptszMachineID:</b>  Unused. MUST be set
+to 0 and ignored on receipt.</p></div>

@@ -1,0 +1,26 @@
+<div class="content"><p>The SessionStateEnum enumeration defines the states of a <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b" data-linktype="relative-path">terminal services</a> session.</p><dl>
+<dd>
+<div><pre> typedef  enum
+ {
+   pchActive = 0,
+   pchConnected = 1,
+   pchConnectQuery = 2,
+   pchShadow = 3,
+   pchDisconnected = 4,
+   pchIdle = 5,
+   pchListen = 6,
+   pchReset = 7,
+   pchDown = 8,
+   pchInit = 9,
+   pchStateInvalid = 10
+ } SessionStateEnum;
+</pre></div>
+</dd></dl><p><b>pchActive:  </b>The user is logged on and active.</p><p><b>pchConnected:  </b>The server is connected to the
+client.</p><p><b>pchConnectQuery:  </b>The server is in the process
+of connecting to the client.</p><p><b>pchShadow:  </b>The session is shadowing another
+session.</p><p><b>pchDisconnected:  </b>The client has disconnected
+from the session.</p><p><b>pchIdle:  </b>The session is waiting for a client
+to connect.</p><p><b>pchListen:  </b>The session is listening for a request
+for a new connection. No user is logged on to a listener session. A listener
+session cannot be reset, shadowed, or changed to a regular client session.</p><p><b>pchReset:  </b>The session is being reset.</p><p><b>pchDown:  </b>The session is down due to an error.</p><p><b>pchInit:  </b>The session is initializing.</p><p><b>pchStateInvalid:  </b>The session is in an unknown
+state.</p></div>

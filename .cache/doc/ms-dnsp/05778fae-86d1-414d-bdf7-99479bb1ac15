@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>In the <b>DNS_RPC_ZONE_DATABASE_DOTNET</b> structure all
+fields have same definition as specified in section <b>DNS_RPC_ZONE_DATABASE_W2K</b>
+(section <span><a href="660c4d3d-6049-422b-912a-7bf9129e7ed6" data-linktype="relative-path">2.2.5.2.6.1</a></span>), with
+the following exceptions:</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcZoneDatabaseDotNet {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   DWORD fDsIntegrated;
+   [string] char* pszFileName;
+ } DNS_RPC_ZONE_DATABASE_DOTNET,
+  *PDNS_RPC_ZONE_DATABASE_DOTNET,
+  DNS_RPC_ZONE_DATABASE,
+  *PDNS_RPC_ZONE_DATABASE;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The DNS management
+structure version number. This MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> Reserved for future use. The
+sender MUST set this value to 0x00000000 and it MUST be ignored by the
+receiver.</p></div>

@@ -1,0 +1,45 @@
+<div class="content"><p>RpcRouterReplyPrinterEx handles a notification from a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a>.<a id="Appendix_A_Target_416"></a><a aria-label="Product behavior note 416" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_416" data-linktype="relative-path">&lt;416&gt;</a></p><dl>
+<dd>
+<div><pre> DWORD RpcRouterReplyPrinterEx(
+   [in] PRINTER_HANDLE hNotify,
+   [in] DWORD dwColor,
+   [in] DWORD fdwFlags,
+   [out] DWORD* pdwResult,
+   [in] DWORD dwReplyType,
+   [in, switch_is(dwReplyType)] RPC_V2_UREPLY_PRINTER Reply
+ );
+</pre></div>
+</dd></dl><p><b>hNotify: </b>A notification <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_9dfe84e3-a772-4ad1-9a25-1255c1dc0f84" data-linktype="relative-path">RPC context handle</a> that was
+opened by <a href="7fcd3036-d45a-4ec7-b081-f2b860e66676" data-linktype="relative-path">RpcReplyOpenPrinter (section 3.2.4.1.1)</a>.</p><p><b>dwColor: </b>The value that was most recently
+specified by the client in the <i>dwColor</i> parameter of a call to <a href="cb5d22ed-0352-4303-83d5-b5afd32fb461" data-linktype="relative-path">RpcRouterRefreshPrinterChangeNotification (section 3.1.4.10.5)</a>.</p><p><b>fdwFlags: </b>A value that contains <a href="ef51a734-e033-467e-b45d-4b5c06f440e7" data-linktype="relative-path">Printer Change
+Flags (section 2.2.3.6)</a>, which indicate changes in printer
+configuration values.</p><p><b>pdwResult: </b>A pointer to a value that contains <a href="033938db-cdc7-4541-8195-10b7b217d96a" data-linktype="relative-path">Change Notification
+Flags (section 2.2.3.2)</a>, which indicate how the client processed
+the notification. </p><p><b>dwReplyType: </b>A value that MUST be zero.</p><p><b>Reply: </b>A pointer to an <a href="1ccdac5b-0b2a-4bd3-8afd-d2c2589130fc" data-linktype="relative-path">RPC_V2_UREPLY_PRINTER</a>
+union, which contains a pointer to an <a href="79db335f-ebe7-4a6f-8533-efdda32cc5d8" data-linktype="relative-path">RPC_V2_NOTIFY_INFO</a>
+structure, which contains available notification data that matched the set of
+notifications that the client previously requested.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_3b2da3d1-c159-4399-a6dd-dfd5f76fa2f5" data-linktype="relative-path">print client</a> MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Verify that the <i>hNotify</i> parameter is an RPC context handle
+to a notification object that was opened using RpcReplyOpenPrinter, and if that
+verification fails, return ERROR_INVALID_HANDLE [MS-ERREF]. This method SHOULD
+assume that this handle can be used without further access checks.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the value of the <i>dwColor</i> parameter matches the
+last value that was passed in the <i>dwColor</i> parameter in the call to
+RpcRouterRefreshPrinterChangeNotification; if that verification fails, set the <b>PRINTER_NOTIFY_INFO_COLORMISMATCH</b>
+bit in the variable pointed to by <i>pdwResult</i> and return 0.</p>
+</li></ul><p>If parameter validation fails, the client MUST fail the
+operation immediately and return a nonzero error response to the server.
+Otherwise, the client MUST process the message as follows:</p><ul><li><p><span><span> 
+</span></span>Capture the <i>fdwFlags</i> in the notification state it
+maintains.</p>
+</li><li><p><span><span> 
+</span></span>Capture the notification data provided in the <i>Reply</i>
+parameter in the notification state.</p>
+</li><li><p><span><span> 
+</span></span>Store the result of processing the notification (Change
+Notification Flags) to the variable pointed to by <i>pdwResult</i>.</p>
+</li></ul></div>

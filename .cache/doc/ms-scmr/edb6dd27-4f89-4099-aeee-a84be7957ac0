@@ -1,0 +1,68 @@
+<div class="content"><p>The RQueryServiceLockStatusW method returns the lock status
+of the specified <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a>
+database.</p><dl>
+<dd>
+<div><pre> DWORD RQueryServiceLockStatusW(
+   [in] SC_RPC_HANDLE hSCManager,
+   [out] LPQUERY_SERVICE_LOCK_STATUSW lpLockStatus,
+   [in, range(0, 1024*4)] DWORD cbBufSize,
+   [out] LPBOUNDED_DWORD_4K pcbBytesNeeded
+ );
+</pre></div>
+</dd></dl><p><b>hSCManager: </b>An <a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">SC_RPC_HANDLE (section 2.2.4)</a>
+data type that defines the handle to the SCM database created using one of the
+open methods specified in section <a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a>. The
+SC_MANAGER_QUERY_LOCK_STATUS access right MUST have been granted to the caller
+when the RPC context handle was created.</p><p><b>lpLockStatus: </b>A pointer to a buffer that
+contains <a href="32df480e-f28d-4a68-a182-39692b7c9a78" data-linktype="relative-path">QUERY_SERVICE_LOCK_STATUSW (section 2.2.17)</a>
+structures.</p><p><b>cbBufSize: </b>The size, in bytes, of the <i>lpLockStatus</i>
+buffer.</p><p><b>pcbBytesNeeded: </b>An <a href="d5e2cc22-7db6-4101-b36f-f4377e836b4c" data-linktype="relative-path">LPBOUNDED_DWORD_4K (section 2.2.7)</a>
+data type that defines the pointer to a variable that receives the number of
+bytes needed to return all the lock status information if the method fails.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns one of the following error
+codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>5</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The SC_MANAGER_QUERY_LOCK_STATUS access right had not
+  been granted to the caller when the RPC context handle was created.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The handle is no longer valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>122</p>
+  <p>ERROR_INSUFFICIENT_BUFFER</p>
+  </td>
+  <td>
+  <p>The data area passed to a system call is too small.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation the server MUST query the lock status of the SCM database
+identified by the <i>hSCManager</i> parameter of the client request. The server
+MUST return this lock status by setting the <i>lpLockStatus</i> parameter as
+specified in 2.2.17.</p><p>If the buffer pointed to by <i>lpLockStatus</i> is
+insufficient to hold all the lock status data, the server MUST fail the call
+with ERROR_INSUFFICIENT_BUFFER (122) and set the required buffer size in the <i>pcbBytesNeeded</i>
+parameter. If the size is sufficient for data returned, the server also returns
+the required size, in bytes.</p></div>

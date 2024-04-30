@@ -1,0 +1,7 @@
+<div class="content"><p>The W32Time Remote Protocol is an <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>-based protocol used for
+controlling and monitoring a <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9846d08d-ad98-4bb9-a1e7-1f0bfbdd1113" data-linktype="relative-path">time
+service</a> that implements the Network Time Protocol (NTP) Authentication
+Extensions specified in <a href="../ms-sntp/8106cb73-ab3a-4542-8bc8-784dd32031cc" data-linktype="relative-path">[MS-SNTP]</a>.</p><p>The client side of the W32Time Remote Protocol is an
+application that issues method calls on the RPC interface.</p><p>The server side of the W32Time Remote Protocol provides
+methods for controlling and monitoring the client and server instances of the
+locally hosted NTP Authentication Extensions [MS-SNTP] implementation.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a></p></div>

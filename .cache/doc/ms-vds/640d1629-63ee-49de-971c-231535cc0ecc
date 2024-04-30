@@ -1,0 +1,65 @@
+<div class="content"><p> </p><p>The ChangePartitionType method changes the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_674598d2-080c-4dbf-b12e-cc873da21b54" data-linktype="relative-path">partition
+type</a></span> on the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span> at a specified
+byte offset. </p><dl>
+<dd>
+<div><pre> HRESULT ChangePartitionType(
+   [in] ULONGLONG ullOffset,
+   [in] long bForce,
+   [in] CHANGE_PARTITION_TYPE_PARAMETERS* para
+ );
+</pre></div>
+</dd></dl><p><b>ullOffset: </b>The byte offset of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span>,
+from the beginning of the disk. This offset MUST be the offset of a start of a
+partition.</p><p><b>bForce: </b>A Boolean value that indicates whether
+a change will be forced even if the volume cannot be locked for exclusive
+access. When <i>bForce</i> is false, ChangePartitionType MUST lock and dismount
+the volume before changing the partition type. If <i>bForce</i> is true, the
+volume MUST be dismounted and the change MUST be made even if the locking of
+the volume fails.</p><p><b>para: </b>A pointer to a <span><a href="c379841a-ddd5-4757-8060-35b99c35710b" data-linktype="relative-path">CHANGE_PARTITION_TYPE_PARAMETERS</a></span>
+structure that contains the partition type that the partition at the location
+specified by <i>ullOffset</i> is changed to.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><dl>
+<dd>
+<p><b>Note</b>  This method is not valid for
+CD/DVD or <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_a2b20515-dc69-4674-b74e-91c8f24e3003" data-linktype="relative-path">super floppy</a></span>
+devices. These devices do not support <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_cee39671-0b98-4ca3-904d-018780e7042f" data-linktype="relative-path">partition tables</a></span>.</p>
+</dd></dl><p><b>ERROR_SUCCESS</b> (0x00000000)</p><p>When the server receives this message, it MUST validate the
+following parameter:</p><ul><li><p><span><span> 
+</span></span>Verify that para is not NULL.</p>
+</li></ul><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>Change the partition type following the parameters specified to
+the method.</p>
+</li><li><p><span><span> 
+</span></span>If a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> exists on the
+partition, for each callback object registered in the list of callback objects,
+call the callback object&#39;s <span><a href="04a70bf6-208d-463a-b0a4-cc96e198ded1" data-linktype="relative-path">IVdsAdviseSink::OnNotify</a></span>
+method with a VDS_NOTIFICATION structure with the following attributes:</p>
+<ul><li><p><span><span>  </span></span><b>objectType</b>
+member is VDS_NTT_VOLUME.</p>
+</li><li><p><span><span>  </span></span><b>Volume</b>
+member is a VDS_VOLUME_NOTIFICATION with the following attributes:</p>
+<ul><li><p><span><span> 
+</span></span><b>ulEvent</b> is VDS_NF_VOLUME_MODIFY.</p>
+</li><li><p><span><span> 
+</span></span><b>volumeId</b> is the VDS_OBJECT_ID of this volume object.</p>
+</li><li><p><span><span> 
+</span></span><b>plexId</b> is NULL GUID, but it is not relevant when ulEvent
+is VDS_NF_VOLUME_MODIFY.</p>
+</li><li><p><span><span> 
+</span></span><b>ulPercentCompleted</b> range is 0-100 and is
+implementation-specific; however, it is not relevant when ulEvent is
+VDS_NF_VOLUME_MODIFY.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Return an HRESULT indicating failure or success.</p>
+</li></ul><p><b>Note</b>  If the client changes the partition
+type from a recognized partition type (a type that indicates the partition will
+be exposed as a volume) to a nonrecognized partition type, the volume
+associated with the partition will be removed, and the normal volume removal
+notifications will be sent. Conversely, if the client changes a partition&#39;s
+partition type from a nonrecognized partition type to a recognized partition
+type, a new volume object will be created, and the normal notifications
+associated with volume arrivals will be sent.</p></div>

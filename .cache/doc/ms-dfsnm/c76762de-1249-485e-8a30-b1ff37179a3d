@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The DFS_INFO_1 structure contains the name of a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span>
+or <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS
+link</a></span>. </p><p>The DFS_INFO_1 structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_1 {
+   [string] WCHAR* EntryPath;
+ } DFS_INFO_1;
+</pre></div>
+</dd></dl><p><b>EntryPath:</b>  The pointer to a DFS
+root or a DFS link path.</p></div>

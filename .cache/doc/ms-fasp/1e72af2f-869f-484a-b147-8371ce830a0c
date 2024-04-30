@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The FW_NETWORK_NAMES structure represents a firewall rule
+that is used by the 2.24 binary version servers and clients (see sections <span><a href="faf4ffbe-1d51-40ad-ae90-2230f2c0b6a9" data-linktype="relative-path">2.2.41</a>
+and </span>2.2.42).</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_NETWORK_NAMES {
+   DWORD dwNumEntries;
+   [string, unique, size_is(dwNumEntries,)] 
+     LPWSTR* wszNames;
+ } FW_NETWORK_NAMES,
+  *PFW_NETWORK_NAMES;
+</pre></div>
+</dd></dl><p><b>dwNumEntries:</b>  Specifies the number
+of network names in the <i>wszNames</i> array.</p><p><b>wszNames:</b>  An array of pointers to
+null-terminated <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> strings
+representing the network DNS suffix as specified in the network interface DNS
+suffix. Each pointer string MUST NOT be NULL , the string MUST NOT contain the
+pipe (|) character, MUST be a string at least 1 character long, and MUST NOT be
+greater than or equal to 255 characters.</p></div>

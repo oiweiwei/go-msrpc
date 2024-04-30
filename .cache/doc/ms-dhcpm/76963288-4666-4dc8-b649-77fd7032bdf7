@@ -1,0 +1,93 @@
+<div class="content"><p> </p><p>The <b>DHCP_SUBNET_ELEMENT_DATA_V4</b> structure defines the
+IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservation</a></span>,
+IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_64d30865-9640-4009-a80a-861966749767" data-linktype="relative-path">exclusion
+range</a></span>, or IPv4 range elements for the subnet. This structure is an
+extension of the <span><a href="5ce2002b-fd0c-4776-805a-e87546616581" data-linktype="relative-path">DHCP_SUBNET_ELEMENT_DATA (section 2.2.1.2.33)</a></span>
+structure and is used in the method <span><a href="429f7260-b473-4f0f-be5f-f07d05cfc0b2" data-linktype="relative-path">R_DhcpAddSubnetElementV4 (section 3.1.4.30)</a></span>.</p><dl>
+<dd>
+<div><pre> #define ELEMENT_MASK(E) ((((E) &lt;= DhcpIpRangesBootpOnly) \
+     &amp;&amp; (DhcpIpRangesDhcpOnly &lt;= (E)))?(0):(E))
+ typedef struct _DHCP_SUBNET_ELEMENT_DATA_V4 {
+     DHCP_SUBNET_ELEMENT_TYPE ElementType;
+     [switch_is(ELEMENT_MASK(ElementType)), switch_type(DHCP_SUBNET_ELEMENT_TYPE)]
+     union _DHCP_SUBNET_ELEMENT_UNION_V4 {
+         [case(DhcpIpRanges)] DHCP_IP_RANGE *IpRange;
+         [case(DhcpSecondaryHosts)]  DHCP_HOST_INFO *SecondaryHost;
+         [case(DhcpReservedIps)] DHCP_IP_RESERVATION_V4 *ReservedIp;
+         [case(DhcpExcludedIpRanges)] DHCP_IP_RANGE *ExcludeIpRange;
+         [case(DhcpIpUsedClusters)] DHCP_IP_CLUSTER *IpUsedCluster;
+     } Element;
+  } DHCP_SUBNET_ELEMENT_DATA_V4, *LPDHCP_SUBNET_ELEMENT_DATA_V4;
+</pre></div>
+</dd></dl><p><b>ElementType:</b>  This is of type <span><a href="c2ff4890-adad-4906-bb96-d9417f24545a" data-linktype="relative-path">DHCP_SUBNET_ELEMENT_TYPE (section 2.2.1.1.7)</a></span>
+enumeration, defining the set of possible IPv4 subnet element types. This value
+defines which of the values is chosen from the subsequent union, the <b>Element</b>
+member.</p><p><b>Element:</b>  Element is a union of
+different types of IPv4 subnet elements. The value of the union is dependent on
+the previous field, <i>ElementType</i>.</p><p><b>ELEMENT_MASK:</b> A macro that causes Element to
+assume the type <b>DHCP_IP_RANGE*</b> for the ElementType values
+DhcpIpRangesDhcpOnly, DhcpIpRangesDhcpBootp, and DhcpIpRangesBootpOnly.</p><p><b>IpRange:</b>  This is of type <span><a href="29a03b34-249e-4bd8-a118-e708dadbf22b" data-linktype="relative-path">DHCP_IP_RANGE (section 2.2.1.2.31)</a></span>
+structure, containing the IPv4 range for the IPv4 subnet. This contains the
+range for the following valid enumeration values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>DHCP_SUBNET_ELEMENT_TYPE</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DhcpIpRanges</p>
+  <p>0</p>
+  </td>
+  <td>
+  <p>The configuration parameter is the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b63eb4e5-64bf-40a5-bc59-12b83ad184cb" data-linktype="relative-path">IP
+  range</a></span> of a DHCPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_128cd76b-eecb-41e6-96f7-f73c2bf9235a" data-linktype="relative-path">scope</a></span> configured
+  on the DHCPv4 server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DhcpIpRangesDhcpOnly</p>
+  <p>5</p>
+  </td>
+  <td>
+  <p>The configuration parameter is an IP range of a DHCPv4
+  scope configured on the DHCPv4 server that MUST be used only for assignment
+  of addresses to DHCPv4 clients on the subnet. The IP addresses from this
+  range MUST NOT be assigned to BOOTP clients (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90319" data-linktype="external">[RFC2132]</a></span>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DhcpIpRangesDhcpBootp</p>
+  <p>6</p>
+  </td>
+  <td>
+  <p>The configuration parameter is an IP range of a DHCPv4
+  scope configured on the DHCPv4 server that can be used for assignment of
+  addresses to both DHCPv4 and BOOTP.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DhcpIpRangesBootpOnly</p>
+  <p>7</p>
+  </td>
+  <td>
+  <p>The configuration parameter is an IP range of a DHCPv4
+  scope configured on the DHCPv4 server that MUST be used only for assignment
+  of IPv4 addresses to BOOTP clients.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>SecondaryHost:</b>  This is of type <span><a href="51e16f4a-cb1d-400a-85c7-defe4cba1609" data-linktype="relative-path">DHCP_HOST_INFO (section 2.2.1.2.7)</a></span>
+structure and is not used. If the ElementType value mandates that the <b>SecondaryHost</b>
+element is to be used in any method, the method will return
+ERROR_CALL_NOT_IMPLEMENTED or ERROR_NOT_SUPPORTED, as specified in the processing
+rules of methods that use the DHCP_SUBNET_ELEMENT_DATA_V4 structure.</p><p><b>ReservedIp:</b>  This is of type <span><a href="e78d3149-d39a-49bf-b84c-a1cff572a3aa" data-linktype="relative-path">DHCP_IP_RESERVATION_V4 (section 2.2.1.2.32)</a></span>
+structure, containing the IPv4 reservation.</p><p><b>ExcludeIpRange:</b>  This is of type <b>DHCP_IP_RANGE</b>
+structure, containing the IPv4 exclusion range.</p><p><b>IpUsedCluster:</b>  This is of type <span><a href="53387878-4f14-4606-b0f2-726fcb088d5f" data-linktype="relative-path">DHCP_IP_CLUSTER (section 2.2.1.2.88)</a></span>
+structure and is not used. If the <b>ElementType</b> member mandates this
+element to be used in any method, the method will return
+ERROR_INVALID_PARAMETER.</p></div>

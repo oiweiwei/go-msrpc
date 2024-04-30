@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The VDS_STORAGE_DEVICE_ID_DESCRIPTOR structure provides
+information about a device identification descriptor.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_STORAGE_DEVICE_ID_DESCRIPTOR {
+   unsigned long m_version;
+   unsigned long m_cIdentifiers;
+   [size_is(m_cIdentifiers)] VDS_STORAGE_IDENTIFIER* m_rgIdentifiers;
+ } VDS_STORAGE_DEVICE_ID_DESCRIPTOR;
+</pre></div>
+</dd></dl><p><b>m_version:</b>  The version number of
+the VDS_STORAGE_DEVICE_ID_DESCRIPTOR structure as specified by the device
+manufacturer and in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90528" data-linktype="external">[SPC-3]</a></span>. </p><p><b>m_cIdentifiers:</b>  The number of
+elements in the m_rgIdentifiers array.</p><p><b>m_rgIdentifiers:</b>  The array of <span><a href="07c6dcc7-23b7-4809-ab24-b3096ac2410e" data-linktype="relative-path">VDS_STORAGE_IDENTIFIER</a></span>
+structures that contain the storage identifier information.</p></div>

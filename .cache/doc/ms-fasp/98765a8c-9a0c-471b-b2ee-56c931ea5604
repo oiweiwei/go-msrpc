@@ -1,0 +1,31 @@
+<div class="content"><p> </p><p>This structure is used to contain a number of <span><a href="fa19141f-fc3c-4515-9555-b6db62c475aa" data-linktype="relative-path">FW_QUERY_CONDITION</a></span>
+elements. This structure can evaluate to either TRUE or FALSE. It evaluates to
+TRUE if all query condition elements evaluate to TRUE; otherwise, it evaluates
+to FALSE.</p><dl>
+<dd>
+<div><pre> typedef struct_tag_FW_QUERY_CONDITIONS
+    {
+     DWORD dwNumEntries;
+  
+     [size_is(dwNumEntries)]
+     FW_QUERY_CONDITION *AndedConditions;
+ }FW_QUERY_CONDITIONS, *PFW_QUERY_CONDITIONS;
+</pre></div>
+</dd></dl><p><b>dwNumEntries:</b>  Specifies the number
+of query conditions that the structure contains.</p><p><b>AndedConditions:</b>  A pointer to an
+array of FW_QUERY_CONDITIONS elements, which are to be logically AND&#39;d together
+by the server.</p><p>A query condition structure MUST pass the following semantic
+checks:</p><ul><li><p><span><span> 
+</span></span>If the <b>dwNumEntries</b> field is zero, the <b>AndedConditions</b>
+field MUST be NULL; and if the <b>dwNumEntries</b> field is not zero, the <b>AndedConditions</b>
+field MUST NOT be NULL.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>AndedConditions</b> field array has a
+FW_QUERY_CONDITION element with the <b>matchKey</b> field equal to
+FW_MATCH_KEY_LOCAL_PORT or FW_MATCH_KEY_REMOTE_PORT at position N of the array,
+the array MUST have another element whose <b>matchKey</b> field is equal to
+FW_MATCH_KEY_PROTOCOL at position M, where M &lt; N.</p>
+</li><li><p><span><span> 
+</span></span>All elements of the <b>AndedConditions</b> array MUST have valid
+FW_QUERY_CONDITION structures.</p>
+</li></ul></div>

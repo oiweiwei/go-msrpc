@@ -1,0 +1,69 @@
+<div class="content"><p> </p><p>The <b>R_DhcpRemoveOption</b> method removes the option
+definition of a specific option for the default <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_713c7395-9431-4d67-bab1-a069ae7461e2" data-linktype="relative-path">user class</a></span> and <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_45d20b00-7166-4f94-b679-4cc5a7835a3a" data-linktype="relative-path">vendor
+class</a></span> pair at the default option level. The <i>OptionID</i>
+parameter specifies the identifier of the option definition.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpRemoveOption(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_OPTION_ID OptionID
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>OptionID: </b>This is of type <span><a href="4a0bb785-ceec-4f7a-b4a7-64555f6e0b62" data-linktype="relative-path">DHCP_OPTION_ID (section 2.2.1.2.3)</a></span>,
+containing the option identifier for the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_da9bfcf7-a7e0-4cf0-ac87-ffdd83a5f25b" data-linktype="relative-path">option definition</a></span>
+being removed.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS indicates that the
+operation was completed successfully, else it contains a Win32 error code, as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2A</p>
+  <p>ERROR_DHCP_OPTION_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified option definition does not exist on the
+  DHCP server database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 11.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read/write access
+per section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server Abstract Data Model (ADM) element <b>DHCPv4OptionDefList</b>,
+and retrieve the <b>DHCPv4ClassedOptDefList</b> ADM element corresponding to
+the <b>DHCPv4OptionDef</b> ADM element entry when the <b>UserClass</b> and <b>VendorClass</b>
+fields are NULL. If there is no <b>DHCPv4OptionDef</b> ADM element entry whose <b>UserClass</b>
+and <b>VendorClass</b> fields are NULL, return ERROR_DHCP_CLASS_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the <b>DHCPv4ClassedOptDefList</b> ADM element,
+and if there is no <b>DHCPv4ClassedOptDef</b> ADM element entry corresponding
+to the <i>OptionID</i> parameter, return the error
+ERROR_DHCP_OPTION_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>Delete the <b>DHCPv4ClassedOptDef</b> ADM element entry
+corresponding to the <i>OptionID</i> parameter from the <b>DHCPv4ClassedOptDefList</b>
+ADM element. Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

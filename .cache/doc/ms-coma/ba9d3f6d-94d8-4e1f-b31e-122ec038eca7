@@ -1,0 +1,176 @@
+<div class="content"><p>This method is called by a client to read entries from a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0944227d-0566-49e1-989f-2fff6e02542d" data-linktype="relative-path">catalog</a> table according to
+a query.</p><dl>
+<dd>
+<div><pre> HRESULT ReadTable(
+   [in] GUID* pCatalogIdentifier,
+   [in] GUID* pTableIdentifier,
+   [in] DWORD tableFlags,
+   [in, size_is(cbQueryCellArray), unique] 
+     char* pQueryCellArray,
+   [in] ULONG cbQueryCellArray,
+   [in, size_is(cbQueryComparison), unique] 
+     char* pQueryComparison,
+   [in] ULONG cbQueryComparison,
+   [in] DWORD eQueryFormat,
+   [out, size_is(, *pcbTableDataFixed)] 
+     char** ppTableDataFixed,
+   [out] ULONG* pcbTableDataFixed,
+   [out, size_is(, *pcbTableDataVariable)] 
+     char** ppTableDataVariable,
+   [out] ULONG* pcbTableDataVariable,
+   [out, size_is(, *pcbTableDetailedErrors)] 
+     char** ppTableDetailedErrors,
+   [out] ULONG* pcbTableDetailedErrors,
+   [out, size_is(, *pcbReserved1)] 
+     char** ppReserved1,
+   [out] ULONG* pcbReserved1,
+   [out, size_is(, *pcbReserved2)] 
+     char** ppReserved2,
+   [out] ULONG* pcbReserved2
+ );
+</pre></div>
+</dd></dl><p><b>pCatalogIdentifier: </b> The catalog identifier of
+the COMA catalog. MUST be set to {6E38D3C4-C2A7-11D1-8DEC-00C04FC2E0C7}.</p><p><b>pTableIdentifier: </b> The table identifier for
+one of the tables defined in section <a href="9029dd8c-1f42-432f-ad41-a2369b32bd79" data-linktype="relative-path">3.1.1.3</a> for the negotiated
+catalog version.</p><p><b>tableFlags: </b> An <a href="19308cf6-7832-4aef-a61e-cbf8a402989f" data-linktype="relative-path">fTableFlags (section 2.2.1.1)</a>
+value supported (see section <a href="84e5214c-959e-4d7f-a393-5a4f233b09f7" data-linktype="relative-path">3.1.1.2.3</a>)
+by the table identified by <i>pTableIdentifier</i>.</p><p><b>pQueryCellArray: </b> A <a href="042e9c68-552b-48a9-adb6-f0d903653fa0" data-linktype="relative-path">QueryCellArray</a> structure,
+marshaled in the negotiated format as specified in section 2.2.1.5, for a
+supported query (see section <a href="e4b4604d-c088-4239-a095-acbc33fab663" data-linktype="relative-path">3.1.1.2.2</a>)
+on the table identified by <i>pTableIdentifier</i>.</p><p><b>cbQueryCellArray: </b> The size in bytes of <i>pQueryCellArray</i>.</p><p><b>pQueryComparison: </b> A <a href="ee38b86f-4f17-4c3d-b71f-5b7ae876eb54" data-linktype="relative-path">QueryComparisonData (section 2.2.1.6)</a>
+structure for a supported query (see section 3.1.1.2.2) on the table identified
+by <i>pTableIdentifier</i>.</p><p><b>cbQueryComparison: </b> The size in bytes of <i>pQueryComparison</i>.</p><p><b>eQueryFormat: </b> MUST be set to eQUERYFORMAT_1
+(0x00000001).</p><p><b>ppTableDataFixed: </b> A pointer to a variable
+that, upon successful completion, MUST be set to a <a href="a2feb769-c1fc-44fb-b40d-b3bc03b486b0" data-linktype="relative-path">TableDataFixed</a> structure,
+marshaled as specified in section 2.2.1.10.</p><p><b>pcbTableDataFixed: </b> A pointer to a value that,
+upon successful completion, MUST be set to the length in bytes of the
+TableDataFixed structure returned in <i>ppTableDataFixed</i>.</p><p><b>ppTableDataVariable: </b> A pointer to a pointer
+variable that, upon successful completion, MUST be set to a <a href="bc492521-2a4b-4776-84a0-ce20e81d692a" data-linktype="relative-path">TableDataVariable</a>
+structure, marshaled as specified in section 2.2.1.15.</p><p><b>pcbTableDataVariable: </b>A pointer to a value
+that, upon successful completion, MUST be the length in bytes of the
+TableDataVariable structure returned in <i>ppTableDataVariable</i>.</p><p><b>ppTableDetailedErrors: </b>A pointer to a variable
+that, upon successful completion, MUST be set to NULL, and that upon partial
+failure MAY<a id="Appendix_A_Target_291"></a><a aria-label="Product behavior note 291" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_291" data-linktype="relative-path">&lt;291&gt;</a> be set to a <a href="757f1161-bac7-45fe-974d-6d5010c119cc" data-linktype="relative-path">TableDetailedErrorArray</a>
+structure, marshaled as specified in section 2.2.1.17.</p><p><b>pcbTableDetailedErrors: </b>A pointer to a pointer
+variable that, upon completion, MUST be set to the length in bytes of the
+TableDetailedErrorArray structure returned in <i>ppTableDetailedErrors</i> if
+such a structure was returned, and MUST be set to zero otherwise.</p><p><b>ppReserved1: </b>A pointer to a pointer variable
+that, upon successful completion, MUST be set to NULL when sent by the server
+and MUST be ignored on receipt by the client.</p><p><b>pcbReserved1: </b>A pointer to a variable that,
+upon successful completion, MUST be set to zero when sent by the server and
+MUST be ignored on receipt by the client.</p><p><b>ppReserved2: </b>A pointer to a pointer variable
+that, upon successful completion, MUST be set to NULL when sent by the server
+and MUST be ignored on receipt by the client.</p><p><b>pcbReserved2: </b>A pointer to a variable that,
+upon successful completion, MUST be set to zero when sent by the server and
+MUST be ignored on receipt by the client.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically, with the exception
+of E_DETAILEDERRORS (0x80110802).</p><p>Upon receiving a call to this method, the server MUST verify
+that catalog version negotiation has been performed by checking the negotiated
+catalog version (see section <a href="2a489223-fe58-476e-8e17-3395c1fec9e0" data-linktype="relative-path">3.2.1.1</a>),
+and fail the call if not.</p><p>The server then MUST perform parameter validation as
+follows:</p><ul><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_292"></a><a aria-label="Product behavior note 292" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_292" data-linktype="relative-path">&lt;292&gt;</a> verify
+that the value referenced by <i>pCatalogIdentifier</i> is the catalog
+identifier of the COMA catalog {6E38D3C4-C2A7-11D1-8DEC-00C04FC2E0C7}, and fail
+the call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_293"></a><a aria-label="Product behavior note 293" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_293" data-linktype="relative-path">&lt;293&gt;</a> verify
+that the value referenced by <i>pTableIdentifier</i> is the table identifier of
+a table defined in section 3.1.1.3 for the negotiated catalog version, and fail
+the call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_294"></a><a aria-label="Product behavior note 294" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_294" data-linktype="relative-path">&lt;294&gt;</a> verify
+that <i>tableFlags</i> is a supported table flags value (see section 3.1.1.2.3)
+for the table identified by <i>pTableIdentifier</i>, and fail the call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_295"></a><a aria-label="Product behavior note 295" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_295" data-linktype="relative-path">&lt;295&gt;</a> verify
+that the query represented by the parameters <i>pQueryCellArray</i>, <i>cbQueryCellArray</i>,
+<i>pQueryComparison</i>, and <i>cbQueryComparison</i> is a supported query (see
+section 3.1.1.2.2) on the table identified by <i>pTableIdentifier</i>, and fail
+the call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST verify that all other parameters meet the
+preceding constraints specified.</p>
+</li></ul><p>The server then MUST select from the entries in the table
+identified by <i>pTableIdentifier</i> the subset of entries that match the
+query, as specified here. This conceptual procedure describes a possible
+procedure for selection, provided to facilitate the explanation of how the
+protocol behaves. This document does not mandate that implementations perform
+the procedure as described as long as their external behavior is consistent with
+that described here.</p><p>Starting with the full set of entries in the table as the
+result set, the server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>If the table as defined in section 3.1.1.3 is specified to use
+table flags as a constraint on a hidden property (see section 3.1.1.2.3), the
+server MUST remove from the result set all entries that do not conform to this
+constraint.</p>
+</li><li><p><span><span> 
+</span></span>For each <a href="0f823212-7c71-4f6a-91b7-fb709d827b97" data-linktype="relative-path">QueryCell (section 2.2.1.4)</a>
+structure and its corresponding comparison value (together known as a query
+element) in the query represented by the parameters <i>pQueryCellArray</i>, <i>cbQueryCellArray</i>,
+<i>pQueryComparison</i>, and <i>cbQueryComparison</i>, the server MUST perform
+the following:</p>
+<ul><li><p><span><span>  </span></span>If
+the <b>IndexOrOption</b> field of the QueryCell structure is a special query
+option value (indicated by a value greater than or equal to 0xF00000000), the
+query element represents a special option rather than a constraint. If this
+value is eSQO_OPTHINT (see section <a href="1b4bac57-96ca-4f15-8a90-60fbd75aabe8" data-linktype="relative-path">2.2.1.3</a>), this option is
+an optimization hint and MUST NOT affect the results of this selection
+procedure. Behavior of the server on receipt of special options other than
+eSQO_OPTHINT is undefined, because clients MUST NOT send these values, and they
+do not affect interoperability.<a id="Appendix_A_Target_296"></a><a aria-label="Product behavior note 296" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_296" data-linktype="relative-path">&lt;296&gt;</a></p>
+</li><li><p><span><span>  </span></span>If
+the <b>IndexOrOption</b> field of the QueryCell structure is an index of a
+property in the table (indicated by a value strictly less than 0xF00000000),
+the query element represents a constraint on the property. The server MUST
+remove from the result set all entries that do not conform to this constraint.</p>
+</li></ul></li></ul><p>Having selected from the table the result set, the server
+then MUST construct the structures to be returned in the values referenced by <i>ppTableDataFixed</i>,
+<i>pcbTableDataFixed</i>, <i>ppTableDataVariable</i>, and <i>pcbTableDataVariable</i>.
+An empty result set MUST NOT be considered a failure.</p><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>The server MUST arbitrarily order the entries in the result set,
+assigning to each a unique, zero-based index. These indices MUST be assigned
+consecutively.</p>
+</li><li><p><span><span> 
+</span></span>For each entry in the result set, in order by index, the server
+MUST perform the following:</p>
+<ul><li><p><span><span>  </span></span>For
+each property in the table, in order by index, the server MUST perform the
+following:</p>
+<ul><li><p><span><span> 
+</span></span>If the property is a non-fixed length property for which the
+value is non-NULL, the server MUST add a field to the variable-length results
+as specified for the <a href="c0c52d81-93f3-494f-904a-f119eef4f41c" data-linktype="relative-path">TableEntryVariable (section 2.2.1.14)</a>
+structure.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST set the appropriate fields in the fixed-length
+results as specified for the <a href="60d1432d-84ca-4b03-a5a3-55e93f2ac624" data-linktype="relative-path">TableEntryFixed (section 2.2.1.9)</a>
+structure.</p>
+</li><li><p><span><span> 
+</span></span>If for any reason the server was unable to retrieve the value of
+the property from its data store, it MUST either fail the call immediately,
+setting no results and returning an implementation-specific failure result, or
+replace the property value in the results with an implementation-specific
+default value and continue. If the server does the latter, it MUST add a <a href="524a6685-4f1a-453e-9b9a-34641d122e0f" data-linktype="relative-path">TableDetailedError (section 2.2.1.16)</a>
+record to the detailed error results, using the zero-based index of the entry
+and the zero-based index of the property to indicate to the client that the
+value of that property might not be accurate.</p>
+</li></ul></li><li><p><span><span>  </span></span>The
+server then MUST append the fixed-length and variable-length results for the
+entry to the TableDataFixed (section 2.2.1.10) and
+TableDataVariable (section 2.2.1.15) structures.</p>
+</li></ul></li></ul><p>The server MUST then set the values referenced by the out
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>The server then MUST set the values referenced by <i>ppTableDataFixed</i>,
+<i>pcbTableDataFixed</i>, <i>ppTableDataVariable</i>, and <i>pcbTableDataVariable</i>
+to the constructed TableDataFixed and TableDataVariable structures.</p>
+</li><li><p><span><span> 
+</span></span>If the server generated any TableDetailedError records, it MUST
+set the values referenced by <i>ppTableDetailedErrors</i> and <i>pcbDetailedErrors</i>
+to the constructed TableDetailedErrorArray structure. Otherwise, it MUST set
+the value referenced by <i>ppTableDetailedErrors</i> to NULL and the value
+referenced by <i>pcbDetailedErrors</i> to zero.</p>
+</li></ul><p>Upon success, the server MUST return S_OK (0x00000000). Upon
+partial failure (indicated by returning detailed error results), the server
+MUST return E_DETAILEDERRORS (0x80110802).</p></div>

@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The SERVER_XPORT_INFO_1_CONTAINER structure contains a value
+that indicates the number of entries that the <span><a href="2c6a0b8b-b5e6-45ce-abd1-16163762ed5e" data-linktype="relative-path">NetrServerTransportEnum</a></span>
+method returns and a pointer to the buffer that contains the entries.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVER_XPORT_INFO_1_CONTAINER {
+   DWORD EntriesRead;
+   [size_is(EntriesRead)] LPSERVER_TRANSPORT_INFO_1 Buffer;
+ } SERVER_XPORT_INFO_1_CONTAINER,
+  *PSERVER_XPORT_INFO_1_CONTAINER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  The number of entries
+that the method returns.</p><p><b>Buffer:</b>  A pointer to the <span><a href="0950454f-d40b-4836-a8b2-a41f7cdbbad8" data-linktype="relative-path">SERVER_TRANSPORT_INFO_1</a></span>
+entries that the method returns.</p></div>

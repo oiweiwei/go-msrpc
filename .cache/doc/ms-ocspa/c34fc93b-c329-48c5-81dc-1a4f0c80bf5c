@@ -1,0 +1,86 @@
+<div class="content"><p>The IOCSPAdminD interface provides an RPC interface for a
+client to manage an <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_688a239d-e58b-42df-b622-da727dca4227" data-linktype="relative-path">Online
+Responder</a>.</p><p>IOCSPAdminD interface inherits the IUnknown interface.</p><p>The version number for IUnknown is 1.0. The UUID for the
+IOCSPAdminD interface is: &#34;784b693d-95f3-420b-8126-365c098659f2&#34;. Method
+opnum field values start with 3; opnum values 0 through 2 represent the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+methods: QueryInterface, AddRef, and Release methods inherited from <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>.
+</p><p>Each method MUST NOT throw exceptions.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="5d4e4cd4-7ec3-4733-9093-ece17d843a6d" data-linktype="relative-path">GetOCSPProperty</a></p>
+  </td>
+  <td>
+  <p>Opnum: 3</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="a96b0950-63bb-4c93-a98b-9c13e8554ea9" data-linktype="relative-path">SetOCSPProperty</a></p>
+  </td>
+  <td>
+  <p>Opnum: 4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="df4d237b-c44a-43ee-9389-09a90fa1133c" data-linktype="relative-path">GetCAConfigInformation</a></p>
+  </td>
+  <td>
+  <p>Opnum: 5</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="544c468d-5360-4770-acd4-980a9734239d" data-linktype="relative-path">SetCAConfigInformation</a></p>
+  </td>
+  <td>
+  <p>Opnum: 6</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b71c3332-b846-4762-9579-9fa3467b210a" data-linktype="relative-path">GetSecurity</a></p>
+  </td>
+  <td>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="e498416e-27d4-4583-8c4c-8ab816ad0751" data-linktype="relative-path">SetSecurity</a></p>
+  </td>
+  <td>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="2ec24f56-04f3-4605-8b07-d163f7e014b2" data-linktype="relative-path">GetSigningCertificates</a></p>
+  </td>
+  <td>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="9d668e1b-481a-4c76-947c-6a6a9797f275" data-linktype="relative-path">GetHashAlgorithms</a></p>
+  </td>
+  <td>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="7c76dfa2-b152-4426-a3da-c395957bd79d" data-linktype="relative-path">GetMyRoles</a></p>
+  </td>
+  <td>
+  <p>Opnum: 11</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="50de7095-604f-45ab-b913-ac6dd404c9b8" data-linktype="relative-path">Ping</a></p>
+  </td>
+  <td>
+  <p>Opnum: 12</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

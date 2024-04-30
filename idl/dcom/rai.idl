@@ -1,0 +1,154 @@
+import "ms-oaut.idl";
+// XXX: SAFEARRAY macro expanded.
+// #define SAFEARRAY(type) SAFEARRAY
+#define DISPID_PCH_BASE                           0x08010000
+#define DISPID_PCH_BASE_COL                       (DISPID_PCH_BASE + 0x0000) 
+#define DISPID_PCH_HELPSVC_BASE                   0x08000000
+#define DISPID_PCH_HELPSVC_BASE_SVC               (DISPID_PCH_HELPSVC_BASE + 0x0000) 
+#define DISPID_PCH_SVC__REMOTECONNECTIONPARMS     (DISPID_PCH_HELPSVC_BASE_SVC  + 0x0040)
+#define DISPID_PCH_SVC__REMOTEUSERSESSIONINFO     (DISPID_PCH_HELPSVC_BASE_SVC  + 0x0041)
+#define DISPID_PCH_COL__COUNT                     (DISPID_PCH_BASE_COL  + 0x0000)
+ 
+#define DISPID_SAF_BASE                           0x08020000
+#define DISPID_SAF_BASE_RCD                       (DISPID_SAF_BASE + 0x0B00) 
+#define DISPID_SAF_BASE_USER                      (DISPID_SAF_BASE + 0x0C00) 
+#define DISPID_SAF_BASE_SESS                      (DISPID_SAF_BASE + 0x0D00) 
+#define DISPID_SAF_USER__DOMAINNAME               (DISPID_SAF_BASE_USER + 0x0010)
+#define DISPID_SAF_USER__USERNAME                 (DISPID_SAF_BASE_USER + 0x0011)
+#define DISPID_SAF_SESS__SESSIONID                (DISPID_SAF_BASE_SESS + 0x0010)
+#define DISPID_SAF_SESS__SESSIONSTATE             (DISPID_SAF_BASE_SESS + 0x0011)
+#define DISPID_SAF_SESS__DOMAINNAME               (DISPID_SAF_BASE_SESS + 0x0012)
+#define DISPID_SAF_SESS__USERNAME                 (DISPID_SAF_BASE_SESS + 0x0013)
+ 
+typedef enum
+{
+    pchActive                  = 0,
+    pchConnected               = 1,
+    pchConnectQuery            = 2,
+    pchShadow                  = 3,
+    pchDisconnected            = 4,
+    pchIdle                    = 5,
+    pchListen                  = 6,
+    pchReset                   = 7,
+    pchDown                    = 8,
+    pchInit                    = 9,
+    pchStateInvalid            = 10
+} SessionStateEnum;
+ 
+ 
+ 
+[
+    object,
+    uuid(833E4100-AFF7-4AC3-AAC2-9F24C1457BCE),
+    dual,
+    oleautomation,
+    helpstring("IPCHCollection Interface"),
+    pointer_default(unique)
+]
+ 
+interface IPCHCollection : IDispatch
+{
+    [propget, id(DISPID_NEWENUM)       ] HRESULT _NewEnum(                   
+     [out, retval] IUnknown* *pVal    );
+    [propget, id(DISPID_VALUE)         ] HRESULT Item    ( 
+     [in] long vIndex,
+       [out, retval] VARIANT   *ppEntry );
+    [propget, id(DISPID_PCH_COL__COUNT)] HRESULT Count   (                   
+     [out, retval] long      *pVal    );
+};
+ 
+ 
+[
+    object,
+    uuid(833E4200-AFF7-4AC3-AAC2-9F24C1457BCE),
+    dual,
+    oleautomation,
+    helpstring("IPCHService Interface"),
+    pointer_default(unique)
+]
+interface IPCHService : IDispatch
+{
+HRESULT Opnum7NotUsedByProtocol(void);
+HRESULT Opnum8NotUsedByProtocol(void);
+HRESULT Opnum9NotUsedByProtocol(void);
+HRESULT Opnum10NotUsedByProtocol(void);
+HRESULT Opnum11NotUsedByProtocol(void);
+HRESULT Opnum12NotUsedByProtocol(void);
+HRESULT Opnum13NotUsedByProtocol(void);
+HRESULT Opnum14NotUsedByProtocol(void);
+HRESULT Opnum15NotUsedByProtocol(void);
+HRESULT Opnum16NotUsedByProtocol(void);
+HRESULT Opnum17NotUsedByProtocol(void);
+HRESULT Opnum18NotUsedByProtocol(void);
+[id(DISPID_PCH_SVC__REMOTECONNECTIONPARMS)] HRESULT RemoteConnectionParms( 
+     [in] BSTR bstrUserName,
+     [in] BSTR bstrDomainName,
+     [in] long lSessionID,
+     [in] BSTR bstrUserHelpBlob,
+     [out, retval] BSTR *pbstrConnectionString );
+[id(DISPID_PCH_SVC__REMOTEUSERSESSIONINFO)] HRESULT RemoteUserSessionInfo( 
+     [out, retval] IPCHCollection* *pVal );
+HRESULT Opnum21NotUsedByProtocol(void);
+};
+ 
+[
+    object,
+    uuid(833E41AA-AFF7-4AC3-AAC2-9F24C1457BCE),
+    dual,
+    oleautomation,
+    helpstring("ISAFSession Interface"),
+    pointer_default(unique)
+]
+ 
+interface ISAFSession : IDispatch
+{
+    [propget, id(DISPID_SAF_SESS__SESSIONID   )] HRESULT SessionID   ( 
+     [out, retval] DWORD                   *pVal   );
+    [propput, id(DISPID_SAF_SESS__SESSIONID   )] HRESULT SessionID   ( 
+     [in         ] DWORD                    pVal   );
+    [propget, id(DISPID_SAF_SESS__SESSIONSTATE)] HRESULT SessionState( 
+      [out, retval] SessionStateEnum       *pVal   );
+    [propput, id(DISPID_SAF_SESS__SESSIONSTATE)] HRESULT SessionState( 
+     [in         ] SessionStateEnum         pVal   );
+    [propget, id(DISPID_SAF_SESS__DOMAINNAME  )] HRESULT DomainName  ( 
+     [out, retval] BSTR                    *pVal   );
+    [propput, id(DISPID_SAF_SESS__DOMAINNAME  )] HRESULT DomainName  ( 
+     [in         ] BSTR                     pVal   );
+    [propget, id(DISPID_SAF_SESS__USERNAME    )] HRESULT UserName    ( 
+     [out, retval] BSTR                    *pVal   );
+    [propput, id(DISPID_SAF_SESS__USERNAME    )] HRESULT UserName    ( 
+     [in         ] BSTR                     pVal   );
+};
+ 
+[
+    object,
+    uuid(F120A684-B926-447F-9DF4-C966CB785648),
+    dual,
+    nonextensible,
+    helpstring("IRASrv Interface"),
+    pointer_default(unique)
+]
+interface IRASrv : IDispatch{
+    [id(1), helpstring("method GetNoviceUserInfo")] HRESULT GetNoviceUserInfo(
+     [in,out] LPWSTR * szName);
+    [id(2), helpstring("method GetSessionInfo")] HRESULT GetSessionInfo(
+     [in,out] [safearray(BSTR)] SAFEARRAY * UserNames, [in,out] INT * Count);
+};
+    
+[
+    uuid(833E4010-AFF7-4AC3-AAC2-9F24C1457BCE),
+    helpstring("PCHService Class")
+]
+coclass PCHService
+{
+    [default] interface IPCHService;
+}
+ 
+[
+    uuid(3C3A70A7-A468-49B9-8ADA-28E11FCCAD5D),
+    helpstring("RASrv Class")
+]
+coclass RASrv
+{
+    [default] interface IRASrv;
+};

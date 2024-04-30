@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The VDS_DISK_STATUS enumeration defines the status of a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_DISK_STATUS
+ {
+   VDS_DS_UNKNOWN = 0x00000000,
+   VDS_DS_ONLINE = 0x00000001,
+   VDS_DS_NOT_READY = 0x00000002,
+   VDS_DS_NO_MEDIA = 0x00000003,
+   VDS_DS_OFFLINE = 0x00000004,
+   VDS_DS_FAILED = 0x00000005,
+   VDS_DS_MISSING = 0x00000006
+ } VDS_DISK_STATUS;
+</pre></div>
+</dd></dl><p><b>VDS_DS_UNKNOWN:  </b>The disk status is unknown.</p><p><b>VDS_DS_ONLINE:  </b>The disk is <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_783ae2e4-7c04-40ba-a974-f95a30aa1ab2" data-linktype="relative-path">online</a></span>.</p><p><b>VDS_DS_NOT_READY:  </b>The disk is not ready.</p><p><b>VDS_DS_NO_MEDIA:  </b>The disk has no media.</p><p><b>VDS_DS_OFFLINE:  </b>The disk is <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_e42c8573-c14f-4a3d-bd1e-549aa1f7ec13" data-linktype="relative-path">offline</a></span>.
+Offline disks have no <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> devices
+exposed.</p><p><b>VDS_DS_FAILED:  </b>The disk failed.</p><p><b>VDS_DS_MISSING:  </b>The disk is missing; it is no
+longer available to the operating system.</p></div>

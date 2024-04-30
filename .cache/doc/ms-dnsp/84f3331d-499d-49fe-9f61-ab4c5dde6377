@@ -1,0 +1,129 @@
+<div class="content"><p> </p><p>In the <b>DNS_RPC_SERVER_INFO_DOTNET</b> structure all
+fields have same definition as specified in <b>DNS_RPC_SERVER_INFO_W2K</b>
+(section <span><a href="130bd2ca-0764-4ea6-9965-53ca15dd6ed2" data-linktype="relative-path">2.2.4.2.2.1</a></span>), with
+the following exceptions:<a id="Appendix_A_Target_32"></a><a aria-label="Product behavior note 32" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_32" data-linktype="relative-path">&lt;32&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcServerInfoDotNet {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   DWORD dwVersion;
+   UCHAR fBootMethod;
+   BOOLEAN fAdminConfigured;
+   BOOLEAN fAllowUpdate;
+   BOOLEAN fDsAvailable;
+   [string] char* pszServerName;
+   [string] wchar_t* pszDsContainer;
+   PIP4_ARRAY aipServerAddrs;
+   PIP4_ARRAY aipListenAddrs;
+   PIP4_ARRAY aipForwarders;
+   PIP4_ARRAY aipLogFilter;
+   [string] wchar_t* pwszLogFilePath;
+   [string] char* pszDomainName;
+   [string] char* pszForestName;
+   [string] char* pszDomainDirectoryPartition;
+   [string] char* pszForestDirectoryPartition;
+   [string] char* pExtensions[6];
+   DWORD dwLogLevel;
+   DWORD dwDebugLevel;
+   DWORD dwForwardTimeout;
+   DWORD dwRpcProtocol;
+   DWORD dwNameCheckFlag;
+   DWORD cAddressAnswerLimit;
+   DWORD dwRecursionRetry;
+   DWORD dwRecursionTimeout;
+   DWORD dwMaxCacheTtl;
+   DWORD dwDsPollingInterval;
+   DWORD dwLocalNetPriorityNetMask;
+   DWORD dwScavengingInterval;
+   DWORD dwDefaultRefreshInterval;
+   DWORD dwDefaultNoRefreshInterval;
+   DWORD dwLastScavengeTime;
+   DWORD dwEventLogLevel;
+   DWORD dwLogFileMaxSize;
+   DWORD dwDsForestVersion;
+   DWORD dwDsDomainVersion;
+   DWORD dwDsDsaVersion;
+   DWORD dwReserveArray[4];
+   BOOLEAN fAutoReverseZones;
+   BOOLEAN fAutoCacheUpdate;
+   BOOLEAN fRecurseAfterForwarding;
+   BOOLEAN fForwardDelegations;
+   BOOLEAN fNoRecursion;
+   BOOLEAN fSecureResponses;
+   BOOLEAN fRoundRobin;
+   BOOLEAN fLocalNetPriority;
+   BOOLEAN fBindSecondaries;
+   BOOLEAN fWriteAuthorityNs;
+   BOOLEAN fStrictFileParsing;
+   BOOLEAN fLooseWildcarding;
+   BOOLEAN fDefaultAgingState;
+   BOOLEAN fReserveArray[15];
+ } DNS_RPC_SERVER_INFO_DOTNET,
+  *PDNS_RPC_SERVER_INFO_DOTNET;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The DNS management
+structure version number. The following are possible values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Structure is of type DNS_RPC_SERVER_INFO_DOTNET
+  (section 2.2.4.2.2.2).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Structure is of type DNS_RPC_SERVER_INFO_LONGHORN
+  (section <span><a href="12233dd4-dd64-4b1c-95fd-6a566e529ac9" data-linktype="relative-path">2.2.4.2.2.3</a></span>).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwReserved0:</b> This field is reserved for
+future use. Senders MUST set this to zero and it MUST be ignored by receiver.</p><p><b>aipLogFilter:</b> The list of IP addresses
+used for debug log filtering. The DNS server will log DNS traffic that is sent
+to or received from for these IP addresses and will not log DNS traffic to or
+from other IP addresses. If this value is set to NULL then the DNS server will
+not perform IP filtering when logging DNS traffic.</p><p><b>pwszLogFilePath:</b> A pointer to a
+null-terminated <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+contains an absolute pathname or relative pathname or filename for the
+operational log file on the DNS server. If this value is set to NULL, the log
+SHOULD be logged to an implementation specific log file.</p><p><b>pszDomainName:</b> A pointer to a
+null-terminated UTF-8 string that contains the name of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_04fd0982-6bb6-44f1-817e-795715049c50" data-linktype="relative-path">directory
+server</a></span> domain to which the DNS server belongs if directory server is
+available. This value will be NULL if no directory server is available.</p><p><b>pszForestName:</b> A pointer to a
+null-terminated UTF-8 string that contains the name of the directory server <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a></span>
+to which the DNS server belongs if directory server is available. This value
+will be NULL if no directory server is available.</p><p><b>pszDomainDirectoryPartition:</b> A pointer to
+a null-terminated UTF-8 string that contains the base name for the domain wide
+DNS <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_68dc613a-d602-41ae-9acc-76ffe97877c4" data-linktype="relative-path">application
+directory partition</a></span>.</p><p><b>pszForestDirectoryPartition:</b> A pointer to
+a null-terminated UTF-8 string that contains the base name for the forest-wide
+DNS application directory partition. </p><p><b>pExtensions:</b> Reserved for future use.
+Senders MUST set this to NULL and it MUST be ignored by the receiver. </p><p><b>dwLocalNetPriorityNetMask:</b> The <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_44652747-fc40-48ea-a0d6-7650b6e4a3aa" data-linktype="relative-path">net mask</a></span>
+used by the DNS server to prioritize address records in responses when the
+server is configured to enforce LocalNetPriority as mentioned above. </p><p><b>dwLastScavengeTime:</b> The timestamp at
+which the last <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_345c3de7-adfa-4386-9ba5-f5f572af489c" data-linktype="relative-path">scavenging</a></span> cycle was
+executed on the DNS server. If this value is set to 0 then no scavenging cycle
+has been run since the server was last started. </p><p><b>dwEventLogLevel:</b> This value indicates
+what level of events will be logged by the DNS server. This value MUST be set
+to one of the combination of the possible values for this defined in
+DNS_EVENTLOG_TYPES (section <span><a href="9422eb05-ebf5-4b86-ac1b-e79ebf2e3b37" data-linktype="relative-path">2.2.9.1.2</a></span>). </p><p><b>dwLogFileMaxSize:</b> The maximum allowed
+size, in bytes, for the log file.</p><p><b>dwDsForestVersion:</b> This value indicates
+the directory server forest version being used by the DNS server, stored in the
+ForceForestBehaviorVersion property.</p><p><b>dwDsDomainVersion:</b> This value indicates
+the directory server domain version being used by the DNS server, stored in the
+ForceDomainBehaviorVersion property.</p><p><b>dwDsDsaVersion:</b> This value indicates the
+directory server local server version being used by the DNS server, stored in
+the ForceDsaBehaviorVersion property.</p></div>

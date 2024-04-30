@@ -1,0 +1,617 @@
+import "ms-dtyp.idl";
+import "ms-oaut.idl";
+ 
+typedef struct
+{
+  DWORD dataType;
+  ULONG cbSize;
+  DWORD flags;
+} PropertyMeta;
+ 
+ 
+typedef enum
+{
+  eCT_UNKNOWN = 0x00000000,
+  eCT_32BIT = 0x00000001, 
+  eCT_64BIT = 0x00000002,
+  eCT_NATIVE = 0x00001000
+} eComponentType;
+ 
+ 
+typedef struct
+{
+  DWORD dwSRPLevel;
+  [string] WCHAR* wszFriendlyName;
+} SRPLevelInfo;
+ 
+ 
+typedef enum
+{
+  css_lb = 1
+} CatSrvServices;
+ 
+ 
+typedef enum
+{
+  css_serviceStopped = 0,
+  css_serviceStartPending = 1,
+  css_serviceStopPending = 2,
+  css_serviceRunning = 3,
+  css_serviceContinuePending = 4,
+  css_servicePausePending = 5,
+  css_servicePaused = 6,
+  css_serviceUnknownState = 7
+} CatSrvServiceState;
+ 
+ 
+typedef struct
+{
+  GUID ConglomerationID;
+  GUID PartitionID;
+  GUID ContainerID;
+  DWORD dwProcessID;
+  BOOL bPaused;
+  BOOL bRecycled;
+} InstanceContainer;
+ 
+ 
+[
+    object,
+    uuid(182C40FA-32E4-11D0-818B-00A0C9231C29),
+    pointer_default(unique)
+]
+interface ICatalogSession: IUnknown
+{
+  HRESULT Opnum3NotUsedOnWire();
+  HRESULT Opnum4NotUsedOnWire();
+  HRESULT Opnum5NotUsedOnWire();
+  HRESULT Opnum6NotUsedOnWire();
+ 
+  HRESULT InitializeSession(
+    [in] float flVerLower,
+    [in] float flVerUpper,
+    [in] long reserved,
+    [out] float* pflVerSession
+  );
+ 
+  HRESULT GetServerInformation(
+    [out] long* plReserved1,
+    [out] long* plReserved2,
+    [out] long* plReserved3,
+    [out] long* plMultiplePartitionSupport,
+    [out] long* plReserved4,
+    [out] long* plReserved5
+  );
+};
+ 
+ 
+[
+    object,
+    uuid(1D118904-94B3-4A64-9FA6-ED432666A7B9),
+    pointer_default(unique)
+]
+interface ICatalog64BitSupport: IUnknown
+{
+  HRESULT SupportsMultipleBitness(
+    [out] BOOL* pbSupportsMultipleBitness
+  );
+ 
+  HRESULT Initialize64BitQueryCellSupport(
+    [in] BOOL bClientSupports64BitQueryCells,
+    [out] BOOL* pbServerSupports64BitQueryCells
+  );
+};
+ 
+ 
+[
+    object,
+    uuid(A8927A41-D3CE-11D1-8472-006008B0E5CA),
+    pointer_default(unique)
+]
+interface ICatalogTableInfo: IUnknown
+{
+  HRESULT GetClientTableInfo(
+    [in] GUID* pCatalogIdentifier,
+    [in] GUID* pTableIdentifier,
+    [in] DWORD tableFlags,
+    [in, size_is(cbQueryCellArray), unique] char* pQueryCellArray,
+    [in] ULONG cbQueryCellArray,
+    [in, size_is(cbQueryComparison), unique] char* pQueryComparison,
+    [in] ULONG cbQueryComparison,
+    [in] DWORD eQueryFormat,
+    [out] GUID* pRequiredFixedGuid,
+    [out, size_is( , *pcbReserved1)] char** ppReserved1,
+    [out] ULONG* pcbReserved1,
+    [out, size_is( , *pcAuxiliaryGuid)] GUID** ppAuxiliaryGuid,
+    [out] ULONG* pcAuxiliaryGuid,
+    [out, size_is( , *pcProperties)] PropertyMeta** ppPropertyMeta,
+    [out] ULONG* pcProperties,
+    [out] IID* piid,
+    [out, iid_is(piid)] void** pItf,
+    [out, size_is( , *pcbReserved2)] char** ppReserved2,
+    [out] ULONG* pcbReserved2
+  );
+};
+ 
+ 
+[
+    object,
+    uuid(0E3D6630-B46B-11D1-9D2D-006008B0E5CA),
+    pointer_default(unique)
+]
+interface ICatalogTableRead: IUnknown
+{
+  HRESULT ReadTable(
+    [in] GUID* pCatalogIdentifier,
+    [in] GUID* pTableIdentifier,
+    [in] DWORD tableFlags,
+    [in, size_is(cbQueryCellArray), unique] char* pQueryCellArray,
+    [in] ULONG cbQueryCellArray,
+    [in, size_is(cbQueryComparison), unique] char* pQueryComparison,
+    [in] ULONG cbQueryComparison,
+    [in] DWORD eQueryFormat,
+    [out, size_is( , *pcbTableDataFixed)] char** ppTableDataFixed,
+    [out] ULONG* pcbTableDataFixed,
+    [out, size_is( , *pcbTableDataVariable)] char** ppTableDataVariable,
+    [out] ULONG* pcbTableDataVariable,
+    [out, size_is( , *pcbTableDetailedErrors)] char** ppTableDetailedErrors,
+    [out] ULONG* pcbTableDetailedErrors,
+    [out, size_is( , *pcbReserved1)] char** ppReserved1,
+    [out] ULONG* pcbReserved1,
+    [out, size_is( , *pcbReserved2)] char** ppReserved2,
+    [out] ULONG* pcbReserved2
+  );
+};
+ 
+ 
+[
+    object,
+    uuid(0E3D6631-B46B-11D1-9D2D-006008B0E5CA),
+    pointer_default(unique)
+]
+interface ICatalogTableWrite: IUnknown
+{
+  HRESULT WriteTable(
+    [in] GUID* pCatalogIdentifier,
+    [in] GUID* pTableIdentifier,
+    [in] DWORD tableFlags,
+    [in, size_is(cbQueryCellArray), unique] char* pQueryCellArray,
+    [in] ULONG cbQueryCellArray,
+    [in, size_is(cbQueryComparison), unique] char* pQueryComparison,
+    [in] ULONG cbQueryComparison,
+    [in] DWORD eQueryFormat,
+    [in, size_is(cbTableDataFixedWrite)] char* pTableDataFixedWrite,
+    [in] ULONG cbTableDataFixedWrite,
+    [in, size_is(cbTableDataVariable)] char* pTableDataVariable,
+    [in] ULONG cbTableDataVariable,
+    [in, size_is(cbReserved1)] char* pReserved1,
+    [in] ULONG cbReserved1,
+    [in, size_is(cbReserved2)] char* pReserved2,
+    [in] ULONG cbReserved2,
+    [in, size_is(cbReserved3)] char* pReserved3,
+    [in] ULONG cbReserved3,
+    [out, size_is( , *pcbTableDetailedErrors)] char** ppTableDetailedErrors,
+    [out] ULONG* pcbTableDetailedErrors
+  );
+};
+ 
+ 
+[
+    object,
+    uuid(8DB2180E-BD29-11D1-8B7E-00C04FD7A924),
+    pointer_default(unique)
+]
+interface IRegister: IUnknown
+{
+  HRESULT RegisterModule(
+    [in] GUID ConglomerationIdentifier,
+    [in, string, size_is(cModules,)] LPWSTR* ppModules,
+    [in] DWORD cModules,
+    [in] DWORD dwFlags,
+    [in, size_is(cRequested), unique] GUID* pRequestedCLSIDs,
+    [in] DWORD cRequested,
+    [out, size_is(,cModules)] DWORD** ppModuleFlags,
+    [out] DWORD* pcResults,
+    [out, size_is(,*pcResults)] GUID** ppResultCLSIDs,
+    [out, string, size_is(,*pcResults)] LPWSTR** ppResultNames,
+    [out, size_is(,*pcResults)] DWORD** ppResultFlags,
+    [out, size_is(,*pcResults)] LONG** ppResultHRs
+  );
+ 
+  HRESULT Opnum4NotUsedOnWire();
+};
+ 
+ 
+[
+    object,
+    uuid(971668DC-C3FE-4EA1-9643-0C7230F494A1),
+    pointer_default(unique)
+]
+interface IRegister2: IUnknown
+{
+  HRESULT CreateFullConfiguration(
+    [in, string] LPCWSTR pwszConglomerationIdOrName,
+    [in, string] LPCWSTR pwszCLSIDOrProgId,
+    [in] eComponentType ctComponentType
+  );
+ 
+  HRESULT CreateLegacyConfiguration(
+    [in, string] LPCWSTR pwszConglomerationIdOrName,
+    [in, string] LPCWSTR pwszCLSIDOrProgId,
+    [in] eComponentType ctComponentType
+  );
+ 
+  HRESULT PromoteLegacyConfiguration(
+    [in, string] LPCWSTR pwszConglomerationIdOrName,
+    [in, string] LPCWSTR pwszCLSIDOrProgId,
+    [in] eComponentType ctComponentType
+  );
+ 
+  HRESULT Opnum6NotUsedOnWire();
+  HRESULT Opnum7NotUsedOnWire();
+ 
+  HRESULT RegisterModule2(
+    [in] GUID ConglomerationIdentifier,
+    [in] GUID PartitionIdentifier,
+    [in, string, size_is(cModules,)] LPWSTR* ppModules,
+    [in] DWORD cModules,
+    [in] DWORD dwFlags,
+    [in, size_is(cRequested), unique] GUID* pRequestedCLSIDs,
+    [in] DWORD cRequested,
+    [out, size_is(,cModules)] DWORD** ppModuleFlags,
+    [out] DWORD* pcResults,
+    [out, size_is(,*pcResults)] GUID** ppResultCLSIDs,
+    [out, string, size_is(,*pcResults)] LPWSTR** ppResultNames,
+    [out, size_is(,*pcResults)] DWORD** ppResultFlags,
+    [out, size_is(,*pcResults)] LONG** ppResultHRs
+  );
+ 
+  HRESULT Opnum9NotUsedOnWire();
+};
+ 
+ 
+[
+    object,
+    uuid(C2BE6970-DF9E-11D1-8B87-00C04FD7A924),
+    pointer_default(unique)
+]
+interface IImport: IUnknown
+{
+  HRESULT ImportFromFile(
+    [in, string, unique] WCHAR* pwszModuleDestination,
+    [in, string] WCHAR* pwszInstallerPackage,
+    [in, string, unique] WCHAR* pwszUser,
+    [in, string, unique] WCHAR* pwszPassword,
+    [in, string, unique] WCHAR* pwszRemoteServerName,
+    [in] DWORD dwFlags,
+    [in] GUID* reserved1,
+    [in] DWORD reserved2,
+    [out] DWORD* pcModules,
+    [out, size_is(,*pcModules)] DWORD** ppModuleFlags,
+    [out, string, size_is(,*pcModules)] LPWSTR** ppModules,
+    [out] DWORD* pcComponents,
+    [out, size_is(,*pcComponents)] GUID** ppResultCLSIDs,
+    [out, string, size_is(,*pcComponents)] LPWSTR** ppResultNames,
+    [out, size_is(,*pcComponents)] DWORD** ppResultFlags,
+    [out, size_is(,*pcComponents)] LONG** ppResultHRs
+  );
+ 
+  HRESULT QueryFile(
+    [in, string] WCHAR* pwszInstallerPackage,
+    [out] DWORD* pdwConglomerations,
+    [out, string, size_is(, *pdwConglomerations)] LPWSTR** ppNames,
+    [out, string, size_is(, *pdwConglomerations)] LPWSTR** ppDescriptions,
+    [out] DWORD* pdwUsers,
+    [out] DWORD* pdwIsProxy,
+    [out] DWORD* pcModules,
+    [out, string, size_is(,*pcModules)] LPWSTR** ppModules
+  );
+ 
+  HRESULT Opnum5NotUsedOnWire();
+  HRESULT Opnum6NotUsedOnWire();
+};
+ 
+ 
+[
+    object,
+    uuid(1F7B1697-ECB2-4CBB-8A0E-75C427F4A6F0),
+    pointer_default(unique)
+]
+interface IImport2: IUnknown
+{
+  HRESULT SetPartition(
+    [in] GUID* pPartitionIdentifier,
+    [out] GUID* pReserved
+  );
+ 
+  HRESULT Opnum4NotUsedOnWire();
+  HRESULT Opnum5NotUsedOnWire();
+};
+ 
+ 
+[
+    object,
+    uuid(CFADAC84-E12C-11D1-B34C-00C04F990D54),
+    pointer_default(unique)
+]
+interface IExport: IUnknown
+{
+  HRESULT ExportConglomeration(
+    [in] GUID* pConglomerationIdentifier,
+    [in] LPCWSTR pwszInstallerPackage,
+    [in] LPCWSTR pwszReserved,
+    [in] DWORD dwFlags
+  );
+ 
+  HRESULT Opnum4NotUsedOnWire();
+  HRESULT Opnum5NotUsedOnWire();
+  HRESULT Opnum6NotUsedOnWire();
+};
+ 
+ 
+[
+    object,
+    uuid(F131EA3E-B7BE-480E-A60D-51CB2785779E),
+    pointer_default(unique)
+]
+interface IExport2: IUnknown
+{
+  HRESULT ExportPartition(
+    [in] GUID* pPartitionIdentifier,
+    [in] LPCWSTR pwszInstallerPackage,
+    [in] LPCWSTR pwszReserved,
+    [in] DWORD dwFlags
+  );
+};
+ 
+ 
+[
+    object,
+    uuid(7F43B400-1A0E-4D57-BBC9-6B0C65F7A889),
+    pointer_default(unique)
+]
+interface IAlternateLaunch: IUnknown
+{
+  HRESULT CreateConfiguration(
+    [in] GUID ConglomerationIdentifier,
+    [in] BSTR bstrConfigurationName,
+    [in] DWORD dwStartType,
+    [in] DWORD dwErrorControl,
+    [in] BSTR bstrDependencies,
+    [in] BSTR bstrRunAs,
+    [in] BSTR bstrPassword,
+    [in] VARIANT_BOOL bDesktopOk
+  );
+ 
+  HRESULT DeleteConfiguration(
+    [in] GUID ConglomerationIdentifier
+  );
+};
+ 
+ 
+[
+    object,
+    uuid(456129E2-1078-11D2-B0F9-00805FC73204),
+    pointer_default(unique)
+]
+interface ICatalogUtils: IUnknown
+{
+  HRESULT ValidateUser(
+    [in, string, unique] LPWSTR pwszPrincipalName,
+    [in, string, unique] LPWSTR pwszPassword 
+  );
+ 
+  HRESULT WaitForEndWrites();
+ 
+  HRESULT GetEventClassesForIID(
+    [in, string, unique] LPWSTR wszIID,
+    [out] DWORD* pcClasses,
+    [out, string, size_is(, *pcClasses)] LPWSTR** pawszCLSIDs,
+    [out, string, size_is(, *pcClasses)] LPWSTR** pawszProgIDs,
+    [out, string, size_is(, *pcClasses)] LPWSTR** pawszDescriptions
+  );
+};
+ 
+ 
+[
+    object,
+    uuid(C726744E-5735-4F08-8286-C510EE638FB6),
+    pointer_default(unique)
+]
+interface ICatalogUtils2: IUnknown
+{
+  HRESULT CopyConglomerations(
+    [in, string] LPCWSTR pwszSourcePartition,
+    [in, string] LPCWSTR pwszDestPartition,
+    [in] DWORD cConglomerations,
+    [in, string, size_is(cConglomerations,)] LPCWSTR* ppwszConglomerationNamesOrIds
+  );
+ 
+  HRESULT CopyComponentConfiguration(
+    [in, string] LPCWSTR pwszSourceConglomeration,
+    [in, string] LPCWSTR pwszComponent,
+    [in, string] LPCWSTR pwszDestConglomeration
+  );
+ 
+  HRESULT AliasComponent(
+    [in, string] LPCWSTR pwszSourceConglomeration,
+    [in, string] LPCWSTR pwszComponent,
+    [in, string] LPCWSTR pwszDestConglomeration,
+    [in] GUID* pNewCLSID,
+    [in, string] LPCWSTR pwszNewProgID
+  );
+ 
+  HRESULT MoveComponentConfiguration(
+    [in, string] LPCWSTR pwszSourceConglomeration,
+    [in, string] LPCWSTR pwszComponent,
+    [in, string] LPCWSTR pwszDestinationConglomeration
+  );
+ 
+  HRESULT GetEventClassesForIID2(
+    [in, string, unique] LPWSTR wszIID, 
+    [in] GUID* PartitionId,
+    [out] DWORD* pcClasses, 
+    [out, string, size_is(, *pcClasses)] LPWSTR** pawszCLSIDs,
+    [out, string, size_is(, *pcClasses)] LPWSTR** pawszProgIDs, 
+    [out, string, size_is(, *pcClasses)] LPWSTR** pawszDescriptions,
+    [out, string, size_is(, *pcClasses)] LPWSTR** pawszConglomerationIDs,
+    [out, size_is(, *pcClasses)] DWORD** padwIsPrivate
+  );
+ 
+  HRESULT IsSafeToDelete(
+    [in] BSTR bstrFile,
+    [out, retval] long* pInUse
+  );
+ 
+  HRESULT FlushPartitionCache();
+ 
+  HRESULT EnumerateSRPLevels(
+    [in] LCID Locale,
+    [out] int *cLevels,
+    [out, size_is(,*cLevels)] SRPLevelInfo **aSRPLevels
+  );
+ 
+  HRESULT GetComponentVersions(
+    [in]  LPCWSTR  pwszClsidOrProgId,
+    [out] DWORD*   pdwVersions,
+    [out, size_is(, *pdwVersions)] GUID** ppPartitionIDs,
+    [out, size_is(, *pdwVersions)] GUID** ppConglomerationIDs,
+    [out, size_is(, *pdwVersions)] BOOL** ppIsPrivate,
+    [out, size_is(, *pdwVersions)] LONG** ppBitness
+  );
+};
+ 
+ 
+[
+    object,
+    uuid(47CDE9A1-0BF6-11D2-8016-00C04FB9988E),
+    pointer_default(unique)
+]
+interface ICapabilitySupport: IUnknown
+{
+  HRESULT Start(
+    [in] CatSrvServices i_css
+  );
+ 
+  HRESULT Stop(
+    [in] CatSrvServices i_css
+  );
+ 
+  HRESULT Opnum5NotUsedOnWire();
+  HRESULT Opnum6NotUsedOnWire();
+ 
+  HRESULT IsInstalled(
+    [in] CatSrvServices i_css,
+    [out] ULONG* pulStatus
+  );
+ 
+  HRESULT IsRunning(
+    [in] CatSrvServices i_css,
+    [out] CatSrvServiceState* pulStates
+  );
+ 
+  HRESULT Opnum9NotUsedOnWire();
+};
+ 
+ 
+[
+    object,
+    uuid(3F3B1B86-DBBE-11D1-9DA6-00805F85CFE3),
+    pointer_default(unique)
+]
+interface IContainerControl: IUnknown
+{
+  HRESULT CreateContainer(
+    [in] GUID* pConglomerationIdentifier
+  );
+ 
+  HRESULT ShutdownContainers(
+    [in] GUID* pConglomerationIdentifier
+  );
+ 
+  HRESULT RefreshComponents();
+};
+ 
+ 
+[
+    object,
+    uuid(6C935649-30A6-4211-8687-C4C83E5FE1C7),
+    pointer_default(unique)
+]
+interface IContainerControl2: IUnknown
+{
+  HRESULT ShutdownContainer(
+    [in] GUID* ContainerIdentifier
+  );
+ 
+  HRESULT PauseContainer(
+    [in] GUID* ContainerIdentifier
+  );
+ 
+  HRESULT ResumeContainer(
+    [in] GUID* ContainerIdentifier
+  );
+ 
+  HRESULT IsContainerPaused(
+    [in] GUID* ContainerIdentifier,
+    [out] BOOL* bPaused
+  );
+ 
+  HRESULT GetRunningContainers(
+    [in] GUID* PartitionId, 
+    [in] GUID* ConglomerationId, 
+    [out] DWORD* pdwNumContainers, 
+    [out, size_is(,*pdwNumContainers)] InstanceContainer** ppContainers
+  );
+ 
+  HRESULT GetContainerIDFromProcessID(
+    [in] DWORD dwPID,
+    [out, retval] BSTR* pbstrContainerID
+  );
+ 
+  HRESULT RecycleContainer(
+    [in] GUID* ContainerIdentifier,
+    [in] long lReasonCode
+  );
+ 
+  HRESULT GetContainerIDFromConglomerationID(
+    [in] GUID* ConglomerationIdentifier,
+    [out] GUID* ContainerIdentifier
+  );
+};
+ 
+ 
+[
+  object,
+  uuid(98315903-7BE5-11D2-ADC1-00A02463D6E7),
+  pointer_default(unique)
+]
+interface IReplicationUtil: IUnknown
+{
+  HRESULT CreateShare(
+    [in] LPCWSTR pwszShareName,
+    [in] LPCWSTR pwszPath
+  );
+ 
+  HRESULT CreateEmptyDir(
+    [in] LPCWSTR pwszPath
+  );
+ 
+  HRESULT RemoveShare(
+    [in] LPCWSTR pwszShareName
+  );
+ 
+  HRESULT BeginReplicationAsTarget(
+    [in] LPCWSTR pwszBaseReplicationDir
+  );
+ 
+  HRESULT QueryConglomerationPassword(
+    [in] REFGUID ConglomerationId,
+    [out, size_is( , *pcbPassword)] char** ppvPassword,
+    [out] ULONG* pcbPassword
+  );
+ 
+  HRESULT CreateReplicationDir(
+    [out] LPWSTR* ppwszBaseReplicationDir
+  );
+};

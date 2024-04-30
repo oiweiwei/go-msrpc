@@ -1,0 +1,37 @@
+<div class="content"><p>The RCloseNotifyHandle method<a id="Appendix_A_Target_77"></a><a aria-label="Product behavior note 77" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_77" data-linktype="relative-path">&lt;77&gt;</a>
+unregisters the client from receiving future notifications via the <a href="7020f3e1-17b9-4956-80dc-583ea1509fe6" data-linktype="relative-path">RGetNotifyResults (section 3.1.4.44)</a>
+method from the server for specified status changes on a specified service. </p><dl>
+<dd>
+<div><pre> DWORD RCloseNotifyHandle(
+   [in, out] LPSC_NOTIFY_RPC_HANDLE phNotify,
+   [out] PBOOL pfApcFired
+ );
+</pre></div>
+</dd></dl><p><b>phNotify: </b>An <a href="40e0fec2-d70a-4182-9a45-b5da7e2d0943" data-linktype="relative-path">SC_NOTIFY_RPC_HANDLE (section 2.2.6)</a>
+data type that defines a handle to the notification status associated with the
+client. This is the handle returned by an <a href="b4cb2447-1f8c-4dee-a78e-209bdacadea6" data-linktype="relative-path">RNotifyServiceStatusChange</a>
+call.</p><p><b>pfApcFired: </b>Not used.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns the following error code.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>6</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The handle is no longer valid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation the server MUST close the handle specified in the <i>phNotify</i>
+parameter and stop notifying the client about status changes for the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_1fbb7936-8437-4e3d-b62f-47df3be07721" data-linktype="relative-path">service record</a> associated
+with the handle. </p></div>

@@ -1,0 +1,20 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/50d17755-c6b8-40bd-8cac-bd6cfa31adf2" data-linktype="external">msdn link</a></p><p>The SAMPR_USER_INTERNAL1_INFORMATION structure holds the
+hashed form of a cleartext password.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_USER_INTERNAL1_INFORMATION {
+   ENCRYPTED_NT_OWF_PASSWORD EncryptedNtOwfPassword;
+   ENCRYPTED_LM_OWF_PASSWORD EncryptedLmOwfPassword;
+   unsigned char NtPasswordPresent;
+   unsigned char LmPasswordPresent;
+   unsigned char PasswordExpired;
+ } SAMPR_USER_INTERNAL1_INFORMATION,
+  *PSAMPR_USER_INTERNAL1_INFORMATION;
+</pre></div>
+</dd></dl><p><b>EncryptedNtOwfPassword:</b>  An <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_7eb5bce8-bdc5-4d61-a3d9-263ada14ba1f" data-linktype="relative-path">NT hash</a> encrypted with the
+16-byte SMB session key obtained as specified in either section <a href="c718b655-919f-43a8-8897-be080553e746" data-linktype="relative-path">3.1.2.4</a> or section <a href="a26ab2cb-3e09-4980-9f2d-8d75f73005ae" data-linktype="relative-path">3.2.2.3</a>.</p><p><b>EncryptedLmOwfPassword:</b>  An <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_58a72159-b1e9-4770-9b06-d7a6b16279a8" data-linktype="relative-path">LM hash</a> encrypted with the
+16-byte SMB session key obtained as specified in either section 3.1.2.4 or
+section 3.2.2.3.</p><p><b>NtPasswordPresent:</b>  If nonzero,
+indicates that the <b>EncryptedNtOwfPassword</b> value is valid; otherwise, <b>EncryptedNtOwfPassword</b>
+MUST be ignored.</p><p><b>LmPasswordPresent:</b>  If nonzero,
+indicates that the <b>EncryptedLmOwfPassword</b> value is valid; otherwise, <b>EncryptedLmOwfPassword</b>
+MUST be ignored.</p><p><b>PasswordExpired:</b>  See section <a href="899d68a9-8145-4334-a52f-2fbd92bec94f" data-linktype="relative-path">2.2.6.1</a>.</p></div>

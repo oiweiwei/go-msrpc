@@ -1,0 +1,58 @@
+<div class="content"><p>The AddNotification method adds a <b>notification period</b>
+to the file management job&#39;s list of <b>notification periods</b>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_FILE_MANAGEMENT_JOB | 0x04)] HRESULT AddNotification(
+   [in] long days
+ );
+</pre></div>
+</dd></dl><p><b>days: </b>Contains the value of the <b>notification
+period</b> to add to the file management job.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045303</p>
+  <p>FSRM_E_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>The object already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>days</i> parameter is not a valid value; it is
+  less than zero.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that the <i>days</i> parameter is greater than or equal to
+0.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST perform the following steps in sequence:</p><ul><li><p><span><span> 
+</span></span>If the file management job&#39;s list of <b>notification periods</b>
+contains a <b>Notification period</b> whose <b>Notification Interval</b> is
+equivalent to <i>days</i>, the server MUST return FSRM_E_ALREADY_EXISTS.</p>
+</li><li><p><span><span> 
+</span></span>Create a new <b>Notification period</b> object, and set its
+members as follows:</p>
+<ul><li><p><span><span>  </span></span><b>Notification
+Interval:</b> Set to the value of <i>days</i>.</p>
+</li><li><p><span><span>  </span></span><b>Notification
+period.Notifications:</b> Set to an empty list.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Add the new <b>Notification period</b> to the file management
+job&#39;s list of <b>notification periods</b>.</p>
+</li></ul></div>

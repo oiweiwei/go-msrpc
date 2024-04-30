@@ -1,0 +1,27 @@
+<div class="content"><p>The Local Security Authority (Domain Policy) Remote Protocol
+is used to manage various machine and <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> security policies.
+All versions of Windows NT operating system–based products, in all
+configurations, implement and listen on the server side of this protocol.
+However, not all operations are meaningful in all configurations.</p><p>This protocol, with minor exceptions, enables remote
+policy-management scenarios. Therefore, the majority of this interface does not
+need to be implemented to achieve Windows client-to-server (<a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a>
+configuration and otherwise) interoperability, as defined by the ability for
+Windows clients to retrieve policy settings from servers. </p><p>Policy settings controlled by this protocol relate to the
+following:</p><ul><li><p><span><span> 
+</span></span><b>Account objects:</b> The rights and <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privileges</a> that <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principals</a> have on
+the server.</p>
+</li><li><p><span><span> 
+</span></span><b>Secret objects:</b> Mechanisms that securely store data on the
+server.</p>
+</li><li><p><span><span> 
+</span></span><b>Trusted domain objects:</b> Mechanisms that the Windows
+operating system uses for describing <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a> relationships between
+domains and <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forests</a>.</p>
+</li><li><p><span><span> 
+</span></span>Other miscellaneous settings, such as lifetimes of Kerberos
+tickets, states of domain controller (backup or primary), and other unrelated
+pieces of policy.</p>
+</li></ul><p>All of these types of policy are addressed in sections of
+this document that specify the server data model.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

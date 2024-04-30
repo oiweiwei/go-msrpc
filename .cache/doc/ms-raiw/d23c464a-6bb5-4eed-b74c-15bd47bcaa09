@@ -1,0 +1,106 @@
+<div class="content"><p>The WINSINTF_STAT_T structure defines counters, configured
+timestamps, the pull replication statistics for a given <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a> server. This structure
+is used by the structure <a href="88f3968f-9516-41a4-80b4-7c0e7afb0676" data-linktype="relative-path">WINSINTF_RESULTS_T (section 2.2.2.7)</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSINTF_STAT_T {
+   struct {
+     DWORD NoOfUniqueReg;
+     DWORD NoOfGroupReg;
+     DWORD NoOfQueries;
+     DWORD NoOfSuccQueries;
+     DWORD NoOfFailQueries;
+     DWORD NoOfUniqueRef;
+     DWORD NoOfGroupRef;
+     DWORD NoOfRel;
+     DWORD NoOfSuccRel;
+     DWORD NoOfFailRel;
+     DWORD NoOfUniqueCnf;
+     DWORD NoOfGroupCnf;
+   } Counters;
+   struct {
+     SYSTEMTIME WINSStartTime;
+     SYSTEMTIME LastPScvTime;
+     SYSTEMTIME LastATScvTime;
+     SYSTEMTIME LastTombScvTime;
+     SYSTEMTIME LastVerifyScvTime;
+     SYSTEMTIME LastPRplTime;
+     SYSTEMTIME LastATRplTime;
+     SYSTEMTIME LastNTRplTime;
+     SYSTEMTIME LastACTRplTime;
+     SYSTEMTIME LastInitDbTime;
+     SYSTEMTIME CounterResetTime;
+   } TimeStamps;
+   DWORD NoOfPnrs;
+   [unique, size_is(NoOfPnrs)] PWINSINTF_RPL_COUNTERS_T pRplPnrs;
+ } WINSINTF_STAT_T,
+  *PWINSINTF_STAT_T;
+</pre></div>
+</dd></dl><p><b>Counters:</b>  A structure that contains
+32-bit unsigned integer counters, which measure various statistics on a WINS
+server.</p><p><b>NoOfUniqueReg:</b>  The number of unique
+registrations on the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target
+WINS server</a> since the service was started.</p><p><b>NoOfGroupReg:</b>  The number of group
+registrations at the target WINS server since the service was started.</p><p><b>NoOfQueries:</b>  The number of queries
+that clients have performed on the target WINS server to resolve NetBIOS names
+since the service was started. This value is the sum of the values maintained
+in <i>NoOfSuccQueries</i> and <i>NoOfFailQueries</i>.</p><p><b>NoOfSuccQueries:</b>  The number of
+successful <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_48c22952-c015-4198-ba0f-4758434e5d76" data-linktype="relative-path">name resolution</a>
+queries on the target WINS server since the service was started.</p><p><b>NoOfFailQueries:</b>  The number of
+failed name resolution queries on the target WINS server since the service was
+started.</p><p><b>NoOfUniqueRef:</b>  The number of unique
+name refreshes on the target WINS server since the service was started.</p><p><b>NoOfGroupRef:</b>  The number of group
+name refreshes on the target WINS server since the service was started.</p><p><b>NoOfRel:</b>  The number of name
+releases on the target WINS server since the service was started. This value is
+the sum of the values maintained in <i>NoOfSuccRel</i> and <i>NoOfFailRel</i>.</p><p><b>NoOfSuccRel:</b>  The number of
+successful name releases on the target WINS server since the service was
+started.</p><p><b>NoOfFailRel:</b>  The number of failed
+name releases on the target WINS server since the service was started.</p><p><b>NoOfUniqueCnf:</b>  The number of unique
+name conflicts on the target WINS server since the service was started. Unique
+name conflicts can occur in the following cases:</p><dl>
+<dd>
+<p><span>§<span> 
+</span></span>The server is registering or refreshing unique name requests from
+clients.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>The server is replicating unique name records from a partner WINS
+server.</p>
+</dd></dl><p><b>NoOfGroupCnf:</b>  The number of group
+name conflicts on the target WINS server since the service was started. Group
+name conflicts can occur in the following cases:</p><dl>
+<dd>
+<p><span>§<span> 
+</span></span>The server is registering or refreshing unique name requests from
+clients.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>The server is replicating unique name records from a partner WINS
+server.</p>
+</dd></dl><p><b>TimeStamps:</b>   A structure that
+contains data in <a href="../ms-dtyp/2fefe8dd-ab48-4e33-a7d5-7171455a9289" data-linktype="relative-path">SYSTEMTIME</a>
+structures (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section 2.3.13), which reflect the local time zone of the target WINS server.</p><p><b>WINSStartTime:</b>  The time at which
+the WINS service was started on the target WINS server.</p><p><b>LastPScvTime:</b>  The time at which the
+last periodic <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_345c3de7-adfa-4386-9ba5-f5f572af489c" data-linktype="relative-path">scavenging</a>
+operation was done on the target WINS server.</p><p><b>LastATScvTime:</b>  The time at which
+the last administrator-triggered scavenging operation was done on the target
+WINS server.</p><p><b>LastTombScvTime:</b>  The time at which
+the last scavenging operation was done for the replicated tombstone records on
+the target WINS server.</p><p><b>LastVerifyScvTime:</b>  The time at
+which the last verification scavenging operation was done for the replicated
+active records on the target WINS server.</p><p><b>LastPRplTime:</b>  The time at which the
+last periodic pull replication was done on the target WINS server.</p><p><b>LastATRplTime:</b>  The time at which
+the last administrator-triggered pull replication was done on the target WINS
+server.</p><p><b>LastNTRplTime:</b>  This member is not
+set and MUST be ignored on receipt.</p><p><b>LastACTRplTime:</b>  This member is not
+set and MUST be ignored on receipt.</p><p><b>LastInitDbTime:</b>  The time at which
+the last static database initialization was done on the target WINS server.</p><p><b>CounterResetTime:</b>  The last time at
+which the administrator has cleared the success and failure replication
+counters of the target WINS server.</p><p><b>NoOfPnrs:</b>  The number of <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8679bf01-4758-4a91-9966-33eb2c451b02" data-linktype="relative-path">pull partners</a> configured
+for the target WINS server.</p><p><b>pRplPnrs:</b>  A pointer to structures
+that contain the details of successful and failed <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a> counters of
+configured pull partners at the target WINS server, since the time service was
+started; or, the time at which the last reset happened by a call to the method <a href="c2e79733-1de2-43bd-82a6-db6719fbf4ff" data-linktype="relative-path">R_WinsResetCounters (section 3.1.4.12)</a>.
+The number of structures is specified by <b>NoOfPnrs</b>.</p></div>

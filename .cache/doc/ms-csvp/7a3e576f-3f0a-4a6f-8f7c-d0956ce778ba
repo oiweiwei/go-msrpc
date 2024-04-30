@@ -1,0 +1,81 @@
+<div class="content"><p> The <b>STORAGE_IDENTIFIER</b> structure contains an
+identifier for a storage device.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CodeSet</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Type</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>IdentifierSize</p>
+  </td>
+  <td colspan="16">
+  <p>NextOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Association</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Identifier
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>CodeSet (4 bytes): </b> This field has the same
+meaning and possible values as the <b>CODE SET</b> field defined in <a href="https://go.microsoft.com/fwlink/?LinkId=90528" data-linktype="external">[SPC-3]</a> section
+7.6.3.1.</p><p><b>Type (4 bytes): </b> This field has the same
+meaning and possible values as the <b>IDENTIFIER TYPE</b> field defined in
+[SPC-3] section 7.6.3.1.</p><p><b>IdentifierSize (2 bytes): </b> The length, in
+bytes, of the <b>Identifier</b> field.</p><p><b>NextOffset (2 bytes): </b> The offset, in bytes,
+from the start of this structure to the next <b>STORAGE_IDENTIFIER</b>
+structure.</p><p><b>Association (4 bytes): </b> This field has the
+same meaning and possible values as the <b>ASSOCIATION</b> field defined in
+[SPC-3] section 7.6.3.1.</p><p><b>Identifier (variable): </b> This field has the
+same meaning as the <b>IDENTIFIER</b> field defined in [SPC-3] section 7.6.3.1.</p></div>

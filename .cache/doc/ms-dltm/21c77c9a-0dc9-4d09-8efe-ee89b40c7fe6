@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The TRKSVR_SYNC_TYPE enumeration specifies operations that
+can be handled during <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>
+synchronization in a SYNC_VOLUMES message (see sections <span><a href="e6084ee0-fc0d-443e-a4fb-1a792ce70450" data-linktype="relative-path">2.2.11</a></span>
+and <span><a href="e25bc030-b74b-4186-8559-81ad21c54839" data-linktype="relative-path">2.2.12.3</a></span>).</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum 
+ {
+   CREATE_VOLUME = 0,
+   QUERY_VOLUME = 1,
+   CLAIM_VOLUME = 2,
+   FIND_VOLUME = 3,
+   TEST_VOLUME = 4,
+   DELETE_VOLUME = 5
+ } TRKSVR_SYNC_TYPE;
+</pre></div>
+</dd></dl><p><b>CREATE_VOLUME:  </b>Requests that the server
+maintain a mapping from a <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_3b3c1be2-035c-4823-afeb-10edbd6bb288" data-linktype="relative-path">VolumeID</a></span> to a <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_fbeb57dc-140f-4d47-b9c7-b86eaeefdd51" data-linktype="relative-path">VolumeSecret</a></span>
+and <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_e15432dc-30dd-4e3d-8757-19b639769c95" data-linktype="relative-path">MachineID</a></span>.
+See section <span><a href="82fb1177-fa78-42b8-ae3b-40b29192556e" data-linktype="relative-path">3.2.5.3</a></span> for an
+example of this <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_29963f91-492c-4c33-ae33-c5185ac9315c" data-linktype="relative-path">subrequest</a></span>.</p><p><b>QUERY_VOLUME:  </b>Requests information about a
+VolumeID so that the client and server can keep their volume tables
+synchronized. See section <span><a href="8a5ae52a-3302-46a3-8beb-e01223b28f73" data-linktype="relative-path">3.2.6.4</a></span> for an
+example of this subrequest.</p><p><b>CLAIM_VOLUME:  </b>Requests that a MachineID
+become recognized by the server as the <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_d223806a-659f-49b5-af12-620e3ea1363d" data-linktype="relative-path">VolumeOwner</a></span> for a
+VolumeID. See section 3.2.5.3 for an example of this subrequest.</p><p><b>FIND_VOLUME:  </b>Requests the MachineID for a
+VolumeID. See section 3.2.6.4 for an example of this subrequest.</p><p><b>TEST_VOLUME:  </b>Reserved; MUST NOT be sent.
+Unused.</p><p><b>DELETE_VOLUME:  </b>Reserved; MUST NOT be sent.
+Unused.</p></div>

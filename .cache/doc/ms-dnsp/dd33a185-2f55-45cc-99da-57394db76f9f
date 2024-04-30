@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_ZONE_QUERY_STATS</b> structure<a id="Appendix_A_Target_81"></a><a aria-label="Product behavior note 81" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_81" data-linktype="relative-path">&lt;81&gt;</a> contains per-zone
+per-record-type statistics.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsZoneQueryStats  {
+   DNS_ZONE_STATS_TYPE RecordType;
+   ULONG64 QueriesResponded;
+   ULONG64 QueriesReceived;
+   ULONG64 QueriesFailure;
+   ULONG64 QueriesNameError;
+ } DNSSRV_ZONE_QUERY_STATS,
+  *PDNSSRV_ZONE_QUERY_STATS;
+</pre></div>
+</dd></dl><p><b>RecordType:</b> The type of record for which the
+query was received. The value SHOULD be of type <b>DNS_ZONE_STATS_TYPE</b>
+(section <span><a href="8659f901-293c-4e8f-862a-6b7861b01118" data-linktype="relative-path">2.2.12.1.1</a></span>).</p><p><b>QueriesResponded:</b> The total number of queries
+to which the server responded for a specific zone.</p><p><b>QueriesReceived:</b> The total number of queries
+received by the server for a specific zone.</p><p><b>QueriesFailure:</b> The total number of queries
+for which the server responded with server failure for a specific zone.</p><p><b>QueriesNameError:</b> The total number of queries
+for which the server responded with a name error for a specific zone.</p></div>

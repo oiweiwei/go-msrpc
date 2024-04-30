@@ -1,0 +1,91 @@
+<div class="content"><p>The CreateQuota method creates a blank <a href="428a07ce-42ef-4822-98ba-c298c26adbb3" data-linktype="relative-path">Non-Persisted Directory Quota
+Instance (section 3.2.1.2.1.2)</a> for the specified path.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_QUOTA_MANAGER | 0x01)] HRESULT CreateQuota(
+   [in] BSTR path,
+   [out, retval] IFsrmQuota** quota
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>Contains the path of the local directory
+for the <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_4b48a792-493d-4fa8-9ba8-175d43fb471d" data-linktype="relative-path">directory quota</a>.
+The maximum length of this string MUST be 260 characters.</p><p><b>quota: </b>Pointer to an <b>IFsrmQuota</b>
+interface pointer (section <a href="88b528e4-b394-4090-a000-24c020a87ec8" data-linktype="relative-path">3.2.4.2.16</a>)
+that upon completion points to the newly created Non-Persisted Directory Quota
+Instance. To have the Non-Persisted Directory Quota Instance added to the
+server&#39;s <b>List of Persisted Directory Quota Instances</b> (section <a href="351413d1-3811-48fc-868f-2d18c8c19145" data-linktype="relative-path">3.2.4.2.16.1</a>), the caller
+MUST call <a href="cd15b727-39a4-4ccd-9fd4-5a0563f903f7" data-linktype="relative-path">Commit (section 3.2.4.2.10.5)</a>.</p><dl>
+<dd>
+<p>The caller MUST release the Non-Persisted Directory
+Quota Instance when the caller is done with it.</p>
+</dd></dl><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045303</p>
+  <p>FSRM_E_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>The <i>quota</i> for the specified path already
+  exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One of the <i>quota</i> parameters is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>quota</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+perform the following actions.</p><ul><li><p><span><span> 
+</span></span>Create a new Non-Persisted Directory Quota Instance with the <b>Folder
+path</b> set to <i>path</i>.</p>
+<ul><li><p><span><span>  </span></span>Set
+<b>FSRM Base Object.Id</b> to a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Directory Quota.Folder path</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Quota limit</b> to zero.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Quota limit mode</b> to Hard quota.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Quota enable/disable</b> to enable.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Thresholds</b> to empty set.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Notifications</b> to Hard quota.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Template id</b> to a GUID.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Auto apply quota id</b> to a GUID.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Notification status</b> to reset.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Quota state</b> to complete.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Quota usage</b> to zero.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Peak quota usage</b> to zero.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Peak quota usage time stamp</b> to date in the distant past.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set <i>quota</i> to the <b>IFsrmQuota</b> interface of the new
+Non-Persisted Directory Quota Instance.</p>
+</li></ul><p>The new Non-Persisted Directory Quota Instance MUST NOT be
+associated with an existing <a href="4a94faeb-8aed-46fa-9d03-479f6708995a" data-linktype="relative-path">Persisted
+Directory Quota (section 3.2.1.2.1.1)</a>.</p></div>

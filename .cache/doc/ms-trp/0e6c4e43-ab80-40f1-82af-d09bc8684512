@@ -1,0 +1,93 @@
+<div class="content"><p>The LINEQUEUELIST packet describes a list of queues. This
+packet can contain an array of <a href="6cddf85f-d1be-45d1-bb06-f9071a5564ad" data-linktype="relative-path">LINEQUEUEENTRY</a> packets.
+LINEQUEUELIST is supplied by the server in the field VarData of the completion
+packet of the <a href="1771a701-82c1-4db3-b437-6a0345e5b398" data-linktype="relative-path">GetQueueList</a>
+request. This packet requires TAPI 3.0 version negotiation. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumEntries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwListSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwListOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, allocated to this packet. </p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, needed to hold all the information requested. </p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the portion of this packet that contains useful
+information. </p><p><b>dwNumEntries (4 bytes): </b>An unsigned 32-bit
+integer. The number of LINEQUEUEENTRY packets that appear in the list array.
+The value is 0 if no queue is available. </p><p><b>dwListSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the agent information array. </p><p><b>dwListOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset from the beginning of the packet to an array of the
+LINEQUEUEENTRY packet that specifies information about agents. The <b>dwListOffset</b>
+member is <b>dwNumEntries</b> times SIZEOF(LINEQUEUEENTRY). The size of the
+field MUST be specified <b>bydwListSize</b>.</p><p><b>VarData (variable): </b>An array of the
+LINEQUEUEENTRY packet that specifies information about agents as specified by <b>dwListOffset</b>.</p></div>

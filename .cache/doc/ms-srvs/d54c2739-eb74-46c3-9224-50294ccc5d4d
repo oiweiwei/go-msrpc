@@ -1,0 +1,58 @@
+<div class="content"><p> </p><p>The STAT_SERVER_0 structure contains statistical information
+about the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _STAT_SERVER_0 {
+   DWORD sts0_start;
+   DWORD sts0_fopens;
+   DWORD sts0_devopens;
+   DWORD sts0_jobsqueued;
+   DWORD sts0_sopens;
+   DWORD sts0_stimedout;
+   DWORD sts0_serrorout;
+   DWORD sts0_pwerrors;
+   DWORD sts0_permerrors;
+   DWORD sts0_syserrors;
+   DWORD sts0_bytessent_low;
+   DWORD sts0_bytessent_high;
+   DWORD sts0_bytesrcvd_low;
+   DWORD sts0_bytesrcvd_high;
+   DWORD sts0_avresponse;
+   DWORD sts0_reqbufneed;
+   DWORD sts0_bigbufneed;
+ } STAT_SERVER_0,
+  *PSTAT_SERVER_0,
+  *LPSTAT_SERVER_0;
+</pre></div>
+</dd></dl><p><b>sts0_start:</b>  Specifies a DWORD value
+that indicates the time when statistics collection started (or when the
+statistics were last cleared). The value MUST be stored as the number of
+seconds that have elapsed since 00:00:00, January 1, 1970, Greenwich Mean Time
+(GMT). To calculate the length of time that statistics have been collected,
+subtract the value of this member from the present time.</p><p><b>sts0_fopens:</b>  Specifies a DWORD value
+that indicates the number of Opens that have been created on a server. This
+MUST include the number of times <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_34f1dfa8-b1df-4d77-aa6e-d777422f9dca" data-linktype="relative-path">named pipes</a></span> are
+opened.</p><p><b>sts0_devopens:</b>  Specifies a DWORD
+value that indicates the number of times a server device has been opened. This
+field MUST be set to 0.</p><p><b>sts0_jobsqueued:</b>  Specifies a DWORD
+value that indicates the number of server print jobs that are spooled.</p><p><b>sts0_sopens:</b>  Specifies a DWORD
+value that indicates the number of sessions that have been established to a
+server.</p><p><b>sts0_stimedout:</b>  Specifies a DWORD
+value that indicates the number of times a session is disconnected.</p><p><b>sts0_serrorout:</b>  Specifies a DWORD
+value that indicates the number of times a session failed with an error. This
+field MUST be set to 0.</p><p><b>sts0_pwerrors:</b>  Specifies a DWORD
+value that indicates the number of password violations that the server has
+detected.</p><p><b>sts0_permerrors:</b>  Specifies a DWORD
+value that indicates the number of access permission errors that have occurred
+on the server.</p><p><b>sts0_syserrors:</b>  Specifies a DWORD
+value that indicates the number of system errors that have occurred on the
+server. This field MUST be set to 0.</p><p><b>sts0_bytessent_low:</b>  Specifies the
+low-order DWORD of the number of server bytes sent on the network.</p><p><b>sts0_bytessent_high:</b>  Specifies the
+high-order DWORD of the number of server bytes sent on the network.</p><p><b>sts0_bytesrcvd_low:</b>  Specifies the
+low-order DWORD of the number of server bytes received from the network.</p><p><b>sts0_bytesrcvd_high:</b>  Specifies the
+high-order DWORD of the number of server bytes received from the network.</p><p><b>sts0_avresponse:</b>  Specifies a DWORD
+value that indicates the average server response time, in milliseconds. This
+field MUST be set to 0.</p><p><b>sts0_reqbufneed:</b>  Specifies a DWORD
+value that indicates the number of times the server required a request buffer
+but failed to allocate one. This field MUST be set to 0.</p><p><b>sts0_bigbufneed:</b>  Specifies a DWORD
+value that indicates the number of times the server required a large buffer but
+failed to allocate one. This field MUST be set to 0.</p></div>

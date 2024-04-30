@@ -1,0 +1,41 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/d529b7a9-9f5b-4191-b093-dbb38ffa4277" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_CHANGE_CLUSTER_V2</b> enumeration defines the
+list of notifications that are generated for the cluster. These notifications
+are available only with <b>ApiGetNotifyV2</b> (section <a href="491227be-d055-4140-8b85-35cf29f31166" data-linktype="relative-path">3.1.4.2.138</a>). The object
+type is CLUSTER_OBJECT_TYPE_CLUSTER.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   CLUSTER_CHANGE_CLUSTER_RECONNECT_V2 = 0x00000001,
+   CLUSTER_CHANGE_CLUSTER_STATE_V2 = 0x00000002,
+   CLUSTER_CHANGE_CLUSTER_GROUP_ADDED_V2 = 0x00000004,
+   CLUSTER_CHANGE_CLUSTER_HANDLE_CLOSE_V2 = 0x00000008,
+   CLUSTER_CHANGE_CLUSTER_NETWORK_ADDED_V2 = 0x00000010,
+   CLUSTER_CHANGE_CLUSTER_NODE_ADDED_V2 = 0x00000020,
+   CLUSTER_CHANGE_CLUSTER_RESOURCE_TYPE_ADDED_V2 = 0x00000040,
+   CLUSTER_CHANGE_CLUSTER_COMMON_PROPERTY_V2 = 0x00000080,
+   CLUSTER_CHANGE_CLUSTER_PRIVATE_PROPERTY_V2 = 0x00000100,
+   CLUSTER_CHANGE_CLUSTER_LOST_NOTIFICATIONS_V2 = 0x00000200,
+   CLUSTER_CHANGE_CLUSTER_RENAME_V2 = 0x00000400,
+   CLUSTER_CHANGE_CLUSTER_MEMBERSHIP_V2 = 0x00000800,
+   CLUSTER_CHANGE_CLUSTER_UPGRADED_V2 = 0x00001000
+ } CLUSTER_CHANGE_CLUSTER_V2;
+</pre></div>
+</dd></dl><p><b>CLUSTER_CHANGE_CLUSTER_RECONNECT_V2: </b>(Client
+only) For details of this notification, see section <a href="ca75805a-4b39-4074-8b5b-dbaae6e81b1f" data-linktype="relative-path">3.2.4.6</a>.</p><p><b>CLUSTER_CHANGE_CLUSTER_STATE_V2: </b>(Client only)
+For details of this notification, see section 3.2.4.6.</p><p><b>CLUSTER_CHANGE_CLUSTER_GROUP_ADDED_V2: </b>This
+notification indicates that a new group was created.</p><p><b>CLUSTER_CHANGE_CLUSTER_HANDLE_CLOSE_V2: </b>(Client
+only) For details of this notification, see section <a href="2f7e3a15-1ca9-4e9e-9560-2eee1a62de88" data-linktype="relative-path">3.2.4.7</a>.</p><p><b>CLUSTER_CHANGE_CLUSTER_NETWORK_ADDED_V2: </b>This
+notification indicates that a cluster network was added to the cluster.</p><p><b>CLUSTER_CHANGE_CLUSTER_NODE_ADDED_V2: </b>This
+notification indicates that a node was added to the cluster. The way nodes are
+added to a cluster is implementation-specific.</p><p><b>CLUSTER_CHANGE_CLUSTER_RESOURCE_TYPE_ADDED_V2: </b>This
+notification indicates that a new <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_597fe367-f504-4295-9ed9-92cd892796cd" data-linktype="relative-path">resource type</a> was added to
+the cluster.</p><p><b>CLUSTER_CHANGE_CLUSTER_COMMON_PROPERTY_V2: </b>This
+notification indicates that a cluster common property has changed.</p><p><b>CLUSTER_CHANGE_CLUSTER_PRIVATE_PROPERTY_V2: </b>This
+notification indicates that a cluster <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_c7c52d99-72e6-42b7-9b8f-84276d320cee" data-linktype="relative-path">private property</a> has
+changed.</p><p><b>CLUSTER_CHANGE_CLUSTER_LOST_NOTIFICATIONS_V2: </b>This
+notification indicates that notifications might have been lost due to a
+transient condition on the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>.</p><p><b>CLUSTER_CHANGE_CLUSTER_RENAME_V2: </b>This
+notification indicates that the name of the cluster has changed.</p><p><b>CLUSTER_CHANGE_CLUSTER_MEMBERSHIP_V2:</b> This
+notification indicates that a node or quorum in the cluster is in a different
+state.</p><p><b>CLUSTER_CHANGE_CLUSTER_UPGRADED_V2:</b> This
+notification indicates that the operating version of the cluster has changed.</p></div>

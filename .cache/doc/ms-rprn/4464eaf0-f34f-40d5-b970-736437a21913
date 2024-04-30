@@ -1,0 +1,121 @@
+<div class="content"><p>This section describes members commonly used in <b>DRIVER_INFO</b>
+(section <a href="17943579-a514-4d0b-8ded-422265b23f45" data-linktype="relative-path">2.2.1.5)</a>
+and <b>RPC_DRIVER_INFO </b>(section 2.2.1.3.1) structures.</p><p><b>pName:</b> A pointer to a string that specifies
+the name of the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer
+driver</a>; for example, &#34;QMS 810&#34;. For rules governing printer
+driver names, see section <a href="a4c7686f-a88c-48f9-96eb-bf4dfc3fe519" data-linktype="relative-path">2.2.4.3</a>.</p><p><b>cVersion (4 bytes):</b> A DWORD that has an
+implementation-specific value that identifies the driver version and the
+operating system version for which the printer driver was written. The driver
+version contained by each printer driver object in the &#34;List of Printer
+Drivers&#34; is described in section <a href="1bd61448-db4b-4284-a4b1-8346732402d4" data-linktype="relative-path">3.1.1</a>.<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a></p><p><b>ConfigFileArray (variable):</b> A string that
+specifies a file name or a full path and file name for the printer driver
+configuration module. The location of this buffer is determined by the value of
+the <b>ConfigFileOffset</b> member. </p><p><b>ConfigFileOffset (4 bytes):</b> An unsigned
+integer that specifies the number of bytes from the start of the structure to
+the start of the <b>ConfigFileArray</b> member. </p><p><b>DataFileArray (variable):</b> A string that
+specifies a file name or a full path and file name for the file that contains
+printer driver data. The location of this buffer is determined by the value of
+the <b>DataFileOffset</b> member. </p><p><b>DataFileOffset (4 bytes):</b> An unsigned integer
+that specifies the number of bytes from the start of the structure to the start
+of the <b>DataFileArray</b> member. </p><p><b>DefaultDataTypeArray (variable):</b> A string that
+specifies the default data type of print jobs created by the driver. The
+location of this buffer is determined by the value of the <b>DefaultDataTypeOffset</b>
+member. </p><p><b>DefaultDataTypeOffset (4 bytes):</b> An unsigned
+integer that specifies the number of bytes from the start of the structure to
+the start of the <b>DefaultDataTypeArray</b> member. </p><p><b>DependentFilesArray (variable):</b> A <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_70f2be54-4d89-416a-965a-c7055873d2b1" data-linktype="relative-path">multisz</a> that specifies the
+names of the files that the printer driver is dependent on. The location of
+this buffer is determined by the value of the <b>DependentFilesOffset</b>
+member. </p><p><b>DependentFilesOffset (4 bytes):</b> An unsigned
+integer that specifies the number of bytes from the start of the structure to
+the start of the <b>DependentFilesArray</b> member. </p><p><b>DriverPathArray (variable):</b> A string that
+specifies a file name or full path and file name for the file that contains the
+printer driver. The location of this buffer is determined by the value of the <b>DependentFilesOffset</b>
+member. </p><p><b>DriverPathOffset (4 bytes):</b> An unsigned
+integer that specifies the number of bytes from the start of the structure to
+the start of the <b>DriverPathArray</b> member. </p><p><b>EnvironmentArray (variable):</b> A string that
+specifies the environment that the printer driver supports. The location of
+this buffer is determined by the value of the <b>EnvironmentOffset</b> member. </p><p><b>EnvironmentOffset (4 bytes):</b> An unsigned
+integer that specifies the number of bytes from the start of the structure to
+the start of the <b>EnvironmentArray</b> member. </p><p><b>HardwareIDArray (variable):</b> A string that
+specifies the hardware identifier for the printer driver. The location of this
+buffer is determined by the value of the <b>HardwareIDOffset</b> member. </p><p><b>HardwareIDOffset (4 bytes):</b> An unsigned
+integer that specifies the number of bytes from the start of the structure to
+the start of the <b>HardwareIDArray</b> member</p><p><b>HelpFileArray (variable):</b> A string that
+specifies a file name or a full path and file name for the printer driver help
+file. The location of this buffer is determined by the value of the <b>HelpFileOffset</b>
+member. </p><p><b>HelpFileOffset (4 bytes):</b> An unsigned integer
+that specifies the number of bytes from the start of the structure to the start
+of the <b>HelpFileArray</b> member. </p><p><b>MfgNameArray (variable):</b> A string that
+specifies the manufacturer&#39;s name. The location of this buffer is determined by
+the value of the <b>MfgNameOffset</b> member. </p><p><b>MfgNameOffset (4 bytes):</b> An unsigned integer
+that specifies the number of bytes from the start of the structure to the start
+of the <b>MfgNameArray</b> member. </p><p><b>MonitorNameArray (variable):</b> A string that
+specifies a language monitor. The location of this buffer is determined by the
+value of the <b>MonitorNameOffset</b> member. </p><p><b>MonitorNameOffset (4 bytes):</b> An unsigned
+integer that specifies the number of bytes from the start of the structure to the
+start of the <b>MonitorNameArray</b> member. </p><p><b>szzPreviousNamesArray (variable):</b> A multisz
+that specifies any previous printer drivers that are compatible with this
+driver. The location of this buffer is determined by the value of the <b>szzPreviousNamesOffset</b>
+member. </p><p><b>szzPreviousNamesOffset (4 bytes):</b> An unsigned
+integer that specifies the number of bytes from the start of the structure to
+the start of the <b>szzPreviousNamesArray</b> member. </p><p><b>OEMUrlArray (variable):</b> A string that
+specifies the URL for the manufacturer of the printer driver. The location of
+this buffer is determined by the value of the <b>OEMUrlOffset</b> member.</p><p><b>OEMUrlOffset (4 bytes):</b> An unsigned integer
+that specifies the number of bytes from the start of the structure to the start
+of the <b>OEMUrlArray</b> member. </p><p><b>ProviderArray (variable):</b> A string that
+specifies the publisher of the printer driver. The location of this buffer is
+determined by the value of the <b>ProviderOffset</b> member. </p><p><b>ProviderOffset (4 bytes):</b> An unsigned integer
+that specifies the number of bytes from the start of the structure to the start
+of the <b>ProviderArray</b> member.</p><p><b>pEnvironment:</b> A pointer to a string that
+specifies the environment that the printer driver supports. For rules governing
+environment names, see section <a href="ad775893-8a19-4786-ab46-34731f52d1af" data-linktype="relative-path">2.2.4.4</a>.</p><p><b>pDriverPath:</b> A pointer to a string that
+specifies a file name or full path and file name for the file that contains the
+printer driver. For more information on driver files, see <a href="https://go.microsoft.com/fwlink/?LinkId=91840" data-linktype="external">[MSDN-MPD]</a>. For rules
+governing path names, see section <a href="1d75f622-d07c-45cc-bf1e-a6191e408516" data-linktype="relative-path">2.2.4.9</a>.</p><p><b>pDataFile:</b> A pointer to a string that
+specifies a file name or a full path and file name for the file that contains
+printer driver data. For more information on driver files, see [MSDN-MPD]. For
+rules governing path names, see section 2.2.4.9.</p><p><b>pConfigFile:</b> A pointer to a string that
+specifies a file name or a full path and file name for the printer driver
+configuration module. For more information on driver files, see [MSDN-MPD]. For
+rules governing path names, see section 2.2.4.9.</p><p><b>pHelpFile:</b> An optional pointer to a string
+that specifies a file name or a full path and file name for the printer driver
+help file. For more information on driver files, see [MSDN-MPD]. For rules
+governing path names, see section 2.2.4.9.</p><p><b>pMonitorName:</b> An optional pointer to a string
+that specifies a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_28b48680-595a-405b-a857-7c2dc95ee7b4" data-linktype="relative-path">language
+monitor</a>. For rules governing monitor names, see section <a href="808e2e6c-7f91-4bdd-92da-56fbca513404" data-linktype="relative-path">2.2.4.8</a>.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a></p><p><b>pDefaultDataType:</b> An optional pointer to a
+string that specifies the default <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_0d327bc0-a461-4723-8beb-d935fdab4895" data-linktype="relative-path">data type</a> of <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print jobs</a> created with
+this driver (for example, <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_3bd355a2-4faa-40ab-bc79-0d158eba43b6" data-linktype="relative-path">enhanced
+metafile spool format (EMFSPOOL)</a> or <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_cea5f44d-0398-47cf-bb34-110ffddade11" data-linktype="relative-path">RAW Format</a>). For rules
+governing data type names, see section <a href="f40cbad0-88dd-4e86-a16b-cf62c3b17c52" data-linktype="relative-path">2.2.4.2</a>.</p><p><b>cchDependentFiles:</b> The number of characters in
+the multisz pointed to by <b>pDependentFiles</b>.</p><p><b>pDependentFiles:</b> An optional pointer to a
+multisz that specifies the names of the files that the printer driver is
+dependent on. If specified, this list MUST include at least one file name and
+SHOULD be ordered as follows: </p><ul><li><p><span><span>  </span></span>The
+file name of the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_566759dc-6e10-4b36-b710-f4296c1fbc83" data-linktype="relative-path">printer
+driver manifest</a>, if present.</p>
+</li><li><p><span><span>  </span></span>If
+the printer driver is a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_3101a6be-4528-4314-afe4-ea9d26a106eb" data-linktype="relative-path">derived
+printer driver</a>, the names of all the files the derived printer driver
+depends on. If the printer driver is not a derived printer driver, all of the
+other files the printer driver depends on.</p>
+</li><li><p><span><span>  </span></span>If
+the printer driver is a derived printer driver, the file name of the printer
+driver manifest of the corresponding <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_f4048a04-2516-44fc-ba42-2b5bee2782d5" data-linktype="relative-path">class printer driver</a>.</p>
+</li><li><p><span><span>  </span></span>If
+the printer driver is a derived printer driver, the names of all of the files
+the corresponding class printer driver depends on.<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a></p>
+</li></ul><p><b>cchPreviousNames:</b> The value of this member
+MUST be the number of characters in the multisz pointed to by <b>pszzPreviousNames</b>.</p><p><b>pszzPreviousNames:</b> An optional pointer to a
+multisz that specifies any previous printer drivers that are compatible with
+this driver.</p><p><b>dwlDriverVersion:</b> The printer driver version
+number. The format of this number is specified by each printer driver manufacturer.
+A <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_3b2da3d1-c159-4399-a6dd-dfd5f76fa2f5" data-linktype="relative-path">print client</a> can use
+this value to determine whether a printer driver on the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a> matches the
+version available on the client.<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a></p><p><b>ftDriverDate:</b> The value of this member MUST be
+the manufacturer build date of the printer driver. The FILETIME format is
+specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">2.3.3</a>.</p><p><b>pMfgName:</b> An optional pointer to a string that
+specifies the manufacturer&#39;s name.</p><p><b>pOEMUrl:</b> An optional pointer to a string that
+specifies the URL for the manufacturer of the printer driver.</p><p><b>pHardwareID:</b> An optional pointer to a string
+that specifies the hardware identifier for the printer driver.</p><p><b>pProvider:</b> An optional pointer to a string
+that specifies the publisher of the printer driver.</p></div>

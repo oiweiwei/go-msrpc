@@ -1,0 +1,104 @@
+<div class="content"><p>The <b>SetFileProperty</b> method is used to set a <a href="666f71d4-2f9d-4a15-9e9a-1a1190cc9313" data-linktype="relative-path">Property Definition Instance</a>
+on a file or folder.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_CLASSIFICATION_MANAGER | 0x0F)] HRESULT SetFileProperty(
+   [in] BSTR filePath,
+   [in] BSTR propertyName,
+   [in] BSTR propertyValue
+ );
+</pre></div>
+</dd></dl><p><b>filePath: </b>The file or folder that contains the
+Property Definition Instance that you want to set. You can specify an absolute
+or relative path to the file or folder. You cannot specify a file share.</p><p><b>propertyName: </b>Contains the name of the
+Property Definition Instance whose value you want to set.</p><p><b>propertyValue: </b>Contains the value to set the
+Property Definition Instance to.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045304</p>
+  <p>FSRM_E_PATH_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified file pointed to by the <i>filePath</i>
+  parameter is not found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045306</p>
+  <p>FSRM_E_INVALID_PATH</p>
+  </td>
+  <td>
+  <p>The specified path is not valid. A path cannot be a
+  relative path; it must be a full, absolute path to a file. A file share path
+  cannot be specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045354</p>
+  <p>FSRM_E_SET_PROPERTY_FAILED</p>
+  </td>
+  <td>
+  <p>The property could not be set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>propertyValue</i> parameter is not a valid for
+  the type of property definition specified.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>propertyName</i> is the <b>Property
+Definition.Name</b> of a <a href="00194c43-c91d-447d-9c24-0725f48d4219" data-linktype="relative-path">Persisted
+Property Definition</a>.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <b>propertyValue</b> is valid for the Persisted
+Property Definition specified by <i>propertyName</i> (section <a href="18486a3a-3f4b-4f7b-a413-27059783b41e" data-linktype="relative-path">3.2.4.6</a>).</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST perform the following steps in sequence or
+return a nonzero error code.</p><ol><li><p><span>    </span>If a Property
+Definition Instance with the Property Definition Instance specified by <i>propertyName</i>
+does not exist, the server MUST return FSRM_E_NOT_FOUND.</p>
+</li><li><p><span>    </span>Perform <a href="8fe62844-c8f1-4317-9752-9706ea401638" data-linktype="relative-path">Retrieve Stored Classification
+Properties</a> for the file.</p>
+</li><li><p><span>    </span>If the <a href="a4da1447-54a5-4b37-b135-bfa7481aed1c" data-linktype="relative-path">List of Property Definition
+Instances</a> contains a Property Definition Instance with the <a href="aeb8c879-da1a-4676-8d16-d7f85bac7a04" data-linktype="relative-path">Property Definition.Name</a>
+specified by <i>propertyName</i>, that instance&#39;s property definition
+instance.value MUST be set to <i>propertyValue</i>.</p>
+</li><li><p><span>    </span>If the List of
+Property Definition Instances does not contain a Property Definition Instance
+with the Property Definition.Name specified by <i>propertyName</i>, the server
+MUST create a new Property Definition Instance whose Property Definition.Name
+is set to <i>propertyName</i> and whose property definition instance.value is
+set to <i>propertyValue</i>. The server MUST then add that new instance to the
+List of Property Definition Instances for the file.</p>
+</li><li><p><span>    </span>If <i>filePath</i>
+is the path of a file and the List of Property Definition Instances contains a
+Property Definition Instance with Property Definition.AppliesTo set to Folders,
+the server MUST return E_INVALIDARG.</p>
+</li><li><p><span>    </span>If <i>filePath</i>
+is the path of a folder and the List of Property Definition Instances contains
+a Property Definition Instance with Property Definition.AppliesTo set to Files,
+the server MUST return E_INVALIDARG.</p>
+</li><li><p><span>    </span>Perform the <i>Store
+Classification Properties</i> action for the file given the List of Property
+Definition Instances from the previous actions.</p>
+</li><li><p><span>    </span>If any of the
+Property Definition instance.Flags of the Property Definition Instances in the
+List of Property Definition Instances contains the flag <a href="78d30058-c9e7-4d13-90cc-1055b9cfde25" data-linktype="relative-path">FsrmPropertyFlags_FailedSavingProperties</a>,
+the server MUST return FSRM_E_SET_PROPERTY_FAILED.</p>
+</li></ol></div>

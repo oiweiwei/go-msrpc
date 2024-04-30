@@ -1,0 +1,14 @@
+<div class="content"><p>The AuthzrFreeContext method (opnum 0) frees all remote
+structures and memory associated with the <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_519bff3c-1c9f-4d5a-aa88-a3c820a4ff3a" data-linktype="relative-path">client context</a> identified
+by the <i>ContextHandle</i> parameter.</p><dl>
+<dd>
+<div><pre> DWORD AuthzrFreeContext(
+         [in, out] AUTHZR_HANDLE* ContextHandle);
+  
+</pre></div>
+</dd></dl><p><b>ContextHandle:</b> A pointer to an AUTHZR_HANDLE
+structure, as defined in section <a href="4c1628c5-8093-471e-a3b8-8437420063ba" data-linktype="relative-path">2.2.1.1</a>. This handle
+indicates the client context to be freed.</p><p><b>Return Values:</b></p><p>If the function succeeds, it MUST return 0x00000000.</p><p>If the function fails, it MUST return a nonzero 32-bit error
+code.</p><p>When a remote authorization server receives this message, it
+MUST look up the <b>ClientContext</b> structure in the <b>ClientContextTable</b>
+ADM element and free all structures and memory associated with the <b>ClientContext</b>.</p></div>

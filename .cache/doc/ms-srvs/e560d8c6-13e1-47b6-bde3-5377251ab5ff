@@ -1,0 +1,65 @@
+<div class="content"><p> </p><p>The SESSION_ENUM_STRUCT structure specifies the information
+level that the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> requests in
+the <span><a href="02b1f559-fda2-4ba3-94c2-806eb2777183" data-linktype="relative-path">NetrSessionEnum</a></span>
+method and encapsulates the <span><a href="719533a1-0f65-4f86-8027-8e0c9cabab29" data-linktype="relative-path">SESSION_ENUM_UNION</a></span>
+union that receives the entries that are enumerated by the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _SESSION_ENUM_STRUCT {
+   DWORD Level;
+   [switch_is(Level)] SESSION_ENUM_UNION SessionInfo;
+ } SESSION_ENUM_STRUCT,
+  *PSESSION_ENUM_STRUCT,
+  *LPSESSION_ENUM_STRUCT;
+</pre></div>
+</dd></dl><p><b>Level:</b>  Specifies the information
+level of the data. This parameter MUST have one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>SESSION_INFO_0_CONTAINER</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>SESSION_INFO_1_CONTAINER</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>SESSION_INFO_2_CONTAINER</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>10</p>
+  </td>
+  <td>
+  <p>SESSION_INFO_10_CONTAINER</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>502</p>
+  </td>
+  <td>
+  <p>SESSION_INFO_502_CONTAINER</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>SessionInfo:</b>  Contains a session
+info container whose type is specified by the <i>Level</i> parameter, as shown
+in the preceding table. The enumerated session entries are returned in this
+member.</p></div>

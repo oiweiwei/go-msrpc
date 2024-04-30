@@ -1,0 +1,13 @@
+<div class="content"><p>The <b>PORT_INFO_FF</b> structure is used to communicate <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a> information to a local
+<a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1b5f368b-942b-40dd-84ea-fa9082916216" data-linktype="relative-path">port monitor</a>.<a id="Appendix_A_Target_50"></a><a aria-label="Product behavior note 50" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_50" data-linktype="relative-path">&lt;50&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _PORT_INFO_FF {
+   [string] wchar_t* pPortName;
+   DWORD cbMonitorData;
+   BYTE* pMonitorData;
+ } PORT_INFO_FF;
+</pre></div>
+</dd></dl><p><b>cbMonitorData:</b> A value that SHOULD be set
+to zero when sent and MUST be ignored on receipt.</p><p><b>pMonitorData:</b> A pointer that SHOULD be
+set to NULL when sent and MUST be ignored on receipt.</p><p>All members not defined in this section are specified in
+sections <a href="2607e270-ebe6-4d84-a2f7-12b056fae964" data-linktype="relative-path">2.2.1.3.5</a> and <a href="964b517f-6730-4b4a-99ed-ee9648e7f1f7" data-linktype="relative-path">2.2.1.3</a>.</p></div>

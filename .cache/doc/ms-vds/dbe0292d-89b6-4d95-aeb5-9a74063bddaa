@@ -1,0 +1,135 @@
+<div class="content"><p> </p><p> The CreatePartitionEx method creates a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span>
+on a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>
+at a specified byte offset, with an optional alignment parameter.</p><dl>
+<dd>
+<div><pre> HRESULT CreatePartitionEx(
+   [in] ULONGLONG ullOffset,
+   [in] ULONGLONG ullSize,
+   [in] unsigned long ulAlign,
+   [in] CREATE_PARTITION_PARAMETERS* para,
+   [out] IVdsAsync** ppAsync
+ );
+</pre></div>
+</dd></dl><p><b>ullOffset: </b>The byte offset from the beginning
+of the disk where the new partition will be created. If <i>ulAlign</i> is not
+zero, the offset MUST fall within the first <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_cb6bd999-9860-47c5-a5d6-0f267edcaabb" data-linktype="relative-path">cylinder</a></span> for an <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b251c771-5ccf-40f2-b98d-0119db210b4b" data-linktype="relative-path">MBR</a></span>
+disk (<span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GPT</a></span> disks do not
+have this restriction).</p><p><b>ullSize: </b>The size of the new partition, in
+bytes.<a id="Appendix_A_Target_105"></a><a aria-label="Product behavior note 105" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_105" data-linktype="relative-path">&lt;105&gt;</a></p><p><b>ulAlign: </b>The number of bytes for <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>
+alignment. The offset specified in <b>ullOffset</b> will be rounded up or down
+to an alignment boundary. If zero is specified, the server will base the
+alignment value on the size of the disk on which the volume is created.<a id="Appendix_A_Target_106"></a><a aria-label="Product behavior note 106" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_106" data-linktype="relative-path">&lt;106&gt;</a></p><p><b>para: </b>A pointer to a <span><a href="bd6d633a-389c-4df4-81dc-49f4f584ce3f" data-linktype="relative-path">CREATE_PARTITION_PARAMETERS</a></span>
+structure that describes the new partition to create.</p><p><b>ppAsync: </b>A pointer to an <span><a href="97ea9c0f-5c8a-43e9-a9ee-deda29e2a09e" data-linktype="relative-path">IVdsAsync</a></span>
+interface that, if the operation is successfully completed, receives the
+IVdsAsync interface to monitor and control this operation. Callers MUST release
+the interface when they are done with it. If the <span><a href="ccba511e-b299-4153-bb2f-c25ba97840f4" data-linktype="relative-path">IVdsAsync::Wait</a></span>
+method is called on the interface, the interfaces returned in the <span><a href="d21dadd7-b2ed-4c02-8fd2-83264272d277" data-linktype="relative-path">VDS_ASYNC_OUTPUT</a></span>
+structure MUST be released as well. For information on asynchronous tasks, see
+section <span><a href="28fc0a76-54bc-4d7d-81c3-37cf36586b23" data-linktype="relative-path">3.4.5.1.9</a></span>.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><dl>
+<dd>
+<p><b>Note</b>  Creating or deleting
+partitions on dynamic disks is not supported.</p>
+</dd>
+<dd>
+<p><b>Note</b>  This method is not valid on
+CD/DVD or <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_a2b20515-dc69-4674-b74e-91c8f24e3003" data-linktype="relative-path">super floppy</a></span>
+devices. These devices do not support <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_cee39671-0b98-4ca3-904d-018780e7042f" data-linktype="relative-path">partition tables</a></span>.</p>
+</dd></dl><p><b>ERROR_SUCCESS</b> (0x00000000)</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>para</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>ppAsync</i> is not NULL.</p>
+</li></ul><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>If the partition cannot be created because there is not enough <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_4932fda9-4823-4a72-b4e7-629f89d8fd90" data-linktype="relative-path">free
+space</a></span> on the specified disk, then the server MUST return VDS_E_NOT_ENOUGH_SPACE.</p>
+</li><li><p><span><span> 
+</span></span>Create a new async object implementing the IVdsAsync interface
+with an output type of VDS_ASYNCOUT_CREATEPARTITION and set the pointer <i>ppAsync</i>
+references to the interface.</p>
+</li><li><p><span><span> 
+</span></span>Return an HRESULT indicating failure or success. Any errors
+encountered up through this point in processing the operation are returned in
+this HRESULT.</p>
+</li></ul><p>The server MUST then perform the following in sequence.
+Errors generated in this sequence of steps are returned in the pHrResult
+parameter to the IVdsAsync::Wait or IVdsAsyncQueryStatus methods.</p><ul><li><p><span><span> 
+</span></span>Create a new partition following the parameters specified to the
+method.</p>
+<ul><li><p><span><span>  </span></span>If
+the partition creation resulted in the renumbering of existing partitions on a
+boot disk, the server MUST update the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_f1bdb0a4-803c-4cb5-ab76-82f6886a5031" data-linktype="relative-path">boot configuration file</a></span>
+with the new partition numbering.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set the task-specific return values in the async object to return
+the values associated with VDS_ASYNCOUT_CREATEPARTITION (as specified in
+section 3.4.5.1.9).</p>
+</li><li><p><span><span> 
+</span></span>Set the return code in the async object to an HRESULT indicating
+failure or success.</p>
+<ul><li><p><span><span>  </span></span>If
+the server was required to update the boot configuration file but failed, the
+return code MUST be set to VDS_S_UPDATE_BOOTFILE_FAILED (HRESULT of
+0x80042434).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the task completed successfully, set the percentage completed
+value in the async object to 100.</p>
+</li><li><p><span><span> 
+</span></span>Set the signal state in the async object to TRUE.</p>
+</li><li><p><span><span> 
+</span></span>For each callback object registered in the list of callback
+objects, call the callback object&#39;s <span><a href="04a70bf6-208d-463a-b0a4-cc96e198ded1" data-linktype="relative-path">IVdsAdviseSink::OnNotify</a></span>
+method with a VDS_NOTIFICATION structure with the following attributes:</p>
+<ul><li><p><span><span>  </span></span>objectType
+member is VDS_NTT_PARTITION.</p>
+</li><li><p><span><span>  </span></span>Partition
+member is a VDS_PARTITION_NOTIFICATION with the following attributes:</p>
+<ul><li><p><span><span> 
+</span></span>ulEvent is VDS_NF_PARTITION_ARRIVE.</p>
+</li><li><p><span><span> 
+</span></span>diskId is the VDS_OBJECT_ID of the disk object corresponding to
+the disk on which the partition was added.</p>
+</li><li><p><span><span> 
+</span></span>ullOffset is the byte offset at which the partition starts on the
+disk.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>If the partition is created on a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_58aae236-0186-4ba1-a46b-f0a997e6c6f2" data-linktype="relative-path">removable media</a></span>
+disk, for each callback object registered in the list of callback objects, call
+the callback object&#39;s IVdsAdviseSink::OnNotify method with a VDS_NOTIFICATION
+structure with the following attributes:</p>
+<ul><li><p><span><span>  </span></span>objectType
+member is VDS_NTT_VOLUME.</p>
+</li><li><p><span><span>  </span></span>Volume
+member is a VDS_VOLUME_NOTIFICATION with the following attributes:</p>
+<ul><li><p><span><span> 
+</span></span>ulEvent is VDS_NF_VOLUME_ARRIVE.</p>
+</li><li><p><span><span> 
+</span></span>volumeId is the VDS_OBJECT_ID of the volume object corresponding
+to the removable media drive.</p>
+</li><li><p><span><span> 
+</span></span><b>plexId</b> is NULL GUID, but it is not relevant when ulEvent
+is VDS_NF_VOLUME_ARRIVE.</p>
+</li><li><p><span><span> 
+</span></span><b>ulPercentCompleted</b> range is 0-100 and is
+implementation-specific; however, it is not relevant when ulEvent is
+VDS_NF_VOLUME_ARRIVE.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>For each callback object registered in the list of callback
+objects, call the callback object&#39;s IVdsAdviseSink::OnNotify method with a <span><a href="4f29057f-ab32-4a3d-9fcb-00ba3457cb42" data-linktype="relative-path">VDS_NOTIFICATION</a></span>
+structure with the following attributes:</p>
+<ul><li><p><span><span>  </span></span>objectType
+member is VDS_NTT_DISK.</p>
+</li><li><p><span><span>  </span></span><b>Disk</b>
+member is a <span><a href="1478f791-1ebd-421c-ba87-5fd7493dafd1" data-linktype="relative-path">VDS_DISK_NOTIFICATION</a></span>
+with the following attributes:</p>
+<ul><li><p><span><span> 
+</span></span><b>ulEvent</b> is VDS_NF_DISK_MODIFY.</p>
+</li><li><p><span><span> 
+</span></span><b>diskId</b> is the VDS_OBJECT_ID of this disk object.</p>
+</li></ul></li></ul></li></ul><p>The server MUST update the percentage completed value periodically
+during the preceding sequence. How often the percentage completed is updated,
+and at what point in the sequence, is implementation-specific.</p></div>

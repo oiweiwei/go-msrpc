@@ -1,0 +1,51 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/de8373ec-206f-4dc8-b3fe-c638fed7b282" data-linktype="external">msdn link</a></p><p>The TOKEN_MANDATORY_POLICY structure specifies the mandatory
+integrity policy for a <a href="efc83c32-5275-4dff-a3e2-973c9624711b" data-linktype="relative-path">token</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _TOKEN_MANDATORY_POLICY {
+   DWORD Policy;
+ } TOKEN_MANDATORY_POLICY,
+  *PTOKEN_MANDATORY_POLICY;
+</pre></div>
+</dd></dl><p><b>Policy:</b>  The <b>Policy</b> member
+contains a value denoting the mandatory integrity policy of the token; these
+values are mutually exclusive.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TOKEN_MANDATORY_POLICY_OFF</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No mandatory integrity policy is enforced for the
+  token.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TOKEN_MANDATORY_POLICY_NO_WRITE_UP</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>A process associated with the token cannot write to
+  objects that have a greater mandatory integrity level.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TOKEN_MANDATORY_POLICY_NEW_PROCESS_MIN</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>A process created with the token has an integrity level
+  that is the lesser of the parent-process integrity level and the
+  executable-file integrity level.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

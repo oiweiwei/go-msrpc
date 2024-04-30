@@ -1,0 +1,670 @@
+<div class="content"><p> </p><p>The UserHeader contains source and destination information
+for the message in a <span><a href="56bae708-1289-48ff-a411-bf3782602476" data-linktype="relative-path">UserMessage Packet</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SourceQueueManager
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>QueueManagerAddress
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TimeToBeReceived</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SentTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MessageID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DestinationQueue
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AdminQueue
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ResponseQueue
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ConnectorType
+  (16 bytes, optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>SourceQueueManager (16 bytes): </b>A <b>GUID</b>,
+as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a></span>,
+that MUST identify the original sender of the message.</p><p><b>QueueManagerAddress (16 bytes): </b>A <b>GUID</b>,
+as specified in [MS-DTYP] section 2.3.4, that MUST identify the destination <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue
+manager</a></span>. </p><dl>
+<dd>
+<p>If the <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span> is sent to a
+<span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_bb49bace-e853-4c7a-b4ab-59f1097c3dc8" data-linktype="relative-path">public</a></span>
+or <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_1a7f2b81-359e-4d2f-b4b4-f30bc7dd0d8f" data-linktype="relative-path">private
+queue</a></span>, this field MUST be set to the <b>GUID</b> of the destination
+queue manager. If the message is sent to a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span> that uses a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_5209585c-8c60-4a93-9fdd-798a897644ab" data-linktype="relative-path">direct
+format name</a></span>, then this field MUST contain a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_ba500a5b-8c29-467c-a335-0980c8b11304" data-linktype="relative-path">NULL GUID</a></span>.</p>
+</dd></dl><p><b>TimeToBeReceived (4 bytes): </b>A 32-bit unsigned
+integer that indicates the length of time, in seconds, that the message in the
+packet has before it expires. This field has a valid range from 0x00000000 to
+0xFFFFFFFF. The value 0xFFFFFFFF indicates an infinite time. </p><dl>
+<dd>
+<p>This time is measured from when the sending protocol
+receives the message. If the value is exceeded, the message MUST be removed
+from the destination queue. For more details about message expiration see <span><a href="../ms-mqqb/85498b96-f2c8-43b3-a108-c9d6269dc4af" data-linktype="relative-path">[MS-MQQB]</a></span>
+section <span><a href="../ms-mqqb/e59c4a0f-8599-4086-8c45-14cb0f294b42" data-linktype="relative-path">3.1.5.8.5</a></span>.</p>
+</dd></dl><p><b>SentTime (4 bytes): </b>A 32-bit unsigned integer
+that MUST be set to the time when the packet was sent. This value represents
+the number of seconds elapsed since midnight (00:00:00), January 1, 1970 UTC.</p><p><b>MessageID (4 bytes): </b>A 32-bit unsigned integer
+that is the message identifier specified by the queue manager. The queue
+manager MUST generate a unique identifier for each message it sends. For more
+details, see the <b>MessageIdOrdinal</b> value in [MS-MQQB] section <span><a href="../ms-mqqb/e3c711fe-689f-4abf-aefc-9ddf5582d1ea" data-linktype="relative-path">3.1.1.3</a></span>.</p><p><b>Flags (4 bytes): </b>A 32-bit unsigned integer
+that contains a set of options that provide additional information about the
+packet. Any combination of these values is acceptable unless otherwise noted
+below.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="5">
+  <p>RC</p>
+  </td>
+  <td colspan="2">
+  <p>DM</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td colspan="3">
+  <p>DQ</p>
+  </td>
+  <td colspan="3">
+  <p>AQ</p>
+  </td>
+  <td colspan="3">
+  <p>RQ</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>G</p>
+  </td>
+  <td>
+  <p>H</p>
+  </td>
+  <td>
+  <p>I</p>
+  </td>
+  <td>
+  <p>J</p>
+  </td>
+  <td colspan="2">
+  <p>X3</p>
+  </td>
+  <td>
+  <p>K</p>
+  </td>
+  <td colspan="3">
+  <p>X4</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>RC (5 bits): </b>The
+number of routing servers that have processed the UserMessage Packet. The
+values in this field MUST be in the range from 0x00 to 0x1D. For more details,
+see [MS-MQQB] section <span><a href="../ms-mqqb/66ca8af5-4891-41d6-8cd2-0c7f58a51d81" data-linktype="relative-path">3.1.5.8.2</a></span>.</p>
+</dd>
+<dd>
+<p><b>DM (2 bits): </b>The
+delivery mode of the packet. The field MUST be set to one of the following
+values.</p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0</p>
+  </td>
+  <td>
+  <p>Express messaging. Express messages MUST NOT be
+  required to be recoverable after the queue manager restarts.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x1</p>
+  </td>
+  <td>
+  <p>Recoverable messaging (including transactional).
+  Recoverable messages MUST be recovered after queue manager restarts.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p><b>Note</b>  a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_3b80e01d-5155-4378-b692-82122af044aa" data-linktype="relative-path">transactional
+message</a></span> is a recoverable message that has UserHeader.Flags.TH set to
+0x1.</p>
+</dd></dl></dd>
+<dd>
+<p><b>A - X1 (1 bit): </b>Reserved
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>B - JN (1 bit): </b>Specifies
+if negative source journaling is enabled.<a id="Appendix_A_Target_3"></a><a aria-label="Product behavior note 3" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_3" data-linktype="relative-path">&lt;3&gt;</a> If set, the
+protocol SHOULD log a record locally in the event of message delivery failure.<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a></p>
+</dd>
+<dd>
+<p><b>C - JP (1 bit): </b>Specifies
+if positive source journaling is enabled. If set, the protocol SHOULD log a
+record locally if the message is successfully delivered.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p>
+</dd>
+<dd>
+<p><b>DQ (3 bits): </b>Type of
+destination queue in <b>UserHeader.DestinationQueue</b>. The field MUST be set
+to 0x0, 0x3, 0x5, or 0x7. The value in this field determines the layout of the
+destination queue name in the <b>UserHeader.DestinationQueue</b> field.</p>
+</dd>
+<dd>
+<p><b>AQ (3 bits): </b>Type of <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_de288973-200c-431f-99be-2165bb440243" data-linktype="relative-path">administration
+queue</a></span> in <b>UserHeader.AdminQueue</b>. The field MUST be set to 0x0,
+0x2, 0x3, 0x5, 0x6 or 0x7. The value in this field determines the layout of the
+administration queue name in the <b>UserHeader.AdminQueue</b> field.</p>
+</dd>
+<dd>
+<p><b>RQ (3 bits): </b>Type of
+response queue in <b>UserHeader.ResponseQueue</b>. The field MUST be set to
+0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, or 0x7. The value in this field determines
+the layout of the response queue name in the <b>UserHeader.ResponseQueue</b>
+field.</p>
+</dd>
+<dd>
+<p><b>D - SH (1 bit): </b>Specifies
+if a <span><a href="303416bb-b821-4a18-ac0d-adc3ea44cc77" data-linktype="relative-path">SecurityHeader</a></span> is
+present in the UserMessage Packet. If set, the packet MUST contain a
+SecurityHeader; otherwise, it MUST NOT.</p>
+</dd>
+<dd>
+<p><b>E - TH (1 bit): </b>Specifies
+if a <span><a href="47f8bbd7-9a41-4a22-ade5-b1c7a1af2f5c" data-linktype="relative-path">TransactionHeader</a></span>
+is present in the UserMessage Packet. If set, the packet MUST contain a
+TransactionHeader; otherwise, it MUST NOT. If this flag is set the <b>DM</b>
+flag MUST NOT be 0x0.</p>
+</dd>
+<dd>
+<p><b>F - MP (1 bit): </b>Specifies
+if a <span><a href="b219bdf4-1bf6-4688-94d8-25fdba45e5ec" data-linktype="relative-path">MessagePropertiesHeader</a></span>
+is present in the UserMessage Packet. This flag MUST always be set.</p>
+</dd>
+<dd>
+<p><b>G - CQ (1 bit): </b>Specifies
+if the <b>ConnectorType</b> field is present in the packet. If set, the packet
+MUST contain a <b>ConnectorType</b> field; otherwise, it MUST NOT.</p>
+</dd>
+<dd>
+<p><b>H - MQ (1 bit): </b>Specifies
+if a <span><a href="790c8148-160e-4650-8530-bb117fee835a" data-linktype="relative-path">MultiQueueFormatHeader</a></span>
+is present in the UserMessage Packet. If set, the packet MUST contain a
+MultiQueueFormatHeader; otherwise, it MUST NOT.</p>
+</dd>
+<dd>
+<p><b>I - X2 (1 bit): </b>Reserved
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>J - AH (1 bit): </b>Indicates
+if the packet being received was originally sent over HTTP, as specified in <span><a href="../ms-mqrr/9edbc8fa-02ad-4c79-804f-6bb8f430aac1" data-linktype="relative-path">[MS-MQRR]</a></span>
+section <span><a href="../ms-mqrr/90345101-8295-4912-b1b2-bbe88531af93" data-linktype="relative-path">2.2.5.1</a></span>.
+This field MUST NOT be set when sent.</p>
+</dd>
+<dd>
+<p><b>X3 (2 bits): </b>Reserved
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>K - HH (1 bit): </b>Specifies
+if a <span><a href="bbedcc76-ae38-4a69-94a9-950cd2bc77a7" data-linktype="relative-path">SoapHeader</a></span> is
+present in the packet. If set, the UserMessage Packet MUST contain a
+SoapHeader; otherwise, it MUST NOT.</p>
+</dd>
+<dd>
+<p><b>X4 (3 bits): </b>Reserved
+bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd></dl><p><b>DestinationQueue (variable): </b>The destination
+queue specifies the final destination of the message that is contained inside
+the UserMessage Packet. The queue type and data type of the destination queue
+name vary depending on the value specified in the <b>Flags.DQ</b> field, as
+described in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Flags.DQ</p>
+   </th>
+   <th>
+   <p>Queue type</p>
+   </th>
+   <th>
+   <p>Data type</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0</p>
+  </td>
+  <td>
+  <p>None</p>
+  </td>
+  <td>
+  <p>None</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x3</p>
+  </td>
+  <td>
+  <p>Private queue on destination host</p>
+  </td>
+  <td>
+  <p><span><a href="9f358403-4a8b-4778-bb82-01283dbcae63" data-linktype="relative-path">PrivateQueueFormatNameId</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x5</p>
+  </td>
+  <td>
+  <p>Public queue</p>
+  </td>
+  <td>
+  <p><span><a href="79614920-93a7-4373-846a-eb1e479bf81b" data-linktype="relative-path">PublicQueueFormatName</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x7</p>
+  </td>
+  <td>
+  <p>Direct</p>
+  </td>
+  <td>
+  <p><span><a href="e3141166-a7c1-4fca-bfac-4761c576f5cc" data-linktype="relative-path">DirectQueueFormatName</a></span></p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>When the <b>Flags.DQ</b> field is
+set to 0x03 or 0x5, the <b>QueueManagerAddress</b> field MUST be set to the <b>GUID</b>
+of the destination queue manager.</p>
+</dd>
+<dd>
+<p>Any value for <b>Flags.DQ</b>
+other than those specified in the preceding table MUST be treated as an error
+by closing the session.</p>
+</dd></dl><p><b>AdminQueue (variable): </b>The name of the
+administration queue. This field specifies the response queue where
+administration acknowledgment messages are sent. An administration response
+queue MUST be specified if a MessagePropertiesHeader is included and any bits
+are set in the <b>MessagePropertiesHeader.Flags</b> field; otherwise, this
+field MUST NOT be specified. Details about administration acknowledgments are
+as specified in [MS-MQQB] sections <span><a href="../ms-mqqb/8bf3a1ab-1acc-4dbd-be70-6105bb2e221a" data-linktype="relative-path">1.3.5.2</a></span>
+and <span><a href="../ms-mqqb/62c640a9-93ff-4723-94c2-6a3e40e41f2f" data-linktype="relative-path">3.1.5.8.10</a></span>.
+The queue type and data type of the administration queue name vary depending on
+the value specified in the <b>Flags.AQ</b> field, as described in the following
+table. This field MUST be present when the <b>Flags.AQ</b> field is set to 0x2,
+0x3, 0x5, 0x6, or 0x7. This field MUST NOT be present when the <b>Flags.AQ</b>
+field is set to 0x0.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Flags.AQ</p>
+   </th>
+   <th>
+   <p>Queue type</p>
+   </th>
+   <th>
+   <p>Data type</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0</p>
+  </td>
+  <td>
+  <p>None</p>
+  </td>
+  <td>
+  <p>None</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x2</p>
+  </td>
+  <td>
+  <p>Private queue on source host</p>
+  </td>
+  <td>
+  <p>PrivateQueueFormatNameId</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x3</p>
+  </td>
+  <td>
+  <p>Private queue on destination host</p>
+  </td>
+  <td>
+  <p>PrivateQueueFormatNameId</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x5</p>
+  </td>
+  <td>
+  <p>Public queue</p>
+  </td>
+  <td>
+  <p>PublicQueueFormatName</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x6</p>
+  </td>
+  <td>
+  <p>Private queue on host other than the source or
+  destination host</p>
+  </td>
+  <td>
+  <p><span><a href="f1bee3c4-3e45-402a-bb5a-348732a7e612" data-linktype="relative-path">PrivateQueueFormatName</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x7</p>
+  </td>
+  <td>
+  <p>Direct</p>
+  </td>
+  <td>
+  <p>DirectQueueFormatName</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Any value for the <b>Flags.AQ</b> field other than
+those specified in the preceding table MUST be treated as an error by closing
+the session.</p>
+</dd></dl><p><b>ResponseQueue (variable): </b>A variable-length
+array of bytes containing the name of the response queue. The response queue is
+an application-defined value that specifies a queue that a receiving
+application could use to send a reply message. The queue type and data type of
+the response queue name vary depending on the queue format type specified in
+the <b>Flags.RQ</b> field, as described in the following table. This field MUST
+be present when the <b>Flags.RQ</b> field is set to 0x1, 0x2, 0x3, 0x5, 0x6, or
+0x7. This field MUST NOT be present when the <b>Flags.RQ</b> field is set to
+0x0 or 0x1. When the <b>Flags.RQ</b> flag is set to 0x1, the response queue is
+the same as the administration queue. When the <b>Flags.RQ</b> field is set to
+0x4, the <b>PrivateQueueIdentifier</b> in the queue format type MUST identify
+the private queue on the queue manager that hosts the administration queue.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Flags.RQ</p>
+   </th>
+   <th>
+   <p>Queue type</p>
+   </th>
+   <th>
+   <p>Data type</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0</p>
+  </td>
+  <td>
+  <p>None</p>
+  </td>
+  <td>
+  <p>None</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x1</p>
+  </td>
+  <td>
+  <p>Same as the administration queue</p>
+  </td>
+  <td>
+  <p>None</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x2</p>
+  </td>
+  <td>
+  <p>Private queue on source host</p>
+  </td>
+  <td>
+  <p>PrivateQueueFormatNameId</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x3</p>
+  </td>
+  <td>
+  <p>Private queue on destination host</p>
+  </td>
+  <td>
+  <p>PrivateQueueFormatNameId</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4</p>
+  </td>
+  <td>
+  <p>Private queue on the same host as the administration
+  queue</p>
+  </td>
+  <td>
+  <p>PrivateQueueFormatNameId</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x5</p>
+  </td>
+  <td>
+  <p>Public queue</p>
+  </td>
+  <td>
+  <p>PublicQueueFormatName</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x6</p>
+  </td>
+  <td>
+  <p>Private queue on a host other than the source queue,
+  destination queue, or administration queue host</p>
+  </td>
+  <td>
+  <p>PrivateQueueFormatName</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x7</p>
+  </td>
+  <td>
+  <p>Direct</p>
+  </td>
+  <td>
+  <p>DirectQueueFormatName</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ConnectorType (16 bytes): </b>An optional field
+that represents an application-defined <b>GUID</b>, as specified in [MS-DTYP]
+section 2.3.4. This field MUST be present if and only if the <b>Flags.CQ</b>
+field is set. This field is used by higher-layer messaging applications. The
+server MUST NOT process or interpret this field.</p></div>

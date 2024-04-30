@@ -1,0 +1,96 @@
+<div class="content"><p> </p><p>The <b>FAX_GetJobEx (Opnum 29)</b> is called by the client
+to retrieve information about a specified job at the server. The job is
+identified by the job message ID. The job message ID can be obtained using one
+of the following methods: <b>FAX_EnumJobs</b> (section <span><a href="6516d564-e0b8-4f19-80b1-70f27eca7f16" data-linktype="relative-path">3.1.4.1.21</a></span>),
+<b>FAX_EnumJobsEx</b> (section <span><a href="c65fa0d0-dc19-4aec-b83a-b5b82d70c6d9" data-linktype="relative-path">3.1.4.1.22</a></span>), or <b>FAX_EnumJobsEx2</b>
+(section <span><a href="cec559b7-44b6-47a9-b402-7dc5af788f44" data-linktype="relative-path">3.1.4.1.23</a></span>).</p><p>In response, the server MUST validate that the message ID is
+for a valid job. The server MUST validate that the client&#39;s fax user account
+has read access to the job.</p><p>On success, the server MUST return the queued job&#39;s job
+information and the size of the job information.</p><p>This method is an extended version of <b>FAX_GetJob</b>
+(section <span><a href="33572748-3f68-49eb-bbe5-965ec450ae11" data-linktype="relative-path">3.1.4.1.41</a></span>), which
+returns a <b>FAX_JOB_ENTRY_EXW</b> (section <span><a href="0c0c6cad-4f41-4b3f-b9ed-2383cf318d44" data-linktype="relative-path">2.2.35</a></span>) structure
+for the specified message.</p><p>The client SHOULD free the returned buffer.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_GetJobEx(
+   [in] handle_t hBinding,
+   [in] DWORDLONG dwlMessageID,
+   [out, size_is(, *BufferSize)] LPBYTE* Buffer,
+   [out, ref] LPDWORD BufferSize
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>)
+or <b>FAX_ConnectionRefCount</b> (section <span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>) method
+call used to connect to the fax server.</p><p><b>dwlMessageID: </b>A unique number that identifies
+a <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queued</a></span>
+or active fax job. The job MUST be an inbound or outbound transmission.</p><p><b>Buffer: </b>A pointer to the address of a buffer
+to receive one <b>FAX_JOB_ENTRY_EXW</b> followed by one <b>FAX_JOB_STATUS</b>
+(section <span><a href="e1f304ec-977b-45e0-9db7-95c395a0a337" data-linktype="relative-path">2.2.36</a></span>) structure,
+followed by other data pointed at from these two structures (from pointer type
+fields). These two data structures describe one fax job. If the <i>pStatus</i>
+pointer field of the <b>FAX_JOB_ENTRY_EXW</b> is not NULL, it MUST point to the
+address of the <b>FAX_JOB_STATUS</b> in the buffer. If the <i>pStatus</i>
+pointer is NULL, the <b>FAX_JOB_STATUS</b> is located in the buffer immediately
+after the <b>FAX_JOB_ENTRY_EXW</b>. The field length MUST be clamped to 32 bits
+before serialization.</p><p><b>BufferSize: </b>A variable to return the size, in
+bytes, of the buffer.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The client&#39;s fax user account does
+  not have the access rights required for this operation: <b>ALL_FAX_USER_ACCESS_RIGHTS</b>
+  (section <span><a href="6b6ab8ee-03ec-42de-a4fa-fd0b5703b2c3" data-linktype="relative-path">2.2.83</a></span>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The server cannot allocate memory for the data to be
+  returned to the caller.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>This error code is returned under any of the following
+  conditions:<a id="Appendix_A_Target_111"></a><a aria-label="Product behavior note 111" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_111" data-linktype="relative-path">&lt;111&gt;</a></p>
+  <p><span>§<span>  
+  </span></span>The pointer submitted for the Buffer argument is NULL.</p>
+  <p><span>§<span>  
+  </span></span>The pointer submitted for the BufferSize argument is NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FAX_ERR_MESSAGE_NOT_FOUND</p>
+  <p>0x00001B61</p>
+  </td>
+  <td>
+  <p>The fax server cannot find the fax job indicated by
+  the <i>dwlMessageId</i> argument.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

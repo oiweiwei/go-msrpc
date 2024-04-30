@@ -1,0 +1,97 @@
+<div class="content"><p>The LINEAGENTGROUPLIST packet describes a list of ACD agent
+groups. This packet can contain an array of <a href="d4f50427-b729-4dfd-a81c-1733969c8788" data-linktype="relative-path">LINEAGENTGROUPENTRY</a>
+packets.</p><p>Multiple packets use the LINEAGENTGROUPLIST packet; these
+include the <a href="fb1aeb4d-a4f8-4beb-8cd6-ee46567fba8a" data-linktype="relative-path">GetAgentGroupList</a>,
+<a href="0ef290e7-0114-479e-8d87-149b8f7f1b4a" data-linktype="relative-path">GetGroupList</a>, and <a href="ec94bc81-d553-40cc-a9d7-e3d9008bef84" data-linktype="relative-path">SetAgentGroup</a> packets. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumEntries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwListSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwListOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, allocated to this data structure. </p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, needed to hold all the information requested. </p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the portion of this packet that contains useful
+information.</p><p><b>dwNumEntries (4 bytes): </b>An unsigned 32-bit
+integer. The number of LINEAGENTGROUPENTRY packets that appear in the list
+array specified by <b>dwListOffset</b>. The value MUST be 0 if no agent is
+associated with (logged on) the address.</p><p><b>dwListSize (4 bytes): </b>An unsigned 32-bit
+integer. The size of the group list array, in bytes.</p><p><b>dwListOffset (4 bytes): </b>An unsigned 32-bit
+integer. Offset from the beginning of this packet to an array of
+LINEAGENTGROUPENTRY packets that specify information about each ACD group into
+which the current agent is to be associated with (logged on) the address. This
+is <b>dwNumEntries</b> times SIZEOF(LINEAGENTGROUPENTRY). The size of the field
+MUST be specified by <b>dwListSize</b>.</p><p><b>VarData (variable): </b>An array of
+LINEAGENTGROUPENTRY packets that specify information about each ACD group into
+which the current agent is to be associated with (logged on) at the address as
+specified by <b>dwListOffset</b>.</p></div>

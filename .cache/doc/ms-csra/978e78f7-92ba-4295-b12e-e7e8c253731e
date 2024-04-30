@@ -1,0 +1,96 @@
+<div class="content"><p>Officer and Enrollment Agent access rights structures are
+used by the server to return the results of a client query; for example, the
+client&#39;s invocation of the <b>GetOfficerRights</b> method (section <a href="43c6db81-a351-49dd-a4b4-b068dc927332" data-linktype="relative-path">3.1.4.2.12</a>) of the <b>ICertAdminD2</b>
+interface (sections <a href="5980fbc9-5001-42bc-ad09-8759d20ce054" data-linktype="relative-path">3.1.4.2</a>
+and <a href="539b6648-714a-47d1-87c9-9170443df2cf" data-linktype="relative-path">3.2.4.2</a>).</p><p><a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_eedf773f-7c40-4ea6-9a26-998d1501511f" data-linktype="relative-path">Officer
+rights</a> and <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_b0a10741-008c-4de1-b614-4f587b1ae663" data-linktype="relative-path">Enrollment
+Agent rights</a> are security descriptors. Security descriptor structures are
+defined in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a>
+and can contain <b>SID</b> structures ([MS-DTYP] section <a href="../ms-dtyp/78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">2.4.2</a>).
+Officer rights and Enrollment Agent rights security descriptors have the
+following properties:</p><ol><li><p><span>    </span>Each <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_b581857f-39aa-4979-876b-daba67a40f15" data-linktype="relative-path">access control entry (ACE)</a>
+in the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_d727f612-7a45-48e4-9d87-71735d62b321" data-linktype="relative-path">discretionary access
+control list (DACL)</a> MUST have:</p>
+<ul><li><p><span><span>  </span></span>Either
+the AceType 0x9 (ACCESS_ALLOWED_CALLBACK_ACE_TYPE for the
+ACCESS_ALLOWED_CALLBACK_ACE, [MS-DTYP] section <a href="../ms-dtyp/c9579cf4-0f4a-44f1-9444-422dfb10557a" data-linktype="relative-path">2.4.4.6</a>)
+or the AceType 0x0A (ACCESS_DENIED_CALLBACK_ACE_TYPE for the
+ACCESS_DENIED_CALLBACK_ACE, [MS-DTYP] section <a href="../ms-dtyp/35adad6b-fda5-4cc1-b1b5-9beda5b07d2e" data-linktype="relative-path">2.4.4.7</a>).</p>
+</li><li><p><span><span>  </span></span>AccessMask
+0x00010000.</p>
+</li></ul></li><li><p><span>    </span>The ACE contains
+additional application data following the SID.</p>
+</li></ol><p>The format for the additional application data is as
+follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SIDCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Array of SIDs (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TemplateName (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>SIDCount (4 bytes): </b>A <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a> encoded <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a>
+that contains the count of the SID structures following it.</p><p><b>Array of SIDs (variable): </b>An array of SID
+structures marshaled in packet representation ([MS-DTYP] section <a href="../ms-dtyp/f992ad60-0fe4-4b87-9fed-beb478836861" data-linktype="relative-path">2.4.2.2</a>)
+that identify either (i) <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_8492780e-99e2-47ba-8553-aedb8de9f9c0" data-linktype="relative-path">principals</a>
+for whom the officer can approve requests; or (ii) principals on whose behalf
+the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_3edb3c30-bb82-4782-9777-19c5006965ef" data-linktype="relative-path">enrollment</a> agent can
+obtain <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a>. For
+an Officer rights security descriptor, case (i) applies. For an Enrollment Agent
+rights security descriptor, case (ii) applies.</p><p><b>TemplateName (variable): </b>A little-endian
+encoded Unicode and null-terminated string that identifies the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_a86706d6-bcdf-4107-be38-d2f08a7eaa68" data-linktype="relative-path">common name (CN)</a> of the
+template (as defined in <a href="../ms-crtd/4c6950e4-1dc2-4ae3-98c3-b8919bb73822" data-linktype="relative-path">[MS-CRTD]</a>)
+for which the officer is authorized to approve requests.</p></div>

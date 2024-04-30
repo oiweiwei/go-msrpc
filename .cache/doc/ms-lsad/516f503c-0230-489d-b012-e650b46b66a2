@@ -1,0 +1,305 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/516f503c-0230-489d-b012-e650b46b66a2" data-linktype="external">msdn link</a></p><p>The LsarQueryInformationPolicy2 method is invoked to query
+values that represent the server&#39;s security policy.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarQueryInformationPolicy2(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] POLICY_INFORMATION_CLASS InformationClass,
+   [out, switch_is(InformationClass)] 
+     PLSAPR_POLICY_INFORMATION* PolicyInformation
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>InformationClass: </b>A parameter that specifies
+what type of information the caller is requesting.</p><p><b>PolicyInformation: </b>A parameter that references
+policy information structure on return.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing below.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000009A</p>
+  <p>STATUS_INSUFFICIENT_RESOURCES</p>
+  </td>
+  <td>
+  <p>There are insufficient resources to complete the
+  request.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  the operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the parameters is incorrect. For instance, this
+  can happen if <i>InformationClass</i> is out of range or if <i>PolicyInformation</i>
+  is NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p><i>PolicyHandle</i> MUST be a handle to an open policy
+object, and <i>PolicyHandle</i>.HandleType MUST equal &#34;Policy&#34;;
+otherwise, STATUS_INVALID_HANDLE MUST be returned.</p><p>The server MUST verify that <i>PolicyHandle</i> grants
+access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a>. The following
+table specifies the RequiredAccess value to use in this access check for each <i>InformationClass</i>
+value or indicates if no processing is supported, regardless of access granted.</p><table><thead>
+  <tr>
+   <th>
+   <p>InformationClass value</p>
+   </th>
+   <th>
+   <p>RequiredAccess value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PolicyAuditLogInformation</p>
+  </td>
+  <td>
+  <p>POLICY_VIEW_AUDIT_INFORMATION</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyAuditEventsInformation</p>
+  </td>
+  <td>
+  <p>POLICY_VIEW_AUDIT_INFORMATION</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyPrimaryDomainInformation</p>
+  </td>
+  <td>
+  <p>POLICY_VIEW_LOCAL_INFORMATION</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyPdAccountInformation</p>
+  </td>
+  <td>
+  <p>POLICY_GET_PRIVATE_INFORMATION</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyAccountDomainInformation</p>
+  </td>
+  <td>
+  <p>POLICY_VIEW_LOCAL_INFORMATION</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyLsaServerRoleInformation</p>
+  </td>
+  <td>
+  <p>POLICY_VIEW_LOCAL_INFORMATION</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyReplicaSourceInformation</p>
+  </td>
+  <td>
+  <p>POLICY_VIEW_LOCAL_INFORMATION</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyModificationInformation</p>
+  </td>
+  <td>
+  <p>Not applicable: This information class cannot be
+  queried. The request MUST fail with STATUS_INVALID_PARAMETER.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyAuditFullSetInformation</p>
+  </td>
+  <td>
+  <p>Not applicable: This information class cannot be
+  queried. The request MUST fail with STATUS_INVALID_PARAMETER.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyAuditFullQueryInformation</p>
+  </td>
+  <td>
+  <p>POLICY_VIEW_AUDIT_INFORMATION</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyDnsDomainInformation</p>
+  </td>
+  <td>
+  <p>POLICY_VIEW_LOCAL_INFORMATION</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyDnsDomainInformationInt</p>
+  </td>
+  <td>
+  <p>POLICY_VIEW_LOCAL_INFORMATION</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyLocalAccountDomainInformation</p>
+  </td>
+  <td>
+  <p>POLICY_VIEW_LOCAL_INFORMATION</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyMachineAccountInformation</p>
+  </td>
+  <td>
+  <p>POLICY_VIEW_LOCAL_INFORMATION</p>
+  </td>
+ </tr></tbody></table><p>The <i>InformationClass</i> parameter can take on any value
+in the POLICY_INFORMATION_CLASS enumeration range. For all values outside this
+range, the server MUST return a STATUS_INVALID_PARAMETER error code.</p><p><i>PolicyInformation</i> is an output parameter. The server
+MUST fill it in with the information requested by the client, based on the
+value of the <i>InformationClass</i> parameter and the abstract data model
+specified in section <a href="c939c70e-8cf0-4d90-a9cc-1c5002951723" data-linktype="relative-path">3.1.1.1</a>,
+as follows.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value of InformationClass parameter </p>
+   </th>
+   <th>
+   <p>Information returned to caller from abstract data
+   model </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PolicyAuditLogInformation</p>
+  </td>
+  <td>
+  <p>Auditing Log Information</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyAuditEventsInformation</p>
+  </td>
+  <td>
+  <p>Event Auditing Options</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyPrimaryDomainInformation</p>
+  </td>
+  <td>
+  <p>Primary Domain Information</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyPdAccountInformation</p>
+  </td>
+  <td>
+  <p>MUST return an <a href="b04175b3-fedf-4dda-9034-f754a10fe64e" data-linktype="relative-path">LSAPR_POLICY_PD_ACCOUNT_INFO</a>
+  information structure, its <b>Name</b> member being an RPC_UNICODE_STRING
+  with <b>Length</b> set to 0 and <b>Buffer</b> initialized to NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyAccountDomainInformation</p>
+  </td>
+  <td>
+  <p>On non–<a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controllers</a>:
+  Account Domain</p>
+  <p>On domain controller: Primary Domain Information</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyLsaServerRoleInformation</p>
+  </td>
+  <td>
+  <p>Server Role Information</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyReplicaSourceInformation</p>
+  </td>
+  <td>
+  <p>Replica Source Information</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyModificationInformation</p>
+  </td>
+  <td>
+  <p>MUST return STATUS_INVALID_PARAMETER</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyAuditFullSetInformation</p>
+  </td>
+  <td>
+  <p>MUST return STATUS_INVALID_PARAMETER</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyAuditFullQueryInformation</p>
+  </td>
+  <td>
+  <p>Audit Full Information<a id="Appendix_A_Target_61"></a><a aria-label="Product behavior note 61" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_61" data-linktype="relative-path">&lt;61&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyDnsDomainInformation</p>
+  </td>
+  <td>
+  <p>DNS Domain Information<a id="Appendix_A_Target_62"></a><a aria-label="Product behavior note 62" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_62" data-linktype="relative-path">&lt;62&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyDnsDomainInformationInt</p>
+  </td>
+  <td>
+  <p>DNS Domain Information</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyLocalAccountDomainInformation</p>
+  </td>
+  <td>
+  <p>Account Domain Information</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyMachineAccountInformation</p>
+  </td>
+  <td>
+  <p>Machine Account Information</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

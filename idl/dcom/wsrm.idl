@@ -1,0 +1,530 @@
+import "ms-dtyp.idl";
+import "ms-oaut.idl";
+ 
+typedef [v1_enum] enum
+{
+    CONFIGTYPE_ACCOUNTING       = 1,
+    CONFIGTYPE_NOTIFICATION     = 2,
+    CONFIGTYPE_CALENDARING      = 3
+}
+CONFIGTYPE;
+ 
+typedef [v1_enum] enum
+{
+    RESTORE_LAST_GOOD_STATE     = 1,
+    RESTORE_EMPTY_FILES         = 2
+}
+RESTORE_MODE;
+ 
+typedef [v1_enum] enum
+{
+    OBJECT_SELECTION_CRITERIA   = 1,
+    OBJECT_POLICY               = 2,
+    OBJECT_SCHEDULE             = 3
+}
+OBJECT_TYPE;
+ 
+typedef [v1_enum] enum
+{
+    MANUAL_ACTIVE_POLICY        = 1,
+    CALENDAR_POLICY             = 2,
+    PROFILING                   = 3
+}
+MANAGEMENT_TYPE;
+ 
+typedef [v1_enum] enum
+{
+    SYSTEM_EXCLUSION_LIST       = 1,
+    USER_EXCLUSION_LIST         = 2,
+    DEFAULT_USER_EXCLUSION_LIST = 4
+}
+EXCLUSIONLIST_TYPE;
+ 
+typedef [v1_enum] enum
+{
+    OVERWRITE_IMPORT                   = 1,
+    IGNORE_EXISTING_IMPORT             = 2,
+    OVERRIDE_EXISTING_IMPORT           = 3,
+    SMART_MERGE_RENAME_EXISTING_IMPORT = 4,
+    SMART_MERGE_RENAME_IMPORTED_IMPORT = 5,
+} 
+IMPORT_TYPE;
+ 
+typedef [v1_enum] enum
+{
+    OVERWRITE_MG_MERGE_OPTION          = 1,
+    OVERRIDE_MG_MERGE_OPTION           = 2,
+    APPEND_MG_MERGE_OPTION             = 3,
+    SMART_MG_MERGE_OPTION              = 4,
+} 
+MACHINE_GROUP_MERGE_OPTIONS;
+ 
+[
+    uuid(E8BCFFAC-B864-4574-B2E8-F1FB21DFDC18),
+    helpstring("ResourceManager Class")
+]
+coclass ResourceManager
+{
+    [default] interface IResourceManager;
+    interface IWRMCalendar;
+    interface IWRMPolicy;
+    interface IWRMResourceGroup;
+    interface IWRMAccounting;
+    interface IWRMConfig;
+    interface IWRMProtocol;
+    interface IWRMMachineGroup;
+    interface IResourceManager2;
+    interface IWRMRemoteSessionMgmt;
+ 
+};
+ 
+[
+    object,
+    uuid(C5CEBEE2-9DF5-4CDD-A08C-C2471BC144B4),
+    dual,
+    helpstring("IResourceManager Interface"),
+    pointer_default(unique)
+]
+interface IResourceManager : IDispatch
+{
+    [id(1), helpstring("method RetrieveEventList")]
+        HRESULT RetrieveEventList(
+            [out] BSTR *pbstrEventList);
+    [id(2), helpstring("method GetSystemAffinity")]
+        HRESULT GetSystemAffinity(
+            [out] DWORD64 *pdwSysAffinity);
+    [id(3), helpstring("method ImportXMLFiles")]
+        HRESULT ImportXMLFiles(
+            [in] BSTR bstrPMCXml,
+            [in] BSTR bstrPolicyXml,
+            [in] BSTR bstrCalendarXml,
+            [in] BSTR bstrConditionalXml);
+    [id(4), helpstring("method ExportXMLFiles")]
+        HRESULT ExportXMLFiles(
+            [out] BSTR *pbstrPMCXml,
+            [out] BSTR *pbstrPolicyXml,
+            [out] BSTR *pbstrCalendarXml,
+            [out] BSTR *pbstrConditionalXml);
+    [id(5), helpstring("method RestoreXMLFiles")]
+        HRESULT RestoreXMLFiles(
+            [in] RESTORE_MODE enumRestore);
+    [id(6), helpstring("method GetDependencies")]
+        HRESULT GetDependencies(
+            [in] BSTR bstrObjectName,
+            [in] OBJECT_TYPE enumObject,
+            [out] BSTR *pbstrDependencyList);
+    [id(7), helpstring("method GetServiceList")]
+        HRESULT GetServiceList(
+            [out] BSTR *pbstrServiceList);
+    [id(8), helpstring("method GetIISAppPoolNames")]
+        HRESULT GetIISAppPoolNames(
+            [out] BSTR *pbstrIISAppPoolList,
+            [out] BSTR *pbstrSystemDirectory);
+    [id(9), helpstring("method GetServerName")]
+        HRESULT GetServerName(
+            [out] BSTR *pbstrServerName);
+    [id(10),helpstring("method GetCurrentMemory")]
+        HRESULT GetCurrentMemory(
+            [out] DWORD64 *pdwCurrMemory);
+};
+    
+[
+    object,
+    uuid(481E06CF-AB04-4498-8FFE-124A0A34296D),
+    dual,
+    helpstring("IWRMCalendar Interface"),
+    pointer_default(unique)
+]
+interface IWRMCalendar : IDispatch
+{
+    [id(1), helpstring("method GetCalendarInfo")]
+        HRESULT GetCalendarInfo(
+            [in] BSTR  bstrCalendarName,
+            [out] BSTR* pbstrCalendarXML);
+    [id(2), helpstring("method CreateCalendar")]
+        HRESULT CreateCalendar(
+            [in] BSTR bstrCalendarXML,
+            [in] BOOL bChangeActivePolicy);
+    [id(3), helpstring("method ModifyCalendar")]
+        HRESULT ModifyCalendar(
+            [in] BSTR bstrCalendarXML,
+            [in] BOOL bOverwrite,
+            [in] BOOL bChangeActivePolicy);
+    [id(4), helpstring("method DeleteCalendar")]
+        HRESULT DeleteCalendar(
+            [in] BSTR bstrCalendarName,
+            [in] BOOL bChangeActivePolicy);
+    [id(5), helpstring("method RenameCalendar")]
+        HRESULT RenameCalendar(
+            [in] BSTR bstrOldCalendarName,
+            [in] BSTR bstrNewCalendarName);
+    [id(6), helpstring("method ComputeEvents")]
+        HRESULT ComputeEvents(
+            [in] BSTR szStartTime,
+            [in] BSTR szEndTime,
+            [in] BOOL fMergeEvents,
+            [out] BSTR *pbstrEvents,
+            [out] BSTR *pbstrConflicts);
+    [id(7), helpstring("method GetScheduleInfo")]
+        HRESULT GetScheduleInfo(
+            [in] BSTR  bstrScheduleName,
+            [out] BSTR* pbstrScheduleXML);
+    [id(8), helpstring("method CreateSchedule")]
+        HRESULT CreateSchedule(
+            [in] BSTR bstrScheduleXML);
+    [id(9), helpstring("method ModifySchedule")]
+        HRESULT ModifySchedule(
+            [in] BSTR bstrScheduleXML,
+            [in] BOOL bOverwrite,
+            [in] BOOL bChangeActivePolicy);
+    [id(10), helpstring("method DeleteSchedule")]
+        HRESULT DeleteSchedule(
+            [in] BSTR bstrScheduleName);
+    [id(11), helpstring("method RenameSchedule")]
+        HRESULT RenameSchedule(
+            [in] BSTR bstrOldScheduleName,
+            [in] BSTR bstrNewScheduleName);
+    [id(12), helpstring("method MoveBeforeCalendar")]
+        HRESULT MoveBeforeCalendar(
+            [in] BSTR bstrCalendarName,
+            [in] BSTR bstrRefCalendarName,
+            [in] BOOL bChangeActivePolicy);
+    [id(13), helpstring("method MoveAfterCalendar")]
+        HRESULT MoveAfterCalendar(
+            [in] BSTR bstrCalendarName,
+            [in] BSTR bstrRefCalendarName,
+            [in] BOOL bChangeActivePolicy);
+    [id(14), helpstring("method GetServerTimeZone")]
+        HRESULT GetServerTimeZone(
+            [out] int* pnServerTimeZone);
+};
+    
+[
+    object,
+    uuid(59602EB6-57B0-4FD8-AA4B-EBF06971FE15),
+    dual,
+    helpstring("IWRMPolicy Interface"),
+    pointer_default(unique)
+]
+interface IWRMPolicy: IDispatch
+{
+    [id(1), helpstring("method GetPolicyInfo")]
+        HRESULT GetPolicyInfo(
+            [in] BSTR bstrPolicyName,
+            [out] BSTR *pbstrPolicyInfo);
+    [id(2), helpstring("method CreatePolicy")]
+        HRESULT CreatePolicy(
+            [in] BSTR bstrPolicyInfo);
+    [id(3), helpstring("method ModifyPolicy")]
+        HRESULT ModifyPolicy(
+            [in] BSTR bstrPolicyInfo,
+            [in] BOOL bOverwrite);
+    [id(4), helpstring("method DeletePolicy")]
+        HRESULT DeletePolicy(
+            [in] BSTR bstrPolicyName);
+    [id(5), helpstring("method RenameAllocationPolicy")]
+        HRESULT RenameAllocationPolicy(
+            [in] BSTR bstrNewPolicyName,
+            [in] BSTR bstrOldPolicyName);
+    [id(6), helpstring("method MoveBefore")]
+        HRESULT MoveBefore(
+            [in] BSTR bstrPolicyName,
+            [in] BSTR bstrResourceGroupName,
+            [in] BSTR bstrRefResourceGroupName);
+    [id(7), helpstring("method MoveAfter")]
+        HRESULT MoveAfter(
+            [in] BSTR bstrPolicyName,
+            [in] BSTR bstrResourceGroupName,
+            [in] BSTR bstrRefResourceGroupName);
+    [id(8), helpstring("method SetCalDefaultPolicyName")]
+        HRESULT SetCalDefaultPolicyName(
+            [in] BSTR bstrDefaultPolicyName);
+    [id(9), helpstring("method GetCalDefaultPolicyName")]
+        HRESULT GetCalDefaultPolicyName(
+            [out] BSTR *pbstrDefaultPolicyName);
+    [id(10), helpstring("method GetProcessList")]
+        HRESULT GetProcessList(
+            [in] BSTR bstrPolicyName,
+            [out] BSTR *pbstrProcessList);
+    [id(11), helpstring("method GetCurrentPolicy")]
+        HRESULT GetCurrentPolicy(
+            [out] BSTR *pbstrCurrentPolicyInfo,
+            [out] MANAGEMENT_TYPE *enumManage);
+    [id(12), helpstring("method SetCurrentPolicy")]
+        HRESULT SetCurrentPolicy(
+            [in] BSTR bstrPolicyName,
+            [in] MANAGEMENT_TYPE enumManage);
+    [id(13), helpstring("method GetCurrentStateAndActivePolicyName")]
+        HRESULT GetCurrentStateAndActivePolicyName(
+            [out] BSTR *pbstrCurrentPolicyName,
+            [out] MANAGEMENT_TYPE *enumManage);
+    [id(14), helpstring("method GetConditionalPolicy")]
+        HRESULT GetConditionalPolicy(
+            [in] BSTR bstrPolicyName,
+            [out] BSTR *pbstrPolicyInfo);
+    [id(15), helpstring("method SetConditionalPolicy")]
+        HRESULT SetConditionalPolicy(
+            [in] BSTR bstrPolicyInfo);
+};
+    
+[
+    object,
+    uuid(BC681469-9DD9-4BF4-9B3D-709F69EFE431),
+    dual,
+    helpstring("IWRMResourceGroup Interface"),
+    pointer_default(unique)
+]
+interface IWRMResourceGroup: IDispatch
+{
+    [id(1), helpstring("method GetResourceGroupInfo")]
+        HRESULT GetResourceGroupInfo(
+            [in] BSTR bstrResourceGroupName,
+            [out] BSTR *pbstrResourceGroupInfo);
+    [id(2), helpstring("method ModifyResourceGroup")]
+        HRESULT ModifyResourceGroup(
+            [in] BSTR bstrResourceGroupInfo,
+            [in] BOOL bOverwrite);
+    [id(3), helpstring("method CreateResourceGroup")]
+        HRESULT CreateResourceGroup(
+            [in] BSTR bstrResourceGroupInfo);
+    [id(4), helpstring("method DeleteResourceGroup")]
+        HRESULT DeleteResourceGroup(
+            [in] BSTR bstrResourceGroupName);
+    [id(5), helpstring("method RenameResourceGroup")]
+        HRESULT RenameResourceGroup(
+            [in] BSTR bstrNewResourceGroupName,
+            [in] BSTR bstrOldResourceGroupName);
+};
+    
+[
+    object,
+    uuid(4F7CA01C-A9E5-45B6-B142-2332A1339C1D),
+    dual,
+    helpstring("IWRMAccounting Interface"),
+    pointer_default(unique)
+]
+interface IWRMAccounting: IDispatch
+{
+    [id(1), helpstring("method CreateAccountingDb")]
+        HRESULT CreateAccountingDb(
+            [in] BSTR bstrServerName,
+            [in] BOOL bWindowsAuth,
+            [in] BSTR bstrUserName,
+            [in] BSTR bstrPasswd);
+    [id(2), helpstring("method GetAccountingMetadata")]
+        HRESULT GetAccountingMetadata(
+            [out] BSTR *pbstrMetaData);
+    [id(3), helpstring("method ExecuteAccountingQuery")]
+        HRESULT ExecuteAccountingQuery(
+            [in] BSTR bstrAccountingQuery,
+            [in] BSTR bstrStartingDate,
+            [in] BSTR bstrEndingDate,
+            [out] BSTR *pbstrResult,
+            [out] BOOL *pbIsThereMoreData);
+    [id(4), helpstring("method GetRawAccountingData")]
+        HRESULT GetRawAccountingData(
+            [in] BSTR bstrStartingDate,
+            [in] BSTR bstrEndingDate,
+            [in] BSTR bstrMachineName,
+            [out] BSTR *pbstrResult,
+            [out] BOOL *pbIsThereMoreData);
+    [id(5), helpstring("method GetNextAccountingDataBatch")]
+        HRESULT GetNextAccountingDataBatch(
+            [out] BSTR *pbstrResult,
+            [out] BOOL *pbIsThereMoreData);
+    [id(6), helpstring("method DeleteAccountingData")]
+        HRESULT DeleteAccountingData(
+            [in] BSTR bstrStartingDate,
+            [in] BSTR bstrEndingDate,
+            [in] BSTR bstrMachineName);
+    [id(7), helpstring("method DefragmentDB")]
+        HRESULT DefragmentDB();
+    [id(8), helpstring("method CancelAccountingQuery")]
+        HRESULT CancelAccountingQuery(
+            [in] BOOL flag);
+    [id(9), helpstring("method RegisterAccountingClient")]
+        HRESULT RegisterAccountingClient(
+            [in] BSTR bstrClientId);
+    [id(10), helpstring("method DumpAccountingData")]
+        HRESULT DumpAccountingData(
+            [in] BSTR bstrAccountingData);
+    [id(11), helpstring("method GetAccountingClients")]
+        HRESULT GetAccountingClients(
+            [out] BSTR *pbstrClientIds);
+    [id(12), helpstring("method SetAccountingClientStatus")]
+        HRESULT SetAccountingClientStatus(
+            [in] BSTR bstrClientIds);
+    [id(13), helpstring("method CheckAccountingConnection")]
+        HRESULT CheckAccountingConnection();
+    [id(14), helpstring("method SetClientPermissions")]
+        HRESULT SetClientPermissions(
+            [in] BSTR bstrClientId,
+            [in] BOOL fAddPermissions);
+};
+    
+[
+    object,
+    uuid(21546AE8-4DA5-445E-987F-627FEA39C5E8),
+    dual,
+    helpstring("IWRMConfig Interface"),
+    pointer_default(unique)
+]
+interface IWRMConfig: IDispatch
+{
+    [id(1), helpstring("method GetConfig")]
+        HRESULT GetConfig(
+            [out] BSTR *pbstrConfigInfo,
+            [in] CONFIGTYPE enumConfigType);
+    [id(2), helpstring("method SetConfig")]
+        HRESULT SetConfig(
+            [in] BSTR bstrConfigInfo,
+            [in] CONFIGTYPE enumConfigType);
+    [id(3), helpstring("method IsEnabled")]
+        HRESULT IsEnabled(
+            [out] BOOL *pbEnable,
+            [in] CONFIGTYPE enumConfigType);
+    [id(4), helpstring("method EnableDisable")]
+        HRESULT EnableDisable(
+            [in] BOOL bEnableDisable,
+            [in] CONFIGTYPE enumConfigType);
+    [id(5), helpstring("method GetExclusionList")]
+        HRESULT GetExclusionList(
+            [out] BSTR *pbstrExclusionList,
+            [in] EXCLUSIONLIST_TYPE enumListType);
+    [id(6), helpstring("method SetExclusionList")]
+        HRESULT SetExclusionList(
+            [in] BSTR bstrExclusionList);
+    [id(7), helpstring("method WSRMActivate")]
+        HRESULT WSRMActivate(
+            [in] BOOL bActivate);
+    [id(8), helpstring("method IsWSRMActivated")]
+        HRESULT IsWSRMActivated(
+            [out] BOOL *pbActivated);
+    [id(9), helpstring("method RestoreExclusionList")]
+        HRESULT RestoreExclusionList();
+};
+    
+[
+    object,
+    uuid(F31931A9-832D-481C-9503-887A0E6A79F0),
+    dual,
+    helpstring("IWRMProtocol Interface"),
+    pointer_default(unique)
+]
+interface IWRMProtocol: IDispatch
+{
+    [id(1), helpstring("method GetSupportedClient")]
+        HRESULT GetSupportedClient(
+            [out] BSTR *pbstrSupportedClients);
+};
+ 
+[
+    object,
+    uuid(943991a5-b3fe-41fa-9696-7f7b656ee34b),
+    dual,
+    helpstring("IWRMMachineGroup Interface"),
+    pointer_default(unique)
+]
+interface IWRMMachineGroup: IDispatch
+{
+    [id(1), helpstring("method CreateMachineGroup")]
+        HRESULT CreateMachineGroup(
+            [in] BSTR bstrParentMachineGroupId, 
+            [in] BSTR bstrMachineGroupInfo);
+    [id(2), helpstring("method GetMachineGroupInfo")]
+        HRESULT GetMachineGroupInfo(
+            [in] BSTR bstrMachineGroupId,
+            [out] BSTR *pbstrMachineGroupInfo);
+    [id(3), helpstring("method ModifyMachineGroup")]
+        HRESULT ModifyMachineGroup(
+            [in] BSTR bstrMachineGroupId,
+            [in] BSTR bstrMachineGroupInfo, 
+            [in] MACHINE_GROUP_MERGE_OPTIONS enumMGMergeOptions);
+    [id(4), helpstring("method DeleteMachineGroup")]
+        HRESULT DeleteMachineGroup(
+            [in] BSTR bstrMachineGroupId);
+    [id(5), helpstring("method RenameMachineGroup")]
+        HRESULT RenameMachineGroup(
+            [in] BSTR bstrOldMachineGroupName,
+            [in] BSTR bstrNewMachineGroupName);
+    [id(6), helpstring("method AddMachine")]
+        HRESULT AddMachine(
+            [in] BSTR bstrParentMachineGroupId, 
+            [in] BSTR bstrMachineInfo);
+    [id(7), helpstring("method GetMachineInfo")]
+        HRESULT GetMachineInfo(
+            [in] BSTR bstrMachineId, 
+            [out] BSTR *pbstrMachineInfo);
+    [id(8), helpstring("method ModifyMachineInfo")]
+        HRESULT ModifyMachineInfo(
+            [in] BSTR bstrParentMachineGroupId, 
+            [in] BSTR bstrMachineId, 
+            [in] BSTR bstrMachineInfo);
+    [id(9), helpstring("method DeleteMachine")]
+        HRESULT DeleteMachine(
+            [in] BSTR bstrParentMachineGroupId,
+            [in] BSTR bstrMachineId,BOOL bRecursive);
+};
+ 
+[
+    object,
+    uuid(2A3EB639-D134-422d-90D8-AAA1B5216202),
+    dual,
+    helpstring("IResourceManager2 Interface"),
+    pointer_default(unique)
+]
+interface IResourceManager2 : IDispatch
+{
+    [id(1), helpstring("method ExportObjects")]
+        HRESULT ExportObjects(
+            [in] BSTR bstrObjectIds, 
+            [in] OBJECT_TYPE enumObjectType, 
+            [out] BSTR *pbstrObjectXml);
+    [id(2), helpstring("method GetImportConflicts")]
+        HRESULT GetImportConflicts(
+            [in] BSTR bstrPMCXml, 
+            [in] BSTR bstrPolicyXml, 
+            [in] BSTR bstrCalendarXml, 
+            [in] BSTR bstrConditionalXml,
+            [in] BSTR bstrMachineGroupXml,
+            [in] BSTR bstrConfigurationXmls,
+            [out] BSTR *pbstrConflictingObjects);
+    [id(3), helpstring("method ImportXml")]
+        HRESULT ImportXml(
+            [in] BSTR bstrPMCXml, 
+            [in] BSTR bstrPolicyXml, 
+            [in] BSTR bstrCalendarXml, 
+            [in] BSTR bstrConditionalXml,
+            [in] BSTR bstrMachineGroupXml,
+            [in] BSTR bstrConfigurationXmls,
+            [in] IMPORT_TYPE enumImportType);
+    [id(4), helpstring("method ExportXml")]
+        HRESULT ExportXml(
+            [out] BSTR *pbstrPMCXml, 
+            [out] BSTR *pbstrPolicyXml, 
+            [out] BSTR *pbstrCalendarXml, 
+            [out] BSTR *pbstrConditionalXml,
+            [out] BSTR *pbstrMachineGroupXml,
+            [out] BSTR *pbstrConfigurationXmls);
+};
+ 
+[
+    object,
+    uuid(FC910418-55CA-45ef-B264-83D4CE7D30E0),
+    dual,
+    helpstring("IWRMRemoteSessionMgmt Interface"),
+    pointer_default(unique)
+]
+interface IWRMRemoteSessionMgmt : IDispatch
+{
+    [id(1), helpstring("method GetRemoteUserCategories")]
+        HRESULT GetRemoteUserCategories(
+            [out] BSTR *pbstrRemoteUserCategoriesInfo);
+    [id(2), helpstring("method SetRemoteUserCategories")]
+        HRESULT SetRemoteUserCategories(
+            [in] BSTR bstrRemoteUserCategoriesInfo);
+    [id(3), helpstring("method RefreshRemoteSessionWeights")]
+        HRESULT RefreshRemoteSessionWeights(
+            [in] BSTR bstrTaregetUserSessions,
+            [in] BOOL bUpdateAll);
+}

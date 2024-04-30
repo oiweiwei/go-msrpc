@@ -1,0 +1,9 @@
+<div class="content"><p>The GetTransmitCount_Call structure is used to obtain the
+number of transmit calls sent to the card since the reader was introduced.</p><dl>
+<dd>
+<div><pre> typedef struct _GetTransmitCount_Call {
+   REDIR_SCARDHANDLE hCard;
+ } GetTransmitCount_Call;
+</pre></div>
+</dd></dl><p><b>hCard:</b>  A handle, as specified in
+section <a href="b6276356-7c5f-4d3e-be92-a6c85e58d008" data-linktype="relative-path">2.2.1.2</a>.</p></div>

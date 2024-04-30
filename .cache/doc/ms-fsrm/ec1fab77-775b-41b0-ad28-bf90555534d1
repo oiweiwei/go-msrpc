@@ -1,0 +1,82 @@
+<div class="content"><p>The CreateThresholdAction method creates an action and associates
+it with the specified <b>threshold</b>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_QUOTA_BASE | 0x04)] HRESULT CreateThresholdAction(
+   [in] FSRM_QUOTA_THRESHOLD threshold,
+   [in] FsrmActionType actionType,
+   [out, retval] IFsrmAction** action
+ );
+</pre></div>
+</dd></dl><p><b>threshold: </b>Contains the <b>threshold</b> to
+create the action for.</p><p><b>actionType: </b>Contains the type of action to be
+created.</p><p><b>action: </b>Pointer to an <b>IFsrmAction</b>
+interface pointer (section <a href="8e93ed78-6809-4ee1-a98b-f3dcdc41ae71" data-linktype="relative-path">3.2.4.2.4</a>)
+that upon completion points to the newly created action. The caller MUST
+release the object when it is done with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>An object with the specified threshold could not be
+  found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045303</p>
+  <p>FSRM_E_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>An action of the same type as the <i>actionType</i>
+  parameter already exists for the threshold.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8004530D</p>
+  <p>FSRM_E_OUT_OF_RANGE</p>
+  </td>
+  <td>
+  <p>The content of the <i>threshold</i> parameter is less
+  than 1 or greater than 250.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>action</i> parameter is
+  NULL.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>actionsType</i> parameter
+  is not a valid type.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>threshold</i> is greater than 0 and less than 251.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>actionType</i> is a valid <a href="0399ffcc-f04b-4dd9-bde7-c336e58eb8d4" data-linktype="relative-path">FsrmActionType (section 2.2.1.2.9)</a>
+value. If <i>actionType</i> is <b>FsrmActionType_Unknown</b>, the parameter
+MUST be considered an invalid value.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>action</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST create a new action object of the specified
+type and associate it with the specified <b>threshold</b> or return a nonzero
+error code. If the <b>threshold</b> does not exist for the quota object, the
+server MUST return FSRM_E_NOT_FOUND.</p></div>

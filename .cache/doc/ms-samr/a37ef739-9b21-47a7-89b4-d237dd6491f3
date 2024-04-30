@@ -1,0 +1,31 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/a37ef739-9b21-47a7-89b4-d237dd6491f3" data-linktype="external">msdn link</a></p><p>The SAMPR_GROUP_INFO_BUFFER union combines all possible
+structures used in the <a href="e66db19f-600a-481b-bc4e-23953433255d" data-linktype="relative-path">SamrSetInformationGroup</a>
+and <a href="8fd0003f-8076-40ae-872f-9cdb6576b3c7" data-linktype="relative-path">SamrQueryInformationGroup</a>
+methods. For information on each field, with the exception of the <b>DoNotUse</b>
+field, see the associated section for the field structure.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(GROUP_INFORMATION_CLASS)] 
+ union _SAMPR_GROUP_INFO_BUFFER {
+   [case(GroupGeneralInformation)] 
+     SAMPR_GROUP_GENERAL_INFORMATION General;
+   [case(GroupNameInformation)] 
+     SAMPR_GROUP_NAME_INFORMATION Name;
+   [case(GroupAttributeInformation)] 
+     GROUP_ATTRIBUTE_INFORMATION Attribute;
+   [case(GroupAdminCommentInformation)] 
+     SAMPR_GROUP_ADM_COMMENT_INFORMATION AdminComment;
+   [case(GroupReplicationInformation)] 
+     SAMPR_GROUP_GENERAL_INFORMATION DoNotUse;
+ } SAMPR_GROUP_INFO_BUFFER,
+  *PSAMPR_GROUP_INFO_BUFFER;
+</pre></div>
+</dd></dl><p><b>DoNotUse:</b>  This field exists to
+allow the <a href="951d1311-bbfa-453b-b3a6-10f2e7bf6a4f" data-linktype="relative-path">GroupReplicationInformation</a>
+enumeration to be specified by the client.</p><dl>
+<dd>
+<p>As specified in section 3.1.5.5.3.1, the <b>General</b>
+field (instead of <b>DoNotUse</b>) MUST be used by the server when
+GroupReplicationInformation is received. GroupReplicationInformation is not
+valid for a set operation.</p>
+</dd></dl></div>

@@ -1,0 +1,76 @@
+<div class="content"><p> </p><p>The <b>FAX_CONFIGURATIONW</b> structure is used as an input
+parameter for the <b>FAX_SetConfiguration</b> (section <span><a href="23236737-e2f7-4fa6-80dd-066e241f1f5a" data-linktype="relative-path">3.1.4.1.76</a></span>)
+and <b>FaxObs_SetConfiguration</b> (section <span><a href="113dd53f-5d5d-49bd-b7c5-abb07f7968e6" data-linktype="relative-path">3.1.4.2.25</a></span>) methods
+to change the current fax server configuration settings. Along with the <b>FAX_GENERAL_CONFIG</b>
+(section <span><a href="7b87f66e-e7bf-4294-be2f-669de0595bde" data-linktype="relative-path">2.2.31</a></span>) structure,
+this data structure describes the general configuration of the fax server.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD SizeOfStruct;
+   DWORD Retries;
+   DWORD RetryDelay;
+   DWORD DirtyDays;
+   BOOL Branding;
+   BOOL UseDeviceTsid;
+   BOOL ServerCp;
+   BOOL PauseServerQueue;
+   FAX_TIME StartCheapTime;
+   FAX_TIME StopCheapTime;
+   BOOL ArchiveOutgoingFaxes;
+   [string] LPCWSTR ArchiveDirectory;
+   [string] LPCWSTR ProfileName;
+ } FAX_CONFIGURATIONW,
+  *PFAX_CONFIGURATIONW;
+</pre></div>
+</dd></dl><p><b>SizeOfStruct:</b> A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that holds the total size of the structure, in bytes. This value MUST be
+either 52 or 64 bytes. When filled in on a 32-bit implementation, this value
+SHOULD be 52 bytes. When filled in on a 64-bit implementation, this value
+SHOULD be 64 bytes.</p><p><b>Retries:</b> A <b>DWORD</b> variable that contains
+the value of the <b>fax transmission retries</b> fax server configuration
+setting (section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>).</p><p><b>RetryDelay:</b> A <b>DWORD</b> variable that
+contains the value of the <b>fax transmission retry delay</b> fax server
+configuration setting.</p><p><b>DirtyDays:</b> A <b>DWORD</b> variable that
+contains the value of the <b>dirty days</b> fax server configuration setting.</p><p><b>Branding:</b> A Boolean flag that specifies
+whether the fax server generates a brand (banner) at the top of outgoing fax
+transmissions. If this member is TRUE, the fax server generates a brand that
+contains transmission-related information like the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_3b1ad462-95fc-4739-b942-4a5670d6ae34" data-linktype="relative-path">transmitting subscriber
+identifier</a></span>, date, time, and page count. This flag configures the <b>Branding</b>
+fax server configuration setting.</p><p><b>UseDeviceTsid:</b> A Boolean flag that specifies
+whether the fax server uses the device&#39;s transmitting subscriber identifier instead
+of the value specified in the Tsid member of the <b>FAX_JOB_PARAMW</b> (section
+<span><a href="c3a6d63b-b33a-476d-aec2-79c034dc17c5" data-linktype="relative-path">2.2.13</a></span>)
+structure. If this member is TRUE, the server uses the device&#39;s transmitting
+subscriber identifier. This flag configures the &#34;use of the device&#39;s
+TSID&#34; fax server configuration setting.</p><p><b>ServerCp:</b> A Boolean flag that specifies
+whether fax client applications can include a user-designed cover page template
+with the fax transmission. If this member is TRUE, the client MUST use a common
+cover page template stored on the fax server. If this member is FALSE, the
+client can use a personal cover page template. This flag configures the <b>personal
+cover page support</b> fax server configuration setting.</p><p><b>PauseServerQueue:</b> A Boolean flag that
+specifies whether the fax server has paused the outgoing <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_0c5e7185-40c3-4e58-a8ac-7626ed078235" data-linktype="relative-path">fax queue</a></span>.
+If this member is TRUE, the outgoing fax queue is paused and the <b>Queue State</b>
+(section 3.1.1) is set to FAX_OUTBOX_PAUSED (0x00000004). If this field is
+FALSE, the outgoing fax queue is not paused, and the <b>Queue State</b> is
+either 0x00000000 or FAX_OUTBOX_BLOCKED (0x00000002).</p><p><b>StartCheapTime:</b> Contains a <b>FAX_TIME</b>
+(section <span><a href="eb612891-9092-4f9c-a975-db41229afe41" data-linktype="relative-path">2.2.61</a></span>) structure
+that indicates the hour and minute values of the current <b>start cheap time</b>
+fax server configuration setting.</p><p><b>StopCheapTime:</b> Contains a <b>FAX_TIME</b> that
+indicates the hour and minute values of the current <b>stop cheap time</b> fax
+server configuration setting.</p><p><b>ArchiveOutgoingFaxes:</b> A Boolean flag that
+specifies whether the fax server <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9394bf31-7db9-433c-8d3d-ee6a37bf0848" data-linktype="relative-path">archives</a></span> fax
+transmissions. If this member is TRUE, the server archives transmissions in the
+directory specified by the <b>ArchiveDirectory</b> member. This flag configures
+the <b>Archive Enabled</b> fax server configuration setting.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><p><b>ArchiveDirectory:</b> A pointer to a constant,
+null-terminated character string that holds the fully qualified path of the <b>Fax
+Archive Folder</b> fax server configuration setting. The path can be a UNC path
+or a path that begins with a drive letter. The fax server ignores this member
+if the <b>ArchiveOutgoingFaxes</b> member is FALSE. This member can be NULL if
+the <b>ArchiveOutgoingFaxes</b> member is FALSE.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p><p><b>ProfileName:</b> Reserved (not used) when this
+structure is used for <b>FAX_SetConfiguration</b> (section 3.1.4.1.76).</p><dl>
+<dd>
+<p>When used for <b>FaxObs_SetConfiguration</b>
+(section 3.1.4.2.25), this member is a null-terminated character string
+containing the <b>profile name</b> fax server configuration setting.</p>
+</dd></dl></div>

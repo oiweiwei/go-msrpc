@@ -1,0 +1,33 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4GetPolicyEx</b> method returns the specified
+policy. The memory for the <b>Policy</b> structure is allocated by the method
+and can be freed by the caller by using the <b>midl_user_free</b> function
+(section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><p>The <b>R_DhcpV4GetPolicyEx</b> method is an extension of the
+<b>R_DhcpV4GetPolicy</b> (Opnum 109) (section <span><a href="a309de31-5009-4ff8-9188-ad21d6a119f3" data-linktype="relative-path">3.2.4.110)</a></span>
+method, where a <span><a href="a63aaffd-1c6b-4ad8-9d95-c1064b2112ea" data-linktype="relative-path">DHCP_POLICY_EX (section 2.2.1.2.121)</a></span>
+structure is queried, rather than a <span><a href="77e79969-cedf-4aa9-9059-6223ba815f30" data-linktype="relative-path">DHCP_POLICY (section 2.2.1.2.110)</a></span>
+structure. The structure returns a list of <span><a href="1ac6e6e5-f2bc-42ef-9d6a-c9457d48c3c3" data-linktype="relative-path">DHCP_PROPERTY (section 2.2.1.2.117)</a></span>
+elements that can be associated with the given policy.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4GetPolicyEx(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] BOOL ServerPolicy,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [in, unique, string] LPWSTR PolicyName,
+   [out] LPDHCP_POLICY_EX* Policy
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>As specified in <b>R_DhcpV4GetPolicy</b>
+(Opnum 109).</p><p><b>ServerPolicy: </b>As specified in <b>R_DhcpV4GetPolicy</b>
+(Opnum 109).</p><p><b>SubnetAddress: </b>As specified in <b>R_DhcpV4GetPolicy</b>
+(Opnum 109).</p><p><b>PolicyName: </b>As specified in <b>R_DhcpV4GetPolicy</b>
+(Opnum 109).</p><p><b>Policy: </b>This out parameter is a pointer to a <b>DHCP_POLICY_EX</b>
+structure and contains the policy data for the requested policy. The <b>DHCP_PROPERTY</b>
+elements that are queried are as follows:</p><dl>
+<dd>
+<p><b>DNSSuffix: </b>Specifies the DNSSuffix for the
+policy when the <span><a href="64fe0789-4647-4628-a3a2-2ddcc9ae42f0" data-linktype="relative-path">DHCP_PROPERTY_ID (section 2.2.1.1.27)</a></span>
+is DhcpPropIdPolicyDnsSuffix and the value of the <span><a href="1511adaa-15d3-4c19-9521-68fb9870848d" data-linktype="relative-path">DHCP_PROPERTY_TYPE (section 2.2.1.1.26)</a></span>
+is DhcpPropTypeString.</p>
+</dd></dl><p><b>Return Values: </b>As specified in <b>R_DhcpV4CreatePolicy</b>
+(Opnum 108).</p><p>The opnum field value for this method is 127.</p><p>The remainder of the processing behavior for this method is
+as defined for the <b>R_DhcpV4GetPolicy</b> (Opnum 109) method.</p></div>

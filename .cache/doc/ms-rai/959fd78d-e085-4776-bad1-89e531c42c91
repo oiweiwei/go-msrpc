@@ -1,0 +1,38 @@
+<div class="content"><p>The Remote Assistance Connection String 1 contains the <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_17c795a6-68bf-46bf-8ea8-467c8df1a0b3" data-linktype="relative-path">Remote Desktop Protocol</a>
+parameters to establish a <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_9d7b1eb9-8131-4eb3-ad5b-08792b014893" data-linktype="relative-path">Remote
+Assistance connection</a>. The Remote Assistance Connection String 1 is a
+comma-delimited <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a> comprising the following pieces of data.<a id="Appendix_A_Target_3"></a><a aria-label="Product behavior note 3" href="90b2d2e5-7931-4762-8949-04617e1d9089#Appendix_A_3" data-linktype="relative-path">&lt;3&gt;</a></p><dl>
+<dd>
+<div><pre> &lt;ProtocolVersion&gt;,&lt;protocolType&gt;,&lt;machineAddressList&gt;,&lt;assistantAccountPwd&gt;,
+ &lt;RASessionID&gt;,&lt;RASessionName&gt;,&lt;RASessionPwd&gt;,&lt;protocolSpecificParms&gt;
+</pre></div>
+</dd></dl><p>The elements are defined as follows.</p><p><b>ProtocolVersion: </b>Identifies the protocol
+version. The value MUST be 65,538.</p><p><b>protocolType: </b>Identifies the protocol type.
+The value MUST be 1.</p><p><b>machineAddressList: </b>Identifies network address
+of server machine. It is a semicolon-delimited list of IPAddress(or <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_9a7bc8b3-3374-4608-8f73-be20a90b898b" data-linktype="relative-path">computer name</a>):PortID
+string pairs. The IPAddress is of type IPV4.</p><p><b>assistantAccountPwd: </b>Password for <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_494867b1-8c5c-4fde-b089-1056c3a64f18" data-linktype="relative-path">Remote Assistance</a> Account
+Name. This MUST be set to &#34;*&#34;.</p><p><b>RASessionID: </b>Remote Assistance session unique
+identifier.</p><p><b>RASessionName: </b>Remote Assistance session name.
+This MUST be set to &#34;*&#34;.</p><p><b>RASessionPwd: </b>Remote Assistance session
+password. This MUST be set to &#34;*&#34;.</p><p><b>protocolSpecificParms: </b>Parameter specific to a
+Remote Desktop Protocol.</p><p>The following is an example of Remote Assistance Connection
+String 1.</p><dl>
+<dd>
+<div><pre> 65538,1,172.31.243.138:3389;MIKE_HOME:3389,*,Uj7RpOlU80SibpRw
+ RZ9+z1vbh7nIgVn89X1AiKp15Vc=,*,*,RcfwecK8dpcT1fjZ6iQ5M0+q7iU=
+  
+</pre></div>
+</dd></dl><p>The values for the Remote Assistance Connection String 1
+entities in the preceding example are as follows. </p><dl>
+<dd>
+<div><pre> ProtocolVersion =  65538
+ protocolType = 1
+ machineAddressList = 172.31.243.138:3389;MIKE_HOME:3389
+ assistantAccountPwd = *
+ RASessionID = Uj7RpOlU80SibpRwRZ9+z1vbh7nIgVn89X1AiKp15Vc=
+ RASessionName = *
+ RASessionPwd = *
+ protocolSpecificParms = RcfwecK8dpcT1fjZ6iQ5M0+q7iU=
+</pre></div>
+</dd></dl></div>

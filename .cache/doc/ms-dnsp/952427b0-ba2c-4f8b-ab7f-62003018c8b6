@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>The <b>R_DnssrvQuery4</b> method queries the DNS server for
+information. The type of information queried for is specified by the client
+using the <i>pwszVirtualizationInstanceID</i>, and <i>pszOperation</i>
+parameters. The DNS server SHOULD<a id="Appendix_A_Target_291"></a><a aria-label="Product behavior note 291" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_291" data-linktype="relative-path">&lt;291&gt;</a>
+implement <b>R_DnssrvQuery4</b>.</p><p>All the parameters are as specified by the <span><a href="a90a44f0-f64e-44b0-9e35-a7fc49f6adea" data-linktype="relative-path">R_DnssrvQuery2
+method (section 3.1.4.7)</a></span><b> </b>method with the following
+exceptions:</p><dl>
+<dd>
+<div><pre>    LONG R_DnssrvQuery4(
+      [in]                            DWORD                  dwClientVersion,
+      [in]                            DWORD                  dwSettingFlags,
+      [in, unique, string]            LPCWSTR                pwszServerName,
+      [in, unique, string]            LPCWSTR                pwszVirtualizationInstanceID,
+      [in, unique, string]            LPCSTR                 pszZone,
+      [in, unique, string]            LPCWSTR                pwszZoneScopeName,
+      [in, unique, string]            LPCSTR                 pszOperation,
+      [out]                           PDWORD                 pdwTypeId,
+      [out, switch_is(*pdwTypeId)]    DNSSRV_RPC_UNION*      ppData
+    );
+</pre></div>
+</dd></dl><p><b>pwszVirtualizationInstanceID:</b> A pointer to a
+null-terminated Unicode string that contains the name of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1b9d3eb9-dad0-4d1d-acb7-4597e5db641c" data-linktype="relative-path">virtualization
+instance</a></span> configured on the DNS server. For operations specific to a
+particular virtualization instance, this field MUST contain the name of the
+virtualization instance. If the value is NULL, then the API is as specified in <span><a href="0cb4d9ce-e08c-40e6-b4d5-5603b3fbc880" data-linktype="relative-path">R_DnssrvQuery3
+(section 3.1.4.14)</a></span>. Apart from the <b>VirtualizationInstances</b>
+operation (section <span><a href="b0419a70-ac0b-40ba-ab94-1510992bc574" data-linktype="relative-path">3.1.4.2</a>)</span>,
+R_DnssrvQuery3 (section 3.1.4.14) changes the behavior of the following
+operations: <b>Zone</b>, <b>ZoneInfo</b> (section 3.1.4.2) and <b>ScopeInfo</b>
+(section 3.1.4.14) operations. If these operations are called with
+R_DnssrvQuery4 and a non-NULL <i>pwszVirtualizationInstanceID</i> parameter,
+they are performed under the given virtualization instance. The <b>ScopeInfo</b>
+operation is defined for R_DnssrvQuery4 with a non-NULL virtualization instance
+only if pszZone is not NULL.</p><p><b>Return Values:</b> The method MUST return
+ERROR_SUCCESS (0x00000000) on success or a nonzero Win32 error code value if an
+error occurred. <a id="_Hlk58960491">If unable to perform the operation,
+returns error EPT_S_CANT_PERFORM_OP (0x000006D8). See </a><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+or section <a href="aa521c99-3e44-4b75-9faa-c0c1ebcca5b6" data-linktype="relative-path">2.2.1.1.5</a>. All
+error values MUST be treated the same.</p><p>When processing this call, the server MUST perform the same
+actions as for the R_DnssrvQuery3 method (section 3.1.4.14) except in the event
+the <b>dwClientVersion</b> is greater than the server version, in which case
+the server MUST return the highest version number.</p></div>

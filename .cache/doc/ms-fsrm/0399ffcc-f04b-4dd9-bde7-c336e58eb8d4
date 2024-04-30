@@ -1,0 +1,20 @@
+<div class="content"><p>The FsrmActionType enumeration defines the set of the action
+types that can be triggered in response to a quota or file screen event.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmActionType
+ {
+   FsrmActionType_Unknown = 0,
+   FsrmActionType_EventLog = 1,
+   FsrmActionType_Email = 2,
+   FsrmActionType_Command = 3,
+   FsrmActionType_Report = 4
+ } FsrmActionType;
+</pre></div>
+</dd></dl><p><b>FsrmActionType_Unknown:  </b>This enumeration
+value is not used by FSRM and MUST NOT be referenced. If the server receives
+this enumeration value, it MUST consider the value invalid and not apply any
+changes.</p><p><b>FsrmActionType_EventLog:  </b>The action will log
+an event to the application event log.</p><p><b>FsrmActionType_Email:  </b>The action will send an
+email.</p><p><b>FsrmActionType_Command:  </b>The action will
+execute a command or script.</p><p><b>FsrmActionType_Report:  </b>The action will
+generate a report.</p></div>

@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The <b>FAX_ENUM_RULE_STATUS</b> enumeration defines the
+possible status values for an outbound <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_e3969a6a-4722-476e-9a36-bb63311ae950" data-linktype="relative-path">routing rule</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FAX_RULE_STATUS_VALID = 0x00000000,
+   FAX_RULE_STATUS_EMPTY_GROUP = 0x00000001,
+   FAX_RULE_STATUS_ALL_GROUP_DEV_NOT_VALID = 0x00000002,
+   FAX_RULE_STATUS_SOME_GROUP_DEV_NOT_VALID = 0x00000003,
+   FAX_RULE_STATUS_BAD_DEVICE = 0x00000004
+ } FAX_ENUM_RULE_STATUS;
+</pre></div>
+</dd></dl><p><b>FAX_RULE_STATUS_VALID:</b> Indicates this outbound
+routing rule is valid.</p><p><b>FAX_RULE_STATUS_EMPTY_GROUP:</b> Indicates the
+rule&#39;s destination group has no devices.</p><p><b>FAX_RULE_STATUS_ALL_GROUP_DEV_NOT_VALID:</b>
+Indicates that all devices in the rule&#39;s destination group are invalid.</p><p><b>FAX_RULE_STATUS_SOME_GROUP_DEV_NOT_VALID:</b>
+Indicates the rule&#39;s destination group has some invalid devices.</p><p><b>FAX_RULE_STATUS_BAD_DEVICE: </b>Indicates the
+rule&#39;s destination device is not valid.</p></div>

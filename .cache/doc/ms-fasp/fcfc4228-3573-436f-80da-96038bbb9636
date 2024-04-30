@@ -1,0 +1,79 @@
+<div class="content"><p> </p><p>The <b>RRPC_FWEnumFirewallRules2_31</b> method requests the
+server to return the firewall rules matching the input flags contained in the
+store that is referenced by the <i>hPolicyStore</i> handle. The method returns
+a linked list of the corresponding firewall rule objects. The method is only
+supported for policy version 0x021F (section <span><a href="faf4ffbe-1d51-40ad-ae90-2230f2c0b6a9" data-linktype="relative-path">2.2.42</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD RRPC_FWEnumFirewallRules2_31(
+   [in] FW_CONN_HANDLE rpcConnHandle,
+   [in] FW_POLICY_STORE_HANDLE hPolicyStore,
+   [in] DWORD dwFilteredByStatus,
+   [in] DWORD dwProfileFilter,
+   [in] WORD wFlags,
+   [out, ref] DWORD* pdwNumRules,
+   [out] PFW_RULE* ppRules
+ );
+</pre></div>
+</dd></dl><p><b>rpcConnHandle:</b> An RPC binding handle that
+connects to the RPC interface of the Firewall and Advanced Security Protocol.</p><p><b>hPolicyStore:</b> An input parameter that is an <span><a href="88f6ea4a-a946-4747-bb93-f142f1760752" data-linktype="relative-path">FW_POLICY_STORE_HANDLE</a></span>
+data type (section 2.2.94). This parameter MUST contain an opened policy store
+handle, successfully opened with the <b>RRPC_FWOpenPolicyStore (Opnum 0)</b>
+method (section <span><a href="2157e39a-1bf0-4e0c-abae-0811fd918b11" data-linktype="relative-path">3.1.4.1</a></span>). The
+handle MUST have read/write access rights.</p><p><b>dwFilteredByStatus:</b> A combination of flags
+from the <span><a href="81877aa6-34c7-4664-adf4-ff8d5e0c0bc6" data-linktype="relative-path">FW_RULE_STATUS_CLASS</a></span>
+enumeration (section 2.2.25). This method uses this bitmask to determine
+whether rules should be returned. Rules that contain a status code of the
+specified class that match this parameter will be returned in the linked list.</p><p><b>dwProfileFilter:</b> A combination of flags from
+the <span><a href="7704e238-174d-4a5e-b809-5f3787dd8acc" data-linktype="relative-path">FW_PROFILE_TYPE</a></span>
+enumeration (section 2.2.2). This method also uses this parameter to determine
+whether rules should be returned. Rules that contain a profile specified by
+this parameter will be returned in the linked list.</p><p><b>wFlags:</b> A combination of flags from the <span><a href="aff3633c-43b2-4cef-ba63-f35b204a8a08" data-linktype="relative-path">FW_ENUM_RULES_FLAGS</a></span>
+enumeration (section 2.2.33), which modifies the behavior of the method and
+performs operations on the rules before returning them in the linked list.</p><p><b>pdwNumRules:</b> An output parameter that on
+success MUST be equal to the number of rules returned.</p><p><b>ppRules:</b> An output parameter that on success
+contains a linked list of <span><a href="8c008258-166d-46d4-9090-f2ffaa01be4b" data-linktype="relative-path">FW_RULE</a> </span>data types
+(section 2.2.37).</p><p><b>Return Values:</b> The method returns 0 if
+successful; if it fails, it returns a nonzero error code. The field can take
+any specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+The following return values are common.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The <i>hPolicyStore</i> handle was not opened with
+  read/write access rights. This error is also returned if the client does not
+  have the required credentials to call the method.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the parameters of this method is incorrect or
+  is required but not specified. This error can be returned in the following
+  cases:</p>
+  <p>- One of the required values is not specified.</p>
+  <p>- The <i>dwProfileFilter</i> parameter contains
+  invalid profiles.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+If any lower-layer errors are reported by RPC exception, this exception is
+converted to an error code and reported to higher-layer protocols via the
+return value.</p><p>The server MUST validate that the client is authorized to
+perform the requested operation (as defined in section <span><a href="b0c93352-8371-4d63-abca-b0cc8dbcc3d7" data-linktype="relative-path">3.1.4</a></span>)
+before executing this method.</p></div>

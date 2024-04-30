@@ -1,0 +1,596 @@
+<div class="content"><p>The <b>_JOB_INFO_2</b> structure specifies <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print job</a> information. It
+is a custom-<a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_37e89d91-2800-49d1-9d17-45ebe167ad87" data-linktype="relative-path">marshaled</a>
+form of the <b>_JOB_INFO_2</b> (section <a href="5a48c6c9-fc5f-42ff-a5a7-f111fee58d1a" data-linktype="relative-path">2.2.1.7.2)</a> structure.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (variable): </b>An array of one or
+more groups of fixed-size fields, which are defined as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>JobId</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PrinterNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MachineNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UserNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DocumentOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotifyNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DatatypeOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PrintProcessorOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ParametersOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DriverNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DevModeOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StatusOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecurityDescriptorOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Status</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Priority</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Position</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StartTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UntilTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TotalPages</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Size</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Submitted.wYear</p>
+  </td>
+  <td colspan="16">
+  <p>Submitted.wMonth</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Submitted.wDayOfWeek</p>
+  </td>
+  <td colspan="16">
+  <p>Submitted.wDay</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Submitted.wHour</p>
+  </td>
+  <td colspan="16">
+  <p>Submitted.wMinute</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Submitted.wSecond</p>
+  </td>
+  <td colspan="16">
+  <p>Submitted.wMilliseconds</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Time</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PagesPrinted</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>JobId (4 bytes):</b> The
+identifier of a print job.</p>
+</dd>
+<dd>
+<p><b>PrinterNameOffset (4
+bytes): </b>An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>PrinterNameArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>MachineNameOffset (4
+bytes): </b>An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>MachineNameArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>UserNameOffset (4 bytes):
+</b>An unsigned integer that specifies the number of bytes from the start of
+the structure to the start of the <b>UserNameArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>DocumentOffset (4 bytes):
+</b>An unsigned integer that specifies the number of bytes from the start of
+the structure to the start of the <b>DocumentArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>NotifyNameOffset (4
+bytes): </b>An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>NotifyNameArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>DatatypeOffset (4 bytes):
+</b>An unsigned integer that specifies the number of bytes from the start of
+the structure to the start of the <b>DatatypeArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>PrintProcessorOffset (4
+bytes): </b>An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>PrintProcessorArray</b> member.<b>
+</b></p>
+</dd>
+<dd>
+<p><b>ParametersOffset (4
+bytes): </b>An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>ParametersArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>DriverNameOffset (4
+bytes): </b>An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>DriverNameArray</b> member. </p>
+</dd>
+<dd>
+<p><b>DevModeOffset (4 bytes): </b>An
+unsigned integer that specifies the number of bytes from the start of the
+structure to the start of the <b>DevModeArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>StatusOffset (4 bytes): </b>An
+unsigned integer that specifies the number of bytes from the start of the
+structure to the start of the <b>StatusArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>SecurityDescriptorOffset
+(4 bytes): </b>An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>SecurityDescriptorArray</b>
+member.</p>
+</dd>
+<dd>
+<p><a id="_Hlk143103488"><b>Status
+(4 bytes):</b> The current printer status (section </a><a href="1625e9d9-29e4-48f4-b83d-3bd0fdaea787" data-linktype="relative-path">2.2.3.12</a>).</p>
+</dd>
+<dd>
+<p><b>Priority
+(4 bytes):</b> The job priority as a decimal number from 0 through 99,
+inclusive.</p>
+</dd>
+<dd>
+<p><b>Position (4
+bytes):</b> The job’s position in a queue, where one represents the next job
+that is printed.</p>
+</dd>
+<dd>
+<p><b>StartTime (4
+bytes):</b> The earliest time that a printer can print a job. The time is
+expressed as the number of minutes after 12:00 AM GMT within a 24-hour
+boundary.</p>
+</dd>
+<dd>
+<p><b>UntilTime (4
+bytes):</b> The latest time that the printer can print a job. The time is
+expressed as the number of minutes after 12:00 AM GMT within a 24-hour
+boundary.</p>
+</dd>
+<dd>
+<p><b>TotalPages (4
+bytes):</b> The number of pages a document contains. It can be zero.</p>
+</dd>
+<dd>
+<p><b>Size (4 bytes):</b> The size of
+a job, in bytes.</p>
+</dd>
+<dd>
+<p><b>Submitted (16
+bytes):</b> This member is a <b>SYSTEMTIME</b> structure (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/2fefe8dd-ab48-4e33-a7d5-7171455a9289" data-linktype="relative-path">2.3.13</a>)
+that specifies when a document was spooled. Each field is 2 bytes that contains
+a WORD sized member in UTC.</p>
+</dd>
+<dd>
+<p><b>Time (4
+bytes):</b> The number of milliseconds that have elapsed since printing began.</p>
+</dd>
+<dd>
+<p><b>PagesPrinted
+(4 bytes):</b> The number of pages that have been printed. It can be zero.</p>
+</dd></dl><p><b>Variable_Data (variable): </b>An array of zero or
+more groups of optional, variable-size fields, which are defined as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecurityDescriptorArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StatusArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DevModeArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DriverNameArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ParametersArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PrintProcessorArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DatatypeArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotifyNameArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DocumentArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UserNameArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MachineNameArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PrinterNameArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>SecurityDescriptorArray
+(variable):</b> A <b>SECURITY_DESCRIPTOR</b> structure that specifies the
+security information of the job. The location of this buffer is determined by
+the value of the <b>SecurityDescriptorOffset</b> member.  </p>
+</dd>
+<dd>
+<p><b>StatusArray
+(variable):</b> A string that specifies the status of the job. The location of
+this buffer is determined by the value of the <b>StatusOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>DevModeArray
+(variable):</b> A DevMode structure that specifies the DevMode information for
+the job. The location of this buffer is determined by the value of the <b>DevModeOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>DriverNameArray
+(variable):</b> A string that specifies the name of the driver for the job. The
+location of this buffer is determined by the value of the <b>DriverNameOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>ParametersArray
+(variable):</b> A string that specifies the parameters of the job. The location
+of this buffer is determined by the value of the <b>ParametersOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>PrintProcessorArray
+(variable):</b> A string that specifies the print processor for the job. The
+location of this buffer is determined by the value of the <b>PrintProcessorOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>DatatypeArray
+(variable):</b> A string that specifies the job’s datatype. The location of
+this buffer is determined by the value of the <b>DatatypeOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>NotifyNameArray
+(variable):</b> A string that specifies the notification name of the job. The
+location of this buffer is determined by the value of the <b>NotifyNameOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>DocumentArray
+(variable):</b> A string that specifies the document name. The location of this
+buffer is determined by the value of the <b>DocumentOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>UserNameArray
+(variable):</b> A string that specifies the user name of the job. The location
+of this buffer is determined by the value of the <b>UserNameOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>MachineNameArray
+(variable):</b> A string that specifies the name of the machine for the job.
+The location of this buffer is determined by the value of the <b>MachineNameOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>PrinterNameArray
+(variable):</b> A string that specifies the name of the printer for the job.
+The location of this buffer is determined by the value of the <b>PrinterNameOffset</b>
+member.</p>
+</dd></dl><p>Fields that are not defined in this section are specified in
+section <a href="94d1857e-c444-49b1-8fb4-83eac6696060" data-linktype="relative-path">2.2.1.3.3</a>.</p></div>

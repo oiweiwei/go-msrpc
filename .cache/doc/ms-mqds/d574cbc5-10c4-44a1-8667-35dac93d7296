@@ -1,0 +1,206 @@
+<div class="content"><p> </p><p>This method sets the specified properties for a directory
+object specified by a <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_c36db657-3138-4d9a-9289-ded5cbb8b40e" data-linktype="relative-path">directory service</a></span>
+pathname.</p><dl>
+<dd>
+<div><pre> HRESULT S_DSSetProps(
+   [in] handle_t hBind,
+   [in, range(1,58)] unsigned long dwObjectType,
+   [in] const wchar_t* pwcsPathName,
+   [in, range(1,128)] unsigned long cp,
+   [in, size_is(cp)] unsigned long aProp[],
+   [in, size_is(cp)] PROPVARIANT apVar[]
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST specify an <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle,
+as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>dwObjectType: </b> MUST specify the type of object for
+which properties are to be set. For supported object types, see the table of
+object types specified in section <span><a href="0d63e0e1-8b17-4103-9080-01e6c7c9f61f" data-linktype="relative-path">2.2.8</a></span>.</p><p><b>pwcsPathName: </b> Pointer to a NULL-terminated 16-bit <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a></span> that MUST contain the directory service pathname, as
+specified in section <span><a href="6e03fb44-a705-4728-acca-7c6d7b8d7396" data-linktype="relative-path">2.2.9</a></span>, to the
+object in the directory service.</p><p><b>cp: </b> MUST be set to the size (in elements) of the
+arrays <i>aProp</i> and <i>apVar</i>. The arrays <i>aProp</i> and <i>apVar</i>
+MUST have an identical number of elements and MUST contain at least one
+element.</p><p><b>aProp: </b> An array of identifiers of properties to
+associate with the object identified by <i>pwcsPathName</i>. Each element MUST
+specify a value from the <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_382ac1cd-8ff9-493a-bfec-d9ad08955707" data-linktype="relative-path">property identifiers</a></span>
+table defined in section <span><a href="1f12668a-2fa3-45cf-8236-74f0fe4a6b7d" data-linktype="relative-path">2.2.10.1</a></span> for the
+object type specified in <i>dwObjectType</i>. Each element MUST specify the
+property identifier for the corresponding property value at the same element
+index in <i>apVar</i>. The array MUST contain at least one element.</p><p><b>apVar: </b> An array that specifies the property values
+to associate with the object. Each element MUST specify the property value for
+the corresponding property identifier at the same element index in <i>aProp</i>.
+The array MUST contain at least one element.</p><p><b>Return Values: </b> If the method succeeds, the return
+value is 0. If the method fails, the return value is an implementation-specific
+error code.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>MQ_ERROR_ILLEGAL_PROPID</b> (0xC00E0039)</p><p><b>MQ_ERROR</b> (0xC00E0001)</p><p><b>MQ_ERROR_DS_ERROR</b> (0xC00E0043)</p><p><b>MQDS_OBJECT_NOT_FOUND</b> (0xC00E050F)</p><p><b>E_ADS_PROPERTY_NOT_FOUND</b> (0x8000500D)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol, as specified in [MS-RPCE].</p><p> When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Verify that the arrays <i>aProp</i> and <i>apVar</i> contain at
+least one element. If not, the server SHOULD<a id="Appendix_A_Target_44"></a><a aria-label="Product behavior note 44" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_44" data-linktype="relative-path">&lt;44&gt;</a> take no
+further action and return an error <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>If the value of <i>dwObjectType</i> is not one of the values
+listed in the table in section 2.2.8 or is MQDS_DELETEDOBJECT, MQDS_USER, or
+MQDS_ROUTINGLINK, the server MUST take no further action and return a failure
+HRESULT.</p>
+</li><li><p><span><span> 
+</span></span>The server MAY<a id="Appendix_A_Target_45"></a><a aria-label="Product behavior note 45" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_45" data-linktype="relative-path">&lt;45&gt;</a> forward
+the update to another server.</p>
+</li><li><p><span><span> 
+</span></span>Verify for each property identifier in <i>aProp</i> that the
+property identifier is valid for an object of type <i>dwObjectType</i> and that
+the corresponding variant in <i>apVar</i> is of the type defined for the
+property identifier, using the rules in the following table. If the object type
+is not in the table or any invalid property identifier or type is found, the
+server MUST take no further action and return a failure HRESULT.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value of dwObjectType</p>
+   </th>
+   <th>
+   <p>Rules</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQDS_QUEUE</p>
+  </td>
+  <td>
+  <p>See <span><a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a></span>
+  section <span><a href="../ms-mqmq/9d5bf18a-5c7d-4df0-9e92-014ac661ae8a" data-linktype="relative-path">2.3.1</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQDS_MACHINE</p>
+  </td>
+  <td>
+  <p>See [MS-MQMQ] section <span><a href="../ms-mqmq/13c7ee4a-0676-402f-97d7-e880ded0015f" data-linktype="relative-path">2.3.2</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQDS_SITE</p>
+  </td>
+  <td>
+  <p>See [MS-MQMQ] section <span><a href="../ms-mqmq/c68aaafb-8d65-4106-bf69-22145abdf4d0" data-linktype="relative-path">2.3.3</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQDS_ENTERPRISE</p>
+  </td>
+  <td>
+  <p>See [MS-MQMQ] section <span><a href="../ms-mqmq/3901eb7d-1629-45ae-9dbb-591bf80c670e" data-linktype="relative-path">2.3.5</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQDS_CN<a id="Appendix_A_Target_46"></a><a aria-label="Product behavior note 46" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_46" data-linktype="relative-path">&lt;46&gt;</a></p>
+  </td>
+  <td>
+  <p>See [MS-MQMQ] section <span><a href="../ms-mqmq/e54bb2e8-0b16-42dc-b3ad-0a4f87cc2159" data-linktype="relative-path">2.3.4</a></span></p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span><span> 
+</span></span>Let <i>dirObject</i> be a directory object and initialized to
+NULL.</p>
+</li><li><p><span><span> 
+</span></span>Generate the <span><a href="d4ae6231-1485-4155-83e2-e6509b3ff5da" data-linktype="relative-path">Get Directory Object for
+Update (section 3.1.6.14)</a></span> event with the following
+arguments:</p>
+<ul><li><p><span><span>  </span></span><i>iObjectType</i>
+:= <i>dwObjectType</i></p>
+</li><li><p><span><span>  </span></span><i>iPathName</i>
+:= <i>pwcsPathName</i></p>
+</li><li><p><span><span>  </span></span><i>iGuid</i>
+:= NULL</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <i>rStatus</i> returned by the event is not 0x00000000, return
+<i>rStatus</i> and take no further action; otherwise, set <i>dirObject</i> to
+the returned <i>rObject</i>.</p>
+</li><li><p><span><span> 
+</span></span>Map the values contained in <i>aProp</i> and <i>apVar</i> to <i>dirObject</i>
+attributes according to the rules specified in the following table. If any
+property identifier is not listed in those rules, or if the rules indicate that
+the property identifier is invalid, the server MUST take no further action and
+return a failure HRESULT.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value of dwObjectType</p>
+   </th>
+   <th>
+   <p>Rules</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQDS_QUEUE</p>
+  </td>
+  <td>
+  <p>See section <span><a href="05d0c685-8de8-4847-9b92-ef3b53c5e656" data-linktype="relative-path">3.1.4.21.8.2.4</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQDS_MACHINE</p>
+  </td>
+  <td>
+  <p>See section <span><a href="79297a27-8bea-4b05-addd-69bf32b50e80" data-linktype="relative-path">3.1.4.21.8.2.1</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQDS_SITE</p>
+  </td>
+  <td>
+  <p>See section <span><a href="ad78e384-1c91-44fe-99b6-bc1e1835b964" data-linktype="relative-path">3.1.4.21.8.2.8</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQDS_ENTERPRISE</p>
+  </td>
+  <td>
+  <p>See section <span><a href="1fad7f5e-4b1e-4f9a-9b12-75fd16c649bc" data-linktype="relative-path">3.1.4.21.8.2.6</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQDS_CN</p>
+  </td>
+  <td>
+  <p>See section <span><a href="c644799e-5a7b-40d4-b7dc-9fdd4b380d58" data-linktype="relative-path">3.1.4.21.8.2.10</a></span></p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span><span> 
+</span></span>Update the attributes of <i>dirObject</i> using the mapping from
+the preceding step. For each updated attribute, add the ADM element attribute
+name to a list, referred to as <i>attrList</i>.</p>
+</li><li><p><span><span> 
+</span></span>Generate the <span><a href="2e861a2a-b45d-4268-8403-42e7b2a97a97" data-linktype="relative-path">Commit Directory Object
+Update (section 3.1.6.15)</a></span> event with the arguments set to <i>dirObject</i>
+and <i>attrList</i> respectively. If the event returns <b>DirectoryOperationResult.Success</b>,
+set <i>rStatus</i> to 0x00000000; otherwise, set <i>rStatus</i> to a failure <b>HRESULT</b>
+and take no further action.</p>
+</li><li><p><span><span> 
+</span></span>If <i>dwObjectType</i> equals MQDS_QUEUE:</p>
+<ul><li><p><span><span>  </span></span>If
+the Computer portion of the <i>dirObject</i>.<b>PathName</b> (as described in
+[MS-MQMQ] section <span><a href="../ms-mqmq/0f858702-0f3d-471a-972c-e6706906fa4d" data-linktype="relative-path">2.1.1</a></span>)
+is different from the <b>LocalQueueManager.ComputerName</b>, the server MAY do
+the following:<a id="Appendix_A_Target_47"></a><a aria-label="Product behavior note 47" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_47" data-linktype="relative-path">&lt;47&gt;</a></p>
+<ul><li><p><span><span> 
+</span></span>Generate a <span><a href="../ms-mqcn/be84743d-30a7-4fb2-8ec6-7d2443c23913" data-linktype="relative-path">Send Change
+Notification</a></span> event as specified in <span><a href="../ms-mqcn/bacb4ae1-01e4-4eaa-8e1f-c30af0df1a7f" data-linktype="relative-path">[MS-MQCN]</a></span>
+section 3.3.4.1 with the following arguments:</p>
+<ul><li><p><span><span> 
+</span></span><i>iOperation</i> := QueueUpdate</p>
+</li><li><p><span><span> 
+</span></span><i>iDirectoryObject</i> := <i>dirObject</i></p>
+</li></ul></li></ul></li></ul></li><li><p><span><span> 
+</span></span>If <i>dwObjectType</i> equals MQDS_MACHINE:</p>
+<ul><li><p><span><span>  </span></span>If
+the <i>dirObject</i>.<b>Identifier</b> is different from the <b>LocalQueueManager.Identifier</b>,
+the server MAY do the following:<a id="Appendix_A_Target_48"></a><a aria-label="Product behavior note 48" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_48" data-linktype="relative-path">&lt;48&gt;</a></p>
+<ul><li><p><span><span> 
+</span></span>Generate a Send Change Notification event as specified in
+[MS-MQCN] section 3.3.4.1 with the following arguments:</p>
+<ul><li><p><span><span> 
+</span></span><i>iOperation</i> := QueueManagerUpdate</p>
+</li><li><p><span><span> 
+</span></span><i>iDirectoryObject</i> := <i>dirObject</i></p>
+</li></ul></li></ul></li></ul></li></ul></div>

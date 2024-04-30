@@ -1,0 +1,74 @@
+<div class="content"><p>The _PERF_COUNTER_HEADER structure is used at the beginning
+of a counter header block.</p><dl>
+<dd>
+<div><pre> typedef struct _PERF_COUNTER_HEADER {
+   unsigned long dwStatus;
+   unsigned long dwType;
+   unsigned long dwSize;
+   unsigned long Reserved;
+ } PERF_COUNTER_HEADER,
+  *PPERFCOUNTERHEADER;
+</pre></div>
+</dd></dl><p><b>dwStatus:</b>  A Win32 error code that
+indicates whether the operation was successful. Win32 error codes are specified
+in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p><b>dwType:</b>  The <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance counter</a> type.
+The value MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PERF_ERROR_RETURN</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>An error occurred when the performance counter value
+  was queried.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_SINGLE_COUNTER</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The query returned a single-instance performance
+  counter value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_MULTI_COUNTERS </p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The query returned multiple performance counter
+  values.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_MULTI_INSTANCES</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The query returned values from multiple instances of a
+  performance counter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERF_COUNTERSET</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>The query returned the values of all instances of all
+  performance counters that belong to the <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_5ad9937c-a24e-4274-92c8-50ff5f97bf19" data-linktype="relative-path">counterset</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwSize:</b>  The size, in bytes, of the
+structure and data.</p><p><b>Reserved:</b>  MUST be set to 0, and MUST be
+ignored on receipt.</p></div>

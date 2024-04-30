@@ -1,0 +1,90 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/963e60b5-9233-4669-b8a8-85bf4f0806dc" data-linktype="external">msdn link</a></p><p>The SAMPR_REVISION_INFO_V1 structure is used to communicate
+the revision and capabilities of client and server. For more information, see <a href="c842a897-0a42-4ca5-a607-2afd05271dae" data-linktype="relative-path">SamrConnect5</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_REVISION_INFO_V1 {
+   unsigned long Revision;
+   unsigned long SupportedFeatures;
+ } SAMPR_REVISION_INFO_V1,
+  *PSAMPR_REVISION_INFO_V1;
+</pre></div>
+</dd></dl><p><b>Revision:</b>  The revision of the
+client or server side of this protocol (depending on which side sends the
+structure). The value MUST be set to 3 and MUST be ignored.</p><p><b>SupportedFeatures:</b>  A bit field.
+When sent from the client, this field MUST be zero and ignored on receipt by
+the server. When returned from the server, the following fields are handled by
+the client; all other bits are ignored by the client and MUST be zero when
+returned from the server.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>On receipt by the client, this value, when set,
+  indicates that <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RID</a>
+  values returned from the server MUST NOT be concatenated with the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> to create the SID for
+  the account referenced by the RID. Instead, the client MUST call <a href="00ff8192-a4f6-45ba-9f65-917e46b6a693" data-linktype="relative-path">SamrRidToSid</a> to obtain
+  the SID. This field can be combined with other bits using a logical OR.</p>
+  <p>See the product behavior citation at the end of this
+  section for more information (about Windows implementations).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Reserved. See the product behavior citation at the end
+  of this section for additional details.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Reserved. See the product behavior citation at the end
+  of this section for additional details.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>On receipt by the client, this value, when set,
+  indicates that the client should use AES Encryption with the
+  SAMPR_ENCRYPTED_PASSWORD_AES structure to encrypt password buffers when sent
+  over the wire. See AES Cipher Usage (section <a href="0fc25352-662b-40e7-9dee-f10c6244c4c9" data-linktype="relative-path">3.2.2.4</a>) and <a href="2cbb49a2-be38-4490-8be7-b0e4951bc221" data-linktype="relative-path">SAMPR_ENCRYPTED_PASSWORD_AES</a>
+  (section 2.2.6.32).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>On receipt of this value by the client, when set,
+  indicates that the server supports the validation of computer account re-use
+  through client calls to the SamrValidateComputerAccountReuseAttempt method.<a id="Appendix_A_Target_19"></a><a aria-label="Product behavior note 19" href="fa61e5fc-f8fb-4d5b-9695-c724af0c3829#Appendix_A_19" data-linktype="relative-path">&lt;19&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>On receipt of this value by the client, when set,
+  indicates that the server supports the validation of computer account re-use
+  through client calls to the SamrValidateComputerAccountReuseAttempt method.<a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="fa61e5fc-f8fb-4d5b-9695-c724af0c3829#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The following citation in section <a href="fa61e5fc-f8fb-4d5b-9695-c724af0c3829" data-linktype="relative-path">7</a> is relevant to the <b>SupportedFeatures</b>
+field.<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="fa61e5fc-f8fb-4d5b-9695-c724af0c3829#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a></p>
+</dd></dl></div>

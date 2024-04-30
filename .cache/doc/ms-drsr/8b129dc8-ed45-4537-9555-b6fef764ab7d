@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The IDL_DRSWriteSPN method <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b242435b-73cc-4c4e-95f0-b2a2ff680493" data-linktype="relative-path">updates</a></span> the set of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_547217ca-134f-4b43-b375-f5bca4c16ce4" data-linktype="relative-path">SPNs</a></span>
+on an <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>.</p><dl>
+<dd>
+<div><pre> ULONG IDL_DRSWriteSPN(
+   [in, ref] DRS_HANDLE hDrs,
+   [in] DWORD dwInVersion,
+   [in, ref, switch_is(dwInVersion)] 
+     DRS_MSG_SPNREQ* pmsgIn,
+   [out, ref] DWORD* pdwOutVersion,
+   [out, ref, switch_is(*pdwOutVersion)] 
+     DRS_MSG_SPNREPLY* pmsgOut
+ );
+</pre></div>
+</dd></dl><p><b>hDrs: </b>The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+returned by the <span><a href="605b1ea1-9cdc-428f-ab7a-70120e020a3d" data-linktype="relative-path">IDL_DRSBind</a></span> method.</p><p><b>dwInVersion: </b>The version of the request
+message. Must be set to 1, because that is the only version supported.</p><p><b>pmsgIn: </b>A pointer to the request message.</p><p><b>pdwOutVersion: </b>A pointer to the version of the
+response message. The value must be 1 because that is the only version
+supported.</p><p><b>pmsgOut: </b>A pointer to the response message.</p><p><b>Return Values: </b>0 if successful, or a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows
+error code</a></span> if a failure occurs.</p><p><b>Exceptions Thrown:</b> This method might throw the
+following exceptions beyond those thrown by the underlying RPC protocol (as
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>):
+ERROR_INVALID_HANDLE, ERROR_DS_DRS_EXTENSIONS_CHANGED,
+ERROR_DS_DIFFERENT_REPL_EPOCHS, and  ERROR_INVALID_PARAMETER.</p></div>

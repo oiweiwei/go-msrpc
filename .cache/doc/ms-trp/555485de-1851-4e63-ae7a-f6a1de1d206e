@@ -1,0 +1,249 @@
+<div class="content"><p>The GenerateDigits packet is transmitted from a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call</a>.
+Sending this packet initiates the generation of the specified digits on the
+specified call as inband tones by using the specified signaling mode. Invoking
+this function while digit or tone generation is in progress aborts the current
+digit or tone generation. Passing a NULL value for lpszDigits generates no new
+digits.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hCall</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDigitMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpszDigits</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDuration</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwEndToEndID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved5</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved6</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved7</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved8</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved9</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>The identifier of the
+function that will be invoked on the remote server. This value MUST be set to
+19. </p><dl>
+<dd>
+<p><b>Note</b>  At any time, only one inband
+generation request (tone generation or digit generation) can be in progress per
+call.</p>
+</dd>
+<dd>
+<p><b>Return Values</b></p>
+</dd>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path"><span>ClientRequest</span></a>, this field contains the result of the
+encapsulated telephony request. A value of 0 indicates success and a <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path"><span>LINEERR_Constants</span></a> value indicates failure. The remote server
+MUST complete this call synchronously.</p>
+</dd>
+<dd>
+<p>MUST return zero if the function succeeds or an
+error number if an error occurs. Common return values are as follows:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>LINEERR_INVALCALLHANDLE</p>
+  </td>
+  <td>
+  <p>0x80000018</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_NOMEM</p>
+  </td>
+  <td>
+  <p>0x80000044</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALCALLSTATE</p>
+  </td>
+  <td>
+  <p>0x8000001C</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x80000049</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALDIGITMODE</p>
+  </td>
+  <td>
+  <p>0x80000027</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONFAILED</p>
+  </td>
+  <td>
+  <p>0x80000048</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_RESOURCEUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x8000004B</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>hCall (4 bytes): </b>An <a href="7f4089a0-7432-4ef0-8eeb-5aafe407c07e" data-linktype="relative-path">HCALL</a>. The handle to the
+call. One way of obtaining a valid hCall is by sending the <a href="c9acdfde-22de-43ff-b491-23a9ed72fb31" data-linktype="relative-path">MakeCall</a> packet.  The
+application MUST be an owner of the call. The call state of hCall can be any
+state. TAPI does not impose any call state requirements; however, some Tapi
+Service Providers can require that the hCall be is the LINECALLSTATE_CONNECTED
+state.</p><p><b>dwDigitMode (4 bytes): </b>An unsigned 32-bit
+integer. The format to be used for signaling these digits. This parameter MUST
+use one of the <a href="fec875c7-afff-494a-94d1-b9d6fe292d5f" data-linktype="relative-path">LINEDIGITMODE_Constants</a>.</p><p><b>lpszDigits (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, in the VarData field of a null-terminated <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_fd33af2e-e1ce-4f8e-a706-f9fb8123f9b0" data-linktype="relative-path">Unicode character</a> packet
+that contains the digits to generate.</p><p><b>dwDuration (4 bytes): </b>An unsigned 32-bit
+integer. Specifies both the duration, in milliseconds, of <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_ac0b9c3c-5926-42b8-924d-2e37a15665b8" data-linktype="relative-path">DTMF</a> digits and pulse and DTMF
+interdigit spacing. A value of 0 uses a default value. The dwDuration parameter
+MUST be within the range that is specified by MinDialParams to MaxDialParams in
+<a href="f236ea7a-c8a2-4681-b87c-9f0e07a01dc6" data-linktype="relative-path">LINEDEVCAPS</a>. If out of
+range, the actual value is set by the service provider to the nearest value in
+the range. This parameter is not validated by TAPI when this function is
+called.</p><p><b>dwEndToEndID (4 bytes): </b>An unsigned 32-bit
+integer. This unique request identifier MUST be stored by the server and passed
+back as dwParam2 of the corresponding <a href="47c86cdf-a2ad-43aa-a57c-7c7746548e24" data-linktype="relative-path">LINE_GENERATE</a> packet to
+the client when the digit generation is completed.</p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved5 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved6 (4 bytes): </b>An unsigned 32-bit integer.
+This field is used for padding and MUST be ignored on receipt. It can be any
+value.</p><p><b>Reserved7 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved8 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved9 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>VarData (variable): </b>Contains a null-terminated
+Unicode character packet that is indicated in the lpszDigits field. </p><dl>
+<dd>
+<p>The contents of this field MUST be DWORD-aligned, as
+specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>.</p>
+</dd></dl></div>

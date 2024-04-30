@@ -1,0 +1,39 @@
+<div class="content"><p> </p><p>This structure represents a <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_67cbf867-7a49-41f3-a68f-37b5f9035acb" data-linktype="relative-path">security association</a></span>
+that is established after the quick mode negotiations take place; it contains
+the selected algorithms to enforce <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_PHASE2_SA_DETAILS {
+   unsigned __int64 SaId;
+   [range(FW_DIR_INVALID+1,FW_DIR_MAX-1)] 
+     FW_DIRECTION Direction;
+   FW_ENDPOINTS Endpoints;
+   unsigned short wLocalPort;
+   unsigned short wRemotePort;
+   unsigned short wIpProtocol;
+   FW_PHASE2_CRYPTO_SUITE SelectedProposal;
+   FW_PHASE2_CRYPTO_PFS Pfs;
+   GUID TransportFilterId;
+   unsigned long dwP2SaFlags;
+ } FW_PHASE2_SA_DETAILS,
+  *PFW_PHASE2_SA_DETAILS;
+</pre></div>
+</dd></dl><p><b>SaId:</b>  A 64-bit integer number that
+uniquely identifies the security association.</p><p><b>Direction:</b>  This field specifies the
+direction of the traffic this security association is securing.</p><p><b>Endpoints:</b>  This field contains IP
+address information of the two <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoints</a></span> that
+established this security association. An address of zero means the security
+association applies to any endpoint.</p><p><b>wLocalPort:</b>  This field specifies
+the port of the local endpoint that is used in the traffic secured by this
+security association. A value of 0 specifies any port.</p><p><b>wRemotePort:</b>  This field specifies
+the port of the remote endpoint that is used in the traffic secured by this
+security association. A value of 0 specifies any port.</p><p><b>wIpProtocol:</b>  This field specifies
+the protocol of the traffic secured by this security association. If the value
+is within the range 0 to 255, the value describes a protocol as in IETF IANA
+numbers (for more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89889" data-linktype="external">[IANA-PROTO-NUM]</a></span>).
+If the value is 256, the rule matches ANY protocol.</p><p><b>SelectedProposal:</b>  This field
+contains the Phase2 cryptographic suite selected by the negotiation that is
+used by this security association to enforce IPsec.</p><p><b>Pfs:</b>  This field specifies the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_5d8948bc-5e32-483b-906d-42f785d0df18" data-linktype="relative-path">perfect
+forward secrecy</a></span> used by this security association.</p><p><b>TransportFilterId:</b>  This <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+MAY contain additional implementation-specific<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="1da2ee70-a6ae-4f76-b08f-fdc25c77d8a0#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a>
+information about the security association. The client MUST ignore this value.</p><p><b>dwP2SaFlags:</b>  Reserved value and not
+currently used. It MUST be set to 0.</p></div>

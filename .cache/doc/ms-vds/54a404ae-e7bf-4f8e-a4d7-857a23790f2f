@@ -1,0 +1,29 @@
+<div class="content"><p> </p><p>This method initializes a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span> that has no <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partitioning</a></span>
+format defined, and then adds the disk to the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_a6543827-8d70-4e5a-a982-2fdc2e7f8bca" data-linktype="relative-path">disk pack</a></span>. AddDisk
+cannot redefine the partitioning format on a disk.<a id="Appendix_A_Target_82"></a><a aria-label="Product behavior note 82" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_82" data-linktype="relative-path">&lt;82&gt;</a></p><dl>
+<dd>
+<div><pre> HRESULT AddDisk(
+   [in] VDS_OBJECT_ID DiskId,
+   [in] VDS_PARTITION_STYLE PartitionStyle,
+   [in] long bAsHotSpare
+ );
+</pre></div>
+</dd></dl><p><b>DiskId: </b>The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS object</a></span> ID of the
+disk object.</p><p><b>PartitionStyle: </b>A value from the <span><a href="310c0f6a-a0ef-4b63-933e-c4b1a7ecaf37" data-linktype="relative-path">VDS_PARTITION_STYLE</a></span>
+enumeration that indicates the partition format.</p><p><b>bAsHotSpare: </b>The Virtual Disk Service Remote
+Protocol does not support this parameter; callers MUST set it to FALSE.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <b>DiskId</b> belongs to a disk object in the list of
+storage management objects corresponding to an <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_caa0fa47-db36-4509-b74d-1829bcce288f" data-linktype="relative-path">unallocated disk</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <b>PartitionStyle</b> is a valid partitioning format.</p>
+</li></ul><p>The server MUST add the disk having a <span><a href="9186f1ce-04de-4df2-a8cf-3925a02fcd47" data-linktype="relative-path">VDS_OBJECT_ID</a></span>
+specified by <b>DiskId</b> to this <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_890bb28d-df68-420f-a8bc-83899d34ad5c" data-linktype="relative-path">pack</a></span>, initialize the
+partitioning format of the disk based on the value of the <b>PartitionStyle</b>
+parameter, set the disk object&#39;s pack pointer to this pack object, and return an
+HRESULT indicating failure or success.</p></div>

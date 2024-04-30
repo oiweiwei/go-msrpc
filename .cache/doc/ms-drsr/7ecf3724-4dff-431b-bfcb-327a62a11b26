@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The DRS_MSG_REPLICA_DEMOTIONREPLY union defines the response
+messages received from the <span><a href="8a2f0388-bdfb-4519-a8c3-384f27c11639" data-linktype="relative-path">IDL_DRSReplicaDemotion</a></span>
+method. Only one version, identified by <i>pdwOutVersion^</i> = 1, is currently
+defined.</p><dl>
+<dd>
+<div><pre> typedef
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_REPLICA_DEMOTIONREPLY_V1 V1;
+ } DRS_MSG_REPLICA_DEMOTIONREPLY;
+</pre></div>
+</dd></dl><p>V1:  The version 1 reply.</p></div>

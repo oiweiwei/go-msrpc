@@ -1,0 +1,19 @@
+<div class="content"><p>The GetCAPropertyInfo method is used to retrieve information
+about a property on the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a>,
+such as its type and length.</p><dl>
+<dd>
+<div><pre> HRESULT GetCAPropertyInfo(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [out] LONG* pcProperty,
+   [out, ref] CERTTRANSBLOB* pctbPropInfo
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b> See the <i>pwszAuthority</i>
+definition in <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">ICertAdminD::SetExtension</a>.
+</p><p><b>pcProperty: </b>An integer value containing the
+number of property structures returned.</p><p><b>pctbPropInfo: </b>A <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure
+containing zero or more CATRANSPROP structures. For more information on
+CERTTRANSBLOB and CATRANSPROP structures, see section <a href="d9e0f247-2b38-466d-934b-83093c6a11a5" data-linktype="relative-path">2.2.1</a>. </p><p>The processing of the ICertAdminD2::GetCAPropertyInfo method
+is the same as that specified in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>
+section <a href="../ms-wcce/767fe54b-73f7-4fd1-99c8-4447b0953817" data-linktype="relative-path">3.2.1.4.3.3</a>.
+</p></div>

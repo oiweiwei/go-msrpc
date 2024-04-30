@@ -1,0 +1,344 @@
+import "ms-dtyp.idl";
+
+// XXX: ADD_ -> ADDR_
+// XXX: Add -> Addr
+// XXX: pAdd -> Addrs
+ 
+#define WINSINTF_MAX_NO_RPL_PNRS 25
+ 
+typedef PVOID LPVOID;
+typedef LARGE_INTEGER WINSINTF_VERS_NO_T;
+ 
+typedef struct _WINSINTF_ADDR_T {
+   BYTE Type;
+   DWORD Len;
+   DWORD IPAddr;
+} WINSINTF_ADDR_T, *PWINSINTF_ADDR_T;
+ 
+typedef enum _WINSINTF_PRIORITY_CLASS_E {
+   WINSINTF_E_NORMAL = 0,
+   WINSINTF_E_HIGH
+} WINSINTF_PRIORITY_CLASS_E, *PWINSINTF_PRIORITY_CLASS_E;
+ 
+typedef enum  _WINSINTF_ACT_E {
+   WINSINTF_E_INSERT = 0,
+   WINSINTF_E_DELETE,
+   WINSINTF_E_RELEASE,
+   WINSINTF_E_MODIFY,
+   WINSINTF_E_QUERY
+} WINSINTF_ACT_E, *PWINSINTF_ACT_E;
+ 
+typedef enum _WINSINTF_TRIG_TYPE_E {   WINSINTF_E_PULL = 0,
+   WINSINTF_E_PUSH,
+   WINSINTF_E_PUSH_PROP
+} WINSINTF_TRIG_TYPE_E, *PWINSINTF_TRIG_TYPE_E;
+ 
+typedef struct _WINSINTF_RECORD_ACTION_T {
+   WINSINTF_ACT_E Cmd_e;
+   [size_is(NameLen + 1)] LPBYTE pName;
+   DWORD NameLen;
+   DWORD TypOfRec_e;
+   DWORD NoOfAddrs;
+   [unique, size_is(NoOfAddrs)] PWINSINTF_ADDR_T pAddrs;
+   WINSINTF_ADDR_T Addr;
+   LARGE_INTEGER VersNo;
+   BYTE NodeTyp;
+   DWORD OwnerId;
+   DWORD State_e;
+   DWORD fStatic;
+   DWORD_PTR TimeStamp;
+} WINSINTF_RECORD_ACTION_T, *PWINSINTF_RECORD_ACTION_T;
+ 
+typedef struct _WINSINTF_RPL_COUNTERS_T {
+   WINSINTF_ADDR_T Addr;
+   DWORD NoOfRpls;
+   DWORD NoOfCommFails;
+} WINSINTF_RPL_COUNTERS_T, *PWINSINTF_RPL_COUNTERS_T;
+ 
+typedef struct _WINSINTF_STAT_T {
+   struct {
+      DWORD NoOfUniqueReg;
+      DWORD NoOfGroupReg;
+      DWORD NoOfQueries;
+      DWORD NoOfSuccQueries;
+      DWORD NoOfFailQueries;
+      DWORD NoOfUniqueRef;
+      DWORD NoOfGroupRef;
+      DWORD NoOfRel;
+      DWORD NoOfSuccRel;
+      DWORD NoOfFailRel;
+      DWORD NoOfUniqueCnf;
+      DWORD NoOfGroupCnf;
+   } Counters;
+   struct {
+      SYSTEMTIME   WINSStartTime;
+      SYSTEMTIME LastPScvTime;
+      SYSTEMTIME LastATScvTime; 
+      SYSTEMTIME LastTombScvTime; 
+      SYSTEMTIME LastVerifyScvTime;
+      SYSTEMTIME LastPRplTime;
+      SYSTEMTIME LastATRplTime; 
+      SYSTEMTIME LastNTRplTime; 
+      SYSTEMTIME LastACTRplTime; 
+      SYSTEMTIME LastInitDbTime; 
+      SYSTEMTIME CounterResetTime;    
+   } TimeStamps;
+   DWORD NoOfPnrs;
+   [unique, size_is(NoOfPnrs)] PWINSINTF_RPL_COUNTERS_T pRplPnrs;
+} WINSINTF_STAT_T, *PWINSINTF_STAT_T;
+ 
+typedef struct _WINSINTF_ADDR_VERS_MAP_T {
+   WINSINTF_ADDR_T Addr;
+   LARGE_INTEGER VersNo;
+} WINSINTF_ADDR_VERS_MAP_T, *PWINSINTF_ADDR_VERS_MAP_T;
+ 
+typedef struct _WINSINTF_RESULTS_T {
+   DWORD NoOfOwners;
+   WINSINTF_ADDR_VERS_MAP_T AddrVersMaps[WINSINTF_MAX_NO_RPL_PNRS];
+   LARGE_INTEGER MyMaxVersNo;
+   DWORD RefreshInterval;
+   DWORD TombstoneInterval;
+   DWORD TombstoneTimeout;
+   DWORD VerifyInterval;
+   DWORD   WINSPriorityClass;
+   DWORD NoOfWorkerThds;
+   WINSINTF_STAT_T   WINSStat;
+} WINSINTF_RESULTS_T, *PWINSINTF_RESULTS_T; 
+ 
+typedef struct _WINSINTF_RESULTS_NEW_T {
+   DWORD NoOfOwners;
+   [unique, size_is(NoOfOwners)] 
+      PWINSINTF_ADDR_VERS_MAP_T pAddrVersMaps;
+ 
+   LARGE_INTEGER MyMaxVersNo;
+   DWORD RefreshInterval;
+   DWORD TombstoneInterval;
+   DWORD TombstoneTimeout;
+   DWORD VerifyInterval;
+   DWORD   WINSPriorityClass;
+   DWORD NoOfWorkerThds;
+   WINSINTF_STAT_T   WINSStat;
+} WINSINTF_RESULTS_NEW_T, *PWINSINTF_RESULTS_NEW_T; 
+ 
+typedef enum _WINSINTF_CMD_E {
+   WINSINTF_E_ADDVERSMAP = 0,
+   WINSINTF_E_CONFIG,
+   WINSINTF_E_STAT, WINSINTF_E_CONFIG_ALL_MAPS
+} WINSINTF_CMD_E, *PWINSINTF_CMD_E;
+ 
+typedef struct _WINSINTF_RECS_T {
+   DWORD BuffSize;
+   [unique,size_is(NoOfRecs)] PWINSINTF_RECORD_ACTION_T pRow;
+   DWORD NoOfRecs;
+   DWORD TotalNoOfRecs;
+} WINSINTF_RECS_T, *PWINSINTF_RECS_T;
+ 
+typedef struct _WINSINTF_PULL_RANGE_INFO_T {
+   LPVOID pPnr;
+   WINSINTF_ADDR_T OwnAddr;
+   WINSINTF_VERS_NO_T MinVersNo;
+   WINSINTF_VERS_NO_T MaxVersNo;
+} WINSINTF_PULL_RANGE_INFO_T, *PWINSINTF_PULL_RANGE_INFO_T;
+ 
+typedef struct _WINSINTF_BROWSER_INFO_T {
+   DWORD dwNameLen;
+   [string] LPBYTE pName;
+} WINSINTF_BROWSER_INFO_T, *PWINSINTF_BROWSER_INFO_T;
+ 
+typedef struct _WINSINTF_BROWSER_NAMES_T {
+   DWORD EntriesRead;  
+   [unique, size_is(EntriesRead)]  PWINSINTF_BROWSER_INFO_T pInfo;
+} WINSINTF_BROWSER_NAMES_T, *PWINSINTF_BROWSER_NAMES_T;
+ 
+typedef enum _WINSINTF_SCV_OPC_E {
+   WINSINTF_E_SCV_GENERAL,
+   WINSINTF_E_SCV_VERIFY
+} WINSINTF_SCV_OPC_E, *PWINSINTF_SCV_OPC_E;
+ 
+typedef struct _WINSINTF_SCV_REQ_T {
+   WINSINTF_SCV_OPC_E Opcode_e;
+   DWORD Age;
+   DWORD fForce;
+} WINSINTF_SCV_REQ_T, *PWINSINTF_SCV_REQ_T;
+ 
+typedef struct _WINSINTF_BIND_DATA_T {
+   DWORD fTcpIp;
+   [string] LPSTR pServerAddr; 
+   [string] LPSTR pPipeName;  
+ } WINSINTF_BIND_DATA_T, *PWINSINTF_BIND_DATA_T;
+ 
+[
+    uuid(45F52C28-7F9F-101A-B52B-08002B2EFABE),
+    version(1.0),
+    pointer_default(unique)
+]
+ 
+interface winsif {
+ 
+// XXX: not used.
+// #define MIDL_PASS
+ 
+typedef [handle] PWINSINTF_BIND_DATA_T WINSIF_HANDLE;
+typedef handle_t WINSIF2_HANDLE;
+ 
+// XXX: macros replaces.
+// #define DECLARE_WINS_HANDLE(_hdl ) [in] WINSIF2_HANDLE _hdl,
+// #define DECLARE_WINS_HANDLE0(_hdl ) [in] WINSIF2_HANDLE _hdl
+ 
+DWORD R_WinsRecordAction(
+           [in] WINSIF2_HANDLE ServerHdl,
+    [in, out, ref] PWINSINTF_RECORD_ACTION_T *ppRecAction
+);
+ 
+DWORD R_WinsStatus(
+           [in] WINSIF2_HANDLE ServerHdl,
+    [in]   WINSINTF_CMD_E          Cmd_e,
+    [in, out, ref] PWINSINTF_RESULTS_T pResults
+);
+ 
+DWORD R_WinsTrigger(
+           [in] WINSIF2_HANDLE ServerHdl,
+    [in, ref] PWINSINTF_ADDR_T pWinsAddr,
+    [in]   WINSINTF_TRIG_TYPE_E  TrigType_e
+);
+ 
+DWORD R_WinsDoStaticInit(
+           [in] WINSIF2_HANDLE ServerHdl,
+    [in, unique, string] LPWSTR pDataFilePath,
+    [in]   DWORD fDel
+);
+ 
+DWORD R_WinsDoScavenging(
+           [in] WINSIF2_HANDLE ServerHdl
+);
+ 
+DWORD R_WinsGetDbRecs(
+           [in] WINSIF2_HANDLE ServerHdl,
+    [in, ref] PWINSINTF_ADDR_T pWinsAddr,
+    [in]   WINSINTF_VERS_NO_T MinVersNo,
+    [in]   WINSINTF_VERS_NO_T MaxVersNo,
+    [out]  PWINSINTF_RECS_T pRecs
+);
+ 
+DWORD R_WinsTerm(
+    [in]   handle_t ServerHdl,
+    [in]   short fAbruptTem
+);
+ 
+DWORD R_WinsBackup(
+           [in] WINSIF2_HANDLE ServerHdl,
+    [in, string, ref] LPBYTE pBackupPath,
+    [in]   short fIncremental
+);
+ 
+DWORD R_WinsDelDbRecs(
+           [in] WINSIF2_HANDLE ServerHdl,
+    [in, ref] PWINSINTF_ADDR_T pWinsAddr,
+    [in]   WINSINTF_VERS_NO_T MinVersNo,
+    [in]   WINSINTF_VERS_NO_T MaxVersNo
+);
+ 
+DWORD R_WinsPullRange(
+           [in] WINSIF2_HANDLE ServerHdl,
+    [in, ref] PWINSINTF_ADDR_T pWinsAddr,
+    [in, ref] PWINSINTF_ADDR_T pOwnerAddr,
+    [in]   WINSINTF_VERS_NO_T MinVersNo,
+    [in]   WINSINTF_VERS_NO_T MaxVersNo
+);
+ 
+DWORD R_WinsSetPriorityClass(
+           [in] WINSIF2_HANDLE ServerHdl,
+    [in]   WINSINTF_PRIORITY_CLASS_E PrCls_e
+);
+ 
+DWORD R_WinsResetCounters(
+           [in] WINSIF2_HANDLE ServerHdl
+);
+ 
+DWORD R_WinsWorkerThdUpd(
+           [in] WINSIF2_HANDLE ServerHdl,
+    [in]   DWORD NewNoOfNbtThds
+);
+ 
+DWORD R_WinsGetNameAndAddr(
+           [in] WINSIF2_HANDLE ServerHdl,
+    [out, ref] PWINSINTF_ADDR_T pWinsAddr,
+    [out, string, size_is(80)] LPBYTE pUncName
+);
+ 
+DWORD R_WinsGetBrowserNames_Old(
+           [in] WINSIF2_HANDLE ServerHdl,
+    [out] PWINSINTF_BROWSER_NAMES_T pNames
+);
+ 
+DWORD R_WinsDeleteWins(
+           [in] WINSIF2_HANDLE ServerHdl,
+    [in, ref] PWINSINTF_ADDR_T pWinsAddr
+);
+ 
+DWORD R_WinsSetFlags(
+           [in] WINSIF2_HANDLE ServerHdl,
+    [in]   DWORD fFlags 
+);
+ 
+DWORD R_WinsGetBrowserNames(
+    [in, ref] WINSIF_HANDLE ServerHdl,
+    [out] PWINSINTF_BROWSER_NAMES_T pNames
+);
+ 
+DWORD R_WinsGetDbRecsByName(
+           [in] WINSIF2_HANDLE ServerHdl,
+    [in, unique] PWINSINTF_ADDR_T pWinsAddr,
+    [in]   DWORD Location,
+    [in, unique, size_is(NameLen + 1)] LPBYTE pName,
+    [in]   DWORD NameLen,
+    [in]   DWORD NoOfRecsDesired,
+    [in]   DWORD fOnlyStatic,
+    [out]  PWINSINTF_RECS_T pRecs
+);
+ 
+DWORD R_WinsStatusNew(
+           [in] WINSIF2_HANDLE ServerHdl,
+    [in]   WINSINTF_CMD_E Cmd_e,
+    [out]  PWINSINTF_RESULTS_NEW_T pResults
+);
+ 
+DWORD R_WinsStatusWHdl(
+    [in, ref] WINSIF_HANDLE ServerHdl,
+    [in] WINSINTF_CMD_E Cmd_e,
+    [in, out, ref] PWINSINTF_RESULTS_NEW_T pResults
+);
+ 
+DWORD R_WinsDoScavengingNew(
+           [in] WINSIF2_HANDLE ServerHdl,
+    [in, ref] PWINSINTF_SCV_REQ_T pScvReq
+);
+};
+
+[
+    uuid(811109bf-a4e1-11d1-ab54-00a0c91e9b45),
+    version(1.0),
+    pointer_default(unique)
+]
+ 
+interface winsi2 {
+ 
+// XXX: not used.
+// #define MIDL_PASS
+ 
+typedef handle_t WINSIF2_HANDLE;
+ 
+DWORD
+R_WinsTombstoneDbRecs(
+    [in]      WINSIF2_HANDLE ServerHdl,
+    [in, ref] PWINSINTF_ADDR_T pWinsAddr,
+    [in]      WINSINTF_VERS_NO_T MinVersNo,
+    [in]      WINSINTF_VERS_NO_T MaxVersNo
+);
+ 
+DWORD
+R_WinsCheckAccess(
+    [in]      WINSIF2_HANDLE ServerHdl,
+    [out]     DWORD *Access
+);
+}

@@ -1,0 +1,46 @@
+<div class="content"><p> </p><p>The VDS_STORAGE_BUS_TYPE enumeration defines the type of <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_36805c8d-5505-4906-986b-8b08a4f0741e" data-linktype="relative-path">bus</a></span>
+on which a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span> resides.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_STORAGE_BUS_TYPE
+ {
+   VDSBusTypeUnknown = 0x00000000,
+   VDSBusTypeScsi = 0x00000001,
+   VDSBusTypeAtapi = 0x00000002,
+   VDSBusTypeAta = 0x00000003,
+   VDSBusType1394 = 0x00000004,
+   VDSBusTypeSsa = 0x00000005,
+   VDSBusTypeFibre = 0x00000006,
+   VDSBusTypeUsb = 0x00000007,
+   VDSBusTypeRAID = 0x00000008,
+   VDSBusTypeiScsi = 0x00000009,
+   VDSBusTypeSas = 0x0000000A,
+   VDSBusTypeSata = 0x0000000B,
+   VDSBusTypeSd = 0x0000000C,
+   VDSBusTypeMmc = 0x0000000D,
+   VDSBusTypeMax = 0x0000000E,
+   VDSBusTypeVirtual = 0x0000000E,
+   VDSBusTypeFileBackedVirtual = 0x0000000F,
+   VDSBusTypeSpaces = 0x00000010,
+   VDSBusTypeMaxReserved = 0x0000007F
+ } VDS_STORAGE_BUS_TYPE;
+</pre></div>
+</dd></dl><p><b>VDSBusTypeUnknown:  </b>Bus type is unknown.</p><p><b>VDSBusTypeScsi:  </b>Disk resides on a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_3bfde62c-c276-4263-9612-9e89133154fd" data-linktype="relative-path">SCSI bus</a></span>.</p><p><b>VDSBusTypeAtapi:  </b>Disk resides on an AT
+Attachment Packet Interface (ATAPI) bus. For more information on this bus type,
+see <span><a href="https://go.microsoft.com/fwlink/?LinkId=208130" data-linktype="external">[ANSI/INCITS-397-2005]</a></span>.</p><p><b>VDSBusTypeAta:  </b>Disk resides on an AT Attached
+(ATA) bus. For more information on this bus type, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=208131" data-linktype="external">[ANSI/INCITS-451-2008]</a></span>.</p><p><b>VDSBusType1394:  </b>Disk resides on an IEEE 1394
+bus. For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89900" data-linktype="external">[IEEE1394-2008]</a></span>.</p><p><b>VDSBusTypeSsa:  </b>Disk resides on a serial
+storage architecture (SSA) bus. For more information on this bus type, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=208136" data-linktype="external">[IEEE-SSA]</a></span>.</p><p><b>VDSBusTypeFibre:  </b>Disk resides on a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4569ecb-26ad-4514-bfd7-65dd0c30fe2a" data-linktype="relative-path">fiber
+channel bus</a></span>.</p><p><b>VDSBusTypeUsb:  </b>Disk resides on a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2922ead8-cc31-4cea-a2aa-885ac2c9455d" data-linktype="relative-path">universal
+serial bus (USB)</a></span>.</p><p><b>VDSBusTypeRAID:  </b>Disk resides on a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1c16ca36-c1ca-4bdb-9c4e-6b899fbb8435" data-linktype="relative-path">RAID</a></span>
+bus.</p><p><b>VDSBusTypeiScsi:  </b>Disk resides on an <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7204775b-b69b-4097-b3b9-06707940dbda" data-linktype="relative-path">iSCSI</a></span>
+bus.</p><p><b>VDSBusTypeSas:  </b>Disk resides on a Serial
+Attached SCSI (SAS) bus. For more information on this bus type, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=208133" data-linktype="external">[ANSI/INCITS-457-2010]</a></span>.</p><p><b>VDSBusTypeSata:  </b>Disk resides on a Serial ATA
+(SATA) bus. For more information on this bus type, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=208135" data-linktype="external">[SATA-3.0]</a></span>.</p><p><b>VDSBusTypeSd:  </b>Disk resides on a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_93514634-6876-47d7-8e86-7f8d02cbdff9" data-linktype="relative-path">secure
+digital (SD) bus</a></span>.</p><p><b>VDSBusTypeMmc:  </b>Indicates a multimedia card
+(MMC) bus type. For information on multimedia cards, which are a flash memory
+card standard, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=208756" data-linktype="external">[JEDEC-MO227-A]</a></span>.</p><p><b>VDSBusTypeMax:  </b>Maximum bus type value. Note
+that this value does not identify a particular bus type; rather, it serves as
+an end value of the enumeration.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p><p><b>VDSBusTypeVirtual:  </b>The disk SHOULD<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_8" data-linktype="relative-path"><b>&lt;8&gt;</b></a> reside on a virtual bus</p><p><b>VDSBusTypeFileBackedVirtual:  </b>Disk is backed
+by a file.</p><p><b>VDSBusTypeSpaces:  </b>The disk SHOULD<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_9" data-linktype="relative-path"><b>&lt;9&gt;</b></a> be backed by <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9b735b82-a4b8-4d68-bf92-96bc4e604a77" data-linktype="relative-path">Storage
+Spaces</a></span>.</p><p><b>VDSBusTypeMaxReserved:  </b>Maximum reserved bus
+type value. Bus type values below this range are reserved.</p></div>

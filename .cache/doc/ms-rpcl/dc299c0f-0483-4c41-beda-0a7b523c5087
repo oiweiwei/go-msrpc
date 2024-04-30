@@ -1,0 +1,40 @@
+<div class="content"><p> </p><p>This specification extends the DCE RPC Location Services
+specification defined in the section &#34;Name Service Interface&#34; in Part
+2 of <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>. These
+extensions add new capabilities to the DCE RPC Location Services Protocol and,
+in some cases, place additional restrictions upon it. This specification
+adheres to the abstract data model as specified in [C706] Part 2, but an
+implementation of this specification will not interoperate with an
+implementation of [C706] Part 2.</p><p>This document refers to the Windows implementation of the
+DCE RPC Location services protocol as &#34;LocToLoc&#34;.</p><p>This document includes the following: </p><ul><li><p><span><span> 
+</span></span>An extension to provide RPC Location Services functionality in an
+environment where a centrally accessible directory service like <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+Directory</a></span> directory service is not available. For more details, see
+Nondirectory mode in section <span><a href="dab3af12-2796-4ddf-8313-acba3e7e0dc7" data-linktype="relative-path">1.3.2</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>An extension defining the implementation of the RPC Location
+Services specification in an Active Directory environment. For more details,
+see Directory-only mode in section 1.3.2.</p>
+</li><li><p><span><span> 
+</span></span>An extension enabling interoperable RPC Location Service
+functionality between locators running outside an Active Directory environment,
+and locators running inside an Active Directory environment. For more details,
+see Directory mode in section 1.3.2.</p>
+</li><li><p><span><span> 
+</span></span>An extension of the syntax for <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_6cfe4abe-94bd-43b6-b666-3618d9093373" data-linktype="relative-path">name service entries</a></span>
+to include a <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span> name. For
+more details, see section <span><a href="99becf64-89ed-4bd8-adf0-470add859d15" data-linktype="relative-path">2.2.2</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>A restriction requiring profile, group, and server attributes to
+be defined on separate name service entries. These attributes are as specified
+in section &#34;Name Service Attributes&#34; in [C706]. For more details, see
+section <span><a href="e4d192da-2bf6-4649-9f9d-2b85531f614a" data-linktype="relative-path">1.3.3</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>A restriction requiring clients to be members of an Active
+Directory domain to support persistently storing exported name service entries.
+For more details, see section 1.3.2.</p>
+</li><li><p><span><span> 
+</span></span>A restriction requiring clients to be members of an Active
+Directory domain to support profile and group attributes. For more details, see
+sections <span><a href="0e5a2e72-15b0-427f-98c7-52da389e734e" data-linktype="relative-path">3.2.1</a></span>, <span><a href="b265805b-4609-4087-a8eb-e583116a912c" data-linktype="relative-path">3.3.3</a></span>.</p>
+</li></ul></div>

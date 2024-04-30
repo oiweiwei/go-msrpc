@@ -1,0 +1,392 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/481bb1f8-319a-40fb-89cd-ad1f6a146d9d" data-linktype="external">msdn link</a></p><p>The <b>NetrLogonSetServiceBits</b> method SHOULD<a id="Appendix_A_Target_237"></a><a aria-label="Product behavior note 237" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_237" data-linktype="relative-path">&lt;237&gt;</a> be used to notify Netlogon
+whether a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a>
+is running specified services, as detailed in the following section.</p><dl>
+<dd>
+<div><pre> NTSTATUS NetrLogonSetServiceBits(
+   [in, unique, string] LOGONSRV_HANDLE ServerName,
+   [in] DWORD ServiceBitsOfInterest,
+   [in] DWORD ServiceBits
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>The custom binding handle, as
+defined in section <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>,
+representing the connection to a DC.</p><p><b>ServiceBitsOfInterest: </b>A set of bit flags used
+as a mask to indicate which service&#39;s state (running or not running) is being
+set by this call. The value is constructed from zero or more bit flags from the
+following table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>The flags SHOULD<a id="Appendix_A_Target_238"></a><a aria-label="Product behavior note 238" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_238" data-linktype="relative-path">&lt;238&gt;</a> be
+defined as follows.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>The state of the time service is being set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>The state of the time service with clock hardware is
+  being set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>The state of the Active Directory Web service is being
+  set.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero; otherwise, the
+error STATUS_ACCESS_DENIED is returned.</p>
+</dd></dl><p><b>ServiceBits: </b>A set of bit flags used as a mask
+to indicate whether the service indicated by <i>ServiceBitsOfInterest</i> is
+running. If the flag is set to 0, the corresponding service indicated by <i>ServiceBitsOfInterest</i>
+is not running. Otherwise, if the flag is set to 1, the corresponding service
+indicated by <i>ServiceBitsOfInterest</i> is running. The value is constructed
+from zero or more bit flags from the following table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>The flags SHOULD<a id="Appendix_A_Target_239"></a><a aria-label="Product behavior note 239" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_239" data-linktype="relative-path">&lt;239&gt;</a> be
+defined as follows.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>Time service is running.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>Time service with clock hardware is running.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>Active Directory Web service is running.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero; otherwise, the
+error STATUS_INVALID_PARAMETER is returned.</p>
+</dd>
+<dd>
+<p>If a flag is set to 1 and the same flag is set to 0
+in the <i>ServiceBitsOfInterest</i> parameter, the error
+STATUS_INVALID_PARAMETER is returned.</p>
+</dd></dl><p><b>Return Values: </b>The method returns 0x00000000
+on success; otherwise, it returns a nonzero error code.</p><p>The server SHOULD<a id="Appendix_A_Target_240"></a><a aria-label="Product behavior note 240" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_240" data-linktype="relative-path">&lt;240&gt;</a> return ERROR_ACCESS_DENIED if
+the caller is not local.</p><p>If the client does not have
+sufficient privilege, the server MUST return ERROR_ACCESS_DENIED.</p><p>The server MUST return
+STATUS_ACCESS_DENIED if bits other than those previously specified are passed
+in.</p><p>For every service state being
+set by this call, as indicated by <i>ServiceBitsOfInterest</i>, the state of
+the corresponding service (<a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/f55d3f53-351d-4407-940e-f53eb6154af0" data-linktype="relative-path">6.3.1.2</a>),
+as indicated by <i>ServiceBits</i>, is updated in the <b>ServerServiceBits</b>
+ADM element.</p></div>

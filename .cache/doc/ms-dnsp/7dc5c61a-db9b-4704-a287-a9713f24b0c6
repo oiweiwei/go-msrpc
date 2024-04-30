@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_ZONE_SCOPE_INFO_V1</b> structure<a id="Appendix_A_Target_88"></a><a aria-label="Product behavior note 88" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_88" data-linktype="relative-path">&lt;88&gt;</a> contains the details of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bbe7722c-420e-48e7-b4bb-9838ff07b9e6" data-linktype="relative-path">zone
+scope</a></span> or <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0ceb8c41-16c7-4dd0-8307-d977c30cbbc4" data-linktype="relative-path">cache scope</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcZoneScopeInfo {
+   DWORD dwRpcStructureVersion;
+   LPWSTR pwszScopeName;
+   LPWSTR pwszDataFile;
+ } DNS_RPC_ZONE_SCOPE_INFO_V1,
+  *PDNS_RPC_ZONE_SCOPE_INFO_V1;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The DNS management
+structure version number. This value MUST be set to 0x00000001.</p><p><b>pwszScopeName:</b> The name of the zone scope or
+cache scope.</p><p><b>pwszDataFile:</b> The name of the zone scope or
+cache scope data file.</p></div>

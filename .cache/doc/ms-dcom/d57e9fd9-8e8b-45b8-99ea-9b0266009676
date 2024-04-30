@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The ORPCTHIS structure is the first (implicit) argument sent
+in an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_d4ad46fe-cbab-43f2-a125-b2f125824f33" data-linktype="relative-path">ORPC</a></span> request PDU and
+is used to send <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_aae39d05-becf-4cb4-bdfc-b05bc8ccabde" data-linktype="relative-path">ORPC extension</a></span> data
+to the server. The ORPCTHIS structure is also sent as an explicit argument in <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_a1710eb6-236d-435e-a3c9-1672d28ab367" data-linktype="relative-path">activation</a></span>
+<span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+requests.</p><dl>
+<dd>
+<div><pre> typedef struct tagORPCTHIS {
+   COMVERSION version;
+   unsigned long flags;
+   unsigned long reserved1;
+   CID cid;
+   [unique] ORPC_EXTENT_ARRAY* extensions;
+ } ORPCTHIS;
+</pre></div>
+</dd></dl><p><b>version:</b>   A <span><a href="807a93f5-7321-4bdb-b88a-59059566afd3" data-linktype="relative-path">COMVERSION</a></span>
+structure that MUST contain the version number of the client. For details, see
+section 2.2.11.</p><p><b>flags:</b>   When the ORPCTHIS structure
+is used as a parameter in ORPC invocations (as specified in section <span><a href="a32b1703-e8dc-4940-9624-825ccc7db328" data-linktype="relative-path">3.2.4.2</a></span>),
+this MUST be set to 0x00000000. When the ORPCTHIS structure is used as a
+parameter in IActivation::RemoteActivation,
+IRemoteSCMActivator::RemoteGetClassObject and IRemoteSCMActivator::RemoteCreateInstance
+methods (section <span><a href="f07e681a-16f9-4194-a453-63c7972f2161" data-linktype="relative-path">3.1.2.5.2.3</a></span>), this
+can be set to any arbitrary value when sent and MUST be ignored on receipt.</p><p><b>reserved1:</b>   This MUST be set to
+zero when sent and MUST be ignored on receipt.</p><p><b>cid:</b>  This MUST contain a CID for
+the ORPC call. For details, see section <span><a href="e3884865-47e6-40c3-8b24-0ffd0309f4b7" data-linktype="relative-path">1.3.5</a></span>.</p><p><b>extensions:</b>   If non-NULL, this MUST
+be a pointer to an <span><a href="87f24bd8-83dd-49a5-a9e8-bfb1b023abc0" data-linktype="relative-path">ORPC_EXTENT_ARRAY</a></span>
+structure.</p></div>

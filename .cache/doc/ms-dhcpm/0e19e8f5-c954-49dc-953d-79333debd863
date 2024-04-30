@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The <b>DHCP_FILTER_LIST_TYPE</b> enumeration defines the
+type of filter list to which the link-layer filter is to be added.</p><dl>
+<dd>
+<div><pre> typedef  enum _DHCP_FILTER_LIST_TYPE
+ {
+   Deny,
+   Allow
+ } DHCP_FILTER_LIST_TYPE,
+  *LPDHCP_FILTER_LIST_TYPE;
+</pre></div>
+</dd></dl><p><b>Deny: </b>Add the link-layer filter to the deny
+list.</p><p><b>Allow: </b>Add the link-layer filter to the allow
+list.</p></div>

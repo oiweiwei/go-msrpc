@@ -1,0 +1,103 @@
+<div class="content"><p> </p><p>The <b>FAX_JOB_PARAM_EXW</b> structure defines information
+about the new job to create when sending a <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_82c28020-815f-4f69-adf5-7c2b78773b23" data-linktype="relative-path">fax message</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwSizeOfStruct;
+   DWORD dwScheduleAction;
+   SYSTEMTIME tmSchedule;
+   DWORD dwReceiptDeliveryType;
+   [string] LPWSTR lpwstrReceiptDeliveryAddress;
+   FAX_ENUM_PRIORITY_TYPE Priority;
+   HCALL hCall;
+   DWORD_PTR dwReserved[4];
+   [string] LPWSTR lpwstrDocumentName;
+   DWORD dwPageCount;
+ } FAX_JOB_PARAM_EXW,
+  *PFAX_JOB_PARAM_EXW,
+  *LPCFAX_JOB_PARAM_EXW;
+</pre></div>
+</dd></dl><p><b>dwSizeOfStruct:</b> A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that contains the size, in bytes, of this structure. MUST be set to 44 bytes on
+32-bit implementations, and MUST be set to 64 bytes on 64-bit implementations.</p><p><b>dwScheduleAction:</b> A <b>DWORD</b> that MUST
+specify when to send the fax. This member MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>JSA_NOW</p>
+  <p>0</p>
+  </td>
+  <td>
+  <p>Send the fax as soon as a device is available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JSA_SPECIFIC_TIME</p>
+  <p>1</p>
+  </td>
+  <td>
+  <p>Send the fax at the time specified by the <b>tmSchedule</b>
+  member.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JSA_DISCOUNT_PERIOD</p>
+  <p>2</p>
+  </td>
+  <td>
+  <p>Send the fax during the discount rate period. Call the
+  <b>FAX_GetConfiguration</b> (section <span><a href="edf51676-d8b6-44e7-859e-95903b19b224" data-linktype="relative-path">3.1.4.1.36</a></span>)
+  function to retrieve the discount period for the fax server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>tmSchedule:</b> A <b>SYSTEMTIME</b> ([MS-DTYP]
+section <span><a href="../ms-dtyp/2fefe8dd-ab48-4e33-a7d5-7171455a9289" data-linktype="relative-path">2.3.13</a></span>)
+structure that contains the date and time to send the fax. The time MUST be
+specified in <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">UTC</a></span>. This parameter
+SHOULD be ignored unless <b>dwScheduleAction</b> is set to 1
+(JSA_SPECIFIC_TIME). If the time specified has already passed, the method
+behaves as if 0 (JSA_NOW) was specified.</p><p><b>dwReceiptDeliveryType:</b> A <b>DWORD</b> that
+holds the type of receipt delivered to the sender when the fax is successfully
+sent and when the fax transmission fails. It can also specify if a receipt will
+be sent for each <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_53dfe4f3-05d0-41aa-8217-ecd1962b340b" data-linktype="relative-path">recipient</a></span> or for all
+the recipients together. The value of this parameter MUST be a logical
+combination of one of the delivery method flags and optionally one of the
+delivery grouping flags as specified in <b>FAX_ENUM_DELIVERY_REPORT_TYPES</b>
+(section <span><a href="7a03bb5e-3ba7-45ec-b869-31350298e9b9" data-linktype="relative-path">2.2.76</a></span>). The fax
+client MUST NOT use the DRT_INBOX value if the protocol version reported by the
+server is FAX_API_VERSION_2 (0x00020000) or FAX_API_VERSION_3 (0x00030000). For
+more information, see <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>).</p><p><b>lpwstrReceiptDeliveryAddress:</b> A pointer to a
+constant, null-terminated character string. If the <b>dwReceiptDeliveryType</b>
+member contains the DRT_EMAIL or DRT_ATTACH_FAX flag, the string SHOULD be the
+address to which the delivery receipt (DR) or non-delivery receipt (NDR) SHOULD
+be sent. If the <b>dwReceiptDeliveryType</b> member is equal to DRT_INBOX, the
+string SHOULD be the name of the MAPI profile to which the DR or NDR SHOULD be
+sent. For more information about MAPI, refer to <span><a href="https://go.microsoft.com/fwlink/?LinkId=162960" data-linktype="external">[MSDN-MAPIPRF]</a></span>.
+If the <b>dwReceiptDeliveryType</b> member is equal to DRT_MSGBOX, the string SHOULD
+be the computer name to send the receipt to as a text message containing a
+character string, as described in Messenger Service Remote Protocol
+Specification <span><a href="../ms-msrp/b3dd697e-6e3e-456d-a536-04ddde16ac95" data-linktype="relative-path">[MS-MSRP]</a></span>
+section <span><a href="../ms-msrp/28c19c6e-ecfc-4fed-834a-6b9c0400a373" data-linktype="relative-path">3.2.4.1</a></span>.
+If the <b>dwReceiptDeliveryType</b> member is set to DRT_NONE, the pointer
+SHOULD be NULL.</p><p><b>Priority:</b> A value specifying the priority
+level of the outgoing fax.</p><p><b>hCall:</b> Reserved.</p><dl>
+<dd>
+<p><b>Note</b>  This value MUST
+be set to NULL.</p>
+</dd></dl><p><b>dwReserved:</b> This field SHOULD be set to zero.</p><p><b>lpwstrDocumentName:</b> A null-terminated
+character string that holds the <b>document name</b>. A NULL pointer value
+specifies that no <b>document name</b> is specified for this fax job. </p><p><b>dwPageCount:</b> A <b>DWORD</b> value that holds
+the number of pages in the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_cce65523-bec8-486a-8c6c-6091c52af3d3" data-linktype="relative-path">fax document</a></span> pointed
+to by the <i>lpcwstrFileName</i> parameter of the <b>FAX_SendDocumentEx</b>
+(section <span><a href="bac2e95f-f18b-448f-bb42-cc63b6ff04b2" data-linktype="relative-path">3.1.4.1.73</a></span>) method.
+This value MUST be used only for fax documents in <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_eddadea9-c278-4d16-9279-f222df2cb735" data-linktype="relative-path">TIFF</a></span>, which is the
+only supported format.</p></div>

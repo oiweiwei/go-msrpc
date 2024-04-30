@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The COUNTED_STRING structure provides information about a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_7674e31e-66f7-462f-8064-df587f6af100" data-linktype="relative-path">mounted
+folder</a></span>.</p><dl>
+<dd>
+<div><pre> struct countedstring {
+   LdmObjectId sourceId;
+   LdmObjectId targetId;
+   int cchString;
+   [size_is(cchString)] wchar_t* sstring;
+ };
+ typedef struct countedstring COUNTED_STRING;
+</pre></div>
+</dd></dl><p><b>sourceId:</b>  Specifies the OID of the
+source <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>. The source
+volume has a folder to which the target volume will be mounted.</p><p><b>targetId:</b>  Specifies the OID of the
+target volume.</p><p><b>cchString:</b>  Specifies the length of
+the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_6e6c4b8b-2781-4192-8f3f-aac276a7626f" data-linktype="relative-path">mount
+path</a></span>, including the terminating null character.</p><p><b>sstring:</b>  Null-terminated <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string that contains the mount path of the source.</p></div>

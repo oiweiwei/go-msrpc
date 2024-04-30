@@ -1,0 +1,10 @@
+<div class="content"><p>The Internet Information Services (IIS) Inetinfo Remote
+Protocol provides functions that allow remote administration and statistics
+gathering from an <a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_d9a0cf88-f6d7-4c52-a9fc-4ce5a7cb7260" data-linktype="relative-path">Internet
+protocol server</a> such as a server implementing the HTTP or FTP protocol. The
+protocol provides methods for gathering statistical data on users, sites,
+requests, and performance. For more information about HTTP and securing HTTP
+connections, see <a href="https://go.microsoft.com/fwlink/?LinkId=90310" data-linktype="external">[RFC2068]</a>
+and <a href="https://go.microsoft.com/fwlink/?LinkId=90383" data-linktype="external">[RFC2818]</a>.</p><p>The server does not maintain client state information.
+Although some client call sequences might be logically related, the protocol
+operation is stateless.</p></div>

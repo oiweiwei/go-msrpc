@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The <b>DHCP_OPTION</b> structure contains the information
+for an option definition created on the DHCP server. This structure is used in
+the <span><a href="34b6a347-0458-415a-9808-0dc631a8c547" data-linktype="relative-path">LPDHCP_OPTION_ARRAY (section 2.2.1.2.26)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_OPTION {
+   DHCP_OPTION_ID OptionID;
+   LPWSTR OptionName;
+   LPWSTR OptionComment;
+   DHCP_OPTION_DATA DefaultValue;
+   DHCP_OPTION_TYPE OptionType;
+ } DHCP_OPTION,
+  *LPDHCP_OPTION;
+</pre></div>
+</dd></dl><p><b>OptionID:</b>  This is of type <span><a href="4a0bb785-ceec-4f7a-b4a7-64555f6e0b62" data-linktype="relative-path">DHCP_OPTION_ID (section 2.2.1.2.3)</a></span>,
+containing a value that uniquely identifies the option.</p><p><b>OptionName:</b>  A pointer of type <span><a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a></span>
+to a null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+specifies the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_2ecc220f-d018-4215-86f8-636f864c6370" data-linktype="relative-path">option name</a></span> of the
+option. There is no restriction on the length of this Unicode string.</p><p><b>OptionComment:</b>  A pointer of type
+LPWSTR to a null-terminated Unicode string that specifies a comment for the
+option. This is an optional parameter. There is no restriction on the length of
+this Unicode string.</p><p><b>DefaultValue:</b>  This is of type <span><a href="6b01abaa-f56b-4a9b-9596-64c7813fdfe7" data-linktype="relative-path">DHCP_OPTION_DATA (section 2.2.1.2.24)</a></span>,
+containing the default value for the option. This also defines the data type
+used to store the value of the option.</p><p><b>OptionType:</b>  This is of type <span><a href="6bb458f2-d276-40b4-99a5-58ca96b68e07" data-linktype="relative-path">DHCP_OPTION_TYPE (section 2.2.1.1.6)</a></span>,
+indicating whether the default value is a unary item or an array of elements.</p></div>

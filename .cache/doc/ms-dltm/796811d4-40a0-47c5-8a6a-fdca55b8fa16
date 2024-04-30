@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p>The TRK_FILE_TRACKING_INFORMATION structure is used in a
+SEARCH message of a <span><a href="cea51ffe-cab6-4b19-93b7-853189437ead" data-linktype="relative-path">LnkSvrMessage</a></span>
+method call to search for the current location of a file. This structure
+contains information about a file that is being tracked. See section <span><a href="e6084ee0-fc0d-443e-a4fb-1a792ce70450" data-linktype="relative-path">2.2.11</a></span>
+for more information about the SEARCH message. See section <span><a href="4064a135-6d84-4f0d-a171-567808d3d310" data-linktype="relative-path">3.2.6.3</a></span>
+for an example of how the TRK_FILE_TRACKING_INFORMATION structure is used.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   CDomainRelativeObjId droidBirth;
+   CDomainRelativeObjId droidLast;
+   CMachineId mcidLast;
+   HRESULT hr;
+ } TRK_FILE_TRACKING_INFORMATION;
+</pre></div>
+</dd></dl><p><b>droidBirth:</b>  The <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_3b097896-b707-47b5-b1bb-384867a453ea" data-linktype="relative-path">FileID</a></span>
+of the file for which the location is being requested. For details on this
+structure, see <span><a href="../ms-dltw/fc649f0e-871a-431a-88b5-d5b2f80e9cc9" data-linktype="relative-path">[MS-DLTW]</a></span>
+section <span><a href="../ms-dltw/80cbf3f6-964d-456a-b08e-6f20c7c86921" data-linktype="relative-path">2.2.3</a></span>.</p><p><b>droidLast:</b>  On input, the last <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_d0fe4e63-48a5-4d63-9d51-d4f99306046e" data-linktype="relative-path">FileLocation</a></span>
+that the client knew of for the file. On output, this member contains the
+file&#39;s current FileLocation.</p><p><b>mcidLast:</b>  On completion of the
+SEARCH request, this member is returned by the server to indicate the <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_e15432dc-30dd-4e3d-8757-19b639769c95" data-linktype="relative-path">MachineID</a></span>
+of the <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_d223806a-659f-49b5-af12-620e3ea1363d" data-linktype="relative-path">VolumeOwner</a></span> of the <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_3b3c1be2-035c-4823-afeb-10edbd6bb288" data-linktype="relative-path">VolumeID</a></span>
+component of the <b>droidLast</b> field. The <span><a href="../ms-dltw/240143d3-366d-4530-8828-1e82e98b68d7" data-linktype="relative-path">CMachineId</a></span>
+type is specified in [MS-DLTW] section 2.2.2.</p><p><b>hr:</b>  Return value that indicates the
+success or failure of this message. The type of this field is an <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+but, unlike the standard definition, only zero is a successful return value for
+this field. Any nonzero value MUST be treated identically as a failure value.</p></div>

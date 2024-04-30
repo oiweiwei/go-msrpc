@@ -1,0 +1,52 @@
+<div class="content"><p> </p><p>Pull subscriptions are subscriptions in which the client
+requests records. The requests can be done by using a polling mechanism. The
+EvtRpcRemoteSubscriptionWaitAsync (Opnum 3) method can be used to enable the
+client to only poll when results are likely, and is typically used in
+conjunction with the EvtRpcRemoteSubscriptionNext (Opnum 2) (section <span><a href="cd4c258c-5a2c-4ba8-bce3-37eefaa416e7" data-linktype="relative-path">3.1.4.10)</a></span>
+method, which is a blocking call; so this asynchronous method is used to
+provide a way for the caller to not have to block or continuously poll the
+server.</p><dl>
+<dd>
+<div><pre> error_status_t EvtRpcRemoteSubscriptionWaitAsync(
+   [in, context_handle] PCONTEXT_HANDLE_REMOTE_SUBSCRIPTION handle
+ );
+</pre></div>
+</dd></dl><p><b>handle: </b>A handle to a subscription, as
+obtained from the <span><a href="4364e323-0885-4e2f-9d55-70cf57cd6b95" data-linktype="relative-path">EvtRpcRegisterRemoteSubscription (section 3.1.4.8)</a></span>
+method. This parameter MUST be an <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle,
+as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> Context
+Handles.</p><p><b>Return Values: </b>The method MUST return ERROR_SUCCESS
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+nonzero value as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>In response to this request from the client, the server MUST
+first validate the handle. For processing rules for handle validation, see the
+remarks in section <span><a href="e567bf31-913a-4369-846d-a38eb3f97aa0" data-linktype="relative-path">3.1.4.9</a></span>. The server
+SHOULD fail the method with the return code ERROR_INVALID_PARAMETER
+(0x00000057) if it has no state for the handle.<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a></p><p>After the server validates the handle, it casts the handle
+value to the subscription object. The server then MUST check whether the
+subscription object is a push subscription. Because the subscription object
+contains the type of subscription, the server checks its type and SHOULD fail
+the method if it is not a push type subscription with the error
+ERROR_INVALID_OPERATION(0x000010DD).</p><p>If the preceding check is successful, the server MUST
+determine whether there are any events the client has not received that pass
+the <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_d74bcc19-5383-49d9-acfc-c79518cd2fbf" data-linktype="relative-path">subscription
+filters</a></span>. The subscription object contains the information of the
+last event since its last delivery to the client. If there is no new event from
+the last time the server returned events to the client until the current
+moment, the server does not complete the call and SHOULD return anything to the
+client. If there are new events coming in, the server applies the subscription
+filters and if those events pass the filters, the server SHOULD call
+RpcAyncCompleteCall (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=203527" data-linktype="external">[MSDN-RpcAsyncCompleteCall]</a></span>)
+to complete the async call so that the client will receive notification. Then
+the client will use <b>EvtRpcRemoteSubscriptionNext</b> (as specified in
+section 3.1.4.10) to get those new events from the server. The subscription
+filters are the XPath queries that the client specifies in the query parameter
+in the <b>EvtRpcRegisterRemoteSubscription</b> method (as specified in section
+3.1.4.8). For information on how the server applies the filter, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=207352" data-linktype="external">[MSDN-CONSUMEVTS]</a></span>.
+If there are no events meeting that criteria, the server MUST NOT complete this
+operation.</p><p>The server SHOULD be notified by the underlying network that
+the connection is lost from the client if the client abnormally terminates the
+connection. The server abandons its operation for the client in such a case.
+The server SHOULD release the subscription object it creates and free all
+associated resources. The associated resources are described in EvtRpcRegisterRemoteSubscription
+(Opnum 0) (section 3.1.4.8).</p><p>The server MUST return a value indicating success or failure
+for this operation.</p></div>

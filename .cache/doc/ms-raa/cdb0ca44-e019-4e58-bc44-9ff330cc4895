@@ -1,0 +1,57 @@
+<div class="content"><p>The AUTHZR_SECURITY_ATTRIBUTE_V1 structure specifies one or
+more security attribute and value pairs that are associated with a remote
+authorization context.</p><dl>
+<dd>
+<div><pre> typedef struct _AUTHZR_SECURITY_ATTRIBUTE_V1 {
+     [range(2, 256)] ULONG Length;
+     [string] [size_is(Length)] WCHAR* Value;
+     USHORT ValueType;
+     USHORT Reserved;
+     ULONG Flags;
+     [range(0, 1024)] ULONG ValueCount;
+     [size_is(ValueCount)] AUTHZR_SECURITY_ATTRIBUTE_V1_VALUE* Values;
+ } AUTHZR_SECURITY_ATTRIBUTE_V1;
+  
+  
+</pre></div>
+</dd></dl><p><b>Length:</b> The length of the Value parameter, in
+bytes. MUST be between 2 and 256.</p><p><b>Value:</b> A Unicode string containing the
+security value. This string MUST be between 2 and 256 bytes in length,
+inclusive.</p><p><b>ValueType:</b>  A union tag value indicating the
+type of information contained in <b>Values</b> member.</p><p><b>Reserved:</b> Reserved. This member MUST be set to
+zero when sent and MUST be ignored when received.</p><p><b>Flags:</b>  MUST be zero or a combination of one
+or more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>AUTHZ_SECURITY_ATTRIBUTE_NON_INHERITABLE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>This security attribute is not inherited across
+  processes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AUTHZ_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE
+  0x00000002</p>
+  </td>
+  <td>
+  <p>The value of the attribute is case sensitive. This
+  flag is valid for values that contain string types.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ValueCount:</b>  The number of attribute and value
+pairs pointed to by the <b>Values</b> member. The number of attribute and value
+pairs MUST be between 0 and 1,024, inclusive.</p><p><b>Values:</b> An array of
+AUTHZR_SECURITY_ATTRIBUTE_V1_VALUE structures, as defined in section <a href="f90d8d86-c1ed-4090-9153-5c35172a72b8" data-linktype="relative-path">2.2.3.6</a>. Each structure
+contains a security attribute and value pair.</p></div>

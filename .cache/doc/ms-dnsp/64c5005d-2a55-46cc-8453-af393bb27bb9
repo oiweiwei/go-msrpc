@@ -1,0 +1,42 @@
+<div class="content"><p> </p><p>In the <b>DNS_RPC_ZONE_DOTNET</b> structure all fields have
+same definition as specified in section <b>DNS_RPC_ZONE_W2K</b> (section <span><a href="6b6e834a-e08e-432c-a9a7-8ced1422a688" data-linktype="relative-path">2.2.5.2.1.1</a></span>),
+with the following exceptions:</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcZoneDotNet {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   [string] wchar_t* pszZoneName;
+   DNS_RPC_ZONE_FLAGS Flags;
+   UCHAR ZoneType;
+   UCHAR Version;
+   DWORD dwDpFlags;
+   [string] char* pszDpFqdn;
+ } DNS_RPC_ZONE_DOTNET,
+  *PDNS_RPC_ZONE_DOTNET,
+  DNS_RPC_ZONE,
+  *PDNS_RPC_ZONE;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The DNS management
+structure version number. This value MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> This field is reserved for
+future use. Senders set this to an arbitrary value and receivers MUST ignore
+it.</p><p><b>dwDpFlags:</b> <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_68dc613a-d602-41ae-9acc-76ffe97877c4" data-linktype="relative-path">Application directory partition</a></span>
+flags for this zone. This MUST be set to one of the combination of the
+DNS_RPC_DP_FLAGS (section <span><a href="27e378aa-d4d7-43de-8b34-3e5b957a7130" data-linktype="relative-path">2.2.7.1.1</a></span>). If this
+<span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span>
+is not stored in the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_04fd0982-6bb6-44f1-817e-795715049c50" data-linktype="relative-path">directory server</a></span>
+this value MUST be 0x00000000.</p><p><b>pszDpFqdn:</b> A pointer to a null-terminated
+UTF-8 string that specifies the FQDN of the application directory partition in
+which this zone is stored in the directory server. If this zone is not stored
+in the directory server this value MUST be NULL.</p><p>If the DNS RPC client sends an older version of DNS_RPC_ZONE
+structure, that is, DNS_RPC_ZONE_W2K (section 2.2.5.2.1.1), then the DNS RPC
+server MUST construct a current version of DNS_RPC_ZONE structure, that is,
+DNS_RPC_ZONE_DOTNET, using the following steps:</p><ol><li><p><span>    </span>Copy the same
+value for fields that are common to input and the current version of the
+DNS_RPC_ZONE structures.</p>
+</li><li><p><span>    </span>The
+dwRpcStructureVersion field MUST be set to &#34;1&#34;.</p>
+</li><li><p><span>    </span>All other fields
+that are defined only in DNS_RPC_ZONE_DOTNET and are not defined in
+DNS_RPC_ZONE (section <span><a href="f22773ca-bfbf-46a5-8042-fbda1f3c4ad2" data-linktype="relative-path">2.2.5.2.1</a></span>), MUST be
+set to &#34;0&#34;.</p>
+</li></ol></div>

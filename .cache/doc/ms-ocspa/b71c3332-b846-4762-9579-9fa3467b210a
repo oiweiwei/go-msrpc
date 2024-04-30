@@ -1,0 +1,11 @@
+<div class="content"><p>The GetSecurity method is used to retrieve the <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a>
+associated with the responder.</p><dl>
+<dd>
+<div><pre> HRESULT GetSecurity(
+   [out, ref] CERTTRANSBLOB* pctbSD
+ );
+</pre></div>
+</dd></dl><p><b>pctbSD: </b>This is a pointer to a <a href="../ms-wcce/d6bee093-d862-4122-8f2b-7b49102097dc" data-linktype="relative-path">CERTTRANSBLOB</a>
+structure that contains the marshaled Security Descriptor. Information on
+Security Descriptors is documented in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a>.<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a></p></div>

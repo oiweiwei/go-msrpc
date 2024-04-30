@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The DFS_SITELIST_INFO structure contains a value that
+indicates the count of entries and an array of DFS_SITELIST_INFO entries that
+the <span><a href="393ed753-0a8f-457c-a7aa-f0692d329e23" data-linktype="relative-path">NetrDfsManagerReportSiteInfo</a></span>
+method returns.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_SITELIST_INFO {
+   unsigned long cSites;
+   [size_is(cSites)] DFS_SITENAME_INFO Site[];
+ } DFS_SITELIST_INFO,
+  *PDFS_SITELIST_INFO,
+  *LPDFS_SITELIST_INFO;
+</pre></div>
+</dd></dl><p><b>cSites:</b>  A count of site array
+entries returned by the method.</p><p><b>Site:</b>  An array of <span><a href="6882b4d9-6527-4eef-8ac0-fe3de7b4494f" data-linktype="relative-path">DFS_SITENAME_INFO</a></span>
+entries that the method returns.</p></div>

@@ -1,0 +1,207 @@
+<div class="content"><p> </p><p>The R_OpenQueue method opens a <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span> in preparation
+for subsequent operations against it. This method MUST be called prior to
+calling any of the following operations:</p><ul><li><p><span><span> 
+</span></span>R_CreateCursor (Opnum 4) (section <span><a href="142d17a9-7fb3-481a-8d07-2170fd22e5ec" data-linktype="relative-path">3.1.4.4)</a></span></p>
+</li><li><p><span><span> 
+</span></span>R_CloseCursor (Opnum 5) (section <span><a href="dee84ebb-3d4a-4c26-ab11-3fa3b6e1acbe" data-linktype="relative-path">3.1.4.5)</a></span></p>
+</li><li><p><span><span> 
+</span></span>R_PurgeQueue (Opnum 6) (section <span><a href="9807ff2d-be58-456c-ac96-be23be8561f4" data-linktype="relative-path">3.1.4.6)</a></span></p>
+</li><li><p><span><span> 
+</span></span>R_StartReceive (Opnum 7) (section <span><a href="1bd20827-f774-4279-ae8d-4898d6faf6e9" data-linktype="relative-path">3.1.4.7)</a></span></p>
+</li><li><p><span><span> 
+</span></span>R_CancelReceive (Opnum 8) (section <span><a href="471d411a-2757-478e-b121-ef24ad0543a5" data-linktype="relative-path">3.1.4.8)</a></span></p>
+</li><li><p><span><span> 
+</span></span>R_EndReceive (Opnum 9) (section <span><a href="7e10ff5b-2991-4d73-b712-f3916bf4e85d" data-linktype="relative-path">3.1.4.9)</a></span></p>
+</li><li><p><span><span> 
+</span></span>R_MoveMessage (Opnum 10) (section <span><a href="81c28eb5-5658-4089-b8ac-7edc5d629e28" data-linktype="relative-path">3.1.4.10)</a></span>
+for the source queue only.</p>
+</li><li><p><span><span> 
+</span></span>R_StartTransactionalReceive (Opnum 13) (section <span><a href="c5296e0c-9e12-4fe8-a25d-56924982ac3e" data-linktype="relative-path">3.1.4.13)</a></span></p>
+</li><li><p><span><span> 
+</span></span>R_SetUserAcknowledgementClass (Opnum 14) (section <span><a href="add5b3ed-7b02-48df-af90-a304ed0b9eea" data-linktype="relative-path">3.1.4.14)</a></span></p>
+</li><li><p><span><span> 
+</span></span>R_EndTransactionalReceive (Opnum 15) (section <span><a href="f15f7fba-9259-4641-ab05-08a0485f5a8a" data-linktype="relative-path">3.1.4.15)</a></span></p>
+</li></ul><p>This method returns a <span><a href="d82f6d41-c569-478b-aa41-e8c57832866d" data-linktype="relative-path">QUEUE_CONTEXT_HANDLE_SERIALIZE (section 2.2.4.2)</a></span>
+handle value, which is required as input in the operations listed preceding.</p><dl>
+<dd>
+<div><pre> void R_OpenQueue(
+   [in] handle_t hBind,
+   [in] QUEUE_FORMAT* pQueueFormat,
+   [in] DWORD dwAccess,
+   [in] DWORD dwShareMode,
+   [in] GUID* pClientId,
+   [in] LONG fNonRoutingServer,
+   [in] unsigned char Major,
+   [in] unsigned char Minor,
+   [in] USHORT BuildNumber,
+   [in] LONG fWorkgroup,
+   [out] QUEUE_CONTEXT_HANDLE_SERIALIZE* pphContext
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b>MUST specify an <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle parameter, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>pQueueFormat: </b>MUST be a pointer to a <b>QUEUE_FORMAT</b>
+(<span><a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a></span>
+section <span><a href="../ms-mqmq/905e154a-6123-42a9-86cb-e0a3169820f2" data-linktype="relative-path">2.2.7</a></span>)
+structure that identifies the queue to open. NULL is invalid for this
+parameter. The valid values for the <b>m_qft</b> member are
+QUEUE_FORMAT_TYPE_PUBLIC, QUEUE_FORMAT_TYPE_PRIVATE, QUEUE_FORMAT_TYPE_DIRECT,
+QUEUE_FORMAT_TYPE_MACHINE, and QUEUE_FORMAT_TYPE_SUBQUEUE.</p><p><b>dwAccess: </b>Specifies the requested type of
+access to the queue. The required <i>dwAccess</i> parameter value for each
+event is specified in each of the corresponding events. If no requirement is
+listed, any <i>dwAccess</i> parameter value is accepted.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>RECEIVE_ACCESS</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The returned <b>QUEUE_CONTEXT_HANDLE_SERIALIZE</b>
+  handle can be used in the <b>R_StartReceive</b> or <b>R_StartTransactionalReceive</b>
+  methods with the <i>ulAction</i> parameter set to either a Peek or Receive
+  action type as defined in the table under the <i>ulAction</i> parameter in
+  the <b>R_StartReceive</b> method.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PEEK_ACCESS</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The returned <b>QUEUE_CONTEXT_HANDLE_SERIALIZE</b>
+  handle can be used in the <b>R_StartReceive</b> method with the <i>ulAction</i>
+  parameter set only to a Peek action type as defined in the table under the <i>ulAction</i>
+  parameter in the <b>R_StartReceive</b> method.</p>
+  </td>
+ </tr></tbody></table><p><b>dwShareMode: </b>Specifies whether the client
+needs exclusive access to the queue. The following values are valid for this
+parameter:</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQ_DENY_NONE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Permits multiple <b>QUEUE_CONTEXT_HANDLE_SERIALIZE</b>
+  handles to the queue to be opened concurrently.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_DENY_SHARE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Permits a single <b>QUEUE_CONTEXT_HANDLE_SERIALIZE</b>
+  handle to the queue at a time, providing exclusive access to the queue.</p>
+  </td>
+ </tr></tbody></table><p><b>pClientId: </b>MUST be set by the client to a
+pointer to a valid <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> that uniquely
+identifies the client. When the <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue manager</a></span> acts
+as the client, the queue manager sets this value to the <b>Identifier</b> ADM
+attribute of the local <b>QueueManager</b> ADM element instance. The server
+SHOULD ignore this parameter. The server MAY<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="4108f68e-80f5-40e1-b3df-b713cc4dff79#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a> use this
+parameter to impose a limit on the number of unique callers. NULL is invalid
+for this parameter.</p><p><b>fNonRoutingServer: </b>If the client is configured
+to operate in the role of an <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_1ef44813-21f1-49b8-aaa6-1f1738a47bc1" data-linktype="relative-path">MSMQ routing server</a></span>,
+this parameter MUST be set to FALSE (0x00000000); otherwise, it MUST be set to
+TRUE (0x00000001).<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="4108f68e-80f5-40e1-b3df-b713cc4dff79#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a> If the value of the <i>fNonRoutingServer</i>
+parameter is FALSE (0x00000000), the server MUST ignore the <i>pClientId</i>
+parameter.</p><table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>False</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>True</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr></tbody></table><p><b>Major: </b>MUST be set by the client to an
+implementation-specific Major Version number of the client. SHOULD<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="4108f68e-80f5-40e1-b3df-b713cc4dff79#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a> be ignored by the server.</p><p><b>Minor: </b>MUST be set by the client to an
+implementation-specific Minor Version number of the client. SHOULD<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="4108f68e-80f5-40e1-b3df-b713cc4dff79#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a> be ignored by the server.</p><p><b>BuildNumber: </b>MUST be set by the client to an
+implementation-specific Build Number of the client. SHOULD<a id="Appendix_A_Target_18"></a><a aria-label="Product behavior note 18" href="4108f68e-80f5-40e1-b3df-b713cc4dff79#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a> be ignored by the server.</p><p><b>fWorkgroup: </b>MUST be set to TRUE (0x00000001)
+by the client if the client machine is not a member of a Windows domain;
+otherwise, it MUST be set to FALSE (0x00000000). The RPC <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_bfb9708e-9d05-4f79-8969-ef63f73aa434" data-linktype="relative-path">authentication
+level</a></span> required by the server MAY<a id="Appendix_A_Target_19"></a><a aria-label="Product behavior note 19" href="4108f68e-80f5-40e1-b3df-b713cc4dff79#Appendix_A_19" data-linktype="relative-path">&lt;19&gt;</a> be based
+on this value in subsequent calls on the interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>False</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>True</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr></tbody></table><p><b>pphContext: </b>MUST be set by the server to a <b>QUEUE_CONTEXT_HANDLE_SERIALIZE</b>
+handle.</p><p><b>Return Values: </b>The method has no return values. If
+the method fails, an RPC exception is thrown.</p><p>Exceptions Thrown:</p><p>In addition to the exceptions thrown by the underlying RPC
+protocol, as specified in [MS-RPCE], the method throws <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+failure codes as RPC exceptions. The client MUST treat all thrown HRESULT codes
+identically. The client MUST disregard all output parameter values when any
+failure HRESULT is thrown.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>If any of the input parameter values is invalid, throw
+MQ_ERROR_INVALID_PARAMETER (0xC00E0006).</p>
+</li><li><p><span><span> 
+</span></span>Look up the queue name in the <b>QueueCollection</b> ADM
+attribute of the local <b>QueueManager</b> ADM element instance. If not found,
+throw MQ_ERROR_QUEUE_NOT_FOUND (0xC00E0003).</p>
+</li><li><p><span><span> 
+</span></span>Generate an <span><a href="../ms-mqdmpr/0fc165fd-317a-49ab-919d-3911da6da6d6" data-linktype="relative-path">Open Queue</a></span>
+(<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section 3.1.7.1.5) event with the following inputs:</p>
+<ul><li><p><span><span>  </span></span><i>iFormatName</i>
+:= <i>pQueueFormat</i></p>
+</li><li><p><span><span>  </span></span><i>iRequiredAccess</i>
+:= If the <i>dwAccess</i> parameter is RECEIVE_ACCESS then <b>QueueAccessType.ReceiveAccess</b>
+else <b>QueueAccessType.PeekAccess</b>.</p>
+</li><li><p><span><span>  </span></span><i>iSharedMode</i>
+:= If the <i>dwShareMode</i> parameter is MQ_DENY_NONE then <b>QueueShareMode.DenyNone</b>
+else <b>QueueShareMode.DenyReceive</b>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <i>rStatus</i> is MQ_OK (0x00000000):</p>
+<ul><li><p><span><span>  </span></span>Set
+the <i>pphContext</i> parameter to <i>rOpenQueueDescriptor</i>.<b>Handle</b></p>
+</li></ul></li></ul></div>

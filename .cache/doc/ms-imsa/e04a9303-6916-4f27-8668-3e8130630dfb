@@ -1,0 +1,158 @@
+<div class="content"><p>The GetChildPaths method returns all child nodes of a
+specified path from a supplied metadata handle.</p><dl>
+<dd>
+<div><pre> HRESULT GetChildPaths(
+     [in] METADATA_HANDLE hMDHandle,
+     [unique, in, string] LPCWSTR pszMDPath,
+     [in] DWORD cchMDBufferSize,
+     [in, out, unique, size_is(cchMDBufferSize)] WCHAR *pszBuffer,
+     [in, out, unique] DWORD *pcchMDRequiredBufferSize
+ );
+</pre></div>
+</dd></dl><p><b>hMDhandle: </b>An unsigned 32-bit integer value
+specifying a handle to a node in the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_086b13f2-2715-4000-a16c-6acc3d59cc19" data-linktype="relative-path">metabase</a> with read
+permissions as returned by the <a href="a54be1d0-009a-493d-a53e-e2f7fbe87293" data-linktype="relative-path">OpenKey</a> method, or the <a href="8abe4b9a-8f39-4761-a64e-912ba20b167f" data-linktype="relative-path">METADATA_MASTER_ROOT_HANDLE</a>.</p><p><b>pszMDPath: </b>A pointer to a Unicode string that
+contains the path of the node to be opened, relative to the <i>hMDHandle</i>
+parameter.</p><p><b>cchMDBufferSize: </b>The size, in <a href="../ms-dtyp/7df7c1d5-492c-4db4-a992-5cd9e887c5d7" data-linktype="relative-path">WCHAR</a>,
+of the <i>pszBuffer</i> buffer to hold the paths for all child nodes under the
+path specified.</p><p><b>pszBuffer: </b>A pointer to a Unicode character
+buffer passed in by the caller to store the retrieved child paths. The return
+data will be a set of WCHAR strings, where each includes two terminating null
+characters.</p><p><b>pcchMDRequiredBufferSize: </b>An integer value
+indicating the required size of the buffer if the supplied buffer proves to be
+insufficient. If the supplied buffer is sufficient, this value will not be
+adjusted.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it failed. If
+the 12-bit facility code (bits 16–27) is set to 0x007, the value contains a
+Win32 error code in the lower 16 bits. Zero or positive values indicate success,
+with the lower 16 bits in positive nonzero values containing warnings or flags
+defined in the method implementation. For more information about Win32 error
+codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070003</p>
+  <p>ERROR_PATH_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The system cannot find the path specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>Not enough storage is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007000E</p>
+  <p>E_OUTOFMEMORY</p>
+  </td>
+  <td>
+  <p>There was not enough memory to complete the method
+  call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007007A</p>
+  <p>ERROR_INSUFFICIENT_BUFFER</p>
+  </td>
+  <td>
+  <p>The data area passed to a system call is too small.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800700A0</p>
+  <p>ERROR_BAD_ARGUMENTS</p>
+  </td>
+  <td>
+  <p>One or more arguments are not correct.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80004005</p>
+  <p>E_FAIL</p>
+  </td>
+  <td>
+  <p>An unspecified error occurred.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070006</p>
+  <p>E_HANDLE</p>
+  </td>
+  <td>
+  <p>An invalid handle was passed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800CC800</p>
+  <p>MD_ERROR_NOT_INITIALIZED</p>
+  </td>
+  <td>
+  <p>Metadata has not been initialized.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 40. </p><p> When processing this call, the server MUST do the
+following: </p><ul><li><p><span><span> 
+</span></span>The server returns all child paths that are relative to the path
+provided under the node that is represented by the <i>hMDHandle</i> parameter.
+The server MUST return these as a list of WCHAR strings, where each string
+includes the terminating null character, and the entire list is also followed
+by a terminating null character.</p>
+</li><li><p><span><span> 
+</span></span>The strings returned by the server MUST be compatible with the
+format used by the OpenKey method to open those nodes for retrieving data. </p>
+</li><li><p><span><span> 
+</span></span>If the <i>hMDHandle</i> parameter is not a valid open handle to
+the metadata (retrieved by calling OpenKey), the server MUST return an E_HANDLE
+error code.</p>
+</li><li><p><span><span> 
+</span></span>If the path requested does not exist in the metadata, the server
+MUST return the HRESULT derived from the ERROR_PATH_NOT_FOUND error code.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>cchMDBufferSize</i> parameter is not large enough to
+contain the child path strings that include the terminating null character, the
+server MUST return the HRESULT derived from the ERROR_INSUFFICIENT_BUFFER error
+code, and the server MUST set the <i>pcchMDRequiredBufferSize</i> value to the
+size needed.</p>
+</li></ul></div>

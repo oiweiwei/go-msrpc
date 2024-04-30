@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The IDL_DRSBind method creates a context handle that is
+necessary to call any other method in this interface.</p><dl>
+<dd>
+<div><pre> ULONG IDL_DRSBind(
+   [in] handle_t rpc_handle,
+   [in, unique] UUID* puuidClientDsa,
+   [in, unique] DRS_EXTENSIONS* pextClient,
+   [out] DRS_EXTENSIONS** ppextServer,
+   [out, ref] DRS_HANDLE* phDrs
+ );
+</pre></div>
+</dd></dl><p><b>rpc_handle: </b>An <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle,
+as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>.</p><p><b>puuidClientDsa: </b>A pointer to a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+that identifies the caller.</p><p><b>pextClient: </b>A pointer to client capabilities,
+for use in version negotiation.</p><p><b>ppextServer: </b>A pointer to a pointer to server
+capabilities, for use in version negotiation.</p><p><b>phDrs: </b>A pointer to an RPC context handle (as
+specified in [C706]), which can be used in calls to other methods in this
+interface.</p><p><b>Return Values: </b>0 if successful, otherwise a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows
+error code</a></span>.</p><p><b>Exceptions Thrown:</b> This method does not throw
+exceptions beyond those thrown by the underlying RPC protocol.</p></div>

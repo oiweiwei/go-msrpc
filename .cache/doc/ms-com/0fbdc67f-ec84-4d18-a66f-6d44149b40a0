@@ -1,0 +1,75 @@
+<div class="content"><p>The user-defined context property, if present, MUST be
+included as part of both the client and prototype contexts during activation
+requests. This context property contains a logical set of name/value pairs. </p><p>The <b>policyId</b> field of the <a href="../ms-dcom/6865a1c4-f094-486e-990a-436257db57e5" data-linktype="relative-path">PROPMARSHALHEADER</a>
+instance (<a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section 2.2.20.1) for the user-defined context property MUST be set to
+guidUserPropertiesProperty, as specified in section <a href="738db53c-1600-432e-b288-63679b581471" data-linktype="relative-path">1.9</a>. The <b>CLSID</b>
+field of the PROPMARSHALHEADER instance ([MS-DCOM] section 2.2.20.1) for the <a href="c89181b4-a06f-4265-8860-0088df619382" data-linktype="relative-path">activity context property</a>
+MUST be set to GUID_NULL. The user-defined context property MUST be marshaled
+using the <a href="../ms-dcom/88fdb261-7c9a-41ea-bfac-31583bdc65e6" data-linktype="relative-path">OBJREF_CUSTOM</a>
+format ([MS-DCOM] section 2.2.18.6), and the <b>CLSID</b> field of the
+OBJREF_CUSTOM instance MUST be set to CLSID_UserContextProperty, as specified
+in section 1.9.</p><p>The format of the OBJREF_CUSTOM.pObjectData buffer for
+CLSID_UserContextProperty MUST be specified as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">MaxVersion</p>
+  </td>
+  <td colspan="16">
+  <p align="center">MinVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">PropCount</p>
+  </td>
+  <td colspan="16">
+  <p align="center">Properties
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>MaxVersion (2 bytes): </b>The major version number
+for this <a href="9d72873c-f3b9-4a7c-9e1b-fa7ab0181b24" data-linktype="relative-path">UserProperty
+(section 2.2.2.3.1)</a> format. This field MUST be set to 0x0001.</p><p><b>MinVersion (2 bytes): </b>The minor version number
+for this UserProperty format. This field MUST be set to 0x0001.</p><p><b>PropCount (2 bytes): </b>An unsigned short that
+MUST specify the number of elements in the <b>Properties</b> array.</p><p><b>Properties (variable): </b>An array of
+UserProperty structures.</p></div>

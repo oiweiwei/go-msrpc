@@ -1,0 +1,45 @@
+<div class="content"><p> </p><p>This enumeration is used to identify the different <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_5d8948bc-5e32-483b-906d-42f785d0df18" data-linktype="relative-path">perfect
+forward secrecy (PFS)</a></span> options supported.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_PHASE2_CRYPTO_PFS
+ {
+   FW_PHASE2_CRYPTO_PFS_INVALID = 0,
+   FW_PHASE2_CRYPTO_PFS_DISABLE = 1,
+   FW_PHASE2_CRYPTO_PFS_PHASE1 = 2,
+   FW_PHASE2_CRYPTO_PFS_DH1 = 3,
+   FW_PHASE2_CRYPTO_PFS_DH2 = 4,
+   FW_PHASE2_CRYPTO_PFS_DH2048 = 5,
+   FW_PHASE2_CRYPTO_PFS_ECDH256 = 6,
+   FW_PHASE2_CRYPTO_PFS_ECDH384 = 7,
+   FW_PHASE2_CRYPTO_PFS_DH24 = 8,
+   FW_PHASE2_CRYPTO_PFS_MAX_V2_10 = FW_PHASE2_CRYPTO_PFS_DH24 = FW_PHASE2_CRYPTO_PFS_DH24,
+   FW_PHASE2_CRYPTO_PFS_MAX = 9
+ } FW_PHASE2_CRYPTO_PFS;
+</pre></div>
+</dd></dl><p><b>FW_PHASE2_CRYPTO_PFS_INVALID:  </b>This value MUST
+NOT be used. It is defined for simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 0.</p><p><b>FW_PHASE2_CRYPTO_PFS_DISABLE:  </b>Do not
+renegotiate; instead, reuse the keying material negotiated in Phase 1 (main
+mode). This symbolic constant has a value of 1.</p><p><b>FW_PHASE2_CRYPTO_PFS_PHASE1:  </b>Use Phase 1 key
+exchange to negotiate a Phase 2 (quick mode) key for every Phase 2 negotiation.
+This symbolic constant has a value of 2.</p><p><b>FW_PHASE2_CRYPTO_PFS_DH1:  </b>Use DH1 key
+exchange to negotiate a Phase 2 (quick mode) key for every Phase 2 negotiation.
+This symbolic constant has a value of 3.</p><p><b>FW_PHASE2_CRYPTO_PFS_DH2:  </b>Use DH2 key
+exchange to negotiate a Phase 2 (quick mode) key for every Phase 2 negotiation.
+This symbolic constant has a value of 4.</p><p><b>FW_PHASE2_CRYPTO_PFS_DH2048:  </b>Use DH2048 key
+exchange to negotiate a Phase 2 (quick mode) key for every Phase 2 negotiation.
+This symbolic constant has a value of 5.</p><p><b>FW_PHASE2_CRYPTO_PFS_ECDH256:  </b>Use ECDH256 key
+exchange to negotiate a Phase 2 (quick mode) key for every Phase 2 negotiation.
+This symbolic constant has a value of 6.</p><p><b>FW_PHASE2_CRYPTO_PFS_ECDH384:  </b>Use ECDH384 key
+exchange to negotiate a Phase 2 (quick mode) key for every Phase 2 negotiation.
+This symbolic constant has a value of 7.</p><p><b>FW_PHASE2_CRYPTO_PFS_DH24:  </b>Use DH24 key
+exchange to negotiate a Phase 2 (quick mode) key for every Phase 2 negotiation.
+For schema versions 0x0200, 0x0201, and 0x020A, this value is invalid and MUST
+NOT be used. This symbolic constant has a value of 8.</p><p><b>FW_PHASE2_CRYPTO_PFS_MAX_V2_10 =
+FW_PHASE2_CRYPTO_PFS_DH24:  </b>This value and values that exceed this value
+are not valid and MUST NOT be used by servers and clients with schema version
+0x020A and earlier. It is defined for simplicity in writing IDL definitions and
+code. This symbolic constant has a value of 8.</p><p><b>FW_PHASE2_CRYPTO_PFS_MAX:  </b>This value and
+values that exceed this value are not valid and MUST NOT be used. It is defined
+for simplicity in writing IDL definitions and code. This symbolic constant has
+a value of 9.</p></div>

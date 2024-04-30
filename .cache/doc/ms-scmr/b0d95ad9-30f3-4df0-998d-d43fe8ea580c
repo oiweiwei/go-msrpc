@@ -1,0 +1,662 @@
+<div class="content"><p>The RCreateWowService method creates a service whose binary
+is compiled for a specified computer architecture.<a id="Appendix_A_Target_83"></a><a aria-label="Product behavior note 83" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_83" data-linktype="relative-path">&lt;83&gt;</a> The path
+to the file image is automatically adjusted to point to the correct
+WoW-redirected location.</p><dl>
+<dd>
+<div><pre> DWORD RCreateWowService(
+   [in] SC_RPC_HANDLE hSCManager,
+   [in, string, range(0, SC_MAX_NAME_LENGTH)] 
+     wchar_t* lpServiceName,
+   [in, string, unique, range(0, SC_MAX_NAME_LENGTH)] 
+     wchar_t* lpDisplayName,
+   [in] DWORD dwDesiredAccess,
+   [in] DWORD dwServiceType,
+   [in] DWORD dwStartType,
+   [in] DWORD dwErrorControl,
+   [in, string, range(0, SC_MAX_PATH_LENGTH)] 
+     wchar_t* lpBinaryPathName,
+   [in, string, unique, range(0, SC_MAX_NAME_LENGTH)] 
+     wchar_t* lpLoadOrderGroup,
+   [in, out, unique] LPDWORD lpdwTagId,
+   [in, unique, size_is(dwDependSize)] 
+     LPBYTE lpDependencies,
+   [in, range(0, SC_MAX_DEPEND_SIZE)] 
+     DWORD dwDependSize,
+   [in, string, unique, range(0, SC_MAX_ACCOUNT_NAME_LENGTH)] 
+     wchar_t* lpServiceStartName,
+   [in, unique, size_is(dwPwSize)] 
+     LPBYTE lpPassword,
+   [in, range(0, SC_MAX_PWD_SIZE)] 
+     DWORD dwPwSize,
+   [in] USHORT dwServiceWowType,
+   [out] LPSC_RPC_HANDLE lpServiceHandle
+ );
+</pre></div>
+</dd></dl><p><b>hSCManager: </b>An SC_RPC_HANDLE (section <a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">2.2.4</a>) data type that
+defines the handle to the <span><b>SCM</b></span> database
+created using one of the open methods specified in section <a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a>. The
+SC_MANAGER_CREATE_SERVICE access right MUST have been granted to the caller
+when the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_9dfe84e3-a772-4ad1-9a25-1255c1dc0f84" data-linktype="relative-path">RPC context handle</a>
+to the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a> was created.</p><p><b>lpServiceName: </b>A pointer to a null-terminated <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string that
+specifies the name of the service to install. This MUST NOT be NULL.</p><dl>
+<dd>
+<p>The forward slash, back slash, comma, and space
+characters are illegal in service names.</p>
+</dd></dl><p><b>lpDisplayName: </b>A pointer to a null-terminated
+Unicode string that contains the display name by which user interface programs
+identify the service.</p><p><b>dwDesiredAccess: </b>A value that specifies the
+access to the service. This MUST be one of the values as specified in section
+3.1.4.</p><p><b>dwServiceType: </b>A value that specifies the type
+of service. This MUST be one or a combination of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SERVICE_KERNEL_DRIVER</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>A driver service. These are services that manage
+  devices on the system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_FILE_SYSTEM_DRIVER</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>A file system driver service. These are services that
+  manage file systems on the system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_WIN32_OWN_PROCESS</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Service that runs within its own process.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_WIN32_SHARE_PROCESS</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Service that shares a process with other services.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_INTERACTIVE_PROCESS</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>The service can interact with the desktop.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwStartType: </b>A value that specifies when to
+start the service. This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SERVICE_BOOT_START</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Starts the driver service when the system boots up.
+  This value is valid only for driver services.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_SYSTEM_START</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Starts the driver service when the system boots up.
+  This value is valid only for driver services. The services marked
+  SERVICE_SYSTEM_START are started after all SERVICE_BOOT_START services have
+  been started.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_AUTO_START</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Starts the service automatically during system
+  startup.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_DEMAND_START</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Starts the service when a client requests the SCM to
+  start the service.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_DISABLED</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Service cannot be started.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwErrorControl: </b>A value that specifies the
+severity of the error if the service fails to start and determines the action
+that the SCM takes. This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SERVICE_ERROR_IGNORE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The SCM ignores the error and continues the startup operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_ERROR_NORMAL</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The SCM logs the error, but continues the startup
+  operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_ERROR_SEVERE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The SCM logs the error. If the last-known good
+  configuration is being started, the startup operation continues. Otherwise,
+  the system is restarted with the last-known good configuration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_ERROR_CRITICAL</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The SCM SHOULD log the error if possible. If the
+  last-known good configuration is being started, the startup operation fails.
+  Otherwise, the system is restarted with the last-known good configuration.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>lpBinaryPathName: </b>A pointer to a
+null-terminated UNICODE string that contains the fully qualified path to the
+service binary file. The path MAY include arguments. If the path contains a
+space, it MUST be quoted so that it is correctly interpreted. For example,
+&#34;d:\\my share\\myservice.exe&#34; is specified as &#34;\&#34;d:\\my
+share\\myservice.exe\&#34;&#34;.</p><p><b>lpLoadOrderGroup: </b>A pointer to a
+null-terminated UNICODE string that names the load-ordering group of which this
+service is a member.</p><dl>
+<dd>
+<p>Specify NULL or an empty string if the service does
+not belong to a <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_88c26bf0-5b6f-4423-82b3-1027ea5df0e3" data-linktype="relative-path">load-ordering
+group</a>.</p>
+</dd></dl><p><b>lpdwTagId: </b>A pointer to a variable that
+receives a tag value. The value is unique to the group specified in the <i>lpLoadOrderGroup</i>
+parameter.</p><p><b>lpDependencies: </b>A pointer to an array of
+null-separated names of services or load ordering groups that MUST start before
+this service. The array is doubly null-terminated. Load ordering group names are
+prefixed with a &#34;+&#34; character (to distinguish them from service
+names). If the pointer is NULL or if it points to an empty string, the service
+has no dependencies. Cyclic dependency between services is not allowed. The
+character set is Unicode. Dependency on a service means that this service can
+run only if the service it depends on is running. Dependency on a group means
+that this service can run if at least one member of the group is running after
+an attempt to start all members of the group.</p><p><b>dwDependSize: </b>The size, in bytes, of the
+string specified by the <i>dwDependSize</i> parameter.</p><p><b>lpServiceStartName: </b>A pointer to a
+null-terminated UNICODE string that specifies the name of the account under
+which the service runs.</p><p><b>lpPassword: </b>A pointer to a null-terminated
+UNICODE string that contains the password of the account whose name was
+specified by the <i>lpServiceStartName</i> parameter.</p><p><b>dwPwSize: </b>The size, in bytes, of the password
+specified by the <i>lpPassword</i> parameter.</p><p><b>dwServiceWowType:</b> The
+image file machine constant corresponding to the architecture that the service
+binary is compiled for. This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_UNKNOWN</p>
+  <p>0</p>
+  </td>
+  <td>
+  <p>Unknown or unspecified</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_TARGET_HOST</p>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>Interacts with the host and not a WOW64 guest<a id="Appendix_A_Target_84"></a><a aria-label="Product behavior note 84" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_84" data-linktype="relative-path">&lt;84&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_I386</p>
+  <p>0x014c</p>
+  </td>
+  <td>
+  <p>Intel 386 (also known as x86)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_R3000</p>
+  <p>0x0160</p>
+  </td>
+  <td>
+  <p>MIPS 32-bit big-endian (R3000)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_R3000</p>
+  <p>0x0162</p>
+  </td>
+  <td>
+  <p>MIPS 32-bit little-endian (R3000)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_R4000</p>
+  <p>0x0166</p>
+  </td>
+  <td>
+  <p>MIPS 64-bit little-endian (R4000)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_R10000</p>
+  <p>0x0168</p>
+  </td>
+  <td>
+  <p>MIPS 64-bit little-endian (R10000 MIPS IV)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_WCEMIPSV2</p>
+  <p>0x0169</p>
+  </td>
+  <td>
+  <p>MIPS little-endian Windows Compact Edition (WCE) v2</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_ALPHA</p>
+  <p>0x0184</p>
+  </td>
+  <td>
+  <p>DEC Alpha AXP 32-bit</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_SH3</p>
+  <p>0x01a2</p>
+  </td>
+  <td>
+  <p>Hitachi SH-3 32-bit little-endian</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_SH3DSP</p>
+  <p>0x01a3</p>
+  </td>
+  <td>
+  <p>Hitachi SH-3 DSP 32-bit</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_SH3E</p>
+  <p>0x01a4</p>
+  </td>
+  <td>
+  <p>Hitachi SH-3E 32-bit little-endian</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_SH4</p>
+  <p>0x01a6</p>
+  </td>
+  <td>
+  <p>Hitachi SH-4 32-bit little-endian</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_SH5</p>
+  <p>0x01a8</p>
+  </td>
+  <td>
+  <p>Hitachi SH-5 64-bit</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_ARM</p>
+  <p>0x01c0</p>
+  </td>
+  <td>
+  <p>ARM Little-Endian</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_THUMB</p>
+  <p>0x01c2</p>
+  </td>
+  <td>
+  <p>ARM Thumb/Thumb-2 Little-Endian</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_ARMNT</p>
+  <p>0x01c4</p>
+  </td>
+  <td>
+  <p>ARM Thumb-2 Little-Endian<a id="Appendix_A_Target_85"></a><a aria-label="Product behavior note 85" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_85" data-linktype="relative-path">&lt;85&gt;</a></p>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_AM33</p>
+  <p>0x01d3</p>
+  </td>
+  <td>
+  <p>Matsushita AM33, now Panasonic MN103</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_POWERPC</p>
+  <p>0x01F0</p>
+  </td>
+  <td>
+  <p>IBM PowerPC 32-bit Little-Endian</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_POWERPCFP</p>
+  <p>0x01f1</p>
+  </td>
+  <td>
+  <p>PowerPC 32-bit with FPU</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_IA64</p>
+  <p>0x0200</p>
+  </td>
+  <td>
+  <p>Intel IA-64 (also known as Itanium Architecture)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_MIPS16</p>
+  <p>0x0266</p>
+  </td>
+  <td>
+  <p>MIPS 16-bit</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_ALPHA64</p>
+  <p>0x0284</p>
+  </td>
+  <td>
+  <p>DEC Alpha AXP 64-bit (same as IMAGE_FILE_MACHINE_AXP64)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_MIPSFPU</p>
+  <p>0x0366</p>
+  </td>
+  <td>
+  <p>MIPS 32-bit with FPU</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_MIPSFPU16</p>
+  <p>0x0466</p>
+  </td>
+  <td>
+  <p>MIPS 16-bit with FPU</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_AXP64</p>
+  <p>0x0284</p>
+  </td>
+  <td>
+  <p>DEC Alpha AXP 64-bit (same as
+  IMAGE_FILE_MACHINE_ALPHA64)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_TRICORE</p>
+  <p>0x0520</p>
+  </td>
+  <td>
+  <p>Infineon AUDO 32-bit</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_CEF</p>
+  <p>0x0CEF</p>
+  </td>
+  <td>
+  <p>CEF</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_EBC</p>
+  <p>0x0EBC</p>
+  </td>
+  <td>
+  <p>EFI/UEFI Byte Code</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_AMD64</p>
+  <p>0x8664</p>
+  </td>
+  <td>
+  <p>AMD64 (also known as x64)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_M32R</p>
+  <p>0x9041</p>
+  </td>
+  <td>
+  <p>Mitsubishi M32R 32-bit little-endian</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_ARM64</p>
+  <p>0xAA64</p>
+  </td>
+  <td>
+  <p>ARM64 little-endian<a id="Appendix_A_Target_86"></a><a aria-label="Product behavior note 86" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_86" data-linktype="relative-path">&lt;86&gt;</a></p>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IMAGE_FILE_MACHINE_CEE</p>
+  <p>0xC0EE</p>
+  </td>
+  <td>
+  <p>CEE</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p><p><b>lpServiceHandle: </b>An
+LPSC_RPC_HANDLE (section 2.2.4) data type that defines the handle to the
+newly created <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_1fbb7936-8437-4e3d-b62f-47df3be07721" data-linktype="relative-path">service record</a>.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns one of the following error
+codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>5</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The SC_MANAGER_CREATE_SERVICE access right had not
+  been granted to the caller when the RPC context handle to the SCM was
+  created.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The handle specified is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>13</p>
+  <p>ERROR_INVALID_DATA</p>
+  </td>
+  <td>
+  <p>The data is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>50</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>dwServiceWowType was an architecture that is not
+  supported. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>87</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter that was specified is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>123</p>
+  <p>ERROR_INVALID_NAME</p>
+  </td>
+  <td>
+  <p>The specified service name is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1057</p>
+  <p>ERROR_INVALID_SERVICE_ACCOUNT</p>
+  </td>
+  <td>
+  <p>The user account name specified in the <i>lpServiceStartName</i>
+  parameter does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1059</p>
+  <p>ERROR_CIRCULAR_DEPENDENCY</p>
+  </td>
+  <td>
+  <p>A circular service dependency was specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1072</p>
+  <p>ERROR_SERVICE_MARKED_FOR_DELETE</p>
+  </td>
+  <td>
+  <p>The service record with a specified name already
+  exists, and RDeleteService has been called for it.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1073</p>
+  <p>ERROR_SERVICE_EXISTS</p>
+  </td>
+  <td>
+  <p>The service record with the ServiceName matching the
+  specified <i>lpServiceName</i> already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1078</p>
+  <p>ERROR_DUPLICATE_SERVICE_NAME</p>
+  </td>
+  <td>
+  <p>The service record with the same DisplayName or the
+  same ServiceName as the passed-in <i>lpDisplayName</i> already exists in the
+  service control manager database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1115</p>
+  <p>ERROR_SHUTDOWN_IN_PROGRESS</p>
+  </td>
+  <td>
+  <p>The system is shutting down.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation the server MUST use the service name specified in the <i>lpServiceName</i>
+parameter to create a new service record in the SCM database and use the values
+from the appropriate parameters of the client request to update the attributes
+of this newly created service record.</p><p>The server MUST convert the location specified in the <i>lpBinaryPathName</i>
+parameter to the appropriate WoW redirected location if the service binary is
+compiled for an architecture other than the server’s native architecture.</p><p>If the service is created successfully, the server MUST
+return a handle to the service in the <i>lpServiceHandle</i> parameter with the
+access rights associated with this handle as specified in the <i>dwDesiredAccess</i>
+parameter of the client request.</p><p>The only valid combinations of values for <i>dwServiceType</i>
+are SERVICE_INTERACTIVE_PROCESS and SERVICE_WIN32_OWN_PROCESS or
+SERVICE_INTERACTIVE_PROCESS and SERVICE_WIN32_SHARE_PROCESS. If the value of <i>dwServiceType</i>
+has more than one bit set and the combination of bits is not equal to
+SERVICE_INTERACTIVE_PROCESS and SERVICE_WIN32_OWN_PROCESS or
+SERVICE_INTERACTIVE_PROCESS and SERVICE_WIN32_SHARE_PROCESS, the server MUST
+fail the method and return the error ERROR_INVALID_PARAMETER.</p><p>If <i>lpBinaryPathName</i> contains arguments, the server
+MUST pass these arguments to the service entry point.</p><p>If <i>lpdwTagId</i> has a valid value and <i>lpLoadOrderGroup</i>
+is either NULL or an empty string, then the server MUST return
+ERROR_INVALID_PARAMETER.</p></div>

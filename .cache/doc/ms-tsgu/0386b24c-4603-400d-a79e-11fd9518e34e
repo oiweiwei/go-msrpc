@@ -1,0 +1,249 @@
+<div class="content"><p>The TsProxyCreateTunnel method sets up the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_1ebdc9c6-bb01-455e-98f7-8930618bb601" data-linktype="relative-path">tunnel (2)</a> in which all
+further communication between the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> and the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> occurs. This is also
+used to exchange versioning and capability information between the RDG client
+and RDG server. It is used to exchange the RDG server <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> which has
+already been used to register for an <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_ffda2ae0-9528-42a7-ac1a-9d42d40674f7" data-linktype="relative-path">authentication service</a>.
+After this method call has successfully been completed, a tunnel (2) shutdown
+can be performed. This is accomplished by using the <a href="24d2c05f-a253-47ff-a51d-118d7590c49b" data-linktype="relative-path">TsProxyCloseTunnel</a> method
+call.</p><p>Prerequisites: The connection state MUST be in Start state.</p><p>Sequential Processing Rules:</p><ol><li><p><span>    </span>If any
+unexpected error occurs in the below process, the RDG server MUST return
+E_PROXY_INTERNALERROR.</p>
+</li><li><p><span>    </span>The RDG server
+MUST verify that a server authentication certificate is registered with
+SCHANNEL authentication service. Otherwise it MUST return
+E_PROXY_NOCERTAVAILABLE.</p>
+</li><li><p><span>    </span>If the RDG
+server is configured for <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_93df7e62-72fd-4237-97dd-eeaa2235b986" data-linktype="relative-path">pluggable
+authentication</a>:</p>
+<ol><li><p><span>   
+</span>The RDG server MUST verify that the <b>packetId</b> member of the <i>TSGPacket</i>
+parameter is either <a href="1714596b-088d-4dca-b9fe-8cbfa2520533" data-linktype="relative-path">TSG_PACKET_TYPE_AUTH</a>
+or <a href="85ae32ae-501e-426b-b216-00ec0256115d" data-linktype="relative-path">TSG_PACKET_TYPE_REAUTH</a>.
+Otherwise, it MUST return the E_PROXY_UNSUPPORTED_AUTHENTICATION_METHOD error
+code.</p>
+</li><li><p><span>   
+</span>If the <b>packetId</b> member of <i>TSGPacket</i> parameter is
+TSG_PACKET_TYPE_AUTH, then the RDG server MUST verify that
+TSGPacket-&gt;TSGPacket.packetAuth is not NULL and TSGPacket-&gt;TSGPacket.packetAuth-&gt;cookie
+is not NULL and TSGPacket-&gt;TSGPacket.packetAuth-&gt;cookieLen is not zero.
+Otherwise, it MUST return E_PROXY_COOKIE_BADPACKET. If the <b>packetId</b>
+member of the <i>TSGPacket</i> parameter is TSG_PACKET_TYPE_REAUTH, then the
+RDG server MUST verify that TSGPacket-&gt;TSGPacket.packetReauth-&gt;TSGInitialPacket.packetAuth
+is not NULL and
+TSGPacket-&gt;TSGPacket.packetReauth-&gt;TSGInitialPacket.packetAuth-&gt;cookie
+is not NULL and
+TSGPacket-&gt;TSGPacket.packetReauth-&gt;TSGInitialPacket.packetAuth-&gt;cookieLen
+is not zero. Otherwise, it MUST return E_PROXY_COOKIE_BADPACKET.</p>
+</li><li><p><span>   
+</span>The RDG server MUST authenticate the user using the cookie. If
+authentication fails, it MUST return
+E_PROXY_COOKIE_AUTHENTICATION_ACCESS_DENIED error code.</p>
+</li></ol></li><li><p><span>    </span>If the RDG
+server is configured for <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_6aaab5a6-2b08-48b2-b392-3a6d9c27b3fc" data-linktype="relative-path">RPC
+authentication</a>:</p>
+<ol><li><p><span>   
+</span>The RDG server MUST verify that the <b>packetId</b> member of the <i>TSGPacket</i>
+parameter type is either <a href="c6f70746-0479-40c8-b0cd-221f182d299e" data-linktype="relative-path">TSG_PACKET_TYPE_VERSIONCAPS</a>
+or TSG_PACKET_TYPE_REAUTH. Otherwise, it MUST return the E_PROXY_INTERNALERROR
+error code.</p>
+</li></ol></li><li><p><span>    </span>The RDG server
+MUST create a <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> and
+initialize the ADM element <b>Nonce</b> with it.</p>
+</li><li><p><span>    </span>The RDG server
+MUST create a unique identifier and initialize the ADM element <b>Tunnel Id</b>
+with it.</p>
+</li><li><p><span>    </span>If the <b>packetId</b>
+member of the <i>TSGPacket</i> parameter type is not TSG_PACKET_TYPE_REAUTH:</p>
+<ol><li><p><span>   
+</span>The RDG server MUST initialize the ADM element <b>Reauthentication
+Connection</b> to FALSE.</p>
+</li><li><p><span>   
+</span>The RDG server MUST initialize the ADM element <b>Reauthentication
+Status</b> to NONE.</p>
+</li><li><p><span>   
+</span>The RDG server MUST initialize the ADM element <b>Reauthentication
+Tunnel Context</b> with a unique ULONGLONG identifier. This identifier MUST be
+used by the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_a010756e-fca1-42cc-94a6-9a8195016b54" data-linktype="relative-path">reauthentication</a>
+connection to find this connection and set its <b>Reauthentication Status</b>
+ADM element.</p>
+</li></ol></li><li><p><span>    </span>If the <b>packetId</b>
+member of the <i>TSGPacket</i> parameter is TSG_PACKET_TYPE_REAUTH:</p>
+<ol><li><p><span>   
+</span>The RDG server MUST initialize the ADM element <b>Reauthentication
+Connection</b> to TRUE.</p>
+</li><li><p><span>   
+</span>The RDG server MUST not use the ADM element <b>Reauthentication Status</b>
+for this connection.</p>
+</li><li><p><span>   
+</span>The RDG server MUST initialize the ADM element <b>Reauthentication
+Tunnel Context</b> with TSGPacket-&gt;TSGPacket.packetReauth-&gt;tunnelContext.</p>
+</li><li><p><span>   
+</span>The RDG server MUST find the original connection that has initiated the
+reauthentication using <b>Reauthentication Tunnel Context</b>, and its ADM
+element <b>Reauthentication Status</b> MUST be set to AuthenticationCompleted.</p>
+</li></ol></li><li><p><span>    </span>The RDG server
+MUST create a tunnel (2) context handle and MUST initialize the ADM element <b>Tunnel
+Context Handle</b> with it.</p>
+</li><li><p><span>  </span>The RDG server MUST
+initialize the ADM element <b>Negotiated Capabilities</b> with the common
+capabilities between the RDG client and the RDG server. </p>
+</li><li><p><span>  </span>If the RDG server supports
+the <a href="4b4f4c8c-b309-4419-b91e-1b0ac3ae5bf4" data-linktype="relative-path">TSG_MESSAGING_CAP_CONSENT_SIGN</a>
+capability and is configured to allow only a RDG client that supports the
+TSG_MESSAGING_CAP_CONSENT_SIGN capability, but the RDG client doesn&#39;t support
+the capability, then the RDG server MUST return the E_PROXY_CAPABILITYMISMATCH
+error.</p>
+</li><li><p><span>  </span>If the ADM element <b>Negotiated
+Capabilities</b> contains the TSG_MESSAGING_CAP_CONSENT_SIGN value, the <b>packetId</b>
+member of the <i>TSGPacketResponse</i> out parameter MUST be <a href="159e314f-4ad9-4f77-8e43-e8fcc3b585a6" data-linktype="relative-path">TSG_PACKET_TYPE_CAPS_RESPONSE</a>.
+Otherwise, the <b>packetId</b> member of <i>TSGPacketResponse</i> MUST be <a href="b632d0f8-ba7d-4794-a1a3-d9ff4861d72b" data-linktype="relative-path">TSG_PACKET_TYPE_QUARENC_RESPONSE</a>.</p>
+</li><li><p><span>  </span>The RDG server SHOULD<a id="Appendix_A_Target_36"></a><a aria-label="Product behavior note 36" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_36" data-linktype="relative-path">&lt;36&gt;</a> set the <b>certChainData</b>
+field of <a href="511efcd7-8aff-4246-939d-6a456f910bcb" data-linktype="relative-path">TSG_PACKET_QUARENC_RESPONSE</a>
+structure in <i>TSGPacketResponse</i> only when quarantine is configured at the
+RDG server and the ADM element <b>Negotiated Capabilities</b> contains <a href="80b129db-92d7-4eab-8f3d-bfa080bb3215" data-linktype="relative-path">TSG_NAP_CAPABILITY_QUAR_SOH</a>.</p>
+</li><li><p><span>  </span>The RDG server MUST return
+ERROR_SUCCESS.</p>
+<div><pre> HRESULT TsProxyCreateTunnel(
+   [in, ref] PTSG_PACKET TSGPacket,
+   [out, ref] PTSG_PACKET* TSGPacketResponse,
+   [out] PTUNNEL_CONTEXT_HANDLE_SERIALIZE* tunnelContext,
+   [out] unsigned long* tunnelId
+ );
+</pre></div>
+</li></ol><p><b>TSGPacket: </b>Pointer to the <a href="4c505da0-93c2-4a2f-9329-6174bbaa481b" data-linktype="relative-path">TSG_PACKET</a> structure. If
+this call is made for a reauthentication, then the <b>packetId</b> field MUST
+be set to TSG_PACKET_TYPE_REAUTH and the <b>packetReauth</b> field of the <i>TSGPacket</i>
+union field MUST be a pointer to the TSG_PACKET_REAUTH structure. Otherwise, if
+this call is made for a new connection and the RDG server is configured for RPC
+authentication, then the value of the <b>packetId</b> field MUST be set to
+TSG_PACKET_TYPE_VERSIONCAPS and the <b>packetVersionCaps</b> field of the <i>TSGPacket</i>
+union field MUST be a pointer to the <a href="97c5562c-70a3-4d45-99eb-732202743cd9" data-linktype="relative-path">TSG_PACKET_VERSIONCAPS</a>
+structure. Otherwise, if this call is made for a new connection and the RDG
+server is configured for pluggable authentication <a id="Appendix_A_Target_37"></a><a aria-label="Product behavior note 37" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_37" data-linktype="relative-path">&lt;37&gt;</a>, then the
+value of the <b>packetId</b> field MUST be set to TSG_PACKET_TYPE_AUTH and the <b>packetAuth</b>
+field of the <i>TSGPacket</i> union field MUST be a pointer to the <a href="cbe919cd-f76b-4726-b444-347502afab01" data-linktype="relative-path">TSG_PACKET_AUTH</a> structure.
+If TSG_PACKET_AUTH is not populated correctly, the error
+E_PROXY_COOKIE_BADPACKET is returned.<a id="Appendix_A_Target_38"></a><a aria-label="Product behavior note 38" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_38" data-linktype="relative-path">&lt;38&gt;</a></p><p><b>TSGPacketResponse: </b>Pointer to the TSG_PACKET
+structure. If TSG_MESSAGING_CAP_CONSENT_SIGN capability is negotiated, the <b>packetId</b>
+member of the <i>TSGPacketResponse</i> out parameter MUST be
+TSG_PACKET_TYPE_CAPS_RESPONSE and the <b>packetCapsResponse</b> field of the <b>TSGPacket</b>
+union field MUST be a pointer to the <a href="37b7e373-c01b-4c6a-9447-f76663543c26" data-linktype="relative-path">TSG_PACKET_CAPS_RESPONSE (section 2.2.9.2.1.7)</a>.
+Otherwise, the <b>packetId</b> member of <i>TSGPacketResponse</i> MUST be
+TSG_PACKET_TYPE_QUARENC_RESPONSE, and the <b>packetQuarEncResponse</b> field of
+the <i>TSGPacket</i> union field MUST be a pointer to the TSG_PACKET_QUARENC_RESPONSE
+structure. The ADM element Nonce MUST be initialized to a unique GUID and
+assigned to the <b>nonce</b> field of the TSG_PACKET_QUARENC_RESPONSE structure
+either in TSGPacketResponse-&gt;TSGPacket.packetQuarEncResponse or
+TSGPacketResponse-&gt;TSGPacket.packetCapsResponse-&gt;pktQuarEncResponse. </p><p><b>tunnelContext: </b>An <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a> that represents
+context-specific information for the tunnel (2). The RDG server MUST provide a
+non-NULL value. The RDG client MUST save and use this context handle on all
+subsequent methods calls on the tunnel (2). The methods are <a href="2bba72e7-e747-4a17-b890-3cc5f5c4d43b" data-linktype="relative-path">TsProxyAuthorizeTunnel</a>, <a href="99458693-7c7e-45fb-abf8-2328439a4b35" data-linktype="relative-path">TsProxyCreateChannel</a>, and
+TsProxyCloseTunnel.</p><p><b>tunnelId: </b>An <b>unsigned long</b> identifier
+representing the tunnel (2). The RDG server MUST save this value in the ADM
+element <b>Tunnel id</b> and SHOULD provide this value to the RDG client. The
+RDG client SHOULD save the <i>tunnel id</i> for future use on the RDG client
+itself. This <i>tunnel id</i> is not required on any future method calls to the
+RDG server; the <i>tunnelContext</i> is used instead.</p><p><b>Return Values: </b>The method MUST return
+ERROR_SUCCESS on success. Other failures MUST be one of the codes listed in the
+rest of this table. The client MAY interpret failures in any way it deems
+appropriate. See section <a href="38d327b5-e131-4fa3-9a46-7e3ac20e0a4f" data-linktype="relative-path">2.2.6</a>
+for details on these errors.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value</p>
+   </th>
+   <th>
+   <p>State transition</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_SUCCESS (0x00000000)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to the connected state.</p>
+  </td>
+  <td>
+  <p>Returned when a call to the TsProxyCreateTunnel method
+  succeeds. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E_PROXY_INTERNALERROR (0x800759D8)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to end state.</p>
+  </td>
+  <td>
+  <p>Returned when the server encounters an unexpected
+  error. The RDG client MUST end the protocol when this error is received.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E_PROXY_COOKIE_BADPACKET (0x800759F7)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to end state.</p>
+  </td>
+  <td>
+  <p>Returned if the <b>packetAuth</b> field of the <i>TSGPacket</i>
+  parameter is NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E_PROXY_NOCERTAVAILABLE (0x800759EE)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to end state.</p>
+  </td>
+  <td>
+  <p>Returned when the RDG server cannot find a certificate
+  to register for SCHANNEL Authentication Service (AS). The RDG client MUST end
+  the protocol when this error is received.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E_PROXY_UNSUPPORTED_AUTHENTICATION_METHOD(0x800759F9)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to end state.</p>
+  </td>
+  <td>
+  <p>Returned to the RDG client when the RDG server is
+  configured for pluggable authentication and the value of the <b>packetId</b>
+  member of the <i>TSGPacket</i> parameter is not equal to TSG_PACKET_TYPE_AUTH
+  or TSG_PACKET_TYPE_REAUTH. The RDG server MUST disconnect the connection. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E_PROXY_COOKIE_AUTHENTICATION_ACCESS_DENIED
+  (0x800759F8)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to end state.</p>
+  </td>
+  <td>
+  <p>Returned when the given user does not have access to
+  connect via RDG server. The RDG server MUST be in pluggable authentication
+  mode for this error to be returned.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E_PROXY_CAPABILITYMISMATCH (0x800759E9)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to end state.</p>
+  </td>
+  <td>
+  <p>Returned when the RDG server supports the
+  TSG_MESSAGING_CAP_CONSENT_SIGN capability and is configured to allow only a
+  RDG client that supports the TSG_MESSAGING_CAP_CONSENT_SIGN capability, but
+  the RDG client doesn&#39;t support the capability.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

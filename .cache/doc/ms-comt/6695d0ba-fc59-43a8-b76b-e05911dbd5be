@@ -1,0 +1,24 @@
+<div class="content"><p>A client calls this method to obtain tracking information
+for a single <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_71669ed9-7eaf-4328-9e2e-4d3430f0f9bf" data-linktype="relative-path">component</a>
+that has <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_712af290-acfd-4e3a-a768-0530caa93b18" data-linktype="relative-path">component instances</a>
+in an <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_791190e6-1e02-42cb-bd25-5aee3ab516ed" data-linktype="relative-path">instance container</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetComponentDataByContainerAndCLSID(
+   [in] DWORD idContainer,
+   [in] GUID clsid,
+   [out] ComponentData** ppComponentData
+ );
+</pre></div>
+</dd></dl><p><b>idContainer:</b> The <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_89558104-aaa5-4aad-a89c-1b8febc6b7e4" data-linktype="relative-path">container legacy identifier</a>
+of an instance container.</p><p><b>clsid: </b>A pointer to the <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a> of a component.</p><p><b>ppComponentData: </b>A pointer to a variable that,
+upon successful completion, MUST contain a pointer to a single <a href="e5f5dc8e-d308-43b6-8b32-073d3ea099cd" data-linktype="relative-path">ComponentData (section 2.2.4)</a>
+structure.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success and a failure result (as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>)
+on failure.</p><p>When this method is invoked, the server MUST verify that the
+<i>idContainer</i> parameter identifies a tracked instance container and that
+the CLSID received in the <i>clsid</i> parameter identifies a component that is
+instantiated in that instance container. If not, the server MUST fail the call;
+otherwise, the server MUST return a single ComponentData structure that
+represents the component instantiated in the instance container and return
+success.</p></div>

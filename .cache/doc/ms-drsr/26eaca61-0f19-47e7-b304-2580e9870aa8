@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The DRS_MSG_GETCHGREPLY_V7 structure defines a compressed <span><a href="1317a654-5dd6-45ff-af73-919cbc7fbb45" data-linktype="relative-path">DRS_MSG_GETCHGREPLY_V6</a></span>
+or <b><a href="b9564a19-4500-444b-a99b-0da1b08cdb6f" data-linktype="relative-path"><span>DRS_MSG_GETCHGREPLY_V9</span></a></b>
+message received from the <span><a href="b63730ac-614c-431c-9501-28d6aca91894" data-linktype="relative-path">IDL_DRSGetNCChanges</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwCompressedVersion;
+   DRS_COMP_ALG_TYPE CompressionAlg;
+   DRS_COMPRESSED_BLOB CompressedAny;
+ } DRS_MSG_GETCHGREPLY_V7;
+</pre></div>
+</dd></dl><p><b>dwCompressedVersion:</b>  Version of the
+response in <b>CompressedAny</b>; MUST be set to 6 or 9.</p><p><b>CompressionAlg:</b>  Algorithm used to
+compress the response.</p><p><b>CompressedAny:</b>  Compressed
+DRS_MSG_GETCHGREPLY_V6 or DRS_MSG_GETCHGREPLY_V9 response.</p></div>

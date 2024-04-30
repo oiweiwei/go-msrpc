@@ -1,0 +1,71 @@
+<div class="content"><p>The <b>ClearFileProperty</b> method is used to clear the
+specified <a href="666f71d4-2f9d-4a15-9e9a-1a1190cc9313" data-linktype="relative-path">Property
+Definition Instance</a> from a file or folder.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_CLASSIFICATION_MANAGER | 0x10)] HRESULT ClearFileProperty(
+   [in] BSTR filePath,
+   [in] BSTR property
+ );
+</pre></div>
+</dd></dl><p><b>filePath: </b>The file or folder that contains the
+Property Definition Instance that you want to remove. You can specify an
+absolute or relative path to the file or folder. You cannot specify a file
+share.</p><p><b>property: </b>Contains the name of the Property
+Definition Instance to remove from the file.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified property could not be found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045354</p>
+  <p>FSRM_E_SET_PROPERTY_FAILED</p>
+  </td>
+  <td>
+  <p>The property could not be set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045357</p>
+  <p>FSRM_E_PARTIAL_CLASSIFICATION_PROPERTY_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The requested property was not found, but the file
+  might only have partial classification because a failure occurred while
+  loading or classifying the file properties.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST perform the following steps or return a
+nonzero error code.</p><ol><li><p><span>    </span>If a Property
+Definition Instance with the Property Definition Instance specified by <i>propertyName</i>
+does not exist, the server MUST return
+FSRM_E_PARTIAL_CLASSIFICATION_PROPERTY_NOT_FOUND.</p>
+</li><li><p><span>    </span>Perform the <a href="8fe62844-c8f1-4317-9752-9706ea401638" data-linktype="relative-path">Retrieve Stored Classification
+Properties</a> for the file.</p>
+</li><li><p><span>    </span>If the <a href="a4da1447-54a5-4b37-b135-bfa7481aed1c" data-linktype="relative-path">List of Property Definition
+Instances</a> contains a Property Definition Instance with the <a href="aeb8c879-da1a-4676-8d16-d7f85bac7a04" data-linktype="relative-path">Property Definition.Name</a>
+specified by <i>propertyName</i>, the server MUST remove that instance from the
+List of Property Definition Instances.</p>
+</li><li><p><span>    </span>Perform the <i>Store
+Classification Properties</i> action for the file given the List of Property
+Definition Instances from the previous actions.</p>
+</li><li><p><span>    </span>If any of the
+property definition instance.flags of the Property Definition Instances in the
+List of Property Definition Instances contains the flag <a href="78d30058-c9e7-4d13-90cc-1055b9cfde25" data-linktype="relative-path">FsrmPropertyFlags_FailedSavingProperties</a>,
+the server MUST return FSRM_E_SET_PROPERTY_FAILED.</p>
+</li></ol></div>

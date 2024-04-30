@@ -1,0 +1,169 @@
+<div class="content"><p> </p><p>The NspiSeekEntries method searches for and sets the logical
+position in a specific table to the first entry greater than or equal to a
+specified value. Optionally, it might also return information about rows in the
+table.</p><dl>
+<dd>
+<div><pre> long NspiSeekEntries(
+   [in] NSPI_HANDLE hRpc,
+   [in] DWORD Reserved,
+   [in, out] STAT* pStat,
+   [in] PropertyValue_r* pTarget,
+   [in, unique] PropertyTagArray_r* lpETable,
+   [in, unique] PropertyTagArray_r* pPropTags,
+   [out] PropertyRowSet_r** ppRows
+ );
+</pre></div>
+</dd></dl><p><b>hRpc: </b> An <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+as specified in section <span><a href="67195f6a-2002-4d81-b279-ba8b0aefb4af" data-linktype="relative-path">2.3.9</a></span>.</p><p><b>Reserved: </b>A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value reserved for future use. Ignored by the server.</p><p><b>pStat: </b>A pointer to a <span><a href="5902bec9-3124-4725-8a8f-1a50282ed023" data-linktype="relative-path">STAT</a></span>
+block describing a logical position in a specific <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_a34b031c-18b2-40e1-acfa-3b73cc71e80b" data-linktype="relative-path">address book container</a></span>.
+This parameter is used to both specify input parameters from the client and
+return values from the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_e63aea5b-046b-4176-9359-fde82613a406" data-linktype="relative-path">NSPI</a></span> server.</p><p><b>pTarget: </b>A <span><a href="6567108a-2f61-490a-9faa-0a01e51345a2" data-linktype="relative-path">PropertyValue_r</a></span>
+value holding the value that is being sought.</p><p><b>lpETable: </b>The value NULL or a <span><a href="9dc42856-90da-4df9-85ca-f8307db84659" data-linktype="relative-path">PropertyTagArray_r</a></span>
+value. It holds a list of <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_42ecf4ed-a7e5-4044-a1f0-f67ca58fb4b6" data-linktype="relative-path">Mid</a></span>s that comprises
+a restricted address book container.</p><p><b>pPropTags: </b>The value NULL or a reference to a
+PropertyTagArray_r value. Contains list of the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_7eb84614-827d-4b68-a71c-dd94eb0ad27f" data-linktype="relative-path">proptags</a></span> of the
+columns that client wants to be returned for each row returned.</p><p><b>ppRows: </b>A reference to a <span><a href="0c81c77a-009c-4077-991e-a2ce23584adf" data-linktype="relative-path">PropertyRowSet_r</a></span>
+value. Contains the address book container rows the server returns in response
+to the request. </p><p><b>Return Values: </b>The server returns a long value
+specifying the return status of the method.</p><p>Exceptions Thrown</p><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>Server Processing Rules</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>If the <b>CodePage</b>
+field of the input parameter pStat contains the value CP_WINUNICODE, the server
+MUST return one of the return values documented in section <span><a href="03bb2ea3-f2e9-4adb-ab46-751aca824b72" data-linktype="relative-path">2.2.2</a></span>. 
+No further constraints are applied to server processing of  this method; in
+this case server behavior is undefined.  Note especially that there is no
+constraint on the data the server returns in any output parameter other than
+the return value, nor is there any constraint on how or if the server changes
+its state.</p>
+</li><li><p><span>    </span>If the input
+parameter lpETable is not NULL and does not contain an Explicit Table both
+containing a restriction of the table specified by the input parameter pStat
+and sorted as specified by the SortType field of the input parameter pStat, the
+server MUST return one of the return values documented in section 2.2.2.  No
+further constraints are applied to server processing of this method; in this
+case server behavior is undefined.  Note especially that there is no constraint
+on the data the server returns in any output parameter other than the return
+value, nor is there any constraint on how or if the server changes its state.</p>
+</li><li><p><span>    </span>If the input
+parameter Reserved contains any value other than 0, the server MUST return one
+of the return values documented in section 2.2.2.  No further constraints are
+applied to server processing of this method; in this case server behavior is
+undefined.  Note especially that there is no constraint on the data the server
+returns in any output parameter other than the return value, nor is there any
+constraint on how or if the server changes its state.</p>
+</li><li><p><span>    </span>If the server
+returns any return values other than Success, the server MUST return a NULL for
+the output parameter <i>ppRows</i> and MUST NOT modify the value of the
+parameter <i>pStat</i>.</p>
+</li><li><p><span>    </span>The server MAY
+make additional validations as described in <span><a href="39bcbcd7-fa18-4eb2-a2ae-c598b6683185" data-linktype="relative-path">Security (section 5)</a></span>.
+If the server chooses to limit the visibility of data based on these
+validations, the server MUST proceed as if that data did not exist in the
+address book. See the product behavior note cited in section <span><a href="36c0f768-1fdd-4709-9875-6c387b107560" data-linktype="relative-path">5.1</a></span>
+for more information.</p>
+</li><li><p><span>    </span>If the server is
+unable to locate the address book container specified by the <b>ContainerID</b>
+field in the input parameter <i>pStat</i>, the server MUST return the return
+value InvalidBookmark.</p>
+</li><li><p><span>    </span>If the input
+parameter <i>lpETable</i> is NULL, the server MUST use the table specified by
+the input parameter <i>pStat</i> when constructing the return parameter <i>ppRows</i>.</p>
+</li><li><p><span>    </span>If the input
+parameter <i>lpETable</i> contains an Explicit Table, the server MUST use that
+table when constructing the return parameter <i>ppRows</i>.</p>
+</li><li><p><span>    </span>If the server
+does not support the SortTypePhoneticDisplayName and the <b>SortType</b> field
+of the input parameter <i>pStat</i> has the value SortTypePhoneticDisplayName,
+the server MUST return the value GeneralFailure.</p>
+</li><li><p><span>  </span>If the <b>SortType</b> field
+in the input parameter <i>pStat</i> has any value other than
+SortTypeDisplayName or SortTypePhoneticDisplayName, the server MUST return the
+value GeneralFailure.</p>
+</li><li><p><span>  </span>If the <b>SortType</b> field
+in the input parameter <i>pStat</i> is SortTypeDisplayName and the property
+specified in the input parameter <i>pTarget</i> is anything other than
+PidTagDisplayName (with either the Property Type PtypString8 or PtypString),
+the server MUST return the value GeneralFailure.</p>
+</li><li><p><span>  </span>If the <b>SortType</b> field
+in the input parameter <i>pStat</i> is SortTypePhoneticDisplayName and the
+property specified in the input parameter <i>pTarget</i> is anything other than
+PidTagAddressBookPhoneticDisplayName (with either the Property Type PtypString8
+or PtypString), the server MUST return the value GeneralFailure.</p>
+</li><li><p><span>  </span>The server MUST locate the
+first row in the specified table that has a value equal to or greater than the
+value specified in the input parameter <i>pTarget</i>. If no such row exists,
+the server MUST return the value NotFound.</p>
+</li><li><p><span>  </span>If a qualifying row was
+found, the server MUST update the position information in the parameter <i>pStat</i>.
+</p>
+<ol><li><p><span>   
+</span>The server MUST set <b>CurrentRec</b> field of the parameter <i>pStat</i>
+to the MId of the qualifying row.</p>
+</li><li><p><span>   
+</span>If the server is using the table specified by the input parameter <i>lpETable</i>,
+the server MUST set the <b>NumPos</b> field of the parameter <i>pStat</i> to
+the accurate numeric position of the qualifying row in the table.</p>
+</li><li><p><span>   
+</span>If the server is using the table specified by the input parameter <i>pStat</i>,
+the server MUST set the <b>NumPos</b> field of the parameter <i>pStat</i> to
+the approximate numeric position of the qualifying row in the table.</p>
+</li><li><p><span>   
+</span>The <b>TotalRecs</b> field of the parameter <i>pStat</i> MUST be set to
+the accurate number of records in the table used.</p>
+</li><li><p><span>   
+</span>The server MUST NOT modify any other fields of the parameter <i>pStat</i>.</p>
+</li></ol></li><li><p><span>  </span>If the input parameter <i>pPropTags</i>
+is not NULL, the client is requesting the server to return an PropertyRowSet_r.
+Subject to the prior constraints, the server MUST construct an PropertyRowSet_r
+to return to the client in the output parameter <i>ppRows</i>. This
+PropertyRowSet_r MUST be exactly the same PropertyRowSet_r that would be returned
+in the <i>ppRows</i> parameter of a call to the <span><a href="f38b81ac-23d8-4040-a12e-aa4d106f5fc5" data-linktype="relative-path">NspiQueryRows</a></span>
+method with the following parameters:</p>
+<ol><li><p><span>   
+</span>The NspiSeekEntries parameter <i>hRpc</i> is used as the NspiQueryRows
+parameter <i>hRpc</i>.</p>
+</li><li><p><span>   
+</span>The value <b>fEphID</b> is used as the NspiQueryRows parameter <i>dwFlag</i>.</p>
+</li><li><p><span>   
+</span>The NspiSeekEntries output parameter <i>pStat</i> (as modified by the
+prior constraints) is used as the NspiQueryRows parameter <i>pStat</i>.</p>
+</li><li><p><span>   
+</span>If the NspiSeekEntries input parameter <i>lpETable</i> is NULL, the
+value 0 is used as the NspiQueryRows parameter <i>dwETableCount</i>, and the
+value NULL is used as the NspiQueryRows parameter <i>lpETable</i>.</p>
+</li><li><p><span>   
+</span>If the NspiSeekEntries input parameter <i>lpETable</i> is not NULL, the
+server constructs an explicit table from the table specified by <i>lpETable</i>
+by copying rows in order from <i>lpETable</i> to the new explicit table. The
+server begins copying from the row specified by the <b>NumPos</b> field of the <i>pStat</i>
+parameter (as modified by the prior constraints), and continues until all
+remaining rows are added to the new table. The number of rows in this new table
+is used as the NspiQueryRows parameter <i>dwETableCount</i>, and the new table
+is used as the NspiQueryRows <i>lpETable</i> parameter.</p>
+</li><li><p><span>   
+</span>The list of MIds in the input parameter <i>lpETable</i> starting with
+the qualifying row is used as the NspiQueryRows parameter <i>lpETable</i>.
+These MIds are expressed as a simple array of DWORD values rather than as a
+PropertyTagArray_r value. Note that the qualifying row is included in this
+list, and that the order of the MIds from the input parameter <i>lpETable</i>
+is preserved in this list.</p>
+</li><li><p><span>   
+</span>If the NspiSeekEntries input parameter <i>lpETable</i> is NULL, the
+server MUST choose a value for the NspiQueryRows parameter <i>Count</i>. The
+NSPI Protocol does not prescribe any particular algorithm. The server MUST use
+a value greater than 0.</p>
+</li><li><p><span>   
+</span>If the NspiSeekEntries input parameter <i>lpETable</i> is not NULL, the
+value used for the NspiQueryRows parameter <i>dwETableCount</i> is used for the
+NspiQueryRows parameter <i>Count</i>.</p>
+</li><li><p><span>   
+</span>The NspiSeekEntries parameter <i>pPropTags</i> is used as the
+NspiQueryRows parameter <i>pPropTags</i>.</p>
+<p>Note that the server MUST
+NOT modify the return value of the NspiSeekEntry output parameter <i>pStat</i>
+in any way in the process of constructing the output PropertyRowSet_r.</p>
+</li></ol></li><li><p><span>  </span>If no other return values
+have been specified by these constraints, the server MUST return the return
+value Success.</p>
+</li></ol></div>

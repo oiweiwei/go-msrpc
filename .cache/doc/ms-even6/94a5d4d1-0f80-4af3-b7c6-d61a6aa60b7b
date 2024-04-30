@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The RpcInfo structure is used for certain methods that
+return additional information about errors.</p><dl>
+<dd>
+<div><pre> typedef struct tag_RpcInfo {
+   DWORD m_error,
+   m_subErr,
+   m_subErrParam;
+ } RpcInfo;
+</pre></div>
+</dd></dl><p><b>m_error:</b>  A Win32 error code that
+contains a general operation success or failure status. A value of 0x00000000
+indicates success; any other value indicates failure. Unless noted otherwise,
+all failure values MUST be treated equally.</p><p><b>m_subErr:</b>  MUST be zero unless
+specified otherwise in the method using this structure. Unless noted otherwise,
+all nonzero values MUST be treated equally.</p><p><b>m_subErrParam:</b>   MUST be zero unless
+specified otherwise in the method using this structure. Unless noted otherwise,
+all nonzero values MUST be treated equally.</p></div>

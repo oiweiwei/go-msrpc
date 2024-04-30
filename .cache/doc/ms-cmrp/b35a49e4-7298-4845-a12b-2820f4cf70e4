@@ -1,0 +1,96 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/b35a49e4-7298-4845-a12b-2820f4cf70e4" data-linktype="external">msdn link</a></p><p>The <b>CLUS_CSV_MAINTENANCE_MODE_INFO</b> structure supplies
+maintenance mode information about a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_feef37b3-c173-4f51-aab6-b55a6366259b" data-linktype="relative-path">cluster</a> shared <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a>.</p><p><b>CLUS_CSV_MAINTENANCE_MODE_INFO</b> is a custom-marshaled
+structure that has fields as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>InMaintenance</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>VolumeName
+  (520 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>InMaintenance (4 bytes): </b>A 32-bit integer that
+indicates the desired volume maintenance mode of the volume, as specified in <b>Cluster
+Node Volume Accessibility</b> (section <a href="d6de4d86-f7c9-47e6-9fef-6f2fd861aee5" data-linktype="relative-path">3.1.1.4</a>). Possible values
+are as follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Instructs the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> to transition the
+  volume into volume maintenance mode.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Instructs the server to transition the volume out of
+  volume maintenance mode.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>VolumeName (520 bytes): </b>A fixed-length buffer,
+520 bytes long, which contains a null-terminated <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> that
+indicates the name of the volume. The server MUST accept either a friendly name
+described as <b>szVolumeFriendlyName</b> or a volume GUID name as <b>szVolumeName</b>
+(both as specified in section <a href="1c96736f-4ec1-403b-a5f8-dbb0edc1e672" data-linktype="relative-path">2.2.3.18</a>).</p></div>

@@ -1,0 +1,320 @@
+<div class="content"><p> </p><p>The <b>_FAX_RECEIPTS_CONFIGW</b> data type is the
+custom-marshaled variant of the <b>FAX_RECEIPTS_CONFIGW</b> (section <span><a href="ce34af0c-256c-44e2-9a5f-02b625c88f29" data-linktype="relative-path">2.2.47</a></span>)
+structure. This data type is used by <b>FAX_GetReceiptsConfiguration</b>
+(section <span><a href="30ba9fc1-3ed7-4387-a544-3094c79ea2b1" data-linktype="relative-path">3.1.4.1.54</a></span>).</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (40 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (40 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfStruct</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAllowedReceipts</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SMTPAuthOption</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrReservedOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrSMTPServerOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSMTPPort</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrSMTPFromOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrSMTPUserNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrSMTPPasswordOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bIsToUseForMSRouteThroughEmailMethod</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>dwSizeOfStruct (4 bytes):
+</b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that holds the size of the <b>Fixed_Portion</b> block, in bytes. This
+value MUST be 40 bytes.</p>
+</dd>
+<dd>
+<p><b>dwAllowedReceipts (4
+bytes): </b>A <b>DWORD</b> that holds the type of receipts that the server
+supports. This field MUST be one of the values defined in <b>FAX_ENUM_DELIVERY_REPORT_TYPES</b>
+(section <span><a href="7a03bb5e-3ba7-45ec-b869-31350298e9b9" data-linktype="relative-path">2.2.76</a></span>).</p>
+</dd>
+<dd>
+<p><b>SMTPAuthOption (4 bytes):
+</b>A type of <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_0678be67-e739-4e33-97fe-2b03b903a379" data-linktype="relative-path">SMTP</a></span> authentication
+that the server will use for SMTP connections. The options MUST be one of the
+enumerations defined in <b>FAX_ENUM_SMTP_AUTH_OPTIONS</b> (section <span><a href="b694b9e9-7111-49cc-91f8-fad468bb1577" data-linktype="relative-path">2.2.56</a></span>).</p>
+</dd>
+<dd>
+<p><b>lpwstrReservedOffset (4
+bytes): </b>A <b>reserved</b> offset value which MUST be set to zero and
+otherwise ignored. </p>
+</dd>
+<dd>
+<p><b>lpwstrSMTPServerOffset (4
+bytes): </b>Offset to the <b>lpwstrSMTPServer</b> field in the <b>Variable_Data</b>
+block.</p>
+</dd>
+<dd>
+<p><b>dwSMTPPort (4 bytes): </b>A
+<b>DWORD</b> that holds the port number of the SMTP server.</p>
+</dd>
+<dd>
+<p><b>lpwstrSMTPFromOffset (4
+bytes): </b>Offset to the <b>lpwstrSMTPFrom</b> field in the <b>Variable_Data</b>
+block.</p>
+</dd>
+<dd>
+<p><b>lpwstrSMTPUserNameOffset
+(4 bytes): </b>Offset to the <b>lpwstrSMTPUserName</b> field in the <b>Variable_Data</b>
+block.</p>
+</dd>
+<dd>
+<p><b>lpwstrSMTPPasswordOffset
+(4 bytes): </b>Offset to the <b>lpwstrSMTPPassword</b> field in the <b>Variable_Data</b>
+block. For anonymous access, no user name and password is required and this
+offset SHOULD be zero.</p>
+</dd>
+<dd>
+<p><b>bIsToUseForMSRouteThroughEmailMethod
+(4 bytes): </b>If set to TRUE, the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_efaa1290-6d4b-4f44-9e84-35a867069d45" data-linktype="relative-path">routing</a></span> extension
+MUST use the <b>DRT_EMAIL</b> receipts settings to route incoming faxes by
+email.</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrSMTPServer
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrSMTPFrom
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrSMTPUserName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrSMTPPassword
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>lpwstrSMTPServer
+(variable): </b>A null-terminated character string that holds the SMTP server
+name.</p>
+</dd>
+<dd>
+<p><b>lpwstrSMTPFrom
+(variable): </b>A null-terminated character string that holds the SMTP email
+address of the sender of the fax receipt messages.</p>
+</dd>
+<dd>
+<p><b>lpwstrSMTPUserName
+(variable): </b>A null-terminated character string that holds the user name to
+use for Basic-authenticated SMTP connections.</p>
+</dd>
+<dd>
+<p><b>lpwstrSMTPPassword
+(variable): </b>A null-terminated character string that holds the password to
+use for Basic-authenticated SMTP connections. For anonymous access, no user
+name and password is required. For Basic and Integrated authentication, a clear
+text password is sent over the wire. It is for the server to use the password
+that depends on the authentication mode.</p>
+</dd></dl></div>

@@ -1,0 +1,54 @@
+<div class="content"><p>The Remote Authorization API (RAZA) protocol is designed to
+allow applications to simulate an <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_e0e89253-d6c1-4b4c-b4c4-bd301ffeb52e" data-linktype="relative-path">access control decision</a>
+that would be made when a given principal attempts to access a resource on a
+remote service that is protected with a given <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_f3bc5ea5-0af8-4989-bdf5-56ecccc39b12" data-linktype="relative-path">authorization policy</a>.
+Because these are simulations, they can vary from the actual groups and/or
+claims in a user&#39;s <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_95f17071-c8f1-403a-8a92-cf87aa7d40f5" data-linktype="relative-path">token</a>.
+</p><p>For example, a user can log on with a password, or the user
+can log on using a <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">smart
+card</a> (with authentication assurance provisioned). Each type of logon will
+result in a different kind of <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_6e136798-97ea-4936-9a0a-9691a58af93d" data-linktype="relative-path">impersonation
+token</a>. Logging on using the password produces an impersonation token with a
+mapped group or claim; logging on using the smart card produces an
+impersonation token without a mapped group or claim.</p><p>The following are some of the examples of this protocol&#39;s
+applications:</p><ul><li><p><span><span> 
+</span></span>Simulate the groups and/or claims that a user would have if the
+user were to authenticate to a remote service.</p>
+</li><li><p><span><span> 
+</span></span>Simulate a user&#39;s access to a hypothetical resource on a specific
+remote service that is protected with a given authorization policy.</p>
+</li><li><p><span><span> 
+</span></span>Simulate how potential changes to the user&#39;s group or claim
+assignments can affect access to resources on the remote machine.</p>
+</li></ul><p>The RAZA protocol defines client and server protocol roles.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="bbe86c87-9ea6-4bc1-87f6-272d232abe32#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a> A general description of message
+flow is as follows:</p><ol><li><p><span>    </span>The RAZA client
+initiates a RAZA conversation by issuing a request to a RAZA server to
+initialize and maintain a resource manager object.</p>
+</li><li><p><span>    </span>The RAZA server
+listens to an <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_8be6a1fb-bc3c-4ee3-8018-c236f351222a" data-linktype="relative-path">RPC endpoint</a>.
+When a client makes the preceding request, the RAZA server creates and
+maintains state for a resource manager object on behalf of the client.</p>
+</li><li><p><span>    </span>The RAZA client
+can then request creation of a <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_519bff3c-1c9f-4d5a-aa88-a3c820a4ff3a" data-linktype="relative-path">client context</a> for a user
+by specifying the user&#39;s <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security
+identifier (SID)</a>. After a client context is successfully created on the
+server, the RAZA client can examine the contents of the client context (for
+example, the group SIDs and claims within the client context) and/or modify the
+client context. Additionally, the RAZA client can perform an
+&#34;AccessCheck&#34; using the client context and a specified <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a>.</p>
+</li></ol><p>RAZA supports the following method calls to provide clients
+a way to simulate access control decisions.</p><ul><li><p><span><span> 
+</span></span>AuthzrFreeContext</p>
+</li><li><p><span><span> 
+</span></span>AuthzrInitializeContextFromSid</p>
+</li><li><p><span><span> 
+</span></span>AuthzrInitializeCompoundContext</p>
+</li><li><p><span><span> 
+</span></span>AuthzrAccessCheck</p>
+</li><li><p><span><span> 
+</span></span>AuthzGetInformationFromContext</p>
+</li><li><p><span><span> 
+</span></span>AuthzrModifyClaims</p>
+</li><li><p><span><span> 
+</span></span>AuthzrModifySids</p>
+</li></ul></div>

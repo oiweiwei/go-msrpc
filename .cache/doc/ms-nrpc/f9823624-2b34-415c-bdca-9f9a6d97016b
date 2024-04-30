@@ -1,0 +1,366 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/f9823624-2b34-415c-bdca-9f9a6d97016b" data-linktype="external">msdn link</a></p><p>The <b>DsrEnumerateDomainTrusts</b> method SHOULD<a id="Appendix_A_Target_225"></a><a aria-label="Product behavior note 225" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_225" data-linktype="relative-path">&lt;225&gt;</a> return an enumerated list of
+domain <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trusts</a>, filtered
+by a set of flags, from the specified server. </p><dl>
+<dd>
+<div><pre> NET_API_STATUS DsrEnumerateDomainTrusts(
+   [in, unique, string] LOGONSRV_HANDLE ServerName,
+   [in] ULONG Flags,
+   [out] PNETLOGON_TRUSTED_DOMAIN_ARRAY Domains
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>The custom binding handle, as
+defined in section <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>.</p><p><b>Flags: </b>A set of bit flags that specify
+properties that MUST be true for a domain trust to be part of the returned <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_45a1c9f1-0263-49a8-97c7-7aca1a99308c" data-linktype="relative-path">domain name</a> list. A flag is
+TRUE (or set) if its value is equal to 1. Flags MUST contain one or more of the
+following bits.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>Domain is a member of the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>Domain is directly trusted by this domain.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>Domain is the root of a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e2c071f1-5977-4749-868f-6c5a04929476" data-linktype="relative-path">domain tree</a> in the
+  forest.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>Domain is the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_387021de-3d6b-4372-835f-0d68c50cb496" data-linktype="relative-path">primary domain</a> of the
+  queried server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>Primary domain is running in native mode.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>Domain directly trusts this domain.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero.</p>
+</dd></dl><p><b>Domains: </b>A pointer to a <a href="251cf1be-2932-4d33-8532-595cf42e8091" data-linktype="relative-path">NETLOGON_TRUSTED_DOMAIN_ARRAY</a>
+structure, as specified in section 2.2.1.6.3, that contains a list of trusted
+domains.</p><p><b>Return Values: </b>The method returns 0x00000000
+on success; otherwise, it SHOULD return one of the following error codes.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return Value/Code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0000051F</p>
+  <p>ERROR_NO_LOGON_SERVERS</p>
+  </td>
+  <td>
+  <p>There are currently no logon servers available to
+  service the logon request.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000006FA</p>
+  <p>ERROR_NO_TRUST_LSA_SECRET</p>
+  </td>
+  <td>
+  <p>The workstation does not have a trust secret.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000006FB</p>
+  <p>ERROR_NO_TRUST_SAM_ACCOUNT</p>
+  </td>
+  <td>
+  <p>The security database on the server does not have a
+  computer account for this workstation trust relationship.</p>
+  </td>
+ </tr></tbody></table><p>On receiving this call, the server MUST perform the
+following validation step:</p><ul><li><p><span><span> 
+</span></span>The <i>Flags</i> parameter MUST be checked to verify that at
+least one of the valid bits is set. All other bits (0-24) MUST be zero. The
+server MUST return ERROR_INVALID_FLAGS if there are invalid bits present.</p>
+</li></ul><p>If the <i>ServerName</i> parameter is not NULL, it is
+compared against the server&#39;s <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9a7bc8b3-3374-4608-8f73-be20a90b898b" data-linktype="relative-path">computer
+name</a>. If the <i>ServerName</i> parameter does not match the server&#39;s
+computer name, the server MUST return ERROR_INVALID_COMPUTERNAME. If the <i>ServerName</i>
+parameter matches the server&#39;s computer name or the <i>ServerName</i> parameter
+is NULL, then processing proceeds.</p><p>If the server is not a DC (section <a href="16f82942-80d6-43ac-8c38-eee3cfe4ac99" data-linktype="relative-path">3.1.4.8</a>), the server calls
+<a href="7c3ad0cc-ee05-4643-b773-4d84e1d431dc" data-linktype="relative-path">NetrLogonGetDomainInfo</a>
+to a DC in its domain, with the following parameters:</p><ul><li><p><span><span> 
+</span></span>The WkstaBuffer parameter is a NETLOGON_WORKSTATION_INFO (section
+<a href="3ae9e9a9-a303-4fa5-8e11-823d9e7e1e61" data-linktype="relative-path">2.2.1.3.6</a>) structure
+with the following elements:</p>
+<ul><li><p><span><span>  </span></span><i>NETLOGON_WORKSTATION_INFO.LsaPolicy.LsaPolicySize</i>
+is set to 0.</p>
+</li><li><p><span><span>  </span></span><i>NETLOGON_WORKSTATION_INFO.LsaPolicy.LsaPolicy</i>
+is set to NULL.</p>
+</li><li><p><span><span>  </span></span><i>NETLOGON_WORKSTATION_INFO.WorkStationFlags</i>
+has the A flag set.</p>
+</li><li><p><span><span>  </span></span><i>NETLOGON_WORKSTATION_INFO.DnsHostName</i>
+set to the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a> computer
+name.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Level MUST be set to 0x1.</p>
+</li></ul><p>If the server is a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a> (section
+3.1.4.8), it MUST perform behavior equivalent to locally invoking
+NetrLogonGetDomainInfo with the previously described parameters.</p><p>If the call returns any other error code other than
+STATUS_SUCCESS, then the server MUST return that error code and no further
+processing occurs.</p><p>If the call returns STATUS_SUCCESS, the server MUST use the
+returned <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domains</a> in the
+DomBuffer.TrustedDomains parameter to build and return an array of <b>DS_DOMAIN_TRUSTSW</b>
+structures from the <b>NETLOGON_ONE_DOMAIN_INFO</b> structures as follows:</p><ul><li><p><span><span> 
+</span></span>If the primary domain is determined to not be running in <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_06c1c70e-f2c6-4efd-bff8-474409e69660" data-linktype="relative-path">mixed mode</a> (<a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/b40f9606-812d-4b76-924e-55a5401e2bc8" data-linktype="relative-path">6.1.4.1</a>),
+and the E bit is set in the <i>Flags</i> parameter, the server MUST include the
+primary domain (<i>DomBuffer.PrimaryDomain</i>) in the returned array.</p>
+</li><li><p><span><span> 
+</span></span>For each element of <i>DomBuffer.TrustedDomains</i>, if the
+bitwise AND of the <i>Flags</i> parameter and the <i>DomBuffer.TrustedDomains.TrustExtension.Flags</i>
+(<i>Flags</i> &amp; <i>DomBuffer.TrustedDomains.TrustExtension[0-3]</i>) is
+true, the server MUST include the domain in the returned array.</p>
+</li><li><p><span><span> 
+</span></span>For each element to be included in the returned array, each field
+in the NETLOGON_ONE_DOMAIN_INFO structure listed in the first column of the
+following table is copied to the field of the DS_DOMAIN_TRUSTSW structure
+listed on the same line in the second column:</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>NETLOGON_ONE_DOMAIN_INFO element</p>
+   </th>
+   <th>
+   <p>DS_DOMAIN_TRUSTSW element</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DomainName</p>
+  </td>
+  <td>
+  <p>NetBiosDomainName</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DnsDomainName</p>
+  </td>
+  <td>
+  <p>DnsDomainName</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainGuid</p>
+  </td>
+  <td>
+  <p>DomainGuid</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainSid</p>
+  </td>
+  <td>
+  <p>DomainSid</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Bytes 0 – 3 of TrustExtension</p>
+  </td>
+  <td>
+  <p>Flags</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Bytes 4 – 7 of TrustExtension</p>
+  </td>
+  <td>
+  <p>ParentIndex</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Bytes 8 – 11 of TrustExtension</p>
+  </td>
+  <td>
+  <p>TrustType</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Bytes 12 – 15 of Trust Extension</p>
+  </td>
+  <td>
+  <p>TrustAttributes</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p> </p></div>

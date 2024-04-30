@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p>This method closes an opened <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+created from a previous call to <span><a href="ebe8417a-ded8-4f3d-9187-bbbdb0856f41" data-linktype="relative-path">S_DSLookupBegin (section 3.1.4.17)</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT S_DSLookupEnd(
+   [in] handle_t hBind,
+   [in, out] PPCONTEXT_HANDLE_TYPE phContext
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST specify an RPC binding handle, as
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>phContext: </b> MUST point to an RPC context handle
+returned by a previous call to S_DSLookupBegin. MUST NOT have been used in a
+previous call to S_DSLookupEnd (section 3.1.4.19). The server MUST
+set this parameter to NULL.</p><p><b>Return Values: </b> If the method succeeds, the return
+value is 0. If the method fails, the return value is an implementation-specific
+error code.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC extension protocol, as specified in
+[MS-RPCE].</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Generate an <span><a href="5c0bbffb-161d-4c41-bbb3-b8edaad8381d" data-linktype="relative-path">End Directory Lookup (section 3.1.6.9)</a></span>
+event with the following argument:</p>
+<ul><li><p><span><span>  </span></span><i>iLookupDescriptor</i>
+:= the object referenced by the <i>phContext</i> parameter</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set <i>phContext</i> to NULL.</p>
+</li><li><p><span><span> 
+</span></span>Return <i>rStatus</i> of the preceding event.</p>
+</li></ul></div>

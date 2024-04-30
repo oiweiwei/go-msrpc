@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c80ae9d5-d0c1-4d5c-a0ae-77eae7bfac25" data-linktype="external">msdn link</a></p><p>The POLICY_MODIFICATION_INFO structure is obsolete and
+exists for backward compatibility purposes only. Callers of this protocol MUST
+NOT be able to set or retrieve this structure.</p><dl>
+<dd>
+<div><pre> typedef struct _POLICY_MODIFICATION_INFO {
+   LARGE_INTEGER ModifiedId;
+   LARGE_INTEGER DatabaseCreationTime;
+ } POLICY_MODIFICATION_INFO,
+  *PPOLICY_MODIFICATION_INFO;
+</pre></div>
+</dd></dl><p><b>ModifiedId:</b>  A 64-bit unsigned
+integer that is incremented each time anything in the Local Security Authority
+(LSA) database is modified.</p><p><b>DatabaseCreationTime:</b>  The date and
+time when the LSA database was created. It is a 64-bit value that represents
+the number of 100-nanosecond intervals since January 1, 1601, <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">UTC</a>.</p></div>

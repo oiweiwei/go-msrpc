@@ -1,0 +1,110 @@
+<div class="content"><p>This method returns the status of the <a href="546d32cd-905e-4f34-b023-2be4b5e16413#gt_866d4b3a-f5b8-4518-853e-6f2991a8f4e2" data-linktype="relative-path">Internet services</a>. </p><p>The server can have all functionality through this interface
+disabled using actions taken local to the server machine. In this case the
+function MUST return an error when called (E_ERROR_RESOURCE_DISABLED) and MUST
+NOT perform any other action.</p><p>If the interface functionality is not disabled, the following
+SHOULD take place on the server when this method is called:</p><ul><li><p><span><span> 
+</span></span>The method SHOULD return a buffer of unsigned chars as described
+in section <a href="096ffe89-76be-4d01-9e4d-f68428a231fc" data-linktype="relative-path">2.2.2</a>. This
+buffer of unsigned chars MUST contain data about the status of the Internet
+services. </p>
+</li><li><p><span><span> 
+</span></span>If it is not possible to return all the data in the buffer
+provided, then the following conditional behavior MUST occur.</p>
+</li></ul><p>For more information about the unsigned char buffer
+returned, see section 2.2.2.</p><dl>
+<dd>
+<div><pre> HRESULT Status(
+   [in] DWORD dwBufferSize,
+   [out, size_is(dwBufferSize)] unsigned char* pbBuffer,
+   [out] DWORD* pdwMDRequiredBufferSize,
+   [out] DWORD* pdwNumServices
+ );
+</pre></div>
+</dd></dl><p><b>dwBufferSize: </b>Size, in bytes, of the <i>pbBuffer</i>
+parameter. If this parameter is not greater than the amount of data the server
+wants to return in <i>pbBuffer</i>, the conditional behavior that follows MUST
+occur.</p><dl>
+<dd>
+<p>If the <i>dwBufferSize</i> parameter value indicates
+that <i>pbBuffer</i> is too small to contain all the status information about
+the Internet services, the following actions MUST occur:</p>
+</dd></dl><ul><li><p><span><span>  </span></span>The
+<i>pdwMDRequiredBufferSize</i> parameter MUST be set to the number of bytes
+needed to contain the data that is to be returned.</p>
+</li><li><p><span><span>  </span></span>The
+<i>pbBuffer</i> parameter MUST be set to zero.</p>
+</li><li><p><span><span>  </span></span> The
+method MUST be failed with code 0x8007007A (E_ERROR_INSUFFICIENT_BUFFER).</p>
+</li></ul><p><b>pbBuffer: </b>An array of unsigned chars that will
+be filled with information about the status of the Internet services. For more
+information, see section 2.2.2.</p><dl>
+<dd>
+<p><i>pbBuffer</i> MAY be set to null. In this case,
+the size will be calculated by the system for the buffer (regardless of whether
+a size was passed in for the buffer size) and E_ERROR_INSUFFICIENT_BUFFER will
+be returned. If <i>pdwMDRequiredBufferSize</i> is not null, it will be used to
+return the calculated size.</p>
+</dd></dl><p><b>pdwMDRequiredBufferSize: </b>On return from this
+method, if this parameter is not null, this parameter points to a <b>DWORD</b>
+containing the number of bytes that <i>pbBuffer</i> must be able to contain for
+the method to return the services status information. This field MAY be used.</p><p><b>pdwNumServices: </b>The number of services for
+which status is returned.</p><p><b>Return Values: </b>A signed, 32-bit value
+indicating return status. If the method returns a negative value, it has
+failed. If the 12-bit facility code (bits 16–27) is set to 0x007, the value
+contains a Win32 error code in the lower 16 bits. 0 or positive values indicate
+success, with the lower 16 bits in positive nonzero values containing warnings
+or flags defined in the method implementation. For more information about <b>HRESULT</b>,
+see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<p>The method MUST return S_OK (0x00000000) upon
+success.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007007A</p>
+  <p>E_ERROR_INSUFFICIENT_BUFFER</p>
+  </td>
+  <td>
+  <p>The size of the <i>pbBuffer</i> is too small to return
+  the status data based on its size being declared in <i>dwBufferSize</i>
+  parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>E_ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>Not enough memory is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D5</p>
+  <p>E_ERROR_RESOURCE_DISABLED</p>
+  </td>
+  <td>
+  <p>The <a href="fb0c3533-c603-4ba1-8ac5-7426df68ef90" data-linktype="relative-path"><b>IIisServiceControl</b></a>
+  interface is disabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

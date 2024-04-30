@@ -1,0 +1,76 @@
+<div class="content"><p>The EnumFileManagementJobs method returns all the <i>fileManagementJobs</i>
+from the <b>List of Persisted File Management Jobs</b> (section <a href="560c1a3c-d465-4127-8cf0-bb84487cb162" data-linktype="relative-path">3.2.1.7</a>) on the server.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_FILE_MANAGEMENT_JOB_MANAGER | 0x1)] HRESULT EnumFileManagementJobs(
+   [in, defaultvalue(FsrmEnumOptions_None)] FsrmEnumOptions options,
+   [out, retval] IFsrmCollection** fileManagementJobs
+ );
+</pre></div>
+</dd></dl><p><b>options: </b>Contains the <a href="d01ee30b-4ef8-4eec-8026-3b5a1ccda298" data-linktype="relative-path">FsrmEnumOptions (section 2.2.1.2.5)</a>
+to use when enumerating the <i>fileManagementJobs</i>.</p><p><b>fileManagementJobs: </b>Pointer to an <b>IFsrmCollection</b>
+interface pointer (section <a href="171d3b3c-0f4d-40b9-8f48-0e97f9ff17be" data-linktype="relative-path">3.2.4.2.1</a>)
+that upon completion contains pointers to every file management job on the
+server. A caller MUST release the collection received when the caller is done
+with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>fileManagementJobs</i>
+  parameter is NULL.</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>0x80045311</p>
+  <p>FSRM_E_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The <i>options</i> parameter does not contain a valid <b>FsrmEnumOptions</b>
+  (section 2.2.1.2.5) value.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>If fileManagementJobs is NULL, the server MUST return
+E_INVALIDARG.</p>
+</li><li><p><span><span> 
+</span></span>If <i>options</i> contains <b>FsrmEnumOptions_Asynchronous</b> or
+any value other than what is specified in section 2.2.1.2.5, the server MUST
+return FSRM_E_NOT_SUPPORTED.</p>
+</li></ul><p>Upon successful validation of parameters, the server MUST
+perform the following actions or return a nonzero error code:</p><ul><li><p><span><span> 
+</span></span>Create a new <b>List of Non-Persisted File Management Jobs
+Instance</b> (section 3.2.1.7).</p>
+</li><li><p><span><span> 
+</span></span>Populate it with <a href="e135942c-2c50-4fcc-a768-aef45332e9fd" data-linktype="relative-path">Non-Persisted File Management
+Job Instances (section 3.2.1.7.1.2)</a> copied from the <a href="78082f67-e548-48d8-9f9a-a840c1936acd" data-linktype="relative-path">Persisted File Management
+Jobs (section 3.2.1.7.1.1)</a> in the <b>List of Persisted File
+Management Jobs</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>options</i> does not contain
+FsrmEnumOptions_IncludeClusterNodes, remove any Non-Persisted File Management
+Job Instances from this List of Non-Persisted File Management Jobs Instances
+where the Non-Persisted File Management Job Instances <b>Namespace roots</b>
+include a path located on a volume not present on this machine, that is, the
+path is not prefixed by any volume in <b>Volume List</b>.</p>
+</li><li><p><span><span> 
+</span></span>Populate <i>fileManagementJobs</i> with the <b>IFsrmFileManagementJob</b>
+interface pointer (section <a href="d78faa27-efe9-4f89-8bc4-1094f37219bb" data-linktype="relative-path">3.2.4.2.48</a>)
+of every Non-Persisted File Management Job Instance in this <b>List of
+Non-Persisted File Management Jobs Instance</b>.</p>
+</li></ul></div>

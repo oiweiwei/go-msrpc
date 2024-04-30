@@ -1,0 +1,31 @@
+<div class="content"><p>This method is called by a client to create an <a href="3f01a312-3391-4109-a96e-95358babf191#gt_791190e6-1e02-42cb-bd25-5aee3ab516ed" data-linktype="relative-path">instance container</a> for a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_ea5c531f-5dd5-43aa-9da1-2ae068c622db" data-linktype="relative-path">conglomeration</a>.</p><dl>
+<dd>
+<div><pre> HRESULT CreateContainer(
+   [in] GUID* pConglomerationIdentifier
+ );
+</pre></div>
+</dd></dl><p><b>pConglomerationIdentifier:</b> The <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0ab5119e-c719-4a5c-9198-55a0a2fb508a" data-linktype="relative-path">conglomeration identifier</a>
+of a conglomeration.</p><p><b>Return Values:</b> This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table><p>Upon receiving a call to this method, the server MUST verify
+that there exists a conglomeration with the conglomeration identifier specified
+in <i>pConglomerationIdentifier</i>, and fail the call if not.</p><p>The server then MUST attempt to create a new instance
+container for the conglomeration, and fail the call if it cannot.</p></div>

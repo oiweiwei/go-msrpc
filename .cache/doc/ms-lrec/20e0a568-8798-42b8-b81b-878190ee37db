@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>EVENT_BUFFER</b> structure defines a data structure
+for transferring a generic payload. The LREC protocol uses this structure to
+pass <span><a href="59d7a0e2-342c-4dc3-bc27-88e9c4aa0415#gt_472f97f2-82ec-4623-8e46-d348a7984967" data-linktype="relative-path">event</a></span>
+records in the <b>RpcNetEventReceiveData</b> (section <span><a href="4b43cdb8-b5a8-4a3a-ba7d-8b6db4590ca5" data-linktype="relative-path">3.1.4.2.2</a></span>) method.</p><dl>
+<dd>
+<div><pre> typedef struct _EVENT_BUFFER {
+     unsigned long BufferLength;
+     [size_is(BufferLength)] byte* Buffer;
+ } EVENT_BUFFER;
+</pre></div>
+</dd></dl><p><b>BufferLength: </b>This property specifies the
+length, in bytes, of the data stored in the <b>Buffer</b> field.</p><p><b>Buffer: </b>This property specifies a collection
+of one or more <b>NET_EVENT_DATA_HEADER</b> (section <span><a href="ed1449c4-7338-484e-b1f6-ed82593bf9af" data-linktype="relative-path">2.3.2.2</a></span>) structures
+each followed by an event payload. </p></div>

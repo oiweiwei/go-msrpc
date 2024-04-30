@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The <b>GROUP_MEMBERSHIP</b> structure identifies a group to
+which an account belongs. It is sent within the <span><a href="69e86ccc-85e3-41b9-b514-7d969cd0ed73" data-linktype="relative-path">KERB_VALIDATION_INFO (section 2.5)</a></span>
+structure.</p><p>The <b>GROUP_MEMBERSHIP</b> structure is defined as follows.</p><dl>
+<dd>
+<div><pre> typedef struct _GROUP_MEMBERSHIP {
+     ULONG RelativeId;
+     ULONG Attributes;
+ } GROUP_MEMBERSHIP, *PGROUP_MEMBERSHIP;
+</pre></div>
+</dd></dl><p><b>RelativeId:</b> A 32-bit unsigned integer that
+contains the <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RID</a></span> of a particular
+group. </p><p><b>Attributes:</b> A 32-bit unsigned integer value
+that contains the group membership attributes set for the RID contained in <b>RelativeId</b>.
+The possible values for the <b>Attributes</b> flags are identical to those
+specified in <span><a href="311aab27-ebdf-47f7-b939-13dc99b15341" data-linktype="relative-path">KERB_SID_AND_ATTRIBUTES (section 2.2.1)</a></span>.</p></div>

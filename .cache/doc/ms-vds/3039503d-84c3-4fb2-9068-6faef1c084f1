@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The VDS_FILE_SYSTEM_FORMAT_SUPPORT_FLAG enumeration defines
+the properties of <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file systems</a></span> that
+are supported for formatting <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volumes</a></span>.<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p><dl>
+<dd>
+<div><pre> typedef enum _VDS_FILE_SYSTEM_FORMAT_SUPPORT_FLAG
+ {
+   VDS_FSS_DEFAULT = 0x00000001,
+   VDS_FSS_PREVIOUS_REVISION = 0x00000002,
+   VDS_FSS_RECOMMENDED = 0x00000004
+ } VDS_FILE_SYSTEM_FORMAT_SUPPORT_FLAG;
+</pre></div>
+</dd></dl><p><b>VDS_FSS_DEFAULT:  </b>The file system is the
+default file system for <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_ea22e521-1a4e-4ceb-8d64-f65fa6d0e63b" data-linktype="relative-path">formatting</a></span> the volume.</p><p><b>VDS_FSS_PREVIOUS_REVISION:  </b>The revision of
+the file system is not the latest revision that is supported for formatting the
+volume.</p><p><b>VDS_FSS_RECOMMENDED:  </b>The file system is the
+recommended file system for formatting the volume.</p></div>

@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The DRS_ERROR_DATA union defines the error responses that
+are received from the <span><a href="06764fc5-4df6-4104-b6af-a92bdaa81f6e" data-linktype="relative-path">IDL_DRSAddEntry</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_ERROR_DATA_V1 V1;
+ } DRS_ERROR_DATA;
+</pre></div>
+</dd></dl><p><b>V1:</b>  Version 1 response.</p></div>

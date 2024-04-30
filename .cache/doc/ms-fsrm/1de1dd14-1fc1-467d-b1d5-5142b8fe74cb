@@ -1,0 +1,44 @@
+<div class="content"><p>The AddThreshold method adds a <b>threshold</b> to the quota
+objects list of <b>thresholds</b>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_QUOTA_BASE | 0x01)] HRESULT AddThreshold(
+   [in] FSRM_QUOTA_THRESHOLD threshold
+ );
+</pre></div>
+</dd></dl><p><b>threshold: </b>Contains the value of the <b>threshold</b>
+to add to the quota object.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045303</p>
+  <p>FSRM_E_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>The object being created already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8004530D</p>
+  <p>FSRM_E_OUT_OF_RANGE</p>
+  </td>
+  <td>
+  <p>The content of the <i>threshold</i> parameter is less
+  than 1 or greater than 250.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>threshold</i> is greater than 0 and less than 251.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST add the <i>threshold</i> to the quota
+object&#39;s list of <b>thresholds</b>.</p></div>

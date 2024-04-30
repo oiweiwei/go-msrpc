@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The Background Intelligent Transfer Service (BITS)
+Peer-Caching: Peer Authentication Protocol provides authentication for
+computers in a <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span> in support of
+the BITS Peer-Caching: Content Retrieval Protocol, as specified in <span><a href="../ms-bpcr/03a03c3e-2b25-43aa-b2f2-8298eff03492" data-linktype="relative-path">[MS-BPCR]</a></span>.
+Peer authentication exchanges <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_2069b65d-b546-4198-abfd-768badc2258e" data-linktype="relative-path">X.509</a></span> <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">Certificate
+Authority</a></span> between computers and associates each <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a></span>
+with a <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_8916e2fe-eff4-4456-b2b4-db4a56fe3764" data-linktype="relative-path">Kerberos principal</a></span>
+in the domain.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

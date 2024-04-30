@@ -1,0 +1,95 @@
+<div class="content"><p>The <b>CprepDiskStopDefense</b> method stops any implementation-specific
+method of maintaining ownership of a disk.</p><p>In order to perform a &#34;stop defense&#34;, the
+following conditions MUST be met:</p><ul><li><p><span><span> 
+</span></span>The Ownership value of the designated disk MUST be
+OwnedByThisServer, as a result of a previous successful <a href="b18478bc-88bc-4b16-ac72-a1789c82845a" data-linktype="relative-path">CprepDiskPRArbitrate (section 3.2.4.15)</a>
+call.</p>
+</li><li><p><span><span> 
+</span></span>The affected <b>ClusPrepDisk.OnlineState</b> has to be equal to
+Not Online.</p>
+</li><li><p><span><span> 
+</span></span>Both the CprepDiskPRArbitrate and <a href="87341519-4749-4b3f-ad9f-d20f6bf53205" data-linktype="relative-path">CprepDiskOffline (section 3.2.4.12)</a>
+methods MUST be called before CprepDiskStopDefense.</p>
+<div><pre> HRESULT CprepDiskStopDefense(
+   [in] CPREP_DISKID DiskId
+ );
+</pre></div>
+</li></ul><p><b>DiskId: </b>The identifier of the <b>ClusPrepDisk</b>
+representing the disk.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method
+implementation. For more information about Win32 error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The disk was not found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007139F</p>
+  <p>ERROR_INVALID_STATE</p>
+  </td>
+  <td>
+  <p>The value of <b>ClusPrepDisk.OwnedState</b> is not
+  equal to OwnedByThisServer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070548</p>
+  <p>ERROR_INVALID_SERVER_STATE</p>
+  </td>
+  <td>
+  <p>The server&#39;s <b>Prepare State</b> is not Online.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007139F</p>
+  <p>ERROR_INVALID_STATE</p>
+  </td>
+  <td>
+  <p>The value of <b>ClusPrepDisk.AttachedState</b> is not
+  equal to Attached.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The opnum field value for this method is 12.</p><p>When processing this call, the server MUST do the following:
+</p><ul><li><p><span><span> 
+</span></span>Obtain the <b>ClusPrepDisk</b> identified by the <i>DiskId</i>
+parameter as specified in section <a href="c17ce220-d244-45c9-95c0-4c31942253ee" data-linktype="relative-path">3.2.4</a>.</p>
+</li><li><p><span><span> 
+</span></span>Relinquish ownership of the disk associated with the <b>ClusPrepDisk</b>
+object, as specified in section <a href="03ac0c4f-9702-44ab-b8db-a1ad1e7e0388" data-linktype="relative-path">3.2.6.2</a>.</p>
+</li><li><p><span><span> 
+</span></span>Set the <b>ClusPrepDisk.OwnedState</b> value to NotOwned.</p>
+</li></ul></div>

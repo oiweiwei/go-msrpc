@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The SECURITY_IMPERSONATION_LEVEL enumeration defines a set
+of values that specify security impersonation levels as specified in <span><a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a></span>
+section <span><a href="../ms-lsad/720cea10-cee2-4c45-9084-c6fa7d67d18d" data-linktype="relative-path">2.2.3.5</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum _SECURITY_IMPERSONATION_LEVEL
+ {
+   SecurityAnonymous = 0,
+   SecurityIdentification = 1,
+   SecurityImpersonation = 2,
+   SecurityDelegation = 3
+ } SECURITY_IMPERSONATION_LEVEL,
+  *PSECURITY_IMPERSONATION_LEVEL;
+</pre></div>
+</dd></dl><p>Individual value semantics are specified in [MS-LSAD]
+section 2.2.3.5.</p></div>

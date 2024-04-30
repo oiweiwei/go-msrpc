@@ -1,0 +1,39 @@
+<div class="content"><p> </p><p>The MQSITEACCESSMASK bitfield enumeration values can be used
+to set the value of an <b>ACCESS_MASK</b> structure (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/7a53f60e-e730-4dfe-bbe9-b21b62eb790b" data-linktype="relative-path">2.4.3</a></span>),
+which is used to constrain the permissions for a Site.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   MQSEC_CREATE_FRS = 0x00000001,
+   MQSEC_CREATE_BSC = 0x00000002,
+   MQSEC_CREATE_MACHINE = 0x00000004,
+   MQSEC_SET_SITE_PROPERTIES = 0x00000010,
+   MQSEC_GET_SITE_PROPERTIES = 0x00000020,
+   MQSEC_DELETE_SITE = 0x00010000,
+   MQSEC_GET_SITE_PERMISSIONS = 0x00020000,
+   MQSEC_CHANGE_SITE_PERMISSIONS = 0x00040000,
+   MQSEC_TAKE_SITE_OWNERSHIP = 0x00080000,
+   MQSEC_SITE_GENERIC_READ = (MQSEC_GET_SITE_PROPERTIES    + MQSEC_GET_SITE_PERMISSIONS),
+   MQSEC_SITE_GENERIC_WRITE = (MQSEC_GET_SITE_PROPERTIES    + MQSEC_GET_SITE_PERMISSIONS    + MQSEC_CREATE_MACHINE),
+   MQSEC_SITE_GENERIC_ALL = (MQSEC_CREATE_FRS    + MQSEC_CREATE_BSC    + MQSEC_CREATE_MACHINE    + MQSEC_SET_SITE_PROPERTIES    + MQSEC_GET_SITE_PROPERTIES    + MQSEC_DELETE_SITE    + MQSEC_GET_SITE_PERMISSIONS    + MQSEC_CHANGE_SITE_PERMISSIONS    + MQSEC_TAKE_SITE_OWNERSHIP)
+ } MQSITEACCESSMASK;
+</pre></div>
+</dd></dl><p><b>MQSEC_CREATE_FRS:  </b>Specifies the permission required
+by a security principal to add a routing server to the site.</p><p><b>MQSEC_CREATE_BSC:  </b>Specifies the permission required
+by a security principal to create a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_9da6f094-50ed-4640-9b01-0cc4f7681fbf" data-linktype="relative-path">Backup Site Controller (BSC)</a></span>
+for the site.</p><p><b>MQSEC_CREATE_MACHINE:  </b>Specifies the permission
+required by a security principal to add a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue manager</a></span> to the
+site.</p><p><b>MQSEC_SET_SITE_PROPERTIES:  </b>Specifies the permission
+required by a security principal to modify properties of the site.</p><p><b>MQSEC_GET_SITE_PROPERTIES:  </b>Specifies the permission
+required by a security principal to read properties of the site.</p><p><b>MQSEC_DELETE_SITE:  </b>Specifies the permission required
+by a security principal to delete the site.</p><p><b>MQSEC_GET_SITE_PERMISSIONS:  </b>Specifies the permission
+required by a security principal to read permissions for the site.</p><p><b>MQSEC_CHANGE_SITE_PERMISSIONS:  </b>Specifies the
+permission required by a security principal to modify permissions for the site.</p><p><b>MQSEC_TAKE_SITE_OWNERSHIP:  </b>Specifies the permission
+required by a security principal to modify the owner of the site.</p><p><b>MQSEC_SITE_GENERIC_READ:  </b>Specifies the permission
+required by a security principal to read the properties and permissions for the
+site.</p><p><b>MQSEC_SITE_GENERIC_WRITE:  </b>Specifies the permission
+required by a security principal to read properties, read permissions, and add
+queue managers to the site.</p><p><b>MQSEC_SITE_GENERIC_ALL:  </b>Specifies the permission
+required by a security principal to perform all of the operations listed
+previously.</p></div>

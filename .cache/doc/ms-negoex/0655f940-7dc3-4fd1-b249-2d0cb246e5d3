@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The <b>CHECKSUM</b> structure is used in the <b>VERIFY_MESSAGE</b>
+structure (section <span><a href="9de2cde2-bd98-40a4-9efa-0f5a1d6cc88e" data-linktype="relative-path">2.2.6.5</a></span>) and is
+defined as follows.  </p><dl>
+<dd>
+<div><pre> struct
+ {
+   ULONG cbHeaderLength;
+   ULONG ChecksumScheme;
+   ULONG ChecksumType; 
+   BYTE_VECTOR ChecksumValue;
+ } CHECKSUM; 
+</pre></div>
+</dd></dl><p><b>cbHeaderLength:</b> A ULONG that contains the
+length of the structure definition in octets; this field has a value of 20.  </p><p><b>ChecksumScheme:</b> A ULONG that describes how
+checksum is computed and verified. Only the CHECKSUM_SCHEME_RFC3961 is defined,
+as specified in section <span><a href="c361c09b-7a4f-4575-b4eb-2320388fa0aa" data-linktype="relative-path">2.2.3</a></span>. When the
+value of the <b>ChecksumScheme</b> field is 1 (CHECKSUM_SCHEME_RFC3961), the <b>ChecksumValue</b>
+field contains a sequence of octets computed according to <span><a href="https://go.microsoft.com/fwlink/?LinkId=90450" data-linktype="external">[RFC3961]</a></span>
+and the <b>ChecksumType</b> field contains the checksum type value defined
+according to [RFC3961].   </p><p><b>ChecksumType:</b> A ULONG that contains the
+checksum type of value defined according to [RFC3961].   </p><p><b>ChecksumValue:</b> A <b>BYTE_VECTOR</b> structure
+that contains a sequence of octets computed according to [RFC3961].   </p></div>

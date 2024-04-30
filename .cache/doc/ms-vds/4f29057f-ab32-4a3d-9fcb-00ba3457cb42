@@ -1,0 +1,35 @@
+<div class="content"><p> </p><p>The VDS_NOTIFICATION structure provides information about a
+notification.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_NOTIFICATION {
+   VDS_NOTIFICATION_TARGET_TYPE objectType;
+   [switch_is(objectType)] union {
+     [case(VDS_NTT_PACK)] 
+       VDS_PACK_NOTIFICATION Pack;
+     [case(VDS_NTT_DISK)] 
+       VDS_DISK_NOTIFICATION Disk;
+     [case(VDS_NTT_VOLUME)] 
+       VDS_VOLUME_NOTIFICATION Volume;
+     [case(VDS_NTT_PARTITION)] 
+       VDS_PARTITION_NOTIFICATION Partition;
+     [case(VDS_NTT_DRIVE_LETTER)] 
+       VDS_DRIVE_LETTER_NOTIFICATION Letter;
+     [case(VDS_NTT_FILE_SYSTEM)] 
+       VDS_FILE_SYSTEM_NOTIFICATION FileSystem;
+     [case(VDS_NTT_MOUNT_POINT)] 
+       VDS_MOUNT_POINT_NOTIFICATION MountPoint;
+     [case(VDS_NTT_SERVICE)] 
+       VDS_SERVICE_NOTIFICATION Service;
+   };
+ } VDS_NOTIFICATION;
+</pre></div>
+</dd></dl><p><b>objectType:</b>  A value defined in the <span><a href="f2d1d307-9aa7-4ba2-a4f6-3badc10b38a0" data-linktype="relative-path">VDS_NOTIFICATION_TARGET_TYPE</a></span>
+enumeration that describes the type of notification.</p><p><b>Pack:</b>  A <span><a href="d502258f-be31-4298-882b-581f4804a344" data-linktype="relative-path">VDS_PACK_NOTIFICATION</a></span>
+structure that describes a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_890bb28d-df68-420f-a8bc-83899d34ad5c" data-linktype="relative-path">pack</a></span> change.</p><p><b>Disk:</b>  A <span><a href="1478f791-1ebd-421c-ba87-5fd7493dafd1" data-linktype="relative-path">VDS_DISK_NOTIFICATION</a></span>
+structure that describes a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span> change.</p><p><b>Volume:</b>  A <span><a href="410540de-982d-4db1-991e-a73efed4e6f0" data-linktype="relative-path">VDS_VOLUME_NOTIFICATION</a></span>
+structure that describes a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> change.</p><p><b>Partition:</b>  A <span><a href="72738b43-1afe-4b36-9978-eddcbcbfca55" data-linktype="relative-path">VDS_PARTITION_NOTIFICATION</a></span>
+structure that describes a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span> change.</p><p><b>Letter:</b>  A <span><a href="c3e2078f-0a6d-4a58-97f4-3940bada14b3" data-linktype="relative-path">VDS_DRIVE_LETTER_NOTIFICATION</a></span>
+structure that describes a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1b153cd0-e3f3-4383-bc66-d5ad482c9766" data-linktype="relative-path">drive letter</a></span> change.</p><p><b>FileSystem:</b>  A <span><a href="e75c0a7b-53f3-439f-ad9c-2473b96998de" data-linktype="relative-path">VDS_FILE_SYSTEM_NOTIFICATION</a></span>
+structure that describes a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file system</a></span> change.</p><p><b>MountPoint:</b>  A <span><a href="f794c202-0975-48bd-b5e4-55a6c76579e1" data-linktype="relative-path">VDS_MOUNT_POINT_NOTIFICATION</a></span>
+structure that describes a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_513fcb37-059f-475c-a13d-e89b302f8ae8" data-linktype="relative-path">mount point</a></span> change.</p><p><b>Service:</b>  A <span><a href="93c51f94-b507-437f-8427-50e6d3751c12" data-linktype="relative-path">VDS_SERVICE_NOTIFICATION</a></span>
+structure that provides information about a state change to the service object.</p></div>

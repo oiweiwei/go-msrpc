@@ -1,0 +1,200 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/efb926f6-48c3-4c29-8a45-86a67bfaaf27" data-linktype="external">msdn link</a></p><p>The <b>GROUP_MEMBERSHIP</b> structure identifies the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_51c51c14-7f9d-4c0b-a69c-d3e059bfffac" data-linktype="relative-path">group</a> to which an account
+belongs.</p><dl>
+<dd>
+<div><pre> typedef struct _GROUP_MEMBERSHIP {
+   ULONG RelativeId;
+   ULONG Attributes;
+ } GROUP_MEMBERSHIP,
+  *PGROUP_MEMBERSHIP;
+</pre></div>
+</dd></dl><p><b>RelativeId:</b> The <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">relative identifier (RID)</a>
+for a particular group.</p><p><b>Attributes:</b> A set of values that describe the
+group membership attributes set for the RID specified in <b>RelativeId</b>. The
+value is constructed from one or more bit flags from the following table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>The <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a>
+  cannot have the <b>SE_GROUP_ENABLED</b> attribute removed. Corresponds to the
+  SID attribute <b>SE_GROUP_MANDATORY</b>. This attribute prevents the user
+  from disabling the group. Disabling a group causes the group to be ignored by
+  access validation routines.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>The SID is enabled by default (as opposed to being
+  enabled by an application). Corresponds to the SID attribute <b>SE_GROUP_ENABLED_BY_DEFAULT</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>The SID is enabled for access checks. Corresponds to
+  the SID attribute <b>SE_GROUP_ENABLED</b>. The <b>SE_GROUP_ENABLED</b>
+  attribute enables the group. </p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be zero and MUST be ignored on
+receipt. For more information, see <a href="https://go.microsoft.com/fwlink/?linkid=2101788" data-linktype="external">[MSDOCS-TokenGrp]</a>.</p>
+</dd></dl><p>These values are opaque to the Netlogon protocol. They are
+not used or processed directly. All fields of this structure have the same
+meaning as the identically named fields in the <b>GROUP_MEMBERSHIP</b>
+structure as specified in <a href="../ms-pac/166d8064-c863-41e1-9c23-edaaa5f36962" data-linktype="relative-path">[MS-PAC]</a>
+section <a href="../ms-pac/40526584-1565-4fb1-97b7-eb38fd880595" data-linktype="relative-path">2.2.2</a>.</p></div>

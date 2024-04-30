@@ -1,0 +1,669 @@
+<div class="content"><p> </p><p>The VARENUM enumeration constants are used in the
+discriminant field, <b>vt</b>, of the VARIANT type specified in section <span><a href="a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">2.2.29.2</a></span>.
+When present, the VT_BYREF flag MUST be in an OR relation with another value to
+specify the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_969e6685-c90a-4da6-99be-1a25efb6d1cd" data-linktype="relative-path">byref argument</a></span> for
+the VARIANT. The VT_EMPTY and VT_NULL values MUST NOT be specified with the
+VT_BYREF bit flag.</p><p>The following values are also used in the discriminant
+field, <b>vt</b>, of the <b>TYPEDESC</b> structure specified in section <span><a href="95bb92a7-f783-477f-acbc-c947d754fa8b" data-linktype="relative-path">2.2.37</a></span>.</p><p>The meaning of each VARIANT type constant is specified as
+follows. The Context column specifies the context in which each constant is
+used. A constant MUST NOT be used in a VARIANT unless it is specified with a
+&#34;V&#34;. A constant MUST NOT be used in a SAFEARRAY unless it is
+specified with an &#34;S&#34;. A constant MUST NOT be used in a TYPEDESC
+unless it is specified with a &#34;T&#34;.</p><dl>
+<dd>
+<div><pre> typedef  enum tagVARENUM
+ {
+   VT_EMPTY = 0x0000,
+   VT_NULL = 0x0001,
+   VT_I2 = 0x0002,
+   VT_I4 = 0x0003,
+   VT_R4 = 0x0004,
+   VT_R8 = 0x0005,
+   VT_CY = 0x0006,
+   VT_DATE = 0x0007,
+   VT_BSTR = 0x0008,
+   VT_DISPATCH = 0x0009,
+   VT_ERROR = 0x000A,
+   VT_BOOL = 0x000B,
+   VT_VARIANT = 0x000C,
+   VT_UNKNOWN = 0x000D,
+   VT_DECIMAL = 0x000E,
+   VT_I1 = 0x0010,
+   VT_UI1 = 0x0011,
+   VT_UI2 = 0x0012,
+   VT_UI4 = 0x0013,
+   VT_I8 = 0x0014,
+   VT_UI8 = 0x0015,
+   VT_INT = 0x0016,
+   VT_UINT = 0x0017,
+   VT_VOID = 0x0018,
+   VT_HRESULT = 0x0019,
+   VT_PTR = 0x001A,
+   VT_SAFEARRAY = 0x001B,
+   VT_CARRAY = 0x001C,
+   VT_USERDEFINED = 0x001D,
+   VT_LPSTR = 0x001E,
+   VT_LPWSTR = 0x001F,
+   VT_RECORD = 0x0024,
+   VT_INT_PTR = 0x0025,
+   VT_UINT_PTR = 0x0026,
+   VT_ARRAY = 0x2000,
+   VT_BYREF = 0x4000
+ } VARENUM;
+</pre></div>
+</dd></dl><p><b>VT_EMPTY:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V</p>
+  </td>
+  <td>
+  <p>The type of the contained field is undefined. When
+  this flag is specified, the VARIANT MUST NOT contain a data field. The
+  VARIANT definition is specified in section 2.2.29.2.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_NULL:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V</p>
+  </td>
+  <td>
+  <p>The type of the contained field is NULL. When this
+  flag is specified, the VARIANT MUST NOT contain a data field. The VARIANT
+  definition is specified in section 2.2.29.2.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_I2:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be a 2-byte signed integer.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_I4:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be a 4-byte signed integer.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_R4:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be a 4-byte IEEE floating-point number.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_R8:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be an 8-byte IEEE floating-point number.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_CY:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be CURRENCY (see section <span><a href="5a2b34c4-d109-438e-9ec8-84816d8de40d" data-linktype="relative-path">2.2.24</a></span>).</p>
+  </td>
+ </tr></tbody></table><p><b>VT_DATE:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be DATE (see section <span><a href="35c9bf2d-b8e8-4d7d-a50f-367da0d99fce" data-linktype="relative-path">2.2.25</a></span>).</p>
+  </td>
+ </tr></tbody></table><p><b>VT_BSTR:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be BSTR (see section <span><a href="9c5a5ce4-ff5b-45ce-b915-ada381b34ac1" data-linktype="relative-path">2.2.23</a></span>).</p>
+  </td>
+ </tr></tbody></table><p><b>VT_DISPATCH:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be a pointer to IDispatch (see section <span><a href="ac9c502b-ac1c-4202-8ad4-048ac98afcc9" data-linktype="relative-path">3.1.4</a></span>).</p>
+  </td>
+ </tr></tbody></table><p><b>VT_ERROR:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be HRESULT.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_BOOL:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be VARIANT_BOOL (see section <span><a href="7b39eb24-9d39-498a-bcd8-75c38e5823d0" data-linktype="relative-path">2.2.27</a></span>).</p>
+  </td>
+ </tr></tbody></table><p><b>VT_VARIANT:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be VARIANT (see section <span><a href="b2ee2b50-665e-43e6-a92c-8f2a29fd7add" data-linktype="relative-path">2.2.29</a></span>). It MUST
+  appear with the bit flag VT_BYREF.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_UNKNOWN:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be a pointer to IUnknown.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_DECIMAL:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be DECIMAL (see section <span><a href="b5493025-e447-4109-93a8-ac29c48d018d" data-linktype="relative-path">2.2.26</a></span>).</p>
+  </td>
+ </tr></tbody></table><p><b>VT_I1:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be a 1-byte integer.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_UI1:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be a 1-byte unsigned integer.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_UI2:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be a 2-byte unsigned integer.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_UI4:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be a 4-byte unsigned integer.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_I8:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be an 8-byte signed integer.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_UI8:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be an 8-byte unsigned integer.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_INT:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be a 4-byte signed integer.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_UINT:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S, T</p>
+  </td>
+  <td>
+  <p>Either the specified type, or the type of the element
+  or contained field MUST be a 4-byte unsigned integer.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_VOID:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>T</p>
+  </td>
+  <td>
+  <p>The specified type MUST be void.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_HRESULT:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>T</p>
+  </td>
+  <td>
+  <p>The specified type MUST be HRESULT.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_PTR:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>T</p>
+  </td>
+  <td>
+  <p>The specified type MUST be a unique pointer, as
+  specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+  section 4.2.20.2.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_SAFEARRAY:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>T</p>
+  </td>
+  <td>
+  <p>The specified type MUST be <span><a href="04e72b3f-5731-4508-9bb4-de29fbd0f781" data-linktype="relative-path">SAFEARRAY (section 2.2.30)</a></span>.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_CARRAY:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>T</p>
+  </td>
+  <td>
+  <p>The specified type MUST be a fixed-size array.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_USERDEFINED:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>T</p>
+  </td>
+  <td>
+  <p>The specified type MUST be user defined.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_LPSTR:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>T</p>
+  </td>
+  <td>
+  <p>The specified type MUST be a NULL-terminated string,
+  as specified in [C706] section 14.3.4.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_LPWSTR:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>T</p>
+  </td>
+  <td>
+  <p>The specified type MUST be a zero-terminated string of
+  UNICODE characters, as specified in [C706], section 14.3.4.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_RECORD:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S</p>
+  </td>
+  <td>
+  <p>The type of the element or contained field MUST be a
+  BRECORD (see section <span><a href="ea064b3d-9fb3-4486-9992-4fe2463e83e8" data-linktype="relative-path">2.2.28.2</a></span>).</p>
+  </td>
+ </tr></tbody></table><p><b>VT_INT_PTR:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>T</p>
+  </td>
+  <td>
+  <p>The specified type MUST be either a 4-byte or an
+  8-byte signed integer. The size of the integer is platform specific and
+  determines the system pointer size value, as specified in section <span><a href="0d81289e-f0ef-474d-8e61-dedae9ea5a08" data-linktype="relative-path">2.2.21</a></span>.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_UINT_PTR:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>T</p>
+  </td>
+  <td>
+  <p>The specified type MUST be either a 4 byte or an 8
+  byte unsigned integer. The size of the integer is platform specific and
+  determines the system pointer size value, as specified in section 2.2.21.</p>
+  </td>
+ </tr></tbody></table><p><b>VT_ARRAY:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S</p>
+  </td>
+  <td>
+  <p>The type of the element or contained field MUST be a
+  SAFEARRAY (see section <span><a href="2e87a537-9305-41c6-a88b-b79809b3703a" data-linktype="relative-path">2.2.30.10</a></span>).</p>
+  </td>
+ </tr></tbody></table><p><b>VT_BYREF:  </b></p><table><thead>
+  <tr>
+   <th>
+   <p>Context</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>V, S</p>
+  </td>
+  <td>
+  <p>The type of the element or contained field MUST be a
+  pointer to one of the types listed in the previous rows of this table. If
+  present, this bit flag MUST appear in a VARIANT discriminant (see section <span><a href="29ce0a4f-4786-49c9-a312-5522c1e9b44d" data-linktype="relative-path">2.2.28</a></span>)
+  with one of the previous flags.</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The <b>SECPKG_SUPPLEMENTAL_CRED</b> structure defines the
+name of the security package that requires supplemental credentials and the
+credential buffer for that package. The <b>SECPKG_SUPPLEMENTAL_CRED</b>
+structure is marshaled by <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>The <b>SECPKG_SUPPLEMENTAL_CRED</b> structure is defined as
+follows.</p><dl>
+<dd>
+<div><pre> typedef struct _SECPKG_SUPPLEMENTAL_CRED {
+   RPC_UNICODE_STRING PackageName;
+   ULONG CredentialSize;
+   [size_is(CredentialSize)] PUCHAR Credentials;
+ } SECPKG_SUPPLEMENTAL_CRED,
+  *PSECPKG_SUPPLEMENTAL_CRED;
+</pre></div>
+</dd></dl><p><b>PackageName:</b> A <span><a href="../ms-dtyp/94a16bb6-c610-4cb9-8db6-26f15f560061" data-linktype="relative-path">RPC_UNICODE_STRING</a></span>
+structure that MUST store the name of the security protocol for which the
+supplemental credentials are being presented.<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="a1c36b00-1fca-415c-a4ca-e66e98844760#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a></p><p><b>CredentialSize:</b> A 32-bit unsigned integer that
+MUST specify the length, in bytes, of the data in the <b>Credentials</b>
+member.</p><p><b>Credentials:</b> A pointer that MUST reference the
+serialized credentials being presented to the security protocol named in <b>PackageName</b>.</p></div>

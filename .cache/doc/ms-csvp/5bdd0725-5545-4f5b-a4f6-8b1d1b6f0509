@@ -1,0 +1,45 @@
+<div class="content"><p>The <b>RetrieveHostLabel</b> method returns the <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">fully qualified domain name
+(FQDN)</a> of the server.</p><dl>
+<dd>
+<div><pre> HRESULT RetrieveHostLabel(
+   [out] BSTR* HostLabel
+ );
+</pre></div>
+</dd></dl><p><b>HostLabel: </b>The host name of the server. This
+is the first part of the FQDN.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method
+implementation. For more information about Win32 error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table><dl>
+<dd>
+<p><br/>
+For any other condition, this method MUST return a value that is not one of the
+values listed in the preceding table. The client MUST behave in one consistent,
+identical manner for all values that are not listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The opnum field value for this method is 5.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Retrieve the server hostname via an implementation-specific
+method.</p>
+</li></ul><p>Return the following information to the client:</p><ul><li><p><span><span> 
+</span></span>The server hostname</p>
+</li></ul></div>

@@ -1,0 +1,29 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/929775e0-0339-4f0b-8161-6d3699c18185" data-linktype="external">msdn link</a></p><p>The DOMAIN_DISPLAY_INFORMATION enumeration indicates how to
+interpret the Buffer parameter for <a href="c1458942-f2d5-4317-a888-abd27abad504" data-linktype="relative-path">SamrQueryDisplayInformation</a>,
+<a href="9aa37aa4-f77e-49b1-9993-5c92ba97cd62" data-linktype="relative-path">SamrQueryDisplayInformation2</a>,
+<a href="7cd1c6d0-8819-4a58-9721-5be588c1d4ad" data-linktype="relative-path">SamrQueryDisplayInformation3</a>,
+<a href="af95abf8-2e11-42c3-94aa-ba72f8f96c09" data-linktype="relative-path">SamrGetDisplayEnumerationIndex</a>,
+and <a href="bd429624-f2d5-4717-8aa2-659952c3e209" data-linktype="relative-path">SamrGetDisplayEnumerationIndex2</a>.
+See section <a href="bd189d28-f3e1-4669-84d2-1ecc04340e8b" data-linktype="relative-path">2.2.8.13</a>
+for the list of the structures that are associated with each enumeration.</p><dl>
+<dd>
+<div><pre> typedef  enum _DOMAIN_DISPLAY_INFORMATION
+ {
+   DomainDisplayUser = 1,
+   DomainDisplayMachine,
+   DomainDisplayGroup,
+   DomainDisplayOemUser,
+   DomainDisplayOemGroup
+ } DOMAIN_DISPLAY_INFORMATION,
+</pre></div>
+</dd></dl><p> *PDOMAIN_DISPLAY_INFORMATION;</p><p><b>DomainDisplayUser: </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_DOMAIN_DISPLAY_USER_BUFFER</b>
+structure (see section <a href="453c355e-a84d-421e-bdbc-dd7fbfc148a4" data-linktype="relative-path">2.2.8.7</a>).</p><p><b>DomainDisplayMachine: </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_DOMAIN_DISPLAY_MACHINE_BUFFER</b>
+structure (see section <a href="18aa8d70-157e-482e-b2e4-4e6f4dbb76fe" data-linktype="relative-path">2.2.8.8</a>).</p><p><b>DomainDisplayGroup: </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_DOMAIN_DISPLAY_GROUP_BUFFER</b>
+structure (see section <a href="ce9c4119-c5e4-46b5-a71a-ec16daf8f457" data-linktype="relative-path">2.2.8.9</a>).</p><p><b>DomainDisplayOemUser: </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_DOMAIN_DISPLAY_OEM_USER_BUFFER</b>
+structure (see section <a href="0e9f25a9-d305-40b6-8b9f-a50e58430124" data-linktype="relative-path">2.2.8.10</a>).</p><p><b>DomainDisplayOemGroup: </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_DOMAIN_DISPLAY_OEM_GROUP_BUFFER</b>
+structure (see section <a href="a549f5f1-6b2b-4eef-8712-2d43d94410d2" data-linktype="relative-path">2.2.8.11</a>).</p></div>

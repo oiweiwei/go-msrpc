@@ -1,0 +1,93 @@
+<div class="content"><p> </p><p>The FILE_INFO_3 structure contains the identifier and other
+pertinent information about files, devices, and pipes.</p><dl>
+<dd>
+<div><pre> typedef struct _FILE_INFO_3 {
+   DWORD fi3_id;
+   DWORD fi3_permissions;
+   DWORD fi3_num_locks;
+   [string] wchar_t* fi3_pathname;
+   [string] wchar_t* fi3_username;
+ } FILE_INFO_3,
+  *PFILE_INFO_3,
+  *LPFILE_INFO_3;
+</pre></div>
+</dd></dl><p><b>fi3_id:</b>  Specifies a DWORD value
+that contains the identifier that is assigned to the file, device, or pipe when
+it was opened. See section <span><a href="6abb30a6-9f6d-4339-b022-81f3f78b11f8" data-linktype="relative-path">3.1.1</a></span> for details.</p><p><b>fi3_permissions:</b>  Specifies a DWORD
+value that contains the access permissions that are associated with the opening
+application. This member MUST be a combination of one or more of the following
+values. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PERM_FILE_READ</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Permission to read a resource, and, by default,
+  execute the resource.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERM_FILE_WRITE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Permission to write to a resource.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PERM_FILE_CREATE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Permission to create a resource; data can be written
+  when creating the resource. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ACCESS_EXEC</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Permission to execute a resource.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ACCESS_DELETE</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Permission to delete a resource.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ACCESS_ATRIB</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Permission to modify the attributes of a resource.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ACCESS_PERM</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>Permission to modify the permissions assigned to a
+  resource for a user or application.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>fi3_num_locks:</b>  Specifies a DWORD
+value that contains the number of file locks on the file, device, or pipe.</p><p><b>fi3_pathname:</b>  A pointer to a string
+that specifies the path of the opened file, device, or pipe.</p><p><b>fi3_username:</b>  A pointer to a string
+that specifies which user opened the file, device, or pipe.</p></div>

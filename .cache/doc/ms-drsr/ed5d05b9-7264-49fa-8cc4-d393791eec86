@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The DRS_MSG_RMDMNREPLY_V1 structure defines a response
+message received from the <span><a href="aa3cfa46-c737-425a-ae65-ecaf9efe7e84" data-linktype="relative-path">IDL_DRSRemoveDsDomain</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD Reserved;
+ } DRS_MSG_RMDMNREPLY_V1;
+</pre></div>
+</dd></dl><p><b>Reserved:</b>  Unused. MUST be 0 and
+ignored.</p></div>

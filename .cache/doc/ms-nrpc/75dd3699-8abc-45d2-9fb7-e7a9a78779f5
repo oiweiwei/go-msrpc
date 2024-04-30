@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/75dd3699-8abc-45d2-9fb7-e7a9a78779f5" data-linktype="external">msdn link</a></p><p>The <b>NLPR_MODIFIED_COUNT </b>structure specifies a count
+for the number of times an account&#39;s <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_00f35ba3-4dbb-4ff9-8e27-572a6aea1b15" data-linktype="relative-path">database</a> has been modified.</p><dl>
+<dd>
+<div><pre> typedef struct _NLPR_MODIFIED_COUNT {
+   OLD_LARGE_INTEGER ModifiedCount;
+ } NLPR_MODIFIED_COUNT,
+  *PNLPR_MODIFIED_COUNT;
+</pre></div>
+</dd></dl><p><b>ModifiedCount:</b> An OLD_LARGE_INTEGER structure,
+as specified in <a href="../ms-samr/4df07fab-1bbc-452f-8e92-7853a3c7e380" data-linktype="relative-path">[MS-SAMR]</a>
+section <a href="../ms-samr/68d6dc19-bedf-4a90-b939-b2e4e04b7cf6" data-linktype="relative-path">2.2.2.2</a>,
+that contains the number of modifications made to the database since its
+creation. This value is the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0b04ee8e-be04-4d04-94c4-90e58390f83d" data-linktype="relative-path">database
+serial number</a>.</p></div>

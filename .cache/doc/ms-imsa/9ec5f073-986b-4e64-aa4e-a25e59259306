@@ -1,0 +1,97 @@
+<div class="content"><p>The DeleteBackup method deletes a <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_086b13f2-2715-4000-a16c-6acc3d59cc19" data-linktype="relative-path">metabase</a> backup.</p><dl>
+<dd>
+<div><pre> HRESULT DeleteBackup(
+   [unique, in, string] LPCWSTR pszMDBackupName,
+   [in] DWORD dwMDVersion
+ );
+</pre></div>
+</dd></dl><p><b>pszMDBackupName: </b>A string of up to 100 Unicode
+characters that names the backup.</p><p><b>dwMDVersion: </b>Either an integer value
+specifying the version number of the backup to be deleted or the following
+constant.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MD_BACKUP_HIGHEST_VERSION</p>
+  <p>0xFFFFFFFE</p>
+  </td>
+  <td>
+  <p>Delete the existing backup with the highest version
+  number.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it failed. If
+the 12-bit facility code (bits 16–27) is set to 0x007, the value contains a
+Win32 error code in the lower 16 bits. Zero or positive values indicate success,
+with the lower 16 bits in positive nonzero values containing warnings or flags
+defined in the method implementation. For more information about Win32 error
+codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The system cannot find the file specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>There is not enough memory to complete the operation.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 31. </p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>If the <i>pszMDBackupName</i> parameter is not an empty string
+and it contains any characters in the following set (&#39;/&#39;, &#39;\&#39;, &#39;*&#39;, &#39;.&#39;, &#39;?&#39;,
+&#39;&#34;&#39;, &#39;&amp;&#39;, &#39;!&#39;, &#39;@&#39;, &#39;#&#39;, &#39;$&#39;, &#39;%&#39;, &#39;^&#39;, &#39;(&#39;, &#39;)&#39;, &#39;=&#39;, &#39;+&#39;, &#39;|&#39;, &#39;`&#39;,
+&#39;~&#39;), return E_INVALIDARG.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>pszMDBackupName</i> parameter is empty or is not the
+name of a backup, return ERROR_FILE_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>Check the <i>dwMDVersion</i> parameter. If this parameter is
+equal to MD_BACKUP_HIGHEST_VERSION, find and delete the very last backup.
+Otherwise, find and delete the backup with the requested version number. If a
+backup does not exist, return ERROR_FILE_NOT_FOUND.</p>
+</li></ul></div>

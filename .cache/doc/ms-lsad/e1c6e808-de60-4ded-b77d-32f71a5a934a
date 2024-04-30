@@ -1,0 +1,111 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/e1c6e808-de60-4ded-b77d-32f71a5a934a" data-linktype="external">msdn link</a></p><p>The LsarEnumeratePrivileges method is invoked to enumerate
+all <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privileges</a> known to
+the system. This method can be called multiple times to return its output in
+fragments.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarEnumeratePrivileges(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in, out] unsigned long* EnumerationContext,
+   [out] PLSAPR_PRIVILEGE_ENUM_BUFFER EnumerationBuffer,
+   [in] unsigned long PreferedMaximumLength
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>EnumerationContext: </b>A pointer to a context
+value that is used to resume enumeration, if necessary.</p><p><b>EnumerationBuffer: </b>A pointer to a structure
+that will contain the results of the enumeration.</p><p><b>PreferedMaximumLength: </b>A value that indicates
+the approximate size of the data to be returned.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000105</p>
+  <p>STATUS_MORE_ENTRIES</p>
+  </td>
+  <td>
+  <p>More information is available to successive calls.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8000001A</p>
+  <p>STATUS_NO_MORE_ENTRIES</p>
+  </td>
+  <td>
+  <p>No more entries are available from the enumeration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the parameters supplied was invalid. This can
+  happen if <i>EnumerationBuffer</i> is NULL or <i>EnumerationContext</i> is
+  NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This method takes four arguments:</p><p><i>PolicyHandle</i>: Open handle to the policy object. If
+the handle is not a valid context handle to the policy object or <i>PolicyHandle</i>.HandleType
+does not equal &#34;Policy&#34;, the server MUST return
+STATUS_INVALID_HANDLE. The server MUST verify that <i>PolicyHandle</i> grants
+access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a> with
+RequiredAccess set to POLICY_VIEW_LOCAL_INFORMATION.</p><p><i>EnumerationContext</i>: A number that indicates a
+starting index at which to begin the enumeration. The server MUST always return
+all privileges in the same order, starting at the object whose index is <i>EnumerationContext</i>.
+To initiate a new enumeration, the client sets <i>EnumerationContext</i> to
+zero; otherwise, the client sets <i>EnumerationContext</i> to a value returned
+by a previous call to the method.</p><p>The server MUST return STATUS_INVALID_PARAMETER if the <i>EnumerationContext</i>
+parameter is NULL.</p><p><i>EnumerationBuffer</i>: Used to return the results of
+enumeration. The server MUST fill <i>EnumerationBuffer</i> with as many
+privilege objects as possible, as determined by <i>PreferedMaximumLength</i>.
+If the size of all remaining objects is less than or equal to <i>PreferedMaximumLength</i>,
+the server MUST fill <i>EnumerationBuffer</i> with all objects. If the size of
+all remaining objects is greater than <i>PreferedMaximumLength</i>, the server
+MUST fill <i>EnumerationBuffer</i> with objects such that the size of the
+privilege objects returned is greater than or equal to <i>PreferedMaximumLength</i>,
+but would be less than <i>PreferedMaximumLength</i> if the last object had not
+been added to <i>EnumerationBuffer</i>. If there are no more objects than are
+returned in <i>EnumerationBuffer</i>, the server MUST return
+STATUS_NO_MORE_ENTRIES. If there are more database objects than are returned in
+<i>EnumerationBuffer</i>, the server MUST set the <i>EnumerationContext</i> value
+to the index value that would allow it to resume enumeration correctly when
+this method is called again, and the server MUST return STATUS_MORE_ENTRIES.
+Note that this return value is not an error status.</p><p><i>PreferedMaximumLength</i>: An indication about the approximate
+size, in bytes, of the data to return. Any unsigned 32-bit value is valid for
+the <i>PreferedMaximumLength</i> parameter.</p></div>

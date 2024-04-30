@@ -1,0 +1,14 @@
+<div class="content"><p>The <b>DEVMODE_CONTAINER</b> structure specifies a <b>_DEVMODE</b>
+structure (section <a href="ccc2a501-794e-4d2b-b312-f69c75131c2e" data-linktype="relative-path">2.2.2.1</a>),
+which contains data for the initialization of a print device by a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer driver</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _DEVMODE_CONTAINER {
+   DWORD cbBuf;
+   [size_is(cbBuf), unique] BYTE* pDevMode;
+ } DEVMODE_CONTAINER;
+</pre></div>
+</dd></dl><p><b>cbBuf: </b>The size, in bytes, of the buffer
+pointed to by the <b>pDevMode</b> member.</p><p><b>pDevMode: </b>An optional pointer to a
+variable-length, custom-<a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_37e89d91-2800-49d1-9d17-45ebe167ad87" data-linktype="relative-path">marshaled</a>
+<b>_DEVMODE</b> structure. The NULL value MUST be used to indicate that the
+default initialization data for the printer driver SHOULD be used.</p></div>

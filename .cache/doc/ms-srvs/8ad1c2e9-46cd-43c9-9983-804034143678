@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The FILE_ENUM_UNION union contains information about files,
+devices, and pipes. It is used in the definition of the <span><a href="91c92279-331e-4dba-8573-4aff01c0d859" data-linktype="relative-path">FILE_ENUM_STRUCT</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union _FILE_ENUM_UNION {
+   [case(2)] 
+     FILE_INFO_2_CONTAINER* Level2;
+   [case(3)] 
+     FILE_INFO_3_CONTAINER* Level3;
+ } FILE_ENUM_UNION;
+</pre></div>
+</dd></dl><p><b>Level2:</b>  A pointer to a structure
+containing information about a file, device or pipe, as specified in section <span><a href="125dffd4-a09b-4842-b4f5-9eee7bbd4d6d" data-linktype="relative-path">2.2.4.8</a></span>.</p><p><b>Level3:</b>  A pointer to a structure
+containing information about a file, device or pipe, as specified in section <span><a href="1f3c8ddb-08d2-4e4f-8dfc-9da13c46d161" data-linktype="relative-path">2.2.4.9</a></span>.</p></div>

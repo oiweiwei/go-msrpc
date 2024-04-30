@@ -1,0 +1,147 @@
+<div class="content"><p>The PHONEBUTTONINFO packet contains information about a
+button on a phone device. This packet is used by multiple TAPI and TSPI
+functions. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwButtonMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwButtonFunction</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwButtonTextSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwButtonTextOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevSpecificSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevSpecificOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwButtonState</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, allocated to this packet. </p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, for this packet that is needed to hold all the
+returned information. </p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the portion of this packet that contains useful
+information. </p><p><b>dwButtonMode (4 bytes): </b>An unsigned 32-bit
+integer. The mode or general usage class of the button. This member MUST use
+one of the <a href="2ef4c77a-2f8c-4c49-ba42-b2abdc0c94d8" data-linktype="relative-path">PHONEBUTTONMODE_Constants</a>.
+</p><p><b>dwButtonFunction (4 bytes): </b>An unsigned 32-bit
+integer. The function assigned to the button. This member MUST use one of the <a href="288e9937-76f8-4bc6-8a6d-9e4abe6d56b0" data-linktype="relative-path">PHONEBUTTONFUNCTION_Constants</a>.
+</p><p><b>dwButtonTextSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the descriptive text for the button. </p><p><b>dwButtonTextOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, from the beginning of this packet to the variably
+sized field containing descriptive text for this button. The format of this
+information is as specified in the <b>dwStringFormat</b> member of the phone&#39;s
+device capabilities. The size of the field MUST be specified by <b>dwButtonTextSize</b>.
+</p><p><b>dwDevSpecificSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the device-specific field. If the
+device-specific field is a pointer to a string, the size MUST include the null
+terminator. </p><p><b>dwDevSpecificOffset (4 bytes): </b>An unsigned
+32-bit integer. the offset, from the beginning of the packet to the variably
+sized device-specific field. The size of the field MUST be specified by <b>dwDevSpecificSize</b>.
+</p><p><b>dwButtonState (4 bytes): </b>An unsigned 32-bit
+integer. For the <a href="7ac98a19-e370-45ac-bb67-ab348ab1bf2d" data-linktype="relative-path">GetButtonInfo</a>
+packet, this field indicates the current state of the button, using one or more
+of the <a href="c6a02723-4222-4a5e-b0f5-0401edcb1022" data-linktype="relative-path">PHONEBUTTONSTATE_Constants</a>.
+This field is ignored by the <a href="58238b2d-e8e2-49ce-8b16-e303649d5417" data-linktype="relative-path">SetButtonInfo</a>
+packet. </p><p><b>VarData (variable): </b></p><ul><li><p><span><span>  </span></span>Descriptive
+text for the button, as specified by <b>dwButtonTextOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Device-specific
+information, as specified by <b>dwDevSpecificOffset</b>.</p>
+</li></ul><p>Device-specific extensions SHOULD use the DevSpecific (<b>dwDevSpecificSize</b>
+and <b>dwDevSpecificOffset</b>) variably sized area of this packet.</p><p>Older applications are compiled without this field in the
+PHONEBUTTONINFO packet and using a SIZEOF(PHONEBUTTONINFO) smaller than the new
+size. The application passes in a <i>dwAPIVersion</i> parameter with the <a href="6b5ee45e-b5c8-4148-a9b2-b16b9b995c3f" data-linktype="relative-path">Open</a> packet, which can be
+used for guidance by TAPI in handling this situation. If the application passes
+in a <b>dwTotalSize</b> less than the size of the fixed portion of the packet,
+as defined in the specified <b>dwAPIVersion</b>, PHONEERR_STRUCTURETOOSMALL is
+returned. If sufficient memory has been allocated by the application, before
+sending the GetButtonInfo packet, TAPI sets the <b>dwNeededSize</b> and <b>dwUsedSize</b>
+members to the fixed size of the packet as it existed in the specified TAPI
+version.</p><p>New service providers (that support the new TAPI version)
+MUST examine the TAPI version passed in. If the TAPI version is less than the highest
+version supported by the provider, the service provider MUST NOT fill in fields
+not supported in older TAPI versions, as these would fall in the variable
+portion of the older packet.</p><p>New applications MUST be cognizant of the TAPI version
+negotiated and not examine the contents of fields in the fixed portion beyond
+the original end of the fixed portion of the packet for the negotiated TAPI
+version.</p></div>

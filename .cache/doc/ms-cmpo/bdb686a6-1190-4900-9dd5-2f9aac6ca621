@@ -1,0 +1,232 @@
+<div class="content"><p> </p><p>The BuildContext method is invoked by either a <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7e81ed8f-e4a4-49ff-b7d8-cce6005ad036" data-linktype="relative-path">primary
+partner</a></span> or a <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_b4738f56-9936-4714-beb6-1c861116dd5c" data-linktype="relative-path">secondary partner</a></span>.
+When invoked by a primary partner, the BuildContext method requests that the
+secondary partner begin the next step of establishing a <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0cd96b80-a737-4f06-bca4-cf9efb449d12" data-linktype="relative-path">session</a></span>.
+When invoked by a secondary partner, the BuildContext method requests that the
+primary partner complete the establishment of the session.</p><dl>
+<dd>
+<div><pre> HRESULT BuildContext(
+   [in] handle_t hBinding,
+   [in] SESSION_RANK sRank,
+   [in] BIND_VERSION_SET BindVersionSet,
+   [in, string, range(GUID_LENGTH,GUID_LENGTH)] 
+     unsigned char pszCalleeUuid[],
+   [in, string, range(1,MAX_COMPUTERNAME_LENGTH+1)] 
+     unsigned char pszHostName[],
+   [in, string, range(GUID_LENGTH,GUID_LENGTH)] 
+     unsigned char pszUuidString[],
+   [in, string, range(GUID_LENGTH,GUID_LENGTH)] 
+     unsigned char pszGuidIn[],
+   [in, out, string, range(GUID_LENGTH,GUID_LENGTH)] 
+     unsigned char pszGuidOut[],
+   [in, out] BOUND_VERSION_SET* pBoundVersionSet,
+   [in, range(sizeof(BIND_INFO_BLOB), sizeof(BIND_INFO_BLOB))] 
+     DWORD dwcbSizeOfBlob,
+   [in, size_is(dwcbSizeOfBlob)] unsigned char rguchBlob[],
+   [out] PPCONTEXT_HANDLE ppHandle
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b><span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> primitive
+binding handle for the <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_866b0055-ceba-4acf-a692-98452943b981" data-linktype="relative-path">connection</a></span>, as
+specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> part 3.</p><p><b>sRank: </b>The <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_d1d469c9-dbab-4888-ba5b-3f692e36b15c" data-linktype="relative-path">session rank</a></span> of the <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a></span>
+making the call. It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span><a href="8b849631-fa6b-4cad-861a-3cde962c408e" data-linktype="relative-path">SRANK_PRIMARY</a></span></p>
+  <p>1</p>
+  </td>
+  <td>
+  <p>The caller is the primary partner in this session.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SRANK_SECONDARY</p>
+  <p>2</p>
+  </td>
+  <td>
+  <p>The caller is the secondary partner in this session.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>BindVersionSet: </b>A <span><a href="1808d4f0-3842-47bc-8c5b-a177f2ede4d0" data-linktype="relative-path">BIND_VERSION_SET</a></span>
+structure that contains the minimum and maximum versions supported by the
+partner, as specified by the <b>Minimum Level 1 Version Number</b>, <b>Maximum
+Level 1 Version Number</b>, <b>Minimum Level 2 Version Number</b>, <b>Maximum
+Level 2 Version Number</b>, <b>Minimum Level 3 Version Number</b>, and <b>Maximum
+Level 3 Version Number</b> ADM elements (see section <span><a href="66322e1b-2b1a-46ea-aaa8-f9d3cc8dfcea" data-linktype="relative-path">3.2.1.1</a></span>).</p><p><b>pszCalleeUuid: </b>A string containing the
+callee&#39;s <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_008df1ed-6dde-44be-be73-57a5008782ca" data-linktype="relative-path">contact identifier (CID)</a></span>
+in the form of a <span><a href="a3ae5f13-7c24-4e28-8e17-c3a1420e45d6" data-linktype="relative-path">GUID</a></span>. The contact
+identifier (CID) MUST match the contact identifier (CID) in the callee&#39;s local
+name object and MUST be formatted into a string.</p><p><b>pszHostName: </b>The string form of the caller&#39;s
+host name. This host name identifies the machine in which the caller&#39;s instance
+of the MSDTC Connection Manager: OleTx Transports Protocol is running. This
+MUST be a <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a></span>. For
+NetBIOS, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90224" data-linktype="external">[NETBEUI]</a></span>, <span><a href="https://go.microsoft.com/fwlink/?LinkId=90260" data-linktype="external">[RFC1001]</a></span>,
+and <span><a href="https://go.microsoft.com/fwlink/?LinkId=90261" data-linktype="external">[RFC1002]</a></span>.</p><dl>
+<dd>
+<p>If this is the primary partner call, this value is
+used by the called secondary partner to establish the RPC binding handle for
+its corresponding call to BuildContext.</p>
+</dd></dl><p><b>pszUuidString: </b>The string form of the caller&#39;s
+contact identifier (CID) in the form of a GUID. This CID identifies the
+caller&#39;s instance of the MSDTC Connection Manager: OleTx Transports Protocol.
+It MUST match the contact identifier (CID) in the caller&#39;s local name object
+and MUST be formatted into a string.</p><dl>
+<dd>
+<p>If this is the primary participant&#39;s call, this
+value is used by the called secondary participant to establish the RPC binding
+handle for its corresponding call to BuildContext.</p>
+</dd></dl><p><b>pszGuidIn: </b>A string form of a GUID that
+represents a unique identifier for this bind attempt. The GUID MUST be
+formatted as a string.</p><dl>
+<dd>
+<p>For the primary participant&#39;s call to BuildContext,
+this is a new <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> generated by
+the primary partner to uniquely identify the session. For the secondary
+partner&#39;s call back to the primary partner, this MUST be the parameter value
+from the primary partner&#39;s call to the secondary partner.</p>
+</dd></dl><p><b>pszGuidOut: </b>A string form of a GUID that
+represents a global identifier for this bind attempt. On input, the <i>pszGuidOut</i>
+parameter MUST be set to 00000000-0000-0000-0000-000000000000. On return, if
+the bind attempt is ultimately successful, the <i>pszGuidOut</i> parameter MUST
+be equal to the value of the <i>pszGuidIn</i> parameter. Otherwise, if the bind
+attempt is ultimately unsuccessful, the <i>pszGuidOut</i> parameter MUST be set
+to 00000000-0000-0000-0000-000000000000 on return.</p><p><b>pBoundVersionSet: </b>A pointer to a <span><a href="1a0b77a6-65cc-4aa0-99a4-da4277b35ec1" data-linktype="relative-path">BOUND_VERSION_SET</a></span>
+structure. This structure is filled in by the callee. If any error is returned,
+this structure MUST be filled with zeros before returning. On successful
+completion, the caller receives a BOUND_VERSION_SET on return.</p><p><b>dwcbSizeOfBlob: </b>The count in bytes of the size
+of the binding info structure. This parameter MUST be set to the size of the <span><a href="7de5e521-b2fa-46f8-8e12-094e0630909d" data-linktype="relative-path">BIND_INFO_BLOB</a></span>,
+8.</p><p><b>rguchBlob: </b>A byte array containing the
+BIND_INFO_BLOB structure specifying the supported transport protocols. This
+information is used to build the RPC binding for the reverse connection.</p><p><b>ppHandle: </b>On successful return, an RPC context
+handle that correlates with the session object created by (or referenced by)
+this method. For RPC context handles, see [C706].</p><p><b>Return Values: </b>This method MUST return zero
+(0x00000000) on success. On failure, it MUST return either one of the values
+described in the following table of return values or an implementation-specific
+<span><a href="26fd4ecb-9127-4873-bc35-bd55362b9796" data-linktype="relative-path">HRESULT</a></span>.
+A <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>
+MUST NOT depend on implementation-specific failure HRESULT values. For more
+information about how the client SHOULD behave based on the possible return
+values, see section <span><a href="5f300b8c-85f9-41fe-90bd-2224bbb7aeb7" data-linktype="relative-path">3.4.6.1.1</a></span>. Standard
+errors are defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<p>Standard errors are defined in [MS-ERREF] section <span><a href="../ms-erref/08834f40-5300-492f-a11a-591769b3d60a" data-linktype="relative-path">4</a></span>.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_STATUS</p>
+  </td>
+  <td>
+  <p>The return value indicates success.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80000172</p>
+  <p>E_CM_VERSION_SET_NOTSUPPORTED</p>
+  </td>
+  <td>
+  <p>The return value indicates that the callee partner
+  does not support the caller’s <i>BindVersionSet</i> parameter and will not
+  execute the requested operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80000124</p>
+  <p>E_CM_S_TIMEDOUT</p>
+  </td>
+  <td>
+  <p>The return value indicates that the callee timed out
+  while waiting for the caller to complete the bind. This is returned by a
+  secondary partner to a primary partner if the primary partner does not return
+  from the secondary partner&#39;s call to BuildContext within half of the <span><a href="df71ea77-cd07-41f7-b455-d2a1c612b65f" data-linktype="relative-path">Session
+  Setup Timer (section 3.2.2.1)</a></span> interval.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000006BB</p>
+  <p>RPC_S_SERVER_TOO_BUSY</p>
+  </td>
+  <td>
+  <p>The return value indicates that the partner is too
+  busy to complete this operation. For more information, see <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+  section <span><a href="../ms-rpce/b5e81729-f356-4776-920c-c39031d48205" data-linktype="relative-path">3.1.1.5.5</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80000173</p>
+  <p>E_CM_S_PROTOCOL_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The return value indicates that none of the protocols
+  described in the <i>rguchBlob</i> parameter are supported by the partner.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The return value indicates that one of the specified
+  arguments is invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The following table of return values describes the
+possible errors that SHOULD be returned by this method.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80000120</p>
+  <p>E_CM_SESSION_DOWN</p>
+  </td>
+  <td>
+  <p>In a scenario where the value of the <i>sRank</i>
+  parameter is SRANK_SECONDARY, if BuildContext is called and an existing
+  session object is not found, the call SHOULD return this value.<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="2f0b4979-92b7-46f5-9e94-81531e68f3fe#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80000123</p>
+  <p>E_CM_SERVER_NOT_READY</p>
+  </td>
+  <td>
+  <p>The session object is not in the Connecting state.<a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="2f0b4979-92b7-46f5-9e94-81531e68f3fe#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a></span> field value
+for this method is 1. For more information, see [C706].</p><p>This method has different effects depending on the value of
+the <i>sRank</i> parameter.</p><p>For the structure and sequence of data on the wire, see
+[C706] Transfer Syntax <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_9ebf9540-2c31-43bc-bc56-4a932faabf2d" data-linktype="relative-path">Network Data Representation
+(NDR)</a></span> topics.</p></div>

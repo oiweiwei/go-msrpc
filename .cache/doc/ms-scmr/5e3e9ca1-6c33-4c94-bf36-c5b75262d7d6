@@ -1,0 +1,12 @@
+<div class="content"><p>The SC_ACTION structure defines an action that the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a> can perform.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   SC_ACTION_TYPE Type;
+   DWORD Delay;
+ } SC_ACTION,
+  *LPSC_ACTION;
+</pre></div>
+</dd></dl><p><b>Type:</b>  The action to be performed.
+This member MUST be one of the values from the <a href="7e3bf33c-ed3d-4bc6-8781-cc9fe092de9e" data-linktype="relative-path">SC_ACTION_TYPE (section 2.2.18)</a>
+enumeration.</p><p><b>Delay:</b>  The time, in milliseconds,
+to wait before performing the specified action.</p></div>

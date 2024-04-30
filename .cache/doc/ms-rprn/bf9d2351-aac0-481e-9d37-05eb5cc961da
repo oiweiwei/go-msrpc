@@ -1,0 +1,129 @@
+<div class="content"><p>RpcXcvData provides an extensible mechanism by which a
+client can control <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">ports</a>
+on the server and exchange port specific commands and data with the server.<a id="Appendix_A_Target_363"></a><a aria-label="Product behavior note 363" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_363" data-linktype="relative-path">&lt;363&gt;</a></p><dl>
+<dd>
+<div><pre> DWORD RpcXcvData(
+   [in] PRINTER_HANDLE hXcv,
+   [in, string] const wchar_t* pszDataName,
+   [in, size_is(cbInputData)] BYTE* pInputData,
+   [in] DWORD cbInputData,
+   [out, size_is(cbOutputData)] BYTE* pOutputData,
+   [in] DWORD cbOutputData,
+   [out] DWORD* pcbOutputNeeded,
+   [in, out] DWORD* pdwStatus
+ );
+</pre></div>
+</dd></dl><p><b>hXcv: </b>A handle to a port or port monitor
+object that was opened by <a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter (section 3.1.4.2.2)</a>
+or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx (section 3.1.4.2.14)</a>.</p><p><b>pszDataName: </b>A pointer to a string
+representing the name of the requested data or action. The following table
+shows the actions that SHOULD be supported. Other <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1b5f368b-942b-40dd-84ea-fa9082916216" data-linktype="relative-path">port monitor</a>–specific
+action strings MAY be supported.<a id="Appendix_A_Target_364"></a><a aria-label="Product behavior note 364" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_364" data-linktype="relative-path">&lt;364&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&#34;AddPort&#34;</p>
+  </td>
+  <td>
+  <p>Add an instance of a specific port type controlled by
+  the port monitor.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;DeletePort&#34;</p>
+  </td>
+  <td>
+  <p>Delete an instance of a specific port type controlled
+  by the port monitor.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;MonitorUI&#34;</p>
+  </td>
+  <td>
+  <p>The action returns the name of the associated port
+  monitor client-side executable configuration module in the buffer that is
+  referenced by the <i>pOutputData</i> parameter.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pInputData: </b>A pointer to a buffer that
+contains input data. This parameter can be NULL if <i>cbInputData</i> equals
+zero.</p><p><b>cbInputData: </b>The size, in bytes, of the buffer
+pointed to by the <i>pInputData</i> parameter.</p><p><b>pOutputData: </b>A pointer to a buffer to receive
+output data. This parameter can be NULL if <i>cbOutputData</i> equals zero.</p><p><b>cbOutputData: </b>The size, in bytes, of the
+buffer pointed to by the <i>pOutputData</i> parameter.</p><p><b>pcbOutputNeeded: </b>A pointer to a location that
+receives the size, in bytes, required for the buffer pointed to by the <i>pOutputData</i>
+parameter.</p><p><b>pdwStatus: </b>A pointer to a variable that
+receives the status value that is returned by the port monitor&#39;s XcvData method.
+The value MUST be zero to indicate successful completion or a nonzero Windows
+error code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate that the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a> successfully
+called the port monitor&#39;s XcvData method, or a nonzero Windows error code to
+indicate failure [MS-ERREF].</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps specified in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE Parameters</a>,
+section 3.1.4.1.11, substituting <i>hXcv</i> for <i>hPrinter</i>. This method
+assumes that the handle to the port object can be used without further access
+checks.</p>
+</li></ul><p>The print server SHOULD<a id="Appendix_A_Target_365"></a><a aria-label="Product behavior note 365" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_365" data-linktype="relative-path">&lt;365&gt;</a>
+further validate parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Verify that the string referenced by the <i>pszDataName</i>
+parameter is a valid command name, and if that verification fails, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>pdwStatus</i> is not NULL, and if that
+verification fails, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>pszDataName</i> parameter is set to &#34;AddPort&#34;,
+verify that the <i>pInputData</i> parameter is not set to NULL, verify that the
+value of the <i>cbInputData</i> parameter is not zero and that the <i>pInputData</i>
+parameter contains a null terminated character string, and if those
+verifications fail, return ERROR_INVALID_DATA.</p>
+</li><li><p><span><span> 
+</span></span>If the action returns information in <i>pOutputData</i> and <i>cbOutputData</i>
+is not zero, verify that the value of the <i>pOutputData</i> parameter is not
+NULL, and if that verification fails, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>For actions that return data in the buffer that is pointed to by
+the <i>pOutputData</i> parameter, verify that the size of the buffer, as
+specified by the value of the <i>cbOutputData</i> parameter, is sufficient. If
+that verification fails, store the required buffer size in the variable that is
+pointed to by the <i>pcbOutputNeeded</i> parameter and return
+ERROR_INSUFFICIENT_BUFFER [MS-ERREF].</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Load the executable object of the monitor that supports the port
+that is associated with the port object that is referenced by the <i>hXcv</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Invoke the <b>XcvData</b> method in that library, passing in the <i>pszDataName</i>,
+<i>pInputData</i>, <i>cbInputData</i>, <i>pOutputData</i>, <i>cbOutputData</i>,
+<i>pcbOutputNeeded</i>, and <i>pdwStatus</i> parameters.</p>
+</li><li><p><span><span> 
+</span></span>Return the status from the <b>XcvData</b> method.</p>
+</li></ul><p>The port monitor&#39;s <b>XcvData</b> method processes the
+message by performing the operation indicated by the string pointed to by the <i>pszDataName</i>
+parameter, and then composes a response as follows:</p><ul><li><p><span><span> 
+</span></span>If the <i>pOutputData</i> parameter is not NULL, copy the output
+data from the method into <i>pOutputData</i>, up to the limit that is specified
+by the value of the <i>cbOutputData</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Write the size of the data that was copied into <i>pcbOutputNeeded</i>.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>pdwStatus</i> parameter is not NULL, store the status
+of the port in the variable that is referenced by the <i>pdwStatus</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

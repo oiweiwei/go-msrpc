@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The DRS_MSG_REPADD_V2 structure defines a request message
+sent to the <span><a href="7219df91-4eea-494f-88e3-780d40d2d559" data-linktype="relative-path">IDL_DRSReplicaAdd</a></span>
+method. This request version is a superset of V1.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [ref] DSNAME* pNC;
+   [unique] DSNAME* pSourceDsaDN;
+   [unique] DSNAME* pTransportDN;
+   [ref] [string] char* pszSourceDsaAddress;
+   REPLTIMES rtSchedule;
+   ULONG ulOptions;
+ } DRS_MSG_REPADD_V2;
+</pre></div>
+</dd></dl><p><b>pNC:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_784c7cce-f782-48d8-9444-c9030ba86942" data-linktype="relative-path">NC</a></span> root of the NC to
+replicate.</p><p><b>pSourceDsaDN:</b>  The <span><a href="../ms-adsc/5a79757d-2412-4846-bd7c-7585838a5a44" data-linktype="relative-path">nTDSDSA</a></span>
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>
+for the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span> from which to
+replicate changes.</p><p><b>pTransportDN:</b>  The <span><a href="../ms-adsc/299e17d3-4d05-445f-ae8c-9d5abf598873" data-linktype="relative-path">interSiteTransport</a></span>
+object that identifies the network transport over which <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span>
+is to be performed.</p><p><b>pszSourceDsaAddress:</b>  The transport-specific
+<span><a href="3d0d3777-9358-47dd-b555-34405f57f912" data-linktype="relative-path">NetworkAddress</a></span>
+of the DC from which to replicate <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b242435b-73cc-4c4e-95f0-b2a2ff680493" data-linktype="relative-path">updates</a></span>.</p><p><b>rtSchedule:</b>  The schedule used to
+perform periodic replication.</p><p><b>ulOptions:</b>  Zero or more <span><a href="ac9c8a11-cd46-4080-acbf-9faa86344030" data-linktype="relative-path">DRS_OPTIONS</a></span>
+flags.</p></div>

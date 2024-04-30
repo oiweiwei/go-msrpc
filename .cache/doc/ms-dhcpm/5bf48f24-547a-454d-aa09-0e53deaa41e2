@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The <b>DHCPV6_STATELESS_SCOPE_STATS</b> structure contains
+the address counters for a specific IPv6 stateless subnet. The number of
+stateless IPv6 clients added and removed from the stateless client inventory is
+stored in this structure. This structure is used in the <span><a href="063462b2-787a-4675-b791-537302dbb0c8" data-linktype="relative-path">DHCPV6_STATELESS_STATS (section 2.2.1.2.114)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCPV6_STATELESS_SCOPE_STATS {
+     DHCP_IPV6_ADDRESS   SubnetAddress;
+     ULONGLONG           NumStatelessClientsAdded;
+     ULONGLONG           NumStatelessClientsRemoved;
+ } DHCPV6_STATELESS_SCOPE_STATS, *PDHCPV6_STATELESS_SCOPE_STATS, *LPDHCPV6_STATELESS_SCOPE_STATS;
+</pre></div>
+</dd></dl><p><b>SubnetAddress:</b>  The IPv6 prefix for
+the scope.</p><p><b>NumStatelessClientsAdded:</b>  The
+number of IPv6 stateless clients that have been added to the DHCPv6 stateless
+client inventory for the IPv6 prefix stored in <b>SubnetAddress</b>.</p><p><b>NumStatelessClientsRemoved:</b>  The
+number of IPv6 stateless clients that have been removed from the DHCPv6
+stateless client inventory for the IPv6 prefix stored in <b>SubnetAddress</b>.</p></div>

@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The StringsArray_r structure is used to aggregate a number
+of character type strings into a single data structure.</p><dl>
+<dd>
+<div><pre> typedef struct _StringsArray {
+   [range(0,100000)] DWORD Count;
+   [size_is(Count)] [string] char* Strings[];
+ } StringsArray_r;
+</pre></div>
+</dd></dl><p><b>Count:</b>  The number of character
+string structures in this aggregation. The value MUST NOT exceed 100,000.</p><p><b>Strings:</b>  The list of character type
+strings in this aggregation. The strings in this list are NULL-terminated.</p></div>

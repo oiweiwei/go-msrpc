@@ -1,0 +1,123 @@
+<div class="content"><p>The Message Queuing (MSMQ): Queue Manager Management
+Protocol allows an <a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_70ce3665-ae64-44b4-88fe-7c1dcdcd5417" data-linktype="relative-path">MSMQ</a>
+client application to perform management operations on an MSMQ server.</p><p>This protocol can be used to get the following information:</p><ul><li><p><span><span> 
+</span></span><a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">Queue</a>
+properties, such as:</p>
+<ul><li><p><span><span>  </span></span>The
+<a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_78c4af57-f564-4aa9-a40d-f54ea6bd8766" data-linktype="relative-path">path name</a> of a queue.</p>
+</li><li><p><span><span>  </span></span>The
+<a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_390ae273-7109-44eb-981f-aa157e6b37c0" data-linktype="relative-path">format name</a> of a queue.</p>
+</li><li><p><span><span>  </span></span>Whether
+a queue is (or is not) located on a computer, or whether it is a <a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_49b6c0e7-59fc-40af-b627-df18c392327b" data-linktype="relative-path">transactional queue</a> or a <a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_ee553c1a-b390-42d5-a785-2412a31f98fb" data-linktype="relative-path">foreign queue</a>.</p>
+</li><li><p><span><span>  </span></span>The
+retransmit interval for messages in an <a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_311107bb-e41a-4794-82b6-9ebf83172cb5" data-linktype="relative-path">outgoing queue</a> for which no
+order acknowledgment has been received.</p>
+</li><li><p><span><span>  </span></span>The
+number of <a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_328fe8aa-d006-44dd-8cc8-dba7c862aaf8" data-linktype="relative-path">subqueues</a> in a
+specified queue.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="47ca62cf-676e-4d68-841f-9b936124e75e#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a></p>
+</li><li><p><span><span>  </span></span>The
+names of the subqueues in a specified queue.<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="47ca62cf-676e-4d68-841f-9b936124e75e#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a></p>
+</li><li><p><span><span>  </span></span>The
+version and build information for the computer operating system and the MSMQ
+installation.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Current queue state, such as:</p>
+<ul><li><p><span><span>  </span></span>The
+number of messages in a queue or in a <a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_89cac287-8784-4fdf-893f-739cd0ef3785" data-linktype="relative-path">queue journal</a>.</p>
+</li><li><p><span><span>  </span></span>The
+number of message bytes in a queue or in a queue journal.</p>
+</li><li><p><span><span>  </span></span>The
+connection state of an outgoing queue.</p>
+</li><li><p><span><span>  </span></span>The
+list of the <a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_9f320bf9-052c-4c1c-b2e1-00ffc0067f46" data-linktype="relative-path">active queues</a>
+on a computer.</p>
+</li><li><p><span><span>  </span></span>The
+name of the current <a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_0e26e115-867e-4959-8a8b-5624b9d8a119" data-linktype="relative-path">MSMQ
+Directory Service server</a> for a computer.</p>
+</li><li><p><span><span>  </span></span>Whether
+a <a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue manager</a> on a
+computer is disconnected from the network.</p>
+</li><li><p><span><span>  </span></span>The
+list of the path names of all the <a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_1a7f2b81-359e-4d2f-b4b4-f30bc7dd0d8f" data-linktype="relative-path">private queues</a> registered
+on a computer.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Auditing information, such as:</p>
+<ul><li><p><span><span>  </span></span>The
+connection state history of a queue.<a id="Appendix_A_Target_3"></a><a aria-label="Product behavior note 3" href="47ca62cf-676e-4d68-841f-9b936124e75e#Appendix_A_3" data-linktype="relative-path">&lt;3&gt;</a></p>
+</li><li><p><span><span>  </span></span>The
+number of messages sent from a computer to a queue for which no order
+acknowledgment has been received.</p>
+</li><li><p><span><span>  </span></span>The
+number of messages sent from a computer to a queue for which an order
+acknowledgment has been received, but a receive acknowledgment message has not
+been received.</p>
+</li><li><p><span><span>  </span></span>The
+date and time when the last order acknowledgment for a message sent from a
+computer to a queue was received.</p>
+</li><li><p><span><span>  </span></span>The
+time when MSMQ will attempt to retransmit a message from a computer to a queue.</p>
+</li><li><p><span><span>  </span></span>The
+number of times that the last message in the corresponding outgoing queue on a
+computer was sent.</p>
+</li><li><p><span><span>  </span></span>The
+number of times that the last order acknowledgment for a message sent from a
+computer to a queue has been received.</p>
+</li><li><p><span><span>  </span></span>The
+number of message bytes stored in all the queues on a computer.<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="47ca62cf-676e-4d68-841f-9b936124e75e#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a></p>
+</li></ul></li><li><p><span><span> 
+</span></span>Sequence information, such as:</p>
+<ul><li><p><span><span>  </span></span>The
+address or a list of possible addresses for routing messages to the destination
+queue in the next hop.</p>
+</li><li><p><span><span>  </span></span>The
+next message to be sent from a computer to a queue.</p>
+</li><li><p><span><span>  </span></span>The
+last message that was sent from a computer to a queue for which no order
+acknowledgment has been received.</p>
+</li><li><p><span><span>  </span></span>The
+first message sent from a computer to a queue for which no order acknowledgment
+has been received.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>An array of arrays of information on the <a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_3b80e01d-5155-4378-b692-82122af044aa" data-linktype="relative-path">transactional messages</a> sent
+from all source computers to a queue on a target computer. Each element of the
+overall array is an array (vector) containing one of the following pieces of
+information for all of the source computers.</p>
+<ul><li><p><span><span>  </span></span>The
+format names used to open a queue when the last messages were sent.</p>
+</li><li><p><span><span>  </span></span>The
+<a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">globally unique identifiers
+(GUIDs)</a> of the sending queue managers.</p>
+</li><li><p><span><span>  </span></span>The
+last sequence identifiers.</p>
+</li><li><p><span><span>  </span></span>The
+sequence numbers of the last messages sent to a queue by one or more sending
+queue managers.</p>
+</li><li><p><span><span>  </span></span>The
+times when each sending queue manager last accessed a queue.</p>
+</li><li><p><span><span>  </span></span>The
+number of times that the last messages were rejected.</p>
+</li></ul></li></ul><p>The protocol can also be used to perform actions on a
+computer, such as:</p><ul><li><p><span><span> 
+</span></span>Connecting the queue manager on a computer to a network and an
+MSMQ Directory Service server.</p>
+</li><li><p><span><span> 
+</span></span>Disconnecting the queue manager on a computer from a network and
+an MSMQ Directory Service server.</p>
+</li><li><p><span><span> 
+</span></span>Deleting empty message files.</p>
+</li></ul><p>The protocol can also be used to perform actions on a queue,
+such as:</p><ul><li><p><span><span> 
+</span></span>Pausing the sending of messages from a computer. The queue
+manager will not send messages to the applicable destination queue until a
+resume action is initiated.</p>
+</li><li><p><span><span> 
+</span></span>Restarting the sending of messages after a pause action is
+initiated.</p>
+</li><li><p><span><span> 
+</span></span>Resending the pending transaction sequence (as specified in <a href="../ms-mqqb/85498b96-f2c8-43b3-a108-c9d6269dc4af" data-linktype="relative-path">[MS-MQQB]</a>).</p>
+</li></ul><p>This is an <a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>-based
+protocol. The server does not maintain client state information. The protocol
+operation is stateless.</p><p>This is a simple request-response protocol. For each
+received method request, the server executes the requested method and returns a
+completion status to the client. This is a stateless protocol; each method call
+is independent of any previous method calls.</p></div>

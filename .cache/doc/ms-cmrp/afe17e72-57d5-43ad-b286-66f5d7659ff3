@@ -1,0 +1,18 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/afe17e72-57d5-43ad-b286-66f5d7659ff3" data-linktype="external">msdn link</a></p><p>The <b>IDL_CLUSTER_SET_PASSWORD_STATUS</b> structure
+contains information about the results of a service account password change, as
+specified in section <a href="379f9b3f-dd6a-42cb-8769-b31a468b084d" data-linktype="relative-path">3.1.4.2.108</a>,
+on a particular node in the cluster.</p><dl>
+<dd>
+<div><pre> typedef struct IDL_CLUSTER_SET_PASSWORD_STATUS {
+   DWORD NodeId;
+   BOOLEAN SetAttempted;
+   DWORD ReturnStatus;
+ } IDL_CLUSTER_SET_PASSWORD_STATUS,
+  *PIDL_CLUSTER_SET_PASSWORD_STATUS;
+</pre></div>
+</dd></dl><p><b>NodeId:</b> A 32-bit integer containing the ID of
+a configured node in the cluster.</p><p><b>SetAttempted:</b> A Boolean where TRUE indicates
+that the password change was attempted on this node; any other value indicates
+that no attempt was made.</p><p><b>ReturnStatus:</b> The Win32 error code associated
+with the attempt. This field MUST be ignored if the <b>SetAttempted</b> field
+is FALSE.</p></div>

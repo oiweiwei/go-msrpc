@@ -1,0 +1,98 @@
+<div class="content"><p>The CreateModuleDefinition method is used to create a new <a href="daf23529-163e-44d5-819b-6ebdfe2850d3" data-linktype="relative-path">Non-Persisted Module
+Definition Instance (section 3.2.1.6.2.2)</a> of a specified module
+type and returns S_OK upon successful completion.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_CLASSIFICATION_MANAGER | 0x08)] HRESULT CreateModuleDefinition(
+   [in] FsrmPipelineModuleType moduleType,
+   [out, retval] IFsrmPipelineModuleDefinition** moduleDefinition
+ );
+</pre></div>
+</dd></dl><p><b>moduleType: </b>Contains the type of module to
+create (for example, a classifier or storage module). For possible types, see
+the <a href="4688adcd-859d-4ef4-bf52-bcfe0367bd68" data-linktype="relative-path">FsrmPipelineModuleType (section 2.2.1.2.12)</a>
+enumeration.</p><p><b>moduleDefinition: </b>An <b>IFsrmPipelineModuleDefinition</b>
+interface pointer (section <a href="7b7cf0e7-75c5-40b4-a418-de1259a62c94" data-linktype="relative-path">3.2.4.2.43</a>)
+to the new <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_1f95e02d-f9e8-432b-85bc-df07c9dde274" data-linktype="relative-path">module definition</a>.
+Query the <b>IFsrmPipelineModuleDefinition</b> interface to get the interface
+for the specified module. To add the module definition to the server&#39;s <b>List
+of Persisted Module Definitions</b> (section <a href="a4da1447-54a5-4b37-b135-bfa7481aed1c" data-linktype="relative-path">3.2.1.6</a>), the client MUST
+call <a href="cd15b727-39a4-4ccd-9fd4-5a0563f903f7" data-linktype="relative-path">Commit (section 3.2.4.2.10.5)</a>.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or an error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>moduleType</i> parameter is not a valid
+  FsrmPipelineModuleType (section 2.2.1.2.12) value.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>moduleType</i> contains a valid
+FsrmPipelineModuleType value. If <i>moduleType</i> is <b>FsrmPipelineModuleType_Unknown</b>,
+the parameter MUST be considered an invalid value.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+perform the following actions.</p><ul><li><p><span><span> 
+</span></span>Create a new Non-Persisted Module Definition
+Instance (section 3.2.1.6.2.2) of the specified module type.</p>
+<ul><li><p><span><span>  </span></span>Set
+<b>FSRM Base Object.Id</b> to a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>FSRM Base Object.Description</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>FSRM Base Object.Deleted</b> to false.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>ModuleClsid</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Module Definition.Name</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Company</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Version</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Enabled/disabled</b> to <i>enabled</i>. </p>
+</li><li><p><span><span>  </span></span>Set
+<b>Needs file content</b> to false.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Module Definition.Account</b> to FsrmAccountType_LocalService.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Supported extensions</b> to an empty list.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Module Definition.Parameters</b> to an empty list.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Module type</b> to <i>moduleType</i>. </p>
+</li><li><p><span><span>  </span></span>If <b>Module
+type</b> is <b>FsrmPipelineModuleType_Classifier</b>, the following elements
+MUST be set:</p>
+<ul><li><p><span><span> 
+</span></span>Set <b>Properties affected</b> to an empty list.</p>
+</li><li><p><span><span> 
+</span></span>Set <b>Properties used</b> to an empty list.</p>
+</li><li><p><span><span> 
+</span></span>Set <b>Needs explicit value</b> to true.</p>
+</li></ul></li><li><p><span><span>  </span></span>If <b>Module
+type</b> is <b>FsrmPipelineModuleType_Storage</b>, the following elements MUST
+be set:</p>
+<ul><li><p><span><span> 
+</span></span>Set <b>Capabilities</b> to FsrmStorageModuleCaps_Unknown.</p>
+</li><li><p><span><span> 
+</span></span>Set <b>Storage type</b> to FsrmStorageModuleType_Unknown.</p>
+</li><li><p><span><span> 
+</span></span>Set <b>Updates file contents</b> to false.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Set <i>moduleDefinition</i> to the <b>IFsrmPipelineModuleDefinition</b>
+interface pointer for the newly created Non-Persisted Module Definition Instance.</p>
+</li></ul></div>

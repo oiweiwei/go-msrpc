@@ -1,0 +1,18 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/5382bd89-69c6-46f2-beb1-7b70e5befbc5" data-linktype="external">msdn link</a></p><p>The LSAPR_TRUSTED_CONTROLLERS_INFO structure is used to
+communicate a set of names of <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain
+controllers (DCs)</a> in a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted
+domain</a>. The following structure corresponds to the
+TrustedControllersInformation information class.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_TRUSTED_CONTROLLERS_INFO {
+   [range(0,5)] unsigned long Entries;
+   [size_is(Entries)] PRPC_UNICODE_STRING Names;
+ } LSAPR_TRUSTED_CONTROLLERS_INFO,
+  *PLSAPR_TRUSTED_CONTROLLERS_INFO;
+</pre></div>
+</dd></dl><p><b>Entries:</b>  The count of names.<a id="Appendix_A_Target_31"></a><a aria-label="Product behavior note 31" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_31" data-linktype="relative-path">&lt;31&gt;</a></p><p><b>Names:</b>  This field contains an array
+of DC names that are subject to the restrictions of a NetBIOS name, as
+specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90266" data-linktype="external">[RFC1088]</a>.
+This field SHOULD be used (by implementations external to this protocol) to
+identify the DCs via the NetBIOS API, as specified in [RFC1088]. If the <b>Entries</b>
+field has a value other than 0, this field MUST NOT be NULL.</p></div>

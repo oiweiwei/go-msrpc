@@ -1,0 +1,86 @@
+<div class="content"><p>The TSG_PACKET_VERSIONCAPS structure is used for version and
+capabilities negotiation. The value of the <b>packetId</b> field in <a href="4c505da0-93c2-4a2f-9329-6174bbaa481b" data-linktype="relative-path">TSG_PACKET</a> MUST be set to <b>TSG_PACKET_TYPE_VERSIONCAPS</b>.</p><p>This structure MUST be embedded in the <a href="511efcd7-8aff-4246-939d-6a456f910bcb" data-linktype="relative-path">TSG_PACKET_QUARENC_RESPONSE</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _TSG_PACKET_VERSIONCAPS {
+   TSG_PACKET_HEADER tsgHeader;
+   [size_is(numCapabilities)] PTSG_PACKET_CAPABILITIES TSGCaps;
+   [range(0, 32)] unsigned long numCapabilities;
+   unsigned short majorVersion;
+   unsigned short minorVersion;
+   unsigned short quarantineCapabilities;
+ } TSG_PACKET_VERSIONCAPS,
+  *PTSG_PACKET_VERSIONCAPS;
+</pre></div>
+</dd></dl><p><b>tsgHeader:</b>  Specified in <a href="07efe1a3-6840-4cc2-8bff-7698bdc1b4fa" data-linktype="relative-path">2.2.9.2.1.1</a>.</p><p><b>TSGCaps:</b>  An array of <a href="aa107f61-24a9-4942-8f6e-f8413cba7d88" data-linktype="relative-path">TSG_PACKET_CAPABILITIES</a>
+structures. The number of elements in the array is indicated by the <b>numCapabilities</b>
+field.</p><p><b>numCapabilities:</b>  The number of
+array elements for the <b>TSGCaps</b> field. This value MUST be in the range of
+0 and 32. If the <b>TSGCaps</b> field is ignored, then this field MUST also be
+ignored.</p><p><b>majorVersion:</b>  Indicates the major
+version of the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a>
+or RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>, depending
+on the sender. This MUST be the following value:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>Current major version of the Terminal Services Gateway
+  Server Protocol.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>minorVersion:</b>  Indicates the minor
+version of the RDG client or RDG server, depending on the sender. This MUST be
+the following value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>Current minor version of the Terminal Services Gateway
+  Server Protocol.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>quarantineCapabilities:</b>  Indicates
+quarantine capabilities of the RDG client and RDG server, depending on the
+sender. This MAY be the following value:<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>Quarantine is supported and required by the RDG
+  server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

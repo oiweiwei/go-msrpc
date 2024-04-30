@@ -1,0 +1,11 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/295b336b-27c8-4dfe-bc18-216c13bb6ebc" data-linktype="external">msdn link</a></p><p>The SAM_VALIDATE_PASSWORD_HASH structure holds a binary
+value that represents a cryptographic hash.</p><dl>
+<dd>
+<div><pre> typedef struct _SAM_VALIDATE_PASSWORD_HASH {
+   unsigned long Length;
+   [unique, size_is(Length)] unsigned char* Hash;
+ } SAM_VALIDATE_PASSWORD_HASH,
+  *PSAM_VALIDATE_PASSWORD_HASH;
+</pre></div>
+</dd></dl><p><b>Length:</b>  The size, in bytes, of <b>Hash</b>.
+If zero, <b>Hash</b> MUST be ignored.</p><p><b>Hash:</b>  A binary value.</p></div>

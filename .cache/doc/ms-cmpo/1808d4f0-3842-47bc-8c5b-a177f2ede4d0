@@ -1,0 +1,109 @@
+<div class="content"><p> </p><p>The BIND_VERSION_SET structure holds three sets of version
+range values that specify the version ranges supported by a <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a></span>
+for three protocols: this protocol, MSDTC Connection Manager: OleTx Transports
+Protocol, and two other protocols that are layered on top of this protocol.
+This is because MSDTC Connection Manager: OleTx Transports Protocol is designed
+to be a transport protocol over which two other protocols are layered. For the
+rest of this specification, the protocol that is layered immediately on top of
+the MSDTC Connection Manager: OleTx Transports Protocol is referred to as the <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_1fa6a098-338d-4a4e-aeab-aacf60ff44d3" data-linktype="relative-path">level-two
+protocol</a></span>, and the protocol layered on top of the level-two protocol
+is the <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_5c6c9c37-4c01-455a-9703-477f0a048cf2" data-linktype="relative-path">level-three protocol</a></span>.
+The ranges of level-two version number values and level-three version number
+values are specific to the level-two protocol and level-three protocol,
+respectively.</p><dl>
+<dd>
+<div><pre> typedef struct _BindVersionSet {
+   DWORD dwMinLevelOne;
+   DWORD dwMaxLevelOne;
+   DWORD dwMinLevelTwo;
+   DWORD dwMaxLevelTwo;
+   DWORD dwMinLevelThree;
+   DWORD dwMaxLevelThree;
+ } BIND_VERSION_SET;
+</pre></div>
+</dd></dl><p><b>dwMinLevelOne:</b>  A 4-byte unsigned
+integer value containing the minimum supported MSDTC Connection Manager: OleTx
+Transports Protocol version. <b>dwMinLevelOne</b> MUST be less than or equal to
+<b>dwMaxLevelOne</b>.</p><dl>
+<dd>
+<p>This field indicates whether the unsigned_char_t <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+version of the Session creation API calls (<span><a href="27e29396-1f03-4cc3-a778-5273142794ad" data-linktype="relative-path">Poke</a></span>/<span><a href="bdb686a6-1190-4900-9dd5-2f9aac6ca621" data-linktype="relative-path">BuildContext</a></span>)
+or the wchar_t [C706] version of the Session creation API calls (<span><a href="7289c7cd-2da8-4d81-90a8-5d50cb49bbce" data-linktype="relative-path">PokeW</a></span>/<span><a href="fc4bf100-2799-4acf-a537-625f9c98500b" data-linktype="relative-path">BuildContextW</a></span>)
+are used. This field MUST be one of the following values:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The unsigned_char_t version of the <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0cd96b80-a737-4f06-bca4-cf9efb449d12" data-linktype="relative-path">Session</a></span>
+  creation API (Poke and BuildContext) is used.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The wchar_t version of the Session creation API (PokeW
+  and BuildContextW) is used.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwMaxLevelOne:</b>  A 4-byte unsigned
+integer value containing the maximum version supported for a level-one session.
+<b>dwMaxLevelOne</b> MUST be greater than or equal to <b>dwMinLevelOne</b>.</p><dl>
+<dd>
+<p>This field indicates whether the unsigned_char_t
+version of the Session creation API calls (Poke/BuildContext) or the wchar_t
+version of the Session creation API calls (PokeW/BuildContextW) are used. This
+field MUST be one of the following values: </p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The unsigned_char_t version of the Session creation
+  API (Poke and BuildContext) is used.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The wchar_t version of the Session creation API (PokeW
+  and BuildContextW) is used.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwMinLevelTwo:</b>  A 4-byte unsigned
+integer value containing the minimum version supported for the level-two
+protocol session. The value for <b>dwMinLevelTwo</b> MUST be less than or equal
+to <b>dwMaxLevelTwo</b>.</p><p><b>dwMaxLevelTwo:</b>  A 4-byte unsigned
+integer value containing the maximum version supported for the level-two
+protocol session. The value for <b>dwMaxLevelTwo</b> MUST be greater than or
+equal to <b>dwMinLevelTwo</b>.</p><p><b>dwMinLevelThree:</b>  A 4-byte unsigned
+integer value containing the minimum version supported for the level-three
+protocol session. The value for <b>dwMinLevelThree</b> MUST be less than or
+equal to <b>dwMaxLevelThree</b>.</p><p><b>dwMaxLevelThree:</b>  A 4-byte unsigned
+integer value containing the maximum version supported for the level-three
+protocol session. <b>dwMaxLevelThree</b> MUST be greater than or equal to <b>dwMinLevelThree</b>.
+</p></div>

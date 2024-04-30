@@ -1,0 +1,53 @@
+<div class="content"><p> </p><p>A <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> calls
+R_QMObjectPathToObjectFormat to determine a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_390ae273-7109-44eb-981f-aa157e6b37c0" data-linktype="relative-path">format name</a></span> for a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>
+identified by a given <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_78c4af57-f564-4aa9-a40d-f54ea6bd8766" data-linktype="relative-path">path name</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT R_QMObjectPathToObjectFormat(
+   [in] handle_t hBind,
+   [in, string] const WCHAR* lpwcsPathName,
+   [in, out] struct OBJECT_FORMAT* pObjectFormat
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST be set to an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle as described in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>lpwcsPathName: </b> MUST be a pointer to a
+null-terminated path name string, as defined by <span><a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a></span>
+section <span><a href="../ms-mqmq/0f858702-0f3d-471a-972c-e6706906fa4d" data-linktype="relative-path">2.1.1</a></span>.
+The path name MUST identify an existing <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_1a7f2b81-359e-4d2f-b4b4-f30bc7dd0d8f" data-linktype="relative-path">private queue</a></span>
+located on a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_2739ef12-a749-4540-9ac3-715968ef4df4" data-linktype="relative-path">supporting server</a></span>.</p><p><b>pObjectFormat: </b> MUST be a pointer to an <span><a href="80b7e1bd-7ce1-40b6-91ae-d2e6fb6bfd10" data-linktype="relative-path">OBJECT_FORMAT</a></span>
+structure, as specified in section 2.2.3.5. On success, this structure MUST be
+populated with a direct format name or private format name for the queue
+identified by <i>lpwcsPathName</i>. This specification does not mandate the
+process through which a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> produces a
+format name for a given path name. </p><dl>
+<dd>
+<p>On input, pObjectFormat MUST NOT be NULL, the <b>ObjType</b>
+member MUST be 0x00000001, and the <b>m_qft</b> member MUST be
+QUEUE_FORMAT_TYPE_UNKNOWN (0x00000000).</p>
+</dd></dl><p><b>Return Values: </b> On success, this method MUST return
+MQ_OK (0x00000000); otherwise, the server MUST return a failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>,<a id="Appendix_A_Target_41"></a><a aria-label="Product behavior note 41" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_41" data-linktype="relative-path">&lt;41&gt;</a><a id="Appendix_A_Target_42"></a><a aria-label="Product behavior note 42" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_42" data-linktype="relative-path">&lt;42&gt;</a> and the
+client MUST treat all failure HRESULTs identically. Additionally, if a failure
+HRESULT is returned, the client MUST disregard all out-parameter values.</p><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol, as specified in [MS-RPCE].</p><p>This method is invoked at the dynamically assigned <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span>
+returned by the <span><a href="a8c96155-a7e6-41cb-95c7-6ab7e4f8214d" data-linktype="relative-path">R_QMGetRTQMServerPort</a></span>
+method when IP_HANDSHAKE (0x00000000) or IPX_HANDSHAKE (0x00000002) is the
+interface specified by the <i>fIP</i> parameter.</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Determine if input parameter values violate constraints specified
+above. If an invalid parameter is detected, the server MUST take no further
+action and return a failure HRESULT.</p>
+</li><li><p><span><span> 
+</span></span>Locate a <b>Queue</b> (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section <span><a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">3.1.1.2</a></span>)
+ADM element instance in the <b>QueueCollection</b> attribute of the server&#39;s <b>LocalQueueManager</b>
+([MS-MQDMPR] section <span><a href="28d7b06f-debc-45c6-b235-fa5029b10178" data-linktype="relative-path">3.1.1</a></span>) ADM element
+instance where the value of the <b>Pathname</b> attribute of the <b>Queue</b>
+ADM element instance matches the <i>lpwcsPathName</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>If no entry is located, return a failure HRESULT.</p>
+</li><li><p><span><span> 
+</span></span>Set the <i>pObjectFormat</i> parameter to a private format name,
+as specified in [MS-MQMQ] section <span><a href="../ms-mqmq/e6e149cf-9ebe-47a0-86ca-8f8757b79c7b" data-linktype="relative-path">2.1.4</a></span>,
+which resolves to the <b>Queue</b> ADM element instance located preceding.</p>
+</li><li><p><span><span> 
+</span></span>Return MQ_OK (0x00000000).</p>
+</li></ul></div>

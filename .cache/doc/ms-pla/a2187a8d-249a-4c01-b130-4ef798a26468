@@ -1,0 +1,12 @@
+<div class="content"><p>The DataCollectorType (Get) method retrieves the
+DataCollectorType property. </p><dl>
+<dd>
+<div><pre> [propget] HRESULT DataCollectorType(
+   [out, retval] DataCollectorType* type
+ );
+</pre></div>
+</dd></dl><p><b>type: </b>Receives the type of this <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_3184c8c5-f13b-4d77-b04a-b92feff97f61" data-linktype="relative-path">data collector</a>. For
+possible types, see the DataCollectorType enumeration (section <a href="4775398e-3e1c-470e-a704-94d6a2ef7ce0" data-linktype="relative-path">2.2.2.5</a>).</p><p><b>Return Values: </b>This method MUST return an
+HRESULT with the severity bit clear on success as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>;
+otherwise, it MUST return one of the errors as defined in <a href="590752a5-ddc3-49e4-9914-147a90bd0193" data-linktype="relative-path">2.2.1</a> or one of the errors
+as defined in [MS-ERREF] section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p></div>

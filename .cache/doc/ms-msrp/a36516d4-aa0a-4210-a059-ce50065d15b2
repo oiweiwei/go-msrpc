@@ -1,0 +1,59 @@
+<div class="content"><p> </p><p>The payload of the SMB_COM_SEND_START_MB_MESSAGE response
+message is specified as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>WordCount</p>
+  </td>
+  <td colspan="16">
+  <p>MessageGroupId</p>
+  </td>
+  <td colspan="8">
+  <p>ByteCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>...</p>
+  </td>
+  
+ </tr>
+</tbody></table><p><b>WordCount (1 byte): </b>An 8-bit value that MUST
+be set to one (0x1) for this message.</p><p><b>MessageGroupId (2 bytes): </b>A 16-bit value that
+MUST specify the NetBIOS session number on which this group of messages is to
+be delivered.</p><p><b>ByteCount (2 bytes): </b>A 16-bit value that MUST
+be zero for this message.</p><p>The request message to <span><a href="07bd551a-8467-46dc-8f1f-21cbe5f59727" data-linktype="relative-path">SMB_COM_SEND_START_MB_MESSAGE</a></span>
+is specified in section 2.2.3.2.1.</p></div>

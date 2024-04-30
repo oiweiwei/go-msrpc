@@ -1,0 +1,116 @@
+<div class="content"><p> </p><p>The Request method initiates the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_71f399e7-7026-46bb-b7c2-8fd4872b900f" data-linktype="relative-path">certificate issuance</a></span>
+process.</p><dl>
+<dd>
+<div><pre> HRESULT Request(
+   [in] DWORD dwFlags,
+   [in, string, unique, range(1, 1536)] wchar_t const * pwszAuthority,
+   [in, out, ref] DWORD* pdwRequestId,
+   [out] DWORD* pdwDisposition,
+   [in, string, unique, range(1, 1536)] wchar_t const * pwszAttributes,
+   [in, ref] CERTTRANSBLOB const * pctbRequest,
+   [out, ref] CERTTRANSBLOB* pctbCertChain,
+   [out, ref] CERTTRANSBLOB* pctbEncodedCert,
+   [out, ref] CERTTRANSBLOB* pctbDispositionMessage
+ );
+</pre></div>
+</dd></dl><p><b>dwFlags: </b>This field MUST contain packed data
+as specified in section <span><a href="c81f1a69-f093-45a1-8c30-999dfda68406" data-linktype="relative-path">3.2.1.4.3.1.1</a></span>. The
+data in this field MUST define the structure of the <i>pctbRequest</i>
+parameter and the expected content in <i>pctbCertChain</i>.</p><p><b>pwszAuthority: </b>A null-terminated <span><a href="https://go.microsoft.com/fwlink/?LinkId=90550" data-linktype="external">[UNICODE]</a></span>
+string that contains the name of the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span>.</p><p><b>pdwRequestId: </b>A 32-bit integer value that
+contains the identifier used to identify the request. Details about processing
+information are specified in section <span><a href="b2a27e45-75d8-4a4c-9d96-8bbef73b531d" data-linktype="relative-path">3.1.1.4.3</a></span>.</p><p><b>pdwDisposition: </b>An unsigned integer that
+identifies the request status for this invocation. The value MUST be one of the
+following:</p><ul><li><p><span><span>  </span></span>CR_DISP_ISSUED,
+0x00000003: The requested <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a></span> was
+issued.</p>
+</li><li><p><span><span>  </span></span>CR_DISP_UNDER_SUBMISSION,
+0x00000005: The requested certificate was not issued and is now in a pending
+state waiting for additional processing before it can be issued.</p>
+</li><li><p><span><span>  </span></span>A
+nonzero value, excluding 0x00000003 and 0x00000005, indicating an error.</p>
+</li></ul><p><b>pwszAttributes: </b>A null-terminated [UNICODE]
+string that contains a set of request <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attributes</a></span>. The
+parameter contains zero or more request attributes, which MUST be empty or take
+the form of name/value pairs. The name/value pairs MUST be formatted as
+&#34;Name:Value&#34;. A colon MUST be the separator, and a new line (&#39;\n&#39;)
+MUST separate name/value pairs.</p><p><b>pctbRequest: </b>A <span><a href="d6bee093-d862-4122-8f2b-7b49102097dc" data-linktype="relative-path">CERTTRANSBLOB</a></span> structure
+that contains a certificate request as a raw binary object. This request binary
+object can be in one of a number of formats. The format used is specified in
+the <i>dwFlags</i> parameter. The syntax of that structure is provided in
+section <span><a href="9fb81bcd-76ca-4f17-bf4d-894554b459ef" data-linktype="relative-path">2.2.2.8</a></span>.</p><p><b>pctbCertChain: </b>A CERTTRANSBLOB structure that
+is empty or contains a simple <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_e9fba9b7-e587-43da-8770-be34a688e0ab" data-linktype="relative-path">CMS</a></span> or a CMC full <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_fbe33f73-7a2c-4134-ab9e-7a12c6d01348" data-linktype="relative-path">PKI</a></span>
+response for the certificate chain issued by the CA based on the request (in
+the <i>pctbRequest</i> parameter) supplied by the caller. The parameter format
+is as requested by the client in the <i>dwFlags</i> parameter. Message syntax
+MUST be as specified in section 2.2.2.2.</p><p><b>pctbEncodedCert: </b>A CERTTRANSBLOB structure
+that is empty or contains the issued certificate. The returned value MUST be an
+X509 cert encoded by using <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_25428624-f292-4134-8f6c-85ba65a6d472" data-linktype="relative-path">DER</a></span>, as specified in
+<span><a href="https://go.microsoft.com/fwlink/?LinkId=90592" data-linktype="external">[X660]</a></span>.
+Message syntax MUST be as specified in section 2.2.2.2.</p><p><b>pctbDispositionMessage: </b> A CERTTRANSBLOB
+structure that contains a null-terminated [UNICODE] string with a message that
+identifies the status of the request. Message syntax MUST be as specified in
+section 2.2.2.2.</p><p><b>Return Values: </b> The method MUST return zero
+unless otherwise explicitly stated in this section. The server MUST return
+errors through the <i>pdwDisposition</i> parameter.</p><p>This section, and the following sections, describe the
+processing rules for ICertRequestD::Request and <span><a href="0949770a-30f9-4e12-a317-39aa6f46c4f9" data-linktype="relative-path">ICertRequestD2::Request2</a></span>.</p><p>The following is an overview of the CA processing rules for
+these methods:</p><p>The CA MUST obtain the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_6b2b7852-9031-41d6-874c-6a2f9d189f79" data-linktype="relative-path">end entity</a></span> account
+name and <span><a href="../ms-dtyp/78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">SID</a></span>
+by performing the processing rules in section <span><a href="f20e1c28-5be9-4a00-a4bf-8d8f5e0f640e" data-linktype="relative-path">3.2.1.4.1.2</a></span> and
+storing the returned <b>Output_Account_Name</b> in the <b>Per_Request.Caller_Account_Name</b>
+ADM element and the returned <b>Output_SID</b> in <b>Per_Request.Caller_SID</b>.</p><p>If Config_CA_Interface_Flags contains the value
+IF_NOREMOTEICERTREQUEST, the server SHOULD return 0x80094011
+(CERTSRV_E_ENROLL_DENIED) to the client.<a id="Appendix_A_Target_69"></a><a aria-label="Product behavior note 69" href="c8bec234-0a53-4a7c-859d-2bb7b2537da5#Appendix_A_69" data-linktype="relative-path">&lt;69&gt;</a></p><p>If Config_CA_Interface_Flags contains the value
+IF_ENFORCEENCRYPTICERTREQUEST and the RPC_C_AUTHN_LEVEL_PKT_PRIVACY
+authentication level, as defined in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/425a7c53-c33a-4868-8e5b-2a850d40dc73" data-linktype="relative-path">2.2.1.1.8</a></span>,
+is not specified on the RPC connection from the client, the CA MUST refuse to
+establish a connection with the client by returning a nonzero error.<a id="Appendix_A_Target_70"></a><a aria-label="Product behavior note 70" href="c8bec234-0a53-4a7c-859d-2bb7b2537da5#Appendix_A_70" data-linktype="relative-path">&lt;70&gt;</a></p><ol><li><p><span>    </span>The CA MUST
+verify the CA name passed in the <i>pwszAuthority</i> attribute by invoking the
+processing rules in section <span><a href="a7fdfc72-b1e0-4882-93da-9aefdf468b83" data-linktype="relative-path">3.2.1.4.2.1.1</a></span> with
+the <i>CANameString</i> input parameter set to the CA name passed in the <i>pwszAuthority</i>
+parameter and the <i>EmptyNameAllowed</i> input parameter set to false. If
+false is returned, the CA MUST return the E_INVALIDARG (0x80070057) error code
+to the client.</p>
+</li><li><p><span>    </span>The CA MUST
+parse attributes passed in <i>pwszAttributes</i> parameter as specified in
+section <span><a href="13b7f3f7-c809-4c1e-97fd-52f2ed044c7e" data-linktype="relative-path">3.2.1.4.2.1.2</a></span>.</p>
+</li><li><p><span>    </span>The CA MUST
+check if the request is a status inspection as specified in section <span><a href="febfb31d-380b-4417-879a-5708c3305f4e" data-linktype="relative-path">3.2.1.4.2.1.3</a></span>
+and process it accordingly if it is. If it is not, it is a new or renewal
+request and the CA MUST proceed to the following steps.</p>
+</li><li><p><span>    </span>If the value of
+the <i>pdwRequestId</i> parameter is 0, the CA MUST process the request <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_ad861812-8cb0-497a-80bb-13c95aa4e425" data-linktype="relative-path">BLOB</a></span>
+as specified in section <span><a href="2d0705e9-9189-4fd4-a51e-6e88d86cefeb" data-linktype="relative-path">3.2.1.4.2.1.4</a></span>.</p>
+</li><li><p><span>    </span>The CA MUST
+store the request fields in the Request table as specified in sections <span><a href="40395018-b3c8-4f4e-9327-6484e0eed5c9" data-linktype="relative-path">3.2.1.4.2.1.4.4</a></span>
+and <span><a href="f1bcc8fb-2336-4247-9d8f-57ef472a7bd5" data-linktype="relative-path">3.2.1.4.2.1.4.5</a></span>.</p>
+</li><li><p><span>    </span>The CA MUST call
+its <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_cd0e4dab-0331-4123-a538-df8e4e626a71" data-linktype="relative-path">CA
+policy algorithm</a></span> implementation as specified in section
+3.2.1.4.2.1.4.5.</p>
+</li><li><p><span>    </span>If the CA policy
+algorithm implementation decided to issue a certificate, then the CA MUST sign
+the certificate as specified in section 3.2.1.4.2.1.3.</p>
+</li><li><p><span>    </span>If the CA policy
+algorithm implementation decided to issue a certificate, then the CA MUST
+follow the post processing rules as specified in section 3.2.1.4.2.1.4 and
+construct the certificate as specified in section <span><a href="472341c4-b018-40f2-951f-76d5f904f31e" data-linktype="relative-path">3.2.1.4.2.1.4.7</a></span>.</p>
+</li><li><p><span>    </span>The CA MUST set
+the following values for the out parameters:</p>
+<ul><li><p><span><span>  </span></span>pdwDisposition:
+If a certificate was issued, then the CA MUST return 0x00000003; if a
+certificate issuance requires manager approval, then the CA MUST return
+0x00000005. If an error was encountered, the CA MUST set the value of this
+parameter to a non-zero value.</p>
+</li><li><p><span><span>  </span></span>pctbCertChain:
+If a certificate was issued, then the CA MUST return the issued certificate and
+its full chain as constructed in section <span><a href="bf14ec85-9176-40fe-bdeb-5aa7b807f648" data-linktype="relative-path">3.2.1.4.2.1.4.8</a></span> in
+this parameter.</p>
+</li><li><p><span><span>  </span></span>pctbEncodedCert:
+If a certificate was issued, then the CA MUST return the issued certificate in
+this parameter.</p>
+</li><li><p><span><span>  </span></span>pctbDispositionMessage:
+In this parameter, the CA SHOULD send additional information in the form of a
+Unicode string that can be used to troubleshoot the server response.<a id="Appendix_A_Target_71"></a><a aria-label="Product behavior note 71" href="c8bec234-0a53-4a7c-859d-2bb7b2537da5#Appendix_A_71" data-linktype="relative-path">&lt;71&gt;</a></p>
+</li></ul></li></ol></div>

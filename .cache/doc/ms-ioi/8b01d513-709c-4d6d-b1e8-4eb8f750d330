@@ -1,0 +1,67 @@
+<div class="content"><p> </p><p>The GetComponentInfo method is used to determine the
+environment of the server <span><a href="d8eaf696-8591-48a2-9aac-4880847e3632#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>. </p><dl>
+<dd>
+<div><pre> HRESULT GetComponentInfo(
+   [in, out] int* infoMask,
+   [out] SAFEARRAY(BSTR)* infoArray
+ );
+</pre></div>
+</dd></dl><p><b>infoMask: </b>A bitwise OR of zero of more of the
+following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The serviced component&#39;s <span><a href="d8eaf696-8591-48a2-9aac-4880847e3632#gt_38a420dd-6f31-456e-ae5c-63ec6905380d" data-linktype="relative-path">process identifier (PID)</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The serviced component&#39;s <span><a href="d8eaf696-8591-48a2-9aac-4880847e3632#gt_032a76e9-4139-4533-b6d1-7ee945f4bc20" data-linktype="relative-path">application domain identifier
+  (ID)</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The serviced component&#39;s remote <span><a href="d8eaf696-8591-48a2-9aac-4880847e3632#gt_e18af8e8-01d7-4f91-8a1e-0fb21b191f95" data-linktype="relative-path">URI</a></span>
+  <span><a href="https://go.microsoft.com/fwlink/?LinkId=90453" data-linktype="external">[RFC3986]</a></span>,
+  which represents the server object identity.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>On input, the bits set indicate the information the
+client is requesting that the server return.  On output, the bits set indicate
+the information actually returned in the <i>infoArray</i>.</p>
+</dd></dl><p><b>infoArray: </b>An array that contains a set of
+values returned by the server corresponding to the bits set in <i>infoMask</i>.</p><p><b>Return Values: </b>An <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+that specifies success or failure. All success HRESULT values MUST be treated
+as success and all failure HRESULT values MUST be treated as failure. </p><p>When this method is invoked, the server MUST do the
+following.  If any bits not defined above in <i>infoMask</i> are set, the
+server first MUST update <i>infoMask</i> to clear those bits. </p><p>The server MUST return in <i>infoArray</i> a <span><a href="../ms-oaut/2e87a537-9305-41c6-a88b-b79809b3703a" data-linktype="relative-path">SAFEARRAY</a></span>
+(<span><a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a></span>
+section 2.2.30.10) of type VT_BSTR. This SAFEARRAY MUST contain, in order, the
+(possibly empty) subset of the following items, corresponding to the bits set
+in <i>infoMask</i>.</p><ul><li><p><span><span> 
+</span></span>Process ID</p>
+</li><li><p><span><span> 
+</span></span>Application Domain ID</p>
+</li><li><p><span><span> 
+</span></span>The serviced component&#39;s remote URI [RFC3986]</p>
+</li></ul><p>The type of each element MUST be a <span><a href="../ms-oaut/1c9d2cfc-cf7d-4f4b-95bf-584be5defd81" data-linktype="relative-path">BSTR</a></span>
+([MS-OAUT] section 2.2.23.2).  The server then MUST return success.</p></div>

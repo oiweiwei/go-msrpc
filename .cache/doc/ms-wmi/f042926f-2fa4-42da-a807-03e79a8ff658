@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The WBEM_TIMEOUT_TYPE enumeration gives information about
+the type of time-out for the process.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum tag_WBEM_TIMEOUT_TYPE
+ {
+   WBEM_NO_WAIT = 0,
+   WBEM_INFINITE = 0xFFFFFFFF
+ } WBEM_TIMEOUT_TYPE;
+</pre></div>
+</dd></dl><p><b>WBEM_NO_WAIT:  </b>If passed as a time-out
+parameter to the <span><a href="141623d4-a170-4b09-8fea-3cb8f78fbbfe" data-linktype="relative-path">IEnumWbemClassObject::Next</a></span>
+method, the call returns the available objects, if any, at the time of the
+call; it does not wait for any more objects.</p><p><b>WBEM_INFINITE:  </b>If passed as a time-out parameter
+to IEnumWbemClassObject::Next, the call blocks until objects are available.</p></div>

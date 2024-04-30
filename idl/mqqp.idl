@@ -1,0 +1,121 @@
+import "ms-dtyp.idl";
+import "ms-mqmq.idl";
+ 
+[
+    uuid(1088a980-eae5-11d0-8d9b-00a02453c337),
+    version(1.0),
+    pointer_default(unique)
+]
+interface qm2qm
+{
+    typedef [context_handle] void *PCTX_RRSESSION_HANDLE_TYPE;
+ 
+    typedef [context_handle] void *PCTX_REMOTEREAD_HANDLE_TYPE;
+ 
+    typedef enum _REMOTEREADACK {
+        RR_UNKNOWN,
+        RR_NACK,
+        RR_ACK
+    } REMOTEREADACK ;
+ 
+    typedef struct _REMOTEREADDESC {
+        DWORD  hRemoteQueue ;
+        DWORD  hCursor ;
+        DWORD  ulAction ;
+        DWORD  ulTimeout ;
+        [range (0, 4325376)] DWORD  dwSize ;
+        DWORD  dwQueue ;
+        DWORD  dwRequestID;
+        DWORD  Reserved;    
+        DWORD  dwArriveTime ;
+        REMOTEREADACK eAckNack ;
+        [unique, size_is(dwSize), length_is(dwSize)] byte *lpBuffer ;
+    } REMOTEREADDESC ;
+ 
+ 
+    HRESULT
+    RemoteQMStartReceive(
+        [in] handle_t  hBind,
+        [out] PCTX_REMOTEREAD_HANDLE_TYPE *pphContext,
+        [in, out] REMOTEREADDESC* lpRemoteReadDesc
+    );
+ 
+    HRESULT
+    RemoteQMEndReceive(
+        [in] handle_t  hBind,
+        [in, out] PCTX_REMOTEREAD_HANDLE_TYPE *pphContext,
+        [in, range(1, 2)] DWORD dwAck
+    );
+ 
+    HRESULT
+    RemoteQMOpenQueue  (
+        [in] handle_t  hBind,
+        [out] PCTX_RRSESSION_HANDLE_TYPE *phContext,
+        [in]  GUID *pLicGuid,
+        [in, range(0, 16)] DWORD dwMQS,
+        [in] DWORD hQueue,
+        [in] DWORD pQueue,
+        [in] DWORD dwpContext
+    );
+ 
+    HRESULT
+    RemoteQMCloseQueue  (
+        [in] handle_t  hBind,
+        [in, out] PCTX_RRSESSION_HANDLE_TYPE *pphContext
+    );
+ 
+    HRESULT
+    RemoteQMCloseCursor  (
+        [in] handle_t hBind,
+        [in] DWORD    hQueue, 
+        [in] DWORD    hCursor
+    );
+ 
+    HRESULT
+    RemoteQMCancelReceive  (
+        [in] handle_t  hBind,
+        [in] DWORD     hQueue,
+        [in] DWORD     pQueue,
+        [in] DWORD     dwRequestID
+    );
+ 
+    HRESULT
+    RemoteQMPurgeQueue  (
+        [in] handle_t hBind,
+        [in] DWORD    hQueue
+    );
+ 
+    DWORD
+    RemoteQMGetQMQMServerPort  (
+        [in]              handle_t hBind,
+        [in, range(0, 3)] DWORD    dwPortType
+    );
+ 
+    typedef struct _REMOTEREADDESC2 {
+        REMOTEREADDESC * pRemoteReadDesc;
+        ULONGLONG        SequentialId;
+    } REMOTEREADDESC2;
+ 
+    void
+    RemoteQmGetVersion(
+        [in] handle_t  hBind,
+        [out] unsigned char *  pMajor,
+        [out] unsigned char *  pMinor,
+        [out] unsigned short * pBuildNumber
+    );
+ 
+    HRESULT
+    RemoteQMStartReceive2(
+        [in] handle_t  hBind,
+        [out] PCTX_REMOTEREAD_HANDLE_TYPE *pphContext,
+        [in, out] REMOTEREADDESC2* lpRemoteReadDesc2
+    );
+ 
+    HRESULT
+    RemoteQMStartReceiveByLookupId(
+        [in] handle_t  hBind,
+        [in] ULONGLONG LookupId,
+        [out] PCTX_REMOTEREAD_HANDLE_TYPE *pphContext,
+        [in, out] REMOTEREADDESC2* lpRemoteReadDesc2
+    );
+}

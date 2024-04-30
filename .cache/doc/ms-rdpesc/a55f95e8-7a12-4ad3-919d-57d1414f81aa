@@ -1,0 +1,13 @@
+<div class="content"><p>The ReaderStateA structure contains information used in
+calls that only require <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_c6f0d1a4-ae75-40b9-beef-baa419cb33b9" data-linktype="relative-path">Smart
+Cards for Windows</a> context and an <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_79fa85ca-ac61-467c-b819-e97dc1a7a599" data-linktype="relative-path">ASCII</a> string.</p><dl>
+<dd>
+<div><pre> typedef struct _ReaderStateA {
+   [string] const char* szReader;
+   ReaderState_Common_Call Common;
+ } ReaderStateA;
+</pre></div>
+</dd></dl><p><b>szReader:</b>  An ASCII string
+specifying the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_8b790ccb-84c6-49fa-b1ed-4fc7c4e1841f" data-linktype="relative-path">reader name</a>.</p><p><b>Common:</b>  A packet that specifies the
+state of the reader at the time of the call. For information about this packet,
+see section <a href="a71e63ba-e58f-487c-a5d2-5a3e48856594" data-linktype="relative-path">2.2.1.5</a>.</p></div>

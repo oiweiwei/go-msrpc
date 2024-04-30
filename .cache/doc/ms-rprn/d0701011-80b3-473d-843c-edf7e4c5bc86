@@ -1,0 +1,21 @@
+<div class="content"><p>The E<b>BranchOfficeJobEventType</b> enumeration specifies
+the type of <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_b9456a1c-aee2-41aa-af78-a083db7a27c7" data-linktype="relative-path">Windows Event</a>
+contained by a <b>Branch Office Print Remote Log Entry</b> (section <a href="1bd61448-db4b-4284-a4b1-8346732402d4" data-linktype="relative-path">3.1.1</a>).<a id="Appendix_A_Target_84"></a><a aria-label="Product behavior note 84" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_84" data-linktype="relative-path">&lt;84&gt;</a></p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   kInvalidJobState = 0,
+   kLogJobPrinted,
+   kLogJobRendered,
+   kLogJobError,
+   kLogJobPipelineError,
+   kLogOfflineFileFull
+ } EBranchOfficeJobEventType;
+</pre></div>
+</dd></dl><p><b>kInvalidJobState: </b>The Windows Event is an
+unknown type.</p><p><b>kLogJobPrinted: </b>The <b>Branch Office Print
+Remote Log Entry</b> contains a Windows Event that corresponds to <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_0c6539af-aed7-4baa-9d21-4aa5b41d448a" data-linktype="relative-path">event ID</a> 307.</p><p><b>kLogJobRendered:</b> The Branch Office Print
+Remote Log Entry contains a Windows Event that corresponds to event ID 805.</p><p><b>kLogJobError:</b> The Branch Office Print Remote
+Log Entry contains a Windows Event that corresponds to event ID 372.</p><p><b>kLogJobPipelineError:</b> The Branch Office Print
+Remote Log Entry contains a Windows Event that corresponds to event ID 824.</p><p><b>kLogOfflineFileFull:</b> The Branch Office Print
+Remote Log Entry contains a Windows Event that corresponds to event ID 868.</p></div>

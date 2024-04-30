@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The DS_REPL_OBJ_META_DATA structure defines a set of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span>
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ff635a35-a17d-477b-a30d-9723b415bf00" data-linktype="relative-path">stamps</a></span>
+for a given <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>. This
+structure is a concrete representation of the sequence of <span><a href="2973bb80-c8ed-450d-a981-59639e09820b" data-linktype="relative-path">AttributeStamp</a></span>
+values for all attributes of a given object.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD cNumEntries;
+   DWORD dwReserved;
+   [size_is(cNumEntries)] DS_REPL_ATTR_META_DATA rgMetaData[];
+ } DS_REPL_OBJ_META_DATA;
+</pre></div>
+</dd></dl><p><b>cNumEntries:</b>  The count of items in
+the <b>rgMetaData</b> array.</p><p><b>dwReserved:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>rgMetaData:</b>  A set of attribute
+stamps.</p></div>

@@ -1,0 +1,20 @@
+<div class="content"><p>The <b>RPC_DRIVER_INFO_3</b> structure provides information
+about a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer driver</a>.<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _RPC_DRIVER_INFO_3 {
+   DWORD cVersion;
+   [string] wchar_t* pName;
+   [string] wchar_t* pEnvironment;
+   [string] wchar_t* pDriverPath;
+   [string] wchar_t* pDataFile;
+   [string] wchar_t* pConfigFile;
+   [string] wchar_t* pHelpFile;
+   [string] wchar_t* pMonitorName;
+   [string] wchar_t* pDefaultDataType;
+   DWORD cchDependentFiles;
+   [size_is(cchDependentFiles), unique] 
+     wchar_t* pDependentFiles;
+ } RPC_DRIVER_INFO_3;
+</pre></div>
+</dd></dl><p>All members not defined in this section are specified in
+sections <a href="4464eaf0-f34f-40d5-b970-736437a21913" data-linktype="relative-path">2.2.1.3.1</a> and <a href="964b517f-6730-4b4a-99ed-ee9648e7f1f7" data-linktype="relative-path">2.2.1.3</a>.</p></div>

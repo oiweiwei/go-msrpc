@@ -1,0 +1,164 @@
+<div class="content"><p>The QueryComparisonData structure is part of the
+representation of a query, as used in the <a href="8b39adcb-10ac-4869-a56d-e708484880b5" data-linktype="relative-path">ICatalogTableInfo::GetClientTableInfo (section 3.1.4.7.1)</a>,
+<a href="ba9d3f6d-94d8-4e1f-b31e-122ec038eca7" data-linktype="relative-path">ICatalogTableRead::ReadTable (section 3.1.4.8.1)</a>,
+and <a href="3fe6b10a-65d3-4bcd-8897-f84512d52f3b" data-linktype="relative-path">ICatalogTableWrite::WriteTable (section 3.1.4.9.1)</a>
+methods. It is always used along with a <a href="042e9c68-552b-48a9-adb6-f0d903653fa0" data-linktype="relative-path">QueryCellArray (section 2.2.1.5)</a>
+structure.</p><p>QueryComparisonData is a custom-marshaled type that is
+passed in a char* parameter. A QueryComparisonData is marshaled as an array of
+zero or more custom-marshaled comparison data values, each of which is
+associated with a <a href="0f823212-7c71-4f6a-91b7-fb709d827b97" data-linktype="relative-path">QueryCell</a>.
+Each non-null comparison data value MUST be marshaled in the same order as the
+QueryCell to which it is associated and according to the custom marshaling
+defined as follows for each of the supported types (a query with zero non-null
+comparison data values MUST be represented by a NULL pointer).</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ComparisonData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>ComparisonData (variable): </b>A sequence of zero
+or more comparison data values, marshaled according to type. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Type</p>
+   </th>
+   <th>
+   <p>Custom marshaling</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>eDT_ULONG </p>
+  </td>
+  <td>
+  <p>Marshaled as a 32-bit, unsigned integer in <a href="3f01a312-3391-4109-a96e-95358babf191#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a> byte order.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>eDT_GUID</p>
+  </td>
+  <td>
+  <p>Marshaled as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>,
+  section <a href="../ms-dtyp/001eec5a-7f8b-4293-9e21-ca349392db40" data-linktype="relative-path">2.3.4.2</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>eDT_BYTES</p>
+  </td>
+  <td>
+  <p>Marshaled as an array of bytes, padded with zeros to a
+  multiple of 4 bytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>eDT_LPWSTR</p>
+  </td>
+  <td>
+  <p>Marshaled as a null-terminated array of wchar_t in
+  little-endian byte order, padded with zeros to a multiple of 4 bytes.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ComparisonData
+  0 (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ComparisonData
+  1 (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ComparisonData
+  m (variable)</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p> </p></div>

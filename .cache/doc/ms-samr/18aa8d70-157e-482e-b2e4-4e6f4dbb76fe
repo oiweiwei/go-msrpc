@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/18aa8d70-157e-482e-b2e4-4e6f4dbb76fe" data-linktype="external">msdn link</a></p><p>The SAMPR_DOMAIN_DISPLAY_MACHINE_BUFFER structure holds an
+array of <a href="353bfb61-0730-4aee-8489-88c249b1a9e1" data-linktype="relative-path">SAMPR_DOMAIN_DISPLAY_MACHINE</a>
+elements used to return a list of machine accounts through the
+SamrQueryDisplayInformation family of methods (see section <a href="f1970f00-e3d5-4ec4-85bc-2caf0bf18f6d" data-linktype="relative-path">3.1.5.3</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_DOMAIN_DISPLAY_MACHINE_BUFFER {
+   unsigned long EntriesRead;
+   [size_is(EntriesRead)] PSAMPR_DOMAIN_DISPLAY_MACHINE Buffer;
+ } SAMPR_DOMAIN_DISPLAY_MACHINE_BUFFER,
+  *PSAMPR_DOMAIN_DISPLAY_MACHINE_BUFFER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  The number of elements
+in <b>Buffer</b>. If zero, <b>Buffer</b> MUST be ignored. If nonzero, <b>Buffer</b>
+MUST point to at least <b>EntriesRead</b> number of elements.</p><p><b>Buffer:</b>  An array of
+SAMPR_DOMAIN_DISPLAY_MACHINE elements.</p></div>

@@ -1,0 +1,37 @@
+<div class="content"><p>The AutoPathFormat enumeration defines the information to be
+appended to the file name or subdirectory name. Any combination of the bits is
+allowed; multiple bits specify strings to be appended to the file name. When a
+combination with than one of these bits is specified, the strings are appended
+in the following order: plaComputer, plaPattern, plaMonthDayHour,
+plaSerialNumber, plaYearDayOfYear, plaYearMonth, plaYearMonthDay,
+plaYearMonthDayHour, plaMonthDayHourMinute. Consequently, if all bits are set,
+the name is represented as follows:
+[plaComputer]base_name[plaPattern][plaMonthDayHour][plaSerialNumber][plaYearDayOfYear][plaYearMonth][plaYearMonthDay][plaYearMonthDayHour][plaMonthDayHourMinute].</p><dl>
+<dd>
+<div><pre> typedef  enum
+ {
+   plaNone = 0x0000,
+   plaPattern = 0x0001,
+   plaComputer = 0x0002,
+   plaMonthDayHour = 0x0100,
+   plaSerialNumber = 0x0200,
+   plaYearDayOfYear = 0x0400,
+   plaYearMonth = 0x0800,
+   plaYearMonthDay = 0x1000,
+   plaYearMonthDayHour = 0x2000,
+   plaMonthDayHourMinute = 0x4000
+ } AutoPathFormat;
+</pre></div>
+</dd></dl><p><b>plaNone:  </b> Does not append any information to
+the name.</p><p><b>plaPattern:  </b>Adds a pattern specified in
+IDataCollectorSet::SubdirectoryFormatPattern <a href="079d7226-f69b-4ed1-94bb-7644791bfc42" data-linktype="relative-path">3.2.4.1.32</a> or
+IDataCollector::FileNameFormatPattern <a href="900672ac-de96-4154-9a09-fa3d6226f333" data-linktype="relative-path">3.2.4.5.7</a> to the name.</p><p><b>plaComputer:  </b>Prefixes the name with the
+computer name.</p><p><b>plaMonthDayHour:  </b>Appends the month, day, and
+hour to the name in the form, MMddHH.</p><p><b>plaSerialNumber:  </b>Appends the serial number specified
+in IDataCollectorSet::SerialNumber to the subdirectory name in the form,
+NNNNNN.</p><p><b>plaYearDayOfYear:  </b>Appends the year and day of
+the year to the name in the form, yyyyDDD.</p><p><b>plaYearMonth:  </b>Appends the year and month to
+the name in the form, yyyyMM.</p><p><b>plaYearMonthDay:  </b>Appends the year, month, and
+day to the name in the form, yyyyMMdd.</p><p><b>plaYearMonthDayHour:  </b>Appends the year, month,
+day, and hour to the name in the form, yyyyMMddHH.</p><p><b>plaMonthDayHourMinute:  </b>Appends the month,
+day, hour, and minute to the name in the form, MMddHHmm.</p></div>

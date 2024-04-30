@@ -1,0 +1,240 @@
+<div class="content"><p> </p><p>The RemoteQMStartReceiveByLookupId method reads a <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span>
+from the opened <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_91d29587-3e24-439b-8f2c-c2a43be99afc" data-linktype="relative-path">remote queue</a></span> by
+using the lookup identifier.<a id="Appendix_A_Target_27"></a><a aria-label="Product behavior note 27" href="d6c5ba0a-aaf8-489d-baf2-fdc286b4bea4#Appendix_A_27" data-linktype="relative-path">&lt;27&gt;</a></p><dl>
+<dd>
+<div><pre> HRESULT RemoteQMStartReceiveByLookupId(
+   [in] handle_t hBind,
+   [in] ULONGLONG LookupId,
+   [out] PCTX_REMOTEREAD_HANDLE_TYPE* pphContext,
+   [in, out] REMOTEREADDESC2* lpRemoteReadDesc2
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b>MUST be set to an <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>LookupId: </b>Lookup identifier of the message to
+be returned. </p><p><b>pphContext: </b>The server MUST return a non-NULL
+value for this handle, on success for receive calls. This handle is used by the
+client in subsequent calls to <span><a href="4c0b91ba-37fa-441c-974a-91bbea58a62d" data-linktype="relative-path">RemoteQMEndReceive</a></span>.
+This handle MUST NOT be set on failure, or for peek calls. If this method
+returns an error, <i>pphContext</i> is undefined and MUST NOT be used as an
+argument for a call to RemoteQMEndReceive.</p><p><b>lpRemoteReadDesc2: </b>A <span><a href="d7cf6789-f160-4de2-8ed3-1ff812da1b4f" data-linktype="relative-path">REMOTEREADDESC2 (section 2.2.2.2)</a></span>
+instance that contains the remote description accompanied by a sequential ID.
+The members of the <b>pRemoteReadDesc</b> member of the <i>lpRemoteReadDesc2</i>
+parameter MUST be assigned in the same manner as that specified in <span><a href="aab4d8fa-3a56-483c-ac61-4172a09fc199" data-linktype="relative-path">RemoteQMStartReceive</a></span>
+and section <span><a href="645e7b85-18f0-4f50-a905-1dd55565728b" data-linktype="relative-path">2.2.2.1</a></span>. In
+addition, the <b>SequentialId</b> member MUST be set to the least significant 7
+bytes of the <b>Message.LookupIdentifier</b> (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section <span><a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">3.1.1.12</a></span>)
+of the message that is returned by this method.</p><dl>
+<dd>
+<p>The client must provide all parameters of <i>lpRemoteReadDesc2.pRemoteReadDesc</i>
+that are marked as to be set by the client in section 2.2.2.1.</p>
+</dd>
+<dd>
+<p><i>lpRemoteReadDesc2.pRemoteReadDesc.ulAction</i>
+MUST be set to one of the following values.</p>
+</dd></dl><table><thead>
+  <tr>
+   <th>
+   <p>Value of ulAction</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQ_LOOKUP_PEEK_CURRENT</p>
+  <p>0x40000010</p>
+  </td>
+  <td>
+  <p>Read the message that is specified by the <i>LookupId</i>
+  parameter, but do not remove it from the <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>.</p>
+  <p>The <i>lpRemoteReadDesc2.pRemoteReadDesc.hCursor</i>
+  parameter MUST be set to zero.</p>
+  <p>The <i>LookupId</i> parameter MUST NOT be set to 0.</p>
+  <p>The <i>lpRemoteReadDesc2.pRemoteReadDesc.ulTimeout</i>
+  parameter MUST be set to 0x00000000.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_LOOKUP_PEEK_NEXT</p>
+  <p>0x40000011</p>
+  </td>
+  <td>
+  <p>If <i>LookupId</i> is 0, read the first message.
+  Otherwise, read the message following the message that is specified by <i>LookupId</i>.
+  In either case, do not remove the message.</p>
+  <p>The <i>lpRemoteReadDesc2.pRemoteReadDesc.hCursor</i>
+  parameter MUST be set to zero.</p>
+  <p>The <i>lpRemoteReadDesc2.pRemoteReadDesc.ulTimeout</i>
+  parameter MUST be set to 0x00000000.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_LOOKUP_PEEK_PREV</p>
+  <p>0x40000012</p>
+  </td>
+  <td>
+  <p>If <i>LookupId</i> is 0xFFFFFFFFFFFFFFFF, read the
+  last message. Otherwise, read the message preceding the message that is
+  specified by the <i>LookupId</i> parameter. In either case, do not remove the
+  message from the queue.</p>
+  <p>The <i>lpRemoteReadDesc2.pRemoteReadDesc.hCursor</i>
+  parameter MUST be set to zero.</p>
+  <p>The <i>LookupId</i> parameter MUST NOT be set to 0.</p>
+  <p>The <i>lpRemoteReadDesc2.pRemoteReadDesc.ulTimeout</i>
+  parameter MUST be set to 0x00000000.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_LOOKUP_RECEIVE_CURRENT</p>
+  <p>0x40000020</p>
+  </td>
+  <td>
+  <p>Read the message that is specified by the <i>LookupId</i>
+  parameter, and remove it from the queue. </p>
+  <p>The <i>lpRemoteReadDesc2.pRemoteReadDesc.hCursor</i>
+  parameter MUST be set to zero.</p>
+  <p>The <i>LookupId</i> parameter MUST NOT be set to 0.</p>
+  <p>The <i>lpRemoteReadDesc2.pRemoteReadDesc.ulTimeout</i>
+  parameter MUST be set to 0x00000000.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_LOOKUP_RECEIVE_NEXT</p>
+  <p>0x40000021</p>
+  </td>
+  <td>
+  <p>If <i>LookupId</i> is 0, read the first message.
+  Otherwise, read the message following the message that is specified by the <i>LookupId</i>
+  parameter. Remove the message from the queue.</p>
+  <p>The <i>lpRemoteReadDesc2.pRemoteReadDesc.hCursor</i>
+  parameter MUST be set to zero.</p>
+  <p>The <i>lpRemoteReadDesc2.pRemoteReadDesc.ulTimeout</i>
+  parameter MUST be set to 0x00000000.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_LOOKUP_RECEIVE_PREV</p>
+  <p>0x40000022</p>
+  </td>
+  <td>
+  <p>If <i>LookupId</i> is 0xFFFFFFFFFFFFFFFF, read the
+  last message. Otherwise, read the message preceding the message that is
+  specified by the <i>LookupId</i> parameter. Remove the message from the
+  queue.</p>
+  <p>The <i>lpRemoteReadDesc2.pRemoteReadDesc.hCursor</i>
+  parameter MUST be set to zero.</p>
+  <p>The <i>LookupId</i> parameter MUST NOT be set to 0.</p>
+  <p>The <i>lpRemoteReadDesc2.pRemoteReadDesc.ulTimeout</i>
+  parameter MUST be set to 0x00000000.</p>
+  </td>
+ </tr></tbody></table><p><b>Return Values: </b>The method MUST return MQ_OK
+(0x00000000) on success; otherwise, it MUST return a failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+and the client MUST treat all failure HRESULTs identically.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>MQ_ERROR_INVALID_HANDLE</b> (0xC00E0007)</p><p><b>MQ_ERROR_INVALID_PARAMETER</b> (0xC00E0006)</p><p><b>MQ_ERROR_IO_TIMEOUT</b> ((0xC00E001B))</p><p><b>MQ_ERROR_MESSAGE_ALREADY_RECEIVED</b> ((0xC00E001D))</p><p><b>Exceptions Thrown:</b> No exceptions are thrown except
+those thrown by the underlying RPC protocol, as specified in [MS-RPCE].</p><p>While processing this method, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Return MQ_ERROR_INVALID_HANDLE (0xC00E0007) if <i>lpRemoteReadDesc2</i>
+is NULL.</p>
+</li><li><p><span><span> 
+</span></span>Return MQ_ERROR_INVALID_PARAMETER (0xC00E0006) if:</p>
+<ul><li><p><span><span>  </span></span><i>lpRemoteReadDesc2.pRemoteReadDesc.hRemoteQueue</i>
+is set to 0.</p>
+</li><li><p><span><span>  </span></span><i>lpRemoteReadDesc2.pRemoteReadDesc.ulTimeout</i>
+is not set to 0.</p>
+</li><li><p><span><span>  </span></span><i>lpRemoteReadDesc2.pRemoteReadDesc.hCursor</i>
+is not set to 0.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Search the <b>rOpenQueueEntryCollection</b> where <b>OpenQueueEntry.OpenQueueDescriptorHandle</b>=
+<i>lpRemoteReadDesc2.pRemoteReadDesc.hRemoteQueue</i>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>OpenQueueDescriptorHandle</b> is not found, return
+MQ_ERROR_INVALID_PARAMETER (0xC00E0006).</p>
+</li><li><p><span><span> 
+</span></span>For each queue present in the <b>QueueManager.QueueCollection:</b></p>
+<ul><li><p><span><span>  </span></span>For
+each <b>OpenQueueDescriptor</b> in <b>Queue.OpenQueueDescriptorCollection:</b></p>
+<ul><li><p><span><span> 
+</span></span>If <b>OpenQueueDescriptor.Handle</b>= <i>lpRemoteReadDesc2.pRemoteReadDesc.hRemoteQueue</i>,
+use that <b>OpenQueueDescriptor</b> for processing.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Create a new <b>RemoteReadEntry</b>, referred to as <i>rrEntry</i>,
+with the following attributes:</p>
+<ul><li><p><span><span>  </span></span><b>OpenQueueDescriptorHandle</b>=
+<i>lpRemoteReadDesc2.lpRemoteReadDesc.hRemoteQueue</i></p>
+</li><li><p><span><span>  </span></span>Timeout=
+<i>lpRemoteReadDesc2.pRemoteReadDesc.ulTimeout</i></p>
+</li><li><p><span><span>  </span></span>UserMessagePacket=
+<i>lpRemoteReadDesc2.pRemoteReadDesc.lpBuffer</i></p>
+</li><li><p><span><span>  </span></span>Action=
+<i>lpRemoteReadDesc2.pRemoteReadDesc.ulAction</i></p>
+</li><li><p><span><span>  </span></span>RequestId=
+<i>lpRemoteReadDesc2.pRemoteReadDesc.dwRequestID</i></p>
+</li></ul></li><li><p><span><span> 
+</span></span>Add <i>rrEntry</i> to <b>rRemoteReadEntryCollection</b>.</p>
+</li><li><p><span><span> 
+</span></span>Generate a <span><a href="../ms-mqdmpr/2e10eb70-1822-4df2-8e00-06257dda0807" data-linktype="relative-path">Read
+Message By Lookup Identifier</a></span> event with the following inputs (&#39;*&#39; is
+used as a wildcard for possible symbolic names of <i>lpRemoteReadDesc2.pRemoteReadDesc.ulAction</i>
+as specified in the preceding Value of ulAction table):</p>
+<ul><li><p><span><span>  </span></span>iQueueDesc:=<b>QueueReference</b>
+member of the <b>OpenQueueDescriptor</b> obtained earlier</p>
+</li><li><p><span><span>  </span></span>iLookupId:=
+<i>LookupId</i></p>
+</li><li><p><span><span>  </span></span>iPeekOperation:=
+true if the value for <i>lpRemoteReadDesc2.pRemoteReadDesc.ulAction</i> is
+MQ_LOOKUP_PEEK_*; otherwise, false</p>
+</li><li><p><span><span>  </span></span>iLookupOperation:=
+</p>
+<ul><li><p><span><span> 
+</span></span>SeekFirst, if <i>lpRemoteReadDesc2.pRemoteReadDesc.ulAction</i>
+is MQ_LOOKUP_*_NEXT, and <i>LookupId</i> is 0.</p>
+</li><li><p><span><span> 
+</span></span>SeekLast, if <i>lpRemoteReadDesc2.pRemoteReadDesc.ulAction</i> is
+MQ_LOOKUP_*_PREV, and <i>LookupId</i> is 0xFFFFFFFFFFFFFFFF.</p>
+</li><li><p><span><span> 
+</span></span>SeekPrevious, if <i>lpRemoteReadDesc2.pRemoteReadDesc.ulAction</i>
+is MQ_LOOKUP_*_PREV, and <i>LookupId</i> does not equal 0xFFFFFFFFFFFFFFFF.</p>
+</li><li><p><span><span> 
+</span></span>SeekCurrent, if <i>lpRemoteReadDesc2.pRemoteReadDesc.ulAction</i>
+is MQ_LOOKUP_*_CURRENT.</p>
+</li><li><p><span><span> 
+</span></span>SeekNext, if <i>lpRemoteReadDesc2.pRemoteReadDesc.ulAction</i> is
+MQ_LOOKUP_*_NEXT, and <i>LookupId</i> does not equal 0.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>If the <i>rStatus</i> value returned from the Read Message By
+Lookup Identifier event is MQ_OK (0x00000000), the server MUST process the
+returned <i>rMessage</i> as follows:</p>
+<ul><li><p><span><span>  </span></span>Generate
+a <span><a href="../ms-mqdmpr/e7e9aebc-e278-4a85-baa5-9caf1548dcee" data-linktype="relative-path">Construct
+a UserMessage Packet</a></span> ([MS-MQDMPR] section 3.1.7.1.30) event with the
+following argument:</p>
+<ul><li><p><span><span> 
+</span></span><i>iMessage</i> := <i>rMessage</i></p>
+</li></ul></li><li><p><span><span>  </span></span>Generate
+a <span><a href="../ms-mqdmpr/b0e19729-af80-4cca-841f-865d8fc4a028" data-linktype="relative-path">Serialize
+Message to Buffer</a></span> ([MS-MQDMPR] section 3.1.7.1.32) event with the
+following arguments:</p>
+<ul><li><p><span><span> 
+</span></span><i>iMessage</i> := <i>rMessage</i></p>
+</li><li><p><span><span> 
+</span></span><i>iBuffer</i> := <i>rUserMessage</i> returned by the  Construct
+a UserMessage Packet event.</p>
+</li></ul></li><li><p><span><span>  </span></span>Assign
+<i>rUserMessage</i> to <i>lpRemoteReadDesc2</i>.<b>pRemoteReadDesc</b>.<b>lpBuffer</b>.</p>
+</li><li><p><span><span>  </span></span>Assign
+<i>rUserMessage</i>.<b>BaseHeader</b>.<b>PacketSize</b> to <i>lpRemoteReadDesc2</i>.<b>pRemoteReadDesc</b>.<b>dwSize</b>.</p>
+</li><li><p><span><span>  </span></span>Assign
+the least significant 7 bytes of <i>rMessage.LookupIdentifier</i> to the <b>SequentialId</b>
+member of <i>lpRemoteReadDesc2</i>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Remove the <b>RemoteReadEntry</b> ADM element instance from <b>rRemoteReadEntryCollection</b>
+for which <b>RemoteReadEntry</b>.<b>RequestId</b> equals <i>lpRemoteReadDesc2</i>.<b>pRemoteReadDesc</b>.<b>dwRequestID</b>
+and <b>RemoteReadEntry</b>.<b>OpenQueueDescriptorHandle</b> equals <i>lpRemoteReadDesc2</i>.<b>pRemoteReadDesc</b>.<b>hRemoteQueue</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>rStatus</i> is MQ_OK (0x00000000) and <i>lpRemoteReadDesc2.pRemoteReadDesc.ulAction</i>
+is MQ_LOOKUP_RECEIVE_*, set <i>pphContext</i> to <i>rrEntry</i>; otherwise,
+delete <i>rrEntry</i>.</p>
+</li><li><p><span><span> 
+</span></span>Return <i>rStatus</i>.</p>
+</li></ul></div>

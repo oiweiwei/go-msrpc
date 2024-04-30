@@ -1,0 +1,45 @@
+<div class="content"><p>The AdAttributeData structure provides information about an <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a> operation.
+This structure describes the Active Directory operation that is requested by
+the client. The <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a> for
+this structure is {D3766938-9FB7-4392-AF2F-2CE8749DBBD0}.</p><dl>
+<dd>
+<div><pre> typedef[uuid(D3766938-9FB7-4392-AF2F-2CE8749DBBD0)] 
+    struct AdAttributeData {
+   long operation;
+   BSTR attributeName;
+   BSTR attributeValue;
+   VARIANT_BOOL isString;
+   long length;
+ } _AdAttributeData;
+</pre></div>
+</dd></dl><p><b>operation:</b>  Specifies the <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a> operation that MUST be
+executed for the attribute that is specified by the <i>attributeName</i>
+parameter. This value MUST be specified by using rules for the <b>operation</b>
+field of the LDAP ModifyRequest. For information about ModifyRequest, see <a href="https://go.microsoft.com/fwlink/?LinkId=90325" data-linktype="external">[RFC2251]</a> section 4.6.</p><p><b>attributeName:</b>  MUST be the name of
+the attribute on which to execute the LDAP operation that is specified by the <i>operation</i>
+parameter.</p><p><b>attributeValue:</b>  The value of the
+attribute that is specified by the <i>attributeName</i> parameter. The value of
+this parameter MUST be built by using the following rules:</p><ul><li><p><span><span> 
+</span></span>If the value can be represented as a string, the <i>attributeValue</i>
+field MUST contain the string representation of the value.</p>
+</li><li><p><span><span> 
+</span></span>If the value contains raw binary data, the <i>attributeValue</i>
+field MUST contain the binary data encoded in the <a href="../ms-oaut/1c9d2cfc-cf7d-4f4b-95bf-584be5defd81" data-linktype="relative-path">BSTR</a>
+according to the following rules:</p>
+<ul><li><p><span><span>  </span></span>The
+length, in bytes, of the BSTR buffer MUST be greater than or equal to the value
+of the size of the binary data that is to be encoded.</p>
+</li><li><p><span><span>  </span></span>The
+BSTR buffer MUST be filled by the bytes that compose the in-memory representation
+of the binary data that is being encoded. The part of the buffer between
+offsets 0 and &#34;length - 1&#34; MUST be passed to the LDAP protocol by the
+server. The remainder of the BSTR buffer, if any, MUST be ignored by the
+server.</p>
+</li></ul></li></ul><p><b>isString:</b>  Specifies whether the
+value that is passed in the <i>attributeValue</i> field is a string. The value
+of this field MUST be VARIANT_FALSE (as specified in <a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a>
+section <a href="../ms-oaut/7b39eb24-9d39-498a-bcd8-75c38e5823d0" data-linktype="relative-path">2.2.27</a>)
+if the <i>attributeValue</i> field contains a binary value. Otherwise, the
+value MUST be VARIANT_TRUE.</p><p><b>length:</b>  For a binary value, the
+length, in bytes, of the value MUST be provided in this field. For string data,
+this field MUST be set to the length, in bytes, of the <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string (see <a href="https://go.microsoft.com/fwlink/?LinkId=90552" data-linktype="external">[UNICODE4.0]</a>.</p></div>

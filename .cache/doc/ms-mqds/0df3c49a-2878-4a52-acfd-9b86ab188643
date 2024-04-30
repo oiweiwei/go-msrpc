@@ -1,0 +1,73 @@
+<div class="content"><p> </p><p><span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_70ce3665-ae64-44b4-88fe-7c1dcdcd5417" data-linktype="relative-path">Message Queuing</a></span> is a
+communications service that provides asynchronous and reliable <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span>
+passing between client applications, including between client applications
+running on different hosts. In Message Queuing, clients send messages to <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queues</a></span>
+and consume messages from queues. Queues provide message persistence, enabling
+the sending and receiving of client applications to operate asynchronously from
+each other.</p><p>Because Message Queuing involves message passing between
+nodes, a <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_c36db657-3138-4d9a-9289-ded5cbb8b40e" data-linktype="relative-path">directory service</a></span>
+can be useful to Message Queuing services in several ways. First, a directory
+service can provide network topology information that the Message Queuing
+services can use to route messages between nodes. Second, a directory service
+can be used as a key distribution mechanism for security services that are used
+by Message Queuing to secure messages and authenticate clients. Third, a
+directory service can provide clients with discovery capabilities, allowing
+clients to discover the queues available within the network.</p><p>The Message Queuing (MSMQ): Directory Service Protocol
+provides a set of procedure calls that can be made between a client and an MSMQ
+Directory Server. The client can use these calls to access the Directory
+Service remotely. For example, a client can use this protocol to create queue
+objects in a directory. This protocol is intended for use by the Message
+Queuing system.</p><p>The directory defined by the Message Queuing (MSMQ):
+Directory Service Protocol is composed of eight types of directory objects
+representing <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_7f2ba744-a8fa-4793-9e7a-c14471e313ff" data-linktype="relative-path">enterprises</a></span>, sites, <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_937d711c-e6f1-4af0-84e2-188141b28be5" data-linktype="relative-path">routing
+links</a></span>, machines, users, queues, <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_2bf10154-6cb6-401f-8b44-15644784dd4e" data-linktype="relative-path">connected networks</a></span>,
+and deleted objects.</p><p>Each directory object is composed of a collection of
+properties. Each property has an integer <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_382ac1cd-8ff9-493a-bfec-d9ad08955707" data-linktype="relative-path">property identifier</a></span>
+and a variant property value. Properties are specific to the directory object
+type. Most directory object types include a <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> property to identify
+a particular object instance, a directory service pathname property specifying
+where in the directory the object is stored, and security properties. Some <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_0409899a-2e1c-452a-b5ae-5a524e2d9280" data-linktype="relative-path">MSMQ
+object properties</a></span> are assigned by the directory service while other
+MSMQ object properties are specified by the client. Some properties are
+immutable; some properties are mutable by the directory server but not by the
+client while other properties are mutable by both.</p><p>The directory objects either are maintained by the MSMQ
+Directory Service servers or are stored in a directory that supports <span><a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a></span>.
+In the latter case, the Message Queuing (MSMQ): Directory Service Protocol
+server interprets the client <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> calls and uses
+the <span><a href="../ms-mqdssm/ca3981fd-8f4f-4637-938e-8b50dae9308b" data-linktype="relative-path">[MS-MQDSSM]</a></span>
+algorithm to access the [MS-ADTS]-based directory to satisfy client requests.</p><p>The Message Queuing (MSMQ): Directory Service Protocol
+provides methods to create, update, retrieve, and delete objects from the
+directory service by using either the object name or the unique object GUID as a
+key to identify the object. Separate interface methods are implemented to
+manipulate object security properties.</p><p>The Message Queuing (MSMQ): Directory Service Protocol also
+provides a simple query mechanism that allows the enumeration of directory
+objects through comparison with client-supplied values. The client can specify
+the matching criteria, the properties to be returned, and the sort order for
+the results. The server computes the result set. Thereafter, the client
+retrieves the results in order, in an iterative manner through repeated calls
+to the server, each call returning the next portion of the result set.</p><p>The Message Queuing (MSMQ): Directory Service Protocol
+includes a method for RPC <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span> port
+negotiation. Through this, the client can determine the RPC endpoint port to
+use for this protocol.</p><p>Generally, for methods that create, update, or delete
+information in the directory service, the Message Queuing (MSMQ): Directory
+Service Protocol relies on security mechanisms of the underlying <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_c2eeb200-3cd0-4916-966e-d7d6bff1737a" data-linktype="relative-path">RPC
+transport</a></span> to provide client authentication information to the
+server. There are two exceptions to this. When setting properties on a machine
+object, and when retrieving the security properties of a machine object, the
+server invokes a challenge/response callback to the client to authenticate the
+client. This client signs the challenge by using a <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private key</a></span>, and the
+server validates the signature by using a corresponding <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public
+key</a></span> stored with the machine object in the directory.</p><p>Because the directory service provides network topology
+information and security key distribution, clients can trust the source of this
+data. Therefore, this protocol includes methods for a security handshake to
+allow mutual authentication and to establish cryptographic keys that are used
+to compute <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_ad0cf6e3-05c3-482d-ab0f-617f91871189" data-linktype="relative-path">digital signatures</a></span>.
+These handshake methods tunnel Generic Security Service API (GSS-API), as
+specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90378" data-linktype="external">[RFC2743]</a></span>,
+operations to establish a security context. See [RFC2743] section 2.2.</p><p>All methods that return data to the client include signed
+hashes over returned data, allowing the client to authenticate the source of
+the data and verify that the data has not been tampered with en route. The
+signed hashes are computed by using the established security context.</p><p>This is an RPC-based protocol consisting of simple
+request-response exchanges. For every method request that the server receives,
+it executes the method and returns a completion. The client simply returns the
+completion status to the caller.</p></div>

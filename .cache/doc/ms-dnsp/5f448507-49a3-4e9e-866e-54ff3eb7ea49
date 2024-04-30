@@ -1,0 +1,36 @@
+<div class="content"><p> </p><p>The <b>R_DnssrvEnumRecords4</b> method enumerates DNS
+records on a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span> or a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bbe7722c-420e-48e7-b4bb-9838ff07b9e6" data-linktype="relative-path">zone
+scope</a></span> in a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1b9d3eb9-dad0-4d1d-acb7-4597e5db641c" data-linktype="relative-path">virtualization instance</a></span>,
+if specified. The DNS server SHOULD<a id="Appendix_A_Target_293"></a><a aria-label="Product behavior note 293" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_293" data-linktype="relative-path">&lt;293&gt;</a>
+implement R_DnssrvEnumRecords4. </p><p>All parameters are as specified by the <span><a href="d7d4a3ac-7995-4d41-9fcf-1826cce95e2c" data-linktype="relative-path">R_DnssrvEnumRecords3
+method (section 3.1.4.12)</a></span> with the following exceptions:</p><dl>
+<dd>
+<div><pre>    LONG R_DnssrvEnumRecords4(
+      [in]                                  handle_t      hBindingHandle,
+      [in]                                  DWORD         dwClientVersion,
+      [in]                                  DWORD         dwSettingFlags,
+      [in, unique, string]                  LPCWSTR       pwszServerName,
+      [in, unique, string]                  LPCWSTR       pwszVirtualizationInstanceID,
+      [in, unique, string]                  LPCSTR        pszZone,
+      [in, unique, string]                  LPCWSTR       pwszZoneScope,
+      [in, unique, string]                  LPCSTR        pszNodeName,
+      [in, unique, string]                  LPCSTR        pszStartChild,
+      [in]                                  WORD          wRecordType,
+      [in]                                  DWORD         fSelectFlag,
+      [in, unique, string]                  LPCSTR        pszFilterStart,
+      [in, unique, string]                  LPCSTR        pszFilterStop,
+      [out]                                 PDWORD        pdwBufferLength,
+      [out, size_is(, *pdwBufferLength)]    PBYTE *        ppBuffer
+    );
+</pre></div>
+</dd></dl><p><b>pwszVirtualizationInstanceID:</b> A pointer to a
+null-terminated character string that contains the name of the virtualization
+instance under which zone and zone scope records are to be enumerated. For
+operations specific to a particular zone or zone scope, details must be given
+in <b>pszZone</b> and <b>pwszZoneScope</b> as specified in section 3.1.4.12. If
+the value pwszVirtualizationInstanceID is NULL, the API gives the same behavior
+as <b>R_DnssrvEnumRecord3</b>.</p><p>When processing this call, the server MUST perform the same
+actions as for the <b>R_DnssrvEnumRecords3</b> method (section 3.1.4.12). If
+unable to perform the operation returns error EPT_S_CANT_PERFORM_OP
+(0x000006D8) (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>).</p></div>

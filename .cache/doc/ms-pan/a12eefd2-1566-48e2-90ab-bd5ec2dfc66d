@@ -1,0 +1,64 @@
+<div class="content"><p>The Print System Asynchronous Notification Protocol serves
+two primary functions:</p><ul><li><p><span><span> 
+</span></span>A <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a>
+sending status <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_4571dc27-4115-4cdf-8dc3-f8fe410a9966" data-linktype="relative-path">notifications</a>
+to a <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_3b2da3d1-c159-4399-a6dd-dfd5f76fa2f5" data-linktype="relative-path">print client</a>.</p>
+</li><li><p><span><span> 
+</span></span>A print server receiving the client&#39;s <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_115e9f9c-314e-49fc-977d-238daf619828" data-linktype="relative-path">response</a> to the
+notifications.</p>
+</li></ul><p>This protocol has two modes of operation:</p><ul><li><p><span><span> 
+</span></span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_b1d50fe5-0a8c-44fe-8802-3382d1af77e5" data-linktype="relative-path">bidirectional
+communication mode</a></p>
+</li><li><p><span><span> 
+</span></span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_d203482a-15ef-4528-9064-68b0f2e0c5fa" data-linktype="relative-path">unidirectional
+communication mode</a></p>
+</li></ul><p>In bidirectional communication mode, data can flow in two
+directions between a server and client. After a client registers with a server,
+the client requests a bidirectional <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_31f349c9-3af0-4057-9d90-5ecb958398a5" data-linktype="relative-path">notification channel</a> from
+the server. The client uses the channel to request predefined print status
+notifications from the server. When the client subsequently receives a
+notification, the client also uses the channel to send a response back to the
+server.</p><p>In bidirectional communication mode, if multiple clients
+open the same bidirectional notification channel and attempt to respond to the
+channel&#39;s initial notification, the server accepts only the first response
+received and continues to send further notifications only to the client whose
+response was accepted. Subsequent exchanges of notifications and responses on
+the channel take place only between the server and that client. Because
+bidirectional notifications each require a response, the initial notification
+intended to be transmitted on a bidirectional notification channel cannot be
+discarded before a registered client sends a response on that channel (or the
+channel is closed).</p><p>The following diagram shows bidirectional communication.</p><p><img id="MS-PAN_pict78347c62-81a1-9ccf-f08e-3fe8b2b2219e.png" src="ms-pan_files/image001.png" alt="Bidirectional communication" title="Bidirectional communication" data-linktype="relative-path"/></p><p><b>Figure 1: Bidirectional communication</b></p><p>In unidirectional communication mode, multiple clients can
+register for the same notifications. The server sends a given notification to
+all clients that have registered for it. Because unidirectional notifications
+do not require a response, the server can discard the notifications in the
+absence of an appropriately registered client.</p><p>The following diagram shows unidirectional communication.</p><p><img id="MS-PAN_pict9b59725e-b850-af22-4bae-b27a02d7ee66.png" src="ms-pan_files/image002.png" alt="Unidirectional communication" title="Unidirectional communication" data-linktype="relative-path"/></p><p><b>Figure 2: Unidirectional communication</b></p><p>Server-resident <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_7c039695-d5b5-4f3c-859a-a691d150b289" data-linktype="relative-path">notification sources</a>
+create, on behalf of print clients, notification channels to send notifications
+as printing events occur. Each channel is created to send only a given <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_ad9bb1cf-c546-4d8a-8caa-09856386eae0" data-linktype="relative-path">notification type</a> in a
+single communication mode, unidirectional or bidirectional.</p><p>Each notification channel is created to send notifications
+to registered clients, irrespective of their <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_916785d4-dee1-4e63-99a7-ba30240ae3d8" data-linktype="relative-path">authenticated user identity</a>,
+or to send notifications to the subset of registered clients with associated
+authenticated user identity matching that of a specific print client. When
+registering for notifications, clients specify the <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_928ce1b5-ae98-4601-b500-48cb24b2affc" data-linktype="relative-path">notification type identifier</a>,
+communication mode, and <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_7b73a4fc-912a-412a-9b0f-d021a1e6df13" data-linktype="relative-path">user
+identity filter</a> for the notifications they are interested in receiving.</p><p>Unidirectional notification channels are closed only by the
+notification source that created the channel. Bidirectional notification
+channels can be closed by the client that acquired the channel or by the
+notification source that created the channel. The interaction with notification
+sources is described in <a href="1064405b-232f-499d-b471-f286ccc8a91d" data-linktype="relative-path">3.1.1.6</a>.</p><p>The Print System Asynchronous Notification Protocol is based
+on the <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> Protocol, and
+it defines the following two RPC interfaces, which are called by the client and
+implemented by the server: </p><ul><li><p><span><span> 
+</span></span>IRPCAsyncNotify, which is used to register and deregister
+clients, establish notification channels, and send data back and forth between
+the client and the server.</p>
+</li><li><p><span><span> 
+</span></span>IRPCRemoteObject, which is used to create and destroy <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_96e6d133-8e9c-4258-ae03-65cb549bce90" data-linktype="relative-path">remote objects</a> that refer
+to printers.</p>
+</li></ul><p>This specification also defines the <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_81b6e252-164f-4c6b-ae77-58a20a38f432" data-linktype="relative-path">AsyncUI</a> notification type,
+which exists to support a client component that receives and interprets
+notifications from server-hosted notification sources, such as <a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer drivers</a>. The
+AsyncUI client component can be used to display an informative message, send
+user input back to the notification source on the server, or trigger the
+execution of printer driver code on the client computer. The following diagram illustrates
+the relationship between a notification source and an AsyncUI client.</p><p><img id="MS-PAN_picte868b783-8112-4865-9862-24f6eda6b37f.png" src="ms-pan_files/image003.png" alt="Relationship between a notification source and an AsyncUI client" title="Relationship between a notification source and an AsyncUI client" data-linktype="relative-path"/></p><p><b>Figure 3: Relationship between a notification source and an
+AsyncUI client</b></p></div>

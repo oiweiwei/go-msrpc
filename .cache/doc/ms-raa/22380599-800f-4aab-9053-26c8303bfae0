@@ -1,0 +1,14 @@
+<div class="content"><p>The AUTHZR_TOKEN_GROUPS structure represents a security
+identifier (SID) and its attributes.</p><dl>
+<dd>
+<div><pre> typedef struct _AUTHZR_TOKEN_GROUPS {
+     DWORD GroupCount;
+     [size_is(GroupCount)] AUTHZR_SID_AND_ATTRIBUTES Groups[];
+ } AUTHZR_TOKEN_GROUPS;
+  
+  
+</pre></div>
+</dd></dl><p><b>GroupCount:</b>  Indicates the number of
+structures in the Groups array.</p><p><b>Groups:</b>  An array of AUTHZR_SID_AND_ATTRIBUTES
+structures (section <a href="87d5987b-6f24-4906-8935-ac10fa494cdc" data-linktype="relative-path">2.2.3.8</a>)
+representing groups associated with the token.</p></div>

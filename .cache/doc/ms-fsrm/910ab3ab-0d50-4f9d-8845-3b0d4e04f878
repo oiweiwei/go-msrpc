@@ -1,0 +1,59 @@
+<div class="content"><p>The SetFilter method sets the value of the specified report <b>filter</b>
+for the report object. The <b>filter</b> value will override the default value
+set by using the <a href="f21974d2-8dfd-4f1e-bcca-b01436df178e" data-linktype="relative-path">IFsrmReportManager::SetDefaultFilter (section 3.2.4.2.33.8)</a>
+method.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_REPORT | 0x02)] HRESULT SetFilter(
+   [in] FsrmReportFilter filter,
+   [in] VARIANT filterValue
+ );
+</pre></div>
+</dd></dl><p><b>filter: </b>Contains the value from the <a href="af1c6aeb-ba51-4d9f-965c-b8886c56b8ee" data-linktype="relative-path">FsrmReportFilter (section 2.2.1.2.16)</a>
+enumeration of the <b>filter</b> to set.</p><p><b>filterValue: </b>Contains the value of the
+specified <b>filter</b> for the specified report type.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>filter</i> parameter is
+  not a valid FsrmReportFilter (section 2.2.1.2.16) value.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>An attempt was made to set the <b>FsrmReportFilter_Property</b>
+  filter value with a supplied value that is not in a valid property name
+  format, or the property does not exist.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The variant does not have the
+  correct member set for the filter.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The string filter values are not
+  valid characters.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>filter</i> contains a valid FsrmReportFilter
+value.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>If <b>filter</b> is <b>FsrmReportFilter_Property</b>, the
+server MUST perform the following actions:</p><ul><li><p><span><span> 
+</span></span>If <b>filterValue</b> contains a valid <b>Name</b> of a <a href="00194c43-c91d-447d-9c24-0725f48d4219" data-linktype="relative-path">Persisted Property Definition</a>
+on the server whose <a href="aeb8c879-da1a-4676-8d16-d7f85bac7a04" data-linktype="relative-path">Property
+Definition.Deprecated</a> is set to false, the server MUST set <a href="23576b19-7291-47b9-91a0-5a38b1fc31d3" data-linktype="relative-path">Report.Deprecated</a> to
+false. Otherwise, set Report.Deprecated to true.</p>
+</li></ul><p>The server MUST set the value of the specified <b>filter</b>
+for the report object to filterValue or return a nonzero error code.</p></div>

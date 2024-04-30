@@ -1,0 +1,12 @@
+<div class="content"><p>The RPC_V2_UREPLY_PRINTER union defines printer notification
+responses.<a id="Appendix_A_Target_79"></a><a aria-label="Product behavior note 79" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_79" data-linktype="relative-path">&lt;79&gt;</a></p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union _RPC_V2_UREPLY_PRINTER {
+   [case(0)] 
+     RPC_V2_NOTIFY_INFO* pInfo;
+ } RPC_V2_UREPLY_PRINTER;
+</pre></div>
+</dd></dl><p><b>pInfo:</b> A pointer to an <b>RPC_V2_NOTIFY_INFO</b>
+structure, which MUST contain notification information.</p></div>

@@ -1,0 +1,13 @@
+<div class="content"><p>The GetDeviceTypeId_Return structure is used to obtain the
+data that corresponds to the lookup item requested in <b>GetDeviceTypeId_Call</b>
+as specified in section <a href="b5e18874-c42d-42ea-b1b1-3fd86a8a95f1" data-linktype="relative-path">2.2.2.32</a>.
+For more information, see section <a href="a7cecc06-3bcb-48ca-90ea-a9d542cffafc" data-linktype="relative-path">3.1.4.47</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _GetDeviceTypeId_Return {
+   long ReturnCode;
+   unsigned long dwDeviceId;
+ } GetDeviceTypeId_Return;
+</pre></div>
+</dd></dl><p><b>ReturnCode:</b>  HRESULT or Win32 error
+code. Zero indicates success; any other value indicates failure.</p><p><b>dwDeviceId:</b>  The value of the lookup
+item.</p></div>

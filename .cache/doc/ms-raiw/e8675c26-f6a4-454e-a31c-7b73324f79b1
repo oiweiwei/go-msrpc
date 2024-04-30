@@ -1,0 +1,69 @@
+<div class="content"><p>The R_WinsDeleteWins method deletes all the records owned by
+a particular <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_f2f9c250-6c9e-445f-b677-376f23f77d87" data-linktype="relative-path">WINS server</a>
+from the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target WINS server</a>
+database.</p><dl>
+<dd>
+<div><pre> DWORD R_WinsDeleteWins(
+   [in] handle_t ServerHdl,
+   [in, ref] PWINSINTF_ADD_T pWinsAdd
+ );
+</pre></div>
+</dd></dl><p><b>ServerHdl: </b>An <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding over IP
+address/HostName to the WINS server. RPC uses this binding internally to
+determine which WINS server the call is directed to.</p><p><b>pWinsAdd: </b>A pointer to the address of the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_5adb42e6-46b8-4a71-b98c-f997bf00db61" data-linktype="relative-path">owner WINS server</a> whose
+records are to be deleted from the target WINS server.</p><p><b>Return Values: </b>A 32 bit unsigned integer that
+indicates the return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that operation completed successfully. A nonzero return value is a
+Win32 error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following Win32 error codes can be returned:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000FA0</p>
+  <p>ERROR_WINS_INTERNAL</p>
+  </td>
+  <td>
+  <p>An error occurred while processing the RPC call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller doesn&#39;t have sufficient permissions.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Processing and Response Requirements:</b></p><p>The following requirements and recommendations apply to a
+WINS server that processes a call to <a href="e231089b-eb49-40d2-8b62-2b1437e9f98a" data-linktype="relative-path">R_WinsDeleteWins</a>:</p><ul><li><p><span><span> 
+</span></span>The RPC method caller SHOULD have control-level access. If an RPC
+client with a lower access level calls this method, the server SHOULD return
+ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If <i>pWinsAdd</i> contains the IP address of the target <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a>, the records are
+deleted immediately from the target WINS server database. If the server
+encounters an error while retrieving the records from the database, it SHOULD
+return ERROR_WINS_INTERNAL; otherwise, the server returns ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>If <i>pWinsAdd</i> contains an IP address different from the
+target WINS server address, a request is queued at the target WINS server, and
+the RPC call returns immediately with ERROR_SUCCESS status.</p>
+</li></ul></div>

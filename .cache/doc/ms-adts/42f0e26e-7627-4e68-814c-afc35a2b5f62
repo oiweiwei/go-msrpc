@@ -1,0 +1,112 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/42f0e26e-7627-4e68-814c-afc35a2b5f62" data-linktype="external">msdn link</a></p><p>The <b>DS_REPL_CURSOR_BLOB</b> is the packet representation
+of the ReplUpToDateVector type (<a href="../ms-drsr/f977faaa-673e-4f66-b9bf-48c640241d47" data-linktype="relative-path">[MS-DRSR]</a>
+section <a href="../ms-drsr/8cb40d62-a51d-47e3-9b4e-0837edffd61c" data-linktype="relative-path">5.166</a>)
+of an <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_325d116f-cdbe-4dbd-b7e6-769ba75bf210" data-linktype="relative-path">NC replica</a>. This
+structure, retrieved using an <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a>
+search method, is an alternative representation of DS_REPL_CURSOR_3W, retrieved
+using the IDL_DRSGetReplInfo <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+method.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uuidSourceDsaInvocationID
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>usnAttributeFilter</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>fTimeLastSyncSuccess</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>oszSourceDsaDN</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>uuidSourceDsaInvocationID (16 bytes): </b>A <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a>
+structure, defined in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section 2.3.4, specifying the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_e7869b9a-61fa-46e3-89dd-fb3f57d1ba7a" data-linktype="relative-path">invocationId</a>
+of the originating server to which the usnAttributeFilter corresponds.</p><p><b>usnAttributeFilter (8 bytes): </b>A <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_01936446-8739-4b98-b83f-fb5e2a53ce4c" data-linktype="relative-path">USN</a> value, as defined in
+section <a href="03c3c091-03aa-42d0-a7bf-7c5f8adaf0c2" data-linktype="relative-path">3.1.1.1.9</a>,
+containing the maximum USN to which the destination server can indicate that it
+has recorded all changes originated by the given server at USNs less than or
+equal to this USN. This is used to <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_ffbe7b55-8e84-4f41-a18d-fc29191a4cda" data-linktype="relative-path">filter</a> changes at <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a> source servers
+that the destination server has already applied. </p><p><b>fTimeLastSyncSuccess (8 bytes): </b>A <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a>
+structure that contains the date and time of the last successful
+synchronization operation.</p><p><b>oszSourceDsaDN (4 bytes): </b>Contains a 32-bit
+offset, in bytes, from the address of this structure to a null-terminated <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string. The string
+contains the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">distinguished
+name</a> of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_919e41e4-f321-43ed-bbe5-675ca4cd9a28" data-linktype="relative-path">directory
+service agent (DSA)</a> that corresponds to the source server to which this
+replication state data applies.</p><p><b>data (variable): </b>This field contains the
+null-terminated string pointed to by the offset field in the structure (oszSourceDsaDN).
+The offset can be used to determine the start of the string.</p><p>All multibyte fields have little-endian byte ordering.</p></div>

@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The DSROLE_SERVER_STATE enumeration specifies the role of
+the computer prior to the upgrade.</p><dl>
+<dd>
+<div><pre> typedef  enum _DSROLE_SERVER_STATE
+ {
+   DsRoleServerUnknown = 0,
+   DsRoleServerPrimary,
+   DsRoleServerBackup
+ } DSROLE_SERVER_STATE,
+  *PDSROLE_SERVER_STATE;
+</pre></div>
+</dd></dl><p><b>DsRoleServerUnknown:  </b>The previous role of the
+computer is unknown.</p><p><b>DsRoleServerPrimary:  </b>The previous role of the
+computer was <span><a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">primary domain controller</a></span>
+in a <span><a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_79aa9621-8937-4921-9d44-eea739adaf77" data-linktype="relative-path">legacy
+domain</a></span>.</p><p><b>DsRoleServerBackup:  </b>The previous role of the
+computer was <span><a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_ce1138c6-7ab4-4c37-98b4-95599071c3c3" data-linktype="relative-path">backup domain controller</a></span>
+in a legacy domain.</p></div>

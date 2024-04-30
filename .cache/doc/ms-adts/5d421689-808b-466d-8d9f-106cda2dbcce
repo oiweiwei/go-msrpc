@@ -1,0 +1,177 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/5d421689-808b-466d-8d9f-106cda2dbcce" data-linktype="external">msdn link</a></p><p>The <b>DS_REPL_VALUE_META_DATA_BLOB</b> packet is a
+representation of a <i>stamp</i> variable (of type <i>LinkValueStamp</i>) of a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_659e8352-a6db-4752-8c05-4b21c602f238" data-linktype="relative-path">link value</a>. This structure,
+retrieved using an <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a>
+search method, is an alternative representation of DS_REPL_VALUE_META_DATA_2,
+retrieved using the IDL_DRSGetReplInfo <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> method.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>oszAttributeName</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>oszObjectDn</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cbData</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>pbData</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ftimeDeleted</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ftimeCreated</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ftimeLastOriginatingChange</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uuidLastOriginatingDsaInvocationID
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>usnOriginatingChange</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>usnLocalChange</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>oszLastOriginatingDsaDN</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>oszAttributeName (4 bytes): </b>Contains a 32-bit
+offset, in bytes, from the address of this structure to a null-terminated <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string that
+contains the LDAP display name of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a> corresponding to
+this metadata.</p><p><b>oszObjectDn (4 bytes): </b>Contains a 32-bit
+offset, in bytes, from the address of this structure to a null-terminated
+Unicode string that contains the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a> of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a> that this attribute
+belongs to.</p><p><b>cbData (4 bytes): </b>Contains the number of bytes
+in the pbData array.</p><p><b>pbData (4 bytes): </b>Contains a 32-bit offset, in
+bytes, from the address of this structure to a buffer that contains the
+attribute <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a>
+metadata. The <b>cbData</b> member contains the length, in bytes, of this
+buffer.</p><p><b>ftimeDeleted (8 bytes): </b>Contains the <i>timeDeleted</i>
+of this link value&#39;s <i>LinkValueStamp</i>, as specified in section <a href="03c3c091-03aa-42d0-a7bf-7c5f8adaf0c2" data-linktype="relative-path">3.1.1.1.9</a>.</p><p><b>ftimeCreated (8 bytes): </b>Contains the <i>timeCreated</i>
+of this link value&#39;s <i>LinkValueStamp</i>, as specified in section 3.1.1.1.9.</p><p><b>dwVersion (4 bytes): </b>Contains the <i>dwVersion</i>
+of this link value&#39;s <i>LinkValueStamp</i>, as specified in section 3.1.1.1.9.</p><p><b>ftimeLastOriginatingChange (8 bytes): </b>Contains
+the <i>timeChanged</i> of this link value&#39;s <i>LinkValueStamp</i>, as specified
+in section 3.1.1.1.9.</p><p><b>uuidLastOriginatingDsaInvocationID (16 bytes): </b>Contains
+the <i>uuidOriginating</i> of this link value&#39;s <i>LinkValueStamp</i>, as
+specified in section 3.1.1.1.9.</p><p><b>usnOriginatingChange (8 bytes): </b>Contains the <i>usnOriginating</i>
+of this link value&#39;s <i>LinkValueStamp</i>, as specified in section 3.1.1.1.9.</p><p><b>usnLocalChange (8 bytes): </b>Specifies the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_01936446-8739-4b98-b83f-fb5e2a53ce4c" data-linktype="relative-path">USN</a>, as found on the server
+from which the metadata information is being retrieved, at which the last
+change to this attribute was applied. This value is typically different on all
+servers.</p><p><b>oszLastOriginatingDsaDN (4 bytes): </b>Contains a
+32-bit offset, in bytes, from the address of this structure to a
+null-terminated Unicode string that contains the DN of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_dc90b593-841f-4c6d-8032-b32e58e887a8" data-linktype="relative-path">nTDSDSA object</a> of the
+server that originated the last replication.</p><p><b>data (variable): </b>This field contains all the
+null-terminated strings that are pointed to by the offset fields in the
+structure (oszAttributeName, oszObjectDn, oszLastOriginatingDsaDN) and the
+buffer pointed to by <b>pbData</b>. The strings and buffers are packed into
+this field (aligned at 32-bit boundaries), and the offsets can be used to
+determine the start of each string.</p><p>All multibyte fields have little-endian byte ordering.</p></div>

@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The DFSM_ROOT_LIST_ENTRY structure relates to the <span><a href="eff0144e-26d7-485c-aeed-caa737bcd7d2" data-linktype="relative-path">NetrDfsAdd2</a></span>,
+<span><a href="eddab804-70e9-4b78-9763-d4cb6f052496" data-linktype="relative-path">NetrDfsAddFtRoot</a></span>,
+and <span><a href="d2d8d56c-7ff6-4674-8193-313ddf1f1c3b" data-linktype="relative-path">NetrDfsSetInfo2</a></span>
+methods when used to add a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS link</a></span> or a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ac90b498-3ba4-48d6-bcd6-5495f1654671" data-linktype="relative-path">DFS root
+target</a></span>, or to modify the configuration of a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_133ab305-ad75-4b38-8ec9-40bc0dc3b594" data-linktype="relative-path">domain-based
+DFS namespace</a></span>. The structure contains information about a DFS root
+target. </p><p>The DFSM_ROOT_LIST_ENTRY structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFSM_ROOT_LIST_ENTRY {
+   [string, unique] WCHAR* ServerShare;
+ } DFSM_ROOT_LIST_ENTRY;
+</pre></div>
+</dd></dl><p><b>ServerShare:</b>  Specifies a DFS root
+target.</p></div>

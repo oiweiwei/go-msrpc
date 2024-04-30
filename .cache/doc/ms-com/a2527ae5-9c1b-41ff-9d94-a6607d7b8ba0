@@ -1,0 +1,114 @@
+<div class="content"><p>The TransactionContextPropertyHeader structure is the common
+header for all variants of the <a href="79eda8ed-9572-4e8d-897f-8b0d42973d89" data-linktype="relative-path">Transaction Context Property</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">MaxVersion</p>
+  </td>
+  <td colspan="16">
+  <p align="center">MinVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">Variant</p>
+  </td>
+  <td colspan="16">
+  <p align="center">StreamID
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">...</p>
+  </td>
+  <td colspan="16">
+  <p align="center">StreamVariant</p>
+  </td>
+ </tr>
+</tbody></table><p><b>MaxVersion (2 bytes): </b>The major version of
+this marshaled format. MUST be set to 0x0001 or 0x0002. A value of 0x0002
+indicates that an <b>IsolationLevel</b> field is present at the end of the
+message (see sections <a href="b3bf71b1-9369-4fc2-a097-ae8600dbd984" data-linktype="relative-path">2.2.2.1.2</a>
+and <a href="cea9d1ca-24fb-4d83-86c1-d7eecb23d75e" data-linktype="relative-path">2.2.2.1.3</a>); a value
+of 0x0001 indicates that no <b>IsolationLevel</b> is present.</p><p><b>MinVersion (2 bytes): </b>The minor version of
+this marshaled format. MUST be set to 0x0001.</p><p><b>Variant (2 bytes): </b>This MUST be set to either
+0x0000 or 0x0002, and MUST be ignored by the server on receipt.</p><p><b>StreamID (16 bytes): </b>A <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> identifying the controlling
+<a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_24cea17a-fe1c-4a2b-96fd-24dd11b32e74" data-linktype="relative-path">transaction stream</a>.</p><p><b>StreamVariant (2 bytes): </b>A value identifying
+the larger structure that contains the TransactionContextPropertyHeader. It
+MUST be set to one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>StreamVariant</p>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>The TransactionContextPropertyHeader structure MUST be
+  contained as part of a TransactionStream (section 2.2.2.1.2)
+  structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TransactionVariant</p>
+  <p>0x0002</p>
+  </td>
+  <td>
+  <p>The TransactionContextPropertyHeader structure MUST be
+  contained as part of a TransactionBuffer (section 2.2.2.1.3)
+  structure.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

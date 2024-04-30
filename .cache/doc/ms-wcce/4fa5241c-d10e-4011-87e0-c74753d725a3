@@ -1,0 +1,103 @@
+<div class="content"><p> </p><p>The <b>CAINFO</b> structure defines a basic informational
+block that describes a <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _CAINFO {
+   DWORD cbSize;
+   long CAType;
+   DWORD cCASignatureCerts;
+   DWORD cCAExchangeCerts;
+   DWORD cExitAlgorithms;
+   long lPropIDMax;
+   long lRoleSeparationEnabled;
+   DWORD cKRACertUsedCount;
+   DWORD cKRACertCount;
+   DWORD fAdvancedServer;
+ } CAINFO;
+</pre></div>
+</dd></dl><p><b>cbSize:</b>  Unsigned integer value that
+MUST contain the size of this structure in bytes.</p><p><b>CAType:</b>  Integer value that SHOULD
+contain a constant describing the CA type. The value SHOULD be one of the
+values in the following table.</p><dl>
+<dd>
+<p><b>Note</b>  The value 0x00000002 MUST NOT
+be used for this parameter.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ENUM_ENTERPRISE_ROOTCA</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The CA is an enterprise root (self-signed) CA. For
+  more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90202" data-linktype="external">[MSFT-PKI]</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ENUM_ENTERPRISE_SUBCA</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The CA is an enterprise <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_8944be61-749a-43da-9374-0f8e7ad88a09" data-linktype="relative-path">subordinate CA</a></span>.
+  For more information, see [MSFT-PKI].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ENUM_STANDALONE_ROOTCA</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The CA is a stand-alone root (self-signed) CA. For
+  more information, see [MSFT-PKI].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ENUM_STANDALONE_SUBCA</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The CA is a stand-alone subordinate CA. For more
+  information, see [MSFT-PKI].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ENUM_UNKNOWN_CA</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The CA type is unknown.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cCASignatureCerts:</b>  Unsigned integer
+value that SHOULD contain the count of CA <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_6a2366ee-fc9c-4406-963d-eac335ed8fc5" data-linktype="relative-path">signing certificates</a></span>
+in the CA. A CA signing certificate contains a <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public key</a></span> that is
+in turn associated with the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private key</a></span> used to
+sign <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a></span>
+that are issued by the CA. For more information on CA signing certificates, see
+[MSFT-PKI].</p><p><b>cCAExchangeCerts:</b>  Unsigned integer
+value that SHOULD contain the count of CA <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_d3e1039c-49e0-4ccf-bb89-67829214a190" data-linktype="relative-path">exchange certificates</a></span>
+in the CA. CA exchange certificates contain public keys that are used to
+encrypt requests sent to a CA. For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90177" data-linktype="external">[MSFT-ARCHIVE]</a></span>.</p><p><b>cExitAlgorithms:</b>  Unsigned integer
+value that SHOULD contain the number of <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_240a9746-c99e-4765-a9ee-6d60f1a9ffd1" data-linktype="relative-path">exit algorithms</a></span> that
+are installed and active for the CA.</p><p><b>lPropIDMax:</b>  Integer that SHOULD
+contain the maximum supported value for the <i>PropID</i> parameter in the <span><a href="7c715f9f-db50-41c3-abfc-0021c6390d4e" data-linktype="relative-path">ICertRequestD2::GetCAProperty</a></span>
+method. For more information on CA properties, see section 3.2.1.4.3.2.</p><p><b>lRoleSeparationEnabled:</b>  Integer
+value that SHOULD indicate whether <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_c8d4c794-723a-40bd-be6d-7cc5a800c579" data-linktype="relative-path">CA role separation</a></span>
+is enabled on the CA. A value of 0 indicates that CA role separation is
+disabled; a value of 1 indicates that it is enabled.</p><p><b>cKRACertUsedCount:</b>  Unsigned integer
+value that SHOULD contain the number of <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_d0a0d050-0dd5-4620-a7f8-7b3a3b71ae09" data-linktype="relative-path">key recovery agent (KRA)</a></span>
+<span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">keys</a></span>
+used to encrypt each archived private key.</p><p><b>cKRACertCount:</b>  Unsigned integer
+value that SHOULD contain the number of KRA keys available for the CA to
+encrypt archived private keys.</p><p><b>fAdvancedServer:</b>  Unsigned integer
+value that SHOULD be set to 0 for <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_22ca6cf7-f825-4ea2-a604-8eb9888d2b3a" data-linktype="relative-path">standard CA</a></span> and 1
+for advanced CA. This value is a Boolean value. The CA SHOULD return 0 or 1.</p></div>

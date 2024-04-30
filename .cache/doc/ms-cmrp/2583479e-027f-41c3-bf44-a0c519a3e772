@@ -1,0 +1,25 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/2583479e-027f-41c3-bf44-a0c519a3e772" data-linktype="external">msdn link</a></p><p>The <b>GROUP_ENUM_ENTRY</b> structure contains information
+for each group in the enumeration list returned by <b>ApiCreateGroupEnum</b>
+(section <a href="e105d71d-ffed-4a7d-b386-7d99e280d59a" data-linktype="relative-path">3.1.4.2.139</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _GROUP_ENUM_ENTRY {
+   [string] LPWSTR Name;
+   [string] LPWSTR Id;
+   DWORD dwState;
+   [string] LPWSTR Owner;
+   DWORD dwFlags;
+   DWORD cbProperties;
+   [size_is(cbProperties)] UCHAR* Properties;
+   DWORD cbRoProperties;
+   [size_is(cbRoProperties)] UCHAR* RoProperties;
+ } GROUP_ENUM_ENTRY,
+  *PGROUP_ENUM_ENTRY;
+</pre></div>
+</dd></dl><p><b>Name:</b> The name of the group.</p><p><b>Id:</b> The Id of the group.</p><p><b>dwState:</b> The state of the group, as specified
+in section <a href="8e73b5c0-2b5f-47bc-961f-7daf623da339" data-linktype="relative-path">3.1.4.2.46</a>.</p><p><b>Owner:</b> The name of the group&#39;s current owner
+node.</p><p><b>dwFlags:</b> The group&#39;s flags, as would be
+returned by <b>CLUSCTL_GROUP_GET_FLAGS</b> (section <a href="94570b69-465b-4a69-ac03-96ee517e3d27" data-linktype="relative-path">3.1.4.3.3.3</a>).</p><p><b>cbProperties:</b> The size in bytes of the buffer
+pointed to by the <b>Properties</b> field.</p><p><b>Properties:</b> A <b>PROPERTY_LIST</b> (section <a href="7ed348f2-eddf-4c3f-a1cb-b651ec3cff92" data-linktype="relative-path">2.2.3.10</a>) containing
+common properties of the group.</p><p><b>cbRoProperties:</b> The size in bytes of the
+buffer pointed to by the <b>RoProperties</b> field.</p><p><b>RoProperties:</b> A <b>PROPERTY_LIST</b>
+containing read-only common properties of the group.</p></div>

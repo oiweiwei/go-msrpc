@@ -1,0 +1,12 @@
+<div class="content"><p>The BackupTruncateLogs method function eliminates redundant
+records from the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_51672e1d-fd88-4417-aa0b-5aef67742a29" data-linktype="relative-path">log files</a>
+and reduces the disk storage space that is used by log files.</p><dl>
+<dd>
+<div><pre> HRESULT BackupTruncateLogs();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p>If Config_CA_Interface_Flags contains the value
+IF_NOREMOTEICERTADMINBACKUP, the server SHOULD return an error.<a id="Appendix_A_Target_59"></a><a aria-label="Product behavior note 59" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_59" data-linktype="relative-path">&lt;59&gt;</a></p><p>The <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a>
+server MUST enforce the sequencing rules for BackupTruncateLogs as specified in
+section <a href="e37640b4-b2e1-4bac-89d2-61fc5a5e6c1d" data-linktype="relative-path">3.1.4.1.18</a>.</p><p>The CA server MUST remove the redundant records in the log
+files (records that are present in the database also are defined as redundant),
+thereby decreasing the disk space used to store the log files.<a id="Appendix_A_Target_60"></a><a aria-label="Product behavior note 60" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_60" data-linktype="relative-path">&lt;60&gt;</a></p></div>

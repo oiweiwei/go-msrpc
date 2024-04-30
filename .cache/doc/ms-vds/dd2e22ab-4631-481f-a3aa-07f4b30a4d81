@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The GetDiskFromVDisk method returns an <span><a href="0dbd067f-04dd-46a7-b4a7-131a6051c5b2" data-linktype="relative-path">IVdsDisk (section 3.1.12.1)</a></span>
+interface pointer for a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual disk</a></span> given
+an <span><a href="c217a96a-dc47-4190-b5be-ba464aaf9f9e" data-linktype="relative-path">IVdsVDisk (section 3.1.15.1)</a></span>
+interface pointer.</p><dl>
+<dd>
+<div><pre> HRESULT GetDiskFromVDisk(
+   [in] IVdsVDisk* pVDisk,
+   [out] IVdsDisk** ppDisk
+ );
+</pre></div>
+</dd></dl><p><b>pVDisk: </b>The IVdsVDisk interface pointer for
+the virtual disk.</p><p><b>ppDisk: </b>Pointer to a variable that receives an
+IVdsDisk interface pointer. Callers MUST release the interface pointer when it
+is no longer needed by calling the <b>IUnknown::Release</b> method.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>pVDisk</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>ppDisk</i> is not NULL.</p>
+</li></ul><p>The server MUST find the cached <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span> object that
+corresponds to the passed in virtual disk. If the disk object is found, the
+server MUST set <i>ppDisk</i> to point to it, and return an S_OK. If the
+corresponding disk object is not found, the server MUST return the HRESULT
+error VDS_E_OBJECT_NOT_FOUND. Note that the virtual disk MUST be <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_d9c0ca19-3589-453a-b579-e66dbf6c98b2" data-linktype="relative-path">attached</a></span>.</p></div>

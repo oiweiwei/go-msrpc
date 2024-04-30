@@ -1,0 +1,13 @@
+<div class="content"><p>The <b>PORT_VAR_CONTAINER</b> structure provides information
+for supported printer <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1b5f368b-942b-40dd-84ea-fa9082916216" data-linktype="relative-path">port
+monitors</a>.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _PORT_VAR_CONTAINER {
+   DWORD cbMonitorData;
+   [size_is(cbMonitorData), unique, disable_consistency_check] 
+     BYTE* pMonitorData;
+ } PORT_VAR_CONTAINER;
+</pre></div>
+</dd></dl><p><b>cbMonitorData:</b> The size, in bytes, of the
+buffer that is pointed to by the <b>pMonitorData</b> member.</p><p><b>pMonitorData:</b> An optional pointer to a
+block of data that is passed to the port monitor.</p></div>

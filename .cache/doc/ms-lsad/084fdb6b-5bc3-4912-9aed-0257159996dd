@@ -1,0 +1,30 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/084fdb6b-5bc3-4912-9aed-0257159996dd" data-linktype="external">msdn link</a></p><p>The LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION structure
+communicates authentication material. The following structure corresponds to
+the TrustedDomainAuthInformation information class. <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">Domain</a> <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a> authentication is
+specified in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/c964fca9-c50e-426a-9173-5bf3cb720e2e" data-linktype="relative-path">6.1.6.9.1</a>.
+This structure maps to the Incoming and Outgoing Trust Password fields, as
+specified in section <a href="0228f75e-9725-479c-b4cd-1cacd667343c" data-linktype="relative-path">3.1.1.5</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION {
+   [range(0,1)] unsigned long IncomingAuthInfos;
+   PLSAPR_AUTH_INFORMATION IncomingAuthenticationInformation;
+   PLSAPR_AUTH_INFORMATION IncomingPreviousAuthenticationInformation;
+   [range(0,1)] unsigned long OutgoingAuthInfos;
+   PLSAPR_AUTH_INFORMATION OutgoingAuthenticationInformation;
+   PLSAPR_AUTH_INFORMATION OutgoingPreviousAuthenticationInformation;
+ } LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION,
+  *PLSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION;
+</pre></div>
+</dd></dl><p><b>IncomingAuthInfos:</b>  The count of <a href="cedb0d1b-c7c0-4480-99fc-279b06f22a0c" data-linktype="relative-path">LSAPR_AUTH_INFORMATION</a>
+entries (section 2.2.7.17) in the <b>IncomingAuthenticationInformation</b>
+field.<a id="Appendix_A_Target_33"></a><a aria-label="Product behavior note 33" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_33" data-linktype="relative-path">&lt;33&gt;</a></p><p><b>IncomingAuthenticationInformation:</b>  An
+array of LSAPR_AUTH_INFORMATION structures. The values are used to compute keys
+used in inbound trust validation, as specified in [MS-ADTS] section 6.1.6.9.1.</p><p><b>IncomingPreviousAuthenticationInformation:</b>  Same
+as <b>IncomingAuthenticationInformation</b>, but the data is the previous
+version of the authentication information.</p><p><b>OutgoingAuthInfos:</b>  The count of LSAPR_AUTH_INFORMATION
+entries in the OutgoingAuthenticationInformation field.<a id="Appendix_A_Target_34"></a><a aria-label="Product behavior note 34" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_34" data-linktype="relative-path">&lt;34&gt;</a></p><p><b>OutgoingAuthenticationInformation:</b>  An
+array of LSAPR_AUTH_INFORMATION structures. The values are used to compute keys
+used in outbound trust validation, as specified in [MS-ADTS] section 6.1.6.9.1.</p><p><b>OutgoingPreviousAuthenticationInformation:</b>  Same
+as <b>OutgoingAuthenticationInformation</b>, but the data is the previous
+version of the authentication information.</p></div>

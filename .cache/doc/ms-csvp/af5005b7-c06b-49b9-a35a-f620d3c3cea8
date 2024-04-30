@@ -1,0 +1,34 @@
+<div class="content"><p>The <b>CPREP_DISKID</b> structure identifies an operating
+system disk and typically corresponds to a <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_7593b869-71a9-4a02-bab3-377e51729067" data-linktype="relative-path">LUN</a>. This structure holds
+either the operating system disk number (not the <b>BIOS</b> disk number) or
+the <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_0e4c21af-021e-4059-ae9a-7821ec3c2e39" data-linktype="relative-path">disk signature</a> .</p><dl>
+<dd>
+<div><pre> typedef struct _CPREP_DISKID {
+   CPREP_DISKID_ENUM DiskIdType;
+   [switch_is(DiskIdType)] union {
+     [case(CprepIdSignature)] 
+       unsigned long DiskSignature;
+     [case(CprepIdGuid)] 
+       GUID DiskGuid;
+     [case(CprepIdNumber)] 
+       unsigned long DeviceNumber;
+     [case(CprepIdUnknown)] 
+       unsigned long Junk;
+   };
+ } CPREP_DISKID,
+  *PCPREP_DISKID;
+</pre></div>
+</dd></dl><p><b>DiskIdType:</b>  This MUST be one of the
+valid <a href="64c01c4c-0ee1-45ae-81be-686716549c15" data-linktype="relative-path">CPREP_DISKID_ENUM</a>
+values.</p><p><b>DiskSignature:</b>  This field is valid
+only if <b>DiskIdType</b> is CprepIdSignature. It MUST contain the 4-byte
+signature of the disk. How the disk signature is assigned is
+implementation-specific.</p><p><b>DiskGuid:</b>   This field is valid only
+if <b>DiskIdType</b> is CprepIdGuid. It MUST contain the <a href="../ms-dtyp/49e490b8-f972-45d6-a3a4-99f924998d97" data-linktype="relative-path">GUID</a>
+that identifies the disk. How the disk GUID is assigned is
+implementation-specific.</p><p><b>DeviceNumber:</b>  This field is valid
+only if <b>DiskIdType</b> is CprepIdNumber. It MUST contain the operating
+system disk number, not the <b>BIOS</b> disk number. The <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_4712ded2-d927-4930-9450-29499f98cef4" data-linktype="relative-path">device</a> number ranges from
+zero to the number of disks accessible by the server minus one. How the device
+number is assigned is implementation-specific.</p><p><b>Junk:</b>   This field is valid only if <b>DiskIdType</b>
+is CprepIdUnknown. The value of this field is not used.</p></div>

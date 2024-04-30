@@ -1,0 +1,247 @@
+<div class="content"><p> </p><p>The <b>DHCP_CLIENT_FILTER_STATUS_INFO</b> structure defines
+information about the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_c35fc04f-54fe-4570-afd3-c96ca84c8d83" data-linktype="relative-path">DHCPv4 client</a></span>,
+including filter status information. The <b>DHCP_CLIENT_FILTER_STATUS_INFO</b>
+structure augments the <span><a href="6a445cf3-6e6c-4e29-9817-ac78adc50336" data-linktype="relative-path">DHCP_CLIENT_INFO_VQ (section 2.2.1.2.19)</a></span>
+structure by including information related to the filters applicable to a DHCPv4
+client.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_CLIENT_FILTER_STATUS_INFO {
+   DHCP_IP_ADDRESS ClientIpAddress;
+   DHCP_IP_MASK SubnetMask;
+   DHCP_CLIENT_UID ClientHardwareAddress;
+   LPWSTR ClientName;
+   LPWSTR ClientComment;
+   DATE_TIME ClientLeaseExpires;
+   DHCP_HOST_INFO OwnerHost;
+   BYTE bClientType;
+   BYTE AddressState;
+   QuarantineStatus Status;
+   DATE_TIME ProbationEnds;
+   BOOL QuarantineCapable;
+   DWORD FilterStatus;
+ } DHCP_CLIENT_FILTER_STATUS_INFO,
+  *LPDHCP_CLIENT_FILTER_STATUS_INFO;
+</pre></div>
+</dd></dl><p><b>ClientIpAddress:</b>  This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>,
+a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+that contains the DHCPv4 client&#39;s IPv4 address.</p><p><b>SubnetMask:</b>  This is of type <span><a href="5cd312d5-c29f-4352-9fbb-8119ce48082b" data-linktype="relative-path">DHCP_IP_MASK (section 2.2.1.2.2)</a></span>,
+a DWORD that contains the DHCPv4 client&#39;s IPv4 Subnet mask address.</p><p><b>ClientHardwareAddress:</b>  This is of
+type <span><a href="b4da2d52-9737-46ec-8bc2-1c598fc3b8c8" data-linktype="relative-path">DHCP_CLIENT_UID (section 2.2.1.2.5)</a></span>,
+a structure that represents the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_195d8585-7de6-4574-9abf-9db104aaa40c" data-linktype="relative-path">DHCPv4 client-identifier</a></span>
+(section <span><a href="7c88f58b-c615-4386-a643-ab05b860a003" data-linktype="relative-path">2.2.1.2.5.1</a></span>).</p><p><b>ClientName:</b>  A pointer, of type <span><a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a></span>,
+to a null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+represents the DHCPv4 client&#39;s Internet host name. There is no restriction on
+the length of this Unicode string.</p><p><b>ClientComment:</b>  A pointer, of type
+LPWSTR, to a null-terminated Unicode string that represents the description
+given to the DHCPv4 client. The maximum number of characters allowed in this
+string is 128, including the terminating null character.</p><p><b>ClientLeaseExpires:</b>  This is of type
+<span><a href="0f93bea1-8172-4efa-826a-e12667e1bcee" data-linktype="relative-path">DATE_TIME (section 2.2.1.2.11)</a></span>,
+a structure that contains the lease expiry time for the DHCPv4 client. This is
+UTC time.</p><p><b>OwnerHost:</b>  This of type <span><a href="51e16f4a-cb1d-400a-85c7-defe4cba1609" data-linktype="relative-path">DHCP_HOST_INFO (section 2.2.1.2.7)</a></span>,
+a structure that contains information about the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_746786e7-458f-45aa-ab24-5534a94b4fb3" data-linktype="relative-path">DHCPv4 server</a></span>
+machine that has provided a lease to the DHCPv4 client.</p><p><b>bClientType:</b>  This is of type <span><a href="../ms-dtyp/d7edc080-e499-4219-a837-1bc40b64bb04" data-linktype="relative-path">BYTE</a></span>
+that identifies the type of the DHCPv4 client. The possible values are shown in
+the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CLIENT_TYPE_UNSPECIFIED</p>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>A DHCPv4 client other than ones defined in this table.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_DCHP</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client supports the DHCP protocol.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_BOOTP</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client supports the BOOTP protocol (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90319" data-linktype="external">[RFC2132]</a></span>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_BOTH</p>
+  <p>0x03</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client identifies both the DHCP and BOOTP
+  protocol.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_RESERVATION_FLAG</p>
+  <p>0x04</p>
+  </td>
+  <td>
+  <p>There is an IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservation</a></span>
+  created for the DHCPv4 client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_NONE</p>
+  <p>0x05</p>
+  </td>
+  <td>
+  <p>Backward compatibility for manual addressing.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>AddressState:</b>  This is of type BYTE
+that represents the state of the IPv4 address given to the DHCPv4 client. The
+following table represents the different values and their meanings.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ADDRESS_STATE_OFFERED</p>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client has been offered this IPv4 address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADDRESS_STATE_ACTIVE</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>The IPv4 address is active and has an active DHCPv4
+  client <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6d76b31-2852-4bd5-8fbb-8e82a3cedb29" data-linktype="relative-path">lease record</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADDRESS_STATE_DECLINED</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>The IPv4 address request was declined by the DHCPv4
+  client; hence it is a bad IPv4 address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADDRESS_STATE_DOOM</p>
+  <p>0x03</p>
+  </td>
+  <td>
+  <p>The IPv4 address is in DOOMED state and is due to be
+  deleted.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Status:</b>  This is of type <span><a href="bb589d00-d890-490c-9b6d-885ff61ac8a0" data-linktype="relative-path">QuarantineStatus (section 2.2.1.1.11)</a></span>,
+an enumeration that contains the health status of the DHCPv4 client, as
+validated at the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_f30fdc41-d7c1-422e-b5a8-9dcce071ebeb" data-linktype="relative-path">NAP</a></span> server.</p><p><b>ProbationEnds:</b>  This is of type
+DATE_TIME, a structure that contains the end time of the probation if the
+DHCPv4 client is on probation. For this time period, the DHCPv4 client has full
+access to the network.</p><p><b>QuarantineCapable:</b>  This is of type <span><a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">BOOL</a></span>
+that can take on the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUE</p>
+  <p>1</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client machine is quarantine-enabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client machine is not quarantine-enabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>FilterStatus:</b>  This is of type DWORD
+that specifies the status of the link-layer filter.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FILTER_STATUS_NONE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client MAC address does not match any
+  filter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILTER_STATUS_FULL_MATCH_IN_ALLOW_LIST</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The DHCv4P client MAC address fully matches an allow
+  list filter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILTER_STATUS_FULL_MATCH_IN_DENY_LIST</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client MAC address fully matches a deny
+  list filter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILTER_STATUS_WILDCARD_MATCH_IN_ALLOW_LIST</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client MAC address has a wildcard match in
+  the allow list.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILTER_STATUS_WILDCARD_MATCH_IN_DENY_LIST</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client MAC address has a wildcard match in
+  the deny list.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -1,0 +1,52 @@
+<div class="content"><p> </p><p>The <b>S_DSGetGCListInDomain</b> method returns the list of <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_a5a99ce4-e206-42dc-8874-e103934c5b0d" data-linktype="relative-path">Global
+Catalog Servers</a></span> in the specified domain.</p><dl>
+<dd>
+<div><pre> HRESULT S_DSGetGCListInDomain(
+   [in] handle_t hBind,
+   [in, ptr] const wchar_t* lpwszComputerName,
+   [in, ptr] const wchar_t* lpwszDomainName,
+   [out, string] wchar_t** lplpwszGCList,
+   [in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth,
+   [out, size_is(*pdwServerSignatureSize)] 
+     unsigned char* pbServerSignature,
+   [in, out] LPBOUNDED_SIGNATURE_SIZE pdwServerSignatureSize
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST specify an <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle,
+as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>lpwszComputerName: </b> MUST be set by the client to
+NULL. The server will validate the NULL setting.</p><p><b>lpwszDomainName: </b> MUST be set by the client to the
+domain name of the domain to query.</p><p><b>lplpwszGCList: </b> MUST be set by the server to the list
+of Global Catalog Servers. The format of the list is a <span><a href="514fa07c-abc6-45d0-9e35-09a4e149dad7" data-linktype="relative-path">Server
+Specification List String</a></span>.</p><p><b>phServerAuth: </b> A <span><a href="c28a1e6b-4092-4443-b69f-5814d5c4f9e4" data-linktype="relative-path">PCONTEXT_HANDLE_SERVER_AUTH_TYPE</a></span>
+RPC context handle acquired from the <i>pphServerAuth</i> parameter in a
+previous call to <span><a href="0e3ad7d0-6a64-480a-9f13-e94dd608d79d" data-linktype="relative-path">S_DSValidateServer</a></span>.
+The server MUST use this parameter as a key to locate the GSS security context
+used to compute the signature returned in <i>pbServerSignature</i>.</p><p><b>pbServerSignature: </b> MUST be set by the server to a
+buffer that contains a signed hash over the returned list of Global Catalog
+Servers (<i>lplpwszGCList</i>) calculated by using the MD5 algorithm (as
+specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90275" data-linktype="external">[RFC1321]</a></span>) and
+the GSS security context, as specified by the following pseudocode. </p><dl>
+<dd>
+<div><pre> Initialize an MD5 Hash context
+ Add to the hash context the DWORD value 0x00000001
+ Add to the hash value the DWORD value of VT_BLOB
+ SET cbSize to the size in bytes of the Server List string in 
+     lplpwszGCList
+ Add to the hash value the DWORD value cbSize
+ Add to the hash context the contents of lplpwszGCList where the 
+        length for the data is cbSize
+ Call GSS_Wrap using the output_context_handle from GSS 
+        security context and the computed MD5 hash
+ SET pbServerSignature to the wrapped MD5 hash
+ SET *pdwServerSignatureSize to the size of the wrapped MD5 hash
+</pre></div>
+</dd></dl><p><b>pdwServerSignatureSize: </b> MUST be set by the client to
+point to a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+that contains the maximum size in bytes of the server signature to return, and
+MUST be set by the server to contain the actual size in bytes of the server
+signature on output.</p><p><b>Return Values: </b> If the method succeeds, the return
+value is MQ_OK (0x00000000). If the method fails, the return value is an
+implementation-specific error code.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol, Remote Procedure Call Protocol
+Extensions, as specified in [MS-RPCE].</p></div>

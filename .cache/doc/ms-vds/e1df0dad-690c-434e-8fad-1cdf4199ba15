@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The GetImportTarget method retrieves the name of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_41ef9474-f26f-4c87-8f31-da20ce34d231" data-linktype="relative-path">import
+target</a></span> to associate with the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7593b869-71a9-4a02-bab3-377e51729067" data-linktype="relative-path">LUNs</a></span> being imported
+on the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b18adf29-d191-4a9f-98db-b34eb850140e" data-linktype="relative-path">subsystem</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT GetImportTarget(
+   [out, string] LPWSTR* ppwszIscsiName
+ );
+</pre></div>
+</dd></dl><p><b>ppwszIscsiName: </b>A pointer to a string that
+contains the name of the import target of the subsystem. Callers MUST free the
+memory that is allocated for the string when they are finished with it.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameter:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>ppwszIscsiName</i> is not NULL.</p>
+</li></ul><p>The server MUST point <i>ppwszIscsiName</i> to a string that
+contains the name of the import target of the subsystem. The server MUST then
+return an <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path"><span>HRESULT</span></a> to indicate
+failure or success. </p></div>

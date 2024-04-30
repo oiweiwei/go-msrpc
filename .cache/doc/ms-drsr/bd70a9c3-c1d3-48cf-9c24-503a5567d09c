@@ -1,0 +1,36 @@
+<div class="content"><p> </p><p>The DRS_MSG_GETCHGREPLY_V1 structure defines the response
+message received from the <span><a href="b63730ac-614c-431c-9501-28d6aca91894" data-linktype="relative-path">IDL_DRSGetNCChanges</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   UUID uuidDsaObjSrc;
+   UUID uuidInvocIdSrc;
+   [unique] DSNAME* pNC;
+   USN_VECTOR usnvecFrom;
+   USN_VECTOR usnvecTo;
+   [unique] UPTODATE_VECTOR_V1_EXT* pUpToDateVecSrcV1;
+   SCHEMA_PREFIX_TABLE PrefixTableSrc;
+   ULONG ulExtendedRet;
+   ULONG cNumObjects;
+   ULONG cNumBytes;
+   [unique] REPLENTINFLIST* pObjects;
+   BOOL fMoreData;
+ } DRS_MSG_GETCHGREPLY_V1;
+</pre></div>
+</dd></dl><p><b>uuidDsaObjSrc:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_736b1076-d1cb-40b9-9247-d66cca6819d1" data-linktype="relative-path">DSA GUID</a></span>
+of the server <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>.</p><p><b>uuidInvocIdSrc:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_e7869b9a-61fa-46e3-89dd-fb3f57d1ba7a" data-linktype="relative-path">Invocation
+ID</a></span> of the server DC.</p><p><b>pNC:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_784c7cce-f782-48d8-9444-c9030ba86942" data-linktype="relative-path">NC</a></span> root of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ea02e669-2dda-460c-9992-b12a23caeeac" data-linktype="relative-path">replica</a></span>
+to replicate or the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_6ea17c3e-787a-40e3-a62f-0313dcdc16b7" data-linktype="relative-path">FSMO role object</a></span> for
+an <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8514d343-000a-45e2-918b-5f6100e2e7c6" data-linktype="relative-path">extended
+operation</a></span>.</p><p><b>usnvecFrom:</b>  Data used to correlate
+calls to IDL_DRSGetNCChanges.</p><p><b>usnvecTo:</b>  Data used to correlate
+calls to IDL_DRSGetNCChanges.</p><p><b>pUpToDateVecSrcV1:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ff635a35-a17d-477b-a30d-9723b415bf00" data-linktype="relative-path">Stamp</a></span>
+filter that describes <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b242435b-73cc-4c4e-95f0-b2a2ff680493" data-linktype="relative-path">updates</a></span> the server
+has already applied.</p><p><b>PrefixTableSrc:</b>  Table for
+translating <span><a href="91173129-08e6-497c-8266-b5ac0aa5f983" data-linktype="relative-path">ATTRTYP</a></span> values in
+the response to <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_aaaf2f1a-0b0a-487e-a0f0-c3510a6091b2" data-linktype="relative-path">OIDs</a></span>.</p><p><b>ulExtendedRet:</b>  0 or an EXOP_ERR
+code (section <span><a href="40f60821-c7d3-4d07-8556-3398b1335a7f" data-linktype="relative-path">4.1.10.2.21</a></span>).</p><p><b>cNumObjects:</b>  Count of items in the <b>pObjects</b>
+linked list.</p><p><b>cNumBytes:</b>  Size in bytes of items
+in or referenced by elements in the <b>pObjects</b> linked list.</p><p><b>pObjects:</b>  Linked list of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>
+updates that the client applies to its <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_325d116f-cdbe-4dbd-b7e6-769ba75bf210" data-linktype="relative-path">NC replica</a></span>.</p><p><b>fMoreData:</b>  False if and only if
+this is the last response in a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_e14454ba-5d3b-4fdb-99e5-50ecf632bd16" data-linktype="relative-path">replication cycle</a></span>.</p></div>

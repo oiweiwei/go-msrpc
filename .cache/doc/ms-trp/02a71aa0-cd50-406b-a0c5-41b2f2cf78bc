@@ -1,0 +1,274 @@
+<div class="content"><p>The GetQueueList packet is transmitted from a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call</a>.
+Sending this packet returns a list of queues that are associated with a
+particular ACD group. It generates a <a href="5221aa4e-0034-4756-bbc7-35c6c14b69a2" data-linktype="relative-path">LINE_PROXYREQUEST</a> packet
+to be sent to a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_624ba2cf-5c41-45cd-9334-84fbc089d34f" data-linktype="relative-path">registered
+proxy function handler</a>, referencing a <a href="68c27048-6ad3-4c35-aeab-8e1d260923f0" data-linktype="relative-path">LINEPROXYREQUEST</a> packet of
+type LINEPROXYREQUEST_GETQUEUELIST.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwRequestID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hLine</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">pGroupID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">cbGUID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpQueueListContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpQueueList</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved5</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved6</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved7</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>An unsigned 32-bit
+integer. The identifier of the function that will be invoked on the remote
+server. This value MUST be set to 153. </p><dl>
+<dd>
+<p><b>Return Values</b></p>
+</dd>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>, this field
+contains the result of the encapsulated telephony request. A nonzero request ID
+value indicates that the request is in progress and will complete
+asynchronously, and a <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path">LINEERR_Constants</a>
+value indicates synchronous failure.</p>
+</dd>
+<dd>
+<p>MUST return a request identifier if the asynchronous
+operation starts; otherwise, the function MUST return one of the following
+error values:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>LINEERR_INVALLINEHANDLE</p>
+  </td>
+  <td>
+  <p>0x8000002B</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALPARAM</p>
+  </td>
+  <td>
+  <p>0x80000032</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_NOMEM</p>
+  </td>
+  <td>
+  <p>0x80000044</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONFAILED</p>
+  </td>
+  <td>
+  <p>0x80000048</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x80000049</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_RESOURCEUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x8000004B</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_UNINITIALIZED</p>
+  </td>
+  <td>
+  <p>0x80000050</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>dwRequestID (4 bytes): </b>An unsigned 32-bit
+integer. The identifier of the asynchronous request.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The server MUST generate a unique positive request ID
+  to return as the Ack_ReturnValue.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001 — 0x7FFFFFFF</p>
+  </td>
+  <td>
+  <p>The server MUST use this value instead of generating a
+  unique positive request ID.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>lpContext (4 bytes): </b>An unsigned 32-bit
+integer. The opaque, client-specified value that is used by the client upon
+request completion; MUST be returned by the server in the request completion
+packet.</p><p><b>hLine (4 bytes): </b>An <a href="9a80ee5c-cf55-4a86-bd67-173059d6ff3c" data-linktype="relative-path">HLINE</a>. The handle to the
+open line device. This field MUST have been obtained by sending the <a href="2759c744-e040-4c5d-b4b5-215d391f0490" data-linktype="relative-path">Open</a> packet.</p><p><b>pGroupID (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, in the VarData field of a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> that identifies the
+group for which the list of queues is requested. The GUID of the group is
+obtained by sending a <a href="05180027-cf40-4159-8af6-ab6ceb3fdd64" data-linktype="relative-path">GetAgentGroupList</a>
+packet to the remote server.</p><p><b>cbGUID (4 bytes): </b>An unsigned 32-bit integer.
+The size, in bytes, of the packet that is indicated in the pGroupID field, set
+to &#34;sizeof (GUID)&#34;.</p><p><b>lpQueueListContext (4 bytes): </b>An unsigned
+32-bit integer. The opaque, client-specified value that is used by the client
+upon request completion; MUST be returned by the server in the request
+completion packet.</p><p><b>lpQueueList (4 bytes): </b>An unsigned 32-bit
+integer. The maximum size, in bytes, of the queue list data that the client
+will accept on successful completion of this request.</p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved5 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved6 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved7 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>VarData (16 bytes): </b>Contains the <a href="../ms-dtyp/001eec5a-7f8b-4293-9e21-ca349392db40" data-linktype="relative-path">GUID</a>
+that is indicated by the <b>pGroupID</b> field. </p><dl>
+<dd>
+<p>The contents of this field MUST be DWORD-aligned, as
+specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>.
+</p>
+</dd></dl></div>

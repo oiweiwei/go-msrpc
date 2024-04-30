@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The ActivationContextInfoData structure passes a <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_519bff3c-1c9f-4d5a-aa88-a3c820a4ff3a" data-linktype="relative-path">client
+context</a></span> and optionally a <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_3b138442-c9c6-4f0f-bb59-66c783ed4d65" data-linktype="relative-path">prototype context</a></span> to
+the server as part of an activation request.</p><p>CLSID_ActivationContextInfo (see section <span><a href="c25391af-f59e-40da-885e-cc84076673e4" data-linktype="relative-path">1.9</a></span>)
+is used to identify this property in the CustomHeader.pclsid array.</p><dl>
+<dd>
+<div><pre> typedef struct tagActivationContextInfoData {
+   long clientOK;
+   long bReserved1;
+   DWORD dwReserved1;
+   DWORD dwReserved2;
+   MInterfacePointer* pIFDClientCtx;
+   MInterfacePointer* pIFDPrototypeCtx;
+ } ActivationContextInfoData;
+</pre></div>
+</dd></dl><p><b>clientOK:</b>  This MUST be set to FALSE
+(0x00000000) and MUST be ignored on receipt.</p><p><b>bReserved1:</b>   This MUST be set to
+FALSE (0x00000000) and MUST be ignored on receipt.</p><p><b>dwReserved1:</b>  This MUST be set to
+zero and MUST be ignored on receipt.</p><p><b>dwReserved2:</b>   This MUST be set to
+zero and MUST be ignored on receipt.</p><p><b>pIFDClientCtx:</b>  This MUST contain an
+<span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_d2b5b331-4e5f-417f-92c5-38eef54176c2" data-linktype="relative-path">OBJREF</a></span>
+specifying a marshaled client context as specified in section <span><a href="94a587a3-826a-4bac-969b-ae0bbfc9a663" data-linktype="relative-path">2.2.20</a></span>.
+The server MUST return RPC_E_INVALID_OBJREF (as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>)
+if the OBJREF is NULL or invalid.</p><p><b>pIFDPrototypeCtx:</b>  If an application
+or a higher-layer protocol instructs the client to send prototype context
+properties, this MUST contain an <span><a href="fe6c5e46-adf8-4e34-a8de-3f756c875f31" data-linktype="relative-path">OBJREF</a></span> specifying a
+marshaled prototype context as specified in section 2.2.20. Otherwise, this
+MUST be set to NULL.</p></div>

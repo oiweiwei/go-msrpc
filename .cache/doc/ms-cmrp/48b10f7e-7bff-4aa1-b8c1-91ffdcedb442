@@ -1,0 +1,70 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/48b10f7e-7bff-4aa1-b8c1-91ffdcedb442" data-linktype="external">msdn link</a></p><p>The <b>CLUS_MAINTENANCE_MODE_INFO_EX</b> structure
+represents the extended maintenance mode settings for a storage class <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_94e97f15-2f1a-406f-a740-607bb97761ec" data-linktype="relative-path">resource</a>. </p><p><b>CLUS_MAINTENANCE_MODE_INFO_EX</b> is a custom-marshaled
+structure that has fields as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>InMaintenance</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MaintenanceModeType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>InternalState</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Signature</p>
+  </td>
+ </tr>
+</tbody></table><p><b>InMaintenance (4 bytes): </b>A 32-bit integer that
+indicates the current maintenance mode state when written by the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> or the target
+maintenance mode state when provided by the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> for a storage class
+resource. Zero indicates that the resource is not in maintenance mode and one
+indicates that the storage resource is in maintenance mode.</p><p><b>MaintenanceModeType (4 bytes): </b>A 4-byte <b>MAINTENANCE_MODE_TYPE</b>
+(section <a href="148786a8-e4f5-4355-8905-a08d212cb081" data-linktype="relative-path">2.2.2.6</a>)
+enumeration that indicates the current maintenance mode type when written by
+the server or the target maintenance mode type when provided by the client for
+a storage class resource.</p><p><b>InternalState (4 bytes): </b>A 32-bit integer
+representing the internal resource state, as specified in section <a href="cac947fb-7066-4d0c-b76d-7d26a89a2d46" data-linktype="relative-path">3.1.4.2.13</a>. This field is
+valid only when written by the server.</p><p><b>Signature (4 bytes): </b>A 32-bit integer that
+MUST contain the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">value</a>
+0xABBAF00F.</p></div>

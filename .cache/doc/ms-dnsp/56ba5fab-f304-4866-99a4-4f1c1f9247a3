@@ -1,0 +1,35 @@
+<div class="content"><p> </p><p>The <b>DNS_ADDR_ARRAY</b> structure is used to represent an array
+of <b>DNS_ADDR</b> (section <span><a href="835c236a-4d35-4a1e-bc4c-f5eb27bfb06d" data-linktype="relative-path">2.2.3.2.2</a></span>)
+structures. The DNS Server Management Protocol uses this structure to exchange
+lists of mixed IPv4 and IPv6 addresses between client and server.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsAddrArray {
+   DWORD MaxCount;
+   DWORD AddrCount;
+   DWORD Tag;
+   WORD Family;
+   WORD WordReserved;
+   DWORD Flags;
+   DWORD MatchFlag;
+   DWORD Reserved1;
+   DWORD Reserved2;
+   [size_is(AddrCount )] DNS_ADDR AddrArray[];
+ } DNS_ADDR_ARRAY,
+  *PDNS_ADDR_ARRAY;
+</pre></div>
+</dd></dl><p><b>MaxCount:</b> The actual number of IP
+addresses that are present in the AddrArray member.</p><p><b>AddrCount:</b> Must be set to the same value
+as MaxCount.</p><p><b>Tag:</b> This field is unused. Senders MUST
+set the value to zero and receivers MUST ignore it.</p><p><b>Family:</b> The family of addresses present
+in the array, such as AF_INET or AF_INET6. If this field is not specified,
+addresses with all families can be present.</p><p><b>WordReserved:</b> This field is unused.
+Senders MUST set the value to zero and receivers MUST ignore it.</p><p><b>Flags:</b> This field is unused. Senders MUST
+set the value to zero and receivers MUST ignore it.</p><p><b>MatchFlag:</b> This field is unused. Senders
+MUST set the value to zero and receivers MUST ignore it.</p><p><b>Reserved1:</b> This field is unused. Senders
+MUST set the value to zero and receivers MUST ignore it.</p><p><b>Reserved2:</b> This field is unused. Senders
+MUST set the value to zero and receivers MUST ignore it.</p><p><b>AddrArray:</b> An array of DNS_ADDR (section
+2.2.3.2.2) structures. The number of elements in this array is specified by the
+AddrCount member.</p><p>An empty DNS_ADDR_ARRAY is represented by <b>AddrCount</b>
+set to zero. Senders of an empty DNS_ADR_ARRAY MUST set the other fields&#39;
+values to zero (including a single entry in <b>AddrArray</b>, which is set to
+binary zeros), and receivers MUST ignore them.</p></div>

@@ -1,0 +1,9 @@
+<div class="content"><p>The BackupEnd method completes the backup process that is
+started via a call to <a href="e37640b4-b2e1-4bac-89d2-61fc5a5e6c1d" data-linktype="relative-path">ICertAdminD::BackupPrepare</a>.</p><dl>
+<dd>
+<div><pre> HRESULT BackupEnd();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p>If Config_CA_Interface_Flags contains the value
+IF_NOREMOTEICERTADMINBACKUP, the server SHOULD return an error.<a id="Appendix_A_Target_48"></a><a aria-label="Product behavior note 48" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_48" data-linktype="relative-path">&lt;48&gt;</a></p><p>The <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a>
+server MUST enforce the sequencing rules for BackupEnd as specified in section
+3.1.4.1.18.<a id="Appendix_A_Target_49"></a><a aria-label="Product behavior note 49" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_49" data-linktype="relative-path">&lt;49&gt;</a></p></div>

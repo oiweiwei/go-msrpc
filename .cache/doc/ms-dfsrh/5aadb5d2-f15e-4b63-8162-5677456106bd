@@ -1,0 +1,22 @@
+<div class="content"><p>The DfsrHelperErrorsEnum enumeration defines error codes
+that are specific to the <a href="489bf647-2aab-47c4-833f-a5fd29e7c041" data-linktype="relative-path">IADProxy</a>
+and <a href="7c9210d9-d434-4c06-8804-a321e6736775" data-linktype="relative-path">IADProxy2</a>
+interfaces.</p><p>The <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a>
+for this enumeration is {9009D654-250B-4e0d-9AB0-ACB63134F69F}.</p><dl>
+<dd>
+<div><pre> typedef  enum DfsrHelperErrorsEnum
+ {
+   dfsrHelperErrorNotLocalAdmin = 0x80042001,
+   dfsrHelperErrorCreateVerifyServerControl = 0x80042002,
+   dfsrHelperLdapErrorBase = 0x80043000
+ } DfsrHelperErrorsEnum;
+</pre></div>
+</dd></dl><p><b>dfsrHelperErrorNotLocalAdmin:</b>  Reserved for
+future use.</p><p><b>dfsrHelperErrorCreateVerifyServerControl:</b> 
+Cannot create LDAP_SERVER_VERIFY_NAME_OID control for the <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a> command.</p><dl>
+<dd>
+<p>For more information about this LDAP control
+command, see <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/f2b41f0a-31c7-49c9-a5eb-8e1ba75b9faa" data-linktype="relative-path">3.1.1.3.4.1.16</a>.</p>
+</dd></dl><p><b>dfsrHelperLdapErrorBase:  </b>This is the base
+value for LDAP errors. </p></div>

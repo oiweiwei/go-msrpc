@@ -1,0 +1,278 @@
+<div class="content"><p> </p><p>The <b>FAX_EVENT_JOB_1</b> structure defines information
+about notifications regarding a single job in the server&#39;s <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>.
+This structure is embedded in the <b>FAX_EVENT_EX</b> (section <span><a href="3a9ae7f7-9825-43cd-aa78-1c077fd99bd2" data-linktype="relative-path">2.2.67</a></span>)
+and <b>FAX_EVENT_EX_1</b> (section <span><a href="425c3686-00b8-493d-bba5-d4ce677e47db" data-linktype="relative-path">2.2.68</a></span>) structures
+as a union field.</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (24 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (24 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwlMessageId</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Type</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>pJobDataOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bServerReceiveFolder</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Padding</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>dwlMessageId (8 bytes): </b>A
+<b>DWORDLONG</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/c575fb47-166c-48cd-a37c-e44cac05c3d6" data-linktype="relative-path">2.2.13</a></span>)
+value that contains the unique identifier of the job.</p>
+</dd>
+<dd>
+<p><b>Type (4 bytes): </b>Specifies
+the type of information about the job. This is one of the
+FAX_ENUM_JOB_EVENT_TYPE (section 2.2.71) enumeration values.</p>
+</dd>
+<dd>
+<p><b>pJobDataOffset (4 bytes):
+</b>If the <b>Type</b> field contains the FAX_JOB_EVENT_TYPE_STATUS value from
+the <b>FAX_ENUM_JOB_EVENT_TYPE</b> (section <span><a href="8263313b-4ea8-4eff-aaf1-ce7b9f1bb780" data-linktype="relative-path">2.2.71</a></span>)
+enumeration, this field contains an offset to the <b>Fixed_Portion</b> of the <b>pJobData</b>
+field in the <b>Variable_Data</b> of the structure holding a <b>FAX_JOB_STATUS</b>
+(section <span><a href="e1f304ec-977b-45e0-9db7-95c395a0a337" data-linktype="relative-path">2.2.36</a></span>) structure
+that contains the current status of the job. Otherwise, this offset is zero.</p>
+</dd>
+<dd>
+<p><b>bServerReceiveFolder (4
+bytes): </b>A <b>BOOL</b> ([MS-DTYP] section <span><a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">2.2.3</a></span>)
+value that indicates whether the job is still in the server&#39;s receive folder.</p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>The job is still in the server&#39;s receive folder; it
+  has not been reassigned yet.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>The job has been reassigned and is no longer in the
+  server&#39;s receive folder.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd>
+<dd>
+<p><b>Padding (4 bytes): </b>Padding
+for data alignment to 8-byte boundary.</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  of pStatus (120 bytes, optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  of pStatus (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Fixed_Portion of pStatus
+(120 bytes): </b>The <b>Fixed_Portion</b> of a <b>FAX_JOB_STATUS</b> that
+contains the current status of the job.</p>
+</dd>
+<dd>
+<p><b>Variable_Data of pStatus
+(variable): </b>The <b>Variable_Data</b> of a <b>FAX_JOB_STATUS</b> that
+contains the current status of the job. </p>
+</dd></dl></div>

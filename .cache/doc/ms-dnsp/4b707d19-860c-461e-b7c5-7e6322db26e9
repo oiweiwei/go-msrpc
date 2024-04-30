@@ -1,0 +1,38 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_CRITERIA_ENUM</b> enumeration specifies the
+various criteria that a DNS server needs to match during a DNS operation to
+have a successful <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_5076749f-34a6-48a6-b051-8968a55f4d7b" data-linktype="relative-path">DNS policy</a></span> match.
+For more information, see section <span><a href="38bc9b8b-84ec-47b6-8964-b900b426918e" data-linktype="relative-path">3.1.8.2</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum {
+      DnsPolicyCriteriaSubnet,
+      DnsPolicyCriteriaTransportProtocol,
+      DnsPolicyCriteriaNetworkProtocol,
+      DnsPolicyCriteriaInterface,
+      DnsPolicyCriteriaFqdn,
+      DnsPolicyCriteriaQtype,
+      DnsPolicyCriteriaTime,
+      DnsPolicyCriteriaEDNSSubnet,
+      DnsPolicyCriteriaMax
+ }DNS_RPC_CRITERIA_ENUM;
+</pre></div>
+</dd></dl><p><b>DnsPolicyCriteriaSubnet:</b> This specifies that
+the criteria for match of a DNS policy is based on the client subnet record,
+derived from the IP address of a resolver <span><a href="https://go.microsoft.com/fwlink/?LinkId=90263" data-linktype="external">[RFC1034]</a></span>
+section 2.4 in a DNS Operation.</p><p><b>DnsPolicyCriteriaTransportProtocol:</b> This
+specifies that the criteria for match of a DNS policy is based on the transport
+layer protocol (TCP or UDP) used to send a DNS query to the DNS server during a
+DNS operation.</p><p><b>DnsPolicyCriteriaNetworkProtocol:</b> This
+specifies that the criteria for match of a DNS policy is based on the Internet
+protocol used (IPv4 or IPv6) to send a DNS query to the DNS server during a DNS
+operation.</p><p><b>DnsPolicyCriteriaInterface:</b> This specifies
+that the criteria for match of a DNS policy is based on the IP address on which
+the DNS server receives the DNS query in a DNS operation.</p><p><b>DnsPolicyCriteriaFqdn:</b> This specifies that the
+criteria for match of a DNS policy is based on the query name in the question
+section [RFC1034] section 3.7 of a DNS query, in a DNS operation.</p><p><b>DnsPolicyCriteriaQtype:</b> This specifies that
+the criteria for match of a DNS policy is based on the QTYPE <span><a href="https://go.microsoft.com/fwlink/?LinkId=90264" data-linktype="external">[RFC1035]</a></span>
+section 3.2.3 of a DNS query in a DNS operation.</p><p><b>DnsPolicyCriteriaTime:</b> This specifies that the
+criteria for match of a DNS policy is based on the time of day, in minutes,
+when the DNS server receives a DNS query during a DNS operation.</p><p><b>DnsPolicyCriteriaEDNSSubnet:</b> Usage of this
+enum constant will fail the request with DNS_ERROR_POLICY_INVALID_SETTINGS
+(9974) (section <span><a href="aa521c99-3e44-4b75-9faa-c0c1ebcca5b6" data-linktype="relative-path">2.2.1.1.5</a></span>).<a id="Appendix_A_Target_91"></a><a aria-label="Product behavior note 91" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_91" data-linktype="relative-path">&lt;91&gt;</a></p><p><b>DnsPolicyCriteriaMax:</b> This shows the maximum
+number of criteria type supported by DNS policy.</p></div>

@@ -1,0 +1,282 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/33672b36-93df-4173-a589-1071bd12ad1b" data-linktype="external">msdn link</a></p><p>The <b>CLUS_PARTITION_INFO_EX</b> data structure is the
+format in which a property <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">value</a>
+of syntax <b>CLUSPROP_SYNTAX_PARTITION_INFO_EX</b> (section <a href="7ea3a0e0-d3b9-43e8-85d8-263fff3499da" data-linktype="relative-path">2.2.2.3</a>), is written as a
+property value, as specified in section <a href="de73d6f9-bfdf-47ef-b008-b2da17c1a073" data-linktype="relative-path">2.2.3.10.1</a>. <b>CLUS_PARTITION_INFO_EX</b>
+contains data about a disk <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a>
+that is configured with a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_e88c8bcf-42a7-41c6-b59a-e959ae01048d" data-linktype="relative-path">basic
+volume</a>.</p><p><b>CLUS_PARTITION_INFO_EX</b> is a custom-marshaled data
+structure that has fields as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szDeviceName
+  (520 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szVolumeLabel
+  (520 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSerialNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>rgdwMaximumComponentLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwFileSystemFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szFileSystem
+  (64 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TotalSizeInBytes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>FreeSizeInBytes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DeviceNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PartitionNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>VolumeGuid
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwFlags (4 bytes): </b>An unsigned 32-bit integer.
+Indicates <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_41441ad6-7a82-4a41-a89c-7e4b8d784ad8" data-linktype="relative-path">characteristics</a>
+about the partition. Can be a combination of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CLUSPROP_PIFLAG_STICKY</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a>
+  is configured with a drive letter.</p>
+  <p>Can be combined with any other flag. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSPROP_PIFLAG_REMOVABLE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The partition is formatted with a file system that is
+  removable by the cluster software.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSPROP_PIFLAG_USABLE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The partition is formatted with a file system that is
+  usable by the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_feef37b3-c173-4f51-aab6-b55a6366259b" data-linktype="relative-path">cluster</a>
+  software. This flag SHOULD be set if and only if the partition is formatted
+  with the NTFS file system.</p>
+  <p>Can be combined with any other flag, but MUST be set
+  if CLUSPROP_PIFLAG_DEFAULT_QUORUM is set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSPROP_PIFLAG_DEFAULT_QUORUM</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Indicates that the smallest NTFS partition MUST be at
+  least 50,000,000 bytes in size.</p>
+  <p>Can be combined with any other flag, but
+  CLUSPROP_PIFLAG_USABLE MUST also be set if this flag is set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSPROP_PIFLAG_USABLE_FOR_CSV</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>This flag is set if and only if the partition is
+  formatted with NTFS/ReFS. Can be combined with any other flag.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSPROP_PIFLAG_ENCRYPTION_ENABLED</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Encryption is enabled and this flag is used when
+  ENCRYPTION_ENABLED flag is set in <b>EncryptionFlags</b> field.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSPROP_PIFLAG_RAW</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>The partition is a raw volume and is not formatted
+  with a file system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSPROP_PIFLAG_UNKNOWN</p>
+  <p>0x80000000</p>
+  </td>
+  <td>
+  <p>Partition is of unknown file system type.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>szDeviceName (520 bytes): </b>A fixed-length
+buffer 520 bytes long that contains a null-terminated <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> based on the
+following rules:</p><ul><li><p><span><span>  </span></span>If
+the volume has a drive letter and the state of the designated storage <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_94e97f15-2f1a-406f-a740-607bb97761ec" data-linktype="relative-path">resource</a> is
+ClusterResourceOnline, the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+MUST return the drive letter of the volume followed by a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> &#39;:&#39;.</p>
+</li><li><p><span><span>  </span></span>If
+the volume is not configured with a drive letter and the resource is online,
+the server MUST return a string of the form &#34;\\?\Volume{GGG}&#34; where
+GGG is the identifier of the volume.</p>
+</li><li><p><span><span>  </span></span>If
+the resource is offline, the server MUST return a string of the form
+&#34;\\?\GLOBALROOT\Device\HarddiskNNN\PartitionYYY&#34;, where NNN is the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_7e189ef6-060e-489a-8ef0-b9ec7fcc4a79" data-linktype="relative-path">disk number</a> and YYY is the
+partition number (<a href="../ms-dmrp/19a16e20-072f-4d74-a245-ce4df2f1ecdd" data-linktype="relative-path">[MS-DMRP]</a>).</p>
+<p>Note: If the resource is offline, the remaining
+fields in this structure are left unfilled and MUST NOT be considered valid
+data.</p>
+</li></ul><p><b>szVolumeLabel (520 bytes): </b>A fixed-length
+buffer 520 bytes long that contains the file system label. This field is a
+null-terminated Unicode string.</p><p><b>dwSerialNumber (4 bytes): </b>An unsigned 32-bit
+integer. This is the serial number that is assigned by the operating system
+when the partition was formatted.</p><p><b>rgdwMaximumComponentLength (4 bytes): </b>An
+unsigned 32-bit integer. A value specifying the maximum length, in characters,
+of a file name component that is supported by the specified file system. A file
+name component is the portion of a file name between &#34;\&#34; characters. </p><p><b>dwFileSystemFlags (4 bytes): </b>An unsigned
+32-bit integer that identifies the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_bafb2696-b639-45eb-9d5a-95d905a2262d" data-linktype="relative-path">file system flags</a>. </p><p><b>szFileSystem (64 bytes): </b>A fixed-length buffer
+64 bytes long that contains a null-terminated Unicode string representing the
+name of the file system, as specified in [MS-DMRP]. </p><p><b>TotalSizeInBytes (8 bytes): </b>An unsigned 64-bit
+integer specifying the total size, in bytes, of the volume.</p><p><b>FreeSizeInBytes (8 bytes): </b>An unsigned 64-bit
+integer specifying the size, in bytes, of the unallocated space on the volume.</p><p><b>DeviceNumber (4 bytes): </b>An unsigned 32-bit
+integer indicating the disk number.</p><p><b>PartitionNumber (4 bytes): </b>An unsigned 32-bit
+integer indicating the partition number, as specified in [MS-DMRP].</p><p><b>VolumeGuid (16 bytes): </b>A 128-bit value that
+contains the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_892a6724-e635-4ba0-8b8a-d6368f166221" data-linktype="relative-path">volume
+identifier</a>.</p></div>

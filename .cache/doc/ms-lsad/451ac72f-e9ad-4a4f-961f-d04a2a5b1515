@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/451ac72f-e9ad-4a4f-961f-d04a2a5b1515" data-linktype="external">msdn link</a></p><p>The LSA_FOREST_TRUST_DOMAIN_INFO structure is used to
+communicate a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_035d9ce5-f117-4251-8d4d-127c462ec4a0" data-linktype="relative-path">forest trust</a>
+record corresponding to the LSA_FOREST_TRUST_DOMAIN_INFO value of
+ForestTrustDomainInfo.</p><dl>
+<dd>
+<div><pre> typedef struct _LSA_FOREST_TRUST_DOMAIN_INFO {
+   PRPC_SID Sid;
+   LSA_UNICODE_STRING DnsName;
+   LSA_UNICODE_STRING NetbiosName;
+ } LSA_FOREST_TRUST_DOMAIN_INFO,
+  *PLSA_FOREST_TRUST_DOMAIN_INFO;
+</pre></div>
+</dd></dl><p><b>Sid:</b>  <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">Domain</a> <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> for the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted domain</a>.</p><p><b>DnsName:</b>  The <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_102a36e2-f66f-49e2-bee3-558736b2ecd5" data-linktype="relative-path">DNS name</a> of the trusted domain.</p><p><b>NetbiosName:</b>  The NetBIOS name of
+the trusted domain, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90266" data-linktype="external">[RFC1088]</a>.</p></div>

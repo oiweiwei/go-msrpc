@@ -1,0 +1,9 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/0968f7a5-d87c-4fec-85c4-5287a7be6cf4" data-linktype="external">msdn link</a></p><p>The SAMPR_ALIAS_ADM_COMMENT_INFORMATION structure contains
+alias fields.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_ALIAS_ADM_COMMENT_INFORMATION {
+   RPC_UNICODE_STRING AdminComment;
+ } SAMPR_ALIAS_ADM_COMMENT_INFORMATION,
+  *PSAMPR_ALIAS_ADM_COMMENT_INFORMATION;
+</pre></div>
+</dd></dl><p>For information on each field, see section <a href="e60b8ed7-aeb6-4627-a19a-7ac37a74bc10" data-linktype="relative-path">2.2.5.1</a>.</p></div>

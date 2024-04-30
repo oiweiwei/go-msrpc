@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The <b>DHCP_CLIENT_FILTER_STATUS_INFO_ARRAY</b> structure
+defines an array of <span><a href="7190663d-86c0-4131-8ec0-f50786b0298e" data-linktype="relative-path">DHCP_CLIENT_FILTER_STATUS_INFO (section 2.2.1.2.96)</a></span>
+structures that contains a list of DHCPv4 client information. This structure is
+used by methods such as <span><a href="c14ea69c-ff38-470d-9d05-b3e85a071b3a" data-linktype="relative-path">R_DhcpEnumSubnetClientsFilterStatusInfo (section 3.2.4.89)</a></span>
+that retrieve information for more than one DHCPv4 client.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_CLIENT_FILTER_STATUS_INFO_ARRAY {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_CLIENT_FILTER_STATUS_INFO* Clients;
+ } DHCP_CLIENT_FILTER_STATUS_INFO_ARRAY,
+  *LPDHCP_CLIENT_FILTER_STATUS_INFO_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This member is of type
+<span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+that contains the number of DHCPv4 clients in the subsequent field the <b>Clients</b>
+member.</p><p><b>Clients:</b>  This member is a pointer
+of type DHCP_CLIENT_FILTER_STATUS_INFO (section 2.2.1.2.96) structure
+that points to the array of length <b>NumElements</b> containing the DHCPv4
+client&#39;s information.</p></div>

@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The DRS_MSG_GETCHGREPLY_V2 structure defines the compressed <span><a href="bd70a9c3-c1d3-48cf-9c24-503a5567d09c" data-linktype="relative-path">DRS_MSG_GETCHGREPLY_V1</a></span>
+message received from the <span><a href="b63730ac-614c-431c-9501-28d6aca91894" data-linktype="relative-path">IDL_DRSGetNCChanges</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DRS_COMPRESSED_BLOB CompressedV1;
+ } DRS_MSG_GETCHGREPLY_V2;
+</pre></div>
+</dd></dl><p><b>CompressedV1:</b>  Compressed
+DRS_MSG_GETCHGREPLY_V1 response.</p></div>

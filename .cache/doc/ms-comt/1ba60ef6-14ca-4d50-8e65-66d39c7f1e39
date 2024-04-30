@@ -1,0 +1,9 @@
+<div class="content"><p>The COM+ Tracker Service Protocol enables remote clients to
+monitor instances of <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_71669ed9-7eaf-4328-9e2e-4d3430f0f9bf" data-linktype="relative-path">components</a>
+running on a server. The server end of the protocol tracks the status of <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_712af290-acfd-4e3a-a768-0530caa93b18" data-linktype="relative-path">component instances</a> and <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_791190e6-1e02-42cb-bd25-5aee3ab516ed" data-linktype="relative-path">instance containers</a> on the
+server and implements an interface that clients can use to poll for this
+status. It also optionally includes an event-driven notification system in
+which the client can supply (via another protocol) a callback interface for
+receiving <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_4a50c205-f8ad-45e0-b794-2f0a562dac76" data-linktype="relative-path">tracker events</a>.
+The server then calls the client&#39;s callback interface whenever new tracking
+data is available, for example, as a result of local events on the server.</p></div>

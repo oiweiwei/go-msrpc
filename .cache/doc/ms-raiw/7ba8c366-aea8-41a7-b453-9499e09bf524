@@ -1,0 +1,58 @@
+<div class="content"><p>The R_WinsTerm method sends a termination signal to the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a> process on a <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target WINS server</a>.</p><dl>
+<dd>
+<div><pre> DWORD R_WinsTerm(
+   [in] handle_t ServerHdl,
+   [in] SHORT fAbruptTem
+ );
+</pre></div>
+</dd></dl><p><b>ServerHdl: </b>An <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding over IP
+address/HostName to the WINS server. RPC uses this binding internally to
+determine which WINS server the call is directed to.</p><p><b>fAbruptTem: </b>A value that indicates whether the
+WINS process terminates immediately. If this value is nonzero, the service
+terminates immediately. Otherwise, the service exits normally and frees all
+resources.</p><p><b>Return Values: </b>A 32 bit unsigned integer that
+indicates the return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that operation completed successfully. A nonzero return value is a
+Win32 error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following Win32 error codes can be returned:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller doesn&#39;t have sufficient permissions.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Processing and Response Requirements:</b></p><p>The following requirements and recommendations apply to a
+WINS server that processes a call to <a href="e231089b-eb49-40d2-8b62-2b1437e9f98a" data-linktype="relative-path">R_WinsTerm</a>:</p><ul><li><p><span><span> 
+</span></span>The R_WinsTerm caller SHOULD have control level access. If an RPC
+client with a lower access level calls R_WinsTerm, the server SHOULD return
+ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>R_WinsTerm always returns ERROR_SUCCESS if the client has
+sufficient access level permissions. </p>
+</li><li><p><span><span> 
+</span></span>If <i>fAbruptTem</i> is set to a nonzero value, the service exits
+immediately. Otherwise, the service frees all the resources and then calls the
+exit process.</p>
+</li></ul></div>

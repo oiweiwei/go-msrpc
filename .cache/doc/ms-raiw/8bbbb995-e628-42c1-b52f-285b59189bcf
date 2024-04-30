@@ -1,0 +1,61 @@
+<div class="content"><p>The R_WinsGetNameAndAdd method retrieves the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_b86c44e6-57df-4c48-8163-5e3fa7bdcff4" data-linktype="relative-path">NetBIOS</a> name and the
+corresponding IP address of the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target WINS server</a>.</p><dl>
+<dd>
+<div><pre> DWORD R_WinsGetNameAndAdd(
+   [in] handle_t ServerHdl,
+   [out, ref] PWINSINTF_ADD_T pWinsAdd,
+   [out, string, size_is(80)] LPBYTE pUncName
+ );
+</pre></div>
+</dd></dl><p><b>ServerHdl: </b>An <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding over IP
+address/HostName to the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a>
+server. RPC uses this binding internally to determine which WINS server the
+call is directed to.</p><p><b>pWinsAdd: </b> A pointer to a structure containing
+the IP address of the target WINS server.</p><p><b>pUncName: </b>A  pointer to a NULL-terminated
+string containing the NetBIOS name of the target WINS server. </p><p><b>Return Values: </b>A 32 bit unsigned integer that
+indicates the return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that operation completed successfully. A nonzero return value is a
+Win32 error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following Win32 error codes can be returned:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller doesn&#39;t have sufficient permissions.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Processing and Response Requirements:</b></p><p>The following requirements and recommendations apply to a
+WINS server that processes a call to <a href="e231089b-eb49-40d2-8b62-2b1437e9f98a" data-linktype="relative-path">R_WinsGetNameAndAdd</a>:</p><ul><li><p><span><span> 
+</span></span>The R_WinsGetNameAndAdd caller SHOULD have query-level access.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="a76435fe-902a-4235-b12d-3654ac010672#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a> If an RPC client with a lower
+access level calls this method, the server SHOULD return ERROR_ACCESS_DENIED.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="a76435fe-902a-4235-b12d-3654ac010672#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>The structure that <i>pWinsAdd</i> points to contains only an IP
+address. The R_WinsGetNameAndAdd caller SHOULD ignore the other fields of the
+structure.</p>
+</li><li><p><span><span> 
+</span></span>The server retrieves the NetBIOS name by calling a standard
+Windows function, which returns the status code directly to the caller without
+any modification. Hence, any Win32 error code can be returned, as specified in
+[MS-ERREF].</p>
+</li></ul></div>

@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p><b>RpcAsyncAddJob</b> does not perform any function, but
+returns <b>ERROR_INVALID_PARAMETER</b>.</p><p>The counterpart of this method in the Print System Remote
+Protocol is <b>RpcAddJob</b>. All parameters not defined below are specified in
+<span><a href="../ms-rprn/d42db7d5-f141-4466-8f47-0a4be14e2fc1" data-linktype="relative-path">[MS-RPRN]</a></span>
+section <span><a href="../ms-rprn/7ba32677-3729-4b5f-96b5-c8a9f99d34a5" data-linktype="relative-path">3.1.4.3.4</a></span>.</p><dl>
+<dd>
+<div><pre> DWORD RpcAsyncAddJob(
+   [in] PRINTER_HANDLE hPrinter,
+   [in] DWORD Level,
+   [in, out, unique, size_is(cbBuf)] 
+     unsigned char* pAddJob,
+   [in] DWORD cbBuf,
+   [out] DWORD* pcbNeeded
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object that
+was opened using either <b>RpcAsyncOpenPrinter</b> (section <span><a href="feddac6a-bd88-4989-95fb-715bd6ca796a" data-linktype="relative-path">3.1.4.1.1</a></span>)
+or <b>RpcAsyncAddPrinter</b> (section <span><a href="1e5e5498-e646-4fdf-8181-98862a3d6ec8" data-linktype="relative-path">3.1.4.1.2</a></span>).</p><p><b>Return Values: </b>This method MUST return <b>ERROR_INVALID_PARAMETER</b>
+(<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>).</p><p>This method MUST be implemented to ensure compatibility with
+protocol clients.</p></div>

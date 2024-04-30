@@ -1,0 +1,98 @@
+<div class="content"><p> </p><p>The DNSSRV_NBSTAT_STATS structure has DNS server statistics
+related to NBSTAT buffers usage. This structure MUST be formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NbstatAlloc</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NbstatFree</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NbstatNetAllocs</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NbstatMemory</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NbstatUsed</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NbstatReturn</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NbstatInUse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NbstatInFreeList</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type
+DNSSRV_STAT_HEADER (section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>NbstatAlloc (4 bytes): </b>The cumulative number of
+NetBIOS packet buffers allocated by the server from system memory.</p><p><b>NbstatFree (4 bytes): </b>The cumulative number of
+NetBIOS packet buffers returned by the server to system memory.</p><p><b>NbstatNetAllocs (4 bytes): </b>The number of
+NetBIOS packet buffers currently allocated by the server.</p><p><b>NbstatMemory (4 bytes): </b>The total memory used
+by the NetBIOS packet buffers currently allocated by the server.</p><p><b>NbstatUsed (4 bytes): </b>The cumulative number of
+NetBIOS buffers currently in use by the server either servicing queries or in a
+free list.</p><p><b>NbstatReturn (4 bytes): </b>The cumulative number
+of NetBIOS buffers freed or returned by the server to a free list.</p><p><b>NbstatInUse (4 bytes): </b>The number of NetBIOS
+buffers currently being used by the server to service queries or being held in
+a free list.</p><p><b>NbstatInFreeList (4 bytes): </b>The number of
+NetBIOS buffers currently in a free list.</p></div>

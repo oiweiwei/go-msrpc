@@ -1,0 +1,41 @@
+<div class="content"><p>RpcAbortPrinter aborts the currently spooling print
+document.</p><dl>
+<dd>
+<div><pre> DWORD RpcAbortPrinter(
+   [in] PRINTER_HANDLE hPrinter
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object or <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a> object that was opened
+by <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter (section 3.1.4.2.3)</a>,
+<a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx (section 3.1.4.2.15)</a>,
+<a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter (section 3.1.4.2.2)</a>,
+or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx (section 3.1.4.2.14)</a>.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error code
+to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE
+Parameters (section 3.1.4.1.11)</a>. This method SHOULD assume that
+the handle to the printer or port object can be used without further access
+checks.</p>
+</li><li><p><span><span> 
+</span></span>Verify that a job has been associated with <i>hPrinter</i> by
+using <a href="90f95ff0-3ae0-4dde-a83d-35f457c710a6" data-linktype="relative-path">RpcStartDocPrinter</a>,
+and if that verification fails, return ERROR_SPL_NO_STARTDOC [MS-ERREF].</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>The current job is aborted. If it is in spool stage, spooling
+MUST stop. If it is in printing stage, printing MUST stop.</p>
+</li><li><p><span><span> 
+</span></span>Modify the job object to indicate that the job has been aborted.</p>
+</li><li><p><span><span> 
+</span></span>Delete the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_4c0e7da9-88a8-4430-abd7-27e7250b8180" data-linktype="relative-path">spool
+file</a>, if one exists.</p>
+</li><li><p><span><span> 
+</span></span>Delete the job object.</p>
+</li><li><p><span><span> 
+</span></span>Modify the list of jobs to exclude this deleted job.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

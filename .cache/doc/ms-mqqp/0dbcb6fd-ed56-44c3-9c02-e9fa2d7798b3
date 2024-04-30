@@ -1,0 +1,70 @@
+<div class="content"><p> </p><p>The RemoteQMOpenQueue method opens a <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>
+in preparation for subsequent operations against it. This method assumes that
+the client has called <span><a href="../ms-mqmp/47482511-3c4a-4d7e-8edb-46715e89e4af" data-linktype="relative-path">qmcomm:R_QMOpenRemoteQueue</a></span>
+to obtain a queue handle; for more information, see <span><a href="../ms-mqmp/8e379aa2-802d-4fcc-b6a6-6203e4606fa9" data-linktype="relative-path">[MS-MQMP]</a></span>
+section 3.1.4.2. This method is called as part of the sequence of events
+involved in opening a remote queue by an <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_3446b293-d067-4393-addc-bca80aeb3340" data-linktype="relative-path">MQMP application</a></span> as
+described in [MS-MQMP] section <span><a href="../ms-mqmp/b2fc68c7-ba87-47ec-9b98-780f1202282a" data-linktype="relative-path">4.2</a></span>.
+This method MUST be called prior to calling any of the following operations:</p><ul><li><p><span><span> 
+</span></span><span><a href="aab4d8fa-3a56-483c-ac61-4172a09fc199" data-linktype="relative-path">RemoteQMStartReceive</a></span></p>
+</li><li><p><span><span> 
+</span></span><span><a href="4c0b91ba-37fa-441c-974a-91bbea58a62d" data-linktype="relative-path">RemoteQMEndReceive</a></span></p>
+</li><li><p><span><span> 
+</span></span><span><a href="f8b37cf7-cdf4-4e3a-8497-cf2c65074db5" data-linktype="relative-path">RemoteQMCloseQueue</a></span></p>
+</li><li><p><span><span> 
+</span></span><span><a href="0ec761b0-e700-4e3d-b735-54bdf458509d" data-linktype="relative-path">RemoteQMCloseCursor</a></span></p>
+</li><li><p><span><span> 
+</span></span><span><a href="76f56b96-7c8d-432e-a169-a1b750e20527" data-linktype="relative-path">RemoteQMCancelReceive</a></span></p>
+</li><li><p><span><span> 
+</span></span><span><a href="119644cf-f6ca-4f74-bb4a-c2624ccab22c" data-linktype="relative-path">RemoteQMPurgeQueue</a></span></p>
+</li><li><p><span><span> 
+</span></span><span><a href="a0df225e-80ea-4242-90e5-9891bfa9ebfb" data-linktype="relative-path">RemoteQMStartReceive2</a></span></p>
+</li><li><p><span><span> 
+</span></span><span><a href="b8a82b34-6feb-4057-8f7f-48275fa65068" data-linktype="relative-path">RemoteQMStartReceiveByLookupId</a></span></p>
+<div><pre> HRESULT RemoteQMOpenQueue(
+   [in] handle_t hBind,
+   [out] PCTX_RRSESSION_HANDLE_TYPE* phContext,
+   [in] GUID* pLicGuid,
+   [in, range(0, 16)] DWORD dwMQS,
+   [in] DWORD hQueue,
+   [in] DWORD pQueue,
+   [in] DWORD dwpContext
+ );
+</pre></div>
+</li></ul><p><b>hBind: </b> MUST be set to an <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>phContext: </b> A pointer to a context handle that
+contains the information about the opened queue, which corresponds to the
+abstract data model&#39;s <b>OpenQueueEntry</b>. The server MUST set this value; it
+gets deleted on a call to RemoteQMCloseQueue.</p><p><b>pLicGuid: </b>A pointer to a valid <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+(<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a></span>)
+that uniquely identifies the client. This value is set to the <b>QueueManager.Identifier</b>
+ADM element of the <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue manager</a></span> at the
+client end.</p><p><b>dwMQS: </b>This value MAY be used by the server to
+impose an implementation-specific limit on the number of concurrent callers.<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="d6c5ba0a-aaf8-489d-baf2-fdc286b4bea4#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p><p><b>hQueue: </b>A queue identifier. This value SHOULD
+be ignored by the server.<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="d6c5ba0a-aaf8-489d-baf2-fdc286b4bea4#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a></p><p><b>pQueue: </b>A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+that references an <span><a href="../ms-mqdmpr/e2005510-8785-414e-9a71-fa313fa6e119" data-linktype="relative-path">OpenQueueDescriptor</a></span>
+of a remote opened queue.</p><p><b>dwpContext: </b>A DWORD that references an
+OpenQueueDescriptor of a remote opened queue.</p><p><b>Return Values: </b>The method MUST return MQ_OK
+(0x00000000) on success; otherwise, it MUST return a failure HRESULT, and the
+client MUST treat all failure HRESULTs identically.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>MQ_ERROR_INVALID_PARAMETER</b> (0xC00E0006)</p><p><b>Exceptions Thrown:</b></p><p>No exceptions are thrown except those thrown by the
+underlying RPC protocol (see [MS-RPCE]).</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Return MQ_ERROR_INVALID_PARAMETER (0xc00e0006) if <i>pLicGuid</i>
+is NULL or if <i>pQueue</i> or <i>dwpContext</i> is equal to zero.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD return MQ_ERROR_INVALID_PARAMETER (0xc00e0006)
+if <i>pQueue</i> is not equal to <i>dwpContext</i>.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="d6c5ba0a-aaf8-489d-baf2-fdc286b4bea4#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Create a new <b>OpenQueueEntry:</b></p>
+<ul><li><p><span><span>  </span></span>The
+server SHOULD set <b>OpenQueueDescriptorHandle</b> to <i>dwpContext</i>.<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="d6c5ba0a-aaf8-489d-baf2-fdc286b4bea4#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a></p>
+</li><li><p><span><span>  </span></span>Set
+ClientId to the <i>pLicGuid</i> parameter.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Add the <b>OpenQueueEntry</b> to the <i>rOpenQueueEntryCollection</i>.
+</p>
+</li><li><p><span><span> 
+</span></span>Set <i>phContext</i> to the <b>OpenQueueEntry</b> value, and
+return MQ_OK (0x00000000).</p>
+</li></ul></div>

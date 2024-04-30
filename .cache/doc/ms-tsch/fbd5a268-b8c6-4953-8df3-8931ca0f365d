@@ -1,0 +1,72 @@
+<div class="content"><p> </p><p>The NetrJobEnum method MUST return an enumeration of all AT
+tasks on the specified server. </p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrJobEnum(
+   [in, string, unique] ATSVC_HANDLE ServerName,
+   [in, out] LPAT_ENUM_CONTAINER pEnumContainer,
+   [in] DWORD PreferedMaximumLength,
+   [out] LPDWORD pTotalEntries,
+   [in, out, unique] LPDWORD pResumeHandle
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>Pointer to a <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a></span> that MUST specify the server. The client MUST map this string
+to an <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle.
+The server MUST ignore this parameter. For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+sections 4.3.5 and 5.1.5.2.</p><p><b>pEnumContainer: </b> Pointer to an <span><a href="f80b4fc8-1431-4bb4-94e8-3b18672f42c2" data-linktype="relative-path">AT_ENUM_CONTAINER</a></span>
+(section 2.3.5) structure that MUST contain a count of the number of entries
+returned and a buffer that contains the entries. The client MUST send a pointer
+to this structure to the server with the <b>Buffer</b> field set to NULL; upon
+return the <b>Buffer</b> field MUST contain a pointer to an array of <span><a href="d77ddb4a-bb25-4fbe-b5fe-aeca9d5b9498" data-linktype="relative-path">AT_ENUM</a></span>
+structures.</p><p><b>PreferedMaximumLength: </b>MUST contain the
+preferred maximum length, in bytes, of data to be returned. A value of
+0xFFFFFFFF MUST indicate no preferred maximum length.</p><p><b>pTotalEntries: </b>Pointer to a value that MUST
+receive the total number of tasks in the list, beyond the position specified by
+<i>pResumeHandle</i>.</p><p><b>pResumeHandle: </b>MUST be a pointer to an index
+into the list of tasks. This value indicates the index number at which the
+enumeration MUST start.</p><p><b>Return Values: </b>For more information on return
+codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>, or Win32
+Error Codes in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><p>In response to this request the server MUST:</p><ul><li><p><span><span> 
+</span></span>Check the <b>Buffer</b> field in <i>pEnumContainer</i>. If it is
+not set to NULL, set <i>pTotalEntries</i> to 0 and return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>pResumeHandle</i> contains a 0-based index number
+within the valid range of tasks in the list, and if not, set <i>pTotalEntries</i>
+to 0 and return ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_ACCESS_DENIED if the caller does not have
+administrative privileges on the server.</p>
+</li><li><p><span><span> 
+</span></span>Enumerate tasks in the AT <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_08035fe7-a786-4b30-ab60-3fd046060617" data-linktype="relative-path">task store</a></span>, starting
+the enumeration at the ordinal position given by the <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value pointed to by the pResumeHandle parameter.</p>
+</li><li><p><span><span> 
+</span></span>Calculate the size of the <i>AT_ENUM</i> array buffer as follows.
+If <i>PreferedMaximumLength</i> is 0xFFFFFFFF, choose a size equal to <code>((sizeof(AT_ENUM)+132) * number of tasks).</code> If <i>PreferedMaximumLength</i>
+is not 0xFFFFFFFF, choose a size equal to the highest even number smaller or
+equal to <i>PreferedMaximumLength</i>. In both cases, make sure that the size
+is not greater than 65536 and not smaller than <code>(sizeof(AT_ENUM)+520)</code>.</p>
+</li><li><p><span><span> 
+</span></span>Allocate a buffer of this size and return the address of the buffer
+in the <b>Buffer</b> field of the AT_ENUM_CONTAINER structure pointed to by the
+pEnumContainer parameter.</p>
+</li><li><p><span><span> 
+</span></span>Initialize the buffer to hold an array of AT_ENUM structures,
+with field values copied from as many enumerated tasks as fit, and initialize
+the <b>EntriesRead</b> field of the AT_ENUM_CONTAINER structure to the number
+of entries that fit in the buffer.</p>
+</li><li><p><span><span> 
+</span></span>Return the number of tasks enumerated in the <i>pTotalEntries</i>
+parameter, beyond the position specified by <i>pResumeHandle</i>.</p>
+</li><li><p><span><span> 
+</span></span>Return the status code ERROR_SUCCESS if all the enumerated tasks
+fit in the buffer and set <i>pResumeHandle</i> to 0; otherwise, return
+ERROR_MORE_DATA  and increment the value pointed to by the <i>pResumeHandle</i>
+parameter by the value of the <b>EntriesRead</b> field.</p>
+</li><li><p><span><span> 
+</span></span>MUST return ERROR_SUCCESS if the call was successful.</p>
+</li></ul><p>If any errors are raised during the processing, they are
+returned. For more information about return codes, see section 2.3.14 and Win32
+Error Codes in [MS-ERREF] section 2.1.</p></div>

@@ -1,0 +1,680 @@
+<div class="content"><p> </p><p>The R_DnssrvComplexOperation method is used to invoke a set
+of server functions specified by the caller. These functions generally return
+more complex structures than simple 32-bit integer values, unlike the
+operations accessible through R_DnssrvOperation (section <span><a href="9500a7e8-165d-4b13-be86-0ddc43100eef" data-linktype="relative-path">3.1.4.1</a></span>).
+For the purpose of selecting an output structure type the server MUST consider
+the value of dwClientVersion (section <span><a href="a237781b-b048-495d-844b-10ffb38df2a8" data-linktype="relative-path">2.2.1.2.1</a></span>) to be
+0x00000000 when responding to this method.</p><dl>
+<dd>
+<div><pre> LONG R_DnssrvComplexOperation(
+   [in]                                   handle_t                  hBindingHandle,
+   [in, unique, string]                   LPCWSTR                   pwszServerName,
+   [in, unique, string]                   LPCSTR                    pszZone,
+   [in, unique, string]                   LPCSTR                    pszOperation,
+   [in]                                   DWORD                     dwTypeIn,
+   [in, switch_is(dwTypeIn)]              DNSSRV_RPC_UNION          pDataIn,
+   [out]                                  PDWORD                    pdwTypeOut,
+   [out, switch_is(*pdwTypeOut)]          DNSSRV_RPC_UNION*         ppDataOut
+ );
+</pre></div>
+</dd></dl><p><b>hBindingHandle: </b>An RPC binding handle to the
+server. Details concerning binding handles are specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+section 2.3.</p><p><b>pwszServerName: </b>The client SHOULD pass a
+pointer to the FQDN of the target server as a null-terminated <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_69864bcc-33be-41c9-9486-e18618ee3dd0" data-linktype="relative-path">UTF-16LE</a></span>
+character string. The server MUST ignore this value. </p><p><b>pszZone: </b>The name of the zone that is being
+operated on. This MUST be set to NULL unless pszOperation is set to
+QueryDwordProperty, in which case this value MUST be set either to NULL (to
+indicate that DNS server Configuration information is being requested) or to
+the name of the zone to be queried in UTF-8 format (to indicate that a DNS Zone
+integer property is being requested). This value will be used by certain
+operations as specified in the table below.</p><p><b>pszOperation: </b>The operation to perform. The
+value of pszOperation SHOULD<a id="Appendix_A_Target_275"></a><a aria-label="Product behavior note 275" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_275" data-linktype="relative-path">&lt;275&gt;</a> be one
+of the following:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>EnumZones</p>
+  </td>
+  <td>
+  <p>Enumerate zones present on the DNS server qualifying
+  for a specified simple zone filter value. On input, dwTypeIn MUST be set to
+  DNSSRV_TYPEID_DWORD and pDataIn MUST point to any combination of <span><a href="f4cf1f3e-7d13-4010-a915-5223dcabc15d" data-linktype="relative-path">ZONE_REQUEST_FILTERS (section 2.2.5.1.4)</a></span>
+  values. Unless an error is returned, on output the value pointed to by
+  pdwTypeOut MUST be set to DNSSRV_TYPEID_ZONE_LIST and ppDataOut MUST point to
+  a structure of one of the types specified in <span><a href="e43b2e88-e3d5-4e90-9c07-08d2f2dc57ed" data-linktype="relative-path">DNS_RPC_ZONE_LIST (section 2.2.5.2.3)</a></span>.
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EnumZones2</p>
+  </td>
+  <td>
+  <p>Enumerate zones present on the DNS server qualifying
+  for a specified complex zone filter value. On input, dwTypeIn MUST be set to
+  DNSSRV_TYPEID_ENUM_ZONES_FILTER and pDataIn MUST point to a structure of type
+  <span><a href="b2c76377-1c50-42f4-83c6-b514a1a7e65e" data-linktype="relative-path">DNS_RPC_ENUM_ZONES_FILTER (section 2.2.5.2.9)</a></span>.
+  Unless an error is returned, on output the value pointed to by pdwTypeOut
+  MUST be set to DNSSRV_TYPEID_ZONE_LIST and MUST ppDataOut point to a
+  structure of one of the types specified in DNS_RPC_ZONE_LIST.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EnumDirectoryPartitions</p>
+  </td>
+  <td>
+  <p>Enumerate the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_68dc613a-d602-41ae-9acc-76ffe97877c4" data-linktype="relative-path">Application Directory
+  Partition</a></span> Table known to the DNS server. On input, dwTypeIn MUST
+  be set to DNSSRV_TYPEID_DWORD and pDataIn MUST be set to zero if all
+  application directory partitions are enumerated or to 0x000000001 if the DNS
+  domain partition and <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_6e0d87be-b750-4025-9241-0d1ba904f1f8" data-linktype="relative-path">DNS forest partition</a></span>
+  are excluded from results. Unless an error is returned, on output the value
+  pointed to by pdwTypeOut MUST be set to DNSSRV_TYPEID_DP_LIST and ppDataOut
+  MUST point to a structure of type <span><a href="56b1d38f-7896-4632-b7dc-0913ff3ef9b1" data-linktype="relative-path">DNS_RPC_DP_LIST (section 2.2.7.2.4)</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DirectoryPartitionInfo</p>
+  </td>
+  <td>
+  <p>Retrieve detailed information about a specified
+  application directory partition. On input, dwTypeIn MUST be set to
+  DNSSRV_TYPEID_LPSTR and pDataIn MUST point to a null-terminated UTF-8 string
+  specifying the distinguished name of an application directory partition.
+  Unless an error is returned, on output the value pointed to by pdwTypeOut
+  MUST be DNSSRV_TYPEID_DP_INFO and ppDataOut MUST point to a structure of type
+  <span><a href="bd2a817d-6a69-40d3-befc-0c198a9c6e80" data-linktype="relative-path">DNS_RPC_DP_INFO (section 2.2.7.2.1)</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Statistics</p>
+  </td>
+  <td>
+  <p>Retrieve statistics. On input dwTypeIn MUST be set to
+  DNSSRV_TYPEID_DWORD and pDataIn MUST point to any combination of the <span><a href="6e5f45df-bf64-4c53-867b-2a1157472523" data-linktype="relative-path">DNSSRV_STATID_TYPES (section 2.2.10.1.1)</a></span>
+  values. Unless an error is returned, on output the value pointed to by
+  pdwTypeOut MUST be set to DNSSRV_TYPEID_BUFFER and ppDataOut MUST point to a <span><a href="cd4d047c-3e89-4bc2-b165-1dc60ba538d5" data-linktype="relative-path">DNS_RPC_BUFFER
+  structure (section 2.2.1.2.2)</a></span> that contains a list of
+  variable sized <span><a href="c4dd5c55-f434-4b96-8bb5-9d69e28ec7c2" data-linktype="relative-path">DNSSRV_STATS
+  structures (section 2.2.10.2.2)</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>QueryDwordProperty</p>
+  </td>
+  <td>
+  <p>Retrieve the value of a 32-bit integer property. On
+  input, dwTypeIn MUST be set to DNSSRV_TYPEID _LPSTR and pDataIn MUST point to
+  a null-terminated UTF-8 string specifying a zone property name listed in
+  section <span><a href="7bc88855-d86a-41f1-826f-a81788adb95a" data-linktype="relative-path">3.1.1.2.1</a></span> (if
+  pszZone is non-NULL) or server property name listed in section <span><a href="8903e50a-9183-4a7d-9640-53f6f5a91481" data-linktype="relative-path">3.1.1.1.1</a></span>
+  (if pszZone is NULL). Unless an error is returned, on output the value
+  pointed to by pdwTypeOut MUST be set to DNSSRV_TYPEID_DWORD and ppDataOut
+  MUST point to a DWORD value. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IpValidate</p>
+  </td>
+  <td>
+  <p>Validate a list of IP addresses. On input, dwTypeIn
+  MUST be set to DNSSRV_TYPEID_IP_VALIDATE and pDataIn MUST point to a <span><a href="2a367e0b-5a82-45d6-aa77-fbf407ed8d61" data-linktype="relative-path">DNS_RPC_IP_VALIDATE
+  structure (section 2.2.3.2.4)</a></span> containing a list of IP
+  addresses to be validated and the context information for validation as
+  specified in section 2.2.3.2.4. Unless an error is returned, on output the
+  value pointed to by pdwTypeOut MUST be set to DNSSRV_TYPEID_ADDRARRAY and
+  ppDataOut MUST point to a structure of type <span><a href="56ba5fab-f304-4866-99a4-4f1c1f9247a3" data-linktype="relative-path">DNS_ADDR_ARRAY (section 2.2.3.2.3)</a></span>
+  that contains IP validation results (section <span><a href="588ae296-71bf-402f-9996-86ecee39dc29" data-linktype="relative-path">2.2.3.2.1</a></span>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ModifyZoneSigningKeyDescriptor</p>
+  </td>
+  <td>
+  <p>Creates, deletes, or modifies a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_621e5d7b-d764-4196-b838-b52bf82b9380" data-linktype="relative-path">signing
+  key descriptor (SKD)</a></span> for the specified zone. On input, dwTypeIn MUST
+  be set to DNSSRV_TYPEID_SKD and pDataIn MUST point to a structure of type <span><a href="f7b0ad42-4cae-40fd-87c8-82af83824639" data-linktype="relative-path">DNS_RPC_SKD (section 2.2.6.2.1)</a></span>.
+  If GUID inside DNS_RPC_SKD is set to zero, the server MUST create a new
+  signing key descriptor. If GUID inside DNS_RPC_SKD is set to a nonzero value
+  and if all other fields in the structure are NULL, the server MUST delete the
+  signing key descriptor from the zone. Otherwise, the server MUST modify the
+  signing key descriptor for the specified zone. Unless an error is returned,
+  on output the value pointed to by pdwTypeOut MUST be set to DNSSRV_TYPEID_SKD
+  and ppDataOut MUST point to a structure of type
+  DNS_RPC_SKD (section 2.2.6.2.1).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EnumZoneSigningKeyDescriptors</p>
+  </td>
+  <td>
+  <p>Retrieves the signing key descriptor found in the
+  zone&#39;s signing key descriptor list for the specified zone. Input parameters
+  (dwTypeIn and pDataIn) are ignored. Unless an error is returned, on output
+  the value pointed to by pdwTypeOut MUST be set to DNSSRV_TYPEID_SKD_LIST and
+  ppDataOut MUST point to a structure of type <span><a href="6a715b5c-f8c2-4b26-923b-ca23cca2bd57" data-linktype="relative-path">DNS_RPC_SKD_LIST (section 2.2.6.2.2)</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GetZoneSigningKeyDescriptorState</p>
+  </td>
+  <td>
+  <p>Retrieves the SKD state (section <span><a href="b211f988-4404-4c14-b293-bafd114b0eb6" data-linktype="relative-path">2.2.6.2.3</a></span>)
+  for the specified zone and the signing key descriptor GUID. On input,
+  dwTypeIn MUST be set to DNSSRV_TYPEID_LPWSTR and pDataIn MUST point to a
+  string containing the GUID of the signing key descriptor. Unless an error is
+  returned, on output the value pointed to by pdwTypeOut MUST be set to
+  DNSSRV_TYPEID_SKD_STATE and ppDataOut MUST point to a structure of type
+  DNS_RPC_SKD_STATE (section 2.2.6.2.3).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SetZoneSigningKeyDescriptorState</p>
+  </td>
+  <td>
+  <p>Modifies the SKD state (section 2.2.6.2.3) for the
+  specified zone and the signing key descriptor GUID. On input, dwTypeIn MUST
+  be set to DNSSRV_TYPEID_SKD_STATE and pDataIn MUST point to a structure of
+  type DNS_RPC_SKD_STATE (section 2.2.6.2.3). Note that only one key
+  pointer string inside DNS_RPC_SKD_STATE will be set per a specific operation
+  as described below. Unless an error is returned, on output the value pointed
+  to by pdwTypeOut MUST be set to DNSSRV_TYPEID_SKD_STATE and ppDataOut MUST
+  point to a structure of type DNS_RPC_SKD_STATE (section 2.2.6.2.3)
+  containing the modified SKD state.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ValidateZoneSigningParameters</p>
+  </td>
+  <td>
+  <p>Validates the zone signing parameters and returns a
+  structure describing the invalid signing parameters. Input parameters
+  (dwTypeIn and pDataIn) are ignored. Unless success is returned, on output the
+  value pointed to by pdwTypeOut MUST be set to DNSSRV_TYPEID_SIGNING_VALIDATION_ERROR
+  and ppDataOut MUST point to a structure of type <span><a href="b9b7d8ba-458b-4c58-9ae5-c9616a52aa4a" data-linktype="relative-path">DNS_RPC_SIGNING_VALIDATION_ERROR (section 2.2.6.2.8)</a></span>
+  containing invalid elements of the zone configuration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EnumerateKeyStorageProviders</p>
+  </td>
+  <td>
+  <p>Enumerates key storage providers installed on the DNS
+  server. On input, dwTypeIn and pDataIn are ignored. Unless an error is
+  returned, on output the value pointed to by pdwTypeOut MUST be set to
+  DNSSRV_TYPEID_UNICODE_STRING_LIST and ppDataOut MUST point to a structure of
+  type <span><a href="ad7d4230-cccf-4158-9287-328eb753e716" data-linktype="relative-path">DNS_RPC_UNICODE_STRING_LIST (section 2.2.1.2.4)</a></span>
+  that contains a list of storage providers installed on the DNS server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EnumerateTrustPoints</p>
+  </td>
+  <td>
+  <p>Retrieve a list of <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_34a102c7-7324-497c-b8d7-699067c619c0" data-linktype="relative-path">trust points</a></span>,
+  containing either all trust points or only those at or below a given FQDN. On
+  input, dwTypeIn MUST be set to DNSSRV_TYPEID_LPSTR and pDataIn MUST point
+  either to a null pointer or to a null-terminated <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_409411c4-b4ed-4ab6-b0ee-6d7815f85a35" data-linktype="relative-path">UTF-8</a></span> string
+  specifying an FQDN. If pDataIn points to a null pointer, the server MUST
+  return all of the trust points. If pDataIn is an FQDN and there is a trust
+  point or parent of a trust point at the FQDN, the server MUST return the
+  trust point at the FQDN (or an empty trust-point structure for the FQDN if
+  the FQDN is not a trust point) followed by empty trust-point structures for
+  each immediate child of the FQDN, if any. An empty trust-point structure is a
+  structure in which eTrustPointState is TRUST_POINT_STATE_INITIALIZED and all
+  elements other than pszTrustPointName and dwRpcStructureVersion are zero. If
+  pDataIn is an FQDN and there is neither a trust point nor the parent of a
+  trust point at the FQDN, the server MUST return a nonzero error. Unless an
+  error is returned, on output the value pointed to by pdwTypeOut MUST be set
+  to DNSSRV_TYPEID_TRUST_POINT_LIST and ppDataOut MUST point to a structure of
+  type <span><a href="4a950c7f-5f73-4b0e-b0d2-c467dde70976" data-linktype="relative-path">DNS_RPC_TRUST_POINT_LIST (section 2.2.6.2.5)</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EnumerateTrustAnchors</p>
+  </td>
+  <td>
+  <p>Retrieve a list of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bfdbc40a-da75-45a3-a8bc-50cd4f2f9797" data-linktype="relative-path">trust anchors</a></span> at a
+  given FQDN. On input, dwTypeIn MUST be set to DNSSRV_TYPEID_LPSTR and pDataIn
+  MUST point to a null-terminated UTF-8 string specifying an FQDN. If the FQDN
+  specified is not a trust point, the server MUST return a nonzero error.
+  Unless an error is returned, on output the value pointed to by pdwTypeOut
+  MUST be set to DNSSRV_TYPEID_TRUST_ANCHOR_LIST and ppDataOut MUST point to a
+  structure of type <span><a href="b70ad9a4-fb65-4fea-80f3-eef09cbc54b9" data-linktype="relative-path">DNS_RPC_TRUST_ANCHOR_LIST (section 2.2.6.2.7)</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ExportZoneSigningSettings</p>
+  </td>
+  <td>
+  <p>Exports all the Dnssec settings of a file-backed <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_7205eedf-f027-4da5-8f65-18966a86a17a" data-linktype="relative-path">primary
+  zone</a></span> from a server. On input, dwTypeIn MUST be set to
+  DNSSRV_TYPEID_DWORD and pDataIn SHOULD be 1 to get KSK details in the
+  exported <b>DNS_RPC_ZONE_DNSSEC_SETTINGS</b> structure; otherwise, pDataIn
+  SHOULD be zero. Unless an error is returned, on output pdwTypeOut is set to
+  DNSSRV_TYPEID_ZONE_SIGNING_SETTINGS and ppDataOut points to a structure of
+  type <b>PDNS_RPC_ZONE_DNSSEC_SETTINGS</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ImportZoneSigningSettings</p>
+  </td>
+  <td>
+  <p>Imports the Dnssec settings to a primary file-backed
+  zone on a server and takes appropriate action based on the signing metadata
+  imported.</p>
+  <p>On input, dwTypeIn MUST be set to
+  DNSSRV_TYPEID_ZONE_SIGNING_SETTINGS and pDataIn SHOULD be a structure of type
+  PDNS_RPC_ZONE_DNSSEC_SETTINGS.</p>
+  <p>If this operation is invoked on a server that hosts a
+  primary unsigned copy of a file-backed zone and the fIsSigned Property of
+  PDNS_RPC_ZONE_DNSSEC_SETTINGS is 1, then the server becomes a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0ab40b6b-2ca7-4782-8484-0361cff40833" data-linktype="relative-path">nonkey
+  master primary server</a></span> for that zone. Unless an error is returned,
+  on output pdwTypeOut is set to DNSSRV_TYPEID_DWORD and ppDataOut points to a
+  structure of type ImportOpResult.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EnumZoneScopes</p>
+  </td>
+  <td>
+  <p>Enumerates all the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bbe7722c-420e-48e7-b4bb-9838ff07b9e6" data-linktype="relative-path">zone scopes</a></span> in a
+  zone or cache scopes in a cache zone. On input, dwTypeIn MUST be set to
+  DNSSRV_TYPEID_NULL and pDataIn SHOULD be NULL. The pszZone MUST be the zone
+  name for which zone scopes are to be enumerated or it MUST be &#34;..cache&#34;.
+  Unless an error is returned, on output pdwTypeOut is set to
+  DNSSRV_TYPEID_ZONE_SCOPE_ENUM and ppDataOut points to a structure of type
+  PDNS_RPC_ENUM_ZONE_SCOPE_LIST.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ZoneStatistics</p>
+  </td>
+  <td>
+  <p>Gets the zone statistics from the server. On input,
+  dwTypeIn MUST be set to DNSSRV_TYPEID_DWORD and pDataIn SHOULD be either
+  DNS_RPC_ZONE_STATS_GET, which gets the current zone statistics, or
+  DNS_RPC_ZONE_STATS_CLEAR, which clears the zone statistics after getting
+  them. The pszZone MUST point to the zone information for which statistics are
+  required. Unless an error is returned, on output pdwTypeOut SHOULD be set to
+  DNSSRV_TYPEID_ZONE_STATS and ppDataOut SHOULD point to a structure of type <a id="_Hlk61975773">DNS_RPC_ZONE_STATS</a>_V1 (section <span><a href="d0ac5580-a846-4e5a-a526-c5e17c00e15d" data-linktype="relative-path">2.2.12.2.5</a></span>).
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EnumServerScopes</p>
+  </td>
+  <td>
+  <p>Enumerates all the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_b20e1dd4-e2fb-44d4-8508-9d9c8ac7ebd7" data-linktype="relative-path">server scopes</a></span> in a
+  DNS server. On input, dwTypeIn MUST be set to DNSSRV_TYPEID_NULL and pDataIn
+  SHOULD be NULL. Unless an error is returned, on output, pdwTypeOut SHOULD be
+  set to DNSSRV_TYPEID_SCOPE_ENUM and ppDataOut points to a structure of type
+  PDNS_RPC_ENUM_SCOPE_LIST.<a id="Appendix_A_Target_276"></a><a aria-label="Product behavior note 276" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_276" data-linktype="relative-path">&lt;276&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EnumerateClientSubnetRecord</p>
+  </td>
+  <td>
+  <p>Enumerates the names all the Client Subnet Records on
+  the DNS server. On input, dwTypeIn MUST be set to DNSSRV_TYPEID_NULL and
+  pDataIn SHOULD be NULL. Unless an error is returned, on output pdwTypeOut
+  SHOULD be set to DNSSRV_TYPEID_UNICODE_STRING_LIST and ppDataOut points to a
+  structure of type PDNS_RPC_UNICODE_STRING_LIST.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GetClientSubnetRecord</p>
+  </td>
+  <td>
+  <p>Gets the details of the Client Subnet Record on the
+  DNS server. On input, dwTypeIn MUST be set to DNSSRV_TYPEID_LPWSTR and
+  pDataIn SHOULD be name of the Client Subnet Record. Unless an error is
+  returned, on output pdwTypeOut SHOULD be set to
+  DNSSRV_TYPEID_CLIENT_SUBNET_RECORD and ppDataOut points to a structure of
+  type PDNS_RPC_CLIENT_SUBNET_RECORD.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EnumeratePolicy</p>
+  </td>
+  <td>
+  <p>Enumerates the policies configured on the server level
+  or zone level for a specified zone on a DNS server. On input, dwTypeIn MUST
+  be set to DNSSRV_TYPEID_NULL and pDataIn SHOULD be NULL. Unless an error is
+  returned, on output pdwTypeOut SHOULD be set to DNSSRV_TYPEID_POLICY_ENUM and
+  ppDataOut points to a structure of type PDNS_RPC_ENUMERATE_POLICY_LIST.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GetPolicy</p>
+  </td>
+  <td>
+  <p>Gets the details of a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_5076749f-34a6-48a6-b051-8968a55f4d7b" data-linktype="relative-path">DNS Policy</a></span>
+  configured on the server level or on the zone level for a specified zone on
+  the DNS server. On input, dwTypeIn MUST be set to DNSSRV_TYPEID_LPWSTR and
+  pDataIn SHOULD be name of the DNS Policy. Unless an error is returned, on
+  output pdwTypeOut SHOULD be set to DNSSRV_TYPEID_POLICY and ppDataOut points
+  to a structure of type PDNS_RPC_POLICY.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GetRRLInfo</p>
+  </td>
+  <td>
+  <p>Gets the details of Response Rate Limiting parameters
+  configured on the server level on the DNS server. On input, dwTypeIn MUST be
+  set to DNSSRV_TYPEID_NULL and pDataIn SHOULD be NULL. Unless an error is
+  returned, on output pdwTypeOut SHOULD be set to DNSSRV_TYPEID_RRL and
+  ppDataOut points to a structure of type PDNS_RPC_RRL_PARAMS.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EnumVirtualizationInstances</p>
+  </td>
+  <td>
+  <p>Enumerates the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1b9d3eb9-dad0-4d1d-acb7-4597e5db641c" data-linktype="relative-path">virtualization instance</a></span>
+  present in DNS server. The <i>dwTypeIn</i> parameter MUST be set to
+  DNSSRV_TYPEID_NULL and pDataIn MUST be set to NULL. On successful enumeration
+  <i>pdwTypeOut</i> is set to DNSSRV_TYPEID_VIRTUALIZATION_INSTANCE_ENUM, and
+  ppDataOut MUST point to a structure of type
+  DNS_RPC_ENUM_VIRTUALIZATION_INSTANCE_LIST.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwTypeIn: </b>A <span><a href="c49b8142-a364-41c8-914a-7675a573b5e4" data-linktype="relative-path">DNS_RPC_TYPEID (section 2.2.1.1.1)</a></span>
+value indicating the type of input data pointed to by pDataIn.</p><p><b>pDataIn: </b>Input data of type <span><a href="b61a8727-46b1-4981-a6b3-a1d4b92b67c4" data-linktype="relative-path">DNSSRV_RPC_UNION (section 2.2.1.2.6)</a></span>,
+which contains a data structure of the type indicated by dwTypeIn.</p><p><b>pdwTypeOut: </b>A pointer to a DWORD that on
+success returns a DNS_RPC_TYPEID (section 2.2.1.1.1) value indicating the type
+of output data pointed to by ppDataOut.</p><p><b>ppDataOut: </b>A pointer to output data of type
+DNSSRV_RPC_UNION, which on success contains a data structure of the type
+indicated by pdwTypeOut.</p><p><b>Return Values: </b>The method MUST return
+ERROR_SUCCESS (0x00000000) on success or a nonzero Win32 error code value if an
+error occurred. <a id="_Hlk58961936">See </a><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+or section <span><a href="aa521c99-3e44-4b75-9faa-c0c1ebcca5b6" data-linktype="relative-path">2.2.1.1.5</a></span>. All
+error values MUST be treated the same.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>If the <b>Global Server State</b> (section <span><a href="e72286df-3e4c-4535-9a0c-e9cc944248c2" data-linktype="relative-path">3.1.1</a></span>)
+is not &#34;Running&#34;, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Check that the input parameters conform to the syntax
+requirements above, and if not, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>If pszZone is not NULL, verify that pszOperation is set to
+QueryDwordProperty, ModifyZoneSigningKeyDescriptor,
+EnumZoneSigningKeyDescriptors, GetZoneSigningKeyDescriptorState,
+SetZoneSigningKeyDescriptorState, ValidateZoneSigningParameters,
+EnumeratePolicy, or GetPolicy. If it is not, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>If pszOperation is set to QueryDwordProperty, verify that
+dwTypeIn is set to DNSSRV_TYPEID_LPSTR. If it is not, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>If pszOperation is set to ModifyZoneSigningKeyDescriptor, verify
+that dwTypeIn is set to DNSSRV_TYPEID_SKD. If it is not, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>If pszOperation is set to GetZoneSigningKeyDescriptorState,
+verify that dwTypeIn is set to DNSSRV_TYPEID_LPWSTR. If it is not, return a
+failure.</p>
+</li><li><p><span><span> 
+</span></span>If pszOperation is set to SetZoneSigningKeyDescriptorState, verify
+that dwTypeIn is set to DNSSRV_TYPEID_SKD_STATE. If it is not, return a
+failure.</p>
+</li><li><p><span><span> 
+</span></span>If pszZone is not NULL, search the DNS Zone Table (section 3.1.1)
+for the zone with a name matching the value of pszZone. If a matching zone
+cannot be found, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Validate, as specified in section <span><a href="7ba0801d-74f1-499e-81a3-00231ef31952" data-linktype="relative-path">3.1.6.1</a></span>, that the
+client has permissions to perform the attempted operation. If pszZone is NULL
+then the DNS server MUST perform the Phase 2 authorization test using the DNS
+server Configuration Access Control List. If pszZone is not NULL then the DNS
+server MUST perform the Phase 2 authorization test using the Zone Access
+Control List for the zone specified by pszZone. Write privilege MUST be tested
+for the ModifyZoneSigningKeyDescriptor and SetZoneSigningKeyDescriptorState
+operations. Read privilege MUST be tested for all other operations. If the
+client does not have permission to perform the operation, the server MUST
+return a failure.</p>
+</li><li><p><span><span> 
+</span></span>If pszZone is not NULL, and pszOperation is QueryDwordProperty,
+and pDataIn matches a property name listed in section 3.1.6.1, and the server
+supports that property, the server MUST set pdwTypeOut to DNSSRV_TYPEID_DWORD,
+set ppDataOut to the DWORD value of the property, and return success. If the
+property name is not supported, the server MUST return a nonzero error code.</p>
+</li><li><p><span><span> 
+</span></span>If pszZone is not NULL, and pszOperation is
+ModifyZoneSigningKeyDescriptor:</p>
+<ul><li><p><span><span>  </span></span>If
+the <b>GUID</b> field of the <b>DNS_RPC_SKD</b> structure pointed to by pDataIn
+is set to zero, the server MUST create a new signing key descriptor for the
+specified zone and add it to the zone&#39;s signing key descriptor list. If this
+operation succeeds, the server MUST set pdwTypeOut to DNSSRV_TYPEID_SKD and
+MUST set ppDataOut to point to a structure of type DNS_RPC_SKD representing the
+newly created signing key descriptor, and return success. Otherwise, the server
+MUST return a nonzero error code.</p>
+</li><li><p><span><span>  </span></span>If
+the <b>GUID</b> field of the <b>DNS_RPC_SKD</b> structure pointed to by pDataIn
+is nonzero, and all other fields are set to zero, the server MUST locate the
+specified SKD in the zone&#39;s signing key descriptor list. If the SKD is found,
+the server MUST delete the specified SKD from the zone&#39;s signing key descriptor
+list. If this operation succeeds, the server MUST set pdwTypeOut to
+DNSSRV_TYPEID_SKD and MUST set ppDataOut to point to a structure of type
+DNS_RPC_SKD representing the deleted signing key descriptor, and return
+success. Otherwise, the server MUST return a nonzero error code.</p>
+</li><li><p><span><span>  </span></span>If
+the <b>GUID</b> field of the <b>DNS_RPC_SKD</b> structure pointed to by pDataIn
+is nonzero, and one or more of the other fields are nonzero, the server MUST
+locate the specified SKD in the zone&#39;s signing key descriptor list. If the SKD
+is found, the server MUST modify this SKD as follows:</p>
+<ul><li><p><span><span> 
+</span></span>If any of the dwDNSKEYSignatureValidityPeriod,
+dwDSSignatureValidityPeriod, dwStandardSignatureValidityPeriod, or
+dwNextRolloverAction fields of the DNS_RPC_SKD pointed to by pDataIn are
+nonzero, modify the appropriate field in the SKD found in the zone&#39;s signing key
+descriptor list.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>dwRolloverPeriod</b> field of the DNS_RPC_SKD structure
+pointed to by pDataIn is nonzero, modify the appropriate field of the SKD found
+in the zone&#39;s signing key descriptor list. If the previous value of this field
+in the SKD was 0xFFFFFFFF, and the new value is some other nonzero value, the
+server MUST also modify the signing key descriptor&#39;s associated <b>ftNextRolloverTime</b>
+to the current time plus the new <b>dwRolloverPeriod</b>. If the previous value
+of this field in the SKD was not 0xFFFFFFFF, and the new value is 0xFFFFFFFF,
+the server MUST also set the signing key descriptor&#39;s associated <b>ftNextRolloverTime</b>
+to zero.</p>
+</li><li><p><span><span> 
+</span></span>If any other fields of the DNS_RPC_SKD pointed to by pDataIn are
+nonzero, ignore these fields.</p>
+</li></ul></li></ul><p>If this operation succeeds, the
+server MUST set pdwTypeOut to DNSSRV_TYPEID_SKD and MUST set ppDataOut to point
+to a structure of type DNS_RPC_SKD representing the modified signing key
+descriptor, and return success. Otherwise, the server MUST return a nonzero
+error code.</p>
+</li><li><p><span><span> 
+</span></span>If pszZone is not NULL, and pszOperation is
+SetZoneSigningKeyDescriptorState, the server MUST locate the SKD specified by
+the <b>GUID</b> field of the DNS_RPC_SKD_STATE pointed to by pDataIn in the
+zone&#39;s signing key descriptor list. If the SKD is found, the server MUST modify
+exactly one of the signing key descriptor&#39;s <b>pwszActiveKey</b>, <b>pwszStandbyKey</b>,
+or <b>pwszNextKey</b> fields as follows:</p>
+<ul><li><p><span><span>  </span></span>If
+the <b>pwszActiveKey</b> field of the DNS_RPC_SKD_STATE structure pointed to by
+pDataIn is nonzero, modify the signing key descriptor&#39;s <b>pwszActiveKey</b>
+field.</p>
+</li><li><p><span><span>  </span></span>If
+the <b>pwszActiveKey</b> field of the DNS_RPC_SKD_STATE structure pointed to by
+pDataIn is NULL, and the <b>pwszStandbyKey</b> field of this structure is
+nonzero, modify the signing key descriptor&#39;s <b>pwszStandbyKey</b>.</p>
+</li><li><p><span><span>  </span></span>If
+both the <b>pwszActiveKey</b> and <b>pwszStandbyKey</b> fields of the
+DNS_RPC_SKD_STATE structure pointed to by pDataIn are NULL, and the <b>pwszNextKey</b>
+field of this structure is nonzero, modify the signing key descriptor&#39;s <b>pwszNextKey</b>.</p>
+</li></ul><p>If this operation succeeds, the
+server MUST set pdwTypeOut to DNSSRV_TYPEID_SKD_STATE and MUST set ppDataOut to
+point to a structure of type DNS_RPC_SKD_STATE representing the modified
+signing key descriptor, and return success. Otherwise, the server MUST return a
+nonzero error code.</p>
+</li><li><p><span><span> 
+</span></span>If pszZone is not NULL, and pszOperation is EnumZoneSigningKeyDescriptors,
+GetZoneSigningKeyDescriptorState, or ValidateZoneSigningParameters, execute the
+operation indicated by the value of pszOperation as previously specified
+against the specified zone.</p>
+</li><li><p><span><span> 
+</span></span>If pszZone is NULL, execute the operation indicated by the value
+of pszOperation as specified above.</p>
+</li><li><p><span><span> 
+</span></span>If pszZone is not NULL, and pszOperation is
+ExportZoneSigningSettings:</p>
+<ul><li><p><span><span>  </span></span>On
+input, dwTypeIn MUST be set to DNSSRV_TYPEID_DWORD.</p>
+</li><li><p><span><span>  </span></span>To
+get KSK details in exported DNS_RPC_ZONE_DNSSEC_SETTINGS, pDataIn is 1;
+otherwise, zero.</p>
+</li><li><p><span><span>  </span></span>Unless
+an error is returned, on output pdwTypeOut is set to
+DNSSRV_TYPEID_ZONE_SIGNING_SETTINGS and ppDataOut points to a structure of type
+PDNS_RPC_ZONE_DNSSEC_SETTINGS.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If pszZone is not NULL, and pszOperation is
+ImportZoneSigningSettings:</p>
+<ul><li><p><span><span>  </span></span>On
+input, dwTypeIn MUST be set to DNSSRV_TYPEID_ZONE_SIGNING_SETTINGS and pDataIn
+SHOULD be a structure of type PDNS_RPC_ZONE_DNSSEC_SETTINGS.</p>
+</li><li><p><span><span>  </span></span>Unless
+an error is returned, on output pdwTypeOut is set to DNSSRV_TYPEID_DWORD and
+ppDataOut points to a structure of type ImportOpResult.</p>
+</li><li><p><span><span>  </span></span>If
+this operation is invoked on a server hosting a file-backed unsigned zone, and
+if the fIsSigned property of DNS_RPC_ZONE_DNSSEC_SETTINGS is 1, then the server
+becomes a nonkey master primary server of that signed zone.</p>
+</li><li><p><span><span>  </span></span>If
+this operation is invoked on a server hosting a file-backed signed zone, and if
+the fIsSigned property of DNS_RPC_ZONE_DNSSEC_SETTINGS is 1, and if there is a
+difference in the imported and existing settings that requires re-signing, then
+the zone is marked for staggered signing with the new settings.</p>
+</li><li><p><span><span>  </span></span>If
+this operation is invoked on a server hosting a file-backed signed zone, and if
+the fIsSigned property of DNS_RPC_ZONE_DNSSEC_SETTINGS is 0, then the zone is
+unsigned on the target server.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If pszZone is not NULL, and pszOperation is EnumZoneScopes:</p>
+<ul><li><p><span><span>  </span></span>On
+input, dwTypeIn MUST be set to DNSSRV_TYPEID_NULL.</p>
+</li><li><p><span><span>  </span></span>pDataIn
+SHOULD be NULL.</p>
+</li><li><p><span><span>  </span></span>The
+pszZone MUST be the zone name for which zone scopes are to be enumerated, or it
+MUST be &#34;..cache&#34; to enumerate cache scopes.</p>
+</li><li><p><span><span>  </span></span>Unless
+an error is returned, on output pdwTypeOut is set to
+DNSSRV_TYPEID_ZONE_SCOPE_ENUM and ppDataOut points to a structure of type
+PDNS_RPC_ENUM_ZONE_SCOPE_LIST.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If pszZone is not NULL, and pszOperation is ZoneStatistics:</p>
+<ul><li><p><span><span>  </span></span>On
+input, dwTypeIn MUST be set to DNSSRV_TYPEID_DWORD.</p>
+</li><li><p><span><span>  </span></span>pDataIn
+SHOULD be either DNS_RPC_ZONE_STATS_GET, which gets the current Zone statistics
+or DNS_RPC_ZONE_STATS_CLEAR if one wants to clear the Zone Statistics after
+getting them.</p>
+</li><li><p><span><span>  </span></span>The
+pszZone MUST point to the zone information for which statistics are required.</p>
+</li><li><p><span><span>  </span></span>Unless
+an error is returned, on output pdwTypeOut SHOULD be set to
+DNSSRV_TYPEID_ZONE_STATS and ppDataOut SHOULD point to a structure of type
+DNS_RPC_ZONE_STATS.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the pszOperation is EnumerateClientSubnetRecord:</p>
+<ul><li><p><span><span>  </span></span>The
+pszZone is NULL. This operation is at the server level.</p>
+</li><li><p><span><span>  </span></span>The
+DNS server MUST return all the Client Subnet Record names, and return success
+or failure depending on the result. The output pdwTypeOut SHOULD be set to
+DNSSRV_TYPEID_UNICODE_STRING_LIST and ppDataOut SHOULD point to a structure of
+type DNS_RPC_UNICODE_STRING_LIST.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the pszOperation is GetClientSubnetRecord:</p>
+<ul><li><p><span><span>  </span></span>The
+pszZone is NULL. This operation is at the server level.</p>
+</li><li><p><span><span>  </span></span>pDataIn
+SHOULD be a NULL-terminated Unicode string, which is the name of the Client
+Subnet Record whose details will be retrieved.</p>
+</li><li><p><span><span>  </span></span>If
+the Client Subnet Record name given in input pData does not exist, the DNS
+server SHOULD return DNS_ERROR_CLIENT_SUBNET_DOES_NOT_EXIST (9976).</p>
+</li><li><p><span><span>  </span></span>The
+DNS server MUST return all the Client Subnet Record details and return success
+or failure depending on the result. The output pdwTypeOut SHOULD be set to
+DNSSRV_TYPEID_CLIENT_SUBNET_RECORD and ppDataOut SHOULD point to a structure of
+type DNS_RPC_CLIENT_SUBNET_RECORD.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If pszZone is NULL and the pszOperation is EnumeratePolicy:</p>
+<ul><li><p><span><span>  </span></span>The
+DNS server MUST return all the DNS Policies at the server level and return
+success or failure depending on the result. The output pdwTypeOut SHOULD be set
+to DNSSRV_TYPEID_POLICY_ENUM and ppDataOut SHOULD point to a structure of type
+PDNS_RPC_ENUMERATE_POLICY_LIST.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If pszZone is not NULL and the pszOperation is EnumeratePolicy:</p>
+<ul><li><p><span><span>  </span></span>Retrieve
+the zone associated with pszZone. If the zone is not found return the error
+DNS_ERROR_ZONE_DOES_NOT_EXIST (9601).</p>
+</li><li><p><span><span>  </span></span>The
+DNS server MUST return all the DNS Policies configured for the pszZonel and
+return success or failure depending on the result. The output pdwTypeOut SHOULD
+be set to DNSSRV_TYPEID_POLICY_ENUM and ppDataOut SHOULD point to a structure
+of type PDNS_RPC_ENUMERATE_POLICY_LIST.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If pszZone is NULL and the pszOperation is GetPolicy:</p>
+<ul><li><p><span><span>  </span></span>pDataIn
+SHOULD be a NULL terminated Unicode string, which is the name of the DNS Policy
+whose details will be retrieved.</p>
+</li><li><p><span><span>  </span></span>If
+the DNS Policy given by the NULL terminated Unicode string pDataIn does not
+exist at the server level, the DNS server MUST return the error
+DNS_ERROR_POLICY_DOES_NOT_EXIST (9972).</p>
+</li><li><p><span><span>  </span></span>The
+DNS server MUST return the details of the corresponding DNS Policy setting at
+the server level and return success or failure depending on the result. The
+output pdwTypeOut SHOULD be set to DNSSRV_TYPEID_POLICY and ppDataOut SHOULD
+point to a structure of type PDNS_RPC_POLICY.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If pszZone is not NULL and the pszOperation is GetPolicy:</p>
+<ul><li><p><span><span>  </span></span>Retrieve
+the zone associated with pszZone. If the zone is not found return the error
+DNS_ERROR_ZONE_DOES_NOT_EXIST (9601).</p>
+</li><li><p><span><span>  </span></span>pDataIn
+SHOULD be a NULL terminated Unicode string, which is the name of the DNS Policy
+on the zone whose details will be retrieved.</p>
+</li><li><p><span><span>  </span></span>If
+the DNS Policy as specified in pDataIn is not found in the zone, return the
+error DNS_ERROR_POLICY_DOES_NOT_EXIST (9972).</p>
+</li><li><p><span><span>  </span></span>The
+DNS server MUST return the details of the corresponding DNS Policy on the zone
+and return success or failure depending on the result. The output pdwTypeOut
+SHOULD be set to DNSSRV_TYPEID_POLICY and ppDataOut SHOULD point to a structure
+of type PDNS_RPC_POLICY.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If pszZone is NULL and pszOperation is GetRRLInfo:</p>
+<ul><li><p><span><span>  </span></span>pDataIn
+SHOULD be NULL.</p>
+</li><li><p><span><span>  </span></span>The
+DNS server MUST return the details of the Response Rate Limiting settings at
+the server level and return success or failure depending on the result. On
+success, the output pdwTypeOut SHOULD be set to DNSSRV_TYPEID_RRL and ppDataOut
+SHOULD point to a structure of type PDNS_RPC_RRL_PARAMS.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If pszZone is NULL and pszOperation is
+EnumVirtualizationInstances:</p>
+<ul><li><p><span><span>  </span></span>The
+DNS server MUST return all the virtualization instances present in the DNS
+server and return success or failure. The output pdwTypeOut SHOULD be set to
+DNSSRV_TYPEID_VIRTUALIZATION_INSTANCE_ENUM and ppDataOut SHOULD point to a
+structure of type DNS_RPC_ENUM_VIRTUALIZATION_INSTANCE_LIST.</p>
+</li></ul></li></ul></div>

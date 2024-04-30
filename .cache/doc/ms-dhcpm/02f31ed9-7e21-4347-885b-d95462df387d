@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DHCP_IP_ARRAY</b> structure defines the array of type
+<span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>,
+typed as a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>.
+This structure is used in the <span><a href="fc224205-044d-4e27-a6d1-9c94cf92a633" data-linktype="relative-path">R_DhcpEnumSubnets (section 3.1.4.4)</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_IP_ARRAY {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_IP_ADDRESS Elements;
+ } DHCP_IP_ARRAY,
+  *LPDHCP_IP_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This is of type DWORD,
+containing the number of IPv4 addresses in the subsequent field, the <b>Elements</b>
+member.</p><p><b>Elements:</b>  This is a pointer to an
+array of <b>DHCP_IP_ADDRESS</b> DWORD types of length <b>NumElements</b>
+containing the IPv4 addresses of the subnets.</p></div>

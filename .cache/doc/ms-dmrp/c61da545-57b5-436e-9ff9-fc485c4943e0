@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>The VOLUMETYPE enumeration defines values for types of <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volumes</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum _VOLUMETYPE
+ {
+   VOLUMETYPE_UNKNOWN, 
+   VOLUMETYPE_PRIMARY_PARTITION,
+   VOLUMETYPE_LOGICAL_DRIVE,
+   VOLUMETYPE_FT,
+   VOLUMETYPE_VM,
+   VOLUMETYPE_CDROM,
+   VOLUMETYPE_REMOVABLE 
+ } VOLUMETYPE;
+</pre></div>
+</dd></dl><p><b>VOLUMETYPE_UNKNOWN:</b>  Volume is of an unknown
+type.</p><p><b>VOLUMETYPE_PRIMARY_PARTITION:</b>  Volume is a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_083447aa-2ab6-4d94-a686-9bbfc1fd5744" data-linktype="relative-path">primary partition</a></span>.</p><p><b>VOLUMETYPE_LOGICAL_DRIVE:</b>  Volume is a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_a6adfe1b-35d0-404e-b2fb-4d45e9f579e0" data-linktype="relative-path">logical
+drive</a></span>.</p><p><b>VOLUMETYPE_FT:</b>  Volume is a Windows NT 4.0
+operating system–style <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_98c2ba19-d0f7-4db1-b6c1-4e7323cc5bc0" data-linktype="relative-path">fault-tolerant</a></span>
+volume.</p><p><b>VOLUMETYPE_VM:</b>  Volume is controlled by the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_3080678a-2e28-4e28-af89-8c010325a7b2" data-linktype="relative-path">volume
+manager</a></span>.</p><p><b>VOLUMETYPE_CDROM:</b>  Volume resides on a CD-ROM
+device.</p><p><b>VOLUMETYPE_REMOVABLE:</b>  Volume resides on a
+device with <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_58aae236-0186-4ba1-a46b-f0a997e6c6f2" data-linktype="relative-path">removable media</a></span>.</p></div>

@@ -1,0 +1,57 @@
+<div class="content"><p> </p><p>The MQUSERSIGNCERTS structure defines a format for packing
+multiple <span><a href="c4c40ea9-150a-4939-8a49-5aab6cf6dd88" data-linktype="relative-path">MQUSERSIGNCERT</a></span>
+structures into a single <span><a href="95305a27-ad52-4d1c-b553-27fd3351a39c" data-linktype="relative-path">BLOB (section 2.2.15)</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CertificateCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Certificates
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>CertificateCount (4 bytes): </b>A 32-bit unsigned
+integer that contains the count of MQUSERSIGNCERT structures in the <b>Certificates</b>
+field.</p><p><b>Certificates (variable): </b>A variable-length
+array of bytes that contains MQUSERSIGNCERT structures.</p></div>

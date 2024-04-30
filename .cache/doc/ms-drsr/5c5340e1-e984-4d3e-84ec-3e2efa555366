@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The DRS_MSG_INIT_DEMOTIONREPLY_V1 structure defines a
+response message received from the <span><a href="faca17da-3f7f-4092-98db-fd2ce7d98b8c" data-linktype="relative-path">IDL_DRSInitDemotion</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwOpError;
+ } DRS_MSG_INIT_DEMOTIONREPLY_V1;
+</pre></div>
+</dd></dl><p><b>dwOpError:</b>  A Win32 error code, as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p></div>

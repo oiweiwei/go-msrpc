@@ -1,0 +1,84 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/805d1ea0-fe35-4636-94b8-5d312daa25f8" data-linktype="external">msdn link</a></p><p>The UnwrappedSecret structure consists of the ClientWrap
+secret unwrapped through the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_0d6344a7-948f-4215-b887-8bbe43eb9620" data-linktype="relative-path">ServerWrap
+subprotocol</a>.</p><p>The UnwrappedSecret structure is used by the server to
+return the unwrapped secret to the client in some special cases, as specified
+in section <a href="c8cc3008-13c4-4424-82f4-b4661c590d43" data-linktype="relative-path">3.1.4.1.2</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x01</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EncSalt
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecoveredSecret
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>EncSalt (16 bytes): </b>This MUST be a random
+number 16 bytes in length. </p><p><b>RecoveredSecret (variable): </b>This field MUST
+contain the secret recovered by the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_c6590684-c769-4edf-82be-62f3450b09e7" data-linktype="relative-path">unwrapping</a> operation,
+formatted as specified in section <a href="534b3a9c-6c2f-4d5b-87fe-7d55ece2c42d" data-linktype="relative-path">2.2.6.1</a>.</p></div>

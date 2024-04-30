@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The CHANGE_PARTITION_TYPE_PARAMETERS structure describes
+parameters to use when changing a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_674598d2-080c-4dbf-b12e-cc873da21b54" data-linktype="relative-path">partition type</a></span>.<a id="Appendix_A_Target_47"></a><a aria-label="Product behavior note 47" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_47" data-linktype="relative-path">&lt;47&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _CHANGE_PARTITION_TYPE_PARAMETERS {
+   VDS_PARTITION_STYLE style;
+   [switch_is(style)] union {
+     [case(VDS_PST_MBR)] 
+       struct {
+       byte partitionType;
+     } MbrPartInfo;
+     [case(VDS_PST_GPT)] 
+       struct {
+       GUID partitionType;
+     } GptPartInfo;
+     [default]       ;
+   };
+ } CHANGE_PARTITION_TYPE_PARAMETERS;
+</pre></div>
+</dd></dl><p><b>style:</b>  A value from the
+VDS_PARITION_STYLE enumeration that describes the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span> <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span>
+format.</p><p><b>MbrPartInfo:</b>  Contains information
+for an <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b251c771-5ccf-40f2-b98d-0119db210b4b" data-linktype="relative-path">MBR</a></span> partition.</p><p><b>partitionType:</b>  The byte value
+indicating the partition type to change the partition to.</p><p><b>GptPartInfo:</b>  Contains information
+for the partition of a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GPT</a></span>.</p><p><b>partitionType:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+indicating the partition type to change the partition to.<a id="Appendix_A_Target_48"></a><a aria-label="Product behavior note 48" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_48" data-linktype="relative-path">&lt;48&gt;</a></p></div>

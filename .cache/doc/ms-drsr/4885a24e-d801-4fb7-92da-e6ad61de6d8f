@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The DRS_MSG_ADDCLONEDCREPLY_V1 structure defines a response
+message received from the <span><a href="ef0bfb1d-037b-4626-a6d9-cc7589bc5786" data-linktype="relative-path">IDL_DRSAddCloneDC</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [string] WCHAR* pwszCloneDCName;
+   [string] WCHAR* pwszSite;
+   [range(0,1024)] DWORD cPasswordLength;
+   [size_is(cPasswordLength)] WCHAR* pwsNewDCAccountPassword;
+ } DRS_MSG_ADDCLONEDCREPLY_V1;
+</pre></div>
+</dd></dl><p><b>pwszCloneDCName:</b>  The new <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC&#39;s</a></span>
+name.</p><p><b>pwszSite:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8abdc986-5679-42d9-ad76-b11eb5a0daba" data-linktype="relative-path">site</a></span>
+containing the new DC.</p><p><b>cPasswordLength:</b>  The length of the <b>pwsNewDCAccountPassword</b>
+member.</p><p><b>pwsNewDCAccountPassword:</b>  The
+password of the new DC account.</p></div>

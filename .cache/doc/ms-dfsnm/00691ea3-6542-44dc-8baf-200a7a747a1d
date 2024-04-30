@@ -1,0 +1,103 @@
+<div class="content"><p> </p><p>The DFS_INFO_5 structure contains information for a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span>
+or a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS
+link</a></span>. </p><p>The DFS_INFO_5 structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_5 {
+   [string] WCHAR* EntryPath;
+   [string] WCHAR* Comment;
+   DWORD State;
+   unsigned long Timeout;
+   GUID Guid;
+   unsigned long PropertyFlags;
+   unsigned long MetadataSize;
+   DWORD NumberOfStorages;
+ } DFS_INFO_5;
+</pre></div>
+</dd></dl><p><b>EntryPath:</b>   A pointer to a DFS root
+or a DFS link path. </p><p><b>Comment:</b>   A pointer to a
+null-terminated <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> string
+containing a comment associated with the DFS root or DFS link that is for
+informational purposes. This string has no protocol-specified restrictions on
+length or content. The comment is meant for human consumption and does not
+affect server functionality. </p><p><b>State:</b>  Refers to the State field of
+<span><a href="a5dc283a-1fa7-4f09-a58a-0cfa3e5de625" data-linktype="relative-path">DFS_INFO_2</a></span>.
+For more information, see section 2.2.3.2.</p><p><b>Timeout:</b>   The time-out, in seconds,
+associated with the root or link and used in a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c6f2eabf-2138-4f97-a788-5d6a41a27bdd" data-linktype="relative-path">DFS referral</a></span>
+response to a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c2787719-60e0-4b69-8efe-c33edf9b40b2" data-linktype="relative-path">DFS client</a></span>. </p><p><b>Guid:</b>  The <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> of this root or
+link.</p><p><b>PropertyFlags:</b>   A bit field in
+which each bit is responsible for a specific property applicable to the entire <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS
+namespace</a></span>, the DFS root, or an individual DFS link, depending on the
+actual property. Any combination of bits is allowed, unless indicated
+otherwise. The following are valid bit definitions for this field. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DFS_PROPERTY_FLAG_INSITE_REFERRALS</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>When set, indicates that <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8f645116-42be-407e-b3bd-1b72babb0c37" data-linktype="relative-path">DFS in-site referral mode</a></span>
+  is enabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_PROPERTY_FLAG_ROOT_SCALABILITY</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>When set, indicates <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_cf94d206-f71c-4ca1-891a-24c83f533e45" data-linktype="relative-path">DFS root scalability mode</a></span>
+  is enabled. This flag is valid only for the DFS root of a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_133ab305-ad75-4b38-8ec9-40bc0dc3b594" data-linktype="relative-path">domain-based
+  DFS namespace</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_PROPERTY_FLAG_SITE_COSTING</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>When set, indicates <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_2ea2b8ff-5099-4b7d-86fc-d14a506fc14b" data-linktype="relative-path">DFS referral site costing</a></span>
+  is enabled. This flag is valid only for a DFS root.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_PROPERTY_FLAG_TARGET_FAILBACK</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>When set, indicates <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_506d8850-6fcd-469a-b837-da4aaadf7ec6" data-linktype="relative-path">DFS client target failback</a></span>
+  is enabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_PROPERTY_FLAG_CLUSTER_ENABLED</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>When set, indicates <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_3311cfed-b8c7-4713-92d9-440f93a939fa" data-linktype="relative-path">clustered DFS namespace</a></span>
+  is enabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_PROPERTY_FLAG_ABDE</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>When set, enables <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6e5829b2-eaaf-4afc-9afd-31c74b49f803" data-linktype="relative-path">Access Based Directory
+  Enumeration (ABDE) mode</a></span> on a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8099f7c1-2a31-4a20-81e6-824689bd9c5a" data-linktype="relative-path">domainv2-based DFS namespace</a></span>
+  or a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_701a2cc1-eb5a-400f-b394-5bad264ec8f6" data-linktype="relative-path">stand-alone DFS namespace</a></span>.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a>This flag is not supported on
+  domainv1-based namespaces.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>MetadataSize:</b>  The size, in bytes,
+of the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_e8de88fd-d760-46fa-ad77-76961fa20aea" data-linktype="relative-path">DFS metadata</a></span> of the
+DFS namespace. For a DFS link, this MUST be 0.</p><p><b>NumberOfStorages:</b>  The number of <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_a2c6d1c9-deea-427c-91ee-56f6e726eabd" data-linktype="relative-path">DFS
+targets</a></span> for this root or link.</p></div>

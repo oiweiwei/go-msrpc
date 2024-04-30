@@ -1,0 +1,92 @@
+<div class="content"><p>The <b>OSVERSIONINFO</b> structure specifies operating
+system (OS) version information for use with Server Handle Key
+Values (section <a href="1393a76f-5851-49a5-bf14-7188ca6763b2" data-linktype="relative-path">2.2.3.10</a>).</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwOSVersionInfoSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwMajorVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwMinorVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwBuildNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwPlatformId</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szCSDVersion
+  (256 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwOSVersionInfoSize (4 bytes): </b>The size of the
+<b>OSVERSIONINFO</b> structure in bytes.</p><p><b>dwMajorVersion (4 bytes): </b>The major OS
+version. See <b>dwMajorVersion</b> in <a href="fae766fc-31d3-43cc-902f-8e6cc4c75f31" data-linktype="relative-path">SPLCLIENT_INFO Members
+(section 2.2.1.3.7)</a> for details.</p><p><b>dwMinorVersion (4 bytes): </b>The minor OS
+version. See <b>dwMinorVersion</b> in SPLCLIENT_INFO Members (section
+2.2.1.3.7) for details.</p><p><b>dwBuildNumber (4 bytes): </b>The build number of
+the OS. This is a version-specific value.<a id="Appendix_A_Target_183"></a><a aria-label="Product behavior note 183" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_183" data-linktype="relative-path">&lt;183&gt;</a></p><p><b>dwPlatformId (4 bytes): </b>The OS platform. See <b>wProcessorArchitecture</b>
+in SPLCLIENT_INFO Members (section 2.2.1.3.7) for details.</p><p><b>szCSDVersion (256 bytes): </b>A maintenance string
+for Microsoft Product Support Services (PSS) use.</p></div>

@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The SHARE_ENUM_UNION union contains information about
+shares. It is used in the definition of the <span><a href="79ee052e-e16b-4ec5-b4b7-e99777c26eca" data-linktype="relative-path">SHARE_ENUM_STRUCT</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union _SHARE_ENUM_UNION {
+   [case(0)] 
+     SHARE_INFO_0_CONTAINER* Level0;
+   [case(1)] 
+     SHARE_INFO_1_CONTAINER* Level1;
+   [case(2)] 
+     SHARE_INFO_2_CONTAINER* Level2;
+   [case(501)] 
+     SHARE_INFO_501_CONTAINER* Level501;
+   [case(502)] 
+     SHARE_INFO_502_CONTAINER* Level502;
+   [case(503)] 
+     SHARE_INFO_503_CONTAINER* Level503;
+ } SHARE_ENUM_UNION;
+</pre></div>
+</dd></dl><p><b>Level0:</b>  A pointer to a structure
+that contains information about shares, as specified in section <span><a href="d1c53c5e-dc80-4f0d-a85e-56f58829219b" data-linktype="relative-path">2.2.4.32</a></span>.</p><p><b>Level1:</b>  A pointer to a structure
+that contains information about shares, as specified in section <span><a href="919abd5d-87d9-4ffa-b4b1-632a66053bc6" data-linktype="relative-path">2.2.4.33</a></span>.</p><p><b>Level2:</b>  A pointer to a structure
+that contains information about shares, as specified in section <span><a href="f4dbaa4a-2048-4192-80cd-ea85ae920e5f" data-linktype="relative-path">2.2.4.34</a></span>.</p><p><b>Level501:</b>  A pointer to a structure
+that contains information about shares, as specified in section <span><a href="18fa9da8-8a98-4cbe-a026-899a4fb5eefe" data-linktype="relative-path">2.2.4.35</a></span>.</p><p><b>Level502:</b>  A pointer to a structure
+that contains information about shares, as specified in section <span><a href="1d5b0d11-6bb0-4b7f-8c14-c52873d469e7" data-linktype="relative-path">2.2.4.36</a></span>.</p><p><b>Level503:</b>  A pointer to a structure
+that contains information about shares, as specified in section <span><a href="a5a4f5d8-97df-43a0-a902-7ba4a843aca7" data-linktype="relative-path">2.2.4.37</a></span>.</p></div>

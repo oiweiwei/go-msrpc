@@ -1,0 +1,45 @@
+<div class="content"><p> </p><p>The <b>DHCP_MCAST_MIB_INFO</b> structure contains counter
+values for all <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_04286a2c-1484-44d0-9854-7c57c8b4118c" data-linktype="relative-path">multicast scopes</a></span> defined
+on the MADCAP server. This structure is used in <span><a href="2edef397-cec8-4443-99bf-5d86cb5a17b9" data-linktype="relative-path">R_DhcpGetMCastMibInfo (section 3.2.4.32)</a></span>
+method which retrieves statistics on multicast scopes defined on the MADCAP
+server.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_MCAST_MIB_INFO {
+   DWORD Discovers;
+   DWORD Offers;
+   DWORD Requests;
+   DWORD Renews;
+   DWORD Acks;
+   DWORD Naks;
+   DWORD Releases;
+   DWORD Informs;
+   DATE_TIME ServerStartTime;
+   DWORD Scopes;
+   [size_is(Scopes)] LPMSCOPE_MIB_INFO ScopeInfo;
+ } DHCP_MCAST_MIB_INFO,
+  *LPDHCP_MCAST_MIB_INFO;
+</pre></div>
+</dd></dl><p><b>Discovers:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+containing the number of <b>DHCPDISCOVER</b> messages <span><a href="https://go.microsoft.com/fwlink/?LinkId=90318" data-linktype="external">[RFC2131]</a></span>
+received by the MADCAP server from MADCAP clients.</p><p><b>Offers:</b>  This is of type DWORD,
+containing the number of <b>DHCPOFFER</b> messages sent by the MADCAP server to
+the MADCAP client.</p><p><b>Requests:</b>  This is of type DWORD,
+containing the number of <b>DHCPREQUEST</b> messages received by the MADCAP
+server from MADCAP clients.</p><p><b>Renews:</b>  This is of type DWORD,
+containing the number of <b>DHCPRENEW</b> messages received by the MADCAP
+server from MADCAP clients.</p><p><b>Acks:</b>  This is of type DWORD,
+containing the number of <b>DHCPACK</b> messages sent by the MADCAP server to
+the MADCAP client.</p><p><b>Naks:</b>  This is of type DWORD,
+containing the number of <b>DHCPNAK</b> messages sent by the MADCAP server to
+MADCAP clients.</p><p><b>Releases:</b>  This is of type DWORD,
+containing the number of <b>DHCPRELEASE</b> messages received by the MADCAP
+server from the MADCAP client.</p><p><b>Informs:</b>  This is of type DWORD,
+containing the number of <b>DHCPINFORM</b> messages received by the MADCAP
+server from the MADCAP client.</p><p><b>ServerStartTime:</b>  This is of type <span><a href="0f93bea1-8172-4efa-826a-e12667e1bcee" data-linktype="relative-path">DATE_TIME (section 2.2.1.2.11)</a></span>,
+containing the start time of the MADCAP server.</p><p><b>Scopes:</b>  This is of type DWORD,
+containing the number of IPv4 multicast scopes configured on the current MADCAP
+server. This field defines the number of IPv4 multicast scopes in the
+subsequent field <i>ScopeInfo</i>.</p><p><b>ScopeInfo:</b>  This is a pointer to an
+array of <span><a href="b38ad12a-de02-4916-a3f5-1706195d44df" data-linktype="relative-path">MSCOPE_MIB_INFO (section 2.2.1.2.51)</a></span>
+structures of length <b>Scopes</b> that contains information about the IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_128cd76b-eecb-41e6-96f7-f73c2bf9235a" data-linktype="relative-path">scopes</a></span>
+configured on the MADCAP server.</p></div>

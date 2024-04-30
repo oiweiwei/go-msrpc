@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The EEUString structure encodes <span><a href="ba724cab-c810-480e-ae60-f61f3952c492#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> strings that
+contain troubleshooting information. The <span><a href="55afeb54-05fe-4f0c-a31f-a932d1be0164" data-linktype="relative-path">EEComputerName</a></span>
+structure uses this type.</p><dl>
+<dd>
+<div><pre> typedef struct tagEEUString {
+   short nLength;
+   [size_is(nLength)] unsigned short* pString;
+ } EEUString;
+</pre></div>
+</dd></dl><p><b>nLength:</b>  This field MUST contain
+the length of <b>pString</b> in characters.</p><p><b>pString:</b>  A NULL-terminated Unicode
+string that contains troubleshooting information.</p></div>

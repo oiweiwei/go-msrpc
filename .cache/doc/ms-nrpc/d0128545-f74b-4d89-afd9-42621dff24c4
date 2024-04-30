@@ -1,0 +1,42 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/d0128545-f74b-4d89-afd9-42621dff24c4" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_LEVEL</b> union defines a union of all types
+of logon information.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(NETLOGON_LOGON_INFO_CLASS)] 
+ union _NETLOGON_LEVEL {
+   [case(NetlogonInteractiveInformation)] 
+     PNETLOGON_INTERACTIVE_INFO LogonInteractive;
+   [case(NetlogonInteractiveTransitiveInformation)] 
+     PNETLOGON_INTERACTIVE_INFO LogonInteractiveTransitive;
+   [case(NetlogonServiceInformation)] 
+     PNETLOGON_SERVICE_INFO LogonService;
+   [case(NetlogonServiceTransitiveInformation)] 
+     PNETLOGON_SERVICE_INFO LogonServiceTransitive;
+   [case(NetlogonNetworkInformation)] 
+     PNETLOGON_NETWORK_INFO LogonNetwork;
+   [case(NetlogonNetworkTransitiveInformation)] 
+     PNETLOGON_NETWORK_INFO LogonNetworkTransitive;
+   [case(NetlogonGenericInformation)] 
+     PNETLOGON_GENERIC_INFO LogonGeneric;
+   [default]     ;
+ } NETLOGON_LEVEL,
+  *PNETLOGON_LEVEL;
+</pre></div>
+</dd></dl><p><b>LogonInteractive:</b> This field is selected when
+the logon information type is <b>NetlogonInteractiveInformation</b>. The data
+type is <b>NETLOGON_INTERACTIVE_INFO</b>, as specified in section <a href="af76351f-ef69-46bc-a451-e4c4b99bac4a" data-linktype="relative-path">2.2.1.4.3</a>.</p><p><b>LogonInteractiveTransitive:</b> This field is
+selected when the logon information type is <b>NetlogonInteractiveTransitiveInformation</b>.
+The data type is <b>NETLOGON_INTERACTIVE_INFO</b>, as specified in section
+2.2.1.4.3.</p><p><b>LogonService:</b> This field is selected when the
+logon information type is <b>NetlogonServiceInformation</b>. The data type is <b>NETLOGON_SERVICE_INFO</b>,
+as specified in section <a href="1c9f2af2-e164-4548-9428-eae68a03537e" data-linktype="relative-path">2.2.1.4.4</a>.</p><p><b>LogonServiceTransitive:</b> This field is selected
+when the logon information type is <b>NetlogonServiceTransitiveInformation</b>.
+The data type is <b>NETLOGON_SERVICE_INFO</b>, as specified in section
+2.2.1.4.4.</p><p><b>LogonNetwork:</b> This field is selected when the
+logon information type is <b>NetlogonNetworkInformation</b>. The data type is <b>NETLOGON_NETWORK_INFO</b>,
+as specified in section <a href="e17b03b8-c1d2-43a1-98db-cf8d05b9c6a8" data-linktype="relative-path">2.2.1.4.5</a>.</p><p><b>LogonNetworkTransitive:</b> This field is selected
+when the logon information type is <b>NetlogonNetworkTransitiveInformation</b>.
+The data type is <b>NETLOGON_NETWORK_INFO</b>, as specified in section
+2.2.1.4.5.</p><p><b>LogonGeneric:</b> This field is selected when the
+logon information type is <b>NetlogonGenericInformation</b>. The data type is <b>NETLOGON_GENERIC_INFO</b>,
+as specified in section <a href="c03d6d95-9b5e-4329-9645-eedcdd167f6e" data-linktype="relative-path">2.2.1.4.2</a>.</p></div>

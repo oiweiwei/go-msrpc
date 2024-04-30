@@ -1,0 +1,39 @@
+<div class="content"><p> </p><p>The VDS_PROVIDER_FLAG enumeration defines the set of valid
+flags for a provider object.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_PROVIDER_FLAG
+ {
+   VDS_PF_DYNAMIC = 0x00000001,
+   VDS_PF_INTERNAL_HARDWARE_PROVIDER = 0x00000002,
+   VDS_PF_ONE_DISK_ONLY_PER_PACK = 0x00000004,
+   VDS_PF_ONE_PACK_ONLINE_ONLY = 0x00000008,
+   VDS_PF_VOLUME_SPACE_MUST_BE_CONTIGUOUS = 0x00000010,
+   VDS_PF_SUPPORT_MIRROR = 0x00000020,
+   VDS_PF_SUPPORT_RAID5 = 0x00000040,
+   VDS_PF_SUPPORT_DYNAMIC_1394 = 0x20000000,
+   VDS_PF_SUPPORT_FAULT_TOLERANT = 0x40000000,
+   VDS_PF_SUPPORT_DYNAMIC = 0x80000000
+ } VDS_PROVIDER_FLAG;
+</pre></div>
+</dd></dl><p><b>VDS_PF_DYNAMIC:  </b>If set, all <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disks</a></span>
+that the current provider manages are dynamic. This flag MUST be set only by a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_6e9f2b9c-9e46-4d39-b1e8-4c9b4fbb317c" data-linktype="relative-path">dynamic
+provider</a></span>. By definition, dynamic providers manage only <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b11172af-9369-448d-9722-444eb52b21cb" data-linktype="relative-path">dynamic
+disks</a></span>.</p><p><b>VDS_PF_INTERNAL_HARDWARE_PROVIDER:  </b>Reserved
+for internal use.</p><p><b>VDS_PF_ONE_DISK_ONLY_PER_PACK:  </b>If set, the
+provider supports single <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_a6543827-8d70-4e5a-a982-2fdc2e7f8bca" data-linktype="relative-path">disk packs</a></span> only.
+Typically, the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_5b50f50e-f257-4241-9c74-d48612a2253f" data-linktype="relative-path">basic provider</a></span> sets
+this flag to simulate a disk pack that has one disk.</p><p><b>VDS_PF_ONE_PACK_ONLINE_ONLY:  </b>If set, the
+dynamic provider supports <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_783ae2e4-7c04-40ba-a974-f95a30aa1ab2" data-linktype="relative-path">online</a></span> status for
+only one <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_890bb28d-df68-420f-a8bc-83899d34ad5c" data-linktype="relative-path">pack</a></span> at a time.</p><p><b>VDS_PF_VOLUME_SPACE_MUST_BE_CONTIGUOUS:  </b>If
+set, all <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volumes</a></span> that this
+provider manages MUST have contiguous space. This flag applies to the basic
+provider only.</p><p><b>VDS_PF_SUPPORT_MIRROR:  </b>If set, the provider
+supports mirrored volumes (RAID-1).</p><p><b>VDS_PF_SUPPORT_RAID5:  </b>If set, the provider
+supports striped with parity volumes (RAID-5).</p><p><b>VDS_PF_SUPPORT_DYNAMIC_1394:  </b>If set, the
+provider supports IEEE 1394 dynamic disks. This flag MUST be set only by the
+dynamic provider on systems that support IEEE 1394 dynamic disks.</p><p><b>VDS_PF_SUPPORT_FAULT_TOLERANT:  </b>If set, the
+provider supports <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_98c2ba19-d0f7-4db1-b6c1-4e7323cc5bc0" data-linktype="relative-path">fault-tolerant</a></span>
+disks. This flag MUST be set only by the dynamic provider on systems that
+support fault-tolerant volumes.</p><p><b>VDS_PF_SUPPORT_DYNAMIC:  </b>If set, the provider
+supports managing dynamic disks. This flag MUST be set only by the dynamic
+provider on systems that support dynamic disks.</p></div>

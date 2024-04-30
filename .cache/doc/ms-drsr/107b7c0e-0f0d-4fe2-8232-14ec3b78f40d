@@ -1,0 +1,58 @@
+<div class="content"><p> </p><p>The MTX_ADDR structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> for
+the network name of a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [range(1,256)] unsigned long mtx_namelen;
+   [size_is(mtx_namelen)] char mtx_name[];
+ } MTX_ADDR;
+</pre></div>
+</dd></dl><p><b>mtx_namelen:</b>  A 32-bit, unsigned
+integer that specifies the number of bytes in <b>mtx_name</b>, including a
+terminating null character.</p><p><b>mtx_name:</b>  The UTF-8 encoding of a <span><a href="3d0d3777-9358-47dd-b555-34405f57f912" data-linktype="relative-path">NetworkAddress</a></span>.</p><p>The following table shows an alternative representation of
+this structure.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>mtx_namelen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>mtx_name
+  (variable length) ...</p>
+  </td>
+ </tr>
+</tbody></table><p> </p></div>

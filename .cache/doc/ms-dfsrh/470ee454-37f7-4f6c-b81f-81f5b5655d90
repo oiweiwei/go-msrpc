@@ -1,0 +1,45 @@
+<div class="content"><p>The DeleteObject method executes an <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a> command to delete an <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a> object
+that has a specified <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">distinguished
+name</a> and attributes. The command MUST be executed under the machine
+security credentials, or for a cluster, under the specified network name
+credentials.<a id="Appendix_A_Target_54"></a><a aria-label="Product behavior note 54" href="70b8d14d-a366-4156-a2ad-eedb63aec058#Appendix_A_54" data-linktype="relative-path">&lt;54&gt;</a></p><dl>
+<dd>
+<div><pre> HRESULT DeleteObject(
+   [in] BSTR domainControllerName,
+   [in] BSTR distinguishedName,
+   [in] BSTR networkNameResourceName
+ );
+</pre></div>
+</dd></dl><p><b>domainControllerName: </b>MUST be the <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a> of the domain
+controller to which the method sends the LDAP request.</p><p><b>distinguishedName: </b>MUST be the distinguished
+name of the Active Directory object that is being deleted. The distinguished name
+of any object in Active Directory MAY be used. The format of the distinguished
+name is specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90325" data-linktype="external">[RFC2251]</a>
+section 4.1.3. <a id="Appendix_A_Target_55"></a><a aria-label="Product behavior note 55" href="70b8d14d-a366-4156-a2ad-eedb63aec058#Appendix_A_55" data-linktype="relative-path">&lt;55&gt;</a></p><p><b>networkNameResourceName: </b>MUST be the name of
+the cluster resource (the resource type MUST be &#34;Network Name&#34;). If
+this parameter is a non-empty string, the server MUST execute the LDAP command
+under the account that corresponds to this network name. There are no
+constraints regarding the format of the network name except the requirement
+that its length be no more than 32,767 characters. Otherwise, if this parameter
+is NULL or an empty string, the server MUST use the <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_ccf481e1-fb56-43d1-b6c6-0733fb52e001" data-linktype="relative-path">machine account</a> to execute
+the LDAP command.</p><p><b>Return Values: </b>The method MUST return:</p><ul><li><p><span><span>  </span></span>A
+value of 0 on success.</p>
+</li><li><p><span><span>  </span></span>For
+LDAP protocol failures:</p>
+<ul><li><p><span><span> 
+</span></span>A value of dfsrHelperLdapErrorBase + the server-side error code 
+if the LDAP error is LDAP_OPERATIONS_ERROR.</p>
+</li><li><p><span><span> 
+</span></span>A value of 0 if the LDAP error is LDAP_NO_SUCH_OBJECT.</p>
+</li><li><p><span><span> 
+</span></span>A value of dfsrHelperLdapErrorBase plus the LDAP return code for
+all other LDAP errors. For more information, see <a href="https://go.microsoft.com/fwlink/?LinkId=89933" data-linktype="external">[LDAP-ERR]</a>.</p>
+</li></ul></li><li><p><span><span>  </span></span>For
+all other failures, an implementation-specific nonzero error code.</p>
+</li></ul><p>The server MUST handle this message by using the same
+sequence of steps as for <a href="2defd5c7-2630-4fe4-a222-d1d5cb21f539" data-linktype="relative-path">IADProxy::DeleteObject</a>
+(as specified in section 3.1.5.2.2), with the following additional step:</p><ul><li><p><span><span> 
+</span></span>The server MUST execute the LDAP command under the credentials
+that correspond to the network resource name that is supplied in the <i>networkNameResourceName</i>
+parameter.</p>
+</li></ul></div>

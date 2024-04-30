@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/50b36dc3-da43-40c1-a690-891deabd642f" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_CHANGE_QUORUM_V2</b> enumeration SHOULD<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a> list the notifications that are
+generated for quorum-specific information. ClusAPI Protocol version 2.0 servers
+do not support this value.</p><p>These notifications are available only with <b>ApiGetNotifyV2</b>
+(section <a href="491227be-d055-4140-8b85-35cf29f31166" data-linktype="relative-path">3.1.4.2.138</a>).
+The object type is CLUSTER_OBJECT_TYPE_QUORUM. The ParentId is not set for
+these notifications.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   CLUSTER_CHANGE_QUORUM_STATE_V2 = 0x00000001
+ } CLUSTER_CHANGE_QUORUM_V2;
+</pre></div>
+</dd></dl><p><b>CLUSTER_CHANGE_QUORUM_STATE_V2: </b>This
+notification indicates that the quorum configuration of the cluster has
+changed.</p></div>

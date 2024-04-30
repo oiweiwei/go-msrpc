@@ -1,0 +1,295 @@
+<div class="content"><p> </p><p>The <b>FAX_PORT_INFO</b> structure describes one fax port.
+The data includes, among other items, a device identifier, the port&#39;s name and
+current status, and subscriber identifiers.</p><p>A fax client application passes the <b>FAX_PORT_INFO</b> in
+a call to the <b>FAX_SetPort</b> (section <span><a href="e3e3dbb9-5f2d-4537-a6a1-3a7b534c5f71" data-linktype="relative-path">3.1.4.1.88</a></span>)
+function to modify the configuration of the fax port of interest.</p><p>This structure is also used as an input argument for the <b>FaxObs_SetPort</b>
+(section <span><a href="77fdb752-7238-4baf-8698-625337a0d328" data-linktype="relative-path">3.1.4.2.17</a></span>) method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD SizeOfStruct;
+   DWORD DeviceId;
+   DWORD State;
+   DWORD Flags;
+   DWORD Rings;
+   DWORD Priority;
+   [string] LPCWSTR DeviceName;
+   [string] LPCWSTR Tsid;
+   [string] LPCWSTR Csid;
+ } FAX_PORT_INFO,
+  *PFAX_PORT_INFO;
+</pre></div>
+</dd></dl><p><b>SizeOfStruct:</b> A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that holds the size of the structure, in bytes. This value MUST be 36 bytes or
+48 bytes. When filled in on a 32-bit implementation, this value SHOULD be 36
+bytes. When filled in on a 64-bit implementation, this value SHOULD be 48
+bytes.</p><p><b>DeviceId:</b> A <b>DWORD</b> variable that holds
+the line identifier for the fax device (port) of interest.</p><p><b>State:</b> A <b>DWORD</b> variable that holds a
+fax device status code or value. This member can be one of the following
+predefined device status codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FPS_DIALING</p>
+  <p>0x20000001</p>
+  </td>
+  <td>
+  <p>The device is dialing a fax number.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_SENDING</p>
+  <p>0x20000002</p>
+  </td>
+  <td>
+  <p>The device is sending a <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_cce65523-bec8-486a-8c6c-6091c52af3d3" data-linktype="relative-path">fax document</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_RECEIVING</p>
+  <p>0x20000004</p>
+  </td>
+  <td>
+  <p>The device is receiving a fax document.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_COMPLETED</p>
+  <p>0x20000008</p>
+  </td>
+  <td>
+  <p>The device completed sending or receiving a fax
+  transmission.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_HANDLED</p>
+  <p>0x20000010</p>
+  </td>
+  <td>
+  <p>The fax service processed the outbound fax document;
+  the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_2ba66d72-d766-440f-b5ea-0333759b147c" data-linktype="relative-path">fax service provider (FSP)</a></span>
+  will transmit the fax document.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_UNAVAILABLE</p>
+  <p>0x20000020</p>
+  </td>
+  <td>
+  <p>The device is not available because it is in use by
+  another application.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_BUSY</p>
+  <p>0x20000040</p>
+  </td>
+  <td>
+  <p>The device encountered a busy signal.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_NO_ANSWER</p>
+  <p>0x20000080</p>
+  </td>
+  <td>
+  <p>The receiving device did not answer the call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_BAD_ADDRESS</p>
+  <p>0x20000100</p>
+  </td>
+  <td>
+  <p>The device dialed an invalid fax number.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_NO_DIAL_TONE</p>
+  <p>0x20000200</p>
+  </td>
+  <td>
+  <p>The sending device cannot complete the call because it
+  does not detect a dial tone.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_DISCONNECTED</p>
+  <p>0x20000400</p>
+  </td>
+  <td>
+  <p>The fax call was disconnected by the sender or the
+  caller.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_FATAL_ERROR</p>
+  <p>0x20000800</p>
+  </td>
+  <td>
+  <p>The device has encountered a fatal protocol error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_NOT_FAX_CALL</p>
+  <p>0x20001000</p>
+  </td>
+  <td>
+  <p>The device received a call that was a data call or a
+  voice call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_CALL_DELAYED</p>
+  <p>0x20002000</p>
+  </td>
+  <td>
+  <p>The device delayed a fax call because the sending
+  device received a busy signal multiple times. The device cannot retry the
+  call because dialing restrictions exist (some countries and regions restrict
+  the number of retry attempts when a number is busy).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_CALL_BLACKLISTED</p>
+  <p>0x20004000</p>
+  </td>
+  <td>
+  <p>The device could not complete a call because the
+  telephone number was blocked or reserved; emergency numbers such as 911 are
+  blocked.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_INITIALIZING</p>
+  <p>0x20008000</p>
+  </td>
+  <td>
+  <p>The device is initializing a call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_OFFLINE</p>
+  <p>0x20010000</p>
+  </td>
+  <td>
+  <p>The device is offline and unavailable.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_RINGING</p>
+  <p>0x20020000</p>
+  </td>
+  <td>
+  <p>The device is ringing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_AVAILABLE</p>
+  <p>0x20100000</p>
+  </td>
+  <td>
+  <p>The device is available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_ABORTING</p>
+  <p>0x20200000</p>
+  </td>
+  <td>
+  <p>The device is aborting a fax job.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_ROUTING</p>
+  <p>0x20400000</p>
+  </td>
+  <td>
+  <p>The device is <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_efaa1290-6d4b-4f44-9e84-35a867069d45" data-linktype="relative-path">routing</a></span> a received
+  fax document.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_ANSWERED</p>
+  <p>0x20800000</p>
+  </td>
+  <td>
+  <p>The device answered a new call.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Flags:</b> A <b>DWORD</b> variable that holds a
+set of bit flags that specify the capability of the fax port. This member can
+be a bitwise OR combination of the following flag values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FPF_RECEIVE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The device can receive faxes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPF_SEND</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The device can send faxes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPF_VIRTUAL</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The device is a <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_2e816340-361c-45ed-893a-b97da67f00c9" data-linktype="relative-path">virtual fax device</a></span>.
+  Note that the implementer cannot set a device to be virtual. When <b>FAX_GetPort</b>
+  (section <span><a href="f7fa6fcf-ace1-47a2-b2a4-f5e408212d78" data-linktype="relative-path">3.1.4.1.51</a></span>) is
+  called, the FAX_PORT_INFO flag&#39;s FPF_VIRTUAL value indicates whether the
+  device is virtual. When <b>FAX_SetPort</b> (section 3.1.4.1.88) is called,
+  the service will only relate to the FPF_RECEIVE and FPF_SEND values.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Rings:</b> A <b>DWORD</b> variable that holds the
+number of times an incoming fax call rings before the specified device answers
+the call. Values can be from 0 to 99 inclusive. This value SHOULD be ignored
+unless the FPF_RECEIVE port capability bit flag is set. </p><p><b>Priority:</b> A <b>DWORD</b> variable that holds
+the priority that determines the relative order in which available fax devices
+send outgoing transmissions. Values for this member can be 1 through n, where n
+is the value of the <i>PortsReturned</i> parameter returned by a call to the <b>FAX_EnumPorts</b>
+(section <span><a href="7143a58b-d7c5-4353-8857-39c7f708e778" data-linktype="relative-path">3.1.4.1.28</a></span>)
+function. When the fax server initiates an outgoing fax transmission, it
+attempts to select the device with the highest priority and FPF_SEND port
+capability. If that device is not available, the server selects the next
+available device that follows in rank order, and so on. The value of the <b>Priority</b>
+member has no effect on incoming transmissions.</p><p><b>DeviceName:</b> A pointer to a constant
+null-terminated character string that holds the name of the fax device of
+interest.</p><p><b>Tsid:</b> A pointer to a constant null-terminated
+character string that holds the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_3b1ad462-95fc-4739-b942-4a5670d6ae34" data-linktype="relative-path">transmitting subscriber
+identifier (TSID)</a></span>. This identifier is usually a telephone number.
+Only English letters, numeric symbols, and punctuation marks (ASCII range 0x20
+to 0x7F) can be used in a TSID. </p><p><b>Csid:</b> A pointer to a constant null-terminated
+character string that holds the called subscriber identifier (<span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_edf41cda-84f2-40e8-a1bb-fe7bfa1a4d6f" data-linktype="relative-path">CSID</a></span>).
+This identifier is usually a telephone number. Only English letters, numeric
+symbols, and punctuation marks (ASCII range 0x20 to 0x7F) can be used in a
+CSID.</p></div>

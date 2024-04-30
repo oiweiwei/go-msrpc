@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/f93a1780-2006-4535-8eb1-d7a3356100aa" data-linktype="external">msdn link</a></p><p>The <b>GROUP_ENUM_LIST</b> structure is a container for a
+list of <b>GROUP_ENUM_ENTRY</b> (section <a href="2583479e-027f-41c3-bf44-a0c519a3e772" data-linktype="relative-path">2.2.3.25</a>) structures. This
+structure encapsulates the results of a call to <b>ApiCreateGroupEnum</b>
+(section <a href="e105d71d-ffed-4a7d-b386-7d99e280d59a" data-linktype="relative-path">3.1.4.2.139</a>),
+which clients use to enumerate the groups in a cluster.</p><dl>
+<dd>
+<div><pre> typedef struct _GROUP_ENUM_LIST {
+   DWORD EntryCount;
+   [size_is(EntryCount)] GROUP_ENUM_ENTRY Entry[*];
+ } GROUP_ENUM_LIST,
+  *PGROUP_ENUM_LIST;
+</pre></div>
+</dd></dl><p><b>EntryCount:</b> The number of <b>GROUP_ENUM_ENTRY</b>
+structures contained in the <b>Entry</b> field.</p><p><b>Entry:</b> An array of <b>GROUP_ENUM_ENTRY</b>
+structures that represent information for the groups being enumerated.</p></div>

@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>This enumeration represents the direction of network traffic
+flow.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_DIRECTION
+ {
+   FW_DIR_INVALID = 0,
+   FW_DIR_IN,
+   FW_DIR_OUT,
+   FW_DIR_MAX
+ } FW_DIRECTION;
+</pre></div>
+</dd></dl><p><b>FW_DIR_INVALID:  </b>This is an invalid value, and
+it MUST NOT be used. It is defined for simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span>
+definitions and code. This symbolic constant has a value of zero.</p><p><b>FW_DIR_IN:  </b>Specifies an inbound network
+traffic flow. These are flows that are initiated by a remote machine toward the
+local machine. This symbolic constant has a value of 1.</p><p><b>FW_DIR_OUT:  </b>Specifies an outbound network
+traffic flow. These are flows that are initiated by the local machine toward a
+remote machine. This symbolic constant has a value of 2.</p><p><b>FW_DIR_MAX:  </b>This value and values that exceed
+this value are not valid and MUST NOT be used. This symbolic constant is
+defined for simplicity in writing IDL definitions and code. It has a value of
+3.</p></div>

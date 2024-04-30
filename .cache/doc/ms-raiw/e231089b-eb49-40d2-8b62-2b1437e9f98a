@@ -1,0 +1,556 @@
+<div class="content"><p>The R_WinsTrigger method triggers a replication operation
+between a <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target WINS server</a>
+and another <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a> server.</p><dl>
+<dd>
+<div><pre> DWORD R_WinsTrigger(
+   [in] handle_t ServerHdl,
+   [in, ref] PWINSINTF_ADD_T pWinsAdd,
+   [in] WINSINTF_TRIG_TYPE_E TrigType_e
+ );
+</pre></div>
+</dd></dl><p><b>ServerHdl: </b>An <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding over IP
+address/HostName to the WINS server. RPC uses this binding internally to
+determine which WINS server the call is directed to.</p><p><b>pWinsAdd: </b>Address of the WINS server with
+which the target WINS server performs the replication operation.</p><p><b>TrigType_e: </b>The type of replication operation
+requested.</p><p><b>Return Values: </b>A 32 bit unsigned integer value
+that indicates the return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation completed successfully. Any other return value is
+a Win32 error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following Win32 error codes can be returned:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000FA0</p>
+  <p>ERROR_WINS_INTERNAL</p>
+  </td>
+  <td>
+  <p>An error occurred while processing the RPC call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000FA6</p>
+  <p>ERROR_RPL_NOT_ALLOWED</p>
+  </td>
+  <td>
+  <p>The WINS server requested for the replication
+  operation is requested is not configured as a replication partner for the
+  target WINS server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have sufficient permissions.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Processing and Response Requirements:</b></p><p>When R_WinsTrigger is called, the server returns immediately
+without waiting for the replication operation to finish. The server just queues
+a request for the replication operation, and the replication takes place at a
+time determined by the internal state and configuration of the target WINS
+server. Hence, applications that call R_WinsTrigger SHOULD NOT treat an
+ERROR_SUCCESS return value as indicating a successful replication operation.
+Instead, applications SHOULD rely on WINS event logs to determine whether or
+not replication is successful. The following table lists the events that
+indicate the status of replication.</p><table><thead>
+  <tr>
+   <th>
+   <p>Event ID</p>
+   </th>
+   <th>
+   <p>Event Name</p>
+   </th>
+   <th>
+   <p>Event Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td colspan="3">
+  <p>Informational events</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4102</p>
+  </td>
+  <td>
+  <p>WINS_EVT_CONN_ABORTED</p>
+  </td>
+  <td>
+  <p>The connection was aborted by the remote WINS. It is
+  possible that Remote WINS is not configured to replicate with the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4108</p>
+  </td>
+  <td>
+  <p>WINS_EVT_CANT_GET_INITRPL_VAL</p>
+  </td>
+  <td>
+  <p>WINS could not read the InitTimeReplication field of
+  the pull/push key.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4115</p>
+  </td>
+  <td>
+  <p>WINS_EVT_CANT_GET_CC_MAX_RECS_AAT_VAL</p>
+  </td>
+  <td>
+  <p>WINS could not read the MaxRecsAtATime value (type
+  DWORD) in the Wins\Parameters\ConsistencyCheck subkey of the registry. Set
+  this value so that  WINS does not replicate more than a set number of records
+  in one cycle while doing periodic consistency checks of the WINS database.
+  When doing a consistency check, WINS replicates all records of an owner WINS
+  by either going to that WINS or to a replication partner. At the end of a
+  consistency check for an owner&#39;s records, WINS checks to see if it has
+  replicated more than the specified values in the current consistency check
+  cycle. If the value has been exceeded, the consistency check stops; otherwise
+  it continues. In the next cycle, it starts from where it left off and returns
+  to the first owner if required.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4116</p>
+  </td>
+  <td>
+  <p>WINS_EVT_CANT_GET_CC_USE_RPL_PNRS_VAL</p>
+  </td>
+  <td>
+  <p>WINS could not read the UseRplPnrs value of the
+  Wins\Parameters\ConsistencyCheck key. If this value is set to a nonzero
+  (DWORD) value, WINS will do a consistency check of the owners in its database
+  by going to one or more of its replication partners. If the owner of the
+  records happens to be a replication partner, WINS will go to it; otherwise it
+  will pick a partner at random. Set this value if there is a large number of
+  WINSs in the configuration and/or if the local WINS SHOULD NOT to go to any
+  WINS that is not a replication partner.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4121</p>
+  </td>
+  <td>
+  <p>WINS_EVT_NO_RPL_RECS_RETRIEVED</p>
+  </td>
+  <td>
+  <p>The WINS Replicator could not find any records in the
+  WINS database. This means there are no active or tombstone records in the
+  database. It could be that the records being requested by a remote WINS
+  server have either been released or do not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4124</p>
+  </td>
+  <td>
+  <p>WINS_EVT_UPD_NTF_NOT_ACCEPTED</p>
+  </td>
+  <td>
+  <p>The WINS server received an update notification from
+  the non-configured WINS server at the address, %1. The WINS server rejected
+  it. This means the remote WINS server is not in the list of Push partners
+  (WINS servers under the Pull key) and the administrator has prohibited (by
+  using the registry) replication with non-configured WINS servers. To have 
+  this WINS server to accept update notifications from non-configured WINS
+  servers then set the Wins\Parameters\RplOnlyWCnfPnrs value in the registry to
+  0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4126</p>
+  </td>
+  <td>
+  <p>WINS_EVT_ADD_VERS_MAP_REQ_NOT_ACCEPTED</p>
+  </td>
+  <td>
+  <p>The WINS server received a pull request from the
+  non-configured WINS server with the address, %1. The WINS server rejected it
+  since the remote WINS server is not in the list of Pull partners (WINS
+  servers under the Pull key) and the administrator has prohibited (by using
+  the registry) replication with non-configured partners. To have this WINS
+  server to accept update notifications from WINS servers not in the &#34;pull
+  partner&#34; list, then set the &#34;replication only with configured
+  partners&#34; value in the registry to 0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4134</p>
+  </td>
+  <td>
+  <p>WINS_EVT_INF_REM_WINS</p>
+  </td>
+  <td>
+  <p>The local WINS is informing a remote WINS to update
+  the version number of a record. This is because the local WINS encountered a
+  conflict between an active owned name and an active replica that it pulled
+  from a replication partner.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4135</p>
+  </td>
+  <td>
+  <p>WINS_EVT_REM_WINS_INF</p>
+  </td>
+  <td>
+  <p>The local WINS has been informed by a remote WINS with
+  the address %1, to update the version number of a record. This is because the
+  remote WINS encountered a conflict between an active owned name and an active
+  replica that it pulled from a replication partner.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4137</p>
+  </td>
+  <td>
+  <p>WINS_EVT_NAME_MISMATCH</p>
+  </td>
+  <td>
+  <p>A name mismatch was reported while verifying the
+  validity of old replicas. The local record has the name %1 while the replica
+  pulled in from the WINS that owns this record has the name %2. This could
+  mean that the remote WINS was stopped and then restarted but its version
+  counter value was not set to its previous value before termination.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4139</p>
+  </td>
+  <td>
+  <p>WINS_EVT_CNF_CHANGE</p>
+  </td>
+  <td>
+  <p>The WINS replication request is being ignored because
+  WINS found that the Wins\Partners key information has changed (due to a
+  notification from the registry) which makes the current partner request
+  out-of-date.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4227</p>
+  </td>
+  <td>
+  <p>WINS_EVT_CANT_FIND_ANY_REC_IN_RANGE</p>
+  </td>
+  <td>
+  <p>The Push Thread was requested for a range of records
+  but could not find any records in the range. The replication time intervals
+  MUST be set properly. If the tombstone interval and timeout intervals are not
+  correct (that is, much less than the replication interval), the preceding
+  condition is possible. This is because the records might get changed into
+  tombstones and then deleted before the remote WINS can pull them. Similarly,
+  if the refresh interval is set to be much less than the replication interval,
+  then the records could get released before a WINS can pull them (a released
+  record is not sent).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4251</p>
+  </td>
+  <td>
+  <p>WINS_EVT_CONN_RETRIES_FAILED</p>
+  </td>
+  <td>
+  <p>The WINS Replication Pull Handler could not connect to
+  a WINS server. All retries failed. WINS will try again after a set number of
+  replication time intervals have elapsed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4260</p>
+  </td>
+  <td>
+  <p>WINS_EVT_RPL_REG_ERR</p>
+  </td>
+  <td>
+  <p>WINS received an error while registering replicas. It
+  will not register any additional replicas of this WINS at this time (the
+  address is in the data section fourth through eighth byte). A previous log
+  entry will specify the reason for this. If the same error occurs during
+  subsequent replication with the preceding partner WINS, restore the WINS
+  database from the backup.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4261</p>
+  </td>
+  <td>
+  <p>WINS_EVT_RPL_REG_GRP_MEM_ERR</p>
+  </td>
+  <td>
+  <p>WINS received an error while trying to register a
+  group&#39;s replica with name %1. The replica is owned by the WINS with the
+  address given in the data section.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4262</p>
+  </td>
+  <td>
+  <p>WINS_EVT_RPL_REG_UNIQUE_ERR</p>
+  </td>
+  <td>
+  <p>WINS received an error while trying to register a unique
+  replica with name %1. The replica is owned by WINS with the address in the
+  data section.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4268</p>
+  </td>
+  <td>
+  <p>WINS_EVT_RPL_STATE_ERR</p>
+  </td>
+  <td>
+  <p>WINS received a replica whose state is incorrect. For
+  example, the state might be RELEASED or the replica might be an Internet group
+  that does not have any members but the state is not TOMBSTONE.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4289 </p>
+  </td>
+  <td>
+  <p>WINS_EVT_RECORD_NOT_OWNED</p>
+  </td>
+  <td>
+  <p>WINS is trying to update the version number of a
+  database record that it does not own. This is a serious error if the WINS
+  server is updating the record after a conflict. It is not a serious error if
+  the WINS server is updating the record as a result of a request to do so from
+  a remote WINS server. When a remote WINS server notices a conflict between an
+  active owned entry and a replica, it requests the replica owner to update the
+  version number of the record. It is possible that the replica is no longer
+  owned by the remote WINS.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4295</p>
+  </td>
+  <td>
+  <p>WINS_EVT_ADJ_VERS_NO</p>
+  </td>
+  <td>
+  <p>When WINS replicated with its partners, one of the
+  partners showed there was more data that actually existed. WINS adjusted its
+  counter so that new registrations and updates are seen by its partners. This
+  means that recovery did not work properly. Check which of the partners has
+  the highest version number corresponding to the local WINS. This can be
+  accomplished by shutting down WINS and restarting after specifying this
+  number in the registry.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4307</p>
+  </td>
+  <td>
+  <p>WINS_EVT_RPLPULL_EXC</p>
+  </td>
+  <td>
+  <p>The WINS replicator Pull thread encountered an error
+  while processing a request. Log entries will specify what went wrong.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4312</p>
+  </td>
+  <td>
+  <p>WINS_EVT_TERM_DUE_TIME_LMT</p>
+  </td>
+  <td>
+  <p>WINS has exceeded the wait time for all threads to
+  terminate. The number of threads still active is given in the second DWORD of
+  the data section. The thread that could be stuck is the replicator thread,
+  which could be stuck because the other WINS is slow in sending data or
+  reading data. The latter can contribute to pressure on the TCP connection on
+  which it is trying to replicate.</p>
+  </td>
+ </tr><tr>
+  <td colspan="3">
+  <p>Warning events</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4153</p>
+  </td>
+  <td>
+  <p>WINS_EVT_UNABLE_TO_VERIFY</p>
+  </td>
+  <td>
+  <p>The Scavenger thread found active replicas that are
+  required to be verified with the owner WINS server because they were older
+  than the verify time interval. The table of owner-to-address mappings
+  indicated the WINS was not active.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4155</p>
+  </td>
+  <td>
+  <p>WINS_EVT_REPLICA_CLASH_W_STATIC</p>
+  </td>
+  <td>
+  <p>A replica clashed with the static record, %1, in the
+  WINS database. The replica was rejected.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4161</p>
+  </td>
+  <td>
+  <p>WINS_EVT_PARTIAL_RPL_TYPE</p>
+  </td>
+  <td>
+  <p>A nonzero replication type applies for this partner,
+  which means only a subset of records will be replicated between the local
+  WINS and this partner. To get records that did not replicate, either pull
+  them by using the winscl.exe in the Windows 2000 Resource Kit, (as described
+  in <a href="https://go.microsoft.com/fwlink/?LinkId=245442" data-linktype="external">[MSFT-ResourceKits]</a>)
+  or delete all owners acquired only through this partner and initiate replication
+  after that to reacquire all their records. The partner&#39;s address is given in
+  the second DWORD of the data section.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4162</p>
+  </td>
+  <td>
+  <p>WINS_EVT_PNR_PARTIAL_RPL_TYPE</p>
+  </td>
+  <td>
+  <p>A partner has requested only a subset of records. This
+  means that all the records in the range requested will not be replicated.
+  Check the partner&#39;s registry to see what replication type applies to it. The
+  partner&#39;s address is given in the second DWORD of the data section.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4163</p>
+  </td>
+  <td>
+  <p>WINS_EVT_ADJ_MAX_RECS_AAT</p>
+  </td>
+  <td>
+  <p>WINS adjusted the Maximum Records at a time parameter
+  of the ConsistencyCheck key. The value specified, %2, was changed to the
+  minimum value, %1. This represents the maximum number of records that will be
+  replicated at any one time for a consistency check.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4164</p>
+  </td>
+  <td>
+  <p>WINS_EVT_FORCE_SCV_R_T</p>
+  </td>
+  <td>
+  <p>WINS was forced to scavenge replica tombstones of a
+  WINS. The administrator forced the scavenging by using winscl.exe. WINS does
+  not scavenge replica tombstones unless they have timed out and the WINS has
+  been running for at least three days. This is to ensure that the tombstones
+  have replicated to other WINSes. In this case, the tombstones were timed out
+  but the WINS had not been running for three days. The replica tombstones were
+  deleted. This deletion does not constitute a problem unless there are WINS
+  servers that are primary and backup to clients but not both Push and Pull
+  partners of each other. If this type of WINS exists, there is a low
+  probability that this action will result in database inconsistency but if it
+  does, a consistent state can be achieved by initiating consistency checks by
+  using winscl.exe.</p>
+  </td>
+ </tr><tr>
+  <td colspan="3">
+  <p>Error events</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4166</p>
+  </td>
+  <td>
+  <p>WINS_EVT_RPLPULL_ABNORMAL_SHUTDOWN</p>
+  </td>
+  <td>
+  <p>The replication Pull thread is shutting down due to an
+  error. Restart WINS.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4167</p>
+  </td>
+  <td>
+  <p>WINS_EVT_RPLPUSH_ABNORMAL_SHUTDOWN</p>
+  </td>
+  <td>
+  <p>The replication Push thread is shutting down due to an
+  error. Restart WINS.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4197</p>
+  </td>
+  <td>
+  <p>WINS_EVT_WINSOCK_BIND_ERR</p>
+  </td>
+  <td>
+  <p>An address could not bind to a socket. Make sure the
+  TCP/IP stack is installed and running properly. This event might mean that
+  the &#39;nameserver&#39; port (specified in the services file) which is used as the
+  default by WINS for replication and discovering other WINSes has been taken
+  by another process or service running on this computer. There are two
+  options: either end the other process or service, or direct WINS to use
+  another port. If you choose the second option, set the value &#39;PortNo&#39;
+  (REG_DWORD) under the Wins\Parameters subkey in the registry to 1512. </p>
+  <p><b>Note</b>  Changing the port number this
+  way will prevent this WINS from replicating or discovering other WINSes
+  unless they too are directed to use the same port number as this WINS.</p>
+  </td>
+ </tr></tbody></table><p>The following requirements and recommendations apply to a
+WINS server that processes a call to R_WinsTrigger:</p><ul><li><p><span><span> 
+</span></span>The R_WinsTrigger caller SHOULD have control level access. If an
+RPC client with a lower access level calls R_WinsTrigger, the server SHOULD
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>The WINS service on the target WINS server MUST be in the running
+or paused state. If the service is in initializing or exiting state, the server
+SHOULD return ERROR_WINS_INTERNAL for its status.</p>
+</li><li><p><span><span> 
+</span></span>When R_WinsTrigger is called with trigger type WINSINTF_E_PUSH,
+the server queues a push replication. If the target WINS server is configured
+to replicate only with partners and the address of the requested replication
+partner is not in the server&#39;s list of push replication partners, the server
+SHOULD return WINSINTF_RPL_NOT_ALLOWED. The server can also return
+ERROR_WINS_INTERNAL for any other errors occur while it processes the request.</p>
+</li><li><p><span><span> 
+</span></span>The trigger type WINSINTF_E_PUSH_PROP works same way as the
+command WINSINTF_E_PUSH except that the update notifications that are sent as
+part of push replication have the propagate opcode set (see <a href="../ms-winsra/991f1bcf-79a7-44cf-850c-bf34a0e75451" data-linktype="relative-path">[MS-WINSRA]</a>
+section 2.2.8.</p>
+</li><li><p><span><span> 
+</span></span>When the R_WinsTrigger method is called with trigger type
+WINSINTF_E_PULL, the server queues a pull replication as specified by the <i>pWinsAdd</i>
+parameter. If the target WINS server is configured to replicate only with
+partners, and the address of the requested replication partner is not in the
+server&#39;s list of pull replication partners, the server SHOULD return
+WINSINTF_RPL_NOT_ALLOWED. Also, the server SHOULD return ERROR_WINS_INTERNAL
+for any other errors that occur while it processes the request.</p>
+</li></ul></div>

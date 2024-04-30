@@ -1,0 +1,41 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/89d26712-45d8-452e-9e8a-bb0750a5f978" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_OBJECT_TYPE</b> enumeration is used to define
+the type of the object for which a notification is requested or generated.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   CLUSTER_OBJECT_TYPE_CLUSTER = 0x00000001,
+   CLUSTER_OBJECT_TYPE_GROUP = 0x00000002,
+   CLUSTER_OBJECT_TYPE_RESOURCE = 0x00000003,
+   CLUSTER_OBJECT_TYPE_RESOURCE_TYPE = 0x00000004,
+   CLUSTER_OBJECT_TYPE_NETWORK_INTERFACE = 0x00000005,
+   CLUSTER_OBJECT_TYPE_NETWORK = 0x00000006,
+   CLUSTER_OBJECT_TYPE_NODE = 0x00000007,
+   CLUSTER_OBJECT_TYPE_REGISTRY = 0x00000008,
+   CLUSTER_OBJECT_TYPE_QUORUM = 0x00000009,
+   CLUSTER_OBJECT_TYPE_SHARED_VOLUME = 0x0000000a,
+   CLUSTER_OBJECT_TYPE_SPACEPORT = 0x0000000b,
+   CLUSTER_OBJECT_TYPE_UPGRADE = 0x0000000c,
+   CLUSTER_OBJECT_TYPE_GROUPSET = 0x0000000d,
+   CLUSTER_OBJECT_TYPE_SBL_DEVICE = 0x0000000e,
+   CLUSTER_OBJECT_TYPE_CERT = 0x0000000f,
+   CLUSTER_OBJECT_TYPE_AFFINITYRULE = 0x00000010
+ } CLUSTER_OBJECT_TYPE;
+</pre></div>
+</dd></dl><p><b>CLUSTER_OBJECT_TYPE_CLUSTER: </b>The notification
+is for the cluster.</p><p><b>CLUSTER_OBJECT_TYPE_GROUP: </b>The notification is
+for a group.</p><p><b>CLUSTER_OBJECT_TYPE_RESOURCE: </b>The notification
+is for a resource.</p><p><b>CLUSTER_OBJECT_TYPE_RESOURCE_TYPE: </b>The
+notification is for a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_597fe367-f504-4295-9ed9-92cd892796cd" data-linktype="relative-path">resource
+type</a>.</p><p><b>CLUSTER_OBJECT_TYPE_NETWORK_INTERFACE: </b>The
+notification is for a cluster network interface.</p><p><b>CLUSTER_OBJECT_TYPE_NETWORK: </b>The notification
+is for a cluster network.</p><p><b>CLUSTER_OBJECT_TYPE_NODE: </b>The notification is
+for a cluster node.</p><p><b>CLUSTER_OBJECT_TYPE_REGISTRY: </b>The notification
+is for a cluster registry key.</p><p><b>CLUSTER_OBJECT_TYPE_QUORUM: </b>The notification
+is for a quorum resource.</p><p><b>CLUSTER_OBJECT_TYPE_SHARED_VOLUME: </b>The
+notification is for a cluster shared <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a>.</p><p><b>CLUSTER_OBJECT_TYPE_SPACEPORT:</b> The
+notification is for a spaceport.</p><p><b>CLUSTER_OBJECT_TYPE_UPGRADE:</b> The notification
+is for an upgrade.</p><p><b>CLUSTER_OBJECT_TYPE_GROUPSET:</b> The notification
+is for a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_af2a167f-a2fd-4dca-834d-0fa9b620604c" data-linktype="relative-path">group set</a><b>.</b></p><p><b>CLUSTER_OBJECT_TYPE_SBL_DEVICE:</b> The
+notification is for an SBL device.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p><p><b>CLUSTER_OBJECT_TYPE_CERT:</b> The notification is
+for a certificate.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a><span> </span></p><p><b>CLUSTER_OBJECT_TYPE_AFFINITY_RULE:</b>
+The notification is for an affinity rule.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a> </p></div>

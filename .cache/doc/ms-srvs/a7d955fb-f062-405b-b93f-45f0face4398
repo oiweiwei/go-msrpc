@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The CONNECT_INFO_1_CONTAINER structure contains a value that
+indicates the number of entries that the <span><a href="64ee6bbe-01dc-41a5-baff-26ef1146ee29" data-linktype="relative-path">NetrConnectionEnum</a></span>
+method returns and a pointer to the buffer that contains the entries.</p><dl>
+<dd>
+<div><pre> typedef struct _CONNECT_INFO_1_CONTAINER {
+   DWORD EntriesRead;
+   [size_is(EntriesRead)] LPCONNECTION_INFO_1 Buffer;
+ } CONNECT_INFO_1_CONTAINER,
+  *PCONNECT_INFO_1_CONTAINER,
+  *LPCONNECT_INFO_1_CONTAINER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  The number of entries
+returned by the method.</p><p><b>Buffer:</b>  A pointer to the <span><a href="d22e52cc-259e-46b1-a3fe-134e9ac1b466" data-linktype="relative-path">CONNECTION_INFO_1</a></span>
+entries returned by the method.</p></div>

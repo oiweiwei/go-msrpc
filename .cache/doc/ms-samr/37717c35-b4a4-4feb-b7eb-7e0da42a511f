@@ -1,0 +1,12 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/37717c35-b4a4-4feb-b7eb-7e0da42a511f" data-linktype="external">msdn link</a></p><p>The SAM_VALIDATE_STANDARD_OUTPUT_ARG structure holds the
+output of <a href="c78a7239-f8fc-4a42-bb71-321e897dc046" data-linktype="relative-path">SamrValidatePassword</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _SAM_VALIDATE_STANDARD_OUTPUT_ARG {
+   SAM_VALIDATE_PERSISTED_FIELDS ChangedPersistedFields;
+   SAM_VALIDATE_VALIDATION_STATUS ValidationStatus;
+ } SAM_VALIDATE_STANDARD_OUTPUT_ARG,
+  *PSAM_VALIDATE_STANDARD_OUTPUT_ARG;
+</pre></div>
+</dd></dl><p><b>ChangedPersistedFields:</b>  The
+password state that has changed. See section <a href="e0b2d21d-0b1c-4fc0-8f4a-895bef6ffc4e" data-linktype="relative-path">2.2.9.2</a>.</p><p><b>ValidationStatus:</b>  The result of the
+policy evaluation. See section <a href="e0b65a04-ca2a-458b-8e32-e5dcb569c919" data-linktype="relative-path">2.2.9.3</a>.</p></div>

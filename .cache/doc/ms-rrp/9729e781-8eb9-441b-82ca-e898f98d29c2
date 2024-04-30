@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The RPC_SECURITY_DESCRIPTOR structure represents the <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+security descriptors.</p><dl>
+<dd>
+<div><pre> typedef struct _RPC_SECURITY_DESCRIPTOR {
+   [size_is(cbInSecurityDescriptor), length_is(cbOutSecurityDescriptor)] 
+     PBYTE lpSecurityDescriptor;
+   DWORD cbInSecurityDescriptor;
+   DWORD cbOutSecurityDescriptor;
+ } RPC_SECURITY_DESCRIPTOR,
+  *PRPC_SECURITY_DESCRIPTOR;
+</pre></div>
+</dd></dl><p><b>lpSecurityDescriptor:</b>  A buffer that
+contains a <span><a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">SECURITY_DESCRIPTOR</a></span>,
+as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section 2.4.6.</p><p><b>cbInSecurityDescriptor:</b>  The size in
+bytes of the security descriptor.</p><p><b>cbOutSecurityDescriptor:</b>  The size
+in bytes of the security descriptor.</p></div>

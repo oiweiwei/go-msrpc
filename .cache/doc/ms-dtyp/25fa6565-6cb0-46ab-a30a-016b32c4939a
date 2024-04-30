@@ -1,0 +1,160 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/25fa6565-6cb0-46ab-a30a-016b32c4939a" data-linktype="external">msdn link</a></p><p>The SYSTEM_MANDATORY_LABEL_ACE structure defines an ACE for
+the SACL that specifies the mandatory access level and policy for a securable
+object.<a id="Appendix_A_Target_55"></a><a aria-label="Product behavior note 55" href="11e1608c-6169-4fbc-9c33-373fc9b224f4#Appendix_A_55" data-linktype="relative-path">&lt;55&gt;</a></p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Mask</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Sid
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (4 bytes): </b>An <a href="628ebb1d-c509-4ea0-a10f-77ef97ca4586" data-linktype="relative-path">ACE_HEADER</a> structure that
+specifies the size and type of ACE. It also contains flags that control
+inheritance of the ACE by child objects.</p><p><b>Mask (4 bytes): </b>An <a href="7a53f60e-e730-4dfe-bbe9-b21b62eb790b" data-linktype="relative-path">ACCESS_MASK</a> structure that
+specifies the access policy for principals with a mandatory integrity level
+lower than the object associated with the SACL that contains this ACE.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SYSTEM_MANDATORY_LABEL_NO_WRITE_UP</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>A principal with a lower mandatory level than the
+  object cannot write to the object.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SYSTEM_MANDATORY_LABEL_NO_READ_UP</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>A principal with a lower mandatory level than the
+  object cannot read the object.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SYSTEM_MANDATORY_LABEL_NO_EXECUTE_UP</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>A principal with a lower mandatory level than the
+  object cannot execute the object. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Sid (variable): </b>The <a href="78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">SID</a> of a trustee. The
+length of the SID MUST be a multiple of 4. The identifier authority of the SID
+must be SECURITY_MANDATORY_LABEL_AUTHORITY. The RID of the SID specifies the
+mandatory integrity level of the object associated with the SACL that contains this
+ACE. The RID must be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Untrusted integrity level.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00001000</p>
+  </td>
+  <td>
+  <p>Low integrity level.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00002000</p>
+  </td>
+  <td>
+  <p>Medium integrity level.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00003000</p>
+  </td>
+  <td>
+  <p>High integrity level.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004000</p>
+  </td>
+  <td>
+  <p>System integrity level.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00005000</p>
+  </td>
+  <td>
+  <p>Protected process integrity level.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

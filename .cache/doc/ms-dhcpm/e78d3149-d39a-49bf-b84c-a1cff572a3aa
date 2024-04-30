@@ -1,0 +1,58 @@
+<div class="content"><p> </p><p>The <b>DHCP_IP_RESERVATION_V4</b> structure defines an IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservation</a></span>
+for a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_c35fc04f-54fe-4570-afd3-c96ca84c8d83" data-linktype="relative-path">DHCP client</a></span>. This
+structure is an extension of <span><a href="ad3c18e8-8a7a-49ef-8a8f-16c3f157ac7c" data-linktype="relative-path">DHCP_IP_RESERVATION (section 2.2.1.2.10)</a></span>
+structure by including the type of client (DHCP, BOOTP or both) (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90319" data-linktype="external">[RFC2132]</a></span>)
+holding this IPv4 reservation. This structure is used in the <span><a href="76963288-4666-4dc8-b649-77fd7032bdf7" data-linktype="relative-path">DHCP_SUBNET_ELEMENT_DATA_V4 (section 2.2.1.2.35)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_IP_RESERVATION_V4 {
+   DHCP_IP_ADDRESS ReservedIpAddress;
+   DHCP_CLIENT_UID* ReservedForClient;
+   BYTE bAllowedClientTypes;
+ } DHCP_IP_RESERVATION_V4,
+  *LPDHCP_IP_RESERVATION_V4;
+</pre></div>
+</dd></dl><p><b>ReservedIpAddress:</b>  This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>
+that contains the IPv4 address of client (DHCP or BOOTP) for which a
+reservation was created.</p><p><b>ReservedForClient:</b>  This is a
+pointer of type <span><a href="b4da2d52-9737-46ec-8bc2-1c598fc3b8c8" data-linktype="relative-path">DHCP_CLIENT_UID (section 2.2.1.2.5)</a></span>
+that represents the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_195d8585-7de6-4574-9abf-9db104aaa40c" data-linktype="relative-path">DHCPv4 client-identifier</a></span>
+(section <span><a href="7c88f58b-c615-4386-a643-ab05b860a003" data-linktype="relative-path">2.2.1.2.5.1</a></span>).</p><p><b>bAllowedClientTypes:</b>  This is of
+type <span><a href="../ms-dtyp/d7edc080-e499-4219-a837-1bc40b64bb04" data-linktype="relative-path">BYTE</a></span>
+that specifies the type of client holding this reservation.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CLIENT_TYPE_DHCP</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>The IPv4 reservation is for a DHCPv4 client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_BOOTP</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>The IPv4 reservation is for a BOOTP client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_BOTH</p>
+  <p>0x03</p>
+  </td>
+  <td>
+  <p>The IPv4 reservation is for both kinds of clients.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

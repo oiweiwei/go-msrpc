@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The ARRAYDESC structure is used in a <span><a href="95bb92a7-f783-477f-acbc-c947d754fa8b" data-linktype="relative-path">TYPEDESC</a></span>
+structure to specify the dimensions of an array and the type of its elements.</p><dl>
+<dd>
+<div><pre> typedef struct tagARRAYDESC {
+   TYPEDESC tdescElem;
+   USHORT cDims;
+   [size_is(cDims)] SAFEARRAYBOUND rgbounds[];
+ } ARRAYDESC;
+</pre></div>
+</dd></dl><p><b>tdescElem:</b>  MUST contain a TYPEDESC
+that specifies the type of the elements in the array as specified in section
+2.2.37.</p><p><b>cDims:</b>  MUST be set to the number of
+dimensions in the array.</p><p><b>rgbounds:</b>  MUST refer to a <span><a href="1941311d-9b7d-4a5b-b246-2d2eaad00f8c" data-linktype="relative-path">SAFEARRAYBOUND</a></span>
+that specifies the maximum index value for each dimension of the array, as
+specified in section 2.2.30.1.</p></div>

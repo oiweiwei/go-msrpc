@@ -1,0 +1,37 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/ffce9bbc-6ae5-4478-8f45-e82c3847aaa2" data-linktype="external">msdn link</a></p><p>The <b>SYNC_STATE</b> enumeration tracks the progress of
+synchronization of the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_00f35ba3-4dbb-4ff9-8e27-572a6aea1b15" data-linktype="relative-path">database</a>
+between <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_ce1138c6-7ab4-4c37-98b4-95599071c3c3" data-linktype="relative-path">BDCs</a> and <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDCs</a>. Synchronization is
+initiated by the client calling <b>NetrDatabaseSync2</b> (section <a href="31fc80bd-4f4d-4512-a792-e488bb78f6a0" data-linktype="relative-path">3.5.4.6.2</a>). All references
+to <i>SyncContext</i> in the following synchronization state descriptions refer
+to the <i>SyncContext</i> parameter in that method.</p><dl>
+<dd>
+<div><pre> typedef  enum _SYNC_STATE
+ {
+   NormalState = 0,
+   DomainState = 1,
+   GroupState = 2,
+   UasBuiltInGroupState = 3,
+   UserState = 4,
+   GroupMemberState = 5,
+   AliasState = 6,
+   AliasMemberState = 7,
+   SamDoneState = 8
+ } SYNC_STATE,
+  *PSYNC_STATE;
+</pre></div>
+</dd></dl><p><b>NormalState: </b>A state that MUST be used unless
+the current synchronization is the restart of a full synchronization.</p><p><b>DomainState: </b>The <i>SyncContext</i> parameter
+is the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RID</a> with which to continue.</p><p><b>GroupState: </b>The <i>SyncContext</i> parameter
+is the global <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_51c51c14-7f9d-4c0b-a69c-d3e059bfffac" data-linktype="relative-path">group</a> RID
+with which to continue.</p><p><b>UasBuiltInGroupState: </b>Not used.</p><p><b>UserState: </b>The <i>SyncContext</i> parameter is
+the user RID with which to continue.</p><p><b>GroupMemberState: </b>The <i>SyncContext</i>
+parameter is the global group RID with which to continue.</p><p><b>AliasState: </b>The <i>SyncContext</i> parameter
+MUST have a value of 0, indicating synchronization restarts at the first
+database <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_d046b6e2-3f79-47e1-87d7-754566744dcd" data-linktype="relative-path">alias</a> and that
+AddOrChangeAlias (see <b>NETLOGON_DELTA_TYPE</b> enumeration section <a href="f8a8cd32-426d-45f1-be45-e0dc5c1c1359" data-linktype="relative-path">2.2.1.5.28</a>) was the last
+account change being performed prior to the restart.</p><p><b>AliasMemberState: </b>The <i>SyncContext</i>
+parameter MUST have a value of 0, indicating synchronization restarts at the
+first database alias and that ChangeAliasMembership (<b>NETLOGON_DELTA_TYPE</b>
+enumeration section 2.2.1.5.28) was the last account change being performed
+prior to the restart.</p><p><b>SamDoneState: </b>The database has finished
+synchronization.</p></div>

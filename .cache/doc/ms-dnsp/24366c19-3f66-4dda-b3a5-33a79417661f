@@ -1,0 +1,36 @@
+<div class="content"><p> </p><p>In the <b>DNS_RPC_ZONE_LIST_DOTNET</b> structure all fields
+have same definition as specified in section <b>DNS_RPC_ZONE_LIST_W2K</b>
+(section <span><a href="f457cf9e-14e0-4195-a8fd-2c93bc7f1f6d" data-linktype="relative-path">2.2.5.2.3.1</a></span>), with
+the following exceptions:</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcZoneListDotNet {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   [range(0,500000)] DWORD dwZoneCount;
+   [size_is(dwZoneCount)] PDNS_RPC_ZONE_DOTNET ZoneArray[];
+ } DNS_RPC_ZONE_LIST_DOTNET,
+  *PDNS_RPC_ZONE_LIST_DOTNET,
+  DNS_RPC_ZONE_LIST,
+  *PDNS_RPC_ZONE_LIST;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The DNS management
+structure version number. This MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> This field is reserved for
+future use. Senders can send an arbitrary value and receivers MUST ignore it.</p><p>If the DNS RPC client sends an older version of
+DNS_RPC_ZONE_LIST structure, that is, DNS_RPC_ZONE_LIST_W2K (section
+2.2.5.2.3.1), then the DNS RPC server MUST construct a current version of
+DNS_RPC_ZONE_LIST structure, that is, DNS_RPC_ZONE_LIST_DOTNET, using the
+following steps:</p><ol><li><p><span>    </span>Copy the same
+value for the fields that are common to input and the current version of
+DNS_RPC_ZONE_LIST structures.</p>
+</li><li><p><span>    </span>The dwRpcStructureVersion
+field MUST be set to &#34;1&#34;.</p>
+</li><li><p><span>    </span>The value for
+the ZoneArray field MUST be obtained from the input structure as
+DNS_RPC_ZONE_W2K (section <span><a href="6b6e834a-e08e-432c-a9a7-8ced1422a688" data-linktype="relative-path">2.2.5.2.1.1</a></span>) array
+elements and each MUST be converted using the steps specified in section
+DNS_RPC_ZONE_DOTNET (section <span><a href="64c5005d-2a55-46cc-8453-af393bb27bb9" data-linktype="relative-path">2.2.5.2.1.2</a></span>), and
+then assigned to the ZoneArray field in the DNS_RPC_ZONE_LIST_DOTNET structure.</p>
+</li><li><p><span>    </span>All other fields
+that are defined only in DNS_RPC_ZONE_LIST_DOTNET and are not defined in
+DNS_RPC_ZONE_LIST_W2K (section 2.2.5.2.3.1), MUST be set to &#34;0&#34;.</p>
+</li></ol></div>

@@ -1,0 +1,41 @@
+<div class="content"><p> </p><p>The VDS_VOLUME_PLEX_PROP structure provides information
+about the properties of a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7d1df68a-9ec5-4f84-a64f-67888f39405d" data-linktype="relative-path">volume plex</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_VOLUME_PLEX_PROP {
+   VDS_OBJECT_ID id;
+   VDS_VOLUME_PLEX_TYPE type;
+   VDS_VOLUME_PLEX_STATUS status;
+   VDS_HEALTH health;
+   VDS_TRANSITION_STATE TransitionState;
+   ULONGLONG ullSize;
+   unsigned long ulStripeSize;
+   unsigned long ulNumberOfMembers;
+ } VDS_VOLUME_PLEX_PROP,
+  *PVDS_VOLUME_PLEX_PROP;
+</pre></div>
+</dd></dl><p><b>id:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_d864e01b-9fb1-4beb-9864-8221d293445a" data-linktype="relative-path">plex</a></span>
+object.</p><p><b>type:</b>  The plex type that is
+enumerated by <span><a href="94451f71-7aa8-48b5-9600-5b48556ef392" data-linktype="relative-path">VDS_VOLUME_PLEX_TYPE</a></span>.
+The type of the plex need not match that of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> to which it
+belongs. For example, a mirrored <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_4390e750-67a7-49b4-92b3-5bca829bbd8b" data-linktype="relative-path">RAID-1</a></span> volume can be
+composed of plexes that are simple (composed of extents from exactly one <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>).</p><p><b>status:</b>  The status of the plex
+object that is enumerated by <span><a href="9da03776-bcf7-4a34-97a7-cc8ba5d561a0" data-linktype="relative-path">VDS_VOLUME_PLEX_STATUS</a></span>.
+The status of the plex need not match that of the volume to which it belongs.
+For example, a volume plex can have a failed status (VDS_VPS_FAILED), but if
+the volume is <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_98c2ba19-d0f7-4db1-b6c1-4e7323cc5bc0" data-linktype="relative-path">fault-tolerant</a></span> and
+its other plexes are <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_783ae2e4-7c04-40ba-a974-f95a30aa1ab2" data-linktype="relative-path">online</a></span> (VDS_VPS_ONLINE),
+the volume will still be online (VDS_VS_ONLINE).</p><p><b>health:</b>  Value from the <span><a href="61169c4a-cb63-4e5b-9035-a4465e1320ad" data-linktype="relative-path">VDS_HEALTH</a></span>
+enumeration that defines the health of the volume. The health of the plex need
+not match that of the volume to which it belongs. For instance, a volume&#39;s plex
+can have failed health (VDS_H_FAILED), but if the volume is a mirror volume
+(RAID-1) and its other plexes are healthy (VDS_H_HEALTHY), the volume will have
+failed redundancy health (VDS_H_FAILED_REDUNDANCY).</p><p><b>TransitionState:</b>  Value from the <span><a href="60f46f25-7c04-4427-9099-d7b75410d33e" data-linktype="relative-path">VDS_TRANSITION_STATE</a></span>
+enumeration that defines the configuration stability of the plex. The
+TransitionState of the plex matches the TransitionState of the volume to which
+it belongs.</p><p><b>ullSize:</b>  The size of the plex, in
+bytes. The size can be equal to, or greater than, that of the volume to which
+it belongs. The plex cannot be smaller than the volume.</p><p><b>ulStripeSize:</b>  The stripe interleave
+size, in bytes. This member applies only for plexes of type VDS_VPT_STRIPE
+(striped) and VDS_VPT_PARITY (striped with parity).</p><p><b>ulNumberOfMembers:</b>  The number of
+members (<span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_671c4d19-364a-471c-bc1a-8d7893952fa9" data-linktype="relative-path">RAID columns</a></span>) in the
+volume plex.</p></div>

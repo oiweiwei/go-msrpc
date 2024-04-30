@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>This structure specifies a condition of a query. A condition
+can evaluate to TRUE or FALSE. It contains a match key that identifies what to
+match, a match value that identifies what to match with, and a match type that
+identifies how to match.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_QUERY_CONDITION {
+   FW_MATCH_KEY matchKey;
+   FW_MATCH_TYPE matchType;
+   FW_MATCH_VALUE matchValue;
+ } FW_QUERY_CONDITION,
+  *PFW_QUERY_CONDITION;
+</pre></div>
+</dd></dl><p><b>matchKey:</b>  This field identifies
+what information to match.</p><p><b>matchType:</b>  This field identifies how
+to perform the match operation.</p><p><b>matchValue:</b>  This field identifies
+what to match with. </p><p>A query condition structure MUST pass the following
+semantics checks:</p><ul><li><p><span><span> 
+</span></span>The <b>matchKey</b> field MUST have a valid <b>FW_MATCH_KEY</b>
+value that is less than FW_MATCH_KEY_MAX, MUST be a string of 1 or more
+characters, and MUST NOT be greater than or equal to 255 characters.</p>
+</li><li><p><span><span> 
+</span></span>The <b>matchType</b> field MUST have a valid <b>FW_MATCH_TYPE</b>
+value that is less than FW_MATCH_KEY_MAX.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>matchType</b> field is equal to FW_MATCH_TYPE_EQUAL,
+the <b>matchKey</b> field MUST be either FW_MATCH_KEY_GROUP or
+FW_MATCH_KEY_DIRECTION.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>matchKey</b> field is equal to FW_MATCH_KEY_PROFILE or
+FW_MATCH_KEY_STATUS, the <b>matchValue</b> MUST have its type field equal to
+FW_DATA_TYPE_UINT32.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>matchKey</b> field is equal to FW_MATCH_KEY_FILTERID,
+the <b>matchValue</b> MUST have its type field equal to FW_DATA_TYPE_UINT64.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>matchKey</b> field is equal to FW_MATCH_KEY_PROTOCOL,
+FW_MATCH_KEY_LOCAL_PORT, or FW_MATCH_KEY_REMOTE_PORT; then the <b>matchValue</b>
+MUST have its type field equal to FW_DATA_TYPE_UINT16.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>matchKey</b> field is equal to FW_MATCH_KEY_OBJECTID,
+FW_MATCH_KEY_APP_PATH, FW_MATCH_KEY_GROUP, or FW_MATCH_KEY_SVC_NAME; then the <b>matchValue</b>
+MUST have its type field equal to FW_DATA_TYPE_UNICODE_STRING.</p>
+</li></ul></div>

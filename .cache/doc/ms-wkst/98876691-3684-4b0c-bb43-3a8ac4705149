@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The <b>WKSTA_INFO_101</b> structure specifies details about
+a computer environment, including platform-specific information, the names of
+the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>
+and local computer, and the operating system.</p><dl>
+<dd>
+<div><pre> typedef struct _WKSTA_INFO_101 {
+   unsigned long wki101_platform_id;
+   [string] wchar_t* wki101_computername;
+   [string] wchar_t* wki101_langroup;
+   unsigned long wki101_ver_major;
+   unsigned long wki101_ver_minor;
+   [string] wchar_t* wki101_lanroot;
+ } WKSTA_INFO_101,
+  *PWKSTA_INFO_101,
+  *LPWKSTA_INFO_101;
+</pre></div>
+</dd></dl><p><b>wki101_platform_id:</b> The type of operating
+system (section <span><a href="23275f4a-4e51-49d6-bdb5-f58519a3ea8a" data-linktype="relative-path">2.2.5.1</a></span>).</p><p><b>wki101_computername:</b> A null-terminated, <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_4d5d5403-372f-4f9f-8d7a-65c310c807d9" data-linktype="relative-path">Internet
+host name</a></span> or <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a></span> <span><a href="https://go.microsoft.com/fwlink/?LinkId=90260" data-linktype="external">[RFC1001]</a></span>
+of the local computer.</p><p><b>wki101_langroup:</b> A null-terminated, <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">fully
+qualified domain name (FQDN) (2)</a></span> of the domain to which the computer
+belongs.</p><p><b>wki101_ver_major:</b> The major version number of
+the operating system running on the computer.</p><p><b>wki101_ver_minor:</b> The minor version number of
+the operating system running on the computer.</p><p><b>wki101_lanroot:</b> A value that is not used and
+MUST be returned as NULL by the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server (2)</a></span>.</p></div>

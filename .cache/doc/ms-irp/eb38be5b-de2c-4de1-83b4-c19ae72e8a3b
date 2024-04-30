@@ -1,0 +1,144 @@
+<div class="content"><p> </p><p>The <b>INET_LOG_CONFIGURATION</b> structure contains
+configuration information for <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_d9a0cf88-f6d7-4c52-a9fc-4ce5a7cb7260" data-linktype="relative-path">Internet protocol server</a></span>
+logging.</p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _INET_LOG_CONFIGURATION {
+   DWORD inetLogType;
+   DWORD ilPeriod;
+   WCHAR rgchLogFileDirectory[260];
+   DWORD cbSizeForTruncation;
+   WCHAR rgchDataSource[260];
+   WCHAR rgchTableName[30];
+   WCHAR rgchUserName[257];
+   WCHAR rgchPassword[257];
+ } INET_LOG_CONFIGURATION,
+  *LPINET_LOG_CONFIGURATION;
+</pre></div>
+</dd></dl><p><b>inetLogType:</b>  A 32-bit integer that
+specifies the type of log to be written. This field MUST be set to one of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>INET_LOG_DISABLED</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Logging is disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>INET_LOG_TO_FILE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The log is written to a file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>INET_LOG_TO_SQL</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The log is written to a Structured Query Language
+  (SQL) database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>INET_LOG_INVALID</p>
+  <p>0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>The log is not valid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ilPeriod:</b>  Specifies the periodicity
+of Internet protocol server logging. This field MUST be set to one of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>INET_LOG_PERIOD_NONE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>There is no log period.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>INET_LOG_PERIOD_DAILY</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The log period is daily.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>INET_LOG_PERIOD_WEEKLY</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The log period is weekly.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>INET_LOG_PERIOD_MONTHLY</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The log period is monthly.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>INET_LOG_PERIOD_HOURLY</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The log period is hourly.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>INET_LOG_PERIOD_YEARLY</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The log period is yearly.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>INET_LOG_PERIOD_INVALID</p>
+  <p>0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>The log period is not valid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>rgchLogFileDirectory:</b>  A
+null-terminated string that specifies the destination of the Internet protocol
+server log.</p><p><b>cbSizeForTruncation:</b>  Specifies the
+maximum size in bytes for each log file.</p><p><b>rgchDataSource:</b>  A null-terminated
+string that specifies the Open Database Connectivity (ODBC) data source name to
+which the Internet protocol server log is to be written.</p><p><b>rgchTableName:</b>  A null-terminated
+string that specifies the name of the table on <b>rgchDataSource</b> to which
+the Internet protocol server log is to be written.</p><p><b>rgchUserName:</b>  A null-terminated
+string that specifies the name of the user for the ODBC connection.</p><p><b>rgchPassword:</b>  A null-terminated
+string that specifies the password associated with the <b>rgchUserName</b> user
+name.</p></div>

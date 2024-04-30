@@ -1,0 +1,101 @@
+<div class="content"><p> </p><p>The DNS_RPC_RECORD_NSEC3 structure SHOULD<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a> specify an NSEC3 <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_49c03845-ca86-48f5-9cbf-ab86c624aa29" data-linktype="relative-path">resource
+record</a></span> as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=225981" data-linktype="external">[RFC5155]</a></span>
+section 3. This record MUST be formatted as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>chAlgorithm</p>
+  </td>
+  <td colspan="8">
+  <p>bFlags</p>
+  </td>
+  <td colspan="16">
+  <p>wIterations</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>bSaltLength</p>
+  </td>
+  <td colspan="8">
+  <p>bHashLength</p>
+  </td>
+  <td colspan="16">
+  <p>salt
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>nextHashedOwnerName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bitmaps
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>chAlgorithm (1 byte): </b>A value that specifies
+the cryptographic hash algorithm used to construct the hash value, as specified
+in [RFC5155] section 3.1.</p><p><b>bFlags (1 byte): </b>A value that specifies NSEC3
+processing flags, as specified in [RFC5155] section 3.1.</p><p><b>wIterations (2 bytes): </b>A value that specifies
+the number of additional times the hash function has been performed, as
+specified in [RFC5155] section 3.1.</p><p><b>bSaltLength (1 byte): </b>A value that specifies
+the length of the salt field, in octets.</p><p><b>bHashLength (1 byte): </b>A value that specifies
+the length of the nextHashedOwnerName field, in octets.</p><p><b>salt (variable): </b>A value that specifies the
+salt to be appended to the original owner name before hashing, as specified in
+[RFC5155] section 3.1.</p><p><b>nextHashedOwnerName (variable): </b>A value that
+specifies the next hashed owner name in hash order, as specified in [RFC5155]
+section 3.1.</p><p><b>bitmaps (variable): </b>A value that specifies the
+DNS types that exist at the original owner name of the NSEC3 record, as
+specified in [RFC5155] section 3.1.</p></div>

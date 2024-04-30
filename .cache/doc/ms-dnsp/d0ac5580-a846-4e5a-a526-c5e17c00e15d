@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p> </p><p>The <b>DNS_RPC_ZONE_STATS_V1</b> structure SHOULD<a id="Appendix_A_Target_84"></a><a aria-label="Product behavior note 84" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_84" data-linktype="relative-path">&lt;84&gt;</a> contain all the statistics
+about a zone.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcZoneStats  {
+   DWORD dwRpcStructureVersion;
+   DNSSRV_ZONE_TIME_STATS ZoneTimeStats;
+   DNSSRV_ZONE_QUERY_STATS ZoneQueryStats[MAX_RECORD_TYPES];
+   DNSSRV_ZONE_TRANSFER_STATS ZoneTransferStats[MAX_ZONE_TRANSFER_TYPES];
+   DNSSRV_ZONE_UPDATE_STATS ZoneUpdateStats;
+   DNSSRV_ZONE_RRL_STATS ZoneRRLStats;
+ } DNS_RPC_ZONE_STATS_V1,
+  *PDNS_RPC_ZONE_STATS_V1;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The DNS management
+structure version number. This value MUST be set to 0x00000001.</p><p><b>ZoneTimeStats:</b> Information about the zone time
+statistics in the <b>DNSSRV_ZONE_TIME_STATS</b> structure (section <span><a href="76bf861f-f1f7-4894-a451-be0f1a2e6794" data-linktype="relative-path">2.2.12.2.1</a></span>).</p><p><b>ZoneQueryStats:</b> An array of <b>DNSSRV_ZONE_QUERY_STATS</b>
+structures (section <span><a href="dd33a185-2f55-45cc-99da-57394db76f9f" data-linktype="relative-path">2.2.12.2.2</a></span>).</p><p><b>ZoneTransferStats:</b> An array of <b>DNSSRV_ZONE_TRANSFER_STATS</b>
+structures (section <span><a href="d1956dca-7de7-4297-9ecd-fcacf53df672" data-linktype="relative-path">2.2.12.2.3</a></span>).</p><p><b>ZoneUpdateStats:</b> Information about the zone
+dynamic update statistics in the <b>DNSSRV_ZONE_UPDATE_STATS</b> structure
+(section <span><a href="48a92670-d0df-4261-a128-1e3d63af1a62" data-linktype="relative-path">2.2.12.2.4</a></span>).</p><p><b>ZoneRRLStats:</b> Information about the zone RRL
+statistics in the <b>DNSSRV_ZONE_RRL_STATS</b> structure (section <span><a href="1e0f7a71-a16a-4228-bb01-14bc20770977" data-linktype="relative-path">2.2.12.2.6</a></span>).</p></div>

@@ -1,0 +1,17 @@
+<div class="content"><p>The QUERY_SERVICE_LOCK_STATUSA structure defines information
+about the lock status of an <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a>
+database. String values are stored in ANSI.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD fIsLocked;
+   [string,range(0, 8 * 1024)] char* lpLockOwner;
+   DWORD dwLockDuration;
+ } QUERY_SERVICE_LOCK_STATUSA,
+  *LPQUERY_SERVICE_LOCK_STATUSA;
+</pre></div>
+</dd></dl><p><b>fIsLocked:</b>  The lock status of the
+database. If this member is nonzero, the database is locked. If it is 0, the
+database is unlocked.</p><p><b>lpLockOwner:</b>  A pointer to a
+null-terminated string that contains the name of the user that acquired the
+lock.</p><p><b>dwLockDuration:</b>  The elapsed time,
+in seconds, since the lock was first acquired.</p></div>

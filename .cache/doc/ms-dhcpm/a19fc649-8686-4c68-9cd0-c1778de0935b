@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The <b>DHCP_SUBNET_ELEMENT_INFO_ARRAY_V6</b> structure
+defines an array of <span><a href="69f63a7f-55f2-4b1e-bc01-96c9ed3c92d9" data-linktype="relative-path">DHCP_SUBNET_ELEMENT_DATA_V6 (section 2.2.1.2.60)</a></span>
+structures of IPv6 prefix elements. The first member contains the number of IPv6
+prefix elements (such as IPv6 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservation</a></span>, IPv6 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_64d30865-9640-4009-a80a-861966749767" data-linktype="relative-path">exclusion
+range</a></span>, and IPv6 range), and the second member points to the array of
+length <b>NumElements</b> containing DHCPv6 IPv6 prefix elements. This
+structure is used in the <span><a href="f8852d75-ac7a-40bb-8406-0d1253ffc49b" data-linktype="relative-path">R_DhcpEnumSubnetElementsV6 (section 3.2.4.61)</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_SUBNET_ELEMENT_INFO_ARRAY_V6 {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_SUBNET_ELEMENT_DATA_V6 Elements;
+ } DHCP_SUBNET_ELEMENT_INFO_ARRAY_V6,
+  *LPDHCP_SUBNET_ELEMENT_INFO_ARRAY_V6;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+containing the number of IPv6 subnet elements in the subsequent field the <b>Elements</b>
+member.</p><p><b>Elements:</b>  This is a pointer to an
+array of DHCP_SUBNET_ELEMENT_DATA_V6 (section 2.2.1.2.60) structures
+of length <b>NumElements</b> containing IPv6 prefix elements.</p></div>

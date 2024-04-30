@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p><b>DRS_SecBufferDesc</b> is a Generic Security Service (GSS)
+Kerberos <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8e961bf0-95ba-4f58-9034-b67ccb27f317" data-linktype="relative-path">authentication</a></span>
+token, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90304" data-linktype="external">[RFC1964]</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned long ulVersion;
+   [range(0,10000)] unsigned long cBuffers;
+   [size_is(cBuffers)] DRS_SecBuffer* Buffers;
+ } DRS_SecBufferDesc;
+</pre></div>
+</dd></dl><p><b>ulVersion:</b>  MUST be 0.</p><p><b>cBuffers:</b>  The number of items in
+the Buffers array.</p><p><b>Buffers:</b>  Buffers that contain
+authentication data.</p></div>

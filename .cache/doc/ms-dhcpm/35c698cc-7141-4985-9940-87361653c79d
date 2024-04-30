@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The <b>DHCP_OPTION_SCOPE_INFO6</b> structure contains
+information about the option. The information includes the type of the option
+and the level of the option (server level, <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_128cd76b-eecb-41e6-96f7-f73c2bf9235a" data-linktype="relative-path">scope</a></span> level, or <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservation</a></span>
+level).</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_OPTION_SCOPE_INFO6 {
+     DHCP_OPTION_SCOPE_TYPE6 ScopeType;
+     [switch_is(ScopeType), switch_type(DHCP_OPTION_SCOPE_TYPE)]
+     union _DHCP_OPTION_SCOPE_UNION6 {
+         [case(DhcpDefaultOptions6)] ;
+         [case(DhcpScopeOptions6)]  DHCP_IPV6_ADDRESS  SubnetScopeInfo;
+         [case(DhcpReservedOptions6)]  DHCP_RESERVED_SCOPE6 ReservedScopeInfo;
+         [case(DhcpGlobalOptions6)] ;
+     } ScopeInfo;
+ } DHCP_OPTION_SCOPE_INFO6, *LPDHCP_OPTION_SCOPE_INFO6;
+</pre></div>
+</dd></dl><p><b>ScopeType:</b>  This is of type <span><a href="2eb572c7-c432-4ef3-a995-7119bda13c1e" data-linktype="relative-path">DHCP_OPTION_SCOPE_TYPE6 (section 2.2.1.1.5)</a></span>
+enumeration, defining the scope type of the associated DHCP options, and
+indicates which of the following fields in the union is used.</p><p><b>ScopeInfo:</b>  This is a union that can
+contain one of the following values chosen based on the value of <b>ScopeType</b>.</p><p><b>SubnetScopeInfo:</b>  This is of type <span><a href="48b74c46-bf64-40db-92b9-6e61cee1bd33" data-linktype="relative-path">DHCP_IPV6_ADDRESS (section 2.2.1.2.28)</a></span>
+structure, containing the IPv6 prefix ID of the subnet for which the option
+value is to be set.</p><p><b>ReservedScopeInfo:</b>  This is of type <span><a href="6640bbd5-45e5-40ff-8212-51db2ceee79c" data-linktype="relative-path">DHCP_RESERVED_SCOPE6 (section 2.2.1.2.29)</a></span>
+structure, containing the IPv6 address of the reservation and the IPv6 prefix
+ID for which the option value is to be set.</p></div>

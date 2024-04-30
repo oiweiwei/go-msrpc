@@ -1,0 +1,75 @@
+<div class="content"><p> </p><p>The R_QMGetRTQMServerPort method returns an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+port number, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>,
+for the requested combination of interface and protocol. The returned RPC port
+number can be used for all qmcomm and qmcomm2 methods.</p><dl>
+<dd>
+<div><pre> DWORD R_QMGetRTQMServerPort(
+   [in] handle_t hBind,
+   [in] DWORD fIP
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST be set to an RPC binding handle
+as described in [MS-RPCE] section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>fIP: </b> Specifies the interface for which a port
+value is to be returned. One of the following values MUST be specified;
+otherwise, this method MUST return 0x00000000 to indicate failure.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IP_HANDSHAKE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Requests that the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> return the
+  RPC port number for the qmcomm and qmcomm2 interfaces bound to TCP/IP. The
+  default port number is 2103.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_READ</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Requests that the server return the RPC port number
+  for the qm2qm interface, as specified in <span><a href="../ms-mqqp/c9a334a7-89b4-4e75-902a-bc029e29a072" data-linktype="relative-path">[MS-MQQP]</a></span>,
+  bound to TCP/IP. The default port number is 2105.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_HANDSHAKE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Requests that the server return the RPC port number
+  for the qmcomm and qmcomm2 interfaces bound to SPX.<a id="Appendix_A_Target_65"></a><a aria-label="Product behavior note 65" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_65" data-linktype="relative-path">&lt;65&gt;</a> The default port number is
+  2103.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_READ</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Requests that the server return the RPC port number
+  for the qm2qm interface, as specified in [MS-MQQP], bound to SPX.<a id="Appendix_A_Target_66"></a><a aria-label="Product behavior note 66" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_66" data-linktype="relative-path">&lt;66&gt;</a> The default port number is
+  2105.</p>
+  </td>
+ </tr></tbody></table><p><b>Return Values: </b>On success, this method returns a
+non-zero IP port value for the RPC interface specified by the <i>fIP</i>
+parameter. If an invalid value is specified for <i>fIP</i>, this method MUST
+return 0x00000000.</p><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol, as specified in [MS-RPCE].</p><p>As specified in section <span><a href="4c9defc8-b382-47ce-8280-06845bd165ca" data-linktype="relative-path">3.1.3</a></span>, this
+protocol configures a fixed listening <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span> at an RPC
+port number. For the interface and protocol specified by the <i>fIP</i> parameter,
+this method returns the RPC port number determined at server initialization
+time. If the default port is already in use, the server SHOULD increment the
+port number by 11 until an unused port is found.</p><p> Security consideration: Servers MUST NOT enforce security
+limitations for this method, since <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">clients</a></span> can call
+this method before configuring RPC binding security. See section <span><a href="dd78aeeb-7608-4cee-8d81-8a451aa3a170" data-linktype="relative-path">5.1</a></span>
+for details.</p></div>

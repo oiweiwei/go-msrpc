@@ -1,0 +1,37 @@
+<div class="content"><p> </p><p>The <b>DHCP_SEARCH_INFO_V6</b> structure contains the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e1d03cee-86a5-42f7-913f-8cf4e50b0d21" data-linktype="relative-path">DHCPv6
+client</a></span> information search type defined by the <b>SearchType</b>
+member, along with the data supporting that search. With this structure, a
+search is performed for a specific DHCPv6 client. This structure is used in the
+<span><a href="240ff203-cf5b-4559-9713-a75fdbaf63b3" data-linktype="relative-path">R_DhcpGetClientInfoV6 (section 3.2.4.73)</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_SEARCH_INFO_V6 {
+   DHCP_SEARCH_INFO_TYPE_V6 SearchType;
+   [switch_is(SearchType), switch_type(DHCP_SEARCH_INFO_TYPE_V6)] 
+     union _DHCP_CLIENT_SEARCH_UNION_V6 {
+     [case(Dhcpv6ClientIpAddress)] 
+       DHCP_IPV6_ADDRESS ClientIpAddress;
+     [case(Dhcpv6ClientDUID)] 
+       DHCP_CLIENT_UID ClientDUID;
+     [case(Dhcpv6ClientName)] 
+       LPWSTR ClientName;
+   } SearchInfo;
+ } DHCP_SEARCH_INFO_V6,
+  *LPDHCP_SEARCH_INFO_V6;
+</pre></div>
+</dd></dl><p><b>SearchType:</b>  This is an enumeration
+value of type <span><a href="41eccd01-ee32-4e9d-aa3a-137275bc8329" data-linktype="relative-path">DHCP_SEARCH_INFO_TYPE_V6 (section 2.2.1.1.12)</a></span>
+enumeration that contains the data type, based on which the search is performed,
+for a specific DHCPv6 client record on the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_746786e7-458f-45aa-ab24-5534a94b4fb3" data-linktype="relative-path">DHCPv6 server</a></span>.</p><p><b>SearchInfo:</b>  This is a union that
+can contain one of the following values chosen based on the value of the <b>SearchType</b>
+member.</p><p><b>ClientIpAddress:</b>  This is of type <span><a href="48b74c46-bf64-40db-92b9-6e61cee1bd33" data-linktype="relative-path">DHCP_IPV6_ADDRESS (section 2.2.1.2.28)</a></span>,
+a structure that contains the IPv6 address of the DHCPv6 client <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6d76b31-2852-4bd5-8fbb-8e82a3cedb29" data-linktype="relative-path">lease
+record</a></span>. It is used for searching in the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_005ffc96-bb67-44ca-938f-dd7ec3c95cab" data-linktype="relative-path">DHCPv6 server database</a></span>.</p><p><b>ClientDUID:</b>  This is of type <span><a href="b4da2d52-9737-46ec-8bc2-1c598fc3b8c8" data-linktype="relative-path">DHCP_CLIENT_UID (section 2.2.1.2.5)</a></span>,
+a structure that represents the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_6b55682d-9815-4dcd-b990-af62890ca699" data-linktype="relative-path">DHCPv6 client-identifier</a></span>
+(section <span><a href="c3703409-c016-4f58-ba0f-a4da12f605fb" data-linktype="relative-path">2.2.1.2.5.3</a></span>). It is
+used to search for the DHCPv6 client lease record in the DHCPv6 server
+database.</p><p><b>ClientName:</b>  A pointer to a
+null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+contains the name of the DHCPv6 client. It is used to search for the DHCPv6
+client lease record in the DHCPv6 server database. There is no restriction on
+the length of this Unicode string.</p></div>

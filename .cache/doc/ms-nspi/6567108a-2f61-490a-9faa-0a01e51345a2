@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The PropertyValue_r structure is an encoding of the <b>PropertyValue</b>
+data structure defined in <span><a href="/en-us/openspecs/exchange_server_protocols/MS-OXCDATA/1afa0cd9-b1a0-4520-b623-bf15030af5d8" data-linktype="absolute-path">[MS-OXCDATA]</a></span>.
+</p><p>For property values with uninterpreted byte values, the
+permissible number of bytes in the PropertyValue_r structure exceeds that of
+the <b>PropertyValue</b> data structure. For property values with multiple
+values, the permissible number of values in the PropertyValue_r structure
+exceeds that of the <b>PropertyValue</b> data structure. The semantic meaning
+is otherwise unchanged from the <b>PropertyValue</b> data structure.</p><dl>
+<dd>
+<div><pre> typedef struct _PropertyValue_r {
+   DWORD ulPropTag;
+   DWORD ulReserved;
+   [switch_is((long)(ulPropTag &amp; 0x0000FFFF))] 
+     PROP_VAL_UNION Value;
+ } PropertyValue_r;
+</pre></div>
+</dd></dl><p><b>ulPropTag:</b>  Encodes the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_7eb84614-827d-4b68-a71c-dd94eb0ad27f" data-linktype="relative-path">proptag</a></span>
+of the property whose value is represented by the PropertyValue_r data
+structure.</p><p><b>ulReserved:</b>  Reserved. All clients
+and servers MUST set this value to the constant 0x00000000.</p><p><b>Value:</b>  Encodes the actual value of
+the property represented by the PropertyValue_r data structure. The type value
+held is specified by the Property Type of the proptag in the field <b>ulPropTag</b>.</p></div>

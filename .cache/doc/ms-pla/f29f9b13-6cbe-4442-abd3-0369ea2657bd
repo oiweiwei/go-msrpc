@@ -1,0 +1,28 @@
+<div class="content"><p>The DataManagerSteps enumeration defines the actions that
+the data manager takes when it runs. Any combination of the bits are allowed.</p><dl>
+<dd>
+<div><pre> typedef  enum
+ {
+   plaCreateReport = 0x01,
+   plaRunRules = 0x02,
+   plaCreateHtml = 0x04,
+   plaFolderActions = 0x08,
+   plaResourceFreeing = 0x10
+ } DataManagerSteps;
+</pre></div>
+</dd></dl><p><b>plaCreateReport:  </b>Creates a report if data is
+available. The file name MUST be IDataManager::RuleTargetFileName, and
+IDataManager::ReportSchema can be used to customize the way the report is
+created. This value indicates the run of TraceRpt.exe by using as input all of
+the binary performance files (.blg) and event trace files (.etl) in the
+collection.</p><p><b>plaRunRules:  </b>If a report exists, the PLA
+Protocol MUST apply the rules specified in IDataManager::Rules to the report.
+The IDataManager::RuleTargetFileName(Get) returns the name of the file to which
+the rules are applied.</p><p><b>plaCreateHtml:  </b>Converts the XML file obtained
+by IDataManager::RuleTargetFileName(Get) to HTML format. The HTML format is
+written to the file specified in IDataManager::ReportFileName.</p><p><b>plaFolderActions:  </b>Apply the folder actions
+obtained by IDataManager::FolderActions(Get) to all <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_6afebb3e-5358-4ab8-b0fc-fcc8de47fcc1" data-linktype="relative-path">folders</a> defined in the
+collection.</p><p><b>plaResourceFreeing:  </b>If
+IDataManager::MaxFolderCount, IDataManager::MaxSize, or MinFreeDisk exceeds its
+limit, the PLA Protocol MUST apply the resource policy specified in
+IDataManager::ResourcePolicy.</p></div>

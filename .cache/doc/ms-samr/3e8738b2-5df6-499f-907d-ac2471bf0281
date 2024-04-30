@@ -1,0 +1,46 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/3e8738b2-5df6-499f-907d-ac2471bf0281" data-linktype="external">msdn link</a></p><p>The DOMAIN_INFORMATION_CLASS enumeration indicates how to
+interpret the Buffer parameter for <a href="9b7ae0b0-bd11-4133-9c62-fba7095aee12" data-linktype="relative-path">SamrSetInformationDomain</a>
+and <a href="5d6a2817-caa9-41ca-a269-fd13ecbb4fa8" data-linktype="relative-path">SamrQueryInformationDomain</a>.
+For a list of associated structures, see section <a href="1adc2142-dbb8-4554-aa24-010c713698bf" data-linktype="relative-path">2.2.3.17</a>.</p><dl>
+<dd>
+<div><pre> typedef  enum _DOMAIN_INFORMATION_CLASS
+ {
+   DomainPasswordInformation = 1,
+   DomainGeneralInformation = 2,
+   DomainLogoffInformation = 3,
+   DomainOemInformation = 4,
+   DomainNameInformation = 5,
+   DomainReplicationInformation = 6,
+   DomainServerRoleInformation = 7,
+   DomainModifiedInformation = 8,
+   DomainStateInformation = 9,
+   DomainGeneralInformation2 = 11,
+   DomainLockoutInformation = 12,
+   DomainModifiedInformation2 = 13
+ } DOMAIN_INFORMATION_CLASS;
+</pre></div>
+</dd></dl><p><b>DomainPasswordInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>DOMAIN_PASSWORD_INFORMATION</b>
+structure (see section <a href="0ae356d8-c220-4706-846e-ebbdc6fabdcb" data-linktype="relative-path">2.2.3.5</a>).</p><p><b>DomainGeneralInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_DOMAIN_GENERAL_INFORMATION</b>
+structure (see section <a href="85973e1c-96f2-4c80-8135-b24d74ad7794" data-linktype="relative-path">2.2.3.10</a>).</p><p><b>DomainLogoffInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>DOMAIN_LOGOFF_INFORMATION</b> structure
+(see section <a href="6fb0bbea-888c-4353-b5f8-75e7862344be" data-linktype="relative-path">2.2.3.6</a>).</p><p><b>DomainOemInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_DOMAIN_OEM_INFORMATION</b>
+structure (see section <a href="7cbb7ff0-e593-440d-8341-a3435195cdf1" data-linktype="relative-path">2.2.3.12</a>).</p><p><b>DomainNameInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_DOMAIN_NAME_INFORMATION</b>
+structure (see section <a href="5131d2c0-04c7-4c1b-8fd5-0b0b6cfa6c24" data-linktype="relative-path">2.2.3.13</a>).</p><p><b>DomainReplicationInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_DOMAIN_REPLICATION_INFORMATION</b>
+structure (see section <a href="c9293797-e11d-4098-be12-bf9e1de91f20" data-linktype="relative-path">2.2.3.14</a>).</p><p><b>DomainServerRoleInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>DOMAIN_SERVER_ROLE_INFORMATION</b>
+structure (see section <a href="cb0e586a-29c8-49b2-8ced-c273a7476c22" data-linktype="relative-path">2.2.3.7</a>).</p><p><b>DomainModifiedInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>DOMAIN_MODIFIED_INFORMATION</b>
+structure (see section <a href="e1da9680-8968-423b-98c0-fbdcf1535ef9" data-linktype="relative-path">2.2.3.8</a>).</p><p><b>DomainStateInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>DOMAIN_STATE_INFORMATION</b> structure
+(see section <a href="f224edcf-8d4e-4294-b0c3-b0eda384c402" data-linktype="relative-path">2.2.3.3</a>).</p><p><b>DomainGeneralInformation2:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_DOMAIN_GENERAL_INFORMATION2</b>
+structure (see section <a href="9a663cf2-0923-4959-b2c5-2e25c19735ff" data-linktype="relative-path">2.2.3.11</a>).</p><p><b>DomainLockoutInformation:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>SAMPR_DOMAIN_LOCKOUT_INFORMATION</b>
+structure (see section <a href="c9d789ed-c54a-4450-be56-251e627e1f52" data-linktype="relative-path">2.2.3.15</a>).</p><p><b>DomainModifiedInformation2:  </b>Indicates the <i>Buffer</i>
+parameter is to be interpreted as a <b>DOMAIN_MODIFIED_INFORMATION2</b>
+structure (see section <a href="47eea81b-5fee-4925-b5c1-fc594dcc8dff" data-linktype="relative-path">2.2.3.9</a>).</p></div>

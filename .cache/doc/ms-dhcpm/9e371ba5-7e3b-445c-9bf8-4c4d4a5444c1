@@ -1,0 +1,70 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4SetPolicyEx</b> method modifies the specified
+policy.</p><p>The method is an extension of the <b>R_DhcpV4SetPolicy</b>
+(Opnum 110) (section <span><a href="c5ca9a61-44c6-4214-9b3c-170f08895fcc" data-linktype="relative-path">3.2.4.111)</a></span> method,
+where the method specifies a <span><a href="a63aaffd-1c6b-4ad8-9d95-c1064b2112ea" data-linktype="relative-path">DHCP_POLICY_EX (section 2.2.1.2.121)</a></span>
+structure rather than a <span><a href="77e79969-cedf-4aa9-9059-6223ba815f30" data-linktype="relative-path">DHCP_POLICY (section 2.2.1.2.110)</a></span>
+structure. The structure contains a list of <span><a href="1ac6e6e5-f2bc-42ef-9d6a-c9457d48c3c3" data-linktype="relative-path">DHCP_PROPERTY (section 2.2.1.2.117)</a></span>
+elements that can be updated for the policy.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4SetPolicyEx(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DWORD FieldsModified,
+   [in] BOOL ServerPolicy,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [in, unique, string] LPWSTR PolicyName,
+   [in] LPDHCP_POLICY_EX Policy
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>As specified in <b>R_DhcpV4SetPolicy</b>
+(Opnum 110).</p><p><b>FieldsModified: </b>As specified in <b>R_DhcpV4SetPolicy</b>
+(Opnum 110).</p><p><b>ServerPolicy: </b>As specified in <b>R_DhcpV4SetPolicy</b>
+(Opnum 110).</p><p><b>SubnetAddress: </b>As specified in <b>R_DhcpV4SetPolicy</b>
+(Opnum 110).</p><p><b>PolicyName: </b>As specified in <b>R_DhcpV4SetPolicy</b>
+(Opnum 110).</p><p><b>Policy: </b>This is a pointer to a <b>DHCP_POLICY_EX</b>
+structure and contains the policy data to be modified. The <b>DHCP_PROPERTY</b>
+elements that are modified are as follows:</p><dl>
+<dd>
+<p><b>DNSSuffix: </b>Specifies the DNSSuffix for the
+policy when the <span><a href="64fe0789-4647-4628-a3a2-2ddcc9ae42f0" data-linktype="relative-path">DHCP_PROPERTY_ID (section 2.2.1.1.27)</a></span>
+is DhcpPropIdPolicyDnsSuffix and the value of the <span><a href="1511adaa-15d3-4c19-9521-68fb9870848d" data-linktype="relative-path">DHCP_PROPERTY_TYPE (section 2.2.1.1.26)</a></span>
+is DhcpPropTypeString.</p>
+</dd></dl><p><b>Return Values: </b>As specified in <b>R_DhcpV4SetPolicy</b>
+(Opnum 110).</p><p>The opnum field value for this method is 128.</p><p>The remainder of the processing behavior for this method is
+as defined for the <b>R_DhcpV4SetPolicy</b> (Opnum 110) method, except as
+follows:</p><ul><li><p><span><span> 
+</span></span>The <i>FieldsModified</i> parameter can also be set to the
+DhcpUpdatePolicyDnsSuffix value of the <span><a href="49abe631-1c6b-4711-8337-b4b2bdf90b00" data-linktype="relative-path">DHCP_POLICY_FIELDS_TO_UPDATE (section 2.2.1.1.21)</a></span>
+enumeration.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>FieldsModified</i> parameter is set to
+DhcpUpdatePolicyDnsSuffix, the <b>R_DhcpV4SetPolicyEx</b> method searches for
+the property with an ID value of DhcpPropIdPolicyDnsSuffix and Type value of
+DhcpPropTypeString. If such a property is located, the <b>R_DhcpV4SetPolicyEx</b>
+method validates that the string length of the property value does not exceed
+255 characters. If the length is exceeded, the <b>R_DhcpV4SetPolicyEx</b>
+method returns ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>The <b>R_DhcpV4SetPolicyEx</b> method updates the server or scope
+level &lt;DHCPv4Policy&gt; ADM element retrieved earlier according to the
+following:</p>
+<p>In addition to steps 1 through 5
+specified in <b>R_DhcpV4SetPolicy</b> (Opnum 110), the <b>R_DhcpV4SetPolicyEx</b>
+method adds the following instruction:</p>
+<ul><li><p><span><span>  </span></span>If
+the <b>DhcpUpdatePolicyDnsSuffix</b> enumeration value is set in the <i>FieldsModified</i>
+parameter, update the DNSSuffix of the policy in the
+&lt;DHCPv4Policy.DnsSuffix&gt; ADM element. If no such property exists in the
+list of properties with an ID value equal to DhcpPropIdPolicyDnsSuffix and a
+Type value equal to DhcpPropTypeString, or if the StringValue of the property
+is NULL or of zero length, then the &lt;DHCPv4Policy.DnsSuffix&gt; ADM element
+is cleared; otherwise, the ADM element is set to the StringValue of the
+property.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The <i>FieldsModified</i> parameter is set to any value other
+than DhcpUpdatePolicyName, DhcpUpdatePolicyOrder, DhcpUpdatePolicyExpr,
+DhcpUpdatePolicyRanges, DhcpUpdatePolicyDescr, DhcpUpdatePolicyStatus, or
+DhcpUpdatePolicyDnsSuffix, as defined in <b>DHCP_POLICY_FIELDS_TO_UPDATE </b>enumeration.
+</p>
+</li><li><p><span><span> 
+</span></span>The <b>R_DhcpV4SetPolicyEx</b> method returns ERROR_INVALID_PARAMETER.</p>
+</li></ul></div>

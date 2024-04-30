@@ -1,0 +1,66 @@
+<div class="content"><p>The PerflibV2OpenQueryHandle method returns a handle to the
+client that the client then uses to add, remove, and collect <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance counters</a> from
+the server.</p><dl>
+<dd>
+<div><pre> error_status_t PerflibV2OpenQueryHandle(
+   [in, string] wchar_t* szMachine,
+   [out] PRPC_HQUERY phQuery
+ );
+</pre></div>
+</dd></dl><p><b>szMachine: </b>A <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> specifying a
+server name, which is passed directly to the counter providers. Counter
+providers can ignore the server name provided by <b>szMachine</b>.</p><p><b>phQuery: </b>A handle used by other methods to
+add, remove, and collect performance counters.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) for success; otherwise, it MUST return one of the standard
+Windows errors, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The return value indicates success.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The server returns this value to the client if the
+  authentication level of the client is less than
+  RPC_C_AUTHN_LEVEL_PKT_PRIVACY.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000000E</p>
+  <p>ERROR_OUTOFMEMORY</p>
+  </td>
+  <td>
+  <p>The server returns this value to the client if for any
+  reason memory allocation fails as it tries to allocate memory to begin
+  storing state about the client request.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000005AA</p>
+  <p>ERROR_NO_SYSTEM_RESOURCES</p>
+  </td>
+  <td>
+  <p>The server returns this value if it cannot allocate
+  other system resource to process the client request. This is not specifically
+  memory about the client request or handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

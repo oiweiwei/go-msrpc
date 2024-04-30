@@ -1,0 +1,105 @@
+<div class="content"><p>The Variable Description Block is defined as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p><span>Variable-Name (66 bytes)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p><span>...</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p><span>...</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p><span>...</span></p>
+  </td>
+  <td colspan="16">
+  <p><span>Padding1</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p><span>Variable-Type</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p><span>Value-Length</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p><span>Array-Size</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p><span>Variable-Value (variable)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p><span>...</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p><span>Padding_end (variable)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p><span>...</span></p>
+  </td>
+ </tr>
+</tbody></table><p><b>Variable-Name (66 bytes): </b>Specifies the name
+of the variable as a Unicode string. The variable name MUST end with a null
+character. Duplicate variable names MUST NOT be allowed. <b>Variable-Name</b>
+MUST be treated as case-insensitive.</p><p><b>Padding1 (2 bytes): </b>Padding MAY be set to zero
+and MUST be ignored by receiver.</p><p><b>Variable-Type (4 bytes): </b>MUST be set to the
+data type of the variable as specified in section <a href="196bd00f-7e96-42e4-8512-06a9855b4a89" data-linktype="relative-path">2.2.1.3.2</a>.</p><p><b>Value-Length (4 bytes): </b>This field MUST be set
+as specified in section <a href="2a33fc7d-6d39-409a-aca4-564a343d5b45" data-linktype="relative-path">2.2.1.3.3</a>.</p><p><b>Array-Size (4 bytes): </b>This field MUST be set
+as specified in section 2.2.1.3.3.</p><p><b>Variable-Value (variable): </b>Specifies the value
+for the variable.</p><p><b>Padding_end (variable): </b>Padding MAY be set to
+zero and MUST be ignored by receiver. Padding_end size MUST be such that the
+total size (in bytes) of the Variable Description Block is evenly divisible by
+16.</p></div>

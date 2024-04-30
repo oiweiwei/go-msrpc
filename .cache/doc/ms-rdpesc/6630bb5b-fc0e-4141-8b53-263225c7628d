@@ -1,0 +1,60 @@
+<div class="content"><p>The ListReaderGroups_Return and ListReaders_Return
+structures are used to obtain results for those calls that return a <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_63ae0a08-6a05-4269-99d0-3d3b7633949b" data-linktype="relative-path">multistring</a>, in addition to
+a long return value. For more information, see sections <a href="0fb90448-01e2-4da1-9d60-cfa1cc5e31a8" data-linktype="relative-path">3.1.4.5</a>, <a href="b9b6341e-c52c-4f02-af09-25e2121f0382" data-linktype="relative-path">3.1.4.6</a>, <a href="609b752a-dcc7-4e4f-afb7-9c7ce3ef2b3d" data-linktype="relative-path">3.1.4.7</a>, and <a href="45a76e74-0301-4259-965d-39c739201b6a" data-linktype="relative-path">3.1.4.8</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _longAndMultiString_Return {
+   long ReturnCode;
+   [range(0,65536)] unsigned long cBytes;
+   [unique] [size_is(cBytes)] byte *msz;
+ } ListReaderGroups_Return, ListReaders_Return;
+</pre></div>
+</dd></dl><p><b>ReturnCode:</b>  <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a> or Win32 Error
+code. The value returned from the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">Smart Card</a> Redirection
+call.</p><p><b>cBytes:</b>  The number of bytes in the <b>msz</b>
+array field.</p><p><b>msz:</b>  The meaning of this field is
+specific to the context (<a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_09d6bc87-34ed-48e8-b4d4-962e90543462" data-linktype="relative-path">IOCTL</a>)
+in which it is used. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SCARD_IOCTL_LISTREADERSA</p>
+  <p>0x00090028</p>
+  </td>
+  <td>
+  <p>ASCII multistring of readers on the system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_IOCTL_LISTREADERSW</p>
+  <p>0x0009002C</p>
+  </td>
+  <td>
+  <p>Unicode multistring of readers on the system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_IOCTL_LISTREADERGROUPSA</p>
+  <p>0x00090020</p>
+  </td>
+  <td>
+  <p>ASCII multistring of reader groups on the system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_IOCTL_LISTREADERGROUPSW</p>
+  <p>0x00090024</p>
+  </td>
+  <td>
+  <p>Unicode multistring of reader groups on the system.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

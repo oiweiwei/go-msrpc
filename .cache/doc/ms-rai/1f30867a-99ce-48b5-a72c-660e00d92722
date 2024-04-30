@@ -1,0 +1,172 @@
+<div class="content"><p>The second type of the <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_9d7b1eb9-8131-4eb3-ad5b-08792b014893" data-linktype="relative-path">Remote Assistance Connection</a>
+String packet is a <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a> in XML format.<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="90b2d2e5-7931-4762-8949-04617e1d9089#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a> The details
+of this are as follows.</p><dl>
+<dd>
+<div><pre> &lt;E&gt;
+     &lt;A KH=&#34;Protocol-specific Parameter&#34; KH2=&#34;Protocol-specific Parameter&#34; ID=&#34;Authorization String Identifier&#34; /&gt;
+     &lt;C&gt;
+         &lt;T ID=&#34;Transport ID&#34; SID=&#34;Session ID&#34;&gt;
+               &lt;L P=&#34;Port&#34; N=&#34;Server Name&#34; /&gt;   
+         &lt;/T&gt;
+     &lt;/C&gt;
+ &lt;/E&gt; 
+  
+            
+</pre></div>
+</dd></dl><p>The novice (server) generates the KH attribute of the Auth
+String Node &lt;A&gt; in the Remote Assistance Connection String 2. The expert
+(client) validates the value of KH during the RDP connection sequence.</p><p>The KH value is a base64-encoded string of the SHA1 hash of
+the <b>PublicKeyBlob</b> field of the server certificate received in
+TS_UD_SC_SEC1. The length, in bytes, of the <b>PublicKeyBlob</b> is given by
+the <b>wPublicKeyBlobLen</b> field as specified in <a href="../ms-rdpbcgr/5073f4ed-1e93-45e1-b039-6e30c385867c" data-linktype="relative-path">[MS-RDPBCGR]</a>
+sections <a href="../ms-rdpbcgr/3e86b68d-3e2e-4433-b486-878875778f4b" data-linktype="relative-path">2.2.1.4.3</a>
+and <a href="../ms-rdpbcgr/a37d449a-73ac-4f00-9b9d-56cefc954634" data-linktype="relative-path">2.2.1.4.3.1.1</a>.</p><p>In addition to the KH attribute, the novice (server) SHOULD<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="90b2d2e5-7931-4762-8949-04617e1d9089#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a> generate the KH2 attribute of the
+Auth String Node &lt;A&gt; in the Remote Assistance Connection String 2. If
+this parameter is present in the connection string, the expert (client)
+validates the value of KH2 during the RDP connection. If this parameter is
+absent in the connection string, the client uses the KH parameter for
+validating the server as described in the previous paragraph. The KH2 value is
+a composite of the hashing algorithm used and the base64 encoded string of the
+PublicKeyBlob field of the server certificate received in TS_UD_SC_SEC1. The
+hashing algorithm can be sha256, sha384, or sha512. The hashing algorithm and
+base64 encoded string of the hash are separated by a colon (:).</p><p>The Remote Assistance Connection String 2 starts with the
+root Node &lt;E&gt;. This root Node contains the following child nodes:</p><ol><li><p><span>    </span>The Auth String
+Node &lt;A&gt; has the following attributes.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>KH</p>
+  </td>
+  <td>
+  <p>Parameters specific to a <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_17c795a6-68bf-46bf-8ea8-467c8df1a0b3" data-linktype="relative-path">Remote Desktop Protocol</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ID</p>
+  </td>
+  <td>
+  <p>Authstring identifier</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>KH2</p>
+  </td>
+  <td>
+  <p>Parameters specific to a Remote Desktop Protocol</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span>    </span>The Connector
+Node &lt;C&gt; has child nodes that give information on the underlying
+Transport used. This Transport Node &lt;T&gt; has the following attributes.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ID</p>
+  </td>
+  <td>
+  <p>Transport Identifier</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SID</p>
+  </td>
+  <td>
+  <p>Session Identifier</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span>    </span>The Transport
+Node has Listener child Nodes that give information about the Server IP and
+port. This Listener node &lt;L&gt; has the following attributes.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>P</p>
+  </td>
+  <td>
+  <p>Port: The dynamic port on which the Remote Assistance
+  connection could happen.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>N</p>
+  </td>
+  <td>
+  <p>Server Name: The name/IP address of the server, that
+  is, the <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_d27bcedc-ae63-4e15-a0cb-9b371f1820dc" data-linktype="relative-path">novice</a>
+  computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>U</p>
+  </td>
+  <td>
+  <p>URI: The full URI if websocket listener is enabled.
+  The U (URI) is used instead of the P (port) attribute. N (server name)
+  attribute is still included.</p>
+  </td>
+ </tr></tbody></table>
+</li></ol><p>The following is an example of Remote Assistance Connection
+String 2:</p><dl>
+<dd>
+<div><pre> &lt;E&gt;
+     &lt;A KH=&#34;YiKwWUY8Ioq5NB3wAQHSbs5kwrM=&#34; KH2=&#34;sha256:wKSAkAV3sBfa9WpuRFJcP9q1twJc6wOBuoJ9tsyXwpk=&#34; ID=&#34;8rYm30RBW8/4dAWoUsWbFCF5jno/7jr5t
+ NpHQc2goLbw4uuBBJvLsU02YYLlBMg5&#34;/&gt;
+     &lt;C&gt;
+         &lt;T ID=&#34;1&#34; SID=&#34;1440550163&#34;&gt;
+             &lt;L P=&#34;49749&#34; N=&#34;2001:4898:1a:5:79e2:3356:9b22:3470&#34;/&gt;
+             &lt;L P=&#34;49751&#34; N=&#34;172.31.250.64&#34;/&gt;
+         &lt;/T&gt;
+     &lt;/C&gt;
+ &lt;/E&gt; 
+            
+</pre></div>
+</dd></dl><p>In the preceding example:</p><ol><li><p><span>    </span>The Auth String
+Node &lt;A&gt; has the attribute KH=&#34;YiKwWUY8Ioq5NB3wAQHSbs5kwrM=&#34;, KH2=&#34;sha256:wKSAkAV3sBfa9WpuRFJcP9q1twJc6wOBuoJ9tsyXwpk=&#34;,
+and attribute ID =
+&#34;8rYm30RBW8/4dAWoUsWbFCF5jno/7jr5tNpHQc2goLbw4uuBBJvLsU02YYLlBMg5&#34;. 
+In this example, the KH2 value contains the encoded string
+&#34;wKSAkAV3sBfa9WpuRFJcP9q1twJc6wOBuoJ9tsyXwpk=&#34; and the hashing
+algorithm used is SHA256.</p>
+</li><li><p><span>    </span>The Connector
+Node &lt;C&gt; has one Transport child Node &lt;T&gt; with the following
+attributes:</p>
+<p>ID = &#34;1&#34;</p>
+<p>Session ID - SID =
+&#34;1440550163&#34;</p>
+</li><li><p><span>    </span>The Transport
+Node has two Listener child Nodes &lt;L&gt; with the following server and port information
+attributes:</p>
+<p>Port - P =
+&#34;49749&#34;</p>
+<p>Server Name - N =
+&#34;2001:4898:1a:5:79e2:3356:9b22:3470&#34;, and</p>
+<p>Port - P =
+&#34;49751&#34;</p>
+<p>Server Name - N =
+&#34;172.31.250.64&#34;.</p>
+</li></ol></div>

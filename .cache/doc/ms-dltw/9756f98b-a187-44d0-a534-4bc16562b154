@@ -1,0 +1,90 @@
+<div class="content"><p>The Distributed Link Tracking: Workstation Protocol is based
+on the <a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> runtime, as
+specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+and <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>,
+and on the <a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_09dbec39-5e75-4d9a-babf-1c9f1d499625" data-linktype="relative-path">server message
+block (SMB)</a> protocol and extensions, as specified in <a href="../ms-smb/f210069c-7086-4dc2-885e-861d837df688" data-linktype="relative-path">[MS-SMB]</a>
+and <a href="../ms-smb2/5606ad47-5ee0-437a-817e-70c366052962" data-linktype="relative-path">[MS-SMB2]</a>.</p><p>This protocol is used by a client to get a file&#39;s identity
+and location on the server computer as a <a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_e15432dc-30dd-4e3d-8757-19b639769c95" data-linktype="relative-path">MachineID</a>, <a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_3b097896-b707-47b5-b1bb-384867a453ea" data-linktype="relative-path">FileID</a>, <a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_d0fe4e63-48a5-4d63-9d51-d4f99306046e" data-linktype="relative-path">FileLocation</a>, and <a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_c9507dca-291d-4fd6-9cba-a9ee7da8c908" data-linktype="relative-path">Universal Naming Convention
+(UNC)</a> name. If a client contacts a server that previously stored the file,
+but the file has been moved to a new computer, the server might be able to
+return the MachineID of the computer to which the file was moved, so that the
+client can contact the DLT Workstation server on the new computer to get the
+file&#39;s current UNC and FileLocation, or another referral. This process of
+following referrals continues until a server returns the file&#39;s UNC name and FileLocation,
+or an error.</p><p>Rather than following referrals in this manner, a client can
+use the Distributed Link Tracking: Central Manager Protocol to determine a
+file&#39;s current MachineID and FileLocation, and then use that information to
+initiate a call to the DLT Workstation server on the computer indicated by that
+MachineID. For more information on using the Distributed Link Tracking: Central
+Manager Protocol in combination with the Distributed Link Tracking: Workstation
+Protocol, see <a href="../ms-dltm/a4a88aac-3bc5-4d5a-8136-52a3bfb979ef" data-linktype="relative-path">[MS-DLTM]</a>.</p><p>The following is a scenario that describes the <a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_51f062a5-c727-4025-bb61-1568b94d38cd" data-linktype="relative-path">DLT</a> protocols working together:</p><ol><li><p><span>    </span>A file is
+created on computer M1. M1 assigns identifiers, specifically FileID and
+FileLocation, to the file.</p>
+</li><li><p><span>    </span>Computer M0
+takes note of the file, locally storing its identifiers.</p>
+</li><li><p><span>    </span>The file is
+moved from computer M1 to M2 and from there to M3. In concert with these moves,
+the file maintains its FileID but gets a new FileLocation assigned.</p>
+</li><li><p><span>    </span>If the
+Distributed Link Tracking: Central Manager Protocol is used, clients on
+computers M1 and M2 notify the server that the file has been moved, indicating
+the file&#39;s FileID and its old and new FileLocation values.</p>
+</li><li><p><span>    </span>Computer M0
+finds the file in its new location in one of two ways:</p>
+<ol><li><p><span>   
+</span>Using only the Distributed Link Tracking: Workstation Protocol:</p>
+<ul><li><p><span><span> 
+</span></span>M0 contacts M1, using the identifiers stored previously, and
+learns that the file was moved to M2.</p>
+</li><li><p><span><span> 
+</span></span>M0 contacts M2 and learns that the file was moved to M3.</p>
+</li><li><p><span><span> 
+</span></span>M0 contacts M3 and learns the file&#39;s new name and location.</p>
+</li></ul></li><li><p><span>   
+</span>Using both the Distributed Link Tracking: Workstation Protocol and the
+Distributed Link Tracking: Central Manager Protocol:</p>
+<ul><li><p><span><span> 
+</span></span>M0 contacts a DLT Central Manager server to query the current
+location of the file.</p>
+</li><li><p><span><span> 
+</span></span>The server queries its tables and determines that the file is
+currently on computer M3.</p>
+</li><li><p><span><span> 
+</span></span>M0 contacts the DLT Workstation client on M3 and learns the
+file&#39;s new name and location.</p>
+</li></ul></li></ol></li></ol><p>The following is an example of a file being moved between
+computers, and shows in more detail how to use the Distributed Link Tracking:
+Workstation Protocol to determine the file&#39;s new location. In this example,
+only the Distributed Link Tracking: Workstation Protocol is used, without using
+the Distributed Link Tracking: Central Manager Protocol.</p><ol><li><p><span>    </span>In the initial
+state, a file is located on a computer named M1. Assume that the file is named
+&#34;F1.txt&#34;, and can be located via the UNC &#34;\\M1\share1\F1.txt&#34;.</p>
+</li><li><p><span>    </span>Before the file
+is moved, a user on computer M0 requests that information about the file be
+saved,<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="caa74a29-27fb-4f50-afa5-bbf152fe5d27#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a> so that its location can be
+determined after it has been moved. As a result, M0 stores the UNC, the
+MachineID, the FileLocation, and the FileID.</p>
+</li><li><p><span>    </span>The file is
+moved from machine M1 to machine M2; for example, to the UNC
+&#34;\\M2\share2\F2.txt&#34;. M1 stores the file&#39;s old FileLocation and
+FileID, as well as the file&#39;s new FileLocation and MachineID.</p>
+</li><li><p><span>    </span>When M0 attempts
+to open the file<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="caa74a29-27fb-4f50-afa5-bbf152fe5d27#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a> by using the UNC
+&#34;\\M1\share1\F1.txt&#34;, it receives a file-not-found error message. M0
+then initiates a call to the DLT Workstation server on M1 with the previously
+stored FileID and FileLocation of the file.</p>
+</li><li><p><span>    </span>The DLT
+Workstation server on M1 returns to the DLT Workstation client on M0 that the
+file was moved, and specifies the MachineID of the file&#39;s new location (M2), as
+well as the file&#39;s new FileLocation value.</p>
+</li><li><p><span>    </span>M0 then repeats
+the call, but this time to the DLT Workstation server on M2 with the new
+FileLocation value.</p>
+</li><li><p><span>    </span>The DLT
+Workstation server on M2 returns to the DLT Workstation client on M0 the file&#39;s
+new UNC, &#34;\\M2\share2\F2.txt&#34;.</p>
+</li><li><p><span>    </span>The DLT
+Workstation client on M0 then updates its stored values with the updated UNC
+and FileLocation values.</p>
+</li></ol></div>

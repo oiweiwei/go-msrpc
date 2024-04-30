@@ -1,0 +1,12 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/5a666b2c-cd21-4615-819b-6dbfe7a2b13f" data-linktype="external">msdn link</a></p><p>The SAM_VALIDATE_AUTHENTICATION_INPUT_ARG structure holds
+information about an authentication request.</p><dl>
+<dd>
+<div><pre> typedef struct _SAM_VALIDATE_AUTHENTICATION_INPUT_ARG {
+   SAM_VALIDATE_PERSISTED_FIELDS InputPersistedFields;
+   unsigned char PasswordMatched;
+ } SAM_VALIDATE_AUTHENTICATION_INPUT_ARG,
+  *PSAM_VALIDATE_AUTHENTICATION_INPUT_ARG;
+</pre></div>
+</dd></dl><p><b>InputPersistedFields:</b>  Password
+state.</p><p><b>PasswordMatched:</b>  A nonzero value
+indicates that a valid password was presented to the change-password request.</p></div>

@@ -1,0 +1,49 @@
+<div class="content"><p>The DerivedObjects (get) method returns the collection of
+derived objects for the calling template.</p><dl>
+<dd>
+<div><pre> [propget, id(FSRM_PROPERTY(FSRM_DISPID_DERIVEDOBJECTSRESULT | 0x01))] HRESULT DerivedObjects(
+   [out, retval] IFsrmCollection** derivedObjects
+ );
+</pre></div>
+</dd></dl><p><b>derivedObjects: </b>Pointer to an <b>IFsrmCollection</b>
+interface pointer (section <a href="171d3b3c-0f4d-40b9-8f48-0e97f9ff17be" data-linktype="relative-path">3.2.4.2.1</a>)
+that upon completion contains interface pointers for the derived objects that
+were updated as a result of the source template&#39;s call to <b>CommitAndUpdateDerived</b>.
+A caller MUST release the collection interface received when it is done with
+it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>derivedObjects</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that derivedObjects is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST do one of the following:</p><ul><li><p><span><span> 
+</span></span>Set <i>derivedObjects</i> to <a href="673869d0-b96e-4e50-abcf-acee7008fc40" data-linktype="relative-path">DerivedAutoApplyQuotaObjects</a>
+if the calling template is an <a href="2c5db3be-c18c-49a8-b8d4-ba4ad47fcae1" data-linktype="relative-path">auto apply quota</a>.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>derivedObjects</i> to <a href="707fee73-0603-4756-b039-b45b05c9a401" data-linktype="relative-path">DerivedQuotaObjects</a> if the
+calling template is a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_de8f825c-1256-4d47-9b99-df9c4827c2e0" data-linktype="relative-path">directory
+quota template</a>.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>derivedObjects</i> to <a href="0e47ee3b-413c-4106-a511-b1f647e094b8" data-linktype="relative-path">DerivedFileScreenObjects</a>
+if the calling template is a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_85abb42f-bb8d-4858-a712-3bfe855bb9fd" data-linktype="relative-path">file
+screen template</a>.</p>
+</li></ul></div>

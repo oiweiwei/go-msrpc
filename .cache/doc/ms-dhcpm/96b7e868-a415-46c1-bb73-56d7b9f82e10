@@ -1,0 +1,94 @@
+<div class="content"><p> </p><p>The <b>R_DhcpGetAllOptionValuesV6</b> method returns all
+option values for all user classes and vendor classes configured at the server,
+scope, or IPv6 reservation level on the DHCPv6 server. The caller of this
+function can free the memory pointed to by option <i>Values</i> by calling the
+function <b>midl_user_free</b> (section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpGetAllOptionValuesV6(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DWORD Flags,
+   [in] LPDHCP_OPTION_SCOPE_INFO6 ScopeInfo,
+   [out] LPDHCP_ALL_OPTION_VALUES* Values
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>Flags: </b> This field MUST be set to zero.
+Currently it is not used, and any value set to this parameter will not affect
+the behavior of this method.</p><p><b>ScopeInfo: </b>This is a pointer to a <span><a href="35c698cc-7141-4985-9940-87361653c79d" data-linktype="relative-path">DHCP_OPTION_SCOPE_INFO6 (section 2.2.1.2.30)</a></span>
+structure that contains information describing the DHCPv6 scope for which the
+option values are retrieved. If this value is DhcpDefaultOptions6 the option
+values are retrieved at the server level, if this value is DhcpScopeOptions6
+the option values are retrieved at the scope level, while if this value is
+DhcpReservedOptions6 the option values are retrieved at the reservations level.
+</p><p><b>Values: </b>This is a pointer of type <span><a href="e9cf1506-47f6-4d93-9893-a0b97b36425a" data-linktype="relative-path">LPDHCP_ALL_OPTION_VALUES</a></span>
+that points to the location that contains all the option values retrieved from
+the DHCPv6 server at the server, scope, or IPv6 reservation level, depending on
+the <b>ScopeType</b> defined in <i>ScopeInfo</i>.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 56.</p><p>When processing this call the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> is NULL or <i>Values</i> is NULL, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Validate that this method is authorized for read access per
+section <span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ScopeType</b> field of <i>ScopeInfo</i> contains
+DhcpDefaultOptions6, retrieve <b>DHCPv6ServerClassedOptValueList.DHCPv6ClassedOptValue.DHCPv6OptionValueList</b>
+objects for all the <b>DHCPv6ClassedOptValue</b> objects in <b>DHCPv6ServerClassedOptValueList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ScopeType</b> field of <i>ScopeInfo</i> contains the
+value DhcpScopeOptions6 and the corresponding <b>DHCPv6Scope</b> object does
+not exist in <b>DHCPv6ScopeList</b>, return ERROR_FILE_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ScopeType</b> field of <i>ScopeInfo</i> contains DhcpScopeOptions6,
+retrieve <b>DHCPv6Scope.DHCPv6ScopeClassedOptValueList.DHCPv6ClassedOptValue.DHCPv6OptionValueList</b>
+objects for all the <b>DHCPv6ClassedOptValue</b> objects in <b>DHCPv6Scope.DHCPv6ScopeClassedOptValueList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ScopeType</b> field of <i>ScopeInfo</i> contains the
+value DhcpReservedOptions6 and the corresponding <b>DHCPv6Scope</b> object does
+not exist in <b>DHCPv6ScopeList</b>, return ERROR_FILE_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ScopeType</b> field of <i>ScopeInfo</i> contains
+DhcpReservedOptions6 and the corresponding <b>DHCPv6Reservation</b> object does
+not exist in <b>DHCPv6Scope.DHCPv6ReservationList</b>, return ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ScopeType</b> field of <i>ScopeInfo</i> contains
+DhcpReservedOptions6, retrieve  the <b>DHCPv6ScopeListDHCPv6Reservation.DHCPv6ResvClassedOptValueList.DHCPv6ClassedOptValue.DHCPv6OptionValueList</b>
+objects for all the <b>DHCPv6ClassedOptValue</b> objects in <b>DHCPv6Reservation.DHCPv6ResvClassedOptValueList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ScopeType</b> field of <i>ScopeInfo</i> contains any
+value other than DhcpDefaultOptions6, DhcpScopeOptions6, or
+DhcpReservedOptions6, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Allocate the memory according to the number of <b>DHCPv6OptionValue</b>
+objects retrieved.</p>
+</li><li><p><span><span> 
+</span></span>Copy the information in the <b>DHCPv6OptionValue</b> objects to
+the allocated memory, and return them to the caller.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond those
+thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

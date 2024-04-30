@@ -1,0 +1,66 @@
+<div class="content"><p>The WINSINTF_RESULTS_NEW_T structure defines configuration
+information and statistics for a <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target WINS server</a>. This
+structure is used by the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+method <a href="bd857b12-034b-48af-9cbc-63be9e3603fa" data-linktype="relative-path">R_WinsStatusNew (section 3.1.4.20)</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSINTF_RESULTS_NEW_T {
+   DWORD NoOfOwners;
+   [unique, size_is(NoOfOwners)] PWINSINTF_ADD_VERS_MAP_T pAddVersMaps;
+   LARGE_INTEGER MyMaxVersNo;
+   DWORD RefreshInterval;
+   DWORD TombstoneInterval;
+   DWORD TombstoneTimeout;
+   DWORD VerifyInterval;
+   DWORD WINSPriorityClass;
+   DWORD NoOfWorkerThds;
+   WINSINTF_STAT_T WINSStat;
+ } WINSINTF_RESULTS_NEW_T,
+  *PWINSINTF_RESULTS_NEW_T;
+</pre></div>
+</dd></dl><p><b>NoOfOwners:</b>  The number of <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_fd7218ec-39b0-4372-bf4c-9ddfba81cb9e" data-linktype="relative-path">owners</a> whose records are
+part of the target WINS server database.</p><p><b>pAddVersMaps:</b>  A pointer to an array
+of <a href="45b9122e-a41c-462e-a5cc-39de09d2e2cb" data-linktype="relative-path">WINSINTF_ADD_VERS_MAP_T</a>
+structure (section 2.2.2.4) elements. The <b>NoOfOwners</b> member contains the
+number of elements in the array.</p><p><b>MyMaxVersNo:</b>  This member is not set
+and MUST be ignored on receipt.</p><p><b>RefreshInterval:</b>  The refresh time
+interval configured on the target WINS server, in seconds.</p><p><b>TombstoneInterval:</b>  The <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_0f15d747-5ab2-4aaf-99cf-438ab3e330d2" data-linktype="relative-path">tombstone time interval</a>
+configured on the target WINS server, in seconds.</p><p><b>TombstoneTimeout:</b>  The tombstone
+timeout configured on the target WINS server, in seconds.</p><p><b>VerifyInterval:</b>  The verify time interval
+configured on the target WINS server, in seconds.</p><p><b>WINSPriorityClass:</b>  The priority
+class of the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a>
+process running on the target WINS server. It can have one of the following
+values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NORMAL_PRIORITY_CLASS</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The process has no special scheduling requirements.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>HIGH_PRIORITY_CLASS</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>The process performs time-critical tasks that MUST be
+  executed immediately for the process to run correctly. The threads of a
+  high-priority class process preempt the threads of normal-priority class
+  processes.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>NoOfWorkerThds:</b>  The number of
+threads created in the WINS process to serve <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a> requests.</p><p><b>WINSStat:</b>  A <a href="d23c464a-6bb5-4eed-b74c-15bd47bcaa09" data-linktype="relative-path">WINSINTF_STAT_T</a> structure
+(section 2.2.2.6) containing timing parameters configured on the target WINS
+server and pull replication statistics of partner WINS servers.</p></div>

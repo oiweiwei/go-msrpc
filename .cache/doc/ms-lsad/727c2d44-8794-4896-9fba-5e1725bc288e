@@ -1,0 +1,16 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/727c2d44-8794-4896-9fba-5e1725bc288e" data-linktype="external">msdn link</a></p><p>The LSAPR_ACCOUNT_ENUM_BUFFER structure specifies a
+collection of <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security
+principal</a> <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SIDs</a>
+represented in an array of structures of type LSAPR_ACCOUNT_INFORMATION.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_ACCOUNT_ENUM_BUFFER {
+   unsigned long EntriesRead;
+   [size_is(EntriesRead)] PLSAPR_ACCOUNT_INFORMATION Information;
+ } LSAPR_ACCOUNT_ENUM_BUFFER,
+  *PLSAPR_ACCOUNT_ENUM_BUFFER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  This field contains
+the number of security principals.</p><p><b>Information:</b>  This field contains a
+set of structures that define the security principal SID, as specified in
+section <a href="98540c1c-09cc-4ee2-934a-cdde3de0c77f" data-linktype="relative-path">2.2.5.1</a>. If the
+EntriesRead field has a value other than 0, this field MUST NOT be NULL.</p></div>

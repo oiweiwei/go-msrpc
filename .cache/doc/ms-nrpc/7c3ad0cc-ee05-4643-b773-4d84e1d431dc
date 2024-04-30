@@ -1,0 +1,191 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/7c3ad0cc-ee05-4643-b773-4d84e1d431dc" data-linktype="external">msdn link</a></p><p>The <b>NetrLogonGetDomainInfo</b> method SHOULD<a id="Appendix_A_Target_188"></a><a aria-label="Product behavior note 188" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_188" data-linktype="relative-path">&lt;188&gt;</a> return information that
+describes the current domain to which the specified client belongs. </p><dl>
+<dd>
+<div><pre> NTSTATUS NetrLogonGetDomainInfo(
+   [in, string] LOGONSRV_HANDLE ServerName,
+   [in, string, unique] wchar_t* ComputerName,
+   [in] PNETLOGON_AUTHENTICATOR Authenticator,
+   [in, out] PNETLOGON_AUTHENTICATOR ReturnAuthenticator,
+   [in] DWORD Level,
+   [in, switch_is(Level)] PNETLOGON_WORKSTATION_INFORMATION WkstaBuffer,
+   [out, switch_is(Level)] PNETLOGON_DOMAIN_INFORMATION DomBuffer
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>The custom binding handle, as defined in
+section <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>.</p><p><b>ComputerName: </b>The null-terminated Unicode
+string that contains the name of the client computer issuing the request.</p><p><b>Authenticator: </b>A pointer to a <a href="76c93227-942a-4687-ab9d-9d972ffabdab" data-linktype="relative-path">NETLOGON_AUTHENTICATOR</a>
+structure, as specified in section 2.2.1.1.5, that contains the client <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e72a2c02-84a2-4ce3-b66f-86f725642dc3" data-linktype="relative-path">authenticator</a>.</p><p><b>ReturnAuthenticator: </b>A pointer to a <b>NETLOGON_AUTHENTICATOR</b>
+structure, as specified in section 2.2.1.1.5, that contains the server return
+authenticator.</p><p><b>Level: </b>The information level requested by the
+client. The <i>DomBuffer</i> parameter contains one of the following
+structures, based on the value of this field.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The <i>DomBuffer</i> contains a <a href="440c3430-ed5f-481d-b602-74db422df3c8" data-linktype="relative-path">NETLOGON_DOMAIN_INFO</a>
+  structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The <i>DomBuffer</i> contains a <a href="4676ac83-2099-4e33-b680-502fd8a32dbd" data-linktype="relative-path">NETLOGON_LSA_POLICY_INFO</a>
+  structure.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>WkstaBuffer: </b>A pointer to a
+NETLOGON_WORKSTATION_INFO structure, as specified in section <a href="3ae9e9a9-a303-4fa5-8e11-823d9e7e1e61" data-linktype="relative-path">2.2.1.3.6</a>, that contains
+information about the client workstation.</p><p><b>DomBuffer: </b>A pointer to a <a href="30777159-70ef-4982-90a1-f8e93aaeb985" data-linktype="relative-path">NETLOGON_DOMAIN_INFORMATION</a>
+structure, as specified in section 2.2.1.3.12, that contains information about
+the domain or policy information.</p><p><b>Return Values: </b>The method returns 0x00000000
+on success; otherwise, it returns a nonzero error code.</p><p>On receiving this call, the server MUST perform the
+following validation steps:</p><ul><li><p><span><span> 
+</span></span>Apply Common Error Processing Rule A, specified in section <a href="2d776bfc-e81f-4c8f-9da8-4c2920f65413" data-linktype="relative-path">3</a>.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the <i>WkstaBuffer</i> parameter is not NULL. If it
+is, the server SHOULD<a id="Appendix_A_Target_189"></a><a aria-label="Product behavior note 189" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_189" data-linktype="relative-path">&lt;189&gt;</a> return
+STATUS_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the <i>Level</i> parameter is set to 1 or 2. All
+other values are invalid, and STATUS_INVALID_LEVEL MUST be returned.</p>
+</li><li><p><span><span> 
+</span></span>Using the <i>ComputerName</i> for the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure channel</a> to find the
+corresponding record in the ClientSessionInfo table, verify the <i>Authenticator</i>
+parameter (section <a href="da7acaa3-030b-481e-979b-f58f89389806" data-linktype="relative-path">3.1.4.5</a>).
+If the <i>Authenticator</i> parameter is valid, compute the <i>ReturnAuthenticator</i>
+parameter returned (section 3.1.4.5). Otherwise, the server MUST return
+STATUS_ACCESS_DENIED.</p>
+</li></ul><p>If the <i>Level</i> parameter is set to 1, the return
+structure pointed to by <i>DomBuffer</i> MUST be generated as follows:</p><ul><li><p><span><span> 
+</span></span>NETLOGON_DOMAIN_INFO.PrimaryDomain.DomainName MUST be set to <b>NetbiosDomainName</b>.
+</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_DOMAIN_INFO.PrimaryDomain.DnsDomainName MUST be set to <b>DnsDomainName</b>.
+</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_DOMAIN_INFO.PrimaryDomain.DnsForestName MUST be set to <b>DnsForestName</b>.</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_DOMAIN_INFO.PrimaryDomain.DomainGuid MUST be set to <b>DomainGuid</b>.</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_DOMAIN_INFO.PrimaryDomain.DomainSid MUST be set to <b>DomainSid</b>.</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_DOMAIN_INFO.WorkstationFlags MUST be set with the
+bitwise AND of
+NETLOGON_WORKSTATION_INFORMATION.WorkstationInfo.WorkstationFlags and 0x3.</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_DOMAIN_INFO.TrustedDomainCount MUST be set to the number
+of elements of the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trusted</a>
+domain list returned by performing the external behavior consistent with
+locally invoking LsarEnumerateTrustedDomainsEx (<a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a>
+section <a href="../ms-lsad/14e37cf7-b090-497c-a2e2-97e8425532a2" data-linktype="relative-path">3.1.4.7.7</a>).
+The <i>EnumerationContext</i> parameter MUST be set to 0 and <i>PreferredMaximumLength</i>
+SHOULD<a id="Appendix_A_Target_190"></a><a aria-label="Product behavior note 190" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_190" data-linktype="relative-path">&lt;190&gt;</a> be set to 4096. A policy
+handle is not needed locally.</p>
+</li><li><p><span><span> 
+</span></span>NETLOGON_DOMAIN_INFO.TrustedDomains MUST be set to a
+TrustedDomainCount-sized array of NETLOGON_ONE_DOMAIN_INFO structures. Each
+structure MUST be generated as follows:</p>
+<ul><li><p><span><span>  </span></span>NETLOGON_ONE_DOMAIN_INFO.DomainName
+MUST be set to the NetBIOS <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_45a1c9f1-0263-49a8-97c7-7aca1a99308c" data-linktype="relative-path">domain
+name</a> of the trusted domain.</p>
+</li><li><p><span><span>  </span></span>NETLOGON_ONE_DOMAIN_INFO.DnsDomainName
+MUST be set to the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a> domain
+name of the trusted domain.</p>
+</li><li><p><span><span>  </span></span>NETLOGON_ONE_DOMAIN_INFO.DnsForestName
+MUST be set to NULL string.</p>
+</li><li><p><span><span>  </span></span>NETLOGON_ONE_DOMAIN_INFO.DomainGuid
+MUST be set to the domain <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>
+of the trusted domain.</p>
+</li><li><p><span><span>  </span></span>NETLOGON_ONE_DOMAIN_INFO.DomainSid
+SHOULD<a id="Appendix_A_Target_191"></a><a aria-label="Product behavior note 191" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_191" data-linktype="relative-path">&lt;191&gt;</a> be set to the domain <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> of the trusted domain.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>NETLOGON_DOMAIN_INFO.SupportedEncTypes MUST be set to the value
+of the msDS-SupportedEncryptionTypes attribute (<a href="../ms-ada2/e20ebc4e-5285-40ba-b3bd-ffcb81c2783e" data-linktype="relative-path">[MS-ADA2]</a>
+section <a href="../ms-ada2/a75d1c3f-0bb3-470c-99bd-2bb557119483" data-linktype="relative-path">2.473</a>)
+of the <i>ComputerName</i> account. If the msDS-SupportedEncryptionTypes
+attribute does not exist, then set NETLOGON_DOMAIN_INFO.SupportedEncTypes to
+0xFFFFFFFF.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p> Structure </p>
+   </th>
+   <th>
+   <p> Reference </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NETLOGON_DOMAIN_INFO</p>
+  </td>
+  <td>
+  <p>For details, see section 2.2.1.3.11.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETLOGON_WORKSTATION_INFO</p>
+  </td>
+  <td>
+  <p>For details, see section 2.2.1.3.6.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_DOMAIN_TRUSTSW</p>
+  </td>
+  <td>
+  <p>For details, see section <a href="7de9866e-d3ef-4a9f-98a5-c2dcff1e61c1" data-linktype="relative-path">2.2.1.6.2</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NETLOGON_ONE_DOMAIN_INFO</p>
+  </td>
+  <td>
+  <p>For details, see section <a href="77cd9776-8612-4dab-9748-bfb07247fd4c" data-linktype="relative-path">2.2.1.3.10</a>.</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p>If the Level parameter is set to 2:</p><ul><li><p><span><span> 
+</span></span>NETLOGON_DOMAIN_INFO.LsaPolicy.LsaPolicySize MUST be set to 0.</p>
+</li><li><p><span><span> 
+</span></span><b>NETLOGON_DOMAIN_INFO.LsaPolicy.LsaPolicy</b> MUST be set to
+NULL.</p>
+</li></ul><p>If the WkstaBuffer.<i>WorkstationInfo</i> pointer is NULL,
+no further processing occurs and NERR_Success MUST be returned.</p><p>If WkstaBuffer.<i>WorkstationInfo</i>.<i>WorkstationFlags</i>
+has the 0x2 bit set, NETLOGON_DOMAIN_INFO.DnsHostNameInDs is set to the <b>dNSHostName</b>
+attribute (<a href="../ms-ada1/19528560-f41e-4623-a406-dabcfff0660f" data-linktype="relative-path">[MS-ADA1]</a>
+section <a href="../ms-ada1/a7b140ad-06f1-420d-90b7-704f689e0032" data-linktype="relative-path">2.185</a>)
+of the client account. The <b>dNSHostName</b> attribute is validated against
+the constraints specified in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/5c578b15-d619-408d-ba17-380714b89fd1" data-linktype="relative-path">3.1.1.5.3.1.1.2</a>.
+If there was a change in domain naming, this value holds the previous DNS host
+name because the AD query is done prior to changing the value. If WkstaBuffer.<i>WorkstationInfo</i>.<i>WorkstationFlags</i>
+does not have the 0x2 bit set, the server adds the following <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_547217ca-134f-4b43-b375-f5bca4c16ce4" data-linktype="relative-path">SPNs</a> to the <b>ServicePrincipalName</b>
+attribute of the clients account:</p><ul><li><p><span><span> 
+</span></span>HOST/&lt;Netbios name&gt;</p>
+</li><li><p><span><span> 
+</span></span>HOST/&lt;FQDN name&gt;</p>
+</li></ul><p>WkstaBuffer.<i>WorkstationInfo</i>.<i>OsName</i> and
+WkstaBuffer.<i>WorkstationInfo</i>.<i>OsVersion</i> are processed as specified
+in section 2.2.1.3.6. If WkstaBuffer.<i>WorkstationInfo</i>.<i>OsName</i> and
+WkstaBuffer.<i>WorkstationInfo</i>.<i>OsVersion</i> are not specified, then use
+a generic string, for example, &#34;Windows unknown version&#34; to update
+the operatingSystem attribute. If WkstaBuffer.<i>WorkstationInfo</i>.<i>OsVersion</i>
+is specified but WkstaBuffer.<i>WorkstationInfo</i>.<i>OsName</i> is not, then
+a different generic string SHOULD<a id="Appendix_A_Target_192"></a><a aria-label="Product behavior note 192" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_192" data-linktype="relative-path">&lt;192&gt;</a> be
+used to update the <b>operatingSystem</b> attribute, depending on the value of
+WkstaBuffer.<i>WorkstationInfo</i>.<i>OsVersion</i>.<i>wProductType</i>.<a id="Appendix_A_Target_193"></a><a aria-label="Product behavior note 193" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_193" data-linktype="relative-path">&lt;193&gt;</a></p><p>If WkstaBuffer<i>.WorkstationInfo.KerberosSupportedEncryptionTypes</i>
+is set, NETLOGON_DOMAIN_INFO.SupportedEncTypes is set to the <b>msDS-SupportedEncryptionTypes</b>
+attribute ([MS-ADA2] section 2.473) of the client account.</p><p>This method SHOULD only be called by a machine that has
+established a secure channel with the server.</p></div>

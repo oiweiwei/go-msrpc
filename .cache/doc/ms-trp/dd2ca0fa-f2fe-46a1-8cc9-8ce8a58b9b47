@@ -1,0 +1,201 @@
+<div class="content"><p>The LINEDEVSTATUS packet describes the current status of a
+line device. LINEDEVSTATUS is supplied by the server in the field VarData of
+the returned version of the <a href="a11f4838-975f-43f9-a903-7775c9c8e30b" data-linktype="relative-path">GetLineDevStatus</a>
+packet if the request is completed successfully.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumOpens</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwOpenMediaModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumActiveCalls</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumOnHoldCalls</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumOnHoldPendCalls</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwLineFeatures</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumCallCompletions</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwRingMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSignalLevel</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwBatteryLevel</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwRoamMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevStatusFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTerminalModesSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTerminalModesOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevSpecificSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevSpecificOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAvailableMediaModes
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAppInfoSize
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAppInfoOffset
+  (optional)</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>The total size, in
+bytes, allocated to this packet. </p><p><b>dwNeededSize (4 bytes): </b>The size, in bytes,
+for this packet that is needed to hold all the returned information. </p><p><b>dwUsedSize (4 bytes): </b>The size, in bytes, of
+the portion of this packet that contains useful information. </p><p><b>dwNumOpens (4 bytes): </b>The number of active
+opens on the line device. </p><p><b>dwOpenMediaModes (4 bytes): </b>The bit array that
+indicates the media types for which the line device is currently open. </p><p><b>dwNumActiveCalls (4 bytes): </b>The number of
+calls on the line in call states other than idle, onHold,
+onHoldPendingTransfer, and onHoldPendingConference. </p><p><b>dwNumOnHoldCalls (4 bytes): </b>the number of
+calls on the line in the onHold state. </p><p><b>dwNumOnHoldPendCalls (4 bytes): </b>The number of
+calls on the line in the onHoldPendingTransfer or onHoldPendingConference
+state. </p><p><b>dwLineFeatures (4 bytes): </b>Line-related
+functions that are currently available on this line. This member MUST use one
+or more of the <a href="cc519223-cb10-445b-92bb-e6bd905b7013" data-linktype="relative-path">LINEFEATURE_Constants</a>.
+</p><p><b>dwNumCallCompletions (4 bytes): </b>The number of
+outstanding call-completion requests on the line. </p><p><b>dwRingMode (4 bytes): </b>The current ring mode on
+the line device. </p><p><b>dwSignalLevel (4 bytes): </b>The current signal
+level of the connection on the line. This MUST be a value in the range
+0x00000000 (weakest signal) to 0x0000FFFF (strongest signal). </p><p><b>dwBatteryLevel (4 bytes): </b>The current battery
+level of the line device hardware. This MUST be a value in the range 0x00000000
+(battery empty) to 0x0000FFFF (battery full).</p><p><b>dwRoamMode (4 bytes): </b>The current roam mode of
+the line device. This member MUST use one of the <a href="26639a97-d3df-4238-a449-56f1d9c9bce6" data-linktype="relative-path">LINEROAMMODE_Constants</a>.</p><p><b>dwDevStatusFlags (4 bytes): </b>The flags that
+indicate status information, such as whether the device is locked. It consists
+of one or more members of <a href="f1684169-41b1-4815-8440-90d087a7f9a6" data-linktype="relative-path">LINEDEVSTATUSFLAGS_Constants</a>.</p><p><b>dwTerminalModesSize (4 bytes): </b>The size, in
+bytes, of the variably sized device field containing an array of current
+terminal modes.</p><p><b>dwTerminalModesOffset (4 bytes): </b>The offset,
+in bytes, from the beginning of the packet to an array of current terminal
+modes. This array is indexed by terminal IDs, in the range from 0 to <b>dwNumTerminals</b>
+minus one. Each entry in the array specifies the current terminal modes for the
+corresponding terminal set using the <a href="ddb98b5d-6c89-413d-8c99-96ac71578c50" data-linktype="relative-path">SetTerminal</a> packet for
+this line. Each entry is a DWORD that specifies one or more of the <a href="c410cabf-88f3-42b9-94c4-535333526bf7" data-linktype="relative-path">LINETERMMODE_Constants</a>.
+The size of the array MUST be specified by <b>dwTerminalModesSize</b>. </p><p><b>dwDevSpecificSize (4 bytes): </b>The size, in
+bytes, of the variably sized device-specific field. If the device-specific
+information is a pointer to a string, the size MUST include the null
+terminator.</p><p><b>dwDevSpecificOffset (4 bytes): </b>The offset, in
+bytes, from the beginning of the packet to the device-specific field. The size
+of the field MUST be specified by <b>dwDevSpecificSize</b>. </p><p><b>dwAvailableMediaModes (4 bytes): </b>Indicates the
+media types that can be invoked on new calls created on this line device when
+the dwLineFeatures member indicates that new calls are possible. If this member
+is 0, it indicates that the service provider either does not know or cannot
+indicate which media types are available, in which case any or all of the media
+types indicated in the dwMediaModes member in <a href="f236ea7a-c8a2-4681-b87c-9f0e07a01dc6" data-linktype="relative-path">LINEDEVCAPS</a> can be
+available. </p><p><b>dwAppInfoSize (4 bytes): </b>The size, in bytes,
+of the array that identifies the applications that have the line open. </p><p><b>dwAppInfoOffset (4 bytes): </b>The offset from the
+beginning of the packet to an array of <a href="f0c52d70-1c43-41b5-9d24-4437b8d6afa7" data-linktype="relative-path">LINEAPPINFO</a> packets. The <b>dwNumOpens</b>
+member indicates the number of elements in the array. Each element in the array
+identifies an application that has the line open. The size of the array MUST be
+specified by <b>dwAppInfoSize</b>. </p><p>Device-specific extensions SHOULD use the DevSpecific (<b>dwDevSpecificSize</b>
+and <b>dwDevSpecificOffset</b>) variably sized area of this packet.</p><p>The members <b>dwAvailableMediaModes</b> through <b>dwAppInfoOffset</b>
+are available only to line device&#39;s with a TAPI version of 2.0, 2.1, 2.2, 3.0,
+or 3.1.</p></div>

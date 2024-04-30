@@ -1,0 +1,51 @@
+<div class="content"><p>The RecycleApplicationPool method restarts an <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_15b985cc-5c71-4573-873a-275218a37a3d" data-linktype="relative-path">application pool</a>.</p><dl>
+<dd>
+<div><pre> HRESULT RecycleApplicationPool(
+   [in, unique, string] LPCWSTR szPool
+ );
+</pre></div>
+</dd></dl><p><b>szPool: </b>A pointer to a Unicode string that
+contains the name of the application pool to restart.</p><p><b>Return Values: </b> A signed 32-bit value that
+indicates return status. If the method returns a negative value, it failed. If
+the 12-bit facility code (bits 16–27) is set to 0x007, the value contains a
+Win32 error code in the lower 16 bits. Zero or positive values indicate
+success, with the lower 16 bits in positive nonzero values containing warnings
+or flags defined in the method implementation. For more information about Win32
+error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070003</p>
+  <p>ERROR_PATH_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The system cannot find the path specified.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 8. </p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>If the application pool specified does not exist, return
+ERROR_PATH_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>Attempt to recycle (shut down and restart) the application pool
+if it is running.</p>
+</li></ul></div>

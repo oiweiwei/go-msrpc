@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The Binary_r structure encodes an array of uninterpreted
+bytes.</p><dl>
+<dd>
+<div><pre> typedef struct Binary_r {
+   [range(0,2097152)] DWORD cb;
+   [size_is(cb)] BYTE* lpb;
+ } Binary_r;
+</pre></div>
+</dd></dl><p><b>cb:</b>  The number of uninterpreted
+bytes represented in this structure. This value MUST NOT exceed 2,097,152.</p><p><b>lpb:</b>  The uninterpreted bytes.</p></div>

@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_UNICODE_STRING_LIST</b> structure contains a
+list of null-terminated <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode strings</a></span>.
+This structure is used by the DNS Server Management Protocol while processing
+the <span><a href="d28e3ba8-5742-417d-ad6d-2e0139ab2ad9" data-linktype="relative-path">R_DnssrvComplexOperation2 (section 3.1.4.8)</a></span>
+method call, with operations of type &#34;EnumerateKeyStorageProviders&#34;.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcUnicodeStringList {
+   [range(0,10000)] DWORD dwCount;
+   [size_is(dwCount), string] wchar_t * pwszStrings[];
+ } DNS_RPC_UNICODE_STRING_LIST,
+  *PDNS_RPC_UNICODE_STRING_LIST;
+</pre></div>
+</dd></dl><p><b>dwCount:</b> The number of strings present in
+the pwszStrings array.</p><p><b>pwszStrings:</b> A variable-length array of
+pointers to null-terminated Unicode strings.</p></div>

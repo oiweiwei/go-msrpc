@@ -1,0 +1,119 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/d4eb7286-5f19-4040-a0c1-d29136e0e58e" data-linktype="external">msdn link</a></p><p>The LsarSetSecurityObject method is invoked to set a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a> on an
+object.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarSetSecurityObject(
+   [in] LSAPR_HANDLE ObjectHandle,
+   [in] SECURITY_INFORMATION SecurityInformation,
+   [in] PLSAPR_SR_SECURITY_DESCRIPTOR SecurityDescriptor
+ );
+</pre></div>
+</dd></dl><p><b>ObjectHandle: </b>An open handle to an existing
+object.</p><p><b>SecurityInformation: </b>A bitmask specifying which
+portions of the security descriptor are to be set.</p><p><b>SecurityDescriptor: </b>The security descriptor to
+be set.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000009A</p>
+  <p>STATUS_INSUFFICIENT_RESOURCES</p>
+  </td>
+  <td>
+  <p>There are insufficient resources to complete the
+  request.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000079</p>
+  <p>STATUS_INVALID_SECURITY_DESCR</p>
+  </td>
+  <td>
+  <p>The supplied security descriptor is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the parameters supplied was invalid. For
+  instance, <i>SecurityDescriptor</i> is NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00000BB</p>
+  <p>STATUS_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The operation is not supported for this object.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>ObjectHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes three arguments:</p><p><i>ObjectHandle</i>: Can be an open handle of any type. If
+the handle is not a valid context handle to an object or <i>ObjectHandle</i>.PolicyType
+is not one of the following:</p><ul><li><p><span><span> 
+</span></span>&#34;Policy&#34; for handles to policy objects</p>
+</li><li><p><span><span> 
+</span></span>&#34;Account&#34; for handles to <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b76eee27-064e-461b-81a9-fbf41e49928b" data-linktype="relative-path">account objects</a></p>
+</li><li><p><span><span> 
+</span></span>&#34;Secret&#34; for handles to <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_9720ddb8-c802-40b7-8dba-5e7520c3396d" data-linktype="relative-path">secret objects</a></p>
+</li><li><p><span><span> 
+</span></span>&#34;Trusted Domain&#34; for handles to <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted domain objects</a></p>
+</li></ul><p>The server MUST return STATUS_INVALID_HANDLE. The access
+required for a successful completion of this request depends on the <i>SecurityInformation</i>
+parameter. The server MUST verify that <i>ObjectHandle</i> grants access as
+specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a>.
+The following pseudocode specifies the RequiredAccess value to use in this
+access check.</p><dl>
+<dd>
+<div><pre> Set RequiredAccess equal to 0
+ IF ((SecurityInformation &amp; OWNER_SECURITY_INFORMATION) || (SecurityInformation &amp; GROUP_SECURITY_INFORMATION) || (SecurityInformation &amp; DACL_SECURITY_INFORMATION)) THEN
+     RequiredAccess |= READ_CONTROL
+ END IF
+ IF (SecurityInformation &amp; SACL_SECURITY_INFORMATION) THEN
+     RequiredAccess |= ACCESS_SYSTEM_SECURITY
+ END IF
+</pre></div>
+</dd></dl><p><i>SecurityInformation</i>: A set of bits specifying which
+portions of the security descriptor the caller is interested in setting. The
+various bits and the associated access rights are specified in section <a href="62175da4-e30f-4c12-b1c4-dae0434e38af" data-linktype="relative-path">2.2.1.3</a>.</p><p><i>SecurityDescriptor</i>: Expects a valid self-relative
+security descriptor that the caller is trying to set. If this security
+descriptor is invalid, the server MUST return the STATUS_INVALID_SECURITY_DESCR
+status code. If the security descriptor is NULL, the server MUST return
+STATUS_INVALID_PARAMETER.</p><p>It is valid for the server to not support this method for
+all object types.<a id="Appendix_A_Target_109"></a><a aria-label="Product behavior note 109" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_109" data-linktype="relative-path">&lt;109&gt;</a></p><p>The server MUST return STATUS_INSUFFICIENT_RESOURCES if it
+runs out of memory while servicing the request.</p></div>

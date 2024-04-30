@@ -1,0 +1,126 @@
+<div class="content"><p>The LINEQUEUEINFO packet provides information about a queue
+on a line device. The <a href="82913213-bb4c-490b-9c59-3571c0724869" data-linktype="relative-path">GetQueueInfo</a>
+function returns the LINEQUEUEINFO packet. This packet requires TAPI 3.0
+version negotiation. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMeasurementPeriod</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalCallsQueued</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCurrentCallsQueued</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalCallsAbandoned</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalCallsFlowedIn</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalCallsFlowedOut</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwLongestEverWaitTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCurrentLongestWaitTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAverageWaitTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwFinalDisposition</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, allocated to this packet.</p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, needed to hold all the information requested.</p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the portion of this packet that contains useful
+information.</p><p><b>dwMeasurementPeriod (4 bytes): </b>An unsigned
+32-bit integer. The period, in seconds, for which the switch or implementation
+stores and calculates information. For example, <b>dwTotalCallsAbandoned</b>
+holds the number of abandoned calls; <b>dwMeasurementPeriod</b> would indicate
+if this value referenced the calls queued in an hour, day, or month.</p><p><b>dwTotalCallsQueued (4 bytes): </b>An unsigned
+32-bit integer. The total number of incoming calls for this queue during this
+measurement period.</p><p><b>dwCurrentCallsQueued (4 bytes): </b>An unsigned
+32-bit integer. The number of incoming calls currently waiting.</p><p><b>dwTotalCallsAbandoned (4 bytes): </b>An unsigned
+32-bit integer. The number of abandoned calls during this measurement period.</p><p><b>dwTotalCallsFlowedIn (4 bytes): </b>An unsigned
+32-bit integer. The total number of calls that flowed into this queue (passed
+down from another queue or ACD group) during this measurement period.</p><p><b>dwTotalCallsFlowedOut (4 bytes): </b>An unsigned
+32-bit integer. The total number of calls that flowed out of this queue (passed
+down to another queue or ACD group) during this measurement period.</p><p><b>dwLongestEverWaitTime (4 bytes): </b>An unsigned
+32-bit integer. The longest time, in seconds, any call has waited in the queue.</p><p><b>dwCurrentLongestWaitTime (4 bytes): </b>An
+unsigned 32-bit integer. The longest time, in seconds, that a current call
+(still in the queue) has been waiting. </p><p><b>dwAverageWaitTime (4 bytes): </b>An unsigned
+32-bit integer. The average time, in seconds, that a call has waited in the
+queue. </p><p><b>dwFinalDisposition (4 bytes): </b>An unsigned
+32-bit integer. The final disposition of the queue.</p></div>

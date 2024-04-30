@@ -1,0 +1,164 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_TIMEOUT_STATS</b> structure has DNS server
+statistics related to timeout operations on the server. This structure MUST be
+formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SetTotal</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SetDirect</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SetFromDereference</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SetFromChildDelete</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AlreadyInSystem</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Checks</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecentAccess</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ActiveRecord</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CanNotDelete</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Deleted</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ArrayBlocksCreated</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ArrayBlocksDeleted</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DelayedFreesQueued</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DelayedFreesQueuedWithFunction</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DelayedFreesExecuted</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DelayedFreesExecutedWithFunction</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>SetTotal (4 bytes): </b>The total number of times
+the server marked a node as being eligible for deletion when it is no longer in
+use by the cache.</p><p><b>SetDirect (4 bytes): </b>The number of times the
+server marked a node as being eligible for deletion when it is no longer in use
+by the cache, by directly referencing the node.</p><p><b>SetFromDereference (4 bytes): </b>The number of
+times the server marked a node as being eligible for deletion when it is no
+longer in use by the cache because the last reference was deleted.</p><p><b>SetFromChildDelete (4 bytes): </b>The number of
+times the server marked a node as being eligible for deletion when it is no
+longer in use by the cache because the node&#39;s last child was deleted.</p><p><b>AlreadyInSystem (4 bytes): </b>The number of times
+the server marked a node as being eligible for deletion when it is no longer in
+use by the cache when the node was already so marked.</p><p><b>Checks (4 bytes): </b>The number of times the
+server performed any node timeout marking operation.</p><p><b>RecentAccess (4 bytes): </b>The number of times
+the server encountered a cache node that it could not delete because the node
+had recently been accessed.</p><p><b>ActiveRecord (4 bytes): </b>The number of times
+while performing checks the server encountered a cache node that had records
+present while checking nodes for deletion.</p><p><b>CanNotDelete (4 bytes): </b>The number of times
+the server encountered a cache node that was marked for deletion that could not
+be deleted because it had been recently accessed or because it had active
+records or child nodes.</p><p><b>Deleted (4 bytes): </b>The number of times the
+server successfully deleted a cache node that was marked as eligible for
+deletion.</p><p><b>ArrayBlocksCreated (4 bytes): </b>The number of
+times the server created a block to hold more references to cache nodes
+eligible for deletion.</p><p><b>ArrayBlocksDeleted (4 bytes): </b>The number of
+times the server deleted a block to hold references to cache nodes eligible for
+deletion.</p><p><b>DelayedFreesQueued (4 bytes): </b>The number of
+times the server entered a block of memory into an internal list of memory
+blocks that can be freed in the future.</p><p><b>DelayedFreesQueuedWithFunction (4 bytes): </b>The
+number of times the server entered a block of memory into an internal list of
+memory blocks that can be freed in the future where the block is freed using a
+function other than the standard memory free function.</p><p><b>DelayedFreesExecuted (4 bytes): </b>The number of
+times the server released a block of memory that had previously been entered
+into an internal list of memory blocks that can be freed in the future.</p><p><b>DelayedFreesExecutedWithFunction (4 bytes): </b>The
+number of times the server released a block of memory that had previously been
+entered into an internal list of memory blocks that can be freed in the future,
+where a function other than the standard memory free function was used for
+release.</p></div>

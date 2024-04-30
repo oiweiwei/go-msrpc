@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The DS_DOMAIN_CONTROLLER_INFO_FFFFFFFFW structure defines <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>
+information that is returned as a part of the response to an InfoLevel =
+0xFFFFFFFF request. The struct contains information about a single <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_198f4791-cea3-465d-89e2-262991624e08" data-linktype="relative-path">LDAP
+connection</a></span> to the current server.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD IPAddress;
+   DWORD NotificationCount;
+   DWORD secTimeConnected;
+   DWORD Flags;
+   DWORD TotalRequests;
+   DWORD Reserved1;
+   [string, unique] WCHAR* UserName;
+ } DS_DOMAIN_CONTROLLER_INFO_FFFFFFFFW;
+</pre></div>
+</dd></dl><p><b>IPAddress:</b>  The IPv4 address of the
+client that established the LDAP connection to the server. If the client is
+connected with IPv6, this field MUST be zero.</p><p><b>NotificationCount:</b>  Number of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a></span>
+notifications enabled on the server.</p><p><b>secTimeConnected:</b>  Total time in
+number of seconds that the connection is established.</p><p><b>Flags:</b>  Zero or more of the bit
+flags from <span><a href="09a9cd41-caed-441d-a751-5a992800a4fb" data-linktype="relative-path">LDAP_CONN_PROPERTIES</a></span>
+indicating the properties of this connection.</p><p><b>TotalRequests:</b>  Total number of LDAP
+requests made on this LDAP connection.</p><p><b>Reserved1:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>UserName:</b>  Name of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security
+principal</a></span> that established the LDAP connection.</p></div>

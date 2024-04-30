@@ -1,0 +1,14 @@
+<div class="content"><p>The SR_SD structure defines a self-relative <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a>. A
+self-relative security descriptor contains the security descriptor structure
+itself and the necessary security information associated with the descriptor.</p><dl>
+<dd>
+<div><pre> typedef struct _SR_SD {
+     [range(20, 131228)] DWORD dwLength;
+     [size_is(dwLength)] BYTE* pSrSd;
+ } SR_SD;
+  
+  
+</pre></div>
+</dd></dl><p><b>dwLength:</b> The length, in bytes, of the data
+pointed to in the <b>pSrSd</b> member.</p><p><b>pSrSd:</b> A pointer to a self-relative security
+descriptor.</p></div>

@@ -1,0 +1,90 @@
+<div class="content"><p>The AUTHN_COOKIE_DATA structure is used to authenticate a
+UDP connection.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szUserName
+  (1042 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szPrimaryUDPAuthScheme
+  (42 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ftExpiryTime
+  (8 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szServerIP
+  (114 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szServerName
+  (520 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uTSPortNumber
+  (4 bytes)</p>
+  </td>
+ </tr>
+</tbody></table><p> </p><p><b>szUserName (1042 bytes):</b>  Name of
+the user for which the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_b4e0a970-8e6e-425a-976e-58a300c2502c" data-linktype="relative-path">side
+channel</a> is required to be created in Unicode characters.</p><p><b>szPrimaryUDPAuthScheme (42 bytes):</b>  The
+name of the primary authentication method to be used for authenticating a side
+channel in Unicode characters. By default, all the side channels are
+authenticated with the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_8c56b9b0-5499-47f7-a74c-e22fb737da5e" data-linktype="relative-path">UDPCookieAuthentication</a>
+method. The RDG client and RDG server can also implement other strong
+authentication methods. For a side channel to be established, an RDG client
+SHOULD pass both the UDPCookieAuthentication method and the method mentioned in
+<b>szPrimaryUDPAuthScheme</b>.</p><p><b>ftExpiryTime (8 bytes):</b>  The time
+(FILETIME) at which the cookie expires. For information on the FILETIME
+structure, see <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">2.3.3</a>.</p><p><b>szServerIP (114 bytes):</b>  The IP
+address of the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_3657ab68-5a60-4cee-8082-dfc2e67435e9" data-linktype="relative-path">target server</a>
+in Unicode characters.</p><p><b>szServerName (520 bytes):</b>  The name of the
+target server in Unicode characters.</p><p><b>uTSPortNumber</b> <b>(4 bytes):</b> The port number where
+RDG is listening for incoming <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_a70f5e84-6960-42f0-a160-ba0281eb548d" data-linktype="relative-path">UDP</a>
+connections.</p></div>

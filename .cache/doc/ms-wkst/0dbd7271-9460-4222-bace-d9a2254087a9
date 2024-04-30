@@ -1,0 +1,232 @@
+<div class="content"><p> </p><p>The <b>NetrGetJoinableOUs2</b> method returns a list of <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_abac8bd9-dcd9-4154-96f8-5607a42c5304" data-linktype="relative-path">organizational
+units (OUs)</a></span> in which the user can create an object.<a id="Appendix_A_Target_94"></a><a aria-label="Product behavior note 94" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_94" data-linktype="relative-path">&lt;94&gt;</a></p><dl>
+<dd>
+<div><pre> unsigned long NetrGetJoinableOUs2(
+   [in] handle_t RpcBindingHandle,
+   [in, string, unique] wchar_t* ServerName,
+   [in, string] wchar_t* DomainNameParam,
+   [in, string, unique] wchar_t* AccountName,
+   [in, unique] PJOINPR_ENCRYPTED_USER_PASSWORD Password,
+   [in, out] unsigned long* OUCount,
+   [out, string, size_is(, *OUCount)] 
+     wchar_t*** OUs
+ );
+</pre></div>
+</dd></dl><p><b>RpcBindingHandle:</b> An <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>
+<span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>.</p><p><b>ServerName: </b>This parameter has no effect on
+message processing in any environment. The client MUST set this parameter to a
+value that resolves to the IP protocol layer destination address of the RPC
+packets it transmits (<span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/7063c7bd-b48b-42e7-9154-3c2ec4113c0d" data-linktype="relative-path">2.1.1.2</a></span>).
+The <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server
+(2)</a></span> MUST ignore this parameter.</p><p><b>DomainNameParam: </b>A pointer to a string that
+specifies the root <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span> under which
+the method searches for OUs. This parameter is also the domain of the account
+that the <i>AccountName</i> parameter is in.</p><p><b>AccountName: </b>A pointer to a string that
+specifies the account name to use when connecting to a <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain
+controller</a></span>. This parameter is optional. If this parameter is NULL, the
+caller&#39;s account name MUST be used.</p><p><b>Password: </b>An optional pointer to a <b>JOINPR_ENCRYPTED_USER_PASSWORD</b>
+structure (section <span><a href="7ac423e6-4d90-4dd8-b16b-c5a3783f0509" data-linktype="relative-path">2.2.5.18</a></span>) that
+specifies the encrypted password to use with the <i>AccountName</i> parameter.
+If the <i>AccountName</i> parameter is NULL, the caller&#39;s <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_88d49f20-6c95-4b64-a52c-c3eca2fe5709" data-linktype="relative-path">security
+context</a></span> MUST be used, and this parameter MUST be ignored. </p><p><b>OUCount: </b>A pointer to the count of OUs that
+the method returns. The server MUST ignore this parameter on input.</p><p><b>OUs: </b>A pointer to a pointer of size <i>OUCount</i>
+to a block of strings that are the joinable OUs that the method returns.</p><p><b>Return Values: </b>When the message processing
+result matches the description in column two of the following table, this
+method MUST return one of the following values (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NERR_Success</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Not enough storage is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>A parameter is incorrect.<a id="Appendix_A_Target_95"></a><a aria-label="Product behavior note 95" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_95" data-linktype="relative-path">&lt;95&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RPC_S_PROTSEQ_NOT_SUPPORTED</p>
+  <p>0x000006A7</p>
+  </td>
+  <td>
+  <p>The <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_0c171cc7-e9c4-41b6-95a9-536db0042c7a" data-linktype="relative-path">RPC protocol sequence</a></span>
+  is not supported.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NERR_InvalidAPI</p>
+  <p>0x0000085E</p>
+  </td>
+  <td>
+  <p>The requested API is not supported on domain
+  controllers.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NERR_DefaultJoinRequired</p>
+  <p>0x00000A86</p>
+  </td>
+  <td>
+  <p>The destination domain controller does not support
+  creating machine accounts in OUs.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Any other return value MUST
+conform to the error code requirements in <b>Protocol Details</b> (section <span><a href="aeea622a-ea3e-40cc-a9b1-b4a2a3b2bf6b" data-linktype="relative-path">3</a></span>).</p>
+</dd></dl><p>The following definitions are used in the specification of
+message processing that follows.</p><ul><li><p><span><span> 
+</span></span><i>PasswordString</i>: A <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_409411c4-b4ed-4ab6-b0ee-6d7815f85a35" data-linktype="relative-path">UTF-8</a></span>
+string containing a password in <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_f6e0fdd0-cbc1-4c9d-93b8-f25125f9c5ef" data-linktype="relative-path">cleartext</a></span>.</p>
+</li><li><p><span><span> 
+</span></span><i>DomainControllerString</i>: A UTF-8 string that contains the
+name of a domain controller in the domain that the server is joining.</p>
+</li><li><p><span><span> 
+</span></span><i>DomainControllerConnection</i>: An ADCONNECTION_HANDLE (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/5faf669e-34a9-471b-aaff-8591b9650189" data-linktype="relative-path">2.2.2</a></span>)
+to a domain controller.</p>
+</li><li><p><span><span> 
+</span></span><i>LdapResultMessages</i>: A list of LDAPMessage (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90325" data-linktype="external">[RFC2251]</a></span>)
+containing results from an operation performed on DomainControllerConnection.</p>
+</li><li><p><span><span> 
+</span></span><i>ComputerAccountDN</i>: A UTF-8 string that contains the DN of
+the computer account.</p>
+</li></ul><p>The following statements define the sequence of message
+processing operations.</p><ol><li><p><span>    </span>The server MUST
+retrieve the RPC protocol sequence used for the current call ([MS-RPCE] section
+<span><a href="../ms-rpce/0ceefe4c-0d7a-423f-bcd0-54e821767f89" data-linktype="relative-path">3.1.3.4.1</a></span>),
+specifying the server binding handle maintained by the RPC runtime ([C706]
+section 6.2.1). If that RPC protocol sequence is not <b>NCACN_NP</b>, the
+server SHOULD return <b>RPC_S_PROTSEQ_NOT_SUPPORTED</b>.<a id="Appendix_A_Target_96"></a><a aria-label="Product behavior note 96" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_96" data-linktype="relative-path">&lt;96&gt;</a></p>
+</li><li><p><span>    </span>The server
+SHOULD<a id="Appendix_A_Target_97"></a><a aria-label="Product behavior note 97" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_97" data-linktype="relative-path">&lt;97&gt;</a> ensure that the caller is
+local. Specifications for determining that the caller is local are in
+[MS-RPCE].</p>
+</li><li><p><span>    </span>The server MUST
+check that the caller has been granted access rights using the algorithm in the
+<b>Access Control Abstract Data Model</b> (section <span><a href="c5b75090-3de2-404f-8de1-d5ca3fc38a70" data-linktype="relative-path">3.2.1.1</a></span>), with <i>Access
+Request mask</i> initialized to <b>WKSTA_NETAPI_QUERY</b>; if not, the server
+MUST return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>The server MUST
+impersonate the client by invoking the <b>StartImpersonatingClient</b> task
+(section <span><a href="719ae534-d5d7-4c42-9989-d63e0676fad1" data-linktype="relative-path">3.2.4.29.6</a></span>). If
+this operation fails, the server MUST return an error.</p>
+</li><li><p><span>    </span>If <i>Password</i>
+is NULL then <i>PasswordString</i> MUST be NULL. Otherwise, the server MUST
+decrypt and decode the <i>Password</i> (section 2.2.5.18). <i>PasswordString</i>
+MUST equal the decrypted and decoded value. The decrypted buffer is represented
+as a <b>JOINPR_USER_PASSWORD</b> structure (section <span><a href="6320ca78-6492-4eaf-ad95-a558ad399383" data-linktype="relative-path">2.2.5.17</a></span>). The
+value of the <b>Length</b> member MUST be less than 513; otherwise, message
+processing is stopped, and the server MUST return ERROR_INVALID_ PARAMETER.</p>
+</li><li><p><span>    </span>The server
+SHOULD<a id="Appendix_A_Target_98"></a><a aria-label="Product behavior note 98" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_98" data-linktype="relative-path">&lt;98&gt;</a> enforce that this call fails on
+a domain controller. Otherwise, message processing continues.</p>
+</li><li><p><span>    </span>The server MUST
+locate a domain controller in the domain, by invoking the <b>DsrGetDcNameEx2</b>
+method on the local <span><a href="../ms-nrpc/ff8f970f-3e37-40f7-bd4b-af7336e4792f" data-linktype="relative-path">[MS-NRPC]</a></span>
+server specifying the following parameters:</p>
+<ul><li><p><span><span>  </span></span><i>ComputerName</i>
+= NULL</p>
+</li><li><p><span><span>  </span></span><i>AccountName</i>
+= NULL</p>
+</li><li><p><span><span>  </span></span><i>AllowableAccountControlBits</i>
+= 0</p>
+</li><li><p><span><span>  </span></span><i>DomainName</i>
+= <b>DomainNameFQDN </b>(section <span><a href="e0b508bc-764d-48b7-b44b-4f93c3d5cf8c" data-linktype="relative-path">3.2.1.5</a></span>)</p>
+</li><li><p><span><span>  </span></span><i>DomainGuid</i>
+= NULL</p>
+</li><li><p><span><span>  </span></span><i>SiteName</i>
+= NULL</p>
+</li><li><p><span><span>  </span></span><i>Flags</i>
+= (J | B) ([MS-NRPC] section <span><a href="../ms-nrpc/fb8e1146-a045-4c31-98d1-c68507ad5620" data-linktype="relative-path">3.5.4.3.1</a></span>).</p>
+<p>If a domain controller
+cannot be located, the method MUST fail. Otherwise, DomainControllerString MUST
+equal the string name of the returned writable domain controller.</p>
+</li></ul></li><li><p><span>    </span>The server
+invokes <b>LDAP Bind</b> (section <span><a href="54bb5e23-7947-4516-a04a-d354b11f6207" data-linktype="relative-path">3.2.4.29.2</a></span>) with
+the following parameters:</p>
+<ul><li><p><span><span>  </span></span><i>DomainControllerBindTarget</i>:
+DomainControllerString</p>
+</li><li><p><span><span>  </span></span><i>AccountNameForBind</i>:
+AccountName</p>
+</li><li><p><span><span>  </span></span><i>PasswordForBind</i>:
+PasswordString</p>
+</li><li><p><span><span>  </span></span><i>Encrypt</i>:
+FALSE</p>
+<p>If this fails, the server
+MUST return NERR_DefaultJoinRequired; otherwise, the result is stored in
+DomainControllerConnection.</p>
+</li></ul></li><li><p><span>    </span>The server
+invokes the &#34;Performing an LDAP Operation on an ADConnection&#34; task of
+<span><a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a></span>
+section <span><a href="../ms-adts/b2131a85-4a8c-4f48-a610-6a4b7a701627" data-linktype="relative-path">7.6.1.6</a></span>
+with the following parameters:</p>
+<ul><li><p><span><span>  </span></span><i>TaskInputADConnection</i>:
+DomainControllerConnection</p>
+</li><li><p><span><span>  </span></span><i>TaskInputRequestMessage</i>:
+<span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a></span>
+SearchRequest message [RFC2251] section 4.5.1 as follows:</p>
+<ul><li><p><span><span> 
+</span></span>baseObject: The root of the default <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_784c7cce-f782-48d8-9444-c9030ba86942" data-linktype="relative-path">naming context (NC)</a></span></p>
+</li><li><p><span><span> 
+</span></span>scope: wholeSubtree</p>
+</li><li><p><span><span> 
+</span></span>filter: ObjectClass=OrganizationalUnit</p>
+</li><li><p><span><span> 
+</span></span>attributes: AllowedChildClassesEffective</p>
+</li><li><p><span><span> 
+</span></span>derefAliases: neverDerefAliases</p>
+</li><li><p><span><span> 
+</span></span>typesOnly: FALSE</p>
+</li></ul></li><li><p><span><span>  </span></span><i>TaskOutputResultMessages</i>:
+LDAPResultMessages</p>
+</li></ul></li><li><p><span>  </span>The server MUST process the
+results returned from the DC in LDAPResultMessages. For each entry
+(SearchResultEntry, [RFC2251] section 4.5.2) returned by the search in
+LDAPResultMessages, if the AllowedChildClassesEffective attribute contains the
+value &#34;computer&#34;, the server MUST add the DN of that entry to the
+results to be returned in OUs as a NULL-terminated string, and increment the
+value in <i>OUCount</i>.</p>
+</li><li><p><span>  </span>The server invokes <b>LDAP
+Unbind</b> (section <span><a href="ed6bf2f1-8c20-4d7f-85c0-a7643190b3ac" data-linktype="relative-path">3.2.4.29.3</a></span>) with <i>ADConnectionToUnbind</i>
+set to DomainControllerConnection.</p>
+</li><li><p><span>  </span>The server MUST stop
+impersonating the client by invoking the <b>StopImpersonatingClient</b> task
+(section <span><a href="cf258b4a-d66b-4407-85f7-aac7823ec0aa" data-linktype="relative-path">3.2.4.29.7</a></span>).</p>
+</li></ol><p>If no errors occur, the server MUST return NERR_Success.</p></div>

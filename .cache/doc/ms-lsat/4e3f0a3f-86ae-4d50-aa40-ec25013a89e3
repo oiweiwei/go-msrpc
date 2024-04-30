@@ -1,0 +1,86 @@
+<div class="content"><p> </p><p>The LsarGetUserName method returns the name and the <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_45a1c9f1-0263-49a8-97c7-7aca1a99308c" data-linktype="relative-path">domain
+name</a></span> of the <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that is invoking the method.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarGetUserName(
+   [in, unique, string] wchar_t* SystemName,
+   [in, out] PRPC_UNICODE_STRING* UserName,
+   [in, out, unique] PRPC_UNICODE_STRING* DomainName
+ );
+</pre></div>
+</dd></dl><p><b>SystemName: </b>This parameter has no effect on
+message processing in any environment. It MUST be ignored.</p><p><b>UserName: </b>On return, contains the name of the security
+principal that is making the call. The string MUST be of the form
+sAMAccountName. On input, this parameter MUST be ignored. The
+RPC_UNICODE_STRING structure is defined in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/94a16bb6-c610-4cb9-8db6-26f15f560061" data-linktype="relative-path">2.3.10</a></span>.</p><p><b>DomainName: </b>On return, contains the domain
+name of the security principal that is invoking the method. This string MUST be
+a NetBIOS name. On input, this parameter MUST be ignored.</p><p><b>Return Values: </b>The following table contains a
+summary of the return values that an implementation MUST return, as specified
+by the message processing shown after the table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST determine the <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span> of the caller;
+to do so, the server MUST invoke the GetRpcImpersonationAccessToken abstract
+interface (<span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a996aa17-8e04-4a25-806a-a3c724230e12" data-linktype="relative-path">3.3.3.4.3.1</a></span>).</p><p>If GetRpcImpersonationAccessToken succeeds, the server MUST
+use the SID in the Token.Sids[OwnerIndex] element ([MS-DTYP] section <span><a href="../ms-dtyp/efc83c32-5275-4dff-a3e2-973c9624711b" data-linktype="relative-path">2.5.2</a></span>)
+for further processing.</p><p>If GetRpcImpersonationAccessToken fails, the server MUST use
+the ANONYMOUS SID ([MS-DTYP] section <span><a href="../ms-dtyp/81d92bba-d22b-4a8c-908a-554ab29148ab" data-linktype="relative-path">2.4.2.4</a></span>)
+for further processing.</p><p>The server MUST locate the security principal that is making
+the request using the SID that was determined previously. To do so, a search
+MUST be performed in the following views and MUST end as soon as the security
+principal is located in some view:</p><ul><li><p><span><span> 
+</span></span>Predefined Translation View.</p>
+</li><li><p><span><span> 
+</span></span>Configurable Translation View.</p>
+</li><li><p><span><span> 
+</span></span>Account Domain View of the account database served on that
+machine.</p>
+<ul><li><p><span><span>  </span></span>If
+the machine is not joined to a <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>, the search
+ends here.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If this machine is not a <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a></span>:
+Account Domain View of the domain to which this machine is joined.</p>
+</li><li><p><span><span> 
+</span></span>Forest View of the <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a></span> of the domain
+to which this machine is joined.</p>
+</li><li><p><span><span> 
+</span></span>Forest Views of <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_3b76a71f-9697-4836-9c69-09899b23c21b" data-linktype="relative-path">trusted forests</a></span> for
+the forest of the domain to which this machine is joined.</p>
+</li><li><p><span><span> 
+</span></span>Account Domain Views of externally <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted domains</a></span> for
+the domain to which this machine is joined.</p>
+</li></ul><p>After the security principal is located, the <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_ae65dac0-cd24-4e83-a946-6d1097b71553" data-linktype="relative-path">RPC
+server</a></span> MUST return the security principal name in the <i>UserName</i>
+parameter and MUST return the domain NetBIOS name in the <i>DomainName</i>
+parameter if <i>DomainName</i> is not NULL. The return value MUST be set to
+STATUS_SUCCESS in this case. In other cases, an implementation-specific
+negative value MUST be returned.</p></div>

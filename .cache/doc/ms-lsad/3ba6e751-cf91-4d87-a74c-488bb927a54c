@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/3ba6e751-cf91-4d87-a74c-488bb927a54c" data-linktype="external">msdn link</a></p><p>The LSAPR_POLICY_DOMAIN_EFS_INFO structure communicates a
+counted binary byte array.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_POLICY_DOMAIN_EFS_INFO {
+   unsigned long InfoLength;
+   [size_is(InfoLength)] unsigned char* EfsBlob;
+ } LSAPR_POLICY_DOMAIN_EFS_INFO,
+  *PLSAPR_POLICY_DOMAIN_EFS_INFO;
+</pre></div>
+</dd></dl><p><b>InfoLength:</b>  The count of bytes in
+the <b>EfsBlob</b>.</p><p><b>EfsBlob:</b>  An array of bytes, of size
+<b>InfoLength</b> bytes. If the value of <b>InfoLength</b> is other than 0,
+this field MUST NOT be NULL. The syntax of this blob SHOULD<a id="Appendix_A_Target_24"></a><a aria-label="Product behavior note 24" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_24" data-linktype="relative-path">&lt;24&gt;</a> conform to the layout specified
+in <a href="../ms-gpef/14d3fd83-7537-41a2-af39-8e52c19ef0e3" data-linktype="relative-path">[MS-GPEF]</a>
+section <a href="../ms-gpef/9b768ff7-fa1f-4b29-b7c9-14110a4ec054" data-linktype="relative-path">2.2.1.2.1</a>.</p></div>

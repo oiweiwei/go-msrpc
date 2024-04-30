@@ -1,0 +1,119 @@
+<div class="content"><p> </p><p>The IWbemServices::DeleteClass method MUST delete a
+specified class from the namespace that is associated with the current <span><a href="7a50647a-5311-41c2-8f4f-83bcfb497877" data-linktype="relative-path">IWbemServices</a></span>
+interface.</p><dl>
+<dd>
+<div><pre> HRESULT DeleteClass(
+   [in] const BSTR strClass,
+   [in] long lFlags,
+   [in] IWbemContext* pCtx,
+   [out, in, unique] IWbemCallResult** ppCallResult
+ );
+</pre></div>
+</dd></dl><p><b>strClass: </b>MUST be the name of the class to
+delete. This parameter MUST NOT be NULL.</p><p><b>lFlags: </b>Specifies the behavior of the
+DeleteClass method. Flag behavior MUST be interpreted as specified in the
+following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>If this bit is set, the server MUST make the method
+  call <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_51f3288a-1aea-49f6-96a1-91f368e8b49b" data-linktype="relative-path">semisynchronously</a></span>.</p>
+  <p>If this bit is not set, the server MUST make the
+  method call <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_4dccb43d-a5c2-450f-9c9c-cadb68ecbd3e" data-linktype="relative-path">synchronously</a></span>.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Any other DWORD value that does
+not match the preceding condition MUST be treated as invalid.</p>
+</dd></dl><p><b>pCtx: </b>MUST be a pointer to an <span><a href="18c8f1a1-652f-43b7-9186-6098bc303a8d" data-linktype="relative-path">IWbemContext</a></span>
+interface, which MUST contain additional information that the client wants to
+pass to the server. If pCtx is NULL, the parameter MUST be ignored.</p><p><b>ppCallResult: </b>The output parameter MUST be
+filled according to the state of the <b>lFlags</b> parameter (whether
+WBEM_FLAG_RETURN_IMMEDIATELY is set) as listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Flag state</p>
+   </th>
+   <th>
+   <p>Operation Started Successfully</p>
+   </th>
+   <th>
+   <p>Operation Failed to Start</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY is not set.</p>
+  </td>
+  <td>
+  <p>MUST be set to <span><a href="23ec4065-3fbe-4e39-baef-69e22c285623" data-linktype="relative-path">IWbemCallResult</a></span>
+  if the <i>ppCallResult</i> input parameter is non-NULL.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the <i>ppCallResult</i> input
+  parameter is non-NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY is set.</p>
+  </td>
+  <td>
+  <p>The <i>ppCallResult</i> parameter MUST NOT be NULL
+  upon input. If NULL, the server MUST return WBEM_E_INVALID_PARAMETER. On
+  output, the parameter MUST contain the IWbemCallResult <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface
+  pointer</a></span>.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the <i>ppCallResult</i> input
+  parameter is non-NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that makes the call MUST have WBEM_REMOTE_ENABLE and WBEM_ENABLE accesses to
+the namespace; otherwise, WBEM_E_ACCESS_DENIED MUST be returned.</p><p>If the CIM class being deleted is <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_b11172af-9369-448d-9722-444eb52b21cb" data-linktype="relative-path">dynamic</a></span>, the
+security principal that makes the call MUST have WBEM_WRITE_PROVIDER access to
+the namespace; otherwise, WBEM_E_ACCESS_DENIED MUST be returned.</p><p>If the CIM class being deleted is static, the security
+principal that makes the call MUST have WBEM_FULL_WRITE access to the
+namespace; otherwise, WBEM_E_ACCESS_DENIED MUST be returned.</p><p>If the CIM class being deleted is dynamic, the server MUST
+obtain <b>SupportsDelete</b> for the given provider in the <b>ProviderTable</b>.
+If <b>SupportsDelete</b> is FALSE, the server MUST return
+WBEM_E_PROVIDER_NOT_CAPABLE.</p><p>In response to the IWbemServices::DeleteClass method, the
+server MUST evaluate the <i>strClass</i> parameter (specified in this section)
+and MUST delete the <i>strClass</i> parameter from the current namespace. The
+server MUST delete all the instances of the class and recursively delete all
+the derived classes. The method MUST fail if the following applies: if <i>strClass</i>
+does not exist; if the method parameters or their combinations are not valid as
+specified in this section; or if the server is unable to execute the method.</p><p>The successful synchronous method execution MUST return
+WBEM_S_NO_ERROR.</p><p>The semisynchronous method execution MUST follow the rules
+that are specified in section <span><a href="c40421d8-b195-4268-884f-a4e74ea58dce" data-linktype="relative-path">3.1.1.1.2</a></span>.</p><p>The failed method execution MUST set output parameters to
+NULL and MUST return an error in the format specified in section 2.2.11.</p><p>If the <i>ppResult</i> input parameter is non-NULL, the
+server MUST deliver the result of the requested operation (regardless whether
+WBEM_FLAG_RETURN_IMMEDIATELY is set) via the IWbemCallResult, similar to the
+semisynchronous execution case. If the <i>ppCallResult</i> input parameter is
+NULL and WBEM_FLAG_RETURN_IMMEDIATELY is not set, the server MUST deliver the
+result of the requested operation synchronously.</p><p>If a class is deleted, the corresponding entries for the
+class and its derived classes MUST be deleted from the <b>ClassTable</b>.</p><p>The server MUST generate a <b>__ClassDeletionEvent</b> event
+object upon successfully deleting the class information.</p><p>The server SHOULD enforce a maximum length for the <i>strClass</i>
+parameter, and return WBEM_E_QUOTA_VIOLATION if the limit is exceeded.<a id="Appendix_A_Target_38"></a><a aria-label="Product behavior note 38" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_38" data-linktype="relative-path">&lt;38&gt;</a></p></div>

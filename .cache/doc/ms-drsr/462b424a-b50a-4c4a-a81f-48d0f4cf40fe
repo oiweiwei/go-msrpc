@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The UPTODATE_VECTOR_V1_EXT structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete
+type</a></span> for the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span> state
+relative to a set of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DCs</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwVersion;
+   DWORD dwReserved1;
+   [range(0,1048576)] DWORD cNumCursors;
+   DWORD dwReserved2;
+   [size_is(cNumCursors)] UPTODATE_CURSOR_V1 rgCursors[];
+ } UPTODATE_VECTOR_V1_EXT;
+</pre></div>
+</dd></dl><p><b>dwVersion:</b>  The version of this
+structure; MUST be 1.</p><p><b>dwReserved1:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>cNumCursors:</b>  The number of items in
+the <b>rgCursors</b> array.</p><p><b>dwReserved2:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>rgCursors:</b>  An array of <span><a href="cf88f341-fb49-4cd5-b7e2-6920cbd91f1b" data-linktype="relative-path">UPTODATE_CURSOR_V1</a></span>.
+The items in this field MUST be sorted in increasing order of the <b>uuidDsa</b>
+field.</p></div>

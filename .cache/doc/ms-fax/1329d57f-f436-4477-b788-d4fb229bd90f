@@ -1,0 +1,121 @@
+<div class="content"><p> </p><p>The <b>FAX_GetSecurityEx2 (Opnum 99)</b> method is called by
+the client to retrieve information about the fax security descriptor from the
+fax server.</p><p>Protocol version FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), and FAX_API_VERSION_2 (0x00020000) fax servers
+SHOULD NOT implement this call. The fax client MUST NOT call this method if the
+protocol version reported by the server is FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), or FAX_API_VERSION_2 (0x00020000). For more
+information, see <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>).</p><p>The server MUST validate that the client&#39;s fax user account
+has the access to retrieve security information. The <i>pSecurityDescriptor</i>
+parameter MUST NOT be <b>NULL</b>. On success, the server MUST return the fax
+security descriptor from the fax server in <i>pSecurityDescriptor</i>.</p><p>The client SHOULD free the returned buffer.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_GetSecurityEx2(
+   [in] handle_t hBinding,
+   [in] SECURITY_INFORMATION SecurityInformation,
+   [out, size_is(,*lpdwBufferSize)] 
+     LPBYTE* pSecurityDescriptor,
+   [out, ref] LPDWORD lpdwBufferSize
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this call. The
+client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> or <b>FAX_ConnectionRefCount</b> (section
+<span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>)
+method call used to connect to the fax server.</p><p><b>SecurityInformation: </b>Defines the desired
+entries, which are indicated as a bitwise OR operation, in the security
+descriptor to return.</p><dl>
+<dd>
+<p><i>SecurityInformation</i> MUST be a bitwise combination
+of the following four values found in the <b>SECURITY_INFORMATION</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/23e75ca3-98fd-4396-84e5-86cd9d40d343" data-linktype="relative-path">2.4.7</a></span>)
+datatype:</p>
+</dd></dl><p><span>§<span>  </span></span>OWNER_SECURITY_INFORMATION:
+0x00000001</p><p><span>§<span>  </span></span>GROUP_SECURITY_INFORMATION:
+0x00000002</p><p><span>§<span>  </span></span>DACL_SECURITY_INFORMATION:
+0x00000004</p><p><span>§<span>  </span></span>SACL_SECURITY_INFORMATION:
+0x00000008</p><dl>
+<dd>
+<p>The requested access levels to entries by <i>SecurityInformation</i>
+can be a combination of the following:</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>Read Control (requested if any of the bits in <i>SecurityInformation</i>
+is set by an OR operation with GROUP_SECURITY_INFORMATION,
+DACL_SECURITY_INFORMATION, and/or OWNER_SECURITY_INFORMATION)</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>Request for access to set or get SACL (requested if one of the
+bits in <i>SecurityInformation</i> is set by an OR operation with
+SACL_SECURITY_INFORMATION)</p>
+</dd>
+<dd>
+<p>For more information, see the description of the <b>SECURITY_INFORMATION</b>
+bit flags.</p>
+</dd></dl><p><b>pSecurityDescriptor: </b>A pointer to a <b>SECURITY_DESCRIPTOR</b>,
+as specified in [MS-DTYP] section <span><a href="../ms-dtyp/432cd7e7-6276-4c82-87fc-50bbcbd5ffa0" data-linktype="relative-path">2</a></span>.</p><p><b>lpdwBufferSize: </b>A pointer to a <b>DWORD</b>
+([MS-DTYP] section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that indicates the size, in bytes, of the <i>pSecurityDescriptor</i>
+buffer.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. This error is returned when there is
+  a mismatch between the access level requested (Read control, access to
+  set/get SACL security information or both) through the bit pattern in <i>SecurityInformation</i>
+  and the current authorized level.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Not enough storage is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. This error code is
+  returned under any of the following conditions:</p>
+  <p><span>§<span>  
+  </span></span>The <i>pSecurityDescriptor</i> parameter is NULL.</p>
+  <p><span>§<span>  
+  </span></span>The value of the <i>SecurityInformation</i> parameter does not
+  conform to the definition of valid bit patterns for this parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_SECURITY_DESCR</p>
+  <p>0x0000053A</p>
+  </td>
+  <td>
+  <p>The security descriptor structure is invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

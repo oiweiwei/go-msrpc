@@ -1,0 +1,460 @@
+<div class="content"><p> </p><p>The <b>KERB_VALIDATION_INFO</b> structure defines the user&#39;s
+logon and authorization information provided by the <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>. A pointer to the
+<b>KERB_VALIDATION_INFO</b> structure is serialized into an array of bytes and
+then placed after the <b>Buffers</b> array of the topmost <b>PACTYPE</b>
+structure (section <span><a href="6655b92f-ab06-490b-845d-037e6987275f" data-linktype="relative-path">2.3</a></span>), at the offset
+specified in the <b>Offset</b> field of the corresponding <b>PAC_INFO_BUFFER</b>
+structure (section <span><a href="3341cfa2-6ef5-42e0-b7bc-4544884bf399" data-linktype="relative-path">2.4</a></span>) in the <b>Buffers</b>
+array. The <b>ulType</b> field of the corresponding <b>PAC_INFO_BUFFER</b>
+structure is set to 0x00000001.</p><p>The <b>KERB_VALIDATION_INFO </b>structure is a subset of the
+<span><a href="../ms-nrpc/bccfdba9-0c38-485e-b751-d4de1935781d" data-linktype="relative-path">NETLOGON_VALIDATION_SAM_INFO4</a></span>
+structure (<span><a href="../ms-nrpc/ff8f970f-3e37-40f7-bd4b-af7336e4792f" data-linktype="relative-path">[MS-NRPC]</a></span>
+section 2.2.1.4.13). It is a subset due to historical reasons and to the use of
+Active Directory to generate this information. NTLM uses the
+NETLOGON_VALIDATION_SAM_INFO4 structure in the context of the server to domain
+controller exchange, as defined in <span><a href="../ms-apds/dd444344-fd7e-430e-b313-7e95ab9c338e" data-linktype="relative-path">[MS-APDS]</a></span>
+section <span><a href="../ms-apds/407dd91f-8854-4c05-8a85-70fee9ab11da" data-linktype="relative-path">3.1</a></span>.
+Consequently, the <b>KERB_VALIDATION_INFO</b> structure includes NTLM-specific
+fields. Fields that are common to the <b>KERB_VALIDATION_INFO</b> and the
+NETLOGON_VALIDATION_SAM_INFO4 structures, and which are specific to the NTLM
+authentication operation, are not used with <span><a href="../ms-kile/2a32282e-dd48-4ad9-a542-609804b02cc9" data-linktype="relative-path">[MS-KILE]</a></span>
+authentication. The <b>KERB_VALIDATION_INFO</b> structure is marshaled by <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+<span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>The <b>KERB_VALIDATION_INFO</b> structure is defined as
+follows.</p><dl>
+<dd>
+<div><pre> typedef struct _KERB_VALIDATION_INFO {
+    FILETIME LogonTime;
+    FILETIME LogoffTime;
+    FILETIME KickOffTime;
+    FILETIME PasswordLastSet;
+    FILETIME PasswordCanChange;
+    FILETIME PasswordMustChange;
+    RPC_UNICODE_STRING EffectiveName;
+    RPC_UNICODE_STRING FullName;
+    RPC_UNICODE_STRING LogonScript;
+    RPC_UNICODE_STRING ProfilePath;
+    RPC_UNICODE_STRING HomeDirectory;
+    RPC_UNICODE_STRING HomeDirectoryDrive;
+    USHORT LogonCount;
+    USHORT BadPasswordCount;
+    ULONG UserId;
+    ULONG PrimaryGroupId;
+    ULONG GroupCount;
+    [size_is(GroupCount)] PGROUP_MEMBERSHIP GroupIds;
+    ULONG UserFlags;
+    USER_SESSION_KEY UserSessionKey;
+    RPC_UNICODE_STRING LogonServer;
+    RPC_UNICODE_STRING LogonDomainName;
+    PISID LogonDomainId;
+    ULONG Reserved1[2];
+    ULONG UserAccountControl;
+    ULONG SubAuthStatus;
+    FILETIME LastSuccessfulILogon;
+    FILETIME LastFailedILogon;
+    ULONG FailedILogonCount;
+    ULONG Reserved3;
+    ULONG SidCount;
+    [size_is(SidCount)] PKERB_SID_AND_ATTRIBUTES ExtraSids;
+    PISID ResourceGroupDomainSid;
+    ULONG ResourceGroupCount;
+    [size_is(ResourceGroupCount)] PGROUP_MEMBERSHIP ResourceGroupIds;
+ } KERB_VALIDATION_INFO, *PKERB_VALIDATION_INFO;
+</pre></div>
+</dd></dl><p><b>LogonTime:</b> A <span><a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a></span>
+structure that contains the user account&#39;s lastLogon attribute (<span><a href="../ms-ada1/19528560-f41e-4623-a406-dabcfff0660f" data-linktype="relative-path">[MS-ADA1]</a></span>
+section <span><a href="../ms-ada1/93258066-276d-4357-8458-981c19caad95" data-linktype="relative-path">2.351</a></span>)
+value.</p><p><b>LogoffTime:</b> A <b>FILETIME</b> structure that
+contains the time the client&#39;s logon session is set to expire. If the session
+is set not to expire, the <b>dwHighDateTime</b> member is set to 0x7FFFFFFF and
+the <b>dwLowDateTime</b> member set to 0xFFFFFFFF. A recipient of the PAC
+SHOULD<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="a1c36b00-1fca-415c-a4ca-e66e98844760#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a> use this value as an indicator
+of when to warn the user that the allowed time is due to expire.</p><p><b>KickOffTime:</b> A <b>FILETIME</b> structure that
+contains <b>LogoffTime</b> minus the user account&#39;s <b>forceLogoff</b>
+attribute ([MS-ADA1] section <span><a href="../ms-ada1/d19435aa-ee82-4fcf-810f-fe15710cc3bf" data-linktype="relative-path">2.233</a></span>)
+value. If the client is not to be forcibly logged off, the <b>dwHighDateTime</b>
+member is set to 0x7FFFFFFF and the <b>dwLowDateTime</b> member set to
+0xFFFFFFFF. The Kerberos service ticket end time is a replacement for <b>KickOffTime</b>.
+The service ticket lifetime SHOULD NOT<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="a1c36b00-1fca-415c-a4ca-e66e98844760#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a> be set
+longer than the <b>KickOffTime</b> of an account. A recipient of the PAC uses
+this value as the indicator of when the client is to be forcibly disconnected.</p><p><b>PasswordLastSet:</b>  A <b>FILETIME</b>
+structure that contains the user account&#39;s pwdLastSet attribute (<span><a href="../ms-ada3/4517e835-3ee6-44d4-bb95-a94b6966bfb0" data-linktype="relative-path">[MS-ADA3]</a></span>
+section <span><a href="../ms-ada3/9663282b-c880-4061-ba8e-e8509c8aa336" data-linktype="relative-path">2.175</a></span>)
+value. If the password was never set, this structure MUST have the <b>dwHighDateTime</b>
+member set to 0x00000000 and the <b>dwLowDateTime</b> member set to 0x00000000.</p><p><b>PasswordCanChange:</b> A <b>FILETIME</b> structure
+that contains the time at which the client&#39;s password is allowed to change. If
+there is no restriction on when the client can change the password, this member
+MUST be set to zero.</p><p><b>PasswordMustChange:</b> A <b>FILETIME</b>
+structure that contains the time at which the client&#39;s password expires. If the
+password will not expire, this structure MUST have the <b>dwHighDateTime</b>
+member set to 0x7FFFFFFF and the <b>dwLowDateTime</b> member set to 0xFFFFFFFF.
+</p><p><b>EffectiveName:</b> An <span><a href="../ms-dtyp/94a16bb6-c610-4cb9-8db6-26f15f560061" data-linktype="relative-path">RPC_UNICODE_STRING</a></span>
+structure that contains the user account&#39;s samAccountName attribute ([MS-ADA3]
+section <span><a href="../ms-ada3/56d7e9e4-1505-4d9a-b968-3bf0d6b92809" data-linktype="relative-path">2.222</a></span>)
+value.</p><p><b>FullName:</b> An <b>RPC_UNICODE_STRING</b>
+structure that contains the user account&#39;s full name for interactive logon and
+is set to zero for network logon. If <b>FullName</b> is omitted, this member
+MUST contain an <b>RPC_UNICODE_STRING</b> structure with the <b>Length</b>
+member set to zero.</p><p><b>LogonScript:</b> An <b>RPC_UNICODE_STRING</b>
+structure that contains the user account&#39;s <b>scriptPath</b> attribute
+([MS-ADA3] section <span><a href="../ms-ada3/c640630e-23ff-44e7-886f-16df9574039e" data-linktype="relative-path">2.232</a></span>)
+value for interactive logon and is set to zero for network logon. If no <b>LogonScript</b>
+is configured for the user, this member MUST contain an <b>RPC_UNICODE_STRING</b>
+structure with the <b>Length</b> member set to zero.</p><p><b>ProfilePath:</b> An <b>RPC_UNICODE_STRING</b>
+structure that contains the user account&#39;s <b>profilePath</b> attribute
+([MS-ADA3] section <span><a href="../ms-ada3/098a8c90-fde7-4904-bb75-af402a8203bf" data-linktype="relative-path">2.167</a></span>)
+value for interactive logon and is set to zero for network logon. If no <b>ProfilePath</b>
+is configured for the user, this member MUST contain an <b>RPC_UNICODE_STRING</b>
+structure with the <b>Length</b> member set to zero.</p><p><b>HomeDirectory:</b> An <b>RPC_UNICODE_STRING</b>
+structure that contains the user account&#39;s <b>HomeDirectory</b> attribute
+([MS-ADA1] section <span><a href="../ms-ada1/10d700cb-2954-4446-a9b4-69113344421c" data-linktype="relative-path">2.295</a></span>)
+value for interactive logon and is set to zero for network logon. If no <b>HomeDirectory</b>
+is configured for the user, this member MUST contain an <b>RPC_UNICODE_STRING</b>
+structure with the <b>Length</b> member set to zero.</p><p><b>HomeDirectoryDrive:</b> An <b>RPC_UNICODE_STRING</b>
+structure that contains the user account&#39;s <b>HomeDrive</b> attribute
+([MS-ADA1] section <span><a href="../ms-ada1/b3c899de-2fe7-40b5-b2a1-8b03ed49b812" data-linktype="relative-path">2.296</a></span>)
+value for interactive logon and is set to zero for network logon. This member
+MUST be populated if <b>HomeDirectory</b> contains a <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_3aa4cef1-1bf3-4f6c-9e57-fd44a56a96b1" data-linktype="relative-path">UNC path</a></span>. If no <b>HomeDirectoryDrive</b>
+is configured for the user, this member MUST contain an <b>RPC_UNICODE_STRING</b>
+structure with the <b>Length</b> member set to zero.</p><p><b>LogonCount:</b> A 16-bit unsigned integer that
+contains the user account&#39;s <b>LogonCount</b> attribute ([MS-ADA1] section <span><a href="../ms-ada1/528b54a7-f895-4c1e-bd21-b443f7d6846e" data-linktype="relative-path">2.375</a></span>)
+value. </p><p><b>BadPasswordCount:</b> A 16-bit unsigned integer
+that contains the user account&#39;s <b>badPwdCount</b> attribute ([MS-ADA1]
+section <span><a href="../ms-ada1/16b90560-0dc4-4e36-be2f-f97f5e764a6c" data-linktype="relative-path">2.83</a></span>)
+value for interactive logon and is set to zero for network logon. </p><p><b>UserId:</b> A 32-bit unsigned integer that
+contains the <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RID</a></span> of the account.
+If the UserId member equals 0x00000000, the first group <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span>
+in this member is the SID for this account.</p><p><b>PrimaryGroupId:</b> A 32-bit unsigned integer that
+contains the RID for the primary group to which this account belongs.</p><p><b>GroupCount:</b> A 32-bit unsigned integer that
+contains the number of groups within the account domain to which the account
+belongs. </p><p><b>GroupIds:</b> A pointer to a list of <span><a href="40526584-1565-4fb1-97b7-eb38fd880595" data-linktype="relative-path">GROUP_MEMBERSHIP (section 2.2.2)</a></span>
+structures that contains the groups to which the account belongs in the account
+domain. The number of groups in this list MUST be equal to <b>GroupCount</b>.</p><p><b>UserFlags:</b> A 32-bit unsigned integer that
+contains a set of bit flags that describe the user&#39;s logon information.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>L</p>
+  </td>
+  <td>
+  <p>K</p>
+  </td>
+  <td>
+  <p>J</p>
+  </td>
+  <td>
+  <p>I</p>
+  </td>
+  <td>
+  <p>H</p>
+  </td>
+  <td>
+  <p>G</p>
+  </td>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>The following flags are set only
+when this structure is created as the result of an NTLM authentication, as
+specified in <span><a href="../ms-nlmp/b38c36ed-2804-4868-a9ff-8dd3182128e4" data-linktype="relative-path">[MS-NLMP]</a></span>.
+These flags MUST be zero for any other authentication protocol, such as
+[MS-KILE] authentication.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>Authentication was done via the GUEST account; no
+  password was used.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>No encryption is available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>LAN Manager key was used for authentication.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>Sub-authentication used; session key came from the
+  sub-authentication package.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>Indicates that the account is a machine account.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>G</p>
+  </td>
+  <td>
+  <p>Indicates that the domain controller understands
+  NTLMv2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>I</p>
+  </td>
+  <td>
+  <p>Indicates that <b>ProfilePath</b> is populated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>J</p>
+  </td>
+  <td>
+  <p>The NTLMv2 response from the <b>NtChallengeResponseFields</b>
+  ([MS-NLMP] section <span><a href="../ms-nlmp/033d32cc-88f9-4483-9bf2-b273055038ce" data-linktype="relative-path">2.2.1.3</a></span>)
+  was used for authentication and session key generation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>K</p>
+  </td>
+  <td>
+  <p>The LMv2 response from the <b>LmChallengeResponseFields</b>
+  ([MS-NLMP] section 2.2.1.3) was used for authentication and session key
+  generation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>L</p>
+  </td>
+  <td>
+  <p>The LMv2 response from the <b>LmChallengeResponseFields</b>
+  ([MS-NLMP] section 2.2.1.3) was used for authentication and the NTLMv2
+  response from the <b>NtChallengeResponseFields</b> ([MS-NLMP] section
+  2.2.1.3) was used session key generation.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The following flags are valid for
+[MS-KILE] authentications; settings depend on the configuration of the user and
+groups referenced in the PAC.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>Indicates that the <b>ExtraSids</b> field is populated
+  and contains additional SIDs.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>H</p>
+  </td>
+  <td>
+  <p>Indicates that the <b>ResourceGroupIds</b> field is
+  populated.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero
+and MUST be ignored on receipt.</p>
+</dd></dl><p><b>UserSessionKey:</b> A session key that is used for
+cryptographic operations on a session. This field is valid only when
+authentication is performed using NTLM. For any other protocol, this field MUST
+be zero.</p><p><b>LogonServer:</b> An RPC_UNICODE_STRING structure
+that contains the NetBIOS name of the Kerberos <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_6e5aafba-6b66-4fdd-872e-844f142af287" data-linktype="relative-path">KDC</a></span> that performed
+the authentication server (AS) ticket request. </p><p><b>LogonDomainName:</b> An RPC_UNICODE_STRING
+structure that contains the NetBIOS name of the domain to which this account
+belongs. </p><p><b>LogonDomainId:</b> An <span><a href="../ms-dtyp/5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="relative-path">RPC_SID</a></span>
+structure (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section 2.4.2.3) that contains the SID for the domain specified in <b>LogonDomainName</b>.
+This member is used in conjunction with the <b>UserId</b>, <b>PrimaryGroupId</b>,
+and <b>GroupIds</b> members to create the user and group SIDs for the client. </p><p><b>Reserved1:</b> A two-element array of unsigned
+32-bit integers. This member is reserved, and each element of the array MUST be
+zero when sent and MUST be ignored on receipt.</p><p><b>UserAccountControl:</b> A 32-bit unsigned integer
+that contains a set of bit flags that represent information about this account.
+This field carries the <b>UserAccountControl</b> information from the
+corresponding <b>Security Account Manager</b> field, as specified in <span><a href="../ms-samr/4df07fab-1bbc-452f-8e92-7853a3c7e380" data-linktype="relative-path">[MS-SAMR]</a></span>.</p><p><b>SubAuthStatus:</b> A 32-bit unsigned integer that
+contains the subauthentication package&#39;s ([MS-APDS] section <span><a href="../ms-apds/e376df86-6783-4b59-83ad-c8a639a06906" data-linktype="relative-path">3.1.5.2.1</a></span>)
+status code. If a subauthentication package is not used, this structure is set
+to 0x00000000.</p><p><b>LastSuccessfulILogon:</b> A <b>FILETIME</b>
+structure that contains the user account&#39;s <b>msDS-LastSuccessfulInteractiveLogonTime</b>
+(<span><a href="../ms-ada2/e20ebc4e-5285-40ba-b3bd-ffcb81c2783e" data-linktype="relative-path">[MS-ADA2]</a></span>
+section <span><a href="../ms-ada2/bd0266d0-1e39-44e0-a3c9-4e18d402dcfc" data-linktype="relative-path">2.367</a></span>).
+If the user has never logged on, this structure is set to 0x7FFFFFFFFFFFFFFF.</p><p><b>LastFailedILogon:</b> A <b>FILETIME</b> structure
+that contains the user account&#39;s <b>msDS-LastFailedInteractiveLogonTime</b>
+([MS-ADA2] section <span><a href="../ms-ada2/e8071f3e-c6fa-4888-959e-7121e3e64510" data-linktype="relative-path">2.365</a></span>).
+If the user has never logged on, this structure is set to 0x7FFFFFFFFFFFFFFF.</p><p><b>FailedILogonCount:</b> A 32-bit unsigned integer
+that contains the user account&#39;s <b>msDS-FailedInteractiveLogonCountAtLastSuccessfulLogon</b>
+([MS-ADA2] section <span><a href="../ms-ada2/afc5fd06-9212-43ac-861e-a73179a20730" data-linktype="relative-path">2.323</a></span>).</p><p><b>Reserved3:</b> A 32-bit integer. This member is
+reserved, and MUST be zero when sent and MUST be ignored on receipt. </p><p><b>SidCount:</b> A 32-bit unsigned integer that
+contains the total number of SIDs present in the <b>ExtraSids</b> member. If
+this member is not zero then the <b>D</b> bit MUST be set in the <b>UserFlags</b>
+member. </p><p><b>ExtraSids:</b> A pointer to a list of <span><a href="311aab27-ebdf-47f7-b939-13dc99b15341" data-linktype="relative-path">KERB_SID_AND_ATTRIBUTES (section 2.2.1)</a></span>
+structures that contain a list of SIDs corresponding to groups in domains other
+than the account domain to which the principal belongs. This member is not NULL
+only if the <b>D</b> bit has been set in the <b>UserFlags</b> member. If the <b>UserId</b>
+member equals 0x00000000, the first group SID in this member is the SID for
+this account. </p><p><b>ResourceGroupDomainSid:</b> An <b>RPC_SID</b>
+structure that contains the SID of the domain for the server whose resources
+the client is authenticating to. This member is used in conjunction with the <b>ResourceGroupIds</b>
+member to create the group SIDs for the user. If this member is populated, then
+the <b>H</b> bit MUST be set in the <b>UserFlags</b> member.</p><dl>
+<dd>
+<p>When this field is not used, it MUST be set to NULL.</p>
+</dd></dl><p><b>ResourceGroupCount:</b> A 32-bit unsigned integer
+that contains the number of resource group identifiers stored in <b>ResourceGroupIds</b>.
+If this member is not zero, then the <b>H</b> bit MUST be set in the <b>UserFlags</b>
+member. </p><dl>
+<dd>
+<p>When this field is not used, it MUST be set to zero.</p>
+</dd></dl><p><b>ResourceGroupIds:</b> A pointer to a list of
+GROUP_MEMBERSHIP structures that contain the RIDs and attributes of the
+account&#39;s groups in the resource domain. If this member is not NULL, then the <b>H</b>
+bit MUST be set in the <b>UserFlags</b> member.</p><dl>
+<dd>
+<p>When this field is not used, it MUST be set to NULL.</p>
+</dd></dl></div>

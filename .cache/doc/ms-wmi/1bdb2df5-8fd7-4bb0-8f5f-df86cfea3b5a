@@ -1,0 +1,55 @@
+<div class="content"><p> </p><p>The RefreshedInstances packet is contained within the <span><a href="94c2c029-4ec6-4fb8-9cbe-d201d49f5958" data-linktype="relative-path">WBEM_INSTANCE_BLOB</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>blobSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Blob
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>blobSize (4 bytes): </b>MUST represent the length
+of the blob array.</p><p><b>Blob (variable): </b>MUST be a byte stream
+representing an <span><a href="46710c5c-d7ab-4e4c-b4a5-ebff311fdcd1" data-linktype="relative-path">IWbemClassObject</a></span>
+encoded as a <span><a href="4cb5e950-2c61-4a63-bfb9-1c9aa8826d6b" data-linktype="relative-path">RefreshedSingleInstance</a></span>.</p></div>

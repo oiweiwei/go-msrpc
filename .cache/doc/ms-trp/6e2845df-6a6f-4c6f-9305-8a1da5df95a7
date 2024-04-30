@@ -1,0 +1,24 @@
+<div class="content"><p>The Microsoft Telephony Application Programming Interface
+(TAPI) enables implementation of communications applications ranging from voice
+mail to call centers with multiple agents and switches. The Microsoft Telephony
+programming model abstracts communications control from device control, freeing
+end-user applications and device manufacturers from the need to conform to the
+others&#39; requirements. Using this model, an end-user or server application does
+not require detailed information about device control and the device does not
+need to be tailored to the application. Applications and devices can undergo
+innovation and change independently. Possible TAPI applications can include:</p><ul><li><p><span><span> 
+</span></span>Basic voice calls on the public switched telephone network
+(PSTN).</p>
+</li><li><p><span><span> 
+</span></span>Call center applications for tracking multiple agents.</p>
+</li><li><p><span><span> 
+</span></span>Private branch exchange (PBX) control.</p>
+</li><li><p><span><span> 
+</span></span>Interactive voice response (IVR) computing systems.</p>
+</li><li><p><span><span> 
+</span></span>Voice mail.</p>
+</li><li><p><span><span> 
+</span></span>Detailed phone device control.</p>
+</li></ul><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

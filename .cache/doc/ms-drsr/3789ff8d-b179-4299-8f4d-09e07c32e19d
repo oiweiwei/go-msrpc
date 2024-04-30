@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The DRS_MSG_ADDCLONEDCREQ_V1 structure defines a request message
+sent to the <span><a href="ef0bfb1d-037b-4626-a6d9-cc7589bc5786" data-linktype="relative-path">IDL_DRSAddCloneDC</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [string] const WCHAR* pwszCloneDCName;
+   [string] const WCHAR* pwszSite;
+ } DRS_MSG_ADDCLONEDCREQ_V1;
+</pre></div>
+</dd></dl><p><b>pwszCloneDCName:</b>  The new <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>
+name.</p><p><b>pwszSite:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_22198321-b40b-4c24-b8a2-29e44d9d92b9" data-linktype="relative-path">RDN</a></span>
+of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8abdc986-5679-42d9-ad76-b11eb5a0daba" data-linktype="relative-path">site</a></span> the new DC will
+be placed into.</p></div>

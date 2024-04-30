@@ -1,0 +1,114 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/aa5923c9-48bf-4182-93ff-6353dd9f0b00" data-linktype="external">msdn link</a></p><p>The <b>DS_REPL_QUEUE_STATISTICSW_BLOB</b> structure contains
+the statistics related to the <i>replicationQueue</i> variable of a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a>, returned by reading the
+<a href="c0793fe4-5ba8-48c8-b284-525d533ed49f" data-linktype="relative-path">msDS-ReplQueueStatistics (section 3.1.1.3.2.30)</a>
+<a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_29942b69-e0ed-4fe7-bbbf-1a6a3f9eeeb6" data-linktype="relative-path">rootDSE</a> <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ftimeCurrentOpStarted</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cNumPendingOps</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ftimeOldestSync</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ftimeOldestAdd</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ftimeOldestMod</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ftimeOldestDel</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ftimeOldestUpdRefs</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>ftimeCurrentOpStarted (8 bytes): </b>A <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a>
+structure that contains the date and time that the currently running operation
+started.</p><p><b>cNumPendingOps (4 bytes): </b>An unsigned integer
+specifying the number of currently pending operations.</p><p><b>ftimeOldestSync (8 bytes): </b>A FILETIME
+structure that contains the date and time of the oldest synchronization
+operation.</p><p><b>ftimeOldestAdd (8 bytes): </b>A FILETIME structure
+that contains the date and time of the oldest add operation.</p><p><b>ftimeOldestMod (8 bytes): </b>A FILETIME structure
+that contains the date and time of the oldest modification operation. </p><p><b>ftimeOldestDel (8 bytes): </b>A FILETIME structure
+that contains the date and time of the oldest delete operation.</p><p><b>ftimeOldestUpdRefs (8 bytes): </b>A FILETIME
+structure that contains the date and time of the oldest reference update
+operation.</p><p>All multibyte fields have little-endian byte ordering.</p></div>

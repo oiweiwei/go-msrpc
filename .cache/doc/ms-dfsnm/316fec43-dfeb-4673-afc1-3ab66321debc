@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The DFS_TARGET_PRIORITY structure relates to the <span><a href="7b033d5b-8d26-4931-8b3d-7aa35e441fb0" data-linktype="relative-path">NetrDfsSetInfo</a></span>
+and <span><a href="d2d8d56c-7ff6-4674-8193-313ddf1f1c3b" data-linktype="relative-path">NetrDfsSetInfo2</a></span>
+methods when used to set the priority of a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_a2c6d1c9-deea-427c-91ee-56f6e726eabd" data-linktype="relative-path">DFS target</a></span> in
+referrals from a server. It also relates to the <span><a href="2f7fe367-2899-4b76-b5db-0443c4d73a5d" data-linktype="relative-path">DFS_STORAGE_INFO_1</a></span>
+structure that the <span><a href="f9dedb71-7575-4a50-9576-5f0f59891da4" data-linktype="relative-path">NetrDfsEnum</a></span>, <span><a href="1e01d0ba-76f3-4346-9db3-c7cc61009054" data-linktype="relative-path">NetrDfsEnumEx</a></span>,
+and <span><a href="b5dd4568-3ea4-4f27-ae03-3ebb19fa4b13" data-linktype="relative-path">NetrDfsGetInfo</a></span>
+methods return. The structure defines the priority of a DFS target. The DFS
+targets can be prioritized independently of <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_962d81fb-26b3-483b-a5d1-353ed76943e7" data-linktype="relative-path">site cost</a></span>. The DFS
+target priority is manually assigned to link targets and root targets and
+allows for load balancing of clients. </p><p>The DFS_TARGET_PRIORITY structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_TARGET_PRIORITY {
+   DFS_TARGET_PRIORITY_CLASS TargetPriorityClass;
+   unsigned short TargetPriorityRank;
+   unsigned short Reserved;
+ } DFS_TARGET_PRIORITY;
+</pre></div>
+</dd></dl><p><b>TargetPriorityClass:</b>  The <span><a href="966bc1f1-2167-4787-b857-61e7d0a66550" data-linktype="relative-path">DFS_TARGET_PRIORITY_CLASS</a></span>
+enumeration value that specifies the priority class of the target. For more
+information, see section 2.2.2.8.</p><p><b>TargetPriorityRank:</b>  The priority
+rank of the target, ranging in value from 0x0000 to 0x001F, where 0x0000 is the
+highest rank. Priority ranks apply only within a priority class, not across
+priority classes.</p><p><b>Reserved:</b>  MUST be set to 0 by the
+sender and ignored by the receiver.</p></div>

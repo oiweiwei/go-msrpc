@@ -1,0 +1,20 @@
+<div class="content"><p>The <b>CPREP_SCSI_ADDRESS</b> structure holds information to
+identify a disk via the <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_f1f690fa-4bc4-42cb-a515-0ba390713faa" data-linktype="relative-path">SCSI
+protocol</a>. The structure is included in this document because it is
+referenced by the <a href="68350ec2-10ae-425c-8f65-d00e73a79727" data-linktype="relative-path">DISK_PROPS</a>
+structure; however, the values in this structure are never read by the client.</p><dl>
+<dd>
+<div><pre> typedef struct _CPREP_SCSI_ADDRESS {
+   unsigned long Length;
+   unsigned char PortNumber;
+   unsigned char PathId;
+   unsigned char TargetId;
+   unsigned char Lun;
+ } CPREP_SCSI_ADDRESS,
+  *PCPREP_SCSI_ADDRESS;
+</pre></div>
+</dd></dl><p><b>Length:</b>  Contains the length of this
+structure in bytes.</p><p><b>PortNumber:</b>  Contains the number of
+the <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_c8818c63-7458-4054-a17d-bea04fa50618" data-linktype="relative-path">SCSI</a> adapter.</p><p><b>PathId:</b>  Contains the number of the
+bus.</p><p><b>TargetId:</b>  Contains the number of
+the target <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_4712ded2-d927-4930-9450-29499f98cef4" data-linktype="relative-path">device</a>.</p><p><b>Lun:</b>  Contains the <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_7593b869-71a9-4a02-bab3-377e51729067" data-linktype="relative-path">logical unit number</a>.</p></div>

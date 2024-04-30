@@ -1,0 +1,47 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/dc2a148b-b22b-4d1a-bcd3-6b2d04aee941" data-linktype="external">msdn link</a></p><p>The <b>CLUS_CHARACTERISTICS</b> enumeration is a bitmask of
+the possible <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">values</a>
+describing one or more intrinsic attributes associated with a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_94e97f15-2f1a-406f-a740-607bb97761ec" data-linktype="relative-path">resource</a> or <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_597fe367-f504-4295-9ed9-92cd892796cd" data-linktype="relative-path">resource type</a> object. <b>CLUS_CHARACTERISTICS</b>
+values are unsigned 32-bit integers.</p><p>The valid constant values for <b>CLUS_CHARACTERISTICS</b>
+are listed below. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+MUST return a value that consists of the bitwise OR operator of one or more
+values that are listed here. All other values are reserved and MUST be treated
+as an error.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   CLUS_CHAR_UNKNOWN = 0x00000000,
+   CLUS_CHAR_QUORUM = 0x00000001,
+   CLUS_CHAR_DELETE_REQUIRES_ALL_NODES = 0x00000002,
+   CLUS_CHAR_LOCAL_QUORUM = 0x00000004,
+   CLUS_CHAR_BROADCAST_DELETE = 0x00000020,
+   CLUS_CHAR_SINGLE_CLUSTER_INSTANCE = 0x00000040,
+   CLUS_CHAR_SINGLE_GROUP_INSTANCE = 0x00000080,
+   CLUS_CHAR_COEXIST_IN_SHARED_VOLUME_GROUP = 0x00000100,
+   CLUS_CHAR_RESERVED1 = 0x00000200,
+   CLUS_CHAR_MONITOR_DETACH = 0x00000400,
+   CLUS_CHAR_RESERVED2 = 0x00000800,
+   CLUS_CHAR_RESERVED3 = 0x00001000,
+   CLUS_CHAR_RESERVED4 = 0x00002000
+ } CLUS_CHARACTERISTICS;
+</pre></div>
+</dd></dl><p><b>CLUS_CHAR_UNKNOWN: </b>The object has none of the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_41441ad6-7a82-4a41-a89c-7e4b8d784ad8" data-linktype="relative-path">characteristics</a> defined in
+this enumeration.</p><p><b>CLUS_CHAR_QUORUM: </b>The resource participates in
+making quorum decisions.</p><p><b>CLUS_CHAR_DELETE_REQUIRES_ALL_NODES: </b>The
+resource requires that all configured nodes are active in the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_feef37b3-c173-4f51-aab6-b55a6366259b" data-linktype="relative-path">cluster</a> before it can be
+deleted from the nonvolatile <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_93ba0f62-7125-4a3e-ab60-5fd4f504bc8c" data-linktype="relative-path">cluster
+state</a>.</p><p><b>CLUS_CHAR_LOCAL_QUORUM: </b>The resource is an
+instance of the local quorum resource type.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p><p>The following values are not supported in ClusAPI Protocol
+version 2.0:</p><p><b>CLUS_CHAR_BROADCAST_DELETE: </b>When the server
+executes delete actions indicated by the type of a resource, and the resource
+has the <b>CLUS_CHAR_BROADCAST_DELETE</b> characteristic, all nodes on the
+cluster also execute the same delete action.</p><p><b>CLUS_CHAR_SINGLE_CLUSTER_INSTANCE: </b>Only one
+instance of the resource type is permitted in a cluster.</p><p><b>CLUS_CHAR_SINGLE_GROUP_INSTANCE: </b>Only one
+instance of the resource type is permitted in a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_51c51c14-7f9d-4c0b-a69c-d3e059bfffac" data-linktype="relative-path">group</a>.</p><p><b>CLUS_CHAR_COEXIST_IN_SHARED_VOLUME_GROUP: </b>The
+resource can be made part of a group that is a special group (see <b>Cluster
+Node Volume Accessibility</b> (section <a href="2cec8d2a-040c-4741-8bf0-ecd4b33de67f" data-linktype="relative-path">3.1.1.1.4</a>).</p><p><b>CLUS_CHAR_RESERVED1: </b>This value is reserved
+for local use and MUST be ignored by the client. ClusAPI Protocol version 2.0
+servers do not support this value.</p><p><b>CLUS_CHAR_MONITOR_DETACH: </b>The resource can be
+deleted without being taken offline.</p><p><b>CLUS_CHAR_RESERVED2: </b>This value is reserved
+for local use and MUST be ignored by the client.</p><p><b>CLUS_CHAR_RESERVED3: </b>This value is reserved
+for local use and MUST be ignored by the client.</p><p><b>CLUS_CHAR_RESERVED4: </b>This value is reserved
+for local use and MUST be ignored by the client.</p></div>

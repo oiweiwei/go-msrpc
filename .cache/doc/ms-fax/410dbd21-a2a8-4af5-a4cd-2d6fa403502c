@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p>The <b>FAX_SetRecipientsLimit (Opnum 83)</b> method is called
+by the client. A fax client application calls <b>FAX_SetRecipientsLimit</b> to
+set the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_53dfe4f3-05d0-41aa-8217-ecd1962b340b" data-linktype="relative-path">recipient</a></span> limit of a
+single <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_7f275cc2-a1c5-47d7-83ae-9a84178f2481" data-linktype="relative-path">broadcast</a></span> job. On success,
+the server MUST set the recipient limit of a single broadcast job.</p><p>Protocol version FAX_API_VERSION_0 (0x00000000) and
+FAX_API_VERSION_1 (0x00010000) fax servers SHOULD NOT implement this call.
+Protocol version FAX_API_VERSION_2 (0x00020000) and FAX_API_VERSION_3
+(0x00030000) fax servers SHOULD fail this call by returning ERROR_NOT_SUPPORTED
+(0x00000032). The fax client MUST NOT call this method if the protocol version
+reported by the server is FAX_API_VERSION_0 (0x00000000) or FAX_API_VERSION_1 (0x00010000).
+For more information,  see <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>).</p><dl>
+<dd>
+<div><pre> error_status_t FAX_SetRecipientsLimit(
+   [in] handle_t hbinding,
+   [in] DWORD dwRecipientsLimit
+ );
+</pre></div>
+</dd></dl><p><b>hbinding:</b> The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> or <b>FAX_ConnectionRefCount</b> (section
+<span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>)
+method call used to connect to the fax server.</p><p><b>dwRecipientsLimit:</b> A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that specifies the maximum number of recipients for the fax.</p><p><b>Return Values:</b> This method SHOULD return
+0x00000032 (ERROR_NOT_SUPPORTED).</p><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

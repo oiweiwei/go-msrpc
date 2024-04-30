@@ -1,0 +1,36 @@
+<div class="content"><p> </p><p>The <b>DHCP_PROPERTY</b> structure contains the type of the
+property, the property identifier, and the property data value. The
+DHCP_PROPERTY identifies a DHCP property and is used by the <span><a href="99021b06-24d3-4edf-b673-0316e85cf28d" data-linktype="relative-path">DHCP_CLIENT_INFO_EX (section 2.2.1.2.119)</a></span>
+and <span><a href="a63aaffd-1c6b-4ad8-9d95-c1064b2112ea" data-linktype="relative-path">DHCP_POLICY_EX (section 2.2.1.2.121)</a></span>
+structures, which allow a list of properties to be associated with them.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_PROPERTY {
+      DHCP_PROPERTY_ID ID;
+      DHCP_PROPERTY_TYPE Type;
+      [switch_is(Type), switch_type(DHCP_PROPERTY_TYPE)]
+      union _DHCP_PROPERTY_VALUE_UNION {
+          [case(DhcpPropTypeByte)]   BYTE             ByteValue;
+          [case(DhcpPropTypeWord)]   WORD             WordValue;
+          [case(DhcpPropTypeDword)]  DWORD            DWordValue;
+          [case(DhcpPropTypeString)] LPWSTR           StringValue;
+          [case(DhcpPropTypeBinary)] DHCP_BINARY_DATA BinaryValue;
+      } Value;
+ } DHCP_PROPERTY, *PDHCP_PROPERTY, *LPDHCP_PROPERTY;
+</pre></div>
+</dd></dl><p><b>ID:</b>  An enumeration of type <span><a href="64fe0789-4647-4628-a3a2-2ddcc9ae42f0" data-linktype="relative-path">DHCP_PROPERTY_ID (section 2.2.1.1.27)</a></span>
+that indicates the property identifier for the data value contained in the <b>Value</b>
+field.</p><p><b>Type:</b>  An enumeration of type <span><a href="1511adaa-15d3-4c19-9521-68fb9870848d" data-linktype="relative-path">DHCP_PROPERTY_TYPE (section 2.2.1.1.26)</a></span>
+that indicates the property type for the data value contained in the <b>Value</b>
+field.</p><p><b>Value:</b>  Specifies the property data
+using one of the following values based on the value of the <b>Type</b> field.</p><p><b>ByteValue:</b>  Specifies the data as a <b>BYTE</b>
+value. This field is present if the <b>Type</b> field is set to
+DhcpPropertyTypeByte.</p><p><b>WordValue:</b>  Specifies the data as a <b>WORD</b>
+value. This field is present if the <b>Type</b> field is set to
+DhcpPropertyTypeWord.</p><p><b>DWordValue:</b>  Specifies the data as a
+<b>DWORD</b> value. This field is present if the <b>Type</b> field is set to
+DhcpPropertyTypeDWord.</p><p><b>StringValue:</b>  Specifies the data as
+a <b>LPWSTR</b> pointer to a Unicode string value. This field is present if the
+<b>Type</b> field is set to DhcpPropertyTypeString.</p><p><b>BinaryValue:</b>  Specifies the data as
+a <span><a href="a2d136fe-4173-400d-aa11-9d146d722260" data-linktype="relative-path">DHCP_BINARY_DATA (section 2.2.1.2.9)</a></span>
+structure. This field is present if the <b>Type</b> field is set to
+DhcpPropertyTypeBinary.</p></div>

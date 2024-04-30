@@ -1,0 +1,66 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/6f04f1f2-d070-4f70-aae7-5f98ed63e1ba" data-linktype="external">msdn link</a></p><p>The OBJECT_TYPE_LIST structure identifies an object type
+element in a hierarchy of object types. The <a href="4f1bbcbb-814a-4c70-a11e-2a5b8779a6f9" data-linktype="relative-path">Access Check Algorithm
+Pseudocode</a> functions (section 2.5.3.2) use an array of OBJECT_TYPE_LIST
+structures to define a hierarchy of an object and its sub-objects, such as
+property sets and properties.</p><dl>
+<dd>
+<div><pre> typedef struct _OBJECT_TYPE_LIST {
+   WORD Level;
+   ACCESS_MASK Remaining;
+   GUID* ObjectType;
+ } OBJECT_TYPE_LIST,
+  *POBJECT_TYPE_LIST;
+</pre></div>
+</dd></dl><p><b>Level:</b>  Specifies the level of the
+object type in the hierarchy of an object and its sub-objects. Level zero
+indicates the object itself. Level one indicates a sub-object of the object,
+such as a property set. Level two indicates a sub-object of the level one
+sub-object, such as a property. There can be a maximum of five levels numbered
+zero through four.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ACCESS_OBJECT_GUID</p>
+  <p>0x0</p>
+  </td>
+  <td>
+  <p>Indicates the object itself at level zero.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ACCESS_PROPERTY_SET_GUID</p>
+  <p>0x1</p>
+  </td>
+  <td>
+  <p>Indicates a property set at level one.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ACCESS_PROPERTY_GUID</p>
+  <p>0x2</p>
+  </td>
+  <td>
+  <p>Indicates a property at level two.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ACCESS_MAX_LEVEL</p>
+  <p>0x4</p>
+  </td>
+  <td>
+  <p>Maximum level.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Remaining:</b>  Remaining access bits
+for this element, used by the access check algorithm, as specified in section
+2.5.3.2.</p><p><b>ObjectType:</b>  A pointer to the <a href="49e490b8-f972-45d6-a3a4-99f924998d97" data-linktype="relative-path">GUID</a> for the object or
+sub-object.</p></div>

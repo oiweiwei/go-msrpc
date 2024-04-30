@@ -1,0 +1,2598 @@
+<div class="content"><p> </p><p>The R_DnssrvOperation method is used to invoke a set of
+server functions specified by pszOperation.</p><dl>
+<dd>
+<div><pre> LONG R_DnssrvOperation(
+   [in]                              handle_t                hBindingHandle,
+   [in, unique, string]              LPCWSTR                 pwszServerName,
+   [in, unique, string]              LPCSTR                  pszZone,
+   [in]                              DWORD                   dwContext,
+   [in, unique, string]              LPCSTR                  pszOperation,
+   [in]                              DWORD                   dwTypeId,
+   [in, switch_is(dwTypeId)]         DNSSRV_RPC_UNION        pData
+ );
+</pre></div>
+</dd></dl><p><b>hBindingHandle: </b>An RPC binding handle to the
+server. Details concerning binding handles are specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+section 2.3.</p><p><b>pwszServerName: </b>The client SHOULD pass a
+pointer to the FQDN of the target server as a null-terminated <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_69864bcc-33be-41c9-9486-e18618ee3dd0" data-linktype="relative-path">UTF-16LE</a></span>
+character string. The server MUST ignore this value.</p><p><b>pszZone: </b>A pointer to a null-terminated character
+string that contains the name of the zone to be queried. For operations
+specific to a particular zone, this string MUST contain the name of the zone in
+<span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_409411c4-b4ed-4ab6-b0ee-6d7815f85a35" data-linktype="relative-path">UTF-8</a></span>
+format or a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_c283d511-037e-4df1-a55e-3a26b379d8bf" data-linktype="relative-path">multizone operation string</a></span>
+(given in the table that follows) that indicates that the operation is
+performed on multiple zones, but only if dwContext is zero. If dwContext is not
+zero, then the value of pszZone MUST be ignored. For all other operations this
+value MUST be set to NULL. When pszZone is NULL, the valid operations are in
+the first table under the pszOperation section that follows, or are a property
+name listed in section <span><a href="f73f36ca-3f06-40ca-a392-f7837d62642f" data-linktype="relative-path">3.1.1.1.2</a></span>, <span><a href="c9d38538-8827-44e6-aa5e-022a016ed723" data-linktype="relative-path">3.1.1.1.3</a></span>,
+or <span><a href="35e541ef-7a59-4a44-ba18-7cd00aba6a0d" data-linktype="relative-path">3.1.1.1.4</a></span>.
+If this value is not NULL, then this value will be used by certain operations
+as specified in the second table for pszOperation that follows.</p><dl>
+<dd>
+<p>The following table shows what values are used to
+request that the operation be performed on multiple zones, using
+ZONE_REQUEST_FILTERS values (section <span><a href="f4cf1f3e-7d13-4010-a915-5223dcabc15d" data-linktype="relative-path">2.2.5.1.4</a></span>).</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&#34;..AllZones&#34;</p>
+  </td>
+  <td>
+  <p>ZONE_REQUEST_PRIMARY |</p>
+  <p>ZONE_REQUEST_SECONDARY |</p>
+  <p>ZONE_REQUEST_AUTO |</p>
+  <p>ZONE_REQUEST_FORWARD |</p>
+  <p>ZONE_REQUEST_REVERSE |</p>
+  <p>ZONE_REQUEST_FORWARDER |</p>
+  <p>ZONE_REQUEST_STUB |</p>
+  <p>ZONE_REQUEST_DS |</p>
+  <p>ZONE_REQUEST_NON_DS |</p>
+  <p>ZONE_REQUEST_DOMAIN_DP |</p>
+  <p>ZONE_REQUEST_FOREST_DP |</p>
+  <p>ZONE_REQUEST_CUSTOM_DP |</p>
+  <p>ZONE_REQUEST_LEGACY_DP</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;..AllZonesAndCache&#34;</p>
+  </td>
+  <td>
+  <p>ZONE_REQUEST_PRIMARY |</p>
+  <p>ZONE_REQUEST_SECONDARY |</p>
+  <p>ZONE_REQUEST_CACHE |</p>
+  <p>ZONE_REQUEST_AUTO |</p>
+  <p>ZONE_REQUEST_FORWARD |</p>
+  <p>ZONE_REQUEST_REVERSE |</p>
+  <p>ZONE_REQUEST_FORWARDER |</p>
+  <p>ZONE_REQUEST_STUB |</p>
+  <p>ZONE_REQUEST_DS |</p>
+  <p>ZONE_REQUEST_NON_DS |</p>
+  <p>ZONE_REQUEST_DOMAIN_DP |</p>
+  <p>ZONE_REQUEST_FOREST_DP |</p>
+  <p>ZONE_REQUEST_CUSTOM_DP |</p>
+  <p>ZONE_REQUEST_LEGACY_DP </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;..AllPrimaryZones&#34;</p>
+  </td>
+  <td>
+  <p>ZONE_REQUEST_PRIMARY</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;..AllSecondaryZones&#34;</p>
+  </td>
+  <td>
+  <p>ZONE_REQUEST_SECONDARY</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;..AllForwardZones&#34;</p>
+  </td>
+  <td>
+  <p>ZONE_REQUEST_FORWARD</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;..AllReverseZones&#34;</p>
+  </td>
+  <td>
+  <p>ZONE_REQUEST_REVERSE</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;..AllDsZones&#34;</p>
+  </td>
+  <td>
+  <p>ZONE_REQUEST_DS</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;..AllNonDsZones&#34;</p>
+  </td>
+  <td>
+  <p>ZONE_REQUEST_NON_DS</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;..AllPrimaryReverseZones&#34;</p>
+  </td>
+  <td>
+  <p>ZONE_REQUEST_REVERSE | ZONE_REQUEST_PRIMARY</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;..AllPrimaryForwardZones&#34;</p>
+  </td>
+  <td>
+  <p>ZONE_REQUEST_FORWARD | ZONE_REQUEST_PRIMARY</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;..AllSecondaryReverseZones&#34;</p>
+  </td>
+  <td>
+  <p>ZONE_REQUEST_REVERSE | ZONE_REQUEST_SECONDARY</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;..AllSecondaryForwardZones&#34;</p>
+  </td>
+  <td>
+  <p>ZONE_REQUEST_FORWARD | ZONE_REQUEST_SECONDARY</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwContext: </b>A value used to specify <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_9370bb2e-b104-4d3d-b606-d111b021a943" data-linktype="relative-path">multizone
+operations</a></span> in ZONE_REQUEST_FILTERS (section 2.2.5.1.4)
+format or zero if the operation is not meant to apply to multiple zones. If
+pszZone is not NULL and matches the name of a zone hosted by the DNS server
+then the value of dwContext MUST be ignored.</p><p><b>pszOperation: </b>A pointer to a null-terminated <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_79fa85ca-ac61-467c-b819-e97dc1a7a599" data-linktype="relative-path">ASCII</a></span>
+character string that contains the name of operation to be performed on the
+server. These are two sets of allowed values for pszOperation:</p><dl>
+<dd>
+<p>If pszZone is set to NULL,
+pszOperation MUST be either a property name listed in section 3.1.1.1.2,
+3.1.1.1.3 or 3.1.1.1.4, or SHOULD<a id="Appendix_A_Target_215"></a><a aria-label="Product behavior note 215" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_215" data-linktype="relative-path">&lt;215&gt;</a> be one
+of the following.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ResetDwordProperty</p>
+  </td>
+  <td>
+  <p>Update the value of a (name, value) pair in the DNS
+  server configuration. On input, dwTypeId MUST be set to
+  DNSSRV_TYPEID_NAME_AND_PARAM, and pData MUST point to a structure of type
+  DNS_RPC_NAME_AND_PARAM (section <span><a href="408e91b9-1e53-4631-a051-5e097394f8d8" data-linktype="relative-path">2.2.1.2.5</a></span>) that
+  specifies the name of a property listed in section <span><a href="8903e50a-9183-4a7d-9640-53f6f5a91481" data-linktype="relative-path">3.1.1.1.1</a></span> and a
+  new value for that property.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Restart</p>
+  </td>
+  <td>
+  <p>The server SHOULD restart the DNS server process.
+  dwTypeId and pData MUST be ignored by the server.<a id="Appendix_A_Target_216"></a><a aria-label="Product behavior note 216" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_216" data-linktype="relative-path">&lt;216&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ClearDebugLog</p>
+  </td>
+  <td>
+  <p>Clear the debug log. dwTypeId and pData MUST be
+  ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ClearCache</p>
+  </td>
+  <td>
+  <p>Delete all cached records from the cache zone or cache
+  scope memory. dwTypeId and pData MUST be ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WriteDirtyZones</p>
+  </td>
+  <td>
+  <p>Write all zones that are stored in local persistent
+  storage to local persistent storage if the zone&#39;s <b>Dirty Flag</b> (section <span><a href="e72286df-3e4c-4535-9a0c-e9cc944248c2" data-linktype="relative-path">3.1.1</a></span>)
+  is set to TRUE. dwTypeId and pData MUST be ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ZoneCreate</p>
+  </td>
+  <td>
+  <p>Create a zone. On input, dwTypeId SHOULD<a id="Appendix_A_Target_217"></a><a aria-label="Product behavior note 217" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_217" data-linktype="relative-path">&lt;217&gt;</a> be set to
+  DNSSRV_TYPEID_ZONE_CREATE. pData MUST point to a structure of one of the
+  types specified in DNS DNS_RPC_ZONE_CREATE_INFO (section <span><a href="f79e7455-e266-43d3-ab2b-f8e75aacfefa" data-linktype="relative-path">2.2.5.2.7</a></span>)
+  that contains all parameters of a new zone to be created by the DNS server,
+  and pData MUST conform to the description corresponding to the value of
+  dwTypeId (section <span><a href="c49b8142-a364-41c8-914a-7675a573b5e4" data-linktype="relative-path">2.2.1.1.1</a></span>) If
+  pData points to a DNS_ZONE_TYPE_CACHE or DNS_ZONE_TYPE_SECONDARY_CACHE
+  record, the server MUST return a nonzero error. If pData points to a
+  DNS_ZONE_TYPE_STUB, DNS_ZONE_TYPE_SECONDARY, or DNS_ZONE_TYPE_FORWARDER
+  record, the server MAY return a nonzero error, but SHOULD return success.<a id="Appendix_A_Target_218"></a><a aria-label="Product behavior note 218" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_218" data-linktype="relative-path">&lt;218&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ClearStatistics</p>
+  </td>
+  <td>
+  <p>Clears server statistics data on the DNS server.
+  dwTypeId and pData MUST be ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EnlistDirectoryPartition</p>
+  </td>
+  <td>
+  <p>On input dwTypeId MUST be set to
+  DNSSRV_TYPEID_ENLIST_DP, and the pData MUST point to a DNS_RPC_ENLIST_DP
+  (section <span><a href="7f445256-e169-4f1e-a244-d4223fbdf604" data-linktype="relative-path">2.2.7.2.5</a></span>)
+  structure. This operation allows application directory partitions to be added
+  to or deleted from the Application Directory Partition Table, and also allows
+  the DNS server to be directed to add or remove itself from the replication
+  scope of an existing application directory partition.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>StartScavenging</p>
+  </td>
+  <td>
+  <p>Initiate a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_49c03845-ca86-48f5-9cbf-ab86c624aa29" data-linktype="relative-path">resource record</a></span> <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_345c3de7-adfa-4386-9ba5-f5f572af489c" data-linktype="relative-path">scavenging</a></span>
+  cycle on the DNS server. dwTypeId, and pData MUST be ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AbortScavenging</p>
+  </td>
+  <td>
+  <p>Terminate a resource record scavenging cycle on the
+  DNS server. dwTypeId and pData MUST be ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AutoConfigure</p>
+  </td>
+  <td>
+  <p>On input, dwTypeId SHOULD be set to
+  DNSSRV_TYPEID_AUTOCONFIGURE, in which case pData MUST point to a structure of
+  type DNS_RPC_AUTOCONFIGURE (section <span><a href="414cf6fb-a888-4c55-91a4-6f77dff66cbe" data-linktype="relative-path">2.2.8.2.1</a></span>)<a id="Appendix_A_Target_219"></a><a aria-label="Product behavior note 219" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_219" data-linktype="relative-path">&lt;219&gt;</a>; dwTypeId MAY instead be
+  set to DNSSRV_TYPEID_DWORD in which case pData MUST point to a DWORD in
+  DNS_RPC_AUTOCONFIG (section <span><a href="d02b0aa2-3a70-4f66-a637-09bd55f6ec6d" data-linktype="relative-path">2.2.8.1.1</a></span>)
+  format.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ExportSettings</p>
+  </td>
+  <td>
+  <p>Export DNS settings on the DNS server to a file on the
+  DNS server. dwTypeId SHOULD be set to DNSSRV_TYPEID_LPWSTR, and pData MUST be
+  ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PrepareForDemotion</p>
+  </td>
+  <td>
+  <p>Prepares for demotion by removing references to this
+  DNS server from all zones stored in the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_04fd0982-6bb6-44f1-817e-795715049c50" data-linktype="relative-path">directory server</a></span>. dwTypeId
+  and pData MUST be ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PrepareForUninstall</p>
+  </td>
+  <td>
+  <p>This operation does nothing on the DNS server.
+  dwTypeId and pData MUST be ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DeleteNode</p>
+  </td>
+  <td>
+  <p>On input dwTypeId MUST be set to
+  DNSSRV_TYPEID_NAME_AND_PARAM, and pData MUST point to a structure of type
+  DNS_RPC_NAME_AND_PARAM (section 2.2.1.2.5) that contains the FQDN of the node
+  pointed to by pszNodeName in the DNS server&#39;s cache to be deleted and a
+  Boolean flag in dwParam to indicate if the node subtree is to be deleted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DeleteRecordSet</p>
+  </td>
+  <td>
+  <p>On input dwTypeId MUST be set to
+  DNSSRV_TYPEID_NAME_AND_PARAM, and pData MUST point to a structure of type
+  DNS_RPC_NAME_AND_PARAM (section 2.2.1.2.5). That structure contains the FQDN
+  of the node to be deleted, which is cached on the DNS server, and the type of
+  record set in the dwParam member, which indicates whether the entire set of
+  this type is to be deleted. The type MUST be a DNS_RECORD_TYPE value (section
+  <span><a href="39b03b89-2264-4063-8198-d62f62a6441a" data-linktype="relative-path">2.2.2.1.1</a></span>)
+  or 0x00FF, which specifies all types.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WriteBackFile</p>
+  </td>
+  <td>
+  <p>Write all information for root hints back to
+  persistent storage. dwTypeId and pData MUST be ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ListenAddresses</p>
+  </td>
+  <td>
+  <p>On input, dwTypeId MUST be set to
+  DNSSRV_TYPEID_IPARRAY or DNSSRV_TYPEID_ADDRARRAY and pData MUST point to a
+  structure of type IP4_ARRAY (section <span><a href="588ae296-71bf-402f-9996-86ecee39dc29" data-linktype="relative-path">2.2.3.2.1</a></span>) or
+  DNS_ADDR_ARRAY (section <span><a href="56ba5fab-f304-4866-99a4-4f1c1f9247a3" data-linktype="relative-path">2.2.3.2.3</a></span>)
+  respectively, which contains a list of new IP addresses on which the DNS
+  server can listen. The server SHOULD accept DNSSRV_TYPEID_ADDRARRAY and
+  DNS_ADDR_ARRAY, and MAY accept DNSSRV_TYPEID_IPARRAY and IP4_ARRAY.<a id="Appendix_A_Target_220"></a><a aria-label="Product behavior note 220" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_220" data-linktype="relative-path">&lt;220&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Forwarders</p>
+  </td>
+  <td>
+  <p>On input dwTypeId SHOULD be set to
+  DNSSRV_TYPEID_FORWARDERS<a id="Appendix_A_Target_221"></a><a aria-label="Product behavior note 221" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_221" data-linktype="relative-path">&lt;221&gt;</a>, and
+  pData MUST point to a structure of one of the types specified in
+  DNS_RPC_FORWARDERS (section <span><a href="83f4bfff-c5fb-4029-aad3-05b3d7f4ef40" data-linktype="relative-path">2.2.5.2.10</a></span>),
+  which contains information about new IP addresses to which the DNS server can
+  forward queries.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LogFilePath</p>
+  </td>
+  <td>
+  <p>On input dwTypeId MUST be set to DNSSRV_TYPEID_LPWSTR,
+  and pData MUST point to a Unicode string that contains an absolute or
+  relative pathname or filename for the debug log file on the DNS server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LogIPFilterList</p>
+  </td>
+  <td>
+  <p>On input dwTypeId MUST be set to DNSSRV_TYPEID_IPARRAY
+  or DNSSRV_TYPEID_ADDRARRAY, and pData MUST point to a structure of type
+  IP4_ARRAY (section 2.2.3.2.1) or DNS_ADDR_ARRAY (section 2.2.3.2.3)
+  respectively, which contains a list of new IP addresses used for debug log
+  filter. The DNS server will write to the debug log only for traffic to/from
+  these IP addresses. The server SHOULD accept DNSSRV_TYPEID_ADDRARRAY and
+  DNS_ADDR_ARRAY, and MAY accept DNSSRV_TYPEID_IPARRAY and IP4_ARRAY.<a id="Appendix_A_Target_222"></a><a aria-label="Product behavior note 222" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_222" data-linktype="relative-path">&lt;222&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ForestDirectoryPartitionBaseName</p>
+  </td>
+  <td>
+  <p>The DNS server MUST return an error. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainDirectoryPartitionBaseName</p>
+  </td>
+  <td>
+  <p>The DNS server MUST return an error. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GlobalQueryBlockList</p>
+  </td>
+  <td>
+  <p>Update the list of <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_711c326a-c3c3-4f78-9e92-b10b5581c59c" data-linktype="relative-path">single-label names</a></span>
+  for which queries are blocked. Query names that match this list, in any
+  primary zone, will be blocked. On input dwTypeId MUST be set to
+  DNSSRV_TYPEID_UTF8_STRING_LIST, and pData MUST point to a structure of type
+  DNS_RPC_UTF8_STRING_LIST (section <span><a href="8c593fe6-1a07-4140-992c-71f97f929ba3" data-linktype="relative-path">2.2.1.2.3</a></span>). </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BreakOnReceiveFrom</p>
+  </td>
+  <td>
+  <p>On input dwTypeId MUST be set to DNSSRV_TYPEID_IPARRAY
+  or DNSSRV_TYPEID_ADDRARRAY and pData MUST point to a structure of type
+  IP4_ARRAY (section 2.2.3.2.1) or DNS_ADDR_ARRAY (section 2.2.3.2.3)
+  respectively, that contains a list of new IP addresses for which the DNS
+  server will execute a breakpoint if a packet is received from these IP
+  addresses. The server SHOULD accept DNSSRV_TYPEID_ADDRARRAY and
+  DNS_ADDR_ARRAY, and MAY accept DNSSRV_TYPEID_IPARRAY and IP4_ARRAY.<a id="Appendix_A_Target_223"></a><a aria-label="Product behavior note 223" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_223" data-linktype="relative-path">&lt;223&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BreakOnUpdateFrom</p>
+  </td>
+  <td>
+  <p>On input dwTypeId MUST be set to DNSSRV_TYPEID_IPARRAY
+  or DNSSRV_TYPEID_ADDRARRAY, and pData MUST point to a structure of type
+  IP4_ARRAY (section 2.2.3.2.1) or DNS_ADDR_ARRAY (section 2.2.3.2.3)
+  respectively, that contains a list of new IP addresses for which the DNS
+  server will execute a breakpoint if an update is received from these IP
+  addresses. The server SHOULD accept DNSSRV_TYPEID_ADDRARRAY and
+  DNS_ADDR_ARRAY, and MAY accept DNSSRV_TYPEID_IPARRAY and IP4_ARRAY.<a id="Appendix_A_Target_224"></a><a aria-label="Product behavior note 224" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_224" data-linktype="relative-path">&lt;224&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ServerLevelPluginDll</p>
+  </td>
+  <td>
+  <p>On input <i>dwTypeId </i>MUST be set to
+  DNSSRV_TYPEID_LPWSTR, and <b>pData</b> MUST point to a Unicode string that
+  contains an absolute pathname for server side plug-in binary on the DNS
+  server or an empty Unicode string.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ActiveRefreshAllTrustPoints</p>
+  </td>
+  <td>
+  <p>Schedules an immediate RFC 5011 active refresh for all
+  <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_34a102c7-7324-497c-b8d7-699067c619c0" data-linktype="relative-path">trust
+  points</a></span>, regardless of the time of the last active refresh. The <i>dwTypeId</i>
+  and <i>pData</i> parameters MUST be set to zero/NULL by the client and MUST
+  be ignored by the server.<a id="Appendix_A_Target_225"></a><a aria-label="Product behavior note 225" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_225" data-linktype="relative-path">&lt;225&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CreateServerScope</p>
+  </td>
+  <td>
+  <p>Creates a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_b20e1dd4-e2fb-44d4-8508-9d9c8ac7ebd7" data-linktype="relative-path">server scope</a></span> on
+  the DNS server. The <i>dwTypeId</i> parameter MUST be set to
+  DNSSRV_TYPEID_LPWSTR. <i>pData</i> MUST point to a Unicode string that
+  contains the name of the server scope to be created.<a id="Appendix_A_Target_226"></a><a aria-label="Product behavior note 226" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_226" data-linktype="relative-path">&lt;226&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DeleteServerScope</p>
+  </td>
+  <td>
+  <p>Deletes a server scope on the DNS server. The <i>dwTypeId</i>
+  parameter MUST be set to DNSSRV_TYPEID_LPWSTR. <i>pData</i> MUST point to a
+  Unicode string that contains the name of the server scope to be deleted.<a id="Appendix_A_Target_227"></a><a aria-label="Product behavior note 227" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_227" data-linktype="relative-path">&lt;227&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CreateClientSubnetRecord</p>
+  </td>
+  <td>
+  <p>Creates a client subnet record on a DNS server. The <i>dwTypeId</i>
+  parameter MUST be set to DNSSRV_TYPEID_CLIENT_SUBNET_RECORD, and <i>pData</i>
+  MUST point to a structure of type DNS_RPC_CLIENT_SUBNET_RECORD.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DeleteClientSubnetRecord</p>
+  </td>
+  <td>
+  <p>Deletes a client subnet record on a DNS server. The <i>dwTypeId</i>
+  parameter MUST be set to DNSSRV_TYPEID_LPWSTR, and <i>pData</i> MUST point to
+  a NULL-terminated Unicode string containing the name of the client subnet
+  record to be deleted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DeleteSubnetsInRecord</p>
+  </td>
+  <td>
+  <p>Updates a client subnet record on a DNS server by
+  deleting the IP/IPv6 Subnets from the Client Subnet Record. The <i>dwTypeId</i>
+  parameter MUST be set to DNSSRV_TYPEID_CLIENT_SUBNET_RECORD, and <i>pData</i>
+  MUST point to a structure of type DNS_RPC_CLIENT_SUBNET_RECORD.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AddSubnetsInRecord</p>
+  </td>
+  <td>
+  <p>Updates a client subnet record on a DNS server by
+  adding the IP/IPv6 Subnets to the Client Subnet Record. The <i>dwTypeId</i>
+  parameter MUST be set to DNSSRV_TYPEID_CLIENT_SUBNET_RECORD, and <i>pData</i>
+  MUST point to a structure of type DNS_RPC_CLIENT_SUBNET_RECORD.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ResetClientSubnetRecord</p>
+  </td>
+  <td>
+  <p>Resets a client subnet record on a DNS server by
+  deleting the existing IP/IPv6 Subnets and adding the IP/IPv6 Subnets specific
+  to the client subnet record. The <i>dwTypeId</i> parameter MUST be set to
+  DNSSRV_TYPEID_CLIENT_SUBNET_RECORD, and <i>pData</i> MUST point to a structure
+  of type DNS_RPC_CLIENT_SUBNET_RECORD.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CreatePolicy</p>
+  </td>
+  <td>
+  <p>Creates a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_5076749f-34a6-48a6-b051-8968a55f4d7b" data-linktype="relative-path">DNS Policy</a></span> at the
+  server level on a DNS server. The <i>dwTypeId</i> parameter MUST be set to
+  DNSSRV_TYPEID_POLICY, and <i>pData</i> MUST point to a structure of type
+  DNS_RPC_POLICY.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DeletePolicy</p>
+  </td>
+  <td>
+  <p>Deletes a DNS Policy at the server level on a DNS
+  server. The <i>dwTypeId</i> parameter MUST be set to DNSSRV_TYPEID_LPWSTR,
+  and <i>pData</i> MUST point to NULL-terminated Unicode string containing the
+  name of the DNS Policy.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>UpdatePolicy</p>
+  </td>
+  <td>
+  <p>Updates a DNS Policy at the server level on a DNS
+  server. The <i>dwTypeId</i> parameter MUST be set to DNSSRV_TYPEID_POLICY,
+  and <i>pData</i> MUST point to a structure of type DNS_RPC_POLICY.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SetRRL</p>
+  </td>
+  <td>
+  <p>Sets Response Rate Limiting parameters at the server
+  level on a DNS server. The <i>dwTypeId</i> parameter MUST be set to
+  DNSSRV_TYPEID_RRL, and <i>pData</i> MUST point to a structure of type
+  DNS_RPC_RRL_PARAMS.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CreateVirtualizationInstance</p>
+  </td>
+  <td>
+  <p>Creates a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1b9d3eb9-dad0-4d1d-acb7-4597e5db641c" data-linktype="relative-path">virtualization instance</a></span>
+  on the DNS server, under which zones can be created later. The <i>dwTypeId</i>
+  parameter MUST be set to DNSSRV_TYPEID_VIRTUALIZATION_INSTANCE (section <span><a href="b61a8727-46b1-4981-a6b3-a1d4b92b67c4" data-linktype="relative-path">2.2.1.2.6</a></span>),
+  and the <i>pData</i> parameter MUST point to a structure of type
+  DNS_RPC_VIRTUALIZATION_INSTANCE (section 2.2.1.2.6).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DeleteVirtualizationInstance</p>
+  </td>
+  <td>
+  <p>Removes a virtualization instance on the DNS server.
+  This also removes the zones and zone scopes under the virtualization instance
+  as well. The <i>dwTypeId</i> parameter MUST be set to
+  DNSSRV_TYPEID_VIRTUALIZATION_INSTANCE, and <i>pData</i> MUST point to a
+  structure of type DNS_RPC_VIRTUALIZATION_INSTANCE. The value of dwFlags in
+  DNS_RPC_VIRTUALIZATION_INSTANCE if set to DNS_RPC_FLAG_PRESERVE_ZONE_FILE,
+  the DNS server deletes the zones under the virtualization instance but keeps
+  the zone files. By default a DNS server removes the zone files of zones under
+  a virtualization instance when the virtualization instance is removed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>UpdateVirtualizationInstance</p>
+  </td>
+  <td>
+  <p>Modifies the members of the virtualization instance on
+  the DNS server. The <i>dwTypeId</i> parameter MUST be set to
+  DNSSRV_TYPEID_VIRTUALIZATION_INSTANCE, and <i>pData</i> MUST point to a
+  structure of type DNS_RPC_VIRTUALIZATION_INSTANCE. The members of
+  DNS_RPC_VIRTUALIZATION_INSTANCE to be modified is determined by bits in
+  member dwFlags, which can be DNS_RPC_FLAG_FRIENDLY_NAME or DNS_RPC_FLAG_DESC
+  (section 3.1.4.1)</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If pszZone is not NULL, and pszOperation does not
+match a property name listed in sections <span><a href="d5323708-2169-4c62-b1e0-8569a103a8be" data-linktype="relative-path">3.1.1.2.2</a></span> or <span><a href="51da10a5-d508-497d-ae49-525a332d055b" data-linktype="relative-path">3.1.1.2.3</a></span>,
+then pszOperation SHOULD<a id="Appendix_A_Target_228"></a><a aria-label="Product behavior note 228" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_228" data-linktype="relative-path">&lt;228&gt;</a> be one
+of the following: </p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ResetDwordProperty</p>
+  </td>
+  <td>
+  <p>Update the value of a DNS Zone integer property. On
+  input dwTypeId MUST be set to DNSSRV_TYPEID_NAME_AND_PARAM and pData MUST
+  point to a structure of type DNS_RPC_NAME_AND_PARAM (section 2.2.1.2.5),
+  which contains the name of a property listed in section <span><a href="7bc88855-d86a-41f1-826f-a81788adb95a" data-linktype="relative-path">3.1.1.2.1</a></span>
+  for the zone pointed to by pszZone and a new value for that property.<a id="Appendix_A_Target_229"></a><a aria-label="Product behavior note 229" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_229" data-linktype="relative-path">&lt;229&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ZoneTypeReset</p>
+  </td>
+  <td>
+  <p>Change the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone&#39;s</a></span> type, for
+  example to convert a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_718c47c0-e274-4946-a0e7-f31aa03a1bc1" data-linktype="relative-path">secondary zone</a></span>
+  into a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_7205eedf-f027-4da5-8f65-18966a86a17a" data-linktype="relative-path">primary zone</a></span>. On
+  input dwTypeId SHOULD be set to DNSSRV_TYPEID_ZONE_CREATE, and pData SHOULD
+  point to a structure of one of the types specified in DNS_RPC_ZONE_CREATE_INFO
+  (section 2.2.5.2.7), which contains the new configuration information for the
+  zone. dwTypeId MAY be set to DNSSRV_TYPEID_ZONE_CREATE_W2K or
+  DNSSRV_TYPEID_ZONE_CREATE_DOTNET.<a id="Appendix_A_Target_230"></a><a aria-label="Product behavior note 230" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_230" data-linktype="relative-path">&lt;230&gt;</a> The
+  server MUST return a nonzero error if the conversion is not implemented.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PauseZone</p>
+  </td>
+  <td>
+  <p>Pause activities for the zone pointed to by pszZone on
+  the DNS server, and do not use this zone to answer queries or take updates
+  until it is resumed. dwTypeId, and pData MUST be ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ResumeZone</p>
+  </td>
+  <td>
+  <p>Resume activities for the zone pointed to by pszZone
+  on the DNS server; the zone thus becomes available to answer queries and take
+  updates. dwTypeId and pData MUST be ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DeleteZone</p>
+  </td>
+  <td>
+  <p>Delete the zone pointed to by pszZone on the DNS
+  server. dwTypeId and pData MUST be ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ReloadZone</p>
+  </td>
+  <td>
+  <p>Reloads data for the zone pointed to by pszZone on the
+  DNS server from persistent storage. dwTypeId, and pData MUST be ignored by
+  the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RefreshZone</p>
+  </td>
+  <td>
+  <p>Force a refresh of the secondary zone pointed to by
+  pszZone on the DNS server, from primary zone server. For this operation
+  pszZone MUST point to a secondary zone only. dwTypeId and pData MUST be
+  ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ExpireZone</p>
+  </td>
+  <td>
+  <p>Force a refresh of the secondary zone pointed to by
+  pszZone on the DNS server, from primary zone server. For this operation
+  pszZone MUST point to a secondary zone only. dwTypeId and pData MUST be ignored
+  by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IncrementVersion</p>
+  </td>
+  <td>
+  <p>Same as &#34;WriteBackFile&#34;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WriteBackFile</p>
+  </td>
+  <td>
+  <p>If the zone has uncommitted changes, write back all
+  information for the zone pointed to by pszZone to persistent storage, and
+  notify any <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_85ec490e-c7d1-4b6d-80b3-23320e7e1c9d" data-linktype="relative-path">secondary DNS servers</a></span>.
+  dwTypeId and pData MUST be ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DeleteZoneFromDs</p>
+  </td>
+  <td>
+  <p>Delete the zone pointed to by pszZone from the
+  directory server. dwTypeId, and pData MUST be ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>UpdateZoneFromDs</p>
+  </td>
+  <td>
+  <p>Refresh data for the zone pointed to by pszZone from
+  the directory server. dwTypeId, and pData MUST be ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ZoneExport</p>
+  </td>
+  <td>
+  <p>Export zone data to a given file on the DNS server. On
+  input dwTypeId MUST be set to DNSSRV_TYPEID_ZONE_EXPORT, and pData MUST point
+  to a structure of type DNS_RPC_ZONE_EXPORT_INFO (section <span><a href="563518e3-8546-4d3c-88c8-f9b001beaa6e" data-linktype="relative-path">2.2.5.2.8</a></span>)
+  that contains a file name pointed to by pszZoneExportFile.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ZoneChangeDirectoryPartition</p>
+  </td>
+  <td>
+  <p>Move a zone to a given application directory
+  partition. On input dwTypeId MUST be set to DNSSRV_TYPEID_ZONE_CHANGE_DP, and
+  pData MUST point to structure of type DNS_RPC_ZONE_CHANGE_DP (section <span><a href="6dc9428b-7a6f-4112-a3dc-7d250d2b06b4" data-linktype="relative-path">2.2.7.2.6</a></span>),
+  which contains the new application directory partition name pointed to by
+  pszDestPartition.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DeleteNode</p>
+  </td>
+  <td>
+  <p>Delete a node. On input dwTypeId MUST be set to DNSSRV_TYPEID_NAME_AND_PARAM,
+  and pData MUST point to a structure of type DNS_RPC_NAME_AND_PARAM (section
+  2.2.1.2.5), which contains the FQDN of the node pointed to by pszNodeName
+  present in the zone pointed to by pszZone on the DNS server to be deleted and
+  a Boolean flag in dwParam to indicate if the node&#39;s subtree is to be deleted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DeleteRecordSet</p>
+  </td>
+  <td>
+  <p>Delete all the DNS records of a particular type at a
+  particular node from the DNS server&#39;s cache. On input dwTypeId MUST be set to
+  DNSSRV_TYPEID_NAME_AND_PARAM, and pData MUST point to a structure of type
+  DNS_RPC_NAME_AND_PARAM (section 2.2.1.2.5). That structure contains the FQDN
+  of the node to be deleted and the DNS record type in the dwParam member. The
+  type MUST be a DNS_RECORD_TYPE value (section 2.2.2.1.1) or 0x00FF, which
+  specifies all types.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ForceAgingOnNode</p>
+  </td>
+  <td>
+  <p>On input dwTypeId MUST be set to
+  DNSSRV_TYPEID_NAME_AND_PARAM, and pData MUST point to a structure of type
+  DNS_RPC_NAME_AND_PARAM (section 2.2.1.2.5), which contains a node name in
+  pszNodeName, and a Boolean flag in dwParam to indicate whether <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0288f9f1-b244-4551-8638-a2280001b531" data-linktype="relative-path">aging</a></span>
+  is performed on all nodes in the subtree. All DNS records at the specified
+  node in the zone named by pszZone will have their aging time stamp set to the
+  current time. If subtree aging is specified by dwParam than all DNS records
+  at all nodes that are children of this node will also have their aging time
+  stamps set to the current time.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DatabaseFile</p>
+  </td>
+  <td>
+  <p>On input dwTypeId SHOULD be set to DNSSRV_TYPEID_ZONE_DATABASE<a id="Appendix_A_Target_231"></a><a aria-label="Product behavior note 231" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_231" data-linktype="relative-path">&lt;231&gt;</a>, and pData MUST point to a
+  structure of one of the types specified in DNS_RPC_ZONE_DATABASE (section <span><a href="fc8b181a-f8b8-4953-992e-8102008d23cd" data-linktype="relative-path">2.2.5.2.6</a></span>),
+  which specifies whether the zone is directory server integrated by setting
+  fDsIntegrated to TRUE, and if it is not then pszFileName MUST point to a
+  Unicode string containing the absolute pathname of a file on the DNS server
+  to which the zone database is stored.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MasterServers</p>
+  </td>
+  <td>
+  <p>On input dwTypeId MUST be set to DNSSRV_TYPEID_IPARRAY
+  or DNSSRV_TYPEID_ADDRARRAY, and pData MUST point to a structure of type
+  IP4_ARRAY (section 2.2.3.2.1) or DNS_ADDR_ARRAY (section 2.2.3.2.3)
+  respectively, which contains a list of IP addresses of new primary DNS
+  servers for the zone pointed to by pszZone. This operation is valid only for
+  secondary zones present on the server. The server SHOULD accept
+  DNSSRV_TYPEID_ADDRARRAY and DNS_ADDR_ARRAY, and SHOULD accept DNSSRV_TYPEID_IPARRAY
+  and IP4_ARRAY. If the input data of either type is accepted and the DNS
+  server is directory-server integrated, the value of <i>pData</i> SHOULD be
+  written to the directory server.<a id="Appendix_A_Target_232"></a><a aria-label="Product behavior note 232" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_232" data-linktype="relative-path">&lt;232&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LocalMasterServers</p>
+  </td>
+  <td>
+  <p>On input dwTypeId MUST be set to DNSSRV_TYPEID_IPARRAY
+  or DNSSRV_TYPEID_ADDRARRAY, and pData MUST point to a structure of type
+  IP4_ARRAY (section 2.2.3.2.1) or DNS_ADDR_ARRAY (section 2.2.3.2.3)
+  respectively, which contains a list of IP addresses of new local primary DNS
+  servers for the zone pointed to by pszZone. This operation is valid only for
+  stub zones present on the server, and if configured, this value overrides any
+  <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_c5f78ae9-df7c-47ee-92f5-5e4f92198cd0" data-linktype="relative-path">primary
+  DNS server</a></span> configured in the directory server. The server SHOULD
+  accept DNSSRV_TYPEID_ADDRARRAY and DNS_ADDR_ARRAY, and SHOULD accept
+  DNSSRV_TYPEID_IPARRAY and IP4_ARRAY.<a id="Appendix_A_Target_233"></a><a aria-label="Product behavior note 233" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_233" data-linktype="relative-path">&lt;233&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SecondaryServers</p>
+  </td>
+  <td>
+  <p>On input dwTypeId SHOULD<a id="Appendix_A_Target_234"></a><a aria-label="Product behavior note 234" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_234" data-linktype="relative-path">&lt;234&gt;</a> be
+  set to DNSSRV_TYPEID_ZONE_SECONDARIES, and pData MUST point to a structure of
+  one of the types specified in DNS_RPC_ZONE_SECONDARIES (section <span><a href="2e589735-0d89-43c4-a463-212857482882" data-linktype="relative-path">2.2.5.2.5</a></span>),
+  which contains information about secondary DNS servers for the zone pointed
+  to by pszZone.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ScavengeServers</p>
+  </td>
+  <td>
+  <p>On input dwTypeId MUST be set to DNSSRV_TYPEID_IPARRAY
+  or DNSSRV_TYPEID_ADDRARRAY, and pData MUST point to a structure of type
+  IP4_ARRAY (section 2.2.3.2.1) or DNS_ADDR_ARRAY (section 2.2.3.2.3)
+  respectively, which contains a list of IP addresses of new servers that can
+  run scavenging on the zone pointed to by pszZone. This operation is valid
+  only for directory server integrated zones. The server SHOULD accept
+  DNSSRV_TYPEID_ADDRARRAY, and DNS_ADDR_ARRAY, and SHOULD accept
+  DNSSRV_TYPEID_IPARRAY and IP4_ARRAY. If the input data of either type is
+  accepted and the DNS server is <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0f196310-8f7b-462b-af06-6d955831d6f9" data-linktype="relative-path">directory server-integrated</a></span>,
+  the value of <i>pData</i> SHOULD be written to the directory server.<a id="Appendix_A_Target_235"></a><a aria-label="Product behavior note 235" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_235" data-linktype="relative-path">&lt;235&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AllowNSRecordsAutoCreation</p>
+  </td>
+  <td>
+  <p>On input dwTypeId MUST be set to DNSSRV_TYPEID_IPARRAY
+  or DNSSRV_TYPEID_ADDRARRAY and pData MUST point to a structure of type
+  IP4_ARRAY (section 2.2.3.2.1) or DNS_ADDR_ARRAY (section 2.2.3.2.3)
+  respectively, which contains a list of IP addresses of new servers that can
+  auto-create NS records for the zone pointed to by pszZone. This operation is
+  valid only for directory server integrated zones. The server SHOULD accept
+  DNSSRV_TYPEID_ADDRARRAY and DNS_ADDR_ARRAY, and SHOULD accept
+  DNSSRV_TYPEID_IPARRAY and IP4_ARRAY. If the input data of either type is
+  accepted and the DNS server is directory server-integrated, the value of <i>pData</i>
+  SHOULD be written to the directory server.<a id="Appendix_A_Target_236"></a><a aria-label="Product behavior note 236" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_236" data-linktype="relative-path">&lt;236&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BreakOnNameUpdate</p>
+  </td>
+  <td>
+  <p>On input dwTypeId MUST be set to DNSSRV_TYPEID_LPWSTR,
+  and pData MUST point to a Unicode string that contains the FQDN of the node
+  for which if an update is received the DNS server will execute a breakpoint.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SignZone</p>
+  </td>
+  <td>
+  <p>Sign a zone using DNSSEC, thus making the zone
+  online-signed. The dwTypeId and pData parameters MUST be set to zero/NULL by
+  the client and MUST be ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>UnsignZone</p>
+  </td>
+  <td>
+  <p>Unsign a zone signed via online signing and remove all
+  DNSSEC data from the zone. The dwTypeId and pData parameters MUST be set to
+  zero/NULL by the client and MUST be ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ResignZone</p>
+  </td>
+  <td>
+  <p>Refreshes all DNSSEC data in an online-signed zone.
+  The dwTypeId and pData parameters MUST be set to zero/NULL by the client and
+  MUST be ignored by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PerformZoneKeyRollover</p>
+  </td>
+  <td>
+  <p>Queues a signing key descriptor for <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bba25ad2-df77-44a6-80ce-527528948f8e" data-linktype="relative-path">key
+  rollover</a></span>. On input, dwTypeId MUST be set to DNSSRV_TYPEID_LPWSTR,
+  and pData MUST point to a Unicode string representation of the GUID of the
+  signing key descriptor to be queued for rollover.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PokeZoneKeyRollover</p>
+  </td>
+  <td>
+  <p>Instructs the DNS server to stop waiting for DS
+  records <span><a href="https://go.microsoft.com/fwlink/?LinkId=107052" data-linktype="external">[RFC4034]</a></span> in
+  the parent zone to be updated and to proceed with key rollover as specified
+  by <span><a href="https://go.microsoft.com/fwlink/?LinkId=225979" data-linktype="external">[RFC4641]</a></span>.
+  On input, dwTypeId MUST be set to DNSSRV_TYPEID_LPWSTR, and pData MUST point
+  to a Unicode string representation of the GUID of the signing key descriptor
+  to be queued for rollover.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RetrieveRootTrustAnchors</p>
+  </td>
+  <td>
+  <p>Retrieves the root trust anchors from the XML file
+  specified by the RootTrustAnchorsURL server property (section 3.1.1.1.3) and
+  adds any valid DS records to the root trust anchors. The dwTypeId and pData
+  parameters MUST be set to zero/NULL by the client and MUST be ignored by the
+  server. The pszZone parameter MUST be set to the string
+  &#34;TrustAnchors&#34; to indicate the name of the zone.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TransferKeymasterRole</p>
+  </td>
+  <td>
+  <p>Transfers the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0e6ec17a-5cf0-43f5-8454-e4c229c632a3" data-linktype="relative-path">key master</a></span> role to
+  the current server. The dwTypeId parameter MUST be set to
+  DNSSRV_TYPEID_DWORD, and pData MUST point to one of the values defined in the
+  following paragraphs.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CreateZoneScope</p>
+  </td>
+  <td>
+  <p>Creates a zone scope in the specified zone or a cache
+  scope in the specified cache zone. The dwTypeId parameter MUST be set to
+  DNSSRV_TYPEID_ZONE_SCOPE_CREATE. pData MUST point to a structure of the type <span><a href="cbe779f0-29b9-4a61-99fb-a1d9115d590f" data-linktype="relative-path">DNS_RPC_ZONE_SCOPE_CREATE_INFO_V1 (section 2.2.13.1.2.1)</a></span>
+  that contains all the parameters needed to create the zone scope or cache
+  scope. pszZone MUST be the name of the zone in which the zone scope is to be
+  created or be specified as &#34;..cache&#34; for a cache scope.<a id="Appendix_A_Target_237"></a><a aria-label="Product behavior note 237" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_237" data-linktype="relative-path">&lt;237&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DeleteZoneScope</p>
+  </td>
+  <td>
+  <p>Deletes a zone scope from the specified zone or a
+  cache scope from a specified cache zone. The dwTypeId MUST be set to
+  DNSSRV_TYPEID_LPWSTR. pData MUST point to the name of the zone scope or cache
+  scope that is to be deleted. pszZone MUST be the name of the zone from which
+  the zone scope is to be deleted or set to &#34;..cache&#34; for a cache
+  scope.<a id="Appendix_A_Target_238"></a><a aria-label="Product behavior note 238" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_238" data-linktype="relative-path">&lt;238&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CreatePolicy</p>
+  </td>
+  <td>
+  <p>Creates a DNS Policy for the specified zone or a cache
+  zone on a DNS server. The dwTypeId parameter MUST be set to
+  DNSSRV_TYPEID_POLICY, and pData MUST point to a structure of type
+  DNS_RPC_POLICY.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DeletePolicy</p>
+  </td>
+  <td>
+  <p>Deletes a DNS Policy for the specified zone or a cache
+  zone on a DNS server. The dwTypeId parameter MUST be set to
+  DNSSRV_TYPEID_LPWSTR, and pData MUST point to NULL-terminated Unicode string
+  containing the name of the DNS Policy.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>UpdatePolicy</p>
+  </td>
+  <td>
+  <p>Updates a DNS Policy for the specified zone or a cache
+  zone on a DNS server. The dwTypeId parameter MUST be set to
+  DNSSRV_TYPEID_POLICY, and pData MUST point to a structure of type
+  DNS_RPC_POLICY.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwTypeId: </b>A DNS_RPC_TYPEID (section 2.2.1.1.1)
+value that indicates the type of input data pointed to by pData.</p><p><b>pData: </b>Input data of type DNSSRV_RPC_UNION
+(section 2.2.1.2.6), which contains a data structure as specified by dwTypeId.</p><p><b>Return Values: </b>The method MUST return
+ERROR_SUCCESS (0x00000000) on success or a nonzero Win32 error code value if an
+error occurred. See <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>
+or section <span><a href="aa521c99-3e44-4b75-9faa-c0c1ebcca5b6" data-linktype="relative-path">2.2.1.1.5</a></span>. All
+error values MUST be treated the same.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>If the Global Server State (section <span><a href="bdac5142-4baf-4b62-bcce-d49eafc9c3e6" data-linktype="relative-path">3.1</a></span>) is not
+&#34;Running&#34;, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Check that the input parameters conform to the syntax
+requirements above, and if not, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>If pszZone is not NULL, search the DNS Zone Table (section 3.1)
+record for the zone with a name matching the value of pszZone. If a matching
+zone cannot be found, search the list of multizone operation strings for a name
+matching the value of pszZone. If a matching name cannot be found, return a
+failure.</p>
+</li><li><p><span><span> 
+</span></span>Validate, as specified in section <span><a href="7ba0801d-74f1-499e-81a3-00231ef31952" data-linktype="relative-path">3.1.6.1</a></span>, that the
+client has permissions to perform the attempted operation. If pszZone is NULL
+then the DNS server MUST perform the Phase 2 authorization test using the DNS Server
+Configuration Access Control List. If pszZone is not NULL then the DNS server
+MUST perform the Phase 2 authorization test using the Zone Access Control List
+for the zone specified by pszZone. Write privilege MUST be tested for all
+operations with the following exceptions:</p>
+<ul><li><p><span><span>  </span></span>If
+pszOperation is ZoneCreate, and if the zone will be created in the directory
+service, then Read privilege MUST be tested for.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is CreateZoneScope, and if the zone scope will be created in the
+directory service, then Read privilege MUST be tested for. </p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is DeleteZone, and if the zone is stored in the directory service,
+then Read privilege MUST be tested for.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is DeleteZoneScope, and if the zone scope is stored in the
+directory service, then Read privilege MUST be tested for.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is EnlistDirectoryPartition or ExportSettings, then Read privilege
+MUST be tested for.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the client does not have permission to perform the operation,
+return a failure.</p>
+</li><li><p><span><span> 
+</span></span>If dwContext is not zero or pszZone matches a multizone operation
+string, then find all zone records in the DNS Zone Table matching the specified
+multizone filter value.</p>
+</li><li><p><span><span> 
+</span></span>If pszZone is NULL and dwContext is zero, execute the operation
+indicated by the value of pszOperation, as follows:</p>
+<ul><li><p><span><span>  </span></span>If
+pszOperation is <b>ResetDwordProperty</b>, the server MUST verify that the
+property name matches a writable property name listed in section 3.1.1.1.1 for
+which the server supports the ResetDwordProperty operation and if not return an
+error. It SHOULD further verify that the value specified is either within the
+property&#39;s specified allowable range (including zero if it is specified that
+zero is allowed) and if not return an error. If the value is zero and zero is
+listed as a flag value for the default in section 3.1.1.1.1, the server SHOULD
+update the value of the property to be the default for the property and return
+success. The server MAY fail to verify these restrictions.<a id="Appendix_A_Target_239"></a><a aria-label="Product behavior note 239" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_239" data-linktype="relative-path">&lt;239&gt;</a> Otherwise, update the value
+of the property to be the new value specified and return success.<a id="Appendix_A_Target_240"></a><a aria-label="Product behavior note 240" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_240" data-linktype="relative-path">&lt;240&gt;</a> All properties are writable
+unless &#34;this property is read-only&#34; is specified in the property
+description in section 3.1.1.1.1.</p>
+</li><li><p><span><span>  </span></span>If <i>pszOperation</i>
+matches a property name in section 3.1.1.1.2, 3.1.1.1.3, or 3.1.1.1.4 for which
+the server supports this value reset operation, the server MUST update the
+value of the property to be the new value specified in pData and return
+success. If <i>pszOperation</i> matches a property name that the server does
+not support, the server MUST simply return failure.<a id="Appendix_A_Target_241"></a><a aria-label="Product behavior note 241" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_241" data-linktype="relative-path">&lt;241&gt;</a></p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is Restart, the server MUST restart the DNS server, and return
+success.</p>
+</li><li><p><span><span>  </span></span>During
+the restart operation, the DNS server MUST try to reload each <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bbe7722c-420e-48e7-b4bb-9838ff07b9e6" data-linktype="relative-path">zone
+scope</a></span> (if present) in a zone, one by one from the database. If the
+DNS server fails to load any of the scopes of the zone, it MAY log an error
+event and pursue the next scope and subsequently next zone.<a id="Appendix_A_Target_242"></a><a aria-label="Product behavior note 242" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_242" data-linktype="relative-path">&lt;242&gt;</a> No error MUST be returned to
+the user in the event of failure.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is ClearDebugLog, the server MUST copy the DNS log file specified
+by the DNS server&#39;s &#34;LogFilePath&#34; (section 3.1.1.1.3) property to the
+implementation-specific backup directory, if the directory already exists, and
+overwrite an existing backup directory log file if needed. If the directory
+does not exist, the copy action MUST NOT be performed. Then, the server MUST
+delete the current contents of the DNS log file, and return success. The server
+MUST return success even if file operations on the DNS log file fail.<a id="Appendix_A_Target_243"></a><a aria-label="Product behavior note 243" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_243" data-linktype="relative-path">&lt;243&gt;</a></p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is ClearCache, the server MUST delete all records cached by the
+DNS server in the cache zone from memory. If a cache scope is specified, delete
+all records only from that cache scope. If the server is configured to use
+directory server, the server MUST search for the cache zone (with the LDAP
+search operation), create (LDAP add) the zone if it doesn&#39;t exist, load (LDAP
+search) any default cache records into the local copy of the cache, and return
+success. If any of these LDAP operations fails, the server MUST return failure.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is WriteDirtyZones, the server MUST, for each primary zone or
+cache zone on the server: </p>
+<ul><li><p><span><span> 
+</span></span>Do nothing, if the zone&#39;s <b>Dirty Flag</b> (section 3.1.1) is
+set to FALSE and the zone is not configured with any zone scopes or the zone is
+not stored in a file.</p>
+</li><li><p><span><span> 
+</span></span>If the zone&#39;s <b>Dirty Flag</b> is set to TRUE, write the
+uncommitted information for the zone to the zone&#39;s file, send DNS notify (<span><a href="https://go.microsoft.com/fwlink/?LinkId=106957" data-linktype="external">[RFC1996]</a></span>)
+messages to all other servers hosting the zones, if they exist, and continue
+processing zones. If the zone specified is the cache zone, the server SHOULD
+write the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_87238b98-87ff-4d10-bc86-06cd6b3bad5c" data-linktype="relative-path">root hints</a></span> to their
+permanent storage. If the root hints are stored on the directory server and
+DownlevelDCsInDomain is nonzero, the server MUST check whether the root hints
+are empty. If the root hints are empty, the root hints MUST NOT be written to
+their permanent storage. Otherwise, if the root hints are stored on the
+directory server the server MUST use LDAP add, delete, and search operations to
+replace the root hints on the directory server. If there is a failure in
+writing the root hints records to the directory server, then the server MUST
+retry the write operation twice.</p>
+</li><li><p><span><span> 
+</span></span>If the zone is configured with scopes, then for each scope the
+operation attempts to write the scope data to their respective scope database
+files, if the scope&#39;s <b>Dirty Flag</b> (section 3.1.1) is set to TRUE. If any
+errors occur during this operation, then the operation SHOULD be continued with
+the next scope in the list and the appropriate error events SHOULD be logged.</p>
+</li><li><p><span><span> 
+</span></span>When all zones have been processed, the server SHOULD return
+success, regardless of the success or failure of any processing operation.<a id="Appendix_A_Target_244"></a><a aria-label="Product behavior note 244" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_244" data-linktype="relative-path">&lt;244&gt;</a></p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is ZoneCreate, the server MUST attempt to create a new zone entry
+in the DNS Zone Table using the parameters specified in pData, and return
+success or failure based on the result. </p>
+<ul><li><p><span><span> 
+</span></span>If the zone already exists, the server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>If the zone to be created will use the directory server for
+persistent storage, the server MUST identify the correct application directory
+partition for the zone.</p>
+<ul><li><p><span><span> 
+</span></span>If dwFlags has the DNS_ZONE_CREATE_FOR_DCPROMO <span><a href="../ms-dtyp/ece778e5-5d47-451b-bf03-e7ce94fc1fc4" data-linktype="relative-path">bit</a></span>
+set, this partition MUST be the DNS domain application directory partition.</p>
+</li><li><p><span><span> 
+</span></span>If dwFlags has the DNS_ZONE_CREATE_FOR_DCPROMO_FOREST bit set,
+this partition MUST be the DNS forest application directory partition.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, if the pszDpFqdn field is populated, this partition
+MUST be set to the value of that field.</p>
+</li><li><p><span><span> 
+</span></span>Or else, this partition MUST be set to the directory partition
+that represents the default naming context. (See the description of the DNS_DP_LEGACY
+value in section 3.1.1.2.1).<a id="Appendix_A_Target_245"></a><a aria-label="Product behavior note 245" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_245" data-linktype="relative-path">&lt;245&gt;</a></p>
+</li></ul></li><li><p><span><span> 
+</span></span>The server MUST perform an LDAP search to verify the existence of
+this application directory partition, and return a failure if it does not exist,
+with the following exceptions:</p>
+<ul><li><p><span><span> 
+</span></span>If dwFlags is set to DNS_ZONE_CREATE_FOR_DCPROMO and the DNS
+domain application directory partition does not exist or is not available, the
+server MUST replace the chosen partition with the directory partition that represents
+the default naming context.</p>
+</li><li><p><span><span> 
+</span></span>If dwFlags is set to DNS_ZONE_CREATE_FOR_DCPROMO_FOREST and the
+DNS forest application directory partition does not exist or is not available,
+the server MUST replace the chosen partition with the directory partition that
+represents the default naming context.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Once the existence of the chosen application directory partition
+has been verified, the server MUST then perform an LDAP search on that
+application directory partition to determine whether the zone already exists, and
+if so, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>If the zone does not exist in the chosen application directory
+partition, the server MUST create a dnsZone object (section <span><a href="74db40e1-0917-4ecb-863d-9bce5165ebf3" data-linktype="relative-path">2.3</a></span>)
+for the zone and its default records, represented as dnsNode objects (section
+2.3), in the chosen application directory partition using LDAP add operations
+and return success.</p>
+<ul><li><p><span><span> 
+</span></span>If dwFlags is set to DNS_ZONE_CREATE_FOR_DCPROMO, but the zone is
+being created in the directory partition representing the default naming
+context, the DcPromo Flag in the dnsZone object MUST be set to
+DCPROMO_CONVERT_DOMAIN. (See DcPromo Flag (section <span><a href="4ec7bdf7-1807-4179-96af-ce1c1cd448b7" data-linktype="relative-path">2.3.2.1.2</a></span>))</p>
+</li><li><p><span><span> 
+</span></span>If dwFlags is set to DNS_ZONE_CREATE_FOR_DCPROMO_FOREST, but the
+zone is being created in the directory partition representing the default
+naming context, the DcPromo Flag in the dnsZone object MUST be set to
+DCPROMO_CONVERT_FOREST. (See DcPromo Flag (section 2.3.2.1.2))</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If there is a failure in writing the records to the directory
+server, then the server MUST retry the write operation twice.</p>
+</li><li><p><span><span> 
+</span></span>If any of these LDAP operations cannot be completed, even after
+retries where specified, then the server MUST return failure.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is ClearStatistics, the server MUST clear internal server
+statistics, and return success.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is EnlistDirectoryPartition, the server SHOULD<a id="Appendix_A_Target_246"></a><a aria-label="Product behavior note 246" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_246" data-linktype="relative-path">&lt;246&gt;</a> perform an application
+directory partition operation as specified by the contents of the input
+DNS_RPC_ENLIST_DP (section 2.2.7.2.5) structure. The procedures for these
+operations are described below:</p>
+<ul><li><p><span><span> 
+</span></span>If pszOperation is EnlistDirectoryPartition, and the
+DNS_DP_OP_CREATE_FOREST or DNS_DP_OP_CREATE_DOMAIN operations are specified by
+the contents of the input DNS_RPC_ENLIST_DP structure, the server SHOULD:</p>
+<ul><li><p><span><span> 
+</span></span>Check its local state to determine whether the partition
+specified by dwOperation is already present, and if so, the server MUST check
+its local state to determine whether it is not enlisted in the partition, and
+if so, connect to the directory server that is the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_de81e9fd-25f5-4e90-aadb-1d35c5e8a06b" data-linktype="relative-path">FSMO role owner</a></span> of
+the domain naming master <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_73841222-e9d8-4dc1-83a1-206c75f4f90f" data-linktype="relative-path">FSMO role</a></span> and
+perform an LDAP modify operation to add or remove the local server&#39;s name from
+the enlistment list (distinguished name &#34;msDS-NC-Replica-Locations&#34; <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_8b0a073b-3099-4efe-8b81-c2886b66a870" data-linktype="relative-path">RODCs</a></span>
+use &#34;msDS-NC-RO-Replica-Locations&#34;).<a id="Appendix_A_Target_247"></a><a aria-label="Product behavior note 247" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_247" data-linktype="relative-path">&lt;247&gt;</a>. If,
+based on the local state, the partition already exists and this server is
+enlisted or any of the above LDAP operations cannot be completed, then the server
+MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Or, if based on the server&#39;s local state, the partition does not
+exist in the Application Directory Partition Table, create (but not enlist
+itself in) the partition object using LDAP add commands and add the partition
+object to the Application Directory Partition Table, returning a failure if
+either of these operations fails to complete successfully.</p>
+</li><li><p><span><span> 
+</span></span>Poll the directory server for the partitions and enlistment
+status using LDAP search operations (to update the local state) and return
+success. If any LDAP operation cannot be completed, then the server MUST return
+a failure.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If pszOperation is EnlistDirectoryPartition, and the
+DNS_DP_OP_ENLIST or DNS_DP_OP_UNENLIST operations are specified by the contents
+of the input DNS_RPC_ENLIST_DP structure, the server SHOULD:</p>
+<ul><li><p><span><span> 
+</span></span>Check whether the application directory partition specified is
+either the domain global partition or the forest global partition and whether
+the operation specified is not DNS_DP_OP_ENLIST, and if the preceding conditions
+are true, the server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Check whether, instead, the operation specified is
+DNS_DP_OP_ENLIST and the partition specified is the domain or forest global
+partition, and if so, the server MUST connect to the directory server that is
+the FSMO role owner of the Domain naming master FSMO role and perform an LDAP
+modify operation to add or remove the local server&#39;s name from the enlistment
+list (distinguished name &#34;msDS-NC-Replica-Locations&#34; (RODCs use
+&#34;msDS-NC-RO-Replica-Locations&#34;<a id="Appendix_A_Target_248"></a><a aria-label="Product behavior note 248" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_248" data-linktype="relative-path">&lt;248&gt;</a>)) and
+return success.</p>
+</li><li><p><span><span> 
+</span></span>Check whether the application directory partition specified is
+neither the domain global partition nor the forest global partition, and if so,
+the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Poll the directory server for the partitions and enlistment
+status using LDAP search operations (to update the local Application Directory
+Partition Table), and then:</p>
+</li><li><p><span><span> 
+</span></span>Check the local Application Directory Partition Table for the
+requested partition, and if the partition does not exist, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the server MUST check whether the server is already
+enlisted and the operation is DNS_DP_OP_ENLIST or the server is already
+unenlisted and the operation is DNS_DO_OP_UNENLIST, and if so, return a
+failure.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the server MUST connect to the directory server that
+is the FSMO role owner of the Domain naming master FSMO role, and perform an
+LDAP modify operation to add or remove (for DNS_DP_OP_ENLIST and
+DNS_DP_OP_UNENLIST, respectively) the local server&#39;s name from the enlistment
+list (distinguished name &#34;msDS-NC-Replica-Locations&#34; (RODCs use
+&#34;msDS-NC-RO-Replica-Locations&#34;)), and return success.</p>
+</li><li><p><span><span> 
+</span></span>If any of the above LDAP operations cannot be completed, then the
+server MUST return a failure.</p>
+<p>If the zone was successfully
+loaded then the DNS server MUST set the zone&#39;s Shutdown flag to zero (section <span><a href="015f97af-ba50-48bb-af44-4a542f3ff44a" data-linktype="relative-path">2.2.5.2.2</a></span>).</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>If pszOperation is EnlistDirectoryPartition, and the
+DNS_DP_OP_CREATE operation is specified by the contents of the input
+DNS_RPC_ENLIST_DP structure, the server SHOULD:</p>
+<ul><li><p><span><span> 
+</span></span>Check whether the application directory partition specified is
+either the domain global partition or the forest global partition, and if so,
+perform the procedure described above for DNS_DP_OP_CREATE_DOMAIN or
+DNS_DP_OP_CREATE_FOREST, respectively.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, poll the directory server for the partitions and
+enlistment status using LDAP search operations (to update the local Application
+Directory Partition Table), and then check the local Application Directory
+Partition Table for the requested partition. If the partition already exists,
+the server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the server MUST connect to the directory server and
+create the partition (an LDAP domainDNS object) using the LDAP add operation,
+poll the directory server for the partitions and enlistment status, update the
+local Application Directory Partition Table, attempt to create the MicrosoftDNS
+object using LDAP add operations, and return success.</p>
+</li><li><p><span><span> 
+</span></span>If any of the above LDAP operations other than the creation of
+the MicrosoftDNS object cannot be completed, then the server MUST return a
+failure.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If pszOperation is EnlistDirectoryPartition, and the
+DNS_DP_OP_DELETE operation is specified by the contents of the input DNS_RPC_ENLIST_DP
+structure, the server SHOULD:</p>
+<ul><li><p><span><span> 
+</span></span>Poll the directory server for the partitions and enlistment
+status using LDAP search operations (to update the local Application Directory
+Partition Table), and then check the local Application Directory Partition
+Table for the requested partition. If the partition does not exist, the server
+MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the server MUST connect to the directory server that
+is the FSMO role owner of the Domain naming master FSMO role and perform an
+LDAP delete operation on the distinguished name of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_353fac65-0774-4ba8-8081-eb4c963f94e7" data-linktype="relative-path">crossRef
+object</a></span> of the specified application directory partition, and if
+successful, again poll the directory server to update the local Application Directory
+Partition Table and return success.</p>
+</li><li><p><span><span> 
+</span></span>If any of the above LDAP operations fails, then the server MUST
+return a failure. Any LDAP delete operation MUST have no client-side time
+limit. The server MUST NOT retry any failed LDAP operation.</p>
+</li></ul></li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is StartScavenging, the server MUST initiate a resource record
+scavenging cycle on the DNS server, and return success.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is AbortScavenging, the server MUST terminate a resource record
+scavenging cycle on the DNS server if one is currently in progress, and return
+success.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is AutoConfigure, the server SHOULD perform DNS server
+autoconfiguration as specified by the contents of the input
+DNS_RPC_AUTOCONFIGURE (section 2.2.8.2.1) structure, and return success or
+failure based on the results of this operation.<a id="Appendix_A_Target_249"></a><a aria-label="Product behavior note 249" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_249" data-linktype="relative-path">&lt;249&gt;</a> To
+perform DNS server autoconfiguration, the server SHOULD:</p>
+<ul><li><p><span><span> 
+</span></span>Configure <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_025cfacf-ebc5-4659-971a-ee2ab5903575" data-linktype="relative-path">forwarders</a></span>, if specified
+by the input flags and if the server does not currently have any forwarders
+configured. The list of forwarders is built by querying other servers that host
+the domain specified in the input arguments and by attempting to copy their
+forwarder list using the ServerInfo feature of the <span><a href="b0419a70-ac0b-40ba-ab94-1510992bc574" data-linktype="relative-path">R_DnssrvQuery (section 3.1.4.2)</a></span>
+operation. If forwarders cannot be copied from another server, the list of
+forwarders is copied from the local machine&#39;s DNS client&#39;s list of DNS servers.</p>
+</li><li><p><span><span> 
+</span></span>Configure root hints, if specified by the input flags. The list
+of root hints is built by querying the each DNS server on each local network
+adapter for the root DNS name.</p>
+</li><li><p><span><span> 
+</span></span>Perform self-pointing, if either of the following is true:</p>
+<ul><li><p><span><span> 
+</span></span>The DNS server is directory services-integrated and is the first
+DNS server in the directory services forest, and the
+DNS_RPC_AUTOCONFIG_INTERNAL_ZONES flag is set.</p>
+</li><li><p><span><span> 
+</span></span>Any of the DNS_RPC_AUTOCONFIG_INTERNAL_SELFPOINT,
+DNS_RPC_AUTOCONFIG_INTERNAL_SELFPOINT_PREPEND, or
+DNS_RPC_AUTOCONFIG_INTERNAL_SELFPOINT_APPEND flags are set.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>To perform self-pointing, for each enabled network adapter and
+for each enabled IP stack (IPv4 or IPv6) on that adapter, the server SHOULD do
+one of the following:</p>
+<ul><li><p><span><span> 
+</span></span>If the DNS_RPC_AUTOCONFIG_INTERNAL_SELFPOINT flag is set, replace
+the adapter&#39;s IP stack&#39;s DNS servers list with the loopback address.</p>
+</li><li><p><span><span> 
+</span></span>If the DNS_RPC_AUTOCONFIG_INTERNAL_SELFPOINT_PREPEND flag is set
+and the loopback address is not already present, insert the loopback address at
+the start of the adapter&#39;s IP stack&#39;s DNS server list.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, if the loopback address is not already present, insert
+the loopback address at the end of the adapter&#39;s IP stack&#39;s DNS server list.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, make no change to the adapter&#39;s IP stack&#39;s DNS server
+list.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Create the forest root domain and its &#34;_msdcs&#34;
+subdomain, if specified by the input flags, and the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_c36db657-3138-4d9a-9289-ded5cbb8b40e" data-linktype="relative-path">directory service</a></span>
+domain name of this DNS server matches the directory services forest root
+domain name, and the domains do not already exist. These two domains are
+created using LDAP add operations, followed by additional LDAP add operations
+to install the default records for those domains. If there is a failure in
+writing the records to the directory server, then the server MUST retry the
+write operation twice.</p>
+<p>If any operation (including
+LDAP operations) fails, continue processing but record the fact that a failure
+occurred. At the end of processing, if the DNS_RPC_AUTOCONFIG_INTERNAL_RETURN_ERRORS
+input flag (section 2.2.8.1.1) is set, return an error; otherwise, return
+success.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is ExportSettings, the server SHOULD<a id="Appendix_A_Target_250"></a><a aria-label="Product behavior note 250" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_250" data-linktype="relative-path">&lt;250&gt;</a> export
+DNS settings to a file on the DNS server, and return success.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is PrepareForDemotion, the server SHOULD<a id="Appendix_A_Target_251"></a><a aria-label="Product behavior note 251" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_251" data-linktype="relative-path">&lt;251&gt;</a> prepare the DNS server for
+demotion by removing references to this DNS server from all zones stored in the
+directory server, and return success.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is PrepareForUninstall, the server SHOULD<a id="Appendix_A_Target_252"></a><a aria-label="Product behavior note 252" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_252" data-linktype="relative-path">&lt;252&gt;</a> do nothing, and return
+success.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is DeleteNode, the server MUST check whether the specified node is
+empty or does not currently exist and return ERROR_SUCCESS if so. Otherwise it
+MUST delete all DNS records at the node pointed to by pszNodeName from the DNS
+server&#39;s cache. It MUST also delete all DNS records in the node&#39;s subtree if
+specified by the Boolean flag pointed to by dwParam field in pData, and return
+success.  If the dwParam field in pData is set to FALSE and the node contains
+subtrees, both the node and its subtrees MUST NOT be deleted and a success
+status is returned. If the zone is directory server-integrated, the DNS server
+MUST set the node&#39;s DNS Node Tombstone State (section 3.1.1) to TRUE by setting
+the value of the dnsTombstoned attribute to TRUE, and writing a
+DNS_RPC_RECORD_TS (section <span><a href="def7736a-dd09-4b4a-b8d6-6a702a7ecde0" data-linktype="relative-path">2.2.2.2.4.23</a></span>) in
+the <b>dnsRecord</b> attribute.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is DeleteRecordSet, the server MUST check whether the specified
+node is empty or does not currently exist and return ERROR_SUCCESS if so. Otherwise
+it MUST delete all DNS records of the type specified by the dwParam field in
+pData from the node pointed to by pszNodeName in the DNS server&#39;s cache and
+return success. If this operation deletes the last record from the node and the
+zone is directory server-integrated, the DNS server MUST set the node&#39;s DNS
+Node Tombstone State (section 3.1.1) to TRUE by setting the value of the
+dnsTombstoned attribute to TRUE and writing a DNS_RPC_RECORD_TS (section
+2.2.2.2.4.23) in the <b>dnsRecord</b> attribute.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is WriteBackFile, the server SHOULD write the root hints to their
+permanent storage. If the root hints are stored on the directory server and
+DownlevelDCsInDomain is nonzero, the server MUST check whether the root hints
+are empty. If the root hints are empty, the root hints MUST NOT be written to
+their permanent storage. Otherwise, if the root hints are stored on the
+directory server, the server MUST use LDAP add, delete, and search operations
+to replace the root hints on the directory server and return success,
+regardless of the success or failure of these operations. If there is a failure
+in writing the root hints records to the directory server, then the server MUST
+retry the write operation twice, and still return success, even if the retries
+fail.<a id="Appendix_A_Target_253"></a><a aria-label="Product behavior note 253" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_253" data-linktype="relative-path">&lt;253&gt;</a></p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is LogFilePath, the server MUST store the value passed in pData to
+be returned, unchanged, in future server information queries. Further, if pData
+is a NULL pointer or it points to an empty string, the server MUST replace
+pData&#39;s present value with the path to the default implementation specific log
+file. Finally, the server MUST attempt to create and/or open for write the file
+specified by the string. If the string is a filename or relative path, the
+server MUST attempt to create the file relative to the default implementation
+specific log file path.<a id="Appendix_A_Target_254"></a><a aria-label="Product behavior note 254" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_254" data-linktype="relative-path">&lt;254&gt;</a> If the
+file is opened successfully, then the server MUST commence logging to file and
+return success. Otherwise, it MUST disable logging to file and return a
+failure.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is ListenAddresses, the server MUST search the incoming array for
+loopback, multicast, or broadcast addresses, and if any are found, return a
+failure. Otherwise, the server MUST remove any addresses from the input that
+are not IPv4 addresses and create a backup copy of the current listen
+addresses. Then the server MUST attempt to listen on the network interfaces
+specified by the new listen addresses from the incoming array, and if this
+attempt fails, the server MUST restore the previous listen addresses and return
+a failure. Otherwise, the server MUST attempt to update the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0365bdcc-f1f5-4494-b57c-02c897b7ea8a" data-linktype="relative-path">SOA</a></span>
+records for its <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_ed54858d-02e4-4de3-b65b-e0b81c4185c7" data-linktype="relative-path">authoritative</a></span> zones
+with the new listen addresses and MUST return success even if the attempt
+fails. If a zone is directory services-integrated, the server MUST use the LDAP
+search, add, and delete operations to update the SOA records and return success
+even if there were unsuccessful LDAP calls. If there is a failure in modifying
+the records on the directory server, then the server MUST retry the write
+operation twice, and still return success even if the retries fail.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is ServerLevelPluginDll, the server MUST store the value passed in
+pData and return SUCCESS, indicating only that the value was successfully
+received. The server MUST NOT validate the value passed, nor attempt to load
+the DLL, until the server is restarted. When the server restarts, if the value
+stored for ServerLevelPluginDll is not an empty string, the server MUST attempt
+to load the DLL specified. If the DLL fails to load for any reason, the server
+MUST fail to start. If the DLL has been loaded, then whenever the server is
+required to invoke the DLL query function, the server MUST invoke the query
+function of the DLL with a query name and type and add any resulting records to
+the server&#39;s <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_2f48e305-acf2-470e-b481-a0b7cc5fae4f" data-linktype="relative-path">cache</a></span>. Whenever the
+server processes a query, if the DLL has been loaded, the server MUST invoke
+the query function of the DLL in the following conditions:</p>
+<ul><li><p><span><span> 
+</span></span>If a query cannot be answered with the information already
+present in the server&#39;s zone database and cache, then prior to recursing (if
+applicable), invoke the DLL query function and try again to answer the query
+from local data.</p>
+</li><li><p><span><span> 
+</span></span>If a response SHOULD have records in its additional section but
+no such records are in the server&#39;s cache or zone database, invoke the DLL
+query function and attempt again to find records for the additional section.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is ActiveRefreshAllTrustPoints, the server MUST schedule an RFC
+5011 active refresh for all configured trust points (if any) and return
+success.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is DeleteServerScope, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>If the server scope specified in pData does not exist, return
+DNS_ERROR_SCOPE_DOES_NOT_EXIST (9959).</p>
+</li><li><p><span><span> 
+</span></span>If the server scope is being used by a DNS Policy (section <span><a href="dd2e4ce5-6eea-4dc4-b9f7-058eb9703381" data-linktype="relative-path">2.2.15.2.2</a></span>),
+return DNS_ERROR_SERVERSCOPE_IS_REFERENCED (9988).</p>
+</li><li><p><span><span> 
+</span></span>The DNS server MUST attempt to delete the server scope in the DNS
+server, and return success or failure based on the result.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is CreateClientSubnetRecord, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>If the Client Subnet Record already exists, return
+DNS_ERROR_CLIENT_SUBNET_DOES_EXIST (9976).</p>
+</li><li><p><span><span> 
+</span></span>The DNS server MUST attempt to create a new Client Subnet Record
+entry in the DNS server using the parameters specified in pData, and return
+success or failure based on the result.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is DeleteClientSubnetRecord, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>If the Client Subnet Record specified in pData does not exist,
+return DNS_ERROR_CLIENT_SUBNET_DOES_NOT_EXIST (9976).</p>
+</li><li><p><span><span> 
+</span></span>If the Client Subnet Record is being used by a DNS Policy in its
+Client Subnet Record criteria, then the DNS server MUST return
+DNS_ERROR_CLIENT_SUBNET_IS_ACCESSED (9975).</p>
+</li><li><p><span><span> 
+</span></span>The DNS server MUST attempt to delete the Client Subnet Record
+entry in the DNS server, and return success or failure based on the result.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is DeleteSubnetsInRecord, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>If the Client Subnet Record specified in pData does not exist,
+return DNS_ERROR_CLIENT_SUBNET_DOES_NOT_EXIST (9976).</p>
+</li><li><p><span><span> 
+</span></span>If the IP/IPv6 Subnets specified in pData do not exist in the
+Client Subnet Record on the DNS server, return DNS_ERROR_SUBNET_DOES_NOT_EXIST
+(9978).</p>
+</li><li><p><span><span> 
+</span></span>If deletion of the IP/IPv6 subnets results in the Client Subnet
+Record not having an IP or IPv6 subnet, return DNS_ERROR_ADDRESS_REQUIRED
+(9573).</p>
+</li><li><p><span><span> 
+</span></span>The DNS server MUST attempt to delete the IP/IPv6 Subnets in the
+Client Subnet Record on the DNS server, and return success or failure based on
+the result.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is AddSubnetsInRecord, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>If the Client Subnet Record specified in pData does not exist,
+return DNS_ERROR_CLIENT_SUBNET_DOES_NOT_EXIST (9976).</p>
+</li><li><p><span><span> 
+</span></span>If the IP/IPv6 Subnets specified in pData exists in the Client
+Subnet Record on the DNS server, return DNS_ERROR_SUBNET_DOES_EXIST (9978).</p>
+</li><li><p><span><span> 
+</span></span>The DNS server MUST attempt to add the IP/IPv6 Subnets in the
+Client Subnet Record on the DNS server, and return success or failure based on
+the result.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is ResetClientSubnetRecord, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>If the Client Subnet Record specified in pData does not exist,
+return DNS_ERROR_CLIENT_SUBNET_DOES_NOT_EXIST (9976).</p>
+</li><li><p><span><span> 
+</span></span>If no IP or IPv6 subnets are specified, return
+DNS_ERROR_ADDRESS_REQUIRED (9573).</p>
+</li><li><p><span><span> 
+</span></span>The DNS server MUST delete the existing IP/IPv6 Subnets in the
+Client Subnet Record and add the IP/IPv6 Subnets specified in pData in the
+Client Subnet Record on the DNS server, and return success or failure based on
+the result.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is CreatePolicy, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>The DNS server validates whether the DNS Policy parameters
+specified in pData are valid. If the parameters are invalid the server returns
+DNS_ERROR_POLICY_INVALID_SETTINGS (9974). See DNS Policy Validation (section <span><a href="43a6fc0b-785a-43bb-91d3-b5a4f366fdf5" data-linktype="relative-path">3.1.8.3</a></span>)
+for details.</p>
+</li><li><p><span><span> 
+</span></span>If the DNS Policy pdata parameter dwProcessingOrder is greater
+than the highest Processing Order in the given level and appliesOn, return
+DNS_ERROR_POLICY_INVALID_SETTINGS (9974).</p>
+</li><li><p><span><span> 
+</span></span>If the DNS Policy pdata parameter pwszPolicyName already exists,
+return DNS_ERROR_POLICY_ALREADY_EXISTS (9971). The policy name check is done
+for the policies configured on the server level.</p>
+</li><li><p><span><span> 
+</span></span>If the value weight in pContentList is 0, as defined in
+DNS_RPC_POLICY_CONTENT (section 2.2.15.2.2), the DNS server returns
+DNS_ERROR_POLICY_INVALID_WEIGHT (9981). Allowed values for weight are any
+positive number from 1 to 0xFFFFFFFF.</p>
+</li><li><p><span><span> 
+</span></span>If DNS Policy pdata parameter dwProcessingOrder is 0, reset the
+processing order to the last processing order for the given level and
+appliesOn.</p>
+</li><li><p><span><span> 
+</span></span>Create the new DNS Policy in the DNS server, and return success
+or failure based on the result. This DNS Policy is applicable to the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_8536bec5-df4d-4463-82bc-4434a7ea493f" data-linktype="relative-path">DNS
+operations</a></span> at the server level.</p>
+</li><li><p><span><span> 
+</span></span>If DNS Policy pdata parameter dwProcessingOrder is same as an
+existing DNS Policy in the given level and appliesOn, update this new policy to
+have this new processing order and increment all DNS Policies whose processing
+order is equal to or greater than this processing order by 1.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is DeletePolicy, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>If the DNS Policy name specified in pData does not exist in the
+DNS server, return DNS_ERROR_POLICY_DOES_NOT_EXIST (9972).</p>
+</li><li><p><span><span> 
+</span></span>Delete the DNS Policy in the DNS server, and return success or
+failure based on the result.</p>
+</li><li><p><span><span> 
+</span></span>Reset the processing order of all policies whose processing order
+is greater than the processing order of the deleted policy by 1 for the given
+level and appliesOn.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is UpdatePolicy, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>If the DNS Policy name specified in the pwszPolicyName of pData
+does not exist in the server level policies of the DNS server, return
+DNS_ERROR_POLICY_DOES_NOT_EXIST (9972).</p>
+</li><li><p><span><span> 
+</span></span>If the flags member of DNS_RPC_POLICY has
+DNS_RPC_FLAG_POLICY_PROCESSING_ORDER set, the processing order of the DNS
+policy is changed to the new processing order given in input pData. The
+processing order of other DNS Policies at the server level for the given
+appliesOn is adjusted accordingly.</p>
+</li><li><p><span><span> 
+</span></span>If the flags member of DNS_RPC_POLICY has
+DNS_RPC_FLAG_POLICY_CONDITION set then the Condition of the DNS Policy is
+changed to the condition specified in the input pData.</p>
+</li><li><p><span><span> 
+</span></span>If the flags member of DNS_RPC_POLICY has
+DNS_RPC_FLAG_POLICY_CONTENT set then the content of the DNS Policy is changed
+to the content specified in pData.</p>
+</li><li><p><span><span> 
+</span></span>If any criteria flags specified in Criteria Constants are set,
+criteria values are removed from the DNS Policy and new criteria values
+specified in pData are set.</p>
+</li><li><p><span><span> 
+</span></span>Delete the DNS Policy on the DNS server, and return success or
+failure based on the result.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is SetRRL, the server MUST do the following. All fields are
+defined in section <span><a href="c0166ded-6a52-47b2-b914-6dd2ae4d61f0" data-linktype="relative-path">2.2.16.2.1</a></span>:</p>
+<ul><li><p><span><span> 
+</span></span>Validate the DNS RRL parameters specified in pData and return one
+of the following error codes if the DNS RRL parameters specified in pData are invalid:</p>
+<ul><li><p><span><span> 
+</span></span>If the <i>dwLeakRate</i> field is invalid, return
+DNS_ERROR_RRL_INVALID_LEAK_RATE (9916).</p>
+</li><li><p><span><span> 
+</span></span>If the <i>dwTCRate</i> is field is invalid, return
+DNS_ERROR_RRL_INVALID_TC_RATE (9915).</p>
+</li><li><p><span><span> 
+</span></span>If the <i>dwWindowSize</i> field is invalid, return
+DNS_ERROR_RRL_INVALID_WINDOW_SIZE (9912).</p>
+</li><li><p><span><span> 
+</span></span>If the <i>dwIPv4PrefixLength</i> field is invalid, return
+DNS_ERROR_RRL_INVALID_IPV4_PREFIX (9913).</p>
+</li><li><p><span><span> 
+</span></span>If the <i>dwIPv6PrefixLength</i> field is invalid, return
+DNS_ERROR_RRL_INVALID_IPV6_PREFIX (9914).</p>
+</li><li><p><span><span> 
+</span></span>If the <i>dwLeakRate</i> field is less than <i>dwTCRate</i> and
+none of the fields are 0, return DNS_ERROR_RRL_LEAK_RATE_LESSTHAN_TC_RATE
+(9917).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set the RRL parameters in the DNS server based on the passed flag
+value. Update values only for parameters for which the flag is set. Return
+success or failure based on the result.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>fSetDefault</i> value is set, ignore all other
+parameters and reset all parameters except the RRL mode to default values. </p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is CreateVirtualizationInstance, the server MUST do the following.</p>
+<ul><li><p><span><span> 
+</span></span>Verify that the length of pwszVirtualizationID does not exceed
+the maximum allowed. If the maximum is exceeded, then the DNS server MUST
+return error DNS_ERROR_INVAILD_VIRTUALIZATION_INSTANCE_NAME (9924). If a
+virtualization instance in the DNS server already exists with same
+pwszVirtualizationID, then the DNS server MUST return the error
+DNS_ERROR_VIRTUALIZATION_INSTANCE_ALREADY_EXISTS (9921).</p>
+</li><li><p><span><span> 
+</span></span>On success, the DNS server creates a virtualization instance;
+otherwise, return failure.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is DeleteVirtualizationInstance, the server MUST do the following.</p>
+<ul><li><p><span><span> 
+</span></span>Check whether a virtualization instance exists in the DNS server
+with the name pwszVirtualizationID. If it does not, the DNS server MUST return
+the error DNS_ERROR_VIRTUALIZATION_INSTANCE_DOES_NOT_EXIST (9922).</p>
+</li><li><p><span><span> 
+</span></span>If a virtualization instance already exists, then the DNS server
+MUST delete all zone and zone scopes under the virtualization instance.</p>
+</li><li><p><span><span> 
+</span></span>If dwFlag is set to DNS_RPC_FLAG_PRESERVE_ZONE_FILE in input
+DNS_RPC_VIRTUALIZATION_INSTANCE, then the DNS server MUST keep the zone files
+of the zones and zone scopes under the virtualization instance intact.
+Otherwise, zone files of zones and zone scopes under the virtualization
+instance MUST be deleted.</p>
+</li><li><p><span><span> 
+</span></span>On success, the DNS server removes the virtualization instance
+given by that name. Otherwise, an error is returned.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is UpdateVirtualizationInstance, the server MUST do the following.</p>
+<ul><li><p><span><span> 
+</span></span>Check whether the length of pwszVirtualizationID is more than the
+maximum allowed, then return the error
+DNS_ERROR_INVAILD_VIRTUALIZATION_INSTANCE_NAME (9924).</p>
+</li><li><p><span><span> 
+</span></span>Check whether a virtualization instance already exists in the DNS
+server by the name pwszVirtualizationID. If it does not, return the error
+DNS_ERROR_VIRTUALIZATION_INSTANCE_DOES_NOT_EXIST (9922).</p>
+</li><li><p><span><span> 
+</span></span>If a virtualization instance already exists, then the DNS server MUST
+update those properties of the virtualization instance as given by dwFlags of
+input DNS_RPC_VIRTUALIZATION_INSTANCE (section <span><a href="44d991d5-392a-48e7-827f-a1ccbe22ddef" data-linktype="relative-path">2.2.17.1.1</a></span>).
+Otherwise, an error is returned.</p>
+</li></ul></li></ul><p>If pszZone is not NULL and is not
+a valid multizone operation string, then the server MUST return a failure if it
+does not contain a zone with the name matching the string pointed to by
+pszZone. If pszZone is not NULL or if the value of dwContext specifies a
+multizone operation, the server MUST execute the operation indicated by the
+value of pszOperation individually for each zone specified by the values of
+dwContext and pszZone. If a zone operation is performed with a filter in
+dwContext or a multizone operation string in pszZone, and no zones match the
+specified filter or satisfy the multizone operation string, the server MUST
+return ERROR_SUCCESS (0x00000000). If the operation is executed for more than
+one zone, then for each matching zone, the specified operation MUST be executed
+with pszZone replaced with the name of the matching zone. If any of these
+multiple operations return an error, the server MUST return an error;
+otherwise, the server MUST return success. For any operation, if the specified
+zone is marked as &#34;AutoCreated&#34;, the DNS server MUST return an error.</p>
+<ul><li><p><span><span>  </span></span>If
+pszOperation is ResetDwordProperty, the server MUST verify that the property
+name matches a property name listed in section 3.1.1.2.1 for which the server
+supports the ResetDwordProperty operation and return an error if there is no
+match. If the property is specified as &#34;read-only&#34; in section
+3.1.1.2.1, the server MUST return an error. If the zone specified is a cache
+zone, the server MUST return an error. It MUST further verify that the value
+specified is within the property&#39;s allowable range (if specified) and if not
+return an error. When the property specified is Boolean and the value to be set
+is greater than 0x00000001, the server MUST replace the value with 0x00000001.
+If the property name is &#34;AllowUpdate&#34;, the server MUST return an
+error when the zone specified is not <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a></span>-integrated
+and the requested value is ZONE_UPDATE_SECURE, or when the zone specified is
+not a primary zone. If the property name is &#34;AllowUpdate&#34; and the
+value is not ZONE_UPDATE_OFF (section <span><a href="d4b84209-f00c-478f-80d7-8dd0f1633d9e" data-linktype="relative-path">2.2.6.1.1</a></span>), then
+the server SHOULD invoke the <b>NetlogonControl2Ex</b> method with function
+code <b>NETLOGON_CONTROL_FORCE_DNS_REG</b> on the Netlogon protocol
+implementation on the local domain controller (DC). (See <span><a href="../ms-nrpc/ff8f970f-3e37-40f7-bd4b-af7336e4792f" data-linktype="relative-path">[MS-NRPC]</a></span>
+section <span><a href="../ms-nrpc/df7e5dd1-ebcc-4754-9da0-2e0bded82d29" data-linktype="relative-path">3.5.4.9.1</a></span>.)<a id="Appendix_A_Target_255"></a><a aria-label="Product behavior note 255" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_255" data-linktype="relative-path">&lt;255&gt;</a> If the property name is
+&#34;Aging&#34;, the property value is TRUE, and the zone&#39;s Aging state is
+FALSE, then the server MUST reset the zone&#39;s Aging time by updating the
+dwAvailForScavengeTime (section <span><a href="e8651544-0fbb-4038-8232-375ff2d8a55e" data-linktype="relative-path">2.2.5.2.4.1</a></span>) value
+to the current time value, incremented by dwRefreshInterval (section
+2.2.5.2.4.1).<a id="Appendix_A_Target_256"></a><a aria-label="Product behavior note 256" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_256" data-linktype="relative-path">&lt;256&gt;</a> If the value is zero and zero
+is listed as a flag value for the default in section 3.1.1.2.1, the server MUST
+update the value of the property to be the default for that property, and
+return success. Otherwise, the server MUST update the value of the property for
+the zone to be the new value specified, and return success.<a id="Appendix_A_Target_257"></a><a aria-label="Product behavior note 257" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_257" data-linktype="relative-path">&lt;257&gt;</a></p>
+</li><li><p><span><span>  </span></span>If
+pszOperation matches a property name listed in section 3.1.1.2.2 or section
+3.1.1.2.3 for which the server supports this property reset operation, the
+server MUST update the value of the property for the zone to be the new value
+specified, and return success.<a id="Appendix_A_Target_258"></a><a aria-label="Product behavior note 258" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_258" data-linktype="relative-path">&lt;258&gt;</a>
+Otherwise, the server MUST return a nonzero error code.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is ZoneTypeReset, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Check whether the requested zone type, directory server
+integration, and (if applicable) application directory partition match the
+zone&#39;s present state, and if so, return success.</p>
+</li><li><p><span><span> 
+</span></span>Check whether the zone is directory server integrated and
+currently in the process of loading, and if so, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Verify, if the requested zone type is primary, that:</p>
+<ul><li><p><span><span> 
+</span></span>There is a complete copy of the zone on the server (that is, the
+zone is not a forwarder or stub zone).</p>
+</li><li><p><span><span> 
+</span></span>If the fDSIntegrated flag is TRUE:</p>
+<ul><li><p><span><span> 
+</span></span>If the zone is a primary zone, that it is not empty.</p>
+</li><li><p><span><span> 
+</span></span>If the zone is currently directory-server-integrated, it is
+already stored in the requested by pszDpFqdn, and is not a secondary or cache
+zone.</p>
+</li><li><p><span><span> 
+</span></span>If the zone is currently not directory-server-integrated, it is
+either a cache zone or a primary zone.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the fDSIntegrated flag is FALSE, that:</p>
+<ul><li><p><span><span> 
+</span></span>A copy of the zone is present in local persistent storage.</p>
+</li><li><p><span><span> 
+</span></span>The zone is not shutdown, or empty.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If any of the verifications fails, return a failure.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Check whether the requested zone type is secondary, and if so,
+reset the fDSIntegrated flag of the present zone to false.</p>
+</li></ul><p>Otherwise, the server MUST, in
+accordance with the operation specified:</p>
+<ul><li><p><span><span> 
+</span></span>If the zone is directory server integrated,<a id="Appendix_A_Target_259"></a><a aria-label="Product behavior note 259" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_259" data-linktype="relative-path">&lt;259&gt;</a> use LDAP search operations to
+find the zone&#39;s dnsZone, dnsZoneScope, and dnsNode objects (section 2.3) and
+copy the appropriate zone properties and data to a file. Set the zone and each
+of its scopes&#39; Zone GUID properties to NULL.</p>
+</li><li><p><span><span> 
+</span></span>If the zone is not directory server integrated, copy the zone and
+its scopes&#39; properties and data to the directory server using LDAP add
+operations (adding appropriate dnsZone, dnsZoneScope, and dnsNode objects to
+the directory server). If there is a failure in writing the zone records to the
+directory server, then the server MUST retry the write operation twice.</p>
+</li><li><p><span><span> 
+</span></span>Reset the type information to the requested type.</p>
+</li><li><p><span><span> 
+</span></span>Delete the original zone (using LDAP delete operations to remove
+the zone&#39;s dnsZone, dnsZoneScope, and dnsNode objects if necessary), and return
+success, or if any of the LDAP operations has failed, even after retries were
+specified, then return a failure. If deleting the zone from the directory
+server, the server MUST first attempt up to 4 times to rename the zone being
+deleted to a temporary name. Regardless of whether the rename is successful,
+the server MUST then attempt to delete the zone using LDAP delete operations
+with one of the following conditions for any LDAP error returned ([MS-ERREF]
+section <span><a href="../ms-erref/a465ae57-5f89-4539-88b3-90cf37a5ae06" data-linktype="relative-path">2.4</a></span>):</p>
+<ul><li><p><span><span> 
+</span></span>Retry up to 300 times if LDAP_ADMIN_LIMIT_EXCEEDED (0x0B) is
+returned., </p>
+</li><li><p><span><span> 
+</span></span>Never retry if LDAP_INSUFFICIENT_RIGHTS (0x32) is returned.</p>
+</li><li><p><span><span> 
+</span></span>Retry up to 30 times for any other LDAP error.</p>
+</li></ul></li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is PauseZone, the server MUST set the zone&#39;s Paused flag to TRUE
+and return success. The same operation MUST be performed for all the existing
+zone scopes of the zone.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is ResumeZone, the server MUST set the zone&#39;s Paused flag to FALSE
+and return success. The same operation MUST be performed for all the existing
+zone scopes of the zone.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is DeleteZone, the server MUST delete the zone pointed to by
+pszZone from the server&#39;s local memory only and ensure that the zone will not
+be loaded at the next reboot and return success. This operation does not modify
+the zone as it appears in the directory server if it exists there.</p>
+<p>The DNS server MUST also delete the
+associated scopes of that zone. If the zone is file-backed, the database file
+of the scopes MUST not be deleted.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is ReloadZone, the server MUST check whether the zone pointed to
+by pszZone is directory server-integrated and is already in the process of
+loading, and if so, return a failure. Otherwise, if the zone&#39;s <b>Dirty Flag</b>
+(section 3.1.1) is set to TRUE, then the server MUST do the following:</p>
+<ul><li><p><span><span> 
+</span></span>If the zone is a cache zone, and the zone is directory
+server-integrated and there are root hints in the zone, the server SHOULD write
+root hints to their permanent storage and overwrite existing directory server
+root hints through the use of the DNS_ZONE_LOAD_OVERWRITE_DS flag (section <span><a href="780eba26-15ea-43d3-a2b3-77ed9ab00690" data-linktype="relative-path">2.2.5.2.7.1</a></span>).
+If the root hints are stored on the directory server and DownlevelDCsInDomain
+is nonzero, the server MUST check whether the root hints are empty. If the root
+hints are empty, the root hints MUST NOT be written to their permanent storage.
+Otherwise, if the root hints are stored on the directory server, the server
+MUST search for and delete the root hints on the directory server using LDAP
+search and delete commands and write the new root hints to the cache zone on
+the directory server using LDAP add and modify commands. If there is a failure
+in writing the root hints records to the directory server, then the server MUST
+retry the write operation twice.<a id="Appendix_A_Target_260"></a><a aria-label="Product behavior note 260" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_260" data-linktype="relative-path">&lt;260&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Otherwise, if the zone is not a read-only zone, write a copy of
+the zone to a file and send a DNS notification to peer or secondary DNS
+servers, if any.</p>
+</li></ul><p>If this zone has scopes configured,
+all the data of the scopes MUST be written one by one to the corresponding
+scope files if the scope&#39;s <b>Dirty Flag</b> (section 3.1.1) is set to TRUE. If
+writing to any of the scopes encounters an issue, an error event SHOULD be
+logged and an error code returned. </p>
+<p>Then the server MUST do the
+following:</p>
+<ul><li><p><span><span> 
+</span></span>If the zone is a secondary zone, check that it has been stored to
+a file, and if not, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>If the zone is directory server-integrated, use the LDAP search
+operation to load the zone&#39;s dnsZone and dnsNode objects (section 2.3) from the
+directory server into memory and return success. If the zone has scopes, the
+DNS server MUST try to load the scope&#39;s dnsZoneScope and dnsNode objects one by
+one. If any scopes fail to load from the file, an event SHOULD be logged and an
+error returned.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, load the zone from the file, and return success. If
+the zone has scopes, then the DNS server MUST try to load the scopes one by
+one. If any of the scope fails to load from the file, an event SHOULD be logged
+and an error returned.</p>
+</li><li><p><span><span> 
+</span></span>If any of the above LDAP operations fails, even after retries,
+where specified, then return a failure.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is RefreshZone, and the zone specified is a secondary zone, is not
+currently transferring from the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bb76b8f0-0929-47c8-a06a-d3f9a8761d93" data-linktype="relative-path">primary server</a></span>, and
+at least 15 seconds has elapsed since the <b>Time of Last SOA check</b>
+(section 3.1.1) of the primary zone, then the server MUST force a refresh of
+the secondary zone pointed to by pszZone, from the primary DNS server, and
+return success. Otherwise, the server MUST return an error.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is ExpireZone, the server MUST force refresh of the secondary zone
+pointed to by pszZone by contacting the primary DNS server to refresh, and
+return success.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is IncrementVersion,, the server MUST return a failure if the zone
+is not a primary or cache zone, and it MUST return success if the zone&#39;s <b>Dirty
+Flag</b> (section 3.1.1) is set to FALSE or the zone is not stored in a file.
+Otherwise, the server MUST write the uncommitted information to the file, send
+DNS notify [RFC1996] messages to all other servers hosting the zones, if they
+exist, and return success. If the zone specified is the cache zone, the server
+SHOULD write the root hints to their permanent storage. If the root hints are
+stored on the directory server and DownlevelDCsInDomain is nonzero, the server
+MUST check whether the root hints are empty. If the root hints are empty, the
+root hints MUST NOT be written to their permanent storage. Otherwise, if the
+root hints are stored on the directory server, the server MUST use LDAP add,
+delete, and search operations to replace the root hints on the directory
+server, and return success, regardless of the success or failure of these
+operations. If there is a failure in writing the root hints records to the
+directory server, then the server MUST retry the write operation twice, and
+still return success even if the retries fail.<a id="Appendix_A_Target_261"></a><a aria-label="Product behavior note 261" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_261" data-linktype="relative-path">&lt;261&gt;</a></p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is WriteBackFile, the server MUST return a failure if the zone is
+not a primary or cache zone, and it MUST return success if the zone&#39;s <b>Dirty
+Flag</b> (section 3.1.1) is set to FALSE and it does not have any scopes
+configured or the zone is not stored in a file. Otherwise, the server MUST
+write the uncommitted information to the file, send DNS notify ([RFC1996])
+messages to all other servers hosting the zones, if they exist, and return
+success, regardless of the success or failure of these operations. If the zone
+has scopes, the data of the scopes MUST be written to their corresponding scope
+files if the scope&#39;s <b>Dirty Flag</b> (section 3.1.1) is set to TRUE. If the
+server fails to write the data for any of the scopes it SHOULD log an error
+event and return the error code. If the operation results in updates only in
+the scope files and not the zone file, then DNS notify ([RFC1996]) messages
+SHOULD NOT be sent. If the zone specified is the cache zone, the server SHOULD
+write the root hints to their permanent storage. If the root hints are stored
+on the directory server and DownlevelDCsInDomain is nonzero, the server MUST
+check whether the root hints are empty. If the root hints are empty, the root
+hints MUST NOT be written to their permanent storage. Otherwise, if the root
+hints are stored on the directory server, the server MUST use LDAP add, delete,
+and search operations to replace the root hints on the directory server, and
+return success, regardless of the success or failure of these operations. If
+there is a failure in writing the root hints records to the directory server,
+then the server MUST retry the write operation twice, and still return success even
+if the retries fail.<a id="Appendix_A_Target_262"></a><a aria-label="Product behavior note 262" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_262" data-linktype="relative-path">&lt;262&gt;</a></p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is DeleteZoneFromDs, the server MUST leave the zone, represented
+by a dnsZone object (section 2.3), intact and return a failure if the specified
+zone is not directory service-integrated. Otherwise, the server MUST locate the
+zone and its records, represented by dnsNode objects (section 2.3) using LDAP
+search operations. The server MUST rename the dnsZone object by prepending
+&#34;..Deleted-&#34; (or &#34;..Deleted.&lt;random number&gt;-&#34; if
+&#34;..Deleted-&#34; already exists) to the zone&#39;s name. The server MUST then
+attempt to delete the zone and its records using LDAP delete operations with
+one of the following conditions for any LDAP error returned ([MS-ERREF] section
+2.4):</p>
+<ul><li><p><span><span> 
+</span></span>Retry up to 300 times if LDAP_ADMIN_LIMIT_EXCEEDED (0x0B) is
+returned. </p>
+</li><li><p><span><span> 
+</span></span>Never retry if LDAP_INSUFFICIENT_RIGHTS (0x32) is returned.</p>
+</li><li><p><span><span> 
+</span></span>Retry up to 30 times for any other LDAP error returned. </p>
+</li></ul><p>If the deletion from the directory
+server was successful, then the server MUST delete the local memory copy of the
+zone and return success. If any of these LDAP operations cannot be completed,
+even after retries where specified, then the server MUST return a failure.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is UpdateZoneFromDs, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Verify that the zone is not currently loading if it is a
+directory server integrated zone; otherwise, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Refresh data for the zone from the directory server, and return
+success or failure depending on the result of this operation.</p>
+</li></ul></li><li><p><span><span>  </span></span>If pszOperation
+is ZoneExport, the server SHOULD:</p>
+<ul><li><p><span><span> 
+</span></span>Verify that the zone is not currently loading if it is a
+directory server integrated zone; otherwise, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Export zone data for the zone to a file on the DNS server
+specified by pszZoneExportFile in pData, and return success or failure
+depending on the result of this operation, but MAY<a id="Appendix_A_Target_263"></a><a aria-label="Product behavior note 263" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_263" data-linktype="relative-path">&lt;263&gt;</a> simply return a failure.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is ZoneChangeDirectoryPartition, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Verify that the specified zone is not currently loading;
+otherwise, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the application directory partition specified by
+pszDestPartition (section 2.2.7.2.6) in pData is already known to the server;
+otherwise, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the specified zone is not already in the destination
+application directory partition; otherwise, return success.<a id="Appendix_A_Target_264"></a><a aria-label="Product behavior note 264" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_264" data-linktype="relative-path">&lt;264&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Create a backup copy of the zone properties (the dnsZone object) 
+in local storage using LDAP search operations, and then create a temporary
+dnsZone object  in the new application directory partition with the zone
+properties from the backup copy, using LDAP add operations. If a failure
+occurs, the server MUST delete the temporary zone using the LDAP search and
+delete operations and return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Copy the records (dnsNode objects) of the old zone to the
+temporary zone by enumerating the old zone&#39;s records using an LDAP search
+operation and by writing the new records to the temporary zone using LDAP add
+operations. If there is a failure in writing the records to the directory
+server, then the server MUST retry the write operation twice. If the search
+fails or the new records cannot be written, then the server MUST attempt to
+delete the temporary zone using the LDAP search and delete operations with the
+following conditions for any LDAP error returned [MS-ERREF] section 2.4):  </p>
+<ul><li><p><span><span> 
+</span></span>Retry up to 300 times if LDAP_ADMIN_LIMIT_EXCEEDED (0x0B) is
+returned.</p>
+</li><li><p><span><span> 
+</span></span>Never retry if LDAP_INSUFFICIENT_RIGHTS (0x32) is returned.</p>
+</li><li><p><span><span> 
+</span></span>Retry up to 30 times for any other LDAP error.</p>
+</li></ul><p>Return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Rename the temporary zone to the final zone name using the LDAP
+rename operation. Delete the original zone&#39;s dnsZone and dnsNode objects using
+the LDAP search and delete operations. If the LDAP rename operation fails, the
+server MUST attempt to delete the temporary zone with the following conditions
+for any LDAP error returned [MS-ERREF] section 2.4): </p>
+<ul><li><p><span><span> 
+</span></span>Retry up to 300 times if LDAP_ADMIN_LIMIT_EXCEEDED (0x0B) is
+returned.</p>
+</li><li><p><span><span> 
+</span></span>Never retry if LDAP_INSUFFICIENT_RIGHTS (0x32) is returned.</p>
+</li><li><p><span><span> 
+</span></span>Retry up to 30 times for any other LDAP error returned.</p>
+</li></ul><p>Return a failure. Otherwise, the
+server MUST return a success.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is DeleteNode, then:</p>
+<ul><li><p><span><span> 
+</span></span>If the node does not exist, the server MUST return success.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, if the node specified is not in a primary zone, a
+cache zone, a cache scope, or a zone scope of a primary file backed zone, or
+the node is the root node for a zone, the server MUST return failure.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, if the zone containing the specified node is not
+directory server-integrated, the server MUST delete the node pointed to by
+pszNodeName from the zone, MUST delete all DNS records in the node&#39;s subtree if
+the Boolean flag pointed to by the <b>dwParam</b> field in pData is set to
+TRUE, and return success.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise,</p>
+<ul><li><p><span><span> 
+</span></span>If the Boolean flag pointed to by the <b>dwParam</b> field in
+pData is set to TRUE, the server MUST poll the directory server for zone
+changes, using LDAP search operations.</p>
+</li><li><p><span><span> 
+</span></span>If the Boolean flag pointed to by the <b>dwParam</b> field in
+pData is set to FALSE and the node contains subtrees, both the node and its
+subtrees MUST NOT be deleted and a success status MUST be returned.</p>
+</li><li><p><span><span> 
+</span></span>If the node to be deleted is not a cache node, then the server
+MUST locate the node&#39;s dnsNode object (section 2.3) and its children using LDAP
+search operations, and then perform LDAP modify operations to set each node&#39;s
+dnsTombstoned attribute to TRUE and each node&#39;s dnsRecord (section <span><a href="6912b338-5472-4f59-b912-0edb536b6ed8" data-linktype="relative-path">2.3.2.2</a></span>)
+attribute to contain a DNS_RPC_RECORD_TS record (section 2.2.2.2.4.23) with an
+EntombedTime value equal to the current time expressed as the number of
+100-nanosecond intervals since 12:00 A.M. January 1, 1601 <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">Coordinated
+Universal Time (UTC)</a></span>. </p>
+</li><li><p><span><span> 
+</span></span>If any of these LDAP operations fails, the server MUST attempt to
+roll back the previous operations using LDAP modify operations and return
+failure. If, during an attempt to roll back the deletions, any LDAP operation
+fails, the server MUST retry up to 2 times, and return failure.</p>
+</li></ul></li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is DeleteRecordSet, and the node does not exist or the node exists
+but does not contain any records, represented as dnsNode objects (section 2.3)
+of the type specified by the dwParam field in pData the server MUST return
+success. If the zone is directory server-integrated, the server MUST verify
+with an LDAP search that the node and/or records don&#39;t exist before returning
+success. Otherwise, the server MUST delete the record set of the type specified
+by <b>dwParam</b> field in pData (using LDAP modify operations when the zone is
+directory server-integrated) and return success. If deleting the record set
+would delete all records for the node and the zone is stored in the directory
+server, the DNS server MUST set the node&#39;s dnsTombstoned attribute to TRUE and
+each node&#39;s dnsRecord (section 2.3.2.2) attribute to contain a
+DNS_RPC_RECORD_TS record (section 2.2.2.2.4.23) with an EntombedTime value
+equal to the current time expressed as the number of 100-nanosecond intervals
+since 12:00 A.M. January 1, 1601 Coordinated Universal Time (UTC). If any of
+these LDAP operations fails, the server MUST return failure.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is ForceAgingOnNode, the zone&#39;s &#34;Aging&#34; (section
+3.1.1.2.1) property is TRUE, and the node pointed to by pszNodeNameexists, the server
+MUST enable aging on the node name pointed to by pszNodeName in the zone and
+MUST enable aging on the node&#39;s subtree if specified by the dwParam value in
+pData and return success. Otherwise, the server MUST return a failure.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is AllowNSRecordsAutoCreation, the server MUST verify that the
+zone referenced is a primary zone and that it is a directory service-integrated
+zone and that it is not in the process of loading. If the verification fails,
+the server MUST return a failure. If the verification succeeds, the server MUST
+replace the list of IP addresses for which NS records will be automatically
+created with the list specified by pData, in the properties for the zone
+specified by pszZone, and use the LDAP modify operation to write all of the
+zone&#39;s properties to the copy of the zone on the directory server. Then, if any
+of the server&#39;s IP addresses are present in the new list of IP addresses and an
+NS record for the server is not present in the root of the zone, the server
+MUST add an NS record for the server to the zone, using the LDAP add operation.
+If there is a failure in writing the record to the directory server, then the
+server MUST retry the write operation twice. If none of the server&#39;s IP
+addresses are present in the new list of IP addresses and an NS record for the
+server is present in the root of the zone, the server MUST delete the NS record
+for the server from the zone, using the LDAP delete operation. Finally, if any
+of these LDAP operations could not be completed, even after retries where
+specified, then the server MUST return a failure; otherwise, the server MUST
+return success.</p>
+</li><li><p><span><span>  </span></span>If
+pszOperation is DatabaseFile, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Verify that the zone pointed to by pszZone exists; that if the
+fDsIntegrated field of the DNS_RPC_ZONE_DATABASE structure is set to TRUE, the
+zone is directory services-integrated, and is not in the process of loading;
+and that if fDsIntegrated is set to FALSE, the zone is not directory
+services-integrated. If any of these verifications fail, the server MUST return
+a failure.</p>
+</li><li><p><span><span> 
+</span></span>Check whether pszFilename is not NULL and fDsIntegrated is TRUE,
+and if so, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Check whether pszFilename is NULL and fDsIntegrated is TRUE, and
+if so, return success.</p>
+</li><li><p><span><span> 
+</span></span>Check whether pszFilename is NULL and fDsIntegrated is FALSE, and
+if so, create the default database file for the zone and configure the zone to
+use that file, and return success.</p>
+</li><li><p><span><span> 
+</span></span>Check whether pszFilename is not NULL and fDsIntegrated is FALSE,
+and if so, create the database file specified by pszFilename for the zone and
+configure the zone to use that file, and return success, or return a failure if
+the file name could not be created as specified.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is SignZone, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Verify that the zone pointed to by pszZone exists, that the zone&#39;s
+IsSigned property is FALSE, that the zone is a Primary zone, and that the
+zone&#39;s Keymaster property is set to TRUE. If any of these verifications fails,
+the server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Check whether the EnableOnlineSigning server property is TRUE. If
+it is FALSE and the zone is directory services-integrated, the server MUST
+return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Add appropriate DNSSEC records to the zone according to the
+entries in the zone&#39;s <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_621e5d7b-d764-4196-b838-b52bf82b9380" data-linktype="relative-path">signing key descriptor</a></span>
+list and <span><a href="https://go.microsoft.com/fwlink/?LinkID=107053" data-linktype="external">[RFC4035]</a></span>, and
+return failure if any operation fails.</p>
+</li><li><p><span><span> 
+</span></span>If the zone has scopes, the server MUST initiate signing on the
+zone scopes. If any of the scope signing fails, the zone MUST be marked as
+unsigned, an appropriate event is logged, and an error code is returned.</p>
+</li><li><p><span><span> 
+</span></span>Set the zone&#39;s IsSigned flag to TRUE, and return success.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is UnsignZone, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Verify that the zone pointed to by pszZone exists, that the
+zone&#39;s IsSigned property is TRUE, that the zone is a Primary zone, and that the
+zone&#39;s Keymaster property is set to TRUE. If any of these verifications fails,
+the server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Check whether the EnableOnlineSigning server property is TRUE. If
+it is FALSE and the zone is directory services-integrated, the server MUST
+return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Remove all DNSSEC records of type DNSKEY, RRSIG, NSEC, and NSEC3
+from the zone, and return failure if any operation fails.</p>
+</li><li><p><span><span> 
+</span></span>If the zone has scopes, the server MUST unsign all the scopes one
+by one. If any of the scopes fails to be unsigned the value of the zone
+IsSigned property MUST be kept unchanged, an appropriate event is logged, and
+an error code is returned.</p>
+</li><li><p><span><span> 
+</span></span>Set the zone&#39;s IsSigned flag to FALSE, and return success.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is ResignZone, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Verify that the zone pointed to by pszZone exists, that the
+zone&#39;s IsSigned property is TRUE, that the zone is a Primary zone, and that the
+zone&#39;s Keymaster property is set to TRUE. If any of these verifications fails,
+the server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Check whether the EnableOnlineSigning server property is TRUE. If
+it is FALSE and the zone is directory services-integrated, the server MUST
+return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Regenerate all DNSSEC records in the zone as done for the
+SignZone operation, and return failure if any operation fails.</p>
+</li><li><p><span><span> 
+</span></span>If the zone has scopes, the server MUST start the re-sign
+operation on them. If any of the scopes fail to re-sign, the value of the zone
+IsSigned property MUST be kept unchanged, an appropriate event SHOULD be
+logged, and an error code MUST be returned.</p>
+</li><li><p><span><span> 
+</span></span>Return success.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is PerformZoneKeyRollover, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Verify that the zone pointed to by pszZone exists, that the
+zone&#39;s IsSigned property is TRUE, that the zone is a Primary zone, and that the
+zone&#39;s Keymaster property is set to TRUE. If any of these verifications fails,
+the server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Find the signing key descriptor indicated by pData in the zone&#39;s
+signing key descriptor list. If the signing key descriptor is not in this list,
+the server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Put the specified signing key descriptor into the zone&#39;s <b>rollover
+queue</b>, and return success.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is PokeZoneKeyRollover, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Verify that the zone pointed to by pszZone exists, that the
+zone&#39;s IsSigned property is TRUE, that the zone is a Primary zone, and that
+that the zone&#39;s Keymaster property is set to TRUE. If any of these
+verifications fails, the server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Find the signing key descriptor indicated by pData in the zone&#39;s
+signing key descriptor list. If the signing key descriptor is not in this list,
+the server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>If the dwCurrentRolloverStatus member of the DNS_RPC_SKD_STATE
+structure for this signing key descriptor is not
+DNS_SKD_STATUS_KSK_WAITING_FOR_DS_UPDATE, the server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the DNS server MUST advance the
+dwCurrentRolloverStatus member of the DNS_RPC_SKD_STATE structure for this
+signing key descriptor to DNS_SKD_STATUS_KSK_WAITING_FOR_DS_TTL and proceed
+with key rollover for this signing key descriptor as specified in [RFC4641],
+and return success.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is RetrieveRootTrustAnchors, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Verify that:</p>
+<ul><li><p><span><span> 
+</span></span>The zone pointed to by pszZone is the Trust Anchors zone.</p>
+</li><li><p><span><span> 
+</span></span>The server is not a read-only server.</p>
+</li><li><p><span><span> 
+</span></span>The EnableDnsSec server property (section 3.1.1.1.1) is TRUE.</p>
+</li><li><p><span><span> 
+</span></span>The RootTrustAnchorsURL property (section 3.1.1.1.3) is not NULL,
+that the scheme is &#34;https&#34;, and that the host and url-path are
+nonempty (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90287" data-linktype="external">[RFC1738]</a></span>).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If any of these verifications fails, return a failure. Otherwise,
+the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Create the Trust Anchors zone if it does not exist. If the
+creation fails, return an error.</p>
+</li><li><p><span><span> 
+</span></span>Open an HTTPS connection to the host and port defined by the
+RootTrustAnchorsURL property. If the connection fails or times out, return an
+error.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the XML document specified by the url-path or return an
+error.</p>
+</li><li><p><span><span> 
+</span></span>Parse the XML document strictly according to the schema defined
+in [draft-jabley-dnssec-trust-anchor-03]. If the XML document deviates from the
+schema, return an error.</p>
+</li><li><p><span><span> 
+</span></span>For each DS trust anchor specified by the XML document, verify
+that the algorithm and digest type are supported by the server, and that the
+length of the digest is valid. If the DS trust anchor is unsupported, continue
+to the next DS trust anchor. If none of the trust anchors are supported, return
+an error. If the trust anchor is supported and the digest length is invalid,
+return an error. Otherwise, add the trust anchor to a list of pending trust
+anchors.</p>
+</li><li><p><span><span> 
+</span></span>Add each trust anchor in the pending list of trust anchors to the
+root node of the Trust Anchors zone. If the add attempt fails, return an error.</p>
+</li><li><p><span><span> 
+</span></span>Schedule an immediate RFC 5011 active refresh for all trust
+points, and return success.</p>
+</li></ul></li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is TransferKeymasterRole, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Verify that dwTypeId is DNSSRV_TYPEID_DWORD and that pData points
+to one of the following values. If any of these verifications fails, the server
+MUST return a failure.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DNS_ZONE_TRANSFER_KEYMASTER_ROLE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Assign the key master role to the current server only
+  if the zone is currently signed and the current server has access to the
+  private key material corresponding to the signing key descriptors for the
+  zone.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_ZONE_SEIZE_KEYMASTER_ROLE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Force assignment of the key master role to the current
+  server, allowing assignment on unsigned zones or zones with no signing key
+  descriptors. If the zone has signing key descriptors, this operation MUST
+  return a failure if private key material for all signing key descriptors is
+  not accessible by the current server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_ZONE_POLL_KEYMASTER_ROLE</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Requests that the server refresh the key master zone
+  flags by reading from the directory service.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_ZONE_SEIZE_KEYMASTER_ROLE_WITHOUT_KEY_CHECKS</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Force assignment of the key master role to the current
+  server, without checking to see whether private key material is accessible by
+  the current server.</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span><span> 
+</span></span>Verify that the zone pointed to by pszZone exists, that the zone
+is a Primary zone that is directory services-integrated, and that the zone is
+not read-only. If any of these verifications fails, the server MUST return a
+failure.</p>
+</li><li><p><span><span> 
+</span></span>If the value of pData is DNS_ZONE_TRANSFER_KEYMASTER_ROLE or
+DNS_ZONE_SEIZE_KEYMASTER_ROLE or
+DNS_ZONE_SEIZE_KEYMASTER_ROLE_WITHOUT_KEY_CHECKS, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Verify that the IsSigned property of the zone (section 3.1.1.2.1)
+is TRUE or that the value of pData is DNS_ZONE_SEIZE_KEYMASTER_ROLE. If not,
+return a failure.</p>
+</li><li><p><span><span> 
+</span></span>For an AD-backed zone, refresh the list of key master servers
+from the directory service or, if this operation fails, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Return success if the IsKeymaster property of the zone (section
+3.1.1.2.1) is TRUE and the value of pData is DNS_ZONE_TRANSFER_KEYMASTER_ROLE.</p>
+</li><li><p><span><span> 
+</span></span>For an AD-backed zone, check whether the value of pData is DNS_ZONE_TRANSFER_KEYMASTER_ROLE
+or DNS_ZONE_SEIZE_KEYMASTER_ROLE and the zone has one or more signing key
+descriptors and, if so, verify that the private key material is available for
+each of the signing key descriptors.</p>
+</li><li><p><span><span> 
+</span></span>For a file-backed zone, check whether the value of pData is 
+DNS_ZONE_SEIZE_KEYMASTER_ROLE and the zone has one or more signing key
+descriptors and, if so, verify that the private key material is available for
+each of the signing key descriptors.</p>
+</li><li><p><span><span> 
+</span></span>For an AD-backed zone, query the directory service for the value
+of the current key master. If this operation fails, and the value of pData is
+DNS_ZONE_TRANSFER_KEYMASTER_ROLE, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>For an AD-backed zone, check whether the value of pData is
+DNS_ZONE_TRANSFER_KEYMASTER_ROLE and, if so, verify that the query in the
+preceding step returned a value for the current key master, and that the
+current key master is marked as a key master by invoking the <span><a href="a90a44f0-f64e-44b0-9e35-a7fc49f6adea" data-linktype="relative-path">R_DnssrvQuery2</a></span>
+operation (section 3.1.4.7) on the current key master. The pszZone value used
+MUST match the value of pszZone passed to this operation, and pszOperation MUST
+be set to &#34;IsKeymaster&#34;. If the current key master returns an error
+or FALSE, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>For an AD-backed zone, refresh the zone properties from the
+directory service. If this operation fails, the server MUST ignore the failure.</p>
+</li><li><p><span><span> 
+</span></span>For an AD-backed zone, perform an LDAP modify operation to add
+the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a></span>
+of the zone to the msDNS-KeymasterZones attribute of the server settings object
+(&#34;CN=DNS
+Settings,CN=&lt;server_name&gt;,CN=Servers,CN=&lt;site_name&gt;,         
+CN=Sites,CN=Configuration,DC=&lt;domain name&gt;&#34;) or, if this operation
+fails, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>For an AD-backed zone, perform an LDAP delete operation to delete
+the DN of the zone from the msDNS-KeymasterZones attribute of the previous key
+master server settings object (&#34;CN=DNS
+Settings,CN=&lt;previous_keymaster_server_name&gt;,CN=Servers,CN=&lt;site_name&gt;,         
+CN=Sites,CN=Configuration,DC=&lt;domain name&gt;&#34;) or, if this operation
+fails, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>For an AD-backed zone, check whether the value of pData is
+DNS_ZONE_TRANSFER_KEYMASTER_ROLE and, if so, perform the TransferKeymasterRole
+operation on the previous key master, with all parameters matching those passed
+to the current operation except that pData MUST point to
+DNS_ZONE_POLL_KEYMASTER_ROLE. If this operation fails, the server MUST ignore
+the failure.</p>
+</li><li><p><span><span> 
+</span></span>Return success.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the value of pData is DNS_ZONE_POLL_KEYMASTER_ROLE, the server
+MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Open an LDAP connection to the Domain Naming Master FSMO role
+holder or to the local directory service if an LDAP connection to the Domain
+Naming Master FSMO role holder cannot be opened.</p>
+</li><li><p><span><span> 
+</span></span>Perform an LDAP search operation to retrieve the value of the
+msDNS-KeymasterZones attribute of the DNS server settings object (&#34;CN=DNS
+Settings,CN=&lt;server_name&gt;,CN=Servers,CN=&lt;site_name&gt;,         
+CN=Sites,CN=Configuration,DC=&lt;domain name&gt;&#34;) and, if the operation
+fails, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>The DNS server MUST iterate each zone in the DNS Zone Table
+(section <span><a href="8df021b3-47ad-4829-a1c2-5588165c27e7" data-linktype="relative-path">3.1.1.2</a></span>) and for
+each zone:</p>
+<ul><li><p><span><span> 
+</span></span>If the zone is not directory service-integrated, ignore it.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, if the zone is present in the msDNS-KeymasterZones
+attribute and the zone&#39;s IsKeymaster property (see section 3.1.1.2.1) is not
+TRUE or if the zone is not present in the msDNS-KeymasterZones attribute and
+the zone&#39;s IsKeymaster property is TRUE:</p>
+<ul><li><p><span><span> 
+</span></span>Set the zone&#39;s IsKeymaster property (section 3.1.1.2.1) to TRUE
+if the zone is present in the msDNS-KeymasterZones attribute or to FALSE if the
+zone is not present in the msDNS-KeymasterZones attribute.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a></span> of the zone&#39;s
+current key master: if the zone&#39;s IsKeymaster property is TRUE, set the zone&#39;s
+Keymaster property to the FQDN of the local host; otherwise, perform an LDAP
+search using the search filter &#34;(&amp;(msDNS-KeymasterZones=&lt;zone
+name&gt;)(objectCategory=msDNS-ServerSettings))&#34; and set the zone&#39;s
+Keymaster property to the dnsHostName attribute value found on the parent
+object of the object returned by this search.</p>
+</li></ul></li></ul></li></ul></li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is CreateZonescope, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Verify that the zone pointed to by pszZone exists, that it is not
+an <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_439a7fee-e146-458f-9869-ce2f8983bd0b" data-linktype="relative-path">autocreated
+zone</a></span>, that it is a non-reverse lookup zone, and that a scope does
+not exist with the given scope name in the specified zone. If any of these
+verifications fails, the server MUST return a failure. For cache scopes, if the
+scope does exist in the cache, the server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Create the zone scope or cache scope with the given scope name
+and return success if the creation is successful, otherwise return a failure.</p>
+</li><li><p><span><span> 
+</span></span>If the zone uses directory server for persistent storage, the
+server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Perform an LDAP search in the dnsZone object of the zone to
+determine whether the scope already exists, and if so, return failure.</p>
+</li><li><p><span><span> 
+</span></span>Create the zone scope in the same application directory
+partition.</p>
+</li><li><p><span><span> 
+</span></span>Using LDAP add operations:</p>
+<ul><li><p><span><span> 
+</span></span>Create a dnsZoneScopeContainer object with name
+&#34;ZoneScopeContainer&#34; in the zone&#39;s dnsZone object (if it does not
+already exist).</p>
+</li><li><p><span><span> 
+</span></span>Create a dnsZoneScope object in the dnsZoneScopeContainer object.</p>
+</li></ul></li></ul></li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is DeleteZonescope, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>Verify that the zone pointed to by pszZone exists, that it is not
+an autocreated zone, that it is a non-reverse lookup zone, and that a scope
+does exist with the given scope name in the specified zone. If any of these
+verifications fails, the server MUST return a failure. For a cache scope,
+delete the scope if it exists; otherwise the server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>If the zone scope or cache scope specified in pData does not
+exist, return DNS_ERROR_SCOPE_DOES_NOT_EXIST (9959).</p>
+</li><li><p><span><span> 
+</span></span>If the zone scope or cache scope is being used by a DNS Policy
+(section 2.2.15.2.2), then the DNS server MUST return
+DNS_ERROR_ZONESCOPE_IS_REFERENCED (9989).</p>
+</li><li><p><span><span> 
+</span></span>The DNS server MUST attempt to delete the zone scope or cache
+scope in the DNS server, and return success or failure based on the result.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is CreatePolicy, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>The DNS server checks whether the zone specified by pszZone
+exists and, if not, returns DNS_ERROR_ZONE_DOES_NOT_EXIST (9601).</p>
+</li><li><p><span><span> 
+</span></span>The DNS server validates whether the DNS Policy parameters
+specified in pData are valid. If the parameters are invalid, return
+DNS_ERROR_POLICY_INVALID_SETTINGS (9974). For details, see DNS Policy
+Validation (section 3.1.8.3).</p>
+</li><li><p><span><span> 
+</span></span>If the DNS Policy pData parameter dwProcessingOrder is greater
+than the highest Processing Order in the given level and appliesOn for the
+zone, return DNS_ERROR_POLICY_INVALID_SETTINGS (9974).</p>
+</li><li><p><span><span> 
+</span></span>If the DNS Policy name as specified in the pData parameter
+pwszPolicyName already exists, return DNS_ERROR_POLICY_ALREADY_EXISTS (9971).
+The policy name check is done for the policies configured on the zone.</p>
+</li><li><p><span><span> 
+</span></span>If the value weight in pContentList is 0, as explained in
+DNS_RPC_POLICY_CONTENT (section 2.2.15.2.2), the DNS server returns
+DNS_ERROR_POLICY_INVALID_WEIGHT (9981). Allowed values for weight are any
+positive number from 1 to 0xFFFFFFFF.</p>
+</li><li><p><span><span> 
+</span></span>If DNS Policy pData parameter dwProcessingOrder is 0 then reset
+the processing order to the last processing order for the specified level and
+appliesOn in the zone.</p>
+</li><li><p><span><span> 
+</span></span>Create the new DNS Policy on the DNS server, and return success
+or failure based on the result. This DNS Policy is applicable to the DNS
+operations at the zone level for that zone.</p>
+</li><li><p><span><span> 
+</span></span>If the DNS Policy pData parameter dwProcessingOrder is the same
+as an existing DNS Policy in the specified level and appliesOn of the zone,
+update this new policy to use the new processing order. All DNS Policies whose
+processing order is equal to or greater than this processing order are
+incremented by 1.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is DeletePolicy, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>If the zone specified by pszZone does not exist, return
+DNS_ERROR_ZONE_DOES_NOT_EXIST (9601).</p>
+</li><li><p><span><span> 
+</span></span>If the DNS Policy name specified in pData does not exist in the
+zone, return DNS_ERROR_POLICY_DOES_NOT_EXIST (9972).</p>
+</li><li><p><span><span> 
+</span></span>Delete the DNS Policy in the zone of the DNS server, and return
+success or failure based on the result.</p>
+</li><li><p><span><span> 
+</span></span>Increment the processing order of all policies whose processing
+order is greater than the processing order of the deleted policy by 1 for the
+given level and appliesOn in the zone.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+pszOperation is UpdatePolicy, the server MUST:</p>
+<ul><li><p><span><span> 
+</span></span>If the zone given by pszZone does not exist, return
+DNS_ERROR_ZONE_DOES_NOT_EXIST (9601).</p>
+</li><li><p><span><span> 
+</span></span>If the DNS Policy name specified in the member pwszPolicyName of
+pData does not exist in the specified zone policies of the DNS server, return
+DNS_ERROR_POLICY_DOES_NOT_EXIST (9972).</p>
+</li><li><p><span><span> 
+</span></span>If the flags member of DNS_RPC_POLICY has
+DNS_RPC_FLAG_POLICY_PROCESSING_ORDER set, update the processing order of the
+DNS policy to the new processing order specified in the input pData. Adjust the
+processing order of other DNS Policies at that zone for the given appliesOn
+accordingly.</p>
+</li><li><p><span><span> 
+</span></span>If the flags member of DNS_RPC_POLICY has
+DNS_RPC_FLAG_POLICY_CONDITION set, then update the Condition of the DNS Policy
+to the condition specified in the input pData.</p>
+</li><li><p><span><span> 
+</span></span>If the flags member of DNS_RPC_POLICY has
+DNS_RPC_FLAG_POLICY_CONTENT set, then update the content of the DNS Policy to
+the content specified in pData.</p>
+</li><li><p><span><span> 
+</span></span>If any criteria flags as specified in Criteria Constants are set,
+remove the criteria values from the DNS Policy and set new criteria values as
+specified in pData.</p>
+</li><li><p><span><span> 
+</span></span>Delete the DNS Policy on the DNS server, and return success or
+failure based on the result.</p>
+</li></ul></li></ul></li></ul></div>

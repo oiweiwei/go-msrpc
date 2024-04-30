@@ -1,0 +1,10 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/38bd52a0-4514-468f-b342-d7421a51a316" data-linktype="external">msdn link</a></p><p>The POLICY_DOMAIN_QUALITY_OF_SERVICE_INFO structure is
+obsolete and exists for backward compatibility purposes only.</p><dl>
+<dd>
+<div><pre> typedef struct _POLICY_DOMAIN_QUALITY_OF_SERVICE_INFO {
+   unsigned long QualityOfService;
+ } POLICY_DOMAIN_QUALITY_OF_SERVICE_INFO,
+  *PPOLICY_DOMAIN_QUALITY_OF_SERVICE_INFO;
+</pre></div>
+</dd></dl><p><b>QualityOfService:</b>  Quality of <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_2dc07ca2-2b40-437e-a5ec-ed28ebfb116a" data-linktype="relative-path">service</a> of the responder.
+MUST be set to zero when sent and MUST be ignored on receipt.</p></div>

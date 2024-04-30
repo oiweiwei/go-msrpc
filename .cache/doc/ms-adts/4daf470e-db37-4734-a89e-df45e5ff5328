@@ -1,0 +1,17 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/4daf470e-db37-4734-a89e-df45e5ff5328" data-linktype="external">msdn link</a></p><p>The <b>CLAIM_TYPE</b> enumeration enumerates various value
+types of a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_d5c7aa9b-65be-4dd4-a686-cd5253eb203d" data-linktype="relative-path">claim</a>.</p><dl>
+<dd>
+<div><pre> typedef  enum _CLAIM_TYPE
+ {
+   CLAIM_TYPE_INT64 = 1,
+   CLAIM_TYPE_UINT64 = 2,
+   CLAIM_TYPE_STRING = 3,
+   CLAIM_TYPE_BOOLEAN = 6
+ } CLAIM_TYPE,
+  *PCLAIM_TYPE;
+</pre></div>
+</dd></dl><p><b>CLAIM_TYPE_INT64:  </b>The value type of the claim
+is <a href="../ms-dtyp/7dc8dc9c-9d54-417a-933e-173933f0c329" data-linktype="relative-path">LONG64</a>.</p><p><b>CLAIM_TYPE_UINT64:  </b>The value type of the
+claim is <a href="../ms-dtyp/2dc4c492-95db-4fa6-ae2b-8546b13c9141" data-linktype="relative-path">ULONG64</a>.</p><p><b>CLAIM_TYPE_STRING:  </b>The value type of the
+claim is a null-terminated string of <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> characters.</p><p><b>CLAIM_TYPE_BOOLEAN:  </b>The value type of the
+claim is ULONG64; a value is set to 1 to specify TRUE, or 0 to specify FALSE.</p></div>

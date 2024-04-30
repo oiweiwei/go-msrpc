@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/235d0c09-b9db-44c5-9d4d-806919be657b" data-linktype="external">msdn link</a></p><p>The <b>NL_SOCKET_ADDRESS</b> structure contains a socket
+address.</p><dl>
+<dd>
+<div><pre> typedef struct _NL_SOCKET_ADDRESS {
+   [size_is(iSockaddrLength)] UCHAR * lpSockaddr;
+   ULONG iSockaddrLength;
+ } NL_SOCKET_ADDRESS,
+  *PNL_SOCKET_ADDRESS;
+</pre></div>
+</dd></dl><p><b>lpSockaddr:</b> A pointer to an octet string. The
+format of the <b>lpSockaddr</b> member when an IPv4 socket address is used is
+specified in section <a href="75981bfb-a7bb-41bc-8705-388531af6ed8" data-linktype="relative-path">2.2.1.2.4.1</a>.
+The format of the <b>lpSockaddr</b> member when an IPv6 socket address is used
+is specified in section <a href="f8e21b2b-6ea5-4eb9-a350-acdabe33cc93" data-linktype="relative-path">2.2.1.2.4.2</a>.</p><p><b>iSockaddrLength:</b> The length of the octet
+string pointed to by <b>lpSockaddr</b>, in bytes.</p></div>

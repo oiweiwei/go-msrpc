@@ -1,0 +1,127 @@
+<div class="content"><p>The <b>CprepDiskGetFSName</b> method returns the name of the
+file system on a given partition on a given disk.</p><dl>
+<dd>
+<div><pre> HRESULT CprepDiskGetFSName(
+   [in] CPREP_DISKID DiskId,
+   [in] unsigned long Partition,
+   [out] wchar_t FsName[100]
+ );
+</pre></div>
+</dd></dl><p><b>DiskId: </b>The identifier of the <b>ClusPrepDisk</b>
+representing the disk.</p><p><b>Partition: </b>The partition number of the
+partition associated with the volume to query for file system information.</p><p><b>FsName: </b>A null-terminated output string that
+contains the name of the file system. The value MUST be &#34;NTFS&#34; if the
+partition has the NTFS file system. The value MUST be &#34;FAT&#34; for the
+file allocation table (FAT) file system. No file system and unrecognized file
+systems MUST be &#34;RAW&#34;. Other values can be used for file systems not
+specified here.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&#34;NTFS&#34;</p>
+  </td>
+  <td>
+  <p>The partition file system is NTFS.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;FAT&#34;</p>
+  </td>
+  <td>
+  <p>The partition file system is FAT.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;RAW&#34;</p>
+  </td>
+  <td>
+  <p>There is no partition file system, or it is
+  unrecognized.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method
+implementation. For more information about Win32 error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The disk was not found or <i>ulPartition</i> cannot be
+  mapped to a volume.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007139F</p>
+  <p>ERROR_INVALID_STATE</p>
+  </td>
+  <td>
+  <p>The <b>ClusPrepDisk.OnlineState</b> is not equal to
+  Online.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070548</p>
+  <p>ERROR_INVALID_SERVER_STATE</p>
+  </td>
+  <td>
+  <p>The server&#39;s <b>Prepare State</b> is not Online.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The opnum field value for this method is 36.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Obtain the <b>ClusPrepDisk</b> identified by the <i>DiskId</i>
+parameter as specified in section <a href="c17ce220-d244-45c9-95c0-4c31942253ee" data-linktype="relative-path">3.2.4</a>.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the <b>ClusPrepDisk.OnlineState</b> is Online as
+specified in section 3.2.4.</p>
+</li><li><p><span><span> 
+</span></span>Map <i>ulPartition</i> to the corresponding volume as specified
+in section 3.2.4.</p>
+</li><li><p><span><span> 
+</span></span>Determine the file system on the given partition on the given
+disk.</p>
+</li><li><p><span><span> 
+</span></span>Place the name of the file system in the <i>FsName</i> buffer.</p>
+</li></ul><p>The server returns the following information to the client:</p><ul><li><p><span><span> 
+</span></span>The name of the file system.</p>
+</li></ul></div>

@@ -1,0 +1,57 @@
+<div class="content"><p> </p><p>The <b>FAX_MESSAGE_PROPS</b> structure defines the
+properties of a <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_82c28020-815f-4f69-adf5-7c2b78773b23" data-linktype="relative-path">fax message</a></span> that can
+be set.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwValidityMask;
+   DWORD dwMsgFlags;
+ } FAX_MESSAGE_PROPS,
+  *PFAX_MESSAGE_PROPS;
+</pre></div>
+</dd></dl><p><b>dwValidityMask:</b> A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that defines a bitwise combination of valid fields in the structure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FAX_MSG_PROP_FIELD_MSG_FLAGS</p>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>Indicates whether the value in dwMsgFlags is valid. If
+  this bit is set, the value in dwMsgFlags is valid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwMsgFlags:</b> A <b>DWORD</b> bitmask that
+specifies the state to which the message flags are set.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FAX_MSG_FLAG_READ</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Determines whether this fax message is marked as read.
+  If this bit is set, the message is marked as read. If this bit is reset, the
+  message is marked as unread.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -1,0 +1,343 @@
+<div class="content"><p> </p><p>The NetrShareSetInfo method sets the parameters of a shared
+resource in a <b>ShareList</b>.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrShareSetInfo(
+   [in, string, unique] SRVSVC_HANDLE ServerName,
+   [in, string] WCHAR* NetName,
+   [in] DWORD Level,
+   [in, switch_is(Level)] LPSHARE_INFO ShareInfo,
+   [in, out, unique] DWORD* ParmErr
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>An <span><a href="5f8329ee-1965-4ea1-ad35-3b29fbb63232" data-linktype="relative-path">SRVSVC_HANDLE (section 2.2.1.1)</a></span>
+pointer that identifies the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>. The <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>
+MUST map this structure to an RPC binding handle (<span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> sections
+4.3.5 and 5.1.5.2). If this parameter is NULL, the local computer is used. </p><p><b>NetName: </b>A pointer to a null-terminated UTF-16
+string that specifies the name of the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_a49a79ea-dac7-4016-9a84-cf87161db7e3" data-linktype="relative-path">share</a></span> to set
+information for.</p><p><b>Level: </b>Specifies the information level of the
+data. This parameter MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p><span><a href="fc69f110-998d-4c16-9667-514e22fdd80b" data-linktype="relative-path">LPSHARE_INFO_1</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p><span><a href="baead467-920e-4278-853b-bbd303aadfd6" data-linktype="relative-path">LPSHARE_INFO_2</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>502</p>
+  </td>
+  <td>
+  <p><span><a href="8605fd54-6ede-4316-b30d-ecfafa133c1d" data-linktype="relative-path">SHARE_INFO_502_I</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>503</p>
+  </td>
+  <td>
+  <p><span><a href="0448e06c-91b2-4ca6-bd9c-02ed396a3fbc" data-linktype="relative-path">SHARE_INFO_503_I</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1004</p>
+  </td>
+  <td>
+  <p><span><a href="1a688b12-2123-4489-bb92-1b0f0f55b6a0" data-linktype="relative-path">LPSHARE_INFO_1004</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1005</p>
+  </td>
+  <td>
+  <p><span><a href="8a481783-9c6e-4f17-99d1-aea6578e21fb" data-linktype="relative-path">LPSHARE_INFO_1005</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1006</p>
+  </td>
+  <td>
+  <p><span><a href="1333b9c3-bcae-43c5-a0dc-020449c23289" data-linktype="relative-path">LPSHARE_INFO_1006</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1501</p>
+  </td>
+  <td>
+  <p><span><a href="a3ba8b29-324f-4ab5-8f46-62216176d066" data-linktype="relative-path">LPSHARE_INFO_1501_I</a></span></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ShareInfo: </b>This parameter is of type <span><a href="419f538b-9342-455e-9b8c-fa430e77bc54" data-linktype="relative-path">LPSHARE_INFO</a></span>
+union, as specified in section 2.2.3.6. Its contents are determined by the
+value of the <i>Level</i> parameter, as shown in the preceding table. This
+parameter MUST NOT contain a null value. If the Level parameter is equal to 1,
+2, 502, or 503, the client MUST set the STYPE_CLUSTER_FS, STYPE_CLUSTER_SOFS,
+and STYPE_CLUSTER_DFS bits in the shi*_type field of the SHARE_INFO union to
+zero; the server MUST ignore them on receipt.</p><p><b>ParmErr: </b>A pointer to a value that receives
+the index of the first member of the share information structure that caused
+the ERROR_INVALID_PARAMETER error, if it occurs.</p><p><b>Return Values: </b>The method returns 0x00000000
+(NERR_Success) to indicate success; otherwise, it returns a nonzero error code.
+The method can take any specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>NERR_Success</p>
+  </td>
+  <td>
+  <p>The client request succeeded.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The client request failed because the specified
+  parameter is invalid. For details, see the description that follows for the <i>ParmErr</i>
+  parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>Not enough storage is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000906</p>
+  <p>NERR_NetNameNotFound</p>
+  </td>
+  <td>
+  <p>The share name does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000032</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The server does not support branch cache. <a id="Appendix_A_Target_62"></a><a aria-label="Product behavior note 62" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_62" data-linktype="relative-path">&lt;62&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000424</p>
+  <p>ERROR_SERVICE_DOES_NOT_EXIST</p>
+  </td>
+  <td>
+  <p>The branch cache component does not exist as an
+  installed service. <a id="Appendix_A_Target_63"></a><a aria-label="Product behavior note 63" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_63" data-linktype="relative-path">&lt;63&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000007C</p>
+  <p>ERROR_INVALID_LEVEL</p>
+  </td>
+  <td>
+  <p>The system call level is not correct.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to a NetrShareSetInfo message, the server MUST
+set the parameters of a shared resource or return an error code.</p><p>The <i>NetName</i> parameter specifies the name of the share
+for which to set information in <b>ShareList</b>. The <i>NetName</i> MUST be a
+nonempty, null-terminated UTF-16 string; otherwise, the server MUST fail the
+call with an ERROR_INVALID_PARAMETER error code.</p><p>The value of the <i>Level</i> parameter can be 1, 2, 502,
+503, 1004, 1005, 1006, or 1501. If the value of the <i>Level</i> parameter is
+anything else, the server MUST fail the call with an ERROR_INVALID_LEVEL error
+code. The value of the <i>Level</i> parameter determines the format of the <i>InfoStruct</i>
+parameter.</p><p>If <i>ServerName</i> does not match any <b>Transport.ServerName</b>
+in <b>TransportList</b> with the SVTI2_SCOPED_NAME bit set in <b>Transport.Flags</b>,
+the server MUST reset <i>ServerName</i> as &#34;*&#34;.</p><p>The server MUST remove any preceding \\ from the <i>ServerName</i>
+parameter and normalize the <i>ServerName</i> parameter as specified in section
+<span><a href="281119a2-9545-4d8d-b186-6e85b412f4ff" data-linktype="relative-path">3.1.6.8</a></span>,
+passing in the updated <i>ServerName</i> parameter as the ServerName, and an
+empty string as the ShareName.</p><p>The server MUST validate all information that is provided in
+the <b>SHARE_INFO</b> structure. If a member of the <b>SHARE_INFO</b> structure
+is found to be invalid, the server MUST fail the call with an
+ERROR_INVALID_PARAMETER error code. The server does the following validation on
+the <b>SHARE_INFO</b> structure:</p><ul><li><p><span><span> 
+</span></span>If shi*_type has the flag STYPE_SPECIAL, a security descriptor
+MUST NOT be specified in shi502_security_descriptor (Level = 502).</p>
+</li><li><p><span><span> 
+</span></span>If shi*_remark is specified, its length MUST NOT be greater than
+48.</p>
+</li><li><p><span><span> 
+</span></span>If Level=502 and a security descriptor is provided, it MUST be a
+valid security descriptor.</p>
+</li></ul><p>If the <i>ParmErr</i> parameter is not NULL and the server
+finds a member of the <b>SHARE_INFO</b> structure to be invalid, the server
+MUST set <i>ParmErr</i> to a value that denotes the index of the member that
+was found to have an invalid value and fail the call with ERROR_INVALID_PARAMETER
+(0x00000057). The mapping between the values to set and the corresponding
+member MUST be as specified in section <span><a href="a7020e54-4c40-4cd3-8d2f-f624afb3b86e" data-linktype="relative-path">2.2.2.11</a></span>.</p><p>The server MUST locate a <b>Share</b> from <b>ShareList</b>,
+where <i>NetName</i> matches <b>Share.ShareName</b> and <i>ServerName</i>
+matches <b>Share.ServerName</b>. If no share is found, the server MUST fail the
+call with a NERR_NetNameNotFound error code.</p><p>If a matching share is found, the server MUST construct a <b>SHARE_INFO_503_I</b>
+structure and a <b>SHARE_INFO_1005</b> structure from the share, as specified
+in section <span><a href="e6817792-5ea8-42b6-850c-61d4a121475c" data-linktype="relative-path">3.1.3</a></span>.</p><p>The server MUST update the members of <b>SHARE_INFO_503_I</b>
+and <b>SHARE_INFO_1005</b> structures based on the <i>Level</i> parameter, as
+follows:</p><p>If the <i>Level</i> parameter is equal to 1, all the
+settings that are defined by the SHARE_INFO_1 structure as settable (that is,
+they are not defined as ignored on receipt or ignored for the NetrShareSetInfo
+method) MUST be updated. The share properties MUST be updated as follows:</p><ul><li><p><span><span> 
+</span></span><b>SHARE_INFO_503_I.shi503_remark</b> MUST be set to <b>shi1_remark</b>.</p>
+</li></ul><p>If the <i>Level</i> parameter is equal to 2, all the
+settings that are defined by the SHARE_INFO_2 structure as settable (that is,
+they are not defined as ignored on receipt or ignored for the NetrShareSetInfo
+method) MUST be updated. The share properties MUST be updated as follows:</p><ul><li><p><span><span> 
+</span></span><b>SHARE_INFO_503_I.shi503_remark</b> MUST be set to <b>shi2_remark</b>.</p>
+</li><li><p><span><span> 
+</span></span><b>SHARE_INFO_503_I.shi503_max_uses</b> MUST be set to <b>shi2_max_uses</b>.</p>
+</li></ul><p>If the <i>Level</i> parameter is equal to 502, all the
+settings that are defined by the SHARE_INFO_502_I structure as settable (that
+is, they are not defined as ignored on receipt or ignored for the
+NetrShareSetInfo method) MUST be updated. The share properties MUST be updated
+as follows:</p><ul><li><p><span><span> 
+</span></span><b>SHARE_INFO_503_I.shi503_remark</b> MUST be set to <b>shi502_remark</b>.</p>
+</li><li><p><span><span> 
+</span></span><b>SHARE_INFO_503_I.shi503_max_uses</b> MUST be set to <b>shi502_max_uses</b>.</p>
+</li><li><p><span><span> 
+</span></span><b>SHARE_INFO_503_I.shi503_security_descriptor</b> MUST be set to
+<b>shi502_security_descriptor</b>.</p>
+</li></ul><p>If the <i>Level</i> parameter is equal to 503, all the
+settings that are defined by the SHARE_INFO_503_I structure as settable (that
+is, they are not defined as ignored on receipt or ignored for the
+NetrShareSetInfo method) MUST be updated. The share properties MUST be updated
+as follows:</p><ul><li><p><span><span> 
+</span></span><b>SHARE_INFO_503_I.shi503_remark</b> MUST be set to <b>shi503_remark</b>.</p>
+</li><li><p><span><span> 
+</span></span><b>SHARE_INFO_503_I.shi503_max_uses</b> MUST be set to <b>shi503_max_uses</b>.</p>
+</li><li><p><span><span> 
+</span></span><b>SHARE_INFO_503_I.shi503_security_descriptor</b> MUST be set to
+<b>shi503_security_descriptor</b>.</p>
+</li></ul><p>If the <i>Level</i> parameter is equal to 1004, all the
+settings that are defined by the SHARE_INFO_1004 structure as settable (that
+is, they are not defined as ignored on receipt or ignored for the
+NetrShareSetInfo method) MUST be updated.</p><ul><li><p><span><span> 
+</span></span><b>SHARE_INFO_503_I.shi503_remark</b> MUST be set to <b>shi1004_remark</b>.</p>
+</li></ul><p>If the <i>Level</i> parameter is equal to 1005, all the
+settings that are defined by the SHARE_INFO_1005 structure as settable (that
+is, they are not defined as ignored on receipt or ignored for the
+NetrShareSetInfo method) MUST be updated. Only disk shares can be affected by
+this <i>Level</i>. The share MUST be updated as follows:<a id="Appendix_A_Target_64"></a><a aria-label="Product behavior note 64" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_64" data-linktype="relative-path">&lt;64&gt;</a></p><ul><li><p><span><span> 
+</span></span><b>SHARE_INFO_1005.shi1005_flags</b> MUST be set to <b>shi1005_flags</b>.</p>
+</li></ul><p>If the <i>Level</i> parameter is equal to 1006, all the
+settings that are defined by the SHARE_INFO_1006 structure as settable (that
+is, they are not defined as ignored on receipt or ignored for the
+NetrShareSetInfo method) MUST be updated. The share properties are updated as
+follows:</p><ul><li><p><span><span> 
+</span></span><b>SHARE_INFO_503_I.shi503_max_uses</b> MUST be set to <b>shi1006_max_uses</b>.</p>
+</li></ul><p>If the <i>Level</i> parameter is equal to 1501, all the
+settings that are defined by the SHARE_INFO_1501_I structure as settable (that
+is, they are not defined as ignored on receipt or ignored for the
+NetrShareSetInfo method) MUST be updated. The share properties MUST be updated
+as follows:</p><ul><li><p><span><span> 
+</span></span><b>SHARE_INFO_503_I.shi503_security_descriptor</b> MUST be set to
+<b>shi1501_security_descriptor</b>.</p>
+</li></ul><p>The server MUST invoke the underlying server events as
+specified in <span><a href="../ms-cifs/d416ff7c-c536-406e-a951-4f04b2fd1d2b" data-linktype="relative-path">[MS-CIFS]</a></span>
+section <span><a href="../ms-cifs/5f810fc9-fc2a-49dc-8f8a-b772e016ea66" data-linktype="relative-path">3.3.4.10</a></span>
+or <span><a href="../ms-smb/f210069c-7086-4dc2-885e-861d837df688" data-linktype="relative-path">[MS-SMB]</a></span>
+section <span><a href="../ms-smb/c74b9fcf-5aba-40d4-a734-d728df5d2891" data-linktype="relative-path">3.3.4.6</a></span>
+and <span><a href="../ms-smb2/5606ad47-5ee0-437a-817e-70c366052962" data-linktype="relative-path">[MS-SMB2]</a></span>
+section <span><a href="../ms-smb2/d4040ee9-7993-4b9e-9286-5ebeb597cf44" data-linktype="relative-path">3.3.4.14</a></span>,
+providing the updated <b>SHARE_INFO_503_I</b> structure and the updated <b>SHARE_INFO_1005</b>
+structure as input parameters.</p><p>If both the SMB and SMB2 servers return an error, the server
+MUST fail the call with ERROR_INVALID_DATA.</p><p>If only one of the SMB and SMB2 servers returns
+STATUS_SUCCESS:</p><ul><li><p><span><span> 
+</span></span>The server MUST construct a new <b>SHARE_INFO_503_I</b> structure
+and a new <b>SHARE_INFO_1005</b> structure from the <b>Share</b>, as specified
+in section 3.1.3.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST revert the updates made to the share on the
+server that returned STATUS_SUCCESS by invoking the underlying server event (as
+specified in [MS-CIFS] section 3.3.4.10, [MS-SMB] section 3.3.4.6, or [MS-SMB2]
+section 3.3.4.14), providing the <b>SHARE_INFO_503_I</b> structure and the <b>SHARE_INFO_1005</b>
+structure as input parameters.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST return ERROR_INVALID_DATA to the caller.</p>
+</li></ul><p>If both the SMB and the SMB2 servers return STATUS_SUCCESS,
+the server MUST update the <b>Share</b> as follows and return NERR_Success to
+the caller:</p><ul><li><p><span><span> 
+</span></span>If the <i>Level</i> parameter is equal to 1, 2, 502, 503, or
+1004, <b>Share.Remark</b> MUST be set to shi*_remark.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>Level</i> parameter is equal to 2, 502, 503, or 1006, <b>Share.MaxUses</b>
+MUST be set to shi*_max_uses.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>Level</i> parameter is equal to 502, 503, or 1501, <b>Share.FileSecurity</b>
+MUST be set to shi*_security_descriptor if <i>Level</i> is equal to 502 or 503;
+otherwise, it MUST be set to NULL.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>Level</i> parameter is equal to 1005:</p>
+<ul><li><p><span><span>  </span></span><b>Share.CscFlags</b>
+MUST be set to the value of shi1005_flags masked by CSC_MASK as specified in
+section 2.2.4.29.</p>
+</li><li><p><span><span>  </span></span><b>Share.IsDfs</b>
+MUST be set to TRUE if shi1005_flags contains SHI1005_FLAGS_DFS or
+SHI1005_FLAGS_DFS_ROOT as specified in section 2.2.4.29; otherwise, it MUST be
+set to FALSE.</p>
+</li><li><p><span><span>  </span></span><b>Share.DoAccessBasedDirectoryEnumeration</b>
+MUST be set to TRUE if shi1005_flags contains
+SHI1005_FLAGS_ACCESS_BASED_DIRECTORY_ENUM bit as specified in section 2.2.4.29;
+otherwise it MUST be set to FALSE.</p>
+</li><li><p><span><span>  </span></span><b>Share.AllowNamespaceCaching</b>
+MUST be set to True if shi1005_flags contains
+SHI1005_FLAGS_ALLOW_NAMESPACE_CACHING bit as specified in section 2.2.4.29;
+otherwise, it MUST be set to FALSE.</p>
+</li><li><p><span><span>  </span></span><b>Share.ForceSharedDelete</b>
+MUST be set to TRUE if shi1005_flags contains SHI1005_FLAGS_FORCE_SHARED_DELETE
+bit as specified in section 2.2.4.29; otherwise, it MUST be set to FALSE.</p>
+</li><li><p><span><span>  </span></span><b>Share.RestrictExclusiveOpens</b>
+MUST be set to TRUE if shi1005_flags contains
+SHI1005_FLAGS_RESTRICT_EXCLUSIVE_OPENS bit as specified in section 2.2.4.29;
+otherwise, it MUST be set to FALSE.</p>
+</li><li><p><span><span>  </span></span><b>Share.HashEnabled</b>
+MUST be set to TRUE if shi1005_flags contains SHI1005_FLAGS_ENABLE_HASH bit as
+specified in section 2.2.4.29; otherwise it MUST be set to FALSE.</p>
+</li><li><p><span><span>  </span></span><b>Share.ForceLevel2Oplock</b>
+MUST be set to TRUE if shi1005_flags contains
+SHI1005_FLAGS_FORCE_LEVELII_OPLOCK bit as specified in section 2.2.4.29;
+otherwise, it MUST be set to FALSE.</p>
+</li></ul></li></ul><p>The server SHOULD<a id="Appendix_A_Target_65"></a><a aria-label="Product behavior note 65" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_65" data-linktype="relative-path">&lt;65&gt;</a> enforce
+security measures to verify that the caller has the required permissions to
+execute this routine. If the caller does not have the required credentials, the
+server SHOULD<a id="Appendix_A_Target_66"></a><a aria-label="Product behavior note 66" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_66" data-linktype="relative-path">&lt;66&gt;</a> fail the call.</p></div>

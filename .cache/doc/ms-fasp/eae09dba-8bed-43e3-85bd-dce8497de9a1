@@ -1,0 +1,39 @@
+<div class="content"><p> </p><p>This enumeration is used to identify the different hashing
+(integrity protection) algorithms supported. </p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_CRYPTO_HASH_TYPE
+ {
+   FW_CRYPTO_HASH_NONE = 0,
+   FW_CRYPTO_HASH_MD5 = 1,
+   FW_CRYPTO_HASH_SHA1 = 2,
+   FW_CRYPTO_HASH_SHA256 = 3,
+   FW_CRYPTO_HASH_SHA384 = 4,
+   FW_CRYPTO_HASH_AES_GMAC128 = 5,
+   FW_CRYPTO_HASH_AES_GMAC192 = 6,
+   FW_CRYPTO_HASH_AES_GMAC256 = 7,
+   FW_CRYPTO_HASH_MAX = 8,
+   FW_CRYPTO_HASH_MAX_V2_0 = FW_CRYPTO_HASH_SHA256
+ } FW_CRYPTO_HASH_TYPE;
+</pre></div>
+</dd></dl><p><b>FW_CRYPTO_HASH_NONE:  </b>This value MUST be used
+only when no hashing is to be performed. This is a valid value. This symbolic
+constant has a value of 0.</p><p><b>FW_CRYPTO_HASH_MD5:  </b>Use the MD5 algorithm for
+hashing (integrity protection). This symbolic constant has a value of 1.</p><p><b>FW_CRYPTO_HASH_SHA1:  </b>Use the SHA1 algorithm
+for hashing (integrity protection). This symbolic constant has a value of 2.</p><p><b>FW_CRYPTO_HASH_SHA256:  </b>Use the SHA256
+algorithm for hashing (integrity protection). This symbolic constant has a
+value of 3.</p><p><b>FW_CRYPTO_HASH_SHA384:  </b>Use the SHA384
+algorithm for hashing (integrity protection). This symbolic constant has a
+value of 4.</p><p><b>FW_CRYPTO_HASH_AES_GMAC128:  </b>Use the
+AESGMAC128 algorithm for hashing (integrity protection). This symbolic constant
+has a value of 5.</p><p><b>FW_CRYPTO_HASH_AES_GMAC192:  </b>Use the
+AESGMAC192 algorithm for hashing (integrity protection). This symbolic constant
+has a value of 6.</p><p><b>FW_CRYPTO_HASH_AES_GMAC256:  </b>Use the
+AESGMAC256 algorithm for hashing (integrity protection). This symbolic constant
+has a value of 7.</p><p><b>FW_CRYPTO_HASH_MAX:  </b>This value and values
+that exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 8.</p><p><b>FW_CRYPTO_HASH_MAX_V2_0:  </b>This value and
+values that exceed this value are not valid and MUST NOT be used by servers and
+clients with schema version 0x0200 and earlier. It is defined for simplicity in
+writing IDL definitions and describing semantic checks against policy schema
+versions of 0x0200. This symbolic constant has a value of 3.</p></div>

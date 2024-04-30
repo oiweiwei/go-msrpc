@@ -1,0 +1,40 @@
+<div class="content"><p>The Live Remote Event Capture (LREC) protocol allows a
+client to connect to a server to monitor critical information and detect issues
+as they occur on the server. For example, to detect under-provisioned servers,
+an administrator can use this protocol to remotely see the <a href="59d7a0e2-342c-4dc3-bc27-88e9c4aa0415#gt_472f97f2-82ec-4623-8e46-d348a7984967" data-linktype="relative-path">events</a> that indicate
+under-provisioning which are logged as high memory utilization. The remote
+visibility into the event logging enables the administrator to re-balance the
+load on the server, immediately observe the fix, and continue to make
+improvements as necessary.</p><p>In the LREC protocol, information is sent over the network
+to a client as a sequential stream of records each of which is referred to as
+an event. Multiple software components and applications on the server can
+report events using the protocol. These are referred to <a href="59d7a0e2-342c-4dc3-bc27-88e9c4aa0415#gt_9fc95e07-a7fc-4112-92f8-2842f54745e0" data-linktype="relative-path">event providers</a>. Each event
+provider is identified by a unique &#34;provider ID&#34; and its event types
+are described in a <a href="59d7a0e2-342c-4dc3-bc27-88e9c4aa0415#gt_7808f167-11e8-49ea-ac6d-e517a7fc7ae2" data-linktype="relative-path">provider
+manifest</a> organized in any implementation-specific way, such as the XML
+schema specified in <a href="https://go.microsoft.com/fwlink/?LinkId=299240" data-linktype="external">[MSDN-EvntManifest]</a>.
+</p><p>Event providers can define multiple kinds of events. For example,
+a user logging on could be one kind of event and a user logging off could be
+another. When a provider reports an event, it specifies an event
+provider-specific Event Type ID (referred to as an event ID) that indicates the
+specific kind of event being reported. The event ID is reused whenever another
+event of the same type is reported. Therefore, each event type is uniquely
+identified by a provider ID and an event ID.</p><p>Different server configurations and application workloads
+have varying requirements for monitoring and troubleshooting. To ensure
+flexible support for these scenarios, multiple event providers can be added
+into an event session to enable simultaneous event recording. When using
+multiple event providers, two techniques in particular enable the broad
+coverage of a session containing many event providers, yet narrow the number of
+observed events:</p><ul><li><p><span><span> 
+</span></span>The server filters events based on the &#34;error level&#34; or
+criticality of the events. </p>
+</li><li><p><span><span> 
+</span></span>The server filters events based on keywords, such as authentication,
+input/output, or user interface. </p>
+</li></ul><p>In the LREC protocol, an <a href="59d7a0e2-342c-4dc3-bc27-88e9c4aa0415#gt_61990ad1-68c5-4105-907f-d3acdafd5917" data-linktype="relative-path">event session</a> is configured
+and started using a WS-Management-based control channel. When the session is
+started, the server initializes an <a href="59d7a0e2-342c-4dc3-bc27-88e9c4aa0415#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> <a href="59d7a0e2-342c-4dc3-bc27-88e9c4aa0415#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a> and the client
+connects to the server using the RPC endpoint to receive reported events. When
+the client is finished observing reported events, the client stops the session
+using the WS-Management-based control channel. When all event sessions are
+stopped, the RPC endpoint is removed. </p></div>

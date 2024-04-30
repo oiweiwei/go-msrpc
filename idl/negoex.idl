@@ -1,0 +1,140 @@
+// XXX: import.
+import "ms-dtyp.idl";
+
+ #define MESSAGE_SIGNATURE   0x535458454f47454e // i64  // "NEGOEXTS"
+  
+ typedef struct
+ {
+    ULONG ByteArrayOffset; // each element contains a byte
+    ULONG ByteArrayLength;
+ } BYTE_VECTOR;
+  
+ typedef struct
+ {
+   ULONG AuthSchemeArrayOffset;  // each element contains an AUTH_SCHEME
+   USHORT AuthSchemeCount;
+ } AUTH_SCHEME_VECTOR;
+  
+ typedef struct
+ {
+   ULONG ExtensionArrayOffset;  // each element contains an EXTENSION
+   USHORT ExtensionCount;
+ } EXTENSION_VECTOR;
+  
+ typedef struct
+ {
+   ULONG ExtensionType; // negative extensions are critical
+   BYTE_VECTOR ExtensionValue;
+ } EXTENSION;
+  
+ //
+ // schemes defined for the checksum in the VERIFY message
+ //
+  
+ #define CHECKSUM_SCHEME_RFC3961  1
+ typedef struct
+ {
+   ULONG cbHeaderLength;
+   ULONG ChecksumScheme;
+   ULONG ChecksumType; // in the case of RFC3961 scheme, this is the RFC3961 checksum type
+   BYTE_VECTOR ChecksumValue;
+} CHECKSUM;
+ 
+ typedef GUID AUTH_SCHEME;
+typedef GUID CONVERSATION_ID;
+ 
+ typedef enum
+ {
+   MESSAGE_TYPE_INITIATOR_NEGO = 0,
+   MESSAGE_TYPE_ACCEPTOR_NEGO,
+   MESSAGE_TYPE_INITIATOR_META_DATA,
+   MESSAGE_TYPE_ACCEPTOR_META_DATA,
+   MESSAGE_TYPE_CHALLENGE,   // an exchange message from the acceptor
+   MESSAGE_TYPE_AP_REQUEST,  // an exchange message from the initiator
+   MESSAGE_TYPE_VERIFY,
+   MESSAGE_TYPE_ALERT,
+} MESSAGE_TYPE;
+  
+ typedef struct
+ {
+   ULONG64 Signature; // contains MESSAGE_SIGNATURE
+   MESSAGE_TYPE MessageType;
+   ULONG SequenceNum; 
+     // the message sequence number of this, conversation,
+     // starting with 0 and sequentially incremented
+   ULONG cbHeaderLength; 
+     // the header length of this message, including
+     // the message specific header, excluding the payload
+   ULONG cbMessageLength; // the length of this message
+   CONVERSATION_ID ConversationId;
+} MESSAGE_HEADER;
+  
+ typedef struct
+ {
+   MESSAGE_HEADER Header;  
+     // MESSAGE_TYPE_INITIATOR_NEGO for the initiator,
+     // MESSAGE_TYPE_ACCEPTOR_NEGO for the acceptor
+   UCHAR Random[32];
+   ULONG64 ProtocolVersion;  // version of the protocol, this contains 0
+   AUTH_SCHEME_VECTOR AuthSchemes;
+   EXTENSION_VECTOR Extensions;
+} NEGO_MESSAGE;
+ 
+ typedef struct
+ {
+   MESSAGE_HEADER Header;
+     // MESSAGE_TYPE_CHALLENGE for the acceptor, or
+     // MESSAGE_TYPE_AP_REQUEST for the initiator
+     // MESSAGE_TYPE_INITIATOR_META_DATA for the initiator metadata
+     // MESSAGE_TYPE_ACCEPTOR_META_DATA for the acceptor metadata
+   AUTH_SCHEME AuthScheme;
+   BYTE_VECTOR Exchange; 
+     // contains the opaque handshake message for the authentication scheme
+} EXCHANGE_MESSAGE;
+ 
+ typedef struct
+ {
+   MESSAGE_HEADER Header; // MESSAGE_TYPE_VERIFY
+   AUTH_SCHEME AuthScheme;
+   CHECKSUM Checksum;
+     // contains the checksum of all the previously
+     // exchanged messages in the order they were sent.
+} VERIFY_MESSAGE;
+ 
+ typedef struct
+ {
+   ULONG AlertType;
+   BYTE_VECTOR AlertValue;
+ } ALERT;
+  
+ //
+ // alert types
+ //
+  
+ #define ALERT_TYPE_PULSE  1
+  
+ //
+ // reason codes for the heartbeat message
+ //
+  
+ #define ALERT_VERIFY_NO_KEY  1
+  
+ typedef struct
+ {
+   ULONG cbHeaderLength;
+   ULONG Reason;
+} ALERT_PULSE;
+ 
+ typedef struct
+ {
+   ULONG AlertArrayOffset; // the element is an ALERT
+   USHORT AlertCount; // contains the number of alerts
+} ALERT_VECTOR;
+ 
+ typedef struct
+ {
+   MESSAGE_HEADER Header;
+   AUTH_SCHEME AuthScheme;
+   ULONG ErrorCode; // an NTSTATUS code
+   ALERT_VECTOR Alerts;
+} ALERT_MESSAGE;

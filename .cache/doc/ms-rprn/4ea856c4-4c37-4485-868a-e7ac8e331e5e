@@ -1,0 +1,17 @@
+<div class="content"><p>The <b>RPC_BIDI_REQUEST_CONTAINER</b> structure is a
+container for a list of <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_604aaee0-7ad4-46a3-932f-8d2def6615ad" data-linktype="relative-path">bidirectional</a>
+requests.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _RPC_BIDI_REQUEST_CONTAINER {
+   DWORD Version;
+   DWORD Flags;
+   DWORD Count;
+   [size_is(Count), unique] RPC_BIDI_REQUEST_DATA aData[];
+ } RPC_BIDI_REQUEST_CONTAINER;
+</pre></div>
+</dd></dl><p><b>Version:</b> The version of the bidirectional
+API schema. The value of this member MUST be 0x00000001.</p><p><b>Flags:</b> A value that MUST be set to zero
+when sent and MUST be ignored on receipt.</p><p><b>Count:</b> The number of bidirectional
+requests in the <b>aData</b> member.</p><p><b>aData:</b> An array of <b>RPC_BIDI_REQUEST_DATA</b>
+structures. Each structure in this member contains a single bidirectional
+request. For details, see section <a href="c3b78db7-5fec-4405-84ff-412e82d491f1" data-linktype="relative-path">2.2.1.12.1</a>.</p></div>

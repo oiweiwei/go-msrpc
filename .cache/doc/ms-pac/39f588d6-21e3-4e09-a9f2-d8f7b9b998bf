@@ -1,0 +1,196 @@
+<div class="content"><p> </p><p>The <b>NTLM_SUPPLEMENTAL_CREDENTIAL</b> structure is used to
+encode the credentials that the NTLM security protocol uses, specifically the
+LAN Manager hash (LM OWF) and the NT hash (NT OWF). Generating the hashes
+encoded in this structure is not addressed in the PAC structure specification.
+Details on how the hashes are created are as specified in <span><a href="../ms-nlmp/b38c36ed-2804-4868-a9ff-8dd3182128e4" data-linktype="relative-path">[MS-NLMP]</a></span>.
+The PAC buffer type is included only when PKINIT <span><a href="../ms-pkca/d0cf1763-3541-4008-a75f-a577fa5e8c5b" data-linktype="relative-path">[MS-PKCA]</a></span>
+is used to authenticate the user. The <b>NTLM_SUPPLEMENTAL_CREDENTIAL</b>
+structure is marshaled by <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>The <b>NTLM_SUPPLEMENTAL_CREDENTIAL</b> structure is defined
+as follows.</p><dl>
+<dd>
+<div><pre> typedef struct _NTLM_SUPPLEMENTAL_CREDENTIAL {
+     ULONG Version;
+     ULONG Flags;
+     BYTE LmPassword[16];
+     BYTE NtPassword[16];
+ } NTLM_SUPPLEMENTAL_CREDENTIAL, *PNTLM_SUPPLEMENTAL_CREDENTIAL;
+</pre></div>
+</dd></dl><p><b>Version:</b> A 32-bit unsigned integer that
+defines the credential version. This field MUST be 0x00000000.</p><p><b>Flags:</b> A 32-bit unsigned integer containing
+flags that define the credential options. <b>Flags</b> MUST contain at least
+one of the following values.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>N</p>
+  </td>
+  <td>
+  <p>L</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>L</p>
+  </td>
+  <td>
+  <p>Indicates that the <b>LM OWF</b> member is present and
+  valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>N</p>
+  </td>
+  <td>
+  <p>Indicates that the <b>NT OWF</b> member is present and
+  valid.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero
+and MUST be ignored on receipt.</p>
+</dd></dl><p><b>LmPassword:</b> A 16-element array of unsigned
+8-bit integers that define the <b>LM OWF</b>. The <b>LmPassword</b> member MUST
+be ignored if the L flag is not set in the <b>Flags</b> member.</p><p><b>NtPassword:</b> A 16-element array of unsigned
+8-bit integers that define the <b>NT OWF</b>. The <b>NtPassword</b> member MUST
+be ignored if the N flag is not set in the <b>Flags</b> member. </p></div>

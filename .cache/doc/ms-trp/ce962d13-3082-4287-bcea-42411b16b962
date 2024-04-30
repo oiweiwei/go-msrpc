@@ -1,0 +1,168 @@
+<div class="content"><p>The client uses the TUISPIDLLCallback packet to send or
+receive opaque data between the TSP on the server and the corresponding TSP
+user interface DLL on the client. The client obtains the user interface DLL
+earlier by sending the <a href="4041c995-8277-4892-9f34-189897faea54" data-linktype="relative-path">GetUIDllName</a>
+packet to begin the operation of installing, configuring, or removing the TSP.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwObjectID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwObjectType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwParamsInOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwParamsInSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwParamsOutOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwParamsOutSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved5</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved6</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved7</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved8</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VARDATA
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>Identifier of the function
+that will be invoked on the remote server. This value MUST be set to 2.</p><dl>
+<dd>
+<p>On completion of the <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a> method, this
+field MUST contain the result of the encapsulated telephony request. A value of
+0 indicates success, and a <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path">LINEERR_Constants</a>
+value indicates failure. The remote server MUST complete this call
+synchronously.</p>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>dwObjectID (4 bytes): </b>The <b>dwObjectType</b>
+field in this packet determines the interpretation of this field, as follows: </p><ul><li><p><span><span>  </span></span>TUISPIDLL_OBJECT_LINEID:
+<b>dwObjectID</b> is a line device identifier. </p>
+</li><li><p><span><span>  </span></span>TUISPIDLL_OBJECT_PHONEID:
+<b>dwObjectID</b> is a phone device identifier. </p>
+</li><li><p><span><span>  </span></span>TUISPIDLL_OBJECT_PROVIDERID:
+<b>dwObjectID</b> is a permanent provider identifier. The <b>dwObjectID</b>
+field in this case MUST be filled up by the server when the client wants to
+install the TSP; otherwise, this identifies the TSP being configured or
+removed.</p>
+</li><li><p><span><span>  </span></span>TUISPIDLL_OBJECT_DIALOGINSTANCE:
+<b>dwObjectID</b> is an opaque handle that was provided by the server to the
+client as part of corresponding GetUIDllName packet. This opaque handle value
+cannot be used after it is used in a <a href="59e93510-f560-4a4d-a710-e52e53dfb96a" data-linktype="relative-path">FreeDialogInstance</a> packet.</p>
+</li></ul><p><b>dwObjectType (4 bytes): </b>One of the <a href="12ba1e28-1fde-427b-af15-37f377decc40" data-linktype="relative-path">TUISPIDLL_OBJECT_Constants</a>.</p><p><b>dwParamsInOffset (4 bytes): </b>The offset in the <b>VARDATA</b>
+field to opaque data that the client is sending to the TSP on the server. This
+opaque data is not interpreted by the protocol.</p><p><b>dwParamsInSize (4 bytes): </b>The size of the
+opaque data in the <b>VARDATA</b> field that the client is sending to the TSP
+on the server.</p><p><b>dwParamsOutOffset (4 bytes): </b>On successful
+completion of the request, the server MUST set this field to the offset in the <b>VARDATA</b>
+field to the opaque data that the TSP is sending to the client. This opaque
+data is not interpreted by the protocol. </p><p><b>dwParamsOutSize (4 bytes): </b>A 32-bit integer.
+The client MUST set this field to the size of the data that it can receive from
+the server (for example, the size of the packet allocated on the client). On
+successful completion of the request, the server MUST set this field to the
+size of the data being returned in the <b>VARDATA</b> field at <b>dwParamsOutOffset</b>.</p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved5 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved6 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved7 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved8 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>VARDATA (variable): </b>Opaque data that the TSP
+is sending to the client.</p></div>

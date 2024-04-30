@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The <b>INET_INFO_STATISTICS_0</b> structure contains
+statistics for an <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_d9a0cf88-f6d7-4c52-a9fc-4ce5a7cb7260" data-linktype="relative-path">Internet protocol server</a></span>.</p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _INET_INFO_STATISTICS_0 {
+   INETA_CACHE_STATISTICS CacheCtrs;
+   INETA_ATQ_STATISTICS AtqCtrs;
+   DWORD nAuxCounters;
+   DWORD rgCounters[20];
+ } INET_INFO_STATISTICS_0,
+  *LPINET_INFO_STATISTICS_0;
+</pre></div>
+</dd></dl><p><b>CacheCtrs:</b>  The structure of type <span><b><a href="c28cb932-d4d6-47fc-989a-56b70763fa46" data-linktype="relative-path">INETA_CACHE_STATISTICS</a></b></span>
+that contains statistics on the Internet protocol server cache.</p><p><b>AtqCtrs:</b>  The structure of type <span><b><a href="4db68229-482b-433c-b687-95ffb01a680f" data-linktype="relative-path">INETA_ATQ_STATISTICS</a></b></span>
+that contains statistics on the Internet protocol server network I/O.</p><p><b>nAuxCounters:</b>  The number of
+initialized elements in <b>rgCounters</b>. MUST be 0.</p><p><b>rgCounters:</b>  An array of 20
+elements. This field is unused and MUST be ignored by clients.</p></div>

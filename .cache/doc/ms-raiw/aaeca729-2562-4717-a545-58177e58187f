@@ -1,0 +1,44 @@
+<div class="content"><p>The WINSINTF_SCV_REQ_T structure defines the type of <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_345c3de7-adfa-4386-9ba5-f5f572af489c" data-linktype="relative-path">scavenging</a> that needs to be
+done on the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target WINS
+server</a>. This is used by the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> method <a href="062d9eeb-402a-42d4-8048-d2835aeda1d4" data-linktype="relative-path">R_WinsDoScavengingNew (section 3.1.4.22)</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSINTF_SCV_REQ_T {
+   WINSINTF_SCV_OPC_E Opcode_e;
+   DWORD Age;
+   DWORD fForce;
+ } WINSINTF_SCV_REQ_T,
+  *PWINSINTF_SCV_REQ_T;
+</pre></div>
+</dd></dl><p><b>Opcode_e:</b>  A <a href="b842516b-839a-4c9b-9db7-37dcf2f978c3" data-linktype="relative-path">WINSINTF_SCV_OPC_E</a>
+enumeration (section 2.2.1.8) value describing the type of scavenging operation
+to be performed on the target <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a>
+server.</p><p><b>Age:</b>  This member is not set and MUST be
+ignored on receipt.</p><p><b>fForce:</b>  Specifies whether a forceful scavenging
+is required.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The internal state and configuration of the WINS
+  server determine whether scavenging is performed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001 — 0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>The target WINS server performs scavenging.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

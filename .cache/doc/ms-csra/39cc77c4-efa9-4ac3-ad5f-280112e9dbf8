@@ -1,0 +1,65 @@
+<div class="content"><p>The Certificate Services Remote Administration Protocol
+consists of a set of <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a>
+interfaces, as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>,
+that allow administrative tools to configure the state and policy of a <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> on a server. The
+administrative tools can perform such functions as getting or setting
+properties on a CA, retrieving data, revoking <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a>, or retrieving
+escrowed <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private keys</a>
+from a CA.</p><p>The following figure reflects only CA administration, not
+the normal operation of the CA. The protocol for the normal operation of the
+Microsoft CA is specified in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>.</p><p><img id="MS-CSRA_pict6c3f754b-5987-1204-1ae0-7690da2f6588.png" src="ms-csra_files/image001.png" alt="Machines involved in remote administration" title="Machines involved in remote administration" data-linktype="relative-path"/></p><p><b>Figure 1: Machines involved in remote administration</b></p><p>In the preceding figure, the principal components are:</p><ul><li><p><span><span> 
+</span></span>CA: The certification authority (CA) that receives configuration
+and administration tasks. The remote administration protocol that is defined in
+this document covers the interactions that are shown as a solid line in this
+figure.</p>
+</li><li><p><span><span> 
+</span></span>Administrator&#39;s computer: A client to the CA that performs remote
+configuration or administration tasks.</p>
+</li><li><p><span><span> 
+</span></span><a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a>: An <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a> domain
+controller (DC) includes a <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_6e5aafba-6b66-4fdd-872e-844f142af287" data-linktype="relative-path">Key
+Distribution Center (KDC)</a> as specified in <a href="../ms-kile/2a32282e-dd48-4ad9-a542-609804b02cc9" data-linktype="relative-path">[MS-KILE]</a>.
+In most cases, a Kerberos KDC is used to authenticate the parties for
+authenticated DCOM messages. The protocol that is documented here is built on
+top of authenticated DCOM messages. Interactions with the DC are shown in the
+figure as dashed lines. DCOM is documented as specified in [MS-DCOM], which in
+turn references interactions with the DC.</p>
+</li></ul><p>The protocol uses two DCOM interfaces: <a href="46496f1f-a631-42b3-a60e-33f95fb6fed1" data-linktype="relative-path">ICertAdminD (section 3.1.4.1)</a>
+and <a href="5980fbc9-5001-42bc-ad09-8759d20ce054" data-linktype="relative-path">ICertAdminD2 (section 3.1.4.2)</a>,
+which offer additional methods. The two interfaces define a total of 46
+methods.</p><p>The methods of the Certificate Services Remote
+Administration Protocol fall into the following categories:</p><ul><li><p><span><span> 
+</span></span>Managing pending certificate requests: A certificate request can
+be fulfilled immediately or can be held for human administrator approval or
+other action. When a request is pending human approval, there are ICertAdminD
+methods that allow the human&#39;s administrative console to interact with the CA
+to query and modify pending requests. For additional information on pending
+requests, see section <a href="07e92aa5-b7d4-446a-b5b8-cfe775993388" data-linktype="relative-path">3.1.1.1.1</a>
+and also [MS-WCCE].</p>
+</li><li><p><span><span> 
+</span></span>Configuring or retrieving data from CA databases: For purposes of
+this protocol, a CA is built around a logical database, as specified in section
+<a href="300bd09e-3e23-4082-a095-4306558a31f9" data-linktype="relative-path">1.3.1.3</a>. A number of
+methods in this protocol deal with configuration or data retrieval of
+particular rows or columns of <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_d3a7da8d-a597-4838-9756-25e30b640ba7" data-linktype="relative-path">tables</a>
+in the logical database.</p>
+</li><li><p><span><span> 
+</span></span>Managing <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_caac8fa2-5e21-43b9-a3fe-be0819b906bf" data-linktype="relative-path">revocation</a>:
+This protocol includes methods to tell the CA to revoke a certificate, to query
+the validity of a certificate, and to deal with the mechanics of publication of
+<a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_4f22841f-249b-42fb-a31a-5049c00be939" data-linktype="relative-path">CRLs</a>.</p>
+</li><li><p><span><span> 
+</span></span>Managing audit: This protocol includes methods that allow the
+administrator to learn and specify which classes of events generate audit trail
+entries.</p>
+</li><li><p><span><span> 
+</span></span>Archived <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a>
+retrieval: This protocol defines one method for retrieving a private key that
+was archived as part of a certificate request.</p>
+</li><li><p><span><span> 
+</span></span>Miscellaneous administrative actions: This protocol includes a
+number of methods for miscellaneous administrative actions such as determining
+if the CA is responsive, determining what kinds of rights the caller has,
+telling the CA to go offline, or querying and editing various CA state
+variables. For details, see the descriptions in sections 3.1.4.1 and 3.1.4.2.</p>
+</li></ul></div>

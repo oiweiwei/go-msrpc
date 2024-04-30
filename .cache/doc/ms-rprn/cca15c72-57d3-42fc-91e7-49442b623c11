@@ -1,0 +1,24 @@
+<div class="content"><p>The <b>SPLCLIENT_CONTAINER</b> structure contains an
+information structure that provides data about the connecting client.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _SPLCLIENT_CONTAINER {
+   DWORD Level;
+   [switch_is(Level)] union {
+     [case(1)] 
+       SPLCLIENT_INFO_1* pClientInfo1;
+     [case(2)] 
+       SPLCLIENT_INFO_2* pNotUsed1;
+     [case(3)] 
+       SPLCLIENT_INFO_3* pNotUsed2;
+   } ClientInfo;
+ } SPLCLIENT_CONTAINER;
+</pre></div>
+</dd></dl><p><b>Level:</b> The information level that is used
+by the <b>ClientInfo</b> member to determine the information structure. The
+value MUST be 0x00000001.</p><p><b>ClientInfo:</b> Client information in a
+structure that corresponds to the information level specified by the <b>Level</b>
+member.</p><p><b>pClientInfo1:</b> A pointer to an <b>SPLCLIENT_INFO_1</b> structure
+(section <a href="dd99a589-aecd-4c25-9111-ded01b10f347" data-linktype="relative-path">2.2.1.11.1)</a>
+information.</p><p><b>pNotUsed1:</b> A pointer to a structure that
+is specified only as a placeholder in the IDL and MUST be ignored.</p><p><b>pNotUsed2:</b> A pointer to a structure that
+is specified only as a placeholder in the IDL and MUST be ignored.</p></div>

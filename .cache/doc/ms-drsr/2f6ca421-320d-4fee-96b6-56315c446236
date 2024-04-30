@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The DSA_ADDRESS_LIST_DRS_WIRE_V1 structure defines a linked
+list entry for a referral network name.</p><dl>
+<dd>
+<div><pre> typedef struct _DSA_ADDRESS_LIST_DRS_WIRE_V1 {
+   struct _DSA_ADDRESS_LIST_DRS_WIRE_V1* pNextAddress;
+   RPC_UNICODE_STRING* pAddress;
+ } DSA_ADDRESS_LIST_DRS_WIRE_V1;
+</pre></div>
+</dd></dl><p><b>pNextAddress:</b>  Null, or the next
+element in the linked list.</p><p><b>pAddress:</b>  Network name of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>
+to which the referral is directed.</p></div>

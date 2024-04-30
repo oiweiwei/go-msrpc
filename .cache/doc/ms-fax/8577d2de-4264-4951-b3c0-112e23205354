@@ -1,0 +1,71 @@
+<div class="content"><p> </p><p>The <b>FaxObs_Abort (Opnum 12)</b> method is called by the
+client to abort the specified fax job on the server. The value for the <i>JobId</i>
+parameter can be obtained by calling the <b>FaxObs_EnumJobs</b> (section <span><a href="e16a0c7e-be32-44ae-977f-2406d937dab2" data-linktype="relative-path">3.1.4.2.9</a></span>)
+or <b>FaxObs_SendDocument</b> (section <span><a href="21b87199-d4e7-472c-9190-90c6bb16d947" data-linktype="relative-path">3.1.4.2.7</a></span>) method.</p><p>In response, the server MUST validate that the job
+identifier specified by <i>JobId</i> is for a valid job. The server MUST
+validate that the client&#39;s fax user account has write access to the job. On
+success, the server MUST terminate the specified fax job that is queued or in
+progress.</p><dl>
+<dd>
+<div><pre> error_status_t FaxObs_Abort(
+   [in] handle_t hBinding,
+   [in] DWORD JobId
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FaxObs_ConnectionRefCount</b> (section <span><a href="9430f7e2-d21d-4a38-a859-367b74f68a1a" data-linktype="relative-path">3.1.4.2.2</a></span>)
+method call used to connect to the fax server.</p><p><b>JobId: </b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+containing a unique number that identifies the fax job to terminate.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. This error code is returned under
+  any of the following conditions:</p>
+  <p><span>§<span>  
+  </span></span>The client&#39;s fax user account does not have the FAX_ JOB_MANAGE
+  access rights.</p>
+  <p><span>§<span>  
+  </span></span>The client&#39;s fax user account is not the owner of the fax job
+  identified by the <i>JobId</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. This error code is
+  returned when any of the following conditions are met:</p>
+  <p><span>§<span>  
+  </span></span>The fax job identified by the specified <i>JobId</i> cannot be
+  found by the fax server.</p>
+  <p><span>§<span>  
+  </span></span>The specified job has already been canceled or is in the
+  process of being canceled.</p>
+  <p><span>§<span>  
+  </span></span>The specified <i>JobId</i> represents the job for an outgoing
+  broadcast message; aborting outgoing broadcast messages is not supported.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

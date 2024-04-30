@@ -1,0 +1,524 @@
+<div class="content"><p> </p><p>This enumeration represents status codes that identify the
+error states of a policy object, including successful states. If an object is
+in an erroneous state, the enumeration value represents a reason for the error.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum _tag_FW_RULE_STATUS
+ {
+   FW_RULE_STATUS_OK = 0x00010000,
+   FW_RULE_STATUS_PARTIALLY_IGNORED = 0x00020000,
+   FW_RULE_STATUS_IGNORED = 0x00040000,
+   FW_RULE_STATUS_PARSING_ERROR = 0x00080000,
+   FW_RULE_STATUS_PARSING_ERROR_NAME = 0x00080001,
+   FW_RULE_STATUS_PARSING_ERROR_DESC = 0x00080002,
+   FW_RULE_STATUS_PARSING_ERROR_APP = 0x00080003,
+   FW_RULE_STATUS_PARSING_ERROR_SVC = 0x00080004,
+   FW_RULE_STATUS_PARSING_ERROR_RMA = 0x00080005,
+   FW_RULE_STATUS_PARSING_ERROR_RUA = 0x00080006,
+   FW_RULE_STATUS_PARSING_ERROR_EMBD = 0x00080007,
+   FW_RULE_STATUS_PARSING_ERROR_RULE_ID = 0x00080008,
+   FW_RULE_STATUS_PARSING_ERROR_PHASE1_AUTH = 0x00080009,
+   FW_RULE_STATUS_PARSING_ERROR_PHASE2_CRYPTO = 0x0008000A,
+   FW_RULE_STATUS_PARSING_ERROR_PHASE2_AUTH = 0x0008000B,
+   FW_RULE_STATUS_PARSING_ERROR_RESOLVE_APP = 0x0008000C,
+   FW_RULE_STATUS_PARSING_ERROR_MAINMODE_ID = 0x0008000D,
+   FW_RULE_STATUS_PARSING_ERROR_PHASE1_CRYPTO = 0x0008000E,
+   FW_RULE_STATUS_PARSING_ERROR_REMOTE_ENDPOINTS = 0x0008000F,
+   FW_RULE_STATUS_PARSING_ERROR_REMOTE_ENDPOINT_FQDN = 0x00080010,
+   FW_RULE_STATUS_PARSING_ERROR_KEY_MODULE = 0x00080011,
+   FW_RULE_STATUS_PARSING_ERROR_LUA = 0x00080012,
+   FW_RULE_STATUS_PARSING_ERROR_FWD_LIFETIME = 0x00080013,
+   FW_RULE_STATUS_PARSING_ERROR_TRANSPORT_MACHINE_AUTHZ_SDDL = 0x00080014,
+   FW_RULE_STATUS_PARSING_ERROR_TRANSPORT_USER_AUTHZ_SDDL = 0x00080015,
+   FW_RULE_STATUS_PARSING_ERROR_NETNAMES_STRING = 0x00080016,
+   FW_RULE_STATUS_PARSING_ERROR_SECURITY_REALM_ID_STRING = 0x00080017, 
+   FW_RULE_STATUS_PARSING_ERROR_FQBN_STRING = 0x00080018,
+   FW_RULE_STATUS_SEMANTIC_ERROR = 0x00100000,
+   FW_RULE_STATUS_SEMANTIC_ERROR_RULE_ID = 0x00100010,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PORTS = 0x00100020,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PORT_KEYW = 0x00100021,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PORT_RANGE = 0x00100022,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PORTRANGE_RESTRICTION = 0x00100023,
+   FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_V4_SUBNETS = 0x00100040,
+   FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_V6_SUBNETS = 0x00100041,
+   FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_V4_RANGES = 0x00100042,
+   FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_V6_RANGES = 0x00100043,
+   FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_RANGE = 0x00100044,
+   FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_MASK = 0x00100045,
+   FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_PREFIX = 0x00100046,
+   FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_KEYW = 0x00100047,
+   FW_RULE_STATUS_SEMANTIC_ERROR_LADDR_PROP = 0x00100048,
+   FW_RULE_STATUS_SEMANTIC_ERROR_RADDR_PROP = 0x00100049,
+   FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_V6 = 0x0010004A,
+   FW_RULE_STATUS_SEMANTIC_ERROR_LADDR_INTF = 0x0010004B,
+   FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_V4 = 0x0010004C,
+   FW_RULE_STATUS_SEMANTIC_ERROR_TUNNEL_ENDPOINT_ADDR = 0x0010004D,
+   FW_RULE_STATUS_SEMANTIC_ERROR_DTE_VER = 0x0010004E,
+   FW_RULE_STATUS_SEMANTIC_ERROR_DTE_MISMATCH_ADDR = 0x0010004F,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PROFILE = 0x00100050,
+   FW_RULE_STATUS_SEMANTIC_ERROR_ICMP = 0x00100060,
+   FW_RULE_STATUS_SEMANTIC_ERROR_ICMP_CODE = 0x00100061,
+   FW_RULE_STATUS_SEMANTIC_ERROR_IF_ID = 0x00100070,
+   FW_RULE_STATUS_SEMANTIC_ERROR_IF_TYPE = 0x00100071,
+   FW_RULE_STATUS_SEMANTIC_ERROR_ACTION = 0x00100080,
+   FW_RULE_STATUS_SEMANTIC_ERROR_ALLOW_BYPASS = 0x00100081,
+   FW_RULE_STATUS_SEMANTIC_ERROR_DO_NOT_SECURE = 0x00100082,
+   FW_RULE_STATUS_SEMANTIC_ERROR_ACTION_BLOCK_IS_ENCRYPTED_SECURE = 0x00100083,
+   FW_RULE_STATUS_SEMANTIC_ERROR_INCOMPATIBLE_FLAG_OR_ACTION_WITH_SECURITY_REALM = 0x00100084,
+   FW_RULE_STATUS_SEMANTIC_ERROR_DIR = 0x00100090,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PROT = 0x001000A0,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PROT_PROP = 0x001000A1,
+   FW_RULE_STATUS_SEMANTIC_ERROR_DEFER_EDGE_PROP = 0x001000A2,
+   FW_RULE_STATUS_SEMANTIC_ERROR_ALLOW_BYPASS_OUTBOUND = 0x001000A3,
+   FW_RULE_STATUS_SEMANTIC_ERROR_DEFER_USER_INVALID_RULE = 0x001000A4,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS = 0x001000B0,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_AUTO_AUTH = 0x001000B1,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_AUTO_BLOCK = 0x001000B2,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_AUTO_DYN_RPC = 0x001000B3,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_AUTHENTICATE_ENCRYPT = 0x001000B4,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_AUTH_WITH_ENC_NEGOTIATE_VER = 0x001000B5,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_AUTH_WITH_ENC_NEGOTIATE = 0x001000B6,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_ESP_NO_ENCAP_VER = 0x001000B7,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_ESP_NO_ENCAP = 0x001000B8,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_TUNNEL_AUTH_MODES_VER = 0x001000B9,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_TUNNEL_AUTH_MODES = 0x001000BA,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_IP_TLS_VER = 0x001000BB,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_PORTRANGE_VER = 0x001000BC,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_ADDRS_TRAVERSE_DEFER_VER = 0x001000BD,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_AUTH_WITH_ENC_NEGOTIATE_OUTBOUND = 0x001000BE,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_AUTHENTICATE_WITH_OUTBOUND_BYPASS_VER = 0x001000BF,
+   FW_RULE_STATUS_SEMANTIC_ERROR_REMOTE_AUTH_LIST = 0x001000C0,
+   FW_RULE_STATUS_SEMANTIC_ERROR_REMOTE_USER_LIST = 0x001000C1,
+   FW_RULE_STATUS_SEMANTIC_ERROR_LOCAL_USER_LIST = 0x001000C2,
+   FW_RULE_STATUS_SEMANTIC_ERROR_LUA_VER = 0x001000C3,
+   FW_RULE_STATUS_SEMANTIC_ERROR_LOCAL_USER_OWNER = 0x001000C4,
+   FW_RULE_STATUS_SEMANTIC_ERROR_LOCAL_USER_OWNER_VER = 0x001000C5,
+   FW_RULE_STATUS_SEMANTIC_ERROR_LUA_CONDITIONAL_VER = 0x001000C6,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_SYSTEMOS_GAMEOS = 0x001000C7,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_CORTANA_VER = 0x001000C8,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_REMOTENAME = 0x001000C9
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_ALLOW_PROFILE_CROSSING_VER = 0x001000D0,
+   FW_RULE_STATUS_SEMANTIC_ERROR_LOCAL_ONLY_MAPPED_VER = 0x001000D1,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PLATFORM = 0x001000E0,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PLATFORM_OP_VER = 0x001000E1,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PLATFORM_OP = 0x001000E2,
+   FW_RULE_STATUS_SEMANTIC_ERROR_DTE_NOANY_ADDR = 0x001000F0,
+   FW_RULE_STATUS_SEMANTIC_TUNNEL_EXEMPT_WITH_GATEWAY = 0x001000F1,
+   FW_RULE_STATUS_SEMANTIC_TUNNEL_EXEMPT_VER = 0x001000F2,
+   FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_KEYWORD_VER = 0x001000F3,
+   FW_RULE_STATUS_SEMANTIC_ERROR_KEY_MODULE_VER = 0x001000F4,
+   FW_RULE_STATUS_SEMANTIC_ERROR_APP_CONTAINER_PACKAGE_ID = 0x00100100,
+   FW_RULE_STATUS_SEMANTIC_ERROR_APP_CONTAINER_PACKAGE_ID_VER = 0x00100101,
+   FW_RULE_STATUS_SEMANTIC_ERROR_TRUST_TUPLE_KEYWORD_INCOMPATIBLE = 0x00100200,
+   FW_RULE_STATUS_SEMANTIC_ERROR_TRUST_TUPLE_KEYWORD_INVALID = 0x00100201,
+   FW_RULE_STATUS_SEMANTIC_ERROR_TRUST_TUPLE_KEYWORD_VER = 0x00100202,
+   FW_RULE_STATUS_SEMANTIC_ERROR_INTERFACE_TYPES_VER = 0x00100301,
+   FW_RULE_STATUS_SEMANTIC_ERROR_NETNAMES_VER = 0x00100401,
+   FW_RULE_STATUS_SEMANTIC_ERROR_SECURITY_REALM_ID_VER = 0x00100402,
+   FW_RULE_STATUS_SEMANTIC_ERROR_SYSTEMOS_GAMEOS_VER = 0x00100403,
+   FW_RULE_STATUS_SEMANTIC_ERROR_DEVMODE_VER = 0x00100404,
+   FW_RULE_STATUS_SEMANTIC_ERROR_REMOTE_SERVERNAME_VER = 0x00100405,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FQBN_VER = 0x00100406,
+   FW_RULE_STATUS_SEMANTIC_ERROR_COMPARTMENT_ID_VER = 0x00100407,
+   FW_RULE_STATUS_SEMANTIC_ERROR_CALLOUT_AND_AUDIT_VER = 0x00100408,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_AUTH_SET_ID = 0x00100500,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_SET_ID = 0x00100510,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_SET_ID = 0x00100511,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_KEY_MANAGER_DICTATE_VER = 0x00100512,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_KEY_MANAGER_NOTIFY_VER = 0x00100513,
+   FW_RULE_STATUS_SEMANTIC_ERROR_TRANSPORT_MACHINE_AUTHZ_VER = 0x00100514,
+   FW_RULE_STATUS_SEMANTIC_ERROR_TRANSPORT_USER_AUTHZ_VER = 0x00100515,
+   FW_RULE_STATUS_SEMANTIC_ERROR_TRANSPORT_MACHINE_AUTHZ_ON_TUNNEL = 0x00100516,
+   FW_RULE_STATUS_SEMANTIC_ERROR_TRANSPORT_USER_AUTHZ_ON_TUNNEL = 0x00100517,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PER_RULE_AND_GLOBAL_AUTHZ = 0x00100518,
+   FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_SECURITY_REALM = 0x00100519,
+   FW_RULE_STATUS_SEMANTIC_ERROR_SET_ID = 0x00101000,
+   FW_RULE_STATUS_SEMANTIC_ERROR_IPSEC_PHASE = 0x00101010,
+   FW_RULE_STATUS_SEMANTIC_ERROR_EMPTY_SUITES = 0x00101020,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_AUTH_METHOD = 0x00101030,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_AUTH_METHOD = 0x00101031,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_METHOD_ANONYMOUS = 0x00101032,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_METHOD_DUPLICATE = 0x00101033,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_METHOD_VER = 0x00101034,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_SUITE_FLAGS = 0x00101040,
+   FW_RULE_STATUS_SEMANTIC_ERROR_HEALTH_CERT = 0x00101041,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_SIGNCERT_VER = 0x00101042,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_INTERMEDIATE_CA_VER = 0x00101043,
+   FW_RULE_STATUS_SEMANTIC_ERROR_MACHINE_SHKEY = 0x00101050,
+   FW_RULE_STATUS_SEMANTIC_ERROR_CA_NAME = 0x00101060,
+   FW_RULE_STATUS_SEMANTIC_ERROR_MIXED_CERTS = 0x00101061,
+   FW_RULE_STATUS_SEMANTIC_ERROR_NON_CONTIGUOUS_CERTS = 0x00101062,
+   FW_RULE_STATUS_SEMANTIC_ERROR_MIXED_CA_TYPE_IN_BLOCK = 0x00101063,
+   FW_RULE_STATUS_SEMANTIC_ERROR_MACHINE_USER_AUTH = 0x00101070,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_VER = 0x00101071,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_VER_MISMATCH = 0x00101072,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_RENEWAL_HASH = 0x00101073,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_INVALID_HASH = 0x00101074,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_INVALID_EKU = 0x00101075,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_INVALID_NAME_TYPE = 0x00101076,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_INVALID_NAME = 0x00101077,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_INVALID_CRITERIA_TYPE = 0x00101078,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_MISSING_CRITERIA = 0x00101079,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PROXY_SERVER = 0x00101080,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_PROXY_SERVER_VER = 0x00101081,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_NON_DEFAULT_ID = 0x00105000,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_FLAGS = 0x00105001,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_TIMEOUT_MINUTES = 0x00105002,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_TIMEOUT_SESSIONS = 0x00105003,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_KEY_EXCHANGE = 0x00105004,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_ENCRYPTION = 0x00105005,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_HASH = 0x00105006,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_ENCRYPTION_VER = 0x00105007,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_HASH_VER = 0x00105008,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_KEY_EXCH_VER = 0x00105009,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_PFS = 0x00105020,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_PROTOCOL = 0x00105021,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_ENCRYPTION = 0x00105022,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_HASH = 0x00105023,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_TIMEOUT_MINUTES = 0x00105024,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_TIMEOUT_KBYTES = 0x00105025,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_ENCRYPTION_VER = 0x00105026,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_HASH_VER = 0x00105027,
+   FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_PFS_VER = 0x00105028,
+   FW_RULE_STATUS_SEMANTIC_ERROR_CRYPTO_ENCR_HASH = 0x00105040,
+   FW_RULE_STATUS_SEMANTIC_ERROR_CRYPTO_ENCR_HASH_COMPAT = 0x00105041,
+   FW_RULE_STATUS_SEMANTIC_ERROR_SCHEMA_VERSION = 0x00105050,
+   FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_OR_AND_CONDITIONS = 0x00106000,
+   FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_AND_CONDITIONS = 0x00106001,
+   FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_CONDITION_KEY = 0x00106002,
+   FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_CONDITION_MATCH_TYPE = 0x00106003,
+   FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_CONDITION_DATA_TYPE = 0x00106004,
+   FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_CONDITION_KEY_AND_DATA_TYPE = 0x00106005,
+   FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEYS_PROTOCOL_PORT = 0x00106006,
+   FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEY_PROFILE = 0x00106007,
+   FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEY_STATUS = 0x00106008,
+   FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEY_FILTERID = 0x00106009,
+   FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEY_APP_PATH = 0x00106010,
+   FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEY_PROTOCOL = 0x00106011,
+   FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEY_LOCAL_PORT = 0x00106012,
+   FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEY_REMOTE_PORT = 0x00106013,
+   FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEY_SVC_NAME = 0x00106015,
+   FW_RULE_STATUS_SEMANTIC_ERROR_REQUIRE_IN_CLEAR_OUT_ON_TRANSPORT = 0x00107000,
+   FW_RULE_STATUS_SEMANTIC_ERROR_TUNNEL_BYPASS_TUNNEL_IF_SECURE_ON_TRANSPORT = 0x00107001,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_NOENCAP_ON_TUNNEL = 0x00107002,
+   FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_NOENCAP_ON_PSK = 0x00107003,
+   FW_RULE_STATUS_RUNTIME_ERROR = 0x00200000,
+   FW_RULE_STATUS_RUNTIME_ERROR_PHASE1_AUTH_NOT_FOUND = 0x00200001,
+   FW_RULE_STATUS_RUNTIME_ERROR_PHASE2_AUTH_NOT_FOUND = 0x00200002,
+   FW_RULE_STATUS_RUNTIME_ERROR_PHASE2_CRYPTO_NOT_FOUND = 0x00200003,
+   FW_RULE_STATUS_RUNTIME_ERROR_AUTH_MCHN_SHKEY_MISMATCH = 0x00200004,
+   FW_RULE_STATUS_RUNTIME_ERROR_PHASE1_CRYPTO_NOT_FOUND = 0x00200005,
+   FW_RULE_STATUS_RUNTIME_ERROR_AUTH_NOENCAP_ON_TUNNEL = 0x00200006,
+   FW_RULE_STATUS_RUNTIME_ERROR_AUTH_NOENCAP_ON_PSK = 0x00200007,
+   FW_RULE_STATUS_RUNTIME_ERROR_KEY_MODULE_AUTH_MISMATCH = 0x00200008,
+   FW_RULE_STATUS_ERROR = FW_RULE_STATUS_PARSING_ERROR | FW_RULE_STATUS_SEMANTIC_ERROR | FW_RULE_STATUS_RUNTIME_ERROR,
+   FW_RULE_STATUS_ALL = 0xFFFF0000
+ } FW_RULE_STATUS;
+</pre></div>
+</dd></dl><p><b>FW_RULE_STATUS_OK:  </b>The rule was parsed
+successfully from the store, is correctly constructed, and has no issue.</p><p><b>FW_RULE_STATUS_PARTIALLY_IGNORED:  </b>The rule
+has fields that the service can successfully ignore. The ignored fields can be
+present only if the policy (such as the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_defe8c22-1365-4e5e-abf7-46ad112d3bda" data-linktype="relative-path">Group Policy</a></span>) was
+written by future firewall and advanced security components that support a
+higher schema version. Therefore, this error occurs only if the version of the
+rule is higher; specifically, a higher minor version means that part of the
+rule might not be understandable. Because the host firewall component does not
+understand these new fields, it cannot meaningfully specify what was ignored in
+the rule.</p><p><b>FW_RULE_STATUS_IGNORED:  </b>The rule has a higher
+major version that the service MUST ignore. Higher major schema versions
+specify that nothing in the rule is understandable to lower major version
+components.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_NAME:  </b>The name
+contains characters that are not valid or the length is not valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_DESC:  </b>The
+description contains characters that are not valid or the length is not valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_APP:  </b>The
+application contains characters that are not valid or the length is not valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_SVC:  </b>The service
+contains characters that are not valid or the length is not valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_RMA:  </b>The remote
+machine authentication contains characters that are not valid or the length is
+not valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_RUA:  </b>The remote
+user authentication contains characters that are not valid or the length is not
+valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_EMBD:  </b>The
+embedded context contains characters that are not valid or the length is not
+valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_RULE_ID:  </b>The
+rule ID contains characters that are not valid or the length is not valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_PHASE1_AUTH:  </b>The
+Phase1 authentication set ID contains characters that are not valid or the
+length is not valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_PHASE2_CRYPTO:  </b>The
+Phase2 cryptographic set ID contains characters that are not valid or the
+length is not valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_PHASE2_AUTH:  </b>The
+Phase2 authentication set ID contains characters that are not valid or the
+length is not valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_RESOLVE_APP:  </b>The
+application name cannot be resolved.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_MAINMODE_ID:  </b>This
+error is unused and not returned by the system.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_PHASE1_CRYPTO:  </b>The
+Phase1 cryptographic set ID contains characters that are not valid or the
+length is not valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_REMOTE_ENDPOINTS:  </b>The
+remote tunnel <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoints</a></span> contain
+characters that are not valid, or the length is not valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_REMOTE_ENDPOINT_FQDN: 
+</b>The remote tunnel endpoint <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">fully qualified domain name
+(FQDN)</a></span> contains characters that are not valid, or the length is not
+valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_KEY_MODULE:  </b>The
+keying modules contain characters that are not valid, or the length is not
+valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_LUA:  </b>The local
+user authorization list contains characters that are not valid or the length is
+not valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_FWD_LIFETIME:  </b>The
+forward path <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_67cbf867-7a49-41f3-a68f-37b5f9035acb" data-linktype="relative-path">security association (SA)</a></span>
+lifetime contains characters that are not valid or the length is not valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_TRANSPORT_MACHINE_AUTHZ_SDDL: 
+</b>The <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span> transport mode
+machine authorization SDDL string contains characters that are not valid, or
+the length is not valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_TRANSPORT_USER_AUTHZ_SDDL: 
+</b>The IPsec transport mode user authorization SDDL string contains characters
+that are not valid, or the length is not valid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_NETNAMES_STRING:</b>
+A string for the network name structure is invalid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_SECURITY_REALM_ID_STRING:</b>
+A string for the security realm ID is invalid.</p><p><b>FW_RULE_STATUS_PARSING_ERROR_FQBN_STRING:</b>
+A string for the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_bbf47ea1-11e7-447c-848d-5a1277648312" data-linktype="relative-path">fully qualified binary name
+(FQBN)</a></span> is invalid; also see <span><a href="https://go.microsoft.com/fwlink/?linkid=839018" data-linktype="external">[MSDN-FQBN]</a></span>.</p><p><b>FW_RULE_STATUS_PARSING_ERROR:  </b>The rule did
+not parse correctly.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_RULE_ID:  </b>Semantic
+error: The rule ID is not specified.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PORTS:  </b>Semantic
+error: Mismatch in the number of ports and port buffers.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PORT_KEYW:  </b>Semantic
+error: The port keyword is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PORT_RANGE:  </b>Semantic
+error: End != Begin or port = 0.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PORTRANGE_RESTRICTION: 
+</b>Semantic error: A port range has been specified for a connection security
+rule, but the action is not Do Not Secure.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_V4_SUBNETS:  </b>Semantic
+error: Mismatch in the number of v4 subnets and subnet buffers.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_V6_SUBNETS:  </b>Semantic
+error: Mismatch in the number of v6 subnets and subnet buffers.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_V4_RANGES:  </b>Semantic
+error: Mismatch in the number of v4 ranges and range buffers.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_V6_RANGES:  </b>Semantic
+error: Mismatch in the number of v6 ranges and range buffers.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_RANGE:  </b>Semantic
+error: End &lt; Begin.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_MASK:  </b>Semantic
+error: The mask specified on a v4 subnet is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_PREFIX:  </b>Semantic
+error: The prefix specified on a v6 subnet is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_KEYW:  </b>Semantic
+error: The specified keyword is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_LADDR_PROP:  </b>Semantic
+error: A property on local addresses does not belong to the LocalAddress.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_RADDR_PROP:  </b>Semantic
+error: A property on remote addresses does not belong to the RemoteAddress.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_V6:  </b>Semantic
+error: An unspecified or loopback IPv6 address was specified.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_LADDR_INTF:  </b>Semantic
+error: A local address cannot be used together with either an interface or an
+interface type.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_V4:  </b>Semantic
+error: An unspecified or loopback IPv4 address was specified.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_TUNNEL_ENDPOINT_ADDR: 
+</b>Semantic error: An endpoint &#34;any&#34; cannot be specified for a
+tunnel mode rule.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_DTE_VER:  </b>Semantic
+error: An incorrect schema version was specified for using dynamic tunnel
+endpoints.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_DTE_MISMATCH_ADDR:  </b>Semantic
+error: The v4 and v6 tunnel endpoints are neither local nor remote endpoints.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PROFILE:  </b>Semantic
+error: The profile type is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_ICMP:  </b>Semantic
+error: Mismatch in the number of ICMPs and ICMP buffers.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_ICMP_CODE:  </b>Semantic
+error: The specified ICMP code is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_IF_ID:  </b>Semantic
+error: Mismatch in the number of interfaces and interface buffers.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_IF_TYPE:  </b>Semantic
+error: The specified interface type is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_ACTION:  </b>Semantic
+error: The specified action is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_ALLOW_BYPASS:  </b>Semantic
+error: An allow-bypass action is specified, but the rule does not meet
+allow-bypass criteria (such as, the direction is inbound, authenticate/encrypt
+flags are set, or remote machine authentication is set).</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_DO_NOT_SECURE:  </b>Semantic
+error: A DO_NOT_SECURE action is specified together with authentication or
+cryptographic sets.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_ACTION_BLOCK_IS_ENCRYPTED_SECURE: 
+</b>Semantic error: A block action was specified together with a require
+security or a require encryption action.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_DIR:  </b>Semantic
+error: The specified direction is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PROT:  </b>Semantic
+error: The specified protocol is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PROT_PROP:  </b>Semantic
+error: The protocol and protocol-dependent fields do not match.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_DEFER_EDGE_PROP:  </b>Semantic
+error: A Dynamic edge flag (either defer to app or defer to user) is set
+without having an edge flag set.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_ALLOW_BYPASS_OUTBOUND: 
+</b>Semantic error: An outbound allow-bypass action is specified, but the rule
+does not meet allow-bypass criteria (authenticate/encrypt flags set).</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_DEFER_USER_INVALID_RULE: 
+</b>The rule does not allow the defer user property to be set.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS:  </b>Semantic
+error: The specified flags are not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_AUTO_AUTH:  </b>Semantic
+error: The autogenerate flag is set, but no authentication flags are set.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_AUTO_BLOCK:  </b>Semantic
+error: The autogenerate flag is set, but the action is block.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_AUTO_DYN_RPC: 
+</b>Semantic error: The autogenerate flag is set together with the dynamic <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+flag.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_AUTHENTICATE_ENCRYPT: 
+</b>Semantic error: The authenticate and authenticate-encrypt flags are both
+specified.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_AUTH_WITH_ENC_NEGOTIATE_VER: 
+</b>Semantic error: The schema version is not compliant with the Authenticate
+with Encryption flag.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_AUTH_WITH_ENC_NEGOTIATE: 
+</b>Semantic error: The Authenticate with Encryption Negotiate flag is
+specified but the basic Authenticate with Encryption flag is not set.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_ESP_NO_ENCAP_VER: 
+</b>Semantic error: The schema version is not compliant with the Authenticate
+with No Encapsulation flag.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_ESP_NO_ENCAP: 
+</b>Semantic error: The Authenticate with No Encapsulation flag is specified
+but the basic Authenticate flag is not set.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_TUNNEL_AUTH_MODES_VER: 
+</b>Semantic error: The schema version is not compliant with the tunnel
+authentication modes.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_TUNNEL_AUTH_MODES: 
+</b>Semantic error: The tunnel authentication modes are specified by a
+lower-version client.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_IP_TLS_VER:  </b>Semantic
+error: The schema version is not compliant with the IP_TLS flag.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_PORTRANGE_VER: 
+</b>Semantic error: The schema version is not compliant with port range
+support.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_ADDRS_TRAVERSE_DEFER_VER: 
+</b>Semantic error: The schema version is not compliant with the
+FW_RULE_FLAGS_ROUTEABLE_ADDRS_TRAVERSE_DEFER_APP flag. For more information,
+see <span><a href="fc67ea04-19f0-4ccd-8912-abe467e7c11a" data-linktype="relative-path">2.2.35</a></span>.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_AUTH_WITH_ENC_NEGOTIATE_OUTBOUND: 
+</b>Semantic error: The Authenticate with Encryption Negotiate flag is set for
+the outbound rule.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_AUTHENTICATE_WITH_OUTBOUND_BYPASS_VER: 
+</b>Semantic error: The Outbound Authenticated bypass is not supported on this
+version.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_REMOTE_AUTH_LIST:  </b>Semantic
+error: An authorized remote machine or user list is specified, but the
+authenticate/encryption flags were not set.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_REMOTE_USER_LIST:  </b>Semantic
+error: An authorized remote user list is specified on an outbound direction.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_LOCAL_USER_LIST:  </b>Semantic
+error: The authorized local user list is specified, but a local service has
+also been specified.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_LUA_VER:  </b>Semantic
+error: The schema version is not compliant with the authorized local user list.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_LOCAL_USER_OWNER:  </b>Semantic
+error: The local user owner is specified, but a local service has also been
+specified.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_LOCAL_USER_OWNER_VER: 
+</b>Semantic error: The schema version is not compliant with the local user
+owner.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_ALLOW_PROFILE_CROSSING_VER: 
+</b>Semantic error: The schema version is not compliant with profile crossing.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_LOCAL_ONLY_MAPPED_VER: 
+</b>Semantic error: The schema version is not compliant with local-only
+mappings.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PLATFORM:  </b>Semantic
+error: The number of valid operating system platforms and the list of valid
+operating system platforms do not match.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PLATFORM_OP_VER:  </b>Semantic
+error: Schema version not compliant with the platform operator used.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PLATFORM_OP:  </b>Semantic
+error: Invalid platform operator used.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_DTE_NOANY_ADDR:  </b>Semantic
+error: DTE is specified but all tunnel endpoints are specified.</p><p><b>FW_RULE_STATUS_SEMANTIC_TUNNEL_EXEMPT_WITH_GATEWAY: 
+</b>Semantic error: DTM tunnel exemption specified with tunnel endpoint
+(gateways) address.</p><p><b>FW_RULE_STATUS_SEMANTIC_TUNNEL_EXEMPT_VER:  </b>Semantic
+error: Schema version not compliant with tunnel mode exemptions.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_ADDR_KEYWORD_VER:  </b>Semantic
+error: The schema version is not compliant with one or more address keywords.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_KEY_MODULE_VER:  </b>Semantic
+error: The schema version is not compliant with the keying modules.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_APP_CONTAINER_PACKAGE_ID: 
+</b>Semantic error: The application container package ID is not a valid <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security
+identifier (SID)</a></span>.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_APP_CONTAINER_PACKAGE_ID_VER: 
+</b>Semantic error: The schema version is not compliant with application
+containers.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_TRUST_TUPLE_KEYWORD_INCOMPATIBLE: 
+</b>Semantic error: Trust tuple keywords are specified, but specific addresses
+or ports have also been specified.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_TRUST_TUPLE_KEYWORD_INVALID: 
+</b>Semantic error: One or more trust tuple keywords is invalid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_TRUST_TUPLE_KEYWORD_VER: 
+</b>Semantic error: The schema version is not compliant with the trust tuple
+keywords.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_AUTH_SET_ID: 
+</b>Semantic error: Phase1 authentication set ID is not specified.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_SET_ID: 
+</b>Semantic error: Phase2 cryptographic set ID is not specified.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_SET_ID: 
+</b>Semantic error: Phase1 cryptographic set ID is not specified.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_KEY_MANAGER_DICTATE_VER: 
+</b>Semantic error: The schema version is not compliant with the Key Manager
+Dictation flag.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_FLAGS_KEY_MANAGER_NOTIFY_VER: 
+</b>Semantic error: The schema version is not compliant with the Key Manager
+Notification flag.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_TRANSPORT_MACHINE_AUTHZ_VER: 
+</b>Semantic error: The schema version is not compliant with IPsec transport
+mode machine authorization lists.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_TRANSPORT_USER_AUTHZ_VER: 
+</b>Semantic error: The schema version is not compliant with IPsec transport
+mode user authorization lists.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_TRANSPORT_MACHINE_AUTHZ_ON_TUNNEL: 
+</b>Semantic error: An IPsec transport mode machine authorization list is
+specified on a tunnel mode rule.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_TRANSPORT_USER_AUTHZ_ON_TUNNEL: 
+</b>Semantic error: An IPsec transport mode user authorization list is
+specified on a tunnel mode rule.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PER_RULE_AND_GLOBAL_AUTHZ: 
+</b>Semantic error: The FW_CS_RULE_FLAGS_APPLY_AUTHZ flag is set, but a
+per-rule authorization list is also specified.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_SET_ID:  </b>Semantic
+error: The set ID is not specified.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_IPSEC_PHASE:  </b>Semantic
+error: The specified phase is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_EMPTY_SUITES:  </b>Semantic
+error: No suites are specified in the set.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_AUTH_METHOD: 
+</b>Semantic error: The Phase1 authentication method is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_AUTH_METHOD: 
+</b>Semantic error: The Phase2 authentication method is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_METHOD_ANONYMOUS: 
+</b>Semantic error: Anonymous authentication is specified as the only
+authentication proposal (or authentication proposal suite).</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_METHOD_DUPLICATE: 
+</b>Semantic error: Duplicate authentication methods are specified but not
+supported.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_METHOD_VER:  </b>Semantic
+error: Suite specifies authentication method that is not compliant with its
+schema version.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_SUITE_FLAGS:  </b>Semantic
+error: The specified authentication suite flags are not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_HEALTH_CERT:  </b>Semantic
+error: The machine certificate MUST be a health certificate for Phase2
+authentication.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_SIGNCERT_VER:  </b>Semantic
+error: The suite specifies signing that is not compliant with its schema version.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_INTERMEDIATE_CA_VER: 
+</b>Semantic error: Specifies an intermediate <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">certificate authority (CA)</a></span>
+that is not compliant with its schema version.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_MACHINE_SHKEY:  </b>Semantic
+error: The machine shared key is either missing or not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_CA_NAME:  </b>Semantic
+error: The CA name is either missing or not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_MIXED_CERTS:  </b>Semantic
+error: Health certificates (CERTS) cannot be specified together with regular
+certificates.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_NON_CONTIGUOUS_CERTS: 
+</b>Semantic error: Certificates that have a specific signing algorithm are not
+contiguous.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_MIXED_CA_TYPE_IN_BLOCK: 
+</b>Semantic error: Both root and intermediate CA types cannot be present in
+the same signing algorithm block.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_MACHINE_USER_AUTH:  </b>Semantic
+error: Both machine and user authentications are specified.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_VER: 
+</b>The suite specifies certificate criteria but the schema version does not
+allow certificate criteria to be present. Certificate criteria are supported
+only in schemas with version number 2.20 and greater.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_VER_MISMATCH: 
+</b>The version specified for the criteria structure is different from the auth
+set version.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_RENEWAL_HASH: 
+</b>Cert criteria were specified for a non-cert authentication method.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_INVALID_HASH: 
+</b>An invalid hash was specified in the criteria. A valid hash is a string of
+hex characters (40 characters in length).</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_INVALID_EKU: 
+</b>An invalid <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_06beeb29-6e93-4472-a53d-bbd51eca5759" data-linktype="relative-path">EKU</a></span> was specified.
+Validity checking of an EKU involves checking that the EKU is composed of
+characters representing 0 to 9 and &#34;.&#34;.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_INVALID_NAME_TYPE: 
+</b>A name type greater than FW_CERT_CRITERIA_NAME_MAX was specified.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_INVALID_NAME: 
+</b>A name type was specified but either a NULL name is also specified, or the
+number of characters in the name is greater than FW_MAX_RULE_STRING_LEN(10000),
+or the name string contains the &#34;|&#34; character.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_INVALID_CRITERIA_TYPE: 
+</b>The criteria type specified is greater than FW_CERT_CRITERIA_TYPE_MAX.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_CERT_CRITERIA_MISSING_CRITERIA: 
+</b>The specified suites are missing either selection or validation criteria.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PROXY_SERVER:  </b>Semantic
+error: The <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_d6a282ce-b1da-41e1-b05a-22f777a5c1fe" data-linktype="relative-path">Kerberos</a></span> proxy
+server name is not a valid fully qualified domain name (FQDN).</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_PROXY_SERVER_VER: 
+</b>Semantic error: The schema version is not compliant with Kerberos proxy
+servers.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_NON_DEFAULT_ID: 
+</b>Semantic error: The ID for the Phase1 cryptographic set is not the default.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_FLAGS: 
+</b>Semantic error: The Phase1 cryptographic set flags are not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_TIMEOUT_MINUTES: 
+</b>Semantic error: The Phase1 cryptographic set time-out minutes are not
+valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_TIMEOUT_SESSIONS: 
+</b>Semantic error: The time-out sessions for the Phase1 cryptographic set are
+not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_KEY_EXCHANGE: 
+</b>Semantic error: The key exchange for the Phase1 cryptographic set is not
+valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_ENCRYPTION: 
+</b>Semantic error: The Phase1 cryptographic set encryption is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_HASH: 
+</b>Semantic error: The Phase1 cryptographic set hash is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_ENCRYPTION_VER: 
+</b>Semantic error: The Phase1 cryptographic set encryption is not
+schema-version compliant.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_HASH_VER: 
+</b>Semantic error: The Phase1 cryptographic set hash is not schema version
+compliant.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE1_CRYPTO_KEY_EXCH_VER: 
+</b>Semantic error: The schema version is not compliant with one or more of the
+specified main mode key exchange algorithms.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_PFS:  </b>Semantic
+error: The Phase2 cryptographic set <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_5d8948bc-5e32-483b-906d-42f785d0df18" data-linktype="relative-path">perfect forward secrecy (PFS)</a></span>
+is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_PROTOCOL: 
+</b>Semantic error: The Phase2 cryptographic set protocol is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_ENCRYPTION: 
+</b>Semantic error: The Phase2 cryptographic set encryption is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_HASH: 
+</b>Semantic error: The Phase2 cryptographic set hash is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_TIMEOUT_MINUTES: 
+</b>Semantic error: The Phase2 cryptographic set time-out minutes are not
+valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_TIMEOUT_KBYTES: 
+</b>Semantic error: The Phase2 cryptographic set time-out kilobytes are not
+valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_ENCRYPTION_VER: 
+</b>Semantic error: The Phase2 cryptographic set encryption is not
+schema-version compliant.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_HASH_VER: 
+</b>The Phase2 cryptographic set hash is not schema-version compliant.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_PHASE2_CRYPTO_PFS_VER: 
+</b>Semantic error: The schema version is not compliant with the specified
+Phase2 perfect forward secrecy (PFS) option.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_CRYPTO_ENCR_HASH:  </b>Semantic
+error: Neither the encryption nor the hash is specified.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_CRYPTO_ENCR_HASH_COMPAT: 
+</b>Semantic error: The encryption and hash use incompatible algorithms.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_SCHEMA_VERSION:  </b>Semantic
+error: The specified schema version is lower than the lowest supported version.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_OR_AND_CONDITIONS: 
+</b>Semantic error: A mismatch exists in the number of OR&#39;d terms and term
+arrays.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_AND_CONDITIONS: 
+</b>Semantic error: A mismatch exists in the number of AND&#39;d conditions and
+condition arrays.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_CONDITION_KEY: 
+</b>Semantic error: The condition match key is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_CONDITION_MATCH_TYPE: 
+</b>Semantic error: The condition match type is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_CONDITION_DATA_TYPE: 
+</b>Semantic error: The condition data type is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_CONDITION_KEY_AND_DATA_TYPE: 
+</b>Semantic error: The key and data type combination is not valid.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEYS_PROTOCOL_PORT: 
+</b>Semantic error: A port condition is present without a protocol condition.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEY_PROFILE:  </b>Semantic
+error: The profile key is unavailable for the queried object type.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEY_STATUS:  </b>Semantic
+error: The status key is unavailable for the queried object type.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEY_FILTERID: 
+</b>Semantic error: The FilterID key is unavailable for the queried object type.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEY_APP_PATH: 
+</b>Semantic error: The application key is unavailable for the queried object
+type.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEY_PROTOCOL: 
+</b>Semantic error: The protocol key is unavailable for the queried object type.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEY_LOCAL_PORT: 
+</b>Semantic error: The local port key is unavailable for the queried object
+type.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEY_REMOTE_PORT: 
+</b>Semantic error: The remote port key is unavailable for the queried object
+type.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_QUERY_KEY_SVC_NAME: 
+</b>Semantic error: The service name key is unavailable for the queried object
+type.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_REQUIRE_IN_CLEAR_OUT_ON_TRANSPORT: 
+</b>Semantic error: &#34;Require in clear out&#34; tunnel authentication mode
+cannot be set on transport mode rules.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_TUNNEL_BYPASS_TUNNEL_IF_SECURE_ON_TRANSPORT: 
+</b>Semantic error: Cannot set flag to exempt IPsec transport traffic from a
+tunnel mode, on a transport rule.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_NOENCAP_ON_TUNNEL: 
+</b>Semantic error: Cannot set FW_CRYPTO_PROTOCOL_AUTH_NO_ENCAP (see section <span><a href="d97bac36-03e8-4215-9984-f2fbddd66be0" data-linktype="relative-path">2.2.69</a></span>)
+on a tunnel mode rule.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_AUTH_NOENCAP_ON_PSK: 
+</b>Semantic error: Cannot mix FW_CRYPTO_PROTOCOL_AUTH_NO_ENCAP (see section
+2.2.69) protocol with Preshared key authentication methods.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_CRYPTO_ENCR_HASH:  </b>Semantic
+error: Both the encryption and hash are not specified.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_CRYPTO_ENCR_HASH_COMPAT: 
+</b>Semantic error: The encryption and hash use incompatible algorithms.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR_SCHEMA_VERSION:  </b>Semantic
+error: The specified schema version is earlier than the supported versions.</p><p><b>FW_RULE_STATUS_SEMANTIC_ERROR:  </b>There is a
+semantic error when considering the fields of the rule in conjunction with
+other policy objects.</p><p><b>FW_RULE_STATUS_RUNTIME_ERROR_PHASE1_AUTH_NOT_FOUND: 
+</b>A Phase1 authentication set is not found.</p><p><b>FW_RULE_STATUS_RUNTIME_ERROR_PHASE2_AUTH_NOT_FOUND: 
+</b>A Phase2 authentication set is not found.</p><p><b>FW_RULE_STATUS_RUNTIME_ERROR_PHASE2_CRYPTO_NOT_FOUND: 
+</b>A Phase2 cryptographic set is not found.</p><p><b>FW_RULE_STATUS_RUNTIME_ERROR_AUTH_MCHN_SHKEY_MISMATCH: 
+</b>A Phase2 authentication set cannot be specified when the Phase1
+authentication set contains a pre-shared key as an authentication method.</p><p><b>FW_RULE_STATUS_RUNTIME_ERROR_PHASE1_CRYPTO_NOT_FOUND: 
+</b>A Phase1 cryptographic set is not found.</p><p><b>FW_RULE_STATUS_RUNTIME_ERROR_AUTH_NOENCAP_ON_TUNNEL: 
+</b>Semantic error: Cannot set FW_CRYPTO_PROTOCOL_AUTH_NO_ENCAP (see section
+2.2.69) on a tunnel mode rule.</p><p><b>FW_RULE_STATUS_RUNTIME_ERROR_AUTH_NOENCAP_ON_PSK: 
+</b>Semantic error: Cannot mix FW_CRYPTO_PROTOCOL_AUTH_NO_ENCAP (see section
+2.2.69) protocol with Preshared key authentication methods.</p><p><b>FW_RULE_STATUS_RUNTIME_ERROR_KEY_MODULE_AUTH_MISMATCH: 
+</b>Semantic error: The key module in the rule is incompatible with the
+authentication methods specified in the associated authentication sets.</p><p><b>FW_RULE_STATUS_RUNTIME_ERROR:  </b>There is a
+runtime error when the object is considered with other policy objects.</p><p><b>FW_RULE_STATUS_ERROR:  </b>An error of any kind
+occurred. This symbolic constant has a value of 0x00380000.</p><p><b>FW_RULE_STATUS_ALL:  </b>The status of all (it is
+used to enumerate all the rules, regardless of the status).</p></div>

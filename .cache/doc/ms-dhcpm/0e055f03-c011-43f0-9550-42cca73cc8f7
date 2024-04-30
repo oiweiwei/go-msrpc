@@ -1,0 +1,103 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4RemovePolicyRange</b> method removes the
+specified IP address range from the list of IP address ranges of the policy.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4RemovePolicyRange(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [in, unique, string] LPWSTR PolicyName,
+   [in] LPDHCP_IP_RANGE Range
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SubnetAddress: </b>This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>
+that contains the IPv4 subnet ID that contains the policy identified by the <i>PolicyName</i>
+parameter.</p><p><b>PolicyName: </b>A pointer to a null-terminated
+Unicode string that contains the name of the policy inside the subnet
+identified by the <i>SubnetAddress</i> parameter from which the IP address
+range is being deleted.</p><p><b>Range: </b>This is a pointer to a structure of
+type <b>DHCP_IP_RANGE</b> (section <span><a href="29a03b34-249e-4bd8-a118-e708dadbf22b" data-linktype="relative-path">2.2.1.2.31</a></span>) that
+specifies the IP address range to be deleted from the policy.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or to any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E8F</p>
+  <p>ERROR_DHCP_POLICY_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified policy does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E8B</p>
+  <p>ERROR_DHCP_POLICY_RANGE_BAD</p>
+  </td>
+  <td>
+  <p>The specified policy range is not contained within the
+  IP address range of the scope.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 114.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>If the <i>PolicyName</i> parameter, <i>Range</i> parameter, or <i>SubnetAddress</i>
+parameter is NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read write/access
+as specified in section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4Scope</b> ADM element entry corresponding
+to the <i>SubnetAddress</i> parameter from the server ADM element <b>DHCPv4ScopesList</b>.
+If the <b>DHCPv4Scope</b> entry is not present, return
+ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4Scope.DHCPv4ScopePolicyList</b> ADM element
+from <b>DHCPv4Scope</b>. Retrieve the <b>DHCPv4Policy</b> ADM element entry
+from the <b>DHCPv4ScopePolicyList</b> ADM element corresponding to the
+specified <i>PolicyName</i>. If no <b>DHCPv4Policy</b> has the specified <i>PolicyName</i>,
+return ERROR_DHCP_POLICY_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4Policy.Policy.Ranges</b> ADM element.
+Retrieve the DHCP_IP_RANGE structure in the <b>Elements</b> ADM element from the
+<b>DHCPv4Policy.Policy.Ranges</b> that has the same <b>StartAddress</b> ADM
+element and <b>EndAddress</b> ADM element as the specified <i>Range</i>
+parameter. If none of the <b>DHCPv4Policy.Policy.Ranges</b> has the same <b>StartAddress</b>
+and <b>EndAddress</b> as the specified <i>Range</i> parameter, return
+ERROR_POLICY_RANGE_BAD.</p>
+</li><li><p><span><span> 
+</span></span>Delete the DHCP_IP_RANGE structure in the <b>Elements</b> ADM
+element from the same <b>DHCPv4Policy.Policy.Ranges</b> as the specified <i>Range</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

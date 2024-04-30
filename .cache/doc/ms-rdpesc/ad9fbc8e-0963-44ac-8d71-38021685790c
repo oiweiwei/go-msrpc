@@ -1,0 +1,14 @@
+<div class="content"><p>The Connect_Return structure is used to obtain return
+information from a Connect call (for more information, see sections <a href="99f88bbc-fb8b-4b59-a5df-b5ea565d7b56" data-linktype="relative-path">3.1.4.28</a> and <a href="07f33762-7d81-4795-81ab-351c674e5282" data-linktype="relative-path">3.1.4.29</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _Connect_Return {
+   long ReturnCode;
+   REDIR_SCARDHANDLE hCard;
+   unsigned long dwActiveProtocol;
+ } Connect_Return;
+</pre></div>
+</dd></dl><p><b>ReturnCode:</b>  <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a> or Win32 Error
+code. Zero indicates success; any other value indicates failure.</p><p><b>hCard:</b>  A handle, as specified in
+section <a href="b6276356-7c5f-4d3e-be92-a6c85e58d008" data-linktype="relative-path">2.2.1.2</a>.</p><p><b>dwActiveProtocol:</b>  A value that
+indicates the active <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">smart
+card</a> transmission protocol. Possible values are specified in section <a href="41673567-2710-4e86-be87-7b6f46fe10af" data-linktype="relative-path">2.2.5</a>.</p></div>

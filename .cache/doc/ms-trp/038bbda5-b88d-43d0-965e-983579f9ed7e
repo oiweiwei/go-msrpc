@@ -1,0 +1,183 @@
+<div class="content"><p>The LINEAGENTCAPS packet describes the capabilities of an
+ACD agent. LINEAGENTCAPS is supplied by the server in the field VarData of the
+completion packet of the <a href="579025d3-c5db-42b3-802c-c76d68e99dc2" data-linktype="relative-path">GetAgentCaps</a>
+request.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAgentHandlerInfoSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAgentHandlerInfoOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCapsVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwFeatures</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwStates</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNextStates</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwMaxNumGroupEntries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAgentStatusMessages</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNumAgentExtensionIDs</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAgentExtensionIDListSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAgentExtensionIDListOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ProxyGUID
+  (16 bytes, optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, allocated to this packet. </p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, needed to hold all the information requested.</p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the portion of this packet that contains useful
+information.</p><p><b>dwAgentHandlerInfoSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the agent handler information. </p><p><b>dwAgentHandlerInfoOffset (4 bytes): </b>An
+unsigned 32-bit integer. The offset from the beginning of the packet to a
+null-terminated string specifying the name, version, or other identifying
+information of the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+application that is handling agent requests. The size of the string MUST be
+specified by <b>dwAgentHandlerInfoSize</b>.</p><p><b>dwCapsVersion (4 bytes): </b>An unsigned 32-bit
+integer. The TAPI version that the agent handler application used in preparing
+the contents of this packet. This MUST NOT be greater than the TAPI version
+that the calling application passed in to the GetAgentCaps packet.</p><p><b>dwFeatures (4 bytes): </b>An unsigned 32-bit
+integer. The agent-related features available for this line using the <a href="a5c2308f-4859-4319-8792-2fccb6bd95f8" data-linktype="relative-path">LINEAGENTFEATURE_Constants</a>.
+Invoking a supported feature requires the line and address to be in the proper
+state. A 0 in a bit position indicates that the corresponding feature is never
+available. A 1 indicates that the corresponding feature can be available if the
+line is in the appropriate state for the operation to be meaningful. This field
+allows for the discovery of which agent features can be (and which can never
+be) supported by the device. </p><p><b>dwStates (4 bytes): </b>An unsigned 32-bit
+integer. The <a href="3b8615bf-802a-471b-8079-f63bf6d567b2" data-linktype="relative-path">LINEAGENTSTATE_Constants</a>
+that can be used in the <i>dwAgentState</i> parameter of the <a href="c4876fd0-9657-4ebe-87ff-000000063bd5" data-linktype="relative-path">SetAgentState</a> packet.
+Setting a supported state requires the line and address to be in the proper
+state. A 0 in a bit position indicates that the corresponding state is never
+available. A 1 indicates that the corresponding state can be available if the
+line is in the appropriate state for the state to be meaningful. This field
+allows for the discovery of which agent features can be (and which can never
+be) supported by the device.</p><p><b>dwNextStates (4 bytes): </b>An unsigned 32-bit
+integer. The LINEAGENTSTATE_Constants that can be used in the <i>dwNextAgentState</i>
+parameter of the SetAgentState packet. Setting a supported state requires the
+line and address to be in the proper state. A 0 in a bit position indicates
+that the corresponding state is never available. A 1 indicates that the
+corresponding state can be available if the line is in the appropriate state
+for the state to be meaningful. This field allows for the discovery of which
+agent features can be (and which can never be) supported by the device. </p><p><b>dwMaxNumGroupEntries (4 bytes): </b>An unsigned
+32-bit integer. The maximum number of agent identifiers that can be logged on
+to the address simultaneously. This field determines the highest value that can
+be passed in as the <b>dwNumEntries</b> member in the <a href="3c5e122b-b903-48c9-8b97-0078eae5c896" data-linktype="relative-path">LINEAGENTGROUPLIST</a> packet
+to the <a href="ec94bc81-d553-40cc-a9d7-e3d9008bef84" data-linktype="relative-path">SetAgentGroup</a>
+packet.</p><p><b>dwAgentStatusMessages (4 bytes): </b>An unsigned
+32-bit integer. Indicates the <a href="9cac89ea-b4b1-4ffc-837f-9f4fec4e39e0" data-linktype="relative-path">LINEAGENTSTATUS_Constants</a>
+that can be received by the application in dwParam2 of a <a href="463c51cb-54bd-46be-a3f8-85acfc53baf9" data-linktype="relative-path">LINE_AGENTSTATUS</a> packet. </p><p><b>dwNumAgentExtensionIDs (4 bytes): </b>An unsigned
+32-bit integer. The number of <a href="175fc696-817b-46eb-9ef0-fda89830d969" data-linktype="relative-path">LINEEXTENSIONID</a> packets
+that appear in the ExtensionIDList array specified by <b>dwAgentExtensionIDListOffset</b>.
+The value is 0 if agent-handler–specific extensions are supported on the
+address. </p><p><b>dwAgentExtensionIDListSize (4 bytes): </b>An
+unsigned 32-bit integer. The size, in bytes, of the agent extension IDs array.</p><p><b>dwAgentExtensionIDListOffset (4 bytes): </b>An
+unsigned 32-bit integer. The offset from the beginning of the packet to an
+array of LINEEXTENSIONID packets. The size is dwNumExtensionIDs times
+SIZEOF(LINEEXTENSIONID). The array lists the 128-bit <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a> for all
+agent-handler–specific extensions supported by the agent handle for the
+address. The extension being used is referenced in the <a href="95b997b9-bd74-4579-8987-31ab07b4feeb" data-linktype="relative-path">AgentSpecific</a> packet and
+the <a href="a74a58a7-a160-43fd-85a3-1773480cda22" data-linktype="relative-path">LINE_AGENTSPECIFIC</a>
+packet by its position in this table, the first entry being entry 0, so it is
+important that the agent handler always present extension identifiers in this
+array in the same order. The size of the array MUST be specified by <b>dwAgentExtensionIDListOffset</b>.</p><p><b>ProxyGUID (16 bytes): </b>The <a href="../ms-dtyp/001eec5a-7f8b-4293-9e21-ca349392db40" data-linktype="relative-path">GUID</a> for
+the ACD proxy associated with the line. This element is exposed only if a TAPI
+version of 2.2, 3.0, or 3.1 has been negotiated.</p></div>

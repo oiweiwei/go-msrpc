@@ -1,0 +1,360 @@
+<div class="content"><p>The <b>ADAPTER</b> structure contains information about a
+single network adapter on the system.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">AdapterNameLength</p>
+  </td>
+  <td colspan="16">
+  <p align="center">AdapterName
+  (38 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">DescriptionLength</p>
+  </td>
+  <td colspan="16">
+  <p align="center">Description
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">FriendlyNameLength</p>
+  </td>
+  <td colspan="16">
+  <p align="center">FriendlyName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">NameLength</p>
+  </td>
+  <td colspan="16">
+  <p align="center">Name
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">NumberOfPrefixes</p>
+  </td>
+  <td colspan="16">
+  <p align="center">Prefix
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">PhysicalAddressLength</p>
+  </td>
+  <td colspan="16">
+  <p align="center">PhysicalAddress
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">NumberOfAddresses</p>
+  </td>
+  <td colspan="16">
+  <p align="center">Address
+  (128 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">...</p>
+  </td>
+  <td colspan="16">
+  <p align="center">NumberOfGatewayAddresses</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">GatewayAddress
+  (128 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">AdapterType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">TunnelType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">OperStatus</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p align="center">DhcpEnabled</p>
+  </td>
+  <td colspan="8">
+  <p align="center">InternalNetwork</p>
+  </td>
+  <td colspan="8">
+  <p align="center">ClusterAdapter</p>
+  </td>
+  
+ </tr>
+</tbody></table><p><b>AdapterNameLength (2 bytes): </b>An unsigned short
+that MUST be the value 0x0026.</p><p><b>AdapterName (38 bytes): </b> MUST be the Unicode
+string &#34;class mscs::Adapter&#34; without a terminating null character.</p><p><b>DescriptionLength (2 bytes): </b>An unsigned short
+that MUST contain the size, in bytes, of the <b>Description</b> field.</p><p><b>Description (variable): </b>A user-friendly
+description of the adapter, the value of which is implementation-specific. The
+string SHOULD be unique for ADAPTERs in an <a href="a81d01e6-2a3d-4332-aa50-47318e12254c" data-linktype="relative-path">ADAPTERLIST</a>. MUST be a
+Unicode string without a terminating null character.</p><p><b>FriendlyNameLength (2 bytes): </b>An unsigned
+short that MUST contain the size, in bytes, of the <b>FriendlyName</b> field.</p><p><b>FriendlyName (variable): </b>A user-friendly name
+to identify the adapter, the value of which is implementation-specific. The
+string MUST be unique for ADAPTERs in an ADAPTERLIST. MUST be a Unicode string
+without a terminating null character.</p><p><b>NameLength (2 bytes): </b> An unsigned short that
+MUST contain the size, in bytes, of the <b>Name</b> field.</p><p><b>Name (variable): </b>The name that the adapter
+identifies itself as, the value of which is implementation-specific. The string
+MUST be unique for ADAPTERs in an ADAPTERLIST. MUST be a Unicode string without
+a terminating null character.</p><p><b>NumberOfPrefixes (2 bytes): </b>An unsigned short
+that MUST be the number of following <b>Prefix</b> elements.</p><p><b>Prefix (variable): </b>MUST be a valid <a href="80878f99-a962-452e-971e-16ab7b7826ee" data-linktype="relative-path">IPPREFIX</a> structure.
+Contains the associated prefix lengths for the addresses of the adapter listed
+in the <b>Address</b> field.</p><p><b>PhysicalAddressLength (2 bytes): </b> An unsigned
+short that MUST contain the size, in bytes, of the <b>PhysicalAddress</b>
+field.</p><p><b>PhysicalAddress (variable): </b>MUST be a Unicode
+string without a terminating null character. The value of the string is the
+string representation in hexadecimal of the Media Access Control (MAC) address
+of the adapter. If the <b>AdapterType</b> field is IF_TYPE_ETHERNET_CSMACD
+(0x00000006), this string MUST be in the form &#34;AA-BB-CC-DD-EE-FF&#34;,
+where AA is the 2-byte hexadecimal representation of the first byte of the MAC
+address, BB is the 2-byte representation of the second byte of the MAC address,
+etc., to FF, the 2-byte representation of the sixth byte of the MAC address.
+Alphabetic characters (A–F) in the hexadecimal representations MUST be
+capitalized. If the <b>AdapterType</b> field is some value other than
+IF_TYPE_ETHERNET_CSMACD, then the same form is used. If the MAC address has
+fewer than 8 bytes, the server SHOULD set characters beyond the length of the
+MAC address to 0x00.</p><p><b>NumberOfAddresses (2 bytes): </b>An unsigned short
+that MUST be the number of following <b>Address</b> elements.</p><p><b>Address (128 bytes): </b>The addresses of the
+adapter. MUST be laid out as a sockaddr_in or sockaddr_in6 structure as
+specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90367" data-linktype="external">[RFC2553]</a>.
+The remaining bytes SHOULD be set to 0x00.</p><p><b>NumberOfGatewayAddresses (2 bytes): </b>An
+unsigned short that MUST be the number of following <b>GatewayAddress</b>
+structures.</p><p><b>GatewayAddress (128 bytes): </b> The addresses of
+the network gateway. MUST be laid out as a sockaddr_in or sockaddr_in6
+structure defined in [RFC2553]. The remaining bytes SHOULD be set to 0x00.</p><p><b>AdapterType (4 bytes): </b>A constant that
+describes the adapter type. MUST be one of the values defined by the Internet
+Assigned Numbers Authority (IANA) <a href="https://go.microsoft.com/fwlink/?LinkId=89884" data-linktype="external">[IANAifType]</a>.</p><p><b>TunnelType (4 bytes): </b>A constant that
+describes the type of tunnel protocol that the adapter supports. MUST be one of
+the values defined by the IANA [IANAifType] or 0.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>1 — 15</p>
+  </td>
+  <td>
+  <p>A tunnel type defined by the IANA [IANAifType].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TUNNEL_TYPE_NONE</p>
+  <p>0</p>
+  </td>
+  <td>
+  <p>A tunnel type was not specified.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>OperStatus (4 bytes): </b>A number representing
+the status of the adapter. MUST be one of the values defined in <a href="https://go.microsoft.com/fwlink/?LinkID=111187" data-linktype="external">[RFC2863]</a>.</p><p><b>DhcpEnabled (1 byte): </b>MUST be set to 0x01 if
+the adapter is enabled for <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_06dde11c-7929-4f48-a1c7-f48fb71e8341" data-linktype="relative-path">Dynamic
+Host Configuration Protocol (DHCP)</a>; otherwise, the value MUST be 0x00.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>The adapter is enabled for DHCP.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>The adapter is not enabled for DHCP.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>InternalNetwork (1 byte): </b>MUST be set to 0x01
+if the adapter is recommended by the implementation to be suitable as a private
+network; otherwise, the value MUST be set to 0x00. A private network is defined
+in <a href="../ms-cmrp/ba4117c0-530e-4e70-a085-4b4cf5bbf193" data-linktype="relative-path">[MS-CMRP]</a>
+section <a href="../ms-cmrp/30471b21-60a1-42db-b6e5-0fd19dc9b75d" data-linktype="relative-path">3.1.1.7</a>.
+The algorithm to determine private network suitability is
+implementation-specific.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>The adapter is recommended by the implementation to be
+  suitable as a private network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>The adapter is not recommended by the implementation
+  to be suitable as a private network.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ClusterAdapter (1 byte): </b>MUST be set to 0x01
+if the adapter is determined to be a cluster adapter; otherwise, the value MUST
+be set to 0x00. A cluster adapter is a virtual adapter managed by the cluster
+software but is not a cluster network interface as defined in [MS-CMRP]. In a
+given ADAPTERLIST, there SHOULD be exactly one ADAPTER with <b>ClusterAdapter</b>
+set to 1.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>The adapter is a cluster adapter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>The adapter is not a cluster adapter.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>The EvtRpcGetEventMetadataEnum (Opnum 26) method obtains a
+handle for enumerating a publisher&#39;s event metadata.</p><dl>
+<dd>
+<div><pre> error_status_t EvtRpcGetEventMetadataEnum(
+   [in, context_handle] PCONTEXT_HANDLE_PUBLISHER_METADATA pubMetadata,
+   [in] DWORD flags,
+   [in, unique, range(0, MAX_RPC_FILTER_LENGTH), string] 
+     LPCWSTR reservedForFilter,
+   [out, context_handle] PCONTEXT_HANDLE_EVENT_METADATA_ENUM* eventMetaDataEnum
+ );
+</pre></div>
+</dd></dl><p><b>pubMetadata: </b>This parameter is an RPC context
+handle, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>, Context
+Handles. For information on handle security and authentication considerations,
+see sections <span><a href="ef007e79-0549-446f-a928-379f47d57cfd" data-linktype="relative-path">2.2.20</a></span> and <span><a href="f4145058-63b4-4c32-816d-a26b3ea6bd7d" data-linktype="relative-path">5.1</a></span>.</p><p><b>flags: </b>A 32-bit unsigned integer that MUST be
+set to zero when sent and MAY be ignored on receipt.<a id="Appendix_A_Target_54"></a><a aria-label="Product behavior note 54" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_54" data-linktype="relative-path">&lt;54&gt;</a></p><p><b>reservedForFilter: </b>A pointer to a null string
+that MUST be ignored on receipt.</p><p><b>eventMetaDataEnum: </b>A pointer to an event
+numeration handle. This parameter is an <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle,
+as specified in [C706], Context Handles.</p><p><b>Return Values: </b>The method MUST return ERROR_SUCCESS
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+nonzero value as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>In response to this request from the client, the server MUST
+first validate the handle. The server SHOULD save the context handle value it
+creates in the <b>EvtRpcGetPublisherMetadata</b> method (as specified in
+section <span><a href="0011377c-12f8-4440-8629-568b1ec5bcf2" data-linktype="relative-path">3.1.4.25</a></span>) in its
+handle table and compare it with the handle passed here to perform the check.<a id="Appendix_A_Target_55"></a><a aria-label="Product behavior note 55" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_55" data-linktype="relative-path">&lt;55&gt;</a> The server MUST return
+ERROR_INVALID_PARAMETER (0x00000057) if the handle is invalid.</p><p>If the previous check succeeds, the server MUST attempt to
+create an event metadata object and assign it to the <i>eventMetadataEnum</i>
+parameter after casting to a CONTEXT_HANDLE_EVENT_METADATA_ENUM handle (see
+section <span><a href="2a5dd9ce-aef8-4a03-b42d-be9393a5a5e8" data-linktype="relative-path">3.1.1.11</a></span> for the
+content of an event metadata object). The server SHOULD add the newly created
+handle to its handle table in order to track it. If the previous check fails,
+the server MUST NOT create the context handle or add it to the handle table.
+Creating the context handle SHOULD only fail due to a shortage of memory, in
+which case the server SHOULD return ERROR_OUTOFMEMORY (0x0000000E).</p><p>After the server creates the event metadata object, it
+SHOULD preload the <b>EventsMetaData</b> field for the metadata object. First,
+the server SHOULD cast the pubMetadata context handle into the publisher
+metadata object and then read out the <i>ResourceFile</i> value. Next, the
+server SHOULD open the resource file and find the events information section (as
+specified in section <span><a href="df904dfb-00f8-4457-abe0-d7907c64dc71" data-linktype="relative-path">3.1.1.14</a></span>). The
+server SHOULD read all the events information into memory and assign the start
+address to the <b>EventsMetaData</b> field and then set the <b>Enumerator</b>
+field to 0.</p><p>The server MUST return a value indicating success or failure
+for this operation.</p></div>

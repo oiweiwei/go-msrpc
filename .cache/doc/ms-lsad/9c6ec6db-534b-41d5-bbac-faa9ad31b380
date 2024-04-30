@@ -1,0 +1,88 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9c6ec6db-534b-41d5-bbac-faa9ad31b380" data-linktype="external">msdn link</a></p><p>The LsarEnumerateAccountsWithUserRight method is invoked to
+return a list of <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b76eee27-064e-461b-81a9-fbf41e49928b" data-linktype="relative-path">account
+objects</a> that have the user right equal to the passed-in value.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarEnumerateAccountsWithUserRight(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in, unique] PRPC_UNICODE_STRING UserRight,
+   [out] PLSAPR_ACCOUNT_ENUM_BUFFER EnumerationBuffer
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>UserRight: </b>The name of the right to use in
+enumeration.</p><p><b>EnumerationBuffer: </b>Used to return the list of
+account objects that have the specified right.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000060</p>
+  <p>STATUS_NO_SUCH_PRIVILEGE</p>
+  </td>
+  <td>
+  <p>The supplied name is not recognized by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the supplied arguments is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8000001A</p>
+  <p>STATUS_NO_MORE_ENTRIES</p>
+  </td>
+  <td>
+  <p>No account was found with the specified <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privilege</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes three arguments:</p><p><i>PolicyHandle</i>: An open handle to the policy object. If
+the handle is not a valid context handle to the policy object or <i>PolicyHandle</i>.HandleType
+does not equal &#34;Policy&#34;, the server MUST return
+STATUS_INVALID_HANDLE. The server MUST verify that <i>PolicyHandle</i> grants
+access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a> with
+RequiredAccess set to POLICY_VIEW_LOCAL_INFORMATION.<a id="Appendix_A_Target_69"></a><a aria-label="Product behavior note 69" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_69" data-linktype="relative-path">&lt;69&gt;</a></p><p><i>UserRight</i>: A string representation of an account
+right. If the server does not recognize the account right, it MUST return
+STATUS_NO_SUCH_PRIVILEGE.</p><p>The server executes the request by going through all
+accounts in its policy database and returning a set of all account object <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SIDs</a> that have that right
+or privilege.</p><p><i>EnumerationBuffer</i>: Used to return a set of account
+SIDs that have the specified UserRight.</p></div>

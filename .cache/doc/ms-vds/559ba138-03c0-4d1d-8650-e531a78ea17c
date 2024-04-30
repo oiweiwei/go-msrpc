@@ -1,0 +1,73 @@
+<div class="content"><p> </p><p>The VDS_PARTITION_INFO_GPT structure provides information
+about a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span> in a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GPT</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_PARTITION_INFO_GPT {
+   GUID partitionType;
+   GUID partitionId;
+   ULONGLONG attributes;
+   WCHAR name[36];
+ } VDS_PARTITION_INFO_GPT;
+</pre></div>
+</dd></dl><p><b>partitionType:</b>  A <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+indicating the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_674598d2-080c-4dbf-b12e-cc873da21b54" data-linktype="relative-path">partition type</a></span>.<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a></p><p><b>partitionId:</b>  The GUID of the
+partition.</p><p><b>attributes:</b>  The attributes of the
+partition; they can have a combination of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>GPT_ATTRIBUTE_PLATFORM_REQUIRED</p>
+  <p>0x0000000000000001</p>
+  </td>
+  <td>
+  <p>Partition is required for the platform to function
+  properly.<a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GPT_BASIC_DATA_ATTRIBUTE_READ_ONLY</p>
+  <p>0x1000000000000000</p>
+  </td>
+  <td>
+  <p>Partition cannot be written to but can be read from.
+  Used only with the basic data partition type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GPT_BASIC_DATA_ATTRIBUTE_SHADOW_COPY</p>
+  <p>0x2000000000000000</p>
+  </td>
+  <td>
+  <p>Partition is a shadow copy. Used only with the basic
+  data partition type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GPT_BASIC_DATA_ATTRIBUTE_HIDDEN</p>
+  <p>0x4000000000000000</p>
+  </td>
+  <td>
+  <p>Partition is hidden and will not be mounted. Used only
+  with the basic data partition type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GPT_BASIC_DATA_ATTRIBUTE_NO_DRIVE_LETTER</p>
+  <p>0x8000000000000000</p>
+  </td>
+  <td>
+  <p>Partition does not receive a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1b153cd0-e3f3-4383-bc66-d5ad482c9766" data-linktype="relative-path">drive letter</a></span> by
+  default when moving the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span> to another
+  machine. Used only with the basic data partition type.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>name:</b>  Null-terminated Unicode name
+of the partition.</p></div>

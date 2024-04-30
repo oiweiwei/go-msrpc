@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The ULARGE_INTEGER structure defines a large integer.</p><dl>
+<dd>
+<div><pre> typedef struct _ULARGE_INTEGER {
+   ULONGLONG QuadPart;
+ } ULARGE_INTEGER;
+</pre></div>
+</dd></dl><p><b>QuadPart:</b>  A <b>ULONGLONG</b> (as
+specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/c57d9fba-12ef-4853-b0d5-a6f472b50388" data-linktype="relative-path">2.2.55</a></span>)
+value.</p></div>

@@ -1,0 +1,268 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/ba710c90-5b12-42f8-9e5a-d4aacc1329fa" data-linktype="external">msdn link</a></p><p>The SamrOpenDomain method obtains a handle to a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_2346e8d0-b0a0-481f-b644-85c45c60d4d1" data-linktype="relative-path">domain object</a>, given a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a>.</p><dl>
+<dd>
+<div><pre> long SamrOpenDomain(
+   [in] SAMPR_HANDLE ServerHandle,
+   [in] unsigned long DesiredAccess,
+   [in] PRPC_SID DomainId,
+   [out] SAMPR_HANDLE* DomainHandle
+ );
+</pre></div>
+</dd></dl><p><b>ServerHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_62a8c543-5998-480b-8fa7-41a8f04a18e5" data-linktype="relative-path">server object</a>.</p><p><b>DesiredAccess: </b>An <a href="../ms-dtyp/7a53f60e-e730-4dfe-bbe9-b21b62eb790b" data-linktype="relative-path">ACCESS_MASK</a>.
+See section <a href="aef23495-f6aa-48e9-aebc-22e022a2b4eb" data-linktype="relative-path">2.2.1.4</a> for
+a list of <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> access
+values.</p><p><b>DomainId: </b>A SID value of a domain hosted by
+the server side of this protocol.</p><p><b>DomainHandle: </b>An RPC context handle, as
+specified in section 2.2.7.2.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints in no particular
+order:</p><ol><li><p><span>    </span>The server MUST
+return an error if <i>ServerHandle.HandleType</i> is not equal to
+&#34;Server&#34;.</p>
+</li><li><p><span>    </span><i>ServerHandle.GrantedAccess</i>
+MUST have the required access specified in section <a href="87bacbd0-7b8b-429f-abc6-4b3d895d4e90" data-linktype="relative-path">3.1.2.2</a>. Otherwise, the
+server MUST return STATUS_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>The server MUST
+translate the following bits in <i>DesiredAccess</i> according to the following
+table. Translate means to remove the &#34;Incoming bit&#34; and replace with
+the &#34;Translated bits&#34;, as follows.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Incoming bit</p>
+   </th>
+   <th>
+   <p>Translated bits</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>GENERIC_READ</p>
+  </td>
+  <td>
+  <p>DOMAIN_READ</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GENERIC_WRITE</p>
+  </td>
+  <td>
+  <p>DOMAIN_WRITE</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GENERIC_EXECUTE</p>
+  </td>
+  <td>
+  <p>DOMAIN_EXECUTE</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GENERIC_ALL</p>
+  </td>
+  <td>
+  <p>DOMAIN_ALL_ACCESS</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span>    </span>Let D be the
+domain object whose objectSid is <i>DomainId</i>. If no such object exists, the
+server MUST return an error code.</p>
+</li><li><p><span>    </span>Let
+GrantedAccess be the union of all bits in the &#34;DesiredAccess&#34; column
+in the following table where the client has the specified access (shown in the
+&#34;Access mask&#34; column) on the <b>ntSecurityDescriptor</b> on D. A
+missing value in the &#34;Object ACE type&#34; column means that the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_462f2aa7-2cfc-404a-b479-30f127c512b1" data-linktype="relative-path">access mask</a> applies to the
+entire object. <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/3da5080d-de25-4ac8-9f2b-982709253dfb" data-linktype="relative-path">5.1.3.3.3</a>
+specifies how to determine the client&#39;s access.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>DesiredAccess</p>
+   </th>
+   <th>
+   <p>Access mask</p>
+   </th>
+   <th>
+   <p>Object ACE type</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DOMAIN_READ_PASSWORD_PARAMETERS</p>
+  </td>
+  <td>
+  <p>ACTRL_DS_READ_PROP</p>
+  </td>
+  <td>
+  <p>c7407360-20bf-11d0-a768-00aa006e0529</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DOMAIN_WRITE_PASSWORD_PARAMS</p>
+  </td>
+  <td>
+  <p>ACTRL_DS_WRITE_PROP</p>
+  </td>
+  <td>
+  <p>c7407360-20bf-11d0-a768-00aa006e0529</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DOMAIN_READ_OTHER_PARAMETERS</p>
+  </td>
+  <td>
+  <p>ACTRL_DS_READ_PROP</p>
+  </td>
+  <td>
+  <p>b8119fd0-04f6-4762-ab7a-4986c76b3f9a</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DOMAIN_WRITE_OTHER_PARAMETERS</p>
+  </td>
+  <td>
+  <p>ACTRL_DS_WRITE_PROP</p>
+  </td>
+  <td>
+  <p>b8119fd0-04f6-4762-ab7a-4986c76b3f9a</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DOMAIN_CREATE_USER</p>
+  </td>
+  <td>
+  <p>Always grant, if DOMAIN_CREATE_USER is requested or if
+  MAXIMUM_ALLOWED is present.</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DOMAIN_CREATE_GROUP</p>
+  </td>
+  <td>
+  <p>Always grant, if DOMAIN_CREATE_GROUP is requested or
+  if MAXIMUM_ALLOWED is present. The default <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a> for a
+  non-<a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a> configuration&#39;s
+  domain object does not grant DOMAIN_CREATE_GROUP to any security context. </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DOMAIN_CREATE_ALIAS</p>
+  </td>
+  <td>
+  <p>Always grant, if DOMAIN_CREATE_ALIAS is requested or
+  if MAXIMUM_ALLOWED is present.</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DOMAIN_LIST_ACCOUNTS</p>
+  </td>
+  <td>
+  <p>ACTRL_DS_LIST</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DOMAIN_LOOKUP</p>
+  </td>
+  <td>
+  <p>ACTRL_DS_LIST</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DOMAIN_ADMINISTER_SERVER</p>
+  </td>
+  <td>
+  <p>ACTRL_DS_CONTROL_ACCESS</p>
+  </td>
+  <td>
+  <p>ab721a52-1e2f-11d0-9819-00aa0040529b</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ACCESS_SYSTEM_SECURITY</p>
+  </td>
+  <td>
+  <p>ACCESS_SYSTEM_SECURITY</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WRITE_OWNER</p>
+  </td>
+  <td>
+  <p>WRITE_OWNER</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WRITE_DAC</p>
+  </td>
+  <td>
+  <p>WRITE_DAC</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DELETE</p>
+  </td>
+  <td>
+  <p>DELETE</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span>    </span>If <i>GrantedAccess</i>
+is 0, the server MUST return STATUS_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>If <i>DesiredAccess</i>
+contains the MAXIMUM_ALLOWED bit, the server MUST create and return a <i>SamContextHandle</i>
+(section <a href="cc2dc6ce-e45f-481a-a8ed-5d0e273336b3" data-linktype="relative-path">3.1.1.10</a>) via <i>DomainHandle</i>
+with its fields initialized as follows: </p>
+<ul><li><p><span><span>  </span></span><i>SamContextHandle.HandleType</i>
+= &#34;Domain&#34;</p>
+</li><li><p><span><span>  </span></span><i>SamContextHandle.Object</i>
+= D</p>
+</li><li><p><span><span>  </span></span><i>SamContextHandle.GrantedAccess</i>
+= GrantedAccess</p>
+</li></ul></li><li><p><span>    </span>If <i>DesiredAccess</i>
+does not contain the MAXIMUM_ALLOWED bit, the following constraint MUST be
+satisfied:</p>
+<ol><li><p><span>   
+</span>If <i>DesiredAccess</i> contains bits not in <i>GrantedAccess</i>, the
+server MUST return STATUS_ACCESS_DENIED. Otherwise, the server MUST create and
+return a <i>SamContextHandle</i> (section 3.1.1.10) via <i>DomainHandle</i>
+with its fields initialized as follows: </p>
+<ul><li><p><span><span> 
+</span></span><i>SamContextHandle.HandleType</i> = &#34;Domain&#34;</p>
+</li><li><p><span><span> 
+</span></span><i>SamContextHandle.Object</i> = D</p>
+</li><li><p><span><span> 
+</span></span><i>SamContextHandle.GrantedAccess</i> = <i>DesiredAccess</i></p>
+</li></ul></li></ol></li><li><p><span>    </span>If any
+processing error occurred, the server MUST return that error. Otherwise, the
+server MUST return STATUS_SUCCESS to the client.</p>
+</li></ol></div>

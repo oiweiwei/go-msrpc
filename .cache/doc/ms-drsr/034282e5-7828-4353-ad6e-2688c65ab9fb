@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The DRS_MSG_DCINFOREPLY union defines the response messages
+received from the <span><a href="668abdc8-1db7-4104-9dea-feab05ff1736" data-linktype="relative-path">IDL_DRSDomainControllerInfo</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_DCINFOREPLY_V1 V1;
+   [case(2)] 
+     DRS_MSG_DCINFOREPLY_V2 V2;
+   [case(3)] 
+     DRS_MSG_DCINFOREPLY_V3 V3;
+   [case(0xFFFFFFFF)] 
+     DRS_MSG_DCINFOREPLY_VFFFFFFFF VFFFFFFFF;
+ } DRS_MSG_DCINFOREPLY;
+</pre></div>
+</dd></dl><p><b>V1:</b>  Version 1 response.</p><p><b>V2:</b>  Version 2 response.</p><p><b>V3:</b>  Version 3 response.</p><p><b>VFFFFFFFF:</b>  Version 0xFFFFFFFF
+response.</p></div>

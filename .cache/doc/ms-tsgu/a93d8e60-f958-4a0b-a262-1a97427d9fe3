@@ -1,0 +1,86 @@
+<div class="content"><p>This structure SHOULD be appended to the initial DTLS
+&#34;ClientHello&#34; packet.  It is independent of the DTLS request, and not
+included in any DTLS field size or calculations.</p><p>Multi-byte values in this structure are transmitted in
+little-endian byte order.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uReserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>uSignature1</p>
+  </td>
+  <td colspan="16">
+  <p>uCorrelationId
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>...</p>
+  </td>
+  <td colspan="16">
+  <p>uSignature2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>uCbStruct</p>
+  </td>
+  
+ </tr>
+</tbody></table><p><b>uReserved (4 bytes): </b>MUST be 0x0000.</p><p><b>uSignature1 (2 bytes): </b>An unsigned short with
+value 0x1DAA.</p><p><b>uCorrelationId (16 bytes): </b>A GUID, generated
+by the RDG client, which specifies the correlation identifier for the
+connection, which can appear in some of the RDG or <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server&#39;s</a> event
+logs.  This value MUST be the same as provided in the RDP_NEG_CORRELATION_INFO
+structure (<a href="../ms-rdpbcgr/5073f4ed-1e93-45e1-b039-6e30c385867c" data-linktype="relative-path">[MS-RDPBCGR]</a>
+section 2.2.1.1.2), RDPUDP_CORRELATION_ID_PAYLOAD structure (<a href="../ms-rdpeudp/2744a3ee-04fb-407b-a9e3-b3b2ded422b1" data-linktype="relative-path">[MS-RDPEUDP]</a>
+section 2.2.2.8), and RDG-Correlation-Id header (section <a href="035ab639-7a54-49ef-80bd-e54ad6a10003" data-linktype="relative-path">2.2.3.2.2</a>.)</p><p><b>uSignature2 (2 bytes): </b>An unsigned short with
+value 0xAA1D.</p><p><b>uCbStruct (2 bytes): </b>An unsigned short with
+value 26 decimal (size of this structure in bytes.)</p></div>

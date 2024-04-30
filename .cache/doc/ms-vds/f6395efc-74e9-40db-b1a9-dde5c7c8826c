@@ -1,0 +1,124 @@
+<div class="content"><p> </p><p>The FormatPartition method <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_ea22e521-1a4e-4ceb-8d64-f65fa6d0e63b" data-linktype="relative-path">formats</a></span> an existing
+OEM, ESP, or unknown <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT FormatPartition(
+   [in] ULONGLONG ullOffset,
+   [in] VDS_FILE_SYSTEM_TYPE type,
+   [in, string] WCHAR* pwszLabel,
+   [in] DWORD dwUnitAllocationSize,
+   [in] long bForce,
+   [in] long bQuickFormat,
+   [in] long bEnableCompression,
+   [out] IVdsAsync** ppAsync
+ );
+</pre></div>
+</dd></dl><p><b>ullOffset: </b>The byte offset of the partition,
+from the beginning of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>. This offset
+MUST be the offset of a start of a partition.</p><p><b>type: </b>A file system type that is enumerated by
+<span><a href="81d04cc8-5492-442e-a0c4-86b7148140a3" data-linktype="relative-path">VDS_FILE_SYSTEM_TYPE</a></span>.
+Clients that want to format by using <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file systems</a></span> that
+are not enumerated by VDS_FILE_SYSTEM_TYPE (section 2.2.1.2.9) can
+use the <span><a href="c01d0f0c-b124-495e-a693-2a82920b854f" data-linktype="relative-path">IVdsDiskPartitionMF::FormatPartionEx (section 3.4.5.2.29.4)</a></span>
+or <span><a href="bcfc5be7-2806-4bfd-894b-c64812223035" data-linktype="relative-path">IVdsDiskPartitionMF2::FormatPartitionEx2</a></span>
+methods.</p><p><b>pwszLabel: </b>A null-terminated Unicode string
+representing the partition label. The maximum label size is file
+system-dependent.</p><p><b>dwUnitAllocationSize: </b>The size, in bytes, of
+the allocation unit for the file system. The value MUST be a power of 2.
+Allocation unit range is file system-dependent.</p><p><b>bForce: </b>A Boolean that determines whether the
+format is forced, regardless of whether the partition is in use.</p><p><b>bQuickFormat: </b>A Boolean that determines
+whether a file system is <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_551fedc1-b5b0-4bd2-b11f-86af801d1c7a" data-linktype="relative-path">quick formatted</a></span>. A
+quick format does not verify each <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b5bbe646-aa5f-4b4e-ae9e-bdae444cbfa2" data-linktype="relative-path">sector</a></span> on the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>.</p><p><b>bEnableCompression: </b>A Boolean that determines
+whether a file system is created with compression enabled.<a id="Appendix_A_Target_97"></a><a aria-label="Product behavior note 97" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_97" data-linktype="relative-path">&lt;97&gt;</a></p><p><b>ppAsync: </b>A pointer to an <span><a href="97ea9c0f-5c8a-43e9-a9ee-deda29e2a09e" data-linktype="relative-path">IVdsAsync</a></span>
+interface that, if the operation is successfully completed, receives the
+IVdsAsync interface to monitor and control this operation. Callers MUST release
+the interface when they are done with it.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><dl>
+<dd>
+<p><b>Note</b>  This method is not valid on
+CD/DVD or <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_a2b20515-dc69-4674-b74e-91c8f24e3003" data-linktype="relative-path">super floppy</a></span>
+devices. These devices do not support <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_cee39671-0b98-4ca3-904d-018780e7042f" data-linktype="relative-path">partition tables</a></span>.</p>
+</dd></dl><p><b>ERROR_SUCCESS</b> (0x00000000)</p><p>When the server receives this message, it MUST validate the
+following parameter:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>ppAsync</i> is not NULL.</p>
+</li></ul><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>Create a new async object implementing the IVdsAsync interface by
+using an output type of VDS_ASYNCOUT_FORMAT and set the pointer that <i>ppAsync</i>
+references to the interface.</p>
+</li><li><p><span><span> 
+</span></span>Return an HRESULT indicating failure or success. Any errors
+encountered up through this point in processing the FormatPartition operation
+are returned in this HRESULT.</p>
+</li></ul><p>The server MUST perform the following. Errors generated in
+this sequence of steps are returned in the <b>pHrResult</b> parameter to the <span><a href="ccba511e-b299-4153-bb2f-c25ba97840f4" data-linktype="relative-path">IVdsAsync::Wait</a></span>
+or IVdsAsyncQueryStatus methods. </p><ul><li><p><span><span> 
+</span></span>If the operating system is unable to format the device with the
+file system type specified using the <i>type</i> parameter, then this method
+MUST return VDS_E_INCOMPATIBLE_FILE_SYSTEM.</p>
+</li><li><p><span><span> 
+</span></span>If the target device\media is write-protected, then this method
+MUST return VDS_E_MEDIA_WRITE_PROTECTED.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>pwszLabel</i> parameter is incompatible with the file
+system type specified using the <i>type</i> parameter, then the server MUST
+return VDS_E_BAD_LABEL.</p>
+</li><li><p><span><span> 
+</span></span>If the specified file system type has a minimum volume size
+requirement, and that requirement is not met, then the server MUST return
+VDS_E_VOLUME_TOO_SMALL.</p>
+</li><li><p><span><span> 
+</span></span>If the specified file system type has a maximum volume size
+requirement, and that requirement is not met, then the server MUST return
+VDS_E_VOLUME_TOO_BIG.</p>
+</li><li><p><span><span> 
+</span></span>If the specified file system type has a minimum or maximum <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7a427e97-46a3-46de-91c3-bd52f8763a84" data-linktype="relative-path">cluster
+size</a></span> requirement, and that requirement is not met, then the server
+MUST return VDS_E_CLUSTER_SIZE_TOO_SMALL or VDS_E_CLUSTER_SIZE_TOO_BIG,
+respectively.</p>
+</li><li><p><span><span> 
+</span></span>If the specified file system type has a maximum <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_feef37b3-c173-4f51-aab6-b55a6366259b" data-linktype="relative-path">cluster</a></span>
+count requirement, and that requirement is not met, then the server MUST return
+VDS_E_CLUSTER_COUNT_BEYOND_32BITS.</p>
+</li></ul><p>The server MUST update the percentage completed value
+periodically during the following sequence, and send progress notifications to
+all clients. How often the percentage completed is updated, and at what point
+in the sequence, is implementation specific. To send progress notifications to
+the clients:</p><ul><li><p><span><span> 
+</span></span>For each callback object registered in the list of callback
+objects, call the callback object&#39;s IVdsAdviseSink::OnNotify (Opnum 3) method
+with a <span><a href="4f29057f-ab32-4a3d-9fcb-00ba3457cb42" data-linktype="relative-path">VDS_NOTIFICATION</a></span>
+structure with the following attributes:</p>
+<ul><li><p><span><span>  </span></span><b>objectType</b>
+member is VDS_NTT_FILE_SYSTEM.</p>
+</li><li><p><span><span>  </span></span><b>FileSystem</b>
+member is a <span><a href="e75c0a7b-53f3-439f-ad9c-2473b96998de" data-linktype="relative-path">VDS_FILE_SYSTEM_NOTIFICATION</a></span>
+with the following attributes:</p>
+<ul><li><p><span><span> 
+</span></span><b>ulEvent</b> is VDS_NF_FILE_SYSTEM_FORMAT_PROGRESS.</p>
+</li><li><p><span><span> 
+</span></span><b>volumeId</b> is set to GUID_NULL.</p>
+</li><li><p><span><span> 
+</span></span><b>dwPercentCompleted</b> is the percentage completed value.</p>
+</li></ul></li></ul></li></ul><p>The server MUST then perform the following in sequence: </p><ul><li><p><span><span> 
+</span></span>Format the partition following the parameters specified to the
+method.</p>
+</li><li><p><span><span> 
+</span></span>If TRUE is specified for <b>bEnableCompression</b> and the file
+system being formatted supports compression, compress the file system after
+formatting is complete.<a id="Appendix_A_Target_98"></a><a aria-label="Product behavior note 98" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_98" data-linktype="relative-path">&lt;98&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Set the return code in the async object to an HRESULT indicating
+failure or success.</p>
+<ul><li><p><span><span>  </span></span>If
+the server tried to compress the file system after formatting it and failed,
+the return code MUST be set to VDS_S_VOLUME_COMPRESS_FAILED--an HRESULT of
+0x00042443.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the task completed successfully, set the percentage completed
+value in the async object to 100.</p>
+</li><li><p><span><span> 
+</span></span>Set the signal state in the async object to TRUE.</p>
+</li></ul></div>

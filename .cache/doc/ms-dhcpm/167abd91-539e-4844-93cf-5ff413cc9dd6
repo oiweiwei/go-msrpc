@@ -1,0 +1,35 @@
+<div class="content"><p> </p><p>The <b>DHCP_ALL_OPTIONS</b> structure contains all the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_da9bfcf7-a7e0-4cf0-ac87-ffdd83a5f25b" data-linktype="relative-path">option
+definitions</a></span> created on the DHCP server. This includes the
+vendor-specific option definition as well as the default vendor option
+definition. This structure is used in the <span><a href="14929538-10e3-4e32-8d39-d122e633ddb8" data-linktype="relative-path">R_DhcpGetAllOptions (section 3.2.4.30)</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_ALL_OPTIONS {
+   DWORD Flags;
+   LPDHCP_OPTION_ARRAY NonVendorOptions;
+   DWORD NumVendorOptions;
+   [size_is(NumVendorOptions)] struct {
+     DHCP_OPTION Option;
+     LPWSTR VendorName;
+     LPWSTR ClassName;
+   }* VendorOptions;
+ } DHCP_ALL_OPTIONS,
+  *LPDHCP_ALL_OPTIONS;
+</pre></div>
+</dd></dl><p><b>Flags:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>.
+This MUST be set to zero when sent and ignored on receipt.</p><p><b>NonVendorOptions:</b>  This is a pointer
+of type <span><a href="34b6a347-0458-415a-9808-0dc631a8c547" data-linktype="relative-path">DHCP_OPTION_ARRAY (section 2.2.1.2.26)</a></span>
+structure that points to the location that contains all non-vendor-specific
+options created on the DHCP server.</p><p><b>NumVendorOptions:</b>  This is of type
+DWORD, containing the number of vendor-specific options created on the DHCP
+server. This field specifies the number of vendor-specific options defined in
+the subsequent field, the <b>VendorOptions</b> member.</p><p><b>VendorOptions:</b>  This structure
+defines the vendor-specific options.</p><p><b>Option:</b>  This is of type <span><a href="855b6a9a-e6e4-4c9d-a732-aadad749ca03" data-linktype="relative-path">DHCP_OPTION (section 2.2.1.2.25)</a></span>,
+containing the option definition for the specific <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_45d20b00-7166-4f94-b679-4cc5a7835a3a" data-linktype="relative-path">vendor class</a></span> and <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_713c7395-9431-4d67-bab1-a069ae7461e2" data-linktype="relative-path">user
+class</a></span>.</p><p><b>VendorName:</b>  A pointer to a
+null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+specifies the name of a vendor class for a specific option definition. There is
+no restriction on the length of this Unicode string.</p><p><b>ClassName:</b>  A pointer to a
+null-terminated Unicode string that specifies the name of a user class for a
+specific user class. There is no restriction on the length of this Unicode
+string.</p></div>

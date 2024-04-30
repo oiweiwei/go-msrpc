@@ -1,0 +1,49 @@
+<div class="content"><p> </p><p>The LnkSvrMessageCallback method is an RPC callback method
+that provides a means for the DLT Central Manager server to call back to the
+client during a <span><a href="cea51ffe-cab6-4b19-93b7-853189437ead" data-linktype="relative-path">LnkSvrMessage</a></span> call.
+As defined in section <span><a href="d96cc3e8-c3b1-4b4f-b621-c5a39622768c" data-linktype="relative-path">3.1.4</a></span>, this
+callback only occurs for <span><a href="e25bc030-b74b-4186-8559-81ad21c54839" data-linktype="relative-path">SYNC_VOLUMES</a></span>
+messages (for an example of this message, see section <span><a href="82fb1177-fa78-42b8-ae3b-40b29192556e" data-linktype="relative-path">3.2.5.3</a></span>).</p><p>For more details on when this callback is used by the
+server, see section <span><a href="e7a9a393-4ea6-4d5e-b2e9-5ad7de390abd" data-linktype="relative-path">3.1.4.4</a></span>.</p><dl>
+<dd>
+<div><pre> [callback] HRESULT LnkSvrMessageCallback(
+   [in, out] TRKSVR_MESSAGE_UNION* pMsg
+ );
+</pre></div>
+</dd></dl><p><b>pMsg: </b>Pointer to a message, in the format of a
+<span><a href="2f32d86a-18ea-472f-99d3-e9f3a333e329" data-linktype="relative-path">TRKSVR_MESSAGE_UNION</a></span>
+structure. The <b>MessageType</b> field in this structure MUST be set to
+SYNC_VOLUMES.</p><p><b>Return Values: </b>The return value is typed as an
+<span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>,
+but for this method, a value of zero indicates success, and all other values
+indicate failure. Any nonzero value MUST be treated identically as a failure
+value.</p><p>The client MUST respond to this request by executing the
+steps in section <span><a href="310e8c2f-81d0-44d3-935c-6dc298dcab47" data-linktype="relative-path">3.2.4.4</a></span> on each of
+the <span><a href="c518a41f-fef5-4926-b6a8-13920e84fcca" data-linktype="relative-path">TRKSVR_SYNC_VOLUME</a></span>
+structures in the TRKSVR_CALL_SYNC_VOLUMES structure within the <i>pMsg</i>
+parameter. In this way, the client is responding as though it received the
+updated structure in the completion of the LnkSvrMessage request.</p><p>If any <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_29963f91-492c-4c33-ae33-c5185ac9315c" data-linktype="relative-path">subrequest</a></span> indicates
+a failure—that is, if the <b>hr</b> field of any TRKSVR_SYNC_VOLUME structure
+is not zero—the client MUST return to the server with a return value that
+indicates failure.</p><p>For example, in a typical case where this callback method is
+used, processing proceeds in the following order:</p><ul><li><p><span><span> 
+</span></span>The client sends a SYNC_VOLUMES message to the server by calling
+LnkSvrMessage, as described, for example, in section 3.2.5.3.</p>
+</li><li><p><span><span> 
+</span></span>The server processes the request, updates the TRKSVR_CALL_SYNC_VOLUMES
+array in the request, and calls LnkSvrMessageCallback on the client.</p>
+</li><li><p><span><span> 
+</span></span>The client processes the subrequests in the updated
+TRKSVR_CALL_SYNC_VOLUMES array, as defined in section 3.2.4.4.</p>
+</li><li><p><span><span> 
+</span></span>The client returns from the LnkSvrMessageCallback method to the
+server.</p>
+</li><li><p><span><span> 
+</span></span>The server sets the <b>cProcessed</b> field of the
+TRKSVR_CALL_SYNC_VOLUMES structure to zero, and returns from the LnkSvrMessage
+method to the client.</p>
+</li><li><p><span><span> 
+</span></span>The client again performs the processing defined in section
+3.2.4.4. But because the <b>cProcessed</b> field has been set to zero, the
+client takes no additional action, as defined in that section.</p>
+</li></ul></div>

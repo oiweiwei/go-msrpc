@@ -1,0 +1,46 @@
+<div class="content"><p>The TSG_PACKET_REAUTH structure is sent by the client to the
+TS Gateway server when the client is reauthenticating the connection. The value
+of the <b>packetId</b> field in <a href="4c505da0-93c2-4a2f-9329-6174bbaa481b" data-linktype="relative-path">TSG_PACKET</a> MUST be set to <a href="85ae32ae-501e-426b-b216-00ec0256115d" data-linktype="relative-path">TSG_PACKET_TYPE_REAUTH</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _TSG_PACKET_REAUTH {
+   unsigned __int64 tunnelContext;
+   unsigned long packetId;
+   [switch_is(packetId)] TSG_INITIAL_PACKET_TYPE_UNION TSGInitialPacket;
+ } TSG_PACKET_REAUTH,
+  *PTSG_PACKET_REAUTH;
+</pre></div>
+</dd></dl><p><b>tunnelContext:</b>  An unsigned __int64
+that identifies which tunnel is being reauthenticated.</p><p><b>packetId:</b>  An unsigned long that
+specifies what type of packet is present inside TSGInitialPacket.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TSG_PACKET_TYPE_VERSIONCAPS</p>
+  <p>0x00005643</p>
+  </td>
+  <td>
+  <p>This packet is sent when Pluggable Authentication is
+  off. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TSG_PACKET_TYPE_AUTH</p>
+  <p> 0x00004054</p>
+  </td>
+  <td>
+  <p>This packet is sent when Pluggable Authentication is
+  on. This packet includes <a href="97c5562c-70a3-4d45-99eb-732202743cd9" data-linktype="relative-path">TSG_PACKET_VERSIONCAPS</a>
+  as well as the cookie that is required for authentication.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>TSGInitialPacket:</b>  A <a href="91129d2e-bacb-48e2-9953-7071f764e3cf" data-linktype="relative-path">TSG_INITIAL_PACKET_TYPE_UNION</a>
+union as specified in section 2.2.9.2.1.11.1.</p></div>

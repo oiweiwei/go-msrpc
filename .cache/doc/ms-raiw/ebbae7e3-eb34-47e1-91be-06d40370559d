@@ -1,0 +1,21 @@
+<div class="content"><p> The WINSINTF_ACT_E enumeration indicates an action type
+requested by the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+method <a href="4f811c36-56e2-4058-a7ec-8ee6d937f608" data-linktype="relative-path">R_WinsRecordAction</a>
+for a record contained in the <a href="2772ceb8-1b9f-4766-84e2-af6453f8ba2c" data-linktype="relative-path">WINSINTF_RECORD_ACTION_T</a>
+structure. </p><dl>
+<dd>
+<div><pre> typedef  enum _WINSINTF_ACT_E
+ {
+   WINSINTF_E_INSERT = 0,
+   WINSINTF_E_DELETE,
+   WINSINTF_E_RELEASE,
+   WINSINTF_E_MODIFY,
+   WINSINTF_E_QUERY
+ } WINSINTF_ACT_E,
+  *PWINSINTF_ACT_E;
+</pre></div>
+</dd></dl><p><b>WINSINTF_E_INSERT:  </b>Insert a record into the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a> database.</p><p><b>WINSINTF_E_DELETE:  </b>Delete a matching record
+from the WINS database.</p><p><b>WINSINTF_E_RELEASE:  </b>Release a matching record
+from the WINS database.</p><p><b>WINSINTF_E_MODIFY:  </b>Modify the attributes of
+the matching record.</p><p><b>WINSINTF_E_QUERY:  </b>Query the database for a
+given name.</p></div>

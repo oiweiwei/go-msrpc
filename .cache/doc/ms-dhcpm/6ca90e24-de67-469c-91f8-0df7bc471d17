@@ -1,0 +1,131 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4CreateClientInfo</b> method creates a DHCPv4
+client lease record on the DHCP server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4CreateClientInfo(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, ref] LPDHCP_CLIENT_INFO_PB ClientInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address of the DHCP
+server. This parameter is unused.</p><p><b>ClientInfo: </b>A pointer to a <span><a href="6ac8d531-84bb-4e8c-8010-840c41fd72e8" data-linktype="relative-path">DHCP_CLIENT_INFO_PB (section 2.2.1.2.115)</a></span>
+structure that contains the DHCPv4 client lease record information to be set on
+the DHCPv4 server. The caller MUST pass the <b>ClientIPAddress</b> and <b>ClientHardwareAddress</b>
+members when adding a DHCPv4 client lease record to the DHCPv4 server. The <b>ClientHardwareAddress</b>
+member represents a DHCPv4 client-identifier as specified in section <span><a href="7c88f58b-c615-4386-a643-ab05b860a003" data-linktype="relative-path">2.2.1.2.5.1</a></span>.
+The <b>ClientName</b>, <b>ClientComment</b>, <b>ClientLeaseExpires</b>, <b>bClientType</b>,
+<b>AddressState</b>, <b>Status</b>, <b>ProbationEnds</b>, <b>QuarantineCapable</b>,
+<b>PolicyName</b>, and <b>OwnerHost</b> members are modified on the DHCPv4
+client lease record identified by the <b>ClientIpAddress</b> member.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or to any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified subnet does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2E</p>
+  <p>ERROR_DHCP_CLIENT_EXISTS</p>
+  </td>
+  <td>
+  <p>The specified client already exists on the server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 122.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate that this method is authorized for read/write access as
+specified in section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the DHCPv4 client&#39;s hardware address data is NULL or its
+length is not 0, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>AddressState</b> field of <i>ClientInfo</i> has the
+value ADDRESS_STATE_OFFERED, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server ADM element <b>DHCPv4ScopesList</b>,
+and retrieve the <b>DHCPv4Scope</b> ADM element entry such that the <b>ClientIpAddress</b>
+member of the <i>ClientInfo</i> parameter falls within the scope. If no <b>DHCPV4Scope</b>
+exists, return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>Create the DHCPv4 client unique-identifier as specified in
+section <span><a href="651865ec-6404-4191-ad30-113578a94556" data-linktype="relative-path">2.2.1.2.5.2</a></span> for the
+DHCPv4 client from the <b>ScopeInfo.SubnetAddress</b> ADM element of the
+specified <b>DHCPv4Scope</b> and the DHCPv4 client-identifier that is the <b>ClientHardwareAddress</b>
+member, as specified in the <i>ClientInfo</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>If there is a <b>DHCPv4Client</b> ADM element entry corresponding
+to this DHCPv4 client unique ID or to the client IP address already in the <b>DHCPv4ClientsList</b>
+ADM element, or to both, return ERROR_DHCP_CLIENT_EXISTS. Otherwise, create a <b>DHCPv4Client</b>
+object and set the <b>ClientIpAddress</b>, <b>ClientName</b>, <b>ClientComment</b>,
+<b>bClientType</b>, <b>AddressState</b>, <b>Status</b>, <b>ProbationEnds</b>, <b>QuarantineCapable</b>,
+<b>PolicyName</b>, and <b>ClientLeaseExpires</b> members as specified in the <i>ClientInfo</i>
+input parameter.<a id="Appendix_A_Target_88"></a><a aria-label="Product behavior note 88" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_88" data-linktype="relative-path">&lt;88&gt;</a> Set the other fields of <b>DHCPv4Client</b>
+as follows:</p>
+<ul><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.SubnetMask</b> ADM element is set to the <b>ScopeInfo.SubnetAddress</b>
+ADM element of the retrieved <b>DHCPv4Scope</b>.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.ClientHardwareAddress</b> ADM element is set to the DHCPv4
+client unique-identifier created in the preceding step.</p>
+</li><li><p><span><span>  </span></span>Set
+the <b>DHCPv4Client.OwnerHost.NetBiosName</b> ADM element to the NetBIOS name
+of the DHCPv4 server.</p>
+</li><li><p><span><span>  </span></span>Set
+the <b>DHCPv4Client.OwnerHost.IpAddress</b> ADM element to the value of the <i>ServerIpAddress</i>
+parameter if the caller passed an IP address in this parameter.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.SentPotExpTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.ActPotExpTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.RecvPotExpTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.StartTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.CltLastTransTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.LastBndUpdTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.flags</b> ADM element is set to 0.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv4Client.bndMsgStatus</b> ADM element is set to 0.</p>
+<p>Insert the object into the <b>Dhcpv4Scope.DHCPv4ClientsList</b>
+ADM element.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <b>AddressState</b> member of the <i>ClientInfo</i>
+parameter is set to ADDRESS_STATE_ACTIVE or ADDRESS_STATE_DECLINED, iterate
+through the <b>DHCPv4IpRangesList</b> portion of the previously retrieved <b>DHCPv4Scope</b>
+and retrieve the <b>DHCPv4IpRange</b> ADM element entry for which the <b>ClientIpAddress</b>
+member of the <i>ClientInfo</i> parameter falls within the range. Set the bit
+corresponding to the <b>ClientIpAddress</b> value in <b>DHCPv4IpRange.BitMask</b>
+to 1 to indicate that the IP address is in use.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

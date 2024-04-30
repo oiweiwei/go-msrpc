@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The WaitForServiceReady method waits for <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_97581c48-09dd-4bc4-a379-a846cbf4cc39" data-linktype="relative-path">VDS</a></span>
+initialization to complete and returns the status of the VDS initialization in
+the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT WaitForServiceReady();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>The method MUST return zero to
+indicate success or the error code VDS_E_INITIALIZED_FAILED if the
+service-ready state is &#34;failed&#34;.</p><p>Upon receiving this message, if the service-ready state is
+or becomes &#34;failed&#34;, the server MUST return VDS_E_INITIALIZED_FAILED
+(HRESULT of 0x80042401). The server MUST block the call until the service-ready
+state is &#34;ready&#34;, after which it MUST return success (HRESULT of
+0x00000000).</p></div>

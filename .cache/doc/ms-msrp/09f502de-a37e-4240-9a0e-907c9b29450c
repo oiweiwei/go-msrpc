@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>MSG_INFO_1_CONTAINER is a container structure that holds one
+or more <span><a href="8b5122d3-a9c3-46fb-a049-f92570eaf85e" data-linktype="relative-path">MSG_INFO_1</a></span>
+structures.</p><dl>
+<dd>
+<div><pre> typedef struct _MSG_INFO_1_CONTAINER {
+   DWORD EntriesRead;
+   [size_is(EntriesRead)] LPMSG_INFO_1 Buffer;
+ } MSG_INFO_1_CONTAINER,
+  *PMSG_INFO_1_CONTAINER,
+  *LPMSG_INFO_1_CONTAINER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  A 32-bit value that
+MUST denote the number of entries in <i>Buffer</i>.</p><p><b>Buffer:</b>  A pointer to a
+variable-size buffer that MUST contain one or more MSG_INFO_1 structures.</p></div>

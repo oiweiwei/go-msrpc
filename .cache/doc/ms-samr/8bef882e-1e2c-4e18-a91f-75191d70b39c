@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/8bef882e-1e2c-4e18-a91f-75191d70b39c" data-linktype="external">msdn link</a></p><p>The PASSWORD_POLICY_VALIDATION_TYPE enumeration indicates
+the type of policy validation that is being requested.</p><dl>
+<dd>
+<div><pre> typedef  enum _PASSWORD_POLICY_VALIDATION_TYPE
+ {
+   SamValidateAuthentication = 1,
+   SamValidatePasswordChange,
+   SamValidatePasswordReset
+ } PASSWORD_POLICY_VALIDATION_TYPE;
+</pre></div>
+</dd></dl><p><b>SamValidateAuthentication:  </b>Indicates a
+request to execute the password policy validation performed at logon.</p><p><b>SamValidatePasswordChange:  </b>Indicates a
+request to execute the password policy validation performed during a password
+change request.</p><p><b>SamValidatePasswordReset:  </b>Indicates a request
+to execute the password policy validation performed during a password reset.</p></div>

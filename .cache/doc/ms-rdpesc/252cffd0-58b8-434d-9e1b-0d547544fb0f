@@ -1,0 +1,18 @@
+<div class="content"><p>The Transmit_Return structure defines return information
+from a <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">smart card</a> after
+a Transmit call (for more information, see section <a href="0b24a330-7950-48f8-ade9-fb90d51d0546" data-linktype="relative-path">3.1.4.35</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _Transmit_Return {
+   long ReturnCode;
+   [unique] SCardIO_Request *pioRecvPci;
+   [range(0, 66560)] unsigned long cbRecvLength;
+   [unique] [size_is(cbRecvLength)] byte *pbRecvBuffer;
+ } Transmit_Return;
+</pre></div>
+</dd></dl><p><b>ReturnCode:</b>  <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a> or Win32 Error
+code. Zero indicates success; any other value indicates failure.</p><p><b>pioRecvPci:</b>  The protocol header
+structure for the instruction, followed by a buffer in which to receive any
+returned protocol control information (PCI) that is specific to the protocol in
+use. If this field is NULL, a protocol header MUST NOT be returned.</p><p><b>cbRecvLength:</b>  The size, in bytes,
+of the <b>pbRecvBuffer</b> field.</p><p><b>pbRecvBuffer:</b>  The data returned
+from the card.</p></div>

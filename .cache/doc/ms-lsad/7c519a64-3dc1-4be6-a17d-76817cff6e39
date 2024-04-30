@@ -1,0 +1,168 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/7c519a64-3dc1-4be6-a17d-76817cff6e39" data-linktype="external">msdn link</a></p><p>The TRUSTED_DOMAIN_SUPPORTED_ENCRYPTION_TYPES structure is
+used to present the encryption types that are allowed through a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _TRUSTED_DOMAIN_SUPPORTED_ENCRYPTION_TYPES {
+   unsigned long SupportedEncryptionTypes;
+ } TRUSTED_DOMAIN_SUPPORTED_ENCRYPTION_TYPES,
+  *PTRUSTED_DOMAIN_SUPPORTED_ENCRYPTION_TYPES;
+</pre></div>
+</dd></dl><p><b>SupportedEncryptionTypes:</b>  This
+field contains bitmapped values that define the encryption types supported by
+this trust relationship. The flags can be set in any combination.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>S</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>M</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>C:</b> Supports CRC32, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90450" data-linktype="external">[RFC3961]</a> page 31.</p>
+</dd>
+<dd>
+<p><b>M:</b> Supports RSA-MD5, as specified in
+[RFC3961] page 31.</p>
+</dd>
+<dd>
+<p><b>R:</b> Supports RC4-HMAC-MD5, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90488" data-linktype="external">[RFC4757]</a>.</p>
+</dd>
+<dd>
+<p><b>A:</b> Supports HMAC-SHA1-96-AES128, as specified
+in [RFC3961] page 31.</p>
+</dd>
+<dd>
+<p><b>S:</b> Supports HMAC-SHA1-96-AES256, as specified
+in [RFC3961] page 31.</p>
+</dd>
+<dd>
+<p>All other bits SHOULD be 0 and ignored upon receipt.</p>
+</dd></dl></div>

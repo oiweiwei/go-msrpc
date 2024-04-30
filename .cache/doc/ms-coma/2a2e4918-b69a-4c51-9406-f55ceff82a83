@@ -1,0 +1,84 @@
+<div class="content"><p>This method is called by a client to move a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_31ed3bc7-a750-4fdd-a72d-d275caeab53e" data-linktype="relative-path">component configuration</a>
+from one <a href="3f01a312-3391-4109-a96e-95358babf191#gt_ea5c531f-5dd5-43aa-9da1-2ae068c622db" data-linktype="relative-path">conglomeration</a>
+to another.</p><dl>
+<dd>
+<div><pre> HRESULT MoveComponentConfiguration(
+   [in, string] LPCWSTR pwszSourceConglomeration,
+   [in, string] LPCWSTR pwszComponent,
+   [in, string] LPCWSTR pwszDestinationConglomeration
+ );
+</pre></div>
+</dd></dl><p><b>pwszSourceConglomeration: </b>The Curly Braced
+GUID String Syntax (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/222af2d3-5c00-4899-bc87-ed4c6515e80d" data-linktype="relative-path">2.3.4.3</a>)
+representation of the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0ab5119e-c719-4a5c-9198-55a0a2fb508a" data-linktype="relative-path">conglomeration
+identifier</a> or the Name property of a conglomeration from which the
+component configuration is to be moved.</p><p><b>pwszComponent: </b>The Curly Braced GUID String Syntax
+([MS-DTYP] section 2.3.4.3) representation of the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a> or the ProgID
+property of a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_71669ed9-7eaf-4328-9e2e-4d3430f0f9bf" data-linktype="relative-path">component</a>
+configured in the conglomeration specified by <i>pwszSourceConglomeration</i>.</p><p><b>pwszDestinationConglomeration: </b>The Curly
+Braced GUID String Syntax ([MS-DTYP] section 2.3.4.3) representation of the
+conglomeration identifier or the Name property of a conglomeration into which
+the component configuration is to be moved.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server MUST verify
+that <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0944227d-0566-49e1-989f-2fff6e02542d" data-linktype="relative-path">catalog</a> version
+negotiation has been performed by checking the negotiated catalog version (see
+section <a href="a667265b-22a8-43bb-b462-13528061e009" data-linktype="relative-path">3.1.1.5</a>), and
+fail the call if not.</p><p>The server then MUST select the source conglomeration as
+follows:</p><ul><li><p><span><span> 
+</span></span>If <i>pwszSourceConglomeration</i> is in Curly Braced GUID String
+Syntax ([MS-DTYP] section 2.3.4.3), the server MUST select the conglomeration
+with a conglomeration identifier equal to the <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a>
+represented, and fail the call if no such conglomeration exists.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the server MUST select the conglomeration with a Name
+property equal to <i>pwszSourceConglomeration</i>, and fail the call if no such
+conglomeration exists.</p>
+</li></ul><p>The server then MUST select the destination conglomeration
+as follows:</p><ul><li><p><span><span> 
+</span></span>If <i>pwszDestConglomeration</i> is in Curly Braced GUID String
+Syntax ([MS-DTYP] section 2.3.4.3), the server MUST select the conglomeration
+with a conglomeration identifier equal to the GUID represented, and fail the
+call if no such conglomeration exists.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the server MUST select the conglomeration with a Name
+property equal to <i>pwszDestConglomeration</i>, and fail the call if no such
+conglomeration exists.</p>
+</li></ul><p>The server then MUST select the component configuration to
+be moved as follows:</p><ul><li><p><span><span> 
+</span></span>If <i>pwszComponent</i> is in Curly Braced GUID String Syntax
+([MS-DTYP] section 2.3.4.3), the server MUST select the component with a CLSID
+equal to the GUID represented, and fail the call if no such component exists.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the server MUST select the component with a ProgID
+property equal to <i>pwszComponent</i>, and fail the call if no such component
+exists.</p>
+</li><li><p><span><span> 
+</span></span>The server then MUST select the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_10747afc-d8b7-4515-b00f-a31037201a38" data-linktype="relative-path">component full configuration</a>
+for the selected component in the source conglomeration, and fail the call if
+no such component full configuration exists.</p>
+</li></ul><p>The server then MUST verify that the move operation specified
+is valid as follows:</p><ul><li><p><span><span> 
+</span></span>The server MUST verify that the component of the component
+configuration to be moved is not already configured in the destination
+conglomeration, and fail the call if this is already configured.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST verify that the Changeable property (section <a href="f5f5c289-85a2-44d8-9e72-58271a1862d8" data-linktype="relative-path">3.1.1.3.6</a>) of the source
+conglomeration is set to TRUE (0x00000001), and fail the call if not.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST verify that the Changeable property (section
+3.1.1.3.6) of the destination conglomeration is set to TRUE (0x00000001), and
+fail the call if not.</p>
+</li></ul><p>The remainder of the protocol behavior specified for this
+method SHOULD be performed as an <a href="3f01a312-3391-4109-a96e-95358babf191#gt_6db11d6b-d493-46d4-ab87-2429ca8bcb1e" data-linktype="relative-path">atomic transaction</a>, in
+other words, either the operation SHOULD fully succeed or the server SHOULD
+make no changes to the catalog. This described behavior is provided to
+facilitate the explanation of how the protocol behaves. This document does not
+mandate that implementations adhere to this model as long as their external
+behavior is consistent with that described in this document.</p><p>The server MUST attempt to create a new component full
+configuration for the component in the destination conglomeration, copying all
+properties other than PartitionIdentifier and ConglomerationIdentifier from the
+original component full configuration, and fail the call if it cannot.</p><p>The server then MUST attempt to remove the original
+component full configuration, and fail the call if it cannot.</p></div>

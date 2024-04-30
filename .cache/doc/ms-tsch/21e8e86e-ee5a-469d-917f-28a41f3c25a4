@@ -1,0 +1,38 @@
+<div class="content"><p>The Task Scheduler Remoting Protocol is used to register and
+configure tasks or to query the status of running <a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_740b149e-e6b4-49f5-bc16-e03ff41def7f" data-linktype="relative-path">tasks</a> on a remote server.
+The Task Scheduler Remoting Protocol primarily consists of three separate
+remote procedure call (RPC) interfaces:</p><ul><li><p><span><span> 
+</span></span>Net Schedule (<a href="4d44c426-fad2-4cc7-9677-bfcd235dca33" data-linktype="relative-path">ATSvc</a>)</p>
+</li><li><p><span><span> 
+</span></span>Task Scheduler Agent (<a href="7849c5ca-a8df-4c1d-8565-41a9b979a63d" data-linktype="relative-path">SASec</a>)</p>
+</li><li><p><span><span> 
+</span></span>Windows Vista operating system Task Remote Protocol (<a href="eb12c947-7e20-4a30-a528-85bc433cec44" data-linktype="relative-path">ITaskSchedulerService</a>)</p>
+</li></ul><p>All three interfaces use <a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> as their transport to
+configure and manage tasks remotely. </p><p>The three interfaces represent a continuum of increasing
+functionality, with ATSvc providing rudimentary functionality and ITaskSchedulerService
+providing the most functionality. Historically, the ATSvc interface is the
+oldest.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a> The three interfaces are not
+independent—they operate on the <a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_08035fe7-a786-4b30-ab60-3fd046060617" data-linktype="relative-path">task store</a>, shared
+persistent storage for tasks.</p><p>In the ATSvc interface (see section 3.2.5.2), a task can be
+anything that can be specified on a command line for execution on the server.
+The client can specify execution at a given time or repeated execution on
+particular days of the week or month. In addition to creating tasks with <a href="920fb461-5cb5-41cc-b0fc-d9449d9976b8" data-linktype="relative-path">NetrJobAdd (section 3.2.5.2.1)</a>,
+the interface includes methods for deleting tasks (section <a href="eaf77b14-cdeb-4fbb-8f52-3f9d0d0ffbf1" data-linktype="relative-path">3.2.5.2.2</a>), enumerating
+tasks (section <a href="fbd5a268-b8c6-4953-8df3-8931ca0f365d" data-linktype="relative-path">3.2.5.2.3</a>),
+and querying the status of a task (section <a href="ee6ca40c-ae87-421d-998d-ec759d375824" data-linktype="relative-path">3.2.5.2.4</a>).</p><p>The SASec interface (section 3.2.5.3), only includes methods
+for manipulating account information, because most SASec-created task
+configuration is stored in the file system using the .JOB file format (section <a href="96446df7-7683-40e0-a713-b01933b93b18" data-linktype="relative-path">2.4</a>). Clients add, delete,
+enumerate, and query tasks using a remote file system protocol as specified in
+section <a href="f381ff8b-0fb5-424b-94b8-2c16e71a0bdd" data-linktype="relative-path">3.2.5</a>. The .JOB
+file format provides more features than the ATSvc interface for specifying
+tasks.<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a></p><p>Clients use the Windows Remote Registry Protocol
+Specification, as specified in <a href="../ms-rrp/0fa3191d-bb79-490a-81bd-54c2601b7a78" data-linktype="relative-path">[MS-RRP]</a>,
+to discover the path of the remote directory that stores the tasks as .JOB
+files (section 3.2.5.3). Clients use the SASec interface methods to supply
+security <a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_b505ab37-868d-426c-bb19-af21e675e0b8" data-linktype="relative-path">credentials</a> for
+the remote task execution.</p><p>In contrast, the ITaskSchedulerService interface (section
+3.2.5.4) includes methods for creating, deleting, enumerating, and querying
+tasks. The remote registry and file system protocols are not used. The ITaskSchedulerService
+interface uses <a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a> to
+specify task configuration (section <a href="0d6383e4-de92-43e7-b0bb-a60cfa36379f" data-linktype="relative-path">2.5</a>). The XML schema
+provides more features than the .JOB File Format for specifying tasks.</p></div>

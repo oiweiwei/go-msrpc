@@ -1,0 +1,9 @@
+<div class="content"><p>The Remote Assistance Initiation Protocol is a set of <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">Distributed Component Object
+Model (DCOM)</a> interfaces, as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>,
+for initiating a <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_9d7b1eb9-8131-4eb3-ad5b-08792b014893" data-linktype="relative-path">Remote
+Assistance connection</a> to another computer in a <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>. The Remote
+Assistance Initiation Protocol allows an authorized <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_64520114-7ddc-4f5a-b63d-81d79b9a6693" data-linktype="relative-path">expert</a> to start <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_494867b1-8c5c-4fde-b089-1056c3a64f18" data-linktype="relative-path">Remote Assistance</a> on a
+remote <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_d27bcedc-ae63-4e15-a0cb-9b371f1820dc" data-linktype="relative-path">novice</a> computer
+to retrieve data that is required to make a Remote Assistance connection from
+the expert computer to the novice computer.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are normative.
+All other sections and examples in this specification are informative.</p></div>

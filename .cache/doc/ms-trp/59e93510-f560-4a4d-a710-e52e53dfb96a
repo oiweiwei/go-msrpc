@@ -1,0 +1,147 @@
+<div class="content"><p>The FreeDialogInstance packet indicates the end of the TSP
+installation, configuration, or removal operation on the client side. The
+client MUST have started this operation by sending the <a href="4041c995-8277-4892-9f34-189897faea54" data-linktype="relative-path">GetUIDllName</a> packet, and
+this operation might have had one or more <a href="ce962d13-3082-4287-bcea-42411b16b962" data-linktype="relative-path">TUISPIDLLCallback</a> packets
+sent by the client during the operation. The server takes appropriate action
+corresponding to the end of this operation, for example, completing the
+configuration of the server and the TSP, or allocating or releasing resources. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">htDlgInst</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lUIDllResult</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved5</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved6</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved7</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved8</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved9</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved10</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved11</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved12</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>The identifier of the
+function that will be invoked on the remote server. This value MUST be set to
+3.</p><dl>
+<dd>
+<p>On completion of the <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a> method, this
+field MUST contain the result of the encapsulated telephony request. A value of
+0 indicates success, and a <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path">LINEERR_Constants</a>
+value indicates failure. The remote server MUST complete this call
+synchronously.</p>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>htDlgInst (4 bytes): </b>An opaque handle that was
+returned by the server in the corresponding <b>htDlgInst</b> field of the
+GetUIDllName packet. This opaque handle value cannot be used further after it
+is used in a FreeDialogInstance packet.</p><p><b>lUIDllResult (4 bytes): </b>This field MUST be set
+to 0 if the current operation (as identified by <b>htDlgInst</b>, namely, installing,
+configuring, or removing a TSP) was successfully completed on the client side,
+and set to nonzero to indicate that the operation was unsuccessful or canceled
+on the client side. Correspondingly, the server either terminates and cleans up
+the setup involved for the current operation or completes the work remaining on
+the server side for the current operation. </p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit integer.
+This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved5 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved6 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved7 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved8 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved9 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved10 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved11 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved12 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p></div>

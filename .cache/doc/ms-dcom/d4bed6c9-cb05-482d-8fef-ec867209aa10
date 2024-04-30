@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The LocationInfoData structure MUST be present in the <span><a href="d48f1e14-0247-4b70-808a-3f3914ae205d" data-linktype="relative-path">Activation
+Properties BLOB</a></span> structure. The server MUST ignore this structure.</p><p>CLSID_ServerLocationInfo (see section <span><a href="c25391af-f59e-40da-885e-cc84076673e4" data-linktype="relative-path">1.9</a></span>)
+is used to identify this property in the CustomHeader.pclsid array.</p><dl>
+<dd>
+<div><pre> typedef struct tagLocationInfoData {
+   [string] wchar_t* machineName;
+   DWORD processId;
+   DWORD apartmentId;
+   DWORD contextId;
+ } LocationInfoData;
+</pre></div>
+</dd></dl><p><b>machineName:</b>  This MUST be set to
+NULL and MUST be ignored on receipt.</p><p><b>processId:</b>   This MUST be set to 0
+and MUST be ignored on receipt.</p><p><b>apartmentId:</b>   This MUST be set to 0
+and MUST be ignored on receipt.</p><p><b>contextId:</b>   This MUST be set to 0
+and MUST be ignored on receipt.</p></div>

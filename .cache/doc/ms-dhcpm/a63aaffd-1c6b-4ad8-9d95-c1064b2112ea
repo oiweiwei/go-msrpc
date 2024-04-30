@@ -1,0 +1,41 @@
+<div class="content"><p> </p><p>The <b>DHCP_POLICY_EX</b> structure contains information for
+a policy that is used to filter client requests. This structure augments the <span><a href="77e79969-cedf-4aa9-9059-6223ba815f30" data-linktype="relative-path">DHCP_POLICY (section 2.2.1.2.110)</a></span>
+structure by including a list of properties represented by the field
+Properties.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_POLICY_EX {
+     LPWSTR PolicyName;
+     BOOL IsGlobalPolicy;
+     DHCP_IP_ADDRESS Subnet;
+     DWORD ProcessingOrder;
+     LPDHCP_POL_COND_ARRAY Conditions;
+     LPDHCP_POL_EXPR_ARRAY Expressions;
+     LPDHCP_IP_RANGE_ARRAY Ranges;
+     LPWSTR Description;
+     BOOL Enabled;
+     LPDHCP_PROPERTY_ARRAY Properties;
+ } DHCP_POLICY_EX, *PDHCP_POLICY_EX, *LPDHCP_POLICY_EX; 
+</pre></div>
+</dd></dl><p><b>PolicyName:</b>  A pointer of type
+LPWSTR that points to a null-terminated Unicode string identifying the name of
+the policy. The name of the policy is restricted to 64 characters.</p><p><b>IsGlobalPolicy:</b>  Indicates whether
+this is a server-level policy.</p><p><b>Subnet:</b>  This member is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>
+structure and identifies the IPv4 subnet to which the policy belongs, if this
+is a scope-level policy. The value of this member will be 0 for a server-level
+policy.</p><p><b>ProcessingOrder:</b>  Identifies the
+relative order in which the DHCPv4 server will process the policy.</p><p><b>Conditions:</b>  A pointer of type <span><a href="88b34e1e-2d73-47e9-828e-bfea4970c43d" data-linktype="relative-path">LPDHCP_POL_COND_ARRAY (section 2.2.1.2.106)</a></span>
+that contains the array of conditions for the policy.</p><p><b>Expressions:</b>  A pointer of type <span><a href="e24fe009-07df-4476-a36b-9701c6162a19" data-linktype="relative-path">LPDHCP_POL_EXPR_ARRAY (section 2.2.1.2.108)</a></span>
+that contains the array of expressions for the policy.</p><p><b>Ranges:</b>  A pointer of type <span><a href="02b17eb1-9c1d-4237-afc2-fc0c600ab3e0" data-linktype="relative-path">LPDHCP_IP_RANGE_ARRAY (section 2.2.1.2.104)</a></span>
+that points to an array of <span><a href="29a03b34-249e-4bd8-a118-e708dadbf22b" data-linktype="relative-path">DHCP_IP_RANGE (section 2.2.1.2.31)</a></span>
+structures that represent the policy IP ranges.</p><p><b>Description:</b>  A pointer of type
+LPWSTR that contains the null-terminated Unicode string containing the
+description of the policy. The string is restricted to 255 characters.</p><p><b>Enabled:</b>  Indicates whether the
+policy is in the enabled (TRUE) or disabled (FALSE) state.</p><p><b>Properties:</b>  A list of properties
+that is associated with the given client. See the following list for allowed
+properties. Properties not identified are ignored.</p><p><b>DNSSuffix:</b>  This property is present
+if the value of the <span><a href="64fe0789-4647-4628-a3a2-2ddcc9ae42f0" data-linktype="relative-path">DHCP_PROPERTY_ID (section 2.2.1.1.27)</a></span>
+is DhcpPropIdPolicyDnsSuffix and the value of the <span><a href="1511adaa-15d3-4c19-9521-68fb9870848d" data-linktype="relative-path">DHCP_PROPERTY_TYPE (section 2.2.1.1.26)</a></span>
+is DhcpPropTypeString. When the <b>Value</b> member of the <span><a href="1ac6e6e5-f2bc-42ef-9d6a-c9457d48c3c3" data-linktype="relative-path">DHCP_PROPERTY (section 2.2.1.2.117)</a></span>
+structure is set to StringValue, this property points to a Unicode string
+representing the DNS suffix to be used when performing DNS registration on
+behalf of the client.</p></div>

@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The <b>WKSTA_INFO_1018</b> structure specifies details about
+the state of the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_09dbec39-5e75-4d9a-babf-1c9f1d499625" data-linktype="relative-path">SMB</a></span> <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_15c89cb5-6767-49e7-b461-66acaf6c06c8" data-linktype="relative-path">network
+redirector</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _WKSTA_INFO_1018 {
+   unsigned long wki1018_sess_timeout;
+ } WKSTA_INFO_1018,
+  *PWKSTA_INFO_1018,
+  *LPWKSTA_INFO_1018;
+</pre></div>
+</dd></dl><p><b>wki1018_sess_timeout:</b> The number of seconds
+the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server
+(2)</a></span> MUST wait before disconnecting an inactive session.</p></div>

@@ -1,0 +1,178 @@
+lookBehind:
+  a: {col: [columns], val: [values]}
+  account: {handle: [account]}
+  ack: {rr: [ack]}
+  act: {e: [action]}
+  addr: {vers: [addr, vers]}
+  adv: {disk: [advanced, disk]}
+  async: {out: [async, output]}
+  b: {authenticated: [is, authenticated]}
+  bi: {directional: [bidirectional]}
+  bnd: {msg: [bnd, message]}
+  byte: {str: [byte]}
+  c: {prep: [cluster, prepare], num: [c], index: [index]}
+  capi: {ds: [cap, ids]}
+  cb: {byte: [cb], size: [Length], vft: [vft, size], instance: [instance, size]}
+  ch: {set: [char, set]}
+  class: {e: [class]}
+  clean: {up: [cleanup]}
+  cls: {e: [class]}
+  clsi: {ds: [class, ids]}
+  cmd: {e: [cmd]}
+  comp: {algorithm: [compression, algorithm]}
+  comparator: {comp: [comparator]}
+  con: {mod: [user, dn, hash]}
+  cont: {ref: [continuation, referral]}
+  copy: {handle: [copy]}
+  css: {service: [service]}
+  d: {word: [dword], word1: [dword1], word2: [dword2]}
+  dispatch: {str: [dispatch]}
+  domain: {handle: [domain]}
+  droid: {last: [last, object, id], next: [next, machine, id]}
+  dw: {num: [num]}
+  dwcb: {this: [cb, this], size: [size]}
+  ee: {info: [info]}
+  end: {point: [endpoint]}
+  ent: {inf: [entity, info]}
+  entity: {inf: [entity, info]}
+  enum: {handle: [enum], empty: [empty], "null": ["null"], cy: [currency], y: [currency], lpstr: [char, str], lpwstr: [unicode, str], wbem: [enum], vds: [enum]}
+  event: {handle: [event]}
+  ex: {handle: [ex]}
+  f: {can: [can], pb: [fpb]}
+  fax: {handle: [fax]}
+  flag: {vf: [flag], svf: [flag], pkf: [flag], ptf: [flag], fss: [flag], fpf: [flag], hsf: [flag], hsf1: [flag, "1"], hsf2: [flag, "2"], hsf10: [flag, "10"], hsf4: [flag, "4"]}
+  flags: {fadf: [flag], fpf: [flag], fsof: [flag]}
+  fst: {refs: [vf, re, fs]}
+  gdi: {handle: [gdi]}
+  gpt: {part: [gpt, partition]}
+  guid: {val: ["", guid, value], array: ["", guid, array]}
+  hbatch: {port: [batch, hport]}
+  hcluster: {rpc: [cluster]}
+  hgeneric: {rpc: [generic]}
+  hgroup: {rpc: [group]}
+  hgroupset: {rpc: [group, set]}
+  hhost: {rpc: [host]}
+  hkey: {rpc: [key]}
+  hnetinterface: {rpc: [net, interface]}
+  hnetwork: {rpc: [network]}
+  hnode: {rpc: [node]}
+  hnotify: {rpc: [notify]}
+  hobject: {rpc: [object]}
+  hport: {rpc: [port]}
+  hr: {result: [hresult]}
+  hres: {rpc: [resource]}
+  hyper: {str: [hyper]}
+  i: {xn: [ixn], pv4: [ipv4], pv6: [ipv6], ds: [ids]}
+  id: {lpstr: [id, str], lpwstr: [id, unicode, str]}
+  iid: {str: [iid]}
+  ik: {ev1: [ikev1], ev2: [ikev2]}
+  info: {ff: [info255]}
+  init: {adapter: [initiator, adapter], portal: [initiator, portal]}
+  int: {xact: [internal, transaction]}
+  inter: {domain: [interdomain]}
+  ip: {sec: [ipsec], v6: [ipv6], v4: [ipv4]}
+  kind: {tkind: [kind]}
+  l: {num: [num]}
+  log: {handle: [log]}
+  long: {str: [long]}
+  lpdw: {num: [num]}
+  lui: {ds: [luids]}
+  m: {scope: [mscope]}
+  mbr: {part: [mbr, partition]}
+  mcid: {last: [last, machine, id], next: [next, machine, id]}
+  mem: {id: [member, ids]}
+  meta: {data: [metadata]}
+  name: {length: [0name, length]}
+  no: {of: [number, of]}
+  notify: {handle: [notify], rpc: [notify]}
+  ns: {handle: [context]}
+  o: {us: [ous]}
+  s: {card: [smart, card]}
+  n: {char: [char, count]}
+  multi: {sz: [multistring]}
+  alloc: {sz: [alloc, size]}
+  object: {handle: [object]}
+  old: {trk: [old], trksvr: [old]}
+  opc: {e: [type]}
+  orp: {cthis: [orpc, this], cthat: [orpc, that]}
+  oth: {domains: [other, domains]}
+  p: {rpl: [periodic, rpl], scv: [periodic, scv], bstr: [p], rpc: [p]}
+  pdroid: {next: [next, object, id], last: [last, object, id]}
+  pdw: {num: [num]}
+  personal: {prof: [personal, profile]}
+  phase1s: {as: [phase1, p1sas]}
+  phase2s: {as: [phase2, p1sas]}
+  pl: {num: [num]}
+  pmcid: {last: [last, machine, id], next: [next, machine, id]}
+  policy: {handle: [policy]}
+  port: {handle: [port]}
+  pot: {exp: [potential, expiration]}
+  pr: {cls: [priority, cls]}
+  printer: {handle: [printer]}
+  privilege: {def: [privilege, definition]}
+  product: {handle: [product]}
+  psec: {phase: [ipsec, phase], phase1: [phase1], phase2: [phase2]}
+  psession: {handle: [session]}
+  pswz: {identifier: [vpd, identifier]}
+  pul: {title: [actual, title], relative: [actual, relative], num: [num]}
+  pwsz: {val: [unicode, string]}
+  quar: {def: [quar, default]}
+  queue: {handle: [queue]}
+  rd: {ns: [rdns]}
+  re: {assign: [reassign]}
+  rec: {e: [record]}
+  ref: {err: [referral, err]}
+  refid: {source: [source, id]}
+  reg: {unicode: [unicode]}
+  resume: {handle: [resume]}
+  rg: {bstr: [rg]}
+  rtn: {size: [return, size]}
+  sa: {res: [sa, resolver]}
+  sam: {desired: [desired, access]}
+  sc: {manager: [scm], handle: [scm], manager2: [scm2]}
+  scm: {handle: [scm]}
+  sd: {length: [security, descriptor, length], size: [security, descriptor, size]}
+  se: {ts: [dsets]}
+  secret: {handle: [secret]}
+  server: {handle: [server], hdl: [server]}
+  service: {handle: [service]}
+  services: {lb: [services, load, balancer]}
+  sf: {type: [safe, array, type]}
+  sh: {key: [shared, key]}
+  si: {ds: [sids]}
+  single: {signon: [sso]}
+  spl: {printer: [printer], client: [client]}
+  sr: {sd: [self, relative, security, descriptor]}
+  state: {e: [state], vst: [state]}
+  status: {mps: [status]}
+  store: {handle: [store]}
+  string: {str: [string], ptrsa: [string], ptrsw: [unicode, string]}
+  style: {pst: [style]}
+  sub: {nets: [subnets], net: [subnet]}
+  super: {class: [superclass]}
+  support: {refs: [vf, re, fs]}
+  svc: {handle: [svc]}
+  t: {info: [type, info]}
+  targeted: {at: [targeted, 0At]}
+  thd: {upd: [thread, update]}
+  this: {struct: [this, structure]}
+  time: {out: [timeout], stamp: [timestamp], stamps: [timestamps]}
+  transaction: {handle: [transaction]}
+  ts: {flags: [ts, flags]}
+  type: {cactb: [type], sf: [type], ipt: [type], vf: [type], ia: [type], attribute: [type]}
+  typei: {scsi: [type, iscsi]}
+  u: {int32: [uint32], int64: [uint64]}
+  uh: {val: [ularge, integer]}
+  ul: {lcid: [local, id], cnt: [c]}
+  un: {known: [unknown], register: [unregister], load: [unload]}
+  uni: {directional: [unidirectional]}
+  unknown: {str: [unknown]}
+  var: {value: [value]}
+  variant: {str: [variant]}
+  vf: {refs: [vf, re, fs]}
+  vth: {result: [hresult]}
+  w: {hdl: [w], num: [num], str: [strings], strings: [strings], string: [string]}
+  wcha: {rs: [wchars]}
+  wide: {string: [unicode, string]}
+  word: {str: [word]}
+  over: {write: [overwrite]}

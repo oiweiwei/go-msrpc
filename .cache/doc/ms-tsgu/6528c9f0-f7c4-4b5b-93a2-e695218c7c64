@@ -1,0 +1,33 @@
+<div class="content"><p>The TSENDPOINTINFO structure contains information about the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_3657ab68-5a60-4cee-8082-dfc2e67435e9" data-linktype="relative-path">target server</a> to which the
+RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> attempts to
+connect.</p><dl>
+<dd>
+<div><pre> typedef struct _tsendpointinfo {
+   [size_is(numResourceNames)] RESOURCENAME* resourceName;
+   [range(0, MAX_RESOURCE_NAMES)] unsigned long numResourceNames;
+   [unique, size_is(numAlternateResourceNames)] 
+     RESOURCENAME* alternateResourceNames;
+   [range(0, 3)] unsigned short numAlternateResourceNames;
+   unsigned long Port;
+ } TSENDPOINTINFO,
+  *PTSENDPOINTINFO;
+</pre></div>
+</dd></dl><p><b>resourceName:</b>  An array of <b>RESOURCENAME</b>
+strings, as specified in section <a href="1122401f-8c21-4e69-91d3-a8c74c468a27" data-linktype="relative-path">2.2.1.1</a>. The range is from
+0 to <b>numResourceNames</b>. This array, in conjunction with <i>alternateResourceNames</i>
+parameter array, comprises the alias names of the target server to which the
+RDG server can connect. As specified in the <a href="0a6e29eb-c949-4544-88a0-5306f3eed4e9" data-linktype="relative-path">Protocol
+Overview (section 1.3)</a>, the RDG server acts as a proxy to target
+server. The RDP <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a>
+and target server MUST use <a href="../ms-rdpbcgr/5073f4ed-1e93-45e1-b039-6e30c385867c" data-linktype="relative-path">[MS-RDPBCGR]</a>
+to communicate.</p><p><b>numResourceNames:</b>  The number of <b>RESOURCENAME</b>
+datatypes in the <b>resourceName</b> array. The value MUST be in the range of 1
+to 50, inclusive.</p><p><b>alternateResourceNames:</b>  An array of
+<b>RESOURCENAME</b> strings to be used as alternative names for the target
+server. The range is from 0 to <b>numAlternateResourceNames</b>.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p><p><b>numAlternateResourceNames:</b>  The
+number of allowed <b>alternateResourceNames</b>. The value MUST be in the range
+of 0 to 3, inclusive.</p><p><b>Port:</b>  Specifies the protocol ID and
+TCP port number for the target server <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a> to which the RDG
+server connects. The protocol ID is in the low order 16 bits of this field and
+port number is in the high order 16 bits. The value of the protocol ID must be
+set to 3.</p></div>

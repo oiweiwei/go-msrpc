@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>This structure is used by <span><a href="a0df225e-80ea-4242-90e5-9891bfa9ebfb" data-linktype="relative-path">RemoteQMStartReceive2</a></span>
+and <span><a href="b8a82b34-6feb-4057-8f7f-48275fa65068" data-linktype="relative-path">RemoteQMStartReceiveByLookupId</a></span>
+to encapsulate the parameters necessary for execution of these operations.</p><dl>
+<dd>
+<div><pre> typedef struct _REMOTEREADDESC2 {
+   REMOTEREADDESC* pRemoteReadDesc;
+   ULONGLONG SequentialId;
+ } REMOTEREADDESC2;
+</pre></div>
+</dd></dl><p><b>pRemoteReadDesc:</b>   A pointer to a <span><a href="645e7b85-18f0-4f50-a905-1dd55565728b" data-linktype="relative-path">REMOTEREADDESC</a></span>
+structure, as specified in section 2.2.2.1.</p><p><b>SequentialId:</b>   This field is set by
+the server to the value of a unique message identifier that corresponds to a
+received message. </p></div>

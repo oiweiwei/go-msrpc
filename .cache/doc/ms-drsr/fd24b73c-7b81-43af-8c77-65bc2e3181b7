@@ -1,0 +1,32 @@
+<div class="content"><p> </p><p>The DRS_MSG_GETCHGREQ_V5 structure defines the request
+message sent to the <span><a href="b63730ac-614c-431c-9501-28d6aca91894" data-linktype="relative-path">IDL_DRSGetNCChanges</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   UUID uuidDsaObjDest;
+   UUID uuidInvocIdSrc;
+   [ref] DSNAME* pNC;
+   USN_VECTOR usnvecFrom;
+   [unique] UPTODATE_VECTOR_V1_EXT* pUpToDateVecDestV1;
+   ULONG ulFlags;
+   ULONG cMaxObjects;
+   ULONG cMaxBytes;
+   ULONG ulExtendedOp;
+   ULARGE_INTEGER liFsmoInfo;
+ } DRS_MSG_GETCHGREQ_V5;
+</pre></div>
+</dd></dl><p><b>uuidDsaObjDest:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_736b1076-d1cb-40b9-9247-d66cca6819d1" data-linktype="relative-path">DSA GUID</a></span>
+of the client <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>.</p><p><b>uuidInvocIdSrc:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_e7869b9a-61fa-46e3-89dd-fb3f57d1ba7a" data-linktype="relative-path">Invocation
+ID</a></span> of the server DC.</p><p><b>pNC:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_784c7cce-f782-48d8-9444-c9030ba86942" data-linktype="relative-path">NC</a></span> root of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ea02e669-2dda-460c-9992-b12a23caeeac" data-linktype="relative-path">replica</a></span>
+to replicate or the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_6ea17c3e-787a-40e3-a62f-0313dcdc16b7" data-linktype="relative-path">FSMO role object</a></span> for
+an <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8514d343-000a-45e2-918b-5f6100e2e7c6" data-linktype="relative-path">extended
+operation</a></span>.</p><p><b>usnvecFrom:</b>  Data used to correlate
+calls to IDL_DRSGetNCChanges.</p><p><b>pUpToDateVecDestV1:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ff635a35-a17d-477b-a30d-9723b415bf00" data-linktype="relative-path">Stamp</a></span>
+filter that describes <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b242435b-73cc-4c4e-95f0-b2a2ff680493" data-linktype="relative-path">updates</a></span> the client
+has already applied.</p><p><b>ulFlags:</b>  <span><a href="ac9c8a11-cd46-4080-acbf-9faa86344030" data-linktype="relative-path">DRS_OPTIONS</a></span> bit
+field.</p><p><b>cMaxObjects:</b>  Approximate cap on the
+number of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">objects</a></span> to include
+in the reply.</p><p><b>cMaxBytes:</b>  Approximate cap on the
+number of bytes to include in the reply.</p><p><b>ulExtendedOp:</b>  0 or an extended
+operation request code (section <span><a href="05de65ee-af0d-46d1-a9c8-4f0f856031cb" data-linktype="relative-path">4.1.10.2.22</a></span>).</p><p><b>liFsmoInfo:</b>  0 or a value specific
+to the requested extended operation.</p></div>

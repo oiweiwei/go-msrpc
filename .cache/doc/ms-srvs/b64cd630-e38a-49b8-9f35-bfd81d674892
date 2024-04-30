@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The FILE_INFO_2 structure contains the identifier for a
+file, device, or pipe.</p><dl>
+<dd>
+<div><pre> typedef struct _FILE_INFO_2 {
+   DWORD fi2_id;
+ } FILE_INFO_2,
+  *PFILE_INFO_2,
+  *LPFILE_INFO_2;
+</pre></div>
+</dd></dl><p><b>fi2_id:</b>  Specifies a DWORD value
+that contains the identifier that is assigned to the file, device, or pipe when
+it was opened. See section <span><a href="6abb30a6-9f6d-4339-b022-81f3f78b11f8" data-linktype="relative-path">3.1.1</a></span> for details.</p></div>

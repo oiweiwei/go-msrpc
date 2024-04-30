@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_STAT_HEADER</b> structure precedes each <b>DNSSRV_STATS</b>
+structure (section <span><a href="c4dd5c55-f434-4b96-8bb5-9d69e28ec7c2" data-linktype="relative-path">2.2.10.2.2</a></span>) which
+provides DNS server runtime statistics. This structure MUST be formatted as
+follows:</p><dl>
+<dd>
+<div><pre> typedef struct _DnsStatHeader {
+   DWORD StatId;
+   WORD wLength;
+   BOOLEAN fClear;
+   UCHAR fReserved;
+ } DNSSRV_STAT_HEADER,
+  *PDNSSRV_STAT_HEADER;
+</pre></div>
+</dd></dl><p><b>StatId:</b> The type of statistics contained in
+the DNSSRV_STATS structure. This value MUST be set to one of the allowed values
+specified in section <span><a href="6e5f45df-bf64-4c53-867b-2a1157472523" data-linktype="relative-path">2.2.10.1.1</a></span>.</p><p><b>wLength:</b> The length, in bytes, of the <b>Buffer</b>
+member in the <b>DNSSRV_STATS</b> structure (section 2.2.10.2.2).</p><p><b>fClear:</b> A Boolean value that indicates whether
+the server is to clear the statistics buffer for the server attribute indicated
+at by <b>StatId</b>.</p><p><b>fReserved:</b> MUST be set to zero when sent and
+MUST be ignored on receipt.</p></div>

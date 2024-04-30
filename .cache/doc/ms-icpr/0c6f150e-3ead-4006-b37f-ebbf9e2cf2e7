@@ -1,0 +1,58 @@
+<div class="content"><p> </p><p>The CertServerRequest method processes a <span><a href="a34f6642-5120-48df-ba4c-e6d671d7a5d0#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a></span>
+<span><a href="a34f6642-5120-48df-ba4c-e6d671d7a5d0#gt_3edb3c30-bb82-4782-9777-19c5006965ef" data-linktype="relative-path">enrollment</a></span>
+request from the <span><a href="a34f6642-5120-48df-ba4c-e6d671d7a5d0#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="e0df83f8-97ce-4744-bebc-041ed3b1e80f#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><dl>
+<dd>
+<div><pre> DWORD CertServerRequest(
+   [in] handle_t h,
+   [in] DWORD dwFlags,
+   [in, string, unique] const wchar_t* pwszAuthority,
+   [in, out, ref] DWORD* pdwRequestId,
+   [out] DWORD* pdwDisposition,
+   [in, ref] const CERTTRANSBLOB* pctbAttribs,
+   [in, ref] const CERTTRANSBLOB* pctbRequest,
+   [out, ref] CERTTRANSBLOB* pctbCert,
+   [out, ref] CERTTRANSBLOB* pctbEncodedCert,
+   [out, ref] CERTTRANSBLOB* pctbDispositionMessage
+ );
+</pre></div>
+</dd></dl><p><b>h: </b>A handle retrieved during the <span><a href="a34f6642-5120-48df-ba4c-e6d671d7a5d0#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+bind operation, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/c3e0b88e-a41c-45a5-8a9e-ec8d6ae4dd44" data-linktype="relative-path">2.2.2</a></span>.</p><p><b>dwFlags: </b>The <i>dwFlags</i> parameter has
+identical syntax and semantics to the <i>dwFlags</i> parameter specified in <span><a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a></span>
+section <span><a href="../ms-wcce/dbb2e78f-7630-4615-92c4-6734fccfc5a6" data-linktype="relative-path">3.2.1.4.2.1</a></span>.</p><p><b>pwszAuthority: </b>The <i>pwszAuthority</i>
+parameter has identical syntax and semantics to the <i>pwszAuthority</i>
+parameter specified in [MS-WCCE] section 3.2.1.4.2.1.</p><p><b>pdwRequestId: </b>The <i>pdwRequestId</i>
+parameter has identical syntax and semantics to the <i>pdwRequestId</i>
+parameter specified in [MS-WCCE] section 3.2.1.4.2.1.</p><p><b>pdwDisposition: </b>The <i>pdwDisposition</i>
+parameter has identical syntax and semantics to the <i>pdwDisposition</i>
+parameter specified in [MS-WCCE] section 3.2.1.4.2.1.</p><p><b>pctbAttribs: </b>A pointer to a <span><a href="../ms-wcce/d6bee093-d862-4122-8f2b-7b49102097dc" data-linktype="relative-path">CERTTRANSBLOB</a></span>
+structure, as specified in [MS-WCCE] section 2.2.2.2, where the <i>pb</i> field
+of this structure points to a Unicode (as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90552" data-linktype="external">[UNICODE4.0]</a></span>)
+null-terminated string and the <i>cb</i> field contains the length of the
+string, including the NULL-terminated character (in bytes). If the value of the
+<i>cb</i> field does not match the length, in bytes, of the string (including
+the terminating null character), the <span><a href="a34f6642-5120-48df-ba4c-e6d671d7a5d0#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span> MUST return the
+E_INVALIDARG error (0x80070057) to the client. Otherwise, the semantics of the
+string pointed to by the <i>pb</i> field are identical to the <i>pwszAttributes</i>
+parameter specified in [MS-WCCE] section 3.2.1.4.2.1.</p><p><b>pctbRequest: </b>The <i>pctbRequest</i> parameter
+has identical syntax and semantics to the <i>pctbRequest</i> parameter, as
+specified in [MS-WCCE] section 3.2.1.4.2.1.</p><p><b>pctbCert: </b>The <i>pctbCert</i> parameter has
+identical syntax and semantics to the <i>pctbCertChain</i> parameter, as
+specified in [MS-WCCE] section 3.2.1.4.2.1.</p><p><b>pctbEncodedCert: </b>The <i>pctbEncodedCert</i>
+parameter has identical syntax and semantics to the <i>pctbEncodedCert</i>
+parameter, as specified in [MS-WCCE] section 3.2.1.4.2.1.</p><p><b>pctbDispositionMessage: </b>The <i>pctbDispositionMessage</i>
+parameter has identical syntax and semantics to the <i>pctbDispositionMessage</i>
+parameter, as specified in [MS-WCCE] section 3.2.1.4.2.1.</p><p><b>Return Values: </b>The method MUST return
+ERROR_SUCCESS (0x00000000) on success. This method&#39;s return values MUST have
+identical syntax and semantics to the return values specified in [MS-WCCE]
+section 3.2.1.4.2.1.</p><p>If the ADM element <i>Config.CA.Interface.Flags</i> contains
+the value IF_NORPCICERTREQUEST, the <span><a href="a34f6642-5120-48df-ba4c-e6d671d7a5d0#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> SHOULD return
+an error.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="e0df83f8-97ce-4744-bebc-041ed3b1e80f#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p><p>If the ADM element <i>Config.CA.Interface.Flags</i> contains
+the value IF_ENFORCEENCRYPTICERTREQUEST and the RPC_C_AUTHN_LEVEL_PKT_PRIVACY
+authentication level ([MS-RPCE] section <span><a href="../ms-rpce/425a7c53-c33a-4868-8e5b-2a850d40dc73" data-linktype="relative-path">2.2.1.1.8</a></span>)
+is not specified on the RPC connection from the client, the CA MUST refuse to
+establish a connection with the client by returning E_ACCESSDENIED
+(0x80000009).</p><p>Otherwise, the processing rules for the <span><a href="../ms-wcce/c416d042-c6c1-4698-99a2-8f818c00ceb5" data-linktype="relative-path">ICertRequestD::Request</a></span>
+method ([MS-WCCE] section 3.2.2.6.2.1) apply, except that if the ADM element <i>Config.CA.Interface.Flags</i>
+contains the value IF_NOREMOTEICERTREQUEST, these values are ignored and the
+request is processed as though the values were absent.</p></div>

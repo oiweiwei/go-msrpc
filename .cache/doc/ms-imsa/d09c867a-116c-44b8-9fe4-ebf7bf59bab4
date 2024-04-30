@@ -1,0 +1,116 @@
+<div class="content"><p>The Restore method restores the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_086b13f2-2715-4000-a16c-6acc3d59cc19" data-linktype="relative-path">metabase</a> from a backup.</p><dl>
+<dd>
+<div><pre> HRESULT Restore(
+   [unique, in, string] LPCWSTR pszMDBackupName,
+   [in] DWORD dwMDVersion,
+   [in] DWORD dwMDFlags
+ );
+</pre></div>
+</dd></dl><p><b>pszMDBackupName: </b>A string of up to 100 Unicode
+characters that identifies the backup to be restored.</p><p><b>dwMDVersion: </b>An integer value specifying
+either the version number of the backup to be restored or the following
+constant.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p> MD_BACKUP_HIGHEST_VERSION</p>
+  <p>0xFFFFFFFE</p>
+  </td>
+  <td>
+  <p>Restore from the highest existing backup version in
+  the specified backup location.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwMDFlags: </b>This parameter is reserved and
+SHOULD always be set to zero.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it failed. If
+the 12-bit facility code (bits 16–27) is set to 0x007, the value contains a
+Win32 error code in the lower 16 bits. Zero or positive values indicate success,
+with the lower 16 bits in positive nonzero values containing warnings or flags
+defined in the method implementation. For more information about Win32 error
+codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070013</p>
+  <p>ERROR_INVALID_DATA</p>
+  </td>
+  <td>
+  <p>The data is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800CC802 </p>
+  <p>MD_ERROR_INVALID_VERSION</p>
+  </td>
+  <td>
+  <p>The version specified by <i>dwMDVersion</i> is
+  invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000CC805L</p>
+  <p>MD_WARNING_INVALID_DATA</p>
+  </td>
+  <td>
+  <p>Invalid metabase data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>There is not enough memory to complete the operation.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 29.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>The server restores from a backup that is identified by the <i>pszMDBackupName</i>
+parameter and the version number.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>pszMDBackupName</i> parameter is an empty string, the
+server MUST use a default backup name as defined by the server implementation.</p>
+</li><li><p><span><span> 
+</span></span>If the backup named by <i>pszMDBackupName</i> and <i>dwMDVersion</i>
+does not exist, the server MUST return an error.</p>
+</li><li><p><span><span> 
+</span></span>If the value of the <i>dwMDVersion</i> parameter is greater than
+MD_BACKUP_MAX_VERSION (9999) and not equal to MD_BACKUP_HIGHEST_VERSION, the
+server MUST return the E_INVALIDARG error code.</p>
+</li></ul></div>

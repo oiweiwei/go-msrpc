@@ -1,0 +1,54 @@
+<div class="content"><p> </p><p>The BOUND_VERSION_SET is a structure containing the MSDTC
+Connection Manager: OleTx Transports Protocol version numbers that were
+successfully negotiated during a <span><a href="bdb686a6-1190-4900-9dd5-2f9aac6ca621" data-linktype="relative-path">BuildContext</a></span> call
+or a <span><a href="fc4bf100-2799-4acf-a537-625f9c98500b" data-linktype="relative-path">BuildContextW</a></span> call.</p><dl>
+<dd>
+<div><pre> typedef struct _BoundVersionSet {
+   DWORD dwLevelOneAccepted;
+   DWORD dwLevelTwoAccepted;
+   DWORD dwLevelThreeAccepted;
+ } BOUND_VERSION_SET;
+</pre></div>
+</dd></dl><p><b>dwLevelOneAccepted:</b>  A <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0cd96b80-a737-4f06-bca4-cf9efb449d12" data-linktype="relative-path">session</a></span>
+level-one bind was successfully created.</p><dl>
+<dd>
+<p>A 4-byte unsigned integer value containing the MSDTC
+Connection Manager: OleTx Transports Protocol version that was negotiated with
+the partner and MUST be used in MSDTC Connection Manager: OleTx Transports
+Protocol exchanges with the partner.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p> The unsigned_char_t version of the Session creation
+  API (<span><a href="27e29396-1f03-4cc3-a778-5273142794ad" data-linktype="relative-path">Poke</a></span> and
+  BuildContext) is used.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The wchar_t version of the Session creation API (<span><a href="7289c7cd-2da8-4d81-90a8-5d50cb49bbce" data-linktype="relative-path">PokeW</a></span>
+  and BuildContextW) is used.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwLevelTwoAccepted:</b>  A 4-byte
+unsigned integer value containing the <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_1fa6a098-338d-4a4e-aeab-aacf60ff44d3" data-linktype="relative-path">level-two protocol</a></span>
+version that was negotiated with the partner and MUST be used in level-two
+protocol exchanges with the partner.</p><p><b>dwLevelThreeAccepted:</b>  A 4-byte
+unsigned integer value containing the <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_5c6c9c37-4c01-455a-9703-477f0a048cf2" data-linktype="relative-path">level-three protocol</a></span>
+version that was negotiated with the partner and MUST be used in level-three
+protocol exchanges with the partner.</p></div>

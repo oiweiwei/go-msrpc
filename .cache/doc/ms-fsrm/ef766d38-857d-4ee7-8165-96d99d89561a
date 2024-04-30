@@ -1,0 +1,102 @@
+<div class="content"><p>The CreateFileManagementJob method creates a blank <a href="e135942c-2c50-4fcc-a768-aef45332e9fd" data-linktype="relative-path">Non-Persisted File Management
+Job Instance (section 3.2.1.7.1.2)</a> and returns S_OK upon
+successful completion.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_FILE_MANAGEMENT_JOB_MANAGER | 0x2)] HRESULT CreateFileManagementJob(
+   [out, retval] IFsrmFileManagementJob** fileManagementJob
+ );
+</pre></div>
+</dd></dl><p><b>fileManagementJob: </b>Pointer to an <b>IFsrmFileManagementJob</b>
+interface pointer (section <a href="d78faa27-efe9-4f89-8bc4-1094f37219bb" data-linktype="relative-path">3.2.4.2.48</a>)
+that upon completion points to a blank <i>fileManagementJob</i>. A caller MUST
+release the <i>fileManagementJob</i> received when the caller is done with it.
+To have the <i>fileManagementJob</i> added to the server&#39;s <b>List of Persisted
+File Management Jobs</b> (section <a href="560c1a3c-d465-4127-8cf0-bb84487cb162" data-linktype="relative-path">3.2.1.7</a>), the client MUST
+call <a href="9d046be1-6429-446b-b00f-402a43e6b4d5" data-linktype="relative-path">Commit</a> (section
+3.2.4.2.48.1).</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>fileManagementJob</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>fileManagementJob</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+perform the following actions.</p><ul><li><p><span><span> 
+</span></span>Create a new Non-Persisted File Management Job Instance.</p>
+<ul><li><p><span><span>  </span></span>Set
+<b>FSRM Base Object.Id</b> to a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>File Management Job.Name</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Namespace roots</b> to an empty list.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Enabled/disabled</b> to <b>enabled</b>.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Operation type</b> to <b>Expiration</b>.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Notification periods</b> to an empty list.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Notifications</b> to an empty list.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Logging</b> to <b>FsrmFileManagementLoggingFlags_None</b>.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Report enabled</b> to true.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>File Management Job.Formats</b> to an empty list.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>File Management Job.Mail to</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Days since file created</b> to FSRMDaysNotSpecified.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Days since file last accessed</b> to FSRMDaysNotSpecified.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Days since file last modified</b> to FSRMDaysNotSpecified.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Property conditions</b> to an empty list.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>From date</b> to FSRMDaysNotSpecified.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Task name</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>File Management Job.Parameters</b> to an empty list.</p>
+</li><li><p><span><span>  </span></span>Set
+File Management Job.Deprecated to false.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>File name pattern</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Running status</b> to <b>FsrmReportRunningStatus_NotRunning</b>.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Last run time</b> to a date in the distant past.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Last error</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Last report path without extension</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Error log</b> to an empty list.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Information log</b> to an empty list</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set <i>fileManagementJob</i> to the <b>IFsrmFileManagementJob</b>
+interface pointer for the newly created Non-Persisted File Management Job
+Instance.</p>
+</li></ul><p>The new Non-Persisted File Management Job Instance MUST NOT
+be associated with an existing <a href="78082f67-e548-48d8-9f9a-a840c1936acd" data-linktype="relative-path">Persisted File Management
+Job (section 3.2.1.7.1.1)</a>.</p></div>

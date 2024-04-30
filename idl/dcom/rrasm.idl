@@ -1,0 +1,3880 @@
+import "ms-oaut.idl";
+  
+ // XXX: ???
+ // #define IN
+ // #define OUT
+  
+ typedef enum _ROUTER_INTERFACE_TYPE
+ {
+     ROUTER_IF_TYPE_CLIENT,
+     ROUTER_IF_TYPE_HOME_ROUTER,
+     ROUTER_IF_TYPE_FULL_ROUTER,
+     ROUTER_IF_TYPE_DEDICATED,
+     ROUTER_IF_TYPE_INTERNAL,
+     ROUTER_IF_TYPE_LOOPBACK,
+     ROUTER_IF_TYPE_TUNNEL1,
+     ROUTER_IF_TYPE_DIALOUT
+ } ROUTER_INTERFACE_TYPE;
+  
+  
+  
+ typedef enum
+ {
+     ROUTER_IF_STATE_UNREACHABLE,
+     ROUTER_IF_STATE_DISCONNECTED,
+     ROUTER_IF_STATE_CONNECTING,
+     ROUTER_IF_STATE_CONNECTED
+ } ROUTER_CONNECTION_STATE;
+  
+  
+  
+ typedef enum _RAS_QUARANTINE_STATE 
+ {
+     RAS_QUAR_STATE_NORMAL,
+     RAS_QUAR_STATE_QUARANTINE,
+     RAS_QUAR_STATE_PROBATION,
+     RAS_QUAR_STATE_UNKNOWN
+ } RAS_QUARANTINE_STATE;
+  
+  
+  
+ typedef enum _RAS_PORT_CONDITION
+ {
+     RAS_PORT_NON_OPERATIONAL,
+     RAS_PORT_DISCONNECTED,
+     RAS_PORT_CALLING_BACK,
+     RAS_PORT_LISTENING,
+     RAS_PORT_AUTHENTICATING,
+     RAS_PORT_AUTHENTICATED,
+     RAS_PORT_INITIALIZING
+ } RAS_PORT_CONDITION;
+  
+  
+  
+ typedef enum _RAS_HARDWARE_CONDITION
+ {
+     RAS_HARDWARE_OPERATIONAL,
+     RAS_HARDWARE_FAILURE
+ }
+ RAS_HARDWARE_CONDITION;
+  
+  
+  
+ typedef handle_t DIM_HANDLE;
+  
+  
+  
+ typedef enum _FORWARD_ACTION
+ {
+     FORWARD = 0,
+     DROP = 1,
+ }
+ FORWARD_ACTION;
+  
+  
+  
+ typedef enum {
+     MIB_IPROUTE_TYPE_OTHER    = 1,
+     MIB_IPROUTE_TYPE_INVALID  = 2,
+     MIB_IPROUTE_TYPE_DIRECT   = 3,
+     MIB_IPROUTE_TYPE_INDIRECT = 4, 
+ } MIB_IPFORWARD_TYPE;
+  
+  
+  
+ typedef enum {
+     MIB_IPPROTO_OTHER = 1,
+     MIB_IPPROTO_LOCAL = 2,
+     MIB_IPPROTO_NETMGMT = 3,
+     MIB_IPPROTO_ICMP = 4,
+     MIB_IPPROTO_EGP = 5,
+     MIB_IPPROTO_GGP = 6,
+     MIB_IPPROTO_HELLO = 7,
+     MIB_IPPROTO_RIP = 8 ,
+     MIB_IPPROTO_IS_IS = 9,
+     MIB_IPPROTO_ES_IS = 10,
+     MIB_IPPROTO_CISCO = 11,
+     MIB_IPPROTO_BBN = 12,
+     MIB_IPPROTO_OSPF = 13,
+     MIB_IPPROTO_BGP = 14,
+     MIB_IPPROTO_NT_AUTOSTATIC = 10002,
+     MIB_IPPROTO_NT_STATIC = 10006,
+     MIB_IPPROTO_NT_STATIC_NON_DOD = 10007,
+ } MIB_IPFORWARD_PROTO;
+  
+  
+  
+ typedef enum {
+     MIB_IP_FORWARDING     = 1,
+     MIB_IP_NOT_FORWARDING = 2,
+ } MIB_IPSTATS_FORWARDING, *PMIB_IPSTATS_FORWARDING;
+  
+  
+  
+ typedef enum {
+     MIB_TCP_STATE_CLOSED     =  1,
+     MIB_TCP_STATE_LISTEN     =  2,
+     MIB_TCP_STATE_SYN_SENT   =  3,
+     MIB_TCP_STATE_SYN_RCVD   =  4,
+     MIB_TCP_STATE_ESTAB      =  5,
+     MIB_TCP_STATE_FIN_WAIT1  =  6,
+     MIB_TCP_STATE_FIN_WAIT2  =  7,
+     MIB_TCP_STATE_CLOSE_WAIT =  8,
+     MIB_TCP_STATE_CLOSING    =  9,
+     MIB_TCP_STATE_LAST_ACK   = 10,
+     MIB_TCP_STATE_TIME_WAIT  = 11,
+     MIB_TCP_STATE_DELETE_TCB = 12,
+ } MIB_TCP_STATE;
+  
+  
+  
+ typedef enum {
+     MIB_TCP_RTO_OTHER     = 1,
+     MIB_TCP_RTO_CONSTANT  = 2,
+     MIB_TCP_RTO_RSRE      = 3,
+     MIB_TCP_RTO_VANJ      = 4,
+ } TCP_RTO_ALGORITHM, *PTCP_RTO_ALGORITHM;
+  
+ //
+ // IPv6 Internet address (RFC 2553)
+ // This is an 'on-wire' format structure.
+ //
+ typedef struct in6_addr {
+         union {
+                 UCHAR       Byte[16];
+                 USHORT      Word[8];
+         } u;
+ } IN6_ADDR, *PIN6_ADDR, *LPIN6_ADDR;
+  
+ typedef struct _DIM_INFORMATION_CONTAINER
+ {
+     DWORD   dwBufferSize;
+     [size_is(dwBufferSize)] LPBYTE pBuffer;
+ } 
+ DIM_INFORMATION_CONTAINER, *PDIM_INFORMATION_CONTAINER;
+  
+ // RAS_CONNECTION_EX structure are redefined in this IDL to make use of versioning:
+ // All the Versions of RAS_CONNECTION_EX will be defined here in RPC usable format:
+  
+  
+ typedef struct _MPRAPI_OBJECT_HEADER_IDL
+ {
+     UCHAR                       revision;
+     UCHAR                       type;
+     USHORT                      size;
+  
+ }MPRAPI_OBJECT_HEADER_IDL, *PMPRAPI_OBJECT_HEADER_IDL;
+  
+ typedef struct _PPP_PROJECTION_INFO_1
+ {
+  
+         // IPv4 Projection Parameters
+         DWORD                           dwIPv4NegotiationError;
+         WCHAR                           wszAddress[16];
+         WCHAR                           wszRemoteAddress[16];
+         DWORD                           dwIPv4Options;
+         DWORD                           dwIPv4RemoteOptions; 
+         ULONG64                         IPv4SubInterfaceIndex;
+  
+         // IPv6 Projection Parameters
+         DWORD                           dwIPv6NegotiationError;
+         UCHAR                           bInterfaceIdentifier[8];
+         UCHAR                           bRemoteInterfaceIdentifier[8];
+         UCHAR                           bPrefix[8];
+         DWORD                           dwPrefixLength; 
+         ULONG64                         IPv6SubInterfaceIndex;
+             // LCP Options
+         DWORD                           dwLcpError;
+         DWORD                           dwAuthenticationProtocol;  
+         DWORD                           dwAuthenticationData;  
+         DWORD                           dwRemoteAuthenticationProtocol;  
+         DWORD                           dwRemoteAuthenticationData;  
+         DWORD                           dwLcpTerminateReason;  
+         DWORD                           dwLcpRemoteTerminateReason;  
+         DWORD                           dwLcpOptions;  
+         DWORD                           dwLcpRemoteOptions;  
+         DWORD                           dwEapTypeId;  
+         DWORD                           dwRemoteEapTypeId;
+         
+  
+         // CCP options:
+         DWORD                           dwCcpError;  
+         DWORD                           dwCompressionAlgorithm;  
+         DWORD                           dwCcpOptions;  
+         DWORD                           dwRemoteCompressionAlgorithm;  
+         DWORD                           dwCcpRemoteOptions;
+  
+  
+     
+  
+ }PPP_PROJECTION_INFO_1, *PPPP_PROJECTION_INFO_1;
+  
+ typedef struct _PPP_PROJECTION_INFO_2
+ {
+     // IPv4 Projection Parameters
+     DWORD     dwIPv4NegotiationError;
+     WCHAR     wszAddress[16];
+     WCHAR     wszRemoteAddress[16];
+     DWORD     dwIPv4Options;
+     DWORD     dwIPv4RemoteOptions; 
+     ULONG64   IPv4SubInterfaceIndex;
+  
+     // IPv6 Projection Parameters
+     DWORD     dwIPv6NegotiationError;
+     UCHAR     bInterfaceIdentifier[8];
+     UCHAR     bRemoteInterfaceIdentifier[8];
+     UCHAR     bPrefix[8];
+     DWORD     dwPrefixLength; 
+     ULONG64   IPv6SubInterfaceIndex;
+     
+     // LCP Options
+     DWORD     dwLcpError;
+     DWORD     dwAuthenticationProtocol;  
+     DWORD     dwAuthenticationData;  
+     DWORD     dwRemoteAuthenticationProtocol;  
+     DWORD     dwRemoteAuthenticationData;  
+     DWORD     dwLcpTerminateReason;  
+     DWORD     dwLcpRemoteTerminateReason;  
+     DWORD     dwLcpOptions;  
+     DWORD     dwLcpRemoteOptions;  
+     DWORD     dwEapTypeId;
+     DWORD     dwEmbeddedEAPTypeId;
+     DWORD     dwRemoteEapTypeId;
+  
+     // CCP options:
+     DWORD     dwCcpError;  
+     DWORD     dwCompressionAlgorithm;  
+     DWORD     dwCcpOptions;  
+     DWORD     dwRemoteCompressionAlgorithm;  
+     DWORD     dwCcpRemoteOptions;
+ }
+ PPP_PROJECTION_INFO_2, *PPPP_PROJECTION_INFO_2;
+  
+  
+ typedef struct IKEV2_PROJECTION_INFO_1
+ {
+  
+         DWORD                           dwIPv4NegotiationError;
+         WCHAR                           wszAddress[16];
+         WCHAR                           wszRemoteAddress[16];
+         ULONG64                         IPv4SubInterfaceIndex;
+  
+         DWORD                           dwIPv6NegotiationError;
+         UCHAR                           bInterfaceIdentifier[8];
+         UCHAR                           bRemoteInterfaceIdentifier[8];
+         UCHAR                           bPrefix[8];
+         DWORD                           dwPrefixLength; 
+         ULONG64                         IPv6SubInterfaceIndex;
+         
+         DWORD                           dwOptions;
+         
+         DWORD                           dwAuthenticationProtocol;
+         DWORD                           dwEapTypeId;
+         DWORD                           dwCompressionAlgorithm;
+         DWORD                            dwEncryptionMethod;
+  
+ }IKEV2_PROJECTION_INFO_1, *PIKEV2_PROJECTION_INFO_1;
+  
+ typedef struct IKEV2_PROJECTION_INFO_2
+ {
+     DWORD     dwIPv4NegotiationError;
+     WCHAR     wszAddress[16];
+     WCHAR     wszRemoteAddress[16];
+     ULONG64   IPv4SubInterfaceIndex;
+  
+     DWORD     dwIPv6NegotiationError;
+     UCHAR     bInterfaceIdentifier[8];
+     UCHAR     bRemoteInterfaceIdentifier[8];
+     UCHAR     bPrefix[8];
+     DWORD     dwPrefixLength; 
+     ULONG64   IPv6SubInterfaceIndex;
+  
+     DWORD     dwOptions;
+  
+     DWORD     dwAuthenticationProtocol;
+     DWORD     dwEapTypeId;
+     DWORD     dwEmbeddedEAPTypeId;
+     DWORD     dwCompressionAlgorithm;
+     DWORD     dwEncryptionMethod;
+ }
+ IKEV2_PROJECTION_INFO_2, *PIKEV2_PROJECTION_INFO_2;
+  
+  
+ typedef union _PROJECTION_INFO_IDL_1 switch (UCHAR projectionInfoType) ProjectionInfoObject
+ { 
+     case 1:
+         PPP_PROJECTION_INFO_1     PppProjectionInfo;
+     case 2: 
+         IKEV2_PROJECTION_INFO_1   Ikev2ProjectionInfo;
+ }PROJECTION_INFO_IDL_1;
+  
+ typedef struct _PROJECTION_INFO_IDL_1 *PPROJECTION_INFO_IDL_1;
+  
+ typedef union _PROJECTION_INFO_IDL_2 switch (UCHAR projectionInfoType) ProjectionInfoObject
+ { 
+     case 1:
+         PPP_PROJECTION_INFO_2     PppProjectionInfo;
+  
+     case 2: 
+         IKEV2_PROJECTION_INFO_2   Ikev2ProjectionInfo;
+  
+ }PROJECTION_INFO_IDL_2, *PPROJECTION_INFO_IDL_2;
+  
+  
+ typedef struct _RAS_CONNECTION_EX_1_IDL{ 
+         MPRAPI_OBJECT_HEADER_IDL    Header;
+         DWORD                       dwConnectDuration;
+         ROUTER_INTERFACE_TYPE       dwInterfaceType;
+         DWORD                       dwConnectionFlags;
+         WCHAR                       wszInterfaceName[257];
+         WCHAR                       wszUserName[257];
+         WCHAR                       wszLogonDomain[16];
+         WCHAR                       wszRemoteComputer[17]; 
+         GUID                        guid;
+         RAS_QUARANTINE_STATE        rasQuarState;
+  
+         // Probation time
+         FILETIME                    probationTime;
+  
+         DWORD                       dwBytesXmited;
+         DWORD                       dwBytesRcved;
+         DWORD                       dwFramesXmited;
+         DWORD                       dwFramesRcved;
+         DWORD                       dwCrcErr;
+         DWORD                       dwTimeoutErr;
+         DWORD                       dwAlignmentErr;
+         DWORD                       dwHardwareOverrunErr;
+         DWORD                       dwFramingErr;
+         DWORD                       dwBufferOverrunErr;
+         DWORD                       dwCompressionRatioIn;
+         DWORD                       dwCompressionRatioOut; 
+  
+         // Currently valid only for IKEV2:
+         DWORD                       dwNumSwitchOvers;
+  
+         // Endpoint Information
+         WCHAR                       wszRemoteEndpointAddress[65];
+         WCHAR                       wszLocalEndpointAddress[65];
+  
+         PROJECTION_INFO_IDL_1       ProjectionInfo;
+  
+         ULONG                       hConnection;
+         ULONG                       hInterface;
+  
+ } RAS_CONNECTION_EX_1_IDL, *PRAS_CONNECTION_EX_1_IDL;
+  
+  
+ typedef union _RAS_CONNECTION_EX_IDL switch (UCHAR revision) ConnObject
+ {
+     case 1: // RAS_CONNECTION_EX with version 1: (MPRAPI_RAS_CONNECTION_OBJECT_REVISION_1)
+         RAS_CONNECTION_EX_1_IDL     RasConnection1;
+ }RAS_CONNECTION_EX_IDL;
+  
+ typedef struct _RAS_CONNECTION_EX_IDL *PRAS_CONNECTION_EX_IDL;
+  
+ typedef struct _RAS_CONNECTION_4_IDL
+ { 
+     DWORD                       dwConnectDuration;
+     ROUTER_INTERFACE_TYPE       dwInterfaceType;
+     DWORD                       dwConnectionFlags;
+     WCHAR                       wszInterfaceName[257];
+     WCHAR                       wszUserName[257];
+     WCHAR                       wszLogonDomain[16];
+     WCHAR                       wszRemoteComputer[17]; 
+     GUID                        guid;
+     RAS_QUARANTINE_STATE        rasQuarState;
+  
+     // Probation time
+     FILETIME                    probationTime;
+  
+     // Connection start time
+     FILETIME                    connectionStartTime; 
+  
+     DWORD                       dwBytesXmited;
+     DWORD                       dwBytesRcved;
+     DWORD                       dwFramesXmited;
+     DWORD                       dwFramesRcved;
+     DWORD                       dwCrcErr;
+     DWORD                       dwTimeoutErr;
+     DWORD                       dwAlignmentErr;
+     DWORD                       dwHardwareOverrunErr;
+     DWORD                       dwFramingErr;
+     DWORD                       dwBufferOverrunErr;
+     DWORD                       dwCompressionRatioIn;
+     DWORD                       dwCompressionRatioOut; 
+  
+     // Currently valid only for IKEV2:
+     DWORD                       dwNumSwitchOvers;
+  
+     // Endpoint Information
+     WCHAR                       wszRemoteEndpointAddress[65];
+     WCHAR                       wszLocalEndpointAddress[65];
+  
+     PROJECTION_INFO_IDL_2       ProjectionInfo;
+  
+     ULONG                       hConnection;
+     ULONG                       hInterface;
+     
+     // VPN Device type 
+     DWORD                      dwDeviceType;
+ }
+ RAS_CONNECTION_4_IDL, *PRAS_CONNECTION_4_IDL;
+  
+  
+ typedef  struct  _CERT_BLOB_1
+ {
+     DWORD cbData;
+     [size_is(cbData)] BYTE * pbData;
+     
+ }CERT_BLOB_1,*PCERT_BLOB_1;
+  
+ typedef  struct  _CERT_EKU_1
+ {
+     DWORD dwSize; 
+     BOOL  IsEKUOID;
+     [size_is(dwSize)] WCHAR *pwszEKU;
+     
+ }CERT_EKU_1,*PCERT_EKU_1;
+  
+ typedef struct _IKEV2_TUNNEL_CONFIG_PARAMS_1 {
+     DWORD                       dwIdleTimeout;
+     DWORD                       dwNetworkBlackoutTime;
+     DWORD                       dwSaLifeTime;
+     DWORD                       dwSaDataSizeForRenegotiation;
+     DWORD                       dwConfigOptions;
+     DWORD                     dwTotalCertificates;
+     [size_is(dwTotalCertificates)] CERT_BLOB_1* certificateNames; 
+ }IKEV2_TUNNEL_CONFIG_PARAMS_1, *PIKEV2_TUNNEL_CONFIG_PARAMS_1;
+  
+ typedef struct _ROUTER_CUSTOM_IKEv2_POLICY_0
+ {
+     //    Integrity method plumbed in IKE policy
+     DWORD dwIntegrityMethod;
+  
+     //    Encryption method plumbed in IKE policy
+     DWORD dwEncryptionMethod;
+  
+     //    ESP cipher plumbed in Ipsec policy
+     DWORD dwCipherTransformConstant;
+  
+     //    AH Auth transform plumbed in Ipsec policy
+     DWORD dwAuthTransformConstant;
+  
+     //    PFS group plumbed in Ipsec policy
+     DWORD dwPfsGroup;
+  
+     //    DH group plumbed in IKE policy
+     DWORD dwDhGroup; 
+ }ROUTER_CUSTOM_IKEv2_POLICY_0, *PROUTER_CUSTOM_IKEv2_POLICY_0, ROUTER_CUSTOM_L2TP_POLICY_0, *PROUTER_CUSTOM_L2TP_POLICY_0;
+  
+ typedef struct _ROUTER_IKEv2_IF_CUSTOM_CONFIG_0
+ {
+      //    Lifetime of a security association (SA), in seconds, 
+      //    after which the SA is no longer valid [RFC 4306].
+     DWORD dwSaLifeTime;
+  
+     //    Number of kilobytes that are allowed to transfer using an SA. 
+     //    After that, the SA will be renegotiated [RFC 4306].
+     DWORD dwSaDataSize;
+  
+     //    SubjecName of the certificate to be used in default store 
+     //    for machine certificate authentication. 
+    CERT_BLOB_1   certificateName; 
+  
+     //    Custom IKEv2 Policy 
+     PROUTER_CUSTOM_IKEv2_POLICY_0 customPolicy; 
+ }ROUTER_IKEv2_IF_CUSTOM_CONFIG_0, *PROUTER_IKEv2_IF_CUSTOM_CONFIG_0;
+  
+ typedef struct _ROUTER_IKEv2_IF_CUSTOM_CONFIG_1 {
+   DWORD dwSaLifeTime;
+   DWORD dwSaDataSize;
+   CERT_BLOB_1 certificateName;
+   PROUTER_CUSTOM_IKEv2_POLICY_0 customPolicy;
+   CERT_BLOB_1 certificateHash;
+ } ROUTER_IKEv2_IF_CUSTOM_CONFIG_1, 
+  *PROUTER_IKEv2_IF_CUSTOM_CONFIG_1;
+  
+ typedef struct _MPR_IF_CUSTOMINFOEX_0 {
+     MPRAPI_OBJECT_HEADER_IDL        Header;
+     DWORD                       dwFlags;
+     ROUTER_IKEv2_IF_CUSTOM_CONFIG_0  customIkev2Config;
+ }MPR_IF_CUSTOMINFOEX_0, *PMPR_IF_CUSTOMINFOEX_0;
+  
+ typedef struct _MPR_IF_CUSTOMINFOEX_1 {
+   MPRAPI_OBJECT_HEADER_IDL Header;
+   DWORD dwFlags;
+   ROUTER_IKEv2_IF_CUSTOM_CONFIG_1 customIkev2Config;
+ } MPR_IF_CUSTOMINFOEX_1, 
+  *PMPR_IF_CUSTOMINFOEX_1;
+  
+ typedef union _MPR_IF_CUSTOMINFOEX_IDL switch (UCHAR  revision) IfCustomConfigObject
+ {
+     case 1:
+         MPR_IF_CUSTOMINFOEX_0     IfConfigObj1;
+     case 2:
+         MPR_IF_CUSTOMINFOEX_1     IfConfigObj2;
+  
+ }MPR_IF_CUSTOMINFOEX_IDL,*PMPR_IF_CUSTOMINFOEX_IDL;
+  
+  
+ typedef struct _IKEV2_TUNNEL_CONFIG_PARAMS_2 {
+     DWORD                       dwIdleTimeout;
+     DWORD                       dwNetworkBlackoutTime;
+     DWORD                       dwSaLifeTime;
+     DWORD                       dwSaDataSizeForRenegotiation;
+     DWORD                       dwConfigOptions;
+     DWORD                       dwTotalCertificates;
+     [size_is(dwTotalCertificates)] CERT_BLOB_1* certificateNames; 
+  
+     //    SubjecName of the certificate to be used in default store 
+     //    for machine certificate authentication. 
+     CERT_BLOB_1    machineCertificateName; 
+     DWORD                       dwEncryptionType;
+     ROUTER_CUSTOM_IKEv2_POLICY_0* customPolicy;
+ }
+ IKEV2_TUNNEL_CONFIG_PARAMS_2, *PIKEV2_TUNNEL_CONFIG_PARAMS_2;
+  
+ typedef struct _IKEV2_TUNNEL_CONFIG_PARAMS_3 {
+     DWORD                       dwIdleTimeout;
+     DWORD                       dwNetworkBlackoutTime;
+     DWORD                       dwSaLifeTime;
+     DWORD                       dwSaDataSizeForRenegotiation;
+     DWORD                       dwConfigOptions;
+     DWORD                       dwTotalCertificates;
+     [size_is(dwTotalCertificates)] CERT_BLOB_1* certificateNames; 
+  
+     //    SubjectName of the certificate to be used in default store 
+     //    for machine certificate authentication. 
+     CERT_BLOB_1    machineCertificateName; 
+     DWORD                       dwEncryptionType;
+     ROUTER_CUSTOM_IKEv2_POLICY_0* customPolicy;
+  
+     DWORD                       dwTotalEkus;
+     [size_is(dwTotalEkus)]      CERT_EKU_1* certificateEKUs; 
+     CERT_BLOB_1                 machineCertificateHash;
+  
+ }
+ IKEV2_TUNNEL_CONFIG_PARAMS_3, *PIKEV2_TUNNEL_CONFIG_PARAMS_3;
+  
+ typedef struct _L2TP_TUNNEL_CONFIG_PARAMS_1 {
+     DWORD                      dwIdleTimeout;
+     // encryption type to be used for L2TP
+     DWORD                    dwEncryptionType;
+     DWORD                    dwSaLifeTime;
+     DWORD                    dwSaDataSizeForRenegotiation;
+  
+     PROUTER_CUSTOM_L2TP_POLICY_0 customPolicy;
+ }L2TP_TUNNEL_CONFIG_PARAMS_1, *PL2TP_TUNNEL_CONFIG_PARAMS_1;
+  
+ typedef struct _IKEV2_CONFIG_PARAMS_1 {
+  
+     DWORD                           dwNumPorts;
+     DWORD                           dwPortFlags;
+     DWORD                           dwTunnelConfigParamFlags;
+     IKEV2_TUNNEL_CONFIG_PARAMS_1    TunnelConfigParams;
+     
+ }IKEV2_CONFIG_PARAMS_1, *PIKEV2_CONFIG_PARAMS_1;
+  
+ typedef struct _IKEV2_CONFIG_PARAMS_2 {
+  
+     DWORD                           dwNumPorts;
+     DWORD                           dwPortFlags;
+     DWORD                           dwTunnelConfigParamFlags;
+     IKEV2_TUNNEL_CONFIG_PARAMS_2    TunnelConfigParams;
+ }
+ IKEV2_CONFIG_PARAMS_2, *PIKEV2_CONFIG_PARAMS_2;
+  
+ typedef struct _IKEV2_CONFIG_PARAMS_3 {
+  
+     DWORD                           dwNumPorts;
+     DWORD                           dwPortFlags;
+     DWORD                           dwTunnelConfigParamFlags;
+     IKEV2_TUNNEL_CONFIG_PARAMS_3    TunnelConfigParams;
+ }
+ IKEV2_CONFIG_PARAMS_3, *PIKEV2_CONFIG_PARAMS_3;
+  
+ typedef struct _PPTP_CONFIG_PARAMS_1 {
+  
+     DWORD                       dwNumPorts;
+     DWORD                       dwPortFlags;
+  
+ }PPTP_CONFIG_PARAMS_1, *PPPTP_CONFIG_PARAMS_1;
+  
+ typedef struct _L2TP_CONFIG_PARAMS_1 {
+  
+     DWORD                       dwNumPorts;
+     DWORD                       dwPortFlags;
+     
+ }L2TP_CONFIG_PARAMS_1, *PL2TP_CONFIG_PARAMS_1;
+  
+ typedef struct _L2TP_CONFIG_PARAMS_2 {
+  
+     DWORD                       dwNumPorts;
+     DWORD                       dwPortFlags;
+     DWORD                       dwTunnelConfigParamFlags;
+     L2TP_TUNNEL_CONFIG_PARAMS_1                       TunnelConfigParams;
+     
+ }L2TP_CONFIG_PARAMS_2, *PL2TP_CONFIG_PARAMS_2;
+  
+ #define MAX_SSTP_HASH_SIZE       32
+  
+ typedef struct _SSTP_CERT_INFO_1
+ {
+  
+     BOOL                   isDefault;
+     CERT_BLOB_1            certBlob;
+ }SSTP_CERT_INFO_1, *PSSTP_CERT_INFO_1;
+  
+ typedef struct _SSTP_CONFIG_PARAMS_1 {
+  
+     DWORD                         dwNumPorts;
+     DWORD                         dwPortFlags;
+     BOOL                          isUseHttps;
+     DWORD                         certAlgorithm; // Always CALG_SHA_256   
+     SSTP_CERT_INFO_1              sstpCertDetails;
+  
+ }SSTP_CONFIG_PARAMS_1, *PSSTP_CONFIG_PARAMS_1;
+  
+ typedef struct _MPRAPI_TUNNEL_CONFIG_PARAMS_1 {
+  
+     IKEV2_CONFIG_PARAMS_1         IkeConfigParams;
+  
+     PPTP_CONFIG_PARAMS_1          PptpConfigParams;
+  
+     L2TP_CONFIG_PARAMS_1          L2tpConfigParams;
+  
+     SSTP_CONFIG_PARAMS_1          SstpConfigParams;
+  
+ }MPRAPI_TUNNEL_CONFIG_PARAMS_1, *PMPRAPI_TUNNEL_CONFIG_PARAMS_1;
+  
+ typedef struct _MPRAPI_TUNNEL_CONFIG_PARAMS_2 {
+  
+     IKEV2_CONFIG_PARAMS_2         IkeConfigParams;
+  
+     PPTP_CONFIG_PARAMS_1          PptpConfigParams;
+  
+     L2TP_CONFIG_PARAMS_1          L2tpConfigParams;
+  
+     SSTP_CONFIG_PARAMS_1          SstpConfigParams;
+  
+ }MPRAPI_TUNNEL_CONFIG_PARAMS_2, *PMPRAPI_TUNNEL_CONFIG_PARAMS_2;
+  
+ typedef struct _MPRAPI_TUNNEL_CONFIG_PARAMS_3 {
+  
+     IKEV2_CONFIG_PARAMS_3         IkeConfigParams;
+  
+     PPTP_CONFIG_PARAMS_1          PptpConfigParams;
+  
+     L2TP_CONFIG_PARAMS_2          L2tpConfigParams;
+  
+     SSTP_CONFIG_PARAMS_1          SstpConfigParams;
+  
+ }MPRAPI_TUNNEL_CONFIG_PARAMS_3, *PMPRAPI_TUNNEL_CONFIG_PARAMS_3;
+  
+ // MPR_SERVER_EX structure are redified in this IDL to make use of versioning:
+ // All the Versions of MPR_SERVER_EX will be defined here in RPC usable format:
+  
+ typedef struct _MPR_SERVER_EX_1
+ {
+     MPRAPI_OBJECT_HEADER_IDL        Header;
+     BOOL                            fLanOnlyMode;
+     DWORD                           dwUpTime;
+     DWORD                           dwTotalPorts;
+     DWORD                           dwPortsInUse; 
+     DWORD                           Reserved; // Added so that the structure is 8 byte aligned
+     MPRAPI_TUNNEL_CONFIG_PARAMS_1   ConfigParams;
+  
+ }MPR_SERVER_EX_1, *PMPR_SERVER_EX_1;
+  
+ typedef struct _MPR_SERVER_EX_2
+ {
+     MPRAPI_OBJECT_HEADER_IDL        Header;
+     BOOL                            fLanOnlyMode;
+     DWORD                           dwUpTime;
+     DWORD                           dwTotalPorts;
+     DWORD                           dwPortsInUse; 
+     DWORD                           Reserved; // Added so that the structure is 8 byte aligned
+     MPRAPI_TUNNEL_CONFIG_PARAMS_2   ConfigParams;
+ }MPR_SERVER_EX_2, *PMPR_SERVER_EX_2;
+  
+ typedef struct _MPR_SERVER_EX_3
+ {
+     MPRAPI_OBJECT_HEADER_IDL        Header;
+     BOOL                            fLanOnlyMode;
+     DWORD                           dwUpTime;
+     DWORD                           dwTotalPorts;
+     DWORD                           dwPortsInUse; 
+     DWORD                           Reserved; // Added so that the structure is 8 byte aligned
+     MPRAPI_TUNNEL_CONFIG_PARAMS_3   ConfigParams;
+ }MPR_SERVER_EX_3, *PMPR_SERVER_EX_3;
+  
+ typedef union _MPR_SERVER_EX_IDL switch (UCHAR  revision) ServerConfigObject
+ {
+     case 1:
+         MPR_SERVER_EX_1     ServerConfig1;
+     case 2:
+         MPR_SERVER_EX_2     ServerConfig2;
+     case 3:
+         MPR_SERVER_EX_3     ServerConfig3;
+ }MPR_SERVER_EX_IDL;
+  
+ typedef struct _MPR_SERVER_EX_IDL *PMPR_SERVER_EX_IDL;
+  
+  
+ typedef struct _MPR_SERVER_SET_CONFIG_EX_1
+ {
+     MPRAPI_OBJECT_HEADER_IDL        Header;
+     DWORD                           setConfigForProtocols;
+     MPRAPI_TUNNEL_CONFIG_PARAMS_1   ConfigParams;
+  
+ }MPR_SERVER_SET_CONFIG_EX_1, *PMPR_SERVER_SET_CONFIG_EX_1;
+  
+ typedef struct _MPR_SERVER_SET_CONFIG_EX_2
+ {
+     MPRAPI_OBJECT_HEADER_IDL        Header;
+     DWORD                           setConfigForProtocols;
+     MPRAPI_TUNNEL_CONFIG_PARAMS_2   ConfigParams;
+  
+ }MPR_SERVER_SET_CONFIG_EX_2, *PMPR_SERVER_SET_CONFIG_EX_2;
+  
+ typedef struct _MPR_SERVER_SET_CONFIG_EX_3
+ {
+     MPRAPI_OBJECT_HEADER_IDL        Header;
+     DWORD                           setConfigForProtocols;
+     MPRAPI_TUNNEL_CONFIG_PARAMS_3   ConfigParams;
+  
+ }MPR_SERVER_SET_CONFIG_EX_3, *PMPR_SERVER_SET_CONFIG_EX_3;
+  
+ typedef union _MPR_SERVER_SET_CONFIG_EX_IDL switch (UCHAR   revision) ServerSetConfigObject
+ {
+     case 1:
+         MPR_SERVER_SET_CONFIG_EX_1      ServerSetConfig1;
+     case 2:
+         MPR_SERVER_SET_CONFIG_EX_2      ServerSetConfig2;
+     case 3:
+         MPR_SERVER_SET_CONFIG_EX_3      ServerSetConfig3;
+ }MPR_SERVER_SET_CONFIG_EX_IDL;
+  
+  
+ typedef struct _MPR_SERVER_SET_CONFIG_EX_IDL *PMPR_SERVER_SET_CONFIG_EX_IDL;
+  
+  
+ typedef struct _RAS_UPDATE_CONNECTION_1_IDL
+     {
+     MPRAPI_OBJECT_HEADER_IDL Header;
+     DWORD dwIfIndex;
+     WCHAR wszRemoteEndpointAddress[ 65 ];
+     } RAS_UPDATE_CONNECTION_1_IDL;
+  
+ typedef struct _RAS_UPDATE_CONNECTION_1_IDL *PRAS_UPDATE_CONNECTION_1_IDL;
+  
+ typedef union _RAS_UPDATE_CONNECTION_IDL switch (UCHAR revision) UpdateConnection
+ {
+     case 1: // MPR_SERVER_UPDATE_CONNECTION_EX with version 1: //(MPRAPI_RAS_UPDATE_CONNECTION_OBJECT_REVISION_1)
+         RAS_UPDATE_CONNECTION_1_IDL     UpdateConnection1;
+     // New ones update here
+ }RAS_UPDATE_CONNECTION_IDL;
+  
+ typedef struct _RAS_UPDATE_CONNECTION_IDL *PRAS_UPDATE_CONNECTION_IDL;
+  
+ typedef struct _DIM_INTERFACE_CONTAINER
+ {
+     DWORD   fGetInterfaceInfo;
+     DWORD   dwInterfaceInfoSize;
+     [size_is(dwInterfaceInfoSize)]  LPBYTE pInterfaceInfo;
+     DWORD   fGetGlobalInfo;
+     DWORD  dwGlobalInfoSize;
+     [size_is(dwGlobalInfoSize)]     LPBYTE pGlobalInfo;
+ }
+ DIM_INTERFACE_CONTAINER, *PDIM_INTERFACE_CONTAINER;
+  
+  
+ typedef struct _RTR_TOC_ENTRY
+ {
+     ULONG    InfoType;
+     ULONG    InfoSize;
+     ULONG    Count;
+     ULONG    Offset;
+ }
+ RTR_TOC_ENTRY, *PRTR_TOC_ENTRY;
+  
+  
+ typedef struct _RTR_INFO_BLOCK_HEADER
+ {
+     ULONG      Version;    
+     ULONG      Size;    
+     ULONG      TocEntriesCount;
+     RTR_TOC_ENTRY   TocEntry[1];     //1 is a placeholder for TocEntriesCount    
+ } 
+ RTR_INFO_BLOCK_HEADER, *PRTR_INFO_BLOCK_HEADER;
+  
+  
+  
+  
+ typedef struct _FILTER_INFO
+ {
+     DWORD   dwSrcAddr;
+     DWORD   dwSrcMask;
+     DWORD   dwDstAddr;
+     DWORD   dwDstMask;
+     DWORD   dwProtocol;
+     DWORD   fLateBound;
+     WORD    wSrcPort;
+     WORD    wDstPort;
+ }
+ FILTER_INFO, *PFILTER_INFO;
+  
+  
+ typedef struct _FILTER_DESCRIPTOR
+ {
+     DWORD           dwVersion;
+     DWORD           dwNumFilters;
+     FORWARD_ACTION  faDefaultAction;
+     FILTER_INFO     fiFilter[1];     //1 is a placeholder for dwNumFilters
+ }
+ FILTER_DESCRIPTOR, *PFILTER_DESCRIPTOR;
+  
+  
+ typedef struct _FILTER_INFO_V6
+ {
+     BYTE        ipv6SrcAddr[16];
+     DWORD       dwSrcPrefixLength;
+     BYTE        ipv6DstAddr[16];
+     DWORD       dwDstPrefixLength;
+     DWORD       dwProtocol;
+     DWORD       fLateBound;
+     WORD        wSrcPort;
+     WORD        wDstPort;
+ }
+ FILTER_INFO_V6, *PFILTER_INFO_V6;
+  
+  
+ typedef struct _FILTER_DESCRIPTOR_V6
+ {
+     DWORD           dwVersion;
+     DWORD           dwNumFilters;
+     FORWARD_ACTION  faDefaultAction;
+     FILTER_INFO_V6  fiFilter[1];     //1 is a placeholder for dwNumFilters
+ }
+ FILTER_DESCRIPTOR_V6, *PFILTER_DESCRIPTOR_V6;
+  
+  
+ typedef struct _GLOBAL_INFO
+ {
+     /* IN OUT */BOOL     bFilteringOn;
+     /* IN OUT */DWORD    dwLoggingLevel;
+ }
+ GLOBAL_INFO, *PGLOBAL_INFO;
+  
+ typedef struct _INTERFACE_ROUTE_INFO
+ {
+     union
+     {
+         struct
+         { // IPv4 specific 
+             DWORD       dwRtInfoDest;
+             DWORD       dwRtInfoMask;
+             DWORD       dwRtInfoPolicy;
+             DWORD       dwRtInfoNextHop;
+             DWORD       dwRtInfoAge;
+             DWORD       dwRtInfoNextHopAS;
+             DWORD       dwRtInfoMetric1;
+             DWORD       dwRtInfoMetric2;
+             DWORD       dwRtInfoMetric3;
+         };
+         struct
+         { // IPv6 specific
+             IN6_ADDR    DestinationPrefix;
+             DWORD       DestPrefixLength;
+             IN6_ADDR    NextHopAddress;
+             ULONG       ValidLifeTime;
+             DWORD       Flags; 
+             ULONG        Metric;
+         };        
+     };
+     DWORD       dwRtInfoIfIndex;
+     DWORD       dwRtInfoType;
+     DWORD       dwRtInfoProto;
+     DWORD       dwRtInfoPreference;
+     DWORD       dwRtInfoViewSet;
+     BOOL        bV4; 
+ }
+ INTERFACE_ROUTE_INFO, *PINTERFACE_ROUTE_INFO;
+  
+  
+  
+ typedef struct _PROTOCOL_METRIC
+ {
+     /* IN OUT */ DWORD   dwProtocolId;
+     /* IN OUT */ DWORD   dwMetric;
+ }
+ PROTOCOL_METRIC, *PPROTOCOL_METRIC;
+  
+  
+ typedef struct _PRIORITY_INFO
+ {
+     /* IN OUT */ DWORD           dwNumProtocols;
+     /* IN OUT */ PROTOCOL_METRIC ppmProtocolMetric[1];   
+ }
+ PRIORITY_INFO, *PPRIORITY_INFO;
+  
+  
+ typedef struct _PROTOCOL_METRIC_EX
+ {
+     /* IN OUT */ DWORD   dwProtocolId;
+     /* IN OUT */ DWORD   dwSubProtocolId;
+     /* IN OUT */ DWORD   dwMetric;
+ }PROTOCOL_METRIC_EX, *PPROTOCOL_METRIC_EX;
+  
+ typedef struct _PRIORITY_INFO_EX
+ {
+     /* IN OUT */ DWORD           dwNumProtocols;
+     /* IN OUT */ PROTOCOL_METRIC_EX ppmProtocolMetric[1];
+ }PRIORITY_INFO_EX, *PPRIORITY_INFO_EX;
+  
+  
+ typedef struct _RTR_DISC_INFO
+ {
+     /* IN OUT */ WORD             wMaxAdvtInterval;
+     /* IN OUT */ WORD             wMinAdvtInterval;
+     /* IN OUT */ WORD             wAdvtLifetime;
+     /* IN OUT */ BOOL             bAdvertise;
+     /* IN OUT */ LONG             lPrefLevel;
+ }
+ RTR_DISC_INFO, *PRTR_DISC_INFO;
+  
+  
+ #define MAX_GROUP_LEN  64
+  
+  
+ typedef struct _MCAST_HBEAT_INFO
+ {
+     WCHAR       pwszGroup[MAX_GROUP_LEN];
+     BOOL        bActive;
+     ULONG       ulDeadInterval;
+     BYTE        byProtocol;
+     WORD        wPort;
+ }
+ MCAST_HBEAT_INFO, *PMCAST_HBEAT_INFO;
+  
+  
+ typedef struct 
+ {
+     DWORD dwTtl;
+     DWORD dwRateLimit;
+ } 
+ MIB_MCAST_LIMIT_ROW,*PMIB_MCAST_LIMIT_ROW;
+  
+  
+ typedef struct _IPINIP_CONFIG_INFO
+ {
+     DWORD   dwRemoteAddress;
+     DWORD   dwLocalAddress;
+     BYTE    byTtl;
+ }
+ IPINIP_CONFIG_INFO, *PIPINIP_CONFIG_INFO;
+  
+  
+  
+ typedef struct _INTERFACE_STATUS_INFO
+ {
+     /* IN  OUT */ DWORD   dwAdminStatus;
+ }
+ INTERFACE_STATUS_INFO, *PINTERFACE_STATUS_INFO;
+  
+  
+  
+ typedef struct _DIM_MIB_ENTRY_CONTAINER
+ {
+     DWORD  dwMibInEntrySize;
+     [size_is(dwMibInEntrySize)] LPBYTE pMibInEntry;
+     DWORD  dwMibOutEntrySize;
+     [size_is(dwMibOutEntrySize)] LPBYTE pMibOutEntry;
+ } 
+ DIM_MIB_ENTRY_CONTAINER, *PDIM_MIB_ENTRY_CONTAINER;
+  
+  
+ typedef struct _MIB_IPFORWARDROW 
+ {
+     DWORD dwForwardDest;
+     DWORD dwForwardMask;
+     DWORD dwForwardPolicy;
+     DWORD dwForwardNextHop;
+     DWORD dwForwardIfIndex;
+     union { 
+         DWORD dwForwardType;              
+         MIB_IPFORWARD_TYPE ForwardType; 
+     };
+     union { 
+         DWORD dwForwardProto;             
+         MIB_IPFORWARD_PROTO ForwardProto;  
+     };
+     DWORD dwForwardAge;
+     DWORD dwForwardNextHopAS;
+     DWORD dwForwardMetric1;
+     DWORD dwForwardMetric2;
+     DWORD dwForwardMetric3;
+     DWORD dwForwardMetric4;
+     DWORD dwForwardMetric5;
+ } MIB_IPFORWARDROW, 
+   *PMIB_IPFORWARDROW;
+  
+ typedef struct _MIB_IPDESTROW
+ {
+     MIB_IPFORWARDROW  ForwardRow;
+     DWORD             dwForwardPreference;
+     DWORD             dwForwardViewSet;
+ }MIB_IPDESTROW, *PMIB_IPDESTROW;
+  
+  
+ typedef struct _MIB_IPDESTTABLE
+ {
+     DWORD             dwNumEntries;
+     MIB_IPDESTROW     table[1];        //1, placeholder for dwNumEntries
+ }MIB_IPDESTTABLE, *PMIB_IPDESTTABLE;
+  
+  
+  
+ typedef struct _MIB_ROUTESTATE
+ {
+     BOOL        bRoutesSetToStack;
+ }MIB_ROUTESTATE, *PMIB_ROUTESTATE;
+  
+  
+  
+ typedef struct _MIB_BEST_IF {
+     DWORD dwDestAddr;
+     DWORD dwIfIndex;
+ } MIB_BEST_IF, *PMIB_BEST_IF;
+  
+  
+  
+ typedef struct {
+     DWORD dwGroupAddress;
+     DWORD dwGroupMask;
+ } MIB_BOUNDARYROW, 
+ *PMIB_BOUNDARYROW;
+  
+  
+  
+ typedef struct _MIBICMPSTATS {
+     DWORD dwMsgs;
+     DWORD dwErrors;
+     DWORD dwDestUnreachs;
+     DWORD dwTimeExcds;
+     DWORD dwParmProbs;
+     DWORD dwSrcQuenchs;
+     DWORD dwRedirects;
+     DWORD dwEchos;
+     DWORD dwEchoReps;
+     DWORD dwTimestamps;
+     DWORD dwTimestampReps;
+     DWORD dwAddrMasks;
+     DWORD dwAddrMaskReps;
+ } MIBICMPSTATS;
+  
+  
+  
+ typedef struct _MIBICMPINFO {
+     MIBICMPSTATS icmpInStats;
+     MIBICMPSTATS icmpOutStats;
+ } MIBICMPINFO;
+  
+  
+ typedef struct _MIB_ICMP {
+     MIBICMPINFO stats;
+ } MIB_ICMP, 
+ *PMIB_ICMP;
+  
+  
+ typedef struct _MIB_IFNUMBER {
+     DWORD dwValue;
+ } MIB_IFNUMBER, 
+ *PMIB_IFNUMBER;
+  
+  
+ typedef struct _MIB_IFROW {
+     WCHAR wszName[256]; 
+     DWORD dwIndex;
+     DWORD dwType;
+     DWORD dwMtu;
+     DWORD dwSpeed;
+     DWORD dwPhysAddrLen;
+     BYTE bPhysAddr[8];
+     DWORD dwAdminStatus;
+     DWORD dwOperStatus;
+     DWORD dwLastChange;
+     DWORD dwInOctets;
+     DWORD dwInUcastPkts;
+     DWORD dwInNUcastPkts;
+     DWORD dwInDiscards;
+     DWORD dwInErrors;
+     DWORD dwInUnknownProtos;
+     DWORD dwOutOctets;
+     DWORD dwOutUcastPkts;
+     DWORD dwOutNUcastPkts;
+     DWORD dwOutDiscards;
+     DWORD dwOutErrors;
+     DWORD dwOutQLen;
+     DWORD dwDescrLen;
+     BYTE bDescr[256];     // 256, placeholder for dwDescrLen 
+ } MIB_IFROW;
+  
+  
+ typedef struct _MIB_IFSTATUS {
+     DWORD dwIfIndex;
+     DWORD dwAdminStatus;
+     DWORD dwOperationalStatus;
+     BOOL bMHbeatActive;
+     BOOL bMHbeatAlive;
+ } MIB_IFSTATUS, 
+ *PMIB_IFSTATUS;
+  
+  
+ typedef struct _MIB_IFTABLE {
+     DWORD dwNumEntries;
+     MIB_IFROW table[1];     //1, placeholder for dwNumEntries
+ } MIB_IFTABLE, *PMIB_IFTABLE;
+  
+  
+  
+ typedef struct _MIB_IPADDRROW {
+     DWORD dwAddr;
+     DWORD dwIndex;
+     DWORD dwMask;
+     DWORD dwBCastAddr;
+     DWORD dwReasmSize;
+     unsigned short unused1;
+     unsigned short wType;
+ } MIB_IPADDRROW, 
+ *PMIB_IPADDRROW;
+  
+  
+  
+ typedef struct _MIB_IPADDRTABLE {
+     DWORD dwNumEntries;
+     MIB_IPADDRROW table[1];     //1, placeholder for dwNumEntries     
+ } MIB_IPADDRTABLE, 
+ *PMIB_IPADDRTABLE;
+  
+  
+  
+ typedef struct _MIB_IPFORWARDNUMBER {
+     DWORD dwValue;
+ } MIB_IPFORWARDNUMBER, 
+ *PMIB_IPFORWARDNUMBER;
+  
+  
+  
+  
+  
+ typedef struct _MIB_IPFORWARDTABLE {
+     DWORD dwNumEntries;
+     MIB_IPFORWARDROW table[1];     //1, placeholder for dwNumEntries
+     BYTE reserved[8];
+ } MIB_IPFORWARDTABLE, 
+ *PMIB_IPFORWARDTABLE;
+  
+  
+  
+ typedef struct {
+     DWORD dwIfIndex;
+     DWORD dwGroupAddress;
+     DWORD dwGroupMask;
+     DWORD dwStatus;
+ } MIB_IPMCAST_BOUNDARY, 
+ *PMIB_IPMCAST_BOUNDARY;
+  
+  
+  
+ typedef struct {
+     DWORD dwNumEntries;
+     MIB_IPMCAST_BOUNDARY table[1];     //1, placeholder for dwNumEntries
+ } MIB_IPMCAST_BOUNDARY_TABLE, 
+ *PMIB_IPMCAST_BOUNDARY_TABLE;
+  
+  
+  
+ typedef struct _MIB_IPMCAST_GLOBAL {
+     DWORD dwEnable;
+ } MIB_IPMCAST_GLOBAL, 
+ *PMIB_IPMCAST_GLOBAL;
+  
+  
+  
+ typedef struct _MIB_IPMCAST_IF_ENTRY 
+ {
+     DWORD dwIfIndex;
+     DWORD dwTtl;
+     DWORD dwProtocol;
+     DWORD dwRateLimit;
+     ULONG ulInMcastOctets;
+     ULONG ulOutMcastOctets;
+ } 
+ MIB_IPMCAST_IF_ENTRY, *PMIB_IPMCAST_IF_ENTRY;
+  
+  
+  
+ typedef struct _MIB_IPMCAST_IF_TABLE {
+     DWORD dwNumEntries;
+     MIB_IPMCAST_IF_ENTRY table[1];     //1, placeholder for dwNumEntries
+ } MIB_IPMCAST_IF_TABLE, 
+ *PMIB_IPMCAST_IF_TABLE;
+  
+  
+  
+ typedef struct _MIB_IPMCAST_OIF {
+     DWORD dwOutIfIndex;
+     DWORD dwNextHopAddr;
+     PVOID pvReserved;
+     DWORD dwReserved;
+ } MIB_IPMCAST_OIF, 
+ *PMIB_IPMCAST_OIF;
+  
+  
+  
+ typedef struct _MIB_IPMCAST_MFE {
+     DWORD dwGroup;
+     DWORD dwSource;
+     DWORD dwSrcMask;
+     DWORD dwUpStrmNgbr;
+     DWORD dwInIfIndex;
+     DWORD dwInIfProtocol;
+     DWORD dwRouteProtocol;
+     DWORD dwRouteNetwork;
+     DWORD dwRouteMask;
+     ULONG ulUpTime;
+     ULONG ulExpiryTime;
+     ULONG ulTimeOut;
+     ULONG ulNumOutIf;
+     DWORD fFlags;
+     DWORD dwReserved;
+     MIB_IPMCAST_OIF rgmioOutInfo[1];     //1, placeholder for ulNumOutIf
+ } MIB_IPMCAST_MFE, 
+ *PMIB_IPMCAST_MFE;
+  
+  
+  
+ typedef struct _MIB_IPMCAST_OIF_STATS {
+     DWORD dwOutIfIndex;
+     DWORD dwNextHopAddr;
+     PVOID pvDialContext;
+     ULONG ulTtlTooLow;
+     ULONG ulFragNeeded;
+     ULONG ulOutPackets;
+     ULONG ulOutDiscards;
+ } MIB_IPMCAST_OIF_STATS, 
+ *PMIB_IPMCAST_OIF_STATS;
+  
+  
+  
+ typedef struct _MIB_IPMCAST_MFE_STATS {
+     DWORD dwGroup;
+     DWORD dwSource;
+     DWORD dwSrcMask;
+     DWORD dwUpStrmNgbr;
+     DWORD dwInIfIndex;
+     DWORD dwInIfProtocol;
+     DWORD dwRouteProtocol;
+     DWORD dwRouteNetwork;
+     DWORD dwRouteMask;
+     ULONG ulUpTime;
+     ULONG ulExpiryTime;
+     ULONG ulNumOutIf;
+     ULONG ulInPkts;
+     ULONG ulInOctets;
+     ULONG ulPktsDifferentIf;
+     ULONG ulQueueOverflow;
+     MIB_IPMCAST_OIF_STATS rgmiosOutStats[1];     //1, placeholder for ulNumOutIf
+ } MIB_IPMCAST_MFE_STATS, 
+ *PMIB_IPMCAST_MFE_STATS;
+  
+  
+  
+ typedef struct {
+     DWORD dwGroupAddress;
+     DWORD dwGroupMask;
+     WCHAR snNameBuffer[256];
+     DWORD dwStatus;
+     BYTE  reserved[492]; 
+  
+ } MIB_IPMCAST_SCOPE, 
+ *PMIB_IPMCAST_SCOPE;
+  
+  
+  
+ typedef struct _MIB_IPNETROW {
+     DWORD dwIndex;
+     DWORD dwPhysAddrLen;
+     BYTE bPhysAddr[8];
+     DWORD dwAddr;
+     DWORD dwType;
+ } MIB_IPNETROW, 
+ *PMIB_IPNETROW;
+  
+  
+  
+ typedef struct _MIB_IPNETTABLE {
+     DWORD dwNumEntries;
+     MIB_IPNETROW table[1];     //1, placeholder for dwNumEntries
+     BYTE reserved[8];
+ } MIB_IPNETTABLE, 
+ *PMIB_IPNETTABLE;
+  
+  
+  
+ typedef struct _MIB_IPSTATS {
+     union {
+         DWORD dwForwarding;
+         MIB_IPSTATS_FORWARDING Forwarding ;
+     };
+     DWORD dwDefaultTTL;
+     DWORD dwInReceives;
+     DWORD dwInHdrErrors;
+     DWORD dwInAddrErrors;
+     DWORD dwForwDatagrams;
+     DWORD dwInUnknownProtos;
+     DWORD dwInDiscards;
+     DWORD dwInDelivers;
+     DWORD dwOutRequests;
+     DWORD dwRoutingDiscards;
+     DWORD dwOutDiscards;
+     DWORD dwOutNoRoutes;
+     DWORD dwReasmTimeout;
+     DWORD dwReasmReqds;
+     DWORD dwReasmOks;
+     DWORD dwReasmFails;
+     DWORD dwFragOks;
+     DWORD dwFragFails;
+     DWORD dwFragCreates;
+     DWORD dwNumIf;
+     DWORD dwNumAddr;
+     DWORD dwNumRoutes;
+ } MIB_IPSTATS, 
+ *PMIB_IPSTATS;
+  
+  
+  
+ typedef struct _MIB_MFE_STATS_TABLE {
+     DWORD dwNumEntries;
+     MIB_IPMCAST_MFE_STATS table[1];     //1, placeholder for dwNumEntries
+ } MIB_MFE_STATS_TABLE, 
+ *PMIB_MFE_STATS_TABLE;
+  
+  
+  
+ typedef struct _MIB_MFE_TABLE {
+     DWORD dwNumEntries;
+     MIB_IPMCAST_MFE table[1];    //1, placeholder for dwNumEntries
+ } MIB_MFE_TABLE, 
+ *PMIB_MFE_TABLE;
+  
+  
+  
+ typedef struct _MIB_OPAQUE_INFO {
+     DWORD dwId;
+     union {
+         ULONGLONG ullAlign;
+         BYTE rgbyData[1];
+     };
+ } MIB_OPAQUE_INFO, 
+ *PMIB_OPAQUE_INFO;
+  
+  
+  
+ typedef struct _MIB_OPAQUE_QUERY {
+     DWORD dwVarId;
+     DWORD rgdwVarIndex[1];
+ } MIB_OPAQUE_QUERY, 
+ *PMIB_OPAQUE_QUERY;
+  
+  
+  
+ typedef struct _MIB_PROXYARP {
+     DWORD dwAddress;
+     DWORD dwMask;
+     DWORD dwIfIndex;
+ } MIB_PROXYARP, 
+ *PMIB_PROXYARP;
+  
+  
+  
+ typedef struct _MIB_TCPROW {
+     union {
+         DWORD dwState;       
+         MIB_TCP_STATE State;
+     };
+     DWORD dwLocalAddr;
+     DWORD dwLocalPort;
+     DWORD dwRemoteAddr;
+     DWORD dwRemotePort;
+ } MIB_TCPROW, 
+ *PMIB_TCPROW;
+  
+  
+  
+ typedef struct _MIB_TCPSTATS {
+     union {
+         DWORD dwRtoAlgorithm;
+         TCP_RTO_ALGORITHM RtoAlgorithm; 
+     };
+     DWORD dwRtoMin;
+     DWORD dwRtoMax;
+     DWORD dwMaxConn;
+     DWORD dwActiveOpens;
+     DWORD dwPassiveOpens;
+     DWORD dwAttemptFails;
+     DWORD dwEstabResets;
+     DWORD dwCurrEstab;
+     DWORD dwInSegs;
+     DWORD dwOutSegs;
+     DWORD dwRetransSegs;
+     DWORD dwInErrs;
+     DWORD dwOutRsts;
+     DWORD dwNumConns;
+ } MIB_TCPSTATS, 
+ *PMIB_TCPSTATS;
+  
+  
+  
+ typedef struct _MIB_TCPTABLE {
+     DWORD dwNumEntries;
+     MIB_TCPROW table[1];     //1, placeholder for dwNumEntries
+     BYTE reserved[8];
+ } MIB_TCPTABLE, 
+ *PMIB_TCPTABLE;
+  
+  
+  
+ typedef struct _MIB_UDPROW {
+     DWORD dwLocalAddr;
+     DWORD dwLocalPort;
+ } MIB_UDPROW, 
+ *PMIB_UDPROW;
+  
+  
+  
+ typedef struct _MIB_UDPSTATS {
+     DWORD dwInDatagrams;
+     DWORD dwNoPorts;
+     DWORD dwInErrors;
+     DWORD dwOutDatagrams;
+     DWORD dwNumAddrs;
+ } MIB_UDPSTATS, 
+ *PMIB_UDPSTATS;
+  
+  
+  
+ typedef struct _MIB_UDPTABLE {
+     DWORD dwNumEntries;
+     MIB_UDPROW table[1];     //1, placeholder for dwNumEntries
+     BYTE reserved[8];
+ } MIB_UDPTABLE, 
+ *PMIB_UDPTABLE;
+  
+  
+  
+ typedef struct MPR_SERVER_0 
+ {
+     BOOL  fLanOnlyMode;  
+     DWORD dwUpTime;  
+     DWORD dwTotalPorts;  
+     DWORD dwPortsInUse;
+ }
+ MPR_SERVER_0,*PMPR_SERVER_0;
+  
+  
+  
+ typedef struct MPR_SERVER_1 
+ {  
+     DWORD dwNumPptpPorts;  
+     DWORD dwPptpPortFlags; 
+     DWORD dwNumL2tpPorts;   
+     DWORD dwL2tpPortFlags;   
+ }
+ MPR_SERVER_1,*PMPR_SERVER_1;
+  
+  
+  
+ typedef struct MPR_SERVER_2
+ {  
+     DWORD    dwNumPptpPorts;  
+     DWORD    dwPptpPortFlags; 
+     DWORD    dwNumL2tpPorts;   
+     DWORD    dwL2tpPortFlags;   
+     DWORD    dwNumSstpPorts;
+     DWORD    dwSstpPortFlags;
+ }
+ MPR_SERVER_2,*PMPR_SERVER_2;
+  
+  
+  
+ typedef struct _PPP_NBFCP_INFO 
+ {  
+     DWORD dwError;  
+     WCHAR wszWksta[17];
+ } 
+ PPP_NBFCP_INFO;
+  
+  
+  
+ typedef struct _PPP_IPCP_INFO 
+ {  
+     DWORD dwError; 
+     WCHAR wszAddress[16];  
+     WCHAR wszRemoteAddress[16];
+ }
+ PPP_IPCP_INFO;
+  
+  
+  
+ typedef struct _PPP_IPCP_INFO2 
+ {  
+     DWORD dwError;  
+     WCHAR wszAddress[16];  
+     WCHAR wszRemoteAddress[16];  
+     DWORD dwOptions;  
+     DWORD dwRemoteOptons;
+ } 
+ PPP_IPCP_INFO2;
+  
+  
+  
+ typedef struct _PPP_IPXCP_INFO 
+ {  
+     DWORD    dwError;  
+     WCHAR    wszAddress[16];
+ }
+ PPP_IPXCP_INFO;
+  
+  
+  
+ typedef struct _PPP_IPV6CP_INFO 
+ {  
+     DWORD       dwVersion;  
+     DWORD       dwSize;  
+     DWORD       dwError;  
+     BYTE        bInterfaceIdentifier[8];  
+     BYTE        bRemoteInterfaceIdentifier[8];  
+     DWORD       dwOptions;  
+     DWORD       dwRemoteOptions;  
+     BYTE        bPrefix[8];  
+     DWORD       dwPrefixLength;
+ } 
+ PPP_IPV6_CP_INFO,*PPPP_IPV6_CP_INFO;
+  
+  
+  
+ typedef struct _PPP_ATCP_INFO 
+ {  
+     DWORD    dwError;  
+     WCHAR    wszAddress[33];
+ }
+ PPP_ATCP_INFO;
+  
+  
+  
+ typedef struct _PPP_CCP_INFO 
+ {  
+     DWORD dwError;  
+     DWORD dwCompressionAlgorithm;
+     DWORD dwOptions; 
+     DWORD dwRemoteCompressionAlgorithm;
+     DWORD dwRemoteOptions;
+ }
+ PPP_CCP_INFO;
+  
+  
+  
+ typedef struct _PPP_LCP_INFO 
+ {  
+     DWORD dwError;  
+     DWORD dwAuthenticationProtocol;  
+     DWORD dwAuthenticationData;
+     DWORD dwRemoteAuthenticationProtocol;
+     DWORD dwRemoteAuthenticationData;
+     DWORD dwTerminateReason; 
+     DWORD dwRemoteTerminateReason;
+     DWORD dwOptions;
+     DWORD dwRemoteOptions;
+     DWORD dwEapTypeId;  
+     DWORD dwRemoteEapTypeId;
+ }
+ PPP_LCP_INFO;
+  
+  
+  
+ typedef struct _PPP_INFO 
+ {  
+     PPP_NBFCP_INFO nbf;  
+     PPP_IPCP_INFO  ip;  
+     PPP_IPXCP_INFO ipx;  
+     PPP_ATCP_INFO  at;
+ } 
+ PPP_INFO;
+  
+  
+  
+ typedef struct _PPP_INFO_2 
+ {  
+     PPP_NBFCP_INFO    nbf;
+     PPP_IPCP_INFO2    ip;
+     PPP_IPXCP_INFO    ipx;
+     PPP_ATCP_INFO     at;
+     PPP_CCP_INFO      ccp; 
+     PPP_LCP_INFO      lcp;
+ }
+ PPP_INFO_2;
+  
+  
+  
+ typedef struct _PPP_INFO_3 
+ {  
+     PPP_NBFCP_INFO    nbf;  
+     PPP_IPCP_INFO2    ip;  
+     PPP_IPV6_CP_INFO  ipv6;  
+     PPP_CCP_INFO      ccp;  
+     PPP_LCP_INFO      lcp;
+ } 
+ PPP_INFO_3;
+  
+  
+  
+ typedef struct _RASI_PORT_0 
+ {  
+     DWORD              dwPort;  
+     DWORD              dwConnection;  
+     RAS_PORT_CONDITION dwPortCondition;  
+     DWORD              dwTotalNumberOfCalls;  
+     DWORD              dwConnectDuration;  
+     WCHAR              wszPortName[17];  
+     WCHAR              wszMediaName[17];  
+     WCHAR              wszDeviceName[129];  
+     WCHAR              wszDeviceType[17];
+ }
+ RASI_PORT_0,*PRASI_PORT_0;
+  
+  
+  
+ typedef struct _RASI_PORT_1 
+ {  
+     DWORD                  dwPort;  
+     DWORD                  dwConnection;  
+     RAS_HARDWARE_CONDITION dwHardwareCondition;  
+     DWORD                  dwLineSpeed;  
+     DWORD                  dwBytesXmited;  
+     DWORD                  dwBytesRcved;  
+     DWORD                  dwFramesXmited;  
+     DWORD                  dwFramesRcved;  
+     DWORD                  dwCrcErr;  
+     DWORD                  dwTimeoutErr;  
+     DWORD                  dwAlignmentErr;  
+     DWORD                  dwHardwareOverrunErr;  
+     DWORD                  dwFramingErr;  
+     DWORD                  dwBufferOverrunErr;  
+     DWORD                  dwCompressionRatioIn;  
+     DWORD                  dwCompressionRatioOut;
+ } 
+ RASI_PORT_1,*PRASI_PORT_1;
+  
+  
+  
+ typedef struct _RASI_CONNECTION_0 
+ {  
+     DWORD                 dwConnection;  
+     DWORD                 dwInterface;  
+     DWORD                 dwConnectDuration;  
+     ROUTER_INTERFACE_TYPE dwInterfaceType;  
+     DWORD                 dwConnectionFlags;  
+     WCHAR                 wszInterfaceName[257];  
+     WCHAR                 wszUserName[257];  
+     WCHAR                 wszLogonDomain[16];  
+     WCHAR                 wszRemoteComputer[17];
+ }
+ RASI_CONNECTION_0,*PRASI_CONNECTION_0;
+  
+  
+  
+ typedef struct RASI_CONNECTION_1 
+ {  
+     DWORD    dwConnection;  
+     DWORD    dwInterface;  
+     PPP_INFO PppInfo;  
+     DWORD    dwBytesXmited;  
+     DWORD    dwBytesRcved;  
+     DWORD    dwFramesXmited;  
+     DWORD    dwFramesRcved;  
+     DWORD    dwCrcErr;  
+     DWORD    dwTimeoutErr;  
+     DWORD    dwAlignmentErr;  
+     DWORD    dwHardwareOverrunErr;  
+     DWORD    dwFramingErr;  
+     DWORD    dwBufferOverrunErr;  
+     DWORD    dwCompressionRatioIn;  
+     DWORD    dwCompressionRatioOut;
+ }
+ RASI_CONNECTION_1,*PRASI_CONNECTION_1;
+  
+  
+  
+ typedef struct _RASI_CONNECTION_2 
+ {  
+     DWORD                 dwConnection;  
+     WCHAR                 wszUserName[257];  
+     ROUTER_INTERFACE_TYPE dwInterfaceType;  
+     GUID                  guid;  
+     PPP_INFO_2            PppInfo2;
+ } 
+ RASI_CONNECTION_2,*PRASI_CONNECTION_2;
+  
+  
+  
+ typedef struct _RASI_CONNECTION_3 
+ {  
+     DWORD                 dwVersion;  
+     DWORD                 dwSize;  
+     DWORD                 dwConnection;  
+     WCHAR                 wszUserName[257];  
+     ROUTER_INTERFACE_TYPE dwInterfaceType;  
+     GUID                  guid;  
+     PPP_INFO_3            PppInfo3;  
+     RAS_QUARANTINE_STATE  rasQuarState;  
+     FILETIME              timer;
+ }
+ RASI_CONNECTION_3,*PRASI_CONNECTION_3;
+  
+  
+  
+ typedef struct _MPRI_INTERFACE_0 
+ { 
+     WCHAR                   wszInterfaceName[257];  
+     DWORD                   dwInterface;  
+     BOOL                    fEnabled;  
+     ROUTER_INTERFACE_TYPE   dwIfType;  
+     ROUTER_CONNECTION_STATE dwConnectionState;  
+     DWORD                   fUnReachabilityReasons;  
+     DWORD                   dwLastError;
+ }
+ MPRI_INTERFACE_0,*PMPRI_INTERFACE_0;
+  
+  
+  
+ typedef struct _MPRI_INTERFACE_1 
+ {  
+     WCHAR                   wszInterfaceName[257];  
+     DWORD                   dwInterface;  
+     BOOL                    fEnabled;  
+     ROUTER_INTERFACE_TYPE   dwIfType;  
+     ROUTER_CONNECTION_STATE dwConnectionState;  
+     DWORD                   fUnReachabilityReasons;  
+     DWORD                   dwLastError;  
+     LPWSTR                  lpwsDialoutHoursRestriction;
+ }
+ MPRI_INTERFACE_1, *PMPRI_INTERFACE_1;
+  
+  
+  
+ typedef struct _MPRI_INTERFACE_2 
+ {  
+     WCHAR                   wszInterfaceName[257];  
+     DWORD                   dwInterface;  
+     BOOL                    fEnabled;  
+     ROUTER_INTERFACE_TYPE   dwIfType;  
+     ROUTER_CONNECTION_STATE dwConnectionState;  
+     DWORD                   fUnReachabilityReasons;  
+     DWORD                   dwLastError;  
+     DWORD                   dwfOptions;  
+     WCHAR                   szLocalPhoneNumber[129];  
+     PWCHAR                  szAlternates;  
+     DWORD                   ipaddr;  
+     DWORD                   ipaddrDns;  
+     DWORD                   ipaddrDnsAlt;  
+     DWORD                   ipaddrWins;  
+     DWORD                   ipaddrWinsAlt;  
+     DWORD                   dwfNetProtocols;  
+     WCHAR                   szDeviceType[17];  
+     WCHAR                   szDeviceName[129];  
+     WCHAR                   szX25PadType[33];  
+     WCHAR                   szX25Address[201];  
+     WCHAR                   szX25Facilities[201];  
+     WCHAR                   szX25UserData[201];  
+     DWORD                   dwChannels;  
+     DWORD                   dwSubEntries;  
+     DWORD                   dwDialMode;  
+     DWORD                   dwDialExtraPercent;  
+     DWORD                   dwDialExtraSampleSeconds;  
+     DWORD                   dwHangUpExtraPercent;  
+     DWORD                   dwHangUpExtraSampleSeconds;  
+     DWORD                   dwIdleDisconnectSeconds;  
+     DWORD                   dwType;  
+     DWORD                   dwEncryptionType;  
+     DWORD                   dwCustomAuthKey;  
+     DWORD                   dwCustomAuthDataSize;  
+     LPBYTE                  lpbCustomAuthData;  
+     GUID                    guidId;  
+     DWORD                   dwVpnStrategy;
+ }
+ MPRI_INTERFACE_2,  *PMPRI_INTERFACE_2;
+  
+  
+  
+ typedef struct _MPR_INTERFACE_3 
+ {  
+     WCHAR                   wszInterfaceName[257];  
+     DWORD                   dwInterface;  
+     BOOL                    fEnabled;  
+     ROUTER_INTERFACE_TYPE   dwIfType;  
+     ROUTER_CONNECTION_STATE dwConnectionState;  
+     DWORD                   fUnReachabilityReasons;  
+     DWORD                   dwLastError;  
+     DWORD                   dwfOptions;  
+     WCHAR                   szLocalPhoneNumber[129];  
+     PWCHAR                  szAlternates;  
+     DWORD                   ipaddr;  
+     DWORD                   ipaddrDns;  
+     DWORD                   ipaddrDnsAlt;  
+     DWORD                   ipaddrWins;  
+     DWORD                   ipaddrWinsAlt;  
+     DWORD                   dwfNetProtocols;  
+     WCHAR                   szDeviceType[17];  
+     WCHAR                   szDeviceName[129];  
+     WCHAR                   szX25PadType[33];  
+     WCHAR                   szX25Address[201];  
+     WCHAR                   szX25Facilities[201];  
+     WCHAR                   szX25UserData[201];  
+     DWORD                   dwChannels;  
+     DWORD                   dwSubEntries;  
+     DWORD                   dwDialMode;  
+     DWORD                   dwDialExtraPercent;  
+     DWORD                   dwDialExtraSampleSeconds;  
+     DWORD                   dwHangUpExtraPercent;  
+     DWORD                   dwHangUpExtraSampleSeconds;  
+     DWORD                   dwIdleDisconnectSeconds;  
+     DWORD                   dwType;  
+     DWORD                   dwEncryptionType;  
+     DWORD                   dwCustomAuthKey;  
+     DWORD                   dwCustomAuthDataSize;  
+     LPBYTE                  lpbCustomAuthData;  
+     GUID                    guidId;  
+     DWORD                   dwVpnStrategy;
+     ULONG                   AddressCount;
+     IN6_ADDR                ipv6addrDns;  
+     IN6_ADDR                ipv6addrDnsAlt;  
+     IN6_ADDR*               ipv6addr;
+ }
+ MPRI_INTERFACE_3,*PMPRI_INTERFACE_3;
+  
+  
+  
+ typedef struct _MPR_DEVICE_0 
+ {  
+     WCHAR szDeviceType[17];  
+     WCHAR szDeviceName[129];
+ } 
+ MPR_DEVICE_0,*PMPR_DEVICE_0;
+  
+  
+  
+ typedef struct _MPR_DEVICE_1 
+ {  
+     WCHAR szDeviceType[17];  
+     WCHAR szDeviceName[129];  
+     WCHAR szLocalPhoneNumber[129];  
+     PWCHAR szAlternates;
+ } 
+ MPR_DEVICE_1,*PMPR_DEVICE_1;
+  
+  
+  
+ typedef struct _MPR_CREDENTIALSEX_1
+ {
+     DWORD   dwSize;
+     DWORD   dwOffset;
+     BYTE    bData[1];
+ } MPR_CREDENTIALSEX_1, *PMPR_CREDENTIALSEX_1;
+  
+  
+  
+ typedef struct _IFFILTER_INFO
+ {
+     BOOL    bEnableFragChk;
+ }IFFILTER_INFO, *PIFFILTER_INFO;
+  
+  
+  
+ typedef struct _MPR_FILTER_0
+ {
+     /* IN */ BOOL fEnable;
+ }
+ MPR_FILTER_0, *PMPR_FILTER_0;
+  
+  
+  
+ typedef struct _IPX_GLOBAL_INFO {
+     ULONG    RoutingTableHashSize;
+     ULONG       EventLogMask;
+ } IPX_GLOBAL_INFO, *PIPX_GLOBAL_INFO;
+  
+  
+  
+ typedef struct _IPX_IF_INFO {
+     ULONG    AdministratorState;        
+     ULONG    NetbiosAccept;     // 
+     ULONG    NetbiosDeliver;    // Deliver Netbios broadcast packets
+ } IPX_IF_INFO, *PIPX_IF_INFO;
+  
+  
+  
+  
+ typedef struct _IPXWAN_IF_INFO {
+     ULONG    Adminstate;  
+ } IPXWAN_IF_INFO, *PIPXWAN_IF_INFO;
+  
+  
+  
+ typedef struct _IPX_STATIC_ROUTE_INFO {
+     union {
+         ULONG DwordAlign;
+         UCHAR Network[4];  
+     };
+     USHORT TickCount;
+     USHORT HopCount;
+     UCHAR NextHopMacAddress[6];
+ } IPX_STATIC_ROUTE_INFO, *PIPX_STATIC_ROUTE_INFO;
+  
+  
+  
+ typedef IPX_SERVER_ENTRY IPX_STATIC_SERVICE_INFO, *PIPX_STATIC_SERVICE_INFO;
+  
+  
+  
+ typedef struct _IPX_SERVER_ENTRY
+ {
+     USHORT Type;
+     UCHAR Name[48];
+     UCHAR Network[4];
+     UCHAR Node[6];
+     UCHAR Socket[2];
+     USHORT HopCount;
+ } IPX_SERVER_ENTRY, *PIPX_SERVER_ENTRY;
+  
+  
+  
+ typedef struct _IPX_STATIC_NETBIOS_NAME_INFO {
+     union {
+         ULONG DwordAlign;
+         UCHAR Name[16];     
+     };
+ } IPX_STATIC_NETBIOS_NAME_INFO, *PIPX_STATIC_NETBIOS_NAME_INFO;
+  
+  
+  
+ #define MAX_ADAPTOR_NAME_LEN  48
+  
+  
+  
+ typedef struct _IPX_ADAPTER_INFO {
+     ULONG PacketType;
+     WCHAR AdapterName[MAX_ADAPTOR_NAME_LEN];
+ } IPX_ADAPTER_INFO, *PIPX_ADAPTER_INFO;
+  
+  
+  
+ typedef struct _IPX_TRAFFIC_FILTER_GLOBAL_INFO {
+     ULONG  FilterAction;
+ } IPX_TRAFFIC_FILTER_GLOBAL_INFO, *PIPX_TRAFFIC_FILTER_GLOBAL_INFO;
+  
+  
+  
+ typedef struct _IPX_TRAFFIC_FILTER_INFO {
+     ULONG FilterDefinition;
+     UCHAR DestinationNetwork[4];
+     UCHAR DestinationNetworkMask[4];
+     UCHAR DestinationNode[6];
+     UCHAR DestinationSocket[2];
+     UCHAR SourceNetwork[4];
+     UCHAR SourceNetworkMask[4];
+     UCHAR SourceNode[6];
+     UCHAR SourceSocket[2];
+     UCHAR PacketType;
+ } IPX_TRAFFIC_FILTER_INFO, *PIPX_TRAFFIC_FILTER_INFO;
+  
+  
+  
+ typedef struct _IF_TABLE_INDEX {
+     ULONG InterfaceIndex;
+ } IF_TABLE_INDEX, *PIF_TABLE_INDEX;
+  
+  
+  
+ typedef struct _ROUTING_TABLE_INDEX {
+     UCHAR Network[4];
+ } ROUTING_TABLE_INDEX, *PROUTING_TABLE_INDEX;
+  
+  
+  
+ typedef struct _STATIC_ROUTES_TABLE_INDEX {
+     ULONG InterfaceIndex;
+     UCHAR Network[4];
+ } STATIC_ROUTES_TABLE_INDEX, *PSTATIC_ROUTES_TABLE_INDEX;
+  
+  
+  
+ typedef struct _SERVICES_TABLE_INDEX {
+     USHORT ServiceType;
+     UCHAR ServiceName[48];
+ } SERVICES_TABLE_INDEX, *PSERVICES_TABLE_INDEX;
+  
+  
+  
+ typedef struct _STATIC_SERVICES_TABLE_INDEX {
+     ULONG InterfaceIndex;
+     USHORT ServiceType;
+     UCHAR ServiceName[48];
+ } STATIC_SERVICES_TABLE_INDEX, *PSTATIC_SERVICES_TABLE_INDEX;
+  
+  
+  
+ typedef union _IPX_MIB_INDEX {
+     IF_TABLE_INDEX InterfaceTableIndex;
+     ROUTING_TABLE_INDEX RoutingTableIndex;
+     STATIC_ROUTES_TABLE_INDEX StaticRoutesTableIndex;
+     SERVICES_TABLE_INDEX ServicesTableIndex;
+     STATIC_SERVICES_TABLE_INDEX StaticServicesTableIndex;
+ } IPX_MIB_INDEX, *PIPX_MIB_INDEX;
+  
+  
+  
+ typedef struct _IPX_MIB_GET_INPUT_DATA {
+     ULONG TableId;
+     IPX_MIB_INDEX MibIndex;
+ } IPX_MIB_GET_INPUT_DATA, *PIPX_MIB_GET_INPUT_DATA;
+  
+  
+  
+ typedef struct _IPXMIB_BASE {
+     ULONG    OperState;
+     UCHAR    PrimaryNetNumber[4];
+     UCHAR    Node[6];
+     UCHAR    SysName[48];
+     ULONG    MaxPathSplits;
+     ULONG    IfCount;
+     ULONG    DestCount;
+     ULONG    ServCount;
+ } IPXMIB_BASE, *PIPXMIB_BASE;
+  
+  
+  
+ typedef struct _IPX_IF_STATS {
+     ULONG IfOperState;
+     ULONG MaxPacketSize;
+     ULONG InHdrErrors;
+     ULONG InFiltered;
+     ULONG InNoRoutes;
+     ULONG InDiscards;
+     ULONG InDelivers;
+     ULONG OutFiltered;
+     ULONG OutDiscards;
+     ULONG OutDelivers;
+     ULONG NetbiosReceived;
+     ULONG NetbiosSent;
+ } IPX_IF_STATS, *PIPX_IF_STATS;
+  
+  
+  
+ typedef struct _IPX_INTERFACE {
+     ULONG    InterfaceIndex;
+     ULONG    AdministratorState;
+     ULONG    AdapterIndex;
+     UCHAR    InterfaceName[48];
+     ULONG    InterfaceType;
+     ULONG    MediaType;
+     UCHAR    NetNumber[4];
+     UCHAR    MacAddress[6];
+     ULONG    Delay;
+     ULONG    Throughput;
+     ULONG    NetbiosAccept;
+     ULONG    NetbiosDeliver;
+     ULONG    EnableIpxWanNegotiation;
+     IPX_IF_STATS    IfStats;
+ } IPX_INTERFACE, *PIPX_INTERFACE;
+  
+  
+  
+ typedef struct _IPX_ROUTE {
+     ULONG InterfaceIndex; 
+     ULONG Protocol;
+     UCHAR Network[4];
+     USHORT TickCount;
+     USHORT HopCount;
+     UCHAR NextHopMacAddress[6];
+     ULONG Flags;
+ }  IPX_ROUTE, *PIPX_ROUTE;
+  
+  
+  
+ typedef struct _IPX_SERVICE
+ {
+     ULONG        InterfaceIndex;
+     ULONG            Protocol;
+     IPX_SERVER_ENTRY Server;
+ } IPX_SERVICE, *PIPX_SERVICE;
+  
+  
+ typedef union _IPX_MIB_ROW {
+     IPX_INTERFACE Interface;
+     IPX_ROUTE Route;
+     IPX_SERVICE Service;
+ } IPX_MIB_ROW, *PIPX_MIB_ROW;
+  
+  
+  
+ typedef struct _IPX_MIB_SET_INPUT_DATA {
+     ULONG TableId;
+     IPX_MIB_ROW  MibRow;
+ } IPX_MIB_SET_INPUT_DATA, *PIPX_MIB_SET_INPUT_DATA;
+  
+  
+  
+ typedef struct _SAP_SERVICE_FILTER_INFO {
+     union {
+         USHORT    ServiceType;
+         ULONG     ServiceType_align;  // Ensures alignment
+     };
+     UCHAR    ServiceName[48];
+ } SAP_SERVICE_FILTER_INFO, *PSAP_SERVICE_FILTER_INFO;
+  
+  
+  
+ typedef struct _SAP_IF_FILTERS {
+     ULONG    SupplyFilterAction;
+     ULONG    SupplyFilterCount;
+     ULONG    ListenFilterAction;
+     ULONG    ListenFilterCount;
+     SAP_SERVICE_FILTER_INFO ServiceFilter[1];
+ } SAP_IF_FILTERS, *PSAP_IF_FILTERS;
+  
+  
+  
+ typedef struct _SAP_IF_INFO {
+     ULONG    AdminState;  
+     ULONG    UpdateMode;
+     ULONG    PacketType;  
+     ULONG    Supply;
+     ULONG    Listen; 
+     ULONG    GetNearestServerReply; 
+     ULONG    PeriodicUpdateInterval; 
+     ULONG    AgeIntervalMultiplier; 
+ } SAP_IF_INFO, *PSAP_IF_INFO;
+  
+  
+  
+ typedef struct _SAP_IF_CONFIG {
+     SAP_IF_INFO    SapIfInfo;
+     SAP_IF_FILTERS  SapIfFilters;
+ } SAP_IF_CONFIG, *PSAP_IF_CONFIG;
+  
+  
+  
+ typedef struct _SAP_MIB_BASE {
+     ULONG    SapOperState;
+ } SAP_MIB_BASE, *PSAP_MIB_BASE;
+  
+  
+  
+ typedef struct _SAP_IF_STATS {
+     ULONG    SapIfOperState;   
+     ULONG    SapIfInputPackets;
+     ULONG    SapIfOutputPackets;
+ } SAP_IF_STATS, *PSAP_IF_STATS;
+  
+  
+  
+ typedef struct _SAP_INTERFACE {
+     ULONG    InterfaceIndex;
+     SAP_IF_INFO    SapIfInfo;
+     SAP_IF_STATS    SapIfStats;
+ } SAP_INTERFACE, *PSAP_INTERFACE;
+  
+  
+  
+ typedef struct _SAP_MIB_GET_INPUT_DATA {
+     ULONG TableId;
+     ULONG InterfaceIndex;
+ } SAP_MIB_GET_INPUT_DATA, *PSAP_MIB_GET_INPUT_DATA;
+  
+  
+  
+ typedef struct _SAP_MIB_SET_INPUT_DATA {
+     ULONG TableId;
+     SAP_INTERFACE SapInterface;
+ } SAP_MIB_SET_INPUT_DATA, *PSAP_MIB_SET_INPUT_DATA;
+  
+  
+  
+  
+ typedef struct _RIPMIB_BASE {
+     ULONG  RIPOperState;
+ } RIPMIB_BASE, *PRIPMIB_BASE;
+  
+  
+  
+  
+ typedef struct _RIP_IF_STATS {
+     ULONG    RipIfOperState;   
+     ULONG    RipIfInputPackets;
+     ULONG    RipIfOutputPackets;
+ } RIP_IF_STATS, *PRIP_IF_STATS;
+  
+  
+  
+  
+ typedef struct _RIP_IF_INFO {
+     ULONG    AdminState;  
+     ULONG    UpdateMode;
+     ULONG    PacketType;
+     ULONG    Supply;
+     ULONG    Listen;
+     ULONG    PeriodicUpdateInterval;
+     ULONG    AgeIntervalMultiplier;
+ } RIP_IF_INFO, *PRIP_IF_INFO;
+  
+  
+  
+ typedef struct _RIP_INTERFACE {
+     ULONG    InterfaceIndex;
+     RIP_IF_INFO    RipIfInfo;
+     RIP_IF_STATS    RipIfStats;
+ } RIP_INTERFACE, *PRIP_INTERFACE;
+  
+  
+  
+ typedef struct _RIP_MIB_GET_INPUT_DATA {
+     ULONG TableId;
+     ULONG InterfaceIndex;
+ } RIP_MIB_GET_INPUT_DATA, *PRIP_MIB_GET_INPUT_DATA;
+  
+  
+  
+ typedef struct _RIP_MIB_SET_INPUT_DATA {
+     ULONG TableId;
+     RIP_INTERFACE RipInterface;
+ } RIP_MIB_SET_INPUT_DATA, *PRIP_MIB_SET_INPUT_DATA;
+  
+  
+  
+ typedef struct _EAPTLS_HASH
+ {
+     DWORD   cbHash;               
+     BYTE    pbHash[20];  
+ } EAPTLS_HASH;
+  
+  
+  
+ typedef struct _EAPTLS_USER_PROPERTIES
+ {
+     DWORD       reserved;
+     DWORD       dwVersion;
+     DWORD       dwSize;                 
+     DWORD       fFlags;                 
+     EAPTLS_HASH Hash;                   
+     WCHAR*      pwszDiffUser;
+     DWORD       dwPinOffset;
+     WCHAR*      pwszPin;                
+     USHORT      usLength;           
+     USHORT      usMaximumLength;    
+     UCHAR       ucSeed;           
+     WCHAR       awszString[1];       
+ } EAPTLS_USER_PROPERTIES;
+  
+ typedef struct _IPBOOTP_GLOBAL_CONFIG {
+     DWORD       GC_LoggingLevel;
+     DWORD       GC_MaxRecvQueueSize;
+     DWORD       GC_ServerCount;
+ } IPBOOTP_GLOBAL_CONFIG, *PIPBOOTP_GLOBAL_CONFIG;
+  
+ typedef struct _IPBOOTP_IF_CONFIG {
+     DWORD       IC_State;
+     DWORD       IC_RelayMode;
+     DWORD       IC_MaxHopCount;
+     DWORD       IC_MinSecondsSinceBoot;
+ } IPBOOTP_IF_CONFIG, *PIPBOOTP_IF_CONFIG;
+  
+ typedef struct _IPBOOTP_MIB_GET_INPUT_DATA {
+     DWORD       IMGID_TypeID;
+     DWORD       IMGID_IfIndex;
+ } IPBOOTP_MIB_GET_INPUT_DATA, *PIPBOOTP_MIB_GET_INPUT_DATA;
+  
+ typedef struct _IPBOOTP_MIB_GET_OUTPUT_DATA {
+     DWORD       IMGOD_TypeID;
+     DWORD       IMGOD_IfIndex;
+     BYTE        IMGOD_Buffer[1];
+ } IPBOOTP_MIB_GET_OUTPUT_DATA, *PIPBOOTP_MIB_GET_OUTPUT_DATA;
+  
+ typedef struct _IPBOOTP_IF_STATS {
+     DWORD       IS_State;
+     DWORD       IS_SendFailures;
+     DWORD       IS_ReceiveFailures;
+     DWORD       IS_ArpUpdateFailures;
+     DWORD       IS_RequestsReceived;
+     DWORD       IS_RequestsDiscarded;
+     DWORD       IS_RepliesReceived;
+     DWORD       IS_RepliesDiscarded;
+ } IPBOOTP_IF_STATS, *PIPBOOTP_IF_STATS;
+  
+ typedef struct _IPBOOTP_IF_BINDING {
+     DWORD       IB_State;
+     DWORD       IB_AddrCount;
+ } IPBOOTP_IF_BINDING, *PIPBOOTP_IF_BINDING;
+  
+ typedef struct _IPBOOTP_IP_ADDRESS {
+     DWORD       IA_Address;
+     DWORD       IA_Netmask;
+ } IPBOOTP_IP_ADDRESS, *PIPBOOTP_IP_ADDRESS;
+  
+  
+ typedef struct _DHCPV6R_MIB_GET_OUTPUT_DATA {
+     DWORD       IMGOD_TypeID; // Type of the data received
+     DWORD       IMGOD_IfIndex;
+     BYTE        IMGOD_Buffer[1];
+ } DHCPV6R_MIB_GET_OUTPUT_DATA, *PDHCPV6R_MIB_GET_OUTPUT_DATA;
+  
+ typedef struct _DHCPV6R_IF_STATS {
+     DWORD       IS_State;
+     DWORD       IS_SendFailures;
+     DWORD       IS_ReceiveFailures;
+     DWORD       IS_RequestsReceived;
+     DWORD       IS_RequestsDiscarded;
+     DWORD       IS_RepliesReceived;
+     DWORD       IS_RepliesDiscarded;
+ } DHCPV6R_IF_STATS, *PDHCPV6R_IF_STATS;
+  
+ typedef struct _DHCPV6R_MIB_GET_INPUT_DATA {
+     DWORD       IMGID_TypeID; // Type of the data to get
+     DWORD       IMGID_IfIndex;
+ } DHCPV6R_MIB_GET_INPUT_DATA, *PDHCPV6R_MIB_GET_INPUT_DATA;
+  
+ typedef struct _DHCPV6R_GLOBAL_CONFIG {
+     DWORD       GC_LoggingLevel;
+     DWORD       GC_MaxRecvQueueSize;
+     DWORD       GC_ServerCount;
+ } DHCPV6R_GLOBAL_CONFIG, *PDHCPV6R_GLOBAL_CONFIG;
+  
+ typedef struct _DHCPV6R_IF_CONFIG {
+     DWORD       IC_State;
+     DWORD       IC_RelayMode;
+     DWORD       IC_MaxHopCount;
+     DWORD       IC_MinElapsedTime;
+ } DHCPV6R_IF_CONFIG, *PDHCPV6R_IF_CONFIG;
+  
+ typedef struct _IPRIP_MIB_GET_INPUT_DATA {
+     DWORD       IMGID_TypeID;
+     union {
+         DWORD   IMGID_IfIndex;
+         DWORD   IMGID_PeerAddress;
+     };
+ } IPRIP_MIB_GET_INPUT_DATA, *PIPRIP_MIB_GET_INPUT_DATA;
+  
+ typedef struct _IPRIP_MIB_GET_OUTPUT_DATA {
+     DWORD       IMGOD_TypeID;
+     union {
+         DWORD   IMGOD_IfIndex;
+         DWORD   IMGOD_PeerAddress;
+     };
+     BYTE        IMGOD_Buffer[1];
+ } IPRIP_MIB_GET_OUTPUT_DATA, *PIPRIP_MIB_GET_OUTPUT_DATA;
+  
+ typedef struct _IPRIP_GLOBAL_STATS {
+     DWORD       GS_SystemRouteChanges;
+     DWORD       GS_TotalResponsesSent;
+ } IPRIP_GLOBAL_STATS, *PIPRIP_GLOBAL_STATS;
+  
+ typedef struct _IPRIP_GLOBAL_CONFIG {
+     DWORD       GC_LoggingLevel;
+     DWORD       GC_MaxRecvQueueSize;
+     DWORD       GC_MaxSendQueueSize;
+     DWORD       GC_MinTriggeredUpdateInterval;
+     DWORD       GC_PeerFilterMode;
+     DWORD       GC_PeerFilterCount;
+ } IPRIP_GLOBAL_CONFIG, *PIPRIP_GLOBAL_CONFIG;
+  
+ typedef struct _IPRIP_IF_STATS {
+     DWORD       IS_State;
+     DWORD       IS_SendFailures;
+     DWORD       IS_ReceiveFailures;
+     DWORD       IS_RequestsSent;
+     DWORD       IS_RequestsReceived;
+     DWORD       IS_ResponsesSent;
+     DWORD       IS_ResponsesReceived;
+     DWORD       IS_BadResponsePacketsReceived;
+     DWORD       IS_BadResponseEntriesReceived;
+     DWORD       IS_TriggeredUpdatesSent;
+ } IPRIP_IF_STATS, *PIPRIP_IF_STATS;
+  
+ typedef struct _IPRIP_IF_CONFIG {
+     DWORD       IC_State;
+     DWORD       IC_Metric;
+     DWORD       IC_UpdateMode;
+     DWORD       IC_AcceptMode;
+     DWORD       IC_AnnounceMode;
+     DWORD       IC_ProtocolFlags;
+     DWORD       IC_RouteExpirationInterval;
+     DWORD       IC_RouteRemovalInterval;
+     DWORD       IC_FullUpdateInterval;
+     DWORD       IC_AuthenticationType;
+     BYTE        IC_AuthenticationKey[ 16];
+     WORD        IC_RouteTag;
+     DWORD       IC_UnicastPeerMode;
+     DWORD       IC_AcceptFilterMode;
+     DWORD       IC_AnnounceFilterMode;
+     DWORD       IC_UnicastPeerCount;
+     DWORD       IC_AcceptFilterCount;
+     DWORD       IC_AnnounceFilterCount;
+ } IPRIP_IF_CONFIG, *PIPRIP_IF_CONFIG;
+  
+ typedef struct _IPRIP_ROUTE_FILTER {
+     DWORD        RF_LoAddress;
+     DWORD        RF_HiAddress;
+ } IPRIP_ROUTE_FILTER, *PIPRIP_ROUTE_FILTER; 
+  
+ typedef struct _IPRIP_IF_BINDING {
+     DWORD       IB_State;
+     DWORD       IB_AddrCount;
+ } IPRIP_IF_BINDING, *PIPRIP_IF_BINDING;
+  
+ typedef struct _IPRIP_IP_ADDRESS {
+     DWORD       IA_Address;
+     DWORD       IA_Netmask;
+ } IPRIP_IP_ADDRESS, *PIPRIP_IP_ADDRESS;
+  
+ typedef struct _IPRIP_PEER_STATS {
+     DWORD       PS_LastPeerRouteTag;
+     DWORD       PS_LastPeerUpdateTickCount;
+     DWORD       PS_LastPeerUpdateVersion;
+     DWORD       PS_BadResponsePacketsFromPeer;
+     DWORD       PS_BadResponseEntriesFromPeer;
+ } IPRIP_PEER_STATS, *PIPRIP_PEER_STATS;
+  
+ typedef struct _IGMP_MIB_GET_INPUT_DATA {
+     DWORD       TypeId;
+     USHORT      Flags;
+     USHORT      Signature;  
+     DWORD       IfIndex;
+     DWORD       RasClientAddr;
+     DWORD       GroupAddr;
+     DWORD       Count;  
+ } IGMP_MIB_GET_INPUT_DATA, *PIGMP_MIB_GET_INPUT_DATA;
+  
+ typedef struct _IGMP_MIB_GET_OUTPUT_DATA {
+     DWORD       TypeId;
+     DWORD       Flags; //IGMP_ENUM_FORMAT_IGMPV3 set if v3 struct  
+     DWORD       Count;
+     BYTE        Buffer[1];
+ } IGMP_MIB_GET_OUTPUT_DATA, *PIGMP_MIB_GET_OUTPUT_DATA;
+  
+ typedef struct _IGMP_MIB_GLOBAL_CONFIG {
+     DWORD       Version;
+     DWORD       LoggingLevel;
+     DWORD       RasClientStats;  
+ } IGMP_MIB_GLOBAL_CONFIG, *PIGMP_MIB_GLOBAL_CONFIG;
+  
+ typedef struct _IGMP_MIB_GLOBAL_STATS {
+     DWORD       CurrentGroupMemberships;
+     DWORD       GroupMembershipsAdded;
+ } IGMP_MIB_GLOBAL_STATS, *PIGMP_MIB_GLOBAL_STATS;
+  
+ typedef struct _IGMP_MIB_IF_BINDING {
+     DWORD       IfIndex;
+     DWORD       IfType;
+     DWORD       State;
+     DWORD       AddrCount;
+ } IGMP_MIB_IF_BINDING, *PIGMP_MIB_IF_BINDING;
+  
+ typedef struct _IGMP_MIB_IF_CONFIG {
+     DWORD       Version;
+     DWORD       IfIndex; //read only:index
+     DWORD       IpAddr;  //read only
+     DWORD       IfType;  //read only
+     DWORD       Flags;
+     DWORD       IgmpProtocolType;
+     DWORD       RobustnessVariable;
+     DWORD       StartupQueryInterval;
+     DWORD       StartupQueryCount;
+     DWORD       GenQueryInterval;
+     DWORD       GenQueryMaxResponseTime;
+     DWORD       LastMemQueryInterval;
+     DWORD       LastMemQueryCount;
+     DWORD       OtherQuerierPresentInterval;//read only
+     DWORD       GroupMembershipTimeout;     //read only
+     DWORD       NumStaticGroups;   
+ } IGMP_MIB_IF_CONFIG, *PIGMP_MIB_IF_CONFIG;
+  
+ typedef struct _IGMP_MIB_IF_GROUPS_LIST {
+     DWORD       IfIndex;
+     DWORD       IpAddr;
+     DWORD       IfType;
+     DWORD       NumGroups;
+     BYTE        Buffer[1];  
+ } IGMP_MIB_IF_GROUPS_LIST, *PIGMP_MIB_IF_GROUPS_LIST;
+  
+ typedef struct _IGMP_MIB_GROUP_INFO {
+     union {
+         DWORD        IfIndex;
+         DWORD       GroupAddr;
+     };
+     DWORD       IpAddr;
+     DWORD       GroupUpTime;
+     DWORD       GroupExpiryTime;
+     DWORD       LastReporter;
+     DWORD       V1HostPresentTimeLeft;
+     DWORD       Flags;   
+ } IGMP_MIB_GROUP_INFO, *PIGMP_MIB_GROUP_INFO;
+  
+ typedef struct _IGMP_MIB_IF_STATS {
+     DWORD       IfIndex;                    // same as in MIB_IF_CONFIG
+     DWORD       IpAddr;                     // same as in MIB_IF_CONFIG
+     DWORD       IfType;                     // same as in MIB_IF_CONFIG
+     BYTE        State;                      // bound/enabled
+     BYTE        QuerierState;               // (not)querier
+     DWORD       IgmpProtocolType;           // router/proxy, and ver(1/2/3)
+     DWORD       QuerierIpAddr;
+     DWORD       ProxyIfIndex;               // IfIndex of proxy(req by mib) 
+     DWORD       QuerierPresentTimeLeft;   
+     DWORD       LastQuerierChangeTime;
+     DWORD       V1QuerierPresentTimeLeft;   //obsolete
+     DWORD       Uptime;                     // seconds it has been activated
+     DWORD       TotalIgmpPacketsReceived; 
+     DWORD       TotalIgmpPacketsForRouter;   
+     DWORD       GeneralQueriesReceived;
+     DWORD       WrongVersionQueries;
+     DWORD       JoinsReceived;
+     DWORD       LeavesReceived;
+     DWORD       CurrentGroupMemberships;
+     DWORD       GroupMembershipsAdded;
+     DWORD       WrongChecksumPackets;
+     DWORD       ShortPacketsReceived;
+     DWORD       LongPacketsReceived;
+     DWORD       PacketsWithoutRtrAlert;    
+ } IGMP_MIB_IF_STATS, *PIGMP_MIB_IF_STATS;
+  
+ typedef struct _IGMP_MIB_GROUP_IFS_LIST {
+     DWORD       GroupAddr;
+     DWORD       NumInterfaces;
+     BYTE        Buffer[1];
+ } IGMP_MIB_GROUP_IFS_LIST, *PIGMP_MIB_GROUP_IFS_LIST;
+  
+ typedef struct _IGMP_MIB_GROUP_SOURCE_INFO_V3 {
+     DWORD       Source;
+     DWORD       SourceExpiryTime;   //not valid for exclusion mode
+     DWORD       SourceUpTime;
+     DWORD       Flags;
+ } IGMP_MIB_GROUP_SOURCE_INFO_V3, *PIGMP_MIB_GROUP_SOURCE_INFO_V3;
+  
+  
+ typedef struct _IGMP_MIB_GROUP_INFO_V3 
+ {
+     union {
+         DWORD        IfIndex;
+         DWORD       GroupAddr;
+     };
+     DWORD       IpAddr;
+     DWORD       GroupUpTime;
+     DWORD       GroupExpiryTime;
+   
+     DWORD       LastReporter;
+     DWORD       V1HostPresentTimeLeft;
+     DWORD       Flags;
+     
+     //v3 additions
+     DWORD       Version; //1/2/3
+     DWORD       Size;   //size of this struct
+     DWORD       FilterType;//EXCLUSION/INCLUSION
+     DWORD       V2HostPresentTimeLeft;
+     DWORD       NumSources;
+     //IGMP_MIB_GROUP_SOURCE_INFO_V3      Sources[0];
+     
+ } IGMP_MIB_GROUP_INFO_V3, *PIGMP_MIB_GROUP_INFO_V3;
+  
+ typedef struct _INTERFACE_ROUTE_ENTRY
+ {
+     DWORD               dwIndex;
+     INTERFACE_ROUTE_INFO    routeInfo;
+ }INTERFACE_ROUTE_ENTRY, *PINTERFACE_ROUTE_ENTRY;
+  
+ typedef struct _IP_NAT_MIB_QUERY {
+     ULONG Oid;
+     union {
+         ULONG Index;
+         UCHAR Data;
+     };
+ } IP_NAT_MIB_QUERY, *PIP_NAT_MIB_QUERY;
+  
+ typedef enum _IP_NAT_DIRECTION {
+     NatInboundDirection = 0,
+     NatOutboundDirection
+ } IP_NAT_DIRECTION, *PIP_NAT_DIRECTION;
+  
+ typedef struct _IP_NAT_SESSION_MAPPING {
+     UCHAR Protocol;       // see NAT_PROTOCOL_* above
+     ULONG PrivateAddress;
+     USHORT PrivatePort;
+     ULONG PublicAddress;
+     USHORT PublicPort;
+     ULONG RemoteAddress;
+     USHORT RemotePort;
+     IP_NAT_DIRECTION Direction;
+     ULONG IdleTime;       // in seconds
+ } IP_NAT_SESSION_MAPPING, *PIP_NAT_SESSION_MAPPING;
+  
+ typedef struct _IP_NAT_ENUMERATE_SESSION_MAPPINGS {
+     /* IN */ ULONG Index;
+     /* IN OUT */ ULONG EnumerateContext[4];
+     /* OUT */ ULONG EnumerateCount;
+     /* OUT */ ULONG EnumerateTotalHint;
+     /* OUT */ IP_NAT_SESSION_MAPPING EnumerateTable[1];
+ } IP_NAT_ENUMERATE_SESSION_MAPPINGS, *PIP_NAT_ENUMERATE_SESSION_MAPPINGS;
+  
+ typedef struct _IP_NAT_INTERFACE_STATISTICS {
+     /* OUT */ ULONG TotalMappings;
+     /* OUT */ ULONG InboundMappings;
+     /* OUT */ ULONG64 BytesForward;
+     /* OUT */ ULONG64 BytesReverse;
+     /* OUT */ ULONG64 PacketsForward;
+     /* OUT */ ULONG64 PacketsReverse;
+     /* OUT */ ULONG64 RejectsForward;
+     /* OUT */ ULONG64 RejectsReverse;
+ } IP_NAT_INTERFACE_STATISTICS, *PIP_NAT_INTERFACE_STATISTICS;
+  
+ typedef struct _IP_DNS_PROXY_MIB_QUERY {
+     ULONG Oid;
+     union {
+         ULONG Index;
+         UCHAR Data;
+     };
+ } IP_DNS_PROXY_MIB_QUERY, *PIP_DNS_PROXY_MIB_QUERY;
+  
+ typedef struct _IP_DNS_PROXY_STATISTICS {
+     ULONG MessagesIgnored;
+     ULONG QueriesReceived;
+     ULONG ResponsesReceived;
+     ULONG QueriesSent;
+     ULONG ResponsesSent;
+ } IP_DNS_PROXY_STATISTICS, *PIP_DNS_PROXY_STATISTICS;
+  
+ typedef struct _IP_AUTO_DHCP_MIB_QUERY {
+     ULONG Oid;
+     union {
+         ULONG Index;
+         UCHAR Data;
+     };
+     ULONG Reserved;
+ } IP_AUTO_DHCP_MIB_QUERY, *PIP_AUTO_DHCP_MIB_QUERY;
+  
+ typedef struct _IP_AUTO_DHCP_STATISTICS {
+     ULONG MessagesIgnored;
+     ULONG BootpOffersSent;
+     ULONG DiscoversReceived;
+     ULONG InformsReceived;
+     ULONG OffersSent;
+     ULONG RequestsReceived;
+     ULONG AcksSent;
+     ULONG NaksSent;
+     ULONG DeclinesReceived;
+     ULONG ReleasesReceived;
+ } IP_AUTO_DHCP_STATISTICS, *PIP_AUTO_DHCP_STATISTICS;
+  
+  
+ typedef struct _MIB_DA_MSG {
+     UINT32 op_code;   /* IN: MIB manager operation code */
+     UINT32 ret_code;   /* OUT: MIB manager return code */
+     UINT32 in_snmp_id[44];   /* IN: SNMP ID array (get_next) */
+     UINT32 obj_id[17];   /* IN: object ID array (get, set) */
+     UINT32 attr_id;   /* IN: attribute ID (set) */
+     UINT32 inst_id[23];   /* IN: instance ID array (get, set) */
+     UINT32 next_snmp_id[44];   /* OUT: SNMP ID array (get_next) */
+     UINT32 creator;   /* OUT: creator of instance (get, get_next) */
+     UINT32 attr_type;   /* OUT: for resolveVarBind */
+     UINT32 inst_cnt;   /* OUT: # of insts for caching (get_next) */
+     UINT32 map_flag;   /* IN: flag - is this request mapped? */
+     ULONG_PTR data[32];     /* IN: attribute value (set) */
+                           /* OUT: entire record (get, get_next) */
+ } MIB_DA_MSG;
+  
+  
+ typedef struct _IP_AUTO_DHCP_GLOBAL_INFO {
+     ULONG LoggingLevel;
+     ULONG Flags;
+     ULONG LeaseTime;
+     ULONG ScopeNetwork;
+     ULONG ScopeMask;
+     ULONG ExclusionCount;
+     ULONG ExclusionArray;
+ } IP_AUTO_DHCP_GLOBAL_INFO, *PIP_AUTO_DHCP_GLOBAL_INFO;
+  
+  
+ typedef struct _IP_AUTO_DHCP_INTERFACE_INFO {
+     ULONG Flags;
+ } IP_AUTO_DHCP_INTERFACE_INFO, *PIP_AUTO_DHCP_INTERFACE_INFO;
+  
+ typedef struct _IP_DNS_PROXY_GLOBAL_INFO {
+     ULONG LoggingLevel;
+     ULONG Flags;
+     ULONG TimeoutSeconds;
+ } IP_DNS_PROXY_GLOBAL_INFO, *PIP_DNS_PROXY_GLOBAL_INFO;
+  
+ typedef struct _IP_DNS_PROXY_INTERFACE_INFO {
+     ULONG Flags;
+ } IP_DNS_PROXY_INTERFACE_INFO, *PIP_DNS_PROXY_INTERFACE_INFO;
+  
+ typedef struct _IP_NAT_GLOBAL_INFO {
+     ULONG LoggingLevel; // see IPNATHLP.H (IPNATHLP_LOGGING_*).
+     ULONG Flags;
+     RTR_INFO_BLOCK_HEADER Header;
+ } IP_NAT_GLOBAL_INFO, *PIP_NAT_GLOBAL_INFO;
+  
+ typedef struct _IP_NAT_TIMEOUT {
+     ULONG TCPTimeoutSeconds;
+     ULONG UDPTimeoutSeconds;
+ } IP_NAT_TIMEOUT, *PIP_NAT_TIMEOUT;
+  
+ typedef struct _IP_NAT_INTERFACE_INFO {
+     ULONG Index;
+     ULONG Flags;
+     RTR_INFO_BLOCK_HEADER Header;
+ } IP_NAT_INTERFACE_INFO, *PIP_NAT_INTERFACE_INFO;
+  
+  
+ typedef struct _IP_NAT_ADDRESS_RANGE {
+     ULONG StartAddress;
+     ULONG EndAddress;
+     ULONG SubnetMask;
+ } IP_NAT_ADDRESS_RANGE, *PIP_NAT_ADDRESS_RANGE;
+  
+ typedef struct _IP_NAT_PORT_MAPPING {
+     UCHAR Protocol;
+     USHORT PublicPort;
+     ULONG PublicAddress;  // OPTIONAL - see IP_NAT_ADDRESS_UNSPECIFIED
+     USHORT PrivatePort;
+     ULONG PrivateAddress;
+ } IP_NAT_PORT_MAPPING, *PIP_NAT_PORT_MAPPING;
+  
+  
+ typedef struct _IP_NAT_ADDRESS_MAPPING {
+     ULONG PrivateAddress;
+     ULONG PublicAddress;
+     BOOLEAN AllowInboundSessions;
+ } IP_NAT_ADDRESS_MAPPING, *PIP_NAT_ADDRESS_MAPPING;
+  
+ typedef struct IP_ALG_GLOBAL_INFO {
+     ULONG LoggingLevel;
+     ULONG Flags;
+ } IP_ALG_GLOBAL_INFO, *PIP_ALG_GLOBAL_INFO;
+  
+ typedef struct _RIP_GLOBAL_INFO {
+     DWORD       EventLogMask;
+ } RIP_GLOBAL_INFO, 
+  *PRIP_GLOBAL_INFO;
+  
+ typedef struct _RIP_ROUTE_FILTER_INFO {
+     UCHAR        Network[4];
+     UCHAR        Mask[4];
+ } RIP_ROUTE_FILTER_INFO, 
+  *PRIP_ROUTE_FILTER_INFO;
+  
+ typedef struct _RIP_IF_FILTERS {
+     ULONG            SupplyFilterAction;
+     ULONG            SupplyFilterCount;
+     ULONG            ListenFilterAction;
+     ULONG            ListenFilterCount;
+     RIP_ROUTE_FILTER_INFO   RouteFilter[1];
+ } RIP_IF_FILTERS, 
+  *PRIP_IF_FILTERS;
+  
+ typedef struct _RIP_IF_CONFIG {
+     RIP_IF_INFO     RipIfInfo;
+     RIP_IF_FILTERS  RipIfFilters;
+ } RIP_IF_CONFIG, 
+  *PRIP_IF_CONFIG;
+  
+ typedef struct _SAP_GLOBAL_INFO {
+     DWORD       EventLogMask;
+ } SAP_GLOBAL_INFO, 
+  *PSAP_GLOBAL_INFO;
+  
+ typedef struct _OSPF_ROUTE_FILTER
+ {
+     DWORD   dwAddress;
+     DWORD   dwMask;
+ }OSPF_ROUTE_FILTER, *POSPF_ROUTE_FILTER;
+  
+ typedef enum _OSPF_FILTER_ACTION
+ {
+     ACTION_DROP = 0,
+     ACTION_ACCEPT = 1
+ }OSPF_FILTER_ACTION, *POSPF_FILTER_ACTION;
+  
+ typedef struct _OSPF_ROUTE_FILTER_INFO
+ {
+     DWORD               type;
+     OSPF_FILTER_ACTION  ofaActionOnMatch;
+     DWORD               dwNumFilters;
+     OSPF_ROUTE_FILTER   pFilters[1];
+ }OSPF_ROUTE_FILTER_INFO, *POSPF_ROUTE_FILTER_INFO;
+  
+ typedef struct _OSPF_PROTO_FILTER_INFO
+ {
+     DWORD               type;
+     OSPF_FILTER_ACTION  ofaActionOnMatch;
+     DWORD               dwNumProtoIds;
+     DWORD               pdwProtoId[1];
+ }OSPF_PROTO_FILTER_INFO, *POSPF_PROTO_FILTER_INFO;
+  
+ typedef struct _OSPF_GLOBAL_PARAM
+ {
+     DWORD    type;
+     DWORD    create;
+     DWORD    enable;    
+     DWORD      routerId;
+     DWORD    ASBrdrRtr;
+     DWORD      logLevel;
+  }OSPF_GLOBAL_PARAM, *POSPF_GLOBAL_PARAM;
+  
+ typedef struct _OSPF_AREA_PARAM
+ {
+     DWORD    type;
+     DWORD    create;
+     DWORD    enable;    
+     DWORD      areaId;
+     DWORD    authType;
+     DWORD    importASExtern;
+     DWORD    stubMetric;
+     DWORD    importSumAdv;
+ }OSPF_AREA_PARAM, *POSPF_AREA_PARAM;
+  
+ typedef struct _OSPF_AREA_RANGE_PARAM
+ {
+     DWORD    type;
+     DWORD    create;
+     DWORD    enable;    
+     DWORD      areaId;
+     DWORD      rangeNet;
+     DWORD      rangeMask;
+ }OSPF_AREA_RANGE_PARAM, *POSPF_AREA_RANGE_PARAM;
+  
+ typedef struct _OSPF_VIRT_INTERFACE_PARAM
+ {
+     DWORD    type;    
+     DWORD    create;    
+     DWORD    enable;    
+     DWORD      transitAreaId;
+     DWORD      virtNeighborRouterId;
+     DWORD    transitDelay;
+     DWORD    retransInterval;
+     DWORD    helloInterval;
+     DWORD    deadInterval;
+     BYTE    password[8];
+ }OSPF_VIRT_INTERFACE_PARAM, *POSPF_VIRT_INTERFACE_PARAM;
+  
+ typedef struct _OSPF_INTERFACE_PARAM
+ {
+     DWORD    type;            
+     DWORD    create;            
+     DWORD    enable;
+     DWORD      intfIpAddr;
+     DWORD      intfSubnetMask;
+     DWORD      areaId;
+     DWORD    intfType;
+     DWORD    routerPriority;    
+     DWORD    transitDelay;
+     DWORD    retransInterval;
+     DWORD    helloInterval;
+     DWORD    deadInterval;
+     DWORD    pollInterval;
+     DWORD    metricCost;
+     BYTE    password[8];
+     DWORD    mtuSize;
+ }OSPF_INTERFACE_PARAM, *POSPF_INTERFACE_PARAM;
+  
+ typedef struct _OSPF_NBMA_NEIGHBOR_PARAM
+ {
+     DWORD    type;    
+     DWORD    create;    
+     DWORD    enable;    
+     DWORD      neighborIpAddr;
+     DWORD      intfIpAddr;
+     DWORD    neighborPriority;
+ }OSPF_NBMA_NEIGHBOR_PARAM, *POSPF_NBMA_NEIGHBOR_PARAM;
+  
+  
+ typedef enum _RASDEVICETYPE
+ {
+     RDT_Modem = 0,
+     RDT_X25,
+     RDT_Isdn,
+     RDT_Serial,
+     RDT_FrameRelay,
+     RDT_Atm,
+     RDT_Sonet,
+     RDT_Sw56,
+     RDT_Tunnel_Pptp,
+     RDT_Tunnel_L2tp,
+     RDT_Irda,
+     RDT_Parallel, 
+     RDT_Other,
+     RDT_PPPoE,  
+     RDT_Tunnel_Sstp,
+     RDT_Tunnel_Ikev2,
+     RDT_Tunnel = 0x00010000,
+     RDT_Direct  = 0x00020000,
+     RDT_Null_Modem = 0x00040000,
+     RDT_Broadband = 0x00080000
+ } RASDEVICETYPE;
+  
+  
+ typedef enum _RASMAN_STATUS {
+     OPEN    = 0,
+     CLOSED  = 1,
+     UNAVAILABLE = 2,
+     REMOVED = 3
+ } RASMAN_STATUS;
+  
+ typedef enum _ReqTypes {
+ REQTYPE_PORTENUM= 21,
+ REQTYPE_GETINFO= 22,
+ REQTYPE_GETDEVCONFIG= 73,
+ REQTYPE_SETDEVICECONFIGINFO= 94,
+ REQTYPE_GETDEVICECONFIGINFO= 95,
+ REQTYPE_GETCALLEDID= 105,
+ REQTYPE_SETCALLEDID= 106,
+ REQTYPE_GETNDISWANDRIVERCAPS= 111
+ } ReqTypes;
+  
+ typedef enum _RASMAN_STATE {
+     CONNECTING  = 0,
+     LISTENING   = 1,
+     CONNECTED   = 2,
+     DISCONNECTING   = 3,
+     DISCONNECTED    = 4,
+     LISTENCOMPLETED = 5,
+ } RASMAN_STATE;
+  
+ typedef enum _RASMAN_DISCONNECT_TYPE {
+     USER_REQUESTED = 0,
+     REMOTE_DISCONNECTION = 1,
+     HARDWARE_FAILURE = 2,
+     NOT_DISCONNECTED = 3
+ } RASMAN_DISCONNECT_TYPE;
+  
+ typedef enum _RASMAN_USAGE {
+     CALL_NONE = 0x00,
+     CALL_IN = 0x01,
+     CALL_OUT = 0x02,
+     CALL_ROUTER = 0x04,
+     CALL_LOGON = 0x08,
+     CALL_OUT_ONLY = 0x10,
+     CALL_IN_ONLY = 0x20,
+     CALL_OUTBOUND_ROUTER = 0x40
+ } RASMAN_USAGE;
+  
+ typedef struct _RequestBuffer {
+     DWORD       RB_PCBIndex; 
+     ReqTypes    RB_Reqtype;  
+     DWORD       RB_Dummy;
+     DWORD       RB_Done;
+     LONGLONG    Alignment;
+     BYTE        RB_Buffer[1];
+ } RequestBuffer;
+ typedef struct DeviceConfigInfo
+ {
+     DWORD           retcode;
+     DWORD           dwVersion;
+     DWORD           cbBuffer;
+     DWORD           cEntries;
+     BYTE            abdata[1];
+ } DeviceConfigInfo;
+ typedef struct _RAS_DEVICE_INFO
+ {
+     DWORD           dwVersion;
+     BOOL            fWrite;
+     BOOL            fRasEnabled;
+     BOOL            fRouterEnabled;
+     BOOL            fRouterOutboundEnabled;
+     DWORD           dwTapiLineId;
+     DWORD           dwError;
+     DWORD           dwNumEndPoints;
+     DWORD           dwMaxOutCalls;
+     DWORD           dwMaxInCalls;
+     DWORD           dwMinWanEndPoints;
+     DWORD           dwMaxWanEndPoints;
+     RASDEVICETYPE   eDeviceType;
+     GUID            guidDevice;
+     CHAR            szPortName[17];
+     CHAR            szDeviceName[129];
+     WCHAR           wszDeviceName[129];
+ } RAS_DEVICE_INFO, *PRAS_DEVICE_INFO;
+  
+  
+ typedef struct _RAS_CALLEDID_INFO
+ {
+     DWORD           dwSize;
+     BYTE            bCalledId[1];
+ } RAS_CALLEDID_INFO, *PRAS_CALLEDID_INFO;
+  
+ typedef struct GetSetCalledId
+ {
+     DWORD               retcode;
+     BOOL                fWrite;
+     DWORD               dwSize;
+     GUID                guidDevice;
+     RAS_DEVICE_INFO     rdi;
+     RAS_CALLEDID_INFO   rciInfo;
+ } GetSetCalledId;
+  
+ typedef struct _RAS_NDISWAN_DRIVER_INFO
+ {
+     ULONG   DriverCaps;
+     ULONG   Reserved;
+ } RAS_NDISWAN_DRIVER_INFO, *P_NDISWAN_DRIVER_INFO;
+  
+ typedef struct GetNdiswanDriverCapsStruct
+ {
+     DWORD                   retcode;
+     RAS_NDISWAN_DRIVER_INFO NdiswanDriverInfo;
+ } GetNdiswanDriverCapsStruct;
+  
+ typedef struct GetDevConfigStruct
+ {
+     DWORD  retcode;
+     CHAR   devicetype[17];
+     DWORD  size;
+     BYTE   config[1];
+  
+ } GetDevConfigStruct;
+  
+ typedef     struct Enum
+ {
+     DWORD   retcode;
+     DWORD   size;
+     DWORD   entries;
+     BYTE    buffer[1];
+ } Enum;
+  
+ typedef struct _RASMAN_PORT_32 {
+     DWORD P_Port;
+     CHAR P_PortName[16];
+     RASMAN_STATUS P_Status;
+     RASDEVICETYPE P_rdtDeviceType;
+     RASMAN_USAGE P_ConfiguredUsage;
+     RASMAN_USAGE P_CurrentUsage;
+     CHAR P_MediaName[16];
+     CHAR P_DeviceType[16];
+     CHAR P_DeviceName[129];
+     DWORD P_LineDeviceId;
+     DWORD P_AddressId;
+ } RASMAN_PORT_32;
+  
+ typedef struct _RASMAN_INFO {
+     RASMAN_STATUS   RI_PortStatus;
+     RASMAN_STATE    RI_ConnState;
+     DWORD           RI_LinkSpeed;
+     DWORD           RI_LastError;
+     RASMAN_USAGE    RI_CurrentUsage;
+     CHAR            RI_DeviceTypeConnecting [16];
+     CHAR            RI_DeviceConnecting [129];
+     CHAR            RI_szDeviceType[16];
+     CHAR            RI_szDeviceName[129];
+     CHAR            RI_szPortName[17];
+     RASMAN_DISCONNECT_TYPE    RI_DisconnectType;
+     DWORD           RI_OwnershipFlag;
+     DWORD           RI_ConnectDuration;
+     DWORD           RI_BytesReceived;
+     CHAR            RI_Phonebook[261];
+     CHAR            RI_PhoneEntry[257];
+     HANDLE          RI_ConnectionHandle;
+     DWORD           RI_SubEntry;
+     RASDEVICETYPE   RI_rdtDeviceType;
+     GUID            RI_GuidEntry;    
+     DWORD           RI_dwSessionId;
+     DWORD           RI_dwFlags;
+     GUID            RI_CorrelationGuid;
+ }RASMAN_INFO;
+  
+ typedef struct Info
+ {
+     union {
+         DWORD         retcode;
+         HANDLE        paddingField;
+     };
+     RASMAN_INFO   info;
+ } Info;
+  
+  
+ #define RASRPC_MaxEntryName    256
+ #define RASRPC_MaxPortName     16
+ #define RASRPC_MaxDeviceName   128
+ #define RASRPC_MaxPhoneNumber  128
+ #define RASRPC_MAX_PATH        260
+  
+ typedef struct _RASRPC_CALLBACKLIST
+ {
+     WCHAR pszPortName[RASRPC_MaxPortName + 1];
+     WCHAR pszDeviceName[RASRPC_MaxDeviceName + 1];
+     WCHAR pszNumber[RASRPC_MaxPhoneNumber + 1];
+     DWORD dwDeviceType;
+     [unique] struct _RASRPC_CALLBACKLIST *pNext;
+ } RASRPC_CALLBACKLIST, *LPRASRPC_CALLBACKLIST;
+  
+ typedef struct _RASRPC_STRINGLIST
+ {
+     WCHAR psz[256];
+     [unique] struct _RASRPC_STRINGLIST *pNext;
+ } RASRPC_STRINGLIST, *LPRASRPC_STRINGLIST;
+  
+ typedef struct _RASRPC_LOCATIONLIST
+ {
+     DWORD dwLocationId;
+     DWORD iPrefix;
+     DWORD iSuffix;
+     [unique] struct _RASRPC_LOCATIONLIST *pNext;
+ } RASRPC_LOCATIONLIST, *LPRASRPC_LOCATIONLIST;
+  
+ typedef struct _RASRPC_PBUSER
+ {
+     BOOL fOperatorDial;
+     BOOL fPreviewPhoneNumber;
+     BOOL fUseLocation;
+     BOOL fShowLights;
+     BOOL fShowConnectStatus;
+     BOOL fCloseOnDial;
+     BOOL fAllowLogonPhonebookEdits;
+     BOOL fAllowLogonLocationEdits;
+     BOOL fSkipConnectComplete;
+     BOOL fNewEntryWizard;
+     DWORD dwRedialAttempts;
+     DWORD dwRedialSeconds;
+     DWORD dwIdleDisconnectSeconds;
+     BOOL fRedialOnLinkFailure;
+     BOOL fPopupOnTopWhenRedialing;
+     BOOL fExpandAutoDialQuery;
+     DWORD dwCallbackMode;
+     [unique] LPRASRPC_CALLBACKLIST pCallbacks;
+     WCHAR pszLastCallbackByCaller[129];
+     DWORD dwPhonebookMode;
+     WCHAR pszPersonalFile[260];
+     WCHAR pszAlternatePath[260];
+     [unique] LPRASRPC_STRINGLIST pPhonebooks;
+     [unique] LPRASRPC_STRINGLIST pAreaCodes;
+     BOOL fUseAreaAndCountry;
+     [unique] LPRASRPC_STRINGLIST pPrefixes;
+     [unique] LPRASRPC_STRINGLIST pSuffixes;
+     [unique] LPRASRPC_LOCATIONLIST pLocations;
+     DWORD dwXPhonebook;
+     DWORD dwYPhonebook;
+     WCHAR pszDefaultEntry[257];
+     BOOL fInitialized;
+     BOOL fDirty;
+ } RASRPC_PBUSER, *LPRASRPC_PBUSER;
+  
+  
+  
+  
+ [
+     uuid(8f09f000-b7ed-11ce-bbd2-00001a181cad),
+     version(0.0),
+     pointer_default(unique)
+ ]
+  
+  
+  
+ interface dimsvc
+ {
+     
+     
+     DWORD
+     RMprAdminServerGetInfo (
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       dwLevel,
+         [out]               PDIM_INFORMATION_CONTAINER  pInfoStruct
+         );
+     
+     
+     
+     DWORD
+     RRasAdminConnectionEnum (
+         [in]              DIM_HANDLE                  hDimServer,
+         [in]              DWORD                       dwLevel,
+         [in,out]          PDIM_INFORMATION_CONTAINER  pInfoStruct,
+         [in]              DWORD                       dwPreferedMaximumLength,
+         [out]             LPDWORD                     lpdwEntriesRead,
+         [out]             LPDWORD                     lpdwTotalEntries,
+         [in,out,unique]   LPDWORD                     lpdwResumeHandle
+         );
+     
+     
+     
+     DWORD
+     RRasAdminConnectionGetInfo (
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       dwLevel,
+         [in]                DWORD                       hDimConnection,
+         [out]               PDIM_INFORMATION_CONTAINER  pInfoStruct
+         );
+     
+     
+     
+     DWORD
+     RRasAdminConnectionClearStats (
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       hDimConnection
+         );
+     
+     
+     
+     DWORD
+     RRasAdminPortEnum (
+         [in]                DIM_HANDLE                 hDimServer,
+         [in]                DWORD                      dwLevel,
+         [in]                DWORD                      hRasConnection,
+         [in,out]            PDIM_INFORMATION_CONTAINER pInfoStruct,
+         [in]        DWORD                       dwPreferedMaximumLength,
+         [out]               LPDWORD                    lpdwEntriesRead,
+         [out]              LPDWORD                     lpdwTotalEntries,
+         [in,out,unique]     LPDWORD                    lpdwResumeHandle
+         );
+     
+     
+     
+     DWORD
+     RRasAdminPortGetInfo (
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       dwLevel,
+         [in]                DWORD                       hPort,
+         [out]               PDIM_INFORMATION_CONTAINER  pInfoStruct
+         );
+     
+     
+     
+     DWORD
+     RRasAdminPortClearStats (
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       hPort
+         );
+     
+     
+     DWORD 
+     RRasAdminPortReset (
+         [in]                DIM_HANDLE                 hDimServer,
+         [in]                DWORD                      hPort
+         );
+  
+  
+     DWORD
+     RRasAdminPortDisconnect (
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       hPort
+         );
+     
+     
+     
+     DWORD
+     RRouterInterfaceTransportSetGlobalInfo(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       dwTransportId,
+         [in]                PDIM_INTERFACE_CONTAINER    pInfoStruct
+         );
+     
+     
+     
+     DWORD
+     RRouterInterfaceTransportGetGlobalInfo(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       dwTransportId,
+         [in,out]            PDIM_INTERFACE_CONTAINER    pInfoStruct
+         );
+     
+     
+     
+     DWORD
+     RRouterInterfaceGetHandle(
+         [in]                DIM_HANDLE          hDimServer,
+         [in,string]         LPWSTR              lpwsInterfaceName,
+         [in,out]            LPDWORD             phInterface,
+         [in]                DWORD               fIncludeClientInterfaces
+         );
+     
+     
+     
+     DWORD
+     RRouterInterfaceCreate(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       dwLevel,
+         [in]                PDIM_INFORMATION_CONTAINER  pInfoStruct,
+         [in,out]            LPDWORD                     phInterface
+         );
+     
+     
+     
+     DWORD
+     RRouterInterfaceGetInfo(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       dwLevel,
+         [in,out]            PDIM_INFORMATION_CONTAINER  pInfoStruct,
+         [in]                DWORD                       hInterface
+         );
+     
+     
+     
+     DWORD
+     RRouterInterfaceSetInfo(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       dwLevel,
+         [in]                PDIM_INFORMATION_CONTAINER  pInfoStruct,
+         [in]                DWORD                       hInterface
+         );
+     
+     
+     
+     DWORD
+     RRouterInterfaceDelete(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       hInterface
+         );
+     
+     
+     
+     DWORD
+     RRouterInterfaceTransportRemove(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       hInterface,
+         [in]                DWORD                       dwTransportId
+         );
+     
+     
+     
+     DWORD
+     RRouterInterfaceTransportAdd(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       hInterface,
+         [in]                DWORD                       dwTransportId,
+         [in]                PDIM_INTERFACE_CONTAINER    pInfoStruct
+         );
+     
+     
+     
+     DWORD
+     RRouterInterfaceTransportGetInfo(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       hInterface,
+         [in]                DWORD                       dwTransportId,
+         [in,out]            PDIM_INTERFACE_CONTAINER    pInfoStruct
+         );
+     
+     
+     
+     DWORD
+     RRouterInterfaceTransportSetInfo(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       hInterface,
+         [in]                DWORD                       dwTransportId,
+         [in]                PDIM_INTERFACE_CONTAINER    pInfoStruct
+         );
+     
+     
+     
+     DWORD
+     RRouterInterfaceEnum (
+         [in]                DIM_HANDLE                 hDimServer,
+         [in]                DWORD                      dwLevel,
+         [in,out]            PDIM_INFORMATION_CONTAINER pInfoStruct,
+         [in]                DWORD               dwPreferedMaximumLength,
+         [out]               LPDWORD                    lpdwEntriesRead,
+         [out]               LPDWORD                    lpdwTotalEntries,
+         [in,out,unique]     LPDWORD                    lpdwResumeHandle
+         );
+     
+     
+     
+     DWORD
+     RRouterInterfaceConnect(
+         [in]                DIM_HANDLE                hDimServer,
+         [in]                DWORD                     hInterface,
+         [in]                ULONG_PTR                 hEvent,
+         [in]                DWORD                     fBlocking,
+         [in]                DWORD                     dwCallersProcessId
+         );
+     
+     
+     
+     DWORD
+     RRouterInterfaceDisconnect(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       hInterface
+         );
+     
+     
+     
+     DWORD
+     RRouterInterfaceUpdateRoutes(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       hInterface,
+         [in]                DWORD                       dwTransportId,
+         [in]                ULONG_PTR                   hEvent,
+         [in]                DWORD                       dwClientProcessId
+     );
+     
+     
+     
+     DWORD
+     RRouterInterfaceQueryUpdateResult(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       hInterface,
+         [in]                DWORD                       dwTransportId,
+         [out]               LPDWORD                     pUpdateResult
+     );
+     
+     
+     
+     DWORD
+     RRouterInterfaceUpdatePhonebookInfo(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       hInterface
+         );
+     
+     
+     
+     DWORD
+     RMIBEntryCreate(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       dwPid,
+         [in]                DWORD                       dwRoutingPid,
+         [in]                PDIM_MIB_ENTRY_CONTAINER    pInfoStuct
+     );
+     
+     
+     
+     DWORD
+     RMIBEntryDelete(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       dwPid,
+         [in]                DWORD                       dwRoutingPid,
+         [in]                PDIM_MIB_ENTRY_CONTAINER    pInfoStuct
+     );
+     
+     
+     
+     DWORD
+     RMIBEntrySet(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       dwPid,
+         [in]                DWORD                       dwRoutingPid,
+         [in]                PDIM_MIB_ENTRY_CONTAINER    pInfoStuct
+     );
+     
+     
+     
+     DWORD 
+     RMIBEntryGet(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       dwPid,
+         [in]                DWORD                       dwRoutingPid,
+         [in,out]            PDIM_MIB_ENTRY_CONTAINER    pInfoStuct
+     );
+     
+     
+     
+     DWORD
+     RMIBEntryGetFirst(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       dwPid,
+         [in]                DWORD                       dwRoutingPid,
+         [in,out]            PDIM_MIB_ENTRY_CONTAINER    pInfoStuct
+     );
+     
+     
+     
+     DWORD
+     RMIBEntryGetNext(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       dwPid,
+         [in]                DWORD                       dwRoutingPid,
+         [in,out]            PDIM_MIB_ENTRY_CONTAINER    pInfoStuct
+     );
+    
+     DWORD 
+     RMIBGetTrapInfo( 
+         [in]                DIM_HANDLE                   hDimServer, 
+         [in]                DWORD                        dwPid, 
+         [in]                DWORD                        dwRoutingPid, 
+         [in, out]           PDIM_MIB_ENTRY_CONTAINER     pInfoStruct 
+     );
+  
+  
+  
+  
+     DWORD
+     RMIBSetTrapInfo( 
+         [in]                DIM_HANDLE                  hDimServer, 
+         [in]                DWORD                       dwPid, 
+         [in]                DWORD                       dwRoutingPid, 
+         [in]                ULONG_PTR                   hEvent, 
+         [in]                DWORD                       dwClientProcessId, 
+         [in, out]           PDIM_MIB_ENTRY_CONTAINER    pInfoStruct 
+     );
+  
+  
+  
+     DWORD 
+     RRasAdminConnectionNotification( 
+         [in]                DIM_HANDLE                   hDimServer, 
+         [in]                DWORD                        fRegister, 
+         [in]                DWORD                        dwClientProcessId, 
+         [in]                ULONG_PTR                    hEventNotification 
+     );
+  
+  
+  
+     DWORD
+     RRasAdminSendUserMessage(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       hDimConnection,
+         [in,string]         LPWSTR                      lpwszMessage
+         );
+     
+     
+     
+     DWORD 
+     RRouterDeviceEnum( 
+         [in]                DIM_HANDLE                  hDimServer, 
+         [in]                DWORD                       dwLevel, 
+         [in, out]           PDIM_INFORMATION_CONTAINER  pInfoStruct, 
+         [in, out]           LPDWORD                     lpdwTotalEntries
+     );
+  
+  
+  
+     DWORD 
+     RRouterInterfaceTransportCreate( 
+         [in]                DIM_HANDLE                   hDimServer, 
+         [in]                DWORD                        dwTransportId,
+         [in, string]        LPWSTR                       lpwsTransportName, 
+         [in]                PDIM_INTERFACE_CONTAINER   pInfoStruct, 
+         [in, string]        LPWSTR                       lpwsDLLPath 
+     );
+  
+  
+  
+     DWORD 
+     RRouterInterfaceDeviceGetInfo( 
+         [in]              DIM_HANDLE                     hDimServer, 
+         [in]              DWORD                          dwLevel, 
+         [in, out]         PDIM_INFORMATION_CONTAINER     pInfoStruct, 
+         [in]              DWORD                          dwIndex, 
+         [in]              DWORD                          hInterface 
+     );
+  
+  
+  
+     DWORD 
+     RRouterInterfaceDeviceSetInfo( 
+         [in]              DIM_HANDLE                     hDimServer, 
+         [in]              DWORD                          dwLevel, 
+         [in]              PDIM_INFORMATION_CONTAINER     pInfoStruct, 
+         [in]              DWORD                          dwIndex, 
+         [in]              DWORD                          hInterface 
+     );
+  
+  
+  
+     DWORD
+     RRouterInterfaceSetCredentialsEx(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       dwLevel,
+         [in]                PDIM_INFORMATION_CONTAINER  pInfoStruct,
+         [in]                DWORD                       hInterface
+         );
+    
+     
+     DWORD
+     RRouterInterfaceGetCredentialsEx(
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       dwLevel,
+         [in,out]            PDIM_INFORMATION_CONTAINER  pInfoStruct,
+         [in]                DWORD                       hInterface
+         );
+     
+   
+     DWORD 
+     RRasAdminConnectionRemoveQuarantine( 
+         [in]                DIM_HANDLE                  hDimServer,
+         [in]                DWORD                       hRasConnection, 
+         [in]                BOOL                        fIsIpAddress 
+     );
+  
+  
+  
+     DWORD
+     RMprAdminServerSetInfo(
+         [in]                 DIM_HANDLE                   hDimServer, 
+         [in]                 DWORD                        dwLevel, 
+         [in]                 PDIM_INFORMATION_CONTAINER   pInfoStruct 
+     );
+  
+  
+  
+     DWORD
+     RMprAdminServerGetInfoEx(
+         [in]                 DIM_HANDLE                    hDimServer, 
+         [in, out]            PMPR_SERVER_EX_IDL            pServerConfig 
+ ); 
+  
+  
+  
+ DWORD
+ RRasAdminConnectionEnumEx (
+     [in]                                    DIM_HANDLE                  hDimServer,
+     [in]                                    PMPRAPI_OBJECT_HEADER_IDL   objectHeader,
+     [in]                                    DWORD                       dwPreferedMaxLen,
+     [out]                                   LPDWORD                     lpdwEntriesRead,
+     [out]                                   LPDWORD                     lpdNumTotalElements,
+     [out, size_is(,*lpdwEntriesRead)]       PRAS_CONNECTION_EX_IDL      *pRasConections,
+     [in,out,unique]                         LPDWORD                     lpdwResumeHandle);
+  
+  
+ DWORD
+ RRasAdminConnectionGetInfoEx (
+     [in]                DIM_HANDLE                  hDimServer,
+     [in]                DWORD                       hDimConnection,
+     [in]                PMPRAPI_OBJECT_HEADER_IDL   objectHeader,
+     [out]               PRAS_CONNECTION_EX_IDL      pRasConnection
+     );
+  
+  
+ DWORD
+ RMprAdminServerSetInfoEx (
+     [in]                DIM_HANDLE                          hDimServer,
+     [in]                PMPR_SERVER_SET_CONFIG_EX_IDL       pServerConfig);
+  
+  
+ DWORD
+ RRasAdminUpdateConnection(
+     [in]            DIM_HANDLE                  hDimServer,
+     [in]            DWORD                       hDimConnection,
+     [in]            PRAS_UPDATE_CONNECTION_IDL  pServerConfig);
+  
+  
+ DWORD
+ RRouterInterfaceSetCredentialsLocal(
+     [in]            DIM_HANDLE                 hDimServer,
+     [in,string]     LPWSTR                     lpwsInterfaceName,
+     [in,string]     LPWSTR                     lpwsUserName,
+     [in,string]     LPWSTR                     lpwsDomainName,
+     [in,string]     LPWSTR                     lpwsPassword);
+     
+ DWORD
+ RRouterInterfaceGetCredentialsLocal(
+     [in]            DIM_HANDLE                 hDimServer,
+     [in,string]     LPWSTR                     lpwsInterfaceName,
+     [out] [string]  LPWSTR                     *lpwsUserName,
+     [out] [string]  LPWSTR                     *lpwsDomainName,
+     [out] [string]  LPWSTR                     *lpwsPassword);
+  
+ DWORD
+ RRouterInterfaceGetCustomInfoEx(
+     [in]                DIM_HANDLE                  hDimServer,
+     [in]                DWORD                       hInterface,
+     [in,out]            PMPR_IF_CUSTOMINFOEX_IDL    pIfCustomConfig
+     );
+     
+ DWORD
+ RRouterInterfaceSetCustomInfoEx(
+     [in]                DIM_HANDLE                  hDimServer,
+     [in]                DWORD                       hInterface,
+     [in,out]            PMPR_IF_CUSTOMINFOEX_IDL    pIfCustomConfig
+     );
+ }
+  
+  
+ [
+ uuid(20610036-fa22-11cf-9823-00a0c911e5df),
+ version(1.0)
+ ]
+  
+ interface rasrpc
+ {
+  
+ void Opnum0NotUsedOnWire(void);
+  
+ void Opnum1NotUsedOnWire(void);
+  
+ void Opnum2NotUsedOnWire(void);
+  
+ void Opnum3NotUsedOnWire(void);
+  
+ void Opnum4NotUsedOnWire(void);
+  
+  
+ DWORD
+ RasRpcDeleteEntry(
+     [in] handle_t h,
+     [in, string] LPWSTR lpszPhonebook,
+     [in, string] LPWSTR lpszEntry
+     );
+  
+ void Opnum6NotUsedOnWire(void);
+  
+ void Opnum7NotUsedOnWire(void);
+  
+ void Opnum8NotUsedOnWire(void);
+  
+ DWORD
+ RasRpcGetUserPreferences(
+     [in] handle_t h,
+     [in, out] LPRASRPC_PBUSER pUser,
+     [in] DWORD dwMode
+     );
+  
+ DWORD
+ RasRpcSetUserPreferences(
+     [in] handle_t h,
+     [in] LPRASRPC_PBUSER pUser,
+     [in] DWORD dwMode
+     );
+  
+ UINT
+ RasRpcGetSystemDirectory(
+     [in] handle_t h,
+     [in, out, string, size_is(uSize)] LPWSTR lpBuffer,
+     [in, range(0, RASRPC_MAX_PATH)] UINT uSize
+     );
+  
+  
+ DWORD
+ RasRpcSubmitRequest (
+     [in] handle_t h,
+     [in, out, unique, size_is(dwcbBufSize)] PBYTE pReqBuffer,
+     [in] DWORD dwcbBufSize
+     );
+  
+ void Opnum13NotUsedOnWire(void);
+  
+ DWORD
+ RasRpcGetInstalledProtocolsEx(
+     [in] handle_t h,
+     [in] BOOL fRouter,
+     [in] BOOL fRasCli,
+     [in] BOOL fRasSrv
+     );    
+  
+ DWORD
+ RasRpcGetVersion(
+     [in] handle_t h,
+     [in, out, ref] LPDWORD pdwVersion
+ );
+  
+ void Opnum16NotUsedOnWire(void);
+ }
+ [
+     uuid(66a2db1b-d706-11d0-a37b-00c04fc9da04),
+     helpstring("IRemoteNetworkConfig Interface"),
+     pointer_default(unique)
+ ]
+ interface IRemoteNetworkConfig : IUnknown
+ {
+     HRESULT UpgradeRouterConfig();
+     HRESULT SetUserConfig(
+         [in] LPCOLESTR pszService,
+         [in] LPCOLESTR pszNewGroup
+     );
+ };
+  
+  
+ [
+     uuid(66a2db20-d706-11d0-a37b-00c04fc9da04),
+     helpstring("IRemoteRouterRestart Interface"),
+     pointer_default(unique)
+ ]
+ interface IRemoteRouterRestart : IUnknown
+ {
+     HRESULT RestartRouter(
+         [in] DWORD dwFlags
+     );
+ };
+  
+  
+ [
+     uuid(66a2db21-d706-11d0-a37b-00c04fc9da04),
+     helpstring("IRemoteSetDnsConfig Interface"),
+     pointer_default(unique)
+ ]
+ interface IRemoteSetDnsConfig : IUnknown
+ {
+     HRESULT SetDnsConfig(
+         [in] DWORD dwConfigId,
+         [in] DWORD dwNewValue
+     );
+ };
+  
+  
+ [
+     uuid(66a2db22-d706-11d0-a37b-00c04fc9da04),
+     helpstring("IRemoteICFICSConfig Interface"),
+     pointer_default(unique)
+ ]
+ interface IRemoteICFICSConfig : IUnknown
+ {
+     //The following methods are for determining if 
+     // ICF/ICS is enabled on any connection
+     HRESULT GetIcfEnabled(
+         [out] BOOL * status
+     );
+     HRESULT GetIcsEnabled(
+         [out] BOOL * status
+     );
+ };
+  
+ [
+     uuid(67e08fc2-2984-4b62-b92e-fc1aae64bbbb),
+     helpstring("IRemoteStringIdConfig Interface"),
+     pointer_default(unique)
+ ]
+ interface IRemoteStringIdConfig : IUnknown
+ {
+     HRESULT GetStringFromId([in] UINT stringId, [out] BSTR * pBstrName);
+ };
+  
+ [
+     uuid(6139d8a4-e508-4ebb-bac7-d7f275145897),
+     helpstring("IRemoteIPV6Config Interface"),
+     pointer_default(unique)
+ ]
+ interface IRemoteIPV6Config : IUnknown
+ {
+     typedef struct tagIPV6Address
+     {
+         unsigned char bytes[16];
+     }IPV6Address;
+  
+     HRESULT GetAddressList(
+         [in, string] wchar_t *pszInterfaceName, 
+         [out] DWORD *pdwNumAddresses,  
+         [out, size_is(, *pdwNumAddresses)] IPV6Address **ppIPV6AddressList,
+         [in] DWORD dwIfIndex
+     );
+ };
+  
+ [
+     uuid(5ff9bdf6-bd91-4d8b-a614-d6317acc8dd8),
+     helpstring("IRemoteSstpCertCheck Interface"),
+     pointer_default(unique)
+ ]
+ interface IRemoteSstpCertCheck : IUnknown
+ {
+ //#define PCWSTR      [string] const wchar_t*
+ typedef [string] wchar_t* PCWSTR;
+  
+     HRESULT CheckIfCertificateAllowedRR(
+         [in] PCWSTR adminCertName, 
+         [in, out] PSSTP_CERT_INFO_1 certSha1,
+         [in, out] PSSTP_CERT_INFO_1 certSha256
+     );
+};

@@ -1,0 +1,40 @@
+<div class="content"><p>This method is called by a client to get a list of <a href="3f01a312-3391-4109-a96e-95358babf191#gt_791190e6-1e02-42cb-bd25-5aee3ab516ed" data-linktype="relative-path">instance containers</a> for a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_ea5c531f-5dd5-43aa-9da1-2ae068c622db" data-linktype="relative-path">conglomeration</a>, or to get a
+list of all running instance containers.</p><dl>
+<dd>
+<div><pre> HRESULT GetRunningContainers(
+   [in] GUID* PartitionId,
+   [in] GUID* ConglomerationId,
+   [out] DWORD* pdwNumContainers,
+   [out, size_is(,*pdwNumContainers)] 
+     InstanceContainer** ppContainers
+ );
+</pre></div>
+</dd></dl><p><b>PartitionId:</b> The <a href="3f01a312-3391-4109-a96e-95358babf191#gt_9587a9d3-3fd7-45c6-aab1-c74ff17a22b7" data-linktype="relative-path">partition identifier</a> of a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a>.</p><p><b>ConglomerationId:</b> The <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0ab5119e-c719-4a5c-9198-55a0a2fb508a" data-linktype="relative-path">conglomeration identifier</a>
+of a conglomeration, or <a href="3f01a312-3391-4109-a96e-95358babf191#gt_b9d97d88-9398-4450-9e92-247073ce0362" data-linktype="relative-path">GUID_NULL</a>
+for all instance containers.</p><p><b>pdwNumContainers: </b>A pointer to a variable
+that, upon successful completion, MUST be set to the number of elements in <i>ppContainers</i>.</p><p><b>ppContainers:</b> An array of <a href="24094dc0-325f-4692-b0dc-f73af34021fb" data-linktype="relative-path">InstanceContainer (section 2.2.9)</a>
+structures, each of which represents an instance container for the
+conglomeration specified in <i>ConglomerationId</i>.</p><p><b>Return Values:</b> This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server MUST
+attempt to select instance containers as follows:</p><ul><li><p><span><span> 
+</span></span>If <i>ConglomerationId</i> is GUID_NULL, the server MUST attempt
+to select all instance containers, and fail if it cannot.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ConglomerationId</i> is not GUID_NULL, the server MAY
+verify that there exists a conglomeration with the conglomeration identifier
+specified in <i>ConglomerationId</i> in the partition identified by <i>PartitionId</i>,
+and fail the call if not.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ConglomerationId</i> is not GUID_NULL, the server MUST
+attempt to select all instance containers for the conglomeration identifier
+specified in <i>ConglomerationId</i>, and fail the call if it cannot.</p>
+</li></ul><p>If no such instance containers exist, the server SHOULD set
+the value referenced by <i>pdwNum</i> to 0 and the value referenced by <i>ppContainers</i>
+to NULL, and return S_OK (0x00000000). In particular, the server MUST NOT fail
+the call because there are no such instance containers.</p><p>Otherwise, the server MUST attempt to construct an array of
+InstanceContainer (section 2.2.9) structures for the instance
+containers, and fail the call if it cannot.</p><p>The server then MUST set the value referenced by <i>pdwNum</i>
+to the number of instance containers, and the value referenced by <i>ppContainers</i>
+to the constructed InstanceContainer structures.</p></div>

@@ -1,0 +1,312 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/326dce1b-b173-47f7-bfd3-f94464a30d07" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_SHARED_VOLUME_STATE_INFO_EX</b> structure<a id="Appendix_A_Target_30"></a><a aria-label="Product behavior note 30" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_30" data-linktype="relative-path">&lt;30&gt;</a> contains information about the
+cluster shared <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a>
+for which a notification was generated. See <b>CLUSTER_CHANGE_SHARED_VOLUME_V2</b>
+(section <a href="f84ad01b-d0e5-4dc1-945c-4c39d90fab13" data-linktype="relative-path">2.2.2.21</a>) for
+details.</p><p><b>CLUSTER_SHARED_VOLUME_STATE_INFO_EX</b> is a
+custom-marshaled structure that has fields as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szVolumeName
+  (520 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szNodeName
+  (520 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>VolumeState</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szVolumeFriendlyName
+  (520 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RedirectedIOReason</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BlockRedirectedIOReason</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>szVolumeName (520 bytes): </b>A buffer of 16-bit <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> characters that
+MUST contain the null-terminated name of the volume in the volume <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> format. For example:  </p><dl>
+<dd>
+<div><pre> \\?\Volume{00000000-0000-0000-0000-000000000000}\
+</pre></div>
+</dd>
+<dd>
+<p>The buffer MUST be padded with additional null
+characters from the end of the volume name plus null-termination to the end of
+the buffer. The client MUST ignore any such padding.</p>
+</dd></dl><p><b>szNodeName (520 bytes): </b>A buffer of 16-bit
+Unicode characters representing the name of the node that generated the
+notification. This buffer MUST contain the node name as a null-terminated <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a>. If the node
+name is less than the size of the buffer, the string MUST be padded with null
+characters. Any such padding MUST be ignored.</p><p><b>VolumeState (4 bytes): </b>A 32-bit integer that
+MUST contain one of the following values, indicating the state of the cluster
+shared volume:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SharedVolumeStateUnavailable</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The shared volume is unavailable.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SharedVolumeStatePaused</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The shared volume is paused.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SharedVolumeStateActive</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The shared volume is active.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SharedVolumeStateActiveRedirected</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The shared volume is active and in redirected mode.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SharedVolumeStateActiveBlockRedirected</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The shared volume is active and in block redirected
+  mode.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>szVolumeFriendlyName (520 bytes): </b>A buffer of
+16-bit Unicode characters that MUST contain the name of the cluster shared
+volume for which the notification was generated. This buffer MUST contain the
+name as a null-terminated Unicode string. If the volume name is less than the
+size of the buffer, the string MUST be padded with null characters. The client
+MUST ignore any such padding.</p><p><b>RedirectedIOReason (8 bytes): </b>A 64-bit integer
+that MUST contain the bitwise OR of one or more of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>RedirectedIOReasonNotRedirected</p>
+  <p>0x0000000000000000</p>
+  </td>
+  <td>
+  <p>Indicates that the cluster shared volume redirected
+  mode is FALSE.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RedirectedIOReasonUserRequest</p>
+  <p>0x0000000000000001</p>
+  </td>
+  <td>
+  <p>Indicates that the cluster shared volume redirected
+  mode is TRUE due to a client request, such as via the <b>CLUSCTL_RESOURCE_DISABLE_SHARED_VOLUME_DIRECTIO</b>
+  (section <a href="6ca7c89c-3d5a-47b4-b842-fa8b520ae5f4" data-linktype="relative-path">3.1.4.3.1.53</a>)
+  method.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RedirectedIOReasonIncompatibleFileSystemFilter</p>
+  <p>0x0000000000000002</p>
+  </td>
+  <td>
+  <p>Indicates that the cluster shared volume redirected
+  mode is TRUE due to an incompatible component that is configured with a file
+  system of the storage-class resource associated with the cluster shared
+  volume. What the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+  considers an incompatible component and how the server identifies the
+  incompatible component are implementation-specific.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RedirectedIOReasonIncompatibleVolumeFilter</p>
+  <p>0x0000000000000004</p>
+  </td>
+  <td>
+  <p>Indicates that the cluster shared volume redirected
+  mode is TRUE due to an incompatible component configured with a volume of the
+  storage-class resource associated with the cluster shared volume. What the
+  server considers an incompatible component and how the server identifies the
+  incompatible component are implementation-specific.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RedirectedIOReasonFileSystemConfiguration</p>
+  <p>0x0000000000000008</p>
+  </td>
+  <td>
+  <p>Indicates that the cluster shared volume redirected
+  mode is TRUE due to the configuration of the file system of the storage-class
+  resource associated with the cluster shared volume. What the server considers
+  a valid file system configuration for redirected mode and how the server
+  identifies the valid configuration are implementation-specific.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RedirectedIOReasonVolumeEncryption</p>
+  <p>0x0000000000000010</p>
+  </td>
+  <td>
+  <p>Indicates that the cluster shared volume redirected
+  mode is TRUE due to an encryption operation on the storage object represented
+  by the storage-class resource associated with the cluster shared volume. What
+  constitutes an encryption operation is implementation-specific.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>BlockRedirectedIOReason (8 bytes): </b>A 64-bit
+integer that MUST contain the bitwise OR of one or more of the following
+values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>BlockRedirectedIOReasonNotRedirected</p>
+  <p>0x0000000000000000</p>
+  </td>
+  <td>
+  <p>Indicates that the cluster shared volume block
+  redirected mode is FALSE.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BlockRedirectedIOReasonNoDiskConnectivity</p>
+  <p>0x0000000000000001</p>
+  </td>
+  <td>
+  <p>Indicates that the cluster shared volume block
+  redirected mode is TRUE because the server is not connected to the disk.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BlockRedirectedIOReasonStorageSpaceNotAttached</p>
+  <p>0x0000000000000002</p>
+  </td>
+  <td>
+  <p>Indicates that the cluster shared volume block
+  redirected mode is TRUE because the storage-class resource associated with
+  the cluster shared volume is formed from a storage pool and can only be
+  accessed by the server via network communication to a different node.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

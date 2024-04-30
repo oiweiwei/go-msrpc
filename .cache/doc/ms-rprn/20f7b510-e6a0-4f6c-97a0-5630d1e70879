@@ -1,0 +1,17 @@
+<div class="content"><p>The <b>DOC_INFO_1</b> structure describes a document that is
+printed.</p><dl>
+<dd>
+<div><pre> typedef struct _DOC_INFO_1 {
+   [string] wchar_t* pDocName;
+   [string] wchar_t* pOutputFile;
+   [string] wchar_t* pDatatype;
+ } DOC_INFO_1;
+</pre></div>
+</dd></dl><p><b>pDocName:</b> An optional pointer to a string
+that provides the name of the document. If this member is NULL, the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a> SHOULD use an
+implementation-specific default job name.<a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a></p><p><b>pOutputFile:</b> An optional pointer to a
+string that specifies the name of an output file. For rules governing path
+names, see section <a href="1d75f622-d07c-45cc-bf1e-a6191e408516" data-linktype="relative-path">2.2.4.9</a>.</p><p><b>pDatatype:</b> An optional pointer to a
+string that identifies the type of data used to record the document. For rules
+governing <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_0d327bc0-a461-4723-8beb-d935fdab4895" data-linktype="relative-path">data type</a>
+names, see section <a href="f40cbad0-88dd-4e86-a16b-cf62c3b17c52" data-linktype="relative-path">2.2.4.2</a>.</p></div>

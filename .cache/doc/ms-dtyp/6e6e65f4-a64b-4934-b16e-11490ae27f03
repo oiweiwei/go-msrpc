@@ -1,0 +1,19 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/6e6e65f4-a64b-4934-b16e-11490ae27f03" data-linktype="external">msdn link</a></p><p>The MANDATORY_INFORMATION structure defines mandatory security
+information for a securable object.</p><dl>
+<dd>
+<div><pre> typedef struct _MANDATORY_INFORMATION {
+   ACCESS_MASK AllowedAccess;
+   BOOLEAN WriteAllowed;
+   BOOLEAN ReadAllowed;
+   BOOLEAN ExecuteAllowed;
+   TOKEN_MANDATORY_POLICY MandatoryPolicy;
+ } MANDATORY_INFORMATION,
+  *PMANDATORY_INFORMATION;
+</pre></div>
+</dd></dl><p><b>AllowedAccess:</b>  The <b>AllowedAccess</b>
+member specifies the access mask that is used to encode the user rights to an
+object.</p><p><b>WriteAllowed:</b>  Specifies write
+properties for the object.</p><p><b>ReadAllowed:</b>  Specifies read
+properties for the object.</p><p><b>ExecuteAllowed:</b>  Specifies execution
+properties for the object.</p><p><b>MandatoryPolicy:</b>  Specifies the
+integrity policy for the object.</p></div>

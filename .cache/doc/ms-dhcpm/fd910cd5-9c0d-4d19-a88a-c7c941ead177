@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The <b>DHCP_POL_LOGIC_OPER</b> enumeration contains the
+logical operator used to combine the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_9a1c3bd3-d971-482a-adfe-6f41e427b95f" data-linktype="relative-path">conditions</a></span> of a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_52323544-69e0-4172-8921-2711cbda988e" data-linktype="relative-path">policy</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum {
+     DhcpLogicalOr,
+     DhcpLogicalAnd,
+ } DHCP_POL_LOGIC_OPER;
+</pre></div>
+</dd></dl><p><b>DhcpLogicalOr: </b>Specifies the OR logical
+operator.</p><p><b>DhcpLogicalAnd: </b>Specifies the AND logical
+operator.</p></div>

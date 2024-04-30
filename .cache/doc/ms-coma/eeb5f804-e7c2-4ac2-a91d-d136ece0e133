@@ -1,0 +1,43 @@
+<div class="content"><p>This method is called by a replication client application to
+request that a server perform the actions necessary to begin a replication
+operation in which the server is a replication target. This typically happens
+after the application has copied import package files for the conglomerations
+to be copied to a replication target file share on the server. As part of the
+handling of the method, the server sets up a replication working directory and
+file share. The server&#39;s handling of the method might also include management
+of replication history and backup state.</p><dl>
+<dd>
+<div><pre> HRESULT BeginReplicationAsTarget(
+   [in] LPCWSTR pwszBaseReplicationDir
+ );
+</pre></div>
+</dd></dl><p><b>pwszBaseReplicationDir: </b>The server&#39;s base
+replication directory path.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server MAY verify
+that <i>pwszBaseReplicationDir</i> is the server&#39;s base replication directory
+path, and fail the call if not.</p><p>The server then MAY<a id="Appendix_A_Target_352"></a><a aria-label="Product behavior note 352" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_352" data-linktype="relative-path">&lt;352&gt;</a>
+attempt to perform implementation-specific management of replication history
+and/or backup state, and fail the call if it cannot do so.</p><p> The server then MUST attempt to set up a replication
+working directory as described in the following steps. This described behavior
+is provided to facilitate the explanation of how the protocol behaves. This
+document does not mandate that implementations adhere to this model as long as
+their external behavior is consistent with that described in this document:</p><ul><li><p><span><span> 
+</span></span>If there already exists a directory whose path is derived from
+the base replication directory path by appending &#34;\ReplicaCurrent&#34;,
+the server MUST attempt to either remove or rename this directory, and fail the
+call if it cannot.</p>
+</li><li><p><span><span> 
+</span></span> The server then MUST attempt to rename the directory whose path
+is derived from the base replication directory path by appending
+&#34;\ReplicaNew&#34; (the directory that previously backed the replication
+target share) such that its new path is derived from the base replication
+directory by appending &#34;\ReplicaCurrent&#34;, and fail the call if it
+cannot.</p>
+</li></ul><p>The server then MUST attempt to create a CIFS file share with
+the name &#34;ReplicaTargetCurrent&#34;, backed by the replication working
+directory, and ensure that the COMA client&#39;s user identity is granted at least
+read access, and fail the call if it cannot. Upon failure at this point in the
+server&#39;s handling of the method call, it is implementation-specific<a id="Appendix_A_Target_353"></a><a aria-label="Product behavior note 353" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_353" data-linktype="relative-path">&lt;353&gt;</a> whether the server attempts
+to perform any cleanup of the actions already performed.</p><p>The server MUST then return success.</p></div>

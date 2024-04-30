@@ -1,0 +1,17 @@
+<div class="content"><p>The SC_RPC_NOTIFY_PARAMS structure<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a> contains the parameters
+associated with the notification information of the service status. </p><dl>
+<dd>
+<div><pre> typedef struct _SC_RPC_NOTIFY_PARAMS {
+   DWORD dwInfoLevel;
+   [switch_is(dwInfoLevel)] union {
+     [case(1)] 
+       PSERVICE_NOTIFY_STATUS_CHANGE_PARAMS_1 pStatusChangeParam1;
+     [case(2)] 
+       PSERVICE_NOTIFY_STATUS_CHANGE_PARAMS_2 pStatusChangeParams;
+   };
+ } SC_RPC_NOTIFY_PARAMS;
+</pre></div>
+</dd></dl><p><b>dwInfoLevel:</b>  A value that indicates
+the version of the notification structure being used.</p><p><b>pStatusChangeParam1:</b>  A <a href="e10de8b2-975e-4659-896b-f9c5bdcc42d5" data-linktype="relative-path">SERVICE_NOTIFY_STATUS_CHANGE_PARAMS_1 (section 2.2.43)</a>
+structure that contains the service status notification information.</p><p><b>pStatusChangeParams:</b>  A <a href="fb661d97-3f84-4e45-abbc-759f19438610" data-linktype="relative-path">SERVICE_NOTIFY_STATUS_CHANGE_PARAMS_2 (section 2.2.44)</a>
+structure that contains the service status notification information.</p></div>

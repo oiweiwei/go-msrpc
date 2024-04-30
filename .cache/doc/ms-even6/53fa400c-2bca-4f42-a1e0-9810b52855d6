@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The UInt64Array structure is defined as follows.</p><dl>
+<dd>
+<div><pre> typedef struct _UInt64Array {
+   [range(0, MAX_RPC_UINT64_ARRAY_COUNT)] 
+     DWORD count;
+   [size_is(count)] DWORD64* ptr;
+ } UInt64Array;
+</pre></div>
+</dd></dl><p><b>count:</b>  A 32-bit unsigned integer
+that contains the number of 64-bit integers pointed to by ptr.</p><p><b>ptr:</b>  A pointer to an array of
+unsigned 64-bit integers.</p></div>

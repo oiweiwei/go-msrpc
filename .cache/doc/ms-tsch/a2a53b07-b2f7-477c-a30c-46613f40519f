@@ -1,0 +1,62 @@
+<div class="content"><p> </p><p>The SchRpcGetInstanceInfo method MUST get information about
+an instance of a running task.</p><dl>
+<dd>
+<div><pre> HRESULT SchRpcGetInstanceInfo(
+   [in] GUID guid,
+   [out, string] wchar_t** pPath,
+   [out] DWORD* pState,
+   [out, string] wchar_t** pCurrentAction,
+   [out, string] wchar_t** pInfo,
+   [out] DWORD* pcGroupInstances,
+   [out, size_is(, *pcGroupInstances)] 
+     GUID** pGroupInstances,
+   [out] DWORD* pEnginePID
+ );
+</pre></div>
+</dd></dl><p><b>guid: </b>MUST contain the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+of the running <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_cbc13b29-4954-4944-8865-eb8a2a550ffa" data-linktype="relative-path">task instance</a></span>.</p><p><b>pPath: </b>MUST be the location where a string
+containing the task&#39;s path is to be returned in the format specified in section
+<span><a href="fa8809c8-4f0f-4c6d-994a-6c10308757c1" data-linktype="relative-path">2.3.11</a></span>.
+If NULL, specifies that the path is not requested.</p><p><b>pState: </b>Location where the state of the
+instance (section <span><a href="1d40a54c-d66f-4671-96d9-3cc84a8a55a1" data-linktype="relative-path">2.3.13</a></span>) is to be
+returned. If NULL, specifies that the state is not requested.</p><p><b>pCurrentAction: </b>MUST be the location where the
+name (id) of the action the task is currently executing is to be returned. If
+NULL, specifies that the current action is not requested.</p><p><b>pInfo: </b>Unused. If non-NULL, the server MUST
+set the string to NULL.</p><p><b>pcGroupInstances: </b>Unused.</p><p><b>pGroupInstances: </b>Unused. If non-NULL, the
+server MUST set the GUID to NULL.</p><p><b>pEnginePID: </b>MUST be the location where the
+Process ID of the process executing the task is to be returned. If NULL,
+specifies that the Process ID is not requested.</p><p><b>Return Values: </b>For more information on return
+codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>, or Win32
+Error Codes in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><p>Upon receipt of the SchRpcGetInstanceInfo, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Return SCHED_E_TASK_NOT_RUNNING if there is no entry in the
+running task list with an instance ID matching the <b>guid</b> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return E_ACCESSDENIED if the caller does not have read access to
+the task.</p>
+</li><li><p><span><span> 
+</span></span>Return the path of the task instance in the <i>pPath</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return the state of the task instance in the <i>pState</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>If the state is TASK_STATE_RUNNING, return the action of the task
+instance in the <i>pCurrentAction</i> parameter. Otherwise, return NULL in the <i>pCurrentAction</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return NULL in the location pointed to by the <i>pInfo</i>
+parameter, if <i>pInfo</i> is non-NULL.</p>
+</li><li><p><span><span> 
+</span></span>Return 0x00000000 in the location pointed to by the <i>pcGroupInstances</i>
+parameter, if <i>pcGroupInstances</i> is non-NULL.</p>
+</li><li><p><span><span> 
+</span></span>Return NULL in the location pointed to by the <i>pGroupInstances</i>
+parameter, if <i>pGroupInstances</i> is non-NULL.</p>
+</li><li><p><span><span> 
+</span></span>Return the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_38a420dd-6f31-456e-ae5c-63ec6905380d" data-linktype="relative-path">PID</a></span> of the task
+instance in the location pointed to by the <i>pEnginePID</i> parameter, if <i>pEnginePID</i>
+is non-NULL.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK.</p>
+</li></ul></div>

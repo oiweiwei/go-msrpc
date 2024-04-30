@@ -1,0 +1,41 @@
+<div class="content"><p> </p><p>The RemoteQMCloseCursor method closes the handle for a
+previously created <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a></span>. The client
+MUST call this method to reclaim resources on the server allocated by the <span><a href="../ms-mqmp/bbf4bc8a-e697-4720-8015-d249a716371d" data-linktype="relative-path">qmcomm:R_QMCreateRemoteCursor</a></span>
+method, as specified in <span><a href="../ms-mqmp/8e379aa2-802d-4fcc-b6a6-6203e4606fa9" data-linktype="relative-path">[MS-MQMP]</a></span>
+section 3.1.4.4.</p><dl>
+<dd>
+<div><pre> HRESULT RemoteQMCloseCursor(
+   [in] handle_t hBind,
+   [in] DWORD hQueue,
+   [in] DWORD hCursor
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST be set to an <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>hQueue: </b> A <span><a href="33b1ac82-69ab-413c-9415-cd6f45d77156#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span> handle value
+upon which the cursor operates.</p><p><b>hCursor: </b>Specifies the cursor handle to be
+closed.</p><p><b>Return Values: </b> The method MUST return MQ_OK
+(0x00000000) on success; otherwise, it MUST return a failure HRESULT, and the
+client MUST treat all failure HRESULTs identically.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>MQ_ERROR_INVALID_HANDLE</b> (0xC00E0007)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown except
+those thrown by the underlying RPC protocol, as specified in [MS-RPCE].</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>For each queue present in the <b>QueueManager.QueueCollection:</b></p>
+<ul><li><p><span><span>  </span></span>For
+each <b>OpenQueueDescriptor</b> in <b>Queue.OpenQueueDescriptorCollection:</b></p>
+<ul><li><p><span><span> 
+</span></span>If <b>OpenQueueDescriptor.Handle</b>= <i>hQueue</i>, use that <b>OpenQueueDescriptor</b>
+for processing.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>For each <b>cursor</b> in <b>OpenQueueDescriptor.CursorCollection:</b></p>
+<ul><li><p><span><span>  </span></span>If <b>Cursor.Handle</b>=
+<i>hCursor</i>, use that <b>cursor</b> object for processing.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <i>hQueue</i> or <i>hCursor</i> is not found, return
+MQ_ERROR_INVALID_HANDLE(0xc00e0007).</p>
+</li><li><p><span><span> 
+</span></span>Generate a <span><a href="../ms-mqdmpr/2a9858ca-518a-4abe-9f06-168931173895" data-linktype="relative-path">Close
+Cursor</a></span> event with the following inputs:</p>
+<ul><li><p><span><span>  </span></span>iCursor:=
+reference to <b>cursor</b> object obtained earlier.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return MQ_OK (0x00000000).</p>
+</li></ul></div>

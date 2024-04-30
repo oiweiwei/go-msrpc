@@ -1,0 +1,10 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/f89840bc-4215-4dc8-9d36-5c1e5fa6a77d" data-linktype="external">msdn link</a></p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrLogonUasLogoff(
+   [in, unique, string] LOGONSRV_HANDLE ServerName,
+   [in, string] wchar_t* UserName,
+   [in, string] wchar_t* Workstation,
+   [out] PNETLOGON_LOGOFF_UAS_INFO LogoffInformation
+ );
+</pre></div>
+</dd></dl></div>

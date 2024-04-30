@@ -1,0 +1,74 @@
+<div class="content"><p>The STATUS_BLOB structure is marshaled to the client using
+the <a href="5958afc1-d38c-4e89-9830-f69fea7e7e4f" data-linktype="relative-path"><b>Status</b></a>
+method over <a href="546d32cd-905e-4f34-b023-2be4b5e16413#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> using an
+<b>unsigned char</b> array. It is up to the client or user code, and not the
+RPC proxy, to interpret this data correctly. The following is a description of
+the data structure that will be found in this array.</p><p>This structure contains an array of <a href="79e856ca-1bd3-4a3e-8f46-b2ce190b4109" data-linktype="relative-path">SERIALIZED_ENUM_SERVICE_STATUS</a>
+objects, as specified in section 2.2.1, which MUST be followed by a set of
+null-terminated <b>WCHAR</b> strings.</p><p>There MUST be exactly one SERIALIZED_ENUM_SERVICE_STATUS and
+two null-terminated <b>WCHAR</b> strings for each service that is being
+reported.</p><p>This structure is used in the <b>Status</b> method, as
+specified in section <b>3.1.4.4</b>.</p><p>The values in this field MUST be present in <a href="546d32cd-905e-4f34-b023-2be4b5e16413#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a> format.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p><span>SERIALIZED_ENUM_SERVICE_STATUS_ARRAY (variable)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p><span>...</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p><span>SERIALIZED_ENUM_SERVICE_STATUS_INFO (variable)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p><span>...</span></p>
+  </td>
+ </tr>
+</tbody></table><p><b>SERIALIZED_ENUM_SERVICE_STATUS_ARRAY (variable): </b>An
+array of SERIALIZED_ENUM_SERVICE_STATUS structures, as specified in section
+2.2.1. This array MUST be of length <i>pdwNumServices</i>, as specified in
+section <b>3.1.4.4</b>.</p><p><b>SERIALIZED_ENUM_SERVICE_STATUS_INFO (variable): </b>A
+set of null-terminated character strings. For each SERIALIZED_ENUM_SERVICE_STATUS
+structure contained in <b>SERIALIZED_ENUM_SERVICE_STATUS_ARRAY</b>, there MUST
+be one string containing the service name and one string containing a display
+name. These strings MUST be present at the offset indicated in the associated <b>SERIALIZED_ENUM_SERVICE_STATUS_ARRAY</b>
+array.</p></div>

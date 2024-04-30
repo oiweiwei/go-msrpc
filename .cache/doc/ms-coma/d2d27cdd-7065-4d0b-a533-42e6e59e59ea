@@ -1,0 +1,6 @@
+<div class="content"><p>The <b>COM+ Remote Administration Protocol (COMA)</b>
+enables remote clients to register, import, remove, configure, control, and
+monitor <a href="3f01a312-3391-4109-a96e-95358babf191#gt_71669ed9-7eaf-4328-9e2e-4d3430f0f9bf" data-linktype="relative-path">components</a> and <a href="3f01a312-3391-4109-a96e-95358babf191#gt_ea5c531f-5dd5-43aa-9da1-2ae068c622db" data-linktype="relative-path">conglomerations</a> for an <a href="3f01a312-3391-4109-a96e-95358babf191#gt_fcda54fb-6671-49fe-a774-99cd2ee6754c" data-linktype="relative-path">Object Request Broker (ORB)</a>.
+The server end of the protocol is a conceptual service that maintains a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0944227d-0566-49e1-989f-2fff6e02542d" data-linktype="relative-path">catalog</a> of configurations
+for an ORB. A <b>COMA</b> server exposes <a href="3f01a312-3391-4109-a96e-95358babf191#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interfaces</a> that enable a
+client to manage the catalog and control <a href="3f01a312-3391-4109-a96e-95358babf191#gt_712af290-acfd-4e3a-a768-0530caa93b18" data-linktype="relative-path">component instances</a> and <a href="3f01a312-3391-4109-a96e-95358babf191#gt_791190e6-1e02-42cb-bd25-5aee3ab516ed" data-linktype="relative-path">instance containers</a>.</p></div>

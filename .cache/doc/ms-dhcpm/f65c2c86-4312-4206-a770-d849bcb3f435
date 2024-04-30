@@ -1,0 +1,173 @@
+<div class="content"><p> </p><p>The <b>R_DhcpAddMScopeElement</b> method adds an IPv4
+multicast subnet element (IPv4 range or IPv4 exclusion range) to the IPv4
+multicast subnet in the MADCAP <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>. </p><dl>
+<dd>
+<div><pre> DWORD R_DhcpAddMScopeElement(
+     [in, unique, string]  DHCP_SRV_HANDLE ServerIpAddress,
+     [in, ref, string]    LPWSTR *MScopeName,
+     [in, ref] LPDHCP_SUBNET_ELEMENT_DATA_V4 AddElementInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the MADCAP server. This parameter is unused.</p><p><b>MScopeName: </b>This is a pointer to a Unicode
+string that contains the name of the IPv4 multicast subnet in which the element
+is added. There is no restriction on the length of this parameter.</p><p><b>AddElementInfo: </b>This is a pointer to a <span><a href="76963288-4666-4dc8-b649-77fd7032bdf7" data-linktype="relative-path">DHCP_SUBNET_ELEMENT_DATA_V4 (section 2.2.1.2.35)</a></span>
+structure that contains the IPv4 multicast subnet element that needs to be
+added to the IPv4 multicast subnet.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the MADCAP server
+  database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E37</p>
+  <p>ERROR_DHCP_INVALID_RANGE</p>
+  </td>
+  <td>
+  <p>The specified multicast range either overlaps an existing
+  range or is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E56</p>
+  <p>ERROR_MSCOPE_RANGE_TOO_SMALL</p>
+  </td>
+  <td>
+  <p>The multicast scope range MUST have at least 256 IPv4
+  addresses.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E35</p>
+  <p>ERROR_DHCP_IPRANGE_EXITS</p>
+  </td>
+  <td>
+  <p>The specified multicast range already exists.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 4.</p><p>When processing this call, the MADCAP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>MScopeName</i> and <i>AddElementInfo</i> parameters are
+NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4MScope</b> ADM element entry corresponding
+to <i>MScopeName</i> from the server ADM element <b>DHCPv4MScopesList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>DHCPv4MScope</b> entry is not found, return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> field in the <i>AddElementInfo</i>
+parameter is set to DhcpSecondaryHosts, return ERROR_CALL_NOT_IMPLEMENTED.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ElementType</b> is set to DhcpReservedIps or
+DhcpIpUsedClusters, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ElementType</b> is set to DhcpIpRanges,
+DhcpIpRangesDhcpOnly, DhcpIpRangesDhcpBootp or DhcpIpRangesBootpOnly, and <b>IpRange</b>
+is NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If <b>EndAddress</b> of any kind of IPv4 multicast range is less
+than <b>StartAddress</b>, return ERROR_DHCP_INVALID_RANGE.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ElementType</b> is set to DhcpIpRanges, check that the
+start and end addresses of the range are valid multicast addresses as defined
+in <span><a href="https://go.microsoft.com/fwlink/?LinkId=149638" data-linktype="external">[RFC2780]</a></span>.
+That is, the IPv4 addresses fall within the range of 224.0.0.0 through
+239.255.255.255. If the check fails, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> is set to DhcpIpRanges,
+DhcpIpRangesDhcpOnly, DhcpIpRangesBootpOnly, or DhcpIpRangesDhcpBootp, and the
+end address falls within the administratively scoped IPv4 multicast address
+space, ensure that the range contains 256 or more addresses. The
+administratively scoped IPv4 multicast address space ranges from 239.0.0.0
+through 239.255.255.255, as defined in <span><a href="https://go.microsoft.com/fwlink/?LinkId=119994" data-linktype="external">[RFC2365]</a></span>. If
+the check fails, return ERROR_MSCOPE_RANGE_TOO_SMALL.</p>
+</li><li><p><span><span> 
+</span></span>If there is a <b>DHCPv4IPRange</b> ADM element entry in <b>DHCPv4MScope.DHCPv4IPRangesList</b>
+that has <b>RangeInfo.StartAddress</b> and <i>RangeInfo.EndAddress</i> fields
+that match the <b>StartAddress</b> and <b>EndAddress</b> fields of <i>AddElementInfo.IpRange</i>,
+return ERROR_DHCP_IPRANGE_EXITS.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>DHCPv4MScope.DHCPv4IPRangesList</b> ADM element is not
+empty and the new IPv4 multicast range is not the same as the <b>DHCPv4IPRange.RangeInfo</b>
+of an entry in <b>DHCPv4MScope.DHCPv4IPRangesList</b>, the new IPv4 multicast
+range (specified by the <b>StartAddress</b> and <b>EndAddress</b> members of
+the <span><a href="29a03b34-249e-4bd8-a118-e708dadbf22b" data-linktype="relative-path">DHCP_IP_RANGE</a></span>
+structure) has to either be completely within the range specified by the <b>DHCPv4IPRange</b>
+entry or completely contain the range specified by the <b>DHCPv4IPRange</b>
+entry; if neither condition is met return error ERROR_DHCP_INVALID_RANGE. </p>
+</li><li><p><span><span> 
+</span></span>If <b>DHCPv4MScope.DHCPv4IpRangesList</b> is empty, create a new <b>DHCPv4IpRange</b>
+object, set the <b>StartAddress</b> and <b>EndAddress</b> fields of <b>DHCPv4IpRange.RangeInfo</b>
+to the <b>StartAddress</b> and <b>EndAddress</b> fields of <b>IpRange</b>, <b>DHCPv4IpRange.RangeInfo.BootPAllocated</b>
+to 0, <b>DHCPv4IpRange.RangeInfo.MaxBootpAllowed</b> to 0xFFFFFFFF and populate
+the <b>DHCPv4IpRange.BitMask</b> with bits corresponding to all the addresses
+within the newly created range and initialize each bit to 0 indicating the
+availability of its corresponding address for allocation to a MADCAP client.
+Insert the new object into <b>DHCPv4MScope.DHCPv4IpRangesList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <b>DHCPv4MScope.DHCPv4IpRangesList</b> is not empty, set the <b>StartAddress</b>
+and <b>EndAddress</b> of the existing <b>DHCPv4IpRange.RangeInfo</b> to <b>StartAddress</b>
+and <b>EndAddress</b> of <b>IpRange</b>, <b>DHCPv4IpRange.RangeInfo.BootPAllocated</b>
+to 0 and <b>DHCPv4IpRange.RangeInfo.MaxBootpAllowed</b> to 0xFFFFFFFF. <b>DHCPv4IpRange.BitMask</b>
+needs to be expanded or contracted according to the new <b>IpRange.StartAddress</b>
+and <b>IpRange.EndAddress</b>. Accordingly, add or remove bits from the <b>DHCPv4IpRange.BitMask</b>.
+If adding bits for expansion, initialize them to 0 indicating the availability
+of their corresponding addresses for allocation to a MADCAP client.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> is DhcpIpRanges and the end address
+falls within the administratively scoped IPv4 multicast address space defined
+in [RFC2365], then automatically insert an exclusion range for the last 256
+elements. Create a <b>DHCPv4ExclusionRange</b> ADM element object and insert it
+into an <b>DHCPv4MScope.DHCPv4ExclusionRangesList</b> ADM element. The <b>DHCPv4ExclusionRange</b>
+object is initialized as follows:</p>
+<ul><li><p><span><span>  </span></span><b>DHCPv4ExclusionRange.StartAddress</b>
+is set to <i>AddElementInfo.IpRange.EndAddress</i> – 255.</p>
+</li><li><p><span><span>  </span></span><b>DHCPv4ExclusionRange.EndAddress</b>
+is set to <i>AddElementInfo.IpRange.EndAddress</i>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <b>ElementType</b> is set to DhcpExcludedIpRanges, create a <b>DHCPv4ExclusionRange</b>
+object, set it to <b>ExcludeIpRange</b>, and insert it into <b>DHCPv4ExclusionRangesList</b>.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

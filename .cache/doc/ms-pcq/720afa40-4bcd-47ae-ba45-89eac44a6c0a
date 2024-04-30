@@ -1,0 +1,5 @@
+<div class="content"><p>The Performance Counter Query Protocol is a <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call</a>
+(RPC)–based protocol that is used for browsing <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance counters</a> and
+retrieving performance counter values from a server.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

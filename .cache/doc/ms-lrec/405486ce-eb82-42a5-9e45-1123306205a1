@@ -1,0 +1,120 @@
+<div class="content"><p> </p><p>The <b>EventRecord</b> structure provides the payload in an <b>EVENT_BUFFER</b>
+(section <span><a href="20e0a568-8798-42b8-b81b-878190ee37db" data-linktype="relative-path">2.2.2.1</a></span>) structure.
+The structure defines an event recorded by an <span><a href="59d7a0e2-342c-4dc3-bc27-88e9c4aa0415#gt_9fc95e07-a7fc-4112-92f8-2842f54745e0" data-linktype="relative-path">event provider</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header
+  (80 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>ProcessorId</p>
+  </td>
+  <td colspan="8">
+  <p>Reserved</p>
+  </td>
+  <td colspan="16">
+  <p>SessionId</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>ExtendedDataCount</p>
+  </td>
+  <td colspan="16">
+  <p>UserDataLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>ExtendedDataOffset</p>
+  </td>
+  <td colspan="16">
+  <p>UserDataOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UserData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (80
+bytes): </b>This field specifies an <b>EVENT_HEADER</b> structure as defined in
+<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/fa4f7836-06ee-4ab6-8688-386a5a85f8c5" data-linktype="relative-path">2.3.2</a></span>.
+For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=208337" data-linktype="external">[MSDN-EVENT_HEADER]</a></span>.</p><p><b>ProcessorId
+(1 byte): </b>This field specifies an implementation-specific identifier for
+the CPU on which the <b>event provider</b> process was running at the time of
+the event recording.</p><p><b>Reserved
+(1 byte): </b>This field is reserved and MUST be set to 0x08.</p><p><b>SessionId
+(2 bytes): </b>This field specifies an identifier of the session that logged
+the event<b>.</b></p><p><b>ExtendedDataCount
+(2 bytes): </b>This field is reserved for future use. The field MUST be set to
+zero when sent and ignored upon receipt. </p><p><b>UserDataLength
+(2 bytes): </b>This field specifies the size, in bytes, of the <b>UserData</b>
+field.</p><p><b>ExtendedDataOffset
+(2 bytes): </b>This field is reserved for future use. The field MUST be set to
+zero when sent and ignored upon receipt.</p><p><b>UserDataOffset
+(2 bytes): </b>This field specifies an offset, in bytes, from the beginning of
+the structure to the <b>UserData</b> field. The field MUST be set to 0x0060 (96
+bytes).</p><p><b>UserData
+(variable): </b> This field contains data as specified in the <span><a href="59d7a0e2-342c-4dc3-bc27-88e9c4aa0415#gt_c1daa301-1fdd-4ee5-ba61-6aac362beb67" data-linktype="relative-path">event
+template</a></span> that corresponds to the event identified by the <b>Header.EventDescriptor.Id</b>
+field. The event template is defined in the <span><a href="59d7a0e2-342c-4dc3-bc27-88e9c4aa0415#gt_7808f167-11e8-49ea-ac6d-e517a7fc7ae2" data-linktype="relative-path">provider manifest</a></span>
+corresponding to the provider ID from the <b>Header.ProviderId</b> field.</p></div>

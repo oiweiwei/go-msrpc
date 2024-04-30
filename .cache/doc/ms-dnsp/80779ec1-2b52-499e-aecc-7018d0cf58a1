@@ -1,0 +1,237 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_MASTER_STATS</b> structure has the DNS server
+statistics related to overall DNS protocol processing. This structure MUST be
+formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotifySent</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Request</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NameError</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>FormError</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AxfrLimit</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Refused</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RefuseSecurity</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RefuseShutdown</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RefuseLoading
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RefuseZoneLocked</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RefuseServerFailure</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RefuseNotAuth
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RefuseReadOnly
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Failure</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AxfrRequest</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AxfrSuccess</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StubAxfrRequest
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrRequest</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrNoVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrUpdateSuccess</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrTcpRequest</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrTcpSuccess</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrAxfr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrUdpRequest</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrUdpSuccess</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrUdpForceTcp</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrUdpForceAxfr</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>NotifySent (4 bytes): </b>The number of update
+notifications sent to secondaries by the server.</p><p><b>Request (4 bytes): </b>The number of <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_67ea3c5b-6b1e-40a3-ac20-3f7eaf056504" data-linktype="relative-path">zone
+transfer</a></span> requests received by the server.</p><p><b>NameError (4 bytes): </b>The number of name error
+responses returned by the server.</p><p><b>FormError (4 bytes): </b>The number of invalid
+format error responses returned by the server.</p><p><b>AxfrLimit (4 bytes): </b>The number of <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_2d944edd-a550-4b8a-98d8-af495aaa2f8f" data-linktype="relative-path">full zone
+transfer</a></span> requests rejected due to time restrictions between
+successive full zone transfers.</p><p><b>Refused (4 bytes): </b>The total number of times
+the server rejected requests for <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_dbff570c-a709-479a-980a-5b74ac7ab2e7" data-linktype="relative-path">dynamic updates</a></span> or
+zone transfers.</p><p><b>RefuseSecurity (4 bytes): </b>The number of times
+the server rejected zone transfer requests due to secondary security
+restrictions.</p><p><b>RefuseShutdown (4 bytes): </b>The number of times
+the server rejected zone transfer requests because zone transfer was disabled
+or because the requesting IP address was not permitted to transfer the zone. </p><p><b>RefuseLoading (4 bytes): </b>The number of times
+the server rejected zone transfer requests, due to a zone not being fully
+loaded. This field SHOULD be present, but MUST be absent if StubAxfrRequest is
+absent. <a id="Appendix_A_Target_72"></a><a aria-label="Product behavior note 72" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_72" data-linktype="relative-path">&lt;72&gt;</a>A client can tell whether the
+field is present based on the size of the buffer holding this structure.</p><p><b>RefuseZoneLocked (4 bytes): </b>The number of
+times the server rejected zone transfer requests, due to the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span>
+already being locked for some operation.</p><p><b>RefuseServerFailure (4 bytes): </b>The number of
+times the server rejected zone transfer requests, due to processing failures at
+the server.</p><p><b>RefuseNotAuth (4 bytes): </b>The number of times
+the server rejected zone transfer requests, because the zone is not <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_ed54858d-02e4-4de3-b65b-e0b81c4185c7" data-linktype="relative-path">authoritative</a></span>
+on the server. This field MUST be present if and only if RefuseLoading is
+present. A client can tell whether the field is present based on the size of
+the buffer holding this structure.</p><p><b>RefuseReadOnly (4 bytes): </b>The number of times
+the server rejected zone transfer requests, due to the zone being hosted on an <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_8b0a073b-3099-4efe-8b81-c2886b66a870" data-linktype="relative-path">RODC</a></span>.
+This field MUST be present if and only if RefuseLoading is present. A client
+can tell whether the field is present based on the size of the buffer holding
+this structure.</p><p><b>Failure (4 bytes): </b>The number of times the
+server hit a zone transfer failure.</p><p><b>AxfrRequest (4 bytes): </b>The number of full zone
+transfer requests received by the server.</p><p><b>AxfrSuccess (4 bytes): </b>The number of full zone
+transfers successfully completed by the server.</p><p><b>StubAxfrRequest (4 bytes): </b>The number of full
+zone transfer requests received by the server for <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_55a705e5-1ca3-4001-8d6d-c5ae08fdcdeb" data-linktype="relative-path">stub zones</a></span>. This
+field SHOULD<a id="Appendix_A_Target_73"></a><a aria-label="Product behavior note 73" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_73" data-linktype="relative-path">&lt;73&gt;</a> be present. A client can tell
+whether the field is present based on the size of the buffer holding this
+structure.</p><p><b>IxfrRequest (4 bytes): </b>The number of <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_831053cd-38aa-4fcc-81bf-d0cbb6cb573b" data-linktype="relative-path">incremental
+zone transfer</a></span> requests received by the server.</p><p><b>IxfrNoVersion (4 bytes): </b>The number of servers
+that received an incremental zone transfer request, but there was not a
+suitable version number available for incremental zone transfer.</p><p><b>IxfrUpdateSuccess (4 bytes): </b>The number of
+success responses for incremental zone transfer sent by the server.</p><p><b>IxfrTcpRequest (4 bytes): </b>The number of
+incremental zone transfer requests received by the server over TCP.</p><p><b>IxfrTcpSuccess (4 bytes): </b>The number of
+success responses for incremental zone transfers sent by the server over TCP.</p><p><b>IxfrAxfr (4 bytes): </b>The number of incremental
+zone transfer requests received by the server, which required a full zone
+transfer.</p><p><b>IxfrUdpRequest (4 bytes): </b>The number of
+incremental zone transfer requests received by the server over UDP.</p><p><b>IxfrUdpSuccess (4 bytes): </b>The number of
+success responses for incremental zone transfers sent by the server over UDP.</p><p><b>IxfrUdpForceTcp (4 bytes): </b>The number of
+incremental zone transfer requests received by the server over UDP, for which
+the server responded using TCP.</p><p><b>IxfrUdpForceAxfr (4 bytes): </b>The number of
+incremental zone transfer requests received by the server over UDP, for which
+the server responded with a full zone transfer.</p></div>

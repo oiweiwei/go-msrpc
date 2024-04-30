@@ -1,0 +1,146 @@
+<div class="content"><p> </p><p>The NetrSendMessage (Opnum 0) method is used to send a text
+message to a <span><a href="1bb1da94-fc7e-484c-ad2a-4e0d257a50ce#gt_18623b87-0e55-44bc-a5d3-d49388e1716a" data-linktype="relative-path">message server</a></span>.</p><dl>
+<dd>
+<div><pre> error_status_t NetrSendMessage(
+   [in] handle_t hRpcBinding,
+   [in, string] LPSTR From,
+   [in, string] LPSTR To,
+   [in, string] LPSTR Text
+ );
+</pre></div>
+</dd></dl><p><b>hRpcBinding: </b> An <span><a href="1bb1da94-fc7e-484c-ad2a-4e0d257a50ce#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> primitive
+binding handle, which MUST be as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> section
+4 and [C706] section 5.<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="e890fd2e-92d5-4468-a6cf-db6977866112#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a></p><p><b>From: </b>A null-terminated string that MUST
+denote the name of the sender of the message. The name is not guaranteed to be
+unique or reachable by this method. The string MUST be expressed in the <span><a href="1bb1da94-fc7e-484c-ad2a-4e0d257a50ce#gt_3240e34e-920e-40ac-a672-342ac34a5e22" data-linktype="relative-path">original
+equipment manufacturer (OEM) character set</a></span>, as specified in <span><a href="../ms-ucoderef/4a045e08-fc29-4f22-baf4-16f38c2825fb" data-linktype="relative-path">[MS-UCODEREF]</a></span>
+section <span><a href="../ms-ucoderef/28fefe92-d66c-4b03-90a9-97b473223d43" data-linktype="relative-path">2.2.1</a></span>,
+of the invoker of this method.</p><p><b>To: </b>A null-terminated string that MUST
+represent the name of the intended recipient of the message. The name is not
+guaranteed to be unique or reachable by this method. The string is expressed in
+the OEM character set, as specified in [MS-UCODEREF] section 2.2.1, of the
+invoker of this method.</p><p><b>Text: </b>A null-terminated string that MUST
+contain the message that is being sent to the recipient in the <i>To</i>
+parameter. The string is expressed in the OEM character set, as specified in
+[MS-UCODEREF] section 2.2.1.</p><p><b>Return Values: </b>An <span><a href="../ms-dtyp/802ada7f-c5fc-415e-8438-c7369bb4193b" data-linktype="relative-path">error_status_t</a></span>
+value that indicates return status. If the method returns a negative value, the
+method has failed. If the 12-bit facility code (bits 16–27) is set to 0x007,
+the value contains a Win32 error code (defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+in the lower 16 bits. Zero or positive values indicate success, with the lower
+16 bits in positive nonzero values containing warnings or flags defined in the
+method implementation.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000032</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The request is not supported.<a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="e890fd2e-92d5-4468-a6cf-db6977866112#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000858</p>
+  <p>NERR_NetworkError</p>
+  </td>
+  <td>
+  <p>A general network error occurred.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000008E1</p>
+  <p>NERR_NameNotFound</p>
+  </td>
+  <td>
+  <p>The message alias could not be found on the network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000008E8</p>
+  <p>NERR_GrpMsgProcessor</p>
+  </td>
+  <td>
+  <p>An error occurred in the domain message processor.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000008E9</p>
+  <p>NERR_PausedRemote</p>
+  </td>
+  <td>
+  <p>The message was sent, but the recipient has paused the
+  Messenger service.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000008EA</p>
+  <p>NERR_BadReceive</p>
+  </td>
+  <td>
+  <p>The message was sent but not received.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000008EB</p>
+  <p>NERR_NameInUse</p>
+  </td>
+  <td>
+  <p>The message alias is currently in use. Try again
+  later.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000008ED</p>
+  <p>NERR_NotLocalName</p>
+  </td>
+  <td>
+  <p>The name is not on the local computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000008F1</p>
+  <p>NERR_TruncatedBroadcast</p>
+  </td>
+  <td>
+  <p>The broadcast message was truncated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000008F9</p>
+  <p>NERR_DuplicateName</p>
+  </td>
+  <td>
+  <p>A duplicate message alias exists on the network.</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

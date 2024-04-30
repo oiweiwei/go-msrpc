@@ -1,0 +1,211 @@
+typedef struct _REG_UNICODE_STRING {
+    unsigned short Length;
+    unsigned short MaximumLength;
+    [size_is(MaximumLength / 2), length_is((Length) / 2) ] 
+        unsigned short* Buffer;
+} REG_UNICODE_STRING,
+ *PREG_UNICODE_STRING;
+ 
+[
+uuid(894de0c0-0d55-11d3-a322-00c04fa321a1),
+    pointer_default( unique ),
+version(1.0)
+]
+interface InitShutdown
+//
+// Interface body
+//
+{
+ 
+//
+// Server name, binding handles.
+//
+typedef [handle] wchar_t* PREGISTRY_SERVER_NAME;
+ 
+//
+// Shutdown APIs.
+//
+ 
+unsigned long
+BaseInitiateShutdown(
+    [ in, unique ] PREGISTRY_SERVER_NAME ServerName,
+    [ in, unique ] PREG_UNICODE_STRING lpMessage,
+    [ in ] unsigned long dwTimeout,
+    [ in ] unsigned char bForceAppsClosed,
+    [ in ] unsigned char bRebootAfterShutdown
+    );
+ 
+unsigned long
+BaseAbortShutdown(
+    [ in, unique ] PREGISTRY_SERVER_NAME ServerName
+    );
+ 
+unsigned long
+BaseInitiateShutdownEx(
+    [ in, unique ] PREGISTRY_SERVER_NAME ServerName,
+    [ in, unique ] PREG_UNICODE_STRING lpMessage,
+    [ in ] unsigned long dwTimeout,
+    [ in ] unsigned char bForceAppsClosed,
+    [ in ] unsigned char bRebootAfterShutdown,
+    [ in ] unsigned long dwReason
+    );                      
+};
+typedef struct _REG_UNICODE_STRING {
+    unsigned short Length;
+    unsigned short MaximumLength;
+    [size_is(MaximumLength / 2), length_is((Length) / 2) ] unsigned short* Buffer;
+}REG_UNICODE_STRING, *PREG_UNICODE_STRING;
+[
+uuid(d95afe70-a6d5-4259-822e-2c84da1ddb0d),
+    pointer_default( unique ),
+version(1.0)
+]
+interface WindowsShutdown
+{
+unsigned long
+WsdrInitiateShutdown(
+    [ in ] handle_t Binding,
+    [ in, unique ] PREG_UNICODE_STRING lpMessage,
+    [ in ] unsigned long dwGracePeriod,
+    [ in ] unsigned long dwShudownFlags,
+    [ in ] unsigned long dwReason,
+    [ in, unique ] PREG_UNICODE_STRING lpClientHint
+    );
+ 
+unsigned long
+WsdrAbortShutdown(
+    [ in ] handle_t Binding,
+    [ in, unique ] PREG_UNICODE_STRING lpClientHint
+    );
+};
+
+typedef struct _REG_UNICODE_STRING {
+    unsigned short Length;
+    unsigned short MaximumLength;
+    [size_is(MaximumLength / 2), length_is((Length) / 2) ] 
+        unsigned short* Buffer;
+} REG_UNICODE_STRING,
+ *PREG_UNICODE_STRING;
+ 
+[
+    uuid( 338CD001-2244-31F1-AAAA-900038001003 ),
+    pointer_default( unique ),
+    version( 1.0 )
+]
+interface winreg
+{
+    typedef [handle] wchar_t* PREGISTRY_SERVER_NAME;
+ 
+    //
+    // Windows Remote Registry Server APIs.
+    //
+ 
+    //opcode 0
+    void Opnum0NotImplemented();
+ 
+    //opcode 1
+    void Opnum1NotImplemented();
+ 
+    //opcode 2
+    void Opnum2NotImplemented();
+ 
+    //opcode 3
+    void Opnum3NotImplemented();
+ 
+    //opcode 4
+    void Opnum4NotImplemented();
+ 
+    //opcode 5
+    void Opnum5NotImplemented();
+ 
+    //opcode 6
+    void Opnum6NotImplemented();
+ 
+    //opcode 7
+    void Opnum7NotImplemented();
+ 
+    //opcode 8
+    void Opnum8NotImplemented();
+ 
+    //opcode 9
+    void Opnum9NotImplemented();
+ 
+    //opcode 10
+    void Opnum10NotImplemented();
+ 
+    //opcode 11
+    void Opnum11NotImplemented();
+ 
+    //opcode 12
+    void Opnum12NotImplemented();
+ 
+    //opcode 13
+    void Opnum13NotImplemented();
+ 
+    //opcode 14
+    void Opnum14NotImplemented();
+ 
+    //opcode 15
+    void Opnum15NotImplemented();
+ 
+    //opcode 16
+    void Opnum16NotImplemented();
+ 
+    //opcode 17
+    void Opnum17NotImplemented();
+ 
+    //opcode 18
+    void Opnum18NotImplemented();
+ 
+    //opcode 19
+    void Opnum19NotImplemented();
+ 
+    //opcode 20
+    void Opnum20NotImplemented();
+ 
+    //opcode 21
+    void Opnum21NotImplemented();
+ 
+    //opcode 22
+    void Opnum22NotImplemented();
+ 
+    //opcode 23
+    void Opnum23NotImplemented();
+ 
+    //opcode 24
+    unsigned long BaseInitiateSystemShutdown(
+          [in, unique] PREGISTRY_SERVER_NAME ServerName,
+          [in, unique] PREG_UNICODE_STRING lpMessage,
+          [in] unsigned long dwTimeout,
+          [in] unsigned char bForceAppsClosed,
+          [in] unsigned char bRebootAfterShutdown
+    );
+ 
+    //opcode 25
+    unsigned long BaseAbortSystemShutdown(
+          [in, unique] PREGISTRY_SERVER_NAME ServerName
+    );
+ 
+    //opcode 26
+    void Opnum26NotImplemented();
+ 
+    //opcode 27
+    void Opnum27NotImplemented();
+ 
+    //opcode 28
+    void Opnum28NotImplemented();
+ 
+    //opcode 29
+    void Opnum29NotImplemented();
+ 
+    //opcode 30
+    unsigned long BaseInitiateSystemShutdownEx(
+          [in, unique] PREGISTRY_SERVER_NAME ServerName,
+          [in, unique] PREG_UNICODE_STRING lpMessage,
+          [in] unsigned long dwTimeout,
+          [in] unsigned char bForceAppsClosed,
+          [in] unsigned char bRebootAfterShutdown,
+          [in] unsigned long dwReason
+    );                      
+};
+ 

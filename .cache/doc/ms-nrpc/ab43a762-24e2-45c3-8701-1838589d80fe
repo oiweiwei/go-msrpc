@@ -1,0 +1,26 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/ab43a762-24e2-45c3-8701-1838589d80fe" data-linktype="external">msdn link</a></p><p>The <b>NL_OUT_CHAIN_SET_CLIENT_ATTRIBUTES_V1</b> structure SHOULD<a id="Appendix_A_Target_44"></a><a aria-label="Product behavior note 44" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_44" data-linktype="relative-path">&lt;44&gt;</a> specify the values returned
+from the normal (writable) <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _NL_OUT_CHAIN_SET_CLIENT_ATTRIBUTES_V1 {
+   [unique, string] wchar_t* HubName;
+   [unique, string] wchar_t** OldDnsHostName;
+   [unique] ULONG * SupportedEncTypes;
+ } NL_OUT_CHAIN_SET_CLIENT_ATTRIBUTES_V1;
+</pre></div>
+</dd></dl><p><b>HubName:</b> The <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a> of the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9d964ddb-09d6-4a1b-b27b-42adabc07993" data-linktype="relative-path">writable domain controller</a>
+receiving <a href="3a416e82-0299-4ff0-a25d-223f972ba1d6" data-linktype="relative-path">NetrChainSetClientAttributes (section 3.5.4.4.11)</a>.
+The <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8b0a073b-3099-4efe-8b81-c2886b66a870" data-linktype="relative-path">read-only domain
+controller (RODC)</a> that invoked the method NetrChainSetClientAttributes
+SHOULD<a id="Appendix_A_Target_45"></a><a aria-label="Product behavior note 45" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_45" data-linktype="relative-path">&lt;45&gt;</a> attempt to replicate the
+computer account object from <b>HubName</b> to itself, ignoring errors.<span> </span></p><p><b>OldDnsHostName:</b> The client&#39;s <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a> host name, if any, from
+the <b>dNSHostName</b> attribute<br/>
+(<a href="../ms-ada1/19528560-f41e-4623-a406-dabcfff0660f" data-linktype="relative-path">[MS-ADA1]</a>
+section <a href="../ms-ada1/a7b140ad-06f1-420d-90b7-704f689e0032" data-linktype="relative-path">2.185</a>)
+on the client&#39;s computer account object in <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a> on the
+writable domain controller. If there was an update to the <b>dNSHostName</b>
+attribute by the writable domain controller as a result of receiving
+NetrChainSetClientAttributes, this value will hold the previous value of that
+attribute.</p><p><b>SupportedEncTypes:</b> The supported encryption
+algorithms received from the <a href="7c3ad0cc-ee05-4643-b773-4d84e1d431dc" data-linktype="relative-path">NetrLogonGetDomainInfo</a>
+request, in the <b>SupportedEncTypes</b> field in the <a href="440c3430-ed5f-481d-b602-74db422df3c8" data-linktype="relative-path">NETLOGON_DOMAIN_INFO (section 2.2.1.3.11)</a>
+structure.<a id="Appendix_A_Target_46"></a><a aria-label="Product behavior note 46" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_46" data-linktype="relative-path">&lt;46&gt;</a></p></div>

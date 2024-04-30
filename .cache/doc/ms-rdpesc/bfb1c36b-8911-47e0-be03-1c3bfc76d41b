@@ -1,0 +1,65 @@
+<div class="content"><p>The following figure illustrates a baseline for terminology
+related to clients and servers.</p><p><img id="MS-RDPESC_pictc82b2b1b-5bb1-d323-db0b-a87202c8c759.png" src="ms-rdpesc_files/image001.png" alt="TS and protocol client-server definition" title="TS and protocol client-server definition" data-linktype="relative-path"/></p><p><b>Figure 1: TS and protocol client-server definition</b></p><p><a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_17c795a6-68bf-46bf-8ea8-467c8df1a0b3" data-linktype="relative-path">Remote
+Desktop Protocol (RDP)</a> Device Redirection enables client <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_4712ded2-d927-4930-9450-29499f98cef4" data-linktype="relative-path">devices</a> (for example,
+printers, <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_5cddf14c-b925-4494-9b55-d2c8259f9ad0" data-linktype="relative-path">smart card readers</a>,
+drives, audio, serial ports, and parallel ports) to be available to server-side
+applications, within the context of a single RDP session. This protocol is
+specified in <a href="../ms-rdpefs/34d9de58-b2b5-40b6-b970-f82d4603bdb5" data-linktype="relative-path">[MS-RDPEFS]</a>.</p><p>Smart Card Redirection is an asynchronous client/server
+protocol, an extension (specified in [MS-RDPEFS]) that is designed to remotely
+execute requests on a client&#39;s <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_c6f0d1a4-ae75-40b9-beef-baa419cb33b9" data-linktype="relative-path">Smart Cards for Windows</a>.
+These requests would have otherwise been executed on the server. Each request
+is composed of two packets: a <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_0a68cff0-1e07-4a15-a4ee-e08fb398ed49" data-linktype="relative-path">call
+packet</a> and <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_9034c963-c719-4e13-86be-c597ea184431" data-linktype="relative-path">return packet</a>.
+The <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_a0d58e1e-3fb3-49a0-84b8-9b9eb7e86c65" data-linktype="relative-path">protocol client</a> (<a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_a954a9c7-ef37-4aca-ae9b-fade6a905eae" data-linktype="relative-path">Microsoft Terminal Services
+(TS)</a> server) sends a call packet after an initial announcement by the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_6b91e507-0e17-41de-897c-356606d07088" data-linktype="relative-path">protocol server</a> (<a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_b9854a6a-0613-4b7a-95e4-c2b359b6021a" data-linktype="relative-path">TS client</a>), and will
+receive a return packet after the request has been completed or an error has
+occurred. Remote Desktop Protocol (RDP) Device Redirection uses a <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_bce830ab-d09f-4dbd-b7c2-d7c7df1ea60c" data-linktype="relative-path">static virtual channel</a> as
+its transport.</p><p>Smart Card Redirection redirects the TS client–side Smart
+Cards for Windows. When Smart Card Redirection is in effect, <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_37eb268d-1dd2-4413-9fa6-3af2cab291d3" data-linktype="relative-path">TS server</a> application <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">smart card</a> subsystem calls
+(for example, EstablishContext) are automatically remapped to the TS client–side
+Smart Cards for Windows, which will then receive the corresponding request.
+Smart Card Redirection devices are only required to understand one type of <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_4cf701bf-ddc3-4554-b9a0-281cb5cc7b08" data-linktype="relative-path">device I/O</a> request.</p><p>The following figure shows a high-level sequence diagram of
+the protocol for redirected calls. Device Announce and Device Disconnect are
+handled via the lower-layer protocols.</p><p><img id="MS-RDPESC_pict39a2d0f4-2172-c26c-f7c5-755817b594d3.png" src="ms-rdpesc_files/image002.png" alt="High-level protocol sequence" title="High-level protocol sequence" data-linktype="relative-path"/></p><p><b>Figure 2: High-level protocol sequence</b></p><p>The following figure specifies how the messages are encoded
+and routed from a TS client to a TS server. The following numbered list details
+corresponding actions related to the pictured protocol flow.</p><p><img id="MS-RDPESC_pictec1e68ce-7c7d-efca-d094-a3f4c759b76f.png" src="ms-rdpesc_files/image003.png" alt="Protocol flow" title="Protocol flow" data-linktype="relative-path"/></p><p><b>Figure 3: Protocol flow</b></p><p>The input for this protocol (call packet) is a combination
+of an <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_09d6bc87-34ed-48e8-b4d4-962e90543462" data-linktype="relative-path">I/O control (IOCTL)</a>
+and the corresponding structure as specified in section <a href="4a5909f4-8ac2-41b2-abe0-8b833c831b6f" data-linktype="relative-path">3.2.5</a>. </p><ol><li><p><span>    </span>The call packet
+structure is encoded as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/9a1d0f97-eac0-49ab-a197-f1a581c2d6a0" data-linktype="relative-path">2.2.6</a>.</p>
+</li><li><p><span>    </span>The packet, as
+specified in [MS-RPCE], is returned as a response to 1.</p>
+</li><li><p><span>    </span>The encoded
+value from 2 is combined with the IOCTL and transported over RDP Device
+Redirection, as specified in [MS-RDPEFS] section <a href="../ms-rdpefs/acefaa6d-cadf-4893-88f7-25c022d111f3" data-linktype="relative-path">2</a>.</p>
+</li><li><p><span>    </span>On the TS
+client, Remote Desktop Protocol: File System Virtual Channel Extension will
+route the packet from 3 to protocol server for the Smart Card Redirection, as
+specified in [MS-RDPEFS] section 2.</p>
+</li><li><p><span>    </span>After Smart Card
+Redirection receives the message, the encoded structure is decoded, as
+specified in [MS-RPCE] section 2.2.6.</p>
+</li><li><p><span>    </span>The packet,
+decoded as specified in [MS-RPCE], is a response to 5.</p>
+</li><li><p><span>    </span>Based on the
+IOCTL, the structure members are used as input parameters to the Smart Cards
+for Windows, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90245" data-linktype="external">[PCSC5]</a> section 3.</p>
+</li><li><p><span>    </span>The output
+parameters including the return code are packaged into the return packet
+structure for this IOCTL.</p>
+</li><li><p><span>    </span>The return
+packet structure is encoded as specified in [MS-RPCE] section 2.2.6.</p>
+</li><li><p><span>  </span>Return data, encoded as
+specified in [MS-RPCE], is a response to 9.</p>
+</li><li><p><span>  </span>The encoded value from 10 is
+sent to RDP Device Redirection (as specified in [MS-RDPEFS]) as a reply to the
+call packet from 4.</p>
+</li><li><p><span>  </span>RDP Device Redirection (as
+specified in [MS-RDPEFS]) routes the reply back to the protocol client.</p>
+</li><li><p><span>  </span>On receipt of packet from
+12, the encoded structure is decoded as specified by to [MS-RPCE] section
+2.2.6.</p>
+</li><li><p><span>  </span>In response to 13, return
+data is decoded as specified by [MS-RPCE].</p>
+</li></ol><p>The output from the Smart Card Redirection is the return
+packet. This data will then be processed by higher layers.</p></div>

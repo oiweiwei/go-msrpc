@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The WBEM_BACKUP_RESTORE_FLAGS enumeration gives information
+about the backup and restore state of the process.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum tag_WBEM_BACKUP_RESTORE_FLAGS
+ {
+   WBEM_FLAG_BACKUP_RESTORE_FORCE_SHUTDOWN = 1
+ } WBEM_BACKUP_RESTORE_FLAGS;
+</pre></div>
+</dd></dl><p><b>WBEM_FLAG_BACKUP_RESTORE_FORCE_SHUTDOWN:  </b>While
+the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a99173af-90bf-473d-9a81-ff0ce9a85838" data-linktype="relative-path">CIM</a></span>
+database is being restored, any clients connected to WMI are forcibly
+disconnected.</p></div>

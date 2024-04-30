@@ -1,0 +1,71 @@
+<div class="content"><p>The RpcEnumForms method enumerates the forms that the
+specified printer supports.</p><dl>
+<dd>
+<div><pre> DWORD RpcEnumForms(
+   [in] PRINTER_HANDLE hPrinter,
+   [in] DWORD Level,
+   [in, out, unique, size_is(cbBuf), disable_consistency_check] 
+     BYTE* pForm,
+   [in] DWORD cbBuf,
+   [out] DWORD* pcbNeeded,
+   [out] DWORD* pcReturned
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object or
+server object that MUST have been opened by using the <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter</a>, <a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx</a>, <a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter</a>, or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx</a> methods.</p><p><b>Level: </b>This value refers to the level of form information
+structure, as follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Corresponds to <a href="95e918de-fbdb-4d0a-ad4c-d7005ab33305" data-linktype="relative-path">_FORM_INFO_1</a> (section
+  2.2.2.5.1).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Corresponds to <a href="b15260d2-493c-49ac-9062-720162e1aee1" data-linktype="relative-path">_FORM_INFO_2</a> (section
+  2.2.2.5.2).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pForm: </b>This parameter MAY be NULL if <i>cbBuf</i>
+equals zero; otherwise, it is a pointer to the <a href="f29e9057-df29-40d4-9c51-c615c0da62a1" data-linktype="relative-path">BUFFER</a>, as specified in
+INFO Structures Query Parameters, section 3.1.4.1.9.</p><p><b>BUFFER TYPE:</b> _FORM_INFO.</p><p><b>cbBuf: </b>This parameter MUST adhere to the
+parameter specification in INFO Structures Query Parameters, section 3.1.4.1.9.</p><p><b>pcbNeeded: </b>This parameter MUST adhere to the parameter
+specification in INFO Structures Query Parameters, section 3.1.4.1.9.</p><p><b>pcReturned: </b>This parameter MUST adhere to the
+parameter specification in INFO Structures Query Parameters, section 3.1.4.1.9.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE Parameters</a>,
+section 3.1.4.1.11.</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in INFO
+Structures Query Parameters, section 3.1.4.1.9.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST NOT perform access checks on the <i>hPrinter</i>
+object.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Enumerate all forms on the printer or <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a>.</p>
+</li><li><p><span><span> 
+</span></span>Using the enumerated objects, perform the processing and response
+steps specified in INFO Structures Query Parameters, section 3.1.4.1.9.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

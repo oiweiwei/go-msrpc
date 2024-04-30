@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The SERVER_INFO_1516 structure contains information about a
+specified <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVER_INFO_1516 {
+   int sv1516_timesource;
+ } SERVER_INFO_1516,
+  *PSERVER_INFO_1516,
+  *LPSERVER_INFO_1516;
+</pre></div>
+</dd></dl><p><b>sv1516_timesource:</b>  This member is
+defined in the <b>sv599_timesource</b> member in <span><a href="2b55fe85-2de5-4409-87ea-468cb6b35160" data-linktype="relative-path">SERVER_INFO_599 (section 2.2.4.46)</a></span>.</p></div>

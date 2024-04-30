@@ -1,0 +1,158 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_ERROR_STATS</b> structure has DNS server
+statistics related to the different types of errors returned by the server.
+This structure MUST be formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NoError</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>FormError</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ServFail</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NxDomain</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotImpl</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Refused</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>YxDomain</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>YxRRSet</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NxRRSet</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotAuth</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotZone</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Max</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BadSig</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BadKey</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BadTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UnknownError</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>NoError (4 bytes): </b>The number of occurrences
+where the server returned success (0x00000000) and query was successfully
+responded to.</p><p><b>FormError (4 bytes): </b>The number of occurrences
+where the server returned error code 0x00000001 due to a malformed query.</p><p><b>ServFail (4 bytes): </b>The number of occurrences
+where the server returned error code 0x00000002 due to a failure in query
+processing at server.</p><p><b>NxDomain (4 bytes): </b>The number of occurrences
+where the server returned a name error code 0x00000003.</p><p><b>NotImpl (4 bytes): </b>The number of occurrences
+where the server returned error code 0x00000004 due to unimplemented
+functionality.</p><p><b>Refused (4 bytes): </b>The number of occurrences
+where the server returned error code 0x00000005 due to policy restrictions.</p><p><b>YxDomain (4 bytes): </b>The number of occurrences
+where the server returned error code 0x00000006 due to a domain not being
+found.</p><p><b>YxRRSet (4 bytes): </b>The number of occurrences
+where the server returned error code 0x00000007 due to the unexpected existence
+of a resource record.</p><p><b>NxRRSet (4 bytes): </b>The number of occurrences
+where the server returned error code 0x00000008, because the requested <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_49c03845-ca86-48f5-9cbf-ab86c624aa29" data-linktype="relative-path">resource
+record</a></span> did not exist.</p><p><b>NotAuth (4 bytes): </b>The number of occurrences
+where the server returned error code 0x00000009 due to the server not being <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_ed54858d-02e4-4de3-b65b-e0b81c4185c7" data-linktype="relative-path">authoritative</a></span>
+for the zone.</p><p><b>NotZone (4 bytes): </b>The number of occurrences
+where the server returned error 0x0000000A (10) due to the requested zone not
+being found.</p><p><b>Max (4 bytes): </b>The number of occurrences where
+the server returned an error code 0x0000000F (15) which is larger than 4 bits
+and the server needed to introduce the OPT field in the response packet.</p><p><b>BadSig (4 bytes): </b>The number of occurrences
+where the server returned error 0x00000010 (16) due to a bad signature being
+present in the query.</p><p><b>BadKey (4 bytes): </b>The number of occurrences
+where the server returned error 0x00000011 (17) due to a bad key being present
+in the query.</p><p><b>BadTime (4 bytes): </b>The number of occurrences
+where the server returned error 0x00000012 (18) due to a bad time stamp being
+present in the query.</p><p><b>UnknownError (4 bytes): </b>The number of
+occurrences where the server returned an error code that was caused by any
+other reason than those listed above.</p></div>

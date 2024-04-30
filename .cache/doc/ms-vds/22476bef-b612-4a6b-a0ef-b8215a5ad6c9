@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The VDS_PARTITION_INFO_MBR structure provides information
+about an <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b251c771-5ccf-40f2-b98d-0119db210b4b" data-linktype="relative-path">MBR</a></span> <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_PARTITION_INFO_MBR {
+   byte partitionType;
+   boolean bootIndicator;
+   boolean recognizedPartition;
+   DWORD hiddenSectors;
+ } VDS_PARTITION_INFO_MBR;
+</pre></div>
+</dd></dl><p><b>partitionType:</b>  The byte value
+indicating the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_674598d2-080c-4dbf-b12e-cc873da21b54" data-linktype="relative-path">partition type</a></span>.<a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a></p><p><b>bootIndicator:</b>  A Boolean value that
+indicates whether the partition is bootable.</p><p><b>recognizedPartition:</b>  A Boolean
+value that indicates whether the partition will be exposed as a volume.</p><p><b>hiddenSectors:</b>  The number of <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b5bbe646-aa5f-4b4e-ae9e-bdae444cbfa2" data-linktype="relative-path">sectors</a></span>
+between the start of the partition and the partition&#39;s first usable area.</p></div>

@@ -1,0 +1,60 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/8fd0003f-8076-40ae-872f-9cdb6576b3c7" data-linktype="external">msdn link</a></p><p>The SamrQueryInformationGroup method obtains attributes from
+a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_7ce4771c-2043-49b8-85d3-0c60c7789f9a" data-linktype="relative-path">group object</a>.</p><dl>
+<dd>
+<div><pre> long SamrQueryInformationGroup(
+   [in] SAMPR_HANDLE GroupHandle,
+   [in] GROUP_INFORMATION_CLASS GroupInformationClass,
+   [out, switch_is(GroupInformationClass)] 
+     PSAMPR_GROUP_INFO_BUFFER* Buffer
+ );
+</pre></div>
+</dd></dl><p><b>GroupHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a group object.</p><p><b>GroupInformationClass: </b>An enumeration
+indicating which attributes to return. See section <a href="46e6300d-cb8a-402f-9187-01b41b13919a" data-linktype="relative-path">2.2.4.6</a> for a listing of
+possible values.</p><p><b>Buffer: </b>The requested attributes on output.
+See section <a href="a37ef739-9b21-47a7-89b4-d237dd6491f3" data-linktype="relative-path">2.2.4.7</a> for
+structure details.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>The server MUST
+return an error if <i>GroupHandle.HandleType</i> is not equal to
+&#34;Group&#34;.</p>
+</li><li><p><span>    </span><i>GroupHandle.GrantedAccess</i>
+MUST have the required access specified in section <a href="87bacbd0-7b8b-429f-abc6-4b3d895d4e90" data-linktype="relative-path">3.1.2.2</a>. Otherwise, the
+server MUST return STATUS_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>The following
+information levels MUST be processed by setting the appropriate output field
+name to either the associated database attribute or the value resulting from
+the associated processing rules, as specified in section <a href="95c523dd-932e-4086-9483-e58d1d848ceb" data-linktype="relative-path">3.1.5.14.9</a>. Processing is
+completed by returning 0 on success.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>GroupInformationClass</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>GroupGeneralInformation</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GroupNameInformation</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GroupAttributeInformation</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GroupAdminCommentInformation</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span>    </span>If <i>GroupInformationClass</i>
+does not meet the criteria of constraint 3, the constraints associated with the
+<i>GroupInformationClass</i> input value in the following subsections MUST be
+satisfied; if there is no subsection for the <i>GroupInformationClass</i>
+value, an error MUST be returned to the client.</p>
+</li></ol></div>

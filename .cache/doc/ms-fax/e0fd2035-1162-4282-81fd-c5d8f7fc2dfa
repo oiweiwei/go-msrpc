@@ -1,0 +1,176 @@
+<div class="content"><p> </p><p>The <b>FAX_CreateAccount (Opnum 93</b>) method is called by
+the client to request a new fax user account to be created based on an existing
+valid operating system user account.</p><p>Protocol version FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), and FAX_API_VERSION_2 (0x00020000) fax servers
+SHOULD NOT implement this call. The fax client MUST NOT call this method if the
+protocol version reported by the server is FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), or FAX_API_VERSION_2 (0x00020000). For more
+information, see <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>).</p><p>The server MUST validate that the client&#39;s fax user account
+has access to create an account. On success, the server MUST create a new fax
+account. The server SHOULD apply the following default fax access rights,
+depending on the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_916785d4-dee1-4e63-99a7-ba30240ae3d8" data-linktype="relative-path">authenticated user identity</a></span>
+of the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_cf5f0db4-5dac-4410-9a32-46b4a4942a3b" data-linktype="relative-path">user account</a></span>
+described by the <b>FAX_ACCOUNT_INFO_0</b> (section <span><a href="b9b642f1-8b22-48e2-bc93-0570458c165a" data-linktype="relative-path">2.2.24</a></span>) structure,<a id="Appendix_A_Target_77"></a><a aria-label="Product behavior note 77" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_77" data-linktype="relative-path">&lt;77&gt;</a> and return ERROR_SUCCESS. The
+function MUST return ERROR_ALREADY_EXISTS if the account already exists.</p><table><thead>
+  <tr>
+   <th>
+   <p>Authenticated user identity</p>
+   </th>
+   <th>
+   <p>Default fax user access rights</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Administrator</p>
+  </td>
+  <td>
+  <p>WRITE_OWNER |</p>
+  <p>WRITE_DAC |</p>
+  <p>READ_CONTROL |</p>
+  <p>FAX_ACCESS_SUBMIT |</p>
+  <p>FAX_ACCESS_SUBMIT_NORMAL |</p>
+  <p>FAX_ACCESS_SUBMIT_HIGH |</p>
+  <p>FAX_ACCESS_QUERY_CONFIG |</p>
+  <p>FAX_ACCESS_MANAGE_CONFIG |</p>
+  <p>FAX_ACCESS_QUERY_ARCHIVES</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Standard user</p>
+  </td>
+  <td>
+  <p>READ_CONTROL |</p>
+  <p>FAX_ACCESS_SUBMIT |</p>
+  <p>FAX_ACCESS_SUBMIT_NORMAL</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Interactive logon user</p>
+  </td>
+  <td>
+  <p>READ_CONTROL |</p>
+  <p>FAX_ACCESS_SUBMIT |</p>
+  <p>FAX_ACCESS_SUBMIT_NORMAL |</p>
+  <p>FAX_ACCESS_SUBMIT_HIGH |</p>
+  <p>FAX_ACCESS_QUERY_CONFIG |</p>
+  <p>FAX_ACCESS_MANAGE_RECEIVE_FOLDER</p>
+  </td>
+ </tr></tbody></table><p>The client SHOULD free the returned <i>Buffer</i>.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_CreateAccount(
+   [in] handle_t hBinding,
+   [in] DWORD level,
+   [in, ref, size_is(BufferSize)] const LPBYTE Buffer,
+   [in, range(0,FAX_MAX_RPC_BUFFER)] 
+     DWORD BufferSize
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> or <b>FAX_ConnectionRefCoun</b>t
+(section <span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>) method
+call used to connect to the fax server.</p><p><b>level: </b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that indicates the type of structure to return in <i>Buffer</i>. The
+value passed in this parameter MUST be zero.</p><p><b>Buffer: </b>A pointer to a <b>FAX_ACCOUNT_INFO_0</b>
+that contains fax account information. The <b>lpcwstrAccountName</b> member of
+the <b>FAX_ACCOUNT_INFO_0</b> MUST be set to the name of the operating system
+user account for which the new fax user account is to be created, using the
+same account name. The format of the user account name string is described in
+section 2.2.24 (<b>FAX_ACCOUNT_INFO_0</b>).</p><p><b>BufferSize:</b> A <b>DWORD</b> value that
+indicates the return size, in bytes, of the buffer that is pointed to by the <i>Buffer</i>
+parameter. The maximum size is <b>FAX_MAX_RPC_BUFFER</b>(section <span><a href="8bb4ba82-db45-44ea-9caa-af64d7448e6d" data-linktype="relative-path">2.2.82</a></span>).</p><p><b>Return Values: </b>This method MUST return 0
+(ERROR_SUCCESS) for success; otherwise, it MUST return one of the following
+error codes, one of the fax-specific errors that are defined in section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>,
+or one of the other standard errors that are defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The client&#39;s fax user account does
+  not have the FAX_ACCESS_MANAGE_CONFIG access right.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. This value is returned
+  when any of the following conditions are true:</p>
+  <p><span>§<span>  
+  </span></span>The <i>Buffer</i> parameter is NULL.</p>
+  <p><span>§<span>  
+  </span></span>The <i>BufferSize</i> parameter is 0.</p>
+  <p><span>§<span>  
+  </span></span>The <i>level</i> parameter is greater than zero.</p>
+  <p><span>§<span>  
+  </span></span>The account name, as pointed to by the account information
+  contained in <i>Buffer</i>, is NULL or is specified using an invalid format.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ALREADY_EXISTS</p>
+  <p>0x000000B7</p>
+  </td>
+  <td>
+  <p>The fax account already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_HANDLE_STATE</p>
+  <p>0x00000649</p>
+  </td>
+  <td>
+  <p>The handle is in an invalid state.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The account name contained in the <b>lpcwstrAccountName</b>
+member of the <b>FAX_ACCOUNT_INFO_0</b>, as pointed to by the <i>Buffer</i>
+parameter, MUST be in one of the following formats. Any other format is
+invalid.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Format</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&lt;machine_name&gt;\&lt;user_name&gt;</p>
+  </td>
+  <td>
+  <p>For a local user with machine_name as the local
+  machine&#39;s name.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&lt;domain_name&gt;\&lt;user_name&gt; </p>
+  </td>
+  <td>
+  <p>For a nonlocal user.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown: </b>No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

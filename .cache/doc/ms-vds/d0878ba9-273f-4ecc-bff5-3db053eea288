@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The GetSANPolicy method returns the current SAN policy
+setting.</p><dl>
+<dd>
+<div><pre> HRESULT GetSANPolicy(
+   [out] VDS_SAN_POLICY* pSanPolicy
+ );
+</pre></div>
+</dd></dl><p><b>pSanPolicy: </b>A pointer to a <span><a href="81e7ff81-71d7-408f-a800-38a0dd2828de" data-linktype="relative-path">VDS_SAN_POLICY (section 2.2.2.2.1.1)</a></span>
+structure that, if the operation is successfully completed, receives the SAN
+policy setting&#39;s current value.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span>, as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>,
+to indicate success or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameter:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>pSanPolicy</i> is not NULL.</p>
+</li></ul><p>The server MUST populate the VDS_SAN_POLICY structure that <i>pSanPolicy</i>
+references with the current SAN policy setting&#39;s value, and return an HRESULT
+that indicates failure or success.</p></div>

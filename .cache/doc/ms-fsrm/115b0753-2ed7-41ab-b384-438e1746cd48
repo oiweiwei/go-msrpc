@@ -1,0 +1,22 @@
+<div class="content"><p>The FsrmReportRunningStatus enumeration defines the set of
+running states for a report, classification, or file management job.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmReportRunningStatus
+ {
+   FsrmReportRunningStatus_Unknown = 0,
+   FsrmReportRunningStatus_NotRunning = 1,
+   FsrmReportRunningStatus_Queued = 2,
+   FsrmReportRunningStatus_Running = 3
+ } FsrmReportRunningStatus;
+</pre></div>
+</dd></dl><p><b>FsrmReportRunningStatus_Unknown:  </b>This
+enumeration value is not used by FSRM and MUST NOT be referenced. If the server
+receives this enumeration value, it MUST consider the value invalid and not
+apply any changes.</p><p><b>FsrmReportRunningStatus_NotRunning:  </b>The
+report, classification, or file management job is not running.</p><p><b>FsrmReportRunningStatus_Queued:  </b>The request
+to run the <b>Report job</b>, <b>Classification job</b>, or <b>File Management
+Job</b> has been made and an associated Running Job (section <a href="b34b9dd9-b8fb-41d7-9563-6bd110d98cb7" data-linktype="relative-path">3.2.1.5.1.3</a>), Running
+Classification job has been added to the <b>Running Report Job Queue</b>, <b>Running
+Classification Job Queue</b>, or <b>Running File Management Job Queue</b>
+respectively, but the task is not running at the moment.</p><p><b>FsrmReportRunningStatus_Running:  </b>The <b>Report
+job</b>, <b>Classification job</b>, or <b>File Management Job </b>is running.</p></div>

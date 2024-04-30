@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The <b>FAX_ENUM_GROUP_STATUS</b> enumeration defines status
+types for outbound <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_20b15ad8-82b1-47ef-a494-561c9cdee7fa" data-linktype="relative-path">routing groups</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FAX_GROUP_STATUS_ALL_DEV_VALID = 0x00000000,
+   FAX_GROUP_STATUS_EMPTY = 0x00000001,
+   FAX_GROUP_STATUS_ALL_DEV_NOT_VALID = 0x00000002,
+   FAX_GROUP_STATUS_SOME_DEV_NOT_VALID = 0x00000003
+ } FAX_ENUM_GROUP_STATUS;
+</pre></div>
+</dd></dl><p><b>FAX_GROUP_STATUS_ALL_DEV_VALID: </b>All the devices
+in the group are valid and available for sending outgoing faxes.</p><p><b>FAX_GROUP_STATUS_EMPTY : </b>The group is empty
+(does not contain any devices), and does not have any <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_e3969a6a-4722-476e-9a36-bb63311ae950" data-linktype="relative-path">routing rules</a></span> added.</p><p><b>FAX_GROUP_STATUS_ALL_DEV_NOT_VALID : </b>All the
+devices in the group are not available for sending outgoing faxes. Devices
+could be unavailable if they do not exist or are offline.</p><p><b>FAX_GROUP_STATUS_SOME_DEV_NOT_VALID: </b>Some (but
+not all) of the devices in the group are not available for sending outgoing
+faxes. Devices could be unavailable if they do not exist or are offline.</p></div>

@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The get_Count method gets the count of the number of items
+in the collection contained by the enumerator.</p><dl>
+<dd>
+<div><pre> [id(2), propget, helpstring(&#34;Number of items in the collection&#34;)] HRESULT Count(
+   [out, retval] long* pCount
+ );
+</pre></div>
+</dd></dl><p><b>pCount: </b>If the function returns a success <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>,
+this MUST contain the number specifying the number of elements in the
+underlying collection.</p><p><b>Return Values: </b>An HRESULT specifying success
+or failure. All success codes MUST be treated the same, and all failure codes
+MUST be treated the same.</p><p>When this method is invoked, the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST attempt
+to return the count of the number of elements in the collection. If the server
+is not able to return the count, it MUST fail the call, returning a failure
+HRESULT back to the client.</p></div>

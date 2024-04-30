@@ -1,0 +1,342 @@
+<div class="content"><p> </p><p>The <b>_FAX_CONFIGURATIONW</b> data type is the
+custom-marshaled variant of the <b>FAX_CONFIGURATIONW</b> (section <span><a href="c64c03ad-0e74-46d0-89c0-d76b64785dba" data-linktype="relative-path">2.2.28</a></span>)
+structure. This data type is used as an output parameter (as a byte array) for <b>FAX_GetConfiguration</b>
+(section <span><a href="edf51676-d8b6-44e7-859e-95903b19b224" data-linktype="relative-path">3.1.4.1.36</a></span>) and <b>FaxObs_GetConfiguration</b>
+(section <span><a href="af06e79b-a8eb-4e0d-ad9d-ae71738e1a0f" data-linktype="relative-path">3.1.4.2.24</a></span>) to
+return the current fax server configuration settings. Along with the <b>FAX_GENERAL_CONFIG</b>
+(section <span><a href="7b87f66e-e7bf-4294-be2f-669de0595bde" data-linktype="relative-path">2.2.31</a></span>) data
+structure, this data structure describes the general configuration of the fax
+server.</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (52 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (52 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SizeOfStruct</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Retries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RetryDelay</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DirtyDays</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Branding</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UseDeviceTsid</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ServerCp</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PauseServerQueue</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion_of_StartCheapTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion_of_StopCheapTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ArchiveOutgoingFaxes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ArchiveDirectoryOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ProfileNameOffset</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>SizeOfStruct (4 bytes): </b>A
+<b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that contains the size, in bytes, of the structure. MUST be set to 52 bytes.</p>
+</dd>
+<dd>
+<p><b>Retries (4 bytes): </b>A <b>DWORD</b>
+variable that contains the value of the <b>fax transmission retries</b> fax
+server configuration setting (section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>).</p>
+</dd>
+<dd>
+<p><b>RetryDelay (4 bytes): </b>A
+<b>DWORD</b> variable that contains the value of the <b>fax transmission retry
+delay</b> fax server configuration setting.</p>
+</dd>
+<dd>
+<p><b>DirtyDays (4 bytes): </b>A
+<b>DWORD</b> variable that contains the value of the <b>dirty days</b> fax
+server configuration setting.</p>
+</dd>
+<dd>
+<p><b>Branding (4 bytes): </b>A
+Boolean flag that specifies whether the fax server generates a brand (banner)
+at the top of outgoing fax transmissions. If this field is TRUE, the fax server
+generates a brand that contains transmission-related information like the
+transmitting subscriber identifier, date, time, and page count. This flag
+configures the <b>Branding</b> fax server configuration setting.</p>
+</dd>
+<dd>
+<p><b>UseDeviceTsid (4 bytes): </b>A
+Boolean flag that specifies whether the fax server uses the device&#39;s
+transmitting subscriber identifier instead of the value specified in the <b>Tsid</b>
+field of the <b>FAX_JOB_PARAMW</b> (section <span><a href="c3a6d63b-b33a-476d-aec2-79c034dc17c5" data-linktype="relative-path">2.2.13</a></span>) structure.
+If this field is TRUE, the server uses the device&#39;s transmitting subscriber
+identifier. This flag configures the &#34;use of the device&#39;s TSID&#34; fax
+server configuration setting.</p>
+</dd>
+<dd>
+<p><b>ServerCp (4 bytes): </b>A
+Boolean flag that specifies whether fax client applications can include a
+user-designed cover page template with the fax transmission. If this field is
+TRUE, the client MUST use a common cover page template stored on the fax
+server. If this field is FALSE, the client can use a personal cover page
+template. This flag configures the <b>personal cover page support</b> fax
+server configuration setting.</p>
+</dd>
+<dd>
+<p><b>PauseServerQueue (4
+bytes): </b>A Boolean flag that specifies whether the fax server has paused the
+outgoing <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_0c5e7185-40c3-4e58-a8ac-7626ed078235" data-linktype="relative-path">fax queue</a></span>. If this
+field is TRUE, the outgoing fax queue is paused and the <b>Queue State</b>
+(section 3.1.1) is set to FAX_OUTBOX_PAUSED (0x00000004). If this field is
+FALSE, the outgoing fax queue is not paused, and the <b>Queue State</b> is
+either 0x00000000 or FAX_OUTBOX_BLOCKED (0x00000002).</p>
+</dd>
+<dd>
+<p><b>Fixed_Portion_of_StartCheapTime
+(4 bytes): </b>The <b>Fixed_Portion</b> block of a <b>_FAX_TIME</b> (section <span><a href="a928b310-f07d-49f5-8615-2767641dfcdc" data-linktype="relative-path">2.2.62</a></span>)
+structure that indicates the hour and minute values of the current <b>start
+cheap time</b> fax server configuration setting. </p>
+</dd>
+<dd>
+<p><b>Fixed_Portion_of_StopCheapTime
+(4 bytes): </b>The <b>Fixed_Portion</b> block of a <b>_FAX_TIME</b> that
+indicates the hour and minute values of the <b>stop cheap time</b> fax server
+configuration setting. </p>
+</dd>
+<dd>
+<p><b>ArchiveOutgoingFaxes (4
+bytes): </b>A Boolean flag that specifies whether the fax server archives fax
+transmissions. If this field is TRUE, the server archives fax transmissions.
+This flag corresponds to the <b>Archive Enabled</b> fax server configuration
+setting.</p>
+</dd>
+<dd>
+<p><b>ArchiveDirectoryOffset (4
+bytes): </b>The optional offset to the <b>ArchiveDirectory</b> field in the <b>Variable_Data</b>
+block. The fax server SHOULD ignore this field and set it to zero if the <b>ArchiveOutgoingFaxes</b>
+field is FALSE.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p>
+</dd>
+<dd>
+<p><b>ProfileNameOffset (4
+bytes): </b>Offset to the <b>ProfileName</b> field in the <b>Variable_Data</b>
+block.</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ArchiveDirectory
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ProfileName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>ArchiveDirectory
+(variable): </b>A null-terminated character string that holds the fully
+qualified path of the <b>Fax Archive Folder</b> fax server configuration
+setting. The path can be a UNC path or a path that begins with a drive letter.</p>
+</dd>
+<dd>
+<p><b>ProfileName (variable): </b>Reserved
+and MUST be ignored when this structure is used for <b>FAX_GetConfiguration</b>
+(section 3.1.4.1.36).</p>
+</dd>
+<dd>
+<p>When used for <b>FaxObs_GetConfiguration</b>
+(section 3.1.4.2.24), this member is a null-terminated character string
+containing the <b>profile name</b> fax server configuration setting.</p>
+</dd></dl></div>

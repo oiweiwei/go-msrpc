@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DHCP_OPTION_LIST</b> structure defines an array of
+option values. The first member contains the number of options present, and the
+second member contains a pointer to the array of length <b>NumOptions</b> given
+to a specific DHCPv6 client. This structure is used by the methods that
+retrieve options that are given to the specified DHCPv6 client on request.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_OPTION_LIST {
+   DWORD NumOptions;
+   [size_is(NumOptions)] DHCP_OPTION_VALUE* Options;
+ } DHCP_OPTION_LIST,
+  *LPDHCP_OPTION_LIST;
+</pre></div>
+</dd></dl><p><b>NumOptions:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+containing the number of DHCPv6 options in the subsequent field the <b>Options</b>
+member.</p><p><b>Options:</b>  This is a pointer to an
+array of <span><a href="fa30c949-e063-4aea-b839-a6210e77741e" data-linktype="relative-path">DHCP_OPTION_VALUE (section 2.2.1.2.42)</a></span>
+structures and of length <b>NumOptions</b> containing DHCPv6 option values.</p></div>

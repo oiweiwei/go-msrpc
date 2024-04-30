@@ -1,0 +1,13 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/b2f614b9-0312-421a-abed-10ee002ef780" data-linktype="external">msdn link</a></p><p>The SAMPR_USER_INTERNAL4_INFORMATION_NEW structure holds all
+attributes of a user, along with an encrypted password. The encrypted password
+uses a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_1672c769-f184-404a-9575-e637fd3a43ed" data-linktype="relative-path">salt</a> to improve
+the encryption algorithm. See the specification for <a href="112ecc94-1cbe-41cd-b669-377402c20786" data-linktype="relative-path">SAMPR_ENCRYPTED_USER_PASSWORD_NEW (section 2.2.6.22)</a>
+for details on salt value selection.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_USER_INTERNAL4_INFORMATION_NEW {
+   SAMPR_USER_ALL_INFORMATION I1;
+   SAMPR_ENCRYPTED_USER_PASSWORD_NEW UserPassword;
+ } SAMPR_USER_INTERNAL4_INFORMATION_NEW,
+  *PSAMPR_USER_INTERNAL4_INFORMATION_NEW;
+</pre></div>
+</dd></dl><p><b>I1:</b>  See section <a href="dc966b81-da27-4dae-a28c-ec16534f1cb9" data-linktype="relative-path">2.2.6.6</a>.</p><p><b>UserPassword:</b>  See section 2.2.6.22.</p></div>

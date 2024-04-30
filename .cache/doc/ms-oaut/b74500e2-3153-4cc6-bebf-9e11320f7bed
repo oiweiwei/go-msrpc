@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The CUSTDATA structure is used by an <span><a href="2d6024da-d229-4d78-bbb0-b9d5bf6459b7" data-linktype="relative-path">ITypeInfo2
+server</a></span> or <span><a href="4bb9bc73-3cf5-40a1-85c7-aafaff4874cc" data-linktype="relative-path">ITypeLib2 server</a></span> to
+retrieve custom data items, as specified in sections <span><a href="dc0a9d19-5bc3-4fed-b56a-ba2424379d33" data-linktype="relative-path">3.9.4</a></span> and <span><a href="64099fb5-ded1-4584-a827-25af7a5f2b80" data-linktype="relative-path">3.13.4</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct tagCUSTDATA {
+   DWORD cCustData;
+   [size_is(cCustData)] CUSTDATAITEM* prgCustData;
+ } CUSTDATA;
+</pre></div>
+</dd></dl><p><b>cCustData:</b>  MUST be set to the
+number of custom data items in <b>prgCustData</b>.</p><p><b>prgCustData:</b>  MUST refer to an array
+of <span><a href="02ca19b9-27cb-48ef-b2ca-7f105ba8f475" data-linktype="relative-path">CUSTDATAITEM</a></span>
+structures that contain custom data items, as specified in section 2.2.46.</p></div>

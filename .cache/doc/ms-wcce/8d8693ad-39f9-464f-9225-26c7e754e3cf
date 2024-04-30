@@ -1,0 +1,52 @@
+<div class="content"><p> </p><p>The following table specifies how an X.509 <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_4f22841f-249b-42fb-a31a-5049c00be939" data-linktype="relative-path">certificate
+revocation list (CRL)</a></span>, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90414" data-linktype="external">[RFC3280]</a></span>, is
+to be returned in the byte array referenced by the <b>pb</b> field of a <span><a href="d6bee093-d862-4122-8f2b-7b49102097dc" data-linktype="relative-path">CERTTRANSBLOB (section 2.2.2.2)</a></span>
+structure.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Data (variable): </b>This field contains an X.509
+CRL (as specified in [RFC3280]), which is encoded by using <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_25428624-f292-4134-8f6c-85ba65a6d472" data-linktype="relative-path">DER</a></span>,
+as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90593" data-linktype="external">[X690]</a></span>.</p></div>

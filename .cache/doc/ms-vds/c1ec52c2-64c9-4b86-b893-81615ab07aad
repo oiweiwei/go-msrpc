@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The VDS_PACK_PROP structure provides information about the
+properties of a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_a6543827-8d70-4e5a-a982-2fdc2e7f8bca" data-linktype="relative-path">disk pack</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_PACK_PROP {
+   VDS_OBJECT_ID id;
+   [string] WCHAR* pwszName;
+   VDS_PACK_STATUS status;
+   unsigned long ulFlags;
+ } VDS_PACK_PROP,
+  *PVDS_PACK_PROP;
+</pre></div>
+</dd></dl><p><b>id:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS object</a></span> ID of the
+disk pack object.</p><p><b>pwszName:</b>  The null-terminated
+Unicode name of the disk pack. If the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_890bb28d-df68-420f-a8bc-83899d34ad5c" data-linktype="relative-path">pack</a></span> has no name,
+this pointer is set to NULL.</p><p><b>status:</b>  The value from the <span><a href="3e99a84a-55a8-4b69-b2d5-c23588307ed2" data-linktype="relative-path">VDS_PACK_STATUS</a></span>
+enumeration that indicates the status of the disk pack.</p><p><b>ulFlags:</b>  A combination of any
+values, by using a bitwise OR operator, of the disk pack flags that are defined
+in the <span><a href="05ada9dc-c9a0-438f-a94d-ccd69b0498f9" data-linktype="relative-path">VDS_PACK_FLAG</a></span>
+enumeration. ulFlags can be 0 if none of the VDS_PACK_FLAG values apply.</p></div>

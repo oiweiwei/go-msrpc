@@ -1,0 +1,29 @@
+<div class="content"><p> </p><p>This enumeration defines classes of status codes.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_RULE_STATUS_CLASS
+ {
+   FW_RULE_STATUS_CLASS_OK = FW_RULE_STATUS_OK,
+   FW_RULE_STATUS_CLASS_PARTIALLY_IGNORED = FW_RULE_STATUS_PARTIALLY_IGNORED,
+   FW_RULE_STATUS_CLASS_IGNORED = FW_RULE_STATUS_IGNORED,
+   FW_RULE_STATUS_CLASS_PARSING_ERROR = FW_RULE_STATUS_PARSING_ERROR,
+   FW_RULE_STATUS_CLASS_SEMANTIC_ERROR = FW_RULE_STATUS_SEMANTIC_ERROR,
+   FW_RULE_STATUS_CLASS_RUNTIME_ERROR = FW_RULE_STATUS_RUNTIME_ERROR,
+   FW_RULE_STATUS_CLASS_ERROR = FW_RULE_STATUS_ERROR,
+   FW_RULE_STATUS_CLASS_ALL = FW_RULE_STATUS_ALL
+ } FW_RULE_STATUS_CLASS;
+</pre></div>
+</dd></dl><p><b>FW_RULE_STATUS_CLASS_OK:</b>  The rule is correctly
+constructed and has no issue. This symbolic constant has a value of 0x00010000.</p><p><b>FW_RULE_STATUS_CLASS_PARTIALLY_IGNORED:</b>  The
+rule has fields that the service can successfully ignore. This symbolic
+constant has a value of 0x00020000.</p><p><b>FW_RULE_STATUS_CLASS_IGNORED:</b>  The rule has a
+higher version that the service MUST ignore. This symbolic constant has a value
+of 0x00040000.</p><p><b>FW_RULE_STATUS_CLASS_PARSING_ERROR:</b>  The rule
+failed to be parsed correctly. This symbolic constant has a value of
+0x00080000.</p><p><b>FW_RULE_STATUS_CLASS_SEMANTIC_ERROR:</b>  There is
+a semantic error when considering the fields of the rule in conjunction. This
+symbolic constant has a value of 0x00100000.</p><p><b>FW_RULE_STATUS_CLASS_RUNTIME_ERROR:</b>  There is
+a runtime error when the object is considered in conjunction with other policy
+objects. This symbolic constant has a value of 0x00200000.</p><p><b>FW_RULE_STATUS_CLASS_ERROR:</b>  An error
+occurred. This symbolic constant has a value of 0x00380000.</p><p><b>FW_RULE_STATUS_CLASS_ALL:</b>  The status of all
+(used to enumerate ALL the rules, regardless of the status). This symbolic
+constant has a value of 0xFFFF0000.</p></div>

@@ -1,0 +1,18 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/30a12be7-a4ed-4ef2-bd88-83961edb8f26" data-linktype="external">msdn link</a></p><p>The <b>LM_OWF_PASSWORD</b> structure carries a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9a5d11c7-eea9-4217-b9a8-478c6786e9e8" data-linktype="relative-path">one-way function (OWF)</a> of a
+LAN Manager password. The <b>LM_OWF_PASSWORD</b> structure SHOULD be encrypted,
+as specified by each method that uses this structure. See the <b>NetrServerPasswordSet</b>
+method (section <a href="a9331034-7f30-47bd-8aee-93bbabe90df4" data-linktype="relative-path">3.5.4.4.6</a>)
+for encryption information.</p><dl>
+<dd>
+<div><pre> typedef struct _LM_OWF_PASSWORD {
+   CYPHER_BLOCK data[2];
+ } LM_OWF_PASSWORD,
+  *PLM_OWF_PASSWORD,
+  ENCRYPTED_LM_OWF_PASSWORD,
+  *PENCRYPTED_LM_OWF_PASSWORD;
+</pre></div>
+</dd></dl><p><b>data:</b> An array of <b>CYPHER_BLOCK</b>
+structures (section <a href="56a8d298-dbeb-4eb5-ad98-76536ec352f8" data-linktype="relative-path">2.2.1.1.1</a>)
+that contains the LMOWFv1 of a password. LMOWFv1 is specified in NTLM v1
+Authentication in <a href="../ms-nlmp/b38c36ed-2804-4868-a9ff-8dd3182128e4" data-linktype="relative-path">[MS-NLMP]</a>
+section <a href="../ms-nlmp/464551a8-9fc4-428e-b3d3-bc5bfb2e73a5" data-linktype="relative-path">3.3.1</a>.</p></div>

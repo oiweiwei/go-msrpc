@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The _WBEM_REFRESH_INFO_NON_HIPERF structure MUST be returned
+by the server when the requested <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a99173af-90bf-473d-9a81-ff0ce9a85838" data-linktype="relative-path">CIM</a></span> instance cannot
+be part of the refreshing results. </p><dl>
+<dd>
+<div><pre> typedef struct {
+   [string] wchar_t* m_wszNamespace;
+   IWbemClassObject* m_pTemplate;
+ } _WBEM_REFRESH_INFO_NON_HIPERF;
+</pre></div>
+</dd></dl><p><b>m_wszNamespace:</b>  MUST be a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_69c79c84-fbbf-432b-9d7c-461b7cbea8cc" data-linktype="relative-path">CIM
+namespace</a></span> where enumeration of a given class exists.</p><p><b>m_pTemplate:</b>  MUST be a pointer to
+an <span><a href="46710c5c-d7ab-4e4c-b4a5-ebff311fdcd1" data-linktype="relative-path">IWbemClassObject</a></span>
+interface, which MUST represent a CIM instance with all properties set to the
+default values. Default property values are as specified in <span><a href="../ms-wmio/b44d0581-5bd3-40fc-95d7-01c1b1239820" data-linktype="relative-path">[MS-WMIO]</a></span>
+section <span><a href="../ms-wmio/65bcd0c2-b3f3-49a7-b4aa-c972cdc0774b" data-linktype="relative-path">2.2.26</a></span>.</p></div>

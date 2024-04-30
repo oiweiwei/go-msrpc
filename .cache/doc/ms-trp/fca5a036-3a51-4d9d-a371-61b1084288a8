@@ -1,0 +1,139 @@
+<div class="content"><p>The LINE_GATHERDIGITS packet is sent when the current
+buffered digit-gathering request has terminated or is canceled. The digit
+packet can be examined after this packet is received by the application. The
+LINE_GATHERDIGITS packet is sent only if the client initiated the digit
+gathering on the call using <a href="c43483e1-642b-41b7-bc3b-73e7793bf4a0" data-linktype="relative-path">GatherDigits</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">TotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">InitContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hDevice</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Msg</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">OpenContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpsDigitsContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumDigits</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwEndToEndID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hRemoteLine</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>TotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size of the asynchronous event packet.</p><p><b>InitContext (4 bytes): </b>An unsigned 32-bit
+integer. The opaque, client-specified session value that MUST be equal to the
+InitContext value that is specified in the original scoping of the line <a href="9d8eb7cd-3245-4e44-97e0-42f7b89c9424" data-linktype="relative-path">Initialize</a> request.</p><p><b>lpContext (4 bytes): </b>An unsigned 32-bit
+integer. The opaque, client-specified value that MUST be equal to the lpContext
+value in the original GatherDigits request.</p><p><b>hDevice (4 bytes): </b>An unsigned 32-bit integer.
+The handle to the call or line device that is associated with the asynchronous
+event. </p><p><b>Msg (4 bytes): </b>An unsigned 32-bit integer. The
+packet type; MUST be set to 0x00000006 (LINE_GATHERDIGITS).</p><p><b>OpenContext (4 bytes): </b>An unsigned 32-bit integer.
+The opaque, client-specified context value that MUST be equal to the
+OpenContext value that is specified in the original scoping of the line <a href="2759c744-e040-4c5d-b4b5-215d391f0490" data-linktype="relative-path">Open</a> request.</p><dl>
+<dd>
+<p>This information MUST be passed back to the
+application with each completion and event that is associated with the handle
+of the line or call on the line. This field is not interpreted by TAPI.</p>
+</dd></dl><p><b>Param1 (4 bytes): </b>An unsigned 32-bit integer.
+The reason why digit gathering has been terminated. This parameter MUST be one
+of the <a href="c09e26b5-6645-4acb-9a16-27074515b816" data-linktype="relative-path">LINEGATHERTERM_Constants</a>.
+</p><p><b>lpsDigitsContext (4 bytes): </b>An unsigned 32-bit
+integer. An opaque, client-specified value that MUST be equal to the <b>lpsDigitsContext</b>
+value in the original line GatherDigits request.</p><p><b>Param3 (4 bytes): </b>An unsigned 32-bit integer.
+The &#34;tick count&#34; at which the digit gathering is completed. For TAPI
+versions earlier than 2.0, this parameter is unused.</p><p><b>dwNumDigits (4 bytes): </b>An unsigned 32-bit
+integer. The number of WCHAR digit characters in the variable-length data that
+immediately follows this packet.</p><p><b>dwEndToEndID (4 bytes): </b>An unsigned 32-bit
+integer. A client-specified value that MUST be equal to the <b>dwEndToEndID</b>
+value in the original line GatherDigits request.</p><p><b>hRemoteLine (4 bytes): </b>An unsigned 32-bit
+integer. The client handle for the line value.</p><p><b>VarData (variable): </b>Contains the gathered
+WCHAR digit characters. The number of digits is determined by <b>dwNumDigits</b>.</p></div>

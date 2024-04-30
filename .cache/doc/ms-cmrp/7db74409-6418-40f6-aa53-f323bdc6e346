@@ -1,0 +1,31 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/7db74409-6418-40f6-aa53-f323bdc6e346" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_CHANGE_NODE_V2</b> enumeration SHOULD<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a> list the notifications that are
+generated for a cluster node. ClusAPI Protocol version 2.0 servers do not
+support this value.</p><p>These notifications are available only with <b>ApiGetNotifyV2</b>
+(section <a href="491227be-d055-4140-8b85-35cf29f31166" data-linktype="relative-path">3.1.4.2.138</a>).
+The object type is CLUSTER_OBJECT_TYPE_NODE. The ParentId is not set for these
+notifications.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   CLUSTER_CHANGE_NODE_NETINTERFACE_ADDED_V2 = 0x00000001,
+   CLUSTER_CHANGE_NODE_DELETED_V2 = 0x00000002,
+   CLUSTER_CHANGE_NODE_COMMON_PROPERTY_V2 = 0x00000004,
+   CLUSTER_CHANGE_NODE_PRIVATE_PROPERTY_V2 = 0x00000008,
+   CLUSTER_CHANGE_NODE_STATE_V2 = 0x00000010,
+   CLUSTER_CHANGE_NODE_GROUP_GAINED_V2 = 0x00000020,
+   CLUSTER_CHANGE_NODE_GROUP_LOST_V2 = 0x00000040,
+   CLUSTER_CHANGE_NODE_HANDLE_CLOSE_V2 = 0x00000080
+ } CLUSTER_CHANGE_NODE_V2;
+</pre></div>
+</dd></dl><p><b>CLUSTER_CHANGE_NODE_NETINTERFACE_ADDED_V2: </b>This
+notification indicates that the network interface for the cluster node has been
+added.</p><p><b>CLUSTER_CHANGE_NODE_DELETED_V2: </b>This
+notification indicates that the cluster node has been deleted.</p><p><b>CLUSTER_CHANGE_NODE_COMMON_PROPERTY_V2: </b>This
+notification indicates that the common properties for the cluster node have
+been changed.</p><p><b>CLUSTER_CHANGE_NODE_PRIVATE_PROPERTY_V2: </b>This
+notification indicates that the private properties for the cluster node have
+been changed.</p><p><b>CLUSTER_CHANGE_NODE_STATE_V2: </b>This
+notification indicates that the state of the cluster node has changed.</p><p><b>CLUSTER_CHANGE_NODE_GROUP_GAINED_V2: </b>This
+notification indicates that the cluster node has gained a group.</p><p><b>CLUSTER_CHANGE_NODE_GROUP_LOST_V2: </b>This
+notification indicates that the cluster node has lost a group.</p><p><b>CLUSTER_CHANGE_NODE_HANDLE_CLOSE_V2: </b>For
+details of this notification, see section <a href="2f7e3a15-1ca9-4e9e-9560-2eee1a62de88" data-linktype="relative-path">3.2.4.7</a>.</p></div>

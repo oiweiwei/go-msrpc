@@ -1,0 +1,59 @@
+<div class="content"><p>RpcReadPrinter retrieves data from the specified job or <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a>.</p><dl>
+<dd>
+<div><pre> DWORD RpcReadPrinter(
+   [in] PRINTER_HANDLE hPrinter,
+   [out, size_is(cbBuf)] BYTE* pBuf,
+   [in] DWORD cbBuf,
+   [out] DWORD* pcNoBytesRead
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a job object or port
+object that was opened by <a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter (section 3.1.4.2.2)</a>
+or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx (section 3.1.4.2.14)</a>.</p><p><b>pBuf: </b>A pointer to a buffer that receives the
+printer data. If the <i>hPrinter</i> parameter is the handle to a port object,
+this method returns the data that is returned by the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1b5f368b-942b-40dd-84ea-fa9082916216" data-linktype="relative-path">port monitor</a>.</p><dl>
+<dd>
+<p>This parameter can be NULL if the value of the <i>cbBuf</i>
+parameter is zero.</p>
+</dd></dl><p><b>cbBuf: </b>The size, in bytes, of data to be read
+into the buffer that is pointed to by the <i>pBuf</i> parameter.</p><p><b>pcNoBytesRead: </b>A pointer to a variable that
+receives the number of bytes of data copied into the array to which <i>pBuf</i>
+points.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE
+Parameters (section 3.1.4.1.11)</a>.</p>
+</li><li><p><span><span> 
+</span></span>Verify that printing of the job has not been canceled and if that
+verification fails, return ERROR_PRINT_CANCELLED [MS-ERREF].</p>
+</li><li><p><span><span> 
+</span></span>If the value of the <i>cbBuf</i> parameter is not zero, verify
+that the <i>pBuf</i> parameter is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Additional validation MAY<a id="Appendix_A_Target_376"></a><a aria-label="Product behavior note 376" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_376" data-linktype="relative-path">&lt;376&gt;</a> be
+performed.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>If the <i>hPrinter</i> parameter is a job object handle, copy
+data from the temporary storage of the job object to the buffer pointed to by <i>pBuf</i>,
+up to the number of bytes indicated in <i>cbBuf</i>, or to the end of the
+temporary storage&#39;s data, whichever comes first.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>hPrinter</i> parameter is a port object handle, read
+directly from the port and copy the read data to the buffer pointed to by <i>pBuf</i>,
+up to the number of bytes indicated in <i>cbBuf</i> or until no more data can
+be read, whichever comes first. This requires that the port monitor for the
+port supports reading data from the port; otherwise, return
+ERROR_INVALID_HANDLE.<a id="Appendix_A_Target_377"></a><a aria-label="Product behavior note 377" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_377" data-linktype="relative-path">&lt;377&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Write the number of bytes that were copied to the variable that
+is pointed to by <i>pcNoBytesRead</i>.</p>
+</li><li><p><span><span> 
+</span></span>If reading from a job object, update the read pointer, so a
+subsequent read continues at the correct location.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

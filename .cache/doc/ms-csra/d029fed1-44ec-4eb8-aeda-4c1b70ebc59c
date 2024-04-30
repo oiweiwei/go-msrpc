@@ -1,0 +1,17 @@
+<div class="content"><p>The SetCASecurity method is used to set the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> security, as defined in
+the <a href="8cde1de4-9e58-4250-b8fe-4f0da15127ed" data-linktype="relative-path">Abstract Data
+Model (section 3.1.1)</a>.</p><dl>
+<dd>
+<div><pre> HRESULT SetCASecurity(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in, ref] CERTTRANSBLOB* pctbSD
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.
+</p><p><b>pctbSD: </b>A pointer to a <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> data
+structure that holds the security descriptor. Security descriptors are
+specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a>.</p><p>The CA SHOULD use the permissions set in <b>pctbSD</b> to
+deny and allow permissions to CA functionality. Microsoft CA permissions are
+defined in section <a href="509360cf-9797-491e-9dd1-795f63cb1538" data-linktype="relative-path">3.1.1.7</a>.</p></div>

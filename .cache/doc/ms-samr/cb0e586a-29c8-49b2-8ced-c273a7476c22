@@ -1,0 +1,8 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/cb0e586a-29c8-49b2-8ced-c273a7476c22" data-linktype="external">msdn link</a></p><p>The DOMAIN_SERVER_ROLE_INFORMATION structure contains <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> fields.</p><dl>
+<dd>
+<div><pre> typedef struct _DOMAIN_SERVER_ROLE_INFORMATION {
+   DOMAIN_SERVER_ROLE DomainServerRole;
+ } DOMAIN_SERVER_ROLE_INFORMATION,
+  *PDOMAIN_SERVER_ROLE_INFORMATION;
+</pre></div>
+</dd></dl><p>For information on each field, see section <a href="d275ab19-10b0-40e0-94bb-45b7fc130025" data-linktype="relative-path">2.2.3.1</a>.</p></div>

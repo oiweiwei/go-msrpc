@@ -1,0 +1,91 @@
+<div class="content"><p>The ENCRYPTED_DATA_BLOB message stores the encrypted,
+sensitive data that is transferred between client and server.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EncryptedDataLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SignedHashLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EncryptedData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Padding
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SignedHash
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>EncryptedDataLength (4 bytes): </b>A 32-bit
+unsigned integer that stores the size, in bytes, of the <b>EncryptedData</b>
+field.</p><p><b>SignedHashLength (4 bytes): </b> A 32-bit unsigned
+integer that stores the size, in bytes, of the <b>SignedHash</b> field.</p><p><b>EncryptedData (variable): </b>A variable-length
+array of bytes containing encrypted data. The <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_f6e0fdd0-cbc1-4c9d-93b8-f25125f9c5ef" data-linktype="relative-path">cleartext</a> data before the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_8312d817-fdc5-4a49-8894-729b7b9e0ce5" data-linktype="relative-path">encryption</a> is stored in <a href="4ee1f45b-19a4-4106-b3f3-06a612a84ebc" data-linktype="relative-path">CLEARTEXT_WITH_PREFIX_BLOB</a>
+format.</p><p><b>Padding (variable): </b>A variable-length array of
+bytes where the length of the padding is based on the <b>EncryptedDataLength</b>
+field. The number of padding bytes is calculated as the difference between the
+8-byte aligned <b>EncryptedDataLength</b> field and the actual <b>EncryptedDataLength</b>
+field.</p><p><b>SignedHash (variable): </b>A variable-length array
+of bytes that contains the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_08dd8645-e19c-410c-8081-63a12d3c3a2c" data-linktype="relative-path">signed
+hash</a> of the <b>EncryptedData</b> field.</p></div>

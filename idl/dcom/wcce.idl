@@ -1,0 +1,102 @@
+import "ms-dcom.idl";
+typedef byte BYTE;
+ 
+typedef struct _CERTTRANSBLOB {
+    ULONG                       cb;
+    [size_is(cb), unique] BYTE *pb;
+} CERTTRANSBLOB;
+ 
+typedef struct _CATRANSPROP {
+    LONG   lPropID;
+    BYTE   propType;
+    BYTE   Reserved;
+    USHORT propFlags;
+    ULONG  obwszDisplayName;
+} CATRANSPROP;
+ 
+typedef struct _CAINFO {
+    DWORD               cbSize;
+    long                CAType;
+    DWORD               cCASignatureCerts;
+    DWORD               cCAExchangeCerts;
+    DWORD               cExitAlgorithms;
+    long                lPropIDMax;
+    long                lRoleSeparationEnabled;
+    DWORD               cKRACertUsedCount;
+    DWORD               cKRACertCount;
+    DWORD               fAdvancedServer;
+} CAINFO;
+ 
+ 
+[
+    object,
+    uuid(d99e6e70-fc88-11d0-b498-00a0c90312f3),
+    helpstring("ICertRequest DCOM Interface"),
+    pointer_default(unique)
+]
+interface ICertRequestD: IUnknown
+{
+    HRESULT Request(
+        [in]                 DWORD                dwFlags,       
+        [in, string, unique, range(1, 1536)] wchar_t const       *pwszAuthority,
+        [in, out, ref]       DWORD               *pdwRequestId,
+        [out]                DWORD               *pdwDisposition,   
+        [in, string, unique, range(1, 1536)] wchar_t const       *pwszAttributes,
+        [in, ref]            CERTTRANSBLOB const *pctbRequest,       
+        [out, ref]           CERTTRANSBLOB       *pctbCertChain,    
+        [out, ref]           CERTTRANSBLOB       *pctbEncodedCert,
+        [out, ref]           CERTTRANSBLOB       *pctbDispositionMessage
+    );
+                                
+    HRESULT GetCACert(
+        [in]                 DWORD          fchain,        
+        [in, string, unique, range(1, 1536)] wchar_t const *pwszAuthority,
+        [out, ref]           CERTTRANSBLOB *pctbOut
+    );        
+ 
+    HRESULT Ping(
+        [in, string, unique, range(1, 1536)] wchar_t const *pwszAuthority
+    );
+};
+ 
+ 
+[
+    object,
+    uuid(5422fd3a-d4b8-4cef-a12e-e87d4ca22e90),
+    helpstring("ICertRequest2 DCOM Interface"),
+    pointer_default(unique)
+]
+interface ICertRequestD2: ICertRequestD
+{
+    HRESULT Request2(
+        [in, string, unique, range(1, 1536)] wchar_t const       *pwszAuthority,
+        [in]                 DWORD                dwFlags,        
+        [in, string, unique, range(1, 64)] wchar_t const       *pwszSerialNumber, 
+        [in, out, ref]       DWORD               *pdwRequestId,
+        [out]                DWORD               *pdwDisposition,  
+        [in, string, unique, range(1, 1536)] wchar_t const       *pwszAttributes,
+        [in, ref]            CERTTRANSBLOB const *pctbRequest,     
+        [out, ref]           CERTTRANSBLOB       *pctbFullResponse, 
+        [out, ref]           CERTTRANSBLOB       *pctbEncodedCert,  
+        [out, ref]           CERTTRANSBLOB       *pctbDispositionMessage
+    );
+ 
+    HRESULT GetCAProperty(
+        [in, string, unique, range(1, 1536)] wchar_t const *pwszAuthority,
+        [in]                 long           PropID,    
+        [in]                 long           PropIndex,
+        [in]                 long           PropType,    
+        [out, ref]           CERTTRANSBLOB *pctbPropertyValue
+    );    
+ 
+    HRESULT GetCAPropertyInfo(
+        [in, string, unique, range(1, 1536)] wchar_t const *pwszAuthority,
+        [out]                long          *pcProperty,
+        [out, ref]           CERTTRANSBLOB *pctbPropInfo
+    );    
+ 
+    HRESULT Ping2(
+        [in, string, unique, range(1, 1536)] wchar_t const *pwszAuthority
+    );
+};
+

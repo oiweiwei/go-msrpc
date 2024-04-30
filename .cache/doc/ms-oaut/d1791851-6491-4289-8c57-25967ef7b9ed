@@ -1,0 +1,49 @@
+<div class="content"><p>The GetTypeInfo method provides access to the Type
+description information exposed by the <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_5dcdba04-9cfd-40b3-b0e1-0b8e4374aeaa" data-linktype="relative-path">automation server</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetTypeInfo(
+   [in] UINT iTInfo,
+   [in] LCID lcid,
+   [out] ITypeInfo** ppTInfo
+ );
+</pre></div>
+</dd></dl><p><b>iTInfo: </b>MUST be 0.</p><p><b>lcid: </b>MUST equal the locale ID for the Type
+description information to be retrieved.</p><p><b>ppTInfo: </b>MUST be set to reference an instance
+of an <a href="99504cf9-16d8-401e-a873-83b85d1ee4aa" data-linktype="relative-path">ITypeInfo server</a>
+that corresponds to the default nonsource interface of the <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_670b0ee2-d101-41b0-ac77-6ac7dbeee7dc" data-linktype="relative-path">coclass</a> implementing
+IDispatch (see section <a href="e86fe771-d836-47b6-b846-846de41d592c" data-linktype="relative-path">2.2.49.8</a>).
+MUST refer to the <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_603521de-c0d9-4732-ad40-2ece61f8c7eb" data-linktype="relative-path">partner
+dispinterface</a> if the default nonsource interface is a <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_3bb740fd-35c1-4082-a912-2bde177753b9" data-linktype="relative-path">dual interface</a>. MUST be set
+to NULL if the coclass does not specify a default nonsource interface.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+DWORD does not match the value in the following table, a fatal failure
+occurred.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD
+matches the value in the following table, a failure occurred.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8002000B</p>
+  <p>DISP_E_BADINDEX</p>
+  </td>
+  <td>
+  <p>SHOULD be returned when the value of the passed in
+  iTInfo argument was not 0. See [MS-ERREF].</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p> </p></div>

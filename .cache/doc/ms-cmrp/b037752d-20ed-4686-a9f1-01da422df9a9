@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/b037752d-20ed-4686-a9f1-01da422df9a9" data-linktype="external">msdn link</a></p><p>The <b>IDL_CLUSTER_SET_PASSWORD_FLAGS</b> enumeration
+defines the possible values for the <i>dwFlags</i> parameter of the method <b>ApiSetServiceAccountPassword</b>
+(section <a href="31e84956-1b57-4a86-9ad0-0571e8b02bba" data-linktype="relative-path">3.1.4.1.108)</a>.
+The valid constant values are as follows. All other values are reserved.</p><dl>
+<dd>
+<div><pre> typedef  enum IDL_CLUSTER_SET_PASSWORD_FLAGS 
+ {
+   IDL_CLUSTER_SET_PASSWORD_IGNORE_DOWN_NODES = 1
+ } IDL_CLUSTER_SET_PASSWORD_FLAGS;
+</pre></div>
+</dd></dl><p><b>IDL_CLUSTER_SET_PASSWORD_IGNORE_DOWN_NODES:  </b>Indicates
+to the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> to proceed
+with the password change operation even if there are nodes configured in the
+cluster that are currently in the ClusterNodeUp state, as specified in section <a href="46f729d5-4f05-49ec-b5ed-e4359e24d105" data-linktype="relative-path">3.1.4.1.69</a>.</p></div>

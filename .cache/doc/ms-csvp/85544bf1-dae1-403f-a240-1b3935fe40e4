@@ -1,0 +1,212 @@
+<div class="content"><p>The GetNextAdapterFirewallConfiguration method returns
+information about a specific network adapter attached to the system.</p><dl>
+<dd>
+<div><pre> HRESULT GetNextAdapterFirewallConfiguration(
+   [in] unsigned long idx,
+   [out] GUID* adapterId,
+   [out] CLUSTER_NETWORK_PROFILE* adapterProfile,
+   [out] BOOLEAN* serverRulesEnabled,
+   [out] BOOLEAN* managementRulesEnabled,
+   [out] BOOLEAN* commonRulesEnabled
+ );
+</pre></div>
+</dd></dl><p><b>idx: </b>A 32-bit unsigned integer that indicates
+the index of the adapter information to retrieve. The server MUST fail this
+method with error 0x80070057 <b>(E_INVALIDARG)</b> if <i>idx</i> is greater
+than or equal to the <i>cRetAdapters</i> value returned by the previous call to
+InitializeAdapterConfiguration (Opnum 3).</p><p><b>adapterId: </b>A <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> that uniquely
+identifies the network adapter on the system. Upon successful completion of
+this method, the server MUST set this value. If the method fails, the client
+MUST ignore this value.</p><p><b>adapterProfile: </b>The firewall profile assigned
+to the network adapter. Upon successful completion of this method, the server
+MUST set this value to one of the specified values of <a href="20438d2b-cb03-44bd-8b2b-ececf6c323ce" data-linktype="relative-path">CLUSTER_NETWORK_PROFILE</a>.
+If the method fails, the client MUST ignore this value.</p><p><b>serverRulesEnabled: </b>An output parameter that
+indicates whether the server is suitable for server-to-server <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_acd8b49c-8762-48fd-9272-26a03643322b" data-linktype="relative-path">failover cluster</a>
+communication. Upon successful completion of this method, the server MUST set
+this value to TRUE if the server is suitable or to FALSE if the server is not
+suitable. When the server firewall enforces policies specified in <a href="../ms-fasp/55e50895-2e1f-4479-b130-122f9dc0265f" data-linktype="relative-path">[MS-FASP]</a>,
+the server sets this value to TRUE if the group of rules with the localized
+name &#34;Failover Clusters&#34; is enabled. If the method fails, the client
+MUST ignore this value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUE</p>
+  <p>-128 — -1</p>
+  </td>
+  <td>
+  <p>Firewall settings allow the traffic specified
+  previously.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0</p>
+  </td>
+  <td>
+  <p>Firewall settings do not allow the traffic specified
+  previously.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  <p>1 — 128</p>
+  </td>
+  <td>
+  <p>Firewall settings allow the traffic specified
+  previously.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>managementRulesEnabled: </b>An output parameter
+that indicates whether the server is compatible with the failover cluster
+management components. Upon successful completion of this method, the server
+MUST set this value to TRUE if the server is compatible or to FALSE if the
+server is not compatible. When the server firewall enforces policies specified
+in [MS-FASP], the server SHOULD set this value to TRUE if the group of rules
+with the localized name &#34;Failover Cluster Manager&#34; is enabled. If the
+method fails, the client MUST ignore this value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUE</p>
+  <p>-128 — -1</p>
+  </td>
+  <td>
+  <p>Firewall settings allow the traffic specified
+  previously.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0</p>
+  </td>
+  <td>
+  <p>Firewall settings do not allow the traffic specified
+  previously.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  <p>1 — 128</p>
+  </td>
+  <td>
+  <p>Firewall settings allow the traffic specified previously.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>commonRulesEnabled: </b>An output parameter that
+indicates whether the server is compatible with the failover cluster components
+common to failover cluster management and server-to-server failover cluster
+communications. Upon successful completion of this method, the server MUST set
+this value to TRUE if the server is compatible or to FALSE if the server is not
+compatible. When the server firewall enforces policies specified in [MS-FASP],
+the server SHOULD set this value to TRUE if the group of rules with the
+localized name &#34;Failover Cluster Common&#34; is enabled. If the method
+fails, the client MUST ignore this value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUE</p>
+  <p>-128 — -1</p>
+  </td>
+  <td>
+  <p>Firewall settings allow the traffic specified
+  previously.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0</p>
+  </td>
+  <td>
+  <p>Firewall settings do not allow the traffic specified
+  previously.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  <p>1 — 128</p>
+  </td>
+  <td>
+  <p>Firewall settings allow the traffic specified
+  previously.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method implementation.
+For more information about Win32 error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The value the client specified in <i>idx</i> is
+  greater than or equal to the <i>cRetAdapters</i> value returned by the
+  previous call to <a href="20a9f233-9914-4160-8b46-c704b5d5b5d9" data-linktype="relative-path">InitializeAdapterConfiguration</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8000FFFF</p>
+  <p>E_UNEXPECTED</p>
+  </td>
+  <td>
+  <p>InitializeAdapterConfiguration has not yet been
+  called.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 4.</p><p>The server returns the following information to the client:</p><ul><li><p><span><span> 
+</span></span>The output parameters set to the values specified previously.</p>
+</li></ul></div>

@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The RemQueryInterface2 (Opnum 6) method acquires standard
+object references (see section <span><a href="ad717638-f105-4256-b552-385b08ef8ebf" data-linktype="relative-path">2.2.18.1</a></span>) to
+additional interfaces on the object, marshaled as an <span><a href="21781a97-cb45-4655-82b0-02c4a1584603" data-linktype="relative-path">MInterfacePointer</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> HRESULT RemQueryInterface2(
+   [in] REFIPID ripid,
+   [in] unsigned short cIids,
+   [in, size_is(cIids)] IID* iids,
+   [out, size_is(cIids)] HRESULT* phr,
+   [out, size_is(cIids)] PMInterfacePointerInternal* ppMIF
+ );
+</pre></div>
+</dd></dl><p><b>ripid: </b> This MUST specify an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_74540339-daab-46ea-a8f9-fe8fca3b150c" data-linktype="relative-path">IPID</a></span>
+that identifies the interface on the object in the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_5b284f60-ee33-4d15-9a7b-0fb82d7c6b68" data-linktype="relative-path">object exporter</a></span> that
+is queried for more interfaces.</p><p><b>cIids: </b> This MUST specify the number of
+elements in the <i>iids</i>, <i>phr</i>, and <i>ppMIF</i> parameters.</p><p><b>iids: </b> This MUST specify an array of <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_76ad3105-3f05-479d-a40c-c9c8fa2ebd83" data-linktype="relative-path">IIDs</a></span>
+for which the client requests object references.</p><p><b>phr: </b> This MUST contain an array of HRESULTs
+specifying the respective success or failure of each query operation.</p><p><b>ppMIF: </b> This MUST contain an array of
+MInterfacePointer structures containing the results of each query operation.</p><p>When processing this <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_d4ad46fe-cbab-43f2-a125-b2f125824f33" data-linktype="relative-path">ORPC</a></span> call, the
+object exporter MUST perform the same operations as it does for <span><a href="11fd5e3a-f5ef-41cc-b943-45217efdb054" data-linktype="relative-path">IRemUnknown::RemQueryInterface</a></span>,
+except that it MUST return an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_d2b5b331-4e5f-417f-92c5-38eef54176c2" data-linktype="relative-path">OBJREF</a></span> for each
+object reference in the MInterfacePointer array instead of an STDOBJREF. </p></div>

@@ -1,0 +1,68 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/0e99240e-5857-4b3d-85c4-d24f3155f6d4" data-linktype="external">msdn link</a></p><p>The LsarEnumeratePrivilegesAccount method is invoked to
+retrieve a list of <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privileges</a>
+granted to an account on the server. </p><dl>
+<dd>
+<div><pre> NTSTATUS LsarEnumeratePrivilegesAccount(
+   [in] LSAPR_HANDLE AccountHandle,
+   [out] PLSAPR_PRIVILEGE_SET* Privileges
+ );
+</pre></div>
+</dd></dl><p><b>AccountHandle: </b>An open <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b76eee27-064e-461b-81a9-fbf41e49928b" data-linktype="relative-path">account object</a> handle
+obtained from either <a href="841e3211-5be4-4b50-9f11-2d4941c40a30" data-linktype="relative-path">LsarCreateAccount (section 3.1.4.5.1)</a>
+or <a href="355e2952-abe4-47c3-96d9-a2f4bd01cf3d" data-linktype="relative-path">LsarOpenAccount (section 3.1.4.5.3)</a>.</p><p><b>Privileges: </b>Used to return a list of
+privileges granted to the account.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000009A</p>
+  <p>STATUS_INSUFFICIENT_RESOURCES</p>
+  </td>
+  <td>
+  <p>There are insufficient resources to complete the
+  request.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>AccountHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes two arguments:</p><p><i>AccountHandle</i>: An open handle to an account object.
+If the handle is not a valid context handle to an account object or <i>AccountHandle</i>.HandleType
+does not equal &#34;Account&#34;, the server MUST return
+STATUS_INVALID_HANDLE. The server MUST verify that <i>AccountHandle</i> grants
+access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a> with
+RequiredAccess set to ACCOUNT_VIEW.</p><p><i>Privileges</i>: Used to return a set of privileges
+associated with the account. It is valid for the set of privileges to be empty.</p><p>The server MUST return STATUS_INSUFFICIENT_RESOURCES if it
+runs out of memory while processing this request.</p></div>

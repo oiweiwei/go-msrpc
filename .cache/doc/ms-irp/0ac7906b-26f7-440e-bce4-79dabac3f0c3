@@ -1,0 +1,62 @@
+<div class="content"><p> </p><p>The <b>R_IISEnumerateUsers</b> method is called by the
+client. In response, the server returns a list of clients connected to the
+specified <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_d9a0cf88-f6d7-4c52-a9fc-4ce5a7cb7260" data-linktype="relative-path">Internet protocol server</a></span>.</p><dl>
+<dd>
+<div><pre> DWORD R_IISEnumerateUsers(
+   [in, string, unique] INET_INFO_IMPERSONATE_HANDLE pszServer,
+   [in] DWORD dwServiceId,
+   [in] DWORD dwInstance,
+   [in, out] LPIIS_USER_ENUM_STRUCT InfoStruct
+ );
+</pre></div>
+</dd></dl><p><b>pszServer: </b>The custom binding handle for the
+target system, as specified in section <span><a href="a6931aa0-3ab6-4018-a398-e142cb8e409e" data-linktype="relative-path">2.1.1</a></span>. The value
+MUST NOT be used by the server implementation.</p><p><b>dwServiceId: </b>The identifier for the specified
+Internet protocol server, as specified in section <span><b><a href="3e99d087-d9fd-46f8-a626-8656a4c58770" data-linktype="relative-path">2.2.2</a></b></span>. </p><p><b>dwInstance: </b>The ID of the <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_1623705d-a7a0-4e46-9a66-66e9ee63d961" data-linktype="relative-path">Internet
+protocol server instance</a></span> whose users are being enumerated.</p><p><b>InfoStruct: </b>The pointer to an <span><b><a href="33c1018e-e663-4e40-9ce2-8998bd126fc7" data-linktype="relative-path">IIS_USER_ENUM_STRUCT</a></b></span>
+that contains the list of active users for this server.</p><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>
+or[MS-ERREF] section <span><a href="../ms-erref/596a1078-e883-4972-9bbc-49e60bebca55" data-linktype="relative-path">2.3.1</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The system cannot find the specified file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000426</p>
+  <p>ERROR_SERVICE_NOT_ACTIVE</p>
+  </td>
+  <td>
+  <p>The service is not running.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, as
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>In response to this request from the client, the server MAY
+return a list of the clients connected to the protocol server if the return
+code indicates success.<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="29ba1825-00cc-45cb-8b68-4758993395cd#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a></p></div>

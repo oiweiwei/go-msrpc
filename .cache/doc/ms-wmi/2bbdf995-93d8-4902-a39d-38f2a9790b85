@@ -1,0 +1,52 @@
+<div class="content"><p> </p><p>The WBEM_GENERIC_FLAG_TYPE enumeration is used to indicate
+and update the type of the flag.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum tag_WBEM_GENERIC_FLAG_TYPE
+ {
+   WBEM_FLAG_RETURN_WBEM_COMPLETE = 0x0,
+   WBEM_FLAG_RETURN_IMMEDIATELY = 0x10,
+   WBEM_FLAG_FORWARD_ONLY = 0x20,
+   WBEM_FLAG_NO_ERROR_OBJECT = 0x40,
+   WBEM_FLAG_SEND_STATUS = 0x80,
+   WBEM_FLAG_ENSURE_LOCATABLE = 0x100,
+   WBEM_FLAG_DIRECT_READ = 0x200,
+   WBEM_MASK_RESERVED_FLAGS = 0x1F000,
+   WBEM_FLAG_USE_AMENDED_QUALIFIERS = 0x20000,
+   WBEM_FLAG_STRONG_VALIDATION = 0x100000
+ } WBEM_GENERIC_FLAG_TYPE;
+</pre></div>
+</dd></dl><p><b>WBEM_FLAG_RETURN_WBEM_COMPLETE:  </b>This flag
+makes the operation synchronous. This is the default behavior and so this flag
+need not be explicitly specified.</p><p><b>WBEM_FLAG_RETURN_IMMEDIATELY:  </b>This flag
+causes the call to return without waiting for the operation to complete. The
+call result parameter contains the IWbemCallResult object by using the status
+of the operation that can be retrieved.</p><p><b>WBEM_FLAG_FORWARD_ONLY:  </b>This flag causes a
+forward-only enumerator, <span><a href="56022f1e-3761-4c17-8d55-8e62dc334b86" data-linktype="relative-path">IEnumWbemClassObject, (section 3.1.4.4)</a></span>,
+to be returned. Forward-only enumerators are typically much faster and use less
+memory than conventional enumerators; however, they do not allow calls to <span><a href="817d3503-7cef-4b1f-90c0-7c55b212f22a" data-linktype="relative-path">IEnumWbemClassObject::Clone</a></span>
+or <span><a href="8dfc5221-4cdb-44af-8acf-89dcbffae41f" data-linktype="relative-path">IEnumWbemClassObject::Reset</a></span>.</p><p><b>WBEM_FLAG_NO_ERROR_OBJECT:  </b>This flag MUST NOT
+be set, and MUST be ignored on receipt.</p><p><b>WBEM_FLAG_SEND_STATUS:  </b>This flag registers a
+request with WMI to receive intermediate status reports through the client
+implementation of <span><a href="479c78dc-73cf-4f5b-85bd-5efb26ab48a6" data-linktype="relative-path">IWbemObjectSink::SetStatus</a></span>,
+if supported by the server implementation.</p><p><b>WBEM_FLAG_ENSURE_LOCATABLE:  </b>This flag ensures
+that any returned objects have enough information in them so that system
+properties, such as __PATH, __RELPATH, and __SERVER,<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a> are non-NULL.</p><p><b>WBEM_FLAG_DIRECT_READ:  </b>This flag causes
+direct access to the specified class without regard to its parent class or <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_fbb1e623-a709-400d-8d4a-85df94ad58c3" data-linktype="relative-path">subclasses</a></span>.</p><p><b>WBEM_MASK_RESERVED_FLAGS:  </b>This flag MUST NOT
+be set, and MUST be ignored on receipt.</p><p><b>WBEM_FLAG_USE_AMENDED_QUALIFIERS:  </b>If this
+flag is set, the server retrieves any qualifiers in the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c1fdd6c7-06cb-4787-8735-4d19a68dd802" data-linktype="relative-path">CIM
+object</a></span> that can be localized in the current connection&#39;s locale. The
+set of localized qualifiers and the list of locales for which the qualifier is
+localized are implementation dependent. When the localized information is
+available, the server retrieves the localized values using the client-preferred
+locale. If the localized values are not available, the server returns values
+using the default locale.</p><dl>
+<dd>
+<p>The localized <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e7791691-ba28-437f-85aa-4422aaa52b44" data-linktype="relative-path">qualifiers</a></span> or <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_05a97dcd-86d8-4429-ab3c-ceb834b36d72" data-linktype="relative-path">amended
+qualifiers</a></span> are identified by the qualifier flavor as defined in <span><a href="../ms-wmio/b44d0581-5bd3-40fc-95d7-01c1b1239820" data-linktype="relative-path">[MS-WMIO]</a></span>
+section <span><a href="../ms-wmio/3ef840f7-b08c-4cc8-9697-854d94bc7b1a" data-linktype="relative-path">2.2.62</a></span>.</p>
+</dd>
+<dd>
+<p>If this flag is not set, the server does not
+retrieve any localized qualifiers for the CIM object.</p>
+</dd></dl><p><b>WBEM_FLAG_STRONG_VALIDATION:  </b>This flag MUST
+NOT be set, and MUST be ignored on receipt.</p></div>

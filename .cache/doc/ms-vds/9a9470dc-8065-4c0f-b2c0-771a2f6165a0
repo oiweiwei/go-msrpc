@@ -1,0 +1,52 @@
+<div class="content"><p> </p><p> The RemovePlex method removes a specified <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_d864e01b-9fb1-4beb-9864-8221d293445a" data-linktype="relative-path">plex</a></span>
+from a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>. The last
+plex of a volume cannot be removed.</p><dl>
+<dd>
+<div><pre> HRESULT RemovePlex(
+   [in] VDS_OBJECT_ID plexId,
+   [out] IVdsAsync** ppAsync
+ );
+</pre></div>
+</dd></dl><p><b>plexId: </b>The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS object</a></span> ID of the
+<span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7d1df68a-9ec5-4f84-a64f-67888f39405d" data-linktype="relative-path">volume
+plex</a></span> object to remove.</p><p><b>ppAsync: </b>A pointer to an <span><a href="97ea9c0f-5c8a-43e9-a9ee-deda29e2a09e" data-linktype="relative-path">IVdsAsync</a></span>
+interface that, if the operation is successfully completed, receives the
+IVdsAsync interface to monitor and control this operation. Callers MUST release
+the interface when they are done with it.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameter:</p><ul><li><p><span><span> 
+</span></span>Verify that <b>ppAsync</b> is not NULL. </p>
+</li></ul><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>Create a new async object implementing the IVdsAsync interface
+with an output type of VDS_ASYNCOUT_REMOVEVOLUMEPLEX and set the pointer that <b>ppAsync</b>
+references to the interface.</p>
+</li><li><p><span><span> 
+</span></span>If the volume resides on a basic disk, the server MUST return
+VDS_E_NOT_SUPPORTED (HRESULT of 0x80042400).</p>
+</li><li><p><span><span> 
+</span></span>Return an HRESULT indicating failure or success. Any errors
+encountered up through this point in processing the operation are returned in
+this HRESULT.</p>
+</li></ul><p>The server MUST then perform the following in sequence.
+Errors generated in this sequence of steps are returned in the pHrResult
+parameter to the IVdsAsync::Wait or IVdsAsyncQueryStatus methods.</p><ul><li><p><span><span> 
+</span></span>Remove the volume plex that corresponds to the <span><a href="9186f1ce-04de-4df2-a8cf-3925a02fcd47" data-linktype="relative-path">VDS_OBJECT_ID</a></span>
+<b>PlexId</b> specifies from this volume.</p>
+</li><li><p><span><span> 
+</span></span>Remove the corresponding volume plex object from the list of
+storage management objects.</p>
+</li><li><p><span><span> 
+</span></span>Set the return code in the async object to an HRESULT indicating
+failure or success.</p>
+</li><li><p><span><span> 
+</span></span>If the task completed successfully, set the percentage completed
+value in the async object to 100.</p>
+</li><li><p><span><span> 
+</span></span>Set the signal state in the async object to TRUE.</p>
+</li></ul><p>The server MUST update the percentage completed value
+periodically during the preceding sequence. How often the percentage completed
+is updated, and at what point in the sequence, is implementation-specific.</p></div>

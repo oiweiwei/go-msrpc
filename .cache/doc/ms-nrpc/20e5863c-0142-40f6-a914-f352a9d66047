@@ -1,0 +1,17 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/20e5863c-0142-40f6-a914-f352a9d66047" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_DELTA_ENUM</b> structure defines a common
+structure that encapsulates all possible types of <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_00f35ba3-4dbb-4ff9-8e27-572a6aea1b15" data-linktype="relative-path">database</a> changes. Database
+changes, in the context of Netlogon, are called <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_bac72edb-4ce9-4baa-8977-f33e331b2b5e" data-linktype="relative-path">deltas</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_DELTA_ENUM {
+   NETLOGON_DELTA_TYPE DeltaType;
+   [switch_is(DeltaType)] NETLOGON_DELTA_ID_UNION DeltaID;
+   [switch_is(DeltaType)] NETLOGON_DELTA_UNION DeltaUnion;
+ } NETLOGON_DELTA_ENUM,
+  *PNETLOGON_DELTA_ENUM;
+</pre></div>
+</dd></dl><p><b>DeltaType:</b> One of the values from the <b>NETLOGON_DELTA_TYPE</b>
+enumeration, as specified in section <a href="f8a8cd32-426d-45f1-be45-e0dc5c1c1359" data-linktype="relative-path">2.2.1.5.28</a>.</p><p><b>DeltaID:</b> One of the <b>NETLOGON_DELTA_ID_UNION</b>
+union (section <a href="797e1033-d40b-400b-a71a-522f820bac33" data-linktype="relative-path">2.2.1.5.18</a>)
+types selected based on the value of the <b>DeltaType</b> field.</p><p><b>DeltaUnion:</b> One of the <b>NETLOGON_DELTA_UNION</b>
+union (section <a href="3d07c30c-9f0e-4aa3-a9d0-8fc348fd1fe1" data-linktype="relative-path">2.2.1.5.27</a>)
+types selected based on the value of the <b>DeltaType</b>.</p></div>

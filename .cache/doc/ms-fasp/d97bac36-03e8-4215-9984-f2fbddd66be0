@@ -1,0 +1,31 @@
+<div class="content"><p> </p><p>This enumeration is used to identify the different
+combinations of supported <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span> enforcement
+protocols.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_CRYPTO_PROTOCOL_TYPE
+ {
+   FW_CRYPTO_PROTOCOL_INVALID = 0,
+   FW_CRYPTO_PROTOCOL_AH = 1,
+   FW_CRYPTO_PROTOCOL_ESP = 2,
+   FW_CRYPTO_PROTOCOL_BOTH = 3,
+   FW_CRYPTO_PROTOCOL_AUTH_NO_ENCAP = 4,
+   FW_CRYPTO_PROTOCOL_MAX = 5,
+   FW_CRYPTO_PROTOCOL_MAX_2_1 = (FW_CRYPTO_PROTOCOL_BOTH + 1)
+ } FW_CRYPTO_PROTOCOL_TYPE;
+</pre></div>
+</dd></dl><p><b>FW_CRYPTO_PROTOCOL_INVALID:  </b>This value MUST
+NOT be used. It is defined for simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 0.</p><p><b>FW_CRYPTO_PROTOCOL_AH:  </b>Uses the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_efa9e2b6-53fb-473e-8824-e276ebde4c97" data-linktype="relative-path">authentication
+header (AH)</a></span> to enforce IPsec. This symbolic constant has a value of
+1.</p><p><b>FW_CRYPTO_PROTOCOL_ESP:  </b>Uses the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_430b4a39-0b2c-402f-847d-e6a8520934c7" data-linktype="relative-path">ESP</a></span>
+protocol header. This symbolic constant has a value of 2.</p><p><b>FW_CRYPTO_PROTOCOL_BOTH:  </b>Uses both the AH and
+ESP protocol headers. This symbolic constant has a value of 3.</p><p><b>FW_CRYPTO_PROTOCOL_AUTH_NO_ENCAP:  </b>Uses no
+encapsulation. This sends the first packet twice: once by using an ESP header
+and again without any header; subsequent packets have no additional headers.
+This symbolic constant has a value of 4.</p><p><b>FW_CRYPTO_PROTOCOL_MAX:  </b>This value and values
+that exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing IDL definitions and code. This symbolic constant has a
+value of 5.</p><p><b>FW_CRYPTO_PROTOCOL_MAX_2_1:  </b>This value and
+values that exceed this value are not valid and MUST NOT be used by servers and
+clients with schema version 0x0201 and earlier. It is defined for simplicity in
+writing IDL definitions and code. This symbolic constant has a value of 4.</p></div>

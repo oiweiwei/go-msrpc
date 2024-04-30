@@ -1,0 +1,68 @@
+<div class="content"><p> </p><p>This packet specifies the format of the string data that is
+contained in a <span><a href="08452c9c-c892-433f-8c2a-8c5283e7bd56" data-linktype="relative-path">Custom-Marshaled Error Info
+Format (section 2.2.21.2)</a></span> packet.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwMax</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwOffSet</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwActual</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Name
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwMax (4 bytes): </b>The unsigned number of
+Unicode characters in the <b>Name</b> array including the NULL terminator.</p><p><b>dwOffSet (4 bytes): </b>This MUST be set to zero.</p><p><b>dwActual (4 bytes): </b>This MUST be set to the
+value of the <b>dwMax</b> field. </p><p><b>Name (variable): </b> This MUST contain an
+implementation-specific NULL-terminated Unicode string and SHOULD be ignored on
+receipt.</p></div>

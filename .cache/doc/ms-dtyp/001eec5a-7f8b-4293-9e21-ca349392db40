@@ -1,0 +1,66 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/001eec5a-7f8b-4293-9e21-ca349392db40" data-linktype="external">msdn link</a></p><p>The packet version is used within block protocols. The
+following diagram represents a <a href="a66edeb1-52a0-4d64-a93b-2f5c833d7d92#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> as an opaque sequence
+of bytes.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Data1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Data2</p>
+  </td>
+  <td colspan="16">
+  <p>Data3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Data4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Data1 (4 bytes): </b>The value of the <b>Data1</b>
+member (section <a href="4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a>),
+in little-endian byte order.</p><p><b>Data2 (2 bytes): </b>The value of the <b>Data2</b>
+member (section 2.3.4), in little-endian byte order.</p><p><b>Data3 (2 bytes): </b>The value of the <b>Data3</b>
+member (section 2.3.4), in little-endian byte order.</p><p><b>Data4 (8 bytes): </b>The value of the <b>Data4</b>
+member (section 2.3.4), in little-endian byte order.</p></div>

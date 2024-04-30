@@ -1,0 +1,83 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/7ed348f2-eddf-4c3f-a1cb-b651ec3cff92" data-linktype="external">msdn link</a></p><p>A <b>PROPERTY_LIST</b> is a self-describing data structure
+that contains a sequence of value lists. A <b>PROPERTY_LIST</b> MUST consist of
+the following elements:</p><ul><li><p><span><span> 
+</span></span>A count of the properties in the list.</p>
+</li><li><p><span><span> 
+</span></span>One value list for each property.</p>
+<p>Each property value list,
+in turn, MUST consist of the following elements:</p>
+<ul><li><p><span><span>  </span></span>A
+property name.</p>
+</li><li><p><span><span>  </span></span>One
+or more property values. Each property value is represented by a data structure
+that is appropriate to the type of data. Each property value can consist of
+multiple data values, such as a string, an array, or a structure.</p>
+</li><li><p><span><span>  </span></span>An
+enumeration value set to CLUSPROP_SYNTAX_ENDMARK.</p>
+</li></ul></li></ul><p>Conceptually, a <b>PROPERTY_LIST</b> can be illustrated as
+in the following diagram.</p><p><img id="MS-CMRP_pict89bf6d81-8682-e9fb-ddf3-b42d99563835.png" src="ms-cmrp_files/image001.png" alt="Property list" title="Property list" data-linktype="relative-path"/></p><p><b>Figure 1: Property list</b></p><p>The <b>PROPERTY_LIST</b> is a custom-marshaled contiguous
+buffer with fields that are specified as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>propertyCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>propertyValue
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>propertyCount (4 bytes): </b>An unsigned 32-bit
+integer. The <b>PROPERTY_LIST</b> buffer MUST begin with an unsigned long
+indicating the count of properties in the <b>PROPERTY_LIST</b>. The count of
+properties MUST be followed by the properties in the form of property values.</p><p><b>propertyValue (variable): </b>A variable-sized
+buffer of <b>Property Value</b> (section <a href="de73d6f9-bfdf-47ef-b008-b2da17c1a073" data-linktype="relative-path">2.2.3.10.1</a>) structures. A
+property value MUST contain the name of the property that the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">value</a> is associated with.</p><p>The layout of the property name, value list, and value list
+end mark is repeated in the <b>PROPERTY_LIST</b> buffer for each property in
+the <b>PROPERTY_LIST</b>. There MUST be one end mark structure for each
+property in the <b>PROPERTY_LIST</b>. The number of property names and value lists
+MUST sum to the count of properties that are specified at the beginning of the <b>PROPERTY_LIST</b>
+buffer. Therefore, the following statement MUST hold true:</p><ul><li><p><span><span> 
+</span></span>propertyCount = number of properties</p>
+</li></ul><p>where each individual property contains a name and a value
+list.</p></div>

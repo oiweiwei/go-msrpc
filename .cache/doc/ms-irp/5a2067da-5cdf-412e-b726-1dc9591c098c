@@ -1,0 +1,11 @@
+<div class="content"><p>The Internet Information Services (IIS) Inetinfo Remote
+Protocol is a <a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote
+procedure call (RPC)</a>–based client/server protocol that is used for managing
+<a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_d9a0cf88-f6d7-4c52-a9fc-4ce5a7cb7260" data-linktype="relative-path">Internet protocol servers</a>
+such as those hosted by Microsoft <a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_f31d61e4-7dc6-4710-ba18-944e0dbc2a11" data-linktype="relative-path">Internet Information Services
+(IIS)</a>. Managed servers can include servers for HTTP, FTP, SMTP, or other
+Internet protocols. For more information on IIS, see <a href="https://go.microsoft.com/fwlink/?LinkId=93379" data-linktype="external">[MSDN-IIS]</a>.</p><p>The <a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">universally
+unique identifier (UUID)</a> for the IIS Inetinfo Remote Protocol interface is
+{82ad4280-036b-11cf-972c-00aa006887b0}.</p><p>The version for this interface is 2.0.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

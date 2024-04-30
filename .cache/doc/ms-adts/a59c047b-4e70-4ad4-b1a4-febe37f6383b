@@ -1,0 +1,103 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/a59c047b-4e70-4ad4-b1a4-febe37f6383b" data-linktype="external">msdn link</a></p><p>The format of a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_0a5fd868-ff77-4beb-838e-79f98cbe3898" data-linktype="relative-path">mailslot ping</a> as documented
+in section <a href="2cff75a9-5871-4493-a704-017b506f8df0" data-linktype="relative-path">6.3.5</a>. This
+can be used if a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a> is
+required.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Opcode</p>
+  </td>
+  <td colspan="16">
+  <p>ComputerName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MailslotName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UnicodeComputerName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NtVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>LmNtToken</p>
+  </td>
+  <td colspan="16">
+  <p>Lm20Token</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Opcode (2 bytes): </b>Operation code (see section <a href="07133ff2-a9a3-4aa9-8896-a7dcb53bdfe9" data-linktype="relative-path">6.3.1.3</a>). Set to
+LOGON_PRIMARY_QUERY.</p><p><b>ComputerName (variable): </b>Null-terminated ASCII
+value of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_b86c44e6-57df-4c48-8163-5e3fa7bdcff4" data-linktype="relative-path">NetBIOS</a>
+name of the client. This field SHOULD contain at least one character: the null
+terminator.</p><p><b>MailslotName (variable): </b>Null-terminated ASCII
+value of the name of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_f53fe4b9-8e1d-4366-9254-3c4f73269e78" data-linktype="relative-path">mailslot</a>
+on which the client listens. This field is always aligned to an even byte
+boundary, with padding (bytes of value 0) to the next even byte boundary as
+necessary.</p><p><b>UnicodeComputerName (variable): </b>Null-terminated
+<a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> value of the
+NetBIOS name of the client. This field SHOULD contain at least one character:
+the null terminator. Each Unicode value is encoded as 2 bytes.</p><p><b>NtVersion (4 bytes): </b>NETLOGON_NT_VERSION
+options (see <a href="8e6a9efa-6312-44e2-af12-06ad73afbfa5" data-linktype="relative-path">6.3.1.1</a>).</p><p><b>LmNtToken (2 bytes): </b>This MUST be set to
+0xFFFF.</p><p><b>Lm20Token (2 bytes): </b>This MUST be set to
+0xFFFF.</p><p><b>Note</b>  All multibyte quantities are
+represented in little-endian byte order.</p></div>

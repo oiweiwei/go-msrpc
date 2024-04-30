@@ -1,0 +1,58 @@
+<div class="content"><p> </p><p>This enumeration defines the different authentication
+methods that are used for authentication. The <b>IpSecPhase</b> field of the <span><a href="bbec7ab7-0a1d-49a4-9c8e-a4784bbe6f16" data-linktype="relative-path">FW_AUTH_SET</a></span>
+containing the <span><a href="447c3a4c-9543-495d-ab7d-b7ca639712ef" data-linktype="relative-path">FW_AUTH_SUITE</a></span>
+determines which authentication methods are valid for a particular
+authentication suite.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_AUTH_METHOD
+ {
+   FW_AUTH_METHOD_INVALID = 0,
+   FW_AUTH_METHOD_ANONYMOUS = 1,
+   FW_AUTH_METHOD_MACHINE_KERB = 2,
+   FW_AUTH_METHOD_MACHINE_SHKEY = 3,
+   FW_AUTH_METHOD_MACHINE_NTLM = 4,
+   FW_AUTH_METHOD_MACHINE_CERT = 5,
+   FW_AUTH_METHOD_USER_KERB = 6,
+   FW_AUTH_METHOD_USER_CERT = 7,
+   FW_AUTH_METHOD_USER_NTLM = 8,
+   FW_AUTH_METHOD_MACHINE_RESERVED = 9,
+   FW_AUTH_METHOD_USER_RESERVED = 10,
+   FW_AUTH_METHOD_MAX_2_10 = 9,
+   FW_AUTH_METHOD_MAX = 11
+ } FW_AUTH_METHOD;
+</pre></div>
+</dd></dl><p><b>FW_AUTH_METHOD_INVALID:  </b>This value MUST NOT
+be used. It is defined for simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 0.</p><p><b>FW_AUTH_METHOD_ANONYMOUS:  </b>This method does
+not require identity to authenticate. It is equal to no authentication. This
+method can be used for both FW_IPSEC_PHASE_1 or FW_IPSEC_PHASE_2. This symbolic
+constant has a value of 1.</p><p><b>FW_AUTH_METHOD_MACHINE_KERB:  </b>This method
+authenticates the identity of machines by using Kerberos Protocol Extensions as
+specified in <span><a href="../ms-kile/2a32282e-dd48-4ad9-a542-609804b02cc9" data-linktype="relative-path">[MS-KILE]</a></span>.
+This method MUST be used only on FW_IPSEC_PHASE_1. This symbolic constant has a
+value of 2.</p><p><b>FW_AUTH_METHOD_MACHINE_SHKEY:  </b>This method
+uses a previous manually shared key to authenticate machine identities. This
+method MUST be used only on FW_IPSEC_PHASE_1. This symbolic constant has a
+value of 3.</p><p><b>FW_AUTH_METHOD_MACHINE_NTLM:  </b>This method
+authenticates the identity of machines by using the NTLM Authentication
+Protocol as specified in <span><a href="../ms-nlmp/b38c36ed-2804-4868-a9ff-8dd3182128e4" data-linktype="relative-path">[MS-NLMP]</a></span>.
+This method MUST be used only on FW_IPSEC_PHASE_1. This symbolic constant has a
+value of 4.</p><p><b>FW_AUTH_METHOD_MACHINE_CERT:  </b>This method
+authenticates the identity of a machine by using machine certificates. This
+method can be used for both FW_IPSEC_PHASE_1 or FW_IPSEC_PHASE_2. This symbolic
+constant has a value of 5.</p><p><b>FW_AUTH_METHOD_USER_KERB:  </b>This method authenticates
+user identities by using the Kerberos Protocol Extensions. This method MUST be
+used only on FW_IPSEC_PHASE_2. This symbolic constant has a value of 6.</p><p><b>FW_AUTH_METHOD_USER_CERT:  </b>This method
+authenticates user identities by using user certificates. This method MUST be
+used only on FW_IPSEC_PHASE_2. This symbolic constant has a value of 7.</p><p><b>FW_AUTH_METHOD_USER_NTLM:  </b>This method
+authenticates user identities by using the NTLM Authentication Protocol. This
+method MUST be used only on FW_IPSEC_PHASE_2. This symbolic constant has a
+value of 8.</p><p><b>FW_AUTH_METHOD_MACHINE_RESERVED:  </b>This value
+is invalid and MUST NOT be used. This symbolic constant has a value of 9.</p><p><b>FW_AUTH_METHOD_USER_RESERVED:  </b>This value is
+invalid and MUST NOT be used. This symbolic constant has a value of 10.</p><p><b>FW_AUTH_METHOD_MAX_2_10:  </b>This value and
+values that exceed this value are not valid and MUST NOT be used by servers and
+clients with schema version 0x020A and earlier. It is defined for simplicity in
+writing IDL definitions and code. This symbolic constant has a value of 9.</p><p><b>FW_AUTH_METHOD_MAX:  </b>This value and values
+that exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing IDL definitions and code. This symbolic constant has a
+value of 11.</p></div>

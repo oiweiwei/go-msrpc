@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The DRS_MSG_DCINFOREPLY_V3 structure defines the response
+message received from the <span><a href="668abdc8-1db7-4104-9dea-feab05ff1736" data-linktype="relative-path">IDL_DRSDomainControllerInfo</a></span>
+method when the client has requested InfoLevel = 3.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [range(0,10000)] DWORD cItems;
+   [size_is(cItems)] DS_DOMAIN_CONTROLLER_INFO_3W* rItems;
+ } DRS_MSG_DCINFOREPLY_V3;
+</pre></div>
+</dd></dl><p><b>cItems:</b>  Count of items in the <b>rItems</b>
+array.</p><p><b>rItems:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span> information.</p></div>

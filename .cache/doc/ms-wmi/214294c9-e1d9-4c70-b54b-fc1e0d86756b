@@ -1,0 +1,95 @@
+<div class="content"><p> </p><p>The WBEMOBJECT_INSTANCE_NOCLASS structure MUST contain a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a99173af-90bf-473d-9a81-ff0ce9a85838" data-linktype="relative-path">CIM</a></span>
+instance without the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_633b12d4-e2c4-442f-95ff-4b2b5d708ed5" data-linktype="relative-path">CIM class</a></span>
+definition. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfHeader</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfData</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>classID (16
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ObjectData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwSizeOfHeader (4 bytes): </b>The size, in bytes,
+of the header, which MUST be 0x00000018.</p><p><b>dwSizeOfData (4 bytes): </b>The size, in bytes, of
+the data that follows the header. </p><p><b>classID (16 bytes): </b>The unique identifier of
+the CIM class type. </p><p><b>ObjectData (variable): </b>Contains the string of
+bytes that represent the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c4119a8a-24db-40cc-9657-7cb5c23ecf43" data-linktype="relative-path">CIM instance</a></span>,
+encoded as the <span><a href="../ms-wmio/dcc02470-f9ce-47af-9c73-cf7dc97b35af" data-linktype="relative-path">EncodingUnitInstanceNoClass</a></span>
+object block, as specified in <span><a href="../ms-wmio/b44d0581-5bd3-40fc-95d7-01c1b1239820" data-linktype="relative-path">[MS-WMIO]</a></span>
+section 2.2.3. The CIM instance transmitted using EncodingUnitInstanceNoClass
+does not have a <span><a href="../ms-wmio/f96cdea8-07cc-4b62-bd8a-84dd38c6cd88" data-linktype="relative-path">CurrentClass</a></span>
+block (as specified in [MS-WMIO] section 2.2.13) to minimize the data
+transmitted because CurrentClass contains the same data for all the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_94e80069-5f2a-4281-a676-50ea656c4795" data-linktype="relative-path">CIM
+instances</a></span>.</p><p>The CurrentClass for another instance of the same CIM class
+is previously sent using the <span><a href="25070492-4737-4c89-b152-924a58d5c2f3" data-linktype="relative-path">WBEMOBJECT_INSTANCE</a></span>
+structure. To match the WBEMOBJECT_INSTANCE structure that has the CurrentClass
+block, the classID specified in WBEMOBJECT_INSTANCE_NOCLASS MUST be matched
+with the classID of WBEMOBJECT_INSTANCE. If a matching WBEMOBJECT_INSTANCE is
+found, the CurrentClass block in the WBEMOBJECT_INSTANCE MUST be used to encode
+or decode EncodingUnitInstanceNoClass. If no matching WBEMOBJECT_INSTANCE is
+found during decoding, it MUST be treated as an error. If no matching
+WBEMOBJECT_INSTANCE is found during encoding, the CIM instance MUST be encoded
+as a WBEMOBJECT_INSTANCE structure.</p></div>

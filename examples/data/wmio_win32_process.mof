@@ -1,0 +1,397 @@
+// @namespace "ROOT\cimv2"
+// @servername "WIN2019-X-XX"
+[ Abstract, Locale(1033),
+  UUID("{8502C566-5FBB-11D2-AAC1-006008C78BC7}") ] class CIM_Process
+    : CIM_LogicalElement CIM_ManagedSystemElement {
+
+  // @inherited CIM_LogicalElement
+  [ MaxLen(64), read ] string Caption;
+
+  // @inherited CIM_LogicalElement
+  string Description;
+
+  // @inherited CIM_LogicalElement
+  [ MappingStrings{"MIF.DMTF|ComponentID|001.5"}, read ] datetime InstallDate;
+
+  // @inherited CIM_LogicalElement
+  string Name;
+
+  // @inherited CIM_LogicalElement
+  [
+    read, MaxLen(10),
+    ValueMap{"OK", "Error", "Degraded", "Unknown", "Pred Fail", "Starting",
+             "Stopping", "Service", "Stressed", "NonRecover", "No Contact",
+             "Lost Comm"}
+  ] string Status;
+
+  [
+    Propagated("CIM_OperatingSystem.CSCreationClassName"), CIM_Key, read,
+    MaxLen(256)
+  ] string CSCreationClassName;
+
+  [
+    Propagated("CIM_OperatingSystem.CSName"), CIM_Key, read, MaxLen(256)
+  ] string CSName;
+
+  [ CIM_Key, read, MaxLen(256) ] string CreationClassName;
+
+  [ Fixed, read ] datetime CreationDate;
+
+  [ key, read, MaxLen(256) ] string Handle;
+
+  uint64 KernelModeTime;
+
+  [
+    Propagated("CIM_OperatingSystem.CreationClassName"), CIM_Key, read,
+    MaxLen(256)
+  ] string OSCreationClassName;
+
+  [ Propagated("CIM_OperatingSystem.Name"), CIM_Key, read,
+    MaxLen(256) ] string OSName;
+
+  uint32 Priority;
+
+  uint16 ExecutionState;
+
+  datetime TerminationDate;
+
+  uint64 UserModeTime;
+
+  uint64 WorkingSetSize;
+};
+[
+  dynamic, provider("CIMWin32"), SupportsCreate, CreateBy("Create"),
+  SupportsDelete, DeleteBy("DeleteInstance"), Locale(1033),
+  UUID("{8502C4DC-5FBB-11D2-AAC1-006008C78BC7}")
+] class Win32_Process
+    : CIM_Process CIM_LogicalElement CIM_ManagedSystemElement {
+
+  // @inherited CIM_Process
+  [ MaxLen(64), read ] string Caption;
+
+  // @inherited CIM_Process
+  string Description;
+
+  // @inherited CIM_Process
+  [ MappingStrings{"MIF.DMTF|ComponentID|001.5"}, read ] datetime InstallDate;
+
+  // @inherited CIM_Process
+  string Name;
+
+  // @inherited CIM_Process
+  [
+    read, MaxLen(10),
+    ValueMap{"OK", "Error", "Degraded", "Unknown", "Pred Fail", "Starting",
+             "Stopping", "Service", "Stressed", "NonRecover", "No Contact",
+             "Lost Comm"}
+  ] string Status;
+
+  // @inherited CIM_ManagedSystemElement
+  [
+    Propagated("CIM_OperatingSystem.CSCreationClassName"), CIM_Key, read,
+    MaxLen(256)
+  ] string CSCreationClassName;
+
+  // @inherited CIM_ManagedSystemElement
+  [
+    Propagated("CIM_OperatingSystem.CSName"), CIM_Key, read, MaxLen(256)
+  ] string CSName;
+
+  // @inherited CIM_ManagedSystemElement
+  [ CIM_Key, read, MaxLen(256) ] string CreationClassName;
+
+  // @inherited CIM_ManagedSystemElement
+  [ Fixed, read ] datetime CreationDate;
+
+  // @inherited CIM_ManagedSystemElement
+  [ key, read, MaxLen(256) ] string Handle;
+
+  // @inherited CIM_ManagedSystemElement
+  [ Override("KernelModeTime"), read ] uint64 KernelModeTime;
+
+  // @inherited CIM_ManagedSystemElement
+  [
+    Propagated("CIM_OperatingSystem.CreationClassName"), CIM_Key, read,
+    MaxLen(256)
+  ] string OSCreationClassName;
+
+  // @inherited CIM_ManagedSystemElement
+  [ Propagated("CIM_OperatingSystem.Name"), CIM_Key, read,
+    MaxLen(256) ] string OSName;
+
+  // @inherited CIM_ManagedSystemElement
+  [
+    read, Override("Priority"),
+    MappingStrings{"Win32API|Process "
+                   "Status|SYSTEM_PROCESS_INFORMATION|BasePriority"}
+  ] uint32 Priority;
+
+  // @inherited CIM_ManagedSystemElement
+  uint16 ExecutionState;
+
+  // @inherited CIM_ManagedSystemElement
+  datetime TerminationDate;
+
+  // @inherited CIM_ManagedSystemElement
+  [ Override("UserModeTime"), read ] uint64 UserModeTime;
+
+  // @inherited CIM_ManagedSystemElement
+  uint64 WorkingSetSize;
+
+  [
+    read, Privileges{"SeDebugPrivilege"},
+    MappingStrings{
+        "Win32API|Tool Help Structures|MODULEENTRY32|szExePath"}
+  ] string ExecutablePath;
+
+  [
+    read, Privileges{"SeDebugPrivilege"},
+    MappingStrings{"Win32|WINNT.H|QUOTA_LIMITS|MaximumWorkingSetSize"}
+  ] uint32 MaximumWorkingSetSize;
+
+  [
+    read, Privileges{"SeDebugPrivilege"},
+    MappingStrings{"Win32|WINNT.H|QUOTA_LIMITS|MinimumWorkingSetSize"}
+  ] uint32 MinimumWorkingSetSize;
+
+  [
+    read,
+    MappingStrings{"Win32API|Process "
+                   "Status|SYSTEM_PROCESS_INFORMATION|PageFaultCount"}
+  ] uint32 PageFaults;
+
+  [
+    read,
+    MappingStrings{"Win32API|Process "
+                   "Status|SYSTEM_PROCESS_INFORMATION|PagefileUsage"}
+  ] uint32 PageFileUsage;
+
+  [
+    read,
+    MappingStrings{
+        "Win32API|Process "
+        "Status|SYSTEM_PROCESS_INFORMATION|PeakPagefileUsage"}
+  ] uint32 PeakPageFileUsage;
+
+  [
+    read,
+    MappingStrings{
+        "Win32API|Process "
+        "Status|SYSTEM_PROCESS_INFORMATION|PeakWorkingSetSize"}
+  ] uint32 PeakWorkingSetSize;
+
+  [
+    read, MappingStrings{"Win32API|Process and Thread "
+                         "Structures|PROCESS_INFORMATION|dwProcessId "}
+  ] uint32 ProcessId;
+
+  [
+    read,
+    MappingStrings{
+        "Win32API|Process "
+        "Status|SYSTEM_PROCESS_INFORMATION|QuotaNonPagedPoolUsage"}
+  ] uint32 QuotaNonPagedPoolUsage;
+
+  [
+    read,
+    MappingStrings{
+        "Win32API|Process "
+        "Status|SYSTEM_PROCESS_INFORMATION|QuotaPagedPoolUsage"}
+  ] uint32 QuotaPagedPoolUsage;
+
+  [
+    read,
+    MappingStrings{
+        "Win32API|Process "
+        "Status|SYSTEM_PROCESS_INFORMATION|QuotaPeakNonPagedPoolUsage"}
+  ] uint32 QuotaPeakNonPagedPoolUsage;
+
+  [
+    read,
+    MappingStrings{
+        "Win32API|Process "
+        "Status|SYSTEM_PROCESS_INFORMATION|QuotaPeakPagedPoolUsage"}
+  ] uint32 QuotaPeakPagedPoolUsage;
+
+  [
+    read,
+    MappingStrings{
+        "Win32API|Process and Thread Functions|GetProcessVersion"}
+  ] string WindowsVersion;
+
+  [
+    read,
+    MappingStrings{"Win32API|Process "
+                   "Status|SYSTEM_PROCESS_INFORMATION|NumberOfThreads"}
+  ] uint32 ThreadCount;
+
+  [
+    read,
+    MappingStrings{"Win32API|Process "
+                   "Status|SYSTEM_PROCESS_INFORMATION|HandleCount"}
+  ] uint32 HandleCount;
+
+  [
+    read, MappingStrings{"Win32API|Process "
+                         "Status|SYSTEM_PROCESS_INFORMATION|"
+                         "InheritedFromUniqueProcessId"}
+  ] uint32 ParentProcessId;
+
+  [
+    read,
+    MappingStrings{
+        "Win32API|Process Status|SYSTEM_PROCESS_INFORMATION|SessionId"}
+  ] uint32 SessionId;
+
+  [
+    read,
+    MappingStrings{
+        "Win32API|Process "
+        "Status|SYSTEM_PROCESS_INFORMATION|PrivatePageCount"}
+  ] uint64 PrivatePageCount;
+
+  [
+    read,
+    MappingStrings{"Win32API|Process "
+                   "Status|SYSTEM_PROCESS_INFORMATION|PeakVirtualSize"}
+  ] uint64 PeakVirtualSize;
+
+  [
+    read,
+    MappingStrings{"Win32API|Process "
+                   "Status|SYSTEM_PROCESS_INFORMATION|VirtualSize"}
+  ] uint64 VirtualSize;
+
+  [
+    read,
+    MappingStrings{
+        "Win32API|Process and Thread "
+        "Structures|SYSTEM_PROCESS_INFORMATION|ReadOperationCount"}
+  ] uint64 ReadOperationCount;
+
+  [
+    read,
+    MappingStrings{
+        "Win32API|Process and Thread "
+        "Structures|SYSTEM_PROCESS_INFORMATION|WriteOperationCount"}
+  ] uint64 WriteOperationCount;
+
+  [
+    read,
+    MappingStrings{
+        "Win32API|Process and Thread "
+        "Structures|SYSTEM_PROCESS_INFORMATION|OtherOperationCount"}
+  ] uint64 OtherOperationCount;
+
+  [
+    read,
+    MappingStrings{
+        "Win32API|Process and Thread "
+        "Structures|SYSTEM_PROCESS_INFORMATION|ReadTransferCount"}
+  ] uint64 ReadTransferCount;
+
+  [
+    read,
+    MappingStrings{
+        "Win32API|Process and Thread "
+        "Structures|SYSTEM_PROCESS_INFORMATION|WriteTransferCount"}
+  ] uint64 WriteTransferCount;
+
+  [
+    read,
+    MappingStrings{
+        "Win32API|Process and Thread "
+        "Structures|SYSTEM_PROCESS_INFORMATION|OtherTransferCount"}
+  ] uint64 OtherTransferCount;
+
+  string CommandLine;
+
+  [
+    Constructor, Static, Implemented,
+    Privileges{"SeAssignPrimaryTokenPrivilege", "SeIncreaseQuotaPrivilege",
+               "SeRestorePrivilege"},
+    ValueMap{"0", "2", "3", "8", "9", "21", ".."},
+    MappingStrings{
+        "Win32API|Process and Thread Functions|CreateProcess"}
+  ] uint32
+      Create(
+
+          [
+            In,
+            MappingStrings{
+                "Win32API|Process and Thread Functions|lpCommandLine "},
+            ID(0)
+          ] string CommandLine,
+          [
+            In,
+            MappingStrings{"Win32API|Process and Thread "
+                           "Functions|CreateProcess|lpCurrentDirectory "},
+            ID(1)
+          ] string CurrentDirectory,
+          [
+            In, MappingStrings{"WMI|Win32_ProcessStartup"}, ID(2)
+          ] Win32_ProcessStartup ProcessStartupInformation,
+          [
+            Out,
+            MappingStrings{
+                "Win32API|Process and Thread "
+                "Functions|CreateProcess|lpProcessInformation|dwProcessId"},
+            ID(3)
+          ] uint32 ProcessId);
+
+  [
+    Destructor, Implemented, Privileges{"SeDebugPrivilege"},
+    ValueMap{"0", "2", "3", "8", "9", "21", ".."},
+    MappingStrings{
+        "Win32API|Process and Thread Functions|TerminateProcess"}
+  ] uint32
+      Terminate(
+
+          [
+            In,
+            MappingStrings{"Win32API|Process and Thread "
+                           "Functions|TerminateProcess|uExitCode "},
+            ID(0)
+          ] uint32 Reason);
+
+  [
+    Implemented, ValueMap{"0", "2", "3", "8", "9", "21", ".."},
+    MappingStrings{"WMI"}
+  ] uint32
+      GetOwner(
+
+          [ Out, MappingStrings{"WMI"}, ID(0) ] string User,
+          [ Out, MappingStrings{"WMI"}, ID(1) ] string Domain);
+
+  [
+    Implemented, ValueMap{"0", "2", "3", "8", "9", "21", ".."},
+    MappingStrings{"WMI"}
+  ] uint32
+      GetOwnerSid(
+
+          [ Out, MappingStrings{"WMI"}, ID(0) ] string Sid);
+
+  [
+    Implemented, ValueMap{"0", "2", "3", "8", "9", "21", ".."},
+    MappingStrings{
+        "Win32API|Process and Thread Functions|SetPriorityClass"}
+  ] uint32
+      SetPriority(
+
+          [
+            in,
+            MappingStrings{"Win32API|Process and Thread "
+                           "Functions|SetPriorityClass|dwPriorityClass"},
+            ValueMap{"0x00000040", "0x00004000", "0x00000020", "0x00008000",
+                     "0x00000080", "0x00000100"},
+            ID(0)
+          ] sint32 Priority);
+
+  [ ValueMap{"0", "2", "3", "8", "9", "21", ".."}, Implemented ] uint32
+  AttachDebugger();
+
+  [ ValueMap{"0", "2", "3", "8", "9", "21", ".."}, Implemented ] uint32
+      GetAvailableVirtualSize(
+
+          [ Out, MappingStrings{"WMI"}, ID(0) ] uint64 AvailableVirtualSize);
+};

@@ -1,0 +1,18 @@
+<div class="content"><p>The DfsrReportingFlags enumeration represents the options
+for generating <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_ef63771f-5154-47c0-b0df-c88ce2244ccb" data-linktype="relative-path">health
+reports</a>, which are used in <a href="dfec0d17-feeb-4ead-92e4-616846627910" data-linktype="relative-path">IServerHealthReport</a> and <a href="e3e9cd11-ca65-4ad1-884e-33b77aa517b6" data-linktype="relative-path">IServerHealthReport2</a>
+interfaces. The <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a> for
+this enumeration is {CEB5D7B4-3964-4f71-AC17-4BF57A379D87}.</p><p>Any bitmask that consists of one, or a combination, of the
+following enumerated values is supported:</p><dl>
+<dd>
+<div><pre> typedef  enum DfsrReportingFlags
+ {
+   REPORTING_FLAGS_NONE = 0,
+   REPORTING_FLAGS_BACKLOG = 1,
+   REPORTING_FLAGS_FILES = 2,
+ } DfsrReportingFlags;
+</pre></div>
+</dd></dl><p><b>REPORTING_FLAGS_NONE:  </b>Default report options.
+</p><p><b>REPORTING_FLAGS_BACKLOG:  </b>Return the count of
+backlog transactions.</p><p><b>REPORTING_FLAGS_FILES:  </b>Return the count and
+cumulative size of files in the replicated folders.</p></div>

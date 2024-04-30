@@ -1,0 +1,146 @@
+<div class="content"><p> </p><p>The LnkSearchMachine method searches for a file object on
+the specified computer. If information on the file is found, the method
+attempts to return it. If the file has been moved, the method returns
+information about its new location.</p><dl>
+<dd>
+<div><pre> HRESULT LnkSearchMachine(
+   [in] unsigned long Restrictions,
+   [in] const CDomainRelativeObjId* pdroidBirthLast,
+   [in] const CDomainRelativeObjId* pdroidLast,
+   [out] CDomainRelativeObjId* pdroidBirthNext,
+   [out] CDomainRelativeObjId* pdroidNext,
+   [out] CMachineId* pmcidNext,
+   [out, max_is(261), string] wchar_t* ptszPath
+ );
+</pre></div>
+</dd></dl><p><b>Restrictions: </b>SHOULD be set to zero.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="caa74a29-27fb-4f50-afa5-bbf152fe5d27#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p><p><b>pdroidBirthLast: </b><span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_3b097896-b707-47b5-b1bb-384867a453ea" data-linktype="relative-path">FileID</a></span> of the file
+for which the server is to search.</p><p><b>pdroidLast: </b><span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_d0fe4e63-48a5-4d63-9d51-d4f99306046e" data-linktype="relative-path">FileLocation</a></span> of the
+file for which the server is to search. This is the last known FileLocation by
+the client.</p><p><b>pdroidBirthNext: </b>A new FileID returned from
+the server. This indicates that the server could not find the file, but that a
+different file that might be correct has been found. This is associated with
+the <b>TRK_E_POTENTIAL_FILE_FOUND</b> return value, which is defined below. How
+the server responds to that error is specified later in this section.</p><p><b>pdroidNext: </b>New FileLocation for the file
+returned from the server.</p><p><b>pmcidNext: </b>New <span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_e15432dc-30dd-4e3d-8757-19b639769c95" data-linktype="relative-path">MachineID</a></span> for the
+computer that holds the file.</p><p><b>ptszPath: </b>New <span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_c9507dca-291d-4fd6-9cba-a9ee7da8c908" data-linktype="relative-path">UNC</a></span> for file.</p><p><b>Return Values: </b>A 32-bit integer that indicates
+success or failure: A value of 0 or any positive value indicates success; a
+negative value indicates failure. Some of the possible return codes are listed
+in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8DEAD106</p>
+  <p>TRK_E_POTENTIAL_FILE_FOUND</p>
+  </td>
+  <td>
+  <p>A file was found by a DLT Workstation server
+  processing a LnkSearchMachine call, and the file meets some—but not all—of
+  the necessary criteria to be considered the correct file. More details are
+  presented later in this section.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8DEAD101</p>
+  <p>TRK_E_REFERRAL</p>
+  </td>
+  <td>
+  <p>A file could not be found by a DLT Workstation server
+  processing a LnkSearchMachine call, and the file meets some—but not all—of
+  the necessary criteria to be considered the correct file. More details are
+  presented later in this section.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> None.</p><p>The server responds to this call by attempting to find the
+requested file in one of its <span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volumes</a></span>, and either
+returns the file&#39;s new location (in the form of a UNC), or returns information
+about the location to which the file has moved (see description of <b>TRK_E_REFERRAL</b>
+in the following bulleted list).</p><p>The server SHOULD<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="caa74a29-27fb-4f50-afa5-bbf152fe5d27#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a> return a
+failure value, if the file is found, but the length of the path to be returned
+in the <i>pstszPath</i> argument exceeds 261 characters (where the 261
+characters does not include a string terminator character).</p><p>For each of the possible return values, the output parameters
+of this call MUST be set as specified in the following list. In these
+specifications, the requested <span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_4d73c422-8089-444c-a40a-64511c1a3b75" data-linktype="relative-path">ObjectID</a></span> MUST
+correspond to the <b>Object</b> field of the <i>pDroidLast</i> parameter, the
+requested <span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_3b3c1be2-035c-4823-afeb-10edbd6bb288" data-linktype="relative-path">VolumeID</a></span> MUST
+correspond to the <b>Volume</b> field of the <i>pDroidLast</i> parameter, and
+the FileID requested MUST correspond to the value of the <i>pDroidBirthLast</i>
+parameter. The numeric values corresponding to these returns are defined in
+section <span><a href="d741765a-b678-4dbd-8898-cbc3a02a9438" data-linktype="relative-path">3.1.1</a></span>:</p><ul><li><p><span><span> 
+</span></span>Success: A success value MUST be returned if the server finds the
+file, and the client is authorized to get information about the file via a UNC
+path. The file MUST be found by searching all volumes on the server computer
+for a file whose ObjectID is equal to the ObjectID of the request, and whose
+FileID is equal to the FileID of the request. To perform the authorization
+check, the server MUST use the client&#39;s identity (obtained as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/29b8217a-0bda-4fdb-a3ea-48560125ae8d" data-linktype="relative-path">3.3.3.4.3</a></span>)
+to determine, based on local policy, whether or not the client is authorized to
+get the UNC of the file.</p>
+<p>If there is more than one file on
+the server computer that satisfies these conditions, the file MUST be selected
+as follows:</p>
+<ul><li><p><span><span>  </span></span>If
+one of the matching files is on the volume whose VolumeID equals the VolumeID
+of the request, that file is selected.</p>
+</li><li><p><span><span>  </span></span>Otherwise,
+the behavior is arbitrary.</p>
+</li></ul><p>The server MUST set the output
+parameters as follows:</p>
+<p><i>pdroidBirthNext</i>: The
+value of the <i>pdroidBirthLast</i> that is specified by the client.</p>
+<p><i>pdroidNext</i>: The
+current FileLocation value for the file.</p>
+<p><i>pmcidNext</i>: The
+MachineID of the server computer.</p>
+<p><i>ptszPath</i>: The UNC of the
+file on the server computer. If the file can be located under multiple UNC
+paths, one of those UNC paths MUST be returned, but the server MAY return any
+of those paths.<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="caa74a29-27fb-4f50-afa5-bbf152fe5d27#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>TRK_E_REFERRAL: This value MUST be returned if the file is no
+longer stored on any of the volumes of the server computer, but if the
+MoveTable of the last volume has an entry for the file. (Note that there is no
+additional per-file access check in this case.) The last volume MUST be
+determined by using the volume on the server whose VolumeID equals the VolumeID
+of the request. The entry in the MoveTable for the file, as defined in section
+3.1.1, MUST be that entry whose ObjectID equals the ObjectID of the request.</p>
+<p>The
+server MUST set the output parameters as follows:</p>
+<p><i>pdroidBirthNext</i>: The
+value of the FileID specified by the client in the <b>pdroidBirthLast</b> field
+of the call.</p>
+<p><i>pdroidNext</i>: The
+value of the FileLocation field for the file&#39;s entry in the <b>MoveTable</b>.</p>
+<p><i>pmcidNext</i>: The value
+of the MachineID field for the file&#39;s entry in the <b>MoveTable</b>.</p>
+<p><i>ptszPath</i>: The server
+MUST NOT modify this value.</p>
+</li><li><p><span><span> 
+</span></span>TRK_E_POTENTIAL_FILE_FOUND: This value MUST be returned if there
+is no file on any of the server&#39;s volumes with the requested FileID and
+ObjectID, and there is no entry for this file&#39;s ObjectID in the MoveTable, but
+if there is a file with the requested ObjectID on one of the server&#39;s volumes,
+and the FileID on that file is all zeros.<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="caa74a29-27fb-4f50-afa5-bbf152fe5d27#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p>
+<p>The server MUST set the
+output parameters as follows:</p>
+<p><i>pdroidBirthNext</i>: The
+value of the FileID for the found file.</p>
+<p><i>pdroidNext</i>: The
+FileLocation of the file found by the server.</p>
+<p><i>pmcidNext</i>: The
+MachineID of the server computer.</p>
+<p><i>ptszPath</i>: A UNC of
+the file on the server computer.</p>
+</li><li><p><span><span> 
+</span></span>Other negative return values: A negative value other than those
+mentioned above MUST be returned if none of the preceding cases is met. The
+server MUST NOT modify any of the output parameters.</p>
+</li></ul></div>

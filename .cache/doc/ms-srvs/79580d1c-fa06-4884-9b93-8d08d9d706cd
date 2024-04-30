@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The SERVER_ALIAS_INFO_0_CONTAINER structure contains a value
+that indicates the number of entries that the <span><a href="b8f42b05-7feb-43c9-8409-ce13260ce127" data-linktype="relative-path">NetrServerAliasEnum</a></span>
+method returns and a pointer to the buffer that contains the entries.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVER_ALIAS_INFO_0_CONTAINER {
+   DWORD EntriesRead;
+   [size_is(EntriesRead)] LPSERVER_ALIAS_INFO_0 Buffer;
+ } SERVER_ALIAS_INFO_0_CONTAINER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  The number of entries
+that the method returns.</p><p><b>Buffer:</b>  A pointer to the <span><a href="02a5b8d8-9725-475d-981c-d058c446bb8d" data-linktype="relative-path">SERVER_ALIAS_INFO_0</a></span>
+entries that the method returns.</p></div>

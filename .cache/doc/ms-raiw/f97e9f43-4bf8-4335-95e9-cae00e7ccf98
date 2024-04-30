@@ -1,0 +1,63 @@
+<div class="content"><p> The R_WinsSetPriorityClass method sets the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8c20289f-af0c-4920-ab82-9584fd52ffa3" data-linktype="relative-path">priority class</a> for the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a> process running on the
+<a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target WINS server</a>.</p><dl>
+<dd>
+<div><pre> DWORD R_WinsSetPriorityClass(
+   [in] handle_t ServerHdl,
+   [in] WINSINTF_PRIORITY_CLASS_E PrCls_e
+ );
+</pre></div>
+</dd></dl><p><b>ServerHdl: </b>An <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding over IP
+address/HostName to the WINS server. RPC uses this binding internally to
+determine which WINS server the call is directed to.</p><p><b>PrCls_e: </b>The priority class to be set.</p><p><b>Return Values: </b>A 32 bit unsigned integer that
+indicates the return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation completed successfully. A nonzero return value is
+a Win32 error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following Win32 error codes can be returned:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000FA0</p>
+  <p>ERROR_WINS_INTERNAL</p>
+  </td>
+  <td>
+  <p>An error occurred while processing the RPC call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller doesn&#39;t have sufficient permissions.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Processing and Response Requirements:</b></p><p>The following requirements and recommendations apply to a
+WINS server that processes a call to <a href="e231089b-eb49-40d2-8b62-2b1437e9f98a" data-linktype="relative-path">R_WinsSetPriorityClass</a>:</p><ul><li><p><span><span> 
+</span></span>The R_WinsSetPriorityClass caller SHOULD have control level
+access. If an RPC client with a lower access level calls this method, the
+server SHOULD return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If <i>PrCls_e</i> is set to a value other than WINSINTF_E_NORMAL
+or WINSINTF_E_HIGH, the server SHOULD return ERROR_WINS_INTERNAL.</p>
+</li><li><p><span><span> 
+</span></span>The server sets the priority class of the WINS process to the one
+specified by <i>PrsCls_e</i>.</p>
+</li></ul></div>

@@ -1,0 +1,12 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/fd7b2d81-b1d7-414f-a3df-c66fabc578db" data-linktype="external">msdn link</a></p><p>The MULTI_SZ structure defines an implementation-specific<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="11e1608c-6169-4fbc-9c33-373fc9b224f4#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a> type that contains a sequence of
+null-terminated strings, terminated by an empty string (\0) so that the last
+two characters are both null terminators.</p><dl>
+<dd>
+<div><pre> typedef struct _MULTI_SZ {
+   wchar_t* Value;
+   DWORD nChar;
+ } MULTI_SZ;
+</pre></div>
+</dd></dl><p><b>Value:</b>  A data buffer, which is a
+string literal containing multiple null-terminated strings serially.</p><p><b>nChar:</b>  The length, in characters,
+including the two terminating nulls.</p></div>

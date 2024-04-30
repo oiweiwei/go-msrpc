@@ -1,0 +1,124 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/a33153a3-3781-484b-a543-c13d02414f00" data-linktype="external">msdn link</a></p><p>The <b>CLUS_RESOURCE_CLASS_INFO</b> structure identifies the
+class of a cluster resource. A <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_cc618d9a-89bb-4c84-9309-6ade99bba728" data-linktype="relative-path">resource class</a> is a
+collection of resources that share a similar trait. For example, resources that
+represent a disk are placed in a class that identifies storage devices.</p><p><b>CLUS_RESOURCE_CLASS_INFO</b> is a custom-marshaled
+structure as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Class</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SubClass</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Class (4 bytes): </b>An unsigned 32-bit integer.
+Identifies the resource class of the designated <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_94e97f15-2f1a-406f-a740-607bb97761ec" data-linktype="relative-path">resource</a> . On successful
+completion of the method, the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+MUST set this field to one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CLUS_RESCLASS_UNKNOWN</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The resource is not identified with a class.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUS_RESCLASS_STORAGE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The resource represents a physical or logical entity
+  on which data can be persistently written.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUS_RESCLASS_NETWORK</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The resource represents a physical or logical entity
+  that pertains to networks.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>SubClass (4 bytes): </b>An unsigned 32-bit
+integer. Identifies the subclass, within the class, of the designated resource.
+On successful completion of the method, the server MUST set this field to one
+of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The resource is not identified with a subclass.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80000000</p>
+  </td>
+  <td>
+  <p>For resources of class CLUS_RESCLASS_STORAGE, the
+  storage entity is shared; that is, it can potentially be accessed by more
+  than one computer.</p>
+  <p>For resources of class CLUS_RESCLASS_NETWORK, the
+  resource represents an IP address.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

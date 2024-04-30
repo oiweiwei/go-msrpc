@@ -1,0 +1,94 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/7ea3a0e0-d3b9-43e8-85d8-263fff3499da" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_PROPERTY_SYNTAX</b> enumeration provides the
+possible values for the syntax structures in a <b>PROPERTY_LIST</b> (section <a href="7ed348f2-eddf-4c3f-a1cb-b651ec3cff92" data-linktype="relative-path">2.2.3.10</a>) structure. <b>CLUSTER_PROPERTY_SYNTAX</b>
+values are unsigned 32-bit integers.</p><p>The upper 2 bytes of a <b>CLUSTER_PROPERTY_SYNTAX</b> MUST
+be a valid <b>CLUSTER_PROPERTY_TYPE</b> (section <a href="0a77fce2-834c-4681-a7cf-7148d7739121" data-linktype="relative-path">2.2.2.1</a>) enumeration
+value. The lower 2 bytes of a <b>CLUSTER_PROPERTY_SYNTAX</b> MUST be a valid <b>CLUSTER_PROPERTY_FORMAT</b>
+(section <a href="a9b60f4d-e494-48c1-a6a7-64744fcbdee1" data-linktype="relative-path">2.2.2.2</a>)
+enumeration value. As a combination of the <b>CLUSTER_PROPERTY_TYPE</b> and <b>CLUSTER_PROPERTY_FORMAT</b>,
+the <b>CLUSTER_PROPERTY_SYNTAX</b> specifies for the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> both the semantics
+of a property data value and its representation in the property value buffer.
+Use the values that are specified here as a single value that has the meaning
+that is indicated in the structure that follows.</p><p>The client MUST NOT specify a syntax value of <b>CLUSPROP_SYNTAX_LIST_VALUE_EXPANDED_SZ</b>
+when adding a property value to a <b>PROPERTY_LIST</b>.</p><p>When constructing a <b>PROPERTY_LIST</b> for any property
+value of syntax <b>CLUSPROP_SYNTAX_LIST_VALUE_EXPAND_SZ</b> to return to the
+client, the <b>PROPERTY_LIST</b> MUST contain two property values. The first
+property value is of syntax <b>CLUSPROP_SYNTAX_LIST_VALUE_EXPAND_SZ</b> and the
+second property value is of syntax <b>CLUSPROP_SYNTAX_LIST_VALUE_EXPANDED_SZ</b>.
+The first value contains the property value exactly as it is stored on the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>. The second value
+contains the property value as it is stored on the server, except that each
+embedded environment variable has been replaced by its value as stored on the
+server.</p><p>The valid constant values for <b>CLUSTER_PROPERTY_SYNTAX</b>
+are listed below. The server MUST return only these values. All other values
+are reserved and MUST be treated as an error.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   CLUSPROP_SYNTAX_ENDMARK = 0x00000000,
+   CLUSPROP_SYNTAX_NAME = 0x00040003,
+   CLUSPROP_SYNTAX_RESCLASS = 0x00020002,
+   CLUSPROP_SYNTAX_LIST_VALUE_SZ = 0x00010003,
+   CLUSPROP_SYNTAX_LIST_VALUE_EXPAND_SZ = 0x00010004,
+   CLUSPROP_SYNTAX_LIST_VALUE_DWORD = 0x00010002,
+   CLUSPROP_SYNTAX_LIST_VALUE_BINARY = 0x00010001,
+   CLUSPROP_SYNTAX_LIST_VALUE_MULTI_SZ = 0x00010005,
+   CLUSPROP_SYNTAX_LIST_VALUE_LONG = 0x00010007,
+   CLUSPROP_SYNTAX_LIST_VALUE_EXPANDED_SZ = 0x00010008,
+   CLUSPROP_SYNTAX_LIST_VALUE_SECURITY_DESCRIPTOR = 0x00010009,
+   CLUSPROP_SYNTAX_LIST_VALUE_LARGE_INTEGER = 0x0001000a,
+   CLUSPROP_SYNTAX_LIST_VALUE_ULARGE_INTEGER = 0x00010006,
+   CLUSPROP_SYNTAX_LIST_VALUE_WORD = 0x0001000b,
+   CLUSPROP_SYNTAX_LIST_VALUE_FILETIME = 0x0001000c,
+   CLUSPROP_SYNTAX_DISK_SIGNATURE = 0x00050002,
+   CLUSPROP_SYNTAX_SCSI_ADDRESS = 0x00060002,
+   CLUSPROP_SYNTAX_DISK_NUMBER = 0x00070002,
+   CLUSPROP_SYNTAX_PARTITION_INFO = 0x00080001,
+   CLUSPROP_SYNTAX_DISK_SERIALNUMBER = 0x000a0003,
+   CLUSPROP_SYNTAX_DISK_GUID = 0x000b0003,
+   CLUSPROP_SYNTAX_DISK_SIZE = 0x000c0006,
+   CLUSPROP_SYNTAX_PARTITION_INFO_EX = 0x000d0001,
+   CLUSPROP_SYNTAX_PARTITION_INFO_EX2 = 0x000e0001
+ } CLUSTER_PROPERTY_SYNTAX;
+</pre></div>
+</dd></dl><p><b>CLUSPROP_SYNTAX_ENDMARK: </b>Marks the end of a
+value list.</p><p><b>CLUSPROP_SYNTAX_NAME: </b>Specifies a property
+name as an unsigned long.</p><p><b>CLUSPROP_SYNTAX_RESCLASS: </b>Specifies a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_94e97f15-2f1a-406f-a740-607bb97761ec" data-linktype="relative-path">resource</a> class value as an
+unsigned long.</p><p><b>CLUSPROP_SYNTAX_LIST_VALUE_SZ: </b>Specifies a
+NULL-terminated <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a> value.</p><p><b>CLUSPROP_SYNTAX_LIST_VALUE_EXPAND_SZ: </b>Specifies
+a NULL-terminated Unicode string value that contains embedded environment
+variables.</p><p><b>CLUSPROP_SYNTAX_LIST_VALUE_DWORD: </b>Specifies a
+32-bit unsigned integer value.</p><p><b>CLUSPROP_SYNTAX_LIST_VALUE_BINARY: </b>Specifies a
+value that is a series of one or more 8-bit integers.</p><p><b>CLUSPROP_SYNTAX_LIST_VALUE_MULTI_SZ: </b>Specifies
+a value that is a <b>MULTI_SZ</b> string, as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/fd7b2d81-b1d7-414f-a3df-c66fabc578db" data-linktype="relative-path">2.3.8</a>.</p><p><b>CLUSPROP_SYNTAX_LIST_VALUE_LONG: </b>Specifies a
+32-bit signed integer value.</p><p><b>CLUSPROP_SYNTAX_LIST_VALUE_EXPANDED_SZ: </b>Specifies
+a NULL-terminated Unicode string value that used to contain embedded
+environment variables that have been substituted with their corresponding
+values on the server.</p><p><b>CLUSPROP_SYNTAX_LIST_VALUE_SECURITY_DESCRIPTOR: </b>Specifies
+a value that is a <b>SECURITY_DESCRIPTOR</b> structure, as specified in
+[MS-DTYP] section <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a>.</p><p><b>CLUSPROP_SYNTAX_LIST_VALUE_LARGE_INTEGER: </b>Specifies
+a value that is a <b>LARGE_INTEGER</b> structure, as specified in [MS-DTYP]
+section <a href="../ms-dtyp/e904b1ba-f774-4203-ba1b-66485165ab1a" data-linktype="relative-path">2.3.5</a>.</p><p><b>CLUSPROP_SYNTAX_LIST_VALUE_ULARGE_INTEGER: </b>Specifies
+a value that is a <b>ULARGE_INTEGER</b> structure, as specified in [MS-DTYP]
+section <a href="../ms-dtyp/d37e0ce7-a358-4c07-a5c4-59c8b5da8b08" data-linktype="relative-path">2.3.15</a>.</p><p><b>CLUSPROP_SYNTAX_LIST_VALUE_WORD: </b>Specifies a
+16-bit unsigned integer value.</p><p><b>CLUSPROP_SYNTAX_LIST_VALUE_FILETIME: </b>Specifies
+a value that is a <b>FILETIME</b> structure, as specified in [MS-DTYP] section <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">2.3.3</a>.</p><p><b>CLUSPROP_SYNTAX_DISK_SIGNATURE: </b>Specifies a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_0e4c21af-021e-4059-ae9a-7821ec3c2e39" data-linktype="relative-path">disk signature</a> as an
+unsigned long.</p><p><b>CLUSPROP_SYNTAX_SCSI_ADDRESS: </b>Specifies a SCSI
+address value in a <b>CLUS_SCSI_ADDRESS</b> (section <a href="4e71f14a-8b2e-49ff-8c2b-dd94720a3384" data-linktype="relative-path">2.2.3.8</a>) data structure.</p><p><b>CLUSPROP_SYNTAX_DISK_NUMBER: </b>Specifies a disk
+number as an unsigned long.</p><p><b>CLUSPROP_SYNTAX_PARTITION_INFO: </b>Specifies a
+collection of information about a physical disk resource, such as its device
+name and <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a> label. <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">Partition</a> information is
+contained in a <b>CLUS_PARTITION_INFO</b> (section <a href="b0a67c0a-7082-4ec3-9c08-ba94ce0bba4a" data-linktype="relative-path">2.2.3.9</a>) structure.</p><p><b>CLUSPROP_SYNTAX_DISK_SERIALNUMBER: </b>Specifies
+the serial number of a disk as a NULL-terminated Unicode string.</p><p><b>CLUSPROP_SYNTAX_DISK_GUID: </b>Specifies a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> for a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GPT</a> disk in the form of a
+NULL-terminated <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b753d3f3-f3b7-4fee-bf4d-63085e108ec9" data-linktype="relative-path">curly braced GUID string</a>,
+as specified in [MS-DTYP] section <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a>.</p><p><b>CLUSPROP_SYNTAX_DISK_SIZE: </b>Specifies a value
+containing the total size of the disk, in bytes, as an <b>ULARGE_INTEGER</b>
+structure, as specified in [MS-DTYP] section 2.3.15.</p><p><b>CLUSPROP_SYNTAX_PARTITION_INFO_EX: </b>Specifies a
+collection of information about a physical disk resource, such as its device
+name and volume label. Partition information is contained in a <b>CLUS_PARTITION_INFO_EX</b>
+(section <a href="33672b36-93df-4173-a589-1071bd12ad1b" data-linktype="relative-path">2.2.3.11</a>)
+structure.</p><p><b>CLUSPROP_SYNTAX_PARTITION_INFO_EX2:</b> Specifies
+a collection of information about a physical disk resource, such as its device
+name and volume label. Partition information is contained in a <b>CLUS_PARTITION_INFO_EX2</b>
+(section <a href="3079f8d5-9ca9-4527-b926-508a300512bb" data-linktype="relative-path">2.2.3.45</a>)
+structure.</p></div>

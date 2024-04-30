@@ -1,0 +1,109 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/633788c9-1e98-4555-bc41-d78a0de0f4a4" data-linktype="external">msdn link</a></p><p>The LsarDeleteTrustedDomain method is invoked to delete a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted domain object (TDO)</a>.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarDeleteTrustedDomain(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PRPC_SID TrustedDomainSid
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>TrustedDomainSid: </b>A <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a> of the
+TDO to be deleted.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00000DF</p>
+  <p>STATUS_NO_SUCH_DOMAIN</p>
+  </td>
+  <td>
+  <p>The specified TDO does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One or more of the supplied parameters was invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00002B1</p>
+  <p>STATUS_DIRECTORY_SERVICE_REQUIRED</p>
+  </td>
+  <td>
+  <p>The <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+  Directory</a> <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_2dc07ca2-2b40-437e-a5ec-ed28ebfb116a" data-linktype="relative-path">service</a>
+  was not available on the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000403</p>
+  <p>STATUS_USER_DELETE_TRUST_QUOTA_EXCEEDED</p>
+  </td>
+  <td>
+  <p>The caller&#39;s quota for the maximum allowed number of
+  deleted TDOs is exceeded.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>If Active Directory is not running on this machine, the
+server MUST return STATUS_DIRECTORY_SERVICE_REQUIRED.</p><p>If the number of deleted TDOs that were created by the
+caller through the control access right Create-Inbound-Trust (defined in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/1522b774-6464-41a3-87a5-1e5633c3fbbb" data-linktype="relative-path">5.1.3.2.1</a>)
+exceeds the value in the msDS-PerUserTrustTombstonesQuota attribute of the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_40a58fa4-953e-4cf3-96c8-57dba60237ef" data-linktype="relative-path">domain naming context (domain
+NC)</a> root object (defined in [MS-ADTS] section <a href="../ms-adts/d119446e-3f8c-4610-9db6-2283200b6ec7" data-linktype="relative-path">6.1.1.1.4</a>),
+the server MUST return STATUS_USER_DELETE_TRUST_QUOTA_EXCEEDED. For the syntax
+of the msDS-PerUserTrustTombstonesQuota attribute, refer to <a href="../ms-ada2/e20ebc4e-5285-40ba-b3bd-ffcb81c2783e" data-linktype="relative-path">[MS-ADA2]</a>
+section <a href="../ms-ada2/2df0cabf-1c76-4dc5-bf9d-b7a50f9796f8" data-linktype="relative-path">2.419</a>.
+The server MUST enforce the quota check only for the TDOs created by control
+access right Create-Inbound-Trust and if the caller is the creator of that TDO.</p><p>This message takes two arguments:</p><p><i>PolicyHandle</i>: An open handle to the policy object. If
+the handle is not a valid context handle to the policy object or <i>PolicyHandle</i>.HandleType
+does not equal &#34;Policy&#34;, the server MUST return
+STATUS_INVALID_HANDLE. The server MUST verify that <i>PolicyHandle</i> grants
+access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a> with
+RequiredAccess set to TRUSTED_QUERY_DOMAIN_NAME | DELETE.</p><p><i>TrustedDomainSid</i>: The <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> of a TDO to be deleted.
+The server MUST verify that the caller has supplied a valid <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> SID for this
+parameter and fail the request with STATUS_INVALID_PARAMETER if the check
+fails. The server MUST verify that a TDO with this SID exists in its policy
+database and fail the request with STATUS_NO_SUCH_DOMAIN otherwise.</p><p> If the server is a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8b0a073b-3099-4efe-8b81-c2886b66a870" data-linktype="relative-path">read-only domain controller</a>,
+it MUST return an error.<a id="Appendix_A_Target_95"></a><a aria-label="Product behavior note 95" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_95" data-linktype="relative-path">&lt;95&gt;</a></p><p>The server MUST also check whether a secret with name
+&#34;G$$&lt;Trusted Domain Name&gt;&#34; exists or not. If it exists, the
+server MUST delete that secret along with the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted domain</a>.</p><p>The server MUST also check whether an <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_ba0d31d7-aa03-4e10-936a-a0ebd276ebc9" data-linktype="relative-path">interdomain trust account</a>
+with name &#34;&lt;Trusted Domain NetBIOS Name&gt;$&#34; exists. If it
+exists, the server MUST delete that account along with the trusted domain.</p></div>

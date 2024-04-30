@@ -1,0 +1,47 @@
+<div class="content"><p> </p><p>The <b>IIS_USER_INFO_1</b> structure describes a user
+connected to an <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_d9a0cf88-f6d7-4c52-a9fc-4ce5a7cb7260" data-linktype="relative-path">Internet protocol server</a></span>.</p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _IIS_USER_INFO_1 {
+   DWORD idUser;
+   [string] LPWSTR pszUser;
+   BOOL fAnonymous;
+   DWORD inetHost;
+   DWORD tConnect;
+ } IIS_USER_INFO_1,
+  *LPIIS_USER_INFO_1;
+</pre></div>
+</dd></dl><p><b>idUser:</b>  A unique identifier for the
+user.</p><p><b>pszUser:</b>  A name for the user, not
+necessarily unique.</p><p><b>fAnonymous:</b>  Indicates whether or
+not the user connected anonymously. This field MUST be one of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUE</p>
+  <p>1</p>
+  </td>
+  <td>
+  <p>The user is logged on as Anonymous.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0</p>
+  </td>
+  <td>
+  <p>The user is not logged on as Anonymous.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>inetHost:</b>  The host IPv4 address.
+Data is stored in <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_502de58c-ffc0-4dda-8fcb-b152b2c31fba" data-linktype="relative-path">network byte order</a></span>.</p><p><b>tConnect:</b>  The user connection time
+measured in elapsed seconds.</p></div>

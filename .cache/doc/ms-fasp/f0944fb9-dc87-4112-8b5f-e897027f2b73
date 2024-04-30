@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>This enumeration identifies the different <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span>
+Key Exchange negotiation protocols that can be used.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_PHASE1_KEY_MODULE_TYPE
+ {
+   FW_PHASE1_KEY_MODULE_INVALID = 0,
+   FW_PHASE1_KEY_MODULE_IKE = 1,
+   FW_PHASE1_KEY_MODULE_AUTH_IP = 2,
+   FW_PHASE1_KEY_MODULE_MAX = 3
+ } FW_PHASE1_KEY_MODULE_TYPE;
+</pre></div>
+</dd></dl><p><b>FW_PHASE1_KEY_MODULE_INVALID:  </b>The
+FW_PHASE1_KEY_MODULE_INVALID constant MUST NOT be used. It is defined for
+simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 0.</p><p><b>FW_PHASE1_KEY_MODULE_IKE:  </b>The keying protocol
+was <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_294fef97-5790-4d41-971e-dd255b783e68" data-linktype="relative-path">IKE</a></span>.
+This symbolic constant has a value of 1.</p><p><b>FW_PHASE1_KEY_MODULE_AUTH_IP:  </b>The keying
+protocol was <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_3791f3e1-cf2f-4605-9fcc-54f526f036cf" data-linktype="relative-path">AuthIP</a></span>. This
+symbolic constant has a value of 2.</p><p><b>FW_PHASE1_KEY_MODULE_MAX:  </b>This value and
+values that exceed this value are not valid and MUST NOT be used. It is defined
+for simplicity in writing IDL definitions and code. This symbolic constant has
+a value of 3.</p></div>

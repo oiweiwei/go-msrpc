@@ -1,0 +1,14 @@
+<div class="content"><p>The Failover Cluster: Management API (ClusAPI) Protocol is a
+<a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a>–based
+protocol that is used for remotely managing a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_acd8b49c-8762-48fd-9272-26a03643322b" data-linktype="relative-path">failover cluster</a>. Managing
+a failover cluster involves managing the data that represents the configuration
+of the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_feef37b3-c173-4f51-aab6-b55a6366259b" data-linktype="relative-path">cluster</a>, the
+entities that constitute the cluster, and the applications and services that
+run in a cluster. For example, the ClusAPI Protocol is used to determine the
+version of the cluster and to read and write data in the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_13de67f6-ac9d-491f-8dfb-12601a8b0838" data-linktype="relative-path">cluster registry</a>. This
+protocol is also used to determine whether a computer system is currently
+acting as a member of a failover cluster. Lastly, the ClusAPI Protocol is used
+to control and query a service or application that is hosted by a failover
+cluster.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

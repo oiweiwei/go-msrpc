@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/db0e9131-9a19-4cb5-937a-0e3a5767a0b2" data-linktype="external">msdn link</a></p><p>The LSA_FOREST_TRUST_COLLISION_INFORMATION structure is used
+to communicate a set of <a href="32178d2c-ca74-4f53-8264-af1906f95011" data-linktype="relative-path">LSA_FOREST_TRUST_COLLISION_RECORD</a>
+structures.</p><dl>
+<dd>
+<div><pre> typedef struct _LSA_FOREST_TRUST_COLLISION_INFORMATION {
+   unsigned long RecordCount;
+   [size_is(RecordCount)] PLSA_FOREST_TRUST_COLLISION_RECORD* Entries;
+ } LSA_FOREST_TRUST_COLLISION_INFORMATION,
+  *PLSA_FOREST_TRUST_COLLISION_INFORMATION;
+</pre></div>
+</dd></dl><p><b>RecordCount:</b>  The count of elements
+in the Entries array.</p><p><b>Entries:</b>  An array of
+LSA_FOREST_TRUST_COLLISION_RECORD (section 2.2.7.27) structures. If
+the <b>RecordCount</b> field has a value other than zero, this field MUST NOT
+be NULL.</p></div>

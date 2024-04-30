@@ -1,0 +1,92 @@
+<div class="content"><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumDeviceInfoEntries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDeviceInfoSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDeviceInfoOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, allocated to the packet. </p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, needed for the packet to hold all of the returned
+information.</p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the portion of the packet that MUST contain
+useful information.</p><p><b>dwNumDeviceInfoEntries (4 bytes): </b>An unsigned
+32-bit integer. The number of <a href="71bfc9b5-4a60-4d70-9afd-be3b3b0fd0e0" data-linktype="relative-path">DEVICEINFO</a> packets present
+in the array denominated by <b>dwDeviceInfoSize</b> and <b>dwDeviceInfoOffset</b>.
+</p><p><b>dwDeviceInfoSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the device info list array in the <b>VarData</b>
+field.</p><p><b>dwDeviceInfoOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of this packet to an array of
+DEVICEINFO elements that provide the information on each service provider. The
+size of the array MUST be specified by <b>dwDeviceInfoSize</b>.</p><p><b>VarData (variable): </b>An array of DEVICEINFO
+elements that provides the information on each service provider, as specified
+by <b>dwDeviceInfoOffset</b>.</p></div>

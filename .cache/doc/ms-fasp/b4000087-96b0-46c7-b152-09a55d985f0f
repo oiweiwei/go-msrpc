@@ -1,0 +1,42 @@
+<div class="content"><p> </p><p>This enumeration is used to identify supported key exchange
+algorithms.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_CRYPTO_KEY_EXCHANGE_TYPE
+ {
+   FW_CRYPTO_KEY_EXCHANGE_NONE = 0,
+   FW_CRYPTO_KEY_EXCHANGE_DH1 = 1,
+   FW_CRYPTO_KEY_EXCHANGE_DH2 = 2,
+   FW_CRYPTO_KEY_EXCHANGE_ECDH256 = 3,
+   FW_CRYPTO_KEY_EXCHANGE_ECDH384 = 4,
+   FW_CRYPTO_KEY_EXCHANGE_DH14 = 5,
+   FW_CRYPTO_KEY_EXCHANGE_DH14 = FW_CRYPTO_KEY_EXCHANGE_DH2048 = 5,
+   FW_CRYPTO_KEY_EXCHANGE_DH24 = 6,
+   FW_CRYPTO_KEY_EXCHANGE_MAX_V2_10 = FW_CRYPTO_KEY_EXCHANGE_DH24 = 6,
+   FW_CRYPTO_KEY_EXCHANGE_MAX = 7
+ } FW_CRYPTO_KEY_EXCHANGE_TYPE;
+</pre></div>
+</dd></dl><p><b>FW_CRYPTO_KEY_EXCHANGE_NONE:  </b>This value means
+that there are no key exchange algorithms defined. When enumerating <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_67cbf867-7a49-41f3-a68f-37b5f9035acb" data-linktype="relative-path">SAs</a></span>,
+this value MAY be returned. It MUST NOT be used for other cases. This symbolic
+constant has a value of 0.</p><p><b>FW_CRYPTO_KEY_EXCHANGE_DH1:  </b>Do key exchange
+with Diffie-Hellman group 1. This symbolic constant has a value of 1.</p><p><b>FW_CRYPTO_KEY_EXCHANGE_DH2:  </b>Do key exchange
+with Diffie-Hellman group 2. This symbolic constant has a value of 2.</p><p><b>FW_CRYPTO_KEY_EXCHANGE_ECDH256:  </b>Do key
+exchange with elliptic curve Diffie-Hellman 256. This symbolic constant has a
+value of 3.</p><p><b>FW_CRYPTO_KEY_EXCHANGE_ECDH384:  </b>Do key
+exchange with elliptic curve Diffie-Hellman 384. This symbolic constant has a
+value of 4.</p><p><b>FW_CRYPTO_KEY_EXCHANGE_DH14:  </b>Do key exchange
+with Diffie-Hellman group 14. This symbolic constant has a value of 5.</p><p><b>FW_CRYPTO_KEY_EXCHANGE_DH14 =
+FW_CRYPTO_KEY_EXCHANGE_DH2048:  </b>Do key exchange with Diffie-Hellman group
+14. This group was called Diffie-Hellman group 2048 when it was introduced. The
+name has been changed to match standard terminology. This symbolic constant has
+a value of 5.</p><p><b>FW_CRYPTO_KEY_EXCHANGE_DH24:  </b>Do key exchange
+with Diffie-Hellman group 24. For schema versions 0x0200, 0x0201, and 0x020A,
+this value is invalid and MUST NOT be used. This symbolic constant has a value
+of 6.</p><p><b>FW_CRYPTO_KEY_EXCHANGE_MAX_V2_10 =
+FW_CRYPTO_KEY_EXCHANGE_DH24:  </b>This value and values that exceed this value
+are not valid and MUST NOT be used by servers and clients with schema version
+0x020A and earlier. It is defined for simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span>
+definitions and code. This symbolic constant has a value of 6.</p><p><b>FW_CRYPTO_KEY_EXCHANGE_MAX:  </b>This value and
+values that exceed this value are not valid and MUST NOT be used. It is defined
+for simplicity in writing IDL definitions and code. This symbolic constant has
+a value of 7.</p></div>

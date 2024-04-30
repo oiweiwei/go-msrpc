@@ -1,0 +1,100 @@
+<div class="content"><p> </p><p>The <span><a href="8f38e58a-d9eb-4d33-984d-24522e01559c" data-linktype="relative-path">IManagedObject</a></span>
+interface is a COM interface used by the <span><a href="d8eaf696-8591-48a2-9aac-4880847e3632#gt_854253ea-e95f-40bb-9e99-cf5b1298db20" data-linktype="relative-path">common language runtime (CLR)</a></span>
+to identify managed <span><a href="d8eaf696-8591-48a2-9aac-4880847e3632#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">objects</a></span> (objects
+created by the CLR) that are exported for interoperability with the Component
+Object Model (COM). The IManagedObject interface allows these objects to be
+identified when they reenter the CLR.</p><p>The IManagedObject interface is used specifically for
+scenarios in which managed code uses COM and interacts with a managed object.
+This interface is an optimization that allows managed code to avoid going
+through COM to interact with the managed object. There are two different
+scenarios in which this can occur: Either the managed object is within the same
+process division, the same <span><a href="d8eaf696-8591-48a2-9aac-4880847e3632#gt_5ef0b961-f7de-4aad-b7af-e821868259a5" data-linktype="relative-path">application domain</a></span>,
+or the managed object is in a different process division (application domain).
+In either case, this document discusses what is done instead of using DCOM <span><a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a></span>
+to interact between the CLR and managed objects.</p><p>When using COM, the COM Callable Wrapper (CCW) is the view
+of the object to COM, as defined in <span><a href="https://go.microsoft.com/fwlink/?LinkId=264695" data-linktype="external">[MSDN-CCW]</a></span>.
+When the CLR identifies a COM object that includes a CCW, a Runtime Callable
+Wrapper (RCW) is required in order to interact with the COM object, as defined
+in <span><a href="https://go.microsoft.com/fwlink/?LinkId=264694" data-linktype="external">[MSDN-RCW]</a></span>. If
+an RCW doesn&#39;t exist, the CLR attempts to create an RCW. If the object
+implements IManagedObject, the CLR determines that it is a .NET object. For
+more information on CCW and RCW, see [MSDN-CCW] and [MSDN-RCW].</p><p>In cases in which the .NET object is in the same process
+division, the CLR interacts directly with the .NET object.</p><p><img id="MS-IOI_pict713249cc-de89-0587-b59c-5805903465c4.png" src="ms-ioi_files/image001.png" alt="CLR interacts directly with .NET object" title="CLR interacts directly with .NET object" data-linktype="relative-path"/></p><p><b>Figure 1: CLR interacts directly with .NET object</b></p><p>The steps describing the CLR and the .NET object interaction
+are as follows:</p><ol><li><p><span>    </span>A COM object,
+which is a CCW wrapping a local CLR object, reenters the CLR through a COM
+call. The CLR calls the <b>QueryInterface</b> method on the CCW for the
+IManagedObject interface in order to determine whether this COM object is a CCW
+or not.</p>
+</li><li><p><span>    </span>Since the COM
+object is a CCW, it returns the IManagedObject call with S_OK and a pointer to
+its IManagedObject interface.</p>
+</li><li><p><span>    </span>The CLR calls <span><a href="4b4d8f35-aa82-4a79-bbe7-a6d8b761fcdf" data-linktype="relative-path">IManagedObject::GetObjectIdentity</a></span>
+on the IManagedObject interface obtained in step 2 in order to determine if the
+object is local to the current process and application domain.</p>
+</li><li><p><span>    </span>The CCW responds
+back with its ID, and the CLR notes that this ID is local to the current
+process and application domain.</p>
+</li><li><p><span>    </span>As established
+in step 4, the wrapped object belongs to this instance of the CLR, and the CLR
+can interact with the object directly instead of going through an RCW / CCW
+pair and communicating over a COM channel.</p>
+</li></ol><p>In cases in which the .NET object is in a different process
+division (different application domain or process), a remoting proxy is used to
+interact with the .NET object. In such a case, the CCW implementing
+IManagedObject returns a <b>Server Object Identity</b> / <i>AppDomainID</i>
+from IManagedObject::GetObjectIdentity that does not correspond to the current
+process. The CLR will then ask for the remoting ID for the object (<span><a href="7e79d51e-56ae-4a0e-9038-6d1230c54d72" data-linktype="relative-path">IManagedObject::GetSerializedBuffer</a></span>).
+This can be used to generate a transparent remoting proxy to communicate to the
+original object. At this point, the communication endpoints are now remoting
+.NET objects, and CCWs / RCWs are not used:</p><p><img id="MS-IOI_pictfbd96ab2-574a-87d3-caee-eb0d437f6d4d.png" src="ms-ioi_files/image002.png" alt="CLR interacts via remoting proxy" title="CLR interacts via remoting proxy" data-linktype="relative-path"/></p><p><b>Figure 2: CLR interacts via remoting proxy</b></p><p>The steps describing the CLR interaction via remoting proxy
+are as follows:</p><ol><li><p><span>    </span>A COM object,
+which is a CCW wrapping a CLR object, from a different application domain or
+process enters the CLR through a COM call. The CLR calls the <b>QueryInterface</b>
+method on the CCW for the IManagedObject interface in order to determine
+whether this COM object is a CCW or not.</p>
+</li><li><p><span>    </span>Because the COM
+object is a CCW, it responds to the <b>QueryInterface</b> call with S_OK and a
+pointer to its IManagedObject interface.</p>
+</li><li><p><span>    </span>The CLR calls
+IManagedObject::GetObjectIdentity on the IManagedObject interface obtained in
+step 2 in order to determine whether the object is local to the current process
+and application domain.</p>
+</li><li><p><span>    </span>The CCW responds
+back with its ID, and the CLR notes that this ID is not local to the current
+process and application domain.</p>
+</li><li><p><span>    </span>The CLR calls
+IManagedObject::GetSerializedBuffer to get information to set up a .NET
+Remoting connection to the remote CLR object.</p>
+</li><li><p><span>    </span>The CCW responds
+back with the remoting information.</p>
+</li><li><p><span>    </span>The CLR uses the
+remoting information obtained in step 6 to create a remoting proxy that
+communicates with the .NET object via .NET Remoting, rather than using an
+RCW/CCW pair and communicating over a COM channel.</p>
+</li></ol><p>CLR-managed objects can be exposed to COM clients as COM
+objects. They can implement any number of COM interfaces, but all such exported
+objects implement IManagedObject.</p><p>The CLR also allows COM objects to be imported and used as
+managed objects. In this case, IManagedObject is used to determine if an object
+is truly a COM object or if it is actually originated as a CLR-managed object.</p><p>When a COM object enters the CLR, the CLR uses the standard
+COM interface querying mechanism (<b>QueryInterface</b>) to determine if the
+given object implements IManagedObject. If the object supports IManagedObject,
+IManagedObject::GetObjectIdentity is called.</p><p>At CLR instantiation, the CLR creates a unique <span><a href="d8eaf696-8591-48a2-9aac-4880847e3632#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+to identify a specific CLR instance within a given process. This GUID is
+formatted as a string (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/222af2d3-5c00-4899-bc87-ed4c6515e80d" data-linktype="relative-path">2.3.4.3</a></span>)
+and is saved. All CLR-managed objects originating from this specific instance
+of the CLR will return this unique identifier as the first parameter of the
+call to IManagedObject::GetObjectIdentity. This GUID is used to recognize that
+an imported managed object originated in this runtime.</p><p>The CLR can support even finer-grained levels of grouping
+than the process. Objects exported from a given process division are tagged and
+return the identifier used for process division in their second parameter to
+IManagedObject::GetObjectIdentity. This identifier is also used to indicate
+whether or not the given object originated in the correct process division. If
+the process identifier and process division match, the last parameter of
+IManagedObject::GetObjectIdentity is a pointer to the implementation-specific
+representation of the managed object.</p><p>If the given object does not match the current CLR instance
+and process division, IManagedObject::GetSerializedBuffer is called to return a
+binary representation of a managed object, as specified by the .NET Remoting:
+Binary Format Data Structure <span><a href="../ms-nrbf/75b9fe09-be15-475f-85b8-ae7b7558cfe5" data-linktype="relative-path">[MS-NRBF]</a></span>.
+It is the responsibility of the caller on the client CLR to interpret the
+deserialized opaque object reference.</p><p><img id="MS-IOI_pictda2254d0-c049-2fa0-f0a3-cba70c731893.png" src="ms-ioi_files/image003.png" alt="IManagedObject request-response" title="IManagedObject request-response" data-linktype="relative-path"/></p><p><b>Figure 3: IManagedObject request-response</b></p></div>

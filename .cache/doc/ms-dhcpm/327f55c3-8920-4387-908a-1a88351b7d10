@@ -1,0 +1,85 @@
+<div class="content"><p> </p><p>The <b>R_DhcpServerQueryAttributes</b> method retrieves one
+or more attributes information from the DHCP server. The caller of this
+function can free the memory pointed to by <i>pDhcpAttribArr</i> and <i>pDhcpAttribs</i>
+by calling the function <b>midl_user_free</b> (section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpServerQueryAttributes (
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] ULONG dwReserved,
+   [in, range(0,6)] ULONG dwAttribCount,
+   [in, size_is(dwAttribCount)] LPDHCP_ATTRIB_ID pDhcpAttribs,
+   [out]    LPDHCP_ATTRIB_ARRAY *pDhcpAttribArr
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>dwReserved: </b>This flag is not used and MUST be
+set to 0.</p><p><b>dwAttribCount: </b>This is of type <span><a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">ULONG</a></span>
+and contains the number of attributes queried.</p><p><b>pDhcpAttribs: </b>This is a pointer to type <span><a href="36183913-873b-4aa4-8ea8-1d16359f9ffc" data-linktype="relative-path">DHCP_ATTRIB_ID (section 2.2.1.1.1)</a></span>
+and points to an array of length <i>dwAttribCount</i> which contains the
+queried attribute.</p><p><b>pDhcpAttribArr: </b>This is a pointer to type <span><a href="3c043b17-9024-4d36-b2fc-600c1ca72e46" data-linktype="relative-path">LPDHCP_ATTRIB_ARRAY</a></span>
+that points to an array that contains attribute information for all of the
+valid attributes queried.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 35.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this API is authorized for read access per section <span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not, return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If <i>dwReserved</i> is not 0 or <i>dwAttribCount</i> is 0 or <i>pDhcpAttribs</i>
+is NULL or <i>pDhcpAttribArr</i> is NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If none of the attributes queried are supported by the DHCP
+server, return ERROR_NOT_SUPPORTED.</p>
+</li><li><p><span><span> 
+</span></span>If one or more attributes queried in <i>pDhcpAttribs</i> are
+supported by the DHCP server, then allocate the memory for the required number
+of DHCP_ATTRIB entries.</p>
+</li><li><p><span><span> 
+</span></span>For each attribute in <i>pDhcpAttribs</i> supported by the DHCP
+server, perform one of the following actions:</p>
+<ul><li><p><span><span>  </span></span>If
+the <i>pDhcpAttribs</i> entry is DHCP_ATTRIB_BOOL_IS_ROGUE,
+DHCP_ATTRIB_BOOL_IS_DYNBOOTP, DHCP_ATTRIB_BOOL_IS_BINDING_AWARE or
+DHCP_ATTRIB_ULONG_RESTORE_STATUS, fill the <i>pDhcpAttribArr</i> entry with
+information from the corresponding field in the server ADM element <b>DHCPv4ServerAttributes</b>.
+</p>
+</li><li><p><span><span>  </span></span>If
+the <i>pDhcpAttribs</i> entry is DHCP_ATTRIB_BOOL_IS_ADMIN, set the fields <b>DhcpAttribId</b>
+and <b>DhcpAttribType</b> of the <i>pDhcpAttribArr</i> (section <span><a href="9096df24-7da6-445e-a35d-667722ff7a09" data-linktype="relative-path">2.2.1.2.78</a></span>)
+entry corresponding to DHCP_ATTRIB_BOOL_IS_ADMIN. If this API is authorized for
+read/write access as specified in section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>, set <b>DhcpAttribBool</b>
+to TRUE; otherwise, set it to FALSE. </p>
+</li><li><p><span><span>  </span></span>If
+the <i>pDhcpAttribs</i> entry is DHCP_ATTRIB_BOOL_IS_PART_OF_DSDC, set the
+fields <b>DhcpAttribId</b> and <b>DhcpAttribType</b> of <i>pDhcpAttribArr</i>
+entry corresponding to DHCP_ATTRIB_BOOL_IS_PART_OF_DSDC. Check if the DHCP
+server belongs to a domain. If positive, set <b>DhcpAttribBool</b> to TRUE,
+otherwise set it to FALSE. </p>
+</li></ul></li><li><p><span><span> 
+</span></span>If all attributes queried in <i>pDhcpAttribs</i> are supported,
+return ERROR_SUCCESS; otherwise, return ERROR_NOT_SUPPORTED.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

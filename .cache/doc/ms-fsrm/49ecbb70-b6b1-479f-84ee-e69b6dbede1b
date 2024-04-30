@@ -1,0 +1,86 @@
+<div class="content"><p>The EnumQuotas method returns all the <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_4b48a792-493d-4fa8-9ba8-175d43fb471d" data-linktype="relative-path">directory quotas</a> from the <b>List
+of Persisted Directory Quotas</b> (section <a href="38a86a9b-0221-493b-80e4-3dab6560c53b" data-linktype="relative-path">3.2.1.2</a>) that fall under
+the specified path.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_QUOTA_MANAGER | 0x06)] HRESULT EnumQuotas(
+   [in, defaultvalue(L&#34;&#34;)] BSTR path,
+   [in, defaultvalue(FsrmEnumOptions_None)] 
+     FsrmEnumOptions options,
+   [out, retval] IFsrmCommittableCollection** quotas
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>Contains the path indicating the search
+location for quota numeration.</p><p><b>options: </b>Contains the <a href="d01ee30b-4ef8-4eec-8026-3b5a1ccda298" data-linktype="relative-path">FsrmEnumOptions (section 2.2.1.2.5)</a>
+to use when enumerating the quotas.</p><p><b>quotas: </b>Pointer to an <b>IFsrmCommittableCollection</b>
+interface pointer (section <a href="854116b8-04aa-4342-a308-da8b524ec0d9" data-linktype="relative-path">3.2.4.2.3</a>)
+that upon completion contains pointers to directory quotas belonging to the
+path specified based on the wildcard characters specified in the path. The
+caller MUST release the collection when it is done with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>quotas</i> parameter is NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045311</p>
+  <p>FSRM_E_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The <i>options</i> parameter contains invalid <b>FsrmEnumOptions</b>
+  (section 2.2.1.2.5) values.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>If <i>quotas</i> is NULL, the server MUST return E_INVALIDARG.</p>
+</li><li><p><span><span> 
+</span></span>If <i>options</i> contains <b>FsrmEnumOptions_Asynchronous</b> or
+any value other than specified in section 2.2.1.2.5, the server MUST return
+FSRM_E_NOT_SUPPORTED.</p>
+</li></ul><p>Upon successful validation of parameters, the server MUST
+perform all of the following actions or return a nonzero error code:</p><ul><li><p><span><span> 
+</span></span>Create a <b>List of Non-Persisted Directory Quota Instances</b>
+(section 3.2.1.2) and populate it with <a href="428a07ce-42ef-4822-98ba-c298c26adbb3" data-linktype="relative-path">Non-Persisted Directory Quota
+Instances (section 3.2.1.2.1.2)</a> copied from the <a href="4a94faeb-8aed-46fa-9d03-479f6708995a" data-linktype="relative-path">Persisted Directory
+Quotas (section 3.2.1.2.1.1)</a> in the <b>List of Persisted
+Directory Quotas</b>, according to the following rules:</p>
+<ul><li><p><span><span>  </span></span>If <i>path</i>
+ends with &#34;\*&#34;, the server MUST populate the <b>List of Non-Persisted
+Directory Quota Instances</b> with a copy of every Persisted Directory Quota
+from the <b>List of Persisted Directory Quotas</b> that belongs to a
+subdirectory of <i>path</i>.</p>
+</li><li><p><span><span>  </span></span>If <i>path</i>
+ends with &#34;\...&#34;, the server MUST populate the <b>List of
+Non-Persisted Directory Quota Instances</b> with a copy of every Persisted
+Directory Quota from the <b>List of Persisted Directory Quotas</b> that
+recursively belongs to a subdirectory of path.</p>
+</li><li><p><span><span>  </span></span>If <i>path</i>
+does not end with &#34;\*&#34; or &#34;\...&#34;, the server MUST populate
+the <b>List of Non-Persisted Directory Quota Instances</b> with a copy of only
+the Persisted Directory Quota from the <b>List of Persisted Directory Quotas</b>
+for <i>path</i>.</p>
+</li><li><p><span><span>  </span></span>If
+a Persisted Directory Quota does not exist for <i>path</i>, the server MUST
+return S_OK and set <i>quotas</i> to an empty <b>IFsrmCommittableCollection</b>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>After populating the <b>List of Non-Persisted Directory Quota
+Instances</b>, the server MUST populate <i>quotas</i> with the <b>IFsrmQuota</b>
+interface pointer (section <a href="88b528e4-b394-4090-a000-24c020a87ec8" data-linktype="relative-path">3.2.4.2.16</a>)
+of every Non-Persisted Directory Quota Instance in the <b>List of Non-Persisted
+Directory Quota Instances</b>.</p>
+</li></ul></div>

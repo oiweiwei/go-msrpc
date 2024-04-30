@@ -1,0 +1,122 @@
+<div class="content"><p> </p><p>The EvtRpcLocalizeExportLog (Opnum 8) method is used by a
+client to add localized information to a previously created <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_ddd2e7db-ea8f-4488-ac5f-e77d59abe9e4" data-linktype="relative-path">backup
+event log</a></span>, because the backup event log does not contain the
+localized strings for event descriptions. An example of how this can be useful
+is if a backup event log needs to be copied to other computers so that support
+personnel on those other computers can access it; if this method has been
+called, such support personnel can access or view the localized backup event
+log, which will then contain events with localized strings. Note that a
+discussion of tools by which administrators or support personnel can work with
+localized backup event log files in scenarios such as this is out of scope with
+respect to this protocol specification.</p><dl>
+<dd>
+<div><pre> error_status_t EvtRpcLocalizeExportLog(
+   [in, context_handle] PCONTEXT_HANDLE_OPERATION_CONTROL control,
+   [in, range(1, MAX_RPC_FILE_PATH_LENGTH), string] 
+     LPCWSTR logFilePath,
+   [in] LCID locale,
+   [in] DWORD flags,
+   [out] RpcInfo* error
+ );
+</pre></div>
+</dd></dl><p><b>control: </b>A handle to an operation control
+object. This parameter MUST be an <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle,
+as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>, Context
+Handles.</p><p><b>logFilePath: </b>A pointer to a string that
+contains the path of the backup event log to be localized.</p><p><b>locale: </b>Locale, as specified in <span><a href="../ms-gpsi/8ac65057-0663-45e5-9718-f490e87945dc" data-linktype="relative-path">[MS-GPSI]</a></span>
+<span><a href="../ms-gpsi/70e94400-9a48-4dc7-a074-b9cb1ba6fad3" data-linktype="relative-path">Appendix A</a></span>,
+to be used for localizing the log.</p><p><b>flags: </b>A 32-bit unsigned integer that MUST be
+set to zero when sent and MAY be ignored on receipt.<a id="Appendix_A_Target_31"></a><a aria-label="Product behavior note 31" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_31" data-linktype="relative-path">&lt;31&gt;</a></p><p><b>error: </b>A pointer to an <span><a href="94a5d4d1-0f80-4af3-b7c6-d61a6aa60b7b" data-linktype="relative-path">RpcInfo (section 2.2.1)</a></span>
+structure in which to place error information in the case of a failure. The
+RpcInfo (section 2.2.1) structure fields MUST be set to nonzero
+values if the error is related to loading localization information. All nonzero
+values MUST be treated the same. If the method succeeds, the server MUST set
+all of the values in the structure to zero.<a id="Appendix_A_Target_32"></a><a aria-label="Product behavior note 32" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_32" data-linktype="relative-path">&lt;32&gt;</a></p><p><b>Return Values: </b>The method MUST return ERROR_SUCCESS
+(0x00000000) on success; otherwise, it MUST return an error value as specified
+in the processing rules in this section.<a id="Appendix_A_Target_33"></a><a aria-label="Product behavior note 33" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_33" data-linktype="relative-path">&lt;33&gt;</a> Callers
+SHOULD treat all return values other than ERROR_SUCCESS equally and not alter
+their behavior based on any specific error values.</p><p>The server does not validate the control handle passed to <b>EvtRpcLocalizeExportLog</b>,
+and it SHOULD assume that this parameter is always valid when the method is
+invoked.</p><p>In response to this request from the client, the server MUST
+verify that the <i>logFilePath</i> parameter specifies a valid path to a backup
+event log. A valid path MUST be a legal file name of the server&#39;s file system.
+The server MUST fail the operation if the <i>logFilePath</i> parameter is
+invalid with the error ERROR_INVALID_PARAMETER (0x00000057).<a id="Appendix_A_Target_34"></a><a aria-label="Product behavior note 34" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_34" data-linktype="relative-path">&lt;34&gt;</a> The server MUST fail the method
+if the specified backup event log does not exist in the server with the error
+ERROR_FILE_NOT_FOUND (0x00000002).</p><p>Next the server MUST verify that the caller has read access
+to the log file (specified by the <i>logFilePath</i> parameter) and MUST fail
+the method if the caller does not have read access with the error
+ERROR_ACCESS_DENIED (0x00000005). To perform the access check, the server
+SHOULD first determine the identity of the caller. Information determining the
+identity of the caller for the purpose of performing an access check is
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/326c9de1-4602-4d78-848d-8b4e11e6ed80" data-linktype="relative-path">3.2.3.4.2</a></span>.
+Then the server SHOULD get the security descriptor string from the file system
+for the log file. Next the server SHOULD perform the read access check using
+the Access Check algorithm (as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/4f1bbcbb-814a-4c70-a11e-2a5b8779a6f9" data-linktype="relative-path">2.5.3.2</a></span>).</p><p>If the checks above are successful, the server MUST perform
+the following operations: </p><ol><li><p><span>    </span>The server
+creates a subdirectory &#34;LocaleMetaData&#34;, if the directory does not
+exist, under the directory where the backup event log file is located (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=215127" data-linktype="external">[PRA-CreateDirectory]</a></span>).
+If the directory already exists, the server does nothing. The only expected
+failures for subdirectory creation are critical system errors, such as file
+system errors. If the server cannot create the directory, it MUST return the
+error from the CreateDirectory method that is reporting the error. Otherwise,
+the server MUST successfully create the subdirectory.</p>
+</li><li><p><span>    </span>The server
+creates a file with the name <i>LogFilePath_&lt;Locale&gt;</i>.MTA under the
+directory LocaleMetaData (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=215125" data-linktype="external">[PRA-CreateFile]</a></span>).
+If the file already exists, the server SHOULD always overwrite it. The only
+expected failures for file creation or overwriting are critical system errors,
+such as file system errors. If the server can&#39;t create the file or overwrite an
+existing one, it MUST return the error from the CreateFile method that is
+reporting the error. Otherwise, the server MUST successfully create the file.</p>
+</li><li><p><span>    </span>The server then
+opens the backup event log file, reads every event and uses the same internal
+functionality by which it implements the <b>EvtRpcMessageRender</b> method
+(section <span><a href="14046f81-06d8-4690-9245-5d8784c25025" data-linktype="relative-path">3.1.4.31</a></span>) to obtain
+the localized strings for event levels, keywords, tasks, opcode, and
+descriptions. The server then saves those localized strings of each event in
+the newly created file. Note that the <b>EvtRpcMessageRender</b> method needs
+the PCONTEXT_HANDLE_PUBLISHER_METADATA handle as its first parameter. When the
+server gets each event, it can get the event publisher name from the event
+content (see section <span><a href="8c61aef7-bd4b-4edb-8dfd-3c9a7537886b" data-linktype="relative-path">2.2.13</a></span>), thus the
+server is able to get the context handle by using the internal functionality by
+which it implements the <b>EvtRpcGetPublisherMetadata</b> method (specified in
+section <span><a href="0011377c-12f8-4440-8629-568b1ec5bcf2" data-linktype="relative-path">3.1.4.25</a></span>). The
+internal functionality by which the server implements <b>EvtRpcGetPublisherMetadata</b>
+SHOULD use the value of the <i>locale</i> parameter in its processing; the
+server SHOULD make this value available to that internal functionality by
+appropriate platform-specific means so that the value can be stored in the <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_62964c35-9cf0-4e93-bbb6-a6d2dd85df2d" data-linktype="relative-path">publisher
+metadata</a></span> object.</p>
+<p>After getting the
+publisher metadata context handle, the server SHOULD extract the eventId,
+level, keywords, tasks, and opcode values from the event and fill an <b>EVENT_DESCRIPTOR</b>
+structure, specified in [MS-DTYP] section <span><a href="../ms-dtyp/a6110d36-28c1-4290-b79e-26aa95a0b1a0" data-linktype="relative-path">2.3.1</a></span>.
+With the context handle and the <b>EVENT_DESCRIPTOR</b> structure, the server
+can use the internal functionality by which it implements the <b>EvtRpcMessageRender</b>
+method five times to obtain the localized level, keyword, tasks, opcode, and
+event description strings. If the server receives an error from the internal
+functionality by which it implements the <b>EvtRpcMessageRender</b> method, it
+SHOULD ignore the error and continue processing the next event.</p>
+</li></ol><p>During the preceding process, the server SHOULD check the <b>Canceled</b>
+field of the operation control object in the <i>control</i> parameter
+periodically, for example, once every 100 milliseconds. If the <b>Canceled</b>
+field becomes TRUE and the whole operation has not been finished, the server
+SHOULD abandon the current operation and return to the client immediately with
+the error code ERROR_CANCELLED (0x000004C7) without updating any state. Any
+directory or file that has been created SHOULD be deleted. Failure to delete
+the directory or file SHOULD NOT trigger the server to take any further actions
+in response.</p><p>The server MUST return a value indicating success or failure
+for this operation.</p><p>The server SHOULD create a separate file with the name <i>LogFilePath</i>_<i>&lt;Locale&gt;</i>.MTA
+to hold the localized strings for the events in the log file with the name of <i>LogFilePath</i>.
+This method does not change anything in the unlocalized, exported log file.
+Instead, it generates a separate file that contains the localized strings for
+the events in the exported log file. The user needs to keep both files together
+when copying them to another computer in order to consume the events with the
+localized strings. Any protocol method that can access the exported log file
+will also be able to access the copied exported file. However, correlating the
+localized strings with the unlocalized event information in the exported log
+file in a meaningful way for the user is outside of the scope of this protocol.
+This protocol provides no methods for integrating the localized strings and the
+exported event log into a single format for presentation.</p></div>

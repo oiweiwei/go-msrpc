@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The GetTypeAttr method retrieves a <span><a href="0ca10d08-61d2-4059-9109-7bbaf545715e" data-linktype="relative-path">TYPEATTR</a></span> structure
+that contains information about the type described by the <span><a href="99504cf9-16d8-401e-a873-83b85d1ee4aa" data-linktype="relative-path">ITypeInfo
+server</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT GetTypeAttr(
+   [out] LPTYPEATTR* ppTypeAttr,
+   [out] DWORD* pReserved
+ );
+</pre></div>
+</dd></dl><p><b>ppTypeAttr: </b>MUST be set to a TYPEATTR
+structure whose data values describe the type associated with the ITypeInfo
+server, as specified in section 2.2.44.</p><p><b>pReserved: </b>MUST be set to 0 and ignored on
+receipt.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul></div>

@@ -1,0 +1,76 @@
+<div class="content"><p>The CreatePropertyCondition method creates a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_df6b8dff-0b24-42b4-bd78-ce0b12141ba0" data-linktype="relative-path">property condition</a>
+associated with the file management job.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_FILE_MANAGEMENT_JOB_MANAGER | 0x09)] HRESULT CreatePropertyCondition(
+   [in] BSTR name,
+   [out, retval] IFsrmPropertyCondition** propertyCondition
+ );
+</pre></div>
+</dd></dl><p><b>name: </b>Contains the <b>name</b> of the property
+condition to create.</p><p><b>propertyCondition: </b>Pointer to an <b>IFsrmPropertyCondition</b>
+interface pointer (section <a href="0ea95a53-f2ba-4337-b171-b2224031d0c5" data-linktype="relative-path">3.2.4.2.49</a>)
+that upon completion points to the newly created property condition. A caller
+MUST release the <a href="../ms-oaut/04e72b3f-5731-4508-9bb4-de29fbd0f781" data-linktype="relative-path">SAFEARRAY</a>
+received when it is done with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>A property definition with the specified name does not
+  exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045303</p>
+  <p>FSRM_E_ ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>The object already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_ INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>propertyCondition</i>
+  parameter is NULL.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>name</i> parameter does
+  not conform to the requirements for a property definitions name.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>propertyCondition</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server must perform the following steps:</p><ul><li><p><span><span> 
+</span></span>Create a new property condition object and set its parameters as
+follows:</p>
+<ul><li><p><span><span>  </span></span>Set
+<b>Property Condition.Name</b> to <i>name</i>.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Property Condition.Type</b> to <b>Exists</b>.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Property Condition.Value</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Property Condition.Parent</b> to this file management job instance.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Add the new property condition object to the file management
+job&#39;s <b>Property conditions</b>.</p>
+</li></ul></div>

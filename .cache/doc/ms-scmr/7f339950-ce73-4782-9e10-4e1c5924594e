@@ -1,0 +1,85 @@
+<div class="content"><p>The RQueryServiceObjectSecurity method returns a copy of the
+<a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">SECURITY_DESCRIPTOR</a>
+structure associated with a service object.</p><dl>
+<dd>
+<div><pre> DWORD RQueryServiceObjectSecurity(
+   [in] SC_RPC_HANDLE hService,
+   [in] SECURITY_INFORMATION dwSecurityInformation,
+   [out, size_is(cbBufSize)] LPBYTE lpSecurityDescriptor,
+   [in, range(0, 1024*256)] DWORD cbBufSize,
+   [out] LPBOUNDED_DWORD_256K pcbBytesNeeded
+ );
+</pre></div>
+</dd></dl><p><b>hService: </b>An <a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">SC_RPC_HANDLE</a> (section
+2.2.4) data type that defines the handle to a <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_1fbb7936-8437-4e3d-b62f-47df3be07721" data-linktype="relative-path">service record</a> or to the
+SCM database that MUST have been created previously using one of the open
+methods specified in section <a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a>.</p><p><b>dwSecurityInformation: </b>A <a href="deed7901-ba2b-45ce-ba66-e071928bdfc1" data-linktype="relative-path">SECURITY_INFORMATION (section 2.2.1)</a>
+type definition that specifies the security information being requested.</p><p><b>lpSecurityDescriptor: </b>A pointer to a buffer
+that contains a copy of the SECURITY_DESCRIPTOR structure (as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section 2.4.6) for the specified service object.</p><p><b>cbBufSize: </b>Size, in bytes, of the buffer to
+which the <i>lpSecurityDescriptor</i> parameter points.</p><p><b>pcbBytesNeeded: </b>An <a href="6c441817-d736-4a94-a444-0c1810a6c473" data-linktype="relative-path">LPBOUNDED_DWORD_256K (section 2.2.9)</a>
+pointer to a variable that contains the number of bytes needed to return all
+the requested SECURITY_DESCRIPTOR information if the method fails.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns one of the following error
+codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>5</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The required access rights had not been granted to the
+  caller when the RPC context handle was created.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The handle is no longer valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>87</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter that was specified is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>122</p>
+  <p>ERROR_INSUFFICIENT_BUFFER</p>
+  </td>
+  <td>
+  <p>The data area passed to a system call is too small. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The client MAY provide a combination of one or more
+SECURITY_INFORMATION bit flags for <i>dwSecurityInformation</i>.</p><p>If SACL_SECURITY_INFORMATION is specified for the <i>dwSecurityInformation</i>
+parameter, then an ACCESS_SYSTEM_SECURITY right MUST have been granted to the
+caller when <i>hService</i> was created. (See AS in ACCESS_MASK in [MS-DTYP] <a href="../ms-dtyp/7a53f60e-e730-4dfe-bbe9-b21b62eb790b" data-linktype="relative-path">2.4.3</a>.)</p><p>If DACL_SECURITY_INFORMATION, LABEL_SECURITY_INFORMATION,
+OWNER_SECURITY_INFORMATION, or GROUP_SECURITY_INFORMATION is specified for the <i>dwSecurityInformation</i>
+parameter, then a READ_CONTROL right MUST have been granted to the caller when <i>hService</i>
+was created. (See RC in ACCESS_MASK in [MS-DTYP] 2.4.3.)</p><p>In response to this request from the client, for a
+successful operation the server MUST return a copy of the SECURITY_DESCRIPTOR
+structure containing requested information obtained from the SecurityDescriptor
+for the service record or the SCM database identified by the <i>hService</i>. </p><p>The server MUST return SECURITY_DESCRIPTOR in the buffer
+pointed to by the <i>lpSecurityDescriptor</i> parameter. The information
+returned depends on the values requested by the client in the <i>dwSecurityInformation</i>
+parameter.</p><p>The server MUST set the required buffer size, in bytes, in
+the <i>pcbBytesNeeded</i> parameter. If the buffer pointed to by <i>lpSecurityDescriptor</i>
+is insufficient to hold all the configuration data, the server MUST fail the
+call with ERROR_INSUFFICIENT_BUFFER (122).</p><p>The server MUST return ERROR_INVALID_PARAMETER (87) if <b>dwSecurityInformation</b>
+contains bits not defined for <b>SECURITY_INFORMATION</b> (section 2.2.1).</p></div>

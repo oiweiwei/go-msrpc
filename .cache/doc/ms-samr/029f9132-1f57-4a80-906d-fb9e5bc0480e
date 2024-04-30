@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/029f9132-1f57-4a80-906d-fb9e5bc0480e" data-linktype="external">msdn link</a></p><p>The SAMPR_RETURNED_USTRING_ARRAY structure holds an array of
+counted UTF-16 encoded strings.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_RETURNED_USTRING_ARRAY {
+   unsigned long Count;
+   [size_is(Count)] PRPC_UNICODE_STRING Element;
+ } SAMPR_RETURNED_USTRING_ARRAY,
+  *PSAMPR_RETURNED_USTRING_ARRAY;
+</pre></div>
+</dd></dl><p><b>Count:</b>  The number of elements in <b>Element</b>.
+If zero, <b>Element</b> MUST be ignored. If nonzero, <b>Element</b> MUST point
+to at least Count * sizeof(RPC_UNICODE_STRING) bytes of memory.</p><p><b>Element:</b>  Array of counted strings
+(see <a href="../ms-dtyp/94a16bb6-c610-4cb9-8db6-26f15f560061" data-linktype="relative-path">RPC_UNICODE_STRING</a>
+in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section 2.3.10). The semantic meaning is method-dependent.</p></div>

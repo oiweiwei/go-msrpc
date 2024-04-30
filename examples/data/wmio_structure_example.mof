@@ -1,0 +1,19 @@
+// @namespace "ROOT"
+// @servername "DPRAVAT-DEV"
+
+class Base {
+
+  sint32 Id;
+};
+
+class MyClass : Base {
+
+  // @inherited Base
+  sint32 Id;
+
+  [ read, write ] string Data1;
+
+  string Data2 = "defaultValue";
+
+  uint32 Array;
+};

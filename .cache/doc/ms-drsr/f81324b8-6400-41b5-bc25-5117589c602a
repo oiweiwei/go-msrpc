@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The ATTRBLOCK structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> for a
+set of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attributes</a></span> and their
+values.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [range(0,1048576)] ULONG attrCount;
+   [size_is(attrCount)] ATTR* pAttr;
+ } ATTRBLOCK;
+</pre></div>
+</dd></dl><p><b>attrCount:</b>  The number of items in
+the pAttr array.</p><p><b>pAttr:</b>  An array of attributes and
+their values.</p></div>

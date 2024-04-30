@@ -1,0 +1,112 @@
+<div class="content"><p>The LINE_GENERATE packet is sent to notify the application
+that the current digit or tone generation has terminated. Only one generation
+request can be in progress for a particular call at any time. This packet is also
+sent when digit or tone generation is canceled. The LINE_GENERATE packet is
+sent only if the client initiated the digit generation on the call using <a href="555485de-1851-4e63-ae7a-f6a1de1d206e" data-linktype="relative-path">GenerateDigits</a> or if the
+client initiated the tone generation using <a href="d67f7840-ddd8-4262-bae4-ec70aa383839" data-linktype="relative-path">GenerateTone</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">TotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">InitContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">fnPostProcessProcHandle</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hCall</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Msg</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">OpenContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hRemoteLine</p>
+  </td>
+ </tr>
+</tbody></table><p><b>TotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size of the asynchronous event packet.</p><p><b>InitContext (4 bytes): </b>An unsigned 32-bit
+integer. The opaque, client-specified session value that MUST be equal to the
+InitContext value that is specified in the original scoping of the line <a href="9d8eb7cd-3245-4e44-97e0-42f7b89c9424" data-linktype="relative-path">Initialize</a> request.</p><p><b>fnPostProcessProcHandle (4 bytes): </b>An unsigned
+32-bit integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>hCall (4 bytes): </b>An <a href="7f4089a0-7432-4ef0-8eeb-5aafe407c07e" data-linktype="relative-path">HCALL</a>. The handle to the
+call or line device that is associated with the asynchronous event.</p><p><b>Msg (4 bytes): </b>An unsigned 32-bit integer. The
+packet type, which MUST be set to 0x00000007 (LINE_GENERATE).</p><p><b>OpenContext (4 bytes): </b>An unsigned 32-bit
+integer. The opaque client-specified context value that MUST be equal to the
+OpenContext value that is specified in the original scoping of the line <a href="2759c744-e040-4c5d-b4b5-215d391f0490" data-linktype="relative-path">Open</a> request.</p><dl>
+<dd>
+<p>This information MUST be passed back to the
+application with each completion and event that is associated with the handle
+of the line or call on the line. This field is not interpreted by TAPI.</p>
+</dd></dl><p><b>Param1 (4 bytes): </b>An unsigned 32-bit integer.
+The reason why digit or tone generation has been terminated. This parameter
+MUST be one of the <a href="779b67a2-a6c6-48f7-a925-9c0b1cfd3945" data-linktype="relative-path">LINEGENERATETERM_Constants</a>.</p><p><b>Param2 (4 bytes): </b>An unsigned 32-bit integer.
+This value MUST be equal to the dwEndToEndID value that was specified in the
+original GenerateDigits request.</p><p><b>Param3 (4 bytes): </b>An unsigned 32-bit integer.
+The &#34;tick count&#34; at which the digit or tone generation is completed.
+For TAPI versions earlier than 2.0, this parameter is unused. </p><p><b>hRemoteLine (4 bytes): </b>An unsigned 32-bit
+integer. The <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a>
+handle for the line value.</p></div>

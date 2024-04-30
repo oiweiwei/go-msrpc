@@ -1,0 +1,13 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9ee412b6-d5e9-4c6c-921f-6f684d4c3079" data-linktype="external">msdn link</a></p><p>The SAMPR_REVISION_INFO union holds revision information
+structures that are used in the <a href="c842a897-0a42-4ca5-a607-2afd05271dae" data-linktype="relative-path">SamrConnect5</a> method.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(unsigned long)] 
+ union {
+   [case(1)] 
+     SAMPR_REVISION_INFO_V1 V1;
+ } SAMPR_REVISION_INFO,
+  *PSAMPR_REVISION_INFO;
+</pre></div>
+</dd></dl><p><b>V1:</b>  Version 1 revision information,
+as described in <a href="963e60b5-9233-4669-b8a8-85bf4f0806dc" data-linktype="relative-path">SAMPR_REVISION_INFO_V1 (section 2.2.7.15)</a>.</p></div>

@@ -1,0 +1,16 @@
+<div class="content"><p>The FsrmRuleType enumeration defines the set of rule types
+that can be defined for automatic file classification.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmRuleType
+ {
+   FsrmRuleType_Unknown = 0,
+   FsrmRuleType_Classification = 1,
+   FsrmRuleType_Generic = 2
+ } FsrmRuleType;
+</pre></div>
+</dd></dl><p><b>FsrmRuleType_Unknown:  </b>The rule is of an
+unknown type.</p><p><b>FsrmRuleType_Classification:  </b>The rule defines
+parameters for how a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_19e3eb54-a998-44af-b5a8-d0b02c57448c" data-linktype="relative-path">classification
+module</a> will operate on a file.</p><p><b>FsrmRuleType_Generic:  </b>The rule defines
+parameters for how modules that are not classification modules will operate on
+a file.</p></div>

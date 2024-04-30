@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>This enumeration is used to identify the different
+cryptographic flags that are supported.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_PHASE1_CRYPTO_FLAGS
+ {
+   FW_PHASE1_CRYPTO_FLAGS_NONE = 0x00,
+   FW_PHASE1_CRYPTO_FLAGS_DO_NOT_SKIP_DH = 0x01,
+   FW_PHASE1_CRYPTO_FLAGS_MAX = 0x02
+ } FW_PHASE1_CRYPTO_FLAGS;
+</pre></div>
+</dd></dl><p><b>FW_PHASE1_CRYPTO_FLAGS_NONE:  </b>This value
+represents no flag. It is used when none of the behaviors that are represented
+by the defined flags in the enumeration are intended. This symbolic constant
+has a value of 0x00.</p><p><b>FW_PHASE1_CRYPTO_FLAGS_DO_NOT_SKIP_DH:  </b>This
+flag ensures that <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_3791f3e1-cf2f-4605-9fcc-54f526f036cf" data-linktype="relative-path">Authenticated IP (AuthIP)</a></span>,
+as specified in <span><a href="../ms-aips/eee3de64-3847-4451-978e-9513ff187d30" data-linktype="relative-path">[MS-AIPS]</a></span>,
+always performs a DH key exchange. (AuthIP can avoid this exchange because the
+protocol already contains enough key material information to protect the
+negotiation. Hence, by skipping DH, round trips and the computational cost of
+DH are avoided.) This symbolic constant has a value of 0x01.</p><p><b>FW_PHASE1_CRYPTO_FLAGS_MAX:  </b>This value and
+values that exceed this value are not valid and MUST NOT be used. It is defined
+for simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 0x02.</p></div>

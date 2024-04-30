@@ -1,0 +1,102 @@
+<div class="content"><p> </p><p>This enumeration represents flags that can be specified in
+firewall rules of section <span><a href="8c008258-166d-46d4-9090-f2ffaa01be4b" data-linktype="relative-path">2.2.37</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_RULE_FLAGS
+ {
+   FW_RULE_FLAGS_NONE = 0x0000,
+   FW_RULE_FLAGS_ACTIVE = 0x0001,
+   FW_RULE_FLAGS_AUTHENTICATE = 0x0002,
+   FW_RULE_FLAGS_AUTHENTICATE_WITH_ENCRYPTION = 0x0004,
+   FW_RULE_FLAGS_ROUTEABLE_ADDRS_TRAVERSE = 0x0008,
+   FW_RULE_FLAGS_LOOSE_SOURCE_MAPPED = 0x0010,
+   FW_RULE_FLAGS_MAX_V2_1 = 0x0020,
+   FW_RULE_FLAGS_AUTH_WITH_NO_ENCAPSULATION = 0x0020,
+   FW_RULE_FLAGS_MAX_V2_9 = 0x0040,
+   FW_RULE_FLAGS_AUTH_WITH_ENC_NEGOTIATE = 0x0040,
+   FW_RULE_FLAGS_ROUTEABLE_ADDRS_TRAVERSE_DEFER_APP = 0x0080,
+   FW_RULE_FLAGS_ROUTEABLE_ADDRS_TRAVERSE_DEFER_USER = 0x0100,
+   FW_RULE_FLAGS_AUTHENTICATE_BYPASS_OUTBOUND = 0x0200,
+   FW_RULE_FLAGS_MAX_V2_10 = 0x0400,
+   FW_RULE_FLAGS_ALLOW_PROFILE_CROSSING = 0x0400,
+   FW_RULE_FLAGS_LOCAL_ONLY_MAPPED = 0x0800,
+   FW_RULE_FLAGS_MAX_V2_20 = 0x1000,
+   FW_RULE_FLAGS_LUA_CONDITIONAL_ACE = 0x1000,
+   FW_RULE_FLAGS_BIND_TO_INTERFACE = 0x2000,
+   FW_RULE_FLAGS_MAX = 0x4000,
+ } FW_RULE_FLAGS;
+</pre></div>
+</dd></dl><p><b>FW_RULE_FLAGS_NONE:  </b>This value means that
+none of the following flags are set. It is defined for simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span>
+definitions and code.</p><p><b>FW_RULE_FLAGS_ACTIVE:  </b>The rule is enabled if
+this flag is set; otherwise, it is disabled.</p><p><b>FW_RULE_FLAGS_AUTHENTICATE:  </b>This flag MUST be
+set only on rules that have the allow actions. If set, traffic that matches the
+rule is allowed only if it has been authenticated by <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span>; otherwise,
+traffic is blocked.</p><p><b>FW_RULE_FLAGS_AUTHENTICATE_WITH_ENCRYPTION:  </b>This
+flag is similar to the FW_RULE_FLAGS_AUTHENTICATE flag; however, traffic MUST
+also be encrypted.</p><p><b>FW_RULE_FLAGS_ROUTEABLE_ADDRS_TRAVERSE:  </b>This
+flag MUST be set only on inbound rules. This flag allows the matching traffic to
+traverse a NAT edge device and be allowed in the host computer.</p><p><b>FW_RULE_FLAGS_LOOSE_SOURCE_MAPPED:  </b>This flag
+allows responses from a remote IP address that is different from the one to
+which the outbound matched traffic originally went.</p><p><b>FW_RULE_FLAGS_AUTH_WITH_NO_ENCAPSULATION:  </b>This
+flag MUST be set only on rules that have the FW_RULE_FLAGS_AUTHENTICATE flag
+set. If set, traffic that matches the rule is allowed if <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_294fef97-5790-4d41-971e-dd255b783e68" data-linktype="relative-path">IKE</a></span>
+or <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_3791f3e1-cf2f-4605-9fcc-54f526f036cf" data-linktype="relative-path">AuthIP</a></span>
+authentication was successful; however, this flag does not necessarily require
+that traffic be protected by IPsec encapsulations. For schema versions 0x0200
+and 0x0201, this value is invalid and MUST NOT be used.</p><p><b>FW_RULE_FLAGS_AUTH_WITH_ENC_NEGOTIATE:  </b>This
+flag MUST be set only on inbound rules that have the
+FW_RULE_FLAGS_AUTHENTICATE_WITH_ENCRYPTION flag set. If set and if the first
+packet that arrives is unencrypted but authenticated by IPsec, the packet is
+allowed, and an IKE or AuthIP negotiation is started to negotiate encryption
+settings and encrypt subsequent packets. <span><a href="../ms-aips/eee3de64-3847-4451-978e-9513ff187d30" data-linktype="relative-path">[MS-AIPS]</a></span>
+section <span><a href="../ms-aips/ef990335-6f13-43b7-8f50-3dee52d096e0" data-linktype="relative-path">3.2.4</a></span>
+specifies negotiation initiation behavior for hosts that support both IKE and
+AuthIP negotiation. If the negotiation fails, the connection is dropped. For
+schema versions 0x0200 and 0x0201, this value is invalid and MUST NOT be used.</p><p><b>FW_RULE_FLAGS_ROUTEABLE_ADDRS_TRAVERSE_DEFER_APP: 
+</b>This flag MUST be set only on inbound rules. This flag allows the matching
+traffic to traverse a NAT edge device and be allowed in the host computer, if
+and only if a matching <b>PortInUse</b> object is found in the <b>PortsInUse</b>
+collection with <b>NATTraversalRequested</b> set to true (see section <span><a href="43507d53-8955-416d-b913-dfb27dc76b17" data-linktype="relative-path">3.1.1</a></span>).
+For schema versions 0x0200 and 0x0201, this value is invalid and MUST NOT be
+used.</p><p><b>FW_RULE_FLAGS_ROUTEABLE_ADDRS_TRAVERSE_DEFER_USER: 
+</b>This flag MUST be set only on inbound rules. Whenever an application tries
+to listen for traffic that matches this rule, the operating system asks the
+administrator of the host whether it should allow this traffic to traverse the
+NAT. For schema versions 0x0200 and 0x0201, this value is invalid and MUST NOT
+be used.</p><p><b>FW_RULE_FLAGS_AUTHENTICATE_BYPASS_OUTBOUND:  </b>This
+flag MUST be set only on outbound rules that have an allow action with either
+the FW_RULE_FLAGS_AUTHENTICATE or the
+FW_RULE_FLAGS_AUTHENTICATE_WITH_ENCRYPTION flag set. If set, this rule is
+evaluated before block rules, making it equivalent to a rule with an
+FW_RULE_ACTION_ALLOW_BYPASS, but for outbound. For schema versions 0x0200 and 0x0201,
+this value is invalid and MUST NOT be used.</p><p><b>FW_RULE_FLAGS_ALLOW_PROFILE_CROSSING:  </b>This
+flag allows responses from a network with a different profile type than the
+network to which the outbound traffic was originally sent. This flag MUST be
+ignored on rules with an action of FW_RULE_ACTION_BLOCK. For schema versions
+0x0200, 0x0201, and 0x020A, this value is invalid and MUST NOT be used.</p><p><b>FW_RULE_FLAGS_LOCAL_ONLY_MAPPED:  </b>If this flag
+is set on a rule, the remote address and remote port conditions are ignored
+when determining whether a network traffic flow matches the rule. This flag
+MUST be ignored on rules with an action of FW_RULE_ACTION_BLOCK. For schema
+versions 0x0200, 0x0201, and 0x020A, this value is invalid and MUST NOT be
+used.</p><p><b>FW_RULE_FLAGS_MAX:  </b>This value and values that
+exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing IDL definitions and code. This symbolic constant has a
+value of 0x4000.</p><p><b>FW_RULE_FLAGS_MAX_V2_1:  </b>This value and values
+that exceed this value are not valid and MUST NOT be used by servers and
+clients with schema version 0x0201 and earlier. It is defined for simplicity in
+writing IDL definitions and code. This symbolic constant has a value of 0x0020.</p><p><b>FW_RULE_FLAGS_MAX_V2_9:  </b>This value and values
+that exceed this value are not valid and MUST NOT be used by servers and
+clients with schema version 0x0209 and earlier. It is defined for simplicity in
+writing IDL definitions and code. This symbolic constant has a value of 0x0040.</p><p><b>FW_RULE_FLAGS_MAX_V2_10:  </b>This value and
+values that exceed this value are not valid and MUST NOT be used by servers and
+clients with schema version 0x020A and earlier. It is defined for simplicity in
+writing IDL definitions and code. This symbolic constant has a value of 0x0400.</p><p><b>FW_RULE_FLAGS_MAX_V2_20:  </b>This value and
+values that exceed this value are not valid and MUST NOT be used by servers and
+clients with schema version 0x0214 and earlier. It is defined for simplicity in
+writing IDL definitions and code. This symbolic constant has a value of 0x1000.</p><p><b>FW_RULE_FLAGS_LUA_CONDITIONAL_ACE:  </b>This flag
+MUST be set if and only if the <b>wszLocalUserAuthorizationList</b> field of
+the <span><a href="4f5bc5fd-4a3c-46a5-98dc-98b31b73aa89" data-linktype="relative-path">FW_RULE2_24</a></span>
+structure (section 2.2.104) is to include conditional <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_b581857f-39aa-4979-876b-daba67a40f15" data-linktype="relative-path">ACEs</a></span>. For schema
+versions 0x0200, 0x0201, 0x020A, 0x0214, and 0x0216, this value is invalid and
+MUST NOT be used.</p><p><b>FW_RULE_FLAGS_BIND_TO_INTERFACE:</b> This flag is
+not used.</p></div>

@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The <b>USE_INFO_0_CONTAINER</b> structure contains a value
+that indicates the number of entries that the <b>NetrUseEnum</b> method
+(section <span><a href="07122d93-f5ab-4502-bab3-946b65de7952" data-linktype="relative-path">3.2.4.10</a></span>) returns,
+as well as a pointer to the buffer.</p><dl>
+<dd>
+<div><pre> typedef struct _USE_INFO_0_CONTAINER {
+   unsigned long EntriesRead;
+   LPUSE_INFO_0 Buffer;
+ } USE_INFO_0_CONTAINER,
+  *PUSE_INFO_0_CONTAINER,
+  *LPUSE_INFO_0_CONTAINER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b> The number of entries that the
+method returns.</p><p><b>Buffer:</b> Details about the connection between a
+device and a shared resource.</p></div>

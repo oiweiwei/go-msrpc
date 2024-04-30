@@ -1,0 +1,62 @@
+<div class="content"><p> </p><p>The event information returned by the query and subscription
+methods is in a binary format named BinXml. BinXml is a token representation of
+text XML 1.0, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90600" data-linktype="external">[XML10]</a></span>. </p><p>Here BinXml encodes an XML document so that the original XML
+text can be correctly reproduced from the encoding. There is no requirement for
+a server to use or understand the text XML. The protocol can be implemented end
+to end by treating BinXml as a method to transmit name-value pairs, instead of
+as an encoding of XML. However, after the data has been received, it is common
+for third-party applications to convert from binary XML to text XML independent
+of the protocol. Therefore, for informative purposes only, an overview of the
+relationship is provided. </p><p>Note that this translation is not required by either the
+client or the server in this protocol.</p><p>What follows is a greatly simplified example of a fragment
+of text XML encoding in binary XML.</p><table><thead>
+  <tr>
+   <th>
+   <p>Text</p>
+   </th>
+   <th>
+   <p>Binary</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&lt;SomeEvent&gt;</p>
+  </td>
+  <td>
+  <p>01 SomeEvent 02</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&lt;PropA&gt; 99 &lt;/PropA&gt;</p>
+  </td>
+  <td>
+  <p>01 PropA 02 05 &#34;99&#34; 04</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&lt;PropB&gt; 101 &lt;/PropB&gt;</p>
+  </td>
+  <td>
+  <p>01 PropB 02 05 &#34;101&#34; 04</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&lt;/SomeEvent&gt;</p>
+  </td>
+  <td>
+  <p>04 00</p>
+  </td>
+ </tr></tbody></table><p>The binary bytes in the preceding example have the following
+meaning. </p><dl>
+<dd>
+<div><pre> 00 - eof
+ 01 - open start tag
+ 02 - close start tag
+ 04 - end tag
+ 05 - value text
+</pre></div>
+</dd></dl><p>BinXml also includes more information that allows for fast
+navigation of the XML. For example, lengths of elements and attribute lists
+allow the user to jump forward in the BinXml stream. Another example is that
+BinXml encoding of Names includes length and hash values that allow for fast
+comparisons of the XML names.</p></div>

@@ -1,0 +1,223 @@
+<div class="content"><p>The Reader State packet has a sub-structure as shown in the
+following table.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Reader
+  State</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Reader State (4 bytes): </b>Both the <b>dwCurrentState</b>
+field and the <b>dwEventState</b> field, found in the <a href="a71e63ba-e58f-487c-a5d2-5a3e48856594" data-linktype="relative-path">ReaderState_Common_Call
+(section 2.2.1.5)</a> and <a href="e9d1ebf8-47d2-4f64-880b-d1b87479aadd" data-linktype="relative-path">ReaderState_Return
+(section 2.2.1.11)</a> structures, consist of the following two subfields. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Count</p>
+  </td>
+  <td colspan="16">
+  <p>State</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Count (2 bytes): </b>The contents of this field
+depend on the value of the associated <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_8b790ccb-84c6-49fa-b1ed-4fc7c4e1841f" data-linktype="relative-path">reader name</a>. If the reader
+name (for more information, see sections <a href="a55f95e8-7a12-4ad3-919d-57d1414f81aa" data-linktype="relative-path">2.2.1.6</a> and <a href="0ba03cd2-bed0-495b-adbe-3d2cde61980c" data-linktype="relative-path">2.2.1.7</a> for the <b>szReader</b>
+field) is \\?PnP?\Notification, then <b>Count</b> is a count of the number of
+readers installed on the system and all bits except SCARD_STATE_CHANGED in <b>State</b>
+MUST be zero. Otherwise, <b>Count</b> is a count of the number of times a card
+has been inserted and/or removed from the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_5cddf14c-b925-4494-9b55-d2c8259f9ad0" data-linktype="relative-path">smart card reader</a> being
+monitored.</p><p><b>State (2 bytes): </b>The state of a reader. The
+value MUST be according to the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SCARD_STATE_UNAWARE</p>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>The application requires the current state but does
+  not know it. The use of this value results in an immediate return from state
+  transition monitoring services.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_STATE_IGNORE</p>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>The application requested that this reader be ignored.
+  If this bit is set in the <b>dwCurrentState</b> field of a
+  ReaderState_Common_Call structure, other bits MUST NOT be set in the <b>dwEventState</b>
+  field of the corresponding ReaderState_Return structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_STATE_CHANGED </p>
+  <p>0x0002</p>
+  </td>
+  <td>
+  <p>There is a difference between the state believed by
+  the application, and the state known by Smart Cards for Windows.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_STATE_UNKNOWN</p>
+  <p>0x0004</p>
+  </td>
+  <td>
+  <p>The reader name is not recognized by Smart Cards for
+  Windows. If this bit is set in the <b>dwEventState</b> field of the
+  ReaderState_Return structure, both SCARD_STATE_IGNORE and SCARD_STATE_CHANGED
+  values MUST be set. This bit SHOULD NOT be set in the <b>dwCurrentState</b>
+  field of a ReaderState_Common_Call structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_STATE_UNAVAILABLE</p>
+  <p>0x0008</p>
+  </td>
+  <td>
+  <p>The actual state of this reader is not available. If
+  this bit is set, all of the following bits MUST be clear.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_STATE_EMPTY</p>
+  <p>0x0010</p>
+  </td>
+  <td>
+  <p>There is no card in the reader. If this bit is set,
+  all of the following bits MUST be clear.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_STATE_PRESENT</p>
+  <p>0x0020</p>
+  </td>
+  <td>
+  <p>There is a card in the reader.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_STATE_ATRMATCH</p>
+  <p>0x0040</p>
+  </td>
+  <td>
+  <p>There is a card in the reader with an ATR that matches
+  one of the target cards. If this bit is set, SCARD_STATE_PRESENT MUST be set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_STATE_EXCLUSIVE</p>
+  <p>0x0080</p>
+  </td>
+  <td>
+  <p>The card in the reader is allocated for exclusive use
+  by another application. If this bit is set, SCARD_STATE_PRESENT MUST be set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_STATE_INUSE</p>
+  <p>0x0100</p>
+  </td>
+  <td>
+  <p>The card in the reader is in use by one or more other
+  applications, but it can be connected to in shared mode. If this bit is set,
+  SCARD_STATE_PRESENT MUST be set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_STATE_MUTE</p>
+  <p>0x0200</p>
+  </td>
+  <td>
+  <p>The card in the reader is unresponsive or is not
+  supported by the reader or software.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_STATE_UNPOWERED</p>
+  <p>0x0400</p>
+  </td>
+  <td>
+  <p>This implies that the card in the reader has not been
+  turned on.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

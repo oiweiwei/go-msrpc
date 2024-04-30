@@ -1,0 +1,124 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/35a984a1-d002-4d60-946d-b557ff4c46e0" data-linktype="external">msdn link</a></p><p>The LsarCreateSecret method is invoked to create a new <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_9720ddb8-c802-40b7-8dba-5e7520c3396d" data-linktype="relative-path">secret object</a> in the
+server&#39;s database.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarCreateSecret(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PRPC_UNICODE_STRING SecretName,
+   [in] ACCESS_MASK DesiredAccess,
+   [out] LSAPR_HANDLE* SecretHandle
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>SecretName: </b>The name of the secret object to
+be created.</p><p><b>DesiredAccess: </b>A bitmask that specifies
+accesses to be granted to the newly created and opened secret object at this
+time.</p><p><b>SecretHandle: </b>Used to return a handle to the
+newly created secret object.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the supplied parameters is invalid. This can
+  happen, for example, if <i>SecretHandle</i> is NULL or if <i>SecretName</i>
+  is not a valid name for a secret object. Secret naming rules are specified in
+  the processing rules shown below for the <i>SecretName</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000035</p>
+  <p>STATUS_OBJECT_NAME_COLLISION</p>
+  </td>
+  <td>
+  <p>The secret object by the specified name already
+  exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000106</p>
+  <p>STATUS_NAME_TOO_LONG</p>
+  </td>
+  <td>
+  <p>The length of specified secret name exceeds the
+  maximum set by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes four arguments:</p><p><i>PolicyHandle</i>: An open handle to the policy object. If
+the handle is not a valid context handle to the policy object or <i>PolicyHandle</i>.HandleType
+does not equal &#34;Policy&#34;, the server MUST return
+STATUS_INVALID_HANDLE. The server MUST verify that <i>PolicyHandle</i> grants
+access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a> with
+RequiredAccess set to POLICY_CREATE_SECRET.</p><p><i>SecretName</i>: Name of the secret object to be created.
+The server MUST verify that the string satisfies the RPC_UNICODE_STRING syntax
+restrictions specified in section <a href="ba5f1e31-b2a7-42bd-9a90-3650a6e5f6f5" data-linktype="relative-path">3.1.4.10</a>, and fail the
+request with STATUS_INVALID_PARAMETER otherwise. The server MUST also check
+that the following constraints are satisfied by <i>SecretName</i>, and fail the
+request with STATUS_INVALID_PARAMETER if the name does not check out:</p><ul><li><p><span><span> 
+</span></span>Must not be empty.</p>
+</li><li><p><span><span> 
+</span></span>Must not contain the &#34;\&#34; character.<a id="Appendix_A_Target_72"></a><a aria-label="Product behavior note 72" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_72" data-linktype="relative-path">&lt;72&gt;</a><a id="Appendix_A_Target_73"></a><a aria-label="Product behavior note 73" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_73" data-linktype="relative-path">&lt;73&gt;</a><a id="Appendix_A_Target_74"></a><a aria-label="Product behavior note 74" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_74" data-linktype="relative-path">&lt;74&gt;</a></p>
+</li></ul><p><i>DesiredAccess</i>: Contains the access bits that the
+caller is asking to receive for the handle returned in <i>SecretHandle</i>. <i>DesiredAccess</i>
+is access-checked according to section <a href="e5e1e32e-4066-435d-b669-044fe997eaf7" data-linktype="relative-path">3.1.4.2.1</a>. The
+method-specific portion of the check is the following.</p><dl>
+<dd>
+<div><pre> IF (IsRequestorAnonymous() and LsaRestrictAnonymous is set to TRUE) THEN
+     Return STATUS_OBJECT_NAME_NOT_FOUND
+ END IF
+</pre></div>
+</dd></dl><p>The valid secret-rights bits are specified in section <a href="88c6bd18-6c40-4a82-ae19-fe7bfec5108b" data-linktype="relative-path">2.2.1.1.4</a>, and the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a> is
+specified in section <a href="483f1b6e-7b14-4341-9ab2-9b99c01f896e" data-linktype="relative-path">3.1.1.4</a>.
+The IsRequestorAnonymous procedure is specified in section <a href="5d50b55f-e9c7-4af6-bf85-02e8043f66ea" data-linktype="relative-path">3.1.4.2.3</a>.</p><p><i>SecretHandle</i>: If the request is successful, this
+parameter is used to return a handle (section <a href="1011130b-0413-460d-81ed-d1821d141639" data-linktype="relative-path">3.1.1.7</a>) to the newly
+created secret object with its fields initialized as follows:</p><ul><li><p><span><span> 
+</span></span>LsaContextHandle.HandleType = &#34;Secret&#34;</p>
+</li><li><p><span><span> 
+</span></span>LsaContextHandle.Object = the secret object</p>
+</li><li><p><span><span> 
+</span></span>LsaContextHandle.GrantedAccess = as specified in section
+3.1.4.2.1</p>
+</li></ul><p>Both &#34;current time&#34; and &#34;old time&#34; attributes
+of a secret will be set to the server&#39;s current time at the instance of
+creation. Both &#34;old value&#34; and &#34;current value&#34; will be set
+to NULL until they are modified by the <a href="21c1a153-032c-4869-afc9-186b2346dfab" data-linktype="relative-path">LsarSetSecret</a> message.</p><p>The server MUST check that the secret by the name <i>SecretName</i>
+does not already exist and fail the request with STATUS_OBJECT_NAME_COLLISION
+otherwise.<a id="Appendix_A_Target_75"></a><a aria-label="Product behavior note 75" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_75" data-linktype="relative-path">&lt;75&gt;</a></p></div>

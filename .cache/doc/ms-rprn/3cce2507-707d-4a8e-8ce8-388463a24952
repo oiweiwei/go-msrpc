@@ -1,0 +1,65 @@
+<div class="content"><p>The <b>RPC_V2_NOTIFY_OPTIONS_TYPE</b> structure specifies
+the set of printer or job information members to be monitored by a printer
+change notification object.<a id="Appendix_A_Target_74"></a><a aria-label="Product behavior note 74" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_74" data-linktype="relative-path">&lt;74&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _RPC_V2_NOTIFY_OPTIONS_TYPE {
+   unsigned short Type;
+   unsigned short Reserved0;
+   DWORD Reserved1;
+   DWORD Reserved2;
+   DWORD Count;
+   [size_is(Count), unique] unsigned short* pFields;
+ } RPC_V2_NOTIFY_OPTIONS_TYPE;
+</pre></div>
+</dd></dl><p><b>Type:</b> The value of this member specifies
+the type of notification to watch for. The value of this member MUST be one of
+the constant values from the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PRINTER_NOTIFY_TYPE</p>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>Indicates that the members specified in the array that
+  is pointed to by the <b>pFields</b> member are printer notification
+  constants.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JOB_NOTIFY_TYPE</p>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>Indicates that the members specified in the array that
+  is pointed to by the <b>pFields</b> member are job notification constants.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVER_NOTIFY_TYPE</p>
+  <p>0x0002</p>
+  </td>
+  <td>
+  <p>Indicates that the members specified in the array that
+  is pointed to by the <b>pFields</b> member are server notification constants.<a id="Appendix_A_Target_75"></a><a aria-label="Product behavior note 75" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_75" data-linktype="relative-path">&lt;75&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved0:</b> The value of this member MUST
+be set to zero when sent and MUST be ignored on receipt.</p><p><b>Reserved1:</b> The value of this member MUST
+be set to zero when sent and MUST be ignored on receipt.</p><p><b>Reserved2:</b> The value of this member MUST
+be set to zero when sent and MUST be ignored on receipt.</p><p><b>Count:</b> The number of elements in the <b>pFields</b>
+array.</p><p><b>pFields:</b> A pointer to an array that MUST
+identify the job or printer information members to be monitored. The array MUST
+consist entirely of elements that are either job notification values (section <a href="76acb7fb-b63f-4cad-88dd-6920096a2f13" data-linktype="relative-path">2.2.3.3</a>) or printer
+notification values (section <a href="41d5c622-ec77-49ff-95e3-69b325ce4e77" data-linktype="relative-path">2.2.3.8</a>),
+depending on the value of the <b>Type</b> member. The two types of notification
+values MUST NOT be mixed within a given instance of the array.</p></div>

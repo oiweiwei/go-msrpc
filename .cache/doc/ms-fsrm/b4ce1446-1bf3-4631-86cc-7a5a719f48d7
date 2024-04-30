@@ -1,0 +1,18 @@
+<div class="content"><p>The <a href="a283400d-61d6-4fed-b14c-ce2e74bc7bc1" data-linktype="relative-path">FsrmPropertyDefinitionAppliesTo</a>
+enumeration defines bitmasks for the possible states of the property definition
+objects in the File Server Resource Manager Protocol.</p><dl>
+<dd>
+<div><pre> typedef  enum FsrmPropertyDefinitionAppliesTo 
+ {
+   FsrmPropertyDefinitionAppliesTo_Files = 0x00000001,
+   FsrmPropertyDefinitionAppliesTo_Folders = 0x00000002
+ } FsrmPropertyDefinitionAppliesTo;
+</pre></div>
+</dd></dl><p><b>FsrmPropertyDefinitionAppliesTo_Files:  </b>If the
+<b>FsrmPropertyDefinitionAppliesTo_Files</b> bitmask is set as part of the <b>AppliesTo</b>
+property of an IFsrmPropertyDefinition2 object, the server will allow instances
+of the property definition to be created for individual files.</p><p><b>FsrmPropertyDefinitionAppliesTo_Folders:  </b>If
+the <b>FsrmPropertyDefinitionAppliesTo_Folders</b> bitmask is set as part of
+the <b>AppliesTo</b> property of an <b>IFsrmPropertyDefinition2</b> object, the
+server will allow instances of the property definition to be created for
+individual folders.</p></div>

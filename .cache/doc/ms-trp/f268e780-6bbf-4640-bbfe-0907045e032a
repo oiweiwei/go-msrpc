@@ -1,0 +1,174 @@
+<div class="content"><p>The LINEADDRESSSTATUS packet describes the current status of
+an address. LINEADDRESSSTATUS is supplied by the server in the field VarData of
+the returned version of the <a href="02ebfa1e-709d-42ec-861b-6a045633e26a" data-linktype="relative-path">GetAddressStatus</a>
+packet if the request is completed successfully.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumInUse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumActiveCalls</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumOnHoldCalls</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumOnHoldPendCalls</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressFeatures</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumRingsNoAnswer</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwForwardNumEntries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwForwardSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwForwardOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTerminalModesSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTerminalModesOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevSpecificSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevSpecificOffset</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, allocated to this packet. </p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, for this packet that is needed to hold all the
+returned information. </p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the portion of this packet that contains useful
+information. </p><p><b>dwNumInUse (4 bytes): </b> An unsigned 32-bit
+integer. The number of stations that are currently using the address. </p><p><b>dwNumActiveCalls (4 bytes): </b>An unsigned 32-bit
+integer. The number of calls on the address that are in call states other than
+idle, onHold, onHoldPendingTransfer, and onHoldPendingConference.</p><p><b>dwNumOnHoldCalls (4 bytes): </b>An unsigned 32-bit
+integer. The number of calls on the address in the onHold state.</p><p><b>dwNumOnHoldPendCalls (4 bytes): </b>An unsigned
+32-bit integer. The number of calls on the address in the onHoldPendingTransfer
+or onHoldPendingConference state. </p><p><b>dwAddressFeatures (4 bytes): </b>An unsigned
+32-bit integer. Address-related functions that can be invoked on the address in
+its current state. This field MUST use one or more of the <a href="374a66bd-1545-4150-b576-ea4368df40d7" data-linktype="relative-path">LINEADDRFEATURE_Constants</a>.
+</p><p><b>dwNumRingsNoAnswer (4 bytes): </b>An unsigned
+32-bit integer. The number of rings set for this address before an unanswered
+call is considered &#34;no answer.&#34; </p><p><b>dwForwardNumEntries (4 bytes): </b>An unsigned
+32-bit integer. The number of entries in the array referred to by <b>dwForwardSize</b>
+and <b>dwForwardOffset</b>. </p><p><b>dwForwardSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the forwarding information array. </p><p><b>dwForwardOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset from the beginning of the packet to the variably sized
+field that describes the address&#39;s forwarding information. This information
+MUST be an array of <b>dwForwardNumEntries</b> elements, of type <a href="8681587a-c575-4806-a335-53bca1e11082" data-linktype="relative-path">LINEFORWARD</a>. The offsets
+of the addresses in the array are relative to the beginning of the
+LINEADDRESSSTATUS packet. The offsets dwCallerAddressOffset and
+dwDestAddressOffset in the variably sized field of type LINEFORWARD pointed to
+by <b>dwForwardOffset</b> are relative to the beginning of the
+LINEADDRESSSTATUS packet (the &#34;root&#34; container). The size of the
+array MUST be specified by <b>dwForwardSize</b>. </p><p><b>dwTerminalModesSize (4 bytes): </b> An unsigned
+32-bit integer. </p><dl>
+<dd>
+<p>The size of the terminal modes array, in bytes. </p>
+</dd></dl><p><b>dwTerminalModesOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of the packet to the variably
+sized device field containing an array with DWORD-sized entries that use one or
+more of the <a href="c410cabf-88f3-42b9-94c4-535333526bf7" data-linktype="relative-path">LINETERMMODE_Constants</a>.
+This array is indexed by terminal identifiers, in the range from 0 to one less
+than dwNumTerminals. Each entry in the array specifies the current terminal
+modes for the corresponding terminal set with the <a href="ddb98b5d-6c89-413d-8c99-96ac71578c50" data-linktype="relative-path">SetTerminal</a> packet for
+this address. The size of the array MUST be specified by <b>dwTerminalModesSize</b>.</p><p><b>dwDevSpecificSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the device-specific field.</p><p><b>dwDevSpecificOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of this packet to the variably
+sized device-specific field. The size of the field MUST be specified by <b>dwDevSpecificSize</b>.
+</p><dl>
+<dd>
+<p>Device-specific extensions SHOULD use the
+DevSpecific (<b>dwDevSpecificSize</b> and <b>dwDevSpecificOffset</b>) variably
+sized area of this packet.</p>
+</dd>
+<dd>
+<p>This packet MUST be returned by the GetAddressStatus
+packet. When items in this packet change as a consequence of activities on the
+address, a <a href="46fd73ed-5e83-40b0-9077-4f31ed69f7ea" data-linktype="relative-path">LINE_ADDRESSSTATE</a>
+packet is sent. A parameter to this packet is the address state, one of the <a href="b0c31486-218f-4786-b89f-edf05b09ad46" data-linktype="relative-path">LINEADDRESSSTATE_Constants</a>,
+which indicates that the status item in this record changed.</p>
+</dd></dl></div>

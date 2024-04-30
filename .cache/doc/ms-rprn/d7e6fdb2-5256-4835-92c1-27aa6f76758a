@@ -1,0 +1,57 @@
+<div class="content"><p>RpcAddPrintProcessor installs a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_062f3e76-3149-468c-bf64-1535651725d1" data-linktype="relative-path">print processor</a> on the
+specified server and adds its name to an internal list of supported print
+processors.</p><dl>
+<dd>
+<div><pre> DWORD RpcAddPrintProcessor(
+   [in, string, unique] STRING_HANDLE pName,
+   [in, string] wchar_t* pEnvironment,
+   [in, string] wchar_t* pPathName,
+   [in, string] wchar_t* pPrintProcessorName
+ );
+</pre></div>
+</dd></dl><p><b>pName: </b>This parameter MUST adhere to the
+parameter specification in <a href="acb355a4-913b-4abb-8cb5-415aea160015" data-linktype="relative-path">Print
+Server Name Parameters (section 3.1.4.1.4)</a>.</p><p><b>pEnvironment: </b>This parameter MUST adhere to
+the parameter specification in <a href="5b2bf7d5-ac77-464f-be5e-f3a7c1782246" data-linktype="relative-path">Environment Name
+Parameters (section 3.1.4.1.3)</a>.</p><p><b>pPathName: </b>A pointer to a string that
+specifies the file name of the print processor. For rules governing path names,
+see section <a href="1d75f622-d07c-45cc-bf1e-a6191e408516" data-linktype="relative-path">2.2.4.9</a>.</p><p><b>pPrintProcessorName: </b>A pointer to a string
+that specifies the name of the print processor. For rules governing print
+processor names, see section <a href="807e0bdd-21a5-4a72-9a6a-1a7fb1b08a8e" data-linktype="relative-path">2.2.4.11</a>.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in Print Server
+Name Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in Environment
+Name Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the path identified by the string that is referenced
+by the <i>pPathName</i> parameter contains the necessary file for installing
+the print processor.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the print processor to be added does not have the
+name &#34;winprint&#34;, and if that verification fails, return
+ERROR_PRINT_PROCESSOR_ALREADY_INSTALLED [MS-ERREF].</p>
+</li><li><p><span><span> 
+</span></span>Verify that the environment name specified by the <i>pEnvironment</i>
+parameter is not &#34;Windows ARM&#34;, and if that verification fails,
+return ERROR_NOT_SUPPORTED [MS-ERREF].<a id="Appendix_A_Target_370"></a><a aria-label="Product behavior note 370" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_370" data-linktype="relative-path">&lt;370&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Additional validation MAY<a id="Appendix_A_Target_371"></a><a aria-label="Product behavior note 371" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_371" data-linktype="relative-path">&lt;371&gt;</a> be
+performed.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Copy the print processor file as appropriate to its destination
+and overwrite an existing print processor with the same name, if necessary.</p>
+</li><li><p><span><span> 
+</span></span>Create the print processor object.</p>
+</li><li><p><span><span> 
+</span></span>If any clients have registered for notification of server object
+changes, a notification MUST be broadcast to them.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The REQSTATUS enumeration defines values for the status of a
+request.</p><dl>
+<dd>
+<div><pre> typedef  enum _REQSTATUS
+ {
+   REQ_UNKNOWN,
+   REQ_STARTED,
+   REQ_IN_PROGRESS,
+   REQ_COMPLETED,
+   REQ_ABORTED,
+   REQ_FAILED
+ } REQSTATUS;
+</pre></div>
+</dd></dl><p><b>REQ_UNKNOWN:  </b>Request state is unknown.</p><p><b>REQ_STARTED:  </b>Request has started.</p><p><b>REQ_IN_PROGRESS:  </b>Request is in progress.</p><p><b>REQ_COMPLETED:  </b>Request has finished.</p><p><b>REQ_ABORTED:  </b>Request has terminated.</p><p><b>REQ_FAILED:  </b>Request has failed.</p></div>

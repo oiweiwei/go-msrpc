@@ -1,0 +1,75 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/fbdbbd74-0106-4ca2-941e-36ded0be0c62" data-linktype="external">msdn link</a></p><p>The SamrQueryInformationDomain2 method obtains attributes
+from a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_2346e8d0-b0a0-481f-b644-85c45c60d4d1" data-linktype="relative-path">domain object</a>.</p><dl>
+<dd>
+<div><pre> long SamrQueryInformationDomain2(
+   [in] SAMPR_HANDLE DomainHandle,
+   [in] DOMAIN_INFORMATION_CLASS DomainInformationClass,
+   [out, switch_is(DomainInformationClass)] 
+     PSAMPR_DOMAIN_INFO_BUFFER* Buffer
+ );
+</pre></div>
+</dd></dl><p><b>DomainHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a domain object.</p><p><b>DomainInformationClass: </b>An enumeration
+indicating which attributes to return. See section <a href="3e8738b2-5df6-499f-907d-ac2471bf0281" data-linktype="relative-path">2.2.3.16</a> for a listing of
+possible values.</p><p><b>Buffer: </b>The requested attributes on output.
+See section <a href="1adc2142-dbb8-4554-aa24-010c713698bf" data-linktype="relative-path">2.2.3.17</a>
+for structure details.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>The server MUST
+return an error if <i>DomainHandle.HandleType</i> is not equal to
+&#34;Domain&#34;.</p>
+</li><li><p><span>    </span><i>DomainHandle.GrantedAccess</i>
+MUST have the required access specified in section <a href="87bacbd0-7b8b-429f-abc6-4b3d895d4e90" data-linktype="relative-path">3.1.2.2</a>. Otherwise, the
+server MUST return STATUS_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>The following
+information levels MUST be processed by setting the appropriate output field
+name to the associated database attribute, as specified in section <a href="bcfc423a-bc0b-4f21-ba79-3df04b60db46" data-linktype="relative-path">3.1.5.14.8</a>. Processing is
+completed by returning 0 on success.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>DomainInformationClass</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DomainPasswordInformation</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainLockoutInformation</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainLogoffInformation</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainOemInformation</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainNameInformation</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainModifiedInformation</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainModifiedInformation2</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DomainReplicationInformation</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span>    </span>If <i>DomainInformationClass</i>
+does not meet the criteria of constraint 3, the constraints associated with the
+<i>DomainInformationClass</i> input value in the following subsections MUST be
+satisfied; if there is no subsection for the <i>DomainInformationClass</i>
+value, an error MUST be returned to the client.</p>
+</li></ol></div>

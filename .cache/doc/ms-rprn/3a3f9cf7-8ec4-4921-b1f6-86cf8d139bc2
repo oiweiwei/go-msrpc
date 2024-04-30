@@ -1,0 +1,39 @@
+<div class="content"><p>The <b>DRIVER_CONTAINER</b> structure provides information
+about <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer drivers</a> by
+using <b>DRIVER_INFO</b> structures (section <a href="17943579-a514-4d0b-8ded-422265b23f45" data-linktype="relative-path">2.2.1.5</a>). The <b>DriverInfo</b>
+member specifies the structure that defines the properties of a printer driver.</p><dl>
+<dd>
+<div><pre> typedef struct _DRIVER_CONTAINER {
+   DWORD Level;
+   [switch_is(Level)] union {
+     [case(1)] 
+       DRIVER_INFO_1* pNotUsed;
+     [case(2)] 
+       DRIVER_INFO_2* Level2;
+     [case(3)] 
+       RPC_DRIVER_INFO_3* Level3;
+     [case(4)] 
+       RPC_DRIVER_INFO_4* Level4;
+     [case(6)] 
+       RPC_DRIVER_INFO_6* Level6;
+     [case(8)] 
+       RPC_DRIVER_INFO_8* Level8;
+   } DriverInfo;
+ } DRIVER_CONTAINER;
+</pre></div>
+</dd></dl><p><b>Level: </b>Specifies the information level of the <b>DriverInfo</b>
+data. The value of this member MUST be in the range 0x00000002 to 0x00000004
+inclusive, 0x00000006, or 0x00000008.</p><p><b>DriverInfo: </b>Defines printer driver properties
+by using an information structure that corresponds to the value of the <b>Level</b>
+member.</p><p><b>pNotUsed: </b>A pointer to a structure that is
+specified only as a placeholder in the IDL and MUST be ignored.</p><p><b>Level2: </b>If the <b>Level</b> member is
+0x00000002, this member is a pointer to a <b>DRIVER_INFO_2</b> structure that
+provides printer driver information. For details, see section <a href="39bbfc30-8768-4cd4-9930-434857e2c2a2" data-linktype="relative-path">2.2.1.5.2</a>.</p><p><b>Level3: </b>If the <b>Level</b> member is
+0x00000003, this member is a pointer to an <b>RPC_DRIVER_INFO_3</b> structure
+that provides printer driver information. For details, see section <a href="b4d3b5f3-c631-4fc3-9348-4c983590a0d8" data-linktype="relative-path">2.2.1.5.3</a>.</p><p><b>Level4: </b>If the <b>Level</b> member is
+0x00000004, this member is a pointer to an <b>RPC_DRIVER_INFO_4</b> structure
+that provides printer driver information. For details, see section <a href="459d24e4-0b75-4fc7-b246-fe40a1981eed" data-linktype="relative-path">2.2.1.5.4</a>.</p><p><b>Level6: </b>If the <b>Level</b> member is
+0x00000006, this member is a pointer to an <b>RPC_DRIVER_INFO_6</b> structure
+that provides printer driver information. For details, see section <a href="ae124740-15ef-482c-824e-56e5436ed44b" data-linktype="relative-path">2.2.1.5.5</a>.</p><p><b>Level8:</b> If the <b>Level</b> member is
+0x00000008, this member is a pointer to an <b>RPC_DRIVER_INFO_8</b> structure
+that provides printer driver information. For details, see section <a href="937d5fc8-67f1-45f8-ab87-8b56a8fca558" data-linktype="relative-path">2.2.1.5.6</a>.</p></div>

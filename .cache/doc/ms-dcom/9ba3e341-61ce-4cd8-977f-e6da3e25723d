@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The parameter meanings for this structure are identical to
+those defined in section <span><a href="5ee74828-43a8-400b-9629-2bb4e707d7ec" data-linktype="relative-path">2.2.18.2</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct tagSTDOBJREF {
+   unsigned long flags;
+   unsigned long cPublicRefs;
+   OXID oxid;
+   OID oid;
+   IPID ipid;
+ } STDOBJREF;
+</pre></div>
+</dd></dl></div>

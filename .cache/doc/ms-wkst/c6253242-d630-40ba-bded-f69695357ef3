@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The <b>USE_INFO_0</b> structure specifies details about the
+connection between a machine on which the workstation service is running and a
+shared resource.</p><dl>
+<dd>
+<div><pre> typedef struct _USE_INFO_0 {
+   [string] wchar_t* ui0_local;
+   [string] wchar_t* ui0_remote;
+ } USE_INFO_0,
+  *PUSE_INFO_0,
+  *LPUSE_INFO_0;
+</pre></div>
+</dd></dl><p><b>ui0_local:</b> A pointer to a string that contains
+the device name (for example, drive E or LPT1) being redirected to the shared
+resource.</p><p><b>ui0_remote:</b> A pointer to a string that
+contains the share name of the remote resource being accessed. The string MUST
+be in the following form: &#34;<i>\\servername\sharename&#34;</i>.</p></div>

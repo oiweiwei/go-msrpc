@@ -1,0 +1,10 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/e28bf420-8989-44fb-8b08-f5a7c2f2e33c" data-linktype="external">msdn link</a></p><p>The SAMPR_USER_INTERNAL4_INFORMATION structure holds all
+attributes of a user, along with an encrypted password.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_USER_INTERNAL4_INFORMATION {
+   SAMPR_USER_ALL_INFORMATION I1;
+   SAMPR_ENCRYPTED_USER_PASSWORD UserPassword;
+ } SAMPR_USER_INTERNAL4_INFORMATION,
+  *PSAMPR_USER_INTERNAL4_INFORMATION;
+</pre></div>
+</dd></dl><p><b>I1:</b>  See section <a href="dc966b81-da27-4dae-a28c-ec16534f1cb9" data-linktype="relative-path">2.2.6.6</a>.</p><p><b>UserPassword:</b>  See section <a href="23f9ef4c-cf3e-4330-9287-ea4799b03201" data-linktype="relative-path">2.2.6.21</a>.</p></div>

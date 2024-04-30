@@ -1,0 +1,42 @@
+<div class="content"><p>The SERVICE_TRIGGER_SPECIFIC_DATA_ITEM <a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a> structure contains information
+about one trigger data item of a service.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVICE_TRIGGER_SPECIFIC_DATA_ITEM {
+   DWORD dwDataType;
+   [range(0, 1024)] DWORD cbData;
+   [size_is(cbData)] PBYTE pData;
+ } SERVICE_TRIGGER_SPECIFIC_DATA_ITEM,
+  *PSERVICE_TRIGGER_SPECIFIC_DATA_ITEM;
+</pre></div>
+</dd></dl><p><b>dwDataType:</b>  The type of trigger
+data. This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>SERVICE_TRIGGER_DATA_TYPE_BINARY</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>SERVICE_TRIGGER_DATA_TYPE_STRING</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cbData:</b>  Size in bytes of the data
+in pData.</p><p><b>pData:</b>  Trigger data. When <b>dwDataType</b>
+is set equal to 0x00000002 (SERVICE_TRIGGER_DATA_TYPE_STRING), the encoding is <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string and includes
+a terminating null character. This string can contain data in the format of a
+sequence of null-terminated strings, terminated by an empty string (\0).</p></div>

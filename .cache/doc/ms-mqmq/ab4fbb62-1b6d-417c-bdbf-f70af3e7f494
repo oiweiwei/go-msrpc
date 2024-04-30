@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The CAUB structure defines a counted array of unsigned
+characters.</p><dl>
+<dd>
+<div><pre> typedef struct tagCAUB {
+   unsigned long cElems;
+   [size_is(cElems)] unsigned char* pElems;
+ } CAUB;
+</pre></div>
+</dd></dl><p><b>cElems:</b>  MUST be set to the total
+number of elements of the array.</p><p><b>pElems:</b>  An array of unsigned
+characters.</p></div>

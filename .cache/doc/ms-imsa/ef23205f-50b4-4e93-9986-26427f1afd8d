@@ -1,0 +1,93 @@
+<div class="content"><p>The SESSION_KEY_BLOB is used to store <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_4f67a585-fb00-4166-93e8-cf4abca8226d" data-linktype="relative-path">session keys</a> that are
+transferred during the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_e58c72cc-2506-4e51-b33d-fbefe4bd6138" data-linktype="relative-path">secure
+session</a> negotiation.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EncryptedSessionKeyLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SignedHashLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EncryptedSessionKey
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Padding
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SignedHash
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>EncryptedSessionKeyLength (4 bytes): </b> A 32-bit
+unsigned integer that contains the size, in bytes, of the <b>EncryptedSessionKey</b>
+field.</p><p><b>SignedHashLength (4 bytes): </b>A 32-bit unsigned
+integer that contains the size, in bytes, of the <b>SignedHash</b> field.</p><p><b>EncryptedSessionKey (variable): </b>A
+variable-length array of bytes that contains session key information. For more
+information about the internal organization of data inside this field, see <a href="880dc2b1-7681-4c83-92ba-2992c0d0f659" data-linktype="relative-path">ENCRYPTED_SESSION_KEY_BLOB
+(section 2.2.2.2.1)</a>.</p><p><b>Padding (variable): </b>A variable-length array of
+bytes that contains zero to seven bytes of padding based on the <b>SessionKeyDataLength</b>
+field. The number of padding bytes is calculated as the difference between an
+8-byte aligned <b>EncryptedSessionKeyLength</b> field and the actual <b>EncryptedSessionKeyLength</b>
+field.</p><p><b>SignedHash (variable): </b>A variable-length array
+of bytes that contain the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_08dd8645-e19c-410c-8081-63a12d3c3a2c" data-linktype="relative-path">signed
+hash</a> of the session key.</p></div>

@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_POLICY_CONDITION</b> enumeration specifies
+the logical condition that connects the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_71aebfeb-8787-432e-a8c8-5aa8eacd3e0a" data-linktype="relative-path">DNS Policy Criteria</a></span>
+evaluation during DNS operations.</p><dl>
+<dd>
+<div><pre> typedef enum
+ {
+     DNS_AND,
+     DNS_OR
+ }
+ DNS_RPC_POLICY_CONDITION;
+</pre></div>
+</dd></dl><p><b>DNS_AND:</b> While evaluating a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_5076749f-34a6-48a6-b051-8968a55f4d7b" data-linktype="relative-path">DNS
+policy</a></span> (section <span><a href="89be092d-ec01-4ab3-84e4-5a56622f9de8" data-linktype="relative-path">2.2.15.2.5</a></span>) during
+a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_8536bec5-df4d-4463-82bc-4434a7ea493f" data-linktype="relative-path">DNS
+Operation</a></span>, all criteria (section <span><a href="be16f14d-df74-40fe-892c-0718ebd32e84" data-linktype="relative-path">2.2.15.2.4</a></span>)
+configured for that particular DNS Policy MUST match.</p><p><b>DNS_OR:</b> While evaluating a DNS Policy during a
+DNS Operation, at least one configured criterion MUST match.</p></div>

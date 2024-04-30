@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The CAPROPVARIANT structure defines a counted array of <span><a href="195c9807-7377-4617-9a1b-b6da6ccebf52" data-linktype="relative-path">PROPVARIANT (section 2.2.13.2)</a></span>
+values.</p><dl>
+<dd>
+<div><pre> typedef struct tagCAPROPVARIANT {
+   unsigned long cElems;
+   [size_is(cElems )] PROPVARIANT* pElems;
+ } CAPROPVARIANT;
+</pre></div>
+</dd></dl><p><b>cElems:</b>  MUST be set to the total
+number of elements of the array.</p><p><b>pElems:</b>  An array of
+PROPVARIANT (section 2.2.13.2) values.</p></div>

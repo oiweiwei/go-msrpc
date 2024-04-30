@@ -1,0 +1,54 @@
+<div class="content"><p> </p><p>This data type defines enumerations used to identify store
+types.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_STORE_TYPE
+ {
+   FW_STORE_TYPE_INVALID,
+   FW_STORE_TYPE_GP_RSOP,
+   FW_STORE_TYPE_LOCAL,
+   FW_STORE_TYPE_NOT_USED_VALUE_3,
+   FW_STORE_TYPE_NOT_USED_VALUE_4,
+   FW_STORE_TYPE_DYNAMIC,
+   FW_STORE_TYPE_GPO,
+   FW_STORE_TYPE_DEFAULTS, 
+   FW_STORE_TYPE_NOT_USED_VALUE_8,
+   FW_STORE_TYPE_NOT_USED_VALUE_9,
+   FW_STORE_TYPE_NOT_USED_VALUE_10,
+   FW_STORE_TYPE_NOT_USED_VALUE_11,
+   FW_STORE_TYPE_MAX
+ } FW_STORE_TYPE;
+</pre></div>
+</dd></dl><p><b>FW_STORE_TYPE_INVALID:  </b>This value is invalid
+and MUST NOT be used. It is defined for simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span>
+definitions and code. This symbolic constant has a value of zero.</p><p><b>FW_STORE_TYPE_GP_RSOP:  </b>This value identifies
+the store that contains all the policies from the different <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_dec32233-8776-4151-91a0-8624a2b9abb0" data-linktype="relative-path">Group
+Policy Objects (GPOs)</a></span> that contain the networkwide policy. This
+store is persisted in the registry. It is downloaded by the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_defe8c22-1365-4e5e-abf7-46ad112d3bda" data-linktype="relative-path">Group
+Policy</a></span> component (for more information, see <span><a href="../ms-gpreg/834da877-264f-4589-9b80-b6b012c8edc3" data-linktype="relative-path">[MS-GPREG]</a></span>)
+and read by the firewall and advanced security components; therefore, it is a
+read-only store. This symbolic constant has a value of 1.</p><p><b>FW_STORE_TYPE_LOCAL:  </b>This value identifies
+the store that contains the local host policy. This store is persisted in the
+registry by the firewall and advanced security components; therefore, it is a
+read/write store. This symbolic constant has a value of 2.</p><p><b>FW_STORE_TYPE_NOT_USED_VALUE_3:  </b>This store is
+currently not used over the wire. This symbolic constant has a value of 3.</p><p><b>FW_STORE_TYPE_NOT_USED_VALUE_4:  </b>This store is
+currently not used over the wire. This symbolic constant has a value of 4.</p><p><b>FW_STORE_TYPE_DYNAMIC:  </b>This value identifies
+the store that contains the effective policy, that is, the aggregated and
+merged policy from all policy sources. Policy objects can be added and modified
+on this store, but they are not persisted and will be lost the next time the
+firewall and advanced security components initialize. Policy objects on this
+store can be modified only if they were originally added to this store. This
+symbolic constant has a value of 5.</p><p><b>FW_STORE_TYPE_GPO:  </b>This value is not used on
+the wire. This symbolic constant has a value of 6.</p><p><b>FW_STORE_TYPE_DEFAULTS:  </b>This value identifies
+the store that contains the defaults that the host operating system had
+out-of-box. This store is persisted in the registry. It is written by the host
+operating system setup. It is read by the firewall and advanced security
+components when it is instructed to go back to the default out-of-box
+configuration; hence it is a read-only store. This symbolic constant has a
+value of 7.<b> </b></p><p><b>FW_STORE_TYPE_NOT_USED_VALUE_8:  </b>This store is
+currently not used over the wire. This symbolic constant has a value of 8.</p><p><b>FW_STORE_TYPE_NOT_USED_VALUE_9:  </b>This store is
+currently not used over the wire. This symbolic constant has a value of 9.</p><p><b>FW_STORE_TYPE_NOT_USED_VALUE_10:  </b>This store
+is currently not used over the wire. This symbolic constant has a value of 10.</p><p><b>FW_STORE_TYPE_NOT_USED_VALUE_11:  </b>This store
+is currently not used over the wire. This symbolic constant has a value of 11.</p><p><b>FW_STORE_TYPE_MAX:  </b>This value and values that
+exceed this value are not valid and MUST NOT be used. This symbolic constant is
+defined for simplicity in writing IDL definitions and code. It has a value of
+8.</p></div>

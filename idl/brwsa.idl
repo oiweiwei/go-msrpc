@@ -1,0 +1,63 @@
+ [
+     uuid(6BFFD098-A112-3610-9833-012892020162),
+     version(0.0),
+     ms_union,
+     pointer_default(unique)
+ ]
+ interface browser
+ {
+     import "ms-dtyp.idl";
+     
+    typedef WCHAR* LPWSTR;
+     
+     typedef [handle] LPWSTR BROWSER_IDENTIFY_HANDLE;
+  
+    typedef struct _SERVER_INFO_100_CONTAINER {
+         DWORD   EntriesRead;
+         [size_is(EntriesRead)] LPSERVER_INFO_100 Buffer;
+      } SERVER_INFO_100_CONTAINER, 
+       *PSERVER_INFO_100_CONTAINER,
+       *LPSERVER_INFO_100_CONTAINER;
+  
+     typedef struct _SERVER_ENUM_STRUCT {
+         DWORD   Level;
+         [switch_is(Level)] union _SERVER_ENUM_UNION {
+             [case(100)]
+                 LPSERVER_INFO_100_CONTAINER Level100;
+             [default]
+                 ;
+         } ServerInfo;
+     } SERVER_ENUM_STRUCT, 
+      *PSERVER_ENUM_STRUCT, 
+      *LPSERVER_ENUM_STRUCT;
+  
+  
+     NET_API_STATUS Opnum0NotUsedOnWire(void);
+  
+     NET_API_STATUS Opnum1NotUsedOnWire(void);
+  
+     NET_API_STATUS
+     I_BrowserrQueryOtherDomains(
+         [in,string,unique] BROWSER_IDENTIFY_HANDLE ServerName,
+         [in,out]           LPSERVER_ENUM_STRUCT    InfoStruct,
+         [out]              LPDWORD                 TotalEntries
+     );
+  
+     NET_API_STATUS Opnum3NotUsedOnWire(void);
+  
+     NET_API_STATUS Opnum4NotUsedOnWire(void);
+  
+     NET_API_STATUS Opnum5NotUsedOnWire(void);
+  
+     NET_API_STATUS Opnum6NotUsedOnWire(void);
+  
+     NET_API_STATUS Opnum7NotUsedOnWire(void);
+  
+     NET_API_STATUS Opnum8NotUsedOnWire(void);
+  
+     NET_API_STATUS Opnum9NotUsedOnWire(void);
+  
+     NET_API_STATUS Opnum10NotUsedOnWire(void);
+  
+     NET_API_STATUS Opnum11NotUsedOnWire(void);
+ }

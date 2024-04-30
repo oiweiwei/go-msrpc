@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_SKD_LIST</b> structure contains the
+information about a list of <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_621e5d7b-d764-4196-b838-b52bf82b9380" data-linktype="relative-path">signing key descriptor</a></span>s
+that are present for a particular zone on the DNS server.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcZoneSigningKeyList {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   [range(0,1000)] DWORD dwCount;
+   [size_is(dwCount)] PDNS_RPC_SKD SkdArray[];
+ } DNS_RPC_SKD_LIST,
+  *PDNS_RPC_SKD_LIST;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The structure
+version number; this MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>dwCount:</b> The number of signing key
+descriptors present in the array of signing key descriptors pointed to by <b>SkdArray</b>.</p><p><b>SkdArray:</b> An array of structures of type <span><a href="f7b0ad42-4cae-40fd-87c8-82af83824639" data-linktype="relative-path">DNS_RPC_SKD (section 2.2.6.2.1)</a></span>.
+Each element of the array represents one signing key descriptor.</p></div>

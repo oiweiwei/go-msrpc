@@ -1,0 +1,123 @@
+<div class="content"><p> </p><p>The <b>ExtendedAddressHeader</b> specifies the host address
+from which a <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span> was
+received.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="4108f68e-80f5-40e1-b3df-b713cc4dff79#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a> This header MUST be ignored if
+the <b>AddressType</b> field is 0x0000.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>HeaderSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>AddressLength</p>
+  </td>
+  <td colspan="16">
+  <p>AddressType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AddressScope</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Address (16
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>HeaderSize (4 bytes): </b>A <b>ULONG</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">2.2.51</a></span>)
+that specifies the size, in bytes, of the ExtendedAddressHeader.</p><p><b>AddressLength (2 bytes): </b>A <b>USHORT</b>
+([MS-DTYP] section <span><a href="../ms-dtyp/c0618c5b-362b-4e06-9cb0-8720d240cf12" data-linktype="relative-path">2.2.58</a></span>)
+that MUST be the actual address length in the <b>Address</b> field.</p><p><b>AddressType (2 bytes): </b>A <b>USHORT</b> that
+MUST be set to one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>This header MUST be ignored.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_ADDRESS_TYPE</p>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>The address specified in the <b>Address</b> field is
+  an IPv4 address. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPV6_ADDRESS_TYPE</p>
+  <p>0x0006</p>
+  </td>
+  <td>
+  <p>The address specified in the <b>Address</b> field is
+  an IPv6 address. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>AddressScope (4 bytes): </b>A <b>ULONG</b> that
+MUST be set either to the IPv6 address scope if the <b>AddressType</b> field is
+IPV6_ADDRESS_TYPE or otherwise to 0x00000000. See <span><a href="https://go.microsoft.com/fwlink/?LinkId=90367" data-linktype="external">[RFC2553]</a></span>
+section 3.3.</p><p><b>Address (16 bytes): </b>An array of <b>UCHAR</b>
+([MS-DTYP] section <span><a href="../ms-dtyp/050baef1-f978-4851-a3c7-ad701a90e54a" data-linktype="relative-path">2.2.45</a></span>)
+that MUST contain the host address from which the message was received. If the <b>AddressType</b>
+field is IP_ADDRESS_TYPE, the address MUST be in IPv4 address format. If the <b>AddressType</b>
+field is IPV6_ADDRESS_TYPE, the address MUST be in IPv6 address format. See
+[RFC2553] section 3.3.</p></div>

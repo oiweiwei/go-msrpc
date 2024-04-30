@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The DSROLE_OPERATION_STATE_INFO structure contains the
+status of a pending <span><a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller (DC)</a></span>
+<span><a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_3ab7ae66-0ba5-45d0-a641-831e89528893" data-linktype="relative-path">domain
+membership role change</a></span> operation, if any, for the computer.</p><dl>
+<dd>
+<div><pre> typedef struct _DSROLE_OPERATION_STATE_INFO {
+   DSROLE_OPERATION_STATE OperationState;
+ } DSROLE_OPERATION_STATE_INFO,
+  *PDSROLE_OPERATION_STATE_INFO;
+</pre></div>
+</dd></dl><p><b>OperationState:</b>   The domain
+membership role change status of the computer, as specified by a <span><a href="029e74ec-602f-44dc-b13a-e75cb883f9f3" data-linktype="relative-path">DSROLE_OPERATION_STATE</a></span>
+enumeration.</p></div>

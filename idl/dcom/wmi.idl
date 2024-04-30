@@ -1,0 +1,755 @@
+import "ms-oaut.idl";
+import "ms-dtyp.idl";
+ 
+typedef GUID *REFGUID;
+ 
+interface IWbemClassObject;
+interface IWbemServices;
+interface IWbemObjectSink;
+interface IEnumWbemClassObject;
+interface IWbemCallResult;
+interface IWbemContext;
+interface IWbemBackupRestore;
+interface IWbemBackupRestoreEx;
+interface IWbemLoginClientID;
+interface IWbemLevel1Login;
+interface IWbemLoginHelper;        
+ 
+[
+    restricted, 
+    uuid(8BC3F05E-D86B-11d0-A075-00C04FB68820)
+]
+coclass WbemLevel1Login {
+    interface IWbemLevel1Login;
+};
+ 
+typedef long HRESULT;
+ 
+typedef [v1_enum] enum tag_WBEM_QUERY_FLAG_TYPE {
+    WBEM_FLAG_DEEP = 0,
+    WBEM_FLAG_SHALLOW = 1,
+    WBEM_FLAG_PROTOTYPE = 2
+} WBEM_QUERY_FLAG_TYPE;
+ 
+typedef [v1_enum] enum tag_WBEM_CHANGE_FLAG_TYPE {
+    WBEM_FLAG_CREATE_OR_UPDATE = 0x00,
+    WBEM_FLAG_UPDATE_ONLY = 0x01,
+    WBEM_FLAG_CREATE_ONLY = 0x02,
+    WBEM_FLAG_UPDATE_SAFE_MODE = 0x20,
+    WBEM_FLAG_UPDATE_FORCE_MODE = 0x40
+} WBEM_CHANGE_FLAG_TYPE;
+ 
+typedef [v1_enum] enum tag_WBEM_CONNECT_OPTIONS {
+    WBEM_FLAG_CONNECT_REPOSITORY_ONLY =  0x40,
+    WBEM_FLAG_CONNECT_PROVIDERS       = 0x100
+} WBEM_CONNECT_OPTIONS;
+ 
+typedef [v1_enum] enum tag_WBEM_GENERIC_FLAG_TYPE {
+    WBEM_FLAG_RETURN_WBEM_COMPLETE = 0x0,
+    WBEM_FLAG_RETURN_IMMEDIATELY = 0x10,
+    WBEM_FLAG_FORWARD_ONLY = 0x20,
+    WBEM_FLAG_NO_ERROR_OBJECT = 0x40,
+    WBEM_FLAG_SEND_STATUS = 0x80,
+    WBEM_FLAG_ENSURE_LOCATABLE = 0x100,
+    WBEM_FLAG_DIRECT_READ = 0x200,
+    WBEM_MASK_RESERVED_FLAGS = 0x1F000,
+    WBEM_FLAG_USE_AMENDED_QUALIFIERS = 0x20000,
+    WBEM_FLAG_STRONG_VALIDATION = 0x100000
+} WBEM_GENERIC_FLAG_TYPE;
+ 
+typedef enum tag_WBEM_STATUS_TYPE {
+    WBEM_STATUS_COMPLETE = 0,
+    WBEM_STATUS_REQUIREMENTS = 0x01,
+    WBEM_STATUS_PROGRESS = 2
+} WBEM_STATUS_TYPE;
+ 
+typedef [v1_enum] enum tag_WBEM_TIMEOUT_TYPE {
+    WBEM_NO_WAIT = 0,
+    WBEM_INFINITE = 0xFFFFFFFF
+} WBEM_TIMEOUT_TYPE;
+ 
+typedef [v1_enum] enum tag_WBEM_BACKUP_RESTORE_FLAGS {
+    WBEM_FLAG_BACKUP_RESTORE_FORCE_SHUTDOWN = 1
+} WBEM_BACKUP_RESTORE_FLAGS;
+ 
+typedef [v1_enum] enum tag_WBEMSTATUS {
+    WBEM_S_NO_ERROR = 0x00,
+    WBEM_S_FALSE = 0x01,
+    WBEM_S_TIMEDOUT = 0x40004,
+    WBEM_S_NEW_STYLE = 0x400FF,
+    WBEM_S_PARTIAL_RESULTS = 0x40010,
+    WBEM_E_FAILED = 0x80041001,
+    WBEM_E_NOT_FOUND = 0x80041002,
+    WBEM_E_ACCESS_DENIED = 0x80041003,
+    WBEM_E_PROVIDER_FAILURE = 0x80041004,
+    WBEM_E_TYPE_MISMATCH = 0x80041005,
+    WBEM_E_OUT_OF_MEMORY = 0x80041006,
+    WBEM_E_INVALID_CONTEXT = 0x80041007,
+    WBEM_E_INVALID_PARAMETER = 0x80041008,
+    WBEM_E_NOT_AVAILABLE = 0x80041009,
+    WBEM_E_CRITICAL_ERROR = 0x8004100a,
+    WBEM_E_NOT_SUPPORTED = 0x8004100C,
+    WBEM_E_PROVIDER_NOT_FOUND = 0x80041011,
+    WBEM_E_INVALID_PROVIDER_REGISTRATION = 0x80041012,
+    WBEM_E_PROVIDER_LOAD_FAILURE = 0x80041013,
+    WBEM_E_INITIALIZATION_FAILURE = 0x80041014,
+    WBEM_E_TRANSPORT_FAILURE = 0x80041015,
+    WBEM_E_INVALID_OPERATION = 0x80041016,
+    WBEM_E_ALREADY_EXISTS = 0x80041019,
+    WBEM_E_UNEXPECTED = 0x8004101d,
+    WBEM_E_INCOMPLETE_CLASS = 0x80041020,
+    WBEM_E_SHUTTING_DOWN = 0x80041033,
+    E_NOTIMPL = 0x80004001,
+    WBEM_E_INVALID_SUPERCLASS = 0x8004100D,
+    WBEM_E_INVALID_NAMESPACE = 0x8004100E,
+    WBEM_E_INVALID_OBJECT = 0x8004100F,
+    WBEM_E_INVALID_CLASS = 0x80041010,
+    WBEM_E_INVALID_QUERY = 0x80041017,
+    WBEM_E_INVALID_QUERY_TYPE = 0x80041018,
+    WBEM_E_PROVIDER_NOT_CAPABLE = 0x80041024,
+    WBEM_E_CLASS_HAS_CHILDREN = 0x80041025,
+    WBEM_E_CLASS_HAS_INSTANCES = 0x80041026,
+    WBEM_E_ILLEGAL_NULL = 0x80041028,
+    WBEM_E_INVALID_CIM_TYPE = 0x8004102D,
+    WBEM_E_INVALID_METHOD = 0x8004102E,
+    WBEM_E_INVALID_METHOD_PARAMETERS = 0x8004102F,
+    WBEM_E_INVALID_PROPERTY = 0x80041031,
+    WBEM_E_CALL_CANCELLED = 0x80041032,
+    WBEM_E_INVALID_OBJECT_PATH = 0x8004103A,
+    WBEM_E_OUT_OF_DISK_SPACE = 0x8004103B,
+    WBEM_E_UNSUPPORTED_PUT_EXTENSION = 0x8004103D,
+    WBEM_E_QUOTA_VIOLATION = 0x8004106c,
+    WBEM_E_SERVER_TOO_BUSY = 0x80041045,
+    WBEM_E_METHOD_NOT_IMPLEMENTED = 0x80041055,
+    WBEM_E_METHOD_DISABLED = 0x80041056,
+    WBEM_E_UNPARSABLE_QUERY = 0x80041058,
+    WBEM_E_NOT_EVENT_CLASS = 0x80041059,
+    WBEM_E_MISSING_GROUP_WITHIN = 0x8004105A,
+    WBEM_E_MISSING_AGGREGATION_LIST = 0x8004105B,
+    WBEM_E_PROPERTY_NOT_AN_OBJECT = 0x8004105c,
+    WBEM_E_AGGREGATING_BY_OBJECT = 0x8004105d,
+    WBEM_E_BACKUP_RESTORE_WINMGMT_RUNNING = 0x80041060,
+    WBEM_E_QUEUE_OVERFLOW = 0x80041061,
+    WBEM_E_PRIVILEGE_NOT_HELD = 0x80041062,
+    WBEM_E_INVALID_OPERATOR = 0x80041063,
+    WBEM_E_CANNOT_BE_ABSTRACT = 0x80041065,
+    WBEM_E_AMENDED_OBJECT = 0x80041066,
+    WBEM_E_VETO_PUT = 0x8004107A,
+    WBEM_E_PROVIDER_SUSPENDED = 0x80041081,
+    WBEM_E_ENCRYPTED_CONNECTION_REQUIRED = 0x80041087,
+    WBEM_E_PROVIDER_TIMED_OUT = 0x80041088,
+    WBEM_E_NO_KEY = 0x80041089,
+    WBEM_E_PROVIDER_DISABLED = 0x8004108a,
+    WBEM_E_REGISTRATION_TOO_BROAD = 0x80042001,
+    WBEM_E_REGISTRATION_TOO_PRECISE = 0x80042002
+}   WBEMSTATUS;
+        
+ 
+[
+    restricted, 
+    uuid(674B6698-EE92-11d0-AD71-00C04FD8FDFF)
+]
+coclass WbemContext
+{
+    interface IWbemContext;
+};
+ 
+ 
+[
+    uuid(9A653086-174F-11d2-B5F9-00104B703EFD)
+]
+coclass WbemClassObject
+{
+    interface IWbemClassObject;
+};
+ 
+ 
+[
+    uuid(C49E32C6-BC8B-11d2-85D4-00105A1F8304)
+]
+coclass WbemBackupRestore
+{
+    interface IWbemBackupRestoreEx;
+};
+ 
+// XXX: expand macro.
+// #define OPTIONAL in, unique
+ 
+interface IWbemQualifierSet;
+ 
+[
+    local,
+    restricted,
+    object,
+    uuid(dc12a681-737f-11cf-884d-00aa004b2e24)
+]
+interface IWbemClassObject : IUnknown
+{
+};
+ 
+interface IWbemServices;
+ 
+ 
+[
+    object, 
+    restricted, 
+    uuid(7c857801-7381-11cf-884d-00aa004b2e24)
+]
+interface IWbemObjectSink : IUnknown
+{
+    HRESULT Indicate(
+        [in] long lObjectCount,
+        [in, size_is(lObjectCount)]
+            IWbemClassObject** apObjArray
+    );
+ 
+    HRESULT SetStatus(
+        [in] long lFlags,
+        [in] HRESULT hResult,
+        [in] BSTR strParam,
+        [in] IWbemClassObject* pObjParam
+    );
+};
+ 
+[
+    object, 
+    restricted, 
+    uuid(027947e1-d731-11ce-a357-000000000001)
+]
+interface IEnumWbemClassObject : IUnknown
+{
+    HRESULT Reset();
+ 
+    HRESULT Next(
+        [in]  long lTimeout,
+        [in]  ULONG uCount,
+        [out, size_is(uCount), length_is(*puReturned)]
+              IWbemClassObject** apObjects,
+        [out] ULONG* puReturned
+    );
+ 
+    HRESULT NextAsync(
+        [in]  ULONG uCount,
+        [in]  IWbemObjectSink* pSink
+    );
+ 
+    HRESULT Clone(
+        [out] IEnumWbemClassObject** ppEnum
+    );
+ 
+    HRESULT Skip(
+        [in] long lTimeout,
+        [in] ULONG nCount
+    );
+};
+ 
+ 
+[
+    object,
+    restricted,
+    local,
+    uuid(44aca674-e8fc-11d0-a07c-00c04fb68820)
+]
+interface IWbemContext : IUnknown
+{
+};
+ 
+ 
+[
+    object, 
+    restricted, 
+    uuid(44aca675-e8fc-11d0-a07c-00c04fb68820)
+]
+interface IWbemCallResult : IUnknown
+{
+    HRESULT GetResultObject(
+        [in]  long lTimeout,
+        [out] IWbemClassObject** ppResultObject
+    );
+ 
+    HRESULT GetResultString(
+        [in]  long lTimeout,
+        [out] BSTR* pstrResultString
+    );
+ 
+    HRESULT GetResultServices(
+        [in]  long lTimeout,
+        [out] IWbemServices** ppServices
+    );
+ 
+    HRESULT GetCallStatus(
+        [in]  long lTimeout,
+        [out] long* plStatus
+    );
+};
+ 
+ 
+[
+    object, 
+    restricted, 
+    uuid(9556dc99-828c-11cf-a37e-00aa003240c7),
+    pointer_default(unique)
+]
+interface IWbemServices : IUnknown
+{
+    HRESULT OpenNamespace(
+        [in]  const BSTR strNamespace,
+        [in]  long lFlags,
+        [in]  IWbemContext* pCtx,
+        [out, in, unique] IWbemServices** ppWorkingNamespace,
+        [out, in, unique] IWbemCallResult** ppResult
+    );
+ 
+    HRESULT CancelAsyncCall(
+        [in] IWbemObjectSink* pSink
+    );
+ 
+    HRESULT QueryObjectSink(
+        [in] long lFlags,
+        [out] IWbemObjectSink** ppResponseHandler
+    );
+ 
+    HRESULT GetObject(
+        [in]  const BSTR strObjectPath,
+        [in]  long lFlags,
+        [in]  IWbemContext* pCtx,
+        [out, in, unique] IWbemClassObject** ppObject,
+        [out, in, unique] IWbemCallResult** ppCallResult
+    );
+ 
+    HRESULT GetObjectAsync(
+        [in]  const BSTR strObjectPath,
+        [in]  long lFlags,
+        [in]  IWbemContext* pCtx,
+        [in]  IWbemObjectSink* pResponseHandler
+    );
+  
+    HRESULT PutClass(
+        [in] IWbemClassObject* pObject,
+        [in] long lFlags,
+        [in]  IWbemContext* pCtx,
+        [out, in, unique] IWbemCallResult** ppCallResult
+    );
+ 
+    HRESULT PutClassAsync(
+        [in] IWbemClassObject* pObject,
+        [in] long lFlags,
+        [in] IWbemContext* pCtx,
+        [in] IWbemObjectSink* pResponseHandler
+    );
+ 
+    HRESULT DeleteClass(
+        [in] const BSTR strClass,
+        [in] long lFlags,
+        [in] IWbemContext* pCtx,
+        [out, in, unique] IWbemCallResult** ppCallResult
+    );
+ 
+    HRESULT DeleteClassAsync(
+        [in] const BSTR strClass,
+        [in] long lFlags,
+        [in] IWbemContext* pCtx,
+        [in] IWbemObjectSink* pResponseHandler
+    );
+ 
+    HRESULT CreateClassEnum(
+        [in]  const BSTR strSuperclass,
+        [in]  long lFlags,
+        [in]  IWbemContext* pCtx,
+        [out] IEnumWbemClassObject** ppEnum
+    );
+ 
+    HRESULT CreateClassEnumAsync(
+        [in]  const BSTR strSuperclass,
+        [in]  long lFlags,
+        [in]  IWbemContext* pCtx,
+        [in]  IWbemObjectSink* pResponseHandler
+    );
+ 
+    HRESULT PutInstance(
+        [in]  IWbemClassObject* pInst,
+        [in]  long lFlags,
+        [in]  IWbemContext* pCtx,
+        [out, in, unique] IWbemCallResult** ppCallResult
+    );
+ 
+    HRESULT PutInstanceAsync(
+        [in] IWbemClassObject* pInst,
+        [in] long lFlags,
+        [in] IWbemContext* pCtx,
+        [in] IWbemObjectSink* pResponseHandler
+    );
+ 
+    HRESULT DeleteInstance(
+        [in] const BSTR strObjectPath,
+        [in] long lFlags,
+        [in]  IWbemContext* pCtx,
+        [out, in, unique] IWbemCallResult** ppCallResult
+    );
+ 
+    HRESULT DeleteInstanceAsync(
+        [in] const BSTR strObjectPath,
+        [in] long lFlags,
+        [in] IWbemContext* pCtx,
+        [in] IWbemObjectSink* pResponseHandler
+    );
+ 
+    HRESULT CreateInstanceEnum(
+        [in] const BSTR strSuperClass,         
+        [in] long lFlags,
+        [in]  IWbemContext* pCtx,
+        [out] IEnumWbemClassObject** ppEnum
+    );
+ 
+    HRESULT CreateInstanceEnumAsync(
+        [in] const BSTR strSuperClass,          
+        [in] long lFlags,
+        [in] IWbemContext* pCtx,
+        [in] IWbemObjectSink* pResponseHandler
+    );
+ 
+    HRESULT ExecQuery(
+        [in]  const BSTR strQueryLanguage,
+        [in]  const BSTR strQuery,
+        [in]  long lFlags,
+        [in]  IWbemContext* pCtx,
+        [out] IEnumWbemClassObject** ppEnum
+    );
+ 
+    HRESULT ExecQueryAsync(
+        [in] const BSTR strQueryLanguage,
+        [in] const BSTR strQuery,
+        [in] long lFlags,
+        [in] IWbemContext* pCtx,
+        [in] IWbemObjectSink* pResponseHandler
+    );
+ 
+    HRESULT ExecNotificationQuery(
+        [in] const BSTR strQueryLanguage,
+        [in] const BSTR strQuery,
+        [in] long lFlags,
+        [in]  IWbemContext* pCtx,
+        [out] IEnumWbemClassObject** ppEnum
+    );
+ 
+    HRESULT ExecNotificationQueryAsync(
+        [in] const BSTR strQueryLanguage,
+        [in] const BSTR strQuery,
+        [in] long lFlags,
+        [in] IWbemContext* pCtx,
+        [in] IWbemObjectSink* pResponseHandler
+    );
+ 
+    HRESULT ExecMethod(
+        [in] const BSTR strObjectPath,
+        [in] const BSTR strMethodName,
+        [in] long lFlags,
+        [in] IWbemContext* pCtx,
+        [in] IWbemClassObject* pInParams,
+        [out, in, unique] IWbemClassObject** ppOutParams,
+        [out, in, unique] IWbemCallResult** ppCallResult
+    );
+ 
+    HRESULT ExecMethodAsync(
+        [in] const BSTR strObjectPath,
+        [in] const BSTR strMethodName,
+        [in] long lFlags,
+        [in] IWbemContext* pCtx,
+        [in] IWbemClassObject* pInParams,
+        [in] IWbemObjectSink* pResponseHandler
+    );
+};
+ 
+[
+    object, 
+    restricted, 
+    uuid(C49E32C7-BC8B-11d2-85D4-00105A1F8304)
+]
+interface IWbemBackupRestore : IUnknown
+{
+    HRESULT Backup(
+        [in, string] LPCWSTR strBackupToFile,
+        [in] long lFlags
+    );
+ 
+    HRESULT Restore(
+        [in, string] LPCWSTR strRestoreFromFile,
+        [in] long lFlags
+    );
+};
+ 
+ 
+[
+    object, 
+    restricted, 
+    uuid(A359DEC5-E813-4834-8A2A-BA7F1D777D76)
+]
+interface IWbemBackupRestoreEx : IWbemBackupRestore
+{
+    HRESULT Pause();
+    HRESULT Resume();
+};
+ 
+ 
+typedef enum _WBEM_REFR_VERSION_NUMBER {
+    WBEM_REFRESHER_VERSION  = 2
+} WBEM_REFR_VERSION_NUMBER;
+ 
+typedef [v1_enum] enum _WBEM_INSTANCE_BLOB_TYPE {
+    WBEM_BLOB_TYPE_ALL = 2,
+    WBEM_BLOB_TYPE_ERROR = 3,
+    WBEM_BLOB_TYPE_ENUM = 4
+} WBEM_INSTANCE_BLOB_TYPE;
+ 
+typedef struct _WBEM_REFRESHED_OBJECT {
+    long m_lRequestId;
+    WBEM_INSTANCE_BLOB_TYPE m_lBlobType;
+    long m_lBlobLength;
+    [size_is(m_lBlobLength)] byte* m_pbBlob;
+} WBEM_REFRESHED_OBJECT;
+ 
+[
+    restricted, 
+    uuid(F1E9C5B2-F59B-11d2-B362-00105A1F8177)
+]
+interface IWbemRemoteRefresher : IUnknown {
+    HRESULT RemoteRefresh(
+        [in] long lFlags,
+        [out] long* plNumObjects,
+        [out, size_is(,*plNumObjects)] 
+            WBEM_REFRESHED_OBJECT** paObjects
+    );
+ 
+    HRESULT StopRefreshing(
+        [in] long lNumIds,
+        [in, size_is(lNumIds)] long* aplIds,
+        [in] long lFlags
+    );
+ 
+    HRESULT Opnum5NotUsedOnWire(
+        [in] long lFlags,
+        [out] GUID* pGuid
+    );
+};
+ 
+ 
+typedef struct {
+    IWbemRemoteRefresher* m_pRefresher;
+    IWbemClassObject*     m_pTemplate;
+    GUID                  m_Guid;
+} _WBEM_REFRESH_INFO_REMOTE;
+ 
+typedef struct {
+    [string] wchar_t* m_wszNamespace;
+    IWbemClassObject* m_pTemplate;
+} _WBEM_REFRESH_INFO_NON_HIPERF;
+ 
+typedef enum 
+{
+    WBEM_REFRESH_TYPE_INVALID = 0,
+    WBEM_REFRESH_TYPE_REMOTE = 3,
+    WBEM_REFRESH_TYPE_NON_HIPERF = 6
+}WBEM_REFRESH_TYPE; 
+ 
+typedef [switch_type(long)] union {
+    [case (WBEM_REFRESH_TYPE_REMOTE)]
+        _WBEM_REFRESH_INFO_REMOTE m_Remote;
+ 
+    [case (WBEM_REFRESH_TYPE_NON_HIPERF)]
+        _WBEM_REFRESH_INFO_NON_HIPERF m_NonHiPerf;
+ 
+    [case (WBEM_REFRESH_TYPE_INVALID)]
+        HRESULT m_hres;
+ 
+} WBEM_REFRESH_INFO_UNION;
+ 
+typedef struct {
+    long m_lType;
+    [switch_is(m_lType)] WBEM_REFRESH_INFO_UNION m_Info;
+    long m_lCancelId;
+} _WBEM_REFRESH_INFO;
+ 
+typedef struct {
+    [string] LPSTR m_szMachineName;
+    DWORD          m_dwProcessId;
+    GUID           m_guidRefresherId;
+} _WBEM_REFRESHER_ID;
+ 
+typedef enum {
+   WBEM_RECONNECT_TYPE_OBJECT = 0,
+   WBEM_RECONNECT_TYPE_ENUM = 1,
+   WBEM_RECONNECT_TYPE_LAST = 2
+}WBEM_RECONNECT_TYPE;
+ 
+typedef struct {
+    long m_lType;
+    [string] LPCWSTR m_pwcsPath;
+} _WBEM_RECONNECT_INFO;
+ 
+typedef struct {  
+   long m_lId;  
+   HRESULT m_hr;
+} _WBEM_RECONNECT_RESULTS;
+ 
+[
+    restricted, 
+    uuid(2C9273E0-1DC3-11d3-B364-00105A1F8177)
+]
+interface IWbemRefreshingServices : IUnknown
+{
+    HRESULT AddObjectToRefresher(
+        [in] _WBEM_REFRESHER_ID* pRefresherId,
+        [in, string] LPCWSTR wszPath,
+        [in] long lFlags,
+        [in] IWbemContext* pContext,
+        [in] DWORD dwClientRefrVersion,
+        [out] _WBEM_REFRESH_INFO* pInfo,
+        [out] DWORD* pdwSvrRefrVersion
+    );
+ 
+    HRESULT AddObjectToRefresherByTemplate(
+        [in] _WBEM_REFRESHER_ID* pRefresherId,
+        [in] IWbemClassObject* pTemplate,
+        [in] long lFlags,
+        [in] IWbemContext* pContext,
+        [in] DWORD dwClientRefrVersion,
+        [out] _WBEM_REFRESH_INFO* pInfo,
+        [out] DWORD* pdwSvrRefrVersion
+    );
+ 
+    HRESULT AddEnumToRefresher(
+        [in] _WBEM_REFRESHER_ID* pRefresherId,
+        [in, string] LPCWSTR wszClass,
+        [in] long lFlags,
+        [in] IWbemContext* pContext,
+        [in] DWORD dwClientRefrVersion,
+        [out] _WBEM_REFRESH_INFO* pInfo,
+        [out] DWORD* pdwSvrRefrVersion
+    );
+ 
+    HRESULT RemoveObjectFromRefresher(
+        [in] _WBEM_REFRESHER_ID* pRefresherId,
+        [in] long lId,
+        [in] long lFlags,
+        [in] DWORD dwClientRefrVersion,
+        [out] DWORD* pdwSvrRefrVersion
+    );
+ 
+    HRESULT GetRemoteRefresher( 
+        [in] _WBEM_REFRESHER_ID* pRefresherId,
+        [in] long lFlags,
+        [in] DWORD dwClientRefrVersion,
+        [out] IWbemRemoteRefresher** ppRemRefresher,
+        [out] GUID* pGuid,
+        [out] DWORD* pdwSvrRefrVersion
+    );
+ 
+    HRESULT ReconnectRemoteRefresher(
+        [in] _WBEM_REFRESHER_ID* pRefresherId,
+        [in] long lFlags,
+        [in] long lNumObjects,
+        [in] DWORD dwClientRefrVersion,
+        [in, size_is(lNumObjects)] 
+            _WBEM_RECONNECT_INFO* apReconnectInfo,
+        [in, out, size_is(lNumObjects)] 
+            _WBEM_RECONNECT_RESULTS* apReconnectResults,
+        [out] DWORD* pdwSvrRefrVersion
+    );
+};
+ 
+ 
+[
+    restricted, 
+    object, 
+    uuid(423EC01E-2E35-11d2-B604-00104B703EFD)
+]
+interface IWbemWCOSmartEnum : IUnknown
+{
+    HRESULT Next(
+        [in] REFGUID proxyGUID,
+        [in] long lTimeout,
+        [in] ULONG uCount,
+        [out] ULONG* puReturned,
+        [out] ULONG* pdwBuffSize,
+        [out, size_is(,*pdwBuffSize)] byte** pBuffer
+        );
+};
+ 
+[
+    restricted, 
+    object, 
+    uuid(1C1C45EE-4395-11d2-B60B-00104B703EFD)
+]
+interface IWbemFetchSmartEnum : IUnknown
+{
+    HRESULT GetSmartEnum(
+        [out] IWbemWCOSmartEnum** ppSmartEnum
+    );
+};
+ 
+[
+    restricted, 
+    object, 
+    uuid(d4781cd6-e5d3-44df-ad94-930efe48a887)
+]
+interface IWbemLoginClientID : IUnknown
+{
+    HRESULT SetClientInfo(
+        [in, unique, string ] LPWSTR wszClientMachine,
+        [in] long lClientProcId,
+        [in] long lReserved 
+    );
+};
+ 
+ 
+[
+    object, 
+    restricted, 
+    uuid(F309AD18-D86A-11d0-A075-00C04FB68820), 
+    pointer_default(unique)
+]
+interface IWbemLevel1Login :  IUnknown
+{
+    HRESULT EstablishPosition(
+        [in, unique, string] wchar_t* reserved1,
+        [in] DWORD reserved2,
+        [out] DWORD* LocaleVersion
+    );
+ 
+    HRESULT RequestChallenge(
+        [in, unique, string] wchar_t* reserved1,
+        [in, unique, string] wchar_t* reserved2,
+        [out, size_is(16), length_is(16)] unsigned char* reserved3
+    );
+ 
+    HRESULT WBEMLogin(
+        [in, unique, string] wchar_t* reserved1,
+        [in, size_is(16), length_is(16), unique]  
+                unsigned char* reserved2,
+        [in] long reserved3,
+        [in] IWbemContext* reserved4,              
+        [out] IWbemServices** reserved5
+    );
+ 
+    HRESULT NTLMLogin(
+        [in, unique, string] LPWSTR wszNetworkResource,
+        [in, unique, string] LPWSTR wszPreferredLocale,
+        [in]   long lFlags,                   
+        [in]   IWbemContext* pCtx,              
+        [out]  IWbemServices** ppNamespace
+    );
+        
+};
+ 
+[
+    restricted, 
+    object, 
+    uuid(541679AB-2E5F-11d3-B34E-00104BCC4B4A)
+]
+interface IWbemLoginHelper : IUnknown
+{
+    HRESULT SetEvent(
+        [in] LPCSTR sEventToSet
+    );
+};
+ 

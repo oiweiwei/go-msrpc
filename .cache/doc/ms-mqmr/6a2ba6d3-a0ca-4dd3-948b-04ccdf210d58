@@ -1,0 +1,13 @@
+<div class="content"><p>The Message Queuing (MSMQ): Queue Manager Management
+Protocol is a <a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote
+procedure call (RPC)</a>-based protocol used for management operations on the <a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_70ce3665-ae64-44b4-88fe-7c1dcdcd5417" data-linktype="relative-path">MSMQ</a> server, including
+monitoring the MSMQ installation and the <a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queues</a>.</p><p>Operations that a client can perform using this protocol
+include:</p><ul><li><p><span><span> 
+</span></span>Getting information on MSMQ installation and queues.</p>
+</li><li><p><span><span> 
+</span></span>Performing actions on an MSMQ installation.</p>
+</li><li><p><span><span> 
+</span></span>Performing actions on a queue.</p>
+</li></ul><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

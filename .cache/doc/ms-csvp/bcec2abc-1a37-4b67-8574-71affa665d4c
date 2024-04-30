@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The CLUSTER_CERT structure contains certificate information
+and the <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_12ee6a09-989b-4841-a48b-9d89e06a63cd" data-linktype="relative-path">cluster secret</a>
+that is distributed by the client to all <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_762051d8-4fdc-437e-af9d-3f4da77c3c7d" data-linktype="relative-path">nodes</a> in the cluster.</p><dl>
+<dd>
+<div><pre>    typedef struct _CLUSTER_CERT {
+        ULONG CbCertData;
+        ULONG CbKeyData;
+        BYTE CertData[1024 * 5];
+        BYTE KeyData[1024 * 10];
+        WCHAR ClusterSecret[32 + 1];
+    } CLUSTER_CERT;
+</pre></div>
+</dd></dl><p><b>CbCertData:</b> Length of the <b>CertData</b>
+field.</p><p><b>CbKeyData:</b> Length of the <b>KeyData</b> field.</p><p><b>CertData:</b> Exported certificate <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_ad861812-8cb0-497a-80bb-13c95aa4e425" data-linktype="relative-path">blob</a> from the certificate
+store.</p><p><b>KeyData:</b> Exported private key blob from the
+crypto container that matches the certificate.</p><p><b>ClusterSecret:</b> Cluster secret data as defined
+in section <a href="0b7d28a0-3200-4372-99e3-5d12e657c1a4" data-linktype="relative-path">3.10.1</a>.</p></div>

@@ -1,0 +1,57 @@
+import "ms-oaut.idl";
+ 
+ 
+typedef struct _CERTTRANSBLOB
+{
+  unsigned long        cb;
+  [size_is(cb), unique] BYTE *pb;
+} CERTTRANSBLOB;
+// Interface IOCSPAdminD
+ 
+[
+ 
+object,
+uuid(784b693d-95f3-420b-8126-365c098659f2),
+helpstring("IOCSPAdminD DCOM Interface"),
+pointer_default(unique)
+]
+ 
+interface IOCSPAdminD: IUnknown
+{
+ 
+HRESULT GetOCSPProperty(
+[in, ref] const BSTR bstrEntryName,
+[out, ref] VARIANT* pEntryValue);
+ 
+HRESULT SetOCSPProperty(
+[in, ref] const BSTR bstrEntryName,
+[in, ref] const VARIANT *pEntryValue);
+ 
+HRESULT GetCAConfigInformation(
+[in, ref] const BSTR bstrCAId,
+[out, ref] VARIANT* pEntryValue);
+ 
+HRESULT SetCAConfigInformation(
+[in, ref] const BSTR bstrCAId,
+[in, ref] const VARIANT *pEntryValue);
+ 
+HRESULT GetSecurity(
+[out, ref] CERTTRANSBLOB *pctbSD); 
+ 
+HRESULT SetSecurity(
+[in, ref] CERTTRANSBLOB *pctbSD); 
+ 
+HRESULT GetSigningCertificates(
+[in, ref] const VARIANT *pCAVar,
+[out, ref] VARIANT* pSigningCertificates);
+ 
+HRESULT GetHashAlgorithms(
+[in, ref] const BSTR bstrCAId,
+[out, ref] VARIANT* pHashAlgorithms);
+ 
+HRESULT GetMyRoles(
+[out]LONG *pdwRoles); 
+ 
+HRESULT Ping();
+ 
+};

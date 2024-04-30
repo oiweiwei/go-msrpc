@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p>The SetInitiatorSharedSecret method sets the initiator <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_70bcde18-0e73-4f86-830e-39aa78fba425" data-linktype="relative-path">CHAP</a></span>
+<span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_ae8614db-83d9-406d-aa79-90b2f07c3ed1" data-linktype="relative-path">shared
+secret</a></span> that is used for mutual CHAP authentication when the
+initiator authenticates the target. For more information on CHAP, see <span><a href="../ms-chap/8fea1dd1-66d6-4874-88a5-34bcdbb58907" data-linktype="relative-path">[MS-CHAP]</a></span>.<a id="Appendix_A_Target_74"></a><a aria-label="Product behavior note 74" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_74" data-linktype="relative-path">&lt;74&gt;</a></p><dl>
+<dd>
+<div><pre> HRESULT SetInitiatorSharedSecret(
+   [in, unique] VDS_ISCSI_SHARED_SECRET* pInitiatorSharedSecret,
+   [in] VDS_OBJECT_ID targetId
+ );
+</pre></div>
+</dd></dl><p><b>pInitiatorSharedSecret: </b>A pointer to a <span><a href="5ee27ee9-473c-4b9e-aa2a-d7288176b59f" data-linktype="relative-path">VDS_ISCSI_SHARED_SECRET</a></span>
+structure that contains the CHAP shared secret that is used for mutual CHAP
+authentication when the initiator authenticates the target. </p><p><b>targetId: </b>This parameter is reserved and not
+used by the protocol. Callers MUST pass in GUID_NULL. Callers MUST pass in
+GUID_NULL.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>pInitiatorSharedSecret</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>targetId</i> is GUID_NULL.</p>
+</li></ul><p>The server MUST set the CHAP shared secret that <i>pInitiatorSharedSecret</i>
+specifies in the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_daaa5b4b-e3f0-4df2-94b2-332d6d84cf80" data-linktype="relative-path">iSCSI initiator</a></span>, and
+return an HRESULT indicating failure or success.</p></div>

@@ -1,0 +1,354 @@
+<div class="content"><p> </p><p>The <b>INET_INFO_CAP_FLAGS</b> structure contains
+information on features that are available for a protocol server.</p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _INET_INFO_CAP_FLAGS {
+   DWORD Flag;
+   DWORD Mask;
+ } INET_INFO_CAP_FLAGS,
+  *LPINET_INFO_CAP_FLAGS;
+</pre></div>
+</dd></dl><p><b>Flag:</b>  A value that indicates the
+features supported by the current running instance of the <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_d9a0cf88-f6d7-4c52-a9fc-4ce5a7cb7260" data-linktype="relative-path">Internet
+protocol server</a></span> implementation. The possible values for this member
+result from a bitwise OR of zero or more of the flags defined in the following
+table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IIS_CAP1_ODBC_LOGGING</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports the Open
+  Database Connectivity (ODBC) log format feature.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_FILE_LOGGING</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports the file system
+  logging feature.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_VIRTUAL_SERVER</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports multiple instances
+  of the protocol server network <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint (1)</a></span>
+  aliases.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_BW_THROTTLING</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports network
+  bandwidth throttling.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_IP_ACCESS_CHECK</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports blocking client
+  connections using IP restrictions.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_MAX_CONNECTIONS</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports connection
+  limiting.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_10_CONNECTION_LIMIT</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports a limit of 10
+  concurrent connections.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_MULTIPLE_INSTANCE</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports multiple
+  instances.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_SSL_SUPPORT</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports the SSL
+  protocol.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_OPERATORS_LIST</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports administrative
+  operations by identities other than Windows operating system administrators.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_FP_INSTALLED</p>
+  <p>0x00000400</p>
+  </td>
+  <td>
+  <p>Front Page Server Extensions are installed on the
+  server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_CPU_AUDITING</p>
+  <p>0x00000800</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports CPU limits.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_SERVER_COMPRESSION</p>
+  <p>0x00001000</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports compression of
+  network data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_DAV</p>
+  <p>0x00002000</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports the WebDAV
+  protocol.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_DIGEST_SUPPORT</p>
+  <p>0x00004000</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports the Digest
+  Authentication Protocol.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_NT_CERTMAP_SUPPORT</p>
+  <p>0x00008000</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports mapping client
+  certificates to Windows user accounts.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_POOLED_OOP</p>
+  <p>0x00010000</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports running a pool
+  of applications in a separate process.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Mask:</b>  A value that indicates the
+capabilities that can be enabled for the protocol servers in the current implementation.
+The possible values for this member result from a bitwise OR operation of zero
+or more of the following flags.</p><p><b>Note</b>  The <b>Mask</b> value contains
+all the capabilities that the current version of the protocol server
+implementation can support. The <b>Flag</b> value indicates the features that
+the current running <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_1623705d-a7a0-4e46-9a66-66e9ee63d961" data-linktype="relative-path">server instance</a></span> does
+support.The server sets the mask value to a bitwise OR of all the flags it
+knows about. The server then sets the flags to the bitwise OR of the features
+supported for the current platform, a subset of those set in the mask field. A
+given version of the software reports the same mask values, but might support
+different flags values depending on the operating system type.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IIS_CAP1_ODBC_LOGGING</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports the Open
+  Database Connectivity (ODBC) log format feature.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_FILE_LOGGING</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports the file system
+  logging feature.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_VIRTUAL_SERVER</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports multiple
+  instances of the protocol server network endpoint (2) aliases.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_BW_THROTTLING</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports network
+  bandwidth throttling.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_IP_ACCESS_CHECK</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports blocking client
+  connections by using IP restrictions.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_MAX_CONNECTIONS</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports connection
+  limiting.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_10_CONNECTION_LIMIT</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports a limit of 10
+  concurrent connections.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_MULTIPLE_INSTANCE</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports multiple
+  instances.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_SSL_SUPPORT</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports the SSL
+  protocol.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_OPERATORS_LIST</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports administrative
+  operations by identities other than Windows operating system administrators.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_FP_INSTALLED</p>
+  <p>0x00000400</p>
+  </td>
+  <td>
+  <p>Front Page Server Extensions are installed on the
+  server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_CPU_AUDITING</p>
+  <p>0x00000800</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports CPU limits.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_SERVER_COMPRESSION</p>
+  <p>0x00001000</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports compression of
+  network data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_DAV</p>
+  <p>0x00002000</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports the WebDAV
+  protocol.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_DIGEST_SUPPORT</p>
+  <p>0x00004000</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports the Digest
+  Authentication Protocol.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_NT_CERTMAP_SUPPORT</p>
+  <p>0x00008000</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports mapping client
+  certificates to Windows user accounts.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IIS_CAP1_POOLED_OOP</p>
+  <p>0x00010000</p>
+  </td>
+  <td>
+  <p>The Internet protocol server supports running a pool
+  of applications in a separate process.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

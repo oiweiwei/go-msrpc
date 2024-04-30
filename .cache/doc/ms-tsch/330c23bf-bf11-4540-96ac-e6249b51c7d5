@@ -1,0 +1,216 @@
+<div class="content"><p> </p><p>The SchRpcGetTaskInfo method MUST return information about a
+specified task.</p><dl>
+<dd>
+<div><pre> HRESULT SchRpcGetTaskInfo(
+   [in, string] const wchar_t* path,
+   [in] DWORD flags,
+   [out] DWORD* pEnabled,
+   [out] DWORD* pState
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>MUST contain the full path to a task
+using the format specified in section <span><a href="fa8809c8-4f0f-4c6d-994a-6c10308757c1" data-linktype="relative-path">2.3.11</a></span>.</p><p><b>flags: </b>The flags field MUST contain individual
+bit flags that MUST have one or more of the following values </p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>F S</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FS</p>
+  <p>SCH_FLAG_STATE</p>
+  </td>
+  <td>
+  <p>If set to 1, the server MUST retrieve the TASK_STATE.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Undefined bits. MUST be set to
+zero when sent and MUST be ignored on receipt.</p>
+</dd></dl><p><b>pEnabled: </b>MUST be a pointer to a Boolean that
+indicates whether the task is currently enabled.</p><p><b>pState: </b>If non-NULL and the SCH_FLAG_STATE bit
+in the <i>flags</i> parameter is set, the server MUST return the current state
+of the task in the format specified in section <span><a href="1d40a54c-d66f-4671-96d9-3cc84a8a55a1" data-linktype="relative-path">2.3.13</a></span>. Otherwise,
+the server MUST ignore this parameter.</p><p><b>Return Values: </b>For more information about
+return codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>, or Win32
+Error Codes in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><p>Upon receipt of the SchRpcGetTaskInfo call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Return E_INVALIDARG if the <i>path</i> parameter is NULL or is
+the root.</p>
+</li><li><p><span><span> 
+</span></span>Return 0x8007007B, the <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+form of the Win32 error <b>ERROR_INVALID_NAME</b>, if the specified <i>path</i>
+is not in the format specified in section 2.3.11.</p>
+</li><li><p><span><span> 
+</span></span>Return the value 0x80070003, the HRESULT form of the Win32 error
+ERROR_PATH_NOT_FOUND, if the specified <i>path</i> does not exist on the server
+in the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a></span> <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_08035fe7-a786-4b30-ab60-3fd046060617" data-linktype="relative-path">task
+store</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Return the HRESULT form of the Win32 error ERROR_FILE_NOT_FOUND
+if the specified task does not exist on the server in the XML task store.</p>
+</li><li><p><span><span> 
+</span></span>Return E_ACCESSDENIED if the caller does not have read access to
+the task.</p>
+</li></ul><p>If the <i>pEnabled</i> parameter is non-NULL, the
+server MUST set the corresponding memory location to the value of the
+enabled/disabled flag in the task store.</p><ul><li><p><span><span> 
+</span></span>If the <i>pState</i> parameter is non-NULL and the SCH_FLAG_STATE
+bit is set in the <i>flags</i> parameter, return a state value (section 2.3.13)
+specified as follows:</p>
+<ul><li><p><span><span>  </span></span>If
+the task has any entries in the running task list in the TASK_STATE_RUNNING
+state, return TASK_STATE_RUNNING.</p>
+</li><li><p><span><span>  </span></span>Otherwise,
+if the task has any entries in the running task list in the TASK_STATE_QUEUED
+state, return TASK_STATE_QUEUED.</p>
+</li><li><p><span><span>  </span></span>Otherwise,
+if the task is enabled in the task store, return TASK_STATE_READY.</p>
+</li><li><p><span><span>  </span></span>Otherwise,
+return TASK_STATE_DISABLED.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return S_OK.</p>
+</li></ul></div>

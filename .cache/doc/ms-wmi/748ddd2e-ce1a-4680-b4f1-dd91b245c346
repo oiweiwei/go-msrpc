@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p>The IWbemFetchSmartEnum::GetSmartEnum method retrieves an <span><a href="39f23057-ab0c-4145-af7c-6d6efb1a8508" data-linktype="relative-path">IWbemWCOSmartEnum (section 3.1.4.7)</a></span>
+interface, which is a network-optimized enumerator interface.</p><dl>
+<dd>
+<div><pre> HRESULT GetSmartEnum(
+   [out] IWbemWCOSmartEnum** ppSmartEnum
+ );
+</pre></div>
+</dd></dl><p><b>ppSmartEnum: </b>MUST be a pointer to a
+network-optimized enumerator interface. This parameter MUST NOT be NULL. Upon
+return by the server, this parameter can be NULL if there is a failure or if
+there are no results.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The server MUST locate the associated <span><a href="56022f1e-3761-4c17-8d55-8e62dc334b86" data-linktype="relative-path">IEnumWbemClassObject</a></span>
+interface pointer in the <b>EnumWbemClassObjectTable</b>, and validate that the
+<span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security
+principal</a></span> that makes the call is the same as the <b>ClientSecurityContext</b>
+of the <b>SemiSinkResultSetObject</b> pointed to by the entry in the <b>EnumWbemClassObjectTable</b>;
+otherwise, WBEM_E_ACCESS_DENIED MUST be returned.</p><p>In response to the IWbemFetchSmartEnum::GetSmartEnum method,
+the server MUST return an IWbemWCOSmartEnum interface in the <i>ppSmartEnum</i>
+output parameter.</p><p>A successful execution MUST return the IWbemWCOSmartEnum
+interface in the output parameter and MUST return WBEM_S_NO_ERROR.</p><p>The failed method execution MUST set the output parameters to
+NULL and MUST return an error in the format specified in section 2.2.11.</p></div>

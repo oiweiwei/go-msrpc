@@ -1,0 +1,68 @@
+<div class="content"><p>The RunClassification method queues a <a href="b34b9dd9-b8fb-41d7-9563-6bd110d98cb7" data-linktype="relative-path">Running Job</a> to the <b>Classification
+Job Queue</b>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_CLASSIFICATION_MANAGER | 0x0A)] HRESULT RunClassification(
+   [in] FsrmReportGenerationContext context,
+   [in] BSTR reserved
+ );
+</pre></div>
+</dd></dl><p><b>context: </b>Contains the value of the report
+generation context in which the <b>running classification task</b> will run.</p><p><b>reserved: </b>This parameter is reserved for
+future use.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8004533D</p>
+  <p>FSRM_E_CLASSIFICATION_ALREADY_RUNNING</p>
+  </td>
+  <td>
+  <p>Classification is already running.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>context</i> parameter is not a valid <a href="4477f327-f8b1-46c8-b8fa-8d96eeabe421" data-linktype="relative-path">FsrmReportGenerationContext (section 2.2.1.2.15)</a>
+  value.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> The server MUST do one of the following or return a nonzero
+error code:</p><ul><li><p><span><span> 
+</span></span>If there is already a Running Job in the <b>Classification Job
+Queue</b>, the server MUST return FSRM_E_CLASSIFICATION_ALREADY_RUNNING.</p>
+</li><li><p><span><span> 
+</span></span>If the Classification Job Queue does not contain a Running Job,
+the server MUST:</p>
+<ul><li><p><span><span>  </span></span>Create
+a Running Job, and set its properties as follows:</p>
+<ul><li><p><span><span> 
+</span></span><b>Running Job.Parent:</b> Reference to the <a href="c398aaa3-93ae-458d-8284-bfc5a463847d" data-linktype="relative-path">Default Classification Job</a> 
+object.</p>
+</li><li><p><span><span> 
+</span></span><b>Reports directory:</b> File system path to the output
+directory associated with <b>context</b>. See section <a href="f61aa9f3-326a-473c-9d55-c3712558e10a" data-linktype="relative-path">3.2.1.5.3</a> for details on
+selecting the output directory for different generation contexts.</p>
+</li><li><p><span><span> 
+</span></span><b>Running Job.Cancel:</b> false </p>
+</li><li><p><span><span> 
+</span></span><a href="6ebd590e-e194-4750-8844-0e4523e9b3e3" data-linktype="relative-path">Classification
+Job.Namespace Roots</a>: Copy all paths in the <b>Namespace Roots</b> of all
+classification rules that have <b>Enabled/Disabled</b> set to enabled.</p>
+</li><li><p><span><span> 
+</span></span>Queue the Running Job to the <b>Classification Job Queue</b>.</p>
+</li></ul></li><li><p><span><span>  </span></span>Set
+the Running status of the Default Classification Job object to <b>FsrmReportRunningStatus_Queued</b>.</p>
+</li></ul></li></ul><p>See section <a href="d55c8773-28bd-4cc3-a4c7-e8284f68fb50" data-linktype="relative-path">3.2.1.12.2</a> for more
+information about how the server monitors the running classification job.</p></div>

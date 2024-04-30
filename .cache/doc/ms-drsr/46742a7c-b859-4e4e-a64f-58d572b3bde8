@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The DSA_MSG_EXECUTE_SCRIPT_REQ_V1 structure defines a
+request message sent to the <span><a href="1cb59761-aeae-4f44-8f9e-06ae75ae45ca" data-linktype="relative-path">IDL_DSAExecuteScript</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD Flags;
+   [range(1,1024)] DWORD cbPassword;
+   [size_is(cbPassword)] BYTE* pbPassword;
+ } DSA_MSG_EXECUTE_SCRIPT_REQ_V1;
+</pre></div>
+</dd></dl><p><b>Flags:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>cbPassword:</b>  The count, in bytes, of
+the <b>pbPassword</b> array.</p><p><b>pbPassword:</b>  The password.</p></div>

@@ -1,0 +1,83 @@
+<div class="content"><p> </p><p>The <b>R_DhcpServerQueryAttribute</b> method retrieves
+attribute information from the DHCP server. The caller of this function can
+free the memory pointed to by <i>pDhcpAttrib</i> by calling the function <b>midl_user_free</b>
+(section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpServerQueryAttribute(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] ULONG dwReserved,
+   [in] DHCP_ATTRIB_ID DhcpAttribId,
+   [out] LPDHCP_ATTRIB* pDhcpAttrib
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>dwReserved: </b>This flag is not used and MUST be
+set to 0.</p><p><b>DhcpAttribId: </b>This is of type <span><a href="36183913-873b-4aa4-8ea8-1d16359f9ffc" data-linktype="relative-path">DHCP_ATTRIB_ID (section 2.2.1.1.1)</a></span>,
+specifying the attribute to be queried.</p><p><b>pDhcpAttrib: </b>This is a pointer to type <span><a href="9096df24-7da6-445e-a35d-667722ff7a09" data-linktype="relative-path">LPDHCP_ATTRIB (section 2.2.1.2.78)</a></span>
+that points to a location that contains the value and the type of the queried
+attribute.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 34.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>If <i>dwReserved</i> is not 0, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Validate if this API is authorized for read access per section <span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not then return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If <i>DhcpAttribId</i> doesn&#39;t match with any valid value for <b>DHCP_ATTRIB_ID</b>,
+return ERROR_NOT_SUPPORTED.</p>
+</li><li><p><span><span> 
+</span></span>Allocate memory to <i>pDhcpAttrib</i>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>DhcpAttribId</i> is DHCP_ATTRIB_BOOL_IS_ROGUE,
+DHCP_ATTRIB_BOOL_IS_DYNBOOTP, DHCP_ATTRIB_BOOL_IS_BINDING_AWARE or
+DHCP_ATTRIB_ULONG_RESTORE_STATUS, fill it with information from the
+corresponding field in the server ADM element <b>DHCPv4ServerAttributes</b>,
+and return it to the caller. </p>
+</li><li><p><span><span> 
+</span></span>If <i>DhcpAttribId</i> is DHCP_ATTRIB_BOOL_IS_ADMIN, set the
+fields <b>DhcpAttribId</b> and <b>DhcpAttribType</b> of <i>pDhcpAttrib</i>
+(section 2.2.1.2.78) corresponding to DHCP_ATTRIB_BOOL_IS_ADMIN. If this API is
+authorized for read/write access as specified in section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>,
+set <b>DhcpAttribBool</b> to TRUE, otherwise set it to FALSE. Return it to the
+caller. </p>
+</li><li><p><span><span> 
+</span></span>If <i>DhcpAttribId</i> is DHCP_ATTRIB_BOOL_IS_PART_OF_DSDC, set
+the fields <b>DhcpAttribId</b> and <b>DhcpAttribType</b> of <i>pDhcpAttrib</i>
+corresponding to DHCP_ATTRIB_BOOL_IS_PART_OF_DSDC. Check if the DHCP server is
+part of a domain. If positive, set <b>DhcpAttribBool</b> to TRUE, otherwise set
+it to FALSE. Return it to the caller. </p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

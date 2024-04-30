@@ -1,0 +1,24 @@
+<div class="content"><p>The SERVICE_FAILURE_ACTIONS_FLAG structure<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a> defines the failure action
+setting of a service. This setting determines when failure actions are to be
+executed.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVICE_FAILURE_ACTIONS_FLAG {
+   BOOL fFailureActionsOnNonCrashFailures;
+ } SERVICE_FAILURE_ACTIONS_FLAG,
+  *LPSERVICE_FAILURE_ACTIONS_FLAG;
+</pre></div>
+</dd></dl><p><b>fFailureActionsOnNonCrashFailures:</b>  If
+this member is TRUE and the service has configured failure actions, the failure
+actions are queued if the service process terminates without reporting a status
+of SERVICE_STOPPED or if it enters the SERVICE_STOPPED state but the <b>dwWin32ExitCode</b>
+member of the <a href="4e91ff36-ab5f-49ed-a43d-a308e72b0b3c" data-linktype="relative-path">SERVICE_STATUS (section 2.2.47)</a>
+structure is not ERROR_SUCCESS.</p><dl>
+<dd>
+<p>If this member is FALSE and the service has
+configured failure actions, the failure actions are queued only if the service
+terminates without reporting a status of SERVICE_STOPPED.</p>
+</dd>
+<dd>
+<p>This setting is ignored unless the service has
+configured failure actions.</p>
+</dd></dl></div>

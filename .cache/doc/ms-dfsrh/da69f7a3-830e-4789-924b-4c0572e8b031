@@ -1,0 +1,62 @@
+<div class="content"><p>The GetCompressedReport method gets the health information for
+the specified <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_fcc139c9-86ff-4414-bc66-5f63e4465b6d" data-linktype="relative-path">replication
+group</a> and the global health data of the DFS-R service on the server. The
+server MUST encode the report as a field in the format that is specified by the
+DFS-R compression algorithm in <a href="../ms-frs2/9914bdd4-9579-43a7-9f2d-9efe2e162944" data-linktype="relative-path">[MS-FRS2]</a>
+section <a href="../ms-frs2/a6715af1-8c14-416c-bc41-60b2ed2ebd25" data-linktype="relative-path">3.1.1.1</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetCompressedReport(
+   [in] GUID replicationGroupGuid,
+   [in] BSTR referenceMember,
+   [in] SAFEARRAY (_VersionVectorData)* referenceVersionVectors,
+   [in] long flags,
+   [out] SAFEARRAY (_VersionVectorData)* memberVersionVectors,
+   [out] BSTR* reportCompressed,
+   [out] long* uncompressedReportSize
+ );
+</pre></div>
+</dd></dl><p><b>replicationGroupGuid: </b>MUST be the identifier
+of the replication group for which the server gets health information. This
+field corresponds to the <b>objectGUID</b> field of the msDFSR-ReplicationGroup
+configuration object in <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+Directory</a>. The msDFSR-ReplicationGroup is specified in [MS-FRS2] section <a href="../ms-frs2/1454c5ea-ccaa-44d0-a885-9130465ea4bd" data-linktype="relative-path">2.3.5</a>.</p><p><b>referenceMember: </b>MUST be set to NULL.</p><p><b>referenceVersionVectors: </b>If the flags
+parameter has REPORTING_FLAGS_BACKLOG set, the set of <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_5407529a-4f36-4308-8060-63bbe7bac215" data-linktype="relative-path">version vectors</a> for <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_064adaf1-86c7-43e5-a157-b0949980181e" data-linktype="relative-path">replicated folders</a> on the
+reference member MUST be passed by using this parameter. Otherwise, this
+parameter MUST be set to NULL. The <a href="e51af1b7-4a3b-457b-8f2d-60447825e3a7" data-linktype="relative-path">VersionVectorData</a>
+structure is specified in section 2.2.1.4.</p><p><b>flags: </b>MUST be zero or more combinations of
+values of DfsrReportingFlags enumeration. The DfsrReportingFlags enumeration is
+specified in section <a href="1b9cb1a2-d79b-4f78-a69c-f2798cd29ac3" data-linktype="relative-path">2.2.1.2</a>.</p><p><b>memberVersionVectors: </b>If the flags parameter
+has REPORTING_FLAGS_BACKLOG set, the set of version vectors for the replicated
+folders on the server MUST be returned in this output parameter. The
+VersionVectorData structure is specified in section 2.2.1.4.</p><p><b>reportCompressed: </b>The compressed report body
+in the XML format MUST be returned in this output parameter. The format of the
+XML MUST be the same as for the <i>reportXML</i> member of the <a href="521b950c-87da-4b3b-ac13-88fda22866c7" data-linktype="relative-path">GetReport</a> method. This
+MUST be an encoded field whose format is specified by the DFS-R compression
+algorithm (as specified in [MS-FRS2] section 3.1.1.1).</p><p><b>uncompressedReportSize: </b>The size, in bytes, of
+the uncompressed data returned in the <i>reportCompressed</i> parameter.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or an implementation-specific nonzero <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+between 0x80000000 and 0xFFFFFFFF on failure. For protocol purposes, all
+nonzero values MUST be treated as equivalent failures.</p><p>After receiving this message, the server MUST create the
+IServerHealthReport::GetReport message with the same input parameters and then
+process this message.</p><p>If a nonzero return code was received as a result of
+processing the IServerHealthReport::GetReport message, the server MUST
+immediately return this return code to the client.</p><p>For a zero error code, the server MUST return the size of
+the uncompressed report that is returned from IServerHealthReport::GetReport
+through the <i>uncompressedReportSize</i> output parameter. The server MUST
+also return the information about the version vectors that is returned by
+IServerHealthReport::GetReport through the <i>memberVersionVectors</i> output
+parameter.</p><p>The server MUST encode the report as a field in the format
+that is specified by the DFS-R compression algorithm (as specified in [MS-FRS2]
+section 3.1.1.1). After examining the compressed report size:</p><ul><li><p><span><span> 
+</span></span>If the compressed report size is less than the uncompressed size,
+the server MUST return the compressed report through the <i>reportCompressed</i>
+output parameter.</p>
+</li><li><p><span><span> 
+</span></span>If the compressed report size is greater than or equal to the
+uncompressed size, the server MUST return the uncompressed report through the <i>reportCompressed</i>
+output parameter.</p>
+</li></ul><p>The server MUST return the response to the client. The
+response MUST contain the output parameters previously described for this
+method, and the status of the operation.</p></div>

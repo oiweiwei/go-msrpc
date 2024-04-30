@@ -1,0 +1,23 @@
+<div class="content"><p>The <b>FORM_CONTAINER</b> structure provides information
+about <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_8dfb0042-b0de-4108-ac52-b148427603db" data-linktype="relative-path">printer forms</a>,
+using <b>FORM_INFO</b> structures. The <b>FormInfo</b> member specifies the
+structure that defines the printer form properties.</p><dl>
+<dd>
+<div><pre> typedef struct _FORM_CONTAINER {
+   DWORD Level;
+   [switch_is(Level)] union {
+     [case(1)] 
+       FORM_INFO_1* pFormInfo1;
+     [case(2)] 
+       RPC_FORM_INFO_2* pFormInfo2;
+   } FormInfo;
+ } FORM_CONTAINER;
+</pre></div>
+</dd></dl><p><b>Level: </b>The information level of the <b>FormInfo</b>
+data. The value of this member MUST be 0x00000001 or 0x00000002.</p><p><b>FormInfo:</b> This member MUST define printer
+form properties, using an information structure that MUST correspond to the
+value of the <b>Level</b> member.</p><p><b>pFormInfo1:</b> If the <b>Level</b> member is
+0x00000001, this member is a pointer to a <b>FORM_INFO_1</b> structure, which
+provides information about a printer form. For details, see section <a href="78219302-59dd-4d3f-82d7-3a2e95466c28" data-linktype="relative-path">2.2.1.6.1</a>.</p><p><b>pFormInfo2:</b> If the <b>Level</b> member is
+0x00000002, this member is a pointer to a <b>RPC_FORM_INFO_2</b> structure,
+which provides information about a printer form. For details, see section <a href="dca49b4f-3eb1-4656-9e97-2f0b0c569bf6" data-linktype="relative-path">2.2.1.6.2</a>.</p></div>

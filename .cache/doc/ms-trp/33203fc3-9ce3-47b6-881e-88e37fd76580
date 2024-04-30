@@ -1,0 +1,64 @@
+<div class="content"><p>The LINECALLTREATMENTENTRY packet provides information on
+the type of call treatment, such as music, recorded announcement, or silence,
+on the current call. The <a href="35ff7865-1349-41e3-923d-41557e795a69" data-linktype="relative-path">LINEADDRESSCAPS</a>
+packet can contain an array of LINECALLTREATMENTENTRY packets.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCallTreatmentID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCallTreatmentNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCallTreatmentNameOffset</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwCallTreatmentID (4 bytes): </b>One of the <a href="98cfe309-9039-471a-be7f-ab49783e2c36" data-linktype="relative-path">LINECALLTREATMENT_Constants</a>
+(if the treatment is of a predefined type) or a service provider-specific
+value. </p><p><b>dwCallTreatmentNameSize (4 bytes): </b>The size,
+in bytes, of the call treatment name string, including the terminating null
+character. </p><p><b>dwCallTreatmentNameOffset (4 bytes): </b>The
+offset from the beginning of LINEADDRESSCAPS to a null-terminated string
+identifying the treatment. This would ordinarily describe the content of the
+music or recorded announcement. If the treatment is of a predefined type, a
+meaningful name is still specified, for example, &#34;Silence\0&#34;,
+&#34;Busy Signal\0&#34;, &#34;Ringback\0&#34;, or &#34;Music\0&#34;. The
+size of the string is specified by <b>dwCallTreatmentNameSize</b>. </p></div>

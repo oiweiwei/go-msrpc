@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The VDS_INTERCONNECT_ADDRESS_TYPE enumeration defines the
+set of valid address types of a physical interconnect.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_INTERCONNECT_ADDRESS_TYPE
+ {
+   VDS_IA_UNKNOWN = 0x00000000,
+   VDS_IA_FCFS = 0x00000001,
+   VDS_IA_FCPH = 0x00000002,
+   VDS_IA_FCPH3 = 0x00000003,
+   VDS_IA_MAC = 0x00000004,
+   VDS_IA_SCSI = 0x00000005
+ } VDS_INTERCONNECT_ADDRESS_TYPE;
+</pre></div>
+</dd></dl><p><b>VDS_IA_UNKNOWN:  </b>This value is reserved.</p><p><b>VDS_IA_FCFS:  </b>Address type is first come,
+first served.</p><p><b>VDS_IA_FCPH:  </b>Address type is FC-PH. For more
+information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=193114" data-linktype="external">[ANSI-289-1996]</a></span>.</p><p><b>VDS_IA_FCPH3:  </b>Address type is FC-PH-3. For
+more information, see [ANSI-289-1996].</p><p><b>VDS_IA_MAC:  </b>Address type is media access
+control (MAC).</p><p><b>VDS_IA_SCSI:  </b>Address type is SCSI.</p></div>

@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The WStringsArray_r structure is used to aggregate a number
+of <span><a href="../ms-dtyp/9e7d8bfc-016c-48b7-95ae-666e103eead4" data-linktype="relative-path">wchar_t</a></span>
+type strings into a single data structure.</p><dl>
+<dd>
+<div><pre> typedef struct _WStringsArray {
+   [range(0,100000)] DWORD Count;
+   [size_is(Count)] [string] wchar_t* Strings[];
+ } WStringsArray_r;
+</pre></div>
+</dd></dl><p><b>Count:</b>  The number of character
+strings structures in this aggregation. The value MUST NOT exceed 100,000.</p><p><b>Strings:</b>  The list of wchar_t type
+strings in this aggregation. The strings in this list are NULL-terminated.</p></div>

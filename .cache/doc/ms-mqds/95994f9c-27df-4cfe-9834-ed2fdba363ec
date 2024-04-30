@@ -1,0 +1,83 @@
+<div class="content"><p> </p><p>The MQPROPERTYRESTRICTION structure specifies a logical
+expression over an <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_0409899a-2e1c-452a-b5ae-5a524e2d9280" data-linktype="relative-path">MSMQ object property</a></span>.
+The logical expression evaluates to TRUE or FALSE. The logical expression is
+defined through a relational comparison operation between an MSMQ object
+property and a specified constant value.</p><dl>
+<dd>
+<div><pre> typedef struct tagMQPROPERTYRESTRICTION {
+   unsigned long rel;
+   unsigned long prop;
+   PROPVARIANT prval;
+ } MQPROPERTYRESTRICTION;
+</pre></div>
+</dd></dl><p><b>rel:</b>   Specifies the binary relation to be
+computed between the MSMQ object property identified by prop and the constant
+specified by prval. The value of this field MUST be one of the values as
+defined as follows.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PRLT</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Less than.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PRLE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Less than or equal to.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PRGT</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Greater than.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PRGE</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Greater than or equal to.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PREQ</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Equal to.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PRNE</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Not equal to.</p>
+  </td>
+ </tr></tbody></table><p><b>prop:</b>   A <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_382ac1cd-8ff9-493a-bfec-d9ad08955707" data-linktype="relative-path">property identifier</a></span>
+specifying what MSMQ object property to be used as the left operand in the
+binary relation specified in rel. MUST be one of the values specified in the
+object property identifier table, as specified in section <span><a href="1f12668a-2fa3-45cf-8236-74f0fe4a6b7d" data-linktype="relative-path">2.2.10.1</a></span>.</p><p><b>prval:</b>   A constant value to be used as the
+right operand in the binary relation specified in rel. The variant type of
+prval MUST match the variant type of the MSMQ object property identified by
+prop as specified in the property identifier tables in section 2.2.10.1.</p><p>This structure is used in directory query operations to
+define a single constraint over the set of directory objects to be returned. An
+object is deemed to satisfy the constraint if the binary expression, as
+specified by the MQPROPERTYRESTRICTION structure, evaluates to TRUE, and is
+deemed not to satisfy the constraint otherwise. See section <span><a href="ebe8417a-ded8-4f3d-9187-bbbdb0856f41" data-linktype="relative-path">3.1.4.17</a></span>.</p></div>

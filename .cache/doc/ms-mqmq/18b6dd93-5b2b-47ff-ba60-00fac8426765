@@ -1,0 +1,6 @@
+<div class="content"><p>Message Queuing (MSMQ): Data Structures contains common
+definitions and data structures that are used in various protocols in the set
+of <a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_70ce3665-ae64-44b4-88fe-7c1dcdcd5417" data-linktype="relative-path">Microsoft Message Queuing</a>
+protocols. The documentation for individual protocols contains references to
+this document, as needed.</p><p>Sections 1.7 and 2 of this specification are normative. All
+other sections and examples in this specification are informative.</p></div>

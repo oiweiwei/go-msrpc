@@ -1,0 +1,106 @@
+<div class="content"><p> </p><p>The VDS_VOLUME_FLAG enumeration defines the set of valid
+flags for a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> object. </p><dl>
+<dd>
+<div><pre> typedef enum _VDS_VOLUME_FLAG
+ {
+   VDS_VF_SYSTEM_VOLUME = 0x00000001,
+   VDS_VF_BOOT_VOLUME = 0x00000002,
+   VDS_VF_ACTIVE = 0x00000004,
+   VDS_VF_READONLY = 0x00000008,
+   VDS_VF_HIDDEN = 0x00000010,
+   VDS_VF_CAN_EXTEND = 0x00000020,
+   VDS_VF_CAN_SHRINK = 0x00000040,
+   VDS_VF_PAGEFILE = 0x00000080,
+   VDS_VF_HIBERNATION = 0x00000100,
+   VDS_VF_CRASHDUMP = 0x00000200,
+   VDS_VF_INSTALLABLE = 0x00000400,
+   VDS_VF_LBN_REMAP_ENABLED = 0x00000800,
+   VDS_VF_FORMATTING = 0x00001000,
+   VDS_VF_NOT_FORMATTABLE = 0x00002000,
+   VDS_VF_NTFS_NOT_SUPPORTED = 0x00004000,
+   VDS_VF_FAT32_NOT_SUPPORTED = 0x00008000,
+   VDS_VF_FAT_NOT_SUPPORTED = 0x00010000,
+   VDS_VF_NO_DEFAULT_DRIVE_LETTER = 0x00020000,
+   VDS_VF_PERMANENTLY_DISMOUNTED = 0x00040000,
+   VDS_VF_PERMANENT_DISMOUNT_SUPPORTED = 0x00080000,
+   VDS_VF_SHADOW_COPY = 0x00100000,
+   VDS_VF_FVE_ENABLED = 0x00200000,
+   VDS_VF_DIRTY = 0x00400000,
+   VDS_VF_REFS_NOT_SUPPORTED = 0x00800000
+ } VDS_VOLUME_FLAG;
+</pre></div>
+</dd></dl><p><b>VDS_VF_SYSTEM_VOLUME:  </b>If set, the volume is a
+<span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_f0a0d3af-8361-43e5-9ace-8279850d2da8" data-linktype="relative-path">system
+volume</a></span>. It contains the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_50119b99-3b17-4b96-9627-a4f23cb5b57d" data-linktype="relative-path">boot loader</a></span> that is
+used to invoke the operating system on the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_92dc821b-aa52-41ad-802c-26adbab4e378" data-linktype="relative-path">boot volume</a></span>.</p><p><b>VDS_VF_BOOT_VOLUME:  </b>If set, the volume is a
+boot volume that contains the operating system.</p><p><b>VDS_VF_ACTIVE:  </b>If set, the volume is an <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_f725ddf2-1c57-40ec-978e-648ea3342132" data-linktype="relative-path">active
+volume</a></span>. It can become the system volume at system startup if the
+BIOS is configured to select that <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span> for startup.</p><p><b>VDS_VF_READONLY:  </b>If set, the volume can be
+read from but not written to.</p><p><b>VDS_VF_HIDDEN:  </b>If set, the volume does not
+automatically get assigned <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_513fcb37-059f-475c-a13d-e89b302f8ae8" data-linktype="relative-path">mount points</a></span> or <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1b153cd0-e3f3-4383-bc66-d5ad482c9766" data-linktype="relative-path">drive
+letters</a></span> that can be used to access the volume.</p><p><b>VDS_VF_CAN_EXTEND:  </b>If set, the volume size
+can be extended.</p><p><b>VDS_VF_CAN_SHRINK:  </b>If set, the volume size
+can be reduced.</p><p><b>VDS_VF_PAGEFILE:  </b>If this flag is set, the
+volume contains a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_d359150b-3c93-451c-a6b4-e77255c9f212" data-linktype="relative-path">page file</a></span>.</p><p><b>VDS_VF_HIBERNATION:  </b>If set, the volume holds
+the files that are used when the system hibernates.</p><p><b>VDS_VF_CRASHDUMP:  </b>If set, the volume acts as
+a crash-dump device.</p><p><b>VDS_VF_INSTALLABLE:  </b>If set, callers can use
+the volume to install an operating system.</p><p><b>VDS_VF_LBN_REMAP_ENABLED:  </b>If set, <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_97581c48-09dd-4bc4-a379-a846cbf4cc39" data-linktype="relative-path">VDS</a></span>
+can dynamically change the position of the volume on the disk. This flag is not
+valid for basic and <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_80affbd0-04b4-489e-be50-ddf9383e5d28" data-linktype="relative-path">dynamic volumes</a></span> and
+is only supported by some third-party <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_3080678a-2e28-4e28-af89-8c010325a7b2" data-linktype="relative-path">volume managers</a></span>.</p><p><b>VDS_VF_FORMATTING:  </b>If set, the volume is
+being <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_ea22e521-1a4e-4ceb-8d64-f65fa6d0e63b" data-linktype="relative-path">formatted</a></span>.</p><p><b>VDS_VF_NOT_FORMATTABLE:  </b>If set, the volume
+cannot be formatted.</p><p><b>VDS_VF_NTFS_NOT_SUPPORTED:  </b>If set, the volume
+does not support the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_86f79a17-c0be-4937-8660-0cf6ce5ddc1a" data-linktype="relative-path">NTFS</a></span> file system but
+can support other <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file systems</a></span>.</p><p><b>VDS_VF_FAT32_NOT_SUPPORTED:  </b>If set, the
+volume does not support <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_6508b992-aee3-43e5-93a7-1de08f7e28d5" data-linktype="relative-path">FAT32</a></span>.</p><p><b>VDS_VF_FAT_NOT_SUPPORTED:  </b>If set, the volume
+does not support <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_f2bf797b-e733-4fb9-b5e5-7e122f4abbe0" data-linktype="relative-path">FAT</a></span>.</p><p><b>VDS_VF_NO_DEFAULT_DRIVE_LETTER:  </b>If set, the
+operating system does not automatically assign a drive letter when the volume
+is created or a disk containing existing volumes is connected to the operating
+system. When cleared, the operating system assigns a drive letter to the
+volume. Callers can set and clear this flag. For basic <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GPT</a></span>
+volumes and <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b11172af-9369-448d-9722-444eb52b21cb" data-linktype="relative-path">dynamic disk</a></span>
+volumes, assigning or removing a drive letter toggles this flag.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a></p><dl>
+<dd>
+<p>The flag is set by default for dynamic disk and
+basic GPT disk volumes.</p>
+</dd></dl><p><b>VDS_VF_PERMANENTLY_DISMOUNTED:  </b>If set, the
+volume is unavailable and requires a mount-point assignment. VDS sets this flag
+after the caller invokes the <span><a href="1d2fea1c-1fd4-4953-9c13-63187ed2eb56" data-linktype="relative-path">IVdsVolumeMF::Dismount</a></span>
+method, setting the <i>bForce</i> and <i>bPermanent</i> parameters to TRUE.</p><p><b>VDS_VF_PERMANENT_DISMOUNT_SUPPORTED:  </b>If set,
+the volume supports <i>bPermanent</i> for the IVdsVolumeMF::Dismount method.
+This flag cannot be set or cleared by the client. This flag is set by the
+server if it applies.</p><p><b>VDS_VF_SHADOW_COPY:  </b>If set, the volume is a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow
+copy</a></span> of another volume. This flag is set when the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_24e415c9-f158-4de0-b687-598511501c68" data-linktype="relative-path">snapshot</a></span>
+is taken, and it is cleared when the snapshot is broken from the original
+volume. The <b>VDS_VF_SHADOW_COPY</b> flag is an indication for software-like
+file system filter drivers (for example, antivirus) to avoid attaching to the
+volume. Applications can use the attribute to differentiate snapshots from
+production volumes. Applications that create a Fast Recovery, in which a shadow
+copy <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7593b869-71a9-4a02-bab3-377e51729067" data-linktype="relative-path">LUN</a></span>
+is made into a non-snapshot by clearing the read-only and hidden bit, will need
+to clear this bit as well.</p><p><b>VDS_VF_FVE_ENABLED:</b>  The volume is encrypted
+with <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_12981c6c-53ba-4bb0-b8cb-6f659ee74bdf" data-linktype="relative-path">full-volume
+encryption</a></span>.<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a></p><p><b>VDS_VF_DIRTY<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a>:</b>  The
+volume&#39;s dirty bit is set.</p><p><b>VDS_VF_REFS_NOT_SUPPORTED<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a>:</b>  The volume does not
+support ReFS.</p><dl>
+<dd>
+<p><b>VDS_VF_HIDDEN, VDF_VF_READ_ONLY</b>, <b>VDS_VF_SHADOW_COPY</b>,
+and <b>VDS_VF_NO_DEFAULT_DRIVE_LETTER</b> are set as follows:</p>
+</dd></dl><ul><li><p><span><span>  </span></span><b>Dynamic
+disk volumes</b> - The flag is per volume. <b>VDS_VF_NO_DEFAULT_DRIVE_LETTER</b>
+is set at volume creation. <a id="Appendix_A_Target_18"></a><a aria-label="Product behavior note 18" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a>The flag
+toggles when drive letters are assigned or removed, and can also be set or cleared
+using any of the Set/ClearFlags methods.</p>
+</li><li><p><span><span>  </span></span><b>MBR
+basic disk volumes</b> - The flag is applied to all volumes created on the disk
+after the flag is set. It is set per disk for basic <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b251c771-5ccf-40f2-b98d-0119db210b4b" data-linktype="relative-path">MBR</a></span> disks, not per
+volume. The flag is only set or cleared if an explicit call is made to the <span><a href="b0ed8172-e096-4685-9e68-f07fb6fddc4d" data-linktype="relative-path">IVdsVolume::SetFlags (section 3.4.5.2.32.10)</a></span>
+and <span><a href="002b6121-2e6d-4334-864a-be59ecbb8a07" data-linktype="relative-path">IVdsVolume::ClearFlag (section 3.4.5.2.32.11)</a></span>
+methods, respectively. For example, the <b>VDS_VF_NO_DEFAULT_DRIVE_LETTER</b>
+flag is not toggled as drive letters are assigned to or removed from specific
+volumes.</p>
+</li><li><p><span><span>  </span></span><b>GPT
+basic disk volumes</b> - The flag is per volume, data <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partitions</a></span> only. <b>VDS_VF_NO_DEFAULT_DRIVE_LETTER</b>
+is set at volume creation and toggled when drive letters are assigned or
+removed (by VDS).</p>
+</li></ul></div>

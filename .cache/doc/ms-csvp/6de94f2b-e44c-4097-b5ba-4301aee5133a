@@ -1,0 +1,510 @@
+<div class="content"><p>The <b>DISK_PROPS_EX</b> structure holds information about a
+single disk. This structure SHOULD<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="6ea29e14-9c33-4927-90a8-258fd1d6d042#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a> be supported
+and is required for the <a href="cdfd8210-51b5-498a-8692-a5473c54ff6e" data-linktype="relative-path">IClusterStorage3</a>
+<a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>. </p><dl>
+<dd>
+<div><pre> typedef struct _DISK_PROPS_EX {
+   ULONG DiskNumber;
+   CPREP_DISKID DiskId;
+   ULONG DiskBusType;
+   DiskStackType StackType;
+   CPREP_SCSI_ADDRESS ScsiAddress;
+   BOOL DiskIsClusterable;
+   wchar_t AdapterDesc[260];
+   [string] LPWSTR pwszFriendlyName;
+   unsigned long NumPaths;
+   unsigned long Flags;
+   unsigned long ExtendedFlags;
+   [string] LPWSTR pwszPoolName;
+   [string] LPWSTR pwszPage83Id;
+   [string] LPWSTR pwszSerialNumber;
+   GUID guidPoolId;
+ } DISK_PROPS_EX,
+  *PDISK_PROPS_EX;
+</pre></div>
+</dd></dl><p><b>DiskNumber:</b>  The zero-based <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_4712ded2-d927-4930-9450-29499f98cef4" data-linktype="relative-path">device</a> number assigned to
+the disk by the operating system.</p><p><b>DiskId:</b>  A valid <a href="af5005b7-c06b-49b9-a35a-f620d3c3cea8" data-linktype="relative-path">CPREP_DISKID</a> structure
+with the correct identifier for the disk.</p><p><b>DiskBusType:</b>  The type of bus to
+which the disk is attached. It contains one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>BusTypeUnknown</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The bus type is not one of those that follow.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeScsi</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The bus type is <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_c8818c63-7458-4054-a17d-bea04fa50618" data-linktype="relative-path">SCSI</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeAtapi</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The bus type is AT attachment packet interface
+  (ATAPI).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeAta</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The bus type is advanced technology attachment (ATA).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusType1394</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The bus type is IEEE 1394.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeSsa</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The bus type is serial storage architecture (SSA).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeFibre</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>The bus type is Fibre Channel.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeUsb</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>The bus type is universal serial bus (USB).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeRAID</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The bus type is redundant array of independent disks
+  (RAID).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeiScsi</p>
+  <p>0x00000009</p>
+  </td>
+  <td>
+  <p>The bus type is iSCSI.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeSas</p>
+  <p>0x0000000A</p>
+  </td>
+  <td>
+  <p>The bus type is Serial Attached SCSI (SAS).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeSata</p>
+  <p>0x0000000B</p>
+  </td>
+  <td>
+  <p>The bus type is Serial ATA (SATA).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeSd</p>
+  <p>0x0000000C</p>
+  </td>
+  <td>
+  <p>The bus type is Sd.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeMmc</p>
+  <p>0x0000000D</p>
+  </td>
+  <td>
+  <p>The bus type is Mmc.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeVirtual</p>
+  <p>0x0000000E</p>
+  </td>
+  <td>
+  <p>The bus type is Virtual.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeFileBackedVirtual</p>
+  <p>0x0000000F</p>
+  </td>
+  <td>
+  <p>The bus type is File Backed Virtual.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeSpaces</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The bus type is Spaces.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>StackType:</b>  The driver subtype of
+the device driver. It MUST be one of the valid values for <a href="be5e6729-e6ef-4ee0-b5cd-bc019d7e6ffa" data-linktype="relative-path">DiskStackType</a>.</p><p><b>ScsiAddress:</b>  The SCSI address of
+the disk. It MUST be a valid <a href="fbb8651c-4989-4ef1-bff4-9aa41a0fc2d2" data-linktype="relative-path">CPREP_SCSI_ADDRESS</a>.</p><p><b>DiskIsClusterable:</b>  A Boolean flag
+that indicates whether the disk can be clustered. A value of TRUE or 1
+indicates that the disk can be clustered. A value of FALSE or 0 indicates that
+the disk cannot be clustered. The value of the <b>DiskIsClusterable</b> member
+can be determined in an implementation-specific way.</p><p><b>AdapterDesc:</b>  A user-friendly
+description of the adapter to which the disk is connected.</p><p><b>pwszFriendlyName:</b>  A null-terminated
+string containing a user-friendly description of the disk. Memory for this
+string is allocated by the server and MUST be freed by the client.</p><p><b>NumPaths:</b>  The number of IO paths to
+the disk. A Multipath I/O (MPIO) disk has a number greater than 1.</p><p><b>Flags:</b>  Information about the disk.
+It contains one or more of the following values bitwise OR&#39;d together.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DISK_BOOT</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The disk is the boot device.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_SYSTEM</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The disk contains the operating system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_PAGEFILE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The disk contains an operating system pagefile.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_HIBERNATE</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The disk will be used to store system hibernation
+  data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_CRASHDUMP</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The disk will be used to store system crash dump data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_REMOVABLE</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The disk is on removable media.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_CLUSTERNOSUPP</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>The disk is not supported by the cluster
+  implementation. The criteria for support are implementation-specific.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_BUSNOSUPP</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>The disk is on a bus not supported by the cluster
+  implementation. The criteria for support are implementation-specific.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_SYSTEMBUS</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>The disk is on the same bus as the disk containing the
+  operating system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_ALREADY_CLUSTERED</p>
+  <p>0x00000400</p>
+  </td>
+  <td>
+  <p>The disk is already controlled by the cluster.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_SYTLE_MBR</p>
+  <p>0x00001000</p>
+  </td>
+  <td>
+  <p>The disk is <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_b251c771-5ccf-40f2-b98d-0119db210b4b" data-linktype="relative-path">MBR</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_STYLE_GPT</p>
+  <p>0x00002000</p>
+  </td>
+  <td>
+  <p>The disk is <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GPT</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_STYLE_RAW</p>
+  <p>0x00004000</p>
+  </td>
+  <td>
+  <p>The disk is neither MBR nor GPT.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_PART_BASIC</p>
+  <p>0x00008000</p>
+  </td>
+  <td>
+  <p>The disk is configured with <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_e88c8bcf-42a7-41c6-b59a-e959ae01048d" data-linktype="relative-path">basic volumes</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_PART_DYNAMIC</p>
+  <p>0x00010000</p>
+  </td>
+  <td>
+  <p>The disk is configured with <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_80affbd0-04b4-489e-be50-ddf9383e5d28" data-linktype="relative-path">dynamic volumes</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_CLUSTERED_ONLINE</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>The disk is controlled by the cluster and is <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_783ae2e4-7c04-40ba-a974-f95a30aa1ab2" data-linktype="relative-path">online</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_UNREADABLE</p>
+  <p>0x00040000</p>
+  </td>
+  <td>
+  <p>The disk cannot be read.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_MPIO</p>
+  <p>0x00080000</p>
+  </td>
+  <td>
+  <p>The disk is controlled by MPIO.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_CLUSTERED_OTHER</p>
+  <p>0x00100000</p>
+  </td>
+  <td>
+  <p>The disk is controlled by cluster software other than
+  the <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_acd8b49c-8762-48fd-9272-26a03643322b" data-linktype="relative-path">failover cluster</a>
+  implementation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_MISSING</p>
+  <p>0x00200000</p>
+  </td>
+  <td>
+  <p>The disk could not be found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_REDUNDANT</p>
+  <p>0x00400000</p>
+  </td>
+  <td>
+  <p>The disk is exposed to the operating system more than
+  once through redundant paths.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_SNAPSHOT</p>
+  <p>0x00800000</p>
+  </td>
+  <td>
+  <p>The disk is a snapshot disk.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_FAILING_IO</p>
+  <p>0x02000000</p>
+  </td>
+  <td>
+  <p>The disk is unable to gather disk information.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_NO_PAGE83</p>
+  <p>0x04000000</p>
+  </td>
+  <td>
+  <p>The disk does not have a <b>Device Identification VPD
+  page</b> (see <a href="https://go.microsoft.com/fwlink/?LinkId=90528" data-linktype="external">[SPC-3]</a>
+  section 7.6.3) with <b>PAGE CODE</b> (see [SPC-3] table 294) set to <code>83h</code>, a device <b>ASSOCIATION</b>
+  (see [SPC-3] table 297), and <b>IDENTIFIER TYPE</b> (see [SPC-3] table 298)
+  of <b>Type 8</b>, <b>Type 3</b>, or <b>Type 2</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_COLLISION</p>
+  <p>0x08000000</p>
+  </td>
+  <td>
+  <p>The disk&#39;s signature collides with the signature of
+  another disk visible to this server, and <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_0e4c21af-021e-4059-ae9a-7821ec3c2e39" data-linktype="relative-path">disk signature</a> collision
+  resolution is disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_OUTOFSPACE</p>
+  <p>0x10000000</p>
+  </td>
+  <td>
+  <p>The disk is a <b>thin-provisioned LUN</b> that has no
+  free space.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_POOL_DRIVE</p>
+  <p>0x20000000</p>
+  </td>
+  <td>
+  <p>The disk is a member of a <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_0f425f87-f3a6-493c-8cc6-211d245fdd92" data-linktype="relative-path">storage pool</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_POOL_DRIVE_NOT_TESTABLE</p>
+  <p>0x40000000</p>
+  </td>
+  <td>
+  <p>The disk is a member of a storage pool but does not
+  meet implementation-specific criteria for testing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_POOL_CLUSTERED</p>
+  <p>0x80000000</p>
+  </td>
+  <td>
+  <p>The disk is a member of a storage pool, and the
+  storage pool to which it belongs is a cluster resource.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ExtendedFlags:</b>  Additional
+information about the disk. It contains one or more of the following values
+bitwise OR&#39;d together.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DISK_EX_SPLITPOOLCONFIG</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The storage pool drive is configured for both pool and
+  non-pool data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISK_EX_POOL_NOT_CLUSTERABLE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The storage pool drive is part of a pool that is not
+  suitable for failover clustering.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pwszPoolName:</b>  A null-terminated
+string indicating the name of the storage pool that the disk is a member of. If
+the disk is not a member of a storage pool, this field MUST be initialized to
+NULL. </p><dl>
+<dd>
+<p>Memory is allocated by the server and MUST be freed
+by the client.</p>
+</dd></dl><p><b>pwszPage83Id:</b>  A null-terminated
+string containing a <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_b0178290-04f0-496f-9dec-3f2a3c4a89b2" data-linktype="relative-path">VPD</a> <code>83h</code> identifier (see [SPC-3] section 7.6.3) associated
+with the addressed <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_7593b869-71a9-4a02-bab3-377e51729067" data-linktype="relative-path">logical
+unit number</a>. The VPD <code>83h </code><b>ASSOCIATION</b>
+field (see [SPC-3] table 297) has the value <code>00bh</code>,
+and <b>IDENTIFIER TYPE</b> (see [SPC-3] table 298) equal to <b>SCSI name string</b>
+(<code>8h</code>), <b>NAA</b> (<code>3h</code>),
+or <b>EUI-64 based</b> (<code>2h</code>).</p><dl>
+<dd>
+<p>The order of precedence when choosing a VPD <code>83h</code> identifier to return is: <b>SCSI name string</b>
+type has precedence over <b>NAA</b> or <b>EUI-64 based</b>, and <b>NAA</b> has
+precedence over <b>EUI-64 based</b>.</p>
+</dd>
+<dd>
+<p>Memory is allocated by the server and MUST be freed
+by the client.</p>
+</dd></dl><p><b>pwszSerialNumber:</b>  A null-terminated
+string containing the VPD page <code>80h</code> (<b>Unit
+Serial Number</b> see [SPC-3]section 7.6.10). This field is optional, as
+defined in [SPC-3] (it can be all spaces). Memory for this string is allocated
+by the server and MUST be freed by the client.</p><p><b>guidPoolId:</b>  The identifier of the
+storage pool that the disk is a member of. If the disk is not a member of a
+storage pool, this field MUST be initialized to zero.</p></div>

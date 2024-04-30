@@ -1,0 +1,97 @@
+<div class="content"><p>The ImportFromBlob method imports a previously exported <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> blob on the
+target machine.</p><dl>
+<dd>
+<div><pre> [id(16)] HRESULT ImportFromBlob(
+   [in] BSTR InstanceName,
+   [in] BSTR Password,
+   [in] VARIANT_BOOL bInstallToMetabase,
+   [in] VARIANT_BOOL bAllowExport,
+   [in] VARIANT_BOOL bOverWriteExisting,
+   [in] DWORD cbSize,
+   [in, string, size_is(cbSize)] CHAR* pBlobBinary
+ );
+</pre></div>
+</dd></dl><p><b>InstanceName: </b>A string that specifies a web <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_1623705d-a7a0-4e46-9a66-66e9ee63d961" data-linktype="relative-path">server instance</a>.</p><p><b>Password: </b> A password used to <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_8bf79983-1325-42db-8e2c-520c8ab2ae74" data-linktype="relative-path">decrypt</a> the imported
+certificate data.</p><p><b>bInstallToMetabase: </b>If set to 1 or
+VARIANT_TRUE, indicates that the imported certificate is associated with the
+web server instance specified by <i>InstanceName</i>.</p><p><b>bAllowExport: </b>If set to 1 or VARIANT_TRUE,
+indicates that the newly imported certificate is made exportable.</p><p><b>bOverWriteExisting: </b>If set to 1 or
+VARIANT_TRUE, indicates that importing a duplicate certificate will not
+generate an error.</p><p><b>cbSize: </b>Contains the number of bytes in the <i>pBlobBinary</i>
+buffer including the terminating null character.</p><p><b>pBlobBinary: </b>A buffer containing an exported, <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_179b9392-9019-45a3-880b-26f6890522b7" data-linktype="relative-path">base64</a>-encoded certificate
+to be imported on the target machine. This buffer is a null-terminated array of
+bytes.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it failed. If
+the 12-bit facility code (bits 16–27) is set to 0x007, the value contains a
+Win32 error code in the lower 16 bits. Zero or positive values indicate
+success, with the lower 16 bits in positive nonzero values containing warnings
+or flags defined in the method implementation. For more information about Win32
+error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000006cf</p>
+  <p>RPC_S_STRING_TOO_LONG</p>
+  </td>
+  <td>
+  <p>The string is too long.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80092005</p>
+  <p>CRYPT_E_EXISTS</p>
+  </td>
+  <td>
+  <p>The object or property already exists.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The <b>opnum</b> field value for this method is 22. </p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>If <i>InstanceName</i> or <i>Password</i> are empty strings,
+return E_INVALIDARG.</p>
+</li><li><p><span><span> 
+</span></span>If <i>InstanceName</i> or <i>Password</i> contains more than 260
+characters, return RPC_STRING_TOO_LONG.</p>
+</li><li><p><span><span> 
+</span></span>Attempt to use base64 to decode the <i>pBlobBinary</i> blob.</p>
+</li><li><p><span><span> 
+</span></span>Attempt to decrypt and import the decoded data with the password
+specified by <i>Password</i>. If <i>bAllowExport</i> is set to 1 or
+VARIANT_TRUE, attempt to flag the imported certificate as exportable.<a id="Appendix_A_Target_37"></a><a aria-label="Product behavior note 37" href="88fd1df0-e63e-41ca-9bf3-bedcab57cd86#Appendix_A_37" data-linktype="relative-path">&lt;37&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If the import fails because the password does not match the one
+used to export and <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_8312d817-fdc5-4a49-8894-729b7b9e0ce5" data-linktype="relative-path">encrypt</a>
+the certificate data, return E_INVALIDARG.<a id="Appendix_A_Target_38"></a><a aria-label="Product behavior note 38" href="88fd1df0-e63e-41ca-9bf3-bedcab57cd86#Appendix_A_38" data-linktype="relative-path">&lt;38&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If <i>bOverWriteExisting</i> is not set to 1 or VARIANT_TRUE and
+the imported certificate already exists in the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_cf99dc44-da7f-41c1-8f9f-75d1e4026e55" data-linktype="relative-path">certificate store</a>, return
+CRYPT_E_EXISTS; otherwise, continue processing the import.</p>
+</li><li><p><span><span> 
+</span></span>If <i>bInstallToMetabase</i> is set to 1 or VARIANT_TRUE, the
+imported certificate is associated with the web server instance specified by <i>InstanceName</i>.</p>
+</li></ul></div>

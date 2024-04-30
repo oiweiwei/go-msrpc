@@ -1,0 +1,20 @@
+<div class="content"><p>The Failover Cluster: Setup and Validation Protocol
+(ClusPrep) is a COM/DCOM protocol to setup, cleanup, and validate a set of
+machines for failover cluster capability. The setup of state includes pushing
+to a new server the state required to participate in the failover cluster.
+Validation of state includes retrieving failover cluster state from a server to
+validate the state and directing the server to perform specific tasks and
+report status to validate it is functioning correctly. Cleanup of state
+includes removing restrictions on accessing shared disks and deletion of
+cluster state from the server.</p><p>The ClusPrep Protocol provides <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a> <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interfaces</a> that enable a
+client to:</p><ul><li><p><span><span> 
+</span></span>Validate the server configuration so as to make it eligible to
+become a <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_762051d8-4fdc-437e-af9d-3f4da77c3c7d" data-linktype="relative-path">node</a> in a <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_acd8b49c-8762-48fd-9272-26a03643322b" data-linktype="relative-path">failover cluster</a>.</p>
+</li><li><p><span><span> 
+</span></span>Configure a server to no longer be a node in a failover cluster.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve log information from a node in a failover cluster.</p>
+</li><li><p><span><span> 
+</span></span>Determine whether the hardware/software settings of a server meet
+the requirements to be part of a failover cluster.</p>
+</li></ul></div>

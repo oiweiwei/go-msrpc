@@ -1,0 +1,129 @@
+<div class="content"><p> </p><p>The <b>R_DhcpDeleteSubnet</b> method deletes an IPv4 subnet
+from the DHCPv4 server. The <i>ForceFlag</i> defines the behavior of the
+operation when an IP address from the subnet has been allocated to some DHCPv4
+client.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpDeleteSubnet(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [in] DHCP_FORCE_FLAG ForceFlag
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SubnetAddress: </b>This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>,
+uniquely identifying the IPv4 subnet that needs to be removed from the DHCPv4
+server.</p><p><b>ForceFlag: </b>This is of type <span><a href="3aca524f-86d6-494c-beaf-35c3936780a5" data-linktype="relative-path">DHCP_FORCE_FLAG (section 2.2.1.1.9)</a></span>
+enumeration. If the flag is set to DhcpNoForce and an IPv4 address from this
+subnet has been served to some DHCPv4/BOOTP client, the IPv4 subnet is not
+deleted; if the flag is set to DhcpFullForce, the IPv4 subnet is deleted along
+with the DHCPv4 client lease record on the DHCPv4 server; if the flag is set to
+DhcpFailoverForce, the IPv4 subnet is deleted along with the DHCPv4 client
+lease record on the DHCPv4 server but the DNS resource records corresponding to
+the DHCPv4 client lease records are not deleted from the DNS server.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E27</p>
+  <p>ERROR_DHCP_ELEMENT_CANT_REMOVE</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet cannot be removed because at
+  least one IPv4 address has been leased out to some client from the subnet.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E90</p>
+  <p>ERROR_DHCP_FO_SCOPE_ALREADY_IN_RELATIONSHIP</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet is part of a failover
+  relationship and cannot be deleted without first removing the failover
+  relationship.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 7.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the Abstract Data Model (ADM) element <b>DHCPv4Scope</b>
+entry corresponding to the <i>SubnetAddress</i> parameter from the server ADM
+element <b>DHCPv4ScopesList</b>. If the <b>DHCPv4Scope</b> ADM element entry is
+not found, return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>DHCPv4Scope.IsFailover</b> ADM element is set to TRUE,
+return ERROR_DHCP_FO_ALREADY_IN_RELATIONSHIP.<a id="Appendix_A_Target_29"></a><a aria-label="Product behavior note 29" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_29" data-linktype="relative-path">&lt;29&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If this subnet has served the IPv4 address to some DHCPv4/BOOTP
+clients, and <i>ForceFlag</i> is set to DhcpNoForce, return error
+ERROR_DHCP_ELEMENT_CANT_REMOVE; else, delete the <b>DHCPv4Scope</b> ADM element
+entry corresponding to the <i>SubnetAddress</i> from the <b>DHCPv4ScopesList</b>
+ADM element.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ForceFlag </i>is set to DhcpFullForce, delete all <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a></span>
+PTR resource records corresponding to the DHCPv4 client lease records from the
+DNS server, using the message for DNS PTR resource record deletion (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90264" data-linktype="external">[RFC1035]</a></span>
+sections 3.3 and 4.1, <span><a href="https://go.microsoft.com/fwlink/?LinkId=107017" data-linktype="external">[RFC2136]</a></span>
+sections 2.5 and 3.4) and the data shown in the following table.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>DNS Fields</p>
+   </th>
+   <th>
+   <p>Values</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NAME ([RFC1035] sections 3.5 and 4.1)</p>
+  </td>
+  <td>
+  <p>The IP address stored as the client IP address in the
+  DHCPv4 client lease record in the DHCP server database.</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The DRS_COMP_ALG_TYPE enumeration is a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete
+type</a></span> for identifying a compression algorithm.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   DRS_COMP_ALG_NONE = 0,
+   DRS_COMP_ALG_UNUSED = 1,
+   DRS_COMP_ALG_MSZIP = 2,
+   DRS_COMP_ALG_WIN2K3 = 3
+ } DRS_COMP_ALG_TYPE;
+</pre></div>
+</dd></dl><p><b>DRS_COMP_ALG_NONE:</b>  No compression.</p><p><b>DRS_COMP_ALG_UNUSED:  </b>Unused. MUST not be
+used.</p><p><b>DRS_COMP_ALG_MSZIP:  </b>MSZIP algorithm.</p><p><b>DRS_COMP_ALG_WIN2K3:  </b>Windows Server 2003
+operating system compression.</p></div>

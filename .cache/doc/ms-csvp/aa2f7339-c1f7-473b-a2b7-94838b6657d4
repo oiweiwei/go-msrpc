@@ -1,0 +1,61 @@
+<div class="content"><p>The CprepConnectToNewSmbShares3 method attempts to connect
+to shares represented by <b>ClusPrepShares</b> in the <b>ClusprepShareList</b>
+at the given list of IP address strings.</p><dl>
+<dd>
+<div><pre> HRESULT CprepConnectToNewSmbShares3(
+   [in, string, size_is(dwNumberOfPaths,)] 
+     LPWSTR* ppwszSharePaths,
+   [in] DWORD dwNumberOfPaths
+ );
+</pre></div>
+</dd></dl><p><b>ppwszSharePaths: </b>Specifies the address of a <i>dwNumberOfPaths</i>-sized
+block of <a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a>s.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive nonzero
+values containing warnings or flags defined in the method implementation. For
+more information about Win32 error codes and HRESULT values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful. The connection used at least
+  one of the file <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_a49a79ea-dac7-4016-9a84-cf87161db7e3" data-linktype="relative-path">shares</a>
+  specified in <i>ppwszSharePaths</i>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 8.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Via an implementation-specific mechanism, connect to the shares
+represented by <b>ClusPrepShares</b> in the <b>ClusprepShareList</b>, using one
+or more of the IP addresses passed. </p>
+</li></ul></div>

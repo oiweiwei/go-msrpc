@@ -1,0 +1,93 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="external">msdn link</a></p><p>The LsarOpenPolicy2 method opens a context handle to the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_ae65dac0-cd24-4e83-a946-6d1097b71553" data-linktype="relative-path">RPC server</a>. This is the
+first function that MUST be called to contact the Local Security Authority
+(Domain Policy) Remote Protocol database.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarOpenPolicy2(
+   [in, unique, string] wchar_t* SystemName,
+   [in] PLSAPR_OBJECT_ATTRIBUTES ObjectAttributes,
+   [in] ACCESS_MASK DesiredAccess,
+   [out] LSAPR_HANDLE* PolicyHandle
+ );
+</pre></div>
+</dd></dl><p><b>SystemName: </b>This parameter does not have any
+effect on message processing in any environment. It MUST be ignored on receipt.</p><p><b>ObjectAttributes: </b>This parameter does not have
+any effect on message processing in any environment. All fields MUST<a id="Appendix_A_Target_59"></a><a aria-label="Product behavior note 59" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_59" data-linktype="relative-path">&lt;59&gt;</a> be ignored except <b>RootDirectory</b>
+which MUST be NULL.</p><p><b>DesiredAccess: </b>An <a href="7aeb7f17-0a6e-4f04-ac7e-7b1363cf9ecf" data-linktype="relative-path">ACCESS_MASK</a> value that
+specifies the requested access rights that MUST be granted on the returned
+PolicyHandle if the request is successful.</p><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle (as
+specified in section <a href="0d093105-e8c8-45f7-a79d-182aafd60c6e" data-linktype="relative-path">2.2.2.1</a>)
+that represents a reference to the abstract data model of a policy object, as
+specified in section <a href="c939c70e-8cf0-4d90-a9cc-1c5002951723" data-linktype="relative-path">3.1.1.1</a>.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing below.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the supplied parameters is incorrect. For
+  example, this can happen when <i>ObjectAttributes</i> is NULL or <i>DesiredAccess</i>
+  is zero.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p><i>DesiredAccess</i>: A bitmask specifying the access that
+the caller attempts to obtain on the policy object, which is access-checked
+according to section <a href="e5e1e32e-4066-435d-b669-044fe997eaf7" data-linktype="relative-path">3.1.4.2.1</a>.
+The method-specific portion of the check is the following:</p><dl>
+<dd>
+<div><pre> LET serverInfo be a SERVER_INFO_101 structure
+ CALL ServerGetInfo(101, &amp;serverInfo)
+ LET isDomainController be a boolean initialized to FALSE
+ IF (serverInfo.sv101_version_type &amp; (SV_TYPE_DOMAIN_CTRL | SV_TYPE_DOMAIN_BAKCTRL)) THEN
+     Set isDomainController equal to TRUE
+ END IF
+            
+ IF ((isDomainController equals FALSE) and (IsRequestorAnonymous() and LsaRestrictAnonymous is set to TRUE)) THEN
+     Return STATUS_ACCESS_DENIED
+ END IF
+</pre></div>
+</dd></dl><p>SERVER_INFO_101, SV_TYPE_DOMAIN_CTRL, and
+SV_TYPE_DOMAIN_BACKCTRL are specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/39c502dd-022b-4a68-9367-89fd76a23bc3" data-linktype="relative-path">2.3.12</a>.
+The ServerGetInfo procedure is specified in [MS-DTYP] section <a href="../ms-dtyp/af09da35-4960-4562-adab-b89a1dfb6f16" data-linktype="relative-path">2.6</a>. The
+valid account-rights bits are specified in section <a href="b61b7268-987a-420b-84f9-6c75f8dc8558" data-linktype="relative-path">2.2.1.1.2</a>, and the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a> is
+specified in section 3.1.1.1.  The IsRequestorAnonymous procedure is specified
+in section <a href="5d50b55f-e9c7-4af6-bf85-02e8043f66ea" data-linktype="relative-path">3.1.4.2.3</a>.</p><p><i>PolicyHandle</i>: If the request is successful, the
+server MUST create and return a context handle (section <a href="1011130b-0413-460d-81ed-d1821d141639" data-linktype="relative-path">3.1.1.7</a>) via <i>PolicyHandle</i>,
+with its fields initialized as follows:</p><ul><li><p><span><span> 
+</span></span>LsaContextHandle.HandleType = &#34;Policy&#34;</p>
+</li><li><p><span><span> 
+</span></span>LsaContextHandle.Object = the policy object</p>
+</li><li><p><span><span> 
+</span></span>LsaContextHandle.GrantedAccess = as specified in section
+3.1.4.2.1</p>
+</li></ul><p>The return value MUST be set to STATUS_SUCCESS in this case.</p><p>The LsarOpenPolicy3 method supersedes this message and MUST
+be used whenever possible.</p></div>

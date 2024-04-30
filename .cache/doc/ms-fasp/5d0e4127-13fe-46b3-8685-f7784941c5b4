@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>This structure is used to contain a number of <span><a href="3122d4b1-9500-43af-900a-27fe64688623" data-linktype="relative-path">FW_PORT_RANGE</a></span>
+elements.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_PORT_RANGE_LIST {
+   [range(0, 1000)] unsigned long dwNumEntries;
+   [size_is(dwNumEntries)] PFW_PORT_RANGE pPorts;
+ } FW_PORT_RANGE_LIST,
+  *PFW_PORT_RANGE_LIST;
+</pre></div>
+</dd></dl><p><b>dwNumEntries:</b>  This field specifies
+the number of port ranges that the structure contains.</p><p><b>pPorts:</b>  A pointer to an array of
+FW_PORT_RANGE elements. The number of elements is given as <b>dwNumEntries</b>.</p></div>

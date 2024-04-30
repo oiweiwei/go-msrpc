@@ -1,0 +1,108 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/5412f0bc-5eb9-4197-b4c4-c5a8c06ba018" data-linktype="external">msdn link</a></p><p>The <b>NetrDatabaseDeltas</b> method SHOULD<a id="Appendix_A_Target_217"></a><a aria-label="Product behavior note 217" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_217" data-linktype="relative-path">&lt;217&gt;</a> return a set of changes (or <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_bac72edb-4ce9-4baa-8977-f33e331b2b5e" data-linktype="relative-path">deltas</a>) performed to the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_6bb6ffcf-2a22-4989-89ef-6c9937f91b8b" data-linktype="relative-path">SAM database</a>, SAM built-in
+database, or <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_48a53a9a-6c9a-4df8-9882-1eccdf32340b" data-linktype="relative-path">LSA databases</a>
+after a particular value of the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0b04ee8e-be04-4d04-94c4-90e58390f83d" data-linktype="relative-path">database serial number</a>. It
+is used by <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_ce1138c6-7ab4-4c37-98b4-95599071c3c3" data-linktype="relative-path">BDCs</a> to
+request <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_00f35ba3-4dbb-4ff9-8e27-572a6aea1b15" data-linktype="relative-path">database</a> changes
+from the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a> that are
+missing on the BDC. </p><dl>
+<dd>
+<div><pre> NTSTATUS NetrDatabaseDeltas(
+   [in, string] LOGONSRV_HANDLE PrimaryName,
+   [in, string] wchar_t* ComputerName,
+   [in] PNETLOGON_AUTHENTICATOR Authenticator,
+   [in, out] PNETLOGON_AUTHENTICATOR ReturnAuthenticator,
+   [in] DWORD DatabaseID,
+   [in, out] PNLPR_MODIFIED_COUNT DomainModifiedCount,
+   [out] PNETLOGON_DELTA_ENUM_ARRAY* DeltaArray,
+   [in] DWORD PreferredMaximumLength
+ );
+</pre></div>
+</dd></dl><p><b>PrimaryName: </b>The custom binding handle (as defined
+in section <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>)
+that represents the connection to the PDC.</p><p><b>ComputerName: </b>The null-terminated Unicode
+string that contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS
+name</a> of the BDC calling this method.</p><p><b>Authenticator: </b>A pointer to a <a href="76c93227-942a-4687-ab9d-9d972ffabdab" data-linktype="relative-path">NETLOGON_AUTHENTICATOR</a>
+structure that contains the client <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e72a2c02-84a2-4ce3-b66f-86f725642dc3" data-linktype="relative-path">authenticator</a>.</p><p><b>ReturnAuthenticator: </b>A pointer to a <b>NETLOGON_AUTHENTICATOR</b>
+structure that contains the server return authenticator.</p><p><b>DatabaseID: </b>The identifier for a specific
+account database set as follows:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Indicates the SAM database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Indicates the SAM built-in database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Indicates the LSA database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>DomainModifiedCount: </b>A pointer to an
+NLPR_MODIFIED_COUNT structure, as specified in section <a href="75dd3699-8abc-45d2-9fb7-e7a9a78779f5" data-linktype="relative-path">2.2.1.5.26</a>, that contains
+the database serial number. On input, this is the value of the database serial
+number on the client. On output, this is the value of the database serial
+number corresponding to the last element (delta) returned in the DeltaArray parameter.</p><p><b>DeltaArray: </b>A pointer to a <a href="82d47318-c4d8-4583-86a6-ce186504bcba" data-linktype="relative-path">NETLOGON_DELTA_ENUM_ARRAY</a>
+structure that contains an array of enumerated changes (deltas) to the
+specified database with database serial numbers larger than the database serial
+number value specified in the input value of the <i>DomainModifiedCount</i>
+parameter.</p><p><b>PreferredMaximumLength: </b>The value that
+specifies the preferred maximum size, in bytes, of data to return in the <i>DeltaArray</i>
+parameter. This is not a hard upper limit but serves as a guide to the server.
+The server SHOULD<a id="Appendix_A_Target_218"></a><a aria-label="Product behavior note 218" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_218" data-linktype="relative-path">&lt;218&gt;</a> stop including elements in
+the returned <i>DeltaArray</i> after the size of the returned data equals or
+exceeds the value of the <i>PreferredMaximumLength</i> parameter. It is up to
+the client implementation to choose the value for this parameter. </p><p><b>Return Values: </b>The method returns 0x00000000
+on success; otherwise, it returns a nonzero error code.</p><p>The synchronization that this method performs is not a full
+synchronization; rather, a subset of database changes is returned. To perform a
+full synchronization, call <a href="86683ada-19a2-414e-afaf-124f77dc4685" data-linktype="relative-path">NetrDatabaseSync</a>.</p><p>The server that receives this call MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Verify that the client is a BDC.</p>
+</li><li><p><span><span> 
+</span></span>Verify the client authenticator. The server MUST return status
+code STATUS_ACCESS_DENIED if the verification fails.</p>
+</li><li><p><span><span> 
+</span></span>Validate that <i>DatabaseID</i> is one of the allowed values,
+0x00000000 through 0x00000002. If the <i>DatabaseID</i> is not one of these
+values, the server MUST return the status code STATUS_INVALID_LEVEL.</p>
+</li><li><p><span><span> 
+</span></span>Given the BDC database serial number, obtain all database records
+that are missing on the BDC and return the array of deltas,
+NETLOGON_DELTA_ENUM_ARRAY, for the missing records. The number of elements
+returned is affected by the value of the <i>PreferredMaximumLength</i>
+parameter. The server SHOULD<a id="Appendix_A_Target_219"></a><a aria-label="Product behavior note 219" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_219" data-linktype="relative-path">&lt;219&gt;</a> stop
+including elements in the returned array after the size of the returned data
+equals or exceeds the value of the <i>PreferredMaximumLength</i> parameter. The
+server SHOULD also limit the number of elements per local configuration to
+avoid large array allocations.</p>
+</li><li><p><span><span> 
+</span></span>Compute and return the server authenticator.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST set the value of the <i>DomainModifiedCount</i>
+parameter to the database serial number of the last delta returned in the
+array.</p>
+</li><li><p><span><span> 
+</span></span>If not all missing records are returned, the server MUST return
+the status code STATUS_MORE_ENTRIES. </p>
+</li><li><p><span><span> 
+</span></span>The server maintains and updates a state that indicates the
+client progress in the synchronization protocol, as defined in section <a href="f28f9dc8-eeb2-4112-9eec-a466f639c761" data-linktype="relative-path">3.6</a>.</p>
+</li></ul></div>

@@ -1,0 +1,41 @@
+<div class="content"><p> </p><p>The SASetNSAccountInformation method MUST configure the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_b505ab37-868d-426c-bb19-af21e675e0b8" data-linktype="relative-path">credentials</a></span>
+under which all <span><a href="4d44c426-fad2-4cc7-9677-bfcd235dca33" data-linktype="relative-path">ATSvc</a></span> tasks run.</p><dl>
+<dd>
+<div><pre> HRESULT SASetNSAccountInformation(
+   [in, string, unique] SASEC_HANDLE Handle,
+   [in, string, unique] const wchar_t* pwszAccount,
+   [in, string, unique] const wchar_t* pwszPassword
+ );
+</pre></div>
+</dd></dl><p><b>Handle: </b>Pointer to a <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+MUST specify the server. The client MUST map this string to an <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle. The server MUST ignore this parameter. For more details, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+sections 4.3.5 and 5.1.5.2.</p><p><b>pwszAccount: </b>MUST be a pointer to a string
+that specifies the account name.</p><p><b>pwszPassword: </b>MUST be a pointer to a string
+that specifies the password for the named account. See section <span><a href="5a141af0-ffb1-452e-8739-2dbece0d978e" data-linktype="relative-path">5.1</a></span>
+for security considerations.</p><p>Upon receipt of the SASetNSAccountInformation call, the
+server MUST:</p><ul><li><p><span><span> 
+</span></span>Return E_ACCESSDENIED if the caller does not have administrative
+privileges on the server.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>pwszAccount</i> parameter is NULL, store
+&#34;LocalSystem&#34; in the ATSvc account name conceptual data structure and
+return S_OK.<a id="Appendix_A_Target_61"></a><a aria-label="Product behavior note 61" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_61" data-linktype="relative-path">&lt;61&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Return the value 0x8007000D, which is the <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+form of the Win32 error ERROR_INVALID_DATA, if the <i>pwszPassword</i>
+parameter is longer than 127 characters.</p>
+</li><li><p><span><span> 
+</span></span>Return the value 0x8007000D, which is the HRESULT form of the
+Win32 error ERROR_INVALID_DATA, if the <i>pwszPassword</i> parameter is NULL.<a id="Appendix_A_Target_62"></a><a aria-label="Product behavior note 62" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_62" data-linktype="relative-path">&lt;62&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Return E_ACCESSDENIED if the <i>pwszPassword</i> parameter is not
+valid for <i>pwszAccount</i>.<a id="Appendix_A_Target_63"></a><a aria-label="Product behavior note 63" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_63" data-linktype="relative-path">&lt;63&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Store the <i>pwszAccount</i> string in the ATSvc account name and
+add an entry to the credential store mapping from <i>pwszAccount</i> to <i>pwszPassword</i>.</p>
+</li></ul><p>If any errors are raised during the processing, they are
+returned. For more information about return codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>
+and <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">Win32 Error
+Codes</a></span> in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section 2.1.</p></div>

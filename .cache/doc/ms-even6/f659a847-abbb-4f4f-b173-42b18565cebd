@@ -1,0 +1,80 @@
+<div class="content"><p> </p><p>The EvtRpcQueryNext (Opnum 11) method is used by a client to
+get the next batch of records from a query result set.</p><dl>
+<dd>
+<div><pre> error_status_t EvtRpcQueryNext(
+   [in, context_handle] PCONTEXT_HANDLE_LOG_QUERY logQuery,
+   [in] DWORD numRequestedRecords,
+   [in] DWORD timeOutEnd,
+   [in] DWORD flags,
+   [out] DWORD* numActualRecords,
+   [out, size_is(,*numActualRecords), range(0, MAX_RPC_RECORD_COUNT)] 
+     DWORD** eventDataIndices,
+   [out, size_is(,*numActualRecords), range(0, MAX_RPC_RECORD_COUNT)] 
+     DWORD** eventDataSizes,
+   [out] DWORD* resultBufferSize,
+   [out, size_is(,*resultBufferSize), range(0, MAX_RPC_BATCH_SIZE)] 
+     BYTE** resultBuffer
+ );
+</pre></div>
+</dd></dl><p><b>logQuery: </b>A handle to an <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_bb3fad7e-60bf-46d4-9c3f-7caea47a743e" data-linktype="relative-path">event log</a></span>.
+This parameter is an <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle,
+as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>, Context
+Handles. </p><p><b>numRequestedRecords: </b>A 32-bit unsigned integer
+that contains the number of events to return.<a id="Appendix_A_Target_19"></a><a aria-label="Product behavior note 19" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_19" data-linktype="relative-path">&lt;19&gt;</a></p><p><b>timeOutEnd: </b>A 32-bit unsigned integer that
+contains the maximum number of milliseconds to wait before returning, starting
+from the time the server begins processing the call.</p><p><b>flags: </b>A 32-bit unsigned integer that MUST be
+set to zero when sent and MAY be ignored on receipt.<a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a></p><p><b>numActualRecords: </b>A pointer to a 32-bit
+unsigned integer that contains the value that, on success, MUST be set to the
+number of events that are retrieved. This is useful when the method times out
+without receiving the full number of events specified in <i>numRequestedRecords</i>.
+If the method fails, the client MUST NOT use the value.</p><p><b>eventDataIndices: </b>A pointer to an array of
+32-bit unsigned integers that contain the offsets (in bytes) within the <i>resultBuffer</i>
+for the events that are read.</p><p><b>eventDataSizes: </b>A pointer to an array of
+32-bit unsigned integers that contain the sizes (in bytes) within the <i>resultBuffer</i>
+for the events that are read.</p><p><b>resultBufferSize: </b>A pointer to a 32-bit
+unsigned integer that contains the number of bytes of data returned in <i>resultBuffer</i>.</p><p><b>resultBuffer: </b>A pointer to a byte-array that
+contains the result set of one or more events. The events MUST be in binary XML
+format, as specified in section <span><a href="762528ba-f36a-4d17-ba2b-0f0244a45f2f" data-linktype="relative-path">2.2.17</a></span>. </p><p><b>Return Values: </b>The method MUST return ERROR_SUCCESS
+(0x00000000) on success. The method MUST return ERROR_TIMEOUT (0x000005bf) if
+no records are found within the time-out period. The method MUST return
+ERROR_NO_MORE_ITEMS (0x00000103) once the query has finished going through all
+the log(s); otherwise, it MUST return a different implementation-specific
+nonzero value as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>In response to this request from the client, the server MUST
+first validate the handle. The server MUST fail the operation if the handle is
+invalid. The server SHOULD save the log handle value it creates in the <b>EvtRpcRegisterLogQuery</b>
+method (as specified in section <span><a href="c7a37af2-fb11-4c26-b3af-694183bfdd68" data-linktype="relative-path">3.1.4.12</a></span>) in its
+handle table (as specified in section <span><a href="32102cb3-ea77-4171-bd1a-33c8c4d882aa" data-linktype="relative-path">3.1.1.12</a></span>) and
+compare it with the handle passed here to perform the check.<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a></p><p>The server MUST return ERROR_INVALID_PARAMETER (0x00000057)
+if the handle is invalid.</p><p>If the above check is successful, the server MUST attempt to
+read through the event log(s) and copy any events that pass the filter into <i>resultBuffer</i>.
+As mentioned in section 3.1.4.12, the context handle corresponds to the log
+query object on the server side. So the server casts the logQuery handle to its
+internal log query object after the validation of the handle. The log query
+object contains the position which indicates how many records the client has
+already received. The server reads the next <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_dca3e776-890f-48c8-be62-094a5f2fcf71" data-linktype="relative-path">record</a></span> after the
+position in the event log file. For each record it reads, it tries to match the
+query filter. If the event passes the filter, the server copies that event
+record into the client resultBuffer. The server MUST continue the operation
+until the number of events copied equals the number of events specified by the <i>numRequestedRecords</i>
+parameter, or until the duration of the call exceeds the number of milliseconds
+specified by the <i>timeOutEnd</i> parameter, or until there are no more
+records to be read. The server MUST update its position in the log query object
+to keep track of the next event record the server needs to return the next time
+a client calls this method. If the <i>timeOutEnd</i> parameter is 0xFFFFFFFF,
+the server SHOULD ignore the time-out and process the call as long as it needs
+without checking the time-out.</p><p>If the server cannot find any records in the time specified
+by the <i>timeOutEnd</i> parameter, it MUST return ERROR_TIMEOUT (0x000005bf). </p><p>If the server cannot find any records because it reached the
+end of the file, it MUST return ERROR_NO_MORE_ITEMS (0x00000103).</p><p>The server returns the result in the five output parameters:
+<i>numActualRecords</i>, <i>eventDataIndices</i>, <i>eventDataSizes</i>, <i>resultBufferSize</i>,
+and <i>resultBuffer</i>. On successful return, the <i>numActualRecords</i>
+contains the number of events in the <i>resultBuffer</i>. All the returned
+events are in BinXML format and they are packed as one binary blob in the <i>resultBuffer</i>.
+The total size of all these events are marked by <i>resultBufferSize</i>. Since
+all the events are packed together, there is a need to identify where the
+separator is for each event in the result. To do this, the server fills two
+arrays:  eventDataIndices and eventDataSizes. Both arrays contain the <i>numActualRecords</i>
+of elements. For the eventDataIndices array, each array element is a 32-bit
+value which is the start position of each event in the <i>resultBuffer</i>. For
+the eventDataSizes array, each element is a 32-bit value which is the size of
+every event.</p><p>The server MUST return a value indicating success or failure
+for this operation.</p></div>

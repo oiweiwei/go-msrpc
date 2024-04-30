@@ -1,0 +1,11 @@
+<div class="content"><p>The GetDeviceTypeId_Call structure is used to obtain the
+reader&#39;s device ID from the smart card reader&#39;s INF file.</p><dl>
+<dd>
+<div><pre> typedef struct _GetDeviceTypeId_Call {
+   REDIR_SCARDCONTEXT Context;
+   [string] wchar_t* szReaderName;
+ } GetDeviceTypeId_Call;
+</pre></div>
+</dd></dl><p><b>Context:</b>  A valid context, as
+specified in section <a href="060abee1-e520-4149-9ef7-ce79eb500a59" data-linktype="relative-path">2.2.1.1</a>.</p><p><b>szReaderName:</b>  A <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> containing
+the lookup name.</p></div>

@@ -1,0 +1,86 @@
+<div class="content"><p>RpcGetPrinterData retrieves printer configuration data for a
+printer or <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a>.</p><dl>
+<dd>
+<div><pre> DWORD RpcGetPrinterData(
+   [in] PRINTER_HANDLE hPrinter,
+   [in, string] wchar_t* pValueName,
+   [out] DWORD* pType,
+   [out, size_is(nSize)] BYTE* pData,
+   [in] DWORD nSize,
+   [out] DWORD* pcbNeeded
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object or
+server object that was opened by <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter (section 3.1.4.2.3)</a>,
+<a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx (section 3.1.4.2.15)</a>,
+<a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter (section 3.1.4.2.2)</a>,
+or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx (section 3.1.4.2.14)</a>.</p><p><b>pValueName: </b>A pointer to a string that
+identifies the configuration data to get. For rules governing value names, see
+section <a href="cd9850cf-1e6c-4875-9b65-e159cf2d83d6" data-linktype="relative-path">2.2.4.18</a>.</p><dl>
+<dd>
+<p>For print servers, the value name is one of the
+predefined strings listed in <a href="1393a76f-5851-49a5-bf14-7188ca6763b2" data-linktype="relative-path">Server
+Handle Key Values (section 2.2.3.10)</a>.</p>
+</dd>
+<dd>
+<p>For printer objects, the value name MAY be one of
+the predefined strings listed in <a href="4a81aa1c-469e-4941-8c4d-b8c4093b7fc2" data-linktype="relative-path">Printer Data
+Values (section 2.2.3.11)</a>. Also, the value name
+&#34;ChangeID&#34;<a id="Appendix_A_Target_279"></a><a aria-label="Product behavior note 279" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_279" data-linktype="relative-path">&lt;279&gt;</a> is
+reserved by the protocol and has a special meaning. It identifies a read-only
+value that specifies that a change identifier is returned in the buffer pointed
+to by <i>pData</i>. This identifier is a <b>DWORD</b> that is set by the print
+server to a new, unique value each time printer information changes. The client
+SHOULD use the change identifier to decide if it has stale information about a
+printer object, in which case it SHOULD call this method or <a href="ccbf288a-0768-416d-bede-0ef1987fc286" data-linktype="relative-path">RpcGetPrinter (section 3.1.4.2.6)</a>
+to update its view of the printer object. Only the fact that the <i>pData</i>
+buffer value changes is significant; the change identifier value itself is
+arbitrary. If the value name is not one of these predefined strings, it is an
+arbitrary string defined by the printer driver associated with the printer
+object or by client applications.</p>
+</dd></dl><p><b>pType: </b>A parameter specified in <a href="183564fd-8a69-4fa2-a01e-51cebc7fb475" data-linktype="relative-path">Dynamically Typed Query
+Parameters (section 3.1.4.1.2)</a>.</p><p><b>pData: </b>A pointer to BUFFER as specified in
+Dynamically Typed Query Parameters.</p><dl>
+<dd>
+<p>This parameter can be NULL if <i>nSize</i> equals
+zero</p>
+</dd></dl><p><b>nSize: </b>A parameter specified in Dynamically
+Typed Query Parameters.</p><p><b>pcbNeeded: </b>A parameter specified in
+Dynamically Typed Query Parameters.</p><p><b>Return Values: </b>This method MUST return zero (ERROR_SUCCESS)
+to indicate successful completion or a nonzero Windows error code to indicate
+failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server validates parameters
+as follows:</p><ul><li><p><span><span> 
+</span></span>The server MUST perform the validation steps that are specified
+in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE
+Parameters (section 3.1.4.1.11)</a>.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST perform the validation steps that are specified
+in Dynamically Typed Query Parameters.</p>
+</li><li><p><span><span> 
+</span></span>For server objects, the server MUST verify that the <i>pValueName</i>
+parameter points to a string that is one of the predefined value names listed
+in Server Handle Key Values (section 2.2.3.10). If this verification
+fails, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>For printer objects, the server MUST verify that, if the <i>pValueName</i>
+parameter points to a string that is one of the predefined value names listed
+in Printer Data Values (section 2.2.3.11), the print server supports
+retrieving the value for this printer according to the rules in section
+2.2.3.11. If this verification fails, return ERROR_NOT_SUPPORTED.</p>
+</li><li><p><span><span> 
+</span></span>For printer objects, the server MAY verify that the <i>pValueName</i>
+parameter points to a string that complies with the rules specified in section
+2.2.4.18.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST NOT perform access checks on the <i>hPrinter</i>
+object.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>With the data identified by <i>pValueName</i>, perform the
+processing and response steps<a id="Appendix_A_Target_280"></a><a aria-label="Product behavior note 280" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_280" data-linktype="relative-path">&lt;280&gt;</a>
+specified in Dynamically Typed Query Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

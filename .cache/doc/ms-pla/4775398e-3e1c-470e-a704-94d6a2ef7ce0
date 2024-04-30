@@ -1,0 +1,19 @@
+<div class="content"><p>The DataCollectorType enumeration defines the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_3184c8c5-f13b-4d77-b04a-b92feff97f61" data-linktype="relative-path">data collector</a> types.</p><dl>
+<dd>
+<div><pre> typedef  enum
+ {
+   plaPerformanceCounter = 0,
+   plaTrace = 1,
+   plaConfiguration = 2,
+   plaAlert = 3,
+   plaApiTrace = 4
+ } DataCollectorType;
+</pre></div>
+</dd></dl><p><b>plaPerformanceCounter:  </b>Collects <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance counter</a> data.
+The IPerformanceCounterDataCollector interface represents this data collector. </p><p><b>plaTrace:  </b>Collects events from an event trace
+session. The ITraceDataCollector interface represents this data collector.</p><p><b>plaConfiguration:  </b>Collects computer
+configuration information. The IConfigurationDataCollector interface represents
+this data collector.</p><p><b>plaAlert:  </b>Monitors performance counters and
+performs actions if the counter value crosses the given threshold. The
+IAlertDataCollector interface represents this data collector.</p><p><b>plaApiTrace:  </b>Logs API calls made by the
+process. The IApiTracingDataCollector interface represents this data collector.</p></div>

@@ -1,0 +1,29 @@
+<div class="content"><p> </p><p>This enumeration identifies the possible actions a
+connection security rule (section <span><a href="0d064110-5f2e-4b68-aa63-032c6cd5e4c6" data-linktype="relative-path">2.2.55</a></span>) can have.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_CS_RULE_ACTION
+ {
+   FW_CS_RULE_ACTION_INVALID = 0,
+   FW_CS_RULE_ACTION_SECURE_SERVER = 1,
+   FW_CS_RULE_ACTION_BOUNDARY = 2,
+   FW_CS_RULE_ACTION_SECURE = 3,
+   FW_CS_RULE_ACTION_DO_NOT_SECURE = 4,
+   FW_CS_RULE_ACTION_MAX = 5
+ } FW_CS_RULE_ACTION;
+</pre></div>
+</dd></dl><p><b>FW_CS_RULE_ACTION_INVALID:  </b>This value MUST
+NOT be used. It is defined for simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 0.</p><p><b>FW_CS_RULE_ACTION_SECURE_SERVER:  </b>This action
+requires inbound traffic to be <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span> traffic and
+attempts to secure outbound traffic with IPsec. This symbolic constant has a
+value of 1.</p><p><b>FW_CS_RULE_ACTION_BOUNDARY:  </b>This action
+attempts to secure inbound and outbound traffic with IPsec. If the action fails
+to secure the traffic, the traffic still flows on the clear. This symbolic
+constant has a value of 2.</p><p><b>FW_CS_RULE_ACTION_SECURE:  </b>This action
+requires inbound and outbound traffic to be secured by IPsec. This symbolic
+constant has a value of 3.</p><p><b>FW_CS_RULE_ACTION_DO_NOT_SECURE:  </b>This action
+exempts the traffic from being secured by IPsec. This symbolic constant has a
+value of 4.</p><p><b>FW_CS_RULE_ACTION_MAX:  </b>This value and values
+that exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing IDL definitions and code. This symbolic constant has a
+value of 5.</p></div>

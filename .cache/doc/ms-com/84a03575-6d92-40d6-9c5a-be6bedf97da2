@@ -1,0 +1,7 @@
+<div class="content"><p>This protocol extends the protocol described in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+by providing facilities to add <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transactions</a>,
+synchronization, multiple <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_a224e395-3fea-48bd-b141-3dd9bee2136a" data-linktype="relative-path">object
+class</a> configurations, security, and other attributes to distributed object
+applications. The protocol consists of a set of extensions layered on top of
+the DCOM remote protocol. The following diagram shows the layering of the
+protocol stack.</p><p><img id="MS-COM_pict3353c08d-b2f4-8cb6-58da-32a88046f9e5.png" src="ms-com_files/image001.png" alt="Layering of the protocol stack" title="Layering of the protocol stack" data-linktype="relative-path"/></p><p><b>Figure 1: Layering of the protocol stack</b></p></div>

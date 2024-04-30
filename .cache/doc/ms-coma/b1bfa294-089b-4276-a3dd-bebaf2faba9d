@@ -1,0 +1,17 @@
+<div class="content"><p>This method is called by a client to perform capability
+negotiation for the <a href="bb9c1f3a-5ff3-40a4-bec5-8ff28007ce2d" data-linktype="relative-path">Multiple-Bitness
+Capability (section 3.1.4.4)</a>.</p><dl>
+<dd>
+<div><pre> HRESULT SupportsMultipleBitness(
+   [out] BOOL* pbSupportsMultipleBitness
+ );
+</pre></div>
+</dd></dl><p><b>pbSupportsMultipleBitness: </b>A pointer to a
+value that, upon successful completion, indicates whether the server supports
+the multiple-bitness capability.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>, 
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server MUST
+attempt to set the value referenced by <i>pbSupportsMultipleBitness</i> to
+indicate whether it supports the multiple-bitness capability, and fail the call
+if it cannot set the value.</p></div>

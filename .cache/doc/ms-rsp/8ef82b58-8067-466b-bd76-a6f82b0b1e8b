@@ -1,0 +1,21 @@
+<div class="content"><p>The Remote Shutdown Protocol is designed for shutting down a
+remote computer or for terminating the shutdown of a remote computer during the
+shutdown waiting period. Following are some of the examples of this protocol&#39;s
+applications: </p><ul><li><p><span><span> 
+</span></span>Shut down a remote computer and display a message in the shutdown
+dialog box for 30 seconds.</p>
+</li><li><p><span><span> 
+</span></span>Terminate a requested remote system shutdown during the shutdown
+waiting period.</p>
+</li><li><p><span><span> 
+</span></span>Force applications to be closed, log off users, and shut down a
+remote computer.</p>
+</li><li><p><span><span> 
+</span></span>Reboot a remote computer.</p>
+</li></ul><p>In this document, the use of the terms <a href="7a7ca3c2-1346-417b-93e8-e8940a524da6#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> and <a href="7a7ca3c2-1346-417b-93e8-e8940a524da6#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> are in the protocol
+client and server context. This means that the client will initiate an <a href="7a7ca3c2-1346-417b-93e8-e8940a524da6#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> call and the server
+will respond.</p><p>This is an RPC-based protocol. The protocol operation is
+stateless.</p><p>This is a simple request-response protocol. For every method
+that the server receives, it executes the method and returns a completion. The
+client simply returns the completion status to the caller. This is a stateless
+protocol; each method call is independent of any previous method calls. </p></div>

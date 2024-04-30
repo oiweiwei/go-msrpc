@@ -1,0 +1,177 @@
+<div class="content"><p>The W32TimeQueryStatus method returns the service status
+data of the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9846d08d-ad98-4bb9-a1e7-1f0bfbdd1113" data-linktype="relative-path">time service</a>.<a id="Appendix_A_Target_49"></a><a aria-label="Product behavior note 49" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_49" data-linktype="relative-path">&lt;49&gt;</a> The <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a> syntax of this method
+is specified as follows.</p><dl>
+<dd>
+<div><pre> unsigned long W32TimeQueryStatus(
+   [in] handle_t hBinding,
+   [out, ref] PW32TIME_STATUS_INFO* pStatusInfo
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b><a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> primitive binding
+handle as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+part 3, sections Interface Definition Language and Stubs.</p><p><b>pStatusInfo: </b>A pointer that receives a pointer
+to a <a href="f60ebce0-df96-4c96-b40b-fdbd34a2c936" data-linktype="relative-path">W32TIME_STATUS_INFO</a>
+structure containing status data for the time service.</p><p><b>Return Values: </b>This method MUST return 0 on
+success; on failure, it returns a nonzero <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_a0f899ec-e1a5-4e04-8abc-80df987c6fb4" data-linktype="relative-path">error code</a>. The values
+transmitted in this field are implementation specific. All nonzero values MUST
+be treated as equivalent for the purposes of this protocol.<a id="Appendix_A_Target_50"></a><a aria-label="Product behavior note 50" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_50" data-linktype="relative-path">&lt;50&gt;</a></p><p>When W32TimeQueryStatus is invoked, the server MUST return
+the associated time service status data structure, as specified in section
+2.2.17, and populate it as follows:</p><table><thead>
+  <tr>
+   <th>
+   <p>Element field</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ulSize</p>
+  </td>
+  <td>
+  <p>The size, in bytes, of the W32TIME_STATUS_INFO
+  structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>eLeapIndicator</p>
+  </td>
+  <td>
+  <p>The Leap Indicator (sys.leap), as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90272" data-linktype="external">[RFC1305]</a> section
+  3.2.1, &#34;Common Variables&#34;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>nStratum</p>
+  </td>
+  <td>
+  <p>The Stratum (sys.stratum), as specified in [RFC1305]
+  section 3.2.1, &#34;Common Variables&#34;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>nPollInterval</p>
+  </td>
+  <td>
+  <p>The Poll Interval (sys.poll), as specified in
+  [RFC1305] section 3.2.1, &#34;Common Variables&#34;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>refidSource</p>
+  </td>
+  <td>
+  <p>The Reference Clock Identifier (sys.refid), as
+  specified in [RFC1305] section 3.2.1, &#34;Common Variables&#34;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>qwLastSyncTicks</p>
+  </td>
+  <td>
+  <p>The <b>LastSyncTicks</b> element value (section <a href="1da649d7-3edf-4a9a-98c2-907ecacd1633" data-linktype="relative-path">3.2.1.1</a>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>toRootDelay</p>
+  </td>
+  <td>
+  <p>The Root Delay (sys.rootdelay), as specified in
+  [RFC1305] section 3.2.1, &#34;Common Variables&#34;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>tpRootDispersion</p>
+  </td>
+  <td>
+  <p>The Root Dispersion (sys.rootdispersion), as specified
+  in [RFC1305] section 3.2.1, &#34;Common Variables&#34;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>nClockPrecision</p>
+  </td>
+  <td>
+  <p>The Precision (sys.precision), as specified in
+  [RFC1305] section 3.2.1, &#34;Common Variables&#34;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>wszSource</p>
+  </td>
+  <td>
+  <p>The <b>TimeSourceIPAddress</b> element value (section
+  3.2.1.1).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>toSysPhaseOffset</p>
+  </td>
+  <td>
+  <p>The <b>SysPhaseOffset</b> element value (section
+  3.2.1.1).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ulLcState</p>
+  </td>
+  <td>
+  <p>The <b>CurrentState</b> element value (section
+  3.2.1.1).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ulTSFlags</p>
+  </td>
+  <td>
+  <p>The <b>TimeSourceFlags</b> element value (section
+  3.2.1.1).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ulClockRate</p>
+  </td>
+  <td>
+  <p>The <b>ClockRate</b> element value (section 3.2.1.1).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ulNetlogonServiceBits</p>
+  </td>
+  <td>
+  <p>An unsigned, 32-bit integer that contains information
+  about the functionality that the time service provides, as specified in
+  section <a href="1b85fd82-0302-4b73-968a-3d01c2e184de" data-linktype="relative-path">3.2.5.2</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>eLastSyncResult</p>
+  </td>
+  <td>
+  <p>An integer that indicates the TimeSync_ReturnResult
+  code, as specified in section <a href="e43aa118-82a9-486f-9c74-4a47a0c5e541" data-linktype="relative-path">3.2.5.1</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>tpTimeLastGoodSync</p>
+  </td>
+  <td>
+  <p>The <b>TimeLastGoodSync</b> element value (section
+  3.2.1.1).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>cEntries</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pEntries</p>
+  </td>
+  <td>
+  <p>NULL</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

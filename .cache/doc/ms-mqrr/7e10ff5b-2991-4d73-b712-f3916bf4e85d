@@ -1,0 +1,114 @@
+<div class="content"><p> </p><p>The client MUST invoke the <b>R_EndReceive</b> method to
+advise the server that the <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_945305f4-e72a-469a-b171-59232870ede6" data-linktype="relative-path">message packet</a></span>
+returned by the R_StartReceive (Opnum 7) (section <span><a href="1bd20827-f774-4279-ae8d-4898d6faf6e9" data-linktype="relative-path">3.1.4.7)</a></span>
+method has been received. </p><p>The combination of the <b>R_StartReceive</b> method and the
+positive acknowledgment of the <b>R_EndReceive</b> method ensures that a
+message packet is not lost in transit from the server to the client due to a
+network outage during the call sequence.</p><p>Note that a call to the R_StartTransactionalReceive (Opnum
+13) (section <span><a href="c5296e0c-9e12-4fe8-a25d-56924982ac3e" data-linktype="relative-path">3.1.4.13)</a></span> method is
+ended through a corresponding call to the R_EndTransactionalReceive (Opnum
+15) (section <span><a href="f15f7fba-9259-4641-ab05-08a0485f5a8a" data-linktype="relative-path">3.1.4.15)</a></span> method,
+not through a call to this method.</p><dl>
+<dd>
+<div><pre> HRESULT R_EndReceive(
+   [in] handle_t hBind,
+   [in] QUEUE_CONTEXT_HANDLE_NOSERIALIZE phContext,
+   [in, range(1,2)] DWORD dwAck,
+   [in] DWORD dwRequestId
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b>MUST be an <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle
+parameter for use by the server=, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>phContext: </b>MUST be set by the client to the <span><a href="3e818e81-b12a-4ccd-9606-f434c346a3e9" data-linktype="relative-path">QUEUE_CONTEXT_HANDLE_NOSERIALIZE (section 2.2.4.1)</a></span>
+handle used in the corresponding call to the <b>R_StartReceive</b> method. The
+handle MUST have been returned by the server in the <i>pphQueue</i> output
+parameter of a prior call to the R_OpenQueue (Opnum 2) (section <span><a href="b4b3001c-f2ff-4a17-9830-7b21af371dc4" data-linktype="relative-path">3.1.4.2)</a></span>
+method and MUST NOT have been closed through a prior call to the R_CloseQueue
+(Opnum 3) (section <span><a href="e480114a-587f-4110-b03b-7a6188cca307" data-linktype="relative-path">3.1.4.3)</a></span> method.
+This value MUST NOT be NULL.</p><p><b>dwAck: </b>MUST be set to an Acknowledgment (ACK)
+or a Negative Acknowledgment (NACK) for the message packet received from the
+server in an <b>R_StartReceive</b> method request. The following table lists
+possible values.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>RR_ACK</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The client acknowledges that the message packet was
+  received successfully.</p>
+  <p>The server MUST remove the <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span> from the <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>
+  and make it unavailable for subsequent consumption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RR_NACK</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The client acknowledges that the message packet was
+  not received successfully.</p>
+  <p>The server MUST keep the message in the queue and make
+  it available for subsequent consumption.</p>
+  </td>
+ </tr></tbody></table><p><b>dwRequestId: </b>MUST be set by the client to the
+same value as the <i>dwRequestId</i> parameter in the corresponding call to the
+<b>R_StartReceive</b> method. This parameter acts as an identifier to correlate
+an <b>R_EndReceive</b> method call to an <b>R_StartReceive</b> method call. </p><p><b>Return Values: </b>On success, this method MUST return
+MQ_OK (0x00000000).</p><p>If an error occurs, the server MUST return a failure <b>HRESULT</b>,
+and the client MUST treat all failure <b>HRESULTs</b> identically. </p><p>Exceptions Thrown:</p><p>No exceptions are thrown except those thrown by the
+underlying RPC protocol [MS-RPCE].</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>If the queue referenced by the <i>phContext</i> parameter handle
+has no <span><a href="d068bd5b-b930-404f-a147-05b27a6a82a0" data-linktype="relative-path">PendingRequestEntry (section 3.1.1.2)</a></span>
+ADM element instance in its <span><a href="9712f072-8179-43ba-861c-d9c50ab0df4f" data-linktype="relative-path">PendingRequestTable (section 3.1.1.3)</a></span>
+ADM element, return MQ_ERROR_INVALID_HANDLE (0xC00E0007).</p>
+</li><li><p><span><span> 
+</span></span>Look up the <b>PendingRequestEntry</b> ADM element instance
+referenced by the {<i>phContext</i>, <i>dwRequestId</i>} key pair in the <b>PendingRequestTable</b>
+ADM element. If a match is not found on the {<i>phContext</i>, <i>dwRequestId</i>}
+key pair, return MQ_ERROR_INVALID_PARAMETER (0xC00E0006). Otherwise, remove the
+<b>PendingRequestEntry</b> ADM element instance from the <b>PendingRequestTable</b>
+ADM element, and cancel the associated instance of the <span><a href="2527bcdd-6427-4695-8755-d555c4f055f3" data-linktype="relative-path">Pending
+Request Cleanup Timer (section 3.1.2.2)</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Find the corresponding <b>OpenQueueDescriptor</b> ADM element
+instance by comparing the <i>phContext</i> parameter with the <b>Handle</b> ADM
+attribute for all <b>OpenQueueDescriptor</b> ADM element instances maintained
+by the local <b>QueueManager</b> ADM element instance.</p>
+</li><li><p><span><span> 
+</span></span>If not found, return a failure <b>HRESULT</b>, and perform no
+further actions; otherwise, assign the found <b>OpenQueueDescriptor</b> ADM
+element instance to the local variable <i>queueDesc</i>.</p>
+</li><li><p><span><span> 
+</span></span>Find the corresponding <b>Message</b> ADM element instance by
+searching <b>OpenQueueDescriptor.QueueReference.MessagePositionCollection</b>
+for a <b>MessagePosition</b> ADM element instance where <b>MessagePosition.MessageReference.LookupIdentifier</b>
+equals the <b>LookupIdentifier</b> ADM attribute of the <b>PendingRequestEntry</b>
+ADM element instance referenced by {<i>phContext</i>, <i>dwRequestId</i>}. The
+corresponding <b>Message</b> ADM element instance is referred to by the <b>MessageReference</b>
+ADM attribute of the <b>MessagePosition</b> ADM element instance where the
+match was found.</p>
+</li><li><p><span><span> 
+</span></span>If not found, return MQ_ERROR_MESSAGE_NOT_FOUND (0xC00E0088).</p>
+</li><li><p><span><span> 
+</span></span>Set <i>rStatus</i> to the result of a <span><a href="../ms-mqdmpr/fafcf10f-d43b-475a-908c-fc39bbe9272b" data-linktype="relative-path">Dequeue
+Message End</a></span> (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section 3.1.7.1.12) event with the following inputs:</p>
+<ul><li><p><span><span>  </span></span><i>iQueueDesc</i>
+:= <i>queueDesc</i>.</p>
+</li><li><p><span><span>  </span></span><i>iMessage</i>
+:= The found <b>Message</b> ADM element instance.</p>
+</li><li><p><span><span>  </span></span><i>iDeleteMessage</i>
+:= True if the <i>dwAck</i> parameter is equal to RR_ACK and false if the <i>dwAck</i>
+parameter is equal to RR_NACK.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return <i>rStatus</i>.</p>
+</li></ul></div>

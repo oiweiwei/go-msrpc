@@ -1,0 +1,132 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_DP_INFO</b> structure SHOULD<a id="Appendix_A_Target_55"></a><a aria-label="Product behavior note 55" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_55" data-linktype="relative-path">&lt;55&gt;</a> represent the current state of
+an <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_68dc613a-d602-41ae-9acc-76ffe97877c4" data-linktype="relative-path">application
+directory partition</a></span> on the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_04fd0982-6bb6-44f1-817e-795715049c50" data-linktype="relative-path">directory server</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcDirectoryPartition {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   [string] char* pszDpFqdn;
+   [string] wchar_t* pszDpDn;
+   [string] wchar_t* pszCrDn;
+   DWORD dwFlags;
+   DWORD dwZoneCount;
+   DWORD dwState;
+   DWORD dwReserved[3];
+   [string] wchar_t* pwszReserved[3];
+   [range(0,10000)] DWORD dwReplicaCount;
+   [size_is(dwReplicaCount)] PDNS_RPC_DP_REPLICA ReplicaArray[];
+ } DNS_RPC_DP_INFO,
+  *PDNS_RPC_DP_INFO;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The structure version
+number; this value MUST be set to 0x00000000.</p><p><b>dwReserved0:</b> MUST be set to zero when sent and
+MUST be ignored on receipt.</p><p><b>pszDpFqdn:</b> A pointer to a null-terminated <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_409411c4-b4ed-4ab6-b0ee-6d7815f85a35" data-linktype="relative-path">UTF-8</a></span>
+<span><a href="../ms-dtyp/08460486-bacc-48af-8520-195ff7f80db5" data-linktype="relative-path">string</a></span>
+that specifies the FQDN of the application directory partition. This value is
+read from the <b>dnsRoot</b> attribute of the partition <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_353fac65-0774-4ba8-8081-eb4c963f94e7" data-linktype="relative-path">crossRef
+object</a></span> (see <b>pszCrDn</b>) converted to UTF-8 for this application
+directory partition.</p><p><b>pszDpDn:</b> A pointer to a null-terminated <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a></span> that specifies the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">distinguished name</a></span>
+for the application directory partition <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_d6dac363-88bc-4250-914d-b62364e36ad8" data-linktype="relative-path">naming context root</a></span>
+object. This is the value of the <b>nCName</b> attribute of the application
+directory partition crossRef object (see <b>pszCrDn</b>).</p><p><b>pszCrDn:</b> A pointer to a null-terminated
+Unicode string that specifies the distinguished name for the application
+directory partition crossRef object (located beneath &#34;CN=Partitions,
+CN=Configuration, &lt;Forest DN&gt;&#34;).</p><p><b>dwFlags:</b> The application directory partition
+properties; this MUST be set to a combination of allowed values for
+DNS_RPC_DP_FLAGS (section <span><a href="27e378aa-d4d7-43de-8b34-3e5b957a7130" data-linktype="relative-path">2.2.7.1.1</a></span>).</p><p><b>dwZoneCount:</b> The number of <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zones</a></span>
+from this application directory partition that are loaded in the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a></span>
+server&#39;s memory. This value is incremented or decremented in the Application
+Directory Partition Table whenever a DNS Zone Table entry corresponding to a
+zone in this application directory partition is initialized or deleted,
+respectively. </p><p><b>dwState:</b> The current state of this application
+directory partition. This MUST be set to one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+   <th>
+   <p>Source</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DNS_DP_OKAY</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The application directory partition is running and
+  ready for all operations.</p>
+  </td>
+  <td>
+  <p>The Application Directory Partition naming context
+  root object&#39;s <b>instanceType</b> attribute (<span><a href="../ms-ada1/19528560-f41e-4623-a406-dabcfff0660f" data-linktype="relative-path">[MS-ADA1]</a></span>
+  section <span><a href="../ms-ada1/3c95bace-a9bd-4227-9c32-de1015d2bcd2" data-linktype="relative-path">2.309</a></span>)
+  has neither DS_INSTANCETYPE_NC_COMING (0x00000010), nor the
+  DS_INSTANCETYPE_NC_GOING ( 0x00000020) bit set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_DP_STATE_REPL_INCOMING</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The application directory partition is replicating
+  onto the directory server but has not completed an initial synchronization so
+  will be ignored for the time being.</p>
+  </td>
+  <td>
+  <p>The Application Directory Partition naming context
+  root object&#39;s <b>instanceType</b> attribute has the
+  (DS_INSTANCETYPE_NC_COMING ( 0x00000010) bit set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_DP_STATE_REPL_OUTGOING</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The application directory partition is being deleted
+  from the directory server and so will be ignored.</p>
+  </td>
+  <td>
+  <p>The Application Directory Partition naming context
+  root object&#39;s <b>instanceType</b> attribute has the DS_INSTANCETYPE_NC_GOING
+  ( 0x00000020) bit set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_DP_STATE_UNKNOWN</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The application directory partition state is
+  unavailable for unknown reasons.</p>
+  </td>
+  <td>
+  <p>The Application Directory Partition naming context
+  root object&#39;s <b>instanceType</b> attribute is unavailable due to an error
+  condition.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwReserved:</b> MUST be set to zero when sent and
+MUST be ignored on receipt.</p><p><b>pwszReserved:</b> MUST be set to zero when sent
+and MUST be ignored on receipt.</p><p><b>dwReplicaCount:</b> The number of replication
+locations for the application directory partition. This value MUST be between 0
+and 10000. This value is calculated from the values of the <b>msDS-NC-Replica-Locations</b>
+and <b>msDS-NC-RO-Replica-Locations</b><a id="Appendix_A_Target_56"></a><a aria-label="Product behavior note 56" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_56" data-linktype="relative-path">&lt;56&gt;</a>attributes
+of the application directory partition crossRef object (see <b>pszCrDn</b>), as
+the sum of the number of DNs listed in each attribute.</p><p><b>ReplicaArray:</b> Array of DNS_RPC_DP_REPLICA
+(section <span><a href="9528535c-d6a4-44a2-9c6f-964e8adefa56" data-linktype="relative-path">2.2.7.2.2</a></span>), that
+contains information about replication locations for this application directory
+partition. This structure is populated from the values of the <b>msDS-NC-Replica-Locations</b>
+(section <span><a href="../ms-ada2/a04496ef-ac82-4f82-9d11-a9cee7932878" data-linktype="relative-path">2.382</a></span>)
+and <b>msDS-NC-RO-Replica-Locations</b> (section <span><a href="../ms-ada2/40240fed-01e9-4b45-8ce5-e7db09055896" data-linktype="relative-path">2.383</a></span>)
+attributes of the application directory partition crossRef object (see <b>pszCrDn</b>).
+Failure to read any of those attributes will be treated as if no replica exists
+for that attribute.</p></div>

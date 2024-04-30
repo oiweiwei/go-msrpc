@@ -1,0 +1,41 @@
+<div class="content"><p> </p><p>The <b>FAX_COVERPAGE_INFO_EXW</b> structure is used as an
+argument for the <b>FAX_SendDocumentEx</b> (section <span><a href="bac2e95f-f18b-448f-bb42-cc63b6ff04b2" data-linktype="relative-path">3.1.4.1.73</a></span>) call
+that specifies information about the fax cover page used when sending a fax.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwSizeOfStruct;
+   DWORD dwCoverPageFormat;
+   [string] LPWSTR lpwstrCoverPageFileName;
+   BOOL bServerBased;
+   [string] LPWSTR lpwstrNote;
+   [string] LPWSTR lpwstrSubject;
+ } FAX_COVERPAGE_INFO_EXW,
+  *PFAX_COVERPAGE_INFO_EXW,
+  *LPCFAX_COVERPAGE_INFO_EXW;
+</pre></div>
+</dd></dl><p><b>dwSizeOfStruct:</b> A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that holds the total size of the structure, in bytes. This value MUST be
+24 or 40 bytes. When filled in on a 32-bit implementation, this value SHOULD be
+24 bytes. When filled in on a 64-bit implementation, this value SHOULD be 40
+bytes.</p><p><b>dwCoverPageFormat:</b> A <b>DWORD</b> that
+indicates the format of the cover page template. This MUST be one of the values
+defined in <b>FAX_ENUM_COVERPAGE_FORMATS</b> (section <span><a href="760fc412-b0bc-4c07-93f2-9ca54c324451" data-linktype="relative-path">2.2.78</a></span>)
+enumeration. The required file format for the cover page template is described
+in <b>FAX_SendDocumentEx</b> (section 3.1.4.1.73) method.</p><p><b>lpwstrCoverPageFileName:</b> A pointer to a
+null-terminated character string that holds the file name of the cover page
+template. This file name SHOULD NOT include any path separators. If <b>bServerBased</b>
+is FALSE, the file extension MUST be &#34;.cov&#34;, and except for the terminating
+null character, the character string MUST contain only characters representing
+valid hexadecimal digits: &#34;0123456789abcdefABCDEF&#34;. If <b>bServerBased</b>
+is TRUE the file extension SHOULD be &#34;.cov&#34;. The cover page file MUST
+be present in the fax <b>server queue directory</b> when the <b>FAX_SendDocumentEx</b>
+call is made. If no cover-page information is available, this pointer MUST be
+NULL.</p><p><b>bServerBased:</b> A Boolean that indicates whether
+the cover page template specified by the <i>lpwstrCoverPageFileName</i>
+parameter is a new personal cover page template (when set to FALSE)  or a
+server-based cover page template (when set to TRUE). For more details on the
+semantics of TRUE and FALSE, see <b>FAX_SendDocumentEx</b>.</p><p><b>lpwstrNote:</b> A pointer to a null-terminated
+character string that holds the content for the <b>note</b> field of the cover
+page.</p><p><b>lpwstrSubject:</b> A pointer to a null-terminated
+character string that holds the content for the <b>subject</b> field.</p></div>

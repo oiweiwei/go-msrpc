@@ -1,0 +1,52 @@
+<div class="content"><p> </p><p>The DRS_MSG_REVMEMB_REPLY_V1 structure defines the response
+message received from the <span><a href="d5ace452-7cdd-4d50-bb64-39b4c55180a2" data-linktype="relative-path">IDL_DRSGetMemberships</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   ULONG errCode;
+   [range(0,10000)] ULONG cDsNames;
+   [range(0,10000)] ULONG cSidHistory;
+   [size_is(cDsNames,)] DSNAME** ppDsNames;
+   [size_is(cDsNames)] DWORD* pAttributes;
+   [size_is(cSidHistory,)] NT4SID** ppSidHistory;
+ } DRS_MSG_REVMEMB_REPLY_V1;
+</pre></div>
+</dd></dl><p><b>errCode:</b>  0 on success. On failure,
+this can be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>STATUS_INSUFFICIENT_RESOURCES</p>
+  <p>0xC000009A</p>
+  </td>
+  <td>
+  <p>Insufficient system resources exist to complete the
+  request.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>STATUS_TOO_MANY_CONTEXT_IDS</p>
+  <p>0xC000015A</p>
+  </td>
+  <td>
+  <p>The number of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_51c51c14-7f9d-4c0b-a69c-d3e059bfffac" data-linktype="relative-path">groups</a></span> is greater
+  than the number that can be returned to the caller.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cDsNames:</b>  Count of items in the <b>ppDsNames</b>
+array.</p><p><b>cSidHistory:</b>  Count of items in the <b>ppSidHistory</b>
+array.</p><p><b>ppDsNames:</b>  The filtered group
+membership. This list contains the combined membership for all the names
+specified in ppDsNames field of the input <span><a href="bc96a03b-579e-4454-8db4-12067b6ca985" data-linktype="relative-path">DRS_MSG_REVMEMB_REQ_V1</a></span>
+structure.</p><p><b>pAttributes:</b>  Properties of the
+returned groups. Values are chosen from SE_GROUP values.</p><p><b>ppSidHistory:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span>
+history of the returned groups.</p></div>

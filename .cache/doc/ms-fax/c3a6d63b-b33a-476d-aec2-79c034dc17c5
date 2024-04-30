@@ -1,0 +1,140 @@
+<div class="content"><p> </p><p>The <b>FAX_JOB_PARAMW</b> structure contains information
+about a fax job, including information about the <b>personal profiles</b>
+(section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>) for the
+sender and the recipient of the fax. This structure is used as an input
+argument for the <b>FaxObs_SendDocument</b> (section <span><a href="21b87199-d4e7-472c-9190-90c6bb16d947" data-linktype="relative-path">3.1.4.2.7</a></span>) method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD SizeOfStruct;
+   [string] LPCWSTR RecipientNumber;
+   [string] LPCWSTR RecipientName;
+   [string] LPCWSTR Tsid;
+   [string] LPCWSTR SenderName;
+   [string] LPCWSTR SenderCompany;
+   [string] LPCWSTR SenderDept;
+   [string] LPCWSTR BillingCode;
+   DWORD ScheduleAction;
+   SYSTEMTIME ScheduleTime;
+   DWORD DeliveryReportType;
+   [string] LPCWSTR DeliveryReportAddress;
+   [string] LPCWSTR DocumentName;
+   HCALL CallHandle;
+   DWORD_PTR Reserved[3];
+ } FAX_JOB_PARAMW,
+  *PFAX_JOB_PARAMW;
+</pre></div>
+</dd></dl><p><b>SizeOfStruct:</b> A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that contains the size, in bytes, of this structure. This value MUST be 80 or
+136 bytes. When filled in on a 32-bit implementation, this value SHOULD be 80
+bytes. When filled in on a 64-bit implementation, this value SHOULD be 136
+bytes.</p><p><b>RecipientNumber:</b> A null-terminated character
+string that holds the fax number of the fax transmission recipient.</p><p><b>RecipientName:</b> A null-terminated character
+string that holds the name of the fax transmission recipient.</p><p><b>Tsid:</b> A null-terminated character string that
+holds the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_3b1ad462-95fc-4739-b942-4a5670d6ae34" data-linktype="relative-path">transmitting subscriber
+identifier (TSID)</a></span>. The valid characters for a TSID string are the
+English letters, the numeric symbols, and the punctuation marks (ASCII range
+0x20 to 0x7F).</p><p><b>SenderName:</b> A null-terminated character string
+that holds the name of the fax transmission sender.</p><p><b>SenderCompany:</b> A null-terminated character
+string that holds the name of the fax transmission sender&#39;s company.</p><p><b>SenderDept:</b> A null-terminated character string
+that holds the name of the fax transmission sender&#39;s department.</p><p><b>BillingCode:</b> A null-terminated character
+string that holds an optional billing code for the fax transmission.</p><p><b>ScheduleAction:</b> A <b>DWORD</b> variable that
+indicates when the fax is to be sent. This value can be one of the following
+values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>JSA_NOW</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The fax is to be sent as soon as a fax device is
+  available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JSA_SPECIFIC_TIME</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The fax is to be sent at the time specified by the <b>ScheduleTime</b>
+  member of this structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JSA_DISCOUNT_PERIOD</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The fax is to be sent during the discount rate period.
+  The <b>FaxObs_GetConfiguration</b> (section <span><a href="af06e79b-a8eb-4e0d-ad9d-ae71738e1a0f" data-linktype="relative-path">3.1.4.2.24</a></span>)
+  method can be called to retrieve the discount period for the fax server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ScheduleTime:</b> A <b>SYSTEMTIME</b> ([MS-DTYP]
+section <span><a href="../ms-dtyp/2fefe8dd-ab48-4e33-a7d5-7171455a9289" data-linktype="relative-path">2.3.13</a></span>)
+structure indicating the local date and time to send the fax, in <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">UTC</a></span>
+format. This member is used when the <b>ScheduleAction</b> member is set to
+0x00000001 (JSA_SPECIFIC_TIME), and is otherwise ignored.</p><p><b>DeliveryReportType:</b> A <b>DWORD</b> variable
+that indicates the fax delivery report type. This value can be one of the <b>FAX_ENUM_DELIVERY_REPORT_TYPES</b>
+(section <span><a href="7a03bb5e-3ba7-45ec-b869-31350298e9b9" data-linktype="relative-path">2.2.76</a></span>) enumeration
+values. The DRT_ATTACH_FAX value can be combined with the DRT_EMAIL value in
+one value by using an OR operation. </p><p><b>DeliveryReportAddress:</b> A null-terminated
+character string. Contains the email address for the delivery report when the <b>DeliveryReportType</b>
+member is set to 0x00000001 (DRT_E_MAIL). Otherwise, this pointer value can be
+NULL.</p><p><b>DocumentName:</b> A null-terminated character
+string that holds the document name. A NULL pointer value specifies that no
+document name is specified for this fax job.</p><p><b>CallHandle:</b> An unsigned 32-bit integer value
+containing an optional TAPI call handle. For more information about TAPI, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=119989" data-linktype="external">[MSDN-TAPI2.2]</a></span>.
+For more information about this member, see <b>FaxObs_SendDocument</b>.</p><p><b>Reserved:</b> A table of three 32-bit unsigned
+integer fields (on 32-bit implementations), or 64-bit unsigned integer fields
+(on 64-bit implementations). If the first value, <b>Reserved[0],</b> is zero,
+then all values in this table SHOULD be ignored.</p><p>If the fax job is a normal job sent to one fax device
+(port), the <b>Reserved</b> values SHOULD be as follows:</p><ul><li><p><span><span>  </span></span><b>Reserved[0]</b>
+SHOULD be set to zero or to 0xFFFFFFFF (on 32-bit) or 0x00000000FFFFFFFF (on
+64-bit).</p>
+</li><li><p><span><span>  </span></span><b>Reserved[1]</b>
+SHOULD contain a device identifier such as the value contained by the <b>DeviceId</b>
+member of a valid <b>FAX_PORT_INFO</b> (section <span><a href="2b46d16c-e74a-4e3b-b50c-0b94f78bebd0" data-linktype="relative-path">2.2.7</a></span>) or <b>_FAX_PORT_INFO</b>
+(section <span><a href="ed920746-d222-4e0a-a75d-905f26cf1dfc" data-linktype="relative-path">2.2.8</a></span>) structure,
+describing one fax port (device).</p>
+</li><li><p><span><span>  </span></span><b>Reserved[2]</b>
+SHOULD be ignored.</p>
+</li></ul><dl>
+<dd>
+<p>If the fax job is part of a broadcast sequence
+executed by the client to send the same fax to multiple recipients, the <i>Reserved</i>
+values SHOULD be as follows:</p>
+</dd></dl><ul><li><p><span><span>  </span></span><b>Reserved[0]</b>
+SHOULD be set to 0xFFFFFFFE (on 32-bit) or 0x00000000FFFFFFFE (on 64-bit).</p>
+</li><li><p><span><span>  </span></span><b>Reserved[1]</b>
+SHOULD be set to one of the following two values:</p>
+<ul><li><p><span><span> 
+</span></span>A value of 1 (0x00000001 on 32-bit or 0x0000000000000001 on
+64-bit) for the first <b>FaxObs_SendDocument</b> method call made by the client
+to start the broadcast sequence.</p>
+</li><li><p><span><span> 
+</span></span>A value of 2 (0x00000002 on 32-bit or 0x0000000000000002 on
+64-bit) for the second and following <b>FaxObs_SendDocument</b> method calls
+made by the client to continue and complete a started broadcast sequence.</p>
+</li></ul></li></ul><ul><li><p><span><span> 
+</span></span><b>Reserved[2]</b> SHOULD be set to one of the following two
+values:</p>
+<ul><li><p><span><span> 
+</span></span>If <b>Reserved[1]</b> is set to a value of 1, <b>Reserved[2]</b>
+SHOULD be set to zero.</p>
+</li><li><p><span><span> 
+</span></span>If <b>Reserved[1]</b> is set to a value of 2, <b>Reserved[2]</b>
+SHOULD contain the job identifier returned by the <b>FaxObs_SendDocument</b>
+call that started the broadcast sequence. </p>
+</li></ul></li></ul><p>For more information about this member, see the <b>FaxObs_SendDocument</b>
+method.</p></div>

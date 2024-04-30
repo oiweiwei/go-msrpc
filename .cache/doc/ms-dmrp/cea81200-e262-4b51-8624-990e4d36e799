@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The REGIONSTATUS enumeration defines values for a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_a6ad00bd-9921-4266-9410-fe2325bbd503" data-linktype="relative-path">region&#39;s
+status</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum _REGIONSTATUS
+ {
+   REGIONSTATUS_UNKNOWN,
+   REGIONSTATUS_OK,
+   REGIONSTATUS_FAILED,
+   REGIONSTATUS_FAILING,
+   REGIONSTATUS_REGENERATING,
+   REGIONSTATUS_NEEDSRESYNC 
+ } REGIONSTATUS;
+</pre></div>
+</dd></dl><p><b>REGIONSTATUS_UNKNOWN:  </b>Region&#39;s status is
+unknown.</p><p><b>REGIONSTATUS_OK:  </b>Region is intact.</p><p><b>REGIONSTATUS_FAILED:  </b>Region failed.</p><p><b>REGIONSTATUS_FAILING:  </b>Region is in the
+process of failing.</p><p><b>REGIONSTATUS_REGENERATING:  </b>Region is
+regenerating data from the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_98c2ba19-d0f7-4db1-b6c1-4e7323cc5bc0" data-linktype="relative-path">fault-tolerant</a></span> check
+information.</p><p><b>REGIONSTATUS_NEEDSRESYNC:  </b>Region needs
+resynchronization.</p></div>

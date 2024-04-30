@@ -1,0 +1,67 @@
+<div class="content"><p>RpcAddPerMachineConnection adds a remote printer name to the
+list of supported printer connections for every user who locally logs onto the
+computer running the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print
+server</a>.<a id="Appendix_A_Target_311"></a><a aria-label="Product behavior note 311" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_311" data-linktype="relative-path">&lt;311&gt;</a></p><p>This method is used for remote administration of client
+computers running the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_b49fcfa1-e15c-4dce-be33-d74d5bfda785" data-linktype="relative-path">print
+system</a>.</p><dl>
+<dd>
+<div><pre> DWORD RpcAddPerMachineConnection(
+   [in, string, unique] STRING_HANDLE pServer,
+   [in, string] const wchar_t* pPrinterName,
+   [in, string] const wchar_t* pPrintServer,
+   [in, string] const wchar_t* pProvider
+ );
+</pre></div>
+</dd></dl><p><b>pServer: </b>A value that adheres to the
+specification in <a href="acb355a4-913b-4abb-8cb5-415aea160015" data-linktype="relative-path">Print
+Server Name Parameters (section 3.1.4.1.4)</a>.</p><p><b>pPrinterName: </b>A value that adheres to the
+specification in <a href="3f2d41eb-30e1-47e1-93bb-534ea50cf8eb" data-linktype="relative-path">Printer
+Name Parameters (section 3.1.4.1.5)</a>. A printer connection of the
+form:</p><dl>
+<dd>
+<div><pre> SERVER_NAME LOCAL_PRINTER_NAME  [with a non-empty SERVER_NAME.]
+</pre></div>
+</dd></dl><p><b>pPrintServer: </b>A pointer to a string that
+specifies the name of the print server that is hosting the printer to which the
+connection is established. For rules governing server names, see section <a href="9b3f8135-7022-4b72-accb-aefcc360c83b" data-linktype="relative-path">2.2.4.16</a>.</p><p><b>pProvider: </b>A pointer to a string that
+specifies the name of a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_8ba4eb41-4adc-4272-ae1a-456870ad8cde" data-linktype="relative-path">print
+provider</a>. If the string is the empty string &#34;&#34;, an
+implementation-specific default print provider name is used.<a id="Appendix_A_Target_312"></a><a aria-label="Product behavior note 312" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_312" data-linktype="relative-path">&lt;312&gt;</a> For rules governing print
+provider names, see section <a href="ffe40469-bbc0-4cc2-b7c6-bebd036a928d" data-linktype="relative-path">2.2.4.12</a>.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in Printer Name
+Parameters. Perform validations only of the correctness of the syntax of the
+name; do not perform existence checks for the actual printer object. The existence
+checks are deferred until the actual creation of the printer object upon user
+login, and no status feedback is possible. The administration client,
+therefore, is expected to pass only existing names.</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in Print Server
+Name Parameters. Perform validations only of the correctness of the syntax of
+the name; do not perform existence checks for the actual server object. The
+existence checks are deferred until the actual creation of the printer object
+upon user login, and no status feedback is possible. The administration client,
+therefore, is expected to pass only existing names.</p>
+</li><li><p><span><span> 
+</span></span>Verify that a per-machine printer connection with the same name
+does not already exist; and if that verification fails, return ERROR_PRINTER_ALREADY_EXISTS
+[MS-ERREF].</p>
+</li><li><p><span><span> 
+</span></span>Additional validation MAY<a id="Appendix_A_Target_313"></a><a aria-label="Product behavior note 313" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_313" data-linktype="relative-path">&lt;313&gt;</a> be
+performed.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Add the printer to the <b>list of per-machine connections</b> on
+the print server.</p>
+</li><li><p><span><span> 
+</span></span>Defer creation of the actual printer object for each user until the
+user logs on, and then create a printer object for the printer connection to
+the printer specified in <i>pPrinterName</i>. The created printer object cannot
+be shared and can be used only when locally logged onto the computer.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

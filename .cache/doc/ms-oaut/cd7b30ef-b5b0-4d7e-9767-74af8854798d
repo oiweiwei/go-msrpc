@@ -1,0 +1,21 @@
+<div class="content"><p>The GetCustData method retrieves the value of a custom data
+item associated with the type.</p><dl>
+<dd>
+<div><pre> HRESULT GetCustData(
+   [in] REFGUID guid,
+   [out] VARIANT* pVarVal
+ );
+</pre></div>
+</dd></dl><p><b>guid: </b>MUST be a <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> associated with the
+custom data item.</p><p><b>pVarVal: </b>MUST be set to the value associated
+with the GUID using the [custom] attribute (as specified in section <a href="7b5fa59b-d8f6-4a47-9695-630d3c10363e" data-linktype="relative-path">2.2.49.3</a>), or VT_EMPTY if
+the type does not have a value associated with the GUID.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul></div>

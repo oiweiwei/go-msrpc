@@ -1,0 +1,29 @@
+<div class="content"><p> </p><p>The <b>R_InetInfoGetServerCapabilities</b> method is called
+by the client. In response, the server returns information on the features of
+the <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_d9a0cf88-f6d7-4c52-a9fc-4ce5a7cb7260" data-linktype="relative-path">Internet
+protocol servers</a></span> and the host operating system.</p><dl>
+<dd>
+<div><pre> DWORD R_InetInfoGetServerCapabilities(
+   [in, string, unique] INET_INFO_IMPERSONATE_HANDLE pszServer,
+   [in] DWORD dwReserved,
+   [out] LPINET_INFO_CAPABILITIES_STRUCT* ppCap
+ );
+</pre></div>
+</dd></dl><p><b>pszServer: </b>The custom binding handle for the
+target system, as specified in section <span><a href="a6931aa0-3ab6-4018-a398-e142cb8e409e" data-linktype="relative-path">2.1.1</a></span>. The value
+MUST NOT be used by the server implementation.</p><p><b>dwReserved: </b>This value MUST be ignored by the
+server.</p><p><b>ppCap: </b>The pointer to an <span><b><a href="82f9ea0d-9361-4a1b-88d0-203bf6885c8e" data-linktype="relative-path">INET_INFO_CAPABILITIES_STRUCT</a></b></span>
+structure that indicates the capabilities of the Internet protocol servers on
+the host system.</p><p><b>Return Values: </b> The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>
+or [MS-ERREF] section <span><a href="../ms-erref/596a1078-e883-4972-9bbc-49e60bebca55" data-linktype="relative-path">2.3.1</a></span>.</p><dl>
+<dd>
+<p><b>ERROR_SUCCESS</b> (0x00000000)</p>
+</dd></dl><p><b>Exceptions Thrown: </b>No exceptions are thrown
+beyond those thrown by the underlying <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, as
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+</p><p>In response to this request from the client, the server MUST
+initialize <i>ppCap</i> with those features supported by the current version of
+the Internet protocol servers if the return code indicates success.</p></div>

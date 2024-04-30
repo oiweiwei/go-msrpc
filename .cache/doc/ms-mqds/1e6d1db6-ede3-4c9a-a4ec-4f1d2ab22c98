@@ -1,0 +1,71 @@
+<div class="content"><p> </p><p>This method returns a portion of the data from the result
+set computed in a previous call to <span><a href="ebe8417a-ded8-4f3d-9187-bbbdb0856f41" data-linktype="relative-path">S_DSLookupBegin (section 3.1.4.17)</a></span>
+and updates the cursor index to the first directory object that has not yet
+been returned to the client.</p><dl>
+<dd>
+<div><pre> HRESULT S_DSLookupNext(
+   [in] handle_t hBind,
+   [in] PCONTEXT_HANDLE_TYPE Handle,
+   [in] LPBOUNDED_PROPERTIES dwSize,
+   [out] unsigned long* dwOutSize,
+   [out, size_is(*dwSize), length_is(*dwOutSize)] 
+     PROPVARIANT pbBuffer[],
+   [in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth,
+   [out, size_is(*pdwServerSignatureSize)] 
+     unsigned char* pbServerSignature,
+   [in, out] LPBOUNDED_SIGNATURE_SIZE pdwServerSignatureSize
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST specify an <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle,
+as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>Handle: </b>MUST contain an RPC context handle acquired
+from a previous call to S_DSLookupBegin. The handle MUST NOT have been used in
+a previous call to <span><a href="216a94b4-77a2-418e-98b9-e9c37b6ed9ea" data-linktype="relative-path">S_DSLookupEnd (section 3.1.4.19)</a></span>.</p><p><b>dwSize: </b> MUST point to an unsigned long that contains
+the maximum number of elements to be returned in the <i>pbBuffer</i> array. If
+this parameter is less than the number of elements in the <i>pColumns</i>
+parameter in the corresponding call to S_DSLookupBegin, the server MUST set the
+<i>dwOutSize</i> parameter to 0x00000000 and return without retrieving any
+object properties.</p><p><b>dwOutSize: </b>A pointer to an unsigned <span><a href="../ms-dtyp/29d44d70-382f-4998-9d76-8a1fe93e445c" data-linktype="relative-path">LONG</a></span>
+that the server MUST set to the number of properties returned in <i>pbBuffer</i>
+for the set of objects being returned from this invocation of the
+S_DSLookupNext method. The server MUST return as many completed sets of
+properties as will fit in the buffer. If no matching objects are found, the
+server MUST set this parameter to 0 to inform the client that there is no more
+data.</p><p><b>pbBuffer: </b>MUST point to an array of <span><a href="8a7af299-9fb7-446b-8c63-7b867d915c96" data-linktype="relative-path">PROPVARIANT (section 2.2.3)</a></span>
+structures to contain the returned properties.</p><p><b>phServerAuth: </b>A <span><a href="c28a1e6b-4092-4443-b69f-5814d5c4f9e4" data-linktype="relative-path">PCONTEXT_HANDLE_SERVER_AUTH_TYPE (section 2.2.5)</a></span>
+RPC context handle acquired from the <i>pphServerAuth</i> parameter in a
+previous call to <span><a href="0e3ad7d0-6a64-480a-9f13-e94dd608d79d" data-linktype="relative-path">S_DSValidateServer (section 3.1.4.2)</a></span>.
+The server MUST use this parameter as a key to locate the GSS security context
+used to compute the signature returned in <i>pbServerSignature</i>. See section
+3.1.4.2.</p><p><b>pbServerSignature: </b> MUST point to the signed hash
+over the property values returned in <i>pbBuffer</i>. See the <i>pbServerSignature</i>
+parameter description in section <span><a href="f9f1a376-c436-4a27-815d-7d1e27a151e5" data-linktype="relative-path">3.1.4.7</a></span>.</p><p><b>pdwServerSignatureSize: </b> MUST be set by the client to
+point to an unsigned LONG that contains the maximum length in bytes of the
+server signature to return. MUST be set by the server to the actual length in
+bytes of the server signature on output. If the server signature is larger than
+the supplied buffer, the server MUST return MQ_ERROR_USER_BUFFER_TOO_SMALL
+(0xC00E0028).</p><p><b>Return Values: </b> If the method succeeds, the return
+value is 0. If the method fails, the return value is an implementation-specific
+error code.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>MQ_ERROR_USER_BUFFER_TOO_SMALL</b> (0xC00E0028)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC extension protocol, as specified in
+[MS-RPCE].</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Generate a <span><a href="8b21f3cb-b491-466d-8d6d-a763435dc37e" data-linktype="relative-path">Lookup Directory
+Next (section 3.1.6.8)</a></span> event with the following argument:</p>
+<ul><li><p><span><span>  </span></span><i>iLookupDescriptor</i>
+:= the object referenced by the <i>Handle</i> parameter</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <i>rStatus</i> of the preceding event is not MQ_OK, return <i>rStatus</i>
+and take no further action.</p>
+</li><li><p><span><span> 
+</span></span>If <i>rPropertyValue</i> of the event is empty:</p>
+<ul><li><p><span><span>  </span></span>Set
+<i>dwOutSize</i> to 0x00000000</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>Set
+<i>dwOutSize</i> to the number of elements in <i>rPropertyValue</i>.</p>
+</li><li><p><span><span>  </span></span>Set
+<i>pbBuffer</i> to <i>rPropertyValue</i></p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return MQ_OK.</p>
+</li></ul></div>

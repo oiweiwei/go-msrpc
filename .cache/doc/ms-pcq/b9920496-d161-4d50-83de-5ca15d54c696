@@ -1,0 +1,24 @@
+<div class="content"><p>The _PERF_DATA_HEADER structure is used at the beginning of
+a sequence of counter header blocks that are returned when the client queries
+the server for <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance
+counter</a> values.</p><dl>
+<dd>
+<div><pre> typedef struct _PERF_DATA_HEADER {
+   unsigned long dwTotalSize;
+   unsigned long dwNumCounter;
+   unsigned __int64 PerfTimeStamp;
+   unsigned __int64 PerfTime100NSec;
+   unsigned __int64 PerfFreq;
+   SYSTEMTIME SystemTime;
+ } PERF_DATA_HEADER,
+  *PPERF_DATA_HEADER;
+</pre></div>
+</dd></dl><p><b>dwTotalSize:</b>  The total size, in
+bytes, of the data.</p><p><b>dwNumCounter:</b>  The number of
+counters whose value is retrieved.</p><p><b>PerfTimeStamp:</b>  A high-resolution
+clock.</p><p><b>PerfTime100NSec:</b>  The number of 100
+nanosecond intervals since January 1, 1601, in Coordinated Universal Time
+(UTC).</p><p><b>PerfFreq:</b>  The frequency of a
+high-resolution clock.</p><p><b>SystemTime:</b>  The time at which data
+is collected on the <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_8b44f0c1-d7dc-4fb8-8e6c-104b88d62ecf" data-linktype="relative-path">provider</a>
+side. The format of this field is as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>.</p></div>

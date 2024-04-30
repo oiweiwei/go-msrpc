@@ -1,0 +1,13 @@
+<div class="content"><p>The GetTransmitCount_Return structure defines the number of
+transmit calls that were performed on the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_5cddf14c-b925-4494-9b55-d2c8259f9ad0" data-linktype="relative-path">smart card reader</a> (for more
+information, see section <a href="ba32fda3-7616-4521-a3aa-6029b6a6e562" data-linktype="relative-path">3.1.4.41</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _GetTransmitCount_Return {
+   long ReturnCode;
+   unsigned long cTransmitCount;
+ } GetTransmitCount_Return;
+</pre></div>
+</dd></dl><p><b>ReturnCode:</b>  <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a> or Win32 Error
+code. Zero indicates success; any other value indicates failure.</p><p><b>cTransmitCount:</b>  The field specifies
+the number of successful Transmit calls (for more information, see section <a href="0b24a330-7950-48f8-ade9-fb90d51d0546" data-linktype="relative-path">3.1.4.35</a>) performed on the
+reader since it was introduced to the system.</p></div>

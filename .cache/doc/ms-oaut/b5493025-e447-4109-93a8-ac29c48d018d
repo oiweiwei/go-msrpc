@@ -1,0 +1,60 @@
+<div class="content"><p> </p><p>The DECIMAL structure specifies a sign and scale for a
+number. Decimal variables are represented as 96-bit unsigned integers that are
+scaled by a variable power of 10.</p><dl>
+<dd>
+<div><pre> typedef struct tagDEC {
+   WORD wReserved;
+   BYTE scale;
+   BYTE sign;
+   ULONG Hi32;
+   ULONGLONG Lo64;
+ } DECIMAL;
+</pre></div>
+</dd></dl><p><b>wReserved:</b>  MUST be set to 0 and
+MUST be ignored by the recipient.</p><p><b>scale:</b>  MUST be the power of 10 by
+which to divide the 96-bit integer represented by Hi32 * 2^64 + Lo64. The value
+MUST be in the range of 0 to 28, inclusive.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0 — 28</p>
+  </td>
+  <td>
+  <p>Order of magnitude of the decimal number.</p>
+  </td>
+ </tr></tbody></table><p><b>sign:</b>  MUST equal one of the following
+values.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>The decimal contains a positive value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80</p>
+  </td>
+  <td>
+  <p>The decimal contains a negative value.</p>
+  </td>
+ </tr></tbody></table><p><b>Hi32:</b>  MUST be the high 32 bits of
+the 96-bit integer that is scaled and signed to represent the final DECIMAL
+value.</p><p><b>Lo64:</b>  MUST be the low 64 bits of
+the 96-bit integer that is scaled and signed to represent the final DECIMAL
+value.</p></div>

@@ -1,0 +1,170 @@
+<div class="content"><p> </p><p>This is the marshaled representation of a <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_3e11a72c-ed27-447b-b2c6-ff04fd452477" data-linktype="relative-path">context
+(1)</a></span>. It contains an array of marshaled <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_dc143034-cb8f-4d90-87ef-0fa96333807f" data-linktype="relative-path">context properties</a></span>,
+each of which is represented by a <span><a href="6865a1c4-f094-486e-990a-436257db57e5" data-linktype="relative-path">PROPMARSHALHEADER</a></span>.</p><p>There are three types of context (1) structures:</p><ul><li><p><span><span> 
+</span></span>A <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_519bff3c-1c9f-4d5a-aa88-a3c820a4ff3a" data-linktype="relative-path">client context</a></span>. This
+type of context (1) is sent in an activation request in the <b>pIFDClientCtx</b>
+field of the <span><a href="5892b550-cd9e-4277-9644-4886d3b6d754" data-linktype="relative-path">ActivationContextInfoData</a></span>
+structure (section 2.2.22.2.5). The context (1) structure MUST be marshaled
+into an <span><a href="88fdb261-7c9a-41ea-bfac-31583bdc65e6" data-linktype="relative-path">OBJREF_CUSTOM</a></span>
+structure (section 2.2.18.6) whose <b>clsid</b> field is set to
+CLSID_ContextMarshaler (section <span><a href="c25391af-f59e-40da-885e-cc84076673e4" data-linktype="relative-path">1.9</a></span>). The <b>iid</b>
+field of the <span><a href="fe6c5e46-adf8-4e34-a8de-3f756c875f31" data-linktype="relative-path">OBJREF</a></span> portion of
+the OBJREF_CUSTOM structure MUST be set to IID_IContext (section 1.9). An
+implementation MAY use this value as the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_76ad3105-3f05-479d-a40c-c9c8fa2ebd83" data-linktype="relative-path">IID</a></span> of an interface
+with the local IDL attribute (section <span><a href="100ac689-eb4e-4b63-8354-6e064a485d51" data-linktype="relative-path">2.2.27</a></span>).<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="acc42954-4073-4f05-b850-efd562022077#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>A <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_3b138442-c9c6-4f0f-bb59-66c783ed4d65" data-linktype="relative-path">prototype context</a></span>.
+An application or a higher-layer protocol can instruct a DCOM client to send
+this type of context (1) in an activation request. The prototype context is
+sent in the <b>pIFDPrototypeCtx</b> field of the ActivationContextInfoData
+structure (section 2.2.22.2.5). The context (1) structure MUST be marshaled
+into an OBJREF_CUSTOM structure (section 2.2.18.6) whose <b>clsid</b> field is
+set to CLSID_ContextMarshaler (section 1.9). The <b>iid</b> field of the OBJREF
+portion of the OBJREF_CUSTOM structure MUST be set to IID_IContext (see section
+1.9). An implementation MAY use this value as the IID of an interface with the
+local IDL attribute (section 2.2.27).<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="acc42954-4073-4f05-b850-efd562022077#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>An <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_a61f46c9-edea-481b-b494-517f3b05e88a" data-linktype="relative-path">envoy context</a></span>. An
+application or a higher-layer protocol can instruct a DCOM server to send this
+type of context (1) when marshaling an object. The envoy context is sent in the
+<b>Data</b> field of the <b>ElmArray</b> field (section <span><a href="33ae0690-a3f7-4591-8443-b9df4567984d" data-linktype="relative-path">2.2.18.8</a></span>)
+of an <span><a href="06220154-0372-495a-bfc6-a96b804884c6" data-linktype="relative-path">OBJREF_EXTENDED</a></span>
+structure (section 2.2.18.7).</p>
+</li></ul><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>MajorVersion</p>
+  </td>
+  <td colspan="16">
+  <p>MinVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ContextId
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNumExtents</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cbExtents</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MshlFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Count</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Frozen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PropMarshalHeader
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>MajorVersion (2 bytes): </b> The major version of
+this context marshaled format. This MUST be set to 0x0001.</p><p><b>MinVersion (2 bytes): </b>The minor version of
+this context (1) marshaled format. This MUST be set to 0x0001.</p><p><b>ContextId (16 bytes): </b> A <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+identifying the marshaled context (1).</p><p><b>Flags (4 bytes): </b>This MUST be set to the
+following value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CTXMSHLFLAGS_BYVAL</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The context is marshaled by value (this is the only
+  representation that is valid on the wire).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved (4 bytes): </b> This MUST be set to
+0x00000000 and MUST be ignored on receipt.</p><p><b>dwNumExtents (4 bytes): </b> This MUST be set to
+0x00000000.</p><p><b>cbExtents (4 bytes): </b> This MUST be set to
+0x00000000.</p><p><b>MshlFlags (4 bytes): </b>This MUST contain an
+implementation-specific value that MUST be ignored on receipt.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="acc42954-4073-4f05-b850-efd562022077#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a></p><p><b>Count (4 bytes): </b> The unsigned number of
+elements in the <b>PropMarshalHeader</b> array.</p><p><b>Frozen (4 bytes): </b> A Boolean that MUST be set
+to TRUE (0x00000001) and that MUST be ignored on receipt.</p><p><b>PropMarshalHeader (variable): </b> This MUST be an
+array of PROPMARSHALHEADER entries.</p></div>

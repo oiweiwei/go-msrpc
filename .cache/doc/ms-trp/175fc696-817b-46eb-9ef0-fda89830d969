@@ -1,0 +1,65 @@
+<div class="content"><p>The LINEEXTENSIONID packet describes an extension
+identifier. Extension identifiers are used to identify service
+provider-specific extensions for line devices. This packet is used by the line <a href="7c69dced-7bee-4ec8-a02e-f90b7afcfba6" data-linktype="relative-path">NegotiateAPIVersion</a>
+packet. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwExtensionID0</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwExtensionID1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwExtensionID2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwExtensionID3</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwExtensionID0 (4 bytes): </b>An unsigned 32-bit
+integer. The first part of the extension identifier. </p><p><b>dwExtensionID1 (4 bytes): </b>An unsigned 32-bit
+integer. The second part of the extension identifier. </p><p><b>dwExtensionID2 (4 bytes): </b>An unsigned 32-bit
+integer. The third part of the extension identifier. </p><p><b>dwExtensionID3 (4 bytes): </b>An unsigned 32-bit
+integer. The fourth part of the extension identifier. </p><p>These four members together specify a universally unique
+extension identifier that identifies a line device class extension. This packet
+cannot be extended.</p></div>

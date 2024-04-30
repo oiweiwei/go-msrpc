@@ -1,0 +1,164 @@
+<div class="content"><p>The TsProxyCreateChannel method is used to create a <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_9964c8b0-1d25-4e8e-9dd1-4a51577698f5" data-linktype="relative-path">channel</a> between the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> and the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>.<a id="Appendix_A_Target_44"></a><a aria-label="Product behavior note 44" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_44" data-linktype="relative-path">&lt;44&gt;</a> The RDG server SHOULD connect
+to the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_3657ab68-5a60-4cee-8082-dfc2e67435e9" data-linktype="relative-path">target server</a>
+during this call to start communication between the RDG client and target
+server. If connection to the target server cannot be done, the RDG server MUST
+return HRESULT_CODE(E_PROXY_TS_CONNECTFAILED) as noted in the Return Values
+section.<a id="Appendix_A_Target_45"></a><a aria-label="Product behavior note 45" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_45" data-linktype="relative-path">&lt;45&gt;</a> The RDG server MUST return a
+representation of the channel to the RDG client. After this method call has
+successfully been completed, a channel shutdown can be performed by using the <a href="6c537074-326f-4e28-b4eb-345f35404e7f" data-linktype="relative-path">TsProxyCloseChannel</a>
+method. Please refer to section <a href="2dda4aa8-adbb-4258-a50a-3bbc5647db47" data-linktype="relative-path">3.1.1</a> for a state
+transition diagram.</p><p>Prerequisites: The tunnel MUST be authorized; otherwise, the
+error ERROR_ACCESS_DENIED is returned.</p><p>Sequential Processing Rules:</p><ol><li><p><span>    </span>If some
+unexpected error occurs during the following process, the RDG server MUST
+return E_PROXY_INTERNALERROR.</p>
+</li><li><p><span>    </span>The RDG server
+MUST verify that the tunnel has been authorized. Otherwise, it MUST return
+ERROR_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>The RDG server
+MUST verify that the <i>tsEndPointInfo</i> parameter is not NULL and
+tsEndPointInfo-&gt;numResources is not zero. Otherwise, it MUST return
+ERROR_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>The RDG server
+MUST initialize the ADM element <b>Target server names</b> with combined array
+of the <b>resourceName</b> and <b>alternateResourceNames</b> members of the <i>tsEndPointInfo</i>
+parameter.</p>
+</li><li><p><span>    </span>The RDG server
+MUST do the resource authorization as per policies configured at the RDG
+server. If the resource is not authorized, then it MUST return
+E_PROXY_RAP_ACCESSDENIED.<a id="Appendix_A_Target_46"></a><a aria-label="Product behavior note 46" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_46" data-linktype="relative-path">&lt;46&gt;</a></p>
+</li><li><p><span>    </span>If <b>Reauthentication
+Connection</b> is TRUE:</p>
+<ol><li><p><span>   
+</span>The RDG server MUST find the original connection that has initiated the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_a010756e-fca1-42cc-94a6-9a8195016b54" data-linktype="relative-path">reauthentication</a> using <b>Reauthentication
+Tunnel Context</b> and MUST set its ADM element <b>Reauthentication Status</b>
+to ResourceAuthorizationCompleted.</p>
+</li><li><p><span>   
+</span>Return ERROR_SUCCESS.</p>
+</li></ol></li><li><p><span>    </span>The RDG server
+SHOULD try to connect to the target server by each name in the target server
+names array until it succeeds or until the array is traversed completely. If
+connection fails for all target server names, it MUST return
+HRESULT_CODE(E_PROXY_TS_CONNECTFAILED) in rpc_fault packet.</p>
+</li><li><p><span>    </span>The RDG server
+MUST create the <i>channelId</i> and <i>channelContext</i> RPC content handles
+and MUST initialize the corresponding ADM elements.</p>
+</li><li><p><span>    </span>The RDG server
+MUST also start the <a href="6f59191d-6e44-491e-9b9f-ee366010c304" data-linktype="relative-path">Session
+Timeout Timer (section 3.1.2.1)</a>, if the session timeout is
+configured at the RDG server.</p>
+</li><li><p><span>  </span>If the RDG server is
+implementing the Connection Timer, the RDG server MUST start the Connection
+Timer.</p>
+</li><li><p><span>  </span>The RDG server MUST return
+ERROR_SUCCESS.</p>
+<div><pre> HRESULT TsProxyCreateChannel(
+   [in] PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE tunnelContext,
+   [in, ref] PTSENDPOINTINFO tsEndPointInfo,
+   [out] PCHANNEL_CONTEXT_HANDLE_SERIALIZE* channelContext,
+   [out] unsigned long* channelId
+ );
+</pre></div>
+</li></ol><p><b>tunnelContext: </b>The RDG client MUST provide the
+RDG server with the same context <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a> it received from the
+<a href="0386b24c-4603-400d-a79e-11fd9518e34e" data-linktype="relative-path">TsProxyCreateTunnel</a>
+method call. The RDG server SHOULD throw an exception if the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> validation and
+verification fails.</p><p><b>tsEndPointInfo: </b>Pointer to the <a href="6528c9f0-f7c4-4b5b-93a2-e695218c7c64" data-linktype="relative-path">TSENDPOINTINFO</a> structure.
+The RDG client MUST provide a non-NULL pointer to the RDG server for this structure.
+The RDG server initializes the ADM element Target server names with an array of
+<b>resourceName</b> and <b>alternateResourceNames</b> members of TSENDPOINTINFO
+structure. The RDG server SHOULD try to connect to the target server by each
+name in the array until it succeeds or until the array is traversed completely.
+If connection fails for all target server names,
+HRESULT_CODE(E_PROXY_TS_CONNECTFAILED) (0x000059DD) is returned.<a id="Appendix_A_Target_47"></a><a aria-label="Product behavior note 47" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_47" data-linktype="relative-path">&lt;47&gt;</a> The rules for determining a
+valid server name are specified in section <a href="1122401f-8c21-4e69-91d3-a8c74c468a27" data-linktype="relative-path">2.2.1.1</a>.</p><p><b>channelContext: </b>A RPC context handle that
+represents context-specific information for the channel. The RDG server MUST
+provide a non-NULL value. The RDG client MUST save and use this context handle
+on all subsequent method calls on the channel. Specifically, these methods are <a href="6fbbf525-6545-4a4f-b699-dc8537752810" data-linktype="relative-path">TsProxySendToServer</a>, <a href="8147cb81-042f-48a3-a7ff-9f12ab73e048" data-linktype="relative-path">TsProxySetupReceivePipe</a>,
+and TsProxyCloseChannel.</p><p><b>channelId: </b>An unsigned long identifying the
+channel. The RDG server MUST provide this value to the RDG client. The RDG
+client MUST save the returned channel ID for future use in the ADM element <b>Channel
+id</b> (section <a href="a4c784de-d788-4a67-8559-8259ac1a5731" data-linktype="relative-path">3.5.1</a>).
+This channel ID is not required on any future method calls.</p><p><b>Return Values: </b>The method MUST return ERROR_SUCCESS
+on success. Other failures MUST be one of the codes listed. The client MAY
+interpret failures in any way it deems appropriate. See section <a href="38d327b5-e131-4fa3-9a46-7e3ac20e0a4f" data-linktype="relative-path">2.2.6</a> for details on these
+errors.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value</p>
+   </th>
+   <th>
+   <p>State transition</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_SUCCESS (0x00000000)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to Channel Created
+  state.</p>
+  </td>
+  <td>
+  <p>Returned when a call to the TsProxyCreateChannel
+  method succeeds.</p>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED (0x00000005)</p>
+  </td>
+  <td>
+  <p>The connection MUST NOT transition its state.</p>
+  </td>
+  <td>
+  <p>Returned either if <i>tunnelContext</i> parameter is
+  NULL, if this method is called on a tunnel which is not authorized, if the <b>tsEndPointInfo</b>
+  parameter is NULL, or if the <b>numResourceNames</b> member of the <b>tsEndPointInfo</b>
+  parameter is zero.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E_PROXY_RAP_ACCESSDENIED (0x800759DA)</p>
+  </td>
+  <td>
+  <p>The connection MUST NOT transition its state.</p>
+  </td>
+  <td>
+  <p>Returned when an attempt to resolve or access a target
+  server is blocked by RDG server policies.</p>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>E_PROXY_INTERNALERROR (0x800759D8)</p>
+  </td>
+  <td>
+  <p>The connection MUST NOT transition its state.</p>
+  </td>
+  <td>
+  <p>Returned when the server encounters an unexpected
+  error while creating the channel.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>HRESULT_CODE(E_PROXY_TS_CONNECTFAILED) (0x000059DD)</p>
+  </td>
+  <td>
+  <p>The connection MUST NOT transition its state.</p>
+  </td>
+  <td>
+  <p>This error is returned in rpc_fault packet when the
+  RDG server fails to connect to any of the target server names, as specified
+  in the members of <b>tsEndPointInfo</b>.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The error ERROR_ACCESS_DENIED is
+returned when this call is made on a tunnel which is not authorized.</p>
+</dd></dl></div>

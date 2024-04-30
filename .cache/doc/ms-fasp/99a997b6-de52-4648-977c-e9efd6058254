@@ -1,0 +1,50 @@
+<div class="content"><p> </p><p>This structure describes an <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span> Phase 2 (or
+quick mode) cryptographic suite. A cryptographic suite is a proposal of a set
+of algorithms and parameters that specify how different types of enforcement
+and protection are suggested to be performed. It also suggests timeouts for
+which a key is valid and at which re-keying operations should be performed.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_PHASE2_CRYPTO_SUITE {
+   [range(FW_CRYPTO_PROTOCOL_INVALID+1,FW_CRYPTO_PROTOCOL_MAX-1)] 
+     FW_CRYPTO_PROTOCOL_TYPE Protocol;
+   FW_CRYPTO_HASH_TYPE AhHash;
+   FW_CRYPTO_HASH_TYPE EspHash;
+   FW_CRYPTO_ENCRYPTION_TYPE Encryption;
+   unsigned long dwTimeoutMinutes;
+   unsigned long dwTimeoutKBytes;
+   unsigned long dwP2CryptoSuiteFlags;
+ } FW_PHASE2_CRYPTO_SUITE,
+  *PFW_PHASE2_CRYPTO_SUITE;
+</pre></div>
+</dd></dl><p><b>Protocol:</b>  This field is of type <span><a href="d97bac36-03e8-4215-9984-f2fbddd66be0" data-linktype="relative-path">FW_CRYPTO_PROTOCOL_TYPE</a></span>,
+and it specifies the IPsec enforcement protocol combination suggested for this
+suite.</p><p><b>AhHash:</b>  This field is of type <span><a href="eae09dba-8bed-43e3-85bd-dce8497de9a1" data-linktype="relative-path">FW_CRYPTO_HASH_TYPE</a></span>.
+It specifies the hash (integrity protection) algorithm for this suite proposal
+when using the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_efa9e2b6-53fb-473e-8824-e276ebde4c97" data-linktype="relative-path">authentication header</a></span>
+protocol.</p><p><b>EspHash:</b>  This field is of type
+FW_CRYPTO_HASH_TYPE. It specifies the hash (integrity protection) algorithm for
+this suite proposal when using the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_430b4a39-0b2c-402f-847d-e6a8520934c7" data-linktype="relative-path">ESP</a></span> protocol. </p><p><b>Encryption:</b>  This field is of type <span><a href="a74eafcd-19ff-4305-b105-0952ae20a2dd" data-linktype="relative-path">FW_CRYPTO_ENCRYPTION_TYPE</a></span>.
+It specifies the encryption algorithm for this suite proposal. </p><p><b>dwTimeoutMinutes:</b>  This is the
+timeout or lifetime of the key used in this proposal defined in minutes. </p><p><b>dwTimeoutKBytes:</b>  This is the
+timeout or lifetime of the key used in this proposal defined in kilobytes
+processed with this configuration.</p><p><b>dwP2CryptoSuiteFlags:</b>  This field is
+reserved and is not used. It MUST be set to 0x00000000.</p><p>The following are semantic validation checks that Phase 2
+cryptographic suites MUST pass:</p><ul><li><p><span><span> 
+</span></span>The <b>dwTimeoutMinutes</b> field MUST be greater than or equal
+to 5 and less than or equal to 2,879.</p>
+</li><li><p><span><span> 
+</span></span>The <b>dwTimeoutKBytes</b> field MUST be greater than or equal to
+20,480 and less than or equal to 2,147,483,647.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>Protocol</b> field is FW_CRYPTO_PROTOCOL_AH or
+FW_CRYPTO_PROTOCOL_BOTH, the <b>AhHash</b> field MUST NOT be equal to
+FW_CRYPTO_HASH_NONE.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>Protocol</b> field is FW_CRYPTO_PROTOCOL_BOTH, the <b>AhHash</b>
+field MUST be equal to the <b>EspHash</b> field.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>Protocol</b> field is FW_CRYPTO_PROTOCOL_BOTH or
+FW_CRYPTO_PROTOCOL_ESP, <b>EspHash</b> MUST NOT be set to FW_CRYPTO_HASH_NONE
+or <b>Encryption</b> MUST NOT be set to FW_CRYPTO_ENCRYPTION_NONE, but not
+both.</p>
+</li></ul></div>

@@ -1,0 +1,145 @@
+<div class="content"><p>The LINEFORWARD packet describes an entry of the forwarding
+instructions. The <a href="00b2102c-cd1b-41b9-b543-29215547dcf3" data-linktype="relative-path">LINEFORWARDLIST</a>
+and the <a href="f268e780-6bbf-4640-bbfe-0907045e032a" data-linktype="relative-path">LINEADDRESSSTATUS</a>
+packets can contain an array of LINEFORWARD packets. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwForwardMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallerAddressSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallerAddressOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDestCountryCode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDestAddressSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDestAddressOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallerAddressType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDestAddressType</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwForwardMode (4 bytes): </b>An unsigned 32-bit
+integer. The types of forwarding. This member MUST use one of the <a href="b206ee98-85a6-473b-8fa0-4fb2ea55534d" data-linktype="relative-path">LINEFORWARDMODE_Constants</a>.
+</p><p><b>dwCallerAddressSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the variably sized field containing the
+address of a caller to be forwarded.</p><p><b>dwCallerAddressOffset (4 bytes): </b>The offset
+from the beginning of this packet to the variably sized field containing the
+address of a caller to be forwarded.</p><dl>
+<dd>
+<p>The size of the field is specified by <b>dwCallerAddressSize</b>.</p>
+</dd>
+<dd>
+<p>This member is set to 0 if <b>dwForwardMode</b> is
+not one of the following values: </p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>LINEFORWARDMODE_BUSYNASPECIFIC</p>
+  </td>
+  <td>
+  <p>0x00008000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEFORWARDMODE_NOANSWSPECIFIC</p>
+  </td>
+  <td>
+  <p>0x00000800</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEFORWARDMODE_UNCONDSPECIFIC</p>
+  </td>
+  <td>
+  <p>0x00000008</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEFORWARDMODE_BUSYSPECIFIC</p>
+  </td>
+  <td>
+  <p>0x00000080</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwDestCountryCode (4 bytes): </b>An unsigned
+32-bit integer. The country code of the destination address to which the call
+is to be forwarded. </p><p><b>dwDestAddressSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the variably sized field containing the
+address of the address where calls are to be forwarded. </p><p><b>dwDestAddressOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of this packet to the variably
+sized field containing the address of the address where calls are to be
+forwarded. The size of the field is specified by <b>dwDestAddressSize</b>. </p><p><b>dwCallerAddressType (4 bytes): </b>An unsigned
+32-bit integer. The address type of the caller. This can be one of the <a href="72de9d5d-0900-4702-b8bd-ea1d9957ea59" data-linktype="relative-path">LINEADDRESSTYPE_Constants</a>.
+This member of the packet is available only if the negotiated version of TAPI
+is 3.1 or higher. </p><p><b>dwDestAddressType (4 bytes): </b>An unsigned
+32-bit integer. The address type for the called destination. This can be one of
+the LINEADDRESSTYPE_Constants. This member of the packet is available only if
+the negotiated version of TAPI is 3.1 or higher. </p></div>

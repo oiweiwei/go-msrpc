@@ -1,0 +1,228 @@
+<div class="content"><p>The SetHookSwitch packet is transmitted from a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call</a>.
+Sending this packet MUST set the hook state of the specified open phone&#39;s
+hookswitch devices to the specified mode. Only the hookswitch state of the
+hookswitch devices that are listed is affected.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwRequestID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hPhone</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwHookSwitchDevs</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwHookSwitchMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved5</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved6</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved7</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved8</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved9</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved10</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>The identifier of the
+function that will be invoked on the remote server. This value MUST be set to
+114.</p><dl>
+<dd>
+<p><b>Return Values</b></p>
+</dd>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>, this field
+MUST contain the result of the encapsulated telephony request. A nonzero
+request ID value indicates that the request is in progress and will complete
+asynchronously, and a <a href="b1c6fae0-09ca-4f7b-85f6-1324376d231c" data-linktype="relative-path">PHONEERR_Constants</a>
+value indicates synchronous failure.</p>
+</dd>
+<dd>
+<p>Returns a positive request identifier if the
+function will be completed asynchronously, or a negative error number if an
+error occurs. The <i>dwParam2</i> parameter of the corresponding <a href="b0508c16-f090-4562-b367-50ea4adf8c35" data-linktype="relative-path">PHONE_REPLY</a> packet is 0 if
+the function succeeds, or is a negative error number if an error occurs. If the
+client specified a nonzero value in the <b>dwRequestID</b> field of the packet,
+the same value MUST be used for the returned positive request identifier. The
+following table lists common return values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PHONEERR_INVALPHONEHANDLE</p>
+  </td>
+  <td>
+  <p>0x00000013</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_NOMEM</p>
+  </td>
+  <td>
+  <p>0x0000001A</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_INVALHOOKSWITCHDEV</p>
+  </td>
+  <td>
+  <p>0x0000000F</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_RESOURCEUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x0000001F</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_INVALHOOKSWITCHMODE</p>
+  </td>
+  <td>
+  <p>0x00000010</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_OPERATIONFAILED</p>
+  </td>
+  <td>
+  <p>0x0000001C</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_INVALPHONESTATE</p>
+  </td>
+  <td>
+  <p>0x00000014</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_OPERATIONUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x0000001D</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>dwRequestID (4 bytes): </b>An unsigned 32-bit
+integer. The identifier of the asynchronous request.</p><p><b>hPhone (4 bytes): </b>An <a href="0c93f481-3429-48c5-a9e6-f0568c4cabd9" data-linktype="relative-path">HPHONE</a>. The handle to the
+phone that contains the hookswitch devices whose modes are to be set. This
+field MUST have been obtained by sending the <a href="6b5ee45e-b5c8-4148-a9b2-b16b9b995c3f" data-linktype="relative-path">Open</a> packet.</p><p><b>dwHookSwitchDevs (4 bytes): </b>The devices whose
+hookswitch mode is to be set. This parameter MUST use one of the <a href="73925a29-5ae8-417c-baff-24db8b0aa3a6" data-linktype="relative-path">PHONEHOOKSWITCHDEV_Constants</a>.
+</p><p><b>dwHookSwitchMode (4 bytes): </b>The hookswitch
+mode to set. This parameter MUST have one of the <a href="45172c7a-752e-481c-9b56-c8e10a2dd977" data-linktype="relative-path">PHONEHOOKSWITCHMODE_Constants</a>.</p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved5 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved6 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved7 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved8 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved9 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved10 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p></div>

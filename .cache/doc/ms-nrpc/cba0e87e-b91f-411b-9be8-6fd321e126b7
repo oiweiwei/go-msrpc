@@ -1,0 +1,24 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/cba0e87e-b91f-411b-9be8-6fd321e126b7" data-linktype="external">msdn link</a></p><p>The <b>NL_PASSWORD_VERSION</b> structure defines a password
+version number that is used to distinguish between different versions of
+information passed in the <b>Buffer</b> field of the <b>NL_TRUST_PASSWORD</b>
+structure (section <a href="52d5bd86-5caf-47aa-aae4-cadf7339ec83" data-linktype="relative-path">2.2.1.3.7</a>).
+The <b>NL_PASSWORD_VERSION</b> structure SHOULD<a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a> be
+prepended to the password in the buffer of <b>NL_TRUST_PASSWORD</b> and is only
+used for interdomain <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a>
+accounts.</p><dl>
+<dd>
+<div><pre> typedef struct _NL_PASSWORD_VERSION {
+   ULONG ReservedField;
+   ULONG PasswordVersionNumber;
+   ULONG PasswordVersionPresent;
+ } NL_PASSWORD_VERSION,
+  *PNL_PASSWORD_VERSION;
+</pre></div>
+</dd></dl><p><b>ReservedField:</b> MUST be set to zero when sent
+and MUST be ignored on receipt.</p><p><b>PasswordVersionNumber:</b> Integer value that
+contains the current password version number. The password version number is
+incremented by one when a new password is generated; the value for the first
+password is one.</p><p><b>PasswordVersionPresent:</b> MUST be 0x02231968,
+which is a constant used to indicate that the password version number is
+present and is stored in <b>PasswordVersionNumber</b> field. This member is
+relevant only for server-to-server communication.</p></div>

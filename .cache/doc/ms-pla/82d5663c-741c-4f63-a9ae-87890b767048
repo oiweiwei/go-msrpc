@@ -1,0 +1,27 @@
+<div class="content"><p>The FolderActionSteps enumeration defines the action that
+the data manager takes when both the age and size limits are met. Any
+combination of the bits MUST be allowed.</p><dl>
+<dd>
+<div><pre> typedef  enum
+ {
+   plaCreateCab = 0x01,
+   plaDeleteData = 0x02,
+   plaSendCab = 0x04,
+   plaDeleteCab = 0x08,
+   plaDeleteReport = 0x10
+ } FolderActionSteps;
+</pre></div>
+</dd></dl><p><b>plaCreateCab:  </b>Creates a cabinet file. The
+name of the cabinet file is &lt;name of the subfolder&gt;.cab. For example, if
+the name of the subfolder was &#34;MyFolder&#34;, the cab file would be named
+&#34;MyFolder.cab&#34;. The name of the subfolder is specified by the
+combination of the Subdirectory, SubdirectoryFormat, and
+SubdirectoryFormatPattern properties of the <a href="1809d280-56e0-4c78-9546-ad1869c3a16a" data-linktype="relative-path">IDataCollectorSet</a>. The
+Subdirectory property provides the base name for the Subfolder, the
+SubdirectoryFormat property specifies the suffix and prefix that will be
+appended and prepended to the base name, and the SubdirectoryFormatPattern
+specifies the pattern that will be used in the suffix. The SubdirectoryFormat
+is specified in section <a href="e91b47a7-18e2-44ff-a52e-1999f99d39ea" data-linktype="relative-path">2.2.2.1</a>.
+The SubdirectoryFormatPattern is specified in section <a href="b9c08809-e24a-4b89-8083-e32dc2334b7c" data-linktype="relative-path">2.2.3.1</a>.</p><p><b>plaDeleteData:  </b>Deletes all files in the
+folder, except the report and cabinet file.</p><p><b>plaSendCab:  </b>Sends the cabinet file to the
+location specified in the IFolderAction::SendCabTo property.</p><p><b>plaDeleteCab:  </b>Deletes the cabinet file.</p><p><b>plaDeleteReport:  </b>Deletes the report file.</p></div>

@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DHCP_SCAN_LIST</b> structure defines an array of <span><a href="5033e404-3f59-45e9-aaa6-c4f3b0543cbb" data-linktype="relative-path">DHCP_SCAN_ITEM (section 2.2.1.2.73)</a></span>
+structures that contains all the entries on the DHCP server that require a fix.
+This structure is used in the <span><a href="d9a88035-04c0-4d40-a83c-0713edf1d6b4" data-linktype="relative-path">R_DhcpScanDatabase (section 3.1.4.28)</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_SCAN_LIST {
+   DWORD NumScanItems;
+   [size_is(NumScanItems)] DHCP_SCAN_ITEM* ScanItems;
+ } DHCP_SCAN_LIST,
+  *LPDHCP_SCAN_LIST;
+</pre></div>
+</dd></dl><p><b>NumScanItems:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+containing the number of DHCPv4 client lease entries and/or bits in the bitmask
+representation in memory (section <span><a href="3feff318-a575-4a27-8360-5dd3ee7203b5" data-linktype="relative-path">3.1.1.4</a></span>) that
+require a fix in the subsequent field in the <b>ScanItems</b> member.</p><p><b>ScanItems:</b>  This is a pointer to an
+array of DHCP_SCAN_ITEM (section 2.2.1.2.73) structures of length <b>NumScanItems</b>
+that contains the DHCPv4 client IPv4 addresses that require a fix.</p></div>

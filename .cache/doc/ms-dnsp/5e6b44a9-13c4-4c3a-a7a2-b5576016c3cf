@@ -1,0 +1,40 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_ZONE_INFO</b> structure contains the detailed
+information about a zone present on the DNS server. The DNS server uses this
+structure to return information about a zone while responding to R_DnssrvQuery2
+(section <span><a href="a90a44f0-f64e-44b0-9e35-a7fc49f6adea" data-linktype="relative-path">3.1.4.7</a></span>) method
+calls with operation type &#34;ZoneInfo&#34;. There are different versions of
+DNS_RPC_ZONE_INFO. The DNS server MUST use the structures corresponding to the
+passed-in value for the <b>dwClientVersion</b> field in DNS Server Management
+Protocol method calls (section <span><a href="bdffbbf3-e31b-49ba-8b8d-8abde125a9d8" data-linktype="relative-path">3.1.4</a></span>) in the
+following table, or if the method call does not specify the value of <b>dwClientVersion</b>,
+the DNS_RPC_ZONE_ INFO_W2K version of the structure MUST be used.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value </p>
+   </th>
+   <th>
+   <p>Structure </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>DNS_RPC_ZONE_INFO_W2K (section <span><a href="e8651544-0fbb-4038-8232-375ff2d8a55e" data-linktype="relative-path">2.2.5.2.4.1</a></span>)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00060000</p>
+  </td>
+  <td>
+  <p>DNS_RPC_ ZONE_INFO_DOTNET (section <span><a href="45b100df-57c2-4c84-86de-00b69d742372" data-linktype="relative-path">2.2.5.2.4.2</a></span>)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00070000</p>
+  </td>
+  <td>
+  <p>DNS_RPC_ ZONE_INFO_LONGHORN (section <span><a href="23a085bf-d814-45e3-943f-8bbdc32a5dae" data-linktype="relative-path">2.2.5.2.4.3</a></span>)</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

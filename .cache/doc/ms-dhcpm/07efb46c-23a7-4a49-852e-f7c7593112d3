@@ -1,0 +1,247 @@
+<div class="content"><p> </p><p>The <b>R_DhcpEnumSubnetElementsV4</b> method enumerates the
+list of a specific type of IPv4 subnet element (IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservation</a></span> for
+DHCPv4 or BOOTP clients, IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_64d30865-9640-4009-a80a-861966749767" data-linktype="relative-path">exclusion range</a></span>, or
+IPv4 range) from a specific DHCPv4 IPv4 subnet. The caller of this function can
+free the memory pointed to by the <i>EnumElementInfo</i> parameter and its
+member the <b>Elements</b> array by calling the function midl_user_free
+specified in section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpEnumSubnetElementsV4(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [in] DHCP_SUBNET_ELEMENT_TYPE EnumElementType,
+   [in, out] DHCP_RESUME_HANDLE* ResumeHandle,
+   [in] DWORD PreferredMaximum,
+   [out] LPDHCP_SUBNET_ELEMENT_INFO_ARRAY_V4* EnumElementInfo,
+   [out] DWORD* ElementsRead,
+   [out] DWORD* ElementsTotal
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SubnetAddress: </b>This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS</a></span>,
+containing the IPv4 subnet ID from which subnet elements are enumerated.</p><p><b>EnumElementType: </b>This is of type <span><a href="c2ff4890-adad-4906-bb96-d9417f24545a" data-linktype="relative-path">DHCP_SUBNET_ELEMENT_TYPE (section 2.2.1.1.7)</a></span>
+enumeration value, indicating the type of IPv4 subnet element to enumerate.</p><p><b>ResumeHandle: </b>This is a pointer of type <span><a href="a6e4cdc0-4f71-4922-ade1-7a5392f9e920" data-linktype="relative-path">DHCP_RESUME_HANDLE (section 2.2.1.2.6)</a></span>
+that identifies the enumeration operation. Initially, this value MUST be set to
+zero, with a successful call returning the handle value used for subsequent enumeration
+requests. For example, if the <i>PreferredMaximum</i> parameter is set to 1,000
+bytes, and 2,000 bytes worth of IPv4 subnet elements are stored on the DHCPv4
+server, the resume handle can be used after the first 1,000 bytes are retrieved
+to obtain the next 1,000 on a subsequent call, and so forth.</p><p><b>PreferredMaximum: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+specifying the preferred maximum number of bytes to return. If the number of
+remaining un-enumerated subnet elements (in bytes) is less than this value, all
+IPv4 subnet elements for the specific type are returned. To retrieve all the
+IPv4 subnet elements of a specific type, 0xFFFFFFFF is specified.</p><p><b>EnumElementInfo: </b>This is a pointer of type <span><a href="753cdf6c-0c49-48df-9143-701f088d6eb2" data-linktype="relative-path">LPDHCP_SUBNET_ELEMENT_INFO_ARRAY_V4</a></span>
+in which an IPv4 subnet element of type <i>EnumElementType</i> is returned for
+a specific IPv4 subnet <i>SubnetAddress</i>. If no IPv4 subnet element of the
+specific type is available for enumeration, this value is null. The caller is
+responsible for freeing this memory.</p><p><b>ElementsRead: </b>This is a pointer to a DWORD
+value that specifies the number of IPv4 subnet elements read in the <i>EnumElementInfo</i>
+parameter for a specific type of IPv4 subnet element. The caller MUST allocate
+memory for this parameter equal to the size of DWORD data type.</p><p><b>ElementsTotal: </b>This is a pointer to a DWORD
+value that specifies the number of IPv4 subnet elements of a specific type from
+a specific IPv4 subnet that are not yet enumerated with respect to the resume
+handle that is returned. The caller MUST allocate memory for this parameter
+equal to the size of DWORD data type.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000EA</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>There are more elements available to enumerate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  </td>
+  <td>
+  <p>There are no more elements left to enumerate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist on the DHCP
+  server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 30.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read access per section
+<span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not, return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to
+DhcpSecondaryHosts, return ERROR_NOT_SUPPORTED.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to
+DhcpIpRangesDhcpOnly, DhcpIpUsedClusters, DhcpIpRangesDhcpBootp, or
+DhcpIpRangesBootpOnly, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4Scope</b> ADM element entry corresponding
+to the <i>SubnetAddress</i> parameter from the server ADM element <b>DHCPv4ScopesList</b>.
+If the subnet is not found, return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to DhcpIpRanges,
+retrieve all the entries in <b>DHCPv4Scope.DHCPv4IpRangesList</b> ADM element,
+starting with the element at the index specified by the value in the <i>ResumeHandle</i>
+parameter and continuing while the total byte size of all retrieved IPv4 range
+elements is less than <i>PreferredMaximum</i>.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to DhcpIpRanges
+and <i>PreferredMaximum</i> is 0, then ERROR_NO_MORE_ITEMS is returned.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to DhcpIpRanges
+and the <i>ResumeHandle</i> parameter points to 0x00000000, the enumeration
+MUST start from the first entry of the <b>DHCPv4IpRangesList</b> ADM element.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to DhcpIpRanges
+and the <i>ResumeHandle</i> parameter points to a nonzero value, the server
+MUST continue enumeration based on the value of <i>ResumeHandle</i>. If the <i>ResumeHandle</i>
+parameter is greater than or equal to the number of entries in the <b>DHCPv4IpRangesList</b>
+ADM element, then return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>The <i>PreferredMaximum</i> parameter specifies the maximum
+number of bytes that the server can allocate and return to the caller
+containing the data related to the IPv4 ranges. If the <i>EnumElementType</i>
+parameter is set to DhcpIpRanges and the <i>PreferredMaximum</i> parameter is
+unable to hold all the entries being retrieved, then the server must store as
+many entries that will fit into the <i>EnumElementInfo</i> parameter and return
+ERROR_MORE_DATA.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to DhcpIpRanges,
+copy the <b>RangeInfo</b> ADM element from the retrieved <b>DHCPv4IpRange</b>
+ADM element entries in the <i>EnumElementInfo</i> parameter, copy the number of
+read <b>DHCPv4IpRanges</b> ADM element entries in the <i>ElementsRead</i>
+parameter, and copy the number of <b>DHCPv4IpRanges</b> ADM element entries in
+the <b>DHCPv4IpRangesList</b> ADM element that are not yet enumerated in the <i>ElementsTotal</i>
+parameter. Update the <i>ResumeHandle</i> parameter to the value obtained by
+adding 1 to the index of the last <b>DHCPv4IpRange</b> ADM element entry read.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to
+DhcpReservedIps, retrieve all the entries in <b>DHCPv4Scope.DHCPv4ReservationsList</b>
+ADM element, starting with the element at the index specified by the value in
+the <i>ResumeHandle</i> parameter and continuing while the total byte size of
+all retrieved IPv4 range elements is less than the <i>PreferredMaximum</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to
+DhcpReservedIps, <i>PreferredMaximum</i> is 0, and the number of entries in the
+<b>DHCPv4ReservationsList</b> ADM element retrieved based on the <i>EnumElementType</i>
+parameter is greater than 0, then ERROR_MORE_DATA is returned.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to
+DhcpReservedIps, <i>PreferredMaximum</i> is 0, and the number of entries in the
+<b>DHCPv4ReservationsList</b> ADM element retrieved based on <i>EnumElementType</i>
+is 0, then ERROR_NO_MORE_ITEMS is returned.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to DhcpReservedIps
+and the <i>ResumeHandle</i> parameter points to 0x00000000, the enumeration
+MUST start from the first entry of the <b>DHCPv4ReservationsList</b> ADM
+element.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to DhcpReservedIps
+and the <i>ResumeHandle</i> parameter points to a nonzero value, the server
+MUST continue enumeration based on the value of <i>ResumeHandle</i>. If the <i>ResumeHandle</i>
+parameter is greater than or equal to the number of entries in the <b>DHCPv4ReservationsList</b>
+ADM element, then return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>The <i>PreferredMaximum</i> parameter specifies the maximum
+number of bytes that the server can allocate and return to the caller containing
+the data related to the IPv4 reservations. If the <i>EnumElementType</i>
+parameter is set to DhcpReservedIps and the <i>PreferredMaximum</i> parameter
+is unable to hold all the entries being retrieved, then the server must store
+as many entries that will fit into the <i>EnumElementInfo</i> parameter and
+return ERROR_MORE_DATA.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to
+DhcpReservedIps, copy the retrieved <b>DHCPv4Reservation</b> ADM element
+entries in <i>EnumElementInfo</i>, copy the number of read <b>DHCPv4Reservation</b>
+ADM element entries in <i>ElementsRead</i>, and copy the number of <b>DHCPv4Reservation</b>
+ADM element entries in the <b>DHCPv4ReservationsList</b> ADM element that are
+not yet enumerated in <i>ElementsTotal</i>. Update the <i>ResumeHandle</i>
+parameter to the value obtained by adding 1 to the index of the last <b>DHCPv4Reservation</b>
+ADM element entry read.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to
+DhcpExcludedIpRanges, retrieve all the entries in <b>DHCPv4Scope.DHCPv4ExclusionRangesList</b>
+ADM element, starting with the element at the index specified by the value in
+the <i>ResumeHandle</i> parameter and continuing while the total byte size of
+all retrieved IPv4 range elements is less than <i>PreferredMaximum</i>.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to DhcpReservedIps
+and <i>PreferredMaximum</i> is 0, and the number of entries in the <b>DHCPv4ExclusionRangesList</b>
+ADM element retrieved based on the <i>EnumElementType</i> parameter is greater
+than 0, then ERROR_MORE_DATA is returned.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to DhcpReservedIps
+and <i>PreferredMaximum</i> is 0, and the number of entries in the <b>DHCPv4ExclusionRangesList</b>
+ADM element retrieved based on <i>EnumElementType</i> is 0, then
+ERROR_NO_MORE_ITEMS is returned.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to
+DhcpExcludedIpRanges and the <i>ResumeHandle</i> parameter points to
+0x00000000, the enumeration MUST start from the first entry of the <b>DHCPv4ExclusionRangesList</b>
+ADM element.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to
+DhcpExcludedIpRanges and the <i>ResumeHandle</i> parameter points to a nonzero
+value, the server MUST continue enumeration based on the value of <i>ResumeHandle</i>.
+If the <i>ResumeHandle</i> parameter is greater than or equal to the number of
+entries in the <b>DHCPv4ExclusionRangesList</b>, then return
+ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>The <i>EnumElementType</i> parameter is set to DhcpExcludedIpRanges,
+and the <i>PreferredMaximum</i> parameter specifies the maximum number of bytes
+that the server can allocate and return to the caller containing the data
+related to the IPv4 exclusions. If the <i>PreferredMaximum</i> parameter is
+unable to hold all the entries being retrieved, then the server must store as
+many entries that will fit into the <i>EnumElementInfo</i> parameter and return
+ERROR_MORE_DATA.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> parameter is set to
+DhcpExcludedIpRanges, copy the retrieved <b>DHCPv4ExclusionRange</b> ADM element
+entries in the <i>EnumElementInfo</i> parameter, copy the number of read <b>DHCPv4ExclusionRange</b>
+ADM element entries in the <i>ElementsRead</i> parameter, and copy the number
+of <b>DHCPv4ExclusionRange</b> ADM element entries in the <b>DHCPv4ExclusionRangesList</b>
+ADM element that are not yet enumerated in the <i>ElementsTotal</i> parameter.
+Update the <i>ResumeHandle</i> parameter to the value obtained by adding 1 to
+the index of the last <b>DHCPv4ExclusionRange</b> ADM element entry read.
+Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>BYTE_VECTOR</b> structure encapsulates a
+variable-length array of octets (or bytes) that are stored consecutively. The <b>BYTE_VECTOR</b>
+structure is used in the following structures:  </p><ul><li><p><span><span> 
+</span></span><b>CHECKSUM </b>structure (section <span><a href="0655f940-7dc3-4fd1-b249-2d0cb246e5d3" data-linktype="relative-path">2.2.5.1.3</a></span>)</p>
+</li><li><p><span><span> 
+</span></span><b>EXTENSION</b> structure (section <span><a href="f0d91d22-fbc6-4ced-870a-be635f72e23b" data-linktype="relative-path">2.2.5.1.4</a></span>)</p>
+</li><li><p><span><span> 
+</span></span><b>EXCHANGE_MESSAGE</b> structure (section <span><a href="aeeaeae6-1782-4d72-af14-a320ad51f0fa" data-linktype="relative-path">2.2.6.4</a></span>)</p>
+<div><pre> struct
+ {
+   ULONG ByteArrayOffset; 
+   ULONG ByteArrayLength; 
+ } BYTE_VECTOR; 
+</pre></div>
+</li></ul><p><b>ByteArrayOffset:</b> A ULONG type array. Each
+element contains 1 byte. </p><p><b>ByteArrayLength:</b> A ULONG type that contains
+the length of the <b>ByteArrayOffset</b> field. </p></div>

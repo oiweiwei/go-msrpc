@@ -1,0 +1,612 @@
+<div class="content"><p> </p><p>The <b>NetrRemoveAlternateComputerName</b> method removes an
+alternate name for a specified server.<a id="Appendix_A_Target_165"></a><a aria-label="Product behavior note 165" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_165" data-linktype="relative-path">&lt;165&gt;</a></p><dl>
+<dd>
+<div><pre> unsigned long NetrRemoveAlternateComputerName2(
+   [in] handle_t RpcBindingHandle,
+   [in, string, unique] wchar_t* ServerName,
+   [in, string, unique] wchar_t* AlternateName,
+   [in, string, unique] wchar_t* DomainAccount,
+   [in, unique] PJOINPR_ENCRYPTED_USER_PASSWORD_AES EncryptedPassword,
+   [in] unsigned long Reserved
+ );
+</pre></div>
+</dd></dl><p><b>RpcBindingHandle:</b> An <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>
+(<span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>).</p><p><b>ServerName: </b>This parameter has no effect on
+message processing in any environment. The client MUST set this parameter to a
+value that resolves to the IP protocol layer destination address of the RPC
+packets it transmits (<span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/7063c7bd-b48b-42e7-9154-3c2ec4113c0d" data-linktype="relative-path">2.1.1.2</a></span>).
+The server MUST ignore this parameter.</p><p><b>AlternateName: </b>A pointer to a string that
+specifies the alternate name to remove. The name MUST be a valid <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a></span>
+host name <span><a href="https://go.microsoft.com/fwlink/?LinkId=90264" data-linktype="external">[RFC1035]</a></span>.</p><p><b>DomainAccount: </b>A pointer to a string that
+specifies the account name in the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span> to use when
+connecting to a <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a></span>.
+This parameter is optional. If this parameter is NULL, the caller&#39;s account
+name MUST be used. If this parameter is specified, the format MUST be one of
+the following:</p><ul><li><p><span><span>  </span></span>&lt;NetBIOSDomainName&gt;\&lt;UserName&gt;</p>
+</li><li><p><span><span>  </span></span>&lt;FullyQualifiedDNSDomainName&gt;\&lt;UserName&gt;</p>
+</li><li><p><span><span>  </span></span>&lt;UserName&gt;@&lt;FullyQualifiedDNSDomainName&gt;</p>
+</li></ul><p><b>EncryptedPassword: </b>An optional pointer to a <b>JOINPR_ENCRYPTED_USER_PASSWORD_AES</b>
+structure (section <span><a href="b3b6d235-29e8-44ec-a723-8fb06a0799d8" data-linktype="relative-path">2.2.5.19</a></span>) that
+specifies the encrypted password to use with the <i>DomainAccount</i>
+parameter. If the <i>DomainAccount</i> parameter is NULL, the caller&#39;s <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_88d49f20-6c95-4b64-a52c-c3eca2fe5709" data-linktype="relative-path">security
+context</a></span> MUST be used, and this parameter MUST be ignored.</p><p><b>Reserved: </b>A 32-bit bitfield that SHOULD be set
+to zero.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>IU</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IU</p>
+  <p>NET_IGNORE_UNSUPPORTED_FLAGS</p>
+  </td>
+  <td>
+  <p>If 1, the server MUST ignore the values of the other
+  bits in this field.</p>
+  <p>If 0, the values of the other bits in this field MUST
+  be 0; otherwise, the server MUST return ERROR_INVALID_FLAGS.<a id="Appendix_A_Target_166"></a><a aria-label="Product behavior note 166" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_166" data-linktype="relative-path">&lt;166&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>When the message processing
+result matches the description in column two of the following table, this
+method MUST return one of the following values (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NERR_Success</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NOT_SUPPORTED</p>
+  <p>0x00000032</p>
+  </td>
+  <td>
+  <p>This method is not supported by this server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PASSWORD</p>
+  <p>0x00000056</p>
+  </td>
+  <td>
+  <p>The specified network password is not correct.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>One of the function parameters is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_NAME</p>
+  <p>0x0000007B</p>
+  </td>
+  <td>
+  <p>An invalid name parameter is specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_FLAGS</p>
+  <p>0x000003EC</p>
+  </td>
+  <td>
+  <p>The <i>Reserved</i> parameter contains an invalid
+  value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NOT_FOUND</p>
+  <p>0x00000490</p>
+  </td>
+  <td>
+  <p><i>AlternateName</i> was not found in the current list
+  of alternate names.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RPC_S_PROTSEQ_NOT_SUPPORTED</p>
+  <p>0x000006A7</p>
+  </td>
+  <td>
+  <p>The <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_0c171cc7-e9c4-41b6-95a9-536db0042c7a" data-linktype="relative-path">RPC protocol sequence</a></span>
+  is not supported.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RPC_S_CALL_IN_PROGRESS</p>
+  <p>0x000006FF</p>
+  </td>
+  <td>
+  <p>A remote procedure call is already in progress.<a id="Appendix_A_Target_167"></a><a aria-label="Product behavior note 167" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_167" data-linktype="relative-path">&lt;167&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_ERROR_INVALID_NAME_CHAR</p>
+  <p>0x00002558</p>
+  </td>
+  <td>
+  <p>The <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_4d5d5403-372f-4f9f-8d7a-65c310c807d9" data-linktype="relative-path">Internet host name</a></span>
+  contains an invalid character.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Any other return value MUST conform to the error code
+requirements in <b>Protocol Details</b> (section <span><a href="aeea622a-ea3e-40cc-a9b1-b4a2a3b2bf6b" data-linktype="relative-path">3</a></span>).</p><p>Unless otherwise noted, if the server encounters an error
+during message processing, the server SHOULD revert any state changes made,
+MUST stop message processing, and MUST return the error to the caller.<a id="Appendix_A_Target_168"></a><a aria-label="Product behavior note 168" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_168" data-linktype="relative-path">&lt;168&gt;</a></p><p>The following definitions are used in the specification of
+message processing that follows.</p><ul><li><p><span><span> 
+</span></span><i>OldAlternateNames</i>: MUST be a tuple entry for <b>alternate-computer-names</b>
+(section <span><a href="b1cb0684-fdeb-4fa2-8e12-c124ef64025f" data-linktype="relative-path">3.2.1.2</a></span>).</p>
+</li><li><p><span><span> 
+</span></span><i>PasswordString</i>: A <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_409411c4-b4ed-4ab6-b0ee-6d7815f85a35" data-linktype="relative-path">UTF-8</a></span> string
+containing a password in <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_f6e0fdd0-cbc1-4c9d-93b8-f25125f9c5ef" data-linktype="relative-path">cleartext</a></span>.</p>
+</li><li><p><span><span> 
+</span></span><i>DomainControllerString</i>: A UTF-8 string that contains the
+name of a domain controller in the domain that the server is joining.</p>
+</li><li><p><span><span> 
+</span></span><i>DomainControllerConnection</i>: An ADCONNECTION_HANDLE (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/5faf669e-34a9-471b-aaff-8591b9650189" data-linktype="relative-path">2.2.2</a></span>)
+to a domain controller.</p>
+</li><li><p><span><span> 
+</span></span><i>WritableDomainControllerDN</i>: A UTF-8 string that contains
+the DN of the nTDSDSA object (<span><a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a></span>
+section <span><a href="../ms-adts/8ebf2419-1169-4413-88e2-12a5ad499cf5" data-linktype="relative-path">6.1.1.2.2.1.2.1.1</a></span>)
+for the domain controller named in <i>DomainControllerString</i>.</p>
+</li><li><p><span><span> 
+</span></span><i>ReadOnlyDomainControllerConnection</i>: An ADConnection
+([MS-ADTS] section <span><a href="../ms-adts/e3681987-53c1-4dd7-930f-15f537046d55" data-linktype="relative-path">7.3</a></span>)
+to a read-only domain controller.</p>
+</li><li><p><span><span> 
+</span></span><i>LdapResultMessages</i>: A list of LDAPMessage (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90325" data-linktype="external">[RFC2251]</a></span>)
+containing results from an operation performed on DomainControllerConnection.</p>
+</li><li><p><span><span> 
+</span></span><i>ComputerAccountDN</i>: A UTF-8 string that contains the DN of
+the computer account.</p>
+</li><li><p><span><span> 
+</span></span><i>ComputerAccountExtendedDN</i>: A UTF-8 string that contains
+the extended DN ([MS-ADTS] section <span><a href="../ms-adts/57056773-932c-4e55-9491-e13f49ba580c" data-linktype="relative-path">3.1.1.3.4.1.5</a></span>)
+of the computer account.</p>
+</li><li><p><span><span> 
+</span></span><i>IsRODC</i>: A Boolean that is TRUE if the server is a
+read-only domain controller (<span><a href="../ms-drsr/f977faaa-673e-4f66-b9bf-48c640241d47" data-linktype="relative-path">[MS-DRSR]</a></span>
+section <span><a href="../ms-drsr/b5e068cf-1b68-479b-9c7f-98f081223d25" data-linktype="relative-path">5.7</a></span>),
+and FALSE otherwise.</p>
+</li></ul><p>The following statements define the sequence of message
+processing operations.</p><ol><li><p><span>    </span>The server MUST
+retrieve the RPC protocol sequence used for the current call ([MS-RPCE] section
+<span><a href="../ms-rpce/0ceefe4c-0d7a-423f-bcd0-54e821767f89" data-linktype="relative-path">3.1.3.4.1</a></span>),
+specifying the server binding handle maintained by the RPC runtime ([C706]
+section 6.2.1). If that RPC protocol sequence is not <b>NCACN_NP</b>, the
+server SHOULD return RPC_S_PROTSEQ_NOT_SUPPORTED.<a id="Appendix_A_Target_169"></a><a aria-label="Product behavior note 169" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_169" data-linktype="relative-path">&lt;169&gt;</a> </p>
+</li><li><p><span>    </span>The server MUST
+check that the caller has been granted access rights using the algorithm in the
+<b>Access Control Abstract Data Model</b> (section <span><a href="c5b75090-3de2-404f-8de1-d5ca3fc38a70" data-linktype="relative-path">3.2.1.1</a></span>), with <i>Access
+Request mask</i> initialized to <b>WKSTA_NETAPI_CHANGE_CONFIG</b>; if not, the
+server MUST return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>The server
+SHOULD<a id="Appendix_A_Target_170"></a><a aria-label="Product behavior note 170" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_170" data-linktype="relative-path">&lt;170&gt;</a> return ERROR_NOT_SUPPORTED if
+the server is a client <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_dcea8721-5213-4954-bc73-d75ad6cb5591" data-linktype="relative-path">SKU</a></span> configuration.</p>
+</li><li><p><span>    </span>The server
+invokes <b>AmIRodc</b> ([MS-DRSR] section 5.7), storing the result in <i>IsRODC</i>.</p>
+</li><li><p><span>    </span>If <i>EncryptedPassword</i>
+is NULL or <i>DomainAccount</i> is NULL, <i>PasswordString</i> MUST be NULL.
+Otherwise, the server MUST decrypt and decode the <i>EncryptedPassword</i>
+(section 2.2.5.19). <i>PasswordString</i> MUST equal the decrypted and decoded
+value. The decrypted buffer is represented as a <b>JOINPR_USER_PASSWORD</b>
+structure (section <span><a href="6320ca78-6492-4eaf-ad95-a558ad399383" data-linktype="relative-path">2.2.5.17</a></span>). The
+value of the <b>Length</b> member MUST be less than 513; otherwise, message
+processing is stopped, and the server MUST return ERROR_INVALID_PASSWORD.</p>
+</li><li><p><span>    </span>The server MUST
+validate <i>AlternateName</i>. The validation [RFC1035] is performed in the
+following order. Specifically, the name MUST NOT:</p>
+<ul><li><p><span><span>  </span></span>Be
+longer than 255 octets.</p>
+</li><li><p><span><span>  </span></span>Contain
+a label longer than 63 octets.</p>
+</li><li><p><span><span>  </span></span>Contain
+two or more consecutive dots.</p>
+</li><li><p><span><span>  </span></span>Begin
+with a dot.</p>
+</li></ul></li><li><p><span>    </span>ERROR_INVALID_NAME
+MUST be returned if any condition in the preceding group is violated.
+Otherwise, <i>AlternateName</i> validation continues. The name MUST NOT:</p>
+<ul><li><p><span><span>  </span></span>Contain
+a space.</p>
+</li><li><p><span><span>  </span></span>Contain
+any of the following characters:</p>
+<div><pre> { | } ~ [ \ ] ^ &#39; : ; &lt; = &gt; ? @ ! &#34; # $ % ^ ` ( ) + / , *
+</pre></div>
+</li></ul></li><li><p><span>    </span>DNS_ERROR_INVALID_NAME_CHAR
+MUST be returned if any condition in the preceding group is violated.
+Otherwise, <i>AlternateName</i> validation continues.</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST locate the tuple <i>OldAlternateNames</i> in <b>alternate-computer-names</b>,
+where <i>OldAlternateNames</i>.FQDN MUST equal <i>AlternateName</i>.</p>
+</li><li><p><span><span>  </span></span><i>OldAlternateNames</i>.NetBIOS
+MUST equal <i>AlternateName</i> converted to a <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a></span>.<a id="Appendix_A_Target_171"></a><a aria-label="Product behavior note 171" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_171" data-linktype="relative-path">&lt;171&gt;</a> If tuple <i>OldAlternateNames</i>
+cannot be found the server MUST return ERROR_NOT_FOUND.</p>
+</li></ul></li><li><p><span>    </span>The server MUST
+impersonate the client by invoking the <b>StartImpersonatingClient</b> task
+(section <span><a href="719ae534-d5d7-4c42-9989-d63e0676fad1" data-linktype="relative-path">3.2.4.29.6</a></span>). If
+this operation fails, the server MUST return an error.</p>
+</li><li><p><span>  </span>If <i>OldAlternateNames</i>
+is found, <i>OldAlternateNames</i> MUST be removed from the list in <b>alternate-computer-names</b>
+persisted locally so that the set of <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_b86c44e6-57df-4c48-8163-5e3fa7bdcff4" data-linktype="relative-path">NetBIOS</a></span> and Internet
+host names currently assigned to this computer can be resolved on the network (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90260" data-linktype="external">[RFC1001]</a></span>
+and <span><a href="https://go.microsoft.com/fwlink/?LinkId=90234" data-linktype="external">[NIS]</a></span>). If the
+removal is not successful, steps 11 through 21 are not processed and the server
+MUST return an error after processing steps 22 and 23.</p>
+</li><li><p><span>  </span>If the server is not joined
+to a domain ([MS-ADTS] section <span><a href="../ms-adts/e5dd47ea-3ff5-451c-b6fe-c3bda5591402" data-linktype="relative-path">6.4</a></span>),
+proceed to step 22. Otherwise, the server MUST make the following update in the
+domain.</p>
+</li><li><p><span>  </span>The server MUST locate a
+writable domain controller for the domain to which the computer is joined, by
+invoking the <b>DsrGetDcNameEx2</b> method on the local <span><a href="../ms-nrpc/ff8f970f-3e37-40f7-bd4b-af7336e4792f" data-linktype="relative-path">[MS-NRPC]</a></span>
+server specifying the following parameters:</p>
+<ul><li><p><span><span>  </span></span><i>ComputerName</i>
+= NULL</p>
+</li><li><p><span><span>  </span></span><i>AccountName</i>
+= <b>ComputerNameNetBIOS </b>(section <span><a href="e0b508bc-764d-48b7-b44b-4f93c3d5cf8c" data-linktype="relative-path">3.2.1.5</a></span>)</p>
+</li><li><p><span><span>  </span></span><i>AllowableAccountControlBits</i>
+= ADS_UF_WORKSTATION_TRUST_ACCOUNT | ADS_UF_SERVER_TRUST_ACCOUNT ([MS-ADTS]
+section <span><a href="../ms-adts/dd302fd1-0aa7-406b-ad91-2a6b35738557" data-linktype="relative-path">2.2.16</a></span>)</p>
+</li><li><p><span><span>  </span></span><i>DomainName</i>
+= <b>DomainNameFQDN </b>(section 3.2.1.5)</p>
+</li><li><p><span><span>  </span></span><i>DomainGuid</i>
+= NULL</p>
+</li><li><p><span><span>  </span></span><i>SiteName</i>
+= NULL</p>
+</li><li><p><span><span>  </span></span><i>Flags</i>
+= (J | B) ([MS-NRPC] section <span><a href="../ms-nrpc/fb8e1146-a045-4c31-98d1-c68507ad5620" data-linktype="relative-path">3.5.4.3.1</a></span>).</p>
+<p>If a domain controller
+cannot be located, steps 13 through 21 are not processed and the server MUST
+return an error after processing steps 22 and 23.</p>
+<p>Otherwise, <i>DomainControllerString</i>
+MUST equal the string name of the returned writable domain controller.</p>
+</li></ul></li><li><p><span>  </span>The server invokes <b>LDAP
+Bind</b> (section <span><a href="54bb5e23-7947-4516-a04a-d354b11f6207" data-linktype="relative-path">3.2.4.29.2</a></span>) with
+the following parameters:</p>
+<ul><li><p><span><span>  </span></span><i>DomainControllerBindTarget</i>:
+DomainControllerString</p>
+</li><li><p><span><span>  </span></span><i>AccountNameForBind</i>:
+AccountName</p>
+</li><li><p><span><span>  </span></span><i>PasswordForBind</i>:
+PasswordString</p>
+</li><li><p><span><span>  </span></span><i>Encrypt</i>:
+FALSE</p>
+</li><li><p><span><span>  </span></span><i>DisallowReferrals</i>:
+TRUE</p>
+<p>The result is stored in <i>DomainControllerConnection</i>.
+If the LDAP bind returns an error, steps 14 through 21 are not processed, and
+the server MUST return the error after processing steps 22 and 23.</p>
+</li></ul></li><li><p><span>  </span>If <i>IsRODC</i> is TRUE,
+the server invokes <b>LDAP Bind</b> with the following parameters:</p>
+<ul><li><p><span><span>  </span></span><i>DomainControllerBindTarget</i>:
+<b>ComputerNameNetBIOS</b></p>
+</li><li><p><span><span>  </span></span><i>AccountNameForBind</i>:
+AccountName</p>
+</li><li><p><span><span>  </span></span><i>PasswordForBind</i>:
+PasswordString</p>
+</li><li><p><span><span>  </span></span><i>Encrypt</i>:
+FALSE</p>
+</li><li><p><span><span>  </span></span><i>DisallowReferrals</i>:
+TRUE</p>
+<p>The result is stored in <i>ReadOnlyDomainControllerConnection</i>.
+If the LDAP bind is not successful, steps 15 through 21 are not processed and
+the server MUST return an error after processing steps 22 and 23.</p>
+</li></ul></li><li><p><span>  </span>The server invokes <b>Query
+Computer Account DN for the Local Machine</b> (section <span><a href="c2058c35-790a-4fa9-b8c4-14b19447985e" data-linktype="relative-path">3.2.4.29.1</a></span>),
+specifying DomainControllerString for the <i>DomainControllerQueryTarget</i>
+parameter, storing the result in ComputerAccountDN. If the query returns an
+error, steps 16 through 21 are not processed and the server MUST return the
+error after processing steps 22 and 23.</p>
+</li><li><p><span>  </span>The server invokes the
+&#34;Performing an LDAP Operation on an ADConnection&#34; task of [MS-ADTS]
+section <span><a href="../ms-adts/b2131a85-4a8c-4f48-a610-6a4b7a701627" data-linktype="relative-path">7.6.1.6</a></span>
+with the following parameters:</p>
+<ul><li><p><span><span>  </span></span><i>TaskInputADConnection</i>:
+DomainControllerConnection</p>
+</li><li><p><span><span>  </span></span><i>TaskInputRequestMessage</i>:
+<span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a></span>
+modifyRequest message ([RFC2251] section 4.6) as follows:</p>
+<ul><li><p><span><span> 
+</span></span>Object: ComputerAccountDN</p>
+</li><li><p><span><span> 
+</span></span>The modification sequence has one list entry, set as follows:</p>
+<ul><li><p><span><span> 
+</span></span>First list entry</p>
+<ul><li><p><span><span> 
+</span></span>operation: delete</p>
+</li><li><p><span><span> 
+</span></span>modification:</p>
+<ul><li><p><span><span> 
+</span></span>type: msDS-AdditionalDnsHostName</p>
+</li><li><p><span><span> 
+</span></span>vals: OldAlternateNames.FQDN</p>
+</li></ul></li></ul></li></ul></li><li><p><span><span> 
+</span></span>controls: Sequence of one Control structure, as follows:</p>
+<ul><li><p><span><span> 
+</span></span>controlType: LDAP_SERVER_PERMISSIVE_MODIFY_OID ( [MS-ADTS]
+section <span><a href="../ms-adts/49cdb1e3-3baa-4c7c-8cde-7c26b13d3ba7" data-linktype="relative-path">3.1.1.3.4.1.8</a></span>)</p>
+</li><li><p><span><span> 
+</span></span>criticality: FALSE</p>
+</li></ul></li></ul></li><li><p><span><span>  </span></span><i>TaskOutputResultMessages</i>:
+LDAPResultMessages</p>
+<p>If the LDAP operation
+returns an error, steps 17 through 21 are not processed and the server MUST
+return the error after processing steps 22 and 23.</p>
+</li></ul></li><li><p><span>  </span>If <i>IsRODC</i> is TRUE,
+the server invokes the &#34;Performing an LDAP Operation on an
+ADConnection&#34; task of [MS-ADTS] section 7.6.1.6:</p>
+<ul><li><p><span><span>  </span></span><i>TaskInputADConnection</i>:
+DomainControllerConnection</p>
+</li><li><p><span><span>  </span></span><i>TaskInputRequestMessage</i>:
+LDAP SearchRequest message ([RFC2251] section 4.5.1) as follows:</p>
+<ul><li><p><span><span> 
+</span></span>baseObject: DN of the rootDSE (empty string)</p>
+</li><li><p><span><span> 
+</span></span>scope: base</p>
+</li><li><p><span><span> 
+</span></span>filter: ObjectClass=*</p>
+</li><li><p><span><span> 
+</span></span>attributes: dsServiceName</p>
+</li><li><p><span><span> 
+</span></span>derefAliases: neverDerefAliases</p>
+</li><li><p><span><span> 
+</span></span>typesOnly: FALSE</p>
+</li></ul></li><li><p><span><span>  </span></span><i>TaskOutputResultMessages</i>:
+LDAPResultMessages</p>
+</li></ul><p>The server MUST process the results
+returned from the DC in LDAPResultMessages. For the entry (SearchResultEntry,
+[RFC2251] section 4.5.2) returned by the search in LDAPResultMessages, the
+WritableDomainControllerDN MUST equal the value of the attribute dsServiceName.
+If the LDAP operation returns an error, steps 18 and 19 are not processed and
+processing continues at step 20.</p>
+</li><li><p><span>  </span>If <i>IsRODC</i> is TRUE,
+the server invokes the &#34;Performing an LDAP Operation on an
+ADConnection&#34; task of [MS-ADTS] section 7.6.1.6 with the following
+parameters:</p>
+<ul><li><p><span><span>  </span></span><i>TaskInputADConnection</i>:
+DomainControllerConnection</p>
+</li><li><p><span><span>  </span></span><i>TaskInputRequestMessage</i>:
+LDAP SearchRequest message ([RFC2251] section 4.5.1) as follows:</p>
+<ul><li><p><span><span> 
+</span></span>baseObject: ComputerAccountDN</p>
+</li><li><p><span><span> 
+</span></span>scope: base</p>
+</li><li><p><span><span> 
+</span></span>filter: ObjectClass=*</p>
+</li><li><p><span><span> 
+</span></span>attributes: distinguishedName, serverReferenceBL</p>
+</li><li><p><span><span> 
+</span></span>derefAliases: neverDerefAliases</p>
+</li><li><p><span><span> 
+</span></span>typesOnly: FALSE</p>
+</li><li><p><span><span> 
+</span></span>controls: Sequence of one Control structure, as follows:</p>
+<ul><li><p><span><span> 
+</span></span>controlType: LDAP_SERVER_EXTENDED_DN_OID ([MS-ADTS] section
+3.1.1.3.4.1.5)</p>
+</li><li><p><span><span> 
+</span></span>criticality: TRUE</p>
+</li></ul></li></ul></li><li><p><span><span>  </span></span><i>TaskOutputResultMessages</i>:
+LDAPResultMessages</p>
+<p>The server MUST process the
+results returned from the DC in LDAPResultMessages. For the entry
+(SearchResultEntry, [RFC2251] section 4.5.2) returned by the search in
+LDAPResultMessages, ComputerAccountExtendedDN MUST equal the value of the
+attribute distinguishedName unless distinguishedName contains the character
+&#39;;&#39;.  If &#39;;&#39; is present, ComputerAccountExtendedDN MUST equal distinguishedName
+truncated at the first occurrence of the character &#39;;&#39;, exclusive of the &#39;;&#39;
+itself. If the LDAP operation returns an error, step 19 is not processed and
+processing continues at step 20.</p>
+</li></ul></li><li><p><span>  </span>If <i>IsRODC</i> is TRUE,
+the server invokes the &#34;Performing an LDAP Operation on an
+ADConnection&#34; task of [MS-ADTS] section 7.6.1.6 with the following
+parameters:</p>
+<ul><li><p><span><span>  </span></span><i>TaskInputADConnection</i>:
+ReadOnlyDomainControllerConnection</p>
+</li><li><p><span><span>  </span></span><i>TaskInputRequestMessage</i>:
+LDAP modifyRequest message ([RFC2251] section 4.6) as follows:</p>
+<ul><li><p><span><span> 
+</span></span>Object: DN of the rootDSE (empty string)</p>
+</li><li><p><span><span> 
+</span></span>The modification sequence has one list entry, set as follows:</p>
+<ul><li><p><span><span> 
+</span></span>First list entry</p>
+<ul><li><p><span><span> 
+</span></span>operation: replace</p>
+</li><li><p><span><span> 
+</span></span>modification:</p>
+<ul><li><p><span><span> 
+</span></span>type: replicateSingleObject ([MS-ADTS] section <span><a href="../ms-adts/d3d19d15-8427-4d4d-8256-d5fb11333292" data-linktype="relative-path">3.1.1.3.3.18</a></span>)</p>
+</li><li><p><span><span> 
+</span></span>vals: WritableDomainControllerDN:ComputerAccountExtendedDN</p>
+</li></ul></li></ul></li></ul></li></ul></li><li><p><span><span>  </span></span><i>TaskOutputResultMessages</i>:
+LDAPResultMessages</p>
+<p>If the LDAP operation
+returns an error, processing continues as if it had succeeded.</p>
+</li></ul></li><li><p><span>  </span>The server invokes <b>LDAP
+Unbind</b> (section <span><a href="ed6bf2f1-8c20-4d7f-85c0-a7643190b3ac" data-linktype="relative-path">3.2.4.29.3</a></span>) with
+ADConnectionToUnbind set to DomainControllerConnection.</p>
+</li><li><p><span>  </span>If <i>IsRODC</i> is TRUE,
+the server invokes <b>LDAP Unbind</b> with ADConnectionToUnbind set to
+ReadOnlyDomainControllerConnection.</p>
+</li><li><p><span>  </span>The server MUST stop
+impersonating the client by invoking the <b>StopImpersonatingClient</b> task
+(section <span><a href="cf258b4a-d66b-4407-85f7-aac7823ec0aa" data-linktype="relative-path">3.2.4.29.7</a></span>).</p>
+</li><li><p><span>  </span>If an error occurred while
+processing steps 12 through 16, the server adds <i>OldAlternateNames</i> to the
+list in <b>alternate-computer-names</b> persisted locally.</p>
+</li></ol><p>If no errors occur, the server MUST return NERR_Success.</p></div>

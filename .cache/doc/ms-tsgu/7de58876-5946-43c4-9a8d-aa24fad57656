@@ -1,0 +1,61 @@
+<div class="content"><p>This packet is optionally sent by the RDG server in response
+to a channel creation request.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>channelId</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>udpPort</p>
+  </td>
+  <td colspan="16">
+  <p>authnCookie
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>channelId (4 bytes): </b>An unsigned integer
+representing the <b>channelId</b> field of the corresponding <a href="f6e253f6-3350-42fc-86e3-3f155df2cddb" data-linktype="relative-path">HTTP_CHANNEL_RESPONSE (section
+2.2.10.4)</a> structure.</p><p><b>udpPort (2 bytes): </b>An unsigned short
+representing the port number of the RDGUDP listener.</p><p><b>authnCookie (variable): </b>An <a href="86916c5e-f0c7-4691-b1c1-709871cb752a" data-linktype="relative-path">HTTP_byte_BLOB (section
+2.2.10.1)</a> structure. It contains the cookie to be used for the RDGUDP
+connection authentication in the <b>UDPAuthCookie</b> ADM element format.</p></div>

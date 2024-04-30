@@ -1,0 +1,23 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/f2d2513a-dbce-43f7-be7a-0be5d25877af" data-linktype="external">msdn link</a></p><p>When an <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a>
+in one <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> is
+referenced by another object in another domain, it represents the reference as
+a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_4d5e1f08-aa00-4dde-9411-7dd6e09ed85a" data-linktype="relative-path">dsname</a>. There is one
+Infrastructure FSMO role per domain and <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_53fee475-b07f-45e1-b4b7-c7ac0c1e7f6a" data-linktype="relative-path">application NC</a> in a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_49ce3946-04d2-4cc9-9350-ebcd952b9ab9" data-linktype="relative-path">directory</a>.</p><p>If all the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain
+controllers</a> in a domain also host the GC, then all the domain controllers
+have the current data, and it is not important which domain controller owns the
+Infrastructure Master (IM) role. See section <a href="832b9a41-9bb4-4619-ac40-243561fa1e65" data-linktype="relative-path">3.1.1.5</a> for more
+information about the Infrastructure Master.</p><p>When the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_54624800-58f4-45e9-90bf-c9b52dcf98f3" data-linktype="relative-path">Recycle
+Bin</a> <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_785b66f1-22b3-450f-97aa-a24a39d04d47" data-linktype="relative-path">optional feature</a>
+is not enabled, the Infrastructure FSMO role owner is the DC responsible for
+updating a cross-domain <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_3ca938ae-c14f-4f59-8a7d-daca9f76db4e" data-linktype="relative-path">object
+reference</a> in the event that the referenced object is moved, renamed, or
+deleted. In this case, the Infrastructure Master role MUST be held by a domain
+controller that is not a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_a5a99ce4-e206-42dc-8874-e103934c5b0d" data-linktype="relative-path">GC
+server</a>. If the Infrastructure Master runs on a GC server, it will not <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_b242435b-73cc-4c4e-95f0-b2a2ff680493" data-linktype="relative-path">update</a> object information,
+because it does not contain any references to objects that it does not hold.
+This is because a GC server holds a partial <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_ea02e669-2dda-460c-9992-b12a23caeeac" data-linktype="relative-path">replica</a> of every object in
+the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a>.</p><p>When the Recycle Bin optional feature is enabled, every DC
+is responsible for updating its cross-domain object references in the event
+that the referenced object is moved, renamed, or deleted. In this case, there
+are no tasks associated with the Infrastructure FSMO role, and it is not
+important which domain controller owns the Infrastructure Master role.</p></div>

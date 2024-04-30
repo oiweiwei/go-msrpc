@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p>The NT4_REPLICATION_STATE structure defines the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span>
+state for Windows NT 4.0 operating system <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DCs</a></span>, whose
+interpretation is specified in <span><a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a></span>
+section <span><a href="../ms-adts/0fc0d6cb-3e5d-4e6c-9250-1d518a4ea8bc" data-linktype="relative-path">3.1.1.7.1</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   LARGE_INTEGER SamSerialNumber;
+   LARGE_INTEGER SamCreationTime;
+   LARGE_INTEGER BuiltinSerialNumber;
+   LARGE_INTEGER BuiltinCreationTime;
+   LARGE_INTEGER LsaSerialNumber;
+   LARGE_INTEGER LsaCreationTime;
+ } NT4_REPLICATION_STATE;
+</pre></div>
+</dd></dl><p><b>SamSerialNumber:</b>  The Windows NT 4.0
+replication <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_01936446-8739-4b98-b83f-fb5e2a53ce4c" data-linktype="relative-path">update sequence number</a></span>
+for the SAM database.</p><p><b>SamCreationTime:</b>  The time at which
+the Windows NT 4.0 replication update sequence number for the SAM database was
+set to 1.</p><p><b>BuiltinSerialNumber:</b>  The Windows NT
+4.0 replication update sequence number for the built-in database.</p><p><b>BuiltinCreationTime:</b>  The time at
+which the Windows NT 4.0 replication update sequence number for the built-in
+database was set to 1.</p><p><b>LsaSerialNumber:</b>  The Windows NT 4.0
+replication update sequence number for the local security authority (LSA)
+database.</p><p><b>LsaCreationTime:</b>  The time at which
+the Windows NT 4.0 replication update sequence number for the LSA database was
+set to 1.</p></div>

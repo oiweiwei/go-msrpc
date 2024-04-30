@@ -1,0 +1,175 @@
+<div class="content"><p> </p><p>The method <b>R_DhcpV4EnumPolicies</b> returns an enumerated
+list of all configured <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e4c4b49e-bca4-4854-9e27-67ef0035f06e" data-linktype="relative-path">server level policies</a></span>
+or <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_3b199f35-b0f3-4897-83a6-e7fec0ee7fea" data-linktype="relative-path">scope
+level policies</a></span>. The caller of this function can free the memory
+pointed to by the <i>EnumInfo</i> parameter by calling the function <b>midl_user_free</b>
+(section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4EnumPolicies(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, out] LPDWORD ResumeHandle,
+   [in] DWORD PreferredMaximum,
+   [in] BOOL ServerPolicy,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [out] LPDHCP_POLICY_ARRAY EnumInfo,
+   [out] DWORD* ElementsRead,
+   [out] DWORD* ElementsTotal
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>ResumeHandle: </b>This is a pointer of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+(see <b>DHCP_RESUME_HANDLE</b> data type, section <span><a href="a6e4cdc0-4f71-4922-ade1-7a5392f9e920" data-linktype="relative-path">2.2.1.2.6</a></span>) that
+identifies the enumeration operation. Initially, this value MUST be set to
+zero, with a successful call returning the handle value used for subsequent enumeration
+requests.</p><p><b>PreferredMaximum: </b>This is of type DWORD
+specifying the preferred maximum number of policies to be returned. If the
+number of remaining unenumerated policies is less than the value of this
+parameter, then all the policies for the DHCPv4 server or for the specific
+subnet are returned. To retrieve all the policies on the DHCPv4 server or the
+specific subnet, 0xFFFFFFFF SHOULD be specified.</p><p><b>ServerPolicy: </b>This is of type <span><a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">BOOL</a></span>
+and indicates whether the server level policy or scope level policy is being
+requested.</p><p><b>SubnetAddress: </b>This is of type <b>DHCP_IP_ADDRESS</b>
+data type (section <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">2.2.1.2.1</a></span>) and
+identifies the IPv4 subnet from which the policy is being requested.</p><p><b>EnumInfo: </b>This is a pointer of type <b>LPDHCP_POLICY_ARRAY</b>
+(section <span><a href="d54a4a28-847a-4799-b1de-45f124730dc7" data-linktype="relative-path">2.2.1.2.111</a></span>) in
+which policy information is retrieved.</p><p><b>ElementsRead: </b>This is a pointer to a DWORD
+value that specifies the number of policies returned in the <i>EnumInfo</i>
+parameter. The caller MUST allocate memory for this parameter that is equal to
+the size of the DWORD data type.</p><p><b>ElementsTotal: </b>This is a pointer to a DWORD
+value that specifies the number of policies that have not yet been enumerated.
+The caller MUST allocate memory for this parameter that is equal to the size of
+the DWORD data type.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000EA</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>There are more elements available to enumerate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  </td>
+  <td>
+  <p>There are no more elements left to enumerate.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 112.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>If the <i>EnumInfo</i> parameter, <i>ResumeHandle</i> parameter, <i>ElementsRead</i>
+parameter and <i>ElementsTotal</i> parameter are NULL, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the ServerPolicy parameter is TRUE and SubnetAddress parameter
+is not NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ServerPolicy</i> parameter is FALSE and <i>SubnetAddress</i>
+parameter is NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read access as
+specified in section <span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>. If not,
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ServerPolicy</i> parameter is TRUE, retrieve the <b>DHCPv4ServerPolicyList</b>
+ADM element and start enumerating from the <i>ResumeHandle</i> parameter. If
+the <i>ResumeHandle</i> parameter points to 0x00000000, the enumeration MUST
+start from the beginning of the <b>DHCPv4ServerPolicyList</b> ADM element.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ServerPolicy</i> parameter is FALSE, retrieve the <b>DHCPv4ScopesList</b>
+ADM element and get the <b>DHCPv4Scope</b> ADM element from <b>DHCPv4ScopesList</b>
+ADM element where the <b>SubnetAddress</b> ADM element in <b>DHCPv4Scope</b>
+ADM element matches the specified <i>SubnetAddress</i> parameter. If the <i>SubnetAddress</i>
+parameter does not match any of the <b>DHCPv4Scope</b> ADM element entries in <b>DHCPv4ScopesList</b>
+ADM element return ERROR_DHCP_SUBNET_NOT_PRESENT. Retrieve the <b>DHCPv4Scope.DHCPv4ScopePolicyList</b>
+ADM element and start enumerating from the <i>ResumeHandle</i> parameter. If
+the <i>ResumeHandle</i> parameter points to 0x00000000, the enumeration MUST
+start from the beginning of <b>DHCPv4Scope.DHCPv4ScopePolicyList</b> ADM
+element.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ResumeHandle</i> parameter points to a nonzero value, the
+server MUST continue enumeration based on the value of the <i>ResumeHandle</i>
+parameter. If the <i>ResumeHandle</i> parameter is greater than or equal to the
+number of <b>DHCPv4Policy</b> ADM element objects in the retrieved list of
+policies, then return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>PreferredMaximum</i> parameter is 0 and the number of
+entries remaining in the retrieved list of policies is greater than 0, then
+ERROR_MORE_DATA is returned.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>PreferredMaximum</i> parameter is 0 and the number of
+entries remaining in the retrieved list of policies is 0, then
+ERROR_NO_MORE_ITEMS is returned.</p>
+</li><li><p><span><span> 
+</span></span>The <i>PreferredMaximum</i> parameter specifies the maximum
+number of policies that the server can allocate and return to the caller containing
+the data related to the <b>DHCPv4Policy</b> ADM element objects. If <i>PreferredMaximum</i>
+parameter is 0xFFFFFFFF or if <i>PreferredMaximum</i> parameter is enough to
+accommodate all <b>DHCPv4Policy</b> ADM element objects from <i>ResumeHandle</i>
+parameter to end of the retrieved list of policies, allocate memory for a <b>DHCP_POLICY_ARRAY</b>
+structure for total number of <b>DHCPv4Policy</b> ADM element objects of type <b>DHCP_POLICY</b>
+structure from <i>ResumeHandle</i> parameter to the end of the retrieved list
+of policies. If, however, <i>PreferredMaximum</i> parameter is not enough to
+accommodate all <b>DHCPv4Policy</b> ADM element objects from <i>ResumeHandle</i>
+parameter to the end of the list, allocate memory for <i>PreferredMaximum</i>
+parameter number of policies.</p>
+</li><li><p><span><span> 
+</span></span>Filter out policies from the list of policies which satisfy any
+of the following conditions based on the <b>condition</b> element in the <b>Conditions</b>
+member in the Policy:</p>
+<ul><li><p><span><span>  </span></span>The
+<b>Operator</b> member is greater than the value of DhcpCompNotBeginWith as
+defined in the <span><a href="92e62ae9-0aae-4c67-b742-17524afe79d7" data-linktype="relative-path">DHCP_POL_COMPARATOR (section 2.2.1.1.22)</a></span>
+enumeration.</p>
+</li><li><p><span><span>  </span></span>The
+<b>Type</b> member is greater than the value of DhcpAttrSubOption as defined in
+the <span><a href="f05fc88f-3ac7-4c44-9998-40e4acaeb776" data-linktype="relative-path">DHCP_POL_ATTR_TYPE (section 2.2.1.1.23)</a></span>
+enumeration.</p>
+</li><li><p><span><span>  </span></span>The
+<b>OptionId</b> member is the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_53cb4370-b090-46e0-9039-939f04c90aa0" data-linktype="relative-path">relay agent information option</a></span>
+(82) and the <b>Operator</b> member is greater than the value of
+DhcpCompNotEqual as defined in the
+DHCP_POL_COMPARATOR (section 2.2.1.1.22) enumeration.</p>
+</li></ul><p>This processing is performed to
+maintain backward compatibility with systems that do not support policies
+containing new information.<a id="Appendix_A_Target_86"></a><a aria-label="Product behavior note 86" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_86" data-linktype="relative-path">&lt;86&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Read the policy information from the retrieved list of policies
+starting from the <i>ResumeHandle</i> parameter, copy it into the allocated
+memory until the number of policies copied is equal to <i>PreferredMaximum</i>
+parameter and return it to the caller.</p>
+</li><li><p><span><span> 
+</span></span>Fill the number of read <b>DHCPv4Policy</b> ADM element objects
+in <i>ElementsRead</i> parameter. Fill the number of <b>DHCPv4Policy</b> ADM
+element objects in the retrieved list of policies that have not yet been
+enumerated in the <i>ElementsTotal</i> parameter. Update the <i>ResumeHandle</i>
+parameter to the index of the <b>DHCPv4Policy</b> ADM element objects read plus
+one (+1). If there are more policies in the retrieved list of policies which
+are yet to be enumerated, return ERROR_MORE_DATA, else return
+ERROR_NO_MORE_ITEMS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

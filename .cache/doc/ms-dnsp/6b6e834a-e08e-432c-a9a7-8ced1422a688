@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_ZONE_W2K</b> structure is used to specify
+basic information about a DNS zone.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcZoneW2K {
+   [string] wchar_t* pszZoneName;
+   DNS_RPC_ZONE_FLAGS Flags;
+   UCHAR ZoneType;
+   UCHAR Version;
+ } DNS_RPC_ZONE_W2K,
+  *PDNS_RPC_ZONE_W2K;
+</pre></div>
+</dd></dl><p><b>pszZoneName:</b> A pointer to a
+null-terminated <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+contains zone-name.</p><p><b>Flags:</b> Zone flags as specified in section
+<span><a href="015f97af-ba50-48bb-af44-4a542f3ff44a" data-linktype="relative-path">2.2.5.2.2</a></span>.</p><p><b>ZoneType:</b> The <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span> type. This MUST
+be set to one of the allowed DNS_ZONE_TYPE section <span><a href="27e138a7-110c-44a4-afcb-b95f35f00306" data-linktype="relative-path">2.2.5.1.1</a></span>.</p><p><b>Version:</b> The <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol
+version. It MUST be set to 0x32.</p></div>

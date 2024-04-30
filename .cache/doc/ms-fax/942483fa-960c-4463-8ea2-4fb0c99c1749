@@ -1,0 +1,261 @@
+<div class="content"><p> </p><p>The <b>FAX_ARCHIVE_CONFIGW</b> data type can be passed as an
+out parameter (as a byte array) in a <b>FAX_GetArchiveConfiguration</b>
+(section <span><a href="332f9426-d35b-43e5-9251-bf50b7de459c" data-linktype="relative-path">3.1.4.1.34</a></span>) call
+and as an in parameter for <b>FAX_SetArchiveConfiguration</b> (section <span><a href="74e92e24-b311-4b74-9a4b-fad99383682d" data-linktype="relative-path">3.1.4.1.75</a></span>).</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (40 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (40 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfStruct</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bUseArchive</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpcstrFolderOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bSizeQuotaWarning</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeQuotaHighWatermark</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeQuotaLowWatermark</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAgeLimit</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Padding</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwlArchiveSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>dwSizeOfStruct (4 bytes):
+</b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that holds the size of the <b>Fixed_Portion</b> block, in bytes. This
+value MUST be 40 bytes.</p>
+</dd>
+<dd>
+<p><b>bUseArchive (4 bytes): </b>A
+Boolean value that indicates whether archiving is turned on for the specified
+folder name.</p>
+</dd>
+<dd>
+<p><b>lpcstrFolderOffset (4
+bytes): </b>Offset to the <b>lpcstrFolder</b> field in the <b>Variable_Data</b>
+block of the structure.</p>
+</dd>
+<dd>
+<p><b>bSizeQuotaWarning (4
+bytes): </b>A Boolean value that indicates whether the fax server SHOULD issue
+an event log warning if the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9394bf31-7db9-433c-8d3d-ee6a37bf0848" data-linktype="relative-path">archive</a></span> quota
+exceeds the watermarks defined by the <b>dwSizeQuotaHighWatermark</b> and <b>dwSizeQuotaLowWatermark</b>
+fields. </p>
+</dd>
+<dd>
+<p><b>dwSizeQuotaHighWatermark
+(4 bytes): </b>A <b>DWORD</b> that holds the high watermark of the archive size
+limit.</p>
+</dd>
+<dd>
+<p><b>dwSizeQuotaLowWatermark
+(4 bytes): </b>A <b>DWORD</b> that holds the low watermark of the archive size
+limit.</p>
+</dd>
+<dd>
+<p><b>dwAgeLimit (4 bytes): </b>A
+<b>DWORD</b> that holds the number of days the fax server will keep fax
+messages in the archive.</p>
+</dd>
+<dd>
+<p><b>Padding (4 bytes): </b>Padding
+for data alignment of the <b>Fixed_Portion</b> block to an 8-byte boundary.</p>
+</dd>
+<dd>
+<p><b>dwlArchiveSize (8 bytes):
+</b>A <b>DWORDLONG</b> ([MS-DTYP] section <span><a href="../ms-dtyp/c575fb47-166c-48cd-a37c-e44cac05c3d6" data-linktype="relative-path">2.2.13</a></span>)
+that holds the size, in bytes, of the archive.</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrFolder
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>lpwstrFolder (variable): </b>A
+null-terminated character string that holds the archive folder name.</p>
+</dd></dl></div>

@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/31879676-cc95-4cf1-8f75-c09ddcef8750" data-linktype="external">msdn link</a></p><p>The SAMPR_GET_GROUPS_BUFFER structure represents the members
+of a group.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_GET_GROUPS_BUFFER {
+   unsigned long MembershipCount;
+   [size_is(MembershipCount)] PGROUP_MEMBERSHIP Groups;
+ } SAMPR_GET_GROUPS_BUFFER,
+  *PSAMPR_GET_GROUPS_BUFFER;
+</pre></div>
+</dd></dl><p><b>MembershipCount:</b>  The number of
+elements in <b>Groups</b>. If zero, <b>Groups</b> MUST be ignored. If nonzero, <b>Groups</b>
+MUST point to at least MembershipCount * sizeof(GROUP_MEMBERSHIP) bytes of
+memory.</p><p><b>Groups:</b>  An array to hold
+information about the members of the group.</p></div>

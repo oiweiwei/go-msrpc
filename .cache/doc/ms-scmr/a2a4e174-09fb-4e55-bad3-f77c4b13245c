@@ -1,0 +1,63 @@
+<div class="content"><p>The RCloseServiceHandle method is called by the client. In
+response, the server releases the handle to the specified <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_2dc07ca2-2b40-437e-a5ec-ed28ebfb116a" data-linktype="relative-path">service</a> or the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a> database.</p><dl>
+<dd>
+<div><pre> DWORD RCloseServiceHandle(
+   [in, out] LPSC_RPC_HANDLE hSCObject
+ );
+</pre></div>
+</dd></dl><p><b>hSCObject: </b>An <a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">SC_RPC_HANDLE</a> (section
+2.2.4) data type that defines the handle to a service record or to the SCM
+database that MUST have been created previously using one of the open methods
+specified in section <a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a>.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns the following error code.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>6</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The handle is no longer valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFF75FD</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>The operation completed successfully. Additionally,
+  the passed handle was the last one created for the associated service record
+  that was previously used in a successful call to the <a href="b4cb2447-1f8c-4dee-a78e-209bdacadea6" data-linktype="relative-path">RNotifyServiceStatusChange (section 3.1.4.43)</a>
+  method.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFF75FE</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>The operation completed successfully. Additionally,
+  the passed handle was previously used in a successful call to the
+  RNotifyServiceStatusChange method.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation, the server MUST close the handle to the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_1fbb7936-8437-4e3d-b62f-47df3be07721" data-linktype="relative-path">service record</a> or the SCM
+database specified by the <i>hSCObject</i> parameter specified in the client
+request.</p><p>If <i>hSCObject</i> is the RPC control handle that has been
+created for the service record, the server MUST decrement the <b>HandleCount</b>
+field of the service record. If the <b>Deleted</b> field of the service record
+indicates that <a href="6744cdb8-f162-4be0-bb31-98996b6495be" data-linktype="relative-path">RDeleteService</a>
+has been successfully called with the RPC control handle created for the same
+service record, and <b>HandleCount</b> indicates that <i>hSCObject</i> is the
+last RPC control handle created for this service record, the server MUST delete
+the service record. </p></div>

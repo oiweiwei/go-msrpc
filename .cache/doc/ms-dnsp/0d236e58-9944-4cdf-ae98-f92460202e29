@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p>The R_DnssrvEnumRecords2 method enumerates DNS records on
+the server. The DNS server SHOULD implement R_DnssrvEnumRecords2 <a id="Appendix_A_Target_281"></a><a aria-label="Product behavior note 281" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_281" data-linktype="relative-path">&lt;281&gt;</a>.</p><p>All parameters are as specified by the <span><a href="d0251c9b-9e3e-4eec-bcc5-eb6b995b6108" data-linktype="relative-path">R_DnssrvEnumRecords
+method (section 3.1.4.4)</a></span> with the following exceptions:</p><dl>
+<dd>
+<div><pre> LONG R_DnssrvEnumRecords2(
+   [in]                                   handle_t           hBindingHandle,
+   [in]                                   DWORD              dwClientVersion,
+   [in]                                   DWORD              dwSettingFlags,
+   [in, unique, string]                   LPCWSTR            pwszServerName,
+   [in, unique, string]                   LPCSTR             pszZone,
+   [in, unique, string]                   LPCSTR             pszNodeName,
+   [in, unique, string]                   LPCSTR             pszStartChild,
+   [in]                                   WORD               wRecordType,
+   [in]                                   DWORD              fSelectFlag,
+   [in, unique, string]                   LPCSTR             pszFilterStart,
+   [in, unique, string]                   LPCSTR             pszFilterStop,
+   [out]                                  PDWORD             pdwBufferLength,
+   [out, size_is(, *pdwBufferLength)]     PBYTE*             ppBuffer
+ );
+</pre></div>
+</dd></dl><p><b>dwClientVersion: </b>The client version in <b>DNS_RPC_CURRENT_CLIENT_VER</b>
+(section <span><a href="a237781b-b048-495d-844b-10ffb38df2a8" data-linktype="relative-path">2.2.1.2.1</a></span>) format.</p><p><b>dwSettingFlags: </b>Reserved for future use only.
+This field MUST be set to zero by clients and ignored by servers.</p><p><b>Return Values: </b>Return values behaviors and
+interpretations are same as they are for R_DnssrvEnumRecords method (section
+3.1.4.4).</p><p>When processing this call, the server MUST perform the same
+actions as for the R_DnssrvEnumRecords method (section 3.1.4.4). </p></div>

@@ -1,0 +1,10 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/5c94a35a-e7f2-4675-af34-741f5a8ee1a2" data-linktype="external">msdn link</a></p><p>The SAMPR_RID_ENUMERATION structure holds the name and <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RID</a> information about an <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_8d10bd9d-392e-431b-8218-742bdac19815" data-linktype="relative-path">account</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_RID_ENUMERATION {
+   unsigned long RelativeId;
+   RPC_UNICODE_STRING Name;
+ } SAMPR_RID_ENUMERATION,
+  *PSAMPR_RID_ENUMERATION;
+</pre></div>
+</dd></dl><p><b>RelativeId:</b>  A RID.</p><p><b>Name:</b>  The UTF-16 encoded name of
+the account that is associated with <b>RelativeId</b>.</p></div>

@@ -1,0 +1,137 @@
+<div class="content"><p>Using the File Server Resource Manager (FSRM) Protocol, a
+client can perform the following operations:</p><ul><li><p><span><span> 
+</span></span>Limit the size of a given directory through <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_4b48a792-493d-4fa8-9ba8-175d43fb471d" data-linktype="relative-path">directory quotas</a>.</p>
+</li><li><p><span><span> 
+</span></span>Restrict the type of data that can be stored under a given
+directory through <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_4029e82b-3938-41a4-9a52-dff21ec37dcb" data-linktype="relative-path">file
+screens</a>.</p>
+</li><li><p><span><span> 
+</span></span>Define a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_b2a5fac3-064b-4f84-9679-74dfb2ce5d2e" data-linktype="relative-path">property
+schema</a> that can be used to label files stored on the server.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve and modify the values assigned to classification properties
+for files stored on the server.</p>
+</li><li><p><span><span> 
+</span></span>Configure automatic mechanisms to assign values to classification
+properties.</p>
+</li><li><p><span><span> 
+</span></span>Register <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_19e3eb54-a998-44af-b5a8-d0b02c57448c" data-linktype="relative-path">classification
+modules</a> to alter the behavior of how files are classified and properties
+stored.</p>
+</li><li><p><span><span> 
+</span></span>Register <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_de2820bc-dc8b-4abe-8ea4-6ad86a6dc34f" data-linktype="relative-path">storage
+modules</a> to alter the behavior of how the properties of a file are stored. </p>
+</li><li><p><span><span> 
+</span></span>Apply policy to subsets of files.</p>
+</li><li><p><span><span> 
+</span></span>Analyze storage utilization through <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_15957e50-08ab-48d2-8824-57a71b23f833" data-linktype="relative-path">report jobs</a>.</p>
+</li></ul><p>The FSRM protocol is expressed as a set of <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a> interfaces. The FSRM
+server implements support for the DCOM interface to manage <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_d0d3e068-0480-4e5a-a5f9-7219422e0d40" data-linktype="relative-path">FSRM objects</a>. An FSRM
+client invokes method calls on the interface to perform various FSRM object
+configuration tasks on the server. More specifically, this protocol can be used
+for the following purposes:</p><ul><li><p><span><span> 
+</span></span>Creating, enumerating, modifying, and deleting directory quotas
+and related objects (<a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_81039d49-4277-4f11-8251-7f1ab55eef77" data-linktype="relative-path">auto
+apply quotas</a> and <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_1860c2ff-a8be-4088-988c-d03b43e9e006" data-linktype="relative-path">quota
+templates</a>) on the FSRM server.</p>
+</li><li><p><span><span> 
+</span></span>Creating, enumerating, modifying, and deleting file screens and
+related objects (<a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_285a588e-ca67-4d67-90ec-c182c60c9d66" data-linktype="relative-path">file screen
+exceptions</a> and <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_1f828be2-7a1b-4671-b82d-76b974874edc" data-linktype="relative-path">file
+groups</a>) on the FSRM server.</p>
+</li><li><p><span><span> 
+</span></span>Creating, enumerating, modifying, and deleting classification
+properties on the FSRM server.</p>
+</li><li><p><span><span> 
+</span></span>Setting, enumerating, modifying, and deleting <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_13091c0e-746f-478c-b54c-ad0294a94ea8" data-linktype="relative-path">properties values</a> for
+specific files on the FSRM server.</p>
+</li><li><p><span><span> 
+</span></span>Creating, enumerating, modifying, and deleting <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_4bd4bf29-9046-4cb8-b637-fd107cd756aa" data-linktype="relative-path">classification rules</a> on the
+FSRM server.</p>
+</li><li><p><span><span> 
+</span></span>Creating, enumerating, modifying, and deleting classification
+modules on the FSRM server.</p>
+</li><li><p><span><span> 
+</span></span>Creating, enumerating, modifying, and deleting storage modules on
+the FSRM server. </p>
+</li><li><p><span><span> 
+</span></span>Creating, enumerating, modifying, and deleting <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_d97f21a8-2a20-45fd-8e7e-ec697810ac45" data-linktype="relative-path">file management jobs</a> on the
+FSRM server.</p>
+</li><li><p><span><span> 
+</span></span>Creating, enumerating, modifying, and deleting report jobs on the
+FSRM server.</p>
+</li><li><p><span><span> 
+</span></span>Querying and setting FSRM server general settings; for example,
+the Simple Mail Transfer Protocol <a href="https://go.microsoft.com/fwlink/?LinkId=90496" data-linktype="external">[RFC821]</a> server name
+and report default parameters.</p>
+</li></ul><p>A typical FSRM session involves a client connecting to the
+server and requesting an interface that allows performing high-level
+operations, such as enumeration and creation for a class of FSRM objects. If
+the server accepts the request, it responds with the requested interface. The
+client can then use the interface to request that the server enumerate the
+objects of the desired class. If the server accepts the request, it responds
+with a collection of interfaces that allow access to the requested type of FSRM
+object. The client uses the interfaces returned by the server to send
+additional requests to the server specifying the type of operation to perform
+and any operation-specific parameters. If the server accepts the operation
+request, it attempts to query or change the state of the corresponding FSRM
+object based on the request parameters and returns to the client the result of
+the operation. To persist changes to the manipulated FSRM objects, the client
+can explicitly request that the server commit any outstanding changes.</p><p>The following are FSRM objects:</p><p><b>Directory Quotas:</b></p><p>A directory quota restricts the size of a specific directory
+to a configurable quota limit. In addition to the limit, a directory quota can
+be configured with one or more <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_619936cf-3899-4b3e-b56c-3a91aefdbfb8" data-linktype="relative-path">directory quota thresholds</a>
+that define a set of highly customizable FSRM notifications that will be raised
+when the quota usage reaches the threshold value. </p><p>Directory quotas can be created and configured in several
+different ways. A client can manipulate directory quotas by directly querying
+and setting quota properties or by modifying properties in bulk by applying a
+quota template. Alternatively, a client can configure an auto apply quota,
+which will automatically create directory quotas on existing and newly created
+subfolders.</p><p><b>File Screens:</b></p><p>A file screen restricts the types of files that can be
+stored in a specific directory and its subdirectories. For each file screen,
+there is a configurable list of blocked file groups that define a set of
+patterns, based on the file name, that will be restricted. When a file is created
+or renamed, the server evaluates whether the file name matches a pattern in any
+file group configured on a parent portion of the path. If a match is found, the
+file is blocked, and a set of highly customizable FSRM notifications configured
+for the file screen will be raised.</p><p>In addition to configuring file screens, a client can
+request that the server create a file screen exception that defines a list of
+file groups that are specifically allowed in a specific directory and its
+subdirectories. A file screen exception will typically be configured on a
+directory that is in the subtree of a directory with a file screen. In this
+case, the file screen exception list takes precedence when evaluating screening
+rules and files with names that match the name patterns in the allowed file
+groups that will not be blocked.</p><p>File screens can be created and configured in several
+different ways. A client can manipulate file screens by directly querying and
+setting file screen properties or by modifying properties in bulk by applying a
+<a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_85abb42f-bb8d-4858-a712-3bfe855bb9fd" data-linktype="relative-path">file screen template</a>.</p><p><b>Classification Properties:</b></p><p>A classification property defines one piece of metadata to
+be associated with files on the file server. It specifies the type of property
+(boolean, string, date, number, ordered list, multi-choice, multi-string). For
+certain types (ordered list, multi-choice) possible values are specified. Some
+properties (boolean, ordered list, multi-choice) can have descriptions assigned
+to each possible value.</p><p><b>Classification Rules:</b></p><p>Classification values are applied automatically to files on
+the file server on a global schedule based on a set of rules. Each of these
+rules will determine which portion of the volumes connected to the server that
+classification rules are applied to. They use one of the registered
+classification modules to determine what the property values might be. When the
+scheduled classification is run, it scans the files on the system and
+determines which rules, if any, apply to each file. It will then invoke all
+rules on the file and aggregate the property values to determine the property
+values for the file.</p><p><b>File Management Jobs:</b></p><p>File Management Jobs are scheduled tasks that process a
+subset of files on the file server. For each file in this subset, a command is
+executed. By default this command moves the file to a configured directory
+(known as an &#34;expiration&#34; operation). Custom commands can be
+configured to be performed instead. The subset of files that the command will
+be applied to is determined by the scope of the file management job (a list of
+directories) and a set of condition checks against certain file properties and
+any property values associated with the file. File management jobs can also
+produce FSRM notifications at configurable intervals before a file is affected
+by the configured task.</p><p><b>Report Jobs:</b></p><p>A report job specifies a set of directories that will be
+analyzed to generate one or more different report types that will allow
+administrators to better understand how storage is utilized in the directories
+in question. The client can configure report jobs that execute according to a
+schedule or can configure report jobs that execute on-demand. In addition, the
+client can also query and set properties on the report job to manipulate report
+generation parameters, format options, email delivery information, and others.<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a></p><p><b>Classification Module:</b></p><p>A classification module is an internal software component
+that can be used to discover new property values to be associated with files,
+according to the current set of classification rules.</p><p><b>Storage Module:</b></p><p>A storage module is an internal software component that can
+be used to store or retrieve existing property values associated with files.</p></div>

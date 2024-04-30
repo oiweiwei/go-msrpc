@@ -1,0 +1,19 @@
+lookBehind:
+  record:
+    str: [record] # oaut
+    trust: [trust, data]
+    srv: [record, dnssrv0]
+    txt: [record, dnstxt0]
+    text: [record, dnstxt0]
+    ptr: [record, dnsptr0] 
+    nxt: [record, dnsnxt0]
+    key: [record, dnskey0]
+    cname: [record, dnscname0]
+    rt: [record, dnsrt0] 
+    sig: [record, dnssig0]
+    mf: [record, dnsmf0]
+    md: [record, dnsmd0]
+    "null": [record, dnsnull0]
+    nsec3param: [record, dnsnsec3param0]
+    winsr: [record, dnswinsr0]
+    zero: [record, dnszero0]

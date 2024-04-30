@@ -1,0 +1,87 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c1458942-f2d5-4317-a888-abd27abad504" data-linktype="external">msdn link</a></p><p>The SamrQueryDisplayInformation method obtains a list of
+accounts in ascending name-sorted order, starting at a specified index.</p><dl>
+<dd>
+<div><pre> long SamrQueryDisplayInformation(
+   [in] SAMPR_HANDLE DomainHandle,
+   [in] DOMAIN_DISPLAY_INFORMATION DisplayInformationClass,
+   [in] unsigned long Index,
+   [in] unsigned long EntryCount,
+   [in] unsigned long PreferredMaximumLength,
+   [out] unsigned long* TotalAvailable,
+   [out] unsigned long* TotalReturned,
+   [out, switch_is(DisplayInformationClass)] 
+     PSAMPR_DISPLAY_INFO_BUFFER Buffer
+ );
+</pre></div>
+</dd></dl><p>See the description of <a href="7cd1c6d0-8819-4a58-9721-5be588c1d4ad" data-linktype="relative-path">SamrQueryDisplayInformation3 (section 3.1.5.3.1)</a>
+for details, because the method interface arguments and message processing are
+identical.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>The server MUST behave as with a call to
+SamrQueryDisplayInformation3, with the following parameter values.</p><table><thead>
+  <tr>
+   <th>
+   <p>Parameter name</p>
+   </th>
+   <th>
+   <p>Parameter value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><i>DomainHandle</i></p>
+  </td>
+  <td>
+  <p>SamrQueryDisplayInformation.DomainHandle</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>DisplayInformationClass</i></p>
+  </td>
+  <td>
+  <p>SamrQueryDisplayInformation.DisplayInformationClass</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Index</i></p>
+  </td>
+  <td>
+  <p>SamrQueryDisplayInformation.Index</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>EntryCount</i></p>
+  </td>
+  <td>
+  <p>SamrQueryDisplayInformation.EntryCount</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>PreferredMaximumLength</i></p>
+  </td>
+  <td>
+  <p>SamrQueryDisplayInformation.PreferredMaximumLength</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>TotalAvailable</i></p>
+  </td>
+  <td>
+  <p>SamrQueryDisplayInformation.TotalAvailable</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>TotalReturned</i></p>
+  </td>
+  <td>
+  <p>SamrQueryDisplayInformation.TotalReturned</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Buffer</i></p>
+  </td>
+  <td>
+  <p>SamrQueryDisplayInformation.Buffer</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

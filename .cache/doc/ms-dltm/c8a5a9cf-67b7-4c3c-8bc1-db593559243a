@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The TRKSVR_CALL_REFRESH structure is used in <span><a href="cea51ffe-cab6-4b19-93b7-853189437ead" data-linktype="relative-path">LnkSvrMessage</a></span>
+method calls that specify a REFRESH message (see section <span><a href="e6084ee0-fc0d-443e-a4fb-1a792ce70450" data-linktype="relative-path">2.2.11</a></span>),
+to indicate to the server that a file or <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> is still in
+use. The server uses this to determine when an entry in its tables is no longer
+in use and can be deleted. See section <span><a href="e1aa1914-4e78-43f3-b8cf-b002119cef0b" data-linktype="relative-path">3.2.5.2</a></span> for an
+example of client use of this structure.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned long cSources;
+   [size_is(cSources)] CDomainRelativeObjId* adroidBirth;
+   unsigned long cVolumes;
+   [size_is(cVolumes)] CVolumeId* avolid;
+ } TRKSVR_CALL_REFRESH;
+</pre></div>
+</dd></dl><p><b>cSources:</b>  This field MUST contain
+the number of elements in the <b>adroidBirth</b> array.</p><p><b>adroidBirth:</b>  This field MUST
+contain an array of FileIDs, with the <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_3b097896-b707-47b5-b1bb-384867a453ea" data-linktype="relative-path">FileID</a></span> for files on
+the client computer for which the client is requesting a refresh. The type of
+this field, <span><a href="../ms-dltw/80cbf3f6-964d-456a-b08e-6f20c7c86921" data-linktype="relative-path">CDomainRelativeObjId</a></span>,
+is as specified in <span><a href="../ms-dltw/fc649f0e-871a-431a-88b5-d5b2f80e9cc9" data-linktype="relative-path">[MS-DLTW]</a></span>
+section 2.2.3. If this array is empty, it indicates that there are no FileIDs
+to be refreshed by this request.</p><p><b>cVolumes:</b>  This field MUST contain
+the number of elements in the <b>avolid</b> array. Note that this is
+independent of the cSources value.</p><p><b>avolid:</b>  This field MUST contain an
+array of <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_3b3c1be2-035c-4823-afeb-10edbd6bb288" data-linktype="relative-path">VolumeIDs</a></span> for
+volumes on the client computer for which the client requests a refresh. <span><a href="../ms-dltw/4a6f00d9-a2ac-4876-95ea-5cd6772dcafa" data-linktype="relative-path">CVolumeId</a></span>
+is as specified in [MS-DLTW] section 2.2.4. If this array is empty, it
+indicates that there are no VolumeIDs to be refreshed by this request.</p></div>

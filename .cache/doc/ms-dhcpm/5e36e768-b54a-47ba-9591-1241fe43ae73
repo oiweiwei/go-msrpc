@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DHCP_FAILOVER_RELATIONSHIP_ARRAY</b> structure
+defines an array of <b>DHCP_FAILOVER_RELATIONSHIP</b> (section <span><a href="9153f2b7-e4df-4475-9275-d2092a93bd51" data-linktype="relative-path">2.2.1.2.98</a></span>)
+structures. This structure is used in the <b>R_DhcpV4FailoverEnumRelationship</b>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_FAILOVER_RELATIONSHIP_ARRAY {
+     DWORD numElements;
+     [size_is(numElements)] LPDHCP_FAILOVER_RELATIONSHIP pRelationships;
+ } DHCP_FAILOVER_RELATIONSHIP_ARRAY, *LPDHCP_FAILOVER_RELATIONSHIP_ARRAY;
+</pre></div>
+</dd></dl><p><b>numElements:</b>  This member is of type
+<span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and contains the number of <b>DHCP_FAILOVER_RELATIONSHIP</b> elements specified
+in the subsequent <b>pRelationships</b> field.</p><p><b>pRelationships:</b>  This member is a
+pointer to an array of <b>DHCP_FAILOVER_RELATIONSHIP</b> structures of length <b>numElements</b>
+and contains <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_ba9fcec9-1438-47ec-958c-873c1a0d4c5e" data-linktype="relative-path">failover relationship</a></span>
+information.</p></div>

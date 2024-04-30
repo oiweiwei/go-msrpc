@@ -1,0 +1,50 @@
+<div class="content"><p>The CreateCustomAction method creates a <b>command line
+action type notification</b> for the file management job&#39;s <b>custom action</b>
+and returns S_OK upon successful completion.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_FILE_MANAGEMENT_JOB_MANAGER | 0x0a)] HRESULT CreateCustomAction(
+   [out, retval] IFsrmActionCommand** customAction
+ );
+</pre></div>
+</dd></dl><p><b>customAction: </b>Pointer to an <b>IFsrmActionCommand</b>
+interface pointer (section <a href="9fb9f66d-a7da-46c7-839b-b9360cae9207" data-linktype="relative-path">3.2.4.2.9</a>)
+that upon completion points to the newly created <b>notification</b>. A caller
+MUST release the <b>IFsrmActionCommand</b> received when the caller is done
+with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045303</p>
+  <p>FSMR_E_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>A <b>custom action</b> already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>customAction</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>customAction</i> is not NULL.</p>
+</li></ul><p>The server MUST create a new <b>command line action type
+notification</b> and set the file management job&#39;s <b>custom action</b> element
+to the new notification, regardless of the <b>operation type</b> of the file
+management job or return a nonzero error code. If a custom action already
+exists for the file management job, the server MUST return
+FSRM_E_ALREADY_EXISTS.</p></div>

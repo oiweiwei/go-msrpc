@@ -1,0 +1,32 @@
+<div class="content"><p> </p><p>The TYPEKIND enumeration values are used in the <b>typekind</b>
+field of a TYPEATTR to specify the features of a type, as specified in section <span><a href="0ca10d08-61d2-4059-9109-7bbaf545715e" data-linktype="relative-path">2.2.44</a></span>.
+They are also used in the <i>pTypeKind</i> parameter of the <span><a href="6a03300e-bd2d-45e4-b15e-2a4c121554e5" data-linktype="relative-path">ITypeInfo2::GetTypeKind</a></span>
+method, as specified in section 3.9.4.1.</p><p>The type kind constants are defined in the TYPEKIND
+enumeration.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum tagTYPEKIND
+ {
+   TKIND_ENUM = 0x0,
+   TKIND_RECORD = 0x1,
+   TKIND_MODULE = 0x2,
+   TKIND_INTERFACE = 0x3,
+   TKIND_DISPATCH = 0x4,
+   TKIND_COCLASS = 0x5,
+   TKIND_ALIAS = 0x6,
+   TKIND_UNION = 0x7
+ } TYPEKIND;
+</pre></div>
+</dd></dl><p><b>TKIND_ENUM:  </b>MUST be used if the type is an
+enumeration that was defined with the <b>typedef</b> and <b>enum</b> keywords.</p><p><b>TKIND_RECORD:  </b>MUST be used if the type is a
+structure that was defined with the <b>typedef</b> and <b>struct</b> keywords.</p><p><b>TKIND_MODULE:  </b>MUST be used if the type is a
+module that was defined with the <b>module</b> keyword.</p><p><b>TKIND_INTERFACE:  </b>MUST be used if the type is
+a <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_4b20db64-5f0c-4df0-9ecf-91cdde2c2408" data-linktype="relative-path">DCOM
+interface</a></span> that was defined with the interface keyword.</p><p><b>TKIND_DISPATCH:  </b>MUST be used if the type is a
+<span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_35b38e6d-42ee-4b7b-8ca1-ab93308458d5" data-linktype="relative-path">dispinterface</a></span>
+that was defined with either the <b>dispinterface</b> keyword or the <b>interface</b>
+keyword with the <b>[dual]</b> attribute.</p><p><b>TKIND_COCLASS:  </b>MUST be used if the type is a <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_afe9a4a6-56fc-4162-8c9b-ca7c7e44449c" data-linktype="relative-path">COM
+server</a></span> that was defined with the <b>coclass</b> keyword.</p><p><b>TKIND_ALIAS:  </b>MUST be used if the type is an
+alias for a predefined type that was defined with the <b>typedef</b> keyword
+and added to the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_07ad91dc-c12a-44f7-9c64-7e496933183a" data-linktype="relative-path">automation scope</a></span> by
+using the <b>[public]</b> attribute as specified in section <span><a href="7b5fa59b-d8f6-4a47-9695-630d3c10363e" data-linktype="relative-path">2.2.49.3</a></span>.</p><p><b>TKIND_UNION:  </b>MUST be used if the type is a
+union that was defined with the <b>typedef</b> and <b>union</b> keywords.</p></div>

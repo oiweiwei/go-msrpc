@@ -1,0 +1,26 @@
+<div class="content"><p>The _PERF_COUNTER_IDENTIFIER structure is used to identify <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance counters</a> when
+adding or removing counters from a query or when enumerating performance
+counter metadata on the server.</p><dl>
+<dd>
+<div><pre> typedef struct _PERF_COUNTER_IDENTIFIER {
+   GUID CounterSetGuid;
+   unsigned long Status;
+   unsigned long Size;
+   unsigned long CounterId;
+   unsigned long InstanceId;
+   unsigned long Index;
+   unsigned long Reserved;
+ } PERF_COUNTER_IDENTIFIER,
+  *PPERF_COUNTER_IDENTIFIER;
+</pre></div>
+</dd></dl><p><b>CounterSetGuid:</b>  The <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> of the <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_5ad9937c-a24e-4274-92c8-50ff5f97bf19" data-linktype="relative-path">counterset</a>.</p><p><b>Status:</b>  A Win32 error code that
+indicates whether the operation was successful. Win32 error codes are specified
+in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p><b>Size:</b>  The total size, in bytes, of
+the structure and the instance name. The structure is followed by the instance
+name, represented as a <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a>.</p><p><b>CounterId:</b>  The numeric identifier
+of the counter.</p><p><b>InstanceId:</b>  The instance identifier
+of the counterset.</p><p><b>Index:</b>  The position in which the
+corresponding counter data is returned from a <a href="37c6afc9-af11-4b2d-aa63-cc3df4bb3b7b" data-linktype="relative-path">PerflibV2QueryCounterData (section 3.1.4.1.6)</a>
+method call. For more information, see PerflibV2QueryCounterInfo (section <a href="b8f656a1-919d-437c-a4e2-1f1822322696" data-linktype="relative-path">3.1.4.1.5</a>).</p><p><b>Reserved:</b>  Clients MUST set this
+field to 0 and MUST ignore this field on receipt.</p></div>

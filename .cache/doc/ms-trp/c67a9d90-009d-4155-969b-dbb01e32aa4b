@@ -1,0 +1,166 @@
+<div class="content"><p>The NegotiateAPIVersionForAllDevices request condenses
+version negotiation for all devices into a single request.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hLineApp</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumLineDevices</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumPhoneDevices</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAPIHighVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwLineAPIVersionListOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwLineAPIVersionListSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwLineExtensionIDListOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwLineExtensionIDListSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwPhoneAPIVersionListOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwPhoneAPIVersionListSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwPhoneExtensionIDListOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwPhoneExtensionIDListSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>The identifier of the
+function that will be invoked on the remote <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>. This value MUST be
+set to 130.</p><dl>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>, this field
+MUST contain the result of the encapsulated telephony request. A value of zero
+indicates success, and a <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path">LINEERR_Constants</a>
+value indicates failure.</p>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>hLineApp (4 bytes): </b>An <a href="c12b4793-3220-4f9e-aa86-8edd3e7020d4" data-linktype="relative-path">HLINEAPP</a>. The handle to
+the application registration with TAPI. This field MUST have been obtained by
+sending the <a href="9d8eb7cd-3245-4e44-97e0-42f7b89c9424" data-linktype="relative-path">Initialize</a>
+packet.</p><p><b>dwNumLineDevices (4 bytes): </b>An unsigned 32-bit
+integer. The number of line devices to negotiate, starting with the line device
+ID zero.</p><p><b>dwNumPhoneDevices (4 bytes): </b>An unsigned
+32-bit integer. The number of phone devices to negotiate, starting with the
+phone device ID zero. </p><p><b>dwAPIHighVersion (4 bytes): </b>An unsigned 32-bit
+integer. The latest TAPI version that is wanted by the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a>. </p><p><b>dwLineAPIVersionListOffset (4 bytes): </b>An
+unsigned 32-bit integer. On successful completion, this field MUST contain the
+offset, in bytes, of the packet in the VarData field.</p><p><b>dwLineAPIVersionListSize (4 bytes): </b>An
+unsigned 32-bit integer. The size, in bytes, of an ordered list of negotiated
+line device versions. For example, in the <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a>
+array, the element[0] is the negotiated version for the line device ID zero.</p><p><b>dwLineExtensionIDListOffset (4 bytes): </b>An
+unsigned 32-bit integer. On successful completion, this field MUST contain the
+offset, in bytes, of the packet in the VarData field.</p><p><b>dwLineExtensionIDListSize (4 bytes): </b>An
+unsigned 32-bit integer. The size, in bytes, of an ordered list of line device
+extension IDs. For example, in the <a href="175fc696-817b-46eb-9ef0-fda89830d969" data-linktype="relative-path">LINEEXTENSIONID</a> array, the
+element[0] is an extension ID for the line device ID zero.</p><p><b>dwPhoneAPIVersionListOffset (4 bytes): </b>An
+unsigned 32-bit integer. On successful completion, this field MUST contain the
+offset, in bytes, of the packet in the VarData field. </p><p><b>dwPhoneAPIVersionListSize (4 bytes): </b>An
+unsigned 32-bit integer. The size, in bytes, of an ordered list of negotiated
+phone device versions. For example, in the DWORD array, the element[0] is the
+negotiated version for the phone device ID zero. </p><p><b>dwPhoneExtensionIDListOffset (4 bytes): </b>An
+unsigned 32-bit integer. On successful completion, this field MUST contain the
+offset, in bytes, of the packet in the VarData field.</p><p><b>dwPhoneExtensionIDListSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of an ordered list of phone device
+extension IDs. For example, in the <a href="e1661717-7694-4cc7-84fb-1540fee5bf4d" data-linktype="relative-path">PHONEEXTENSIONID</a> array,
+the element[0] is an extension ID for the phone device ID zero.</p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>VarData (variable): </b>MUST contain a
+LINEEXTENSIONID packet, a PHONEEXTENSIONID packet, and DWORD arrays of Line API
+Version and Phone API Version.</p><dl>
+<dd>
+<p>The contents of this field are DWORD-aligned.</p>
+</dd></dl></div>

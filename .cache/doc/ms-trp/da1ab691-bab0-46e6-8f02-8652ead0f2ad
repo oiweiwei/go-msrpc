@@ -1,0 +1,61 @@
+<div class="content"><p>The LINEAGENTACTIVITYENTRY packet specifies a single ACD
+agent activity. The <a href="457724d7-4e19-49c5-b296-a90eb574e2ab" data-linktype="relative-path">LINEAGENTACTIVITYLIST</a>
+packet can contain an array of LINEAGENTACTIVITYENTRY packets.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNameOffset</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwID (4 bytes): </b> An unsigned 32-bit integer.
+The unique identifier for an activity. It is the responsibility of the agent
+handler to generate and maintain uniqueness of this identifier.</p><p><b>dwNameSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the activity name, including the null
+terminator.</p><p><b>dwNameOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset from the beginning of this packet to a null-terminated
+string specifying the name and other identifying information of an activity
+that can be selected by sending the <a href="5bef7c67-efbc-4cbb-9a5c-df4cf9eb4091" data-linktype="relative-path">SetAgentActivity</a> packet.
+The size of the string is specified by <b>dwNameSize</b>.</p></div>

@@ -1,0 +1,82 @@
+<div class="content"><p>The GetAutoApplyQuota method returns the <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_81039d49-4277-4f11-8251-7f1ab55eef77" data-linktype="relative-path">auto apply quota</a> from the <b>List
+of Persisted Auto Apply Quotas</b> (section <a href="38a86a9b-0221-493b-80e4-3dab6560c53b" data-linktype="relative-path">3.2.1.2</a>) for the specified
+path.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_QUOTA_MANAGER | 0x04)] HRESULT GetAutoApplyQuota(
+   [in] BSTR path,
+   [out, retval] IFsrmAutoApplyQuota** quota
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>Contains the path to the requested auto
+apply quota. </p><p><b>quota: </b>Pointer to an <b>IFsrmAutoApplyQuota</b>
+interface pointer (section <a href="b1d6c4b7-738d-4305-983c-737c9d72ffdd" data-linktype="relative-path">3.2.4.2.17</a>)
+that upon completion points to the auto apply quota for the specified path. The
+caller MUST release the quota when it is done with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified auto apply quota could not be found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045304</p>
+  <p>FSRM_E_PATH_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The auto apply quota for the specified path could not
+  be found. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045306</p>
+  <p>FSRM_E_INVALID_PATH</p>
+  </td>
+  <td>
+  <p>The content of the <i>path</i> parameter exceeds the
+  maximum length of 260 characters.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>path</i> parameter is
+  NULL.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>quota</i> parameter is
+  NULL.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>quota</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+perform the following actions or return a nonzero error code.</p><ul><li><p><span><span> 
+</span></span>Create a new <a href="673869d0-b96e-4e50-abcf-acee7008fc40" data-linktype="relative-path">Non-Persisted
+Auto Apply Quota Instance</a> and populate its configuration and state data
+from the <a href="998fa9b8-cd13-4c87-a1e1-934ab8adf52b" data-linktype="relative-path">Persisted Auto
+Apply Quota (section 3.2.1.2.2.1)</a> in the <b>List of Persisted
+Auto Apply Quotas</b> with the specified path.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>quota</i> to the <b>IFsrmAutoApplyQuota</b> interface of
+the new Non-Persisted Auto Apply Quota Instance.</p>
+</li></ul><p>If an auto apply quota does not exist for the specified
+path, the server MUST return FSRM_E_NOTFOUND.</p></div>

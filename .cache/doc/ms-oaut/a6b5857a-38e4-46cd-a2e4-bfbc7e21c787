@@ -1,0 +1,50 @@
+<div class="content"><p> </p><p>The GetVarDesc method retrieves a <span><a href="ae7791d2-4399-4dff-b7c6-b0d4f3dce982" data-linktype="relative-path">VARDESC</a></span> structure
+that contains information about a member of the <span><a href="99504cf9-16d8-401e-a873-83b85d1ee4aa" data-linktype="relative-path">ITypeInfo server&#39;s</a></span>
+data member table.</p><dl>
+<dd>
+<div><pre> HRESULT GetVarDesc(
+   [in] UINT index,
+   [out] LPVARDESC* ppVarDesc,
+   [out] DWORD* pReserved
+ );
+</pre></div>
+</dd></dl><p><b>index: </b>MUST equal the data member table index
+value of the data member whose description is to be returned. The value of
+index MUST be less than the value of the cVars field in the <span><a href="0ca10d08-61d2-4059-9109-7bbaf545715e" data-linktype="relative-path">TYPEATTR</a></span>
+structure returned by the GetTypeAttr method, as specified in <span><a href="b96292a8-c06e-4b9c-905e-129b95697ee4" data-linktype="relative-path">3.7.4.1</a></span>
+and 2.2.44.</p><p><b>ppVarDesc: </b>MUST be set to a VARDESC structure
+(see section 2.2.43) that contains the data values associated with the
+specified member of the data member table, or NULL if no such member exists.</p><p><b>pReserved: </b>MUST be set to 0 and ignored on
+receipt.</p><p><b>Return Values: </b>The method MUST return
+information in an HRESULT data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions: </p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD does
+not match a value in the following table, a fatal failure occurred.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD
+matches a value in the following table, a failure occurred. </p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8002802B</p>
+  <p>TYPE_E_ELEMENTNOTFOUND</p>
+  </td>
+  <td>
+  <p>The value of <i>index</i> and <i>invKind</i> did not
+  specify the ordinal position of an element in the method table. See
+  [MS-ERREF].</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p> </p></div>

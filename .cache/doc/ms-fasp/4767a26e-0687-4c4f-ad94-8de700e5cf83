@@ -1,0 +1,126 @@
+<div class="content"><p> </p><p>This enumeration is part of the metadata information. It
+provides information about whether or not the policy expressed by an object is
+currently being enforced by the server.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_ENFORCEMENT_STA
+ {
+   FW_ENFORCEMENT_STATE_INVALID = 0,
+   FW_ENFORCEMENT_STATE_FULL = 1,
+   FW_ENFORCEMENT_STATE_WF_OFF_IN_PROFILE = 2,
+   FW_ENFORCEMENT_STATE_CATEGORY_OFF = 3,
+   FW_ENFORCEMENT_STATE_DISABLED_OBJECT = 4,
+   FW_ENFORCEMENT_STATE_INACTIVE_PROFILE = 5,
+   FW_ENFORCEMENT_STATE_LOCAL_ADDRESS_RESOLUTION_EMPTY = 6,
+   FW_ENFORCEMENT_STATE_REMOTE_ADDRESS_RESOLUTION_EMPTY = 7,
+   FW_ENFORCEMENT_STATE_LOCAL_PORT_RESOLUTION_EMPTY = 8,
+   FW_ENFORCEMENT_STATE_REMOTE_PORT_RESOLUTION_EMPTY = 9,
+   FW_ENFORCEMENT_STATE_INTERFACE_RESOLUTION_EMPTY = 10,
+   FW_ENFORCEMENT_STATE_APPLICATION_RESOLUTION_EMPTY = 12,
+   FW_ENFORCEMENT_STATE_REMOTE_MACHINE_EMPTY = 12,
+   FW_ENFORCEMENT_STATE_REMOTE_USER_EMPTY = 13,
+   FW_ENFORCEMENT_STATE_LOCAL_GLOBAL_OPEN_PORTS_DISALLOWED = 14,
+   FW_ENFORCEMENT_STATE_LOCAL_AUTHORIZED_APPLICATIONS_DISALLOWED = 15,
+   FW_ENFORCEMENT_STATE_LOCAL_FIREWALL_RULES_DISALLOWED = 16,
+   FW_ENFORCEMENT_STATE_LOCAL_CONSEC_RULES_DISALLOWED = 17,
+   FW_ENFORCEMENT_STATE_MISMATCHED_PLATFORM = 18,
+   FW_ENFORCEMENT_STATE_OPTIMIZED_OUT = 19,
+   FW_ENFORCEMENT_STATE_LOCAL_USER_EMPTY = 20,
+   FW_ENFORCEMENT_STATE_TRANSPORT_MACHINE_SD_EMPTY = 21,
+   FW_ENFORCEMENT_STATE_TRANSPORT_USER_SD_EMPTY = 22,
+   FW_ENFORCEMENT_STATE_TUPLE_RESOLUTION_EMPTY = 23,
+   FW_ENFORCEMENT_STATE_DUPLICATE = 24,
+   FW_ENFORCEMENT_STATE_MAX = 25
+ } FW_ENFORCEMENT_STATE;
+</pre></div>
+</dd></dl><p><b>FW_ENFORCEMENT_STATE_INVALID:  </b>This value is
+invalid and MUST NOT be used by the server. It is defined for simplicity in
+writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 0.</p><p><b>FW_ENFORCEMENT_STATE_FULL:  </b>The object is
+being enforced. This symbolic constant has a value of 1.</p><p><b>FW_ENFORCEMENT_STATE_WF_OFF_IN_PROFILE:  </b>The
+object is not being enforced because the firewall and advanced security
+component is not active in a profile where the object is meant to be applied.
+This symbolic constant has a value of 2.</p><p><b>FW_ENFORCEMENT_STATE_CATEGORY_OFF:  </b>The object
+is not being enforced because a third-party software component registered with
+the firewall and advanced security component to own the functionality that the
+object is meant to perform. This symbolic constant has a value of 3.</p><p><b>FW_ENFORCEMENT_STATE_DISABLED_OBJECT:  </b>The
+object is not being enforced because the object is disabled. This symbolic
+constant has a value of 4.</p><p><b>FW_ENFORCEMENT_STATE_INACTIVE_PROFILE:  </b>The
+object is not being enforced because at least one of the profiles that the
+object is meant to be applied to is not currently active. This symbolic
+constant has a value of 5.</p><p><b>FW_ENFORCEMENT_STATE_LOCAL_ADDRESS_RESOLUTION_EMPTY: 
+</b>The object is not being enforced because the local address condition of the
+object contains a keyword that resolves to an empty set. This symbolic constant
+has a value of 6.</p><p><b>FW_ENFORCEMENT_STATE_REMOTE_ADDRESS_RESOLUTION_EMPTY: 
+</b>The object is not being enforced because the remote address condition of
+the object contains a keyword that resolves to an empty set. This symbolic
+constant has a value of 7.</p><p><b>FW_ENFORCEMENT_STATE_LOCAL_PORT_RESOLUTION_EMPTY: 
+</b>The object is not being enforced because the local port condition of the
+object contains a keyword that resolves to an empty set. This symbolic constant
+has a value of 8.</p><p><b>FW_ENFORCEMENT_STATE_REMOTE_PORT_RESOLUTION_EMPTY: 
+</b>The object is not being enforced because the remote port condition of the
+object contains a keyword that resolves to an empty set. This symbolic constant
+has a value of 9.</p><p><b>FW_ENFORCEMENT_STATE_INTERFACE_RESOLUTION_EMPTY:  </b>The
+object is not being enforced because the interface condition of the object
+contains a keyword that resolves to an empty set. This symbolic constant has a
+value of 10.</p><p><b>FW_ENFORCEMENT_STATE_APPLICATION_RESOLUTION_EMPTY: 
+</b>The object is not being enforced because the application condition of the
+object contains a path that could not resolve to a valid file system path. This
+symbolic constant has a value of 11.</p><p><b>FW_ENFORCEMENT_STATE_REMOTE_MACHINE_EMPTY:  </b>The
+object is not being enforced because the remote machine condition of the object
+contains an SDDL with a <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security identifier (SID)</a></span>
+that is not currently available on the host. This symbolic constant has a value
+of 12.</p><p><b>FW_ENFORCEMENT_STATE_REMOTE_USER_EMPTY:  </b>The
+object is not being enforced because the remote user condition of the object
+contains an SDDL with a SID that is not currently available on the host. This
+symbolic constant has a value of 13.</p><p><b>FW_ENFORCEMENT_STATE_LOCAL_GLOBAL_OPEN_PORTS_DISALLOWED: 
+</b>The object is not being enforced because the
+FW_PROFILE_CONFIG_AUTH_APPS_ALLOW_USER_PREF_MERGE configuration option (see
+section <span><a href="5a6e0d39-802d-456b-b483-c7360566fcdd" data-linktype="relative-path">2.2.38</a></span> for more
+details) from a profile that the object applied to, disallowed its use. This
+symbolic constant has a value of 14.</p><p><b>FW_ENFORCEMENT_STATE_LOCAL_AUTHORIZED_APPLICATIONS_DISALLOWED: 
+</b>The object is not being enforced because the
+FW_PROFILE_CONFIG_GLOBAL_PORTS_ALLOW_USER_PREF_MERGE configuration option (see
+section 2.2.38 for more details) from a profile that the object applied to,
+disallowed its use. This symbolic constant has a value of 15.</p><p><b>FW_ENFORCEMENT_STATE_LOCAL_FIREWALL_RULES_DISALLOWED: 
+</b>The object is not being enforced because the
+FW_PROFILE_CONFIG_ALLOW_LOCAL_POLICY_MERGE configuration option (see section
+2.2.38 for more details) from a profile that the object applied to, disallowed
+its use. This symbolic constant has a value of 16.</p><p><b>FW_ENFORCEMENT_STATE_LOCAL_CONSEC_RULES_DISALLOWED: 
+</b>The object is not being enforced because the
+FW_PROFILE_CONFIG_ALLOW_LOCAL_IPSEC_POLICY_MERGE configuration option (see
+section 2.2.38 for more details) from a profile that the object applied to,
+disallowed its use. This symbolic constant has a value of 17.</p><p><b>FW_ENFORCEMENT_STATE_MISMATCHED_PLATFORM:  </b>The
+object is not being enforced because the platform validity condition does not
+match the current platform of the host. This symbolic constant has a value of
+18.</p><p><b>FW_ENFORCEMENT_STATE_OPTIMIZED_OUT:  </b>The
+object is not being enforced because the firewall and advanced security
+component determined that the object-implemented functionality is irrelevant
+(would not change or affect what traffic is allowed or permitted) at the
+current time. Therefore, the component optimized out the irrelevant
+functionality and ignored it. This is a pure optimization. This symbolic
+constant has a value of 19.</p><p><b>FW_ENFORCEMENT_STATE_LOCAL_USER_EMPTY:  </b>The
+object is not being enforced, because the local user condition of the object
+contains an SDDL with a SID that is not currently available on the host. For
+schema versions 0x0200, 0x0201, and 0x020A, this value is invalid and MUST NOT
+be used. This symbolic constant has a value of 20.</p><p><b>FW_ENFORCEMENT_STATE_TRANSPORT_MACHINE_SD_EMPTY:  </b>The
+object is not being enforced because the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span> transport mode
+machine authorization list contains an SDDL with a SID that is not currently
+available on the host. For schema versions 0x0200, 0x0201, and 0x020A, this
+value is invalid and MUST NOT be used. This symbolic constant has a value of
+21.</p><p><b>FW_ENFORCEMENT_STATE_TRANSPORT_USER_SD_EMPTY:  </b>The
+object is not being enforced, because the IPsec transport mode user
+authorization list contains an SDDL with a SID that is not currently available
+on the host. For schema versions 0x0200, 0x0201, and 0x020A, this value is
+invalid and MUST NOT be used. This symbolic constant has a value of 22.</p><p><b>FW_ENFORCEMENT_STATE_TUPLE_RESOLUTION_EMPTY:  </b>The
+object is not being enforced, because the trust tuple keywords resolve to an
+empty set. For schema versions 0x0200, 0x0201, and 0x020A, this value is
+invalid and MUST NOT be used. This symbolic constant has a value of 23.</p><p><b>FW_ENFORCEMENT_STATE_DUPLICATE:</b> This object is
+not enforced because the Firewall and Advanced Security component determined
+that the object is a duplicate of an already enforced object and is therefore
+irrelevant, as it would not change or affect traffic that is otherwise allowed
+or permitted. Therefore, the component essentially optimized-out the irrelevant
+functionality by ignoring it. This is a pure optimization. This symbolic
+constant has a value of 24.</p><p><b>FW_ENFORCEMENT_STATE_MAX:  </b>This value and
+values that exceed this value are not valid and MUST NOT be used. It is defined
+for simplicity in writing IDL definitions and code. This symbolic constant has
+a value of 25.</p></div>

@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The DRS_MSG_QUERYSITESREPLYELEMENT_V1 structure defines the
+computed cost of communication between two <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8abdc986-5679-42d9-ad76-b11eb5a0daba" data-linktype="relative-path">sites</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwErrorCode;
+   DWORD dwCost;
+ } DRS_MSG_QUERYSITESREPLYELEMENT_V1;
+</pre></div>
+</dd></dl><p><b>dwErrorCode:</b>  0 if this
+&#34;from-to&#34; computation was successful, or ERROR_DS_OBJ_NOT_FOUND if
+the &#34;to&#34; <span><a href="../ms-adsc/c44def4a-5465-472c-95f3-2792bfd820d1" data-linktype="relative-path">site</a></span>
+does not exist.</p><p><b>dwCost:</b>  The communication cost
+between the &#34;from&#34; site and this &#34;to&#34; site, or 0xFFFFFFFF
+if the sites are not connected.</p></div>

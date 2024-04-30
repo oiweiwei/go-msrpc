@@ -1,0 +1,45 @@
+<div class="content"><p> </p><p>The GetTypeInfoOfGuid method retrieves the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_fb6a1829-c102-482c-902f-51c197b22860" data-linktype="relative-path">automation
+type description</a></span> with the specified <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> from the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server&#39;s</a></span>
+type information table.</p><dl>
+<dd>
+<div><pre> HRESULT GetTypeInfoOfGuid(
+   [in] REFGUID guid,
+   [out] ITypeInfo** ppTInfo
+ );
+</pre></div>
+</dd></dl><p><b>guid: </b>MUST be a GUID.</p><p><b>ppTInfo: </b>MUST be set to an <span><a href="99504cf9-16d8-401e-a873-83b85d1ee4aa" data-linktype="relative-path">ITypeInfo
+server</a></span> instance that represents the automation type description
+associated with the specified GUID in the type information table (see section
+3.7) or to NULL. MUST be NULL if the value of <i>guid</i> is IID_NULL, or is
+not associated with an automation type description.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions: </p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire <b>HRESULT</b>
+DWORD does not match a value in the following table, a fatal failure occurred.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire <b>HRESULT</b>
+DWORD matches a value in the following table, a failure occurred. </p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8002802B</p>
+  <p>TYPE_E_ELEMENTNOTFOUND</p>
+  </td>
+  <td>
+  <p>The value of <i>guid</i> did not correspond to any
+  entry in the Type information table, or the value of <i>guid</i> was
+  IID_NULL. See [MS-ERREF].</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p> </p></div>

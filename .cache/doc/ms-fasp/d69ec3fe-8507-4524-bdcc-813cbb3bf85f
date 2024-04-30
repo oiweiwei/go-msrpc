@@ -1,0 +1,56 @@
+<div class="content"><p> </p><p>This enumeration is used to represent specific address
+types. As specified in the following descriptions, these address types can
+change dynamically.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_ADDRESS_KEYWORD
+ {
+   FW_ADDRESS_KEYWORD_NONE = 0x0000,
+   FW_ADDRESS_KEYWORD_LOCAL_SUBNET = 0x0001,
+   FW_ADDRESS_KEYWORD_DNS = 0x0002,
+   FW_ADDRESS_KEYWORD_DHCP = 0x0004,
+   FW_ADDRESS_KEYWORD_WINS = 0x0008,
+   FW_ADDRESS_KEYWORD_DEFAULT_GATEWAY = 0x0010,
+   FW_ADDRESS_KEYWORD_INTRANET = 0x0020,
+   FW_ADDRESS_KEYWORD_INTERNET = 0x0040,
+   FW_ADDRESS_KEYWORD_PLAYTO_RENDERERS = 0x0080,
+   FW_ADDRESS_KEYWORD_REMOTE_INTRANET = 0x0100,
+   FW_ADDRESS_KEYWORD_CAPTIVE_PORTAL = 0x0200,
+   FW_ADDRESS_KEYWORD_MAX = 0x0400,
+   FW_ADDRESS_KEYWORD_MAX_V2_10 = 0x0020,
+   FW_ADDRESS_KEYWORD_MAX_V2_29 = 0x0200,
+ } FW_ADDRESS_KEYWORD;
+</pre></div>
+</dd></dl><p><b>FW_ADDRESS_KEYWORD_NONE:</b>  Specifies that no
+specific keyword is used.</p><p><b>FW_ADDRESS_KEYWORD_LOCAL_SUBNET:</b>  Represents
+the collection of addresses that are currently within the local subnet of the
+computer.</p><p><b>FW_ADDRESS_KEYWORD_DNS:</b>  Represents the
+collection of addresses of the current DNS servers.</p><p><b>FW_ADDRESS_KEYWORD_DHCP:</b>  Represents the
+collection of addresses of the current DHCP servers.</p><p><b>FW_ADDRESS_KEYWORD_WINS:</b>  Represents the
+collection of addresses of the current WINS servers.</p><p><b>FW_ADDRESS_KEYWORD_DEFAULT_GATEWAY:</b> 
+Represents the collection of addresses of the current gateway servers.</p><p><b>FW_ADDRESS_KEYWORD_INTRANET:</b>  Represents the
+collection of addresses that are currently within the local intranet of the
+computer. For schema versions 0x0200, 0x0201, and 0x020A, this value is invalid
+and MUST NOT be used.</p><p><b>FW_ADDRESS_KEYWORD_INTERNET:</b>  Represents the
+collection of addresses that are currently not within the local intranet or
+remote intranet of the computer. For schema versions 0x0200, 0x0201, and
+0x020A, this value is invalid and MUST NOT be used.</p><p><b>FW_ADDRESS_KEYWORD_PLAYTO_RENDERERS:</b> 
+Represents the collection of addresses of the current Digital Media Renderer
+devices as defined in <span><a href="../ms-dlnhnd/a12b022a-b793-46b2-aaa9-6100611b5038" data-linktype="relative-path">[MS-DLNHND]</a></span>
+section <span><a href="../ms-dlnhnd/156db3e1-7df7-49bd-a317-65e6b78fd5c2" data-linktype="relative-path">3.3</a></span>.
+For schema versions 0x0200, 0x0201, and 0x020A, this value is invalid and MUST
+NOT be used.</p><p><b>FW_ADDRESS_KEYWORD_REMOTE_INTRANET:</b> 
+Represents the collection of addresses that are currently within the remote
+intranet of the computer. For schema versions 0x0200, 0x0201, and 0x020A, this
+value is invalid and MUST NOT be used. </p><p><b>FW_ADDRESS_KEYWORD_CAPTIVE_PORTAL:</b>  Represents
+the collection of addresses of the current captive portal. For schema versions
+0x021D and earlier, this value is invalid and MUST NOT be used.</p><p><b>FW_ADDRESS_KEYWORD_MAX:</b>  This value and values
+that exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 0x0400.</p><p><b>FW_ADDRESS_KEYWORD_MAX_V2_10:</b>  This value and
+values that exceed this value are not valid and MUST NOT be used by servers and
+clients with schema version 0x020A and earlier. It is defined for simplicity in
+writing IDL definitions and code. This symbolic constant has a value of 0x0020.
+</p><p><b>FW_ADDRESS_KEYWORD_MAX_V2_29:</b>  This value and
+values that exceed this value are not valid and MUST NOT be used by servers and
+clients with schema version 0x021D and earlier. It is defined for simplicity in
+writing IDL definitions and code. This symbolic constant has a value of 0x0200.</p></div>

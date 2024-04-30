@@ -1,0 +1,10 @@
+<div class="content"><p>The SERVICE_DESCRIPTION_WOW64 structure defines the offset
+at which SERVICE_DESRIPTIONW is present.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwDescriptionOffset;
+ } SERVICE_DESCRIPTION_WOW64;
+</pre></div>
+</dd></dl><p><b>dwDescriptionOffset:</b>  A pointer to
+the offset for the <a href="3de0acf0-bd9b-4b0b-a376-02036b16a83f" data-linktype="relative-path">SERVICE_DESCRIPTIONW (section 2.2.35)</a>
+structure, which contains the service description in <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a>. </p></div>

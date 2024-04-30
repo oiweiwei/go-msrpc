@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The ConvertStyle method converts a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk&#39;s</a></span> <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partitioning</a></span>
+<span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_ea22e521-1a4e-4ceb-8d64-f65fa6d0e63b" data-linktype="relative-path">format</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT ConvertStyle(
+   [in] VDS_PARTITION_STYLE NewStyle
+ );
+</pre></div>
+</dd></dl><p><b>NewStyle: </b>A value from the <span><a href="310c0f6a-a0ef-4b63-933e-c4b1a7ecaf37" data-linktype="relative-path">VDS_PARTITION_STYLE</a></span>
+enumeration that indicates the new partitioning format.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><dl>
+<dd>
+<p><b>Note</b>  This method is not valid for
+CD/DVD or <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_a2b20515-dc69-4674-b74e-91c8f24e3003" data-linktype="relative-path">super floppy</a></span>
+devices.</p>
+</dd></dl><p>When the server receives this message, it MUST convert the
+disk&#39;s partitioning format to the style <b>NewStyle</b> specifies and then
+return an HRESULT indicating failure or success.</p><p>A <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b11172af-9369-448d-9722-444eb52b21cb" data-linktype="relative-path">dynamic disk</a></span> cannot
+be converted between <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GPT</a></span> and <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b251c771-5ccf-40f2-b98d-0119db210b4b" data-linktype="relative-path">MBR</a></span>
+partitioning styles. The dynamic disk MUST be converted to a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_425be2e8-ca0d-45db-afba-d9daee040d07" data-linktype="relative-path">basic
+disk</a></span>, at which point it can be converted between partitioning
+styles. Clients cannot change the partitioning style on a disk with volumes.
+Clients cannot change the partitioning style on a disk that contains the
+system, boot, pagefile, crashdump, or hibernation volumes.</p><p>If this method is called against a disk which contains <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>
+or partition extents, then this method MUST return VDS_E_DISK_NOT_EMPTY.<a id="Appendix_A_Target_89"></a><a aria-label="Product behavior note 89" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_89" data-linktype="relative-path">&lt;89&gt;</a></p></div>

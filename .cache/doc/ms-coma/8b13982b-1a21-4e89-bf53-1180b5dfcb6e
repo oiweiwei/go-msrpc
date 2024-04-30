@@ -1,0 +1,14 @@
+<div class="content"><p>The SRPLevelInfo structure defines a software restriction
+policy <a href="3f01a312-3391-4109-a96e-95358babf191#gt_79443f81-6f25-412a-9356-e44188c4a92b" data-linktype="relative-path">trust level</a>, as
+specified in section <a href="d5ffec71-f935-42fc-85ce-c25ad131062e" data-linktype="relative-path">3.1.1.1.9</a>,
+supported by the server.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwSRPLevel;
+   [string] WCHAR* wszFriendlyName;
+ } SRPLevelInfo;
+</pre></div>
+</dd></dl><p><b>dwSRPLevel:</b>   The numerical
+identifier of the software restriction policy level. This MUST be between
+0x00000000 and 0x00040000.</p><p><b>wszFriendlyName:</b>   A user-friendly
+display name for the software restriction policy level.</p></div>

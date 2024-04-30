@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The <b>NET_COMPUTER_NAME_TYPE</b> enumeration specifies the
+types of names that can be enumerated for a computer using the <b>NetrEnumerateComputerNames</b> method
+(section <span><a href="4a317cb7-4cc0-427a-a95d-cdef445f6241" data-linktype="relative-path">3.2.4.21</a></span>).</p><dl>
+<dd>
+<div><pre> typedef  enum _NET_COMPUTER_NAME_TYPE
+ {
+   NetPrimaryComputerName = 0,
+   NetAlternateComputerNames,
+   NetAllComputerNames,
+   NetComputerNameTypeMax
+ } NET_COMPUTER_NAME_TYPE,
+  *PNET_COMPUTER_NAME_TYPE;
+</pre></div>
+</dd></dl><p><b>NetPrimaryComputerName: </b>Query the primary name
+of a computer.</p><p><b>NetAlternateComputerNames: </b>Query the alternate
+names of a computer.</p><p><b>NetAllComputerNames: </b>Query all names of a
+computer.</p><p><b>NetComputerNameTypeMax: </b>Maximum number of name
+types.</p></div>

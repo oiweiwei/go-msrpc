@@ -1,0 +1,14 @@
+<div class="content"><p>This method is called by a client to shut down an <a href="3f01a312-3391-4109-a96e-95358babf191#gt_791190e6-1e02-42cb-bd25-5aee3ab516ed" data-linktype="relative-path">instance container</a>.</p><dl>
+<dd>
+<div><pre> HRESULT ShutdownContainer(
+   [in] GUID* ContainerIdentifier
+ );
+</pre></div>
+</dd></dl><p><b>ContainerIdentifier:</b> The <a href="3f01a312-3391-4109-a96e-95358babf191#gt_07da3776-ca7c-4e8a-8c94-95d59b2f40b8" data-linktype="relative-path">container identifier</a> of an
+instance container.</p><p><b>Return Values:</b> This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server MUST verify
+that there exists an instance container with the container identifier specified
+in <i>ContainerIdentifier</i>, and fail the call if not.</p><p>The server then MUST attempt to shut down the instance
+container, and fail the call if it cannot.</p></div>

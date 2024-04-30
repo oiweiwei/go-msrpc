@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The VDS_WWN structure defines a worldwide name (WWN). This
+structure corresponds to the HBA_WWN structure, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89878" data-linktype="external">[HBAAPI]</a></span>,
+which also defines the WWN term.<a id="Appendix_A_Target_37"></a><a aria-label="Product behavior note 37" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_37" data-linktype="relative-path">&lt;37&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _VDS_WWN {
+   unsigned char rguchWwn[8];
+ } VDS_WWN;
+</pre></div>
+</dd></dl><p><b>rguchWwn:</b>  An array of 8 bytes that
+specifies the 64-bit WWN value. The first element of the array is the most
+significant byte of the WWN, and the most significant bit of that byte is the
+most significant bit of the WWN.</p></div>

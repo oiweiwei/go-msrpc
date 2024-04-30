@@ -1,0 +1,67 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/99ee9f39-43e8-4bba-ac3a-82e0c0e0699e" data-linktype="external">msdn link</a></p><p>The SamrSetInformationUser2 method updates attributes on a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_e767a471-c3fa-4e4b-a40c-daeb08f82a17" data-linktype="relative-path">user object</a>.</p><dl>
+<dd>
+<div><pre> long SamrSetInformationUser2(
+   [in] SAMPR_HANDLE UserHandle,
+   [in] USER_INFORMATION_CLASS UserInformationClass,
+   [in, switch_is(UserInformationClass)] 
+     PSAMPR_USER_INFO_BUFFER Buffer
+ );
+</pre></div>
+</dd></dl><p><b>UserHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a user object.</p><p><b>UserInformationClass: </b>An enumeration
+indicating which attributes to update. See section <a href="6b0dff90-5ac0-429a-93aa-150334adabf6" data-linktype="relative-path">2.2.6.28</a> for a listing of
+possible values.</p><p><b>Buffer: </b>The requested attributes and values to
+update. See section <a href="9496c26e-490b-4e76-827f-2695fc216f35" data-linktype="relative-path">2.2.6.29</a>
+for structure details.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>The server MUST
+return an error if <i>UserHandle.HandleType</i> is not equal to
+&#34;User&#34;.</p>
+</li><li><p><span>    </span><i>UserHandle.GrantedAccess</i>
+MUST have the required access specified in <a href="f37122b8-094c-4e5c-9633-3217d8988bd8" data-linktype="relative-path">UserAllInformation
+(Common) (section 3.1.5.6.4.2)</a>.</p>
+</li><li><p><span>    </span>The constraints
+in the following sections MUST be satisfied based on the <i>UserInformationClass</i>
+parameter. If there is no match in the table, the constraints of section <a href="c00ca1dd-5a29-4655-bd6f-6e680e154bc9" data-linktype="relative-path">3.1.5.6.4.1</a> MUST be used.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>UserInformationClass</p>
+   </th>
+   <th>
+   <p>Constraint section</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>UserAllInformation</p>
+  </td>
+  <td>
+  <p><a href="29f69f33-d098-4c12-be6d-6b844214ee3b" data-linktype="relative-path">3.1.5.6.4.3</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>UserInternal4Information</p>
+  </td>
+  <td>
+  <p><a href="c73bd2ff-b6a6-4ac8-9ddf-f08798f3f356" data-linktype="relative-path">3.1.5.6.4.4</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>UserInternal4InformationNew</p>
+  </td>
+  <td>
+  <p><a href="2d20cab4-a0d4-401b-aeeb-b72f17403ece" data-linktype="relative-path">3.1.5.6.4.5</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>UserInternal8Information</p>
+  </td>
+  <td>
+  <p><a href="ce4e6060-629d-4bed-ad7e-c464f4b989f8" data-linktype="relative-path">3.1.5.6.4.6</a></p>
+  </td>
+ </tr></tbody></table>
+</li></ol><p> </p></div>

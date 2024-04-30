@@ -1,0 +1,48 @@
+<div class="content"><p> </p><p>The Wait method blocks and returns when the asynchronous
+operation has either finished successfully or failed.</p><dl>
+<dd>
+<div><pre> HRESULT Wait(
+   [out] HRESULT* pHrResult,
+   [out] VDS_ASYNC_OUTPUT* pAsyncOut
+ );
+</pre></div>
+</dd></dl><p><b>pHrResult: </b>A pointer to a variable which, if
+the Wait method successfully completes, receives the returned <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span>.</p><p><b>pAsyncOut: </b>A pointer to a <span><a href="d21dadd7-b2ed-4c02-8fd2-83264272d277" data-linktype="relative-path">VDS_ASYNC_OUTPUT</a></span>
+structure that, if the asynchronous operation is successfully completed,
+receives extra information about the operation, if any information exists.
+Multiple methods from other interfaces also return async objects. Consult the
+method that returned the async object to determine what extra information to return,
+if any. If the asynchronous operation fails, <b>pAsyncOut</b> MAY be left as is
+without returning any value.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error HRESULT (as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><dl>
+<dd>
+<p>The HRESULT that <i>pHrResult</i> references MUST
+return zero to indicate success, or an implementation-specific nonzero error
+code to indicate failure of the asynchronous operation that is associated with
+the IVdsAsync object.</p>
+</dd></dl><p>When the server receives this message, it MUST validate the
+following parameters: </p><ul><li><p><span><span> 
+</span></span>Verify that <b>pHrResult</b> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <b>pAsyncOut</b> is not NULL. </p>
+</li></ul><p>The server MUST perform the following: </p><ul><li><p><span><span> 
+</span></span>Wait for the asynchronous operation to complete. </p>
+</li><li><p><span><span> 
+</span></span>If the server implements a maximum amount of time to wait for an
+asynchronous operation to complete, and that maximum time is exceeded, then the
+server MUST return VDS_E_TIMEOUT. The maximum amount of time is
+implementation-specific.</p>
+</li><li><p><span><span> 
+</span></span>Set the <b>pHrResult</b> output parameter for the operation based
+on the return code for the asynchronous operation. </p>
+</li><li><p><span><span> 
+</span></span>If the asynchronous operation has successfully completed, set the
+<b>pAsyncOut</b> output parameter fields based on the operation type. If the
+asynchronous operation has failed, this parameter can be left uninitialized.</p>
+</li><li><p><span><span> 
+</span></span>Return an HRESULT that indicates success or failure for the Wait
+method.</p>
+</li></ul></div>

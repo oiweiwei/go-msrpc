@@ -1,0 +1,83 @@
+<div class="content"><p>The CreateScheduleTask method creates a task that is capable
+of triggering the generation of a File Server Resource Manager Protocol <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_15957e50-08ab-48d2-8824-57a71b23f833" data-linktype="relative-path">report job</a>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_REPORT_SCHEDULER | 0x02)] HRESULT CreateScheduleTask(
+   [in] BSTR taskName,
+   [in] VARIANT* namespacesSafeArray,
+   [in] BSTR serializedTask
+ );
+</pre></div>
+</dd></dl><p><b>taskName: </b>Contains the name of the Task
+Scheduler task to create.</p><p><b>namespacesSafeArray: </b>Pointer to a variable
+that contains a <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a>
+structure, which contains a <a href="../ms-oaut/04e72b3f-5731-4508-9bb4-de29fbd0f781" data-linktype="relative-path">SAFEARRAY</a>
+of VARIANT structures. The VARIANT structures contained in the SAFEARRAY MUST
+be <a href="../ms-dtyp/692a42a9-06ce-4394-b9bc-5d2a50440168" data-linktype="relative-path">BSTR</a>
+string values, each representing a local directory path that needs to be
+verified as supported by the File Server Resource Manager Protocol storage.</p><p><b>serializedTask: </b>Contains the XML
+representation of the task to be created.<a id="Appendix_A_Target_63"></a><a aria-label="Product behavior note 63" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_63" data-linktype="relative-path">&lt;63&gt;</a></p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045303</p>
+  <p>FSRM_E_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>The object already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045311</p>
+  <p>FSRM_E_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>This function is not supported for this object.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045316</p>
+  <p>FSRM_E_UNEXPECTED</p>
+  </td>
+  <td>
+  <p>An unexpected error occurred; check the application
+  event log. You might get this error if the XML is malformed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>taskName</i> parameter is
+  NULL.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>namespacesSafeArray</i>
+  parameter is NULL.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>serializedTask</i>
+  parameter is NULL.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>taskName</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>namespacesSafeArray</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>serializedTask</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST create the specified task in such a way that
+it is capable of triggering the File Server Resource Manager Protocol report
+jobs.</p></div>

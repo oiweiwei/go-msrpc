@@ -1,0 +1,73 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/3564ba70-84ea-4f04-a9dc-dede9f96a8bf" data-linktype="external">msdn link</a></p><p>The LsarQueryInformationPolicy method is invoked to query
+values that represent the server&#39;s information policy. </p><dl>
+<dd>
+<div><pre> NTSTATUS LsarQueryInformationPolicy(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] POLICY_INFORMATION_CLASS InformationClass,
+   [out, switch_is(InformationClass)] 
+     PLSAPR_POLICY_INFORMATION* PolicyInformation
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>InformationClass: </b>A parameter that specifies
+what type of information the caller is requesting.</p><p><b>PolicyInformation: </b>A parameter that references
+policy information structure on return.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing below.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000009A</p>
+  <p>STATUS_INSUFFICIENT_RESOURCES</p>
+  </td>
+  <td>
+  <p>There are insufficient resources to complete the
+  request.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  the operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the parameters is incorrect. For instance, this
+  can happen if <i>InformationClass</i> is out of range or if <i>PolicyInformation</i>
+  is NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message MUST be processed in an identical manner to <a href="516f503c-0230-489d-b012-e650b46b66a2" data-linktype="relative-path">LsarQueryInformationPolicy2</a>.</p></div>

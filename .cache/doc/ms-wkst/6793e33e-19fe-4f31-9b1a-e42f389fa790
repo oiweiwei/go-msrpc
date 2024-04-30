@@ -1,0 +1,15 @@
+<div class="content"><p>The Workstation Service Remote Protocol is used to perform
+tasks on a computer remotely on a network, including:</p><ul><li><p><span><span> 
+</span></span>Configuring properties and behavior of a <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_09dbec39-5e75-4d9a-babf-1c9f1d499625" data-linktype="relative-path">Server Message Block</a> <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_15c89cb5-6767-49e7-b461-66acaf6c06c8" data-linktype="relative-path">network redirector</a> (SMB
+network redirector).</p>
+</li><li><p><span><span> 
+</span></span>Managing <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>
+membership and <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_9a7bc8b3-3374-4608-8f73-be20a90b898b" data-linktype="relative-path">computer
+names</a>.</p>
+</li><li><p><span><span> 
+</span></span>Gathering information, such as the number of enabled transport
+protocols and the number of currently logged-on users.</p>
+</li></ul><p>This protocol is based on the Remote Procedure Call (RPC)
+protocol <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

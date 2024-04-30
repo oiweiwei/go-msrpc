@@ -1,0 +1,60 @@
+<div class="content"><p>The GenerateClusterLog method writes a file that contains
+diagnostic information about <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_acd8b49c-8762-48fd-9272-26a03643322b" data-linktype="relative-path">failover
+clusters</a> for the server on which it executes. The content and format of the
+file are implementation-specific, but SHOULD contain diagnostic information.</p><dl>
+<dd>
+<div><pre> HRESULT GenerateClusterLog(
+   [out] BSTR* LogFilePath
+ );
+</pre></div>
+</dd></dl><p><b>LogFilePath: </b>Upon successful completion of
+this method, the server MUST set this parameter to the location where the
+server has exposed a file containing the diagnostic log data. The path is
+relative to the machine and starts with a <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_a49a79ea-dac7-4016-9a84-cf87161db7e3" data-linktype="relative-path">share</a> name. The format is
+&#34;&lt;share&gt;\&lt;filename&gt;&#34; where &lt;share&gt; is a share name,
+and &lt;filename&gt; is the name of the file or <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_4712ded2-d927-4930-9450-29499f98cef4" data-linktype="relative-path">device</a>. The <i>LogFilePath</i>
+parameter MUST form a valid <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_d5a07545-a023-45ad-89a6-0b5c944bcfd4" data-linktype="relative-path">UncPath</a>
+if &#34;\\&lt;servername&gt;\&#34; is prepended to its contents. On
+unsuccessful completion of this method, the client MUST ignore this value.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method
+implementation. For more information about Win32 error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 3.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Place a file in a shared location on the machine.</p>
+</li><li><p><span><span> 
+</span></span>Generate the server-relative path to the file.</p>
+</li></ul><p>The server returns the following information to the client:</p><ul><li><p><span><span> 
+</span></span>The server-relative path to the file</p>
+</li></ul></div>

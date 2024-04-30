@@ -1,0 +1,8 @@
+<div class="content"><p>This document specifies the Directory Replication Service
+(DRS) Remote Protocol, an <a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+protocol for <a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a>
+between <a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controllers</a>
+and management of <a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+Directory</a>. The protocol consists of two RPC interfaces, named drsuapi and
+dsaop. The name of each drsuapi method begins with &#34;IDL_DRS&#34;, while
+the name of each dsaop method begins with &#34;IDL_DSA&#34;.</p></div>

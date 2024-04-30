@@ -1,0 +1,47 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/4ad8d54c-0d5a-4d5a-9e9a-1bc9ee008d47" data-linktype="external">msdn link</a></p><p>The SamrQueryInformationUser method obtains attributes from
+a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_e767a471-c3fa-4e4b-a40c-daeb08f82a17" data-linktype="relative-path">user object</a>.</p><dl>
+<dd>
+<div><pre> long SamrQueryInformationUser(
+   [in] SAMPR_HANDLE UserHandle,
+   [in] USER_INFORMATION_CLASS UserInformationClass,
+   [out, switch_is(UserInformationClass)] 
+     PSAMPR_USER_INFO_BUFFER* Buffer
+ );
+</pre></div>
+</dd></dl><p>See the description of <a href="29ab27f6-61da-4c7d-863c-e228ee798f4d" data-linktype="relative-path">SamrQueryInformationUser2 (section 3.1.5.5.5)</a>
+for details, because the method interface arguments and message processing are
+identical.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>The server MUST behave as with a call to SamrQueryInformationUser2,
+with the following parameter values.</p><table><thead>
+  <tr>
+   <th>
+   <p>Parameter name</p>
+   </th>
+   <th>
+   <p>Parameter value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><i>UserHandle</i></p>
+  </td>
+  <td>
+  <p>SamrQueryInformationUser.UserHandle</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>UserInformationClass</i></p>
+  </td>
+  <td>
+  <p>SamrQueryInformationUser.UserInformationClass</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Buffer</i></p>
+  </td>
+  <td>
+  <p>SamrQueryInformationUser.Buffer</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

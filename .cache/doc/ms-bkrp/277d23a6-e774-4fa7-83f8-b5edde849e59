@@ -1,0 +1,66 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/277d23a6-e774-4fa7-83f8-b5edde849e59" data-linktype="external">msdn link</a></p><p>When returning an unwrapped secret to a client using the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_e28261fb-25ef-4781-93e0-7280fece1bc4" data-linktype="relative-path">ClientWrap subprotocol</a>
+(section <a href="25cb42ef-4a06-4e65-9217-484954480130" data-linktype="relative-path">3.1.1.2</a>), the
+server MUST embed the secret in the following structure.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Secret
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Secret (variable): </b>The unwrapped secret. This
+field MUST be a copy of the <b>Secret</b> value originally placed in the <a href="628f2667-734b-42a4-9dc2-4678e93b65fe" data-linktype="relative-path">EncryptedSecret</a> (section
+2.2.2.2) field during the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_387b58ea-6abd-41c8-af6c-34206259765f" data-linktype="relative-path">wrapping</a>
+operation.</p></div>

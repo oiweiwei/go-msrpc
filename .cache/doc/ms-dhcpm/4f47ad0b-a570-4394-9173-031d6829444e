@@ -1,0 +1,112 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4FailoverGetAddressStatus</b> method queries
+the current address status for an address belonging to a subnet that is part of
+a failover relationship on the DHCP server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4FailoverGetAddressStatus(
+     [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+     [in] DHCP_IP_ADDRESS SubnetAddress,
+     [out] LPDWORD pStatus
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address of the DHCP
+server. This parameter is unused.</p><p><b>SubnetAddress: </b>This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>
+and identifies the IPv4 address the status of which is to be queried.</p><p><b>pStatus: </b>The out parameter, which represents
+the status of the address in the failover relationship.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or to any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>An invalid parameter is specified in the <i>Address</i>
+  parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E94</p>
+  <p>ERROR_DHCP_FO_SCOPE_NOT_IN_RELATIONSHIP</p>
+  </td>
+  <td>
+  <p>The subnet associated with the address is not part of
+  a failover relationship.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 125.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate that this method is authorized for read access as
+specified in section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not, return
+the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Search for the subnet associated with the given address. If no
+subnet is found, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Validate that the subnet for the given address belongs to a
+failover relationship. If it does not, return ERROR_DHCP_FO_SCOPE_NOT_IN_RELATIONSHIP.</p>
+</li><li><p><span><span> 
+</span></span>Set the value of the <b>pStatus</b> field depending on the
+address state. The following table shows the list of possible values.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>The address is owned by the primary server</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>The address is owned by the secondary server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>The address is excluded for allocation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p>The address is reserved for allocation.</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span><span> 
+</span></span>Return <i>ERROR_SUCCESS</i>.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

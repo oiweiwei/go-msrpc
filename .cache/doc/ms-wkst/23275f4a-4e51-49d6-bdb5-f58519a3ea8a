@@ -1,0 +1,70 @@
+<div class="content"><p> </p><p>The <b>WKSTA_INFO_100</b> structure specifies details about
+a computer environment, including platform-specific information, the names of
+the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>
+and local computer, and the operating system.</p><dl>
+<dd>
+<div><pre> typedef struct _WKSTA_INFO_100 {
+   unsigned long wki100_platform_id;
+   [string] wchar_t* wki100_computername;
+   [string] wchar_t* wki100_langroup;
+   unsigned long wki100_ver_major;
+   unsigned long wki100_ver_minor;
+ } WKSTA_INFO_100,
+  *PWKSTA_INFO_100,
+  *LPWKSTA_INFO_100;
+</pre></div>
+</dd></dl><p><b>wki100_platform_id: </b>The type of operating
+system. This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0000012C</p>
+  </td>
+  <td>
+  <p>DOS (300 decimal)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000190</p>
+  </td>
+  <td>
+  <p>OS2 (400 decimal)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000001F4</p>
+  </td>
+  <td>
+  <p>Windows: (500 decimal)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000258</p>
+  </td>
+  <td>
+  <p>OSF: (600 decimal)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000002BC</p>
+  </td>
+  <td>
+  <p>VMS: (700 decimal)</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>wki100_computername:</b> A null-terminated, <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_4d5d5403-372f-4f9f-8d7a-65c310c807d9" data-linktype="relative-path">Internet
+host name</a></span> or <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a></span> <span><a href="https://go.microsoft.com/fwlink/?LinkId=90260" data-linktype="external">[RFC1001]</a></span>
+of the local computer.</p><p><b>wki100_langroup:</b> A null-terminated, <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">fully
+qualified domain name (FQDN) (2)</a></span> of the domain to which the computer
+belongs.</p><p><b>wki100_ver_major:</b> The major version number of
+the operating system running on the computer.</p><p><b>wki100_ver_minor:</b> The minor version number of
+the operating system running on the computer.</p></div>

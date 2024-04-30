@@ -1,0 +1,89 @@
+<div class="content"><p>The OpenView method opens a view into the database and
+returns a set of resultant row data.</p><dl>
+<dd>
+<div><pre> HRESULT OpenView(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] DWORD ccvr,
+   [in, size_is(ccvr)] CERTVIEWRESTRICTION const* acvr,
+   [in] DWORD ccolOut,
+   [in, size_is(ccolOut)] DWORD const* acolOut,
+   [in] DWORD ielt,
+   [in] DWORD celt,
+   [out] DWORD* pceltFetched,
+   [out, ref] CERTTRANSBLOB* pctbResultRows
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b> See the definition of the <i>pwszAuthority</i>
+parameter in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.
+</p><p><b>ccvr: </b>An unsigned integer value that specifies
+the count of a <a href="5503c7fa-c78e-4fda-adc9-21030751bce7" data-linktype="relative-path">CERTVIEWRESTRICTION</a>
+structure array that is pointed to by the <i>acvr</i> parameter.</p><p><b>acvr: </b>A pointer to an array of
+CERTVIEWRESTRICTION structures. For more information, see section 2.2.1.3. </p><p><b>ccolOut: </b>An unsigned integer value that
+specifies the count of a DWORD array that is pointed to by the <i>acolOut</i>
+parameter.</p><p><b>acolOut: </b>A pointer to an array of DWORDs. Each
+DWORD value specifies the column identifier for the resultant set of rows.</p><p><b>ielt: </b>An unsigned integer value that specifies
+the identifier of the first row to return from the resultant set of rows.</p><p><b>celt: </b>An unsigned integer value that specifies
+the requested count of the row data to be returned from the resultant set of
+rows.</p><p><b>pceltFetched: </b>A pointer to an unsigned integer
+value that receives the actual count of row data that is returned by the server
+in the <i>pctbResultRows</i> parameter.</p><p><b>pctbResultRows: </b>A pointer to a <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure.
+The <i>pb</i> byte array of the CERTTRANSBLOB structure MUST contain (on
+successful return) an array of <i>n</i> marshaled <a href="00bd8e2e-a9fb-4555-a9f1-7dff91d6e5b3" data-linktype="relative-path">CERTTRANSDBRESULTROW</a>
+structures (section 2.2.3), where <i>n</i> is the value returned in <i>pceltFetched</i>.
+Each CERTTRANSDBRESULTROW contains one or more <a href="ac07551a-37af-4c8a-84f2-3c278a5770ed" data-linktype="relative-path">CERTTRANSDBRESULTCOLUMN</a>
+structures (section 2.2.1.10). </p><p>The OpenView method opens a view into the database and
+returns a set of resultant row data.</p><p>The <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a>
+server MUST enforce the following sequencing rules:</p><ol><li><p><span>    </span>If the OpenView
+method is called when the value of Config_Database_View_Open is <b>False</b>,
+the server MUST set Config_Database_View_Open to <b>True</b> and continue
+processing by using the following rules.</p>
+</li><li><p><span>    </span>If the OpenView
+method is called when the value of Config_Database_View_Open is <b>True</b>,
+the server MUST return an error. The error code SHOULD be
+ERROR_UNEXPECTED_ERROR.</p>
+</li></ol><p>The CA server MUST apply the following processing rules:</p><ol><li><p><span>    </span>The CA server
+MUST ensure that sortOrder is specified in only one of the restrictions that
+are specified in the <i>acvr</i> parameter. If more than one column specifies
+sort order, the server MUST reject the request by using the error
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span>    </span>The CA server
+MUST also ensure that all the column identifiers that are specified in the
+restrictions and the <i>acolOut</i> parameter are valid and associated with
+only one database <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_d3a7da8d-a597-4838-9756-25e30b640ba7" data-linktype="relative-path">table</a>.
+The table MUST be either the <a href="2f82efc0-66dd-49b7-9556-425805e63d30" data-linktype="relative-path">Request
+table (section 3.1.1.1)</a> or the <a href="3c8fcd6a-6872-46c2-b464-1c86f7fdfb4a" data-linktype="relative-path">CRL
+table (section 3.1.1.4)</a>. If the table is not the Request table 
+or the CRL table, the CA MUST return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span>    </span>The CA server
+MUST compute the resultant set of rows to return, after applying the
+restrictions on the row set that is associated with the table and sorting the
+resultant rows based on the restriction information. If no sort ordering is
+provided in the restriction set, the sorting MUST be done based on the primary <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_5101391c-795d-446c-8054-7550eb75d923" data-linktype="relative-path">index</a> column of the table.
+If no restriction set is given, the resultant set of rows to return is the
+entire row set that is associated with the table. </p>
+<p>Each restriction MUST be processed
+in the following manner:</p>
+<ol><li><p><span>   
+</span>Based on the value type of the column, which is identified by the <i>columnIndex</i>
+parameter, the pbValue MUST be decoded. The value MUST be in the format and
+encoded as specified in section 2.2.1.3; otherwise, the CA server MUST fail
+with the error ERROR_INVALID_PARAMETER. </p>
+</li><li><p><span>   
+</span>Based on the seek operator that is specified in the restriction, the
+value for the associated column in each row of the resultant set MUST satisfy
+the rules that follow.</p>
+</li><li><p><span>   
+</span>For each row in the resultant set (after sorting), only the columns that
+are identified by column identifiers in the acolOut array MUST be retained. The
+rest of the columns MUST be removed from the resultant set.</p>
+</li><li><p><span>   
+</span>See section <a href="b49bb568-5ad6-4ff2-ab21-737f70f7a464" data-linktype="relative-path">3.1.4.1.13</a>
+for the processing of the <i>ielt</i> and <i>celt</i> parameters and the data
+returned via the <i>pceltFetched</i> and <i>pctbResultRows</i> out parameters. </p>
+</li><li><p><span>   
+</span>The value for the associated column in each row of the resultant set
+MUST be compared, based on the seek operator, to the value specified in the
+restriction. If the comparison fails, the row MUST be removed from the resultant
+set. For column type 3 (BINARY), the seek operator MUST be 0x00000001;
+otherwise, the call MUST fail with error ERROR_INVALID_PARAMETER.</p>
+</li></ol></li></ol></div>

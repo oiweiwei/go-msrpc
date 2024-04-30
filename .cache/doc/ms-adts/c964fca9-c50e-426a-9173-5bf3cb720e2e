@@ -1,0 +1,113 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c964fca9-c50e-426a-9173-5bf3cb720e2e" data-linktype="external">msdn link</a></p><p><a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">Domain</a>
+peers share a password in order to validate protocol messages flowing between
+the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trusted</a> domains. The
+password is only good in one direction of the trust. Each direction is stored
+in its own <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a>:
+the <a href="../ms-ada3/811adef4-3ad5-42fa-8913-268ca096bc1a" data-linktype="relative-path">trustAuthIncoming</a>
+and <a href="../ms-ada3/3545ff0e-4321-450f-a116-fa9cf3716bb1" data-linktype="relative-path">trustAuthOutgoing</a>
+attributes. These are both <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_d01d16a8-7864-4c7f-acaa-8c695508d6e0" data-linktype="relative-path">secret
+attributes</a> (<a href="../ms-drsr/f977faaa-673e-4f66-b9bf-48c640241d47" data-linktype="relative-path">[MS-DRSR]</a>
+section <a href="../ms-drsr/294168d9-81bf-461b-91d7-95bd8a985737" data-linktype="relative-path">4.1.10.3.11</a>,
+IsSecretAttribute), and are not readable outside of the context of the LSA on a
+<a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a>.</p><p>Both trustAuthIncoming and trustAuthOutgoing are stored as a
+String(Octet). The storage of this information in a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">TDO</a> is described in the
+following diagram.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Count of
+  auth infos</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Byte offset
+  to AuthenticationInformation</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Byte offset
+  to PreviousAuthenticationInformation</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AuthenticationInformation
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PreviousAuthenticationInformation
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Count of auth infos (4 bytes): </b>A <a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">ULONG</a>
+count of the pairs of LSAPR_AUTH_INFORMATION structures. Each current
+Authentication Information structure is accompanied by a previous
+Authentication Information structure (even if it is marked as invalid), and the
+count of the pairs of elements is stored in this field.</p><p><b>Byte offset to AuthenticationInformation (4
+bytes): </b>The <a href="../ms-dtyp/d7edc080-e499-4219-a837-1bc40b64bb04" data-linktype="relative-path">BYTE</a>
+offset from the base of the structure to the array of LSAPR_AUTH_INFORMATION
+structures representing the current <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_8e961bf0-95ba-4f58-9034-b67ccb27f317" data-linktype="relative-path">authentication</a> information.</p><p><b>Byte offset to PreviousAuthenticationInformation
+(4 bytes): </b>The BYTE offset from the base of the structure to the array of
+LSAPR_AUTH_INFORMATION structures representing the previous authentication
+information.</p><p><b>AuthenticationInformation (variable): </b>Array of
+LSAPR_AUTH_INFORMATION [1...Count].</p><dl>
+<dd>
+<p>Following the byte offset to PreviousAuthenticationInformation
+is an array of <a href="dfe16abb-4dfb-402d-bc54-84fcc9932fad" data-linktype="relative-path">LSAPR_AUTH_INFORMATION</a>
+structures representing the current authentication information.</p>
+</dd></dl><p><b>PreviousAuthenticationInformation (variable): </b>Array
+of LSAPR_AUTH_INFORMATION [1...Count].</p><dl>
+<dd>
+<p>Following the current authentication information is
+an array of LSAPR_AUTH_INFORMATION structures representing the previous
+authentication information. If authentication information has not been
+previously stored, then the previous Authentication Information structure is an
+exact copy of the current Authentication Information structure.</p>
+</dd></dl></div>

@@ -1,0 +1,90 @@
+<div class="content"><p> </p><p>The IEventSubscription3 interface provides methods to get or
+set the properties of a <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_f362c255-5746-44db-aa04-e8060543a19c" data-linktype="relative-path">subscription</a></span>.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="aa52a2bf-fd29-47f9-8dea-d887d6b7d5ee#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a> This interface inherits opnums
+0 through 44 from <span><a href="48f7dd98-118d-4dce-8826-de75a3e631cc" data-linktype="relative-path">IEventSubscription2</a></span>,
+as specified in section 3.1.4.8. The version for this interface is 0.0.</p><p>To receive incoming remote calls for this interface, the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>
+MUST implement a DCOM <span><a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a></span>
+<span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_a224e395-3fea-48bd-b141-3dd9bee2136a" data-linktype="relative-path">object
+class</a></span> with the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">class ID</a></span>
+CLSID_Subscription (see section <span><a href="25e89236-b0b3-4d8b-b1fb-64e0e9f0e156" data-linktype="relative-path">1.9</a></span>) using the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+{FBC1D17D-C498-43a0-81AF-423DDD530AF6} for this interface.</p><p>The interface contains the following methods beyond those of
+IEventSubscription2.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span><a href="a6db9e3f-5645-4328-8888-c4c63ff6b303" data-linktype="relative-path">get_EventClassPartitionID</a></span></p>
+  </td>
+  <td>
+  <p>Gets the EventClassPartitionID property of the
+  subscription.</p>
+  <p>Opnum: 45</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="18174ea5-6f54-47a0-8d0a-a17dc2aac009" data-linktype="relative-path">put_EventClassPartitionID</a></span></p>
+  </td>
+  <td>
+  <p>Sets the EventClassPartitionID property of the
+  subscription.</p>
+  <p>Opnum: 46</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="da7de8c0-66b3-4b1f-9986-c6407d1cb748" data-linktype="relative-path">get_EventClassApplicationID</a></span></p>
+  </td>
+  <td>
+  <p>Gets the EventClassApplicationID property of the
+  subscription.</p>
+  <p>Opnum: 47</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="56b003fb-aa30-475c-91a5-33fc024286cc" data-linktype="relative-path">put_EventClassApplicationID</a></span></p>
+  </td>
+  <td>
+  <p>Has no effect.</p>
+  <p>Opnum: 48</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="a61dfcd3-1ca4-43ca-8e23-d21e36b0eeb1" data-linktype="relative-path">get_SubscriberPartitionID</a></span></p>
+  </td>
+  <td>
+  <p>Gets the SubscriberPartitionID property of the
+  subscription.</p>
+  <p>Opnum: 49</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="c1ecfbda-291e-4c35-8513-a6cd812caefb" data-linktype="relative-path">put_SubscriberPartitionID</a></span></p>
+  </td>
+  <td>
+  <p>Sets the SubscriberPartitionID property of the
+  subscription.</p>
+  <p>Opnum: 50</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="d904347b-953e-4fd3-b8f2-2012fd0690f8" data-linktype="relative-path">get_SubscriberApplicationID</a></span></p>
+  </td>
+  <td>
+  <p>Gets the SubscriberApplicationID property of the
+  subscription.</p>
+  <p>Opnum: 51</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="49fdcee5-4020-4f10-88a3-69b0d6cf6190" data-linktype="relative-path">put_SubscriberApplicationID</a></span></p>
+  </td>
+  <td>
+  <p>Sets the SubscriberApplicationID property of the
+  subscription.</p>
+  <p>Opnum: 52</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

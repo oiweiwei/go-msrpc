@@ -1,0 +1,67 @@
+<div class="content"><p> </p><p>The BeginTearDown method is invoked by a <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_b4738f56-9936-4714-beb6-1c861116dd5c" data-linktype="relative-path">secondary
+partner</a></span> to request that a <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7e81ed8f-e4a4-49ff-b7d8-cce6005ad036" data-linktype="relative-path">primary partner</a></span>
+begin <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0cd96b80-a737-4f06-bca4-cf9efb449d12" data-linktype="relative-path">session</a></span> teardown.</p><dl>
+<dd>
+<div><pre> HRESULT BeginTearDown(
+   [in] PCONTEXT_HANDLE contextHandle,
+   [in] TEARDOWN_TYPE tearDownType
+ );
+</pre></div>
+</dd></dl><p><b>contextHandle: </b>An <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+that is correlated with a session object that is in the Active state. For
+context handles, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>.</p><p><b>tearDownType: </b>The reason for tearing down the
+session. It MUST be set to 0x00 (TT_FORCE).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p><span><a href="8503e349-031c-4d1a-b7be-fbb9966338c2" data-linktype="relative-path">TT_FORCE</a></span></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method MUST return zero
+(0x00000000) on success. On failure, it MUST return an implementation-specific <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>.
+A client MUST NOT depend on implementation-specific failure HRESULT values.
+From an over-the-wire communication point of view, the client MUST implement
+only a behavior for the case when the call succeeds and another behavior for
+the case when the call does not succeed, (see section <span><a href="db2618ed-2063-4957-9e84-ad0420b2dcf4" data-linktype="relative-path">3.4.6.2</a></span>). Standard
+errors are defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_STATUS</p>
+  </td>
+  <td>
+  <p>The return value indicates success.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>BeginTearDown MUST NOT be invoked on a secondary partner.</p><p>If the session object is in the Teardown state, the primary
+partner MUST immediately return from the method with S_OK. Otherwise, the
+primary partner MUST set the state of the session object associated with the
+context handle to Teardown and return S_OK from the method. Also, it MUST start
+the <span><a href="82b7c654-8026-4a8e-9668-acb0e5afcbcc" data-linktype="relative-path">Session
+Teardown timer</a></span> associated with that session object and attempt to
+call the <span><a href="1de3b878-2c0f-47c4-b44d-741cdec289e5" data-linktype="relative-path">TearDownContext</a></span>
+method on the secondary partner. The secondary partner SHOULD choose to perform
+these actions asynchronously.</p></div>

@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The VDS_STORAGE_IDENTIFIER structure provides information
+about a storage identifier.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_STORAGE_IDENTIFIER {
+   VDS_STORAGE_IDENTIFIER_CODE_SET m_CodeSet;
+   VDS_STORAGE_IDENTIFIER_TYPE m_Type;
+   unsigned long m_cbIdentifier;
+   [size_is(m_cbIdentifier)] byte* m_rgbIdentifier;
+ } VDS_STORAGE_IDENTIFIER;
+</pre></div>
+</dd></dl><p><b>m_CodeSet:</b>  Value from the <span><a href="62dba92e-d4c8-4a01-b091-f36908ffe310" data-linktype="relative-path">VDS_STORAGE_IDENTIFIER_CODE_SET</a></span>
+enumeration that defines the code set of the storage identifier.</p><p><b>m_Type:</b>  Value from the <span><a href="beb4a367-28ec-4c56-9a25-df8374e7a315" data-linktype="relative-path">VDS_STORAGE_IDENTIFIER_TYPE</a></span>
+enumeration that defines the type of the storage identifier.</p><p><b>m_cbIdentifier:</b>  Length of the
+m_rgbIdentifier identifier in bytes.</p><p><b>m_rgbIdentifier:</b>  Value of the
+storage identifier. These identifiers depend on both the code set and the type.</p></div>

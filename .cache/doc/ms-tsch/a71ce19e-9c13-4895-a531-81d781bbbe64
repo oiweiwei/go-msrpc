@@ -1,0 +1,66 @@
+<div class="content"><p> </p><p>When the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_5245e0f1-e443-4a8b-968c-61c736f61fe0" data-linktype="relative-path">trigger</a></span> type is
+WEEKLY, the five fields are interpreted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Trigger
+  Type</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Weeks
+  Interval</p>
+  </td>
+  <td colspan="16">
+  <p>DaysOfTheWeek</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Unused</p>
+  </td>
+  <td colspan="16">
+  <p>Padding</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Trigger Type (4 bytes): </b>Trigger frequency
+type. Set to 0x00000002 for the WEEKLY trigger type.</p><p><b>Weeks Interval (2 bytes): </b>Contains the number
+of weeks between trigger firings.</p><p><b>DaysOfTheWeek (2 bytes): </b>Contains the bit
+flags that specify on which days of the week the trigger fires, which are
+interpreted as specified in section <span><a href="b7a0fc39-b43a-435a-9f37-60e48f340b9b" data-linktype="relative-path">2.4.2.11.3</a></span>. </p><p><b>Unused (2 bytes): </b>MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>Padding (2 bytes): </b>MUST be set to zero when
+sent and MUST be ignored on receipt.</p></div>

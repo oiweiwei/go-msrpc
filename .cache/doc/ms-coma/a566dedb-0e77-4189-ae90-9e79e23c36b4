@@ -1,0 +1,19 @@
+<div class="content"><p>This method is called by a client to determine if an <a href="3f01a312-3391-4109-a96e-95358babf191#gt_791190e6-1e02-42cb-bd25-5aee3ab516ed" data-linktype="relative-path">instance container</a> is
+paused.</p><dl>
+<dd>
+<div><pre> HRESULT IsContainerPaused(
+   [in] GUID* ContainerIdentifier,
+   [out] BOOL* bPaused
+ );
+</pre></div>
+</dd></dl><p><b>ContainerIdentifier:</b> The <a href="3f01a312-3391-4109-a96e-95358babf191#gt_07da3776-ca7c-4e8a-8c94-95d59b2f40b8" data-linktype="relative-path">container identifier</a> of an
+instance container.</p><p><b>bPaused: </b>A pointer to a variable that, upon
+successful completion, MUST be set to indicate whether or not the instance
+container is paused.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server MUST verify
+that there exists an instance container with the container identifier specified
+in <i>ContainerIdentifier</i>, and fail the call if not.<a id="Appendix_A_Target_350"></a><a aria-label="Product behavior note 350" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_350" data-linktype="relative-path">&lt;350&gt;</a></p><p>The server then MUST attempt to determine if the instance
+container is paused, and fail the call if it cannot.</p><p>The server then MUST set the value referenced by <i>bPaused</i>
+to indicate whether the instance container is paused.</p></div>

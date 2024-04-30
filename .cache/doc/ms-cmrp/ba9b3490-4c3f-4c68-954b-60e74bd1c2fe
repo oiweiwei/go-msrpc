@@ -1,0 +1,53 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/ba9b3490-4c3f-4c68-954b-60e74bd1c2fe" data-linktype="external">msdn link</a></p><p>The <b>CLUS_STORAGE_REMAP_DRIVELETTER</b> structure
+identifies the existing and target drive letter for a disk drive on a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_762051d8-4fdc-437e-af9d-3f4da77c3c7d" data-linktype="relative-path">node</a>.</p><p><b>CLUS_STORAGE_REMAP_DRIVELETTER</b> is a custom-marshaled
+structure that has fields as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CurrentDriveLetterMask</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TargetDriveLetterMask</p>
+  </td>
+ </tr>
+</tbody></table><p><b>CurrentDriveLetterMask (4 bytes): </b>A 32-bit
+bitmask indicating the drive letter to be changed. The least significant bit
+represents the drive letter &#39;A&#39; through bit 25, which represents the drive
+letter &#39;Z&#39;.</p><p><b>TargetDriveLetterMask (4 bytes): </b>A 32-bit
+bitmask indicating the new drive letter for the disk drive that corresponds to
+the drive letter specified in CurrentDriveLetterMask.</p></div>

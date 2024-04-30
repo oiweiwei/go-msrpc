@@ -1,0 +1,22 @@
+<div class="content"><p>The GetCustData method retrieves the value of a custom data
+item associated with the <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_4057fc86-007f-496f-a966-01c762088a8e" data-linktype="relative-path">automation
+type library</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetCustData(
+   [in] REFGUID guid,
+   [out] VARIANT* pVarVal
+ );
+</pre></div>
+</dd></dl><p><b>guid: </b>MUST be the <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> associated with the
+custom data item using the [custom] attribute, as specified in section <a href="ae4d27fa-faaa-4d5f-b0f9-15bfbaaae9b4" data-linktype="relative-path">2.2.49.2</a>.</p><p><b>pVarVal: </b>MUST be set to the value of the
+custom data item, or <a href="3fe7db9f-5803-4dc4-9d14-5425d3f5461f" data-linktype="relative-path">VT_EMPTY</a>
+if there is no custom data item associated with the specified GUID.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul></div>

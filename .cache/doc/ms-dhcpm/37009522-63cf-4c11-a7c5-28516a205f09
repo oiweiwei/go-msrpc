@@ -1,0 +1,49 @@
+<div class="content"><p> </p><p>The <b>R_DhcpSetMClientInfo</b> method sets/modifies the
+specific MADCAP client lease record on the MADCAP server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpSetMClientInfo(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, ref] LPDHCP_MCLIENT_INFO ClientInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the MADCAP server. This parameter is unused.</p><p><b>ClientInfo: </b>This is a pointer of type <span><a href="29305f39-f10e-4a80-8d75-b184c6b0898f" data-linktype="relative-path">LPDHCP_MCLIENT_INFO (section 2.2.1.2.21)</a></span>,
+containing the information of the MADCAP client.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>This call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000078</p>
+  <p>ERROR_CALL_NOT_IMPLEMENTED</p>
+  </td>
+  <td>
+  <p>The method is not implemented by this version of the
+  MADCAP server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 10.</p><p>When processing this call, the MADCAP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Return ERROR_CALL_NOT_IMPLEMENTED.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

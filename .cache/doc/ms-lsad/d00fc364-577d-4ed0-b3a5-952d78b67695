@@ -1,0 +1,74 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/d00fc364-577d-4ed0-b3a5-952d78b67695" data-linktype="external">msdn link</a></p><p>The LSAPR_POLICY_AUDIT_EVENTS_INFO structure contains auditing
+options on the server.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_POLICY_AUDIT_EVENTS_INFO {
+   unsigned char AuditingMode;
+   [size_is(MaximumAuditEventCount)] 
+     unsigned long* EventAuditingOptions;
+   [range(0,1000)] unsigned long MaximumAuditEventCount;
+ } LSAPR_POLICY_AUDIT_EVENTS_INFO,
+  *PLSAPR_POLICY_AUDIT_EVENTS_INFO;
+</pre></div>
+</dd></dl><p><b>AuditingMode:</b>  0 indicates that
+auditing is disabled. All other values indicate that auditing is enabled.</p><p><b>EventAuditingOptions:</b>  An array of
+values specifying the auditing options for a particular audit type. The
+auditing type of an element is represented by its index in the array, which is
+identified by the <a href="04036d49-a482-4b57-995f-11d539f2e5b7" data-linktype="relative-path">POLICY_AUDIT_EVENT_TYPE</a>
+enumeration (see section 2.2.4.20). Each element MUST contain one or more of
+the values in the table below. </p><dl>
+<dd>
+<p>If the <b>MaximumAuditEventCount</b> field has a
+value other than 0, this field MUST NOT be NULL.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>POLICY_AUDIT_EVENT_UNCHANGED</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Leave existing auditing options unchanged for events
+  of this type; used only for set operations. This value cannot be combined
+  with values in this table.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>POLICY_AUDIT_EVENT_NONE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Upon updates, this value causes the existing auditing
+  options for events of this type to be deleted and replaced with any other new
+  values specified. If specified by itself, this value cancels all auditing
+  options for events of this type. This value is used only for set operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>POLICY_AUDIT_EVENT_SUCCESS</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>When auditing is enabled, audit all successful
+  occurrences of events of the given type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>POLICY_AUDIT_EVENT_FAILURE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>When auditing is enabled, audit all unsuccessful
+  occurrences of events of the given type.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>MaximumAuditEventCount:</b>  The number
+of entries in the EventAuditingOptions array.<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a></p></div>

@@ -1,0 +1,105 @@
+<div class="content"><p> </p><p>The <b>GetShareMapping</b> method is invoked by the client
+to get the <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow copy</a></span>
+information on a given file share on the server after the shadow copy of the
+share has been exposed.</p><dl>
+<dd>
+<div><pre> DWORD GetShareMapping(
+         [in] handle_t hBinding,
+         [in] GUID ShadowCopyId,
+         [in] GUID ShadowCopySetId,
+         [in] [string] LPWSTR ShareName,
+         [in] DWORD Level,
+         [out] [switch_is(Level)] PFSSAGENT_SHARE_MAPPING ShareMapping);
+  
+</pre></div>
+</dd></dl><p><b>hBinding:</b>  An RPC binding handle (as defined
+in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>).</p><p><b>ShadowCopyId:</b> The GUID of the shadow copy
+associated with the share.</p><p><b>ShadowCopySetId:</b> The GUID of the shadow copy
+set.</p><p><b>ShareName:</b> The name of the share in UNC
+format.</p><p><b>Level:</b> The information level of the share
+mapping data. This parameter MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>FSSAGENT_SHARE_MAPPING_1</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ShareMapping:</b> A pointer to an
+FSSAGENT_SHARE_MAPPING structure, as specified in section <span><a href="8bf625df-4d5d-4301-a568-03a902415a5d" data-linktype="relative-path">2.2.3.1</a></span>.</p><p><b>Return Values:</b> The method returns one of the
+values as specified in section <span><a href="b45c794e-9362-42b7-80c6-7dae3382acf0" data-linktype="relative-path">2.2.4</a></span>. The most
+common error codes are listed in the following table:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>E_ACCESSDENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  the operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG </p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80042501</p>
+  <p>FSRVP_E_SHADOWCOPYSET_ID_MISMATCH</p>
+  </td>
+  <td>
+  <p>The provided ShadowCopySetId does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>If the value of <b>Level</b> is invalid, the server MUST
+fail the call with E_INVALIDARG.</p><p>The server MUST look up the <b>ShadowCopySet</b> from <b>GlobalShadowCopysetTable</b>
+using the index <i>ShadowCopySetId.</i> If no shadow copy set is found, the
+server MUST fail the call with FSRVP_E_SHADOWCOPYSET_ID_MISMATCH.</p><p>If <b>ShadowCopySet.Status</b> is not &#34;Exposed<i>&#34;</i>,
+the server SHOULD<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="97e8cd5d-666b-428d-b701-ebd48fb59e16#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a> fail the call with
+FSRVP_E_BAD_STATE.</p><p>The server MUST stop the Message Sequence Timer specified in
+section <span><a href="d88b9fb3-aa00-4396-91e5-f3db036d4a74" data-linktype="relative-path">3.1.2</a></span>.</p><p>The server MUST look up the <b>ShadowCopy</b> in <b>ShadowCopySet.ShadowCopyList</b>
+where <b>ShadowCopy.ShadowCopyId</b> matches <i>ShadowCopyId</i>. If no entry
+is found, the server MUST fail the call with E_INVALIDARG.</p><p>The server MUST look up the <b>MappedShare</b> in <b>ShadowCopy.ShareMappingList</b>
+where <b>MappedShare.ShareName</b> matches <i>ShareName</i>. If no entry is
+found, the server MUST fail the call with E_INVALIDARG.</p><p>If the value of <b>Level</b> is 1, the server MUST update
+the <b>ShareMapping1</b> structure of the <i>ShareMapping</i> parameter as
+follows:</p><ul><li><p><span><span> 
+</span></span><b>ShareMapping1.ShadowCopySetId</b> is set to <b>ShadowCopySet.ShadowCopySetId</b>.</p>
+</li><li><p><span><span> 
+</span></span><b>ShareMapping1.ShadowCopyId</b> is set to <b>ShadowCopy.ShadowCopyId</b>.</p>
+</li><li><p><span><span> 
+</span></span><b>ShareMapping1.ShareNameUNC</b> is set to <b>MappedShare.ShareName</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <b>MappedShare.IsExposed</b> is TRUE, <b>ShareMapping1.ShadowCopyShareName</b>
+is set to <b>MappedShare.ShadowCopyShareName</b>. Otherwise, <b>ShareMapping1.ShadowCopyShareName</b>
+is set to NULL.</p>
+</li><li><p><span><span> 
+</span></span><b>ShareMapping1.CreationTimeStamp</b> is set to <b>ShadowCopy.CreationTimeStamp</b>.</p>
+</li></ul><p>The server MUST start the Message Sequence Timer as
+specified in section 3.1.2 with a timeout value of 1800 seconds, and return ZERO
+to the caller.</p></div>

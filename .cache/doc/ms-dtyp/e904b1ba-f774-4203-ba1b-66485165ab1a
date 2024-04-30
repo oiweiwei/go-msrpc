@@ -1,0 +1,9 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/e904b1ba-f774-4203-ba1b-66485165ab1a" data-linktype="external">msdn link</a></p><p>The LARGE_INTEGER structure is used to represent a 64-bit
+signed integer value.</p><dl>
+<dd>
+<div><pre> typedef struct _LARGE_INTEGER {
+   signed __int64 QuadPart;
+ } LARGE_INTEGER,
+  *PLARGE_INTEGER;
+</pre></div>
+</dd></dl></div>

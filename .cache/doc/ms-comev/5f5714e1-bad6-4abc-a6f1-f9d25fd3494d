@@ -1,0 +1,113 @@
+<div class="content"><p> </p><p>The RemoveS method is called by the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>
+to remove an <span><a href="66217d57-8c60-4423-9b24-52923f4c2afa" data-linktype="relative-path">event class</a></span> or <span><a href="0d617a76-fc58-455c-9e30-1a8436c5f73a" data-linktype="relative-path">subscription</a></span>.</p><dl>
+<dd>
+<div><pre> [id(6), helpstring(&#34;method RemoveS&#34;)] HRESULT RemoveS(
+   [in] BSTR progID,
+   [in] BSTR queryCriteria
+ );
+</pre></div>
+</dd></dl><p><b>progID: </b>A string that uniquely identifies the
+type of collection. The value MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&#34;EventSystem.EventClassCollection&#34;</p>
+  </td>
+  <td>
+  <p>The store for <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e8df25db-9bff-46df-b607-d072dd29c02b" data-linktype="relative-path">event classes</a></span> (as
+  specified in section 3.1.1.1). </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;EventSystem.EventSubscriptionCollection&#34;</p>
+  </td>
+  <td>
+  <p>The store for <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_f362c255-5746-44db-aa04-e8060543a19c" data-linktype="relative-path">subscriptions</a></span> (as
+  specified in section 3.1.1.2).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>queryCriteria: </b>The actual query string. The
+syntax for this string MUST conform to section <span><a href="540614a5-1aa5-4e6b-8867-ee10809706bf" data-linktype="relative-path">2.2.1</a></span>.</p><p><b>Return Values: </b>An <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+specifying success or failure. All success codes MUST be treated the same, and
+all failure codes other than EVENT_E_QUERYSYNTAX, EVENT_E_QUERYFIELD, and
+EVENT_E_NOT_ALL_REMOVED MUST be treated the same.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80040203</p>
+  <p>EVENT_E_QUERYSYNTAX</p>
+  </td>
+  <td>
+  <p>A syntax error occurred while trying to evaluate a
+  query string.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80040204</p>
+  <p>EVENT_E_QUERYFIELD</p>
+  </td>
+  <td>
+  <p>An invalid field name was used in a query string.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8004020B</p>
+  <p>EVENT_E_NOT_ALL_REMOVED</p>
+  </td>
+  <td>
+  <p>Not all of the requested objects could be removed.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>When this method is called, the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST use the <i>progID</i>
+parameter value to determine the store against which the query needs to be
+executed, and validate the query. If the specified collection is not valid or
+the specified query is not valid, the server MUST fail the call, returning a
+failure HRESULT to the client. </p><p>If they are valid, the server MUST use the <i>queryCriteria</i>
+value to determine the event classes or subscriptions that need to be removed.
+If none of the entries in the internal store matched the <i>queryCriteria</i>,
+the server MUST fail the call.</p><p>Otherwise, the server will validate the entries in the query
+according to the following verification cases:</p><ul><li><p><span><span> 
+</span></span><b>Protocol version is 1; CatalogMode is TRUE</b></p>
+<p>If the query includes
+anything other than subscriptions with the SubscriberInterface property set (<span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_5f3bbd2c-d1c5-439c-b635-0dce5adb3701" data-linktype="relative-path">transient
+subscriptions</a></span>), the server MAY fail the call, returning a failure
+HRESULT to the client. If the server does not fail the call, the server
+behavior is undefined.</p>
+</li><li><p><span><span> 
+</span></span><b>Protocol version is 1; CatalogMode is FALSE</b></p>
+<p>No additional
+verification.</p>
+</li><li><p><span><span> 
+</span></span><b>Protocol version is 2; CatalogMode is TRUE</b></p>
+<p>If the query includes anything
+other than subscriptions with the PartitionID property not equal to <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_b9d97d88-9398-4450-9e92-247073ce0362" data-linktype="relative-path">GUID_NULL</a></span>
+and with the SubscriberInterface property set (transient subscriptions), the
+server MAY fail the call, returning a failure HRESULT to the client. If the
+server does not fail the call, the server behavior is undefined.</p>
+</li><li><p><span><span> 
+</span></span><b>Protocol version is 2; CatalogMode is FALSE</b></p>
+<p>If the query includes
+anything other than event classes and subscriptions with the PartitionID
+property equal to GUID_NULL, the server SHOULD fail the call, returning a
+failure HRESULT to the client.</p>
+</li></ul><p>If the verification succeeds, the server MUST attempt to
+remove the event classes or subscriptions from its internal collection and fail
+the call if it cannot.</p></div>

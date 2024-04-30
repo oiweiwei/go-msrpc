@@ -1,0 +1,12 @@
+<div class="content"><p>The SCardIO_Request structure represents the data to be
+prepended to a Transmit command (for more information, see section <a href="0b24a330-7950-48f8-ade9-fb90d51d0546" data-linktype="relative-path">3.1.4.35</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _SCardIO_Request {
+   unsigned long dwProtocol;
+   [range(0,1024)] unsigned long cbExtraBytes;
+   [unique] [size_is(cbExtraBytes)] byte *pbExtraBytes;
+ } SCardIO_Request;
+</pre></div>
+</dd></dl><p><b>dwProtocol:</b>  The protocol in use.
+Possible values are specified in section <a href="41673567-2710-4e86-be87-7b6f46fe10af" data-linktype="relative-path">2.2.5</a>.</p><p><b>cbExtraBytes:</b>  The number of bytes
+in the <b>pbExtraBytes</b> field.</p><p><b>pbExtraBytes:</b>  Request data.</p></div>

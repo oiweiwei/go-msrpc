@@ -1,0 +1,361 @@
+<div class="content"><p> </p><p>The DRS_MSG_CRACKREQ_V1 structure defines the request
+message sent to the <span><a href="9b4bfb44-6656-4404-bcc8-dc88111658b3" data-linktype="relative-path">IDL_DRSCrackNames</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   ULONG CodePage;
+   ULONG LocaleId;
+   DWORD dwFlags;
+   DWORD formatOffered;
+   DWORD formatDesired;
+   [range(1,10000)] DWORD cNames;
+   [string, size_is(cNames)] WCHAR** rpNames;
+ } DRS_MSG_CRACKREQ_V1;
+</pre></div>
+</dd></dl><p><b>CodePage:</b>  The character set used by
+the client. This field SHOULD be ignored by the server.</p><p><b>LocaleId:</b>  The locale used by the
+client. This field SHOULD be ignored by the server.</p><p><b>dwFlags:</b>  Zero or more of the
+following bit flags, which are presented in little-endian byte order.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>T R</p>
+  </td>
+  <td>
+  <p>G C</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>F P O</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>X:</b> Unused. MUST be
+zero and ignored.</p>
+</dd>
+<dd>
+<p><b>GC
+(DS_NAME_FLAG_GCVERIFY, 0x00000004):</b> If set, the call fails if the server
+is not a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5a99ce4-e206-42dc-8874-e103934c5b0d" data-linktype="relative-path">GC server</a></span>.</p>
+</dd>
+<dd>
+<p><b>TR
+(DS_NAME_FLAG_TRUST_REFERRAL, 0x00000008):</b> If set and the lookup fails on
+the server, referrals are returned to trusted <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forests</a></span> where the
+lookup might succeed.</p>
+</dd>
+<dd>
+<p><b>FPO
+(DS_NAME_FLAG_PRIVATE_RESOLVE_FPOS, 0x80000000):</b> If set and the named <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>
+is a foreign <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>,
+indicate this by using the status of the lookup operation.</p>
+</dd></dl><p><b>formatOffered:</b>  The format of the names
+in <b>rpNames</b>. This can be one of the values from <span><a href="73c73cf2-0824-4d65-97f4-f56244f3e8a6" data-linktype="relative-path">DS_NAME_FORMAT (section 4.1.4.1.3)</a></span>
+or one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DS_LIST_SITES</p>
+  <p>0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>Get all <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8abdc986-5679-42d9-ad76-b11eb5a0daba" data-linktype="relative-path">sites</a></span> in the
+  forest.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_LIST_SERVERS_IN_SITE</p>
+  <p>0xFFFFFFFE</p>
+  </td>
+  <td>
+  <p>Get all servers in a given site.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_LIST_DOMAINS_IN_SITE</p>
+  <p>0xFFFFFFFD</p>
+  </td>
+  <td>
+  <p>Get all <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domains</a></span> in a given
+  site.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_LIST_SERVERS_FOR_DOMAIN_IN_SITE</p>
+  <p>0xFFFFFFFC</p>
+  </td>
+  <td>
+  <p>Get all <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DCs</a></span> of a specified
+  domain in a given site.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_LIST_INFO_FOR_SERVER</p>
+  <p>0xFFFFFFFB</p>
+  </td>
+  <td>
+  <p>Get DNS host name and server reference for a given DC.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_LIST_ROLES</p>
+  <p>0xFFFFFFFA</p>
+  </td>
+  <td>
+  <p>Get <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_de81e9fd-25f5-4e90-aadb-1d35c5e8a06b" data-linktype="relative-path">FSMO role owners</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_NT4_ACCOUNT_NAME_SANS_DOMAIN</p>
+  <p>0xFFFFFFF9</p>
+  </td>
+  <td>
+  <p>Get value of <span><a href="../ms-ada3/56d7e9e4-1505-4d9a-b968-3bf0d6b92809" data-linktype="relative-path">sAMAccountName</a></span>
+  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_MAP_SCHEMA_GUID</p>
+  <p>0xFFFFFFF8</p>
+  </td>
+  <td>
+  <p>Get <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a></span> display name
+  from <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_fd49ea36-576c-4417-93bd-d1ac63e71093" data-linktype="relative-path">schema</a></span> <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>.
+  The given schema GUID must be in the curly braced GUID string format as
+  specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+  section <span><a href="../ms-dtyp/222af2d3-5c00-4899-bc87-ed4c6515e80d" data-linktype="relative-path">2.3.4.3</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_LIST_DOMAINS</p>
+  <p>0xFFFFFFF7</p>
+  </td>
+  <td>
+  <p>Get all domains in the forest.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_LIST_NCS</p>
+  <p>0xFFFFFFF6</p>
+  </td>
+  <td>
+  <p>Get all <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_784c7cce-f782-48d8-9444-c9030ba86942" data-linktype="relative-path">NCs</a></span> in the forest.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_ALT_SECURITY_IDENTITIES_NAME</p>
+  <p>0xFFFFFFF5</p>
+  </td>
+  <td>
+  <p>Compares input names against the values of the <b>altSecurityIdentities</b>
+  attribute.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_STRING_SID_NAME</p>
+  <p>0xFFFFFFF4</p>
+  </td>
+  <td>
+  <p>String form of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_LIST_SERVERS_WITH_DCS_IN_SITE</p>
+  <p>0xFFFFFFF3</p>
+  </td>
+  <td>
+  <p>Get all DCs in a given site.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_LIST_GLOBAL_CATALOG_SERVERS</p>
+  <p>0xFFFFFFF1</p>
+  </td>
+  <td>
+  <p>Get all <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_4f5d605a-7b3f-4db7-8c21-b146856d7169" data-linktype="relative-path">GCs</a></span> in the forest.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_NT4_ACCOUNT_NAME_SANS_DOMAIN_EX</p>
+  <p>0xFFFFFFF0</p>
+  </td>
+  <td>
+  <p>Get value of sAMAccountName attribute; return status
+  DS_NAME_ERROR_NOT_FOUND if account is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_USER_PRINCIPAL_NAME_AND_ALTSECID</p>
+  <p>0xFFFFFFEF</p>
+  </td>
+  <td>
+  <p>Compares input names against the user <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8492780e-99e2-47ba-8553-aedb8de9f9c0" data-linktype="relative-path">principal</a></span>
+  name and the values of the <b>altSecurityIdentities</b> attribute.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>formatDesired:</b>  Format of the names
+in the <b>rItems</b> field of the <span><a href="0076d241-3f79-4b0b-8e07-8ccfaff8bd4c" data-linktype="relative-path">DS_NAME_RESULTW</a></span>
+structure, which is returned inside the <span><a href="1dc605fe-dd85-481d-84a4-f4c5da812d57" data-linktype="relative-path">DRS_MSG_CRACKREPLY</a></span>
+message. This can be one of the values from DS_NAME_FORMAT or one of the
+following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DS_STRING_SID_NAME</p>
+  <p>0xFFFFFFF4</p>
+  </td>
+  <td>
+  <p>String form of a SID.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_USER_PRINCIPAL_NAME_FOR_LOGON</p>
+  <p>0xFFFFFFF2</p>
+  </td>
+  <td>
+  <p>User principal name.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cNames:</b>  Count of items in the <b>rpNames</b>
+array.</p><p><b>rpNames:</b>  Input names to translate.</p></div>

@@ -1,0 +1,475 @@
+<div class="content"><p>The PHONECAPS packet describes the capabilities of a phone
+device. The phone <a href="81bf0e0b-3fb9-41fb-9c20-6fb8b9e34664" data-linktype="relative-path">GetDevCaps</a>
+packet returns this packet. PHONECAPS is supplied by the server in the field
+VarData of the returned version of the phone GetDevCaps packet if the request
+is completed successfully.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwProviderInfoSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwProviderInfoOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwPhoneInfoSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwPhoneInfoOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwPermanentPhoneID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwPhoneNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwPhoneNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwStringFormat</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwPhoneStates</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwHookSwitchDevs</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwHandsetHookSwitchModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSpeakerHookSwitchModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwHeadsetHookSwitchModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwVolumeFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwGainFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDisplayNumRows</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDisplayNumColumns</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumRingModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumButtonLamps</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwButtonModesSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwButtonModesOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwButtonFunctionsSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwButtonFunctionsOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwLampModesSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwLampModesOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumSetData</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSetDataSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSetDataOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumGetData</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwGetDataSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwGetDataOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevSpecificSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevSpecificOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDeviceClassesSize
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDeviceClassesOffset
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwPhoneFeatures
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSettableHandsetHookSwitchModes
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSettableSpeakerHookSwitchModes
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSettableHeadsetHookSwitchModes
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMonitoredHandsetHookSwitchModes
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMonitoredSpeakerHookSwitchModes
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMonitoredHeadsetHookSwitchModes
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">PermanentPhoneGuid
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, that is allocated to this packet. </p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The needed size, in bytes, for this packet to hold all the returned
+information.</p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the portion of this packet that contains useful
+information. </p><p><b>dwProviderInfoSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the provider-specific information. If
+the provider-specific information is a pointer to a string, the size MUST
+include the null terminator. </p><p><b>dwProviderInfoOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of the packet to the variably
+sized field that contains service provider–specific information. </p><dl>
+<dd>
+<p>This member provides information about the provider
+hardware and software, such as the vendor name and version numbers of hardware
+and software. This information can be useful when a user needs to call customer
+service with problems regarding the provider. The size of the field MUST be
+specified by dwProviderInfoSize.</p>
+</dd></dl><p><b>dwPhoneInfoSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the phone-specific information. If the
+phone-specific information is a pointer to a string, the size MUST include the
+null terminator. </p><p><b>dwPhoneInfoOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of the packet to the variably
+sized device field that contains phone-specific information. </p><dl>
+<dd>
+<p>This member provides information about the attached
+phone device, such as the phone device manufacturer, the model name, the
+software version, and so on. This information can be useful when a user needs
+to call customer service with problems about the phone. The size of the field
+MUST be specified by dwPhoneInfoSize.</p>
+</dd></dl><p><b>dwPermanentPhoneID (4 bytes): </b>An unsigned
+32-bit integer. The permanent identifier by which the phone device is known in
+the computing system configuration. </p><p><b>dwPhoneNameSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the configurable name for the phone, including
+the null terminator. </p><p><b>dwPhoneNameOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of the packet to the variably
+sized device field that contains a user-configurable name for this phone
+device. This name can be configured by the user when configuring the service
+provider of the phone and is provided for user convenience. The size of the
+field MUST be specified by dwPhoneNameSize. </p><p><b>dwStringFormat (4 bytes): </b>An unsigned 32-bit
+integer. The string format to be used with this phone device. This member MUST
+use one of the STRINGFORMAT_Constants. </p><p><b>dwPhoneStates (4 bytes): </b>An unsigned 32-bit
+integer. The state changes for this phone device for which the application can
+be notified in a <a href="20c58f32-d3b6-4316-8efc-702b108bacc4" data-linktype="relative-path">PHONE_STATE</a>
+packet. This member MUST be one or more of the <a href="a955320d-9700-46f6-9813-fadecfe4b9de" data-linktype="relative-path">PHONESTATE_Constants</a>. </p><p><b>dwHookSwitchDevs (4 bytes): </b>An unsigned 32-bit
+integer. The hookswitch devices of the phone. This member MUST use one of the <a href="73925a29-5ae8-417c-baff-24db8b0aa3a6" data-linktype="relative-path">PHONEHOOKSWITCHDEV_Constants</a>.
+</p><p><b>dwHandsetHookSwitchModes (4 bytes): </b>An
+unsigned 32-bit integer. The hookswitch mode of the handset. The member is only
+meaningful if dwHookSwitchDevs is PHONEHOOKSWITCHDEV_HANDSET. It MUST use one
+of the <a href="45172c7a-752e-481c-9b56-c8e10a2dd977" data-linktype="relative-path">PHONEHOOKSWITCHMODE_Constants</a>.
+</p><p><b>dwSpeakerHookSwitchModes (4 bytes): </b>An
+unsigned 32-bit integer. The hookswitch mode of the speaker. The member is only
+meaningful if dwHookSwitchDevs is PHONEHOOKSWITCHDEV_SPEAKER. It MUST use one
+of the PHONEHOOKSWITCHMODE_Constants. </p><p><b>dwHeadsetHookSwitchModes (4 bytes): </b>An
+unsigned 32-bit integer. The hookswitch mode of the headset. The member is only
+meaningful if dwHookSwitchDevs is PHONEHOOKSWITCHDEV_HEADSET. It MUST use one
+of the PHONEHOOKSWITCHMODE_Constants. </p><p><b>dwVolumeFlags (4 bytes): </b>An unsigned 32-bit
+integer. The volume-setting capabilities of the speaker components of the phone
+device. The volume of the hookswitch device&#39;s speaker component can be adjusted
+with phone SetVolume packet. </p><p><b>dwGainFlags (4 bytes): </b>An unsigned 32-bit
+integer. The gain-setting capabilities of the phone device&#39;s microphone
+components. The gain level of the hookswitch device&#39;s microphone component can
+be adjusted with the <a href="ef932d11-7485-4661-8838-04e606f3810c" data-linktype="relative-path">SetGain</a>
+packet.</p><p><b>dwDisplayNumRows (4 bytes): </b>An unsigned 32-bit
+integer. The display capabilities of the phone device by describing the number
+of rows in the phone display. The dwDisplayNumRows and dwDisplayNumColumns
+members are both zero for a phone device without a display. </p><p><b>dwDisplayNumColumns (4 bytes): </b>An unsigned
+32-bit integer. The display capabilities of the phone device by describing the
+number of columns in the phone display. The dwDisplayNumRows and
+dwDisplayNumColumns members are both zero for a phone device without a display.</p><p><b>dwNumRingModes (4 bytes): </b>An unsigned 32-bit
+integer. The ring capabilities of the phone device. The phone is able to ring
+with dwNumRingModes different ring patterns, identified as 1, 2, through
+dwNumRingModes minus one. If the value of this member is 0, applications have
+no control over the ring mode of the phone. If the value of this member is
+greater than 0, it indicates the number of ring modes, in addition to silence,
+that are supported by the service provider. A value of 0 in the lpdwRingMode
+parameter of <a href="0196e6e8-7a55-4e40-81a0-6f5343bcab79" data-linktype="relative-path">GetRing</a> or
+the dwRingMode parameter of <a href="2f888bf9-718d-4bef-b440-aa36b3e6769b" data-linktype="relative-path">SetRing</a>
+indicates silence (the phone is not ringing or SHOULD NOT be rung), and
+dwRingMode values of 1 to dwNumRingModes are valid ring modes for the phone
+device. </p><p><b>dwNumButtonLamps (4 bytes): </b>An unsigned 32-bit
+integer. The number of button/lamps on the phone device that are detectable in
+TAPI. Button/lamps are identified by their identifier. Valid button/lamp
+identifiers range from zero to dwNumButtonLamps minus one. The keypad buttons
+&#34;0&#34;, through &#34;9&#34;, &#34;*&#34;, and &#34;#&#34; are
+assigned the identifiers 0 through 12. </p><p><b>dwButtonModesSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the button modes array. </p><p><b>dwButtonModesOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of this packet to the variably
+sized field that contains the button modes of the phone buttons. The array is
+indexed by button/lamp identifier. This array uses the <a href="2ef4c77a-2f8c-4c49-ba42-b2abdc0c94d8" data-linktype="relative-path">PHONEBUTTONMODE_Constants</a>.
+The size of the array MUST be specified by dwButtonModesSize. </p><p><b>dwButtonFunctionsSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the button functions field. </p><p><b>dwButtonFunctionsOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of this packet to the variably
+sized field that contains the button functions of the phone buttons. The array
+is indexed by button/lamp identifier. This array uses the <a href="288e9937-76f8-4bc6-8a6d-9e4abe6d56b0" data-linktype="relative-path">PHONEBUTTONFUNCTION_Constants</a>.
+The size of the array MUST be specified by dwButtonFunctionsSize. </p><p><b>dwLampModesSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the lamp modes array. </p><p><b>dwLampModesOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of this packet to the variably
+sized field that contains the lamp modes of the phone lamps. The array is indexed
+by button/lamp identifier. This array uses the <a href="98c70d8b-f9da-44ce-9e20-a4a35afee121" data-linktype="relative-path">PHONELAMPMODE_Constants</a>.
+The size of the array MUST be specified by dwLampModesSize. </p><p><b>dwNumSetData (4 bytes): </b>An unsigned 32-bit
+integer. The number of different download areas in the phone device. The
+different areas are referred to by using the data IDs 0, 1, dwNumSetData minus
+one. If this member is zero, the phone does not support the download
+capability. </p><p><b>dwSetDataSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the data size array. </p><p><b>dwSetDataOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset from the beginning of this packet to the variably sized
+field that contains the sizes, in bytes, of the phone&#39;s download data areas.
+This is an array that has DWORD-sized elements that are indexed by data
+identifier. The size of the array MUST be specified by dwSetDataSize. </p><p><b>dwNumGetData (4 bytes): </b>An unsigned 32-bit
+integer. The number of different upload areas in the phone device. The
+different areas are referred to by using the data IDs 0, 1, dwNumGetData minus
+one. If this field is zero, the phone does not support the upload capability. </p><p><b>dwGetDataSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the data size array.</p><p><b>dwGetDataOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset, from the beginning of this packet to the variably sized
+field, that contains the sizes, in bytes, of the phone&#39;s upload data areas.
+This is an array that has DWORD-sized elements that are indexed by data
+identifier. The size of the array MUST be specified by dwGetDataSize. </p><p><b>dwDevSpecificSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the device-specific field. If the
+device-specific information is a pointer to a string, the size MUST include the
+null terminator.</p><p><b>dwDevSpecificOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of this packet to the variably
+sized device-specific field. The size of the field MUST be specified by
+dwDevSpecificSize.</p><p><b>dwDeviceClassesSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the supported device class identifiers. </p><p><b>dwDeviceClassesOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of this packet to a string that
+consists of the device class identifiers that are supported on this device for
+use with the <a href="d4c635f0-06eb-4c52-b512-4a94c4bd46bb" data-linktype="relative-path">GetID</a>
+packet. The identifiers are separated by NULLs, and the last identifier in the
+list is followed by two NULLs. The size of the field MUST be specified by
+dwDeviceClassesSize. </p><p><b>dwPhoneFeatures (4 bytes): </b>An unsigned 32-bit
+integer. The flags that indicate which TAPI functions can be invoked on the
+phone. A zero indicates that the corresponding feature is not implemented and
+can never be invoked by the application on the phone; a one indicates that the
+feature can be invoked, depending on the device state and other factors. This
+member MUST use <a href="090d19a8-eb70-48fd-8936-df995331d627" data-linktype="relative-path">PHONEFEATURE_Constants</a>.
+</p><p><b>dwSettableHandsetHookSwitchModes (4 bytes): </b>An
+unsigned 32-bit integer. The PHONEHOOKSWITCHMODE_Constants that can be set on
+the handset by using the <a href="098562f7-4b26-4179-8a4a-f287452c48c4" data-linktype="relative-path">SetHookSwitch</a>
+packet. </p><p><b>dwSettableSpeakerHookSwitchModes (4 bytes): </b>An
+unsigned 32-bit integer. The PHONEHOOKSWITCHMODE_Constants that can be set on
+the speakerphone by using the SetHookSwitch packet.</p><p><b>dwSettableHeadsetHookSwitchModes (4 bytes): </b>An
+unsigned 32-bit integer. The PHONEHOOKSWITCHMODE_Constants that can be set on
+the headset by using the SetHookSwitch packet. </p><p><b>dwMonitoredHandsetHookSwitchModes (4 bytes): </b>An
+unsigned 32-bit integer. The PHONEHOOKSWITCHMODE_Constants that can be detected
+and reported for the handset in a PHONE_STATE packet and by the <a href="1d50a185-ec02-4199-a418-45b1cbf20258" data-linktype="relative-path">GetHookSwitch</a> packet. </p><p><b>dwMonitoredSpeakerHookSwitchModes (4 bytes): </b>An
+unsigned 32-bit integer. The PHONEHOOKSWITCHMODE_Constants that can be detected
+and reported for the speakerphone in a PHONE_STATE packet and by the
+GetHookSwitch packet. </p><p><b>dwMonitoredHeadsetHookSwitchModes (4 bytes): </b>An
+unsigned 32-bit integer. The PHONEHOOKSWITCHMODE_Constants that can be detected
+and reported for the headset in a PHONE_STATE packet and by the GetHookSwitch
+packet. </p><p><b>PermanentPhoneGuid (16 bytes): </b>The <a href="../ms-dtyp/001eec5a-7f8b-4293-9e21-ca349392db40" data-linktype="relative-path">GUID</a> that
+is permanently associated with this phone. </p><p><b>VarData (variable): </b>MUST contain: </p><ul><li><p><span><span>  </span></span>Service
+provider–specific information, as specified by <b>dwProviderInfoOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Phone-specific
+information, as specified by <b>dwPhoneInfoOffset</b>.</p>
+</li><li><p><span><span>  </span></span>The
+user-configurable name for the phone, as specified by <b>dwPhoneNameOffset</b>.</p>
+</li><li><p><span><span>  </span></span>The
+button modes of the phone buttons, as specified by <b>dwButtonModesOffset</b>.</p>
+</li><li><p><span><span>  </span></span>The
+button functions of the phone buttons, as specified by <b>dwButtonFunctionsOffset</b>.</p>
+</li><li><p><span><span>  </span></span>The
+lamp modes of the phone lamps, as specified by <b>dwLampModesOffset</b>.</p>
+</li><li><p><span><span>  </span></span>The
+sizes, in bytes, of the phone&#39;s download data areas, as specified by <b>dwSetDataOffset</b>.</p>
+</li><li><p><span><span>  </span></span>The
+sizes, in bytes, of the phone&#39;s upload data areas, as specified by <b>dwGetDataOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Device-specific
+information, as specified by <b>dwDevSpecificOffset</b></p>
+</li><li><p><span><span>  </span></span>The
+device class identifiers that are supported on the device, as specified by <b>dwDeviceClassesOffset</b>.</p>
+</li></ul><p>Device-specific extensions SHOULD use the DevSpecific
+(dwDevSpecificSize and dwDevSpecificOffset) variably sized area of this packet.</p><p>The members dwDeviceClassesSize through
+dwMonitoredHeadsetHookSwitchModes are available only to applications that open
+the phone device with TAPI versions 2.0, 2.1, 2.2, 3.0, and 3.1.</p></div>

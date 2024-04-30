@@ -1,0 +1,95 @@
+import "ms-dtyp.idl";
+ 
+[
+    uuid(A8E0653C-2744-4389-A61D-7373DF8B2292),
+    version(1.0),
+    ms_union,
+    pointer_default(unique)
+]
+    
+interface FileServerVssAgent
+{
+    typedef struct _FSSAGENT_SHARE_MAPPING_1 {
+        GUID ShadowCopySetId;
+        GUID ShadowCopyId;
+        [string] LPWSTR ShareNameUNC;
+        [string] LPWSTR ShadowCopyShareName;
+        LONGLONG CreationTimestamp;
+    } FSSAGENT_SHARE_MAPPING_1, *PFSSAGENT_SHARE_MAPPING_1;           
+    
+    typedef [switch_type(unsigned long)] union _FSSAGENT_SHARE_MAPPING {
+        [case(1)]
+            PFSSAGENT_SHARE_MAPPING_1 ShareMapping1;
+        [default]
+            ;
+    } FSSAGENT_SHARE_MAPPING, *PFSSAGENT_SHARE_MAPPING;
+    
+    DWORD GetSupportedVersion (
+    [out] DWORD *MinVersion,
+    [out] DWORD *MaxVersion);
+    
+    DWORD SetContext (
+    [in] handle_t hBinding,
+    [in] unsigned long Context);
+    
+    DWORD StartShadowCopySet (
+    [in] handle_t  hBinding,
+    [in] GUID ClientShadowCopySetId,
+    [out] GUID *pShadowCopySetId);
+    
+    DWORD AddToShadowCopySet (
+    [in] handle_t hBinding,
+    [in] GUID ClientShadowCopyId,
+    [in] GUID ShadowCopySetId,
+    [in] [string] LPWSTR ShareName,
+    [out] GUID *pShadowCopyId);
+    
+    DWORD CommitShadowCopySet (
+    [in] handle_t hBinding,
+    [in] GUID ShadowCopySetId,
+    [in] unsigned long TimeOutInMilliseconds);
+    
+    DWORD ExposeShadowCopySet (
+    [in] handle_t hBinding,
+    [in] GUID ShadowCopySetId,
+    [in] unsigned long TimeOutInMilliseconds);
+    
+    DWORD RecoveryCompleteShadowCopySet (
+    [in] handle_t hBinding,
+    [in] GUID ShadowCopySetId);
+    
+    DWORD AbortShadowCopySet (
+    [in] handle_t hBinding,
+    [in] GUID ShadowCopySetId);
+    
+    DWORD IsPathSupported (
+    [in] handle_t hBinding,
+    [in] [string] LPWSTR ShareName,
+    [out] BOOL* SupportedByThisProvider,
+    [out] [string] LPWSTR* OwnerMachineName);
+    
+    DWORD IsPathShadowCopied (
+    [in] handle_t hBinding,
+    [in] [string] LPWSTR ShareName,
+    [out] BOOL* ShadowCopyPresent,
+    [out] long* ShadowCopyCompatibility);
+    
+    DWORD GetShareMapping (
+    [in] handle_t hBinding,
+    [in] GUID ShadowCopyId,
+    [in] GUID ShadowCopySetId,
+    [in] [string] LPWSTR ShareName,
+    [in] DWORD Level,
+    [out] [switch_is(Level)] PFSSAGENT_SHARE_MAPPING ShareMapping);
+    
+    DWORD DeleteShareMapping (
+    [in] handle_t hBinding,
+    [in] GUID ShadowCopySetId,
+    [in] GUID ShadowCopyId,
+    [in] [string] LPWSTR ShareName);
+    
+    DWORD PrepareShadowCopySet (
+    [in] handle_t hBinding,
+    [in] GUID ShadowCopySetId,
+    [in] unsigned long TimeOutInMilliseconds);
+}

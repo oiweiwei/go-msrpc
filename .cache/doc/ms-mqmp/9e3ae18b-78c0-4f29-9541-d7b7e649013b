@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>A <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> calls the
+R_QMAbortTransaction method to abort an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_fcccf89d-d9c6-44ed-9f8a-13a204fe35b3" data-linktype="relative-path">internal transaction</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT R_QMAbortTransaction(
+   [in, out] RPC_INT_XACT_HANDLE* phIntXact
+ );
+</pre></div>
+</dd></dl><p><b>phIntXact: </b> MUST be an <span><a href="ad71f465-cc25-4dbc-9acc-decbb7b84555" data-linktype="relative-path">RPC_INT_XACT_HANDLE</a></span>
+identifying the internal transaction to abort. MUST NOT be NULL. The value of
+this handle MUST have been acquired from <span><a href="79058235-2adf-44f7-b81d-2ac3555c1b2b" data-linktype="relative-path">R_QMEnlistInternalTransaction</a></span>.
+On return, the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST set this
+parameter to NULL.</p><p><b>Return Values: </b> On success, this method MUST return
+MQ_OK (0x00000000) and MUST set <i>phIntXact</i> to NULL; otherwise, the server
+MUST return a failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>,
+and the client MUST treat all failure HRESULTs identically.</p><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, as
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method is invoked at the dynamically assigned <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span>
+returned by the <span><a href="a8c96155-a7e6-41cb-95c7-6ab7e4f8214d" data-linktype="relative-path">R_QMGetRTQMServerPort</a></span>
+method when IP_HANDSHAKE (0x00000000) or IPX_HANDSHAKE (0x00000002) is the
+interface specified by the <i>fIP</i> parameter.</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Locate the <span><a href="5a36d61c-b8c3-4b75-9304-ccdd17dcf9a4" data-linktype="relative-path">TransactionHandle (section 3.1.1.10)</a></span>
+ADM element instance in the server&#39;s <i>iTransactionHandleTable</i> where the
+value of the <b>Handle</b> attribute of the <b>TransactionHandle</b> ADM
+element instance equals the <i>phIntXact</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>If no such <b>TransactionHandle</b> ADM element instance exists,
+take no further action and return a failure <b>HRESULT</b>.</p>
+</li><li><p><span><span> 
+</span></span>Declare <i>iLocatedTransactionHandle</i> and set it to a
+reference to the located <b>TransactionHandle</b> ADM element instance.</p>
+</li><li><p><span><span> 
+</span></span>Generate a <span><a href="../ms-mqdmpr/e0d45922-f582-49e3-9c53-3fb313771762" data-linktype="relative-path">Transaction
+Abort</a></span> (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section 3.1.4.5) event with the following argument value:</p>
+<ul><li><p><span><span>  </span></span><i>iTransactionIdentifier</i>
+:= <i>iLocatedTransactionHandle</i>.<b>TransactionReference.Identifier</b></p>
+</li></ul></li><li><p><span><span> 
+</span></span>Remove the <i>iLocatedTransactionHandle</i> from the <i>iTransactionHandleTable</i>.</p>
+</li><li><p><span><span> 
+</span></span>Set the <i>phIntXact</i> parameter to NULL.</p>
+</li><li><p><span><span> 
+</span></span>Return MQ_OK (0x00000000).</p>
+</li></ul></div>

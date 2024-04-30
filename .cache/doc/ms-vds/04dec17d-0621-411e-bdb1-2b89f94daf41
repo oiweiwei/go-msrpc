@@ -1,0 +1,73 @@
+<div class="content"><p> </p><p>The VDS_HBAPORT_TYPE enumeration defines the set of valid
+types for an <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_49b98426-c07d-42ab-8ebc-bd088b107c24" data-linktype="relative-path">HBA</a></span> port. These
+types correspond to the HBA_PORTTYPE values, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89878" data-linktype="external">[HBAAPI]</a></span>.
+These values are used in the type member of the <span><a href="d7c84d37-c1ce-42fc-aa38-ddd10e5c699d" data-linktype="relative-path">VDS_HBAPORT_PROP</a></span>
+structure.<a id="Appendix_A_Target_34"></a><a aria-label="Product behavior note 34" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_34" data-linktype="relative-path">&lt;34&gt;</a></p><dl>
+<dd>
+<div><pre> typedef  enum _VDS_HBAPORT_TYPE
+ {
+   VDS_HPT_UNKNOWN = 0x00000001,
+   VDS_HPT_OTHER = 0x00000002,
+   VDS_HPT_NOTPRESENT = 0x00000003,
+   VDS_HPT_NPORT = 0x00000005,
+   VDS_HPT_NLPORT = 0x00000006,
+   VDS_HPT_FLPORT = 0x00000007,
+   VDS_HPT_FPORT = 0x00000008,
+   VDS_HPT_EPORT = 0x00000009,
+   VDS_HPT_GPORT = 0x0000000A,
+   VDS_HPT_LPORT = 0x00000014,
+   VDS_HPT_PTP = 0x00000015
+ } VDS_HBAPORT_TYPE;
+</pre></div>
+</dd></dl><p><b>VDS_HPT_UNKNOWN:  </b>The port type is unknown. </p><dl>
+<dd>
+<p>Corresponding HBA_PORTTYPE value:
+HBA_PORTTYPE_UNKNOWN</p>
+</dd></dl><p><b>VDS_HPT_OTHER:  </b>The port type is another
+(undefined) type. </p><dl>
+<dd>
+<p>Corresponding HBA_PORTTYPE value:
+HBA_PORTTYPE_OTHER</p>
+</dd></dl><p><b>VDS_HPT_NOTPRESENT:  </b>The port type is not
+present. </p><dl>
+<dd>
+<p>Corresponding HBA_PORTTYPE value:
+HBA_PORTTYPE_NOTPRESENT</p>
+</dd></dl><p><b>VDS_HPT_NPORT:  </b>The port type is a fabric.</p><dl>
+<dd>
+<p>Corresponding HBA_PORTTYPE value:
+HBA_PORTTYPE_NPORT</p>
+</dd></dl><p><b>VDS_HPT_NLPORT:  </b>The port type is a public
+loop. </p><dl>
+<dd>
+<p>Corresponding HBA_PORTTYPE value:
+HBA_PORTTYPE_NLPORT</p>
+</dd></dl><p><b>VDS_HPT_FLPORT:  </b>The port type is a fabric on
+a loop. </p><dl>
+<dd>
+<p>Corresponding HBA_PORTTYPE value:
+HBA_PORTTYPE_FLPORT</p>
+</dd></dl><p><b>VDS_HPT_FPORT:  </b>The port type is a fabric
+port. </p><dl>
+<dd>
+<p>Corresponding HBA_PORTTYPE value:
+HBA_PORTTYPE_FPORT</p>
+</dd></dl><p><b>VDS_HPT_EPORT:  </b>The port type is a fabric expansion
+port. </p><dl>
+<dd>
+<p>Corresponding HBA_PORTTYPE value:
+HBA_PORTTYPE_EPORT</p>
+</dd></dl><p><b>VDS_HPT_GPORT:  </b>The port type is a generic fabric
+port.</p><dl>
+<dd>
+<p>Corresponding HBA_PORTTYPE value:
+HBA_PORTTYPE_GPORT</p>
+</dd></dl><p><b>VDS_HPT_LPORT:  </b>The port type is a private loop. </p><dl>
+<dd>
+<p>Corresponding HBA_PORTTYPE value:
+HBA_PORTTYPE_LPORT</p>
+</dd></dl><p><b>VDS_HPT_PTP:  </b>The port type is point-to-point. </p><dl>
+<dd>
+<p>Corresponding HBA_PORTTYPE value:
+HBA_PORTTYPE_PTP</p>
+</dd></dl></div>

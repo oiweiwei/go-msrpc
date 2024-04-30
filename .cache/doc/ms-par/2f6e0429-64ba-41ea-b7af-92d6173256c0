@@ -1,0 +1,40 @@
+<div class="content"><p> </p><p>The <b>RpcPrintPropertyValue</b> structure specifies a data
+type and its value. Data types are members of the enumeration <b>EPrintPropertyType</b>,
+specified in section <span><a href="9c30d688-be09-4a19-9e41-cb21a55f3884" data-linktype="relative-path">2.2.1</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   EPrintPropertyType ePropertyType;
+   [switch_type(EPrintPropertyType), switch_is(ePropertyType)] 
+     union {
+     [case(kPropertyTypeString)] 
+       [string] wchar_t* propertyString;
+     [case(kPropertyTypeInt32)] 
+       long propertyInt32;
+     [case(kPropertyTypeInt64)] 
+       __int64 propertyInt64;
+     [case(kPropertyTypeByte)] 
+       BYTE propertyByte;
+     [case(kPropertyTypeTime)] 
+       SYSTEMTIME_CONTAINER propertyTimeContainer;
+     [case(kPropertyTypeDevMode)] 
+       DEVMODE_CONTAINER propertyDevModeContainer;
+     [case(kPropertyTypeSD)] 
+       SECURITY_CONTAINER propertySDContainer;
+     [case(kPropertyTypeNotificationReply)] 
+       NOTIFY_REPLY_CONTAINER propertyReplyContainer;
+     [case(kPropertyTypeNotificationOptions)] 
+       NOTIFY_OPTIONS_CONTAINER propertyOptionsContainer;
+   } value;
+ } RpcPrintPropertyValue;
+</pre></div>
+</dd></dl><p><b>ePropertyType: </b>A value from the <b>EPrintPropertyType</b>
+enumeration that specifies the data type of the variable.</p><p><b>value: </b>An information structure that
+corresponds to the type of property specified by the <b>ePropertyType</b>
+member. Information containers and structures are defined in <span><a href="../ms-rprn/d42db7d5-f141-4466-8f47-0a4be14e2fc1" data-linktype="relative-path">[MS-RPRN]</a></span>
+sections <span><a href="../ms-rprn/df6af0ab-ee97-45aa-ae87-186f83ab2265" data-linktype="relative-path">2.2.1</a></span>
+and <span><a href="../ms-rprn/99fdf2cf-79bb-43bf-997c-88b33538a5e1" data-linktype="relative-path">2.2.2</a></span>.</p><p><b>propertyString: </b>A string.</p><p><b>propertyInt32: </b>A 32-bit signed integer.</p><p><b>propertyInt64: </b>A 64-bit signed integer.</p><p><b>propertyByte: </b>A <b>BYTE</b>.</p><p><b>propertyTimeContainer: </b>A <b>SYSTEMTIME_CONTAINER</b>,
+specified in [MS-RPRN] section <span><a href="../ms-rprn/1438066b-4b56-4888-9821-3e2432dc0f07" data-linktype="relative-path">2.2.1.2.16</a></span>.</p><p><b>propertyDevModeContainer: </b>A <b>DEVMODE_CONTAINER</b>,
+specified in [MS-RPRN] section <span><a href="../ms-rprn/c2b14fe7-6479-4460-a7ba-633a845dd61a" data-linktype="relative-path">2.2.1.2.1</a></span>.</p><p><b>propertySDContainer: </b>A <b>SECURITY_CONTAINER</b>,
+specified in [MS-RPRN] section <span><a href="../ms-rprn/6cf2b4ff-1b2b-453c-87f9-85243823cea8" data-linktype="relative-path">2.2.1.2.13</a></span>.</p><p><b>propertyReplyContainer: </b>A <b>NOTIFY_REPLY_CONTAINER</b>,
+specified in section <span><a href="2fb421b4-f70b-4469-a636-38d6cda0aae6" data-linktype="relative-path">2.2.7</a></span>.</p><p><b>propertyOptionsContainer: </b>A <b>NOTIFY_OPTIONS_CONTAINER</b>,
+specified in section <span><a href="3d4eaab6-2323-4f04-a6af-bb09f23b7897" data-linktype="relative-path">2.2.6</a></span>.</p></div>

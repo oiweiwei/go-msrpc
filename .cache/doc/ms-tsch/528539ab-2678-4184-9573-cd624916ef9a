@@ -1,0 +1,50 @@
+<div class="content"><p> </p><p>The SchRpcRetrieveTask method MUST return a task definition.</p><dl>
+<dd>
+<div><pre> HRESULT SchRpcRetrieveTask(
+   [in, string] const wchar_t* path,
+   [in, string] const wchar_t* lpcwszLanguagesBuffer,
+   [in] unsigned long* pulNumLanguages,
+   [out, string] wchar_t** pXml
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>MUST contain the full path associated
+with an existing task as specified in section <span><a href="fa8809c8-4f0f-4c6d-994a-6c10308757c1" data-linktype="relative-path">2.3.11</a></span>.</p><p><b>lpcwszLanguagesBuffer: </b>If non-NULL, this
+parameter MUST contain a list of language names separated by the &#39;\&#39; character.
+The language names MUST be taken from the &#34;String name&#34; column of the
+table.</p><p><b>pulNumLanguages: </b>The client SHOULD specify the
+number of language names in <i>languagesBuffer</i>. The server MUST ignore this
+parameter.</p><p><b>pXml: </b>MUST contain the task definition in <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a></span>
+format, localized using the language names contained in the <i>languagesBuffer</i>
+parameter. For more information about XML localization, see section <span><a href="bfcb3b24-7418-4ea0-80f0-5a7cdba3fa93" data-linktype="relative-path">2.5.8</a></span>.</p><p><b>Return Values: </b>For more information on return
+codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>, or Win32
+Error Codes in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><p>Upon receipt of the SchRpcRetrieveTask call, the server
+MUST:</p><ul><li><p><span><span> 
+</span></span>Return E_INVALIDARG if the <i>path</i> parameter is the root.</p>
+</li><li><p><span><span> 
+</span></span>Return 0x80070003, the <span><a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">HRESULT
+value</a></span> of the Win32 error ERROR_PATH_NOT_FOUND, if the path does not
+exist in XML task store.</p>
+</li><li><p><span><span> 
+</span></span>Return the HRESULT value of the Win32 error ERROR_FILE_NOT_FOUND
+if the task does not exist in XML task store.</p>
+</li><li><p><span><span> 
+</span></span>Return E_ACCESSDENIED if the caller does not have read access to
+the path in the XML <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_08035fe7-a786-4b30-ab60-3fd046060617" data-linktype="relative-path">task store</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Return 0x8007007B, the HRESULT value of the Win32 error
+ERROR_INVALID_NAME, if the specified path is not in the format specified in
+section 2.3.11.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the task definition from the path in the XML task store.
+If the <i>languagesBuffer</i> parameter is non-NULL, the server MUST replace
+localizable strings in the task definition according to the language names
+contained in the <i>languagesBuffer</i> parameter, as specified in section
+2.5.8. Multiple languages are used in order of preference. If no language can
+localize the string, the server default is used.</p>
+</li><li><p><span><span> 
+</span></span>Return the task definition in the <i>xmlTaskDefinition</i>
+parameter and return S_OK.</p>
+</li></ul><p>If any errors are raised during the processing they are
+returned. For more information on return codes, see section 2.3.14 and Win32
+Error Codes in [MS-ERREF] section 2.1.</p></div>

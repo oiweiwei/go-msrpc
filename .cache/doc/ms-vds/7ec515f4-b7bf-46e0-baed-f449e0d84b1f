@@ -1,0 +1,106 @@
+<div class="content"><p> </p><p>The Clean method cleans a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>. </p><dl>
+<dd>
+<div><pre> HRESULT Clean(
+   [in] long bForce,
+   [in] long bForceOEM,
+   [in] long bFullClean,
+   [out] IVdsAsync** ppAsync
+ );
+</pre></div>
+</dd></dl><p><b>bForce: </b>A Boolean value that indicates whether
+the cleaning operation will be forced. If set, the method attempts to clean the
+disk, even if data <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volumes</a></span> or ESP <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partitions</a></span>
+are present.</p><p><b>bForceOEM: </b>A Boolean value that indicates
+whether the cleaning operation of an OEM partition will be forced. If the disk
+contains an OEM partition, but <b>bForceOEM</b> is not set, the operation
+SHOULD fail. If the value is set, the method attempts to clean the disk, even
+if OEM partitions are present.<a id="Appendix_A_Target_99"></a><a aria-label="Product behavior note 99" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_99" data-linktype="relative-path">&lt;99&gt;</a></p><p><b>bFullClean: </b>A Boolean value specifying whether
+the cleaning operation removes all the data from the disk.</p><p><b>ppAsync: </b>A pointer to an <span><a href="97ea9c0f-5c8a-43e9-a9ee-deda29e2a09e" data-linktype="relative-path">IVdsAsync</a></span>
+interface that, if the operation is successfully completed, receives the
+IVdsAsync interface to monitor and control this operation. Callers MUST release
+the interface when they are done with it.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><dl>
+<dd>
+<p><b>Note</b>  This method is not valid on
+CD/DVD devices.</p>
+</dd></dl><p>When the server receives this message, it MUST validate the
+following parameter:</p><ul><li><p><span><span> 
+</span></span>Verify that <b>ppAsync</b> is not NULL.</p>
+</li></ul><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>If this method is called against a disk which contains data
+volume extents or an EFI <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_20217edf-2c20-4bb0-af04-44f20b6c4847" data-linktype="relative-path">system partition</a></span> (an
+ESP), and the <i>bForce</i> flag is not set, then this method returns
+VDS_E_DISK_NOT_EMPTY for a dynamic disk.<a id="Appendix_A_Target_100"></a><a aria-label="Product behavior note 100" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_100" data-linktype="relative-path">&lt;100&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If this method is called against a disk which contains a
+protected OEM partition, and the <i>bForceOEM</i> flag is not set, then this
+method MUST return VDS_E_DISK_NOT_EMPTY for a dynamic disk.<a id="Appendix_A_Target_101"></a><a aria-label="Product behavior note 101" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_101" data-linktype="relative-path">&lt;101&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Create a new async object implementing the IVdsAsync interface
+with an output type of VDS_ASYNCOUT_CLEAN and set the pointer referenced by <i>ppAsync</i>
+to the interface.</p>
+</li><li><p><span><span> 
+</span></span>Return an HRESULT indicating failure or success. Any errors
+encountered up through this point in processing the operation are returned in
+this HRESULT.</p>
+</li></ul><p>The server MUST then perform the following in sequence.
+Errors generated in this sequence of steps are returned in the pHrResult
+parameter to the IVdsAsync::Wait or IVdsAsyncQueryStatus methods.</p><ul><li><p><span><span> 
+</span></span>Clean the disk, removing all partition information, following the
+parameters specified to the method.</p>
+</li><li><p><span><span> 
+</span></span>Set the return code in the async object to an HRESULT indicating
+failure or success.</p>
+<ul><li><p><span><span>  </span></span>If
+TRUE was specified for <i>bFullClean</i>, but the server could not clean
+particular <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b5bbe646-aa5f-4b4e-ae9e-bdae444cbfa2" data-linktype="relative-path">sectors</a></span>, the return
+code MUST be set to VDS_S_DISK_PARTIALLY_CLEANED.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the task was completed successfully, set the percentage
+completed value in the async object to 100.</p>
+</li><li><p><span><span> 
+</span></span>Set the signal state in the async object to TRUE.</p>
+</li><li><p><span><span> 
+</span></span>If the disk is a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_58aae236-0186-4ba1-a46b-f0a997e6c6f2" data-linktype="relative-path">removable media</a></span>
+disk, for each callback object registered in the list of callback objects, call
+the callback object&#39;s IVdsAdviseSink::OnNotify (Opnum 3) method with a
+VDS_NOTIFICATION structure with the following attributes:</p>
+<ul><li><p><span><span>  </span></span><b>objectType</b>
+member is VDS_NTT_VOLUME.</p>
+</li><li><p><span><span>  </span></span><b>Volume</b>
+member is a <span><a href="410540de-982d-4db1-991e-a73efed4e6f0" data-linktype="relative-path">VDS_VOLUME_NOTIFICATION</a></span>
+with the following attributes:</p>
+<ul><li><p><span><span> 
+</span></span><b>ulEvent</b> is VDS_NF_VOLUME_DEPART.</p>
+</li><li><p><span><span> 
+</span></span><b>volumeId</b> is the VDS_OBJECT_ID of the volume object
+corresponding to the removable media drive.</p>
+</li><li><p><span><span> 
+</span></span><b>plexId</b> is NULL GUID, but it is not relevant when ulEvent
+is VDS_NF_VOLUME_DEPART.</p>
+</li><li><p><span><span> 
+</span></span><b>ulPercentCompleted</b> range is 0-100 and is implementation
+specific; however, it is not relevant when ulEvent is VDS_NF_VOLUME_DEPART.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>For each callback object registered in the list of callback
+objects, call the callback object&#39;s IVdsAdviseSink::OnNotify (Opnum 3) method
+with a <span><a href="4f29057f-ab32-4a3d-9fcb-00ba3457cb42" data-linktype="relative-path">VDS_NOTIFICATION</a></span>
+structure with the following attributes:</p>
+<ul><li><p><span><span>  </span></span><b>objectType</b>
+member is VDS_NTT_DISK.</p>
+</li><li><p><span><span>  </span></span><b>Disk</b>
+member is a <span><a href="1478f791-1ebd-421c-ba87-5fd7493dafd1" data-linktype="relative-path">VDS_DISK_NOTIFICATION</a></span>
+with the following attributes:</p>
+<ul><li><p><span><span> 
+</span></span><b>ulEvent</b> is VDS_NF_DISK_DEPART.</p>
+</li><li><p><span><span> 
+</span></span><b>diskId</b> is the <span><a href="9186f1ce-04de-4df2-a8cf-3925a02fcd47" data-linktype="relative-path">VDS_OBJECT_ID</a></span> of
+this disk object.</p>
+</li></ul></li></ul></li></ul><p>The server MUST update the percentage completed value
+periodically during the preceding sequence. How often the percentage completed
+is updated, and at what point in the sequence, is implementation-specific.</p><p>The server MAY allow the clean operation to be canceled
+through the IVdsAsync interface.<a id="Appendix_A_Target_102"></a><a aria-label="Product behavior note 102" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_102" data-linktype="relative-path">&lt;102&gt;</a></p></div>

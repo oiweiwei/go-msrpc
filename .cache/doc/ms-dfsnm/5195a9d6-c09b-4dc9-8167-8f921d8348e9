@@ -1,0 +1,49 @@
+<div class="content"><p> </p><p>The DFS_SUPPORTED_NAMESPACE_VERSION_INFO structure relates
+to the <span><a href="7c34ae60-9d4d-46b5-b2e1-e8ca09ac4d10" data-linktype="relative-path">NetrDfsGetSupportedNamespaceVersion</a></span>
+method when used to determine the domain-based or standalone-based <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0b8086c9-d025-45b8-bf09-6b5eca72713e" data-linktype="relative-path">DFS</a></span>
+major and minor version information.</p><p>The DFS_SUPPORTED_NAMESPACE_VERSION_INFO structure has the
+following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_SUPPORTED_NAMESPACE_VERSION_INFO {
+   unsigned long DomainDfsMajorVersion;
+   unsigned long DomainDfsMinorVersion;
+   ULONGLONG DomainDfsCapabilities;
+   unsigned long StandaloneDfsMajorVersion;
+   unsigned long StandaloneDfsMinorVersion;
+   ULONGLONG StandaloneDfsCapabilities;
+ } DFS_SUPPORTED_NAMESPACE_VERSION_INFO,
+  *PDFS_SUPPORTED_NAMESPACE_VERSION_INFO;
+</pre></div>
+</dd></dl><p><b>DomainDfsMajorVersion:</b>  A value
+containing the major version number of the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_e8de88fd-d760-46fa-ad77-76961fa20aea" data-linktype="relative-path">DFS metadata</a></span> format
+supported by a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_133ab305-ad75-4b38-8ec9-40bc0dc3b594" data-linktype="relative-path">domain-based DFS namespace</a></span>.</p><p><b>DomainDfsMinorVersion:</b>  A value
+containing the minor version number of the DFS metadata format supported by a
+domain-based DFS namespace.</p><p><b>DomainDfsCapabilities:</b>  A value
+containing the capability information of a domain-based DFS namespace.</p><p><b>StandaloneDfsMajorVersion:</b>  A value
+containing the major version number of a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_701a2cc1-eb5a-400f-b394-5bad264ec8f6" data-linktype="relative-path">stand-alone DFS namespace</a></span>.</p><p><b>StandaloneDfsMinorVersion:</b>  A value
+containing the minor version number of a stand-alone DFS namespace.</p><p><b>StandaloneDfsCapabilities:</b>  A value
+containing the capability information of a stand-alone DFS namespace.</p><p><b>DomainDfsCapabilities</b> and <b>StandaloneDfsCapabilities</b>
+are bit fields with the following defined value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DFS_NAMESPACE_CAPABILITY_ABDE</p>
+  <p>0x0000000000000001</p>
+  </td>
+  <td>
+  <p>This specifies support for Access Based Directory
+  Enumeration (ABDE) mode.<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>When this structure is used for communication, all undefined
+bit fields MUST be set to zero. A client SHOULD ignore all bit fields it does
+not understand.</p></div>

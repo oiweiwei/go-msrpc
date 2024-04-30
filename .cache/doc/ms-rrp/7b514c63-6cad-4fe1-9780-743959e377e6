@@ -1,0 +1,70 @@
+<div class="content"><p> </p><p>The OpenPerformanceData method is called by the client. In
+response, the server opens a handle to the <b>HKEY_PERFORMANCE_DATA</b>
+predefined key. The <b>HKEY_PERFORMANCE_DATA </b> predefined key is used to
+retrieve performance information from a registry server using only the <b>BaseRegQueryInfoKey</b>,
+<b>BaseRegQueryValue</b>, <b>BaseRegEnumValue,</b> and <b>BaseRegCloseKey</b>
+methods.</p><dl>
+<dd>
+<div><pre> error_status_t OpenPerformanceData(
+   [in, unique] PREGISTRY_SERVER_NAME ServerName,
+   [in] REGSAM samDesired,
+   [out] PRPC_HKEY phKey
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>SHOULD be sent as NULL and MUST be
+ignored on receipt because the binding to the server is already complete at
+this stage.</p><p><b>samDesired: </b>SHOULD be sent as 0 and MUST be
+ignored on receipt.</p><p><b>phKey: </b>A pointer to an RPC context handle for
+the root key, <b>HKEY_PERFORMANCE_DATA</b>, as specified in section <span><a href="d93b4170-a865-47bc-a10b-13cb17fbc1b0" data-linktype="relative-path">3.1.1.7</a></span>.
+The handle is found in the handle table (<b>HANDLETABLE</b>).</p><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The server SHOULD return without modification any other error code encountered
+in servicing the client request.</p><dl>
+<dd>
+<p>The most common error codes are listed in the
+following table.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000013</p>
+  <p>ERROR_WRITE_PROTECT</p>
+  </td>
+  <td>
+  <p>A read or write operation was attempted to a volume
+  after it was dismounted. The server can no longer service registry requests
+  because server shutdown has been initiated.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Server Operations</p><p>If the registry server can no longer service registry
+requests because server shutdown has been initiated (<b>SHUTDOWNINPROGRESS</b>
+is set to TRUE), the server MUST return ERROR_WRITE_PROTECT.</p><p>The server attempts to open the root key, <b>HKEY_PERFORMANCE_DATA</b>,
+and return a handle to that key in the <i>phKey</i> parameter. The server
+SHOULD<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="85f43046-e27d-4122-93ba-bc278f986fbe#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a> ignore the <i>samDesired</i>
+parameter and instead use a requested access of <b>MAXIMUM_ALLOWED</b> (see <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/7a53f60e-e730-4dfe-bbe9-b21b62eb790b" data-linktype="relative-path">2.4.3</a></span>).</p><p>If the caller is permitted to open the key, the server MUST
+return 0 to indicate success, and create a new valid context handle. The server
+MUST store the context handle value in the handle table (HANDLETABLE) along
+with a mapping to the <b>HKEY_PERFORMANCE_DATA </b> key. The server MUST place
+the handle value (see <span><a href="93d384ce-c668-4f48-a5f7-a633bc042a29" data-linktype="relative-path">3.1.1.9</a></span>) in the <i>phKey</i>
+parameter. If the caller does not have access, the server MUST return
+ERROR_ACCESS_DENIED.</p></div>

@@ -1,0 +1,109 @@
+<div class="content"><p> </p><p>The <b>FAX_GetJob (Opnum 5)</b> method is called by the
+client to retrieve information regarding a specific job. The job is specified
+by the <i>JobId</i> parameter. The value for the <i>JobId</i> parameter can be
+obtained using one of the following methods: <b>FAX_EnumJobs</b> (section <span><a href="6516d564-e0b8-4f19-80b1-70f27eca7f16" data-linktype="relative-path">3.1.4.1.21</a></span>),
+<b>FAX_EnumJobsEx</b> (section <span><a href="c65fa0d0-dc19-4aec-b83a-b5b82d70c6d9" data-linktype="relative-path">3.1.4.1.22</a></span>), or <b>FAX_EnumJobsEx2</b> (section
+<span><a href="cec559b7-44b6-47a9-b402-7dc5af788f44" data-linktype="relative-path">3.1.4.1.23</a></span>).</p><p>In response, the server MUST validate that the job
+identified by <i>JobId</i> exists in the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_0c5e7185-40c3-4e58-a8ac-7626ed078235" data-linktype="relative-path">fax queue</a></span>. The
+server MUST validate that the client&#39;s fax user account has access to query the
+job identified by <i>JobId</i> as follows:</p><ul><li><p><span><span> 
+</span></span>If the job is for an outgoing fax, the client&#39;s fax user account
+MUST be the owner of the job or have FAX_ACCESS_QUERY_OUT_JOBS access rights.</p>
+</li><li><p><span><span> 
+</span></span>If the job is for an incoming fax, the client&#39;s fax user account
+MUST have the FAX_ACCESS_MANAGE_RECEIVE_FOLDER access rights or the incoming
+faxes MUST be public.</p>
+</li></ul><p>On success, the server MUST return the job information of
+the specified job.</p><p>The client SHOULD free the returned buffer.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_GetJob(
+   [in] handle_t hBinding,
+   [in] DWORD JobId,
+   [out, size_is(,*BufferSize)] LPBYTE* Buffer,
+   [out, ref] LPDWORD BufferSize
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>)
+or <b>FAX_ConnectionRefCount</b> (section <span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>) method
+call used to connect to the fax server.</p><p><b>JobId: </b>A unique number that identifies a <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queued</a></span>
+or active <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9369467f-ee6b-427f-9d5c-f9cacc40ae66" data-linktype="relative-path">fax job</a></span>.</p><p><b>Buffer: </b>A pointer to the address of a buffer
+to receive a <b>_FAX_JOB_ENTR</b>Y (section <span><a href="cfe03605-eaad-43e2-b287-34cda0ccbdbc" data-linktype="relative-path">2.2.6)</a></span> structure.</p><p><b>BufferSize: </b>A variable to return the size, in
+bytes, of the job information buffer.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The client&#39;s fax user account does not have access to
+  query the job specified by the <i>JobId</i> parameter. This error can happen
+  in any of the following cases:</p>
+  <p><span>§<span>  
+  </span></span>The job specified by the <i>JobId</i> parameter is an outgoing
+  job; the client (the fax user account currently logged in on the client) is
+  not the owner of this job and does not have the FAX_ACCESS_QUERY_OUT_JOBS
+  access rights.</p>
+  <p><span>§<span>  
+  </span></span>The job specified by the <i>JobId</i> parameter is an incoming
+  job; incoming faxes are not public and the client&#39;s fax user account does not
+  have the FAX_ACCESS_MANAGE_RECEIVE_FOLDER rights.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The server cannot allocate sufficient memory to hold
+  the <b>FAX_JOB_ENTRY</b> (section <span><a href="7c6ea406-edbd-4a5b-b8f2-5ad5084c750d" data-linktype="relative-path">2.2.5</a></span>) structure
+  to be returned to the client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. This error code is
+  returned if any of the following conditions are met:</p>
+  <p><span>§<span>  
+  </span></span>The <i>Buffer</i> parameter is set to a NULL pointer value.<a id="Appendix_A_Target_110"></a><a aria-label="Product behavior note 110" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_110" data-linktype="relative-path">&lt;110&gt;</a></p>
+  <p><span>§<span>  
+  </span></span>The fax job specified by the <i>JobId</i> parameter cannot be
+  found (does not exist) in the fax server queue.</p>
+  <p><span>§<span>  
+  </span></span>The fax job specified by <i>JobId</i> cannot be queried: the
+  job type is <b>JT_BROADCAST</b>, <b>JS_DELETING</b>, or <b>JS_COMPLETED</b>.
+  For more information about job types, see the description of the <b>dwJobType</b>
+  member of the <b>FAX_JOB_STATUS</b> (section <span><a href="e1f304ec-977b-45e0-9db7-95c395a0a337" data-linktype="relative-path">2.2.36</a></span>)
+  structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INTERNAL_ERROR</p>
+  <p>0x0000054F</p>
+  </td>
+  <td>
+  <p>The server failed to custom marshal the <b>FAX_JOB_ENTRY</b>
+  to be returned to the client.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,15 @@
+import "ms-rpce.idl";
+const unsigned long MAX_MASTER_SECRET_BYTES=16;
+typedef [range(MAX_MASTER_SECRET_BYTES,MAX_MASTER_SECRET_BYTES)] unsigned long SizeOfMasterSecretInBytes;
+[
+uuid(9D07CA0D-8F02-4ed5-B727-ACF37FEA5BBC),
+version(1.0),
+pointer_default(unique)
+]
+interface ISingleSignonRemoteMasterSecret
+{
+error_status_t RemoteGetMasterSecret(
+[in] handle_t hBinding,
+[in, out] SizeOfMasterSecretInBytes * pcbSecret,
+                                                                        [size_is(*pcbSecret), out] byte * pbSecret);
+}

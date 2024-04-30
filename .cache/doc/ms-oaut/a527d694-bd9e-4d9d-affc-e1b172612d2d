@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>Loop through the table, returning a substitution character
+if a match is found. If no match is found, return the original character.</p><dl>
+<dd>
+<div><pre> FOR each Row in SubstitutionTable
+     IF Row (0) is TempChar THEN
+         RETURN Row (1)
+     END IF
+ END FOR
+ RETURN TempChar
+  
+</pre></div>
+</dd></dl></div>

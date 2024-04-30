@@ -1,0 +1,37 @@
+<div class="content"><p> </p><p>The ElfrOpenBELA (Opnum 16) method instructs the server to
+return a handle to a <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_ddd2e7db-ea8f-4488-ac5f-e77d59abe9e4" data-linktype="relative-path">backup event log</a></span>.
+The caller MUST have permission to read the file containing the backup event
+log for this to succeed.</p><p><b>Note</b>  The server has an <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_9f92aa05-dd0a-45f2-88d6-89f1fb654395" data-linktype="relative-path">Access
+Control List (ACL)</a></span> that is used to control access to the log. The
+protocol has no methods for reading or setting that ACL.</p><dl>
+<dd>
+<div><pre> NTSTATUS ElfrOpenBELA(
+   [in] EVENTLOG_HANDLE_A UNCServerName,
+   [in] PRPC_STRING BackupFileName,
+   [in] unsigned long MajorVersion,
+   [in] unsigned long MinorVersion,
+   [out] IELF_HANDLE* LogHandle
+ );
+</pre></div>
+</dd></dl><p><b>UNCServerName: </b>A server interface handle. A pointer
+to an ANSI string (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89952" data-linktype="external">[MSDN-ANSI]</a></span>)
+specifying the server, as specified in section <span><a href="12315f0e-4143-45ee-bcda-490a80e5bed5" data-linktype="relative-path">2.2.7</a></span>. The client
+MUST map this string to an <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle,
+and the server MUST ignore this argument, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+sections 4.3.5 and 5.1.5.2. </p><p><b>BackupFileName: </b>Provides an ANSI string (as specified
+in section <span><a href="1f02c63c-f59f-40b2-8046-c624f18e7e84" data-linktype="relative-path">2.2.12</a></span>) that points
+to an <span><a href="c1550f98-a1ce-426a-9991-7509e7c3787c" data-linktype="relative-path">NT Object Path</a></span> of
+the file where the backup event log is located, as specified in section
+2.2.4.1. </p><p><b>MajorVersion: </b>Major version of the client. This value
+MUST be set to 1. </p><p><b>MinorVersion: </b>Minor version of the client. This value
+MUST be set to 1. </p><p><b>LogHandle: </b>Pointer to an <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_bb3fad7e-60bf-46d4-9c3f-7caea47a743e" data-linktype="relative-path">event log</a></span> handle.
+This parameter is a server context handle, as specified in section <span><a href="de54bfbc-fbe4-43b8-b8e1-b8a6b2189604" data-linktype="relative-path">2.2.6</a></span>.
+This handle MUST be closed by using the <span><a href="e6b61523-8e7a-4279-a90f-2600b7e9da5d" data-linktype="relative-path">ElfrCloseEL (section 3.1.4.21</a></span><a href="e6b61523-8e7a-4279-a90f-2600b7e9da5d" data-linktype="relative-path">)</a> method once the handle
+is no longer needed. In the case when the client cannot call the ElfrCloseEL
+function, such as the abnormal termination of the client, this context handle
+will be revoked by the server so that there will not be any resource leaks.</p><p><b>Return Values: </b>The method returns STATUS_SUCCESS
+(0x00000000) on success; otherwise, it MUST return an implementation-based,
+nonzero NTSTATUS value specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>The server MUST return a value indicating success or failure
+for this operation<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="4acc4fbc-1378-4120-83d1-cfb4ae0240e0#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a>. </p><p>This is identical to the <span><a href="4db1601c-7bc2-4d5c-8375-c58a6f8fc7e1" data-linktype="relative-path">ElfrOpenBELW (section 3.1.4.1)</a></span>
+method except that the BackupFileName and UNCServerName are ANSI strings in
+this case.</p></div>

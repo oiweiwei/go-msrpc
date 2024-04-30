@@ -1,0 +1,53 @@
+<div class="content"><p>The GetAttrib_Call structure is used to read <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_5cddf14c-b925-4494-9b55-d2c8259f9ad0" data-linktype="relative-path">smart card reader</a>
+attributes.</p><dl>
+<dd>
+<div><pre> typedef struct _GetAttrib_Call {
+   REDIR_SCARDHANDLE hCard;
+   unsigned long dwAttrId;
+   long fpbAttrIsNULL;
+   unsigned long cbAttrLen;
+ } GetAttrib_Call;
+</pre></div>
+</dd></dl><p><b>hCard:</b>  A handle, as specified in
+section <a href="b6276356-7c5f-4d3e-be92-a6c85e58d008" data-linktype="relative-path">2.2.1.2</a>.</p><p><b>dwAttrId:</b>  An identifier for the
+attribute to get. For more information on defined attributes, see <a href="https://go.microsoft.com/fwlink/?LinkId=90244" data-linktype="external">[PCSC3]</a> section 3.1.2.</p><p><b>fpbAttrIsNULL:</b>  A Boolean value
+specifying whether the caller wants to retrieve the length of the data. Set to
+FALSE (0x00000000) in order to allow the data to be returned. Set to TRUE
+(0x00000001) and only the length of the data will be returned.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cbAttrLen:</b>  The length of the buffer
+specified on the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_37eb268d-1dd2-4413-9fa6-3af2cab291d3" data-linktype="relative-path">TS Server</a>
+side. If <b>cbAttrLen</b> is set to SCARD_AUTOALLOCATE with a value of
+0xFFFFFFFF then any buffer length can be returned. Otherwise, the returned
+buffer MUST NOT exceed <b>cbAttrLen</b> bytes in length. When the buffer to be
+returned exceeds <b>cbAttrLen</b> bytes in length, <a href="ab3ac071-3fc5-44e6-9b94-c1eee1168266" data-linktype="relative-path">GetAttrib_Return</a>.<b>ReturnCode</b>
+MUST be set to SCARD_E_INSUFFICIENT_BUFFER (0x80100008). The <b>cbAttrLen</b>
+field MUST be ignored if <b>fpbAttrIsNULL</b> is set to TRUE (0x00000001).
+Also, if <b>fpbAttrIsNULL</b> is set to FALSE (0x00000000) but <b>cbAttrLen</b>
+is set to 0x00000000, then the call MUST succeed, GetAttrib_Return.<b>cbAttrLen</b>
+MUST be set to the length of the data, in bytes, and GetAttrib_Return.<b>pbAttr</b>
+MUST be set to NULL.</p></div>

@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>DHCP_PROPERTY_ID</b> enumeration defines the property
+identifier for a <span><a href="1ac6e6e5-f2bc-42ef-9d6a-c9457d48c3c3" data-linktype="relative-path">DHCP_PROPERTY (section 2.2.1.2.117)</a></span>
+structure. It is used to uniquely identify a specified DHCP property.</p><dl>
+<dd>
+<div><pre> typedef enum {
+     DhcpPropIdPolicyDnsSuffix,
+     DhcpPropIdClientAddressStateEx,
+ } DHCP_PROPERTY_ID;
+</pre></div>
+</dd></dl><p><b>DhcpPropIdPolicyDnsSuffix: </b>Identifies the DNS
+suffix of a policy. It is of property type DhcpPropTypeString, as specified in <span><a href="1511adaa-15d3-4c19-9521-68fb9870848d" data-linktype="relative-path">DHCP_PROPERTY_TYPE (section 2.2.1.1.26)</a></span>.</p><p><b>DhcpPropIdClientAddressStateEx: </b>Identifies the
+extended address state flags of a lease table entry. It is of property type
+DhcpPropTypeDword, as specified in
+DHCP_PROPERTY_TYPE (section 2.2.1.1.26).</p></div>

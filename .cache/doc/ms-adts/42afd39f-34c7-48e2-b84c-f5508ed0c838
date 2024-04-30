@@ -1,0 +1,88 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/42afd39f-34c7-48e2-b84c-f5508ed0c838" data-linktype="external">msdn link</a></p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Size</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Bandwidth</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NumberOfSchedules</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Schedules</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Size (4 bytes): </b>Size of the entire <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a> schedule
+structure.</p><p><b>Bandwidth (4 bytes): </b> Not used; this field is
+ignored.</p><p><b>NumberOfSchedules (4 bytes): </b>Number of
+elements in Schedules. This value is always 1.</p><p><b>Schedules (8 bytes): </b>Array of <a href="b6d7574d-6d4e-4fa9-8151-9460cfb0a4d5" data-linktype="relative-path">SCHEDULE_HEADER</a>
+structures. There is only one SCHEDULE_HEADER element in the array.</p><p><b>Data (variable): </b>This is a sequence of bytes
+specifying the time slots when replication is permitted between the source and
+the destination <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a>. Each
+schedule header specifies an offset into the data field. The replication
+schedule data for that schedule is the next 168 bytes. Each byte represents an
+hour in the week (24 * 7 = 168). The lower 4 bits of each byte represent
+15-minute intervals in the hour. The first bit, that is, the fourth least
+significant bit in the byte, corresponds to the first 15 minutes in the hour,
+the second bit corresponds to the next 15 minutes, and so on. If one of these
+bits is set, it indicates that replication is permitted in that 15-minute time
+interval within that hour.</p><p>The offset field of the SCHEDULE_HEADER structure points to
+the beginning of the Data field, and the Data field is exactly 168 bytes since
+there is only one schedule.</p></div>

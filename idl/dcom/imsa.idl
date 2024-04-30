@@ -1,0 +1,468 @@
+import "ms-dtyp.idl"; 
+import "ms-dcom.idl";
+import "ms-oaut.idl";
+ 
+typedef unsigned long METADATA_HANDLE, *PMETADATA_HANDLE;
+ 
+typedef struct _IIS_CRYPTO_BLOB{
+    DWORD BlobSignature;
+    DWORD BlobDataLength;
+    [size_is(BlobDataLength)] unsigned char BlobData[*];
+} IIS_CRYPTO_BLOB;
+ 
+typedef struct _METADATA_RECORD{
+    DWORD dwMDIdentifier;
+    DWORD dwMDAttributes;
+    DWORD dwMDUserType;
+    DWORD dwMDDataType;
+    DWORD dwMDDataLen;
+    [unique, size_is(dwMDDataLen)] unsigned char *pbMDData;
+    DWORD dwMDDataTag;
+} METADATA_RECORD;
+ 
+typedef struct _METADATA_GETALL_RECORD{
+    DWORD dwMDIdentifier;
+    DWORD dwMDAttributes;
+    DWORD dwMDUserType;
+    DWORD dwMDDataType;
+    DWORD dwMDDataLen;    
+    DWORD dwMDDataOffset;
+    DWORD dwMDDataTag;
+} METADATA_GETALL_RECORD, *PMETADATA_GETALL_RECORD;
+ 
+typedef struct {
+    DWORD dwMDPermissions;
+    DWORD dwMDSystemChangeNumber;
+} METADATA_HANDLE_INFO;
+ 
+ 
+#define METADATA_MASTER_ROOT_HANDLE  0
+#define ADMINDATA_MAX_NAME_LEN 256
+#define MD_BACKUP_MAX_LEN 100
+ 
+[
+    object,
+    uuid(70B51430-B6CA-11d0-B9B9-00A0C922E750),
+    pointer_default(unique)
+]
+interface IMSAdminBaseW : IUnknown
+{
+    HRESULT AddKey(
+        [in] METADATA_HANDLE hMDHandle,
+        [unique, in, string] LPCWSTR pszMDPath);
+ 
+    HRESULT DeleteKey(
+        [in] METADATA_HANDLE hMDHandle,
+        [unique, in, string] LPCWSTR pszMDPath);
+ 
+    HRESULT DeleteChildKeys(
+        [in] METADATA_HANDLE hMDHandle,
+        [unique, in, string] LPCWSTR pszMDPath);
+ 
+    HRESULT EnumKeys(
+        [in] METADATA_HANDLE hMDHandle,
+        [unique, in, string] LPCWSTR pszMDPath,
+        [out, size_is(ADMINDATA_MAX_NAME_LEN)] LPWSTR pszMDName,
+        [in] DWORD dwMDEnumObjectIndex);
+ 
+    HRESULT CopyKey(
+        [in] METADATA_HANDLE hMDSourceHandle,
+        [unique, in, string] LPCWSTR pszMDSourcePath,
+        [in] METADATA_HANDLE hMDDestHandle,
+        [unique, in, string] LPCWSTR pszMDDestPath,
+        [in] BOOL bMDOverwriteFlag,
+        [in] BOOL bMDCopyFlag);
+ 
+    HRESULT RenameKey(
+        [in] METADATA_HANDLE hMDHandle,
+        [unique, in, string] LPCWSTR pszMDPath,
+        [unique, in, string] LPCWSTR pszMDNewName);
+ 
+    HRESULT R_SetData(
+        [in] METADATA_HANDLE hMDHandle,
+        [unique, in, string] LPCWSTR pszMDPath,
+        [in] METADATA_RECORD * pmdrMDData);
+ 
+    HRESULT R_GetData(
+        [in] METADATA_HANDLE hMDHandle,
+        [unique, in, string] LPCWSTR pszMDPath,
+        [in, out] METADATA_RECORD * pmdrMDData,
+        [out] DWORD *pdwMDRequiredDataLen,
+        [out] IIS_CRYPTO_BLOB **ppDataBlob);
+ 
+    HRESULT DeleteData(
+        [in] METADATA_HANDLE hMDHandle,
+        [unique, in, string] LPCWSTR pszMDPath,
+        [in] DWORD  dwMDIdentifier,
+        [in] DWORD  dwMDDataType);
+ 
+    HRESULT R_EnumData(
+        [in] METADATA_HANDLE hMDHandle,
+        [unique, in, string] LPCWSTR pszMDPath,
+        [in, out] METADATA_RECORD * pmdrMDData,
+        [in] DWORD dwMDEnumDataIndex,
+        [out] DWORD *pdwMDRequiredDataLen,
+        [out] IIS_CRYPTO_BLOB **ppDataBlob);
+ 
+    HRESULT R_GetAllData(
+        [in] METADATA_HANDLE hMDHandle,
+        [unique, in, string] LPCWSTR pszMDPath,
+        [in] DWORD dwMDAttributes,
+        [in] DWORD dwMDUserType,
+        [in] DWORD dwMDDataType,
+        [out] DWORD *pdwMDNumDataEntries,
+        [out] DWORD *pdwMDDataSetNumber,
+        [in] DWORD dwMDBufferSize,
+        [out] DWORD *pdwMDRequiredBufferSize,
+        [out] IIS_CRYPTO_BLOB **ppDataBlob);
+ 
+    HRESULT DeleteAllData(
+        [in] METADATA_HANDLE hMDHandle,
+        [unique, in, string] LPCWSTR pszMDPath,
+        [in] DWORD dwMDUserType,
+        [in] DWORD dwMDDataType);
+ 
+    HRESULT CopyData(
+        [in] METADATA_HANDLE hMDSourceHandle,
+        [unique, in, string] LPCWSTR pszMDSourcePath,
+        [in] METADATA_HANDLE hMDDestHandle,
+        [unique, in, string] LPCWSTR pszMDDestPath,
+        [in] DWORD dwMDAttributes,
+        [in] DWORD dwMDUserType,
+        [in] DWORD dwMDDataType,
+        [in] BOOL bMDCopyFlag);
+ 
+    HRESULT GetDataPaths(
+        [in] METADATA_HANDLE hMDHandle,
+        [unique, in, string] LPCWSTR pszMDPath,
+        [in] DWORD dwMDIdentifier,
+        [in] DWORD dwMDDataType,
+        [in] DWORD dwMDBufferSize,
+        [out, size_is(dwMDBufferSize)] WCHAR *pszBuffer,
+        [out] DWORD *pdwMDRequiredBufferSize);
+ 
+    HRESULT OpenKey([in] METADATA_HANDLE hMDHandle,
+        [unique, in, string] LPCWSTR pszMDPath,
+        [in] DWORD  dwMDAccessRequested,
+        [in] DWORD  dwMDTimeOut,
+        [out] METADATA_HANDLE * phMDNewHandle);
+ 
+    HRESULT CloseKey(
+        [in] METADATA_HANDLE hMDHandle);
+ 
+    HRESULT ChangePermissions([in] METADATA_HANDLE hMDHandle,
+        [in] DWORD  dwMDTimeOut,
+        [in] DWORD  dwMDAccessRequested);
+ 
+    HRESULT SaveData();
+ 
+    HRESULT GetHandleInfo([in] METADATA_HANDLE hMDHandle,
+        [out] METADATA_HANDLE_INFO * pmdhiInfo);
+ 
+    HRESULT GetSystemChangeNumber(
+        [out] DWORD *pdwSystemChangeNumber);
+ 
+    HRESULT GetDataSetNumber([in] METADATA_HANDLE hMDHandle,
+        [unique, in, string] LPCWSTR pszMDPath,
+        [out] DWORD *pdwMDDataSetNumber);
+ 
+    HRESULT SetLastChangeTime([in] METADATA_HANDLE hMDHandle,
+        [unique, in, string] LPCWSTR pszMDPath,
+        [in] PFILETIME  pftMDLastChangeTime,
+        [in] BOOL bLocalTime);
+ 
+    HRESULT GetLastChangeTime([in] METADATA_HANDLE hMDHandle,
+        [unique, in, string] LPCWSTR pszMDPath,
+        [out] PFILETIME  pftMDLastChangeTime,
+        [in] BOOL bLocalTime);
+ 
+    HRESULT R_KeyExchangePhase1(
+        [unique, in] IIS_CRYPTO_BLOB *pClientKeyExchangeKeyBlob,
+        [unique, in] IIS_CRYPTO_BLOB *pClientSignatureKeyBlob,
+        [out] IIS_CRYPTO_BLOB **ppServerKeyExchangeKeyBlob,
+        [out] IIS_CRYPTO_BLOB **ppServerSignatureKeyBlob,
+        [out] IIS_CRYPTO_BLOB **ppServerSessionKeyBlob);
+ 
+    HRESULT R_KeyExchangePhase2(
+        [unique, in] IIS_CRYPTO_BLOB *pClientSessionKeyBlob,
+        [unique, in] IIS_CRYPTO_BLOB *pClientHashBlob,
+        [out] IIS_CRYPTO_BLOB **ppServerHashBlob);
+ 
+    HRESULT Backup(
+        [unique, in, string] LPCWSTR pszMDBackupName,
+        [in] DWORD dwMDVersion,
+        [in] DWORD dwMDFlags);
+ 
+    HRESULT Restore(
+        [unique, in, string] LPCWSTR pszMDBackupName,
+        [in] DWORD dwMDVersion,
+        [in] DWORD dwMDFlags);
+ 
+    HRESULT EnumBackups(
+        [in, out, size_is(MD_BACKUP_MAX_LEN)] LPWSTR pszMDBackupName,
+        [out] DWORD *pdwMDVersion,
+        [out] PFILETIME  pftMDBackupTime,
+        [in]  DWORD dwMDEnumIndex);
+ 
+    HRESULT DeleteBackup(
+        [unique, in, string] LPCWSTR pszMDBackupName,
+        [in] DWORD dwMDVersion);
+ 
+    HRESULT UnmarshalInterface(
+        [out] IMSAdminBaseW **piadmbwInterface);
+ 
+    HRESULT R_GetServerGuid(
+        [out] GUID *pServerGuid);
+};
+ 
+[
+    object,
+    uuid(8298d101-f992-43b7-8eca-5052d885b995),
+    pointer_default(unique)
+]
+interface IMSAdminBase2W : IMSAdminBaseW
+{
+ 
+  HRESULT BackupWithPasswd(
+      [unique, in, string] LPCWSTR pszMDBackupName,
+      [in] DWORD dwMDVersion,
+      [in] DWORD dwMDFlags,
+      [unique, in, string] LPCWSTR pszPasswd);
+ 
+  HRESULT RestoreWithPasswd(
+      [unique, in, string] LPCWSTR pszMDBackupName,
+      [in] DWORD dwMDVersion,
+      [in] DWORD dwMDFlags,
+      [unique, in, string] LPCWSTR pszPasswd);
+ 
+  HRESULT Export(
+      [unique, in, string] LPCWSTR pszPasswd,
+      [unique, in, string] LPCWSTR pszFileName,
+      [unique, in, string] LPCWSTR pszSourcePath,
+      [in] DWORD dwMDFlags);
+ 
+  HRESULT Import(
+      [unique, in, string] LPCWSTR pszPasswd,
+      [unique, in, string] LPCWSTR pszFileName,
+      [unique, in, string] LPCWSTR pszSourcePath,
+      [unique, in, string] LPCWSTR pszDestPath,
+      [in] DWORD dwMDFlags);
+ 
+  HRESULT RestoreHistory(
+      [unique, in, string] LPCWSTR pszMDHistoryLocation,
+      [in] DWORD dwMDMajorVersion,
+      [in] DWORD dwMDMinorVersion,
+      [in] DWORD dwMDFlags);
+ 
+  HRESULT EnumHistory(
+      [in, out, size_is(MD_BACKUP_MAX_LEN)] 
+           LPWSTR  pszMDHistoryLocation,
+      [out] DWORD *pdwMDMajorVersion,
+      [out] DWORD *pdwMDMinorVersion,
+      [out] PFILETIME  pftMDHistoryTime,
+      [in]  DWORD dwMDEnumIndex);
+};
+ 
+[
+    object,
+    uuid(f612954d-3b0b-4c56-9563-227b7be624b4),
+    pointer_default(unique)
+]
+interface IMSAdminBase3W : IMSAdminBase2W
+{
+  HRESULT GetChildPaths(
+      [in] METADATA_HANDLE hMDHandle,
+      [unique, in, string] LPCWSTR pszMDPath,
+      [in] DWORD cchMDBufferSize,
+      [in, out, unique, size_is(cchMDBufferSize)] WCHAR * pszBuffer,
+      [in, out, unique] DWORD * pcchMDRequiredBufferSize);
+};
+ 
+[
+    uuid(29822AB7-F302-11D0-9953-00C04FD919C1),
+    pointer_default(unique)
+]
+interface IWamAdmin : IUnknown
+{
+     HRESULT AppCreate(
+        [in, unique, string] LPCWSTR szMDPath, 
+        [in] BOOL fInProc
+        );
+ 
+     HRESULT AppDelete(
+        [in, unique, string] LPCWSTR szMDPath, 
+        [in] BOOL fRecursive
+        );
+ 
+     HRESULT AppUnLoad(
+        [in, unique, string] LPCWSTR szMDPath, 
+        [in] BOOL fRecursive
+        );
+ 
+     HRESULT AppGetStatus(
+        [in, unique, string] LPCWSTR szMDPath, 
+        [out] DWORD *pdwAppStatus
+        );
+ 
+     HRESULT AppDeleteRecoverable(
+        [in, unique, string] LPCWSTR szMDPath, 
+        [in] BOOL fRecursive
+        );
+ 
+     HRESULT AppRecover(
+        [in, unique, string] LPCWSTR szMDPath, 
+        [in] BOOL fRecursive
+        );
+};
+ 
+[
+ 
+    uuid(29822AB8-F302-11D0-9953-00C04FD919C1),
+    pointer_default(unique)
+]
+interface IWamAdmin2 : IWamAdmin
+{
+     HRESULT AppCreate2(
+        [in, unique, string] LPCWSTR szMDPath,
+        [in] DWORD dwAppMode
+        );
+};
+ 
+[
+    uuid(7C4E1804-E342-483D-A43E-A850CFCC8D18),
+    pointer_default(unique)
+]
+interface IIISApplicationAdmin : IUnknown
+{
+     HRESULT CreateApplication(
+        [in, unique, string] LPCWSTR szMDPath,
+        [in] DWORD dwAppMode,
+        [in, unique, string] LPCWSTR szAppPoolId,
+        [in] BOOL fCreatePool
+        );
+ 
+     HRESULT DeleteApplication(
+        [in, unique, string] LPCWSTR szMDPath,
+        [in] BOOL fRecursive
+        );
+ 
+     HRESULT CreateApplicationPool(
+        [in, unique, string] LPCWSTR szPool
+        );
+ 
+     HRESULT DeleteApplicationPool(
+        [in, unique, string] LPCWSTR szPool
+        );
+ 
+     HRESULT EnumerateApplicationsInPool(
+        [in, unique, string] LPCWSTR szPool,
+        [out] BSTR* bstrBuffer
+        );
+    
+     HRESULT RecycleApplicationPool(
+        [in, unique, string] LPCWSTR szPool
+        );
+ 
+     HRESULT GetProcessMode(
+        [out] DWORD * pdwMode
+        );
+};
+ 
+[
+    object,
+    uuid(BD0C73BC-805B-4043-9C30-9A28D64DD7D2),
+    dual,
+    pointer_default(unique)
+]
+interface IIISCertObj : IDispatch
+{
+    [propput, id(1)] 
+    HRESULT Opnum7NotUsedOnWire(BSTR newVal);
+        
+    [propput, id(2)] 
+    HRESULT Opnum8NotUsedOnWire(BSTR newVal);
+        
+    [propput, id(3)] 
+    HRESULT Opnum9NotUsedOnWire(BSTR newVal);
+        
+    [propput, id(4)] 
+    HRESULT InstanceName(
+        [in] BSTR newVal
+        );
+ 
+    [id(5), local] 
+    void Opnum11NotUsedOnWire(void);
+ 
+    [id(6)] 
+    HRESULT IsInstalledRemote(
+        [out, retval] VARIANT_BOOL * retval
+        );
+ 
+    [id(7), local] 
+    void Opnum13NotUsedOnWire(void);
+ 
+    [id(8)] 
+    HRESULT IsExportableRemote(
+        [out, retval] VARIANT_BOOL * retval
+        );
+ 
+    [id(9), local] 
+    void Opnum15NotUsedOnWire(void);
+ 
+    [id(10)] 
+    HRESULT GetCertInfoRemote(
+        [out,retval] VARIANT * BinaryVariant
+        );
+ 
+    [id(11), local] 
+    void Opnum17NotUsedOnWire(void);
+ 
+    [id(12), local] 
+    void Opnum18NotUsedOnWire(void);
+ 
+    [id(13), local] 
+    void Opnum19NotUsedOnWire(void);
+ 
+    [id(14), local] 
+    void Opnum20NotUsedOnWire(void);
+ 
+    [id(15), local] 
+    void Opnum21NotUsedOnWire(void);
+ 
+    [id(16)] 
+    HRESULT ImportFromBlob(
+        [in] BSTR InstanceName, 
+        [in] BSTR Password,
+        [in] VARIANT_BOOL bInstallToMetabase,
+        [in] VARIANT_BOOL bAllowExport,
+        [in] VARIANT_BOOL bOverWriteExisting,
+        [in] DWORD cbSize,
+        [in,string,size_is(cbSize)] CHAR* pBlobBinary
+        );
+ 
+    [id(17)] 
+    HRESULT ImportFromBlobGetHash(
+        [in] BSTR InstanceName, 
+        [in] BSTR Password,
+        [in] VARIANT_BOOL bInstallToMetabase,
+        [in] VARIANT_BOOL bAllowExport,
+        [in] VARIANT_BOOL bOverWriteExisting,
+        [in] DWORD cbSize,
+        [in,string,size_is(cbSize)] CHAR *pBlobBinary,
+        [out] DWORD *pcbCertHashSize,
+        [out] CHAR **pCertHash
+        );
+ 
+    [id(18), local] 
+    void Opnum24NotUsedOnWire(void);
+ 
+    [id(19)] 
+    HRESULT ExportToBlob(
+        [in] BSTR InstanceName,
+        [in] BSTR Password, 
+        [in] VARIANT_BOOL bPrivateKey,
+        [in] VARIANT_BOOL bCertChain,
+        [in,out] DWORD *pcbSize,
+        [in,out,string] CHAR **pBlobBinary
+        );
+};

@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>The VARKIND enumeration values are used in the <b>varkind</b>
+field of a <span><a href="ae7791d2-4399-4dff-b7c6-b0d4f3dce982" data-linktype="relative-path">VARDESC</a></span> to specify
+the kind of element that is described by the VARDESC, as specified in section
+2.2.43.</p><p>The variable kind constants are defined in the VARKIND
+enumeration:</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum tagVARKIND
+ {
+   VAR_PERINSTANCE = 0,
+   VAR_STATIC = (VAR_PERINSTANCE + 1),
+   VAR_CONST = (VAR_STATIC + 1),
+   VAR_DISPATCH = (VAR_CONST + 1)
+ } VARKIND;
+</pre></div>
+</dd></dl><p><b>VAR_PERINSTANCE:  </b>MUST be used if the VARDESC
+describes a member of a structure or union.</p><p><b>VAR_STATIC:  </b>MUST be used if the VARDESC
+describes an appobject <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_670b0ee2-d101-41b0-ac77-6ac7dbeee7dc" data-linktype="relative-path">coclass</a></span> (see section
+<span><a href="e86fe771-d836-47b6-b846-846de41d592c" data-linktype="relative-path">2.2.49.8</a></span>).</p><p><b>VAR_CONST:  </b>MUST be used if the VARDESC
+describes a member of a module or enumeration.</p><p><b>VAR_DISPATCH:  </b>MUST be used if the VARDESC
+describes an <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_544446d5-79ab-4b08-85c4-214f1b64fdf2" data-linktype="relative-path">ODL dispinterface</a></span>
+property (see section <span><a href="e23aaa6d-3ad4-4886-b652-0203a1a50c58" data-linktype="relative-path">2.2.49.5.3</a></span>).</p></div>

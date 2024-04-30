@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The <b>INETA_ATQ_STATISTICS</b> structure contains network
+I/O statistics and client connection information for an <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_d9a0cf88-f6d7-4c52-a9fc-4ce5a7cb7260" data-linktype="relative-path">Internet
+protocol server</a></span>.</p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _INETA_ATQ_STATISTICS {
+   DWORD TotalBlockedRequests;
+   DWORD TotalRejectedRequests;
+   DWORD TotalAllowedRequests;
+   DWORD CurrentBlockedRequests;
+   DWORD MeasuredBandwidth;
+ } INETA_ATQ_STATISTICS,
+  *LPINETA_ATQ_STATISTICS;
+</pre></div>
+</dd></dl><p><b>TotalBlockedRequests:</b>  The total
+number of blocked requests.</p><p><b>TotalRejectedRequests:</b>  The total
+number of rejected requests.</p><p><b>TotalAllowedRequests:</b>  The total
+number of allowed requests.</p><p><b>CurrentBlockedRequests:</b>  The total
+number of currently blocked requests.</p><p><b>MeasuredBandwidth:</b>  The measured
+network bandwidth in bytes per second.</p></div>

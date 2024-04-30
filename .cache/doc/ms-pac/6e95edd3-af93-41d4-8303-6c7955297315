@@ -1,0 +1,134 @@
+<div class="content"><p> </p><p>Two <b>PAC_SIGNATURE_DATA</b> structures are appended to the
+PAC which stores the server and <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_6e5aafba-6b66-4fdd-872e-844f142af287" data-linktype="relative-path">KDC</a></span> signatures.
+These structures are placed after the <b>Buffers</b> array of the topmost <b>PACTYPE</b>
+structure (section <span><a href="6655b92f-ab06-490b-845d-037e6987275f" data-linktype="relative-path">2.3</a></span>), at the
+offsets specified in the <b>Offset</b> fields in each of the corresponding <b>PAC_INFO_BUFFER</b>
+structures (section <span><a href="3341cfa2-6ef5-42e0-b7bc-4544884bf399" data-linktype="relative-path">2.4</a></span>) in the <b>Buffers</b>
+array. The <b>ulType</b> field of the <b>PAC_INFO_BUFFER</b> corresponding to
+the server signature contains the value 0x00000006 and the <b>ulType</b> field
+of the <b>PAC_INFO_BUFFER</b> corresponding to the KDC signature contains the
+value 0x00000007. PAC signatures can be generated only when the PAC is used by
+the <span><a href="../ms-kile/2a32282e-dd48-4ad9-a542-609804b02cc9" data-linktype="relative-path">[MS-KILE]</a></span>
+protocol because the keys used to create and verify the signatures are the keys
+known to the KDC. No other protocol can use these PAC signatures. </p><p>The <b>PAC_SIGNATURE_DATA</b> structure is defined as
+follows.</p><dl>
+<dd>
+<div><pre> typedef struct _PAC_SIGNATURE_DATA {
+     ULONG SignatureType;
+     UCHAR Signature[ANYSIZE_ARRAY];
+ } PAC_SIGNATURE_DATA, *PPAC_SIGNATURE_DATA;
+</pre></div>
+</dd></dl><p>The format of the <b>PAC_SIGNATURE_DATA</b> structures is
+defined as follows. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SignatureType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Signature
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>RODCIdentifier</p>
+  </td>
+  
+ </tr>
+</tbody></table><p><b>SignatureType (4 bytes): </b>A 32-bit unsigned
+integer value in little-endian format that defines the cryptographic system
+used to calculate the checksum. This MUST be one of the values defined in the
+following table. The corresponding sizes of the signatures are also given. The
+key used with the cryptographic system corresponds to the value of the <b>ulType</b>
+field of the outer <b>PAC_INFO_BUFFER (section 2.4)</b> structure. The value
+0x00000006 specifies the server&#39;s key, and the value 0x00000007 specifies the
+KDC&#39;s key.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>KERB_CHECKSUM_HMAC_MD5</p>
+  <p>0xFFFFFF76</p>
+  </td>
+  <td>
+  <p>As specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90458" data-linktype="external">[RFC4120]</a></span> and
+  <span><a href="https://go.microsoft.com/fwlink/?LinkId=90488" data-linktype="external">[RFC4757]</a></span>
+  section 4. Signature size is 16 bytes. Decimal value is -138.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>HMAC_SHA1_96_AES128</p>
+  <p>0x0000000F</p>
+  </td>
+  <td>
+  <p>As specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90451" data-linktype="external">[RFC3962]</a></span>
+  section 7. Signature size is 12 bytes. Decimal value is 15.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>HMAC_SHA1_96_AES256</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>As specified in [RFC3962] section 7. Signature size is
+  12 bytes. Decimal value is 16.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Signature (variable): </b>An array of 8-bit
+unsigned characters that contains the checksum. The KERB_CHECKSUM_HMAC_MD5
+checksum (defined in the preceding table) is 16 bytes in length. The size of
+the signature is determined by the value of the <b>SignatureType</b> field, as
+indicated in the preceding table.</p><p><b>RODCIdentifier (2 bytes): </b>A 16-bit unsigned
+integer value in little-endian format that contains the first 16 bits of the
+key version number ([MS-KILE] section <span><a href="../ms-kile/31411d28-7ad5-4237-a1f9-50738a08aa82" data-linktype="relative-path">3.1.5.8</a></span>)
+when the KDC is an <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_8b0a073b-3099-4efe-8b81-c2886b66a870" data-linktype="relative-path">RODC</a></span>. When the KDC
+is not an RODC, this field does not exist.</p></div>

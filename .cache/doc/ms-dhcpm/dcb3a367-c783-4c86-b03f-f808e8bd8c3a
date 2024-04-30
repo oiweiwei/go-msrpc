@@ -1,0 +1,132 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV6SetStatelessStoreParams</b> method modifies
+the configuration settings for DHCPv6 stateless client inventory at the server
+or scope level.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV6SetStatelessStoreParams(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] BOOL fServerLevel,
+   [in] DHCP_IPV6_ADDRESS SubnetAddress,
+   [in] DWORD FieldModified,
+   [in] LPDHCPV6_STATELESS_PARAMS Params
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP Address of the DHCP
+server. This parameter is unused.</p><p><b>fServerLevel: </b>A flag representing whether the configuration
+settings for DHCPv6 stateless client inventory are to be modified at the server
+level or the scope level. A value of TRUE indicates that the modifications are
+for the server level; FALSE indicates that the modifications are for the scope
+level.</p><p><b>SubnetAddress: </b>The IPv6 subnet address for
+which the configuration settings are to be modified. If the <i>fServerLevel</i>
+parameter is set to TRUE, this parameter MUST be set to zero.</p><p><b>FieldModified: </b>A DWORD of binary flags that
+indicates which fields in the <b>DHCPv6_STATELESS_PARAMS</b> structure pointed
+to by the <i>Params</i> parameter are to be set.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Field to set</p>
+   </th>
+   <th>
+   <p>Flag</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DhcpStatelessPurgeInterval</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DhcpStatelessStatus</p>
+  </td>
+  <td>
+  <p>0x00000002</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Params: </b>A pointer to the configuration
+settings for the DHCPv6 stateless client inventory for a DHCPv6 server.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or to any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00020005</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The IPv6 subnet does not exist on the DHCPv6 server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 116.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Return ERROR_INVALID_PARAMETER if any of the following conditions
+are true:</p>
+<ul><li><p><span><span>  </span></span>The
+<i>Params</i> parameter is a null pointer.</p>
+</li><li><p><span><span>  </span></span>The
+<i>FieldModified</i> parameter contains any bit flags other than the ones
+listed in this section.</p>
+</li><li><p><span><span>  </span></span>The
+<i>FieldModified</i> parameter is set to DhcpStatelessPurgeInterval, and the <b>PurgeInterval</b>
+field in the <i>Params</i> parameter is 0.</p>
+</li><li><p><span><span>  </span></span>The
+<i>fServerLevel</i> parameter is FALSE, and the <i>SubnetAddress</i> parameter
+is 0.</p>
+</li><li><p><span><span>  </span></span>The
+<i>fServerLevel</i> parameter is TRUE, and the <i>SubnetAddress</i> parameter
+is not 0.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Validate that this method is authorized for read/write access as
+specified in section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If it is not
+authorized, return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>pServerLevel</i> parameter is TRUE and the
+DhcpStatelessStatus flag is set in the <i>FieldModified</i> parameter, set the <b>Status</b>
+member of the <b>DHCPv6ServerStatelessSettings</b> server ADM element to the
+value contained in the <b>Status</b> member of the <i>Params</i> parameter and
+return ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>pServerLevel</i> parameter is TRUE and the
+DhcpStatelessPurgeInterval flag is set in the <i>FieldModified</i> parameter,
+set the <b>PurgeInterval</b> member of the <b>DHCPv6ServerStatelessSettings</b>
+server ADM element to the value contained in the <b>PurgeInterval</b> member of
+the <i>Params</i> parameter and return ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>pServerLevel</i> parameter is FALSE, retrieve the <b>DHCPv6ScopesList</b>
+ADM element and find the <b>DHCPv6Scope</b> value corresponding to the value of
+the <i>SubnetAddress</i> parameter. If no such value is present, return ERROR_DHCP_SUBNET_NOT_PRESENT.
+Otherwise:</p>
+<ul><li><p><span><span>  </span></span>If
+the DhcpStatelessStatus flag is set in the <i>FieldModified</i> parameter, set
+the <b>Status</b> member of the <b>DHCPv6Scope.DHCPv6StatelessSettings</b> ADM
+element to the value contained in the <b>Status</b> member of the <i>Params</i>
+parameter and return ERROR_SUCCESS.</p>
+</li><li><p><span><span>  </span></span>If
+the DhcpStatelessPurgeInterval flag is set in the <i>FieldModified</i>
+parameter, set the <b>PurgeInterval</b> member of the <b>DHCPv6Scope.DHCPv6StatelessSettings</b>
+server ADM element to the value contained in the <b>PurgeInterval</b> member of
+the <i>Params</i> parameter and return ERROR_SUCCESS.</p>
+</li></ul></li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

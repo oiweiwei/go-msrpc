@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The DRS_MSG_REPVERIFYOBJ union defines the request messages
+sent to the <span><a href="8dba150d-50f6-47f1-941e-1a606c30db0b" data-linktype="relative-path">IDL_DRSReplicaVerifyObjects</a></span>
+method. Only one version, identified by <i>dwVersion</i> = 1, is currently
+defined.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_REPVERIFYOBJ_V1 V1;
+ } DRS_MSG_REPVERIFYOBJ;
+</pre></div>
+</dd></dl><p><b>V1:</b>  The version 1 request.</p></div>

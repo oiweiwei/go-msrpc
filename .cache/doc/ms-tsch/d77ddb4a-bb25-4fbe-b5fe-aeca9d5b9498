@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The format of the AT_ENUM structure is almost identical to
+the <span><a href="7290597e-bb6d-46fe-9338-e6b0467b23ae" data-linktype="relative-path">AT_INFO</a></span>
+structure with only the addition of the <b>JobId</b> field:</p><dl>
+<dd>
+<div><pre> typedef struct _AT_ENUM {
+   DWORD JobId;
+   DWORD_PTR JobTime;
+   DWORD DaysOfMonth;
+   unsigned char DaysOfWeek;
+   unsigned char Flags;
+   wchar_t* Command;
+ } AT_ENUM,
+  *PAT_ENUM,
+  *LPAT_ENUM;
+</pre></div>
+</dd></dl><p><b>JobId:</b>  Identifier of the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_740b149e-e6b4-49f5-bc16-e03ff41def7f" data-linktype="relative-path">task</a></span>.
+This is a 32-bit integer that uniquely identifies the AT <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_2b43b2b7-03a8-4053-8e02-0516f90a2da3" data-linktype="relative-path">job</a></span>
+in the server system.</p><p>All other fields are interpreted according to the
+corresponding specification given in AT_INFO (section 2.3.4) for all
+other fields.</p></div>

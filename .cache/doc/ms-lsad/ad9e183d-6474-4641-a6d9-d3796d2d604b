@@ -1,0 +1,27 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/ad9e183d-6474-4641-a6d9-d3796d2d604b" data-linktype="external">msdn link</a></p><p>The LSAPR_OBJECT_ATTRIBUTES structure specifies an object
+and its properties. This structure MUST be ignored except for the <b>RootDirectory</b>
+field, which MUST be NULL.<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_OBJECT_ATTRIBUTES {
+   unsigned long Length;
+   unsigned char* RootDirectory;
+   PSTRING ObjectName;
+   unsigned long Attributes;
+   PLSAPR_SECURITY_DESCRIPTOR SecurityDescriptor;
+   PSECURITY_QUALITY_OF_SERVICE SecurityQualityOfService;
+ } LSAPR_OBJECT_ATTRIBUTES,
+  *PLSAPR_OBJECT_ATTRIBUTES;
+</pre></div>
+</dd></dl><p><b>Length:</b>  The length of the
+structure, in bytes. This field is not used and MUST be ignored.</p><p><b>RootDirectory:</b>  This field is not
+used and MUST be NULL.</p><p><b>ObjectName:</b>  A pointer to a STRING
+structure that contains the object name. This field MUST be ignored. The
+content is unspecified and no requirements are placed on its value because it
+is never used.</p><p><b>Attributes:</b>  This field MUST be
+ignored. The content is unspecified and no requirements are placed on its value
+because it is never used.</p><p><b>SecurityDescriptor:</b>  This field
+contains the security attributes of the object. This field MUST be ignored. The
+content is unspecified and no requirements are placed on its value because it
+is never used.</p><p><b>SecurityQualityOfService:</b>  This
+field MUST be ignored. The content is unspecified and no requirements are
+placed on its value because it is never used.</p></div>

@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The PrintAsyncNotifyUserFilter enumeration is used by
+clients when they register to receive notifications from server-resident <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_7c039695-d5b5-4f3c-859a-a691d150b289" data-linktype="relative-path">notification
+sources</a></span>. The following types of notifications can be requested:</p><ul><li><p><span><span> 
+</span></span>Notifications intended specifically for a particular client&#39;s
+user identity.</p>
+</li><li><p><span><span> 
+</span></span>Notifications intended for all registered client user identities.</p>
+<div><pre> typedef [v1_enum] enum 
+ {
+   kPerUser = 0,
+   kAllUsers = 1,
+ } PrintAsyncNotifyUserFilter;
+</pre></div>
+</li></ul><p><b>kPerUser:  </b>Indicates that the client is
+requesting notifications that are intended specifically for its own user
+identity and notifications that are intended for all registered user
+identities.</p><p><b>kAllUsers:  </b>Indicates that the client is
+requesting every notification, whether intended for a specific user identity or
+for all registered user identities.</p></div>

@@ -1,0 +1,9 @@
+<div class="content"><p>This method is called by a client to determine whether or
+not the COMT server supports <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_86177a04-79cb-4afe-803c-be6155b69479" data-linktype="relative-path">process
+dump</a>.</p><dl>
+<dd>
+<div><pre> [id(1)] HRESULT IsSupported();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>This method returns S_OK
+(0x00000000) if the COMT server supports process dump, and MUST return S_FALSE
+(0x00000001) if not.</p></div>

@@ -1,0 +1,96 @@
+<div class="content"><p> </p><p>The <b>FAX_GetPageData (Opnum 7)</b> method is called by the
+client to retrieve data in the first page of an outgoing fax job. The
+information that is returned in the buffer is an in-memory copy of the first
+page of the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_eddadea9-c278-4d16-9279-f222df2cb735" data-linktype="relative-path">TIFF</a></span> file. The value
+for the <i>JobId</i> parameter can be obtained using one of the following
+methods: <b>FAX_EnumJobs</b> (section <span><a href="6516d564-e0b8-4f19-80b1-70f27eca7f16" data-linktype="relative-path">3.1.4.1.21</a></span>), <b>FAX_EnumJobsEx</b> (section
+<span><a href="c65fa0d0-dc19-4aec-b83a-b5b82d70c6d9" data-linktype="relative-path">3.1.4.1.22</a></span>),
+or <b>FAX_EnumJobsEx2</b> (section <span><a href="cec559b7-44b6-47a9-b402-7dc5af788f44" data-linktype="relative-path">3.1.4.1.23</a></span>).</p><p>In response, the server MUST validate that the <i>JobId</i>
+is for a valid job. The server MUST validate that the client&#39;s fax user account
+has read access to the job. On success, the server MUST return the first page
+of data for the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queued</a></span> or active job
+in the TIFF 6.0 Class F format in <i>Buffer</i>, along with the image width and
+height.</p><p>The client SHOULD free the returned buffer.</p><p>For information about TIFF, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90416" data-linktype="external">[RFC3302]</a></span>.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_GetPageData(
+   [in] handle_t hBinding,
+   [in] DWORD JobId,
+   [out, size_is(,*BufferSize)] LPBYTE* Buffer,
+   [out, ref] LPDWORD BufferSize,
+   [in, out] LPDWORD ImageWidth,
+   [in, out] LPDWORD ImageHeight
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>)
+or <b>FAX_ConnectionRefCount</b> (section <span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>) method
+call used to connect to the fax server.</p><p><b>JobId: </b>A unique number that identifies the fax
+job that is associated with the page of data.</p><p><b>Buffer: </b>A pointer to the address of a buffer
+to receive the first page of data in the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_cce65523-bec8-486a-8c6c-6091c52af3d3" data-linktype="relative-path">fax document</a></span>.</p><p><b>BufferSize: </b>A pointer to a <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+variable to receive the size of the buffer, in bytes, pointed to by the <i>Buffer</i>
+parameter.</p><p><b>ImageWidth: </b>A pointer to a <b>DWORD</b>
+variable to receive the width, in pixels, of the fax image.</p><p><b>ImageHeight: </b>A pointer to a <b>DWORD</b> variable
+to receive the height, in pixels, of the fax image.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The caller does not have the access
+  rights required for this operation: <b>ALL_FAX_USER_ACCESS_RIGHTS</b> (section
+  <span><a href="6b6ab8ee-03ec-42de-a4fa-fd0b5703b2c3" data-linktype="relative-path">2.2.83</a></span>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Not enough storage is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_DATA</p>
+  <p>0x0000000D</p>
+  </td>
+  <td>
+  <p>The job identified by the <i>JobId</i> parameter is
+  not an outgoing fax job or is not a valid fax job for which the fax server
+  can extract the first page of the TIFF file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. This error code is
+  returned under any of the following conditions:</p>
+  <p><span>§<span>  
+  </span></span>One or more of the following parameters are null pointers: <i>Buffer</i>,
+  <i>ImageWidth</i>, <i>ImageHeight</i>.<a id="Appendix_A_Target_120"></a><a aria-label="Product behavior note 120" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_120" data-linktype="relative-path">&lt;120&gt;</a></p>
+  <p><span>§<span>  
+  </span></span>The fax server cannot find the fax job indicated by <i>JobId</i>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

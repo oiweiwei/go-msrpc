@@ -1,0 +1,54 @@
+<div class="content"><p>The AUTHZR_SECURITY_ATTRIBUTE_V1_VALUE structure defines a
+claim.</p><dl>
+<dd>
+<div><pre> typedef struct _AUTHZR_SECURITY_ATTRIBUTE_V1_VALUE {
+     USHORT ValueType;
+     [switch_is(ValueType)] union AUTHZR_SECURITY_ATTRIBUTE_UNION {
+         [case(0x1)]
+             LONG64 Int64;
+         [case(0x2, 0x6)]
+             ULONG64 Uint64;
+         [case(0x3)]
+             AUTHZR_SECURITY_ATTRIBUTE_STRING_VALUE String;
+     } AttributeUnion;
+ } AUTHZR_SECURITY_ATTRIBUTE_V1_VALUE;
+  
+  
+</pre></div>
+</dd></dl><p><b>ValueType:</b> Identifies the type of the
+AttributeUnion member.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>AttributeUnion contains a LONG64 value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0002, 0x0006</p>
+  </td>
+  <td>
+  <p>AttributeUnion contains a ULONG64 value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0003</p>
+  </td>
+  <td>
+  <p>AttributeUnion contains an
+  AUTHZR_SECURITY_ATTRIBUTE_STRING_VALUE structure, as specified in section <a href="4a57584a-dab1-4e35-a7d6-2e6b4536cbd1" data-linktype="relative-path">2.2.3.4</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>AttributeUnion:</b> A LONG64, ULONG64, or
+AUTHZR_SECURITY_ATTRIBUTE_STRING_VALUE, depending on the value of ValueType.</p></div>

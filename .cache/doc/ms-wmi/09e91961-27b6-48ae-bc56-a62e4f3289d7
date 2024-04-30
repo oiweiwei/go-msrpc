@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The _WBEM_RECONNECT_TYPE enumeration defines possible types
+of remote <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_94e80069-5f2a-4281-a676-50ea656c4795" data-linktype="relative-path">CIM instances</a></span>. The
+structure MUST be used to return to information from <span><a href="e2c4f36d-dc59-48bb-bb51-821732610e17" data-linktype="relative-path">IWbemRefreshingServices (section 3.1.4.12)</a></span>
+interface methods. </p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   WBEM_RECONNECT_TYPE_OBJECT = 0,
+   WBEM_RECONNECT_TYPE_ENUM = 1,
+   WBEM_RECONNECT_TYPE_LAST = 2
+ } WBEM_RECONNECT_TYPE;
+</pre></div>
+</dd></dl><p><b>WBEM_RECONNECT_TYPE_OBJECT:  </b>The refresher
+MUST connect to refresh an object.</p><p><b>WBEM_RECONNECT_TYPE_ENUM:  </b>The refresher MUST
+connect to refresh an enumeration.</p><p><b>WBEM_RECONNECT_TYPE_LAST:  </b>This member is used
+only by the server to track the range of values for this enumeration. It MUST
+NOT be used by the client.</p></div>

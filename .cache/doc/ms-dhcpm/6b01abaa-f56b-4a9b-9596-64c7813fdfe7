@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DHCP_OPTION_DATA</b> structure defines an array of <span><a href="bd62505d-9f25-4449-862f-f903afbc6f5a" data-linktype="relative-path">DHCP_OPTION_DATA_ELEMENT (section 2.2.1.2.23)</a></span>
+structures. This structure is a data container for one or more data elements
+associated with a DHCP option. This structure is used in the <span><a href="fa30c949-e063-4aea-b839-a6210e77741e" data-linktype="relative-path">DHCP_OPTION_VALUE (section 2.2.1.2.42)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_OPTION_DATA {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_OPTION_DATA_ELEMENT Elements;
+ } DHCP_OPTION_DATA,
+  *LPDHCP_OPTION_DATA;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+specifying the number of data elements in the specific DHCP option, which is
+also the number of option data elements listed in the <b>Elements</b> array
+member.</p><p><b>Elements:</b>  This is a pointer of type
+DHCP_OPTION_DATA_ELEMENT structure that points to the array of length <b>NumElements</b>
+containing the data elements associated with a specific option.</p></div>

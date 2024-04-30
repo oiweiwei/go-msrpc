@@ -1,0 +1,22 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/0ddf3150-53b5-42a5-b0ec-518bce67738c" data-linktype="external">msdn link</a></p><p>The SECURITY_QUALITY_OF_SERVICE structure defines
+information used to support client impersonation.</p><p>This structure has no effect on message processing in any
+environment.</p><dl>
+<dd>
+<div><pre> typedef struct _SECURITY_QUALITY_OF_SERVICE {
+   unsigned long Length;
+   SECURITY_IMPERSONATION_LEVEL ImpersonationLevel;
+   SECURITY_CONTEXT_TRACKING_MODE ContextTrackingMode;
+   unsigned char EffectiveOnly;
+ } SECURITY_QUALITY_OF_SERVICE,
+  *PSECURITY_QUALITY_OF_SERVICE;
+</pre></div>
+</dd></dl><p><b>Length:</b>  This value MUST be ignored.
+No requirements are placed on its value because it is never used.</p><p><b>ImpersonationLevel:</b>  This field
+contains information (as specified in section <a href="720cea10-cee2-4c45-9084-c6fa7d67d18d" data-linktype="relative-path">2.2.3.5</a>) given to the
+server about the client that describes how the server can represent, or
+impersonate, the client.</p><p><b>ContextTrackingMode:</b>  This field
+specifies how the server tracks changes to the client&#39;s security context (as
+specified in section <a href="6bb42770-b924-41ff-8a57-83e37b8b7797" data-linktype="relative-path">2.2.3.6</a>).</p><p><b>EffectiveOnly:</b>  This field specifies
+whether the server can enable or disable <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privileges</a> and groups that
+the client&#39;s security context might include. This value MUST be TRUE (nonzero)
+if the server has this right; otherwise, it MUST be FALSE (0).</p></div>

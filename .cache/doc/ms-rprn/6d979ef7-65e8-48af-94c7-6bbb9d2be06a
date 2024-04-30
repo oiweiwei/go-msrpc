@@ -1,0 +1,40 @@
+<div class="content"><p>RpcResetPrinter resets the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_0d327bc0-a461-4723-8beb-d935fdab4895" data-linktype="relative-path">data type</a> and <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_4712ded2-d927-4930-9450-29499f98cef4" data-linktype="relative-path">device</a> mode (For more
+information, see <a href="https://go.microsoft.com/fwlink/?LinkId=89844" data-linktype="external">[DEVMODE]</a>)
+values to use for printing documents submitted by the <a href="90f95ff0-3ae0-4dde-a83d-35f457c710a6" data-linktype="relative-path">RpcStartDocPrinter (section 3.1.4.9.1)</a>
+method.</p><dl>
+<dd>
+<div><pre> DWORD RpcResetPrinter(
+   [in] PRINTER_HANDLE hPrinter,
+   [in, string, unique] wchar_t* pDatatype,
+   [in] DEVMODE_CONTAINER* pDevModeContainer
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object that
+was opened by <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter (section 3.1.4.2.3)</a>,
+<a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx (section 3.1.4.2.15)</a>,
+<a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter (section 3.1.4.2.2)</a>,
+or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx (section 3.1.4.2.14)</a>.</p><p><b>pDatatype: </b>A parameter specified in <a href="c31e2dab-a809-474c-9864-0cbb61068903" data-linktype="relative-path">Datatype Name Parameters (section 3.1.4.1.1)</a>.</p><p><b>pDevModeContainer: </b>A parameter specified in <a href="bf31abc0-da86-4ac6-8ebc-8be665e11503" data-linktype="relative-path">DEVMODE_CONTAINER Parameters</a>.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps specified in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE
+Parameters (section 3.1.4.1.11)</a>. This method SHOULD assume that
+the handle to the printer object can be used without further access checks.</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps specified in Datatype Name
+Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps specified in DEVMODE_CONTAINER
+Parameters.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Update the default data type that is associated with the context
+for <i>hPrinter</i>.</p>
+</li><li><p><span><span> 
+</span></span>Update the default <a href="ccc2a501-794e-4d2b-b312-f69c75131c2e" data-linktype="relative-path">DEVMODE</a> structure that is
+associated with the context for <i>hPrinter</i>.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

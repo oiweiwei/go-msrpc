@@ -1,0 +1,11 @@
+<div class="content"><p>The TSG_PACKET_MSG_REQUEST structure contains the request from
+the client to the RDG server to send across an administrative message whenever
+there is any. The value of the <b>packetId</b> field in <a href="4c505da0-93c2-4a2f-9329-6174bbaa481b" data-linktype="relative-path">TSG_PACKET</a> MUST be set to <a href="4ea53727-29f1-4fae-90ac-dd6d8b3246a5" data-linktype="relative-path">TSG_PACKET_TYPE_MSGREQUEST_PACKET</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _TSG_PACKET_MSG_REQUEST {
+   unsigned long maxMessagesPerBatch;
+ } TSG_PACKET_MSG_REQUEST,
+  *PTSG_PACKET_MSG_REQUEST;
+</pre></div>
+</dd></dl><p><b>maxMessagesPerBatch:</b>  An unsigned
+long that specifies how many messages can be sent by the server at one time.</p></div>

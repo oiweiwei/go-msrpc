@@ -1,0 +1,40 @@
+<div class="content"><p> </p><p>The ElfrGetLogInformation (Opnum 22) method instructs the
+server to return information on an <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_bb3fad7e-60bf-46d4-9c3f-7caea47a743e" data-linktype="relative-path">event log</a></span>.</p><dl>
+<dd>
+<div><pre> NTSTATUS ElfrGetLogInformation(
+   [in] IELF_HANDLE LogHandle,
+   [in] unsigned long InfoLevel,
+   [out, size_is(cbBufSize)] unsigned char* lpBuffer,
+   [in, range(0, 1024)] unsigned long cbBufSize,
+   [out] unsigned long* pcbBytesNeeded
+ );
+</pre></div>
+</dd></dl><p><b>LogHandle: </b>Handle to an event log. This parameter is
+a server context handle, as specified in section <span><a href="de54bfbc-fbe4-43b8-b8e1-b8a6b2189604" data-linktype="relative-path">2.2.6</a></span>.</p><p><b>InfoLevel: </b>The level of event log information to
+return. This MUST be set to zero.</p><p><b>lpBuffer: </b>The event log information. This MUST point
+to either an <span><a href="c3130b4f-c941-4d49-8cf3-8999d4a169c3" data-linktype="relative-path">EVENTLOG_FULL_INFORMATION (section 2.2.4)</a></span>
+structure or be NULL.</p><p><b>cbBufSize: </b>The size in bytes of the buffer pointed to
+by the <i>lpBuffer</i> parameter.</p><p><b>pcbBytesNeeded: </b>Number of bytes required for the
+requested information, regardless of if the function succeeds. This parameter
+MUST NOT be NULL.</p><p><b>Return Values: </b>The method MUST return STATUS_SUCCESS
+(0x00000000) on success. The method MUST return STATUS_BUFFER_TOO_SMALL
+(0xC0000023) if the buffer is too small to fit even one record. Otherwise, it
+MUST return an implementation-based, nonzero NTSTATUS value specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>In response to this request from the client, the server MUST
+first check that the handle is valid. The server MUST fail the operation with
+the error STATUS_INVALID_HANDLE (0xC0000008) if the handle is invalid.</p><p>If lpBuffer is not large enough to contain an
+EVENTLOG_FULL_INFORMATION (section 2.2.4) structure (<i>cbBufSize</i>
+is less than the number of bytes needed for an
+EVENTLOG_FULL_INFORMATION (section 2.2.4) structure), the server MUST
+set the <i>pcbBytesNeeded</i> parameter to the number of bytes needed to hold
+an EVENTLOG_FULL_INFORMATION (section 2.2.4) structure, MUST fail the
+method, and MUST return STATUS_BUFFER_TOO_SMALL (0xC0000023).</p><p>If the above checks all succeed, the server MUST fill in an EVENTLOG_FULL_INFORMATION (section 2.2.4)
+structure into the lpBuffer with the dwFull member of the structure being set
+to 1 if the event log is full, and set to zero if the event log is not full. In
+addition, the <i>pcbBytesNeeded</i> parameter MUST be set to the size of an
+EVENTLOG_FULL_INFORMATION (section 2.2.4) structure. The server MUST
+then return success. Note that the event log is treated as full when a new
+record cannot be appended to it. A new record cannot be appended when the
+maximum size limitation of the log has been reached and the existing records of
+the log cannot be overwritten. When this happens, a flag indicating that the
+event log is full is set in the log file. This method checks whether that flag
+is set or not.</p></div>

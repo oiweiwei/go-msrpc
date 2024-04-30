@@ -1,0 +1,52 @@
+<div class="content"><p> </p><p>The DRS_MSG_GETREPLINFO_REPLY union defines response
+messages received from the <span><a href="dd29f9ce-b30b-411e-bd54-b77634eded47" data-linktype="relative-path">IDL_DRSGetReplInfo</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(0)] 
+     DS_REPL_NEIGHBORSW* pNeighbors;
+   [case(1)] 
+     DS_REPL_CURSORS* pCursors;
+   [case(2)] 
+     DS_REPL_OBJ_META_DATA* pObjMetaData;
+   [case(3)] 
+     DS_REPL_KCC_DSA_FAILURESW* pConnectFailures;
+   [case(4)] 
+     DS_REPL_KCC_DSA_FAILURESW* pLinkFailures;
+   [case(5)] 
+     DS_REPL_PENDING_OPSW* pPendingOps;
+   [case(6)] 
+     DS_REPL_ATTR_VALUE_META_DATA* pAttrValueMetaData;
+   [case(7)] 
+     DS_REPL_CURSORS_2* pCursors2;
+   [case(8)] 
+     DS_REPL_CURSORS_3W* pCursors3;
+   [case(9)] 
+     DS_REPL_OBJ_META_DATA_2* pObjMetaData2;
+   [case(10)] 
+     DS_REPL_ATTR_VALUE_META_DATA_2* pAttrValueMetaData2;
+   [case(0xFFFFFFFA)] 
+     DS_REPL_SERVER_OUTGOING_CALLS* pServerOutgoingCalls;
+   [case(0xFFFFFFFB)] 
+     UPTODATE_VECTOR_V1_EXT* pUpToDateVec;
+   [case(0xFFFFFFFC)] 
+     DS_REPL_CLIENT_CONTEXTS* pClientContexts;
+   [case(0xFFFFFFFE)] 
+     DS_REPL_NEIGHBORSW* pRepsTo;
+ } DRS_MSG_GETREPLINFO_REPLY;
+</pre></div>
+</dd></dl><p><b>pNeighbors:</b>  Neighbor information.</p><p><b>pCursors:</b>  Cursors for an <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_325d116f-cdbe-4dbd-b7e6-769ba75bf210" data-linktype="relative-path">NC
+replica</a></span>.</p><p><b>pObjMetaData:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">Attribute</a></span>
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ff635a35-a17d-477b-a30d-9723b415bf00" data-linktype="relative-path">stamps</a></span>.</p><p><b>pConnectFailures:</b>  Connection
+failure data.</p><p><b>pLinkFailures:</b>  Link failure data.</p><p><b>pPendingOps:</b>  Pending operations in
+the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span>
+queue.</p><p><b>pAttrValueMetaData:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8878eaba-14b8-463b-94be-5784c1d24a85" data-linktype="relative-path">Link
+value stamps</a></span>.</p><p><b>pCursors2:</b>  Cursors for an NC
+replica.</p><p><b>pCursors3:</b>  Cursors for an NC
+replica.</p><p><b>pObjMetaData2:</b>  Attribute stamps.</p><p><b>pAttrValueMetaData2:</b>  Link value
+stamps.</p><p><b>pServerOutgoingCalls:</b>  Outstanding
+requests from this <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span> to other DCs.</p><p><b>pUpToDateVec:</b>  Cursors for an NC
+replica.</p><p><b>pClientContexts:</b>  Active <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+client connections.</p><p><b>pRepsTo:</b>  Neighbor information.</p></div>

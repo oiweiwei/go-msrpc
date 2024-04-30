@@ -1,0 +1,50 @@
+<div class="content"><p>The IPCHService interface is implemented by the <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_d27bcedc-ae63-4e15-a0cb-9b371f1820dc" data-linktype="relative-path">novice</a> to allow the <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_64520114-7ddc-4f5a-b63d-81d79b9a6693" data-linktype="relative-path">expert</a> to request a <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_9d7b1eb9-8131-4eb3-ad5b-08792b014893" data-linktype="relative-path">Remote Assistance Connection</a>
+String.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="90b2d2e5-7931-4762-8949-04617e1d9089#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><p>The <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a>
+for this interface is: &#34;833E4200-AFF7-4AC3-AAC2-9F24C1457BCE&#34;.</p><p>Methods in RPC opnum order:</p><ul><li><p><span><span> 
+</span></span><a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">Opnums</a> 0,
+1, and 2 are reserved for the IUnknown_QueryInterface, AddRef, and Release
+methods used by the standard COM IUnknown interface specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">3.1.1.5.8</a>.
+</p>
+</li><li><p><span><span> 
+</span></span>Opnums 3 and 4 are not used across the network. These opnums are
+reserved and MUST NOT be used.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="90b2d2e5-7931-4762-8949-04617e1d9089#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a> </p>
+</li><li><p><span><span> 
+</span></span>Opnums 5 and 6 are reserved for the GetIDsOfNames and Invoke
+methods in the IDispatch interface specified in <a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a>
+section <a href="../ms-oaut/c2c7dbe2-bafa-49da-93a7-7b75499ef90a" data-linktype="relative-path">3.1</a>.
+</p>
+</li><li><p><span><span> 
+</span></span>Opnums 7 through 18 and opnum 21 are not used by this protocol.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="253af556-3edc-40d0-8ffa-5a6e23e6ecb5" data-linktype="relative-path">RemoteConnectionParms</a></p>
+  </td>
+  <td>
+  <p>Gets the Remote Assistance connection parameters for a
+  specified UserName, DomainName, and SessionID triple.</p>
+  <p>Opnum: 19</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="a7abc4db-6ad1-4aed-9cf7-72428f72ce96" data-linktype="relative-path">RemoteUserSessionInfo</a></p>
+  </td>
+  <td>
+  <p>Returns the collection of the <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b" data-linktype="relative-path">terminal services</a>
+  sessions on the remote novice computer. All the terminal services session
+  information is returned as a standard IPCHCollection interface. The members
+  of this collection are objects of type ISAFSession. ISAFSession includes the
+  DomainName, UserName, SessionID, and User SessionState for each session.</p>
+  <p>Opnum: 20</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p> </p></div>

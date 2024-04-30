@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The REGION_SPEC structure specifies a region for <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span>
+creation and deletion.</p><dl>
+<dd>
+<div><pre> struct regionspec {
+   LdmObjectId regionId;
+   REGIONTYPE regionType;
+   LdmObjectId diskId;
+   LONGLONG start;
+   LONGLONG length;
+   LONGLONG lastKnownState;
+ };
+ typedef struct regionspec REGION_SPEC;
+</pre></div>
+</dd></dl><p><b>regionId:</b>  Specifies the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_aaaf2f1a-0b0a-487e-a0f0-c3510a6091b2" data-linktype="relative-path">OID</a></span>
+for the region.</p><p><b>regionType:</b>  Specifies the region
+type. </p><p><b>diskId:</b>  Specifies the OID for the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>
+on which the region resides.</p><p><b>start:</b>  Specifies the byte offset of
+the region on disk.</p><p><b>length:</b>  Specifies the length of the
+region in bytes.</p><p><b>lastKnownState:</b>  Specifies the
+region&#39;s last known <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_5a574d80-6bdb-4fb0-a0dd-b0601d16b4cd" data-linktype="relative-path">modification sequence number</a></span>.</p></div>

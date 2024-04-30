@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The DMNOTIFY_INFO_TYPE enumeration defines the type of object
+described by an <span><a href="1112ac28-9ad9-46b7-951e-1e5e0782f18a" data-linktype="relative-path">ObjectsChanged</a></span>
+call.</p><dl>
+<dd>
+<div><pre> typedef  enum _dmNotifyInfoType
+ {
+   DMNOTIFY_UNKNOWN_INFO,
+   DMNOTIFY_DISK_INFO,
+   DMNOTIFY_VOLUME_INFO,
+   DMNOTIFY_REGION_INFO,
+   DMNOTIFY_TASK_INFO,
+   DMNOTIFY_DL_INFO,
+   DMNOTIFY_FS_INFO,
+   DMNOTIFY_SYSTEM_INFO 
+ } DMNOTIFY_INFO_TYPE;
+</pre></div>
+</dd></dl><p><b>DMNOTIFY_UNKNOWN_INFO:  </b>Object is of an
+unknown type.</p><p><b>DMNOTIFY_DISK_INFO:  </b>Object is a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.</p><p><b>DMNOTIFY_VOLUME_INFO:  </b>Object is a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>.</p><p><b>DMNOTIFY_REGION_INFO:  </b>Object is a region.</p><p><b>DMNOTIFY_TASK_INFO:  </b>Object is a task.</p><p><b>DMNOTIFY_DL_INFO:  </b>Object is a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_1b153cd0-e3f3-4383-bc66-d5ad482c9766" data-linktype="relative-path">drive
+letter</a></span>.</p><p><b>DMNOTIFY_FS_INFO:  </b>Object is a file system.</p><p><b>DMNOTIFY_SYSTEM_INFO:  </b>Object is the Disk
+Management system.</p></div>

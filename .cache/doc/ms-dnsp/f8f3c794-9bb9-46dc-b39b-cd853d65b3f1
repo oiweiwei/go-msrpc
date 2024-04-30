@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_ZONE_SKD</b> structure<a id="Appendix_A_Target_51"></a><a aria-label="Product behavior note 51" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_51" data-linktype="relative-path">&lt;51&gt;</a> groups all the properties of a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_621e5d7b-d764-4196-b838-b52bf82b9380" data-linktype="relative-path">signing
+key descriptor</a></span> of a zone.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcZoneSKDSettings {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   PDNS_RPC_SKD pSkd;
+   PDNS_RPC_SKD_STATE pSkdState;
+   PDNS_RPC_SKD_STATE_EX pSkdStateEx;
+ } DNS_RPC_ZONE_SKD,
+  *PDNS_RPC_ZONE_SKD;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The structure version
+number; this MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> MUST be set to zero when sent and
+MUST be ignored on receipt.</p><p><b>pSkd:</b> The static properties of a zone SKD.
+This is a <span><a href="f7b0ad42-4cae-40fd-87c8-82af83824639" data-linktype="relative-path">DNS_RPC_SKD
+structure (section 2.2.6.2.1)</a></span>.</p><p><b>pSkdState:</b> The dynamic properties of a zone
+SKD. This is a <span><a href="b211f988-4404-4c14-b293-bafd114b0eb6" data-linktype="relative-path">DNS_RPC_SKD_STATE
+structure (section 2.2.6.2.3)</a></span>.</p><p><b>pSkdStateEx:</b> The extended dynamic properties
+of a zone SKD. This is a <span><a href="4578b265-4ff9-4294-92d5-05dbaa845037" data-linktype="relative-path">DNS_RPC_SKD_STATE_EX
+structure (section 2.2.6.2.11)</a></span>.</p></div>

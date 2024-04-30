@@ -1,0 +1,21 @@
+<div class="content"><p>The <b>RECTL</b> structure defines a rectangle on a form,
+with two (x,y) coordinates in 1/1000 millimeter units.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   long left;
+   long top;
+   long right;
+   long bottom;
+ } RECTL;
+</pre></div>
+</dd></dl><p><b>left:</b> The x-coordinate of the upper-left
+corner of the rectangle relative to the left edge of the form. This value MUST
+be an integer greater than or equal to 0 and it MUST be smaller than or equal
+to the &#39;right&#39;.</p><p><b>top:</b> The y-coordinate of the upper-left
+corner of the rectangle relative to the top edge of the form. This value MUST
+be an integer greater than or equal to 0 and it MUST be smaller than or equal
+to the &#39;bottom&#39;.</p><p><b>right:</b> The x-coordinate of the
+lower-right corner of the rectangle relative to the left edge of the form. This
+value MUST be greater than or equal to &#39;left&#39;.</p><p><b>bottom:</b> The y-coordinate of the
+lower-right corner of the rectangle relative to the top edge of the form. This
+value MUST be greater than or equal to &#39;top&#39;.</p></div>

@@ -1,0 +1,208 @@
+<div class="content"><p>The RevokeCertificate method revokes a <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> either
+immediately or on a specified date. It instructs the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> to revoke a certificate
+based on the certificate&#39;s serial number and reason code.</p><dl>
+<dd>
+<div><pre> HRESULT RevokeCertificate(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in, string, unique] wchar_t const* pwszSerialNumber,
+   [in] DWORD Reason,
+   [in] FILETIME FileTime
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">ICertAdminD::SetExtension (section 3.1.4.1.1)</a>.
+</p><p><b>pwszSerialNumber: </b>A null-terminated Unicode
+string that specifies a serial number that identifies the certificate to be
+revoked. The string MUST specify the serial number as plain hexadecimal digits
+(no leading 0x) as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90414" data-linktype="external">[RFC3280]</a> section
+4.1.2.2.<a id="Appendix_A_Target_36"></a><a aria-label="Product behavior note 36" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_36" data-linktype="relative-path">&lt;36&gt;</a></p><p><b>Reason: </b>An unsigned integer value that
+specifies the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_caac8fa2-5e21-43b9-a3fe-be0819b906bf" data-linktype="relative-path">revocation</a>
+reason code. The revocation reason code MUST be either one of the values listed
+in the following <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_d3a7da8d-a597-4838-9756-25e30b640ba7" data-linktype="relative-path">table</a>
+(and specified in [RFC3280] section 5.3.1), or one of the following values:
+0xfffffffd, 0xfffffffe, or 0xffffffff.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>unspecified</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>keyCompromise</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>cACompromise</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p>affiliationChanged</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4</p>
+  </td>
+  <td>
+  <p>superseded</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>5</p>
+  </td>
+  <td>
+  <p>cessationOfOperation</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  </td>
+  <td>
+  <p>certificateHold</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>8</p>
+  </td>
+  <td>
+  <p>removeFromCRL</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xfffffffd</p>
+  </td>
+  <td>
+  <p>See
+  processing rules, beginning with rule 2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xfffffffe</p>
+  </td>
+  <td>
+  <p>See
+  processing rules, beginning with rule 3.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xffffffff</p>
+  </td>
+  <td>
+  <p><a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_79be4e32-d4d9-4c8e-841f-880ade9015d4" data-linktype="relative-path">Released from hold</a>. (See
+  processing rules, beginning with rule 4.)</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>FileTime: </b>Contains a 64-bit value that
+represents the number of 100-nanosecond intervals since January 1, 1601 (<a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">UTC</a>). This value specifies
+the date, according to Greenwich Mean Time, when the certificate became
+invalid. The <i>FileTime</i> corresponds to the Request_Revocation_Date that is
+defined in section <a href="2f82efc0-66dd-49b7-9556-425805e63d30" data-linktype="relative-path">3.1.1.1</a>.</p><p>The following processing rules apply: </p><ol><li><p><span>    </span>The CA MUST find
+a row in the request table that contains the certificate that needs to be
+revoked in this method invocation. The CA finds the row by comparing the value
+of the <i>pwszSerialNumber</i> parameter to the values of the Serial_Number
+column in the request table. This is a case-sensitive string comparison. If
+none of the rows in the Request table have a Serial_Number value that is
+identical to the value that is passed in the <i>pwszSerialNumber</i> parameter,
+the CA MUST fail the request. The error returned SHOULD be 0x80070057. When a
+row that has an identical serial number, as previously specified, is found, the
+CA SHOULD continue with the following processing rules.</p>
+<p><b>Note</b>  These
+processing rules refer to this row as the identified row.</p>
+</li><li><p><span>    </span>If the <i>Reason</i>
+parameter is 0xfffffffd, the CA MUST set the Publish_Expired_Cert_In_CRL column
+of the identified row to 0 and return successfully.<a id="Appendix_A_Target_37"></a><a aria-label="Product behavior note 37" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_37" data-linktype="relative-path">&lt;37&gt;</a></p>
+</li><li><p><span>    </span>If the <i>Reason</i>
+parameter is 0xfffffffe, the CA MUST set the Publish_Expired_Cert_In_CRL column
+of the identified row to 1 and return successfully.<a id="Appendix_A_Target_38"></a><a aria-label="Product behavior note 38" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_38" data-linktype="relative-path">&lt;38&gt;</a></p>
+</li><li><p><span>    </span>If the value for
+the <i>Reason</i> parameter is 0xffffffff and the value of the
+Request_Revoked_Reason column in the identified row is not
+&#34;certificateHold&#34;, the CA MUST fail the request, and the error code
+SHOULD be ERROR_INVALID_DATA.</p>
+</li><li><p><span>    </span>If the <i>Reason</i>
+parameter is not 0, 1, 2, 3, 4, 5, 6, 8, 0xfffffffd, 0xfffffffe, or 0xffffffff,
+the CA MUST fail the request. The error code SHOULD be E_INVALIDARG
+(0x80070057), as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.
+Otherwise, the CA MUST continue with the following processing rules. The
+Windows mnemonic for reason code 6 is CRL_REASON_CERTIFICATE_HOLD.</p>
+</li><li><p><span>    </span>If the
+Request_Disposition column of the identified row equals &#34;certificate
+issued&#34;, the CA MUST set the Request_Disposition column of the identified
+row to &#34;certificate revoked&#34;, and the CA SHOULD set the value of the
+Request_Disposition_Message column in the identified row to any value that the
+implementer considers informative for presentation to a human. In this case,
+the Microsoft CA sets Request_Disposition_Message to &#34;Revoked by <i>{username}</i>&#34;
+where &#34;<i>{username}</i>&#34; is replaced with the user name of the
+caller.</p>
+</li><li><p><span>    </span>If the
+Request_Disposition column of the identified row equals &#34;certificate
+revoked&#34;:</p>
+<ol><li><p><span>   
+</span>If the Request_Revoked_Reason column of the identified row equals
+&#34;certificateHold&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>If the <i>Reason</i> parameter is 0xffffffff, the CA MUST set the
+Request_Disposition column to &#34;certificate issued&#34;, and the CA SHOULD
+set the value of the Request_Disposition_Message column in the identified row
+to any value the implementer considers informative for presentation to a human.
+In this case, the Microsoft CA sets Request_Disposition_Message to
+&#34;Revoked by <i>{username}</i>&#34; where &#34;<i>{username}</i>&#34; is
+replaced with the user name of the caller.</p>
+</li><li><p><span><span> 
+</span></span>The CA MUST continue with processing, following rules 9 and 10.</p>
+</li></ul></li><li><p><span>   
+</span>If the Request_Revoked_Reason column of the identified row does not
+equal &#34;certificateHold&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>If the <i>Reason</i> parameter is 0xffffffff, the CA MUST fail
+the request, as specified in the preceding rule 4.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>Reason</i> parameter is &#34;certificateHold&#34;,
+the CA MUST fail the request. The error code SHOULD be ERROR_INVALID_DATA
+(0x8007000D), as specified in [MS-ERREF] section 2.1.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>Reason</i> parameter does not equal 0xffffffff and does
+not equal &#34;certificateHold&#34;, the CA MUST continue with processing,
+following rules 9 and 10.</p>
+<p>One implication of this rule is
+that the Windows CA allows updating of the Request_Revoked_Reason and
+Request_Revocation_Date values of a certificate that has already been revoked.
+Although [RFC3280] section 5.3.3 describes revocationDate as the &#34;date at
+which the CA processed the revocation&#34;, the Windows CA allows a different
+date to be used. </p>
+</li></ul></li></ol></li><li><p><span>    </span>If the
+Request_Disposition column of the identified row does not equal
+&#34;certificate issued&#34; and the Request_Disposition column of the
+identified row does not equal &#34;certificate revoked&#34;, the CA MUST fail
+the request. The error code SHOULD be ERROR_INVALID_DATA, as specified in
+[MS-ERREF] section 2.1.</p>
+</li><li><p><span>    </span>The CA MUST set
+the Request_Revoked_Reason column of the identified row to the value passed in
+the <i>Reason</i> parameter.</p>
+</li><li><p><span>  </span>The CA MUST set the
+Request_Revocation_Date column of the identified row to the value passed in the
+<i>FileTime</i> parameter.</p>
+</li><li><p><span>  </span>The CA MUST set the
+Request_Revoked_When column of the identified row to the current time.</p>
+</li></ol></div>

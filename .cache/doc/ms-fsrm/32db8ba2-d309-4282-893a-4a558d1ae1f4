@@ -1,0 +1,22 @@
+<div class="content"><p>The FsrmReportFormat enumeration defines the set of formats
+that the File Server Resource Manager Protocol can use when generating reports.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmReportFormat
+ {
+   FsrmReportFormat_Unknown = 0,
+   FsrmReportFormat_DHtml = 1,
+   FsrmReportFormat_Html = 2,
+   FsrmReportFormat_Txt = 3,
+   FsrmReportFormat_Csv = 4,
+   FsrmReportFormat_Xml = 5
+ } FsrmReportFormat;
+</pre></div>
+</dd></dl><p><b>FsrmReportFormat_Unknown:  </b>This enumeration
+value is not used by FSRM and MUST NOT be referenced. If the server receives
+this enumeration value, it MUST consider the value invalid and not apply any
+changes.</p><p><b>FsrmReportFormat_DHtml:  </b>The report is
+rendered in Dynamic Hypertext Markup Language (DHTML).</p><p><b>FsrmReportFormat_Html:  </b>The report is rendered
+in HTML.</p><p><b>FsrmReportFormat_Txt:  </b>The report is rendered
+as a text file.</p><p><b>FsrmReportFormat_Csv:  </b>The report is rendered
+as a comma-separated value file.</p><p><b>FsrmReportFormat_Xml:  </b>The report is rendered
+in XML.</p></div>

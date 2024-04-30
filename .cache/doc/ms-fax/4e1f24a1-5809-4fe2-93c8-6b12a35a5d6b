@@ -1,0 +1,36 @@
+<div class="content"><p> </p><p>An array of the <b>FAX_GLOBAL_ROUTING_INFOW</b> structure is
+used as an input parameter to <b>FAX_SetGlobalRoutingInfo</b> (section <span><a href="12299ef5-b7b4-46c0-8d7f-f0fe33ff800c" data-linktype="relative-path">3.1.4.1.81</a></span>)
+and <b>FaxObs_SetGlobalRoutingInfo</b> (section <span><a href="44ec4feb-49d3-42c0-ab26-eefb4d99aa30" data-linktype="relative-path">3.1.4.2.23</a></span>).</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD SizeOfStruct;
+   DWORD Priority;
+   [string] LPCWSTR Guid;
+   [string] LPCWSTR FriendlyName;
+   [string] LPCWSTR FunctionName;
+   [string] LPCWSTR ExtensionImageName;
+   [string] LPCWSTR ExtensionFriendlyName;
+ } FAX_GLOBAL_ROUTING_INFOW,
+  *PFAX_GLOBAL_ROUTING_INFOW;
+</pre></div>
+</dd></dl><p><b>SizeOfStruct:</b> A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that holds the total size of the structure, in bytes. This value MUST be 28
+bytes or 48 bytes. When filled in on a 32-bit implementation, this value SHOULD
+be 28 bytes. When filled in on a 64-bit implementation, this value SHOULD be 48
+bytes.</p><p><b>Priority:</b> A <b>DWORD</b> variable that holds
+the priority of the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_d98e028a-1e6d-4e09-a915-7e8b90d9f9de" data-linktype="relative-path">fax routing method</a></span>.
+The priority determines the relative order in which the fax service calls the
+fax routing methods when the service receives a <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_cce65523-bec8-486a-8c6c-6091c52af3d3" data-linktype="relative-path">fax document</a></span>. Values
+for this member MUST be 1 through the maximum <b>DWORD</b> value (0xFFFFFFFF or
+4,294,967,295), where 1 is the highest priority.</p><p><b>Guid:</b> A pointer to a constant, null-terminated
+character string that holds the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> that uniquely
+identifies the fax routing method of interest.</p><p><b>FriendlyName:</b> A pointer to a constant,
+null-terminated character string that holds the user-friendly name to display
+for the fax routing method.</p><p><b>FunctionName:</b> A pointer to a null-terminated
+character string that holds the name of the function that executes the
+specified fax routing method.</p><p><b>ExtensionImageName:</b> A pointer to a constant,
+null-terminated character string that holds the name of the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_170298f8-e4d3-4ece-92a1-2e28c974734f" data-linktype="relative-path">fax
+routing extensions</a></span> that implements the fax routing method.</p><p><b>ExtensionFriendlyName:</b> A pointer to a constant,
+null-terminated character string that holds the user-friendly name to display
+for the fax routing extensions that implement the fax routing method.</p></div>

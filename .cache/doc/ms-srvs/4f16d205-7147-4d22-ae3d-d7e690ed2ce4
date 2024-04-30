@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The DISK_ENUM_CONTAINER structure contains a value that
+indicates the number of entries that the <span><a href="9160997b-3a34-496e-9f26-b3a857585aa7" data-linktype="relative-path">NetrServerDiskEnum</a></span>
+method returns and a pointer to the buffer that contains the entries.</p><dl>
+<dd>
+<div><pre> typedef struct _DISK_ENUM_CONTAINER {
+   DWORD EntriesRead;
+   [size_is(EntriesRead), length_is(EntriesRead)] 
+     LPDISK_INFO Buffer;
+ } DISK_ENUM_CONTAINER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  The number of entries
+that the method returns.</p><p><b>Buffer:</b>  A pointer to the <span><a href="4a3f2086-5c99-4876-b5b2-a54a410c86d1" data-linktype="relative-path">DISK_INFO</a></span>
+entries that the method returns.</p></div>

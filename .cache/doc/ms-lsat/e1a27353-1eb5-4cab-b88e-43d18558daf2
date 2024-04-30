@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The LSAPR_ACL structure defines the header of an <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_9f92aa05-dd0a-45f2-88d6-89f1fb654395" data-linktype="relative-path">access
+control list (ACL)</a></span> as specified in <span><a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a></span>
+section <span><a href="../ms-lsad/a9a03a85-5b08-4bb5-81c9-2c68751693ac" data-linktype="relative-path">2.2.3.2</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_ACL {
+   unsigned char AclRevision;
+   unsigned char Sbz1;
+   unsigned short AclSize;
+   [size_is(AclSize - 4)] unsigned char Dummy1[*];
+ } LSAPR_ACL,
+  *PLSAPR_ACL;
+</pre></div>
+</dd></dl><p>Individual member semantics are specified in [MS-LSAD]
+section 2.2.3.2.</p></div>

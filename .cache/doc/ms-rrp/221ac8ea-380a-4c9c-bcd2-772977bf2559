@@ -1,0 +1,131 @@
+<div class="content"><p> </p><p>The BaseRegRestoreKey method is called by the client. In
+response, the server reads the <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_2d67ea57-10e6-422f-985e-694834945a02" data-linktype="relative-path">registry</a></span> information
+in a specified file and copies it over the specified key. The registry
+information takes the form of a key and multiple levels of subkeys.</p><dl>
+<dd>
+<div><pre> error_status_t BaseRegRestoreKey(
+   [in] RPC_HKEY hKey,
+   [in] PRRP_UNICODE_STRING lpFile,
+   [in] DWORD Flags
+ );
+</pre></div>
+</dd></dl><p><b>hKey: </b>A handle to a key that MUST have been
+opened previously by using one of the open methods that are specified in
+section <span><a href="053e8515-dbae-47ea-a7c6-6dc054e3a48f" data-linktype="relative-path">3.1.5</a></span>: <span><a href="956a3052-6580-43ee-91aa-aaf61726149b" data-linktype="relative-path">OpenClassesRoot</a></span>,
+<span><a href="ec140ed9-4d00-4c03-a15c-c7245a497ed5" data-linktype="relative-path">OpenCurrentUser</a></span>,
+<span><a href="6cef29ae-21ba-423f-9158-05145ac80a5b" data-linktype="relative-path">OpenLocalMachine</a></span>,
+<span><a href="7b514c63-6cad-4fe1-9780-743959e377e6" data-linktype="relative-path">OpenPerformanceData</a></span>,
+<span><a href="694e57f4-da3e-4285-8b71-3181d71d6cd1" data-linktype="relative-path">OpenUsers</a></span>,
+<span><a href="c7186ae2-1c82-45e9-933b-97d9873657e8" data-linktype="relative-path">BaseRegCreateKey</a></span>,
+<span><a href="8cb48f55-19e1-4ea2-8d76-dd0f6934f0d9" data-linktype="relative-path">BaseRegOpenKey</a></span>,
+<span><a href="160767d7-83cf-4718-a4f3-d864faee3bb1" data-linktype="relative-path">OpenCurrentConfig</a></span>,
+<span><a href="44954f6d-ef2c-4ec1-a27d-32b9b87e3c8a" data-linktype="relative-path">OpenPerformanceText</a></span>,
+<span><a href="3626fa8a-b20f-4243-bf85-cdb615ed2ca0" data-linktype="relative-path">OpenPerformanceNlsText</a></span>.</p><p><b>lpFile: </b>A pointer to an <span><a href="c0c90f11-a4c4-496a-ac09-8a8a3697ceef" data-linktype="relative-path">RRP_UNICODE_STRING</a></span>
+structure that contains an existing registry file name. The format of the file
+name SHOULD<a id="Appendix_A_Target_24"></a><a aria-label="Product behavior note 24" href="85f43046-e27d-4122-93ba-bc278f986fbe#Appendix_A_24" data-linktype="relative-path">&lt;24&gt;</a> be implementation-specific.</p><p><b>Flags: </b>An optional flag argument that is the
+bitwise OR of any of the following options.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>REG_WHOLE_HIVE_VOLATILE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>If set, registry keys created in the <b>Data Store</b>
+  from the file indicated by <i>lpFile</i> MUST be VOLATILE.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REG_REFRESH_HIVE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>If set, the location of the subtree that the <i>hKey</i>
+  parameter points to is restored to its state immediately following the last
+  flush. The subtree MUST NOT be lazy flushed (by calling BaseRegRestoreKey
+  with REG_NO_LAZY_FLUSH specified as the <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">value</a></span> of this
+  parameter); the caller MUST be a member of the Administrators Group; and the
+  handle the <i>hKey</i> parameter refers to MUST point to the root of the
+  subtree.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REG_NO_LAZY_FLUSH</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>If set, the key or subtree that is specified by the <i>hKey</i>
+  parameter does not automatically flush at regular intervals of time. The
+  server MUST set the property KEYNOPERIODICFLUSH equal to TRUE for the key
+  specified by the <i>hKey</i> parameter and all subkeys (see section <span><a href="3c984c3e-3e2a-40b8-b479-d4ddcfc50edb" data-linktype="relative-path">3.1.1.3</a></span>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REG_FORCE_RESTORE</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>If set, the restore operation is executed even if open
+  handles exist at (or beneath) the location in the registry hierarchy to which
+  the <i>hKey</i> parameter points.<a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="85f43046-e27d-4122-93ba-bc278f986fbe#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000013</p>
+  <p>ERROR_WRITE_PROTECT</p>
+  </td>
+  <td>
+  <p>A read or write operation was attempted to a volume
+  after it was dismounted. The server can no longer service registry requests
+  because server shutdown has been initiated.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Server Operations</p><p>The file specified by the <b>BaseRegRestoreKey</b> method is
+used as a registry <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_0e82f121-9fab-40e4-a8d9-aee009aa57b9" data-linktype="relative-path">hive</a></span>, and its
+contents are loaded into the registry, replacing the existing key and subkeys.
+The top-level key of the file replaces the key specified in the method.</p><p>If the registry server can no longer service registry
+requests because server shutdown has been initiated (<b>SHUTDOWNINPROGRESS</b>
+is set to TRUE), the server MUST return ERROR_WRITE_PROTECT.</p><p>In response to this request from the client, for a
+successful operation, the server MUST read the registry information from the
+specified file and copy it over the specified key.</p><p>If the HANDLETABLE contains an <i>hKey</i> for the key
+specified by the <i>hKey</i> parameter or any of its subkeys, the server MUST
+fail the method and return ERROR_ACCESS_DENIED.</p><p>If the <i>Flags</i> parameter in the request contains the
+value 0x00000001, the server MUST create a volatile view (changes are not saved
+to the backing store) of the registry tree.</p><p>The server MUST return 0 to indicate success or an
+appropriate error code (as specified in [MS-ERREF]) to indicate an error.</p><p>If the parameter <i>lpFile</i> is NULL or references a
+buffer that is NULL, then the server MUST return ERROR_INVALID_PARAMETER.</p><p>If the parameter <i>lpFile</i> does not contain a valid file
+name, then the server MUST return ERROR_INVALID_PARAMETER.</p><p>If the parameter <i>lpFile</i> references a registry file
+that does not exist, the server MUST return ERROR_FILE_NOT_FOUND.</p></div>

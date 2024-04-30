@@ -1,0 +1,73 @@
+<div class="content"><p>The R_WinsWorkerThdUpd method updates the number of threads
+that have been created to serve <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_b86c44e6-57df-4c48-8163-5e3fa7bdcff4" data-linktype="relative-path">NetBIOS</a> requests.</p><dl>
+<dd>
+<div><pre> DWORD R_WinsWorkerThdUpd(
+   [in] handle_t ServerHdl,
+   [in] DWORD NewNoOfNbtThds
+ );
+</pre></div>
+</dd></dl><p><b>ServerHdl: </b>An <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding over IP
+address/HostName to the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a>
+server. RPC uses this binding internally to determine which WINS server the
+call is directed to.</p><p><b>NewNoOfNbtThds: </b>New value for the number of
+worker threads that have been created for NetBIOS requests.</p><p><b>Return Values: </b>A 32 bit unsigned integer that
+indicates the return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that operation completed successfully. A nonzero return value is a
+Win32 error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following Win32 error codes can be returned:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000FA0</p>
+  <p>ERROR_WINS_INTERNAL</p>
+  </td>
+  <td>
+  <p>An error occurred while processing the RPC call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller doesn&#39;t have sufficient permissions.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Processing and Response Requirements:</b></p><p>The following requirements and recommendations apply to a
+WINS server that processes a call to <a href="e231089b-eb49-40d2-8b62-2b1437e9f98a" data-linktype="relative-path">R_WinsWorkerThdUpd</a>:</p><ul><li><p><span><span> 
+</span></span>The R_WinsWorkerThdUpd caller SHOULD have control level access.
+If an RPC client with a lower access level calls this method, the server SHOULD
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>The WINS service MUST be in the running or paused state for this
+method to succeed. If the service is in the initializing or exiting state, the
+server SHOULD return ERROR_WINS_INTERNAL.</p>
+</li><li><p><span><span> 
+</span></span>The new number given in <i>NewNoOfNbtThds</i> MUST be in the
+range 2 through 19, inclusive. Otherwise, the server SHOULD return an
+ERROR_WINS_INTERNAL error.</p>
+</li><li><p><span><span> 
+</span></span>The R_WinsWorkerThdUpd call sets the number of worker threads
+that serve NetBIOS requests to the new number given in <i>NewNoOfNbtThds</i>.
+If the existing number of NetBIOS threads is same as the requested number, the
+RPC call SHOULD return immediately. Otherwise, NetBIOS threads are created or
+deleted to adjust the total number of threads to the requested number.</p>
+</li></ul></div>

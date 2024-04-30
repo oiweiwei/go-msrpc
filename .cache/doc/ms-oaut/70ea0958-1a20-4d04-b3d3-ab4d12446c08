@@ -1,0 +1,32 @@
+<div class="content"><p> </p><p>The IsName method indicates whether the specified string
+matches the name of a type or type member that is contained in the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_4057fc86-007f-496f-a966-01c762088a8e" data-linktype="relative-path">automation
+type library</a></span> or its binding context.</p><dl>
+<dd>
+<div><pre> HRESULT IsName(
+   [in] LPOLESTR szNameBuf,
+   [in] ULONG lHashVal,
+   [out] BOOL* pfName,
+   [out] BSTR* pBstrNameInLibrary
+ );
+</pre></div>
+</dd></dl><p><b>szNameBuf: </b>MUST be set to a string to be
+tested if it matches the name of a type or type member.</p><p><b>lHashVal: </b>MUST be either the hash value that
+corresponds to the value of <i>szNameBuf</i> (as specified in section <span><a href="7a8ed4c3-14a4-433c-baa5-b6ec88135352" data-linktype="relative-path">2.2.51</a></span>)
+or 0.</p><p><b>pfName: </b>MUST be set to TRUE if the specified
+string matches the name of a type or member that is contained in the automation
+type library (see section <span><a href="8d41f577-7cba-48f2-94a4-141372f59a0e" data-linktype="relative-path">3.11.4.9</a></span>) or its
+binding context (see section <span><a href="693e9d4f-c274-4886-8e4f-07899ba023c7" data-linktype="relative-path">3.5.4.1.1.1</a></span>)
+according to the string-matching criteria, as specified in section <span><a href="ef05bc9b-062d-467b-ad88-0f19e3e545f6" data-linktype="relative-path">2.2.50</a></span>.
+Otherwise, MUST be set to FALSE.</p><p><b>pBstrNameInLibrary: </b>MUST be set to a string
+whose value matches the value of <i>szNameBuf</i> according to the
+string-matching rules (as specified in section 2.2.50), if <i>pfName</i> is
+TRUE. MUST be set to a NULL BSTR if <i>pfName</i> is FALSE.</p><p><b>Return Values: </b>The method MUST return the
+information in an <b>HRESULT</b> data structure, which is defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul></div>

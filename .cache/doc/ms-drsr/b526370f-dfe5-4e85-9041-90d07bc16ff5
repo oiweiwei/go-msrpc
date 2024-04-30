@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The ATTRVALBLOCK structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete
+type</a></span> for a sequence of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span> values.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [range(0,10485760)] ULONG valCount;
+   [size_is(valCount)] ATTRVAL* pAVal;
+ } ATTRVALBLOCK;
+</pre></div>
+</dd></dl><p><b>valCount:</b>  The number of items in
+the pAVal array.</p><p><b>pAVal:</b>  The sequence of attribute
+values.</p></div>

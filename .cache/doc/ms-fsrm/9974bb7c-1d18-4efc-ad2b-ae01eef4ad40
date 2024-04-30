@@ -1,0 +1,36 @@
+<div class="content"><p>The RemoveById method removes from the collection of <b>Objects
+Being Enumerated</b> the object whose ID matches the specified <i>id</i>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_COLLECTION_MUTABLE | 0x03)] HRESULT RemoveById(
+   [in] FSRM_OBJECT_ID id
+ );
+</pre></div>
+</dd></dl><p><b>id: </b>The ID to match for identifying the object
+to be removed.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>An object with the specified ID was not found in the
+  collection.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST remove the matching item from the collection
+of <b>Objects Being Enumerated</b> or return a nonzero error code.</p><p>If no object in the collection of <b>Objects Being
+Enumerated</b> has an ID that matches the specified <i>id</i>, return
+FSRM_E_NOT_FOUND.</p><p>If the <b>Objects Being Enumerated</b> contained in the
+collection of <b>Objects Being Enumerated</b> are not VT_UNKNOWN or VT_DISPATCH
+types, return E_INVALIDARG.</p></div>

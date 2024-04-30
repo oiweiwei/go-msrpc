@@ -1,0 +1,41 @@
+<div class="content"><p>The PropertyDefinitionFlags (get) method returns the <i>Property
+Definition.Global</i>, <i>Property Definition.Secure</i>, and <i>Property
+Definition.Deprecated</i> values for the object.</p><dl>
+<dd>
+<div><pre> [propget, id(FSRM_PROPERTY(FSRM_DISPID_PROPERTY_DEFINITION2 | 0x01)), helpstring(&#34;This property contains the flags for the property definition&#34;)] HRESULT PropertyDefinitionFlags(
+   [out, retval] long* propertyDefinitionFlags
+ );
+</pre></div>
+</dd></dl><p><b>propertyDefinitionFlags: </b>Pointer to a variable
+that upon completion contains <i>Property Definition.Global</i>, <i>Property
+Definition.Secure</i>, and <i>Property Definition.Deprecated</i> values for the
+object.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>propertyDefinitionFlags</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <b>propertyDefinitionFlags</b> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>If the object&#39;s <i>Property Definition.Global</i> value is
+set to true, the server MUST set <b>FsrmPropertyDefinitionFlags_Global</b> on <i>propertyDefinitionFlags</i>.</p><p>If the object&#39;s <i>Property Definition.Secure</i> value is
+set to true, the server MUST set <b>FsrmPropertyDefinitionFlags.Secure</b> on <i>propertyDefinitionFlags</i>.</p><p>If the object&#39;s <i>Property Definition.Deprecated</i> value
+is set to true, the server MUST set <b>FsrmPropertyDefinitionFlags.Deprecated</b>
+on <i>propertyDefinitionFlags</i>.</p></div>

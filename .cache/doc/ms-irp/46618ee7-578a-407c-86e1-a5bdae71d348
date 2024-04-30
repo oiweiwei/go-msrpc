@@ -1,0 +1,57 @@
+<div class="content"><p> </p><p>The <b>R_InetInfoGetAdminInformation</b> method is called by
+the client. In response, the server retrieves configuration data for the
+specified <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_d9a0cf88-f6d7-4c52-a9fc-4ce5a7cb7260" data-linktype="relative-path">Internet protocol server</a></span>.</p><dl>
+<dd>
+<div><pre> DWORD R_InetInfoGetAdminInformation(
+   [in, string, unique] INET_INFO_IMPERSONATE_HANDLE pszServer,
+   [in] DWORD dwServerMask,
+   [out] LPINET_INFO_CONFIG_INFO* ppConfig
+ );
+</pre></div>
+</dd></dl><p><b>pszServer: </b>The custom binding handle for the
+target system, as specified in section <span><a href="a6931aa0-3ab6-4018-a398-e142cb8e409e" data-linktype="relative-path">2.1.1</a></span>. The value
+MUST NOT be used by the server implementation. </p><p><b>dwServerMask: </b>The identifier for the target
+Internet protocol server, as specified in section <span><b><a href="3e99d087-d9fd-46f8-a626-8656a4c58770" data-linktype="relative-path">2.2.2</a></b></span>.</p><p><b>ppConfig: </b>The pointer to a pointer to an <span><b><a href="9da17da8-74fe-4b0d-a19b-77fe5892bd3b" data-linktype="relative-path">INET_INFO_CONFIG_INFO</a></b></span>
+structure that contains configuration data for the specified Internet protocol
+server.</p><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>
+or [MS-ERREF] section <span><a href="../ms-erref/596a1078-e883-4972-9bbc-49e60bebca55" data-linktype="relative-path">2.3.1</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The system cannot find the specified file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000426</p>
+  <p>ERROR_SERVICE_NOT_ACTIVE</p>
+  </td>
+  <td>
+  <p>The service is not running.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown: </b>No exceptions are thrown
+beyond those thrown by the underlying <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, as
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>In response to this request from the client, the server MUST
+return the data specified in <i>ppConfig</i> and set the <b>FieldControl</b>
+member, as specified in <b>INET_INFO_CONFIG_INFO</b>.</p><p>Data returned MAY be a configuration that is persisted in a
+configuration store for the protocol server, runtime or derived data, or
+default operating values.</p><p>An implementation MAY support only a subset of the
+configuration data specified in the <b>INET_INFO_CONFIG_INFO</b> structure, but
+it MUST set the <b>FieldControl</b> member for any valid value returned.</p></div>

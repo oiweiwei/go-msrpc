@@ -1,0 +1,58 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/0a77fce2-834c-4681-a7cf-7148d7739121" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_PROPERTY_TYPE</b> enumeration defines the
+property types that are supported by a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_feef37b3-c173-4f51-aab6-b55a6366259b" data-linktype="relative-path">cluster</a> <b>PROPERTY_LIST</b>
+(section <a href="7ed348f2-eddf-4c3f-a1cb-b651ec3cff92" data-linktype="relative-path">2.2.3.10</a>)
+structure.</p><p><b>CLUSTER_PROPERTY_TYPE</b> values are unsigned 16-bit
+integer values. <b>CLUSTER_PROPERTY_TYPE</b> values provide the upper 2 bytes
+for the <b>CLUSTER_PROPERTY_SYNTAX</b> (section <a href="7ea3a0e0-d3b9-43e8-85d8-263fff3499da" data-linktype="relative-path">2.2.2.3</a>) enumeration
+values.</p><p>The <b>CLUSTER_PROPERTY_TYPE</b> values identify the type of
+data that is stored in a <b>PROPERTY_LIST</b>. Using the <b>CLUSTER_PROPERTY_TYPE</b>
+values, a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> can
+parse a <b>PROPERTY_LIST</b> to associate the proper semantics with each data
+value in the list.</p><p><b>CLUSTER_PROPERTY_TYPE</b> values MUST be used when
+specifying the type of data value that is stored in a <b>PROPERTY_LIST</b>. Any
+other value, when received in a form that specifies the type of data value that
+is stored in a <b>PROPERTY_LIST</b>, MUST be treated as an error.</p><p>The valid constant values for <b>CLUSTER_PROPERTY_TYPE</b>
+are listed below. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+MUST return only these values. All other values are reserved and MUST be
+treated as an error.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   CLUSPROP_TYPE_ENDMARK = 0x0000,
+   CLUSPROP_TYPE_LIST_VALUE = 0x0001,
+   CLUSPROP_TYPE_RESCLASS = 0x0002,
+   CLUSPROP_TYPE_NAME = 0x0004,
+   CLUSPROP_TYPE_SIGNATURE = 0x0005,
+   CLUSPROP_TYPE_SCSIADDRESS = 0x0006,
+   CLUSPROP_TYPE_DISK_NUMBER = 0x0007,
+   CLUSPROP_TYPE_PARTITION_INFO = 0x0008,
+   CLUSPROP_TYPE_DISK_SERIALNUMBER = 0x000a,
+   CLUSPROP_TYPE_DISK_GUID = 0x000b,
+   CLUSPROP_TYPE_DISK_SIZE = 0x000c,
+   CLUSPROP_TYPE_PARTITION_INFO_EX = 0x000d,
+   CLUSPROP_TYPE_PARTITION_INFO_EX2 = 0x000e
+ } CLUSTER_PROPERTY_TYPE;
+</pre></div>
+</dd></dl><p><b>CLUSPROP_TYPE_ENDMARK: </b>Indicates that the
+property type is an end mark. End marks denote the end of a value list.</p><p><b>CLUSPROP_TYPE_LIST_VALUE: </b>Describes a data
+value in a property list. For example, in the property list passed to a control
+code function for a property validation operation, <b>CLUSPROP_TYPE_LIST_VALUE</b>
+is the type required for inclusion with each property value.</p><p><b>CLUSPROP_TYPE_RESCLASS: </b>Indicates a property
+value that contains information about the class of the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_94e97f15-2f1a-406f-a740-607bb97761ec" data-linktype="relative-path">resource</a>, as specified in
+section <a href="a33153a3-3781-484b-a543-c13d02414f00" data-linktype="relative-path">2.2.3.7</a>.</p><p><b>CLUSPROP_TYPE_NAME: </b>Indicates a property name.</p><p><b>CLUSPROP_TYPE_SIGNATURE: </b>Indicates a property
+value that contains a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_0e4c21af-021e-4059-ae9a-7821ec3c2e39" data-linktype="relative-path">disk
+signature</a>.</p><p><b>CLUSPROP_TYPE_SCSIADDRESS: </b>Indicates a
+property value that contains a SCSI address, as specified in section <a href="4e71f14a-8b2e-49ff-8c2b-dd94720a3384" data-linktype="relative-path">2.2.3.8</a>.</p><p><b>CLUSPROP_TYPE_DISK_NUMBER: </b>Indicates a
+property value that contains a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_7e189ef6-060e-489a-8ef0-b9ec7fcc4a79" data-linktype="relative-path">disk number</a>.</p><p><b>CLUSPROP_TYPE_PARTITION_INFO: </b>Indicates a
+property value that contains the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a> information from
+a partition of a storage device, as specified in section <a href="b0a67c0a-7082-4ec3-9c08-ba94ce0bba4a" data-linktype="relative-path">2.2.3.9</a>.</p><p><b>CLUSPROP_TYPE_DISK_SERIALNUMBER: </b>Indicates a
+property value that contains a disk serial number.</p><p><b>CLUSPROP_TYPE_DISK_GUID: </b>Indicates a property
+value that contains a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>
+for a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GUID partitioning
+table (GPT)</a> disk, as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a>.</p><p><b>CLUSPROP_TYPE_DISK_SIZE: </b>Indicates a property
+value that contains the total size of a disk, in bytes.</p><p><b>CLUSPROP_TYPE_PARTITION_INFO_EX: </b>Indicates a
+property value that contains the extended partition information from a
+partition of a storage device, as specified in section <a href="33672b36-93df-4173-a589-1071bd12ad1b" data-linktype="relative-path">2.2.3.11</a>.</p><p><b>CLUSPROP_TYPE_PARTITION_INFO_EX2:</b> Indicates a
+property value that contains the extended partition information from a
+partition of a storage device, as specified in section <a href="3079f8d5-9ca9-4527-b926-508a300512bb" data-linktype="relative-path">2.2.3.45</a>.</p></div>

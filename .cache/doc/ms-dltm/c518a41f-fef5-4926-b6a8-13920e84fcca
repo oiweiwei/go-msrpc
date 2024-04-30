@@ -1,0 +1,48 @@
+<div class="content"><p> </p><p>The TRKSVR_SYNC_VOLUME structure is used as an array in
+calls to the <span><a href="cea51ffe-cab6-4b19-93b7-853189437ead" data-linktype="relative-path">LnkSvrMessage</a></span> method
+that specifies a SYNC_VOLUMES message (see section <span><a href="e6084ee0-fc0d-443e-a4fb-1a792ce70450" data-linktype="relative-path">2.2.11</a></span>), which in
+turn synchronizes volume information between the client and the server. Each
+TRKSVR_SYNC_VOLUME structure is termed a <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_29963f91-492c-4c33-ae33-c5185ac9315c" data-linktype="relative-path">subrequest</a></span> in this
+protocol specification.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   HRESULT hr;
+   TRKSVR_SYNC_TYPE SyncType;
+   CVolumeId volume;
+   CVolumeSecret secret;
+   CVolumeSecret secretOld;
+   SequenceNumber seq;
+   FILETIME ftLastRefresh;
+   CMachineId machine;
+ } TRKSVR_SYNC_VOLUME;
+</pre></div>
+</dd></dl><p><b>hr:</b>  A return value that indicates
+the success or failure of this TRKSVR_SYNC_VOLUME subrequest. The type of this
+field is an <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>,
+but unlike the standard definition, for this field, only zero is a successful
+return value. Except where otherwise specified, this value MUST NOT be
+TRK_E_VOLUME_QUOTA_EXCEEDED, which is defined in section 3.1.4.1. Any other nonzero
+value MUST be treated identically as a failure value.</p><p><b>SyncType:</b>  This indicates the type
+of synchronization request. Valid values are specified in section <span><a href="21c77c9a-0dc9-4d09-8efe-ee89b40c7fe6" data-linktype="relative-path">2.2.13</a></span>.</p><p><b>volume:</b>  The <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_3b3c1be2-035c-4823-afeb-10edbd6bb288" data-linktype="relative-path">VolumeID</a></span>
+to be synchronized. Whether this field is used depends on the SyncType value.
+For details, see sections <span><a href="f85b23fc-afba-4a28-81ce-c2853d9cf02b" data-linktype="relative-path">3.2.6.5</a></span> and <span><a href="e7a9a393-4ea6-4d5e-b2e9-5ad7de390abd" data-linktype="relative-path">3.1.4.4</a></span>.
+The <span><a href="../ms-dltw/4a6f00d9-a2ac-4876-95ea-5cd6772dcafa" data-linktype="relative-path">CVolumeId</a></span>
+type is as specified in <span><a href="../ms-dltw/fc649f0e-871a-431a-88b5-d5b2f80e9cc9" data-linktype="relative-path">[MS-DLTW]</a></span>
+section 2.2.4.</p><p><b>secret:</b>  The new <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_fbeb57dc-140f-4d47-b9c7-b86eaeefdd51" data-linktype="relative-path">VolumeSecret</a></span>
+to be used for this VolumeID. Whether this field is used depends on the
+SyncType value. For details, see sections 3.2.6.5 and 3.1.4.4.</p><p><b>secretOld:</b>  A VolumeSecret that is
+used to authenticate a <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_d223806a-659f-49b5-af12-620e3ea1363d" data-linktype="relative-path">VolumeOwner</a></span>. Whether
+this field is used depends on the SyncType value. For details, see sections
+3.2.6.5 and 3.1.4.4.</p><p><b>seq:</b>  A <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_2d952bfd-b779-4a21-8850-9f91c507d66b" data-linktype="relative-path">VolumeSequenceNumber</a></span>
+that is used for synchronization of move notifications, as specified in section
+<span><a href="00acb3e1-334b-4675-9097-618d69d7a8e1" data-linktype="relative-path">3.1.4.2</a></span>.
+Whether this field is used depends on the SyncType value. For details, see
+sections 3.2.6.5 and 3.1.4.4.</p><p><b>ftLastRefresh:</b>  The last time the
+server received a REFRESH notification from a client. Whether this field is
+used depends on the SyncType value. For details, see sections 3.2.6.5 and
+3.1.4.4.</p><p><b>machine:</b>  A <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_e15432dc-30dd-4e3d-8757-19b639769c95" data-linktype="relative-path">MachineID</a></span>
+of a VolumeOwner. This VolumeOwner is the VolumeOwner for the VolumeID
+specified in the <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> field.
+Whether this field is used depends on the SyncType value. For details, see
+sections 3.2.6.5 and 3.1.4.4; the <span><a href="../ms-dltw/240143d3-366d-4530-8828-1e82e98b68d7" data-linktype="relative-path">CMachineId</a></span>
+type is as specified in [MS-DLTW] section 2.2.2.</p></div>

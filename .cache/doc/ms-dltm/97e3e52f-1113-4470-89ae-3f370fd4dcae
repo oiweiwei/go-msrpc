@@ -1,0 +1,61 @@
+<div class="content"><p> </p><p>The TRKSVR_STATISTICS structure was originally defined for
+use in <span><a href="cea51ffe-cab6-4b19-93b7-853189437ead" data-linktype="relative-path">LnkSvrMessage</a></span>
+method calls that specify a STATISTICS message. The STATISTICS message type is
+not used in this protocol, but is included in this specification because it
+affects the size of the <span><a href="2f32d86a-18ea-472f-99d3-e9f3a333e329" data-linktype="relative-path">TRKSVR_MESSAGE_UNION</a></span>
+structure as it is transmitted over the <span><a href="a45c8c1a-fb81-4a65-a3f1-82d471da2197#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> Protocol.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned long cSyncVolumeRequests;
+   unsigned long cSyncVolumeErrors;
+   unsigned long cSyncVolumeThreads;
+   unsigned long cCreateVolumeRequests;
+   unsigned long cCreateVolumeErrors;
+   unsigned long cClaimVolumeRequests;
+   unsigned long cClaimVolumeErrors;
+   unsigned long cQueryVolumeRequests;
+   unsigned long cQueryVolumeErrors;
+   unsigned long cFindVolumeRequests;
+   unsigned long cFindVolumeErrors;
+   unsigned long cTestVolumeRequests;
+   unsigned long cTestVolumeErrors;
+   unsigned long cSearchRequests;
+   unsigned long cSearchErrors;
+   unsigned long cSearchThreads;
+   unsigned long cMoveNotifyRequests;
+   unsigned long cMoveNotifyErrors;
+   unsigned long cMoveNotifyThreads;
+   unsigned long cRefreshRequests;
+   unsigned long cRefreshErrors;
+   unsigned long cRefreshThreads;
+   unsigned long cDeleteNotifyRequests;
+   unsigned long cDeleteNotifyErrors;
+   unsigned long cDeleteNotifyThreads;
+   unsigned long ulGCIterationPeriod;
+   FILETIME ftLastSuccessfulRequest;
+   HRESULT hrLastError;
+   unsigned long dwMoveLimit;
+   long lRefreshCounter;
+   unsigned long dwCachedVolumeTableCount;
+   unsigned long dwCachedMoveTableCount;
+   FILETIME ftCachedLastUpdated;
+   long fIsDesignatedDc;
+   FILETIME ftNextGC;
+   FILETIME ftServiceStart;
+   unsigned long cMaxRPCThreads;
+   unsigned long cAvailableRPCThreads;
+   unsigned long cLowestAvailableRPCThreads;
+   unsigned long cNumThreadPoolThreads;
+   unsigned long cMostThreadPoolThreads;
+   short cEntriesToGC;
+   short cEntriesGCed;
+   short cMaxDsWriteEvents;
+   short cCurrentFailedWrites;
+   struct {
+     unsigned long dwMajor;
+     unsigned long dwMinor;
+     unsigned long dwBuildNumber;
+   } Version;
+ } TRKSVR_STATISTICS;
+</pre></div>
+</dd></dl></div>

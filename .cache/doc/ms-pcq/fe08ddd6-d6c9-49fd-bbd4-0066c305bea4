@@ -1,0 +1,11 @@
+<div class="content"><p>The _PERF_MULTI_COUNTERS structure is used in the counter
+header block.</p><dl>
+<dd>
+<div><pre> typedef struct _PERF_MULTI_COUNTERS {
+   unsigned long dwSize;
+   unsigned long dwCounters;
+ } PERF_MULTI_COUNTERS,
+  *PPERF_MULTI_COUNTERS;
+</pre></div>
+</dd></dl><p><b>dwSize:</b>  The size, in bytes, of this
+structure and the array of Performance Counter IDs.</p><p><b>dwCounters:</b>  The number of counters.</p></div>

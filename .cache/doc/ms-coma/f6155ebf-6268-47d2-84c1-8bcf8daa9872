@@ -1,0 +1,20 @@
+<div class="content"><p>This method is called by a client to perform capability
+negotiation for the 64-bit QueryCell Marshaling Format
+Capability (section <a href="628ebe08-d6a1-43b1-9d61-8515a23b54c2" data-linktype="relative-path">3.1.4.2)</a>.</p><dl>
+<dd>
+<div><pre> HRESULT Initialize64BitQueryCellSupport(
+   [in] BOOL bClientSupports64BitQueryCells,
+   [out] BOOL* pbServerSupports64BitQueryCells
+ );
+</pre></div>
+</dd></dl><p><b>bClientSupports64BitQueryCells: </b>A BOOL value
+that indicates whether the client supports the 64-bit QueryCell Marshaling
+Format.</p><p><b>pbServerSupports64BitQueryCells: </b>A pointer to
+a BOOL value that, upon successful completion, indicates whether the server
+supports the 64-bit QueryCell Marshaling Format.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server MUST
+attempt to set the value referenced by <i>pbServerSupports64BitQueryCells</i>
+to indicate whether it supports the 64-bit QueryCell marshaling format, and
+fail the call if it cannot set the value.</p></div>

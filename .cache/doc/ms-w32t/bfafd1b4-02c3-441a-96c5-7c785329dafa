@@ -1,0 +1,23 @@
+<div class="content"><p>The W32TIME_HARDWARE_PROVIDER_DATA structure contains
+operational information about a hardware <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9338a1cf-ec11-4e27-a042-dda5324a44fb" data-linktype="relative-path">time provider</a>, such as a
+cesium or atomic clock.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned __int32 ulSize;
+   unsigned __int32 ulError;
+   unsigned __int32 ulErrorMsgId;
+   [string, unique] wchar_t* wszReferenceIdentifier;
+ } W32TIME_HARDWARE_PROVIDER_DATA,
+  *PW32TIME_HARDWARE_PROVIDER_DATA;
+</pre></div>
+</dd></dl><p><b>ulSize:</b>  The size, in bytes, of this
+structure.</p><p><b>ulError:</b>  The <b>LastError</b>
+element value (see section <a href="8dd91cfb-5de2-4094-8cba-137400f963a3" data-linktype="relative-path">3.2.1.2</a>).
+Because the values transmitted in this field are implementation specific, all
+nonzero values MUST be treated as equivalent for the purposes of this protocol.<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a></p><p><b>ulErrorMsgId:</b>  The <b>LastErrorMessageId</b>
+element value (see section 3.2.1.2). The values in this field are
+implementation-specific. If an implementation receives a value it does not
+understand, the implementation MUST ignore the value.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p><p><b>wszReferenceIdentifier:</b>  The
+Reference Clock Identifier that identifies the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_76c8df1b-52ef-495d-97d9-7c032b1f6ca5" data-linktype="relative-path">time source</a> for this <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9846d08d-ad98-4bb9-a1e7-1f0bfbdd1113" data-linktype="relative-path">time service</a>, as specified
+in <a href="https://go.microsoft.com/fwlink/?LinkId=90272" data-linktype="external">[RFC1305]</a>
+Appendix A, &#34;NTP Data Format&#34;.</p></div>

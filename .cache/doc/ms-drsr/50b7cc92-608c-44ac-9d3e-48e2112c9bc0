@@ -1,0 +1,55 @@
+<div class="content"><p> </p><p>The DRS_MSG_ADDSIDREQ_V1 structure defines the request
+message sent to the <span><a href="376230a5-d806-4ae5-970a-f6243ee193c8" data-linktype="relative-path">IDL_DRSAddSidHistory</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD Flags;
+   [string] WCHAR* SrcDomain;
+   [string] WCHAR* SrcPrincipal;
+   [string, ptr] WCHAR* SrcDomainController;
+   [range(0,256)] DWORD SrcCredsUserLength;
+   [size_is(SrcCredsUserLength)] WCHAR* SrcCredsUser;
+   [range(0,256)] DWORD SrcCredsDomainLength;
+   [size_is(SrcCredsDomainLength)] 
+     WCHAR* SrcCredsDomain;
+   [range(0,256)] DWORD SrcCredsPasswordLength;
+   [size_is(SrcCredsPasswordLength)] 
+     WCHAR* SrcCredsPassword;
+   [string] WCHAR* DstDomain;
+   [string] WCHAR* DstPrincipal;
+ } DRS_MSG_ADDSIDREQ_V1;
+</pre></div>
+</dd></dl><p><b>Flags:</b>  A set of zero or more <span><a href="76d50efe-d165-42ee-b8e4-5face33fe081" data-linktype="relative-path">DRS_ADDSID_FLAGS</a></span>
+bit flags.</p><p><b>SrcDomain:</b>  Name of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>
+to query for the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span> of <b>SrcPrincipal</b>.
+The domain name can be an <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN (1)</a></span> or a
+NetBIOS name.</p><p><b>SrcPrincipal:</b>  Name of a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security
+principal</a></span> (user, computer, or <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_51c51c14-7f9d-4c0b-a69c-d3e059bfffac" data-linktype="relative-path">group</a></span>) in the source
+domain. This is the source security principal, whose SIDs will be added to the
+destination security principal. If <b>Flags</b> contains
+DS_ADDSID_FLAG_PRIVATE_CHK_SECURE, this parameter is not used and is not
+validated. Otherwise, if <b>Flags</b> does not contain
+DS_ADDSID_FLAG_PRIVATE_DEL_SRC_OBJ, this name is a domain-relative Security
+Accounts Manager (SAM) name. Otherwise, it is a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a></span>.</p><p><b>SrcDomainController:</b>  Name of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">primary
+domain controller (PDC)</a></span> (or <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_e42e52b3-e44f-4284-9c1b-e161f81ea516" data-linktype="relative-path">PDC role owner</a></span>) in
+the source domain. The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span> name can be an <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_4d5d5403-372f-4f9f-8d7a-65c310c807d9" data-linktype="relative-path">Internet
+host name</a></span> or a NetBIOS name. This parameter is only used when <b>Flags</b>
+contains neither DS_ADDSID_FLAG_PRIVATE_CHK_SECURE nor DS_ADDSID_FLAG_PRIVATE_DEL_SRC_OBJ.
+If <b>Flags</b> contains DS_ADDSID_FLAG_PRIVATE_DEL_SRC_OBJ, this parameter is
+not used, but it is validated.</p><p><b>SrcCredsUserLength:</b>  Count of
+characters in the <b>SrcCredsUser</b> array.</p><p><b>SrcCredsUser:</b>  User name for the
+credentials to be used in the source domain.</p><p><b>SrcCredsDomainLength:</b>  Count of
+characters in the <b>SrcCredsDomain</b> array.</p><p><b>SrcCredsDomain:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_45a1c9f1-0263-49a8-97c7-7aca1a99308c" data-linktype="relative-path">Domain
+name</a></span> for the credentials to be used in the source domain. The domain
+name can be an FQDN (1) or a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_f7f8efcc-c6d5-40f0-9605-c9d99c5a0b92" data-linktype="relative-path">NetBIOS domain name</a></span>.</p><p><b>SrcCredsPasswordLength:</b>  Count of
+characters in the <b>SrcCredsPassword</b> array.</p><p><b>SrcCredsPassword:</b>  Password for the
+credentials to be used in the source domain.</p><p><b>DstDomain:</b>  Name of the destination
+domain in which <b>DstPrincipal</b> resides. The domain name can be an FQDN (1)
+or a NetBIOS name.</p><p><b>DstPrincipal:</b>  Name of a security
+principal (user, computer, or group) in the destination domain. This is the
+destination <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8492780e-99e2-47ba-8553-aedb8de9f9c0" data-linktype="relative-path">principal</a></span>, to which
+the source principal&#39;s SIDs will be added. If <b>Flags</b> contains
+DS_ADDSID_FLAG_PRIVATE_CHK_SECURE, this parameter is not used and is not
+validated. Otherwise, if <b>Flags</b> does not contain
+DS_ADDSID_FLAG_PRIVATE_DEL_SRC_OBJ, this name is a domain-relative SAM name.
+Otherwise, it is a DN.</p></div>

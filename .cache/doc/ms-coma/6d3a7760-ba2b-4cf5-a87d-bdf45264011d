@@ -1,0 +1,88 @@
+<div class="content"><p>This method is called by a client to retrieve information
+about an <a href="3f01a312-3391-4109-a96e-95358babf191#gt_b1856eaa-54fc-49af-a38c-55cc86e7b93e" data-linktype="relative-path">installer package
+file</a>.</p><dl>
+<dd>
+<div><pre> HRESULT QueryFile(
+   [in, string] WCHAR* pwszInstallerPackage,
+   [out] DWORD* pdwConglomerations,
+   [out, string, size_is(, *pdwConglomerations)] 
+     LPWSTR** ppNames,
+   [out, string, size_is(, *pdwConglomerations)] 
+     LPWSTR** ppDescriptions,
+   [out] DWORD* pdwUsers,
+   [out] DWORD* pdwIsProxy,
+   [out] DWORD* pcModules,
+   [out, string, size_is(, *pcModules)] 
+     LPWSTR** ppModules
+ );
+</pre></div>
+</dd></dl><p><b>pwszInstallerPackage: </b> A path in <a href="3f01a312-3391-4109-a96e-95358babf191#gt_c9507dca-291d-4fd6-9cba-a9ee7da8c908" data-linktype="relative-path">UNC</a> to a file that the
+server will recognize as an installer package file.</p><p><b>pdwConglomerations: </b> A pointer to a variable
+that, upon successful completion, MUST be set to the number of <a href="3f01a312-3391-4109-a96e-95358babf191#gt_ea5c531f-5dd5-43aa-9da1-2ae068c622db" data-linktype="relative-path">conglomerations</a> represented
+in the installer package file.</p><p><b>ppNames: </b> A pointer to a variable that, upon
+successful completion, MUST be set to an array of string values, each of which
+is the value of the Name property (see section <a href="cee9f1e5-9412-4a19-8a34-17d041112b87" data-linktype="relative-path">3.1.1.3.3</a>) of a
+conglomeration represented in the installer package file.</p><p><b>ppDescriptions: </b> A pointer to a variable that,
+upon successful completion, MUST be set to an array of string values, each of
+which is the value of the Description property (see section <a href="62d84857-e39e-4879-a46d-8583e355521e" data-linktype="relative-path">3.1.1.3.1</a> ) of a
+conglomeration represented in the installer package file.</p><p><b>pdwUsers: </b> A pointer to a variable that, upon
+successful completion, MUST be set to the value TRUE (0x00000001) if the installer
+package file contains configuration for user accounts, and FALSE (0x00000000)
+otherwise.</p><p><b>pdwIsProxy: </b> A pointer to a variable that,
+upon successful completion, MUST be set to the value TRUE (0x00000001) if the
+installer package file contains a proxy conglomeration, and FALSE (0x00000000)
+otherwise.</p><p><b>pcModules: </b> A pointer to a variable that, upon
+successful completion, MUST be set to the number of <a href="3f01a312-3391-4109-a96e-95358babf191#gt_3f7df968-a51b-4dea-9f2c-4cf6ce65ccc1" data-linktype="relative-path">module</a> contained in the
+installer package file.</p><p><b>ppModules: </b> A pointer to a variable that, upon
+successful completion, MUST be set to an array of strings, one for each module
+contained in the installer package file, each representing a file name for the
+module.</p><p><b>Return Values: </b> This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving a call to this method, the server MUST verify
+that <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0944227d-0566-49e1-989f-2fff6e02542d" data-linktype="relative-path">catalog</a> version
+negotiation has been performed by checking the negotiated catalog version (see
+section <a href="a667265b-22a8-43bb-b462-13528061e009" data-linktype="relative-path">3.1.1.5</a>), and
+fail the call if not.</p><p>The server MUST then perform parameter validation as follows:</p><ul><li><p><span><span> 
+</span></span>The server SHOULD<a id="Appendix_A_Target_338"></a><a aria-label="Product behavior note 338" href="022303e7-5044-4e20-8024-30dc89bb5f69#Appendix_A_338" data-linktype="relative-path">&lt;338&gt;</a> verify
+that <i>pwszInstallerPackage</i> is a path in UNC and fail the call if not.</p>
+</li></ul><p>The server MUST then verify that the file located by the
+path exists and is accessible, and that the server recognizes the file as an
+installer package file, and fail the call if not.</p><p>The server MUST then attempt to determine the following
+information about the installer package file and set the values referenced by
+the out parameters, failing the call if it cannot:</p><ul><li><p><span><span> 
+</span></span>The server MUST set the value referenced by <i>pdwConglomerations</i>
+to the number of conglomerations in the installer package file, and the values
+referenced by <i>ppNames</i> and <i>ppDescriptions</i> to arrays of Name and
+Description properties of these conglomerations.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST set the values referenced by <i>pdwUsers</i> to
+indicate whether or not the installer package file contains configuration for
+user accounts, and <i>pdwIsProxy</i> to indicate whether any of the
+conglomerations are proxy conglomerations; in other words, the IsProxyApp
+property is set to TRUE (0x00000001).</p>
+</li><li><p><span><span> 
+</span></span>The server MUST set the value referenced by <i>pcModules</i> to
+the number of modules contained in the installer package file, and <i>ppModules</i>
+to strings representing file names for these modules.</p>
+</li></ul></div>

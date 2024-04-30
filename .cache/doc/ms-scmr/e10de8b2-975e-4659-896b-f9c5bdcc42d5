@@ -1,0 +1,119 @@
+<div class="content"><p>The SERVICE_NOTIFY_STATUS_CHANGE_PARAMS_1 structure defines
+the service status notification information. If a client uses this structure,
+the server copies data from this structure to the newer structure specified in <a href="fb661d97-3f84-4e45-abbc-759f19438610" data-linktype="relative-path">2.2.44</a>, and uses the newer
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVICE_NOTIFY_STATUS_CHANGE_PARAMS_1 {
+   ULONGLONG ullThreadId;
+   DWORD dwNotifyMask;
+   UCHAR CallbackAddressArray[16];
+   UCHAR CallbackParamAddressArray[16];
+   SERVICE_STATUS_PROCESS ServiceStatus;
+   DWORD dwNotificationStatus;
+   DWORD dwSequence;
+ } SERVICE_NOTIFY_STATUS_CHANGE_PARAMS_1,
+  *PSERVICE_NOTIFY_STATUS_CHANGE_PARAMS_1;
+</pre></div>
+</dd></dl><p><b>ullThreadId:</b>  Not used.</p><p><b>dwNotifyMask:</b>  A value that
+specifies the status changes in which the client is interested. It MUST be one
+or more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SERVICE_NOTIFY_CREATED</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>Report when the service has been created.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_NOTIFY_CONTINUE_PENDING</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Report when the service is about to continue.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_NOTIFY_DELETE_PENDING</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>Report when an application has specified the service
+  to delete.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_NOTIFY_DELETED</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>Report when the service has been deleted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_NOTIFY_PAUSE_PENDING</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Report when the service is pausing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_NOTIFY_PAUSED</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>Report when the service has paused.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_NOTIFY_RUNNING</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Report when the service is running.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_NOTIFY_START_PENDING</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Report when the service is starting.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_NOTIFY_STOP_PENDING</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Report when the service is stopping.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_NOTIFY_STOPPED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Report when the service has stopped.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>CallbackAddressArray:</b>  Not used.</p><p><b>CallbackParamAddressArray:</b>  Not
+used.</p><p><b>ServiceStatus:</b>  A <a href="c2f0ab87-eb16-4371-8380-ddf9cd29931e" data-linktype="relative-path">SERVICE_STATUS_PROCESS (section 2.2.49)</a>
+structure that contains information about the service.</p><p><b>dwNotificationStatus:</b>  A value that
+indicates the notification status. If this member is ERROR_SUCCESS, the
+notification has succeeded and the server adds valid information to the <b>ServiceStatus</b>,
+<b>dwNotificationTriggered</b>, and <b>pszServiceNames</b> members. If this
+member is ERROR_REQUEST_ABORTED or ERROR_SERVICE_MARKED_FOR_DELETE, the
+notification has failed.</p><p><b>dwSequence:</b>  Not used.</p></div>

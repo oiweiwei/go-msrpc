@@ -1,0 +1,121 @@
+<div class="content"><p> </p><p>The BaseRegQueryMultipleValues2 method is called by the
+client. In response, the server returns the type and data for a
+client-specified list of <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">value</a></span> names that are
+associated with the specified registry key. </p><dl>
+<dd>
+<div><pre> error_status_t BaseRegQueryMultipleValues2(
+   [in] RPC_HKEY hKey,
+   [in, size_is(num_vals), length_is(num_vals)] 
+     PRVALENT val_listIn,
+   [out, size_is(num_vals), length_is(num_vals)] 
+     PRVALENT val_listOut,
+   [in] DWORD num_vals,
+   [in, out, unique, size_is(*ldwTotsize), length_is(*ldwTotsize)] 
+     char* lpvalueBuf,
+   [in] LPDWORD ldwTotsize,
+   [out] LPDWORD ldwRequiredSize
+ );
+</pre></div>
+</dd></dl><p><b>hKey: </b>A handle to a key that MUST have been
+opened previously by using one of the open methods that are specified in
+section <span><a href="053e8515-dbae-47ea-a7c6-6dc054e3a48f" data-linktype="relative-path">3.1.5</a></span>: <span><a href="956a3052-6580-43ee-91aa-aaf61726149b" data-linktype="relative-path">OpenClassesRoot</a></span>,
+<span><a href="ec140ed9-4d00-4c03-a15c-c7245a497ed5" data-linktype="relative-path">OpenCurrentUser</a></span>,
+<span><a href="6cef29ae-21ba-423f-9158-05145ac80a5b" data-linktype="relative-path">OpenLocalMachine</a></span>,
+<span><a href="7b514c63-6cad-4fe1-9780-743959e377e6" data-linktype="relative-path">OpenPerformanceData</a></span>,
+<span><a href="694e57f4-da3e-4285-8b71-3181d71d6cd1" data-linktype="relative-path">OpenUsers</a></span>,
+<span><a href="c7186ae2-1c82-45e9-933b-97d9873657e8" data-linktype="relative-path">BaseRegCreateKey</a></span>,
+<span><a href="8cb48f55-19e1-4ea2-8d76-dd0f6934f0d9" data-linktype="relative-path">BaseRegOpenKey</a></span>,
+<span><a href="160767d7-83cf-4718-a4f3-d864faee3bb1" data-linktype="relative-path">OpenCurrentConfig</a></span>,
+<span><a href="44954f6d-ef2c-4ec1-a27d-32b9b87e3c8a" data-linktype="relative-path">OpenPerformanceText</a></span>,
+<span><a href="3626fa8a-b20f-4243-bf85-cdb615ed2ca0" data-linktype="relative-path">OpenPerformanceNlsText</a></span>.
+The server SHOULD NOT process requests on predefined keys. </p><p><b>val_listIn:</b> A pointer to an array of <span><a href="1a1489d7-e61a-48cd-9b61-bfb56a957f22" data-linktype="relative-path">RVALENT</a></span>
+structures, one for each value to query. The array holds the list of value
+names for which the type and data MUST be returned.</p><p><b>val_listOut:</b> A pointer to an array of RVALENT
+structures, one for each value to be queried. This parameter is a placeholder
+to return the type, size, and data offset for each requested value.</p><p><b>num_vals:</b> The size as the number of RVALENT
+structures of the <i>val_list</i> array.</p><p><b>lpvalueBuf:</b> The data for each value that is
+specified by the <i>val_listOut</i> parameter.</p><p><b>ldwTotsize: </b>A value that indicates the size in
+bytes of <i>lpvalueBuf</i>.</p><p><b>ldwRequiredSize:</b> If <i>lpvalueBuf</i> is not
+large enough to contain all the data, this parameter MUST return the size in
+bytes that is needed for <i>lpvalueBuf</i> to contain all the required data.</p><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have KEY_QUERY_VALUE access
+  rights.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000078</p>
+  <p>ERROR_CALL_NOT_IMPLEMENTED</p>
+  </td>
+  <td>
+  <p>This function is not supported on this system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000EA</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>More data is available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000013</p>
+  <p>ERROR_WRITE_PROTECT</p>
+  </td>
+  <td>
+  <p>A read or write operation was attempted to a volume
+  after it was dismounted. The server can no longer service registry requests
+  because server shutdown has been initiated.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Server Operations</p><p>If the registry server can no longer service registry
+requests because server shutdown has been initiated (<b>SHUTDOWNINPROGRESS</b>
+is set to TRUE), the server MUST return ERROR_WRITE_PROTECT.</p><p>In response to this request from the client, for a
+successful operation, the server MUST return the data that is associated with
+the values that are specified in the RVALENT parameter <i>val_listIn</i> of the
+client request for the key that is specified by <i>hKey</i>.</p><p>The server MUST return the data that is associated with the
+specified values in the buffer pointed to by the <i>lpvalueBuf</i> parameter of
+the response. For each of the requested values supplied in the <i>val_listIn</i>
+parameter, the server MUST include, in a corresponding structure in the <i>val_listOut</i>
+parameter, the size, type, and pointer to the <i>lpvalueBuf</i> offset of the
+data that is associated with that value in the <i>ve_valuelen</i>, <i>ve_type</i>,
+and <i>ve_valueptr</i> parameters of the RVALENT structure, respectively. </p><p>If the size of the buffer that is pointed to by <i>lpvalueBuf</i>
+is not large enough, the server MUST return ERROR_MORE_DATA, and then return
+the buffer size that is required in the <i>ldwRequiredSize</i> parameter of the
+response. </p><p>The caller MUST have KEY_QUERY_VALUE access rights to invoke
+this method. For more information, see section <span><a href="fefbc801-b141-4bb1-9dcb-bf366da3ae7e" data-linktype="relative-path">2.2.4</a></span>.</p><p>The server MUST return 0 to indicate success or an
+appropriate error code (as specified in [MS-ERREF]) to indicate an error.</p><p>If the caller does not have access, the server MUST return
+ERROR_ACCESS_DENIED.</p><p>If any one of the parameters <i>ldwTotsize</i>, <i>ldwRequiredSize</i>,
+and <i>val_listOut</i> is NULL, the server MUST return ERROR_INVALID_PARAMETER.</p><p>If the parameter <i>num_vals</i> has a value greater than
+zero, and if parameter <i>val_listIn</i> is NULL, the server MUST return
+ERROR_INVALID_PARAMETER.</p><p>For each of the RVALENT structures returned by calling the <i>val_listIn</i>
+parameter: if the return value is greater than zero and the buffer is NULL, the
+server MUST return ERROR_INVALID_PARAMETER.</p></div>

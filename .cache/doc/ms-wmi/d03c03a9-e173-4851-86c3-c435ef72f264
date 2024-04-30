@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The WBEM_REFRESH_TYPE enumeration defines refresh types for
+the <span><a href="f3881702-6fc6-408c-82c9-72e36d928e06" data-linktype="relative-path">_WBEM_REFRESH_INFO</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   WBEM_REFRESH_TYPE_INVALID = 0,
+   WBEM_REFRESH_TYPE_REMOTE = 3,
+   WBEM_REFRESH_TYPE_NON_HIPERF = 6
+ } WBEM_REFRESH_TYPE;
+</pre></div>
+</dd></dl><p><b>WBEM_REFRESH_TYPE_INVALID:  </b>The server uses
+this value internally. The server MUST NOT return this value.</p><p><b>WBEM_REFRESH_TYPE_REMOTE:  </b>The <b>m_Info</b>
+member of the _WBEM_REFRESH_INFO structure contains the <span><a href="4693b24a-91af-4bbc-861c-9dbd6056f57b" data-linktype="relative-path">_WBEM_REFRESH_INFO_REMOTE</a></span>
+structure.</p><p><b>WBEM_REFRESH_TYPE_NON_HIPERF:  </b>The <b>m_Info</b>
+member of the _WBEM_REFRESH_INFO structure contains the <span><a href="30db3893-935f-48d5-b899-2019ecb94c72" data-linktype="relative-path">_WBEM_REFRESH_INFO_NON_HIPERF</a></span>
+structure.</p></div>

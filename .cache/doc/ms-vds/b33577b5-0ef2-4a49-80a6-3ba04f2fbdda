@@ -1,0 +1,33 @@
+<div class="content"><p> </p><p>The QueryFreeExtents method enumerates a disk&#39;s free
+extents.Returns all free extents on the disk and aligns them to the alignment
+value supplied in the <i>ulAlign</i> parameter. If there is no alignment value
+supplied, QueryFreeExtents aligns the free extents based on the default
+alignment values.</p><dl>
+<dd>
+<div><pre> HRESULT QueryFreeExtents(
+   [in] ULONG ulAlign,
+   [out, size_is(,*plNumberOfFreeExtents)] 
+     VDS_DISK_FREE_EXTENT **ppFreeExtentArray,
+   [out] LONG *plNumberOfFreeExtents
+ );
+</pre></div>
+</dd></dl><p><b>ulAlign: </b>The alignment value. If <i>ulAlign</i>
+is 0, the default alignment value is used.</p><p><b>ppFreeExtentArray: </b>Pointer to an array of <span><a href="08b15c84-6e1c-4015-b990-53c515b7db09" data-linktype="relative-path">VDS_DISK_FREE_EXTENT</a></span>
+structures that, if the operation is successful, receives the array of disk
+extent structures.</p><p><b>plNumberOfFreeExtents: </b>Pointer to a variable
+that, if the operation is successfully completed, receives the total number of
+elements in <i>ppFreeExtentArray</i>.</p><p><b>Return Values: </b>QueryFreeExtents MUST return
+zero to indicate success, or an implementation-specific, nonzero error code to
+indicate failure.</p><p>Free extents are not returned for CD/DVD, or <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_a2b20515-dc69-4674-b74e-91c8f24e3003" data-linktype="relative-path">super
+floppy</a></span> devices.</p><p>If the disk has no <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span> format (it
+is not formatted as either MBR or GPT), then this method MUST return
+VDS_E_DISK_NOT_INITIALIZED.</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that the <i>ppFreeExtentArray</i> parameter is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the <i>plNumberOfFreeExtents</i> parameter is not
+NULL.</p>
+</li></ul><p>The server MUST point <i>ppFreeExtentArray</i> to an array
+of VDS_DISK_FREE_EXTENT structures that contain information about each disk
+extent on the disk, point <i>plNumberOfFreeExtents</i> to the number of
+elements in the array, and return an HRESULT indicating failure or success.</p></div>

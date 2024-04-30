@@ -1,0 +1,35 @@
+<div class="content"><p>The Print System Remote Protocol (RPRN) is based on the
+Remote Procedure Call (RPC) protocol, as defined in in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> and <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.
+It supports synchronous printing and spooling operations between a client and a
+server and includes print job control and print system management.</p><p>An enhanced replacement for this protocol is defined in <a href="../ms-par/695e3f9a-f83f-479a-82d9-ba260497c2d0" data-linktype="relative-path">[MS-PAR]</a>
+The Print System Asynchronous Remote Protocol. It provides asynchronous forms
+of the synchronous operations supported by the Print System Remote Protocol and
+extends them with additional asynchronous operations. <a id="_Hlk149056204">It
+also provides for higher-level authentication in RPC calls between client and
+server</a> (see [MS-PAR] sections <a href="../ms-par/fee0ee13-9472-44a7-a95b-8029fb4d9121" data-linktype="relative-path">3.1.3</a> and
+<a href="../ms-par/bc950e82-787b-40fd-bddb-628b765303ce" data-linktype="relative-path">3.2.3</a>.</p><p>The Print System Remote Protocol provides the following
+functions:</p><ul><li><p><span><span> 
+</span></span>Management of the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_b49fcfa1-e15c-4dce-be33-d74d5bfda785" data-linktype="relative-path">print system</a> of a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a> from a client.</p>
+</li><li><p><span><span> 
+</span></span>Communication of <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print job</a> data from a
+client to a print server.</p>
+</li><li><p><span><span> 
+</span></span>Notifications to the client of changes in the print server&#39;s
+print system.</p>
+</li></ul><p>Server processing instructions are specified by the
+parameters that are used in the protocol methods. These parameters include:</p><ul><li><p><span><span> 
+</span></span><a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">Printer driver</a>
+configuration information.</p>
+</li><li><p><span><span> 
+</span></span>The <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_4c0e7da9-88a8-4430-abd7-27e7250b8180" data-linktype="relative-path">spool file</a>
+format for the print data that is sent by the client.</p>
+</li><li><p><span><span> 
+</span></span>The <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_54c8a9d7-fa94-444b-b8d8-f6485bad223f" data-linktype="relative-path">access
+level</a> of the connection.</p>
+</li><li><p><span><span> 
+</span></span>The target <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_569f1f1c-f426-46fa-91d2-3d1eb0b19aa1" data-linktype="relative-path">print
+queue</a> name for name-based methods.</p>
+</li><li><p><span><span> 
+</span></span>A handle to the target print queue for handle-based methods.</p>
+</li></ul><p>Status information is communicated back to the client in the
+return codes from calls that are made to the print server.</p><p>The following sections give an overview of these functions.</p></div>

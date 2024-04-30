@@ -1,0 +1,41 @@
+<div class="content"><p>The EnumReports method enumerates all the reports configured
+for the report job and returns S_OK upon successful completion.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_REPORT_JOB | 0x01)] HRESULT EnumReports(
+   [out, retval] IFsrmCollection** reports
+ );
+</pre></div>
+</dd></dl><p><b>reports: </b>Pointer to an <b>IFsrmCollection</b>
+interface pointer (section <a href="171d3b3c-0f4d-40b9-8f48-0e97f9ff17be" data-linktype="relative-path">3.2.4.2.1</a>)
+that upon completion contains pointers to the report objects configured for the
+report job. A caller MUST release the collection received when the caller is
+done with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>reports</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>reports</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST populate <i>reports</i> with the <b>IFsrmReport</b>
+interface pointer (section <a href="27464fd6-a52d-4450-99af-e01b940243f8" data-linktype="relative-path">3.2.4.2.35</a>)
+of each report configured for the report job object.</p><p>If there are no reports configured for the report job (that
+is, the <b>Report Job.Reports</b> list is empty), the server MUST return an <b>IFsrmCollection</b>
+object that contains zero objects.</p></div>

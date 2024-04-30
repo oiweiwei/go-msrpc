@@ -1,0 +1,47 @@
+<div class="content"><p> </p><p>The <b>FAX_EndMessagesEnum (Opnum 64)</b> method is called
+by the client. </p><p>On success, the server MUST halt the enumerating of
+messages in the specified <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9394bf31-7db9-433c-8d3d-ee6a37bf0848" data-linktype="relative-path">archives</a></span>.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_EndMessagesEnum(
+   [in, out, ref] PRPC_FAX_MSG_ENUM_HANDLE lpHandle
+ );
+</pre></div>
+</dd></dl><p><b>lpHandle: </b>The parameter <i>lpHandle</i> MUST
+have been returned by <b>FAX_StartMessagesEnum</b> (section <span><a href="702db5ea-5293-46f3-b11e-ad8f477bbe26" data-linktype="relative-path">3.1.4.1.98</a></span>).</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_INVALID_HANDLE</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>This error code SHOULD be returned if the handle
+  pointed to by the specified <i>lpHandle</i> parameter is not a valid handle
+  returned by <b>FAX_StartMessagesEnum</b>.<a id="Appendix_A_Target_79"></a><a aria-label="Product behavior note 79" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_79" data-linktype="relative-path">&lt;79&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>This error SHOULD be returned if the handle pointed to
+  by the specified <i>lpHandle</i> is NULL.<a id="Appendix_A_Target_80"></a><a aria-label="Product behavior note 80" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_80" data-linktype="relative-path">&lt;80&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown: </b>No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

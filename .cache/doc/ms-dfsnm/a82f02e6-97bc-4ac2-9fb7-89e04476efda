@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The DFS_INFO_7 structure contains information about a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span>.</p><p>The DFS_INFO_7 structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_7 {
+   GUID GenerationGuid;
+ } DFS_INFO_7;
+</pre></div>
+</dd></dl><p><b>GenerationGuid:</b>  This <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+is modified each time <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_e8de88fd-d760-46fa-ad77-76961fa20aea" data-linktype="relative-path">DFS metadata</a></span> is
+updated.</p><p>This data type is used to detect when the metadata of a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS
+namespace</a></span> has changed. It MUST be supported for <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c37de1c8-4bd3-406f-ad8c-50c877666f91" data-linktype="relative-path">domain-based
+DFS namespaces</a></span>. It MAY be supported for <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ce6af522-ba70-4ba1-a684-b98b809c72ad" data-linktype="relative-path">stand-alone DFS namespaces</a></span>;
+a null GUID (all 128-bits are 0) MUST be returned if this is not supported.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p></div>

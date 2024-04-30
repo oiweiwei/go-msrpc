@@ -1,0 +1,13 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/d37dbc65-04f3-4db8-b40a-4e9dd6c12520" data-linktype="external">msdn link</a></p><p>The POLICY_LSA_SERVER_ROLE_INFO structure is used to allow
+callers to query and set whether the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b56f14e3-d874-48bc-837b-5e812ee1a96e" data-linktype="relative-path">account domain</a> database
+acts as the primary copy or backup copy. The following structure corresponds to
+the PolicyLsaServerRoleInformation information class.</p><dl>
+<dd>
+<div><pre> typedef struct _POLICY_LSA_SERVER_ROLE_INFO {
+   POLICY_LSA_SERVER_ROLE LsaServerRole;
+ } POLICY_LSA_SERVER_ROLE_INFO,
+  *PPOLICY_LSA_SERVER_ROLE_INFO;
+</pre></div>
+</dd></dl><p><b>LsaServerRole:</b>  One of the values of
+the <a href="620010b4-b439-4d46-893a-cb67246de5fc" data-linktype="relative-path">POLICY_LSA_SERVER_ROLE</a>
+enumeration on return.</p></div>

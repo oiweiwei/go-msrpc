@@ -1,0 +1,14 @@
+<div class="content"><p>The Control_Return structure is used to obtain information
+from a <a href="002fc3a3-2ca2-492e-8463-aba8f3923e48" data-linktype="relative-path">Control_Call</a>
+(for more information, see section <a href="032c12bb-7aaa-4e6f-9d4c-1f79cf26f45c" data-linktype="relative-path">3.1.4.37</a>). </p><dl>
+<dd>
+<div><pre> typedef struct _Control_Return {
+   long ReturnCode;
+   [range(0,66560)] unsigned long cbOutBufferSize;
+   [unique] [size_is(cbOutBufferSize)] byte *pvOutBuffer;
+ } Control_Return;
+</pre></div>
+</dd></dl><p><b>ReturnCode:</b>  <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a> or Win32 Error
+code. Zero indicates success; any other value indicates failure.</p><p><b>cbOutBufferSize:</b>  The number of
+bytes in the <b>pvOutBuffer</b> field.</p><p><b>pvOutBuffer:</b>  Contains the return data
+specific to the value of the Control_Call structure. </p></div>

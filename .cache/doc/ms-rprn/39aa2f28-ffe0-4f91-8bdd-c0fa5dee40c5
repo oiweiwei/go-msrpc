@@ -1,0 +1,234 @@
+<div class="content"><p>The <b>_PRINTER_INFO_1</b> structure specifies printer
+information. It is a custom-<a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_37e89d91-2800-49d1-9d17-45ebe167ad87" data-linktype="relative-path">marshaled</a>
+form of the <b>_PRINTER_INFO_1</b> (section <a href="0d1a296b-7027-441c-8393-8aa5c3764b27" data-linktype="relative-path">2.2.1.10.2)</a> structure. See
+<b>_PRINTER_INFO_1</b> for the definition of <b>Flags</b>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (variable): </b>An array of one or
+more groups of fixed-size fields, which are defined as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DescriptionOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CommentOffset</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Flags (4 bytes):</b> The
+value of this member MUST be the result of a bitwise OR of zero or more of the <a href="2a1fe8a4-e8be-4cf3-8b37-8d19f9a2edcd" data-linktype="relative-path"><span>Printer Enumeration Flags</span></a> (section 2.2.3.7).<br/>
+<br/>
+If the <b>_PRINTER_INFO_1</b> structure is used in a <b>PRINTER_CONTAINER</b>
+(section <a href="ad7d4d4e-0feb-45e0-93ed-b3b2b9a313d1" data-linktype="relative-path">2.2.1.2.9</a>) as
+input to RpcAddPrinter (section <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">3.1.4.2.3</a>) or
+RpcAddPrinterEx (section <a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">3.1.4.2.15</a>),
+<b>Flags</b> MUST be a bitwise OR of zero or more of the PRINTER_ATTRIBUTE
+values defined in Status and Attribute Values (section <a href="1625e9d9-29e4-48f4-b83d-3bd0fdaea787" data-linktype="relative-path">2.2.3.12</a>).</p>
+</dd>
+<dd>
+<p><b>DescriptionOffset (4
+bytes): </b>An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>DescriptionArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>NameOffset (4 bytes): </b>An
+unsigned integer that specifies the number of bytes from the start of the
+structure to the start of the <b>NameArray</b> member. </p>
+</dd>
+<dd>
+<p><b>CommentOffset (4 bytes): </b>An
+unsigned integer that specifies the number of bytes from the start of the
+structure to the start of the <b>CommentArray</b> member.</p>
+</dd></dl><p><b>Variable_Data (variable): </b>An array of zero or
+more groups of optional, variable-size fields, which are defined as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CommentArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NameArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DescriptionArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>CommentArray (variable):</b>
+A string that specifies a comment associated with the printer. The location of
+this buffer is determined by the value of the <b>CommentOffset </b>member. </p>
+</dd>
+<dd>
+<p><b>NameArray (variable):</b>
+A string that specifies the name of the printer. The location of this buffer is
+determined by the value of the <b>NameOffset </b>member. </p>
+</dd>
+<dd>
+<p><b>DescriptionArray
+(variable):</b> A string that specifies the printer name, driver name, and
+location of the printer. The location of this buffer is determined by the value
+of the <b>DescriptionOffset</b> member.</p>
+</dd></dl></div>

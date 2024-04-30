@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>MSG_ENUM_STRUCT is a container structure holding either one <span><a href="e55f1c1d-b219-4505-9945-24f1e61dc655" data-linktype="relative-path">MSG_INFO_0_CONTAINER</a></span>
+container or one <span><a href="09f502de-a37e-4240-9a0e-907c9b29450c" data-linktype="relative-path">MSG_INFO_1_CONTAINER</a></span>
+container. The structure also has a member to indicate what type of container
+it contains.</p><dl>
+<dd>
+<div><pre> typedef struct _MSG_ENUM_STRUCT {
+   DWORD Level;
+   [switch_is(Level)] union _MSG_ENUM_UNION {
+     [case(0)] 
+       LPMSG_INFO_0_CONTAINER Level0;
+     [case(1)] 
+       LPMSG_INFO_1_CONTAINER Level1;
+   } MsgInfo;
+ } MSG_ENUM_STRUCT,
+  *PMSG_ENUM_STRUCT,
+  *LPMSG_ENUM_STRUCT;
+</pre></div>
+</dd></dl><p><b>Level:</b>   A 32-bit enumerated number
+that MUST denote the type of structure contained in <i>MsgInfo</i>. It must be
+either 0 or 1.</p><p><b>MsgInfo:</b>  A pointer to a buffer that
+MUST contain a union that consists of either an MSG_INFO_0_CONTAINER structure
+or an MSG_INFO_1_CONTAINER structure.</p><p><b>Level0:</b>  If <i>Level</i> is 0, <i>MsgInfo</i>
+MUST contain an MSG_INFO_0_CONTAINER named <i>Level0</i>.</p><p><b>Level1:</b>  If <i>Level</i> is 1, <i>MsgInfo</i>
+MUST contain an MSG_INFO_1_CONTAINER named <i>Level1</i>.</p></div>

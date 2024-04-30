@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The DSA_MSG_EXECUTE_SCRIPT_REPLY_V1 structure defines a
+response message received from the <span><a href="1cb59761-aeae-4f44-8f9e-06ae75ae45ca" data-linktype="relative-path">IDL_DSAExecuteScript</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwOperationStatus;
+   [string] LPWSTR pwErrMessage;
+ } DSA_MSG_EXECUTE_SCRIPT_REPLY_V1;
+</pre></div>
+</dd></dl><p><b>dwOperationStatus:</b>  0 if successful,
+or a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows
+error code</a></span> if a fatal error occurred.</p><p><b>pwErrMessage:</b>  Null if successful,
+or a description of the error if a fatal error occurred.</p></div>

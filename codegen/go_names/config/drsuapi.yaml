@@ -1,0 +1,4 @@
+rename:
+  uuidDsaSrc: [DSA, Source, ID]
+  uuidSourceDRA: [DRA, Source, ID]
+  nameRes: [Name, Resolution]

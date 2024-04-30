@@ -1,0 +1,144 @@
+<div class="content"><p>The ITraceDataProviderCollection interface is used to manage
+a collection of TraceDataProvider objects.</p><p>The following properties MUST be implemented by the objects
+that implement the ITraceDataProviderCollection interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>_NewEnum</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>An enumeration object of type IEnumVariant containing
+  a snapshot of the <a href="ebd49d76-5e50-4dd3-869c-8bba6eba42f7" data-linktype="relative-path">ITraceDataProvider</a>
+  objects in this collection. The enumeration object is specified in <a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a>
+  section <a href="../ms-oaut/716d04d1-cd16-4065-9b19-1b8808b3df31" data-linktype="relative-path">3.3</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Count</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>Number of trace data providers in this collection.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Item</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>Retrieves the requested trace data provider from the
+  collection.</p>
+  </td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="01f73777-33ba-4583-82a5-b5b65934962a" data-linktype="relative-path">Count
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Count property.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="42b1989f-92b1-40a2-a9fa-ab5a725395ac" data-linktype="relative-path">Item
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Item property.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="ac96009d-d290-45dd-9886-8890b3960049" data-linktype="relative-path">_NewEnum
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the NewEnum property.</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="7687d6a2-13c2-4b66-a480-5bedd86a969e" data-linktype="relative-path">Add</a></p>
+  </td>
+  <td>
+  <p>Adds a trace provider to the collection.</p>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="600af21a-58b3-41a7-8c25-a624319d2ef2" data-linktype="relative-path">Remove</a></p>
+  </td>
+  <td>
+  <p>Removes a trace provider from the collection.</p>
+  <p>Opnum: 11</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="52379b8b-3291-4427-aaf8-9c1b126d9aca" data-linktype="relative-path">Clear</a></p>
+  </td>
+  <td>
+  <p>Removes all trace providers from the collection.</p>
+  <p>Opnum: 12</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="6af80764-edad-45ac-ba4d-cad7a07d4fae" data-linktype="relative-path">AddRange</a></p>
+  </td>
+  <td>
+  <p>Adds one or more trace providers to the collection.</p>
+  <p>Opnum: 13</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="72ee4710-050d-40a5-b1ae-1b708a23f994" data-linktype="relative-path">CreateTraceDataProvider</a></p>
+  </td>
+  <td>
+  <p>Creates a trace data provider object.</p>
+  <p>Opnum: 14</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="cd5a702c-d2b5-49b6-b966-12a961fd7c83" data-linktype="relative-path">GetTraceDataProviders</a></p>
+  </td>
+  <td>
+  <p>Populates the collection with the registered trace
+  providers.</p>
+  <p>Opnum: 15</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="d33ba935-b9f8-43a4-a8e1-7b7abbded78d" data-linktype="relative-path">GetTraceDataProvidersByProcess</a></p>
+  </td>
+  <td>
+  <p>Populates the collection with the list of providers
+  that were registered by the given process.</p>
+  <p>Opnum: 16</p>
+  </td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface. </p></div>

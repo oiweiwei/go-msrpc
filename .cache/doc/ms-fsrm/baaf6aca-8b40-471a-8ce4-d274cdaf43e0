@@ -1,0 +1,35 @@
+<div class="content"><p>The QuotaPeakUsage (get) method returns the <b>peak quota
+usage</b> of this quota.</p><dl>
+<dd>
+<div><pre> [propget, id(FSRM_PROPERTY(FSRM_DISPID_QUOTA | 0x02))] HRESULT QuotaPeakUsage(
+   [out, retval] VARIANT* peakUsage
+ );
+</pre></div>
+</dd></dl><p><b>peakUsage: </b>Pointer to a variable that upon completion
+contains the <b>peak quota usage</b> of this quota.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>peakUsage</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>peakUsage</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST set <i>peakUsage</i> to the <b>peak quota
+usage</b> of this quota.</p></div>

@@ -1,0 +1,10 @@
+<div class="content"><p>The Address Book Name Service Provider Interface (NSPI)
+Referral Protocol defines a <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a></span>
+service that supplies a caller with the name of an <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_e63aea5b-046b-4176-9359-fde82613a406" data-linktype="relative-path">NSPI</a></span> server.
+Additionally, this protocol can return the <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">Domain Name System (DNS)</a></span>
+<span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">fully
+qualified domain name (FQDN)</a></span> of a <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_d3ad0e15-adc9-4174-bacf-d929b57278b3" data-linktype="relative-path">mailbox</a></span> server,
+given the <span><a href="8a0b2177-60de-4dca-b815-9d83663dfff4#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">distinguished name (DN)</a></span>
+of that server.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

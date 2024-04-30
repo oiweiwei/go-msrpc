@@ -1,0 +1,35 @@
+<div class="content"><p> </p><p>The <b>DHCP_CLIENT_INFO</b> structure defines information
+about the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_c35fc04f-54fe-4570-afd3-c96ca84c8d83" data-linktype="relative-path">DHCPv4 client</a></span> that
+is used by the <span><a href="a59ad25b-b058-420b-9176-b0a00c460478" data-linktype="relative-path">R_DhcpGetClientInfo (section 3.1.4.19)</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_CLIENT_INFO {
+   DHCP_IP_ADDRESS ClientIpAddress;
+   DHCP_IP_MASK SubnetMask;
+   DHCP_CLIENT_UID ClientHardwareAddress;
+   LPWSTR ClientName;
+   LPWSTR ClientComment;
+   DATE_TIME ClientLeaseExpires;
+   DHCP_HOST_INFO OwnerHost;
+ } DHCP_CLIENT_INFO,
+  *LPDHCP_CLIENT_INFO;
+</pre></div>
+</dd></dl><p><b>ClientIpAddress:</b>  This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>
+and contains the DHCPv4 client&#39;s IPv4 address.</p><p><b>SubnetMask:</b>  This is of type <span><a href="5cd312d5-c29f-4352-9fbb-8119ce48082b" data-linktype="relative-path">DHCP_IP_MASK (section 2.2.1.2.2)</a></span>
+and contains the DHCPv4 client&#39;s IPv4 subnet mask address.</p><p><b>ClientHardwareAddress:</b>  This is of
+type <span><a href="b4da2d52-9737-46ec-8bc2-1c598fc3b8c8" data-linktype="relative-path">DHCP_CLIENT_UID (section 2.2.1.2.5)</a></span>
+that represents a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_195d8585-7de6-4574-9abf-9db104aaa40c" data-linktype="relative-path">DHCPv4 client-identifier</a></span>
+(section <span><a href="7c88f58b-c615-4386-a643-ab05b860a003" data-linktype="relative-path">2.2.1.2.5.1</a></span>) or a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4c35997a-5d90-4d7e-96c8-346f4ad0a63f" data-linktype="relative-path">DHCPv4
+client unique ID</a></span> (section <span><a href="651865ec-6404-4191-ad30-113578a94556" data-linktype="relative-path">2.2.1.2.5.2</a></span>).
+Methods that accept <b>DHCP_CLIENT_INFO</b> as a parameter specify which
+representations are acceptable.</p><p><b>ClientName:</b>  A pointer to a
+null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+represents the DHCPv4 client&#39;s internet host name. There is no restriction on
+the length of this Unicode string.</p><p><b>ClientComment:</b>  A pointer to a
+null-terminated Unicode string that represents a description of the DHCPv4
+client. There is no restriction on the length of this Unicode string.</p><p><b>ClientLeaseExpires:</b>  This is of type
+<span><a href="0f93bea1-8172-4efa-826a-e12667e1bcee" data-linktype="relative-path">DATE_TIME (section 2.2.1.2.11)</a></span>
+that contains the lease expiry time for the DHCPv4 client. This is Coordinated
+Universal Time (UTC).</p><p><b>OwnerHost:</b>  This is of type <span><a href="51e16f4a-cb1d-400a-85c7-defe4cba1609" data-linktype="relative-path">DHCP_HOST_INFO (section 2.2.1.2.7)</a></span>
+that contains information about the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_746786e7-458f-45aa-ab24-5534a94b4fb3" data-linktype="relative-path">DHCPv4 server</a></span>
+machine that has provided a lease to the DHCPv4 client. </p></div>

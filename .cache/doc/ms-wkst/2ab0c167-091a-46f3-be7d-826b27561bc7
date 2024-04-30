@@ -1,0 +1,36 @@
+<div class="content"><p> </p><p>The <b>WKSTA_INFO</b> union specifies details about a
+computer. This union is used by the methods <b>NetrWkstaGetInfo</b> (section
+<span><a href="4af41d6f-b800-4de1-af5b-0b15a85f8e04" data-linktype="relative-path">3.2.4.1</a></span>)
+and <b>NetrWkstaSetInfo</b> (section <span><a href="2edae684-a6d6-436a-9226-d8c01876a21f" data-linktype="relative-path">3.2.4.2</a></span>).</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(unsigned long)] 
+ union _WKSTA_INFO {
+   [case(100)] 
+     LPWKSTA_INFO_100 WkstaInfo100;
+   [case(101)] 
+     LPWKSTA_INFO_101 WkstaInfo101;
+   [case(102)] 
+     LPWKSTA_INFO_102 WkstaInfo102;
+   [case(502)] 
+     LPWKSTA_INFO_502 WkstaInfo502;
+   [case(1013)] 
+     LPWKSTA_INFO_1013 WkstaInfo1013;
+   [case(1018)] 
+     LPWKSTA_INFO_1018 WkstaInfo1018;
+   [case(1046)] 
+     LPWKSTA_INFO_1046 WkstaInfo1046;
+   [default]     ;
+ } WKSTA_INFO,
+  *PWKSTA_INFO,
+  *LPWKSTA_INFO;
+</pre></div>
+</dd></dl><p><b>WkstaInfo100:</b> Details about the computer
+environment (section <span><a href="23275f4a-4e51-49d6-bdb5-f58519a3ea8a" data-linktype="relative-path">2.2.5.1</a></span>)</p><p><b>WkstaInfo101:</b> Details about the computer
+environment (section <span><a href="98876691-3684-4b0c-bb43-3a8ac4705149" data-linktype="relative-path">2.2.5.2</a></span>).</p><p><b>WkstaInfo102:</b> Details about the computer
+environment (section <span><a href="49c75566-2d4f-481a-bf32-7eb5627cb4ea" data-linktype="relative-path">2.2.5.3</a></span>).</p><p><b>WkstaInfo502:</b> Details about the computer
+environment (section <span><a href="eea7a04b-5817-4d3b-8ec0-26967b41cb04" data-linktype="relative-path">2.2.5.4</a></span>).</p><p><b>WkstaInfo1013:</b> Details about the state of the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_09dbec39-5e75-4d9a-babf-1c9f1d499625" data-linktype="relative-path">SMB</a></span>
+<span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_15c89cb5-6767-49e7-b461-66acaf6c06c8" data-linktype="relative-path">network
+redirector</a></span> (section <span><a href="64b0c019-3bf7-4e23-a00e-ef7ab68b3358" data-linktype="relative-path">2.2.5.5</a></span>).</p><p><b>WkstaInfo1018:</b> Details about the state of the
+SMB network redirector (section <span><a href="6ba9e854-0698-4f17-a529-a30a78579806" data-linktype="relative-path">2.2.5.6</a></span>).</p><p><b>WkstaInfo1046:</b> Details about the state of the
+SMB network redirector (section <span><a href="26656710-233c-4c3b-9ba1-9276aa2e3265" data-linktype="relative-path">2.2.5.7</a></span>).</p></div>

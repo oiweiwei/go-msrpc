@@ -1,0 +1,29 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/04036d49-a482-4b57-995f-11d539f2e5b7" data-linktype="external">msdn link</a></p><dl>
+<dd>
+<div><pre> typedef  enum _POLICY_AUDIT_EVENT_TYPE
+ {
+   AuditCategorySystem = 0,
+   AuditCategoryLogon,
+   AuditCategoryObjectAccess,
+   AuditCategoryPrivilegeUse,
+   AuditCategoryDetailedTracking,
+   AuditCategoryPolicyChange,
+   AuditCategoryAccountManagement,
+   AuditCategoryDirectoryServiceAccess,
+   AuditCategoryAccountLogon
+ } POLICY_AUDIT_EVENT_TYPE,
+  *PPOLICY_AUDIT_EVENT_TYPE;
+</pre></div>
+</dd></dl><p><b>AuditCategorySystem:  </b>Manages auditing of
+system-related events</p><p><b>AuditCategoryLogon:  </b>Manages auditing of
+account logon events</p><p><b>AuditCategoryObjectAccess:  </b>Manages auditing
+of object access events</p><p><b>AuditCategoryPrivilegeUse:  </b>Manages auditing
+of <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privilege</a> use events</p><p><b>AuditCategoryDetailedTracking:  </b>Manages
+detailed auditing</p><p><b>AuditCategoryPolicyChange:  </b>Manages auditing
+of policy change events</p><p><b>AuditCategoryAccountManagement:  </b>Manages
+auditing of account management events</p><p><b>AuditCategoryDirectoryServiceAccess:  </b>Manages
+auditing of <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a>
+access events</p><p><b>AuditCategoryAccountLogon:  </b>Manages auditing
+of account logon events</p><p>The values in this enumeration are used as indices into the <b>EventAuditingOptions</b>
+field of the <a href="d00fc364-577d-4ed0-b3a5-952d78b67695" data-linktype="relative-path">LSAPR_POLICY_AUDIT_EVENTS_INFO</a>
+structure (see section 2.2.4.4).</p></div>

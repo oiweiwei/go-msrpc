@@ -1,0 +1,86 @@
+<div class="content"><p> </p><p>The IWbemServices::ExecMethodAsync method asynchronously
+executes a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a307bc35-17a3-48aa-bc58-b8779f5be641" data-linktype="relative-path">CIM method</a></span> that is
+implemented by a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_633b12d4-e2c4-442f-95ff-4b2b5d708ed5" data-linktype="relative-path">CIM class</a></span> or a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c4119a8a-24db-40cc-9657-7cb5c23ecf43" data-linktype="relative-path">CIM
+instance</a></span> that is retrieved from the <span><a href="7a50647a-5311-41c2-8f4f-83bcfb497877" data-linktype="relative-path">IWbemServices</a></span>
+interface.</p><dl>
+<dd>
+<div><pre> HRESULT ExecMethodAsync(
+   [in] const BSTR strObjectPath,
+   [in] const BSTR strMethodName,
+   [in] long lFlags,
+   [in] IWbemContext* pCtx,
+   [in] IWbemClassObject* pInParams,
+   [in] IWbemObjectSink* pResponseHandler
+ );
+</pre></div>
+</dd></dl><p><b>strObjectPath: </b>MUST be the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_775e4b82-5447-4125-b887-b404421e1269" data-linktype="relative-path">CIM path</a></span>
+to the class or instance that implements the method. This parameter MUST NOT be
+NULL. The CIM path MUST contain the class name and the value of the key
+properties.</p><p><b>strMethodName: </b>MUST be the name of the method
+to be executed. This parameter MUST NOT be NULL.</p><p><b>lFlags: </b>Specifies the behavior of the
+ExecMethodAsync method. Flag behavior MUST be interpreted as specified in the
+following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_SEND_STATUS</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server MUST make just one
+  final <span><a href="479c78dc-73cf-4f5b-85bd-5efb26ab48a6" data-linktype="relative-path">IWbemObjectSink::SetStatus</a></span>
+  call on the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface pointer</a></span>
+  that is provided in the <i>pResponseHandler</i> parameter.</p>
+  <p>If this bit is set, the server MAY make intermediate
+  IWbemObjectSink::SetStatus calls on the interface pointer prior to call
+  completion.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Any other DWORD value that does
+not match the preceding condition MUST be treated as invalid.</p>
+</dd></dl><p><b>pCtx: </b>MUST be a pointer to an <span><a href="18c8f1a1-652f-43b7-9186-6098bc303a8d" data-linktype="relative-path">IWbemContext</a></span>
+interface, which MUST contain additional information that the client wants to
+pass to the server. If pCtx is NULL, the parameter MUST be ignored.</p><p><b>pInParams: </b>MUST be a pointer to an <span><a href="46710c5c-d7ab-4e4c-b4a5-ebff311fdcd1" data-linktype="relative-path">IWbemClassObject</a></span>
+interface pointer, which MUST contain an instance of input parameter CIM class
+as defined in <span><a href="../ms-wmio/b44d0581-5bd3-40fc-95d7-01c1b1239820" data-linktype="relative-path">[MS-WMIO]</a></span>
+(section <span><a href="../ms-wmio/96d48962-118e-4c2f-bd6d-8046fb81ef64" data-linktype="relative-path">2.3.3</a></span>),
+with method parameter values set as properties. This parameter MUST be NULL
+when the method has no input parameters.</p><p><b>pResponseHandler: </b>MUST be a pointer to an <span><a href="0ddb4f22-371a-4697-af5b-d4184b179b68" data-linktype="relative-path">IWbemObjectSink</a></span>
+interface object that is implemented by the client of this method. This
+parameter MUST NOT be NULL.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR (as specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The following validation occurs before asynchronous
+operation is started.</p><p>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that makes the call MUST have WBEM_METHOD_EXECUTE,  WBEM_REMOTE_ENABLE, and
+WBEM_ENABLE accesses to the namespace; otherwise, WBEM_E_ACCESS_DENIED MUST be
+returned.</p><p>Requirements mentioned in the parameter definitions are also
+checked before the asynchronous operation is started.</p><p>If successful, the server MUST create a new entry in <b>AsyncOperationTable</b>
+as specified in section <span><a href="83a955c3-2fba-4d06-bd88-76ed9bbada43" data-linktype="relative-path">3.1.1.1.3</a></span>.</p><p>The following validation happens asynchronously.</p><p>In response to IWbemServices::ExecMethodAsync, the server
+MUST evaluate <i>strObjectPath</i> and <i>strMethodName</i> (as specified in
+this section) and MUST execute the method that is identified by <i>strMethodName</i>,
+implemented by the <i>strObjectPath</i> <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c1fdd6c7-06cb-4787-8735-4d19a68dd802" data-linktype="relative-path">CIM object</a></span>. The
+server MUST use the input parameters to the CIM method from the <i>pInParams</i>
+parameter, which is an instance of the input parameter CIM class as defined in
+[MS-WMIO] (section 2.3.3). The server MUST execute the CIM method and send the
+output parameters as an instance of the output parameter CIM class as defined
+in [MS-WMIO] (section 2.3.3). The method MUST fail if the method parameters or
+their combinations are not valid, as specified earlier in this section, or if
+the server is unable to execute the method.</p><p>If the <i>strMethodName</i> has &#34;disabled&#34;
+qualifier set to true, then the server MUST return WBEM_E_METHOD_DISABLED. If
+the <i>strMethodName</i> is not implemented by the CIM class as pointed by the <i>strObjectPath</i>,
+the server MUST return WBEM_E_METHOD_NOT_IMPLEMENTED.</p></div>

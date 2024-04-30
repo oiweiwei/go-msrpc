@@ -1,0 +1,38 @@
+<div class="content"><p> </p><p>The QueryObjectSink method obtains a notification handler
+that allows the client to send events directly to the server.</p><dl>
+<dd>
+<div><pre> HRESULT QueryObjectSink(
+   [in] long lFlags,
+   [out] IWbemObjectSink** ppResponseHandler
+ );
+</pre></div>
+</dd></dl><p><b>lFlags: </b>This parameter is not used and its
+value MUST be 0x0.</p><p><b>ppResponseHandler: </b>MUST be a pointer to a
+QueryObjectSink <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface pointer</a></span> to
+the notification handler that allows the client to send events directly to the
+server. This parameter MUST be set to NULL on error.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that makes the call MUST have WBEM_REMOTE_ENABLE, WBEM_ENABLE, and
+WBEM_FULL_WRITE accesses to the namespace; otherwise, WBEM_E_ACCESS_DENIED MUST
+be returned.</p><p>In response to the IWbemServices::QueryObjectSink method,
+the server MUST return an <span><a href="0ddb4f22-371a-4697-af5b-d4184b179b68" data-linktype="relative-path">IWbemObjectSink</a></span>
+interface pointer in <i>ppResponseHandler</i>. The server MUST return an error
+if the <i>ppResponseHandler</i> is NULL or if it is unable to create the
+requested interface pointer.</p><p>The successful method execution MUST fill the <i>ppResponseHandler</i>
+parameter and MUST return WBEM_S_NO_ERROR.</p><p>The failed method execution MUST set the output parameters
+to NULL and MUST return an error in the format as specified in section 2.2.11. </p><p>When extrinsic events are delivered to the server by using <span><a href="ce36fcf4-5aaa-4dc7-a760-928f6616da77" data-linktype="relative-path">IWbemObjectSink::Indicate</a></span>
+as specified in section 3.1.4.2.1, the server MUST send the event objects to
+all WMI clients whose notification query satisfies the event objects that are
+delivered through IWbemObjectSink::Indicate and whose security permissions
+match the security descriptor as specified in section <span><a href="f61225f0-5f12-4975-8aa3-ff618800b53c" data-linktype="relative-path">5.2</a></span>. Refer to
+section <span><a href="518b6bc0-f05c-4a14-8169-508fe67bc174" data-linktype="relative-path">3.1.6.1</a></span> for
+information on how the result objects are delivered to the client. </p><p>The notification query is made by the client to the server
+by calling <span><a href="b83ac7b7-80bf-412e-9a0f-c665fac0b5bf" data-linktype="relative-path">IWbemServices::ExecNotificationQuery</a></span>
+or <span><a href="b5c27b7b-33e7-44e7-abb6-bc6e36b52637" data-linktype="relative-path">IWbemServices::ExecNotificationQueryAsync</a></span>.
+Refer to sections 3.1.4.3.20 and 3.1.4.3.21 for information about how the
+server processes the client requests for notifications.</p></div>

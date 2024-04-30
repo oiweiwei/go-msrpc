@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The <b>FSSAGENT_SHARE_MAPPING</b> union contains mapping
+information for a share to its <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow copy</a></span> based on
+the level value.</p><dl>
+<dd>
+<div><pre> typedef [switch_type(unsigned long)] union _FSSAGENT_SHARE_MAPPING {
+     [case(1)]
+         PFSSAGENT_SHARE_MAPPING_1 ShareMapping1;
+     [default]
+         ;       
+ } FSSAGENT_SHARE_MAPPING, *PFSSAGENT_SHARE_MAPPING;
+</pre></div>
+</dd></dl><p><b>ShareMapping1:</b>  A pointer to an <b>FSSAGENT_SHARE_MAPPING_1</b>
+structure, as specified in section <span><a href="665c2d2b-5ad7-4831-9bea-b21a3d219311" data-linktype="relative-path">2.2.1.1</a></span>.</p></div>

@@ -1,0 +1,50 @@
+<div class="content"><p> </p><p>When the IEnumWbemClassObject::Skip method is invoked, the
+server MUST move the current position in an enumeration ahead by a specified
+number of <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_8d8f4b2c-bf33-4964-b55c-96ac2cc999bb" data-linktype="relative-path">CIM objects</a></span>.</p><p>The IEnumWbemClassObject::Skip method <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a></span>
+equals 7.</p><dl>
+<dd>
+<div><pre> HRESULT Skip(
+   [in] long lTimeout,
+   [in] ULONG nCount
+ );
+</pre></div>
+</dd></dl><p><b>lTimeout: </b>MUST be the maximum amount of time,
+in milliseconds, that the call to Skip allows to pass before it times out. If
+the constant WBEM_INFINITE (0xFFFFFFFF) is used, the Skip method call waits
+until the operation succeeds.</p><p><b>nCount: </b>MUST be the number of CIM objects to
+skip in the enumeration. If this parameter is greater than the number of CIM
+objects that remain to enumerate, the call MUST skip to the end of the
+enumeration, and WBEM_S_FALSE MUST be the returned value for the method.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The server MUST locate the entry in <b>EnumWbemClassObjectTable</b>
+with <b>EnumWbemClassObjectPointer</b> matching <span><a href="56022f1e-3761-4c17-8d55-8e62dc334b86" data-linktype="relative-path">IEnumWbemClassObject</a></span>.</p><p>The server MUST validate that the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that makes the call is the same as the <b>ClientSecurityContext</b> of the <b>SemiSinkResultSetObject</b>
+pointed to by the entry in <b>EnumWbemClassObjectTable</b>; otherwise,
+WBEM_E_ACCESS_DENIED MUST be returned.</p><p>In response to the IEnumWbemClassObject::Skip method, the
+server MUST evaluate the <i>uCount</i> and <i>lTimeout</i> parameters as
+specified in this section. The server MUST skip the requested number of CIM
+objects from the result set. The server MUST complete the operation within the
+time allowed by <i>lTimeout</i>. The requested number of CIM objects MUST start
+from the current index position. The current index position in the enumeration
+MUST be incremented by the number of CIM objects skipped.</p><p>If the earlier semisynchronous operation is finished and the
+server does not have the requested number of CIM objects to skip, the server
+MUST return WBEM_S_FALSE by skipping the available CIM objects; otherwise, the
+server MUST return WBEM_S_NO_ERROR by skipping the requested number of CIM
+objects. The current index position pointed to by the <b>CurrentIndex</b> entry
+in <b>EnumWbemClassObjectTable</b> MUST be incremented with the number of CIM
+objects skipped.</p><p>If the earlier semisynchronous operation is not finished and
+the server does not have the requested number of CIM objects to skip, this
+method MUST wait for <i>lTimeout</i>, or for the operation to finish, or for
+availability of the requested number of objects, whichever is earliest. If the
+number of the remaining CIM objects to be skipped is less than the number
+requested, the server MUST return WBEM_S_TIMEDOUT; otherwise, the server MUST
+return WBEM_S_NO_ERROR. The current index position pointed to by the <b>CurrentIndex</b>
+entry in <b>EnumWbemClassObjectTable</b> MUST be incremented with the number of
+CIM objects skipped.</p><p>If the original <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_51f3288a-1aea-49f6-96a1-91f368e8b49b" data-linktype="relative-path">semisynchronous operation</a></span>
+fails, the server MUST return the error code that the original method would
+have returned in its synchronous version.</p><p>The failed method execution MUST return an error in the
+format that is specified in section 2.2.11.</p></div>

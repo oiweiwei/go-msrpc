@@ -1,0 +1,98 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/5281b891-30ae-42d9-9104-c071528a6f75" data-linktype="external">msdn link</a></p><p>The Rc4EncryptedPayload structure MUST consist of the
+following structure, encrypted as specified in section <a href="df4f7698-298f-4cb2-8bb9-bff20112c3b2" data-linktype="relative-path">3.1.4.1.1</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>R3 (32
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MAC (20
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SID
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Secret
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>R3 (32 bytes): </b>This MUST be a random number 32
+bytes in length. </p><p><b>MAC (20 bytes): </b>This MUST be a 20-byte <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_fd3168c9-145e-49ad-ba80-2b838a184cbd" data-linktype="relative-path">SHA-1</a> <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_ba024019-a866-41df-99a5-764b7eab2e1e" data-linktype="relative-path">Hash-based Message
+Authentication Code (HMAC)</a> <a href="https://go.microsoft.com/fwlink/?LinkId=90314" data-linktype="external">[RFC2104]</a> of the <b>SID</b>
+and <b>Secret</b> fields, computed as specified in section 3.1.4.1.1.</p><p><b>SID (variable): </b>This MUST be a variable-length
+<a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a>, marshaled in an <b>RPC_SID</b>
+structure (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="relative-path"><b>2.4.2.3</b></a>).</p><p><b>Secret (variable): </b>This field MUST contain the
+secret to be wrapped. </p></div>

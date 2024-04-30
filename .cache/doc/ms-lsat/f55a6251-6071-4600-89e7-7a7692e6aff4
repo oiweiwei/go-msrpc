@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The LSAPR_TRANSLATED_SIDS_EX2 structure contains a set of
+translated <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SIDs</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_TRANSLATED_SIDS_EX2 {
+   [range(0,1000)] unsigned long Entries;
+   [size_is(Entries)] PLSAPR_TRANSLATED_SID_EX2 Sids;
+ } LSAPR_TRANSLATED_SIDS_EX2,
+  *PLSAPR_TRANSLATED_SIDS_EX2;
+</pre></div>
+</dd></dl><p><b>Entries:</b>  Contains the number of
+translated SIDs.<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="d2715572-2c9b-4198-ace9-316a2fb5d7f5#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a></p><p><b>Sids:</b>  Contains a set of structures
+that define translated SIDs, as specified in section <span><a href="e397a7ac-842a-4d44-87ef-170392dee522" data-linktype="relative-path">2.2.25</a></span>. If the <b>Entries</b>
+field in this structure is not 0, this field MUST be non-NULL. If <b>Entries</b>
+is 0, this field MUST be NULL.</p></div>

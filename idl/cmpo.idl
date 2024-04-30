@@ -1,0 +1,149 @@
+import "ms-dtyp.idl";
+ 
+   [
+       uuid (906B0CE0-C70B-1067-B317-00DD010662DA),
+       version(1.0),
+       pointer_default(unique)
+   ]
+ 
+   interface IXnRemote
+   {
+          #define MAX_COMPUTERNAME_LENGTH 15
+          #define GUID_LENGTH 37
+       
+       typedef enum _TearDownType
+       {
+           TT_FORCE = 0x00000000,
+           TT_PROBLEM = 0x00000002,
+       } TEARDOWN_TYPE;
+       
+       typedef enum _SessionRank
+       {
+           SRANK_PRIMARY = 0x00000001,
+           SRANK_SECONDARY = 0x00000002
+       } SESSION_RANK;
+       
+       typedef enum _ResourceType
+       {
+           RT_CONNECTIONS = 0x00000000
+       } RESOURCE_TYPE;
+   
+       typedef struct _BindVersionSet
+       {
+           DWORD   dwMinLevelOne;
+           DWORD   dwMaxLevelOne;
+           DWORD   dwMinLevelTwo;
+           DWORD   dwMaxLevelTwo;
+           DWORD   dwMinLevelThree;
+           DWORD   dwMaxLevelThree;
+       } BIND_VERSION_SET;
+   
+       typedef struct _BoundVersionSet
+       {
+           DWORD   dwLevelOneAccepted;
+           DWORD   dwLevelTwoAccepted;
+           DWORD   dwLevelThreeAccepted;
+       } BOUND_VERSION_SET;
+   
+       typedef unsigned long COM_PROTOCOL;
+   
+   
+       typedef struct _BindInfoBlob
+       {
+           DWORD       dwcbThisStruct;
+           COM_PROTOCOL grbitComProtocols;
+       } BIND_INFO_BLOB;
+ 
+                 
+       HRESULT Poke (
+         [in] handle_t hBinding,
+         [in] SESSION_RANK sRank,
+         [in, string, range(GUID_LENGTH, GUID_LENGTH)] 
+              unsigned char  pszCalleeUuid[],
+         [in, string, range(1, MAX_COMPUTERNAME_LENGTH+1)] 
+              unsigned char pszHostName[],
+         [in, string, range(GUID_LENGTH, GUID_LENGTH)] 
+              unsigned char pszUuidString[],
+         [in, range(sizeof(BIND_INFO_BLOB),sizeof(BIND_INFO_BLOB))] 
+              DWORD   dwcbSizeOfBlob,
+         [in, size_is (dwcbSizeOfBlob)] unsigned char rguchBlob[]);
+ 
+ 
+       HRESULT BuildContext (
+         [in] handle_t hBinding,
+         [in] SESSION_RANK sRank,
+         [in] BIND_VERSION_SET BindVersionSet,
+         [in, string, range(GUID_LENGTH, GUID_LENGTH)] 
+              unsigned char  pszCalleeUuid[],
+         [in, string, range(1, MAX_COMPUTERNAME_LENGTH+1)] 
+              unsigned char pszHostName[],
+         [in, string, range(GUID_LENGTH, GUID_LENGTH)] 
+              unsigned char pszUuidString[],
+         [in, string, range(GUID_LENGTH, GUID_LENGTH)] 
+              unsigned char pszGuidIn[],
+         [in, out, string, range(GUID_LENGTH, GUID_LENGTH)] 
+              unsigned char pszGuidOut[],
+         [in, out] BOUND_VERSION_SET *   pBoundVersionSet,
+         [in, range(sizeof(BIND_INFO_BLOB), sizeof(BIND_INFO_BLOB))] 
+              DWORD dwcbSizeOfBlob,
+         [in, size_is (dwcbSizeOfBlob)] unsigned char rguchBlob[],
+         [out] PPCONTEXT_HANDLE ppHandle);
+   
+       HRESULT NegotiateResources (
+         [in] PCONTEXT_HANDLE phContext,
+         [in] RESOURCE_TYPE resourceType,
+         [in] DWORD  dwcRequested,
+         [in,out] DWORD * pdwcAccepted);
+     
+       HRESULT SendReceive (
+         [in] PCONTEXT_HANDLE phContext,
+         [in, range(1, 4095)] DWORD  dwcMessages,
+         [in, range(40, 0x14000)] DWORD  dwcbSizeOfBoxCar,
+         [in, size_is (dwcbSizeOfBoxCar)] 
+              unsigned char rguchBoxCar[]);
+   
+       HRESULT TearDownContext (
+         [in, out] PPCONTEXT_HANDLE contextHandle,
+         [in] SESSION_RANK sRank,
+         [in] TEARDOWN_TYPE tearDownType);
+   
+       HRESULT BeginTearDown (
+         [in] PCONTEXT_HANDLE contextHandle,
+         [in] TEARDOWN_TYPE tearDownType);
+   
+ 
+       HRESULT PokeW (
+         [in] handle_t hBinding,
+         [in] SESSION_RANK sRank,
+         [in, string, range(GUID_LENGTH, GUID_LENGTH)] 
+              wchar_t pwszCalleeUuid[],
+         [in, string, range(1, MAX_COMPUTERNAME_LENGTH+1)] 
+              wchar_t pwszHostName[],
+         [in, string, range(GUID_LENGTH, GUID_LENGTH)] 
+              wchar_t pwszUuidString[],
+         [in, range(sizeof(BIND_INFO_BLOB), sizeof(BIND_INFO_BLOB))] 
+              DWORD dwcbSizeOfBlob,
+         [in, size_is (dwcbSizeOfBlob)] unsigned char rguchBlob[]);
+   
+ 
+       HRESULT BuildContextW (
+         [in] handle_t hBinding,
+         [in] SESSION_RANK sRank,
+         [in] BIND_VERSION_SET BindVersionSet,
+         [in, string, range(GUID_LENGTH, GUID_LENGTH)] 
+              wchar_t  pwszCalleeUuid[],
+         [in, string, range(1, MAX_COMPUTERNAME_LENGTH+1)] 
+              wchar_t pwszHostName[],
+         [in, string, range(GUID_LENGTH, GUID_LENGTH)] 
+              wchar_t pwszUuidString[],
+         [in, string, range(GUID_LENGTH, GUID_LENGTH)] 
+              wchar_t pwszGuidIn[],
+         [in,out, string, range(GUID_LENGTH, GUID_LENGTH)] 
+              wchar_t pwszGuidOut[],
+         [in, out] BOUND_VERSION_SET *pBoundVersionSet,
+         [in, range(sizeof(BIND_INFO_BLOB), sizeof(BIND_INFO_BLOB))] 
+              DWORD dwcbSizeOfBlob,
+         [in, size_is (dwcbSizeOfBlob)] unsigned char rguchBlob[],
+         [out] PPCONTEXT_HANDLE ppHandle);
+ 
+   }

@@ -1,0 +1,57 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_POLICY_TYPE</b> enumeration specifies the DNS
+operation for which the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_5076749f-34a6-48a6-b051-8968a55f4d7b" data-linktype="relative-path">DNS policy</a></span> is
+applicable.</p><table><thead>
+  <tr>
+   <th>
+   <p>Enumerator Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DnsPolicyQueryProcessing=0</p>
+  </td>
+  <td>
+  <p>The DNS policy is applicable for DNS queries.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DnsPolicyZoneTransfer</p>
+  </td>
+  <td>
+  <p>The DNS policy is applicable for zone transfer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DnsPolicyDynamicUpdate</p>
+  </td>
+  <td>
+  <p>The DNS policy is applicable for dynamic DNS updates.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DnsPolicyRecursion</p>
+  </td>
+  <td>
+  <p>The DNS policy is applicable for recursive queries.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DnsPolicyRRLExceptionList</p>
+  </td>
+  <td>
+  <p>The DNS policy is applicable for RRL Exceptionlisting.
+  Exceptionlisting exempts queries from response rate limiting. The queries can
+  be exempted based on name, source subnet, or the DNS server interface address
+  where the query was received.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DnsPolicyMax</p>
+  </td>
+  <td>
+  <p>Shows the maximum DNS policies supported.</p>
+  </td>
+ </tr></tbody></table><p>  </p></div>

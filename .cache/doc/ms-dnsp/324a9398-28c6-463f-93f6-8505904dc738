@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_DP_ENUM</b> structure contains abbreviated
+information about an <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_68dc613a-d602-41ae-9acc-76ffe97877c4" data-linktype="relative-path">application directory partition</a></span>.<a id="Appendix_A_Target_58"></a><a aria-label="Product behavior note 58" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_58" data-linktype="relative-path">&lt;58&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcDirectoryPartitionEnum {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   [string] char* pszDpFqdn;
+   DWORD dwFlags;
+   DWORD dwZoneCount;
+ } DNS_RPC_DP_ENUM,
+  *PDNS_RPC_DP_ENUM;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> As specified in section
+<span><a href="bd2a817d-6a69-40d3-befc-0c198a9c6e80" data-linktype="relative-path">2.2.7.2.1</a></span>.</p><p><b>dwReserved0:</b> As specified in section
+2.2.7.2.1.</p><p><b>pszDpFqdn:</b> As specified in section 2.2.7.2.1.</p><p><b>dwFlags:</b> As specified in section
+2.2.7.2.1.</p><p><b>dwZoneCount:</b> As specified in section
+2.2.7.2.1.</p></div>

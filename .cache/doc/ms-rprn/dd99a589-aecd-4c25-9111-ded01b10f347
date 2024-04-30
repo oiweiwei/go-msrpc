@@ -1,0 +1,16 @@
+<div class="content"><p>The <b>SPLCLIENT_INFO_1 </b>structure provides information
+about the calling client of the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a>.<a id="Appendix_A_Target_65"></a><a aria-label="Product behavior note 65" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_65" data-linktype="relative-path">&lt;65&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _SPLCLIENT_INFO_1 {
+   DWORD dwSize;
+   [string] wchar_t* pMachineName;
+   [string] wchar_t* pUserName;
+   DWORD dwBuildNum;
+   DWORD dwMajorVersion;
+   DWORD dwMinorVersion;
+   unsigned short wProcessorArchitecture;
+ } SPLCLIENT_INFO_1;
+</pre></div>
+</dd></dl><p><b>dwSize:</b> The size, in bytes, of the
+structure.</p><p>All members not defined in this section are specified in
+sections <a href="fae766fc-31d3-43cc-902f-8e6cc4c75f31" data-linktype="relative-path">2.2.1.3.7</a> and <a href="964b517f-6730-4b4a-99ed-ee9648e7f1f7" data-linktype="relative-path">2.2.1.3</a>.</p></div>

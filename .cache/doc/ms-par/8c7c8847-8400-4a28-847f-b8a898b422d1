@@ -1,0 +1,170 @@
+<div class="content"><p> </p><p><b>RpcAsyncInstallPrinterDriverFromPackage</b> installs a <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer
+driver</a></span> from a <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_1874576f-4b40-4a78-a1f3-9e47b7ce21c9" data-linktype="relative-path">driver package</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT RpcAsyncInstallPrinterDriverFromPackage(
+   [in] handle_t hRemoteBinding,
+   [in, string, unique] const wchar_t* pszServer,
+   [in, string, unique] const wchar_t* pszInfPath,
+   [in, string] const wchar_t* pszDriverName,
+   [in, string] const wchar_t* pszEnvironment,
+   [in] DWORD dwFlags
+ );
+</pre></div>
+</dd></dl><p><b>hRemoteBinding: </b>An <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> explicit binding
+handle.</p><p><b>pszServer: </b>A pointer to a string that
+specifies the name of the <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a></span> on
+which to install the printer driver.</p><dl>
+<dd>
+<p>This string contains the server name that was used
+to create the <i>hRemoteBinding</i> parameter. For RPC bind handles, refer to <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+For rules governing server names, refer to <span><a href="../ms-rprn/d42db7d5-f141-4466-8f47-0a4be14e2fc1" data-linktype="relative-path">[MS-RPRN]</a></span>
+section <span><a href="../ms-rprn/9b3f8135-7022-4b72-accb-aefcc360c83b" data-linktype="relative-path">2.2.4.16</a></span>.</p>
+</dd></dl><p><b>pszInfPath: </b>A pointer to a string that
+specifies the path to a driver installation control file that specifies the
+printer driver.</p><dl>
+<dd>
+<p>This control file MAY<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a> be used
+to install the driver on a target system. For rules governing path names, refer
+to [MS-RPRN] section <span><a href="../ms-rprn/1d75f622-d07c-45cc-bf1e-a6191e408516" data-linktype="relative-path">2.2.4.9</a></span>.</p>
+</dd></dl><p><b>pszDriverName: </b>A pointer to a string that
+specifies the name of the printer driver.</p><p><b>pszEnvironment: </b>A pointer to a string that
+specifies the environment name for which the printer driver is installed. For
+rules governing environment names, refer to [MS-RPRN] section <span><a href="../ms-rprn/ad775893-8a19-4786-ab46-34731f52d1af" data-linktype="relative-path">2.2.4.4</a></span>.</p><p><b>dwFlags: </b>A bitfield that specifies the options
+for installing printer driver files from a driver package.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Only the files that will not overwrite files with a
+  newer version SHOULD be installed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPDFP_COPY_ALL_FILES</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>All files SHOULD be installed, even if doing so would
+  overwrite some newer versions.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits SHOULD be set to
+zero by the client and MUST be ignored by the server upon receipt.</p>
+</dd></dl><p><b>Return Values: </b>This method returns either an <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span>
+success value (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>)
+or an HRESULT error value to indicate failure.</p><p><b>Exceptions Thrown:</b> This method MUST NOT throw any
+exceptions other than those that are thrown by the underlying RPC protocol
+[MS-RPCE].</p><p><b>Parameter Validation Requirements:</b> Upon receiving
+this method call, the server MUST validate parameters as follows:</p><ul><li><p><span><span> 
+</span></span>The string pointed to by the <i>pszInfPath</i> parameter contains
+a valid path name; otherwise the server returns ERROR_INVALID PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>The string pointed to by the <i>pszEnvironment</i> parameter
+specifies one of the supported environment names on this server for that type
+of driver; otherwise the server returns ERROR_INVALID_ENVIRONMENT.</p>
+</li></ul><p>The print server SHOULD<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a> perform
+the following additional validation steps:</p><ul><li><p><span><span> 
+</span></span>Validate that, if the printer driver specified by the client has
+a driver version of 0x00000004 (<i>cVersion</i> in [MS-RPRN] section <span><a href="../ms-rprn/4464eaf0-f34f-40d5-b970-736437a21913" data-linktype="relative-path">2.2.1.3.1</a></span>),
+the driver package specified by the printer client contains exactly one <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_566759dc-6e10-4b36-b710-f4296c1fbc83" data-linktype="relative-path">printer
+driver manifest</a></span> for the printer driver and the printer driver
+manifest conforms to the implementation-specific rules governing the format of
+printer driver manifests; otherwise, the server returns
+ERROR_INVALID_PRINTER_DRIVER_MANIFEST.</p>
+</li><li><p><span><span> 
+</span></span>Validate that, if the printer driver specified by the client is a
+<span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_3101a6be-4528-4314-afe4-ea9d26a106eb" data-linktype="relative-path">derived
+printer driver</a></span>, either the <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_f4048a04-2516-44fc-ba42-2b5bee2782d5" data-linktype="relative-path">class printer driver</a></span>
+on which the derived printer driver depends is already installed on the print
+server, or a driver package containing the class printer driver is installed in
+the print server&#39;s <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_55d56bf9-1542-43e4-b603-2e08ad5cdd3f" data-linktype="relative-path">driver store</a></span>, or the
+print server can locate a driver package containing the class printer driver
+through some other implementation-specific mechanism;<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a> otherwise, the server returns
+ERROR_UNKNOWN_PRINTER_DRIVER. This HRESULT error code is constructed by using
+the HRESULT from WIN32 Error Code Macro ([MS-ERREF] section <span><a href="../ms-erref/0c0bcf55-277e-4120-b5dc-f6115fc8dc38" data-linktype="relative-path">2.1.2</a></span>)
+on the 16-bit Win32 value for this error ([MS-ERREF] section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>).</p>
+</li><li><p><span><span> 
+</span></span>Validate that any files referenced in the driver installation
+control file specified by the print client or in the printer driver manifest in
+the driver package specified by the print client are present on the print
+server; otherwise, the server returns ERROR_FILE_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>Validate that, if the printer driver specified by the client has
+a driver version of 0x00000003 (<i>cVersion</i> parameter in [MS-RPRN] section
+2.2.1.3.1), the string pointed to by the <i>pszEnvironment</i> parameter is not
+&#34;Windows ARM&#34;; otherwise, the server returns ERROR_NOT_SUPPORTED.</p>
+</li></ul><p>If the installation requested by the print client is a <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_642a4e0f-a3c9-4641-9b63-e622b46d490b" data-linktype="relative-path">printer
+driver upgrade</a></span> and the new printer driver has a driver version of
+0x00000003, the print server SHOULD perform the following additional validation
+steps:</p><ul><li><p><span><span> 
+</span></span>Validate that the currently installed printer driver is not a
+class printer driver.</p>
+</li><li><p><span><span> 
+</span></span>Validate that if the currently installed printer driver has a
+driver version of 0x00000004, the currently installed printer driver does not
+have a newer driver date, or if the driver dates are the same, the currently
+installed printer driver does not have a newer manufacturer-provided driver
+version number.</p>
+</li><li><p><span><span> 
+</span></span>Validate that if the currently installed printer driver has a
+driver version of 0x00000004, there are no printers on the print server that
+are shared and also use the currently installed printer driver.</p>
+</li></ul><p>If this validation fails, the print server returns
+ERROR_PRINTER_DRIVER_BLOCKED.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a></p><p>If the installation requested by the print client is a
+printer driver upgrade and the new printer driver has a driver version of
+0x00000004, the print server SHOULD perform the following additional validation
+steps:</p><ul><li><p><span><span> 
+</span></span>Validate that, if the currently installed printer driver is a
+class printer driver, the new printer driver is also a class printer driver.</p>
+</li><li><p><span><span> 
+</span></span>Validate that, unless the currently installed printer driver is
+not a class printer driver and the new printer driver is a class printer
+driver, the currently installed printer driver does not have a newer driver
+date than the new printer driver, or, if the driver dates are the same, that
+the currently installed printer driver does not have a newer
+manufacturer-provided driver version number.</p>
+</li><li><p><span><span> 
+</span></span>Validate that, if there are one or more printers on the print
+server that are shared and also use the currently installed printer driver, the
+new printer driver does not indicate that printers using that printer driver
+cannot be shared.</p>
+</li></ul><p>If this validation fails, the print server returns S_FALSE.<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a></p><p>If parameter validation fails, the server MUST fail the operation
+immediately and return a nonzero error response to the client.</p><p>For general information about driver installation control
+files, see <span><a href="https://go.microsoft.com/fwlink/?linkid=842371" data-linktype="external">[MSDN-INFS]</a></span>.
+For printer-specific information about printer-driver installation control
+files, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90066" data-linktype="external">[MSDN-PRNINF]</a></span>.</p><p><b>Processing and Response Requirements:</b> If parameter
+validation succeeds, the server MUST process the method call by:</p><ul><li><p><span><span> 
+</span></span>Installing a printer driver from the driver package that is
+located in the print server&#39;s driver store, using an implementation-specific
+mechanism to determine the Boolean values of each of the attributes of the
+printer driver object.<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a> If the
+printer driver is a derived printer driver and the class printer driver on
+which the derived printer driver depends is not currently installed, the print
+server MUST first install the class printer driver. If a driver package
+containing the class printer driver on which the derived printer driver depends
+is also located in the print server&#39;s driver store, the print server SHOULD
+install the class printer driver from the driver package that contains it. If a
+driver package containing the class printer driver is not located in the print
+server&#39;s driver store but the print server can locate a driver package
+containing the class printer driver through some other implementation-specific
+mechanism,<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a> the print server SHOULD install
+the driver package containing the class printer driver and then SHOULD install
+the class printer driver from that driver package.<a id="Appendix_A_Target_18"></a><a aria-label="Product behavior note 18" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Returning the status of the operation.</p>
+</li></ul><p>If the operation is successful, the server MUST install the
+printer driver from the driver package before returning the response.</p></div>

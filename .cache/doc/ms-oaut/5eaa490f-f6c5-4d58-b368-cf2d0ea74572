@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The SAFEARRAYUNION union defines the mapping between the
+discriminant value and the contained array data.</p><dl>
+<dd>
+<div><pre> typedef 
+  
+ union _wireSAFEARRAY_UNION switch(unsigned long sfType) u {
+   case SF_BSTR :  SAFEARR_BSTR BstrStr;
+   case SF_UNKNOWN :  SAFEARR_UNKNOWN UnknownStr;
+   case SF_DISPATCH :  SAFEARR_DISPATCH DispatchStr;
+   case SF_VARIANT :  SAFEARR_VARIANT VariantStr;
+   case SF_RECORD :  SAFEARR_BRECORD RecordStr;
+   case SF_HAVEIID :  SAFEARR_HAVEIID HaveIidStr;
+   case SF_I1 :  BYTE_SIZEDARR ByteStr;
+   case SF_I2 :  WORD_SIZEDARR WordStr;
+   case SF_I4 :  DWORD_SIZEDARR LongStr;
+   case SF_I8 :  HYPER_SIZEDARR HyperStr;
+ } SAFEARRAYUNION;
+</pre></div>
+</dd></dl><p> _wireSAFEARRAY_UNION: MUST contain an instance of the type,
+according to the value of the union discriminant. </p><p>The <b>sfType</b> field MUST be marshaled as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+section 14, with the exception that it MUST be marshaled by using a
+little-endian data representation, regardless of the data representation format
+label. For more information, see [C706] section 14.2.5.</p></div>

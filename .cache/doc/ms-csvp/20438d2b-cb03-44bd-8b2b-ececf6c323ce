@@ -1,0 +1,19 @@
+<div class="content"><p>The <b>CLUSTER_NETWORK_PROFILE</b> enumeration defines the
+valid values for network adapter firewall profiles. When the server firewall
+enforces policies specified in <a href="../ms-fasp/55e50895-2e1f-4479-b130-122f9dc0265f" data-linktype="relative-path">[MS-FASP]</a>,
+the server SHOULD determine the network adapter firewall profile by querying
+the server firewall for the network adapter profile and mapping that value as
+specified below.</p><dl>
+<dd>
+<div><pre> typedef  enum _CLUSTER_NETWORK_PROFILE
+ {
+   ClusterNetworkProfilePublic = 0x00,
+   ClusterNetworkProfilePrivate = 0x01,
+   ClusterNetworkProfileDomainAuthenticated = 0x02
+ } CLUSTER_NETWORK_PROFILE,
+  *PCLUSTER_NETWORK_PROFILE;
+</pre></div>
+</dd></dl><p><b>ClusterNetworkProfilePublic:  </b>See <b>FW_PROFILE_TYPE_PUBLIC</b>
+in [MS-FASP] section <a href="../ms-fasp/7704e238-174d-4a5e-b809-5f3787dd8acc" data-linktype="relative-path">2.2.2</a>.</p><p><b>ClusterNetworkProfilePrivate:  </b>See <b>FW_PROFILE_TYPE_PRIVATE</b>
+in <b>[MS-FASP]</b> section 2.2.2.</p><p><b>ClusterNetworkProfileDomainAuthenticated:  </b>See <b>FW_PROFILE_TYPE_DOMAIN</b>
+in <b>[MS-FASP]</b> section 2.2.2.</p></div>

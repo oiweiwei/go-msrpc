@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The QueryReply structure defines the response of a <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_11378cd1-e2d0-4d63-9d15-e2e49215a859" data-linktype="relative-path">server
+locator</a></span> to a <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_a33485fd-4392-4219-83f8-d65cfa0e9674" data-linktype="relative-path">master locator</a></span> <span><a href="514bb58e-4830-44a0-96c8-79bd38214886" data-linktype="relative-path">Broadcast
+Lookup</a></span> query</p><dl>
+<dd>
+<div><pre> typedef struct {
+   WCHAR Domain[20];
+   ReplyBuffer Buffer[];
+ } QueryReply;
+</pre></div>
+</dd></dl><p><b>Domain:</b>  MUST be a null-terminated,
+fixed-length buffer that MUST contain the NetBIOS domain name of the computer
+on which the server locator is running. Information on NetBIOS is specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90224" data-linktype="external">[NETBEUI]</a></span>,
+<span><a href="https://go.microsoft.com/fwlink/?LinkId=90260" data-linktype="external">[RFC1001]</a></span>,
+and <span><a href="https://go.microsoft.com/fwlink/?LinkId=90261" data-linktype="external">[RFC1002]</a></span>. The
+NULL termination character is included in the fixed-length size of 20 <span><a href="../ms-dtyp/7df7c1d5-492c-4db4-a992-5cd9e887c5d7" data-linktype="relative-path">WCHAR</a></span>.</p><p><b>Buffer:</b>   MUST contain the response
+from the server locator. The buffer MUST be an array of <span><a href="a1a160e1-114f-4967-aad4-a73686ca500f" data-linktype="relative-path">ReplyBuffer</a></span>
+structures terminated by 4 zero-initialized bytes. The size of the buffer MUST
+NOT exceed 1000 bytes, including any zero-initialized bytes for termination
+between ReplyBuffer structures. Reply buffers are specified in section
+2.2.4.2.2.2.</p></div>

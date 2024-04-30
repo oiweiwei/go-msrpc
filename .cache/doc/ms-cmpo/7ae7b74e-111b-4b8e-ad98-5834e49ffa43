@@ -1,0 +1,10 @@
+<div class="content"><p>This document specifies the MSDTC Connection Manager: OleTx
+Transports Protocol. The MSDTC Connection Manager: OleTx Transports Protocol is
+a <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call
+(RPC)</a> interface for establishing duplex <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0cd96b80-a737-4f06-bca4-cf9efb449d12" data-linktype="relative-path">sessions</a> between two <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partners</a> and for exchanging
+messages between them. The MSDTC Connection Manager: OleTx Transports Protocol
+is a framing and message transport protocol and, as such, is designed to have
+other protocols layered over the basic session, messaging, and security
+services that it provides.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

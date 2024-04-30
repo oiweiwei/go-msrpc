@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_TRUST_POINT_LIST</b> structure contains zero
+or more <span><a href="4bcc0030-8525-4d94-bc79-c057e3f650d1" data-linktype="relative-path">DNS_RPC_TRUST_POINT</a></span>
+structures.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcTrustPointList {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   [range(0,500000)] DWORD dwTrustPointCount;
+   [size_is(dwTrustPointCount)] PDNS_RPC_TRUST_POINT TrustPointArray[];
+ } DNS_RPC_TRUST_POINT_LIST,
+  *PDNS_RPC_TRUST_POINT_LIST;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The structure
+version number; this MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>dwTrustPointCount:</b> The size of the <b>TrustPointArray</b>
+array.</p><p><b>TrustPointArray:</b> An array of pointers to
+DNS_RPC_TRUST_POINT structures.</p></div>

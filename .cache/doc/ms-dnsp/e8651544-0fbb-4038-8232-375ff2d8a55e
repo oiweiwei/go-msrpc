@@ -1,0 +1,146 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_ZONE_INFO_W2K</b> structure is used to
+specify detailed <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a></span> <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span>
+information.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcZoneInfoW2K {
+   [string] char* pszZoneName;
+   DWORD dwZoneType;
+   DWORD fReverse;
+   DWORD fAllowUpdate;
+   DWORD fPaused;
+   DWORD fShutdown;
+   DWORD fAutoCreated;
+   DWORD fUseDatabase;
+   [string] char* pszDataFile;
+   PIP4_ARRAY aipMasters;
+   DWORD fSecureSecondaries;
+   DWORD fNotifyLevel;
+   PIP4_ARRAY aipSecondaries;
+   PIP4_ARRAY aipNotify;
+   DWORD fUseWins;
+   DWORD fUseNbstat;
+   DWORD fAging;
+   DWORD dwNoRefreshInterval;
+   DWORD dwRefreshInterval;
+   DWORD dwAvailForScavengeTime;
+   PIP4_ARRAY aipScavengeServers;
+   DWORD pvReserved1;
+   DWORD pvReserved2;
+   DWORD pvReserved3;
+   DWORD pvReserved4;
+ } DNS_RPC_ZONE_INFO_W2K,
+  *PDNS_RPC_ZONE_INFO_W2K;
+</pre></div>
+</dd></dl><p><b>pszZoneName:</b> A pointer to a
+null-terminated <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+contains a zone name.</p><p><b>dwZoneType:</b> The zone type. This MUST be
+set to one of the allowed values as specified in DNS_ZONE_TYPE (section <span><a href="27e138a7-110c-44a4-afcb-b95f35f00306" data-linktype="relative-path">2.2.5.1.1</a></span>).</p><p><b>fReverse:</b> A Boolean value where TRUE
+(0x00000001) indicates this is a reverse lookup zone and FALSE (0x00000000)
+indicates this is a forward lookup zone.</p><p><b>fAllowUpdate:</b> A value that indicates what
+kind <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_dbff570c-a709-479a-980a-5b74ac7ab2e7" data-linktype="relative-path">dynamic
+updates</a></span>, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=107017" data-linktype="external">[RFC2136]</a></span>, are
+allowed for this zone. This MUST be set to one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p> Constant/value </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span>ZONE_UPDATE_OFF </span></p>
+  <p><span>0x00000000</span></p>
+  </td>
+  <td>
+  <p><span>No updates are
+  allowed for the zone.</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>ZONE_UPDATE_UNSECURE</span></p>
+  <p><span>0x00000001</span></p>
+  </td>
+  <td>
+  <p><span>All updates (secure
+  and unsecure) are allowed for the zone.</span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span>ZONE_UPDATE_SECURE</span></p>
+  <p><span>0x00000002</span></p>
+  </td>
+  <td>
+  <p>The zone only allows secure updates, that is, DNS
+  packet MUST have a TSIG <span><a href="https://go.microsoft.com/fwlink/?LinkId=90388" data-linktype="external">[RFC2845]</a></span>
+  present in the additional section.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>fPaused:</b> A Boolean value indicates whether
+zone operations are currently paused. TRUE indicates that the DNS server does
+not use this zone to answer queries or accept updates. FALSE indicates that the
+zone is handled normally.</p><p><b>fShutdown:</b> A Boolean value that indicates
+whether this zone is currently shut down.</p><p><b>fAutoCreated:</b> A Boolean value that
+indicates whether this zone was autocreated by the DNS server at boot time or
+when a virtualization instance is created via the <b>CreateVirtualizationInstance</b>
+RPC operation (section <span><a href="9500a7e8-165d-4b13-be86-0ddc43100eef" data-linktype="relative-path">3.1.4.1</a>)</span>.</p><p><b>fUseDatabase:</b> A Boolean value that
+indicates whether this zone is stored in a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_04fd0982-6bb6-44f1-817e-795715049c50" data-linktype="relative-path">directory server</a></span>.</p><p><b>pszDataFile:</b> A pointer to a
+null-terminated UTF-8 character string that specifies the name (with no path)
+of the zone file for a file-based zone or NULL if this zone is not stored in a
+file.</p><p><b>aipMasters:</b> A pointer to a structure of
+type IP4_ARRAY (section <span><a href="588ae296-71bf-402f-9996-86ecee39dc29" data-linktype="relative-path">2.2.3.2.1</a></span>) that
+specifies a list of IPv4 addresses of the remote DNS servers that can be
+sources of information for this zone to perform <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_67ea3c5b-6b1e-40a3-ac20-3f7eaf056504" data-linktype="relative-path">zone transfers</a></span> by a
+secondary. This value is applicable for secondary, stub and <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_001ff1c1-e24f-4766-a5b1-a5802871054f" data-linktype="relative-path">forwarder</a></span>
+zones only and MUST be NULL for all other zone types.</p><p><b>fSecureSecondaries:</b> The secondary
+security settings configured for a zone on the master DNS server. The DNS
+server MUST respond to zone transfer requests from a secondary server according
+to the behavior description corresponding to this flag&#39;s value as specified in
+DNS_ZONE_SECONDARY_SECURITY (section <span><a href="751e1cf8-c97f-41c5-ae49-9a674398d0f3" data-linktype="relative-path">2.2.5.1.2</a></span>). This
+value MUST be set to one of the allowed values as specified in
+DNS_ZONE_SECONDARY_SECURITY (section 2.2.5.1.2).</p><p><b>fNotifyLevel:</b> This parameter is ignored,
+and for dwZoneType parameter setting DNS_ZONE_TYPE_PRIMARY (specified in
+section 2.2.5.1.1) and for DNS servers that are not directory
+service-integrated, the zone notification setting is set to
+ZONE_NOTIFY_ALL_SECONDARIES. Otherwise, it is set to ZONE_NOTIFY_LIST_ONLY, as
+specified in section <span><a href="343f4212-ad8a-4790-8aa7-7c5bc15f7bd2" data-linktype="relative-path">2.2.5.1.3</a></span>.</p><p><b>aipSecondaries:</b> A pointer to a structure
+of type IP4_ARRAY (section 2.2.3.2.1) that specifies a list of IPv4 addresses
+of the remote DNS servers that are <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_85ec490e-c7d1-4b6d-80b3-23320e7e1c9d" data-linktype="relative-path">secondary DNS servers</a></span>
+for this zone, or NULL if there are no secondary DNS servers. If
+fSecureSecondaries is set to ZONE_SECSECURE_LIST_ONLY then only zone transfers
+from IP addresses in this list will be honored. </p><p><b>aipNotify:</b> A pointer to a structure of
+type IP4_ARRAY (section 2.2.3.2.1) that specifies a list of IPv4 addresses of
+the remote DNS servers that are secondaries for this zone, for which this DNS
+server is acting as master and the DNS server will send zone notifications to
+these secondary servers, as directed by the value of fNotifyLevel above.</p><p><b>fUseWins:</b> A Boolean value that indicates
+whether <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a></span> <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_49c03845-ca86-48f5-9cbf-ab86c624aa29" data-linktype="relative-path">resource
+record</a></span> lookup is enabled for this forward lookup zones.</p><p><b>fUseNbstat:</b> A Boolean value that
+indicates whether <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_5b990252-86cc-4c08-b06b-49d703ea4d18" data-linktype="relative-path">WINS-R</a></span> resource
+record lookup is enabled for this reverse lookup zones.</p><p><b>fAging:</b> A Boolean value where TRUE
+(0x00000001) indicates that <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0288f9f1-b244-4551-8638-a2280001b531" data-linktype="relative-path">aging</a></span> is enabled for
+resource records in this zone, so the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_391ec606-c265-48f2-aeeb-3245b5503121" data-linktype="relative-path">time-stamps</a></span> of records
+in the zone will be updated when server receives dynamic update request for
+that record; whereas FALSE(0x00000000) indicates, that the time-stamps of the
+records in the zone will not be updated.</p><p><b>dwNoRefreshInterval:</b> The time interval,
+in hours, that is configured as <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_d826a56a-099e-41a2-8055-df5e0d2c51c6" data-linktype="relative-path">NoRefresh interval</a></span>
+value for this zone. This value determines the time interval between the last
+update of a record&#39;s time-stamp and the earliest instance when that time-stamp can
+be refreshed. </p><p><b>dwRefreshInterval:</b> The time interval, in
+hours, that is configured as the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_ca2f2a4a-91f1-4547-809e-00bd8e41211c" data-linktype="relative-path">refresh interval</a></span>
+value for this zone. Records that have not been refreshed by the expiration of
+this interval are eligible to be removed during the next <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_345c3de7-adfa-4386-9ba5-f5f572af489c" data-linktype="relative-path">scavenging</a></span>
+cycle performed by the DNS server.</p><p><b>dwAvailForScavengeTime:</b> The time
+interval, in hours, that is available before the scheduled next scavenging
+cycle for this zone.</p><p><b>aipScavengeServers:</b> A pointer to a
+structure of type IP4_ARRAY (section 2.2.3.2.1) that specifies a list of IPv4
+addresses of the DNS servers that will perform scavenging for this zone. This
+value is applicable for zones of type DNS_ZONE_TYPE_PRIMARY (section
+DNS_ZONE_TYPE) only. If this value is NULL,  there are no restrictions on which
+DNS server can perform scavenging for this zone.</p><p><b>pvReserved1:</b> Reserved for future use.
+Server MUST set to zero and receiver MUST ignore this value. </p><p><b>pvReserved2:</b> Reserved for future use.
+Server MUST set to zero and receiver MUST ignore this value. </p><p><b>pvReserved3:</b> Reserved for future use.
+Server MUST set to zero and receiver MUST ignore this value. </p><p><b>pvReserved4:</b> Reserved for future use.
+Server MUST set to zero and receiver MUST ignore this value. </p></div>

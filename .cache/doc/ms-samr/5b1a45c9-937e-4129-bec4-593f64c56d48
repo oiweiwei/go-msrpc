@@ -1,0 +1,12 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/5b1a45c9-937e-4129-bec4-593f64c56d48" data-linktype="external">msdn link</a></p><p>The DOMAIN_SERVER_ENABLE_STATE enumeration describes the
+enabled or disabled state of a server.</p><dl>
+<dd>
+<div><pre> typedef  enum _DOMAIN_SERVER_ENABLE_STATE
+ {
+   DomainServerEnabled = 1,
+   DomainServerDisabled
+ } DOMAIN_SERVER_ENABLE_STATE,
+  *PDOMAIN_SERVER_ENABLE_STATE;
+</pre></div>
+</dd></dl><p><b>DomainServerEnabled:  </b>The server is considered
+&#34;enabled&#34; to the client.</p><p><b>DomainServerDisabled:  </b>This field is not used.</p></div>

@@ -1,0 +1,121 @@
+<div class="content"><p> </p><p>The IRPCAsyncNotify_GetNewChannel method returns an array of
+pointers to print <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_31f349c9-3af0-4057-9d90-5ecb958398a5" data-linktype="relative-path">notification channels</a></span>.
+This method MUST only be used with <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_b1d50fe5-0a8c-44fe-8802-3382d1af77e5" data-linktype="relative-path">bidirectional communication
+mode</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT IRPCAsyncNotify_GetNewChannel(
+   [in] PRPCREMOTEOBJECT pRemoteObj,
+   [out] unsigned long* pNoOfChannels,
+   [out, size_is( , *pNoOfChannels)] 
+     PNOTIFYOBJECT** ppChannelCtxt
+ );
+</pre></div>
+</dd></dl><p><b>pRemoteObj: </b>MUST be the <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_96e6d133-8e9c-4258-ae03-65cb549bce90" data-linktype="relative-path">remote
+object</a></span> context handle. This handle is obtained from <span><a href="e3786f60-0b93-4c5e-8cd1-3f0487e4310a" data-linktype="relative-path">IRPCRemoteObject_Create (section 3.1.2.4.1)</a></span>.
+This remote object MUST have been registered for bidirectional communication
+mode by a prior successful call to <span><a href="fd00091c-2da3-4966-84ef-b1b75edb66b4" data-linktype="relative-path">IRPCAsyncNotify_RegisterClient (section 3.1.1.4.1)</a></span>.</p><p><b>pNoOfChannels: </b>MUST specify the number of
+notification channels returned. The array of notification channels is specified
+by the <b>ppChannelCtxt</b> parameter.</p><dl>
+<dd>
+<p>The server SHOULD return all not-yet-acquired
+bidirectional channels in response to a single IRPCAsyncNotify_GetNewChannel
+call. The server SHOULD return such channels regardless of whether they were
+created before or after client registration or the call to
+IRPCAsyncNotify_GetNewChannel.</p>
+</dd></dl><p><b>ppChannelCtxt: </b>MUST specify a pointer to the
+array of returned notification channels. This data is represented by a <b>Bidirectional
+Notification Channel</b> structure in the <span><a href="bd69159c-f3d8-4f7b-b2c3-f9efec7c9f62" data-linktype="relative-path">Abstract Data
+Model (section 3.1.1.1)</a></span>.</p><p><b>Return Values: </b>This method MUST return zero to
+indicate success, or an <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> error value
+(<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a></span>)
+to indicate failure. Protocol-specific error values are defined in the
+following table. The client SHOULD treat all error return values the same,
+except where noted. </p><table><thead>
+  <tr>
+   <th>
+   <p>Return value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8004000C</p>
+  </td>
+  <td>
+  <p>The server has not yet returned from a previous call
+  to this method with the same remote object.</p>
+  <p>If this error value is returned, the client SHOULD NOT
+  retry this call before the previous call to this method with the specified
+  remote object has completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007000E</p>
+  </td>
+  <td>
+  <p>The server does not have enough memory for the new
+  channel.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007071A</p>
+  </td>
+  <td>
+  <p>Incoming notifications have been terminated. Upon
+  completion of this call with this return value, the server MUST fail
+  subsequent calls to this method with the same remote object.</p>
+  <p>If this error value is returned, the client SHOULD NOT
+  retry this call.</p>
+  </td>
+ </tr></tbody></table><p><b>Exceptions Thrown:</b> An exception code of
+0x8004000C or 0x8007071A SHOULD be thrown by the server under the circumstances
+described in the preceding table for the corresponding return values. The
+client MUST treat these exception codes exactly as it would treat the same
+return values. No additional exceptions are thrown beyond those thrown by the
+underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>Unless specified otherwise, if a failure is indicated by an
+error return or an exception, the client SHOULD retry this method call by
+performing the following steps:</p><ol><li><p><span>    </span>Call
+IRPCRemoteObject_Create to generate a new <span><a href="a47aca7c-fcc3-4151-8fb6-1de5225ecfa5" data-linktype="relative-path">PRPCREMOTEOBJECT (section 2.2.4)</a></span>.</p>
+</li><li><p><span>    </span>Call
+IRPCAsyncNotify_RegisterClient with the new PRPCREMOTEOBJECT.</p>
+</li><li><p><span>    </span>Call
+IRPCAsyncNotify_GetNewChannel with the new PRPCREMOTEOBJECT.</p>
+</li></ol><p>Retries SHOULD be separated by time intervals decaying from
+1 second to 1 minute to reduce a potential burden on the server. Retries SHOULD
+terminate when the above sequence succeeds or the client determines that it is
+no longer interested in notifications for the particular combination of <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_ad9bb1cf-c546-4d8a-8caa-09856386eae0" data-linktype="relative-path">notification
+type</a></span>, <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_569f1f1c-f426-46fa-91d2-3d1eb0b19aa1" data-linktype="relative-path">print queue</a></span> name,
+conversation style, and <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_7b73a4fc-912a-412a-9b0f-d021a1e6df13" data-linktype="relative-path">user identity filter</a></span>
+that were originally specified in the call to IRPCAsyncNotify_RegisterClient.</p><p>If successful, the IRPCAsyncNotify_GetNewChannel method MUST
+return an array of pointers to print notification channels.</p><p>A server MUST NOT do the following:</p><ul><li><p><span><span> 
+</span></span>Indicate success to a client call of
+IRPCAsyncNotify_GetNewChannel unless a prior call to
+IRPCAsyncNotify_RegisterClient succeeded using the same PRPCREMOTEOBJECT value.</p>
+</li><li><p><span><span> 
+</span></span>Indicate success to a client call of
+IRPCAsyncNotify_GetNewChannel following a prior successful call to <span><a href="20fa79b6-4905-4a50-83d5-2bc76525b3c9" data-linktype="relative-path">IRPCAsyncNotify_UnregisterClient</a></span>
+using the same PRPCREMOTEOBJECT value.</p>
+</li><li><p><span><span> 
+</span></span>Complete a call to IRPCAsyncNotify_GetNewChannel unless an
+unreturned notification channel is available on the <b>Bidirectional
+Notification Channel Queue</b> associated with the <b>Client Registration</b>
+(Abstract Data Model, section 3.1.1.1), or an abnormal event happened, such as
+an initiated server shutdown sequence.</p>
+</li></ul><p>A client SHOULD do the following:</p><ul><li><p><span><span> 
+</span></span>Call IRPCAsyncNotify_GetNewChannel in response to a prior
+successful return from IRPCAsyncNotify_RegisterClient or
+IRPCAsyncNotify_GetNewChannel.</p>
+</li><li><p><span><span> 
+</span></span>Call <span><a href="8c4aab2d-5dfe-469d-a9e3-003869921e45" data-linktype="relative-path">IRPCAsyncNotify_GetNotificationSendResponse</a></span>
+in response to a prior successful return from IRPCAsyncNotify_GetNewChannel.</p>
+</li></ul><p>A client MUST NOT do the following:</p><ul><li><p><span><span> 
+</span></span>Call IRPCAsyncNotify_GetNewChannel, unless a prior call to
+IRPCAsyncNotify_RegisterClient succeeded by using the same PRPCREMOTEOBJECT
+value.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="cdec7a7c-2b2c-4b81-a40a-b12d69f880ee#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Call IRPCAsyncNotify_GetNewChannel following a prior call to
+IRPCAsyncNotify_UnregisterClient by using the same PRPCREMOTEOBJECT value.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="cdec7a7c-2b2c-4b81-a40a-b12d69f880ee#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p>
+</li></ul></div>

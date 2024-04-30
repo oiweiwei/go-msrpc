@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The NotRestriction_r structure is an encoding of the <b>NotRestriction</b>
+data structure defined in <span><a href="/en-us/openspecs/exchange_server_protocols/MS-OXCDATA/1afa0cd9-b1a0-4520-b623-bf15030af5d8" data-linktype="absolute-path">[MS-OXCDATA]</a></span>.
+The semantic meaning is unchanged from the <b>NotRestriction</b> data
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _NotRestriction_r {
+   Restriction_r* lpRes;
+ } NotRestriction_r;
+</pre></div>
+</dd></dl><p><b>lpRes:</b>  Encodes the <b>Restriction</b>
+field of the <b>NotRestriction</b> data structure.</p></div>

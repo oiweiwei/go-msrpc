@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The format of the EvtRpcQueryChannelInfo data type is as
+follows.</p><dl>
+<dd>
+<div><pre> typedef struct tag_EvtRpcQueryChannelInfo {
+   LPWSTR name;
+   DWORD status;
+ } EvtRpcQueryChannelInfo;
+</pre></div>
+</dd></dl><p><b>name:</b>  Name of the <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_9964c8b0-1d25-4e8e-9dd1-4a51577698f5" data-linktype="relative-path">channel</a></span>
+to which the status applies. </p><p><b>status:</b>   A Win32 error code that
+indicates the channel status. A value of 0x00000000 indicates success; any
+other value indicates failure. Unless otherwise noted, all failure values MUST
+be treated equally. </p></div>

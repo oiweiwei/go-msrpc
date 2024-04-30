@@ -1,0 +1,80 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4FailoverTriggerAddrAllocation</b> method
+re-distributes the free addresses between the primary server and secondary
+server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4FailoverTriggerAddrAllocation(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, unique, string] LPWSTR FailRelName
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>FailRelName: </b>A pointer to a null-terminated
+Unicode string that contains the name of the failover relationship for which free
+addresses are re-distributed. There is no restriction on the length of this
+Unicode string.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20123, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E92</p>
+  <p>ERROR_DHCP_FO_RELATIONSHIP_DOES_NOT_EXIST</p>
+  </td>
+  <td>
+  <p>Failover relationship doesn&#39;t exit.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E94</p>
+  <p>ERROR_DHCP_FO_RELATION_IS_SECONDARY</p>
+  </td>
+  <td>
+  <p><b>serverType</b> member of failover relationship is
+  SecondaryServer enumeration value.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 100.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read/write access
+as specified in section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_INVALID_PARAMETER if the <i>FailRelName</i>
+parameter is NULL.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server ADM element <b>DHCPv4FailoverRelationshipList</b>,
+and retrieve the <b>DHCPv4FailoverRelationship</b> ADM element corresponding to
+the <i>FailRelName</i> parameter. If the corresponding ADM element <b>DHCPv4FailoverRelationship</b>
+is not found, return ERROR_DHCP_FO_RELATIONSHIP_DOES_NOT_EXIST.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>serverType</b> member of the retrieved <b>DHCPv4FailoverRelationship</b>
+ADM element is SecondaryServer enumeration value (section <span><a href="eee8266d-700a-4c89-b39d-7e5295f4993b" data-linktype="relative-path">2.2.1.1.19</a></span>)
+return ERROR_DHCP_FO_RELATION_IS_SECONDARY.</p>
+</li><li><p><span><span> 
+</span></span>For the retrieved <b>DHCPv4FailoverRelationship</b> ADM element
+re-distribute the free addresses between the primary server and secondary
+server as per the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_d31c96b3-b57e-4caf-81fb-960462a4df24" data-linktype="relative-path">load distribution ratio</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,37 @@
+<div class="content"><p>The RUnlockServiceDatabase method releases a lock on a
+service database.</p><dl>
+<dd>
+<div><pre> DWORD RUnlockServiceDatabase(
+   [in, out] LPSC_RPC_LOCK Lock
+ );
+</pre></div>
+</dd></dl><p><b>Lock: </b>An <a href="69737921-6d31-4731-b3f8-56f3bc510e5a" data-linktype="relative-path">LPSC_RPC_LOCK (section 2.2.5)</a>
+data type that defines the database lock context handle created by a previous
+call to the <a href="ff71f732-e91d-4189-8fb9-a410674c63ad" data-linktype="relative-path">RLockServiceDatabase</a>
+method.</p><p><b>Return Values: </b>The method returns 0x00000000 (ERROR_SUCCESS)
+on success; otherwise, it returns the following error code.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>1071</p>
+  <p>ERROR_INVALID_SERVICE_LOCK</p>
+  </td>
+  <td>
+  <p>The specified RPC context handle is invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation the server MUST unlock the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a> database for the lock
+specified in the <i>Lock</i> parameter of the client request. Once the database
+is unlocked, the server MUST stop responding with error code ERROR_SERVICE_DATABASE_LOCKED
+(1055) for future <b>RLockServiceDatabase</b>, <b>RStartServiceW</b>, and <b>RStartServiceA</b>
+RPCs until the database is locked again. All other methods are unaffected.<a id="Appendix_A_Target_38"></a><a aria-label="Product behavior note 38" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_38" data-linktype="relative-path">&lt;38&gt;</a></p></div>

@@ -1,0 +1,149 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/72900db3-247b-479c-86f0-1c5b7727971a" data-linktype="external">msdn link</a></p><p>The LsarSetDomainInformationPolicy method is invoked to
+change policy settings in addition to those exposed through <a href="3564ba70-84ea-4f04-a9dc-dede9f96a8bf" data-linktype="relative-path">LsarQueryInformationPolicy</a>
+and <a href="fc14e9ae-a26e-4031-809e-a908dd3e13a3" data-linktype="relative-path">LsarSetInformationPolicy2</a>.
+Despite the term &#34;Domain&#34; in the name of the method, processing of
+this message occurs with local data. Also, there is no requirement that this
+data have any relationship with the LSA information in the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> in which the machine
+is joined.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarSetDomainInformationPolicy(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] POLICY_DOMAIN_INFORMATION_CLASS InformationClass,
+   [in, unique, switch_is(InformationClass)] 
+     PLSAPR_POLICY_DOMAIN_INFORMATION PolicyDomainInformation
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>InformationClass: </b>A parameter that specifies
+what type of information the caller is setting.</p><p><b>PolicyDomainInformation: </b>Data representing
+policy being set.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+following message processing.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the supplied arguments was invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>If the <i>InformationClass</i> parameter is
+PolicyDomainEfsInformation, and the responder implementation does not support
+Encrypting File System (EFS) Policy Information as specified in section <a href="c939c70e-8cf0-4d90-a9cc-1c5002951723" data-linktype="relative-path">3.1.1.1</a>, the request MUST
+fail with STATUS_INVALID_PARAMETER.</p><p>If the <i>InformationClass</i> parameter is
+PolicyDomainQualityOfServiceInformation, and the responder implementation does
+not support Quality Of Service Information as specified in section 3.1.1.1, the
+request MUST fail with an RPC exception RPC_S_INVALID_TAG. </p><p>If <i>PolicyHandle</i> is not a valid context handle or <i>PolicyHandle</i>.HandleType
+does not equal &#34;Policy&#34;, the server MUST return
+STATUS_INVALID_HANDLE.</p><p>The server MUST verify that <i>PolicyHandle</i> grants
+access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a>. The following
+table specifies the RequiredAccess value to use in this access check for each <i>InformationClass</i>
+value.</p><table><thead>
+  <tr>
+   <th>
+   <p>InformationClass value</p>
+   </th>
+   <th>
+   <p>RequiredAccess value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PolicyDomainQualityOfServiceInformation</p>
+  </td>
+  <td>
+  <p>POLICY_SERVER_ADMIN</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyDomainEfsInformation</p>
+  </td>
+  <td>
+  <p>POLICY_SERVER_ADMIN</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyDomainKerberosTicketInformation</p>
+  </td>
+  <td>
+  <p>POLICY_SERVER_ADMIN</p>
+  </td>
+ </tr></tbody></table><p>The <i>InformationClass</i> parameter can take on any value
+in the POLICY_DOMAIN_INFORMATION_CLASS enumeration range. For all values
+outside this range, the server MUST return the STATUS_INVALID_PARAMETER error
+code.</p><p>The <i>PolicyDomainInformation</i> parameter contains the
+data that the caller needs to set, based on the value of the <i>InformationClass</i>
+parameter. The server MUST update its abstract data model, specified in section
+3.1.1.1, as follows.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value of InformationClass parameter </p>
+   </th>
+   <th>
+   <p>Information returned to caller from abstract data
+   model</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PolicyDomainQualityOfServiceInformation</p>
+  </td>
+  <td>
+  <p>Quality Of Service Information</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyDomainEfsInformation</p>
+  </td>
+  <td>
+  <p>EFS Policy Information </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PolicyDomainKerberosTicketInformation</p>
+  </td>
+  <td>
+  <p>Kerberos Policy Information</p>
+  </td>
+ </tr></tbody></table><p>If the abstract data model update succeeds and the <i>InformationClass</i>
+parameter is PolicyDomainKerberosTicketInformation, the server MUST invoke the
+KDC ConfigurationChange event (see <a href="../ms-kile/2a32282e-dd48-4ad9-a542-609804b02cc9" data-linktype="relative-path">[MS-KILE]</a>
+section <a href="../ms-kile/8b932ea6-4b9d-4f6e-a4fb-1a126a60cc0a" data-linktype="relative-path">3.3.4.1</a>)
+and MUST ignore any errors that are returned.</p></div>

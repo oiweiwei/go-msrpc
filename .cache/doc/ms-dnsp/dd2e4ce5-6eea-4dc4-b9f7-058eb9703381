@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_POLICY_CONTENT</b> structure contains the
+zone scope, cache scope, or server scope details that are used to service the
+DNS operation if a DNS policy&#39;s <span><a href="11503add-9e7b-455b-8d49-1c9653e04e80" data-linktype="relative-path">DNS_RPC_POLICY_ACTION_TYPE (section 2.2.15.1.1.4)</a></span>
+is DnsPolicyAllow.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcPolicyActionContent {
+   LPWSTR pwszScopeName;
+   DWORD dwWeight;
+ } DNS_RPC_POLICY_CONTENT,
+  *PDNS_RPC_POLICY_CONTENT;
+</pre></div>
+</dd></dl><p><b>pwszScopeName:</b> A NULL-terminated Unicode
+string containing the name of the zone scope, cache scope or server scope.</p><p><b>dwWeight:</b> A 32-bit unsigned integer that specifies
+the weight associated with the scope name. The weight of a scope determines the
+number of responses that are sent from that scope. For example, if a
+DNS_RPC_POLICY has pContentList with two <b>DNS_RPC_POLICY_CONTENT</b> items
+having scope name and weight as {Scope1,2} and {Scope2,3}, then when the DNS
+policy is a match, Scope1 is used to respond to the DNS operation for the first
+two times the DNS policy is a match. Scope2 is used to respond to the DNS
+operation for the next three times the DNS policy is a match. The sequence is
+repeated for further matches of the DNS policy. If a <b>dwWeight</b> of a <b>DNS_RPC_POLICY_CONTENT</b>
+is not given. its default weight is 1. So if two or more <b>DNS_RPC_POLICY_CONTENT</b>
+structures are given during <b>DNS_RPC_POLICY</b> creation without a value for <b>dwWeight</b>,
+all of them will get weight of 1 and the DNS operation will be performed from
+each scope in a round-robin fashion. Allowed values for weight are any positive
+number from 1 and higher to 0xFFFFFFFF. If 0 is sent as a weight, the DNS
+server returns the error DNS_ERROR_POLICY_INVALID_WEIGHT (9981).</p></div>

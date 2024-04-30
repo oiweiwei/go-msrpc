@@ -1,0 +1,90 @@
+<div class="content"><p> </p><p>The STRINGBINDING structure describes an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+protocol, a network address, and, optionally, an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_8be6a1fb-bc3c-4ee3-8018-c236f351222a" data-linktype="relative-path">RPC endpoint</a></span> for the
+RPC protocol that a client can use to communicate with either an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_19f75354-9b0b-47cb-a00b-4ff196883b32" data-linktype="relative-path">object
+resolver</a></span> or an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_5b284f60-ee33-4d15-9a7b-0fb82d7c6b68" data-linktype="relative-path">object exporter</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>wTowerId</p>
+  </td>
+  <td colspan="16">
+  <p>aNetworkAddr
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>wTowerId (2 bytes): </b> An unsigned short that
+MUST contain an RPC <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_630dc751-f394-4ced-b924-e1ab05c44cac" data-linktype="relative-path">protocol sequence identifier</a></span>
+constant that identifies the protocol to be used in RPC calls to the server
+named in the <b>aNetworkAddr</b> field, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+table I-2 Appendix I. Additionally, if this field is zero, the <b>aNetworkAddr</b>
+field MUST NOT be present. If this field is not zero, the <b>aNetworkAddr</b>
+field MUST be present.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="acc42954-4073-4f05-b850-efd562022077#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p><p><b>aNetworkAddr (variable): </b> An optional
+null-terminated Unicode string that, if present, MUST contain a network address
+and, optionally, RPC endpoint information. This field MUST use one of the two
+following formats:</p><p>The first format is &#34;servername&#34;, where
+&#34;servername&#34; MUST be one of the following: </p><ul><li><p><span><span> 
+</span></span>A <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS Name</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>A <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">fully qualified domain name
+(FQDN)</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>An IPv4 address that MUST be sent in the dotted-decimal form
+specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90268" data-linktype="external">[RFC1123]</a></span>
+section 2.1, and SHOULD be validated on receipt.<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="acc42954-4073-4f05-b850-efd562022077#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>An IPv6 address as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90464" data-linktype="external">[RFC4291]</a></span>
+section 2.2</p>
+</li><li><p><span><span> 
+</span></span>A network address usable by another protocol sequence as
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span> 
+section <span><a href="../ms-rpce/472083a9-56f1-4d81-a208-d18aef68c101" data-linktype="relative-path">2.1</a></span>.</p>
+</li></ul><p>This is the format used when a <span><a href="7fe8200b-dccd-48cf-a2fa-681e3e0a23f4" data-linktype="relative-path">DUALSTRINGARRAY</a></span>
+containing object resolver bindings is returned from <span><a href="c898afd6-b75d-4641-a2cd-b50cb9f5556d" data-linktype="relative-path">IObjectExporter::ServerAlive2</a></span>,
+for example, or in an <span><a href="fe6c5e46-adf8-4e34-a8de-3f756c875f31" data-linktype="relative-path">OBJREF</a></span>. <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">Endpoint</a></span>
+information is omitted, as this information is assumed, as specified in
+[MS-RPCE] section 2.1.</p><p>The second format is &#34;servername[endpoint]&#34;, for
+example, &#34;10.0.0.1[5000]&#34;, where &#34;servername&#34; is as
+specified above and &#34;endpoint&#34; MUST be an endpoint as specified in
+[MS-RPCE]  section 2.1. This is the format used when a DUALSTRINGARRAY
+containing object exporter bindings is returned; for example, from <span><a href="65292e10-ef0c-43ee-bce7-788e271cc794" data-linktype="relative-path">IObjectExporter::ResolveOxid2</a></span>
+or <span><a href="f07e681a-16f9-4194-a453-63c7972f2161" data-linktype="relative-path">IActivation::RemoteActivation</a></span>.
+The content of endpoint is RPC protocol-specific ([C706] section 6.2.2).</p><p>An empty STRINGBINDING structure contains a wTowerId whose
+value is zero. </p></div>

@@ -1,0 +1,174 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c3696b76-2005-4eba-820d-91fdded3422d" data-linktype="external">msdn link</a></p><p>The SamrOpenAlias method obtains a handle to an alias, given
+a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RID</a>.</p><dl>
+<dd>
+<div><pre> long SamrOpenAlias(
+   [in] SAMPR_HANDLE DomainHandle,
+   [in] unsigned long DesiredAccess,
+   [in] unsigned long AliasId,
+   [out] SAMPR_HANDLE* AliasHandle
+ );
+</pre></div>
+</dd></dl><p><b>DomainHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_2346e8d0-b0a0-481f-b644-85c45c60d4d1" data-linktype="relative-path">domain object</a>.</p><p><b>DesiredAccess: </b>An <a href="../ms-dtyp/7a53f60e-e730-4dfe-bbe9-b21b62eb790b" data-linktype="relative-path">ACCESS_MASK</a>
+that indicates the requested access for the returned handle. See section <a href="2da21c6c-5b15-46c8-bd4e-6a8443216e1a" data-linktype="relative-path">2.2.1.6</a> for a list of
+alias access values.</p><p><b>AliasId: </b>A RID of an alias.</p><p><b>AliasHandle: </b>An RPC context handle, as
+specified in section 2.2.7.2.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message according to the constraints in section <a href="fb25440b-269d-4220-99f2-8b29841cb1ce" data-linktype="relative-path">3.1.5.1.6</a>, with the following
+values:</p><ul><li><p><span><span> 
+</span></span>Target-Rid: <i>AliasId</i></p>
+</li><li><p><span><span> 
+</span></span>Target-Object-Type: A <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_7ce4771c-2043-49b8-85d3-0c60c7789f9a" data-linktype="relative-path">group object</a> (that is, a
+database with the objectClass group or derived from group) and groupType
+containing GROUP_TYPE_RESOURCE_GROUP.</p>
+</li><li><p><span><span> 
+</span></span>Generic-Access-Mask-Mapping-Table:</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Incoming bit</p>
+   </th>
+   <th>
+   <p>Translated bits</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>GENERIC_READ</p>
+  </td>
+  <td>
+  <p>ALIAS_READ</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GENERIC_WRITE</p>
+  </td>
+  <td>
+  <p>ALIAS_WRITE</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GENERIC_EXECUTE</p>
+  </td>
+  <td>
+  <p>ALIAS_EXECUTE</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>GENERIC_ALL</p>
+  </td>
+  <td>
+  <p>ALIAS_ALL_ACCESS</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span><span> 
+</span></span>Desired-Access-Mapping-Table:</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>DesiredAccess</p>
+   </th>
+   <th>
+   <p>Access mask</p>
+   </th>
+   <th>
+   <p>Object ACE type</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ALIAS_READ_INFORMATION</p>
+  </td>
+  <td>
+  <p>ACTRL_DS_READ_PROP</p>
+  </td>
+  <td>
+  <p>59ba2f42-79a2-11d0-9020-00c04fc2d3cf</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ALIAS_WRITE_ACCOUNT</p>
+  </td>
+  <td>
+  <p>ACTRL_DS_WRITE_PROP</p>
+  </td>
+  <td>
+  <p>59ba2f42-79a2-11d0-9020-00c04fc2d3cf</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ALIAS_ADD_MEMBER</p>
+  </td>
+  <td>
+  <p>ACTRL_DS_WRITE_PROP</p>
+  </td>
+  <td>
+  <p>bf9679c0-0de6-11d0-a285-00aa003049e2</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ALIAS_REMOVE_MEMBER</p>
+  </td>
+  <td>
+  <p>ACTRL_DS_WRITE_PROP</p>
+  </td>
+  <td>
+  <p>bf9679c0-0de6-11d0-a285-00aa003049e2</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ALIAS_LIST_MEMBERS</p>
+  </td>
+  <td>
+  <p>ACTRL_DS_READ_PROP</p>
+  </td>
+  <td>
+  <p>bf9679c0-0de6-11d0-a285-00aa003049e2</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ACCESS_SYSTEM_SECURITY</p>
+  </td>
+  <td>
+  <p>ACCESS_SYSTEM_SECURITY</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WRITE_OWNER</p>
+  </td>
+  <td>
+  <p>WRITE_OWNER</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WRITE_DAC</p>
+  </td>
+  <td>
+  <p>WRITE_DAC</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DELETE</p>
+  </td>
+  <td>
+  <p>DELETE</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span><span> 
+</span></span>Output-Handle: <i>AliasHandle</i></p>
+</li></ul></div>

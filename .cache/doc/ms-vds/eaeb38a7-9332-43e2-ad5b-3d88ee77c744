@@ -1,0 +1,45 @@
+<div class="content"><p> </p><p>The CreatePack method creates a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_a6543827-8d70-4e5a-a982-2fdc2e7f8bca" data-linktype="relative-path">disk pack</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT CreatePack(
+   [out] IVdsPack** ppPack
+ );
+</pre></div>
+</dd></dl><p><b>ppPack: </b>A pointer to an <span><a href="02e6b901-4bb6-4953-b7c6-7f7d870b6d37" data-linktype="relative-path">IVdsPack</a></span>
+interface that, if the operation is successfully completed, receives the
+IVdsPack interface of the newly created disk pack. Callers MUST release the
+interface when they are done with it.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameter:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>ppPack</i> is not NULL.</p>
+</li></ul><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>Create a new <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_890bb28d-df68-420f-a8bc-83899d34ad5c" data-linktype="relative-path">pack</a></span> object that
+implements the IVdsPack interface and assign it a unique <span><a href="9186f1ce-04de-4df2-a8cf-3925a02fcd47" data-linktype="relative-path">VDS_OBJECT_ID</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Set the provider pointer of the disk pack object to this provider
+object.</p>
+</li><li><p><span><span> 
+</span></span>Add the pack object to the list of storage management objects.</p>
+</li><li><p><span><span> 
+</span></span>For each callback object that is registered in the list of
+callback objects, call the IVdsAdviseSink::OnNotify (Opnum 3) method of the
+callback object with a VDS_NOTIFICATION structure that has the following
+attributes:</p>
+<ul><li><p><span><span>  </span></span><b>objectType</b>
+member is VDS_NTT_PACK.</p>
+</li><li><p><span><span>  </span></span><b>Pack</b>
+member is a VDS_PACK_NOTIFICATION with the following attributes:</p>
+<ul><li><p><span><span> 
+</span></span><b>ulEvent</b> is VDS_NF_PACK_ARRIVE.</p>
+</li><li><p><span><span> 
+</span></span><b>packId</b> is the VDS_OBJECT_ID of the pack object that was
+added.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Set the pointer that <i>ppPack</i> references to the IVdsPack
+interface of the pack object.</p>
+</li><li><p><span><span> 
+</span></span>Return an HRESULT indicating failure or success.</p>
+</li></ul></div>

@@ -1,0 +1,162 @@
+<div class="content"><p> </p><p>The DRS_MSG_KCC_EXECUTE_V1 structure defines the request
+message sent to the <span><a href="ad807917-687b-40d9-abe2-053af0246523" data-linktype="relative-path">IDL_DRSExecuteKCC</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwTaskID;
+   DWORD dwFlags;
+ } DRS_MSG_KCC_EXECUTE_V1;
+</pre></div>
+</dd></dl><p><b>dwTaskID:</b>  MUST be 0.</p><p><b>dwFlags:</b>  Zero or more of the
+following bit flags, which are presented in little-endian byte order.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>D P</p>
+  </td>
+  <td>
+  <p>A S</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>X:</b> Unused. MUST be
+zero and ignored.</p>
+</dd>
+<dd>
+<p><b>AS (DS_KCC_FLAG_ASYNC_OP,
+0x00000001):</b> Request the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_c7d4f1f6-5285-4168-b21a-022f775a3f58" data-linktype="relative-path">KCC</a></span> to run, then
+return immediately.</p>
+</dd>
+<dd>
+<p><b>DP (DS_KCC_FLAG_DAMPED,
+0x00000002):</b> Request the KCC to run unless there is already such a request
+pending according to implementation-defined rules. Implementations MAY choose
+to ignore this flag and always request the KCC to run.</p>
+</dd></dl></div>

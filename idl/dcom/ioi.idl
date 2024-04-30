@@ -1,0 +1,57 @@
+import "ms-oaut.idl";
+ 
+// XXX: define 64-bit.
+// #ifdef _64BIT
+ 
+typedef __int64* CCW_PTR;
+ 
+// #else
+// 
+// typedef int* CCW_PTR;
+// 
+// #endif
+ 
+// XXX: SAFEARRAY macro expanded.
+// #define SAFEARRAY(type) SAFEARRAY
+ 
+[
+    object,
+    oleautomation,
+    uuid(C3FCC19E-A970-11d2-8B5A-00A0C9B7C9C4),
+helpstring("Managed Object Interface"),
+    pointer_default(unique)
+]
+interface IManagedObject : IUnknown
+{
+    HRESULT GetSerializedBuffer( [out] BSTR *pBSTR);
+ 
+    HRESULT GetObjectIdentity([out] BSTR* pBSTRGUID, [out] int* AppDomainID, [out] CCW_PTR pCCW);
+};
+ 
+ 
+[
+object,
+uuid(6619a740-8154-43be-a186-0319578e02db),
+helpstring("RemoteDispatch Interface"),
+dual,
+pointer_default(unique)
+]
+interface IRemoteDispatch: IDispatch
+{
+[id(0x60020000)]
+HRESULT RemoteDispatchAutoDone([in] BSTR s, [out, retval] BSTR* pRetVal); 
+[id(0x60020001)]
+HRESULT RemoteDispatchNotAutoDone([in] BSTR s, [out, retval] BSTR* pRetVal);
+};
+ 
+ 
+ 
+[
+object,
+uuid(8165B19E-8D3A-4d0b-80C8-97DE310DB583),
+helpstring("ServicedComponentInfo Interface"),
+pointer_default(unique)
+]
+interface IServicedComponentInfo : IUnknown{
+HRESULT GetComponentInfo([in,out] int* infoMask, [out] [safearray(BSTR)] SAFEARRAY* infoArray);
+};

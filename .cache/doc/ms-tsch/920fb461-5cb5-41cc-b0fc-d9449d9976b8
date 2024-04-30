@@ -1,0 +1,53 @@
+<div class="content"><p> </p><p>The NetrJobAdd method MUST add a single AT task to the
+server&#39;s <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_08035fe7-a786-4b30-ab60-3fd046060617" data-linktype="relative-path">task store</a></span>.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrJobAdd(
+   [in, string, unique] ATSVC_HANDLE ServerName,
+   [in] LPAT_INFO pAtInfo,
+   [out] LPDWORD pJobId
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>Pointer to a <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a></span> that MUST specify the server. The client MUST map this string
+to an <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_44deb72d-c62b-4335-90e4-b9fd4dd782ed" data-linktype="relative-path">binding
+handle</a></span>. The server MUST ignore this parameter. For more information,
+see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> sections
+4.3.5 and 5.1.5.2.</p><p><b>pAtInfo: </b> Pointer to an <span><a href="7290597e-bb6d-46fe-9338-e6b0467b23ae" data-linktype="relative-path">AT_INFO</a></span>
+structure (section 2.3.4) that MUST contain the task configuration.</p><p><b>pJobId: </b>MUST return a pointer to the task
+identifier when the NetrJobAdd method is successful.</p><p><b>Return Values: </b>For more information on return
+codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span> or Win32
+Error Codes in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><p>In response to this request, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Return ERROR_ACCESS_DENIED if the caller does not have
+administrative privileges on the server.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_INVALID_PARAMETER if the <b>Command</b> field of the
+AT_INFO structure is not as specified in section 2.3.4.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_INVALID_PARAMETER if the <b>JobTime</b> field of the
+AT_INFO structure is not as specified in section 2.3.4.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_INVALID_PARAMETER if the <b>DaysOfMonth</b> field of
+the AT_INFO structure is not as specified in section 2.3.4.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_INVALID_PARAMETER if the <b>DaysOfWeek</b> field of
+the AT_INFO structure is not as specified in section 2.3.4.</p>
+</li><li><p><span><span> 
+</span></span>Determine the next available sequence number (<i>JobId</i>) for
+the new task— this value MUST be returned in the buffer pointed to by the <i>pJobId</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span><i>Update AT_INFO Flags:</i> If the <b>AC</b> bit is set to 1 by
+the client, specifies that the server MUST set the bit in <b>DaysOfMonth</b>
+corresponding to the current day of the month. The server MUST set <b>AC</b> to
+0 on return.</p>
+</li><li><p><span><span> 
+</span></span>Store the task in the AT task store.</p>
+</li><li><p><span><span> 
+</span></span>Update the global timer if this task will run earlier than the
+current timer value.</p>
+</li><li><p><span><span> 
+</span></span>MUST return ERROR_SUCCESS if the call was successful.</p>
+</li></ul><p>If any errors are raised during the processing, they are
+returned. For more information on return codes, see section 2.3.14 and Win32
+Error Codes in [MS-ERREF] section 2.1.</p></div>

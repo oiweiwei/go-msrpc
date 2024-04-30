@@ -1,0 +1,49 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4FailoverGetSystemTime</b> method is used to
+return the current time on the DHCP server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4FailoverGetSystemTime(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [out] LPDWORD pTime
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>pTime: </b>This is a pointer to type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and returns the current time, in seconds elapsed since midnight, January 1,
+1970, <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">Coordinated Universal Time
+(UTC)</a></span>, on the DHCP server. The caller of the API must allocate the
+memory for this parameter.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20123, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 99.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Return ERROR_INVALID_PARAMETER if the <i>pTime</i> parameter is
+NULL.</p>
+</li><li><p><span><span> 
+</span></span>Return current DHCP server time, in seconds elapsed since
+midnight, January 1, 1970, UTC, in the <i>pTime</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

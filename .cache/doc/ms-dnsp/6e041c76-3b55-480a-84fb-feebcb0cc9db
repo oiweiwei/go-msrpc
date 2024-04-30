@@ -1,0 +1,130 @@
+<div class="content"><p> </p><p>The <b>DNS ADD USER</b> structure is used by <span><a href="835c236a-4d35-4a1e-bc4c-f5eb27bfb06d" data-linktype="relative-path">DNS_ADDR</a></span>
+<b>DnsAddrUserDword</b> field.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SockaddrLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SubnetLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Padding (20
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>SockaddrLength (4 bytes): </b>The length of valid
+data in the socket address structure present above this field.</p><p><b>SubnetLength (4 bytes): </b>Senders MUST set this
+to 0x00000000 and receivers MUST ignore this value.</p><p><b>Flags (4 bytes): </b>Clients MUST set to
+0x00000000. Senders will use this field to indicate the results of IP validation
+for this IP address, where it has a format as follows (in host byte order):</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>T</p>
+  </td>
+  <td colspan="7">
+  <p>Zero</p>
+  </td>
+  <td colspan="12">
+  <p>RTT</p>
+  </td>
+  <td colspan="12">
+  <p>validationStatus</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p><b>T (1 bit): </b>If set, DNS over <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_a70f5e84-6960-42f0-a160-ba0281eb548d" data-linktype="relative-path">UDP</a></span>
+is available from the remote DNS server but DNS over TCP is not available.</p><p><b>Zero (7 bits): </b>Reserved. Senders MUST set
+these bits to zero and receivers MUST ignore them.</p><p><b>RTT (12 bits): </b>Round trip time to the remote
+DNS server for a UDP query, measured in units of 10 milliseconds.</p><p><b>validationStatus (12 bits): </b>The result of the
+DNS UDP validation attempt. This field MUST be set to one of the
+DNS_IP_VALIDATE_RETURN_FLAGS (section <span><a href="f9f3901a-862f-4bdb-a7c4-963dae44c13e" data-linktype="relative-path">2.2.3.1.2</a></span>).</p><p><b>Padding (20 bytes): </b>This can be any value and
+MUST be ignored.</p></div>

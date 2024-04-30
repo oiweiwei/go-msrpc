@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/0e9f25a9-d305-40b6-8b9f-a50e58430124" data-linktype="external">msdn link</a></p><p>The SAMPR_DOMAIN_DISPLAY_OEM_USER_BUFFER structure holds an
+array of <a href="c8e910bd-feb5-49a4-939e-2262fe17ad2b" data-linktype="relative-path">SAMPR_DOMAIN_DISPLAY_OEM_USER</a>
+elements used to return a list of users through the SamrQueryDisplayInformation
+family of methods (see section <a href="f1970f00-e3d5-4ec4-85bc-2caf0bf18f6d" data-linktype="relative-path">3.1.5.3</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_DOMAIN_DISPLAY_OEM_USER_BUFFER {
+   unsigned long EntriesRead;
+   [size_is(EntriesRead)] PSAMPR_DOMAIN_DISPLAY_OEM_USER Buffer;
+ } SAMPR_DOMAIN_DISPLAY_OEM_USER_BUFFER,
+  *PSAMPR_DOMAIN_DISPLAY_OEM_USER_BUFFER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  The number of elements
+in <b>Buffer</b>. If zero, <b>Buffer</b> MUST be ignored. If nonzero, <b>Buffer</b>
+MUST point to at least <b>EntriesRead</b> number of elements.</p><p><b>Buffer:</b>  An array of
+SAMPR_DOMAIN_DISPLAY_OEM_USER elements.</p></div>

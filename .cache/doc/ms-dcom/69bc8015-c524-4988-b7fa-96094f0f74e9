@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The REMINTERFACEREF structure is passed as a parameter to
+either IRemUnknown::RemAddRef (Opnum 4) or IRemUnknown::RemRelease (Opnum 5).
+It specifies the number and type of references that the client requests to be
+added to (or subtracted from) an interface <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_10ffa972-2b70-4e41-b025-6785babac521" data-linktype="relative-path">reference count</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct tagREMINTERFACEREF {
+   IPID ipid;
+   unsigned long cPublicRefs;
+   unsigned long cPrivateRefs;
+ } REMINTERFACEREF;
+</pre></div>
+</dd></dl><p><b>ipid:</b>  This MUST be the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_74540339-daab-46ea-a8f9-fe8fca3b150c" data-linktype="relative-path">IPID</a></span>
+of the interface reference count to be modified.</p><p><b>cPublicRefs:</b>   This MUST be the
+number of public references (see section <span><a href="69771298-e621-4b37-85fe-f97f8dad4974" data-linktype="relative-path">1.3.6</a></span>) on the
+interface identified by IPID being requested by the client.</p><p><b>cPrivateRefs:</b>  This MUST be the
+number of private references (see section 1.3.6) on the interface identified by
+IPID being requested by the client.</p></div>

@@ -1,0 +1,60 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/4e71f14a-8b2e-49ff-8c2b-dd94720a3384" data-linktype="external">msdn link</a></p><p>The <b>CLUS_SCSI_ADDRESS</b> data structure is the format in
+which a property value of syntax CLUSPROP_SYNTAX_SCSI_ADDRESS, as specified in <a href="7ea3a0e0-d3b9-43e8-85d8-263fff3499da" data-linktype="relative-path">2.2.2.3</a>, is written as a
+property value, as specified in section <a href="de73d6f9-bfdf-47ef-b008-b2da17c1a073" data-linktype="relative-path">2.2.3.10.1</a>.</p><p><b>CLUS_SCSI_ADDRESS</b> is a custom-marshaled data
+structure that has fields as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>PortNumber</p>
+  </td>
+  <td colspan="8">
+  <p>PathId</p>
+  </td>
+  <td colspan="8">
+  <p>TargetID</p>
+  </td>
+  <td colspan="8">
+  <p>LUN</p>
+  </td>
+ </tr>
+</tbody></table><p><b>PortNumber (1 byte): </b>An unsigned 8-bit
+integer. Specifies the SCSI port number of the disk.</p><p><b>PathId (1 byte): </b>An unsigned 8-bit integer.
+Indicates the bus number if the SCSI adapter that is identified by PortNumber
+is connected to multiple SCSI buses. This field is an index that MUST start at
+0 and that is local to the SCSI adapter. For adapters that are connected to
+only one bus, this field MUST be 0.</p><p><b>TargetID (1 byte): </b>An unsigned 8-bit integer.
+Identifies the SCSI target of the disk.</p><p><b>LUN (1 byte): </b>An unsigned 8-bit integer.
+Specifies the SCSI logical unit number (LUN) of the disk.</p></div>

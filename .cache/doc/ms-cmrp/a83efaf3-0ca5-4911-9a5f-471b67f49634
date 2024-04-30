@@ -1,0 +1,79 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/a83efaf3-0ca5-4911-9a5f-471b67f49634" data-linktype="external">msdn link</a></p><p>The <b>CLUSCTL_RESOURCE_NETNAME_CHECK_OU_PERMISSIONS_INPUT</b>
+structure SHOULD<a id="Appendix_A_Target_31"></a><a aria-label="Product behavior note 31" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_31" data-linktype="relative-path">&lt;31&gt;</a> be used to determine whether
+the server has permissions to access a directory <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>. It is a
+custom-marshaled structure that contains the following fields.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwPermissions</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>GUID
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwVersion (4 bytes): </b>A 32-bit unsigned
+integer. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> MUST
+set this to 0x00000001.</p><p><b>dwPermissions (4 bytes): </b>A 32-bit unsigned
+integer that indicates the permissions to check. The client MUST set this to
+field to 0x00000011.</p><p><b>GUID (16 bytes): </b>A <b>GUID</b>, as specified
+in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/001eec5a-7f8b-4293-9e21-ca349392db40" data-linktype="relative-path">2.3.4.2</a>,
+identifying the type of directory object for which permissions are checked. The
+client MUST set <b>Data1</b> to 0xbf967a86, <b>Data2</b> to 0x0de6, <b>Data3</b>
+to 0x11d0, and <b>Data4</b> to 0xe24930aa0085a211d0.</p></div>

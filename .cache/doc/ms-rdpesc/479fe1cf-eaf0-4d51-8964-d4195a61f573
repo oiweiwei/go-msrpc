@@ -1,0 +1,15 @@
+<div class="content"><p>The LocateCards_ATRMask structure contains the information
+to identify a <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_51da9457-65ce-4157-a704-d2d6232037d2" data-linktype="relative-path">card type</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _LocateCards_ATRMask {
+   [range(0,36)] unsigned long cbAtr;
+   byte rgbAtr[36];
+   byte rgbMask[36];
+ } LocateCards_ATRMask;
+</pre></div>
+</dd></dl><p><b>cbAtr:</b>  The number of bytes used in
+the <b>rgbAtr</b> and <b>rgbMask</b> fields.</p><p><b>rgbAtr:</b>  Values for the card&#39;s <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_2a8fc201-65aa-4040-980c-f4843467e6bf" data-linktype="relative-path">Answer To Reset (ATR)</a>
+string. This value MUST be formatted as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89918" data-linktype="external">[ISO/IEC-7816-3]</a>
+section 8. Unused bytes MUST be set to 0 and MUST be ignored.</p><p><b>rgbMask:</b>  Values for the mask for
+the card&#39;s ATR string. Each bit that cannot vary between cards of the same type
+MUST be set to 1. Unused bytes MUST be set to 0 and MUST be ignored.</p></div>

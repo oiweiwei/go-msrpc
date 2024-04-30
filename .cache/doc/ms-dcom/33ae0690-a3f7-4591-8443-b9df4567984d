@@ -1,0 +1,84 @@
+<div class="content"><p> </p><p>The DATAELEMENT structure is used to identify and marshal an
+<span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_a61f46c9-edea-481b-b494-517f3b05e88a" data-linktype="relative-path">envoy
+context</a></span> as part of a larger <span><a href="06220154-0372-495a-bfc6-a96b804884c6" data-linktype="relative-path">OBJREF_EXTENDED</a></span>
+structure.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dataID (16
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cbSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cbRounded</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dataID (16 bytes): </b> This MUST specify a <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_f4285a6b-2663-4c97-870e-270249ccd3e9" data-linktype="relative-path">context
+identifier</a></span> for the marshaled <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_3e11a72c-ed27-447b-b2c6-ff04fd452477" data-linktype="relative-path">context (1)</a></span>. This
+MUST NOT be set to GUID_NULL.</p><p><b>cbSize (4 bytes): </b> The unsigned number of
+bytes present in the <b>Data</b> field, excluding any padding bytes at the end
+of the <b>Data</b> field that were added to round the array size to an integral
+multiple of eight bytes. This MUST NOT be 0.</p><p><b>cbRounded (4 bytes): </b> The unsigned size, in
+bytes, of the <b>Data</b> field. The <b>cbRounded</b> value MUST equal the <b>cbSize</b>
+value, rounded up to a multiple of eight.</p><p><b>Data (variable): </b> An array of <b>cbRounded</b>
+bytes that MUST contain a marshaled envoy context; see section <span><a href="94a587a3-826a-4bac-969b-ae0bbfc9a663" data-linktype="relative-path">2.2.20</a></span>.</p></div>

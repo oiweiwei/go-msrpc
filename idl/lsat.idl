@@ -1,0 +1,579 @@
+import "ms-dtyp.idl";
+ 
+[
+    uuid(12345778-1234-ABCD-EF00-0123456789AB),
+    version(0.0),
+    ms_union,
+    pointer_default(unique)
+]
+ 
+interface lsarpc
+{
+ 
+//
+// Type definitions.
+//
+ 
+ 
+//
+// Start of common types.
+//
+ 
+typedef [context_handle] void * LSAPR_HANDLE;
+ 
+typedef unsigned char SECURITY_CONTEXT_TRACKING_MODE,
+                      *PSECURITY_CONTEXT_TRACKING_MODE;
+ 
+typedef unsigned short SECURITY_DESCRIPTOR_CONTROL,
+                       *PSECURITY_DESCRIPTOR_CONTROL;
+ 
+typedef struct _STRING {
+    unsigned short Length;
+    unsigned short MaximumLength;
+    [size_is(MaximumLength), length_is(Length)]
+     char * Buffer;
+} STRING, *PSTRING;
+ 
+typedef struct _LSAPR_ACL {
+    unsigned char AclRevision;
+    unsigned char Sbz1;
+    unsigned short AclSize;
+    [size_is(AclSize - 4)] unsigned char Dummy1[*];
+} LSAPR_ACL, *PLSAPR_ACL;
+ 
+typedef struct _LSAPR_SECURITY_DESCRIPTOR {
+    unsigned char Revision;
+    unsigned char Sbz1;
+    SECURITY_DESCRIPTOR_CONTROL Control;
+    PRPC_SID Owner;
+    PRPC_SID Group;
+    PLSAPR_ACL Sacl;
+    PLSAPR_ACL Dacl;
+} LSAPR_SECURITY_DESCRIPTOR, *PLSAPR_SECURITY_DESCRIPTOR;
+ 
+typedef enum _SECURITY_IMPERSONATION_LEVEL {
+    SecurityAnonymous = 0,
+    SecurityIdentification = 1,
+    SecurityImpersonation = 2,
+    SecurityDelegation = 3
+} SECURITY_IMPERSONATION_LEVEL, * PSECURITY_IMPERSONATION_LEVEL;
+ 
+typedef struct _SECURITY_QUALITY_OF_SERVICE {
+    unsigned long Length;
+    SECURITY_IMPERSONATION_LEVEL ImpersonationLevel;
+    SECURITY_CONTEXT_TRACKING_MODE ContextTrackingMode;
+    unsigned char EffectiveOnly;
+} SECURITY_QUALITY_OF_SERVICE, * PSECURITY_QUALITY_OF_SERVICE;
+ 
+typedef struct _LSAPR_OBJECT_ATTRIBUTES {
+    unsigned long Length;
+    unsigned char * RootDirectory[]; /* add array declarator */
+    PSTRING ObjectName;
+    unsigned long Attributes;
+    PLSAPR_SECURITY_DESCRIPTOR SecurityDescriptor;
+    PSECURITY_QUALITY_OF_SERVICE SecurityQualityOfService;
+} LSAPR_OBJECT_ATTRIBUTES, *PLSAPR_OBJECT_ATTRIBUTES;
+ 
+typedef struct _LSAPR_TRUST_INFORMATION {
+    RPC_UNICODE_STRING Name;
+    PRPC_SID Sid;
+} LSAPR_TRUST_INFORMATION, *PLSAPR_TRUST_INFORMATION;
+ 
+//
+// End of common types.
+//
+ 
+ 
+typedef struct _LSAPR_REFERENCED_DOMAIN_LIST {
+    unsigned long Entries;
+    [size_is(Entries)] PLSAPR_TRUST_INFORMATION Domains;
+    unsigned long MaxEntries;
+} LSAPR_REFERENCED_DOMAIN_LIST, *PLSAPR_REFERENCED_DOMAIN_LIST;
+ 
+typedef enum _SID_NAME_USE {
+    SidTypeUser = 1,
+    SidTypeGroup,
+    SidTypeDomain,
+    SidTypeAlias,
+    SidTypeWellKnownGroup,
+    SidTypeDeletedAccount,
+    SidTypeInvalid,
+    SidTypeUnknown,
+    SidTypeComputer,
+    SidTypeLabel
+} SID_NAME_USE, *PSID_NAME_USE;
+ 
+typedef struct _LSA_TRANSLATED_SID {
+    SID_NAME_USE Use;
+    unsigned long RelativeId;
+    long DomainIndex;
+} LSA_TRANSLATED_SID, *PLSA_TRANSLATED_SID;
+ 
+typedef struct _LSAPR_TRANSLATED_SIDS {
+    [range(0,1000)] unsigned long Entries;
+    [size_is(Entries)] PLSA_TRANSLATED_SID Sids;
+} LSAPR_TRANSLATED_SIDS, *PLSAPR_TRANSLATED_SIDS;
+ 
+typedef enum _LSAP_LOOKUP_LEVEL {
+    LsapLookupWksta = 1,
+    LsapLookupPDC,
+    LsapLookupTDL,
+    LsapLookupGC,
+    LsapLookupXForestReferral,
+    LsapLookupXForestResolve,
+    LsapLookupRODCReferralToFullDC
+} LSAP_LOOKUP_LEVEL, *PLSAP_LOOKUP_LEVEL;
+ 
+typedef struct _LSAPR_SID_INFORMATION {
+    PRPC_SID Sid;
+} LSAPR_SID_INFORMATION, *PLSAPR_SID_INFORMATION;
+ 
+typedef struct _LSAPR_SID_ENUM_BUFFER {
+    [range(0, 20480)] unsigned long Entries;
+    [size_is(Entries)] PLSAPR_SID_INFORMATION SidInfo;
+} LSAPR_SID_ENUM_BUFFER, *PLSAPR_SID_ENUM_BUFFER;
+ 
+typedef struct _LSAPR_TRANSLATED_NAME {
+    SID_NAME_USE Use;
+    RPC_UNICODE_STRING Name;
+    long DomainIndex;
+} LSAPR_TRANSLATED_NAME, *PLSAPR_TRANSLATED_NAME;
+ 
+typedef struct _LSAPR_TRANSLATED_NAMES {
+    [range(0, 20480)] unsigned long Entries;
+    [size_is(Entries)] PLSAPR_TRANSLATED_NAME Names;
+} LSAPR_TRANSLATED_NAMES, *PLSAPR_TRANSLATED_NAMES;
+ 
+typedef struct _LSAPR_TRANSLATED_NAME_EX {
+    SID_NAME_USE Use;
+    RPC_UNICODE_STRING Name;
+    long DomainIndex;
+    unsigned long Flags;
+} LSAPR_TRANSLATED_NAME_EX, *PLSAPR_TRANSLATED_NAME_EX;
+ 
+typedef struct _LSAPR_TRANSLATED_NAMES_EX {
+    [range(0, 20480)] unsigned long Entries;
+    [size_is(Entries)] PLSAPR_TRANSLATED_NAME_EX Names;
+} LSAPR_TRANSLATED_NAMES_EX, *PLSAPR_TRANSLATED_NAMES_EX;
+ 
+typedef struct _LSAPR_TRANSLATED_SID_EX {
+    SID_NAME_USE Use;
+    unsigned long RelativeId;
+    long DomainIndex;
+    unsigned long Flags;
+} LSAPR_TRANSLATED_SID_EX, *PLSAPR_TRANSLATED_SID_EX;
+ 
+typedef struct _LSAPR_TRANSLATED_SIDS_EX {
+    [range (0,1000)] unsigned long Entries;
+    [size_is(Entries)] PLSAPR_TRANSLATED_SID_EX Sids;
+} LSAPR_TRANSLATED_SIDS_EX, *PLSAPR_TRANSLATED_SIDS_EX;
+ 
+typedef struct _LSAPR_TRANSLATED_SID_EX2 {
+    SID_NAME_USE Use;
+    PRPC_SID Sid;
+    long DomainIndex;
+    unsigned long Flags;
+} LSAPR_TRANSLATED_SID_EX2, *PLSAPR_TRANSLATED_SID_EX2;
+ 
+typedef struct _LSAPR_TRANSLATED_SIDS_EX2 {
+    [range (0,1000)] unsigned long Entries;
+    [size_is(Entries)] PLSAPR_TRANSLATED_SID_EX2 Sids;
+} LSAPR_TRANSLATED_SIDS_EX2, *PLSAPR_TRANSLATED_SIDS_EX2;
+ 
+ 
+//
+// Methods
+//
+//
+// The following notation conventions are used for some IDL methods:
+//
+// void
+// Lsar_LSA_DP_XX( void );
+//
+//   (where XX represents the opnum.)
+//
+//   This notation indicates that the method is defined in this
+//   interface but is described in the
+//   Local Security Authority (Domain Policy) protocol
+//   specification.
+//
+// void OpnumXXNotUsedOnWire(void);
+//
+//   (where XX represents the opnum.)
+//
+//   This notation indicates that the method is defined in this
+//   interface but is not seen on the wire.
+//
+ 
+// Opnum 0
+NTSTATUS
+LsarClose(
+    [in,out] LSAPR_HANDLE *ObjectHandle
+    );
+ 
+// Opnum 1
+void Opnum1NotUsedOnWire(void);
+ 
+// Opnum 2
+void
+Lsar_LSA_DP_2( void );
+ 
+// Opnum 3
+void
+Lsar_LSA_DP_3( void );
+ 
+// Opnum 4
+void
+Lsar_LSA_DP_4( void );
+ 
+// Opnum 5
+void Opnum5NotUsedOnWire(void);
+ 
+// Opnum 6
+NTSTATUS
+LsarOpenPolicy(
+    [in,unique] wchar_t *SystemName,
+    [in] PLSAPR_OBJECT_ATTRIBUTES ObjectAttributes,
+    [in] ACCESS_MASK DesiredAccess,
+    [out] LSAPR_HANDLE *PolicyHandle
+    );
+ 
+// Opnum 7
+void
+Lsar_LSA_DP_7( void );
+ 
+// Opnum 8
+void
+Lsar_LSA_DP_8( void );
+ 
+// Opnum 9
+void Opnum9NotUsedOnWire(void);
+ 
+// Opnum 10
+void
+Lsar_LSA_DP_10( void );
+ 
+// Opnum 11
+void
+Lsar_LSA_DP_11( void );
+ 
+// Opnum 12
+void
+Lsar_LSA_DP_12( void );
+ 
+// Opnum 13
+void
+Lsar_LSA_DP_13( void );
+ 
+// Opnum 14
+NTSTATUS
+LsarLookupNames(
+    [in] LSAPR_HANDLE PolicyHandle,
+    [in, range(0,1000)] unsigned long Count,
+    [in, size_is(Count)] PRPC_UNICODE_STRING Names,
+    [out] PLSAPR_REFERENCED_DOMAIN_LIST *ReferencedDomains,
+    [in, out] PLSAPR_TRANSLATED_SIDS TranslatedSids,
+    [in] LSAP_LOOKUP_LEVEL LookupLevel,
+    [in, out] unsigned long *MappedCount
+    );
+ 
+// Opnum 15
+NTSTATUS
+LsarLookupSids(
+    [in] LSAPR_HANDLE PolicyHandle,
+    [in] PLSAPR_SID_ENUM_BUFFER SidEnumBuffer,
+    [out] PLSAPR_REFERENCED_DOMAIN_LIST *ReferencedDomains,
+    [in, out] PLSAPR_TRANSLATED_NAMES TranslatedNames,
+    [in] LSAP_LOOKUP_LEVEL LookupLevel,
+    [in, out] unsigned long *MappedCount
+    );
+ 
+// Opnum 16
+void
+Lsar_LSA_DP_16( void );
+ 
+// Opnum 17
+void
+Lsar_LSA_DP_17( void );
+ 
+// Opnum 18
+void
+Lsar_LSA_DP_18( void );
+ 
+// Opnum 19
+void
+Lsar_LSA_DP_19( void );
+ 
+// Opnum 20
+void
+Lsar_LSA_DP_20( void );
+ 
+// Opnum 21
+void Opnum21NotUsedOnWire(void);
+ 
+// Opnum 22
+void Opnum22NotUsedOnWire(void);
+ 
+// Opnum 23
+void
+Lsar_LSA_DP_23( void );
+ 
+// Opnum 24
+void
+Lsar_LSA_DP_24( void );
+ 
+// Opnum 25
+void
+Lsar_LSA_DP_25( void );
+ 
+// Opnum 26
+void
+Lsar_LSA_DP_26( void );
+ 
+// Opnum 27
+void
+Lsar_LSA_DP_27( void );
+ 
+// Opnum 28
+void
+Lsar_LSA_DP_28( void );
+ 
+// Opnum 29
+void
+Lsar_LSA_DP_29( void );
+ 
+// Opnum 30
+void
+Lsar_LSA_DP_30( void );
+ 
+// Opnum 31
+void
+Lsar_LSA_DP_31( void );
+ 
+// Opnum 32
+void
+Lsar_LSA_DP_32( void );
+ 
+// Opnum 33
+void
+Lsar_LSA_DP_33( void );
+ 
+// Opnum 34
+void
+Lsar_LSA_DP_34( void );
+ 
+// Opnum 35
+void
+Lsar_LSA_DP_35( void );
+ 
+// Opnum 36
+void
+Lsar_LSA_DP_36( void );
+ 
+// Opnum 37
+void
+Lsar_LSA_DP_37( void );
+ 
+// Opnum 38
+void
+Lsar_LSA_DP_38( void );
+ 
+// Opnum 39
+void
+Lsar_LSA_DP_39( void );
+ 
+// Opnum 40
+void
+Lsar_LSA_DP_40( void );
+ 
+// Opnum 41
+void
+Lsar_LSA_DP_41( void );
+ 
+// Opnum 42
+void
+Lsar_LSA_DP_42( void );
+ 
+// Opnum 43
+void
+Lsar_LSA_DP_43( void );
+ 
+// Opnum 44
+NTSTATUS
+LsarOpenPolicy2(
+    [in,unique,string] wchar_t *SystemName,
+    [in] PLSAPR_OBJECT_ATTRIBUTES ObjectAttributes,
+    [in] ACCESS_MASK DesiredAccess,
+    [out] LSAPR_HANDLE *PolicyHandle
+    );
+ 
+// Opnum 45
+NTSTATUS
+LsarGetUserName(
+    [in,unique,string] wchar_t *SystemName,
+    [in,out] PRPC_UNICODE_STRING *UserName,
+    [in,out,unique] PRPC_UNICODE_STRING *DomainName
+    );
+ 
+// Opnum 46
+void
+Lsar_LSA_DP_46( void );
+ 
+// Opnum 47
+void
+Lsar_LSA_DP_47( void );
+ 
+// Opnum 48
+void
+Lsar_LSA_DP_48( void );
+ 
+// Opnum 49
+void
+Lsar_LSA_DP_49( void );
+ 
+// Opnum 50
+void
+Lsar_LSA_DP_50( void );
+ 
+// Opnum 51
+void
+Lsar_LSA_DP_51( void );
+ 
+// Opnum 52
+void Opnum52NotUsedOnWire(void);
+ 
+// Opnum 53
+void
+Lsar_LSA_DP_53( void );
+ 
+// Opnum 54
+void
+Lsar_LSA_DP_54( void );
+ 
+// Opnum 55
+void
+Lsar_LSA_DP_55( void );
+ 
+// Opnum 56
+void Opnum56NotUsedOnWire(void);
+ 
+// Opnum 57
+NTSTATUS
+LsarLookupSids2(
+    [in] LSAPR_HANDLE PolicyHandle,
+    [in] PLSAPR_SID_ENUM_BUFFER SidEnumBuffer,
+    [out] PLSAPR_REFERENCED_DOMAIN_LIST *ReferencedDomains,
+    [in, out] PLSAPR_TRANSLATED_NAMES_EX TranslatedNames,
+    [in] LSAP_LOOKUP_LEVEL LookupLevel,
+    [in, out] unsigned long *MappedCount,
+    [in] unsigned long LookupOptions,
+    [in] unsigned long ClientRevision
+    );
+ 
+// Opnum 58
+NTSTATUS
+LsarLookupNames2(
+    [in] LSAPR_HANDLE PolicyHandle,
+    [in, range(0,1000)] unsigned long Count,
+    [in, size_is(Count)] PRPC_UNICODE_STRING Names,
+    [out] PLSAPR_REFERENCED_DOMAIN_LIST *ReferencedDomains,
+    [in, out] PLSAPR_TRANSLATED_SIDS_EX TranslatedSids,
+    [in] LSAP_LOOKUP_LEVEL LookupLevel,
+    [in, out] unsigned long *MappedCount,
+    [in] unsigned long LookupOptions,
+    [in] unsigned long ClientRevision
+    );
+ 
+// Opnum 59
+void
+Lsar_LSA_DP_59( void );
+ 
+// Opnum 60
+void Opnum60NotUsedOnWire(void);
+ 
+// Opnum 61
+void Opnum61NotUsedOnWire(void);
+ 
+// Opnum 62
+void Opnum62NotUsedOnWire(void);
+ 
+// Opnum 63
+void Opnum63NotUsedOnWire(void);
+ 
+// Opnum 64
+void Opnum64NotUsedOnWire(void);
+ 
+// Opnum 65
+void Opnum65NotUsedOnWire(void);
+ 
+// Opnum 66
+void Opnum66NotUsedOnWire(void);
+ 
+// Opnum 67
+void Opnum67NotUsedOnWire(void);
+ 
+// Opnum 68
+NTSTATUS
+LsarLookupNames3(
+    [in] LSAPR_HANDLE PolicyHandle,
+    [in, range(0,1000)] unsigned long Count,
+    [in, size_is(Count)] PRPC_UNICODE_STRING Names,
+    [out] PLSAPR_REFERENCED_DOMAIN_LIST *ReferencedDomains,
+    [in, out] PLSAPR_TRANSLATED_SIDS_EX2 TranslatedSids,
+    [in] LSAP_LOOKUP_LEVEL LookupLevel,
+    [in, out] unsigned long *MappedCount,
+    [in] unsigned long LookupOptions,
+    [in] unsigned long ClientRevision
+    );
+ 
+// Opnum 69
+void Opnum69NotUsedOnWire(void);
+ 
+// Opnum 70
+void Opnum70NotUsedOnWire(void);
+ 
+// Opnum 71
+void Opnum71NotUsedOnWire(void);
+ 
+// Opnum 72
+void Opnum72NotUsedOnWire(void);
+ 
+// Opnum 73
+void
+Lsar_LSA_DP_73( void );
+ 
+// Opnum 74
+void
+Lsar_LSA_DP_74( void );
+ 
+// Opnum 75
+void Opnum75NotUsedOnWire(void);
+ 
+// Opnum 76
+NTSTATUS
+LsarLookupSids3(
+    [in] handle_t RpcHandle,
+    [in] PLSAPR_SID_ENUM_BUFFER SidEnumBuffer,
+    [out] PLSAPR_REFERENCED_DOMAIN_LIST *ReferencedDomains,
+    [in, out] PLSAPR_TRANSLATED_NAMES_EX TranslatedNames,
+    [in] LSAP_LOOKUP_LEVEL LookupLevel,
+    [in, out] unsigned long *MappedCount,
+    [in] unsigned long LookupOptions,
+    [in] unsigned long ClientRevision
+    );
+ 
+// Opnum 77
+NTSTATUS
+LsarLookupNames4(
+    [in] handle_t RpcHandle,
+    [in, range(0,1000)] unsigned long Count,
+    [in, size_is(Count)] PRPC_UNICODE_STRING Names,
+    [out] PLSAPR_REFERENCED_DOMAIN_LIST *ReferencedDomains,
+    [in, out] PLSAPR_TRANSLATED_SIDS_EX2 TranslatedSids,
+    [in] LSAP_LOOKUP_LEVEL LookupLevel,
+    [in, out] unsigned long *MappedCount,
+    [in] unsigned long LookupOptions,
+    [in] unsigned long ClientRevision
+    );
+ 
+}

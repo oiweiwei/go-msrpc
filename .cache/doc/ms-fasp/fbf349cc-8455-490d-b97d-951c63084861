@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>This structure represents a range of IPv6 addresses within
+the IPv6 address space.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_IPV6_ADDRESS_RANGE {
+   unsigned char Begin[16];
+   unsigned char End[16];
+ } FW_IPV6_ADDRESS_RANGE,
+  *PFW_IPV6_ADDRESS_RANGE;
+</pre></div>
+</dd></dl><p><b>Begin:</b>  A 16-octet array containing
+the first IPv6 address of the range in the IPv6 address range defined by this
+structure.</p><p><b>End:</b>  A 16-octet array containing
+the last IPv6 address of the range in the IPv6 address range defined by this
+structure.</p><p>Valid FW_IPV6_ADDRESS_RANGE structures MUST have a <b>Begin</b>
+value less than or equal to the <b>End</b> value. Structures with <b>Begin</b>
+equal to <b>End</b> represent a single IPv6 address. <b>Begin</b> and <b>End</b>
+MUST NOT contain either an unspecified or a loopback address.</p><p><b>Begin</b> and <b>End</b> are in network order.</p></div>

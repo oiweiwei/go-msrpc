@@ -1,0 +1,66 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/aa0c0f62-4b4c-44f0-9718-c266a6accd9f" data-linktype="external">msdn link</a></p><p>The SYSTEM_SCOPED_POLICY_ID_ACE structure defines an ACE for
+the purpose of applying a central access policy to the resource.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Mask</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Sid
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (4 bytes): </b>An <a href="628ebb1d-c509-4ea0-a10f-77ef97ca4586" data-linktype="relative-path">ACE_HEADER</a> structure that
+specifies the size and type of ACE. It also contains flags that control
+applicability and inheritance of the ACE by child objects.</p><p><b>Mask (4 bytes): </b>An <a href="7a53f60e-e730-4dfe-bbe9-b21b62eb790b" data-linktype="relative-path">ACCESS_MASK</a> that MUST be
+set to zero.</p><p><b>Sid (variable): </b>A <a href="78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">SID</a> that identifies a
+central access policy. For a SYSTEM_SCOPED_POLICY_ID_ACE to be applicable on a
+resource, this SID MUST match a <b>CAPID</b> of a CentralAccessPolicy contained
+in the <b>CentralAccessPoliciesList</b> (as specified in <a href="../ms-gpcap/5189d5c9-12c2-491c-bf16-f7008c46c6fb" data-linktype="relative-path">[MS-GPCAP]</a>
+section <a href="../ms-gpcap/2320be68-8702-4f46-ad23-677bdab5a32b" data-linktype="relative-path">3.2.1.1</a>)
+of the machine on which the access evaluation will be performed.</p></div>

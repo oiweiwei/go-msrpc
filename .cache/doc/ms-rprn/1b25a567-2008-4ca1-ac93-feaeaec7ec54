@@ -1,0 +1,36 @@
+<div class="content"><p>RpcDeleteForm removes a form name from the list of supported
+forms.</p><dl>
+<dd>
+<div><pre> DWORD RpcDeleteForm(
+   [in] PRINTER_HANDLE hPrinter,
+   [in, string] wchar_t* pFormName
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object or
+server object that MUST have been opened by using the <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter</a>, <a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx</a>, <a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter</a>, or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx</a> methods.</p><p><b>pFormName: </b>A pointer to a string that MUST
+identify the form to delete. For rules governing form names, see section <a href="cd213afb-1b67-4479-ac15-316ea0fb537e" data-linktype="relative-path">2.2.4.5</a>.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate the
+following:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE
+Parameters (section 3.1.4.1.11)</a>.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the <i>pFormName</i> parameter points to a string
+that identifies an existing form. If that verification fails, return
+ERROR_INVALID_FORM_NAME [MS-ERREF].</p>
+</li><li><p><span><span> 
+</span></span>Additional validation MAY<a id="Appendix_A_Target_354"></a><a aria-label="Product behavior note 354" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_354" data-linktype="relative-path">&lt;354&gt;</a> be
+performed.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Clear the references to this form from any other data structures.</p>
+</li><li><p><span><span> 
+</span></span>Delete the form object.</p>
+</li><li><p><span><span> 
+</span></span>If any clients have registered for notification of server object
+changes, a notification MUST be broadcast to them.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

@@ -1,0 +1,117 @@
+<div class="content"><p>The following represents the current state of the smart card
+reader according to <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_c6f0d1a4-ae75-40b9-beef-baa419cb33b9" data-linktype="relative-path">Smart
+Cards for Windows</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CardReaderState</p>
+  </td>
+ </tr>
+</tbody></table><p><b>CardReaderState (4 bytes): </b>One of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SCARD_UNKNOWN </p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The current state of the reader is unknown.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_ABSENT </p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>There is no card in the reader.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_PRESENT </p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>There is a card in the reader but it has not been
+  moved into position for use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_SWALLOWED </p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>There is a card in the reader in position for use. The
+  card is not powered.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_POWERED </p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>There is power being applied to the card but the mode
+  of the card is unknown.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_NEGOTIABLE </p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The card has been reset and is awaiting PTS
+  negotiation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_SPECIFICMODE </p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>The card has been reset and specific communication
+  protocols have been established.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

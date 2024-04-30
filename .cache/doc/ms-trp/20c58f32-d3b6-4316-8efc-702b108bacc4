@@ -1,0 +1,132 @@
+<div class="content"><p>The PHONE_STATE packet is sent when the status of a phone
+device changes.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">TotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">InitContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">fnPostProcessProcHandle</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hRemotePhone</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Msg</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">OpenContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param4</p>
+  </td>
+ </tr>
+</tbody></table><p><b>TotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size of the asynchronous event packet.</p><p><b>InitContext (4 bytes): </b>An unsigned 32-bit
+integer. The opaque client-specified session value that MUST be equal to the
+InitContext value that is specified in the original scoping of the phone <a href="a600d262-0bb1-447b-8a0d-6f57d3a8ec18" data-linktype="relative-path">Initialize</a> request.</p><p><b>fnPostProcessProcHandle (4 bytes): </b>An unsigned
+32-bit integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>hRemotePhone (4 bytes): </b>An unsigned 32-bit
+integer. The handle of the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a>
+for the phone value.</p><p><b>Msg (4 bytes): </b>An unsigned 32-bit integer. The
+packet type, which MUST be set to 0x00000012 (PHONE_STATE).</p><p><b>OpenContext (4 bytes): </b>An unsigned 32-bit
+integer. The opaque client-specified context value that MUST be equal to the
+OpenContext value that is specified in the original scoping of the phone <a href="6b5ee45e-b5c8-4148-a9b2-b16b9b995c3f" data-linktype="relative-path">Open</a> request.</p><dl>
+<dd>
+<p>This information MUST be passed back to the
+application with each completion and event that is associated with the handle
+of the phone. This field is not interpreted by TAPI.</p>
+</dd></dl><p><b>Param1 (4 bytes): </b>An unsigned 32-bit integer.
+The phone state that changed. This field MUST use one of the <a href="a955320d-9700-46f6-9813-fadecfe4b9de" data-linktype="relative-path">PHONESTATE_Constants</a>. </p><p><b>Param2 (4 bytes): </b>An unsigned 32-bit integer.
+The phone state-dependent information that details the status change. This
+parameter is not used if multiple flags are set in the <b>Param1</b> field from
+multiple status items that have changed. The application SHOULD invoke the <a href="665cefb2-564c-4fde-9f63-401ae42f931f" data-linktype="relative-path">GetStatus</a> packet to obtain
+complete information.</p><dl>
+<dd>
+<p>If the <b>Param1</b> field is set to
+PHONESTATE_OWNER, this field MUST contain the new number of owners. </p>
+</dd>
+<dd>
+<p>If the <b>Param1</b> field is set to
+PHONESTATE_MONITORS, this field MUST contain the new number of monitors. </p>
+</dd>
+<dd>
+<p>If the <b>Param1</b> field is set to
+PHONESTATE_LAMP, this field MUST contain the button/lamp identifier of the lamp
+that changed. </p>
+</dd>
+<dd>
+<p>If the <b>Param1</b> field is set to PHONESTATE_RINGMODE,
+this field MUST contain the new ring mode. </p>
+</dd>
+<dd>
+<p>If the <b>Param1</b> field is set to one of the
+PHONESTATE_HANDSETHOOKSWITCH, PHONESTATE_SPEAKERHOOKSWITCH, or
+PHONESTATE_HEADSETHOOKSWITCH constants, this field MUST contain the new
+hookswitch mode of that device. This parameter MUST use one of the <a href="45172c7a-752e-481c-9b56-c8e10a2dd977" data-linktype="relative-path">PHONEHOOKSWITCHMODE_Constants</a>.
+</p>
+</dd></dl><p><b>Param3 (4 bytes): </b>An unsigned 32-bit integer.
+This MUST be ignored on receipt and can be any value.  </p><p><b>Param4 (4 bytes): </b>An unsigned 32-bit integer.
+This MUST be ignored on receipt and can be any value.  </p></div>

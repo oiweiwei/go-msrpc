@@ -1,0 +1,298 @@
+<div class="content"><p>The GatherDigits packet is transmitted from a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call</a>.
+Sending this packet initiates the buffered gathering of digits on the specified
+call. TAPI specifies a packet in which to place the digits and the maximum
+number of digits to be collected.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hCall</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwEndtoEndID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDigitModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpsDigitsContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumDigits</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpszTerminationDigits</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwFirstDigitTimeout</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwInterDigitTimeout</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved5</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved6</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>An unsigned 32-bit
+integer. The identifier of the function that will be invoked on the remote
+server. This value MUST be set to 18.</p><dl>
+<dd>
+<p><b>Return Values</b></p>
+</dd>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>, this field
+contains the result of the encapsulated telephony request. A value of 0
+indicates success, and a <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path">LINEERR_Constants</a>
+value indicates failure. The remote server MUST complete this call
+synchronously.</p>
+</dd>
+<dd>
+<p>MUST return zero if the function succeeds or an
+error number if an error occurs. Common return values are as follows:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>LINEERR_INVALCALLHANDLE</p>
+  </td>
+  <td>
+  <p>0x80000018</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_RESOURCEUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x8000004B</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALCALLSTATE</p>
+  </td>
+  <td>
+  <p>0x8000001C</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_NOMEM</p>
+  </td>
+  <td>
+  <p>0x80000044</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALTIMEOUT</p>
+  </td>
+  <td>
+  <p>0x8000003B</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x80000049</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALDIGITMODE</p>
+  </td>
+  <td>
+  <p>0x80000027</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONFAILED</p>
+  </td>
+  <td>
+  <p>0x80000048</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALDIGITS</p>
+  </td>
+  <td>
+  <p>0x80000028</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALPARAM</p>
+  </td>
+  <td>
+  <p>0x80000032</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>lpContext (4 bytes): </b>An unsigned 32-bit
+integer. The opaque, client-specified value that is used by the client upon
+request completion; MUST be returned by the server in the request completion
+packet.</p><p><b>hCall (4 bytes): </b>An <a href="7f4089a0-7432-4ef0-8eeb-5aafe407c07e" data-linktype="relative-path">HCALL</a>. The handle to the
+call on which digits are to be gathered. One way of obtaining a valid hCall is
+by sending the <a href="c9acdfde-22de-43ff-b491-23a9ed72fb31" data-linktype="relative-path">MakeCall</a>
+packet. The application MUST be an owner of the call. The call state of hCall
+can be any state.</p><p><b>dwEndtoEndID (4 bytes): </b>An unsigned 32-bit
+integer. A unique, uninterpreted identifier of the request for its entire
+lifetime, that is, until the matching <a href="fca5a036-3a51-4d9d-a371-61b1084288a8" data-linktype="relative-path">LINE_GATHERDIGITS</a> packet
+is sent. The service provider MUST include this identifier as one of the
+parameters in the packet.</p><p><b>dwDigitModes (4 bytes): </b>An unsigned 32-bit
+integer. The digit modes that are to be monitored. This parameter MUST use one
+or more of the following LINEDIGITMODE_Constants: </p><dl>
+<dd>
+<p>LINEDIGITMODE_PULSE </p>
+</dd>
+<dd>
+<p>Detect digits as audible clicks that are the result
+of the use of rotary pulse sequences. Valid digits for pulse mode are
+&#34;0&#34; through &#34;9&#34;. </p>
+</dd>
+<dd>
+<p>LINEDIGITMODE_DTMF </p>
+</dd>
+<dd>
+<p>Detect digits as <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_ac0b9c3c-5926-42b8-924d-2e37a15665b8" data-linktype="relative-path">DTMF</a> tones. Valid digits
+for DTMF mode are &#34;0&#34; through &#34;9&#34;, &#34;A&#34;,
+&#34;B&#34;, &#34;C&#34;, &#34;D&#34;, &#34;*&#34;, &#34;#&#34;.</p>
+</dd></dl><p><b>lpsDigitsContext (4 bytes): </b>An unsigned 32-bit
+integer. Set to 0 if digit gathering is to be canceled; otherwise, digit
+gathering is initiated.</p><p><b>dwNumDigits (4 bytes): </b>An unsigned 32-bit
+integer. The number of digits to be collected before a LINE_GATHERDIGITS packet
+is sent to TAPI. This function MUST return a LINEERR_INVALPARAM if dwNumDigits
+is zero.</p><p><b>lpszTerminationDigits (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, in the varData field of a null-terminated
+Unicode string of termination digits as text characters, or if none are
+supplied, the value TAPI_NO_DATA (0xFFFFFFFF).</p><p><b>dwFirstDigitTimeout (4 bytes): </b>An unsigned
+32-bit integer. The time duration, in milliseconds, in which the first digit is
+expected. If the first digit is not received in this time frame, digit
+collection is terminated and a LINE_GATHERDIGITS packet is sent to TAPI. A
+single null character is written to the packet, indicating no digits were
+received and the first digit time-out terminated digit gathering. The line
+device capabilities of the call specify the valid range for this parameter or
+indicate that time-outs are not supported. This parameter is not validated by
+TAPI when this function is called.</p><p><b>dwInterDigitTimeout (4 bytes): </b>An unsigned
+32-bit integer. The maximum time duration, in milliseconds, between consecutive
+digits. If no digit is received in this time frame, digit collection is
+terminated and a LINE_GATHERDIGITS packet is sent to TAPI. A single null
+character is written to the packet, indicating that an interdigit time-out
+terminated digit gathering. The LINEDEVCAPS packet MUST specify the valid range
+for this parameter or indicate that time-outs are not supported. This parameter
+is not validated by TAPI when this function is called.</p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved5 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved6 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>VarData (variable): </b>Present if the
+lpszTerminationDigits field is not set to TAPI_NO_DATA (0xFFFFFFFF). Contains a
+null-terminated Unicode string as specified by lpszTerminationDigits.</p><dl>
+<dd>
+<p>The contents of this field MUST be DWORD-aligned, as
+specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>.</p>
+</dd></dl></div>

@@ -1,0 +1,20 @@
+<div class="content"><p>The LocateCardsByATRA_Call structure returns information
+concerning the status of the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">smart
+card</a> of interest (<a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_2a8fc201-65aa-4040-980c-f4843467e6bf" data-linktype="relative-path">ATR</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _LocateCardsByATRA_Call {
+   REDIR_SCARDCONTEXT Context;
+   [range(0,1000)] unsigned long cAtrs;
+   [size_is(cAtrs)] LocateCards_ATRMask* rgAtrMasks;
+   [range(0,10)] unsigned long cReaders;
+   [size_is(cReaders)] ReaderStateA* rgReaderStates;
+ } LocateCardsByATRA_Call;
+</pre></div>
+</dd></dl><p><b>Context:</b>  A valid context, as
+specified in section <a href="5201b332-299b-4b6a-9733-94e873ffe8cc" data-linktype="relative-path">2.2.2.13</a>.</p><p><b>cAtrs:</b>  The number of bytes in the <b>rgAtrMasks</b>
+field.</p><p><b>rgAtrMasks:</b>  An array of ATRs to
+match against currently inserted cards.</p><p><b>cReaders:</b>  The number of elements in
+the <b>rgReaderStates</b> field.</p><p><b>rgReaderStates:</b>  The states of the
+readers that the application is monitoring. The states reflect what the
+application determines to be the current states of the readers and that might
+differ from the actual states.</p></div>

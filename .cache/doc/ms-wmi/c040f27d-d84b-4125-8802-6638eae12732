@@ -1,0 +1,32 @@
+<div class="content"><p> </p><p>The IWbemRefreshingServices::RemoveObjectFromRefresher
+method MUST remove a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a99173af-90bf-473d-9a81-ff0ce9a85838" data-linktype="relative-path">CIM</a></span> instance, which
+is identified by its <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_775e4b82-5447-4125-b887-b404421e1269" data-linktype="relative-path">CIM path</a></span>, from the
+list of <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_94e80069-5f2a-4281-a676-50ea656c4795" data-linktype="relative-path">CIM instances</a></span> that
+can be refreshed.</p><dl>
+<dd>
+<div><pre> HRESULT RemoveObjectFromRefresher(
+   [in] _WBEM_REFRESHER_ID* pRefresherId,
+   [in] long lId,
+   [in] long lFlags,
+   [in] DWORD dwClientRefrVersion,
+   [out] DWORD* pdwSvrRefrVersion
+ );
+</pre></div>
+</dd></dl><p><b>pRefresherId: </b>MUST be a pointer to the
+_WBEM_REFRESHER_ID structure, as specified in section <span><a href="4785ade4-e762-4f7e-a87c-e00aa316a457" data-linktype="relative-path">2.2.21</a></span>, that
+identifies the client that is requesting refreshing services. This parameter
+MUST NOT be NULL.</p><p><b>lId: </b>This parameter MUST be an identifier to
+the object that is being removed. This parameter MUST NOT be NULL.</p><p><b>lFlags: </b>This parameter is not used, and its
+value SHOULD be 0x0.</p><p><b>dwClientRefrVersion: </b>MUST be the version of
+the client refresher. This value SHOULD<a id="Appendix_A_Target_67"></a><a aria-label="Product behavior note 67" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_67" data-linktype="relative-path">&lt;67&gt;</a> be 0x2.
+The server MUST allow all client versions.</p><p><b>pdwSvrRefrVersion: </b>MUST be an output
+parameter, which MUST be the version of the server refresher. This value SHOULD
+be 0x1.</p><p><b>Return Values: </b>This method MUST return an <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+value that MUST indicate the status of the method call. If there are no
+failures, the server MUST always return WBEM_E_NOT_AVAILABLE.<a id="Appendix_A_Target_68"></a><a aria-label="Product behavior note 68" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_68" data-linktype="relative-path">&lt;68&gt;</a></p><dl>
+<dd>
+<p><b>WBEM_E_NOT_AVAILABLE</b> (0x80041009)</p>
+</dd></dl><p>In response to IWbemRefreshingServices::RemoveObjectFromRefresher,
+the server MUST set <b>pdwSvrRefrVersion</b> to 0x1 and return
+WBEM_E_NOT_AVAILABLE.</p><p>In case of failure, the server MUST set <b>pdwSvrRefrVersion</b>
+to 1 and MUST return an error in the format specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>.</p></div>

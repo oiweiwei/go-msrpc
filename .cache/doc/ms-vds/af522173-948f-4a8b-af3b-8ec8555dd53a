@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The GetDeviceName method returns the device name of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT GetDeviceName(
+   [out, string] LPWSTR* ppDeviceName
+ );
+</pre></div>
+</dd></dl><p><b>ppDeviceName: </b>A pointer to a variable that
+receives the device name of the disk.</p><p><b>Return Values: </b>The method MUST return zero to
+indicate success, or return an implementation-specific nonzero error code to
+indicate failure.</p><p>When the server receives this message, it MUST validate the
+following parameter:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>ppDeviceName</i> is not NULL.</p>
+</li></ul><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>If the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual disk</a></span> is an
+attached state, <i>ppDeviceName</i> MUST be set to the device name of the disk
+associated with the virtual disk. For information on the attached state of a
+virtual disk, see <span><a href="d1ff9fd9-9527-4936-91c2-292bd9d1ff17" data-linktype="relative-path">VDS_VDISK_STATE (section 2.2.2.19.1.1)</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>If the virtual disk is not in an attached state, <i>ppDeviceName</i>
+MUST be set to NULL.</p>
+</li><li><p><span><span> 
+</span></span>Return an <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path"><span>HRESULT</span></a> indicating
+failure or success.</p>
+</li></ul></div>

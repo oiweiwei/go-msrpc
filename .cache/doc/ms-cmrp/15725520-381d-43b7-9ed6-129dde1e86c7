@@ -1,0 +1,16 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/15725520-381d-43b7-9ed6-129dde1e86c7" data-linktype="external">msdn link</a></p><p>The <b>NOTIFY_FILTER_AND_TYPE_RPC</b> structure contains
+information about notifications that clients register for by using <b>ApiAddNotifyV2</b>
+(section <a href="73d7a7d4-fef2-46e4-bd90-4c2e645094f3" data-linktype="relative-path">3.1.4.2.137</a>)
+or that clients get notification for by using <b>ApiGetNotifyV2</b> (section <a href="491227be-d055-4140-8b85-35cf29f31166" data-linktype="relative-path">3.1.4.2.138</a>).<a id="Appendix_A_Target_27"></a><a aria-label="Product behavior note 27" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_27" data-linktype="relative-path">&lt;27&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _NOTIFY_FILTER_AND_TYPE_RPC {
+   DWORD dwObjectType;
+   LONGLONG FilterFlags;
+ } NOTIFY_FILTER_AND_TYPE_RPC,
+  *PNOTIFY_FILTER_AND_TYPE_RPC;
+</pre></div>
+</dd></dl><p><b>dwObjectType:</b> The type of object for which the
+notification is generated (see section <a href="d529b7a9-9f5b-4191-b093-dbb38ffa4277" data-linktype="relative-path">2.2.2.12</a>).</p><p><b>FilterFlags:</b> A set of flags indicating the
+particular notification that was generated for the object. See <b>ApiCreateNotifyV2</b>
+(section <a href="deeb2cd8-1135-4f9c-9f2b-824db8b44a5d" data-linktype="relative-path">3.1.4.2.136</a>)
+for the list of object-specific notifications.</p></div>

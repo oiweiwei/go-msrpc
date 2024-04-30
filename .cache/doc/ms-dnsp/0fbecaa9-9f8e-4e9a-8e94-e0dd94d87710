@@ -1,0 +1,58 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_MEMTAG_STATS</b> structure has DNS server
+statistics related to memory allocations for a given purpose. This structure is
+used by DNSSRV_MEMORY_STATS (section <span><a href="303ccf57-02b4-411d-a6e5-d741e00aebd1" data-linktype="relative-path">2.2.10.2.16</a></span>) to
+collect the list of statistics of memory allocated for various purposes. This
+structure MUST be formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Alloc</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Free</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Memory</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Alloc (4 bytes): </b>The cumulative number of
+times memory allocations have been performed for a given purpose.</p><p><b>Free (4 bytes): </b>The cumulative number of times
+memory has been released for a given purpose.</p><p><b>Memory (4 bytes): </b>The total size of memory, in
+bytes, currently in use for a given purpose.</p></div>

@@ -1,0 +1,35 @@
+<div class="content"><p>The RpcFindClosePrinterChangeNotification method closes a
+change notification object created by <a href="b8b414d9-f1cd-4191-bb6b-87d09ab2fd83" data-linktype="relative-path">RpcRemoteFindFirstPrinterChangeNotification (section 3.1.4.10.3)</a>
+or <a href="eb66b221-1c1f-4249-b8bc-c5befec2314d" data-linktype="relative-path">RpcRemoteFindFirstPrinterChangeNotificationEx (section 3.1.4.10.4)</a>.<a id="Appendix_A_Target_380"></a><a aria-label="Product behavior note 380" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_380" data-linktype="relative-path">&lt;380&gt;</a> The printer or <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a> associated
+with the change notification object is no longer monitored by that object.</p><dl>
+<dd>
+<div><pre> DWORD RpcFindClosePrinterChangeNotification(
+   [in] PRINTER_HANDLE hPrinter
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object or
+server object that was opened by <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter (section 3.1.4.2.3)</a>,
+<a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx (section 3.1.4.2.15)</a>,
+<a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter (section 3.1.4.2.2)</a>,
+or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx (section 3.1.4.2.14)</a>.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform validation steps as specified in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE Parameters</a>,
+section 3.1.4.1.11. This method SHOULD assume that the handle to the printer or
+server object can be used without further access checks.</p>
+</li><li><p><span><span> 
+</span></span>Verify that there is a change notification object associated with
+the printer object handle.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Clear all internal change notification objects associated with
+the <i>hPrinter</i>.</p>
+</li><li><p><span><span> 
+</span></span>Remove the client from the list of notification clients for the
+server or printer object.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

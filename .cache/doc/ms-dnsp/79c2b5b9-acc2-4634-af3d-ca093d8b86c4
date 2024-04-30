@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The following example describes how to create a new <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1b9d3eb9-dad0-4d1d-acb7-4597e5db641c" data-linktype="relative-path">virtualization
+instance</a></span> named &#34;example_vi1&#34; in the DNS server. </p><p>The client calls <span><a href="e5a835ad-8ade-4be3-b97b-a80634800f8d" data-linktype="relative-path">R_DnssrvOperation4 (section
+3.1.4.16)</a></span> and provides the following parameters:</p><ul><li><p><span><span> 
+</span></span><b>DNS_RPC_CURRENT_CLIENT_VER</b> (section <span><a href="a237781b-b048-495d-844b-10ffb38df2a8" data-linktype="relative-path">2.2.1.2.1</a></span>)
+as the client version.</p>
+</li><li><p><span><span> 
+</span></span>Zero as the settings flag.</p>
+</li><li><p><span><span> 
+</span></span>A Unicode string containing the FQDN of the DNS server on which
+the virtualization instance is to be created.</p>
+</li><li><p><span><span> 
+</span></span>Zero as the context.</p>
+</li><li><p><span><span> 
+</span></span>CreateVirtualizationInstance as the operation.</p>
+</li><li><p><span><span> 
+</span></span>DNSSRV_TYPEID_VIRTUALIZATION_INSTANCE as the type ID.</p>
+</li><li><p><span><span> 
+</span></span>Create a DNS_RPC_VIRTUALIZATION_INSTANCE (section <span><a href="44d991d5-392a-48e7-827f-a1ccbe22ddef" data-linktype="relative-path">2.2.17.1.1</a></span>)
+structure with dwFlags as zero and pwszVirtualizationID as
+&#34;example_vi1&#34;. Pass this structure as RPC data.</p>
+</li></ul><p>The DNS server returns ERROR_SUCCESS if the operation was
+successful or a Windows error code if the operation fails.</p></div>

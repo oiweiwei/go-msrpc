@@ -1,0 +1,120 @@
+<div class="content"><p>The CleanUpEvictedNode method removes all persistent
+artifacts that exist on the server after it is evicted from a cluster. </p><p>This method is idempotent. After it is invoked, the target
+server can no longer be a server for the Failover Cluster: Cluster Management
+Remote Protocol (ClusAPI) (<a href="../ms-cmrp/ba4117c0-530e-4e70-a085-4b4cf5bbf193" data-linktype="relative-path">[MS-CMRP]</a>)
+until the server is reconfigured as a member of a cluster by using
+implementation-specific methods between servers.</p><dl>
+<dd>
+<div><pre> HRESULT CleanUpEvictedNode(
+   [in] unsigned long DelayBeforeCleanup,
+   [in] unsigned long TimeOut,
+   [in] unsigned long Flags
+ );
+</pre></div>
+</dd></dl><p><b>DelayBeforeCleanup: </b>The number of milliseconds
+that the server MUST delay before cleanup is started on the target server. If
+this value is zero, the server is cleaned up immediately.</p><p><b>TimeOut: </b>The number of milliseconds that the
+server MUST wait for cleanup to complete. This time-out is independent of the
+preceding delay; therefore, if <i>DelayBeforeCleanup</i> is greater than <i>TimeOut</i>,
+this method will time out. However, after cleanup is initiated, cleanup will
+run to completion regardless of the method waiting.</p><p><b>Flags: </b>A set of bit flags specifying the
+requested actions to be taken during cleanup. This parameter MUST be set to at
+least one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CLUSTERCLEANUP_STOP_CLUSTER_SERVICE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Issue a stop command to the cluster service and wait
+  for it to stop.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTERCLEANUP_DONT_STOP_CLUSTER_SERVICE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Do not issue a stop command to the cluster service.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTERCLEANUP_DONT_WAIT_CLUSTER_SERVICE_STOP</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Do not wait for the cluster service to stop.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method implementation.
+For more information about Win32 error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070102</p>
+  <p>WAIT_TIMEOUT</p>
+  </td>
+  <td>
+  <p>The <a href="fd03159c-fd33-44e3-b396-d0fce6c6d160" data-linktype="relative-path">Cleanup
+  Timer (section 3.8.2.2)</a> expired before cleanup was completed.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 3.</p><p>When processing this call the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Initialize the Cleanup Timer to the value specified in the <i>Timeout</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Initialize the <a href="d3ed92cc-abff-4557-8679-8fb96f8de0d3" data-linktype="relative-path">Delay
+Cleanup Timer (section 3.8.2.1)</a> to the value specified in the <i>DelayBeforeCleanup</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Wait for the Delay Cleanup Timer to expire.</p>
+</li><li><p><span><span> 
+</span></span>Remove all artifacts on the server that make it part of a
+cluster.</p>
+</li><li><p><span><span> 
+</span></span>At any time during execution of the previous steps, if the
+Cleanup Timer expires, the server MUST complete the method, even though cleanup
+operations continue.</p>
+</li></ul></div>

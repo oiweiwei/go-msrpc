@@ -1,0 +1,15 @@
+<div class="content"><p>REDIR_SCARDHANDLE represents a <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_5cddf14c-b925-4494-9b55-d2c8259f9ad0" data-linktype="relative-path">smart card reader</a> handle
+associated with <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_c6f0d1a4-ae75-40b9-beef-baa419cb33b9" data-linktype="relative-path">Smart Cards
+for Windows</a> context.</p><dl>
+<dd>
+<div><pre> typedef struct _REDIR_SCARDHANDLE {
+   REDIR_SCARDCONTEXT Context;
+   [range(0,16)] unsigned long cbHandle;
+   [size_is(cbHandle)] byte *pbHandle;
+ } REDIR_SCARDHANDLE;
+</pre></div>
+</dd></dl><p><b>Context:</b>  A valid context, as
+specified in <a href="060abee1-e520-4149-9ef7-ce79eb500a59" data-linktype="relative-path">REDIR_SCARDCONTEXT</a>.</p><p><b>cbHandle:</b>  The number of bytes in
+the <b>pbHandle</b> field.</p><p><b>pbHandle:</b>  An array of <b>cbHandle</b>
+bytes that corresponds to a smart card reader handle on the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_b9854a6a-0613-4b7a-95e4-c2b359b6021a" data-linktype="relative-path">TS client</a>. The data is
+implementation-specific and MUST NOT be interpreted or changed on the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_6b91e507-0e17-41de-897c-356606d07088" data-linktype="relative-path">Protocol server</a>.</p></div>

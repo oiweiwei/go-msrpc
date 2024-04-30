@@ -1,0 +1,210 @@
+<div class="content"><p> </p><p>The IWbemServices::PutClass method creates a new class or
+updates an existing class in the namespace that is associated with the current <span><a href="7a50647a-5311-41c2-8f4f-83bcfb497877" data-linktype="relative-path">IWbemServices</a></span>
+interface. The server MUST NOT allow the creation of classes that have names
+that begin or end with an underscore because those names are reserved for
+system classes. If the class name does not conform to the CLASS-NAME element
+defined in <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_46e519f1-d1f0-4dcc-bd02-9a2638c03d98" data-linktype="relative-path">WQL</a></span>, the server MUST
+return WBEM_E_INVALID_PARAMETER.</p><dl>
+<dd>
+<div><pre> HRESULT PutClass(
+   [in] IWbemClassObject* pObject,
+   [in] long lFlags,
+   [in] IWbemContext* pCtx,
+   [out, in, unique] IWbemCallResult** ppCallResult
+ );
+</pre></div>
+</dd></dl><p><b>pObject: </b>MUST be a pointer to an <span><a href="46710c5c-d7ab-4e4c-b4a5-ebff311fdcd1" data-linktype="relative-path">IWbemClassObject</a></span>
+<span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface
+pointer</a></span> that MUST contain the class information to create a new
+class or update an existing class. This parameter MUST NOT be NULL.</p><p><b>lFlags: </b>Specifies the behavior of the PutClass
+method. Flag behavior MUST be interpreted as specified in the following table.</p><dl>
+<dd>
+<p>The server MUST accept a combination of zero or more
+flags from the following table and MUST comply with all the restrictions in a
+flag description. Any other DWORD value that does not match a flag condition
+MUST be treated as not valid.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_USE_AMENDED_QUALIFIERS</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>If this bit is set, the server SHOULD ignore all the
+  amended qualifiers while it creates or updates the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_633b12d4-e2c4-442f-95ff-4b2b5d708ed5" data-linktype="relative-path">CIM class</a></span>.<a id="Appendix_A_Target_34"></a><a aria-label="Product behavior note 34" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_34" data-linktype="relative-path">&lt;34&gt;</a></p>
+  <p>If this bit is not set, the server SHOULD include all
+  the qualifiers, including amended qualifiers, while it updates or creates the
+  CIM class.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server MUST make the
+  method call <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_4dccb43d-a5c2-450f-9c9c-cadb68ecbd3e" data-linktype="relative-path">synchronously</a></span>.</p>
+  <p>If this bit is set, the server MUST make the method
+  call <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_51f3288a-1aea-49f6-96a1-91f368e8b49b" data-linktype="relative-path">semisynchronously</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_UPDATE_ONLY</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The server MUST update a CIM class <i>pObject</i> if
+  the CIM class is present.</p>
+  <p>This flag is mutually exclusive with
+  WBEM_FLAG_CREATE_ONLY. If none of these flags are set, the server MUST create
+  or update a CIM class <i>pObject</i>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_CREATE_ONLY</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The server MUST create a CIM class <i>pObject</i> if
+  the CIM class is not already present.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_UPDATE_FORCE_MODE</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>The server MUST update the class even if conflicting
+  child classes exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_UPDATE_SAFE_MODE</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The server MUST update the class as long as the change
+  does not cause any conflicts with existing child classes or instances.</p>
+  <p>This flag is mutually exclusive with
+  WBEM_FLAG_UPDATE_FORCE_MODE. If none of these flags are set, the server MUST
+  update the class if there is no derived class, if there is no instance for
+  that class, or if the class is unchanged.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pCtx: </b>MUST be a pointer to an <span><a href="18c8f1a1-652f-43b7-9186-6098bc303a8d" data-linktype="relative-path">IWbemContext</a></span>
+interface, which MUST contain additional information that the client wants to
+provide to the server about the CIM class that is referred to by the <i>pObject</i>
+parameter. If the <i>pCtx</i> parameter is NULL, it MUST be ignored.</p><p><b>ppCallResult: </b>If the input parameter is
+non-NULL, the server MUST return WBEM_S_NO_ERROR and <span><a href="23ec4065-3fbe-4e39-baef-69e22c285623" data-linktype="relative-path">IWbemCallResult</a></span>
+MUST deliver the result of the requested operation (regardless whether
+WBEM_FLAG_RETURN_IMMEDIATELY is set). The output parameter MUST be filled
+according to the state of the <i>lFlags</i> parameter (whether
+WBEM_FLAG_RETURN_IMMEDIATELY is set) as listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Flag state</p>
+   </th>
+   <th>
+   <p>Operation Started Successfully</p>
+   </th>
+   <th>
+   <p>Operation Failed to Start</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY is not set.</p>
+  </td>
+  <td>
+  <p>MUST be set to IWbemCallResult if the input parameter
+  is non-NULL.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the input parameter is
+  non-NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY is set.</p>
+  </td>
+  <td>
+  <p>This parameter MUST NOT be NULL upon input. If NULL,
+  the server MUST return WBEM_E_INVALID_PARAMETER. On output, the parameter
+  MUST contain the IWbemCallResult interface pointer.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the input parameter is
+  non-NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If the <i>ppCallResult</i> input
+parameter is NULL and WBEM_FLAG_RETURN_IMMEDIATELY is not set, the server MUST
+deliver the result of the requested operation synchronously.</p>
+</dd></dl><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that makes the call MUST have WBEM_REMOTE_ENABLE and WBEM_ENABLE accesses to
+the namespace; otherwise,  WBEM_E_ACCESS_DENIED MUST be returned.</p><p>The server MUST first determine whether the class is dynamic
+or static. If the class exists in the <b>ClassTable</b> for the namespace, then
+it is static when <b>InstanceProviderId</b> is NULL and dynamic otherwise. If
+the class does not exist in the <b>ClassTable</b>, then WMI MUST iterate
+through each entry in <b>ProviderTable</b> with <b>IsClassProvider</b> set to
+TRUE, calling the <b>IsClassSupported</b> entrypoint (described in section <span><a href="cbd8970e-ea3e-4a2b-b4ea-64dd22944c3e" data-linktype="relative-path">3.1.4.17.14</a></span>).
+If a provider returns TRUE, then the algorithm is terminated and the class is
+dynamic. Otherwise, the class is static.</p><p>If the CIM class being updated is <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_b11172af-9369-448d-9722-444eb52b21cb" data-linktype="relative-path">dynamic</a></span>, the
+security principal that makes the call MUST have WBEM_WRITE_PROVIDER access to
+the namespace; otherwise, WBEM_E_ACCESS_DENIED MUST be returned.</p><p>If the CIM class being updated is static, the security
+principal that makes the call MUST have WBEM_FULL_WRITE access to the
+namespace; otherwise, WBEM_E_ACCESS_DENIED MUST be returned.</p><p>The server MUST return WBEM_E_CANNOT_BE_SINGLETON if an
+attempt is made to mark a class as a singleton that has a nonsingleton <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_fbb1e623-a709-400d-8d4a-85df94ad58c3" data-linktype="relative-path">superclass</a></span>
+or a class with key properties.</p><p>If the CIM class being created or updated is dynamic, the
+server MUST obtain <b>SupportsPut</b> for the given provider in the <b>ProviderTable</b>.
+If <b>SupportsPut</b> is FALSE, the server MUST return
+WBEM_E_PROVIDER_NOT_CAPABLE.</p><p>In response to the IWbemServices::PutClass method, the
+server MUST evaluate the <i>pObject</i> parameter and MUST add or update this
+class into the current namespace. The method MUST fail if <i>pObject</i>
+represents a read-only class, if the method parameters or their combinations
+are not valid as specified in this section, or if the server is unable to
+execute the method. The method MUST fail with WBEM_E_NOT_FOUND if <i>pObject</i>
+property __SUPERCLASS is specified but not found in <b>ClassTable</b>.</p><p>If a new class is added or an existing class is updated
+successfully, <b>ClassTable</b> MUST be updated with the changes. If <i>pObject</i>
+property __SUPERCLASS is specified, <b>DerivedClassTable</b> MUST point to the
+entry in the <b>ClassTable</b> representing the superclass.</p><p>If the CIM class referred by <i>pObject</i> is a new entry
+in the <b>ClassTable</b>, the server MUST generate a <b>__ClassCreationEvent</b>
+event object upon successful creation of the class.</p><p>If the CIM class referred by <i>pObject</i> already exists
+in the <b>ClassTable</b> prior to this method call, the server MUST generate a <b>__ClassModificationEvent</b>
+event object upon successfully updating the class information.</p><p>The successful synchronous method execution MUST return
+WBEM_S_NO_ERROR.</p><p>The semisynchronous method execution MUST follow the rules
+that are specified in section <span><a href="c40421d8-b195-4268-884f-a4e74ea58dce" data-linktype="relative-path">3.1.1.1.2</a></span>.</p><p>The failed method execution MUST set output parameters to
+NULL and MUST return an error in the format specified in section 2.2.11.</p><p>The server MUST ensure that the value referred by __CLASS
+conforms to CLASS-NAME in section <span><a href="cf0410f3-541f-477a-848f-9133a1272725" data-linktype="relative-path">2.2.1.1</a></span>. In
+addition:</p><ul><li><p><span><span> 
+</span></span>If the value has an underscore character (&#34;_&#34;) as the
+first character, the server MUST return WBEM_E_INVALID_OPERATION.</p>
+</li><li><p><span><span> 
+</span></span>If the value has an underscore character (&#34;_&#34;) as the
+last character prior to NULL, the server MUST return WBEM_E_INVALID_OBJECT.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD enforce a maximum length for the _CLASS
+property (<span><a href="a95f02df-dedf-45ba-8c76-05b5b7d9cd3b" data-linktype="relative-path">2.2</a></span>) of the object
+pointed to by the <i>pObject</i> parameter, and return WBEM_E_QUOTA_VIOLATION
+if the limit is exceeded.<a id="Appendix_A_Target_35"></a><a aria-label="Product behavior note 35" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_35" data-linktype="relative-path">&lt;35&gt;</a></p>
+</li></ul></div>

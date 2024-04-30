@@ -1,0 +1,37 @@
+<div class="content"><p> </p><p>The EnumDisksEx method enumerates the server&#39;s <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_4b6fe3b9-6c6e-4d5e-975e-310c67c8a76b" data-linktype="relative-path">mass
+storage devices</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT EnumDisksEx(
+   [out] unsigned long* diskCount,
+   [out, size_is(,*diskCount)] DISK_INFO_EX** diskList
+ );
+</pre></div>
+</dd></dl><p><b>diskCount: </b>Pointer to the number of elements
+in <i>diskList</i>.</p><p><b>diskList: </b>Pointer to an array of <span><a href="7d94d560-37f2-4031-8c3e-ecfd2dc1ec9f" data-linktype="relative-path">DISK_INFO_EX</a></span>
+structures.</p><p><b>Return Values: </b>The method MUST return 0 or a
+nonerror <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path"><span>HRESULT</span></a> on success, or
+an implementation-specific nonzero error code on failure (as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>;
+see also section <span><a href="31eea9e6-25b0-4309-8f4a-50c74fbedc9b" data-linktype="relative-path">2.2.1</a></span> for HRESULT
+values predefined by the Disk Management Remote Protocol).</p><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>diskCount</i> and <i>diskList</i> are not NULL.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately, returning an appropriate error as its response to the
+client.</p><p>Otherwise, the server MUST compose a response to the client
+as follows:</p><ol><li><p><span>    </span>Enumerate all <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>
+objects from the list of storage objects.</p>
+</li><li><p><span>    </span>Allocate a
+buffer large enough to contain DISK_INFO_EX structures that describe all
+enumerated disks. </p>
+</li><li><p><span>    </span>Populate each
+DISK_INFO_EX structure in the buffer with information about the disk. </p>
+</li><li><p><span>    </span>The buffer MUST
+be returned to the client in the output parameter <i>diskList</i>. </p>
+</li><li><p><span>    </span>The number of
+DISK_INFO_EX structures in the buffer MUST be returned in the output parameter <i>diskCount</i>.
+</p>
+</li><li><p><span>    </span>Return a
+response containing the output parameters mentioned previously and the status
+of the operation. </p>
+</li></ol><p>The server MUST NOT change the list of storage objects as
+part of processing this message.</p></div>

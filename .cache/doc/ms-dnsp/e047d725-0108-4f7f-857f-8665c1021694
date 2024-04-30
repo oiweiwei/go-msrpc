@@ -1,0 +1,331 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_SECONDARY_STATS</b> structure has the DNS
+server statistics related to secondary <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span> processing.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotifyReceived</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotifyInvalid</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotifyPrimary</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotifyNonPrimary
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotifyNoVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotifyNewVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotifyCurrentVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotifyOldVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NotifyMasterUnknown</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SoaRequest</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SoaResponse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SoaResponseInvalid</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SoaResponseNameError</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AxfrRequest</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AxfrResponse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AxfrSuccess</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AxfrRefused</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AxfrInvalid</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StubAxfrRequest
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StubAxfrResponse
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StubAxfrSuccess
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StubAxfrRefused
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StubAxfrInvalid
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrUdpRequest</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrUdpResponse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrUdpSuccess</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrUdpUseTcp</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrUdpUseAxfr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrUdpWrongServer</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrUdpNoUpdate</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrUdpNewPrimary</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrUdpFormerr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrUdpRefused</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrUdpInvalid</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrTcpRequest</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrTcpResponse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrTcpSuccess</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrTcpAxfr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrTcpFormerr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrTcpRefused</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IxfrTcpInvalid</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>NotifyReceived (4 bytes): </b>The number of zone
+notifications received by the server.</p><p><b>NotifyInvalid (4 bytes): </b>The number of invalid
+zone notifications received by the server.</p><p><b>NotifyPrimary (4 bytes): </b>The number of zone
+notifications for primary zones received by the server.</p><p><b>NotifyNonPrimary (4 bytes): </b>The number of zone
+notifications for nonprimary zones received by the server. This field SHOULD<a id="Appendix_A_Target_74"></a><a aria-label="Product behavior note 74" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_74" data-linktype="relative-path">&lt;74&gt;</a> be present. A client can tell
+whether the field is present based on the size of the buffer holding this
+structure.</p><p><b>NotifyNoVersion (4 bytes): </b>The number of zone
+notifications received by the server, for which the server has no SOA.</p><p><b>NotifyNewVersion (4 bytes): </b>The number of zone
+notifications received by the server, where the received SOA has a newer
+version number than that of the SOA already present on the server.</p><p><b>NotifyCurrentVersion (4 bytes): </b>The number of
+zone notifications received by the server where the received SOA has same
+version number as that of the SOA already present on the server.</p><p><b>NotifyOldVersion (4 bytes): </b>The number of zone
+notifications received by the server, where the received SOA has an older
+version number than the SOA already present on the server.</p><p><b>NotifyMasterUnknown (4 bytes): </b>The number of
+zone notifications received by the server, where notifications are received
+from a server that is not present in the list of masters for the zone.</p><p><b>SoaRequest (4 bytes): </b>The number of SOA query
+requests sent by the server to zone masters, to initiate <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_67ea3c5b-6b1e-40a3-ac20-3f7eaf056504" data-linktype="relative-path">zone
+transfer</a></span>.</p><p><b>SoaResponse (4 bytes): </b>The number of SOA
+responses received by the server from the zone master.</p><p><b>SoaResponseInvalid (4 bytes): </b>The number of
+invalid SOA responses received by the server from the zone master.</p><p><b>SoaResponseNameError (4 bytes): </b>Not used, the
+receiver MUST ignore this value.</p><p><b>AxfrRequest (4 bytes): </b>The number of <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_2d944edd-a550-4b8a-98d8-af495aaa2f8f" data-linktype="relative-path">full zone
+transfer</a></span> requests sent by the server.</p><p><b>AxfrResponse (4 bytes): </b>The number of full
+zone transfer responses received by the server.</p><p><b>AxfrSuccess (4 bytes): </b>The number of full zone
+transfer success responses received by the server.</p><p><b>AxfrRefused (4 bytes): </b>The number of full zone
+transfer rejection responses received by the server.</p><p><b>AxfrInvalid (4 bytes): </b>The number of full zone
+transfer invalid responses received by the server.</p><p><b>StubAxfrRequest (4 bytes): </b>The number of full zone
+transfer requests sent by the server for <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_55a705e5-1ca3-4001-8d6d-c5ae08fdcdeb" data-linktype="relative-path">stub zones</a></span>. This
+field MUST be present if and only if NotifyNonPrimary is present. A client can
+tell whether the field is present based on the size of the buffer holding this
+structure.</p><p><b>StubAxfrResponse (4 bytes): </b>The number of full
+zone transfer responses received by the server for stub zones. This field MUST
+be present if and only if NotifyNonPrimary is present. A client can tell
+whether the field is present based on the size of the buffer holding this
+structure.</p><p><b>StubAxfrSuccess (4 bytes): </b>The number of full
+zone transfer success responses received by the server for stub zones. This
+field MUST be present if and only if NotifyNonPrimary is present. A client can
+tell whether the field is present based on the size of the buffer holding this
+structure.</p><p><b>StubAxfrRefused (4 bytes): </b>The number of full
+zone transfer rejection responses received by the server. This field MUST be
+present if and only if NotifyNonPrimary is present. A client can tell whether
+the field is present based on the size of the buffer holding this structure.</p><p><b>StubAxfrInvalid (4 bytes): </b>The number of full
+zone transfer invalid responses received by the server. This field MUST be present
+if and only if NotifyNonPrimary is present. A client can tell whether the field
+is present based on the size of the buffer holding this structure.</p><p><b>IxfrUdpRequest (4 bytes): </b>The number of <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_831053cd-38aa-4fcc-81bf-d0cbb6cb573b" data-linktype="relative-path">incremental
+zone transfer</a></span> requests sent by the server over UDP.</p><p><b>IxfrUdpResponse (4 bytes): </b>The number of
+incremental zone transfer success responses received by the server over UDP.</p><p><b>IxfrUdpSuccess (4 bytes): </b>The number of
+incremental zone transfer success responses received by the server over UDP.</p><p><b>IxfrUdpUseTcp (4 bytes): </b>The number of
+incremental zone transfer responses received by the server over UDP, indicating
+that TCP is needed.</p><p><b>IxfrUdpUseAxfr (4 bytes): </b>The number of
+incremental zone transfer responses received by the server over UDP, indicating
+that full zone transfer is needed.</p><p><b>IxfrUdpWrongServer (4 bytes): </b>The number of
+incremental zone transfer responses received by the server over UDP, where the
+remote sender is not among the masters for this zone.</p><p><b>IxfrUdpNoUpdate (4 bytes): </b>The number of
+incremental zone transfer responses received by the server over UDP, where no
+updates were found and hence no zone transfer is needed.</p><p><b>IxfrUdpNewPrimary (4 bytes): </b>The number of
+incremental zone transfer responses received by the server over UDP, where the
+SOA indicates a new primary server name.</p><p><b>IxfrUdpFormerr (4 bytes): </b>The number of
+incremental zone transfer responses received by the server over UDP, where
+either the master does not support incremental zone transfer or the master
+indicated that the zone transfer request was malformed.</p><p><b>IxfrUdpRefused (4 bytes): </b>The number of
+incremental zone transfer rejection responses received by the server over UDP.</p><p><b>IxfrUdpInvalid (4 bytes): </b>The number of
+incremental zone transfer invalid responses received by the server over UDP.</p><p><b>IxfrTcpRequest (4 bytes): </b>The number of
+incremental zone transfer requests sent by the server over TCP.</p><p><b>IxfrTcpResponse (4 bytes): </b>The number of
+incremental zone transfer success responses received by the server over TCP.</p><p><b>IxfrTcpSuccess (4 bytes): </b>The number of
+incremental zone transfer success responses received by the server over TCP.</p><p><b>IxfrTcpAxfr (4 bytes): </b>The number of
+incremental zone transfer responses received by the server over TCP, indicating
+that full zone transfer is needed.</p><p><b>IxfrTcpFormerr (4 bytes): </b>The number of
+incremental zone transfer responses received by the server over TCP, where
+either the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_c5f78ae9-df7c-47ee-92f5-5e4f92198cd0" data-linktype="relative-path">primary DNS server</a></span>
+does not support incremental zone transfer or the primary DNS server indicated
+that the zone transfer request was malformed.</p><p><b>IxfrTcpRefused (4 bytes): </b>The number of
+incremental zone transfer rejection responses received by the server over TCP.</p><p><b>IxfrTcpInvalid (4 bytes): </b>The number of
+incremental zone transfer invalid responses received by the server over TCP.</p></div>

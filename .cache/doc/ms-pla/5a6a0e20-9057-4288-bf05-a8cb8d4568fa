@@ -1,0 +1,119 @@
+<div class="content"><p>The FileFormat enumeration defines the format of the data in
+the log file.</p><dl>
+<dd>
+<div><pre> typedef  enum
+ {
+   plaCommaSeparated = 0,
+   plaTabSeparated = 1,
+   plaSql = 2,
+   plaBinary = 3
+ } FileFormat;
+</pre></div>
+</dd></dl><p><b>plaCommaSeparated:  </b>Comma-separated log file.
+The first line in the text file contains column headers followed by
+comma-separated data in the remaining lines of the log file.</p><p><b>plaTabSeparated:  </b>Tab-separated log file. The
+first line in the text file contains column headers followed by tab-separated
+data in the remaining lines of the log file.</p><p><b>plaSql:  </b>The data is saved into a SQL
+database, instead of to a file. The SQL database contains three tables:
+CounterData, CounterDetails, and DisplayToId. All three tables are specified
+below.</p><dl>
+<dd>
+<p>The CounterData table contains a row for each
+counter that is collected at a particular time. There will be a large number of
+these rows. The GUID, CounterID, and RecordIndex fields make up the primary key
+for this table. </p>
+</dd>
+<dd>
+<p>The CounterData table defines the following fields:</p>
+</dd></dl><ul><li><p><span><span>  </span></span>GUID(uniqueidentifier,
+NOT NULL): GUID, as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a>,
+for this data set. Use this key to join with the DisplayToID table.</p>
+</li><li><p><span><span>  </span></span>CounterID(int,
+NOT NULL): Identifies the counter. Use this key to join with the CounterDetails
+table.</p>
+</li><li><p><span><span>  </span></span>RecordIndex(int,
+NOT NULL): The sample index for a specific counter identifier and collection <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_1a61d947-4d31-4365-b2b4-5249de682b56" data-linktype="relative-path">PLA-UID</a>. The value
+increases for each successive sample in this log file.</p>
+</li><li><p><span><span>  </span></span>CounterDateTime(char(24),
+NOT NULL): The time the collection was started, in UTC time.</p>
+</li><li><p><span><span>  </span></span>CounterValue(float,
+NOT NULL): The formatted value of the counter. This value can be zero for the
+first record if the counter requires two samples to compute a displayable
+value.</p>
+</li><li><p><span><span>  </span></span>FirstValueA(int):
+Combine this 32-bit value with the value of FirstValueB to create the
+FirstValue member of PDH_RAW_COUNTER. FirstValueA contains the low-order bits.</p>
+</li><li><p><span><span>  </span></span>FirstValueB(int):
+Combine this 32-bit value with the value of FirstValueA to create the
+FirstValue member of PDH_RAW_COUNTER. FirstValueB contains the high-order bits.</p>
+</li><li><p><span><span>  </span></span>SecondValueA(int):
+Combine this 32-bit value with the value of SecondValueB to create the
+SecondValue member of PDH_RAW_COUNTER. SecondValueA contains the low-order
+bits.</p>
+</li><li><p><span><span>  </span></span>SecondValueB(int):
+Combine this 32-bit value with the value of SecondValueA to create the
+SecondValue member of PDH_RAW_COUNTER. SecondValueB contains the high order
+bits.</p>
+<p>The CounterDetails table describes
+a specific counter on a particular computer. The CounterDetails table defines
+the following fields:</p>
+</li><li><p><span><span>  </span></span>CounterID(int,
+IDENTITY PRIMARY KEY): A unique identifier in the database that maps to a
+specific counter name text string. This field is the primary key of this table.</p>
+</li><li><p><span><span>  </span></span>MachineName(varchar(1024),
+NOT NULL): The name of the computer that logged this data set.</p>
+</li><li><p><span><span>  </span></span>ObjectName(varchar(1024),
+NOT NULL): The name of the performance <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a>.</p>
+</li><li><p><span><span>  </span></span>CounterName(varchar(1024),
+NOT NULL): The name of the counter.</p>
+</li><li><p><span><span>  </span></span>CounterType(int,
+NOT NULL): The counter type.</p>
+</li><li><p><span><span>  </span></span>DefaultScale(int,
+NOT NULL): The default scaling to be applied to the raw <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance counter</a> data.</p>
+</li><li><p><span><span>  </span></span>InstanceName(varchar(1024)):
+The name of the counter instance.</p>
+</li><li><p><span><span>  </span></span>InstanceIndex(int):
+The index number of the counter instance.</p>
+</li><li><p><span><span>  </span></span>ParentName(varchar(1024)):
+Some counters are logically associated with others, and are referred to as
+parents. For example, the parent of a thread is a process and the parent of a
+logical <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a> driver is a
+physical drive. This field contains the name of the parent. Either the value in
+this field or the ParentObjectID field identifies a specific parent instance.
+If the value in this field is NULL, the value in the ParentObjectID field will
+be checked to identify the parent. If the values in both fields are NULL, the
+counter does not have a parent.</p>
+</li><li><p><span><span>  </span></span>ParentObjectID(int):
+The unique identifier of the parent. The value in either this field or the
+ParentName field identifies a specific parent instance. If the value in this
+field is NULL, the value in the ParentName field will be checked to identify
+the parent.</p>
+<p>The DisplayToID table relates the
+user-friendly string displayed by the System Monitor to the PLA-UID stored in
+the other tables. The DisplayToID table defines the following fields:</p>
+</li><li><p><span><span>  </span></span>GUID(uniqueidentifier,
+NOT NULL PRIMARY KEY): A PLA-UID generated for a log. This field is the primary
+key of this table. Note that these do not correspond to the values in:
+HKEY_LOCAL_MACHINE \SYSTEM \CurrentControlSet \Services \SysmonLog \Log
+Queries\</p>
+</li><li><p><span><span>  </span></span>RunID(int):
+Reserved for internal use. </p>
+</li><li><p><span><span>  </span></span>DisplayString(varchar(1024),
+NOT NULL UNIQUE): Name of the log file as displayed in the System Monitor.</p>
+</li><li><p><span><span>  </span></span>LogStartTime(char(24)):
+Time the logging process started in yyyy-mm-dd hh:mm:ss:nnn format.</p>
+</li><li><p><span><span>  </span></span>LogStopTime(char(24)):
+Time the logging process stopped in yyyy-mm-dd hh:mm:ss:nnn format. Multiple
+log files with the same DisplayString value can be differentiated by using the
+value in this and the LogStartTime fields. The values in the LogStartTime and
+LogStopTime fields also allow the total collection time to be accessed quickly.</p>
+</li><li><p><span><span>  </span></span>NumberOfRecords(int):
+Number of samples stored in the table for each log collection. </p>
+</li><li><p><span><span>  </span></span>MinutesToUTC(int):
+Value used to convert the row data stored in UTC time to local time.</p>
+</li><li><p><span><span>  </span></span>TimeZoneName(char(32)):
+Name of the time zone where the data was collected. If collecting or analyzing
+relogged data from a file collected on systems in the user&#39;s time zone, this
+field will state the location.</p>
+</li></ul><p><b>plaBinary:  </b>Binary log file.</p></div>

@@ -1,0 +1,136 @@
+<div class="content"><p>The ResubmitRequest method resubmits a specific pending or
+denied <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a>
+request to the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a>. </p><dl>
+<dd>
+<div><pre> HRESULT ResubmitRequest(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] DWORD dwRequestId,
+   [out] DWORD* pdwDisposition
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">ICertAdminD::SetExtension (section 3.1.4.1.1)</a>.
+</p><p><b>dwRequestId: </b>A 32-bit nonzero unsigned integer
+value that specifies the ID of the certificate request.</p><p><b>pdwDisposition: </b>A pointer to an unsigned
+integer value that receives the disposition status of the certificate (upon
+resubmission). </p><p>This method instructs the CA to try again to process a
+previously submitted certificate request, which is in a pending or denied
+state. </p><p>The following processing rules apply:</p><ol><li><p><span>    </span>The CA MUST
+validate that the Unicode string referenced by <i>pwszAuthority</i> matches
+(case-insensitive) the full <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_a86706d6-bcdf-4107-be38-d2f08a7eaa68" data-linktype="relative-path">CN</a>
+or the sanitized name of the CA. <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_de084567-c0d0-4b19-8612-aa88b38ef7c8" data-linktype="relative-path">Sanitized name</a> is defined
+in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>
+sections <a href="../ms-wcce/aa64b85e-0d6d-4e13-8a15-80e2fdb02e2a" data-linktype="relative-path">1.3.2.5</a>
+and <a href="../ms-wcce/bb738507-c9c3-4175-baf2-fe21f17c076c" data-linktype="relative-path">3.1.1.4.1.1</a>.
+If the value does not match, the server MUST fail the request. The error code
+SHOULD be 0x80070057. </p>
+</li><li><p><span>    </span>The CA MUST look
+up the request based on the provided <i>dwRequestId</i> parameter in the
+request <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_d3a7da8d-a597-4838-9756-25e30b640ba7" data-linktype="relative-path">table</a>:</p>
+<ul><li><p><span><span>  </span></span>If
+the request is not found, the CA MUST place 0x80094004 in the <i>pdwDisposition</i>
+parameter and return successfully.<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a></p>
+</li><li><p><span><span>  </span></span>If
+the request is found in the CA database, the row is referred to as the
+identified row in the following processing rules. </p>
+</li><li><p><span><span>  </span></span>The
+CA MUST verify that the value of the Request_Disposition column in the
+identified row is &#34;request pending&#34; or &#34;request denied&#34;. </p>
+</li><li><p><span><span>  </span></span>If
+the value of the Request_Disposition column in the identified row is not
+&#34;request pending&#34; or &#34;request denied&#34;, the CA MUST place
+0x80094003 in the <i>pdwDisposition</i> parameter and return successfully. </p>
+</li><li><p><span><span>  </span></span>If
+the value of the Request_Disposition column in the identified row is
+&#34;request denied&#34; and the invoker of the method is not the CA
+administrator, the CA MUST place 0x80094003 in the <i>pdwDisposition</i>
+parameter and return successfully. </p>
+</li></ul></li><li><p><span>    </span>The CA MUST try
+to process the request as if it is a new request, as specified in [MS-WCCE]
+section <a href="../ms-wcce/2d0705e9-9189-4fd4-a51e-6e88d86cefeb" data-linktype="relative-path">3.2.1.4.2.1.4</a>,
+ignoring step one in [MS-WCCE] section <a href="../ms-wcce/f1bcc8fb-2336-4247-9d8f-57ef472a7bd5" data-linktype="relative-path">3.2.1.4.2.1.4.5</a>.
+</p>
+</li><li><p><span>    </span>If the request
+processing results in the CA issuing the certificate, the CA MUST place a 3 in
+the <i>pdwDisposition</i> parameter and return successfully. </p>
+</li><li><p><span>    </span>If the request
+processing results in the denial of the certificate by the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_cd0e4dab-0331-4123-a538-df8e4e626a71" data-linktype="relative-path">CA policy algorithm</a>, the CA
+MUST set the Request_Disposition column of the identified row to &#34;request
+denied&#34;, place a nonzero-zero error code in the <i>pdwDisposition</i>
+parameter, and MUST return successfully. Error codes are specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+All nonzero values of <i>pdwDisposition</i> SHOULD be treated equivalently by
+the client.</p>
+</li><li><p><span>    </span>If the request
+processing results in the CA pending the certificate, the CA MUST place a 5 in
+the <i>pdwDisposition</i> parameter and return successfully.</p>
+</li><li><p><span>    </span>If the request
+processing results in an error on the CA or in the policy algorithm, the CA
+MUST set the Request_Disposition column of the identified row to &#34;request
+failed&#34;, MUST place an error code that is not equal to 2, 3, or 5 in the <i>pdwDisposition</i>
+parameter, and MUST return successfully. Error codes are specified in
+[MS-ERREF]. All nonzero values of <i>pdwDisposition</i> other than 2, 3, or 5
+SHOULD be treated equivalently by the client.</p>
+</li><li><p><span>    </span>The CA SHOULD
+set the Request_Disposition_Message column of the identified row to any value
+the implementer considers informative for presentation to a human reader.</p>
+<p>All disposition messages contain
+text in the system language of the server.</p>
+<p>The disposition message provides
+additional information, if available, about the reason for the assignment of a
+particular disposition value or the details of the certificate disposition:</p>
+<p>If the return value is Error (30),
+the disposition messages will include one or more of the following:</p>
+<p>Error archiving <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private key</a>. - This occurs
+if the CA encountered an error or was otherwise unable to archive a private key
+sent with the request.</p>
+<p>Error parsing request. - This occurs if the request
+is malformed.</p>
+<p>Error verifying request signature or signing
+certificate. - This occurs if the signature signing the request or the
+signature on a request signing certificate could not be verified.</p>
+<p>Resubmitted by {domain\name}, where {domain\name} is
+replaced with the user name of the caller if the request was submitted by using
+the ResubmitRequest method of this protocol.</p>
+<p>If the return value is Denied (31), the disposition
+messages will include one or more of the following:</p>
+<ul><li><p><span><span>  </span></span>Denied
+by {domain\name}, where {domain\name} is replaced with the user name of the
+caller if the request was submitted by using the <a href="4180857e-c770-4256-877e-1d67b9e3bb6a" data-linktype="relative-path">DenyRequest</a> method of this
+protocol.</p>
+</li><li><p><span><span>  </span></span>Denied
+by policy module. - This occurs if the policy module processing failed one or
+more of the checks required to issue a certificate.</p>
+</li><li><p><span><span>  </span></span>Denied
+by policy module, combined with a descriptive error message. - This occurs when
+the policy module processing failed one or more of the checks required to issue
+a certificate and an additional error code was generated. Other Windows error
+messages are as documented in [MS-ERREF].</p>
+</li><li><p><span><span>  </span></span>Requested
+by {domain\name}, where {domain\name} is replaced with the user name of the
+caller if the request was formerly in a pending state and was issued by using
+the ResubmitRequest method of this protocol.</p>
+</li></ul><p>If the return value is Issued
+(20), the disposition messages include the following:</p>
+<ul><li><p><span><span>  </span></span>Requested
+by {domain\name}, where {domain\name} is replaced with the user name of the
+caller.</p>
+</li><li><p><span><span>  </span></span>Issued.
+- This occurs if the certificate was issued and no additional information is
+required.</p>
+</li><li><p><span><span>  </span></span>Issued,
+combined with a descriptive informational message from the policy algorithm. -
+This occurs if additional information relevant to the certificate <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_71f399e7-7026-46bb-b7c2-8fd4872b900f" data-linktype="relative-path">issuance</a> is available, for
+example, if a certificate validity period was truncated from the requested
+length.</p>
+</li><li><p><span><span>  </span></span>Resubmitted
+by {domain\name}, where {domain\name} is replaced with the user name of the
+caller if the request was formerly in a pending state and was issued by using
+the ResubmitRequest method of this protocol.</p>
+</li></ul><p>If the return value is Pending
+(9), the disposition messages include the following:</p>
+<p>Taken under submission. - This occurs if the CA or
+the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_9c47ca85-9343-4e01-96d4-53d96d3df60e" data-linktype="relative-path">certificate template</a>
+is configured to require manager approval for certificate issuance. Prior to
+manager approval, the certificate will be in a pending or &#34;taken under
+submission&#34; disposition.</p>
+</li></ol></div>

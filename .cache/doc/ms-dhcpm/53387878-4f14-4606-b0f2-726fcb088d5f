@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The <b>DHCP_IP_CLUSTER</b> structure is not used.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_IP_CLUSTER {
+   DHCP_IP_ADDRESS ClusterAddress;
+   DWORD ClusterMask;
+ } DHCP_IP_CLUSTER,
+  *LPDHCP_IP_CLUSTER;
+</pre></div>
+</dd></dl><p><b>ClusterAddress:</b>  This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS</a></span>,
+a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>.</p><p><b>ClusterMask:</b>  This is of type DWORD.</p></div>

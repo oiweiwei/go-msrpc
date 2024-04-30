@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The _WBEM_RECONNECT_RESULTS structure defines the status of
+a reconnect operation. The structure MUST be used to return information from <span><a href="e2c4f36d-dc59-48bb-bb51-821732610e17" data-linktype="relative-path">IWbemRefreshingServices (section 3.1.4.12)</a></span>
+interface methods. </p><dl>
+<dd>
+<div><pre> typedef struct {
+   long m_lId;
+   HRESULT m_hr;
+ } _WBEM_RECONNECT_RESULTS;
+</pre></div>
+</dd></dl><p><b>m_lId:</b>   MUST be a unique identifier
+for the refresher object used to cancel the refreshing object by using the <span><a href="57da9a15-d329-44b8-ae90-fa7ac5f0f4d4" data-linktype="relative-path">IWbemRemoteRefresher::StopRefreshing (section 3.1.4.13.2)</a></span>
+interface method. </p><p><b>m_hr:</b>  MUST be the HRESULT of the
+reconnect operation.</p></div>

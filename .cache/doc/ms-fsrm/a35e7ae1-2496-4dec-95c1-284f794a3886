@@ -1,0 +1,39 @@
+<div class="content"><p>The ClassificationLastError (get) method retrieves the <b>last
+error</b>, if any, from when classification was previously run and returns S_OK
+upon successful completion. If no error occurred on the previous classification
+run, the returned string will be empty and ClassificationLastError (get) MUST
+return S_FALSE.</p><dl>
+<dd>
+<div><pre> [propget, id(FSRM_PROPERTY(FSRM_DISPID_CLASSIFICATION_MANAGER | 0x06))] HRESULT ClassificationLastError(
+   [out, retval] BSTR* lastError
+ );
+</pre></div>
+</dd></dl><p><b>lastError: </b>Pointer to a variable that upon completion
+contains the <b>last error</b>, if any, from when classification was previously
+run.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>lastError</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>lastError</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST set <i>lastError</i> to <a href="6ebd590e-e194-4750-8844-0e4523e9b3e3" data-linktype="relative-path">Default Classification Job&#39;s</a>
+<b>Classification Job.Last error</b>.</p></div>

@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The <b>WKSTA_TRANSPORT_INFO_0_CONTAINER</b> structure is
+used by the <b>NetrWkstaTransportEnum</b> method (section <span><a href="10831af9-82f6-4666-8fca-a02d807ba428" data-linktype="relative-path">3.2.4.4</a></span>)
+to specify the number of entries and a pointer to the base <b>WKSTA_TRANSPORT_INFO_0
+</b>structure (section <span><a href="89195ba8-c9dd-4c61-8ca5-dae4f8ca5a39" data-linktype="relative-path">2.2.5.8</a></span>) that the
+method returns.</p><dl>
+<dd>
+<div><pre> typedef struct _WKSTA_TRANSPORT_INFO_0_CONTAINER {
+   unsigned long EntriesRead;
+   [size_is(EntriesRead)] LPWKSTA_TRANSPORT_INFO_0 Buffer;
+ } WKSTA_TRANSPORT_INFO_0_CONTAINER,
+  *PWKSTA_TRANSPORT_INFO_0_CONTAINER,
+  *LPWKSTA_TRANSPORT_INFO_0_CONTAINER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b> The number of entries that the
+method returns.</p><p><b>Buffer:</b> A pointer to the array of <b>WKSTA_TRANSPORT_INFO_0</b>
+structures that specify details about transport protocols.</p></div>

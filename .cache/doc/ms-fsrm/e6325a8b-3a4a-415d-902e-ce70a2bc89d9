@@ -1,0 +1,20 @@
+<div class="content"><p>The FsrmFileManagementType enumeration defines the set of
+file management job types that are available in the File Server Resource
+Manager.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmFileManagementType
+ {
+   FsrmFileManagementType_Unknown = 0,
+   FsrmFileManagementType_Expiration = 1,
+   FsrmFileManagementType_Custom = 2,
+   FsrmFileManagementType_Rms = 3
+ } FsrmFileManagementType;
+</pre></div>
+</dd></dl><p><b>FsrmFileManagementType_Unknown:  </b>The file
+management job type is unknown.</p><p><b>FsrmFileManagementType_Expiration:  </b>This file
+management job performs an expiration policy on files meeting a certain
+criteria.</p><p><b>FsrmFileManagementType_Custom:  </b>This file
+management job performs a custom policy on files meeting a certain criteria.</p><p><b>FsrmFileManagementType_Rms:  </b>This file
+management job performs an <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+Directory</a> Rights Management Services policy on files meeting certain
+criteria.</p></div>

@@ -1,0 +1,75 @@
+<div class="content"><p>The RQueryServiceConfigW method returns the configuration
+parameters of the specified service.</p><dl>
+<dd>
+<div><pre> DWORD RQueryServiceConfigW(
+   [in] SC_RPC_HANDLE hService,
+   [out] LPQUERY_SERVICE_CONFIGW lpServiceConfig,
+   [in, range(0, 1024*8)] DWORD cbBufSize,
+   [out] LPBOUNDED_DWORD_8K pcbBytesNeeded
+ );
+</pre></div>
+</dd></dl><p><b>hService: </b>An <a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">SC_RPC_HANDLE (section 2.2.4)</a>
+data type that defines the handle to the service record that MUST have been
+created previously, using one of the open methods specified in section <a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a>. The
+SERVICE_QUERY_CONFIG access right MUST have been granted to the caller when the
+RPC context handle was created.</p><p><b>lpServiceConfig: </b>A pointer to a buffer that
+contains the <a href="97200665-5631-42ea-9917-6f9b41f02391" data-linktype="relative-path">QUERY_SERVICE_CONFIGW (section 2.2.15)</a>
+structure.</p><p><b>cbBufSize: </b>The size, in bytes, of the <i>lpServiceConfig</i>
+parameter.</p><p><b>pcbBytesNeeded: </b>An <a href="1720ed6e-d907-41c6-8d98-fb6e4877d761" data-linktype="relative-path">LPBOUNDED_DWORD_8K (section 2.2.8)</a>
+data type that defines the pointer to a variable that contains the number of
+bytes needed to return all the configuration information if the method fails.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns one of the following error
+codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>5</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The SERVICE_QUERY_CONFIG access right had not been
+  granted to the caller when the RPC context handle was created.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The handle is no longer valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>122</p>
+  <p>ERROR_INSUFFICIENT_BUFFER</p>
+  </td>
+  <td>
+  <p>The data area passed to a system call is too small.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1115</p>
+  <p>ERROR_SHUTDOWN_IN_PROGRESS</p>
+  </td>
+  <td>
+  <p>The system is shutting down.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation the server MUST query the configuration information stored
+in the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a> database in
+the service record identified by the <i>hService</i> parameter of the client
+request. The server MUST return this configuration data by setting the <i>lpServiceConfig</i>
+parameter as specified in 2.2.15.</p><p>The server MUST set the required buffer size, in bytes, in
+the <i>pcbBytesNeeded</i> parameter. If the buffer pointed to by <i>lpServiceConfig</i>
+is insufficient to hold all the configuration data, the server MUST fail the
+call with ERROR_INSUFFICIENT_BUFFER (122).</p></div>

@@ -1,0 +1,143 @@
+<div class="content"><p> </p><p>The client calls the <b>FaxObs_SendDocument (Opnum 5)</b>
+method to send a document.</p><p>In response, the server MUST initiate sending of the
+specified document to the specified recipient.</p><p>To submit a normal (not broadcast) job, the client SHOULD
+call <b>FaxObs_SendDocument</b>, specifying a valid <i>FileName</i> parameter
+value and a valid <b>RecipientNumber</b> member of the <i>JobParams</i>
+structure, setting the first value of the <b>Reserved</b> member of <i>JobParams</i>
+to zero or to 0xFFFFFFFF on 32-bit or 0x00000000FFFFFFFF on 64-bit. If the
+first <b>Reserved</b> value is not set to zero, the client SHOULD set the
+second value of the <b>Reserved</b> member of <i>JobParams</i> to the device
+identifier describing one fax device (port). The client can obtain the
+identifier for one fax device (port) by calling the <b>FaxObs_EnumPorts</b>
+(section <span><a href="d9e71aba-137d-455b-9ca8-8d89c89b2db7" data-linktype="relative-path">3.1.4.2.15</a></span>) method
+or the <b>FaxObs_GetPort</b> (section <span><a href="d321c037-bf10-425c-ac43-6d09d65359b0" data-linktype="relative-path">3.1.4.2.16</a></span>) method.
+If the first <b>Reserved</b> value is zero, the server SHOULD ignore the other
+two <b>Reserved</b> values and treat this request as a normal job request. <a id="Appendix_A_Target_189"></a><a aria-label="Product behavior note 189" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_189" data-linktype="relative-path">&lt;189&gt;</a></p><p>To start a broadcast sequence, the client MUST call <b>FaxObs_SendDocument</b>,
+specifying a valid <i>FileName</i> parameter value. The client MUST also set
+the first value of the <b>Reserved</b> member of <i>JobParams</i> to 0xFFFFFFFE
+on 32-bit or 0x00000000FFFFFFFE on 64-bit, set the second value of the <b>Reserved</b>
+member of <i>JobParams</i> to 0x00000001 on 32-bit or 0x0000000000000001 on
+64-bit, and set the third value of the <b>Reserved</b> member of <i>JobParams</i>
+to zero. In this case, the server SHOULD ignore all other members of <i>JobParams</i>
+except the <b>SizeOfStruct</b> and <b>Reserved</b> members, queue the job to be
+broadcast, and on success return the new job identifier in the <i>FaxJobId</i>
+output parameter.</p><p>To continue and complete a broadcast sequence started as
+described in the preceding paragraph, the client MUST call again <b>FaxObs_SendDocument</b>
+once for each intended recipient. For each of these <b>FaxObs_SendDocument</b>
+calls, the client MUST specify a valid <b>RecipientNumber</b> member of <i>JobParams</i>.
+The client MUST also set the first value of the <b>Reserved</b> member of <i>JobParams</i>
+to 0xFFFFFFFE on 32-bit or 0x00000000FFFFFFFE on 64-bit, set the second value
+of the <b>Reserved</b> member of <i>JobParams</i> to 0x00000002 on 32-bit or
+0x0000000000000002 on 64-bit, and set the third value of the <b>Reserved</b>
+member of <i>JobParams</i> to the job identifier returned by the server to the
+FaxObs_SendDocument call that started the broadcast sequence. In this case, the
+server MUST search in the queue for the job identified by the third value of
+the <b>Reserved</b> member of <i>JobParams</i> and initiate sending of this job
+to the fax recipient described by <i>JobParams</i>. The server MUST return a
+new job identifier for each of these <b>FaxObs_SendDocument</b> calls.</p><p>When the fax job is successfully queued, the server SHOULD
+signal to the client a FEI_JOB_QUEUED <b>FAX_EVENT</b> (section <span><a href="26974d69-9306-4683-b4b8-23fda467e717" data-linktype="relative-path">2.2.66</a></span>)
+by calling <b>FAX_ClientEventQueue</b> (section <span><a href="c123443a-b672-4bce-ad30-50d2eb4d6cf9" data-linktype="relative-path">3.2.4.2</a></span>). If the
+FEI_JOB_QUEUED event is sent, the job identifier in the <b>FAX_EVENT</b>
+structure MUST match the job identifier returned by the fax server to the <b>FaxObs_SendDocument</b>
+call in the <i>FaxJobId</i> output parameter. If the first value of the <b>Reserved</b>
+field of <i>JobParams</i> is set to 0xFFFFFFFF on 32-bit or 0x00000000FFFFFFFF
+on 64-bit, the fax server MUST set the <b>DeviceId</b> member of the
+corresponding <b>FAX_EVENT</b> to the value received in the second value of
+this <b>Reserved</b> member. If the first value of the <b>Reserved</b> member
+of <i>JobParams</i> is not set to 0xFFFFFFFF (or 0x00000000FFFFFFFF), the fax
+server MUST set the <b>DeviceId</b> member of the corresponding <b>FAX_EVENT</b>
+to 0x00000000.</p><dl>
+<dd>
+<div><pre> error_status_t FaxObs_SendDocument(
+   [in] handle_t hBinding,
+   [in, string, unique] LPCWSTR FileName,
+   [in] const FAX_JOB_PARAMW* JobParams,
+   [out] LPDWORD FaxJobId
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FaxObs_ConnectionRefCount</b> (section <span><a href="9430f7e2-d21d-4a38-a859-367b74f68a1a" data-linktype="relative-path">3.1.4.2.2</a></span>)
+method call used to connect to the fax server.</p><p><b>FileName: </b>A null-terminated character string
+that contains the name of the file, without path information, of the fax
+document in TIFF format. The server checks the <b>server queue directory</b>
+for this file. Before making this call, the client can create a file on the
+server by calling <b>FaxObs_GetQueueFileName</b> (section <span><a href="21d0c234-8dca-4f96-b7ea-2bdce029ee00" data-linktype="relative-path">3.1.4.2.8</a></span>)
+and then provide content for the file by using a protocol outside of this
+specification, such as <span><a href="../ms-smb/f210069c-7086-4dc2-885e-861d837df688" data-linktype="relative-path">[MS-SMB]</a></span>.</p><p><b>JobParams: </b>A pointer to a <b>FAX_JOB_PARAMW</b>
+(section <span><a href="c3a6d63b-b33a-476d-aec2-79c034dc17c5" data-linktype="relative-path">2.2.13</a></span>) structure
+that contains the information necessary for the server to send the fax
+transmission, including information describing the <b>personal profiles</b>
+(section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>) for the
+sender and the recipient of the fax.</p><p><b>FaxJobId: </b>A pointer to a <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that returns the job ID.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The client&#39;s fax user account does
+  not have the FAX_JOB_SUBMIT access rights required for this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. This error code is
+  returned under any of the following conditions:</p>
+  <p><span>§<span>  
+  </span></span>The <i>JobParams</i> parameter is set to a NULL pointer value.</p>
+  <p><span>§<span>  
+  </span></span>The <i>FileName</i> parameter is set to a NULL pointer value.</p>
+  <p><span>§<span>  
+  </span></span>The <i>FaxJobId</i> parameter is set to a NULL pointer value.<a id="Appendix_A_Target_190"></a><a aria-label="Product behavior note 190" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_190" data-linktype="relative-path">&lt;190&gt;</a></p>
+  <p><span>§<span>  
+  </span></span>The length of the character string specified by the <i>FileName</i>
+  parameter (excluding the length of the terminating null character) plus the
+  length of the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_0c5e7185-40c3-4e58-a8ac-7626ed078235" data-linktype="relative-path">fax queue</a></span>
+  directory path name (excluding the length of the terminating null character)
+  exceeds 253 characters. This error can occur if the fax client is not using a
+  file path name obtained from <b>FaxObs_GetQueueFileName</b>.</p>
+  <p><span>§<span>  
+  </span></span>Either of the following conditions are true:</p>
+  <dl>
+<dd>
+<p><span>§<span>  
+  </span></span>The first value of the <b>Reserved</b> field of the structure
+  referenced by <i>JobParams</i> is set to 0xFFFFFFFE (32-bit) or
+  0x00000000FFFFFFFE (64-bit). The second value of this same <b>Reserved</b>
+  field is set to 0x00000002 (32-bit) or 0x0000000000000002 (64-bit). The <b>RecipientNumber</b>
+  field of the same structure is set to NULL.</p>
+</dd>
+<dd>
+<p><span>§<span>  
+  </span></span>The first value of the <b>Reserved</b> field of the structure
+  referenced by <i>JobParams</i> is not set to 0xFFFFFFFE (32-bit) or
+  0x00000000FFFFFFFE (64-bit). The <b>CallHandle</b> field of the same
+  structure is not set to 0x00000000. The <b>RecipientNumber</b> field of the <i>JobParams</i>
+  structure is NULL.</p>
+</dd></dl>
+  
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

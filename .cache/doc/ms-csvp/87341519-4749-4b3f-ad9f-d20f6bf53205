@@ -1,0 +1,86 @@
+<div class="content"><p>The <b>CprepDiskOffline</b> method begins the transition of
+a <b>ClusPrepDisk.OnlineState</b> to Not Online and then waits for the
+transition to complete.</p><dl>
+<dd>
+<div><pre> HRESULT CprepDiskOffline(
+   [in] CPREP_DISKID DiskId
+ );
+</pre></div>
+</dd></dl><p><b>DiskId: </b>The identifier of the <b>ClusPrepDisk</b>
+representing the disk whose associated volumes will become Offline.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method implementation.
+For more information about Win32 error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The disk was not found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007139F</p>
+  <p>ERROR_INVALID_STATE</p>
+  </td>
+  <td>
+  <p>The value of <b>ClusPrepDisk.OnlineState</b> is not
+  equal to Online.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070548</p>
+  <p>ERROR_INVALID_SERVER_STATE</p>
+  </td>
+  <td>
+  <p>The server&#39;s <b>Prepare State</b> is not Online.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The opnum field value for this method is 20.</p><p>When processing this call, the server MUST do the following:
+</p><ul><li><p><span><span> 
+</span></span>Obtain the <b>ClusPrepDisk</b> identified by the <i>DiskId</i>
+parameter as described in section <a href="c17ce220-d244-45c9-95c0-4c31942253ee" data-linktype="relative-path">3.2.4</a>.</p>
+</li><li><p><span><span> 
+</span></span>Flush all unwritten data to the disk.</p>
+</li><li><p><span><span> 
+</span></span>Invalidate all handles to files on the disk.</p>
+</li><li><p><span><span> 
+</span></span>Dismount all file systems on the disk.</p>
+</li><li><p><span><span> 
+</span></span>Block read/write access to the disk.</p>
+</li><li><p><span><span> 
+</span></span>Perform implementation-specific processing to make the volumes
+associated with the disk <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_e42c8573-c14f-4a3d-bd1e-549aa1f7ec13" data-linktype="relative-path">offline</a>.</p>
+</li><li><p><span><span> 
+</span></span>Set <b>ClusPrepDisk.OnlineState</b> to Not Online.</p>
+</li></ul></div>

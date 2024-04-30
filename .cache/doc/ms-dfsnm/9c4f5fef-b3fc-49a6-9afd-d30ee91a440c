@@ -1,0 +1,75 @@
+<div class="content"><p> </p><p>This <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ad861812-8cb0-497a-80bb-13c95aa4e425" data-linktype="relative-path">BLOB</a></span> contains a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_fe6fd875-b30a-44bb-850e-10733990f04c" data-linktype="relative-path">host name</a></span>
+whose site information is specified by the <span><a href="108a1311-6e58-47ee-90fa-ec88d85d4698" data-linktype="relative-path">SiteNameInfoBLOB</a></span>
+(for more information, see section 2.3.3.1.1.4.1.1).</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>ServerNameSize</p>
+  </td>
+  <td colspan="16">
+  <p>ServerName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SiteNameInfoCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SiteNameInfoBLOB
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>ServerNameSize (2 bytes): </b>The size, in bytes,
+of the <b>ServerName</b> field, stored as an unsigned, 16-bit, <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a></span>
+integer.</p><p><b>ServerName (variable): </b>A string of <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+characters representing the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_a2c6d1c9-deea-427c-91ee-56f6e726eabd" data-linktype="relative-path">DFS target</a></span> host
+name.</p><p><b>SiteNameInfoCount (4 bytes): </b>The number of
+SiteNameInfoBLOBs in the SiteNameInfoBLOB field, stored as an unsigned, 32-bit,
+little-endian integer.</p><p><b>SiteNameInfoBLOB (variable): </b>The BLOB
+containing the site name of the server in the SiteEntryBLOB.</p></div>

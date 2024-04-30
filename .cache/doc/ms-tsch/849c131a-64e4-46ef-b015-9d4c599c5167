@@ -1,0 +1,824 @@
+<div class="content"><p> </p><p>The SchRpcRegisterTask method MUST register a task with the
+server.</p><dl>
+<dd>
+<div><pre> HRESULT SchRpcRegisterTask(
+   [in, string, unique] const wchar_t* path,
+   [in, string] const wchar_t* xml,
+   [in] DWORD flags,
+   [in, string, unique] const wchar_t* sddl,
+   [in] DWORD logonType,
+   [in] DWORD cCreds,
+   [in, size_is(cCreds), unique] const TASK_USER_CRED* pCreds,
+   [out, string] wchar_t** pActualPath,
+   [out] PTASK_XML_ERROR_INFO* pErrorInfo
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>MUST contain the full path associated
+(or to be associated) with a task as specified in section <span><a href="fa8809c8-4f0f-4c6d-994a-6c10308757c1" data-linktype="relative-path">2.3.11</a></span>.
+A NULL path indicates that the server SHOULD either take the path from the task
+definition or generate a path itself.</p><p><b>xml: </b>MUST contain the task definition in <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a></span>
+format as specified in section <span><a href="0d6383e4-de92-43e7-b0bb-a60cfa36379f" data-linktype="relative-path">2.5</a></span>.</p><p><b>flags: </b>The flags field MUST contain individual
+bit flags that MUST have one or more of the following values.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>I<br/>
+  R</p>
+  </td>
+  <td>
+  <p>D A</p>
+  </td>
+  <td>
+  <p>D I</p>
+  </td>
+  <td>
+  <p>U P</p>
+  </td>
+  <td>
+  <p>C R</p>
+  </td>
+  <td>
+  <p>V O</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>VO</p>
+  <p>TASK_VALIDATE_ONLY</p>
+  </td>
+  <td>
+  <p>If set to 1, the server MUST only validate the task
+  definition and not actually register the task.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR</p>
+  <p>TASK_CREATE</p>
+  </td>
+  <td>
+  <p>If set to 1, the server MUST register the task if the
+  task does not already exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>UP</p>
+  <p>TASK_UPDATE</p>
+  </td>
+  <td>
+  <p>If set to 1, the server MUST update the task if the
+  task already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DI</p>
+  <p>TASK_DISABLE</p>
+  </td>
+  <td>
+  <p>If set to 1, the server MUST disable the task.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DA</p>
+  <p>TASK_DONT_ADD_PRINCIPAL_ACE</p>
+  </td>
+  <td>
+  <p>If set to 1, the server MUST NOT add an &#39;Allow&#39; <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_b581857f-39aa-4979-876b-daba67a40f15" data-linktype="relative-path">access
+  control entry (ACE)</a></span> for the task <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_8492780e-99e2-47ba-8553-aedb8de9f9c0" data-linktype="relative-path">principal</a></span> to the
+  task&#39;s <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IR</p>
+  <p>TASK_IGNORE_REGISTRATION_TRIGGERS</p>
+  </td>
+  <td>
+  <p>If set to 1, the server MUST NOT start the task after
+  registering it, even if it has registration triggers.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Undefined bits. MUST be set to
+zero when sent and MUST be ignored on receipt.<a id="Appendix_A_Target_66"></a><a aria-label="Product behavior note 66" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_66" data-linktype="relative-path">&lt;66&gt;</a></p>
+</dd></dl><p><b>sddl: </b>MUST be a security descriptor in <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_e013f36f-8a39-4689-ab87-520e389cfee3" data-linktype="relative-path">SDDL</a></span>
+format as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>.
+A NULL value MUST specify that the task inherits its security descriptor from
+its folder, when creating a new task, or that the task&#39;s security descriptor
+does not change when updating an existing task.</p><p><b>logonType: </b>MUST contain a <span><a href="6daca1c9-6766-46f4-9378-5f5a9260c967" data-linktype="relative-path">TASK_LOGON_TYPE</a></span>
+value (section 2.3.9). The server MUST reject invalid values. The specified <i>logonType</i>
+SHOULD correspond to the type of principal used in the <b>xml task definition</b>,
+or supplied in <i>pCreds</i>.</p><p><b>cCreds: </b>MUST contain the number of <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_b505ab37-868d-426c-bb19-af21e675e0b8" data-linktype="relative-path">credentials</a></span>
+passed in <i>pCreds</i> parameter. Client MUST set to 0 or 1, and the server
+MUST return an error if not 0 or 1.</p><p><b>pCreds: </b>MUST be an array of credentials for
+the task with <i>cCreds</i> entries. <i>pCreds</i> MUST be NULL if <i>cCreds</i>
+is 0. See section <span><a href="94ce7eb0-e172-44d5-9398-b5a2e3bcfeae" data-linktype="relative-path">2.3.8</a></span> for details
+of the TASK_USER_CRED structure.</p><p><b>pActualPath: </b>If this parameter is non-NULL,
+the server MUST return the task&#39;s actual path.</p><p><b>pErrorInfo: </b>If this parameter is non-NULL and
+the XML task definition is invalid, the server MUST return additional error
+information.</p><p><b>Return Values: </b>For more information on return
+codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>, or Win32
+Error Codes in section 2 of <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>Upon receipt of the SchRpcRegisterTask call, the server
+MUST:</p><ul><li><p><span><span> 
+</span></span>Return E_INVALIDARG (0x80070057) if any of the parameters contain
+invalid values.</p>
+</li><li><p><span><span> 
+</span></span>Return E_ACCESSDENIED if the caller does not have read access to
+the path in the XML <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_08035fe7-a786-4b30-ab60-3fd046060617" data-linktype="relative-path">task store</a></span> or if the
+path does not exist.</p>
+</li><li><p><span><span> 
+</span></span>Parse the task definition contained in the <i>xml</i> parameter
+(section <span><a href="ef6ea4dc-c984-4211-a942-afbbdc119a4e" data-linktype="relative-path">2.4.2.11</a></span>). </p>
+<ul><li><p><span><span>  </span></span>If
+any errors are found and the <i>pErrorInfo</i> parameter is non-NULL, MUST
+return extended error information in a <span><a href="96446df7-7683-40e0-a713-b01933b93b18" data-linktype="relative-path">TASK_XML_ERROR_INFO</a></span>
+structure (section 2.4) in the <i>pErrorInfo</i> parameter.</p>
+</li><li><p><span><span>  </span></span>Finally,
+the server MUST return one of the following error codes (section 2.3.14):</p>
+<ul><li><p><span><span> 
+</span></span>SCHED_E_UNEXPECTEDNODE</p>
+</li><li><p><span><span> 
+</span></span>SCHED_E_NAMESPACE</p>
+</li><li><p><span><span> 
+</span></span>SCHED_E_INVALIDVALUE</p>
+</li><li><p><span><span> 
+</span></span>SCHED_E_MISSINGNODE</p>
+</li><li><p><span><span> 
+</span></span>SCHED_E_TOO_MANY_NODES</p>
+</li><li><p><span><span> 
+</span></span>SCHED_E_MALFORMEDXML</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>If the TASK_VALIDATE_ONLY flag is set in the <i>flags</i>
+parameter, return S_OK.</p>
+</li><li><p><span><span> 
+</span></span>Take one of the following actions, depending upon the supplied
+task <i>xml</i>:</p>
+<ul><li><p><span><span>  </span></span>Registration
+(section <span><a href="4b178ab9-afd9-46e1-88c6-fa3bda613121" data-linktype="relative-path">2.5.2</a></span>):</p>
+<ul><li><p><span><span> 
+</span></span>Version: The server MUST return an error if the task definition
+uses a feature that is not compatible with the version (see section 3.2.5.4.2).</p>
+</li><li><p><span><span> 
+</span></span>URI: If not specified, the server saves the task in the task
+store&#39;s root folder.</p>
+</li><li><p><span><span> 
+</span></span>Security Descriptor: If present apply security description to the
+task, otherwise secure the task as follows: Task creator/owner has full control
+on the task configuration and Administrators have read and delete permissions.</p>
+</li></ul></li><li><p><span><span>  </span></span>Triggers
+(section <span><a href="7d4dd76a-0130-47c8-a951-98cbcfa105a5" data-linktype="relative-path">2.5.3</a></span>):</p>
+<ul><li><p><span><span> 
+</span></span>For each trigger, independently of its type (section <span><a href="a0cf999f-aa47-4821-a46a-00fd28431f65" data-linktype="relative-path">2.5.3.1</a></span>),
+apply:</p>
+<ul><li><p><span><span> 
+</span></span>StartBoundary: If present, the server MUST NOT start the task
+before this time/date value.</p>
+</li><li><p><span><span> 
+</span></span>EndBoundary: If present, the server MUST NOT start the task after
+this time/date value.</p>
+</li><li><p><span><span> 
+</span></span>Enabled: If the field is not present or the value is TRUE, the
+trigger is enabled and the server MUST start the task when this trigger occurs.
+If FALSE, the trigger is disabled and the server MUST ignore the trigger when
+determining whether to run the task.</p>
+</li><li><p><span><span> 
+</span></span>ExecutionTimeLimit: If specified, the server MUST limit the
+task&#39;s execution time—when triggered by this particular trigger—to the
+specified duration. If not present, the server MUST limit the task&#39;s execution
+time to 72 hours for this particular trigger.</p>
+</li><li><p><span><span> 
+</span></span>Interval: If specified, the server MUST start the task at the
+time specified by the trigger, and then restart the task at the intervals
+specified by this field, calculated from the trigger start time.</p>
+</li><li><p><span><span> 
+</span></span>Duration: If not present, the server MUST use the value of 1 day
+for Duration.</p>
+</li><li><p><span><span> 
+</span></span>StopAtDurationEnd: If the field has the value TRUE, the server
+MUST stop all running task instances at the end of the Duration.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>BootTrigger (section <span><a href="dfcb1665-2a76-4fa7-b4d4-fdb5387d5d7c" data-linktype="relative-path">2.5.3.2</a></span>): If
+present, the BootTrigger specifies that the server MUST start the task at
+operating system startup, after the ATSvc server initializes.</p>
+<ul><li><p><span><span> 
+</span></span>BootTrigger&#39;s Delay: If specified, the server MUST delay starting
+the task after boot (ATSvc start-up) by the delay value. If not present, the
+server MUST NOT delay starting the task.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>RegistrationTrigger (section <span><a href="2b394e50-c13e-400a-afc9-d0233965f7ec" data-linktype="relative-path">2.5.3.3</a></span>): If
+present, the RegistrationTrigger specifies that the server MUST start the task
+immediately when it is registered on the system.</p>
+<ul><li><p><span><span> 
+</span></span>RegistrationTrigger&#39;s Delay: If present, server MUST delay
+starting the task after <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_5d98b0b1-7545-4aff-b4b3-786ed48911a3" data-linktype="relative-path">task registration</a></span> by
+the delay value. If not present, the server MUST NOT delay starting the task.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>IdleTrigger (section <span><a href="d154c575-e3dc-42b9-9457-db7616cb17e0" data-linktype="relative-path">2.5.3.4</a></span>): If
+specified, the server MUST start the task when the machine becomes idle, as
+specified in section <span><a href="2ff9ead1-23a8-4c70-8c05-1a4041fc2d8e" data-linktype="relative-path">3.2.4.2</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>TimeTrigger (section <span><a href="385126bf-ed3a-4131-8d51-d88b9c00cfe9" data-linktype="relative-path">2.5.3.5</a></span>): If
+present, the TimeTrigger specifies that the server MUST start the task at the
+specified StartBoundary time.</p>
+<ul><li><p><span><span> 
+</span></span>TimeTrigger&#39;s RandomDelay: The server MUST choose a delay value
+randomly and delay starting the task after the time trigger fires by the random
+delay value. The random delay value MUST be chosen from the interval from zero
+to RandomDelay, inclusive. If not present, the server MUST NOT delay starting
+the task.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>EventTrigger (section <span><a href="34e05890-8338-408e-a87d-81534898126a" data-linktype="relative-path">2.5.3.6</a></span>): If
+present, the EventTrigger specifies that the server MUST start the task upon
+occurrence of an event matching an event subscription query, as specified in <span><a href="../ms-even6/18000371-ae6d-45f7-95f3-249cbe2be39b" data-linktype="relative-path">[MS-EVEN6]</a></span>
+section <span><a href="../ms-even6/726c3b3b-eaa6-48f2-a592-519459a4eeb1" data-linktype="relative-path">2.2.14</a></span>,
+or on the occurrence of a number of events of the same type (same EventId) in a
+given period of time. The server MUST accept queries for multiple event types,
+up to and including an entire event channel ([MS-EVEN6] section <span><a href="../ms-even6/f628d868-3810-4efe-bf44-c6e6901bf30e" data-linktype="relative-path">3.1.1.4</a></span>).</p>
+<ul><li><p><span><span> 
+</span></span>EventTrigger&#39;s NumberOfIOccurences: If EventTrigger is present
+but if the NumberOfOccurences field is not present, the server MUST fire the
+trigger after the first occurrence.</p>
+</li><li><p><span><span> 
+</span></span>EventTrigger&#39;s Delay: If specified, the server MUST delay
+starting the task after event occurrence by the delay value. If not present,
+the server MUST NOT delay starting the task.</p>
+</li><li><p><span><span> 
+</span></span>NumberOfOccurrences: If specified, the server MUST fire the
+trigger after NumberOfOccurrences occurrences of the MatchingElement query
+(subject to the PeriodOfOccurrence field; see the following field). If this
+field is not present, the server MUST fire the trigger after the first
+occurrence.</p>
+</li><li><p><span><span> 
+</span></span>PeriodOfOccurences: If specified, the server MUST NOT count
+occurrences of the MatchingElement query that occurred prior to the last
+PeriodOfOccurrence time period.</p>
+</li><li><p><span><span> 
+</span></span>MatchingElement: If present, the server MUST count occurrences of
+events that match the Subscription query and contain this field name. For more
+information, see [MS-EVEN6] section <span><a href="../ms-even6/14046f81-06d8-4690-9245-5d8784c25025" data-linktype="relative-path">3.1.4.31</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>ValueQueries: If present, when an event matches the subscription
+and fires the trigger, the server MUST retrieve the element values from the
+event for task action parameterization as specified in section <span><a href="33a2cfe4-4a86-4da0-b1a7-5be512d0fa8d" data-linktype="relative-path">2.5.9</a></span>.
+If not present, the server MUST NOT perform parameterization for this task
+trigger.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>LogonTrigger (section <span><a href="ae24ca0c-cb00-4c47-b6ec-9e36ac86bf17" data-linktype="relative-path">2.5.3.7</a></span>): If
+present, the LogonTrigger specifies that the server MUST start the task at user
+logon.</p>
+<ul><li><p><span><span> 
+</span></span>LogonTrigger&#39;s UserId filed: If LogonTrigger is present and
+UserId is not present then server MUST start the task for any user at logon.</p>
+</li><li><p><span><span> 
+</span></span>LogonTrigger&#39;s Delay: If present, the server MUST delay starting
+the task after Logon by the delay value. If not present, the server MUST NOT
+delay starting the task.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>SessionStateChangeTrigger (section <span><a href="c078b473-5f24-4bde-bb86-dafc942ca17c" data-linktype="relative-path">2.5.3.8</a></span>): If
+present, this trigger specifies that the server MUST start the task when one of
+the following system changes occurs: ConsoleConnect, ConsoleDisconnect,
+RemoteConnect, RemoteDisconnect, SessionLock, SessionUnlock.<a id="Appendix_A_Target_67"></a><a aria-label="Product behavior note 67" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_67" data-linktype="relative-path">&lt;67&gt;</a></p>
+<ul><li><p><span><span> 
+</span></span>SessionStateChangeTrigger&#39;s UserId: If UserId is not present then
+server MUST start the task for any user at session change event.</p>
+</li><li><p><span><span> 
+</span></span>SessionStateChangeTrigger&#39;s Delay: The server MUST delay starting
+the task after the SessionStateChangeTrigger by the delay value. If not
+present, the server MUST NOT delay starting the task.<a id="Appendix_A_Target_68"></a><a aria-label="Product behavior note 68" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_68" data-linktype="relative-path">&lt;68&gt;</a></p>
+</li></ul></li><li><p><span><span> 
+</span></span>CalendarTrigger (section <span><a href="4d28b0ce-aba2-436b-a81f-ef9beffbe432" data-linktype="relative-path">2.5.3.9</a></span>): If
+present, the CalendarTrigger specifies that the server MUST start the task on
+the specified days.</p>
+<ul><li><p><span><span> 
+</span></span>ScheduleByDay: If specified, server MUST run the task every day
+or every <i>X</i> number of days as specified by the DaysInterval subfield.</p>
+<ul><li><p><span><span> 
+</span></span>CalendarTrigger&#39;s ScheduleByDay DaysInterval: If CalendarTrigger
+ScheduleByDay is specified but DaysInterval is not present, the server MUST run
+the task every day.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>ScheduleByWeek: If present, this field specifies that the server
+MUST run the task every week or every <i>X </i> number of weeks as specified by
+the WeeksInterval subfield, or on specific days of the week as specified by the
+DaysOfWeek subfield.</p>
+<ul><li><p><span><span> 
+</span></span>CalendarTrigger&#39;s ScheduleByWeek WeeksInterval: If
+CalendarTrigger ScheduleByWeek is specified but WeeksInterval is not present,
+the server MUST run the task every week.</p>
+</li><li><p><span><span> 
+</span></span>CalendarTrigger&#39;s ScheduleByWeek DaysOfWeek: If CalendarTrigger ScheduleByWeek
+is specified but the DaysOfWeek field is not present or none of the seven
+subfields are present, the server MUST return SCHED_E_MISSINGNODE (0x80041319).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>ScheduleByMonth: If present, this field specifies that the server
+MUST run the task on the days specified by the DaysOfMonth subfield, on
+specific months as specified by the Months subfield.</p>
+<ul><li><p><span><span> 
+</span></span>CalendarTrigger&#39;s ScheduleByMonth DaysOfMonth: If CalendarTrigger
+ScheduleByMonth is specified but the DaysOfMonth field is not present, or no
+Day subfields are present, the server MUST return SCHED_E_MISSINGNODE
+(0x80041319).</p>
+</li><li><p><span><span> 
+</span></span>CalendarTrigger&#39;s ScheduleByMonth Months: If CalendarTrigger
+ScheduleByMonth is specified but the Months field is not present, the server
+MUST run the task every month.  If CalendarTrigger ScheduleByMonth is specified
+and the Months field is present but none of the twelve subfields are present,
+the server MUST return SCHED_E_MISSINGNODE (0x80041319).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>ScheduleByMonthDayOfWeek: If present, this field specifies that
+the server MUST run the task on the weeks specified by the Weeks subfield, on
+specific days of the week as specified by the DaysOfWeek subfield, on specific
+months as specified by the Months subfield.</p>
+<ul><li><p><span><span> 
+</span></span>CalendarTrigger&#39;s ScheduleByMonthDayOfWeek Weeks: If
+CalendarTrigger ScheduleByMonthDayOfWeek is specified but the Weeks field is
+not present or no Week subfields are present, the server MUST return
+SCHED_E_MISSINGNODE (0x80041319).</p>
+</li><li><p><span><span> 
+</span></span>CalendarTrigger&#39;s ScheduleByMonthDayOfWeek DaysOfWeek: If the
+CalendarTrigger ScheduleByMonthDayOfWeek is specified but the DaysOfWeek field
+is not present or none of the seven subfields are present, the server MUST
+return SCHED_E_MISSINGNODE (0x80041319).</p>
+</li><li><p><span><span> 
+</span></span>CalendarTrigger&#39;s ScheduleByMonthDayOfWeek Months: If the
+CalendarTrigger ScheduleByMonthDayOfWeek is specified but the Months field is
+not present, the server MUST run the task every month.  If CalendarTrigger
+ScheduleByMonthDayOfWeek is specified and the Months field is present but none
+of the twelve subfields are present, the server MUST return SCHED_E_MISSINGNODE
+(0x80041319).</p>
+</li></ul></li></ul></li></ul></li><li><p><span><span>  </span></span>Settings
+(section <span><a href="2e1de7c6-804e-40db-8aeb-9e0df2b9bb02" data-linktype="relative-path">2.5.4</a></span>): The server
+MUST check machine conditions (running on batteries, network available, idle)
+according to the settings (DisallowStartIfOnBatteries, RunOnNetworkAvailable,
+RunOnlyIfIdle) once the trigger occurs to determine if the task is to be
+started. The task will run only if the conditions at the time the trigger fires
+match the settings defined.</p>
+<ul><li><p><span><span> 
+</span></span>MultipleInstancesPolicy conditions:</p>
+<ul><li><p><span><span> 
+</span></span>Parallel: Specifies that the server MUST start multiple instances
+of the task in parallel for each occurring trigger.</p>
+</li><li><p><span><span> 
+</span></span>Queue: If present, specifies that execution instances related to
+this trigger MUST start serially, on the completion of the previous instance.</p>
+</li><li><p><span><span> 
+</span></span>IgnoreNew: If present, specifies that the server MUST ignore all
+additional triggers occurring during the execution of an instance.</p>
+</li><li><p><span><span> 
+</span></span>StopExisting: If present, specifies that the server MUST stop the
+running instance and start a new instance on any additional trigger occurrence.
+If not present, the server MUST use the value IgnoreNew for
+MultipleInstancesPolicy.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>DisallowStartIfOnBatteries: The server MUST NOT start the task if
+the computer is running on batteries, unless this field is present and set to
+FALSE.</p>
+</li><li><p><span><span> 
+</span></span>StopIfGoingOnBatteries: The server MUST stop the task if the
+computer switches to battery or Uninterrupted Power Supply (UPS) power, unless
+this field is present and set to FALSE. </p>
+</li><li><p><span><span> 
+</span></span>AllowHardTerminate: The server MUST forcibly stop the task if it
+exceeds its absolute execution time limit, unless this field is present and set
+to FALSE.</p>
+</li><li><p><span><span> 
+</span></span>StartWhenAvailable: If present and set to TRUE, this field
+specifies that the server MUST start the task when the computer becomes
+available if a scheduled run time was missed.</p>
+</li><li><p><span><span> 
+</span></span>RunOnNetworkAvailable: If present and set to TRUE, this field
+specifies that the server MUST start the task only if a network connection is
+available.</p>
+</li><li><p><span><span> 
+</span></span>NetworkSettings: If present, the server MUST ignore the
+NetworkSettings field unless the RunOnNetworkAvailable field (section <span><a href="dc669c4c-5119-4ed6-8c3a-d36a0592e902" data-linktype="relative-path">2.5.4.8</a></span>)
+is present and set to TRUE.<a id="Appendix_A_Target_69"></a><a aria-label="Product behavior note 69" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_69" data-linktype="relative-path">&lt;69&gt;</a></p>
+<ul><li><p><span><span> 
+</span></span>NetworkSetting&#39;s Name or Id: The server MUST start the task only
+if a network connection to the specified network is available.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>WakeToRun: If present and set to TRUE, this field specifies that
+the server MUST wake from power-suspended mode (standby or hibernate) to run
+the task.</p>
+</li><li><p><span><span> 
+</span></span>Enabled: If present and set to FALSE, this field specifies that
+the server MUST NOT run the task.Hidden: If present and set to TRUE, this field
+specifies that the server SHOULD NOT show the task in an administrative console
+or graphic user interface.</p>
+</li><li><p><span><span> 
+</span></span>DeleteExpiredTaskAfter: The server MUST delete the task (after
+this delay) when it has no future scheduled run times.</p>
+</li><li><p><span><span> 
+</span></span>IdleSettings: If present, this field specifies that the server
+MUST run the task only when the machine has been idle for the value of the
+Duration subfield. The server MUST ignore the IdleSettings field, unless the
+RunOnlyIfIdle field, which MUST be specified as in section <span><a href="648fe739-8bfd-4316-9881-1b8d0fab7ac3" data-linktype="relative-path">2.5.4.18</a></span>,
+is present and has the value TRUE.</p>
+<ul><li><p><span><span> 
+</span></span>IdleSettings Duration: The server MUST delay starting the task
+until the specified Duration has elapsed from the time that the machine became
+idle.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>MaintenanceSettings: If present, this field specifies that the
+server MUST run the task during the regular maintenance periods with the
+periodicity defined by the Period field. The server MUST reject tasks with the
+MaintenanceSettings field unless the UseUnifiedSchedulingEngine field (as
+specified in section <span><a href="0271b43f-098e-4f44-8877-4e786e6b3651" data-linktype="relative-path">2.5.4.19</a></span>) is
+present and has the value TRUE.</p>
+<ul><li><p><span><span> 
+</span></span>MaintenanceSettings Period: The server MUST run the task during
+the regular machine maintenance periods only if the task previously run
+finished running before the beginning of the preceding Period time ago.</p>
+</li><li><p><span><span> 
+</span></span>MaintenanceSettings Deadline: If present, and the Period time was
+missed, the server MUST run the task during machine idle.</p>
+</li><li><p><span><span> 
+</span></span>MaintenanceSettings Exclusive: If present and set to TRUE, the
+server MUST run the task independently of other tasks that specify
+MaintenanceSettings.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>ExecutionTimeLimit: The server MUST attempt to gracefully stop
+the task after its execution runtime exceeds this maximum time allowed. The
+server MUST forcibly stop the task in accordance with the AllowHardTerminate
+setting if its execution runtime exceeds this maximum time allowed.</p>
+</li><li><p><span><span> 
+</span></span>Priority: If not present, the server MUST use the value 7 for
+Priority.</p>
+</li><li><p><span><span> 
+</span></span>RunOnlyIfIdle: If present and set to TRUE, this field specifies
+that the server MUST start the task only if the machine is idle according to
+the IdleSettings field defined in section <span><a href="de5f89a5-9b94-4fab-b96d-70dc2494792d" data-linktype="relative-path">2.5.4.14</a></span>.</p>
+</li></ul></li><li><p><span><span>  </span></span>Principal
+(section <span><a href="b9420a4c-fe40-45a0-ae85-2d57e051409b" data-linktype="relative-path">2.5.6</a></span>): specifies
+the security context of the user on whose behalf the task will run. One of
+UserId or GroupId is mandatory.</p>
+<ul><li><p><span><span> 
+</span></span>UserId: The server MUST use the account name as the principal for
+running the task.</p>
+</li><li><p><span><span> 
+</span></span>GroupId: the server MUST run the task for each and every user in
+the security group who is logged on at the time.</p>
+</li><li><p><span><span> 
+</span></span>LogonType of S4U: the server MUST run the task non-interactively.
+The server MUST NOT save a password. At task runtime, the server MUST retrieve
+a restricted token from Active Directory based on the account name.</p>
+</li><li><p><span><span> 
+</span></span>LogonType of Password: the server MUST run the task
+non-interactively. The server MUST use the password specified in the
+TASK_USER_CRED (section 2.3.8) structure for running the task.</p>
+</li><li><p><span><span> 
+</span></span>LogonType of InteractiveToken: the server MUST run the task
+interactively in the currently logged-on user credentials. The server MUST NOT
+save a password and SHOULD NOT require a password.</p>
+</li><li><p><span><span> 
+</span></span>LogonType of InteractiveTokenOrPassword: the server MUST run the
+task interactively if the user is logged on and non-interactively if the user
+is logged off.</p>
+</li><li><p><span><span> 
+</span></span>LogonType: if not present, the server MUST use the value
+InteractiveToken for LogonType. </p>
+</li><li><p><span><span> 
+</span></span>RunLevel&#39;s LeastPrivilege: the server MUST run the task with least
+privileges allowed for the user.</p>
+</li><li><p><span><span> 
+</span></span>RunLevel&#39;s HighestAvailable: the server MUST run the task with
+highest privileges allowed for the user.</p>
+</li><li><p><span><span> 
+</span></span>RunLevel: if not present, the server MUST use the value
+LeastPrivilege.</p>
+</li></ul></li><li><p><span><span>  </span></span>Actions
+(section <span><a href="4fbbe160-0bfe-4b6f-a3c8-3c32263b2322" data-linktype="relative-path">2.5.7</a></span>): The server
+MUST support up to 32 actions. The server MUST execute multiple actions
+sequentially, in the order specified in the Actions field.</p>
+<ul><li><p><span><span> 
+</span></span>Exec Action&#39;s Arguments: If specified, the server MUST pass the
+arguments to the Command executable. If not present, the server MUST NOT pass
+arguments to the Command executable.</p>
+</li><li><p><span><span> 
+</span></span>Exec Action&#39;s WorkingDirectory: The server MUST start the
+executable with its working directory set to the specified folder. If not
+present, the server MUST start the executable in the task store folder.</p>
+</li><li><p><span><span> 
+</span></span>ComHandler Action&#39;s ClassId: If specified, the server MUST map
+the GUID value to the custom handler&#39;s COM class.</p>
+</li><li><p><span><span> 
+</span></span>ComHandler Action&#39;s Data: If specified, the server SHOULD NOT
+parse the XML fragment. The server MUST pass the XML fragment to the custom
+handler.</p>
+</li><li><p><span><span> 
+</span></span>Email Action: If present, this field MUST contain the
+specification of an email action and the server MUST send email through a <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_0678be67-e739-4e33-97fe-2b03b903a379" data-linktype="relative-path">Simple Mail
+Transfer Protocol (SMTP)</a></span> server. See <span><a href="https://go.microsoft.com/fwlink/?LinkId=91145" data-linktype="external">[RFC788]</a></span>.</p>
+<ul><li><p><span><span> 
+</span></span>Email Action&#39;s Subject: If present, the server MUST send the
+email with the specified Subject.</p>
+</li><li><p><span><span> 
+</span></span>Email Action&#39;s To: If present, the server MUST send the email to
+the specified addresses.</p>
+</li><li><p><span><span> 
+</span></span>Email Action&#39;s CC: If present, the server MUST send the email to
+all addresses specified.</p>
+</li><li><p><span><span> 
+</span></span>Email Action&#39;s BCC: If present, the server MUST send the email to
+all specified addresses and MUST do so using a blind copy action.</p>
+</li><li><p><span><span> 
+</span></span>Email Action&#39;s ReplyTo: If present, the server MUST send the
+email with the specified ReplyTo address.</p>
+</li><li><p><span><span> 
+</span></span>Email Action&#39;s From: If Email Action is specified, then this
+field MUST be present and the server MUST send the email with the specified
+From address.</p>
+</li><li><p><span><span> 
+</span></span>Email Action&#39;s Body: If present, the server MUST send the email
+with the specified email body text.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>ShowMessage Action: If present, specifies that the server MUST
+display a message box on each session where this user is logged on the local
+machine.</p>
+<ul><li><p><span><span> 
+</span></span>ShowMessage Action&#39;s Title: If specified, the server MUST use the
+string for the caption of the message box.</p>
+</li><li><p><span><span> 
+</span></span>ShowMessage Action&#39;s Body: If specified, the server MUST use the
+string for the contents of the message box.</p>
+</li></ul></li></ul></li></ul></li><li><p><span><span> 
+</span></span>Determine the logon type to be used depending upon <i>logonType</i>
+supplied:</p>
+<ul><li><p><span><span>  </span></span>If
+TASK_LOGON_NONE is specified, the server MUST determine the logon type from
+XML, or by using the TASK_LOGON_INTERACTIVE_TOKEN if not specified in XML.</p>
+</li><li><p><span><span>  </span></span>If
+TASK_LOGON_PASSWORD is specified, the server MUST run the task with the user&#39;s
+logon and password supplied. The server MUST run the task non-interactively.</p>
+</li><li><p><span><span>  </span></span>If
+TASK_LOGON_S4U is specified, the server MUST run the task with user&#39;s Service
+for User (S4U), as specified in <span><a href="../ms-sfu/3bff5864-8135-400e-bdd9-33b552051d94" data-linktype="relative-path">[MS-SFU]</a></span>.
+The server MUST run the task non-interactively.</p>
+</li><li><p><span><span>  </span></span>If
+TASK_LOGON_INTERACTIVE_TOKEN is specified, the server MUST run the task in the
+user&#39;s interactive logon session. The server MUST run the task interactively.</p>
+</li><li><p><span><span>  </span></span>If
+TASK_LOGON_GROUP is specified, then the server MUST run the task in the user&#39;s
+interactive logon session for any member of the security group. The server MUST
+run the task interactively.</p>
+</li><li><p><span><span>  </span></span>If
+TASK_LOGON_SERVICE_ACCOUNT is specified, then the server MUST run the task as
+local system, local service or network service. The server MUST run the task
+noninteractively.</p>
+</li><li><p><span><span>  </span></span>If
+TASK_LOGON_INTERACTIVE_TOKEN_OR_PASSWORD is specified, then the server MUST run
+in the user&#39;s interactive logon session. If the user is not logged on then the
+server MUST run the task using the user&#39;s logon and password noninteractively.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Determine the principal to be used:</p>
+<ul><li><p><span><span>  </span></span>A
+user ID specified in the <i>pCreds</i> parameter MUST be used if present.</p>
+</li><li><p><span><span>  </span></span>A
+user ID specified in the <i>UserID</i> element of the xmlTaskDefinition
+(section 2.5.6) MUST be used if present.</p>
+</li><li><p><span><span>  </span></span>A
+group ID is specified in the <i>GroupID</i> element of the xmlTaskDefinition
+(section 2.5.6) MUST be used if present.</p>
+</li><li><p><span><span>  </span></span>If
+both <i>UserID</i> and <i>GroupID</i> are present then server MUST return
+SCHED_E_UNEXPECTEDNODE, with the &#34;node&#34; field of the ErrorInfo
+structure specifying the &#34;GroupId&#34; as unexpected node.</p>
+</li><li><p><span><span>  </span></span>If
+none of the above is present, the user ID of the caller MUST be used.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Update the principal node of the XML task definition (section
+2.5.6) to reflect the principal just determined and the <i>logonType</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST return an error if any of the undefined bits in
+the FLAGS field of the pCreds parameter are not set to 0. </p>
+<ul><li><p><span><span>  </span></span>pCreds
+parameter Flags field&#39;s D credFlagDefault bit: If set to 1, the server MUST use
+these credentials only if no other credentials are provided. If set to 0, the
+server MUST use these credentials instead of the credentials specified in the
+task configuration.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return ERROR_LOGON_FAILURE if the call was made using an unknown
+user name or bad password.</p>
+</li><li><p><span><span> 
+</span></span>Return E_ACCESSDENIED if the caller does not have administrative
+privileges on the server and the task has one of the following triggers:</p>
+<ul><li><p><span><span>  </span></span>Boot
+trigger (section 2.5.3.2).</p>
+</li><li><p><span><span>  </span></span>Logon
+trigger for &#34;everyone&#34; or any user other than the caller (section
+2.5.3.7).</p>
+</li><li><p><span><span>  </span></span>Session
+state change <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_5245e0f1-e443-4a8b-968c-61c736f61fe0" data-linktype="relative-path">trigger</a></span> for
+&#34;everyone&#34; or any user other than the caller (section 2.5.3.8).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return E_ACCESSDENIED if the task priority is 1 and the caller
+does not have administrative privileges on the server.</p>
+</li><li><p><span><span> 
+</span></span>Perform security validation as specified in section <span><a href="d90eccec-83e9-450c-b144-17633c47be9a" data-linktype="relative-path">3.2.5.1.1</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Return E_ACCESSDENIED if a password is required (section
+3.2.5.1.1) but the password provided in the <i>pCreds</i> parameter is not
+valid for the principal chosen.</p>
+</li><li><p><span><span> 
+</span></span>Determine the correct path.</p>
+<ul><li><p><span><span>  </span></span>MUST
+use the <i>path</i> parameter if non-NULL.</p>
+</li><li><p><span><span>  </span></span>Otherwise,
+if present, MUST use the URI element of the <i>RegistrationInfo</i> node of the
+task definition (section <span><a href="a0505e09-2233-43f4-a260-44c2d40b5a00" data-linktype="relative-path">2.5.1</a></span>).</p>
+</li><li><p><span><span>  </span></span>Otherwise,
+MUST generate a <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span> and MUST use
+the string representation of it surrounded by &#39;{&#39; and &#39;}&#39; characters, as
+specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> section
+A.3.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the path determined does not exist in the XML task store and
+the TASK_UPDATE flag is specified instead of the TASK_CREATE flag in the <i>flags</i>
+parameter, and the <i>flags</i> parameter is not 0: the server MUST return the
+value 0x80070002, the <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+form of the Win32 error ERROR_FILE_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>If the following three conditions are all true:</p>
+<ul><li><p><span><span>  </span></span>The
+path determined does not exist in the XML task store.</p>
+</li><li><p><span><span>  </span></span>One
+of the following flags has been specified instead of TASK_CREATE in the <i>flags</i>
+parameter: TASK_DISABLE, TASK_DONT_ADD_PRINCIPAL_ACE, or
+TASK_IGNORE_REGISTRATION_TRIGGERS.</p>
+</li><li><p><span><span>  </span></span>The
+<i>flags</i> parameter is not 0.</p>
+<p>The server MUST return the
+value 0x80070057 (the HRESULT form of the Win32 error E_INVALIDARG).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the path determined does exist in the XML task store and the
+TASK_CREATE flag is specified instead of the <i>TASK_UPDATE</i> flag in the <i>flags</i>
+parameter: the server MUST return the value 0x800700B7, the HRESULT form of the
+Win32 error ERROR_ALREADY_EXISTS.</p>
+</li><li><p><span><span> 
+</span></span>If the path determined does exist in the XML task store, and
+TASK_DISABLE, TASK_DONT_ADD_PRINCIPAL_ACE, or TASK_IGNORE_REGISTRATION_TRIGGERS
+has been specified instead of the TASK_UPDATE flag in the <i>flags</i>
+parameter: the server MUST return the value 0x80070057 (the HRESULT form of the
+Win32 error E_INVALIDARG).</p>
+</li><li><p><span><span> 
+</span></span>Create subfolders in the task store for the path determined using
+the security descriptor specified in the <i>sddl</i> parameter (section <span><a href="f14a1c2d-0fe8-4dbe-aa42-f02aa9d8229c" data-linktype="relative-path">3.2.5.4.4</a></span>).</p>
+</li><li><p><span><span> 
+</span></span>Save the task in the XML task store at the path determined. The
+server MUST use the security descriptor specified in the <i>sddl</i> parameter,
+and unless the TASK_DONT_ADD_PRINCIPAL_ACE bit is specified in the <i>flags</i>
+parameter also give the principal File Read (&#34;FR&#34;) access to the task
+(as specified in [MS-DTYP] section <span><a href="../ms-dtyp/f4296d69-1c0f-491f-9587-a960b292d070" data-linktype="relative-path">2.5.1.1</a></span>).</p>
+</li><li><p><span><span> 
+</span></span>If the XML task definition has the <i>Version</i> attribute
+(section 2.5) with a value of &#34;1.1&#34; or &#34;1.0&#34;, the server
+MUST also save the task in the .JOB task store or the AT task store,
+respectively.</p>
+</li><li><p><span><span> 
+</span></span>If a password is required, the server MUST update its credential
+store with the principal chosen and the password provided in the <i>pCreds</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST update its <span><a href="948c10dd-1698-4807-9c8f-f490def8d72b" data-linktype="relative-path">EventLog</a></span>
+subscriptions (section 3.2.4.1) to match the event triggers (section 2.5.3.6) currently
+in the XML task store, as specified in [MS-EVEN6] section 2.2.13.</p>
+</li><li><p><span><span> 
+</span></span>If this task is to run earlier than the current value of the
+global timer, reset the global timer.</p>
+</li><li><p><span><span> 
+</span></span>If the task has a registration trigger (section 2.5.3.3) and the
+TASK_IGNORE_REGISTRATION_TRIGGERS bit in the <i>flags</i> parameter is not set,
+start the task (section <span><a href="1d1f2fa4-5bda-45d1-9a7c-3d8cf5ada97c" data-linktype="relative-path">3.2.5.1.2</a></span>).</p>
+</li><li><p><span><span> 
+</span></span>If the <i>pActualPath</i> parameter is non-NULL, return the path
+determined in the <i>pActualPath</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK.</p>
+</li></ul><p>If any errors are raised during the processing they are
+returned. For more information on return codes, see section 2.3.14 and <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">Win32 Error
+Codes</a></span> in [MS-ERREF] section 2.1.</p></div>

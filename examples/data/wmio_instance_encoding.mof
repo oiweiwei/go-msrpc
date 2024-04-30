@@ -1,0 +1,21 @@
+// @namespace "ROOT"
+// @servername "DPRAVAT-DEV"
+
+class MyClass : Base {
+
+  // @inherited Base
+  sint32 Id;
+
+  [ read, write ] string Data1;
+
+  string Data2 = "defaultValue";
+
+  uint32 Array;
+};
+
+instance of MyClass {
+  Array = {1, 2, 3};
+  Data1 = "StringField";
+  Data2 = "defaultValue";
+  Id = 123;
+};

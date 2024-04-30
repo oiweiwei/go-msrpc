@@ -1,0 +1,18 @@
+import "ms-dtyp.idl";
+ 
+[
+    uuid(1A927394-352E-4553-AE3F-7CF4AAFCA620),
+    version(1.0)
+]
+interface WdsRpc
+{
+    unsigned long
+    WdsRpcMessage(          
+      handle_t hBinding,
+      [in] unsigned long uRequestPacketSize,
+      [in, size_is(uRequestPacketSize)] byte bRequestPacket[],
+      [out] unsigned long* puReplyPacketSize,
+      [out, size_is(, *puReplyPacketSize)] byte** pbReplyPacket
+ 
+    );
+}

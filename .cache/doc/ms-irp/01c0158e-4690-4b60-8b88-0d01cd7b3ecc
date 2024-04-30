@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>INET_INFO_VIRTUAL_ROOT_LIST</b> structure contains a
+list of <span><b><a href="52d4a489-2e2a-4768-8c28-032e34a807b2" data-linktype="relative-path">INET_INFO_VIRTUAL_ROOT_ENTRY</a></b></span>
+<span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_528d71de-529e-403f-9480-a98d8bc3bda1" data-linktype="relative-path">virtual
+root</a></span> entries.</p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _INET_INFO_VIRTUAL_ROOT_LIST {
+   DWORD cEntries;
+   [size_is(cEntries)] INET_INFO_VIRTUAL_ROOT_ENTRY aVirtRootEntry[];
+ } INET_INFO_VIRTUAL_ROOT_LIST,
+  *LPINET_INFO_VIRTUAL_ROOT_LIST;
+</pre></div>
+</dd></dl><p><b>cEntries:</b>  The number of entries
+contained in the list.</p><p><b>aVirtRootEntry:</b>  An array of <b>INET_INFO_VIRTUAL_ROOT_ENTRY</b>
+entries.</p></div>

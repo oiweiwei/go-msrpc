@@ -1,0 +1,19 @@
+<div class="content"><p>The Central Access Policy ID Retrieval (CAPR) Protocol is
+designed to allow an administrative tool running on one computer to remotely
+query the set of central access control policies configured on another
+computer. </p><p>Central access policy objects are created in Active
+Directory using administrative authorization tools. Selected central access
+policy objects are deployed to other computers using Group Policy: Central
+Access Policies Extension (CAPE, described in <a href="../ms-gpcap/5189d5c9-12c2-491c-bf16-f7008c46c6fb" data-linktype="relative-path">[MS-GPCAP]</a>).
+Other administrative tools can then use CAPR to determine which central policy
+objects have been deployed to a given remote computer.</p><p>Within CAPE and CAPR, central access policies are
+represented by Central Access Policy IDs (CAPIDs). A CAPID is simply the SID of
+a central access policy object within Active Directory.</p><p>The typical use scenario is as follows. An administrative
+interface tool uses CAPR to obtain the CAPIDs of one or more central access
+policy objects. The tool then uses these CAPIDs with CAPE and Lightweight Directory
+Access Protocol (LDAP): The Protocol, specified in <a href="https://go.microsoft.com/fwlink/?LinkId=157505" data-linktype="external">[RFC4511]</a>, to obtain
+detailed information about the policies. That data can then be presented to the
+user and manipulated in whatever manner is appropriate to the administrative
+interface tool, such as to perform authorization tasks.</p><p>This protocol defines one RPC call, LsarGetAvailableCAPIDs,
+for client applications to use. See section <a href="c10f1549-4710-4e93-9689-abcb1cfa45ef" data-linktype="relative-path">3.1.4.1</a> for details of
+this call&#39;s use. </p></div>

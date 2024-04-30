@@ -1,0 +1,350 @@
+<div class="content"><p> </p><p>An array of zero or more <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_5245e0f1-e443-4a8b-968c-61c736f61fe0" data-linktype="relative-path">triggers</a></span> follows the
+<span><a href="8a585672-81b8-4b3a-912a-310b01da3518" data-linktype="relative-path">Trigger
+Count</a></span> field. All triggers share the same format.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Trigger
+  Size</p>
+  </td>
+  <td colspan="16">
+  <p>Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Begin
+  Year</p>
+  </td>
+  <td colspan="16">
+  <p>Begin
+  Month</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Begin
+  Day</p>
+  </td>
+  <td colspan="16">
+  <p>End
+  Year</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>End
+  Month</p>
+  </td>
+  <td colspan="16">
+  <p>End Day</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Start
+  Hour</p>
+  </td>
+  <td colspan="16">
+  <p>Start
+  Minute</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Minutes
+  Duration</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Minutes
+  Interval</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Trigger
+  Type</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>TriggerSpecific0</p>
+  </td>
+  <td colspan="16">
+  <p>TriggerSpecific1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>TriggerSpecific2</p>
+  </td>
+  <td colspan="16">
+  <p>Padding</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Reserved2</p>
+  </td>
+  <td colspan="16">
+  <p>Reserved3</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Trigger Size (2 bytes): </b>Set to 0x0030. When
+creating a <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_2b43b2b7-03a8-4053-8e02-0516f90a2da3" data-linktype="relative-path">job</a></span>, the value
+SHOULD be ignored upon receipt.</p><p><b>Reserved1 (2 bytes): </b>This field is ignored
+when read in from the file and is set to 0.</p><p><b>Begin Year (2 bytes): </b>This field contains the
+first date this trigger is to fire. <b>Begin Year</b> SHOULD be in the range of
+1601 to 30827.<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a></p><p><b>Begin Month (2 bytes): </b>This field contains the
+first date this trigger is to fire. <b>Begin Month</b> SHOULD be in the range
+of 1 to 12. <a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a></p><p><b>Begin Day (2 bytes): </b>This field contains the
+first date this trigger fires. <b>Begin Day</b> SHOULD be in the range of 1 to
+the number of days in the month specified by the <b>Begin Month</b> field. <a id="Appendix_A_Target_18"></a><a aria-label="Product behavior note 18" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a></p><p><b>End Year (2 bytes): </b>These fields are ignored
+if the <b>TASK_TRIGGER_FLAG_HAS_END_DATE</b> bit is not set in the <b>Flags</b>
+field. Otherwise, these fields are set to the last date this trigger fires. <b>End
+Year</b> SHOULD be in the range of 1601 to 30827. <a id="Appendix_A_Target_19"></a><a aria-label="Product behavior note 19" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_19" data-linktype="relative-path">&lt;19&gt;</a></p><p><b>End Month (2 bytes): </b>These fields are ignored
+if the TASK_TRIGGER_FLAG_HAS_END_DATE bit is not set in the <b>Flags</b> field.
+Otherwise, these fields are set to the last date this trigger is to fire. <b>End
+Month</b> SHOULD be in the range of 1 to 12. <a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a></p><p><b>End Day (2 bytes): </b>These fields are ignored if
+the TASK_TRIGGER_FLAG_HAS_END_DATE bit is not set in the <b>Flags</b> field.
+Otherwise, these fields are set to the last date this trigger is to fire. <b>End
+Day</b> SHOULD be in the range of 1 to the number of days in the month
+specified by the <b>End Month</b> field.<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a></p><p><b>Start Hour (2 bytes): </b>This field is set to the
+hour of the day when this trigger fires. <b>Start Hour</b> is in the range 0 to
+23.</p><p><b>Start Minute (2 bytes): </b>This field is set to
+the minute of the hour when this trigger is to fire. <b>Start Minute</b> is in
+the range 0 to 59.</p><p><b>Minutes Duration (4 bytes): </b>This field
+contains a value in minutes, in the range 0x00000000 to 0xFFFFFFFF.<a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a></p><dl>
+<dd>
+<p>For example, if <b>Minutes Duration</b> is 60, and <b>Minutes
+Interval</b> is 15, then if started at 1:00, the task runs every 15 minutes for
+the next 60 minutes (five times: at 1:00, 1:15, 1:30, 1:45, and 2:00.)</p>
+</dd></dl><p><b>Minutes Interval (4 bytes): </b>This field
+contains a value in minutes, in the range 0x00000000 to 0xFFFFFFFF. <b>Minutes
+Interval</b> indicates the time period between repeated trigger firings.<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a></p><p><b>Flags (4 bytes): </b>This field contains zero or
+more bit flags. All bits not defined in the following table are to be set to
+zero and ignored upon receipt. The bit field is structured as follows:</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>K</p>
+  </td>
+  <td>
+  <p>E</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Task Trigger Flags</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>E</p>
+  <p>TASK_TRIGGER_FLAG_HAS_END_DATE</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task can stop at some
+  point in time.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>K</p>
+  <p>TASK_TRIGGER_FLAG_KILL_AT_DURATION_END</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task can be stopped at
+  the end of the repetition period.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>D</p>
+  <p>TASK_TRIGGER_FLAG_DISABLED</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the trigger is disabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Trigger Type (4 bytes): </b>Trigger type, as
+specified in section <span><a href="b395602d-839e-4564-a864-60837903143e" data-linktype="relative-path">2.4.2.11.1</a></span>.</p><p><b>TriggerSpecific0 (2 bytes): </b>This field is set
+to values specific to each trigger type.</p><p><b>TriggerSpecific1 (2 bytes): </b>This field is set
+to values specific to each trigger type.</p><p><b>TriggerSpecific2 (2 bytes): </b>This field is set
+to values specific to each trigger type.</p><p><b>Padding (2 bytes): </b>MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>Reserved2 (2 bytes): </b>MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>Reserved3 (2 bytes): </b>MUST be set to zero when
+sent and MUST be ignored on receipt.</p></div>

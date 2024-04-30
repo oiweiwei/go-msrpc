@@ -1,0 +1,114 @@
+<div class="content"><p> </p><p>The NetrServerAliasDel method deletes an alias name from a <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>
+alias list based on specified alias name.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrServerAliasDel(
+   [in, string, unique] SRVSVC_HANDLE ServerName,
+   [in] DWORD Level,
+   [in, switch_is(Level)] LPSERVER_ALIAS_INFO InfoStruct
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>An <span><a href="5f8329ee-1965-4ea1-ad35-3b29fbb63232" data-linktype="relative-path">SRVSVC_HANDLE (section 2.2.1.1)</a></span>
+pointer that identifies the server. The client MUST map this structure to an
+RPC binding handle (<span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> sections
+4.3.5 and 5.1.5.2). If this parameter is NULL, the local computer is used.</p><p><b>Level: </b>Specifies the information level of the
+data. It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>The buffer is of type <span><a href="79580d1c-fa06-4884-9b93-8d08d9d706cd" data-linktype="relative-path">SERVER_ALIAS_INFO_0_CONTAINER</a></span>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>InfoStruct: </b>A pointer to the <span><a href="3d17bf62-345b-4257-9b12-633828db2fa0" data-linktype="relative-path">SERVER_ALIAS_INFO</a></span>
+union that contains information about the alias. The value of the <i>Level</i>
+parameter determines the type of the contents of the <i>InfoStruct</i>
+parameter, as the preceding table shows.</p><p><b>Return Values: </b>The method returns 0x00000000
+(NERR_Success) to indicate success; otherwise, it returns a nonzero error code.
+The method can take any specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>NERR_Success</p>
+  </td>
+  <td>
+  <p>The <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> request
+  succeeded.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The client request failed because the specified
+  parameter is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>Not enough storage is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000906</p>
+  <p>NERR_NetNameNotFound</p>
+  </td>
+  <td>
+  <p>The alias does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000007C</p>
+  <p>ERROR_INVALID_LEVEL</p>
+  </td>
+  <td>
+  <p>The system call level is not correct.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to a NetrServerAliasDel message, the server MUST
+delete the alias name from the <b>AliasList</b> based on specified alias name,
+or MUST return an error code.</p><p>The <i>srvai*_alias</i> parameter specifies the name of the
+alias to be deleted. This MUST be a nonempty null-terminated UTF-16 string if <i>srvai*_default</i>
+is 0 or empty string if <i>srvai*_default</i> is nonzero; otherwise, the server
+MUST fail the call with an ERROR_INVALID_PARAMETER error code.</p><p>If no alias matching <i>srvai*_alias</i> exists, the server
+fails the call with a NERR_NetNameNotFound error code.</p><p><i>srvai*_target</i> MUST be ignored by the server.</p><p>The server SHOULD<a id="Appendix_A_Target_174"></a><a aria-label="Product behavior note 174" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_174" data-linktype="relative-path">&lt;174&gt;</a>
+enforce security measures to verify that the caller has the required
+permissions to execute this routine. If the caller does not have the required
+credentials, the server SHOULD<a id="Appendix_A_Target_175"></a><a aria-label="Product behavior note 175" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_175" data-linktype="relative-path">&lt;175&gt;</a> fail
+the call.</p><p>The server MUST delete configuration data for this alias
+from the persistent configuration store.</p></div>

@@ -1,0 +1,24 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/700a91e8-a1a4-4e1b-9ad6-096b3cf0bef0" data-linktype="external">msdn link</a></p><p>The LSA_FOREST_TRUST_RECORD_TYPE enumeration specifies a
+type of <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_035d9ce5-f117-4251-8d4d-127c462ec4a0" data-linktype="relative-path">forest trust</a>
+record.</p><dl>
+<dd>
+<div><pre> typedef  enum _LSA_FOREST_TRUST_RECORD_TYPE
+ {
+   ForestTrustTopLevelName = 0,
+   ForestTrustTopLevelNameEx = 1,
+   ForestTrustDomainInfo = 2,
+   ForestTrustBinaryInfo = 3, 
+   ForestTrustScannerInfo = 4,
+   ForestTrustRecordTypeLast = ForestTrustScannerInfo
+ } LSA_FOREST_TRUST_RECORD_TYPE;
+</pre></div>
+</dd></dl><p><b>ForestTrustTopLevelName:  </b>The <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_102a36e2-f66f-49e2-bee3-558736b2ecd5" data-linktype="relative-path">DNS name</a> of the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_3b76a71f-9697-4836-9c69-09899b23c21b" data-linktype="relative-path">trusted forest</a>. The
+structure used for this record type is equivalent to <a href="4b35e17e-405c-4e99-8ebe-8b28f047156f" data-linktype="relative-path">LSA_UNICODE_STRING (section 2.2.2.3)</a>.</p><p><b>ForestTrustTopLevelNameEx:  </b>The DNS name of
+the trusted forest. This is the same as <b>ForestTrustTopLevelName</b>. The
+structure used for this record type is equivalent to LSA_UNICODE_STRING.</p><p><b>ForestTrustDomainInfo:  </b>This field specifies a
+record containing identification and name information.</p><p><b>ForestTrustBinaryInfo:</b>  This field specifies
+an opaque record. </p><p><b>ForestTrustScannerInfo:</b> This field specifies a
+record containing identification and name information created by the PDC <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_73841222-e9d8-4dc1-83a1-206c75f4f90f" data-linktype="relative-path">FSMO Role</a> DC (see <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/0904e645-d35c-4314-94d7-a3a7b224d632" data-linktype="relative-path">3.1.1.6.4</a>).</p><p><b>ForestTrustRecordTypeLast:</b> The highest record
+value for this type is equal to the <b>ForestTrustScannerInfo</b> enum value
+(4).</p></div>

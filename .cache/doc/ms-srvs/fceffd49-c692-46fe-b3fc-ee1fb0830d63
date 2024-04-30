@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The SERVER_INFO_1018 structure contains information about a
+specified <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVER_INFO_1018 {
+   DWORD sv1018_anndelta;
+ } SERVER_INFO_1018,
+  *PSERVER_INFO_1018,
+  *LPSERVER_INFO_1018;
+</pre></div>
+</dd></dl><p><b>sv1018_anndelta:</b>  This member is
+defined in the <b>sv103_ anndelta</b> member in <span><a href="a8909a6f-0cef-46d1-a85b-f990cd05a739" data-linktype="relative-path">SERVER_INFO_103 (section 2.2.4.43)</a></span>.</p></div>

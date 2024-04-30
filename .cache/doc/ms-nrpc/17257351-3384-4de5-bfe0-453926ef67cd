@@ -1,0 +1,332 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/17257351-3384-4de5-bfe0-453926ef67cd" data-linktype="external">msdn link</a></p><p>The <b>NetrLogonSamLogonEx</b> method SHOULD<a id="Appendix_A_Target_199"></a><a aria-label="Product behavior note 199" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_199" data-linktype="relative-path">&lt;199&gt;</a> provide an extension to <a href="a3a192c8-0070-4ae3-a537-dfe0a144426a" data-linktype="relative-path">NetrLogonSamLogon</a> that
+accepts an extra flags parameter and uses Secure <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> (<a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/dc0b2fa4-2d1d-49c7-8d93-43736725b55b" data-linktype="relative-path">3.3.1.5.2</a>)
+instead of Netlogon <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e72a2c02-84a2-4ce3-b66f-86f725642dc3" data-linktype="relative-path">authenticators</a>.
+This method handles logon requests for the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0b53d5bb-74ab-4705-8657-c22d32781103" data-linktype="relative-path">SAM</a> accounts and allows for
+generic pass-through authentication, as specified in section <a href="fe2775d4-a3e2-4971-a255-8eef8dd27a27" data-linktype="relative-path">3.2.4.1</a>. </p><dl>
+<dd>
+<div><pre> NTSTATUS NetrLogonSamLogonEx(
+   [in] handle_t ContextHandle,
+   [in, unique, string] wchar_t* LogonServer,
+   [in, unique, string] wchar_t* ComputerName,
+   [in] NETLOGON_LOGON_INFO_CLASS LogonLevel,
+   [in, switch_is(LogonLevel)] PNETLOGON_LEVEL LogonInformation,
+   [in] NETLOGON_VALIDATION_INFO_CLASS ValidationLevel,
+   [out, switch_is(ValidationLevel)] 
+     PNETLOGON_VALIDATION ValidationInformation,
+   [out] UCHAR * Authoritative,
+   [in, out] ULONG * ExtraFlags
+ );
+</pre></div>
+</dd></dl><p><b>ContextHandle: </b>A primitive RPC handle that
+identifies a particular client/server binding, as specified in section <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>.</p><p><b>LogonServer: </b>The null-terminated Unicode
+string that contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS
+name</a> of the server that will handle the logon request.</p><p><b>ComputerName: </b>The null-terminated Unicode
+string that contains the NetBIOS name of the client computer sending the logon
+request.</p><p><b>LogonLevel: </b>A <a href="8c7808e5-4e5c-420e-9c90-47286da2218f" data-linktype="relative-path">NETLOGON_LOGON_INFO_CLASS</a>
+enumerated type, as specified in section 2.2.1.4.16, that specifies the type of
+the logon information passed in the <i>LogonInformation</i> parameter.</p><p><b>LogonInformation: </b>A pointer to a <a href="d0128545-f74b-4d89-afd9-42621dff24c4" data-linktype="relative-path">NETLOGON_LEVEL</a> structure,
+as specified in section 2.2.1.4.6, that describes the logon request
+information.</p><p><b>ValidationLevel: </b>A <b>NETLOGON_VALIDATION_INFO_CLASS</b>
+enumerated type, as specified in section <a href="95154ae4-d305-43e5-82e4-d5353e0f117c" data-linktype="relative-path">2.2.1.4.17</a>, that contains
+the validation level requested by the client.</p><p><b>ValidationInformation: </b>A pointer to a <a href="5eb0b7cb-3a55-477b-92fc-c236bd5873fa" data-linktype="relative-path">NETLOGON_VALIDATION</a>
+structure, as specified in section 2.2.1.4.14, that describes the user
+validation information returned to the client. The type of the <b>NETLOGON_VALIDATION</b>
+used is determined by the value of the <i>ValidationLevel</i> parameter.</p><p><b>Authoritative: </b>A pointer to a char value that
+represents a Boolean condition. FALSE is indicated by the value 0x00, and TRUE
+SHOULD<a id="Appendix_A_Target_200"></a><a aria-label="Product behavior note 200" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_200" data-linktype="relative-path">&lt;200&gt;</a> be indicated by the value
+0x01 and MAY also be indicated by any nonzero value. </p><dl>
+<dd>
+<p>This Boolean value indicates whether the validation
+information is final. This field is necessary because the request might be
+forwarded through multiple servers. The value TRUE indicates that the validation
+information is an <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_1ed0d067-3bfd-4fd5-a68a-5e947d379858" data-linktype="relative-path">authoritative
+response</a> and MUST remain unchanged. The value FALSE indicates that the
+validation information is not an authoritative response and that the client can
+resend the request to another server.</p>
+</dd></dl><p><b>ExtraFlags: </b>A pointer to a set of bit flags
+that specify delivery settings. A flag is TRUE (or set) if its value is equal
+to 1. Output flags MUST be the same as input. The value is constructed from
+zero or more bit flags from the following table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits SHOULD<a id="Appendix_A_Target_201"></a><a aria-label="Product behavior note 201" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_201" data-linktype="relative-path">&lt;201&gt;</a> be
+defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>Request MUST be passed to the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a> at the
+  root of the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>Request MUST be passed to the DC at the end of the
+  first hop over a cross-<a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_035d9ce5-f117-4251-8d4d-127c462ec4a0" data-linktype="relative-path">forest
+  trust</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>Request was passed by an <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8b0a073b-3099-4efe-8b81-c2886b66a870" data-linktype="relative-path">RODC</a> to a DC in a
+  different domain.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>Request is an NTLM authentication package request
+  passed by an RODC.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero and ignored on
+receipt. Flags A, B, C, and D can be combined, and the server SHOULD honor the
+flags. Flags A and B require the server to take action to deliver the request,
+while flags C and D are informational and implementation specific. </p>
+</dd></dl><p><b>Return Values: </b>The method returns 0x00000000
+on success; otherwise, it returns a nonzero error code. </p><p>On receiving this call, the server MUST perform the following
+validation steps:<a id="Appendix_A_Target_202"></a><a aria-label="Product behavior note 202" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_202" data-linktype="relative-path">&lt;202&gt;</a></p><ul><li><p><span><span> 
+</span></span>Apply Common Error Processing Rule A, specified in section <a href="2d776bfc-e81f-4c8f-9da8-4c2920f65413" data-linktype="relative-path">3</a>.</p>
+</li><li><p><span><span> 
+</span></span>The pointer contained in the <i>LogonInformation</i> parameter
+MUST NOT be NULL; otherwise, the server MUST return STATUS_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the caller is using Secure RPC ([MS-RPCE] section
+3.3.1.5.2); otherwise, the server MUST return STATUS_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Verify that if bit B in <i>ExtraFlags</i> is enabled, then the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain&#39;s</a> TAFT bit in the <b>trustAttributes</b>
+structure (<a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/e9a2d23c-c31e-4a6f-88a0-6646fdb51a3c" data-linktype="relative-path">6.1.6.7.9</a>)
+is also enabled; otherwise, the server MUST return STATUS_NO_SUCH_USER.</p>
+</li><li><p><span><span> 
+</span></span>Apply Common Error Processing Rule B, specified in section 3, to
+the <i>LogonServer</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>LogonServer</i> parameter is not NULL, it is compared
+against the server&#39;s <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9a7bc8b3-3374-4608-8f73-be20a90b898b" data-linktype="relative-path">computer
+name</a>. If the <i>LogonServer</i> parameter does not match the server&#39;s
+computer name or is NULL, the server MUST return STATUS_INVALID_COMPUTER_NAME.
+If the <i>LogonServer</i> parameter matches the server&#39;s computer name,
+processing proceeds.</p>
+</li></ul><p>If the server cannot service the request due to an
+implementation-specific condition, the server returns STATUS_ACCESS_DENIED.</p><p>The server uses the server name passed in the <i>LogonServer</i>
+parameter to look up the domain that the server hosts. If the name is not
+found, the server MUST return STATUS_INVALID_COMPUTER_NAME.</p><p>The server MUST decrypt data protected in transport:</p><ul><li><p><span><span> 
+</span></span>If the <i>LogonLevel</i> is <b>NetlogonInteractiveInformation</b>
+or <b>NetlogonInteractiveTransitiveInformation</b>, decrypt<a id="Appendix_A_Target_203"></a><a aria-label="Product behavior note 203" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_203" data-linktype="relative-path">&lt;203&gt;</a> the <b>LmOwfPassword</b> and <b>NtOwfPassword</b>
+members in the <a href="af76351f-ef69-46bc-a451-e4c4b99bac4a" data-linktype="relative-path">NETLOGON_INTERACTIVE_INFO (section 2.2.1.4.3)</a>
+structure.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>LogonLevel</i> is <b>NetlogonServiceInformation</b> or <b>NetlogonServiceTransitiveInformation</b>,
+decrypt<a id="Appendix_A_Target_204"></a><a aria-label="Product behavior note 204" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_204" data-linktype="relative-path">&lt;204&gt;</a> the <b>LmOwfPassword</b> and <b>NtOwfPassword</b>
+members in the <a href="1c9f2af2-e164-4548-9428-eae68a03537e" data-linktype="relative-path">NETLOGON_SERVICE_INFO (section 2.2.1.4.4)</a>
+structure.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>LogonLevel</i> is <b>NetlogonGenericInformation</b>,
+decrypt<a id="Appendix_A_Target_205"></a><a aria-label="Product behavior note 205" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_205" data-linktype="relative-path">&lt;205&gt;</a> the <b>LogonData</b> member
+in the <a href="c03d6d95-9b5e-4329-9645-eedcdd167f6e" data-linktype="relative-path">NETLOGON_GENERIC_INFO (section 2.2.1.4.2)</a>
+structure.</p>
+</li></ul><p>When the <i>LogonLevel</i> parameter is set to 4 (<b>NetlogonGenericInformation</b>),
+the call is for generic pass-through to authentication packages, and the <i>ValidationLevel</i>
+parameter MUST be 5 (<b>NetlogonValidationGenericInfo2</b>) or 4 (<b>NetlogonValidationGenericInfo</b>).
+If this is not true, the server MUST return STATUS_INVALID_INFO_CLASS.<a id="Appendix_A_Target_206"></a><a aria-label="Product behavior note 206" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_206" data-linktype="relative-path">&lt;206&gt;</a></p><p>If <i>LogonLevel</i> is not set to 4 (<b>NetlogonGenericInformation</b>),
+the ValidationLevel parameter MUST be 6 (<b>NetlogonValidationSamInfo4</b>) or
+3 (<b>NetlogonValidationSamInfo2</b>) or 2 (<b>NetlogonValidationSamInfo</b>).
+If this is not true, the server MUST return STATUS_INVALID_INFO_CLASS.<a id="Appendix_A_Target_207"></a><a aria-label="Product behavior note 207" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_207" data-linktype="relative-path">&lt;207&gt;</a> The data is opaque to
+Netlogon, and the parameters MUST be passed to NTLM (<a href="../ms-apds/dd444344-fd7e-430e-b313-7e95ab9c338e" data-linktype="relative-path">[MS-APDS]</a>
+section <a href="../ms-apds/407dd91f-8854-4c05-8a85-70fee9ab11da" data-linktype="relative-path">3.1</a>).</p><p>If the request is not for the domain of which the server is
+a member and the server is a DC, then the server MUST perform external behavior
+consistent with locally invoking <b>LsarQueryTrustedDomainInfoByName</b> (<a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a>
+section <a href="../ms-lsad/5778eba1-8f9b-4696-b304-34c58edbc5b1" data-linktype="relative-path">3.1.4.7.5</a>),
+using the following parameters (policy handle is not needed locally):</p><ul><li><p><span><span> 
+</span></span><i>Domain</i> is set to the value of the <i>TrustedDomainName</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span><i>InformationClass</i> is set to the value of <i>TrustedDomainInformationEx</i>.</p>
+</li></ul><p>The server MUST also verify that:</p><ul><li><p><span><span> 
+</span></span>The <b>securityIdentifier</b> (Sid) field ([MS-ADTS] section <a href="../ms-adts/eadd9abb-64c1-4a5d-9c77-e4d4d0404922" data-linktype="relative-path">6.1.6.7.8</a>)
+is not NULL,</p>
+</li><li><p><span><span> 
+</span></span>The <b>trustType</b> field ([MS-ADTS] section <a href="../ms-adts/36565693-b5e4-4f37-b0a8-c1b12138e18e" data-linktype="relative-path">6.1.6.7.15</a>)
+is 1 or 2, and</p>
+</li><li><p><span><span> 
+</span></span>The <b>trustAttributes</b> field ([MS-ADTS] section 6.1.6.7.9)
+does not contain TRUST_ATTRIBUTE_UPLEVEL_ONLY</p>
+</li></ul><p><a id="_Hlk92291380">If <b>LsarQueryTrustedDomainInfoByName</b>
+succeeds and returns the domain information in <i>TrustedDomainInformation</i>,
+the server MUST check if it has established a </a><a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure channel</a> with the
+domain. If there is not an established secure channel, then the server MUST
+return the error code STATUS_NO_SUCH_USER. If there is an established secure
+channel then the server MUST call NetrLogonSamLogonEx using <b>LogonLevel</b>, <b>LogonInformation</b>,
+<b>ValidationLevel</b>, <b>ValidationInformation</b>, and <b>ExtraFlags</b> (<b>ExtraFlags</b>
+can be updated by the server before passing it to NetrLogonSamLogonEx on the
+DC) to the DC with which it has an established secure channel.</p><p><a id="_Hlk92291423">If the server is a DC, the request
+uses NTLMv2, and <i>LogonLevel</i> is set to either NetlogonNetworkInformation
+or NetlogonNetworkTransitiveInformation, the server MUST perform target domain
+name validation as specified in section </a><a href="436451a1-8af5-485e-a65f-7ba34abc81c2" data-linktype="relative-path">3.5.4.5.1.1</a>.<a id="Appendix_A_Target_208"></a><a aria-label="Product behavior note 208" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_208" data-linktype="relative-path">&lt;208&gt;</a></p><p>If the server is a DC, the request uses NTLMv2, and the
+client is an RODC in the server’s domain, the server MUST perform RODC
+cachability validation as specified in section <a href="f27c0f12-77c0-4c88-b969-ad23d01de702" data-linktype="relative-path">3.5.4.5.1.2</a>.<a id="Appendix_A_Target_209"></a><a aria-label="Product behavior note 209" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_209" data-linktype="relative-path">&lt;209&gt;</a></p><p><a id="_Hlk92291392">If an error is returned from an
+authentication package (in the case of generic pass-through) or from NTLM (in
+the case of logon), the error code MUST be propagated to the caller of this
+method.</a></p><p>If the <i>LogonLevel</i> is <b>NetlogonNetworkInformation</b>
+or <b>NetlogonNetworkTransitiveInformation</b>, the server MUST encrypt the <i>UserSessionKey</i>
+and the first two elements of the <b>ExpansionRoom</b> array in the <a href="142a277f-e161-45ac-8b95-b94bb169b5da" data-linktype="relative-path">NETLOGON_VALIDATION_SAM_INFO (section 2.2.1.4.11)</a>
+or in the <a href="2a12e289-7904-4ecb-9d83-6732200230c0" data-linktype="relative-path">NETLOGON_VALIDATION_SAM_INFO2 (section 2.2.1.4.12)</a>
+structure.</p><p>This method SHOULD be called only by a machine that has
+established a secure channel with the server.</p><p>This is the only NetrLogonSamLogon family method that uses
+secure channel and does not use Netlogon authenticator parameters.</p></div>

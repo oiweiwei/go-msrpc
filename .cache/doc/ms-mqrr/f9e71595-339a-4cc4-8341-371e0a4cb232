@@ -1,0 +1,115 @@
+<div class="content"><p> </p><p>The <b>Message Packet Structure</b> is the data structure
+that contains the <b>UserMessage</b> and other headers that represent the
+payload that is transferred across the wire as a result of a remote read
+operation. More details are specified in R_StartReceive (Opnum
+7) (section <span><a href="1bd20827-f774-4279-ae8d-4898d6faf6e9" data-linktype="relative-path">3.1.4.7)</a></span> and
+R_StartTransactionalReceive (Opnum 13) (section <span><a href="c5296e0c-9e12-4fe8-a25d-56924982ac3e" data-linktype="relative-path">3.1.4.13)</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UserMessage
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ExtensionHeader</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SubqueueHeader
+  (148 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DeadLetterHeader
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ExtendedAddressHeader
+  (28 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>UserMessage (variable): </b>A <span><a href="90345101-8295-4912-b1b2-bbe88531af93" data-linktype="relative-path">UserMessage
+(section 2.2.5.1)</a></span> structure.</p><p><b>ExtensionHeader (12 bytes): </b>An <span><a href="baf230bf-7f15-4d03-bd1d-f8276608a955" data-linktype="relative-path">ExtensionHeader
+(section 2.2.5.2)</a></span> structure.</p><p><b>SubqueueHeader (148 bytes): </b>A <span><a href="ee62651b-ade2-417c-91af-7a6cf6f3e86a" data-linktype="relative-path">SubqueueHeader
+(section 2.2.5.3)</a></span> structure.</p><p><b>DeadLetterHeader (variable): </b> A <span><a href="377dc454-43ef-4c48-8c07-692de2fd9ec4" data-linktype="relative-path">DeadLetterHeader
+(section 2.2.5.4)</a></span> structure. </p><p><b>ExtendedAddressHeader (28 bytes): </b>An <span><a href="20119e19-df2d-4c37-a739-eebad84cc83a" data-linktype="relative-path">ExtendedAddressHeader
+(section 2.2.5.5)</a></span> structure.</p></div>

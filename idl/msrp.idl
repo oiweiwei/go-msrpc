@@ -1,0 +1,102 @@
+import "ms-dtyp.idl";
+ 
+ 
+[ uuid (5a7b91f8-ff00-11d0-a9b2-00c04fb6e6fc),
+  version(1.0),
+  pointer_default(unique)
+]
+interface msgsvcsend
+{
+    error_status_t 
+    NetrSendMessage(
+        [in]         handle_t hRpcBinding,
+        [in, string] LPSTR    From,
+        [in, string] LPSTR    To,
+        [in, string] LPSTR    Text
+        );
+};
+ 
+// XXX: STDCALL not supported.
+// #if (_MSC_VER >= 800) || defined(_STDCALL_SUPPORTED)
+//    #define NET_API_FUNCTION    __stdcall
+// #else
+//     #define NET_API_FUNCTION
+// #endif
+ 
+[ uuid(17FDD703-1827-4E34-79D4-24A55C53BB37),
+    version(1.0),
+    ms_union,
+    pointer_default(unique)
+]
+interface msgsvc
+{
+ 
+    typedef [handle] wchar_t*  MSGSVC_HANDLE;
+ 
+    typedef struct _MSG_INFO_0 {
+        [string]  wchar_t*  msgi0_name;
+    }MSG_INFO_0, *PMSG_INFO_0, *LPMSG_INFO_0;
+ 
+    typedef struct _MSG_INFO_1 {
+        [string]  wchar_t*  msgi1_name;
+                  DWORD     msgi1_forward_flag;
+        [string]  wchar_t*  msgi1_forward;
+    }MSG_INFO_1, *PMSG_INFO_1, *LPMSG_INFO_1;
+ 
+    typedef struct _MSG_INFO_0_CONTAINER {
+        DWORD                               EntriesRead;
+        [size_is(EntriesRead)] LPMSG_INFO_0 Buffer;
+    } MSG_INFO_0_CONTAINER, *PMSG_INFO_0_CONTAINER, 
+      *LPMSG_INFO_0_CONTAINER;
+ 
+    typedef struct _MSG_INFO_1_CONTAINER {
+        DWORD                                EntriesRead;
+        [size_is(EntriesRead)] LPMSG_INFO_1  Buffer;
+    } MSG_INFO_1_CONTAINER, *PMSG_INFO_1_CONTAINER, 
+      *LPMSG_INFO_1_CONTAINER;
+ 
+ 
+    typedef struct _MSG_ENUM_STRUCT {
+        DWORD               Level;
+        [switch_is(Level)]  union _MSG_ENUM_UNION {
+            [case(0)]  LPMSG_INFO_0_CONTAINER  Level0;
+            [case(1)]  LPMSG_INFO_1_CONTAINER  Level1;
+        } MsgInfo;
+    } MSG_ENUM_STRUCT, *PMSG_ENUM_STRUCT, *LPMSG_ENUM_STRUCT;
+ 
+ 
+    typedef [switch_type(DWORD)] union _MSG_INFO {
+        [case(0)]   LPMSG_INFO_0  MsgInfo0;
+        [case(1)]   LPMSG_INFO_1  MsgInfo1;
+    } MSG_INFO, *PMSG_INFO, *LPMSG_INFO;
+ 
+ 
+    NET_API_STATUS /* XXX: NET_API_FUNCTION */
+    NetrMessageNameAdd (
+        [in,string,unique] MSGSVC_HANDLE  ServerName,
+        [in,string]        wchar_t*       MsgName
+        );
+ 
+    NET_API_STATUS /* XXX: NET_API_FUNCTION */
+    NetrMessageNameEnum (
+        [in,string,unique] MSGSVC_HANDLE      ServerName,
+        [in,out]           LPMSG_ENUM_STRUCT  InfoStruct,
+        [in]               DWORD              PrefMaxLen,
+        [out]              LPDWORD            TotalEntries,
+        [in,out,unique]    LPDWORD            ResumeHandle
+        );
+ 
+    NET_API_STATUS /* XXX: NET_API_FUNCTION */
+    NetrMessageNameGetInfo (
+        [in,string,unique] MSGSVC_HANDLE    ServerName,
+        [in,string]        wchar_t*         MsgName,
+        [in]               DWORD            Level,
+        [out, switch_is(Level)] LPMSG_INFO  InfoStruct
+        );
+ 
+    NET_API_STATUS /* XXX: NET_API_FUNCTION */
+    NetrMessageNameDel (
+        [in,string,unique]  MSGSVC_HANDLE ServerName,
+        [in,string]         wchar_t*      MsgName
+        );
+}

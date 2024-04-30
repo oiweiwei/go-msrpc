@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The TRANSFER_TYPE enumeration specifies the valid cases for
+the unnamed union defined in the <span><a href="08791447-2c3c-48d4-98ab-ce9dd28a9509" data-linktype="relative-path">CACTransferBufferV1</a></span>
+structure (section 2.2.3.2). </p><dl>
+<dd>
+<div><pre> typedef  enum {
+   CACTB_SEND = 0,
+   CACTB_RECEIVE,
+   CACTB_CREATECURSOR
+ } TRANSFER_TYPE;
+</pre></div>
+</dd></dl><p><b>CACTB_SEND:  </b>A send operation (that is, a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span>
+placed into a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span> for delivery)
+is to be performed.</p><p><b>CACTB_RECEIVE:  </b>A receive operation (that is,
+a message is to be read from a queue) is to be performed.</p><p><b>CACTB_CREATECURSOR:  </b>A <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a></span>
+creation is to be performed.</p></div>

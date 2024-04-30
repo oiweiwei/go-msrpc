@@ -1,0 +1,43 @@
+<div class="content"><p>RpcDeletePrinterData deletes specified configuration data
+for a printer.<a id="Appendix_A_Target_294"></a><a aria-label="Product behavior note 294" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_294" data-linktype="relative-path">&lt;294&gt;</a></p><dl>
+<dd>
+<div><pre> DWORD RpcDeletePrinterData(
+   [in] PRINTER_HANDLE hPrinter,
+   [in, string] wchar_t* pValueName
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object that
+was opened by <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter (section 3.1.4.2.3)</a>,
+<a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx (section 3.1.4.2.15)</a>,
+<a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter (section 3.1.4.2.2)</a>,
+or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx (section 3.1.4.2.14)</a>.</p><p><b>pValueName: </b>A pointer to a string that
+identifies the configuration data to delete. For rules governing value names,
+see section <a href="cd9850cf-1e6c-4875-9b65-e159cf2d83d6" data-linktype="relative-path">2.2.4.18</a>.</p><dl>
+<dd>
+<p>The value name is an arbitrary string defined by the
+<a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer driver</a>
+associated with the printer object. The value name &#34;ChangeID&#34; is
+reserved by the protocol and MUST NOT be used in a call to
+RpcDeletePrinterData.<a id="Appendix_A_Target_295"></a><a aria-label="Product behavior note 295" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_295" data-linktype="relative-path">&lt;295&gt;</a></p>
+</dd></dl><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server validates parameters
+as follows:</p><ul><li><p><span><span> 
+</span></span>The server MUST perform the validation steps that are specified
+in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE
+Parameters (section 3.1.4.1.11)</a>.</p>
+</li><li><p><span><span> 
+</span></span>The server MAY verify that the value name is not
+&#34;ChangeID&#34; and that it complies with the rules specified in section
+2.2.4.18.</p>
+</li><li><p><span><span> 
+</span></span>Additional validation SHOULD<a id="Appendix_A_Target_296"></a><a aria-label="Product behavior note 296" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_296" data-linktype="relative-path">&lt;296&gt;</a> be
+performed.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Delete the printer data specified by <i>pValueName</i>.<a id="Appendix_A_Target_297"></a><a aria-label="Product behavior note 297" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_297" data-linktype="relative-path">&lt;297&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

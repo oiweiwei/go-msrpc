@@ -1,0 +1,74 @@
+<div class="content"><p> </p><p>The <b>DNS_ZONE_STATS_TYPE</b> enumeration is the enumerator
+for all zone statistics types.<a id="Appendix_A_Target_79"></a><a aria-label="Product behavior note 79" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_79" data-linktype="relative-path">&lt;79&gt;</a></p><dl>
+<dd>
+<div><pre> typedef enum _DNS_ZONE_STATS_TYPE {
+     //
+     // Record types. If new zone stats record type is added/deleted
+     // then update MAX_RECORD_TYPES accordingly.
+     //
+     ZONE_STATS_TYPE_RECORD_A = 0,
+     ZONE_STATS_TYPE_RECORD_AAAA,
+     ZONE_STATS_TYPE_RECORD_PTR,
+     ZONE_STATS_TYPE_RECORD_CNAME,
+     ZONE_STATS_TYPE_RECORD_MX,
+     ZONE_STATS_TYPE_RECORD_AFSDB,
+     ZONE_STATS_TYPE_RECORD_ATMA,
+     ZONE_STATS_TYPE_RECORD_DHCID,
+     ZONE_STATS_TYPE_RECORD_DNAME,
+     ZONE_STATS_TYPE_RECORD_HINFO,
+     ZONE_STATS_TYPE_RECORD_ISDN,
+     ZONE_STATS_TYPE_RECORD_MG,
+     ZONE_STATS_TYPE_RECORD_MB,
+     ZONE_STATS_TYPE_RECORD_MINFO,
+     ZONE_STATS_TYPE_RECORD_NAPTR,
+     ZONE_STATS_TYPE_RECORD_NXT,
+     ZONE_STATS_TYPE_RECORD_KEY,
+     ZONE_STATS_TYPE_RECORD_MR,
+     ZONE_STATS_TYPE_RECORD_RP,
+     ZONE_STATS_TYPE_RECORD_RT,
+     ZONE_STATS_TYPE_RECORD_SRV,
+     ZONE_STATS_TYPE_RECORD_SIG,
+     ZONE_STATS_TYPE_RECORD_TEXT,
+     ZONE_STATS_TYPE_RECORD_WKS,
+     ZONE_STATS_TYPE_RECORD_X25,
+     ZONE_STATS_TYPE_RECORD_DNSKEY,
+     ZONE_STATS_TYPE_RECORD_DS,
+     ZONE_STATS_TYPE_RECORD_NS,
+     ZONE_STATS_TYPE_RECORD_SOA,
+     ZONE_STATS_TYPE_RECORD_TLSA,
+     ZONE_STATS_TYPE_RECORD_ALL,
+     ZONE_STATS_TYPE_RECORD_OTHERS,
+  
+     //
+     // Zone transfer types. If new zone transfer type is added/deleted
+     // then update MAX_ZONE_TRANSFER_TYPES accordingly.
+     //
+     ZONE_STATS_TYPE_TRANSFER_AXFR,
+     ZONE_STATS_TYPE_TRANSFER_IXFR,
+  
+     //
+     // Zone update.
+     //
+     ZONE_STATS_TYPE_UPDATE,
+  
+     //
+     // Zone RRL Stats
+     //
+     ZONE_STATS_TYPE_RRL,
+  
+     MAX_ZONE_STATS_TYPES
+ } DNS_ZONE_STATS_TYPE, *PDNS_DONE_STATS_TYPE;
+</pre></div>
+</dd></dl><p><b>ZONE_STATS_TYPE_RECORD_A:</b> A record type.</p><p><b>ZONE_STATS_TYPE_RECORD_AAAA:</b> AAAA record type.</p><p><b>ZONE_STATS_TYPE_RECORD_PTR:</b> PTR record type.</p><p><b>ZONE_STATS_TYPE_RECORD_CNAME:</b> CNAME record
+type.</p><p><b>ZONE_STATS_TYPE_RECORD_MX:</b> MX record type.</p><p><b>ZONE_STATS_TYPE_RECORD_AFSDB:</b> AFDSB record
+type.</p><p><b>ZONE_STATS_TYPE_RECORD_ATMA:</b> ATMA record type.</p><p><b>ZONE_STATS_TYPE_RECORD_DHCID:</b> DHCID record
+type.</p><p><b>ZONE_STATS_TYPE_RECORD_DNAME:</b> DNAME record
+type.</p><p><b>ZONE_STATS_TYPE_RECORD_HINFO:</b> HINFO record
+type.</p><p><b>ZONE_STATS_TYPE_RECORD_ISDN:</b> ISDN record type.</p><p><b>ZONE_STATS_TYPE_RECORD_MG:</b> MG record type.</p><p><b>ZONE_STATS_TYPE_RECORD_MB:</b> MB record type.</p><p><b>ZONE_STATS_TYPE_RECORD_MINFO:</b> MINFO record
+type.</p><p><b>ZONE_STATS_TYPE_RECORD_NAPTR:</b> NAPTR record
+type.</p><p><b>ZONE_STATS_TYPE_RECORD_NXT:</b> NXT record type.</p><p><b>ZONE_STATS_TYPE_RECORD_KEY:</b> KEY record type.</p><p><b>ZONE_STATS_TYPE_RECORD_MR:</b> MR record type.</p><p><b>ZONE_STATS_TYPE_RECORD_RP:</b> RP record type.</p><p><b>ZONE_STATS_TYPE_RECORD_RT:</b> RT record type.</p><p><b>ZONE_STATS_TYPE_RECORD_SRV:</b> SRV record type.</p><p><b>ZONE_STATS_TYPE_RECORD_SIG:</b> SIG record type.</p><p><b>ZONE_STATS_TYPE_RECORD_TEXT:</b> TXT record type.</p><p><b>ZONE_STATS_TYPE_RECORD_WKS:</b> WKS record type.</p><p><b>ZONE_STATS_TYPE_RECORD_X25:</b> X25 record type.</p><p><b>ZONE_STATS_TYPE_RECORD_DNSKEY:</b> DNSKEY record
+type.</p><p><b>ZONE_STATS_TYPE_RECORD_DS:</b> DS record type.</p><p><b>ZONE_STATS_TYPE_RECORD_NS:</b> NS record type.</p><p><b>ZONE_STATS_TYPE_RECORD_SOA:</b> SOA record type.</p><p><b>ZONE_STATS_TYPE_RECORD_TLSA:</b> TLSA record type.</p><p><b>ZONE_STATS_TYPE_RECORD_ALL:</b> All record types.</p><p><b>ZONE_STATS_TYPE_RECORD_OTHERS:</b> Resource
+records not specified in this list.</p><p><b>ZONE_STATS_TYPE_TRANSFER_AXFR:</b> Axft transfer
+type.</p><p><b>ZONE_STATS_TYPE_TRANSFER_IXFR:</b> Ixfr transfer
+type.</p><p><b>ZONE_STATS_TYPE_UPDATE:</b> Zone Update.</p><p><b>ZONE_STATS_TYPE_RRL:</b> Response Rate Limiting.</p><p><b>MAX_ZONE_STATS_TYPES:</b> Specifies the maximum
+zone statistics types supported.</p></div>

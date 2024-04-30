@@ -1,0 +1,84 @@
+<div class="content"><p> </p><p>This RemQueryInterface (Opnum 3) method acquires standard
+object references (see section <span><a href="ad717638-f105-4256-b552-385b08ef8ebf" data-linktype="relative-path">2.2.18.1</a></span>) to additional
+interfaces on the object.</p><dl>
+<dd>
+<div><pre> HRESULT RemQueryInterface(
+   [in] REFIPID ripid,
+   [in] unsigned long cRefs,
+   [in] unsigned short cIids,
+   [in, size_is(cIids)] IID* iids,
+   [out, size_is(,cIids)] PREMQIRESULT* ppQIResults
+ );
+</pre></div>
+</dd></dl><p><b>ripid: </b>This MUST specify an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_74540339-daab-46ea-a8f9-fe8fca3b150c" data-linktype="relative-path">IPID</a></span>
+that identifies the interface on the object to be queried for more interfaces.</p><p><b>cRefs: </b>This MUST specify the number of public <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_10ffa972-2b70-4e41-b025-6785babac521" data-linktype="relative-path">reference
+counts</a></span> requested on the new interfaces.</p><p><b>cIids: </b> This MUST specify the number of <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_76ad3105-3f05-479d-a40c-c9c8fa2ebd83" data-linktype="relative-path">IIDs</a></span>
+supplied in the <i>iids</i> parameter and returned in the <i>ppQIResults</i>
+parameter.</p><p><b>iids: </b> This MUST specify an array of IIDs for
+which the client requests object references.</p><p><b>ppQIResults: </b>This MUST contain an array of <span><a href="1d6a8a54-b115-4148-815a-af0258931948" data-linktype="relative-path">REMQIRESULT</a></span>
+structures containing the results of the QueryInterface on the identified
+object.</p><p>When processing this <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_d4ad46fe-cbab-43f2-a125-b2f125824f33" data-linktype="relative-path">ORPC</a></span> call, the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_5b284f60-ee33-4d15-9a7b-0fb82d7c6b68" data-linktype="relative-path">object
+exporter</a></span> MUST do the following:</p><ul><li><p><span><span> 
+</span></span>It MUST look up the IPID entry of the interface specified by the <i>ripid</i>
+parameter. If the IPID entry is not found, it MUST return RPC_E_INVALID_OBJECT
+as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>It MUST look up the OID entry for the IPID.</p>
+</li><li><p><span><span> 
+</span></span>It MUST set the last ORPC invocation time in the OID entry to the
+current time.</p>
+</li><li><p><span><span> 
+</span></span>For each IID requested by the client in the iids array:</p>
+<ul><li><p><span><span>  </span></span>It
+MUST find the IPID of the IID in the IPID list in the OID entry.</p>
+</li><li><p><span><span>  </span></span>If
+the entry is found, it MUST increment the public reference counts by cRefs, the
+number of references requested by the client.</p>
+</li><li><p><span><span>  </span></span>If
+the entry is not found, it MUST use the application-defined state to determine,
+in an implementation-specific manner, if the object supports the requested IID.
+If it does not, it MUST set E_NOINTERFACE (as specified in [MS-ERREF] section
+2.1) in the <b>hResult</b> field of the corresponding REMQIRESULT array.</p>
+<p>If the object implements
+the requested IID, the object exporter MUST create an IPID entry as follows:</p>
+<ul><li><p><span><span> 
+</span></span>It MUST allocate an IPID and set it in the IPID entry.</p>
+</li><li><p><span><span> 
+</span></span>It MUST set the IID in the entry to the IID specified by the
+client.</p>
+</li><li><p><span><span> 
+</span></span>It MUST set the OID in the IPID entry to the OID in the OID
+entry.</p>
+</li><li><p><span><span> 
+</span></span>It MUST set the public reference count to cRefs, the number of
+references requested by the client.</p>
+</li><li><p><span><span> 
+</span></span>It MUST set the private reference count to 0.</p>
+</li><li><p><span><span> 
+</span></span>It MUST instruct <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> to listen on the
+interface designated by the IID, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> section
+3.1.20 (rpc_server_register_if).</p>
+</li><li><p><span><span> 
+</span></span>It MUST set the object pointer in the entry to the object pointer
+of the application&#39;s state that implements the interface specified by the IID.</p>
+</li><li><p><span><span> 
+</span></span>It MUST add the IPID entry to the IPID list in the OID.</p>
+</li><li><p><span><span> 
+</span></span>It MUST add the IPID entry to the IPID table.</p>
+</li></ul></li><li><p><span><span>  </span></span>The
+object exporter MUST return the STDOBJREF representing the object reference in
+the corresponding REMQIRESULT array element as follows:</p>
+<ul><li><p><span><span> 
+</span></span>It MUST set the <b>flags</b> field to 0.</p>
+</li><li><p><span><span> 
+</span></span>It MUST set the <b>cPublicRefs</b> field to cRefs.</p>
+</li><li><p><span><span> 
+</span></span>It MUST set the IPID and the OID from the IPID and OID entries.</p>
+</li><li><p><span><span> 
+</span></span>It MUST set the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_602b473b-557d-40cc-8217-2cbdaa04c78d" data-linktype="relative-path">OXID</a></span> to the OXID of
+the object exporter.</p>
+</li></ul></li><li><p><span><span>  </span></span>The
+object exporter MUST set the corresponding HRESULT field to a success code of
+zero.</p>
+</li></ul></li></ul></div>

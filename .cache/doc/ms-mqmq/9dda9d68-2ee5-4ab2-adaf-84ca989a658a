@@ -1,0 +1,39 @@
+<div class="content"><p> </p><p>The QUEUE_FORMAT_TYPE enumeration identifies the type of
+name format being used.</p><dl>
+<dd>
+<div><pre> typedef  enum __QUEUE_FORMAT_TYPE
+ {
+   QUEUE_FORMAT_TYPE_UNKNOWN = 0,
+   QUEUE_FORMAT_TYPE_PUBLIC = 1,
+   QUEUE_FORMAT_TYPE_PRIVATE = 2,
+   QUEUE_FORMAT_TYPE_DIRECT = 3,
+   QUEUE_FORMAT_TYPE_MACHINE = 4,
+   QUEUE_FORMAT_TYPE_CONNECTOR = 5,
+   QUEUE_FORMAT_TYPE_DL = 6,
+   QUEUE_FORMAT_TYPE_MULTICAST = 7,
+   QUEUE_FORMAT_TYPE_SUBQUEUE = 8
+ } QUEUE_FORMAT_TYPE;
+</pre></div>
+</dd></dl><p>QUEUE_FORMAT_TYPE_UNKNOWN:  The format type is
+unknown.</p><p><b>QUEUE_FORMAT_TYPE_PUBLIC:  </b>The <span><a href="905e154a-6123-42a9-86cb-e0a3169820f2" data-linktype="relative-path">QUEUE_FORMAT (section 2.2.7)</a></span>
+structure contains a GUID (as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a></span>)
+that identifies a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>.</p><p><b>QUEUE_FORMAT_TYPE_PRIVATE:  </b>The
+QUEUE_FORMAT (section 2.2.7) structure contains an <span><a href="653f80a3-6585-4cca-bb7f-5154b4ad0fab" data-linktype="relative-path">OBJECTID</a></span>
+structure that identifies a queue.</p><p><b>QUEUE_FORMAT_TYPE_DIRECT:  </b>The QUEUE_FORMAT
+structure contains a direct format name string that identifies a queue.</p><p><b>QUEUE_FORMAT_TYPE_MACHINE:  </b>The QUEUE_FORMAT
+structure contains a GUID (as specified in [MS-DTYP] section 2.3.4) that
+identifies a queue.</p><p><b>QUEUE_FORMAT_TYPE_CONNECTOR:  </b>The QUEUE_FORMAT
+structure contains a GUID (as specified in [MS-DTYP] section 2.3.4) that
+identifies a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_86bc3fbd-dfae-4737-a56a-3c0d9045c967" data-linktype="relative-path">connector queue</a></span>.
+This is not supported by all protocols.</p><p><b>QUEUE_FORMAT_TYPE_DL:  </b>The QUEUE_FORMAT
+structure contains a GUID (as specified in [MS-DTYP] section 2.3.4) that
+identifies a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_ccbb0292-fefe-493f-80c3-11533e473591" data-linktype="relative-path">distribution list (DL)</a></span>.
+This is not supported by all protocols.</p><p><b>QUEUE_FORMAT_TYPE_MULTICAST:  </b>The QUEUE_FORMAT
+structure contains a <b>MULTICAST_ID</b> (section <span><a href="d32116c6-b0b0-43be-b24f-f2c10acba63c" data-linktype="relative-path">2.2.10</a></span>) that identifies
+a multicast address. This is not supported by all protocols.</p><p><b>QUEUE_FORMAT_TYPE_SUBQUEUE:  </b>The QUEUE_FORMAT
+structure contains a direct name string that identifies a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_328fe8aa-d006-44dd-8cc8-dba7c862aaf8" data-linktype="relative-path">subqueue</a></span>.</p><dl>
+<dd>
+<p><b>Note</b>  QUEUE_FORMAT_TYPE_SUBQUEUE
+was introduced in <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_70ce3665-ae64-44b4-88fe-7c1dcdcd5417" data-linktype="relative-path">MSMQ</a></span> version 4. </p>
+</dd></dl></div>

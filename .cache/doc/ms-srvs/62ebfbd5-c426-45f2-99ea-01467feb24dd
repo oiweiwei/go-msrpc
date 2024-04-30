@@ -1,0 +1,58 @@
+<div class="content"><p> </p><p>The SERVER_XPORT_ENUM_STRUCT structure specifies the
+information level that the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> requests in
+the <span><a href="2c6a0b8b-b5e6-45ce-abd1-16163762ed5e" data-linktype="relative-path">NetrServerTransportEnum</a></span>
+method and encapsulates the <span><a href="116ac02b-c1b6-483a-b030-73ace63bc5ef" data-linktype="relative-path">SERVER_XPORT_ENUM_UNION</a></span>
+union that receives the entries that are enumerated by the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVER_XPORT_ENUM_STRUCT {
+   DWORD Level;
+   [switch_is(Level)] SERVER_XPORT_ENUM_UNION XportInfo;
+ } SERVER_XPORT_ENUM_STRUCT,
+  *PSERVER_XPORT_ENUM_STRUCT,
+  *LPSERVER_XPORT_ENUM_STRUCT;
+</pre></div>
+</dd></dl><p><b>Level:</b>  Specifies the information
+level of the data. This parameter MUST have one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>SERVER_XPORT_INFO_0_CONTAINER</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>SERVER_XPORT_INFO_1_CONTAINER</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>SERVER_XPORT_INFO_2_CONTAINER</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p>SERVER_XPORT_INFO_3_CONTAINER</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>XportInfo:</b>  Contains information
+about file server transports in the format that is determined by the <i>Level</i>
+parameter, as shown in the preceding table. This member receives the enumerated
+information.</p></div>

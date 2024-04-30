@@ -1,0 +1,18 @@
+<div class="content"><p>The <b>RPC_EPrintPropertyType</b> enumeration specifies the
+type of the value contained by a Job Named Property (section <a href="1bd61448-db4b-4284-a4b1-8346732402d4" data-linktype="relative-path">3.1.1</a>).<a id="Appendix_A_Target_82"></a><a aria-label="Product behavior note 82" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_82" data-linktype="relative-path">&lt;82&gt;</a></p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   kRpcPropertyTypeString = 1,
+   kRpcPropertyTypeInt32,
+   kRpcPropertyTypeInt64,
+   kRpcPropertyTypeByte,
+   kRpcPropertyTypeBuffer
+ } RPC_EPrintPropertyType;
+</pre></div>
+</dd></dl><p><b>kRpcPropertyTypeString: </b>The property value is
+a string.</p><p><b>kRpcPropertyTypeInt32: </b>The property value is a
+signed 32-bit integer.</p><p><b>kRpcPropertyTypeInt64: </b>The property value is a
+signed 64-bit integer.</p><p><b>kRpcPropertyTypeByte: </b>The property value is a
+byte.</p><p><b>kRpcPropertyTypeBuffer: </b>The property value consists
+of an array of bytes contained in a buffer. </p></div>

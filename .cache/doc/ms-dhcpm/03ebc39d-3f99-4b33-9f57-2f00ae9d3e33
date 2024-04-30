@@ -1,0 +1,29 @@
+<div class="content"><p> </p><p>The <b>DHCP_SUBNET_STATE</b> enumeration is a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value that specifies the set of possible states for a subnet configured on a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_746786e7-458f-45aa-ab24-5534a94b4fb3" data-linktype="relative-path">DHCPv4
+server</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum _DHCP_SUBNET_STATE {
+      DhcpSubnetEnabled,
+      DhcpSubnetDisabled,
+      DhcpSubnetEnabledSwitched,
+      DhcpSubnetDisabledSwitched,
+      DhcpSubnetInvalidState
+  } DHCP_SUBNET_STATE, *LPDHCP_SUBNET_STATE;
+</pre></div>
+</dd></dl><p><b>DhcpSubnetEnabled: </b>The subnet is enabled; the
+DHCP server assigns IP addresses, extends IP address leases, and releases
+unused IP addresses for DHCP clients on this subnet.</p><p><b>DhcpSubnetDisabled: </b>The subnet is disabled;
+the DHCP server does not assign IP addresses or extend IP address leases for
+DHCP clients on this subnet. However, the DHCP server still releases unused IP
+addresses for DHCP clients on this subnet.</p><p><b>DhcpSubnetEnabledSwitched: </b>The subnet is
+enabled; the DHCP server assigns IP addresses, extends IP address leases, and
+releases unused IP addresses for DHCP clients on this subnet. In addition, the
+default gateway for the DHCP client is set to on-link route.</p><p><b>DhcpSubnetDisabledSwitched: </b>The subnet is
+disabled; the DHCP server does not distribute addresses or extend leases within
+the subnet range to clients. However, the DHCP server still releases addresses
+within the subnet range. The system behavior in the DhcpSubnetDisabledSwitched
+state is identical to the state described in DhcpSubnetDisabled. Any software
+that uses the DHCPM API can use the DhcpSubnetDisabledSwitched state to
+remember that a particular scope needs to be put into the
+DhcpSubnetEnabledSwitched state when enabled.</p><p><b>DhcpSubnetInvalidState: </b>The subnet is not
+valid, and hence no address will be distributed or extended.</p></div>

@@ -1,0 +1,92 @@
+<div class="content"><p> </p><p>A <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> calls the rpc_ACCloseCursor
+method to close a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a></span> acquired from
+the <span><a href="e8d526c6-a119-4d27-8fac-bf59bab72f30" data-linktype="relative-path">rpc_ACCreateCursorEx (section 3.1.5.4)</a></span>
+method of the qmcomm2 <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> interface.</p><dl>
+<dd>
+<div><pre> HRESULT rpc_ACCloseCursor(
+   [in] RPC_QUEUE_HANDLE hQueue,
+   [in] DWORD hCursor
+ );
+</pre></div>
+</dd></dl><p><b>hQueue: </b> MUST contain the <span><a href="1482aa96-e1e2-40e9-8fb8-b35895ca5b4a" data-linktype="relative-path">RPC_QUEUE_HANDLE (section 2.2.1.1.2)</a></span>
+context handle passed to rpc_ACCreateCursorEx when the cursor specified by
+hCursor was created.</p><p><b>hCursor: </b> MUST contain a <b>DWORD</b> value
+obtained from the <i>pcc.hCursor</i> out-parameter of rpc_ACCreateCursorEx, or
+the reserved value 0x0000000b.</p><p><b>Return Values: </b> On success, this method MUST return
+MQ_OK (0x00000000); otherwise, the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST return a
+failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>,<a id="Appendix_A_Target_54"></a><a aria-label="Product behavior note 54" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_54" data-linktype="relative-path">&lt;54&gt;</a> and the client MUST treat all
+failure HRESULTs identically.</p><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method is invoked at the dynamically assigned <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span>
+returned by the <span><a href="a8c96155-a7e6-41cb-95c7-6ab7e4f8214d" data-linktype="relative-path">R_QMGetRTQMServerPort (section 3.1.4.24)</a></span>
+method when IP_HANDSHAKE (0x00000000) or IPX_HANDSHAKE (0x00000002) is the
+interface specified by the <i>fIP</i> parameter.</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>If hCursor is 0x0000000b, take no further action and return MQ_OK
+(0x00000000).</p>
+</li><li><p><span><span> 
+</span></span>Locate a <span><a href="910315e4-d43e-4c99-b086-555cc271563f" data-linktype="relative-path">LocalQueueContextHandle (section 3.1.1.3)</a></span>
+ADM element instance in the server&#39;s <i>iLocalQueueContextHandleTable</i> (section
+<span><a href="6d5edb49-62b1-46de-a235-f2cc97df6a31" data-linktype="relative-path">3.1.1.2</a></span>)
+where the value of the <b>Handle</b> attribute of the <b>LocalQueueContextHandle</b>
+ADM element instance equals <i>hQueue</i>.</p>
+</li><li><p><span><span> 
+</span></span>If such a <b>LocalQueueContextHandle</b> ADM element instance
+exists:</p>
+<ul><li><p><span><span>  </span></span>Declare
+<i>iLocatedLocalQueueContextHandle</i> and set it to a reference to the located
+<b>LocalQueueContextHandle</b> ADM element instance.</p>
+</li><li><p><span><span>  </span></span>Locate
+a <b>Cursor</b> (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section <span><a href="../ms-mqdmpr/2d741458-1c04-47b4-831b-13779e588bf9" data-linktype="relative-path">3.2</a></span>)
+ADM element instance in <i>iLocatedLocalQueueContextHandle</i>.<b>OpenQueueDescriptorReference.CursorCollection</b>
+where the <b>Handle</b> attribute of the <b>Cursor</b> ADM element instance
+equals <i>hCursor</i>.</p>
+</li><li><p><span><span>  </span></span> If
+no such <b>Cursor</b> ADM element instance exists, take no further action and
+return a failure <b>HRESULT</b>.</p>
+</li><li><p><span><span>  </span></span>Generate
+a <span><a href="../ms-mqdmpr/2a9858ca-518a-4abe-9f06-168931173895" data-linktype="relative-path">Close
+Cursor</a></span> ([MS-MQDMPR] section 3.1.7.1.2) event with the following
+argument value:</p>
+<p><i>iCursor</i> := The <b>Cursor</b>
+ADM element instance located preceding.</p>
+</li><li><p><span><span>  </span></span>Take
+no further action and return MQ_OK (0x00000000).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>Locate
+a <span><a href="01412cba-2803-4644-be30-76cdb8560cec" data-linktype="relative-path">RemoteQueueProxyHandle (section 3.1.1.5)</a></span>
+ADM element instance in the server&#39;s <i>iRemoteQueueProxyHandleTable</i>
+(section <span><a href="50eab75b-1cc0-4023-bb19-a20975e50883" data-linktype="relative-path">3.1.1.4</a></span>) where the
+value of the <b>Handle</b> attribute of the <b>RemoteQueueProxyHandle</b> ADM
+element instance equals <i>hQueue</i>.</p>
+</li><li><p><span><span>  </span></span>If
+no such <b>RemoteQueueProxyHandle</b> ADM element instance exists, take no
+further action and return a failure <b>HRESULT</b>.</p>
+</li><li><p><span><span>  </span></span>Declare
+<i>iLocatedRemoteQueueProxyHandle</i> and set it to a reference to the located <b>RemoteQueueProxyHandle</b>
+ADM element instance.</p>
+</li><li><p><span><span>  </span></span>Locate
+a <span><a href="3a0352fd-13bb-4c8e-a2d7-68a70dab75ba" data-linktype="relative-path">CursorProxy (section 3.1.1.6)</a></span>
+ADM element instance in <i>iLocatedRemoteQueueProxyHandle</i>.<b>CursorProxyCollection</b>
+where the value of the <b>Handle</b> attribute of the <b>CursorProxy</b> ADM
+element instance equals <i>hCursor</i>.</p>
+</li><li><p><span><span>  </span></span>If
+no such <b>CursorProxy</b> ADM element instance exists, take no further action
+and return a failure <b>HRESULT</b>.</p>
+</li><li><p><span><span>  </span></span>Declare
+<i>iLocatedCursorProxy</i> and set it to a reference to the located <b>CursorProxy</b>
+ADM element instance.</p>
+</li><li><p><span><span>  </span></span>Using
+the binding handle contained in <i>iLocatedRemoteQueueProxyHandle</i>.<b>RemoteBindingHandle</b>,
+invoke the <span><a href="../ms-mqqp/0ec761b0-e700-4e3d-b735-54bdf458509d" data-linktype="relative-path">RemoteQMCloseCursor</a></span>
+method of the qm2qm RPC interface specified in <span><a href="../ms-mqqp/c9a334a7-89b4-4e75-902a-bc029e29a072" data-linktype="relative-path">[MS-MQQP]</a></span>
+section 3.1.4.5 using the following parameter values:</p>
+<ul><li><p><span><span> 
+</span></span><i>hQueue</i> := <i>iLocatedRemoteQueueProxyHandle</i>.<b>RemoteContext</b></p>
+</li><li><p><span><span> 
+</span></span><i>hCursor</i> := <i>iLocatedCursorProxy</i>.<b>RemoteCursorHandle</b></p>
+</li></ul></li><li><p><span><span>  </span></span>Delete
+<i>iLocatedCursorProxy</i> from <i>iLocatedRemoteQueueProxyHandle</i>.<b>CursorProxyCollection</b>.</p>
+</li><li><p><span><span>  </span></span>Return
+the result from RemoteQMCloseCursor and take no further action.</p>
+</li></ul></li></ul></div>

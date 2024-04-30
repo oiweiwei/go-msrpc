@@ -1,0 +1,146 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/21c1a153-032c-4869-afc9-186b2346dfab" data-linktype="external">msdn link</a></p><p>The LsarSetSecret method is invoked to set the current and
+old values of the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_9720ddb8-c802-40b7-8dba-5e7520c3396d" data-linktype="relative-path">secret
+object</a>.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarSetSecret(
+   [in] LSAPR_HANDLE SecretHandle,
+   [in, unique] PLSAPR_CR_CIPHER_VALUE EncryptedCurrentValue,
+   [in, unique] PLSAPR_CR_CIPHER_VALUE EncryptedOldValue
+ );
+</pre></div>
+</dd></dl><p><b>SecretHandle:</b> An open secret object handle.</p><p><b>EncryptedCurrentValue: </b>A binary large object
+(BLOB) representing a new encrypted cipher value. It is valid for this
+parameter to be NULL, in which case the value is deleted from the server&#39;s
+policy database.</p><p><b>EncryptedOldValue: </b>A BLOB representing the
+encrypted old value. It is valid for this parameter to be NULL, in which case
+the current value in the policy database is copied.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One or more of the supplied parameters was invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>SecretHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message contains three input parameters:</p><p><i>SecretHandle</i>: An open handle to a secret object. If
+the handle is not a valid context handle to a secret object or <i>SecretHandle</i>.HandleType
+does not equal &#34;Secret&#34;, the server MUST return
+STATUS_INVALID_HANDLE. The server MUST verify that <i>SecretHandle</i> grants
+access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a> with
+RequiredAccess set to SECRET_SET_VALUE.<a id="Appendix_A_Target_77"></a><a aria-label="Product behavior note 77" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_77" data-linktype="relative-path">&lt;77&gt;</a></p><p><i>EncryptedCurrentValue</i>: The version of the new secret
+value that is being set, encrypted as specified in section <a href="cce8ae78-0138-4129-954e-c65e0c0bffed" data-linktype="relative-path">5.1.2</a>. It is valid for
+this parameter to be NULL, in which case the server MUST delete the current
+value in its database. If decryption fails, the server must return an
+implementation-specific error.<a id="Appendix_A_Target_78"></a><a aria-label="Product behavior note 78" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_78" data-linktype="relative-path">&lt;78&gt;</a></p><p><i>EncryptedOldValue</i>: The version of the old secret
+value that is being set, encrypted as specified in section 5.1.2. It is valid
+for this parameter to be NULL, in which case the server MUST delete the old value
+in its database and replace it with the previous version of
+&#34;CurrentValue&#34;. If decryption fails, the server must return an
+implementation-specific error.<a id="Appendix_A_Target_79"></a><a aria-label="Product behavior note 79" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_79" data-linktype="relative-path">&lt;79&gt;</a></p><p>The server MUST also maintain &#34;time stamp&#34; values
+for current and old values of the secret object. The following table lists the
+rules by which the time stamps are computed.</p><table><thead>
+  <tr>
+   <th>
+   <p>Old secret value</p>
+   </th>
+   <th>
+   <p>New secret value</p>
+   </th>
+   <th>
+   <p>Effect on old time </p>
+   </th>
+   <th>
+   <p>Effect on new time </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NULL</p>
+  </td>
+  <td>
+  <p>NULL</p>
+  </td>
+  <td>
+  <p>Old value of &#34;new secret time&#34;</p>
+  </td>
+  <td>
+  <p>Current server time</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NULL</p>
+  </td>
+  <td>
+  <p>Non-NULL</p>
+  </td>
+  <td>
+  <p>Old value of &#34;new secret time&#34;</p>
+  </td>
+  <td>
+  <p>Current server time</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Non-NULL</p>
+  </td>
+  <td>
+  <p>NULL</p>
+  </td>
+  <td>
+  <p>Current server time</p>
+  </td>
+  <td>
+  <p>Current server time</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Non-NULL</p>
+  </td>
+  <td>
+  <p>Non-NULL</p>
+  </td>
+  <td>
+  <p>Current server time</p>
+  </td>
+  <td>
+  <p>Current server time</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>FAX_ENUM_PRIORITY_TYPE</b> enumeration defines types
+of priorities for outgoing faxes. </p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FAX_PRIORITY_TYPE_LOW = 0x00000000,
+   FAX_PRIORITY_TYPE_NORMAL = 0x00000001,
+   FAX_PRIORITY_TYPE_HIGH = 0x00000002
+ } FAX_ENUM_PRIORITY_TYPE;
+</pre></div>
+</dd></dl><p><b>FAX_PRIORITY_TYPE_LOW: </b>The fax is sent with a
+low priority.</p><p><b>FAX_PRIORITY_TYPE_NORMAL: </b>The fax is sent with
+a normal priority.</p><p><b>FAX_PRIORITY_TYPE_HIGH: </b>The fax is sent with a
+high priority.</p></div>

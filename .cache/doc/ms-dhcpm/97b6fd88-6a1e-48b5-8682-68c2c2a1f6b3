@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The <b>DHCP_CLIENT_INFO_ARRAY_V4</b> structure defines an
+array of <span><a href="0605fa26-c2ab-4f06-a15b-36d81a3b0690" data-linktype="relative-path">DHCP_CLIENT_INFO_V4 (section 2.2.1.2.14)</a></span>
+structures. </p><p>This structure is used by methods, such as <span><a href="9f42f544-7d35-4c3c-bbb4-95007d452356" data-linktype="relative-path">R_DhcpEnumSubnetClientsV4 (section 3.1.4.36)</a></span>,
+that retrieve information for more than one DHCP client.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_CLIENT_INFO_ARRAY_V4 {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_CLIENT_INFO_V4* Clients;
+ } DHCP_CLIENT_INFO_ARRAY_V4,
+  *LPDHCP_CLIENT_INFO_ARRAY_V4;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>   This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+containing the number of DHCPv4 client-specific subnets, which is also the
+number of DHCPv4 clients in the <b>Clients</b> member. There are no inherent
+restrictions on the <i>NumElements</i> member. Methods that retrieve DHCPv4
+client information using the DHCP_CLIENT_INFO_ARRAY_V4 structure can limit the
+maximum value of the <i>NumElements</i> member. For example,
+R_DhcpEnumSubnetClientsV4 restricts the number of elements based on input
+parameters and the size, as well as number, of DHCPv4 client <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6d76b31-2852-4bd5-8fbb-8e82a3cedb29" data-linktype="relative-path">lease
+records</a></span> available for retrieval.</p><p><b>Clients:</b>  This is a pointer of type
+LPDHCP_CLIENT_INFO_V4 that points to the array of length <b>NumElements</b>
+containing the DHCPv4 client information.</p></div>

@@ -1,0 +1,13 @@
+<div class="content"><p>ConnectA_Call opens a connection to the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">smart card</a> located in the
+reader identified by a reader name.</p><dl>
+<dd>
+<div><pre> typedef struct _ConnectA_Call {
+   [string] const char* szReader;
+   Connect_Common Common;
+ } ConnectA_Call;
+</pre></div>
+</dd></dl><p><b>szReader:</b>  An <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_79fa85ca-ac61-467c-b819-e97dc1a7a599" data-linktype="relative-path">ASCII</a> string specifying the
+<a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_8b790ccb-84c6-49fa-b1ed-4fc7c4e1841f" data-linktype="relative-path">reader name</a> to connect
+to.</p><p><b>Common:</b>  Additional parameters that
+are required for the Connect call are specified in section <a href="99f88bbc-fb8b-4b59-a5df-b5ea565d7b56" data-linktype="relative-path">3.1.4.28</a>. For more
+information, see section <a href="32752f32-4410-4682-b9fc-9096674b52de" data-linktype="relative-path">2.2.1.3</a>.</p></div>

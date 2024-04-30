@@ -1,0 +1,238 @@
+<div class="content"><p> </p><p>The Invoke method provides access to properties and methods
+exposed by the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_5dcdba04-9cfd-40b3-b0e1-0b8e4374aeaa" data-linktype="relative-path">automation server</a></span>. </p><dl>
+<dd>
+<div><pre> HRESULT Invoke(
+   [in] DISPID dispIdMember,
+   [in] REFIID riid,
+   [in] LCID lcid,
+   [in] DWORD dwFlags,
+   [in] DISPPARAMS* pDispParams,
+   [out] VARIANT* pVarResult,
+   [out] EXCEPINFO* pExcepInfo,
+   [out] UINT* pArgErr,
+   [in] UINT cVarRef,
+   [in, size_is(cVarRef)] UINT* rgVarRefIdx,
+   [in, out, size_is(cVarRef)] VARIANT* rgVarRef
+ );
+</pre></div>
+</dd></dl><p><b>dispIdMember: </b>MUST equal the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_3792c5cc-783c-4b2a-a71e-c1ec3f432474" data-linktype="relative-path">DISPID</a></span>
+of the method or property to call. </p><p><b>riid: </b>MUST equal IID_NULL (see section <span><a href="58504586-e4af-44a3-be04-f1dc281b7429" data-linktype="relative-path">1.9</a></span>).</p><p><b>lcid: </b>MUST equal a locale ID supported by the
+automation server. This value SHOULD be used by the automation server if any of
+the arguments are strings whose meaning is dependent on a specific locale ID.
+If no such strings are present in the arguments the server SHOULD ignore this
+value.</p><p><b>dwFlags: </b> MUST be a combination of the bit
+flags specified in the following table. </p><p><b>Note</b>  The value MUST specify one and
+only one of the following bit flags: DISPATCH_METHOD, DISPATCH_PROPERTYGET,
+DISPATCH_PROPERTYPUT, or DISPATCH_PROPERTYPUTREF.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DISPATCH_METHOD</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p> The member is invoked as a method.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISPATCH_PROPERTYGET</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The member is retrieved as a property or data member.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISPATCH_PROPERTYPUT</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The member is changed as a property or data member.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISPATCH_PROPERTYPUTREF</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The member is changed by a reference assignment,
+  rather than by a value assignment. This flag is valid only when the property
+  accepts a reference to an <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISPATCH_zeroVarResult</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>MUST specify that the client is not interested in the
+  actual pVarResult [out] argument. On return the <i>pVarResult</i> argument
+  MUST point to a VT_EMPTY variant, with all reserved fields set to 0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISPATCH_zeroExcepInfo </p>
+  <p>0x00040000 </p>
+  </td>
+  <td>
+  <p>MUST specify that the client is not interested in the
+  actual pExcepInfo [out] argument. On return <i>pExcepInfo</i> MUST point to
+  an EXCEPINFO structure, with all scalar fields set to 0 and all BSTR fields
+  set to NULL. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DISPATCH_zeroArgErr </p>
+  <p>0x00080000 </p>
+  </td>
+  <td>
+  <p>MUST specify that the client is not interested in the
+  actual pArgErr [out] argument. On return, <i>pArgErr</i> MUST be set to 0. </p>
+  </td>
+ </tr></tbody></table><p><b>pDispParams: </b> MUST point to a <span><a href="144b00dd-4c2f-4b35-a28f-c17f591b990c" data-linktype="relative-path">DISPPARAMS</a></span>
+structure that defines the arguments passed to the method. Arguments MUST be
+stored in <code>pDispParams-&gt;rgvarg</code> in reverse
+order, so that the first argument is the one with the highest index in the
+array. <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_969e6685-c90a-4da6-99be-1a25efb6d1cd" data-linktype="relative-path">Byref arguments</a></span> MUST
+be marked in this array as VT_EMPTY entries, and stored in <i>rgVarRef</i>
+instead. For more information, see section 2.2.33. </p><p><b>pVarResult: </b>MUST point to a VARIANT that will
+be filled with the result of the method or property call.</p><p><b>pExcepInfo: </b>If this value is not null and the
+return value is DISP_E_EXCEPTION, this structure MUST be filled by the
+automation server. Otherwise, it MUST specify a 0 value for the <b>scode</b>
+and <b>wCode</b> fields, and it MUST be ignored on receipt.</p><p><b>pArgErr: </b>If this value is not null and the
+return value is DISP_E_TYPEMISMATCH or DISP_E_PARAMNOTFOUND, this argument MUST
+equal the index (within <code>pDispParams-&gt;rgvarg</code>)
+of the first argument that has an error. Otherwise, it MUST be ignored on
+receipt.</p><p><b>cVarRef: </b>MUST equal the number of byref
+arguments passed in <i>pDispParams</i>.</p><p><b>rgVarRefIdx: </b>MUST contain an array of <i>cVarRef</i>
+unsigned integers that holds the indices of the byref arguments marked as
+VT_EMPTY entries in <code>pDispParams-&gt;rgvarg</code>.</p><p><b>rgVarRef: </b>MUST contain the byref arguments as
+set by the client at the time of the call, and by the server on successful
+return from the call. Arguments in this array MUST also be stored in reverse
+order, so that the first byref argument has the highest index in the array.</p><p><b>Return Values: </b>The method MUST return
+information in an HRESULT data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions: </p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD does
+not match a value in the following table, a fatal failure occurred.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD
+matches a value in the following table, a failure occurred. </p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80020009</p>
+  <p>DISP_E_EXCEPTION</p>
+  </td>
+  <td>
+  <p>The application needs to raise an exception. In this
+  case, the structure passed in <i>pExcepInfo</i> MUST be filled in with a
+  nonzero error code. See [MS-ERREF].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80020004</p>
+  <p>DISP_E_PARAMNOTFOUND</p>
+  </td>
+  <td>
+  <p>One of the parameter DISPIDs does not correspond to a
+  parameter on the method. In this case, pArgErr MUST be set to the first
+  argument that contains the error. See [MS-ERREF].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80020005</p>
+  <p>DISP_E_TYPEMISMATCH</p>
+  </td>
+  <td>
+  <p> One or more of the arguments could not be coerced
+  into the type of the corresponding formal parameter. The index within rgvarg
+  of the first parameter with the incorrect type MUST be returned in the
+  pArgErr parameter. For more information, see section <span><a href="5c01ab3c-f719-44cc-bb45-d36850cf4c5b" data-linktype="relative-path">3.1.4.4.4</a></span>
+  and [MS-ERREF].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8002000E</p>
+  <p>DISP_E_BADPARAMCOUNT</p>
+  </td>
+  <td>
+  <p>The number of elements provided to DISPPARAMS is
+  different from the number of arguments accepted by the method or property.
+  See [MS-ERREF].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80020008</p>
+  <p>DISP_E_BADVARTYPE</p>
+  </td>
+  <td>
+  <p>One of the arguments in rgvarg is not a valid variant
+  type. See [MS-ERREF].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80020003</p>
+  <p>DISP_E_MEMBERNOTFOUND</p>
+  </td>
+  <td>
+  <p>The requested member does not exist, or the call to
+  Invoke tried to set the value of a read-only property. See [MS-ERREF].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80020007</p>
+  <p>DISP_E_NONAMEDARGS</p>
+  </td>
+  <td>
+  <p>At least one named argument was provided for methods
+  with a vararg parameter (see section <span><a href="be6e35f6-9327-4164-9bde-ffcd0fa0e07d" data-linktype="relative-path">3.1.4.4.3</a></span>), for
+  which named arguments are illegal. See [MS-ERREF].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8002000A</p>
+  <p>DISP_E_OVERFLOW</p>
+  </td>
+  <td>
+  <p>One of the arguments in rgvarg could not be coerced to
+  the type of its corresponding formal parameter. See [MS-ERREF].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80020001</p>
+  <p>DISP_E_UNKNOWNINTERFACE</p>
+  </td>
+  <td>
+  <p>The interface identifier passed in riid is not
+  IID_NULL. See [MS-ERREF].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8002000F</p>
+  <p>DISP_E_PARAMNOTOPTIONAL</p>
+  </td>
+  <td>
+  <p>A required parameter was omitted. See [MS-ERREF].</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC Protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

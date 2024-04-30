@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The VDS_DISK_EXTENT_TYPE enumeration defines the set of
+valid types for a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7bdb0d0a-b0eb-4312-b663-3bb24fdd35e0" data-linktype="relative-path">disk extent</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_DISK_EXTENT_TYPE
+ {
+   VDS_DET_UNKNOWN = 0x00000000,
+   VDS_DET_FREE = 0x00000001,
+   VDS_DET_DATA = 0x00000002,
+   VDS_DET_OEM = 0x00000003,
+   VDS_DET_ESP = 0x00000004,
+   VDS_DET_MSR = 0x00000005,
+   VDS_DET_LDM = 0x00000006,
+   VDS_DET_UNUSABLE = 0x00007FFF
+ } VDS_DISK_EXTENT_TYPE;
+</pre></div>
+</dd></dl><p><b>VDS_DET_UNKNOWN:  </b>The extent belongs to an
+unknown <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_674598d2-080c-4dbf-b12e-cc873da21b54" data-linktype="relative-path">partition type</a></span>.</p><p><b>VDS_DET_FREE:  </b>The extent belongs to an area
+of <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_4932fda9-4823-4a72-b4e7-629f89d8fd90" data-linktype="relative-path">free
+space</a></span>.</p><p><b>VDS_DET_DATA:  </b>The extent belongs to a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>.</p><p><b>VDS_DET_OEM:  </b>The extent belongs to an OEM <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span>.</p><p><b>VDS_DET_ESP:  </b>The extent belongs to an <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2ab064d1-f0bb-4617-ba38-bdf4fcc10676" data-linktype="relative-path">Extensible
+Firmware Interface (EFI)</a></span> <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_20217edf-2c20-4bb0-af04-44f20b6c4847" data-linktype="relative-path">system partition</a></span>.</p><p><b>VDS_DET_MSR:  </b>The extent belongs to a
+Microsoft Reserved (MSR) partition.</p><p><b>VDS_DET_LDM:  </b>The extent belongs to a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>
+management metadata partition.</p><p><b>VDS_DET_UNUSABLE:  </b>The extent belongs to an
+area of unusable space.</p></div>

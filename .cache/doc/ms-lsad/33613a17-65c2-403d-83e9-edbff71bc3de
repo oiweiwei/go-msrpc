@@ -1,0 +1,106 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/33613a17-65c2-403d-83e9-edbff71bc3de" data-linktype="external">msdn link</a></p><p>The LsarRemoveAccountRights method is invoked to remove
+rights from an <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b76eee27-064e-461b-81a9-fbf41e49928b" data-linktype="relative-path">account
+object</a>.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarRemoveAccountRights(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PRPC_SID AccountSid,
+   [in] unsigned char AllRights,
+   [in] PLSAPR_USER_RIGHT_SET UserRights
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>AccountSid: </b>A <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a> of an
+account object.</p><p><b>AllRights: </b>If this field is not set to 0, all
+rights will be removed.</p><p><b>UserRights: </b>A set of rights to remove from the
+account.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One or more of the supplied parameters was invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000060</p>
+  <p>STATUS_NO_SUCH_PRIVILEGE</p>
+  </td>
+  <td>
+  <p>The rights supplied were not recognized.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000034</p>
+  <p>STATUS_OBJECT_NAME_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>An account with this <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00000BB</p>
+  <p>STATUS_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The operation is not supported by the server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes four arguments:</p><p><i>PolicyHandle</i>: An open handle to the policy object. If
+the handle is not a valid context handle to the policy object or <i>PolicyHandle</i>.HandleType
+does not equal &#34;Policy&#34;, the server MUST return
+STATUS_INVALID_HANDLE. The server MUST verify that <i>PolicyHandle</i> grants
+access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a> with
+RequiredAccess set to ACCOUNT_ADJUST_PRIVILEGES | ACCOUNT_ADJUST_SYSTEM_ACCESS
+| ACCOUNT_VIEW | DELETE.</p><p>If IsRequestorAnonymous() returns TRUE (section <a href="5d50b55f-e9c7-4af6-bf85-02e8043f66ea" data-linktype="relative-path">3.1.4.2.3</a>) and
+LsaRestrictAnonymous is set to TRUE, the call MUST fail with
+STATUS_OBJECT_NAME_NOT_FOUND.</p><p><i>AccountSid</i>: The security identifier of the account to
+modify. The server MUST verify that such an account exists in its database and
+fail the request with STATUS_OBJECT_NAME_NOT_FOUND otherwise.</p><p><i>AllRights</i>: If nonzero, all system access rights and <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privileges</a> will be stripped
+from the account.</p><p><i>UserRights</i>: A set of rights and privileges to remove
+from the account. If the server does not recognize any of the rights, server
+MUST return STATUS_NO_SUCH_PRIVILEGE.</p><p>The server MUST NOT allow removal of
+&#34;SeAuditPrivilege&#34;, &#34;SeChangeNotifyPrivilege&#34;,
+&#34;SeImpersonatePrivilege&#34;, and &#34;SeCreateGlobalPrivilege&#34;
+from accounts represented with SIDs &#34;S-1-5-19&#34; and
+&#34;S-1-5-20&#34;. The request MUST be rejected with STATUS_NOT_SUPPORTED.<a id="Appendix_A_Target_70"></a><a aria-label="Product behavior note 70" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_70" data-linktype="relative-path">&lt;70&gt;</a></p><p>If the resulting set of access rights and privileges is
+empty, the server MUST delete the account object from its database.</p></div>

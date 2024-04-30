@@ -1,0 +1,142 @@
+<div class="content"><p> </p><p>The <b>USE_INFO_1</b> structure specifies details about the
+connection between a machine on which the workstation service is running and a
+shared resource, including connection status and connection type.</p><dl>
+<dd>
+<div><pre> typedef struct _USE_INFO_1 {
+   [string] wchar_t* ui1_local;
+   [string] wchar_t* ui1_remote;
+   [string] wchar_t* ui1_password;
+   unsigned long ui1_status;
+   unsigned long ui1_asg_type;
+   unsigned long ui1_refcount;
+   unsigned long ui1_usecount;
+ } USE_INFO_1,
+  *PUSE_INFO_1,
+  *LPUSE_INFO_1;
+</pre></div>
+</dd></dl><p><b>ui1_local:</b> A pointer to a string that contains
+the device name (for example, drive E or LPT1) being redirected to the shared
+resource.</p><p><b>ui1_remote:</b> A pointer to a string that
+contains the share name of the remote resource being accessed. The string MUST
+be in the following form: &#34;<i>\\servername\sharename&#34;</i>.</p><p><b>ui1_password:</b> A pointer to a string that
+contains the password needed to establish a session between a machine on which
+the workstation service is running and a server.</p><p><b>ui1_status:</b> The current status of the
+connection, which MUST contain one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>USE_OK</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The connection is valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>USE_PAUSED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Paused by local workstation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>USE_SESSLOST</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Disconnected.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>USE_NETERR</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>A network error occurred.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>USE_CONN</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The connection is being made.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>USE_RECONN</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Reconnecting.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ui1_asg_type:</b> The type of remote resource
+being accessed, which MUST contain one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>USE_WILDCARD</p>
+  <p>0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>Matches the type of the server’s shared resources.
+  Wildcards can be used only with the <b>NetrUseAdd</b> function (section <span><a href="e4490e47-3dbc-45c4-8995-5c6bd095fdf5" data-linktype="relative-path">3.2.4.7</a></span>),
+  and only when the <b>ui1_local</b> member is NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>USE_DISKDEV</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Disk device.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>USE_SPOOLDEV</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Spooled printer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>USE_CHARDEV</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Serial device.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>USE_IPC</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Inter process communication (IPC).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ui1_refcount:</b> The number of files,
+directories, and other processes that can be opened on the remote resource.</p><p><b>ui1_usecount:</b> The number of explicit
+connections (with a device name) or implicit UNC connections (without the device
+name) that are established with the resource.</p></div>

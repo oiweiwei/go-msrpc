@@ -1,0 +1,115 @@
+<div class="content"><p> </p><p>The <b>FAX_GetAccountInfo (Opnum 96)</b> method is called by
+the client to retrieve information about a specified fax user account. The fax
+user account for which information is retrieved is specified by the <i>lpcwstrAccountName</i>
+parameter, which can be obtained using the <b>FAX_EnumAccounts</b> (section
+<span><a href="fcd3c4ed-d64b-465e-b875-dd26d1bf3567" data-linktype="relative-path">3.1.4.1.18</a></span>)
+method.</p><p>Protocol version FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), and FAX_API_VERSION_2 (0x00020000) fax servers
+SHOULD NOT implement this call. The fax client MUST NOT call this method if the
+protocol version reported by the server is FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), or FAX_API_VERSION_2 (0x00020000). For more
+information, see <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>).</p><p>In response, the server MUST validate the account name that
+is passed in with the <i>lpwstrAccountName</i> argument. If the account name
+specified by the <i>lpwstrAccountName</i> argument is not the same as the
+logged-on user, the server MUST check whether this user account has access to
+query configuration as follows. If the user account specified by the <i>lpwstrAccountName</i>
+argument is not the caller, and it does not have the FAX_ACCESS_QUERY_CONFIG
+rights, the call MUST return ERROR_ACCESS_DENIED. The server MUST allocate the
+buffer to hold the account information.</p><p>On success, the server MUST return the detailed information
+about the account that is passed in the buffer as per the level specified,
+along with the buffer size.</p><p>The client SHOULD free the buffer.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_GetAccountInfo(
+   [in] handle_t hBinding,
+   [in, string, unique] LPCWSTR lpcwstrAccountName,
+   [in] DWORD level,
+   [out, size_is(,*BufferSize)] LPBYTE* Buffer,
+   [out, ref] LPDWORD BufferSize
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> or <b>FAX_ConnectionRefCount</b> (section
+<span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>)
+method call used to connect to the fax server. </p><p><b>lpcwstrAccountName: </b>A pointer to a constant,
+null-terminated character string that contains the name of the account for
+which to retrieve information.</p><p><b>level: </b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that indicates the type of structure that is pointed to by <i>Buffer</i>.
+This MUST be zero.</p><p><b>Buffer: </b>A pointer to a <b>FAX_ACCOUNT_INFO_0</b> (section
+<span><a href="b9b642f1-8b22-48e2-bc93-0570458c165a" data-linktype="relative-path">2.2.24</a></span>)
+structure that contains fax account information.</p><p><b>BufferSize: </b>A pointer to a <b>DWORD</b> value
+that specifies the size, in bytes, of the structure that is pointed to by the <i>Buffer</i>
+parameter.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The account name specified by the <i>lpcwstrAccountName</i>
+  parameter appears valid but does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The user account specified by the <i>lpwstrAccountName</i>
+  argument is not the caller, and it does not have the fax access rights
+  FAX_ACCESS_QUERY_CONFIG.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. The value of the level
+  argument is greater than zero. The account name specified by <i>lpcwstrAccountName</i>
+  is not a valid fax account name.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The account name that <i>lpcwstrAccountName</i> indicates
+MUST be in one of the following formats. Any other format is invalid.</p><table><thead>
+  <tr>
+   <th>
+   <p>Format</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&lt;machine_name&gt;\&lt;user_name&gt;</p>
+  </td>
+  <td>
+  <p>For a local user that has machine_name as the name of
+  the local machine.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&lt;domain_name&gt;\&lt;user_name&gt;</p>
+  </td>
+  <td>
+  <p>For a nonlocal user.</p>
+  </td>
+ </tr></tbody></table><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

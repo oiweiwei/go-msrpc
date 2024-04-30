@@ -1,0 +1,219 @@
+<div class="content"><p> </p><p>The <b>DHCP_CLIENT_INFO_PB</b> structure encapsulates
+information about a DHCPv4 client, including filter status information and the
+policy, if any, that resulted in the client&#39;s specific IPv4 address assignment.
+This structure augments the <span><a href="7190663d-86c0-4131-8ec0-f50786b0298e" data-linktype="relative-path">DHCP_CLIENT_FILTER_STATUS_INFO (section 2.2.1.2.96)</a></span>
+structure by including the <b>PolicyName</b> member.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_CLIENT_INFO_PB {
+     DHCP_IP_ADDRESS   ClientIpAddress;
+     DHCP_IP_MASK      SubnetMask;
+     DHCP_CLIENT_UID   ClientHardwareAddress;
+     LPWSTR            ClientName;
+     LPWSTR            ClientComment;
+     DATE_TIME         ClientLeaseExpires;
+     DHCP_HOST_INFO    OwnerHost;
+     BYTE              bClientType;          
+     BYTE              AddressState;         
+     QuarantineStatus  Status;
+     DATE_TIME         ProbationEnds;
+     BOOL              QuarantineCapable;
+     DWORD             FilterStatus;
+     LPWSTR            PolicyName;
+ } DHCP_CLIENT_INFO_PB, *LPDHCP_CLIENT_INFO_PB;
+</pre></div>
+</dd></dl><p><b>ClientIpAddress:</b>  The client&#39;s IPv4
+address.</p><p><b>SubnetMask:</b>  The client&#39;s IPv4
+subnet mask.</p><p><b>ClientHardwareAddress:</b>  A <b>DHCP_CLIENT_UID</b>
+structure containing the client&#39;s <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_195d8585-7de6-4574-9abf-9db104aaa40c" data-linktype="relative-path">DHCPv4 client-identifier</a></span>.</p><p><b>ClientName:</b>  A pointer to a null-terminated
+Unicode string representing the client&#39;s DHCPv4 internet host name. There is no
+restriction on the length of this string.</p><p><b>ClientComment:</b>  A pointer to a
+null-terminated Unicode string containing a description given to the DHCPv4
+client. This string is limited to 128 characters, including the terminating
+null character.</p><p><b>ClientLeaseExpires:</b>  The time at
+which the client&#39;s lease on its assigned IPv4 address expires.</p><p><b>OwnerHost:</b>  A <b>DHCP_HOST_INFO</b>
+structure that contains information about the DHCPv4 server that assigned the
+client&#39;s IPv4 address.</p><p><b>bClientType:</b>  The type of the DHCPv4
+client. This member MUST have one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CLIENT_TYPE_UNSPECIFIED</p>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>Used for DHCPv4 clients that are not any of the other
+  types in this table.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_DHCP</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client supports the DHCP protocol.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_BOOTP</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client supports the BOOTP protocol (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90319" data-linktype="external">[RFC2132]</a></span>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_BOTH</p>
+  <p>0x03</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client supports the DHCP and BOOTP
+  protocols.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_RESERVATION_FLAG</p>
+  <p>0x04</p>
+  </td>
+  <td>
+  <p>An IPv4 registration has been created for the DHCPv4
+  client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_NONE</p>
+  <p>0x05</p>
+  </td>
+  <td>
+  <p>The client uses manual addressing. This value supports
+  backward compatibility with clients that do not use dynamic IP address
+  assignment.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>AddressState:</b>  The state of the IPv4
+address given to the DHCPv4 client. This member MUST be set to one of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ADDRESS_STATE_OFFERED</p>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>The address has been offered to the client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADDRESS_STATE_ACTIVE</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>The address is active and has an active DHCPv4 client
+  lease record.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADDRESS_STATE_DECLINED</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>The IPv4 address request was declined by the DHCPv4
+  client. The server will not issue this IPv4 address to other clients for a
+  period of time.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADDRESS_STATE_DOOM</p>
+  <p>0x03</p>
+  </td>
+  <td>
+  <p>The IPv4 address is in the DOOMED state prior to being
+  deleted.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Status:</b>  A <span><a href="bb589d00-d890-490c-9b6d-885ff61ac8a0" data-linktype="relative-path">QuarantineStatus (section 2.2.1.1.11)</a></span>
+value representing the DHCPv4 client&#39;s health status as validated by the NAP
+server.</p><p><b>ProbationEnds:</b>  If the client is on
+probation, this member contains the time at which the probation ends. Up to
+that time, the client has full access to the network.</p><p><b>QuarantineCapable:</b>  Whether the
+client machine is quarantine-enabled. A value of TRUE indicates that the client
+machine is quarantine-enabled, whereas FALSE indicates that it is not.</p><p><b>FilterStatus:</b>  The status of the
+link-layer filter. This member MUST be set to one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FILTER_STATUS_NONE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client&#39;s MAC address does not match any
+  filter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILTER_STATUS_FULL_MATCH_IN_ALLOW_LIST</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client&#39;s MAC address fully matches an
+  allow-list filter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILTER_STATUS_FULL_MATCH_IN_DENY_LIST</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client&#39;s MAC address fully matches a
+  deny-list filter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILTER_STATUS_WILDCARD_MATCH_IN_ALLOW_LIST</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client&#39;s MAC address has a wildcard match
+  to an allow-list filter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILTER_STATUS_WILDCARD_MATCH_IN_DENY_LIST</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client&#39;s MAC address has a wildcard match
+  to a deny-list filter.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>PolicyName:</b>  A pointer to a
+null-terminated Unicode string containing the name of the scope-level policy,
+if any, that resulted in the current IPv4 address being assigned to the client.
+This string is limited to 64 characters, including the terminating null
+character.</p></div>

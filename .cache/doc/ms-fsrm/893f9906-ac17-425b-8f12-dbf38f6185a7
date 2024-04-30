@@ -1,0 +1,30 @@
+<div class="content"><p>The FsrmAccountType enumeration defines the set of machine
+account types under which an FsrmActionType_Command action or a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_1f95e02d-f9e8-432b-85bc-df07c9dde274" data-linktype="relative-path">module definition</a> can be
+run.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmAccountType
+ {
+   FsrmAccountType_Unknown = 0,
+   FsrmAccountType_NetworkService = 1,
+   FsrmAccountType_LocalService = 2,
+   FsrmAccountType_LocalSystem = 3,
+   FsrmAccountType_InProc = 4,
+   FsrmAccountType_External = 5,
+   FsrmAccountType_Automatic = 500
+ } FsrmAccountType;
+</pre></div>
+</dd></dl><p><b>FsrmAccountType_Unknown:  </b>This enumeration
+value is not used by FSRM and MUST NOT be referenced. If the server receives
+this enumeration value, it MUST consider the value invalid and not apply any
+changes.</p><p><b>FsrmAccountType_NetworkService:  </b>Run the
+command or module definition under a restricted account with network access (see
+<a href="https://go.microsoft.com/fwlink/?LinkID=150266" data-linktype="external">[MSDN-NetworkSvcAcct]</a>
+for more information).<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p><p><b>FsrmAccountType_LocalService:  </b>Run the command
+or module definition under a restricted account without network access (see <a href="https://go.microsoft.com/fwlink/?LinkId=150263" data-linktype="external">[MSDN-LocSvcAcct]</a> for
+more information).<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p><p><b>FsrmAccountType_LocalSystem:  </b>Run the command
+or module definition under an administrative account with network access. See <a href="https://go.microsoft.com/fwlink/?LinkId=150267" data-linktype="external">[MSDN-LocSysAcct]</a> for
+more information.<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p><p><b>FsrmAccountType_InProc:  </b>Run the module
+definition in an administrative account in the same process used for pipeline
+processing.<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a></p><p><b>FsrmAccountType_External:  </b>Run the module
+definition in its own process.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a></p><p><b>FsrmAccountType_Automatic:  </b>Run the module
+definition in a process determined by the server.<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a></p></div>

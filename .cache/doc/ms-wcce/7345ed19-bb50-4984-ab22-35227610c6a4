@@ -1,0 +1,9 @@
+<div class="content"><p> </p><p>The Ping2 method pings the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT Ping2(
+   [in, string, unique, range(1, 1536)] wchar_t const * pwszAuthority
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>Contains the name of the CA.</p><p><b>Return Values: </b>For a successful invocation,
+the CA MUST return 0; otherwise, the CA MUST return a nonzero value.</p><p>The processing rules for this request MUST be the same as
+those specified in section <span><a href="d01c6184-610d-4592-b61c-e4af8125bb1b" data-linktype="relative-path">3.2.1.4.2.3</a></span>.</p></div>

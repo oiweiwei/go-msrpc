@@ -1,0 +1,8 @@
+<div class="content"><p>The <b>SPLCLIENT_INFO_2</b> structure is specified only as a
+placeholder in the IDL. It is not sent over the wire.</p><dl>
+<dd>
+<div><pre> typedef struct _SPLCLIENT_INFO_2 {
+   LONG_PTR notUsed;
+ } SPLCLIENT_INFO_2;
+</pre></div>
+</dd></dl><p><b>notUsed:</b> A value that MUST be ignored.</p></div>

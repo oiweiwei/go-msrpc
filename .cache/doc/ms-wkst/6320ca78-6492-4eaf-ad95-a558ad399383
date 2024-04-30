@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The <b>JOINPR_USER_PASSWORD</b> structure represents a
+decrypted password in the <b>Buffer</b> member of a <b>JOINPR_ENCRYPTED_USER_PASSWORD</b>
+structure (section <span><a href="7ac423e6-4d90-4dd8-b16b-c5a3783f0509" data-linktype="relative-path">2.2.5.18</a></span>).</p><dl>
+<dd>
+<div><pre> typedef struct _JOINPR_USER_PASSWORD {
+   unsigned char Obfuscator[JOIN_OBFUSCATOR_LENGTH];
+   wchar_t Buffer[JOIN_MAX_PASSWORD_LENGTH];
+   unsigned long Length;
+ } JOINPR_USER_PASSWORD,
+  *PJOINPR_USER_PASSWORD;
+</pre></div>
+</dd></dl><p><b>Obfuscator:</b> An array of unsigned characters
+that contains a <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_1672c769-f184-404a-9575-e637fd3a43ed" data-linktype="relative-path">salt</a></span>, which is
+filled with random bytes by the caller.</p><p><b>Buffer:</b> A <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_f6e0fdd0-cbc1-4c9d-93b8-f25125f9c5ef" data-linktype="relative-path">cleartext</a></span> string of
+no more than <b>JOIN_MAX_PASSWORD_LENGTH</b> (section <span><a href="e5841244-89e3-42a9-b335-8e988f321c2b" data-linktype="relative-path">2.2.1.1</a></span>) <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_4c9eef52-69d4-43e7-ac04-ff1fe43a94fb" data-linktype="relative-path">UTF-16</a></span>
+characters in <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a></span> order.
+The start of the string MUST be <b>Length</b> number of bytes from the end of
+the buffer. The unused portion of the buffer contains indeterminate values.</p><p><b>Length:</b> An unsigned integer, in little-endian
+order, that specifies the length in bytes of the cleartext string in the <b>Buffer</b>
+member.</p></div>

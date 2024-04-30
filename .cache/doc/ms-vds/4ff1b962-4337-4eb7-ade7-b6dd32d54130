@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p> The Initialize method starts the initialization of the
+server.</p><dl>
+<dd>
+<div><pre> HRESULT Initialize(
+   [in, unique, string] WCHAR* pwszMachineName
+ );
+</pre></div>
+</dd></dl><p><b>pwszMachineName: </b>Reserved; this parameter is
+not used.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST initialize
+the server and return a success value (HRESULT of 0x00000000) if the operation
+is successful, or VDS_E_INITIALIZED_FAILED (HRESULT of 0x80042401) if the
+operation failed. For more information about initialization, see section <span><a href="693b8105-e21e-40b5-9500-b661c27c5ed3" data-linktype="relative-path">3.4.3</a></span>.</p><p>If the <span><a href="26513b19-6867-4dbc-92ab-e94eb71fcdc8" data-linktype="relative-path">IVdsServiceLoader::LoadService</a></span>
+method is used to instantiate the server, there is no need to QueryInterface
+for the <span><a href="5116df58-e50b-44a4-9769-013bba3e0ef6" data-linktype="relative-path">IVdsServiceInitialization</a></span>
+interface, or to call IVdsServiceInitialization::Initialize. See
+IVdsServiceLoader::LoadService.</p></div>

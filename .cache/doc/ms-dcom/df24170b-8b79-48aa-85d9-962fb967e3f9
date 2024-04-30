@@ -1,0 +1,122 @@
+<div class="content"><p> </p><p>CLSID_CONTEXT_EXTENSION is the identifying <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+for this <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_aae39d05-becf-4cb4-bdfc-b05bc8ccabde" data-linktype="relative-path">ORPC extension</a></span>,
+which is marshaled into the data field of an <span><a href="ef4cb798-89e7-40a7-961d-92fafa85f829" data-linktype="relative-path">ORPC_EXTENT</a></span> using
+the structure format that follows.</p><p>A context ORPC extension is used when a client or server
+passes data associated with a <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_dc143034-cb8f-4d90-87ef-0fa96333807f" data-linktype="relative-path">context property</a></span>
+along with and in response to an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_d4ad46fe-cbab-43f2-a125-b2f125824f33" data-linktype="relative-path">ORPC</a></span> call.</p><p>All fields MUST be marshaled with the same endianness as the
+encompassing <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> PDU.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Signature</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Version</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cPolicies</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cbBuffer</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cbSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>hr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>hrServer</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EntryHeader
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PolicyData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Signature (4 bytes): </b> This MUST be set to
+0x414E554B.</p><p><b>Version (4 bytes): </b> This MUST be set to
+0x00010000.</p><p><b>cPolicies (4 bytes): </b>The unsigned number of
+elements in the <b>EntryHeader</b> array. This MUST also be equal to the number
+of elements in the <b>PolicyData</b> array.</p><p><b>cbBuffer (4 bytes): </b> An
+implementation-specific value that MUST be ignored on receipt.<a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="acc42954-4073-4f05-b850-efd562022077#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a></p><p><b>cbSize (4 bytes): </b>The unsigned size (in bytes)
+from the beginning of this structure to the end of the last <b>EntryHeader</b>.</p><p><b>hr (4 bytes): </b> An <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+that MUST be set to zero and MUST be ignored on receipt.</p><p><b>hrServer (4 bytes): </b> An HRESULT that MUST be
+set to zero when sent from client to server and MUST be ignored on receipt.
+When sent from server to client, this field MAY contain an
+implementation-specific error value.<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="acc42954-4073-4f05-b850-efd562022077#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a></p><p><b>reserved (4 bytes): </b> This MUST be set to zero
+and MUST be ignored on receipt.</p><p><b>EntryHeader (variable): </b> An array of <span><a href="629d4c21-91df-48dd-92ca-b150832da051" data-linktype="relative-path">EntryHeader</a></span>
+structures. The number of elements in the array MUST be specified in cPolicies.</p><p><b>PolicyData (variable): </b> An array of byte
+arrays. The number of elements in the outer array MUST be specified in
+cPolicies. The number of elements in the byte array MUST be specified in the <b>cbEHBuffer</b>
+field (see section 2.2.21.5) in the corresponding element in the EntryHeader
+array. </p><p>Both the EntryHeader and PolicyData arrays MUST have sizes
+that are integral multiples of eight, and all padding bytes MUST be initialized
+to zero and MUST be ignored on receipt.</p></div>

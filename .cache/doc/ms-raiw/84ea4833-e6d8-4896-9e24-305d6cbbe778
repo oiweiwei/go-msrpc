@@ -1,0 +1,12 @@
+<div class="content"><p>The WINSINTF_BROWSER_NAMES_T structure defines an array of
+browser names. This structure is used by the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> method <a href="276160bd-6179-4a91-8262-74e5d44e3ce1" data-linktype="relative-path">R_WinsGetBrowserNames</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSINTF_BROWSER_NAMES_T {
+   DWORD EntriesRead;
+   [unique, size_is(EntriesRead)] PWINSINTF_BROWSER_INFO_T pInfo;
+ } WINSINTF_BROWSER_NAMES_T,
+  *PWINSINTF_BROWSER_NAMES_T;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  The number of entries in the
+array that <b>pInfo</b> points to. </p><p><b>pInfo:</b>  A pointer to an array of browser
+names. <b>EntriesRead</b> contains the length of this array. </p></div>

@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The DRS_MSG_ADDENTRYREPLY_V1 structure defines the response
+message received from the <span><a href="06764fc5-4df6-4104-b6af-a92bdaa81f6e" data-linktype="relative-path">IDL_DRSAddEntry</a></span>
+method. This response version is obsolete.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="e3b89556-4e48-467c-87b3-b4a737cc4999#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct {
+   GUID Guid;
+   NT4SID Sid;
+   DWORD errCode;
+   DWORD dsid;
+   DWORD extendedErr;
+   DWORD extendedData;
+   USHORT problem;
+ } DRS_MSG_ADDENTRYREPLY_V1;
+</pre></div>
+</dd></dl><p><b>Guid:</b>   The <span><a href="../ms-ada3/937eb5c6-f6b3-4652-a276-5d6bb8979658" data-linktype="relative-path">objectGUID</a></span>
+of the added <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>.</p><p><b>Sid:</b>   The <span><a href="../ms-ada3/afac8414-c614-4c6a-b316-41f5978308bd" data-linktype="relative-path">objectSid</a></span>
+of the added object.</p><p><b>errCode:</b>  0 if successful or a
+DIRERR error code (section <span><a href="b5165b5e-399a-47d6-85d3-45db0296acbb" data-linktype="relative-path">4.1.1.1.25</a></span>) if a
+fatal error occurred.</p><p><b>dsid:</b>  The implementation-specific
+diagnostic code.</p><p><b>extendedErr:</b>  0, <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_dfc7ec7a-2b99-4312-a947-5d90a117d1c7" data-linktype="relative-path">STATUS
+code</a></span>, or <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows error code</a></span>.</p><p><b>extendedData:</b>  The
+implementation-specific diagnostic code.</p><p><b>problem:</b>  0 or PROBLEM error code
+(section <span><a href="4e239b71-e454-4908-a759-1fa412312db7" data-linktype="relative-path">4.1.1.1.26</a></span>).</p></div>

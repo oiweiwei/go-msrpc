@@ -1,0 +1,122 @@
+<div class="content"><p>This is the completion packet sent by the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> for the line <a href="a2daba2d-a317-4cf2-ad5a-b835644fe4d4" data-linktype="relative-path">UnPark</a> request.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Totalsize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>InitContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>hDevice</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Msg</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>OpenContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRequestId</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Result</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>hCall</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lphCallContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAddressID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCallID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRelatedCallID</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Totalsize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, of this packet and any trailing
+variable-length data. </p><p><b>InitContext (4 bytes): </b>An unsigned 32-bit
+integer. An opaque, client-specified session value that MUST be equal to the
+InitContext value specified in the original scoping of the line <a href="9d8eb7cd-3245-4e44-97e0-42f7b89c9424" data-linktype="relative-path">Initialize</a> request.</p><p><b>lpContext (4 bytes): </b>An unsigned 32-bit
+integer. An opaque, client-specified value that MUST be equal to the lpContext
+value in the original request.</p><p><b>hDevice (4 bytes): </b>An unsigned 32-bit integer.
+This MUST be ignored on receipt and can be any value. </p><p><b>Msg (4 bytes): </b>An unsigned 32-bit integer. The
+packet type identifier. MUST be set to <a href="8f5bc349-fd55-46f2-b0bc-dc9f757317a9" data-linktype="relative-path">LINE_REPLY</a> (0x0000000C).</p><p><b>OpenContext (4 bytes): </b>An unsigned 32-bit
+integer. An opaque, client-specified value that MUST be equal to the
+OpenContext value specified in the original scoping of line <a href="2759c744-e040-4c5d-b4b5-215d391f0490" data-linktype="relative-path">Open</a> request.</p><p><b>dwRequestId (4 bytes): </b>An unsigned 32-bit
+integer. The positive, nonzero, client-specified request ID value equal to the
+dwRequestId value in the original request.</p><p><b>Result (4 bytes): </b>An unsigned 32-bit integer.
+The request result, for example, 0 for success or a <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path">LINEERR_Constants</a> value
+for an error.</p><p><b>hCall (4 bytes): </b>An unsigned 32-bit integer.
+On successful completion, the new call handle. The client is granted owner
+privilege to the call.</p><p><b>lphCallContext (4 bytes): </b>An unsigned 32-bit
+integer. An opaque, client-specified value that MUST be equal to the
+lphCallContext value in the original line UnPark request. </p><p><b>dwAddressID (4 bytes): </b>An unsigned 32-bit
+integer. On successful completion, the address ID of the new call.</p><p><b>dwCallID (4 bytes): </b>An unsigned 32-bit
+integer. On successful completion, the call ID of the new call. </p><p><b>dwRelatedCallID (4 bytes): </b>An unsigned 32-bit
+integer. On successful completion, the related call ID of the new call.</p></div>

@@ -1,0 +1,37 @@
+<div class="content"><p> </p><p>When the IWbemCallResult::GetCallStatus method is invoked,
+the server MUST return the status of the current outstanding semisynchronous
+call.</p><dl>
+<dd>
+<div><pre> HRESULT GetCallStatus(
+   [in] long lTimeout,
+   [out] long* plStatus
+ );
+</pre></div>
+</dd></dl><p><b>lTimeout: </b>MUST be the maximum amount of time,
+in milliseconds, that the call to GetCallStatus allows to pass before timing
+out. If the constant WBEM_INFINITE (0xFFFFFFFF) is used, the Skip method call
+waits until the operation succeeds.</p><p><b>plStatus: </b> MUST be the status of a call to an <span><a href="7a50647a-5311-41c2-8f4f-83bcfb497877" data-linktype="relative-path">IWbemServices</a></span>
+method if the WBEM_S_NO_ERROR code is returned for this method. When sent by
+the client, this parameter MUST NOT be NULL. Upon return by the server, this
+parameter can be NULL if there is a failure or if there are no results.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The server MUST locate the entry in <b>WbemCallResultTable</b>
+with <b>WbemCallResultPointer</b> matching <span><a href="23ec4065-3fbe-4e39-baef-69e22c285623" data-linktype="relative-path">IWbemCallResult</a></span>.</p><p>The IWbemCallResult::GetCallStatus method MUST be called on
+the interface that is obtained in response to a previous call to a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_51f3288a-1aea-49f6-96a1-91f368e8b49b" data-linktype="relative-path">semisynchronous
+operation</a></span> that returns an IWbemCallResult interface.</p><p>In response to an IWbemCallResult::GetCallStatus method, the
+server MUST wait for the operation to finish in <i>lTimeout</i> time. The
+operation is finished if <b>OperationFinished</b> becomes TRUE. If the
+operation is not finished in <i>lTimeout</i> time, the server MUST return
+WBEM_S_TIMEDOUT. If the operation is finished successfully in <i>lTimeout</i>
+time, the server MUST give the result of the <b>FinalResult</b> operation in
+the <i>plStatus</i> parameter. The method MUST fail if the method parameters
+are not valid, as specified earlier in this section, or if the server is unable
+to execute the method.</p><p>The successful method execution MUST fill <i>plStatus</i>
+with the operation status code of the IWbemServices method operation and MUST
+return WBEM_S_NO_ERROR.</p><p>The failed method execution sets the value that is
+referenced by the output parameters to NULL and MUST return an error in the
+format that is specified in section 2.2.11.</p></div>

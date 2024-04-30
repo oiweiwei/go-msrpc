@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_ENUM_ZONES_FILTER</b> structure specifies
+zone filtering criteria.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcEnumZonesFilter {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   DWORD dwFilter;
+   [string] char* pszPartitionFqdn;
+   [string] char* pszQueryString;
+   [string] char* pszReserved[6];
+ } DNS_RPC_ENUM_ZONES_FILTER,
+  *PDNS_RPC_ENUM_ZONES_FILTER;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The structure
+version number; this MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>dwFilter:</b> A filter value that specifies
+the zone types that are to be selected as part of the output zone list. This
+value MUST be set to any combination of the ZONE_REQUEST_FILTERS (section <span><a href="f4cf1f3e-7d13-4010-a915-5223dcabc15d" data-linktype="relative-path">2.2.5.1.4</a></span>).</p><p><b>pszPartitionFqdn:</b> A pointer to a
+null-terminated UTF-8 string that specifies the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">distinguished name</a></span>
+for an <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_68dc613a-d602-41ae-9acc-76ffe97877c4" data-linktype="relative-path">application directory partition</a></span>
+location from which the server is to enumerate zones; if this is NULL then zone
+enumeration is not restricted based on the application directory partition.</p><p><b>pszQueryString:</b> Reserved for future use.
+Server MUST set to zero and receiver MUST ignore this value. </p><p><b>pszReserved:</b> Reserved for future use.
+Server MUST set to zero and receiver MUST ignore this value. </p></div>

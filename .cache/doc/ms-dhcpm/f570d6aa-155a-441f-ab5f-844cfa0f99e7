@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The <b>DHCP_SUPER_SCOPE_TABLE_ENTRY</b> structure defines
+the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b4838551-37f3-47de-a36c-7df328750d6d" data-linktype="relative-path">superscope</a></span>-specific
+subnet information. This structure is used in the <span><a href="c4fd87a7-12e3-4a7a-9a28-bdc40b0affca" data-linktype="relative-path">DHCP_SUPER_SCOPE_TABLE (section 2.2.1.2.86)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_SUPER_SCOPE_TABLE_ENTRY {
+   DHCP_IP_ADDRESS SubnetAddress;
+   DWORD SuperScopeNumber;
+   DWORD NextInSuperScope;
+   LPWSTR SuperScopeName;
+ } DHCP_SUPER_SCOPE_TABLE_ENTRY,
+  *LPDHCP_SUPER_SCOPE_TABLE_ENTRY;
+</pre></div>
+</dd></dl><p><b>SubnetAddress:</b>  This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS</a></span>,
+a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+containing the IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6a800ef-fd8a-4d87-834c-131e58f304ea" data-linktype="relative-path">subnet ID</a></span>.</p><p><b>SuperScopeNumber:</b>  This is of type
+DWORD, containing the unique identifier of the superscope.</p><p><b>NextInSuperScope:</b>  This is of type
+DWORD, specifying the index of the next subnet ID in the superscope.</p><p><b>SuperScopeName:</b>  This is a pointer,
+of type <span><a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a></span>,
+to a null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+contains the superscope name. There is no restriction on the length of this
+Unicode string.</p></div>

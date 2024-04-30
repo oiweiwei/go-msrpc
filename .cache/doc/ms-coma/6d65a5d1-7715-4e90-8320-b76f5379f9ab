@@ -1,0 +1,6 @@
+<div class="content"><p>The server method <a href="e913e91e-d977-470f-a4ec-82b030a3b2ad" data-linktype="relative-path">ICatalogUtils2::IsSafeToDelete (section 3.1.4.18.6)</a>
+can be used to determine if a file is safe to delete, but it is usually
+impossible for a server to reliably make such a determination. </p><p>A COMA client MUST NOT call the
+ICatalogUtils2::IsSafeToDelete method unless it receives an explicit request
+from a client application to do so, and MUST return the results of the call
+unaltered to the client application.</p></div>

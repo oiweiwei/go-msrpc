@@ -1,0 +1,56 @@
+<div class="content"><p> </p><p>The IEventClass3 interface provides additional methods that
+are used by the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> to manipulate
+an <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e8df25db-9bff-46df-b607-d072dd29c02b" data-linktype="relative-path">event
+class</a></span> on the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>. This
+interface inherits opnums 0 through 28 from the <span><a href="2510bb77-b0ab-4254-b3b8-dd5c6189eef2" data-linktype="relative-path">IEventClass2</a></span>
+interface, as specified in section 3.1.4.3. The version for this interface is
+0.0.</p><p>The server SHOULD support this interface.<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="aa52a2bf-fd29-47f9-8dea-d887d6b7d5ee#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a> To receive incoming remote
+calls for this interface, the server MUST implement a DCOM <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_a224e395-3fea-48bd-b141-3dd9bee2136a" data-linktype="relative-path">object
+class</a></span> with the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">class ID</a></span>
+CLSID_EventClass (see section <span><a href="25e89236-b0b3-4d8b-b1fb-64e0e9f0e156" data-linktype="relative-path">1.9</a></span>) using the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+{7FB7EA43-2D76-4ea8-8CD9-3DECC270295E} for this interface.</p><p>The interface contains the following methods beyond the ones
+that are defined for IEventClass2.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span><a href="a2aa20f7-b766-4bbc-a5b2-ee98473f9fb1" data-linktype="relative-path">get_EventClassPartitionID</a></span></p>
+  </td>
+  <td>
+  <p>Gets the EventClassPartitionID property of the event
+  class.</p>
+  <p>Opnum: 29</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="92dcadd1-d37c-4b7a-959f-a4915938f208" data-linktype="relative-path">put_EventClassPartitionID</a></span></p>
+  </td>
+  <td>
+  <p>Sets the EventClassPartitionID property of the event
+  class.</p>
+  <p>Opnum: 30</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="93c47749-bfa4-4933-b268-6009e8378e91" data-linktype="relative-path">get_EventClassApplicationID</a></span></p>
+  </td>
+  <td>
+  <p>Gets the EventClassApplicationID property of the event
+  class.</p>
+  <p>Opnum: 31</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="c3e1a58a-7b80-4dad-9737-9454370ea9a0" data-linktype="relative-path">put_EventClassApplicationID</a></span></p>
+  </td>
+  <td>
+  <p>Has no effect.</p>
+  <p>Opnum: 32</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

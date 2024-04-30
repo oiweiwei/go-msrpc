@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The DFS_INFO_100 structure relates to the <span><a href="b5dd4568-3ea4-4f27-ae03-3ebb19fa4b13" data-linktype="relative-path">NetrDfsGetInfo</a></span>,
+<span><a href="4b650459-f1b2-4476-aa19-ebb6873063dc" data-linktype="relative-path">NetrDfsSetInfo</a></span>,
+and <span><a href="e01d2b11-8884-41cb-8a77-21b72e22307c" data-linktype="relative-path">NetrDfsSetInfo2</a></span>
+methods when used to retrieve or set comment text about a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span>
+or a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS
+link</a></span>. The structure contains a comment associated with a DFS root or
+a DFS link.</p><p>The DFS_INFO_100 structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_100 {
+   [string] WCHAR* Comment;
+ } DFS_INFO_100;
+</pre></div>
+</dd></dl><p><b>Comment:</b>   A pointer to a null-terminated
+<span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string containing a comment associated with the DFS root or DFS link that is
+for informational purposes. This string has no protocol-specified restrictions
+on length or content. The comment is meant for human readability and does not
+affect server functionality. </p></div>

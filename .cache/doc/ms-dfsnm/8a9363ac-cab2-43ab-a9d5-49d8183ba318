@@ -1,0 +1,130 @@
+<div class="content"><p> </p><p>A DFSNamespaceElementBLOB contains information about a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span>
+or a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS
+link</a></span>, or for mapping a server to its site name.</p><p>The <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_e8de88fd-d760-46fa-ad77-76961fa20aea" data-linktype="relative-path">DFS metadata</a></span> of a
+valid <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS namespace</a></span> MUST
+consist of one <span><a href="9f18db22-cfcc-429f-88eb-364a5ae7482c" data-linktype="relative-path">DFSNamespaceRootBLOB</a></span>
+for the DFS root and one DFSNamespaceLinkBLOB for each DFS link in the DFS
+namespace. There MUST no more than one <span><a href="2354d145-9283-48f2-85e6-57288eb1b2e6" data-linktype="relative-path">SiteInformationBLOB</a></span>.
+For more information on SiteInformationBLOB, see section 2.3.3.1.1.4.</p><p>No alignment padding requirements exist for any of a BLOB&#39;s
+fields, unless otherwise specified.</p><p>Each DFSNamespaceElementBLOB contains the following data
+elements. The first three fields are standard for all DFSNamespaceElementBLOB
+structures. Following those fields are additional fields that are specific to
+the type of DFSNamespaceElementBLOB, in the format of a DFSNamespaceRootBLOB, a
+DFSNamespaceLinkBLOB, or a SiteInformationBLOB.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>BLOBNameSize</p>
+  </td>
+  <td colspan="16">
+  <p>BLOBName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BLOBDataSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BLOBData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>BLOBNameSize (2 bytes): </b>The size of the <b>BLOBName</b>,
+in bytes, stored as an unsigned, 16-bit, <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a></span>
+integer.</p><p><b>BLOBName (variable): </b>The name of the
+DFSNamespaceElementBLOB, stored as a string of <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> characters.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SiteInformationBLOB</p>
+  <p>&#34;\siteroot&#34;</p>
+  </td>
+  <td>
+  <p>A string of Unicode characters that forms the literal
+  &#34;\siteroot&#34;.<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFSNamespaceRootBLOB</p>
+  <p>&#34;\domainroot&#34;</p>
+  </td>
+  <td>
+  <p>A string of Unicode characters that forms the literal
+  &#34;\domainroot&#34;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFSNamespaceLinkBLOB</p>
+  <p>&#34;\domainroot\&lt;GUIDString&gt;&#34;</p>
+  </td>
+  <td>
+  <p>A string of Unicode characters that forms the literal
+  &#34;\domainroot\&lt;GUIDString&gt;&#34;, where &lt;GUIDString&gt;
+  represents the string form of a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>, as specified
+  in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90460" data-linktype="external">[RFC4122]</a></span>,
+  section 3. The GUID found in the link&#39;s ID <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ad861812-8cb0-497a-80bb-13c95aa4e425" data-linktype="relative-path">BLOB</a></span> MUST be used
+  to create this.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>BLOBDataSize (4 bytes): </b>The length of the BLOB
+in the <b>BLOBData</b> field, stored as an unsigned, 32-bit, little-endian
+integer. The value of this field MUST be used to determine the start of the
+next DFSNamespaceElementBLOB.</p><p><b>BLOBData (variable): </b>Data specific to the type
+of BLOB described, in the form of a DFSNamespaceRootBLOB, DFSNamespaceLinkBLOB,
+or SiteInformationBLOB.</p><p>The following sections specify the format of the
+DFSNamespaceRootBLOB, DFSNamespaceLinkBLOB, and SiteInformationBLOB.</p></div>

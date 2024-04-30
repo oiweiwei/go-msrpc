@@ -1,0 +1,143 @@
+<div class="content"><p>The TAPI32_MSG packet is used in the following situations:</p><ul><li><p><span><span> 
+</span></span>Requests from the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> to specify a
+function type. </p>
+</li><li><p><span><span> 
+</span></span>Acknowledgments from the server to the client to specify a return
+value.</p>
+</li></ul><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func/Ack_ReturnValue</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">PARAMETERS
+  FOR REQUEST (52 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func/Ack_ReturnValue (4 bytes): </b>An
+unsigned 32-bit integer. The function type requested by the client from the
+server.</p><dl>
+<dd>
+<p>The return value from the server request. The
+following table lists the possible return values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TAPI_SUCCESS</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The requested function is valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TAPIERR_INVALRPCCONTEXT</p>
+  <p>0x0000F101</p>
+  </td>
+  <td>
+  <p>The <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+  request is made with an invalid handle.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALPARAM</p>
+  <p>0x80000032</p>
+  </td>
+  <td>
+  <p>A parameter or packet that a parameter points to
+  contains invalid information.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONUNAVAIL</p>
+  <p>0x80000049</p>
+  </td>
+  <td>
+  <p>The operation is not available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_REINIT</p>
+  <p>0x80000052</p>
+  </td>
+  <td>
+  <p>The application attempted to initialize TAPI twice.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt.</p><p><b>PARAMETERS FOR REQUEST (52 bytes): </b>An unsigned
+32-bit integer. The parameters for the request. The size of the Params array
+MUST be specified by MAX_TAPI_FUNC_ARGS, which has a value of 13.</p><p><b>VarData (variable): </b>Any variable length data.
+This field is dependent on packet usage. </p><p>This packet serves as a template for the <a href="97fa8f2f-5bc7-40ac-9924-bf4e505e8a07" data-linktype="relative-path">Request Packets</a>.</p></div>

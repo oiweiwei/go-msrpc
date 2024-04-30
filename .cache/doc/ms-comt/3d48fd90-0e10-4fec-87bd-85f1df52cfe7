@@ -1,0 +1,28 @@
+<div class="content"><p>The ContainerData type represents run-time information for a
+<a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_ea5c531f-5dd5-43aa-9da1-2ae068c622db" data-linktype="relative-path">conglomeration</a> that has
+one or more <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_791190e6-1e02-42cb-bd25-5aee3ab516ed" data-linktype="relative-path">instance
+containers</a> on the server. The meanings of the fields in this structure
+depend on the number of instance containers that exist on the server for the
+conglomeration represented, as specified in the following section.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwLegacyId;
+   WCHAR wszApplicationIdentifier[40];
+   DWORD dwProcessId;
+   ContainerStatistics statistics;
+ } ContainerData;
+</pre></div>
+</dd></dl><p><b>dwLegacyId:</b>  The <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_89558104-aaa5-4aad-a89c-1b8febc6b7e4" data-linktype="relative-path">container legacy identifier</a>
+of one of the instance containers, arbitrarily selected by the server, that
+exist for the conglomeration represented.</p><p><b>wszApplicationIdentifier:</b>  A
+null-terminated <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a>
+string that MUST contain the <a href="dc2d8c03-c1ff-42f6-8b46-6653b7077a4d" data-linktype="relative-path">CurlyBraceGuidString (section 2.2.1)</a>
+representation of a <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_0ab5119e-c719-4a5c-9198-55a0a2fb508a" data-linktype="relative-path">conglomeration
+identifier</a>. Note that a null-terminated CurlyBraceGuidString is 39 Unicode
+characters, including the null character, and this field is 40 characters long.
+The final element in this array is unused. It SHOULD be set to 0 and MUST be
+ignored upon receipt.</p><p><b>dwProcessId:</b>  The <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_38a420dd-6f31-456e-ae5c-63ec6905380d" data-linktype="relative-path">process identifier</a> of the <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_19e873cd-88cc-48df-ad42-912265a8b3bf" data-linktype="relative-path">process</a> that contains one
+of the instance containers, arbitrarily selected by the server, that exist for
+the conglomeration represented.</p><p><b>statistics:</b>  A <a href="5ae2d047-90bc-47fd-89ca-ec94a529a4b7" data-linktype="relative-path">ContainerStatistics (section 2.2.2)</a>
+structure with fields that contain statistics averaged across all instance
+containers that exist for the conglomeration represented.</p></div>

@@ -1,0 +1,30 @@
+<div class="content"><p>The TSG_PACKET_QUARENC_RESPONSE structure contains the
+response of the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+for the <a href="0386b24c-4603-400d-a79e-11fd9518e34e" data-linktype="relative-path">TsProxyCreateTunnel</a>
+method call. The value of the <b>packetId</b> field in <a href="4c505da0-93c2-4a2f-9329-6174bbaa481b" data-linktype="relative-path">TSG_PACKET</a> MUST be set to <a href="b632d0f8-ba7d-4794-a1a3-d9ff4861d72b" data-linktype="relative-path">TSG_PACKET_TYPE_QUARENC_RESPONSE</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _TSG_PACKET_QUARENC_RESPONSE {
+   unsigned long flags;
+   [range(0, 24000)] unsigned long certChainLen;
+   [string, size_is(certChainLen)] 
+     wchar_t* certChainData;
+   GUID nonce;
+   PTSG_PACKET_VERSIONCAPS versionCaps;
+ } TSG_PACKET_QUARENC_RESPONSE,
+  *PTSG_PACKET_QUARENC_RESPONSE;
+</pre></div>
+</dd></dl><p><b>flags:</b>  Unused. MUST be 0.</p><p><b>certChainLen:</b>  An unsigned long
+specifying the number of characters in <b>certChainData</b>, including the
+terminating null character. If the <b>quarantineCapabilities</b> field of the <a href="97c5562c-70a3-4d45-99eb-732202743cd9" data-linktype="relative-path">TSG_PACKET_VERSIONCAPS</a>
+structure is set to 1, this MUST be a nonzero value. This field MUST be ignored
+if <b>certChainData</b> is ignored. The value MUST be in the range of 0 and
+24000; both inclusive.</p><p><b>certChainData:</b>  The <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a>, along with the
+chain, that the RDG server used for the SCHANNEL <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_ffda2ae0-9528-42a7-ac1a-9d42d40674f7" data-linktype="relative-path">authentication service</a> as
+part of registering the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+interfaces and initialization. It MUST be a string representation of the
+certificate chain if <b>certChainLen</b> is nonzero.<a id="Appendix_A_Target_19"></a><a aria-label="Product behavior note 19" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_19" data-linktype="relative-path">&lt;19&gt;</a> This field can be ignored.</p><p><b>nonce:</b>  A <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> to uniquely identify
+this connection to prevent replay attacks by the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a>. This can be used
+for auditing purposes. A GUID is a unique ID using opaque sequence of bytes as
+specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/001eec5a-7f8b-4293-9e21-ca349392db40" data-linktype="relative-path">2.3.4.2</a>.</p><p><b>versionCaps:</b>  A pointer to a
+TSG_PACKET_VERSIONCAPS structure, as specified in section 2.2.9.2.1.2.</p></div>

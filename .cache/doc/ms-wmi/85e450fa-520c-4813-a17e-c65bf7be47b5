@@ -1,0 +1,196 @@
+<div class="content"><p> </p><p>The IWbemServices::GetObject method retrieves a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_633b12d4-e2c4-442f-95ff-4b2b5d708ed5" data-linktype="relative-path">CIM class</a></span>
+or a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c4119a8a-24db-40cc-9657-7cb5c23ecf43" data-linktype="relative-path">CIM
+instance</a></span>. This method MUST retrieve <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_8d8f4b2c-bf33-4964-b55c-96ac2cc999bb" data-linktype="relative-path">CIM objects</a></span> from the
+namespace that is associated with the current <span><a href="7a50647a-5311-41c2-8f4f-83bcfb497877" data-linktype="relative-path">IWbemServices</a></span>
+interface.</p><dl>
+<dd>
+<div><pre> HRESULT GetObject(
+   [in] const BSTR strObjectPath,
+   [in] long lFlags,
+   [in] IWbemContext* pCtx,
+   [out, in, unique] IWbemClassObject** ppObject,
+   [out, in, unique] IWbemCallResult** ppCallResult
+ );
+</pre></div>
+</dd></dl><p><b>strObjectPath: </b>MUST be the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_775e4b82-5447-4125-b887-b404421e1269" data-linktype="relative-path">CIM path</a></span>
+of the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c1fdd6c7-06cb-4787-8735-4d19a68dd802" data-linktype="relative-path">CIM object</a></span> to be
+retrieved. If the parameter is NULL, the server MUST return an <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_b62e7e55-cbf8-4a45-971d-05f59d28d32f" data-linktype="relative-path">empty CIM
+Object</a></span>.</p><p><b>lFlags: </b>Specifies the behavior of the
+IWbemServices::GetObject method. Flag behavior MUST be interpreted as specified
+in the following table.</p><dl>
+<dd>
+<p>The server MUST allow any combination of zero or
+more flags from the following table and MUST comply with all the restrictions
+in a flag description. Any other DWORD value that does not match a flag
+condition MUST be treated as not valid.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_USE_AMENDED_QUALIFIERS</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server SHOULD return no <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f82a4363-0099-479c-b42c-a8d398a90443" data-linktype="relative-path">CIM
+  localizable information</a></span>. </p>
+  <p>If this bit is set, the server SHOULD return CIM
+  localizable information for the CIM object, as specified in section <span><a href="2bbdf995-93d8-4902-a39d-38f2a9790b85" data-linktype="relative-path">2.2.6</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server MUST make the
+  method call synchronously.</p>
+  <p>If this bit is set, the server MUST make the method
+  call semisynchronously.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_DIRECT_READ</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>If this bit is set, the server MUST disregard any
+  derived class when it searches the result.</p>
+  <p>If this bit is not set, the server MUST consider the
+  entire class hierarchy when it returns the result.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pCtx: </b>MUST be a pointer to an <span><a href="18c8f1a1-652f-43b7-9186-6098bc303a8d" data-linktype="relative-path">IWbemContext</a></span>
+interface, which MUST contain additional information that the client wants to
+pass for processing to the implementer of the CIM object that is referred to by
+<i>strObjectPath</i>. If the parameter is set to NULL, the server MUST ignore
+it.</p><p><b>ppObject: </b>If the parameter is set to NULL, the
+server MUST ignore it. In this case, the output parameter MUST be filled
+according to the state of the <b>lFlags</b> parameter (whether WBEM_FLAG_RETURN_IMMEDIATELY
+is set) as listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Flag state</p>
+   </th>
+   <th>
+   <p>Success operation</p>
+   </th>
+   <th>
+   <p>Failure operation</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY is not set.</p>
+  </td>
+  <td>
+  <p>MUST contain an <span><a href="46710c5c-d7ab-4e4c-b4a5-ebff311fdcd1" data-linktype="relative-path">IWbemClassObject</a></span> <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface
+  pointer</a></span>.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the input parameter is
+  non-NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY is set.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the input parameter is
+  non-NULL.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the input parameter is
+  non-NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ppCallResult: </b>The output parameter MUST be
+filled according to the state of the <b>lFlags</b> parameter (whether
+WBEM_FLAG_RETURN_IMMEDIATELY is set) as listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Flag state</p>
+   </th>
+   <th>
+   <p>Success operation</p>
+   </th>
+   <th>
+   <p>Failure operation</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY is not set.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the <i>ppCallResult</i> input
+  parameter is non-NULL.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the <i>ppCallResult</i> input
+  parameter is non-NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY is set.</p>
+  </td>
+  <td>
+  <p>The <i>ppCallResult</i> parameter MUST NOT be NULL
+  upon input. If NULL, the server MUST return WBEM_E_INVALID_PARAMETER. Upon
+  output, the parameter MUST contain the <span><a href="23ec4065-3fbe-4e39-baef-69e22c285623" data-linktype="relative-path">IWbemCallResult</a></span>
+  interface pointer.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the <i>ppCallResult</i> input
+  parameter is non-NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method MUST return an
+HRESULT that MUST indicate the status of the method call. The HRESULT MUST have
+the type and values as specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>. The server
+MUST return WBEM_S_NO_ERROR (as specified in section 2.2.11) to indicate the
+successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that makes the call MUST have WBEM_REMOTE_ENABLE and WBEM_ENABLE accesses to
+the namespace; otherwise, WBEM_E_ACCESS_DENIED MUST be returned.</p><p>In response to the IWbemServices::GetObject method, the
+server MUST interpret <i>strObjectPath</i> as defined in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89848" data-linktype="external">[DMTF-DSP0004]</a></span>
+section 8.5. If the path refers to a class, the server MUST look it up in the <b>ClassTable</b>.
+If found, the server MUST return an object that represents the <b>ClassDeclaration</b>.
+If <i>strObjectPath</i> refers to an instance, the server MUST check the <b>InstanceProviderId</b>
+for the class. If <b>InstanceProviderId</b> is NULL, then the server MUST look
+up the CIM database and return the CIM instance. If <b>InstanceProviderId</b>
+is not NULL, then the server MUST find the provider entry corresponding to <b>InstanceProviderId</b>
+in the <b>ProviderTable</b>.</p><ul><li><p><span><span> 
+</span></span>If found:</p>
+<ul><li><p><span><span>  </span></span>If <b>SupportsGet</b>
+is FALSE, the server MUST return WBEM_E_PROVIDER_NOT_CAPABLE.</p>
+</li><li><p><span><span>  </span></span>Else
+the server MUST use the abstract interface specified as part of <span><a href="ce1462a6-73be-4960-b2c1-c2cb08a24e36" data-linktype="relative-path">3.1.4.17</a></span>
+to communicate with the provider, and return the appropriate results or the
+error code.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If not found, the server MUST return WBEM_E_PROVIDER_NOT_FOUND.</p>
+</li></ul><p>The successful synchronous method execution MUST provide the
+retrieved IWbemClassObject interface pointer in the <i>ppObject</i> parameter
+and MUST return WBEM_S_NO_ERROR.</p><p>The method MUST fail if the CIM object that is referred to
+by <i>strObjectPath</i> does not exist, if the method parameters are not valid
+as specified in the preceding list, or if the server is unable to execute the
+method. The failed method execution MUST set the output parameters to NULL and
+MUST return an error in the format specified in section 2.2.11.</p><p>The semisynchronous method execution MUST follow the rules
+that are specified in section <span><a href="c40421d8-b195-4268-884f-a4e74ea58dce" data-linktype="relative-path">3.1.1.1.2</a></span>.</p><p>If a class is marked by a Singleton <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e7791691-ba28-437f-85aa-4422aaa52b44" data-linktype="relative-path">qualifier</a></span>,
+the server MUST treat &#34;Class-Name = @&#34; in the object path as
+referencing the singleton instance of the class.</p></div>

@@ -1,0 +1,18 @@
+<div class="content"><p>The structure WINSINTF_RECS_T defines an array of <a href="2772ceb8-1b9f-4766-84e2-af6453f8ba2c" data-linktype="relative-path">WINSINTF_RECORD_ACTION_T (section 2.2.2.3)</a>
+elements. The <a href="4cfdacf1-8328-466b-a2e6-711f4e0b354e" data-linktype="relative-path">R_WinsGetDbRecs (section 3.1.4.6)</a>
+and <a href="12b7ce61-449b-44d6-971f-d0d93c0c3c97" data-linktype="relative-path">R_WinsGetDbRecsByName (section 3.1.4.19)</a>
+methods use this structure.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSINTF_RECS_T {
+   DWORD BuffSize;
+   [unique, size_is(NoOfRecs)] PWINSINTF_RECORD_ACTION_T pRow;
+   DWORD NoOfRecs;
+   DWORD TotalNoOfRecs;
+ } WINSINTF_RECS_T,
+  *PWINSINTF_RECS_T;
+</pre></div>
+</dd></dl><p><b>BuffSize:</b>  The number of bytes allocated
+for the pointer <i>pRow</i>.</p><p><b>pRow:</b>  A pointer to an array of WINSINTF_RECORD_ACTION_T
+elements.</p><p><b>NoOfRecs:</b>  The number of records stored in
+the array pointed to by <i>pRow</i>.</p><p><b>TotalNoOfRecs:</b>  This member is not set and
+MUST be ignored on receipt.</p></div>

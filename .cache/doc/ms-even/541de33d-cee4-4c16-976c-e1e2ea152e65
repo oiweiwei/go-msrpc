@@ -1,0 +1,301 @@
+<div class="content"><p> </p><p>The EVENTLOGRECORD structure contains information on a
+single event. This structure is transferred as a set of bytes in the buffer
+passed in the <span><a href="1898e85b-10a1-43b9-a27e-92fc833cebea" data-linktype="relative-path">ElfrReadELW (section 3.1.4.7)</a></span>
+and <span><a href="a9c60290-49d1-4f3f-808d-14897d20bb1f" data-linktype="relative-path">ElfrReadELA (section 3.1.4.8)</a></span>
+methods. </p><p>All integer fields in the EVENTLOGRECORD structure MUST be
+in little-endian byte order (that is, least significant byte first). </p><p>The string fields in this structure MUST be ANSI strings
+when this structure is used with ElfrReadELA (section 3.1.4.8)
+methods, and <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> strings when
+this structure is used with ElfrReadELW (section 3.1.4.7) methods.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Length</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TimeGenerated</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TimeWritten</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EventID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>EventType</p>
+  </td>
+  <td colspan="16">
+  <p>NumStrings</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>EventCategory</p>
+  </td>
+  <td colspan="16">
+  <p>ReservedFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ClosingRecordNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StringOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UserSidLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UserSidOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DataLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DataOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SourceName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Computername
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UserSidPadding
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UserSid
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Strings
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Padding
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Length2</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Length (4 bytes): </b>Size in bytes of the
+structure. The size varies depending on the variable-length fields at the end
+of the structure.</p><p><b>Reserved (4 bytes): </b>MUST be set to 0x654c664C
+(which is ASCII for eLfL). This serves as a signature for the structure.</p><p><b>RecordNumber (4 bytes): </b>The record number, as
+defined in section <span><a href="68de6374-4d17-4c49-8ec7-f328b79ddd65" data-linktype="relative-path">1.3.1</a></span>. The <b>RecordNumber</b>
+is mapped directly from the <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_86fdb9db-1f9d-4e4a-bec5-bfcd3b9f6159" data-linktype="relative-path">record ID</a></span>. The
+record ID is an unsigned int64 (an 8 byte number) that the server reads from
+the file and converts to an unsigned integer (a 4 byte number) when assigning
+the value to the <b>RecordNumber</b> field in the <b>EVENTLOGRECORD</b>
+structure. The conversion simply discards the higher 32 bits of Record ID and
+assigns the lower 32 bits of record ID to the <b>RecordNumber</b>.</p><p><b>TimeGenerated (4 bytes): </b>Time when the event
+was generated. The time MUST be expressed as the number of seconds since
+00:00:00 on January 1, 1970 (UTC). This value is supplied by the <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_efdc035d-100a-4568-a67f-69fb726fadcb" data-linktype="relative-path">event
+source</a></span>.</p><p><b>TimeWritten (4 bytes): </b>Time when the event was
+written. The time MUST be expressed as the number of seconds since 00:00:00 on
+January 1, 1970 (UTC). This value is the time the event was written to the <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_bb3fad7e-60bf-46d4-9c3f-7caea47a743e" data-linktype="relative-path">event log</a></span>.</p><p><b>EventID (4 bytes): </b><span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_edce565a-e2b7-40df-ab78-cbb3a49ff3bd" data-linktype="relative-path">EventID</a></span> generated by
+the event source, as specified in section <span><a href="8db98779-8bf4-442c-8d1b-cba2dbf1b365" data-linktype="relative-path">1.8.4</a></span>.</p><p><b>EventType (2 bytes): </b>Type of the event, as
+specified in section 1.3.1. </p><p><b>NumStrings (2 bytes): </b>Number of strings in the
+<b>Strings</b> field. This MUST be between 0 and 256, inclusive. A value of
+zero indicates that no strings are present. </p><p><b>EventCategory (2 bytes): </b><span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_218d3b23-9c27-45d5-a861-7b832d392fc6" data-linktype="relative-path">Event
+category</a></span>, as specified in section <span><a href="c1f99c2e-b118-45e1-a414-007272fb9d43" data-linktype="relative-path">1.8.5</a></span>. </p><p><b>ReservedFlags (2 bytes): </b>Specifies whether or
+not the last string in the <b>Strings</b> field contains well-formed XML, as
+specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90598" data-linktype="external">[XML]</a></span>. This
+MUST be one of the following two values. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>The event does not contain XML.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8000</p>
+  </td>
+  <td>
+  <p>The event contains XML.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ClosingRecordNumber (4 bytes): </b>MUST be set to
+zero when sent and MUST be ignored on receipt.</p><p><b>StringOffset (4 bytes): </b>This MUST be the
+offset in bytes from the beginning of the structure to the <b>Strings</b>
+field. If the <b>Strings</b> field is not present (NumStrings is zero), this
+can be set to any arbitrary value when sent and MUST be ignored on receipt by
+the client.</p><p><b>UserSidLength (4 bytes): </b>Size in bytes of the
+user&#39;s security identifier, which is located within the <b>UserSid</b> field.
+If there is no <b>UserSid</b> field for this event, this field MUST be set to
+zero. </p><p><b>UserSidOffset (4 bytes): </b>This MUST be the
+offset in bytes from the beginning of the structure to the <b>UserSid</b>
+field. If the <b>UserSid</b> field is not present (that is, if <b>UserSidLength</b>
+is zero), this can be set to any arbitrary value when sent and MUST be ignored
+by on receipt the client. </p><p><b>DataLength (4 bytes): </b>This MUST be the size in
+bytes of the <b>Data</b> field. If the <b>Data</b> field is not used, this
+field MUST be set to zero.</p><p><b>DataOffset (4 bytes): </b>This MUST be the offset
+in bytes from the beginning of the structure to the <b>Data</b> field. If the <b>Data</b>
+field is not present (that is, if <b>DataLength</b> is zero), this can be set
+to any arbitrary value when sent and MUST be ignored on receipt by the client.</p><p><b>SourceName (variable): </b>Variable-length
+null-terminated string that specifies the name of the source that generated the
+event, as defined in section <span><a href="c32280b0-471d-41b7-b146-7ac496708c26" data-linktype="relative-path">1.8.2</a></span>. The length
+of this field is calculated by seeking the NULL that terminates the string.</p><p><b>Computername (variable): </b>Variable-length
+null-terminated string that assists in identifying the machine that generated
+the event. This string MUST NOT<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="4acc4fbc-1378-4120-83d1-cfb4ae0240e0#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a> be
+interpreted by the protocol, and can be in an arbitrary format. </p><dl>
+<dd>
+<p>In practice, the name of the computer. There are no
+character restrictions on this field&#39;s content (for example, a <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">fully
+qualified domain name (FQDN)</a></span> can be used).</p>
+</dd>
+<dd>
+<p>The length of this field is calculated by seeking
+the NULL that terminates the string.</p>
+</dd></dl><p><b>UserSidPadding (variable): </b>MUST be zero or
+more bytes of padding, where the choice of length is implementation dependent.
+The padding can have any value, and MUST be ignored on receipt.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="4acc4fbc-1378-4120-83d1-cfb4ae0240e0#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p><p><b>UserSid (variable): </b>Current user&#39;s security
+identifier, as defined by the <span><a href="6f5fd814-09e4-4ca0-8e47-1383ddf9ea91" data-linktype="relative-path">RPC_SID</a></span> structure.
+This parameter can be NULL if the security identifier is not required. </p><p><b>Strings (variable): </b>Zero or more
+null-terminated strings containing information on the event. The <b>NumStrings</b>
+field contains the number of items in this field.</p><p><b>Data (variable): </b>Event-specific binary data.
+This is supplied by the event source, and MUST NOT be interpreted by the
+protocol. This data is not always present. The <b>DataLength</b> field contains
+the length of this field. The <b>DataOffset</b> field contains the start of
+this field.</p><p><b>Padding (variable): </b>The <b>SourceName</b>, <b>ComputerName</b>,
+<b>UserSid</b>, <b>Strings</b>, and <b>Data</b> fields can all vary in length.
+The <b>UserSid</b>, <b>Strings</b>, and <b>Data</b> fields MAY be zero bytes in
+length. The length of the entire structure up to this point, including these
+fields, MUST be divisible by 4. Therefore, up to 3 bytes of padding MUST be
+added to bring the length to a multiple of 4. The padding can have any value,
+and MUST be ignored on receipt.</p><p><b>Length2 (4 bytes): </b>Same value as the Length
+field specified as the first member. By having two copies, a buffer containing
+many events can easily be navigated in both directions.</p></div>

@@ -1,0 +1,97 @@
+<div class="content"><p> </p><p>In the <b>DNS_RPC_ZONE_INFO_DOTNET</b> structure all fields
+have same definition as specified in section <b>DNS_RPC_ZONE_INFO_W2K</b>
+(section <span><a href="e8651544-0fbb-4038-8232-375ff2d8a55e" data-linktype="relative-path">2.2.5.2.4.1</a></span>), with
+the following exceptions:</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcZoneInfoDotNet {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   [string] char* pszZoneName;
+   DWORD dwZoneType;
+   DWORD fReverse;
+   DWORD fAllowUpdate;
+   DWORD fPaused;
+   DWORD fShutdown;
+   DWORD fAutoCreated;
+   DWORD fUseDatabase;
+   [string] char* pszDataFile;
+   PIP4_ARRAY aipMasters;
+   DWORD fSecureSecondaries;
+   DWORD fNotifyLevel;
+   PIP4_ARRAY aipSecondaries;
+   PIP4_ARRAY aipNotify;
+   DWORD fUseWins;
+   DWORD fUseNbstat;
+   DWORD fAging;
+   DWORD dwNoRefreshInterval;
+   DWORD dwRefreshInterval;
+   DWORD dwAvailForScavengeTime;
+   PIP4_ARRAY aipScavengeServers;
+   DWORD dwForwarderTimeout;
+   DWORD fForwarderSlave;
+   PIP4_ARRAY aipLocalMasters;
+   DWORD dwDpFlags;
+   [string] char* pszDpFqdn;
+   [string] wchar_t* pwszZoneDn;
+   DWORD dwLastSuccessfulSoaCheck;
+   DWORD dwLastSuccessfulXfr;
+   DWORD dwReserved1;
+   DWORD dwReserved2;
+   DWORD dwReserved3;
+   DWORD dwReserved4;
+   DWORD dwReserved5;
+   [string] char* pReserved1;
+   [string] char* pReserved2;
+   [string] char* pReserved3;
+   [string] char* pReserved4;
+ } DNS_RPC_ZONE_INFO_DOTNET,
+  *PDNS_RPC_ZONE_INFO_DOTNET;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The DNS server
+management structure version number. This value SHOULD<a id="Appendix_A_Target_42"></a><a aria-label="Product behavior note 42" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_42" data-linktype="relative-path">&lt;42&gt;</a> be set to 0x00000001.</p><p><b>dwReserved0:</b> Reserved for future use.
+Server will set to zero and receiver MUST ignore this value. </p><p><b>dwForwarderTimeout (4 bytes):</b> The <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_001ff1c1-e24f-4766-a5b1-a5802871054f" data-linktype="relative-path">forwarder</a></span>
+timeout value for a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span>, in seconds.
+This is the number of seconds the DNS server waits for response from a remote
+DNS server for a forwarded query. This value is applicable for zones of type
+DNS_ZONE_TYPE_FORWARDER (section <span><a href="27e138a7-110c-44a4-afcb-b95f35f00306" data-linktype="relative-path">2.2.5.1.1</a></span>). For all
+other zone types, senders MUST set this value to zero and receivers MUST ignore
+it.</p><p><b>fForwarderSlave:</b> A Boolean value
+indicating whether the DNS server is not allowed to perform recursion while
+resolving names for this zone. The DNS server MUST fail queries after getting
+failure from all forwarded servers, if the value is TRUE (0x00000001).
+Otherwise normal recursion MUST be performed. This value is applicable for
+zones of type DNS_ZONE_TYPE_FORWARDER (section 2.2.5.1.1). For all other zone
+types, senders MUST set this value to zero and receivers MUST ignore it.</p><p><b>aipLocalMasters:</b> A pointer to a structure
+of type <span><a href="588ae296-71bf-402f-9996-86ecee39dc29" data-linktype="relative-path">IP4_ARRAY (section 2.2.3.2.1)</a></span>
+that specifies a list of <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0f25c9b5-dc73-4c3e-9433-f09d1f62ea8e" data-linktype="relative-path">IPv4</a></span> addresses of 
+primary DNS servers for this zone. If this value is not NULL then it overrides
+the master servers list configured in the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_04fd0982-6bb6-44f1-817e-795715049c50" data-linktype="relative-path">directory server</a></span>. </p><p><b>dwDpFlags:</b> Flag value that specifies
+information about the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_68dc613a-d602-41ae-9acc-76ffe97877c4" data-linktype="relative-path">application directory partition</a></span>
+in which this zone is stored. This MUST be set to any combination of the <span><a href="27e378aa-d4d7-43de-8b34-3e5b957a7130" data-linktype="relative-path">DNS_RPC_DP_FLAGS (section 2.2.7.1.1)</a></span>
+or zero if this zone is not stored in a directory server.</p><p><b>pszDpFqdn:</b> A pointer to a null-terminated
+UTF-8 string that specifies the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a></span> of the
+application directory partition in which this zone is stored. If the zone is
+not stored in an application directory partition this value MUST be NULL. </p><p><b>pwszZoneDn:</b> Pointer to a null-terminated <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a></span> that specifies the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">distinguished name</a></span>
+for the zone if the zone is stored the directory server. This field is
+applicable for directory server integrated zones only. The value MUST be NULL
+if this zone is not stored in the directory server.</p><p><b>dwLastSuccessfulSoaCheck:</b> The <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_391ec606-c265-48f2-aeeb-3245b5503121" data-linktype="relative-path">time-stamp</a></span>
+at which last <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0365bdcc-f1f5-4494-b57c-02c897b7ea8a" data-linktype="relative-path">SOA</a></span> record was
+received successfully from the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_c5f78ae9-df7c-47ee-92f5-5e4f92198cd0" data-linktype="relative-path">primary DNS server</a></span>
+for this zone. This field is applicable only for zones which are secondary or
+non-authoritative. For all other zones this value MUST be set to zero by
+senders and MUST be ignored by receivers.</p><p><b>dwLastSuccessfulXfr:</b> The time-stamp at
+which last <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_67ea3c5b-6b1e-40a3-ac20-3f7eaf056504" data-linktype="relative-path">zone transfer</a></span> was
+completed successfully from the primary DNS server for this zone. This field is
+applicable only for zones which are secondary or non-authoritative. For all
+other zones this value MUST be set to zero by senders and MUST be ignored by
+receivers.</p><p><b>dwReserved1:</b> Reserved for future use.
+Server MUST set to zero and receiver MUST ignore this value. </p><p><b>dwReserved2:</b> Reserved for future use.
+Server MUST set to zero and receiver MUST ignore this value. </p><p><b>dwReserved3:</b> Reserved for future use.
+Server MUST set to zero and receiver MUST ignore this value. </p><p><b>dwReserved4:</b> Reserved for future use.
+Server MUST set to zero and receiver MUST ignore this value. </p><p><b>dwReserved5:</b> Reserved for future use.
+Server MUST set to zero and receiver MUST ignore this value. </p><p><b>pReserved1:</b> Reserved for future use.
+Server MUST set to zero and receiver MUST ignore this value. </p><p><b>pReserved2:</b> Reserved for future use.
+Server MUST set to zero and receiver MUST ignore this value. </p><p><b>pReserved3:</b> Reserved for future use.
+Server MUST set to zero and receiver MUST ignore this value. </p><p><b>pReserved4:</b> Reserved for future use.
+Server MUST set to zero and receiver MUST ignore this value. </p></div>

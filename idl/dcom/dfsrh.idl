@@ -1,0 +1,186 @@
+import "ms-oaut.idl";
+ 
+// XXX: SAFEARRAY macro expanded.
+// #define SAFEARRAY(datatype) SAFEARRAY*
+ 
+[
+    uuid(9009D654-250B-4e0d-9AB0-ACB63134F69F)
+]
+typedef enum DfsrHelperErrorsEnum
+{
+    dfsrHelperErrorNotLocalAdmin = 0x80042001,
+    dfsrHelperErrorCreateVerifyServerControl = 0x80042002,
+    dfsrHelperLdapErrorBase = 0x80043000
+} DfsrHelperErrorsEnum;
+ 
+[
+    uuid(CEB5D7B4-3964-4f71-AC17-4BF57A379D87)
+]
+typedef enum DfsrReportingFlags
+{
+    REPORTING_FLAGS_NONE= 0,
+    REPORTING_FLAGS_BACKLOG = 1,
+    REPORTING_FLAGS_FILES   = 2,
+} DfsrReportingFlags;
+ 
+typedef [uuid(D3766938-9FB7-4392-AF2F-2CE8749DBBD0)]
+struct AdAttributeData
+{
+    long operation;
+    BSTR attributeName;
+    BSTR attributeValue;
+    VARIANT_BOOL isString;
+    long length;
+}
+_AdAttributeData;
+ 
+typedef
+[uuid(7A2323C7-9EBE-494a-A33C-3CC329A18E1D)]
+struct VersionVectorData
+{
+    long uncompressedSize;
+    long backlogCount;
+    BSTR contentSetGuid;
+    VARIANT versionVector;
+}
+_VersionVectorData;
+ 
+//----------------------------------------------------------------------------
+ 
+[
+    object,
+    uuid(4BB8AB1D-9EF9-4100-8EB6-DD4B4E418B72),
+    oleautomation,
+    helpstring("IADProxy Interface"),
+    pointer_default(unique)
+]
+interface IADProxy : IUnknown
+{
+   HRESULT CreateObject(
+      [in] BSTR domainControllerName,
+      [in] BSTR distinguishedName, 
+      [in] [safearray(_AdAttributeData)] SAFEARRAY* *attributes,
+      [in] BSTR verifyNameDomainControllerName);
+   
+   HRESULT DeleteObject(
+      [in] BSTR domainControllerName, 
+      [in] BSTR distinguishedName);
+ 
+   HRESULT ModifyObject(
+      [in] BSTR domainControllerName,
+      [in] BSTR distinguishedName, 
+      [in] [safearray(_AdAttributeData)] SAFEARRAY* *attributes);
+};
+ 
+//----------------------------------------------------------------------------
+ 
+[
+    object,
+    uuid(C4B0C7D9-ABE0-4733-A1E1-9FDEDF260C7A),
+    oleautomation,
+    helpstring("IADProxy2 Interface"),
+    pointer_default(unique)
+]
+interface IADProxy2 : IADProxy
+{
+   HRESULT CreateObject2( // XXX: CreateObject -> CreateObject2
+      [in] BSTR domainControllerName,
+      [in] BSTR distinguishedName, 
+      [in] [safearray(_AdAttributeData)] SAFEARRAY* *attributes,
+      [in] BSTR verifyNameDomainControllerName,
+      [in] BSTR networkNameResourceName);
+   
+   HRESULT DeleteObject2( // XXX: DeleteObject -> DeleteObject2
+      [in] BSTR domainControllerName, 
+      [in] BSTR distinguishedName,
+      [in] BSTR networkNameResourceName);
+ 
+   HRESULT ModifyObject2( // XXX: ModifyObject -> ModifyObject2
+      [in] BSTR domainControllerName,
+      [in] BSTR distinguishedName, 
+      [in] [safearray(_AdAttributeData)] SAFEARRAY* *attributes,
+      [in] BSTR networkNameResourceName);
+};
+ 
+//----------------------------------------------------------------------------
+ 
+[
+    object,
+    uuid(E65E8028-83E8-491b-9AF7-AAF6BD51A0CE),
+    oleautomation,
+    helpstring("IServerHealthReport Interface"),
+    pointer_default(unique)
+]
+interface IServerHealthReport : IUnknown
+{
+    HRESULT GetReport(
+      [in] GUID replicationGroupGuid,
+      [in] BSTR referenceMember,
+      [in] [safearray(_VersionVectorData)] SAFEARRAY* *referenceVersionVectors,
+      [in] long flags,  
+      [out] [safearray(_VersionVectorData)] SAFEARRAY* *memberVersionVectors,
+      [out] BSTR *reportXML);
+ 
+    HRESULT GetCompressedReport(
+      [in] GUID replicationGroupGuid, 
+      [in] BSTR referenceMember,
+      [in] [safearray(_VersionVectorData)] SAFEARRAY* *referenceVersionVectors,
+      [in] long flags,  
+      [out] [safearray(_VersionVectorData)] SAFEARRAY* *memberVersionVectors,
+      [out] BSTR *reportCompressed,
+      [out] long *uncompressedReportSize);
+      
+    HRESULT GetRawReportEx(
+      [in] GUID replicationGroupGuid,
+      [in] [safearray(VARIANT)] SAFEARRAY* *reportOptions,
+      [out] [safearray(VARIANT)] SAFEARRAY* *report);
+ 
+    HRESULT GetReferenceVersionVectors(
+      [in] GUID replicationGroupGuid,
+      [out] [safearray(_VersionVectorData)] SAFEARRAY* *referenceVersionVectors);
+ 
+    HRESULT Opnum7NotUsedOnWire(void);
+ 
+    HRESULT GetReferenceBacklogCounts(
+      [in] [safearray(_VersionVectorData)] SAFEARRAY* *flatMemberVersionVectors,
+      [out] [safearray(long)] SAFEARRAY* *backlogCounts);
+}
+ 
+[
+    object,
+    uuid(20D15747-6C48-4254-A358-65039FD8C63C),
+    oleautomation,
+    helpstring("IServerHealthReport2 Interface"),
+    pointer_default(unique)
+]
+interface IServerHealthReport2 : IServerHealthReport
+{
+    //
+    // Gets the version of XML report generated with default 
+    // parameters
+    //
+ 
+    HRESULT GetReport2( // XXX: GetReport -> GetReport2
+      [in] GUID replicationGroupGuid,
+      [in] BSTR referenceMember,
+      [in] BSTR serverName,
+      [in] [safearray(_VersionVectorData)] SAFEARRAY* *referenceVersionVectors,
+      [in] LONG flags,  
+      [out] [safearray(_VersionVectorData)] SAFEARRAY* *memberVersionVectors,
+      [out] BSTR *reportXML);
+ 
+    // 
+    // Gets the compressed version of XML report generated
+    // with default parameters
+    //
+ 
+    HRESULT GetCompressedReport2( // XXX: GetCompresedReport -> GetCompressedReport2
+      [in] GUID replicationGroupGuid, 
+      [in] BSTR referenceMember,
+      [in] BSTR serverName,
+      [in] [safearray(_VersionVectorData)] SAFEARRAY* *referenceVersionVectors,
+      [in] LONG flags,  
+      [out] [safearray(_VersionVectorData)] SAFEARRAY* *memberVersionVectors,
+      [out] BSTR *reportCompressed,
+      [out] LONG *uncompressedReportSize); // in bytes 
+}

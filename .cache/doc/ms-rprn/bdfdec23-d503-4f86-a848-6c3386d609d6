@@ -1,0 +1,19 @@
+<div class="content"><p>The <b>RPC_BIDI_RESPONSE_CONTAINER</b> structure is a
+container for a list of <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_604aaee0-7ad4-46a3-932f-8d2def6615ad" data-linktype="relative-path">bidirectional</a>
+responses.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _RPC_BIDI_RESPONSE_CONTAINER {
+   DWORD Version;
+   DWORD Flags;
+   DWORD Count;
+   [size_is(Count), unique] RPC_BIDI_RESPONSE_DATA aData[];
+ } RPC_BIDI_RESPONSE_CONTAINER;
+</pre></div>
+</dd></dl><p><b>Version:</b> This member MUST contain the
+value that specifies the version of the bidirectional API <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_fd49ea36-576c-4417-93bd-d1ac63e71093" data-linktype="relative-path">schema</a>. The value of this
+member MUST be 0x00000001.</p><p><b>Flags:</b> This member is a set of flags that
+are reserved for system use. The value of this member MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>Count:</b> This member specifies the number
+of bidirectional responses in the <b>aData</b> member.</p><p><b>aData:</b> This member is an array of <b>RPC_BIDI_RESPONSE_DATA</b>
+structures. Each structure in this member MUST contain a single bidirectional
+response. For more information, see section <a href="f42d17bd-05d6-43a4-872e-6e6513ee0922" data-linktype="relative-path">2.2.1.12.2</a>.</p></div>

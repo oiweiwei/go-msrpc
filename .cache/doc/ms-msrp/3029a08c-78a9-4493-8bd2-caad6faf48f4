@@ -1,0 +1,91 @@
+<div class="content"><p> </p><p>The <span><a href="0abc9d2c-07dd-4a18-9285-1164b15d66f2" data-linktype="relative-path">SMB_COM_SEND_TEXT_MB_MESSAGE</a></span>
+message is used to transmit a block of text from a text message when the text
+message is larger than 128 bytes.</p><p>In the SMB header of this message, the <b>Command</b> field
+MUST be set to 0xD7, as specified in <span><a href="../ms-smb/f210069c-7086-4dc2-885e-861d837df688" data-linktype="relative-path">[MS-SMB]</a></span>
+section <span><a href="../ms-smb/3c0848a6-efe9-47c2-b57a-f7e8217150b9" data-linktype="relative-path">2.2.3.1</a></span>.
+In the response message, the header MAY contain a Status code, as specified in
+[MS-SMB] section 2.2.3.1. All other fields in the SMB header MUST be set to
+0x00.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="e890fd2e-92d5-4468-a6cf-db6977866112#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><p>The payload of the SMB_COM_SEND_TEXT_MB_MESSAGE request
+message is specified as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>WordCount</p>
+  </td>
+  <td colspan="16">
+  <p>MessageGroupId</p>
+  </td>
+  <td colspan="8">
+  <p>ByteCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>...</p>
+  </td>
+  <td colspan="8">
+  <p>BufferFormat</p>
+  </td>
+  <td colspan="16">
+  <p>DataLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>WordCount (1 byte): </b>An 8-bit value that MUST
+specify the number of 2-byte word values between the WordCount and <b>ByteCount</b>
+values. WordCount MUST be one (0x1) for this message.</p><p><b>MessageGroupId (2 bytes): </b> A 16-bit value that
+MUST specify the NetBIOS session number on which this group of messages is to
+be delivered.</p><p><b>ByteCount (2 bytes): </b>A 16-bit value that MUST
+specify the size of all of the following fields, in bytes.</p><p><b>BufferFormat (1 byte): </b>An 8-bit value that
+MUST contain a constant value that specifies the type of the next parameter.
+BufferFormat MUST be 0x01 in this message, indicating that the next parameter
+is a length-prefixed buffer of bytes.</p><p><b>DataLength (2 bytes): </b>A 16-bit value that MUST
+specify the length of the Data buffer. This value MUST NOT be greater than 128.</p><p><b>Data (variable): </b>A block of null-terminated
+ASCII message text. Before the message is sent, the ASCII characters CR (0x0D)
+and LF (0x0A) MUST be converted to the value 0x14. Pairs of these characters
+(CRLF or LFCR) MUST be converted into a single 0x14 character. This buffer MUST
+NOT be more than 128 bytes in size.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="e890fd2e-92d5-4468-a6cf-db6977866112#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p><p>The response message to SMB_COM_SEND_TEXT_MB_MESSAGE is
+specified in section <span><a href="fb979c6b-8f33-424d-912c-6cb32e574826" data-linktype="relative-path">2.2.3.3.2</a></span>.</p></div>

@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The StringArray_r structure encodes an array of references
+to 8-bit character strings.</p><dl>
+<dd>
+<div><pre> typedef struct _StringArray_r {
+   [range(0,100000)] DWORD cValues;
+   [size_is(cValues)] [string] char** lppszA;
+ } StringArray_r;
+</pre></div>
+</dd></dl><p><b>cValues:</b>  The number of 8-bit
+character strings references represented in the StringArray_r structure. This
+value MUST NOT exceed 100,000.</p><p><b>lppszA:</b>  The 8-bit character string
+references. The strings referred to are NULL-terminated.</p></div>

@@ -1,0 +1,652 @@
+<div class="content"><p>The DFS: Namespace Management Protocol is one of a
+collection of protocols that group shares that are located on different servers
+by combining various storage media into a single logical namespace. The <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS namespace</a> is a virtual
+view of the <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_a49a79ea-dac7-4016-9a84-cf87161db7e3" data-linktype="relative-path">share</a>. When
+a user views the namespace, the directories and files in it appear to reside on
+a single share. Users can navigate the namespace without needing to know the
+server names or shares hosting the data. <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0b8086c9-d025-45b8-bf09-6b5eca72713e" data-linktype="relative-path">DFS</a> also provides
+redundancy of namespace service.</p><p>Access to a DFS namespace requires the <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c2787719-60e0-4b69-8efe-c33edf9b40b2" data-linktype="relative-path">DFS client</a>. The DFS client
+uses the <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c6f2eabf-2138-4f97-a788-5d6a41a27bdd" data-linktype="relative-path">DFS Referral</a>
+Protocol, as specified in <a href="../ms-dfsc/3109f4be-2dbb-42c9-9b8e-0b34f7a2135e" data-linktype="relative-path">[MS-DFSC]</a>,
+to ascertain the existence of the DFS namespace and to determine the shares to
+access on servers that participate in the DFS namespace. The DFS Referral
+Protocol navigates through the DFS namespace by appropriately issuing referral
+requests to a <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain
+controller (DC)</a> or to a <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ac90b498-3ba4-48d6-bcd6-5495f1654671" data-linktype="relative-path">DFS
+root target</a> server to resolve the original path to a share on a server that
+contains the data being accessed. For more information on DFS and the DFS
+client, see <a href="https://go.microsoft.com/fwlink/?LinkId=89945" data-linktype="external">[MSDFS]</a>.
+For more information on how the DFS Referral Protocol operates within the
+context of the <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_09dbec39-5e75-4d9a-babf-1c9f1d499625" data-linktype="relative-path">Server
+Message Block (SMB)</a> Protocol, as specified in <a href="../ms-smb/f210069c-7086-4dc2-885e-861d837df688" data-linktype="relative-path">[MS-SMB]</a>,
+which is the transport for DFS referrals, see [MS-DFSC] section <a href="../ms-dfsc/4772beaf-4452-4f3e-9b14-6cc65e9a07ae" data-linktype="relative-path">2</a>.</p><p>DFS namespace information, such as name, <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS link</a> name, <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_44e2f830-c28b-41e3-8c3c-d0bb576ed9fb" data-linktype="relative-path">DFS link target</a>, and so on,
+is stored in the <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_e8de88fd-d760-46fa-ad77-76961fa20aea" data-linktype="relative-path">DFS
+metadata</a> of the namespace. Depending on where the DFS metadata is stored,
+the DFS namespace is &#34;domain-based&#34; or &#34;stand-alone&#34;.</p><ul><li><p><span><span> 
+</span></span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_133ab305-ad75-4b38-8ec9-40bc0dc3b594" data-linktype="relative-path">Domain-Based
+DFS Namespace</a>: A well-known container in the domain directory, known as the
+DFS configuration container, holds the DFS metadata for a domain-based DFS
+namespace. An <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a>
+exists for each domain-based DFS namespace in the DFS configuration container.
+DFS metadata of a domain-based DFS namespace is stored as a <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ad861812-8cb0-497a-80bb-13c95aa4e425" data-linktype="relative-path">binary large object (BLOB)</a>
+in an attribute of the DFS namespace object. A domain-based DFS namespace can
+have multiple DFS root targets, which offer high availability and load sharing
+at the DFS root level. The <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS
+root</a> name of a domain-based DFS namespace has the <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> as its first
+component. A DFS client issues a referral request to a DC in order to identify
+the DFS root targets of the DFS namespace.</p>
+</li><li><p><span><span> 
+</span></span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_701a2cc1-eb5a-400f-b394-5bad264ec8f6" data-linktype="relative-path">Stand-Alone
+DFS Namespace</a>: DFS metadata is stored in an implementation-specific format
+on the DFS root target server itself. A stand-alone DFS namespace supports only
+one DFS root target. The DFS root name of a stand-alone DFS namespace has a <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_fe6fd875-b30a-44bb-850e-10733990f04c" data-linktype="relative-path">host name</a> as its first
+component. A DFS client issues referral requests to the DFS root target server
+to access the DFS namespace. A stand-alone DFS namespace can be clustered to
+provide high availability of the DFS namespace.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a> The server
+hosting a stand-alone DFS namespace can be promoted to a Domain Controller, but
+the namespace cannot be converted to a domain-based namespace, and it will
+continue as a stand-alone namespace.</p>
+<p>A server cannot host both
+domain-based and stand-alone namespace roots with the same name.</p>
+</li></ul><p>The DFS: Namespace Management Protocol is used to configure
+DFS services. This protocol is used primarily by administrative applications
+that run on client computers to connect and configure <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_d29e2498-1dac-4afa-b478-8a456555b844" data-linktype="relative-path">Distributed File System (DFS)
+servers</a>. It consists of the <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> methods that can be
+issued from an administrative client computer to the protocol server on a DC or
+a Distributed File System (DFS) root target server. An administrator can use
+this protocol to perform various Distributed File System (DFS) namespace
+administration operations, such as creating or deleting a DFS namespace, adding
+or removing DFS root targets, adding or removing DFS links, and adding or
+removing targets to an existing link. The DFS: Namespace Management Protocol
+includes the following:</p><ul><li><p><span><span> 
+</span></span>Eleven basic methods for configuring <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ce6af522-ba70-4ba1-a684-b98b809c72ad" data-linktype="relative-path">stand-alone DFS namespaces</a>
+and <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c37de1c8-4bd3-406f-ad8c-50c877666f91" data-linktype="relative-path">domain-based DFS
+namespaces</a>, as specified in section <a href="7f56ca02-70ff-45ed-b4d3-0e679907d1ed" data-linktype="relative-path">3.1.4.1</a>.</p>
+</li><li><p><span><span> 
+</span></span>Four methods that support extended access to configurations of a
+DFS namespace, as specified in section <a href="b8f452a8-2a48-4c3e-934c-ab5f2f1a2748" data-linktype="relative-path">3.1.4.2</a>.</p>
+</li><li><p><span><span> 
+</span></span>Three methods for configuring root targets in a <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_2aad5e61-ffe9-406e-a192-328c5327ee72" data-linktype="relative-path">domainv1-based DFS namespace</a>,
+as specified in section <a href="98df4e5d-7092-4cb2-80cf-48e535e132b6" data-linktype="relative-path">3.1.4.3</a>.</p>
+</li><li><p><span><span> 
+</span></span>Three methods for configuring a stand-alone DFS namespace, as
+specified in section <a href="f639efff-4116-4556-b71b-9c006e8f265b" data-linktype="relative-path">3.1.4.4</a>.</p>
+</li><li><p><span><span> 
+</span></span>Two methods relating to the association between a <a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_3de8e640-501a-4b25-80a7-0ba769f3c0b9" data-linktype="relative-path">DFS server</a> and the DC used
+by a domain-based DFS namespace, as specified in section <a href="ed6babdd-d313-486b-a606-22f938afe988" data-linktype="relative-path">3.1.4.5</a>.</p>
+</li></ul><p>Much of the configuration information that is communicated
+through this protocol is marshaled through two unions: <a href="725240d3-2da7-41ef-8161-b7df1c2af497" data-linktype="relative-path">DFS_INFO_STRUCT</a> and <a href="562e366a-27db-49a9-8aae-b0e747245a69" data-linktype="relative-path">DFS_INFO_ENUM_STRUCT</a>. The
+usage model of these unions is for the client to specify a <i>Level</i>
+parameter to determine which union case to use. Each level corresponds to a
+specific DFS_INFO_<i>n</i> structure, where <i>n</i> is the level number.
+Arrays of DFS_INFO_<i>n</i> structures are marshaled using DFS_INFO_<i>n</i>_CONTAINER
+structures. Levels 1, 2, 3, 4, 5, 6, 8, and 9 are common, and are shared across
+both the DFS_INFO_STRUCT and DFS_INFO_ENUM_STRUCT unions. Levels 7, 50, 100,
+101, 102, 103, 104, 105, 106, 107, and 150 are unique to the DFS_INFO_STRUCT
+union, and Levels 200 and 300 are unique to the DFS_INFO_ENUM_STRUCT union.</p><p>While a number of methods use the common configuration
+information structures, not all methods support all levels. The following table
+lists the levels used in the DFS_INFO_STRUCT and DFS_INFO_ENUM_STRUCT unions,
+their singleton and array structures, and the methods with which the level can
+be used.</p><table><thead>
+  <tr>
+   <th>
+   <p>Level </p>
+   </th>
+   <th>
+   <p>Structure </p>
+   </th>
+   <th>
+   <p>Array structure </p>
+   </th>
+   <th>
+   <p>NetrDfs GetInfo </p>
+   </th>
+   <th>
+   <p>NetrDfs Enum </p>
+   </th>
+   <th>
+   <p>NetrDfs SetInfo </p>
+   </th>
+   <th>
+   <p>NetrDfs SetInfo2 </p>
+   </th>
+   <th>
+   <p>NetrDfs EnumEx </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>DFS_INFO_1</p>
+  </td>
+  <td>
+  <p>DFS_INFO_1_</p>
+  <p>CONTAINER</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>DFS_INFO_2</p>
+  </td>
+  <td>
+  <p>DFS_INFO_2_</p>
+  <p>CONTAINER</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p>DFS_INFO_3</p>
+  </td>
+  <td>
+  <p>DFS_INFO_3_</p>
+  <p>CONTAINER</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4</p>
+  </td>
+  <td>
+  <p>DFS_INFO_4</p>
+  </td>
+  <td>
+  <p>DFS_INFO_4_</p>
+  <p>CONTAINER</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>5</p>
+  </td>
+  <td>
+  <p>DFS_INFO_5</p>
+  </td>
+  <td>
+  <p>DFS_INFO_5_</p>
+  <p>CONTAINER</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  </td>
+  <td>
+  <p>DFS_INFO_6</p>
+  </td>
+  <td>
+  <p>DFS_INFO_6_</p>
+  <p>CONTAINER</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>7</p>
+  </td>
+  <td>
+  <p>DFS_INFO_7</p>
+  </td>
+  <td>
+  <p>N/A</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>8</p>
+  </td>
+  <td>
+  <p>DFS_INFO_8</p>
+  </td>
+  <td>
+  <p>DFS_INFO_8_</p>
+  <p>CONTAINER</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>9</p>
+  </td>
+  <td>
+  <p>DFS_INFO_9</p>
+  </td>
+  <td>
+  <p>DFS_INFO_9_</p>
+  <p>CONTAINER</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>50</p>
+  </td>
+  <td>
+  <p>DFS_INFO_50</p>
+  </td>
+  <td>
+  <p>N/A</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>100</p>
+  </td>
+  <td>
+  <p>DFS_INFO_100</p>
+  </td>
+  <td>
+  <p>N/A</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>101</p>
+  </td>
+  <td>
+  <p>DFS_INFO_101</p>
+  </td>
+  <td>
+  <p>N/A</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>102</p>
+  </td>
+  <td>
+  <p>DFS_INFO_102</p>
+  </td>
+  <td>
+  <p>N/A</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>103</p>
+  </td>
+  <td>
+  <p>DFS_INFO_103</p>
+  </td>
+  <td>
+  <p>N/A</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>104</p>
+  </td>
+  <td>
+  <p>DFS_INFO_104</p>
+  </td>
+  <td>
+  <p>N/A</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>105</p>
+  </td>
+  <td>
+  <p>DFS_INFO_105</p>
+  </td>
+  <td>
+  <p>N/A</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>106</p>
+  </td>
+  <td>
+  <p>DFS_INFO_106</p>
+  </td>
+  <td>
+  <p>N/A</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>107</p>
+  </td>
+  <td>
+  <p>DFS_INFO_107</p>
+  </td>
+  <td>
+  <p>N/A</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>150</p>
+  </td>
+  <td>
+  <p>DFS_INFO_150</p>
+  </td>
+  <td>
+  <p>N/A</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>200</p>
+  </td>
+  <td>
+  <p>DFS_INFO_200</p>
+  </td>
+  <td>
+  <p>DFS_INFO_200_</p>
+  <p>CONTAINER</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>300</p>
+  </td>
+  <td>
+  <p>DFS_INFO_300</p>
+  </td>
+  <td>
+  <p>DFS_INFO_300_</p>
+  <p>CONTAINER</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

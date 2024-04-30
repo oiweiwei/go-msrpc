@@ -1,0 +1,217 @@
+<div class="content"><p> </p><p>The <b>CATRANSPROP</b> structure encapsulates information
+about a <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span> property. For a
+list of CA properties, see section <span><a href="7c715f9f-db50-41c3-abfc-0021c6390d4e" data-linktype="relative-path">3.2.1.4.3.2</a></span>. An
+array of these structures is carried in a <span><a href="d6bee093-d862-4122-8f2b-7b49102097dc" data-linktype="relative-path">CERTTRANSBLOB (section 2.2.2.2)</a></span>
+structure, and is returned by GetCAPropertyInfo, as specified in section <span><a href="767fe54b-73f7-4fd1-99c8-4447b0953817" data-linktype="relative-path">3.2.1.4.3.3</a></span>.
+Note that this structure does not contain property values themselves; rather,
+CATRANSPROP contains information about properties.</p><dl>
+<dd>
+<div><pre> typedef struct _CATRANSPROP {
+   LONG lPropID;
+   BYTE propType;
+   BYTE Reserved;
+   USHORT propFlags;
+   ULONG obwszDisplayName;
+ } CATRANSPROP;
+</pre></div>
+</dd></dl><p><b>lPropID:</b>  Integer value that MUST
+contain the property identifier. For the list of supported properties, see
+section 3.2.1.4.3.2. </p><p><b>propType:</b>  Byte value that MUST
+contain the data type for the property. Must be one of the following values. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PROPTYPE_LONG</p>
+  <p>0x1</p>
+  </td>
+  <td>
+  <p>Property type is a signed long integer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PROPTYPE_DATE</p>
+  <p>0x2</p>
+  </td>
+  <td>
+  <p>Property type is a date-time value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PROPTYPE_BINARY</p>
+  <p>0x3</p>
+  </td>
+  <td>
+  <p>Property type is binary data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PROPTYPE_STRING</p>
+  <p>0x4</p>
+  </td>
+  <td>
+  <p>Property type is a string.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved:</b>  MUST be set to 0 and
+ignored upon receipt.</p><p><b>propFlags:</b>  16-bit flag field.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p><span><br/>
+   0</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   1</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   2</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   3</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   4</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   5</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   6</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   7</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   8</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   9</span></p>
+   </th>
+   <th>
+   <p><span>1<br/>
+   0</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   1</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   2</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   3</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   4</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   5</span></p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>I</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>I</p>
+  <p>                 </p>
+  </td>
+  <td>
+  <p>This bit provides indication that the property is
+  indexed and has multiple values. If this bit is set to 1, then a property is
+  indexed. If the bit is set to 0, then the property is not indexed. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>obwszDisplayName:</b>  Integer that MUST
+contain the offset to the string that contains the display name of this
+property, where the offset begins at the beginning of the byte array referenced
+by the <b>pb</b> field of the containing
+CERTTRANSBLOB (section 2.2.2.2) structure. The string format MUST be
+null-terminated <span><a href="https://go.microsoft.com/fwlink/?LinkId=90550" data-linktype="external">[UNICODE]</a></span>. The
+offset MUST be <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>-aligned.
+For marshaling information about this property, see <span><a href="bc294d60-efe8-447c-a7a0-ee2e0952c214" data-linktype="relative-path">Marshaling CATRANSPROP in a
+CERTTRANSBLOB (section 2.2.2.3.1)</a></span>.</p></div>

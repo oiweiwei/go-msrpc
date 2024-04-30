@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The DRS_MSG_MOVEREQ_V2 structure defines a request message
+sent to the <span><a href="595b2fef-493b-4b1d-b60d-e7a1a3345b0e" data-linktype="relative-path">IDL_DRSInterDomainMove</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DSNAME* pSrcDSA;
+   ENTINF* pSrcObject;
+   DSNAME* pDstName;
+   DSNAME* pExpectedTargetNC;
+   DRS_SecBufferDesc* pClientCreds;
+   SCHEMA_PREFIX_TABLE PrefixTable;
+   ULONG ulFlags;
+ } DRS_MSG_MOVEREQ_V2;
+</pre></div>
+</dd></dl><p><b>pSrcDSA:</b>  The client <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>
+<span><a href="../ms-adsc/5a79757d-2412-4846-bd7c-7585838a5a44" data-linktype="relative-path">nTDSDSA</a></span>
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>.</p><p><b>pSrcObject:</b>  The object to be moved.</p><p><b>pDstName:</b>  The name the object will
+have in the destination <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>.</p><p><b>pExpectedTargetNC:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_784c7cce-f782-48d8-9444-c9030ba86942" data-linktype="relative-path">NC</a></span>
+to which <b>pSrcObject</b> is being moved.</p><p><b>pClientCreds:</b>  The credentials of
+the user initiating the call.</p><p><b>PrefixTable:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_028437b6-7749-4428-b874-22e9559c1abe" data-linktype="relative-path">prefix
+table</a></span> with which to translate the <span><a href="91173129-08e6-497c-8266-b5ac0aa5f983" data-linktype="relative-path">ATTRTYP</a></span> values in <b>pSrcObject</b>
+to <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_aaaf2f1a-0b0a-487e-a0f0-c3510a6091b2" data-linktype="relative-path">OIDs</a></span>.</p><p><b>ulFlags:</b>  Unused. MUST be 0 and ignored.</p></div>

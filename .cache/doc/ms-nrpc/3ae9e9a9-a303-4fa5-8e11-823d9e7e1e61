@@ -1,0 +1,229 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/3ae9e9a9-a303-4fa5-8e11-823d9e7e1e61" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_WORKSTATION_INFO</b> structure defines
+information passed into the <b>NetrLogonGetDomainInfo </b>method, as specified
+in <a href="7c3ad0cc-ee05-4643-b773-4d84e1d431dc" data-linktype="relative-path">3.5.4.4.9</a>. It SHOULD<a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a> be used to convey information
+about a member workstation from the client side to the server side.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_WORKSTATION_INFO{
+   NETLOGON_LSA_POLICY_INFO LsaPolicy;
+   [string] wchar_t* DnsHostName;
+   [string] wchar_t* SiteName;
+   [string] wchar_t* Dummy1;
+   [string] wchar_t* Dummy2;
+   [string] wchar_t* Dummy3;
+   [string] wchar_t* Dummy4;
+   RPC_UNICODE_STRING OsVersion;
+   RPC_UNICODE_STRING OsName;
+   RPC_UNICODE_STRING DummyString3;
+   RPC_UNICODE_STRING DummyString4;
+   ULONG WorkstationFlags;
+   ULONG KerberosSupportedEncryptionTypes;
+   ULONG DummyLong3;
+   ULONG DummyLong4;
+ } NETLOGON_WORKSTATION_INFO,
+  *PNETLOGON_WORKSTATION_INFO;
+</pre></div>
+</dd></dl><p><b>LsaPolicy:</b> A <b>NETLOGON_LSA_POLICY_INFO</b>
+structure, as specified in section <a href="4676ac83-2099-4e33-b680-502fd8a32dbd" data-linktype="relative-path">2.2.1.3.5</a>, that contains
+the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9e5f2104-d6df-4ae7-8a5c-6bd14a0da8fa" data-linktype="relative-path">LSA</a> policy for this <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>.</p><p><b>DnsHostName:</b> A null-terminated <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> that
+contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a> host
+name of the client.</p><p><b>SiteName:</b> A null-terminated Unicode string
+that contains the name of the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8abdc986-5679-42d9-ad76-b11eb5a0daba" data-linktype="relative-path">site</a>
+where the workstation resides.</p><p><b>Dummy1:</b> MUST be set to NULL and MUST be
+ignored on receipt. The Netlogon usage of dummy fields is described in section <a href="bbc95890-215e-49a9-8bb8-92e723548046" data-linktype="relative-path">1.3.8.1.2</a>.</p><p><b>Dummy2:</b> See definition of Dummy1.</p><p><b>Dummy3:</b> See definition of Dummy1.</p><p><b>Dummy4:</b> See definition of Dummy1.</p><p><b>OsVersion:</b> An <a href="../ms-dtyp/94a16bb6-c610-4cb9-8db6-26f15f560061" data-linktype="relative-path"><span>RPC_UNICODE_STRING</span></a>
+structure (as defined in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section 2.3.10) in which the <b>Length</b> and <b>MaximumLength</b> fields are
+set to the size of an OSVERSIONINFOEX structure and the <b>Buffer</b> field
+points to an OSVERSIONINFOEX (<a href="../ms-rprn/d42db7d5-f141-4466-8f47-0a4be14e2fc1" data-linktype="relative-path">[MS-RPRN]</a>
+section <a href="../ms-rprn/cd8e00e8-4c44-4e4f-98d3-0db33d75d06d" data-linktype="relative-path">2.2.3.10.2</a>)
+structure. <i>OsVersion</i> contains the version number of the operating system
+installed on the client machine.</p><p><b>OsName:</b> A null-terminated Unicode string that
+SHOULD<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a> contain the name of the
+operating system installed on the client machine. The <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a> that receives this data
+structure updates the <b>operatingSystem</b> attribute of the client&#39;s machine
+account object in <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+Directory</a>, as specified in <a href="../ms-ada3/4517e835-3ee6-44d4-bb95-a94b6966bfb0" data-linktype="relative-path">[MS-ADA3]</a>
+section <a href="../ms-ada3/5983c2ee-0423-4f7f-b3f1-17c8aa72138f" data-linktype="relative-path">2.53</a>.
+</p><p><b>DummyString3:</b> A STRING structure, defined in
+section <a href="56a8d298-dbeb-4eb5-ad98-76536ec352f8" data-linktype="relative-path">2.2.1.1.1</a>, that
+MUST contain 0 for the <b>Length</b> field, 0 for the <b>MaximumLength</b>
+field, and NULL for the <b>Buffer</b> field. It is ignored upon receipt. The
+Netlogon usage of dummy fields is described in section 1.3.8.1.2.</p><p><b>DummyString4: </b>See definition for DummyString3.</p><p><b>WorkstationFlags:</b> A set of bit flags
+specifying workstation behavior. A flag is TRUE (or set) if its value is equal
+to 1. The value is constructed from zero or more bit flags from the following
+table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>Client will receive inbound <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trusts</a> as specified in <a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a>
+  section <a href="../ms-lsad/f28f42b7-173c-4cda-9809-3fe4a5213ab3" data-linktype="relative-path">2.2.7.9</a>.
+  The client sets this bit in order to receive the inbound trusts.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>Client handles the update of the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_547217ca-134f-4b43-b375-f5bca4c16ce4" data-linktype="relative-path">service principal name (SPN)</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero and MUST be
+ignored on receipt.</p>
+</dd></dl><p><b>KerberosSupportedEncryptionTypes:</b> The <b>msDS-SupportedEncryptionTypes</b>
+attribute of the client&#39;s machine account object in Active Directory, as
+specified in <a href="../ms-ada2/e20ebc4e-5285-40ba-b3bd-ffcb81c2783e" data-linktype="relative-path">[MS-ADA2]</a>
+section <a href="../ms-ada2/a75d1c3f-0bb3-470c-99bd-2bb557119483" data-linktype="relative-path">2.473</a>.<a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a></p><p><b>DummyLong3:</b> MUST be set to zero and MUST be
+ignored on receipt. The Netlogon usage of dummy fields is described in section
+1.3.8.1.2.</p><p><b>DummyLong4:</b> See definition of DummyLong3.</p></div>

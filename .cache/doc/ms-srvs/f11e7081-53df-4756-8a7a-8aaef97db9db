@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The FILE_INFO union contains information about a file,
+device, or pipe. This union is used by the <span><a href="7b41f566-5418-47c7-85d9-5be229127675" data-linktype="relative-path">NetrFileGetInfo</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(unsigned long)] 
+ union _FILE_INFO {
+   [case(2)] 
+     LPFILE_INFO_2 FileInfo2;
+   [case(3)] 
+     LPFILE_INFO_3 FileInfo3;
+ } FILE_INFO,
+  *PFILE_INFO,
+  *LPFILE_INFO;
+</pre></div>
+</dd></dl><p><b>FileInfo2:</b>  A pointer to a structure
+that contains information about a file, device, or pipe. For more details, see <span><a href="b64cd630-e38a-49b8-9f35-bfd81d674892" data-linktype="relative-path">FILE_INFO_2 (section 2.2.4.6)</a></span>.</p><p><b>FileInfo3:</b>  A pointer to a structure
+that contains information about a file, device, or pipe. For more details, see <span><a href="1ce89330-a817-408d-975b-eb2852481238" data-linktype="relative-path">FILE_INFO_3 (section 2.2.4.7)</a></span>.</p></div>

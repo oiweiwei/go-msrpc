@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p>The RecordInfoData structure specifies information that is
+needed to identify the definition of a <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_10a36f2b-2a1d-4d7f-b57d-261afca73727" data-linktype="relative-path">UDT</a></span>, such as the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+and version of the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_07ad91dc-c12a-44f7-9c64-7e496933183a" data-linktype="relative-path">automation scope</a></span>
+that defines the UDT, and the GUID of the type itself.</p><dl>
+<dd>
+<div><pre> typedef struct tagRecordInfo {
+   GUID libraryGuid;
+   DWORD verMajor;
+   GUID recGuid;
+   DWORD verMinor;
+   DWORD Lcid;
+ } RecordInfo;
+</pre></div>
+</dd></dl><p><b>libraryGuid:</b>   MUST be set to a GUID
+that identifies the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> automation scope
+of the UDT (see section <span><a href="ae4d27fa-faaa-4d5f-b0f9-15bfbaaae9b4" data-linktype="relative-path">2.2.49.2</a></span>). </p><p><b>verMajor:</b>   MUST be set to the major
+version of the UDT automation scope (see section 2.2.49.2). </p><p><b>recGuid:</b>  MUST be set to the GUID of
+the UDT.</p><p><b>verMinor:</b>   MUST be set to the minor
+version of the UDT&#39;s automation scope (see section 2.2.49.2). </p><p><b>Lcid:</b>   MUST be set to the locale ID
+of the UDT&#39;s automation scope (see section 2.2.49.2). </p><p>RecordInfoData structures allow a client and a server to
+fully specify the identity of the UDT type being marshaled in the containing <span><a href="ea064b3d-9fb3-4486-9992-4fe2463e83e8" data-linktype="relative-path">BRECORD (section 2.2.28.2)</a></span>.
+The client and the server MUST be able to reference the same type definition,
+by sharing through an unspecified mechanism a consistent view of the IDL
+automation scope of the UDT.<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a></p><p>Data of this type MUST be marshaled as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+section 14, with the exception that it MUST be marshaled by using a
+little-endian data representation, regardless of the data representation format
+label. For more information, see [C706] section 14.2.5.</p></div>

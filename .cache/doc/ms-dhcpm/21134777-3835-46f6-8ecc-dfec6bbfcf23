@@ -1,0 +1,31 @@
+<div class="content"><p> </p><p>The <b>DHCP_OPTION_DATA_TYPE</b> enumeration defines the
+format types for DHCP option values and is used in the <span><a href="bd62505d-9f25-4449-862f-f903afbc6f5a" data-linktype="relative-path">DHCP_OPTION_DATA_ELEMENT (section 2.2.1.2.23)</a></span>
+structure. The DHCPM <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> methods can
+create the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_da9bfcf7-a7e0-4cf0-ac87-ffdd83a5f25b" data-linktype="relative-path">option definition</a></span> on
+the DHCP server, which can contain option value in various formats.</p><dl>
+<dd>
+<div><pre> typedef  enum _DHCP_OPTION_DATA_TYPE
+ {
+   DhcpByteOption,
+   DhcpWordOption,
+   DhcpDWordOption,
+   DhcpDWordDWordOption,
+   DhcpIpAddressOption,
+   DhcpStringDataOption,
+   DhcpBinaryDataOption,
+   DhcpEncapsulatedDataOption,
+   DhcpIpv6AddressOption
+ } DHCP_OPTION_DATA_TYPE,
+  *LPDHCP_OPTION_DATA_TYPE;
+</pre></div>
+</dd></dl><p><b>DhcpByteOption: </b>The option value is of type <span><a href="../ms-dtyp/d7edc080-e499-4219-a837-1bc40b64bb04" data-linktype="relative-path">BYTE</a></span>.</p><p><b>DhcpWordOption: </b>The option value is of type <span><a href="../ms-dtyp/f8573df3-a44a-4a50-b070-ac4c3aa78e3c" data-linktype="relative-path">WORD</a></span>.</p><p><b>DhcpDWordOption: </b>The option value is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section 2.2.9.</p><p><b>DhcpDWordDWordOption: </b>The option value is of
+type <span><a href="e2f7667e-d814-4d37-9cde-9f129f82603e" data-linktype="relative-path">DWORD_DWORD (section 2.2.1.2.22)</a></span>.</p><p><b>DhcpIpAddressOption: </b>The option value is of
+type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>.</p><p><b>DhcpStringDataOption: </b>The option value is a
+pointer, of type <span><a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a></span>,
+to a null-terminated UNICODE string.</p><p><b>DhcpBinaryDataOption: </b>The option value is of
+type <span><a href="a2d136fe-4173-400d-aa11-9d146d722260" data-linktype="relative-path">DHCP_BINARY_DATA (section 2.2.1.2.9)</a></span>.</p><p><b>DhcpEncapsulatedDataOption: </b>The option value
+is encapsulated and of type DHCP_BINARY_DATA.</p><p><b>DhcpIpv6AddressOption: </b>The option value is an
+IPv6 address represented as a pointer, of type LPWSTR, to a null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a></span>.</p></div>

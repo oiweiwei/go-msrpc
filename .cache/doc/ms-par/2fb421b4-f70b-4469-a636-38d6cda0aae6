@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The <b>NOTIFY_REPLY_CONTAINER</b> structure encapsulates an <b>RPC_V2_NOTIFY_INFO</b>
+structure (<span><a href="../ms-rprn/d42db7d5-f141-4466-8f47-0a4be14e2fc1" data-linktype="relative-path">[MS-RPRN]</a></span>
+section <span><a href="../ms-rprn/79db335f-ebe7-4a6f-8533-efdda32cc5d8" data-linktype="relative-path">2.2.1.13.3</a></span>),
+which provides printer information members and current data for those members.</p><dl>
+<dd>
+<div><pre> typedef struct _NOTIFY_REPLY_CONTAINER {
+   RPC_V2_NOTIFY_INFO* pInfo;
+ } NOTIFY_REPLY_CONTAINER;
+</pre></div>
+</dd></dl><p><b>pInfo: </b>A pointer to an <b>RPC_V2_NOTIFY_INFO</b>.</p></div>

@@ -1,0 +1,126 @@
+<div class="content"><p>The LINE_LINEDEVSTATE packet is sent when the state of a
+line device has changed. The <a href="a11f4838-975f-43f9-a903-7775c9c8e30b" data-linktype="relative-path">GetLineDevStatus</a>
+packet can be sent to determine the new status of the line.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">TotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">InitContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">fnPostProcessProcHandle</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hRemoteLine</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Msg</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">OpenContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param4</p>
+  </td>
+ </tr>
+</tbody></table><p><b>TotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size of the asynchronous event packet.</p><p><b>InitContext (4 bytes): </b>An unsigned 32-bit
+integer. The opaque, client-specified session value that MUST be equal to the
+InitContext value that is specified in the original scoping of the line <a href="9d8eb7cd-3245-4e44-97e0-42f7b89c9424" data-linktype="relative-path">Initialize</a> request.</p><p><b>fnPostProcessProcHandle (4 bytes): </b>An unsigned
+32-bit integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>hRemoteLine (4 bytes): </b>An unsigned 32-bit
+integer. The handle of the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a>
+for the line value. </p><p><b>Msg (4 bytes): </b>An unsigned 32-bit integer. The
+packet type; MUST be set to 0x00000008 (LINE_LINEDEVSTATE). </p><p><b>OpenContext (4 bytes): </b>An unsigned 32-bit
+integer. The opaque, client-specified context value that MUST be equal to the
+OpenContext value that is specified in the original scoping of the line <a href="2759c744-e040-4c5d-b4b5-215d391f0490" data-linktype="relative-path">Open</a> request.</p><dl>
+<dd>
+<p>This information MUST be passed back to the
+application with each completion and event that is associated with the handle
+of the line or call on the line. This field is not interpreted by TAPI.</p>
+</dd></dl><p><b>Param1 (4 bytes): </b>An unsigned 32-bit integer.
+The line device status item that has changed. The parameter MUST be one or more
+of the <a href="0b91e805-228f-48f8-b9c2-c58d039399ca" data-linktype="relative-path">LINEDEVSTATE_Constants</a>.
+</p><p><b>Param2 (4 bytes): </b>An unsigned 32-bit integer.
+The interpretation of this field depends on the value of the <b>Param1</b>
+field. If the <b>Param1</b> field is set to LINEDEVSTATE_RINGING, the field MUST
+contain the ring mode that the switch instructs the line to ring. Valid ring
+modes are numbers in the range from one to dwNumRingModes, where dwNumRingModes
+is a line device capability.</p><dl>
+<dd>
+<p>If the <b>Param1</b> field is set to
+LINEDEVSTATE_REINIT, this field MUST contain <a href="ec653171-5014-4104-8e2f-492272a91f9a" data-linktype="relative-path">LINE_CREATE</a> (0x00000013)
+or LINE_LINEDEVSTATE(0x00000008). If this field is set to zero, a <a href="c93fb60b-cbe5-40a1-aa85-f64dc4186c0f" data-linktype="relative-path">Shutdown</a> packet MUST be
+sent.</p>
+</dd></dl><p><b>Param3 (4 bytes): </b>An unsigned 32-bit integer.
+The interpretation of this parameter depends on the value of the <b>Param1</b>
+field. If the <b>Param1</b> field is set to LINEDEVSTATE_RINGING, this field
+MUST contain the ring count for this ring event. The ring count starts at zero.
+</p><dl>
+<dd>
+<p>If the <b>Param1</b> field is set to
+LINEDEVSTATE_REINIT, this field MUST be set to one of the
+LINEDEVSTATE_Constants values.</p>
+</dd></dl><p><b>Param4 (4 bytes): </b>An unsigned 32-bit integer.
+This MUST be ignored on receipt and can be any value.  </p></div>

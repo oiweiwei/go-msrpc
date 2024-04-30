@@ -1,0 +1,221 @@
+<div class="content"><p>The W32TimeSync method is invoked to request that the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9846d08d-ad98-4bb9-a1e7-1f0bfbdd1113" data-linktype="relative-path">time service</a> immediately
+initiate an attempt to synchronize its time. The <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a> syntax of this method
+is specified as follows.</p><dl>
+<dd>
+<div><pre> unsigned long W32TimeSync(
+   [in] handle_t hBinding,
+   [in] unsigned long uWait,
+   [in] unsigned long ulFlags
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b><a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> primitive binding
+handle, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+part 3, sections Interface Definition Language and Stubs.</p><p><b>uWait: </b>Blocking status of the call. The value
+MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>Method MUST
+  return RPC_S_OK without waiting for the outcome of time synchronization. In
+  this case, the final outcome of the attempt is not available to the caller.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Non-zero</p>
+  <p>0 &lt; <i>value</i></p>
+  </td>
+  <td>
+  <p>Method MUST
+  NOT return until time synchronization is complete.</p>
+  <p>The server
+  must block the response to the caller until the attempt at time
+  synchronization is complete, regardless of the status. An implementation can
+  choose to respond to the caller after an implementation-specific timeout occurs.<a id="Appendix_A_Target_34"></a><a aria-label="Product behavior note 34" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_34" data-linktype="relative-path">&lt;34&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ulFlags: </b>Time synchronization behaviors.</p><dl>
+<dd>
+<p>The following values SHOULD be mutually exclusive.
+When multiple values are set, the value whose bit is least significant SHOULD
+take precedence.<a id="Appendix_A_Target_35"></a><a aria-label="Product behavior note 35" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_35" data-linktype="relative-path">&lt;35&gt;</a></p>
+</dd>
+<dd>
+<p><b>Note</b>  The TimeSyncFlag_SoftResync
+value MUST NOT be used in conjunction with any other value in the following
+table.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TimeSyncFlag_SoftResync</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The time
+  service MUST synchronize itself with the currently available time samples. It
+  MUST NOT poll the network or hardware <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9338a1cf-ec11-4e27-a042-dda5324a44fb" data-linktype="relative-path">time providers</a> for new
+  time data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TimeSyncFlag_HardResync</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The time
+  service MUST discard its old time samples and MUST acquire new samples from
+  the network or hardware time providers.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TimeSyncFlag_Rediscover</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Identical to
+  the TimeSyncFlag_HardResync flag, except that the time service MUST attempt
+  to discover new network <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_76c8df1b-52ef-495d-97d9-7c032b1f6ca5" data-linktype="relative-path">time
+  sources</a> prior to discarding and reacquiring new time samples.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TimeSyncFlag_UpdateAndResync</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Identical to
+  the TimeSyncFlag_Rediscover flag, except that prior to attempting to discover
+  new time sources, the time service MUST update its configuration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TimeSyncFlag_ForceResync</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Identical to
+  the TimeSyncFlag_HardResync flag, except that it causes the processing of the
+  next time sample to ignore any phase correction boundaries imposed by <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_43e51d0a-ac6a-4662-a99a-8f3029b78caf" data-linktype="relative-path">W32Time</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The following value can be joined
+in a bitwise OR with the preceding values. If <i>uWait</i> is set to zero, the
+following value MUST be ignored.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TimeSyncFlag_ReturnResult</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Used only for
+  synchronous calls. If set, the method MUST return one of the following return
+  values.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>If the
+TimeSyncFlag_ReturnResult flag is specified, the return value MUST be one of
+the following specific TimeSync_ReturnResult codes. Otherwise, this method MUST
+return zero on success or an implementation-specific nonzero <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_a0f899ec-e1a5-4e04-8abc-80df987c6fb4" data-linktype="relative-path">error code</a> on failure.<a id="Appendix_A_Target_36"></a><a aria-label="Product behavior note 36" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_36" data-linktype="relative-path">&lt;36&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return
+   value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ResyncResult_Success</p>
+  </td>
+  <td>
+  <p>Synchronization
+  between the time provider and the caller was successful. For asynchronous
+  calls, this result does not guarantee that the server has acquired a new time
+  sample. It merely states that the synchronization attempt has been
+  successfully initiated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  <p>ResyncResult_NoData</p>
+  </td>
+  <td>
+  <p>The time
+  service could not obtain a new time sample from the time provider.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  <p>ResyncResult_StaleData</p>
+  </td>
+  <td>
+  <p>The time
+  service received data that was time stamped earlier than the last good
+  sample.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  <p>ResyncResult_ChangeTooBig</p>
+  </td>
+  <td>
+  <p>The time
+  service received data in which the time difference from the local clock was
+  too large to trust.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  <p>ResyncResult_Shutdown</p>
+  </td>
+  <td>
+  <p>The time
+  service was shutting down.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The time service MUST immediately
+attempt to synchronize time with its time sources, as specified by the flags
+provided in the method invocation. For more information on the flags, see the <i>ulFlags</i>
+table in this section.<a id="Appendix_A_Target_37"></a><a aria-label="Product behavior note 37" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_37" data-linktype="relative-path">&lt;37&gt;</a></p>
+</dd></dl></div>

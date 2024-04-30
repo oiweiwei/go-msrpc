@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/675e37d9-bb97-4f14-bba2-be081c87cd5d" data-linktype="external">msdn link</a></p><p>The SAMPR_SR_SECURITY_DESCRIPTOR structure holds a formatted
+<a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_SR_SECURITY_DESCRIPTOR {
+   [range(0, 256 * 1024)] unsigned long Length;
+   [size_is(Length)] unsigned char* SecurityDescriptor;
+ } SAMPR_SR_SECURITY_DESCRIPTOR,
+  *PSAMPR_SR_SECURITY_DESCRIPTOR;
+</pre></div>
+</dd></dl><p><b>Length:</b>  The size, in bytes, of
+SecurityDescriptor. If zero, SecurityDescriptor MUST be ignored. The maximum
+size of 256 * 1024 is an arbitrary value chosen to limit the amount of memory a
+client can force the server to allocate.</p><p><b>SecurityDescriptor:</b>  A binary format
+per the <b>SECURITY_DESCRIPTOR</b> format in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a>.</p></div>

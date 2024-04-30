@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The SESSION_INFO_1 structure contains information about the
+session, including the name of the computer and user; open files, pipes, and
+devices that are on the computer; session active and idle times; and how the
+user established the session.</p><dl>
+<dd>
+<div><pre> typedef struct _SESSION_INFO_1 {
+   [string] wchar_t* sesi1_cname;
+   [string] wchar_t* sesi1_username;
+   DWORD sesi1_num_opens;
+   DWORD sesi1_time;
+   DWORD sesi1_idle_time;
+   DWORD sesi1_user_flags;
+ } SESSION_INFO_1,
+  *PSESSION_INFO_1,
+  *LPSESSION_INFO_1;
+</pre></div>
+</dd></dl><p><b>sesi1_cname:</b>  A pointer to a
+null-terminated Unicode UTF-16 <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_4d5d5403-372f-4f9f-8d7a-65c310c807d9" data-linktype="relative-path">Internet host name</a></span>
+or <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_150cc108-7e58-4fdb-957d-2a3734ba15f5" data-linktype="relative-path">NetBIOS
+host name</a></span> of the computer that established the session.</p><p><b>sesi1_username:</b>  A pointer to a
+null-terminated Unicode UTF-16 string that specifies the name of the user who
+established the session.</p><p><b>sesi1_num_opens:</b>  Specifies a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value that contains the number of files, devices, and pipes that were opened
+during the session.</p><p><b>sesi1_time:</b>  Specifies a DWORD value
+that contains the number of seconds since the session was created.</p><p><b>sesi1_idle_time:</b>  Specifies a DWORD
+value that contains the number of seconds the session has been idle.</p><p><b>sesi1_user_flags:</b>  Specifies a DWORD
+value that specifies how the user established the session. This member MUST be
+a combination of one or more of the values that are defined in <span><a href="d5369e4e-cdcd-4d77-aab6-d35b90e676ed" data-linktype="relative-path">2.2.2.3</a></span>.</p></div>

@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The Reenumerate method discovers newly added and newly
+removed <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disks</a></span> and returns
+the status of the operation in the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT Reenumerate();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error HRESULT (as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST issue a
+request to all <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_36805c8d-5505-4906-986b-8b08a4f0741e" data-linktype="relative-path">buses</a></span> on the
+machine. The request causes the buses to report any new devices, or devices no
+longer present, to the operating system. The server MUST also return an HRESULT
+indicating failure or success.</p></div>

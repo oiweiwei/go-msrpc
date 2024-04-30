@@ -1,0 +1,35 @@
+<div class="content"><p> </p><p>The DS_NAME_FORMAT enumeration describes the format of a
+name sent to or received from the <span><a href="9b4bfb44-6656-4404-bcc8-dc88111658b3" data-linktype="relative-path">IDL_DRSCrackNames</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   DS_UNKNOWN_NAME = 0,
+   DS_FQDN_1779_NAME = 1,
+   DS_NT4_ACCOUNT_NAME = 2,
+   DS_DISPLAY_NAME = 3,
+   DS_UNIQUE_ID_NAME = 6,
+   DS_CANONICAL_NAME = 7,
+   DS_USER_PRINCIPAL_NAME = 8,
+   DS_CANONICAL_NAME_EX = 9,
+   DS_SERVICE_PRINCIPAL_NAME = 10,
+   DS_SID_OR_SID_HISTORY_NAME = 11,
+   DS_DNS_DOMAIN_NAME = 12
+ } DS_NAME_FORMAT;
+</pre></div>
+</dd></dl><p><b>DS_UNKNOWN_NAME:  </b>The server looks up the name
+by using the algorithm specified in the LookupUnknownName procedure.</p><p><b>DS_FQDN_1779_NAME:  </b>A <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">distinguished
+name</a></span>.</p><p><b>DS_NT4_ACCOUNT_NAME:  </b>Windows NT 4.0 operating
+system (and prior) name format. The account name is in the format domain\user
+and the domain-only name is in the format domain\.</p><p><b>DS_DISPLAY_NAME:  </b>A user-friendly display
+name.</p><p><b>DS_UNIQUE_ID_NAME:  </b>Curly braced string
+representation of an <span><a href="../ms-ada3/937eb5c6-f6b3-4652-a276-5d6bb8979658" data-linktype="relative-path">objectGUID</a></span>.
+The format of the string representation is specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/222af2d3-5c00-4899-bc87-ed4c6515e80d" data-linktype="relative-path">2.3.4.3</a></span>.</p><p><b>DS_CANONICAL_NAME:  </b>A <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_79ab9d86-0d30-41c3-b7da-153ad41bdfd8" data-linktype="relative-path">canonical
+name</a></span>.</p><p><b>DS_USER_PRINCIPAL_NAME:  </b>User <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8492780e-99e2-47ba-8553-aedb8de9f9c0" data-linktype="relative-path">principal</a></span>
+name.</p><p><b>DS_CANONICAL_NAME_EX:  </b>Same as
+DS_CANONICAL_NAME except that the rightmost forward slash (/) is replaced with
+a newline character (\n).</p><p><b>DS_SERVICE_PRINCIPAL_NAME:  </b><span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_547217ca-134f-4b43-b375-f5bca4c16ce4" data-linktype="relative-path">Service
+principal name (SPN)</a></span>.</p><p><b>DS_SID_OR_SID_HISTORY_NAME:  </b>String
+representation of a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span> (as specified in
+[MS-DTYP] section <span><a href="../ms-dtyp/78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">2.4.2</a></span>).</p><p><b>DS_DNS_DOMAIN_NAME:  </b>Not supported.</p></div>

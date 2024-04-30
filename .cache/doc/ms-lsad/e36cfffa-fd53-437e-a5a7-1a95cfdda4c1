@@ -1,0 +1,69 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/e36cfffa-fd53-437e-a5a7-1a95cfdda4c1" data-linktype="external">msdn link</a></p><p>The LsarQuerySecret method is invoked to retrieve the
+current and old (or previous) value of the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_9720ddb8-c802-40b7-8dba-5e7520c3396d" data-linktype="relative-path">secret object</a>.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarQuerySecret(
+   [in] LSAPR_HANDLE SecretHandle,
+   [in, out, unique] PLSAPR_CR_CIPHER_VALUE* EncryptedCurrentValue,
+   [in, out, unique] PLARGE_INTEGER CurrentValueSetTime,
+   [in, out, unique] PLSAPR_CR_CIPHER_VALUE* EncryptedOldValue,
+   [in, out, unique] PLARGE_INTEGER OldValueSetTime
+ );
+</pre></div>
+</dd></dl><p><b>SecretHandle:</b> An open secret object handle.</p><p><b>EncryptedCurrentValue: </b>Used to return the
+encrypted current value of the secret object.</p><p><b>CurrentValueSetTime: </b>Used to return the time
+when the current value was set.</p><p><b>EncryptedOldValue: </b>A BLOB representing the
+encrypted old value. It is valid for this parameter to be NULL, in which case
+the current value in the policy database is copied.</p><p><b>OldValueSetTime: </b>The time corresponding to the
+instant that the old value was last changed.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>SecretHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes five arguments:</p><p><i>SecretHandle</i>: An open handle to a secret object. If
+the handle is not a valid context handle to a secret object or <i>SecretHandle</i>.HandleType
+does not equal &#34;Secret&#34;, the server MUST return
+STATUS_INVALID_HANDLE. The server MUST verify that <i>SecretHandle</i> grants
+access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a> with
+RequiredAccess set to SECRET_QUERY_VALUE.<a id="Appendix_A_Target_80"></a><a aria-label="Product behavior note 80" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_80" data-linktype="relative-path">&lt;80&gt;</a></p><p><i>EncryptedCurrentValue</i>: Used to return the current
+value of the secret, encrypted as specified in section <a href="cce8ae78-0138-4129-954e-c65e0c0bffed" data-linktype="relative-path">5.1.2</a>. This parameter can
+be NULL if the caller is not interested in this information.<a id="Appendix_A_Target_81"></a><a aria-label="Product behavior note 81" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_81" data-linktype="relative-path">&lt;81&gt;</a></p><p><i>CurrentValueSetTime: </i> The time corresponding to the
+instant that the current value was last changed. This parameter can be NULL if
+the caller is not interested in this information.</p><p><i>EncryptedOldValue</i>: Used to return the old value of
+the secret, encrypted as specified in section 5.1.2. This parameter can be NULL
+if the caller is not interested in this information.<a id="Appendix_A_Target_82"></a><a aria-label="Product behavior note 82" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_82" data-linktype="relative-path">&lt;82&gt;</a></p><p><i>OldValueSetTime</i>: The time corresponding to the
+instance that the old value was last changed. This parameter can be NULL if the
+caller is not interested in this information.</p></div>

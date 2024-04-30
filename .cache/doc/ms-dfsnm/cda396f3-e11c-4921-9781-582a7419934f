@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>The DFS_INFO_106 structure contains the storage state and
+priority of a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ac90b498-3ba4-48d6-bcd6-5495f1654671" data-linktype="relative-path">DFS root target</a></span> or a
+<span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_44e2f830-c28b-41e3-8c3c-d0bb576ed9fb" data-linktype="relative-path">DFS
+link target</a></span>. For more information on prioritization, see section <span><a href="316fec43-dfeb-4673-afc1-3ab66321debc" data-linktype="relative-path">2.2.2.7</a></span>.
+</p><p>The DFS_INFO_106 structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_106 {
+   DWORD State;
+   DFS_TARGET_PRIORITY TargetPriority;
+ } DFS_INFO_106;
+</pre></div>
+</dd></dl><p><b>State:</b>  The state of the target.
+Contains one of the following valid state values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DFS_STORAGE_STATE_OFFLINE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>This target is offline and unavailable for use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_STORAGE_STATE_ONLINE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>This target is online and available for use.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>TargetPriority:</b>  A DFS_TARGET_PRIORITY
+structure that indicates the priority class and rank of the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_a2c6d1c9-deea-427c-91ee-56f6e726eabd" data-linktype="relative-path">DFS
+target</a></span>.</p></div>

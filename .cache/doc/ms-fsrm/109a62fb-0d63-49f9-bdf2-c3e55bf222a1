@@ -1,0 +1,8 @@
+<div class="content"><p>The ResetPeakUsage method resets the <b>peak quota usage</b>
+of this quota to zero and returns S_OK upon successful completion.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_QUOTA | 0x01)] HRESULT ResetPeakUsage();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><p>There are no parameters for this method.</p><p>The server MUST set <b>peak quota usage</b> of this quota to
+zero or return a nonzero error code.</p></div>

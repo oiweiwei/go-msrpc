@@ -1,0 +1,163 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/d541b40a-06ad-4b3b-bbfa-5cf51a1f02d9" data-linktype="external">msdn link</a></p><p>The LsarSetTrustedDomainInfo method is invoked to set
+information on a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted
+domain object</a>. In some cases, if the trusted domain object does not exist,
+it will be created.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarSetTrustedDomainInfo(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PRPC_SID TrustedDomainSid,
+   [in] TRUSTED_INFORMATION_CLASS InformationClass,
+   [in, switch_is(InformationClass)] 
+     PLSAPR_TRUSTED_DOMAIN_INFO TrustedDomainInformation
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>TrustedDomainSid: </b>A <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> of the trusted domain
+object to be modified.</p><p><b>InformationClass: </b>Identifies the type of
+information to be set on the trusted domain object.</p><p><b>TrustedDomainInformation: </b>Information to be
+set on the trusted domain object.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One or more of the supplied parameters was invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00000DF</p>
+  <p>STATUS_NO_SUCH_DOMAIN</p>
+  </td>
+  <td>
+  <p>The specified trusted domain object does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00002B1</p>
+  <p>STATUS_DIRECTORY_SERVICE_REQUIRED</p>
+  </td>
+  <td>
+  <p>The <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+  Directory</a> <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_2dc07ca2-2b40-437e-a5ec-ed28ebfb116a" data-linktype="relative-path">service</a>
+  was not available on the server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>If Active Directory is not running on this machine, the
+server MUST return STATUS_DIRECTORY_SERVICE_REQUIRED.</p><p>This method is similar to the <a href="9ea46cef-cc72-4109-ba13-91eda6b713bc" data-linktype="relative-path">LsarSetInformationTrustedDomain</a>
+method, with some important differences. For one, this method takes a policy
+object handle instead of a trusted domain object handle. Another important
+distinction is that for some information classes this method, unlike
+LsarSetInformationTrustedDomain, will create a trusted domain object if one
+does not exist already.</p><p>This message takes four arguments:</p><p><i>PolicyHandle</i>: An open handle to the policy object.
+The access rights required to perform the operation depend on the value of the <i>InformationClass</i>
+parameter. The access bits required for each information class are specified in
+section 3.1.4.7.14. If the handle is not a valid context handle to the policy
+object or <i>PolicyHandle</i>.HandleType does not equal &#34;Policy&#34;, the
+server MUST return STATUS_INVALID_HANDLE. <i>PolicyHandle</i>.GrantedAccess
+MUST NOT be considered for this call because the access check MUST happen on
+the trusted domain object. If the server is a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8b0a073b-3099-4efe-8b81-c2886b66a870" data-linktype="relative-path">read-only domain controller</a>,
+it MUST return an error.<a id="Appendix_A_Target_93"></a><a aria-label="Product behavior note 93" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_93" data-linktype="relative-path">&lt;93&gt;</a></p><p><i>TrustedDomainSid</i>: A SID of the trusted domain object
+to modify. The server MUST verify that the caller has supplied a valid <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> SID for this
+parameter and fail the request with STATUS_INVALID_PARAMETER if the check
+fails.</p><p><i>InformationClass</i>: A value from the <a href="36069113-6c38-45e8-920e-17f8ef36f578" data-linktype="relative-path">TRUSTED_INFORMATION_CLASS</a>
+enumeration that specifies which type of information the caller is setting. Not
+all <i>InformationClass</i> values are valid. The valid <i>InformationClass</i>
+values for this method are as follows:</p><ul><li><p><span><span> 
+</span></span>TrustedDomainNameInformation: The server MUST act as if an <a href="373a4b1e-1e8d-4572-9c25-0bd7b045d3a3" data-linktype="relative-path">LsarCreateTrustedDomain</a>
+message came in with its <i>TrustedDomainInformation.Name</i> parameter as the
+name passed in the <i>TrustedDomainInformation</i> parameter, its <i>TrustedDomainInformation.Sid</i>
+parameter as the SID passed in the <i>TrustedDomainSid</i> parameter, and its <i>DesiredAccess</i>
+parameter set to zero.</p>
+</li><li><p><span><span> 
+</span></span>TrustedPosixOffsetInformation: The server MUST verify that a
+trusted domain object with this SID exists in its policy database. If the
+object does not exist, the call MUST fail with STATUS_NO_SUCH_DOMAIN.
+Otherwise, the server MUST verify that the caller has access to the trusted
+domain object as specified in section <a href="e5e1e32e-4066-435d-b669-044fe997eaf7" data-linktype="relative-path">3.1.4.2.1</a> with <i>DesiredAccess</i>
+set to TRUSTED_SET_POSIX. There is no method-specific portion of this check.</p>
+<p>Then the server MUST act as
+if an LsarSetInformationTrustedDomain message is being processed.</p>
+</li></ul><p>The server MAY support the following <i>InformationClass</i>
+values.<a id="Appendix_A_Target_94"></a><a aria-label="Product behavior note 94" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_94" data-linktype="relative-path">&lt;94&gt;</a> If the server does not support
+these values, it MUST return STATUS_INVALID_PARAMETER. If the server supports
+these values, it MUST perform the corresponding operations:</p><ul><li><p><span><span> 
+</span></span>TrustedDomainInformationEx: The server MUST check that a trusted
+domain object with this SID exists in its policy database. If the object does
+not exist, the server MUST create a new trusted domain object using the same
+processing rules as <a href="cc86a55d-b619-48fd-998a-65cca15efeb9" data-linktype="relative-path">LsarCreateTrustedDomainEx2</a>,
+and using the following parameters for the LsarCreateTrustedDomainEx2
+processing rules:</p>
+<ul><li><p><span><span>  </span></span><i>PolicyHandle</i>
+set to the same <i>PolicyHandle</i> in the original message.</p>
+</li><li><p><span><span>  </span></span><i>TrustedDomainInformation</i>
+set to the same <i>TrustedDomainInformation</i> in the original message.</p>
+</li><li><p><span><span>  </span></span><i>AuthenticationInformation</i>
+set to NULL.</p>
+</li><li><p><span><span>  </span></span><i>DesiredAccess</i>
+set to zero.</p>
+</li></ul><p>If the object does exist, the
+server MUST set the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted
+domain</a> information using the same processing rules as
+LsarSetInformationTrustedDomain, and using the following parameters for the
+LsarSetInformationTrustedDomain processing rules:</p>
+<ul><li><p><span><span>  </span></span><i>TrustDomainHandle</i>
+set to the handle to the trusted domain object.</p>
+</li><li><p><span><span>  </span></span><i>InformationClass</i>
+set to the same <i>InformationClass</i> in the original message.</p>
+</li><li><p><span><span>  </span></span><i>TrustedDomainInformation</i>
+set to the same <i>TrustedDomainInformation</i> in the original message.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>TrustedPasswordInformation: The server MUST verify that a trusted
+domain object with this SID exists in its policy database. If the object does
+not exist, the call MUST fail with STATUS_NO_SUCH_DOMAIN. Otherwise, the server
+MUST open the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_9720ddb8-c802-40b7-8dba-5e7520c3396d" data-linktype="relative-path">secret object</a>,
+as defined in section <a href="483f1b6e-7b14-4341-9ab2-9b99c01f896e" data-linktype="relative-path">3.1.1.4</a>,
+(or create a secret object, if one does not already exist) with
+&#34;Name&#34; set to &#34;G$$&lt;Trusted Domain Name&gt;&#34;. The server
+MUST then set &#34;Old Value&#34; of the secret object to the
+&#34;OldPassword&#34; value in <i>TrustedDomainInformation</i> and set
+&#34;New Value&#34; of the secret object to the &#34;Password&#34; value in
+<i>TrustedDomainInformation</i>, similar to the processing when an <a href="21c1a153-032c-4869-afc9-186b2346dfab" data-linktype="relative-path">LsarSetSecret</a> request has
+been made.</p>
+</li></ul><p>The server MUST return STATUS_INVALID_PARAMETER for all
+other <i>InformationClass</i> arguments.</p><p><i>TrustedDomainInformation</i>: Contains the data supplied
+by the caller to be set on the trusted domain object.</p></div>

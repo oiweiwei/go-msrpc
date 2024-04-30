@@ -1,0 +1,20 @@
+<div class="content"><p>The WriteCache_Common structure contains information common
+between the <a href="31ce1b62-0c50-4441-b3e0-8661635849fb" data-linktype="relative-path">WriteCacheA_Call</a>
+and <a href="3969bdcd-ecf3-42db-8bc6-2d6f970f9c67" data-linktype="relative-path">WriteCacheW_Call</a>
+structures.</p><dl>
+<dd>
+<div><pre> typedef struct _WriteCache_Common {
+   REDIR_SCARDCONTEXT Context;
+   UUID *CardIdentifier;
+   unsigned long FreshnessCounter;
+   [range(0,65536)] unsigned long cbDataLen;
+   [unique] [size_is(cbDataLen)] byte *pbData;
+ } WriteCache_Common;
+</pre></div>
+</dd></dl><p><b>Context:</b>  A valid context, as
+specified in section <a href="060abee1-e520-4149-9ef7-ce79eb500a59" data-linktype="relative-path">2.2.1.1</a>.</p><p><b>CardIdentifier:</b>  A <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a> that identifies the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">smart card</a> with which the
+data SHOULD be stored. CardIdentifier MUST be a unique value per the smart
+card.</p><p><b>FreshnessCounter:</b>  A value
+specifying the current revision of the data.</p><p><b>cbDataLen:</b>  The number of bytes in
+the <b>pbData</b> field.</p><p><b>pbData:</b>  <b>cbDataLen</b> bytes of
+data to be stored.</p></div>

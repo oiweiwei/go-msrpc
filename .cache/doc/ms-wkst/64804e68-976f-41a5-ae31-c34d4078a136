@@ -1,0 +1,317 @@
+<div class="content"><p> </p><p>The <b>NetrValidateName3</b> method verifies the validity of
+a computer, workgroup, or domain name.<a id="Appendix_A_Target_151"></a><a aria-label="Product behavior note 151" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_151" data-linktype="relative-path">&lt;151&gt;</a></p><dl>
+<dd>
+<div><pre> unsigned long NetrValidateName3(
+   [in] handle_t RpcBindingHandle,
+   [in, string, unique] wchar_t* ServerName,
+   [in, string] wchar_t* NameToValidate,
+   [in, string, unique] wchar_t* AccountName,
+   [in, unique] PJOINPR_ENCRYPTED_USER_PASSWORD_AES Password,
+   [in] NETSETUP_NAME_TYPE NameType
+ );
+</pre></div>
+</dd></dl><p><b>RpcBindingHandle:</b> An <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>
+(<span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>).</p><p><b>ServerName: </b>This parameter has no effect on message
+processing in any environment. The client MUST set this parameter to a value
+that resolves to the IP protocol layer destination address of the RPC packets
+it transmits (<span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/7063c7bd-b48b-42e7-9154-3c2ec4113c0d" data-linktype="relative-path">2.1.1.2</a></span>).
+The <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server
+(1)</a></span> MUST ignore this parameter.</p><p><b>NameToValidate: </b>A pointer to a string that specifies
+the name to validate, according to its type.</p><p><b>AccountName: </b>A pointer to a string that specifies an
+account name in the joined domain to use when connecting to a <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain
+controller</a></span>. This parameter is optional. If this parameter is NULL,
+the caller&#39;s account name is used.</p><p><b>Password: </b>An optional pointer to a <b>JOINPR_ENCRYPTED_USER_PASSWORD_AES</b>
+structure (section <span><a href="b3b6d235-29e8-44ec-a723-8fb06a0799d8" data-linktype="relative-path">2.2.5.19</a></span>) that
+specifies the encrypted password to use with the <i>AccountName</i> parameter.
+If this parameter is NULL, the caller&#39;s <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_88d49f20-6c95-4b64-a52c-c3eca2fe5709" data-linktype="relative-path">security context</a></span>
+MUST be used.</p><p><b>NameType: </b>Specifies the type of validation to perform
+(section <span><a href="8f50c03f-53bb-40f3-bccb-3427dad9980f" data-linktype="relative-path">2.2.3.2</a></span>).</p><p><b>Return Values: </b>When the message processing
+result matches the description in column 2 of the following table, this method
+MUST return one of the following values (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NERR_Success</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_DUP_NAME</p>
+  <p>0x00000034</p>
+  </td>
+  <td>
+  <p>The connection was denied because a duplicate name
+  exists on the network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PASSWORD</p>
+  <p>0x00000056</p>
+  </td>
+  <td>
+  <p>The specified network password is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_NAME</p>
+  <p>0x0000007B</p>
+  </td>
+  <td>
+  <p>The file name, directory name, or volume label syntax
+  is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_DOMAINNAME</p>
+  <p>0x000004BC</p>
+  </td>
+  <td>
+  <p>The format of the specified domain name is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NO_SUCH_DOMAIN</p>
+  <p>0x0000054B</p>
+  </td>
+  <td>
+  <p>The specified <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span> either does
+  not exist or could not be contacted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RPC_S_PROTSEQ_NOT_SUPPORTED</p>
+  <p>0x000006A7</p>
+  </td>
+  <td>
+  <p>The <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_0c171cc7-e9c4-41b6-95a9-536db0042c7a" data-linktype="relative-path">RPC protocol sequence</a></span>
+  is not supported.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NERR_InvalidComputer</p>
+  <p>0x0000092F</p>
+  </td>
+  <td>
+  <p>This <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_9a7bc8b3-3374-4608-8f73-be20a90b898b" data-linktype="relative-path">computer name</a></span> is
+  invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NERR_InvalidWorkgroupName</p>
+  <p>0x00000A87</p>
+  </td>
+  <td>
+  <p>The specified workgroup name is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_ERROR_NON_RFC_NAME</p>
+  <p>0x00002554</p>
+  </td>
+  <td>
+  <p>The <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_4d5d5403-372f-4f9f-8d7a-65c310c807d9" data-linktype="relative-path">Internet host name</a></span>
+  does not comply with RFC specifications.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_ERROR_INVALID_NAME_CHAR</p>
+  <p>0x00002558</p>
+  </td>
+  <td>
+  <p>The Internet host name contains an invalid character.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RPC_E_REMOTE_DISABLED</p>
+  <p>0x8001011C</p>
+  </td>
+  <td>
+  <p>Remote calls are not allowed for this process.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Any other return value MUST
+conform to the error code requirements in <b>Protocol Details</b> (section <span><a href="aeea622a-ea3e-40cc-a9b1-b4a2a3b2bf6b" data-linktype="relative-path">3</a></span>).</p>
+</dd></dl><p>The following definition is used in the specification of
+message processing that follows.</p><ul><li><p><span><span> 
+</span></span><i>PasswordString</i>: A <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_409411c4-b4ed-4ab6-b0ee-6d7815f85a35" data-linktype="relative-path">UTF-8</a></span>
+string containing a password in <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_f6e0fdd0-cbc1-4c9d-93b8-f25125f9c5ef" data-linktype="relative-path">cleartext</a></span>.</p>
+</li></ul><p>The following statements define the sequence of message
+processing operations.</p><ol><li><p><span>    </span>The server MUST
+retrieve the RPC protocol sequence used for the current call ([MS-RPCE] section
+3.1.3.4.1), specifying the server binding handle maintained by the RPC runtime
+([C706] section 6.2.1). If that RPC protocol sequence is not <b>NCACN_NP</b>,
+the server SHOULD return <b>RPC_S_PROTSEQ_NOT_SUPPORTED</b>.<a id="Appendix_A_Target_152"></a><a aria-label="Product behavior note 152" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_152" data-linktype="relative-path">&lt;152&gt;</a></p>
+</li><li><p><span>    </span>The server
+SHOULD<a id="Appendix_A_Target_153"></a><a aria-label="Product behavior note 153" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_153" data-linktype="relative-path">&lt;153&gt;</a> stop message processing and
+return an implementation-specific error if the caller is not local.
+Specifications for determining if the caller is local are in [MS-RPCE].</p>
+</li><li><p><span>    </span>The server MUST
+check that the caller has been granted access rights using the algorithm in the
+<b>Access Control Abstract Data Model</b> (section <span><a href="c5b75090-3de2-404f-8de1-d5ca3fc38a70" data-linktype="relative-path">3.2.1.1</a></span>), with <i>Access
+Request mask</i> initialized to <b>WKSTA_NETAPI_QUERY</b>; if not, the server
+MUST return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>The server MUST
+impersonate the client by invoking the <b>StartImpersonatingClient</b> task
+(section <span><a href="719ae534-d5d7-4c42-9989-d63e0676fad1" data-linktype="relative-path">3.2.4.29.6</a></span>). If
+this operation fails, the server MUST return an error.</p>
+</li><li><p><span>    </span>If <i>Password</i>
+is NULL then <i>PasswordString</i> MUST be NULL. Otherwise, the server MUST
+decrypt and decode the <i>Password</i> (section 2.2.5.19). <i>PasswordString</i>
+MUST equal the decrypted and decoded value. The decrypted buffer is represented
+as a <b>JOINPR_USER_PASSWORD</b> structure (section <span><a href="6320ca78-6492-4eaf-ad95-a558ad399383" data-linktype="relative-path">2.2.5.17</a></span>). The
+value of the <b>Length</b> member MUST be less than 513; otherwise, message
+processing is stopped, and the server MUST return ERROR_INVALID_PASSWORD.</p>
+</li><li><p><span>    </span>If <i>NameType</i>
+is <i>NetSetupUnknown</i> the server MUST stop message processing and return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span>    </span>First, the
+method MUST perform syntactic validation of the name as follows. For all types
+of validation except the <b>NetSetupDnsMachine</b> type, the syntactic
+validation is performed on the name expressed in the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_3240e34e-920e-40ac-a672-342ac34a5e22" data-linktype="relative-path">OEM character set</a></span>.</p>
+<p><b>NetSetupWorkgroup</b></p>
+<ul><li><p><span><span>  </span></span>The
+length of the name MUST NOT be less than 1 or greater than 15 characters,
+inclusive.</p>
+</li><li><p><span><span>  </span></span>The
+name MUST NOT contain characters that have any one of the following octal
+values:</p>
+<div><pre> 001, 002, 003, 004, 005, 006, 007, 010, 011, 012, 013, 014, 
+ 015, 016, 017, 020, 021, 022, 023, 024, 025, 026, 027, 030, 
+ 031, 032, 033, 034, 035, 036, 037
+</pre></div>
+</li><li><p><span><span>  </span></span>The
+name MUST NOT contain any of the following characters:</p>
+<div><pre> &#34; / \ [ ] : | &lt; &gt; + = ; , ?
+</pre></div>
+</li><li><p><span><span>  </span></span>The
+name MUST NOT consist entirely of the dot and space characters.</p>
+</li></ul><p>NERR_InvalidWorkgroupName MUST be
+returned if the check fails unless the conditions of this type are being
+checked as part of another type, which specifies alternate error return
+behavior.</p>
+<p><b>NetSetupMachine</b></p>
+<p>All conditions for the <b>NetSetupWorkgroup</b>
+type apply for this type. Additionally:</p>
+<ul><li><p><span><span>  </span></span>The
+name MUST NOT contain an asterisk (*).</p>
+</li><li><p><span><span>  </span></span>The
+first character and the last character of the name MUST NOT be the space
+character.</p>
+<p>NERR_InvalidComputer MUST
+be returned if the check fails.</p>
+<p><b>NetSetupDomain</b></p>
+</li><li><p><span><span>  </span></span>The
+name MUST NOT consist entirely of the dot and space characters.</p>
+<p>ERROR_INVALID_NAME MUST be
+returned if this condition is violated.</p>
+<p>All conditions for the <b>NetSetupWorkgroup</b>
+type apply for this type. If the checks for <b>NetSetupWorkgroup</b> fail, all
+conditions for the <b>NetSetupDnsMachine</b> apply for this type. </p>
+<p><b>NetSetupNonExistentDomain</b></p>
+<p>All conditions for the <b>NetSetupDomain</b>
+type apply for this type. Additionally:</p>
+</li><li><p><span><span>  </span></span>The
+name MUST contain only characters (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90264" data-linktype="external">[RFC1035]</a></span>).</p>
+<p>DNS_ERROR_NON_RFC_NAME MUST
+be returned if this restriction is violated.</p>
+<p><b>NetSetupDnsMachine</b></p>
+<p>The
+validation ([RFC1035]) is performed in the following order. Specifically, the
+name MUST NOT:</p>
+</li><li><p><span><span>  </span></span>Contain
+characters that have any one of the following octal values:</p>
+<div><pre> 001, 002, 003, 004, 005, 006, 007, 010, 011, 012, 013, 014,
+ 015, 016, 017, 020, 021, 022, 023, 024, 025, 026, 027, 030,
+ 031, 032, 033, 034, 035, 036, 037
+  
+</pre></div>
+</li><li><p><span><span>  </span></span>Be
+longer than 255 octets.</p>
+</li><li><p><span><span>  </span></span>Contain
+a label longer than 63 octets.</p>
+</li><li><p><span><span>  </span></span>Contain
+two or more consecutive dots.</p>
+</li><li><p><span><span>  </span></span>Begin
+with a dot.</p>
+<p>ERROR_INVALID_NAME MUST be
+returned if any condition in this group is violated.</p>
+</li><li><p><span><span>  </span></span>Contain
+a space.</p>
+</li><li><p><span><span>  </span></span>Contain
+any of the following characters:</p>
+<div><pre> { | } ~ [ \ ] ^ &#39; : ; &lt; = &gt; ? @ ! &#34; # $ % ^ ` ( ) + / , *
+</pre></div>
+<p>DNS_ERROR_INVALID_NAME_CHAR
+MUST be returned if any condition in this group is violated.</p>
+</li></ul></li><li><p><span>    </span>Second, after
+validating the name syntactically, the method MUST perform the following
+verification for the respective types of validation:</p>
+<p><b>NetSetupWorkgroup</b></p>
+<ul><li><p><span><span>  </span></span>The
+name MUST NOT be the name of the server receiving this call.
+NERR_InvalidWorkgroupName MUST be returned if this condition is violated.</p>
+</li><li><p><span><span>  </span></span>The
+name MUST be valid for registration as a <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_b86c44e6-57df-4c48-8163-5e3fa7bdcff4" data-linktype="relative-path">NetBIOS</a></span> group name (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90260" data-linktype="external">[RFC1001]</a></span>).<a id="Appendix_A_Target_154"></a><a aria-label="Product behavior note 154" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_154" data-linktype="relative-path">&lt;154&gt;</a> If the name is not valid then
+ERROR_INVALID_PARAMETER MUST be returned.</p>
+<p><b>NetSetupMachine</b></p>
+</li><li><p><span><span>  </span></span>The
+name MUST be valid for registration as a NetBIOS unique name ([RFC1001]).
+Otherwise, the server MUST return NERR_InvalidComputer.</p>
+</li><li><p><span><span>  </span></span>The
+name MUST NOT be in use by a computer accessible on the network except for the
+server receiving this call. ERROR_DUP_NAME MUST be returned if this condition
+is violated.<a id="Appendix_A_Target_155"></a><a aria-label="Product behavior note 155" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_155" data-linktype="relative-path">&lt;155&gt;</a> </p>
+<p><b>NetSetupDomain</b></p>
+</li><li><p><span><span>  </span></span>The
+name MUST differ from the name of the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_22904540-f2fb-470e-af48-ce1b0e9a02b8" data-linktype="relative-path">built-in domain</a></span>,
+&#34;BUILTIN&#34; (<b>Builtin Domain Principal View</b>, <span><a href="../ms-lsat/1ba21e6f-d8a9-462c-9153-4375f2020894" data-linktype="relative-path">[MS-LSAT]</a></span>
+section <span><a href="../ms-lsat/871df7fe-3470-4b69-9e59-15db70e8d4c6" data-linktype="relative-path">3.1.1.1.3</a></span>);
+the comparison MUST be case-insensitive. NERR_InvalidComputer MUST be returned
+if this condition is violated.</p>
+</li><li><p><span><span>  </span></span>The
+name MUST be a name of an existing domain. ERROR_NO_SUCH_DOMAIN MUST be
+returned if this condition is not satisfied.<a id="Appendix_A_Target_156"></a><a aria-label="Product behavior note 156" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_156" data-linktype="relative-path">&lt;156&gt;</a> </p>
+<p><b>NetSetupNonExistentDomain</b></p>
+</li><li><p><span><span>  </span></span>The
+name MUST differ from the name of the built-in domain, &#34;BUILTIN&#34; (<b>Builtin
+Domain Principal View</b>); the comparison MUST be case-insensitive. NERR_InvalidComputer
+MUST be returned if this condition is violated.</p>
+</li><li><p><span><span>  </span></span>The
+name MUST NOT be a name of an existing domain accessible on the network.
+ERROR_DUP_NAME MUST be returned if this condition is not satisfied.<a id="Appendix_A_Target_157"></a><a aria-label="Product behavior note 157" href="def80006-2495-4571-8a93-1668e0f8af31#Appendix_A_157" data-linktype="relative-path">&lt;157&gt;</a> </p>
+</li></ul></li><li><p><span>    </span>The server MUST
+stop impersonating the client by invoking the <b>StopImpersonatingClient</b>
+task (section <span><a href="cf258b4a-d66b-4407-85f7-aac7823ec0aa" data-linktype="relative-path">3.2.4.29.7</a></span>).</p>
+</li></ol><p>If no errors occur, the server MUST return NERR_Success.</p></div>

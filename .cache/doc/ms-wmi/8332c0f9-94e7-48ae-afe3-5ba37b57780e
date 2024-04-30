@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The _WBEM_REFRESH_INFO_UNION union defines a union of one of
+the following types: m_Remote, m_NonHiPerf, or m_hres.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(long)] 
+ union  {
+   [case(WBEM_REFRESH_TYPE_REMOTE)] 
+     _WBEM_REFRESH_INFO_REMOTE m_Remote;
+   [case(WBEM_REFRESH_TYPE_NON_HIPERF)] 
+     _WBEM_REFRESH_INFO_NON_HIPERF m_NonHiPerf;
+   [case(WBEM_REFRESH_TYPE_INVALID)] 
+     HRESULT m_hres;
+ } WBEM_REFRESH_INFO_UNION;
+</pre></div>
+</dd></dl><p><b>m_Remote:</b>  An m_Remote
+_WBEM_REFRESH_INFO_REMOTE type.</p><p><b>m_NonHiPerf:</b>  An m_NonHiPerf
+_WBEM_REFRESH_INFO_NON_HIPERF type.</p><p><b>m_hres:</b>  An m_hres HRESULT type.</p></div>

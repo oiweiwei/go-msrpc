@@ -1,0 +1,10 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/fb7df2bb-99e7-402f-8334-24d47e23ec00" data-linktype="external">msdn link</a></p><p>The LSAPR_POLICY_REPLICA_SRCE_INFO structure corresponds to
+the PolicyReplicaSourceInformation information class.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_POLICY_REPLICA_SRCE_INFO {
+   RPC_UNICODE_STRING ReplicaSource;
+   RPC_UNICODE_STRING ReplicaAccountName;
+ } LSAPR_POLICY_REPLICA_SRCE_INFO,
+  *PLSAPR_POLICY_REPLICA_SRCE_INFO;
+</pre></div>
+</dd></dl><p><b>ReplicaSource:</b>  A string.</p><p><b>ReplicaAccountName:</b>  A string.</p></div>

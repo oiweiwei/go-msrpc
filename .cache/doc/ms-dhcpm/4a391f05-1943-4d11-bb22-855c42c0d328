@@ -1,0 +1,75 @@
+<div class="content"><p> </p><p>The <b>R_DhcpCreateClass</b> method creates a user class or
+a vendor class definition on the DHCPv4 server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpCreateClass(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DWORD ReservedMustBeZero,
+   [in] LPDHCP_CLASS_INFO ClassInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>ReservedMustBeZero: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and is reserved for future use. Currently it is not used, and any value set to
+this parameter will not affect the behavior of this method.</p><p><b>ClassInfo: </b>This is of type <span><a href="0f8461a3-14ad-4b60-a398-553b199ecfc0" data-linktype="relative-path">DHCP_CLASS_INFO (section 2.2.1.2.75)</a></span>
+structure, containing the information about the class.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E4D</p>
+  <p>ERROR_DHCP_CLASS_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>The class name is already in use or the class
+  information is already in use.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 24.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate the fields <b>ClassName</b>, <b>ClassData</b>, and <b>ClassDataLength</b>
+in the <i>ClassInfo</i> structure. If any one of them is NULL, or if the <b>ClassDataLength</b>
+value is not in the range 1–255, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server ADM element <b>DHCPv4ClassDefList</b>,
+and if there is a <b>DHCPv4ClassDef</b> entry with <b>ClassName</b> and <b>IsVendor</b>
+matching <b>ClassName</b> and <b>IsVendor</b> fields respectively in the <i>ClassInfo</i>
+structure, return ERROR_DHCP_CLASS_ALREADY_EXISTS.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server ADM element <b>DHCPv4ClassDefList</b>,
+and if there is a <b>DHCPv4ClassDef</b> entry with <b>ClassData</b> and <b>ClassDataLength</b>
+matching <b>ClassData</b> and <b>ClassDataLength</b> fields respectively in the
+<i>ClassInfo</i> structure, return ERROR_DHCP_CLASS_ALREADY_EXISTS.</p>
+</li><li><p><span><span> 
+</span></span>Create a <b>DHCPv4ClassDef</b> object and insert it into the <b>DHCPv4ClassDefList</b>.
+The <b>DHCPv4ClassDef</b> object is initialized with the information contained
+in the <b>ClassInfo</b> field.</p>
+</li><li><p><span><span> 
+</span></span>Add the new class definition in the DHCPv4 server database, and
+return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

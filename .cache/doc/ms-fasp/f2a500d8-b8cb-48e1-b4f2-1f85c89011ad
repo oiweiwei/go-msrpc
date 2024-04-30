@@ -1,0 +1,77 @@
+<div class="content"><p> </p><p>This enumeration identifies (with bitmask flags) the ports
+used by specific well-known protocols.<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="1da2ee70-a6ae-4f76-b08f-fdc25c77d8a0#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a> The ports
+corresponding to these keywords change dynamically and are tracked by the <b>PortsInUse</b>
+object (see section <span><a href="43507d53-8955-416d-b913-dfb27dc76b17" data-linktype="relative-path">3.1.1</a></span>). All the
+flags supported by a given schema version can be combined, except for the
+restrictions placed on the <b>wPortKeywords</b> field as stated in <span><a href="8c008258-166d-46d4-9090-f2ffaa01be4b" data-linktype="relative-path">FW_RULE (section 2.2.37)</a></span>
+and <span><a href="0d064110-5f2e-4b68-aa63-032c6cd5e4c6" data-linktype="relative-path">FW_CS_RULE (section 2.2.55)</a></span>.
+</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_PORT_KEYWORD
+ {
+   FW_PORT_KEYWORD_NONE = 0x00,
+   FW_PORT_KEYWORD_DYNAMIC_RPC_PORTS = 0x01,
+   FW_PORT_KEYWORD_RPC_EP = 0x02,
+   FW_PORT_KEYWORD_TEREDO_PORT = 0x04,
+   FW_PORT_KEYWORD_IP_TLS_IN = 0x08,
+   FW_PORT_KEYWORD_IP_TLS_OUT = 0x10,
+   FW_PORT_KEYWORD_DHCP = 0x20,
+   FW_PORT_KEYWORD_PLAYTO_DISCOVERY = 0x40,
+   FW_PORT_KEYWORD_MDNS = 0x80,
+   FW_PORT_KEYWORD_CORTANA_OUT = 0x100,
+   FW_PORT_KEYWORD_PROXIMAL_TCP_CDP = 0x200,
+   FW_PORT_KEYWORD_MAX = 0x400,
+   FW_PORT_KEYWORD_MAX_V2_1 = 0x08,
+   FW_PORT_KEYWORD_MAX_V2_10 = 0x20,
+   FW_PORT_KEYWORD_MAX_V2_20 = 0x80,
+   FW_PORT_KEYWORD_MAX_V2_24 = 0x100,
+   FW_PORT_KEYWORD_MAX_V2_25 = 0x200
+ } FW_PORT_KEYWORD;
+</pre></div>
+</dd></dl><p><b>FW_PORT_KEYWORD_NONE:  </b>Specifies that no port
+keywords are used.</p><p><b>FW_PORT_KEYWORD_DYNAMIC_RPC_PORTS:  </b>Represents
+all ports in the <b>PortsInUse</b> collection where <b>IsDynamicRPC</b> is
+true.</p><p><b>FW_PORT_KEYWORD_RPC_EP:  </b>Represents all ports
+in the <b>PortsInUse</b> collection where <b>IsRPCEndpointMapper</b> is true.</p><p><b>FW_PORT_KEYWORD_TEREDO_PORT:  </b>Represents all
+ports in the <b>PortsInUse</b> collection where <b>IsTeredo</b> is true. </p><p><b>FW_PORT_KEYWORD_IP_TLS_IN:  </b>Represents all
+ports in the <b>PortsInUse</b> collection where <b>IsIPTLSIn</b> is true. For
+schema versions 0x0200 and 0x0201, this value is invalid and MUST NOT be used.
+This symbolic constant has a value of 0x08.</p><p><b>FW_PORT_KEYWORD_IP_TLS_OUT:  </b>Represents all
+ports in the <b>PortsInUse</b> collection where <b>IsIPTLSOut</b> is true. For
+schema versions 0x0200 and 0x0201, this value is invalid and MUST NOT be used.
+This symbolic constant has a value of 0x10.</p><p><b>FW_PORT_KEYWORD_DHCP:  </b>Represents all ports in
+the PortsInUse collection where IsDHCPClient is true. For schema versions
+0x0200, 0x0201, and 0x020A, this value is invalid and MUST NOT be used. This
+symbolic constant has a value of 0x20.</p><p><b>FW_PORT_KEYWORD_PLAYTO_DISCOVERY:  </b>Represents
+all ports in the PortsInUse collection where IsPlayToDiscovery is true. For
+schema versions 0x0200, 0x0201, and 0x020A, this value is invalid and MUST NOT
+be used. This symbolic constant has a value of 0x40.</p><p><b>FW_PORT_KEYWORD_MDNS:</b>  Represents all ports in
+the <b>PortsInUse</b> collection where <b>IsMDNS</b> is true. For schema
+versions 0x0200, 0x0201, 0x020A, and 0x0214, this value is invalid and MUST NOT
+be used. This symbolic constant has a value of 0x80.</p><p><b>FW_PORT_KEYWORD_CORTANA_OUT:</b>  Represents all
+ports in the <b>PortsInUse</b> collection where <b>IsCortanaOut</b> is true.
+For schema versions 0x0200, 0x0201, 0x020A, 0x0214, 0x0216, 0x0218, and 0x0219,
+this value is invalid and MUST NOT be used. This symbolic constant has a value
+of 0x100.</p><p><b>FW_PORT_KEYWORD_PROXIMAL_TCP_CDP:</b>  Represents
+all ports in the <b>PortsInUse</b> collection where <b>IsProximalTCPCDP</b> is
+true. For schema versions 0x0200, 0x0201, 0x020A, 0x0214, 0x0216, 0x0218,
+0x0219, 0x021A, 0x021B, and 0x021C, this value is invalid and MUST NOT be used.
+This symbolic constant has a value of 0x200.</p><p><b>FW_PORT_KEYWORD_MAX:  </b>This value and values
+that exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 0x400.<a id="Appendix_A_Target_3"></a><a aria-label="Product behavior note 3" href="1da2ee70-a6ae-4f76-b08f-fdc25c77d8a0#Appendix_A_3" data-linktype="relative-path">&lt;3&gt;</a></p><p><b>FW_PORT_KEYWORD_MAX_V2_1:  </b>This value and
+values that exceed this value are not valid and MUST NOT be used by servers and
+clients with schema version 0x0201 and earlier. It is defined for simplicity in
+writing IDL definitions and code. This symbolic constant has a value of 0x08.</p><p><b>FW_PORT_KEYWORD_MAX_V2_10:  </b>This value and
+values that exceed this value are not valid and MUST NOT be used by servers and
+clients with schema version 0x020A and earlier. It is defined for simplicity in
+writing IDL definitions and code. This symbolic constant has a value of 0x20.</p><p><b>FW_PORT_KEYWORD_MAX_V2_20:</b>  This value and
+values that exceed this value are not valid and MUST NOT be used by servers and
+clients with schema version 0x0214 and earlier. It is defined for simplicity in
+writing IDL definitions and code. This symbolic constant has a value of 0x80.</p><p><b>FW_PORT_KEYWORD_MAX_V2_24:</b>  This value and
+values that exceed this value are not valid and MUST NOT be used by servers and
+clients with schema version 0x0219 and earlier. It is defined for simplicity in
+writing IDL definitions and code. This symbolic constant has a value of 0x100. </p><p><b>FW_PORT_KEYWORD_MAX_V2_25:</b>  This value and
+values that exceed this value are not valid and MUST NOT be used by servers and
+clients with schema version 0x021B and earlier. It is defined for simplicity in
+writing IDL definitions and code. This symbolic constant has a value of 0x200.</p></div>

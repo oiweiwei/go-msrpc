@@ -1,0 +1,185 @@
+<div class="content"><p> </p><p>The Poke method is used by a <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_b4738f56-9936-4714-beb6-1c861116dd5c" data-linktype="relative-path">secondary partner</a></span> to
+request the <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7e81ed8f-e4a4-49ff-b7d8-cce6005ad036" data-linktype="relative-path">primary partner</a></span> <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0cd96b80-a737-4f06-bca4-cf9efb449d12" data-linktype="relative-path">session</a></span>
+initiation. The parameter values specified in the call identify both
+participants.</p><dl>
+<dd>
+<div><pre> HRESULT Poke(
+   [in] handle_t hBinding,
+   [in] SESSION_RANK sRank,
+   [in, string, range(GUID_LENGTH, GUID_LENGTH)] 
+     unsigned char pszCalleeUuid[],
+   [in, string, range(1, MAX_COMPUTERNAME_LENGTH+1)] 
+     unsigned char pszHostName[],
+   [in, string, range(GUID_LENGTH, GUID_LENGTH)] 
+     unsigned char pszUuidString[],
+   [in, range(sizeof(BIND_INFO_BLOB),sizeof(BIND_INFO_BLOB))] 
+     DWORD dwcbSizeOfBlob,
+   [in, size_is(dwcbSizeOfBlob)] unsigned char rguchBlob[]
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> primitive
+binding handle of the <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a></span> receiving
+the call, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> part
+Binding Handle.</p><p><b>sRank: </b>The <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_d1d469c9-dbab-4888-ba5b-3f692e36b15c" data-linktype="relative-path">session rank</a></span> of the
+partner making the call. This parameter MUST be set to 0x02 (SRANK_SECONDARY).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span><a href="8b849631-fa6b-4cad-861a-3cde962c408e" data-linktype="relative-path">SRANK_SECONDARY</a></span></p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>The caller is the secondary participant.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pszCalleeUuid: </b>A string containing the primary
+partner&#39;s <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_008df1ed-6dde-44be-be73-57a5008782ca" data-linktype="relative-path">contact identifier (CID)</a></span>
+in the form of a <span><a href="a3ae5f13-7c24-4e28-8e17-c3a1420e45d6" data-linktype="relative-path">GUID</a></span>. The contact
+identifier (CID) MUST match the CID in the primary partner&#39;s local name object
+and MUST be formatted into a string.</p><p><b>pszHostName: </b>The string form of the caller&#39;s
+host name. This host name identifies the machine on which the caller&#39;s instance
+of the MSDTC Connection Manager: OleTx Transports Protocol is running. This
+value is used by the primary participant to establish the RPC binding handle
+for its subsequent call to <span><a href="bdb686a6-1190-4900-9dd5-2f9aac6ca621" data-linktype="relative-path">BuildContext</a></span>. This
+MUST be a <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a></span>. For
+NetBIOS, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90224" data-linktype="external">[NETBEUI]</a></span>, <span><a href="https://go.microsoft.com/fwlink/?LinkId=90260" data-linktype="external">[RFC1001]</a></span>,
+and <span><a href="https://go.microsoft.com/fwlink/?LinkId=90261" data-linktype="external">[RFC1002]</a></span>.</p><p><b>pszUuidString: </b>The string form of the caller&#39;s
+contact identifier (CID) in the form of a GUID. This contact identifier (CID)
+identifies the caller&#39;s instance of the MSDTC Connection Manager: OleTx
+Transports Protocol. It MUST match the CID in the caller&#39;s local name object,
+and MUST be formatted into a string. This value is used by the primary
+participant to establish the RPC binding handle for its subsequent call to
+BuildContext.</p><p><b>dwcbSizeOfBlob: </b>The count, in bytes, of the
+size of the binding info structure. This parameter MUST be set to 0x00000008.</p><p><b>rguchBlob: </b>A byte array containing a <span><a href="7de5e521-b2fa-46f8-8e12-094e0630909d" data-linktype="relative-path">BIND_INFO_BLOB</a></span>
+structure specifying the transport protocols supported. This information is
+used to build the RPC binding for the reverse <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_866b0055-ceba-4acf-a692-98452943b981" data-linktype="relative-path">connection</a></span>.</p><p><b>Return Values: </b>This method MUST return zero
+(0x00000000) on success. On failure, it MUST return either one of the values
+described in the following table or an implementation-specific <span><a href="26fd4ecb-9127-4873-bc35-bd55362b9796" data-linktype="relative-path">HRESULT</a></span>.
+A <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>
+MUST NOT depend on implementation-specific failure HRESULT values. For more
+information about how the client SHOULD behave based on the possible return
+values, see section <span><a href="b10cafa4-6415-49aa-8df7-c55558e033a9" data-linktype="relative-path">3.4.6.1.2</a></span>. Standard
+errors are defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_STATUS</p>
+  </td>
+  <td>
+  <p>The return value indicates success.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80000123</p>
+  <p>E_CM_SERVER_NOT_READY</p>
+  </td>
+  <td>
+  <p>The session object is not in the Connecting state.<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="2f0b4979-92b7-46f5-9e94-81531e68f3fe#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The return value indicates that one of the specified
+  arguments is invalid.<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="2f0b4979-92b7-46f5-9e94-81531e68f3fe#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000006BB</p>
+  <p>RPC_S_SERVER_TOO_BUSY</p>
+  </td>
+  <td>
+  <p>The return value indicates that the partner is too
+  busy to complete this operation. For more information, see <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+  section <span><a href="../ms-rpce/b5e81729-f356-4776-920c-c39031d48205" data-linktype="relative-path">3.1.1.5.5</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80000173</p>
+  <p>E_CM_S_PROTOCOL_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The return value indicates that none of the protocols
+  described in the <i>rguchBlob</i> parameter is supported by the partner.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a></span> field value
+for this method is zero.</p><p>Poke SHOULD NOT be invoked on a secondary partner. If it is,
+the secondary partner SHOULD respond by making a Poke callback on the primary partner.<a id="Appendix_A_Target_18"></a><a aria-label="Product behavior note 18" href="2f0b4979-92b7-46f5-9e94-81531e68f3fe#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a> In this case, the parameters to
+the Poke call MUST be calculated from the incoming parameters and the secondary
+partner&#39;s local name object; specifically, the <i>pszCalleeUuid</i> parameter
+MUST be set to the value of the <i>pszUuidString</i> parameter; the <i>pszHostName</i>
+parameter MUST be the Hostname field of the secondary partner&#39;s local name
+object; and the <i>pszUuidString</i> parameter MUST be the string form of the
+CID field of the secondary partner&#39;s local name object. The secondary partner
+MAY return from the Poke method before this call has completed.</p><p>When Poke is invoked on a primary partner, the primary
+partner MUST construct a name object using the host name specified in the <i>pszHostName</i>
+parameter, the contact identifier (CID) specified in the <i>pszUuidString</i>
+parameter, and the RPC protocols specified in the <b>grbitComProtocols</b>
+field of the BIND_INFO_BLOB structure.</p><p>The primary partner MUST use this name object to check
+whether or not an existing session with a matching name object already exists
+in the session table.</p><p>If an existing session is found, the primary partner MUST
+check the State field of the session object.</p><ul><li><p><span><span> 
+</span></span>If the value is set to Connecting, the existing session will be
+used during the rest of the call.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the primary partner MUST return an
+implementation-specific error code.<a id="Appendix_A_Target_19"></a><a aria-label="Product behavior note 19" href="2f0b4979-92b7-46f5-9e94-81531e68f3fe#Appendix_A_19" data-linktype="relative-path">&lt;19&gt;</a></p>
+</li></ul><p>If an existing session is not found, a new session object
+MUST be created and added to the session table. The new session object MUST be
+initialized with the created name object. An RPC binding handle to the
+secondary partner MUST be created and stored in the session object. For binding
+handles, see [C706]. The State field MUST be set to Connecting.</p><p>At this point, the primary partner does not have to wait
+until the entire process is completed. It SHOULD return success from the
+method, while it continues to perform the following actions.<a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="2f0b4979-92b7-46f5-9e94-81531e68f3fe#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a></p><p>After identifying a valid existing session or initializing a
+new session object and adding it to the session table, the primary partner MUST
+attempt to call either the <span><a href="fc4bf100-2799-4acf-a537-625f9c98500b" data-linktype="relative-path">BuildContextW</a></span>
+method or the BuildContext method on the secondary partner with the RPC binding
+handle stored in the session object. For details on making BuildContext calls
+to a partner, see section 3.3.4.2 and section <span><a href="5f300b8c-85f9-41fe-90bd-2224bbb7aeb7" data-linktype="relative-path">3.4.6.1.1</a></span>.</p><p>To determine whether the secondary partner supports
+BuildContextW, the primary partner calls BuildContextW on the secondary partner
+and waits for a return value.</p><p>If the secondary partner does not support the BuildContextW
+method, the primary partner MUST call the BuildContext method.</p><p>If the secondary partner does support the BuildContextW
+method, the primary partner MUST NOT call the BuildContext method. During this
+call, the secondary partner will make a nested synchronous callback to the
+primary partner to complete the session establishment. See section 3.4.6.1.1.</p><p>If the call completes successfully, the primary partner MUST
+examine the State field of the session object; if the value is &#34;Confirming
+Connection&#34;, it MUST set the state of the session object to Active and
+cancel the <span><a href="df71ea77-cd07-41f7-b455-d2a1c612b65f" data-linktype="relative-path">Session Setup timer</a></span>
+associated with that session object.</p><p>If the call completes unsuccessfully, the primary partner
+SHOULD behave according to the error code that was returned:</p><ul><li><p><span><span> 
+</span></span>If the error code is 0x80000712 (E_CM_VERSION_SET_NOTSUPPORTED),
+or 0x800000173 (E_CM_S_PROTOCOL_NOT_SUPPORTED), or it retried the nested call
+for more than the number of times specified in the <b>Session Setup Retry Count</b>
+ADM element, or if the State field of the session object is not
+&#34;Confirming Connection&#34;, the primary partner MUST remove the session
+object from the session table and clean it up. For instructions on cleaning up
+a session object, see section <span><a href="ff2a0bdc-9952-4357-971e-9e659c8824c8" data-linktype="relative-path">3.2.1.3</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>If the error code is ox800000123 (E_CM_SERVER_NOT_READY) or
+0x000006BB (RPC_S_SERVER_TOO_BUSY), or any other implementation-specific error
+code, the primary partner SHOULD retry the call for the number of times specified
+in the <b>Session Setup Retry Count</b> ADM element.</p>
+</li></ul></div>

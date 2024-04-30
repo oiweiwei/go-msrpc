@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The ExtendedErrorParamTypesInternal enumeration defines the
+values that are valid for the <b>Type</b> field in the <span><a href="caff3b07-0f2d-447b-882e-0e232b210ebc" data-linktype="relative-path">ExtendedErrorParam</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef  enum tagExtendedErrorParamTypesInternal
+ {
+    eeptiAnsiString = 1,
+    eeptiUnicodeString = 2,
+    eeptiLongVal = 3,
+    eeptiShortValue = 4,
+    eeptiPointerValue = 5,
+    eeptiNone = 6,
+    eeptiBinary = 7
+ } ExtendedErrorParamTypesInternal;
+</pre></div>
+</dd></dl><p><b>eeptiAnsiString:  </b>The <b>ANSIString</b> member
+of the union is valid.</p><p><b>eeptiUnicodeString:  </b>The <b>UnicodeString</b>
+member of the union is valid.</p><p><b>eeptiLongVal:  </b>The <b>LVal</b> member of the
+union is valid. <b>LVal</b> is used to encode a long.</p><p><b>eeptiShortValue:  </b>The <b>IVal</b> member of
+the union is valid. <b>IVal</b> is used to encode a short.</p><p><b>eeptiPointerValue:  </b>The <b>PVal</b> member of
+the union is valid. <b>PVal</b> is used to encode an __int64.</p><p><b>eeptiNone:  </b>No additional details are present
+in this parameter.</p><p><b>eeptiBinary:  </b>The <b>Blob</b> member of the
+union is valid.</p></div>

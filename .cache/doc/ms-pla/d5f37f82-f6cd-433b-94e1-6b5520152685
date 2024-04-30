@@ -1,0 +1,23 @@
+<div class="content"><p>The GetValue method retrieves a user-defined value. The
+GetValue method retrieves a name and value pair that was set using the SetValue
+method. This pair can either be used as metadata for the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data collector set</a>, in
+which case it has no effect on the execution of the data collector set, or it
+can be used as arguments for task execution. For example, when a <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance counter</a> crosses
+a specified threshold, a scheduled task can run. In the event that there exists
+a key/value pair that matches a task argument, PLA will substitute the value as
+an argument to pass into the execution of that task. For more information about
+using the Value field as task argument, see section <a href="7058da41-f7f5-498b-80e2-37b09286cae6" data-linktype="relative-path">3.2.4.1.39</a>. </p><dl>
+<dd>
+<div><pre> HRESULT GetValue(
+   BSTR key,
+   [out, retval] BSTR* value
+ );
+</pre></div>
+</dd></dl><p><b>key: </b>Supplies the key of the value to
+retrieve. The key cannot be null or the empty BSTR. Any other BSTR is a valid
+value.</p><p><b>value: </b>Receives the value associated with the
+key. The value that is returned, associated with the key that was passed as a
+parameter into this method, was set by calling the SetValue method.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT with the severity bit clear on success as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>;
+otherwise, it MUST return one of the errors as defined in <a href="590752a5-ddc3-49e4-9914-147a90bd0193" data-linktype="relative-path">2.2.1</a> or one of the errors
+as defined in [MS-ERREF] section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p></div>

@@ -1,0 +1,91 @@
+<div class="content"><p> </p><p>The <b>R_DhcpCreateClassV6</b> method creates an IPv6 user
+class or a vendor class definition on the DHCPv6 server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpCreateClassV6(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DWORD ReservedMustBeZero,
+   [in] LPDHCP_CLASS_INFO_V6 ClassInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>ReservedMustBeZero: </b>This flag SHOULD be set to
+0. Currently it is not used, and any value set to this parameter will not
+affect the behavior of this method.</p><p><b>ClassInfo: </b>This is of type <span><a href="c820453d-a53c-4e36-99dd-caf5aa55909a" data-linktype="relative-path">DHCP_CLASS_INFO_V6 (section 2.2.1.2.70)</a></span>,
+containing information regarding a class.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E4D</p>
+  <p>ERROR_DHCP_CLASS_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>The vendor class or user class that is being created
+  already exists.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 74.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ClassInfo</i> parameter is NULL, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ClassName</b> member is NULL, or if the <b>ClassDataLength</b>
+member is 0 and the <b>ClassData</b> member is not NULL, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server ADM element <b>DHCPv6ClassDefList</b>,
+and if there is a <b>DHCPv6ClassDef</b> entry with <b>ClassName</b> matching <b>ClassName</b>
+field in the <i>ClassInfo</i> structure, return
+ERROR_DHCP_CLASS_ALREADY_EXISTS.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ClassInfo</i> structure has the <b>IsVendor</b> field
+set to 0, iterate through the server ADM element <b>DHCPv6ClassDefList</b>, and
+if there is a <b>DHCPv6ClassDef</b> entry with <b>ClassData</b> and <b>ClassDataLength</b>
+matching <b>ClassData</b> and <b>ClassDataLength</b> fields respectively in the
+<i>ClassInfo</i> structure, return ERROR_DHCP_CLASS_ALREADY_EXISTS.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ClassInfo</i> structure has the <b>IsVendor</b> field
+set to 1, iterate through the server ADM element <b>DHCPv6ClassDefList</b>, and
+if there is a <b>DHCPv6ClassDef</b> entry with <b>ClassData</b>, <b>ClassDataLength</b>,
+<b>IsVendor</b> and <b>EnterpriseNumber</b> matching <b>ClassData</b>, <b>ClassDataLength</b>,
+<b>IsVendor</b> and <b>EnterpriseNumber</b> fields respectively in the <i>ClassInfo</i>
+structure, return ERROR_DHCP_CLASS_ALREADY_EXISTS.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv6ClassDefList</b> object, initialize a new <b>DHCPv6ClassDef</b>
+object from the information in <b>ClassInfo</b>, and add it to <b>DHCPv6ClassDefList</b>.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

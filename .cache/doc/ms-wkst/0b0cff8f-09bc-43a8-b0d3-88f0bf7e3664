@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The <b>WKSTA_USER_INFO_0_CONTAINER</b> structure contains a
+value that indicates the number of entries that the <b>NetrWkstaUserEnum</b>
+method (section <span><a href="55118c55-2122-4ef9-8664-0c1ff9e168f3" data-linktype="relative-path">3.2.4.3</a></span>) returns,
+as well as a pointer to the buffer.</p><dl>
+<dd>
+<div><pre> typedef struct _WKSTA_USER_INFO_0_CONTAINER {
+   unsigned long EntriesRead;
+   [size_is(EntriesRead)] LPWKSTA_USER_INFO_0 Buffer;
+ } WKSTA_USER_INFO_0_CONTAINER,
+  *PWKSTA_USER_INFO_0_CONTAINER,
+  *LPWKSTA_USER_INFO_0_CONTAINER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b> The number of entries that the
+method returns.</p><p><b>Buffer:</b> The names of the user accounts logged onto
+the remote computer.</p></div>

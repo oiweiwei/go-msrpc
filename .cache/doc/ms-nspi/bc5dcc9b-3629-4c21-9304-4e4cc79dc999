@@ -1,0 +1,78 @@
+<div class="content"><p> </p><p>The NspiUpdateStat method updates the <span><a href="5902bec9-3124-4725-8a8f-1a50282ed023" data-linktype="relative-path">STAT</a></span>
+block representing position in a table to reflect positioning changes requested
+by the client.</p><dl>
+<dd>
+<div><pre> long NspiUpdateStat(
+   [in] NSPI_HANDLE hRpc,
+   [in] DWORD Reserved,
+   [in, out] STAT* pStat,
+   [in, out, unique] long* plDelta
+ );
+</pre></div>
+</dd></dl><p><b>hRpc: </b>An <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+as specified in section <span><a href="67195f6a-2002-4d81-b279-ba8b0aefb4af" data-linktype="relative-path">2.3.9</a></span>.</p><p><b>Reserved: </b>A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value. Reserved for future use. Ignored by the server. </p><p><b>pStat: </b>A pointer to a STAT block describing a
+logical position in a specific <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_a34b031c-18b2-40e1-acfa-3b73cc71e80b" data-linktype="relative-path">address book container</a></span>.
+This parameter is used to specify both input parameters from the client and
+return values from the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_e63aea5b-046b-4176-9359-fde82613a406" data-linktype="relative-path">NSPI</a></span> server.</p><p><b>plDelta: </b>The value NULL or a pointer to a long
+value indicating movement within the address book container specified by the
+input parameter <i>pStat</i>.</p><p><b>Return Values: </b>The server returns a long value
+specifying the return status of the method.</p><p>Exceptions Thrown</p><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>Server Processing Rules</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints: </p><ol><li><p><span>    </span>If the <b>CodePage</b>
+field of the input parameter <i>pStat</i> contains the value CP_WINUNICODE, the
+server MUST return one of the return values specified in section <span><a href="03bb2ea3-f2e9-4adb-ab46-751aca824b72" data-linktype="relative-path">2.2.2</a></span>.
+No further constraints are applied to server processing of this method; in this
+case server behavior is undefined. Note especially that there is no constraint
+on the data the server returns in any output parameter other than the return
+value, nor is there any constraint on how or if the server changes its state.</p>
+</li><li><p><span>    </span>If the server
+returns any return value other than Success, the server MUST NOT modify the
+output parameter <i>pStat</i>.</p>
+</li><li><p><span>    </span>The server MAY
+make additional validations according to section <span><a href="39bcbcd7-fa18-4eb2-a2ae-c598b6683185" data-linktype="relative-path">5</a></span>. If the server
+chooses to limit the visibility of data based on these validations, the server
+MUST proceed as if that data did not exist in the address book. See the product
+behavior note cited in section <span><a href="36c0f768-1fdd-4709-9875-6c387b107560" data-linktype="relative-path">5.1</a></span> for more
+information.</p>
+</li><li><p><span>    </span>If the server is
+unable to locate the address book container specified by the <b>ContainerID</b>
+field in the input parameter <i>pStat</i>, the server MUST return the return
+value InvalidBookmark.</p>
+</li><li><p><span>    </span>The server
+locates the initial position row in the table specified by the <b>ContainerID</b>
+field of the input parameter <i>pStat</i> as follows:</p>
+<ol><li><p><span>   
+</span>If the row specified by the <b>CurrentRec</b> field of the input
+parameter <i>pStat</i> is not MID_CURRENT, the server locates that row as the
+initial position row. If the row cannot be found, the NSPI server MUST return
+the error NotFound.</p>
+</li><li><p><span>   
+</span>If the row specified by the <b>CurrentRec</b> field of the input
+parameter <i>pStat</i> is MID_CURRENT, the server locates the initial position
+row using the fractional position specified in the <b>NumPos</b> field of the
+input parameter <i>pStat</i> as specified in section <span><a href="fb0f38c4-3bcc-4572-9417-fcbedc6e216f" data-linktype="relative-path">3.1.1.4.2</a></span>.</p>
+</li></ol></li><li><p><span>    </span>After locating
+the initial position row in the current table, the server locates the final
+position row by moving forward or backward in the table from the current
+position row as specified in the <b>Delta</b> field of the input parameter <i>pStat</i>,
+with the constraints specified in section <span><a href="1645cff0-84e2-4bc1-b981-e8149cc291bb" data-linktype="relative-path">3.1.1.4</a></span> with
+respect to movement beyond the beginning or end of a table.</p>
+</li><li><p><span>    </span>If the input
+parameter <i>plDelta</i> is not null, the server MUST set it to the actual
+number of rows between the initial position row and the final position row.</p>
+</li><li><p><span>    </span>The server MUST
+set the <b>CurrentRec</b> field of the parameter <i>pStat</i> to the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_42ecf4ed-a7e5-4044-a1f0-f67ca58fb4b6" data-linktype="relative-path">MId</a></span>
+of the current row in the current address book container.</p>
+</li><li><p><span>    </span>The server MUST
+set the <b>NumPos</b> field of the parameter <i>pStat</i> to the approximate
+numeric position of the current row of the current address book container
+according to section 3.1.1.4.2.</p>
+</li><li><p><span>  </span>The server MUST set the <b>TotalRecs</b>
+field of the parameter <i>pStat</i> to the number of rows in the current
+address book container according to section 3.1.1.4.2.</p>
+</li><li><p><span>  </span>The server MUST leave all
+other fields of the parameter <i>pStat</i> unchanged.</p>
+</li><li><p><span>  </span>If no error condition has
+been specified by the previous constraints, the server MUST return Success.</p>
+</li></ol></div>

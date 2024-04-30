@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p>The PropsOutInfo structure represents a collection of
+interfaces that the object implements and that are returned to the client. If
+the object does not support a particular interface requested by the client, it
+also sends an error back using this structure.</p><p>CLSID_PropsOutInfo (see section <span><a href="c25391af-f59e-40da-885e-cc84076673e4" data-linktype="relative-path">1.9</a></span>) is used to
+identify this property in the CustomHeader.pclsid array.</p><dl>
+<dd>
+<div><pre> typedef struct tagPropsOutInfo {
+   [range(1, MAX_REQUESTED_INTERFACES)] 
+     DWORD cIfs;
+   [size_is(cIfs)] IID* piid;
+   [size_is(cIfs)] HRESULT* phresults;
+   [size_is(cIfs)] MInterfacePointer** ppIntfData;
+ } PropsOutInfo;
+</pre></div>
+</dd></dl><p><b>cIfs:</b>  This MUST contain the number
+of interfaces being returned by the server. This value MUST be between 1 and
+MAX_REQUESTED_INTERFACES (see section <span><a href="d5ca7355-6503-4d0c-8616-0b4c479a264f" data-linktype="relative-path">2.2.28.1</a></span>).</p><p><b>piid:</b>  This MUST be an array of <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_76ad3105-3f05-479d-a40c-c9c8fa2ebd83" data-linktype="relative-path">IIDs</a></span>
+identifying the interfaces returned by the server.</p><p><b>phresults:</b>   This MUST be an array
+of status codes indicating the success or failure of each attempt to return an
+interface requested by the client. For each array location containing a zero
+value, a non-NULL MInterfacePointer pointer MUST be present in the
+corresponding location in the ppIntfData array. For each array location
+containing a negative value, a NULL MUST be present in the corresponding
+location in the ppIntfData array.</p><p><b>ppIntfData:</b>   This MUST be an array
+of MInterfacePointer pointers containing the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_d2b5b331-4e5f-417f-92c5-38eef54176c2" data-linktype="relative-path">OBJREFs</a></span> for the
+interfaces returned by the server.</p></div>

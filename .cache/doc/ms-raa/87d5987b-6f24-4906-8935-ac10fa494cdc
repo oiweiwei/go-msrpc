@@ -1,0 +1,16 @@
+<div class="content"><p>The AUTHZR_SID_AND_ATTRIBUTES structure contains information
+about the security identifiers (SIDs) in a <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_95f17071-c8f1-403a-8a92-cf87aa7d40f5" data-linktype="relative-path">token</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _AUTHZR_SID_AND_ATTRIBUTES {
+     RPC_SID* Sid;
+     DWORD Attributes;
+ } AUTHZR_SID_AND_ATTRIBUTES;
+  
+  
+</pre></div>
+</dd></dl><p><b>Sid:</b>  A SID structure, as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="relative-path">2.4.2.3</a>.
+This is a pass-through value and SHOULD NOT be interpreted by the RAZA
+protocol.</p><p><b>Attributes:</b>  Specifies attributes associated
+with the SID. This is a pass-through value and SHOULD NOT be interpreted by the
+RAZA protocol.</p></div>

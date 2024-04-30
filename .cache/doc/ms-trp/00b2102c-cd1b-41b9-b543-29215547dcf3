@@ -1,0 +1,64 @@
+<div class="content"><p>The LINEFORWARDLIST packet describes a list of forwarding
+instructions. This packet can contain an array of <a href="8681587a-c575-4806-a335-53bca1e11082" data-linktype="relative-path">LINEFORWARD</a> packets. The
+line <a href="ce323851-0166-4d94-aee2-b5febbee1b27" data-linktype="relative-path">Forward</a> packet
+uses this packet. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumEntries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">ForwardList
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, of the data packet. </p><p><b>dwNumEntries (4 bytes): </b>An unsigned 32-bit
+integer. The number of entries in the array specified as ForwardList. </p><p><b>ForwardList (variable): </b>An array of forwarding
+instructions. The array&#39;s entries are of type LINEFORWARD.</p><p>This packet cannot be extended.</p><p>The LINEFORWARDLIST packet defines the forwarding parameters
+requested for forwarding calls on an address or on all addresses on a line.</p></div>

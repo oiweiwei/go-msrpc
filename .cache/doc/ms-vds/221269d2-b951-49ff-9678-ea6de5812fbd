@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The QueryMaxReclaimableBytes method retrieves the maximum
+number of bytes that can be reclaimed from the current <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT QueryMaxReclaimableBytes(
+   [out] ULONGLONG* pullMaxNumberOfReclaimableBytes
+ );
+</pre></div>
+</dd></dl><p><b>pullMaxNumberOfReclaimableBytes: </b>A pointer to
+a variable that, if the operation is successfully completed, receives the
+maximum number of bytes that can be reclaimed from the current volume. This
+number is always a multiple of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file system</a></span> <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7a427e97-46a3-46de-91c3-bd52f8763a84" data-linktype="relative-path">cluster
+size</a></span>, which is in turn a multiple of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span> <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b5bbe646-aa5f-4b4e-ae9e-bdae444cbfa2" data-linktype="relative-path">sector</a></span>
+size.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameter:</p><ul><li><p><span><span> 
+</span></span>Verify that <b>pullMaxNumberOfReclaimableBytes</b> is not NULL.</p>
+</li></ul><p>The server MUST set values that <b>pullMaxNumberOfReclaimableBytes</b>
+references with the maximum number of bytes that can be reclaimed from the
+volume and then return an HRESULT indicating failure or success.</p></div>

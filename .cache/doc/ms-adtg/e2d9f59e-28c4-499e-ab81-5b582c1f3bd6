@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>The Remote Data Services (RDS) Transport Protocol is an
+application-level protocol for distributed applications. RDS Transport Protocol
+specifies a protocol allowing for the remote query and manipulation of data on
+a remote server. To facilitate data operations, it specifies how a remote
+method and its parameters are represented in an RDS message for transmission by
+way of an HTTP request to a server for execution. It also specifies how the
+results of an invoked method are represented in a message for transmission back
+to the client by way of the HTTP response. Finally, it specifies the
+data-centric messages used for data query and manipulation as well as their
+associated <span><a href="844a944f-4f1a-48e9-af98-f71335bb714a#gt_6c5ab3d6-018e-494f-b232-d0ac7e108f6b" data-linktype="relative-path">RecordSets</a></span>.</p><p>The core data-centric messages used in an RDS Transport
+Protocol server are as follows:</p><ul><li><p><span><span> 
+</span></span>Execute - Provides a method to execute a complex SQL command and
+return a RecordSet.</p>
+</li><li><p><span><span> 
+</span></span>Query - Provides a method to execute a simple parameterless SQL
+query command and return a RecordSet.</p>
+</li><li><p><span><span> 
+</span></span>Synchronize - Provides a method for an RDS Transport Protocol
+client to synchronize data changes from the client to the server. </p>
+</li></ul><p>The following diagram depicts a typical flow of
+communication in the RDS Transport Protocol. The client uses Query to populate
+a client-side RecordSet and uses data from the RecordSet for processing. The
+client-side RecordSet tracks changes made to the data. Only these changes are
+then transmitted back to the server.<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="d634b3eb-6211-459f-8760-55e95edc9c5f#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a></p><p><img id="MS-ADTG_pict64cde595-54dc-45b6-8c98-1aac37a5a015.png" src="ms-adtg_files/image001.png" alt="Communication flow in the RDS Transport Protocol" title="Communication flow in the RDS Transport Protocol" data-linktype="relative-path"/></p><p><b>Figure 1: Communication flow in the RDS Transport Protocol</b></p><p>For more information, refer to the following sections:</p><ul><li><p><span><span> 
+</span></span>Section <span><a href="2ceb7807-075d-4eef-ad66-5d3272eb9aee" data-linktype="relative-path">2.1</a></span>: General
+overview on how RDS messages relate to HTTP.</p>
+</li><li><p><span><span> 
+</span></span>Sections <span><a href="e034a4c8-c85d-4e4c-a8d7-45426aa0ca1f" data-linktype="relative-path">2.2.2</a></span> through <span><a href="e968e0ed-bf84-4eaa-b7bd-b06d3fb646ec" data-linktype="relative-path">2.2</a></span>:
+The <span><a href="844a944f-4f1a-48e9-af98-f71335bb714a#gt_1eeeb4f4-0c47-4b00-850a-41c65efda1a8" data-linktype="relative-path">Backus-Naur
+Form (BNF)</a></span> syntax and encoding of the RDS messages.</p>
+</li><li><p><span><span> 
+</span></span>Section <span><a href="1484b1bc-721f-4021-ba68-9730db78a92c" data-linktype="relative-path">2.2.3</a></span>: The RDS
+messages specific to data query and manipulation.</p>
+</li><li><p><span><span> 
+</span></span>Section 2.2: The syntax and encoding of the resulting RecordSets.</p>
+<p><b>Note</b>  The
+RDS Transport Protocol was developed to support communication of tabular data
+between systems; specifically, Microsoft used the RDS Transport Protocol in
+early versions of Windows SharePoint Services. This method of transporting
+tabular data has been superseded by SOAP and the Distributed Component Object
+Model (DCOM), and is no longer used by Windows SharePoint Services. Microsoft
+does not use the RDS Transport Protocol within the Windows operating systems.</p>
+</li></ul></div>

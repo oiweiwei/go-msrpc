@@ -1,0 +1,261 @@
+<div class="content"><p> </p><p>The TYPEATTR structure is used by an <span><a href="99504cf9-16d8-401e-a873-83b85d1ee4aa" data-linktype="relative-path">ITypeInfo
+server</a></span> to describe a type, as specified in section <span><a href="b96292a8-c06e-4b9c-905e-129b95697ee4" data-linktype="relative-path">3.7.4.1</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct tagTYPEATTR {
+   GUID guid;
+   LCID lcid;
+   DWORD dwReserved1;
+   DWORD dwReserved2;
+   DWORD dwReserved3;
+   LPOLESTR lpstrReserved4;
+   ULONG cbSizeInstance;
+   TYPEKIND typekind;
+   WORD cFuncs;
+   WORD cVars;
+   WORD cImplTypes;
+   WORD cbSizeVft;
+   WORD cbAlignment;
+   WORD wTypeFlags;
+   WORD wMajorVerNum;
+   WORD wMinorVerNum;
+   TYPEDESC tdescAlias;
+   DWORD dwReserved5;
+   WORD wReserved6;
+ } TYPEATTR,
+  *LPTYPEATTR;
+</pre></div>
+</dd></dl><p><b>guid:</b>  MUST be set to the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+that is associated with the type, or to IID_NULL, if the type was not declared
+with the [uuid] attribute (see section <span><a href="ae4d27fa-faaa-4d5f-b0f9-15bfbaaae9b4" data-linktype="relative-path">2.2.49.2</a></span>).</p><p><b>lcid:</b>  MUST be set to the locale ID
+of the type&#39;s member names and documentation strings (see section 2.2.49.2).</p><p><b>dwReserved1:</b>  MUST be set to 0, and
+MUST be ignored on receipt.</p><p><b>dwReserved2:</b>  MUST be set to -1, and
+MUST be ignored on receipt.</p><p><b>dwReserved3:</b>  MUST be set to -1, and
+MUST be ignored on receipt.</p><p><b>lpstrReserved4:</b>  MUST be set to
+NULL, and MUST be ignored on receipt.</p><p><b>cbSizeInstance:</b>  MUST be set to a
+value that is specified by the value of <b>typekind</b>.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value of typekind</p>
+   </th>
+   <th>
+   <p>Value of cbSizeInstance</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TKIND_COCLASS</p>
+  </td>
+  <td>
+  <p>MUST be set to the system pointer size (see section <span><a href="7b1b8bd1-a067-4edb-9d72-6aa500d035a3" data-linktype="relative-path">3.7.1.2</a></span>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_DISPATCH</p>
+  </td>
+  <td>
+  <p>MUST be set to the system pointer size (see section
+  3.7.1.2).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_INTERFACE</p>
+  </td>
+  <td>
+  <p>MUST be set to the system pointer size (see section
+  3.7.1.2).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_MODULE</p>
+  </td>
+  <td>
+  <p>MUST be set to 2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_ENUM</p>
+  </td>
+  <td>
+  <p>MUST be set to an implementation-specific value<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a> that specifies the size of an
+  integer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_UNION</p>
+  </td>
+  <td>
+  <p>MUST be set to an implementation-specific value<a id="Appendix_A_Target_24"></a><a aria-label="Product behavior note 24" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_24" data-linktype="relative-path">&lt;24&gt;</a> that specifies the size of
+  its largest element.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_RECORD</p>
+  </td>
+  <td>
+  <p>MUST be set to an implementation-specific value<a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a> that specifies the size in
+  bytes, of the structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_ALIAS</p>
+  </td>
+  <td>
+  <p>MUST be set to an implementation-specific value<a id="Appendix_A_Target_26"></a><a aria-label="Product behavior note 26" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_26" data-linktype="relative-path">&lt;26&gt;</a> that specifies the size, in
+  bytes, of the predefined type for which this type is an alias.</p>
+  </td>
+ </tr></tbody></table><p><b>typekind:</b>  MUST be set to a value of
+the <span><a href="78ccbd1c-d8ff-4301-9afc-df562372fb33" data-linktype="relative-path">TYPEKIND</a></span>
+enumeration, as specified in section 2.2.17.</p><p><b>cFuncs:</b>  MUST be set to a value
+specified by the value of <b>typekind</b>.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value of typekind</p>
+   </th>
+   <th>
+   <p>Value of cfuncs</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TKIND_COCLASS</p>
+  </td>
+  <td>
+  <p>MUST be set to 0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_DISPATCH</p>
+  </td>
+  <td>
+  <p>MUST be set to the number of elements in the dispatch
+  method table, as specified in section 3.7.1.2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_INTERFACE</p>
+  </td>
+  <td>
+  <p>MUST be set to the number of elements in the method
+  table, as specified in section 3.7.1.2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_MODULE</p>
+  </td>
+  <td>
+  <p>MUST be set to the number of elements in the method
+  table, as specified in section 3.7.1.2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_ENUM</p>
+  </td>
+  <td>
+  <p>MUST be set to 0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_UNION</p>
+  </td>
+  <td>
+  <p>MUST be set to 0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_RECORD</p>
+  </td>
+  <td>
+  <p>MUST be set to 0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_ALIAS</p>
+  </td>
+  <td>
+  <p>MUST be set to 0.</p>
+  </td>
+ </tr></tbody></table><p><b>cVars:</b>  MUST be set to the number of
+elements in the data member table, as specified in section 3.7.1.2.</p><p><b>cImplTypes:</b>  MUST be set to the
+number of elements in the interface table, as specified in section 3.7.1.2.</p><p><b>cbSizeVft:</b>  MUST be set to a value
+specified by the value of <b>typekind</b>.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value of typekind</p>
+   </th>
+   <th>
+   <p>Value of cbSizeVft</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TKIND_COCLASS</p>
+  </td>
+  <td>
+  <p>MUST be set to 0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_DISPATCH</p>
+  </td>
+  <td>
+  <p>MUST be set to the system pointer size value (see
+  section <span><a href="b568f4be-95e5-431b-bb3b-08dc56e9b224" data-linktype="relative-path">2.2.45</a></span>)
+  multiplied by seven.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_INTERFACE</p>
+  </td>
+  <td>
+  <p>MUST be set to the system pointer size value
+  multiplied by the number of methods that are defined by the interface and all
+  its inherited interfaces. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_MODULE</p>
+  </td>
+  <td>
+  <p>MUST be set to 0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_ENUM</p>
+  </td>
+  <td>
+  <p>MUST be set to 0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_UNION</p>
+  </td>
+  <td>
+  <p>MUST be set to 0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_RECORD</p>
+  </td>
+  <td>
+  <p>MUST be set to 0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TKIND_ALIAS</p>
+  </td>
+  <td>
+  <p>MUST be set to 0.</p>
+  </td>
+ </tr></tbody></table><p><b>cbAlignment:</b>  MUST be set to 0 or to
+an implementation-specific positive value.<a id="Appendix_A_Target_27"></a><a aria-label="Product behavior note 27" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_27" data-linktype="relative-path">&lt;27&gt;</a></p><p><b>wTypeFlags:</b>  MUST be either a
+combination of the <span><a href="155c66e2-ffe1-4f18-b849-f827ca989aa7" data-linktype="relative-path">TYPEFLAGS</a></span> bit flags
+that are specified in section 2.2.16, or 0.</p><p><b>wMajorVerNum:</b>  MUST be set to the
+major version number of the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_07ad91dc-c12a-44f7-9c64-7e496933183a" data-linktype="relative-path">automation scope</a></span>
+that is associated with the ITypeLib server, as specified in section 2.2.49.2.</p><p><b>wMinorVerNum:</b>  MUST be set to the
+minor version number of the automation scope that is associated with the
+ITypeLib server, as specified in section 2.2.49.2.</p><p><b>tdescAlias:</b>  MUST contain a <span><a href="95bb92a7-f783-477f-acbc-c947d754fa8b" data-linktype="relative-path">TYPEDESC (section 2.2.37)</a></span>
+that describes the predefined type for which this type is an alias, if <b>typekind</b>
+is set to TKIND_ALIAS. Otherwise, MUST contain a TYPEDESC with the <b>vt</b>
+field set to VT_EMPTY.</p><p><b>dwReserved5:</b>  MUST be set to 0, and
+MUST be ignored on receipt.</p><p><b>wReserved6:</b>  MUST be set to 0, and
+MUST be ignored on receipt.</p></div>

@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The LDMACTION enumeration defines the type of action
+described by an <span><a href="1112ac28-9ad9-46b7-951e-1e5e0782f18a" data-linktype="relative-path">ObjectsChanged</a></span>
+call.</p><dl>
+<dd>
+<div><pre> typedef  enum _LDMACTION
+ {
+   LDMACTION_UNKNOWN,
+   LDMACTION_CREATED,
+   LDMACTION_DELETED,
+   LDMACTION_MODIFIED,
+   LDMACTION_FAILED 
+ } LDMACTION;
+</pre></div>
+</dd></dl><p><b>LDMACTION_UNKNOWN:  </b>Object underwent an
+unknown type of change.</p><p><b>LDMACTION_CREATED:  </b>Object was created.</p><p><b>LDMACTION_DELETED:  </b>Object was deleted.</p><p><b>LDMACTION_MODIFIED:  </b>Object was modified.</p><p><b>LDMACTION_FAILED:  </b>Object failed.</p></div>

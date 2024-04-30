@@ -1,0 +1,51 @@
+<div class="content"><p> </p><p>The <b>R_DhcpServerGetConfig</b> method retrieves the
+current DHCPv4 server setting. There is an extension method <span><a href="669933ed-427e-45e6-81d0-07e3af510976" data-linktype="relative-path">R_DhcpServerGetConfigV4 (section 3.1.4.41)</a></span>
+that retrieves some additional settings on the DHCPv4 server. The caller of
+this function can free the memory pointed to by the <i>ConfigInfo</i> parameter
+by calling the function midl_user_free as specified in <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpServerGetConfig(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [out] LPDHCP_SERVER_CONFIG_INFO* ConfigInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>ConfigInfo: </b>This is a pointer of type <span><a href="62b738d8-c898-4d6c-9136-5269d60e05d6" data-linktype="relative-path">LPDHCP_SERVER_CONFIG_INFO</a></span>
+that points to the location where the DHCPv4 server settings are retrieved. The
+caller of this method can free up this structure after use.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 26.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read access per section
+<span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not, return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve all the fields from the server ADM element <b>DHCPv4ServerConfigInfo</b>
+that have a corresponding field in DHCP_SERVER_CONFIG_INFO and copy them to the
+locations pointed to by the <i>ConfigInfo</i> parameter.  Then return
+ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The DSA_MSG_PREPARE_SCRIPT_REQ union defines the request
+messages sent to the <span><a href="74919784-8e57-4cf5-840f-6f1bd226cf02" data-linktype="relative-path">IDL_DSAPrepareScript</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DSA_MSG_PREPARE_SCRIPT_REQ_V1 V1;
+ } DSA_MSG_PREPARE_SCRIPT_REQ;
+</pre></div>
+</dd></dl><p><b>V1:</b>  The version 1 request.</p></div>

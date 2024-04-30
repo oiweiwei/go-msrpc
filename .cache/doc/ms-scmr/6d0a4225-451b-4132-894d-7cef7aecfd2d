@@ -1,0 +1,82 @@
+<div class="content"><p>The ROpenServiceW method creates an RPC context handle to an
+existing <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_1fbb7936-8437-4e3d-b62f-47df3be07721" data-linktype="relative-path">service record</a>.</p><dl>
+<dd>
+<div><pre> DWORD ROpenServiceW(
+   [in] SC_RPC_HANDLE hSCManager,
+   [in, string, range(0, SC_MAX_NAME_LENGTH)] 
+     wchar_t* lpServiceName,
+   [in] DWORD dwDesiredAccess,
+   [out] LPSC_RPC_HANDLE lpServiceHandle
+ );
+</pre></div>
+</dd></dl><p><b>hSCManager: </b>An <a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">SC_RPC_HANDLE (section 2.2.4)</a>
+data type that defines the handle to the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a> database, created using
+one of the open methods specified in section <a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a>.</p><p><b>lpServiceName: </b>A pointer to a null-terminated <b>UNICODE</b>
+string that specifies the ServiceName of the service record.</p><p>The forward slash, back slash, comma, and space
+characters are illegal in service names.</p><p><b>dwDesiredAccess: </b>A value that specifies the
+access right. This MUST be one of the values as specified in section 3.1.4.</p><p><b>lpServiceHandle: </b>An
+LPSC_RPC_HANDLE (section 2.2.4) data type that defines the handle to
+the found service record.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns one of the following error
+codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>5</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The access specified by the <i>dwDesiredAccess</i>
+  parameter cannot be granted to the caller.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The handle is no longer valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>123</p>
+  <p>ERROR_INVALID_NAME</p>
+  </td>
+  <td>
+  <p>The specified service name is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1060</p>
+  <p>ERROR_SERVICE_DOES_NOT_EXIST</p>
+  </td>
+  <td>
+  <p>The service record with a specified DisplayName does
+  not exist in the SCM database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1115</p>
+  <p>ERROR_SHUTDOWN_IN_PROGRESS</p>
+  </td>
+  <td>
+  <p>The system is shutting down.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation the server MUST create an RPC context handle to the
+service record identified by the <i>lpServiceName</i> parameter in the SCM
+database identified by the <i>hSCManager</i> parameter of the client request
+after evaluating the SecurityDescriptor found in the service record against the
+caller&#39;s security context for the requested access. The server MUST increment
+the <b>HandleCount</b> field of the service record and return this handle by
+setting the <i>lpScHandle</i> parameter.</p></div>

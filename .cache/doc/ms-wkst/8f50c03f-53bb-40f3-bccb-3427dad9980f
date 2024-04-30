@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The <b>NETSETUP_NAME_TYPE</b> enumeration specifies the
+types of validation that can be performed for a <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_9a7bc8b3-3374-4608-8f73-be20a90b898b" data-linktype="relative-path">computer name</a></span>,
+workgroup name, or <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_45a1c9f1-0263-49a8-97c7-7aca1a99308c" data-linktype="relative-path">domain name (2)</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum _NETSETUP_NAME_TYPE
+ {
+   NetSetupUnknown = 0,
+   NetSetupMachine,
+   NetSetupWorkgroup,
+   NetSetupDomain,
+   NetSetupNonExistentDomain,
+   NetSetupDnsMachine
+ } NETSETUP_NAME_TYPE,
+  *PNETSETUP_NAME_TYPE;
+</pre></div>
+</dd></dl><p><b>NetSetupUnknown: </b>Reserved.</p><p><b>NetSetupMachine: </b>Verify that the name is valid
+as a <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_b86c44e6-57df-4c48-8163-5e3fa7bdcff4" data-linktype="relative-path">NetBIOS</a></span>
+computer name and that it is not in use.</p><p><b>NetSetupWorkgroup: </b>Verify that the name is
+valid as a workgroup name.</p><p><b>NetSetupDomain: </b>Verify that the name is valid
+as a NetBIOS domain name and that a <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span> with that
+name exists.</p><p><b>NetSetupNonExistentDomain:  </b>Verify that the
+name is valid as a NetBIOS domain name and that a domain with that name does
+not exist.</p><p><b>NetSetupDnsMachine:  </b>Verify that the name is
+valid as a DNS computer name.</p></div>

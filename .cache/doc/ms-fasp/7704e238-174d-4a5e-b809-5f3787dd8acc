@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>This data type defines the enumerations that are used to
+identify profile types. The enumeration values are bitmasks. Implementations
+MUST support using a single bitmask value and MUST support a combination of
+bitmask values. Valid combinations of bitmask values are all possible
+combinations using FW_PROFILE_TYPE_DOMAIN, FW_PROFILE_TYPE_PRIVATE,
+FW_PROFILE_TYPE_PUBLIC, and FW_PROFILE_TYPE_ALL. A profile is a set of networks
+to which a firewall policy might apply.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum _tag_FW_PROFILE_TYPE
+ {
+   FW_PROFILE_TYPE_INVALID = 0x000,
+   FW_PROFILE_TYPE_DOMAIN = 0x001,
+   FW_PROFILE_TYPE_STANDARD = 0x002,
+   FW_PROFILE_TYPE_PRIVATE = 0x002,
+   FW_PROFILE_TYPE_PUBLIC = 0x004,
+   FW_PROFILE_TYPE_ALL = 0x7FFFFFFF,
+   FW_PROFILE_TYPE_CURRENT = 0x80000000,
+   FW_PROFILE_TYPE_NONE = 0x80000001
+ } FW_PROFILE_TYPE;
+</pre></div>
+</dd></dl><p><b>FW_PROFILE_TYPE_INVALID:  </b>This value is
+invalid and MUST NOT be used. It is defined for simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span>
+definitions and code.</p><p><b>FW_PROFILE_TYPE_DOMAIN:  </b>This value represents
+the profile for networks that are connected to domains.</p><p><b>FW_PROFILE_TYPE_STANDARD:  </b>This value
+represents the standard profile for networks. These networks are classified as
+private by the administrators in the server host. The classification happens
+the first time the host connects to the network. Usually these networks are
+behind Network Address Translation (NAT) devices, routers, and other edge
+devices, and they are in a private location, such as a home or an office.</p><p><b>FW_PROFILE_TYPE_PRIVATE:  </b>This value
+represents the profile for private networks, which is represented by the same
+value as that used for FW_PROFILE_TYPE_STANDARD.</p><p><b>FW_PROFILE_TYPE_PUBLIC:  </b>This value represents
+the profile for public networks. These networks are classified as public by the
+administrators in the server host. The classification happens the first time
+the host connects to the network. Usually these networks are those at airports,
+coffee shops, and other public places where the peers in the network or the
+network administrator are not trusted.</p><p><b>FW_PROFILE_TYPE_ALL:  </b>This value represents
+all these network sets and any future network sets.</p><p><b>FW_PROFILE_TYPE_CURRENT:  </b>This value
+represents the current profiles to which the firewall and advanced security
+components determine the host is connected at the moment of the call. This
+value can be specified only in method calls, and it cannot be combined with
+other flags. </p><p><b>FW_PROFILE_TYPE_NONE:  </b>This value represents
+no profile and is invalid. It is defined for simplicity in writing IDL
+definitions and code. This and greater values MUST NOT be used.</p></div>

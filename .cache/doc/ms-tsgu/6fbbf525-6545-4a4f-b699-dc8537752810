@@ -1,0 +1,133 @@
+<div class="content"><p>The method is used for data transfer from the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_3657ab68-5a60-4cee-8082-dfc2e67435e9" data-linktype="relative-path">target server</a>, via the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>. The RDG server
+SHOULD send the buffer data received in this method to the target server. The <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> runtime MUST NOT
+perform a strict <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_9ebf9540-2c31-43bc-bc56-4a932faabf2d" data-linktype="relative-path">NDR</a>
+data consistency check for this method. The Remote Desktop Gateway Server
+Protocol bypasses NDR for this method. The wire data MUST follow the regular
+RPC specifications as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> section 2.1,
+and <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+minus all NDR headers, trailers, and NDR-specific payload. The RDG server MUST
+have created the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_9964c8b0-1d25-4e8e-9dd1-4a51577698f5" data-linktype="relative-path">channel</a>
+to the target server before completing this method call. This method MAY be
+called multiple times by the RDG client, but only after the previous method
+call finishes. The RDG server MUST <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a> multiple sequential
+invocations of this method call. This method bypasses NDR. For this reason,
+unlike other RPC methods that return an HRESULT, this method returns a DWORD. This
+is directly passed to the callee from underlying RPC calls.<a id="Appendix_A_Target_48"></a><a aria-label="Product behavior note 48" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_48" data-linktype="relative-path">&lt;48&gt;</a> When this call fails, the RDG
+server MUST send the final response to <a href="8147cb81-042f-48a3-a7ff-9f12ab73e048" data-linktype="relative-path">TsProxySetupReceivePipe</a>
+call.</p><p>Prerequisites: The connection MUST be in Pipe Created state.
+If this call is made in any other state, ERROR_ONLY_IF_CONNECTED or
+E_PROXY_TS_CONNECTFAILED is returned.</p><p>Sequential Processing Rules:</p><ol><li><p><span>    </span>If some
+unexpected error occurs in the following process, the RDG server MUST return
+HRESULT_CODE(E_PROXY_INTERNALERROR).</p>
+</li><li><p><span>    </span>The RDG server
+MUST extract the channel context handle from the <i>pRpcMessage</i> parameter.
+Refer to <a href="b30688d9-30bd-413e-829f-0d9f94389b39" data-linktype="relative-path">Generic Send Data
+Message Packet</a> for the <i>pRpcMessage</i> format.</p>
+</li><li><p><span>    </span>The RDG server
+MUST verify that the channel context handle is not NULL. Otherwise, it MUST
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>The RDG server
+MUST verify that the connection is in Pipe Created state. Otherwise, it MUST
+return ERROR_ONLY_IF_CONNECTED or E_PROXY_TS_CONNECTFAILED.</p>
+</li><li><p><span>    </span>The RDG server
+MUST extract the RDG client data from the <i>pRpcMessage</i> parameter. For the
+<i>pRpcMessage</i> format, refer to Generic Send Data Message
+Packet (section 2.2.9.3).</p>
+<ol><li><p><span>   
+</span>The RDG server MUST verify that the <b>totalDataBytes</b> field in <i>pRpcMessage</i>
+is not zero. Otherwise, it MUST return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span>   
+</span>The RDG server MUST verify that the <b>numBuffers</b> filed in <i>pRpcMessage</i>
+is in the range of 1 and 3, both inclusive. Otherwise, it MUST return
+ERROR_ACCESS_DENIED.</p>
+</li><li><p><span>   
+</span>The RDG server MUST verify that <b>buffer1Length</b> + <b>buffer2Length</b>,
+(if <b>numBuffers</b> &gt;= 2), + <b>buffer3Length</b>, (if <b>numBuffers</b>
+== 3), + size of <b>buffer1Length</b> + size of <b>buffer2Length</b>, (if <b>numBuffers</b>
+&gt;= 2), + size of <b>buffer3Length</b>, (if <b>numBuffers</b> == 3), does not
+exceed <b>totalDataBytes</b>. Otherwise, it MUST return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span>   
+</span>The RDG server MUST verify that the <b>buffer1Length</b> field in <i>pRpcMessage</i>
+is not zero. Otherwise, it MUST return HRESULT_CODE(E_PROXY_INTERNALERROR).</p>
+</li></ol></li><li><p><span>    </span>The RDG server
+MUST send the data extracted in the preceding step to the target server.</p>
+</li><li><p><span>    </span>The RDG server
+MUST return ERROR_SUCCESS.</p>
+<div><pre> DWORD TsProxySendToServer(
+   [in, max_is(32767)] byte pRpcMessage[]
+ );
+</pre></div>
+</li></ol><p><b>pRpcMessage: </b>The protocol data between RDG
+client and RDG server MUST be decoded as specified in section 2.2.9.3. RPC stub
+information is specified in [MS-RPCE] sections <a href="../ms-rpce/1644e4e6-1340-4d9a-9258-c62ff87e9e55" data-linktype="relative-path">1.1</a> and <a href="../ms-rpce/4c239820-4cdf-413c-b0c5-2d07465d55a6" data-linktype="relative-path">1.5</a>.</p><p><b>Return Values: </b>The method MUST return
+ERROR_SUCCESS on success. Other failures MUST be one of the codes listed. The
+client MAY interpret failures in any way it deems appropriate. See section <a href="38d327b5-e131-4fa3-9a46-7e3ac20e0a4f" data-linktype="relative-path">2.2.6</a> for details on these
+errors.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value</p>
+   </th>
+   <th>
+   <p>State transition</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_SUCCESS (0x00000000)</p>
+  </td>
+  <td>
+  <p>The connection MUST remain in PipeCreated state.</p>
+  </td>
+  <td>
+  <p>Returned when a call to the TsProxySendToServer method
+  succeeds.</p>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ONLY_IF_CONNECTED (0x000004E3)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to Channel Close
+  Pending state.</p>
+  </td>
+  <td>
+  <p>Returned by the RDG server when an attempt is made by
+  the client to send data to the target server on connection state other than
+  Pipe Created state.</p>
+  <p>The RDG client MUST end the protocol when this error
+  is returned.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED (0x00000005)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to Channel Close
+  Pending state.</p>
+  </td>
+  <td>
+  <p>Returned if the channel context handle passed in the <i>pRpcMessage</i>
+  parameter is NULL. The RDG client MUST end the protocol when this error is
+  received.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>HRESULT_CODE(E_PROXY_INTERNALERROR) (0x000059D8)</p>
+  </td>
+  <td>
+  <p>The connection MUST transition to Channel Close
+  Pending state.</p>
+  </td>
+  <td>
+  <p>Returned when an unexpected error occurs in
+  TsProxySendToServer. The RDG client MUST end the protocol when this error is
+  received.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

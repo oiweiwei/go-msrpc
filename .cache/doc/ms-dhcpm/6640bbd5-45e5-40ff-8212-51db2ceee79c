@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The <b>DHCP_RESERVED_SCOPE6</b> structure defines an IPv6 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservation</a></span>.
+This is used in <span><a href="35c698cc-7141-4985-9940-87361653c79d" data-linktype="relative-path">DHCP_OPTION_SCOPE_INFO6 (section 2.2.1.2.30)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_RESERVED_SCOPE6 {
+   DHCP_IPV6_ADDRESS ReservedIpAddress;
+   DHCP_IPV6_ADDRESS ReservedIpSubnetAddress;
+ } DHCP_RESERVED_SCOPE6,
+  *LPDHCP_RESERVED_SCOPE6;
+</pre></div>
+</dd></dl><p><b>ReservedIpAddress:</b>  This is of type <span><a href="48b74c46-bf64-40db-92b9-6e61cee1bd33" data-linktype="relative-path">DHCP_IPV6_ADDRESS (section 2.2.1.2.28)</a></span>,
+containing theIPv6 address of an IPv6 reservation.</p><p><b>ReservedIpSubnetAddress:</b>   This is
+of type DHCP_IPV6_ADDRESS, containing the IPv6 prefix ID of the subnet.</p></div>

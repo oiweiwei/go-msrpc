@@ -1,0 +1,41 @@
+<div class="content"><p> </p><p>The <b>FAX_SPECIFIC_ACCESS_RIGHTS</b> enumeration defines
+specific access rights, which provide security when users query and manage fax
+jobs, fax devices, and <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_cce65523-bec8-486a-8c6c-6091c52af3d3" data-linktype="relative-path">fax documents</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FAX_ACCESS_SUBMIT = 0x0001,
+   FAX_ACCESS_SUBMIT_NORMAL = 0x0002,
+   FAX_ACCESS_SUBMIT_HIGH = 0x0004,
+   FAX_ACCESS_QUERY_JOBS = 0x0008,
+   FAX_ACCESS_MANAGE_JOBS = 0x0010,
+   FAX_ACCESS_QUERY_CONFIG = 0x0020,
+   FAX_ACCESS_MANAGE_CONFIG = 0x00040,
+   FAX_ACCESS_QUERY_IN_ARCHIVE = 0x00080,
+   FAX_ACCESS_MANAGE_IN_ARCHIVE = 0x0100,
+   FAX_ACCESS_QUERY_OUT_ARCHIVE = 0x0200,
+   FAX_ACCESS_MANAGE_OUT_ARCHIVE = 0x0400,
+   FAX_GENERIC_READ = FAX_ACCESS_QUERY_JOBS | FAX_ACCESS_QUERY_CONFIG | FAX_ACCESS_QUERY_IN_ARCHIVE | FAX_ACCESS_QUERY_OUT_ARCHIVE,
+   FAX_GENERIC_WRITE = FAX_ACCESS_MANAGE_JOBS | FAX_ACCESS_MANAGE_CONFIG | FAX_ACCESS_MANAGE_IN_ARCHIVE | FAX_ACCESS_MANAGE_OUT_ARCHIVE,
+   FAX_GENERIC_EXECUTE = FAX_ACCESS_SUBMIT,
+   FAX_GENERIC_ALL = FAX_ACCESS_SUBMIT | FAX_ACCESS_SUBMIT_NORMAL | FAX_ACCESS_SUBMIT_HIGH | FAX_ACCESS_QUERY_JOBS | FAX_ACCESS_MANAGE_JOBS | FAX_ACCESS_QUERY_CONFIG | FAX_ACCESS_MANAGE_CONFIG | FAX_ACCESS_QUERY_IN_ARCHIVE | FAX_ACCESS_MANAGE_IN_ARCHIVE | FAX_ACCESS_QUERY_OUT_ARCHIVE | FAX_ACCESS_MANAGE_OUT_ARCHIVE 
+ } FAX_SPECIFIC_ACCESS_RIGHTS;
+</pre></div>
+</dd></dl><p><b>FAX_ACCESS_SUBMIT: </b>The user can submit low
+priority fax messages. The user can view and manage his own messages in the
+server&#39;s <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span> and outgoing <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9394bf31-7db9-433c-8d3d-ee6a37bf0848" data-linktype="relative-path">archive</a></span>.</p><p><b>FAX_ACCESS_SUBMIT_NORMAL: </b>The user can submit
+normal priority fax messages. The user can view and manage his own messages in
+the server&#39;s queue and outgoing archive.</p><p><b>FAX_ACCESS_SUBMIT_HIGH: </b>The user can submit
+high-priority fax messages. The user can view and manage his own messages in
+the server&#39;s queue and outgoing archive.</p><p><b>FAX_ACCESS_QUERY_JOBS: </b>The user can query all
+the jobs (incoming or outgoing) in the server&#39;s queue.</p><p><b>FAX_ACCESS_MANAGE_JOBS: </b>The user can manage
+all the jobs (incoming or outgoing) in the server&#39;s queue.</p><p><b>FAX_ACCESS_QUERY_CONFIG: </b>The user can view the
+fax server&#39;s configuration.</p><p><b>FAX_ACCESS_MANAGE_CONFIG: </b>The user can change
+the fax server&#39;s configuration.</p><p><b>FAX_ACCESS_QUERY_IN_ARCHIVE: </b>The user can view
+all messages in the incoming messages archive.</p><p><b>FAX_ACCESS_MANAGE_IN_ARCHIVE: </b>The user can
+manage all messages in the incoming messages archive.</p><p><b>FAX_ACCESS_QUERY_OUT_ARCHIVE: </b>The user can
+view all messages in the outgoing messages archive.</p><p><b>FAX_ACCESS_MANAGE_OUT_ARCHIVE: </b>The user can
+manage all messages in the outgoing messages archive.</p><p><b>FAX_GENERIC_READ: </b>Access rights needed to read
+faxes.</p><p><b>FAX_GENERIC_WRITE: </b>Access rights needed to
+write faxes.</p><p><b>FAX_GENERIC_EXECUTE: </b>Access rights needed to
+execute faxes.</p><p><b>FAX_GENERIC_ALL: </b>All access rights.</p></div>

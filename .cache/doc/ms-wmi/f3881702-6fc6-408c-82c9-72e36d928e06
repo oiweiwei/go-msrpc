@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The _WBEM_REFRESH_INFO structure MUST be populated by the
+Windows Management Instrumentation Remote Protocol service that provides the
+refresher information. The structure MUST be used to return to information from
+<span><a href="e2c4f36d-dc59-48bb-bb51-821732610e17" data-linktype="relative-path">IWbemRefreshingServices (section 3.1.4.12)</a></span>
+interface methods. </p><dl>
+<dd>
+<div><pre> typedef struct {
+   long m_lType;
+   [switch_is(m_lType)] WBEM_REFRESH_INFO_UNION m_Info;
+   long m_lCancelId;
+ } _WBEM_REFRESH_INFO;
+</pre></div>
+</dd></dl><p><b>m_lType:</b>  MUST be one of the
+constants specified in <span><a href="d03c03a9-e173-4851-86c3-c435ef72f264" data-linktype="relative-path">WBEM_REFRESH_TYPE</a></span>.</p><p><b>m_Info:</b>  MUST be one of the <span><a href="8332c0f9-94e7-48ae-afe3-5ba37b57780e" data-linktype="relative-path">WBEM_REFRESH_INFO_UNION</a></span>
+types.</p><p><b>m_lCancelId:</b>  MUST be a unique
+identifier for the refresher object that is being used to cancel the refreshing
+object when the refresher object is using <span><a href="57da9a15-d329-44b8-ae90-fa7ac5f0f4d4" data-linktype="relative-path">IWbemRemoteRefresher::StopRefreshing (section 3.1.4.13.2)</a></span>.</p></div>

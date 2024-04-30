@@ -1,0 +1,163 @@
+<div class="content"><p> </p><p>The SERVER_INFO union contains information about a <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(unsigned long)] 
+ union _SERVER_INFO {
+   [case(100)] 
+     LPSERVER_INFO_100 ServerInfo100;
+   [case(101)] 
+     LPSERVER_INFO_101 ServerInfo101;
+   [case(102)] 
+     LPSERVER_INFO_102 ServerInfo102;
+   [case(103)] 
+     LPSERVER_INFO_103 ServerInfo103;
+   [case(502)] 
+     LPSERVER_INFO_502 ServerInfo502;
+   [case(503)] 
+     LPSERVER_INFO_503 ServerInfo503;
+   [case(599)] 
+     LPSERVER_INFO_599 ServerInfo599;
+   [case(1005)] 
+     LPSERVER_INFO_1005 ServerInfo1005;
+   [case(1107)] 
+     LPSERVER_INFO_1107 ServerInfo1107;
+   [case(1010)] 
+     LPSERVER_INFO_1010 ServerInfo1010;
+   [case(1016)] 
+     LPSERVER_INFO_1016 ServerInfo1016;
+   [case(1017)] 
+     LPSERVER_INFO_1017 ServerInfo1017;
+   [case(1018)] 
+     LPSERVER_INFO_1018 ServerInfo1018;
+   [case(1501)] 
+     LPSERVER_INFO_1501 ServerInfo1501;
+   [case(1502)] 
+     LPSERVER_INFO_1502 ServerInfo1502;
+   [case(1503)] 
+     LPSERVER_INFO_1503 ServerInfo1503;
+   [case(1506)] 
+     LPSERVER_INFO_1506 ServerInfo1506;
+   [case(1510)] 
+     LPSERVER_INFO_1510 ServerInfo1510;
+   [case(1511)] 
+     LPSERVER_INFO_1511 ServerInfo1511;
+   [case(1512)] 
+     LPSERVER_INFO_1512 ServerInfo1512;
+   [case(1513)] 
+     LPSERVER_INFO_1513 ServerInfo1513;
+   [case(1514)] 
+     LPSERVER_INFO_1514 ServerInfo1514;
+   [case(1515)] 
+     LPSERVER_INFO_1515 ServerInfo1515;
+   [case(1516)] 
+     LPSERVER_INFO_1516 ServerInfo1516;
+   [case(1518)] 
+     LPSERVER_INFO_1518 ServerInfo1518;
+   [case(1523)] 
+     LPSERVER_INFO_1523 ServerInfo1523;
+   [case(1528)] 
+     LPSERVER_INFO_1528 ServerInfo1528;
+   [case(1529)] 
+     LPSERVER_INFO_1529 ServerInfo1529;
+   [case(1530)] 
+     LPSERVER_INFO_1530 ServerInfo1530;
+   [case(1533)] 
+     LPSERVER_INFO_1533 ServerInfo1533;
+   [case(1534)] 
+     LPSERVER_INFO_1534 ServerInfo1534;
+   [case(1535)] 
+     LPSERVER_INFO_1535 ServerInfo1535;
+   [case(1536)] 
+     LPSERVER_INFO_1536 ServerInfo1536;
+   [case(1538)] 
+     LPSERVER_INFO_1538 ServerInfo1538;
+   [case(1539)] 
+     LPSERVER_INFO_1539 ServerInfo1539;
+   [case(1540)] 
+     LPSERVER_INFO_1540 ServerInfo1540;
+   [case(1541)] 
+     LPSERVER_INFO_1541 ServerInfo1541;
+   [case(1542)] 
+     LPSERVER_INFO_1542 ServerInfo1542;
+   [case(1543)] 
+     LPSERVER_INFO_1543 ServerInfo1543;
+   [case(1544)] 
+     LPSERVER_INFO_1544 ServerInfo1544;
+   [case(1545)] 
+     LPSERVER_INFO_1545 ServerInfo1545;
+   [case(1546)] 
+     LPSERVER_INFO_1546 ServerInfo1546;
+   [case(1547)] 
+     LPSERVER_INFO_1547 ServerInfo1547;
+   [case(1548)] 
+     LPSERVER_INFO_1548 ServerInfo1548;
+   [case(1549)] 
+     LPSERVER_INFO_1549 ServerInfo1549;
+   [case(1550)] 
+     LPSERVER_INFO_1550 ServerInfo1550;
+   [case(1552)] 
+     LPSERVER_INFO_1552 ServerInfo1552;
+   [case(1553)] 
+     LPSERVER_INFO_1553 ServerInfo1553;
+   [case(1554)] 
+     LPSERVER_INFO_1554 ServerInfo1554;
+   [case(1555)] 
+     LPSERVER_INFO_1555 ServerInfo1555;
+   [case(1556)] 
+     LPSERVER_INFO_1556 ServerInfo1556;
+ } SERVER_INFO,
+  *PSERVER_INFO,
+  *LPSERVER_INFO;
+</pre></div>
+</dd></dl><p><b>ServerInfo100:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="098f8f1a-56b3-4fd9-a7a6-4470c2945f0c" data-linktype="relative-path">2.2.4.40</a></span>.</p><p><b>ServerInfo101:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="fcccf874-58c1-4fe5-a492-97d910518447" data-linktype="relative-path">2.2.4.41</a></span>.</p><p><b>ServerInfo102:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="b503efd7-5ec4-48f8-b8d9-e61ca2724eff" data-linktype="relative-path">2.2.4.42</a></span>.</p><p><b>ServerInfo103:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="a8909a6f-0cef-46d1-a85b-f990cd05a739" data-linktype="relative-path">2.2.4.43</a></span>.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p><p><b>ServerInfo502:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="c4e38a94-4c15-4f55-82a6-79a374d1b409" data-linktype="relative-path">2.2.4.44</a></span>.</p><p><b>ServerInfo503:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="57ab77c4-27b1-4964-ba3a-7a1f5b1bf06d" data-linktype="relative-path">2.2.4.45</a></span>.</p><p><b>ServerInfo599:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="2b55fe85-2de5-4409-87ea-468cb6b35160" data-linktype="relative-path">2.2.4.46</a></span>.</p><p><b>ServerInfo1005:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="a2aa98a7-d93c-42bc-8a99-79fa87d20f72" data-linktype="relative-path">2.2.4.47</a></span>.</p><p><b>ServerInfo1107:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="b483cc5c-9a90-4bd2-ae3d-d499805b0366" data-linktype="relative-path">2.2.4.48</a></span>.</p><p><b>ServerInfo1010:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="6f176ef6-1e40-4a77-90d3-c3a6e24bed38" data-linktype="relative-path">2.2.4.49</a></span>.</p><p><b>ServerInfo1016:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="ff90e698-1296-400c-a8c6-afa88943674c" data-linktype="relative-path">2.2.4.50</a></span>.</p><p><b>ServerInfo1017:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="bc37a2aa-bdbb-4d2c-85ce-05a7ef3ed3ec" data-linktype="relative-path">2.2.4.51</a></span>.</p><p><b>ServerInfo1018:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="fceffd49-c692-46fe-b3fc-ee1fb0830d63" data-linktype="relative-path">2.2.4.52</a></span>.</p><p><b>ServerInfo1501:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="a3ba8b29-324f-4ab5-8f46-62216176d066" data-linktype="relative-path">2.2.4.53</a></span>.</p><p><b>ServerInfo1502:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="33b0eeee-023d-492e-a0e8-6908df37072c" data-linktype="relative-path">2.2.4.54</a></span>.</p><p><b>ServerInfo1503:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="cb3ee918-006a-4cd8-a6a0-1e9eced3ec3b" data-linktype="relative-path">2.2.4.55</a></span>.</p><p><b>ServerInfo1506:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="749fdc24-17fe-4bc4-98e2-0f8aeed8ba6f" data-linktype="relative-path">2.2.4.56</a></span>.</p><p><b>ServerInfo1510:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="015e3ff1-105a-4f73-8248-07bdcf0b012b" data-linktype="relative-path">2.2.4.57</a></span>.</p><p><b>ServerInfo1511:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="b93f42c5-1ed3-434d-b48f-0ef1cd475607" data-linktype="relative-path">2.2.4.58</a></span>.</p><p><b>ServerInfo1512:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="9da9755b-d65b-4966-885a-a32440b5ba04" data-linktype="relative-path">2.2.4.59</a></span>.</p><p><b>ServerInfo1513:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="539af8c0-a332-4f96-a136-acad96de4fbd" data-linktype="relative-path">2.2.4.60</a></span>.</p><p><b>ServerInfo1514:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="25668726-307a-4a17-b356-4ce7778d33af" data-linktype="relative-path">2.2.4.61</a></span>.</p><p><b>ServerInfo1515:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="82bae375-291a-487e-a356-d00be9e95ee2" data-linktype="relative-path">2.2.4.62</a></span></p><p><b>ServerInfo1516:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="b29dd31e-6e46-4647-8415-ff77754d424e" data-linktype="relative-path">2.2.4.63</a></span>.</p><p><b>ServerInfo1518:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="2e915195-c0f5-4da2-b36b-bc8c782fa368" data-linktype="relative-path">2.2.4.64</a></span>.</p><p><b>ServerInfo1523:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="4fec1dd0-137d-4e87-ada5-36139d13860b" data-linktype="relative-path">2.2.4.65</a></span>.</p><p><b>ServerInfo1528:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="99f6f4b9-874e-49cb-8729-4f17d354f74c" data-linktype="relative-path">2.2.4.66</a></span>.</p><p><b>ServerInfo1529:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="860a80f7-077a-458a-90d2-bbbd934080bc" data-linktype="relative-path">2.2.4.67</a></span>.</p><p><b>ServerInfo1530:</b>  A pointer to a structure
+that contains information about a server, as specified in section <span><a href="1096ff89-3ff0-461f-97e5-88877c0b8eac" data-linktype="relative-path">2.2.4.68</a></span>.</p><p><b>ServerInfo1533:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="f4f77876-3a22-4aee-a426-6b047407a017" data-linktype="relative-path">2.2.4.69</a></span>.</p><p><b>ServerInfo1534:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="197b6fdd-13f2-486c-8d9d-58d11f1abc1b" data-linktype="relative-path">2.2.4.70</a></span>.</p><p><b>ServerInfo1535:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="a8558cb4-2bdb-40f0-9635-89f9623c09a4" data-linktype="relative-path">2.2.4.71</a></span>.</p><p><b>ServerInfo1536:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="2751834f-99d0-4814-8247-dd216d97ed11" data-linktype="relative-path">2.2.4.72</a></span>.</p><p><b>ServerInfo1538:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="53487f83-dd7b-4ef8-ae67-b2e782c22ca2" data-linktype="relative-path">2.2.4.73</a></span>.</p><p><b>ServerInfo1539:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="4f3c338b-80a1-4b46-b23a-ed2dcab3c8bb" data-linktype="relative-path">2.2.4.74</a></span>.</p><p><b>ServerInfo1540:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="99309ad8-b6b9-4de2-8004-e8630a4317e4" data-linktype="relative-path">2.2.4.75</a></span>.</p><p><b>ServerInfo1541:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="4fc2bb51-7966-4694-b476-4751fe850774" data-linktype="relative-path">2.2.4.76</a></span>.</p><p><b>ServerInfo1542:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="79d487e1-b2e7-4c13-8327-011e1687b9b6" data-linktype="relative-path">2.2.4.77</a></span>.</p><p><b>ServerInfo1543:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="0534fb1d-2a2b-4320-8a4a-69f53a847d36" data-linktype="relative-path">2.2.4.78</a></span>.</p><p><b>ServerInfo1544:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="91755464-4c78-4987-b887-554f5aed1f93" data-linktype="relative-path">2.2.4.79</a></span>.</p><p><b>ServerInfo1545:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="fb2b0dd9-ff98-4f10-ae1b-f9ba768d87e1" data-linktype="relative-path">2.2.4.80</a></span>.</p><p><b>ServerInfo1546:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="079b25a4-10d5-4fdf-9b10-4eeb31726b8e" data-linktype="relative-path">2.2.4.81</a></span>.</p><p><b>ServerInfo1547:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="3cfd586c-177c-42c8-9f4b-82bdcab1bb05" data-linktype="relative-path">2.2.4.82</a></span>.</p><p><b>ServerInfo1548:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="5036b151-717f-4742-91d7-4411b229fbf1" data-linktype="relative-path">2.2.4.83</a></span>.</p><p><b>ServerInfo1549:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="f70e2cd0-a56c-4b0c-82a5-077fa35ce53b" data-linktype="relative-path">2.2.4.84</a></span>.</p><p><b>ServerInfo1550:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="b79d21f6-9cdf-4695-868a-6e15041bba0d" data-linktype="relative-path">2.2.4.85</a></span>.</p><p><b>ServerInfo1552:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="85f561f7-3142-4f2e-8540-06c54bb46ca6" data-linktype="relative-path">2.2.4.86</a></span>.</p><p><b>ServerInfo1553:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="82e23e2c-5124-4026-b6a4-290aaa748556" data-linktype="relative-path">2.2.4.87</a></span>.</p><p><b>ServerInfo1554:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="b227720e-ba3d-46a6-bced-0036554a4a51" data-linktype="relative-path">2.2.4.88</a></span>.</p><p><b>ServerInfo1555:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="9eb96028-fed5-444c-a18f-5dd2ec7bb756" data-linktype="relative-path">2.2.4.89</a></span>.</p><p><b>ServerInfo1556:</b>  A pointer to a
+structure that contains information about a server, as specified in section <span><a href="68628e3d-d13d-4d4f-a598-156d516e1148" data-linktype="relative-path">2.2.4.90</a></span>.</p></div>

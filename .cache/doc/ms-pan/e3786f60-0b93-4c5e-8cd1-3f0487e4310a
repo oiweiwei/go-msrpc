@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The IRPCRemoteObject_Create method creates a <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_96e6d133-8e9c-4258-ae03-65cb549bce90" data-linktype="relative-path">remote
+object</a></span> on a server and returns it to the client.</p><dl>
+<dd>
+<div><pre> HRESULT IRPCRemoteObject_Create(
+   [in] handle_t hRemoteBinding,
+   [out] PRPCREMOTEOBJECT* ppRemoteObj
+ );
+</pre></div>
+</dd></dl><p><b>hRemoteBinding: </b>MUST be a client-generated <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle (<span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> section
+2.3) by using a <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_c9507dca-291d-4fd6-9cba-a9ee7da8c908" data-linktype="relative-path">Universal Naming Convention
+(UNC)</a></span> name that MUST uniquely identify a print server on the
+network.</p><p><b>ppRemoteObj: </b>MUST be a remote object context
+handle returned by the server. It MUST be a non-NULL value.</p><p><b>Return Values: </b>This method MUST return zero to
+indicate success, or an <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> error value
+(<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a></span>)
+to indicate failure. The client MUST consider all error return values fatal and
+report them to the higher-level caller.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

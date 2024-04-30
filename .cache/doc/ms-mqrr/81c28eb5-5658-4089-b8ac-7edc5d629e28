@@ -1,0 +1,117 @@
+<div class="content"><p> </p><p>The <b>R_MoveMessage</b> method moves a <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span>
+from one <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span> to another.<a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="4108f68e-80f5-40e1-b3df-b713cc4dff79#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a> The source and destination
+queues MUST be related as follows:</p><ul><li><p><span><span> 
+</span></span>The source is a queue, and the destination is a <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_328fe8aa-d006-44dd-8cc8-dba7c862aaf8" data-linktype="relative-path">subqueue</a></span>
+of the source queue, or</p>
+</li><li><p><span><span> 
+</span></span>The destination is a queue, and the source is a subqueue of the
+destination queue, or</p>
+</li><li><p><span><span> 
+</span></span>The source and destination are two subqueues of the same queue.</p>
+<div><pre> HRESULT R_MoveMessage(
+   [in] handle_t hBind,
+   [in] QUEUE_CONTEXT_HANDLE_NOSERIALIZE phContextFrom,
+   [in] ULONGLONG ullContextTo,
+   [in] ULONGLONG LookupId,
+   [in] XACTUOW* pTransactionId
+ );
+</pre></div>
+</li></ul><p><b>hBind: </b>MUST be an <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle
+parameter, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>phContextFrom: </b>MUST be set by the client to a <span><a href="3e818e81-b12a-4ccd-9606-f434c346a3e9" data-linktype="relative-path">QUEUE_CONTEXT_HANDLE_NOSERIALIZE (section 2.2.4.1)</a></span>
+handle representing the source queue. The handle MUST have been returned by the
+server in the <i>pphQueue</i> output parameter of a prior call to the
+R_OpenQueue (Opnum 2) (section <span><a href="b4b3001c-f2ff-4a17-9830-7b21af371dc4" data-linktype="relative-path">3.1.4.2)</a></span> method
+with the <i>dwAccess</i> parameter set to RECEIVE_ACCESS and MUST NOT have been
+closed through a prior call to the R_CloseQueue (Opnum 3) (section <span><a href="e480114a-587f-4110-b03b-7a6188cca307" data-linktype="relative-path">3.1.4.3)</a></span>
+method. This value MUST NOT be NULL.</p><p><b>ullContextTo: </b>MUST be set by the client to a <b>QUEUE_CONTEXT_HANDLE_NOSERIALIZE</b>
+handle representing the destination queue. The handle MUST have been returned
+by the server in the <i>pMoveContext</i> output parameter of a prior call to
+the R_OpenQueueForMove (Opnum 11) (section <span><a href="960e383b-d0c9-482f-9617-2507d1dc0487" data-linktype="relative-path">3.1.4.11)</a></span> method
+and MUST NOT have been closed through a prior call to the <b>R_CloseQueue</b>
+method. This value MUST NOT be NULL.</p><p><b>LookupId: </b>MUST be set by the client to the
+lookup identifier of the message to be moved.</p><p><b>pTransactionId: </b>MUST be set by the client as a
+pointer to a transaction identifier or to a zero value <b>XACTUOW</b> (<span><a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a></span>
+section <span><a href="../ms-mqmq/711d679b-e7b1-4e0c-8e51-f7529bfbc02f" data-linktype="relative-path">2.2.18.1.8</a></span>)
+structure. If the destination queue is not a transactional queue, this value
+MUST be a pointer to a zero value <b>XACTUOW</b> structure. If the value of the
+field is not zero, the transaction identifier MUST have been registered with
+the server through a prior call to the R_QMEnlistRemoteTransaction (Opnum
+12) (section <span><a href="6050d0c4-784b-497b-a6bb-fe506e5adb46" data-linktype="relative-path">3.1.4.12)</a></span> method
+and MUST NOT be NULL.</p><p><b>Return Values: </b>On success, this method MUST return
+MQ_OK (0x00000000).</p><p>If an error occurs, the server MUST return a failure <b>HRESULT</b>,
+and the client treat all failure <b>HRESULTs</b> identically.</p><p>Exceptions Thrown:</p><p>No exceptions are thrown except those thrown by the
+underlying RPC protocol, as specified in [MS-RPCE].</p><p>The <b>R_MoveMessage</b> method provides both transactional
+and non-transactional operations. When using a transaction identifier, this
+method provisionally moves a message from the source queue to the destination
+queue, pending notification of the transaction outcome. See section <span><a href="8d8bd93c-db88-4dbd-bdb9-60101e9b55a6" data-linktype="relative-path">3.1.6</a></span>.
+The non-transactional operation moves a message from the source queue to the
+destination queue without enlisting in a transaction.</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Find the corresponding <b>OpenQueueDescriptor</b> ADM element
+instance for the source queue by comparing the <i>phContextFrom</i> parameter
+with the  <b>Handle</b> ADM attribute for all <b>OpenQueueDescriptor</b> ADM
+element instances maintained by the local <b>QueueManager</b> ADM element
+instance, and then declare and set <i>iSourceQueueDescriptor</i> to the
+instance.</p>
+</li><li><p><span><span> 
+</span></span>If not found, return a failure <b>HRESULT</b>.</p>
+</li><li><p><span><span> 
+</span></span>Find the corresponding <b>OpenQueueDescriptor</b> ADM element
+instance for the destination queue by comparing the <i>ullContextTo</i>
+parameter with the <b>Handle</b> ADM attribute for all <b>OpenQueueDescriptor</b>
+ADM element instances maintained by the local <b>QueueManager</b> ADM element
+instance, and then declare and set <i>iDestinationQueueDescriptor</i> to that
+instance.</p>
+</li><li><p><span><span> 
+</span></span>If not found or if <i>iDestinationQueueDescriptor</i>.<b>AccessType</b>
+is not <b>QueueAccessType.MoveAccess</b>, then return MQ_ERROR_INVALID_HANDLE
+(0xC00E0007).</p>
+</li><li><p><span><span> 
+</span></span>If none of the following conditions is met, return
+STATUS_INVALID_PARAMETER (0xC000000D):</p>
+<ul><li><p><span><span>  </span></span><i>iSourceQueueDescriptor</i>
+is part of the collection <i>iDestinationQueueDescriptor</i>.<b>QueueReference</b>.<b>SubqueueCollection</b>.</p>
+</li><li><p><span><span>  </span></span><i>iDestinationQueueDescriptor</i>
+is part of the collection <i>iSourceQueueDescriptor</i>.<b>QueueReference</b>.<b>SubqueueCollection</b>.</p>
+</li><li><p><span><span>  </span></span><i>iSourceQueueDescriptor</i>.<b>QueueReference</b>.<b>Pathname</b>
+and <i>iDestinationQueueDescriptor</i>.<b>QueueReference</b>.<b>Pathname</b>
+have the same parent queue pathname. The parent queue pathname MUST be formed
+by removing the subqueue portion from the pathname and the preceding
+&#34;;&#34;, as specified in [MS-MQMQ] section <span><a href="../ms-mqmq/0f858702-0f3d-471a-972c-e6706906fa4d" data-linktype="relative-path">2.1.1</a></span>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the method is provided with a nonzero <i>pTransactionId</i>
+parameter and if <i>iDestinationQueueDescriptor</i>.<b>QueueReference</b>.<b>Transactional</b>
+is False, return MQ_ERROR_TRANSACTION USAGE (0xC00E0050).</p>
+</li><li><p><span><span> 
+</span></span>Find the corresponding <b>Message</b> ADM element instance by
+comparing <b>PendingRequestEntry.LookupIdentifier</b> with <b>MessagePosition.MessageReference.Identifier</b>
+in the <i>iSourceQueueDescriptor</i>.<b>QueueReference</b>.<b>MessagePositionCollection</b>,
+and then declare and set <i>iFoundMessage</i> to that instance.</p>
+</li><li><p><span><span> 
+</span></span>If not found, then return MQ_ERROR_MESSAGE_NOT_FOUND
+(0xC00E0088).</p>
+</li><li><p><span><span> 
+</span></span>If the message is already part of another transaction, return
+MQ_ERROR_MESSAGE_LOCKED_UNDER_TRANSACTION (0xC00E009C).</p>
+</li><li><p><span><span> 
+</span></span>If the method is provided with a nonzero <i>pTransactionId</i>
+parameter, find the corresponding <b>Transaction</b> ADM element instance by
+comparing the <i>pTransactionId</i> parameter with the <b>Identifier</b> ADM
+attribute for all <b>Transaction</b> ADM element instances in the <b>TransactionCollection</b>
+ADM attribute of the local <b>QueueManager</b> ADM element instance, and then declare
+and set <i>iFoundTransaction</i> to that instance.</p>
+</li><li><p><span><span> 
+</span></span>If not found, return MQ_ERROR_TRANSACTION_SEQUENCE (0xC00E0051).</p>
+</li><li><p><span><span> 
+</span></span>Generate a <span><a href="../ms-mqdmpr/cee670b3-1bbd-4a22-b4f8-9b233a55c96f" data-linktype="relative-path">Move
+Message</a></span> (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section 3.1.7.1.16) event with the following inputs: </p>
+<ul><li><p><span><span>  </span></span><i>iMessagePos</i>
+:= <i>iFoundMessage</i>.<b>MessagePositionReference</b>.</p>
+</li><li><p><span><span>  </span></span><i>iTargetQueue</i>
+:= <i>iDestinationQueueDescriptor</i>.<b>QueueReference</b>.</p>
+</li><li><p><span><span>  </span></span>If
+there is a transaction, <i>iTransaction</i> := <i>iFoundTransaction</i>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return MQ_OK (0x00000000).</p>
+</li></ul></div>

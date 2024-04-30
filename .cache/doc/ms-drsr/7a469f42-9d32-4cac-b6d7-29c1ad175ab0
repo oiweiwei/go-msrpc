@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The DRS_MSG_MOVEREPLY_V1 structure defines a response
+message received from the <span><a href="595b2fef-493b-4b1d-b60d-e7a1a3345b0e" data-linktype="relative-path">IDL_DRSInterDomainMove</a></span>
+method. This response version is obsolete.<a id="Appendix_A_Target_35"></a><a aria-label="Product behavior note 35" href="e3b89556-4e48-467c-87b3-b4a737cc4999#Appendix_A_35" data-linktype="relative-path">&lt;35&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct {
+   ENTINF** ppResult;
+   SCHEMA_PREFIX_TABLE PrefixTable;
+   ULONG* pError;
+ } DRS_MSG_MOVEREPLY_V1;
+</pre></div>
+</dd></dl><p><b>ppResult:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>
+as it appears following the move operation.</p><p><b>PrefixTable:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_028437b6-7749-4428-b874-22e9559c1abe" data-linktype="relative-path">prefix
+table</a></span> with which to translate the <span><a href="91173129-08e6-497c-8266-b5ac0aa5f983" data-linktype="relative-path">ATTRTYP</a></span> values in
+ppResult to <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_aaaf2f1a-0b0a-487e-a0f0-c3510a6091b2" data-linktype="relative-path">OIDs</a></span>.</p><p><b>pError:</b>  0 if successful, or
+non-zero if a fatal error occurred.</p></div>

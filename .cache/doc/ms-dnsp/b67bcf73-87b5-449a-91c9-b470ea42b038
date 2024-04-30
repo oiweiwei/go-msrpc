@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The <b>KeySignScope</b> enumeration defines the scope of the
+key in a signed <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span>. It SHOULD<a id="Appendix_A_Target_46"></a><a aria-label="Product behavior note 46" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_46" data-linktype="relative-path">&lt;46&gt;</a> be used to indicate different
+signing and publishing scopes of the key.</p><dl>
+<dd>
+<div><pre> typedef enum _KeySignScope
+ {
+     SIGN_SCOPE_DEFAULT,
+     SIGN_SCOPE_DNSKEY_ONLY,
+     SIGN_SCOPE_ALL_RECORDS,
+     SIGN_SCOPE_ADD_ONLY,
+     SIGN_SCOPE_DO_NOT_PUBLISH,
+     SIGN_SCOPE_REVOKED
+ } KeySignScope;
+</pre></div>
+</dd></dl><p><b>SIGN_SCOPE_DEFAULT:</b> The key is used for its
+default purpose: If the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_621e5d7b-d764-4196-b838-b52bf82b9380" data-linktype="relative-path">signing key descriptor&#39;s</a></span>
+<b>fIsKSK</b> field is set to 0x00000001, the key is used to sign only DNSKEY
+records in the zone. If the signing key descriptor&#39;s <b>fIsKSK</b> field is set
+to 0x00000000, the key is used to sign all records in the zone.</p><p><b>SIGN_SCOPE_DNSKEY_ONLY:</b> The key is used to
+sign only DNSKEY records in the zone.</p><p><b>SIGN_SCOPE_ALL_RECORDS:</b> The key is used to
+sign all records in the zone.</p><p><b>SIGN_SCOPE_ADD_ONLY:</b> The key is published as a
+DNSKEY in the zone, but it is not used to sign any records.</p><p><b>SIGN_SCOPE_DO_NOT_PUBLISH:</b> The key is not
+published to the zone and is not used to sign any records.</p><p><b>SIGN_SCOPE_REVOKED:</b> The key is published as a
+DNSKEY in the zone with its Revoked bit (<span><a href="https://go.microsoft.com/fwlink/?LinkId=225980" data-linktype="external">[RFC5011]</a></span>
+section 2.1) set. It is used to sign DNSKEY records.</p></div>

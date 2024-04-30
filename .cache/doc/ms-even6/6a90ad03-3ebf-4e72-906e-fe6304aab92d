@@ -1,0 +1,9 @@
+<div class="content"><p>The EventLog Remoting Protocol Version 6.0, originally
+available in the Windows Vista operating system, is a <a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a>–based
+protocol that exposes RPC methods for reading <a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_472f97f2-82ec-4623-8e46-d348a7984967" data-linktype="relative-path">events</a> in both <a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_3c0e011b-e37d-40ef-90d6-1ed516f06b1c" data-linktype="relative-path">live event logs</a> and <a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_ddd2e7db-ea8f-4488-ac5f-e77d59abe9e4" data-linktype="relative-path">backup event logs</a> on remote
+computers. This protocol also specifies how to get general information for a
+log, such as number of <a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_dca3e776-890f-48c8-be62-094a5f2fcf71" data-linktype="relative-path">records</a>
+in the log, oldest records in the log, and if the log is full. It may also be
+used for clearing and backing up both types of <a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_bb3fad7e-60bf-46d4-9c3f-7caea47a743e" data-linktype="relative-path">event logs</a>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

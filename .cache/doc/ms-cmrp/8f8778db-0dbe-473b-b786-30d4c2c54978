@@ -1,0 +1,59 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/8f8778db-0dbe-473b-b786-30d4c2c54978" data-linktype="external">msdn link</a></p><p>(Protocol Version 3) The ApiCreateBatchPort method
+establishes context on the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+about <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> interaction
+with a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_13de67f6-ac9d-491f-8dfb-12601a8b0838" data-linktype="relative-path">cluster registry</a>
+batch update <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_aedc8c3e-1557-4dfc-a89c-ff6f04345886" data-linktype="relative-path">notification
+port</a> by means of the current <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> connection.
+ApiCreateBatchPort returns a context handle so that the client can refer to the
+context that is created in subsequent method invocations.</p><p>The server SHOULD accept an ApiCreateBatchPort request if
+the client&#39;s access level is at least &#34;Read&#34; (section <a href="a249a463-3d3b-4058-abf6-3024d81806a0" data-linktype="relative-path">3.1.4</a>).</p><dl>
+<dd>
+<div><pre> error_status_t ApiCreateBatchPort(
+   [in] HKEY_RPC hKey,
+   [out] HBATCH_PORT_RPC * phBatchPort,
+   [out] error_status_t *rpc_status
+ );
+</pre></div>
+</dd></dl><p><b>hKey: </b>The <a href="d1058558-6a75-4bb7-90f5-4f6a6a49837d" data-linktype="relative-path">HKEY_RPC</a> <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_9dfe84e3-a772-4ad1-9a25-1255c1dc0f84" data-linktype="relative-path">RPC context handle</a> for a
+key that was previously obtained by a call to <a href="8b07215b-bf64-44cd-b6db-de347f237d25" data-linktype="relative-path">ApiGetRootKey</a>, <a href="74d389fd-e811-4372-8753-147c492e6bca" data-linktype="relative-path">ApiCreateKey</a>, or <a href="2afc42d3-a41c-40ce-911b-945f0e602ce0" data-linktype="relative-path">ApiOpenKey</a>.</p><p><b>phBatchPort: </b>If the method succeeds, the
+server MUST write a valid <a href="e273a61a-e2e6-4901-a3fa-2d3a21ca42f5" data-linktype="relative-path">HBATCH_PORT_RPC</a>
+context handle, as specified in section 2.2.1.9, to the address supplied by
+this parameter. Otherwise, the value at this address MUST be ignored.</p><p><b>rpc_status: </b>A 32-bit integer used to indicate
+success or failure. The RPC runtime MUST indicate, by writing to this
+parameter, whether it succeeded in executing this method on the server. The
+encoding of the value passed in this parameter MUST conform to encoding for
+comm_status and fault_status, as specified in Appendix E of <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>Return Values: </b>The method MUST return the
+following error codes for the specified conditions.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Success.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000006</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The data that is pointed to by the hKey parameter does
+  not represent a valid HKEY_RPC context handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>For any other condition, this method MUST return a value
+that is not one of the values listed in the preceding table. The client MUST
+behave in one consistent, identical manner for all values that are not listed
+in the preceding table. The client SHOULD treat errors as recoverable errors,
+and initiate the reconnect procedure as specified in section <a href="ca75805a-4b39-4074-8b5b-dbaae6e81b1f" data-linktype="relative-path">3.2.4.6</a>.</p></div>

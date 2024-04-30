@@ -1,0 +1,102 @@
+<div class="content"><p> </p><p>The optional SoapHeader packet contains application-defined
+information.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>HeaderSectionID</p>
+  </td>
+  <td colspan="16">
+  <p>Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>HeaderDataLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>BodySectionID</p>
+  </td>
+  <td colspan="16">
+  <p>Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BodyDataLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Body
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>HeaderSectionID (2 bytes): </b>A 16-bit unsigned
+short integer field that MUST be set to 0x0320.</p><p><b>Reserved (2 bytes): </b>A 16-bit unsigned integer
+field that is reserved for future use. The sender SHOULD set this field to
+0x0000, and the receiver MUST ignore it on receipt.</p><p><b>HeaderDataLength (4 bytes): </b>A 32-bit unsigned
+integer that specifies the length of the <b>Header</b> field. This field MUST
+be set to the number of elements in the <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> <b>Header</b>
+field, including the terminating null character. This field has a valid range
+between 0x00000000 and the size limit imposed by the value of
+BaseHeader.PacketSize.</p><p><b>Header (variable): </b>A null-terminated Unicode
+string. This field contains an application-defined string.</p><p><b>BodySectionID (2 bytes): </b>A 16-bit unsigned
+short integer that MUST be set to 0x0384.</p><p><b>Reserved1 (2 bytes): </b>A 16-bit unsigned short
+integer field reserved for future use. The sender SHOULD set this field to
+0x0000, and the receiver MUST ignore it on receipt.</p><p><b>BodyDataLength (4 bytes): </b>A 32-bit unsigned
+integer that specifies the length of the <b>Body</b> field. This field MUST be
+set to the number of elements in the Unicode <b>Body</b> field, including the
+terminating null character. This field has a valid range between 0x00000000 and
+the size limit imposed by the value of BaseHeader.PacketSize.</p><p><b>Body (variable): </b>A null-terminated Unicode
+string. This field contains an application-defined string.</p></div>

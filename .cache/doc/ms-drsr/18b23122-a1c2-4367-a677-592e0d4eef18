@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The DRS_MSG_DCINFOREQ_V1 structure defines the request
+message sent to the <span><a href="668abdc8-1db7-4104-9dea-feab05ff1736" data-linktype="relative-path">IDL_DRSDomainControllerInfo</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [string] WCHAR* Domain;
+   DWORD InfoLevel;
+ } DRS_MSG_DCINFOREQ_V1;
+</pre></div>
+</dd></dl><p><b>Domain:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>
+for which the client requests information. The domain can be an <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN (1)</a></span>
+or a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_f7f8efcc-c6d5-40f0-9605-c9d99c5a0b92" data-linktype="relative-path">NetBIOS
+domain name</a></span>.</p><p><b>InfoLevel:</b>  The response version
+requested by the client: 1, 2, 3, or 0xFFFFFFFF. The responses at InfoLevel 1,
+2, and 3 all contain information about <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DCs</a></span> in the given
+domain. The information at InfoLevel 1 is a subset of the information at
+InfoLevel 2, which is a subset of the information at InfoLevel 3. InfoLevel 3
+includes information about the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8b0a073b-3099-4efe-8b81-c2886b66a870" data-linktype="relative-path">RODCs</a></span> in the given
+domain. InfoLevel 0xFFFFFFFF server returns information about the active <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_198f4791-cea3-465d-89e2-262991624e08" data-linktype="relative-path">LDAP
+connections</a></span>.</p></div>

@@ -1,0 +1,51 @@
+<div class="content"><p> </p><p>This enumeration defines flag values that can be used in the
+enumeration methods that are defined in <span><a href="469f8466-bb5c-4af0-97a8-335f648c70d7" data-linktype="relative-path">RRPC_FWEnumFirewallRules</a></span>,
+<span><a href="f0f85db3-5510-4b73-a4cb-76bd440eaa06" data-linktype="relative-path">RRPC_FWEnumConnectionSecurityRules</a></span>,
+<span><a href="2dc9c315-38e8-42d6-9c88-927dea828314" data-linktype="relative-path">RRPC_FWEnumAuthenticationSets</a></span>,
+and <span><a href="63e911ea-fbca-4096-89a9-5d84c37daa56" data-linktype="relative-path">RRPC_FWEnumCryptoSets</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_ENUM_RULES_FLAGS
+ {
+   FW_ENUM_RULES_FLAG_NONE = 0x0000,
+   FW_ENUM_RULES_FLAG_RESOLVE_NAME = 0x0001,
+   FW_ENUM_RULES_FLAG_RESOLVE_DESCRIPTION = 0x0002,
+   FW_ENUM_RULES_FLAG_RESOLVE_APPLICATION = 0x0004,
+   FW_ENUM_RULES_FLAG_RESOLVE_KEYWORD = 0x0008,
+   FW_ENUM_RULES_FLAG_RESOLVE_GPO_NAME = 0x0010,
+   FW_ENUM_RULES_FLAG_EFFECTIVE = 0x0020,
+   FW_ENUM_RULES_FLAG_INCLUDE_METADATA = 0x0040,
+   FW_ENUM_RULES_FLAG_MAX = 0x0080
+ } FW_ENUM_RULES_FLAGS;
+</pre></div>
+</dd></dl><p><b>FW_ENUM_RULES_FLAG_NONE:  </b>This value signifies
+that no specific flag is used. It is defined for <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code to add readability, instead of using the number 0. This symbolic constant
+has a value 0x0000.</p><p><b>FW_ENUM_RULES_FLAG_RESOLVE_NAME:  </b>Resolves
+rule description strings to user-friendly, localizable strings if they are in
+the following format: @file.dll,-&lt;resID&gt;. resID refers to the resource ID
+in the indirect string. Please see <span><a href="https://go.microsoft.com/fwlink/?LinkId=210820" data-linktype="external">[MSDN-SHLoadIndirectString]</a></span>
+for further documentation on the string format. This symbolic constant has a
+value 0x0001.</p><p><b>FW_ENUM_RULES_FLAG_RESOLVE_DESCRIPTION:  </b>Resolves
+rule description strings to user-friendly, localizable strings if they are in
+the following format: @file.dll,-&lt;resID&gt;. resID refers to the resource ID
+in the indirect string. Please see [MSDN-SHLoadIndirectString] for further
+documentation on the string format. This symbolic constant has a value 0x0002.</p><p><b>FW_ENUM_RULES_FLAG_RESOLVE_APPLICATION:  </b>If
+this flag is set, the server MUST inspect the <b>wszLocalApplication</b> field
+of each <b>FW_RULE</b> structure and replace all environment variables in the
+string with their corresponding values. See <span><a href="https://go.microsoft.com/fwlink/?LinkId=211083" data-linktype="external">[MSDN-ExpandEnvironmentStrings]</a></span>
+for more details about environment-variable strings. This symbolic constant has
+a value 0x0004.</p><p><b>FW_ENUM_RULES_FLAG_RESOLVE_KEYWORD:  </b>Resolves
+keywords in addresses and ports to the actual addresses and ports (dynamic
+store only). This symbolic constant has a value 0x0008.</p><p><b>FW_ENUM_RULES_FLAG_RESOLVE_GPO_NAME:  </b>Resolves
+the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_dec32233-8776-4151-91a0-8624a2b9abb0" data-linktype="relative-path">GPO</a></span>
+name for the GP_RSOP rules. This symbolic constant has a value 0x0010.</p><p><b>FW_ENUM_RULES_FLAG_EFFECTIVE:  </b>If this flag is
+set, the server MUST only return objects where at least one
+FW_ENFORCEMENT_STATE entry in the object&#39;s metadata is equal to
+FW_ENFORCEMENT_STATE_FULL. This flag is available for the dynamic store only.
+This symbolic constant has a value 0x0020.</p><p><b>FW_ENUM_RULES_FLAG_INCLUDE_METADATA:  </b>Includes
+the metadata object information, represented by the <b>FW_OBJECT_METADATA</b>
+structure, in the enumerated objects. This symbolic constant has a value
+0x0040.</p><p><b>FW_ENUM_RULES_FLAG_MAX:  </b>This value and values
+that exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing IDL definitions and code. This symbolic constant has a
+value 0x0080.</p></div>

@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>In certain cases in the DCOM Remote Protocol, a
+DUALSTRINGARRAY is passed or returned as a parameter in an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+call. For example, see section <span><a href="cf56f36e-a87e-49b4-9729-ebb8a07054fb" data-linktype="relative-path">3.1.2.5.2.3.1</a></span>. In
+all such cases, the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definition that
+the DCOM Remote Protocol uses is as follows.</p><dl>
+<dd>
+<div><pre> typedef struct tagDUALSTRINGARRAY {
+   unsigned short wNumEntries;
+   unsigned short wSecurityOffset;
+   [size_is(wNumEntries)] unsigned short aStringArray[];
+ } DUALSTRINGARRAY;
+</pre></div>
+</dd></dl><p><b>wNumEntries:</b>   This MUST be set to
+the number of unsigned shorts in the <b>aStringArray</b> field.</p><p><b>wSecurityOffset:</b>   This MUST be set
+to the number of unsigned shorts from the beginning of the aStringArray array
+to the beginning of the first security binding within the array. For details,
+see section <span><a href="50889dd8-1960-49ca-a444-6212a73dc397" data-linktype="relative-path">2.2.19.1</a></span>.</p><p><b>aStringArray:</b>  This MUST be an array
+of wNumEntries unsigned shorts. This field MUST be interpreted to contain a
+sequence of <span><a href="f4643148-d34b-4f6f-bc9b-b14aed358544" data-linktype="relative-path">STRINGBINDING</a></span>
+entries followed by a sequence of <span><a href="785c00a1-6637-412e-8167-befb0710022e" data-linktype="relative-path">SECURITYBINDING</a></span>
+entries, in the same syntax as defined in section 2.2.19.1.</p></div>

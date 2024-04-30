@@ -1,0 +1,90 @@
+<div class="content"><p> </p><p>The RRPC_FWSetCryptoSet2_10 (Opnum 56) method requests the
+server to modify the specified cryptographic set in the policy contained in the
+policy store referenced by the handle specified in the <i>hPolicy</i>
+parameter. The method is only supported for binary versions 0x020A and 0x0214.</p><dl>
+<dd>
+<div><pre> unsigned long RRPC_FWSetCryptoSet2_10(
+   [in] FW_CONN_HANDLE rpcConnHandle,
+   [in] FW_POLICY_STORE_HANDLE hPolicy,
+   [in] PFW_CRYPTO_SET pCrypto,
+   [out] FW_RULE_STATUS* pStatus
+ );
+</pre></div>
+</dd></dl><p><b>rpcConnHandle: </b>This parameter is an <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle that connects to the RPC interface of the Firewall and Advanced
+Security Protocol.</p><p><b>hPolicy: </b>This input parameter is an <span><a href="88f6ea4a-a946-4747-bb93-f142f1760752" data-linktype="relative-path">FW_POLICY_STORE_HANDLE</a></span>
+data type. The data type MUST contain an opened policy store handle,
+successfully opened with the RRPC_FWOpenPolicyStore (Opnum 0) method. The
+handle MUST have read/write access rights.</p><p><b>pCrypto: </b>This parameter represents the
+cryptographic set that the client adds to the store. The set MUST be valid, as
+specified in the definition of the <span><a href="a468fe9e-113b-4155-a63d-0db3aac12619" data-linktype="relative-path">FW_CRYPTO_SET</a></span> data
+type.</p><p><b>pStatus: </b>This output parameter is the status
+code of the rule as specified by the <span><a href="c4fd81e6-38dd-47c5-8a0f-a98a11cf190e" data-linktype="relative-path">FW_RULE_STATUS</a></span>
+enumeration. This field is filled out on return.</p><p><b>Return Values: </b>The method returns 0 if
+successful; if it fails, it returns a nonzero error code. The field can take
+any specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+The following return values are common.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000032</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The specified store does not support this method; the
+  store might be read-only.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The <i>hPolicy</i> handle was not opened with
+  read/write access rights. The error is also returned if the client does not
+  have the required credentials to call the method.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified rule referenced by the <b>wszSetId</b>
+  member string of the FW_CRYPTO_SET data type is not found in the policy
+  store.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the parameters of this method either is
+  incorrect or is required and not specified. This error can be returned
+  because:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>pCrypto</i> object did not
+  pass the crypto set validations specified in the definition of the
+  FW_CRYPTO_SET data type.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>One of the required values is not
+  specified.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+If any lower-layer errors are reported by RPC exception, this exception is
+converted to an error code and reported to higher-layer protocols via the
+return value.</p><p>The server MUST validate that the client is authorized to
+perform the requested operation (as defined in section <span><a href="b0c93352-8371-4d63-abca-b0cc8dbcc3d7" data-linktype="relative-path">3.1.4</a></span>)
+before executing this method.</p></div>

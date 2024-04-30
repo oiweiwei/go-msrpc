@@ -1,0 +1,143 @@
+<div class="content"><p> </p><p>The ElfrReadELW (Opnum 10) method reads events from the <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_bb3fad7e-60bf-46d4-9c3f-7caea47a743e" data-linktype="relative-path">event log</a></span>;
+the server transmits these events to the client and advances the reader&#39;s
+position within the event log associated with the server context handle that is
+passed in the <i>LogHandle</i> parameter. The strings in the returned event
+MUST be in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90550" data-linktype="external">[UNICODE]</a></span>.</p><dl>
+<dd>
+<div><pre> NTSTATUS ElfrReadELW(
+   [in] IELF_HANDLE LogHandle,
+   [in] unsigned long ReadFlags,
+   [in] unsigned long RecordOffset,
+   [in] RULONG NumberOfBytesToRead,
+   [out, size_is(NumberOfBytesToRead)] 
+     unsigned char* Buffer,
+   [out] unsigned long* NumberOfBytesRead,
+   [out] unsigned long* MinNumberOfBytesNeeded
+ );
+</pre></div>
+</dd></dl><p><b>LogHandle: </b>Handle to an event log to read. This
+parameter is a server context handle, as specified in section <span><a href="de54bfbc-fbe4-43b8-b8e1-b8a6b2189604" data-linktype="relative-path">2.2.6</a></span>.</p><p><b>ReadFlags: </b>The caller MUST specify whether the read
+is to start at a specific record or is to proceed from the last record read.
+The value MUST include one and only one of the following flags.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>EVENTLOG_SEQUENTIAL_READ</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Read operation proceeds sequentially from the last
+  call to the ElfrReadELW (section 3.1.4.7) method or the <span><a href="a9c60290-49d1-4f3f-808d-14897d20bb1f" data-linktype="relative-path">ElfrReadELA (section 3.1.4.8)</a></span>
+  method, using this handle. This flag MUST NOT be used with
+  EVENTLOG_SEEK_READ.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EVENTLOG_SEEK_READ</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Read operation proceeds from the record specified by
+  the <i>RecordOffset</i> parameter. This flag MUST NOT be used with
+  EVENTLOG_SEQUENTIAL_READ. </p>
+  </td>
+ </tr></tbody></table><p>Because the method reads as many records as can fit in the
+buffer, the caller MUST also set one and only one of the following flags to
+indicate the direction for successive read operations.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>EVENTLOG_FORWARDS_READ</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Log is read in chronological order. This flag MUST NOT
+  be used with EVENTLOG_BACKWARDS_READ.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EVENTLOG_BACKWARDS_READ</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Log is read in reverse chronological order. This flag
+  MUST NOT be used with EVENTLOG_FORWARDS_READ. </p>
+  </td>
+ </tr></tbody></table><p><b>RecordOffset: </b>Log entry record number from which the
+read operation starts (this is not a byte offset but a number). This parameter
+MUST be ignored unless the EVENTLOG_SEEK_READ bit is set in the <i>ReadFlags</i>
+parameter.</p><p><b>NumberOfBytesToRead: </b>Size of the Buffer in bytes. This
+is the maximum amount of data that can be read.</p><p><b>Buffer: </b>The buffer in which to place data read from
+the event log. </p><p><b>NumberOfBytesRead: </b>Pointer to a variable that
+receives the number of bytes actually read by the method. </p><p><b>MinNumberOfBytesNeeded: </b>If the method fails because
+the buffer is too small to fit even a single record, this MUST be set to the
+minimum number of bytes needed to fit the next record. Otherwise, this MUST NOT
+be set, and MUST be ignored by the caller. </p><p><b>Return Values: </b>The method MUST return STATUS_SUCCESS
+(0x00000000) on success. If the method is successful, the read position MUST be
+adjusted by NumberOfBytesRead. The method MUST return STATUS_BUFFER_TOO_SMALL
+(0xC0000023) if the buffer is too small to fit even one record. Otherwise, it MUST
+return any other implementation-based, nonzero NTSTATUS value specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>In response to this request from the client, the server MUST
+first check that the handle is valid.<a id="Appendix_A_Target_19"></a><a aria-label="Product behavior note 19" href="4acc4fbc-1378-4120-83d1-cfb4ae0240e0#Appendix_A_19" data-linktype="relative-path">&lt;19&gt;</a> The
+server MUST fail the operation with the error STATUS_INVALID_HANDLE
+(0xC0000008) if the handle is invalid.</p><p>Then the server MUST determine what record to read next. The
+context handle LogHandle maps to a server side object (as specified in section <span><a href="ae50f016-aca2-48da-814b-a89f702025be" data-linktype="relative-path">3.1.1.5</a></span>)
+which contains the last reading record information. This mapping procedure is
+done through the RPC layer. For detailed information on how to use context
+handles and how RPC maintains the context handle mapping, refer to <span><a href="https://go.microsoft.com/fwlink/?LinkId=195280" data-linktype="external">[MSDN-CH]</a></span>.</p><p><b>Note</b>  In the following procedure,
+&#34;handle&#34; refers to the server object which is mapped by the context
+handle LogHandle.</p><p>There are three cases:</p><ol><li><p><span>    </span>If the <b>ReadFlags</b>
+field includes the EVENTLOG_SEQUENTIAL_READ flag, and the log has never been
+read as suggested by the handle, the next record MUST be the oldest record in
+the file when the EVENTLOG_FORWARDS_READ flag is set; or it MUST be the newest
+record in the file if EVENTLOG_BACKWARDS_READ is set.</p>
+</li><li><p><span>    </span>If the ReadFlags
+field includes the EVENTLOG_SEQUENTIAL_READ flag, and the handle is indicating
+the last record which is previously used for reading, the next record MUST be
+determined by taking the last record read value from the handle state and
+either adding one to it (EVENTLOG_FORWARDS_READ is set) or subtracting one from
+it.</p>
+</li><li><p><span>    </span>If the ReadFlags
+field includes the EVENTLOG_SEEK_READ flag, the next record to read MUST be
+specified by the RecordOffset parameter.</p>
+</li></ol><p>If the next record to be read is out of range, the server
+MUST fail the operation. Examples include the caller trying to seek to a record
+that does not exist, or the caller requesting a sequential read when all the
+records have been read. The server can return STATUS_INVALID_PARAMETER
+(0xC000000D) for the first case, and STATUS_END_OF_FILE (0xC0000011) for the
+second one.</p><p>Once the next record is determined, the server MUST determine
+how large that record is. If the next record is too large to fit into the
+buffer, the server MUST fail the method, set the <i>MinNumberOfBytesNeeded</i>
+parameter to the number of bytes needed, and specifically return
+STATUS_BUFFER_TOO_SMALL (0xC0000023).</p><p>The server SHOULD check if the passing flag is valid or not
+and it SHOULD fail the method if the flags are in ambiguous or mutually
+exclusive combinations. For instance, if EVENTLOG_FORWARDS_READ and
+EVENTLOG_BACKWARDS_READ are both set. In such cases, the server can use the
+following behavior:</p><p>In the case where EVENTLOG_FORWARDS_READ and
+EVENTLOG_BACKWARDS_READ are both set, the flag EVENTLOG_BACKWARDS_READ is
+ignored. In other words, the server treats it as if only the
+EVENTLOG_FORWARDS_READ is set. If neither of the two flags are set, the server
+will treat it as if the EVENTLOG_BACKWARDS_READ flag is set. In the case where
+EVENTLOG_SEQUENTIAL_READ and EVENTLOG_SEEK_READ are both set, the flag
+EVENTLOG_SEEK_READ is ignored, and the server will treat it as if only
+EVENTLOG_SEQUENTIAL_READ is set. If neither of the two flags are set, the
+server will treat it as if EVENTLOG_SEQUENTIAL_READ is set. In all of the
+cases, the server does not return the error code for the wrong flags.</p><p>If the above checks all succeed, the server MUST attempt to
+copy as many records as it can into the buffer. The server MUST only copy full
+event records, and it MUST stop if there are no more events to be read. The
+server MUST update the handle state to save the record number of the last event
+copied into the buffer.</p><p>The server MUST return a value indicating success or failure
+for this operation. </p></div>

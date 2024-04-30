@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The <b>FAX_REASSIGN_INFO</b> structure contains information
+about the reassignment of a fax.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [string] LPCWSTR lpcwstrRecipients;
+   [string] LPCWSTR lpcwstrSenderName;
+   [string] LPCWSTR lpcwstrSenderFaxNumber;
+   [string] LPCWSTR lpcwstrSubject;
+   BOOL bHasCoverPage;
+ } FAX_REASSIGN_INFO,
+  *PFAX_REASSIGN_INFO;
+</pre></div>
+</dd></dl><p><b>lpcwstrRecipients:</b> A pointer to a constant,
+null-terminated character string that holds an array of intended recipients to
+which the fax message can be assigned. The recipients are separated by a
+semicolon. Each recipient refers to a <b>Fax User Account</b>.</p><p><b>lpcwstrSenderName:</b> A pointer to a constant
+null-terminated character string that describes the sender name for the
+received fax.</p><p><b>lpcwstrSenderFaxNumber:</b> A pointer to a
+constant null-terminated character string that describes the sender fax number
+for the received fax.</p><p><b>lpcwstrSubject:</b> A pointer to a constant,
+null-terminated character string that describes the subject of the received
+fax.</p><p><b>bHasCoverPage:</b> Boolean value that indicates
+whether the fax includes a cover page. If this member is TRUE, the fax SHOULD
+include a cover page.</p></div>

@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The DFS_INFO_150 structure relates to the <span><a href="b5dd4568-3ea4-4f27-ae03-3ebb19fa4b13" data-linktype="relative-path">NetrDfsGetInfo</a></span>,
+<span><a href="4b650459-f1b2-4476-aa19-ebb6873063dc" data-linktype="relative-path">NetrDfsSetInfo</a></span>,
+and <span><a href="e01d2b11-8884-41cb-8a77-21b72e22307c" data-linktype="relative-path">NetrDfsSetInfo2</a></span>
+methods when used to retrieve or set security descriptors associated with a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS link</a></span>.
+The structure contains the self-relative security descriptor associated with a
+DFS link.</p><p>The DFS_INFO_150 structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_150 {
+   ULONG SecurityDescriptorLength;
+   [size_is(SecurityDescriptorLength)] 
+     PUCHAR pSecurityDescriptor;
+ } DFS_INFO_150;
+</pre></div>
+</dd></dl><p><b>SecurityDescriptorLength:</b>  The
+length, in bytes, of the buffer that the <b>pSecurityDescriptor</b> field
+points to.</p><p><b>pSecurityDescriptor:</b>  A
+self-relative security descriptor associated with <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0b8086c9-d025-45b8-bf09-6b5eca72713e" data-linktype="relative-path">DFS</a></span>. For more
+information on security descriptors, see <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a></span>.</p></div>

@@ -1,0 +1,288 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_PRIVATE_STATS</b> structure has DNS server
+statistics related to internal server processing. This structure MUST be
+formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordFile</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordFileFree</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordDs</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordDsFree</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordAdmin</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordAdminFree</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordDynUp</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordDynUpFree</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordAxfr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordAxfrFree</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordIxfr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordIxfrFree</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordCopy</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordCopyFree</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordCache</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecordCacheFree</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpSocketPnpDelete</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpRecvFailure</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpErrorMessageSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpConnResets</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpConnResetRetryOverflow</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpGQCSFailure</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpGQCSFailureWithContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpGQCSConnReset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpIndicateRecvFailures</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UdpRestartRecvOnSockets</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpConnectAttempt</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpConnectFailure</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpConnect</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpQuery</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TcpDisconnect</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecTsigVerifyOldSig</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecTsigVerifyOldFailed</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecBigTimeSkewBypass</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ZoneLoadInit</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ZoneLoadComplete</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ZoneDbaseDelete</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ZoneDbaseDelayedDelete</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>RecordFile (4 bytes): </b>Not used. Senders MUST
+set this value to zero and receivers MUST ignore it.</p><p><b>RecordFileFree (4 bytes): </b>Not used. Senders
+MUST set this value to zero and receivers MUST ignore it.</p><p><b>RecordDs (4 bytes): </b>Not used. Senders MUST set
+this value to zero and receivers MUST ignore it.</p><p><b>RecordDsFree (4 bytes): </b>Not used. Senders MUST
+set this value to zero and receivers MUST ignore it.</p><p><b>RecordAdmin (4 bytes): </b>Not used. Senders MUST
+set this value to zero and receivers MUST ignore it.</p><p><b>RecordAdminFree (4 bytes): </b>Not used. Senders
+MUST set this value to zero and receivers MUST ignore it.</p><p><b>RecordDynUp (4 bytes): </b>Not used. Senders MUST
+set this value to zero and receivers MUST ignore it.</p><p><b>RecordDynUpFree (4 bytes): </b>Not used. Senders
+MUST set this value to zero and receivers MUST ignore it.</p><p><b>RecordAxfr (4 bytes): </b>Not used. Senders MUST
+set this value to zero and receivers MUST ignore it.</p><p><b>RecordAxfrFree (4 bytes): </b>Not used. Senders
+MUST set this value to zero and receivers MUST ignore it.</p><p><b>RecordIxfr (4 bytes): </b>Not used. Senders MUST
+set this value to zero and receivers MUST ignore it.</p><p><b>RecordIxfrFree (4 bytes): </b>Not used. Senders
+MUST set this value to zero and receivers MUST ignore it.</p><p><b>RecordCopy (4 bytes): </b>Not used. Senders MUST
+set this value to zero and receivers MUST ignore it.</p><p><b>RecordCopyFree (4 bytes): </b>Not used. Senders
+MUST set this value to zero and receivers MUST ignore it.</p><p><b>RecordCache (4 bytes): </b>MUST be set to zero
+when sent and MUST be ignored on receipt.</p><p><b>RecordCacheFree (4 bytes): </b>Not used. Senders
+MUST set this value to zero and receivers MUST ignore it.</p><p><b>UdpSocketPnpDelete (4 bytes): </b>The number of
+UDP sockets that have been closed and had their locally allocated state freed
+by the server because a UDP error occurred or because the socket was closed in
+response to an IP address change on the local machine.</p><p><b>UdpRecvFailure (4 bytes): </b>The number of times
+the server failed to receive UDP packet.</p><p><b>UdpErrorMessageSize (4 bytes): </b>The number of
+times the server received an error from UDP socket due to the large size of the
+receive packet.</p><p><b>UdpConnResets (4 bytes): </b>The number of times
+the server received a connection reset error from UDP.</p><p><b>UdpConnResetRetryOverflow (4 bytes): </b>The
+number of times the server received a connection reset error from UDP and could
+not clear the error by resubmitting a receive operation.</p><p><b>UdpGQCSFailure (4 bytes): </b>The number of times
+the server received an error from UDP.</p><p><b>UdpGQCSFailureWithContext (4 bytes): </b>The
+number of times the server received an error from UDP where no internal state
+for the UDP operation was available.</p><p><b>UdpGQCSConnReset (4 bytes): </b>The number of times
+the server received an error from UDP indicating that a remote address was
+unreachable.</p><p><b>UdpIndicateRecvFailures (4 bytes): </b>The number
+of times the server received a critical error while attempting to perform a UDP
+receive operation.</p><p><b>UdpRestartRecvOnSockets (4 bytes): </b>The number
+of times the server attempted to restart receive operations on its UDP sockets
+due to UDP errors.</p><p><b>TcpConnectAttempt (4 bytes): </b>MUST be set to
+zero when sent and MUST be ignored on receipt.</p><p><b>TcpConnectFailure (4 bytes): </b>MUST be set to
+zero when sent and MUST be ignored on receipt.</p><p><b>TcpConnect (4 bytes): </b>The number of times the
+server was able to successfully establish a TCP connection to a remote the
+server.</p><p><b>TcpQuery (4 bytes): </b>The number of times the
+server sent a recursive query over a TCP connection.</p><p><b>TcpDisconnect (4 bytes): </b>The number of times
+the server disconnected a TCP connection.</p><p><b>SecTsigVerifyOldSig (4 bytes): </b>Not used.
+Senders MUST set this value to zero and receivers MUST ignore it.</p><p><b>SecTsigVerifyOldFailed (4 bytes): </b>Unused.
+Senders MUST set this value to zero and receivers MUST ignore it.</p><p><b>SecBigTimeSkewBypass (4 bytes): </b>The number of
+times the server received a TKEY that had a time-skew within the allowable
+range of 1 day.</p><p><b>ZoneLoadInit (4 bytes): </b>The number of times
+the server prepared to load or reload a zone from persistent storage or from a
+zone transfer.</p><p><b>ZoneLoadComplete (4 bytes): </b>MUST be set to
+zero when sent and MUST be ignored on receipt.</p><p><b>ZoneDbaseDelete (4 bytes): </b>MUST be set to zero
+when sent and MUST be ignored on receipt.</p><p><b>ZoneDbaseDelayedDelete (4 bytes): </b>MUST be set
+to zero when sent and MUST be ignored on receipt.</p></div>

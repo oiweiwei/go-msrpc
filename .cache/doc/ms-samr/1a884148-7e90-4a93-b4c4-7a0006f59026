@@ -1,0 +1,24 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/1a884148-7e90-4a93-b4c4-7a0006f59026" data-linktype="external">msdn link</a></p><p>The SamrGetDomainPasswordInformation method obtains select
+password policy information (without authenticating to the server).</p><dl>
+<dd>
+<div><pre> long SamrGetDomainPasswordInformation(
+   [in] handle_t BindingHandle,
+   [in, unique] PRPC_UNICODE_STRING Unused,
+   [out] PUSER_DOMAIN_PASSWORD_INFORMATION PasswordInformation
+ );
+</pre></div>
+</dd></dl><p><b>BindingHandle: </b>An RPC binding handle
+parameter, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> section 1.</p><p><b>Unused: </b>A string value that is unused by the
+protocol. It is ignored by the server. The client MAY<a id="Appendix_A_Target_69"></a><a aria-label="Product behavior note 69" href="fa61e5fc-f8fb-4d5b-9695-c724af0c3829#Appendix_A_69" data-linktype="relative-path">&lt;69&gt;</a> set any value.</p><p><b>PasswordInformation: </b>Password policy
+information from the account domain.</p><p>There is no security enforced for this method beyond the
+server-wide access check specified in section <a href="aaa1fc5d-851d-4f00-9689-0b9950e88e7b" data-linktype="relative-path">3.1.2.1</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>The output
+parameter <b>PasswordInformation.MinPasswordLength</b> MUST be set to the <b>minPwdLength</b>
+attribute value on the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_3ff707e8-0783-4b16-9370-2899f1078c87" data-linktype="relative-path">account
+domain object</a>.</p>
+</li><li><p><span>    </span>The output
+parameter <b>PasswordInformation.PasswordProperties</b> MUST be set to the <b>pwdProperties</b>
+attribute value on the account domain object.</p>
+</li><li><p><span>    </span>The method MUST
+return STATUS_SUCCESS.</p>
+</li></ol></div>

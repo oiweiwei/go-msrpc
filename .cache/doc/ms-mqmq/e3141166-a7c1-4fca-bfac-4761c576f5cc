@@ -1,0 +1,60 @@
+<div class="content"><p> </p><p>The layout of the DirectQueueFormatName queue format type
+MUST be as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Count</p>
+  </td>
+  <td colspan="16">
+  <p>DirectFormatName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Count (2 bytes): </b>A 16-bit unsigned integer
+that specifies the length, in bytes, of the following null-terminated <b>WCHAR</b>
+buffer, <b>DirectFormatName</b>, up to and including the terminating null
+character.</p><p><b>DirectFormatName (variable): </b>A null-terminated
+<b>WCHAR</b>, as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/7df7c1d5-492c-4db4-a992-5cd9e887c5d7" data-linktype="relative-path">2.2.60</a></span>,
+buffer that contains a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_5209585c-8c60-4a93-9fdd-798a897644ab" data-linktype="relative-path">direct format name</a></span>.
+The end of this field is padded up to the next 4-byte boundary relative to the
+start of the header that contains the queue format name.</p><p>The <b>Count</b> value does not include the padding bytes.
+There are no restrictions on the value of the padding bytes.<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a></p></div>

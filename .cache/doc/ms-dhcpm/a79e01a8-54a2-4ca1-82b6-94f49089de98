@@ -1,0 +1,106 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4DeletePolicy</b> method deletes the specified
+policy.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4DeletePolicy(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] BOOL ServerPolicy,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [in, unique, string] LPWSTR PolicyName
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>ServerPolicy: </b>This is of type <span><a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">BOOL</a></span>
+and indicates whether the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e4c4b49e-bca4-4854-9e27-67ef0035f06e" data-linktype="relative-path">server level policy</a></span>
+or <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_3b199f35-b0f3-4897-83a6-e7fec0ee7fea" data-linktype="relative-path">scope
+level policy</a></span> is being deleted.</p><p><b>SubnetAddress: </b>This is of type <b>DHCP_IP_ADDRESS</b>
+data type (section <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">2.2.1.2.1</a></span>) that
+identifies the IPv4 subnet from which the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_52323544-69e0-4172-8921-2711cbda988e" data-linktype="relative-path">policy</a></span> is being
+deleted.</p><p><b>PolicyName: </b>A pointer to a null-terminated Unicode
+string that contains the name of the policy deleted.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or to any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 111.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>If the <i>ServerPolicy</i> parameter is TRUE and the <i>SubnetAddress</i>
+parameter is not NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ServerPolicy</i> parameter is FALSE and the <i>SubnetAddress</i>
+parameter is NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>PolicyName</i> parameter is NULL or if the <i>Policy</i>
+parameter is NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Validate whether this method is authorized for write/read access
+as specified in section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ServerPolicy</i> parameter is TRUE:</p>
+<ul><li><p><span><span>  </span></span>Retrieve
+the <b>DHCPv4ServerPolicyList</b> ADM element and get the <b>DHCPv4Policy</b>
+ADM element from the <b>DHCPv4ServerPolicyList</b> ADM element for the
+specified <i>PolicyName</i> parameter. If there is no <b>DHCPv4Policy</b> ADM
+element with the specified <i>PolicyName</i> parameter, return
+ERROR_DHCP_POLICY_NOT_FOUND.</p>
+</li><li><p><span><span>  </span></span>Iterate
+through the server ADM element <b>DHCPv4ServerPolicyOptionValuesList</b> and
+retrieve the <b>DHCPv4PolicyOptionValue</b> entries corresponding to the policy
+specified by the retrieved <b>DHCPv4Policy.Policy.PolicyName</b>. Remove these
+entries from <b>DHCPv4ServerPolicyOptionValuesList</b>.</p>
+</li><li><p><span><span>  </span></span>Delete
+the specific <b>DHCPv4Policy</b> ADM element and return ERROR_SUCCESS.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>ServerPolicy</i> parameter is FALSE:</p>
+<ul><li><p><span><span>  </span></span>Retrieve
+the <b>DHCPv4ScopesList</b> ADM element and get the <b>DHCPv4Scope</b> ADM
+element from the <b>DHCPv4ScopesList</b> ADM element where the <b>SubnetAddress</b>
+ADM element in the <b>DHCPv4Scope</b> ADM element matches the specified <i>SubnetAddress</i>
+parameter.</p>
+</li><li><p><span><span>  </span></span>If
+there is no <b>DHCPv4Scope</b> ADM element matching the specified <i>SubnetAddress</i>
+parameter, return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span>  </span></span>Retrieve
+the <b>DHCPv4Scope.DHCPv4ScopePolicyList</b> ADM element and get the <b>DHCPv4Policy</b>
+ADM element from the <b>DHCPv4Scope.DHCPv4ScopePolicyList</b> ADM element that
+has the same name as the specified <i>PolicyName</i> parameter.</p>
+</li><li><p><span><span>  </span></span>If
+there is no <b>DHCPv4Policy</b> ADM element with the specified <i>PolicyName</i>
+parameter, return ERROR_DHCP_POLICY_NOT_FOUND.</p>
+</li><li><p><span><span>  </span></span>Iterate
+through the scope ADM element <b>DHCPv4Scope.DHCPv4ScopePolicyOptionValuesList</b>
+and retrieve the <b>DHCPv4PolicyOptionValue</b> entries corresponding to the
+policy specified by the retrieved <b>DHCPv4Policy.Policy.PolicyName</b> ADM
+element. Remove these entries from <b>DHCPv4Scope.DHCPv4ServerPolicyOptionValuesList</b>.</p>
+</li><li><p><span><span>  </span></span>Delete
+the specific <b>DHCPv4Policy</b> ADM element and return ERROR_SUCCESS.</p>
+</li></ul></li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

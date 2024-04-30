@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The REGIONTYPE enumeration defines values for region types.</p><dl>
+<dd>
+<div><pre> typedef  enum _REGIONTYPE
+ {
+   REGION_UNKNOWN, 
+   REGION_FREE,
+   REGION_EXTENDED_FREE,
+   REGION_PRIMARY,
+   REGION_LOGICAL,
+   REGION_EXTENDED,
+   REGION_SUBDISK,
+   REGION_CDROM,
+   REGION_REMOVABLE 
+ } REGIONTYPE;
+</pre></div>
+</dd></dl><p><b>REGION_UNKNOWN:  </b>Region type is unknown.</p><p><b>REGION_FREE:  </b>Region resides in <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_4932fda9-4823-4a72-b4e7-629f89d8fd90" data-linktype="relative-path">free
+space</a></span>.</p><p><b>REGION_EXTENDED_FREE:  </b>Region resides in the
+free space of an <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_af7c97a3-0702-421f-b936-a062a176c100" data-linktype="relative-path">extended partition</a></span>.</p><p><b>REGION_PRIMARY:  </b>Region resides in a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_083447aa-2ab6-4d94-a686-9bbfc1fd5744" data-linktype="relative-path">primary
+partition</a></span>.</p><p><b>REGION_LOGICAL:  </b>Region resides in a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_14bec85c-6bf8-4d50-8b26-478462d2e8a0" data-linktype="relative-path">logical
+partition</a></span>.</p><p><b>REGION_EXTENDED:  </b>Region resides in an
+extended partition.</p><p><b>REGION_SUBDISK:  </b>Region resides on a subdisk.</p><p><b>REGION_CDROM:  </b>Region resides on a CD-ROM
+device.</p><p><b>REGION_REMOVABLE:  </b>Region resides on a device
+with <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_58aae236-0186-4ba1-a46b-f0a997e6c6f2" data-linktype="relative-path">removable
+media</a></span>.</p></div>

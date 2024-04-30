@@ -1,0 +1,41 @@
+<div class="content"><p> </p><p>The SHARE_INFO union contains information about a share.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(unsigned long)] 
+ union _SHARE_INFO {
+   [case(0)] 
+     LPSHARE_INFO_0 ShareInfo0;
+   [case(1)] 
+     LPSHARE_INFO_1 ShareInfo1;
+   [case(2)] 
+     LPSHARE_INFO_2 ShareInfo2;
+   [case(502)] 
+     LPSHARE_INFO_502_I ShareInfo502;
+   [case(1004)] 
+     LPSHARE_INFO_1004 ShareInfo1004;
+   [case(1006)] 
+     LPSHARE_INFO_1006 ShareInfo1006;
+   [case(1501)] 
+     LPSHARE_INFO_1501_I ShareInfo1501;
+   [default]     ;
+   [case(1005)] 
+     LPSHARE_INFO_1005 ShareInfo1005;
+   [case(501)] 
+     LPSHARE_INFO_501 ShareInfo501;
+   [case(503)] 
+     LPSHARE_INFO_503_I ShareInfo503;
+ } SHARE_INFO,
+  *PSHARE_INFO,
+  *LPSHARE_INFO;
+</pre></div>
+</dd></dl><p><b>ShareInfo0:</b>  A pointer to a
+structure that contains information about a share, as specified in section <span><a href="73a25288-8086-4975-91a3-5cbee5b590cc" data-linktype="relative-path">2.2.4.22</a></span>.</p><p><b>ShareInfo1:</b>  A pointer to a
+structure that contains information about a share, as specified in section <span><a href="fc69f110-998d-4c16-9667-514e22fdd80b" data-linktype="relative-path">2.2.4.23</a></span>.</p><p><b>ShareInfo2:</b>  A pointer to a
+structure that contains information about a share, as specified in section <span><a href="baead467-920e-4278-853b-bbd303aadfd6" data-linktype="relative-path">2.2.4.24</a></span>.</p><p><b>ShareInfo502:</b>  A pointer to a
+structure that contains information about a share, as specified in section <span><a href="8605fd54-6ede-4316-b30d-ecfafa133c1d" data-linktype="relative-path">2.2.4.26</a></span>.</p><p><b>ShareInfo1004:</b>  A pointer to a
+structure that contains information about a share, as specified in section <span><a href="1a688b12-2123-4489-bb92-1b0f0f55b6a0" data-linktype="relative-path">2.2.4.28</a></span>.</p><p><b>ShareInfo1006:</b>  A pointer to a
+structure that contains information about a share, as specified in section <span><a href="1333b9c3-bcae-43c5-a0dc-020449c23289" data-linktype="relative-path">2.2.4.30</a></span>.</p><p><b>ShareInfo1501:</b>  A pointer to a
+structure that contains information about a share, as specified in section <span><a href="4bbc92b7-6755-40d2-9e45-ecb2a9701df4" data-linktype="relative-path">2.2.4.31</a></span>.</p><p><b>ShareInfo1005:</b>  A pointer to a
+structure that contains information about a share, as specified in section <span><a href="8a481783-9c6e-4f17-99d1-aea6578e21fb" data-linktype="relative-path">2.2.4.29</a></span>.</p><p><b>ShareInfo501:</b>  A pointer to a
+structure that contains information about a share, as specified in section <span><a href="bd6fb43c-a7fc-4430-8567-bf558552dea3" data-linktype="relative-path">2.2.4.25</a></span>.</p><p><b>ShareInfo503:</b>  A pointer to a
+structure that contains information about a share, as specified in section <span><a href="0448e06c-91b2-4ca6-bd9c-02ed396a3fbc" data-linktype="relative-path">2.2.4.27</a></span>.</p></div>

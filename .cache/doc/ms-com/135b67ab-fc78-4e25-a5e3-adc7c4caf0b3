@@ -1,0 +1,74 @@
+<div class="content"><p>The Security Property Collection structure is used to
+specify an array of <a href="68abd53d-29df-40c1-819e-65ea19ef1b03" data-linktype="relative-path">Security
+Property (section 2.2.3.2.1)</a> structures. It consists of a
+collection header followed by the Security Property structures.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Properties
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (4 bytes): </b>A <a href="25146b80-ec6d-45bd-9029-8a4bcb53500f" data-linktype="relative-path">Security Property Collection
+Header (section 2.2.3.2.2)</a>.</p><p><b>Properties (variable): </b>An array of Security
+Property structures. The number of elements in the array MUST be specified in
+the <b>cProperties</b> field of <b>Header</b>.</p><p>If the <b>collectionType</b> field of the <b>Header</b> has
+a value of 0x0a01, the <b>Properties</b> array SHOULD contain a single element
+with the <b>PropertyType</b> field value set to 0x0b10, specifying the minimum <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_bfb9708e-9d05-4f79-8969-ef63f73aa434" data-linktype="relative-path">authentication level</a> used
+across the <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_d4ad46fe-cbab-43f2-a125-b2f125824f33" data-linktype="relative-path">ORPC</a> call
+chain. </p><p>If the <b>collectionType</b> field of the <b>Header</b> has
+a value of 0x0a02, the <b>Properties</b> array SHOULD contain at least 4
+elements with the <b>PropertyType</b> values set to 0x0b01, 0x0b03, 0x0b04 and
+0x0b05, specifying, respectively, the <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a>, the <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_ffda2ae0-9528-42a7-ac1a-9d42d40674f7" data-linktype="relative-path">authentication service</a>, the
+authentication level, and the impersonation level used in the ORPC call. </p><p>If the <b>collectionType</b> field of the <b>Header</b> has
+a value of 0x0a02 and if the ORPC call crosses a <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> boundary, the <b>Properties</b>
+array SHOULD contain an additional element with the <b>PropertyType</b> value
+set to 0x0b02, specifying the <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_4071b06d-1c9f-47e2-a6e1-e41f76f1b98d" data-linktype="relative-path">Windows
+NT account name</a> of the caller. </p><p>Otherwise, if the <b>collectionType</b> field of the <b>Header</b>
+has a value of 0x0a02, if the ORPC call crosses a computer boundary and if the
+security identity of the client is scoped to the local computer, the <b>Properties</b>
+array SHOULD contain an additional element with the <b>PropertyType</b> value
+set to 0x0b02, specifying the Windows NT account name of the caller.</p></div>

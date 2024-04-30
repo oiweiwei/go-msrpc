@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The DRS_EXTENSIONS structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete
+type</a></span> for capabilities information used in version negotiation.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [range(1,10000)] DWORD cb;
+   [size_is(cb)] BYTE rgb[];
+ } DRS_EXTENSIONS;
+</pre></div>
+</dd></dl><p><b>cb:</b>  The size, in bytes, of the <b>rgb</b>
+array.</p><p><b>rgb:</b>  To <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>, this field is a
+string of <b>cb</b> bytes. It is interpreted by the client and the server as
+the first <b>cb</b> bytes of a <span><a href="3ee529b1-23db-4996-948a-042f04998e91" data-linktype="relative-path">DRS_EXTENSIONS_INT</a></span>
+structure that follow the <b>cb</b> field of that structure. The fields of the
+DRS_EXTENSIONS_INT structure are in little-endian byte order. Since both DRS_EXTENSIONS
+and DRS_EXTENSIONS_INT begin with a <b>DWORD</b> <b>cb</b>, a field in
+DRS_EXTENSIONS_INT is at the same offset in DRS_EXTENSIONS as it is in
+DRS_EXTENSIONS_INT.</p></div>

@@ -1,0 +1,127 @@
+<div class="content"><p>The GetAuditFilter method retrieves the list of events for
+which the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> server is
+currently set to create security audit events, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89839" data-linktype="external">[CIMC-PP]</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetAuditFilter(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [out] DWORD* pdwFilter
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b> See <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.
+</p><p><b>pdwFilter: </b>An unsigned integer that specifies
+the current audit settings. This is a bitwise-OR combination of zero or more of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Audit CA
+  server for the following events:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>ServerControl</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>Registration of the <a href="46496f1f-a631-42b3-a60e-33f95fb6fed1" data-linktype="relative-path">ICertAdminD</a> interface.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>Unregistration of the ICertAdminD
+  interface.</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Audit CA
+  server for the following method calls:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>BackupPrepare</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>BackupEnd</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Audit CA
+  server for the following method calls:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>ICertRequestD::Request</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>ResubmitRequest</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>DenyRequest</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>SetAttributes</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>SetExtensions</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>ImportCertificate</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>DeleteRow</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Audit CA
+  server for the following method calls:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>RevokeCertificate</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>PublishCRL</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>PublishCRLs</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Audit CA
+  server for the following method calls:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>SetCASecurity</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>SetOfficerRights</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Audit CA
+  server for the following method calls:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>GetArchivedKey</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>ImportKey</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>Audit CA
+  server for the following method calls:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>SetCAProperty</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>SetConfigEntry</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>The GetAuditFilter method is used to retrieve the audit
+filter currently in use (initialize to 0 during the registration of the
+interfaces and can be modified by a call to the <a href="76194711-fa4e-437c-b41e-34b0c4db2d3b" data-linktype="relative-path">SetAuditFilter</a> method).</p></div>

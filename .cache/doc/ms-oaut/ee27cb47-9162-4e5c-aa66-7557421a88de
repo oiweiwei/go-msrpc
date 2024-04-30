@@ -1,0 +1,53 @@
+<div class="content"><p>The GetTypeInfo method retrieves the <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_fb6a1829-c102-482c-902f-51c197b22860" data-linktype="relative-path">automation type description</a>
+that has the specified ordinal position within the type information table.</p><dl>
+<dd>
+<div><pre> HRESULT GetTypeInfo(
+   [in] UINT index,
+   [out] ITypeInfo** ppTInfo
+ );
+</pre></div>
+</dd></dl><p><b>index: </b>MUST equal the ordinal position of the
+specified automation type description within the type information table.</p><p><b>ppTInfo: </b>MUST be set to a reference to the <a href="99504cf9-16d8-401e-a873-83b85d1ee4aa" data-linktype="relative-path">ITypeInfo server</a> instance
+(see section 3.7) with the specified position in the type information table, or
+to NULL if the value of index is greater than or equal to the number of
+automation type descriptions in the type information table.</p><dl>
+<dd>
+<p>MUST refer to the <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_603521de-c0d9-4732-ad40-2ece61f8c7eb" data-linktype="relative-path">partner dispinterface</a> if
+index specifies a <a href="bd30db0d-6c38-4d54-9c44-67c0e9d25551" data-linktype="relative-path">dual
+interface</a>. To retrieve the ITypeInfo server that corresponds to the <a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_3610e61d-bd5c-454f-992a-0a020995e66b" data-linktype="relative-path">partner interface</a>, the
+client MUST call the <a href="7225fbad-7ad0-458b-b149-2e854364fbfd" data-linktype="relative-path">GetRefTypeOfImplType</a>
+and <a href="8428b8f8-4457-4fab-99fe-38a8c6ab217b" data-linktype="relative-path">GetRefTypeInfo</a>
+methods of the ITypeInfo instance that correspond to the partner dispinterface,
+as specified in sections 3.7.4.6 and 3.7.4.10.</p>
+</dd></dl><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.
+The severity bit in the structure identifies the following conditions: </p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire <b>HRESULT</b>
+DWORD does not match a value in the following table, a fatal failure occurred.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire <b>HRESULT</b> DWORD
+matches a value in the following table, a failure occurred. </p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8002802B</p>
+  <p>TYPE_E_ELEMENTNOTFOUND</p>
+  </td>
+  <td>
+  <p>The value of <i>index</i> did not specify the ordinal
+  position of an element in the type information table. See [MS-ERREF].</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p> </p></div>

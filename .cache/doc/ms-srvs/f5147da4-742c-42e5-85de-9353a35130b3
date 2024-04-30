@@ -1,0 +1,125 @@
+<div class="content"><p> </p><p>The NetrShareDelEx method deletes a share from the <b>ShareList</b>,
+which disconnects all connections to the shared resource. If the share is
+sticky, all information about the share is also deleted from permanent storage.<a id="Appendix_A_Target_176"></a><a aria-label="Product behavior note 176" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_176" data-linktype="relative-path">&lt;176&gt;</a></p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrShareDelEx(
+   [in, string, unique] SRVSVC_HANDLE ServerName,
+   [in] DWORD Level,
+   [in, switch_is(Level)] LPSHARE_INFO ShareInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>An <span><a href="5f8329ee-1965-4ea1-ad35-3b29fbb63232" data-linktype="relative-path">SRVSVC_HANDLE</a></span>
+pointer that identifies the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>. The client
+MUST map this structure to an RPC binding handle (<span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> sections
+4.3.5 and 5.1.5.2). The server MUST ignore this parameter.</p><p><b>Level: </b>Specifies the information level of the
+data. This parameter MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span>503</span></p>
+  </td>
+  <td>
+  <p><span><span><a href="0448e06c-91b2-4ca6-bd9c-02ed396a3fbc" data-linktype="relative-path">LPSHARE_INFO_503_I</a></span></span></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ShareInfo: </b>This parameter is of type <span><a href="419f538b-9342-455e-9b8c-fa430e77bc54" data-linktype="relative-path">LPSHARE_INFO</a></span>
+union, as specified in section 2.2.3.6. Its contents are determined by the
+value of the <i>Level</i> parameter, as shown in the preceding table. This
+parameter MUST NOT contain a null value.</p><p><b>Return Values: </b>The method returns 0x00000000
+(NERR_Success) to indicate success; otherwise, it returns a nonzero error code.
+The method can take any specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>NERR_Success</p>
+  </td>
+  <td>
+  <p>The <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> request
+  succeeded.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The client request failed because the specified
+  parameter is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>Not enough storage is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000906</p>
+  <p>NERR_NetNameNotFound</p>
+  </td>
+  <td>
+  <p>The share name does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000007C</p>
+  <p>ERROR_INVALID_LEVEL</p>
+  </td>
+  <td>
+  <p>The system call level is not correct.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The <i>ShareInfo.shi503_netname</i> parameter specifies the
+name of the share to delete from the <b>ShareList</b>. This MUST be a nonempty
+null-terminated UTF-16 string; otherwise, the server MUST fail the call with an
+ERROR_INVALID_PARAMETER error code.</p><p>The server MUST provide tuple &lt;<i>ShareInfo.shi503_servername</i>,
+<i>ShareInfo.shi503_netname</i>&gt; to look up the Share as specified in
+section <span><a href="35ed2987-7c6c-40b5-a401-ccbe671c6639" data-linktype="relative-path">3.1.6.1</a></span>. If no
+match is found, the server MUST fail the call with a NERR_NetNameNotFound
+(0x00000906) error code. If the Share is found and <b>Share.IsPrinterShare</b>
+is TRUE, <b>PrinterShareCount</b> MUST be decreased by 1. If <b>PrinterShareCount</b>
+becomes 0, the server MUST invoke an event as specified in section <span><a href="12bdc7cd-d73a-4468-a83f-09e04547ad71" data-linktype="relative-path">3.1.6.10</a></span>,
+providing SV_TYPE_PRINTQ_SERVER as the input parameter. The server MUST remove
+the share entry from <b>ShareList</b>.</p><p>In response to a NetrShareDelEx message, the server MUST
+delete the Share by invoking the underlying server event as specified in <span><a href="../ms-cifs/d416ff7c-c536-406e-a951-4f04b2fd1d2b" data-linktype="relative-path">[MS-CIFS]</a></span>
+section <span><a href="../ms-cifs/7c96c13d-e5de-4326-a9c7-aae97250a66a" data-linktype="relative-path">3.3.4.11</a></span>
+and <span><a href="../ms-smb2/5606ad47-5ee0-437a-817e-70c366052962" data-linktype="relative-path">[MS-SMB2]</a></span>
+section <span><a href="../ms-smb2/9b634aad-c492-4c27-9918-4ef2e7aef76d" data-linktype="relative-path">3.3.4.15</a></span>,
+providing the tuple &lt;<i>ShareInfo.shi503_servername</i>, <i>ShareInfo.shi503_netname</i>&gt;
+as input parameters. If the event fails, the server MUST return an error code.</p><p>The server SHOULD<a id="Appendix_A_Target_177"></a><a aria-label="Product behavior note 177" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_177" data-linktype="relative-path">&lt;177&gt;</a>
+enforce security measures to verify that the caller has the required
+permissions to execute this routine. If the caller does not have the required
+credentials, the server SHOULD<a id="Appendix_A_Target_178"></a><a aria-label="Product behavior note 178" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_178" data-linktype="relative-path">&lt;178&gt;</a> fail
+the call.</p></div>

@@ -1,0 +1,102 @@
+<div class="content"><p>The <b>CprepDiskWriteFileData</b> method writes information
+to a file on a given partition on a given disk.</p><dl>
+<dd>
+<div><pre> HRESULT CprepDiskWriteFileData(
+   [in] CPREP_DISKID DiskId,
+   [in] unsigned long ulPartition,
+   [in, string] wchar_t* FileName,
+   [in] unsigned long cbDataIn,
+   [in, size_is(cbDataIn)] byte* DataIn
+ );
+</pre></div>
+</dd></dl><p><b>DiskId: </b>The identifier of the <b>ClusPrepDisk</b>
+representing the disk that holds the file to write to.</p><p><b>ulPartition: </b>The partition number of the
+partition associated with the volume on the disk that holds the file to write
+to.</p><p><b>FileName: </b>The path and name of the file to
+write to.</p><p><b>cbDataIn: </b>The size, in bytes, of the buffer <i>DataIn</i>.</p><p><b>DataIn: </b>The data to write to the file.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method implementation.
+For more information about Win32 error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007139F</p>
+  <p>ERROR_INVALID_STATE</p>
+  </td>
+  <td>
+  <p>The <b>ClusPrepDisk.OnlineState</b> is not equal to
+  Online.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The disk was not found or <i>ulPartition</i> cannot be
+  mapped to a volume.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800703ED</p>
+  <p>ERROR_UNRECOGNIZED_VOLUME</p>
+  </td>
+  <td>
+  <p>The volume does not contain a file system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070548</p>
+  <p>ERROR_INVALID_SERVER_STATE</p>
+  </td>
+  <td>
+  <p>The server&#39;s <b>Prepare State</b> is not Online.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The opnum field value for this method is 17.</p><p>When processing this call, the server MUST do the following
+as specified in section <a href="c17ce220-d244-45c9-95c0-4c31942253ee" data-linktype="relative-path">3.2.4</a>:</p><ul><li><p><span><span> 
+</span></span>Obtain the <b>ClusPrepDisk</b> identified by the <i>DiskId</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the <b>ClusPrepDisk.OnlineState</b> is Online.</p>
+</li><li><p><span><span> 
+</span></span>Map <i>ulPartition</i> to the corresponding volume.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the volume contains a file system.</p>
+</li><li><p><span><span> 
+</span></span>Create the file if it does not exist.</p>
+</li><li><p><span><span> 
+</span></span>Write the contents of buffer <i>DataIn</i> to the file, starting
+at offset 0.</p>
+</li><li><p><span><span> 
+</span></span>Truncate the file length to <i>cbDataIn</i> bytes if its current
+length is greater than <i>cbDataIn</i> bytes.</p>
+</li></ul></div>

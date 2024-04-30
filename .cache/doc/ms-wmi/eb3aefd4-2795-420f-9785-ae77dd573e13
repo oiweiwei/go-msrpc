@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The WBEM_INSTANCE_BLOB_TYPE enumeration is used to indicate
+the type of a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c1fdd6c7-06cb-4787-8735-4d19a68dd802" data-linktype="relative-path">CIM object</a></span>.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum _WBEM_INSTANCE_BLOB_TYPE
+ {
+   WBEM_BLOB_TYPE_ALL = 2,
+   WBEM_BLOB_TYPE_ERROR = 3,
+   WBEM_BLOB_TYPE_ENUM = 4
+ } WBEM_INSTANCE_BLOB_TYPE;
+</pre></div>
+</dd></dl><p><b>WBEM_BLOB_TYPE_ALL:  </b>The object is a single
+CIM object.</p><p><b>WBEM_BLOB_TYPE_ERROR:  </b>Represents an error
+condition. In this case the object is NULL.</p><p><b>WBEM_BLOB_TYPE_ENUM:  </b>The object is an
+enumeration of objects of a specific CIM type.</p></div>

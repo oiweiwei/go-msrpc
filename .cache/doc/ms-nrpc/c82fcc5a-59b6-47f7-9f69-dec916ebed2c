@@ -1,0 +1,68 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c82fcc5a-59b6-47f7-9f69-dec916ebed2c" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_DELTA_USER</b> structure contains
+information about a SAM user account. This structure is used for replicating
+the user account data from the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a> to a BDC, as detailed
+in section <a href="f28f9dc8-eeb2-4112-9eec-a466f639c761" data-linktype="relative-path">3.6</a>.</p><p>All fields of this structure, except the fields detailed
+following the structure definition, have the same meanings as the identically
+named fields in the <b>Common User Fields</b>, as specified in <a href="../ms-samr/4df07fab-1bbc-452f-8e92-7853a3c7e380" data-linktype="relative-path">[MS-SAMR]</a>
+section <a href="../ms-samr/899d68a9-8145-4334-a52f-2fbd92bec94f" data-linktype="relative-path">2.2.6.1</a>
+and the <b>SAMPR_USER_INTERNAL1_INFORMATION</b> structure fields, as specified
+in [MS-SAMR] section <a href="../ms-samr/50d17755-c6b8-40bd-8cac-bd6cfa31adf2" data-linktype="relative-path">2.2.6.23</a>.
+</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_DELTA_USER {
+   RPC_UNICODE_STRING UserName;
+   RPC_UNICODE_STRING FullName;
+   ULONG UserId;
+   ULONG PrimaryGroupId;
+   RPC_UNICODE_STRING HomeDirectory;
+   RPC_UNICODE_STRING HomeDirectoryDrive;
+   RPC_UNICODE_STRING ScriptPath;
+   RPC_UNICODE_STRING AdminComment;
+   RPC_UNICODE_STRING WorkStations;
+   OLD_LARGE_INTEGER LastLogon;
+   OLD_LARGE_INTEGER LastLogoff;
+   NLPR_LOGON_HOURS LogonHours;
+   USHORT BadPasswordCount;
+   USHORT LogonCount;
+   OLD_LARGE_INTEGER PasswordLastSet;
+   OLD_LARGE_INTEGER AccountExpires;
+   ULONG UserAccountControl;
+   ENCRYPTED_NT_OWF_PASSWORD EncryptedNtOwfPassword;
+   ENCRYPTED_LM_OWF_PASSWORD EncryptedLmOwfPassword;
+   UCHAR NtPasswordPresent;
+   UCHAR LmPasswordPresent;
+   UCHAR PasswordExpired;
+   RPC_UNICODE_STRING UserComment;
+   RPC_UNICODE_STRING Parameters;
+   USHORT CountryCode;
+   USHORT CodePage;
+   NLPR_USER_PRIVATE_INFO PrivateData;
+   SECURITY_INFORMATION SecurityInformation;
+   ULONG SecuritySize;
+   [size_is(SecuritySize)] UCHAR * SecurityDescriptor;
+   RPC_UNICODE_STRING ProfilePath;
+   RPC_UNICODE_STRING DummyString2;
+   RPC_UNICODE_STRING DummyString3;
+   RPC_UNICODE_STRING DummyString4;
+   ULONG DummyLong1;
+   ULONG DummyLong2;
+   ULONG DummyLong3;
+   ULONG DummyLong4;
+ } NETLOGON_DELTA_USER,
+  *PNETLOGON_DELTA_USER;
+</pre></div>
+</dd></dl><p><b>PrivateData:</b> An <b>NLPR_USER_PRIVATE_INFO</b>
+structure, as specified in section <a href="1333d230-8d17-4c16-a09d-0b7c785d591a" data-linktype="relative-path">2.2.1.5.15</a>, containing the
+<b>PrivateData</b> field of the <b>SAMPR_USER_INFORMATION</b> structure, as
+specified in [MS-SAMR] section <a href="../ms-samr/dc966b81-da27-4dae-a28c-ec16534f1cb9" data-linktype="relative-path">2.2.6.6</a>.</p><p><b>SecurityInformation:</b> A <b>SECURITY_INFORMATION</b>
+structure, as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/23e75ca3-98fd-4396-84e5-86cd9d40d343" data-linktype="relative-path">2.4.7</a>,
+that specifies portions of a security descriptor about the user account.</p><p><b>SecuritySize:</b> The size, in bytes, of <b>SecurityDescriptor</b>.</p><p><b>SecurityDescriptor:</b> A pointer to a <b>SECURITY_DESCRIPTOR</b>
+structure, as specified in [MS-DTYP] section <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a>,
+that specifies the security settings for the user account object.</p><p><b>DummyString2:</b> A <b>STRING</b> structure,
+defined in section <a href="4a896c09-a39c-4878-94f0-9e4f8a419f32" data-linktype="relative-path">2.2.1.1.2</a>,
+that MUST contain 0 for the <b>Length</b> field, 0 for the <b>MaximumLength</b>
+field, and NULL for the <b>Buffer</b> field. It is ignored upon receipt. The
+Netlogon usage of dummy fields is described in section <a href="bbc95890-215e-49a9-8bb8-92e723548046" data-linktype="relative-path">1.3.8.1.2</a>.</p><p><b>DummyString3:</b> See definition for DummyString2.</p><p><b>DummyString4:</b> See definition for DummyString2</p><p><b>DummyLong1:</b> The high part (the first 32 bits)
+of the <b>LastBadPasswordTime</b> field of the <b>SAMPR_USER_INTERNAL3_INFORMATION</b>
+structure, as specified in [MS-SAMR] section <a href="../ms-samr/d74231bd-81e2-4229-9e82-ce6d3713cc62" data-linktype="relative-path">2.2.6.7</a>.</p><p><b>DummyLong2:</b> See definition for DummyLong1.</p><p><b>DummyLong3:</b> See definition for DummyLong1.</p><p><b>DummyLong4:</b> See definition for DummyLong1.</p></div>

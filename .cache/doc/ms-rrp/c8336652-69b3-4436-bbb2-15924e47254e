@@ -1,0 +1,147 @@
+<div class="content"><p> </p><p>The BaseRegSaveKeyEx method is called by the client. In
+response, the server saves the specified key, subkeys, and values to a new
+file. The BaseRegSaveKeyEx method accepts flags that determine the format for
+the saved key or and values.</p><dl>
+<dd>
+<div><pre> error_status_t BaseRegSaveKeyEx(
+   [in] RPC_HKEY hKey,
+   [in] PRRP_UNICODE_STRING lpFile,
+   [in, unique] PRPC_SECURITY_ATTRIBUTES pSecurityAttributes,
+   [in] DWORD Flags
+ );
+</pre></div>
+</dd></dl><p><b>hKey: </b>A handle to a key that MUST have been
+opened previously by using one of the open methods that are specified in
+section <span><a href="053e8515-dbae-47ea-a7c6-6dc054e3a48f" data-linktype="relative-path">3.1.5</a></span>: <span><a href="956a3052-6580-43ee-91aa-aaf61726149b" data-linktype="relative-path">OpenClassesRoot</a></span>,
+<span><a href="ec140ed9-4d00-4c03-a15c-c7245a497ed5" data-linktype="relative-path">OpenCurrentUser</a></span>,
+<span><a href="6cef29ae-21ba-423f-9158-05145ac80a5b" data-linktype="relative-path">OpenLocalMachine</a></span>,
+<span><a href="7b514c63-6cad-4fe1-9780-743959e377e6" data-linktype="relative-path">OpenPerformanceData</a></span>,
+<span><a href="694e57f4-da3e-4285-8b71-3181d71d6cd1" data-linktype="relative-path">OpenUsers</a></span>,
+<span><a href="c7186ae2-1c82-45e9-933b-97d9873657e8" data-linktype="relative-path">BaseRegCreateKey</a></span>,
+<span><a href="8cb48f55-19e1-4ea2-8d76-dd0f6934f0d9" data-linktype="relative-path">BaseRegOpenKey</a></span>,
+<span><a href="160767d7-83cf-4718-a4f3-d864faee3bb1" data-linktype="relative-path">OpenCurrentConfig</a></span>,
+<span><a href="44954f6d-ef2c-4ec1-a27d-32b9b87e3c8a" data-linktype="relative-path">OpenPerformanceText</a></span>,
+<span><a href="3626fa8a-b20f-4243-bf85-cdb615ed2ca0" data-linktype="relative-path">OpenPerformanceNlsText</a></span>.</p><p><b>lpFile: </b>A pointer to an <span><a href="c0c90f11-a4c4-496a-ac09-8a8a3697ceef" data-linktype="relative-path">RRP_UNICODE_STRING</a></span>
+structure that contains the name of the file in which the specified key and
+subkeys are saved. The format of the file name is implementation-specific.</p><p><b>pSecurityAttributes: </b>A pointer to an <span><a href="bc37b8cf-8c94-4804-ad53-0aaf5eaf0ecb" data-linktype="relative-path">RPC_SECURITY_ATTRIBUTES</a></span>
+structure that specifies a security descriptor for the new file. If the <i>pSecurityAttributes</i>
+parameter is NULL, the file receives a default security descriptor.</p><p><b>Flags: </b>Specifies the format for the saved key.
+This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>The key or subtree is saved in the original format. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>The key or subtree is saved in the latest format.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4</p>
+  </td>
+  <td>
+  <p>The key or subtree is saved without compression.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000013</p>
+  <p>ERROR_WRITE_PROTECT</p>
+  </td>
+  <td>
+  <p>A read or write operation was attempted to a volume
+  after it was dismounted. The server can no longer service registry requests
+  because server shutdown has been initiated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The server does not have access permissions to save
+  the file at the specified location.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000B7</p>
+  <p>ERROR_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>Cannot create a file when that file already exists.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Server Operations</p><p>If the registry server can no longer service registry
+requests because server shutdown has been initiated (<b>SHUTDOWNINPROGRESS</b>
+is set to TRUE), the server MUST return ERROR_WRITE_PROTECT.</p><p>In response to this request from the client, for a
+successful operation, the server MUST save the key, subkeys, and values of the
+keys that are specified in the <i>hKey</i> parameter to the file that is
+specified in the <i>lpFile</i> parameter of the request.</p><p>If the key indicated by <i>hKey</i> refers to, or is a
+subkey of one of the following predefined keys, the server MUST fail the method
+and return ERROR_INVALID_PARAMETER:</p><ul><li><p><span><span> 
+</span></span>HKEY_PERFORMANCE_DATA</p>
+</li><li><p><span><span> 
+</span></span>HKEY_PERFORMANCE_TEXT</p>
+</li><li><p><span><span> 
+</span></span>HKEY_PERFORMNACE_NLTEXT</p>
+</li></ul><p>If the key indicated by <i>hKey</i> refers to one of the
+following predefined keys, the server MUST fail the method and return
+ERROR_ACCESS_DENIED:</p><ul><li><p><span><span> 
+</span></span>HKEY_USERS</p>
+</li><li><p><span><span> 
+</span></span>HKEY_LOCAL_MACHINE</p>
+</li></ul><p>If the server does not have access permissions to save in
+the location indicated by the <i>lpFile</i> parameter, the server MUST fail the
+method and return ERROR_ACCESS_DENIED.</p><p> The server MUST set the <span><a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">SECURITY_DESCRIPTOR</a></span>
+on this file based on the RPC_SECURITY_ATTRIBUTES that are specified in the <i>pSecurityAttributes</i>
+parameter. If this parameter is NULL, the server MUST use the default
+SECURITY_DESCRIPTOR.</p><p>The server MUST inspect the value of the <i>Flags</i>
+parameter to determine the format of the saved registry file. If the value of
+the <i>Flags</i> parameter is set to 1, the keys and values MUST be saved in
+the server&#39;s original file format. If the value of the <i>Flags</i> parameter
+is set to 2, the keys and values MUST be saved in the server&#39;s latest format.
+If the value of the <i>Flags</i> parameter is set to 4, the keys and values
+MUST be saved in an uncompressed format. Each of these file format types are
+implementation-dependent.</p><p>The server MUST return 0 to indicate success or an
+appropriate error code (as specified in [MS-ERREF]) to indicate an error.</p><p>If the parameter <i>lpFile</i> references a file that
+already exists and for which the specified key and subkeys are to be saved, the
+server MUST return ERROR_ALREADY_EXISTS.</p></div>

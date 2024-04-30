@@ -1,0 +1,23 @@
+<div class="content"><p>The CERTTRANSDBRESULTROW structure is encoded within a <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure.
+The CERTTRANSDBRESULTROW structure is used by the server to return the result
+of the database query done by the client (upon the client&#39;s query via
+invocation of <a href="15fccaa6-c477-4196-b793-c92044868d89" data-linktype="relative-path">OpenView</a>
+or <a href="b49bb568-5ad6-4ff2-ab21-737f70f7a464" data-linktype="relative-path">EnumView</a> methods of
+the <a href="46496f1f-a631-42b3-a60e-33f95fb6fed1" data-linktype="relative-path">ICertAdminD</a>
+interface). This structure contains data for a specific row.</p><dl>
+<dd>
+<div><pre> typedef struct _CERTTRANSDBRESULTROW {
+   DWORD rowid;
+   DWORD ccol;
+   ULONG cbrow;
+ } CERTTRANSDBRESULTROW;
+</pre></div>
+</dd></dl><p><b>rowid:</b>  Unsigned integer value that
+specifies the identifier for the row.</p><p><b>ccol:</b>  Unsigned integer value that
+specifies the count of <a href="ac07551a-37af-4c8a-84f2-3c278a5770ed" data-linktype="relative-path">CERTTRANSDBRESULTCOLUMN</a>
+structures. Each structure contains the value of a specific column in the row
+identified by <b>rowid</b>.</p><p><b>cbrow:</b>  Unsigned integer value that
+specifies the total size of row data (in bytes). This is the sum of the size of
+CERTTRANSDBRESULTROW structure, size of each CERTTRANSDBRESULTCOLUMN structure
+for the row (the count of which is specified by ccol), and the DWORD-rounded-up
+size of each column value.</p></div>

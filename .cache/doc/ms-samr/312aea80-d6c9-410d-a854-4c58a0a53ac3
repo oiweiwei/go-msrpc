@@ -1,0 +1,21 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/312aea80-d6c9-410d-a854-4c58a0a53ac3" data-linktype="external">msdn link</a></p><p>The SID_NAME_USE enumeration specifies the type of <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_8d10bd9d-392e-431b-8218-742bdac19815" data-linktype="relative-path">account</a> that a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> references.</p><dl>
+<dd>
+<div><pre> typedef  enum _SID_NAME_USE
+ {
+   SidTypeUser = 1,
+   SidTypeGroup,
+   SidTypeDomain,
+   SidTypeAlias,
+   SidTypeWellKnownGroup,
+   SidTypeDeletedAccount,
+   SidTypeInvalid,
+   SidTypeUnknown,
+   SidTypeComputer,
+   SidTypeLabel
+ } SID_NAME_USE,
+  *PSID_NAME_USE;
+</pre></div>
+</dd></dl><p><b>SidTypeUser: </b>Indicates a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_e767a471-c3fa-4e4b-a40c-daeb08f82a17" data-linktype="relative-path">user object</a>.</p><p><b>SidTypeGroup: </b>Indicates a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_7ce4771c-2043-49b8-85d3-0c60c7789f9a" data-linktype="relative-path">group object</a>.</p><p><b>SidTypeDomain: </b>Indicates a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_2346e8d0-b0a0-481f-b644-85c45c60d4d1" data-linktype="relative-path">domain object</a>.</p><p><b>SidTypeAlias: </b>Indicates an <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_0387e636-5654-4910-9519-1f8326cf5ec0" data-linktype="relative-path">alias object</a>.</p><p><b>SidTypeWellKnownGroup: </b>Indicates an object
+whose SID is invariant.</p><p><b>SidTypeDeletedAccount: </b>Indicates an object
+that has been deleted.</p><p><b>SidTypeInvalid: </b>This member is not used.</p><p><b>SidTypeUnknown: </b>Indicates that the type of
+object could not be determined. For example, no object with that SID exists.</p><p><b>SidTypeComputer: </b>This member is not used.</p><p><b>SidTypeLabel: </b>This member is not used.</p></div>

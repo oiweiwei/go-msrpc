@@ -1,0 +1,53 @@
+<div class="content"><p> </p><p>The SERVER_INFO_503 structure contains information about a
+specified <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>. For a
+description of the fields in this structure, see the description for the <span><a href="2b55fe85-2de5-4409-87ea-468cb6b35160" data-linktype="relative-path">SERVER_INFO_599</a></span>
+structure (sv503_xxx denotes the same information as sv599_xxx).</p><dl>
+<dd>
+<div><pre> typedef struct _SERVER_INFO_503 {
+   DWORD sv503_sessopens;
+   DWORD sv503_sessvcs;
+   DWORD sv503_opensearch;
+   DWORD sv503_sizreqbuf;
+   DWORD sv503_initworkitems;
+   DWORD sv503_maxworkitems;
+   DWORD sv503_rawworkitems;
+   DWORD sv503_irpstacksize;
+   DWORD sv503_maxrawbuflen;
+   DWORD sv503_sessusers;
+   DWORD sv503_sessconns;
+   DWORD sv503_maxpagedmemoryusage;
+   DWORD sv503_maxnonpagedmemoryusage;
+   int sv503_enablesoftcompat;
+   int sv503_enableforcedlogoff;
+   int sv503_timesource;
+   int sv503_acceptdownlevelapis;
+   int sv503_lmannounce;
+   [string] wchar_t* sv503_domain;
+   DWORD sv503_maxcopyreadlen;
+   DWORD sv503_maxcopywritelen;
+   DWORD sv503_minkeepsearch;
+   DWORD sv503_maxkeepsearch;
+   DWORD sv503_minkeepcomplsearch;
+   DWORD sv503_maxkeepcomplsearch;
+   DWORD sv503_threadcountadd;
+   DWORD sv503_numblockthreads;
+   DWORD sv503_scavtimeout;
+   DWORD sv503_minrcvqueue;
+   DWORD sv503_minfreeworkitems;
+   DWORD sv503_xactmemsize;
+   DWORD sv503_threadpriority;
+   DWORD sv503_maxmpxct;
+   DWORD sv503_oplockbreakwait;
+   DWORD sv503_oplockbreakresponsewait;
+   int sv503_enableoplocks;
+   int sv503_enableoplockforceclose;
+   int sv503_enablefcbopens;
+   int sv503_enableraw;
+   int sv503_enablesharednetdrives;
+   DWORD sv503_minfreeconnections;
+   DWORD sv503_maxfreeconnections;
+ } SERVER_INFO_503,
+  *PSERVER_INFO_503,
+  *LPSERVER_INFO_503;
+</pre></div>
+</dd></dl></div>

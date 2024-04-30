@@ -1,0 +1,70 @@
+<div class="content"><p>The RGetServiceKeyNameW method returns the <b>ServiceName</b>
+of the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_1fbb7936-8437-4e3d-b62f-47df3be07721" data-linktype="relative-path">service record</a>
+with the specified <b>DisplayName</b>.</p><dl>
+<dd>
+<div><pre> DWORD RGetServiceKeyNameW(
+   [in] SC_RPC_HANDLE hSCManager,
+   [in, string, range(0, SC_MAX_NAME_LENGTH)] 
+     wchar_t* lpDisplayName,
+   [out, string, range(1, 4*1024+1), size_is(*lpcchBuffer+1)] 
+     wchar_t* lpServiceName,
+   [in, out] DWORD* lpcchBuffer
+ );
+</pre></div>
+</dd></dl><p><b>hSCManager: </b>An <a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">SC_RPC_HANDLE (section 2.2.4)</a>
+data type that defines the handle to the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a> database created using
+one of the open methods specified in section <a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a>.</p><p><b>lpDisplayName: </b>A pointer to a null-terminated <b>UNICODE</b>
+string that specifies the service display name.</p><p><b>lpServiceName: </b>A pointer to a buffer that
+receives the null-terminated <b>UNICODE</b> string that contains the service
+name.</p><dl>
+<dd>
+<p>The forward slash, back slash, comma, and space
+characters are illegal in service names.</p>
+</dd></dl><p><b>lpcchBuffer: </b>A <b>DWORD</b> data type that
+defines the pointer to a variable that specifies the size, in <a href="../ms-dtyp/9e7d8bfc-016c-48b7-95ae-666e103eead4" data-linktype="relative-path">wchar_t</a>s,
+of the buffer. On output, this variable receives the size of the service name,
+excluding the terminating null character.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns one of the following error
+codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>123</p>
+  <p>ERROR_INVALID_NAME</p>
+  </td>
+  <td>
+  <p>The name specified in the <i>lpDisplayName</i>
+  parameter is invalid or set to NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1060</p>
+  <p>ERROR_SERVICE_DOES_NOT_EXIST</p>
+  </td>
+  <td>
+  <p>The service record with the <b>DisplayName</b>
+  matching the value specified in the <i>lpDisplayName</i> parameter does not exist
+  in the SCM database identified by the <i>hSCManager</i> parameter.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation the server MUST look up the service record with
+DisplayName matching the display name specified by the <i>lpDisplayName</i>
+parameter in the SCM database identified by <i>hSCManager</i>.</p><p>The server MUST return the ServiceName from the found
+service record in the <i>lpServiceName</i> parameter and set the size in
+wchar_ts of the service name excluding the terminating null character in the <i>lpcchBuffer</i>
+parameter.</p><p>If the <i>lpServiceName</i> buffer is insufficient to hold
+the complete service name of the service, the server MUST fail the call with
+ERROR_INSUFFICIENT_BUFFER (122) and set the size in wchar_ts of the service
+name excluding the terminating null character in the <i>lpcchBuffer</i>
+parameter. If the size is sufficient for data returned, the server also returns
+the required size, in bytes.</p></div>

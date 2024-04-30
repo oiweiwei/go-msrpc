@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>This structure represents a range of ports. Ports are 16-bit
+unsigned values used in <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_b08d36f6-b5c6-4ce4-8d2d-6f2ab75ea4cb" data-linktype="relative-path">TCP</a></span> and UDP
+protocols.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_PORT_RANGE {
+   unsigned short wBegin;
+   unsigned short wEnd;
+ } FW_PORT_RANGE,
+  *PFW_PORT_RANGE;
+</pre></div>
+</dd></dl><p><b>wBegin:</b>  This field specifies the
+first port included in the range defined.</p><p><b>wEnd:</b>  This field specifies the last
+port included in the range defined.</p><p>Valid FW_PORT_RANGE structures MUST have a <b>wBegin</b>
+value less than or equal to the <b>wEnd</b> value. In this protocol, <b>wBegin</b>
+is equal to <b>wEnd</b>.</p></div>

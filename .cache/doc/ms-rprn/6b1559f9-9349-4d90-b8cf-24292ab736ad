@@ -1,0 +1,58 @@
+<div class="content"><p><b>RpcEnumJobNamedProperties</b> enumerates the <b>Job Named
+Properties</b> (section <a href="1bd61448-db4b-4284-a4b1-8346732402d4" data-linktype="relative-path">3.1.1</a>)
+for the specified <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print job</a>.<a id="Appendix_A_Target_400"></a><a aria-label="Product behavior note 400" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_400" data-linktype="relative-path">&lt;400&gt;</a></p><dl>
+<dd>
+<div><pre> DWORD RpcEnumJobNamedProperties(
+   [in] PRINTER_HANDLE hPrinter,
+   [in] DWORD JobId,
+   [out] DWORD* pcProperties,
+   [out, size_is(,*pcProperties)] RPC_PrintNamedProperty** ppProperties
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A <a href="9c5d49b8-6920-47b0-9466-87ba910e6071" data-linktype="relative-path">PRINTER_HANDLE (section 2.2.1.1.4)</a>
+to a printer object, job object, or server object that was opened by <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter (section 3.1.4.2.3)</a>,
+<a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx (section 3.1.4.2.15)</a>,
+<a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter (section 3.1.4.2.2)</a>,
+or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx (section 3.1.4.2.14)</a>.</p><p><b>JobId: </b>The identifier of a print job. This
+value MUST NOT be zero.</p><p><b>pcProperties: </b>On successful return from this
+call, this parameter is a pointer to the address of an array of <a href="31bdf528-9b89-47f9-823b-a45bbc877716" data-linktype="relative-path">RPC_PrintNamedProperty (section 2.2.1.14.2)</a>
+structures returned. This pointer MUST NOT be NULL.</p><p><b>ppProperties: </b>On successful return from this
+call, this parameter is a pointer to the address of an array of RPC_PrintNamedProperty
+structures returned. This pointer MUST NOT be NULL.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate the
+following:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE
+Parameters (section 3.1.4.1.11)</a>.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the value of the <i>JobId</i> parameter corresponds
+to a job in the list of jobs. If the object specified by the <i>hPrinter</i>
+parameter is a server object, search for a print job in each printer in the
+list of printers on the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print
+server</a>. If the object specified by the <i>hPrinter</i> parameter is a
+printer object, search for a print job only in the list of print jobs for the
+specified printer. If the object specified by the <i>hPrinter</i> parameter is
+a job object, compare the identifier of this print job with the specified <i>JobId</i>.
+If this verification fails, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the <i>pcProperties</i> and <i>ppProperties</i>
+pointers are not NULL. If this verification fails, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the buffer to contain the array of <b>RPC_PrintNamedProperty</b>
+structures can be successfully allocated. If this verification fails, return
+ERROR_NOT_ENOUGH_MEMORY.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the operation
+immediately and return a nonzero error response to the client. Otherwise, the
+server MUST process the message and compose a response to the client as
+follows:</p><ul><li><p><span><span> 
+</span></span>Allocate and initialize a buffer containing the array of <b>RPC_PrintNamedProperty</b>
+structures to be returned to the client via the <i>ppProperties</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return the number of enumerated properties (the number of
+returned <b>RPC_PrintNamedProperty</b> structures) in the <i>pcProperties</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul><p>Upon a successful completion of this call the client SHOULD
+free the buffer specified by the <i>ppProperties</i> parameter.</p></div>

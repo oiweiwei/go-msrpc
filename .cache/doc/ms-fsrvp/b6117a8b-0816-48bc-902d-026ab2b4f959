@@ -1,0 +1,99 @@
+<div class="content"><p> </p><p>The <b>CommitShadowCopySet</b> method is invoked by the
+client to commit a given <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow copy</a></span> set.</p><dl>
+<dd>
+<div><pre> DWORD CommitShadowCopySet(
+         [in] handle_t hBinding,
+         [in] GUID ShadowCopySetId,
+         [in] unsigned long TimeOutInMilliseconds);
+  
+</pre></div>
+</dd></dl><p><b>hBinding:</b> An RPC binding handle (as defined in
+<span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>).</p><p><b>ShadowCopySetId:</b> The GUID of the shadow copy
+set, assigned by the server.</p><p><b>TimeOutInMilliseconds:</b> The time in
+milliseconds that the server MUST wait for the shadow copy commit process.</p><p><b>Return Values:</b> The method returns one of the
+values specified in section <span><a href="b45c794e-9362-42b7-80c6-7dae3382acf0" data-linktype="relative-path">2.2.4</a></span>. The most
+common error codes are listed below.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>E_ACCESSDENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  the operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG </p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80042301</p>
+  <p>FSRVP_E_BAD_STATE</p>
+  </td>
+  <td>
+  <p>The method call is invalid because of the state of the
+  server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80042500</p>
+  <p>FSSAGENT_E_TIMEOUT</p>
+  </td>
+  <td>
+  <p>The wait for the shadow copy commit operation has
+  timed out.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFFFFFF </p>
+  <p>FSRVP_E_WAIT_FAILED</p>
+  </td>
+  <td>
+  <p>The wait for shadow copy commit operation has failed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80042501</p>
+  <p>FSRVP_E_SHADOWCOPYSET_ID_MISMATCH</p>
+  </td>
+  <td>
+  <p>The provided ShadowCopySetId does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST look up the <b>ShadowCopySet</b> from <b>GlobalShadowCopysetTable</b>
+using the index <i>ShadowCopySetId.</i> If no entry is found, the server MUST
+fail the call with FSRVP_E_SHADOWCOPYSET_ID_MISMATCH.</p><p>If <b>ShadowCopySet.Status</b> is not &#34;Added<i>&#34;</i>
+or &#34;CreationinProgress&#34;, the server MUST fail the call with
+FSRVP_E_BAD_STATE.</p><p>The server MUST stop the Message Sequence Timer as specified
+in section <span><a href="d88b9fb3-aa00-4396-91e5-f3db036d4a74" data-linktype="relative-path">3.1.2</a></span>.</p><p>The server MUST set <b>ShadowCopySet.Status</b> to
+&#34;CreationInProgress&#34;, MUST start the shadow copy commit in the
+underlying <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_b3f0aa95-0afc-49e3-a5d5-aa465c3bc385" data-linktype="relative-path">shadow copy utility</a></span><b>,</b>
+and MUST wait for the completion of the shadow copy commit process.</p><p>If the wait for the commit process fails, the server MUST
+set <b>ShadowCopySet.Status</b> to &#34;Added&#34;, start the Message
+Sequence Timer as specified in section 3.1.2 with a timeout value of 180
+seconds, and fail the call with FSRVP_E_WAIT_FAILED.</p><p>If the commit operation for all shadow copies in this set
+does not complete within <b>TimeOutInMilliseconds</b>, the server MUST start
+the Message Sequence Timer as specified in section 3.1.2 with a timeout value
+of 180 seconds, and return FSSAGENT_E_TIMEOUT.</p><p>If the commit operation for any shadow copy returns an
+error, the server MUST start the Message Sequence Timer as specified in section
+3.1.2 with a timeout value of 180 seconds, and return the same error code to
+the caller.</p><p>If the shadow copy commit operation for all shadow copies in
+this set completes within <b>TimeOutInMilliseconds,</b> the server MUST update <b>ShadowCopySet.Status</b>
+to &#34;Committed&#34;, start the Message Sequence Timer as specified in
+section 3.1.2 with a timeout value of 180 seconds, and return ZERO to the
+caller.</p></div>

@@ -1,0 +1,379 @@
+<div class="content"><p>The RCreateServiceW method creates the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_1fbb7936-8437-4e3d-b62f-47df3be07721" data-linktype="relative-path">service record</a> in the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a> database.</p><dl>
+<dd>
+<div><pre> DWORD RCreateServiceW(
+   [in] SC_RPC_HANDLE hSCManager,
+   [in, string, range(0, SC_MAX_NAME_LENGTH)] 
+     wchar_t* lpServiceName,
+   [in, string, unique, range(0, SC_MAX_NAME_LENGTH)] 
+     wchar_t* lpDisplayName,
+   [in] DWORD dwDesiredAccess,
+   [in] DWORD dwServiceType,
+   [in] DWORD dwStartType,
+   [in] DWORD dwErrorControl,
+   [in, string, range(0, SC_MAX_PATH_LENGTH)] 
+     wchar_t* lpBinaryPathName,
+   [in, string, unique, range(0, SC_MAX_NAME_LENGTH)] 
+     wchar_t* lpLoadOrderGroup,
+   [in, out, unique] LPDWORD lpdwTagId,
+   [in, unique, size_is(dwDependSize)] 
+     LPBYTE lpDependencies,
+   [in, range(0, SC_MAX_DEPEND_SIZE)] 
+     DWORD dwDependSize,
+   [in, string, unique, range(0, SC_MAX_ACCOUNT_NAME_LENGTH)] 
+     wchar_t* lpServiceStartName,
+   [in, unique, size_is(dwPwSize)] 
+     LPBYTE lpPassword,
+   [in, range(0, SC_MAX_PWD_SIZE)] 
+     DWORD dwPwSize,
+   [out] LPSC_RPC_HANDLE lpServiceHandle
+ );
+</pre></div>
+</dd></dl><p><b>hSCManager: </b>An <a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">SC_RPC_HANDLE (section 2.2.4)</a>
+data type that defines the handle to the SCM database created using one of the
+open methods specified in section <a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a>. The
+SC_MANAGER_CREATE_SERVICE access right MUST have been granted to the caller
+when the RPC context handle was created.</p><p><b>lpServiceName: </b>A pointer to a null-terminated <b>UNICODE</b>
+string that specifies the name of the service to install. This MUST not be
+NULL.</p><dl>
+<dd>
+<p>The forward slash, back slash, comma, and space
+characters are illegal in service names.</p>
+</dd></dl><p><b>lpDisplayName: </b>A pointer to a null-terminated <b>UNICODE</b>
+string that contains the display name by which user interface programs identify
+the service.</p><p><b>dwDesiredAccess: </b>A value that specifies the
+access to the service. This MUST be one of the values as specified in section
+3.1.4.</p><p><b>dwServiceType: </b>A value that specifies the type
+of service. This MUST be one or a combination of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SERVICE_KERNEL_DRIVER</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>A driver service. These are services that manage
+  devices on the system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_FILE_SYSTEM_DRIVER</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>A file system driver service. These are services that
+  manage file systems on the system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_WIN32_OWN_PROCESS</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Service that runs in its own process.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_WIN32_SHARE_PROCESS</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Service that shares a process with other services.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_INTERACTIVE_PROCESS</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>The service can interact with the desktop.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwStartType: </b>A value that specifies when to
+start the service. This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SERVICE_BOOT_START</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Starts the driver service when the system boots up.
+  This value is valid only for driver services.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_SYSTEM_START</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Starts the driver service when the system boots up.
+  This value is valid only for driver services. The services marked
+  SERVICE_SYSTEM_START are started after all SERVICE_BOOT_START services have
+  been started.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_AUTO_START</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Starts the service automatically during system
+  startup.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_DEMAND_START</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Starts the service when a client requests the SCM to
+  start the service.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_DISABLED</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Service cannot be started.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwErrorControl: </b>A value that specifies the
+severity of the error if the service fails to start and determines the action
+that the SCM takes. This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SERVICE_ERROR_IGNORE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The SCM ignores the error and continues the startup
+  operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_ERROR_NORMAL</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The SCM logs the error, but continues the startup
+  operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_ERROR_SEVERE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The SCM logs the error. If the last-known good
+  configuration is being started, the startup operation continues. Otherwise,
+  the system is restarted with the last-known good configuration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SERVICE_ERROR_CRITICAL</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The SCM SHOULD log the error if possible. If the
+  last-known good configuration is being started, the startup operation fails.
+  Otherwise, the system is restarted with the last-known good configuration.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>lpBinaryPathName: </b>A pointer to a
+null-terminated <b>UNICODE</b> string that contains the fully qualified path to
+the service binary file. The path MAY include arguments. If the path contains a
+space, it MUST be quoted so that it is correctly interpreted. For example,
+&#34;d:\\my share\\myservice.exe&#34; is specified as &#34;\&#34;d:\\my
+share\\myservice.exe\&#34;&#34;.</p><p><b>lpLoadOrderGroup: </b>A pointer to a
+null-terminated <b>UNICODE</b> string that names the load-ordering group of
+which this service is a member.</p><dl>
+<dd>
+<p>Specify NULL or an empty string if the service does
+not belong to a <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_88c26bf0-5b6f-4423-82b3-1027ea5df0e3" data-linktype="relative-path">load-ordering
+group</a>.</p>
+</dd></dl><p><b>lpdwTagId: </b>A pointer to a variable that
+receives a tag value. The value is unique to the group specified in the <i>lpLoadOrderGroup</i>
+parameter.</p><p><b>lpDependencies: </b>A pointer to an array of
+null-separated names of services or load ordering groups that MUST start before
+this service. The array is doubly null-terminated. Load ordering group names
+are prefixed with a &#34;+&#34; character (to distinguish them from service
+names). If the pointer is NULL or if it points to an empty string, the service
+has no dependencies. Cyclic dependency between services is not allowed. The
+character set is <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a>.
+Dependency on a service means that this service can only run if the service it
+depends on is running. Dependency on a group means that this service can run if
+at least one member of the group is running after an attempt to start all
+members of the group.</p><p><b>dwDependSize: </b>The size, in bytes, of the
+string specified by the <i>lpDependencies</i> parameter.</p><p><b>lpServiceStartName: </b>A pointer to a
+null-terminated <b>UNICODE</b> string that specifies the name of the account
+under which the service SHOULD run.</p><p><b>lpPassword: </b>A pointer to a null-terminated <b>UNICODE</b>
+string that contains the password of the account whose name was specified by
+the <i>lpServiceStartName</i> parameter.</p><p><b>dwPwSize: </b>The size, in bytes, of the password
+specified by the <i>lpPassword</i> parameter.</p><p><b>lpServiceHandle: </b>An
+LPSC_RPC_HANDLE (section 2.2.4) data type that defines the handle to
+the newly created service record.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns one of the following error
+codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>5</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The SC_MANAGER_CREATE_SERVICE access right had not
+  been granted to the caller when the RPC context handle was created.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The handle specified is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>13</p>
+  <p>ERROR_INVALID_DATA</p>
+  </td>
+  <td>
+  <p>The data is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>87</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter that was specified is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>123</p>
+  <p>ERROR_INVALID_NAME</p>
+  </td>
+  <td>
+  <p>The specified service name is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1057</p>
+  <p>ERROR_INVALID_SERVICE_ACCOUNT</p>
+  </td>
+  <td>
+  <p>The user account name specified in the <i>lpServiceStartName</i>
+  parameter does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1059</p>
+  <p>ERROR_CIRCULAR_DEPENDENCY</p>
+  </td>
+  <td>
+  <p>A circular service dependency was specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1072</p>
+  <p>ERROR_SERVICE_MARKED_FOR_DELETE</p>
+  </td>
+  <td>
+  <p>The service record with a specified name already
+  exists and RDeleteService has been called for it.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1073</p>
+  <p>ERROR_SERVICE_EXISTS</p>
+  </td>
+  <td>
+  <p>The service record with the ServiceName matching the
+  specified <i>lpServiceName</i> already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1078</p>
+  <p>ERROR_DUPLICATE_SERVICE_NAME</p>
+  </td>
+  <td>
+  <p>The service record with the same DisplayName or the
+  same ServiceName as the passed in <i>lpDisplayName</i> already exists in the
+  service control manager database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1115</p>
+  <p>ERROR_SHUTDOWN_IN_PROGRESS</p>
+  </td>
+  <td>
+  <p>The system is shutting down.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation the server MUST use the service name specified in the <i>lpServiceName</i>
+parameter to create a new service record in the SCM database and use the values
+from the appropriate parameters of the client request to update the attributes
+of this newly created service record.</p><p>The server MUST treat the lpPassword as a clear-text
+password if the client is using RPC over TCP, ncacn_ip_tcp (as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>).
+See section <a href="1901c4c3-3d6e-4269-89cc-42e21f0e9892" data-linktype="relative-path">2.1.2</a>.</p><p>The server MUST treat the lpPassword as encrypted and
+decrypt it, if the client is using a RPC over NP, ncacn_np (as specified in
+[MS-RPCE]). The server MUST first retrieve a <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_4f67a585-fb00-4166-93e8-cf4abca8226d" data-linktype="relative-path">session key</a> as specified in
+<a href="../ms-cifs/d416ff7c-c536-406e-a951-4f04b2fd1d2b" data-linktype="relative-path">[MS-CIFS]</a>
+(section <a href="../ms-cifs/09662fd2-47fa-4145-8d14-5468bffd9df7" data-linktype="relative-path">3.5.4.4</a>).
+An <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_ae65dac0-cd24-4e83-a946-6d1097b71553" data-linktype="relative-path">RPC server</a>
+application requests the session key of a client and then uses the routine as
+specified in <a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a>
+(section <a href="../ms-lsad/cce8ae78-0138-4129-954e-c65e0c0bffed" data-linktype="relative-path">5.1.2</a>)
+to decrypt the password.</p><p>If the service is created successfully, the server MUST
+return a handle to the service in the <i>lpServiceHandle</i> parameter with the
+access rights associated with this handle as specified in the <i>dwDesiredAccess</i>
+parameter of the client request.</p><p>If the service is created successfully, the server MUST
+increment the <b>HandleCount</b> field of the service record.</p><p>The only valid combinations of values for <i>dwServiceType</i>
+are SERVICE_INTERACTIVE_PROCESS and SERVICE_WIN32_OWN_PROCESS or
+SERVICE_INTERACTIVE_PROCESS and SERVICE_WIN32_SHARE_PROCESS. If the value of <i>dwServiceType</i>
+has more than one bit set and the combination of bits is not equal to
+SERVICE_INTERACTIVE_PROCESS and SERVICE_WIN32_OWN_PROCESS or
+SERVICE_INTERACTIVE_PROCESS and SERVICE_WIN32_SHARE_PROCESS, the server MUST
+fail the method and return the error ERROR_INVALID_PARAMETER.</p><p>If <i>lpBinaryPathName</i> contains arguments, the server
+MUST pass these arguments to the service entry point.</p><p><i>lpdwTagId</i> tags MUST be evaluated by the server for
+driver services that have SERVICE_BOOT_START or SERVICE_BOOT_SYSTEM_START start
+types.</p></div>

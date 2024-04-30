@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The PARAMDESCEX structure is used in a <span><a href="a965ce8e-6c06-4d7c-ab30-2f14b1d8488a" data-linktype="relative-path">PARAMDESC (section 2.2.40)</a></span>
+structure to specify information about the default value of a parameter.</p><dl>
+<dd>
+<div><pre> typedef struct tagPARAMDESCEX {
+   ULONG cBytes;
+   VARIANT varDefaultValue;
+ } PARAMDESCEX;
+</pre></div>
+</dd></dl><p><b>cBytes:</b>  MUST be set to an
+implementation-specific value.<a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a></p><p><b>varDefaultValue:</b>  MUST contain a
+VARIANT that specifies the default value of the parameter.</p></div>

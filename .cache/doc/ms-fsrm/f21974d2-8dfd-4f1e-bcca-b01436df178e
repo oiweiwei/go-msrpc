@@ -1,0 +1,76 @@
+<div class="content"><p>The SetDefaultFilter method sets the value of the specified
+report filter for the specified report type.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_REPORT_MANAGER | 0x08)] HRESULT SetDefaultFilter(
+   [in] FsrmReportType reportType,
+   [in] FsrmReportFilter filter,
+   [in] VARIANT filterValue
+ );
+</pre></div>
+</dd></dl><p><b>reportType: </b>Contains the value from the <a href="84ba80a4-a6c5-41a1-9a8e-7c379e780772" data-linktype="relative-path">FsrmReportType (section 2.2.1.2.10)</a>
+enumeration.</p><p><b>filter: </b>Contains the value from the <a href="af1c6aeb-ba51-4d9f-965c-b8886c56b8ee" data-linktype="relative-path">FsrmReportFilter (section 2.2.1.2.16)</a>
+enumeration.</p><p><b>filterValue: </b>Contains the value of the
+specified filter for the specified report type.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>reportType</i> parameter
+  is not a valid <b>FsrmReportType</b> (section 2.2.1.2.10) value.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>filter</i> parameter is
+  not a valid FsrmReportFilter (section 2.2.1.2.16) value.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>filterValue</i> parameter
+  is not a valid value for the specified report filter.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>reportType</i> contains a valid FsrmReportType
+value. If <i>reportType</i> is <b>FsrmReportType_Unknown</b>, the parameter
+MUST be considered an invalid value.</p>
+</li><li><p><span><span> 
+</span></span>Verify that filter contains a valid FsrmReportFilter value.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>filterValue</i> contains a valid value as follows:</p>
+<ul><li><p><span><span>  </span></span>If <i>filter</i>
+is <b>FsrmReportFilter_MinSize</b>, the variant contains a non-negative value
+of type <b>short</b>, <b>int</b>, or <b>long</b>.</p>
+</li><li><p><span><span>  </span></span>If <i>filter</i>
+is <b>FsrmReportFilter_MinAgeDays</b> or <b>FsrmReportFilter_MaxAgeDays</b>,
+the variant contains a non-negative integer smaller than or equal to (2^31-1)
+and also the number of days is smaller than the number of days from the current
+time until December 31, 9999 A.D.</p>
+</li><li><p><span><span>  </span></span>If <i>filter</i>
+is <b>FsrmReportFilter_MinQuotaUsage</b>, the variant contains a non-negative
+integer less than or equal to (2^31-1).</p>
+</li><li><p><span><span>  </span></span>If <i>filter</i>
+is <b>FsrmReportFilter_FileGroups</b>, the variant contains an array of valid
+file group names, specified in section <a href="23576b19-7291-47b9-91a0-5a38b1fc31d3" data-linktype="relative-path">3.2.1.5.2</a>.</p>
+</li><li><p><span><span>  </span></span>If <i>filter</i>
+is <b>FsrmReportFilter_Owners</b>, the variant contains an array of valid user
+names, specified in section 3.2.1.5.2.</p>
+</li><li><p><span><span>  </span></span>If <i>filter</i>
+is <b>FsrmReportFilter_NamePattern</b>, the variant contains a valid pattern,
+specified in section 3.2.1.5.2.</p>
+</li><li><p><span><span>  </span></span>If <i>filter</i>
+is FsrmReportFilter_Property, the variant contains a string representing a
+valid property name, specified in section 3.2.1.5.2.</p>
+</li></ul></li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p></div>

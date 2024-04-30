@@ -1,0 +1,15 @@
+<div class="content"><p>The Live Remote Event Capture (LREC) Protocol allows a
+management station to monitor <a href="59d7a0e2-342c-4dc3-bc27-88e9c4aa0415#gt_472f97f2-82ec-4623-8e46-d348a7984967" data-linktype="relative-path">events</a>
+on a target system across a network. The protocol consists of two components: </p><ul><li><p><span><span> 
+</span></span>A WS-Management-based control channel for starting and stopping
+an event capture.</p>
+</li><li><p><span><span> 
+</span></span>A <a href="59d7a0e2-342c-4dc3-bc27-88e9c4aa0415#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote
+procedure call (RPC)</a>-based data channel for retrieving events as they are
+logged on the remote system.</p>
+</li></ul><p>Together, these components can be used to support monitoring
+scenarios and provide a &#34;first line of defense&#34; for troubleshooting
+scenarios, especially when the remote system does not support the ability to
+locally log events.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

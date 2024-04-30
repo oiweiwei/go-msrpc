@@ -1,0 +1,54 @@
+<div class="content"><p>The Reconnect_Call structure is used to reopen a connection
+to the <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">smart card</a>
+associated with a valid context. For more information, see section <a href="e8279307-69e0-480b-a1e6-ac9afe88f6b0" data-linktype="relative-path">3.1.4.36</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _Reconnect_Call {
+   REDIR_SCARDHANDLE hCard;
+   unsigned long dwShareMode;
+   unsigned long dwPreferredProtocols;
+   unsigned long dwInitialization;
+ } Reconnect_Call;
+</pre></div>
+</dd></dl><p><b>hCard:</b>  A handle, as specified in
+section <a href="b6276356-7c5f-4d3e-be92-a6c85e58d008" data-linktype="relative-path">2.2.1.2</a>.</p><p><b>dwShareMode:</b>  A flag that indicates
+whether other applications can form connections to this card. For acceptable
+values of this field, see section <a href="d81ce1d2-e958-4cb4-8e32-c007133f8f23" data-linktype="relative-path">2.2.6</a>.</p><p><b>dwPreferredProtocols:</b>  A bit mask of
+acceptable protocols for this connection. For specifics on possible values, see
+section <a href="41673567-2710-4e86-be87-7b6f46fe10af" data-linktype="relative-path">2.2.5</a>.</p><p><b>dwInitialization:</b>  A type of
+initialization that SHOULD be performed on the card. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SCARD_LEAVE_CARD </p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Do not do anything.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_RESET_CARD </p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Reset the smart card. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_UNPOWER_CARD </p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Turn off and reset the smart card.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -1,0 +1,377 @@
+import "ms-dtyp.idl";
+ 
+const int MAX_PAYLOAD = 2 * 1024 * 1024;
+const int MAX_RPC_QUERY_LENGTH = MAX_PAYLOAD / 2; // FIXME: sizeof(WCHAR);
+const int MAX_RPC_CHANNEL_NAME_LENGTH = 512;
+const int MAX_RPC_QUERY_CHANNEL_SIZE = 512;
+const int MAX_RPC_EVENT_ID_SIZE = 256;
+const int MAX_RPC_FILE_PATH_LENGTH = 32768;
+const int MAX_RPC_CHANNEL_PATH_LENGTH = 32768;
+const int MAX_RPC_BOOKMARK_LENGTH = MAX_PAYLOAD / 2; // FIXME: sizeof(WCHAR);
+const int MAX_RPC_PUBLISHER_ID_LENGTH = 2048;
+const int MAX_RPC_PROPERTY_BUFFER_SIZE = MAX_PAYLOAD;
+const int MAX_RPC_FILTER_LENGTH = MAX_RPC_QUERY_LENGTH;
+const int MAX_RPC_RECORD_COUNT = 1024;
+const int MAX_RPC_EVENT_SIZE = MAX_PAYLOAD;
+const int MAX_RPC_BATCH_SIZE = MAX_PAYLOAD;
+const int MAX_RPC_RENDERED_STRING_SIZE = MAX_PAYLOAD;
+const int MAX_RPC_CHANNEL_COUNT = 8192;
+const int MAX_RPC_PUBLISHER_COUNT = 8192;
+const int MAX_RPC_EVENT_METADATA_COUNT = 256;
+const int MAX_RPC_VARIANT_LIST_COUNT = 256;
+const int MAX_RPC_BOOL_ARRAY_COUNT = MAX_PAYLOAD / 4; // sizeof(BOOL);
+const int MAX_RPC_UINT32_ARRAY_COUNT = MAX_PAYLOAD / 4; // sizeof(UINT32);
+const int MAX_RPC_UINT64_ARRAY_COUNT = MAX_PAYLOAD / 8; //sizeof(UINT64);
+const int MAX_RPC_STRING_ARRAY_COUNT = MAX_PAYLOAD / 512;
+const int MAX_RPC_GUID_ARRAY_COUNT = MAX_PAYLOAD / 16; // sizeof(GUID);
+const int MAX_RPC_STRING_LENGTH = MAX_PAYLOAD / 2; // sizeof(WCHAR);
+ 
+[
+    uuid (f6beaff7-1e19-4fbb-9f8f-b89e2018337c),
+    version(1.0),
+    pointer_default(unique)
+]
+interface IEventService
+{
+    typedef [context_handle] void* PCONTEXT_HANDLE_REMOTE_SUBSCRIPTION;
+    typedef [context_handle] void* PCONTEXT_HANDLE_LOG_QUERY;
+    typedef [context_handle] void* PCONTEXT_HANDLE_LOG_HANDLE;
+    typedef [context_handle] void* PCONTEXT_HANDLE_OPERATION_CONTROL;
+    typedef [context_handle] void* PCONTEXT_HANDLE_PUBLISHER_METADATA;
+    typedef [context_handle] void* PCONTEXT_HANDLE_EVENT_METADATA_ENUM;
+ 
+ 
+ 
+ 
+ 
+    typedef struct tag_RpcInfo
+    {
+      DWORD m_error,
+            m_subErr,
+            m_subErrParam;
+    } RpcInfo;
+ 
+    typedef struct _BooleanArray
+    {
+        [range(0, MAX_RPC_BOOL_ARRAY_COUNT)] DWORD count;
+        [size_is(count)] boolean* ptr;
+    } BooleanArray;
+ 
+    typedef struct _UInt32Array
+    {
+        [range(0, MAX_RPC_UINT32_ARRAY_COUNT)] DWORD count;
+        [size_is(count)] DWORD* ptr;
+    } UInt32Array;
+ 
+    typedef struct _UInt64Array
+    {
+        [range(0, MAX_RPC_UINT64_ARRAY_COUNT)] DWORD count;
+        [size_is(count)] DWORD64* ptr;
+    } UInt64Array;
+ 
+    typedef struct _StringArray
+    {
+        [range(0, MAX_RPC_STRING_ARRAY_COUNT)] DWORD count;
+        [size_is(count),string] LPWSTR *ptr;
+    } StringArray;
+ 
+    typedef struct _GuidArray
+    {
+        [range(0, MAX_RPC_GUID_ARRAY_COUNT)] DWORD count;
+        [size_is(count)] GUID* ptr;
+    } GuidArray;
+ 
+    typedef [v1_enum] enum tag_EvtRpcVariantType
+    {
+        EvtRpcVarTypeNull = 0,
+        EvtRpcVarTypeBoolean,
+        EvtRpcVarTypeUInt32,
+        EvtRpcVarTypeUInt64,
+        EvtRpcVarTypeString,
+        EvtRpcVarTypeGuid,
+        EvtRpcVarTypeBooleanArray,
+        EvtRpcVarTypeUInt32Array,
+        EvtRpcVarTypeUInt64Array,
+        EvtRpcVarTypeStringArray,
+        EvtRpcVarTypeGuidArray
+ 
+    } EvtRpcVariantType;
+ 
+    typedef [v1_enum] enum tag_EvtRpcAssertConfigFlags
+    {
+        EvtRpcChannelPath = 0,
+        EvtRpcPublisherName = 1
+ 
+    } EvtRpcAssertConfigFlags;
+ 
+    
+    cpp_quote("#define EvtRpcSubscribePull 0x10000000")
+ 
+    cpp_quote("#define EvtRpcVarFlagsModified 0x0001")
+ 
+    typedef struct tag_EvtRpcVariant
+    {
+        EvtRpcVariantType type;
+        DWORD flags;
+        [switch_is(type)] union
+        {
+            [case(EvtRpcVarTypeNull)] int nullVal;
+            [case(EvtRpcVarTypeBoolean)] boolean booleanVal;
+            [case(EvtRpcVarTypeUInt32)] DWORD uint32Val;
+            [case(EvtRpcVarTypeUInt64)] DWORD64 uint64Val;
+            [case(EvtRpcVarTypeString)] [string]LPWSTR stringVal;
+            [case(EvtRpcVarTypeGuid)] GUID* guidVal;
+            [case(EvtRpcVarTypeBooleanArray)] BooleanArray booleanArray;
+            [case(EvtRpcVarTypeUInt32Array)] UInt32Array uint32Array;
+            [case(EvtRpcVarTypeUInt64Array)] UInt64Array uint64Array;
+            [case(EvtRpcVarTypeStringArray)] StringArray stringArray;
+            [case(EvtRpcVarTypeGuidArray)] GuidArray guidArray;
+        };
+    } EvtRpcVariant;
+ 
+    typedef struct tag_EvtRpcVariantList
+    {
+        [range(0, MAX_RPC_VARIANT_LIST_COUNT)] DWORD count;
+        [size_is(count)] EvtRpcVariant* props;
+    } EvtRpcVariantList;
+ 
+    typedef struct tag_EvtRpcQueryChannelInfo
+    {
+        LPWSTR name;
+        DWORD status;
+    } EvtRpcQueryChannelInfo;
+ 
+    error_status_t EvtRpcRegisterRemoteSubscription(
+        /* [in] RPC_BINDING_HANDLE binding, {the binding handle will be generated by MIDL} */
+        [in, unique, range(0, MAX_RPC_CHANNEL_NAME_LENGTH),string] LPCWSTR channelPath,
+        [in, range(1, MAX_RPC_QUERY_LENGTH),string] LPCWSTR query,
+        [in, unique, range(0, MAX_RPC_BOOKMARK_LENGTH),string] LPCWSTR bookmarkXml,
+        [in] DWORD flags,
+        [out, context_handle] PCONTEXT_HANDLE_REMOTE_SUBSCRIPTION* handle,
+        [out, context_handle] PCONTEXT_HANDLE_OPERATION_CONTROL* control,
+        [out] DWORD* queryChannelInfoSize,
+        [out, size_is(,*queryChannelInfoSize),
+              range(0, MAX_RPC_QUERY_CHANNEL_SIZE)]
+                  EvtRpcQueryChannelInfo** queryChannelInfo,
+        [out] RpcInfo *error);
+ 
+    error_status_t EvtRpcRemoteSubscriptionNextAsync(
+        [in, context_handle] PCONTEXT_HANDLE_REMOTE_SUBSCRIPTION handle,
+        [in] DWORD numRequestedRecords,
+        [in] DWORD flags,
+        [out] DWORD* numActualRecords,
+        [out, size_is(,*numActualRecords), range(0, MAX_RPC_RECORD_COUNT)]
+            DWORD** eventDataIndices,
+        [out, size_is(,*numActualRecords), range(0, MAX_RPC_RECORD_COUNT)]
+            DWORD** eventDataSizes,
+        [out] DWORD* resultBufferSize,
+        [out, size_is(,*resultBufferSize), range(0, MAX_RPC_BATCH_SIZE)]
+            BYTE** resultBuffer );
+ 
+    error_status_t EvtRpcRemoteSubscriptionNext(
+        [in, context_handle] PCONTEXT_HANDLE_REMOTE_SUBSCRIPTION handle,
+        [in] DWORD numRequestedRecords,
+        [in] DWORD timeOut,
+        [in] DWORD flags,
+        [out] DWORD* numActualRecords,
+        [out, size_is(,*numActualRecords), range(0, MAX_RPC_RECORD_COUNT)]
+            DWORD** eventDataIndices,
+        [out, size_is(,*numActualRecords), range(0, MAX_RPC_RECORD_COUNT)]
+            DWORD** eventDataSizes,
+        [out] DWORD* resultBufferSize,
+        [out, size_is(,*resultBufferSize), range(0, MAX_RPC_BATCH_SIZE)]
+            BYTE** resultBuffer );
+ 
+    error_status_t EvtRpcRemoteSubscriptionWaitAsync(
+        [in, context_handle] PCONTEXT_HANDLE_REMOTE_SUBSCRIPTION handle );
+ 
+    error_status_t EvtRpcRegisterControllableOperation(
+        [out, context_handle] PCONTEXT_HANDLE_OPERATION_CONTROL* handle );
+        
+    error_status_t EvtRpcRegisterLogQuery(
+        /* [in] RPC_BINDING_HANDLE binding, {the binding handle will be generated by MIDL} */
+        [in, unique, range(0, MAX_RPC_CHANNEL_PATH_LENGTH),string] LPCWSTR path,
+        [in, range(1, MAX_RPC_QUERY_LENGTH),string] LPCWSTR query,
+        [in] DWORD flags,
+        [out, context_handle] PCONTEXT_HANDLE_LOG_QUERY* handle,
+        [out, context_handle] PCONTEXT_HANDLE_OPERATION_CONTROL* opControl,
+        [out] DWORD* queryChannelInfoSize,
+        [out, size_is(,*queryChannelInfoSize),
+              range(0, MAX_RPC_QUERY_CHANNEL_SIZE)]
+                  EvtRpcQueryChannelInfo** queryChannelInfo,
+        [out] RpcInfo *error );
+ 
+    error_status_t EvtRpcClearLog(
+        [in, context_handle] PCONTEXT_HANDLE_OPERATION_CONTROL control,
+        [in, range(0, MAX_RPC_CHANNEL_NAME_LENGTH),string] LPCWSTR channelPath,
+        [in, unique, range(0, MAX_RPC_FILE_PATH_LENGTH),string] LPCWSTR backupPath,
+        [in] DWORD flags,
+        [out] RpcInfo *error );
+ 
+    error_status_t EvtRpcExportLog(
+        [in, context_handle] PCONTEXT_HANDLE_OPERATION_CONTROL control,
+        [in, unique, range(0, MAX_RPC_CHANNEL_NAME_LENGTH),string] LPCWSTR channelPath,
+        [in, range(1, MAX_RPC_QUERY_LENGTH),string] LPCWSTR query,
+        [in, range(1, MAX_RPC_FILE_PATH_LENGTH),string] LPCWSTR backupPath,
+        [in] DWORD flags,
+        [out] RpcInfo *error );
+ 
+    error_status_t EvtRpcLocalizeExportLog(
+        [in, context_handle] PCONTEXT_HANDLE_OPERATION_CONTROL control,
+        [in, range(1, MAX_RPC_FILE_PATH_LENGTH),string] LPCWSTR logFilePath,
+        [in] LCID locale,
+        [in] DWORD flags,
+        [out] RpcInfo *error );
+ 
+    error_status_t EvtRpcMessageRender(
+        [in, context_handle] PCONTEXT_HANDLE_PUBLISHER_METADATA pubCfgObj,
+        [in, range(1, MAX_RPC_EVENT_ID_SIZE)] DWORD sizeEventId,
+        [in, size_is(sizeEventId)] BYTE *eventId,
+        [in] DWORD messageId,
+        [in] EvtRpcVariantList *values,
+        [in] DWORD flags,
+        [in] DWORD maxSizeString,
+        [out] DWORD *actualSizeString,
+        [out] DWORD *neededSizeString,
+        [out, size_is(,*actualSizeString), range(0, MAX_RPC_RENDERED_STRING_SIZE)]
+            BYTE** string,
+        [out] RpcInfo *error );
+ 
+    error_status_t EvtRpcMessageRenderDefault(
+        /* [in] RPC_BINDING_HANDLE binding, {the binding handle will be generated by MIDL} */
+        [in, range(1, MAX_RPC_EVENT_ID_SIZE)] DWORD sizeEventId,
+        [in, size_is(sizeEventId)] BYTE *eventId,
+        [in] DWORD messageId,
+        [in] EvtRpcVariantList *values,
+        [in] DWORD flags,
+        [in] DWORD maxSizeString,
+        [out] DWORD *actualSizeString,
+        [out] DWORD *neededSizeString,
+        [out, size_is(,*actualSizeString), range(0, MAX_RPC_RENDERED_STRING_SIZE)]
+            BYTE** string,
+        [out] RpcInfo *error );
+ 
+    error_status_t EvtRpcQueryNext(
+        [in, context_handle] PCONTEXT_HANDLE_LOG_QUERY logQuery,
+        [in] DWORD numRequestedRecords,
+        [in] DWORD timeOutEnd,
+        [in] DWORD flags,
+        [out] DWORD* numActualRecords,
+        [out, size_is(,*numActualRecords), range(0, MAX_RPC_RECORD_COUNT)]
+            DWORD** eventDataIndices,
+        [out, size_is(,*numActualRecords), range(0, MAX_RPC_RECORD_COUNT)]
+            DWORD** eventDataSizes,
+        [out] DWORD* resultBufferSize,
+        [out, size_is(,*resultBufferSize), range(0, MAX_RPC_BATCH_SIZE)]
+            BYTE** resultBuffer );
+ 
+    error_status_t EvtRpcQuerySeek(
+        [in, context_handle] PCONTEXT_HANDLE_LOG_QUERY logQuery,
+        [in] __int64 pos,
+        [in, unique, range(0, MAX_RPC_BOOKMARK_LENGTH),string] LPCWSTR bookmarkXml,
+        [in] DWORD timeOut,
+        [in] DWORD flags,
+        [out] RpcInfo *error );
+ 
+    error_status_t EvtRpcClose(
+        [in, out, context_handle] void** handle );
+ 
+    error_status_t EvtRpcCancel(
+        [in, context_handle] PCONTEXT_HANDLE_OPERATION_CONTROL handle );
+ 
+    error_status_t EvtRpcAssertConfig(
+        /* [in] RPC_BINDING_HANDLE binding, {the binding handle will be generated by MIDL} */
+        [in, range(1, MAX_RPC_CHANNEL_NAME_LENGTH),string] LPCWSTR path,
+        [in] DWORD flags );
+ 
+    error_status_t EvtRpcRetractConfig(
+        /* [in] RPC_BINDING_HANDLE binding, {the binding handle will be generated by MIDL} */
+        [in, range(1, MAX_RPC_CHANNEL_NAME_LENGTH),string] LPCWSTR path,
+        [in] DWORD flags );
+ 
+    error_status_t EvtRpcOpenLogHandle(
+        /* [in] RPC_BINDING_HANDLE binding, {the binding handle will be generated by MIDL} */
+        [in, range(1, MAX_RPC_CHANNEL_NAME_LENGTH),string] LPCWSTR channel,
+        [in] DWORD flags,
+        [out, context_handle] PCONTEXT_HANDLE_LOG_HANDLE* handle,
+        [out] RpcInfo *error );
+ 
+    error_status_t EvtRpcGetLogFileInfo(
+        [in, context_handle] PCONTEXT_HANDLE_LOG_HANDLE logHandle,
+        [in] DWORD propertyId,
+        [in, range(0, MAX_RPC_PROPERTY_BUFFER_SIZE)]
+            DWORD propertyValueBufferSize,
+        [out, size_is(propertyValueBufferSize)] BYTE * propertyValueBuffer,
+        [out] DWORD* propertyValueBufferLength );
+ 
+    error_status_t EvtRpcGetChannelList(
+        /* [in] RPC_BINDING_HANDLE binding, {the binding handle will be generated by MIDL} */
+        [in] DWORD flags,
+        [out] DWORD* numChannelPaths,
+        [out, size_is(,*numChannelPaths), range(0, MAX_RPC_CHANNEL_COUNT),string]
+            LPWSTR** channelPaths );
+ 
+    error_status_t EvtRpcGetChannelConfig(
+        /* [in] RPC_BINDING_HANDLE binding, {the binding handle will be generated by MIDL} */
+        [in, range(1, MAX_RPC_CHANNEL_NAME_LENGTH),string] LPCWSTR channelPath,
+        [in] DWORD flags,
+        [out] EvtRpcVariantList* props );
+ 
+    error_status_t EvtRpcPutChannelConfig(
+        /* [in] RPC_BINDING_HANDLE binding, {the binding handle will be generated by MIDL} */
+        [in, range(1, MAX_RPC_CHANNEL_NAME_LENGTH),string] LPCWSTR channelPath,
+        [in] DWORD flags,
+        [in] EvtRpcVariantList* props,
+        [out] RpcInfo *error );
+ 
+    error_status_t EvtRpcGetPublisherList(
+        /* [in] RPC_BINDING_HANDLE binding, {the binding handle will be generated by MIDL} */
+        [in] DWORD flags,
+        [out] DWORD* numPublisherIds,
+        [out, size_is(,*numPublisherIds), range(0, MAX_RPC_PUBLISHER_COUNT),string]
+            LPWSTR** publisherIds );
+ 
+    error_status_t EvtRpcGetPublisherListForChannel(
+        /* [in] RPC_BINDING_HANDLE binding, {the binding handle will be generated by MIDL} */
+        [in] LPCWSTR channelName,
+        [in] DWORD flags,
+        [out] DWORD* numPublisherIds,
+        [out, size_is(,*numPublisherIds), range(0, MAX_RPC_PUBLISHER_COUNT),string]
+            LPWSTR** publisherIds );
+ 
+    error_status_t EvtRpcGetPublisherMetadata(
+        /* [in] RPC_BINDING_HANDLE binding, {the binding handle will be generated by MIDL} */
+        [in, unique, range(0, MAX_RPC_PUBLISHER_ID_LENGTH),string] LPCWSTR publisherId,
+        [in, unique, range(0, MAX_RPC_FILE_PATH_LENGTH),string] LPCWSTR logFilePath,
+        [in] LCID locale,
+        [in] DWORD flags,
+        [out] EvtRpcVariantList* pubMetadataProps,
+        [out, context_handle] PCONTEXT_HANDLE_PUBLISHER_METADATA* pubMetadata );
+ 
+    error_status_t EvtRpcGetPublisherResourceMetadata(
+        [in, context_handle] PCONTEXT_HANDLE_PUBLISHER_METADATA handle,
+        [in] DWORD propertyId,
+        [in] DWORD flags,
+        [out] EvtRpcVariantList* pubMetadataProps);
+ 
+    error_status_t EvtRpcGetEventMetadataEnum(
+        [in, context_handle] PCONTEXT_HANDLE_PUBLISHER_METADATA pubMetadata,
+        [in] DWORD flags,
+        [in, unique, range(0, MAX_RPC_FILTER_LENGTH),string] LPCWSTR reservedForFilter,
+        [out, context_handle] PCONTEXT_HANDLE_EVENT_METADATA_ENUM* eventMetaDataEnum );
+ 
+    error_status_t EvtRpcGetNextEventMetadata(
+        [in, context_handle] PCONTEXT_HANDLE_EVENT_METADATA_ENUM eventMetaDataEnum,
+        [in] DWORD flags,
+        [in] DWORD numRequested,
+        [out] DWORD* numReturned,
+        [out, size_is(,*numReturned), range(0, MAX_RPC_EVENT_METADATA_COUNT)]
+            EvtRpcVariantList** eventMetadataInstances );
+ 
+    error_status_t EvtRpcGetClassicLogDisplayName(
+        /* [in] RPC_BINDING_HANDLE binding, {the binding handle will be generated by MIDL} */
+        [in, range(1, MAX_RPC_CHANNEL_NAME_LENGTH),string] LPCWSTR logName,
+        [in] LCID locale,
+        [in] DWORD flags, 
+        [out] LPWSTR* displayName );
+}

@@ -1,0 +1,136 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/866f0180-8694-4e14-be7e-dfd91d91694f" data-linktype="external">msdn link</a></p><p>The KERB_STORED_CREDENTIAL structure is a variable-length
+structure that defines the format of the Primary:Kerberos property within the <b>supplementalCredentials</b>
+attribute. For information on how this structure is created, see section <a href="573b6c40-6141-4a41-ba3f-fa72cca9d861" data-linktype="relative-path">3.1.1.8.11.4</a>.</p><p>This structure is stored as a property value in a <a href="7c0f2eca-1783-450b-b5a0-754cf11f22c9" data-linktype="relative-path">USER_PROPERTY</a> structure.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Revision</p>
+  </td>
+  <td colspan="16">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>CredentialCount</p>
+  </td>
+  <td colspan="16">
+  <p>OldCredentialCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>DefaultSaltLength</p>
+  </td>
+  <td colspan="16">
+  <p>DefaultSaltMaximumLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DefaultSaltOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Credentials
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>OldCredentials
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DefaultSalt
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>KeyValues
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Revision (2 bytes): </b>This value MUST be set to
+3.</p><p><b>Flags (2 bytes): </b>This value MUST be zero and
+ignored on read.</p><p><b>CredentialCount (2 bytes): </b>This is the count
+of elements in the <b>Credentials</b> array. This value MUST be set to 2.</p><p><b>OldCredentialCount (2 bytes): </b>This is the
+count of elements in the <b>OldCredentials</b> array that contain the keys for
+the previous password. This value MUST be set to 0 or 2.</p><p><b>DefaultSaltLength (2 bytes): </b>The length, in
+bytes, of a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_1672c769-f184-404a-9575-e637fd3a43ed" data-linktype="relative-path">salt</a> value.</p><dl>
+<dd>
+<p>This value is in little-endian byte order. This
+value SHOULD be ignored on read.</p>
+</dd></dl><p><b>DefaultSaltMaximumLength (2 bytes): </b>The
+length, in bytes, of the buffer containing the salt value.</p><dl>
+<dd>
+<p>This value is in little-endian byte order. This
+value SHOULD be ignored on read.</p>
+</dd></dl><p><b>DefaultSaltOffset (4 bytes): </b>An offset, in
+little-endian byte order, from the beginning of the attribute value (that is,
+from the beginning of the <b>Revision</b> field of KERB_STORED_CREDENTIAL) to
+where the salt value starts. This value SHOULD be ignored on read.</p><p><b>Credentials (variable): </b>An array of <b>CredentialCount</b>
+<a href="9921c3ed-f470-4f36-9edf-7afe24c468ec" data-linktype="relative-path">KERB_KEY_DATA (section
+2.2.10.5)</a> elements.</p><p><b>OldCredentials (variable): </b>An array of <b>OldCredentialCount</b>
+KERB_KEY_DATA elements.</p><p><b>DefaultSalt (variable): </b>The default salt
+value.</p><p><b>KeyValues (variable): </b>An array of <b>CredentialCount</b>
++ <b>OldCredentialCount</b> key values. Each key value MUST be located at the
+offset specified by the corresponding <b>KeyOffset</b> values specified in <b>Credentials</b>
+and <b>OldCredentials</b>.</p></div>

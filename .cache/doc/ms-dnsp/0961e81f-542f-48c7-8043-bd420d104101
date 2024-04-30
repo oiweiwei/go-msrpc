@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_ZONE_SECONDARIES_W2K</b> structure is used to
+specify information about the secondary servers for a primary DNS zone.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcZoneSecondariesW2K {
+   DWORD fSecureSecondaries;
+   DWORD fNotifyLevel;
+   PIP4_ARRAY aipSecondaries;
+   PIP4_ARRAY aipNotify;
+ } DNS_RPC_ZONE_SECONDARIES_W2K,
+  *PDNS_RPC_ZONE_SECONDARIES_W2K;
+</pre></div>
+</dd></dl><p><b>fSecureSecondaries:</b> The secondary
+security settings configured for this zone. The DNS server MUST respond to <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_67ea3c5b-6b1e-40a3-ac20-3f7eaf056504" data-linktype="relative-path">zone
+transfer</a></span> requests from a secondary server according to the behavior
+corresponding to the value of the flag, as described in
+DNS_ZONE_SECONDARY_SECURITY (section <span><a href="751e1cf8-c97f-41c5-ae49-9a674398d0f3" data-linktype="relative-path">2.2.5.1.2</a></span>). This
+value MUST be set to one of the allowed values as specified in
+DNS_ZONE_SECONDARY_SECURITY (section 2.2.5.1.2). </p><p><b>fNotifyLevel:</b> The settings for sending
+zone notifications for this zone. The DNS server MUST send notify messages to
+secondary servers as specified by the entry corresponding to the value of this
+flag, as shown in the table in section <span><a href="343f4212-ad8a-4790-8aa7-7c5bc15f7bd2" data-linktype="relative-path">2.2.5.1.3</a></span>. This
+flag&#39;s value MUST be set to one of the allowed values as specified in DNS_ZONE_
+NOTIFY_LEVEL (section 2.2.5.1.3).</p><p><b>aipSecondaries:</b> The list of IPv4
+addresses of remote DNS servers that are permitted to perform zone transfers
+for this zone. The DNS server will honor zone transfer requests from these
+secondary servers, as specified by fSecureSecondaries above.</p><p><b>aipNotify:</b> The list of IPv4 addresses of
+the remote DNS servers that will be sent notification messages when records in
+this zone change, as directed by fNotifyLevel above.</p></div>

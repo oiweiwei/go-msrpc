@@ -1,0 +1,15 @@
+<div class="content"><p>The server MUST support initializing and executing a given
+service within a specified node when the server is running on a system
+supporting Non-Uniform Memory Access (NUMA) technology <a href="https://go.microsoft.com/fwlink/?LinkId=151239" data-linktype="external">[MSDN-NUMA]</a>. The
+SERVICE_PREFERRED_NODE_INFO <a id="Appendix_A_Target_28"></a><a aria-label="Product behavior note 28" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_28" data-linktype="relative-path">&lt;28&gt;</a> structure
+defines the preferred node of a service.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVICE_PREFERRED_NODE_INFO {
+   USHORT usPreferredNode;
+   BOOLEAN fDelete;
+ } SERVICE_PREFERRED_NODE_INFO,
+  *LPSERVICE_PREFERRED_NODE_INFO;
+</pre></div>
+</dd></dl><p><b>usPreferredNode:</b>  The preferred node
+number.</p><p><b>fDelete:</b>  If the preferred <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_ffe8ba4c-a382-4105-bd75-e0b0a0dbc4db" data-linktype="relative-path">NUMA node</a> information of the
+service can be deleted, set to 1; otherwise set to 0.</p></div>

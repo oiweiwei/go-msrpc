@@ -1,0 +1,10 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/0c138399-f663-4039-b4e7-b3c9f82bff65" data-linktype="external">msdn link</a></p><p>The SAMPR_SID_INFORMATION structure holds a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> pointer.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_SID_INFORMATION {
+      PRPC_SID SidPointer;
+    } SAMPR_SID_INFORMATION,
+     *PSAMPR_SID_INFORMATION;
+</pre></div>
+</dd></dl><p><b>SidPointer:</b>  A pointer to a <b>SID</b> value,
+as described in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="relative-path">2.4.2.3</a>.</p></div>

@@ -1,0 +1,74 @@
+<div class="content"><p> </p><p>In the <b>DNS_RPC_SERVER_INFO_LONGHORN</b> structure all
+fields have same definition as specified in section <b>DNS_RPC_SERVER_INFO_DOTNET</b>
+(section <span><a href="84f3331d-499d-49fe-9f61-ab4c5dde6377" data-linktype="relative-path">2.2.4.2.2.2</a></span> ), with
+the following exceptions:<a id="Appendix_A_Target_33"></a><a aria-label="Product behavior note 33" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_33" data-linktype="relative-path">&lt;33&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcServerInfoLonghorn {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   DWORD dwVersion;
+   UCHAR fBootMethod;
+   BOOLEAN fAdminConfigured;
+   BOOLEAN fAllowUpdate;
+   BOOLEAN fDsAvailable;
+   [string] char* pszServerName;
+   [string] wchar_t* pszDsContainer;
+   PDNS_ADDR_ARRAY aipServerAddrs;
+   PDNS_ADDR_ARRAY aipListenAddrs;
+   PDNS_ADDR_ARRAY aipForwarders;
+   PDNS_ADDR_ARRAY aipLogFilter;
+   [string] wchar_t* pwszLogFilePath;
+   [string] char* pszDomainName;
+   [string] char* pszForestName;
+   [string] char* pszDomainDirectoryPartition;
+   [string] char* pszForestDirectoryPartition;
+   [string] char* pExtensions[6];
+   DWORD dwLogLevel;
+   DWORD dwDebugLevel;
+   DWORD dwForwardTimeout;
+   DWORD dwRpcProtocol;
+   DWORD dwNameCheckFlag;
+   DWORD cAddressAnswerLimit;
+   DWORD dwRecursionRetry;
+   DWORD dwRecursionTimeout;
+   DWORD dwMaxCacheTtl;
+   DWORD dwDsPollingInterval;
+   DWORD dwLocalNetPriorityNetMask;
+   DWORD dwScavengingInterval;
+   DWORD dwDefaultRefreshInterval;
+   DWORD dwDefaultNoRefreshInterval;
+   DWORD dwLastScavengeTime;
+   DWORD dwEventLogLevel;
+   DWORD dwLogFileMaxSize;
+   DWORD dwDsForestVersion;
+   DWORD dwDsDomainVersion;
+   DWORD dwDsDsaVersion;
+   BOOLEAN fReadOnlyDC;
+   DWORD dwReserveArray[3];
+   BOOLEAN fAutoReverseZones;
+   BOOLEAN fAutoCacheUpdate;
+   BOOLEAN fRecurseAfterForwarding;
+   BOOLEAN fForwardDelegations;
+   BOOLEAN fNoRecursion;
+   BOOLEAN fSecureResponses;
+   BOOLEAN fRoundRobin;
+   BOOLEAN fLocalNetPriority;
+   BOOLEAN fBindSecondaries;
+   BOOLEAN fWriteAuthorityNs;
+   BOOLEAN fStrictFileParsing;
+   BOOLEAN fLooseWildcarding;
+   BOOLEAN fDefaultAgingState;
+   BOOLEAN fReserveArray[15];
+ } DNS_RPC_SERVER_INFO_LONGHORN,
+  *PDNS_RPC_SERVER_INFO_LONGHORN,
+  DNS_RPC_SERVER_INFO,
+  *PDNS_RPC_SERVER_INFO;
+</pre></div>
+</dd></dl><p><b>fReadOnlyDC:</b> A <b>Boolean</b> value that
+indicates whether the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a></span> server has
+access to a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_04fd0982-6bb6-44f1-817e-795715049c50" data-linktype="relative-path">directory server</a></span>
+that is running in read-only mode, that is, whether the server does not accept
+directory server write operations. The DNS server detects whether this is the
+case by reading the <b>supportedCapabilities</b> attribute of the server&#39;s
+rootDse object, looking for LDAP_CAP_ACTIVE_DIRECTORY_PARTIAL_SECRETS_OID (See <span><a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a></span>
+section <span><a href="../ms-adts/dced05a8-347d-465b-b70b-4ab04273aa6d" data-linktype="relative-path">3.1.1.3.4.3.6</a></span>).</p></div>

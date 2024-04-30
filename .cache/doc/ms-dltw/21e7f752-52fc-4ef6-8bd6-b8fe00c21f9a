@@ -1,0 +1,16 @@
+<div class="content"><p>This document specifies the Distributed Link Tracking:
+Workstation Protocol.</p><p><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_5c3cacdf-4505-454f-a359-653e71415be0" data-linktype="relative-path">Distributed
+Link Tracking (DLT)</a> consists of two protocols that work together to
+discover the new location of a file that has moved. <a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_51f062a5-c727-4025-bb61-1568b94d38cd" data-linktype="relative-path">DLT</a> can determine if the
+file has moved on a mass-storage device, within a computer, or between computers
+in a network. The Distributed Link Tracking: Workstation Protocol helps a
+computer locate files that have been moved within a computer or between
+computers in a computer network.</p><p>In addition to the Distributed Link Tracking: Workstation
+Protocol, DLT includes the Distributed Link Tracking: Central Manager Protocol
+that keeps track of file and <a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a>
+moves as well as other relevant information from participating computers so it
+can provide this information in response to <a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_8d715ee8-6e10-41fd-b452-39f6014de7ed" data-linktype="relative-path">workstation</a> queries. Both
+DLT protocols are <a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote
+procedure call (RPC)</a> interfaces.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

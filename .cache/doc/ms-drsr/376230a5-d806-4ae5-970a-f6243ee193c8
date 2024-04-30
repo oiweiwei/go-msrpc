@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The IDL_DRSAddSidHistory method adds one or more <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SIDs</a></span>
+to the <span><a href="../ms-ada3/1c47c6a0-e614-49e5-bef3-f42f71f5eeb2" data-linktype="relative-path">sIDHistory</a></span>
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span>
+of a given <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>.</p><dl>
+<dd>
+<div><pre> ULONG IDL_DRSAddSidHistory(
+   [in, ref] DRS_HANDLE hDrs,
+   [in] DWORD dwInVersion,
+   [in, ref, switch_is(dwInVersion)] 
+     DRS_MSG_ADDSIDREQ* pmsgIn,
+   [out, ref] DWORD* pdwOutVersion,
+   [out, ref, switch_is(*pdwOutVersion)] 
+     DRS_MSG_ADDSIDREPLY* pmsgOut
+ );
+</pre></div>
+</dd></dl><p><b>hDrs: </b><span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+returned by the <span><a href="605b1ea1-9cdc-428f-ab7a-70120e020a3d" data-linktype="relative-path">IDL_DRSBind</a></span> method.</p><p><b>dwInVersion: </b>Version of the request message.
+Must be set to 1, because no other version is supported.</p><p><b>pmsgIn: </b>Pointer to the request message.</p><p><b>pdwOutVersion: </b>Pointer to the version of the
+response message. The value must be 1, because no other version is supported.</p><p><b>pmsgOut: </b>Pointer to the response message.</p><p><b>Return Values: </b>0 or one of the following <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows
+error codes</a></span>: ERROR_DS_MUST_RUN_ON_DST_DC or ERROR_INVALID_PARAMETER.</p><p><b>Exceptions Thrown:</b> This method might throw the
+following exceptions beyond those thrown by the underlying RPC protocol (as
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>):
+ERROR_INVALID_HANDLE, ERROR_DS_DRS_EXTENSIONS_CHANGED,
+ERROR_DS_DIFFERENT_REPL_EPOCHS, and ERROR_INVALID_PARAMETER.</p></div>

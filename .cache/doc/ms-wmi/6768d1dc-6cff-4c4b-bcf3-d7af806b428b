@@ -1,0 +1,57 @@
+<div class="content"><p> </p><p>The IWbemRefreshingServices::ReconnectRemoteRefresher method
+MUST restore a set of <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_94e80069-5f2a-4281-a676-50ea656c4795" data-linktype="relative-path">CIM instances</a></span> and
+enumerations that are passed in <i>apReconnectInfo</i> to a refresher.</p><dl>
+<dd>
+<div><pre> HRESULT ReconnectRemoteRefresher(
+   [in] _WBEM_REFRESHER_ID* pRefresherId,
+   [in] long lFlags,
+   [in] long lNumObjects,
+   [in] DWORD dwClientRefrVersion,
+   [in, size_is(lNumObjects)] _WBEM_RECONNECT_INFO* apReconnectInfo,
+   [in, out, size_is(lNumObjects)] 
+     _WBEM_RECONNECT_RESULTS* apReconnectResults,
+   [out] DWORD* pdwSvrRefrVersion
+ );
+</pre></div>
+</dd></dl><p><b>pRefresherId: </b>MUST be a pointer to the
+_WBEM_REFRESHER_ID structure, as specified in section <span><a href="4785ade4-e762-4f7e-a87c-e00aa316a457" data-linktype="relative-path">2.2.21</a></span>, which
+identifies the client that is requesting refresh services. This parameter MUST
+NOT be NULL.</p><p><b>lFlags: </b>This parameter is not used, and its
+value SHOULD be 0x0.</p><p><b>lNumObjects: </b>MUST be the number of CIM
+instances that are contained in the <i>apReconnectInfo</i> array.</p><p><b>dwClientRefrVersion: </b>MUST be the version of
+the client refresher. This value SHOULD<a id="Appendix_A_Target_70"></a><a aria-label="Product behavior note 70" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_70" data-linktype="relative-path">&lt;70&gt;</a> be 0x2.
+The server MUST allow all client versions.</p><p><b>apReconnectInfo: </b>MUST be a pointer to the
+_WBEM_RECONNECT_INFO structure array (specified in section <span><a href="9cd723a5-d858-461a-9aac-d3bac8b9ba23" data-linktype="relative-path">2.2.22</a></span>)
+that contains a type and a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_775e4b82-5447-4125-b887-b404421e1269" data-linktype="relative-path">CIM path</a></span> to the
+refresher objects. This parameter MUST NOT be NULL.</p><p><b>apReconnectResults: </b>MUST be a pointer to the
+_WBEM_RECONNECT_RESULTS structure array, which MUST contain the identifier for
+each <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a99173af-90bf-473d-9a81-ff0ce9a85838" data-linktype="relative-path">CIM</a></span>
+instance and enumeration, and the success or failure status of the
+reconnection. This parameter MUST NOT be NULL.</p><p><b>pdwSvrRefrVersion: </b>MUST be an output parameter
+that is the version of the server refresher. This value SHOULD be 0x1.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR, as specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>, to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that makes the call MUST have WBEM_REMOTE_ENABLE and WBEM_ENABLE accesses to
+the namespace; otherwise, WBEM_E_ACCESS_DENIED MUST be returned.</p><p>The description of <span><a href="e2c4f36d-dc59-48bb-bb51-821732610e17" data-linktype="relative-path">IWbemRefreshingServices</a></span>
+is specified in IWbemRefreshingServices Interface.</p><p>In response to
+IWbemRefreshingServices::ReconnectRemoteRefresher, the server MUST evaluate the
+<i>pRefresherId</i> and <i>apReconnectInfo</i> arrays; and MUST reconnect to
+the refresher the requested <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_8d8f4b2c-bf33-4964-b55c-96ac2cc999bb" data-linktype="relative-path">CIM objects</a></span> and
+enumerators that are listed in <i>apReconnectInfo</i>, as specified in this
+section.</p><p>If one of the CIM objects cannot be reconnected, the <i>apReconnectResults</i>
+element that corresponds to <i>apReconnectInfo</i> MUST be set with an HRESULT
+return code.</p><p>A successful call to
+IWbemRefreshingServices::ReconnectRemoteRefresher MUST return WBEM_S_NO_ERROR
+and MUST fill the reconnection status in the <i>apReconnectResults</i> array.</p><p>In case of failure, the server MUST return an HRESULT value
+that indicates the status of the method call. If the failure is due to a class
+that no longer exists, the server MUST return a <b>WBEM_E_INVALID_CLASS</b>
+HRESULT value. If the failure is due to an instance that no longer exists, the
+server MUST return a <b>WBEM_E_NOT_FOUND</b> HRESULT value.</p><p>Each array element MUST contain a refresher <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c1fdd6c7-06cb-4787-8735-4d19a68dd802" data-linktype="relative-path">CIM
+object</a></span> identifier (the m_lId member of _WBEM_RECONNECT_RESULTS) that
+can be used to cancel the object. The m_lId member MUST be a unique identifier
+for the refresher object that is used to cancel the refreshing object when the
+refresher object is using <span><a href="57da9a15-d329-44b8-ae90-fa7ac5f0f4d4" data-linktype="relative-path">IWbemRemoteRefresher::StopRefreshing</a></span>.</p></div>

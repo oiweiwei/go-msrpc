@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The PROPERTY_META_DATA_EXT_VECTOR structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete
+type</a></span> for a sequence of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span> <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ff635a35-a17d-477b-a30d-9723b415bf00" data-linktype="relative-path">stamps</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [range(0,1048576)] DWORD cNumProps;
+   [size_is(cNumProps)] PROPERTY_META_DATA_EXT rgMetaData[];
+ } PROPERTY_META_DATA_EXT_VECTOR;
+</pre></div>
+</dd></dl><p><b>cNumProps:</b>  The number of items in
+the <b>rgMetaData</b> array.</p><p><b>rgMetaData:</b>  An array of attribute
+stamps.</p></div>

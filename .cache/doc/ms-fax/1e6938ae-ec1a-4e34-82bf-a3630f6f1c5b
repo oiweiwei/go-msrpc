@@ -1,0 +1,32 @@
+<div class="content"><p> </p><p>The <b>FAX_ENUM_CONFIG_TYPE</b> enumeration indicates the
+type of configuration that has changed during a <b>FAX_ENUM_EVENT_TYPE</b> (section
+<span><a href="bc289dcf-1675-403e-9060-bb2743fe0352" data-linktype="relative-path">2.2.63</a></span>)
+event.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FAX_CONFIG_TYPE_RECEIPTS = 0x00000000,
+   FAX_CONFIG_TYPE_ACTIVITY_LOGGING = 0x00000001,
+   FAX_CONFIG_TYPE_OUTBOX = 0x00000002,
+   FAX_CONFIG_TYPE_SENTITEMS = 0x00000003,
+   FAX_CONFIG_TYPE_INBOX = 0x00000004,
+   FAX_CONFIG_TYPE_SECURITY = 0x00000005,
+   FAX_CONFIG_TYPE_EVENTLOGS = 0x00000006,
+   FAX_CONFIG_TYPE_DEVICES = 0x00000007,
+   FAX_CONFIG_TYPE_OUT_GROUPS = 0x00000008,
+   FAX_CONFIG_TYPE_OUT_RULES = 0x00000009,
+   FAX_CONFIG_TYPE_GENERAL_CONFIG = 0x0000000A
+ } FAX_ENUM_CONFIG_TYPE;
+</pre></div>
+</dd></dl><p><b>FAX_CONFIG_TYPE_RECEIPTS: </b>The receipt
+configuration has changed.</p><p><b>FAX_CONFIG_TYPE_ACTIVITY_LOGGING: </b>The <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_47e03020-496d-4450-abd0-4eb8b1243224" data-linktype="relative-path">activity
+logging</a></span> configuration has changed.</p><p><b>FAX_CONFIG_TYPE_OUTBOX: </b>The outbox
+configuration has changed.</p><p><b>FAX_CONFIG_TYPE_SENTITEMS: </b>The sent items <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9394bf31-7db9-433c-8d3d-ee6a37bf0848" data-linktype="relative-path">archive</a></span>
+configuration has changed.</p><p><b>FAX_CONFIG_TYPE_INBOX: </b>The Inbox configuration
+has changed.</p><p><b>FAX_CONFIG_TYPE_SECURITY: </b>The security
+configuration has changed.</p><p><b>FAX_CONFIG_TYPE_EVENTLOGS: </b>The event log
+configuration has changed.</p><p><b>FAX_CONFIG_TYPE_DEVICES: </b>The device
+configuration has changed.</p><p><b>FAX_CONFIG_TYPE_OUT_GROUPS: </b>The outbound <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_20b15ad8-82b1-47ef-a494-561c9cdee7fa" data-linktype="relative-path">routing
+groups</a></span> configuration has changed.</p><p><b>FAX_CONFIG_TYPE_OUT_RULES: </b>The outbound <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_e3969a6a-4722-476e-9a36-bb63311ae950" data-linktype="relative-path">routing
+rules</a></span> configuration has changed.</p><p><b>FAX_CONFIG_TYPE_GENERAL_CONFIG: </b>The <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_bf7399e1-c63c-4a45-9c68-fc69d7cbda62" data-linktype="relative-path">general
+configuration</a></span> has changed.</p></div>

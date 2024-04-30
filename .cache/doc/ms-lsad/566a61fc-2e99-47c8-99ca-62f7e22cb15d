@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/566a61fc-2e99-47c8-99ca-62f7e22cb15d" data-linktype="external">msdn link</a></p><p>The POLICY_DOMAIN_INFORMATION_CLASS enumeration type
+contains values that specify the type of policy being queried or set by the
+client.</p><dl>
+<dd>
+<div><pre> typedef  enum _POLICY_DOMAIN_INFORMATION_CLASS
+ {
+   PolicyDomainQualityOfServiceInformation = 1,
+   PolicyDomainEfsInformation = 2,
+   PolicyDomainKerberosTicketInformation = 3
+ } POLICY_DOMAIN_INFORMATION_CLASS,
+  *PPOLICY_DOMAIN_INFORMATION_CLASS;
+</pre></div>
+</dd></dl><p>The values in this enumeration are used in defining the
+contents of the <a href="1a9c523b-a67a-485f-8f8b-8fca05ca9334" data-linktype="relative-path">LSAPR_POLICY_DOMAIN_INFORMATION</a>
+union.</p></div>

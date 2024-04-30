@@ -1,0 +1,95 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV6CreateClientInfo</b> method creates a DHCPv6
+client lease record on the DHCP server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV6CreateClientInfo(
+     [in, unique, string] DHCP_SRV_HANDLE  ServerIpAddress,
+     [in, ref] LPDHCP_CLIENT_INFO_V6  ClientInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address of the DHCP
+server. This parameter is unused.</p><p><b>ClientInfo: </b>A pointer to a <span><a href="d07ea139-f254-4076-a2cc-71cefc676683" data-linktype="relative-path">DHCP_CLIENT_INFO_V6 (section 2.2.1.2.64)</a></span>
+structure that contains the DHCPv6 client lease record information to be set on
+the DHCPv6 server. The caller MUST pass the <b>ClientIPAddress</b>, <b>ClientDUID</b>,
+and <b>IAID</b> members when adding a DHCPv6 client lease record to the DHCPv6
+server. The <b>ClientDUID</b> member represents a DHCPv6 Client-Identifier as
+specified in section <span><a href="c3703409-c016-4f58-ba0f-a4da12f605fb" data-linktype="relative-path">2.2.1.2.5.3</a></span>. The <b>ClientName</b>,
+<b>ClientComment</b>, <b>ClientLeaseValidLeaseExpires</b>, and <b>OwnerHost</b>
+members can optionally be passed by the caller and will be set on the DHCPv6
+client lease record.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or to any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified subnet does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2E</p>
+  <p>ERROR_DHCP_CLIENT_EXISTS</p>
+  </td>
+  <td>
+  <p>The specified client already exists on the server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 124.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate that this method is authorized for read/write access as
+specified in section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the DHCPv4 client&#39;s <b>ClientDUID</b> value is null or its
+length is 0, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server ADM element <b>DHCPv6ScopesList</b>,
+and retrieve the <b>DHCPv6Scope</b> ADM element entry such that the <b>ClientIpAddress</b>
+member of the <i>ClientInfo</i> parameter falls within the scope. If no such <b>DHCPV6Scope</b>
+exists, return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>If there is a <b>DHCPv6ClientInfo</b> ADM element entry
+corresponding to this DHCPv4 <b>ClientDUID</b> value or <b>IAID</b> value,
+and/or to the client IP address already in the <b>DHCPv6ClientInfoList</b> ADM
+element, return ERROR_DHCP_CLIENT_EXISTS. Otherwise, create a <b>DHCPv6ClientInfo</b>
+object and set the <b>ClientIPAddress</b>, <b>ClientDUID</b>, <b>IAID</b>, <b>ClientName</b>,
+<b>ClientComment</b>, and <b>ClientValidLeaseExpires</b> members as specified
+in the <i>ClientInfo</i> input parameter. Set the other fields of the <b>DHCPv6Client</b>
+ADM element as follows:</p>
+<ul><li><p><span><span>  </span></span>The
+<b>DHCPv6ClientInfo.AddressType</b> ADM element is set to ADDRESS_TYPE_IANA.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv6ClientInfo.OwnerHost.NetBiosName</b> ADM element is set to NULL.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv6ClientInfo.OwnerHost.IpAddress</b> ADM element is set to the IPv6
+address of the current server.</p>
+</li><li><p><span><span>  </span></span>The
+<b>DHCPv6ClientInfo.OwnerHost.HostName</b> ADM element is set to NULL.</p>
+<p>Insert the object into the <b>DHCPv6Scope.DHCPv6ClientInfoList</b>
+ADM element.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

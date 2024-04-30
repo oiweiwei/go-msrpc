@@ -1,0 +1,111 @@
+<div class="content"><p>The R_WinsGetDbRecsByName method retrieves records matching
+an <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_fd7218ec-39b0-4372-bf4c-9ddfba81cb9e" data-linktype="relative-path">owner</a> address from a <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target WINS server</a> database
+starting at a specified cursor.</p><dl>
+<dd>
+<div><pre> DWORD R_WinsGetDbRecsByName(
+   [in] handle_t ServerHdl,
+   [in, unique] PWINSINTF_ADD_T pWinsAdd,
+   [in] DWORD Location,
+   [in, unique, size_is(NameLen + 1)] 
+     LPBYTE pName,
+   [in] DWORD NameLen,
+   [in] DWORD NoOfRecsDesired,
+   [in] DWORD fOnlyStatic,
+   [out] PWINSINTF_RECS_T pRecs
+ );
+</pre></div>
+</dd></dl><p><b>ServerHdl: </b>An <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding over IP
+address/HostName to the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_f2f9c250-6c9e-445f-b677-376f23f77d87" data-linktype="relative-path">WINS
+server</a>. RPC uses this binding internally to determine which WINS server the
+call is directed to.</p><p><b>pWinsAdd: </b>A pointer to the address of the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_5adb42e6-46b8-4a71-b98c-f997bf00db61" data-linktype="relative-path">owner WINS server</a> whose
+records are to be retrieved. If the pointer is NULL, the records for all owners
+are retrieved.</p><p><b>Location: </b>A value specifying the direction in
+which the database is searched. If the value is zero, the database is searched
+forward starting from the beginning. If the value is 1, the database is
+searched backward starting from the last record of the database.</p><p><b>pName: </b>A pointer to a name that specifies the
+cursor from which the database retrieval starts.</p><p><b>NameLen: </b>The length of the name that <i>pName</i>
+points to, including terminating NULL character.</p><p><b>NoOfRecsDesired: </b>The number of records to be
+retrieved from the database.</p><p><b>fOnlyStatic: </b>Takes a value of 1, 2, or 4 to
+indicate whether <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_7be2dd69-686c-4dbe-a5fb-0f4ca082b717" data-linktype="relative-path">static
+records</a>, <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_75e3d6b5-f719-46ba-8c4b-58e96ec1d5c9" data-linktype="relative-path">dynamic records</a>,
+or both are retrieved. A value of 1 retrieves only static records. A value of 2
+retrieves only dynamic records. A value of 4 retrieves both static records and
+dynamic records.</p><p><b>pRecs: </b>A pointer to a structure containing the
+retrieved records.</p><p><b>Return Values: </b>A 32 bit unsigned integer that
+indicates the return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that operation completed successfully. A nonzero return value is a
+Win32 error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following Win32 error codes can be returned:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000FA0</p>
+  <p>ERROR_WINS_INTERNAL</p>
+  </td>
+  <td>
+  <p>An error occurred while processing the RPC call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000FA5</p>
+  <p>ERROR_REC_NON_EXISTENT</p>
+  </td>
+  <td>
+  <p>No records were found matching the given data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller doesn&#39;t have sufficient permissions.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Processing and Response Requirements:</b></p><p>The following requirements and recommendations apply to a
+WINS server that processes a call to <a href="e231089b-eb49-40d2-8b62-2b1437e9f98a" data-linktype="relative-path">R_WinsGetDbRecsByName</a>:</p><ul><li><p><span><span> 
+</span></span>The RPC method caller SHOULD have query-level access.<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="a76435fe-902a-4235-b12d-3654ac010672#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a> If an RPC client with a lower
+access level calls this method, the server SHOULD return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>This method returns all records whose owner address matches the
+address specified in <i>pWinsAdd</i>. If <i>pName </i> points to a valid name,
+the database search starts from the record after the record whose name matches
+the valid name. If the name that <i>pName</i> points to does not match the name
+for any database records, the database search starts from the beginning of the
+database. </p>
+</li><li><p><span><span> 
+</span></span>A maximum of 5,000 records can be retrieved in a single call.</p>
+</li><li><p><span><span> 
+</span></span>If the owner&#39;s address is specified and if the server can&#39;t find
+this address in its <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_57b996ea-5019-4e6e-8848-1f850bcac53d" data-linktype="relative-path">owner
+version map</a>, the server returns error ERROR_WINS_INTERNAL error.</p>
+</li><li><p><span><span> 
+</span></span>If no records match the search criteria, the server returns an
+ERROR_REC_NON_EXISTENT error. For any other error conditions, the server
+returns an ERROR_WINS_INTERNAL error.</p>
+</li><li><p><span><span> 
+</span></span>Refer to <a href="34256dea-5644-4514-90b2-1d2824fc606a" data-linktype="relative-path">Retrieving
+All the Records of a WINS Database (section 4.6)</a> to see how to
+use R_WinsGetDbRecsByName to retrieve all the records of a database.</p>
+</li></ul><p>The R_WinsGetDbRecsByName caller is responsible for freeing
+the memory pointed to by <i>pRecs-&gt;pRow-&gt;pName</i> and <i>pRecs-&gt;pRow-&gt;pAdd</i>
+for each record, then using the <b>midl_user_free</b> function (section <a href="571bb9e9-1416-426a-8a2e-e5be5d4a9002" data-linktype="relative-path">3</a>) to free the <i>pRecs-&gt;pRow</i>
+and <i>pRecs</i> pointers themselves.</p></div>

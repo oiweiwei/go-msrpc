@@ -1,0 +1,166 @@
+<div class="content"><p> </p><p>The IWbemServices::ExecMethod method executes a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a307bc35-17a3-48aa-bc58-b8779f5be641" data-linktype="relative-path">CIM
+method</a></span> that is implemented by a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_633b12d4-e2c4-442f-95ff-4b2b5d708ed5" data-linktype="relative-path">CIM class</a></span> or a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c4119a8a-24db-40cc-9657-7cb5c23ecf43" data-linktype="relative-path">CIM
+instance</a></span> that is retrieved from the <span><a href="7a50647a-5311-41c2-8f4f-83bcfb497877" data-linktype="relative-path">IWbemServices</a></span>
+interface.</p><dl>
+<dd>
+<div><pre> HRESULT ExecMethod(
+   [in] const BSTR strObjectPath,
+   [in] const BSTR strMethodName,
+   [in] long lFlags,
+   [in] IWbemContext* pCtx,
+   [in] IWbemClassObject* pInParams,
+   [out, in, unique] IWbemClassObject** ppOutParams,
+   [out, in, unique] IWbemCallResult** ppCallResult
+ );
+</pre></div>
+</dd></dl><p><b>strObjectPath: </b>MUST be the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_775e4b82-5447-4125-b887-b404421e1269" data-linktype="relative-path">CIM path</a></span>
+to the class or instance that implements the method. This parameter MUST NOT be
+NULL. The CIM path MUST contain the class name and the value of the key
+properties.</p><p><b>strMethodName: </b>MUST be the name of the method
+to be executed. This parameter MUST NOT be NULL.</p><p><b>lFlags: </b>Specifies the behavior of the
+IWbemServices::ExecMethod method. Flag behavior MUST be interpreted as
+specified in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server MUST make the
+  method call <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_4dccb43d-a5c2-450f-9c9c-cadb68ecbd3e" data-linktype="relative-path">synchronously</a></span>.</p>
+  <p>If this bit is set, the server MUST make the method
+  call <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_51f3288a-1aea-49f6-96a1-91f368e8b49b" data-linktype="relative-path">semisynchronously</a></span>.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Any other DWORD value that does
+not match the preceding condition MUST be treated as invalid.</p>
+</dd></dl><p><b>pCtx: </b>MUST be a pointer to an <span><a href="18c8f1a1-652f-43b7-9186-6098bc303a8d" data-linktype="relative-path">IWbemContext</a></span>
+interface, which MUST contain additional information that the client wants to
+pass to the server. If pCtx is NULL, the parameter MUST be ignored.</p><p><b>pInParams: </b>MUST be a pointer to an <span><a href="46710c5c-d7ab-4e4c-b4a5-ebff311fdcd1" data-linktype="relative-path">IWbemClassObject</a></span>
+<span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface
+pointer</a></span>, which MUST contain an instance of input parameter CIM class
+as defined in <span><a href="../ms-wmio/b44d0581-5bd3-40fc-95d7-01c1b1239820" data-linktype="relative-path">[MS-WMIO]</a></span>
+(section <span><a href="../ms-wmio/96d48962-118e-4c2f-bd6d-8046fb81ef64" data-linktype="relative-path">2.3.3</a></span>),
+with method parameter values set as properties. This parameter MUST be NULL
+when the method has no input parameters.</p><p><b>ppOutParams: </b>The output parameter MUST be
+filled according to the state of the <b>lFlags</b> parameter (whether
+WBEM_FLAG_RETURN_IMMEDIATELY is set) as listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Flag state</p>
+   </th>
+   <th>
+   <p>Success operation</p>
+   </th>
+   <th>
+   <p>Failure operation</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY is not set.</p>
+  </td>
+  <td>
+  <p>This parameter MUST NOT be NULL upon input. If NULL,
+  the server MUST return WBEM_E_INVALID_PARAMETER. Upon output, the parameter
+  MUST contain an IWbemClassObject interface pointer.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the input parameter is non-NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY is set.</p>
+  </td>
+  <td>
+  <p>MUST return NULL.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the input parameter is
+  non-NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ppCallResult: </b>In this situation, the output
+parameter MUST be filled according to the state of the <b>lFlags</b> parameter
+(whether WBEM_FLAG_RETURN_IMMEDIATELY is set) as listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Condition</p>
+   </th>
+   <th>
+   <p>Success operation</p>
+   </th>
+   <th>
+   <p>Failure operation</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY is not set.</p>
+  </td>
+  <td>
+  <p> MUST be set to <span><a href="23ec4065-3fbe-4e39-baef-69e22c285623" data-linktype="relative-path">IWbemCallResult</a></span>
+  if the <i>ppCallResult</i> input parameter is non-NULL.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the <i>ppCallResult</i> input
+  parameter is non-NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY is set.</p>
+  </td>
+  <td>
+  <p>The <i>ppCallResult</i> parameter MUST NOT be NULL
+  upon input. If NULL, the server MUST return WBEM_E_INVALID_PARAMETER. Upon
+  output, the parameter MUST contain the IWbemCallResult interface pointer.</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL if the <i>ppCallResult</i> input
+  parameter is non-NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method MUST return an
+HRESULT, which MUST indicate the status of the method call. HRESULT MUST have
+the type and values as specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>. The server
+MUST return WBEM_S_NO_ERROR (specified in section 2.2.11) to indicate the
+successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that makes the call MUST have WBEM_METHOD_EXECUTE and WBEM_REMOTE_ENABLE
+accesses to the namespace; otherwise, WBEM_E_ACCESS_DENIED MUST be returned.</p><p>In response to IWbemServices::ExecMethod, the server MUST
+evaluate the <i>strObjectPath</i> and <i>strMethodName</i> parameters (as
+specified in this section) and MUST execute the method that is identified by <i>strMethodName</i>
+and implemented by the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c1fdd6c7-06cb-4787-8735-4d19a68dd802" data-linktype="relative-path">CIM object</a></span> that is
+referred to by <i>strObjectPath</i>. The server MUST use the input parameters
+to the CIM method from the <i>pInParams</i> parameter, which is an instance of
+the input parameter CIM class as defined in [MS-WMIO] (section 2.3.3). The
+server MUST execute the CIM method and send the output parameters as an
+instance of the output parameter CIM class as defined in [MS-WMIO] (section
+2.3.3). The method MUST fail if the CIM object that is referred to by <i>strObjectPath</i>
+does not exist, if the method parameters are not valid, as specified earlier in
+this section, or if the server is unable to execute the method.</p><p>If the <i>strMethodName</i> has &#34;disabled&#34;
+qualifier set to true, then the server MUST return WBEM_E_METHOD_DISABLED. If
+the <i>strMethodName</i> is not implemented by the CIM class as pointed by the <i>strObjectPath</i>,
+the server MUST return WBEM_E_METHOD_NOT_IMPLEMENTED.</p><p>The successful synchronous method execution MUST return the
+output parameters that are encapsulated in an IWbemClassObject interface
+pointer in the <i>ppObject</i> parameter and MUST return WBEM_S_NO_ERROR.</p><p>The semisynchronous method execution MUST follow the rules
+that are specified in section <span><a href="c40421d8-b195-4268-884f-a4e74ea58dce" data-linktype="relative-path">3.1.1.1.2</a></span>.</p><p>The failed method execution MUST set the output parameters
+to NULL and MUST return an error in the format specified in section 2.2.11.</p></div>

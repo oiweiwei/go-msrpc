@@ -1,0 +1,48 @@
+<div class="content"><p> </p><p>The R_CloseCursor method closes the handle for a previously
+created <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a></span>. The client
+MUST call this method to reclaim resources on the server allocated by the
+R_CreateCursor (Opnum 4) (section <span><a href="142d17a9-7fb3-481a-8d07-2170fd22e5ec" data-linktype="relative-path">3.1.4.4)</a></span> method.</p><dl>
+<dd>
+<div><pre> HRESULT R_CloseCursor(
+   [in] handle_t hBind,
+   [in] QUEUE_CONTEXT_HANDLE_NOSERIALIZE phContext,
+   [in] DWORD hCursor
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b>MUST specify an <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle parameter, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>phContext: </b>MUST be set by the client to the <span><a href="3e818e81-b12a-4ccd-9606-f434c346a3e9" data-linktype="relative-path">QUEUE_CONTEXT_HANDLE_NOSERIALIZE (section 2.2.4.1)</a></span>
+handle with which the cursor was associated in a call to the <b>R_CreateCursor</b>
+method. The handle MUST have been returned by the server in the <i>pphQueue</i>
+output parameter of a prior call to the R_OpenQueue (Opnum
+2) (section <span><a href="b4b3001c-f2ff-4a17-9830-7b21af371dc4" data-linktype="relative-path">3.1.4.2)</a></span> method and
+MUST NOT have been closed through a prior call to the R_CloseQueue (Opnum
+3) (section <span><a href="e480114a-587f-4110-b03b-7a6188cca307" data-linktype="relative-path">3.1.4.3)</a></span> method.
+This value MUST NOT be NULL.</p><p><b>hCursor: </b>MUST be set by the client to the
+handle of the cursor to be closed. The handle MUST have been obtained by a
+prior call to the <b>R_CreateCursor</b> method and MUST NOT have been closed
+through a prior call to the R_CloseCursor method.</p><p><b>Return Values: </b>On success, this method MUST return
+MQ_OK (0x00000000).</p><p>If an error occurs, the server MUST return a failure <b>HRESULT</b>
+and the client MUST treat all failure <b>HRESULTs</b> identically.</p><p>Exceptions Thrown:</p><p>No exceptions are thrown except those that are thrown by the
+underlying RPC protocol, as specified in [MS-RPCE].</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Find the corresponding <b>OpenQueueDescriptor</b> ADM element
+instance <i>fOpenQueueDescriptor</i> by comparing the <i>phContext</i>
+parameter with the <b>Handle</b> ADM attribute for all <b>OpenQueueDescriptor</b>
+ADM element instances maintained by the local <b>QueueManager</b> ADM element
+instance.</p>
+</li><li><p><span><span> 
+</span></span>If <i>fOpenQueueDescriptor</i> is found, then find the
+corresponding <b>Cursor</b> ADM element instance <i>fCursor</i> by comparing
+the <i>hCursor</i> parameter with the <b>Handle</b> ADM attribute of each <b>Cursor</b>
+ADM element instance in <i>fOpenQueueDescriptor</i>.<b>CursorCollection</b>.</p>
+</li><li><p><span><span> 
+</span></span>If not found, return a failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Generate a <span><a href="../ms-mqdmpr/2a9858ca-518a-4abe-9f06-168931173895" data-linktype="relative-path">Close
+Cursor</a></span> (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section 3.1.7.1.2) event with the following input:</p>
+<ul><li><p><span><span>  </span></span><i>iCursor</i>
+:=  <i>fCursor</i></p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return MQ_OK (0x00000000).</p>
+</li></ul></div>

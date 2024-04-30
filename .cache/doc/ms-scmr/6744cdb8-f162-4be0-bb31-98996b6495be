@@ -1,0 +1,64 @@
+<div class="content"><p>The RDeleteService method marks the specified service for
+deletion from the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a>
+database.</p><dl>
+<dd>
+<div><pre> DWORD RDeleteService(
+   [in] SC_RPC_HANDLE hService
+ );
+</pre></div>
+</dd></dl><p><b>hService: </b>An <a href="b5f0a0a8-887c-4097-af1c-71ef9f214ce4" data-linktype="relative-path">SC_RPC_HANDLE</a> (section
+2.2.4) data type that defines the handle to the service record that MUST have
+been created previously, using one of the open methods specified in section <a href="0d7a7011-9f41-470d-ad52-8535b47ac282" data-linktype="relative-path">3.1.4</a>. The DELETE access
+right MUST have been granted to the caller when the RPC context handle to the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_1fbb7936-8437-4e3d-b62f-47df3be07721" data-linktype="relative-path">service record</a> was created.</p><p><b>Return Values: </b>The method returns 0x00000000
+(ERROR_SUCCESS) on success; otherwise, it returns one of the following error
+codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>5</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The DELETE access right had not been granted to the
+  caller when the RPC context handle to the service record was created.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The handle is no longer valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1072</p>
+  <p>ERROR_SERVICE_MARKED_FOR_DELETE</p>
+  </td>
+  <td>
+  <p>The RDeleteService has already been called for the
+  service record identified by the <i>hService</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1115</p>
+  <p>ERROR_SHUTDOWN_IN_PROGRESS</p>
+  </td>
+  <td>
+  <p>The system is shutting down.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST change the Start in the service record to
+SERVICE_DISABLED.</p><p>The server MUST set the <b>Deleted</b> field to TRUE in the
+service record to indicate that the deletion is pending. </p><p>The server MUST delete the service record when the last RPC
+context handle created for the service has been closed by a call to the <a href="a2a4e174-09fb-4e55-bad3-f77c4b13245c" data-linktype="relative-path">RCloseServiceHandle</a>
+(section 3.1.4.1) function.</p></div>

@@ -1,0 +1,89 @@
+<div class="content"><p>The contents of the ContextAndTwoStringA_Call structure are
+used in those calls that require a valid <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_c6f0d1a4-ae75-40b9-beef-baa419cb33b9" data-linktype="relative-path">Smart Cards for Windows</a>
+context (as specified in section <a href="4a5909f4-8ac2-41b2-abe0-8b833c831b6f" data-linktype="relative-path">3.2.5</a>) and two strings
+(friendly names).</p><dl>
+<dd>
+<div><pre> typedef struct _ContextAndTwoStringA_Call {
+   REDIR_SCARDCONTEXT Context;
+   [string] const char* sz1;
+   [string] const char* sz2;
+ } ContextAndTwoStringA_Call;
+</pre></div>
+</dd></dl><p><b>Context:</b>  A valid context, as
+specified in section <a href="060abee1-e520-4149-9ef7-ce79eb500a59" data-linktype="relative-path">2.2.1.1</a>.</p><p><b>sz1:</b>  The value of this <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_79fa85ca-ac61-467c-b819-e97dc1a7a599" data-linktype="relative-path">ASCII</a> string depends on the
+context (based on <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_09d6bc87-34ed-48e8-b4d4-962e90543462" data-linktype="relative-path">IOCTL</a>)
+in which it is used.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SCARD_IOCTL_INTRODUCEREADERA</p>
+  <p>0x00090060</p>
+  </td>
+  <td>
+  <p>Reader name</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_IOCTL_ADDREADERTOGROUPA</p>
+  <p>0x00090070</p>
+  </td>
+  <td>
+  <p>Reader name</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_IOCTL_REMOVEREADERFROMGROUPA</p>
+  <p>0x00090078</p>
+  </td>
+  <td>
+  <p>Reader name</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>sz2:</b>  The value of this ASCII string
+depends on the context (based on IOCTL) in which it is used. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SCARD_IOCTL_INTRODUCEREADERA</p>
+  <p>0x00090060</p>
+  </td>
+  <td>
+  <p>Device name</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_IOCTL_ADDREADERTOGROUPA</p>
+  <p>0x00090070</p>
+  </td>
+  <td>
+  <p><a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_2b7a4524-dca9-4024-bc7b-11e3e42d2e3b" data-linktype="relative-path">Reader
+  group name</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SCARD_IOCTL_REMOVEREADERFROMGROUPA</p>
+  <p>0x00090078</p>
+  </td>
+  <td>
+  <p>Reader group name</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

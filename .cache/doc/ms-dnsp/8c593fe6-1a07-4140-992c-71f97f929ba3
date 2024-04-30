@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_UTF8_STRING_LIST</b> structure contains a
+list of null-terminated <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_409411c4-b4ed-4ab6-b0ee-6d7815f85a35" data-linktype="relative-path">UTF-8</a></span> strings. This
+structure is used by the DNS Server Management Protocol while processing
+R_DnssrvOperations2 (section <span><a href="8c0522b1-97fb-4fa7-b4e2-2c55c0afb0e7" data-linktype="relative-path">3.1.4.6</a></span>) and
+R_DnssrvQuery2 (section <span><a href="a90a44f0-f64e-44b0-9e35-a7fc49f6adea" data-linktype="relative-path">3.1.4.7</a></span>) method
+calls, with operations type &#34;GlobalQueryBlockList&#34;.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcUtf8StringList {
+   [range(0,10000)] DWORD dwCount;
+   [size_is(dwCount), string] char* pszStrings[];
+ } DNS_RPC_UTF8_STRING_LIST,
+  *PDNS_RPC_UTF8_STRING_LIST;
+</pre></div>
+</dd></dl><p><b>dwCount:</b> The number of strings present in
+the pszStrings array.</p><p><b>pszStrings:</b> A variable length array of
+pointers to null-terminated UTF-8 strings.</p></div>

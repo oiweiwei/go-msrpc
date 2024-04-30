@@ -1,0 +1,257 @@
+<div class="content"><p> </p><p>The BaseHeader is the first field of each packet described
+in this section. The BaseHeader contains information to identify and manage
+protocol packets.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>VersionNumber</p>
+  </td>
+  <td colspan="8">
+  <p>Reserved</p>
+  </td>
+  <td colspan="16">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Signature</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PacketSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TimeToReachQueue</p>
+  </td>
+ </tr>
+</tbody></table><p><b>VersionNumber (1 byte): </b>An 8-bit unsigned
+integer that is the version of the packet format. This field MUST be set to the
+value 0x10.</p><p><b>Reserved (1 byte): </b>Reserved for future use.
+This field can be set to any arbitrary value when sent and MUST be ignored on
+receipt.</p><p><b>Flags (2 bytes): </b>A 16-bit unsigned short
+integer containing a set of options that provides additional information about
+the packet. Any combination of these values is acceptable unless otherwise
+noted in the following table.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="3">
+  <p>PR</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>G</p>
+  </td>
+  <td>
+  <p>H</p>
+  </td>
+  <td>
+  <p>I</p>
+  </td>
+  <td>
+  <p>J</p>
+  </td>
+  <td>
+  <p>K</p>
+  </td>
+  <td>
+  <p>L</p>
+  </td>
+  <td>
+  <p>M</p>
+  </td>
+  
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>PR (3 bits): </b>Specifies
+the priority of the <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span> in the
+packet. This field has a valid range from 0x0 to 0x7, with 0x7 being the
+highest priority. The default is 0x3. A message with a higher priority MUST be
+placed closer to the front of the queue. This field MUST be set to a value of
+0x0 if the packet contains a transactional message. For more details, see <b>UserHeader.Flags.TH</b>
+in section <span><a href="056b43bc-2466-4342-8504-1630310d5965" data-linktype="relative-path">2.2.19.2</a></span>.</p>
+</dd>
+<dd>
+<p><b>A - IN (1 bit): </b>Indicates
+that the message within the packet is internal and used by <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4" data-linktype="relative-path">message
+transfer protocols</a></span> for connection establishment and session
+acknowledgements. This field MUST be set if the packet is an
+EstablishConnection Packet as defined in <span><a href="../ms-mqqb/85498b96-f2c8-43b3-a108-c9d6269dc4af" data-linktype="relative-path">[MS-MQQB]</a></span>
+section <span><a href="../ms-mqqb/902e3f42-fecb-4fef-acd4-1847ca5dfd7b" data-linktype="relative-path">2.2.3</a></span>,
+a ConnectionParameters Packet as defined in [MS-MQQB] section <span><a href="../ms-mqqb/93140ce4-1b34-485b-9e8a-275309f2a761" data-linktype="relative-path">2.2.2</a></span>,
+or a SessionAck Packet as defined in [MS-MQQB] section <span><a href="../ms-mqqb/d0fe7287-c493-4d9a-92bd-91d791e18d67" data-linktype="relative-path">2.2.6</a></span>.
+This field MUST NOT be set if the packet is a OrderAck Packet as defined in
+[MS-MQQB] sections <span><a href="../ms-mqqb/b38c96d2-5f31-4e02-8c61-88a788ab3e68" data-linktype="relative-path">2.2.4</a></span>
+or a FinalAck Packet as defined in [MS-MQQB] section <span><a href="../ms-mqqb/484801b2-2d28-418a-b4c3-7a10ac04f50b" data-linktype="relative-path">2.2.5</a></span>.</p>
+</dd>
+<dd>
+<p><b>B - SH (1 bit): </b>Specifies
+if a <span><a href="fd405c40-0c50-4f7e-8096-433d10206fa3" data-linktype="relative-path">SessionHeader (section
+2.2.20.4)</a></span> is present in the packet. If set, the packet MUST contain
+a SessionHeader.</p>
+</dd>
+<dd>
+<p><b>C - DH (1 bit): </b>Specifies
+if a <span><a href="4637f756-8d0d-480c-bdd2-2c69fc6c7391" data-linktype="relative-path">DebugHeader (section 2.2.20.8)</a></span>
+is present in the packet. This field MUST NOT be set if the BaseHeader is part
+of a packet other than a <span><a href="56bae708-1289-48ff-a411-bf3782602476" data-linktype="relative-path">UserMessage Packet (section
+2.2.20)</a></span>. If and only if set, MUST the packet include a DebugHeader.</p>
+</dd>
+<dd>
+<p><b>D - X9 (1 bit): </b>Reserved.
+This field SHOULD NOT be set when sent and MUST be ignored on receipt.</p>
+</dd>
+<dd>
+<p><b>E - X8 (1 bit): </b>Reserved.
+This field SHOULD NOT be set when sent and MUST be ignored on receipt.</p>
+</dd>
+<dd>
+<p><b>F - TR (1 bit): </b>Specifies
+whether message tracing is enabled for this packet. This field MUST be set if
+message tracing is required for this message. If this field is set, the <b>DH</b>
+field MUST also be set.</p>
+</dd>
+<dd>
+<p><b>G - X6 (1 bit): </b>Reserved.
+This field SHOULD NOT be set when sent and MUST be ignored on receipt.</p>
+</dd>
+<dd>
+<p><b>H - X5 (1 bit): </b>Reserved.
+This field SHOULD NOT be set when sent and MUST be ignored on receipt.</p>
+</dd>
+<dd>
+<p><b>I - X4 (1 bit): </b>Reserved.
+This field SHOULD NOT be set when sent and MUST be ignored on receipt.</p>
+</dd>
+<dd>
+<p><b>J - X3 (1 bit): </b>Reserved.
+This field SHOULD NOT be set when sent and MUST be ignored on receipt.</p>
+</dd>
+<dd>
+<p><b>K - X2 (1 bit): </b>Reserved.
+This field SHOULD NOT be set when sent and MUST be ignored on receipt.</p>
+</dd>
+<dd>
+<p><b>L - X1 (1 bit): </b>Reserved.
+This field SHOULD NOT be set when sent and MUST be ignored on receipt.</p>
+</dd>
+<dd>
+<p><b>M - X0 (1 bit): </b>Reserved.
+This field SHOULD NOT be set when sent and MUST be ignored on receipt.</p>
+</dd></dl><p><b>Signature (4 bytes): </b>A 32-bit unsigned integer
+that is the packet signature value. This field MUST be set to 0x524F494C.</p><p><b>PacketSize (4 bytes): </b>A 32-bit unsigned
+integer that indicates the packet size. This field MUST be set to the size, in
+bytes, of the entire packet including the base header and any padding bytes
+used to align the various <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c3e6de38-b06e-4e85-94e4-2d643e0d80f0" data-linktype="relative-path">message headers</a></span> on
+4-byte boundaries, but MUST NOT include the SessionHeader size when the
+SessionHeader is present. This field has a maximum value of 0x00400000.</p><p><b>TimeToReachQueue (4 bytes): </b>A 32-bit unsigned
+integer that indicates the length of time, in seconds, that a UserMessage
+Packet has to reach its destination <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue manager</a></span>. This
+field has a valid range from 0x00000000 to 0xFFFFFFFF. The value 0xFFFFFFFF
+indicates an infinite time.</p><dl>
+<dd>
+<p>When a UserMessage Packet is sent or received, this
+value MUST be evaluated against the current system time and the <b>UserMessage.UserHeader.SentTime</b>
+field. If CURRENT_TIME - <b>UserMessage.UserHeader.SentTime</b> is greater than
+the value of this field, then the UserMessage Packet has expired and MUST be
+deleted by a sender and ignored by a receiver.</p>
+</dd>
+<dd>
+<p>When the BaseHeader is not part of a UserMessage
+Packet, this value MUST be set to 0xFFFFFFFF.</p>
+</dd>
+<dd>
+<p>For the purpose of this section, CURRENT_TIME is
+defined as the number of seconds elapsed since midnight (00:00:00), January 1,
+1970 Coordinated Universal Time (UTC).</p>
+</dd></dl></div>

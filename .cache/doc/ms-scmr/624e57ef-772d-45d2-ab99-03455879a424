@@ -1,0 +1,94 @@
+<div class="content"><p>The RNotifyBootConfigStatus method reports the boot status
+to the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a>.</p><dl>
+<dd>
+<div><pre> DWORD RNotifyBootConfigStatus(
+   [in, string, unique, range(0, SC_MAX_COMPUTER_NAME_LENGTH)] 
+     SVCCTL_HANDLEW lpMachineName,
+   [in] DWORD BootAcceptable
+ );
+</pre></div>
+</dd></dl><p><b>lpMachineName: </b>An <a href="807438c1-bff9-40b8-9216-98e8136ed4d4" data-linktype="relative-path">SVCCTL_HANDLEW</a> (section
+2.2.3) data type that defines the handle that contains the <b>UNICODE</b>
+string name of the server to be notified.</p><p><b>BootAcceptable: </b>A value that specifies whether
+the configuration used when booting the system is acceptable. MUST be one of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000 &lt; <i>value</i></p>
+  </td>
+  <td>
+  <p>Server saves the configuration as the last-known good
+  configuration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Server immediately reboots, using the previously saved
+  last-known good configuration.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>The method returns
+ERROR_SUCCESS (0x00000000) on success; otherwise, it returns one of the
+following error codes. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>5</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the
+  SC_MANAGER_MODIFY_BOOT_CONFIG access rights granted in the SCM Security
+  Descriptor.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1074</p>
+  <p>ERROR_ALREADY_RUNNING_LKG</p>
+  </td>
+  <td>
+  <p>The system is currently running with the
+  last-known-good configuration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1076</p>
+  <p>ERROR_BOOT_ALREADY_ACCEPTED</p>
+  </td>
+  <td>
+  <p>The BootAccepted field of the SCM on the target
+  machine indicated that a successful call to RNotifyBootConfigStatus has
+  already been made.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>In response to this request from the client, for a
+successful operation the server MUST either save the current configuration as
+the last-known good configuration or MUST reboot the server by using the
+previously saved last-known good configuration based on the value specified in
+the <i>BootAcceptable</i> parameter of the client request.</p><p>In response to this request from the client, the server MUST
+set the <b>BootAccepted</b> field of the SCM to TRUE to indicate that a boot
+has been accepted. If the BootAccepted field of the SCM already indicates that
+a boot has been accepted, the server MUST fail the request with
+ERROR_BOOT_ALREADY_ACCEPTED.</p><p>If the BootAcceptable parameter is 0x00000000, the method
+does not return.</p></div>

@@ -1,0 +1,93 @@
+<div class="content"><p>The LINEPROVIDERLIST packet describes a list of service
+providers. A packet of this type is returned by the <a href="6ba67daf-004b-4da5-ae46-b83e89272ac9" data-linktype="relative-path">GetProviderList</a> packet.
+The LINEPROVIDERLIST packet can contain an array of <a href="438df2d1-ccb6-4684-b02a-fc280b38dd12" data-linktype="relative-path">LINEPROVIDERENTRY</a> packets.
+</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumProviders</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwProviderListSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwProviderListOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, allocated to this data packet. </p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, for this packet that is needed to hold all the
+returned information. </p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the portion of this packet that contains useful
+information. </p><p><b>dwNumProviders (4 bytes): </b>An unsigned 32-bit
+integer. The number of LINEPROVIDERENTRY packets present in the array
+denominated by <b>dwProviderListSize</b> and <b>dwProviderListOffset</b>. </p><p><b>dwProviderListSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the provider list array. </p><p><b>dwProviderListOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of this packet to an array of
+LINEPROVIDERENTRY elements that provide the information on each service
+provider. The size of the array MUST be specified by <b>dwProviderListSize</b>.</p><p><b>VarData (variable): </b>An array of
+LINEPROVIDERENTRY elements that provide the information on each service
+provider as specified by <b>dwProviderListOffset</b>.</p><p>This packet cannot be extended.</p></div>

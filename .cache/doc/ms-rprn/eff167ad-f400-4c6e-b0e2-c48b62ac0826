@@ -1,0 +1,72 @@
+<div class="content"><p>RpcPlayGdiScriptOnPrinterIC returns font information for a
+printer connection. <a href="97cd8dd8-4c4b-4a7a-a160-fae63f3e59bf" data-linktype="relative-path">UNIVERSAL_FONT_ID (section 2.2.2.12)</a>
+structures are used to identify the fonts.</p><dl>
+<dd>
+<div><pre> DWORD RpcPlayGdiScriptOnPrinterIC(
+   [in] GDI_HANDLE hPrinterIC,
+   [in, size_is(cIn)] BYTE* pIn,
+   [in] DWORD cIn,
+   [out, size_is(cOut)] BYTE* pOut,
+   [in] DWORD cOut,
+   [in] DWORD ul
+ );
+</pre></div>
+</dd></dl><p><b>hPrinterIC: </b>A printer <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_e6193b0f-37ad-4f30-978b-0e1e1291f674" data-linktype="relative-path">information context</a> handle
+(section <a href="ec9126fa-bc33-423f-adfc-1bf52bd7890e" data-linktype="relative-path">2.2.1.1.2</a>)
+that was returned by <a href="b0686ba2-3a6b-4a6c-943f-b26600dbd88c" data-linktype="relative-path">RpcCreatePrinterIC (section 3.1.4.2.10)</a>.</p><p><b>pIn: </b>A pointer that SHOULD be set to NULL when
+sent and MUST be ignored on receipt.</p><p><b>cIn: </b>A value that SHOULD be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>pOut: </b>A pointer to a buffer, the size and
+contents of which are determined by the value of the <i>cOut</i> parameter.</p><p><b>cOut: </b>The size, in bytes, of the buffer
+pointed to by <i>pOut</i>.</p><p><b>ul: </b>A value that SHOULD be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate the
+following:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>hPrinterIC</i> is a valid printer information
+context handle. This method SHOULD assume that this handle can be used without
+further access checks.<a id="Appendix_A_Target_284"></a><a aria-label="Product behavior note 284" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_284" data-linktype="relative-path">&lt;284&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Verify that the value of the <i>pOut</i> parameter is not NULL.<a id="Appendix_A_Target_285"></a><a aria-label="Product behavior note 285" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_285" data-linktype="relative-path">&lt;285&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Verify the value of the <i>cOut</i> parameter as follows:</p>
+<ul><li><p><span><span>  </span></span>If <i>cOut</i>
+is less than 0x00000004, ERROR_NOT_ENOUGH_MEMORY SHOULD be returned [MS-ERREF].</p>
+</li><li><p><span><span>  </span></span>If <i>cOut</i>
+is equal to 0x00000004, proceed.</p>
+</li><li><p><span><span>  </span></span>If <i>cOut</i>
+is greater than 0x00000004, it specifies the size of the buffer pointed to by
+the <i>pOut</i> parameter. In this case, the minimum value of <i>cOut</i> is
+computed as follows:</p>
+<div><pre> ((*pOut) * (size of(UNIVERSAL_FONT_ID))) + 0x00000004
+</pre></div>
+<p>The buffer pointed to by <i>pOut</i>
+MUST be large enough to contain all the font information plus a DWORD for the
+number of fonts. If the value of <i>cOut</i> is less than this minimum,
+ERROR_NOT_ENOUGH_MEMORY SHOULD be returned.</p>
+</li></ul></li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>If <i>cOut</i> is equal to 0x00000004, the value of <i>pOut</i>
+is a pointer to a DWORD that specifies the number of UNIVERSAL_FONT_ID
+structures to be returned by the next call to this method.</p>
+</li><li><p><span><span> 
+</span></span>If <i>cOut</i> is greater than 0x00000004, font information MUST
+be returned as follows:</p>
+<ol><li><p><span>   
+</span>Query the fonts that are available on the server.</p>
+</li><li><p><span>   
+</span>Write the DWORD number of fonts to the buffer location that is pointed
+to by the value of the <i>pOut</i> parameter.</p>
+</li><li><p><span>   
+</span>Write UNIVERSAL_FONT_ID structures for the fonts to the buffer location
+that is pointed to by the value of <i>pOut</i> plus 0x00000004.</p>
+</li></ol><p>A <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_3b2da3d1-c159-4399-a6dd-dfd5f76fa2f5" data-linktype="relative-path">print client</a> MAY assume
+that the fonts identified by the UNIVERSAL_FONT_ID structures are available on
+the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a> for use
+in spooled <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print jobs</a>.<a id="Appendix_A_Target_286"></a><a aria-label="Product behavior note 286" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_286" data-linktype="relative-path">&lt;286&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul><p>Except for diagnostic purposes, the server state, as visible
+to the client through this or any other protocol, MUST NOT change as a result
+of processing this call.</p></div>

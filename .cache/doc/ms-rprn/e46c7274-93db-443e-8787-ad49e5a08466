@@ -1,0 +1,42 @@
+<div class="content"><p>RpcDeletePrinter is a method that deletes the specified
+printer object.</p><dl>
+<dd>
+<div><pre> DWORD RpcDeletePrinter(
+   [in] PRINTER_HANDLE hPrinter
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object that
+MUST have been opened by using the <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter</a>, <a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx</a>, <a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter</a>, or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx</a> methods.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps as specified in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE
+Parameters (section 3.1.4.1.11)</a>.</p>
+</li><li><p><span><span> 
+</span></span>If any jobs are pending on the printer, use the
+implementation-specific policy to determine if a delete operation can be made
+pending or if an error is returned.<a id="Appendix_A_Target_271"></a><a aria-label="Product behavior note 271" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_271" data-linktype="relative-path">&lt;271&gt;</a></p>
+</li></ul><p>Additional validation MAY be performed.<span> </span><a id="Appendix_A_Target_272"></a><a aria-label="Product behavior note 272" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_272" data-linktype="relative-path">&lt;272&gt;</a></p><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the client
+as follows:</p><ul><li><p><span><span> 
+</span></span>Mark the printer object as &#34;Delete Pending&#34;.</p>
+</li><li><p><span><span> 
+</span></span>Modify the list of printers in the system to exclude the deleted
+printer for any subsequent calls to <a href="0d83c60d-ec75-4671-8a3b-99517651ff1b" data-linktype="relative-path">RpcEnumPrinters</a>,
+RpcOpenPrinter, RpcOpenPrinterEx, and <a href="90f95ff0-3ae0-4dde-a83d-35f457c710a6" data-linktype="relative-path">RpcStartDocPrinter</a>.
+Clients that already have a valid handle to the same printer object MAY
+continue using the printer object for all operations except RpcStartDocPrinter.</p>
+</li><li><p><span><span> 
+</span></span>If the deleted printer has been published to the directory
+service, delete the print queue object from the directory as specified in
+section <a href="1c49f084-0f63-4ac4-9e56-6be4c47915e6" data-linktype="relative-path">2.3.3.2</a>.<a id="Appendix_A_Target_273"></a><a aria-label="Product behavior note 273" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_273" data-linktype="relative-path">&lt;273&gt;</a> If the directory service
+operation fails, the print server MUST continue processing the printer deletion
+operation and MUST NOT return the status of the directory service operation to the
+client.</p>
+</li><li><p><span><span> 
+</span></span>If any clients have registered for notifications of the server
+object change, a notification MUST be broadcast to them.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

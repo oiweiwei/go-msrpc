@@ -1,0 +1,69 @@
+<div class="content"><p> </p><p>The MQFSignatureHeader is a signature used in the <span><a href="790c8148-160e-4650-8530-bb117fee835a" data-linktype="relative-path">MultiQueueFormatHeader</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>ID</p>
+  </td>
+  <td colspan="16">
+  <p>Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Size</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Signature
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>ID (2 bytes): </b>A 16-bit unsigned short integer
+value that MUST be set to 0x015E.</p><p><b>Reserved (2 bytes): </b>A 16-bit unsigned short
+integer field that is reserved for alignment. The sender SHOULD set this field
+to 0x0000, and the receiver MUST ignore it on receipt.</p><p><b>Size (4 bytes): </b>A 32-bit unsigned integer
+field that MUST be set to the size, in <b>bytes</b>, of the <b>byte</b> array
+to hold the <b>Signature</b>. This field has a valid range between 0x00000000
+and the size limit imposed by the value of <b>BaseHeader.PacketSize</b>. </p><p><b>Signature (variable): </b>A <b>byte</b> array that
+contains the signature. The array MUST contain the number of elements that are
+specified by the <b>Size</b> field. The <b>Signature</b> MUST be calculated in
+the same way as the <b>SecurityData.Signature</b> as specified in section <span><a href="303416bb-b821-4a18-ac0d-adc3ea44cc77" data-linktype="relative-path">2.2.20.6</a></span>.</p></div>

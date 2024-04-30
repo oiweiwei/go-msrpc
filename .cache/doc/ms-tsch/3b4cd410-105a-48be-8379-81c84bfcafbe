@@ -1,0 +1,342 @@
+<div class="content"><p> </p><p>Several of the following structures have a <b>Flags</b>
+field. The specific Flags bits are defined as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags (16
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>A N</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>R L</p>
+  </td>
+  <td>
+  <p>S R</p>
+  </td>
+  <td>
+  <p>R<br/>
+  I</p>
+  </td>
+  <td>
+  <p>R C</p>
+  </td>
+  <td>
+  <p>H</p>
+  </td>
+  <td>
+  <p>R D</p>
+  </td>
+  <td>
+  <p>K B</p>
+  </td>
+  <td>
+  <p>S B</p>
+  </td>
+  <td>
+  <p>K<br/>
+  I</p>
+  </td>
+  <td>
+  <p>S<br/>
+  I</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>D D</p>
+  </td>
+  <td>
+  <p>I</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b> </b></p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>I</p>
+  <p>TASK_FLAG_INTERACTIVE</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task can interact with
+  the logged-on user.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DD</p>
+  <p>TASK_FLAG_DELETE_WHEN_DONE</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task can be deleted
+  when there are no more scheduled run times.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>D</p>
+  <p>TASK_FLAG_DISABLED</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task is disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SI</p>
+  <p>TASK_FLAG_START_ONLY_IF_IDLE</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task begins only if
+  the computer is not in use at the scheduled time.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>KI</p>
+  <p>TASK_FLAG_KILL_ON_IDLE_END</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task can be terminated
+  if the computer makes an idle to non-idle transition while the task is
+  running. The computer makes an idle to non-idle transition when user input is
+  detected.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SB</p>
+  <p>TASK_FLAG_DONT_START_IF_ON_BATTERIES</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task cannot start if
+  its target computer is running on battery power.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>KB</p>
+  <p>TASK_FLAG_KILL_IF_GOING_ON_BATTERIES</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task can end, and the
+  associated application quit if the task&#39;s target computer switches to battery
+  power.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RD</p>
+  <p>TASK_FLAG_RUN_ONLY_IF_DOCKED</p>
+  </td>
+  <td>
+  <p>Unused. MUST be set to zero when sent and MUST be
+  ignored on receipt.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>H</p>
+  <p>TASK_FLAG_HIDDEN</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task is hidden.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RC</p>
+  <p>TASK_FLAG_RUN_IF_CONNECTED_TO_INTERNET</p>
+  </td>
+  <td>
+  <p>Unused. MUST be set to zero when sent and MUST be
+  ignored on receipt.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RI</p>
+  <p>TASK_FLAG_RESTART_ON_IDLE_RESUME</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task can start again
+  if the computer makes a non-idle to idle transition before all the task&#39;s
+  triggers elapse.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SR</p>
+  <p>TASK_FLAG_SYSTEM_REQUIRED</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task can cause the
+  system to resume, or awaken if the system is sleeping.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RL</p>
+  <p>TASK_FLAG_RUN_ONLY_IF_LOGGED_ON</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task can only run if
+  the user specified in the task is logged on interactively.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AN</p>
+  <p>TASK_APPLICATION_NAME</p>
+  </td>
+  <td>
+  <p>If set to 1, specifies that the task has an
+  application name defined.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<p><b>Flags (16 bytes):</b>
+Undefined bits. MUST be set to zero when sent and MUST be ignored on receipt.</p>
+</dd></dl></div>

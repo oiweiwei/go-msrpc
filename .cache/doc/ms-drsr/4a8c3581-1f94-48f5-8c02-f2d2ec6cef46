@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The DS_REPL_SERVER_OUTGOING_CALLS structure defines a set of
+outstanding requests from this <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span> to other DCs.
+This structure is a concrete representation of <span><a href="b9f46593-8a40-4186-9ece-bc2612b4c3f4" data-linktype="relative-path">RPCOutgoingContexts</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [range(0,256)] DWORD cNumCalls;
+   DWORD dwReserved;
+   [size_is(cNumCalls)] DS_REPL_SERVER_OUTGOING_CALL rgCall[];
+ } DS_REPL_SERVER_OUTGOING_CALLS;
+</pre></div>
+</dd></dl><p><b>cNumCalls:</b>  The number of items in
+the <b>rgCall</b> array.</p><p><b>dwReserved:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>rgCall:</b>  A set of outstanding
+requests from this DC to other DCs.</p></div>

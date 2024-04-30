@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The DRS_MSG_SPNREQ_V1 structure defines a request message
+sent to the <span><a href="8b129dc8-ed45-4537-9555-b6fef764ab7d" data-linktype="relative-path">IDL_DRSWriteSPN</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD operation;
+   DWORD flags;
+   [string] const WCHAR* pwszAccount;
+   [range(0,10000)] DWORD cSPN;
+   [string, size_is(cSPN)] const WCHAR** rpwszSPN;
+ } DRS_MSG_SPNREQ_V1;
+</pre></div>
+</dd></dl><p><b>operation:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_547217ca-134f-4b43-b375-f5bca4c16ce4" data-linktype="relative-path">SPN</a></span>
+operation to perform. MUST be one of the DS_SPN_OPERATION values.</p><p><b>flags:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>pwszAccount:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a></span>
+of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> to modify.</p><p><b>cSPN:</b>  The number of items in the <b>rpwszSPN</b>
+array.</p><p><b>rpwszSPN:</b>  The SPN values.</p></div>

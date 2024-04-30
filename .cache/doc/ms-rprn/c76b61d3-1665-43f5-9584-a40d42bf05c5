@@ -1,0 +1,11 @@
+<div class="content"><p>The <b>SIZE</b> structure defines the area of a form, with a
+width and height in thousandth-of-a-millimeter units.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   long cx;
+   long cy;
+ } SIZE;
+</pre></div>
+</dd></dl><p><b>cx:</b> The width, and it MUST be an integer
+greater than or equal to 0.</p><p><b>cy:</b> The height, and it MUST be an integer
+greater than or equal to 0.</p></div>

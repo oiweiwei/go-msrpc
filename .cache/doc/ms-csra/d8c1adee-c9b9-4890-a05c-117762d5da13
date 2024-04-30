@@ -1,0 +1,179 @@
+<div class="content"><p>The SetOfficerRights method is used to set <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_eedf773f-7c40-4ea6-9a26-998d1501511f" data-linktype="relative-path">Officer rights</a> or <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_b0a10741-008c-4de1-b614-4f587b1ae663" data-linktype="relative-path">Enrollment Agent rights</a>.
+Information on <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c9d328a1-fd60-413d-ad16-ff9ffe934f33" data-linktype="relative-path">role
+separation</a> is specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89839" data-linktype="external">[CIMC-PP]</a>.</p><dl>
+<dd>
+<div><pre> HRESULT SetOfficerRights(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] BOOL fEnable,
+   [in, ref] CERTTRANSBLOB* pctbSD
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b> See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.
+</p><p><b>fEnable: </b>A 32-bit <a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">BOOL</a>
+parameter composed of two 16-bit fields. Each of these fields can be set to
+zero or to a nonzero value as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">R</p>
+  </td>
+  <td>
+  <p align="center">R</p>
+  </td>
+  <td>
+  <p align="center">R</p>
+  </td>
+  <td>
+  <p align="center">R</p>
+  </td>
+  <td>
+  <p align="center">R</p>
+  </td>
+  <td>
+  <p align="center">R</p>
+  </td>
+  <td>
+  <p align="center">R</p>
+  </td>
+  <td>
+  <p align="center">R</p>
+  </td>
+  <td>
+  <p align="center">R</p>
+  </td>
+  <td>
+  <p align="center">R</p>
+  </td>
+  <td>
+  <p align="center">R</p>
+  </td>
+  <td>
+  <p align="center">R</p>
+  </td>
+  <td>
+  <p align="center">R</p>
+  </td>
+  <td>
+  <p align="center">R</p>
+  </td>
+  <td>
+  <p align="center">R</p>
+  </td>
+  <td>
+  <p align="center">R</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>F - fRightsEnable: </b>If bits 0 through 15 are
+0, then disable access rights (<b>officer</b> or <b>enrollment agent</b>) and
+ignore the value of <i>pctbSD</i>.</p>
+</dd>
+<dd>
+<p><b>R - RightsType: </b>If bits 16 through 31 are 0,
+then the security descriptor in the <i>pctbSD</i> parameter is for <b>officer
+rights</b>.</p>
+</dd>
+<dd>
+<p>If bits 16 through 31 are nonzero, the security
+descriptor in the <i>pctbSD</i> is for the <b>enrollment agents</b>.</p>
+</dd></dl><p><b>pctbSD: </b>A pointer to the <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure
+that holds the marshaled security descriptor, as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a>.</p><p>The following processing rules apply:</p><ol><li><p><span>    </span>If fRightsEnable
+is 0 and RightsType is 0, the server MUST disable Officer access rights
+(Config_Permissions_Officer_Rights) and ignore the value of <i>pctbSD</i>.</p>
+</li><li><p><span>    </span>If fRightsEnable
+is 0 and RightsType is nonzero, the server MUST disable Enrollment Agent access
+rights (Config_Permissions_Enrollment_Agent_Rights) and ignore the value of <i>pctbSD</i>.</p>
+</li><li><p><span>    </span>If fRightsEnable
+is nonzero and RightsType is 0, the server MUST set the security descriptor
+specified in <i>pctbSD</i> as officer access rights. </p>
+</li><li><p><span>    </span>If fRightsEnable
+is nonzero and RightsType is nonzero, the server MUST set the security
+descriptor specified in <i>pctbSD</i> as <b>enrollment agent</b> access rights.</p>
+</li></ol></div>

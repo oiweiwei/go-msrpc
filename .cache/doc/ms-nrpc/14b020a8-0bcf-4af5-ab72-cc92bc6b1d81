@@ -1,0 +1,65 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/14b020a8-0bcf-4af5-ab72-cc92bc6b1d81" data-linktype="external">msdn link</a></p><p>The <b>NetrServerPasswordSet2</b> method SHOULD<a id="Appendix_A_Target_178"></a><a aria-label="Product behavior note 178" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_178" data-linktype="relative-path">&lt;178&gt;</a> allow the client to set a new
+clear text password for an account used by the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a> for
+setting up the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure
+channel</a> from the client. A <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_6234a38c-ed1b-4c69-969f-6e6479566f65" data-linktype="relative-path">domain member</a> SHOULD<a id="Appendix_A_Target_179"></a><a aria-label="Product behavior note 179" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_179" data-linktype="relative-path">&lt;179&gt;</a> use this function to
+periodically change its machine account password. A <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a> uses this function to
+periodically change the trust password for all directly <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trusted</a> domains. </p><dl>
+<dd>
+<div><pre> NTSTATUS NetrServerPasswordSet2(
+   [in, unique, string] LOGONSRV_HANDLE PrimaryName,
+   [in, string] wchar_t* AccountName,
+   [in] NETLOGON_SECURE_CHANNEL_TYPE SecureChannelType,
+   [in, string] wchar_t* ComputerName,
+   [in] PNETLOGON_AUTHENTICATOR Authenticator,
+   [out] PNETLOGON_AUTHENTICATOR ReturnAuthenticator,
+   [in] PNL_TRUST_PASSWORD ClearNewPassword
+ );
+</pre></div>
+</dd></dl><p><b>PrimaryName: </b>The custom <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_44deb72d-c62b-4335-90e4-b9fd4dd782ed" data-linktype="relative-path">binding handle</a>, as defined
+in section <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>.</p><p><b>AccountName: </b>The null-terminated <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string that
+contains the name of the account whose password is being changed.<a id="Appendix_A_Target_180"></a><a aria-label="Product behavior note 180" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_180" data-linktype="relative-path">&lt;180&gt;</a></p><p><b>SecureChannelType: </b>An enumerated value that defines
+the secure channel to be used for authentication, as specified in section <a href="4d1235e3-2c96-4e9f-a147-3cb338a0d09f" data-linktype="relative-path">2.2.1.3.13</a>.</p><p><b>ComputerName: </b>The null-terminated Unicode
+string that contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS
+name</a> of the computer making the request.</p><p><b>Authenticator: </b>A pointer to a <a href="76c93227-942a-4687-ab9d-9d972ffabdab" data-linktype="relative-path">NETLOGON_AUTHENTICATOR</a>
+structure, as specified in section 2.2.1.1.5, that contains the encrypted logon
+<a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b505ab37-868d-426c-bb19-af21e675e0b8" data-linktype="relative-path">credential</a> and a time
+stamp.</p><p><b>ReturnAuthenticator: </b>A pointer to a <b>NETLOGON_AUTHENTICATOR</b>
+structure, as specified in section 2.2.1.1.5, that contains the server return <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e72a2c02-84a2-4ce3-b66f-86f725642dc3" data-linktype="relative-path">authenticator</a>.</p><p><b>ClearNewPassword: </b>A pointer to an <a href="52d5bd86-5caf-47aa-aae4-cadf7339ec83" data-linktype="relative-path">NL_TRUST_PASSWORD</a>
+structure, as specified in section 2.2.1.3.7, that contains the new password encrypted<a id="Appendix_A_Target_181"></a><a aria-label="Product behavior note 181" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_181" data-linktype="relative-path">&lt;181&gt;</a> as specified in <a href="b348c16e-5cdb-4414-876d-e8b0e12fbae0" data-linktype="relative-path">Calling
+NetrServerPasswordSet2 (section 3.4.5.2.5)</a>.</p><p><b>Return Values: </b>The method returns 0x00000000 on
+success; otherwise, it returns a nonzero error code.</p><p>On receiving this call, the server MUST perform the
+following validation steps:</p><ul><li><p><span><span> 
+</span></span>Apply Common Error Processing Rule A, specified in section <a href="2d776bfc-e81f-4c8f-9da8-4c2920f65413" data-linktype="relative-path">3</a>.</p>
+</li><li><p><span><span> 
+</span></span>Using the <i>ComputerName</i> for the secure channel to find the
+corresponding record in the ClientSessionInfo table, verify the <i>Authenticator</i>
+parameter (section <a href="da7acaa3-030b-481e-979b-f58f89389806" data-linktype="relative-path">3.1.4.5</a>).
+If the <i>Authenticator</i> parameter is valid, compute the <i>ReturnAuthenticator</i>
+parameter returned (section 3.1.4.5). Otherwise, the server MUST return
+STATUS_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Apply Common Error Processing Rule B, specified in section 3, to
+the <i>PrimaryName</i> parameter.</p>
+</li></ul><p>If the server <i>RefusePasswordChange</i> variable (section <a href="b8d168ac-ebb6-42f4-bfb2-7a84377f2cbc" data-linktype="relative-path">3.5.1</a>) is set and the <i>SecureChannelType</i>
+is WorkstationSecureChannel, the server MUST return STATUS_WRONG_PASSWORD.</p><p>The server MUST decrypt the new password supplied in the <i>ClearNewPassword</i>
+parameter, by using the negotiated encryption algorithm (determined by bits C,
+O, or W, respectively, in the <b>NegotiateFlags</b> member of the <b>ClientSessionInfo</b>
+table entry for <i>ComputerName</i>) and the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_4f67a585-fb00-4166-93e8-cf4abca8226d" data-linktype="relative-path">session key</a> established as
+the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8bf79983-1325-42db-8e2c-520c8ab2ae74" data-linktype="relative-path">decryption</a> key. The
+NTOWFv1 (as specified in NTLM v1 Authentication in <a href="../ms-nlmp/b38c36ed-2804-4868-a9ff-8dd3182128e4" data-linktype="relative-path">[MS-NLMP]</a>
+section <a href="../ms-nlmp/464551a8-9fc4-428e-b3d3-bc5bfb2e73a5" data-linktype="relative-path">3.3.1</a>)
+of the cleartext password MUST be computed.</p><p>The server MUST compute or retrieve (see unicodePwd, <a href="../ms-ada3/4517e835-3ee6-44d4-bb95-a94b6966bfb0" data-linktype="relative-path">[MS-ADA3]</a>
+section <a href="../ms-ada3/71e64720-be27-463f-9cc5-117f4bc849e1" data-linktype="relative-path">2.332</a>)
+the NTOWFv1 of the current client machine password, which is stored as the
+result of the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9a5d11c7-eea9-4217-b9a8-478c6786e9e8" data-linktype="relative-path">OWF</a> on the
+clear text password for the AccountName. If the current password matches the
+new password, success is returned to the client, but no actual password change
+is performed. </p><p>The server MUST change the SharedSecret abstract value to
+the new password supplied in the <i>ClearNewPassword</i> parameter. If the
+value of the <b>PasswordVersionPresent</b> field of the ClearNewPassword.Buffer
+parameter is equal to 0x02231968, the server MUST change the <b>TrustPasswordVersion</b>
+abstract value to the value of the <b>PasswordVersionNumber</b> field of the
+ClearNewPassword.Buffer parameter. See section <a href="cba0e87e-b91f-411b-9be8-6fd321e126b7" data-linktype="relative-path">2.2.1.3.8</a> for more details
+about the type of the <i>ClearNewPassword</i> parameter.</p><p>This method SHOULD only be called by a machine that has
+established a secure channel with the server.</p><p>This method also returns errors based on Common Error
+Processing Rule D, specified in section 3.</p></div>

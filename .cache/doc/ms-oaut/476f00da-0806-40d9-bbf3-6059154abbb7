@@ -1,0 +1,109 @@
+<div class="content"><p> </p><p>The Bind method retrieves <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_fb6a1829-c102-482c-902f-51c197b22860" data-linktype="relative-path">automation type description</a></span>
+server instances and related structures that provide access to a method,
+property or data member whose name corresponds to a specified string.</p><dl>
+<dd>
+<div><pre> HRESULT Bind(
+   [in] LPOLESTR szName,
+   [in] ULONG lHashVal,
+   [in] WORD wFlags,
+   [out] ITypeInfo** ppTInfo,
+   [out] DESCKIND* pDescKind,
+   [out] LPFUNCDESC* ppFuncDesc,
+   [out] LPVARDESC* ppVarDesc,
+   [out] ITypeComp** ppTypeComp,
+   [out] DWORD* pReserved
+ );
+</pre></div>
+</dd></dl><p><b>szName: </b>MUST be set to a string.</p><p><b>lHashVal: </b>MUST be set to the hash value that
+corresponds to the value of <i>szName</i> (as specified in section <span><a href="7a8ed4c3-14a4-433c-baa5-b6ec88135352" data-linktype="relative-path">2.2.51</a></span>)
+or 0. Whether 0 or a computed hash value is specified for this argument, the
+server MUST return the same values in <i>ppTInfo</i>, <i>pDescKind</i>, <i>ppFuncDesc</i>,
+<i>ppVarDesc</i>, and <i>ppTypeComp</i>.</p><p><b>wFlags: </b>MUST be set to a value of the <span><a href="a0d3598d-a3ee-4401-87fd-17a7031b0b9a" data-linktype="relative-path">INVOKEKIND</a></span>
+enumeration, as specified in section 2.2.14, or 0.</p><p><b>ppTInfo: </b>MUST be set to a reference to the <span><a href="99504cf9-16d8-401e-a873-83b85d1ee4aa" data-linktype="relative-path">ITypeInfo
+server</a></span> instance that corresponds to the element whose name matches
+the value of <i>szName</i> or NULL, as specified in sections <span><a href="3ca3ffe3-1f95-4715-9b54-574a300ffd88" data-linktype="relative-path">3.5.4.1.2</a></span>
+and <span><a href="ef05bc9b-062d-467b-ad88-0f19e3e545f6" data-linktype="relative-path">2.2.50</a></span>.
+MUST be set to NULL if <i>szName</i> does not match the name of any element in
+the binding context (see section <span><a href="cc88e625-4b3a-4cf9-8966-26bdc913f62d" data-linktype="relative-path">3.5.4.1.1</a></span>).</p><p><b>pDescKind: </b>MUST be set to one of the following
+values of the <span><a href="a7d2404b-9934-4fcc-a69b-d396fb51141a" data-linktype="relative-path">DESCKIND
+enumeration (section 2.2.22)</a></span>:</p><ul><li><p><span><span> 
+</span></span>MUST be set to DESCKIND_FUNCDESC if the values of <i>szName</i>
+and <i>wFlags</i> specify a method or property accessor method in the binding
+context of the <span><a href="7894019f-de1e-455e-b2aa-3b899c2e50f6" data-linktype="relative-path">ITypeComp server</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>MUST be set to DESCKIND_VARDESC if the values of <i>szName</i>
+and <i>wFlags</i> specify a data member of an enumeration, module, or <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_544446d5-79ab-4b08-85c4-214f1b64fdf2" data-linktype="relative-path">ODL
+dispinterface</a></span> in the binding context of the ITypeComp server, or if
+the binding server is an <span><a href="5daecf67-bc6e-4e17-bcf8-797bdba1748b" data-linktype="relative-path">ITypeLib server</a></span> and
+<i>szName</i> specifies the name of an appobject <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_670b0ee2-d101-41b0-ac77-6ac7dbeee7dc" data-linktype="relative-path">coclass</a></span> in the
+binding context of the ITypeComp server.</p>
+</li><li><p><span><span> 
+</span></span>MUST be set to DESCKIND_TYPECOMP if the value of <i>szName</i>
+specifies an enumeration or module in the binding context of the ITypeComp
+server.</p>
+</li><li><p><span><span> 
+</span></span>MUST be set to DESCKIND_IMPLICITAPPOBJ if the binding server is
+an ITypeLib server, the value of <i>szName</i> specifies an element in the
+binding context of an appobject coclass, and the appobject coclass is in the
+binding context of the ITypeComp server.</p>
+</li><li><p><span><span> 
+</span></span> Otherwise, MUST be set to DESCKIND_NONE.</p>
+</li></ul><p><b>ppFuncDesc: </b>MUST be set to a FUNCDESC that
+describes the method or property whose name matches the value of <i>szName</i>,
+if <i>pDescKind</i> is DESCKIND_FUNCDESC. Otherwise, MUST be set to NULL.</p><p><b>ppVarDesc: </b>MUST be set to a value that is
+specified by the value of <i>pDescKind</i>.</p><ul><li><p><span><span> 
+</span></span>DESCKIND_VARDESC: MUST be set to a VARDESC that describes a data
+member of an enumeration, module, or ODL dispinterface if the name of the data
+member matches <i>szName</i>.</p>
+</li><li><p><span><span> 
+</span></span>DESCKIND_IMPLICITAPPOBJ: MUST be set to a VARDESC that describes
+the appobject coclass whose binding context contains a member whose name
+matches <i>szName</i>.</p>
+</li><li><p><span><span> 
+</span></span>DESCKIND_FUNCDESC, DESCKIND_TYPECOMP, DESCKIND_NONE: MUST be set
+to NULL. </p>
+</li></ul><p><b>ppTypeComp: </b>MUST be set to a reference to an
+ITypeComp server instance that provides access to the binding context of the
+bound element, if <i>pDescKind</i> is DESCKIND_TYPECOMP or
+DESCKIND_IMPLICITAPPOBJ. Otherwise, MUST be set to NULL.</p><p><b>pReserved: </b>MUST be set to 0.</p><p><b>Return Values: </b>The method MUST return
+information in an HRESULT data structure, which is defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions: </p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD does
+not match a value in the following table, a fatal failure occurred.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD
+matches a value in the following table, a failure occurred. </p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8002802C</p>
+  <p>TYPE_E_AMBIGUOUSNAME</p>
+  </td>
+  <td>
+  <p>The values of <i>szName</i> and <i>wFlags</i> match
+  more than one element in the binding context. See [MS-ERREF].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80028CA0</p>
+  <p>TYPE_E_TYPEMISMATCH</p>
+  </td>
+  <td>
+  <p>The value of <i>szName</i> matched a single element in
+  the binding context, but the <b>INVOKEKIND</b> value that is associated with
+  that element did not match the value of <i>wFlags</i>. See [MS-ERREF].</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p> </p></div>

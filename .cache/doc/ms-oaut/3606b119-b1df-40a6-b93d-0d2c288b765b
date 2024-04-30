@@ -1,0 +1,88 @@
+<div class="content"><p> </p><p>The ComputeHash algorithm requires two externally specified
+values:</p><ol><li><p><span>    </span>A string of no
+more than 255 characters, converted to the ANSI code page as specified in <span><a href="8ba9784a-29b8-471a-a669-e493e5f28326" data-linktype="relative-path">2.2.50.2</a></span>.</p>
+</li><li><p><span>    </span>A <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_c7f99c66-592f-4053-b62a-878c189653b6" data-linktype="relative-path">language
+code identifier (LCID)</a></span> that specifies the locale ID associated with
+the string.</p>
+</li></ol><p>The ComputeHash method uses the named constants defined in
+the <span><a href="382297c6-fcb1-4711-9249-79d31e161545" data-linktype="relative-path">LocaleNames (section 2.2.51.4)</a></span>
+and <span><a href="0dd943a0-c4c0-4140-abb9-e6e6e45f307b" data-linktype="relative-path">PrimaryLookupTables (section 2.2.51.5)</a></span>
+sections.</p><p>Use alternative hash function if the locale ID uses
+DBCS-encoded strings.</p><dl>
+<dd>
+<div><pre> SET PrimaryLocale to the bitwise AND of LocaleID and 0x000003FF
+  
+ IF PrimaryLocale is LocaleChinese 
+     OR PrimaryLocale is LocaleJapanese 
+     OR PrimaryLocale is LocaleKorean THEN
+  
+     CALL ComputeHashDBCS 
+         WITH LocaleID, Name 
+         RETURNING HashValue
+     RETURN HashValue as a 32-bit unsigned integer
+  
+ ENDIF
+  
+ COMMENT  Set LookupTable and Encoding Mask based on Locale ID.
+  
+ CASE LocaleID OF
+     LocaleRussian: SET LookupTable to Eur_English_1251
+                    SET EncodingMask to 0x00300000
+     LocaleGreek:   SET LookupTable to WGreek
+                    SET EncodingMask to 0x00800000
+     LocaleIceland: SET LookupTable to WIceland
+                    SET EncodingMask to 0x00900000
+     LocaleTurkish: SET LookupTable to WTurkish
+                    SET EncodingMask to 0x00A00000
+     LocaleNorway:  SET LookupTable to WNorwegian
+                    SET EncodingMask to 0x00B00000
+     LocaleIreland: SET LookupTable to WEngIreland
+                    SET EncodingMask to 0x00C00000
+     LocaleHebrew:  SET LookupTable to WHebrew
+                    SET EncodingMask to 0x00E00000
+     LocaleCzech:   SET LookupTable to Eur_English_1250
+                    SET EncodingMask to 0x00200000
+     LocaleHungary: SET LookupTable to Eur_English_1250
+                    SET EncodingMask to 0x00200000
+     LocalePoland:  SET LookupTable to Eur_English_1250
+                    SET EncodingMask to 0x00200000
+     LocaleSlovak:  SET LookupTable to Eur_English_1250
+                    SET EncodingMask to 0x00200000
+     OTHERS:        IF LocaleID is LocaleFarsi 
+                        OR the lower byte of LocaleID is 
+                             SecondaryLocaleArabic THEN
+                          SET LookupTable to WArabic
+                            SET EncodingMask to 0x00D00000
+                    ELSE
+                        SET LookupTable to US_English_1252
+                        SET EncodingMask to 0x00100000
+                    ENDIF
+ ENDCASE
+  
+ SET HashAccumulator to 0x0DEADBEE
+  
+ COMMENT  Step through the characters in the string, 
+               multiplying the accumulator by 37 at each step 
+               and adding a value specified by the value of the
+              character.
+  
+ FOR each Character in Name
+  
+     COMPUTE HashAccumulator as HashAccumulator multiplied by 37,
+         allowing unsigned 32 bit overflows
+     COMPUTE HashAcculumator as LookupTable (Character) added to
+         HashAccumulator, allowing unsigned 32 bit overflows
+  
+ END FOR
+  
+ COMPUTE HashAccumulator as the remainder when HashAccumulator is
+     divided by 0x0001003F
+ COMPUTE HashAccumulator as the bitwise AND of HashAccumulator and
+     0x0000FFFF
+ COMPUTE HashAccumulator as the bitwise OR of HashAccumulator and
+     EncodingMask
+  
+ RETURN HashAccumulator as a 32-bit unsigned integer
+  
+</pre></div>
+</dd></dl></div>

@@ -1,0 +1,32 @@
+<div class="content"><p>The Resolve method, given another event trace data provider
+or a collection of event trace data providers, updates the properties of the
+original provider with information from one of the passed-in provider(s). If
+only one provider is passed-in, information from that provider is used. If
+multiple providers are passed-in, information is used from the first provider
+in the collection that has the same value for the ITraceDataProvider::Guid
+property as the original ITraceDataProvider. The Guid in this context refers to
+the COM interface property which is used as a <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_1a61d947-4d31-4365-b2b4-5249de682b56" data-linktype="relative-path">PLA-UID</a> and does not comply
+with the semantics of <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>
+specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.
+</p><p>If no provider from the passed-in collection has the same
+PLA-UID, the original provider is not updated. If the original provider is
+updated, the DisplayName property of the original provider is overwritten by
+the DisplayName of the passed-in provider, and the ValueMapItems in the Level,
+KeywordsAny, and KeywordsAll properties of the passed-in provider replace the
+ValueMapItems for the existing Level, KeywordsAny, and KeywordsAll properties
+of the original provider. However, actual value of the Level, KeywordsAny, and
+KeywordsAll properties are not overwritten. Consequently, the existing settings
+are not lost; that is, if the level is 5, the symbolic names of all the levels
+(which are stored as ValueMapItems) are added, but the value of the level
+remains as 5. For ValueMaps, see section <a href="b028335d-97c1-4b1c-bc07-8748d4956b8a" data-linktype="relative-path">3.2.4.18</a>.</p><p>Because only one provider is used to update the original
+provider, there is no possibility for conflicting or duplicate properties. </p><dl>
+<dd>
+<div><pre> HRESULT Resolve(
+   [in] IDispatch* pFrom
+ );
+</pre></div>
+</dd></dl><p><b>pFrom: </b>Supplies a pointer to a provider or
+provider collection object that is used to resolve the properties.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT with the severity bit clear on success as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>;
+otherwise, it MUST return one of the errors as defined in <a href="590752a5-ddc3-49e4-9914-147a90bd0193" data-linktype="relative-path">2.2.1</a> or one of the errors
+as defined in [MS-ERREF] section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p></div>

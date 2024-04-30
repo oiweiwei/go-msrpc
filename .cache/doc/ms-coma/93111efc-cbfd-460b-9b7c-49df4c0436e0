@@ -1,0 +1,20 @@
+<div class="content"><p>The eComponentType enumeration is used to select a component
+<a href="3f01a312-3391-4109-a96e-95358babf191#gt_2ac202a1-b576-4c77-9b92-9702bb8b0874" data-linktype="relative-path">bitness</a> when multiple
+bitnesses might exist for the same component. </p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   eCT_UNKNOWN = 0x00000000,
+   eCT_32BIT = 0x00000001,
+   eCT_64BIT = 0x00000002,
+   eCT_NATIVE = 0x00001000
+ } eComponentType;
+</pre></div>
+</dd></dl><p><b>eCT_UNKNOWN:  </b> The component bitness is
+unknown to the client. The server MUST select the native bitness of the
+component if it exists; otherwise, the server MUST select the non-native
+bitness of the component.</p><p><b>eCT_32BIT:  </b> The server MUST select the 32-bit
+bitness of the component.</p><p><b>eCT_64BIT:  </b> The server MUST select the 64-bit
+bitness of the component.</p><p><b>eCT_NATIVE:  </b> The server MUST select the
+native bitness (see section <a href="bb9c1f3a-5ff3-40a4-bec5-8ff28007ce2d" data-linktype="relative-path">3.1.4.4</a>)
+of the component.</p></div>

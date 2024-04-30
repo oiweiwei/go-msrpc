@@ -1,0 +1,179 @@
+<div class="content"><p> </p><p>The TASK_USER_CRED structure contains user <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_b505ab37-868d-426c-bb19-af21e675e0b8" data-linktype="relative-path">credentials</a></span>
+and is passed to the server during <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_5d98b0b1-7545-4aff-b4b3-786ed48911a3" data-linktype="relative-path">task registration</a></span>,
+as specified in section <span><a href="849c131a-64e4-46ef-b015-9d4c599c5167" data-linktype="relative-path">3.2.5.4.2</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _TASK_USER_CRED {
+   [string] const wchar_t* userId;
+   [string] const wchar_t* password;
+   DWORD flags;
+ } TASK_USER_CRED;
+</pre></div>
+</dd></dl><p><b>userId:</b>  Contains the user name
+identifying the account under which the <span><a href="efc35aa8-1f40-4609-869a-107dd31bbed0#gt_740b149e-e6b4-49f5-bc16-e03ff41def7f" data-linktype="relative-path">task</a></span> can execute.
+The user name is a string recognized by Windows authentication, as specified in
+<span><a href="../ms-authsod/953d700a-57cb-4cf7-b0c3-a64f34581cc9" data-linktype="relative-path">[MS-AUTHSOD]</a></span>
+section <span><a href="../ms-authsod/5bb3e0c3-f6c1-4e2c-8c6d-0f54553b4ed9" data-linktype="relative-path">1.1.1.2</a></span>.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p><p><b>password:</b>  Contains the password
+associated with the user specified in the preceding userId field above,
+represented as a string. For information about security considerations, see
+section <span><a href="5a141af0-ffb1-452e-8739-2dbece0d978e" data-linktype="relative-path">5.1</a></span>.</p><p><b>flags:</b>  The flags field contains
+individual bit flags that are structured as shown in the following table. The
+client MUST set the undefined bits to 0. The undefined bits are ignored on
+receipt.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>D</p>
+  <p>credFlagDefault</p>
+  </td>
+  <td>
+  <p>If set to 1, the server can use these credentials if
+  no other credentials are provided. If set to 0, the server can use these
+  credentials instead of the credentials specified in the task configuration.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

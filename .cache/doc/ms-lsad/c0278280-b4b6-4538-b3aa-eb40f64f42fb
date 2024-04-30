@@ -1,0 +1,16 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c0278280-b4b6-4538-b3aa-eb40f64f42fb" data-linktype="external">msdn link</a></p><p>The LSAPR_PRIVILEGE_ENUM_BUFFER structure specifies a
+collection of <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privilege</a>
+definitions of type <a href="f36d4737-5b2f-4bc0-8f29-e7b4c71b7401" data-linktype="relative-path">LSAPR_POLICY_PRIVILEGE_DEF</a>.
+</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_PRIVILEGE_ENUM_BUFFER {
+   unsigned long Entries;
+   [size_is(Entries)] PLSAPR_POLICY_PRIVILEGE_DEF Privileges;
+ } LSAPR_PRIVILEGE_ENUM_BUFFER,
+  *PLSAPR_PRIVILEGE_ENUM_BUFFER;
+</pre></div>
+</dd></dl><p><b>Entries:</b>  This field contains the
+number of privileges in the structure.</p><p><b>Privileges:</b>  This field contains a
+set of structures that define the privileges, as specified in section 2.2.8.1.
+If the <b>Entries</b> field has a value other than 0, this field MUST NOT be
+NULL.</p></div>

@@ -1,0 +1,143 @@
+<div class="content"><p> </p><p>The <b>FAX_StartMessagesEnumEx (Opnum 90)</b> method is
+called by the client. On success, the server MUST start enumerating messages in
+the specified <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9394bf31-7db9-433c-8d3d-ee6a37bf0848" data-linktype="relative-path">archive</a></span> folder.</p><p>Protocol version FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), and FAX_API_VERSION_2 (0x00020000) fax servers
+SHOULD NOT implement this call. The fax client MUST NOT call this method if the
+protocol version reported by the server is FAX_API_VERSION_0 (0x00000000),
+FAX_API_VERSION_1 (0x00010000), or FAX_API_VERSION_2 (0x00020000). For more
+information, see <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>).</p><p>A fax client application calls the <b>FAX_StartMessagesEnumEx</b>
+to start enumerating messages from the archives. Each enumerated message has
+more information than those that are returned by the <b>FAX_StartMessagesEnum</b>
+(section <span><a href="702db5ea-5293-46f3-b11e-ad8f477bbe26" data-linktype="relative-path">3.1.4.1.98</a></span>) method,
+namely whether or not the message has a cover page, the type of receipts
+selected, the email address for receipts, and the flags from <b>FAX_ENUM_MSG_FLAGS</b>
+(section <span><a href="bb8ceb40-6319-497c-86d5-3de1436af829" data-linktype="relative-path">2.2.53</a></span>)
+enumeration.</p><p>The server MUST validate that the client&#39;s fax user account
+has access to the server. If this enumeration is attempted for all accounts,
+the server MUST validate that the client can query all accounts. On success,
+the server MUST create an enumeration handle and pass it back to the client so
+that the client can use the same enumeration handle for enumerating messages.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_StartMessagesEnumEx(
+   [in] handle_t hFaxHandle,
+   [in] BOOL fAllAccounts,
+   [in, string, unique] LPCWSTR lpcwstrAccountName,
+   [in] FAX_ENUM_MESSAGE_FOLDER Folder,
+   [in] DWORD level,
+   [out, ref] PRPC_FAX_MSG_ENUM_HANDLE lpHandle
+ );
+</pre></div>
+</dd></dl><p><b>hFaxHandle: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> or <b>FAX_ConnectionRefCount</b> (section
+<span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>)
+method call used to connect to the fax server.</p><p><b>fAllAccounts: </b>A flag indicating whether the
+messages for all accounts are enumerated. If this parameter is nonzero, the
+messages for all accounts are enumerated; otherwise, the <i>lpcwstrAccountName</i>
+parameter indicates which account is enumerated.</p><p><b>lpcwstrAccountName: </b>A pointer to a constant
+null-terminated character string that indicates which account to enumerate. If
+this value is set to NULL, the current account&#39;s jobs are enumerated.
+Cross-account enumeration is currently not supported. The value for this
+parameter can be obtained using the <b>FAX_EnumAccounts</b> (section <span><a href="fcd3c4ed-d64b-465e-b875-dd26d1bf3567" data-linktype="relative-path">3.1.4.1.18</a></span>)
+method.</p><p><b>Folder: </b>A <b>FAX_ENUM_MESSAGE_FOLDER</b> (section
+<span><a href="1c7a6f3f-1e5b-40a2-bc48-0729f3a6cf0d" data-linktype="relative-path">2.2.2</a></span>)
+enumeration that indicates the type of archive where the message resides. The
+FAX_MESSAGE_FOLDER_QUEUE value is invalid for this parameter.</p><p><b>level: </b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that indicates the structure to return. This value MUST be set to 1.</p><p><b>lpHandle: </b>A pointer to an enumeration handle
+return value.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section  <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. This error code is returned under
+  any of the following conditions:</p>
+  <p><span>§<span>  
+  </span></span>The caller does not have the required basic access rights to
+  execute this call (<b>ALL_FAX_USERS_ACCESS_RIGHTS</b>).</p>
+  <p><span>§<span>  
+  </span></span>The client&#39;s fax user account does not have access to query
+  messages for all accounts. The value specified for the <i>fAllAccounts</i>
+  parameter is not equal to zero, and the caller does not have the <b>FAX_ACCESS_QUERY_ARCHIVES</b>
+  rights.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. This error code is
+  returned under any of the following conditions:</p>
+  <p><span>§<span>  
+  </span></span>The value specified for the level argument is not equal to 1.</p>
+  <p><span>§<span>  
+  </span></span>The value specified for the <i>Folder</i> argument is not equal
+  to FAX_MESSAGE_FOLDER_INBOX or FAX_MESSAGE_FOLDER_SENTITEMS.</p>
+  <p><span>§<span>  
+  </span></span>The account name specified for the <i>lpcwstrAccountName</i>
+  argument appears valid (pointer is not NULL), but the account name is not a
+  valid fax account name.</p>
+  <p><span>§<span>  
+  </span></span>The account name specified by the <i>lpcwstrAccountName</i>
+  argument is a valid account name, but it refers to a different user than the
+  caller.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  <p>0x00000103</p>
+  </td>
+  <td>
+  <p>No data is available. There are no messages to be
+  enumerated.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown: </b>No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>A fax client application calls the <b>FAX_StartMessagesEnumEx</b>
+function to start enumerating messages in one of the archives. The enumerated
+messages have more information than those that are returned by <b>FAX_StartMessagesEnum</b>,
+namely, whether it has a cover page, the type of receipts selected, the email
+address for receipts, and the flags from <b>FAX_ENUM_MSG_FLAGS</b>. </p><p>The account name that <i>lpcwstrAccountName</i> indicates MUST
+be in one of the following formats. Any other format is invalid.</p><table><thead>
+  <tr>
+   <th>
+   <p>Format</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&lt;machine_name&gt;\&lt;user_name&gt;</p>
+  </td>
+  <td>
+  <p>For a local user that has machine_name as the local
+  machine&#39;s name.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&lt;domain_name&gt;\&lt;user_name&gt; </p>
+  </td>
+  <td>
+  <p>For a nonlocal user.</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

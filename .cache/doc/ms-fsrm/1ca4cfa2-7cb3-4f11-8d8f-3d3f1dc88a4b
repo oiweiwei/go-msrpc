@@ -1,0 +1,47 @@
+<div class="content"><p>The GetFilter method returns the current value of the
+specified report <b>filter</b> for the report object.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_REPORT | 0x01)] HRESULT GetFilter(
+   [in] FsrmReportFilter filter,
+   [out, retval] VARIANT* filterValue
+ );
+</pre></div>
+</dd></dl><p><b>filter: </b>Contains the value from the <a href="af1c6aeb-ba51-4d9f-965c-b8886c56b8ee" data-linktype="relative-path">FsrmReportFilter (section 2.2.1.2.16)</a>
+enumeration of the <b>filter</b> to get.</p><p><b>filterValue: </b>Pointer to a variable that upon
+completion contains the value of the specified <b>filter</b> for the specified
+report type.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>filter</i> parameter is
+  not a valid FsrmReportFilter (section 2.2.1.2.16) value.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>filterValue</i> parameter
+  is NULL.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>filterValue</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>filter</i> contains a valid FsrmReportFilter
+value.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST set <i>filterValue</i> to the current value
+for the specified report <b>filter</b>.</p></div>

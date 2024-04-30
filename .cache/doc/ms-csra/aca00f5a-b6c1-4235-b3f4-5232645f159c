@@ -1,0 +1,19 @@
+<div class="content"><p>The Certificate Services Remote Administration Protocol
+consists of a set of <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">Distributed
+Component Object Model (DCOM)</a> interfaces, as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>,
+that allow administrative tools to configure the state and policy of a <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">certification authority (CA)</a>
+on a server.</p><p>For a complete understanding of this protocol, familiarity
+with <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_fbe33f73-7a2c-4134-ab9e-7a12c6d01348" data-linktype="relative-path">public key
+infrastructure (PKI)</a> concepts such as asymmetric and symmetric
+cryptography, asymmetric and <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_5d5fbe33-fb23-4288-bf7d-d8bd4593631c" data-linktype="relative-path">symmetric
+encryption</a> techniques, digital certificate concepts, and cryptographic <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a> establishment is
+required. A comprehensive understanding of the X.509 standard, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90590" data-linktype="external">[X509]</a>, is also
+required.</p><p>The Handbook of Applied Cryptography provides an excellent
+introduction to cryptography and PKI concepts. For more information, see <a href="https://go.microsoft.com/fwlink/?LinkId=89841" data-linktype="external">[CRYPTO]</a>. The X.509
+standard, as specified in [X509], provides an excellent introduction to PKI and
+<a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> concepts. <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c0b88116-a183-4cdd-9307-46a4dc125592" data-linktype="relative-path">Certificate revocation</a> and
+status checking provides an excellent introduction to <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_4f22841f-249b-42fb-a31a-5049c00be939" data-linktype="relative-path">certificate revocation lists
+(CRLs)</a> and <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_caac8fa2-5e21-43b9-a3fe-be0819b906bf" data-linktype="relative-path">revocation</a>
+concepts. For more information, see <a href="https://go.microsoft.com/fwlink/?LinkId=90181" data-linktype="external">[MSFT-CRL]</a>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

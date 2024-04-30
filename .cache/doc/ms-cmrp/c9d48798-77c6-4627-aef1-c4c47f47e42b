@@ -1,0 +1,181 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c9d48798-77c6-4627-aef1-c4c47f47e42b" data-linktype="external">msdn link</a></p><p>(Protocol Version 3) The ApiSetResourceDependencyExpression
+method instructs the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+to set the dependency relationship for the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_94e97f15-2f1a-406f-a740-607bb97761ec" data-linktype="relative-path">resource</a> that is identified
+by <i>hResource</i> to the complex dependency, as specified in section <a href="5af0b053-32d0-46b8-bb75-898abc5aa958" data-linktype="relative-path">3.1.1.1.2</a>, using
+dependency expression represented by <i>lpszDependencyExpression</i>. For
+successful completion of the method, the server MUST add the dependency
+information to the nonvolatile <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_93ba0f62-7125-4a3e-ab60-5fd4f504bc8c" data-linktype="relative-path">cluster state</a>.</p><p>Servers MUST maintain complex <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_4dd1909e-098c-4553-9cee-0cbc7c2f6916" data-linktype="relative-path">resource dependencies</a> as
+nonvolatile configuration data in their cluster state.</p><p>The server MUST limit the depth of a resource&#39;s dependency
+tree to 100. </p><p>Dependency expressions are &#34;ANDs of Ors&#34; such as
+(a or b) and (c or d), and so on. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> MUST provide an
+input lpszDependencyExpression that conforms to the following grammar:</p><dl>
+<dd>
+<div><pre> expression:
+       or_expression
+     | &#34;(&#34; or_expression &#34;)&#34;
+     | &#34;(&#34; or_expression &#34;)&#34; &#34;and&#34; and_or_expression
+  
+ or_expression:
+       resource
+     | resource &#34;or&#34; or_expression
+  
+ and_or_expression:
+       &#34;(&#34; or_expression &#34;)&#34;
+     | &#34;(&#34; or_expression &#34;)&#34; &#34;and&#34; and_or_expression
+     | resource
+     | resource &#34;and&#34; and_or_expression
+  
+ resource:
+       &#34;[&#34; resourceID &#34;]&#34;
+     | &#34;[&#34; resourceName &#34;]&#34;
+</pre></div>
+</dd></dl><p>In this grammar, &#34;resourceID&#34; represents the ID of
+a resource, as returned by CLUSCTL_RESOURCE_GET_ID (<a href="ee133cad-deed-4849-b087-a8f0e4bd4f19" data-linktype="relative-path">3.1.4.3.1.8</a>), and
+&#34;resourceName&#34; represents the name of a resource, as returned by
+CLUSCTL_RESOURCE_GET_NAME (<a href="b98d3e92-8958-4e88-9b22-fdc179d7a617" data-linktype="relative-path">3.1.4.3.1.6</a>).</p><p>For example, the following expression indicates that <i>hResource</i>
+will remain online as long as a resource from each of the parenthesized
+expressions remains online.</p><dl>
+<dd>
+<div><pre>  (
+   [a904e1b7-95dd-47f0-9b2e-f1007d92699b]
+   or
+   [ae6fcf48-c42f-4960-a61a-7f1044067668]
+  )
+ and
+  (
+   [c471abc6-e454-482e-8be4-fae084cf799b]
+   or
+   [de976488-82cb-4950-8ce0-1b45e868e058]
+  )
+  
+</pre></div>
+</dd></dl><p>The server MUST fail this method using
+ERROR_INVALID_PARAMETER if the dependency expression does not conform to this
+grammar.</p><p>The server MUST clear the dependency relationship for <i>hResource</i>
+if the null <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a>
+(0x0000) is specified.</p><p>The server MUST fail this method by using one of the
+following errors for any of the error&#39;s associated conditions described as
+follows:</p><ul><li><p><span><span> 
+</span></span>ERROR_INVALID_PARAMETER</p>
+<ul><li><p><span><span>  </span></span><i>hResource&#39;s</i>
+resource ID is present in the dependency expression.</p>
+</li><li><p><span><span>  </span></span>One
+or more of the resources in the dependency expression are not in the same group
+as the resource represented by <i>hResource</i>. </p>
+</li></ul></li><li><p><span><span> 
+</span></span>ERROR_DEPENDENCY_ALREADY_EXISTS</p>
+<ul><li><p><span><span>  </span></span>The
+same resource ID is specified more than once in the dependency expression.</p>
+</li><li><p><span><span>  </span></span>A
+dependency between <i>hResource</i> and a resource in the dependency expression
+already exists.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>ERROR_CIRCULAR_DEPENDENCY</p>
+<ul><li><p><span><span>  </span></span>A
+resource in the dependency expression is dependent on the resource represented
+by <i>hResource</i>. That is, circular dependencies are not permitted.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>ERROR_RESOURCE_ONLINE</p>
+<ul><li><p><span><span>  </span></span><i>hResource</i>
+is in the ClusterResourceOnlinePending state.</p>
+</li><li><p><span><span>  </span></span><i>hResource</i>
+is in the ClusterResourceOnline state and none of the resources in the
+dependency expression are in the ClusterResourceOnline state. </p>
+</li></ul></li></ul><p>The server MUST accept an ApiSetResourceDependencyExpression
+request only if its <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_a93e2fea-3006-4a06-b48f-fdb36d9abac9" data-linktype="relative-path">protocol
+server state</a> is read/write, as specified in section <a href="756547e7-ca64-4b7c-9f1b-2b1fbc6153d3" data-linktype="relative-path">3.1.1</a>.</p><p>The server MUST require that the access level associated
+with the <i>hResource</i> context handle is &#34;All&#34; (section <a href="a249a463-3d3b-4058-abf6-3024d81806a0" data-linktype="relative-path">3.1.4</a>).</p><dl>
+<dd>
+<div><pre> error_status_t ApiSetResourceDependencyExpression(
+   [in] HRES_RPC hResource,
+   [in, string, unique] LPCWSTR lpszDependencyExpression,
+   [out] error_status_t *rpc_status
+ );
+</pre></div>
+</dd></dl><p><b>hResource: </b>An <a href="5a619b4b-0af5-4c7a-b37b-ae2d50755abd" data-linktype="relative-path">HRES_RPC</a> context handle
+that was obtained in a previous <a href="181f8de0-f518-4c5b-b98e-ddb18aa325ce" data-linktype="relative-path">ApiOpenResource</a>, <a href="6595931d-2fe5-4097-9270-f6bada5d9242" data-linktype="relative-path">ApiOpenResourceEx,</a> or <a href="bc6ca940-7177-4bef-9567-ae4a692a2ba5" data-linktype="relative-path">ApiCreateResource</a> method
+call. </p><p><b>lpszDependencyExpression: </b>A pointer to a
+null-terminated Unicode string buffer containing a valid dependency expression.</p><p><b>rpc_status: </b>A 32-bit integer used to indicate
+success or failure. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+runtime MUST indicate, by writing to this parameter, whether the runtime
+succeeded in executing this method on the server. The encoding of the value
+passed in this parameter MUST conform to encoding for comm_status and
+fault_status, as specified in Appendix E of <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>Return Values: </b>The method MUST return the
+following error codes for the specified conditions.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Success.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000006</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The data that is pointed to by the <i>hResource</i>
+  parameter does not represent a valid <b>HRES_RPC</b> context handle.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>See the preceding text for details of when this error
+  can occur.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000423</p>
+  <p>ERROR_CIRCULAR_DEPENDENCY</p>
+  </td>
+  <td>
+  <p>See the preceding text for details of when this error
+  can occur.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000138B</p>
+  <p>ERROR_DEPENDENCY_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>See the preceding text for details of when this error
+  can occur.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000139B</p>
+  <p>ERROR_RESOURCE_ONLINE</p>
+  </td>
+  <td>
+  <p>See the preceding text for details of when this error
+  can occur.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000013CD</p>
+  <p>ERROR_DEPENDENCY_NOT_ALLOWED</p>
+  </td>
+  <td>
+  <p>Cannot depend on quorum resource.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>For any other condition, this method MUST return a value
+that is not one of the values listed in the preceding table. The client MUST
+behave in one consistent, identical manner for all values that are not listed
+in the preceding table. The client SHOULD treat errors specified in section <a href="ca75805a-4b39-4074-8b5b-dbaae6e81b1f" data-linktype="relative-path">3.2.4.6</a> as recoverable
+errors and initiate the reconnect procedure as specified in section 3.2.4.6.</p></div>

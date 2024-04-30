@@ -1,0 +1,12 @@
+<div class="content"><p>The ICertPassage Remote Protocol exposes a <a href="a34f6642-5120-48df-ba4c-e6d671d7a5d0#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">Remote Procedure Call (RPC)</a>
+(as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>)
+interface that allows a <a href="a34f6642-5120-48df-ba4c-e6d671d7a5d0#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a>
+to interact with a <a href="a34f6642-5120-48df-ba4c-e6d671d7a5d0#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">certification
+authority (CA)</a> to request and receive X.509 <a href="a34f6642-5120-48df-ba4c-e6d671d7a5d0#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a> (as specified
+in <a href="https://go.microsoft.com/fwlink/?LinkId=90590" data-linktype="external">[X509]</a>) from the
+CA. The ICertPassage Remote Protocol only provides certificate <a href="a34f6642-5120-48df-ba4c-e6d671d7a5d0#gt_3edb3c30-bb82-4782-9777-19c5006965ef" data-linktype="relative-path">enrollment</a> functionality.
+The Windows Client Certificate Enrollment Protocol (as specified in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>)
+provides a larger set of functionality, including reading CA data and
+configuration information. The certificate enrollment process and protocol
+overview are as specified in [MS-WCCE] section <a href="../ms-wcce/b2e52002-7732-4ecf-977e-3a88016fd316" data-linktype="relative-path">1.3</a>.</p><p>The ICertPassage interface defines one method:
+CertServerRequest (section<b> </b><a href="0c6f150e-3ead-4006-b37f-ebbf9e2cf2e7" data-linktype="relative-path">3.2.4.1.1</a>).</p></div>

@@ -1,0 +1,40 @@
+<div class="content"><p>The EnumActions method enumerates all the actions for the
+file screen object.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_FILESCREEN_BASE | 0x02)] HRESULT EnumActions(
+   [out, retval] IFsrmCollection** actions
+ );
+</pre></div>
+</dd></dl><p><b>actions: </b>Pointer to an <b>IFsrmCollection</b>
+interface pointer (section <a href="171d3b3c-0f4d-40b9-8f48-0e97f9ff17be" data-linktype="relative-path">3.2.4.2.1</a>)
+that, upon completion, contains <b>IFsrmAction</b> pointers of all the actions
+for the specified action. A caller MUST release the collection received when
+the caller is done with it. To get the specific action interface for the
+action, the caller MUST call <b>QueryInterface</b> for the interface
+corresponding to the <b>action type</b> of the actions.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>actions</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>actions</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST create a new <b>IFsrmCollection</b> object
+and populate it with the <i>actions</i> of this file screen object.</p></div>

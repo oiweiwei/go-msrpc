@@ -1,0 +1,14 @@
+<div class="content"><p>The <b>RPC_BranchOfficeJobDataContainer</b> structure is a
+container for an array of <b>RPC_BranchOfficeJobData</b>
+structures (section <a href="6e442be6-2c54-4975-93c6-85895289ba0d" data-linktype="relative-path">2.2.1.15.2</a>).<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD cJobDataEntries;
+   [size_is(cJobDataEntries), unique] 
+     RPC_BranchOfficeJobData JobData[];
+ } RPC_BranchOfficeJobDataContainer;
+</pre></div>
+</dd></dl><p><b>cJobDataEntries:</b> The number of <b>RPC_BranchOfficeJobData</b>
+structures in the <b>JobData</b> member.</p><p><b>JobData:</b> An array of <b>RPC_BranchOfficeJobData</b>
+structures. Each structure in the array contains a single <b>Branch Office
+Print Remote Log Entry</b> (section <a href="1bd61448-db4b-4284-a4b1-8346732402d4" data-linktype="relative-path">3.1.1</a>).</p></div>

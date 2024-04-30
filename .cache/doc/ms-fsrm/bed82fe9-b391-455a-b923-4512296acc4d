@@ -1,0 +1,38 @@
+<div class="content"><p>The ClassificationLastReportPathWithoutExtension (get)
+method retrieves the local directory path and file name where the generated
+report(s) was (were) stored when classification was previously run and returns
+S_OK upon successful completion.</p><dl>
+<dd>
+<div><pre> [propget, id(FSRM_PROPERTY(FSRM_DISPID_CLASSIFICATION_MANAGER | 0x05))] HRESULT ClassificationLastReportPathWithoutExtension(
+   [out, retval] BSTR* lastReportPath
+ );
+</pre></div>
+</dd></dl><p><b>lastReportPath: </b>Pointer to a variable that
+upon completion contains the path and file name where the generated report(s)
+was (were) stored when classification was previously run.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>lastReportPath</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>lastReportPath</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST set <i>lastReportPath</i> to <b>Last
+generated path</b>.</p></div>

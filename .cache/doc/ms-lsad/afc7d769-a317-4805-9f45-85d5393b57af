@@ -1,0 +1,21 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/afc7d769-a317-4805-9f45-85d5393b57af" data-linktype="external">msdn link</a></p><p>The LSA_FOREST_TRUST_COLLISION_RECORD_TYPE type specifies
+the type of a collision record in the message.</p><dl>
+<dd>
+<div><pre> typedef  enum _LSA_FOREST_TRUST_COLLISION_RECORD_TYPE
+ {
+   CollisionTdo = 0,
+   CollisionXref,
+   CollisionOther
+ } LSA_FOREST_TRUST_COLLISION_RECORD_TYPE;
+</pre></div>
+</dd></dl><p><b>CollisionTdo: </b>A <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_035d9ce5-f117-4251-8d4d-127c462ec4a0" data-linktype="relative-path">forest trust</a> record that a
+caller attempted to set on a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted
+domain object</a> has suffered a collision with another trusted domain object
+in <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a>, as
+specified in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>,
+section <a href="../ms-adts/fe369d31-cc17-4ad7-849e-769403bc2c41" data-linktype="relative-path">6.1.6</a>.</p><p><b>CollisionXref: </b>A forest trust record that a
+caller attempted to set on a trusted domain object has suffered a collision
+with a cross-reference object belonging to the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a> to which the server
+belongs, as specified in [MS-ADTS], section 6.1.6.</p><p><b>CollisionOther: </b>A forest trust record that a
+caller attempted to set on a trusted domain object has suffered a collision for
+an unknown reason.</p></div>

@@ -1,0 +1,269 @@
+<div class="content"><p>The SetConfigEntry method is used to set the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA&#39;s</a> persisted
+configuration data that is listed in section <a href="1b69ebd9-a728-4cd2-ba67-fc5c9f2fc7c8" data-linktype="relative-path">3.1.1.10</a>. </p><dl>
+<dd>
+<div><pre> HRESULT SetConfigEntry(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in, string, unique] wchar_t const* pwszNodePath,
+   [in, string, ref] wchar_t const* pwszEntry,
+   [in, ref] VARIANT* pVariant
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.</p><p><b>pwszNodePath: </b>A string value that represents
+the node path for the configuration information. This parameter can be an EMPTY
+string and MUST NOT be NULL.</p><p><b>pwszEntry: </b>A string value that represents the
+name of the leaf entry whose information is being set. This value can be an
+EMPTY string and MUST NOT be NULL.</p><p><b>pVariant: </b>A pointer to <a href="8d5e0fb0-f357-48b2-808c-bb125fd0609e" data-linktype="relative-path">VARIANT</a> that specifies the
+information to set. If this value is EMPTY, the indicated entry MUST be
+deleted.</p><p>The following processing rules apply:</p><ol><li><p><span>    </span>If all arguments
+are provided, the CA MUST update the configuration with the value provided.</p>
+</li><li><p><span>    </span>If the
+configuration value parameter passed in is empty, the indicated configuration
+entry MUST be deleted.</p>
+</li><li><p><span>    </span>For each input
+in the left column of the table below, the CA MUST perform the processing rules
+in the corresponding cell in the right column. Unless otherwise specified
+below, changes to these ADM elements made through this method require a CA
+restart to take effect.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p><a id="_Hlk47350045">Input</a></p>
+   </th>
+   <th>
+   <p>Store information
+   as ADM element</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>pwszNodePath
+  is EMPTY and pwszEntry is &#34;Security&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_Permissions_CA_Security</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszAuthority
+  is EMPTY and pwszNodePath is EMPTY and pwszEntry is &#34;SetupStatus&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_Setup_Status</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath
+  is EMPTY and pwszEntry is &#34;UseDS&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CA_Use_DS</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath
+  is EMPTY and pwszEntry is &#34;CAType&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CA_Type</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath
+  is EMPTY and pwszEntry is &#34;KRAFlags&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CA_KRA_Flags</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszAuthority
+  is EMPTY and pwszNodePath is EMPTY and pwszEntry is &#34;Version&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_Product_Version</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath
+  is EMPTY and pwszEntry is &#34;CommonName&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CA_Common_Name</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath
+  is EMPTY and pwszEntry is &#34;InterfaceFlags&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CA_Interface_Flags</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszEntry is
+  &#34;Provider&#34; and pwszNodePath is &#34;CSP&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CSP_Provider</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszEntry is
+  &#34;ProviderType&#34; and pwszNodePath is &#34;CSP&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CSP_ProviderType</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszEntry is
+  &#34;HashAlgorithm&#34; and pwszNodePath is &#34;CSP&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CSP_Hash_Algorithm</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszEntry is
+  &#34;CNGHashAlgorithm&#34; and pwszNodePath is &#34;CSP&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CSP_CNG_Hash_Algorithm</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath
+  is EMPTY and pwszEntry is &#34;CRLPeriodUnits&#34;</p>
+  </td>
+  <td>
+  <p>The numeric
+  value of the Config_Base_CRL_Validity_Period ADM element.</p>
+  <p>Changing the
+  value with this method MUST affect the validity period of published base <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_4f22841f-249b-42fb-a31a-5049c00be939" data-linktype="relative-path">CRLs</a> (the use of this ADM
+  element in sections <a href="69c1c13a-e270-49ad-9bc1-a94fe019c8c9" data-linktype="relative-path">3.1.4.1.6</a>
+  and <a href="da367279-8fb0-4111-8b8b-19dcf75ae336" data-linktype="relative-path">3.1.4.2.1</a>)
+  immediately, without a CA restart.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath
+  is EMPTY and pwszEntry is &#34;CRLPeriod&#34;</p>
+  </td>
+  <td>
+  <p>The units of
+  time with which the Config_Base_CRL_Validity_Period ADM element is counted.</p>
+  <p>Changing the
+  value with this method MUST affect the validity period of published base CRLs
+  (the use of this ADM element in sections 3.1.4.1.6 and 3.1.4.2.1)
+  immediately, without a CA restart.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath
+  is EMPTY and pwszEntry is &#34;CRLDeltaPeriodUnits&#34;</p>
+  </td>
+  <td>
+  <p>The numeric
+  value of the Config_Delta_CRL_Validity_Period ADM element.</p>
+  <p>Changing the
+  value with this method MUST affect the validity period of published delta
+  CRLs (the use of this ADM element in sections 3.1.4.1.6 and 3.1.4.2.1)
+  immediately, without a CA restart.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath
+  is EMPTY and pwszEntry is &#34;CRLDeltaPeriod&#34;</p>
+  </td>
+  <td>
+  <p>The units of
+  time with which the Config_Delta_CRL_Validity_Period ADM element is counted.</p>
+  <p>Changing the
+  value with this method MUST affect the validity period of published delta
+  CRLs (the use of this ADM element in sections 3.1.4.1.6 and 3.1.4.2.1)
+  immediately, without a CA restart.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath
+  is EMPTY and pwszEntry is &#34;CRLNextPublish&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CA_CRL_Next_Publish</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath
+  is EMPTY and pwszEntry is &#34;CRLDeltaNextPublish&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CA_CRL_Delta_Next_Publish</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath
+  is EMPTY and pwszEntry is &#34;AuditFilter&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CA_Audit_Filter</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszEntry is
+  &#34;Active&#34; and pwszNodePath is &#34;PolicyModules&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CA_Policy_Algorithm_Implementation</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszEntry is
+  &#34;Active&#34; and pwszNodePath is &#34;ExitModules&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CA_Exit_Algorithm_Implementation_List</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath
+  is EMPTY and pwszEntry is &#34;CRLPublicationURLs&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CA_CDP_Publish_To_Base
+  </p>
+  <p>OnNextRestart_Config_CA_CDP_Publish_To_Delta
+  </p>
+  <p>OnNextRestart_Config_CA_CDP_Include_In_Cert</p>
+  <p>OnNextRestart_Config_CA_CDP_Include_In_CRL_Publish_Locations_Extension</p>
+  <p>OnNextRestart_Config_CA_CDP_Include_In_CRL_Freshest_CRL_Extension</p>
+  <p>OnNextRestart_Config_CA_CDP_Include_In_CRL_IDP_Extension</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a id="_Hlk47349926">pwszNodePath is EMPTY and pwszEntry is
+  &#34;CACertPublicationURLs&#34;</a></p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CA_AIA_Include_In_Cert</p>
+  <p>OnNextRestart_Config_CA_CACert_Publish_To</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath
+  is EMPTY and pwszEntry is &#34;CRLAttemptRepublish&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CA_CRL_Attempt_Republish</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath
+  is &#34;PolicyModules\CertificateAuthority_MicrosoftDefault.Policy&#34; and
+  pwszEntry is &#34;RequestDisposition&#34;</p>
+  </td>
+  <td>
+  <p>OnNextRestart_Config_CA_Requests_Disposition</p>
+  </td>
+ </tr></tbody></table>
+</li></ol><p> </p></div>

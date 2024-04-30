@@ -1,0 +1,14 @@
+<div class="content"><p>The <b>SYSTEMTIME_CONTAINER</b> structure is a container for
+a <b>SYSTEMTIME</b> structure (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/2fefe8dd-ab48-4e33-a7d5-7171455a9289" data-linktype="relative-path">2.3.13</a>)
+that specifies a date and time using individual members for the month, day,
+year, weekday, hour, minute, second, and millisecond.<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _SYSTEMTIME_CONTAINER {
+   DWORD cbBuf;
+   SYSTEMTIME* pSystemTime;
+ } SYSTEMTIME_CONTAINER;
+</pre></div>
+</dd></dl><p><b>cbBuf:</b> The size, in bytes, of the buffer
+that is pointed to by the <b>pSystemTime</b> member.</p><p><b>pSystemTime:</b> A pointer to a <b>SYSTEMTIME</b>
+structure.</p></div>

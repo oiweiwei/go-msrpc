@@ -1,0 +1,171 @@
+<div class="content"><p>The packet containing an array of some number,
+&#34;N&#34;, of <a href="65b7bde4-e2a2-40dc-99b6-2312903dec37" data-linktype="relative-path">CERTTRANSDBEXTENSION</a>
+structures (section 2.2.1.9) is specified in the following packet diagrams. The
+actual value of &#34;N&#34; is a separate return parameter for the <a href="f1d53c8f-b586-4485-8764-25a46d9fbe76" data-linktype="relative-path">EnumAttributesOrExtensions</a>
+method (3.2.4.1.11).</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">CERTTRANSDBEXTENSION
+  Structures (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Extension_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p><b>CERTTRANSDBEXTENSION Structures (variable): </b>An
+array of <b>CERTTRANSDBEXTENSION</b> structures. These structures MUST be
+contiguous and MUST NOT be padded. All extension headers MUST appear prior to
+any extension data, which appears in the <b>Extension_Data</b> byte array at
+the end of the packet.</p><dl>
+<dd>
+<p>Each of the structures is marshaled in the following
+manner. The fields in the following diagram correspond to the similarly named
+members of the <b>CERTTRANSDBEXTENSION</b> structure.</p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Extension_obwzName</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Extension_extFlag</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Extension_cbValue</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Extension_obValue</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Extension_obwzName (4
+bytes): </b>The offset from the beginning of the byte array buffer that is
+pointed to by the <b>pb</b> member in the containing <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure
+(section 2.2.1.4) to the string that contains the name of this
+CERTTRANSDBEXTENSION. The offset MUST be <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a> encoded. The
+offset MUST be divisible by 4.</p>
+</dd>
+<dd>
+<p><b>Extension_extFlag (4
+bytes): </b>An integer value that specifies the flags that is associated with
+this extension. The value MUST be little-endian encoded.</p>
+</dd>
+<dd>
+<p><b>Extension_cbValue (4
+bytes): </b>The length of the data in this extension referenced by <b>obValue</b>
+(offset). The value MUST be little-endian encoded.</p>
+</dd>
+<dd>
+<p><b>Extension_obValue (4
+bytes): </b>The offset from the beginning of the byte array buffer that is
+pointed to by the <b>pb</b> member in the containing CERTTRANSBLOB structure to
+where the value for this extension can be found. The offset MUST be divisible by
+4. The offset value MUST be little-endian encoded.</p>
+</dd></dl><p><b>Extension_Data (variable): </b>Contains the data
+for all extensions. Data for individual extensions MUST NOT overlap with any
+other extension data. An extension name data MUST use little-endian encoding
+format for a null-terminated UNICODE string. An extension value data is a byte
+array.</p></div>

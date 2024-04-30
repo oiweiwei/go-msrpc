@@ -1,0 +1,14 @@
+<div class="content"><p>The FsrmFileScreenFlags enumeration defines bitmasks for
+possible states of the file screen objects in the File Server Resource Manager
+Protocol.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmFileScreenFlags
+ {
+   FsrmFileScreenFlags_Enforce = 0x00000001
+ } FsrmFileScreenFlags;
+</pre></div>
+</dd></dl><p><b>FsrmFileScreenFlags_Enforce:  </b>If this bitmask
+is set as part of the <b>fileScreenFlags</b> member of a <b>IFsrmFileScreenBase</b>
+object, the server fails any I/O operation that violates the file screen. If
+not set, the server does not fail operations that violate the file screen but
+still run actions associated with the file screen.</p></div>

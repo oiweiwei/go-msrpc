@@ -1,0 +1,12 @@
+<div class="content"><p>This is a specification of the Remote Administrative
+Interface: WINS protocol. This protocol defines <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a>
+interfaces that provide methods for remotely accessing and administering a
+server for the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">Windows
+Internet Name Service (WINS)</a>. This protocol is a client/server protocol
+that is based on RPC and is used in the configuration, management, and
+monitoring of a <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_f2f9c250-6c9e-445f-b677-376f23f77d87" data-linktype="relative-path">WINS server</a>.</p><p>An application implementing this protocol can remotely
+perform service monitoring of a WINS server as well as creating, updating,
+querying, or deleting database records, performing database <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_345c3de7-adfa-4386-9ba5-f5f572af489c" data-linktype="relative-path">scavenging</a>, and <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replicating</a> the database
+records with other WINS servers.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

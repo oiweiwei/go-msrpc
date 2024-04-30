@@ -1,0 +1,184 @@
+<div class="content"><p> </p><p>This enumeration identifies the global policy configuration
+options. Each configuration option has a merge law that is used to determine
+how to merge the values of these options across stores.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_GLOBAL_CONFIG
+ {
+   FW_GLOBAL_CONFIG_INVALID = 0,
+   FW_GLOBAL_CONFIG_POLICY_VERSION_SUPPORTED = 1,
+   FW_GLOBAL_CONFIG_CURRENT_PROFILE = 2,
+   FW_GLOBAL_CONFIG_DISABLE_STATEFUL_FTP = 3,
+   FW_GLOBAL_CONFIG_DISABLE_STATEFUL_PPTP = 4,
+   FW_GLOBAL_CONFIG_SA_IDLE_TIME = 5,
+   FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING = 6,
+   FW_GLOBAL_CONFIG_IPSEC_EXEMPT = 7,
+   FW_GLOBAL_CONFIG_CRL_CHECK = 8,
+   FW_GLOBAL_CONFIG_IPSEC_THROUGH_NAT = 9,
+   FW_GLOBAL_CONFIG_POLICY_VERSION = 10,
+   FW_GLOBAL_CONFIG_BINARY_VERSION_SUPPORTED = 11,
+   FW_GLOBAL_CONFIG_IPSEC_TUNNEL_REMOTE_MACHINE_AUTHORIZATION_LIST = 12,
+   FW_GLOBAL_CONFIG_IPSEC_TUNNEL_REMOTE_USER_AUTHORIZATION_LIST = 13,
+   FW_GLOBAL_CONFIG_OPPORTUNISTICALLY_MATCH_AUTH_SET_PER_KM = 14,
+   FW_GLOBAL_CONFIG_IPSEC_TRANSPORT_REMOTE_MACHINE_AUTHORIZATION_LIST = 15,
+   FW_GLOBAL_CONFIG_IPSEC_TRANSPORT_REMOTE_USER_AUTHORIZATION_LIST = 16,
+   FW_GLOBAL_CONFIG_ENABLE_PACKET_QUEUE = 17,
+   FW_GLOBAL_CONFIG_MAX = 18
+ } FW_GLOBAL_CONFIG;
+</pre></div>
+</dd></dl><p><b>FW_GLOBAL_CONFIG_INVALID:  </b>This value MUST NOT
+be used. It is defined for simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 0.</p><p><b>FW_GLOBAL_CONFIG_POLICY_VERSION_SUPPORTED:  </b>This
+value is a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+containing the maximum policy version that the server host can accept. The
+version number is two octets in size. The lowest-order octet is the minor
+version; the second-to-lowest octet is the major version. This value is not
+merged and is always a fixed value for a particular firewall and advanced
+security components software build. This symbolic constant has a value of 1.<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="1da2ee70-a6ae-4f76-b08f-fdc25c77d8a0#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p><dl>
+<dd>
+<p>In section 2 structures and section 3 methods of
+this document, some section titles are appended with a schema version to which
+the particular structure or method applies. For example, the appended
+characters “2_20” in the “FW_RULE2_20” structure section name indicates that
+this structure applies to and corresponds with policy version 0x0214, as
+described just ahead. </p>
+</dd>
+<dd>
+<p>Policy version numbers vary depending on the version
+of this protocol to which they apply. They also approximately correspond with
+regular product updates. Policy versions in this protocol are expressed in
+hexadecimal notation that presently consist of the following versions: 0x0200,
+0x0201, 0x020A, 0x0214, 0x0216, 0x0218, 0x0219, 0x021A, 0x021B, 0x021C, 0x021D,
+0x021E, 0x021F, and 0x0220. These policy versions are mapped to specific
+release versions of this protocol. </p>
+</dd>
+<dd>
+<p>The policy versions referenced for the previous
+behavior note citation can be translated into binary versions by considering
+the two-byte hex values as organized with a &#34;high byte&#34; and a
+&#34;low byte&#34;. To obtain the binary version, convert each byte to
+decimal and separate them with a period (&#34;.&#34;). For example, hex
+firewall policy version 0x0214 is mapped to binary version 2.20. Schema
+versions are similar to binary versions except that they contain an underscore
+character (&#34;_&#34;)  instead of a period. The latter is the format that
+is used when appending a schema version reference to a structure name or a
+method name, as described earlier in this section.</p>
+</dd></dl><p><b>FW_GLOBAL_CONFIG_CURRENT_PROFILE:  </b>This value
+is a DWORD and contains a bitmask of the current enforced profiles that are
+maintained by the server firewall host. See <span><a href="7704e238-174d-4a5e-b809-5f3787dd8acc" data-linktype="relative-path">FW_PROFILE_TYPE (section 2.2.2)</a></span>
+for the bitmasks that are used to identify profile types. This value is
+available only in the dynamic store; therefore, it is not merged and has no
+merge law. This symbolic constant has a value of 2.</p><p><b>FW_GLOBAL_CONFIG_DISABLE_STATEFUL_FTP:  </b>This
+value is an on/off switch. If off, the firewall performs stateful File Transfer
+Protocol (FTP) filtering to allow secondary connections. The value is a DWORD;
+0x00000000 means off; 0x00000001 means on. The merge law for this option is to
+let &#34;on&#34; values win. This symbolic constant has a value of 3.</p><p><b>FW_GLOBAL_CONFIG_DISABLE_STATEFUL_PPTP:  </b>This
+value is an on/off switch. If off, the firewall performs stateful
+Point-to-Point Tunneling Protocol (PPTP) analysis. The value is a DWORD;
+0x00000000 means off; 0x00000001 means on. The merge law for this option is to
+let &#34;on&#34; values win. This symbolic constant has a value of 4.</p><p><b>FW_GLOBAL_CONFIG_SA_IDLE_TIME:  </b>This value
+configures the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_67cbf867-7a49-41f3-a68f-37b5f9035acb" data-linktype="relative-path">security association</a></span>
+idle time, in seconds. Security associations are deleted after network traffic
+is not seen for this specified period of time. The value is a DWORD and MUST be
+a value in the range of 300 to 3,600 inclusive. The merge law for this option
+is to let the value of the <b>GroupPolicyRSoPStore</b> win if it is configured;
+otherwise, use the local store value. This symbolic constant has a value of 5.</p><p><b>FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING:  </b>This
+configuration value specifies the preshared key encoding that is used. The
+value is a DWORD and MUST be a valid value from the <span><a href="b9d24a5e-7755-4c60-adeb-e0c7a718f909" data-linktype="relative-path">FW_GLOBAL_CONFIG_PRESHARED_KEY_ENCODING_VALUES</a></span>
+enumeration. The merge law for this option is to let the value of the <b>GroupPolicyRSoPStore</b>
+win if it is configured; otherwise, use the local store value. This symbolic
+constant has a value of 6.</p><p><b>FW_GLOBAL_CONFIG_IPSEC_EXEMPT:  </b>This
+configuration value configures <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span> exceptions.
+The value is a DWORD and MUST be a combination of the valid flags that are
+defined in <span><a href="7daabd9f-74c3-4295-add6-e2402b01b191" data-linktype="relative-path">FW_GLOBAL_CONFIG_IPSEC_EXEMPT_VALUES</a></span>;
+therefore, the maximum value MUST always be FW_GLOBAL_CONFIG_IPSEC_EXEMPT_MAX-1
+for servers supporting a schema version of 0x0201 and
+FW_GLOBAL_CONFIG_IPSEC_EXEMPT_MAX_V2_0-1 for servers supporting a schema
+version of 0x0200. If the maximum value is exceeded when the method
+RRPC_FWSetGlobalConfig (Opnum 4) is called, the method returns
+ERROR_INVALID_PARAMETER. This error code is returned if no other preceding
+error is discovered. The merge law for this option is to let the value of the <b>GroupPolicyRSoPStore</b>
+win if it is configured; otherwise, use the local store value. This symbolic
+constant has a value of 7.</p><p><b>FW_GLOBAL_CONFIG_CRL_CHECK:  </b>This value
+specifies how <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_4f22841f-249b-42fb-a31a-5049c00be939" data-linktype="relative-path">certificate revocation list
+(CRL)</a></span> verification is enforced. The value is a DWORD and MUST be 0,
+1, or 2. A value of 0 disables CRL checking. A value of 1 specifies that CRL
+checking is attempted and that certificate validation fails only if the
+certificate is revoked. Other failures that are encountered during CRL checking
+(such as the revocation URL being unreachable) do not cause certificate
+validation to fail. A value of 2 means that checking is required and that
+certificate validation fails if any error is encountered during CRL processing.
+The merge law for this option is to let the value of the <b>GroupPolicyRSoPStore</b>
+win if it is configured; otherwise, use the local store value. This symbolic
+constant has a value of 8.</p><p><b>FW_GLOBAL_CONFIG_IPSEC_THROUGH_NAT:  </b>This
+value is configured when an IPsec security association can be established with
+a computer across NAT devices. The value is of type <span><a href="69a0da19-6470-4195-8a32-a204566fa813" data-linktype="relative-path">FW_GLOBAL_CONFIG_IPSEC_THROUGH_NAT_VALUES</a></span>
+and MUST contain valid values of the same enumeration type. The merge law for
+this option is to let the value of the <b>GroupPolicyRSoPStore</b> win if it is
+configured; otherwise, use the local store value. This symbolic constant has a
+value of 9.</p><p><b>FW_GLOBAL_CONFIG_POLICY_VERSION:  </b>This value
+contains the policy version of the policy store being managed. This value is
+not merged and therefore, has no merge law. This symbolic constant has a value
+of 10.</p><p><b>FW_GLOBAL_CONFIG_BINARY_VERSION_SUPPORTED:  </b>This
+value contains the binary version of the structures and data types that are
+supported by the server. This value is not merged. In addition, this value is
+always a fixed value for a specific firewall and advanced security component&#39;s
+software build. This symbolic constant has a value of 11. This value identifies
+a policy configuration option that is supported only on servers that have a
+schema version of 0x0201.</p><p><b>FW_GLOBAL_CONFIG_IPSEC_TUNNEL_REMOTE_MACHINE_AUTHORIZATION_LIST: 
+</b>This value represents a list of remote machines that are allowed to send
+and receive traffic through the tunnels which request this access check.
+Machines in the list are allowed through the tunnels. Machines not in the list
+are denied through the tunnels. The list is specified as a security descriptor
+which specifies which <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SIDs</a></span> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/c92a27b1-c772-4fa7-a432-15df5f1b66a1" data-linktype="relative-path">2.4.2.1</a></span>)
+of the remote machines. The value is a <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> string in
+Security Descriptor Definition Language (SDDL) format ([MS-DTYP] section <span><a href="../ms-dtyp/4f4251cc-23b6-44b6-93ba-69688422cb06" data-linktype="relative-path">2.5.1</a></span>).
+This symbolic constant has a value of 12.</p><p><b>FW_GLOBAL_CONFIG_IPSEC_TUNNEL_REMOTE_USER_AUTHORIZATION_LIST: 
+</b>This value represents a list of remote users who are allowed to send and
+receive traffic through the tunnels which request this access check. Users in the
+list are allowed through the tunnels. Users not in the list are denied through
+the tunnels. The list is specified as a security descriptor which specifies
+which SIDs ([MS-DTYP] section 2.4.2.1) of the remote users. The value is a
+Unicode string in SDDL format ([MS-DTYP] section 2.5.1). This symbolic constant
+has a value of 13.</p><p><b>FW_GLOBAL_CONFIG_OPPORTUNISTICALLY_MATCH_AUTH_SET_PER_KM: 
+</b>This value is a DWORD used as an on/off switch. When this option is off,
+keying modules MUST ignore the entire authentication set if they do not support
+all of the authentication suites specified in the set. When this option is on,
+keying modules MUST ignore only the authentication suites that they don’t
+support. For schema versions 0x0200, 0x0201, and 0x020A, this value is invalid
+and MUST NOT be used. This symbolic constant has a value of 14.</p><p><b>FW_GLOBAL_CONFIG_IPSEC_TRANSPORT_REMOTE_MACHINE_AUTHORIZATION_LIST: 
+</b>This value is a Unicode string in Security Descriptor Definition Language
+(SDDL) format ([MS-DTYP] section 2.5.1). The security descriptor describes
+which remote machines are allowed to send and receive traffic secured by
+transport mode connection security rules which request this access check.
+Machines granted access by the security descriptor are allowed to send and
+receive traffic. Machines denied access by the security descriptor are blocked
+from sending and receiving traffic. For schema versions 0x0200, 0x0201, and
+0x020A, this value is invalid and MUST NOT be used. This symbolic constant has
+a value of 15.</p><p><b>FW_GLOBAL_CONFIG_IPSEC_TRANSPORT_REMOTE_USER_AUTHORIZATION_LIST: 
+</b>This value is a Unicode string in Security Descriptor Definition Language
+(SDDL) format. The security descriptor describes which remote users are allowed
+to send and receive traffic secured by transport mode connection security rules
+which request this access check. Users granted access by the security
+descriptor are allowed to send and receive traffic. Users denied access by the
+security descriptor are blocked from sending and receiving traffic. For schema
+versions 0x0200, 0x0201, and 0x020A, this value is invalid and MUST NOT be
+used. This symbolic constant has a value of 16.</p><p><b>FW_GLOBAL_CONFIG_ENABLE_PACKET_QUEUE:  </b>This
+value specifies how scaling for the software on the receive side is enabled for
+both the encrypted receive and clear text forward path for the IPsec tunnel
+gateway scenario (as configured by <span><a href="0d064110-5f2e-4b68-aa63-032c6cd5e4c6" data-linktype="relative-path">FW_CS_RULE (section 2.2.55)</a></span>).
+Use of this option also ensures that the packet order is preserved. The data
+type for this option value is a DWORD and is a combination of flags. A value of
+0x00 indicates that all queuing is to be disabled. A value of 0x01 specifies
+that inbound encrypted packets are to be queued. A value of 0x02 specifies that
+packets are to be queued after decryption is performed for forwarding. This
+symbolic constant has a value of 17.</p><p><b>FW_GLOBAL_CONFIG_MAX:  </b>This value and values
+that exceed this value are not valid and MUST NOT be used. This symbolic
+constant is defined for simplicity in writing IDL definitions and code. It has
+a value of 18.</p><dl>
+<dd>
+<p><b>Note</b>  The value of <b>FW_GLOBAL_CONFIG_MAX</b>
+depends of the number of members in this enumeration, which, in turn, depends
+on the schema version. See the descriptions of the previous enumeration members
+to determine what this value is for each schema version.</p>
+</dd></dl></div>

@@ -1,0 +1,67 @@
+<div class="content"><p> </p><p>The <b>pKT</b> attribute contains the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_e8de88fd-d760-46fa-ad77-76961fa20aea" data-linktype="relative-path">DFS
+metadata</a></span> of the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_133ab305-ad75-4b38-8ec9-40bc0dc3b594" data-linktype="relative-path">domain-based DFS namespace</a></span>
+that the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> represents.</p><p>The DFS metadata has the following format.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BLOBVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BLOBElementCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BLOBElement
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>BLOBVersion (4 bytes): </b>The DFS metadata format
+version stored as an unsigned, 32-bit, <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a></span>
+integer. This MUST always be set to 0.</p><p><b>BLOBElementCount (4 bytes): </b>The number of
+&lt;BLOBElement&gt; elements that immediately follow this field in the DFS
+metadata stored as an unsigned, 32-bit, little-endian integer.</p><p><b>BLOBElement (variable): </b>A variable number of <span><a href="8a9363ac-cab2-43ab-a9d5-49d8183ba318" data-linktype="relative-path">DFSNamespaceElementBLOB</a></span>
+structures, which immediately follow the BLOBElementCount. Each
+DFSNamespaceElementBLOB contains descriptive information about a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0b8086c9-d025-45b8-bf09-6b5eca72713e" data-linktype="relative-path">DFS</a></span>
+site, root, or link. The format and size of each DFSNamespaceElementBLOB depend
+on the information contained in it.</p></div>

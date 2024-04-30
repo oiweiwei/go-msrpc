@@ -1,0 +1,112 @@
+<div class="content"><p>The AuthzrModifySids method (opnum 6) modifies the list of
+SIDs associated with the identified client context.</p><dl>
+<dd>
+<div><pre> DWORD AuthzrModifySids(
+         [in] AUTHZR_HANDLE ContextHandle,
+         [in] AUTHZ_CONTEXT_INFORMATION_CLASS SidClass,
+         [in] [range(1, 65535)] DWORD OperationCount,
+         [in] [size_is(OperationCount)] AUTHZ_SID_OPERATION* pSidOperations,
+         [in] [unique] AUTHZR_TOKEN_GROUPS* pSids);
+  
+</pre></div>
+</dd></dl><p><b>ContextHandle:</b> An AUTHZR_HANDLE structure, as
+defined in section <a href="4c1628c5-8093-471e-a3b8-8437420063ba" data-linktype="relative-path">2.2.1.1</a>,
+representing the client context to be modified.</p><p><b>SidClass:</b> An AUTHZ_CONTEXT_INFORMATION_CLASS
+enumeration value, as defined in section <a href="39749c89-99ca-4058-974d-acfcfe1f7b33" data-linktype="relative-path">2.2.2.1</a>, indicating the
+SID class.</p><p><b>OperationCount:</b> The number of operations to be
+performed.</p><p><b>pSidOperations:</b> A pointer to an array of
+AUTHZ_SID_OPERATION enumeration values that specify the group modifications to
+be made.</p><p><b>pSids:</b> A pointer to an AUTHZR_TOKEN_GROUPS
+structure, as defined in section <a href="22380599-800f-4aab-9053-26c8303bfae0" data-linktype="relative-path">2.2.3.9</a>, specifying the
+groups to be modified.</p><p><b>Return Values:</b></p><p>If the function succeeds, it MUST return 0x00000000.</p><p>If the function fails, it MUST return a nonzero error code
+value.</p><p>On receipt of this message, a RAZA server MUST complete the
+following process:</p><ol><li><p><span>    </span>If the InfoClass
+parameter contains any value other than AuthzContextInfoGroupSids (2) or
+AuthzContextInfoDeviceSids (12), or if the requested modification is not
+supported, the RAZA server MUST return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span>    </span>The RAZA server
+MUST check the first element in the pSidOperations array as indicated by
+OperationCount.</p>
+</li><li><p><span>    </span>If the value
+pointed to by the pSidOperations parameter is AUTHZ_SID_OPERATION_NONE, the
+RAZA server must return 0x00000000.</p>
+</li><li><p><span>    </span>If the value
+pointed to by the pSidOperations parameter is AUTHZ_SID_OPERATION_REPLACE_ALL,
+the RAZA server MUST perform the following operations on the
+ImpersonationAccessToken in the ClientContext identified by the ContextHandle:</p>
+<ol><li><p><span>   
+</span>Map the InfoClass parameter value to the corresponding
+ImpersonationAccessToken array according to the following table, and replace it
+with the pSids Groups member array.</p>
+</li><li><p><span>   
+</span>Return 0x00000000 if the operation is successful; otherwise, return a
+nonzero error code.</p>
+</li></ol></li><li><p><span>    </span>If the value
+pointed to by the pSidOperations parameter is any other value of the <b>AUTHZ_SID_OPERATION</b>
+enumeration, continue with the following process. </p>
+</li></ol><p>The RAZA server MUST complete the following process for each
+element in the pSidOperations array as indicated by OperationCount:</p><ol><li><p><span>    </span>If the element
+is not the first element and the value is AUTHZ_SID_OPERATION_NONE or
+AUTHZ_SID_OPERATION_REPLACE_ALL, the RAZA server MUST return a nonzero error
+code. The case in which the first element is one of these values is described
+earlier.</p>
+</li><li><p><span>    </span>If the element
+is <b>AUTHZ_SID_OPERATION_ADD</b>, search the <b>ImpersonationAccessToken</b>
+array identified according to the following table for a member whose member
+equals the member of the corresponding element of the <b>Groups</b> array in
+the <i>pSids</i> parameter. If one is found, the RAZA server MUST return
+ERROR_GROUP_EXISTS, otherwise, append the corresponding element in the <b>Groups</b>
+array in the <i>pSids</i> parameter to the <b>ImpersonationAccessToken</b>
+array identified according to the following table. If the corresponding element
+of the <b>Groups</b> array in the <i>pSids</i> parameter does not exist, then
+RAZA server MUST fail with ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span>    </span>If the element
+is AUTHZ_SID_OPERATION_DELETE, search the <b>ImpersonationAccessToken</b> array
+that is identified according to the following table for a member whose member
+equals the member of the corresponding element of the Groups array in the pSids
+parameter. If one is found, delete that element from the identified <b>ImpersonationAccessToken</b>
+array and free any memory that was associated with that element. If the search
+fails, the RAZA server MUST return ERROR_NOT_FOUND. If the corresponding
+element of the <b>Groups</b> array in the <i>pSids</i> parameter does not
+exist, then the RAZA server MUST fail with ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span>    </span>If the element
+is AUTHZ_SID_OPERATION_REPLACE, search the ImpersonationAccessToken array
+identified according to the following table for a member whose member equals
+the member of the corresponding element of the Groups array in the pSids
+parameter.</p>
+<ol><li><p><span>   
+</span>If the Sid is located, replace the member of the Sid located in the
+array with the replacement Sid, which is located in the corresponding Groups
+array element in the Groups member of the pSids parameter. If the corresponding
+replacement <b>Groups</b> member does not exist, then the RAZA server MUST fail
+with ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span>   
+</span>If the Sid is not located, it is added using the replacement Sid, which
+is located in the corresponding Groups array element in the Groups member of
+the pSids parameter. If the corresponding replacement <b>Groups</b> member does
+not exist, then the RAZA server MUST fail with ERROR_INVALID_PARAMETER.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>SIDClass parameter value</p>
+   </th>
+   <th>
+   <p>Corresponding ImpersonationAccessToken array</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>AuthzContextInfoGroupSids</p>
+  </td>
+  <td>
+  <p>ImpersonationAccessToken.Sids</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AuthzContextInfoDeviceSids</p>
+  </td>
+  <td>
+  <p>ImpersonationAccessToken.DeviceSids</p>
+  </td>
+ </tr></tbody></table>
+</li></ol></li></ol><p> </p></div>

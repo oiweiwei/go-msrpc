@@ -1,0 +1,12 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c8e910bd-feb5-49a4-939e-2262fe17ad2b" data-linktype="external">msdn link</a></p><p>The SAMPR_DOMAIN_DISPLAY_OEM_USER structure contains a
+subset of user account information sufficient to show a summary of the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_8d10bd9d-392e-431b-8218-742bdac19815" data-linktype="relative-path">account</a> for an account
+management application. This structure exists to support non–Unicode-based
+systems.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_DOMAIN_DISPLAY_OEM_USER {
+   unsigned long Index;
+   RPC_STRING OemAccountName;
+ } SAMPR_DOMAIN_DISPLAY_OEM_USER,
+  *PSAMPR_DOMAIN_DISPLAY_OEM_USER;
+</pre></div>
+</dd></dl><p>For information on each field, see section <a href="4e123dbf-e101-4ade-9fff-f2247ed25a11" data-linktype="relative-path">2.2.8.1</a>.</p></div>

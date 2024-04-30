@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The GetFileSystemProperties method returns property details
+about the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file system</a></span> on the
+current <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT GetFileSystemProperties(
+   [out] VDS_FILE_SYSTEM_PROP* pFileSystemProp
+ );
+</pre></div>
+</dd></dl><p><b>pFileSystemProp: </b>A pointer to a <span><a href="1f2c2038-e967-49f6-9365-c7ac47abb496" data-linktype="relative-path">VDS_FILE_SYSTEM_PROP</a></span>
+structure that, if the operation is successfully completed, receives the
+properties of the file system on the volume.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameter:</p><ul><li><p><span><span> 
+</span></span>Verify that <b>pFileSystemProp</b> is not NULL.</p>
+</li></ul><p>The server MUST populate the VDS_FILE_SYSTEM_PROP structure
+(as specified in section 2.2.1.3.17) that <b>pFileSystemProp</b> references by
+using the properties of the file system on the volume. The server MUST then
+return an HRESULT indicating failure or success.</p><p>If the volume is associated with a removable device and
+there is no media present, then this method MUST return VDS_E_NO_MEDIA.</p><p>If the volume is in the OFFLINE state, then this method
+SHOULD<a id="Appendix_A_Target_126"></a><a aria-label="Product behavior note 126" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_126" data-linktype="relative-path">&lt;126&gt;</a> return
+VDS_E_VOLUME_NOT_ONLINE.</p><p>If the user level access granted to the thread that makes
+this method call does not have sufficient privileges, then this method MUST
+convert the Win32 error ERROR_ACCESS_DENIED to an HRESULT and return the result
+to the calling application.</p></div>

@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/33d7a9e4-c9ca-4021-9627-337d89e656a3" data-linktype="external">msdn link</a></p><p>The LSAPR_TRUSTED_PASSWORD_INFO structure is used to
+communicate <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a>-authentication
+material. The following structure corresponds to the TrustedPasswordInformation
+information class.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_TRUSTED_PASSWORD_INFO {
+   PLSAPR_CR_CIPHER_VALUE Password;
+   PLSAPR_CR_CIPHER_VALUE OldPassword;
+ } LSAPR_TRUSTED_PASSWORD_INFO,
+  *PLSAPR_TRUSTED_PASSWORD_INFO;
+</pre></div>
+</dd></dl><p><b>Password:</b>  The current
+authentication material. See section <a href="782eda77-b82e-4134-87c9-eb5e67f18f06" data-linktype="relative-path">2.2.6.1</a>.</p><p><b>OldPassword:</b>  The version prior to
+the current version of the authentication material. See section 2.2.6.1.</p></div>

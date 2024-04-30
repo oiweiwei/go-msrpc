@@ -1,0 +1,282 @@
+<div class="content"><p>The SetCAProperty method is used to set <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> properties.</p><dl>
+<dd>
+<div><pre> HRESULT SetCAProperty(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] LONG PropId,
+   [in] LONG PropIndex,
+   [in] LONG PropType,
+   [in] CERTTRANSBLOB* pctbPropertyValue
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b> See <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.
+</p><p><b>PropId: </b>A <a href="../ms-dtyp/29d44d70-382f-4998-9d76-8a1fe93e445c" data-linktype="relative-path">LONG</a>
+value that specifies one and exactly one of the following property identifiers.
+The use of PropIds, is as specified in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>
+section <a href="../ms-wcce/7c715f9f-db50-41c3-abfc-0021c6390d4e" data-linktype="relative-path">3.2.1.4.3.2</a>.
+If a value other than one of the listed values is used, the error E_INVALIDARG
+is returned.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0000001a</p>
+  </td>
+  <td>
+  <p>A binary <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a> that contains the
+  CA&#39;s <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_d0a0d050-0dd5-4620-a7f8-7b3a3b71ae09" data-linktype="relative-path">key recovery agent
+  (KRA)</a> <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a>
+  to be added at the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_5101391c-795d-446c-8054-7550eb75d923" data-linktype="relative-path">index</a>
+  specified by <i>PropIndex</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000019</p>
+  </td>
+  <td>
+  <p>The maximum
+  number of KRA certificates available on the CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000018</p>
+  </td>
+  <td>
+  <p>The minimum
+  number of KRAs to use when archiving a <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private key</a>. For more
+  information on KRA usage, see <a href="https://go.microsoft.com/fwlink/?LinkId=90177" data-linktype="external">[MSFT-ARCHIVE]</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000001d</p>
+  </td>
+  <td>
+  <p>A collection
+  of name and <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_aaaf2f1a-0b0a-487e-a0f0-c3510a6091b2" data-linktype="relative-path">OID (1)</a>
+  pairs that identify the templates supported by a CA.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>PropIndex: </b>A LONG value for the index of the
+KRA certificate to set when the provided <i>PropId</i> is 0x1a. For other <i>PropId</i>
+values, it MUST be 0.</p><p><b>PropType: </b>A LONG value that specifies the type
+of the property. This parameter MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PROPTYPE_LONG</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Signed LONG
+  data</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PROPTYPE_BINARY</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Binary data</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PROPTYPE_STRING</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Unicode
+  String data</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pctbPropertyValue: </b>A pointer to <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> that
+specifies the new property value. The format for the value contained in
+CERTTRANSBLOB is specific to the <i>PropId</i> defined as follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value of
+   PropID</p>
+   </th>
+   <th>
+   <p>Format for
+   values in CERTTRANSBLOB</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CR_PROP_KRACERTUSEDCOUNT</p>
+  <p>0x00000018</p>
+  </td>
+  <td>
+  <p>The <b>pb</b>
+  member of CERTTRANSBLOB MUST point to an unsigned integer value (<a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a> format) and
+  the <b>cb</b> member of CERTTRANSBLOB MUST contain the length of the bytes
+  containing the value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_KRACERTCOUNT</p>
+  <p>0x00000019</p>
+  </td>
+  <td>
+  <p>The <b>pb</b>
+  member of CERTTRANSBLOB MUST point to an unsigned integer value
+  (little-endian format) and the <b>cb</b> member of CERTTRANSBLOB MUST contain
+  the length of the bytes containing the value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_KRACERT</p>
+  <p>0x0000001a</p>
+  </td>
+  <td>
+  <p>The <b>pb</b>
+  member of CERTTRANSBLOB MUST point to an ASN.1 DER (as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89924" data-linktype="external">[ITUX690]</a>) encoded
+  byte array of <b>Certificate</b>. The <b>cb</b> member of CERTTRANSBLOB MUST
+  contain the length of the array.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CR_PROP_TEMPLATES</p>
+  <p>0x0000001d</p>
+  </td>
+  <td>
+  <p>As specified
+  in [MS-WCCE] section <a href="../ms-wcce/2b3cd501-90cc-4c97-bba5-6bcf43957d06" data-linktype="relative-path">3.2.1.4.3.2.29</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The following  table defines the values that MUST be set for
+<b>PropIndex</b> and <b>PropType</b> for each one of the property values passed
+via <i>PropID</i>.</p><table><thead>
+  <tr>
+   <th>
+   <p>PropID
+   value </p>
+   </th>
+   <th>
+   <p>PropIndex
+   MUST be </p>
+   </th>
+   <th>
+   <p>PropType
+   MUST be </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0000001a</p>
+  </td>
+  <td>
+  <p>The minimum
+  index is 0.</p>
+  </td>
+  <td>
+  <p>0x00000003</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000019</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000018</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000001d</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr></tbody></table><p>When processing the SetCAProperty method, the server
+determines its behavior based on the requested property ID (<i>PropID</i>
+parameter). All valid property IDs are listed in the preceding table. The CA
+MUST return the error value ERROR_INVALID_PARAMETER if any of the following
+conditions are met:</p><ul><li><p><span><span> 
+</span></span>The value of <i>PropID</i> is not listed in the preceding table,
+or</p>
+</li><li><p><span><span> 
+</span></span>For a given <i>PropID</i> value the <i>PropIndex</i> value does
+not match the required values defined in the preceding table, or</p>
+</li><li><p><span><span> 
+</span></span>For a given <i>PropID</i> value the <i>PropType</i> value does
+not match the required values defined in the preceding table.</p>
+</li></ul><p>The CA server MUST use the property values to modify the
+data (as specified in Abstract Data Model in [MS-WCCE] section <a href="../ms-wcce/a9f2c928-fe9b-4d18-a3ac-b6c910337ab6" data-linktype="relative-path">3.2.1.1</a>)
+maintained by CA as part of the configuration.</p><p>The CA server MUST apply the following processing rules:</p><ol><li><p><span>    </span>The value of
+CR_PROP_KRACERTUSEDCOUNT MUST be between 1 and the current configured value of
+CR_PROP_KRACERTCOUNT property. The initial value for CR_PROP_KRACERTCOUNT
+property MUST be 0.</p>
+</li><li><p><span>    </span>The value to
+which the CR_PROP_KRACERTCOUNT property is being set MUST be less than the
+currently configured value of CR_PROP_KRACERTCOUNT.</p>
+</li><li><p><span>    </span>If the <i>PropIndex</i>
+is greater than or equal to the property CR_PROP_KRACERTCOUNT, then the CA must
+increase the value of CR_PROP_KRACERTCOUNT to the value of <i>PropIndex</i>
+plus 1 each time SetCAProperty (CR_PROP_KRACERT) is called. Else, if the <i>PropIndex</i>
+is less than CR_PROP_KRACERTCOUNT, then the value of CR_PROP_KRACERTCOUNT is
+not changed.</p>
+</li><li><p><span>    </span>When
+SetCAProperty(CR_PROP_TEMPLATES) is called, the CA MUST apply the following
+processing rules:</p>
+<ol><li><p><span>   
+</span>If the pctbPropertyValue, <b>pb </b>member doesn&#39;t have at least two
+separators identified by &#39;\n&#39;, the CA MUST fail the request. The error code
+SHOULD be E_INVALIDARG (0x80070057), as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.
+Otherwise, the CA MUST continue with the following processing rules.</p>
+</li><li><p><span>   
+</span>The pctbPropertyValue, <b>pb </b>member contains the following
+string:&#34;TemplateName1\nTemplateOID1\nTemplateName2\nTemplateOID2\...
+&#34;, where</p>
+<ul><li><p><span><span> 
+</span></span>TemplateName1 is one of the values of the <b>cn</b> <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a> of the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_9c47ca85-9343-4e01-96d4-53d96d3df60e" data-linktype="relative-path">certificate template</a> object
+that is stored in the Certificate_Template column.</p>
+</li><li><p><span><span> 
+</span></span>TemplateOID1 is the value of the msPKI-Template-Cert-Template-OID
+attribute of the certificate template stored in the Certificate_Template
+column.</p>
+</li></ul><p><b>Note</b>  The
+CA MUST ignore the TemplateOID values specified above.</p>
+</li><li><p><span>   
+</span>The <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_3edb3c30-bb82-4782-9777-19c5006965ef" data-linktype="relative-path">enrollment</a>
+services <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c3143e71-2ada-417e-83f4-3ef10eff2c56" data-linktype="relative-path">container</a>
+identified in [MS-WCCE] section <a href="../ms-wcce/3ec073ec-9b91-4bee-964e-56f22a93a28c" data-linktype="relative-path">2.2.2.11.2</a>
+is modified with the following attribute:</p>
+<ul><li><p><span><span> 
+</span></span><b>certificateTemplates</b> attribute: The CA MUST set this
+attribute with the list of template names specified in step 4.2 above.</p>
+</li></ul></li></ol></li></ol></div>

@@ -1,0 +1,9 @@
+<div class="content"><p>The Long_Return structure is used for return codes for calls
+that return only a long value.</p><dl>
+<dd>
+<div><pre> typedef struct _long_Return {
+   long ReturnCode;
+ } long_Return;
+</pre></div>
+</dd></dl><p><b>ReturnCode:</b>  <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a> or Win32 Error
+code. Zero indicates success; any other value indicates failure.</p></div>

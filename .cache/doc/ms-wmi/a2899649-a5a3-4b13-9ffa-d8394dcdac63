@@ -1,0 +1,180 @@
+<div class="content"><p> </p><p>The WBEMSTATUS enumeration gives information about the
+status of an operation. If the server encounters an error condition for which
+this protocol does not explicitly state an error value, the server can return
+any <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">HRESULT</a></span>
+to indicate failure by setting the Severity (S bit) of the HRESULT, as defined
+in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section 2.1.</p><p>The statuses of operations that are not explicitly called
+out in this document but are part of the associated <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> are deemed to be
+local-only and are implementation-specific.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum tag_WBEMSTATUS
+ {
+   WBEM_S_NO_ERROR = 0x00,
+   WBEM_S_FALSE = 0x01,
+   WBEM_S_TIMEDOUT = 0x40004,
+   WBEM_S_NEW_STYLE = 0x400FF,
+   WBEM_S_PARTIAL_RESULTS = 0x40010,
+   WBEM_E_FAILED = 0x80041001,
+   WBEM_E_NOT_FOUND = 0x80041002,
+   WBEM_E_ACCESS_DENIED = 0x80041003,
+   WBEM_E_PROVIDER_FAILURE = 0x80041004,
+   WBEM_E_TYPE_MISMATCH = 0x80041005,
+   WBEM_E_OUT_OF_MEMORY = 0x80041006,
+   WBEM_E_INVALID_CONTEXT = 0x80041007,
+   WBEM_E_INVALID_PARAMETER = 0x80041008,
+   WBEM_E_NOT_AVAILABLE = 0x80041009,
+   WBEM_E_CRITICAL_ERROR = 0x8004100a,
+   WBEM_E_NOT_SUPPORTED = 0x8004100C,
+   WBEM_E_PROVIDER_NOT_FOUND = 0x80041011,
+   WBEM_E_INVALID_PROVIDER_REGISTRATION = 0x80041012,
+   WBEM_E_PROVIDER_LOAD_FAILURE = 0x80041013,
+   WBEM_E_INITIALIZATION_FAILURE = 0x80041014,
+   WBEM_E_TRANSPORT_FAILURE = 0x80041015,
+   WBEM_E_INVALID_OPERATION = 0x80041016,
+   WBEM_E_ALREADY_EXISTS = 0x80041019,
+   WBEM_E_UNEXPECTED = 0x8004101d,
+   WBEM_E_INCOMPLETE_CLASS = 0x80041020,
+   WBEM_E_SHUTTING_DOWN = 0x80041033,
+   E_NOTIMPL = 0x80004001,
+   WBEM_E_INVALID_SUPERCLASS = 0x8004100D,
+   WBEM_E_INVALID_NAMESPACE = 0x8004100E,
+   WBEM_E_INVALID_OBJECT = 0x8004100F,
+   WBEM_E_INVALID_CLASS = 0x80041010,
+   WBEM_E_INVALID_QUERY = 0x80041017,
+   WBEM_E_INVALID_QUERY_TYPE = 0x80041018,
+   WBEM_E_PROVIDER_NOT_CAPABLE = 0x80041024,
+   WBEM_E_CLASS_HAS_CHILDREN = 0x80041025,
+   WBEM_E_CLASS_HAS_INSTANCES = 0x80041026,
+   WBEM_E_ILLEGAL_NULL = 0x80041028,
+   WBEM_E_INVALID_CIM_TYPE = 0x8004102D,
+   WBEM_E_INVALID_METHOD = 0x8004102E,
+   WBEM_E_INVALID_METHOD_PARAMETERS = 0x8004102F,
+   WBEM_E_INVALID_PROPERTY = 0x80041031,
+   WBEM_E_CALL_CANCELLED = 0x80041032,
+   WBEM_E_INVALID_OBJECT_PATH = 0x8004103A,
+   WBEM_E_OUT_OF_DISK_SPACE = 0x8004103B,
+   WBEM_E_UNSUPPORTED_PUT_EXTENSION = 0x8004103D,
+   WBEM_E_QUOTA_VIOLATION = 0x8004106c,
+   WBEM_E_SERVER_TOO_BUSY = 0x80041045,
+   WBEM_E_METHOD_NOT_IMPLEMENTED = 0x80041055,
+   WBEM_E_METHOD_DISABLED = 0x80041056,
+   WBEM_E_UNPARSABLE_QUERY = 0x80041058,
+   WBEM_E_NOT_EVENT_CLASS = 0x80041059,
+   WBEM_E_MISSING_GROUP_WITHIN = 0x8004105A,
+   WBEM_E_MISSING_AGGREGATION_LIST = 0x8004105B,
+   WBEM_E_PROPERTY_NOT_AN_OBJECT = 0x8004105c,
+   WBEM_E_AGGREGATING_BY_OBJECT = 0x8004105d,
+   WBEM_E_BACKUP_RESTORE_WINMGMT_RUNNING = 0x80041060,
+   WBEM_E_QUEUE_OVERFLOW = 0x80041061,
+   WBEM_E_PRIVILEGE_NOT_HELD = 0x80041062,
+   WBEM_E_INVALID_OPERATOR = 0x80041063,
+   WBEM_E_CANNOT_BE_ABSTRACT = 0x80041065,
+   WBEM_E_AMENDED_OBJECT = 0x80041066,
+   WBEM_E_VETO_PUT = 0x8004107A,
+   WBEM_E_PROVIDER_SUSPENDED = 0x80041081,
+   WBEM_E_ENCRYPTED_CONNECTION_REQUIRED = 0x80041087,
+   WBEM_E_PROVIDER_TIMED_OUT = 0x80041088,
+   WBEM_E_NO_KEY = 0x80041089,
+   WBEM_E_PROVIDER_DISABLED = 0x8004108a,
+   WBEM_E_REGISTRATION_TOO_BROAD = 0x80042001,
+   WBEM_E_REGISTRATION_TOO_PRECISE = 0x80042002
+ } WBEMSTATUS;
+</pre></div>
+</dd></dl><p><b>WBEM_S_NO_ERROR:  </b>The operation completed
+successfully.</p><p><b>WBEM_S_FALSE:  </b>Either no more <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_8d8f4b2c-bf33-4964-b55c-96ac2cc999bb" data-linktype="relative-path">CIM
+objects</a></span> are available, the number of returned CIM objects is less
+than the number requested, or this is the end of an enumeration. This error
+code is returned from the <span><a href="56022f1e-3761-4c17-8d55-8e62dc334b86" data-linktype="relative-path">IEnumWbemClassObject</a></span>
+and <span><a href="39f23057-ab0c-4145-af7c-6d6efb1a8508" data-linktype="relative-path">IWbemWCOSmartEnum</a></span>
+interface methods.</p><p><b>WBEM_S_TIMEDOUT:  </b>The attempt to establish the
+connection has expired.</p><p><b>WBEM_S_NEW_STYLE:  </b>The server supports
+ObjectArray encoding; see section <span><a href="ce36fcf4-5aaa-4dc7-a760-928f6616da77" data-linktype="relative-path">3.1.4.2.1</a></span> for
+details.</p><p><b>WBEM_S_PARTIAL_RESULTS:  </b>The server could not
+return all the objects and/or properties requested.</p><p><b>WBEM_E_FAILED:  </b>The server has encountered an
+unknown error while processing the client&#39;s request.</p><p><b>WBEM_E_NOT_FOUND:  </b>The object specified in the
+path does not exist.</p><p><b>WBEM_E_ACCESS_DENIED:  </b>The permission required
+to perform the operation is not helped by the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+performing the operation.</p><p><b>WBEM_E_PROVIDER_FAILURE:  </b>The server has
+encountered an unknown error while processing the client&#39;s request.</p><p><b>WBEM_E_TYPE_MISMATCH:  </b>The server has found an
+incorrect data type associated with property or input parameter in client&#39;s
+request.</p><p><b>WBEM_E_OUT_OF_MEMORY:  </b>The server ran out of
+memory before completing the operation.</p><p><b>WBEM_E_INVALID_CONTEXT:  </b>The <b>IWbemContext</b>
+object sent as part of client&#39;s request does not contain the required
+properties.</p><p><b>WBEM_E_INVALID_PARAMETER:  </b>One or more of the
+parameters passed to the method is not valid. Methods return this error in any
+of the following circumstances: (1) a parameter is NULL where a non-NULL value
+is required, (2) the flags specified in the <i>lFlags</i> parameter are not
+allowed in this method. </p><p><b>WBEM_E_NOT_AVAILABLE:  </b>The resource is
+unavailable.</p><p><b>WBEM_E_CRITICAL_ERROR :  </b>The server has
+encountered a catastrophic failure and cannot process any client&#39;s request.</p><p><b>WBEM_E_NOT_SUPPORTED:  </b>The attempted operation
+is not supported.</p><p><b>WBEM_E_PROVIDER_NOT_FOUND:  </b>The server has
+encountered an implementation-specific error.</p><p><b>WBEM_E_INVALID_PROVIDER_REGISTRATION:  </b>The
+server has encountered an implementation-specific error.</p><p><b>WBEM_E_PROVIDER_LOAD_FAILURE:  </b>The server has
+encountered an implementation-specific error.</p><p><b>WBEM_E_INITIALIZATION_FAILURE:  </b>The server has
+encountered failure during its initialization.</p><p><b>WBEM_E_TRANSPORT_FAILURE:  </b>There is a network
+problem detected in reaching the server.</p><p><b>WBEM_E_INVALID_OPERATION:  </b>The operation
+performed is not valid.</p><p><b>WBEM_E_ALREADY_EXISTS:  </b>When a Put method is
+called for a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c1fdd6c7-06cb-4787-8735-4d19a68dd802" data-linktype="relative-path">CIM object</a></span> with the
+flag WBEM_FLAG_CREATE_ONLY and the object already exists, WBEM_E_ALREADY_EXISTS
+is returned.</p><p><b>WBEM_E_UNEXPECTED:  </b>An unspecified error has
+occurred.</p><p><b>WBEM_E_INCOMPLETE_CLASS:  </b>The object passed
+doesn&#39;t correspond to any of classes registered with WMI.</p><p><b>WBEM_E_SHUTTING_DOWN:  </b>The server cannot
+process the requested operation as it is shutting down.</p><p><b>E_NOTIMPL:  </b>The attempted operation is not
+implemented. The value of this element is as specified in [MS-ERREF] section
+2.1.</p><p><b>WBEM_E_INVALID_SUPERCLASS:  </b>When putting a class,
+the server did not find the parent class specified for the new class to be
+added.</p><p><b>WBEM_E_INVALID_NAMESPACE:  </b>When connecting to
+WMI, the namespace specified is not found.</p><p><b>WBEM_E_INVALID_OBJECT:  </b>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c4119a8a-24db-40cc-9657-7cb5c23ecf43" data-linktype="relative-path">CIM
+instance</a></span> passed to the server doesn&#39;t have required information.</p><p><b>WBEM_E_INVALID_CLASS:  </b>The class name is
+invalid.</p><p><b>WBEM_E_INVALID_QUERY:  </b>The query sent to the
+server doesn&#39;t semantically conform to the rules specified in section <span><a href="6c8a38f4-4ee1-47cb-99f1-b42718a575ce" data-linktype="relative-path">2.2.1</a></span>.</p><p><b>WBEM_E_INVALID_QUERY_TYPE:  </b>The query language
+specified is invalid.</p><p><b>WBEM_E_PROVIDER_NOT_CAPABLE:  </b>The server does
+not support the requested operation on the given <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_633b12d4-e2c4-442f-95ff-4b2b5d708ed5" data-linktype="relative-path">CIM class</a></span>.</p><p><b>WBEM_E_CLASS_HAS_CHILDREN:  </b>The class cannot
+be updated because it has derived classes.</p><p><b>WBEM_E_CLASS_HAS_INSTANCES:  </b>The class cannot
+be updated because it has instances.</p><p><b>WBEM_E_ILLEGAL_NULL:  </b>The server identifies
+that one of the non-nullable NULL properties was set to NULL in the Put
+operation.</p><p><b>WBEM_E_INVALID_CIM_TYPE:  </b>The CIM type
+specified is not valid.</p><p><b>WBEM_E_INVALID_METHOD:  </b>The CIM object does
+not implement the specified method.</p><p><b>WBEM_E_INVALID_METHOD_PARAMETERS:  </b>One or more
+of the parameters passed to the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a307bc35-17a3-48aa-bc58-b8779f5be641" data-linktype="relative-path">CIM method</a></span> are not
+valid.</p><p><b>WBEM_E_INVALID_PROPERTY:  </b>The property for
+which the operation is made is no longer present in the CIM database.</p><p><b>WBEM_E_CALL_CANCELLED:  </b>The server canceled
+the execution of the request due to resource constraints. The client can try
+the call again.</p><p><b>WBEM_E_INVALID_OBJECT_PATH:  </b>The object path
+is not syntactically valid.</p><p><b>WBEM_E_OUT_OF_DISK_SPACE:  </b>Insufficient
+resources on the server to satisfy the client&#39;s request.</p><p><b>WBEM_E_UNSUPPORTED_PUT_EXTENSION:  </b>The server
+has encountered an implementation-specific error.</p><p><b>WBEM_E_QUOTA_VIOLATION:  </b>Quota violation.</p><p><b>WBEM_E_SERVER_TOO_BUSY:  </b>The server cannot
+complete the operation at this point.</p><p><b>WBEM_E_METHOD_NOT_IMPLEMENTED:  </b>An attempt was
+made to execute a method not marked with &#34;implemented&#34; in this class
+or any of its derived classes.</p><p><b>WBEM_E_METHOD_DISABLED:  </b>An attempt was made
+to execute a method marked with &#34;disabled&#34; qualifier in MOF.</p><p><b>WBEM_E_UNPARSABLE_QUERY:  </b>The query sent to
+the server doesn&#39;t syntactically conform to the rules specified in section
+2.2.1.</p><p><b>WBEM_E_NOT_EVENT_CLASS:  </b>The FROM clause of <span><a href="67f4a1c1-6bf0-4900-81a8-138938be5be7" data-linktype="relative-path">WQL
+Event Query (section 2.2.1.2)</a></span> represents a class that is
+not derived from Event.</p><p><b>WBEM_E_MISSING_GROUP_WITHIN:  </b>The GROUP BY
+clause of <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_46e519f1-d1f0-4dcc-bd02-9a2638c03d98" data-linktype="relative-path">WQL</a></span> query does not
+have WITHIN specified.</p><p><b>WBEM_E_MISSING_AGGREGATION_LIST:  </b>The GROUP BY
+clause was used with aggregation, which is not supported.</p><p><b>WBEM_E_PROPERTY_NOT_AN_OBJECT:  </b>The GROUP BY
+clause references an object that is an embedded object without using Dot
+notation.</p><p><b>WBEM_E_AGGREGATING_BY_OBJECT:  </b>The GROUP BY
+clause references an object that is an embedded object without using Dot
+notation.</p><p><b>WBEM_E_BACKUP_RESTORE_WINMGMT_RUNNING:  </b>A
+request for backing up or restoring the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_9083cd44-0dea-46af-bd25-c3c66afde4cf" data-linktype="relative-path">CIM database</a></span> was
+sent while the server was using it.</p><p><b>WBEM_E_QUEUE_OVERFLOW:  </b>The EventQueue on the
+server has more events than can be consumed by the client.</p><p><b>WBEM_E_PRIVILEGE_NOT_HELD:  </b>The server could
+not find the required privilege for performing operations on CIM classes or CIM
+instances.</p><p><b>WBEM_E_INVALID_OPERATOR:  </b>An operator in the
+WQL query is invalid for this property type.</p><p><b>WBEM_E_CANNOT_BE_ABSTRACT:  </b>The CIM class on
+the server had the abstract qualifier set to true, while its parent class does
+not have the abstract qualifier set to false.</p><p><b>WBEM_E_AMENDED_OBJECT:  </b>A CIM instance with
+amended qualifier set to true is being updated without
+WBEM_FLAG_USE_AMENDED_QUALIFIERS flag.</p><p><b>WBEM_E_VETO_PUT:  </b>The server cannot perform a
+PUT operation because it is not supported for the given CIM class.</p><p><b>WBEM_E_PROVIDER_SUSPENDED:  </b>The server has
+encountered an implementation-specific error.</p><p><b>WBEM_E_ENCRYPTED_CONNECTION_REQUIRED:  </b>The
+server has encountered an implementation-specific error.</p><p><b>WBEM_E_PROVIDER_TIMED_OUT:  </b></p><p><b>WBEM_E_NO_KEY:  </b>The IWbemServices::PuInstance
+or IWbemServices::PutInstanceAsync operation was attempted with no value set
+for the key properties.</p><p><b>WBEM_E_PROVIDER_DISABLED:  </b>The server has
+encountered an implementation-specific error.</p><p><b>WBEM_E_REGISTRATION_TOO_BROAD:  </b>The server has
+encountered an implementation-specific error.</p><p><b>WBEM_E_REGISTRATION_TOO_PRECISE:  </b>The WQL
+query for intrinsic events for a class issued without a WITHIN clause.</p></div>

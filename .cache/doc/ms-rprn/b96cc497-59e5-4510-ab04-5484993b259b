@@ -1,0 +1,246 @@
+<div class="content"><p>RpcAddPrinterDriverEx installs a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer driver</a> on the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a>.<a id="Appendix_A_Target_342"></a><a aria-label="Product behavior note 342" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_342" data-linktype="relative-path">&lt;342&gt;</a> This method performs a
+function similar to RpcAddPrinterDriver (section <a href="f23a7519-1c77-4069-9ace-a6d8eae47c22" data-linktype="relative-path">3.1.4.4.1</a>) and is also
+used to specify options that permit <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_642a4e0f-a3c9-4641-9b63-e622b46d490b" data-linktype="relative-path">printer driver upgrade</a>, <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_a4b3cd29-c2a1-4d08-a431-de57a0283628" data-linktype="relative-path">printer driver downgrade</a>,
+copying of newer files only, and copying of all files regardless of their time
+stamps.</p><dl>
+<dd>
+<div><pre> DWORD RpcAddPrinterDriverEx(
+   [in, string, unique] STRING_HANDLE pName,
+   [in] DRIVER_CONTAINER* pDriverContainer,
+   [in] DWORD dwFileCopyFlags
+ );
+</pre></div>
+</dd></dl><p><b>pName: </b>A string that conforms to the parameter
+specification in <a href="acb355a4-913b-4abb-8cb5-415aea160015" data-linktype="relative-path">Print
+Server Name Parameters (section 3.1.4.1.4)</a>.</p><p><b>pDriverContainer: </b>A pointer to a <a href="3a3f9cf7-8ec4-4921-b1f6-86cf8d139bc2" data-linktype="relative-path">DRIVER_CONTAINER
+structure (section 2.2.1.2.3)</a> that MUST conform to the
+specification in <a href="353ff796-6fb3-41cf-8b35-0022dd53d886" data-linktype="relative-path">DRIVER_CONTAINER
+parameters (section 3.1.4.1.8.3)</a>.</p><dl>
+<dd>
+<p>The <b>Level</b> member of the DRIVER_CONTAINER
+refers to the level of driver information structure, as follows:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>DRIVER_INFO_2 (section <a href="39bbfc30-8768-4cd4-9930-434857e2c2a2" data-linktype="relative-path">2.2.1.5.2</a>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>RPC_DRIVER_INFO_3 (section <a href="b4d3b5f3-c631-4fc3-9348-4c983590a0d8" data-linktype="relative-path">2.2.1.5.3</a>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>RPC_DRIVER_INFO_4 (section <a href="459d24e4-0b75-4fc7-b246-fe40a1981eed" data-linktype="relative-path">2.2.1.5.4</a>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>RPC_DRIVER_INFO_6 (section <a href="ae124740-15ef-482c-824e-56e5436ed44b" data-linktype="relative-path">2.2.1.5.5</a>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>RPC_DRIVER_INFO_8 (section <a href="937d5fc8-67f1-45f8-ab87-8b56a8fca558" data-linktype="relative-path">2.2.1.5.6</a>).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwFileCopyFlags: </b>A bit field that specifies
+options for copying replacement printer driver files. The value of this
+parameter is a combination of flags from the following tables.</p><dl>
+<dd>
+<p>Exactly one of the following flags MUST be
+specified:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>APD_STRICT_UPGRADE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Add the replacement printer driver only if none of the
+  files of the replacement driver are older than any corresponding files of the
+  currently installed driver.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>APD_STRICT_DOWNGRADE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Add the replacement printer driver only if none of the
+  files of the currently installed driver are older than any corresponding
+  files of the replacement driver.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>APD_COPY_ALL_FILES</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Add the printer driver and copy all the files in the
+  driver directory. File time stamps MUST be ignored.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>APD_COPY_NEW_FILES</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Add the printer driver and copy the files in the
+  driver directory that are newer than any of the corresponding files that are
+  currently in use.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Zero or more of the following
+flags can be specified.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>APD_COPY_FROM_DIRECTORY</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Add the printer driver by using the fully qualified
+  file names that are specified in the _DRIVER_INFO_6 structure. If this flag
+  is specified, one of the other copy flags in this bit field MUST be specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>APD_DONT_COPY_FILES_TO_CLUSTER</p>
+  <p>0x00001000</p>
+  </td>
+  <td>
+  <p>When adding a printer driver to a print server
+  cluster, do not copy the driver files to the shared cluster disk.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>APD_COPY_TO_ALL_SPOOLERS</p>
+  <p>0x00002000</p>
+  </td>
+  <td>
+  <p>Add the printer driver to cluster spooler servers.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>APD_INSTALL_WARNED_DRIVER</p>
+  <p>0x00008000</p>
+  </td>
+  <td>
+  <p>Add the printer driver, even if it is in the server&#39;s <b>List
+  of Warned Printer Drivers </b>(section <a href="1bd61448-db4b-4284-a4b1-8346732402d4" data-linktype="relative-path">3.1.1</a>).<a id="Appendix_A_Target_343"></a><a aria-label="Product behavior note 343" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_343" data-linktype="relative-path">&lt;343&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>APD_RETURN_BLOCKING_STATUS_CODE</p>
+  <p>0x00010000</p>
+  </td>
+  <td>
+  <p>Specifies the implementation-specific error code to
+  return if the printer driver is blocked from installation by server policy.<a id="Appendix_A_Target_344"></a><a aria-label="Product behavior note 344" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_344" data-linktype="relative-path">&lt;344&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in Print Server
+Name Parameters (section 3.1.4.1.4).</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in
+DRIVER_CONTAINER Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>dwFileCopyFlags</i> contains a valid flag value or
+set of values as specified in the <i>dwFileCopyFlags</i> parameter definition
+above. If this verification fails, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Additional validation MAY<a id="Appendix_A_Target_345"></a><a aria-label="Product behavior note 345" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_345" data-linktype="relative-path">&lt;345&gt;</a> be
+performed.</p>
+</li></ul><p>In addition, print servers SHOULD<a id="Appendix_A_Target_346"></a><a aria-label="Product behavior note 346" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_346" data-linktype="relative-path">&lt;346&gt;</a> validate parameters as
+follows:</p><ul><li><p><span><span> 
+</span></span>Validate that the <b>cVersion</b> member of the <b>DRIVER_INFO</b>
+structure contained in the DRIVER_CONTAINER pointed to by the pDriverContainer
+is strictly less than 0x00000004. If this validation fails, return
+ERROR_PRINTER_DRIVER_BLOCKED.</p>
+</li><li><p><span><span> 
+</span></span>Validate that the <b>pEnvironment</b> member of the <b>DRIVER_INFO</b>
+structure contained in the DRIVER_CONTAINER pointed to by the <i>pDriverContainer</i>
+parameter is not &#34;Windows ARM&#34;. If this validation fails, return
+ERROR_NOT_SUPPORTED.</p>
+</li></ul><p>If the installation requested by the print client is a
+printer driver upgrade, print servers SHOULD perform the following additional
+validation steps:</p><ul><li><p><span><span> 
+</span></span>Validate that the currently installed printer driver is not a
+class printer driver.</p>
+</li><li><p><span><span> 
+</span></span>Validate that if the currently installed printer driver has a
+driver version of 0x00000004, the currently installed printer driver does not
+have a newer driver date, or if the driver dates are the same, that the
+currently installed printer driver does not have a newer manufacturer-provided
+driver version number.</p>
+</li><li><p><span><span> 
+</span></span>Validate that if the currently installed printer driver has a
+driver version of 0x00000004, there are no printers on the print server that
+are shared and also use the currently installed printer driver.</p>
+</li></ul><p>If this validation fails, the print server MUST return
+ERROR_PRINTER_DRIVER_BLOCKED.</p><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Copy the printer driver files to their destinations, in
+compliance with the settings specified by the value of the <i>dwFileCopyFlags</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Create the printer driver object, using an
+implementation-specific mechanism to determine the Boolean values of each of
+the attributes of the printer driver.</p>
+</li><li><p><span><span> 
+</span></span>If any clients have registered for notification of server object
+changes, a notification MUST be broadcast to them.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

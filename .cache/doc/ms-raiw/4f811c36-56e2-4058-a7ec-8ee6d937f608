@@ -1,0 +1,367 @@
+<div class="content"><p>The R_WinsRecordAction method inserts, modifies, deletes,
+releases, or queries a <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_a38f4ea9-7d19-47c3-81a7-34587b2c8cca" data-linktype="relative-path">name
+record</a> from the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a>
+database.</p><dl>
+<dd>
+<div><pre> DWORD R_WinsRecordAction(
+   [in] handle_t ServerHdl,
+   [in, out, ref] PWINSINTF_RECORD_ACTION_T* ppRecAction
+ );
+</pre></div>
+</dd></dl><p><b>ServerHdl: </b>An <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding over IP
+address/<a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_6bc1037d-ae15-45c2-82c3-8893d809dccf" data-linktype="relative-path">HostName</a> to the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_f2f9c250-6c9e-445f-b677-376f23f77d87" data-linktype="relative-path">WINS server</a>. RPC uses this
+binding internally to determine which WINS server the call is directed to.<a id="Appendix_A_Target_3"></a><a aria-label="Product behavior note 3" href="a76435fe-902a-4235-b12d-3654ac010672#Appendix_A_3" data-linktype="relative-path">&lt;3&gt;</a></p><p><b>ppRecAction: </b>A pointer to a <a href="2772ceb8-1b9f-4766-84e2-af6453f8ba2c" data-linktype="relative-path">WINSINTF_RECORD_ACTION_T</a>
+structure (section 2.2.2.3) that contains the details of the record and the
+action to be performed on it. The interpretation of the member values in this
+structure depends on the type of action specified by the <a href="ebbae7e3-eb34-47e1-91be-06d40370559d" data-linktype="relative-path">WINSINTF_ACT_E</a> enumeration
+(section 2.2.1.4) value in its <b>Cmd_e</b> member, as follows.</p><dl>
+<dd>
+<p>WINSINTF_E_INSERT:</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>Cmd_e</b> is set to WINSINTF_E_INSERT.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>pName</b> points to a NULL-terminated string that contains the
+<a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a> and
+optionally the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_219f79c8-11bc-41f7-b06b-134566d2f5fc" data-linktype="relative-path">NetBIOS scope</a>
+name of the record.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>NameLen</b> contains the length of the string specified by <b>pName</b>.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>TypOfRec_e</b> is set to a value between 0x00000000 and
+0x00000003 based on the record type.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>NoOfAdds</b> is set to a positive value based on the number of
+IP address mappings that the record has.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>pAdd</b> or <b>Add</b> is set with the mapping IP addresses,
+based on the <b>TypOfRec_e</b> member.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>VersNo</b> SHOULD be ignored by the server. The inserted
+record MUST be marked with the current version number that is in use at the
+WINS server.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>NodeTyp</b> is set to a value between 0x00 and 0x03 based on
+the type of the node.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>OwnerId</b> SHOULD be ignored by the server. The record MUST
+be inserted into the database with the <b>OwnerId</b> member set to the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target WINS server</a> address.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>State_e</b> SHOULD be ignored by the server. The record MUST
+be inserted into the database with its state marked as <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8b8ae4c6-29b8-40af-997d-b287285255c4" data-linktype="relative-path">ACTIVE</a>.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>fStatic</b> is set to 0x00000001 if the record being inserted
+is a static record; otherwise, it is set to 0x00000000.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>TimeStamp</b> SHOULD be ignored by the server. The inserted
+record SHOULD be time-stamped with zero if the <b>fStatic</b> member is set to
+0x00000001; otherwise, it SHOULD be time-stamped with the current time on the
+server plus the refresh interval configured on the server.</p>
+</dd>
+<dd>
+<p>WINSINTF_E_DELETE:</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>Cmd_e</b> is set to WINSINTF_E_DELETE.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>pName</b> points to a NULL-terminated string that contains the
+NetBIOS name and optionally the NetBIOS scope name of the record to be deleted
+from the database.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>NameLen</b> contains the length of the string specified by <b>pName</b>.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>State_e</b> is set to 0x00000003.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>All other members SHOULD be ignored by the server.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>WINSINTF_E_RELEASE:</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>Cmd_e</b> is set to WINSINTF_E_RELEASE.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>pName</b> points to a NULL-terminated string that contains the
+NetBIOS name and optionally the NetBIOS scope name of the record.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>NameLen</b> contains the length of the string specified by <b>pName</b>.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>TypOfRec_e</b> is set to a value between zero and 0x00000003
+based on the record type.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>NoOfAdds</b> MUST be set to 0x00000001.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>pAdd</b> or <b>Add</b> is set with the mapping IP address
+based on the <b>TypOfRec_e</b> member.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>VersNo</b>, <b>NodeTyp</b>, <b>OwnerId</b>, and <b>fStatic</b>
+SHOULD be ignored by the server.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>State_e</b> SHOULD be ignored by the server. The record MUST
+be inserted with state marked as <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_f60e0a7e-b464-42f3-a8ca-dd50ffc6a16e" data-linktype="relative-path">RELEASED</a>.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>TimeStamp</b> SHOULD be ignored by the server. The released
+record SHOULD be time-stamped with 0xFFFFFFFF if the <b>fStatic</b> member is
+set to 0x00000001; otherwise, it SHOULD be time-stamped with the current time
+on the server plus the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_0f15d747-5ab2-4aaf-99cf-438ab3e330d2" data-linktype="relative-path">tombstone
+interval</a> configured on the server.</p>
+</dd>
+<dd>
+<p>WINSINTF_E_MODIFY:</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>Cmd_e</b> is set to WINSINTF_E_MODIFY.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>pName</b> points to a NULL-terminated string that contains the
+NetBIOS name and optionally the NetBIOS scope name of the record to be modified
+in the database.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>NameLen</b> contains the length of the string specified by <b>pName</b>.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>TypOfRec_e</b> contains the record type to be set for the
+record matching the <b>pName</b> member in the WINS database.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>NodeTyp</b> contains the node type to be set for the record
+matching the <b>pName</b> member in the WINS database.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>State_e</b> contains the state to be set for the record
+matching the <b>pName</b> member in the WINS database.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>fStatic</b> contains the  value to be set for the record
+matching the <b>pName</b> member in the WINS database.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>All other members SHOULD be ignored by the server.</p>
+</dd>
+<dd>
+<p>WINSINTF_E_QUERY:</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>Cmd_e</b> is set to WINSINTF_E_QUERY.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>pName</b> points to a NULL-terminated string that contains the
+NetBIOS name and optionally the NetBIOS scope name of the record to be queried
+from the database.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>NameLen</b> contains the length of the string specified by <b>pName</b>.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>All other members act as output, which are filled by the server
+if a matching entry is found in the database.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>TypOfRec_e</b> contains the matching record type.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>If the <b>TyeOfRec_e</b> member is set to 0x00000000 or
+0x00000001, the <b>NoOfAdds</b> member SHOULD contain 0x00000001 or the number
+of IP addresses that are mapped to the name given in the <b>pName</b> member.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>If the <b>TypOfRec_e</b> member is set to 0x00000002 or
+0x00000003. The RPC method caller SHOULD refer to this member for the set of IP
+addresses mapped to the name given in the <b>pName</b> member.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span>If the <b>TypOfRec_e</b> member is set to 0x00000000 or
+0x00000001. The RPC method caller SHOULD refer to this member for the IP
+address mapped to the name given in the <b>pName</b> member. If the <b>TypOfRec_e</b>
+member is set to 0x00000001, the <b>IPAdd</b> member of the <b>Add</b>
+structure MUST contain 0xFFFFFFFF.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>VersNo</b> contains the version number of the matching record.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>NodeTyp</b> contains the node type of the matching record.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>OwnerId</b> contains the IP address of the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_fd7218ec-39b0-4372-bf4c-9ddfba81cb9e" data-linktype="relative-path">owner</a> of the matching
+record.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>State_e</b> contains the state of the matching record.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>fStatic</b> contains the value 0x00000001 if the record is
+entered into the database by an administrator; otherwise, it contains
+0x00000000.</p>
+</dd>
+<dd>
+<p><span>§<span> 
+</span></span><b>TimeStamp</b> contains the time stamp of the record.</p>
+</dd></dl><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS indicates that
+the operation was completed successfully. Otherwise, the <b>TimeStamp</b>
+member SHOULD contain one of the following Win32 error codes, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000FA0</p>
+  <p>ERROR_WINS_INTERNAL</p>
+  </td>
+  <td>
+  <p>An error occurred while processing the RPC call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000FA5</p>
+  <p>ERROR_REC_NON_EXISTENT</p>
+  </td>
+  <td>
+  <p>The name does not exist in the database. This error is
+  returned only if a requested WINSINTF_E_QUERY operation is not successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller doesn&#39;t have sufficient permissions.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Processing and Response Requirements:</b></p><p>The <b>Opnum</b> value for this method is 0.</p><p>When processing this call, the WINS server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>If the action specified is WINSINTF_E_QUERY, the RPC method
+caller SHOULD have query level access.<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="a76435fe-902a-4235-b12d-3654ac010672#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a> For all
+other actions the caller SHOULD have control level access. If an RPC client
+with a lower access level calls this method, the server SHOULD return
+ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>The WINS service on the target WINS server MUST be in the running
+or paused state for this method to complete successfully. If the service is in
+initializing or exiting state, ERROR_WINS_INTERNAL status SHOULD be returned.</p>
+</li><li><p><span><span> 
+</span></span>When the RPC method is called with an action set to
+WINSINTF_E_INSERT, the requested record is inserted into the database. If the
+record with the same name already exists in the database, name resolution occurs
+as described in <a href="../ms-winsra/991f1bcf-79a7-44cf-850c-bf34a0e75451" data-linktype="relative-path">[MS-WINSRA]</a>.
+The server returns ERROR_WINS_INTERNAL, if any error occurs while performing
+the resolution or inserting the record.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="a76435fe-902a-4235-b12d-3654ac010672#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>When an RPC method is called with the action set to
+WINSINTF_E_RELEASE, the state of the matching record is changed to RELEASED in
+the database. If a matching record is not found, the server returns
+ERROR_SUCCESS. If any failure occurs during the modification of the record
+state, ERROR_WINS_INTERNAL is returned.</p>
+</li><li><p><span><span> 
+</span></span>When an RPC method is called with the action set to
+WINSINTF_E_MODIFY, the database is searched for a matching record. If a match
+is found, the attributes of the record such as record type, node type, record
+state, and <i>fstatic</i> are modified according to the requested values. If
+the matching record&#39;s type is either unique or <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_6e5a97b1-d09e-4ca3-8d54-00517f81fc16" data-linktype="relative-path">Normal Group</a> and a request
+comes to modify it to multihomed or <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_09607598-4e99-4144-bc61-a9b5ad002075" data-linktype="relative-path">Special Group</a>,
+respectively, an ERROR_WINS_INTERNAL error is returned; otherwise,
+ERROR_SUCCESS is returned. If the record is not found in the database, the
+server returns ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>When the RPC method is called with the action set to
+WINSINTF_E_QUERY, the database is queried for the given name. If a matching
+record is found, the attributes of the record are returned to the RPC caller.
+If the record is not found or if any error occurs during attribute retrieval,
+the server returns an ERROR_REC_NON_EXISTENT error.</p>
+</li><li><p><span><span> 
+</span></span>When the RPC method is called with the action set to
+WINSINTF_E_DELETE, the matching record is deleted from the database. If a
+matching record is not found in the database, an ERROR_SUCCESS status code is
+returned. If any error occurs during the database operations, an
+ERROR_WINS_INTERNAL is returned. The RPC method caller MUST set <i>state_e</i>
+to DELETED for this action to succeed.</p>
+</li></ul></div>

@@ -1,0 +1,250 @@
+<div class="content"><p>The IApiTraceDataCollector interface is used to specify the
+executables whose API calls are to be logged.</p><p>The following properties MUST be implemented by the objects
+that implement the IApiTracing DataCollector interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ExcludeApis</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>List of APIs to exclude from the log.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ExePath</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the full path to the executable whose API
+  calls are to be logged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IncludeApis</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>List of APIs to include in the trace. All calls to
+  these APIs that are made in the specified executable are logged, even if the
+  modules in which the APIs are defined are not included.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IncludeModules</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>List of modules to include in the trace. All calls to
+  functions defined in these modules that are made in the specified executable
+  are logged. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LogApiNamesOnly</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies whether PLA MUST log only the API name or
+  the arguments and return a value as well.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LogApisRecursively</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies whether PLA MUST log only calls that are
+  imported directly by the application or all calls to the specified APIs.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LogFilePath</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the name of the file where data MUST be
+  logged to.</p>
+  </td>
+ </tr></tbody></table><p>A <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_3184c8c5-f13b-4d77-b04a-b92feff97f61" data-linktype="relative-path">data
+collector</a> can be represented as an XML file, which can be used to serialize
+(using Xml (Get) <a href="38b478b4-408e-4702-aecf-946177a9f06b" data-linktype="relative-path">3.2.4.5.21</a>)
+and deserialize (using SetXml <a href="6f99ca8b-2197-43eb-b17a-7761c529787c" data-linktype="relative-path">3.2.4.5.22</a>) it. The format
+of the XML that defines a data collector is as follows (note that the full XML
+specification of the data collector set is in section <a href="b5be2d38-3f21-478d-a8b9-a61128eb2751" data-linktype="relative-path">3.2.4.19</a>): </p><dl>
+<dd>
+<div><pre> &lt;ApiTracingDataCollector&gt;
+   &lt;!-- elements for DataCollectorType --&gt;
+     &lt;LogApiNamesOnly/&gt;  
+     &lt;ExePath/&gt; 
+     &lt;LogFilePath/&gt; 
+     &lt;IncludeModule/&gt;  
+     &lt;IncludeApis/&gt; 
+     &lt;ExcludeApis/&gt;
+ &lt;/ApiTracingDataCollector&gt; 
+  
+  
+</pre></div>
+</dd></dl><p>This does not show the property elements inherited from
+IDataCollector that also need to be specified.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="b24e8cee-3d06-4be7-9647-aab2b6880754" data-linktype="relative-path">LogApiNamesOnly
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the LogApiNamesOnly property.</p>
+  <p>Opnum: 32</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="26ffc789-7b34-4b25-85cf-6aa8fa3e63ff" data-linktype="relative-path">LogApiNamesOnly
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the LogApiNamesOnly property.</p>
+  <p>Opnum: 33</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="a74a21d3-b7a6-482d-94d1-42236f439caf" data-linktype="relative-path">LogApisRecursively
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the LogApisRecursively property.</p>
+  <p>Opnum: 34</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="ce6c9b30-0051-4712-ad4e-bf8f17dba5f8" data-linktype="relative-path">LogApisRecursively
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the LogApisRecursively property.</p>
+  <p>Opnum: 35</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="6cdee5b6-a2b4-4cd8-98cc-bd50c5cb6696" data-linktype="relative-path">ExePath
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the ExePath property.</p>
+  <p>Opnum: 36</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="9abb7465-9de3-4793-8f32-47625073d242" data-linktype="relative-path">ExePath
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the ExePath property.</p>
+  <p>Opnum: 37</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="592dda60-8a46-44e5-a40e-41b6f61ff4ed" data-linktype="relative-path">LogFilePath
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the LogFilePath property.</p>
+  <p>Opnum: 38</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="c8d7d694-15da-48c2-aac9-d003aaa2f0ae" data-linktype="relative-path">LogFilePath
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the LogFilePath property.</p>
+  <p>Opnum: 39</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="8c6ec48b-3a2b-4f7f-a77b-93f311175d72" data-linktype="relative-path">IncludeModules
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the IncludeModules property.</p>
+  <p>Opnum: 40</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="4a15bef7-2231-4626-883a-76c608fe144e" data-linktype="relative-path">IncludeModules
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the IncludeModules property.</p>
+  <p>Opnum: 41</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="4a23e92d-3a98-4c9b-bffa-730eb94d300e" data-linktype="relative-path">IncludeApis
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the IncludeApis property.</p>
+  <p>Opnum: 42</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="7d22d37a-c3e7-43c7-9d37-99eef3f2a76e" data-linktype="relative-path">IncludeApis
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the IncludeApis property.</p>
+  <p>Opnum: 43</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="522d5831-3675-4e8a-a464-804f8aae23d1" data-linktype="relative-path">ExcludeApis
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the ExcludeApis property.</p>
+  <p>Opnum: 44</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="d4e1cca9-b5ff-43a2-9460-09cc28fdfbb3" data-linktype="relative-path">ExcludeApis
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the ExcludeApis property.</p>
+  <p>Opnum: 45</p>
+  </td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface. Opnums 7–31 are
+used by IDataCollector.</p></div>

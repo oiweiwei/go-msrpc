@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/dcaca8ef-34a3-42dd-85b6-98363eb108ff" data-linktype="external">msdn link</a></p><p>The LSAPR_USER_RIGHT_SET structure specifies a collection of
+user rights.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_USER_RIGHT_SET {
+   [range(0,256)] unsigned long Entries;
+   [size_is(Entries)] PRPC_UNICODE_STRING UserRights;
+ } LSAPR_USER_RIGHT_SET,
+  *PLSAPR_USER_RIGHT_SET;
+</pre></div>
+</dd></dl><p><b>Entries:</b>  This field contains the
+number of rights.<a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a></p><p><b>UserRights:</b>  An array of strings
+specifying the rights. These can be string names corresponding to either <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privilege</a> names or system
+access names, as specified in section <a href="3594f0d3-574b-4d55-a0a4-35d23885f3ee" data-linktype="relative-path">3.1.1.2</a>. If the <b>Entries</b>
+field has a value other than 0, this field MUST NOT be NULL.</p></div>

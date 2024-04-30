@@ -1,0 +1,13 @@
+<div class="content"><p>Windows Management Instrumentation (WMI) Remote
+Protocol is a <a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">Distributed
+Component Object Model (DCOM)</a>, as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>,
+a client/server–based framework that provides an open and automated means of
+systems management. WMI leverages the <a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a99173af-90bf-473d-9a81-ff0ce9a85838" data-linktype="relative-path">Common Information Model (CIM)</a>,
+as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89848" data-linktype="external">[DMTF-DSP0004]</a>,
+to represent various components of the operating system. CIM is the conceptual
+model for storing enterprise management information. The information available
+from CIM is specified by a series of classes and associations, and the elements
+contained in them (methods, properties, and references). These constructs
+describe the data available to WMI clients.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

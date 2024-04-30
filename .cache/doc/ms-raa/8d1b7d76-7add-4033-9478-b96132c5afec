@@ -1,0 +1,100 @@
+<div class="content"><p>The AuthzrAccessCheck method (opnum 3) determines which
+access bits can be granted to a client for a given set of <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptors</a>. The
+AUTHZR_ACCESS_REPLY structure returns an array of granted access masks and
+error status.</p><dl>
+<dd>
+<div><pre> DWORD AuthzrAccessCheck(
+         [in] AUTHZR_HANDLE ContextHandle,
+         [in] DWORD Flags,
+         [in] AUTHZR_ACCESS_REQUEST* pRequest,
+         [in] [range(1, 16)] DWORD SecurityDescriptorCount,
+         [in] [size_is(SecurityDescriptorCount)] SR_SD* pSecurityDescriptors,
+         [in, out] AUTHZR_ACCESS_REPLY* pReply);
+  
+</pre></div>
+</dd></dl><p><b>ContextHandle:</b> An AUTHZR_HANDLE structure, as
+defined in section <a href="4c1628c5-8093-471e-a3b8-8437420063ba" data-linktype="relative-path">2.2.1.1</a>,
+containing the <a href="c83d08f7-2128-4124-9674-3f5c23739ff9#gt_519bff3c-1c9f-4d5a-aa88-a3c820a4ff3a" data-linktype="relative-path">client
+context</a> handle.</p><p><b>Flags:</b>   Reserved.  This parameter MUST be set
+to zero.</p><p><b>pRequest:</b> A pointer to an
+AUTHZR_ACCESS_REQUEST structure, as defined in section <a href="ac7dfb18-668f-45ac-95fa-9fd56c771cb2" data-linktype="relative-path">2.2.3.2</a>. This structure
+contains the body of the &#34;what-if&#34; access check request.</p><p><b>SecurityDescriptorCount:</b>  The number of
+security descriptors in the <i>pSecurityDescriptors</i> parameter, not
+including the primary security descriptor.</p><p><b>pSecurityDescriptors:</b> A pointer to an array of
+SR_SD structures, as defined in section <a href="510133a9-4c95-4044-b834-0f636779c6c9" data-linktype="relative-path">2.2.3.11</a>. The first entry
+in this array is the primary security descriptor, and it will be used as the
+security descriptor for the AccessCheck evaluation.</p><p><b>pReply:</b> A pointer to an AUTHZR_ACCESS_REPLY
+structure, as defined in section <a href="426f8cd3-62f4-42d7-b940-b8283738eb31" data-linktype="relative-path">2.2.3.1</a>. This parameter
+will contain the body of the access check response.</p><p><b>Return Values:</b></p><p>If the function succeeds, the function MUST return
+0x00000000.</p><p>If the function fails, it MUST return a nonzero error code.</p><p>When a RAZA server receives this message, the server MUST
+perform the following:</p><ul><li><p><span><span> 
+</span></span>Check that the upper 16 bits of the <b>Flags</b> parameter are
+set to zero, and if not, return a nonzero error code. </p>
+</li><li><p><span><span> 
+</span></span>If the client connects to the server using ObjectUUID as 5fc860e0-6f6e-4fc2-83cd-46324f25e90b
+then remove all ACEs of type SYSTEM_SCOPED_POLICY_ID_ACE (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/aa0c0f62-4b4c-44f0-9718-c266a6accd9f" data-linktype="relative-path">2.4.4.16</a>)
+from the pSecurityDescriptors[0] parameter.</p>
+</li><li><p><span><span> 
+</span></span>Perform an AccessCheck evaluation using the algorithm specified
+in [MS-DTYP] section <a href="../ms-dtyp/4f1bbcbb-814a-4c70-a11e-2a5b8779a6f9" data-linktype="relative-path">2.5.3.2</a>,
+where the preceding parameters are mapped to the parameter names of the
+algorithm described according to the following table.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>AccessCheck pseudocode parameter</p>
+   </th>
+   <th>
+   <p>RAZA protocol AuthzrAccessCheck evaluation</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><i>SecurityDescriptor</i></p>
+  </td>
+  <td>
+  <p><i>pSecurityDescriptors[0]</i></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Token (Authorization Context)</i></p>
+  </td>
+  <td>
+  <p>The <b>ImpersonationAccessToken</b> in the <b>ClientContext</b>
+  object associated with the <i>ContextHandle</i></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Access Request mask</i></p>
+  </td>
+  <td>
+  <p>The <b>DesiredAccess</b> member of the
+  AUTHZR_ACCESS_REQUEST structure pointed to by <i>pRequest</i></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>Object Tree</i></p>
+  </td>
+  <td>
+  <p>The <b>ObjectTypeList</b> member of the
+  AUTHZR_ACCESS_REQUEST structure pointed to by <i>pRequest</i></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>PrincipalSelfSubst SID</i></p>
+  </td>
+  <td>
+  <p>The <b>PrincipalSelfSid</b> member of the
+  AUTHZR_ACCESS_REQUEST structure pointed to by <i>pRequest</i></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><i>GrantedAccess</i></p>
+  </td>
+  <td>
+  <p>The memory location of the <b>GrantedAccessMask</b>
+  member of the AUTHZR_ACCESS_REPLY structure pointed to by <i>pRequest</i></p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p> </p></div>

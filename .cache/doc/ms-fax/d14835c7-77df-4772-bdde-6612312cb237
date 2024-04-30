@@ -1,0 +1,60 @@
+<div class="content"><p> </p><p>The <b>FAX_ENUM_JOB_FIELDS</b> enumeration defines bit
+fields of valid fields in a job or message structure.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FAX_JOB_FIELD_JOB_ID = 0x00000001,
+   FAX_JOB_FIELD_TYPE = 0x00000002,
+   FAX_JOB_FIELD_QUEUE_STATUS = 0x00000004,
+   FAX_JOB_FIELD_STATUS_EX = 0x00000008,
+   FAX_JOB_FIELD_SIZE = 0x00000010,
+   FAX_JOB_FIELD_PAGE_COUNT = 0x00000020,
+   FAX_JOB_FIELD_CURRENT_PAGE = 0x00000040,
+   FAX_JOB_FIELD_RECIPIENT_PROFILE = 0x00000080,
+   FAX_JOB_FIELD_SCHEDULE_TIME = 0x00000100,
+   FAX_JOB_FIELD_ORIGINAL_SCHEDULE_TIME = 0x00000200,
+   FAX_JOB_FIELD_SUBMISSION_TIME = 0x00000400,
+   FAX_JOB_FIELD_TRANSMISSION_START_TIME = 0x00000800,
+   FAX_JOB_FIELD_TRANSMISSION_END_TIME = 0x00001000,
+   FAX_JOB_FIELD_PRIORITY = 0x00002000,
+   FAX_JOB_FIELD_RETRIES = 0x00004000,
+   FAX_JOB_FIELD_DELIVERY_REPORT_TYPE = 0x00008000,
+   FAX_JOB_FIELD_SENDER_PROFILE = 0x00010000,
+   FAX_JOB_FIELD_STATUS_SUB_STRUCT = 0x00020000,
+   FAX_JOB_FIELD_DEVICE_ID = 0x00040000,
+   FAX_JOB_FIELD_MESSAGE_ID = 0x00080000,
+   FAX_JOB_FIELD_BROADCAST_ID = 0x00100000,
+   FAX_JOB_FIELD_RECEIPT_TYPE = 0x00200000,
+   FAX_JOB_FIELD_SERVER_RECEIVE_FOLDER = 0x00400000,
+   FAX_JOB_FIELD_MESSAGE_FLAGS = 0x00800000
+ } FAX_ENUM_JOB_FIELDS;
+</pre></div>
+</dd></dl><p><b>FAX_JOB_FIELD_JOB_ID: </b>The presence of this
+flag indicates that the <b>job ID</b> field is valid.</p><p><b>FAX_JOB_FIELD_TYPE: </b>The presence of this flag
+indicates that the <b>job type</b> field is valid.</p><p><b>FAX_JOB_FIELD_QUEUE_STATUS: </b>The presence of
+this flag indicates that the <b>queue status</b> field is valid.</p><p><b>FAX_JOB_FIELD_STATUS_EX: </b>The presence of this
+flag indicates that the <b>extended status</b> field is valid.</p><p><b>FAX_JOB_FIELD_SIZE: </b>The presence of this flag
+indicates that the <b>size</b> field is valid.</p><p><b>FAX_JOB_FIELD_PAGE_COUNT: </b>The presence of this
+flag indicates that the <b>page count</b> field is valid.</p><p><b>FAX_JOB_FIELD_CURRENT_PAGE: </b>The presence of
+this flag indicates that the <b>current page</b> field is valid.</p><p><b>FAX_JOB_FIELD_RECIPIENT_PROFILE: </b>The presence
+of this flag indicates that the <b>recipient profile</b> field is valid.</p><p><b>FAX_JOB_FIELD_SCHEDULE_TIME: </b>The presence of
+this flag indicates that the <b>schedule time</b> field is valid.</p><p><b>FAX_JOB_FIELD_ORIGINAL_SCHEDULE_TIME: </b>The
+presence of this flag indicates that the <b>original schedule time</b> field is
+valid.</p><p><b>FAX_JOB_FIELD_SUBMISSION_TIME: </b>The presence of
+this flag indicates that the <b>submission time</b> field is valid.</p><p><b>FAX_JOB_FIELD_TRANSMISSION_START_TIME: </b>The
+presence of this flag indicates that the <b>transmission start time</b> field
+is valid.</p><p><b>FAX_JOB_FIELD_TRANSMISSION_END_TIME: </b>The
+presence of this flag indicates that the <b>transmission end time</b> field is
+valid.</p><p><b>FAX_JOB_FIELD_PRIORITY: </b>The presence of this
+flag indicates that the <b>priority</b> field is valid.</p><p><b>FAX_JOB_FIELD_RETRIES: </b>The presence of this
+flag indicates that the <b>retries</b> field is valid.</p><p><b>FAX_JOB_FIELD_DELIVERY_REPORT_TYPE: </b>The
+presence of this flag indicates that the <b>delivery report</b> field is valid.</p><p><b>FAX_JOB_FIELD_SENDER_PROFILE: </b>The presence of
+this flag indicates that the <b>sender profile</b> field is valid.</p><p><b>FAX_JOB_FIELD_STATUS_SUB_STRUCT: </b>The presence
+of this flag indicates that the <b>status</b> field is valid.</p><p><b>FAX_JOB_FIELD_DEVICE_ID: </b>The presence of this
+flag indicates that the <b>device id</b> field is valid.</p><p><b>FAX_JOB_FIELD_MESSAGE_ID: </b>The presence of this
+flag indicates that the <b>message id</b> field is valid.</p><p><b>FAX_JOB_FIELD_BROADCAST_ID: </b>The presence of
+this flag indicates that the <b>broadcast id</b> field is valid.</p><p><b>FAX_JOB_FIELD_RECEIPT_TYPE: </b>The presence of
+this flag indicates that the <b>receipt type</b> field is valid.</p><p><b>FAX_JOB_FIELD_SERVER_RECEIVE_FOLDER: </b>The
+presence of this flag indicates that the <b>server receive folder</b> field is
+valid.</p><p><b>FAX_JOB_FIELD_MESSAGE_FLAGS: </b>The presence of
+this flag indicates that the <b>message flag</b> field is valid.</p></div>

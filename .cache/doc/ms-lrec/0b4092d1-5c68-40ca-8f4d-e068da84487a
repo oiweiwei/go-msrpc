@@ -1,0 +1,48 @@
+<div class="content"><p> </p><p>The <b>NET_EVENT_LOST</b> structure provides payload in an <b>EVENT_BUFFER</b>
+(section <span><a href="20e0a568-8798-42b8-b81b-878190ee37db" data-linktype="relative-path">2.2.2.1</a></span>) structure
+and contains the number of <span><a href="59d7a0e2-342c-4dc3-bc27-88e9c4aa0415#gt_472f97f2-82ec-4623-8e46-d348a7984967" data-linktype="relative-path">events</a></span> lost due to
+slow event retrieval. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LostEventCount</p>
+  </td>
+ </tr>
+</tbody></table><p><b>LostEventCount
+(4 bytes): </b>This field specifies the number of lost events between two
+sequential calls to the <b>RpcNetEventReceiveData</b> (section <span><a href="4b43cdb8-b5a8-4a3a-ba7d-8b6db4590ca5" data-linktype="relative-path">3.1.4.2.2</a></span>)
+method. If more than 2^32 (two to the thirty-second power) events are lost, the
+field MUST be set to the value 0xFFFFFFFF.</p></div>

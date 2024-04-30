@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DHCP_RESERVATION_INFO_ARRAY</b> structure defines an
+array of <span><a href="ef76e218-29b7-4fed-8cc5-6e8242c6795a" data-linktype="relative-path">DHCP_IP
+RESERVATION_INFO (section 2.2.1.2.102)</a></span> structures. This
+structure is used by the method <span><a href="f87e3741-aa61-4383-b719-4e2f2a764077" data-linktype="relative-path">R_DhcpV4EnumSubnetReservations (section 3.2.4.120)</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_RESERVATION_INFO_ARRAY {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_IP_RESERVATION_INFO* Elements;
+ } DHCP_RESERVATION_INFO_ARRAY,
+  *LPDHCP_RESERVATION_INFO_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This member is of type
+<span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and contains the number of DHCP_IP_RESERVATION_INFO elements specified by the
+subsequent <b>Elements</b> member.</p><p><b>Elements:</b>  This member is a pointer
+to an array of DHCP_IP_RESERVATION_INFO structures of length <b>NumElements</b>,
+and contains DHCPv4 reservation information.</p></div>

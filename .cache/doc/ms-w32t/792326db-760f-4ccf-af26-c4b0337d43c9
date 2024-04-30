@@ -1,0 +1,88 @@
+<div class="content"><p>The W32TIME_NTPSERVER_PROVIDER_CONFIG_DATA structure
+contains configuration data about an NtpServer <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9338a1cf-ec11-4e27-a042-dda5324a44fb" data-linktype="relative-path">time provider</a>.</p><p>The structure is defined to match the NtpServer time
+provider&#39;s configuration of the <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_43e51d0a-ac6a-4662-a99a-8f3029b78caf" data-linktype="relative-path">W32Time</a> implementation as
+described in <a href="https://go.microsoft.com/fwlink/?LinkId=90586" data-linktype="external">[WTSREF]</a>.
+Fields in the structure that do not apply to other implementations SHOULD<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="bb576d39-587b-484a-86a4-e1d378cf9497#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a> have their corresponding
+configuration-setting type fields set to
+W32TIME_CONFIGURATION_SETTING_UNDEFINED.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned __int32 ulSize;
+   unsigned __int32 ulAllowNonstandardModeCombinations;
+   unsigned __int32 ulAllowNonstandardModeCombinationsFlag;
+   unsigned __int32 ulEventLogFlags;
+   unsigned __int32 ulEventLogFlagsFlag;
+   unsigned __int32 cEntries;
+   [size_is(cEntries)] PW32TIME_ENTRY pEntries;
+ } W32TIME_NTPSERVER_PROVIDER_CONFIG_DATA,
+  *PW32TIME_NTPSERVER_PROVIDER_CONFIG_DATA;
+</pre></div>
+</dd></dl><p><b>ulSize:</b>  The size, in bytes, of this
+structure. </p><p><b>ulAllowNonstandardModeCombinations:</b>  An
+integer that indicates whether or not nonstandard mode combinations are
+allowed.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>Indicates that nonstandard mode combinations are not
+  allowed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>Indicates that nonstandard mode combinations are
+  allowed.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other values are reserved for
+future use.</p>
+</dd></dl><p><b>ulAllowNonstandardModeCombinationsFlag:</b>  An
+integer that indicates the source of the configuration setting for <b>ulAllowNonstandardModeCombinations</b>,
+as specified in section <a href="cda8dd8e-ef99-4b2d-b747-6077e5d5ddf2" data-linktype="relative-path">2.2.6</a>.</p><p><b>ulEventLogFlags:</b>  An integer that
+indicates the combination of flags that determines how the time provider logs
+events into an event log. This MUST be the following value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NCELF_LogServerResponseError</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Log an event when the time provider fails to validate
+  a request for authenticated time synchronization.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other values are reserved for
+future use.</p>
+</dd></dl><p><b>ulEventLogFlagsFlag:</b>  An integer
+that indicates the source of the configuration setting for <b>ulEventLogFlags</b>,
+as specified in section 2.2.6.</p><p><b>cEntries:</b>  An integer that indicates
+the number of additional configuration entries in <b>pEntries</b>.</p><p><b>pEntries:</b>  A pointer to <a href="c25e944e-fec0-44a5-9414-b7cf63c2f44a" data-linktype="relative-path">W32TIME_ENTRY</a> structures
+that represent additional configuration entries.</p></div>

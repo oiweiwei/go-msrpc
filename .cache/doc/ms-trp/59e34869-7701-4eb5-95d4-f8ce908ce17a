@@ -1,0 +1,264 @@
+<div class="content"><p>The NegotiateAPIVersion packet is transmitted from a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call</a>.
+Sending this packet MUST allow an application to negotiate a TAPI version to
+use for the specified phone device.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hPhoneApp</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDeviceIDLocal</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwVersionCurrent</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNegotiatedVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">ExtensionID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved5</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved6</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved7</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>The identifier of the
+function that will be invoked on the remote server. This value MUST be set to
+108.</p><dl>
+<dd>
+<p><b>Return Values</b></p>
+</dd>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>, this field
+MUST contain the result of the encapsulated telephony request. A value of zero
+indicates success, and a <a href="b1c6fae0-09ca-4f7b-85f6-1324376d231c" data-linktype="relative-path">PHONEERR_Constants</a>
+value indicates failure. The remote server MUST complete this call
+synchronously.</p>
+</dd>
+<dd>
+<p>Returns zero if the request succeeds or a negative
+error number if an error occurs. Common return values are:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PHONEERR_INVALAPPHANDLE</p>
+  </td>
+  <td>
+  <p>0x00000007</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_OPERATIONFAILED</p>
+  </td>
+  <td>
+  <p>0x0000001C</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_BADDEVICEID</p>
+  </td>
+  <td>
+  <p>0x00000002</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_OPERATIONUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x0000001D</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_NODRIVER</p>
+  </td>
+  <td>
+  <p>0x00000019</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_NOMEM</p>
+  </td>
+  <td>
+  <p>0x0000001A</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_INVALPOINTER</p>
+  </td>
+  <td>
+  <p>0x00000015</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_RESOURCEUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x0000001F</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_INCOMPATIBLEAPIVERSION</p>
+  </td>
+  <td>
+  <p>0x00000003</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_UNINITIALIZED</p>
+  </td>
+  <td>
+  <p>0x00000022</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_NODEVICE</p>
+  </td>
+  <td>
+  <p>0x00000018</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>hPhoneApp (4 bytes): </b>An <a href="55b72ff6-9236-401b-846a-e8a78dfada1b" data-linktype="relative-path">HPHONEAPP</a>. The handle to
+the application registration with TAPI. This field MUST have been obtained by
+sending the <a href="a600d262-0bb1-447b-8a0d-6f57d3a8ec18" data-linktype="relative-path">Initialize</a>
+packet.</p><p><b>dwDeviceIDLocal (4 bytes): </b>An unsigned 32-bit
+integer. The phone device to query. A valid value of dwDeviceIDLocal is in the
+range 0 to dwNumDevs – 1. The client obtains dwNumDevs by sending a Initialize
+packet to the remote server.</p><p><b>dwVersion (4 bytes): </b>An unsigned 32-bit
+integer. The minimum TAPI version the request will support. Set to
+TAPI_VERSION1_0 (0x00010003).</p><p><b>dwVersionCurrent (4 bytes): </b>An unsigned 32-bit
+integer. The most current version of TAPI.</p><p><b>dwNegotiatedVersion (4 bytes): </b>An unsigned
+32-bit integer. Set to TAPI_NO_DATA (0xFFFFFFFF). Upon successful completion of
+the request, this field contains the TAPI version number that was negotiated.</p><p><b>ExtensionID (4 bytes): </b>An unsigned 32-bit
+integer. Set to TAPI_NO_DATA (0xFFFFFFFF). Upon successful completion of the
+request, this field contains the offset, in bytes, of a <a href="e1661717-7694-4cc7-84fb-1540fee5bf4d" data-linktype="relative-path">PHONEEXTENSIONID</a> packet in
+the VarData field, indicating the extension identifier of the provider-specific
+extensions.</p><p><b>dwSize (4 bytes): </b>An unsigned 32-bit integer.
+The size, in bytes, of the packet that is indicated in the ExtensionID field.</p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved5 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved6 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved7 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>VarData (16 bytes): </b>Present on successful
+completion of the request. MUST contain a PHONEEXTENSIONID packet.</p><p>The contents of this field are DWORD-aligned.</p></div>

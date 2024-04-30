@@ -1,0 +1,149 @@
+<div class="content"><p>The IsValidCertificate method verifies the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> against the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a> and verifies that the
+certificate has not been revoked.</p><dl>
+<dd>
+<div><pre> HRESULT IsValidCertificate(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in, string, unique] wchar_t const* pSerialNumber,
+   [out] LONG* pRevocationReason,
+   [out] LONG* pDisposition
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">ICertAdminD::SetExtension (section 3.1.4.1.1)</a>.
+</p><p><b>pSerialNumber: </b>A null-terminated Unicode
+string specifying a serial number that identifies the certificate to be
+reviewed. The string MUST specify the serial number as an even number of
+hexadecimal digits. If necessary, a zero can be prefixed to the number to
+produce an even number of digits. The string MUST NOT contain more than one
+leading zero. Information about the serial number is as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90414" data-linktype="external">[RFC3280]</a> section
+4.1.2.2.</p><p><b>pRevocationReason: </b>A pointer to a <a href="../ms-dtyp/29d44d70-382f-4998-9d76-8a1fe93e445c" data-linktype="relative-path">LONG</a>
+value that receives the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_caac8fa2-5e21-43b9-a3fe-be0819b906bf" data-linktype="relative-path">revocation</a>
+reason code. The revocation reason code MUST be one of the following values
+that are defined for CRLReason, as specified in [RFC3280] section 5.3.1.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>unspecified</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>keyCompromise</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>cACompromise</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p>affiliationChanged</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4</p>
+  </td>
+  <td>
+  <p>superseded</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>5</p>
+  </td>
+  <td>
+  <p>cessationOfOperation</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  </td>
+  <td>
+  <p>certificateHold</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pDisposition: </b>A pointer to a LONG that
+receives the disposition status of the request. This parameter MUST be one of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The
+  certificate has been revoked.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The
+  certificate is still valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The
+  certificate was never issued.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The following processing rules apply:</p><ol><li><p><span>    </span>Unless otherwise
+specified in the processing rules that follow, the value that is returned as
+pRevocationReason SHOULD be 0.</p>
+</li><li><p><span>    </span>The CA MUST look
+up a row in the Request <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_d3a7da8d-a597-4838-9756-25e30b640ba7" data-linktype="relative-path">table</a>
+where the value of the Serial_Number column is identical to the value that is
+provided in the <i>pSerialNumber</i> parameter:</p>
+<ul><li><p><span><span>  </span></span>If
+a row is not found, the CA MUST return 4 in the <i>pDisposition</i> parameter.</p>
+</li><li><p><span><span>  </span></span>If
+a row is found, this row is referred to as the identified row in the following
+processing rules.</p>
+</li></ul></li><li><p><span>    </span>The CA MUST
+inspect the value of the Request_Disposition column in the identified row and
+apply the following rules:</p>
+<ul><li><p><span><span>  </span></span>If
+the value is &#34;certificate issued&#34;, the CA MUST return 3 in the <i>pDisposition</i>
+parameter.</p>
+</li><li><p><span><span>  </span></span>If
+the value is &#34;certificate revoked&#34; and the value in
+Request_Revocation_Date is greater than the current time, the CA MUST return 3
+in the <i>pDisposition</i> parameter.</p>
+</li><li><p><span><span>  </span></span>If
+the value is &#34;certificate revoked&#34; and the value in
+Request_Revocation_Date contains a value that is less than or equal to the
+current time, the CA MUST return 2 in the pDisposition parameter, read the
+Request_Revoked_Reason property from the <a href="2f82efc0-66dd-49b7-9556-425805e63d30" data-linktype="relative-path">Request table</a>, and return
+the value as the pRevocationReason argument.</p>
+</li></ul></li></ol></div>

@@ -1,0 +1,83 @@
+<div class="content"><p>The EnumRules method returns all the <i>Rules</i> from the <b>List
+of Persisted Rules</b> (section <a href="a4da1447-54a5-4b37-b135-bfa7481aed1c" data-linktype="relative-path">3.2.1.6</a>) on the server
+that have the specified <i>ruleType</i>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_CLASSIFICATION_MANAGER | 0x04)] HRESULT EnumRules(
+   [in] FsrmRuleType ruleType,
+   [in, defaultvalue(FsrmEnumOptions_None)] 
+     FsrmEnumOptions options,
+   [out, retval] IFsrmCollection** Rules
+ );
+</pre></div>
+</dd></dl><p><b>ruleType: </b>Contains the <a href="95a2996f-d7ec-4169-a964-d9abf4ec3b6f" data-linktype="relative-path">FsrmRuleType (section 2.2.1.2.11)</a>
+to which to limit the returned collection of <i>Rules</i>.</p><p><b>options: </b>Contains the <a href="d01ee30b-4ef8-4eec-8026-3b5a1ccda298" data-linktype="relative-path">FsrmEnumOptions (section 2.2.1.2.5)</a>
+to use when enumerating the <i>Rules</i>.</p><p><b>Rules: </b>Pointer to an <b>IFsrmCollection</b>
+interface pointer (section <a href="171d3b3c-0f4d-40b9-8f48-0e97f9ff17be" data-linktype="relative-path">3.2.4.2.1</a>)
+that upon completion contains pointers to every rule on the server that has the
+rule type specified by <i>ruleType</i>. A caller MUST release the collection
+received when the caller is done with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045311</p>
+  <p>FSRM_E_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The <i>options</i> parameter is not a valid <b>FsrmEnumOptions</b>
+  (section 2.2.1.2.5) value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>ruleType</i> parameter is
+  not a valid <b>FsrmRuleType</b> (section 2.2.1.2.11) value.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>Rules</i> parameter is
+  NULL.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>If <i>Rules</i> is NULL, server MUST return E_INVALIDARG.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ruleType</i> contains any value other than specified in
+section 2.2.1.2.11, server MUST return E_INVALIDARG.</p>
+</li><li><p><span><span> 
+</span></span>If <i>options</i> contains <b>FsrmEnumOptions_Asynchronous</b> or
+any value other than what is specified in section 2.2.1.2.5, the server MUST
+return FSRM_E_NOT_SUPPORTED.</p>
+</li></ul><p>Upon successful validation of parameters, the server MUST
+perform the following actions:</p><ul><li><p><span><span> 
+</span></span>Create a new <b>List of Non-Persisted Rule Instances</b> (section
+3.2.1.6).</p>
+</li><li><p><span><span> 
+</span></span>Populate the newly created list with <a href="3ce18cd8-2937-4162-897f-6b1fb425fd71" data-linktype="relative-path">Non-Persisted Rule
+Instances (section 3.2.1.6.3.2)</a> copied from the <a href="c9c94631-1c93-4410-ba6f-af4baf0a05f4" data-linktype="relative-path">Persisted
+Rules (section 3.2.1.6.3.1)</a> in the <b>List of Persisted Rules</b>
+where each copied instance&#39;s <b>Rule Type</b> is equivalent to <i>ruleType</i>.</p>
+</li><li><p><span><span> 
+</span></span>If <b>options</b> did not include
+FsrmEnumOptions_IncludeDeprecatedObjects, remove all Non-Persisted Rule
+Instances that have <a href="e096822f-67f4-4a42-9fe6-5ee194ad8581" data-linktype="relative-path">Rule.Deprecated</a>
+set to true.</p>
+</li><li><p><span><span> 
+</span></span>Populate <i>Rules</i> with the <b>IFsrmRule</b> interface pointer
+(section <a href="66f78e6a-9759-47b8-a679-71cf142f48bc" data-linktype="relative-path">3.2.4.2.41</a>) of
+every Non-Persisted Rule Instance in this <b>List of Non-Persisted Rule
+Instances</b>.</p>
+</li></ul></div>

@@ -1,0 +1,119 @@
+<div class="content"><p>This is the completion packet sent by the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> for the line <a href="2b3d3064-5a97-4c70-9b55-5c1607cae103" data-linktype="relative-path">GetAgentInfo</a> request.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Totalsize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>InitContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>hDevice</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Msg</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>OpenContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRequestId</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Result</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpAgentInfoContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Totalsize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, of this packet and any trailing
+variable-length data. </p><p><b>InitContext (4 bytes): </b>An unsigned 32-bit
+integer. An opaque, client-specified session value that MUST be equal to the
+InitContext value specified in the original scoping of the line <a href="9d8eb7cd-3245-4e44-97e0-42f7b89c9424" data-linktype="relative-path">Initialize</a> request.</p><p><b>lpContext (4 bytes): </b>An unsigned 32-bit
+integer. An opaque, client-specified value that MUST be equal to the lpContext
+value in the original request.</p><p><b>hDevice (4 bytes): </b>An unsigned 32-bit integer.
+This MUST be ignored on receipt and can be any value. </p><p><b>Msg (4 bytes): </b>An unsigned 32-bit integer. The
+packet type identifier. MUST be set to 0x0000000C (<a href="8f5bc349-fd55-46f2-b0bc-dc9f757317a9" data-linktype="relative-path">LINE_REPLY</a>).</p><p><b>OpenContext (4 bytes): </b>An unsigned 32-bit
+integer. An opaque, client-specified value that MUST be equal to the
+OpenContext value specified in the original scoping of the line <a href="2759c744-e040-4c5d-b4b5-215d391f0490" data-linktype="relative-path">Open</a> request.</p><p><b>dwRequestId (4 bytes): </b>An unsigned 32-bit
+integer. The positive, nonzero, client-specified request ID value equal to the
+dwRequestId value in the original request. </p><p><b>Result (4 bytes): </b>An unsigned 32-bit integer.
+The request result, for example, zero for success or a <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path">LINEERR_Constants</a> value
+for an error.</p><p><b>lpAgentInfoContext (4 bytes): </b>An unsigned
+32-bit integer. An opaque, client-specified value that MUST be equal to the
+lpAgentInfoContext value in the original line GetAgentInfo request. </p><p><b>dwSize (4 bytes): </b>An unsigned 32-bit integer.
+The size, in bytes, of any returned variable-length data that immediately
+follows this packet.</p><p><b>VarData (variable): </b>Contains a <a href="d63ca30a-2d14-481c-8735-cfd09249eba8" data-linktype="relative-path">LINEAGENTINFO</a> packet.
+Offset and size fields within the LINEAGENTINFO and further included packets
+MUST refer to data within this VarData field. The contents of this field MUST
+be QWORD-aligned, as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/ac050bbf-a821-4fab-bccf-d95d892f428f" data-linktype="relative-path">2.2.40</a>.</p></div>

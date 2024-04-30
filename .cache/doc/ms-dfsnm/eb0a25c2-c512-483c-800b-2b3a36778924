@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The DFS_INFO_300_CONTAINER structure contains an array of <span><a href="33e7c8c9-346e-4c0c-9dca-762291978711" data-linktype="relative-path">DFS_INFO_300</a></span>
+structures. The DFS_INFO_300_CONTAINER structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_300_CONTAINER {
+   DWORD EntriesRead;
+   [size_is(EntriesRead)] DFS_INFO_300* Buffer;
+ } DFS_INFO_300_CONTAINER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  The number of elements
+in the array.</p><p><b>Buffer:</b>  The array of DFS_INFO_300
+structures.</p></div>

@@ -1,0 +1,178 @@
+<div class="content"><p> </p><p>The <b>EcDoRpcExt2</b> method passes generic <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_3369fdd6-36f8-4a62-9cd7-2738ffb5048f" data-linktype="relative-path">ROP</a></span>
+commands to the server for processing within a <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_d08d95ee-5936-47d8-9f35-49e4159354a6" data-linktype="relative-path">Session Context</a></span>.
+Each call can contain multiple ROP commands. The server returns the results of
+each ROP command to the client. This call requires an active <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_1f0ab616-f876-47ff-9cf1-6f24c0255ccc" data-linktype="relative-path">session
+context handle</a></span> returned from the <b>EcDoConnectEx</b> method.</p><dl>
+<dd>
+<div><pre> long __stdcall EcDoRpcExt2(
+      [in, out, ref] CXH * pcxh,
+      [in, out] unsigned long *pulFlags,
+      [in, size_is(cbIn)] unsigned char rgbIn[],
+      [in] unsigned long cbIn,
+      [out, length_is(*pcbOut), size_is(*pcbOut)] unsigned char rgbOut[],
+      [in, out] BIG_RANGE_ULONG *pcbOut,
+      [in, size_is(cbAuxIn)] unsigned char rgbAuxIn[],
+      [in] unsigned long cbAuxIn,
+      [out, length_is(*pcbAuxOut), size_is(*pcbAuxOut)] unsigned char rgbAuxOut[],
+      [in, out] SMALL_RANGE_ULONG *pcbAuxOut,
+      [out] unsigned long *pulTransTime
+ );
+</pre></div>
+</dd></dl><p><i>pcxh:</i> A session context handle. On input, the client
+MUST pass a valid session context handle that was created by calling the <b>EcDoConnectEx</b>
+method. The server uses the session context handle to identify the Session
+Context to use for this call. On output, the server MUST return the same
+session context handle on success.</p><p>The server can destroy the session context handle by
+returning a zero session context handle. Reasons for destroying the session
+context handle are implementation-dependent; following are examples of why the
+server might destroy the session context handle:</p><ul><li><p><span><span> 
+</span></span>The server determines that the <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_edeadb0f-6571-49b7-8cce-5dc77b0793d6" data-linktype="relative-path">ROP request</a></span> payload
+in the <i>rgbIn</i> buffer is malformed or length parameters are not valid.</p>
+</li><li><p><span><span> 
+</span></span>The session context handle that was passed in is not valid.</p>
+</li><li><p><span><span> 
+</span></span>An attempt was made to access a <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_d3ad0e15-adc9-4174-bacf-d929b57278b3" data-linktype="relative-path">mailbox</a></span> that is in
+the process of being moved.</p>
+</li><li><p><span><span> 
+</span></span>An administrator has blocked a client that has an active
+connection.</p>
+</li></ul><p><i>pulFlags:</i> The <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_425bcab9-7911-4eae-b414-624b7a51eb5f" data-linktype="relative-path">flags</a></span> that describe
+the server output characteristics. On input, this parameter contains flags that
+tell the server how to build the <i>rgbOut</i> parameter.</p><table><thead>
+  <tr>
+   <th>
+   <p>Flag name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><b>NoCompression</b></p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The server MUST NOT compress <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_b1119977-cf72-4ae9-bd68-d169cec0b985" data-linktype="relative-path">ROP response</a></span>
+  payload (<i>rgbOut</i>) or auxiliary payload (<i>rgbAuxOut</i>). For details
+  about server behavior when this flag is absent, see section <span><a href="ea43aedc-f845-431e-a8ca-d76471d6e53d" data-linktype="relative-path">3.1.4.2.1.1</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>NoXorMagic</b></p>
+  </td>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The server MUST NOT obfuscate the ROP response payload
+  (<i>rgbOut</i>) or auxiliary payload (<i>rgbAuxOut</i>). For details about
+  server behavior when this flag is absent, see section 3.1.4.2.1.1.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>Chain</b></p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The client allows chaining of ROP response payloads.</p>
+  </td>
+ </tr></tbody></table><p>For details about how to use these flags, see section
+3.1.4.2.1.1.</p><p>On output, the server SHOULD<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a> set this
+parameter to 0x00000000. The output flags not in the table are reserved for
+future use.</p><p><i>rgbIn:</i> The ROP request payload. The ROP request
+payload is prefixed with an <b>RPC_HEADER_EXT</b> header, as specified in
+section <span><a href="18d293ec-b551-42f5-8beb-32fe304225a9" data-linktype="relative-path">2.2.2.1</a></span>.
+Information stored in this header determines how to interpret the data
+following the header. For details about how to access the embedded ROP request
+payload, see section <span><a href="a5e35715-b67d-4108-93bd-104f41288be6" data-linktype="relative-path">3.1.4.2.1</a></span>. The
+length of the ROP request payload including the <b>RPC_HEADER_EXT</b> header is
+contained in the <i>cbIn</i> parameter.</p><p>For more information about ROP buffers, see <span><a href="../ms-oxcrops/13af6911-27e5-4aa0-bb75-637b02d4f2ef" data-linktype="relative-path">[MS-OXCROPS]</a></span>.</p><p><i>cbIn:</i> The length of the ROP request payload. On
+input, this parameter contains the length of the ROP request payload passed in
+the <i>rgbIn</i> parameter. The ROP request payload includes the size of the
+ROPs plus the size of the <b>RPC_HEADER_EXT</b> structure. The server SHOULD<a id="Appendix_A_Target_18"></a><a id="z27"></a><a aria-label="Product behavior note 18" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a> fail with the <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+status code of RPC_X_BAD_STUB_DATA (0x000006F7) if the request buffer is larger
+than 0x00040000 bytes in size. For more information on returning RPC status
+codes, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>. If the
+request buffer is smaller than the size of the <b>RPC_HEADER_EXT</b> structure
+(0x00000008 bytes), the server SHOULD<a id="Appendix_A_Target_19"></a><a id="z29"></a><a aria-label="Product behavior note 19" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_19" data-linktype="relative-path">&lt;19&gt;</a>
+fail with error code ecRpcFailed (0x80040115).</p><p><i>rgbOut:</i> The ROP response payload. The size of the
+payload is specified in the <i>pcbOut</i> parameter. Like the ROP request
+payload, the ROP response payload is also prefixed by a <b>RPC_HEADER_EXT</b>
+header. For details about how to format the ROP response payload, see section
+3.1.4.2.1. The size of the ROP response payload plus the <b>RPC_HEADER_EXT</b>
+header is returned in the <i>pcbOut</i> parameter.</p><p><i>pcbOut:</i> The maximum size of the <i>rgbOut</i>
+parameter. On input, this parameter contains the maximum size of the <i>rgbOut</i>
+parameter. If the value in the <i>pcbOut</i> parameter on input is less than
+0x00000008, the server SHOULD<a id="Appendix_A_Target_20"></a><a id="z31"></a><a aria-label="Product behavior note 20" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a> fail with
+error code ecRpcFailed (0x80040115). If the value in the <i>pcbOut</i>
+parameter on input is larger than 0x00040000, the server MUST fail with the RPC
+status code of RPC_X_BAD_STUB_DATA (0x000006F7). If the server indicates it
+supports a larger ROP response payload through the <b>ULTRA_LARGE_PACKED_DOWNLOAD_BUFFERS
+</b>flag being present in the <i>Flags</i> field of the <b>AUX_SERVER_CAPABILITIES</b>
+(section <span><a href="3662a530-f14d-4453-b175-56740eddd40e" data-linktype="relative-path">2.2.2.2.19</a></span>)
+auxiliary block returned in <i>rgbAuxOut</i> field of the <b>EcDoConnectEx</b>
+method (section <span><a href="59d638fe-e63d-422a-b51d-6210b2155138" data-linktype="relative-path">3.1.4.1</a></span>), then the
+server MUST fail only if <i>pcbOut</i> is larger than 0x00100000.</p><p>On output, this parameter contains the size of the ROP
+response payload, including the size of the <b>RPC_HEADER_EXT</b> header in the
+<i>rgbOut</i> parameter. The server returns 0x00000000 on failure because there
+is no ROP response payload. The client ignores any data returned on failure.</p><p><i>rgbAuxIn:</i> The auxiliary payload buffer. The auxiliary
+payload buffer is prefixed by an <b>RPC_HEADER_EXT</b> structure. Information
+stored in this header determines how to interpret the data following the
+header. The length of the auxiliary payload buffer including the <b>RPC_HEADER_EXT</b>
+header is contained in the <i>cbAuxIn</i> parameter.</p><p>For details about how to access the embedded auxiliary
+payload buffer, see section 3.1.4.2.1. For details about how to interpret the
+auxiliary payload data, see section <span><a href="135d0237-fe2b-4e1e-a472-2e252176f9d6" data-linktype="relative-path">3.1.4.2.2</a></span>.</p><p><i>cbAuxIn:</i> The length of the auxiliary payload buffer.
+On input, this parameter contains the length of the auxiliary payload buffer
+passed in the <i>rgbAuxIn</i> parameter. If the request buffer value is larger
+than 0x00001008 bytes in size, the server SHOULD<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a> fail with
+the RPC status code RPC_X_BAD_STUB_DATA (0x000006F7).<a id="Appendix_A_Target_22"></a><a id="z33"></a><a aria-label="Product behavior note 22" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a></p><p><i>rgbAuxOut:</i> The auxiliary payload buffer. On output,
+the server MAY<a id="Appendix_A_Target_23"></a><a id="z35"></a><a aria-label="Product behavior note 23" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a> return
+auxiliary payload data to the client. The server MUST include a <b>RPC_HEADER_EXT</b>
+header before the auxiliary payload data.</p><p><i>pcbAuxOut:</i> The maximum length of the auxiliary
+payload buffer. On input, this parameter contains the maximum length of the <i>rgbAuxOut</i>
+parameter. If this value on input is larger than 0x00001008, the server MUST
+fail with the RPC status code RPC_X_BAD_STUB_DATA (0x000006F7). </p><p>On output, this parameter contains the size of the data to
+be returned in the <i>rgbAuxOut</i> parameter.</p><p><i>pulTransTime:</i> The time it took to execute this
+method. On output, the server stores the number of milliseconds the call took
+to execute. This is the total elapsed time from when the call is dispatched on
+the server to the point in which the server returns the call. This is
+diagnostic information the client can use to determine the cause of a slow
+response time from the server. The client can monitor the total elapsed time
+across the RPC method call and, using this output parameter, can determine
+whether time was spent transmitting the request/response on the network or
+processing it on the server.</p><p><b>Return Values:</b> If the method succeeds, the return
+value is 0. If the method fails, the return value is an implementation-specific
+error code or the protocol-defined error code listed in the following table.</p><table><thead>
+  <tr>
+   <th>
+   <p>Error code name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ecRpcFormat</p>
+  </td>
+  <td>
+  <p>0x000004B6</p>
+  </td>
+  <td>
+  <p>The format of the request was found to be invalid.
+  This is a generic error that means the length was found to be invalid or the
+  content was found to be invalid.</p>
+  </td>
+ </tr></tbody></table><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol as specified in <span><a href="/en-us/openspecs/windows_protocols/MS-RPCE/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="absolute-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,44 @@
+<div class="content"><p>This method is called by a replication client application to
+create an empty directory to back up a replication file share.</p><dl>
+<dd>
+<div><pre> HRESULT CreateEmptyDir(
+   [in] LPCWSTR pwszPath
+ );
+</pre></div>
+</dd></dl><p><b>pwszPath: </b>An <a href="ab2d0f1a-81e7-4159-a32c-0321d0c3a32f" data-linktype="relative-path">ImplementationSpecificPathProperty</a>
+(section 2.2.2.2) representing the path to the directory that is to be created
+by the server. This MUST be derived from the server’s base replication
+directory path by appending one of the following strings.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&#34;\ReplicaSource&#34;</p>
+  </td>
+  <td>
+  <p> The server is a replication source.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;\ReplicaNew&#34;</p>
+  </td>
+  <td>
+  <p> The server is a replication target.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server MAY verify
+that <i>pwszPath</i> is valid, and fail the call if not.</p><p>If there already exists a directory with the provided path,
+the server MUST attempt to delete the contents of this directory, and fail the
+call if it cannot. Otherwise, the server MUST attempt to create a directory
+with the provided path, and fail the call if it cannot.</p><p>The server MUST then return success.</p></div>

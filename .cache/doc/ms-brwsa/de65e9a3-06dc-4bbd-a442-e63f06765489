@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The SERVER_INFO_100_CONTAINER structure contains a count of
+the entries returned by the method and a pointer to a buffer.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVER_INFO_100_CONTAINER {
+   DWORD EntriesRead;
+   [size_is(EntriesRead)] LPSERVER_INFO_100 Buffer;
+ } SERVER_INFO_100_CONTAINER,
+  *PSERVER_INFO_100_CONTAINER,
+  *LPSERVER_INFO_100_CONTAINER;
+</pre></div>
+</dd></dl><p><b>EntriesRead:</b>  The number of entries
+returned by the method call. This value MUST be zero if no domains are
+configured in the <span><a href="48f4ceaf-3cd0-4964-a964-2f4682b8d2f0#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">primary domain controller</a></span>
+or <span><a href="48f4ceaf-3cd0-4964-a964-2f4682b8d2f0#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain
+controller</a></span>. The client SHOULD set the EntriesRead field to 0, and
+the Buffer field to NULL, and the server MUST ignore these fields.</p><p><b>Buffer:</b>  A pointer to an array of
+SERVER_INFO_100 data structures (as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/007c654b-7d78-49d4-9f4d-0da7c1889727" data-linktype="relative-path">2.3.11</a></span>).
+If EntriesRead is zero, this field is undefined and MUST NOT be considered a
+valid pointer.</p></div>

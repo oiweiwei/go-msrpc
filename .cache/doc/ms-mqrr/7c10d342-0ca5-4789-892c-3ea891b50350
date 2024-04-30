@@ -1,0 +1,7 @@
+<div class="content"><p>This document specifies the Message Queuing (MSMQ): Queue
+Manager Remote Read Protocol, a <a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a>-based
+protocol that is used by <a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_70ce3665-ae64-44b4-88fe-7c1dcdcd5417" data-linktype="relative-path">Microsoft
+Message Queuing (MSMQ)</a> clients to read or reject a <a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a> from a <a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a>, to move a message
+between queues, and to purge all messages from a queue. </p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

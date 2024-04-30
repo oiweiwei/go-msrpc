@@ -1,0 +1,129 @@
+<div class="content"><p>The UserProperty structure is used to define a single
+name/value pair.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">MaxVersion</p>
+  </td>
+  <td colspan="16">
+  <p align="center">MinVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Name
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">vt</p>
+  </td>
+  <td colspan="16">
+  <p align="center">unused
+  (14 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Value
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>MaxVersion (2 bytes): </b>The major version number
+for this UserProperty format; this field MUST be set to 0x0001.</p><p><b>MinVersion (2 bytes): </b>The minor version number
+for this UserProperty format; this field MUST be set to 0x0001.</p><p><b>Name (variable): </b>A <a href="3b4a0b42-33ce-4729-aca4-baaba0d13a08" data-linktype="relative-path">LengthPrefixedName (section
+2.2.1)</a> containing the name of the UserProperty.</p><p><b>vt (2 bytes): </b>The type of data contained in <b>Value</b>.
+It MUST be set to one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>vt value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0008</p>
+  </td>
+  <td>
+  <p>A LengthPrefixedName.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0009</p>
+  </td>
+  <td>
+  <p>An OBJREF (<a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+  section <a href="../ms-dcom/fe6c5e46-adf8-4e34-a8de-3f756c875f31" data-linktype="relative-path">2.2.18</a>)
+  with an <b>iid</b> field that MUST be set to IID_IUnknown ([MS-DCOM] section <a href="../ms-dcom/c25391af-f59e-40da-885e-cc84076673e4" data-linktype="relative-path">1.9</a>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000D</p>
+  </td>
+  <td>
+  <p>An OBJREF ([MS-DCOM] section 2.2.18) with an <b>iid</b>
+  field that MUST be set to IID_IDispatch (<a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a>
+  section <a href="../ms-oaut/58504586-e4af-44a3-be04-f1dc281b7429" data-linktype="relative-path">1.9</a>).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>unused (14 bytes): </b>SHOULD be set to zero, and
+MUST be ignored upon receipt.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="9b3fcb5a-e117-49a0-87c9-6884535e83bd#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a></p><p><b>Value (variable): </b>MUST contain the data for
+this name/value pair, as specified by the <b>vt</b> field.</p></div>

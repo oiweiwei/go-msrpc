@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The CALPWSTR structure defines a counted array of <span><a href="../ms-dtyp/9e7d8bfc-016c-48b7-95ae-666e103eead4" data-linktype="relative-path">wchar_t</a></span>*
+values.</p><dl>
+<dd>
+<div><pre> typedef struct tagCALPWSTR {
+   unsigned long cElems;
+   [size_is(cElems)] [string] wchar_t** pElems;
+ } CALPWSTR;
+</pre></div>
+</dd></dl><p><b>cElems:</b>  MUST be set to the total
+number of elements of the array.</p><p><b>pElems:</b>  An array of wchar_t*
+values.</p></div>

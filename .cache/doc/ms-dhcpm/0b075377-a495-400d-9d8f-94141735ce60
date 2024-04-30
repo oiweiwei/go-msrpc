@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DHCP_FILTER_RECORD</b> structure contains information
+regarding a link-layer filter record.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_FILTER_RECORD {
+   DHCP_ADDR_PATTERN AddrPatt;
+   LPWSTR Comment;
+ } DHCP_FILTER_RECORD,
+  *LPDHCP_FILTER_RECORD;
+</pre></div>
+</dd></dl><p><b>AddrPatt:</b>  This is of type <span><a href="a45ad236-6c42-42eb-9e67-c9335b61b7a7" data-linktype="relative-path">DHCP_ADDR_PATTERN (section 2.2.1.2.89)</a></span>
+structure and contains the address/pattern related information of the
+link-layer filter.</p><p><b>Comment:</b>  This is a pointer, of type
+<span><a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a></span>,
+to a null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+contains the comment associated with the address/pattern. The maximum number of
+characters allowed in this string is 128, which includes the terminating null
+character.</p></div>

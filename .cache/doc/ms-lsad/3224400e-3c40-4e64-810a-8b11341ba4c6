@@ -1,0 +1,13 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/3224400e-3c40-4e64-810a-8b11341ba4c6" data-linktype="external">msdn link</a></p><p>The POLICY_AUDIT_FULL_SET_INFO structure contains
+information to set on the server that is controlling audit log behavior. The
+following structure corresponds to the PolicyAuditFullSetInformation
+information class. This information class is not supported.</p><dl>
+<dd>
+<div><pre> typedef struct _POLICY_AUDIT_FULL_SET_INFO {
+   unsigned char ShutDownOnFull;
+ } POLICY_AUDIT_FULL_SET_INFO,
+  *PPOLICY_AUDIT_FULL_SET_INFO;
+</pre></div>
+</dd></dl><p><b>ShutDownOnFull:</b>  A nonzero value
+means that the system MUST shut down when the event log is full, while zero
+means that the system MUST NOT shut down when the event log is full.</p></div>

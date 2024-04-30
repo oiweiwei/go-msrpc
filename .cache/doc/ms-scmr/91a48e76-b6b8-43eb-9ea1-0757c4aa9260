@@ -1,0 +1,10 @@
+<div class="content"><p>The SERVICE_DESCRIPTIONA structure contains the description
+of the service. String values are in ANSI.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVICE_DESCRIPTIONA {
+   [string, range(0, 8 * 1024)] LPSTR lpDescription;
+ } SERVICE_DESCRIPTIONA,
+  *LPSERVICE_DESCRIPTIONA;
+</pre></div>
+</dd></dl><p><b>lpDescription:</b>  A pointer to a
+string that contains the description of the service in ANSI.</p></div>

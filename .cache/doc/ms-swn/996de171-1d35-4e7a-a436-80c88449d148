@@ -1,0 +1,5 @@
+<div class="content"><p>The Service Witness Protocol is a remote procedure call
+(RPC)-based protocol that is used to promptly notify a client of resource changes
+that have occurred on a highly available server.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

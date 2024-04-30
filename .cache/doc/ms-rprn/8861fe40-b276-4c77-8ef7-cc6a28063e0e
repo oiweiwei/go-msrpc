@@ -1,0 +1,39 @@
+<div class="content"><p>RpcDeletePerMachineConnection deletes information about a
+printer connection.<a id="Appendix_A_Target_314"></a><a aria-label="Product behavior note 314" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_314" data-linktype="relative-path">&lt;314&gt;</a></p><p>This method is used for remote administration of client
+computers running the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_b49fcfa1-e15c-4dce-be33-d74d5bfda785" data-linktype="relative-path">print
+system</a>.</p><dl>
+<dd>
+<div><pre> DWORD RpcDeletePerMachineConnection(
+   [in, string, unique] STRING_HANDLE pServer,
+   [in, string] const wchar_t* pPrinterName
+ );
+</pre></div>
+</dd></dl><p><b>pServer: </b>A parameter specified in Print Server
+Name Parameters (section <a href="acb355a4-913b-4abb-8cb5-415aea160015" data-linktype="relative-path">3.1.4.1.4</a>).</p><p><b>pPrinterName: </b>A parameter specified in Printer
+Name Parameters (section <a href="3f2d41eb-30e1-47e1-93bb-534ea50cf8eb" data-linktype="relative-path">3.1.4.1.5</a>) which specifies
+a printer connection.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps specified in Print Server Name
+Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps specified in Printer Name
+Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the per-machine connection exists, and if that fails,
+return ERROR_INVALID_PRINTER_NAME.</p>
+</li><li><p><span><span> 
+</span></span>Additional validation MAY be performed.<a id="Appendix_A_Target_315"></a><a aria-label="Product behavior note 315" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_315" data-linktype="relative-path">&lt;315&gt;</a></p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Delete the per-machine printer connection from the <b>list of
+per-machine connections</b> that is identified by the string that is pointed to
+by the <i>pPrinterName</i> parameter. Defer deletion of the actual printer
+object for each user until the user logs on, and then delete the printer object
+for the printer connection to the printer specified in <i>pPrinterName</i>.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

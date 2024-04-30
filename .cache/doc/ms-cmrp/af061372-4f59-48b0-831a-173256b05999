@@ -1,0 +1,100 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/af061372-4f59-48b0-831a-173256b05999" data-linktype="external">msdn link</a></p><p>(Protocol Version 3) The ApiCancelClusterGroupOperation
+SHOULD<a id="Appendix_A_Target_117"></a><a aria-label="Product behavior note 117" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_117" data-linktype="relative-path">&lt;117&gt;</a>allow a client to cancel a
+pending group move operation.</p><p>The server MUST fail this method with error 0x0000139F
+(ERROR_INVALID_STATE) if the specified group is not in the ClusterGroupPending
+state (section <a href="8e73b5c0-2b5f-47bc-961f-7daf623da339" data-linktype="relative-path">3.1.4.2.46</a>)
+or if the server is not retrying a move operation due to the
+CLUSAPI_GROUP_MOVE_QUEUE_ENABLED flag, as specified in sections <a href="ba315e35-f381-477d-8c36-0c71dc434fa8" data-linktype="relative-path">3.1.4.2.131</a> and <a href="caaf6dd2-a2f9-4408-85dd-b00240e5970b" data-linktype="relative-path">3.1.4.2.132</a>. The server
+SHOULD fail this method with 0x0000139F (ERROR_INVALID_STATE) if the server
+determines that there is no operation in progress for the designated group that
+can be canceled. How the server determines whether there is a cancellable
+operation in progress is implementation-specific.</p><p>If the server accepts the ApiCancelClusterGroupOperation
+request and will process it asynchronously, the server MUST return
+ERROR_IO_PENDING.</p><p>The server accepts an ApiCancelClusterGroupOperation request
+only if it is in the read/write state, as specified in section <a href="756547e7-ca64-4b7c-9f1b-2b1fbc6153d3" data-linktype="relative-path">3.1.1</a>.</p><p>The server MUST require that the access level associated
+with the <i>hGroup</i> parameter is &#34;All&#34; (section <a href="a249a463-3d3b-4058-abf6-3024d81806a0" data-linktype="relative-path">3.1.4</a>).</p><dl>
+<dd>
+<div><pre> error_status_t ApiCancelClusterGroupOperation(
+   [in] HGROUP_RPC hGroup,
+   [in] DWORD dwCancelFlags,
+   [out] error_status_t *rpc_status
+ );
+</pre></div>
+</dd></dl><p><b>hGroup: </b>An HGROUP_RPC context handle that was
+obtained in a previous call to <a href="6e23a55f-d94e-454c-9168-ed97840ad53c" data-linktype="relative-path">ApiOpenGroup (section 3.1.4.2.42)</a>,
+<a href="f829f4e6-465d-4c77-a9da-74c531a299cd" data-linktype="relative-path">ApiOpenGroupEx (section 3.1.4.2.118)</a>,
+or <a href="e02d79c2-ae0b-4812-8919-9f2dbc223eb6" data-linktype="relative-path">ApiCreateGroup (section 3.1.4.2.43)</a>.</p><p><b>dwCancelFlags: </b>Reserved. The client MUST set
+this parameter to 0.</p><p><b>rpc_status: </b>A 32-bit integer used to indicate
+success or failure. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+runtime MUST indicate, by writing to this parameter, whether it succeeded in
+executing this method on the server. The encoding of the value passed in this
+parameter MUST conform to encoding for comm_status and fault_status, as
+specified in Appendix E of <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>Return Values: </b>This method MUST return one of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The <i>dwCancelFlags</i> parameter is not set to 0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000006</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The <i>hGroup</i> parameter does not represent a valid
+  HGROUP_RPC context handle.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000003E5</p>
+  <p>ERROR_IO_PENDING</p>
+  </td>
+  <td>
+  <p>The server has accepted the request and will process
+  it asynchronously.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000139F</p>
+  <p>ERROR_INVALID_STATE</p>
+  </td>
+  <td>
+  <p>The specified group is not moving or the group move
+  operation is no longer cancellable.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>For any other condition, the server returns a value that is
+not one of the values listed in the preceding table. The client MUST treat all
+values that are not listed in the preceding table identically. However, the
+client SHOULD treat errors specified in section <a href="ca75805a-4b39-4074-8b5b-dbaae6e81b1f" data-linktype="relative-path">3.2.4.6</a> as recoverable
+errors and initiate the reconnect procedure as specified in section 3.2.4.6.</p></div>

@@ -1,0 +1,49 @@
+<div class="content"><p>The GetReferenceBacklogCounts method gets the outbound
+backlog for a <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_064adaf1-86c7-43e5-a157-b0949980181e" data-linktype="relative-path">replicated
+folder</a> on the member, relative to specific <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_5407529a-4f36-4308-8060-63bbe7bac215" data-linktype="relative-path">version vectors</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetReferenceBacklogCounts(
+   [in] SAFEARRAY  (_VersionVectorData)* flatMemberVersionVectors,
+   [out] SAFEARRAY (long)* backlogCounts
+ );
+</pre></div>
+</dd></dl><p><b>flatMemberVersionVectors: </b>MUST be the version
+vector of the <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_fcc139c9-86ff-4414-bc66-5f63e4465b6d" data-linktype="relative-path">replication
+group</a> on another member that is participating in the same replication
+group. If multiple members are specified in the <i>flatMemberVersionVectors</i>
+array, the <i>backlogCounts</i> array contains the backlog counts for each
+reference vector specified.</p><p><b>backlogCounts: </b>The relative backlog for each
+reference vector in <i>flatMemberVersionVectors</i> MUST be returned in this
+output parameter. The length of the <i>backlogCounts</i> array MUST be the same
+as the length of <i>flatMemberVersionVectors</i>. The value on each position in
+the returned array MUST correspond to the version vector on the same position
+in the <i>flatMemberVersionVectors</i> array.</p><p><b>Return Values: </b>The method MUST return 0 on
+success or return an implementation-specific nonzero <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+between 0x80000000 and 0xFFFFFFFF on failure. For protocol purposes, all
+nonzero values MUST be treated as equivalent failures.</p><p>After the server receives this message, it MUST get the
+backlog count for each version vector that is supplied in the message
+parameters. If the server fails to retrieve a backlog count, it returns a
+special value in the <i>backlogCounts</i> array at an index that corresponds to
+the index in the <i>flatMemberVersionVectors</i> for the entry that was used as
+input. The overall method MAY still return success (S_OK). <a id="Appendix_A_Target_62"></a><a aria-label="Product behavior note 62" href="70b8d14d-a366-4156-a2ad-eedb63aec058#Appendix_A_62" data-linktype="relative-path">&lt;62&gt;</a> These special values are as
+follows:</p><ul><li><p><span><span> 
+</span></span>BACKLOG_CONTENT_SET_NOT_PRESENT (0xffffffff): The content set is
+not present in DFS-R.</p>
+</li><li><p><span><span> 
+</span></span>BACKLOG_ERROR_GET_BACKLOG_FAILED (0xfffffffe): Describes one or
+more of the following conditions:</p>
+<ul><li><p><span><span>  </span></span>Run-time
+errors or implementation-specific errors that prevent the calculation of the
+backlog count.</p>
+</li><li><p><span><span>  </span></span>The
+flat member version vector could not be decompressed by using DFS-R. The DFS-R
+decompression algorithm is specified in <a href="../ms-frs2/9914bdd4-9579-43a7-9f2d-9efe2e162944" data-linktype="relative-path">[MS-FRS2]</a>
+section <a href="../ms-frs2/8cb5bae9-edf3-4833-9f0a-9d7e24218d3d" data-linktype="relative-path">3.1.1.2</a>.</p>
+</li><li><p><span><span>  </span></span>The
+version vector is empty (has a length of zero).</p>
+</li></ul></li></ul><p>The backlog counts MUST be saved in the <i>backlogCounts</i>
+output parameter.</p><p>The server MUST return the response to the client. The
+response MUST contain the output parameters that were previously mentioned and
+also the status of the operation.</p></div>

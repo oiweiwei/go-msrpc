@@ -1,0 +1,66 @@
+<div class="content"><p> </p><p>The Refresh method refreshes the ownership and layout of <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disks</a></span>
+on the server. </p><dl>
+<dd>
+<div><pre> HRESULT Refresh();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST requery the
+list of storage devices from the operating system, refresh its list of storage
+management objects based on the result of the requery, and return an HRESULT
+indicating failure or success.</p><table><thead>
+  <tr>
+   <th>
+   <p> Result of requery </p>
+   </th>
+   <th>
+   <p> Action server MUST take </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>New <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_890bb28d-df68-420f-a8bc-83899d34ad5c" data-linktype="relative-path">pack</a></span> found</p>
+  </td>
+  <td>
+  <p>Add pack to list; see section <span><a href="b7e20dbf-4594-4d5f-8e61-79a8009512d1" data-linktype="relative-path">3.4.5.1.1</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>New disk found</p>
+  </td>
+  <td>
+  <p>Add disk to list; see section <span><a href="3b3f6fff-0a13-4aff-84f4-7b2aa826a6ff" data-linktype="relative-path">3.4.5.1.3</a></span>
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>New <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> found</p>
+  </td>
+  <td>
+  <p>Add volume to list; see section <span><a href="84c7fab6-e577-4de1-b26c-0c99cf044e98" data-linktype="relative-path">3.4.5.1.5</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Pack currently in list not found</p>
+  </td>
+  <td>
+  <p>Remove pack from list; see section <span><a href="2b4c5cd4-b610-46ef-bd08-e5157d93b982" data-linktype="relative-path">3.4.5.1.2</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Disk currently in list not found</p>
+  </td>
+  <td>
+  <p>Remove disk from list; see section <span><a href="18845e19-b77d-4804-bb59-320ca9f1be87" data-linktype="relative-path">3.4.5.1.4</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Volume currently in list not found</p>
+  </td>
+  <td>
+  <p>Remove volume from list; see section <span><a href="5478fbda-3dde-46c3-bacc-0a5d305233a8" data-linktype="relative-path">3.4.5.1.6</a></span></p>
+  </td>
+ </tr></tbody></table><p> </p></div>

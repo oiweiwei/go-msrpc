@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The IWbemShutdown::Shutdown method does not perform any
+action when called by a remote client.</p><dl>
+<dd>
+<div><pre> HRESULT Shutdown(
+   [in] long reserved1,
+   [in] ulong reserved2,
+   [in] IWbemContext* Reserved3
+ );
+</pre></div>
+</dd></dl><p><b>reserved1: </b>MUST be set to 0 when sent and MUST
+be ignored on receipt.</p><p><b>reserved2: </b>MUST be set to 0 when sent and MUST
+be ignored on receipt.</p><p><b>Reserved3: </b>MUST be set to NULL when sent and
+MUST be ignored on receipt.</p><p><b>Return Values: </b>This method MUST return
+0x800706ba RPC Server Unavailable.</p></div>

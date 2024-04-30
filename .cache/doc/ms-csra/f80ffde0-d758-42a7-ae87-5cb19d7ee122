@@ -1,0 +1,554 @@
+<div class="content"><p><a id="_Hlk47349321"></a> </p><p>The GetConfigEntry method retrieves the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CAs</a> that persisted the
+configuration data listed in section <a href="1b69ebd9-a728-4cd2-ba67-fc5c9f2fc7c8" data-linktype="relative-path">3.1.1.10</a>. Configuration
+data is represented as a hierarchical data structure with the following format:
+[\pwszAuthority][\pwszNodePath][\pwszEntry].</p><dl>
+<dd>
+<div><pre> HRESULT GetConfigEntry(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in, string, unique] wchar_t const* pwszNodePath,
+   [in, string, ref] wchar_t const* pwszEntry,
+   [out, ref] VARIANT* pVariant
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.
+</p><p><b>pwszNodePath: </b>A string value that represents
+the node path for the configuration information. This parameter can be an empty
+string and MUST NOT be NULL.<a id="Appendix_A_Target_72"></a><a aria-label="Product behavior note 72" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_72" data-linktype="relative-path">&lt;72&gt;</a></p><p><b>pwszEntry: </b>A string value that represents the
+name of the leaf entry whose information is being retrieved. This value can be
+an EMPTY string and MUST NOT be NULL.<a id="Appendix_A_Target_73"></a><a aria-label="Product behavior note 73" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_73" data-linktype="relative-path">&lt;73&gt;</a></p><p><b>pVariant: </b>A pointer to a <a href="8d5e0fb0-f357-48b2-808c-bb125fd0609e" data-linktype="relative-path">VARIANT</a> that receives the
+requested information.</p><dl>
+<dd>
+<p>On Windows, the CA uses these
+datatypes to set the data that it stores in the registry:</p>
+</dd>
+<dd>
+<p>REG_BINARY – The vt member of
+VARIANT is set to VT_ARRAY|VT_UI1 and the <b>pArray</b> member references a
+single dimension SAFEARRAY the binary data. The number of elements of the
+SAFEARRAY reference by <b>pArray</b> is equal to the length of binary data.</p>
+</dd>
+<dd>
+<p>REG_DWORD – The vt member of
+VARIANT is set to VT_I4 and the lVal member is the registry value.</p>
+</dd>
+<dd>
+<p>REG_SZ – The vt member of VARIANT
+is set to VT_BSTR and the bstrVal member is set to BSTR for Unicode string in
+the registry value.</p>
+</dd>
+<dd>
+<p>REG_MULTI_SZ – The vt member of
+VARIANT is set to VT_ARRAY|VT_BSTR and the <b>pArray</b> member references a
+single dimension SAFEARRAY. The number of elements of the SAFEARRAY referenced
+by pArray is equal to the number of the strings in the registry value. For each
+string, there is an element in the SAFEARRAY referenced by pArray containing
+the BSTR for Unicode string value in the registry.</p>
+</dd></dl><p>The GetConfigEntry method retrieves the CA configuration
+data or configuration data hierarchy information.</p><p>The following processing rules apply:</p><ol><li><p><span>    </span>If <i>pwszAuthority</i>
+parameter is EMPTY and <i>pwszNodePath</i> parameter is EMPTY and <i>pwszNodeEntry</i>
+is EMPTY, the CA MUST return all available leaf properties&#39; names that exist in
+the configuration&#39;s root node as a VARIANT array.</p>
+</li><li><p><span>    </span>If <i>pwszAuthority</i>
+is EMPTY and <i>pwszNodePath</i> is EMPTY and <i>pwszNodeEntry</i> is not
+EMPTY, the CA must return the leaf property value identified by <i>pwszNodeEntry</i>
+that exists under the Configuration root node as a VARIANT.</p>
+</li><li><p><span>    </span>If <i>pwszAuthority</i>
+is EMPTY and <i>pwszNodePath</i> is not EMPTY, for any value of <i>pwszNodeEntry</i>
+the CA MUST fail the call with an error code of 0x80070057.</p>
+</li><li><p><span>    </span>If <i>pwszAuthority</i>
+parameter is not EMPTY and <i>pwszNodePath</i> is EMPTY and <i>pwszNodeEntry</i>
+is EMPTY, the CA MUST return all available leaf properties&#39; names that exist
+under the <i>pwszAuthority</i> node as a VARIANT array.</p>
+</li><li><p><span>    </span>If <i>pwszAuthority</i>
+parameter is not EMPTY and <i>pwszNodePath</i> is EMPTY and <i>pwszNodeEntry</i>
+is not EMPTY, the CA MUST return the leaf property value identified by <i>pwszNodeEntry</i>
+that exists under the <i>pwszAuthority</i> node as a VARIANT array.</p>
+</li><li><p><span>    </span>If <i>pwszAuthority</i>
+parameter is not EMPTY and <i>pwszNodePath</i> is not EMPTY and <i>pwszEntry</i>
+is EMPTY, the CA MUST return all available leaf properties&#39; names that exist
+under the <i>pwszNodePath</i> node as a VARIANT array.</p>
+</li><li><p><span>    </span>If <i>pwszAuthority</i>
+parameter is not EMPTY and <i>pwszNodePath</i> is not EMPTY and <i>pwszEntry</i>
+is not EMPTY, the CA MUST return the leaf property value identified by <i>pwszNodeEntry</i>
+that exists under the <i>pwszNodePath</i> node as a VARIANT array.</p>
+</li><li><p><span>    </span>For each input
+in the left column of the table below, the CA MUST perform the processing rules
+in the corresponding cell in the right column.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p><a id="_Hlk47349479">Input Parameters</a></p>
+   </th>
+   <th>
+   <p>Processing rule for pVariant</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>pwszNodePath is EMPTY and pwszEntry is
+  &#34;Security&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the
+  OnNextRestart_Config_Permissions_CA_Security ADM element as a VARIANT.</p>
+  <p>The vt member of VARIANT MUST be set to
+  VT_ARRAY|VT_UI1 and the pArray member MUST reference a single dimension
+  safearray. The number of elements of the safearray reference by pArray MUST
+  be equal to the length of marshaled Security Descriptor.</p>
+  <p>Security Descriptor is as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+  section <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszAuthority is EMPTY and pwszNodePath is EMPTY and
+  pwszEntry is &#34;SetupStatus&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the
+  OnNextRestart_Config_Setup_Status ADM element as a VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to VT_I4 and
+  the lVal member MUST be either 0 or a bitwise OR of the following values:</p>
+  <p>0x00000001 – server installed</p>
+  <p>0x00000002 – client installed</p>
+  <p>0x00000004 – incomplete installation</p>
+  <p>0x00000008 – new cert requested</p>
+  <p>0x00000010 – requested online</p>
+  <p>0x00000020 – request denied</p>
+  <p>0x00000040 – create a new DB</p>
+  <p>0x00000080 – try to create vroots</p>
+  <p>0x00000100 – force new <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_4f22841f-249b-42fb-a31a-5049c00be939" data-linktype="relative-path">CRLs</a> to be generated</p>
+  <p>0x00000200 – add server type to the CA <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c36db657-3138-4d9a-9289-ded5cbb8b40e" data-linktype="relative-path">DS</a> object ‘flags’
+  attribute</p>
+  <p>0x00000400 – server was upgraded</p>
+  <p>0x00000800 – still need to upgrade security from
+  Windows 2000 operating system</p>
+  <p>0x00001000 – permissions changed while the CA was down
+  and the CA will need to update the directory service when it restarts</p>
+  <p>0x00002000 – global DCOM security has been fixed (in
+  Windows 2000 operating system Service Pack 1 (SP1))</p>
+  <p>0x00004000 – server is up-to-date</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath is EMPTY and pwszEntry is
+  &#34;UseDS&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the
+  OnNextRestart_Config_CA_Use_DS ADM element as a VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to VT_I4 and
+  the lVal member MUST be set to one of the following values:</p>
+  <p>0 – The CA is not using <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a> for CRL
+  publication</p>
+  <p>Any nonzero value: The CA is using AD for CRL
+  publication</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath is EMPTY and pwszEntry is
+  &#34;CAType&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the OnNextRestart_Config_CA_Type
+  ADM element as a VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to VT_I4 and
+  the lVal member MUST be set to one of the CAType values specified in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>
+  section <a href="../ms-wcce/4fa5241c-d10e-4011-87e0-c74753d725a3" data-linktype="relative-path">2.2.2.4</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath is EMPTY and pwszEntry is
+  &#34;KRAFlags&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the
+  OnNextRestart_Config_CA_KRA_Flags ADM element as a VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to VT_I4 and
+  the lVal member MUST be one the following values:</p>
+  <p>0</p>
+  <p>0x00000001 – allow foreign <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_e705a2b6-a678-4169-ba05-87a773976fe7" data-linktype="relative-path">key archival</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszAuthority is EMPTY and pwszNodePath is EMPTY and
+  pwszEntry is &#34;Version&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the
+  OnNextRestart_Config_Product_Version ADM element as a VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to VT_I4 and
+  the lVal member MUST be set to the one of the following values:</p>
+  <p>0x00010001 – Server is Windows 2000 Server operating
+  system</p>
+  <p>0x00020002 – Server is Windows Server 2003 operating
+  system</p>
+  <p>0x00030001 – Server is Windows Server 2008 operating
+  system</p>
+  <p>0x00040001 – Server is Windows Server 2008 R2
+  operating system</p>
+  <p>0x00050001 – Server is Windows Server 2012 operating
+  system</p>
+  <p>0x00060001 – Server is Windows Server 2012 R2
+  operating system <a id="Appendix_A_Target_74"></a><a aria-label="Product behavior note 74" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_74" data-linktype="relative-path">&lt;74&gt;</a></p>
+  <p>0x00070001 – Server is Windows Server 2016 operating
+  system or Windows Server 2019 operating system</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath is EMPTY and pwszEntry is
+  &#34;CommonName&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the <b>OnNextRestart_Config_CA_Common_Name</b>
+  ADM element as a VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to VT_BSTR
+  and the bstrVal member MUST be BSTR for the Unicode string value of the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_a86706d6-bcdf-4107-be38-d2f08a7eaa68" data-linktype="relative-path">common name</a> of the CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath is EMPTY and pwszEntry is &#34;InterfaceFlags&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the <b>OnNextRestart_Config_CA_Interface_Flags</b>
+  ADM element as a VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to VT_I4 and
+  the lVal member MUST be either 0 or a bitwise-OR of the following values:</p>
+  <p>IF_LOCKICERTREQUEST = 0x1</p>
+  <p>This value has no effect.</p>
+  <p>IF_NOREMOTEICERTREQUEST = 0x2</p>
+  <p>The CA will not issue any certificates or hold pending
+  any requests for remote users.</p>
+  <p>IF_NOLOCALICERTREQUEST = 0x4</p>
+  <p>The CA will not issue any certificates or hold pending
+  any requests for local users.</p>
+  <p>IF_NORPCICERTREQUEST = 0x8</p>
+  <p>The CA will not issue any certificates or hold pending
+  any requests for callers using the ICertPassage interface.</p>
+  <p>IF_NOREMOTEICERTADMIN = 0x10 (16)</p>
+  <p>No access to Certificate Services Remote
+  Administration Protocol methods for remote callers.</p>
+  <p>IF_NOLOCALICERTADMIN = 0x20 (32)</p>
+  <p>No access to Certificate Services Remote
+  Administration Protocol methods for local callers.</p>
+  <p>IF_NOREMOTEICERTADMINBACKUP = 0x40 (64)</p>
+  <p>The CA restricts access to the backup-related methods
+  of this protocol for remote callers.</p>
+  <p>IF_NOLOCALICERTADMINBACKUP = 0x80 (128)</p>
+  <p>The CA restricts access to the backup-related methods
+  of this protocol for local callers.</p>
+  <p>IF_NOSNAPSHOTBACKUP = 0x100 (256)</p>
+  <p>The database files cannot be backed up using a mechanism
+  other than the methods of this interface.</p>
+  <p>IF_ENFORCEENCRYPTICERTREQUEST = 0x200 (512)</p>
+  <p>RPC_C_AUTHN_LEVEL_PKT_PRIVACY, as defined in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+  section <a href="../ms-rpce/425a7c53-c33a-4868-8e5b-2a850d40dc73" data-linktype="relative-path">2.2.1.1.8</a>,
+  must be defined for all RPC connections to the server for certificate-request
+  operations.</p>
+  <p>IF_ENFORCEENCRYPTICERTADMIN = 0x400 (1024)</p>
+  <p>RPC_C_AUTHN_LEVEL_PKT_PRIVACY, as defined in [MS-RPCE]
+  section 2.2.1.1.8, must be defined for all RPC connections to the server for
+  certificate administrative operations (the methods defined in this
+  interface).</p>
+  <p>IF_ENABLEEXITKEYRETRIEVAL = 0x800 (2048)</p>
+  <p>Enables an exit algorithm to retrieve the Encrypted private-Key
+  Blob.</p>
+  <p>IF_ENABLEADMINASAUDITOR = 0x1000 (4096)</p>
+  <p>Only CA administrators can update the CA audit filter
+  settings.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath is EMPTY and pwszEntry is
+  &#34;HighSerial&#34;</p>
+  </td>
+  <td>
+  <p>If the value of the
+  OnNextRestart_Config_High_Serial_String is not empty, the CA MUST return the
+  value of the OnNextRestart_Config_High_Serial_String. Otherwise, the CA MUST
+  return the value of the OnNextRestart_Config_High_Serial_Number.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszEntry is &#34;Provider&#34; and pwszNodePath is
+  &#34;CSP&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the <b>OnNextRestart_Config_CSP_Provider</b>
+  ADM element as a VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to VT_BSTR
+  and the bstrVal member MUST be BSTR for the Unicode string value of the
+  provider.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszEntry is &#34;ProviderType&#34; and pwszNodePath
+  is &#34;CSP&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the <b>OnNextRestart_Config_CSP_ProviderType</b>
+  ADM element as a VARIANT.</p>
+  <p>The vt member of VARIANT MUST be set to VT_I4 and the
+  lVal member MUST be set to the provider type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszEntry is &#34;HashAlgorithm&#34; and
+  pwszNodePath is &#34;CSP&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the <b>OnNextRestart_Config_CSP_Hash_Algorithm</b>
+  ADM element as a VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to VT_I4 and
+  the lVal member MUST be set to the algid (algorithm identifier) that
+  corresponds to the hash algorithm used by the CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszEntry is &#34;CNGHashAlgorithm&#34; and
+  pwszNodePath is &#34;CSP&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the <b>OnNextRestart_Config_CSP_CNG_Hash_Algorithm</b>
+  ADM element as a VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to VT_BSTR
+  and the bstrVal member MUST be BSTR for the Unicode string value of the name
+  of the CNG hash algorithm used by the CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath is EMPTY and pwszEntry is
+  &#34;CRLPeriodUnits&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the numeric value of the <b>Config_Base_CRL_Validity_Period</b>
+  ADM element as a VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to VT_I4 and
+  the lVal member MUST be set to the CRL publication period value.</p>
+  <p>A value of 0 means CRL publishing is disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath is EMPTY and pwszEntry is
+  &#34;CRLPeriod&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the units of time with
+  which the Config_Base_CRL_Validity_Period ADM element is counted as a
+  VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to VT_BSTR
+  and the bstrVal member MUST be BSTR for the Unicode string value of one of
+  following:</p>
+  <p>Years </p>
+  <p>Months </p>
+  <p>Weeks </p>
+  <p>Days </p>
+  <p>Hours </p>
+  <p>Minutes </p>
+  <p>Seconds </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath is EMPTY and pwszEntry is
+  &#34;CRLDeltaPeriodUnits&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the numeric value of the
+  Config_Delta_CRL_Validity_Period ADM element as a VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to VT_I4 and
+  the lVal member MUST be set to the delta CRL publication period.</p>
+  <p>A value of 0 for means Delta CRL publishing is
+  disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath is EMPTY and pwszEntry is
+  &#34;CRLDeltaPeriod&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the units of time with
+  which the Config_Delta_CRL_Validity_Period ADM element is counted as a
+  VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to VT_BSTR
+  and the bstrVal member MUST be BSTR for the Unicode string value of one of following:</p>
+  <p>Years </p>
+  <p>Months </p>
+  <p>Weeks </p>
+  <p>Days </p>
+  <p>Hours </p>
+  <p>Minutes </p>
+  <p>Seconds </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath is EMPTY and pwszEntry is
+  &#34;CRLNextPublish&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the ADM element
+  OnNextRestart_Config_CA_CRL_Next_Publish as a VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to
+  VT_ARRAY|VT_UI1 and the pArray member MUST reference a single dimension
+  safearray. The number of elements of the safearray reference by pArray SHOULD
+  be equal to 8 bytes. The value of the bytes must contain a 64-bit value that
+  represents the number of 100-nanosecond intervals since January 1, 1601,
+  according to <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">Coordinated
+  Universal Time (UTC)</a> (encoded in little endian).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath is EMPTY and pwszEntry is
+  &#34;CRLDeltaNextPublish&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the ADM element
+  OnNextRestart_Config_CA_CRL_Delta_Next_Publish as a VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to
+  VT_ARRAY|VT_UI1 and the pArray member MUST reference a single dimension
+  safearray. The number of elements of the safearray reference by pArray SHOULD
+  be equal to 8 bytes. The value of the bytes must contain a 64-bit value that
+  represents the number of 100-nanosecond intervals since January 1, 1601,
+  according to Coordinated Universal Time (UTC) (encoded in little endian).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath is EMPTY and pwszEntry is
+  &#34;AuditFilter&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the
+  OnNextRestart_Config_CA_Audit_Filter ADM element as a VARIANT.</p>
+  <p>The vt member of VARIANT MUST be set to VT_I4 and the
+  lVal member MUST be either 0 or bitwise OR of the following values.</p>
+  <p>0x00000001 – Audit start/stop of the service.</p>
+  <p>0x00000002 – Audit operations associated with
+  backup/restore of the CA database.</p>
+  <p>0x00000004 – Audit operations associated with
+  certificate <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_71f399e7-7026-46bb-b7c2-8fd4872b900f" data-linktype="relative-path">issuance</a>.</p>
+  <p>0x00000008 – Audit operations associated with <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c0b88116-a183-4cdd-9307-46a4dc125592" data-linktype="relative-path">certificate revocation</a>.</p>
+  <p>0x00000010 – Audit changes to the security settings on
+  the Certificate Authority Service.</p>
+  <p>0x00000020 – Audit operations associated with Key
+  Recovery.</p>
+  <p>0x00000040 – Audit operations associated with Changes
+  in CA configuration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszEntry is &#34;Active&#34; and pwszNodePath is
+  &#34;PolicyModules&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the
+  OnNextRestart_Config_CA_Policy_Algorithm_Implementation ADM element as a
+  VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to VT_BSTR
+  and the bstrVal member MUST be BSTR for the Unicode string value of the name
+  (progid) of the policy algorithm</p>
+  <p>By default the Microsoft CA uses a policy module
+  called &#34;CertificateAuthority_MicrosoftDefault.Policy&#34; as the policy
+  algorithm. For more information on the policy algorithm, see [MS-WCCE]
+  section <a href="../ms-wcce/f1bcc8fb-2336-4247-9d8f-57ef472a7bd5" data-linktype="relative-path">3.2.1.4.2.1.4.5</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszEntry is &#34;Active&#34; and pwszNodePath is
+  &#34;ExitModules&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the
+  OnNextRestart_Config_CA_Exit_Algorithm_Implementation_List ADM element as a
+  VARIANT.</p>
+  <p>The vt member of the VARIANT MUST be set to
+  VT_ARRAY|VT_BSTR and the pArray member MUST reference a single dimension
+  safearray.</p>
+  <p>The number of elements of the safearray referenced by
+  pArray MUST be equal to the number of active exit algorithms on the CA. For
+  each exit algorithm, there MUST be an element in the safearray referenced by
+  pArray containing the BSTR for the Unicode string value of the name (progid)
+  of the exit algorithm.</p>
+  <p>By default, the Microsoft CA uses an exit module
+  called &#34;CertificateAuthority_MicrosoftDefault.Exit&#34; as the default
+  active exit algorithm. For more information on the exit algorithm, see
+  [MS-WCCE] section <a href="../ms-wcce/28dbd93b-712f-4a23-85da-439d32d577d2" data-linktype="relative-path">3.2.1.4.2.1.4.9</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath is EMPTY and pwszEntry is
+  &#34;CRLPublicationURLs&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST use the values of the following ADM
+  elements to create the VARIANT returned:</p>
+  <p><b>OnNextRestart_Config_CA_CDP_Publish_To_Base</b></p>
+  <p><b>OnNextRestart_Config_CA_CDP_Publish_To_Delta</b></p>
+  <p><b>OnNextRestart_Config_CA_CDP_Include_In_Cert</b></p>
+  <p><b>OnNextRestart_Config_CA_CDP_Include_In_CRL_Publish_Locations_Extension</b></p>
+  <p><b>OnNextRestart_Config_CA_CDP_Include_In_CRL_Freshest_CRL_Extension</b></p>
+  <p><b>OnNextRestart_Config_CA_CDP_Include_In_CRL_IDP_Extension</b></p>
+  <p>The vt member of the VARIANT MUST be set to VT_ARRAY |
+  VT_BSTR and the pArray member MUST reference a single dimension safearray.</p>
+  <p>The number of elements of the safearray referenced by
+  pArray MUST be equal to the number of <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_433a4fb7-ef84-46b0-ab65-905f5e3a80b1" data-linktype="relative-path">URLs</a>. For each URL, there
+  MUST be an element in the safearray referenced by pArray containing the BSTR
+  for the Unicode string value of the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_e18af8e8-01d7-4f91-8a1e-0fb21b191f95" data-linktype="relative-path">URI</a>.</p>
+  <p>Each URI is of the format
+  &#34;NumericPrefix:URI&#34;, where NumericPrefix is the decimal value
+  corresponding to the combination of following flags:</p>
+  <p>0x00000001 – The CA must publish the CRL to the URI
+  (OnNextRestart_Config_CA_CDP_Publish_To_Base).</p>
+  <p>0x00000002 – The URI is to be added in the CDP
+  extension of the certificate issued by the CA (OnNextRestart_Config_CA_CDP_Include_In_Cert).</p>
+  <p>0x00000004 – The URI is to be added in the FreshestCRL
+  extension of the CRL issued by the CA
+  (OnNextRestart_Config_CA_CDP_Include_In_CRL_Freshest_CRL_Extension).</p>
+  <p>0x00000008 – The URI is to be added in the CDP extension
+  of the CRL issued by the CA
+  (OnNextRestart_Config_CA_CDP_Include_In_CRL_Publish_Locations_Extension).</p>
+  <p>0x00000010 – Not Used.</p>
+  <p>0x00000040 – The CA must publish the Delta CRL to the
+  URI (OnNextRestart_Config_CA_CDP_Publish_To_Delta).</p>
+  <p>0x00000080 – The URI is to be added in the IDP
+  extension of the CRL issued by the CA
+  (OnNextRestart_Config_CA_CDP_Include_In_CRL_IDP_Extension).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath is EMPTY and pwszEntry is
+  &#34;CACertPublicationURLs&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST use the values of the following ADM
+  elements to create the VARIANT returned:</p>
+  <p><b>OnNextRestart_Config_CA_AIA_Include_In_Cert</b></p>
+  <p><b>OnNextRestart_Config_CA_CACert_Publish_To</b></p>
+  <p>The vt member of the VARIANT MUST be set to VT_ARRAY |
+  VT_BSTR and the pArray member MUST reference a single dimension safearray.</p>
+  <p>The number of elements of the safearray referenced by
+  pArray MUST be equal to the number of URLs. For each URL, there MUST be an
+  element in the safearray referenced by pArray containing the BSTR for the
+  Unicode string value of the URI.</p>
+  <p>Each URI is of the format
+  &#34;NumericPrefix:URI&#34;, where NumericPrefix is the decimal value
+  corresponding to the combination of following flags: </p>
+  <p>0x00000001 – The CA must publish the CA certificate(s)
+  to the URI (OnNextRestart_Config_CA_CACert_Publish_To).</p>
+  <p>0x00000002 – The URI is to be added in the AIA
+  extension of the certificates issued by the CA
+  (OnNextRestart_Config_CA_AIA_Include_In_Cert).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>pwszNodePath is
+  &#34;PolicyModules\CertificateAuthority_MicrosoftDefault.Policy&#34; and
+  pwszEntry is &#34;RequestDisposition&#34;</p>
+  </td>
+  <td>
+  <p>The CA MUST return the value of the <b>OnNextRestart_Config_CA_Requests_Disposition</b>
+  as a VARIANT. The vt member of VARIANT MUST be set to VT_I4 and the lVal
+  member MUST be the value of the <b>OnNextRestart_Config_CA_Requests_Disposition</b>
+  ADM element. The value of this ADM element determines whether the CA sets all
+  requests to pending, accepts all requests, or denies all requests. </p>
+  </td>
+ </tr></tbody></table>
+</li></ol><p> </p></div>

@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The EEAString structure encodes strings of ANSI characters,
+as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90689" data-linktype="external">[ISO/IEC-8859-1]</a></span>,
+that contain troubleshooting information.</p><dl>
+<dd>
+<div><pre> typedef struct tagEEAString {
+   short nLength;
+   [size_is(nLength)] byte* pString;
+ } EEAString;
+</pre></div>
+</dd></dl><p><b>nLength:</b>  This field MUST contain
+the size of <b>pString</b> in bytes.</p><p><b>pString:</b>  A NULL-terminated ANSI
+string that contains troubleshooting information.</p></div>

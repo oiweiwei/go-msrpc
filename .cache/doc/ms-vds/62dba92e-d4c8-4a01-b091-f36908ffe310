@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The VDS_STORAGE_IDENTIFIER_CODE_SET enumeration defines the
+code set that is used by the storage device identifier, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90528" data-linktype="external">[SPC-3]</a></span></p><dl>
+<dd>
+<div><pre> typedef enum _VDS_STORAGE_IDENTIFIER_CODE_SET
+ {
+   VDSStorageIdCodeSetReserved = 0x00000000,
+   VDSStorageIdCodeSetBinary = 0x00000001,
+   VDSStorageIdCodeSetAscii = 0x00000002,
+   VDSStorageIdCodeSetUtf8 = 0x00000003
+ } VDS_STORAGE_IDENTIFIER_CODE_SET;
+</pre></div>
+</dd></dl><p><b>VDSStorageIdCodeSetReserved:  </b>This value is
+reserved by the SPC-3 standard and is not used.</p><p><b>VDSStorageIdCodeSetBinary:  </b>The identifier
+contains binary values.</p><p><b>VDSStorageIdCodeSetAscii:  </b>The identifier
+contains ASCII values.</p><p><b>VDSStorageIdCodeSetUtf8:  </b>The identifier
+contains UTF-8 values.</p></div>

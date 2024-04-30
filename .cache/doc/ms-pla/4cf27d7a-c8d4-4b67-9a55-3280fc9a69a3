@@ -1,0 +1,128 @@
+<div class="content"><p>The IDataCollectorSetCollection interface is used to manage
+a collection of DataCollectorSet objects.</p><p>The following properties MUST be implemented by the objects
+that implement the IDataCollectorSetCollection interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>_NewEnum</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>An enumeration object of type IEnumVariant containing
+  a snapshot of the <a href="1809d280-56e0-4c78-9546-ad1869c3a16a" data-linktype="relative-path">IDataCollectorSet</a>
+  objects in this collection. The enumeration object is specified in <a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a>
+  section <a href="../ms-oaut/716d04d1-cd16-4065-9b19-1b8808b3df31" data-linktype="relative-path">3.3</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Count</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>Number of <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data collector sets</a> in this
+  collection.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Item</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>Retrieves the requested data collector set from the
+  collection.</p>
+  </td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="c8dc146e-aa4a-40a4-8439-1bfda0f219ef" data-linktype="relative-path">Count
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Count property.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="8ee5bfbd-3acc-42c8-a68c-f075dfc41439" data-linktype="relative-path">Item
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Item property.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="678b0c60-1575-4157-b1ad-77be65e2916b" data-linktype="relative-path">_NewEnum
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the NewEnum property.</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="0b634f3a-4f52-4ffa-bd0c-7ce3b730fdb4" data-linktype="relative-path">Add</a></p>
+  </td>
+  <td>
+  <p>Adds a data collector set to the collection.</p>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="eddd092c-8b75-4f71-b2c2-0b81cc531bca" data-linktype="relative-path">Remove</a></p>
+  </td>
+  <td>
+  <p>Removes a data collector set from the collection.</p>
+  <p>Opnum: 11</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="63f556b3-d792-4086-8fe6-4adef0f8159f" data-linktype="relative-path">Clear</a></p>
+  </td>
+  <td>
+  <p>Removes all data collector sets from the collection.</p>
+  <p>Opnum: 12</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="18c02d94-6a50-4a14-8034-ed6c9cab6aa6" data-linktype="relative-path">AddRange</a></p>
+  </td>
+  <td>
+  <p>Adds one or more data collector set to the collection.</p>
+  <p>Opnum: 13</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="a5d04980-1c17-4cd1-a931-3b8bdb59bb80" data-linktype="relative-path">GetDataCollectorSets</a></p>
+  </td>
+  <td>
+  <p>Populates data collector set collection with the
+  persisted data collector sets.</p>
+  <p>Opnum: 14</p>
+  </td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface. </p></div>

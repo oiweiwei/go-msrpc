@@ -1,0 +1,87 @@
+<div class="content"><p> </p><p>The <b>R_DhcpSetServerBindingInfoV6</b> method sets/modifies
+the IPv6 interface bindings for the DHCPv6 server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpSetServerBindingInfoV6(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] ULONG Flags,
+   [in, ref] LPDHCPV6_BIND_ELEMENT_ARRAY BindElementsInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>Flags: </b>This flag is not used, and it MUST be
+set to 0.</p><p><b>BindElementsInfo: </b>This is a pointer of type <span><a href="4c84ae9b-707a-480d-a176-3ebc5f113984" data-linktype="relative-path">DHCPV6_BIND_ELEMENT_ARRAY (section 2.2.1.2.83)</a></span>
+that points to the location that contains the information about the IPv6
+interface binding.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E52</p>
+  <p>ERROR_DHCP_NETWORK_CHANGED</p>
+  </td>
+  <td>
+  <p>The network has changed. Retry this operation after
+  checking for the network changes. Network changes can be caused by interfaces
+  that are new or no longer valid or by IPv6 addresses that are new or no
+  longer valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E53</p>
+  <p>ERROR_DHCP_CANNOT_MODIFY_BINDING</p>
+  </td>
+  <td>
+  <p>The bindings to internal IPv6 addresses cannot be
+  modified.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 70.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If <i>Flags</i> is not 0 or <i>BindElementsInfo</i> is NULL, or
+there are no entries in the server ADM element <b>DHCPv6ServerBindingInfoList</b>,
+return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the IPv6 interface binding specified in <i>BindElementsInfo</i>
+has the <i>Flags</i> field in the Elements set to
+DHCP_ENDPOINT_FLAG_CANT_MODIFY and the <b>fBoundToDHCPServer</b> field is set
+to FALSE, return ERROR_DHCP_CANNOT_MODIFY_BINDINGS.</p>
+</li><li><p><span><span> 
+</span></span>If the IPv6 interface binding specified in <i>BindElementsInfo</i>
+has the <i>Flags</i> field in the Elements set to DHCP_ENDPOINT_FLAG_CANT_MODIFY
+and the <b>fBoundToDHCPServer</b> field is set to TRUE, skip all further checks
+on that entry and do not attempt to modify it. If all entries are skipped,
+return ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv6ServerBindingInfo</b> object corresponding
+to the interface id specified in <i>BindElementInfo</i> from <b>DHCPv6ServerBindingInfoList</b>.
+If not found, return ERROR_DHCP_NETWORK_CHANGED.</p>
+</li><li><p><span><span> 
+</span></span>Modify the matching <b>DHCPv6ServerBindingInfo</b> object with
+the value of <b>fBoundToDHCPServer</b> specified in <i>BindElementsInfo</i>. </p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

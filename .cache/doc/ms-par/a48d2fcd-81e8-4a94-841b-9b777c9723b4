@@ -1,0 +1,49 @@
+<div class="content"><p> </p><p><b>RpcSyncRegisterForRemoteNotifications</b> opens a
+notification handle by using a printer handle or <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a></span> handle,
+to listen for remote printer change notifications.</p><dl>
+<dd>
+<div><pre> HRESULT RpcSyncRegisterForRemoteNotifications(
+   [in] PRINTER_HANDLE hPrinter,
+   [in] RpcPrintPropertiesCollection* pNotifyFilter,
+   [out] RMTNTFY_HANDLE* phRpcHandle
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object or
+print server object opened by using either <b>RpcAsyncOpenPrinter </b>(section <span><a href="feddac6a-bd88-4989-95fb-715bd6ca796a" data-linktype="relative-path">3.1.4.1.1</a></span>)
+or <b>RpcAsyncAddPrinter</b> (section <span><a href="1e5e5498-e646-4fdf-8181-98862a3d6ec8" data-linktype="relative-path">3.1.4.1.2</a></span>).</p><p><b>pNotifyFilter: </b>A pointer to an <b>RpcPrintPropertiesCollection</b>
+(section <span><a href="a2246cab-c69e-4bb7-a36f-149b1e4ab192" data-linktype="relative-path">2.2.4</a></span>) instance
+that contains the caller-specified notification filter settings.</p><p><b>phRpcHandle: </b>A pointer to a variable that
+receives the remote notification handle.</p><p><b>Return Values: </b>This method returns either an <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span>
+success value (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>)
+to indicate successful completion, or an HRESULT error value to indicate
+failure.</p><p><b>Exceptions Thrown:</b> This method MUST NOT throw any
+exceptions other than those that are thrown by the underlying <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p><b>Parameter Validation Requirements:</b> Upon receiving
+this method call, the server MUST validate parameters as follows:</p><ul><li><p><span><span> 
+</span></span>The <i>hPrinter</i> printer object or server object handle MUST
+NOT be NULL and MUST point to a printer object or server object that can be
+monitored for notifications.</p>
+</li><li><p><span><span> 
+</span></span>The printer handle MUST be authorized to monitor printer objects
+for notifications.<a id="Appendix_A_Target_30"></a><a aria-label="Product behavior note 30" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_30" data-linktype="relative-path">&lt;30&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>The <i>pNotifyFilter</i> parameter MUST point to an <b>RpcPrintPropertiesCollection</b>
+instance that has all the name-value pairs required to register for
+notifications.</p>
+</li></ul><p>If parameter validation fails, the server MUST return
+immediately with a failure indication in its response to the client.</p><p><b>Processing and Response Requirements:</b> If parameter
+validation succeeds, the server MUST process the method call by:</p><ul><li><p><span><span> 
+</span></span>Creating a notification object that points to the printer object
+or server object and contains notification filter data sent by the client.</p>
+</li><li><p><span><span> 
+</span></span>Adding the notification object to the list of notification
+clients for the printer object or server object.</p>
+</li><li><p><span><span> 
+</span></span>Associating the notification object with an RPC handle and
+returning the handle to the user.</p>
+</li></ul><p>If the operation is successful, when the client calls <b>RpcAsyncGetRemoteNotifications</b>
+(section <span><a href="04a1267e-b533-42f8-84d2-aeaaf2654346" data-linktype="relative-path">3.1.4.9.4</a></span>) with the
+RPC handle returned from this method, the server MUST return the changes to the
+object indicated by the notification filter settings since the previous call to
+the same method.</p></div>

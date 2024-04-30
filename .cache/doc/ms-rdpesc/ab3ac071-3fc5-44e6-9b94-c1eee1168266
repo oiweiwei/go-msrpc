@@ -1,0 +1,14 @@
+<div class="content"><p>The GetAttrib_Return structure defines attribute information
+from a <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_5cddf14c-b925-4494-9b55-d2c8259f9ad0" data-linktype="relative-path">smart card reader</a>
+(for more information, see section <a href="ef68db95-671a-4179-94e9-412f741041c3" data-linktype="relative-path">3.1.4.38</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _GetAttrib_Return {
+   long ReturnCode;
+   [range(0,65536)] unsigned long cbAttrLen;
+   [unique] [size_is(cbAttrLen)] byte *pbAttr;
+ } GetAttrib_Return;
+</pre></div>
+</dd></dl><p><b>ReturnCode:</b>  <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a> or Win32 Error
+code. Zero indicates success; any other value indicates failure.</p><p><b>cbAttrLen:</b>  The number of bytes in
+the <b>pbAttr</b> field.</p><p><b>pbAttr:</b>  A pointer to an array that
+contains any values returned from the corresponding call.</p></div>

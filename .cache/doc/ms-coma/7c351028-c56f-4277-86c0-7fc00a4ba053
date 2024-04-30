@@ -1,0 +1,80 @@
+<div class="content"><p>This method is called by a client to create a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_13923d88-12fd-47b0-b406-ade71fa5963b" data-linktype="relative-path">component legacy configuration</a>
+for an existing <a href="3f01a312-3391-4109-a96e-95358babf191#gt_71669ed9-7eaf-4328-9e2e-4d3430f0f9bf" data-linktype="relative-path">component</a>
+in an existing <a href="3f01a312-3391-4109-a96e-95358babf191#gt_ea5c531f-5dd5-43aa-9da1-2ae068c622db" data-linktype="relative-path">conglomeration</a>
+in the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_24b2810b-e5ab-4886-9577-a2757b9f29f9" data-linktype="relative-path">global partition</a>.</p><dl>
+<dd>
+<div><pre> HRESULT CreateLegacyConfiguration(
+   [in, string] LPCWSTR pwszConglomerationIdOrName,
+   [in, string] LPCWSTR pwszCLSIDOrProgId,
+   [in] eComponentType ctComponentType
+ );
+</pre></div>
+</dd></dl><p><b>pwszConglomerationIdOrName: </b>A string
+containing either the Curly Braced GUID String Syntax (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/222af2d3-5c00-4899-bc87-ed4c6515e80d" data-linktype="relative-path">2.3.4.3</a>)
+representation of a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0ab5119e-c719-4a5c-9198-55a0a2fb508a" data-linktype="relative-path">conglomeration
+identifier</a> or the Name property (see section <a href="cee9f1e5-9412-4a19-8a34-17d041112b87" data-linktype="relative-path">3.1.1.3.3</a>) of a
+conglomeration.</p><p><b>pwszCLSIDOrProgId: </b>A string containing either
+the Curly Braced GUID String Syntax ([MS-DTYP] section 2.3.4.3) representation
+of a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a> or the ProgID
+property (see section <a href="62d84857-e39e-4879-a46d-8583e355521e" data-linktype="relative-path">3.1.1.3.1</a>)
+of a component.</p><p><b>ctComponentType: </b>An <a href="93111efc-cbfd-460b-9b7c-49df4c0436e0" data-linktype="relative-path">eComponentType (section 2.2.5)</a>
+value to select the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_2ac202a1-b576-4c77-9b92-9702bb8b0874" data-linktype="relative-path">bitness</a>
+of the component when there might be multiple bitnesses. This value MUST NOT be
+eCT_UNKNOWN or eCT_ANY.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server MUST verify
+that <a href="3f01a312-3391-4109-a96e-95358babf191#gt_0944227d-0566-49e1-989f-2fff6e02542d" data-linktype="relative-path">catalog</a> version
+negotiation has been performed by checking the negotiated catalog version (see
+section <a href="a667265b-22a8-43bb-b462-13528061e009" data-linktype="relative-path">3.1.1.5</a>), and
+fail the call if not.</p><p>The server then MUST perform parameter validation as
+follows:</p><ul><li><p><span><span> 
+</span></span>The server MUST verify that <i>ctComponentType</i> is a valid
+eComponentType (section 2.2.5) value and that it represents a bitness
+that is supported by the server.</p>
+</li></ul><p>The server then MUST select a target conglomeration based on
+the value of <i>pwszConglomerationIdOrName</i> as follows:</p><ul><li><p><span><span> 
+</span></span>If <i>pwszConglomerationIdOrName</i> is in Curly Braced GUID
+String Syntax ([MS-DTYP] section 2.3.4.3), the server MUST do the following:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST convert this string to a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>.</p>
+</li><li><p><span><span>  </span></span>If
+this GUID is the conglomeration identifier of a conglomeration that exists on
+the server, the server MUST select that conglomeration. Otherwise, the server
+MUST return a failure result. as specified in [MS-ERREF] section 2.1.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <i>pwszConglomerationIdOrName</i> is not in Curly Braced GUID
+String Syntax ([MS-DTYP] section 2.3.4.3), the server MUST verify that there
+exists a conglomeration with the value <i>pwszConglomerationIdOrName</i> for
+the Name property (see section 3.1.1.3.3). If so, the server MUST select that conglomeration.</p>
+</li></ul><p>The server then MUST verify that the target conglomeration
+is contained in the global partition.</p><p>The server then MUST select a component and bitness to
+configure, based on the value of <i>pwszCLSIDOrProgId</i> as follows:</p><ul><li><p><span><span> 
+</span></span>If the server does not support the <a href="bb9c1f3a-5ff3-40a4-bec5-8ff28007ce2d" data-linktype="relative-path">multiple-bitness capability</a>
+(section 3.1.4.4) or the value of <i>ctComponentType</i> specifies the bitness,
+the server MUST perform the following:</p>
+<ul><li><p><span><span>  </span></span>If
+the first character of <i>pwszCLSIDOrProgId</i> is not &#34;{&#34;, the
+server MUST determine whether or not there exists a component that has the
+specified bitness and for which the value of the ProgID (see section 3.1.1.3.1)
+property of the non-native bitness is <i>pwszCLSIDOrProgId</i>. If such a
+component exists, the server MUST select that component and the specified
+bitness. If no such component exists, the server MUST return a failure result
+(as specified in [MS-ERREF] (section 2.1)).</p>
+</li><li><p><span><span>  </span></span>If
+the first character of <i>pwszCLSIDOrProgId</i> is &#34;{&#34;, the server
+MUST verify that <i>pwszCLSIDOrProgId</i> is in Curly Braced GUID String Syntax
+([MS-DTYP] section 2.3.4.3). The server then MUST determine whether or not
+there exists a component with the CLSID represented by <i>pwszCLSIDOrProgId</i>
+that has the specified bitness. If such a component exists, the server MUST
+select that component and the specified bitness. If no such component exists,
+the server MUST return a failure result, as specified in [MS-ERREF] section
+2.1.</p>
+</li></ul></li></ul><p>The server then MUST verify that creating a component legacy
+configuration for the selected component and bitness in the selected
+conglomeration would not violate the constraints specified for <a href="3f01a312-3391-4109-a96e-95358babf191#gt_670903d8-6f25-4b7e-b038-a09194865d4a" data-linktype="relative-path">component configurations</a> in
+sections 3.1.1.3.1 and 3.1.1.3.3.</p><p>The server then MUST attempt to create a component legacy
+configuration for the selected component and bitness in the selected
+conglomeration, using implementation-specific default values for the
+properties, and fail the call if it cannot.</p></div>

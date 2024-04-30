@@ -1,0 +1,73 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/f992ad60-0fe4-4b87-9fed-beb478836861" data-linktype="external">msdn link</a></p><p>This is a packet representation of the <a href="78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">SID</a> type (as specified in
+section 2.4.2) for use by block protocols. Multiple-byte fields are transmitted
+on the wire with an endianness specified by the protocol in question.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>Revision</p>
+  </td>
+  <td colspan="8">
+  <p>SubAuthorityCount</p>
+  </td>
+  <td colspan="16">
+  <p>IdentifierAuthority</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SubAuthority
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Revision (1 byte): </b>An 8-bit unsigned integer
+that specifies the revision level of the SID. This value MUST be set to 0x01.</p><p><b>SubAuthorityCount (1 byte): </b>An 8-bit unsigned
+integer that specifies the number of elements in the <b>SubAuthority</b> array.
+The maximum number of elements allowed is 15.</p><p><b>IdentifierAuthority (6 bytes): </b>A <a href="c6ce4275-3d90-4890-ab3a-514745e4637e" data-linktype="relative-path">SID_IDENTIFIER_AUTHORITY</a> structure
+that indicates the authority under which the SID was created. It describes the
+entity that created the SID. The Identifier Authority value {0,0,0,0,0,5}
+denotes SIDs created by the NT SID authority.</p><p><b>SubAuthority (variable): </b>A variable length
+array of unsigned 32-bit integers that uniquely identifies a principal relative
+to the <b>IdentifierAuthority</b>. Its length is determined by <b>SubAuthorityCount</b>.</p></div>

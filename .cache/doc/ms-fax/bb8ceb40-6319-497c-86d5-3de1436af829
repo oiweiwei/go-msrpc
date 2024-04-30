@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The <b>FAX_ENUM_MSG_FLAGS</b> enumeration defines the
+possible flags that specify the read or unread status of a fax message.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FAX_MSG_FLAG_READ = 0x00000001
+ } FAX_ENUM_MSG_FLAGS;
+</pre></div>
+</dd></dl><p><b>FAX_MSG_FLAG_READ: </b>Indicates whether this
+message is marked as read. The message MUST be marked as read if this bit is
+set. The default MAY be unread for an inbox message and read for a sent message.</p></div>

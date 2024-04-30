@@ -1,0 +1,73 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_SKD</b> structure specifies a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_621e5d7b-d764-4196-b838-b52bf82b9380" data-linktype="relative-path">signing
+key descriptor</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcSigningKeyDescriptor {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   GUID Guid;
+   [string] wchar_t* pwszKeyStorageProvider;
+   BOOL fStoreKeysInDirectory;
+   BOOL fIsKSK;
+   BYTE bSigningAlgorithm;
+   DWORD dwKeyLength;
+   DWORD dwInitialRolloverOffset;
+   DWORD dwDNSKEYSignatureValidityPeriod;
+   DWORD dwDSSignatureValidityPeriod;
+   DWORD dwStandardSignatureValidityPeriod;
+   DWORD dwRolloverType;
+   DWORD dwRolloverPeriod;
+   DWORD dwNextRolloverAction;
+   DWORD dwReserved;
+ } DNS_RPC_SKD,
+  *PDNS_RPC_SKD;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The structure
+version number; this MUST be set to 0x00000001.</p><p><b>dwReserved0:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>Guid:</b> A unique identifier for this
+signing key descriptor.</p><p><b>pwszKeyStorageProvider:</b> The Key Storage Provider
+that will be used to generate and store keys for this signing key descriptor.</p><p><b>fStoreKeysInDirectory:</b> A value of
+0x00000001 indicates that the DNS server exports keys generated for this
+signing key descriptor and stores them on the DNS zone object in Active
+Directory. A value of 0x00000000 indicates that the DNS server stores keys in
+self-signed certificates in the local machine certificate store.</p><p><b>fIsKSK:</b> A value of 0x00000001 indicates
+that this signing key descriptor describes a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_33a6e1a7-8ac7-4d38-b25a-75b2ccae8311" data-linktype="relative-path">key signing key (KSK)</a></span>;
+a value of 0x00000000 indicates a zone signing key <span><a href="https://go.microsoft.com/fwlink/?LinkId=225979" data-linktype="external">[RFC4641]</a></span>.</p><p><b>bSigningAlgorithm:</b> The cryptographic
+algorithm used to generate signing keys. The DNS server SHOULD<a id="Appendix_A_Target_48"></a><a aria-label="Product behavior note 48" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_48" data-linktype="relative-path">&lt;48&gt;</a> support all values given by <span><a href="https://go.microsoft.com/fwlink/?LinkId=225982" data-linktype="external">[IANA-DNSSECAN]</a></span>
+and <span><a href="https://go.microsoft.com/fwlink/?LinkId=229294" data-linktype="external">[DRAFT-DNSSEC-ECDSA]</a></span>.</p><p><b>dwKeyLength:</b> The length, in bits, of
+cryptographic signing keys. This value MUST be ignored if the signing algorithm
+does not have variable key length.</p><p><b>dwInitialRolloverOffset:</b> The amount of
+time, in seconds, to delay the first scheduled <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bba25ad2-df77-44a6-80ce-527528948f8e" data-linktype="relative-path">key rollover</a></span> for
+this signing key descriptor. The value SHOULD be limited to the range
+0x00000000 to 0x00278D00 (30 days), inclusive, but it can be any value. The
+default value SHOULD be 0x00000000, and the value zero MUST be allowed and
+treated literally.</p><p><b>dwDNSKEYSignatureValidityPeriod:</b> The
+number of seconds that signatures covering DNSKEY record sets generated for
+this signing key descriptor&#39;s keys are valid, as defined by <span><a href="https://go.microsoft.com/fwlink/?LinkId=107052" data-linktype="external">[RFC4034]</a></span>
+section 3.1.5. The value SHOULD be limited to the range 0x00005460 (6 hours) to
+0x00093A80 (7 days), inclusive, but it can be any value. The default value
+SHOULD be 0x0003F480 (3 days).</p><p><b>dwDSSignatureValidityPeriod:</b> The number
+of seconds that signatures covering DS record sets generated for this signing
+key descriptor&#39;s keys are valid, as defined by [RFC4034] section 3.1.5. The
+value SHOULD be limited to the range 0x00005460 (6 hours) to 0x00093A80 (7
+days), inclusive, but it can be any value. The default value SHOULD be
+0x0003F480 (3 days).</p><p><b>dwStandardSignatureValidityPeriod:</b> The
+number of seconds that signatures covering record sets not of type DNSKEY or DS
+generated for this signing key descriptor&#39;s keys are valid, as defined by
+[RFC4034] section 3.1.5. The value SHOULD be limited to the range 0x00005460 (6
+hours) to 0x00278D00 (30 days), inclusive, but it can be any value. The default
+value SHOULD be 0x000D2F00 (10 days).</p><p><b>dwRolloverType:</b> When sent, this value
+MUST be set to one of the allowed values specified in <span><a href="ed7c21aa-1175-456c-8d2f-48e117b71b05" data-linktype="relative-path">ZONE_SKD_ROLLOVER_TYPE (section 2.2.5.1.5)</a></span>
+as follows: this value MUST be DNS_ROLLOVER_TYPE_PREPUBLISH if <b>fIsKSK</b> is
+0x00000000 and MUST be DNS_ROLLOVER_TYPE_DOUBLE_SIGNATURE if <b>fIsKSK</b> is
+0x00000001. On receipt, this value MUST be ignored.</p><p><b>dwRolloverPeriod:</b> The number of seconds
+between scheduled key rollovers, or 0xFFFFFFFF to disable automatic key
+rollovers. This value SHOULD be limited to the range 0x00093A80 (1 week) to
+0x25980600 (20 years), inclusive, in addition to 0xFFFFFFFF, when <b>fIsKSK</b>
+is 0x00000001, and the range 0x00093A80 (1 week) to 0x09660180 (5 years),
+inclusive, in addition to 0xFFFFFFFF, when <b>fIsKSK</b> is 0x00000000. The
+default SHOULD be 0x02022900 (13 months) when <b>fIsKSK</b> is 0x00000001, and
+0x0x00278D00 (1 month) when <b>fIsKSK</b> is 0x00000000.</p><p><b>dwNextRolloverAction:</b> This value
+describes the next key rollover action that the DNS server will take for this
+signing key descriptor. This value MUST be set to one of the allowed values
+specified in <span><a href="2671ecfc-951c-4d90-9b45-2bd1d87fa8f7" data-linktype="relative-path">ZONE_SKD_ROLLOVER_ACTION (section 2.2.5.1.6)</a></span>.</p><p><b>dwReserved:</b> This value MUST be set to
+0x00000000 when sent by the client and ignored on receipt by the server.</p></div>

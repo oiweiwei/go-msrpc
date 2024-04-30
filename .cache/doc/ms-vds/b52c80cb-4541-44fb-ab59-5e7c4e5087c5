@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The VDS_REPARSE_POINT_PROP structure defines the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_4fed0b53-5fc8-4818-886f-93d87f3035e1" data-linktype="relative-path">reparse
+point</a></span> properties of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_513fcb37-059f-475c-a13d-e89b302f8ae8" data-linktype="relative-path">mount point</a></span> to a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>
+object.</p><dl>
+<dd>
+<div><pre> typedef struct VDS_REPARSE_POINT_PROP {
+   VDS_OBJECT_ID SourceVolumeId;
+   [string] WCHAR* pwszPath;
+ } VDS_REPARSE_POINT_PROP,
+  *PVDS_REPARSE_POINT_PROP;
+</pre></div>
+</dd></dl><p><b>SourceVolumeId:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS
+object</a></span> ID of the volume object that the reparse point refers to. </p><p><b>pwszPath:</b>  The null-terminated
+Unicode path of the reparse point. The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2cd71385-2d9c-4ab8-bf4a-7b258816d613" data-linktype="relative-path">path</a></span> does not
+contain a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1b153cd0-e3f3-4383-bc66-d5ad482c9766" data-linktype="relative-path">drive letter</a></span>; for
+example, &#34;\mount&#34;.</p></div>

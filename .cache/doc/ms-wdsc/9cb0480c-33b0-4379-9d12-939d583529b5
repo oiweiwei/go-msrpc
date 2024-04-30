@@ -1,0 +1,74 @@
+<div class="content"><p>The Operation Header is defined as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Packet-Size</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">Version</p>
+  </td>
+  <td colspan="8">
+  <p align="center">Packet-Type</p>
+  </td>
+  <td colspan="8">
+  <p align="center">Padding1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">OpCode-ErrorCode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Variable-Count</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Packet-Size (4 bytes):</b> MUST be set to the
+arithmetic addition of the sizes in bytes of the Operation Header and Variables
+Section.</p><p><b>Version (2 bytes):</b> MUST be set to 0x0100.</p><p><b>Packet-Type (1 byte):</b> SHOULD be set to value
+as defined in section <a href="fe28f52d-4b17-47f3-b35c-cd741fc32977" data-linktype="relative-path"><span>2.2.1.2.1</span></a>.</p><p><b>Padding1 (1 byte):</b> Padding MAY be set to zero
+and MUST be ignored by receiver.</p><p><b>OpCode-ErrorCode (4 bytes):</b> For request
+packets, this field MUST be set to the <a href="c9ecc8ee-2046-4ef2-b2ec-329fde7f8b01#gt_1b22a3a6-f2e9-438d-9b61-274ec834a114" data-linktype="relative-path">OpCode</a> for the service
+being invoked on the <a href="c9ecc8ee-2046-4ef2-b2ec-329fde7f8b01#gt_8ed48787-eb06-4b86-8b2e-19347bfbf07b" data-linktype="relative-path">WDS
+Server</a>. The <a href="c9ecc8ee-2046-4ef2-b2ec-329fde7f8b01#gt_3996e5d9-beae-47cc-bf9d-dd0c570fbff5" data-linktype="relative-path">Endpoint
+GUID</a> combined with the OpCode uniquely identifies the service to be invoked
+on the WDS Server. For reply packets, this field specifies the error code for
+the invoked service. Section <a href="0926d80d-f68c-4df3-bab3-2d4741901367" data-linktype="relative-path"><span>3.1.4.2</span></a> specifies in detail how
+operation results are communicated to the client.</p><p><b>Variable-Count (4 bytes): </b>MUST set to the
+number of variables in the Variables Section.</p></div>

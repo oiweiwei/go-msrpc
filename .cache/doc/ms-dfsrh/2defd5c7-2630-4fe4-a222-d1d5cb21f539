@@ -1,0 +1,70 @@
+<div class="content"><p>The DeleteObject method MUST execute an <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a> command under machine
+security credentials to delete an <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a> object
+with a specified <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">distinguished
+name</a>.<a id="Appendix_A_Target_46"></a><a aria-label="Product behavior note 46" href="70b8d14d-a366-4156-a2ad-eedb63aec058#Appendix_A_46" data-linktype="relative-path">&lt;46&gt;</a></p><dl>
+<dd>
+<div><pre> HRESULT DeleteObject(
+   [in] BSTR domainControllerName,
+   [in] BSTR distinguishedName
+ );
+</pre></div>
+</dd></dl><p><b>domainControllerName: </b>MUST be the <a href="acefe7bd-5912-4f18-9554-b3da50a2ee44#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a> of the domain
+controller to which the method sends the LDAP command.</p><p><b>distinguishedName: </b>MUST be the distinguished
+name of the Active Directory object that is being deleted. The distinguished
+name of any object in Active Directory can be used. The format of the
+distinguished name is specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90325" data-linktype="external">[RFC2251]</a> section
+4.1.3.</p><p><b>Return Values: </b>The method MUST return:</p><ul><li><p><span><span>  </span></span>A
+value of 0 when:</p>
+<ul><li><p><span><span> 
+</span></span>The method call is successful.</p>
+</li><li><p><span><span> 
+</span></span>The LDAP error is LDAP_NO_SUCH_OBJECT.</p>
+</li></ul></li><li><p><span><span>  </span></span>For
+other LDAP protocol failures:</p>
+<ul><li><p><span><span> 
+</span></span>A value of dfsrHelperLdapErrorBase + the server-side error code 
+if the LDAP error is LDAP_OPERATIONS_ERROR.</p>
+</li><li><p><span><span> 
+</span></span>A value of dfsrHelperLdapErrorBase + the LDAP return code for all
+other LDAP errors. For more information, see <a href="https://go.microsoft.com/fwlink/?LinkId=89933" data-linktype="external">[LDAP-ERR]</a>.</p>
+</li></ul></li><li><p><span><span>  </span></span>For
+all other failures, an implementation-specific nonzero <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+between 0x80000000 and 0xFFFFFFFF. For protocol purposes, all nonzero values
+MUST be treated as equivalent failures.</p>
+</li></ul><p>After receiving this message, the server MUST check whether
+the caller has sufficient rights to perform the operation. The implementation
+MUST perform a platform-specific check to verify that the rights are appropriate
+for the deletion of Active Directory objects.</p><ul><li><p><span><span> 
+</span></span>If the user does not have sufficient rights, the server MUST fail
+the operation immediately and return the E_ACCESS_DENIED (0x80070005) error
+code as its response to the client.</p>
+</li><li><p><span><span> 
+</span></span>If the server fails to perform this check because of an
+implementation-specific failure, the server MUST fail the operation immediately
+and return an appropriate error as its response to the client.<a id="Appendix_A_Target_47"></a><a aria-label="Product behavior note 47" href="70b8d14d-a366-4156-a2ad-eedb63aec058#Appendix_A_47" data-linktype="relative-path">&lt;47&gt;</a></p>
+</li></ul><p>If the check succeeds and the server can verify that the
+user has sufficient rights, the server MUST proceed to the next steps of the
+method.</p><p>After the server receives this message, it MUST validate the
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>domainControllerName</i> and <i>distinguishedName</i>
+are not NULL and are not empty strings.</p>
+</li><li><p><span><span> 
+</span></span>If parameter validation fails, the server MUST fail the operation
+immediately and return an appropriate error as its response to the client.</p>
+</li></ul><p>If both the security check and the parameter validation
+succeed, the server MUST create a new LDAP command to delete an existing Active
+Directory object that has the specified distinguished name.</p><p>The server MUST execute this LDAP command against the domain
+controller that is specified in <i>domainControllerName</i> and check the return
+value of the LDAP protocol.</p><p>If the LDAP protocol returns LDAP_SUCCESS, the server MUST
+return zero to the caller to indicate the success of the call; otherwise, if
+the LDAP protocol returned any return code other than LDAP_SUCCESS, the server
+MUST return the following error code to the caller:</p><ul><li><p><span><span> 
+</span></span>If the error is LDAP_OPERATIONS_ERROR, the server gets the
+server-side error code of the LDAP operation and MUST return
+dfsrHelperLdapErrorBase + the server-side error code to the caller.</p>
+</li><li><p><span><span> 
+</span></span>For all other LDAP errors, the server MUST return
+dfsrHelperLdapErrorBase and the LDAP return code to the caller.</p>
+</li></ul></div>

@@ -1,0 +1,90 @@
+<div class="content"><p> This method is called by a replication client application
+to create a Common Internet File System (CIFS) <a href="../ms-cifs/d416ff7c-c536-406e-a951-4f04b2fd1d2b" data-linktype="relative-path">[MS-CIFS]</a>
+file share for copying installer package files.</p><dl>
+<dd>
+<div><pre> HRESULT CreateShare(
+   [in] LPCWSTR pwszShareName,
+   [in] LPCWSTR pwszPath
+ );
+</pre></div>
+</dd></dl><p><b>pwszShareName: </b>The share name (as specified
+for a path in <a href="3f01a312-3391-4109-a96e-95358babf191#gt_c9507dca-291d-4fd6-9cba-a9ee7da8c908" data-linktype="relative-path">UNC</a>
+syntax) of the file share to create. This MUST be a SourceShareName or
+TargetNewShareName, according to the following ABNF syntax, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90462" data-linktype="external">[RFC4234]</a>.</p><dl>
+<dd>
+<div><pre> SourceShareName = &#34;ReplicaSource&#34; CurlyBracedGuidString
+ TargetNewShareName = &#34;ReplicaTargetNew&#34; CurlyBracedGuidString
+</pre></div>
+</dd>
+<dd>
+<p>Where <code>CurlyBracedGuidString</code>
+is in Curly Braced GUID String Syntax (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/222af2d3-5c00-4899-bc87-ed4c6515e80d" data-linktype="relative-path">2.3.4.3</a>).</p>
+</dd>
+<dd>
+<p>These formats have the following usage.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Format</p>
+   </th>
+   <th>
+   <p>Usage</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SourceShareName</p>
+  </td>
+  <td>
+  <p>Used when the server is a replication source.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TargetNewShareName</p>
+  </td>
+  <td>
+  <p>Used when the server is a replication target.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pwszPath: </b>An <a href="ab2d0f1a-81e7-4159-a32c-0321d0c3a32f" data-linktype="relative-path">ImplementationSpecificPathProperty</a>
+(section 2.2.2.2) representing the path to the directory that is to back the
+file share. This MUST be derived from the server&#39;s base replication directory
+path by appending one of the following strings.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&#34;\ReplicaSource&#34;</p>
+  </td>
+  <td>
+  <p> The server is a replication source.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>&#34;\ReplicaNew&#34;</p>
+  </td>
+  <td>
+  <p> The server is a replication target.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><p>Upon receiving a call to this method, the server MAY verify
+that <i>pwszShareName</i> and <i>pwszPath</i> are valid, and fail the call if
+they are not valid.</p><p>The server then MUST verify that the directory represented
+by <i>pwszPath</i> exists, and fail the call if does not exist.</p><p>The server then MUST attempt to create a CIFS file share
+with the provided name and back it by the directory represented by <i>pwszPath</i>,
+ensuring that the COMA client&#39;s user identity is granted read and write access,
+and fail the call if it cannot.</p><p> The server MUST then return success.</p></div>

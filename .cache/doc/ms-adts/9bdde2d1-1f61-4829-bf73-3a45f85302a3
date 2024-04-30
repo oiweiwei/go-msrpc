@@ -1,0 +1,212 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9bdde2d1-1f61-4829-bf73-3a45f85302a3" data-linktype="external">msdn link</a></p><p>The <b>DS_REPL_OPW_BLOB</b> structure is a representation of
+a tuple from the <b>replicationQueue</b> variable of a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a>. This structure,
+retrieved using an <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a>
+search method, is an alternative representation of DS_REPL_OPW, retrieved using
+the IDL_DRSGetReplInfo <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+method.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ftimeEnqueued</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulSerialNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulPriority</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>opType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulOptions</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>oszNamingContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>oszDsaDN</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>oszDsaAddress</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uuidNamingContextObjGuid
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uuidDsaObjGuid
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>ftimeEnqueued (8 bytes): </b>A <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a>
+structure that contains the date and time that this operation was added to the
+queue.</p><p><b>ulSerialNumber (4 bytes): </b>An unsigned integer
+specifying the identifier of the operation. The counter used to assign this
+identifier is volatile; it is reset during startup of a DC. Therefore, these
+identifiers are only unique between restarts of a DC.</p><p><b>ulPriority (4 bytes): </b> An unsigned integer
+specifying the priority value of this operation. Tasks with a higher priority
+value are executed first. The priority is calculated by the server based on the
+type of operation and its parameters.</p><p><b>opType (4 bytes): </b>Contains one of the following
+values that indicate the type of operation that this structure represents.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Operation</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DS_REPL_OP_TYPE_SYNC</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_REPL_OP_TYPE_ADD</p>
+  </td>
+  <td>
+  <p>1</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_REPL_OP_TYPE_DELETE</p>
+  </td>
+  <td>
+  <p>2</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_REPL_OP_TYPE_MODIFY</p>
+  </td>
+  <td>
+  <p>3</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DS_REPL_OP_TYPE_UPDATE_REFS</p>
+  </td>
+  <td>
+  <p>4</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ulOptions (4 bytes): </b>Zero or more bits from
+the Directory Replication Service (DRS) options defined in <a href="../ms-drsr/f977faaa-673e-4f66-b9bf-48c640241d47" data-linktype="relative-path">[MS-DRSR]</a>
+section <a href="../ms-drsr/ac9c8a11-cd46-4080-acbf-9faa86344030" data-linktype="relative-path">5.41</a>,
+the interpretation of which depends on the <b>opType</b>.</p><p><b>oszNamingContext (4 bytes): </b>Contains a 32-bit
+offset, in bytes, from the address of this structure to a null-terminated
+string that contains the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a>
+of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_784c7cce-f782-48d8-9444-c9030ba86942" data-linktype="relative-path">NC</a> associated
+with this operation (for example, the NC to be synchronized for
+DS_REPL_OP_TYPE_SYNC).</p><p><b>oszDsaDN (4 bytes): </b>Contains a 32-bit offset,
+in bytes, from the address of this structure to a null-terminated string that
+contains the DN of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_dc90b593-841f-4c6d-8032-b32e58e887a8" data-linktype="relative-path">nTDSDSA
+object</a> of the remote server corresponding to this operation. For example,
+the server from which to ask for changes for DS_REPL_OP_TYPE_SYNC. This can be
+NULL.</p><p><b>oszDsaAddress (4 bytes): </b>Contains a 32-bit
+offset, in bytes, from the address of this structure to a null-terminated
+string that contains the transport-specific network address of the remote
+server associated with this operation. For example, the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a> or <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_0678be67-e739-4e33-97fe-2b03b903a379" data-linktype="relative-path">SMTP</a> address of the server
+from which to ask for changes for DS_REPL_OP_TYPE_SYNC. This can be NULL.</p><p><b>uuidNamingContextObjGuid (16 bytes): </b>A <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a>
+structure, as defined in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section 2.3.4, specifying the <a href="../ms-ada3/937eb5c6-f6b3-4652-a276-5d6bb8979658" data-linktype="relative-path">objectGUID</a>
+of the NC identified by oszNamingContext.</p><p><b>uuidDsaObjGuid (16 bytes): </b>A GUID structure,
+as defined in [MS-DTYP] section 2.3.4, specifying the objectGUID of the
+directory system agent <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a>
+identified by oszDsaDN.</p><p><b>data (variable): </b>This field contains all the
+null-terminated strings that are pointed to by the offset fields in the
+structure (<b>oszNamingContext</b>, <b>oszDsaDN</b>, <b>oszDsaAddress</b>). The
+strings are packed into this field and the offsets can be used to determine the
+start of each string.</p><p>All multibyte fields have little-endian byte ordering.</p></div>

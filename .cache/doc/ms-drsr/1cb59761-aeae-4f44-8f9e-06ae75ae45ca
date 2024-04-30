@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The IDL_DSAExecuteScript method executes a maintenance
+script.</p><dl>
+<dd>
+<div><pre> ULONG IDL_DSAExecuteScript(
+   [in] handle_t hRpc,
+   [in] DWORD dwInVersion,
+   [in, ref, switch_is(dwInVersion)] 
+     DSA_MSG_EXECUTE_SCRIPT_REQ* pmsgIn,
+   [out, ref] DWORD* pdwOutVersion,
+   [out, ref, switch_is(*pdwOutVersion)] 
+     DSA_MSG_EXECUTE_SCRIPT_REPLY* pmsgOut
+ );
+</pre></div>
+</dd></dl><p><b>hRpc: </b>The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle,
+as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>.</p><p><b>dwInVersion: </b>The version of the request
+message.</p><p><b>pmsgIn: </b>A pointer to the request message.</p><p><b>pdwOutVersion: </b>A pointer to the version of the
+response message.</p><p><b>pmsgOut: </b>A pointer to the response message.</p><p><b>Return Values: </b>0 if successful, or a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows
+error code</a></span> if a failure occurs.</p></div>

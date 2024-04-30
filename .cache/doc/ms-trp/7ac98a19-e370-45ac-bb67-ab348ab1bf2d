@@ -1,0 +1,262 @@
+<div class="content"><p>The GetButtonInfo packet is transmitted from a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a>.
+Sending this packet MUST return information about the specified button.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hPhone</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwButtonLampID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpButtonInfo</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved5</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved6</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved7</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved8</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved9</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved10</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved11</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>The identifier of the
+function that will be invoked on the remote server. This value MUST be set to
+93.</p><dl>
+<dd>
+<p><b>Return Values</b></p>
+</dd>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>, this field
+MUST contain the result of the encapsulated telephony request. A value of 0
+indicates success, and a <a href="b1c6fae0-09ca-4f7b-85f6-1324376d231c" data-linktype="relative-path">PHONEERR_Constants</a>
+value indicates failure. The remote server MUST complete this call
+synchronously.</p>
+</dd>
+<dd>
+<p>Returns 0 if the request succeeds or a negative
+error number if an error occurs. The following table lists common return
+values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PHONEERR_INVALPHONEHANDLE</p>
+  </td>
+  <td>
+  <p>0x00000013</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_NOMEM</p>
+  </td>
+  <td>
+  <p>0x0000001A</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_INVALBUTTONLAMPID</p>
+  </td>
+  <td>
+  <p>0x00000009</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_RESOURCEUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x0000001F</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_INVALPOINTER</p>
+  </td>
+  <td>
+  <p>0x00000015</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_OPERATIONFAILED</p>
+  </td>
+  <td>
+  <p>0x0000001C</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_INVALPHONESTATE</p>
+  </td>
+  <td>
+  <p>0x00000014</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_STRUCTURETOOSMALL</p>
+  </td>
+  <td>
+  <p>0x00000021</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_OPERATIONUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x0000001D</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHONEERR_UNINITIALIZED</p>
+  </td>
+  <td>
+  <p>0x00000022</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>hPhone (4 bytes): </b>An <a href="0c93f481-3429-48c5-a9e6-f0568c4cabd9" data-linktype="relative-path">HPHONE</a>. The handle to the
+open phone device. This field MUST have been obtained by sending the <a href="6b5ee45e-b5c8-4148-a9b2-b16b9b995c3f" data-linktype="relative-path">Open</a> packet.</p><p><b>dwButtonLampID (4 bytes): </b>An unsigned 32-bit
+integer. The button on the phone device. A valid value of dwButtonLampID is in
+the range 0 to dwNumButtonLamps –1. The client obtains dwNumButtonLamps from
+the <a href="92710f40-6a08-4121-953c-5c3eb19aa59e" data-linktype="relative-path">PHONECAPS</a> obtained
+by sending a <a href="81bf0e0b-3fb9-41fb-9c20-6fb8b9e34664" data-linktype="relative-path">GetDevCaps</a>
+packet to the remote server.</p><p><b>lpButtonInfo (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of a <a href="5505bf10-a211-411a-b8ce-6c997e5fe6fa" data-linktype="relative-path">PHONEBUTTONINFO</a> packet
+that contains the mode and the function; and provides additional descriptive
+text that corresponds to the button, upon successful completion of the request.
+</p><dl>
+<dd>
+<p>On successful completion, this field contains the
+offset, in bytes, of the packet in the VarData field.</p>
+</dd></dl><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved5 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved6 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved7 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved8 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved9 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved10 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved11 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>VarData (variable): </b>This field MUST be present
+only on successful completion of the request. MUST contain a PHONEBUTTONINFO
+packet.</p><dl>
+<dd>
+<p>The contents of this field are DWORD-aligned.</p>
+</dd></dl></div>

@@ -1,0 +1,49 @@
+<div class="content"><p> </p><p>The <b>EcDoAsyncConnectEx</b> method binds a <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_1f0ab616-f876-47ff-9cf1-6f24c0255ccc" data-linktype="relative-path">session
+context handle</a></span> returned from the <b>EcDoConnectEx</b> method, as
+specified in section <span><a href="59d638fe-e63d-422a-b51d-6210b2155138" data-linktype="relative-path">3.1.4.1</a></span>, to a new <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_e288b075-2751-413d-981e-272b350b37c4" data-linktype="relative-path">asynchronous
+context handle</a></span> that can be used in calls to the <b>EcDoAsyncWaitEx</b>
+method in the <b>AsyncEMSMDB</b> interface, as specified in section <span><a href="e45891af-30cc-43ed-8da9-0043d39e51c9" data-linktype="relative-path">3.3.4.1</a></span>.
+This call requires that an active session context handle be returned from the <b>EcDoConnectEx</b>
+method.</p><p>This method is part of notification handling. For more
+information about notifications, see <span><a href="../ms-oxcnotif/7c7d1653-5dfb-42f1-9410-fc4e48e10731" data-linktype="relative-path">[MS-OXCNOTIF]</a></span>.</p><dl>
+<dd>
+<div><pre> long __stdcall EcDoAsyncConnectEx(
+      [in] CXH cxh,
+      [out, ref] ACXH * pacxh
+ );
+</pre></div>
+</dd></dl><p><i>cxh:</i> A session context handle. The client MUST pass a
+valid session context handle that was created by calling the <b>EcDoConnectEx</b>
+method. The server uses the session context handle to identify the <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_d08d95ee-5936-47d8-9f35-49e4159354a6" data-linktype="relative-path">Session
+Context</a></span> to use for this call.</p><p><i>pacxh:</i> An asynchronous context handle. On success,
+the server returns an asynchronous context handle that is associated with the
+Session Context passed in the <i>cxh</i> parameter. On failure, the returned
+value is NULL. The asynchronous context handle can be used to make a call to
+the <b>EcDoAsyncWaitEx</b> method on the <b>AsyncEMSMDB</b> interface.</p><p><b>Return Values:</b> If the method succeeds, the return
+value is 0. If the method fails, the return value is an implementation-specific
+error code or the protocol-defined error code listed in the following table. </p><table><thead>
+  <tr>
+   <th>
+   <p>Error code name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ecRejected<a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="f2038fa2-e1b4-4b77-8e29-08c865c1cb3a#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a></p>
+  </td>
+  <td>
+  <p>0x000007EE</p>
+  </td>
+  <td>
+  <p>Server has asynchronous <span><a href="c5869b4a-c0d3-4ceb-80f4-c47a250ddf3d#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> notifications
+  disabled. Client either polls for notifications or calls the <b>EcRRegisterPushNotifications</b>
+  method (section <span><a href="6a6e9a76-09b3-41aa-a3f7-dc25ba77c907" data-linktype="relative-path">3.1.4.5</a></span>).<span> </span></p>
+  </td>
+ </tr></tbody></table><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol as specified in <span><a href="/en-us/openspecs/windows_protocols/MS-RPCE/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="absolute-path">[MS-RPCE]</a></span>.</p></div>

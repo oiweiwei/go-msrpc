@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The COMPRESSED_DATA structure defines a sequence of
+compressed (if <b>cbDecompressedSize</b> ≠ <b>cbCompressedSize</b>) or
+uncompressed (if <b>cbDecompressedSize</b> = <b>cbCompressedSize</b>) bytes.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   ULONG cbDecompressedSize;
+   ULONG cbCompressedSize;
+   BYTE data[];
+ } COMPRESSED_DATA;
+</pre></div>
+</dd></dl><p><b>cbDecompressedSize:</b>  Decompressed
+size of data.</p><p><b>cbCompressedSize:</b>  Compressed size
+of data.</p><p><b>data:</b>  Data stream. The data is
+padded with zeros, if necessary, so that the block ends on a double word boundary.</p></div>

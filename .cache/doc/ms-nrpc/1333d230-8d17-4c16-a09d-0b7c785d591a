@@ -1,0 +1,279 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/1333d230-8d17-4c16-a09d-0b7c785d591a" data-linktype="external">msdn link</a></p><p>The <b>NLPR_USER_PRIVATE_INFO</b> structure defines a data
+buffer that is optionally encrypted with the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_4f67a585-fb00-4166-93e8-cf4abca8226d" data-linktype="relative-path">session key</a>, as detailed in
+this section. The structure is used to carry user account passwords as follows.</p><dl>
+<dd>
+<div><pre> typedef struct _NLPR_USER_PRIVATE_INFO {
+   UCHAR SensitiveData;
+   ULONG DataLength;
+   [size_is(DataLength)] UCHAR * Data;
+ } NLPR_USER_PRIVATE_INFO,
+  *PNLPR_USER_PRIVATE_INFO;
+</pre></div>
+</dd></dl><p><b>SensitiveData: </b>Is either TRUE (0x01) or FALSE
+(0x00). The <b>SensitiveData</b> field indicates whether the data is encrypted
+as follows. If this field is set to 0x00, then the data is not encrypted. If
+the field is set to 0x01, the data pointed to by the <b>Data</b> field is
+encrypted with the session key used on the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure channel</a> between the
+client and the server exchanging this data structure to the client. The
+encryption algorithm is <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_d57eac33-f561-4a08-b148-dfcf29cfb4d8" data-linktype="relative-path">RC4</a>
+if the flag C is set in the negotiated flags between the client and the server,
+as specified in section <a href="5805bc9f-e4c9-4c8a-b191-3c3a7de7eeed" data-linktype="relative-path">3.1.4.2</a>;
+otherwise the encryption algorithm is DES.</p><p><b>DataLength:</b> The size, in bytes, of the <b>Data</b>
+field.</p><p><b>Data:</b> A pointer to a buffer with a size of <b>DataLength</b>.
+If the <b>SensitiveData</b> field is set to TRUE, this data is encrypted as
+defined in the <b>SensitiveData</b> field. The buffer content prior to
+encryption (if any) is shown in the following table.</p><dl>
+<dd>
+<dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DataType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>LmLength</p>
+  </td>
+  <td colspan="16">
+  <p>LmMaximumLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Unused1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LmHash[0..3]</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LmHash[4..7]</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LmHash[8..11]</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LmHash[12..15]</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>NtLength</p>
+  </td>
+  <td colspan="16">
+  <p>NtMaximumLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Unused2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NtHash[0..3]</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NtHash[4..7]</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NtHash[8..11]</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NtHash[12..15]</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>LmHistoryLength</p>
+  </td>
+  <td colspan="16">
+  <p>LmHistoryMaximumLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Unused3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>NtHistoryLength</p>
+  </td>
+  <td colspan="16">
+  <p>NtHistoryMaximumLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Unused4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NtHistoryArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LmHistoryArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl></dd>
+<dd>
+<p><b>DataType:</b> An unsigned integer. This value
+MUST be 0x00000002.</p>
+</dd>
+<dd>
+<p><b>LmLength:</b> An unsigned
+(short) integer. This value MUST be either 0x0010 or 0x0000. If 0x0010, the <b>LmHash</b>
+field contains the LM hash of the user password (specified in <a href="../ms-nlmp/b38c36ed-2804-4868-a9ff-8dd3182128e4" data-linktype="relative-path">[MS-NLMP]</a>).
+If 0x0000, the value of the <b>LmHash</b> field is undefined and MUST be
+ignored upon receipt.</p>
+</dd>
+<dd>
+<p><b>LmMaximumLength:</b> This
+value MUST be the same value as <b>LmLength</b>. </p>
+</dd>
+<dd>
+<p><b>Unused1:</b> This value
+MUST be zero and ignored on receipt.</p>
+</dd>
+<dd>
+<p><b>LmHash:</b> The encrypted
+(<a href="../ms-samr/4df07fab-1bbc-452f-8e92-7853a3c7e380" data-linktype="relative-path">[MS-SAMR]</a>
+section <a href="../ms-samr/3f5ec79d-b449-4ab2-9423-c4dccbe0b184" data-linktype="relative-path">2.2.11.1</a>)
+<b>LM OWF</b> ([MS-NLMP] section <a href="../ms-nlmp/1b72429a-d8b8-4a04-bc82-1eedc980b87a" data-linktype="relative-path">3.3</a>) of
+the user password. The 16-byte <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_fbdcfa70-e954-4dbd-bafa-0f9c4bcf90dd" data-linktype="relative-path">encryption key</a> is created
+by concatenating four times the relative ID (from the given user&#39;s <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a>). </p>
+</dd>
+<dd>
+<p><b>NtLength:</b> An unsigned
+(short) integer. This value MUST be either 0x0010 or 0x0000. If 0x0010, the <b>NtHash</b>
+field contains the NT hash of the user password (specified in [MS-NLMP]). If
+0x0000, the value of the <b>NtHash</b> field is undefined and MUST be ignored
+upon receipt.</p>
+</dd>
+<dd>
+<p><b>NtMaximumLength:</b> This
+value MUST be the same value as <b>NtLength</b>.</p>
+</dd>
+<dd>
+<p><b>Unused2:</b> This value
+MUST be zero and ignored on receipt.</p>
+</dd>
+<dd>
+<p><b>NtHash:</b> The encrypted
+([MS-SAMR] section 2.2.11.1) NT OWF ([MS-NLMP] section 3.3) of the user
+password. The 16-byte encryption key is created by concatenating four times the
+relative ID (from the given user&#39;s SID). </p>
+</dd>
+<dd>
+<p><b>LmHistoryLength:</b> An
+unsigned (short) integer. This value is the length, in bytes, of the <b>LmHistoryArray</b>
+field.</p>
+</dd>
+<dd>
+<p><b>LmHistoryMaximumLength:</b>
+This value MUST be the same value as <b>LmHistoryLength</b>.</p>
+</dd>
+<dd>
+<p><b>Unused3:</b> This value
+MUST be zero and ignored on receipt.</p>
+</dd>
+<dd>
+<p><b>NtHistoryLength:</b> An
+unsigned (short) integer. This value is the length, in bytes, of the <b>NtHistoryArray</b>
+field.</p>
+</dd>
+<dd>
+<p><b>NtHistoryMaximumLength:</b>
+This value MUST be the same value as <b>NtHistoryLength</b>.</p>
+</dd>
+<dd>
+<p><b>Unused4:</b> This value
+MUST be zero and ignored on receipt.</p>
+</dd>
+<dd>
+<p><b>NtHistoryArray:</b> An
+array of NT hash values of user passwords for the given user. The array is
+ordered so that the first element is the hash of the current password and the
+last element is the hash of the oldest password. </p>
+</dd>
+<dd>
+<p><b>Note</b>  The number of
+elements in the array is the value of the <b>NtHistoryLength</b> field divided
+by 0x0010.</p>
+</dd>
+<dd>
+<p><b>LmHistoryArray:</b> An
+array of LM hash values of user passwords for the given user. The array is
+ordered so that the first element is the hash of the current password and the
+last element is the hash of the oldest password.</p>
+</dd>
+<dd>
+<p><b>Note</b>  The number of elements in the array is
+the value of the <b>LmHistoryLength</b> field divided by 0x0010.</p>
+</dd></dl></div>

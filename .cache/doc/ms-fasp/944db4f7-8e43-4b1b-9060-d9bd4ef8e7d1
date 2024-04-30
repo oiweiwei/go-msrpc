@@ -1,0 +1,92 @@
+<div class="content"><p> </p><p>The RRPC_FWAddFirewallRule2_26 method requests the server to
+add the specified firewall rule in the policy contained in the policy store
+that is referenced by the handle specified in the <i>hPolicyStore</i>
+parameter. The method is only supported for binary version 0x021A.</p><dl>
+<dd>
+<div><pre> DWORD RRPC_FWAddFirewallRule2_26(
+   [in] FW_CONN_HANDLE rpcConnHandle,
+   [in] FW_POLICY_STORE_HANDLE hPolicyStore,
+   [in] PFW_RULE2_26 pRule,
+   [out] FW_RULE_STATUS* pStatus
+ );
+</pre></div>
+</dd></dl><p><b>rpcConnHandle:</b> An RPC binding handle that
+connects to the RPC interface of the Firewall and Advanced Security Protocol.</p><p><b>hPolicyStore:</b> An input parameter that is an <span><a href="88f6ea4a-a946-4747-bb93-f142f1760752" data-linktype="relative-path">FW_POLICY_STORE_HANDLE</a></span>
+data type. This parameter MUST contain an opened policy store handle, successfully
+opened with the RRPC_FWOpenPolicyStore (Opnum 0) method (section <span><a href="2157e39a-1bf0-4e0c-abae-0811fd918b11" data-linktype="relative-path">3.1.4.1</a></span>).
+The handle MUST have read/write access rights.</p><p><b>pRule:</b> Represents the firewall rule that the
+client adds to the store. The rule MUST be a valid rule, as specified in the
+definition of the <span><a href="8c008258-166d-46d4-9090-f2ffaa01be4b" data-linktype="relative-path">FW_RULE</a>2_26</span> data
+type.</p><p><b>pStatus:</b> An output parameter that is the
+status code of the rule, as specified by the <span><a href="c4fd81e6-38dd-47c5-8a0f-a98a11cf190e" data-linktype="relative-path">FW_RULE_STATUS</a></span>
+enumeration. This field is filled out on return.</p><p><b>Return Values:</b> The method returns 0 if
+successful; if it fails, it returns a nonzero error code. The field can take
+any specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+The following return values are common.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x000000B7</p>
+  <p>ERROR_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>The specified rule has a rule ID that already exists
+  in the specified store.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000032</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The specified store does not support this method; the
+  store might be read-only.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The <i>hPolicyStore</i> handle was not opened with
+  read/write access rights. This error is also returned if the client does not
+  have the required credentials to call the method.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the parameters of this method is incorrect or
+  is required but not specified. This error can be returned in the following
+  cases:</p>
+  <p>- The <i>pRule</i> object did not pass the firewall
+  rule validations specified in the definition of the FW_RULE data type.</p>
+  <p>- One of the required values is not specified.</p>
+  <p>- A policy store does not support rules with profile
+  conditions other than ALL profiles.</p>
+  <p>- The <b>wszLocalApplication</b> member of the rule
+  contains a string that, at enforcement time, does not represent a valid file
+  path.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+If any lower-layer errors are reported by RPC exception, this exception is
+converted to an error code and reported to higher-layer protocols via the
+return value.</p><p>This method adds a firewall rule in the firewall linked list
+of the memory representation of the store being modified. It also writes
+through and saves the rule on disk. If called on an online store, the firewall
+rule is also enforced.</p><p>The server MUST validate that the client is authorized to
+perform the requested operation (as defined in section <span><a href="b0c93352-8371-4d63-abca-b0cc8dbcc3d7" data-linktype="relative-path">3.1.4</a></span>)
+before executing this method.</p></div>

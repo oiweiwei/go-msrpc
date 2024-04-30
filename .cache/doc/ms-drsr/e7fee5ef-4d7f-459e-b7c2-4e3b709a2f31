@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p>The DRS_MSG_FINISH_DEMOTIONREPLY_V1 structure defines the
+response message received from the <span><a href="0bf530e8-1be0-4f48-b8c2-208031a8725f" data-linktype="relative-path">IDL_DRSFinishDemotion</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwOperationsDone;
+   DWORD dwOpFailed;
+   DWORD dwOpError;
+ } DRS_MSG_FINISH_DEMOTIONREPLY_V1;
+</pre></div>
+</dd></dl><p><b>dwOperationsDone:</b>  The set of
+operations that were successfully performed. This can include the following
+values: DS_DEMOTE_ROLLBACK_DEMOTE, DS_DEMOTE_COMMIT_DEMOTE,
+DS_DEMOTE_DELETE_CSMETA, DS_DEMOTE_UNREGISTER_SCPS, DS_DEMOTE_UNREGISTER_SPNS.
+This MUST include any value from the input element
+DRS_MSG_FINISH_DEMOTIONREQ_V1.dwOperations whose corresponding operations (see
+pseudocode in section <span><a href="cbed0810-e977-471b-9abc-2573014f7c5b" data-linktype="relative-path">4.1.7.3</a></span>) succeeded.</p><p><b>dwOpFailed:</b>  The set of operations
+that failed during demotion. This can include the same values as the <b>dwOperationsDone</b>
+field. This MUST include any value from the input element
+DRS_MSG_FINISH_DEMOTIONREQ_V1.dwOperations whose corresponding operations (see
+pseudocode in section 4.1.7.3) failed.</p><p><b>dwOpError:</b>  The Win32 error code (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>)
+of the first failed operation (if any), from the following operations:
+DS_DEMOTE_ROLLBACK_DEMOTE, DS_DEMOTE_COMMIT_DEMOTE, DS_DEMOTE_DELETE_CSMETA, or
+DS_DEMOTE_UNREGISTER_SCPS.</p></div>

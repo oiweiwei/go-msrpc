@@ -1,0 +1,50 @@
+<div class="content"><p> </p><p>This structure represents a firewall rule that is used by
+the 2.0 binary version servers and clients (see section <span><a href="faf4ffbe-1d51-40ad-ae90-2230f2c0b6a9" data-linktype="relative-path">2.2.42</a></span>).
+The fields of this structure are identical to the <span><a href="8c008258-166d-46d4-9090-f2ffaa01be4b" data-linktype="relative-path">FW_RULE</a></span> structure
+and its meanings are covered in section 2.2.37.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_RULE2_0 {
+   struct _tag_FW_RULE2_0* pNext;
+   unsigned short wSchemaVersion;
+   [string, range(1, 10001), ref] wchar_t* wszRuleId;
+   [string, range(1, 10001)] wchar_t* wszName;
+   [string, range(1, 10001)] wchar_t* wszDescription;
+   unsigned long dwProfiles;
+   [range(FW_DIR_INVALID, FW_DIR_OUT)] 
+     FW_DIRECTION Direction;
+   [range(0, 256)] unsigned short wIpProtocol;
+   [switch_type(unsigned short), switch_is(wIpProtocol)] 
+     union {
+     [case(6,17)] 
+       struct {
+       FW_PORTS LocalPorts;
+       FW_PORTS RemotePorts;
+     };
+     [case(1)] 
+       FW_ICMP_TYPE_CODE_LIST V4TypeCodeList;
+     [case(58)] 
+       FW_ICMP_TYPE_CODE_LIST V6TypeCodeList;
+     [default]       ;
+   };
+   FW_ADDRESSES LocalAddresses;
+   FW_ADDRESSES RemoteAddresses;
+   FW_INTERFACE_LUIDS LocalInterfaceIds;
+   unsigned long dwLocalInterfaceTypes;
+   [string, range(1, 10001)] wchar_t* wszLocalApplication;
+   [string, range(1, 10001)] wchar_t* wszLocalService;
+   [range(FW_RULE_ACTION_INVALID, FW_RULE_ACTION_MAX)] 
+     FW_RULE_ACTION Action;
+   unsigned short wFlags;
+   [string, range(1, 10001)] wchar_t* wszRemoteMachineAuthorizationList;
+   [string, range(1, 10001)] wchar_t* wszRemoteUserAuthorizationList;
+   [string, range(1, 10001)] wchar_t* wszEmbeddedContext;
+   FW_OS_PLATFORM_LIST PlatformValidityList;
+   FW_RULE_STATUS Status;
+   [range(FW_RULE_ORIGIN_INVALID, FW_RULE_ORIGIN_MAX)] 
+     FW_RULE_ORIGIN_TYPE Origin;
+   [string, range(1, 10001)] wchar_t* wszGPOName;
+   unsigned long Reserved;
+ } FW_RULE2_0,
+  *PFW_RULE2_0;
+</pre></div>
+</dd></dl></div>

@@ -1,0 +1,94 @@
+<div class="content"><p> </p><p>The <b>R_DhcpDeleteMScope</b> method deletes the multicast
+subnet from the MADCAP server. The <i>ForceFlag</i> defines the behavior of the
+operation when the subnet has served a MADCAP client.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpDeleteMScope(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, ref, string] LPWSTR* MScopeName,
+   [in] DHCP_FORCE_FLAG ForceFlag
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the MADCAP server. This parameter is unused.</p><p><b>MScopeName: </b>This is a pointer to a Unicode
+string that contains the name of the multicast subnet that needs to be removed.
+There is no restriction on the length of this field.</p><p><b>ForceFlag: </b>This is of type <span><a href="3aca524f-86d6-494c-beaf-35c3936780a5" data-linktype="relative-path">DHCP_FORCE_FLAG (section 2.2.1.1.9)</a></span>
+that defines the behavior of this method. If the flag is set to DhcpNoForce and
+this subnet has served the IPv4 address to some MADCAP clients, the IPv4
+multicast subnet is not deleted. If the flag is set to DhcpFullForce, the IPv4
+multicast subnet is deleted along with the MADCAP client&#39;s record on the MADCAP
+server.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E27</p>
+  <p>ERROR_DHCP_ELEMENT_CANT_REMOVE</p>
+  </td>
+  <td>
+  <p>The specified IPv4 multicast scope cannot be removed because
+  at least one multicast IPv4 address has been leased out to some MADCAP
+  client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the MADCAP server
+  database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 7.</p><p>When processing this call, the MADCAP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4MScope</b> ADM element entry corresponding
+to <i>MScopeName</i> from the server ADM element <b>DHCPv4MScopesList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>DHCPv4MScope</b> entry is not found, return
+ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>DHCPv4MClientsList</b> ADM element of the retrieved <b>DHCPv4MScope</b>
+entry is not an empty list and <i>ForceFlag</i> is set to DhcpNoForce, return
+the error ERROR_DHCP_ELEMENT_CANT_REMOVE, else do the following:</p>
+<ul><li><p><span><span>  </span></span>Delete
+the <b>DHCPv4MScope</b> entry from the <b>DHCPv4MScopesList</b>.</p>
+</li><li><p><span><span>  </span></span>Delete
+all the fields of the <b>DHCPv4MScope</b> entry (<b>DHCPv4IpRangesList</b>, <b>DHCPv4IpExclusionRangesList</b>,
+<b>DHCPv4MClientsList</b>, and <b>DHCPv4MScopeOptValuesList</b>).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

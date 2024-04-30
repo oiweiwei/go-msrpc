@@ -1,0 +1,147 @@
+<div class="content"><p>This packet contains data sent by the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> which is then sent
+to the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_3657ab68-5a60-4cee-8082-dfc2e67435e9" data-linktype="relative-path">target server</a>.
+The data is sent by the RDG client for the <a href="6fbbf525-6545-4a4f-b699-dc8537752810" data-linktype="relative-path">TsProxySendToServer</a> method
+call.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PCHANNEL_CONTEXT_HANDLE_NOSERIALIZE_NR
+  (20 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>totalDataBytes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>numBuffers</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>buffer1Length</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>buffer2Length
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>buffer3Length
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>buffer1
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>buffer2
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>buffer3
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>PCHANNEL_CONTEXT_HANDLE_NOSERIALIZE_NR (20 bytes):
+</b>This MUST be the network representation of the <a href="56e6e88c-4519-4a27-8ae0-95b5f33c851a" data-linktype="relative-path">PCHANNEL_CONTEXT_HANDLE_NOSERIALIZE</a>
+data type returned by the RDG server by using the <a href="99458693-7c7e-45fb-abf8-2328439a4b35" data-linktype="relative-path">TsProxyCreateChannel</a>
+method call. Network representation of a context handle is described in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> Appendix N.</p><p><b>totalDataBytes (4 bytes): </b>An <b>unsigned long</b>
+that specifies the total number of bytes to be sent to the target server. This
+MUST be in network order representation. It MUST be the sum of <b>buffer1Length</b>,
+<b>buffer2Length</b>, and <b>buffer3Length</b> and the size of the data, in
+bytes, for <b>buffer1Length</b>, <b>buffer2Length</b>, and <b>buffer3Length</b>.
+It MUST NOT be zero.</p><p><b>numBuffers (4 bytes): </b>An <b>unsigned long</b>
+that specifies the total number of data buffers that follow this field. This
+MUST be in a network-order representation.</p><p><b>buffer1Length (4 bytes): </b>An <b>unsigned long</b>
+specifying the length of the first buffer. This MUST be in a network-order
+representation and be nonzero.</p><p><b>buffer2Length (4 bytes): </b>An <b>unsigned long</b>
+specifying the length of the second buffer. This MUST be in a network-order
+representation. This is optional and can be 0.</p><p><b>buffer3Length (4 bytes): </b>An <b>unsigned long</b>
+specifying the length of the third buffer. This MUST be in a network-order
+representation. This is optional and can be 0.</p><p><b>buffer1 (variable): </b>The <b>buffer1</b> is an
+array of bytes. Its length is specified by <b>buffer1Length</b>. This MUST be
+non-NULL and contain the same number of bytes specified by <b>buffer1Length</b>.
+The contents of <b>buffer1</b> are opaque to the Remote Desktop Gateway Server
+Protocol.</p><p><b>buffer2 (variable): </b>The <b>buffer2</b> is an
+array of bytes. Its length is specified by <b>buffer2Length</b>. This MUST be
+non-NULL if buffer2Length is nonzero and contain the same number of bytes
+specified by <b>buffer2Length</b>. If buffer2Length is 0, this SHOULD be NULL.
+If <b>buffer2Length</b> is zero and <b>buffer2</b> is non-NULL, then <b>buffer2</b>
+MUST be ignored. The contents of <b>buffer2</b> are opaque to the Remote
+Desktop Gateway Server Protocol.</p><p><b>buffer3 (variable): </b>The <b>buffer3</b> is an
+array of bytes. Its length is specified by <b>buffer3Length</b>. This MUST be
+non-NULL if buffer3Length is nonzero and contain the same number of bytes
+specified by <b>buffer3Length</b>. If buffer3Length is 0, this SHOULD be NULL.
+If <b>buffer3Length</b> is zero and <b>buffer3</b> is non-NULL, then <b>buffer3</b>
+MUST be ignored. The contents of <b>buffer3</b> are opaque to the Remote
+Desktop Gateway Server Protocol.</p></div>

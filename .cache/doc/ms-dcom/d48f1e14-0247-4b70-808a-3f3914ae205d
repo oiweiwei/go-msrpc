@@ -1,0 +1,84 @@
+<div class="content"><p> </p><p>Activation properties constitute a BLOB of data that
+contains information used to specify the parameters of activation, or to return
+the results of activation. Activation properties BLOBs are passed as [in] and
+[out] parameters of the <span><a href="fd0682f8-8f5a-4082-830f-861c34db6251" data-linktype="relative-path">IRemoteSCMActivator</a></span>
+methods. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwReserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CustomHeader
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Property
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwSize (4 bytes): </b>The unsigned total size (in
+bytes) from the beginning of the <b>CustomHeader</b> field to the end of the
+last entry in the <b>Property</b> array.</p><p><b>dwReserved (4 bytes): </b>This MUST be set to zero
+and MUST be ignored on receipt.</p><p><b>CustomHeader (variable): </b>This MUST contain a <span><a href="841f8b4a-cdc5-4f14-aee3-4630e0272e91" data-linktype="relative-path">CustomHeader</a></span>
+marshaled using the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_9ebf9540-2c31-43bc-bc56-4a932faabf2d" data-linktype="relative-path">NDR</a></span> Type
+Serialization 1 engine (as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/9a1d0f97-eac0-49ab-a197-f1a581c2d6a0" data-linktype="relative-path">2.2.6</a></span>).</p><p><b>Property (variable): </b> This MUST contain an
+array of structures listed in section <span><a href="457d799e-78b3-4035-9628-c3409007f89f" data-linktype="relative-path">2.2.22.2</a></span> marshaled
+using the NDR Type Serialization 1 engine (as specified in [MS-RPCE] section
+2.2.6). The format of the Nth element in the array is identified by the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a></span>
+specified in the Nth entry of the pclsid array in the CustomHeader field. The
+number of elements in the array MUST be specified by the <b>cIfs</b> field of
+the CustomHeader and MUST NOT be zero.</p></div>

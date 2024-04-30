@@ -1,0 +1,60 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/36069113-6c38-45e8-920e-17f8ef36f578" data-linktype="external">msdn link</a></p><p>The TRUSTED_INFORMATION_CLASS enumeration type contains
+values that specify the type of <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted domain</a> information
+queried or set by the client.</p><dl>
+<dd>
+<div><pre> typedef  enum _TRUSTED_INFORMATION_CLASS
+ {
+   TrustedDomainNameInformation = 1,
+   TrustedControllersInformation,
+   TrustedPosixOffsetInformation,
+   TrustedPasswordInformation,
+   TrustedDomainInformationBasic,
+   TrustedDomainInformationEx,
+   TrustedDomainAuthInformation,
+   TrustedDomainFullInformation,
+   TrustedDomainAuthInformationInternal,
+   TrustedDomainFullInformationInternal,
+   TrustedDomainInformationEx2Internal,
+   TrustedDomainFullInformation2Internal,
+   TrustedDomainSupportedEncryptionTypes,
+   TrustedDomainAuthInformationInternalAes,
+   TrustedDomainFullInformationInternalAes
+ } TRUSTED_INFORMATION_CLASS,
+  *PTRUSTED_INFORMATION_CLASS;
+</pre></div>
+</dd></dl><p><b>TrustedDomainNameInformation: </b>The trusted
+domain information contains the LSAPR_TRUSTED_DOMAIN_NAME_INFO structure
+specified in section <a href="71c5724f-447e-452c-9cb9-a0fd90d88594" data-linktype="relative-path">2.2.7.4</a>.</p><p><b>TrustedControllersInformation: </b>The trusted
+domain information contains the LSAPR_TRUSTED_CONTROLLERS_INFO structure
+specified in section <a href="5382bd89-69c6-46f2-beb1-7b70e5befbc5" data-linktype="relative-path">2.2.7.5</a>.</p><p><b>TrustedPosixOffsetInformation: </b>The trusted
+domain information contains the TRUSTED_POSIX_OFFSET_INFO structure specified
+in section <a href="b091ee7e-f5c3-4b48-8567-1b08ea002221" data-linktype="relative-path">2.2.7.6</a>.</p><p><b>TrustedPasswordInformation: </b>The trusted domain
+information contains the LSAPR_TRUSTED_PASSWORD_INFO structure specified in
+section <a href="33d7a9e4-c9ca-4021-9627-337d89e656a3" data-linktype="relative-path">2.2.7.7</a>.</p><p><b>TrustedDomainInformationBasic: </b>The trusted
+domain information contains the LSAPR_TRUSTED_DOMAIN_INFORMATION_BASIC
+structure specified in section <a href="c101591d-e1b0-42bd-8cc5-f8866c3b5757" data-linktype="relative-path">2.2.7.8</a>.</p><p><b>TrustedDomainInformationEx: </b>The trusted domain
+information contains the LSAPR_TRUSTED_ DOMAIN_INFORMATION_EX structure
+specified in section <a href="f28f42b7-173c-4cda-9809-3fe4a5213ab3" data-linktype="relative-path">2.2.7.9</a>.</p><p><b>TrustedDomainAuthInformation: </b>The trusted
+domain information contains the LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION structure
+specified in section <a href="084fdb6b-5bc3-4912-9aed-0257159996dd" data-linktype="relative-path">2.2.7.11</a>.</p><p><b>TrustedDomainFullInformation: </b>The trusted
+domain information contains the LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION structure
+specified in section <a href="9f9feebc-e9e1-41c1-8c48-02f83a227a14" data-linktype="relative-path">2.2.7.13</a>.</p><p><b>TrustedDomainAuthInformationInternal: </b>The
+trusted domain information contains the
+LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL structure specified in section <a href="3b1c61fe-6f07-4d83-af54-3a381de5c5d1" data-linktype="relative-path">2.2.7.12</a>.</p><p><b>TrustedDomainFullInformationInternal: </b>The
+trusted domain information contains the LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION_INTERNAL
+structure specified in section <a href="2e9e2c84-7b00-4fb1-8de5-88d4cfedd2b3" data-linktype="relative-path">2.2.7.14</a>.</p><p><b>TrustedDomainInformationEx2Internal: </b>The
+trusted domain information contains the LSAPR_TRUSTED_DOMAIN_INFORMATION_EX2
+structure specified in section <a href="dd92d4d9-227f-4ef1-b42b-ef3f056f8aaa" data-linktype="relative-path">2.2.7.10</a>.</p><p><b>TrustedDomainFullInformation2Internal: </b>The
+trusted domain information contains the LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION2
+structure specified in section <a href="e529d094-5de4-4738-adc4-efa1a7d1106f" data-linktype="relative-path">2.2.7.15</a>.</p><p><b>TrustedDomainSupportedEncryptionTypes: </b>The
+trusted domain information contains the
+TRUSTED_DOMAIN_SUPPORTED_ENCRYPTION_TYPES structure specified in section <a href="7c519a64-3dc1-4be6-a17d-76817cff6e39" data-linktype="relative-path">2.2.7.18</a>.</p><p><b>TrustedDomainAuthInformationInternalAes:</b> The <b>trusted
+domain</b> information contains the
+LSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION_INTERNAL_AES structure specified in
+section <a href="37b253a9-5d68-43a7-9ea2-24c61cb76b77" data-linktype="relative-path">2.2.7.29</a>.</p><p><b>TrustedDomainFullInformationInternalAes:</b> The
+trusted domain information contains the
+LSAPR_TRUSTED_DOMAIN_FULL_INFORMATION_INTERNAL_AES structure specified in
+section <a href="2ce0b018-4012-48ef-b80e-a39bd8efd080" data-linktype="relative-path">2.2.7.30</a><span>.</span></p><p>The following citation contains a timeline of when each
+enumeration value was introduced.<a id="Appendix_A_Target_30"></a><a aria-label="Product behavior note 30" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_30" data-linktype="relative-path">&lt;30&gt;</a></p><p>The values in this enumeration are used in defining the
+contents of the <a href="65564571-dd0d-49a9-8a2a-6dba8ab57091" data-linktype="relative-path">LSAPR_TRUSTED_DOMAIN_INFO</a>
+union.</p></div>

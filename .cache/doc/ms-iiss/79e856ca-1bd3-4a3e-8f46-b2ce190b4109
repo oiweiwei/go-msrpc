@@ -1,0 +1,71 @@
+<div class="content"><p>This data structure provides information about the state of
+the <a href="546d32cd-905e-4f34-b023-2be4b5e16413#gt_866d4b3a-f5b8-4518-853e-6f2991a8f4e2" data-linktype="relative-path">Internet services</a> on
+a server. It is used by the server to return data to the client in the <a href="5958afc1-d38c-4e89-9830-f69fea7e7e4f" data-linktype="relative-path">Status</a> method, as specified
+in section 3.1.4.4.</p><p>The values in this structure MUST be present in <a href="546d32cd-905e-4f34-b023-2be4b5e16413#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a> format.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>iServiceName</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>iDisplayName</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ServiceStatus
+  (28 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>iServiceName (4 bytes): </b>The number of unsigned
+wide characters to use as an offset to the <b>WCHAR</b> string that contains
+the service name for this service. For more information, see section <a href="096ffe89-76be-4d01-9e4d-f68428a231fc" data-linktype="relative-path">2.2.2</a>.</p><p><b>iDisplayName (4 bytes): </b>The number of unsigned
+wide characters to use as an offset to the <b>WCHAR</b> string that contains
+the display name for this service. For more information, see section 2.2.2.</p><p><b>ServiceStatus (28 bytes): </b>Provides status for
+the service, as specified in <a href="../ms-scmr/705b624a-13de-43cc-b8a2-99573da3635f" data-linktype="relative-path">[MS-SCMR]</a>
+section <a href="../ms-scmr/4e91ff36-ab5f-49ed-a43d-a308e72b0b3c" data-linktype="relative-path">2.2.47</a>.</p></div>

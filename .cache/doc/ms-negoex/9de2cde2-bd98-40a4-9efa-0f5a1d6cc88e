@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>A <b>VERIFY_MESSAGE</b> structure message is produced using
+the required <span><a href="ab2191b0-371a-497a-b184-eba073d04269#gt_fa444149-ef93-4512-a278-2e756295630c" data-linktype="relative-path">checksum</a></span> mechanism
+per <span><a href="https://go.microsoft.com/fwlink/?LinkId=90450" data-linktype="external">[RFC3961]</a></span> and
+is included in the output token.  </p><dl>
+<dd>
+<div><pre> struct
+ {
+   MESSAGE_HEADER Header;
+   AUTH_SCHEME AuthScheme;
+   CHECKSUM Checksum;
+ } VERIFY_MESSAGE; 
+</pre></div>
+</dd></dl><p><b>Header:</b> A <b>MESSAGE_HEADER</b> structure, as
+specified in section <span><a href="1f4a4b47-6e44-4427-9028-e384a4ca1fda" data-linktype="relative-path">2.2.6.2</a></span>. The
+header’s message type MUST be set to the MESSAGE_TYPE_VERIFY value from the <b>MESSAGE_TYPE</b>
+enumeration, as specified in section <span><a href="3a77a20d-9746-4e79-8f06-b241263e3da3" data-linktype="relative-path">2.2.6.1</a></span>.  </p><p><b>AuthScheme:</b> An <b>AUTH_SCHEME</b> GUID, as
+specified in section <span><a href="fa13c53c-f15c-4506-9679-c8cd69684463" data-linktype="relative-path">2.2.2</a></span><span><span>,</span></span> that
+identifies the security mechanism ID from which the protocol key was obtained. 
+</p><p><b>Checksum:</b> A <b>CHECKSUM</b> structure,
+specified in section <span><a href="0655f940-7dc3-4fd1-b249-2d0cb246e5d3" data-linktype="relative-path">2.2.5.1.3</a></span><span><span>,</span></span> that
+contains the checksum of all the previously exchanged messages in the order
+they were sent in the conversation. The checksum is calculated based on
+[RFC3961].  </p></div>

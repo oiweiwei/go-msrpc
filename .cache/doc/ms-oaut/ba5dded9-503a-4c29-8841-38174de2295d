@@ -1,0 +1,34 @@
+<div class="content"><p> </p><p>The IEnumVARIANT::Next method returns up to the number of
+requested items that occur next in the enumeration sequence.</p><dl>
+<dd>
+<div><pre> HRESULT Next(
+   [in] ULONG celt,
+   [out, size_is(celt), length_is(*pCeltFetched)] 
+     VARIANT* rgVar,
+   [out] ULONG* pCeltFetched
+ );
+</pre></div>
+</dd></dl><p><b>celt: </b>MUST be set to the maximum number of
+elements to return. The value MUST NOT be 0.</p><p><b>rgVar: </b>MUST be set to an array of elements
+that are returned from the enumeration sequence.</p><p><b>pCeltFetched: </b>MUST be set to the number of
+elements successfully returned. This number MUST be equal to the value in <i>celt</i>,
+unless the end of the enumeration sequence is encountered.</p><p><b>Return Values: </b>The method MUST return the
+information in an <b>HRESULT</b> data structure, which is defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul><p>A static or semistatic IEnumVARIANT server MUST retrieve the
+next <i>celt</i> elements from the sequence and fill in <i>rgVar</i> up to the <i>celt</i>
+elements or up to the remaining number of elements that are not yet enumerated.</p><p>A dynamic server MUST use its server-specific state to
+retrieve the next elements.</p><p>In all cases, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Set <i>pCeltFetched</i> with the number retrieved.</p>
+</li><li><p><span><span> 
+</span></span>Update the current position in the sequence.</p>
+</li><li><p><span><span> 
+</span></span>Return a status of 1 (S_FALSE) if <i>pCeltFetched</i> is not
+equal to <i>celt</i>.</p>
+</li></ul></div>

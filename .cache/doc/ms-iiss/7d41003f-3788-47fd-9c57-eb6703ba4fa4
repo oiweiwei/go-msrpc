@@ -1,0 +1,8 @@
+<div class="content"><p>This specification defines the Internet Information Services
+(IIS) ServiceControl Protocol. This protocol is a client-to-server protocol
+which enables remote control of <a href="546d32cd-905e-4f34-b023-2be4b5e16413#gt_866d4b3a-f5b8-4518-853e-6f2991a8f4e2" data-linktype="relative-path">Internet services</a> as a single
+unit. The interface can be used to start or stop these services. It also can be
+used to terminate the service processes or reboot the computer. Lastly, it
+provides status information about the services.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

@@ -1,0 +1,19 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/189b6cc4-aa77-4835-a3e6-51115c669ba2" data-linktype="external">msdn link</a></p><p>The <b>RPC_SECURITY_DESCRIPTOR</b> structure is a container
+for passing a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security
+descriptor</a> that can be marshaled and unmarshaled by <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>. In this protocol it is
+part of the <b>RPC_SECURITY_ATTRIBUTES structure</b> (section <a href="087e7905-2d56-4c68-8ef1-a4879775579a" data-linktype="relative-path">2.2.3.2</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _RPC_SECURITY_DESCRIPTOR {
+   [size_is(cbInSecurityDescriptor), length_is(cbOutSecurityDescriptor)] 
+     unsigned char* lpSecurityDescriptor;
+   unsigned long cbInSecurityDescriptor;
+   unsigned long cbOutSecurityDescriptor;
+ } RPC_SECURITY_DESCRIPTOR,
+  *PRPC_SECURITY_DESCRIPTOR;
+</pre></div>
+</dd></dl><p><b>lpSecurityDescriptor:</b> A variable-length buffer
+that contains a security descriptor in self-relative form.</p><p><b>cbInSecurityDescriptor:</b> The size, in bytes, of
+memory that is allocated for the security descriptor. If no security descriptor
+is specified, this field MUST be zero.</p><p><b>cbOutSecurityDescriptor:</b> The number of bytes
+of the <b>lpSecurityDescriptor</b> to be transmitted. If no security descriptor
+is specified, this field MUST be zero.</p></div>

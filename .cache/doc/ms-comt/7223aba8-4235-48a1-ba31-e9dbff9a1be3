@@ -1,0 +1,71 @@
+<div class="content"><p>The TrackingInfoProperty defines a structure for
+representing a property name/value pair.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>MaxVersion</p>
+  </td>
+  <td colspan="16">
+  <p>MinVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PropertyName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PropertyValue
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>MaxVersion (2 bytes): </b>The major version of
+this marshaled format; this MUST be set to 0x0001.</p><p><b>MinVersion (2 bytes): </b>The minor version of
+this marshaled format; this MUST be set to 0x0001.</p><p><b>PropertyName (variable): </b>A <a href="53b25ea4-811c-4948-a9f7-e3ae1a0e170f" data-linktype="relative-path">LengthPrefixedName (section
+2.2.5.1)</a> that contains the name of this property.</p><p><b>PropertyValue (variable): </b>A <a href="d61df048-23f3-49f7-82c1-c8d9123a7e0e" data-linktype="relative-path">TrackingInfoPropertyValue
+(section 2.2.5.2)</a> that contains the value of this property.</p></div>

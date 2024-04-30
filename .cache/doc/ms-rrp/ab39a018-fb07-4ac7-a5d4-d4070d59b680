@@ -1,0 +1,67 @@
+<div class="content"><p> </p><p>The BaseRegGetVersion method is called by the client. In
+response, the server returns the version of the remote <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_2d67ea57-10e6-422f-985e-694834945a02" data-linktype="relative-path">registry</a></span>
+server. The BaseRegGetVersion method is used by the client and the server to
+determine if the remote registry server supports both 32-bit and 64-bit key
+namespaces.</p><dl>
+<dd>
+<div><pre> error_status_t BaseRegGetVersion(
+   [in] RPC_HKEY hKey,
+   [out] LPDWORD lpdwVersion
+ );
+</pre></div>
+</dd></dl><p><b>hKey: </b>A handle to a key that MUST have been
+opened previously by using one of the open methods that are specified in
+section <span><a href="053e8515-dbae-47ea-a7c6-6dc054e3a48f" data-linktype="relative-path">3.1.5</a></span>: <span><a href="956a3052-6580-43ee-91aa-aaf61726149b" data-linktype="relative-path">OpenClassesRoot</a></span>,
+<span><a href="ec140ed9-4d00-4c03-a15c-c7245a497ed5" data-linktype="relative-path">OpenCurrentUser</a></span>,
+<span><a href="6cef29ae-21ba-423f-9158-05145ac80a5b" data-linktype="relative-path">OpenLocalMachine</a></span>,
+<span><a href="7b514c63-6cad-4fe1-9780-743959e377e6" data-linktype="relative-path">OpenPerformanceData</a></span>,
+<span><a href="694e57f4-da3e-4285-8b71-3181d71d6cd1" data-linktype="relative-path">OpenUsers</a></span>,
+<span><a href="c7186ae2-1c82-45e9-933b-97d9873657e8" data-linktype="relative-path">BaseRegCreateKey</a></span>,
+<span><a href="8cb48f55-19e1-4ea2-8d76-dd0f6934f0d9" data-linktype="relative-path">BaseRegOpenKey</a></span>,
+<span><a href="160767d7-83cf-4718-a4f3-d864faee3bb1" data-linktype="relative-path">OpenCurrentConfig</a></span>,
+<span><a href="44954f6d-ef2c-4ec1-a27d-32b9b87e3c8a" data-linktype="relative-path">OpenPerformanceText</a></span>,
+<span><a href="3626fa8a-b20f-4243-bf85-cdb615ed2ca0" data-linktype="relative-path">OpenPerformanceNlsText</a></span>.</p><p><b>lpdwVersion: </b>A buffer in which the registry
+version MUST be returned. The registry version is implementation-specific.<a id="Appendix_A_Target_27"></a><a aria-label="Product behavior note 27" href="85f43046-e27d-4122-93ba-bc278f986fbe#Appendix_A_27" data-linktype="relative-path">&lt;27&gt;</a></p><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns the following
+nonzero error code. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x000003E6</p>
+  <p>ERROR_NOACCESS</p>
+  </td>
+  <td>
+  <p>Invalid access to memory location.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000013</p>
+  <p>ERROR_WRITE_PROTECT</p>
+  </td>
+  <td>
+  <p>A read or write operation was attempted to a volume
+  after it was dismounted. The server can no longer service registry requests
+  because server shutdown has been initiated.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Server Operations</p><p>If the parameter <i>lpdwVersion</i> is NULL, the server MUST
+return ERROR_NOACCESS.</p><p>If the registry server can no longer service registry
+requests because server shutdown has been initiated (<b>SHUTDOWNINPROGRESS</b>
+is set to TRUE), the server MUST return ERROR_WRITE_PROTECT.</p><p>In response to this request from the client, for a
+successful operation, the server MUST return the implementation-specific
+version of the format that is used to store the registry data in the backup
+copy, by using the buffer that is pointed to by the <i>lpdwVersion</i>
+parameter.</p><p>If the server returns 6, the server MUST support both 64-bit
+and 32-bit key namespaces as described in section <span><a href="d962e3a6-30e1-4bb3-9663-cd4751604212" data-linktype="relative-path">3.1.1.4</a></span>.</p><p>The server MUST return 0 to indicate success or an
+appropriate error code (as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>)
+to indicate an error.</p></div>

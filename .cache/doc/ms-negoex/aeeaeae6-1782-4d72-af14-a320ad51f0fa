@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The <b>EXCHANGE_MESSAGE</b> structure message is used to
+encapsulate context tokens of the negotiated security mechanism for either the
+initiator or the acceptor.  </p><dl>
+<dd>
+<div><pre> struct
+ {
+   MESSAGE_HEADER Header;
+   AUTH_SCHEME AuthScheme;
+   BYTE_VECTOR Exchange;
+} EXCHANGE_MESSAGE; 
+</pre></div>
+</dd></dl><p><b>Header:</b> A <b>MESSAGE_HEADER</b> structure, as
+specified in section <span><a href="1f4a4b47-6e44-4427-9028-e384a4ca1fda" data-linktype="relative-path">2.2.6.2</a></span>. The
+Header’s <b>MessageType</b> field is set from the values of the <b>MESSAGE_TYPE</b>
+enumeration, as specified in section <span><a href="3a77a20d-9746-4e79-8f06-b241263e3da3" data-linktype="relative-path">2.2.6.1</a></span>. The <b>MessageType</b>
+field MUST be set to MESSAGE_TYPE_AP_REQUEST type for the initiator or
+MESSAGE_TYPE_CHALLENGE type for the acceptor when context tokens are being
+exchanged. The <b>MessageType</b> field MUST be set to
+MESSAGE_TYPE_INITIATOR_META_DATA type for the initiator or
+MESSAGE_TYPE_ACCEPTOR_META_DATA type for the acceptor when metadata tokens are
+being exchanged.  </p><p><b>AuthScheme:</b> An <b>AUTH_SCHEME</b> GUID that
+contains the security mechanism&#39;s ID, as specified in section <span><a href="fa13c53c-f15c-4506-9679-c8cd69684463" data-linktype="relative-path">2.2.2</a></span>. 
+</p><p><b>Exchange:</b> A <b>BYTE_VECTOR</b> structure,
+specified in section <span><a href="2e9b7476-1e8b-4543-83ac-77b6f41c1e0c" data-linktype="relative-path">2.2.5.2.3</a></span>, that
+contains the opaque handshake message for the client authentication scheme.  </p></div>

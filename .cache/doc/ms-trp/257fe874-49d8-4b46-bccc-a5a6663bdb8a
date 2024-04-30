@@ -1,0 +1,17 @@
+<div class="content"><p>The ClientDetach method is called by a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> when it finishes
+using the telephony resources on a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>. In response, the
+server frees the referenced binding instance and releases the allocated
+resources associated with the client. For connection-oriented clients, the
+server then calls <a href="49a456a4-e9d5-4521-b460-1e7caa99dd33" data-linktype="relative-path">RemoteSPDetach</a>
+on the client to release the allocated resources created on the client side.</p><dl>
+<dd>
+<div><pre> void ClientDetach(
+   [in, out] PCONTEXT_HANDLE_TYPE* pphContext
+ );
+</pre></div>
+</dd></dl><p><b>pphContext: </b>Pointer to a <a href="855ea515-15c6-42c1-88b7-7a40cac25ab3" data-linktype="relative-path">PCONTEXT_HANDLE_TYPE</a>
+handle to the binding instance being terminated.</p><p>This method has no return values.</p><p>On success, the server removes the client from the <b>Client
+list</b>.</p><p><b>Exceptions Thrown:</b></p><p>No exceptions are thrown beyond those thrown by the
+underlying <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol,
+as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 2.</p></div>

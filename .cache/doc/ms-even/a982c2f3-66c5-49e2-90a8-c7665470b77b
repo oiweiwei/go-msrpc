@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The ElfrClearELFA (Opnum 12) method instructs the server to
+clear an <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_bb3fad7e-60bf-46d4-9c3f-7caea47a743e" data-linktype="relative-path">event log</a></span>, and,
+optionally, to back up the event log before the clear operation takes place. </p><dl>
+<dd>
+<div><pre> NTSTATUS ElfrClearELFA(
+   [in] IELF_HANDLE LogHandle,
+   [in, unique] PRPC_STRING BackupFileName
+ );
+</pre></div>
+</dd></dl><p><b>LogHandle: </b>Handle to the event log to be cleared.
+This parameter is a server context handle, as specified in section <span><a href="de54bfbc-fbe4-43b8-b8e1-b8a6b2189604" data-linktype="relative-path">2.2.6</a></span>.
+This handle MUST NOT be one obtained via the <span><a href="6dcf59eb-11ca-416f-9cc4-8f6c2979baad" data-linktype="relative-path">ElfrOpenBELA (section 3.1.4.2)</a></span>
+method or the <span><a href="4db1601c-7bc2-4d5c-8375-c58a6f8fc7e1" data-linktype="relative-path">ElfrOpenBELW (section 3.1.4.1)</a></span>
+method.</p><p><b>BackupFileName: </b>Provides an ANSI string (as specified
+in section <span><a href="1f02c63c-f59f-40b2-8046-c624f18e7e84" data-linktype="relative-path">2.2.12</a></span>) that points
+to an <span><a href="c1550f98-a1ce-426a-9991-7509e7c3787c" data-linktype="relative-path">NT Object Path</a></span> of a
+file (as specified in section 2.2.4.1), in which a current copy of the event
+log is to be placed. If this is NULL or empty, the server MUST NOT create a
+backup as part of this method.</p><p><b>Return Values: </b>The method MUST return STATUS_SUCCESS
+(0x00000000) on success; otherwise, it MUST return an implementation-based,
+nonzero NTSTATUS value specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>The ElfrClearELFA and <span><a href="9b7a5f23-0269-4ed7-85ad-a7087af66b44" data-linktype="relative-path">ElfrClearELFW (section 3.1.4.9)</a></span>
+methods are identical in functionality. The difference between the two methods
+is that the ElfrClearELFA method specifies <i>BackupFileName</i> as an ANSI
+string. The ElfrClearELFW method specifies <i>BackupFileName</i> as a UNICODE
+string.</p></div>

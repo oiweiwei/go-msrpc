@@ -1,0 +1,84 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/e105d71d-ffed-4a7d-b386-7d99e280d59a" data-linktype="external">msdn link</a></p><p>(Protocol Version 3) The ApiCreateGroupEnum method SHOULD<a id="Appendix_A_Target_126"></a><a aria-label="Product behavior note 126" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_126" data-linktype="relative-path">&lt;126&gt;</a> return an enumeration of
+groups from the current set of groups in the cluster.</p><p>The server MUST accept an ApiCreateGroupEnum request only if
+it is in the read/write state, as specified in section <a href="756547e7-ca64-4b7c-9f1b-2b1fbc6153d3" data-linktype="relative-path">3.1.1</a>.</p><p>The server SHOULD accept an ApiCreateGroupEnum request if
+the access level associated with the <i>hCluster</i> parameter is
+&#34;Read&#34; (section <a href="a249a463-3d3b-4058-abf6-3024d81806a0" data-linktype="relative-path">3.1.4</a>).</p><dl>
+<dd>
+<div><pre> error_status_t ApiCreateGroupEnum(
+   [in] HCLUSTER_RPC hCluster,
+   [in, unique, size_is(cbProperties)] 
+     UCHAR* pProperties,
+   [in] DWORD cbProperties,
+   [in, unique, size_is(cbRoProperties)] 
+     UCHAR* pRoProperties,
+   [in] DWORD cbRoProperties,
+   [out] PGROUP_ENUM_LIST* ppResultList,
+   [out] error_status_t *rpc_status
+ );
+</pre></div>
+</dd></dl><p><b>hCluster: </b>A valid context handle to the
+cluster from which the client wishes to obtain a group enumeration.</p><p><b>pProperties: </b>A <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_d59a8bb4-ff07-4898-a3d4-2f6643990f15" data-linktype="relative-path">MULTI_SZ</a> list containing a
+list of names of common properties requested by the client. For each <a href="2583479e-027f-41c3-bf44-a0c519a3e772" data-linktype="relative-path">GROUP_ENUM_ENTRY (section 2.2.3.25)</a>
+in the resulting <a href="f93a1780-2006-4535-8eb1-d7a3356100aa" data-linktype="relative-path">GROUP_ENUM_LIST (section 2.2.3.26)</a>,
+the server MUST return a <a href="7ed348f2-eddf-4c3f-a1cb-b651ec3cff92" data-linktype="relative-path">PROPERTY_LIST (section 2.2.3.10)</a>
+containing a <a href="de73d6f9-bfdf-47ef-b008-b2da17c1a073" data-linktype="relative-path">Property
+Value (section 2.2.3.10.1)</a> for each property name specified by
+the client in the <i>pProperties</i> parameter. If the client sets the <i>pProperties</i>
+parameter to a single NULL-terminated <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> equaling
+&#34;*&#34;, then the server MUST return a PROPERTY_LIST containing a
+Property Value for each of the common properties of the group, as would be
+returned by a call to <a href="f693566d-db41-4144-bd1f-c87669546247" data-linktype="relative-path">CLUSCTL_GROUP_GET_COMMON_PROPERTIES (section 3.1.4.3.3.8)</a>.</p><p><b>cbProperties: </b>The size in bytes of the
+property list buffer pointed to by the <i>pProperties</i> parameter.</p><p><b>pRoProperties: </b>A MULTI_SZ list containing a
+list of names of common read-only properties requested by the client. For each
+GROUP_ENUM_ENTRY (section 2.2.3.25) in the resulting
+GROUP_ENUM_LIST (section 2.2.3.26), the server MUST return a
+PROPERTY_LIST (section 2.2.3.10) containing a Property
+Value (section 2.2.3.10.1) for each property name specified by the
+client in the <i>pRoProperties</i> parameter. If the client sets the <i>pRoProperties</i>
+parameter to a single NULL-terminated Unicode string equaling &#34;*&#34;,
+then the server MUST return a PROPERTY_LIST containing a Property Value for
+each of the common read-only properties of the group, as would be returned by a
+call to <a href="9bacb875-4681-414c-9549-897c1fa80f35" data-linktype="relative-path">CLUSCTL_GROUP_GET_RO_COMMON_PROPERTIES (section 3.1.4.3.3.7)</a>.</p><p><b>cbRoProperties: </b>The size in bytes of the
+property list buffer pointed to by the <i>pRoProperties</i> parameter.</p><p><b>ppResultList: </b>A pointer to the enumerated group
+list as specified in GROUP_ENUM_LIST (section 2.2.3.26). Each entry
+in the list is specified by a GROUP_ENUM_ENTRY (section 2.2.3.25).</p><p><b>rpc_status: </b>A 32-bit integer used to indicate
+success or failure. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+runtime MUST indicate, by writing to this parameter, whether it succeeded in
+executing this method on the server. The encoding of the value passed in this
+parameter MUST conform to encoding for comm_status and fault_status, as
+specified in Appendix E of <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>Return Values: </b>This method MUST return the
+following values for the following conditions.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The client specified a property name in the <i>pProperties</i>
+  or <i>pRoProperties</i> parameters that is not the name of a group common or <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_c7c52d99-72e6-42b7-9b8f-84276d320cee" data-linktype="relative-path">private property</a>,
+  respectively.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>For any other condition, the server returns a value that is
+not one of the values listed in the preceding table. Clients MUST treat all
+such values identically, with the exception of errors specified in section <a href="ca75805a-4b39-4074-8b5b-dbaae6e81b1f" data-linktype="relative-path">3.2.4.6</a>, which are
+recoverable errors for which the client SHOULD initiate the reconnect
+procedure.</p></div>

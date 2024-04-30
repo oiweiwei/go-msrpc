@@ -1,0 +1,53 @@
+<div class="content"><p> </p><p>The Open method opens a handle to the specified <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual
+disk</a></span> file and returns an <span><a href="01ea51d6-09e2-4364-90af-32f8efb5b892" data-linktype="relative-path">IVdsOpenVDisk (section 3.1.15.2)</a></span>
+interface pointer to an object representing the open virtual disk (an
+OpenVirtualDisk object). Release the IVdsOpenVDisk interface to close the
+handle to the virtual disk.</p><dl>
+<dd>
+<div><pre> HRESULT Open(
+   [in] VIRTUAL_DISK_ACCESS_MASK AccessMask,
+   [in] OPEN_VIRTUAL_DISK_FLAG Flags,
+   [in] ULONG ReadWriteDepth,
+   [out] IVdsOpenVDisk** ppOpenVDisk
+ );
+</pre></div>
+</dd></dl><p><b>AccessMask: </b>A <span><a href="4fa2f54d-00b3-4cd9-b673-a6b8d64ed57f" data-linktype="relative-path">VIRTUAL_DISK_ACCESS_MASK (section 2.2.2.19.1.4)</a></span>
+structure that contains the set of access rights to be applied to the opened virtual
+disk.</p><p><b>Flags: </b>A bitmask of <span><a href="6151c504-e617-4e1f-aea8-36528b807e9a" data-linktype="relative-path">OPEN_VIRTUAL_DISK_FLAG (section 2.2.2.19.1.2)</a></span>
+flags specifying how the virtual disk is to be opened.</p><p><b>ReadWriteDepth: </b>This is applicable only to <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_f738286f-68d6-4890-a658-efcf815313ae" data-linktype="relative-path">differencing</a></span>
+type virtual disks. The number of <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_432d7a86-d2ca-4977-8189-d28b54883d09" data-linktype="relative-path">backing stores</a></span>
+(files) to open read/write. This count includes the child. The remaining stores
+in the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_bded4a57-f841-4b1e-a981-579bec032bc8" data-linktype="relative-path">differencing chain</a></span>
+MUST be opened as <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_ca1db15f-c3cf-41ca-832e-b2c98007cb6a" data-linktype="relative-path">read-only</a></span>. For
+example, given a differencing disk with two parents (diskA is the differencing
+disk whose parent is diskB, and since diskB is a differencing disk, it has a
+parent which is diskC), entering &#39;2&#39; for this parameter will open the
+differencing disk (diskA) and the parent used to create this differencing disk
+(diskB) as read-write. In this case, diskB is also a differencing disk and its
+parent (diskC) is opened as read-only.</p><p><b>ppOpenVDisk: </b>A pointer to a variable that, if
+the operation is successfully completed, receives an IVdsOpenVDisk interface
+pointer to the newly opened virtual disk object. Callers MUST release the
+interface pointer when it is no longer needed by calling the <b>IUnknown::Release</b>
+method.</p><p><b>Return Values: </b>The method MUST return zero to
+indicate success, or return an implementation-specific nonzero error code to
+indicate failure.</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>ppOpenVDisk</i> is not NULL.</p>
+</li></ul><p>The server MUST then perform the following in sequence:</p><ul><li><p><span><span> 
+</span></span>Pass the input parameters to the operating system to open the
+virtual disk file.</p>
+</li><li><p><span><span> 
+</span></span>If the operating system failed to open the file, return an
+implementation-specific error code. Otherwise, if the file was successfully
+opened, the server MUST:</p>
+<ul><li><p><span><span>  </span></span>Mark
+the state of the object that implements <span><a href="22049df2-09cf-4e87-a00e-d2c7676ca2d1" data-linktype="relative-path">IVdsVDisk</a></span> as
+&#34;open&#34;. For more information, see section <span><a href="d1ff9fd9-9527-4936-91c2-292bd9d1ff17" data-linktype="relative-path">2.2.2.19.1.1</a></span>.</p>
+</li><li><p><span><span>  </span></span>Create
+an object that implements the IVdsOpenVDisk <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a></span> to
+represent the virtual disk file in the open state.</p>
+</li><li><p><span><span>  </span></span>Point
+<i>ppOpenVDisk</i> to an IVdsOpenVDisk interface of the virtual disk object
+created and return an <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path"><span>HRESULT</span></a> indicating
+success.</p>
+</li></ul></li></ul></div>

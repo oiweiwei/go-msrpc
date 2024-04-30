@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The _WBEM_REFRESHER_ID structure identifies the client that
+is requesting refreshing services. The structure MUST be used to return
+information from <span><a href="e2c4f36d-dc59-48bb-bb51-821732610e17" data-linktype="relative-path">IWbemRefreshingServices (section 3.1.4.12)</a></span>
+interface methods.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [string] LPSTR m_szMachineName;
+   DWORD m_dwProcessId;
+   GUID m_guidRefresherId;
+ } _WBEM_REFRESHER_ID;
+</pre></div>
+</dd></dl><p><b>m_szMachineName:</b>  MUST be the NetBIOS
+name of the client machine.</p><p><b>m_dwProcessId :</b>  It MUST be an
+identifier created by the client and it MUST be unique within the context of
+the client.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p><p><b>m_guidRefresherId:</b>  MUST be a
+client-generated <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>.</p></div>

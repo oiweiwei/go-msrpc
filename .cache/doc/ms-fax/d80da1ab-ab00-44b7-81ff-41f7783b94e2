@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>FAX_ENUM_DEVICE_RECEIVE_MODE</b> enumeration
+constants describe the receive mode for a fax device.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FAX_DEVICE_RECEIVE_MODE_OFF = 0,
+   FAX_DEVICE_RECEIVE_MODE_AUTO = 1,
+   FAX_DEVICE_RECEIVE_MODE_MANUAL = 2
+ } FAX_ENUM_DEVICE_RECEIVE_MODE;
+</pre></div>
+</dd></dl><p><b>FAX_DEVICE_RECEIVE_MODE_OFF:</b> Do not answer
+incoming calls.</p><p><b>FAX_DEVICE_RECEIVE_MODE_AUTO:</b> Automatically
+answer incoming calls after the specified number of rings.</p><p><b>FAX_DEVICE_RECEIVE_MODE_MANUAL:</b> Manually
+answer incoming calls.</p></div>

@@ -1,0 +1,187 @@
+<div class="content"><p> </p><p>The <b>R_DhcpEnumOptionsV6</b> method enumerates the option
+definitions for a specific user class and vendor class at the default option
+level. If the user class or vendor class is not specified, the default user
+class or vendor class will be used. The caller of this function can free the
+memory pointed to by <i>Options</i> by calling the function <b>midl_user_free</b>
+(section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpEnumOptionsV6(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DWORD Flags,
+   [in, string, unique] WCHAR* ClassName,
+   [in, string, unique] WCHAR* VendorName,
+   [in, out] DHCP_RESUME_HANDLE* ResumeHandle,
+   [in] DWORD PreferredMaximum,
+   [out] LPDHCP_OPTION_ARRAY* Options,
+   [out] DWORD* OptionsRead,
+   [out] DWORD* OptionsTotal
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>Flags: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+specifying that the option definition is enumerated for a specific or default
+vendor class.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DHCP_FLAGS_OPTION_DEFAULT</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Option definition is enumerated for a default vendor
+  class.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DHCP_FLAGS_OPTION_IS_VENDOR</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>If a bitwise AND operation with this bitmask yields a
+  nonzero value, it indicates that the option definition is enumerated for a
+  specific vendor class.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ClassName: </b>A pointer to a null-terminated
+Unicode string that contains the name of the user class for which the option
+definition is enumerated. This parameter is optional.</p><p><b>VendorName: </b>A pointer to a null-terminated
+Unicode string that contains the name of the vendor class for which the option
+definition is enumerated. This parameter is optional. If the vendor class name
+is not specified, the option definition is enumerated for the default vendor
+class.</p><p><b>ResumeHandle: </b>This is a pointer of type <span><a href="a6e4cdc0-4f71-4922-ade1-7a5392f9e920" data-linktype="relative-path">DHCP_RESUME_HANDLE (section 2.2.1.2.6)</a></span>
+that identifies the enumeration operation. Initially, this value MUST be set to
+zero, with a successful call returning the handle value used for subsequent
+enumeration requests. For example, if <i>PreferredMaximum</i> is set to 1,000
+bytes, and 2,000 bytes&#39; worth of option definitions are stored on the DHCPv6
+server, the resume handle can be used after the first 1,000 bytes are retrieved
+to obtain the next 1,000 on a subsequent call, and so forth.</p><p><b>PreferredMaximum: </b>This is of type DWORD,
+specifying the preferred maximum number of bytes to return. If the number of
+remaining unenumerated option definitions (in bytes) is less than this value,
+all option definitions are returned. To retrieve option definitions for a
+specific user and vendor class, 0xFFFFFFFF is specified.</p><p><b>Options: </b>This is a pointer of type <span><a href="34b6a347-0458-415a-9808-0dc631a8c547" data-linktype="relative-path">LPDHCP_OPTION_ARRAY</a></span>
+that points to the location where all the option definitions for a specific
+user and vendor class are retrieved from the DHCPv6 server.</p><p><b>OptionsRead: </b>This is a pointer to a DWORD
+value that specifies the number of option definitions read in <i>Options</i>.
+The caller MUST allocate memory for this parameter equal to the size of data
+type DWORD.</p><p><b>OptionsTotal: </b>This is a pointer to a DWORD
+value that specifies the number of option definitions that have not yet been
+enumerated. The caller MUST allocate memory for this parameter that is equal to
+the size of data type DWORD.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000EA</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>There are more elements available to enumerate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  </td>
+  <td>
+  <p>There are no more elements left to enumerate.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 50.</p><p>When processing this call the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read access per section
+<span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not, return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>The Flags parameter MUST pass one of the validations given in the
+Flags field description. Otherwise, the method returns ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ClassName</i> is not NULL, retrieve the <b>DHCPv6ClassDef</b>
+entry corresponding to the <i>ClassName</i> from the server ADM element <b>DHCPv6ClassDefList</b>.
+If the <b>DHCPv6ClassDef</b> entry is not found, return ERROR_FILE_NOT_FOUND.
+If <i>ClassName</i> is NULL, use the default user class (section <span><a href="1361cc31-22d9-4128-a9db-529841dd1ac4" data-linktype="relative-path">3.1.1.20</a></span>)
+for the retrieval of <b>DHCPv6ClassedOptionDef</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>VendorName</i> is not NULL, retrieve the <b>DHCPv6ClassDef</b>
+entry corresponding to the <i>VendorName</i> from the server ADM element <b>DHCPv6ClassDefList</b>.
+If the <b>DHCPv6ClassDef</b> entry is not found, return ERROR_FILE_NOT_FOUND.
+If <i>VendorName</i> is NULL, use the default vendor class (section 3.1.1.20)
+for the retrieval of <b>DHCPv6ClassedOptionDef</b>.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv6ClassedOptionDef</b> object from <b>DHCPv6ClassedOptionDefList</b>
+for a specific user and vendor class. If it is not found, return
+ERROR_FILE_NOT_FOUND.<a id="Appendix_A_Target_55"></a><a aria-label="Product behavior note 55" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_55" data-linktype="relative-path">&lt;55&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If <b>DHCPv6ClassedOptionDef.DHCPv6OptionDefList</b> is an empty
+list, return the error ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ResumeHandle</b> parameter points to 0x00000000, the
+enumeration MUST start from the beginning of <b>DHCPv6OptionDefList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ResumeHandle</b> parameter points to a nonzero value,
+the server MUST continue enumeration based on the value of <b>ResumeHandle</b>.
+If the <b>ResumeHandle</b> is greater than or equal to the number of <b>DHCPv6OptionDef</b>
+objects in <b>DHCPv6OptionDefList</b>, then return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>If <b>PreferredMaximum</b> is 0 and the number of <b>DHCPv6OptionDef</b>
+objects remaining in <b>DHCPv6OptionDefList</b> is greater than 0, then
+ERROR_MORE_DATA is returned.</p>
+</li><li><p><span><span> 
+</span></span>If <b>PreferredMaximum</b> is 0 and the number of <b>DHCPv6OptionDef</b>
+objects retrieved is 0, then ERROR_NO_MORE_ITEMS is returned.</p>
+</li><li><p><span><span> 
+</span></span>If <i>PreferredMaximum</i> is 0xFFFFFFFF, all the <b>DHCPv6ClassedOptionDef</b>
+ADM element entries are retrieved. If the number of <b>DHCPv6ClassedOptionDef</b>
+ADM element entries is 0, ERROR_NO_MORE_ITEMS is returned.</p>
+</li><li><p><span><span> 
+</span></span>If <i>PreferredMaximum</i> is not 0xFFFFFFFF, allocate the memory
+for the <b>DHCPv6OptionDef</b> objects in <b>DHCPv6OptionDefList</b> counting
+from <i>ResumeHandle</i>. Else, if <i>PreferredMaximum</i> is 0xFFFFFFFF,
+allocate the memory for all remaining <b>DHCPv6OptionDef</b> ADM elements.</p>
+</li><li><p><span><span> 
+</span></span>The <b>PreferredMaximum</b> parameter specifies the maximum
+number of bytes that the server can allocate and return to the caller
+containing the data related to the <b>DHCPv6OptionDef</b> objects. If <b>PreferredMaximum</b>
+cannot hold all the entries being retrieved, the server must store as many
+entries as will fit into the <b>Options</b> parameter and return
+ERROR_MORE_DATA.</p>
+</li><li><p><span><span> 
+</span></span>Start enumerating the <b>DHCPv6OptionDef</b> objects in <b>DHCPv6OptionDefList</b>
+from <b>ResumeHandle</b>, and copy them in <b>Options</b> until it is less than
+<b>PreferredMaximum</b>.</p>
+</li><li><p><span><span> 
+</span></span>Copy the number of read entries in <b>OptionsRead</b>, and copy
+the number of entries that are not yet enumerated in <b>OptionsTotal</b>.
+Update the <b>ResumeHandle</b> to the index of the last entry read plus one,
+and return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

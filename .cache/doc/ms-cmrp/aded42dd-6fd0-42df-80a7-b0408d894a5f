@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/aded42dd-6fd0-42df-80a7-b0408d894a5f" data-linktype="external">msdn link</a></p><p>The <b>CLUSDSK_DISKID_ENUM</b> enumeration defines the
+possible values of the disk ID types.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   DiskIdSignature = 0x00000001,
+   DiskIdGuid = 0x00000002,
+   DiskIdUnKnown = 0x00001388
+ } CLUSDSK_DISKID_ENUM;
+</pre></div>
+</dd></dl><p><b>DiskIdSignature:</b> This value indicates a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b251c771-5ccf-40f2-b98d-0119db210b4b" data-linktype="relative-path">master boot record (MBR)</a>
+disk type.</p><p><b>DiskIdGuid:</b> This value indicates a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GPT</a> disk type.</p><p><b>DiskIdUnKnown:</b> This value indicates a disk
+whose <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a> type is
+unknown.</p></div>

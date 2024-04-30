@@ -1,0 +1,26 @@
+<div class="content"><p>The ListReaderGroups_Call structure contains the parameters
+for the List Readers Groups call (for more information, see sections <a href="0fb90448-01e2-4da1-9d60-cfa1cc5e31a8" data-linktype="relative-path">3.1.4.5</a> and <a href="b9b6341e-c52c-4f02-af09-25e2121f0382" data-linktype="relative-path">3.1.4.6</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _ListReaderGroups_Call {
+   REDIR_SCARDCONTEXT Context;
+   long fmszGroupsIsNULL;
+   unsigned long cchGroups;
+ } ListReaderGroups_Call;
+</pre></div>
+</dd></dl><p><b>Context:</b>  A valid context, as
+specified in section <a href="060abee1-e520-4149-9ef7-ce79eb500a59" data-linktype="relative-path">2.2.1.1</a>.</p><p><b>fmszGroupsIsNULL:</b>  A Boolean value
+specifying whether the caller wants to retrieve just the length of the data.
+Set to FALSE (0x00000000) in order to allow the data to be returned. Set to
+TRUE (0x00000001) and only the length of the data will be returned.</p><p><b>cchGroups:</b>  The length of the string
+buffer specified by the caller. If <b>cchGroups</b> is set to
+SCARD_AUTOALLOCATE with a value of 0xFFFFFFFF, a string of any length can be
+returned. Otherwise, the returned string MUST NOT exceed <b>cchGroups</b>
+characters in length, including any null characters. When the string to be
+returned exceeds <b>cchGroups</b> characters in length, including any null
+characters, <a href="6630bb5b-fc0e-4141-8b53-263225c7628d" data-linktype="relative-path">ListReaderGroups_Return</a>.<b>ReturnCode</b>
+MUST be set to SCARD_E_INSUFFICIENT_BUFFER (0x80100008). The <b>cchGroups</b>
+field MUST be ignored if <b>fmszGroupsIsNULL</b> is set to TRUE (0x00000001).
+Also, if <b>fmszGroupsIsNULL</b> is set to FALSE (0x00000000) but <b>cchGroups</b>
+is set to 0x00000000, then the call MUST succeed, ListReaderGroups_Return.<b>cBytes</b>
+MUST be set to the length of the data, in bytes, and ListReaderGroups_Return.<b>msz</b>
+MUST be set to NULL.</p></div>

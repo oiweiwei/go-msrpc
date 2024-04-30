@@ -1,0 +1,71 @@
+<div class="content"><p> </p><p>The <b>R_DhcpGetSubnetInfoVQ</b> method retrieves the
+information about a specific IPv4 subnet defined on the DHCPv4 server. This
+method is an extension of <span><a href="4bdf4276-43e7-4ce7-8a86-dfc535154628" data-linktype="relative-path">R_DhcpGetSubnetInfo</a></span>
+method in which the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_f30fdc41-d7c1-422e-b5a8-9dcce071ebeb" data-linktype="relative-path">NAP</a></span> state is not
+returned. The caller of this function can free the memory pointed to by the <i>SubnetInfoVQ</i>
+parameter, by calling the function <b>midl_user_free</b> (section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpGetSubnetInfoVQ(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [out] LPDHCP_SUBNET_INFO_VQ* SubnetInfoVQ
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SubnetAddress: </b>This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS</a></span>,
+containing the IPv4 subnet ID for which the information is retrieved.</p><p><b>SubnetInfoVQ: </b>This is a pointer of type <span><a href="baec452a-0eda-44d4-b2d7-acd86950b2a6" data-linktype="relative-path">LPDHCP_SUBNET_INFO_VQ</a></span>,
+in which the information for the subnet matching the ID specified by the <i>SubnetAddress</i>
+parameter is retrieved.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 49.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read access per section
+<span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not, return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>SubnetInfoVQ</i> parameter is NULL, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4Scope</b> ADM element entry that has subnet
+ID equal to the <i>SubnetAddress</i> parameter from the server ADM element <b>DHCPv4ScopesList</b>.
+For the <span><a href="51e16f4a-cb1d-400a-85c7-defe4cba1609" data-linktype="relative-path">DHCP_HOST_INFO</a></span>
+structure, the <b>IpAddress</b> member is populated as 127.0.0.1 and the other
+fields are empty. </p>
+</li><li><p><span><span> 
+</span></span>If the <b>DHCPv4Scope</b> ADM element entry corresponding to the <i>SubnetAddress</i>
+parameter is not found, return ERROR_DHCP_SUBNET_NOT_PRESENT. Copy the <b>DHCPv4Scope.ScopeInfo</b>
+ADM element with information in the <i>SubnetInfoVQ</i> parameter, and return
+it to the caller.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

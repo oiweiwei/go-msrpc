@@ -1,0 +1,153 @@
+<div class="content"><p> </p><p>The fax client application calls the <b>FAX_SetArchiveConfiguration
+(Opnum 42)</b> method to set the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9394bf31-7db9-433c-8d3d-ee6a37bf0848" data-linktype="relative-path">archive</a></span>
+configuration for a specific fax folder on the fax server.</p><p>In response, the server MUST validate that the client&#39;s fax
+user account has access to manage server configuration. On success, the server
+MUST set the specified configuration and return success.</p><p>Protocol version FAX_API_VERSION_3 (0x00030000) fax servers
+SHOULD fail this call by returning ERROR_NOT_SUPPORTED (0x00000032). The fax
+client SHOULD NOT call this method if the protocol version reported by the
+server is FAX_API_VERSION_3 (0x00030000). For more information, see <b>FAX_ConnectFaxServer</b> (section
+<span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>).
+The fax client SHOULD call <b>FAX_SetGeneralConfiguration</b> (section <span><a href="34e02038-9f56-4c51-abfa-e404cf3b2ffd" data-linktype="relative-path">3.1.4.1.80</a></span>)
+instead.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_SetArchiveConfiguration(
+   [in] handle_t hFaxHandle,
+   [in] FAX_ENUM_MESSAGE_FOLDER Folder,
+   [in, ref] const LPBYTE pArchiveCfg
+ );
+</pre></div>
+</dd></dl><p><b>hFaxHandle: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> or <b>FAX_ConnectionRefCount</b> 
+(section <span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>) method
+call used to connect to the fax server.</p><p><b>Folder: </b>The archive location. The client MUST
+set this parameter to either FAX_MESSAGE_FOLDER_INBOX or
+FAX_MESSAGE_FOLDER_SENTITEMS.</p><p><b>pArchiveCfg: </b>A pointer to a buffer containing
+an array of <b>FAX_ARCHIVE_CONFIGW</b> (section <span><a href="942483fa-960c-4463-8ea2-4fb0c99c1749" data-linktype="relative-path">2.2.27</a></span>) structures.
+If the size of the archive exceeds the <b>dwSizeQuotaHighWatermark</b> value
+and if the <b>bSizeQuotaWarning</b> member is set to TRUE, an event log warning
+SHOULD be issued. If an event log warning was already issued, no more events
+SHOULD be issued until the size of the archive drops below the <b>dwSizeQuotaLowWatermark</b>
+value. If a fax message stays in the archive longer than the <b>dwAgeLimit</b>
+value, it MAY be automatically deleted. If the <b>dwAgeLimit</b> value is zero,
+the time limit MUST NOT be used.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors (section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a>)</span>,
+or one of the other standard errors (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The client&#39;s fax user account does
+  not have the required FAX_ACCESS_MANAGE_CONFIG authorization for this
+  operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NOT_SUPPORTED</p>
+  <p>0x00000032</p>
+  </td>
+  <td>
+  <p>The fax server does not support this operation. This
+  error code SHOULD be returned by the FAX_API_VERSION_3 servers.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. This error code is
+  returned under any of the following conditions:</p>
+  <p><span>§<span>  
+  </span></span>The <b>dwSizeOfStruct</b> member of the <b>FAX_ARCHIVE_CONFIGW</b>
+  specified by the <i>pArchiveCfg</i> parameter is set to an incorrect value.</p>
+  <p><span>§<span>  
+  </span></span>The <i>Folder</i> parameter is set to a value other than
+  FAX_MESSAGE_FOLDER_SENTITEMS and FAX_MESSAGE_FOLDER_INBOX.</p>
+  <p><span>§<span>  
+  </span></span>The <b>bUseArchive</b> member of the <b>FAX_ARCHIVE_CONFIGW</b>
+  specified by <i>pArchiveCfg</i> is set to TRUE, and any of the three
+  following conditions are also met:</p>
+  <dl>
+<dd>
+<p><span>§<span>  
+  </span></span>The value of the <b>dwSizeQuotaHighWatermark</b> member of the
+  same structure is smaller than the value of the <b>dwSizeQuotaLowWatermark</b>
+  member.</p>
+</dd>
+<dd>
+<p><span>§<span>  
+  </span></span>The <b>lpcstrFolder</b> member of the same structure is set to
+  NULL.</p>
+</dd>
+<dd>
+<p><span>§<span>  
+  </span></span>The <b>lpcstrFolder</b> member of the same structure is set to
+  point to an empty character string.</p>
+</dd></dl>
+  
+  
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_BUFFER_OVERFLOW</p>
+  <p>0x0000006F</p>
+  </td>
+  <td>
+  <p>The file name is too long. The <b>bUseArchive</b>
+  member of the <b>FAX_ARCHIVE_CONFIGW</b> specified by <i>pArchiveCfg</i> is
+  set to a value of TRUE, and the length of the file name specified by the <b>lpcstrFolder</b>
+  of the same structure is set to a character string longer than 180
+  characters, excluding the length of the null terminator.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_REGISTRY_CORRUPT</p>
+  <p>0x000003F7</p>
+  </td>
+  <td>
+  <p>The fax server cannot store the new archive
+  configuration to the registry. The registry could be corrupted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FAX_ERR_DIRECTORY_IN_USE</p>
+  <p>0x00001B5F</p>
+  </td>
+  <td>
+  <p>The <b>bUseArchive</b> member of the <b>FAX_ARCHIVE_CONFIGW</b>
+  specified by <i>pArchiveCfg</i> is set to a value of TRUE, and the file
+  specified by the <b>lpcstrFolder</b> member of the same structure is invalid:
+  the directory of the file is the same as the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_0c5e7185-40c3-4e58-a8ac-7626ed078235" data-linktype="relative-path">fax queue</a></span>
+  directory. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FAX_ERR_FILE_ACCESS_DENIED</p>
+  <p>0x00001B60</p>
+  </td>
+  <td>
+  <p>The <b>bUseArchive</b> member of the <b>FAX_ARCHIVE_CONFIGW</b>
+  specified by <i>pArchiveCfg</i> is set to a value of TRUE, and the file
+  specified by the <b>lpcstrFolder</b> member of the same structure is invalid:
+  the fax server encountered an access denied (<b>ERROR_ACCESS_DENIED</b>) or a
+  sharing violation (<b>ERROR_SHARING_VIOLATION</b>) error when attempting to
+  access the file. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

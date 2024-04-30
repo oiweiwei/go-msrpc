@@ -1,0 +1,18 @@
+<div class="content"><p>The <b>DOC_INFO_CONTAINER</b> structure provides information
+about the document to be printed, using the <b>DOC_INFO_1</b> structure.</p><dl>
+<dd>
+<div><pre> typedef struct _DOC_INFO_CONTAINER {
+   DWORD Level;
+   [switch_is(Level)] union {
+     [case(1)] 
+       DOC_INFO_1* pDocInfo1;
+   } DocInfo;
+ } DOC_INFO_CONTAINER;
+</pre></div>
+</dd></dl><p><b>Level: </b>This member specifies the information
+level of the <b>DocInfo</b> member data. The value of this member MUST be set
+to 0x00000001.</p><p><b>DocInfo: </b>This member MUST define document
+properties, using an information structure that MUST correspond to the value of
+the <b>Level</b> member.</p><p><b>pDocInfo1: </b>A pointer to a <b>DOC_INFO_1</b>
+structure (section <a href="20f7b510-e6a0-4f6c-97a0-5630d1e70879" data-linktype="relative-path">2.2.1.4</a>)
+that describes the document that is printed.</p></div>

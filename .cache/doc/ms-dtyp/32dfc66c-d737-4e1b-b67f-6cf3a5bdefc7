@@ -1,0 +1,10 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/32dfc66c-d737-4e1b-b67f-6cf3a5bdefc7" data-linktype="external">msdn link</a></p><p>Two types of data structures are specified in this document:
+data structures that are specified in terms of the wire format and data
+structures that are RPC-marshaled as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.
+The latter are specified by using the <a href="a66edeb1-52a0-4d64-a93b-2f5c833d7d92#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">Interface Definition Language
+(IDL)</a> that is defined in [MS-RPCE] section <a href="../ms-rpce/5e8b6109-5122-450c-8c00-4b98f3cdb435" data-linktype="relative-path">2.2.4</a>.</p><p>For some types of data, both formats are shown. For example,
+both formats are shown if some protocols use the raw wire format but other
+protocols use the RPC-marshaled format. Any protocol that uses a data structure
+name in its IDL necessarily implies the use of the IDL version of the data
+structure. Any other use implies the use of the wire format version unless
+otherwise specified by the protocol that uses the data structure.</p></div>

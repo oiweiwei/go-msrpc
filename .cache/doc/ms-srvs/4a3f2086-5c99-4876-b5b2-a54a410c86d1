@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The DISK_INFO structure contains information (the drive
+letter) about the disk device on the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DISK_INFO {
+   [string] WCHAR Disk[3];
+ } DISK_INFO,
+  *PDISK_INFO,
+  *LPDISK_INFO;
+</pre></div>
+</dd></dl><p><b>Disk:</b>  The drive identifier of the
+disk device. This MUST consist of two Unicode UTF-16 characters followed by the
+null-terminating character (for example, &#34;A:\0&#34;). The first character
+in this string MUST be a drive letter in the range &#34;A&#34; through
+&#34;Z&#34;, inclusive. The second character MUST be the &#34;:&#34;
+character.</p></div>

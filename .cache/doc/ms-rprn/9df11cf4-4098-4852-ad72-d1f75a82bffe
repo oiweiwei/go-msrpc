@@ -1,0 +1,37 @@
+<div class="content"><p>RpcGetPrinterDriverDirectory retrieves the path of the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer driver</a> directory.</p><dl>
+<dd>
+<div><pre> DWORD RpcGetPrinterDriverDirectory(
+   [in, string, unique] STRING_HANDLE pName,
+   [in, string, unique] wchar_t* pEnvironment,
+   [in] DWORD Level,
+   [in, out, unique, size_is(cbBuf), disable_consistency_check] 
+     BYTE* pDriverDirectory,
+   [in] DWORD cbBuf,
+   [out] DWORD* pcbNeeded
+ );
+</pre></div>
+</dd></dl><p><b>pName: </b>Specified in <a href="acb355a4-913b-4abb-8cb5-415aea160015" data-linktype="relative-path">Print Server Name
+Parameters (section 3.1.4.1.4)</a>.</p><p><b>pEnvironment: </b>Specified in <a href="5b2bf7d5-ac77-464f-be5e-f3a7c1782246" data-linktype="relative-path">Environment Name
+Parameters (section 3.1.4.1.3)</a>.</p><p><b>Level: </b>The value 0x00000001.</p><p><b>pDriverDirectory: </b>An optional pointer to <i>BUFFER</i>,
+as specified in <a href="6bae59af-f923-41b9-b395-13872aaf2ce0" data-linktype="relative-path">String
+Query Parameters (section 3.1.4.1.7)</a>. If <i>cbBuf</i> is zero,
+this parameter SHOULD be NULL.</p><p><b>cbBuf: </b>See String Query
+Parameters (section 3.1.4.1.7).</p><p><b>pcbNeeded: </b>See String Query
+Parameters (section 3.1.4.1.7).</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters by performing the validation steps specified in:</p><ul><li><p><span><span> 
+</span></span>Print Server Name Parameters (section 3.1.4.1.4).</p>
+</li><li><p><span><span> 
+</span></span>Environment Name Parameters (section 3.1.4.1.3).</p>
+</li><li><p><span><span> 
+</span></span>String Query Parameters (section 3.1.4.1.7).</p>
+</li></ul><p>Additional validation MAY be performed.<a id="Appendix_A_Target_332"></a><a aria-label="Product behavior note 332" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_332" data-linktype="relative-path">&lt;332&gt;</a></p><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>With the path of the printer driver directory on the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a>, perform the
+processing and response steps specified in String Query Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

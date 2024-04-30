@@ -1,0 +1,62 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9496c26e-490b-4e76-827f-2695fc216f35" data-linktype="external">msdn link</a></p><p>The SAMPR_USER_INFO_BUFFER union combines all possible
+structures used in the SamrSetInformationUser, SamrSetInformationUser2,
+SamrQueryInformationUser, and SamrQueryInformationUser2 methods (see sections <a href="538222f7-1b89-4811-949a-0eac62e38dce" data-linktype="relative-path">3.1.5.6.5</a>, <a href="99ee9f39-43e8-4bba-ac3a-82e0c0e0699e" data-linktype="relative-path">3.1.5.6.4</a>, <a href="4ad8d54c-0d5a-4d5a-9e9a-1bc9ee008d47" data-linktype="relative-path">3.1.5.5.6</a>, and <a href="29ab27f6-61da-4c7d-863c-e228ee798f4d" data-linktype="relative-path">3.1.5.5.5</a>). For details on
+each field, see the associated section for the field structure.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(USER_INFORMATION_CLASS)] 
+ union _SAMPR_USER_INFO_BUFFER {
+   [case(UserGeneralInformation)] 
+     SAMPR_USER_GENERAL_INFORMATION General;
+   [case(UserPreferencesInformation)] 
+     SAMPR_USER_PREFERENCES_INFORMATION Preferences;
+   [case(UserLogonInformation)] 
+     SAMPR_USER_LOGON_INFORMATION Logon;
+   [case(UserLogonHoursInformation)] 
+     SAMPR_USER_LOGON_HOURS_INFORMATION LogonHours;
+   [case(UserAccountInformation)] 
+     SAMPR_USER_ACCOUNT_INFORMATION Account;
+   [case(UserNameInformation)] 
+     SAMPR_USER_NAME_INFORMATION Name;
+   [case(UserAccountNameInformation)] 
+     SAMPR_USER_A_NAME_INFORMATION AccountName;
+   [case(UserFullNameInformation)] 
+     SAMPR_USER_F_NAME_INFORMATION FullName;
+   [case(UserPrimaryGroupInformation)] 
+     USER_PRIMARY_GROUP_INFORMATION PrimaryGroup;
+   [case(UserHomeInformation)] 
+     SAMPR_USER_HOME_INFORMATION Home;
+   [case(UserScriptInformation)] 
+     SAMPR_USER_SCRIPT_INFORMATION Script;
+   [case(UserProfileInformation)] 
+     SAMPR_USER_PROFILE_INFORMATION Profile;
+   [case(UserAdminCommentInformation)] 
+     SAMPR_USER_ADMIN_COMMENT_INFORMATION AdminComment;
+   [case(UserWorkStationsInformation)] 
+     SAMPR_USER_WORKSTATIONS_INFORMATION WorkStations;
+   [case(UserControlInformation)] 
+     USER_CONTROL_INFORMATION Control;
+   [case(UserExpiresInformation)] 
+     USER_EXPIRES_INFORMATION Expires;
+   [case(UserInternal1Information)] 
+     SAMPR_USER_INTERNAL1_INFORMATION Internal1;
+   [case(UserParametersInformation)] 
+     SAMPR_USER_PARAMETERS_INFORMATION Parameters;
+   [case(UserAllInformation)] 
+     SAMPR_USER_ALL_INFORMATION All;
+   [case(UserInternal4Information)] 
+     SAMPR_USER_INTERNAL4_INFORMATION Internal4;
+   [case(UserInternal5Information)] 
+     SAMPR_USER_INTERNAL5_INFORMATION Internal5;
+   [case(UserInternal4InformationNew)] 
+     SAMPR_USER_INTERNAL4_INFORMATION_NEW Internal4New;
+   [case(UserInternal5InformationNew)] 
+     SAMPR_USER_INTERNAL5_INFORMATION_NEW Internal5New;
+   [case(UserInternal7Information)]
+     SAMPR_USER_INTERNAL7_INFORMATION Internal7;
+   [case(UserInternal8Information)]
+     SAMPR_USER_INTERNAL8_INFORMATION Internal8;
+ } SAMPR_USER_INFO_BUFFER,
+  *PSAMPR_USER_INFO_BUFFER;
+</pre></div>
+</dd></dl></div>

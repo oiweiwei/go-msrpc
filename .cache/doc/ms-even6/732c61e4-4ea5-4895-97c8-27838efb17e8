@@ -1,0 +1,186 @@
+<div class="content"><p> </p><p>The EvtRpcExportLog (Opnum 7) method instructs the server to
+create a <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_ddd2e7db-ea8f-4488-ac5f-e77d59abe9e4" data-linktype="relative-path">backup event log</a></span> at
+a specified file name.</p><dl>
+<dd>
+<div><pre> error_status_t EvtRpcExportLog(
+   [in, context_handle] PCONTEXT_HANDLE_OPERATION_CONTROL control,
+   [in, unique, range(0, MAX_RPC_CHANNEL_NAME_LENGTH), string] 
+     LPCWSTR channelPath,
+   [in, range(1, MAX_RPC_QUERY_LENGTH), string] 
+     LPCWSTR query,
+   [in, range(1, MAX_RPC_FILE_PATH_LENGTH), string] 
+     LPCWSTR backupPath,
+   [in] DWORD flags,
+   [out] RpcInfo* error
+ );
+</pre></div>
+</dd></dl><p><b>control: </b>A handle to an operation control
+object. This parameter is an <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle,
+as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> Context
+Handles.</p><p><b>channelPath: </b>A pointer to a string that
+contains the channel name (for a <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_3c0e011b-e37d-40ef-90d6-1ed516f06b1c" data-linktype="relative-path">live event log</a></span>) or
+file path (for an existing backup event log) to be used to create a backup
+event log.</p><p><b>query: </b>A pointer to a string that contains a
+query that specifies events to be included in the backup event log.</p><p><b>backupPath: </b>A pointer to a string that
+contains the path of the file for the backup event logs to be created.</p><p><b>flags: </b>The client MUST set the <i>flags</i>
+parameter to one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>EvtQueryChannelPath</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p><i>Channel</i> parameter specifies a channel name.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtQueryFilePath</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p><i>Channel</i> parameter specifies a file name. </p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>In addition, the client MAY set the following value
+in the <i>flags</i> parameter:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>EvtQueryTolerateQueryErrors</p>
+  <p>0x00001000</p>
+  </td>
+  <td>
+  <p>The query MUST succeed even if not all the channels or
+  backup event logs that are specified in the query are present, or if the <i>channelPath</i>
+  parameter specifies channels that do not exist. </p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The server MAY ignore unrecognized flag
+combinations.<a id="Appendix_A_Target_28"></a><a aria-label="Product behavior note 28" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_28" data-linktype="relative-path">&lt;28&gt;</a></p>
+</dd></dl><p><b>error: </b>A pointer to an <span><a href="94a5d4d1-0f80-4af3-b7c6-d61a6aa60b7b" data-linktype="relative-path">RpcInfo (section 2.2.1)</a></span>
+structure in which to place error information in the case of a failure. The
+RpcInfo (section 2.2.1) structure fields MUST be set to a nonzero
+value if the error is related to parsing the query. In addition, the server MAY
+set the suberror fields to nonzero values for other types of errors. All
+nonzero values MUST be treated the same. If the method succeeds, the server
+MUST set all of the values in the structure to 0. </p><p><b>Return Values: </b>The method MUST return ERROR_SUCCESS
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+nonzero value as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+</p><p>The server does not validate the control handle passed to <b>EvtRpcExportLog</b>,
+and it SHOULD assume that this parameter is always valid when the method is
+invoked.</p><p>In response to this request from the client, if the <i>flags</i>
+parameter contains the value 0x00000001 (flags &amp; 0x00000001 != 0), the
+server MUST interpret the <i>channel</i> parameter as a channel name. The
+server then SHOULD search its channel table to find the corresponding entry
+which has the same channel name. If the server can&#39;t find the entry, the
+specified channel name is invalid and the server SHOULD return
+ERROR_EVT_CHANNEL_NOT_FOUND (0x00003A9F). If the <i>flags</i> parameter
+contains the value 0x00000002 (flags &amp; 0x00000002 != 0), the server MUST
+interpret channel as an existing backup event log file name. The server SHOULD
+then check if the specified file exists on the server. If the file does not
+exist, the file path is invalid and the server SHOULD return ERROR_FILE_NOT_FOUND
+(0x00000002). </p><p>The server SHOULD validate that the flags contain one and
+only one of EvtQueryChannelPath and EvtQueryFilePath; and that no flags which
+are not defined above are specified. The server SHOULD return error code
+ERROR_INVALID_PARAMTER (0x00000057) if the flag validation fails.<a id="Appendix_A_Target_29"></a><a aria-label="Product behavior note 29" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_29" data-linktype="relative-path">&lt;29&gt;</a></p><p>The server MUST verify that the <i>query</i> parameter is a
+valid XPath expression with correct syntax, based on the grammar definition
+provided in section <span><a href="b9c96c9d-6e19-4815-b05d-885360019dda" data-linktype="relative-path">2.2.15</a></span> and if it is
+not, fail the operation with the error code ERROR_INVALID_PARAMETER
+(0x00000057). For information on XPath filters supported by this protocol, see
+section 2.2.15.</p><p>The server MUST verify that <i>backupPath</i> is a valid
+path (a legal file name for the server&#39;s file system), and fail the method if
+it is not valid or if it specifies a file that already exists. The server
+SHOULD return ERROR_INVALID_PARAMETER (0x00000057) if the path is invalid or
+ERROR_FILE_EXISTS (0x00000050) if the specified file already exists on the
+server.</p><p>Next, the server MUST verify that the caller has read access
+to the channel or the backup event log file and MUST fail the method if the
+caller does not have read access with the error code ERROR_ACCESS_DENIED
+(0x00000005). To perform the access check, the server SHOULD first determine
+the identity of the caller. Information determining the identity of the caller
+for the purpose of performing an access check is specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/326c9de1-4602-4d78-848d-8b4e11e6ed80" data-linktype="relative-path">3.2.3.4.2</a></span>.
+Then, if the client specifies a channel, the server SHOULD read the channel&#39;s
+access property (as specified in section <span><a href="f5ae9a61-6f5e-4751-965e-394349c7d950" data-linktype="relative-path">3.1.4.21</a></span>) as the
+security descriptor string. Next, the server SHOULD be able to perform the
+write and clear access check using the Access Check algorithm (as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/4f1bbcbb-814a-4c70-a11e-2a5b8779a6f9" data-linktype="relative-path">2.5.3.2</a></span>).</p><p>During the exporting log process, the server SHOULD check
+the <b>Canceled</b> field of the operation control object in the <i>control</i>
+parameter periodically, for example, once every 100 milliseconds. If the <b>Canceled</b>
+field becomes TRUE and the exporting operation has not been finished, the
+server SHOULD abandon the current operation and return to the client
+immediately with the error code ERROR_CANCELLED (0x000004C7) without updating
+any state. If the server has created a new backup file and the operation has
+been canceled, the created file SHOULD be deleted. Failure to delete the file
+SHOULD NOT trigger the server to take any further actions in response.</p><p>If the checks above are successful, the server MUST attempt
+to create a new backup event log that contains only the records selected by the
+filter specified by the <i>query</i> parameter. The server SHOULD first
+impersonate the identity of the client. For information on how to impersonate
+the client&#39;s identity for the purpose of performing an authorization or
+security check, see [MS-RPCE]<span><a href="../ms-rpce/29b8217a-0bda-4fdb-a3ea-48560125ae8d" data-linktype="relative-path"> (section 3.3.3.4.3)</a></span>.
+Then the server SHOULD call the file system component to create a new backup
+event log file. Once the server impersonates the client&#39;s identity, it can
+determine whether the client has write access because the file creation will
+fail with ERROR_ACCESS_DENIED (0x00000005) if the client does not have write
+access. If the server fails to create the new backup event log file, it MUST
+return the error (a nonzero value as specified in [MS-ERREF]) reported by the
+underlying file system component.<a id="Appendix_A_Target_30"></a><a aria-label="Product behavior note 30" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_30" data-linktype="relative-path">&lt;30&gt;</a>
+Otherwise, the server MUST successfully create the file. There is no server
+state that needs to be updated by this method. However, the server SHOULD
+ensure the <b>LogNumberOfRecords</b>, <b>LogOldestRecordNumber</b>, and <b>LogFull</b>
+properties of the created backup log are the correct value. If the <i>query</i>
+parameter is NULL, the created backup event log file SHOULD be the copy of the
+event log file associated with the live channel so that the <b>LogNumberOfRecords</b>,
+<b>LogOldestRecordNumber</b>, and <b>LogFull</b> properties are kept in the
+backup event log file and consequently have the same values as in the event log
+file associated with the live channel.</p><p>If the <i>query</i> parameter is not NULL, the server SHOULD
+then read each event from the log file associated with the live channel and
+determine whether it meets the criteria specified by the <i>query</i>
+parameter. For every event that passes the filter given in the <i>query</i>
+parameter, the server SHOULD write it to the created backup file. The event
+record number of the first event that is written into the created backup file
+SHOULD be the value of <b>LogOldestRecordNumber</b>. The <b>LogNumberOfRecords</b>
+property SHOULD be set to the number of total events the server writes to the
+backup file. The server SHOULD set the <b>isLogFull</b> property to be FALSE
+and SHOULD set the <b>curPhysicalRecordNumber</b> property to the value of (<b>LogNumberOfRecords</b>
+- 1).</p><p>The created backup file SHOULD be treated as read-only and
+never modified subsequently.</p><p>The <b>LogCreationTime</b>, <b>LogLastAccessTime</b>, <b>LogLastWriteTime</b>,
+<b>LogFileSize</b>, and <b>LogAttributes</b> attributes of the created backup
+event log file are tracked by the server&#39;s file system. The <b>LogNumberOfRecords</b>,
+<b>LogOldestRecordNumber</b>, and <b>LogFull</b> attributes are tracked by <b>numberOfRecords</b>,
+<b>oldestRecordNumber</b>, and <b>isLogFull</b> in the backup event log file
+header.</p><p>The server MUST return a value indicating success or failure
+for this operation.</p><p><b>Note</b>  The exported backup event log file
+does not contain the localized event description strings because the localized
+strings would consume considerable storage space if included in the exported
+log file. If the backup log is consumed on the same machine where it is created
+or on other machines where the publisher is registered, the strings can be
+retrieved from the publisher on demand. Localized event description strings
+only need to be added to an exported backup event log file when that file is
+moved to a different machine where the publisher is not registered. Localized
+event description strings can be added to an exported backup event log file by
+calling the <span><a href="578c7cd9-58d9-4746-9292-63edb5cf55c9" data-linktype="relative-path">EvtRpcLocalizeExportLog (section 3.1.4.18)</a></span>
+method.</p></div>

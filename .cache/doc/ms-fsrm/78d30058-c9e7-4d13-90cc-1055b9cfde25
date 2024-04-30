@@ -1,0 +1,22 @@
+<div class="content"><p>The FsrmExecutionOption enumeration defines the set of
+execution options that can be used to specify when a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_4bd4bf29-9046-4cb8-b637-fd107cd756aa" data-linktype="relative-path">classification rule</a> will be
+evaluated.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmExecutionOption
+ {
+   FsrmExecutionOption_Unknown = 0,
+   FsrmExecutionOption_EvaluateUnset = 1,
+   FsrmExecutionOption_ReEvaluate_ConsiderExistingValue = 2,
+   FsrmExecutionOption_ReEvaluate_IgnoreExistingValue = 3
+ } FsrmExecutionOption;
+</pre></div>
+</dd></dl><p><b>FsrmExecutionOption_Unknown:  </b>The execution
+option is unknown.</p><p><b>FsrmExecutionOption_EvaluateUnset:  </b>The
+classification rule will be evaluated only if the property it sets is not
+already set on the file.</p><p><b>FsrmExecutionOption_ReEvaluate_ConsiderExistingValue: 
+</b>The classification rule will always be evaluated and the property value it
+tries to set will be aggregated with the current value of the property in the
+file, if any.</p><p><b>FsrmExecutionOption_ReEvaluate_IgnoreExistingValue: 
+</b>The classification rule will always be evaluated and the property value it
+tries to set will not be aggregated with the current value of the property in
+the file, if any.</p></div>

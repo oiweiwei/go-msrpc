@@ -1,0 +1,39 @@
+<div class="content"><p>The <b>PORT_CONTAINER</b> structure provides information
+about printer <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">ports</a>,
+using <a href="05c1a8d2-0bcb-4292-bc65-c8cc2e7f90cf" data-linktype="relative-path">PORT_INFO</a>
+structures.<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a> The <b>PortInfo</b> member
+specifies the structure that defines the port properties.</p><dl>
+<dd>
+<div><pre> typedef struct _PORT_CONTAINER {
+   DWORD Level;
+   [switch_is(0x00FFFFFF &amp; Level)] 
+     union {
+     [case(1)] 
+       PORT_INFO_1* pPortInfo1;
+     [case(2)] 
+       PORT_INFO_2* pPortInfo2;
+     [case(3)] 
+       PORT_INFO_3* pPortInfo3;
+     [case(0x00FFFFFF)] 
+       PORT_INFO_FF* pPortInfoFF;
+   } PortInfo;
+ } PORT_CONTAINER;
+</pre></div>
+</dd></dl><p><b>Level:</b> Specifies the information level of
+the <b>PortInfo</b> data. The value of this member MUST be in the range
+0x00000001 to 0x00000003 inclusive, or 0xFFFFFFFF.</p><p><b>PortInfo:</b> Defines port properties, using
+an information structure that corresponds to the value of the <b>Level</b>
+member. </p><dl>
+<dd>
+<p><b>Note:</b>  Despite
+the bitwise AND of <b>Level</b> with 0x00FFFFFF, no values for <b>Level</b> are
+valid besides those specified.</p>
+</dd></dl><p><b>pPortInfo1:</b> If the <b>Level</b> member is
+0x00000001, this member is a pointer to a <b>PORT_INFO_1</b> structure that
+provides information about the printer port. For details, see section <a href="9bab3fb5-b369-48f2-8f08-3082ca13e739" data-linktype="relative-path">2.2.1.9.1</a>.</p><p><b>pPortInfo2:</b> If the <b>Level</b> member is
+0x00000002, this member is a pointer to a <b>PORT_INFO_2</b> structure that
+provides information about the printer port. For details, see section <a href="7a923364-dffc-40b3-bca5-bf2eed610f31" data-linktype="relative-path">2.2.1.9.2</a>.</p><p><b>pPortInfo3:</b> If the <b>Level</b> member is
+0x00000003, this member is a pointer to a <b>PORT_INFO_3 </b>structure that
+provides information about the printer port. For details, see section <a href="411e4423-25e4-4f61-84b7-45336e40094e" data-linktype="relative-path">2.2.1.9.3</a>.</p><p><b>pPortInfoFF:</b> If the <b>Level</b> member
+is 0xFFFFFFFF, this member is a pointer to a <b>PORT_INFO_FF</b> structure that
+provides information about the printer port. For details, see section <a href="6366af02-dc30-4987-a1a3-f0ec4176ff94" data-linktype="relative-path">2.2.1.9.4</a>.</p></div>

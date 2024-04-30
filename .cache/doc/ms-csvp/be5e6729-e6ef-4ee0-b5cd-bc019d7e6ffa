@@ -1,0 +1,14 @@
+<div class="content"><p>The <b>DiskStackType</b> enumeration defines valid driver
+types that a disk driver is implemented as.</p><dl>
+<dd>
+<div><pre> typedef  enum _DiskStackType
+ {
+   DiskStackScsiPort = 0x00000000,
+   DiskStackStorPort = 0x00000001,
+   DiskStackFullPort = 0x00000002
+ } DiskStackType;
+</pre></div>
+</dd></dl><p><b>DiskStackScsiPort:  </b>The driver is a SCSIPort
+driver.</p><p><b>DiskStackStorPort:  </b>The driver is a StorPort
+driver.</p><p><b>DiskStackFullPort:  </b>The driver is a monolithic
+driver and does not conform to any storage driver submodel.</p></div>

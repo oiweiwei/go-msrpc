@@ -1,0 +1,57 @@
+<div class="content"><p> </p><p>A <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_3b2da3d1-c159-4399-a6dd-dfd5f76fa2f5" data-linktype="relative-path">print client</a></span> uses <b>RpcAsyncGetRemoteNotifications</b>
+to poll the <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a></span> for
+specified change notifications. A call to this method is suspended until the
+server has a new change notification for the client. Subsequently, the client
+calls this method again to poll for additional notifications from the server.</p><dl>
+<dd>
+<div><pre> HRESULT RpcAsyncGetRemoteNotifications(
+   [in] RMTNTFY_HANDLE hRpcHandle,
+   [out] RpcPrintPropertiesCollection** ppNotifyData
+ );
+</pre></div>
+</dd></dl><p><b>hRpcHandle: </b>A remote notification handle that
+was opened by using <b>RpcSyncRegisterForRemoteNotifications </b>(section <span><a href="a48d2fcd-81e8-4a94-841b-9b777c9723b4" data-linktype="relative-path">3.1.4.9.1</a></span>).</p><p><b>ppNotifyData: </b>A pointer to a variable that
+receives a pointer to an <b>RpcPrintPropertiesCollection</b> (section <span><a href="a2246cab-c69e-4bb7-a36f-149b1e4ab192" data-linktype="relative-path">2.2.4</a></span>)
+instance that contains the notification data.</p><p><b>Return Values: </b>This method returns either an <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span>
+success value (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>)
+to indicate successful completion or an HRESULT error value to indicate
+failure.</p><p><b>Exceptions Thrown:</b> This method MUST NOT throw any
+exceptions other than those that are thrown by the underlying <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p><b>Parameter Validation Requirements:</b> Upon receiving
+this method call, the server MUST verify that the <i>hRpcHandle</i> parameter
+is not NULL, and that it is associated with a valid notification object created
+by a call to <b>RpcSyncRegisterForRemoteNotifications</b> (section 3.1.4.9.1).</p><p>If parameter validation fails, the server MUST return
+immediately, with a failure indication in its response to the client.</p><p><b>Processing and Response Requirements:</b> If parameter
+validation succeeds, the server MUST process the method call by:</p><ul><li><p><span><span> 
+</span></span>Checking whether any change notification data is available on the
+notification object associated with this notification handle.</p>
+</li><li><p><span><span> 
+</span></span>If the change notification data is not available, waiting until
+the specified printer object or server changes and notification data becomes
+available.</p>
+</li><li><p><span><span> 
+</span></span>Returning a response that contains the status of the operation.</p>
+</li></ul><p>If the operation is successful, the server MUST process the
+message and compose a response to the client as follows:</p><ul><li><p><span><span> 
+</span></span>Create an <b>RpcPrintPropertiesCollection</b> object as follows:</p>
+</li><li><p><span><span> 
+</span></span>Store the notification data requested by the client in the
+&#34;RemoteNotifyData Info&#34; key in the <b>RpcPrintPropertiesCollection</b>
+object.</p>
+</li><li><p><span><span> 
+</span></span> Store the notification synchronization value in the
+&#34;RemoteNotifyData Color&#34; key in the <b>RpcPrintPropertiesCollection</b>
+object. The latest synchronization value was sent by the client in a prior call
+to <b>RpcSyncRefreshRemoteNotifications</b>.</p>
+</li><li><p><span><span> 
+</span></span> Store a value specifying the members that have changed in the
+&#34;RemoteNotifyData Flags&#34; key in the <b>RpcPrintPropertiesCollection</b>
+object.</p>
+</li><li><p><span><span> 
+</span></span>Store this <b>RpcPrintPropertiesCollection</b> object in the <i>ppNotifyData</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Delete the notification data associated with the notification
+handle that has been successfully sent. </p>
+</li></ul></div>

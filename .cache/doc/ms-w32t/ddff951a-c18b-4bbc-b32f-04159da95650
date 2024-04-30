@@ -1,0 +1,47 @@
+<div class="content"><p>The W32TIME_PROVIDER_CONFIG structure defines configuration
+data for a selected <a href="cb180d77-0c53-490e-9d37-df7576ef5465#gt_9338a1cf-ec11-4e27-a042-dda5324a44fb" data-linktype="relative-path">time
+provider</a>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned __int32 ulSize;
+   unsigned __int32 ulProviderType;
+   [switch_is(ulProviderType)] PW32TIME_PROVIDER_CONFIG_DATA pProviderConfigData;
+ } W32TIME_PROVIDER_CONFIG,
+  *PW32TIME_PROVIDER_CONFIG;
+</pre></div>
+</dd></dl><p><b>ulSize:</b>  The size, in bytes, of this
+structure.</p><p><b>ulProviderType:</b>  The type of time
+provider, which MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>W32TIME_NTPCLIENT_PROVIDER_CONFIG_DATA</p>
+  <p>  0x00000000</p>
+  </td>
+  <td>
+  <p>NtpClient NTP time provider</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>W32TIME_NTPSERVER_PROVIDER_CONFIG_DATA</p>
+  <p>  0x00000001</p>
+  </td>
+  <td>
+  <p>NtpServer NTP time provider</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other values are reserved for
+future use.</p>
+</dd></dl><p><b>pProviderConfigData:</b>  A <a href="a0d23338-4c50-4fc9-9194-ffbaf9518849" data-linktype="relative-path">W32TIME_PROVIDER_CONFIG_DATA</a>
+union that contains configuration data about the time provider.</p></div>

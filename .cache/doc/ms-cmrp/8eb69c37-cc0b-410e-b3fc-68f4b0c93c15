@@ -1,0 +1,55 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/8eb69c37-cc0b-410e-b3fc-68f4b0c93c15" data-linktype="external">msdn link</a></p><p>The <b>CLUS_STORAGE_SET_DRIVELETTER</b> structure supplies
+drive letter information for a disk <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a> associated with a
+storage class <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_94e97f15-2f1a-406f-a740-607bb97761ec" data-linktype="relative-path">resource</a>.</p><p>The <b>CLUS_STORAGE_SET_DRIVELETTER</b> is a
+custom-marshaled structure that has fields as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PartitionNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DriveLetterMask</p>
+  </td>
+ </tr>
+</tbody></table><p><b>PartitionNumber (4 bytes): </b>A 32-bit integer
+that indicates a partition on the storage device.</p><p><b>DriveLetterMask (4 bytes): </b>A 32-bit integer
+bitmask that indicates either the new drive letter of the partition or that the
+partition&#39;s drive letter SHOULD be removed. Each bit represents a drive letter
+where bit 0 represents &#39;A&#39;, bit 1 represents &#39;B&#39;, and so forth through bit 25.
+Bits 26 through 31 are ignored. A <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">value</a> of zero indicates
+that the drive letter SHOULD be removed.</p></div>

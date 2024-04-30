@@ -1,0 +1,20 @@
+<div class="content"><p>The parameters of the LocateCardsA_Call structure specify
+the list of <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_5cddf14c-b925-4494-9b55-d2c8259f9ad0" data-linktype="relative-path">smart card
+readers</a> to search for the specified <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_51da9457-65ce-4157-a704-d2d6232037d2" data-linktype="relative-path">card types</a>. For call
+information, see section <a href="2f20fd13-9639-4895-8a43-1a3d6f0ded67" data-linktype="relative-path">3.1.4.21</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _LocateCardsA_Call {
+   REDIR_SCARDCONTEXT Context;
+   [range(0, 65536)] unsigned long cBytes;
+   [size_is(cBytes)] const byte* mszCards;
+   [range(0,10)] unsigned long cReaders;
+   [size_is(cReaders)] ReaderStateA* rgReaderStates;
+ } LocateCardsA_Call;
+</pre></div>
+</dd></dl><p><b>Context:</b>  A valid context, as
+specified in section <a href="060abee1-e520-4149-9ef7-ce79eb500a59" data-linktype="relative-path">2.2.1.1</a>.</p><p><b>cBytes:</b>  The number of bytes in the <b>mszCards</b>
+field.</p><p><b>mszCards:</b>  An <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_79fa85ca-ac61-467c-b819-e97dc1a7a599" data-linktype="relative-path">ASCII</a> <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_63ae0a08-6a05-4269-99d0-3d3b7633949b" data-linktype="relative-path">multistring</a> of card names
+to locate. Card names MUST be registered in <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_c6f0d1a4-ae75-40b9-beef-baa419cb33b9" data-linktype="relative-path">Smart Cards for Windows</a>.
+Unknown card types MUST be ignored.</p><p><b>cReaders:</b>  The number of reader
+state structures.</p><p><b>rgReaderStates:</b>  The reader state
+information specifying which readers are searched for the cards listed in <b>mszCards</b>.</p></div>

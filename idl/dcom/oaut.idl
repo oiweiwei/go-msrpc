@@ -1,0 +1,983 @@
+import "ms-dtyp.idl";
+import "ms-dcom.idl";
+// XXX: import.
+// import "ms-oaidl.idl";
+
+// Begin: Extra definitions
+// Use the next line in any IDL file that imports ms-oaut.idl 
+//  that makes use of SAFEARRAYs.
+// It is needed to bypass special assumptions MIDL compiler makes 
+//  about the SAFEARRAY type in windows environment. 
+// XXX: SAFEARRAY macro expanded. (not here).
+// #define SAFEARRAY(type) SAFEARRAY 
+ 
+ 
+// basic type aliases
+typedef byte   BYTE;
+typedef LONG SCODE;
+typedef IID *REFIID;
+typedef GUID *REFGUID;
+ 
+typedef [string] wchar_t *LPOLESTR;
+typedef [string] const wchar_t *LPCOLESTR;
+typedef [public] unsigned __int3264 ULONG_PTR, *PULONG_PTR;
+typedef void *PVOID, *LPVOID;
+ 
+// forward declarations
+interface IDispatch;
+interface ITypeLib;
+interface ITypeInfo;
+typedef [unique] SAFEARRAY * PSAFEARRAY, *LPSAFEARRAY;
+// typedef [unique] struct _wireVARIANT VARIANT;
+ 
+// End: Extra definitions
+ 
+typedef enum tagVARENUM
+{
+    VT_EMPTY           = 0x0000,
+    VT_NULL            = 0x0001,
+    VT_I2              = 0x0002,
+    VT_I4              = 0x0003,
+    VT_R4              = 0x0004,
+    VT_R8              = 0x0005,
+    VT_CY              = 0x0006,
+    VT_DATE            = 0x0007,
+    VT_BSTR            = 0x0008,
+    VT_DISPATCH        = 0x0009,
+    VT_ERROR           = 0x000A,
+    VT_BOOL            = 0x000B,
+    VT_VARIANT         = 0x000C,
+    VT_UNKNOWN         = 0x000D,
+    VT_DECIMAL         = 0x000E,
+    VT_I1              = 0x0010,
+    VT_UI1             = 0x0011,
+    VT_UI2             = 0x0012,
+    VT_UI4             = 0x0013,
+    VT_I8              = 0x0014,
+    VT_UI8             = 0x0015,
+    VT_INT             = 0x0016,
+    VT_UINT            = 0x0017,
+    VT_VOID            = 0x0018,
+    VT_HRESULT         = 0x0019,
+    VT_PTR             = 0x001A,
+    VT_SAFEARRAY       = 0x001B,
+    VT_CARRAY          = 0x001C,
+    VT_USERDEFINED     = 0x001D,
+    VT_LPSTR           = 0x001E,
+    VT_LPWSTR          = 0x001F,
+    VT_RECORD          = 0x0024,
+    VT_INT_PTR         = 0x0025,
+    VT_UINT_PTR        = 0x0026,
+    VT_ARRAY           = 0x2000,
+    VT_BYREF           = 0x4000
+} VARENUM;
+ 
+typedef enum tagADVFEATUREFLAGS
+{
+    FADF_AUTO       = 0x0001,
+    FADF_STATIC     = 0x0002,
+    FADF_EMBEDDED   = 0x0004,
+    FADF_FIXEDSIZE  = 0x0010,
+    FADF_RECORD     = 0x0020,
+    FADF_HAVEIID    = 0x0040,
+    FADF_HAVEVARTYPE = 0x0080,
+    FADF_BSTR       = 0x0100,
+    FADF_UNKNOWN    = 0x0200,
+    FADF_DISPATCH   = 0x0400,
+    FADF_VARIANT    = 0x0800
+} ADVFEATUREFLAGS;
+ 
+typedef [v1_enum] enum tagSF_TYPE {
+    SF_ERROR    = VT_ERROR,
+    SF_I1       = VT_I1,
+    SF_I2       = VT_I2,
+    SF_I4       = VT_I4,
+    SF_I8       = VT_I8,
+    SF_BSTR     = VT_BSTR,
+    SF_UNKNOWN  = VT_UNKNOWN,
+    SF_DISPATCH = VT_DISPATCH,
+    SF_VARIANT  = VT_VARIANT,
+    SF_RECORD   = VT_RECORD,
+    SF_HAVEIID  = VT_UNKNOWN |0x8000
+} SF_TYPE;
+ 
+typedef [v1_enum] enum tagCALLCONV {
+    CC_CDECL    = 1,
+    CC_PASCAL   = 2,
+    CC_STDCALL  = 4
+} CALLCONV;
+ 
+typedef enum tagFUNCFLAGS {
+    FUNCFLAG_FRESTRICTED        = 1,
+    FUNCFLAG_FSOURCE            = 0x2,
+    FUNCFLAG_FBINDABLE          = 0x4,
+    FUNCFLAG_FREQUESTEDIT       = 0x8,
+    FUNCFLAG_FDISPLAYBIND       = 0x10,
+    FUNCFLAG_FDEFAULTBIND       = 0x20,
+    FUNCFLAG_FHIDDEN            = 0x40,
+    FUNCFLAG_FUSESGETLASTERROR  = 0x80,
+    FUNCFLAG_FDEFAULTCOLLELEM   = 0x100,
+    FUNCFLAG_FUIDEFAULT         = 0x200,
+    FUNCFLAG_FNONBROWSABLE      = 0x400,
+    FUNCFLAG_FREPLACEABLE       = 0x800,
+    FUNCFLAG_FIMMEDIATEBIND     = 0x1000
+} FUNCFLAGS;
+ 
+typedef [v1_enum] enum tagFUNCKIND {  
+    FUNC_PUREVIRTUAL    = 1,
+    FUNC_STATIC         = 3,
+    FUNC_DISPATCH       = 4
+}   FUNCKIND;
+ 
+typedef enum tagIMPLTYPEFLAGS {
+    IMPLTYPEFLAG_FDEFAULT       = 0x1,
+    IMPLTYPEFLAG_FSOURCE        = 0x2,
+    IMPLTYPEFLAG_FRESTRICTED    = 0x4,
+    IMPLTYPEFLAG_FDEFAULTVTABLE = 0x8
+} IMPLTYPEFLAGS;
+ 
+typedef [v1_enum] enum tagINVOKEKIND {
+    INVOKE_FUNC            = 0x1,
+    INVOKE_PROPERTYGET     = 0x2,
+    INVOKE_PROPERTYPUT     = 0x4,
+    INVOKE_PROPERTYPUTREF  = 0x8
+} INVOKEKIND;
+ 
+typedef enum tagPARAMFLAGS {
+    PARAMFLAG_NONE          = 0,
+    PARAMFLAG_FIN           = 0x1,
+    PARAMFLAG_FOUT          = 0x2,
+    PARAMFLAG_FLCID         = 0x4,
+    PARAMFLAG_FRETVAL       = 0x8,
+    PARAMFLAG_FOPT          = 0x10,
+    PARAMFLAG_FHASDEFAULT   = 0x20, 
+    PARAMFLAG_FHASCUSTDATA  = 0x40 
+} PARAMFLAGS;
+ 
+typedef enum tagTYPEFLAGS {
+    TYPEFLAG_FAPPOBJECT     = 0x1,
+    TYPEFLAG_FCANCREATE     = 0x2,
+    TYPEFLAG_FLICENSED      = 0x4,
+    TYPEFLAG_FPREDECLID     = 0x8,
+    TYPEFLAG_FHIDDEN        = 0x10,
+    TYPEFLAG_FCONTROL       = 0x20,
+    TYPEFLAG_FDUAL          = 0x40,
+    TYPEFLAG_FNONEXTENSIBLE = 0x80,
+    TYPEFLAG_FOLEAUTOMATION = 0x100,
+    TYPEFLAG_FRESTRICTED    = 0x200,
+    TYPEFLAG_FAGGREGATABLE  = 0x400,
+    TYPEFLAG_FREPLACEABLE   = 0x800,
+    TYPEFLAG_FDISPATCHABLE  = 0x1000,
+    TYPEFLAG_FPROXY         = 0x4000
+} TYPEFLAGS;
+ 
+typedef [v1_enum] enum tagTYPEKIND {
+  TKIND_ENUM = 0x0,
+  TKIND_RECORD = 0x1,
+  TKIND_MODULE = 0x2,
+  TKIND_INTERFACE = 0x3,
+  TKIND_DISPATCH = 0x4,
+  TKIND_COCLASS = 0x5,
+  TKIND_ALIAS = 0x6,
+  TKIND_UNION = 0x7
+} TYPEKIND;
+ 
+typedef enum tagVARFLAGS {
+    VARFLAG_FREADONLY           = 0x1,
+    VARFLAG_FSOURCE             = 0x2,
+    VARFLAG_FBINDABLE           = 0x4,
+    VARFLAG_FREQUESTEDIT        = 0x8,
+    VARFLAG_FDISPLAYBIND        = 0x10,
+    VARFLAG_FDEFAULTBIND        = 0x20,
+    VARFLAG_FHIDDEN             = 0x40,
+    VARFLAG_FRESTRICTED         = 0x80,
+    VARFLAG_FDEFAULTCOLLELEM    = 0x100,
+    VARFLAG_FUIDEFAULT          = 0x200,
+    VARFLAG_FNONBROWSABLE       = 0x400,
+    VARFLAG_FREPLACEABLE        = 0x800,
+    VARFLAG_FIMMEDIATEBIND      = 0x1000
+} VARFLAGS;
+ 
+typedef [v1_enum] enum tagVARKIND {
+    VAR_PERINSTANCE     = 0,
+    VAR_STATIC   = ( VAR_PERINSTANCE + 1 ),
+    VAR_CONST    = ( VAR_STATIC + 1 ),
+    VAR_DISPATCH = ( VAR_CONST + 1 )
+} VARKIND;
+ 
+typedef [v1_enum] enum tagLIBFLAGS {
+    LIBFLAG_FRESTRICTED = 0x01,
+    LIBFLAG_FCONTROL = 0x02,
+    LIBFLAG_FHIDDEN = 0x04,
+    LIBFLAG_FHASDISKIMAGE = 0x08
+} LIBFLAGS;
+ 
+typedef [v1_enum] enum tagSYSKIND {
+    SYS_WIN32 = 1,
+    SYS_WIN64 = 3
+} SYSKIND;
+ 
+typedef [v1_enum] enum tagDESCKIND {
+    DESCKIND_NONE           = 0,
+    DESCKIND_FUNCDESC       = 1,
+    DESCKIND_VARDESC        = 2,
+    DESCKIND_TYPECOMP       = 3,
+    DESCKIND_IMPLICITAPPOBJ = 4
+} DESCKIND;
+ 
+typedef struct _FLAGGED_WORD_BLOB {
+    unsigned long cBytes = clSize != 0 ? clSize * 2 : 0xFFFFFFFF;
+    unsigned long clSize;
+    [size_is(clSize)] wchar_t asData[];
+} FLAGGED_WORD_BLOB;
+ 
+typedef [unique] FLAGGED_WORD_BLOB  _BSTR, *BSTR;
+ 
+typedef struct tagCY {
+    __int64 int64;
+} CURRENCY;
+ 
+typedef double DATE;
+ 
+typedef struct tagDEC {
+    WORD wReserved;
+    BYTE scale;
+    BYTE sign;
+    ULONG Hi32;
+    ULONGLONG Lo64;
+} DECIMAL;
+ 
+typedef short VARIANT_BOOL;
+ 
+#define VARIANT_TRUE (/* XXX: type-cast: (VARIANT_BOOL)*/0xffff)
+#define VARIANT_FALSE (/* XXX: type-cast: (VARIANT_BOOL)*/0)
+ 
+typedef struct _wireBRECORD {
+    ULONG fFlags;
+    ULONG clSize;
+    MInterfacePointer * pRecInfo;
+    [size_is(clSize)] byte* pRecord;
+} _BRECORD, *BRECORD;
+ 
+// typedef [unique] struct _wireBRECORD BRECORD;
+ 
+typedef struct _wireVARIANT {
+    DWORD clSize;
+    DWORD rpcReserved;
+    USHORT vt;
+    USHORT wReserved1;
+    USHORT wReserved2;
+    USHORT wReserved3;
+    [switch_type(ULONG), switch_is(vt)] 
+    union {
+        [case(VT_I8)]
+          LONGLONG llVal;
+        [case(VT_I4)]
+          LONG lVal;
+        [case(VT_UI1)]
+          BYTE bVal;
+        [case(VT_I2)]
+          SHORT iVal;
+        [case(VT_R4)]
+          FLOAT fltVal;
+        [case(VT_R8)]
+          DOUBLE dblVal;
+        [case(VT_BOOL)]
+          VARIANT_BOOL boolVal;
+        [case(VT_ERROR)]
+          HRESULT scode;
+        [case(VT_CY)]
+          CURRENCY cyVal;
+        [case(VT_DATE)]
+          DATE date;
+        [case(VT_BSTR)]
+          BSTR bstrVal;
+        [case(VT_UNKNOWN)]
+          IUnknown* punkVal;
+        [case(VT_DISPATCH)]
+          IDispatch* pdispVal;
+        [case(VT_ARRAY)]
+          PSAFEARRAY parray;
+        [case(VT_RECORD, VT_RECORD|VT_BYREF)]
+          BRECORD brecVal;
+        [case(VT_UI1|VT_BYREF)]
+          BYTE* pbVal;
+        [case(VT_I2|VT_BYREF)]
+          SHORT* piVal;
+        [case(VT_I4|VT_BYREF)]
+          LONG* plVal;
+        [case(VT_I8|VT_BYREF)]
+          LONGLONG* pllVal;
+        [case(VT_R4|VT_BYREF)]
+          FLOAT* pfltVal;
+        [case(VT_R8|VT_BYREF)]
+          DOUBLE* pdblVal;
+        [case(VT_BOOL|VT_BYREF)]
+          VARIANT_BOOL* pboolVal;
+        [case(VT_ERROR|VT_BYREF)]
+          HRESULT* pscode;
+        [case(VT_CY|VT_BYREF)]
+          CURRENCY* pcyVal;
+        [case(VT_DATE|VT_BYREF)]
+          DATE* pdate;
+        [case(VT_BSTR|VT_BYREF)]
+          BSTR* pbstrVal;
+        [case(VT_UNKNOWN|VT_BYREF)]
+          IUnknown** ppunkVal;
+        [case(VT_DISPATCH|VT_BYREF)]
+          IDispatch** ppdispVal;
+        [case(VT_ARRAY|VT_BYREF)]
+          PSAFEARRAY* pparray;
+        [case(VT_VARIANT|VT_BYREF)]
+          VARIANT* pvarVal;
+        [case(VT_I1)]
+          CHAR cVal;
+        [case(VT_UI2)]
+          USHORT uiVal;
+        [case(VT_UI4)]
+          ULONG ulVal;
+        [case(VT_UI8)]
+          ULONGLONG ullVal;
+        [case(VT_INT)]
+          INT intVal;
+        [case(VT_UINT)]
+          UINT uintVal;
+        [case(VT_DECIMAL)]
+          DECIMAL decVal;
+        [case(VT_I1|VT_BYREF)]
+          CHAR* pcVal;
+        [case(VT_UI2|VT_BYREF)]
+          USHORT* puiVal;
+        [case(VT_UI4|VT_BYREF)]
+          ULONG* pulVal;
+        [case(VT_UI8|VT_BYREF)]
+          ULONGLONG* pullVal;
+        [case(VT_INT|VT_BYREF)]
+          INT* pintVal;
+        [case(VT_UINT|VT_BYREF)]
+          UINT* puintVal;
+        [case(VT_DECIMAL|VT_BYREF)]
+          DECIMAL* pdecVal;
+        [case(VT_EMPTY)]
+          ; /*nothing*/
+        [case(VT_NULL)]
+          ; /*nothing*/
+    } _varUnion;
+} _VARIANT, *VARIANT;
+ 
+typedef struct tagSAFEARRAYBOUND {
+    ULONG cElements;
+    LONG lLbound;
+} SAFEARRAYBOUND, 
+ *LPSAFEARRAYBOUND;
+ 
+typedef struct _wireSAFEARR_BSTR {
+    ULONG Size;
+    [size_is(Size), ref] BSTR* aBstr;
+} SAFEARR_BSTR;
+ 
+typedef struct _wireSAFEARR_UNKNOWN {
+    ULONG Size;
+    [size_is(Size), ref] IUnknown** apUnknown;
+} SAFEARR_UNKNOWN;
+ 
+typedef struct _wireSAFEARR_DISPATCH {
+    ULONG Size;
+    [size_is(Size), ref] IDispatch** apDispatch;
+} SAFEARR_DISPATCH;
+ 
+typedef struct _wireSAFEARR_VARIANT {
+    ULONG Size;
+    [size_is(Size), ref] VARIANT* aVariant;
+} SAFEARR_VARIANT;
+ 
+typedef struct _wireSAFEARR_BRECORD {
+    ULONG Size;
+    [size_is(Size), ref] BRECORD* aRecord;
+} SAFEARR_BRECORD;
+ 
+typedef struct _wireSAFEARR_HAVEIID {
+    ULONG Size;
+    [size_is(Size), ref] IUnknown** apUnknown;
+    IID iid;
+} SAFEARR_HAVEIID;
+ 
+typedef struct _BYTE_SIZEDARR {
+    unsigned long clSize;
+    [size_is(clSize)] byte* pData;
+} BYTE_SIZEDARR;
+ 
+typedef struct _SHORT_SIZEDARR {
+    unsigned long clSize;
+    [size_is(clSize)] unsigned short* pData;
+} WORD_SIZEDARR;
+ 
+typedef struct _LONG_SIZEDARR {
+    unsigned long clSize;
+    [size_is(clSize)] unsigned long* pData;
+} DWORD_SIZEDARR;
+ 
+typedef struct _HYPER_SIZEDARR {
+    unsigned long clSize;
+    [size_is(clSize)] hyper* pData;
+} HYPER_SIZEDARR;
+ 
+typedef union _wireSAFEARRAY_UNION
+    switch(unsigned long sfType) u {
+    case SF_BSTR:      SAFEARR_BSTR     BstrStr;
+    case SF_UNKNOWN:   SAFEARR_UNKNOWN  UnknownStr;
+    case SF_DISPATCH:  SAFEARR_DISPATCH DispatchStr;
+    case SF_VARIANT:   SAFEARR_VARIANT  VariantStr;
+    case SF_RECORD:    SAFEARR_BRECORD  RecordStr;
+    case SF_HAVEIID:   SAFEARR_HAVEIID  HaveIidStr;
+    case SF_I1:        BYTE_SIZEDARR    ByteStr;
+    case SF_I2:        WORD_SIZEDARR    WordStr;
+    case SF_I4:        DWORD_SIZEDARR   LongStr;
+    case SF_I8:        HYPER_SIZEDARR   HyperStr;
+} SAFEARRAYUNION;
+ 
+typedef 
+[unique] 
+struct _wireSAFEARRAY {
+    USHORT cDims;
+    USHORT fFeatures;
+    ULONG cbElements;
+    ULONG cLocks;
+    SAFEARRAYUNION uArrayStructs;
+    [size_is(cDims)] SAFEARRAYBOUND rgsabound[];
+}  _SAFEARRAY, *SAFEARRAY;
+ 
+typedef struct tagRecordInfo {
+    GUID libraryGuid;
+    DWORD verMajor;
+    GUID recGuid;
+    DWORD verMinor;
+    DWORD Lcid;
+} RecordInfo;
+ 
+typedef LONG DISPID;
+ 
+typedef struct tagDISPPARAMS {
+    [size_is(cArgs)] VARIANT* rgvarg;
+    [size_is(cNamedArgs)] DISPID* rgdispidNamedArgs;
+    UINT cArgs;
+    UINT cNamedArgs;
+} DISPPARAMS;
+ 
+typedef struct tagEXCEPINFO {
+    WORD wCode;
+    WORD wReserved;
+    BSTR bstrSource;
+    BSTR bstrDescription;
+    BSTR bstrHelpFile;
+    DWORD dwHelpContext;
+    ULONG_PTR pvReserved;
+    ULONG_PTR pfnDeferredFillIn;
+    HRESULT scode;
+} EXCEPINFO;
+ 
+typedef DISPID MEMBERID;
+ 
+typedef DWORD HREFTYPE;
+ 
+typedef struct tagTYPEDESC {
+    [switch_type(USHORT), switch_is(vt)] union {
+        [case(VT_PTR, VT_SAFEARRAY)] struct tagTYPEDESC * lptdesc;
+        [case(VT_CARRAY)] struct tagARRAYDESC * lpadesc;
+        [case(VT_USERDEFINED)] HREFTYPE hreftype;
+        [default]   ;
+    } _tdUnion;
+    USHORT vt;
+} TYPEDESC;
+ 
+typedef struct tagARRAYDESC {
+    TYPEDESC tdescElem;
+    USHORT cDims;
+    [size_is(cDims)] SAFEARRAYBOUND rgbounds[];
+} ARRAYDESC;
+ 
+typedef struct tagPARAMDESCEX {
+    ULONG cBytes;
+    VARIANT varDefaultValue;
+} PARAMDESCEX;
+ 
+typedef struct tagPARAMDESC {
+    PARAMDESCEX *pparamdescex;
+    USHORT wParamFlags;
+} PARAMDESC;
+ 
+typedef struct tagELEMDESC {
+    TYPEDESC tdesc;
+    PARAMDESC paramdesc;     
+} ELEMDESC;
+ 
+typedef struct tagFUNCDESC {
+    MEMBERID memid;
+    [size_is(cReserved2)] SCODE * lReserved1;
+    [size_is(cParams)] ELEMDESC * lprgelemdescParam;
+    FUNCKIND funckind;
+    INVOKEKIND invkind;
+    CALLCONV callconv;
+    SHORT cParams;
+    SHORT cParamsOpt;
+    SHORT oVft;
+    SHORT cReserved2;
+    ELEMDESC elemdescFunc;
+    WORD wFuncFlags;
+} FUNCDESC, *LPFUNCDESC;
+ 
+typedef struct tagVARDESC {
+    MEMBERID memid;
+    LPOLESTR lpstrReserved;
+    [switch_type(VARKIND), switch_is(varkind)] union {
+        [case(VAR_PERINSTANCE, VAR_DISPATCH, VAR_STATIC)] ULONG oInst;
+        [case(VAR_CONST)] VARIANT * lpvarValue;
+    } _vdUnion;
+    ELEMDESC elemdescVar;
+    WORD     wVarFlags;
+    VARKIND  varkind;
+} VARDESC, *LPVARDESC;
+ 
+typedef struct tagTYPEATTR {
+    GUID guid;
+    LCID lcid;
+    DWORD dwReserved1;
+    DWORD dwReserved2;
+    DWORD dwReserved3;
+    LPOLESTR lpstrReserved4;
+    ULONG cbSizeInstance;
+    TYPEKIND typekind;
+    WORD cFuncs;
+    WORD cVars;
+    WORD cImplTypes;
+    WORD cbSizeVft;
+    WORD cbAlignment;
+    WORD wTypeFlags;
+    WORD wMajorVerNum;
+    WORD wMinorVerNum;
+    TYPEDESC tdescAlias;
+    DWORD dwReserved5;
+    WORD wReserved6;
+} TYPEATTR, *LPTYPEATTR;
+ 
+typedef struct tagTLIBATTR {
+    GUID guid;
+    LCID lcid;          
+    SYSKIND syskind;
+    unsigned short wMajorVerNum;
+    unsigned short wMinorVerNum;
+    unsigned short wLibFlags;   
+} TLIBATTR, *LPTLIBATTR;
+ 
+typedef struct tagCUSTDATAITEM {
+    GUID guid;
+    VARIANT varValue;
+} CUSTDATAITEM;
+ 
+typedef struct tagCUSTDATA {
+    DWORD cCustData;
+    [size_is(cCustData)] CUSTDATAITEM * prgCustData;
+} CUSTDATA;
+ 
+[
+    object,
+    uuid(00020400-0000-0000-C000-000000000046),
+    pointer_default(unique)
+]
+interface IDispatch : IUnknown
+{
+    typedef [unique] IDispatch * LPDISPATCH;
+ 
+    HRESULT GetTypeInfoCount(
+        [out] UINT * pctinfo
+    );
+ 
+    HRESULT GetTypeInfo(
+        [in] UINT iTInfo,
+        [in] LCID lcid,
+        [out] ITypeInfo ** ppTInfo
+    );
+ 
+    HRESULT GetIDsOfNames(
+        [in] REFIID riid,
+        [in, size_is(cNames)] LPOLESTR * rgszNames,
+        [in, range(0, 16384)] UINT cNames,
+        [in] LCID lcid,
+        [out, size_is(cNames)] DISPID * rgDispId
+    );
+ 
+    HRESULT Invoke(
+        [in] DISPID dispIdMember,
+        [in] REFIID riid,
+        [in] LCID lcid,
+        [in] DWORD dwFlags,
+        [in] DISPPARAMS * pDispParams,
+        [out] VARIANT * pVarResult,
+        [out] EXCEPINFO * pExcepInfo,
+        [out] UINT * pArgErr,
+        [in] UINT cVarRef,
+        [in, size_is(cVarRef)] UINT * rgVarRefIdx, 
+        [in, out, size_is(cVarRef)] VARIANT * rgVarRef
+    );
+ 
+    const DWORD DISPATCH_METHOD         = 0x00000001;
+    const DWORD DISPATCH_PROPERTYGET    = 0x00000002;
+    const DWORD DISPATCH_PROPERTYPUT    = 0x00000004;
+    const DWORD DISPATCH_PROPERTYPUTREF = 0x00000008;
+    const DWORD DISPATCH_zeroVarResult = 0x00020000;
+    const DWORD DISPATCH_zeroExcepInfo = 0x00040000;
+    const DWORD DISPATCH_zeroArgErr    = 0x00080000;
+ 
+    const DISPID DISPID_VALUE = 0;
+    const DISPID DISPID_UNKNOWN = -1;
+    const DISPID DISPID_PROPERTYPUT = -3;
+    const DISPID DISPID_NEWENUM = -4;
+}
+ 
+ 
+[
+    object,
+    uuid(00020404-0000-0000-C000-000000000046),
+    pointer_default(unique)
+]
+interface IEnumVARIANT : IUnknown
+{
+    HRESULT Next(
+        [in] ULONG celt,
+        [out, size_is(celt), length_is(*pCeltFetched)]
+            VARIANT * rgVar,
+        [out] ULONG * pCeltFetched
+    );
+ 
+    HRESULT Skip(
+        [in] ULONG celt
+    );
+ 
+    HRESULT Reset();
+ 
+    HRESULT Clone(
+        [out] IEnumVARIANT ** ppEnum
+    );
+}
+ 
+[
+    object,
+    uuid(00020403-0000-0000-C000-000000000046),
+    pointer_default(unique)
+]
+interface ITypeComp : IUnknown
+{
+    HRESULT Bind(
+        [in] LPOLESTR szName,
+        [in] ULONG lHashVal,
+        [in] WORD wFlags,
+        [out] ITypeInfo ** ppTInfo,
+        [out] DESCKIND * pDescKind,
+        [out] LPFUNCDESC * ppFuncDesc,
+        [out] LPVARDESC * ppVarDesc,
+        [out] ITypeComp ** ppTypeComp,
+        [out] DWORD * pReserved
+    );
+ 
+    HRESULT BindType(
+        [in] LPOLESTR szName,
+        [in] ULONG lHashVal,
+        [out] ITypeInfo ** ppTInfo
+    );
+}
+ 
+[
+    object,
+    uuid(00020401-0000-0000-C000-000000000046),
+    pointer_default(unique)
+]
+interface ITypeInfo : IUnknown
+{
+    HRESULT GetTypeAttr(
+        [out] LPTYPEATTR * ppTypeAttr,
+        [out] DWORD * pReserved
+    );
+ 
+    HRESULT GetTypeComp(
+        [out] ITypeComp ** ppTComp
+    );
+ 
+    HRESULT GetFuncDesc(
+        [in]  UINT index,
+        [out] LPFUNCDESC * ppFuncDesc,
+        [out] DWORD * pReserved
+    );
+ 
+    HRESULT GetVarDesc(
+        [in]  UINT index,
+        [out] LPVARDESC * ppVarDesc,
+        [out] DWORD * pReserved
+    );
+ 
+    HRESULT GetNames(
+        [in]  MEMBERID memid,
+        [out,size_is(cMaxNames),length_is(*pcNames)]
+            BSTR * rgBstrNames,
+        [in]  UINT cMaxNames,
+        [out] UINT * pcNames
+    );
+ 
+    HRESULT GetRefTypeOfImplType(
+        [in]  UINT index,
+        [out] HREFTYPE * pRefType
+    );
+ 
+    HRESULT GetImplTypeFlags(
+        [in]  UINT index,
+        [out] INT * pImplTypeFlags
+    );
+ 
+    HRESULT Opnum10NotUsedOnWire(
+        void
+    );
+ 
+    HRESULT Opnum11NotUsedOnWire(
+        void
+    );
+ 
+    HRESULT GetDocumentation(
+        [in]  MEMBERID memid,
+        [in]  DWORD refPtrFlags,
+        [out] BSTR * pBstrName,
+        [out] BSTR * pBstrDocString,
+        [out] DWORD * pdwHelpContext,
+        [out] BSTR * pBstrHelpFile
+    );
+ 
+    HRESULT GetDllEntry(
+        [in]  MEMBERID memid,
+        [in]  INVOKEKIND invKind,
+        [in]  DWORD refPtrFlags,
+        [out] BSTR * pBstrDllName,
+        [out] BSTR * pBstrName,
+        [out] WORD * pwOrdinal
+    );
+ 
+    HRESULT GetRefTypeInfo(
+        [in]  HREFTYPE hRefType,
+        [out] ITypeInfo ** ppTInfo
+    );
+ 
+    HRESULT Opnum15NotUsedOnWire(
+        void
+    );
+ 
+    HRESULT CreateInstance(
+        [in]  REFIID riid,
+        [out, iid_is(riid)] IUnknown ** ppvObj
+    );
+ 
+    HRESULT GetMops(
+        [in]  MEMBERID memid,
+        [out] BSTR * pBstrMops
+    );
+ 
+    HRESULT GetContainingTypeLib(
+        [out] ITypeLib ** ppTLib,
+        [out] UINT * pIndex
+    );
+ 
+    HRESULT Opnum19NotUsedOnWire(
+        void
+    );
+ 
+    HRESULT Opnum20NotUsedOnWire(
+        void
+    );
+ 
+    HRESULT Opnum21NotUsedOnWire(
+        void
+    );
+}
+ 
+[
+    object,
+    uuid(00020412-0000-0000-C000-000000000046),
+    pointer_default(unique)
+]
+interface ITypeInfo2 : ITypeInfo
+{
+    HRESULT GetTypeKind(
+        [out] TYPEKIND * pTypeKind
+    );
+ 
+    HRESULT GetTypeFlags(
+        [out] ULONG * pTypeFlags
+    );
+ 
+    HRESULT GetFuncIndexOfMemId(
+        [in] MEMBERID memid, 
+        [in] INVOKEKIND invKind, 
+        [out] UINT * pFuncIndex
+    );
+ 
+    HRESULT GetVarIndexOfMemId(
+        [in] MEMBERID memid, 
+        [out] UINT * pVarIndex
+    );
+ 
+    HRESULT GetCustData(
+        [in] REFGUID guid,
+        [out] VARIANT * pVarVal
+    );
+ 
+    HRESULT GetFuncCustData(
+        [in] UINT index, 
+        [in] REFGUID guid, 
+        [out] VARIANT * pVarVal
+    );
+ 
+    HRESULT GetParamCustData(
+        [in] UINT indexFunc, 
+        [in] UINT indexParam, 
+        [in] REFGUID guid, 
+        [out] VARIANT * pVarVal
+    );
+ 
+    HRESULT GetVarCustData(
+        [in] UINT index, 
+        [in] REFGUID guid, 
+        [out] VARIANT * pVarVal
+    );
+ 
+    HRESULT GetImplTypeCustData(
+        [in] UINT index, 
+        [in] REFGUID guid, 
+        [out] VARIANT * pVarVal
+    );
+ 
+    HRESULT GetDocumentation2(
+        [in] MEMBERID memid,
+        [in] LCID lcid,
+        [in] DWORD refPtrFlags,
+        [out] BSTR *pbstrHelpString,
+        [out] DWORD *pdwHelpStringContext,
+        [out] BSTR *pbstrHelpStringDll
+    );
+ 
+    HRESULT GetAllCustData(
+        [out] CUSTDATA * pCustData
+    );
+ 
+    HRESULT GetAllFuncCustData(
+        [in] UINT index, 
+        [out] CUSTDATA * pCustData
+    );
+ 
+    HRESULT GetAllParamCustData(
+        [in] UINT indexFunc, 
+        [in] UINT indexParam, 
+        [out] CUSTDATA * pCustData
+    );
+ 
+    HRESULT GetAllVarCustData(
+        [in] UINT index, 
+        [out] CUSTDATA * pCustData
+    );
+ 
+    HRESULT GetAllImplTypeCustData(
+        [in] UINT index, 
+        [out] CUSTDATA * pCustData
+    );
+}
+ 
+[
+    object,
+    uuid(00020402-0000-0000-C000-000000000046),
+    pointer_default(unique)
+]
+interface ITypeLib : IUnknown
+{
+    HRESULT GetTypeInfoCount(
+        [out]  UINT * pcTInfo
+    );
+ 
+    HRESULT GetTypeInfo(
+        [in]  UINT index,
+        [out] ITypeInfo ** ppTInfo
+    );
+ 
+    HRESULT GetTypeInfoType(
+        [in]  UINT index,
+        [out] TYPEKIND * pTKind
+    );
+ 
+    HRESULT GetTypeInfoOfGuid(
+        [in]  REFGUID guid,
+        [out] ITypeInfo ** ppTInfo
+    );
+ 
+    HRESULT GetLibAttr(
+        [out] LPTLIBATTR * ppTLibAttr,
+        [out] DWORD * pReserved
+    );
+ 
+    HRESULT GetTypeComp(
+        [out] ITypeComp ** ppTComp
+    );
+ 
+    HRESULT GetDocumentation(
+        [in]  INT index,
+        [in]  DWORD refPtrFlags,
+        [out] BSTR * pBstrName,
+        [out] BSTR * pBstrDocString,
+        [out] DWORD * pdwHelpContext,
+        [out] BSTR * pBstrHelpFile
+    );
+ 
+    HRESULT IsName(
+        [in] LPOLESTR szNameBuf,
+        [in] ULONG lHashVal,
+        [out] BOOL * pfName,
+        [out] BSTR * pBstrNameInLibrary
+    );
+ 
+    HRESULT FindName(
+        [in] LPOLESTR szNameBuf,
+        [in] ULONG lHashVal,
+        [out,size_is(*pcFound),length_is(*pcFound)] ITypeInfo **ppTInfo,
+        [out,size_is(*pcFound),length_is(*pcFound)] MEMBERID * rgMemId,
+        [in, out] USHORT * pcFound,
+        [out] BSTR * pBstrNameInLibrary
+    );
+ 
+    HRESULT Opnum12NotUsedOnWire(
+        void
+    );
+}
+ 
+[
+    object,
+    uuid(00020411-0000-0000-C000-000000000046),
+    pointer_default(unique)
+]
+interface ITypeLib2 : ITypeLib
+{
+    HRESULT GetCustData(
+        [in] REFGUID guid,
+        [out] VARIANT * pVarVal
+    );
+ 
+    HRESULT GetLibStatistics(
+        [out] ULONG * pcUniqueNames,
+        [out] ULONG * pcchUniqueNames
+    );
+ 
+    HRESULT GetDocumentation2(
+        [in]  INT index,
+        [in]  LCID lcid,
+        [in]  DWORD refPtrFlags,
+        [out] BSTR *pbstrHelpString,
+        [out] DWORD *pdwHelpStringContext,
+        [out] BSTR *pbstrHelpStringDll
+    );
+ 
+    HRESULT GetAllCustData(
+        [out] CUSTDATA * pCustData
+    );
+}

@@ -1,0 +1,18 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/985982ae-9aa8-4565-b30b-33d6353d3355" data-linktype="external">msdn link</a></p><p>The <b>NetrServerAuthenticate2</b> method<a id="Appendix_A_Target_176"></a><a aria-label="Product behavior note 176" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_176" data-linktype="relative-path">&lt;176&gt;</a> is a predecessor to the <a href="3a9ed16f-8014-45ae-80af-c0ecb06e2db9" data-linktype="relative-path">NetrServerAuthenticate3</a>
+method, as specified in section 3.5.4.4.2. All parameters of this method have
+the same meanings as the identically named parameters of the
+NetrServerAuthenticate3 method. </p><dl>
+<dd>
+<div><pre> NTSTATUS NetrServerAuthenticate2(
+   [in, unique, string] LOGONSRV_HANDLE PrimaryName,
+   [in, string] wchar_t* AccountName,
+   [in] NETLOGON_SECURE_CHANNEL_TYPE SecureChannelType,
+   [in, string] wchar_t* ComputerName,
+   [in] PNETLOGON_CREDENTIAL ClientCredential,
+   [out] PNETLOGON_CREDENTIAL ServerCredential,
+   [in, out] ULONG * NegotiateFlags
+ );
+</pre></div>
+</dd></dl><p>Message processing is identical to NetrServerAuthenticate3,
+except for the following:</p><p>The <i>AccountRid</i> parameter is not present in
+NetrServerAuthenticate2.</p></div>

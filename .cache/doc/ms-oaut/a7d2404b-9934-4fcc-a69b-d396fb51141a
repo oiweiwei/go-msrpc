@@ -1,0 +1,25 @@
+<div class="content"><p> </p><p>The DESCKIND Name Description Constants enumeration values
+are used by the <span><a href="476f00da-0806-40d9-bbf3-6059154abbb7" data-linktype="relative-path">ITypeComp::Bind</a></span>
+method to indicate the kind of element to which a name has been bound, as
+specified in section 3.5.4.1.</p><p>The name description constants are defined in the DESCKIND
+enumeration.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum tagDESCKIND
+ {
+   DESCKIND_NONE = 0,
+   DESCKIND_FUNCDESC = 1,
+   DESCKIND_VARDESC = 2,
+   DESCKIND_TYPECOMP = 3,
+   DESCKIND_IMPLICITAPPOBJ = 4
+ } DESCKIND;
+</pre></div>
+</dd></dl><p><b>DESCKIND_NONE:  </b>MUST be set if there is no
+element bound to the name.</p><p><b>DESCKIND_FUNCDESC:  </b>MUST be set if the name is
+bound to a method or property accessor method. MUST NOT be set if the name is
+bound to an <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee" data-linktype="relative-path">ODL dispinterface</a></span>
+property.</p><p><b>DESCKIND_VARDESC:  </b>MUST be set if the name is
+bound to a data element or ODL dispinterface property.</p><p><b>DESCKIND_TYPECOMP:  </b>MUST be set if the name is
+bound to an enumeration or module.</p><p><b>DESCKIND_IMPLICITAPPOBJ:  </b>MUST be set if the
+name is bound to an appobject <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_670b0ee2-d101-41b0-ac77-6ac7dbeee7dc" data-linktype="relative-path">coclass</a></span> (see section
+<span><a href="e86fe771-d836-47b6-b846-846de41d592c" data-linktype="relative-path">2.2.49.8</a></span>)
+or a member of its default nonsource interface (also see 2.2.49.8).</p></div>

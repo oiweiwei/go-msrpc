@@ -1,0 +1,39 @@
+<div class="content"><p>The PropertyFlags (get) retrieves the <b>property definition
+instance.flags</b> for the <a href="666f71d4-2f9d-4a15-9e9a-1a1190cc9313" data-linktype="relative-path">Property
+Definition Instance</a> in an <a href="70d61c14-fbed-4e94-bfe7-49ae14c1a02c" data-linktype="relative-path">FsrmPropertyFlags (section 2.2.2.6.1.1)</a>
+enumeration and returns S_OK upon successful completion.</p><dl>
+<dd>
+<div><pre> [propget,id(FSRM_PROPERTY(FSRM_DISPID_PROPERTY|0x04))] HRESULT PropertyFlags(
+   [out, retval] long* flags
+ );
+</pre></div>
+</dd></dl><p><b>flags: </b>Pointer to a variable that upon
+completion contains the <b>property definition instance.flags</b> of the
+Property Definition Instance.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>flags</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>flags</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST set <i>flags</i> to the <b>property
+definition instance.flags</b> of the Property Definition Instance as per
+FsrmPropertyFlags.</p></div>

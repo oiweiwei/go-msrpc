@@ -1,0 +1,209 @@
+<div class="content"><p> </p><p>This structure contains a list of cryptographic suite
+elements that are ordered from highest to lowest preference and are negotiated
+with remote peers to establish cryptographic protection algorithms.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_CRYPTO_SET {
+   struct _tag_FW_CRYPTO_SET* pNext;
+   unsigned short wSchemaVersion;
+   [range(FW_IPSEC_PHASE_INVALID+1, FW_IPSEC_PHASE_MAX-1)] 
+     FW_IPSEC_PHASE IpSecPhase;
+   [string, range(1,255), ref] wchar_t* wszSetId;
+   [string, range(1,10001)] wchar_t* wszName;
+   [string, range(1,10001)] wchar_t* wszDescription;
+   [string, range(1,10001)] wchar_t* wszEmbeddedContext;
+   [switch_type(FW_IPSEC_PHASE), switch_is(IpSecPhase)] 
+     union {
+     [case(FW_IPSEC_PHASE_1)] 
+       struct {
+       unsigned short wFlags;
+       [range(0,1000)] unsigned long dwNumPhase1Suites;
+       [size_is(dwNumPhase1Suites)] PFW_PHASE1_CRYPTO_SUITE pPhase1Suites;
+       unsigned long dwTimeoutMinutes;
+       unsigned long dwTimeoutSessions;
+     };
+     [case(FW_IPSEC_PHASE_2)] 
+       struct {
+       FW_PHASE2_CRYPTO_PFS Pfs;
+       [range(0,1000)] unsigned long dwNumPhase2Suites;
+       [size_is(dwNumPhase2Suites)] PFW_PHASE2_CRYPTO_SUITE pPhase2Suites;
+     };
+   };
+   [range(FW_RULE_ORIGIN_INVALID,FW_RULE_ORIGIN_MAX-1)] 
+     FW_RULE_ORIGIN_TYPE Origin;
+   [string, range(1,10001)] wchar_t* wszGPOName;
+   FW_RULE_STATUS Status;
+   unsigned long dwCryptoSetFlags;
+ } FW_CRYPTO_SET,
+  *PFW_CRYPTO_SET;
+</pre></div>
+</dd></dl><p><b>pNext:</b>  A pointer to the next
+FW_CRYPTO_SET in the list.</p><p><b>wSchemaVersion:</b>  Specifies the
+version of the set. </p><p><b>IpSecPhase:</b>  This field is of type <span><a href="e23d75ab-c5f1-4b77-b290-f0e0e25d72e1" data-linktype="relative-path">FW_IPSEC_PHASE</a></span>,
+and it specifies if this cryptographic set applies for Phase1 (main mode) or
+Phase2 (quick mode).</p><p><b>wszSetId:</b>  A pointer to a <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string that uniquely identifies the set. The primary set for this policy object
+is identified with the &#34;{E5A5D32A-4BCE-4e4d-B07F-4AB1BA7E5FE1}&#34;
+string for Phase1 and with the
+&#34;{E5A5D32A-4BCE-4e4d-B07F-4AB1BA7E5FE2}&#34; string for Phase2.</p><p><b>wszName:</b>  A pointer to a Unicode
+string that provides a friendly name for the set.</p><p><b>wszDescription:</b>  A pointer to a
+Unicode string that provides a friendly description for the set.</p><p><b>wszEmbeddedContext:</b>  A pointer to a
+Unicode string. A client implementation MAY use this field to store
+implementation-specific client context. The server MUST NOT interpret the value
+of this string. The server MUST preserve the value of this string unmodified.</p><p><b>wFlags:</b>  This field is a combination
+of the <span><a href="6f3d76aa-b242-4f2b-8c5f-f9ccbbc04c53" data-linktype="relative-path">FW_PHASE1_CRYPTO_FLAGS</a></span>
+enumeration bit flags.</p><p><b>dwNumPhase1Suites:</b>  Specifies the
+number of Phase1 suites that the structure contains.</p><p><b>pPhase1Suites:</b>  A pointer to an
+array of <b>dwNumPhase1Suites</b> contiguous <span><a href="cd273bb4-3421-4831-a979-347630eb3b16" data-linktype="relative-path">FW_PHASE1_CRYPTO_SUITE</a></span>
+elements.</p><p><b>dwTimeoutMinutes:</b>  This value is a
+lifetime in minutes before a Phase1 established key is renegotiated.</p><p><b>dwTimeoutSessions:</b>  This value is
+the number of sessions before a Phase1 established key is renegotiated.</p><p><b>Pfs:</b>  This field MUST contain a
+valid value of those in the <span><a href="a281cd9c-0d3e-4071-8a4f-d0b5ada838a2" data-linktype="relative-path">FW_PHASE2_CRYPTO_PFS</a></span>
+enumeration. It describes the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_5d8948bc-5e32-483b-906d-42f785d0df18" data-linktype="relative-path">perfect forward secrecy</a></span>
+used for quick mode cryptographic operations.</p><p><b>dwNumPhase2Suites:</b>  Specifies the
+number of Phase2 suites that the structure contains.</p><p><b>pPhase2Suites:</b>  A pointer to an
+array of <span><a href="99a997b6-de52-4648-977c-e9efd6058254" data-linktype="relative-path">FW_PHASE2_CRYPTO_SUITE</a></span>
+elements. The number of elements is given by <b>dwNumPhase2Suites</b>.</p><p><b>Origin:</b>  This field is the set
+origin, as specified in the <span><a href="9d295321-d75c-41c0-ab0d-7a78df40f77c" data-linktype="relative-path">FW_RULE_ORIGIN_TYPE</a></span>
+enumeration. It MUST be filled on enumerated rules and ignored on input.</p><p><b>wszGPOName:</b>  A pointer to a Unicode
+string containing the displayName of the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_dec32233-8776-4151-91a0-8624a2b9abb0" data-linktype="relative-path">GPO</a></span> containing this
+object. When adding a new object, this field is not used. The client SHOULD set
+the value to NULL, and the server MUST ignore the value. When enumerating an
+existing object, if the client does not set the
+FW_ENUM_RULES_FLAG_RESOLVE_GPO_NAME flag, the server MUST set the value to
+NULL. Otherwise, the server MUST set the value to the displayName of the GPO
+containing the object or NULL if the object is not contained within a GPO. For
+details about how the server initializes an object from a GPO, see section <span><a href="e8924ac5-aa4a-41d1-bf65-4f46b3d399aa" data-linktype="relative-path">3.1.3</a></span>.
+For details about how the displayName of a GPO is stored, see <span><a href="../ms-gpol/62d12924-6252-4052-996f-161d2b9019f4" data-linktype="relative-path">[MS-GPOL]</a></span>
+section <span><a href="../ms-gpol/a0b3f9f6-da35-4c8a-8b8d-1318d4673e9d" data-linktype="relative-path">2.3</a></span>.</p><p><b>Status:</b>  The status code of the set,
+as specified by the <span><a href="c4fd81e6-38dd-47c5-8a0f-a98a11cf190e" data-linktype="relative-path">FW_RULE_STATUS</a></span>
+enumeration. This field is filled out when the structure is returned as output.
+On input, this field MUST be set to FW_RULE_STATUS_OK.</p><p><b>dwCryptoSetFlags:</b>  Bit flags from
+FW_CRYPTO_SET_FLAGS.</p><p>The following are semantic checks that cryptographic sets
+MUST pass:</p><ul><li><p><span><span> 
+</span></span>The <b>wSchemaVersion</b> field MUST NOT be less than 0x000200.</p>
+</li><li><p><span><span> 
+</span></span>The <b>wszSetId</b> field MUST NOT contain the pipe (|)
+character, MUST NOT be NULL, MUST be a string at least 1 character long, and
+MUST NOT be greater than or equal to 255 characters. </p>
+</li><li><p><span><span> 
+</span></span>If the <b>wszName</b> field string is not NULL, it MUST be at
+least 1 character long, MUST NOT be greater than or equal to 10,000 characters,
+and MUST NOT contain the pipe (|) character.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>wszDescription</b> field string is not NULL, it MUST be
+at least 1 character long, MUST NOT be greater than or equal to 10,000
+characters, and MUST NOT contain the pipe (|) character.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>wszEmbeddedContext</b> field string is not NULL, it
+MUST be at least 1 character long, MUST NOT be greater than or equal to 10,000
+characters, and MUST NOT contain the pipe (|) character.</p>
+</li><li><p><span><span> 
+</span></span>The <b>IpSecPhase</b> field MUST have valid FW_IPSEC_PHASE
+values.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>IpSecPhase</b> field is FW_IPSEC_PHASE_1:</p>
+<ul><li><p><span><span>  </span></span>The
+<b>wszSetId</b> field MUST be equal to the primary Phase1 cryptographic set ID.
+(There is only one Phase1 cryptographic set allowed per store.)</p>
+</li><li><p><span><span>  </span></span>The
+<b>wFlags</b> field of the set MUST NOT be greater than or equal to
+FW_PHASE1_CRYPTO_FLAGS_MAX.</p>
+</li><li><p><span><span>  </span></span>The
+<b>dwTimeoutMinutes</b> field of the set MUST be greater than or equal to 1,
+and MUST be less than or equal to 2,879.</p>
+</li><li><p><span><span>  </span></span>The
+<b>dwTimeoutSessions</b> field of the set MUST be less than or equal to
+2,147,483,647.</p>
+</li><li><p><span><span>  </span></span>The
+cryptographic set MUST have at least one Phase1 cryptographic suite. </p>
+</li><li><p><span><span>  </span></span>The
+<b>pPhase1Suites</b> array MUST contain exactly <b>dwNumPhase1Suites</b>
+entries.</p>
+</li><li><p><span><span>  </span></span>All
+cryptographic suites within the set MUST have the same value in the <b>KeyExchange</b>
+field and MUST have valid values.</p>
+</li><li><p><span><span>  </span></span>All
+Phase1 suites MUST NOT have a <b>KeyExchange</b> field with the
+FW_CRYPTO_ENCRYPTION_INVALID value and MUST have valid values.</p>
+</li><li><p><span><span>  </span></span>If
+the set has a schema policy version of 0x0200, all Phase1 suites MUST NOT have
+an <b>Encryption</b> field with values greater than or equal to
+FW_CRYPTO_ENCRYPTION_MAX_V2_0.</p>
+</li><li><p><span><span>  </span></span>All
+Phase1 suites MUST NOT have an <b>Encryption</b> field with the
+FW_CRYPTO_ENCRYPTION_NONE value and MUST have valid values less than
+FW_CRYPTO_ENCRYPTION_MAX_V2_0.</p>
+</li><li><p><span><span>  </span></span>If
+the set has a schema policy version of 0x0200, all Phase1 suites MUST NOT have
+a <b>Hash</b> field that has values greater than or equal to
+FW_CRYPTO_HASH_MAX_V2_0.</p>
+</li><li><p><span><span>  </span></span>All
+Phase1 suites MUST NOT have a <b>Hash</b> field that has the
+FW_CRYPTO_HASH_NONE value and MUST have either MD5 (FW_CRYPTO_HASH_MD5) or SHA
+(FW_CRYPTO_HASH_SHA1, FW_CRYPTO_HASH_SHA256, FW_CRYPTO_HASH_SHA384) valid
+values.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <b>IpSecPhase</b> field is FW_IPSEC_PHASE_2:</p>
+<ul><li><p><span><span>  </span></span>The
+<b>wszSetId</b> field MUST NOT have the primary Phase2 cryptographic set ID as
+a prefix.</p>
+</li><li><p><span><span>  </span></span>The
+cryptographic set MUST have at least one Phase2 cryptographic suite.</p>
+</li><li><p><span><span>  </span></span>The
+<b>pPhase2Suites</b> array MUST contain exactly <b>dwNumPhase2Suites</b>
+entries.</p>
+</li><li><p><span><span>  </span></span>The
+<b>Pfs</b> field MUST NOT be FW_PHASE2_CRYPTO_PFS_INVALID and MUST have valid
+values.</p>
+</li><li><p><span><span>  </span></span>If
+the set has a schema policy version of 0x0200, all Phase2 cryptographic suites
+MUST NOT have an <b>AhHash</b> field or <b>EspHash</b> field with values
+greater than or equal to FW_CRYPTO_HASH_MAX_V2_0.</p>
+</li><li><p><span><span>  </span></span>If
+the set has a schema policy version of 0x0200, all Phase2 suites MUST NOT have
+an <b>Encryption</b> field with values greater than or equal to
+FW_CRYPTO_ENCRYPTION_MAX_V2_0.</p>
+</li><li><p><span><span>  </span></span>All
+Phase2 suites within the set MUST NOT have a <b>dwTimeoutMinutes</b> field less
+than FW_MIN_CRYPTO_PHASE2_TIMEOUT_MINUTES (5) or greater than
+FW_MAX_CRYPTO_PHASE2_TIMEOUT_MINUTES (48 * 60 -1).</p>
+</li><li><p><span><span>  </span></span>All
+Phase2 suites within the set MUST NOT have a <b>dwTimeoutKBytes</b> field of
+less than FW_MIN_CRYPTO_PHASE2_TIMEOUT_KBYTES (20480) or greater than
+FW_MAX_CRYPTO_PHASE2_TIMEOUT_KBYTES (2147483647).</p>
+</li><li><p><span><span>  </span></span>All
+the Phase2 suites within the set MUST NOT have a <b>Protocol</b> field with
+FW_CRYPTO_PROTOCOL_INVALID and MUST have valid values.</p>
+</li><li><p><span><span>  </span></span>For
+all suites that have the <b>Protocol</b> field equal to FW_CRYPTO_PROTOCOL_AH
+or to FW_CRYPTO_PROTOCOL_BOTH:</p>
+<ul><li><p><span><span> 
+</span></span>All suites MUST NOT have an <b>AhHash</b> field with the
+FW_CRYPTO_HASH_NONE value, and MUST have valid values not equal to
+FW_CRYPTO_HASH_SHA384.</p>
+</li></ul></li><li><p><span><span>  </span></span>For
+all suites that have the <b>Protocol</b> field equal to
+FW_CRYPTO_PROTOCOL_BOTH:</p>
+<ul><li><p><span><span> 
+</span></span>All suites MUST have the <b>AhHash</b> field equal to the <b>EspHash</b>
+field.</p>
+</li></ul></li><li><p><span><span>  </span></span>For
+all suites that have the <b>Protocol</b> field equal to FW_CRYPTO_PROTOCOL_ESP:</p>
+<ul><li><p><span><span> 
+</span></span>All suites MUST have an <b>EspHash</b> field with valid values,
+including FW_CRYPTO_HASH_NONE. The <b>EspHash</b> field MUST NOT equal
+FW_CRYPTO_HASH_SHA384.</p>
+</li><li><p><span><span> 
+</span></span>All suites MUST have an <b>Encryption</b> field with valid
+values, including FW_CRYPTO_ENCRYPTION_NONE.</p>
+</li><li><p><span><span> 
+</span></span>All suites MUST not have both the <b>EspHash</b> field equal to
+FW_CRYPTO_HASH_NONE and the <b>Encryption</b> field equal to
+FW_CRYPTO_ENCRYPTION_NONE.</p>
+</li><li><p><span><span> 
+</span></span>All suites that have the <b>Encryption</b> field equal to
+FW_CRYPTO_ENCRYPTION_AES_GCM128, 192, or 256 MUST also have a corresponding
+FW_CRYPTO_HASH_AES_GMAC128, 192, or 256 value on the <b>EspHash</b> field. An
+AES GCM encryption algorithm corresponds to an AES GMAC hash algorithm if both
+use the same bit size.</p>
+</li></ul></li></ul></li></ul></div>

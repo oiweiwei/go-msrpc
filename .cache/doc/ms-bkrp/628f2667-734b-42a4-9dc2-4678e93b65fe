@@ -1,0 +1,119 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/628f2667-734b-42a4-9dc2-4678e93b65fe" data-linktype="external">msdn link</a></p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cbSecret</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x30</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x10</p>
+  </td>
+  <td colspan="8">
+  <p>0x66</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x0e</p>
+  </td>
+  <td colspan="8">
+  <p>0x80</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Secret
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PayloadKey
+  (48 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>cbSecret (4 bytes): </b>A 32-bit unsigned integer.
+It MUST be the length of the <b>Secret</b> field, in bytes. This field MUST be
+encoded using <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a>
+format. Its value MUST be at least 51 bytes less than the length in bytes of
+the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_3f85a24a-f32a-4322-9e99-eba6ae802cd6" data-linktype="relative-path">RSA</a> modulus of the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public key</a> used for <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_387b58ea-6abd-41c8-af6c-34206259765f" data-linktype="relative-path">wrapping</a>.</p><p><b>Secret (variable): </b>This MUST contain the <b>cbSecret</b>-byte
+value that is being wrapped. </p><p><b>PayloadKey (48 bytes): </b>This MUST contain the
+payload <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_8312d817-fdc5-4a49-8894-729b7b9e0ce5" data-linktype="relative-path">encryption</a> key,
+consisting of a 256-bit <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_21edac94-99d0-44cb-bc1a-3416d8fc618e" data-linktype="relative-path">Advanced
+Encryption Standard (AES)</a> key and a 128-bit IV. These quantities are
+concatenated to form this field.</p></div>

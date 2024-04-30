@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>This enumeration identifies flags that can be set on the
+RRPC_FWGetConfig (Opnum 10) and RRPC_FWGetGlobalConfig (Opnum 3) methods.</p><dl>
+<dd>
+<div><pre> typedef  enum _FW_CONFIG_FLAGS
+ {
+   FW_CONFIG_FLAG_RETURN_DEFAULT_IF_NOT_FOUND = 0x0001
+ } FW_CONFIG_FLAGS;
+</pre></div>
+</dd></dl><p><b>FW_CONFIG_FLAG_RETURN_DEFAULT_IF_NOT_FOUND:  </b>If
+this flag is specified, and if the RRPC_FWGetConfig (Opnum 10) method or the
+RRPC_FWGetGlobalConfig (Opnum 3) method fails to find the configuration value
+in the policy store, then the call will succeed and return the default value
+used by the firewall service. If this flag is not specified, these methods will
+fail with ERROR_FILE_NOT_FOUND. The default set of values returned by these two
+calls is a firewall and advanced security component implementation-specific<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="1da2ee70-a6ae-4f76-b08f-fdc25c77d8a0#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a> decision, and is outside the
+scope of this protocol specification.</p></div>

@@ -1,0 +1,40 @@
+<div class="content"><p>The <b>RPC_V2_NOTIFY_OPTIONS</b> structure specifies options
+for a change notification object that monitors a printer or <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a> for any
+changes in state.<a id="Appendix_A_Target_73"></a><a aria-label="Product behavior note 73" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_73" data-linktype="relative-path">&lt;73&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _RPC_V2_NOTIFY_OPTIONS {
+   DWORD Version;
+   DWORD Reserved;
+   DWORD Count;
+   [size_is(Count), unique] RPC_V2_NOTIFY_OPTIONS_TYPE* pTypes;
+ } RPC_V2_NOTIFY_OPTIONS;
+</pre></div>
+</dd></dl><p><b>Version:</b> The version of the structure.
+The value of this member MUST be 0x00000002.</p><p><b>Reserved:</b> A bit field that specifies
+attributes of the change notification. The name &#34;Reserved&#34; is
+intentional.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PRINTER_NOTIFY_OPTIONS_REFRESH</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Refreshed data is requested from the server for all
+  monitored members.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Count:</b> The number of <b>RPC_V2_NOTIFY_OPTIONS_TYPE</b>
+structures (section <a href="3cce2507-707d-4a8e-8ce8-388463a24952" data-linktype="relative-path">2.2.1.13.2)</a> in the array
+pointed to by the <b>pTypes</b> member.</p><p><b>pTypes:</b> A pointer to an array of <b>RPC_V2_NOTIFY_OPTIONS_TYPE</b>
+structures, each of which identifies a set of <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print job</a> or printer
+information members to be monitored by a printer change notification object.</p></div>

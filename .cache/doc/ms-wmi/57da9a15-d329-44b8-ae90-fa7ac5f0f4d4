@@ -1,0 +1,41 @@
+<div class="content"><p> </p><p>The IWbemRemoteRefresher::StopRefreshing method MUST remove
+a set of <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a99173af-90bf-473d-9a81-ff0ce9a85838" data-linktype="relative-path">CIM</a></span> instances or
+enumerations from the collection previously configured by the <span><a href="e2c4f36d-dc59-48bb-bb51-821732610e17" data-linktype="relative-path">IWbemRefreshingServices</a></span>
+<span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface
+pointer</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT StopRefreshing(
+   [in] long lNumIds,
+   [in, size_is(lNumIds)] long* aplIds,
+   [in] long lFlags
+ );
+</pre></div>
+</dd></dl><p><b>lNumIds: </b>MUST be the number of identifiers in
+the array of object identifiers in the <i>aplIds</i> parameter.</p><p><b>aplIds: </b>MUST be an array of object identifiers
+that MUST identify the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_94e80069-5f2a-4281-a676-50ea656c4795" data-linktype="relative-path">CIM instances</a></span> and
+enumerations to stop refreshing. The object identifier is the m_lCancelId
+member from the _WBEM_REFRESH_INFO structure that is specified in section <span><a href="f3881702-6fc6-408c-82c9-72e36d928e06" data-linktype="relative-path">2.2.20</a></span>
+and MUST be obtained from a previous call to the <span><a href="cf79fb85-e0cb-4778-86de-03da6de4d5d8" data-linktype="relative-path">IWbemRefreshingServices::AddObjectToRefresher</a></span>,
+<span><a href="24693f72-f828-42d0-86b7-f73ffd956739" data-linktype="relative-path">IWbemRefreshingServices::AddObjectToRefresherByTemplate</a></span>,
+or <span><a href="7da35a37-b175-499d-a608-08a8c70e9f90" data-linktype="relative-path">IWbemRefreshingServices::AddEnumToRefresher</a></span>
+method specified in section 3.1.4.12.</p><p><b>lFlags: </b>This parameter is not used, and its
+value MUST be 0x0.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. In case of
+success, the server MUST return WBEM_S_NO_ERROR (as specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>)
+to indicate the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The IWbemRemoteRefresher::StopRefreshing method MUST be
+called on the <span><a href="7e35e02b-092d-407f-a4bf-131f648b7691" data-linktype="relative-path">IWbemRemoteRefresher</a></span>
+interface pointer that is returned as a member of the _WBEM_REFRESH_INFO
+structure from the methods of the IWbemRefreshingServices interface or on the
+interface that is returned by the <span><a href="09fcc398-c22f-4cf4-af67-2968b6d4e57e" data-linktype="relative-path">IWbemRefreshingServices::GetRemoteRefresher</a></span>
+method invocation.</p><p>In response to the IWbemRemoteRefresher::StopRefreshing
+method, the server MUST remove a list of <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_8d8f4b2c-bf33-4964-b55c-96ac2cc999bb" data-linktype="relative-path">CIM objects</a></span> that
+were previously added to the set of refreshing objects using the
+IWbemRefreshingServices methods. The CIM objects MUST be identified by their
+identifier, the m_lCancelId member of the _WBEM_REFRESH_INFO structure that is
+returned by a previous IWbemRefreshingServices::AddObjectToRefresher,
+IWbemRefreshingServices::AddObjectToRefresherByTemplate, or
+IWbemRefreshingServices::AddEnumToRefresher call.</p><p>In case of failure the server MUST return an error in the
+format specified in section 2.2.11.</p></div>

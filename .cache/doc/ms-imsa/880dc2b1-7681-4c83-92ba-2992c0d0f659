@@ -1,0 +1,123 @@
+<div class="content"><p>The ENCRYPTED_SESSION_KEY_BLOB message layout is described
+in the following diagram.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p align="center">Type</p>
+  </td>
+  <td colspan="8">
+  <p align="center">Version</p>
+  </td>
+  <td colspan="16">
+  <p align="center">Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">AlgID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">EncryptAlgID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">SessionKey
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Type (1 byte): </b>An 8-bit unsigned integer that
+specifies that the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_4f67a585-fb00-4166-93e8-cf4abca8226d" data-linktype="relative-path">session
+key</a> is transferred. This field MUST be set to 0x1.</p><p><b>Version (1 byte): </b>An 8-bit unsigned integer
+value. This field MUST be set to 0x2.</p><p><b>Reserved (2 bytes): </b>A 16-bit unsigned integer
+that MUST be set to 0x0000 and MUST be ignored on receipt.</p><p><b>AlgID (4 bytes): </b>A 32-bit unsigned integer.
+This field MUST be set to the CALG_RC4 value, which MUST be used to indicate
+that the RC4 stream encryption algorithm will be used for the data <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_8312d817-fdc5-4a49-8894-729b7b9e0ce5" data-linktype="relative-path">encryption</a>, as described in
+<a href="https://go.microsoft.com/fwlink/?LinkId=817338" data-linktype="external">[SCHNEIER]</a>,
+section 17.1.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CALG_RC4</p>
+  <p>0x00006801</p>
+  </td>
+  <td>
+  <p>The RC4 stream encryption algorithm.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>EncryptAlgID (4 bytes): </b>An unsigned 32-bit
+integer that MUST be set to the CALG_RSA_KEYX value, which indicates that the
+session key was encrypted using the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_cc47c124-bf79-481d-b4e0-c05b187f1562" data-linktype="relative-path">RSA public key algorithm</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CALG_RSA_KEYX</p>
+  <p>0x0000a400</p>
+  </td>
+  <td>
+  <p>The RSA public key algorithm.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>SessionKey (variable): </b>A variable-length array
+of bytes that contains the actual session key of <b>AlgID</b> type, which is
+encrypted by the algorithm specified by <b>EncryptAlgID</b>. The size of the <b>SessionKey</b>
+field is always the same as the size of the modulus of the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public key</a> used for
+encryption.</p></div>

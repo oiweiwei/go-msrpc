@@ -1,0 +1,84 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/bccfdba9-0c38-485e-b751-d4de1935781d" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_VALIDATION_SAM_INFO4</b> structure extends <b>NETLOGON_VALIDATION_SAM_INFO2</b>,
+as specified in section <a href="2a12e289-7904-4ecb-9d83-6732200230c0" data-linktype="relative-path">2.2.1.4.12</a>,
+by storing the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a> of
+the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> of the user
+account and the user <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8492780e-99e2-47ba-8553-aedb8de9f9c0" data-linktype="relative-path">principal</a>.</p><p>All fields of this structure, except the fields detailed
+following the structure definition, have the same meaning as the identically
+named fields in the KERB_VALIDATION_INFO structure, as specified in <a href="../ms-pac/166d8064-c863-41e1-9c23-edaaa5f36962" data-linktype="relative-path">[MS-PAC]</a>
+section <a href="../ms-pac/69e86ccc-85e3-41b9-b514-7d969cd0ed73" data-linktype="relative-path">2.5</a>.
+Additionally, fields of this structure that are defined as OLD_LARGE_INTEGER are
+64-bit timestamps equivalent to the identically named fields in the
+KERB_VALIDATION_INFO structure of <b>FILETIME</b> type (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">2.3.3</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_VALIDATION_SAM_INFO4 {
+   OLD_LARGE_INTEGER LogonTime;
+   OLD_LARGE_INTEGER LogoffTime;
+   OLD_LARGE_INTEGER KickOffTime;
+   OLD_LARGE_INTEGER PasswordLastSet;
+   OLD_LARGE_INTEGER PasswordCanChange;
+   OLD_LARGE_INTEGER PasswordMustChange;
+   RPC_UNICODE_STRING EffectiveName;
+   RPC_UNICODE_STRING FullName;
+   RPC_UNICODE_STRING LogonScript;
+   RPC_UNICODE_STRING ProfilePath;
+   RPC_UNICODE_STRING HomeDirectory;
+   RPC_UNICODE_STRING HomeDirectoryDrive;
+   unsigned short LogonCount;
+   unsigned short BadPasswordCount;
+   unsigned long UserId;
+   unsigned long PrimaryGroupId;
+   unsigned long GroupCount;
+   [size_is(GroupCount)] PGROUP_MEMBERSHIP GroupIds;
+   unsigned long UserFlags;
+   USER_SESSION_KEY UserSessionKey;
+   RPC_UNICODE_STRING LogonServer;
+   RPC_UNICODE_STRING LogonDomainName;
+   PRPC_SID LogonDomainId;
+   unsigned char LMKey[8];
+   ULONG UserAccountControl;
+   ULONG SubAuthStatus;
+   OLD_LARGE_INTEGER LastSuccessfulILogon;
+   OLD_LARGE_INTEGER LastFailedILogon;
+   ULONG FailedILogonCount;
+   ULONG Reserved4[1];
+   unsigned long SidCount;
+   [size_is(SidCount)] PNETLOGON_SID_AND_ATTRIBUTES ExtraSids;
+   RPC_UNICODE_STRING DnsLogonDomainName;
+   RPC_UNICODE_STRING Upn;
+   RPC_UNICODE_STRING ExpansionString1;
+   RPC_UNICODE_STRING ExpansionString2;
+   RPC_UNICODE_STRING ExpansionString3;
+   RPC_UNICODE_STRING ExpansionString4;
+   RPC_UNICODE_STRING ExpansionString5;
+   RPC_UNICODE_STRING ExpansionString6;
+   RPC_UNICODE_STRING ExpansionString7;
+   RPC_UNICODE_STRING ExpansionString8;
+   RPC_UNICODE_STRING ExpansionString9;
+   RPC_UNICODE_STRING ExpansionString10;
+ } NETLOGON_VALIDATION_SAM_INFO4,
+  *PNETLOGON_VALIDATION_SAM_INFO4;
+</pre></div>
+</dd></dl><p><b>LogonServer:</b> An <b>RPC_UNICODE_STRING</b>
+structure that contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS
+name</a> of the server that populates this structure.</p><p><b>LMKey:</b> Contains the first 8 bytes of the LMOWF
+(<a href="../ms-nlmp/b38c36ed-2804-4868-a9ff-8dd3182128e4" data-linktype="relative-path">[MS-NLMP]</a>
+section <a href="../ms-nlmp/464551a8-9fc4-428e-b3d3-bc5bfb2e73a5" data-linktype="relative-path">3.3.1</a>)
+if NTLMV1 is used, or the first 8 bytes of the KXKEY ([MS-NLMP] section <a href="../ms-nlmp/d86303b5-b29e-4fb9-b119-77579c761370" data-linktype="relative-path">3.4.5.1</a>)
+if NTLMV2 is used.</p><p><b>Reserved4:</b> An unsigned 32-bit integer. This
+member is reserved. MUST be zero when sent and MUST be ignored on receipt.</p><p><b>DnsLogonDomainName:</b> Contains the FQDN of the
+domain of the user account.</p><p><b>Upn:</b> Contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9d606f55-b798-4def-bf96-97b878bb92c6" data-linktype="relative-path">user principal name (UPN)</a>.</p><p><b>ExpansionString1:</b> A STRING structure, defined
+in section <a href="4a896c09-a39c-4878-94f0-9e4f8a419f32" data-linktype="relative-path">2.2.1.1.2</a>,
+that MUST contain 0 for the <b>Length</b> field, 0 for the <b>MaximumLength</b>
+field, and NULL for the <b>Buffer</b> field. It is ignored upon receipt.
+Expansion strings have a function similar to that of dummy fields, as described
+in section <a href="bbc95890-215e-49a9-8bb8-92e723548046" data-linktype="relative-path">1.3.8.1.2</a>.</p><p><b>ExpansionString2:</b> See definition for
+ExpansionString1.</p><p><b>ExpansionString3: </b>See definition for
+ExpansionString1.</p><p><b>ExpansionString4:</b> See definition for
+ExpansionString1.</p><p><b>ExpansionString5:</b> See definition for
+ExpansionString1.</p><p><b>ExpansionString6:</b> See definition for
+ExpansionString1.</p><p><b>ExpansionString7: </b>See definition for
+ExpansionString1.</p><p><b>ExpansionString8:</b> See definition for
+ExpansionString1.</p><p><b>ExpansionString9:</b> See definition for
+ExpansionString1.</p><p><b>ExpansionString10:</b> See definition for
+ExpansionString1.</p></div>

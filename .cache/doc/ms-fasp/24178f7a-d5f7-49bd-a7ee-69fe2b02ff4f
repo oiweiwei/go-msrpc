@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>This structure represents a network interface in the host.
+It is used for display purposes in the user interface when configuring the <b>FW_PROFILE_CONFIG_DISABLED_INTERFACES</b>
+(section <span><a href="5a6e0d39-802d-456b-b483-c7360566fcdd" data-linktype="relative-path">2.2.38</a></span>)
+configuration option.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_ADAPTER {
+   [string, unique] wchar_t* pszFriendlyName;
+   GUID Guid;
+ } FW_ADAPTER,
+  *PFW_ADAPTER;
+</pre></div>
+</dd></dl><p><b>pszFriendlyName:</b>  A pointer to a <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string that presents the friendly name that is associated with the network
+interface.</p><p><b>Guid:</b>  A <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> that uniquely
+identifies the interface in the host system.</p></div>

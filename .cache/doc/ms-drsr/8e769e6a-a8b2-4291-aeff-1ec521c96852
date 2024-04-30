@@ -1,0 +1,158 @@
+<div class="content"><p> </p><p>The DS_REPL_SERVER_OUTGOING_CALL structure defines an
+outstanding request from this <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span> to another DC.
+This structure is a concrete representation of a tuple from an <span><a href="b9f46593-8a40-4186-9ece-bc2612b4c3f4" data-linktype="relative-path">RPCOutgoingContexts</a></span>
+sequence.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [string] LPWSTR pszServerName;
+   BOOL fIsHandleBound;
+   BOOL fIsHandleFromCache;
+   BOOL fIsHandleInCache;
+   DWORD dwThreadId;
+   DWORD dwBindingTimeoutMins;
+   DSTIME dstimeCreated;
+   DWORD dwCallType;
+ } DS_REPL_SERVER_OUTGOING_CALL;
+</pre></div>
+</dd></dl><p><b>pszServerName:</b>  The <span><a href="3d0d3777-9358-47dd-b555-34405f57f912" data-linktype="relative-path">NetworkAddress</a></span>
+of the server.</p><p><b>fIsHandleBound:</b>  True if and only if
+the <span><a href="605b1ea1-9cdc-428f-ab7a-70120e020a3d" data-linktype="relative-path">IDL_DRSBind</a></span>
+method has completed and the <span><a href="49eb17c9-b6a9-4cea-bef8-66abda8a7850" data-linktype="relative-path">IDL_DRSUnbind</a></span>
+method has not yet been called.</p><p><b>fIsHandleFromCache:</b>  True if and
+only if the context handle used was retrieved from the cache.</p><p><b>fIsHandleInCache:</b>  True if and only
+if the context handle is still in the cache.</p><p><b>dwThreadId:</b>  The thread ID of the
+thread that is using the context.</p><p><b>dwBindingTimeoutMins:</b>  If the
+context is set to be canceled, the time-out in minutes.</p><p><b>dstimeCreated:</b>  The date and time
+when the context was created.</p><p><b>dwCallType:</b>  The call that the
+client is waiting on. MUST be one of the values in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>IDL_DRSBind</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p>IDL_DRSUnbind</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4</p>
+  </td>
+  <td>
+  <p><span><a href="25c71d91-051f-4c26-977f-a70892f29b00" data-linktype="relative-path">IDL_DRSReplicaSync</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>5</p>
+  </td>
+  <td>
+  <p><span><a href="b63730ac-614c-431c-9501-28d6aca91894" data-linktype="relative-path">IDL_DRSGetNCChanges</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  </td>
+  <td>
+  <p><span><a href="a273bbcf-aeca-4608-8ad4-127d3e597cd4" data-linktype="relative-path">IDL_DRSUpdateRefs</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>7</p>
+  </td>
+  <td>
+  <p><span><a href="7219df91-4eea-494f-88e3-780d40d2d559" data-linktype="relative-path">IDL_DRSReplicaAdd</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>8</p>
+  </td>
+  <td>
+  <p><span><a href="1420a9bf-9267-464d-a6d5-7676472d7f1d" data-linktype="relative-path">IDL_DRSReplicaDel</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>9</p>
+  </td>
+  <td>
+  <p><span><a href="80739a29-e8ed-4478-8490-475a18e9779d" data-linktype="relative-path">IDL_DRSVerifyNames</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>10</p>
+  </td>
+  <td>
+  <p><span><a href="d5ace452-7cdd-4d50-bb64-39b4c55180a2" data-linktype="relative-path">IDL_DRSGetMemberships</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>11</p>
+  </td>
+  <td>
+  <p><span><a href="595b2fef-493b-4b1d-b60d-e7a1a3345b0e" data-linktype="relative-path">IDL_DRSInterDomainMove</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>12</p>
+  </td>
+  <td>
+  <p><span><a href="6e000eb6-60fd-4d6c-ae82-bb6479df02fa" data-linktype="relative-path">IDL_DRSGetNT4ChangeLog</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>13</p>
+  </td>
+  <td>
+  <p><span><a href="9b4bfb44-6656-4404-bcc8-dc88111658b3" data-linktype="relative-path">IDL_DRSCrackNames</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>14</p>
+  </td>
+  <td>
+  <p><span><a href="06764fc5-4df6-4104-b6af-a92bdaa81f6e" data-linktype="relative-path">IDL_DRSAddEntry</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>15</p>
+  </td>
+  <td>
+  <p><span><a href="d4e67cc3-2ee1-4b2b-8055-cebefc556252" data-linktype="relative-path">IDL_DRSGetMemberships2</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>16</p>
+  </td>
+  <td>
+  <p><span><a href="6355d4f5-f556-4527-adde-37afba2fcf56" data-linktype="relative-path">IDL_DRSGetObjectExistence</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>17</p>
+  </td>
+  <td>
+  <p><span><a href="dd29f9ce-b30b-411e-bd54-b77634eded47" data-linktype="relative-path">IDL_DRSGetReplInfo</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>18</p>
+  </td>
+  <td>
+  <p><span><a href="8b129dc8-ed45-4537-9555-b6fef764ab7d" data-linktype="relative-path">IDL_DRSWriteSPN</a></span></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

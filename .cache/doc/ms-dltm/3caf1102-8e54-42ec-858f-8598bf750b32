@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The TRKWKS_CONFIG structure is unused but is included in
+this protocol because it affects the definition of the <span><a href="2f32d86a-18ea-472f-99d3-e9f3a333e329" data-linktype="relative-path">TRKSVR_MESSAGE_UNION</a></span>,
+as defined in section <span><a href="21c77c9a-0dc9-4d09-8efe-ee89b40c7fe6" data-linktype="relative-path">2.2.13</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned long dwParameter;
+   unsigned long dwNewValue;
+ } TRKWKS_CONFIG;
+</pre></div>
+</dd></dl></div>

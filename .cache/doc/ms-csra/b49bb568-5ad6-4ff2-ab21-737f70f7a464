@@ -1,0 +1,55 @@
+<div class="content"><p>The EnumView method returns a set of resultant row data for
+the opened view.</p><dl>
+<dd>
+<div><pre> HRESULT EnumView(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] DWORD ielt,
+   [in] DWORD celt,
+   [out] DWORD* pceltFetched,
+   [out, ref] CERTTRANSBLOB* pctbResultRows
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the definition of the <i>pwszAuthority</i>
+parameter in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.</p><p><b>ielt: </b>An unsigned integer value that specifies
+the identifier of the first row to return from the resultant set of rows.</p><p><b>celt: </b>An unsigned integer value that specifies
+the requested count of the row data to be returned from the resultant set of
+rows.</p><p><b>pceltFetched: </b>A pointer to an unsigned integer
+value that receives the actual count of row data that is returned by the server
+in the <i>pctbResultRows</i> parameter.</p><p><b>pctbResultRows: </b>A pointer to a <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure.
+The <i>pb</i> byte array of the CERTTRANSBLOB structure MUST contain (on
+successful return) an array of <i>n</i> marshaled <a href="00bd8e2e-a9fb-4555-a9f1-7dff91d6e5b3" data-linktype="relative-path">CERTTRANSDBRESULTROW</a>
+structures (section 2.2.3), where <i>n</i> is the value returned in <i>pceltFetched</i>.
+Each CERTTRANSDBRESULTROW contains one or more <a href="ac07551a-37af-4c8a-84f2-3c278a5770ed" data-linktype="relative-path">CERTTRANSDBRESULTCOLUMN</a>
+structures (section 2.2.1.10). In addition, an extra CERTTRANSDBRESULTROW
+structure is included in the array when the server encounters the end of the
+enumeration, as described in the following rules.</p><p>The <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a>
+server MUST enforce the following sequencing rules:</p><ol><li><p><span>    </span>If the EnumView
+method is called when the value of Config_Database_View_Open is <b>False</b>,
+the server MUST return an error. The error code SHOULD be ERROR_INVALID_HANDLE.</p>
+</li><li><p><span>    </span>If the EnumView
+method is called when the value of Config_Database_View_Open is <b>True</b>,
+the server MUST continue with the following processing rules. </p>
+</li><li><p><span>    </span>The CA server
+MUST use the resultant set of rows as obtained via the <a href="15fccaa6-c477-4196-b793-c92044868d89" data-linktype="relative-path">OpenView</a> method call.</p>
+</li><li><p><span>    </span>The CA server
+MUST use the value of <i>ielt</i> as an <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_5101391c-795d-446c-8054-7550eb75d923" data-linktype="relative-path">index</a> to this resultant set
+of rows.</p>
+</li><li><p><span>    </span>The number of
+resultant rows returned MUST be a minimum of the <i>celt</i> parameter value
+and the remaining number of rows in the set (starting from <i>ielt</i>). The
+value of the <i>*pceltFetched</i> parameter MUST be set to the number of
+resultant rows returned.</p>
+</li><li><p><span>    </span>When the server
+encounters the end of the enumeration, the server MUST add an extra
+CERTTRANSDBRESULTROW structure at the end of the array.</p>
+<ul><li><p><span><span>  </span></span>The
+count returned in <i>pceltFetched</i> MUST NOT include the extra
+CERTTRANSDBRESULTROW structure. The <b>rowid</b> field for the extra
+CERTTRANSDBRESULTROW structure MUST be set to the total row count, and the <b>ccol</b>
+field MUST be set to its bitwise inverse.</p>
+</li></ul></li><li><p><span>    </span>The rules for
+marshaling a CERTTRANSDBRESULTROW into a CERTTRANSBLOB are described in section
+<a href="ec3c1ce3-3032-43e6-9aa2-2f3ff061fe23" data-linktype="relative-path">2.2.3.1</a>. The rules for
+marshaling a CERTTRANSDBRESULTCOLUMN into a CERTTRANSBLOB are described in
+section <a href="43af0730-e4e7-4f9c-aea1-00c49604476d" data-linktype="relative-path">2.2.1.10.1</a>.</p>
+</li></ol></div>

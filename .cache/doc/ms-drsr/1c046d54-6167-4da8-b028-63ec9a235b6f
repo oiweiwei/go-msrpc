@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The DSA_MSG_PREPARE_SCRIPT_REPLY_V1 structure defines a
+response message received from the <span><a href="74919784-8e57-4cf5-840f-6f1bd226cf02" data-linktype="relative-path">IDL_DSAPrepareScript</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwOperationStatus;
+   [string] LPWSTR pwErrMessage;
+   [range(0,1024)] DWORD cbPassword;
+   [size_is(cbPassword)] BYTE* pbPassword;
+   [range(0,10485760)] DWORD cbHashBody;
+   [size_is(cbHashBody)] BYTE* pbHashBody;
+   [range(0,10485760)] DWORD cbHashSignature;
+   [size_is(cbHashSignature)] BYTE* pbHashSignature;
+ } DSA_MSG_PREPARE_SCRIPT_REPLY_V1;
+</pre></div>
+</dd></dl><p><b>dwOperationStatus:</b>  0 if successful,
+or a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows
+error code</a></span> if a fatal error occurred.</p><p><b>pwErrMessage:</b>  Null if successful,
+or a description of an error if a fatal error occurred.</p><p><b>cbPassword:</b>  The count, in bytes, of
+the <b>pbPassword</b> array.</p><p><b>pbPassword:</b>  The password.</p><p><b>cbHashBody:</b>  The count, in bytes, of
+the <b>pbHashBody</b> array.</p><p><b>pbHashBody:</b>  The hash of the script
+value.</p><p><b>cbHashSignature:</b>  The count, in
+bytes, of the <b>pbHashSignature</b> array.</p><p><b>pbHashSignature:</b>  The script
+signature.</p></div>

@@ -1,0 +1,58 @@
+<div class="content"><p> </p><p>The QUERYLOCATOR structure defines the structure that is
+sent by using the Remote Mailslot Protocol when the <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_ced0eb6d-07b5-42f6-9231-e5dbb301e860" data-linktype="relative-path">client locator</a></span> is
+looking for a <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_a33485fd-4392-4219-83f8-d65cfa0e9674" data-linktype="relative-path">master locator</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned long MessageType;
+   unsigned long SenderOsType;
+   wchar_t RequesterName[18];
+ } QUERYLOCATOR;
+</pre></div>
+</dd></dl><p><b>MessageType:</b>  This defines the type
+of the message being sent. It MUST be the following value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>QUERY_MASTER_LOCATOR</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>Query for an existing master locator.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>SenderOsType:</b>  An identifier
+indicating the type of operating system running on the computer of the sender <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_a4c6ed23-4a18-4477-b837-4f4ce7578f39" data-linktype="relative-path">locator</a></span>.
+This MUST be the following value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>OS_NTWKGRP</p>
+  <p>0x04</p>
+  </td>
+  <td>
+  <p>The operating system is Windows NT 4.0 operating
+  system or later.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>RequesterName:</b>  The <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_f53fe4b9-8e1d-4366-9254-3c4f73269e78" data-linktype="relative-path">mailslot</a></span>
+sender as specified in section <span><a href="783ca657-3dc5-4d65-a5ab-a81bd65c12a1" data-linktype="relative-path">2.2.4.1.1</a></span>. This
+parameter is limited to 18 characters including the terminating null 
+character.</p></div>

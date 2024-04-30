@@ -1,0 +1,247 @@
+<div class="content"><p> </p><p>An event <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_37fbc661-f744-48fa-9d8e-f34513cab9c2" data-linktype="relative-path">query</a></span> or
+subscription returns multiple events in the result set. The result set is a
+buffer containing one or more variable length <b>EVENT_DESCRIPTOR</b>
+structures, as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/a6110d36-28c1-4290-b79e-26aa95a0b1a0" data-linktype="relative-path">2.3.1</a></span>.
+Methods that return multiple events always return an array of offsets into the
+buffer for the individual events.</p><p>The records are transferred as a set of bytes. All integer
+fields in this structure MUST be in little-endian byte order (that is, least
+significant byte first).</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>totalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>headerSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>eventOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bookmarkOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>binXmlSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>eventData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>numberOfSubqueryIDs</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>subqueryIDs
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bookMarkData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>totalSize (4 bytes): </b>A 32-bit unsigned integer
+that contains the total size in bytes of this structure, including the header.</p><p><b>headerSize (4 bytes): </b>This MUST always be set
+to 0x00000010.</p><p><b>eventOffset (4 bytes): </b>This MUST always be set
+to 0x00000010.</p><p><b>bookmarkOffset (4 bytes): </b>A 32-bit unsigned
+integer that contains the byte offset from the start of this structure to <b>bookMarkData</b>.</p><p><b>binXmlSize (4 bytes): </b>Size in bytes of the <span><a href="c73573ae-1c90-43a2-a65f-ad7501155956" data-linktype="relative-path">BinXml</a></span>
+data in the <b>eventData</b> field.</p><p><b>eventData (variable): </b> A byte-array that
+contains variable length BinXml data.</p><p><b>numberOfSubqueryIDs (4 bytes): </b> Number of <b>subqueryIDs</b>
+fields that follow. This is 0 if the event is selected by an XPath expression
+(rather than a <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_a1cab17b-981f-444d-90cc-d4e753a9650f" data-linktype="relative-path">structured XML query</a></span>).</p><p><b>subqueryIDs (variable): </b> An array of <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_01a27d52-4598-43c0-a92b-4518e6e5dfc3" data-linktype="relative-path">subquery</a></span>
+IDs. Events that are selected using a structured XML query can be selected by
+one or more subqueries. Each subquery has either an ID specified in the XML
+element that defines the subquery, or defaults to 0xFFFFFFFF. This list has an
+entry for each subquery that matches the event. If two subqueries select the
+event, and both use the same ID, the ID only is listed once.</p><p><b>bookMarkData (variable): </b>A byte-array that
+contains variable length <span><a href="726c3b3b-eaa6-48f2-a592-519459a4eeb1" data-linktype="relative-path">bookmark</a></span> data, as
+specified:</p><dl>
+<dd>
+<p>A query can refer to several channels or <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_ddd2e7db-ea8f-4488-ac5f-e77d59abe9e4" data-linktype="relative-path">backup
+event logs</a></span>. A subscription can refer to several channels. To
+accurately record the state of a query, it is necessary to know where the file <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a></span>
+(bookmark) is with respect to those channels or backup event logs. The bookmark
+data is encoded as follows. Note that all integer fields in this structure MUST
+be in little-endian byte order (that is, least significant byte first).</p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bookmarkSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>headerSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>channelSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>currentChannel</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>readDirection</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>recordIdsOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>logRecordNumbers
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>bookmarkSize (4 bytes): </b>A
+32-bit unsigned integer that contains the total size in bytes of the bookmark,
+including the header and <b>logRecordNumbers</b>.</p>
+</dd>
+<dd>
+<p><b>headerSize (4 bytes): </b>A
+32-bit unsigned integer, and MUST be set to 0x00000018.</p>
+</dd>
+<dd>
+<p><b>channelSize (4 bytes): </b> A
+32-bit unsigned integer that contains the number of channels in the query. This
+is the number of elements in <b>logRecordNumbers</b>.</p>
+</dd>
+<dd>
+<p><b>currentChannel (4 bytes):
+</b> A 32-bit unsigned integer that indicates what channel the current event is
+from.</p>
+</dd>
+<dd>
+<p><b>readDirection (4 bytes): </b>A
+32-bit unsigned integer that contains the read direction. 0x00000000 indicates
+chronological order based on time written, and 0x00000001 indicates reverse
+order.</p>
+</dd>
+<dd>
+<p><b>recordIdsOffset (4
+bytes): </b>A 32-bit unsigned integer that contains the byte offset from the
+start of the header to <b>logRecordNumbers</b>.</p>
+</dd>
+<dd>
+<p><b>logRecordNumbers
+(variable): </b> An array of 64-bit unsigned integers that contain the record
+numbers for each of the channels or backup event logs. The order of the record
+numbers MUST match the order of the channels or backup event logs in the query
+(for example, the first channel in the query corresponds to the first member of
+the array).</p>
+</dd></dl></div>

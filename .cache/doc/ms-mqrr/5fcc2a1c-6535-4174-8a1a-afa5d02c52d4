@@ -1,0 +1,17 @@
+<div class="content"><p><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_70ce3665-ae64-44b4-88fe-7c1dcdcd5417" data-linktype="relative-path">Microsoft
+Message Queuing (MSMQ)</a> is a communications service that provides
+asynchronous and reliable <a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a>
+passing between client applications running on different hosts. In MSMQ,
+clients send application messages to a <a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a> and/or consume
+application messages from a queue. The queue provides persistence of the
+messages, enabling them to survive across application restarts and allowing the
+sending and receiving client applications to send and receive messages
+asynchronously from each other.</p><p>Queues are typically hosted by a communications service
+called a <a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue manager</a>.
+By hosting the queue manager in a separate service from the client
+applications, applications can communicate even if they never execute at the
+same time by exchanging messages via a queue hosted by the queue manager. </p><p>The queue manager can execute on a different node than the
+client applications. When this scenario occurs, a protocol is required to
+insert messages into the queue, and another protocol is needed to consume
+messages from the queue. The Message Queuing (MSMQ): Queue Manager Remote Read
+Protocol provides a protocol for consuming messages from a <a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_91d29587-3e24-439b-8f2c-c2a43be99afc" data-linktype="relative-path">remote queue</a>.</p></div>

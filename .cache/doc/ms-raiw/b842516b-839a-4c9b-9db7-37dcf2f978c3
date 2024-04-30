@@ -1,0 +1,16 @@
+<div class="content"><p>The WINSINTF_SCV_OPC_E enumeration specifies the type of <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_345c3de7-adfa-4386-9ba5-f5f572af489c" data-linktype="relative-path">scavenging</a> to be done on
+the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target WINS server</a>.
+This enumeration is used in the structure <a href="aaeca729-2562-4717-a545-58177e58187f" data-linktype="relative-path">WINSINTF_SCV_REQ_T</a>.</p><dl>
+<dd>
+<div><pre> typedef  enum _WINSINTF_SCV_OPC_E
+ {
+   WINSINTF_E_SCV_GENERAL = 0,
+   WINSINTF_E_SCV_VERIFY
+ } WINSINTF_SCV_OPC_E,
+  *PWINSINTF_SCV_OPC_E;
+</pre></div>
+</dd></dl><p><b>WINSINTF_E_SCV_GENERAL:  </b>Requests normal
+scavenging operation.</p><p><b>WINSINTF_E_SCV_VERIFY:  </b>Verifies only the
+replicated <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_ea127e55-202b-4307-9009-a50438ac7e9d" data-linktype="relative-path">active records</a>
+with their <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_d93e9595-3be8-4e5b-933d-7a5b2d501ed0" data-linktype="relative-path">owner NBNS
+servers</a> for their validity.</p></div>

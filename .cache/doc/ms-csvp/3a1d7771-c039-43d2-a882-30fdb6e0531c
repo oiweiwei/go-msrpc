@@ -1,0 +1,60 @@
+<div class="content"><p><b>ClusterFileShareTestSetupState</b> transitions to <b>ClusterFileShareTestSetup</b>.</p><p>The CprepCsvTestSetup3 method can be used to set up in advance
+any constructs necessary to support calls to <b>IClusterStorage3::CprepCreateNewSmbShares3</b>
+or <b>IClusterStorage3::CprepConnectToNewSmbShares3</b>.</p><dl>
+<dd>
+<div><pre> HRESULT CprepCsvTestSetup3(
+   [in] GUID TestShareGuid,
+   [in, string] LPWSTR Reserved
+ );
+</pre></div>
+</dd></dl><p><b>TestShareGuid: </b>The client generates a <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> and passes it to all <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_762051d8-4fdc-437e-af9d-3f4da77c3c7d" data-linktype="relative-path">nodes</a>. The GUID can be used
+to form a unique <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_a49a79ea-dac7-4016-9a84-cf87161db7e3" data-linktype="relative-path">share</a>
+name and create the <b>ClusPrepShareList</b>.</p><p><b>Reserved: </b>A string generated on the client and
+passed to the server. The string MAY be used to supply a user password. </p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method implementation.
+For more information about Win32 error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 5.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Set up any constructs necessary to support proper processing of
+calls to <b>IClusterStorage3::CprepCreateNewSmbShares3</b>. Note that any
+constructs created in this call SHOULD be cleaned up during the final release
+on the <b>IClusterStorage3</b> <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>.</p>
+</li><li><p><span><span> 
+</span></span>Create a set of <b>ClusPrepShares</b> and place them in a <b>ClusPrepShareList</b> 
+that represents shares accessible via an implementation-specific mechanism from
+other servers.</p>
+</li><li><p><span><span> 
+</span></span>Change the state of <b>ClusterFileShareTestSetupState</b> to <b>ClusterFileShareTestSetup</b>.</p>
+</li></ul></div>

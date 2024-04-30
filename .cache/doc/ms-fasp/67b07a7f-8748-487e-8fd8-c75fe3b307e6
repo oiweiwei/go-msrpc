@@ -1,0 +1,34 @@
+<div class="content"><p> </p><p>This structure contains a list of address structures. Static
+and symbolic representations are supported, but a structure can contain only
+one representation type. The address structure representations follow:</p><p>Static Representation</p><ul><li><p><span><span> 
+</span></span><span><a href="a230f0e4-8005-4983-89e3-e417b3354ae5" data-linktype="relative-path">FW_IPV4_SUBNET_LIST</a></span></p>
+</li><li><p><span><span> 
+</span></span><span><a href="de836948-bf68-424d-906d-406723bd0deb" data-linktype="relative-path">FW_IPV4_RANGE_LIST</a></span></p>
+</li><li><p><span><span> 
+</span></span><span><a href="a8d05086-bc48-453e-aebf-aa11fb95b9bd" data-linktype="relative-path">FW_IPV6_SUBNET_LIST</a></span></p>
+</li><li><p><span><span> 
+</span></span><span><a href="062373f2-c3dc-49a9-8b3f-960d2a88332d" data-linktype="relative-path">FW_IPV6_RANGE_LIST</a></span></p>
+</li></ul><p>Symbolic Representation</p><ul><li><p><span><span> 
+</span></span><span><a href="d69ec3fe-8507-4524-bdcc-813cbb3bf85f" data-linktype="relative-path">FW_ADDRESS_KEYWORD</a></span>
+enumeration values</p>
+</li></ul><p>The FW_ADDRESSES definition follows:</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_ADDRESSES {
+   unsigned long dwV4AddressKeywords;
+   unsigned long dwV6AddressKeywords;
+   FW_IPV4_SUBNET_LIST V4SubNets;
+   FW_IPV4_RANGE_LIST V4Ranges;
+   FW_IPV6_SUBNET_LIST V6SubNets;
+   FW_IPV6_RANGE_LIST V6Ranges;
+ } FW_ADDRESSES,
+  *PFW_ADDRESSES;
+</pre></div>
+</dd></dl><p><b>dwV4AddressKeywords:</b>  A combination
+of FW_ADDRESS_KEYWORD flags. Addresses in this field are specified from the
+IPv4 address space.</p><p><b>dwV6AddressKeywords:</b>  A combination
+of FW_ADDRESS_KEYWORD flags. Addresses in this field are specified from the
+IPv6 address space.</p><p><b>V4SubNets:</b>  A list of specifically
+defined IPv4 address subnets.</p><p><b>V4Ranges:</b>  A list of specifically
+defined IPv4 address ranges.</p><p><b>V6SubNets:</b>  A list of specifically
+defined IPv6 address subnets.</p><p><b>V6Ranges:</b>  A list of specifically
+defined IPv6 address ranges.</p></div>

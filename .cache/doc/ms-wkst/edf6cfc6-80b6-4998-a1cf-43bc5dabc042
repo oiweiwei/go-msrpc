@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The <b>UNICODE_STRING</b> structure specifies a <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string.</p><dl>
+<dd>
+<div><pre> typedef struct _UNICODE_STRING {
+   unsigned short Length;
+   unsigned short MaximumLength;
+   [size_is(MaximumLength / 2), length_is((Length) / 2)] 
+     unsigned short* Buffer;
+ } UNICODE_STRING,
+  *PUNICODE_STRING;
+</pre></div>
+</dd></dl><p><b>Length:</b> The length, in bytes, of the string
+pointed to by the <b>Buffer</b> member, not including the terminating null
+character, if any. This value MUST be a multiple of 2.</p><p><b>MaximumLength:</b> The total size, in bytes, of
+the <b>Buffer</b>. If this value is not a multiple of 2, the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server
+(2)</a></span> MUST decrement this value by 1. This value MUST NOT be less than
+<b>Length</b>.</p><p><b>Buffer:</b> The Unicode <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_409411c4-b4ed-4ab6-b0ee-6d7815f85a35" data-linktype="relative-path">UTF-8</a></span> string. If the
+<b>MaximumLength</b> value is greater than zero, this field MUST contain a
+non-null character. <b>Buffer</b> can contain a terminating null character.</p></div>

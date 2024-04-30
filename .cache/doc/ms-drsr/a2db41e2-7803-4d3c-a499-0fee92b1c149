@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The ATTR structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> for
+the identity and values of an <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   ATTRTYP attrTyp;
+   ATTRVALBLOCK AttrVal;
+ } ATTR;
+</pre></div>
+</dd></dl><p><b>attrTyp:</b>  An attribute.</p><p><b>AttrVal:</b>  The sequence of values for
+this attribute.</p></div>

@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>DHCP_FAILOVER_SERVER</b> enumeration defines a set of
+possible values for a DHCPv4 server in a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_f9098c6a-2548-43c0-8dd4-4327299e8506" data-linktype="relative-path">failover</a></span>
+relationship.</p><dl>
+<dd>
+<div><pre> typedef  enum _DHCP_FAILOVER_SERVER
+ {
+   PrimaryServer = 0x00000000,
+   SecondaryServer = 0x00000001
+ } DHCP_FAILOVER_SERVER,
+  *LPDHCP_FAILOVER_SERVER;
+</pre></div>
+</dd></dl><p><b>PrimaryServer:</b>  The server is a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_bb76b8f0-0929-47c8-a06a-d3f9a8761d93" data-linktype="relative-path">primary
+server</a></span> in the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_ba9fcec9-1438-47ec-958c-873c1a0d4c5e" data-linktype="relative-path">failover relationship</a></span>.</p><p><b>SecondaryServer:</b>  The server is a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_c5baedf3-3fef-4f0e-9a48-79b7cdb04b7f" data-linktype="relative-path">secondary
+server</a></span> in the failover relationship.</p></div>

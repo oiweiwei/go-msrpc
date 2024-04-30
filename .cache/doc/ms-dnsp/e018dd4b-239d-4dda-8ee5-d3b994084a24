@@ -1,0 +1,63 @@
+<div class="content"><p> </p><p>The DNS_RPC_RECORD_NSEC structure contains the next <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a></span>
+in the zone as specified in section 4 of <span><a href="https://go.microsoft.com/fwlink/?LinkId=107052" data-linktype="external">[RFC4034]</a></span>.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a> This record MUST be formatted
+as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>nameSigner
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NSECBitmap
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>nameSigner (variable): </b>A structure of type <span><a href="3fd41adc-c69e-407b-979e-721251403132" data-linktype="relative-path">DNS_RPC_NAME</a></span>
+(section 2.2.2.2.1) containing the FQDN of the originating host for this
+record.</p><p><b>NSECBitmap (variable): </b>Bitmap of types present
+at this node as specified in section 4 of [RFC4034].</p></div>

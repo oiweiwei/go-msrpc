@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>The VDS_VOLUME_TYPE enumeration defines the set of valid
+types for a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> object.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_VOLUME_TYPE
+ {
+   VDS_VT_UNKNOWN = 0x00000000,
+   VDS_VT_SIMPLE = 0x0000000A,
+   VDS_VT_SPAN = 0x0000000B,
+   VDS_VT_STRIPE = 0x0000000C,
+   VDS_VT_MIRROR = 0x0000000D,
+   VDS_VT_PARITY = 0x0000000E
+ } VDS_VOLUME_TYPE;
+</pre></div>
+</dd></dl><p><b>VDS_VT_UNKNOWN:  </b>The status of the volume is
+unknown.</p><p><b>VDS_VT_SIMPLE:  </b>The volume type is simple: it
+is composed of extents from exactly one <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.</p><p><b>VDS_VT_SPAN:  </b>The volume type is spanned: it
+is composed of extents from more than one disk.</p><p><b>VDS_VT_STRIPE:  </b>The volume type is striped,
+which is equivalent to <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_eebb19ad-46a7-42e4-8a55-f377d895a862" data-linktype="relative-path">RAID-0</a></span>.</p><p><b>VDS_VT_MIRROR:  </b>The volume type is mirrored,
+which is equivalent to <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_4390e750-67a7-49b4-92b3-5bca829bbd8b" data-linktype="relative-path">RAID-1</a></span>.</p><p><b>VDS_VT_PARITY:  </b>The volume type is striped
+with parity, which accounts for <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1c16ca36-c1ca-4bdb-9c4e-6b899fbb8435" data-linktype="relative-path">RAID</a></span> levels 3, 4, 5,
+and 6.</p></div>

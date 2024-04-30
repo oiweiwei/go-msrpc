@@ -1,0 +1,27 @@
+<div class="content"><p>The CERTTRANSBLOB structure defines a byte buffer that is
+used to store and request <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a>,
+transmit responses, manipulate Unicode strings, and marshal property values.</p><dl>
+<dd>
+<div><pre> typedef struct _CERTTRANSBLOB {
+   ULONG cb;
+   [size_is(cb), unique] BYTE* pb;
+ } CERTTRANSBLOB;
+</pre></div>
+</dd></dl><p><b>cb:</b>  An unsigned integer value that
+MUST contain the length, in bytes, of the buffer that is pointed to by <b>pb</b>.</p><p><b>pb:</b>  The <a href="2f1a20c5-f4ea-40f2-839c-b8bb071446ba" data-linktype="relative-path">BYTE</a> buffer that contains
+the binary contents being transported in this CERTTRANSBLOB. That content
+consists of any of the following entities:</p><ul><li><p><span><span>  </span></span>A
+certificate.</p>
+</li><li><p><span><span>  </span></span>A
+certificate request.</p>
+</li><li><p><span><span>  </span></span><a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> properties.</p>
+</li><li><p><span><span>  </span></span>Any
+common structure that is defined in section <a href="d9e0f247-2b38-466d-934b-83093c6a11a5" data-linktype="relative-path"><span>2.2.1</span></a> other than <a href="8d5e0fb0-f357-48b2-808c-bb125fd0609e" data-linktype="relative-path"><span>VARIANT</span></a> or <a href="5503c7fa-c78e-4fda-adc9-21030751bce7" data-linktype="relative-path"><span>CERTVIEWRESTRICTION</span></a>.</p>
+</li><li><p><span><span>  </span></span>Any
+common structure that is defined in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>
+section <a href="../ms-wcce/a2d33e71-31d9-4934-a369-07ed8c502ae5" data-linktype="relative-path">2.2.2</a>.</p>
+</li></ul><p>The CERTTRANSBLOB structure is empty when <b>cb</b> is set
+to 0 and <b>pb</b> is set to NULL.</p><p>The marshaling of other structures that can be passed in the
+<b>pb</b> byte buffer of CERTTRANSBLOB is defined in [MS-WCCE] section 2.2.2. </p><p>All instances of CERTTRANSBLOB that are used by this
+protocol MUST use the marshaling rules that are described in the following
+sections or in [MS-WCCE] section 2.2.2.</p></div>

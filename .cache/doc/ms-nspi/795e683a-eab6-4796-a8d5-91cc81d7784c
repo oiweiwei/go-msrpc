@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The BinaryArray_r structure is an array of <span><a href="1f2db872-f948-4637-a923-eca5df76130a" data-linktype="relative-path">Binary_r</a></span>
+data structures.</p><dl>
+<dd>
+<div><pre> typedef struct _BinaryArray_r {
+   [range(0,100000)] DWORD cValues;
+   [size_is(cValues)] Binary_r* lpbin;
+ } BinaryArray_r;
+</pre></div>
+</dd></dl><p><b>cValues:</b>  The number of Binary_r
+data structures represented in the BinaryArray_r structure. This value MUST NOT
+exceed 100,000.</p><p><b>lpbin:</b>  The Binary_r data
+structures.</p></div>

@@ -1,0 +1,73 @@
+<div class="content"><p> </p><p>The SECURITYBINDING structure describes an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+<span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_05fd3925-0672-4f24-9dd9-2b9d441eb333" data-linktype="relative-path">security
+provider</a></span> and a <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_547217ca-134f-4b43-b375-f5bca4c16ce4" data-linktype="relative-path">service principal name (SPN)</a></span>.
+A client uses these to communicate with either an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_19f75354-9b0b-47cb-a00b-4ff196883b32" data-linktype="relative-path">object resolver</a></span> or
+an <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_5b284f60-ee33-4d15-9a7b-0fb82d7c6b68" data-linktype="relative-path">object
+exporter</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>wAuthnSvc</p>
+  </td>
+  <td colspan="16">
+  <p>Reserved (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>aPrincName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>wAuthnSvc (2 bytes): </b> An RPC security provider
+constant, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/d4097450-c62f-484b-872f-ddf59a7a0d36" data-linktype="relative-path">2.2.1.1.7</a></span>.
+This field MUST NOT contain the value RPC_C_AUTHN_DEFAULT. Additionally, if
+this field is RPC_C_AUTHN_NONE, the <b>Reserved</b> and <b>aPrincName</b>
+fields MUST NOT be present, and this indicates that the client MUST NOT use any
+security on the ORPC invocations (see section <span><a href="a32b1703-e8dc-4940-9624-825ccc7db328" data-linktype="relative-path">3.2.4.2</a></span>). If this
+field is not RPC_C_AUTHN_NONE, the <b>Reserved</b> and <b>aPrincName</b> fields
+MUST be present.</p><p><b>Reserved (2 bytes): </b>If present, MUST be set to
+0xffff when sent and MUST be ignored on receipt. </p><p><b>aPrincName (variable): </b>An optional
+null-terminated Unicode string that, if present, MUST contain an SPN. An empty
+null-terminated Unicode string in this field indicates that no SPN is
+specified, and the client MUST NOT use an SPN for the ORPC invocations (see
+section 3.2.4.2).</p></div>

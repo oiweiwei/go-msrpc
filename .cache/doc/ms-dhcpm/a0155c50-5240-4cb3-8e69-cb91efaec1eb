@@ -1,0 +1,68 @@
+<div class="content"><p> </p><p>The <b>R_DhcpDeleteSuperScopeV4</b> method deletes the
+specified <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b4838551-37f3-47de-a36c-7df328750d6d" data-linktype="relative-path">superscope</a></span> from the
+DHCPv4 server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpDeleteSuperScopeV4(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, ref, string] WCHAR* SuperScopeName
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SuperScopeName: </b>This is a pointer to <span><a href="../ms-dtyp/7df7c1d5-492c-4db4-a992-5cd9e887c5d7" data-linktype="relative-path">WCHAR</a></span>
+that points to the name of the superscope that needs to be deleted.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist on the DHCP
+  server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 38.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not, return
+the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Validate the input superscope name. If the superscope name is
+NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4SuperScope</b> ADM element entry
+corresponding to the <i>SuperScopeName</i> parameter from the server ADM element
+<b>DHCPv4SuperScopesList</b>. If the <b>DHCPv4SuperScope</b> ADM element entry
+is not found, return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>Delete the <b>DHCPv4SuperScope</b> ADM element entry from the <b>DHCPv4SuperScopesList</b>
+ADM element.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server ADM element <b>DHCPV4ScopesList</b>.
+If the <b>DHCPv4Scope.SuperScopeId</b> ADM element is the same as Id of the
+deleted superscope, modify the <b>DHCPv4Scope.SuperScopeId</b> ADM element to 0
+and return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

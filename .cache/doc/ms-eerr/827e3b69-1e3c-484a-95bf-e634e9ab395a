@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The BinaryEEInfo structure encodes binary data that contains
+troubleshooting information.</p><dl>
+<dd>
+<div><pre> typedef struct tagBinaryEEInfo {
+   short nSize;
+   [size_is(nSize)] unsigned char* pBlob;
+ } BinaryEEInfo;
+</pre></div>
+</dd></dl><p><b>nSize:</b>  This field MUST contain the
+size of <b>pBlob</b> in bytes.</p><p><b>pBlob:</b>  Binary data that contains
+troubleshooting information.</p></div>

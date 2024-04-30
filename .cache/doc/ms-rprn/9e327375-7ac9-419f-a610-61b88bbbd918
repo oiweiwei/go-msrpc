@@ -1,0 +1,556 @@
+<div class="content"><p>The <b>_PRINTER_INFO_2</b> structure specifies printer
+information. It is a custom-<a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_37e89d91-2800-49d1-9d17-45ebe167ad87" data-linktype="relative-path">marshaled</a>
+form of the <b>_PRINTER_INFO_2 </b>(section <a href="d40734e1-ac9b-4b2a-8628-83a1bc7bbeed" data-linktype="relative-path">2.2.1.10.3)</a> structure.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (variable): </b>An array of one or
+more groups of fixed-size fields, which are defined as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ServerNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PrinterNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ShareNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PortNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DriverNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CommentOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LocationOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DevModeOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SepFileOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PrintProcessorOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DatatypeOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ParametersOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecurityDescriptorOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Attributes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Priority</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DefaultPriority</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StartTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UntilTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Status</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cJobs</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AveragePPM</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>ServerNameOffset (4
+bytes): </b>An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>ServerNameArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>PrinterNameOffset (4
+bytes): </b>An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>PrinterNameArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>ShareNameOffset (4
+bytes): </b>An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>ShareNameArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>PortNameOffset (4 bytes):
+</b>An unsigned integer that specifies the number of bytes from the start of
+the structure to the start of the <b>PortNameArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>DriverNameOffset (4
+bytes): </b>An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>DriverNameArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>CommentOffset (4 bytes): </b>An
+unsigned integer that specifies the number of bytes from the start of the
+structure to the start of the <b>CommentArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>LocationOffset (4 bytes):
+</b>An unsigned integer that specifies the number of bytes from the start of
+the structure to the start of the <b>LocationArray</b> member. </p>
+</dd>
+<dd>
+<p><b>DevModeOffset (4 bytes): </b>An
+unsigned integer that specifies the number of bytes from the start of the structure
+to the start of the <b>DevModeArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>SepFileOffset (4 bytes): </b>An
+unsigned integer that specifies the number of bytes from the start of the
+structure to the start of the <b>SepFileArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>PrintProcessorOffset (4
+bytes): </b>An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>PrintProcessorArray</b> member. </p>
+</dd>
+<dd>
+<p><b>DatatypeOffset (4 bytes):
+</b>An unsigned integer that specifies the number of bytes from the start of
+the structure to the start of the <b>DatatypeArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>ParametersOffset (4
+bytes): </b>An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>ParametersArray</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>SecurityDescriptorOffset
+(4 bytes): </b>An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>SecurityDescriptorArray</b>
+member.</p>
+</dd>
+<dd>
+<p><b>Attributes (4
+bytes):</b> Specifies printer attributes. It is the result of a bitwise OR
+of zero or more printer attribute values (section <a href="1625e9d9-29e4-48f4-b83d-3bd0fdaea787" data-linktype="relative-path">2.2.3.12</a>).</p>
+</dd>
+<dd>
+<p><b>Priority (4
+bytes):</b> Specifies information about job priority as a decimal number
+from 0 through 99, inclusive.</p>
+</dd>
+<dd>
+<p><b>DefaultPriority (4
+bytes):</b> Specifies the default priority value assigned to each print
+job. The value of this member MUST be from 0 through 99, inclusive.</p>
+</dd>
+<dd>
+<p><b>StartTime (4 bytes):</b> Specifies
+the earliest time that a job can be printed. The time is expressed as the
+number of minutes after 12:00 AM GMT within a 24-hour boundary.</p>
+</dd>
+<dd>
+<p><b>UntilTime (4 bytes):</b> Specifies
+the latest time that a job can be printed. The time is expressed as the number
+of minutes after 12:00 AM GMT within a 24-hour boundary.</p>
+</dd>
+<dd>
+<p><b>cJobs (4
+bytes):</b> The number of jobs that are currently in the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_569f1f1c-f426-46fa-91d2-3d1eb0b19aa1" data-linktype="relative-path">print queue</a>.</p>
+</dd>
+<dd>
+<p><b>AveragePPM (4 bytes):</b> Specifies
+the average pages per minute that have been printed on the printer.</p>
+</dd></dl><p><b>Variable_Data (variable): </b>An array of zero or
+more groups of optional, variable-size fields, which are defined as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SecurityDescriptorArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ParametersArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DatatypeArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PrintProcessorArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SepFileArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DevModeArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LocationArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CommentArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DriverNameArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PortNameArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ShareNameArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PrinterNameArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ServerNameArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>SecurityDescriptorArray (variable):</b>
+A <b>SECURITY_DESCRIPTOR</b> structure that specifies the security information
+of the printer. The location of this buffer is determined by the value of the <b>SecurityDescriptorOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>ParametersArray
+(variable):</b> A string that specifies the printer’s parameters. The location
+of this buffer is determined by the value of the <b>ParametersOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>DatatypeArray (variable):</b>
+A string that specifies the datatype of the printer. The location of this
+buffer is determined by the value of the <b>Datatype</b> member. </p>
+</dd>
+<dd>
+<p><b>PrintProcessorArray
+(variable):</b> A string that specifies the name of the print processor. The
+location of this buffer is determined by the value of the <b>PrintProcesorOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>SepFileArray (variable):</b>
+A string that specifies the name of the separator file. The location of this
+buffer is determined by the value of the <b>SepFileOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>DevModeArray (variable):</b>
+A DevMode structure that specifies the printer’s DevMode information. The
+location of this buffer is determined by the value of the <b>DevModeOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>LocationArray (variable):</b>
+A string that specifies the location of the printer. The location of this
+buffer is determined by the value of the <b>LocationOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>CommentArray (variable):</b>
+A string that specifies a comment associated with the printer. The location of
+this buffer is determined by the value of the <b>CommentOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>DriverNameArray
+(variable):</b> A string that specifies the name of the driver. The location of
+this buffer is determined by the value of the <b>DriverNameOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>PortNameArray (variable):</b>
+A string that specifies the name of the port. The location of this buffer is
+determined by the value of the <b>PortNameOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>ShareNameArray
+(variable):</b> A string that specifies the share name of the printer. The
+location of this buffer is determined by the value of the <b>ShareNameOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>PrinterNameArray
+(variable):</b> A string that specifies the name of the printer. The location
+of this buffer is determined by the value of the <b>PrinterNameOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>ServerNameArray
+(variable):</b> A string that specifies the name of the server. The location of
+this buffer is determined by the value of the <b>ServerNameOffser</b> member.</p>
+</dd></dl></div>

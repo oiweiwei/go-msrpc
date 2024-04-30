@@ -1,0 +1,9 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/56a8d298-dbeb-4eb5-ad98-76536ec352f8" data-linktype="external">msdn link</a></p><p>The <b>CYPHER_BLOCK</b> structure defines an encrypted
+eight-character string. The type of encryption used is application dependent.</p><dl>
+<dd>
+<div><pre> typedef struct _CYPHER_BLOCK {
+   CHAR data[8];
+ } CYPHER_BLOCK,
+  *PCYPHER_BLOCK;
+</pre></div>
+</dd></dl><p><b>data:</b> An encrypted eight-character string.</p></div>

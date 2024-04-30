@@ -1,0 +1,94 @@
+<div class="content"><p> </p><p>The <b>R_FtpQueryStatistics2</b> method is called by the
+client. In response, the server returns statistical data from the FTP server.</p><dl>
+<dd>
+<div><pre> DWORD R_FtpQueryStatistics2(
+   [in, string, unique] INET_INFO_IMPERSONATE_HANDLE pszServer,
+   [in] DWORD dwLevel,
+   [in] DWORD dwInstance,
+   [in] DWORD dwReserved,
+   [out, switch_is(dwLevel)] LPFTP_STATISTICS_STRUCT InfoStruct
+ );
+</pre></div>
+</dd></dl><p><b>pszServer: </b>The custom binding handle for the
+target system, as specified in section <span><a href="a6931aa0-3ab6-4018-a398-e142cb8e409e" data-linktype="relative-path">2.1.1</a></span>. The value
+MUST NOT be used by the server implementation.</p><p><b>dwLevel: </b>The level of detail to be retrieved.
+This parameter MUST be set to 0 by the client. Other values MUST generate a
+return code of ERROR_INVALID_LEVEL (0x0000007C).</p><p><b>dwInstance: </b>The ID of the protocol <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_1623705d-a7a0-4e46-9a66-66e9ee63d961" data-linktype="relative-path">server
+instance</a></span> whose statistical data is being requested. The following
+values have special meanings.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Return global (not per server instance) statistics
+  data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xF0000003</p>
+  </td>
+  <td>
+  <p>Return statistics aggregated across all protocol
+  server instances.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwReserved: </b>This value MUST be ignored by the
+server.</p><p><b>InfoStruct: </b>The pointer to an <span><b><a href="5c6d2287-7dec-4860-a52f-697fd58035a7" data-linktype="relative-path">FTP_STATISTICS_STRUCT</a></b></span>
+union to contain the retrieved statistics data.</p><p><b>Return Values: </b>The method returns 0
+(ERROR_SUCCESS) to indicate success; otherwise, it returns a nonzero error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>
+or [MS-ERREF] section <span><a href="../ms-erref/596a1078-e883-4972-9bbc-49e60bebca55" data-linktype="relative-path">2.3.1</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The system cannot find the specified file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000007C</p>
+  <p>ERROR_INVALID_LEVEL</p>
+  </td>
+  <td>
+  <p>The system call level is not correct.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000426</p>
+  <p>ERROR_SERVICE_NOT_ACTIVE</p>
+  </td>
+  <td>
+  <p>The service is not running.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown: </b>No exceptions are thrown
+beyond those thrown by the underlying <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, as
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+</p><p>In response to this request from the client, the server MUST
+initialize <i>InfoStruct</i> with the statistical data for the FTP server if
+the return code indicates success.</p></div>

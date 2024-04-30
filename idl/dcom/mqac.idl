@@ -1,0 +1,2367 @@
+import "ms-dtyp.idl";
+import "ms-oaut.idl";
+ 
+typedef struct BOID {
+    unsigned char rgb[16];
+} BOID;
+ 
+typedef struct XACTTRANSINFO {
+    BOID    uow;
+    LONG    isoLevel;
+    ULONG   isoFlags;
+    DWORD   grfTCSupported;
+    DWORD   grfRMSupported;
+    DWORD   grfTCSupportedRetaining;
+    DWORD   grfRMSupportedRetaining;
+} XACTTRANSINFO;
+ 
+typedef enum 
+{
+  XACTTC_NONE = 0x00000000,
+  XACTTC_SYNC_PHASEONE = 0x00000001,
+  XACTTC_SYNC_PHASETWO = 0x00000002,
+  XACTTC_SYNC = 0x00000002,
+  XACTTC_ASYNC_PHASEONE = 0x00000004,
+  XACTTC_ASYNC = 0x00000004
+} XACTTC;
+ 
+[
+    object,
+    uuid(0fb15084-af41-11ce-bd2b-204c4f4f5020),
+    pointer_default(unique),
+]
+interface ITransaction : IUnknown {
+    HRESULT Commit(
+        [in] short  fRetaining, 
+        [in] DWORD grfTC,
+        [in] DWORD grfRM
+    );
+   
+    HRESULT Abort(
+        [in, unique] BOID* pboidReason,
+        [in] short  fRetaining,
+        [in] short  fAsync
+     );
+    HRESULT GetTransactionInfo
+    (
+        [out] XACTTRANSINFO* pinfo
+    );
+}
+ 
+[
+    object,
+    uuid(B196B287-BAB4-101A-B69C-00AA00341D07),
+    pointer_default(unique)
+]
+interface IEnumConnections : IUnknown
+{
+    typedef IEnumConnections * PENUMCONNECTIONS;
+    typedef IEnumConnections * LPENUMCONNECTIONS;
+    typedef struct tagCONNECTDATA {
+        IUnknown *  pUnk;
+        DWORD       dwCookie;
+    } CONNECTDATA;
+    typedef struct tagCONNECTDATA * PCONNECTDATA;
+    typedef struct tagCONNECTDATA * LPCONNECTDATA;
+   
+    HRESULT Next(
+        [in]  ULONG cConnections,
+        [out, size_is(cConnections), length_is(*pcFetched)]
+            LPCONNECTDATA rgcd,
+        [out] ULONG * pcFetched
+    );
+    HRESULT Skip(
+        [in]  ULONG cConnections
+    );
+    HRESULT Reset(
+        void
+    );
+    HRESULT Clone(
+        [out] IEnumConnections ** ppEnum
+    );
+}
+ 
+interface IConnectionPointContainer; // forward declaration
+ 
+[
+    object,
+    uuid(B196B286-BAB4-101A-B69C-00AA00341D07),
+    pointer_default(unique)
+]
+interface IConnectionPoint : IUnknown
+{
+    typedef IConnectionPoint * PCONNECTIONPOINT;
+    typedef IConnectionPoint * LPCONNECTIONPOINT;
+    HRESULT GetConnectionInterface(
+        [out] IID * pIID
+    );
+    HRESULT GetConnectionPointContainer(
+        [out] IConnectionPointContainer ** ppCPC
+    );
+    HRESULT Advise(
+        [in] IUnknown * pUnkSink,
+        [out] DWORD * pdwCookie
+    );
+    HRESULT Unadvise(
+        [in] DWORD dwCookie
+    );
+    HRESULT EnumConnections(
+        [out] IEnumConnections ** ppEnum
+    );
+}
+ 
+[
+    object,
+    uuid(B196B285-BAB4-101A-B69C-00AA00341D07),
+    pointer_default(unique)
+]
+interface IEnumConnectionPoints : IUnknown
+{
+    typedef IEnumConnectionPoints * PENUMCONNECTIONPOINTS;
+    typedef IEnumConnectionPoints * LPENUMCONNECTIONPOINTS;
+    HRESULT Next(
+        [in]  ULONG cConnections,
+        [out, size_is(cConnections), length_is(*pcFetched)]
+            LPCONNECTIONPOINT * ppCP,
+        [out] ULONG * pcFetched
+    );
+    HRESULT Skip(
+        [in] ULONG cConnections
+    );
+    HRESULT Reset(
+        void
+    );
+    HRESULT Clone(
+        [out] IEnumConnectionPoints ** ppEnum
+    );
+}
+ 
+[
+    object,
+    uuid(B196B284-BAB4-101A-B69C-00AA00341D07),
+    pointer_default(unique)
+]
+interface IConnectionPointContainer : IUnknown
+{
+    typedef IConnectionPointContainer * PCONNECTIONPOINTCONTAINER;
+    typedef IConnectionPointContainer * LPCONNECTIONPOINTCONTAINER;
+    HRESULT EnumConnectionPoints
+    (
+        [out] IEnumConnectionPoints ** ppEnum
+    );
+    HRESULT FindConnectionPoint
+    (
+        [in] REFIID riid,
+        [out] IConnectionPoint ** ppCP
+    );
+}
+ 
+ 
+    // forwards defs
+    interface IMSMQQuery;
+    interface IMSMQQueueInfo;
+    interface IMSMQQueueInfo2;
+    interface IMSMQQueueInfo3;
+    interface IMSMQQueueInfo4;
+    interface IMSMQQueue;
+    interface IMSMQQueue2;
+    interface IMSMQQueue3;
+    interface IMSMQQueue4;
+    interface IMSMQMessage;
+    interface IMSMQQueueInfos;
+    interface IMSMQQueueInfos2;
+    interface IMSMQQueueInfos3;
+    interface IMSMQQueueInfos4;
+    interface IMSMQEvent;
+    interface IMSMQEvent2;
+    interface IMSMQEvent3;
+    interface IMSMQTransaction;
+    interface IMSMQCoordinatedTransactionDispenser;
+    interface IMSMQTransactionDispenser;
+    enum MQCALG {
+        MQMSG_CALG_MD2        = 0x8001,
+        MQMSG_CALG_MD4        = 0x8002,
+        MQMSG_CALG_MD5        = 0x8003,
+        MQMSG_CALG_SHA        = 0x8004,
+        MQMSG_CALG_SHA1       = 0x8004,
+        MQMSG_CALG_MAC        = 0x8005,
+        MQMSG_CALG_RSA_SIGN   = 0x2400,
+        MQMSG_CALG_DSS_SIGN   = 0x2200,
+        MQMSG_CALG_RSA_KEYX   = 0xA400,
+        MQMSG_CALG_DES        = 0x6601,
+        MQMSG_CALG_RC2        = 0x6602,
+        MQMSG_CALG_RC4        = 0x6801,
+        MQMSG_CALG_SEAL       = 0x6802
+    };
+    enum MQTRANSACTION {
+        MQ_NO_TRANSACTION    = 0,
+        MQ_MTS_TRANSACTION   = 1,
+        MQ_XA_TRANSACTION    = 2,
+        MQ_SINGLE_MESSAGE    = 3
+        };
+    enum RELOPS {
+        REL_NOP   = 0,
+        REL_EQ,
+        REL_NEQ,
+        REL_LT,
+        REL_GT,
+        REL_LE,
+        REL_GE
+    };
+    enum MQCERT_REGISTER {
+        MQCERT_REGISTER_ALWAYS         = 1,
+        MQCERT_REGISTER_IF_NOT_EXIST   = 2
+    };
+    enum MQMSGCURSOR {
+        MQMSG_FIRST = 0,
+        MQMSG_CURRENT = 1,
+        MQMSG_NEXT = 2
+    };
+    enum MQMSGCLASS {
+        MQMSG_CLASS_NORMAL                              = 0x0,
+        MQMSG_CLASS_REPORT                              = 0x1,
+        MQMSG_CLASS_ACK_REACH_QUEUE                     = 0x2,
+        MQMSG_CLASS_ACK_RECEIVE                         = 0x4000,
+        MQMSG_CLASS_NACK_BAD_DST_Q                      = 0x8000,
+        MQMSG_CLASS_NACK_PURGED                         = 0x8001,
+        MQMSG_CLASS_NACK_REACH_QUEUE_TIMEOUT            = 0x8002,
+        MQMSG_CLASS_NACK_Q_EXCEED_QUOTA                 = 0x8003,
+        MQMSG_CLASS_NACK_ACCESS_DENIED                  = 0x8004,
+        MQMSG_CLASS_NACK_HOP_COUNT_EXCEEDED             = 0x8005,
+        MQMSG_CLASS_NACK_BAD_SIGNATURE                  = 0x8006,
+        MQMSG_CLASS_NACK_BAD_ENCRYPTION                 = 0x8007,
+        MQMSG_CLASS_NACK_COULD_NOT_ENCRYPT              = 0x8008,
+        MQMSG_CLASS_NACK_NOT_TRANSACTIONAL_Q            = 0x8009,
+        MQMSG_CLASS_NACK_NOT_TRANSACTIONAL_MSG          = 0x800a,
+        MQMSG_CLASS_NACK_UNSUPPORTED_CRYPTO_PROVIDER    = 0x800b,
+        MQMSG_CLASS_NACK_SOURCE_COMPUTER_GUID_CHANGED   = 0x800c,
+        MQMSG_CLASS_NACK_Q_DELETED                      = 0xc000,
+        MQMSG_CLASS_NACK_Q_PURGED                       = 0xc001,
+        MQMSG_CLASS_NACK_RECEIVE_TIMEOUT                = 0xc002,
+        MQMSG_CLASS_NACK_RECEIVE_TIMEOUT_AT_SENDER      = 0xc003
+    };
+    enum MQMSGDELIVERY {
+        MQMSG_DELIVERY_EXPRESS      = 0,
+        MQMSG_DELIVERY_RECOVERABLE  = 1
+    };
+    enum MQMSGACKNOWLEDGEMENT {
+        MQMSG_ACKNOWLEDGMENT_NONE               = 0x00,
+        MQMSG_ACKNOWLEDGMENT_POS_ARRIVAL        = 0x01,
+        MQMSG_ACKNOWLEDGMENT_POS_RECEIVE        = 0x02,
+        MQMSG_ACKNOWLEDGMENT_NEG_ARRIVAL        = 0x04,
+        MQMSG_ACKNOWLEDGMENT_NEG_RECEIVE        = 0x08,
+        MQMSG_ACKNOWLEDGMENT_NACK_REACH_QUEUE   = 0x04,
+        MQMSG_ACKNOWLEDGMENT_FULL_REACH_QUEUE   = 0x05,
+        MQMSG_ACKNOWLEDGMENT_NACK_RECEIVE       = 0x0c,
+        MQMSG_ACKNOWLEDGMENT_FULL_RECEIVE       = 0x0e
+    };
+    enum MQMSGJOURNAL {
+        MQMSG_JOURNAL_NONE   = 0,
+        MQMSG_DEADLETTER     = 1,
+        MQMSG_JOURNAL        = 2
+    };
+    enum MQMSGTRACE {
+        MQMSG_TRACE_NONE                   = 0,
+        MQMSG_SEND_ROUTE_TO_REPORT_QUEUE   = 1
+    };
+    enum MQMSGSENDERIDTYPE {
+        MQMSG_SENDERID_TYPE_NONE   = 0,
+        MQMSG_SENDERID_TYPE_SID    = 1
+    };
+    enum MQMSGPRIVLEVEL {
+        MQMSG_PRIV_LEVEL_NONE            = 0,
+        MQMSG_PRIV_LEVEL_BODY_BASE       = 1,
+        MQMSG_PRIV_LEVEL_BODY_ENHANCED   = 3
+    };
+    enum MQMSGAUTHLEVEL {
+        MQMSG_AUTH_LEVEL_NONE     = 0,
+        MQMSG_AUTH_LEVEL_ALWAYS   = 1,
+        MQMSG_AUTH_LEVEL_MSMQ10   = 2,
+        MQMSG_AUTH_LEVEL_SIG10    = 2,
+        MQMSG_AUTH_LEVEL_MSMQ20   = 4,
+        MQMSG_AUTH_LEVEL_SIG20    = 4,
+        MQMSG_AUTH_LEVEL_SIG30    = 8
+    };
+    enum MQMSGIDSIZE {
+        MQMSG_MSGID_SIZE           = 20,
+        MQMSG_CORRELATIONID_SIZE   = 20,
+        MQMSG_XACTID_SIZE          = 20
+    };
+    enum MQMSGMAX {
+        MQ_MAX_MSG_LABEL_LEN   = 249,
+    };
+    enum MQMSGAUTHENTICATION {
+        MQMSG_AUTHENTICATION_NOT_REQUESTED   = 0,
+        MQMSG_AUTHENTICATION_REQUESTED       = 1,
+        MQMSG_AUTHENTICATED_SIG10            = 1,
+        MQMSG_AUTHENTICATION_REQUESTED_EX    = 3,
+        MQMSG_AUTHENTICATED_SIG20            = 3,
+        MQMSG_AUTHENTICATED_SIG30            = 5,
+        MQMSG_AUTHENTICATED_SIGXML           = 9
+    };
+    enum MQSHARE {
+        MQ_DENY_NONE            = 0,
+        MQ_DENY_RECEIVE_SHARE   = 1
+    };
+    enum MQACCESS {
+        MQ_RECEIVE_ACCESS   = 1,
+        MQ_SEND_ACCESS      = 2,
+        MQ_PEEK_ACCESS      = 0x20,
+        MQ_ADMIN_ACCESS     = 0x80
+    };
+    enum MQJOURNAL {
+        MQ_JOURNAL_NONE   = 0,
+        MQ_JOURNAL        = 1
+    };
+    enum MQTRANSACTIONAL {
+        MQ_TRANSACTIONAL_NONE   = 0,
+        MQ_TRANSACTIONAL        = 1
+    };
+    enum MQAUTHENTICATE {
+        MQ_AUTHENTICATE_NONE = 0,
+        MQ_AUTHENTICATE = 1
+    };
+    enum MQPRIVLEVEL {
+        MQ_PRIV_LEVEL_NONE       = 0,
+        MQ_PRIV_LEVEL_OPTIONAL   = 1,
+        MQ_PRIV_LEVEL_BODY       = 2
+    };
+    enum MQPRIORITY {
+        MQ_MIN_PRIORITY   = 0,
+        MQ_MAX_PRIORITY   = 7
+    };
+    enum MQMAX {
+        MQ_MAX_Q_NAME_LEN    = 124,
+        MQ_MAX_Q_LABEL_LEN   = 124
+    };
+    enum QUEUE_TYPE {
+        MQ_TYPE_PUBLIC,
+        MQ_TYPE_PRIVATE,
+        MQ_TYPE_MACHINE,
+        MQ_TYPE_CONNECTOR,
+        MQ_TYPE_MULTICAST 
+    };
+    enum FOREIGN_STATUS {
+        MQ_STATUS_FOREIGN,
+        MQ_STATUS_NOT_FOREIGN,
+        MQ_STATUS_UNKNOWN
+    };
+    enum XACT_STATUS {
+        MQ_XACT_STATUS_XACT,
+        MQ_XACT_STATUS_NOT_XACT,
+        MQ_XACT_STATUS_UNKNOWN
+    };
+    enum QUEUE_STATE{
+        MQ_QUEUE_STATE_LOCAL_CONNECTION,
+        MQ_QUEUE_STATE_DISCONNECTED,
+        MQ_QUEUE_STATE_WAITING,
+        MQ_QUEUE_STATE_NEEDVALIDATE,
+        MQ_QUEUE_STATE_ONHOLD,
+        MQ_QUEUE_STATE_NONACTIVE,
+        MQ_QUEUE_STATE_CONNECTED,
+        MQ_QUEUE_STATE_DISCONNECTING,
+        MQ_QUEUE_STATE_LOCKED 
+    };
+    enum MQDEFAULT {
+        DEFAULT_M_PRIORITY        = 3,
+        DEFAULT_M_DELIVERY        = 0,
+        DEFAULT_M_ACKNOWLEDGE     = 0,
+        DEFAULT_M_JOURNAL         = 0,
+        DEFAULT_M_APPSPECIFIC     = 0,
+        DEFAULT_M_PRIV_LEVEL      = 0,
+        DEFAULT_M_AUTH_LEVEL      = 0,
+        DEFAULT_M_SENDERID_TYPE   = 1,
+        DEFAULT_Q_JOURNAL         = 0,
+        DEFAULT_Q_BASEPRIORITY    = 0,
+        DEFAULT_Q_QUOTA           = 0xFFFFFFFF,
+        DEFAULT_Q_JOURNAL_QUOTA   = 0xFFFFFFFF,
+        DEFAULT_Q_TRANSACTION     = 0,
+        DEFAULT_Q_AUTHENTICATE    = 0,
+        DEFAULT_Q_PRIV_LEVEL      = 1,
+        DEFAULT_M_LOOKUPID        = 0,
+    };
+    enum MQERROR {
+        MQ_ERROR                                        = 0xC00E0001,
+        MQ_ERROR_PROPERTY                               = 0xC00E0002,
+        MQ_ERROR_QUEUE_NOT_FOUND                        = 0xC00E0003,
+        MQ_ERROR_QUEUE_NOT_ACTIVE                       = 0xC00E0004,
+        MQ_ERROR_QUEUE_EXISTS                           = 0xC00E0005,
+        MQ_ERROR_INVALID_PARAMETER                      = 0xC00E0006,
+        MQ_ERROR_INVALID_HANDLE                         = 0xC00E0007,
+        MQ_ERROR_OPERATION_CANCELLED                    = 0xC00E0008,
+        MQ_ERROR_SHARING_VIOLATION                      = 0xC00E0009,
+        MQ_ERROR_SERVICE_NOT_AVAILABLE                  = 0xC00E000B,
+        MQ_ERROR_MACHINE_NOT_FOUND                      = 0xC00E000D,
+        MQ_ERROR_ILLEGAL_SORT                           = 0xC00E0010,
+        MQ_ERROR_ILLEGAL_USER                           = 0xC00E0011,
+        MQ_ERROR_NO_DS                                  = 0xC00E0013,
+        MQ_ERROR_ILLEGAL_QUEUE_PATHNAME                 = 0xC00E0014,
+        MQ_ERROR_ILLEGAL_PROPERTY_VALUE                 = 0xC00E0018,
+        MQ_ERROR_ILLEGAL_PROPERTY_VT                    = 0xC00E0019,
+        MQ_ERROR_BUFFER_OVERFLOW                        = 0xC00E001A,
+        MQ_ERROR_IO_TIMEOUT                             = 0xC00E001B,
+        MQ_ERROR_ILLEGAL_CURSOR_ACTION                  = 0xC00E001C,
+        MQ_ERROR_MESSAGE_ALREADY_RECEIVED               = 0xC00E001D,
+        MQ_ERROR_ILLEGAL_FORMATNAME                     = 0xC00E001E,
+        MQ_ERROR_FORMATNAME_BUFFER_TOO_SMALL            = 0xC00E001F,
+        MQ_ERROR_UNSUPPORTED_FORMATNAME_OPERATION       = 0xC00E0020,
+        MQ_ERROR_ILLEGAL_SECURITY_DESCRIPTOR            = 0xC00E0021,
+        MQ_ERROR_SENDERID_BUFFER_TOO_SMALL              = 0xC00E0022,
+        MQ_ERROR_SECURITY_DESCRIPTOR_TOO_SMALL          = 0xC00E0023,
+        MQ_ERROR_CANNOT_IMPERSONATE_CLIENT              = 0xC00E0024,
+        MQ_ERROR_ACCESS_DENIED                          = 0xC00E0025,
+        MQ_ERROR_PRIVILEGE_NOT_HELD                     = 0xC00E0026,
+        MQ_ERROR_INSUFFICIENT_RESOURCES                 = 0xC00E0027,
+        MQ_ERROR_USER_BUFFER_TOO_SMALL                  = 0xC00E0028,
+        MQ_ERROR_MESSAGE_STORAGE_FAILED                 = 0xC00E002A,
+        MQ_ERROR_SENDER_CERT_BUFFER_TOO_SMALL           = 0xC00E002B,
+        MQ_ERROR_INVALID_CERTIFICATE                    = 0xC00E002C,
+        MQ_ERROR_CORRUPTED_INTERNAL_CERTIFICATE         = 0xC00E002D,
+        MQ_ERROR_INTERNAL_USER_CERT_EXIST               = 0xC00E002E,
+        MQ_ERROR_NO_INTERNAL_USER_CERT                  = 0xC00E002F,
+        MQ_ERROR_CORRUPTED_SECURITY_DATA                = 0xC00E0030,
+        MQ_ERROR_CORRUPTED_PERSONAL_CERT_STORE          = 0xC00E0031,
+        MQ_ERROR_COMPUTER_DOES_NOT_SUPPORT_ENCRYPTION   = 0xC00E0033,
+        MQ_ERROR_BAD_SECURITY_CONTEXT                   = 0xC00E0035,
+        MQ_ERROR_COULD_NOT_GET_USER_SID                 = 0xC00E0036,
+        MQ_ERROR_COULD_NOT_GET_ACCOUNT_INFO             = 0xC00E0037,
+        MQ_ERROR_ILLEGAL_MQCOLUMNS                      = 0xC00E0038,
+        MQ_ERROR_ILLEGAL_PROPID                         = 0xC00E0039,
+        MQ_ERROR_ILLEGAL_RELATION                       = 0xC00E003A,
+        MQ_ERROR_ILLEGAL_PROPERTY_SIZE                  = 0xC00E003B,
+        MQ_ERROR_ILLEGAL_RESTRICTION_PROPID             = 0xC00E003C,
+        MQ_ERROR_ILLEGAL_MQQUEUEPROPS                   = 0xC00E003D,
+        MQ_ERROR_PROPERTY_NOTALLOWED                    = 0xC00E003E,
+        MQ_ERROR_INSUFFICIENT_PROPERTIES                = 0xC00E003F,
+        MQ_ERROR_MACHINE_EXISTS                         = 0xC00E0040,
+        MQ_ERROR_ILLEGAL_MQQMPROPS                      = 0xC00E0041,
+        MQ_ERROR_DS_IS_FULL                             = 0xC00E0042,
+        MQ_ERROR_DS_ERROR                               = 0xC00E0043,
+        MQ_ERROR_INVALID_OWNER                          = 0xC00E0044,
+        MQ_ERROR_UNSUPPORTED_ACCESS_MODE                = 0xC00E0045,
+        MQ_ERROR_RESULT_BUFFER_TOO_SMALL                = 0xC00E0046,
+        MQ_ERROR_DELETE_CN_IN_USE                       = 0xC00E0048,
+        MQ_ERROR_NO_RESPONSE_FROM_OBJECT_SERVER         = 0xC00E0049,
+        MQ_ERROR_OBJECT_SERVER_NOT_AVAILABLE            = 0xC00E004A,
+        MQ_ERROR_QUEUE_NOT_AVAILABLE                    = 0xC00E004B,
+        MQ_ERROR_DTC_CONNECT                            = 0xC00E004C,
+        MQ_ERROR_TRANSACTION_IMPORT                     = 0xC00E004E,
+        MQ_ERROR_TRANSACTION_USAGE                      = 0xC00E0050,
+        MQ_ERROR_TRANSACTION_SEQUENCE                   = 0xC00E0051,
+        MQ_ERROR_MISSING_CONNECTOR_TYPE                 = 0xC00E0055,
+        MQ_ERROR_STALE_HANDLE                           = 0xC00E0056,
+        MQ_ERROR_TRANSACTION_ENLIST                     = 0xC00E0058,
+        MQ_ERROR_QUEUE_DELETED                          = 0xC00E005A,
+        MQ_ERROR_ILLEGAL_CONTEXT                        = 0xC00E005B,
+        MQ_ERROR_ILLEGAL_SORT_PROPID                    = 0xC00E005C,
+        MQ_ERROR_LABEL_TOO_LONG                         = 0xC00E005D,
+        MQ_ERROR_LABEL_BUFFER_TOO_SMALL                 = 0xC00E005E,
+        MQ_ERROR_MQIS_SERVER_EMPTY                      = 0xC00E005F,
+        MQ_ERROR_MQIS_READONLY_MODE                     = 0xC00E0060,
+        MQ_ERROR_SYMM_KEY_BUFFER_TOO_SMALL              = 0xC00E0061,
+        MQ_ERROR_SIGNATURE_BUFFER_TOO_SMALL             = 0xC00E0062,
+        MQ_ERROR_PROV_NAME_BUFFER_TOO_SMALL             = 0xC00E0063,
+        MQ_ERROR_ILLEGAL_OPERATION                      = 0xC00E0064,
+        MQ_ERROR_WRITE_NOT_ALLOWED                      = 0xC00E0065,
+        MQ_ERROR_WKS_CANT_SERVE_CLIENT                  = 0xC00E0066,
+        MQ_ERROR_DEPEND_WKS_LICENSE_OVERFLOW            = 0xC00E0067,
+        MQ_CORRUPTED_QUEUE_WAS_DELETED                  = 0xC00E0068,
+        MQ_ERROR_REMOTE_MACHINE_NOT_AVAILABLE           = 0xC00E0069,
+        MQ_ERROR_UNSUPPORTED_OPERATION                  = 0xC00E006A,
+        MQ_ERROR_ENCRYPTION_PROVIDER_NOT_SUPPORTED      = 0xC00E006B,
+        MQ_ERROR_CANNOT_SET_CRYPTO_SEC_DESCR            = 0xC00E006C,
+        MQ_ERROR_CERTIFICATE_NOT_PROVIDED               = 0xC00E006D,
+        MQ_ERROR_Q_DNS_PROPERTY_NOT_SUPPORTED           = 0xC00E006E,
+        MQ_ERROR_CANT_CREATE_CERT_STORE                 = 0xC00E006F,
+        MQ_ERROR_CANNOT_CREATE_CERT_STORE               = 0xC00E006F,
+        MQ_ERROR_CANT_OPEN_CERT_STORE                   = 0xC00E0070,
+        MQ_ERROR_CANNOT_OPEN_CERT_STORE                 = 0xC00E0070,
+        MQ_ERROR_ILLEGAL_ENTERPRISE_OPERATION           = 0xC00E0071,
+        MQ_ERROR_CANNOT_GRANT_ADD_GUID                  = 0xC00E0072,
+        MQ_ERROR_CANNOT_LOAD_MSMQOCM                    = 0xC00E0073,
+        MQ_ERROR_NO_ENTRY_POINT_MSMQOCM                 = 0xC00E0074,
+        MQ_ERROR_NO_MSMQ_SERVERS_ON_DC                  = 0xC00E0075,
+        MQ_ERROR_CANNOT_JOIN_DOMAIN                     = 0xC00E0076,
+        MQ_ERROR_CANNOT_CREATE_ON_GC                    = 0xC00E0077,
+        MQ_ERROR_GUID_NOT_MATCHING                      = 0xC00E0078,
+        MQ_ERROR_PUBLIC_KEY_NOT_FOUND                   = 0xC00E0079,
+        MQ_ERROR_PUBLIC_KEY_DOES_NOT_EXIST              = 0xC00E007A,
+        MQ_ERROR_ILLEGAL_MQPRIVATEPROPS                 = 0xC00E007B,
+        MQ_ERROR_NO_GC_IN_DOMAIN                        = 0xC00E007C,
+        MQ_ERROR_NO_MSMQ_SERVERS_ON_GC                  = 0xC00E007D,
+        MQ_ERROR_CANNOT_GET_DN                          = 0xC00E007E,
+        MQ_ERROR_CANNOT_HASH_DATA_EX                    = 0xC00E007F,
+        MQ_ERROR_CANNOT_SIGN_DATA_EX                    = 0xC00E0080,
+        MQ_ERROR_CANNOT_CREATE_HASH_EX                  = 0xC00E0081,
+        MQ_ERROR_FAIL_VERIFY_SIGNATURE_EX               = 0xC00E0082,
+        MQ_ERROR_CANNOT_DELETE_PSC_OBJECTS              = 0xC00E0083,
+        MQ_ERROR_NO_MQUSER_OU                           = 0xC00E0084,
+        MQ_ERROR_CANNOT_LOAD_MQAD                       = 0xC00E0085,
+        MQ_ERROR_CANNOT_LOAD_MQDSSRV                    = 0xC00E0086,
+        MQ_ERROR_PROPERTIES_CONFLICT                    = 0xC00E0087,
+        MQ_ERROR_MESSAGE_NOT_FOUND                      = 0xC00E0088,
+        MQ_ERROR_CANT_RESOLVE_SITES                     = 0xC00E0089,
+        MQ_ERROR_NOT_SUPPORTED_BY_DEPENDENT_CLIENTS     = 0xC00E008A,
+        MQ_ERROR_OPERATION_NOT_SUPPORTED_BY_REMOTE_COMPUTER = 
+                                                          0xC00E008B,
+        MQ_ERROR_NOT_A_CORRECT_OBJECT_CLASS             = 0xC00E008C,
+        MQ_ERROR_MULTI_SORT_KEYS                        = 0xC00E008D,
+        MQ_ERROR_GC_NEEDED                              = 0xC00E008E,
+        MQ_ERROR_DS_BIND_ROOT_FOREST                    = 0xC00E008F,
+        MQ_ERROR_DS_LOCAL_USER                          = 0xC00E0090,
+        MQ_ERROR_Q_ADS_PROPERTY_NOT_SUPPORTED           = 0xC00E0091,
+        MQ_ERROR_BAD_XML_FORMAT                         = 0xC00E0092,
+        MQ_ERROR_UNSUPPORTED_CLASS                      = 0xC00E0093,
+        MQ_ERROR_UNINITIALIZED_OBJECT                   = 0xC00E0094,
+        MQ_ERROR_CANNOT_CREATE_PSC_OBJECTS              = 0xC00E0095,
+        MQ_ERROR_CANNOT_UPDATE_PSC_OBJECTS              = 0xC00E0096
+    };
+    enum MQWARNING {
+        MQ_INFORMATION_PROPERTY                      = 0x400E0001,
+        MQ_INFORMATION_ILLEGAL_PROPERTY              = 0x400E0002,
+        MQ_INFORMATION_PROPERTY_IGNORED              = 0x400E0003,
+        MQ_INFORMATION_UNSUPPORTED_PROPERTY          = 0x400E0004,
+        MQ_INFORMATION_DUPLICATE_PROPERTY            = 0x400E0005,
+        MQ_INFORMATION_OPERATION_PENDING             = 0x400E0006,
+        MQ_INFORMATION_FORMATNAME_BUFFER_TOO_SMALL   = 0x400E0009,
+        MQ_INFORMATION_INTERNAL_USER_CERT_EXIST      = 0x400E000A,
+        MQ_INFORMATION_OWNER_IGNORED                 = 0x400E000B
+    };
+ 
+    [
+        uuid(D7D6E072-DCCD-11d0-AA4B-0060970DEBAE),
+        hidden, dual, nonextensible, odl
+    ]
+    interface IMSMQQuery : IDispatch {
+        HRESULT LookupQueue(
+            [in, optional] VARIANT *QueueGuid,
+            [in, optional] VARIANT *ServiceTypeGuid,
+            [in, optional] VARIANT *Label,
+            [in, optional] VARIANT *CreateTime,
+            [in, optional] VARIANT *ModifyTime,
+            [in, optional] VARIANT *RelServiceType,
+            [in, optional] VARIANT *RelLabel,
+            [in, optional] VARIANT *RelCreateTime,
+            [in, optional] VARIANT *RelModifyTime,
+            [out, retval] IMSMQQueueInfos **ppqinfos
+        );
+    };
+    [
+        uuid(eba96b0e-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, nonextensible, odl
+   ]
+    interface IMSMQQuery2 : IDispatch {
+        HRESULT LookupQueue(
+            [in, optional] VARIANT *QueueGuid,
+            [in, optional] VARIANT *ServiceTypeGuid,
+            [in, optional] VARIANT *Label,
+            [in, optional] VARIANT *CreateTime,
+            [in, optional] VARIANT *ModifyTime,
+            [in, optional] VARIANT *RelServiceType,
+            [in, optional] VARIANT *RelLabel,
+            [in, optional] VARIANT *RelCreateTime,
+            [in, optional] VARIANT *RelModifyTime,
+            [out, retval] IMSMQQueueInfos2 **ppqinfos
+        );
+        [propget] HRESULT Properties(
+            [out, retval] IDispatch **ppcolProperties
+        );
+    };
+ 
+    [
+        uuid(eba96b19-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, nonextensible, odl
+    ]
+    interface IMSMQQuery3 : IDispatch {
+        HRESULT LookupQueue_v2(
+            [in, optional] VARIANT *QueueGuid,
+            [in, optional] VARIANT *ServiceTypeGuid,
+            [in, optional] VARIANT *Label,
+            [in, optional] VARIANT *CreateTime,
+            [in, optional] VARIANT *ModifyTime,
+            [in, optional] VARIANT *RelServiceType,
+            [in, optional] VARIANT *RelLabel,
+            [in, optional] VARIANT *RelCreateTime,
+            [in, optional] VARIANT *RelModifyTime,
+            [out, retval] IMSMQQueueInfos3 **ppqinfos
+        );
+        [propget] HRESULT Properties(
+            [out, retval] IDispatch **ppcolProperties
+        );
+        HRESULT LookupQueue(
+            [in, optional] VARIANT *QueueGuid,
+            [in, optional] VARIANT *ServiceTypeGuid,
+            [in, optional] VARIANT *Label,
+            [in, optional] VARIANT *CreateTime,
+            [in, optional] VARIANT *ModifyTime,
+            [in, optional] VARIANT *RelServiceType,
+            [in, optional] VARIANT *RelLabel,
+            [in, optional] VARIANT *RelCreateTime,
+            [in, optional] VARIANT *RelModifyTime,
+            [in, optional] VARIANT *MulticastAddress,
+            [in, optional] VARIANT *RelMulticastAddress,
+            [out, retval] IMSMQQueueInfos3 **ppqinfos
+        );
+    };
+ 
+    [
+        uuid(eba96b24-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, nonextensible, odl
+    ]
+    interface IMSMQQuery4 : IDispatch {
+        HRESULT LookupQueue_v2(
+            [in, optional] VARIANT *QueueGuid,
+            [in, optional] VARIANT *ServiceTypeGuid,
+            [in, optional] VARIANT *Label,
+            [in, optional] VARIANT *CreateTime,
+            [in, optional] VARIANT *ModifyTime,
+            [in, optional] VARIANT *RelServiceType,
+            [in, optional] VARIANT *RelLabel,
+            [in, optional] VARIANT *RelCreateTime,
+            [in, optional] VARIANT *RelModifyTime,
+            [out, retval] IMSMQQueueInfos4 **ppqinfos
+        );
+        [propget] HRESULT Properties(
+            [out, retval] IDispatch **ppcolProperties
+        );
+        HRESULT LookupQueue(
+            [in, optional] VARIANT *QueueGuid,
+            [in, optional] VARIANT *ServiceTypeGuid,
+            [in, optional] VARIANT *Label,
+            [in, optional] VARIANT *CreateTime,
+            [in, optional] VARIANT *ModifyTime,
+            [in, optional] VARIANT *RelServiceType,
+            [in, optional] VARIANT *RelLabel,
+            [in, optional] VARIANT *RelCreateTime,
+            [in, optional] VARIANT *RelModifyTime,
+            [in, optional] VARIANT *MulticastAddress,
+            [in, optional] VARIANT *RelMulticastAddress,
+            [out, retval] IMSMQQueueInfos4 **ppqinfos
+        );
+    };
+ 
+    [
+        uuid(D7D6E073-DCCD-11d0-AA4B-0060970DEBAE),
+    ]
+    coclass MSMQQuery {
+        interface IMSMQQuery;
+        interface IMSMQQuery2;
+        interface IMSMQQuery3;
+        [default] interface IMSMQQuery4;
+    };
+ 
+    [
+       uuid(D7D6E074-DCCD-11d0-AA4B-0060970DEBAE),
+       hidden, dual, odl
+    ]
+    interface IMSMQMessage : IDispatch {
+        [propget] HRESULT Class([out, retval]       long *plClass);
+        [propget] HRESULT PrivLevel([out, retval]   long *plPrivLevel);
+        [propput] HRESULT PrivLevel([in]            long lPrivLevel);
+        [propget] HRESULT AuthLevel([out, retval]   long *plAuthLevel);
+        [propput] HRESULT AuthLevel([in]            long lAuthLevel);
+        [propget] HRESULT IsAuthenticated(
+            [out, retval] short *pisAuthenticated
+         );
+        [propget] HRESULT Delivery([out, retval]    long *plDelivery);
+        [propput] HRESULT Delivery([in]             long lDelivery);
+        [propget] HRESULT Trace([out, retval]       long *plTrace);
+        [propput] HRESULT Trace([in]                long lTrace);
+        [propget] HRESULT Priority([out, retval]    long *plPriority);
+        [propput] HRESULT Priority([in]             long lPriority);
+        [propget] HRESULT Journal([out, retval]     long *plJournal);
+        [propput] HRESULT Journal([in] long lJournal);
+        [propget] HRESULT ResponseQueueInfo(
+            [out, retval] IMSMQQueueInfo **ppqinfoResponse
+        );
+        [propputref] HRESULT ResponseQueueInfo(
+            [in] IMSMQQueueInfo *pqinfoResponse
+        );
+        [propget] HRESULT AppSpecific([out, retval] long *plAppSpecific);
+        [propput] HRESULT AppSpecific([in] long lAppSpecific);
+        [propget] HRESULT SourceMachineGuid(
+            [out, retval] BSTR *pbstrGuidSrcMachine
+        );
+        [propget] HRESULT BodyLength([out, retval] long *pcbBody);
+        [propget] HRESULT Body([out, retval] VARIANT *pvarBody);
+        [propput] HRESULT Body([in] VARIANT varBody);
+        [propget] HRESULT AdminQueueInfo(
+            [out, retval] IMSMQQueueInfo **ppqinfoAdmin
+        );
+        [propputref] HRESULT AdminQueueInfo([in] IMSMQQueueInfo *pqinfoAdmin);
+        [propget] HRESULT Id([out, retval] VARIANT *pvarMsgId);
+        [propget] HRESULT CorrelationId([out, retval] VARIANT *pvarMsgId);
+        [propput] HRESULT CorrelationId([in] VARIANT varMsgId);
+        [propget] HRESULT Ack([out, retval] long *plAck);
+        [propput] HRESULT Ack([in] long lAck);
+        [propget] HRESULT Label([out, retval] BSTR *pbstrLabel);
+        [propput] HRESULT Label([in] BSTR bstrLabel);
+        [propget] HRESULT MaxTimeToReachQueue(
+            [out, retval] long *plMaxTimeToReachQueue
+        );
+        [propput] HRESULT MaxTimeToReachQueue([in] long lMaxTimeToReachQueue);
+        [propget] HRESULT MaxTimeToReceive(
+            [out, retval] long *plMaxTimeToReceive
+        );
+        [propput] HRESULT MaxTimeToReceive([in] long lMaxTimeToReceive);
+        [propget] HRESULT HashAlgorithm([out, retval] long *plHashAlg);
+        [propput] HRESULT HashAlgorithm([in] long lHashAlg);
+        [propget] HRESULT EncryptAlgorithm([out, retval] long *plEncryptAlg);
+        [propput] HRESULT EncryptAlgorithm([in] long lEncryptAlg);
+        [propget] HRESULT SentTime([out, retval] VARIANT *pvarSentTime);
+        [propget] HRESULT ArrivedTime([out, retval] VARIANT *plArrivedTime);
+        [propget] HRESULT DestinationQueueInfo(
+            [out, retval] IMSMQQueueInfo **ppqinfoDest
+        );
+        [propget] HRESULT SenderCertificate(
+            [out, retval] VARIANT *pvarSenderCert
+        );
+        [propput] HRESULT SenderCertificate([in] VARIANT varSenderCert);
+        [propget] HRESULT SenderId([out, retval] VARIANT *pvarSenderId);
+        [propget] HRESULT SenderIdType([out, retval] long *plSenderIdType);
+        [propput] HRESULT SenderIdType([in] long lSenderIdType);
+        HRESULT Send(
+            [in] IMSMQQueue *DestinationQueue,
+            [in, optional] VARIANT *Transaction
+        );
+        HRESULT AttachCurrentSecurityContext();
+    };
+ 
+    [
+        uuid(D9933BE0-A567-11D2-B0F3-00E02C074F6B),
+        hidden, dual, odl
+    ]
+    interface IMSMQMessage2 : IDispatch {
+        [propget] HRESULT Class([out, retval] long *plClass);
+        [propget] HRESULT PrivLevel([out, retval] long *plPrivLevel);
+        [propput] HRESULT PrivLevel([in] long lPrivLevel);
+        [propget] HRESULT AuthLevel([out, retval] long *plAuthLevel);
+        [propput] HRESULT AuthLevel([in] long lAuthLevel);
+        [propget] HRESULT IsAuthenticated(
+            [out, retval] short *pisAuthenticated
+        );
+        [propget] HRESULT Delivery([out, retval] long *plDelivery);
+        [propput] HRESULT Delivery([in] long lDelivery);
+        [propget] HRESULT Trace([out, retval] long *plTrace);
+        [propput] HRESULT Trace([in] long lTrace);
+        [propget] HRESULT Priority([out, retval] long *plPriority);
+        [propput] HRESULT Priority([in] long lPriority);
+        [propget] HRESULT Journal([out, retval] long *plJournal);
+        [propput] HRESULT Journal([in] long lJournal);
+        [propget] HRESULT ResponseQueueInfo_v1(
+            [out, retval] IMSMQQueueInfo **ppqinfoResponse
+        );
+        [propput] HRESULT ResponseQueueInfo_v1(
+            [in] IMSMQQueueInfo *pqinfoResponse
+        );
+        [propget] HRESULT AppSpecific([out, retval] long *plAppSpecific);
+        [propput] HRESULT AppSpecific([in] long lAppSpecific);
+        [propget] HRESULT SourceMachineGuid(
+            [out, retval] BSTR *pbstrGuidSrcMachine
+        );
+        [propget] HRESULT BodyLength([out, retval] long *pcbBody);
+        [propget] HRESULT Body([out, retval] VARIANT *pvarBody);
+        [propput] HRESULT Body([in] VARIANT varBody);
+        [propget] HRESULT AdminQueueInfo_v1(
+            [out, retval] IMSMQQueueInfo **ppqinfoAdmin
+        );
+        [propput] HRESULT AdminQueueInfo_v1([in] IMSMQQueueInfo *pqinfoAdmin);
+        [propget] HRESULT Id([out, retval] VARIANT *pvarMsgId);
+        [propget] HRESULT CorrelationId([out, retval] VARIANT *pvarMsgId);
+        [propput] HRESULT CorrelationId([in] VARIANT varMsgId);
+        [propget] HRESULT Ack([out, retval] long *plAck);
+        [propput] HRESULT Ack([in] long lAck);
+        [propget] HRESULT Label([out, retval] BSTR *pbstrLabel);
+        [propput] HRESULT Label([in] BSTR bstrLabel);
+        [propget] HRESULT MaxTimeToReachQueue(
+            [out, retval] long *plMaxTimeToReachQueue
+        );
+        [propput] HRESULT MaxTimeToReachQueue([in] long lMaxTimeToReachQueue);
+        [propget] HRESULT MaxTimeToReceive(
+            [out, retval] long *plMaxTimeToReceive
+        );
+        [propput] HRESULT MaxTimeToReceive([in] long lMaxTimeToReceive);
+        [propget] HRESULT HashAlgorithm([out, retval] long *plHashAlg);
+        [propput] HRESULT HashAlgorithm([in] long lHashAlg);
+        [propget] HRESULT EncryptAlgorithm([out, retval] long *plEncryptAlg);
+        [propput] HRESULT EncryptAlgorithm([in] long lEncryptAlg);
+        [propget] HRESULT SentTime([out, retval] VARIANT *pvarSentTime);
+        [propget] HRESULT ArrivedTime([out, retval] VARIANT *plArrivedTime);
+        [propget] HRESULT DestinationQueueInfo(
+            [out, retval] IMSMQQueueInfo2 **ppqinfoDest
+        );
+        [propget] HRESULT SenderCertificate(
+            [out, retval] VARIANT *pvarSenderCert
+        );
+        [propput] HRESULT SenderCertificate([in] VARIANT varSenderCert);
+        [propget] HRESULT SenderId([out, retval] VARIANT *pvarSenderId);
+        [propget] HRESULT SenderIdType([out, retval] long *plSenderIdType);
+        [propput] HRESULT SenderIdType([in] long lSenderIdType);
+        HRESULT Send(
+            [in] IMSMQQueue2 *DestinationQueue,
+            [in, optional] VARIANT *Transaction);
+        HRESULT AttachCurrentSecurityContext();
+        [propget] HRESULT SenderVersion([out, retval] long *plSenderVersion);
+        [propget] HRESULT Extension([out, retval] VARIANT *pvarExtension);
+        [propput] HRESULT Extension([in] VARIANT varExtension);
+        [propget] HRESULT ConnectorTypeGuid(
+            [out, retval] BSTR *pbstrGuidConnectorType
+        );
+        [propput] HRESULT ConnectorTypeGuid([in] BSTR bstrGuidConnectorType);
+        [propget] HRESULT TransactionStatusQueueInfo(
+            [out, retval] IMSMQQueueInfo2 **ppqinfoXactStatus
+        );
+        [propget] HRESULT DestinationSymmetricKey(
+            [out, retval] VARIANT *pvarDestSymmKey
+        );
+        [propput] HRESULT DestinationSymmetricKey([in] VARIANT varDestSymmKey);
+        [propget] HRESULT Signature([out, retval] VARIANT *pvarSignature);
+        [propput] HRESULT Signature([in] VARIANT varSignature);
+        [propget] HRESULT AuthenticationProviderType(
+            [out, retval] long *plAuthProvType
+        );
+        [propput] HRESULT AuthenticationProviderType([in] long lAuthProvType);
+        [propget] HRESULT AuthenticationProviderName(
+            [out, retval] BSTR *pbstrAuthProvName
+        );
+        [propput] HRESULT AuthenticationProviderName(
+            [in] BSTR bstrAuthProvName
+        );
+        [propput] HRESULT SenderId([in] VARIANT varSenderId);
+        [propget] HRESULT MsgClass([out, retval] long *plMsgClass);
+        [propput] HRESULT MsgClass([in] long lMsgClass);
+        [propget] HRESULT Properties([out, retval] IDispatch **ppcolProperties);
+        [propget] HRESULT TransactionId([out, retval] VARIANT *pvarXactId);
+        [propget] HRESULT IsFirstInTransaction(
+            [out, retval] short *pisFirstInXact
+        );
+        [propget] HRESULT IsLastInTransaction([out, retval] short *pisLastInXact);
+        [propget] HRESULT ResponseQueueInfo(
+            [out, retval] IMSMQQueueInfo2 **ppqinfoResponse
+        );
+        [propputref] HRESULT ResponseQueueInfo(
+            [in] IMSMQQueueInfo2 *pqinfoResponse
+        );
+        [propget] HRESULT AdminQueueInfo(
+            [out, retval] IMSMQQueueInfo2 **ppqinfoAdmin
+        );
+        [propputref] HRESULT AdminQueueInfo([in] IMSMQQueueInfo2 *pqinfoAdmin);
+        [propget] HRESULT ReceivedAuthenticationLevel(
+            [out, retval] short *psReceivedAuthenticationLevel
+        );
+    };
+ 
+    [
+        uuid(eba96b1a-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQMessage3 : IDispatch {
+        [propget] HRESULT Class([out, retval] long *plClass);
+        [propget] HRESULT PrivLevel([out, retval] long *plPrivLevel);
+        [propput] HRESULT PrivLevel([in] long lPrivLevel);
+        [propget] HRESULT AuthLevel([out, retval] long *plAuthLevel);
+        [propput] HRESULT AuthLevel([in] long lAuthLevel);
+        [propget] HRESULT IsAuthenticated(
+            [out, retval] short *pisAuthenticated
+        );
+        [propget] HRESULT Delivery([out, retval] long *plDelivery);
+        [propput] HRESULT Delivery([in] long lDelivery);
+        [propget] HRESULT Trace([out, retval] long *plTrace);
+        [propput] HRESULT Trace([in] long lTrace);
+        [propget] HRESULT Priority([out, retval] long *plPriority);
+        [propput] HRESULT Priority([in] long lPriority);
+        [propget] HRESULT Journal([out, retval] long *plJournal);
+        [propput] HRESULT Journal([in] long lJournal);
+        [propget] HRESULT ResponseQueueInfo_v1(
+            [out, retval] IMSMQQueueInfo **ppqinfoResponse
+        );
+        [propput] HRESULT ResponseQueueInfo_v1(
+            [in] IMSMQQueueInfo *pqinfoResponse
+        );
+        [propget] HRESULT AppSpecific([out, retval] long *plAppSpecific);
+        [propput] HRESULT AppSpecific([in] long lAppSpecific);
+        [propget] HRESULT SourceMachineGuid(
+            [out, retval] BSTR *pbstrGuidSrcMachine
+        );
+        [propget] HRESULT BodyLength([out, retval] long *pcbBody);
+        [propget] HRESULT Body([out, retval] VARIANT *pvarBody);
+        [propput] HRESULT Body([in] VARIANT varBody);
+        [propget] HRESULT AdminQueueInfo_v1(
+            [out, retval] IMSMQQueueInfo **ppqinfoAdmin
+        );
+        [propput] HRESULT AdminQueueInfo_v1(
+            [in] IMSMQQueueInfo *pqinfoAdmin
+        );
+        [propget] HRESULT Id([out, retval] VARIANT *pvarMsgId);
+        [propget] HRESULT CorrelationId([out, retval] VARIANT *pvarMsgId);
+        [propput] HRESULT CorrelationId([in] VARIANT varMsgId);
+        [propget] HRESULT Ack([out, retval] long *plAck);
+        [propput] HRESULT Ack([in] long lAck);
+        [propget] HRESULT Label([out, retval] BSTR *pbstrLabel);
+        [propput] HRESULT Label([in] BSTR bstrLabel);
+        [propget] HRESULT MaxTimeToReachQueue(
+            [out, retval] long *plMaxTimeToReachQueue
+        );
+        [propput] HRESULT MaxTimeToReachQueue([in] long lMaxTimeToReachQueue);
+        [propget] HRESULT MaxTimeToReceive(
+            [out, retval] long *plMaxTimeToReceive
+        );
+        [propput] HRESULT MaxTimeToReceive([in] long lMaxTimeToReceive);
+        [propget] HRESULT HashAlgorithm([out, retval] long *plHashAlg);
+        [propput] HRESULT HashAlgorithm([in] long lHashAlg);
+        [propget] HRESULT EncryptAlgorithm([out, retval] long *plEncryptAlg);
+        [propput] HRESULT EncryptAlgorithm([in] long lEncryptAlg);
+        [propget] HRESULT SentTime([out, retval] VARIANT *pvarSentTime);
+        [propget] HRESULT ArrivedTime([out, retval] VARIANT *plArrivedTime);
+        [propget] HRESULT DestinationQueueInfo(
+            [out, retval] IMSMQQueueInfo3 **ppqinfoDest
+        );
+        [propget] HRESULT SenderCertificate(
+            [out, retval] VARIANT *pvarSenderCert
+        );
+        [propput] HRESULT SenderCertificate([in] VARIANT varSenderCert);
+        [propget] HRESULT SenderId([out, retval] VARIANT *pvarSenderId);
+        [propget] HRESULT SenderIdType([out, retval] long *plSenderIdType);
+        [propput] HRESULT SenderIdType([in] long lSenderIdType);
+        HRESULT Send(
+            [in] IDispatch *DestinationQueue,
+            [in, optional] VARIANT *Transaction
+        );
+        HRESULT AttachCurrentSecurityContext();
+        [propget] HRESULT SenderVersion([out, retval] long *plSenderVersion);
+        [propget] HRESULT Extension([out, retval] VARIANT *pvarExtension);
+        [propput] HRESULT Extension([in] VARIANT varExtension);
+        [propget] HRESULT ConnectorTypeGuid(
+            [out, retval] BSTR *pbstrGuidConnectorType
+        );
+        [propput] HRESULT ConnectorTypeGuid([in] BSTR bstrGuidConnectorType);
+        [propget] HRESULT TransactionStatusQueueInfo(
+            [out, retval] IMSMQQueueInfo3 **ppqinfoXactStatus
+        );
+        [propget] HRESULT DestinationSymmetricKey(
+            [out, retval] VARIANT *pvarDestSymmKey
+        );
+        [propput] HRESULT DestinationSymmetricKey([in] VARIANT varDestSymmKey);
+        [propget] HRESULT Signature([out, retval] VARIANT *pvarSignature);
+        [propput] HRESULT Signature([in] VARIANT varSignature);
+        [propget] HRESULT AuthenticationProviderType(
+            [out, retval] long *plAuthProvType
+        );
+        [propput] HRESULT AuthenticationProviderType([in] long lAuthProvType);
+        [propget] HRESULT AuthenticationProviderName(
+            [out, retval] BSTR *pbstrAuthProvName
+        );
+        [propput] HRESULT AuthenticationProviderName(
+            [in] BSTR bstrAuthProvName
+        );
+        [propput] HRESULT SenderId([in] VARIANT varSenderId);
+        [propget] HRESULT MsgClass([out, retval] long *plMsgClass);
+        [propput] HRESULT MsgClass([in] long lMsgClass);
+        [propget] HRESULT Properties(
+            [out, retval] IDispatch **ppcolProperties
+        );
+        [propget] HRESULT TransactionId([out, retval] VARIANT *pvarXactId);
+        [propget] HRESULT IsFirstInTransaction(
+            [out, retval] short *pisFirstInXact
+        );
+        [propget] HRESULT IsLastInTransaction(
+            [out, retval] short *pisLastInXact
+        );
+        [propget] HRESULT ResponseQueueInfo_v2(
+            [out, retval] IMSMQQueueInfo2 **ppqinfoResponse
+        );
+        [propput] HRESULT ResponseQueueInfo_v2(
+            [in] IMSMQQueueInfo2 *pqinfoResponse
+        );
+        [propget] HRESULT AdminQueueInfo_v2(
+            [out, retval] IMSMQQueueInfo2 **ppqinfoAdmin
+        );
+        [propput] HRESULT AdminQueueInfo_v2([in] IMSMQQueueInfo2 *pqinfoAdmin);
+        [propget] HRESULT ReceivedAuthenticationLevel(
+            [out, retval] short *psReceivedAuthenticationLevel
+        );
+        [propget] HRESULT ResponseQueueInfo(
+            [out, retval] IMSMQQueueInfo3 **ppqinfoResponse
+        );
+        [propputref] HRESULT ResponseQueueInfo(
+            [in] IMSMQQueueInfo3 *pqinfoResponse
+        );
+        [propget] HRESULT AdminQueueInfo(
+            [out, retval] IMSMQQueueInfo3 **ppqinfoAdmin
+        );
+        [propputref] HRESULT AdminQueueInfo([in] IMSMQQueueInfo3 *pqinfoAdmin);
+        [propget] HRESULT ResponseDestination(
+            [out, retval] IDispatch **ppdestRespons
+        );
+        [propputref] HRESULT ResponseDestination([in] IDispatch *pdestResponse);
+        [propget] HRESULT Destination(
+            [out, retval] IDispatch **ppdestDestination
+        );
+        [propget] HRESULT LookupId([out, retval] VARIANT *pvarLookupId);
+        [propget] HRESULT IsAuthenticated2(
+            [out, retval] VARIANT_BOOL *pisAuthenticated
+        );
+        [propget] HRESULT IsFirstInTransaction2(
+            [out, retval] VARIANT_BOOL *pisFirstInXact
+        );
+        [propget] HRESULT IsLastInTransaction2(
+            [out, retval] VARIANT_BOOL *pisLastInXact
+        );
+        HRESULT AttachCurrentSecurityContext2();
+        [propget] HRESULT SoapEnvelope([out, retval] BSTR *pbstrSoapEnvelope);
+        [propget] HRESULT CompoundMessage(
+            [out, retval] VARIANT *pvarCompoundMessage
+        );
+        [propput] HRESULT SoapHeader([in] BSTR bstrSoapHeader);
+        [propput] HRESULT SoapBody([in] BSTR bstrSoapBody);
+    };
+ 
+    [
+        uuid(eba96b23-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQMessage4 : IDispatch {
+        [propget] HRESULT Class([out, retval] long *plClass);
+        [propget] HRESULT PrivLevel([out, retval] long *plPrivLevel);
+        [propput] HRESULT PrivLevel([in] long lPrivLevel);
+        [propget] HRESULT AuthLevel([out, retval] long *plAuthLevel);
+        [propput] HRESULT AuthLevel([in] long lAuthLevel);
+        [propget] HRESULT IsAuthenticated(
+            [out, retval] short *pisAuthenticated
+        );
+        [propget] HRESULT Delivery([out, retval] long *plDelivery);
+        [propput] HRESULT Delivery([in] long lDelivery);
+        [propget] HRESULT Trace([out, retval] long *plTrace);
+        [propput] HRESULT Trace([in] long lTrace);
+        [propget] HRESULT Priority([out, retval] long *plPriority);
+        [propput] HRESULT Priority([in] long lPriority);
+        [propget] HRESULT Journal([out, retval] long *plJournal);
+        [propput] HRESULT Journal([in] long lJournal);
+        [propget] HRESULT ResponseQueueInfo_v1(
+            [out, retval] IMSMQQueueInfo **ppqinfoResponse
+        );
+        [propput] HRESULT ResponseQueueInfo_v1(
+            [in] IMSMQQueueInfo *pqinfoResponse
+        );
+        [propget] HRESULT AppSpecific([out, retval] long *plAppSpecific);
+        [propput] HRESULT AppSpecific([in] long lAppSpecific);
+        [propget] HRESULT SourceMachineGuid(
+            [out, retval] BSTR *pbstrGuidSrcMachine
+        );
+        [propget] HRESULT BodyLength([out, retval] long *pcbBody);
+        [propget] HRESULT Body([out, retval] VARIANT *pvarBody);
+        [propput] HRESULT Body([in] VARIANT varBody);
+        [propget] HRESULT AdminQueueInfo_v1(
+            [out, retval] IMSMQQueueInfo **ppqinfoAdmin
+        );
+        [propput] HRESULT AdminQueueInfo_v1([in] IMSMQQueueInfo *pqinfoAdmin);
+        [propget] HRESULT Id([out, retval] VARIANT *pvarMsgId);
+        [propget] HRESULT CorrelationId([out, retval] VARIANT *pvarMsgId);
+        [propput] HRESULT CorrelationId([in] VARIANT varMsgId);
+        [propget] HRESULT Ack([out, retval] long *plAck);
+        [propput] HRESULT Ack([in] long lAck);
+        [propget] HRESULT Label([out, retval] BSTR *pbstrLabel);
+        [propput] HRESULT Label([in] BSTR bstrLabel);
+        [propget] HRESULT MaxTimeToReachQueue(
+            [out, retval] long *plMaxTimeToReachQueue
+        );
+        [propput] HRESULT MaxTimeToReachQueue([in] long lMaxTimeToReachQueue);
+        [propget] HRESULT MaxTimeToReceive(
+            [out, retval] long *plMaxTimeToReceive
+        );
+        [propput] HRESULT MaxTimeToReceive([in] long lMaxTimeToReceive);
+        [propget] HRESULT HashAlgorithm([out, retval] long *plHashAlg);
+        [propput] HRESULT HashAlgorithm([in] long lHashAlg);
+        [propget] HRESULT EncryptAlgorithm([out, retval] long *plEncryptAlg);
+        [propput] HRESULT EncryptAlgorithm([in] long lEncryptAlg);
+        [propget] HRESULT SentTime([out, retval] VARIANT *pvarSentTime);
+        [propget] HRESULT ArrivedTime([out, retval] VARIANT *plArrivedTime);
+        [propget] HRESULT DestinationQueueInfo(
+            [out, retval] IMSMQQueueInfo4 **ppqinfoDest
+        );
+        [propget] HRESULT SenderCertificate(
+            [out, retval] VARIANT *pvarSenderCert
+        );
+        [propput] HRESULT SenderCertificate([in] VARIANT varSenderCert);
+        [propget] HRESULT SenderId([out, retval] VARIANT *pvarSenderId);
+        [propget] HRESULT SenderIdType([out, retval] long *plSenderIdType);
+        [propput] HRESULT SenderIdType([in] long lSenderIdType);
+        HRESULT Send(
+            [in] IDispatch *DestinationQueue,
+            [in, optional] VARIANT *Transaction);
+        HRESULT AttachCurrentSecurityContext();
+        [propget] HRESULT SenderVersion([out, retval] long *plSenderVersion);
+        [propget] HRESULT Extension([out, retval] VARIANT *pvarExtension);
+        [propput] HRESULT Extension([in] VARIANT varExtension);
+        [propget] HRESULT ConnectorTypeGuid(
+            [out, retval] BSTR *pbstrGuidConnectorType
+        );
+        [propput] HRESULT ConnectorTypeGuid([in] BSTR bstrGuidConnectorType);
+        [propget] HRESULT TransactionStatusQueueInfo(
+            [out, retval] IMSMQQueueInfo4 **ppqinfoXactStatus
+        );
+        [propget] HRESULT DestinationSymmetricKey(
+            [out, retval] VARIANT *pvarDestSymmKey
+        );
+        [propput] HRESULT DestinationSymmetricKey([in] VARIANT varDestSymmKey);
+        [propget] HRESULT Signature([out, retval] VARIANT *pvarSignature);
+        [propput] HRESULT Signature([in] VARIANT varSignature);
+        [propget] HRESULT AuthenticationProviderType(
+            [out, retval] long *plAuthProvType
+        );
+        [propput] HRESULT AuthenticationProviderType([in] long lAuthProvType);
+        [propget] HRESULT AuthenticationProviderName(
+            [out, retval] BSTR *pbstrAuthProvName
+        );
+        [propput] HRESULT AuthenticationProviderName(
+            [in] BSTR bstrAuthProvName
+        );
+        [propput] HRESULT SenderId([in] VARIANT varSenderId);
+        [propget] HRESULT MsgClass([out, retval] long *plMsgClass);
+        [propput] HRESULT MsgClass([in] long lMsgClass);
+        [propget] HRESULT Properties([out, retval] IDispatch **ppcolProperties);
+        [propget] HRESULT TransactionId([out, retval] VARIANT *pvarXactId);
+        [propget] HRESULT IsFirstInTransaction(
+            [out, retval] short *pisFirstInXact
+        );
+        [propget] HRESULT IsLastInTransaction(
+            [out, retval] short *pisLastInXact
+        );
+        [propget] HRESULT ResponseQueueInfo_v2(
+            [out, retval] IMSMQQueueInfo2 **ppqinfoResponse
+        );
+        [propput] HRESULT ResponseQueueInfo_v2(
+            [in] IMSMQQueueInfo2 *pqinfoResponse
+        );
+        [propget] HRESULT AdminQueueInfo_v2(
+            [out, retval] IMSMQQueueInfo2 **ppqinfoAdmin
+        );
+        [propput] HRESULT AdminQueueInfo_v2(
+            [in] IMSMQQueueInfo2 *pqinfoAdmin
+        );
+        [propget] HRESULT ReceivedAuthenticationLevel(
+            [out, retval] short *psReceivedAuthenticationLevel
+        );
+        [propget] HRESULT ResponseQueueInfo(
+            [out, retval] IMSMQQueueInfo4 **ppqinfoResponse
+        );
+        [propputref] HRESULT ResponseQueueInfo(
+            [in] IMSMQQueueInfo4 *pqinfoResponse
+        );
+        [propget] HRESULT AdminQueueInfo(
+            [out, retval] IMSMQQueueInfo4 **ppqinfoAdmin
+        );
+        [propputref] HRESULT AdminQueueInfo([in] IMSMQQueueInfo4 *pqinfoAdmin);
+        [propget] HRESULT ResponseDestination(
+            [out, retval] IDispatch **ppdestResponse
+        );
+        [propputref] HRESULT ResponseDestination([in] IDispatch *pdestResponse);
+        [propget] HRESULT Destination(
+            [out, retval] IDispatch **ppdestDestination
+        );
+        [propget] HRESULT LookupId([out, retval] VARIANT *pvarLookupId);
+        [propget] HRESULT IsAuthenticated2(
+            [out, retval] VARIANT_BOOL *pisAuthenticated
+        );
+        [propget] HRESULT IsFirstInTransaction2(
+            [out, retval] VARIANT_BOOL *pisFirstInXact
+        );
+        [propget] HRESULT IsLastInTransaction2(
+            [out, retval] VARIANT_BOOL *pisLastInXact
+        );
+        HRESULT AttachCurrentSecurityContext2();
+        [propget] HRESULT SoapEnvelope([out, retval] BSTR *pbstrSoapEnvelope);
+        [propget] HRESULT CompoundMessage(
+            [out, retval] VARIANT *pvarCompoundMessage
+        );
+        [propput] HRESULT SoapHeader([in] BSTR bstrSoapHeader);
+        [propput] HRESULT SoapBody([in] BSTR bstrSoapBody);
+    };
+    [
+        uuid(D7D6E075-DCCD-11d0-AA4B-0060970DEBAE),
+    ]
+    coclass MSMQMessage {
+        interface IMSMQMessage;
+        interface IMSMQMessage2;
+        interface IMSMQMessage3;
+        [default] interface IMSMQMessage4;
+    };
+    [
+        uuid(D7D6E076-DCCD-11d0-AA4B-0060970DEBAE),
+        hidden, dual, odl
+    ]
+    interface IMSMQQueue : IDispatch {
+        [propget] HRESULT Access([out, retval] long *plAccess);
+        [propget] HRESULT ShareMode([out, retval] long *plShareMode);
+        [propget] HRESULT QueueInfo([out, retval] IMSMQQueueInfo **ppqinfo);
+        [propget] HRESULT Handle([out, retval] long *plHandle);
+        [propget] HRESULT IsOpen([out, retval] short *pisOpen);
+        HRESULT Close();
+        HRESULT Receive(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT Peek (
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT EnableNotification(
+            [in] IMSMQEvent *Event,
+            [in, optional] VARIANT *Cursor,
+            [in, optional] VARIANT *ReceiveTimeout
+        );
+        HRESULT Reset();
+        HRESULT ReceiveCurrent(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT PeekNext(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT PeekCurrent(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+    };
+    [
+        uuid(EF0574E0-06D8-11D3-B100-00E02C074F6B),
+        hidden, dual, odl
+    ]
+    interface IMSMQQueue2 : IDispatch {
+        [propget] HRESULT Access([out, retval] long *plAccess);
+        [propget] HRESULT ShareMode([out, retval] long *plShareMode);
+        [propget] HRESULT QueueInfo([out, retval] IMSMQQueueInfo2 **ppqinfo);
+        [propget] HRESULT Handle([out, retval] long *plHandle);
+        [propget] HRESULT IsOpen([out, retval] short *pisOpen);
+        HRESULT Close();
+        HRESULT Receive_v1(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT Peek_v1(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT EnableNotification(
+            [in] IMSMQEvent2 *Event,
+            [in, optional] VARIANT *Cursor,
+            [in, optional] VARIANT *ReceiveTimeout
+        );
+        HRESULT Reset();
+        HRESULT ReceiveCurrent_v1(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT PeekNext_v1(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT PeekCurrent_v1(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT Receive(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage2 **ppmsg
+        );
+        HRESULT Peek(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage2 **ppmsg
+        );
+        HRESULT ReceiveCurrent(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage2 **ppmsg
+        );
+        HRESULT PeekNext(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage2 **ppmsg
+        );
+        HRESULT PeekCurrent(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage2 **ppmsg
+        );
+        [propget] HRESULT Properties([out, retval] IDispatch **ppcolProperties);
+    };
+ 
+    [
+        uuid(eba96b1b-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQQueue3 : IDispatch {
+        [propget] HRESULT Access([out, retval] long *plAccess);
+        [propget] HRESULT ShareMode([out, retval] long *plShareMode);
+        [propget] HRESULT QueueInfo([out, retval] IMSMQQueueInfo3 **ppqinfo);
+        [propget] HRESULT Handle([out, retval] long *plHandle);
+        [propget] HRESULT IsOpen([out, retval] short *pisOpen);
+        HRESULT Close();
+        HRESULT Receive_v1(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT Peek_v1(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT EnableNotification(
+            [in] IMSMQEvent3 *Event,
+            [in, optional] VARIANT *Cursor,
+            [in, optional] VARIANT *ReceiveTimeout
+        );
+        HRESULT Reset();
+        HRESULT ReceiveCurrent_v1(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT PeekNext_v1(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT PeekCurrent_v1(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT Receive(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage3 **ppmsg
+        );
+        HRESULT Peek(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage3 **ppmsg
+        );
+        HRESULT ReceiveCurrent(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage3 **ppmsg
+        );
+        HRESULT PeekNext(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage3 **ppmsg
+        );
+        HRESULT PeekCurrent(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage3 **ppmsg
+        );
+        [propget] HRESULT Properties([out, retval] IDispatch **ppcolProperties);
+        [propget] HRESULT Handle2([out, retval] VARIANT *pvarHandle);
+        HRESULT ReceiveByLookupId(
+            [in] VARIANT LookupId,
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage3 **ppmsg
+        );
+        HRESULT ReceiveNextByLookupId(
+            [in] VARIANT LookupId,
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage3 **ppmsg
+        );
+        HRESULT ReceivePreviousByLookupId(
+            [in] VARIANT LookupId,
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage3 **ppmsg
+        );
+        HRESULT ReceiveFirstByLookupId(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage3 **ppmsg
+        );
+        HRESULT ReceiveLastByLookupId(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage3 **ppmsg
+        );
+        HRESULT PeekByLookupId(
+            [in] VARIANT LookupId,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage3 **ppmsg
+        );
+        HRESULT PeekNextByLookupId(
+            [in] VARIANT LookupId,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage3 **ppmsg
+        );
+        HRESULT PeekPreviousByLookupId(
+            [in] VARIANT LookupId,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage3 **ppmsg
+        );
+        HRESULT PeekFirstByLookupId(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage3 **ppmsg
+        );
+        HRESULT PeekLastByLookupId(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage3 **ppmsg
+        );
+        HRESULT Purge();
+        [propget] HRESULT IsOpen2([out, retval] VARIANT_BOOL *pisOpen);
+    };
+ 
+    [
+        uuid(eba96b20-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQQueue4 : IDispatch {
+        [propget] HRESULT Access([out, retval] long *plAccess);
+        [propget] HRESULT ShareMode([out, retval] long *plShareMode);
+        [propget] HRESULT QueueInfo([out, retval] IMSMQQueueInfo4 **ppqinfo);
+        [propget] HRESULT Handle([out, retval] long *plHandle);
+        [propget] HRESULT IsOpen([out, retval] short *pisOpen);
+        HRESULT Close();
+        HRESULT Receive_v1(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT Peek_v1(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT EnableNotification(
+            [in] IMSMQEvent3 *Event,
+            [in, optional] VARIANT *Cursor,
+            [in, optional] VARIANT *ReceiveTimeout
+        );
+        HRESULT Reset();
+        HRESULT ReceiveCurrent_v1(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT PeekNext_v1(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT PeekCurrent_v1(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [out, retval] IMSMQMessage **ppmsg
+        );
+        HRESULT Receive(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage4 **ppmsg
+        );
+        HRESULT Peek(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage4 **ppmsg
+        );
+        HRESULT ReceiveCurrent(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage4 **ppmsg
+        );
+        HRESULT PeekNext(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage4 **ppmsg
+        );
+        HRESULT PeekCurrent(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *ReceiveTimeout,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage4 **ppmsg
+        );
+        [propget] HRESULT Properties(
+            [out, retval] IDispatch **ppcolProperties
+        );
+        [propget] HRESULT Handle2(
+            [out, retval] VARIANT *pvarHandle
+        );
+        HRESULT ReceiveByLookupId(
+            [in] VARIANT LookupId,
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage4 **ppmsg
+        );
+        HRESULT ReceiveNextByLookupId(
+            [in] VARIANT LookupId,
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage4 **ppmsg
+        );
+        HRESULT ReceivePreviousByLookupId(
+            [in] VARIANT LookupId,
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage4 **ppmsg
+        );
+        HRESULT ReceiveFirstByLookupId(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage4 **ppmsg
+        );
+        HRESULT ReceiveLastByLookupId(
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage4 **ppmsg
+        );
+        HRESULT PeekByLookupId(
+            [in] VARIANT LookupId,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage4 **ppmsg
+        );
+        HRESULT PeekNextByLookupId(
+            [in] VARIANT LookupId,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage4 **ppmsg
+        );
+        HRESULT PeekPreviousByLookupId(
+            [in] VARIANT LookupId,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage4 **ppmsg
+        );
+        HRESULT PeekFirstByLookupId(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage4 **ppmsg
+        );
+        HRESULT PeekLastByLookupId(
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage4 **ppmsg
+        );
+        HRESULT Purge();
+        [propget] HRESULT IsOpen2([out, retval] VARIANT_BOOL *pisOpen);
+        HRESULT ReceiveByLookupIdAllowPeek(
+            [in] VARIANT LookupId,
+            [in, optional] VARIANT *Transaction,
+            [in, optional] VARIANT *WantDestinationQueue,
+            [in, optional] VARIANT *WantBody,
+            [in, optional] VARIANT *WantConnectorType,
+            [out, retval] IMSMQMessage4 **ppmsg
+        );
+    };
+ 
+    [
+        uuid(D7D6E079-DCCD-11d0-AA4B-0060970DEBAE),
+    ]
+    coclass MSMQQueue {
+        interface IMSMQQueue;
+        interface IMSMQQueue2;
+        interface IMSMQQueue3;
+        [default] interface IMSMQQueue4;
+    };
+    [
+        uuid(D7AB3341-C9D3-11d1-BB47-0080C7C5A2C0),
+        hidden, dual, odl
+    ]
+    interface IMSMQPrivateEvent : IDispatch {
+        [propget] HRESULT Hwnd([out, retval] long *phwnd);
+        HRESULT FireArrivedEvent(
+            [in] IMSMQQueue *pq,
+            [in] long msgcursor
+        );
+        HRESULT FireArrivedErrorEvent(
+            [in] IMSMQQueue *pq,
+            [in] HRESULT hrStatus,
+            [in] long msgcursor
+        );
+    }
+ 
+    [
+        uuid(D7D6E077-DCCD-11d0-AA4B-0060970DEBAE),
+        hidden, dual, odl
+    ]
+    interface IMSMQEvent : IDispatch {
+    }
+ 
+    [
+        uuid(eba96b12-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQEvent2 : IMSMQEvent {
+        [propget] HRESULT Properties([out, retval] IDispatch **ppcolProperties);
+    }
+ 
+    [
+        uuid(eba96b1c-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQEvent3 : IMSMQEvent2 {
+    }
+ 
+    [
+        uuid(D7D6E078-DCCD-11d0-AA4B-0060970DEBAE),
+        hidden
+    ]
+    dispinterface _DMSMQEventEvents {
+        properties:
+        methods:
+            [id(0)]
+            void Arrived(
+              [in] IDispatch *Queue,
+              [in] long Cursor);
+ 
+            [id(1)]
+            void ArrivedError(
+              [in] IDispatch *Queue,
+              [in] long ErrorCode,
+              [in] long Cursor);
+    };
+ 
+    [
+        uuid(D7D6E07A-DCCD-11d0-AA4B-0060970DEBAE)
+    ]
+    coclass MSMQEvent {
+        interface IMSMQEvent;
+        interface IMSMQEvent2;
+        [default] interface IMSMQEvent3;
+        interface IMSMQPrivateEvent;
+        [default, source] dispinterface _DMSMQEventEvents;
+    };
+ 
+    [
+        uuid(D7D6E07B-DCCD-11d0-AA4B-0060970DEBAE),
+        hidden, dual, odl
+    ]
+    interface IMSMQQueueInfo : IDispatch {
+        [propget] HRESULT QueueGuid([out, retval] BSTR *pbstrGuidQueue);
+        [propget] HRESULT ServiceTypeGuid(
+            [out, retval] BSTR *pbstrGuidServiceType
+        );
+        [propput] HRESULT ServiceTypeGuid([in] BSTR bstrGuidServiceType);
+        [propget] HRESULT Label([out, retval] BSTR *pbstrLabel);
+        [propput] HRESULT Label([in] BSTR bstrLabel);
+        [propget] HRESULT PathName([out, retval] BSTR *pbstrPathName);
+        [propput] HRESULT PathName([in] BSTR bstrPathName);
+        [propget] HRESULT FormatName([out, retval] BSTR *pbstrFormatName);
+        [propput] HRESULT FormatName([in] BSTR bstrFormatName);
+        [propget] HRESULT IsTransactional(
+            [out, retval] short *pisTransactional
+        );
+        [propget] HRESULT PrivLevel([out, retval] long *plPrivLevel);
+        [propput] HRESULT PrivLevel([in] long lPrivLevel);
+        [propget] HRESULT Journal([out, retval] long *plJournal);
+        [propput] HRESULT Journal([in] long lJournal);
+        [propget] HRESULT Quota([out, retval] long *plQuota);
+        [propput] HRESULT Quota([in] long lQuota);
+        [propget] HRESULT BasePriority([out, retval] long *plBasePriority);
+        [propput] HRESULT BasePriority([in] long lBasePriority);
+        [propget] HRESULT CreateTime([out, retval] VARIANT *pvarCreateTime);
+        [propget] HRESULT ModifyTime([out, retval] VARIANT *pvarModifyTime);
+        [propget] HRESULT Authenticate([out, retval] long *plAuthenticate);
+        [propput] HRESULT Authenticate([in] long lAuthenticate);
+        [propget] HRESULT JournalQuota([out, retval] long *plJournalQuota);
+        [propput] HRESULT JournalQuota([in] long lJournalQuota);
+        [propget] HRESULT IsWorldReadable(
+            [out, retval] short *pisWorldReadable
+        );
+        HRESULT Create(
+            [in, optional] VARIANT *IsTransactional,
+            [in, optional] VARIANT *IsWorldReadable
+        );
+        HRESULT Delete();
+        HRESULT Open(
+            [in] long Access,
+            [in] long ShareMode,
+            [out, retval] IMSMQQueue **ppq
+        );
+        HRESULT Refresh();
+        HRESULT Update();
+    };
+    [
+        uuid(FD174A80-89CF-11D2-B0F2-00E02C074F6B),
+        hidden, dual, odl
+    ]
+    interface IMSMQQueueInfo2 : IDispatch {
+        [propget] HRESULT QueueGuid([out, retval] BSTR *pbstrGuidQueue);
+        [propget] HRESULT ServiceTypeGuid(
+            [out, retval] BSTR *pbstrGuidServiceType
+        );
+        [propput] HRESULT ServiceTypeGuid([in] BSTR bstrGuidServiceType);
+        [propget] HRESULT Label([out, retval] BSTR *pbstrLabel);
+        [propput] HRESULT Label([in] BSTR bstrLabel);
+        [propget] HRESULT PathName([out, retval] BSTR *pbstrPathName);
+        [propput] HRESULT PathName([in] BSTR bstrPathName);
+        [propget] HRESULT FormatName([out, retval] BSTR *pbstrFormatName);
+        [propput] HRESULT FormatName([in] BSTR bstrFormatName);
+        [propget] HRESULT IsTransactional(
+            [out, retval] short *pisTransactional
+        );
+        [propget] HRESULT PrivLevel([out, retval] long *plPrivLevel);
+        [propput] HRESULT PrivLevel([in] long lPrivLevel);
+        [propget] HRESULT Journal([out, retval] long *plJournal);
+        [propput] HRESULT Journal([in] long lJournal);
+        [propget] HRESULT Quota([out, retval] long *plQuota);
+        [propput] HRESULT Quota([in] long lQuota);
+        [propget] HRESULT BasePriority([out, retval] long *plBasePriority);
+        [propput] HRESULT BasePriority([in] long lBasePriority);
+        [propget] HRESULT CreateTime([out, retval] VARIANT *pvarCreateTime);
+        [propget] HRESULT ModifyTime([out, retval] VARIANT *pvarModifyTime);
+        [propget] HRESULT Authenticate([out, retval] long *plAuthenticate);
+        [propput] HRESULT Authenticate([in] long lAuthenticate);
+        [propget] HRESULT JournalQuota([out, retval] long *plJournalQuota);
+        [propput] HRESULT JournalQuota([in] long lJournalQuota);
+        [propget] HRESULT IsWorldReadable(
+            [out, retval] short *pisWorldReadable
+        );
+        HRESULT Create(
+            [in, optional] VARIANT *IsTransactional,
+            [in, optional] VARIANT *IsWorldReadable
+        );
+        HRESULT Delete();
+        HRESULT Open(
+            [in] long Access,
+            [in] long ShareMode,
+            [out, retval] IMSMQQueue2 **ppq
+        );
+        HRESULT Refresh();
+        HRESULT Update();
+        [propget] HRESULT PathNameDNS([out, retval] BSTR *pbstrPathNameDNS);
+        [propget] HRESULT Properties(
+            [out, retval] IDispatch **ppcolProperties
+        );
+        [propget] HRESULT Security([out, retval] VARIANT *pvarSecurity);
+        [propput] HRESULT Security([in] VARIANT varSecurity);
+    };
+   
+    [
+        uuid(eba96b1d-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQQueueInfo3 : IDispatch {
+        [propget] HRESULT QueueGuid([out, retval] BSTR *pbstrGuidQueue);
+        [propget] HRESULT ServiceTypeGuid(
+            [out, retval] BSTR *pbstrGuidServiceType
+        );
+        [propput] HRESULT ServiceTypeGuid([in] BSTR bstrGuidServiceType);
+        [propget] HRESULT Label([out, retval] BSTR *pbstrLabel);
+        [propput] HRESULT Label([in] BSTR bstrLabel);
+        [propget] HRESULT PathName([out, retval] BSTR *pbstrPathName);
+        [propput] HRESULT PathName([in] BSTR bstrPathName);
+        [propget] HRESULT FormatName([out, retval] BSTR *pbstrFormatName);
+        [propput] HRESULT FormatName([in] BSTR bstrFormatName);
+        [propget] HRESULT IsTransactional(
+            [out, retval] short *pisTransactional
+        );
+        [propget] HRESULT PrivLevel([out, retval] long *plPrivLevel);
+        [propput] HRESULT PrivLevel([in] long lPrivLevel);
+        [propget] HRESULT Journal([out, retval] long *plJournal);
+        [propput] HRESULT Journal([in] long lJournal);
+        [propget] HRESULT Quota([out, retval] long *plQuota);
+        [propput] HRESULT Quota([in] long lQuota);
+        [propget] HRESULT BasePriority([out, retval] long *plBasePriority);
+        [propput] HRESULT BasePriority([in] long lBasePriority);
+        [propget] HRESULT CreateTime([out, retval] VARIANT *pvarCreateTime);
+        [propget] HRESULT ModifyTime([out, retval] VARIANT *pvarModifyTime);
+        [propget] HRESULT Authenticate([out, retval] long *plAuthenticate);
+        [propput] HRESULT Authenticate([in] long lAuthenticate);
+        [propget] HRESULT JournalQuota([out, retval] long *plJournalQuota);
+        [propput] HRESULT JournalQuota([in] long lJournalQuota);
+        [propget] HRESULT IsWorldReadable(
+            [out, retval] short *pisWorldReadable
+        );
+        HRESULT Create(
+            [in, optional] VARIANT *IsTransactional,
+            [in, optional] VARIANT *IsWorldReadable
+        );
+        HRESULT Delete();
+        HRESULT Open(
+            [in] long Access,
+            [in] long ShareMode,
+            [out, retval] IMSMQQueue3 **ppq
+        );
+        HRESULT Refresh();
+        HRESULT Update();
+        [propget] HRESULT PathNameDNS([out, retval] BSTR *pbstrPathNameDNS);
+        [propget] HRESULT Properties([out, retval] IDispatch **ppcolProperties);
+        [propget] HRESULT Security([out, retval] VARIANT *pvarSecurity);
+        [hidden, propput] HRESULT Security([in] VARIANT varSecurity);
+        [propget] HRESULT IsTransactional2(
+            [out, retval] VARIANT_BOOL *pisTransactional
+        );
+        [propget] HRESULT IsWorldReadable2(
+            [out, retval] VARIANT_BOOL *pisWorldReadable
+        );
+        [propget] HRESULT MulticastAddress(
+            [out, retval] BSTR *pbstrMulticastAddress
+        );
+        [propput] HRESULT MulticastAddress([in] BSTR bstrMulticastAddress);
+        [propget] HRESULT ADsPath([out, retval] BSTR *pbstrADsPath);
+    };
+    [
+        uuid(eba96b21-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQQueueInfo4 : IDispatch {
+        [propget] HRESULT QueueGuid([out, retval] BSTR *pbstrGuidQueue);
+        [propget] HRESULT ServiceTypeGuid(
+            [out, retval] BSTR *pbstrGuidServiceType
+        );
+        [propput] HRESULT ServiceTypeGuid([in] BSTR bstrGuidServiceType);
+        [propget] HRESULT Label([out, retval] BSTR *pbstrLabel);
+        [propput] HRESULT Label([in] BSTR bstrLabel);
+        [propget] HRESULT PathName([out, retval] BSTR *pbstrPathName);
+        [propput] HRESULT PathName([in] BSTR bstrPathName);
+        [propget] HRESULT FormatName([out, retval] BSTR *pbstrFormatName);
+        [propput] HRESULT FormatName([in] BSTR bstrFormatName);
+        [propget] HRESULT IsTransactional(
+            [out, retval] short *pisTransactional
+        );
+        [propget] HRESULT PrivLevel([out, retval] long *plPrivLevel);
+        [propput] HRESULT PrivLevel([in] long lPrivLevel);
+        [propget] HRESULT Journal([out, retval] long *plJournal);
+        [propput] HRESULT Journal([in] long lJournal);
+        [propget] HRESULT Quota([out, retval] long *plQuota);
+        [propput] HRESULT Quota([in] long lQuota);
+        [propget] HRESULT BasePriority([out, retval] long *plBasePriority);
+        [propput] HRESULT BasePriority([in] long lBasePriority);
+        [propget] HRESULT CreateTime([out, retval] VARIANT *pvarCreateTime);
+        [propget] HRESULT ModifyTime([out, retval] VARIANT *pvarModifyTime);
+        [propget] HRESULT Authenticate([out, retval] long *plAuthenticate);
+        [propput] HRESULT Authenticate([in] long lAuthenticate);
+        [propget] HRESULT JournalQuota([out, retval] long *plJournalQuota);
+        [propput] HRESULT JournalQuota([in] long lJournalQuota);
+        [propget] HRESULT IsWorldReadable(
+            [out, retval] short *pisWorldReadable
+        );
+        HRESULT Create(
+            [in, optional] VARIANT *IsTransactional,
+            [in, optional] VARIANT *IsWorldReadable
+        );
+        HRESULT Delete();
+        HRESULT Open(
+            [in] long Access,
+            [in] long ShareMode,
+            [out, retval] IMSMQQueue4 **ppq
+        );
+        HRESULT Refresh();
+        HRESULT Update();
+        [propget] HRESULT PathNameDNS([out, retval] BSTR *pbstrPathNameDNS);
+        [propget] HRESULT Properties([out, retval] IDispatch **ppcolProperties);
+        [propget] HRESULT Security([out, retval] VARIANT *pvarSecurity);
+        [propput] HRESULT Security([in] VARIANT varSecurity);
+        [propget] HRESULT IsTransactional2(
+            [out, retval] VARIANT_BOOL *pisTransactional
+        );
+        [propget] HRESULT IsWorldReadable2(
+            [out, retval] VARIANT_BOOL *pisWorldReadable
+        );
+        [propget] HRESULT MulticastAddress(
+            [out, retval] BSTR *pbstrMulticastAddress
+        );
+        [propput] HRESULT MulticastAddress([in] BSTR bstrMulticastAddress);
+        [propget] HRESULT ADsPath([out, retval] BSTR *pbstrADsPath);
+    };
+    [
+        uuid(D7D6E07C-DCCD-11d0-AA4B-0060970DEBAE),
+    ]
+    coclass MSMQQueueInfo {
+        interface IMSMQQueueInfo;
+        interface IMSMQQueueInfo2;
+        interface IMSMQQueueInfo3;
+        [default] interface IMSMQQueueInfo4;
+    };
+ 
+    [
+        uuid(D7D6E07D-DCCD-11d0-AA4B-0060970DEBAE),
+        hidden, dual, odl
+    ]
+    interface IMSMQQueueInfos : IDispatch {
+        HRESULT Reset();
+        HRESULT Next([out, retval] IMSMQQueueInfo **ppqinfoNext);
+    };
+    [
+        uuid(eba96b0f-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQQueueInfos2 : IDispatch {
+        HRESULT Reset();
+        HRESULT Next([out, retval] IMSMQQueueInfo2 **ppqinfoNext);
+        [propget] HRESULT Properties(
+            [out, retval] IDispatch **ppcolProperties
+        );
+    };
+    [
+        uuid(eba96b1e-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQQueueInfos3 : IDispatch {
+        HRESULT Reset();
+        HRESULT Next([out, retval] IMSMQQueueInfo3 **ppqinfoNext);
+        [propget] HRESULT Properties(
+            [out, retval] IDispatch **ppcolProperties
+        );
+    };
+    [
+        uuid(eba96b22-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQQueueInfos4 : IDispatch {
+        HRESULT Reset();
+        HRESULT Next([out, retval] IMSMQQueueInfo4 **ppqinfoNext);
+        [propget] HRESULT Properties(
+            [out, retval] IDispatch **ppcolProperties
+        );
+    };
+    [
+        uuid(D7D6E07E-DCCD-11d0-AA4B-0060970DEBAE),
+    ]
+    coclass MSMQQueueInfos {
+        interface IMSMQQueueInfos;
+        interface IMSMQQueueInfos2;
+        interface IMSMQQueueInfos3;
+        [default] interface IMSMQQueueInfos4;
+    };
+    [
+        uuid(D7D6E07F-DCCD-11d0-AA4B-0060970DEBAE),
+        hidden, dual, odl
+    ]
+    interface IMSMQTransaction : IDispatch {
+        [propget] HRESULT Transaction([out, retval] long *plTransaction);
+        HRESULT Commit(
+            [in, optional] VARIANT *fRetaining,
+            [in, optional] VARIANT *grfTC,
+            [in, optional] VARIANT *grfRM
+        );
+        HRESULT Abort(
+            [in, optional] VARIANT *fRetaining,
+            [in, optional] VARIANT *fAsync
+        );
+    };
+    [
+        uuid(2CE0C5B0-6E67-11D2-B0E6-00E02C074F6B),
+        hidden, dual, odl
+    ]
+    interface IMSMQTransaction2 : IMSMQTransaction {
+        HRESULT InitNew([in] VARIANT varTransaction);
+        [propget] HRESULT Properties(
+            [out, retval] IDispatch **ppcolProperties
+        );
+    };
+    [
+        uuid(eba96b13-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQTransaction3 : IMSMQTransaction2 {
+        [propget] HRESULT ITransaction([out, retval] VARIANT *pvarITransaction);
+    };
+    [
+        uuid(D7D6E080-DCCD-11d0-AA4B-0060970DEBAE),
+    ]
+    coclass MSMQTransaction {
+        interface IMSMQTransaction;
+        interface IMSMQTransaction2;
+        [default] interface IMSMQTransaction3;
+    };
+    [
+        uuid(D7D6E081-DCCD-11d0-AA4B-0060970DEBAE),
+        hidden, dual, odl
+    ]
+    interface IMSMQCoordinatedTransactionDispenser : IDispatch {
+        HRESULT BeginTransaction(
+            [out, retval] IMSMQTransaction **ptransaction
+        );
+    };
+    [
+        uuid(eba96b10-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQCoordinatedTransactionDispenser2 : IDispatch {
+        HRESULT BeginTransaction(
+            [out, retval] IMSMQTransaction2 **ptransaction
+        );
+        [propget] HRESULT Properties(
+            [out, retval] IDispatch **ppcolProperties
+        );
+    };
+    [
+        uuid(eba96b14-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQCoordinatedTransactionDispenser3 : IDispatch {
+        HRESULT BeginTransaction(
+            [out, retval] IMSMQTransaction3 **ptransaction
+        );
+        [propget] HRESULT Properties(
+            [out, retval] IDispatch **ppcolProperties
+        );
+    };
+ 
+    [
+        uuid(D7D6E082-DCCD-11d0-AA4B-0060970DEBAE)
+    ]
+    coclass MSMQCoordinatedTransactionDispenser {
+        interface IMSMQCoordinatedTransactionDispenser;
+        interface IMSMQCoordinatedTransactionDispenser2;
+        [default] interface IMSMQCoordinatedTransactionDispenser3;
+    };
+ 
+    [
+        uuid(D7D6E083-DCCD-11d0-AA4B-0060970DEBAE),
+        hidden, dual, odl
+    ]
+    interface IMSMQTransactionDispenser : IDispatch {
+        HRESULT BeginTransaction(
+            [out, retval] IMSMQTransaction **ptransaction
+        );
+    };
+ 
+    [
+        uuid(eba96b11-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQTransactionDispenser2 : IDispatch {
+        HRESULT BeginTransaction(
+            [out, retval] IMSMQTransaction2 **ptransaction
+        );
+        [propget] HRESULT Properties(
+            [out, retval] IDispatch **ppcolProperties
+        );
+    };
+ 
+    [
+        uuid(eba96b15-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQTransactionDispenser3 : IDispatch {
+        HRESULT BeginTransaction(
+            [out, retval] IMSMQTransaction3 **ptransaction
+        );
+        [propget] HRESULT Properties(
+            [out, retval] IDispatch **ppcolProperties
+        );
+    };
+ 
+    [
+        uuid(D7D6E084-DCCD-11d0-AA4B-0060970DEBAE),
+    ]
+    coclass MSMQTransactionDispenser {
+        interface IMSMQTransactionDispenser;
+        interface IMSMQTransactionDispenser2;
+        [default] interface IMSMQTransactionDispenser3;
+    };
+ 
+    [
+        uuid(D7D6E085-DCCD-11d0-AA4B-0060970DEBAE),
+        hidden, dual, odl
+    ]
+    interface IMSMQApplication : IDispatch {
+        HRESULT MachineIdOfMachineName(
+            [in] BSTR MachineName,
+            [out, retval] BSTR *pbstrGuid
+        );
+    };
+ 
+    [
+        uuid(12A30900-7300-11D2-B0E6-00E02C074F6B),
+        hidden, dual, odl
+    ]
+    interface IMSMQApplication2 : IMSMQApplication {
+        HRESULT RegisterCertificate(
+            [in, optional] VARIANT * Flags,
+            [in, optional] VARIANT * ExternalCertificate
+        );
+        HRESULT MachineNameOfMachineId(
+            [in] BSTR bstrGuid,
+            [out, retval] BSTR *pbstrMachineName
+        );
+        [propget] HRESULT MSMQVersionMajor(
+            [out, retval] short *psMSMQVersionMajor
+        );
+        [propget] HRESULT MSMQVersionMinor(
+            [out, retval] short *psMSMQVersionMinor
+        );
+        [propget] HRESULT MSMQVersionBuild(
+            [out, retval] short *psMSMQVersionBuild
+        );
+        [propget] HRESULT IsDsEnabled(
+            [out, retval] VARIANT_BOOL *pfIsDsEnabled
+        );
+        [propget] HRESULT Properties(
+            [out, retval] IDispatch **ppcolProperties
+        );
+    };
+    [
+        uuid(eba96b1f-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQApplication3 : IMSMQApplication2 {
+        HRESULT ActiveQueues([out,retval] VARIANT* pvActiveQueues);
+        [propget] HRESULT PrivateQueues([out,retval] VARIANT* pvPrivateQueues);
+        [propget] HRESULT DirectoryServiceServer(
+            [out,retval] BSTR* pbstrDirectoryServiceServer
+        );
+        [propget] HRESULT IsConnected(
+            [out,retval] VARIANT_BOOL* pfIsConnected
+        );
+        [propget] HRESULT BytesInAllQueues(
+            [out,retval] VARIANT* pvBytesInAllQueues
+        );
+        [propput] HRESULT Machine([in] BSTR bstrMachine);
+        [propget] HRESULT Machine([out, retval] BSTR *pbstrMachine);
+        HRESULT Connect();
+        HRESULT Disconnect();
+        HRESULT Tidy();
+    };
+ 
+    [
+        uuid(D7D6E086-DCCD-11d0-AA4B-0060970DEBAE),
+        appobject,
+    ]
+    coclass MSMQApplication {
+        interface IMSMQApplication;
+        ipBSTRGUIDnterface IMSMQApplication2;
+        [default] interface IMSMQApplication3;
+    };
+  
+    [
+        uuid(eba96b16-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQDestination : IDispatch {
+        HRESULT Open();
+        HRESULT Close();
+        [propget] HRESULT IsOpen([out, retval] VARIANT_BOOL *pfIsOpen);
+        [propget] HRESULT IADs([out, retval] IDispatch **ppIADs);
+        [propputref] HRESULT IADs([in] IDispatch *pIADs);
+        [propget] HRESULT ADsPath([out, retval] BSTR *pbstrADsPath);
+        [propput] HRESULT ADsPath([in] BSTR bstrADsPath);
+        [propget] HRESULT PathName([out, retval] BSTR *pbstrPathName);
+        [propput] HRESULT PathName([in] BSTR bstrPathName);
+        [propget] HRESULT FormatName([out, retval] BSTR *pbstrFormatName);
+        [propput] HRESULT FormatName([in] BSTR bstrFormatName);
+        [propget] HRESULT Destinations([out, retval] IDispatch **ppDestinations);
+        [propputref] HRESULT Destinations([in] IDispatch *pDestinations);
+        [propget] HRESULT Properties([out, retval] IDispatch **ppcolProperties);
+   };
+ 
+    [
+        uuid(eba96b17-2168-11d3-898c-00e02c074f6b),
+        hidden, dual, odl
+    ]
+    interface IMSMQPrivateDestination : IDispatch {
+        [propget] HRESULT Handle([out, retval] VARIANT *pvarHandle);
+        [propput] HRESULT Handle([in] VARIANT varHandle);
+    };
+ 
+    [
+        uuid(eba96b18-2168-11d3-898c-00e02c074f6b),
+    ]
+    coclass MSMQDestination {
+        [default] interface IMSMQDestination;
+        interface IMSMQPrivateDestination;
+    };
+ 
+    [
+        uuid(0188AC2F-ECB3-4173-9779-635CA2039C72),
+        dual, oleautomation
+    ]
+    interface IMSMQCollection : IDispatch {
+        HRESULT Item(
+            [in] VARIANT* Index, 
+            [out, retval] VARIANT* pvarRet
+        );
+        [propget] HRESULT Count([out, retval] long* pCount);
+        [restricted] HRESULT _NewEnum([out, retval] IUnknown** ppunk);
+   };
+ 
+    [
+        uuid(f72b9031-2f0c-43e8-924e-e6052cdc493f),
+    ]
+    coclass MSMQCollection {
+        [default]      interface IMSMQCollection;
+    };
+ 
+    [
+        uuid(BE5F0241-E489-4957-8CC4-A452FCF3E23E),
+        hidden, dual
+    ]
+    interface IMSMQManagement : IDispatch {
+        HRESULT Init(
+            [in, optional] VARIANT *Machine,
+            [in, optional] VARIANT *Pathname,
+            [in, optional] VARIANT *FormatName
+        );
+        [propget] HRESULT FormatName([out, retval] BSTR *pbstrFormatName);
+        [propget] HRESULT Machine([out, retval] BSTR *pbstrMachine);
+        [propget] HRESULT MessageCount([out, retval] long* plMessageCount);
+        [propget] HRESULT ForeignStatus([out,retval] long* plForeignStatus);
+        [propget] HRESULT QueueType([out,retval] long* plQueueType);
+        [propget] HRESULT IsLocal([out,retval] VARIANT_BOOL* pfIsLocal);
+        [propget] HRESULT TransactionalStatus(
+            [out,retval] long* plTransactionalStatus
+        );
+        [propget] HRESULT BytesInQueue([out,retval] VARIANT* pvBytesInQueue);
+    };
+ 
+    [
+        uuid(39CE96FE-F4C5-4484-A143-4C2D5D324229),
+    ]
+    coclass MSMQManagement {
+       [default] interface IMSMQManagement;
+    };
+ 
+   [
+       uuid(64C478FB-F9B0-4695-8A7F-439AC94326D3),
+       dual
+   ]
+   interface IMSMQOutgoingQueueManagement : IMSMQManagement {
+        [propget] HRESULT State([out,retval] long* plState);
+        [propget] HRESULT NextHops([out,retval] VARIANT* pvNextHops);
+        HRESULT EodGetSendInfo(
+            [out,retval] IMSMQCollection** ppCollection
+        );
+        HRESULT Resume();
+        HRESULT Pause();
+        HRESULT EodResend();
+   };
+ 
+   [
+       uuid(0188401c-247a-4fed-99c6-bf14119d7055),
+   ]
+   coclass MSMQOutgoingQueueManagement {
+       [default] interface IMSMQOutgoingQueueManagement;
+   };
+ 
+   [
+      uuid(7FBE7759-5760-444d-B8A5-5E7AB9A84CCE),
+      dual
+   ]
+   interface IMSMQQueueManagement : IMSMQManagement {
+        [propget] HRESULT JournalMessageCount(
+            [out,retval] long* plJournalMessageCount
+        );
+        [propget] HRESULT BytesInJournal(
+            [out,retval] VARIANT* pvBytesInJournal
+        );
+        HRESULT EodGetReceiveInfo(
+            [out,retval] VARIANT* pvCollection
+        );
+   };
+   [uuid(33b6d07e-f27d-42fa-b2d7-bf82e11e9374),
+   ]
+   coclass MSMQQueueManagement {
+      [default]interface IMSMQQueueManagement;
+   };

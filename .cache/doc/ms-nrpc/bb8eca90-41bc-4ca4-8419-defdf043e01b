@@ -1,0 +1,9 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/bb8eca90-41bc-4ca4-8419-defdf043e01b" data-linktype="external">msdn link</a></p><p>The <b>LM_CHALLENGE</b> structure carries a LAN Manager
+authentication challenge.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   CHAR data[8];
+ } LM_CHALLENGE;
+</pre></div>
+</dd></dl><p><b>data:</b> A string of eight characters that
+contains a LAN Manager authentication challenge, which is an unencrypted <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_001c0e40-0980-417d-853c-f7cb34ba6d3b" data-linktype="relative-path">nonce</a>.</p><p>For more information, see <a href="https://go.microsoft.com/fwlink/?LinkId=89929" data-linktype="external">[LANMAN]</a>.</p></div>

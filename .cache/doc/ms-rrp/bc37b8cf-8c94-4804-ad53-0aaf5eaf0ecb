@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The RPC_SECURITY_ATTRIBUTES structure represents security
+attributes that can be set through the Remote Procedure Call Protocol
+Extensions, as specified in <span><a href="../ms-cmrp/ba4117c0-530e-4e70-a085-4b4cf5bbf193" data-linktype="relative-path">[MS-CMRP]</a></span>
+section <span><a href="../ms-cmrp/087e7905-2d56-4c68-8ef1-a4879775579a" data-linktype="relative-path">2.2.3.2</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _RPC_SECURITY_ATTRIBUTES {
+   DWORD nLength;
+   RPC_SECURITY_DESCRIPTOR RpcSecurityDescriptor;
+   BOOLEAN bInheritHandle;
+ } RPC_SECURITY_ATTRIBUTES,
+  *PRPC_SECURITY_ATTRIBUTES;
+</pre></div>
+</dd></dl><p><b>nLength:</b>  The length in bytes of the
+security descriptor.</p><p><b>RpcSecurityDescriptor:</b>  The security
+descriptor that MUST be as specified in <span><a href="9729e781-8eb9-441b-82ca-e898f98d29c2" data-linktype="relative-path">RPC_SECURITY_DESCRIPTOR</a></span>.
+</p><p><b>bInheritHandle:</b>  <b>TRUE</b> if the
+new process inherits the handle; otherwise, <b>FALSE</b>. </p></div>

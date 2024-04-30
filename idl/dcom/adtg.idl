@@ -1,0 +1,132 @@
+import "ms-oaut.idl";
+ 
+// XXX: midl_pragma
+// midl_pragma warning (disable: 2400)
+ 
+[
+ uuid(0EAC4842-8763-11cf-A743-00AA00A3F00D)
+ , helpstring("Definition of interface IDataFactory")
+ , odl
+ , hidden //hidden from object browser
+ , oleautomation
+]
+ 
+interface IDataFactory : IUnknown
+{
+ //Methods
+  [ 
+    id(1), 
+    helpstring("Execute the request and create an advanced data rowset"),
+//    helpcontext(mdmthQuery)
+  ]
+  HRESULT Query(
+    [in] BSTR bstrConnection,
+    [in] BSTR bstrQuery,
+    [in, defaultvalue(0)] long lMarshalOptions,
+    [out, retval] IDispatch **ppRecordset);
+ 
+  [ 
+    id(2), 
+    helpstring("Given a recordset with pending changes, this method submits them to the database identified in the connection string"),
+//    helpcontext(mdmthSubChanges)
+  ]
+  HRESULT SubmitChanges(
+    [in] BSTR bstrConnection,
+    [in] IDispatch *pRecordset);
+ 
+  [ 
+    id(3), 
+    helpstring("Converts a recordset into a MIME64 string"),
+//    helpcontext(mdmthConvertToString)
+  ]
+  HRESULT ConvertToString(
+    [in] IUnknown * punkObject,
+    [out, retval] BSTR *pbstrInline);
+ 
+  [ 
+    id(4), 
+    helpstring("Creates and returns an empty recordset"),
+//    helpcontext(mdmthCreateRecordset)
+  ]
+  HRESULT CreateRecordSet(
+    [in] VARIANT varColumnInfos,
+    [out, retval] IDispatch **ppDispatch);
+}
+ 
+ 
+/*
+* IID_IDataFactory2
+* 'interface' entries must have 'odl' attribute
+*/
+[
+ uuid(070669EB-B52F-11d1-9270-00C04FBBBFB3)
+ , helpstring("Definition of interface IDataFactory2")
+ , odl
+ , hidden //hidden from object browser
+ , oleautomation
+]
+interface IDataFactory2 : IDataFactory
+{
+  //Methods
+  [ id(5), helpstring("Execute the request and create an advanced data rowset") ]
+  HRESULT Execute21(
+    [in] BSTR ConnectionString,
+    [in] BSTR HandlerString,
+    [in] BSTR QueryString,
+    [in] long lMarshalOptions,
+    [in] VARIANT Properties,
+    [in] VARIANT TableId,
+    [in] long lExecuteOptions,
+    [in, out] VARIANT *pParameters,
+    [out, retval] IDispatch **ppRecordset);
+ 
+  [ id(6), helpstring("Synchronize the given recordset with the database specified by the connection string") ]
+  HRESULT Synchronize21(
+    [in] BSTR ConnectionString,
+    [in] BSTR HandlerString,
+    [in] long lSynchronizeOptions, // UPDATE or REFRESH, etc.
+    [in, out] IDispatch **ppRecordset,
+    [in, out] VARIANT *pStatusArray,
+    [out, retval] VARIANT *pResult);
+}
+ 
+/*
+* IID_IDataFactory3
+* 'interface' entries must have 'odl' attribute
+*/
+[
+ uuid(4639DB2A-BFC5-11d2-9318-00C04FBBBFB3)
+ , helpstring("Definition of interface IDataFactory3")
+ , odl
+ , hidden //hidden from object browser
+ , oleautomation
+]
+interface IDataFactory3 : IDataFactory2
+{
+  //Methods
+  [ id(7), helpstring("Execute the request and create an advanced data rowset") ]
+  HRESULT Execute(
+    [in] BSTR ConnectionString,
+    [in] BSTR HandlerString,
+    [in] BSTR QueryString,
+    [in] long lMarshalOptions,
+    [in] VARIANT Properties,
+    [in] VARIANT TableId,
+    [in] long lExecuteOptions,
+    [in, out] VARIANT *pParameters,
+    [in, optional] long lcid,
+    [in, out, optional] VARIANT *pInformation,
+    [out, retval] IDispatch **ppRecordset);
+ 
+  [ id(8), helpstring("Synchronize the given recordset with the database specified by the connection string") ]
+  HRESULT Synchronize(
+    [in] BSTR ConnectionString,
+    [in] BSTR HandlerString,
+    [in] long lSynchronizeOptions, // UPDATE or REFRESH, etc.
+    [in, out] IDispatch **ppRecordset,
+    [in, out] VARIANT *pStatusArray,
+    [in, optional] long lcid,
+    [in, out, optional] VARIANT *pInformation,
+    [out, retval] VARIANT *pResult);
+}
+ 

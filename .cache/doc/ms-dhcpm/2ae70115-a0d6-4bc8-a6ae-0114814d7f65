@@ -1,0 +1,66 @@
+<div class="content"><p> </p><p>The <b>R_DhcpGetSubnetDelayOffer</b> method retrieves the
+time delay setting from the DHCPv4 server, which is used in responding to a <b>DHCPDISCOVER</b>
+message <span><a href="https://go.microsoft.com/fwlink/?LinkId=90318" data-linktype="external">[RFC2131]</a></span> for a
+specific scope.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpGetSubnetDelayOffer(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [out] USHORT* TimeDelayInMilliseconds
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SubnetAddress: </b>This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>,
+which contains the IPv4 subnet ID for which the subnet delay time is set.</p><p><b>TimeDelayInMilliseconds: </b>This is a pointer of
+the type <span><a href="../ms-dtyp/c0618c5b-362b-4e06-9cb0-8720d240cf12" data-linktype="relative-path">USHORT</a></span>,
+which provides the value of the time delay in milliseconds set for a specific
+scope.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully; else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified subnet is not defined on the DHCP
+  server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 80.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read access per
+section <span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>. If not,
+return error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4Scope</b> entry that has the subnet ID
+equal to <i>SubnetAddress</i> from the server ADM element <b>DHCPv4ScopesList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>DHCPv4Scope</b> entry that has the subnet ID equal to <i>SubnetAddress</i>
+is not found, return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the ADM element <b>DHCPv4Scope.DelayOffer</b> and return
+it to the caller.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

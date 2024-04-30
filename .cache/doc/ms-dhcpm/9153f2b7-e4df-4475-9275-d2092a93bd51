@@ -1,0 +1,61 @@
+<div class="content"><p> </p><p>The <b>DHCP_FAILOVER_RELATIONSHIP</b> structure defines the
+information about a DHCPv4 server <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_f9098c6a-2548-43c0-8dd4-4327299e8506" data-linktype="relative-path">failover</a></span>
+relationship.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_FAILOVER_RELATIONSHIP {
+   DHCP_IP_ADDRESS primaryServer;
+   DHCP_IP_ADDRESS secondaryServer;
+   DHCP_FAILOVER_MODE mode;
+   DHCP_FAILOVER_SERVER serverType;
+   FSM_STATE state;
+   FSM_STATE prevState;
+   DWORD mclt;
+   DWORD safePeriod;
+   LPWSTR relationshipName;
+   LPWSTR primaryServerName;
+   LPWSTR secondaryServerName;
+   LPDHCP_IP_ARRAY pScopes;
+   BYTE percentage;
+   LPWSTR pSharedSecret;
+ } DHCP_FAILOVER_RELATIONSHIP,
+  *LPDHCP_FAILOVER_RELATIONSHIP;
+</pre></div>
+</dd></dl><p><b>primaryServer:</b>  This member is of
+type <b>DHCP_IP_ADDRESS</b> structure (section <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">2.2.1.2.1</a></span>) and
+specifies the IPv4 address of the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_bb76b8f0-0929-47c8-a06a-d3f9a8761d93" data-linktype="relative-path">primary server</a></span> in
+the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_ba9fcec9-1438-47ec-958c-873c1a0d4c5e" data-linktype="relative-path">failover
+relationship</a></span>.</p><p><b>secondaryServer:</b>  This member is of
+type <b>DHCP_IP_ADDRESS</b> structure and specifies the IPv4 address of the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_c5baedf3-3fef-4f0e-9a48-79b7cdb04b7f" data-linktype="relative-path">secondary
+server</a></span> in the failover relationship.</p><p><b>mode:</b>  This member is of type <b>DHCP_FAILOVER_MODE</b>
+enumeration (section <span><a href="e2c0761e-d29f-4cb4-b5c4-6f7bd1037d46" data-linktype="relative-path">2.2.1.1.18</a></span>) and
+specifies the mode of the failover relationship.</p><p><b>serverType:</b>  This member is of type <b>DHCP_FAILOVER_SERVER</b>
+enumeration (section <span><a href="eee8266d-700a-4c89-b39d-7e5295f4993b" data-linktype="relative-path">2.2.1.1.19</a></span>) and
+specifies the type of failover server.</p><p><b>state:</b>  This member is of type <b>FSM_STATE</b>
+enumeration (section <span><a href="343b17f2-d880-4d8e-afbb-f34aebed5394" data-linktype="relative-path">2.2.1.1.20</a></span>) and
+specifies the state of the failover relationship.</p><p><b>prevState:</b>  This member is of type <b>FSM_STATE</b>
+enumeration and specifies the previous state of the failover relationship.</p><p><b>mclt:</b>  This member is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and defines the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e4be91c7-4c7b-4b4a-8e14-813530d7c34f" data-linktype="relative-path">maximum client lead time (MCLT)</a></span>
+of the failover relationship, in seconds.</p><p><b>safePeriod:</b>  This member is of type
+DWORD and specifies a safe period time in seconds, that the DHCPv4 server will
+wait before transitioning the server from the COMMUNICATION-INT state to
+PARTNER-DOWN state, as described in <span><a href="https://go.microsoft.com/fwlink/?LinkId=217377" data-linktype="external">[IETF-DHCPFOP-12]</a></span>,
+section 10.</p><p><b>relationshipName:</b>  This member is a
+pointer of type <span><a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a></span>
+that points to a null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span>
+containing the name of the failover relationship that uniquely identifies a
+failover relationship. There is no restriction on the length of this Unicode
+string.</p><p><b>primaryServerName:</b>  This member is a
+pointer of type LPWSTR that points to a null-terminated Unicode string
+containing the host name of the primary server in the failover relationship.
+There is no restriction on the length of this Unicode string.</p><p><b>secondaryServerName:</b>  This member is
+a pointer of type LPWSTR that points to a null-terminated Unicode string
+containing the host name of the secondary server in the failover relationship.
+There is no restriction on the length of this Unicode string.</p><p><b>pScopes:</b>  This member is a pointer
+of type LPDHCP_IP_ARRAY (section <span><a href="02f31ed9-7e21-4347-885b-d95462df387d" data-linktype="relative-path">2.2.1.2.46</a></span>), which
+contains the list of IPv4 subnet addresses that are part of the failover
+relationship.</p><p><b>percentage:</b>  This member is of type <span><a href="../ms-dtyp/d7edc080-e499-4219-a837-1bc40b64bb04" data-linktype="relative-path">BYTE</a></span>
+and indicates the ratio of the DHCPv4 client load shared between a primary and
+secondary server in the failover relationship.</p><p><b>pSharedSecret:</b>  This member is a
+pointer of type LPWSTR that points to a null-terminated Unicode string
+containing the shared secret key associated with this failover relationship.
+There is no restriction on the length of this string.</p></div>

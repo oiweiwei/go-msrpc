@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The CACLSID structure defines a counted array of GUID (as
+specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a></span>)
+values.</p><dl>
+<dd>
+<div><pre> typedef struct tagCACLSID {
+   unsigned long cElems;
+   [size_is(cElems)] GUID* pElems;
+ } CACLSID;
+</pre></div>
+</dd></dl><p><b>cElems:</b>  MUST be set to the total
+number of elements of the array.</p><p><b>pElems:</b>  An array of GUID (as
+specified in [MS-DTYP] section 2.3.4) values.</p></div>

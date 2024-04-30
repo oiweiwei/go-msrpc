@@ -1,0 +1,11 @@
+<div class="content"><p>The EventLog Remoting Protocol is an <a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>-based protocol that
+exposes remote procedure call (RPC) methods for reading events in both <a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_3c0e011b-e37d-40ef-90d6-1ed516f06b1c" data-linktype="relative-path">live event logs</a> and <a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_ddd2e7db-ea8f-4488-ac5f-e77d59abe9e4" data-linktype="relative-path">backup event logs</a> on remote
+computers. The protocol also specifies how to get general information on a log,
+such as the number of records in the log, the oldest records in the log, and if
+the log is full. The protocol can also be used for clearing and backing up both
+types of <a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_bb3fad7e-60bf-46d4-9c3f-7caea47a743e" data-linktype="relative-path">event logs</a>.</p><p><b>Note</b>  Early releases of the EventLog
+Remoting Protocol have never been assigned a version number. However, newer
+releases of the EventLog Remoting Protocol have version numbers. For example,
+the version released with Windows Vista operating system is version 6.0.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

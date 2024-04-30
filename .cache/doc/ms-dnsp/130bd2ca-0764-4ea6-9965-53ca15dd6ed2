@@ -1,0 +1,201 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_SERVER_INFO_W2K</b> structure is used to
+specify general DNS server state and configuration.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcServerInfoW2K {
+   DWORD dwVersion;
+   UCHAR fBootMethod;
+   BOOLEAN fAdminConfigured;
+   BOOLEAN fAllowUpdate;
+   BOOLEAN fDsAvailable;
+   [string] char* pszServerName;
+   [string] wchar_t* pszDsContainer;
+   PIP4_ARRAY aipServerAddrs;
+   PIP4_ARRAY aipListenAddrs;
+   PIP4_ARRAY aipForwarders;
+   PDWORD pExtension1;
+   PDWORD pExtension2;
+   PDWORD pExtension3;
+   PDWORD pExtension4;
+   PDWORD pExtension5;
+   DWORD dwLogLevel;
+   DWORD dwDebugLevel;
+   DWORD dwForwardTimeout;
+   DWORD dwRpcProtocol;
+   DWORD dwNameCheckFlag;
+   DWORD cAddressAnswerLimit;
+   DWORD dwRecursionRetry;
+   DWORD dwRecursionTimeout;
+   DWORD dwMaxCacheTtl;
+   DWORD dwDsPollingInterval;
+   DWORD dwScavengingInterval;
+   DWORD dwDefaultRefreshInterval;
+   DWORD dwDefaultNoRefreshInterval;
+   DWORD dwReserveArray[10];
+   BOOLEAN fAutoReverseZones;
+   BOOLEAN fAutoCacheUpdate;
+   BOOLEAN fRecurseAfterForwarding;
+   BOOLEAN fForwardDelegations;
+   BOOLEAN fNoRecursion;
+   BOOLEAN fSecureResponses;
+   BOOLEAN fRoundRobin;
+   BOOLEAN fLocalNetPriority;
+   BOOLEAN fBindSecondaries;
+   BOOLEAN fWriteAuthorityNs;
+   BOOLEAN fStrictFileParsing;
+   BOOLEAN fLooseWildcarding;
+   BOOLEAN fDefaultAgingState;
+   BOOLEAN fReserveArray[15];
+ } DNS_RPC_SERVER_INFO_W2K,
+  *PDNS_RPC_SERVER_INFO_W2K;
+</pre></div>
+</dd></dl><p><b>dwVersion:</b> The operating system version
+of the DNS server in DNSSRV_VERSION (section <span><a href="abf93ed6-7938-4564-b214-86762a1c4dea" data-linktype="relative-path">2.2.4.2.1</a></span>).</p><p><b>fBootMethod:</b> The method by which the DNS
+server obtains information at the start time. This MUST be set to one of the
+possible values as specified in DNS_BOOT_METHODS (section <span><a href="dc737abd-3e84-4814-a62a-9398c770f28f" data-linktype="relative-path">2.2.4.1.1</a></span>).</p><p><b>fAdminConfigured:</b> A Boolean field that
+specifies whether the DNS server has been configured by an administrator. On a
+fresh installed server this value MUST be set to FALSE. This value MUST be set
+to TRUE whenever a zone is created, or a record is modified, or an <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_25515bcc-3293-4709-b3c4-cfd1a0b4e70f" data-linktype="relative-path">Active
+Directory domain controller promotion (DCPROMO)</a></span> configures the DNS
+server.</p><p><b>fAllowUpdate:</b> A Boolean field that
+indicates whether the DNS server allows dynamic DNS updates. This field MUST be
+set to FALSE if the server does not allow dynamic zone-updates, otherwise set
+to TRUE.</p><p><b>fDsAvailable:</b> A Boolean field that
+specifies whether a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_04fd0982-6bb6-44f1-817e-795715049c50" data-linktype="relative-path">directory server</a></span> is
+available to the DNS server. It MUST be set to FALSE, if the server does not
+have access to a directory server.</p><p><b>pszServerName:</b> A pointer to a
+null-terminated UTF-8 string that contains the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a></span> of the DNS
+server.</p><p><b>pszDsContainer:</b> A pointer to a
+null-terminated <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+points to the DNS server&#39;s container path as a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">distinguished name (DN)</a></span>
+in the directory server. If no directory server is configured, this value MUST
+be set to NULL. This value is synthesized by the server by concatenating a
+constant container <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_22198321-b40b-4c24-b8a2-29e44d9d92b9" data-linktype="relative-path">relative distinguished name
+(RDN)</a></span> and the result of an LDAP search operation to retrieve the
+defaultNamingContext of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a></span>
+server&#39;s <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_29942b69-e0ed-4fe7-bbbf-1a6a3f9eeeb6" data-linktype="relative-path">rootDSE</a></span>.<a id="Appendix_A_Target_31"></a><a aria-label="Product behavior note 31" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_31" data-linktype="relative-path">&lt;31&gt;</a></p><p><b>aipServerAddrs:</b> The list of IP addresses
+that are available on the server.</p><p><b>aipListenAddrs:</b> The list of IP addresses
+that are explicitly configured by the administrator on the DNS server that
+listens for the DNS requests. If this value is set to NULL then the server
+listens to all available IP addresses.</p><p><b>aipForwarders:</b> The list of remote DNS
+servers to which this DNS server will forward unresolved DNS requests.</p><p><b>pExtension1:</b> Reserved for future use and
+MUST be ignored by receiver. </p><p><b>pExtension2:</b> Reserved for future use and
+MUST be ignored by receiver. </p><p><b>pExtension3:</b> Reserved for future use and
+MUST be ignored by receiver. </p><p><b>pExtension4:</b> Reserved for future use and
+MUST be ignored by receiver. </p><p><b>pExtension5:</b> Reserved for future use and
+MUST be ignored by receiver. </p><p><b>dwLogLevel:</b> This indicates which DNS
+packets will be logged and how they will be logged. This field MUST be set to
+either zero or a combination (by bitwise OR) of the possible values as
+specified under DNS_LOG_LEVELS (section <span><a href="fc6275ba-b4d3-4e81-9417-03d004369075" data-linktype="relative-path">2.2.9.1.1</a></span>). If this
+value is set to zero, then no logging will be performed for DNS packets.</p><p><b>dwDebugLevel:</b> Unused. Receivers MUST
+ignore.</p><p><b>dwForwardTimeout:</b> The time interval, in
+seconds, for which the DNS server waits for a response from each server in the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_025cfacf-ebc5-4659-971a-ee2ab5903575" data-linktype="relative-path">forwarders</a></span>
+list.</p><p><b>dwRpcProtocol:</b> This value indicates what <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+protocols this DNS server will accept connections on. This value MUST be set to
+any combination of values specified in DNS_RPC_PROTOCOLS (section <span><a href="cbae0498-9a60-4455-9778-45476f7331f5" data-linktype="relative-path">2.2.1.1.2</a></span>).</p><p><b>dwNameCheckFlag:</b> The level of domain name
+checking and validation enforced by the DNS server. This value MUST be set one
+of the allowed values that are specified in DNS_NAME_CHECK_FLAGS (section <span><a href="914baded-bfe0-4e24-9150-197b7ea2ba5d" data-linktype="relative-path">2.2.4.1.2</a></span>).</p><p><b>cAddressAnswerLimit:</b> The configured value
+for the maximum number of type A IP address resource records that the DNS
+server can insert in the answer section of a response to a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_a70f5e84-6960-42f0-a160-ba0281eb548d" data-linktype="relative-path">UDP</a></span>
+query of type A. If this value is set to 0x00000000 then the DNS server MUST
+NOT enforce any artificial limit on number of records in a response and if
+response becomes larger than the DNS UDP packet size then the truncation bit
+MUST be set <span><a href="https://go.microsoft.com/fwlink/?LinkId=90264" data-linktype="external">[RFC1035]</a></span>. If
+this property value is not 0x00000000 and the DNS server is unable to add the
+specified number of records to the response message due to message size
+limitations, it MUST return as many records as will fit in the message and the
+truncation bit MUST NOT be set. The DNS server MUST NOT enforce this limit if
+the query is not of type A. If the value of this property is not 0x00000000 the
+DNS server MUST enforce this limit for UDP queries and MUST NOT enforce this
+limit for TCP queries. If the <b>LocalNetPriority</b> property value is set to
+TRUE, the DNS server first orders the address records as per the <b>LocalNetPriority</b>
+property and then MUST select the first <b>cAddressAnswerLimit</b> type A
+records in this sorted list for inclusion in the response. The value MUST be
+either zero or between 0x00000005 and 0x0000001C inclusive.</p><p><b>dwRecursionRetry:</b> The time-interval, in
+seconds, for which the DNS server waits before it retries a recursive query to
+the remote DNS server from which it did not receive a response. The values MUST
+be between 1 and 15 seconds inclusive.</p><p><b>dwRecursionTimeout:</b> The time-interval, in
+seconds, for which the DNS server waits for a recursive query-response from a
+remote DNS server. The values MUST be between 1 and 15 seconds inclusive.</p><p><b>dwMaxCacheTtl:</b> The maximum time duration,
+in seconds, for which the DNS server will <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_2f48e305-acf2-470e-b481-a0b7cc5fae4f" data-linktype="relative-path">cache</a></span> a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_49c03845-ca86-48f5-9cbf-ab86c624aa29" data-linktype="relative-path">resource
+record</a></span> obtained from a remote server in a successful query response.
+The values for this MUST be between 0 to 30 days (but specified in seconds)
+inclusive.</p><p><b>dwDsPollingInterval:</b> The interval, in
+seconds, at which the DNS server will poll a directory server to obtain updated
+information for any changes that have occurred to zones loaded in the server.
+The values MUST be between 30 and 3600 seconds inclusive.</p><p><b>dwScavengingInterval:</b> The <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_345c3de7-adfa-4386-9ba5-f5f572af489c" data-linktype="relative-path">scavenging</a></span>
+interval, in hours, on the DNS server. This is the interval at which the server
+will execute the cleanup of stale DNS records. The value MUST be between 0 and
+8760 hours (1 year). If this value is zero then scavenging is disabled.</p><p><b>dwDefaultRefreshInterval:</b> The default
+value of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_ca2f2a4a-91f1-4547-809e-00bd8e41211c" data-linktype="relative-path">refresh interval</a></span>, in
+hours, for new zones created on the DNS server. For any <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_7205eedf-f027-4da5-8f65-18966a86a17a" data-linktype="relative-path">primary
+zone</a></span> created on the server by default this value is used as the
+refresh interval.</p><p><b>dwDefaultNoRefreshInterval:</b> The default
+value of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_d826a56a-099e-41a2-8055-df5e0d2c51c6" data-linktype="relative-path">NoRefresh interval</a></span>,
+in hours, for new zones created on the DNS server. For any primary <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span>
+created on the server by default this value is used as the NoRefresh interval.</p><p><b>dwReserveArray:</b> This value is reserved for
+future use and MUST be ignored by the receiver. Senders MUST set this to zero
+and receivers MUST ignore it.</p><p><b>fAutoReverseZones:</b> A Boolean value that
+indicates whether the DNS server is configured to automatically create standard
+reverse lookup zones at boot time. </p><p><b>fAutoCacheUpdate:</b> A Boolean value that
+indicates whether the DNS server is configured to automatically write-back
+cached <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_87238b98-87ff-4d10-bc86-06cd6b3bad5c" data-linktype="relative-path">root hints</a></span> and <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_32174781-13ee-48b0-8fc0-ef6bbe207573" data-linktype="relative-path">delegation</a></span>
+data to persistent storage.</p><p><b>fRecurseAfterForwarding:</b> A Boolean value
+that indicates whether the DNS server is configured to use recursion in
+addition to forwarding. If this value is TRUE (0x01) then if the DNS server
+does not have any forwarders configured or if forwarders are unreachable then
+it MUST return failure, otherwise it MUST perform normal recursive processing
+for this query as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90263" data-linktype="external">[RFC1034]</a></span> 
+section 4.3.1.</p><p><b>fForwardDelegations:</b> A Boolean value
+indicates whether or not the DNS server will forward queries about delegated
+subzones to servers outside of its <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_ed54858d-02e4-4de3-b65b-e0b81c4185c7" data-linktype="relative-path">authoritative</a></span> zone.
+If this value is set to TRUE, then the DNS server forwards all name queries
+about delegated subzones to forwarding servers in other zones; otherwise it
+will send such queries within its authoritative zone to the corresponding
+subzone only. </p><p><b>fNoRecursion:</b> A Boolean value that
+indicates whether the DNS server will perform recursive resolution for queries.
+If this value is TRUE then recursion MUST NOT be performed even if the
+Recursion Desired (RD) bit ([RFC1035] section 4.1.1) is set in the DNS query
+packet header. If this value is FALSE then recursion will be performed as per
+[RFC1035].</p><p><b>fSecureResponses:</b> A Boolean value that
+indicates if the DNS server needs to screen DNS records received in remote
+query responses against the zone of authority for the remote server to prevent
+cache pollution. If it is set to TRUE, the DNS server caches only the records
+that are in zone of authority for the remote server that was queried. When set
+to FALSE, all records in the cache are saved. </p><p><b>fRoundRobin:</b> A Boolean value that
+indicates if the DNS server is configured to rotate the order of DNS records it
+returns for a given name. If this value is set to FALSE no round robin will be
+performed and DNS records will be returned in static, arbitrary order.</p><p><b>fLocalNetPriority:</b> A Boolean value that
+indicates if the DNS server is configured to prioritize address records in a
+response based on the IP address of the DNS client that submitted the query. If
+this is set to TRUE the DNS server will return address records in the order of
+their closeness to the querying client&#39;s IP address by applying the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_44652747-fc40-48ea-a0d6-7650b6e4a3aa" data-linktype="relative-path">network
+mask</a></span> pointed to by LocalNetPriorityNetMask. If this value is set to
+0 then the DNS server returns records in the order in which they are obtained
+from the database.</p><p><b>fBindSecondaries:</b> A Boolean value that
+indicates if the DNS server allows <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_67ea3c5b-6b1e-40a3-ac20-3f7eaf056504" data-linktype="relative-path">zone transfers</a></span> to <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_85ec490e-c7d1-4b6d-80b3-23320e7e1c9d" data-linktype="relative-path">secondary
+DNS servers</a></span> running older non-Microsoft software. If this value is
+set to TRUE the DNS server sends zone transfer to secondaries via a slower
+mechanism, with one resource record in each message.</p><p><b>fWriteAuthorityNs:</b> A Boolean value that
+indicates if the DNS server is enabled to write NS records in the authority
+section of all successful authoritative responses. If this value is TRUE then
+NS records will be included in the authority section of responses, otherwise NS
+records will only be included in referral responses.</p><p><b>fStrictFileParsing:</b> A Boolean value that
+indicates if the DNS server is configured to perform strict file parsing. When
+this value is set to TRUE and a record parsing error is detected server will
+quit after indicating error. If this value is FALSE parsing errors will cause
+that specific record to be ignored and the server will continue to load the
+rest of the database.</p><p><b>fLooseWildcarding:</b> A Boolean value that
+indicates if the DNS server is configured to perform loose wildcarding
+[RFC1035], otherwise it returns FALSE. When a server does not find a resource
+record that matches the name and type specified in the query in the
+authoritative zone, then it searches for related wildcard records, ([RFC1034]
+section 4.3.3), if configured to perform loose wildcarding will return the
+first node it finds that has matching resource-record type, whereas if it is
+not then it will return the first node that has any resource record.</p><p><b>fDefaultAgingState:</b> A Boolean value that
+indicates if the default value of ageing state for new primary zones created on
+the DNS server. For any primary zone created on the server this value is used
+as its default <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0288f9f1-b244-4551-8638-a2280001b531" data-linktype="relative-path">aging</a></span> state. If this
+is FALSE then timestamps of records in the zone will not be tracked whereas
+when this value is TRUE then the timestamps of records in the zone will be
+tracked.</p><p><b>fReserveArray:</b> Reserved for future use.
+These values MUST be ignored by receiver.</p></div>

@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The LsarClose method frees the resources held by a context
+handle that was opened earlier. After response, the context handle is no longer
+usable, and any subsequent uses of this handle MUST fail.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarClose(
+   [in, out] LSAPR_HANDLE* ObjectHandle
+ );
+</pre></div>
+</dd></dl><p>Processing rules for this message are defined in <span><a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a></span>
+section <span><a href="../ms-lsad/99dd2d7a-b0fc-4c6d-837a-2b4d342383ae" data-linktype="relative-path">3.1.4.9.4</a></span>.</p></div>

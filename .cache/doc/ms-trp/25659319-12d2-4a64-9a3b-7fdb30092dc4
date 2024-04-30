@@ -1,0 +1,62 @@
+<div class="content"><p>The RemoteSPEventProc method is called by the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> to &#34;push&#34;
+completion notifications and unsolicited events to the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a>. The server MUST
+call this method of the remotesp interface with the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a> and protocol
+sequence as specified by the connection-oriented client in the <a href="3f1dadef-8ecf-4a4d-8368-26cbf25dca37" data-linktype="relative-path">ClientAttach</a> <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> packet.</p><dl>
+<dd>
+<div><pre> void RemoteSPEventProc(
+   [in] PCONTEXT_HANDLE_TYPE2 phContext,
+   [in, length_is(lSize), size_is(lSize)] 
+     unsigned char pBuffer[],
+   [in] long lSize
+ );
+</pre></div>
+</dd></dl><p><b>phContext: </b>Client handle of type <a href="199f5969-cdf3-4ffd-80c0-03e70679cf31" data-linktype="relative-path">PCONTEXT_HANDLE_TYPE2</a>. </p><p><b>pBuffer: </b>Packet MUST contain a list of <a href="a5ca6e7c-d13c-4799-9b91-91fd1baca909" data-linktype="relative-path">ASYNCEVENTMSG</a> structures,
+each of which MUST be ASYNCEVENTMSG.TotalSize bytes in size. </p><p><b>lSize: </b>Size of the pBuffer.</p><p><b>Return Values: </b>This method has no return
+values. </p><p><b>Exceptions Thrown:</b></p><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 1. </p><p>When processing a notification, remotesp MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Fail if the lsize is a negative value, not DWORD-aligned, or less
+than the size of the fixed portion of the ASYNCEVENTMSG structure.</p>
+</li><li><p><span><span> 
+</span></span>Fail if any of ASYNCEVENTMSG structure present in the buffer does
+not have a valid TotalSize. TotalSize is invalid if it is less than the size of
+the fixed portion of the ASYNCEVENTMSG packet, it is not DWORD-aligned, or it
+overflows the pBuffer.</p>
+</li><li><p><span><span> 
+</span></span>Fail if the size of pBuffer has data other than a list of
+ASYNCEVENTMSG structures.</p>
+</li><li><p><span><span> 
+</span></span>Fail if ASYNCEVENTMSG.InitContext is an invalid value.</p>
+</li></ul><p>Depending on the value of ASYNCEVENTMSG.Msg, remotesp
+performs additional checks described as follows:</p><p>For Msg = 0x00000008(LINE_LINEDEVSTATE),
+0x00000003(LINE_CLOSE), 0x00000000(LINE_ADDRESSSTATE), 0x00000016
+(LINE_AGENTSTATUS), 0x0000001B (LINE_AGENTSESSIONSTATUS), 0x0000001C
+(LINE_QUEUESTATUS) , 0x0000001D (LINE_AGENTSTATUSEX), 0x0000001E
+(LINE_GROUPSTATUS), 0x0000001F (LINE_PROXYSTATUS), 0x00000001 (LINE_CALLINFO),
+0x00000002 (LINE_CALLSTATE), 0x00000007 (LINE_GENERATE), 0x00000009
+(LINE_MONITORDIGITS), 0x0000000A (LINE_MONITORMEDIA), 0x0000000B 
+(LINE_MONITORTONE), 0x00000017 (LINE_APPNEWCALL):</p><ul><li><p><span><span> 
+</span></span>Ignore the response if hRemoteLine is set and is an invalid
+handle.</p>
+</li></ul><p>For Msg = 0x0000000C (LINE_REPLY), 0x00000011 (PHONE_REPLY):</p><ul><li><p><span><span> 
+</span></span>Ignore the response if dwRemoteRequestID is invalid.</p>
+</li></ul><p>For Msg = 0x00000012 (PHONE_STATE), 0x0000000F
+(PHONE_CLOSE), 0x00000010 (PHONE_DEVSPECIFIC):</p><ul><li><p><span><span> 
+</span></span>Ignore the response if hRemotePhone is set and is an invalid
+handle.</p>
+</li></ul><p>For Msg= 0x00000013 (LINE_CREATE), 0x00000014
+(PHONE_CREATE):</p><ul><li><p><span><span> 
+</span></span>Ignore the response if the device identifier passed in Param1 is
+invalid.</p>
+</li></ul><p>For Msg = 0x00000019 (LINE_REMOVE), 0x0000001A
+(PHONE_REMOVE):</p><ul><li><p><span><span> 
+</span></span>Ignore the response if Param1 is an invalid handle.</p>
+</li></ul><p>For Msg = 0x0000000E (PHONE_BUTTON):</p><ul><li><p><span><span> 
+</span></span>Ignore the response if hDevice is invalid.</p>
+</li></ul><p>For Msg = 0x00000015 (LINE_AGENTSPECIFIC), 0x00000004
+(LINE_DEVSPECIFIC), 0x00000005 (LINE_DEVSPECIFICFEATURE):</p><ul><li><p><span><span> 
+</span></span>Ignore the response if param4 is set and is invalid.</p>
+</li><li><p><span><span> 
+</span></span>Ignore the response if param4 is not set and hDevice is invalid.</p>
+</li></ul></div>

@@ -1,0 +1,214 @@
+<div class="content"><p> </p><p>The <b>R_DhcpEnumSubnetClientsFilterStatusInfo</b> method is
+used to retrieve all DHCPv4 clients serviced on the specified IPv4 subnet. The
+information also includes the link-layer filter status info for the DHCPv4
+client.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpEnumSubnetClientsFilterStatusInfo(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [in, out] DHCP_RESUME_HANDLE* ResumeHandle,
+   [in] DWORD PreferredMaximum,
+   [out] LPDHCP_CLIENT_FILTER_STATUS_INFO_ARRAY* ClientInfo,
+   [out] DWORD* ClientRead,
+   [out] DWORD* ClientsTotal
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SubnetAddress: </b>This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>
+which contains the IPv4 subnet ID from which DHCPv4 clients are enumerated. If
+this parameter is set to 0, the DHCPv4 clients from all the IPv4 subnets are
+returned.</p><p><b>ResumeHandle: </b>This is a pointer of type <span><a href="a6e4cdc0-4f71-4922-ade1-7a5392f9e920" data-linktype="relative-path">DHCP_RESUME_HANDLE (section 2.2.1.2.6)</a></span>
+which identifies the enumeration operation. Initially, this value MUST be set
+to zero, with a successful call returning the handle value used for subsequent
+enumeration requests. This field contains the last IPv4 address retrieved.</p><p><b>PreferredMaximum: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+which specifies the preferred maximum number of bytes to return. The minimum
+value is 1024 bytes (1 kilobyte), and the maximum value is 65536 bytes (64
+kilobytes). If the input value is greater or less than this range, it MUST be
+set to the maximum or minimum value, respectively. To retrieve all DHCPv4
+clients serviced by a specific IPv4 subnet, 0xFFFFFFFF is specified.</p><p><b>ClientInfo: </b>This is a pointer of type <span><a href="cb21907f-295e-419b-81f2-7edefc094436" data-linktype="relative-path">LPDHCP_CLIENT_FILTER_STATUS_INFO_ARRAY</a></span>
+that points to the location which contains the DHCPv4 client lease record
+array.</p><p><b>ClientRead: </b>This is a pointer to a DWORD that
+specifies the number of DHCPv4 client lease records read in <i>ClientInfo</i>.
+The caller must allocate memory for this parameter that is equal to the size of
+data type DWORD.</p><p><b>ClientsTotal: </b>This is a pointer to a DWORD
+that specifies the number of DHCPv4 client lease records remaining from the
+current position. The caller must allocate memory for this parameter that is
+equal to the size of data type DWORD. For example, if there are 100 DHCPv4
+lease record clients for an IPv4 subnet, and if 10 DHCPv4 lease records are
+enumerated per call, then for the first time this would have a value of 90.<a id="Appendix_A_Target_72"></a><a aria-label="Product behavior note 72" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_72" data-linktype="relative-path">&lt;72&gt;</a></p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates operation was completed successfully. Otherwise, it contains a Win32
+error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000EA</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>There are more elements available to enumerate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  </td>
+  <td>
+  <p>There are no more elements left to enumerate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 88.</p><p>When processing this call, the DHCP server MUST do the
+following: </p><ul><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read access per
+section <span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>. If not,
+return error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4ClientsList</b> member of the <b>DHCPv4Scope</b>
+entry corresponding to <i>SubnetAddress</i> from the server ADM element <b>DHCPv4ScopesList</b>.
+If the <i>SubnetAddress</i> is 0, retrieve the <b>DHCPv4ClientsList</b> member
+of all the <b>DHCPv4Scope</b> entries in server ADM element <b>DHCPv4ScopesList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ResumeHandle</i> parameter points to 0x00000000, the enumeration
+MUST start from the first entry of the <b>DHCPv4ClientsList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ResumeHandle</i> parameter points to 0x00000000 and
+there are no entries in <b>DHCPv4ClientsList</b> of all the <b>DHCPv4Scope</b>
+entries present in the <b>DHCPv4ScopesList</b>, then return ERROR_NO_MORE_ITEMS.
+If there are no entries in the <b>DHCPv4ClientsList</b> of the <b>DHCPv4Scope</b>
+entry corresponding to the <i>SubnetAddress</i>, but there are <b>DHCPv4Client</b>
+entries in <b>DHCPv4ClientsList</b> of other <b>DHCPv4Scope</b> entries
+configured on the server, then return ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ResumeHandle</i> parameter points to a nonzero value,
+the server MUST continue enumeration based on the value of <i>ResumeHandle</i>.
+If the IPv4 Address contained in the <i>ResumeHandle</i> does not match the <i>ClientIpAddress</i>
+of any <b>DHCPv4Client</b> of the <b>DHCPv4Scope</b> entry corresponding to the
+<i>SubnetAddress</i> or does not match the <i>ClientIpAddress</i> of any <b>DHCPv4Client</b>
+of all <b>DHCPv4Scope</b> entries when the specified <i>SubnetAddress</i> value
+is 0x0, then return ERROR_DHCP_JET_ERROR.</p>
+</li><li><p><span><span> 
+</span></span>The <i>PreferredMaximum</i> parameter specifies the maximum
+number of bytes that the server can allocate and return to the caller
+containing the data related to the DHCPv4 client lease records.</p>
+</li><li><p><span><span> 
+</span></span>If <i>PreferredMaximum</i> is less than 1024, it is assigned
+1024, and if <i>PreferredMaximum</i> is greater than 65536, it is assigned
+65536.</p>
+</li><li><p><span><span> 
+</span></span>Allocate memory for <i>PreferredMaximum</i> number of bytes.</p>
+</li><li><p><span><span> 
+</span></span>For each retrieved <b>DHCPv4Client</b> entry, retrieve the <b>DHCPv4Filter</b>
+entry corresponding to the <b>DHCPv4Client.ClientHardwareAddress</b>.</p>
+</li><li><p><span><span> 
+</span></span>Add the client information from <b>DHCPv4Client</b> entries in
+the <i>ClientInfo</i> structure. The <i>FilterStatus</i> field for each client
+in <i>ClientInfo</i> is set according to the table that follows:</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>DHCPv4Filter.ListType</p>
+   </th>
+   <th>
+   <p>DHCPv4Filter.AddPatt.IsWildCard</p>
+   </th>
+   <th>
+   <p>FilterStatus</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Allow</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>FILTER_STATUS_FULL_MATCH_IN_ALLOW_LIST</p>
+  <p>0x00000002</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Deny</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>FILTER_STATUS_FULL_MATCH_IN_DENY_LIST</p>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Allow</p>
+  </td>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>FILTER_STATUS_WILDCARD_MATCH_IN_ALLOW_LIST</p>
+  <p>0x00000008</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Deny</p>
+  </td>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>FILTER_STATUS_WILDCARD_MATCH_IN_DENY_LIST</p>
+  <p>0x00000010</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span><span> 
+</span></span>If the <b>DHCPv4Filter</b> entry corresponding to the <b>DHCPv4Client.ClientHardwareAddress</b>
+is not found, the <i>FilterStatus</i> field for each client in <i>ClientInfo</i>
+is set to FILTER_STATUS_NONE.</p>
+</li><li><p><span><span> 
+</span></span>The actual number of records that correspond to a given <i>PreferredMaximum</i>
+value can be determined only at runtime.</p>
+</li><li><p><span><span> 
+</span></span>If the retrieve operation has reached the maximum number of <b>DHCPv4Client</b>
+entries that can be accommodated in <i>PreferredMaximum</i> and there are still
+more <b>DHCPv4Client</b> entries in any <b>DHCPv4MClientsList</b>, set <i>ClientsTotal</i>
+to the number of <b>DHCPv4Client</b> entries that are not yet enumerated, and
+set <i>ClientsRead</i> to the number of <b>DHCPv4Client</b> entries that are
+enumerated in this retrieve operation. Set <i>ResumeHandle</i> to the <i>ClientIpAddress</i>
+member of the last <b>DHCPv4Client</b> entry, and return ERROR_MORE_DATA.</p>
+</li><li><p><span><span> 
+</span></span>If the number of bytes specified by <i>PreferredMaximum</i> is
+more than the total memory occupied by <b>DHCPv4Client</b> entries, set <i>ClientsTotal</i>
+to the total number of <b>DHCPv4Client</b> entries enumerated in that retrieve
+operation and <i>ClientsRead</i> to the number of <b>DHCPv4Client</b> entries
+that are enumerated in this retrieve operation. Set <i>ResumeHandle</i> to 0
+and return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

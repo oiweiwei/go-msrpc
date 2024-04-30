@@ -1,0 +1,91 @@
+<div class="content"><p>This property is used to notify the unmarshaling client that
+the server object is using security specified by this protocol. The server
+object returns the security envoy context property as part of an
+OBJREF_EXTENDED instance.</p><p>The <b>policyId</b> field of the <a href="../ms-dcom/6865a1c4-f094-486e-990a-436257db57e5" data-linktype="relative-path">PROPMARSHALHEADER</a>
+instance (<a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section 2.2.20.1) for the security envoy property MUST be set to
+guidSecurityProperty (see section <a href="738db53c-1600-432e-b288-63679b581471" data-linktype="relative-path">1.9</a>). The <b>CLSID</b>
+field of the PROPMARSHALHEADER instance ([MS-DCOM] section 2.2.20.1) for the
+security envoy property MUST be set to CLSID_SecurityEnvoy (see section 1.9). </p><p>The marshaled data buffer for the property MUST be specified
+in the following format:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">MaxVersion</p>
+  </td>
+  <td colspan="16">
+  <p align="center">MinVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">guidServerDomain
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">guidServerMachine
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>MaxVersion (2 bytes): </b>The major version number
+for this security envoy property format; this field MUST be set to 0x0001.</p><p><b>MinVersion (2 bytes): </b>The minor version number
+for this security envoy property format; this field MUST be set to 0x0001.</p><p><b>guidServerDomain (16 bytes): </b>A <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> that uniquely
+identifies the <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> of
+the server machine. For more information, see <a href="../ms-nrpc/ff8f970f-3e37-40f7-bd4b-af7336e4792f" data-linktype="relative-path">[MS-NRPC]</a>
+section <a href="../ms-nrpc/9b85a7a4-8d34-4b9e-9500-bf8644ebfc06" data-linktype="relative-path">2.2.1.2.1</a>.</p><p><b>guidServerMachine (16 bytes): </b>A GUID that
+uniquely identifies the server machine.</p></div>

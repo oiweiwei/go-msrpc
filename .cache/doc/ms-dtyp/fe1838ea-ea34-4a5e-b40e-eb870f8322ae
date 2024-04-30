@@ -1,0 +1,226 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/fe1838ea-ea34-4a5e-b40e-eb870f8322ae" data-linktype="external">msdn link</a></p><p>The ACCESS_ALLOWED_CALLBACK_OBJECT_ACE structure defines an
+ACE that controls allowed access to an object, property set, or property. The
+ACE contains a set of user rights, a <a href="a66edeb1-52a0-4d64-a93b-2f5c833d7d92#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> that identifies the
+type of object, and a <a href="78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">SID</a>
+that identifies the trustee to whom the system will grant access. The ACE also
+contains a GUID and a set of flags that control inheritance of the ACE by child
+objects.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Mask</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ObjectType
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>InheritedObjectType
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Sid
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ApplicationData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (4 bytes): </b>An <a href="628ebb1d-c509-4ea0-a10f-77ef97ca4586" data-linktype="relative-path">ACE_HEADER</a> structure that
+specifies the size and type of ACE. It also contains flags that control
+inheritance of the ACE by child objects.</p><p><b>Mask (4 bytes): </b>An <a href="7a53f60e-e730-4dfe-bbe9-b21b62eb790b" data-linktype="relative-path">ACCESS_MASK</a> structure that
+specifies the user rights allowed by this ACE.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ADS_RIGHT_DS_CONTROL_ACCESS</p>
+  <p>0X00000100</p>
+  </td>
+  <td>
+  <p>The <b>ObjectType</b> GUID identifies an extended
+  access right.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADS_RIGHT_DS_CREATE_CHILD</p>
+  <p>0X00000001</p>
+  </td>
+  <td>
+  <p>The <b>ObjectType</b> GUID identifies a type of child
+  object. The ACE controls the trustee&#39;s right to create this type of child
+  object.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADS_RIGHT_DS_READ_PROP</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The <b>ObjectType</b> GUID identifies a property set
+  or property of the object. The ACE controls the trustee&#39;s right to read the
+  property or property set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADS_RIGHT_DS_WRITE_PROP</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The <b>ObjectType</b> GUID identifies a property set
+  or property of the object. The ACE controls the trustee&#39;s right to write the
+  property or property set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADS_RIGHT_DS_SELF</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The <b>ObjectType</b> GUID identifies a validated
+  write.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Flags (4 bytes): </b>A 32-bit unsigned integer
+that specifies a set of bit flags that indicate whether the <b>ObjectType</b>
+and <b>InheritedObjectType</b> fields contain valid data. This parameter can be
+one or more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Neither <b>ObjectType</b> nor <b>InheritedObjectType</b>
+  are valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ACE_OBJECT_TYPE_PRESENT</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p><b>ObjectType</b> is valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ACE_INHERITED_OBJECT_TYPE_PRESENT</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p><b>InheritedObjectType</b> is valid. If this value is
+  not specified, all types of child objects can inherit the ACE.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ObjectType (16 bytes): </b>A GUID that identifies
+a property set, property, extended right, or type of child object. The purpose
+of this GUID depends on the user rights specified in the <b>Mask</b> field.
+This field is valid only if the ACE _OBJECT_TYPE_PRESENT bit is set in the <b>Flags</b>
+field. Otherwise, the <b>ObjectType</b> field is ignored. </p><p><b>InheritedObjectType (16 bytes): </b>A GUID that
+identifies the type of child object that can inherit the ACE. Inheritance is
+also controlled by the inheritance flags in the ACE_HEADER, as well as by any
+protection against inheritance placed on the child objects. This field is valid
+only if the ACE_INHERITED_OBJECT_TYPE_PRESENT bit is set in the Flags member.
+Otherwise, the <b>InheritedObjectType</b> field is ignored.</p><p><b>Sid (variable): </b>The SID of a trustee. The
+length of the SID MUST be a multiple of 4.</p><p><b>ApplicationData (variable): </b>Optional
+application data. The size of the application data is determined by the <b>AceSize</b>
+field of the ACE_HEADER.</p></div>

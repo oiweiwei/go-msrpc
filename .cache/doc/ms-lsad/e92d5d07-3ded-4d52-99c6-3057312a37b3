@@ -1,0 +1,73 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/e92d5d07-3ded-4d52-99c6-3057312a37b3" data-linktype="external">msdn link</a></p><p>The LsarRemovePrivilegesFromAccount method is invoked to
+remove <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privileges</a> from
+an <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b76eee27-064e-461b-81a9-fbf41e49928b" data-linktype="relative-path">account object</a>.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarRemovePrivilegesFromAccount(
+   [in] LSAPR_HANDLE AccountHandle,
+   [in] unsigned char AllPrivileges,
+   [in, unique] PLSAPR_PRIVILEGE_SET Privileges
+ );
+</pre></div>
+</dd></dl><p><b>AccountHandle: </b>An open account object handle
+obtained from either <a href="841e3211-5be4-4b50-9f11-2d4941c40a30" data-linktype="relative-path">LsarCreateAccount (section 3.1.4.5.1)</a>
+or <a href="355e2952-abe4-47c3-96d9-a2f4bd01cf3d" data-linktype="relative-path">LsarOpenAccount (section 3.1.4.5.3)</a>.</p><p><b>AllPrivileges: </b>If this parameter is not FALSE
+(0), all privileges will be stripped from the account object.</p><p><b>Privileges: </b>Contains a (possibly empty) list
+of privileges to remove from the account object.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>Some of the parameters supplied were invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>AccountHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes three arguments:</p><p><i>AccountHandle</i>: An open handle to an account object.
+If the handle is not a valid context handle to an account object or <i>AccountHandle</i>.HandleType
+does not equal &#34;Account&#34;, the server MUST return
+STATUS_INVALID_HANDLE. The server MUST verify that <i>AccountHandle</i> grants
+access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a> with
+RequiredAccess set to ACCOUNT_ADJUST_PRIVILEGES.</p><p><i>AllPrivileges</i>: A Boolean value; if not FALSE (0), all
+privileges associated with the account are removed. In this case, the server
+MUST check that the <i>Privileges</i> parameter is NULL, and fail the request
+with STATUS_INVALID_PARAMETER otherwise.</p><p><i>Privileges</i>: If <i>AllPrivileges</i> is FALSE (0),
+this parameter cannot be NULL. It will be used to remove <i>Privileges</i> from
+the account object. The server MUST verify that <i>Privileges</i> is not NULL
+and fail the request with STATUS_INVALID_PARAMETER otherwise.<a id="Appendix_A_Target_68"></a><a aria-label="Product behavior note 68" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_68" data-linktype="relative-path">&lt;68&gt;</a></p></div>

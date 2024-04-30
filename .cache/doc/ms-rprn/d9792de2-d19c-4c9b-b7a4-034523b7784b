@@ -1,0 +1,25 @@
+<div class="content"><p>RpcDeletePrinterIC deletes a printer <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_e6193b0f-37ad-4f30-978b-0e1e1291f674" data-linktype="relative-path">information context</a>.</p><dl>
+<dd>
+<div><pre> DWORD RpcDeletePrinterIC(
+   [in, out] GDI_HANDLE* phPrinterIC
+ );
+</pre></div>
+</dd></dl><p><b>phPrinterIC: </b>A pointer to a printer
+information context handle (section <a href="ec9126fa-bc33-423f-adfc-1bf52bd7890e" data-linktype="relative-path">2.2.1.1.2</a>) that was
+returned by <a href="b0686ba2-3a6b-4a6c-943f-b26600dbd88c" data-linktype="relative-path">RpcCreatePrinterIC (section 3.1.4.2.10)</a>.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST verify that the
+handle pointed to by the <i>phPrinterIC</i> parameter is associated with an
+information context. This method SHOULD assume that this handle can be used
+without further access checks.</p><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Delete the printer information context.</p>
+</li><li><p><span><span> 
+</span></span>Store NULL in the variable pointed to by <i>phPrinterIC</i>.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul><p>Except for diagnostic purposes, the server state, as visible
+to the client through this or any other protocol, MUST NOT change as a result
+of processing this call.</p></div>

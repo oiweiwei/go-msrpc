@@ -1,0 +1,12 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/4676ac83-2099-4e33-b680-502fd8a32dbd" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_LSA_POLICY_INFO</b> structure defines <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9e5f2104-d6df-4ae7-8a5c-6bd14a0da8fa" data-linktype="relative-path">Local Security Authority (LSA)</a>
+policy information as an unsigned character buffer. For details, see <a href="https://go.microsoft.com/fwlink/?LinkId=89934" data-linktype="external">[LSAPOLICY]</a> and <a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _NETLOGON_LSA_POLICY_INFO {
+   ULONG LsaPolicySize;
+   [size_is(LsaPolicySize)] UCHAR * LsaPolicy;
+ } NETLOGON_LSA_POLICY_INFO,
+  *PNETLOGON_LSA_POLICY_INFO;
+</pre></div>
+</dd></dl><p><b>LsaPolicySize:</b> This field is not used and is set to
+zero. </p><p><b>LsaPolicy:</b> This field is not used and is initialized
+to NULL.</p></div>

@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The DSA_RPC_INST structure is a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> that
+represents a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DSA_RPC_INST {
+   DWORD cb;
+   DWORD cbpszServerOffset;
+   DWORD cbpszAnnotationOffset;
+   DWORD cbpszInstanceOffset;
+   DWORD cbpguidInstanceOffset;
+ } DSA_RPC_INST,
+  *PDSA_RPC_INST;
+</pre></div>
+</dd></dl><p><b>cb:</b>  The total number of bytes in
+the DSA_RPC_INST structure.</p><p><b>cbpszServerOffset:</b>  The offset from
+the start of the DSA_RPC_INST structure to a location that specifies the start
+of the server name of this instance.</p><p><b>cbpszAnnotationOffset:</b>  The offset
+from the start of the DSA_RPC_INST structure to a location that specifies the
+start of the annotation of this instance.</p><p><b>cbpszInstanceOffset:</b>  The offset
+from the start of the DSA_RPC_INST structure to a location that specifies the
+start of the NetworkAddress (section <span><a href="3d0d3777-9358-47dd-b555-34405f57f912" data-linktype="relative-path">5.134</a></span>) of this
+instance.</p><p><b>cbpguidInstanceOffset:</b>  The offset
+from the start of the DSA_RPC_INST structure to a location that specifies the
+start of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> for the
+instance.</p></div>

@@ -1,0 +1,91 @@
+<div class="content"><p> </p><p>The <b>R_DhcpRemoveSubnetElementV6</b> method removes an
+IPv6 prefix element (such as IPv6 reservation or IPv6 exclusion range) from an
+IPv6 prefix defined on the DHCPv6 server.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpRemoveSubnetElementV6(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_IPV6_ADDRESS SubnetAddress,
+   [in, ref] LPDHCP_SUBNET_ELEMENT_DATA_V6 RemoveElementInfo,
+   [in] DHCP_FORCE_FLAG ForceFlag
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SubnetAddress: </b>This is of type <span><a href="48b74c46-bf64-40db-92b9-6e61cee1bd33" data-linktype="relative-path">DHCP_IPV6_ADDRESS (section 2.2.1.2.28)</a></span>,
+containing the IPv6 address of the subnet for which the IPv6 prefix element is
+removed.</p><p><b>RemoveElementInfo: </b>This is a pointer of type <span><a href="69f63a7f-55f2-4b1e-bc01-96c9ed3c92d9" data-linktype="relative-path">DHCP_SUBNET_ELEMENT_DATA_V6 (section 2.2.1.2.60)</a></span>,
+containing the IPv6 prefix element that needs to be removed from the IPv6
+prefix.</p><p><b>ForceFlag: </b>This is of type <span><a href="3aca524f-86d6-494c-beaf-35c3936780a5" data-linktype="relative-path">DHCP_FORCE_FLAG (section 2.2.1.1.9)</a></span>
+enumeration. Currently it is not used, and any value set to this parameter will
+not affect the behavior of this method.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 61.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv6Scope</b> object corresponding to <b>SubnetAddress</b>
+from <b>DHCPv6ScopeList</b>. If the <b>DHCPv6Scope</b> object corresponding to <b>SubnetAddress</b>
+does not exist, return ERROR_FILE_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ElementType</b> is Dhcpv6ExcludeIpRanges, and the specified
+exclusion range is outside of the subnet prefix specified in the <b>SubnetAddress</b>
+parameter, the server behavior is undefined.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> field is set to DhcpReservedIps, and
+the specified reservation address does not correspond to any <b>DHCPv6Reservation</b>
+object in <b>DHCPv6Scope.DHCPv6ReservationList</b>, return
+ERROR_FILE_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ElementType</b> is set to DhcpReservedIps, the
+corresponding <b>DHCPv6Scope.DHCPv6ReservationList.DHCPv6Reservation</b> object
+is removed along with the corresponding <b>DHCPv6Scope.DHCPv6ClientInfoList.DHCPv6ClientInfo</b>
+object that does not correspond to an active lease. The server ignores the <b>ReservedForClient</b>
+field specified in <span><a href="01fc2011-4b53-4104-a820-df22a5b2bf8e" data-linktype="relative-path">DHCP_IP_RESERVATION_V6 (section 2.2.1.2.58)</a></span>
+when locating and deleting the <b>DHCPv6Reservation</b> object.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ElementType</b> is Dhcpv6ExcludeIpRanges, and the specified
+exclusion range is outside of the subnet prefix specified in the <b>SubnetAddress</b>
+parameter, the server behavior is undefined.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ElementType</b> is set to DhcpExcludedIpRanges, and the
+specified exclusion range does not exist in <b>DHCPv6Scope.DHCPv6ExclusionRangeList</b>,
+return ERROR_FILE_NOT_FOUND; else, remove the found <b>DHCPv6Scope.DHCPv6ExclusionRangeList.DHCPv6ExclusionRange</b>
+object from <b>DHCPv6ExclusionRangeList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ElementType</b> is set to Dhcpv6Ipranges, do no processing
+and return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

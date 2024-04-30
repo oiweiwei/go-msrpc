@@ -1,0 +1,47 @@
+<div class="content"><p> </p><p>The GetVarCustData method retrieves the value of a custom
+data item associated with the specified data member.</p><dl>
+<dd>
+<div><pre> HRESULT GetVarCustData(
+   [in] UINT index,
+   [in] REFGUID guid,
+   [out] VARIANT* pVarVal
+ );
+</pre></div>
+</dd></dl><p><b>index: </b>MUST specify an ordinal position in the
+data member table and MUST be less than the value of the <b>cVars</b> field in
+the TYPEATTR structure of the associated type, as specified in sections <span><a href="0ca10d08-61d2-4059-9109-7bbaf545715e" data-linktype="relative-path">2.2.44</a></span>
+and <span><a href="b96292a8-c06e-4b9c-905e-129b95697ee4" data-linktype="relative-path">3.7.4.1</a></span>.</p><p><b>guid: </b>MUST be the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> associated with
+the custom data item using the [custom] attribute, as specified in section <span><a href="da55c419-4395-4535-82c4-bac998dae862" data-linktype="relative-path">2.2.49.5</a></span>.</p><p><b>pVarVal: </b>MUST be set to the value of the
+custom data item, or to VT_EMPTY if the type does not have a value associated
+with the GUID.</p><p><b>Return Values: </b>The method MUST return
+information in an HRESULT data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions: </p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD does
+not match a value in the following table, a fatal failure occurred.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD
+matches a value in the following table, a failure occurred. </p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8002802B</p>
+  <p>TYPE_E_ELEMENTNOTFOUND</p>
+  </td>
+  <td>
+  <p>The value of <i>index</i> did not specify the ordinal
+  position of an element in the data member table. See [MS-ERREF].</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p> </p></div>

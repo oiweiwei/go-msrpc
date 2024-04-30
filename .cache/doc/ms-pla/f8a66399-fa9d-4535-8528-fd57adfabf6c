@@ -1,0 +1,185 @@
+<div class="content"><p>The ValueMapType enumeration defines a value map type. A
+value map defines a named-value pair. A value map can be used in different
+ways. A value map type defines which way the value map is to be used; each type
+has a different way of evaluating the &#34;value&#34; of the &#34;value
+map&#34; based on the &#34;values&#34; of each individual &#34;value map
+item&#34;. </p><dl>
+<dd>
+<div><pre> typedef  enum
+ {
+   plaIndex = 1,
+   plaFlag = 2,
+   plaFlagArray = 3,
+   plaValidation = 4
+ } ValueMapType;
+</pre></div>
+</dd></dl><p><b>plaIndex:  </b>Only one item in the collection can
+be enabled. The enabled item is the value of IValueMap::Value. If more than one
+is enabled, the first enabled item MUST be used as the value.</p><p><b>plaFlag:  </b>One or more items in the collection
+can be enabled. The enabled items in the collection are combined together by
+using the bitwise OR operation to become the value of IValueMap::Value.</p><p><b>plaFlagArray:  </b>One or more items in the
+collection can be enabled. An item in the collection represents a 32-bit
+unsigned value (ULONG). The enabled items are not combined together as they are
+for the plaFlag type, but rather each item can be retrieved separately.<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="905cad7f-1a12-49b4-a263-461a2977ab71#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a></p><p><b>plaValidation:  </b>The collection contains a list
+of HRESULT values that are returned in an IValueMap by the validation process.
+The validation process occurs when <a href="b7b0e0f8-327c-46de-b034-3d598306890e" data-linktype="relative-path">IDataCollectorSet::Commit</a>
+is called. In the validation process, the PLA Protocol analyzes the values of
+all the properties in the IDataCollectorSet, including the values of the
+IDataCollectors contained in the IDataCollectorSet and inserts a <a href="9786577c-9ac8-44d5-a29f-3f14514af0d8" data-linktype="relative-path">ValueMapItem</a> into the <a href="b028335d-97c1-4b1c-bc07-8748d4956b8a" data-linktype="relative-path">ValueMap</a> for any property
+that is problematic. The ValueMapItem holds the name of the property and the
+HRESULT describing why it is problematic. The following codes can be set in a
+validation ValueMap: </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PLA_S_PROPERTY_IGNORED/(0x00300100)</p>
+  </td>
+  <td>
+  <p>This value can be returned anytime the value of a
+  property is being ignored by this implementation of the protocol. The code is
+  intended to inform the client when a property is not needed or supported by
+  an implementation. </p>
+  <p>The following is a list of properties for the
+  different types of data collectors (that are encapsulated within a data
+  collector set) that MUST be ignored by the server when the client calls the
+  Commit method on the data collector set; the server MUST return the property
+  name and PLA_S_PROPERTY_IGNORED in the IValueMapItem for each property that
+  it ignored. Note that certain properties can pertain to the base
+  DataCollector interface.</p>
+  <p>If there is no task specified, the TaskArguments
+  property of the DataCollectorSet MUST be ignored. If the SubdirectoryFormat
+  property is not set to plaPattern, the SubdirectoryFormatPattern property is
+  ignored. </p>
+  <p>For the base DataCollector, if the SegmentMaxSize
+  property is zero and LogCircular is false, LogCircular is ignored. If the
+  LogOverwrite property is true or the LogCircular is true, and the LogAppend
+  property is false, LogAppend is ignored.</p>
+  <p>For the AlertDataCollector data collector, the
+  following properties MUST be ignored: FileName, FileNameFormat,
+  FileNameFormatPattern, LogAppend, LogCircular, and LogOverwrite.</p>
+  <p>For the ApiTracingDataCollector data collector, the
+  following properties MUST be ignored: FileNameFormat, FileNameFormatPattern,
+  LogAppend, and LogOverwrite.</p>
+  <p>For the ApiTracingDataCollector data collector, the
+  following properties MUST be ignored: FileName and LogCircular. <a id="Appendix_A_Target_3"></a><a aria-label="Product behavior note 3" href="905cad7f-1a12-49b4-a263-461a2977ab71#Appendix_A_3" data-linktype="relative-path">&lt;3&gt;</a></p>
+  <p>For the ConfigurationDataCollector data collector, the
+  following properties MUST be ignored: LogCircular and LogAppend.</p>
+  <p>For the PerformanceCounterDataCollector data
+  collector, the following properties MUST be ignored if the LogFileFormat
+  property is set to plaSql: LogCircular, LogOverwrite, and LogAppend.
+  LogAppend is also returned if the LogFileFormat property is set to
+  plaTabSeparated or plaCommaSeparated.</p>
+  <p>For the TraceDataCollector data collector, the
+  following properties MUST be ignored if the StreamMode is not plaFile:
+  FileName, LogAppend, LogCircular, LogOverwrite, FileNameFormat, and
+  FileNameFormatPattern.</p>
+  <p>For TraceSession, the following properties MUST be
+  ignored: RootPath, Duration, Description, Keywords, Segment,
+  SegmentMaxDuration, SerialNumber, Subdirectory, SubdirectoryFormat,
+  SubdirectoryFormatPattern, Task, Schedules,
+  TraceDataCollector[1]/FileNameFormat, TraceDataCollector[1]/FileNameFormatPattern,
+  and TraceDataCollector[1]/LogOverwrite.</p>
+  <p>If IDataCollectorSet::Commit() with the flag
+  plaUpdateRunningInstance set is called on an IDataCollectorSet of type
+  TraceSession, as specified in section <a href="4bdc93e4-efac-4f1d-8aea-f01422899ae5" data-linktype="relative-path">3.2.1</a>, the following
+  properties MUST be ignored: TraceDataCollector[1]/BufferSize,
+  TraceDataCollector[1]/MinimumBuffers, TraceDataCollector[1]/NumberOfBuffers,
+  TraceDataCollector[1]/ClockType, TraceDataCollector[1]/ProcessMode,
+  TraceDataCollector[1]/PreallocateFile, and SegmentMaxSize. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PLA_E_PROPERTY_CONFLICT/(0x80300101)</p>
+  </td>
+  <td>
+  <p>This value can be returned anytime two properties are
+  in conflict. This code can be returned for the following properties under the
+  following conditions:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>IApiTracingDataCollector::ExePath:
+  Returned when ExePath is equal to the empty string. </span></p>
+  </li><li><p><span><span>  
+  </span></span><span>IDataCollector::FileNameFormatPattern:
+  Returned when IDataCollector::FileNameFormat is equal to plaPattern and
+  FileNameFormatPattern is equal to the empty string. </span></p>
+  </li><li><p><span><span>  
+  </span></span><span>IDataCollector::LogCircular:
+  Returned when IDataCollectorSet::SegmentMaxSize is equal to 0 and LogCircular
+  is equal to true. </span></p>
+  </li><li><p><span><span>  
+  </span></span><span>IDataCollector::LogAppend:
+  Returned when either IDataCollector::LogCircular is true or
+  IDataCollector::LogOverwrite is true and LogAppend is true.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>IPerformanceCounterDataCollector::DataSourceName:
+  Returned when DataSourceName is equal to the empty string and
+  IPerformanceCounterDataCollector::LogFileFormat is set to plaSql.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>ITraceDataCollector::MaximumBuffers:
+  Returned when MaximumBuffers is less than
+  ITraceDataCollector::MinimumBuffers.<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="905cad7f-1a12-49b4-a263-461a2977ab71#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a></span></p>
+  </li><li><p><span><span>  
+  </span></span><span>ITraceDataCollector::TraceDataProviders:
+  Returned if ITraceDataProviderCollection::Count is greater than 1 and
+  isKernelTrace is TRUE.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>ITraceDataCollector::Guid:
+  Returned if isKernelTrace is true and the specific PLA-UID does not match the
+  kernel PLA-UID.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="905cad7f-1a12-49b4-a263-461a2977ab71#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></span></p>
+  </li></ul><p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PLA_E_EXE_FULL_PATH_REQUIRED/0x8030010E)</p>
+  </td>
+  <td>
+  <p>This value can be returned anytime a relative path,
+  with respect to the current working directory, to a file is provided when a
+  full path is required. This code can be returned for the following properties
+  under the following conditions:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>IApiTracingDataCollector::ExePath:
+  Returned when the provided path is relative to the current working directory
+  instead of absolute.</span></p>
+  </li></ul><p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PLA_E_EXE_PATH_NOT_VALID/(0x80300108) </p>
+  </td>
+  <td>
+  <p>This value can be returned when the executable
+  referenced by the ExePath property for an IApiTracingDataCollector does not
+  exist. This code can be returned for the following properties under the
+  following conditions:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>IApiTracingDataCollector::ExePath:
+  Returned when the executable referenced by the ExePath property does not
+  exist.</span></p>
+  </li></ul><p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PLA_E_NETWORK_EXE_NOT_VALID/(0x80300106</p>
+  </td>
+  <td>
+  <p>This value can be returned when the executable
+  referenced by the ExePath is on a remote machine. This code can be returned
+  for the following properties under the following conditions:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>IApiTracingDataCollector::ExePath:
+  Returned when the executable referenced by the ExePath is on a remote
+  machine.</span></p>
+  </li></ul><p> </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

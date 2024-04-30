@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p>The <b>DHCP_SUBNET_INFO</b> structure defines the
+information about an IPv4 subnet. This structure is used in the <span><a href="8b3c3d99-490d-4a16-a9c1-0ed0349f37b0" data-linktype="relative-path">R_DhcpCreateSubnet (section 3.1.4.1)</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_SUBNET_INFO {
+   DHCP_IP_ADDRESS SubnetAddress;
+   DHCP_IP_MASK SubnetMask;
+   LPWSTR SubnetName;
+   LPWSTR SubnetComment;
+   DHCP_HOST_INFO PrimaryHost;
+   DHCP_SUBNET_STATE SubnetState;
+ } DHCP_SUBNET_INFO,
+  *LPDHCP_SUBNET_INFO;
+</pre></div>
+</dd></dl><p><b>SubnetAddress:</b>  This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>,
+specifying the IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6a800ef-fd8a-4d87-834c-131e58f304ea" data-linktype="relative-path">subnet ID</a></span>.</p><p><b>SubnetMask:</b>  This is of type <span><a href="5cd312d5-c29f-4352-9fbb-8119ce48082b" data-linktype="relative-path">DHCP_IP_MASK (section 2.2.1.2.2)</a></span>,
+specifying the subnet IPv4 mask.</p><p><b>SubnetName:</b>  A pointer of type <span><a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a></span>
+to a null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+points to the name of the subnet. There is no restriction on the length of this
+Unicode string.</p><p><b>SubnetComment:</b>  A pointer of type
+LPWSTR to a null-terminated Unicode string that points an optional comment
+specific to this subnet. There is no restriction on the length of this Unicode
+string.</p><p><b>PrimaryHost:</b>  This is of type <span><a href="51e16f4a-cb1d-400a-85c7-defe4cba1609" data-linktype="relative-path">DHCP_HOST_INFO (section 2.2.1.2.7)</a></span>
+structure, containing information about the DHCPv4 server servicing this IPv4
+subnet.</p><p><b>SubnetState:</b>  This is an enumeration
+of type <span><a href="03ebc39d-3f99-4b33-9f57-2f00ae9d3e33" data-linktype="relative-path">DHCP_SUBNET_STATE (section 2.2.1.1.2)</a></span>,
+indicating the current state of this IPv4 subnet.</p></div>

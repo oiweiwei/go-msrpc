@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The REMOTEREADACK enumeration represents an acknowledgment
+(ACK) or a negative acknowledgment (NACK), indicating a successfully or an
+unsuccessfully delivered packet, respectively.</p><dl>
+<dd>
+<div><pre> typedef enum _REMOTEREADACK {
+     RR_UNKNOWN,
+     RR_NACK,
+     RR_ACK
+ } REMOTEREADACK ;
+</pre></div>
+</dd></dl><p><b>RR_UNKNOWN:  </b>No acknowledgment.</p><p><b>RR_NACK:  </b>Negative acknowledgment for a
+packet.</p><p><b>RR_ACK:  </b>Acknowledgment for a packet.</p></div>

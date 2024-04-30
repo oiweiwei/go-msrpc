@@ -1,0 +1,260 @@
+<div class="content"><p> </p><p>The NetrDfsSetInfo2 (Opnum 22) method sets or modifies the
+information associated with a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span>, a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ac90b498-3ba4-48d6-bcd6-5495f1654671" data-linktype="relative-path">DFS root
+target</a></span>, a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS link</a></span>, or a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_44e2f830-c28b-41e3-8c3c-d0bb576ed9fb" data-linktype="relative-path">DFS link
+target</a></span>.</p><p>The NetrDfsSetInfo2 method has the following <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a></span>
+syntax.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrDfsSetInfo2(
+   [in, string] WCHAR* DfsEntryPath,
+   [in, string] WCHAR* DcName,
+   [in, unique, string] WCHAR* ServerName,
+   [in, unique, string] WCHAR* ShareName,
+   [in] DWORD Level,
+   [in, switch_is(Level)] DFS_INFO_STRUCT* pDfsInfo,
+   [in, out, unique] DFSM_ROOT_LIST** ppRootList
+ );
+</pre></div>
+</dd></dl><p><b>DfsEntryPath: </b>The pointer to a DFS root path
+or a DFS link path that contains the name of a DFS root or DFS link name.</p><p><b>DcName: </b>The pointer to a null-terminated <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string. It MUST be ignored for a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_701a2cc1-eb5a-400f-b394-5bad264ec8f6" data-linktype="relative-path">stand-alone DFS namespace</a></span>.
+For a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_133ab305-ad75-4b38-8ec9-40bc0dc3b594" data-linktype="relative-path">domain-based DFS namespace</a></span>,
+this string contains the host name of the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span> that the DFS root
+target uses to get or update <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_e8de88fd-d760-46fa-ad77-76961fa20aea" data-linktype="relative-path">DFS metadata</a></span> for the
+<span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS
+namespace</a></span>. This parameter MAY be a NULL pointer; otherwise, it MUST
+be the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a></span> for the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>
+of the DFS namespace.<a id="Appendix_A_Target_99"></a><a aria-label="Product behavior note 99" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_99" data-linktype="relative-path">&lt;99&gt;</a></p><p><b>ServerName: </b>The pointer to a null-terminated
+Unicode DFS root target or a DFS link target host name string. This parameter
+MUST be a NULL pointer if the operation is intended for a DFS root or a DFS
+link and not for targets.</p><p><b>ShareName: </b>The pointer to a null-terminated
+Unicode DFS root target or a DFS link target <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_3c179f10-1793-4268-96eb-de4d85a32060" data-linktype="relative-path">share name</a></span> string.
+This parameter MUST be a NULL pointer if the operation is intended for a DFS
+root or a DFS link and not for targets.</p><p><b>Level: </b>This parameter specifies the
+information level of the data and, in turn, determines the action the method
+performs. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Level_100</p>
+  <p>0x00000064</p>
+  </td>
+  <td>
+  <p>Sets the comment associated with the root or link that
+  specified in <i>DfsInfo</i>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Level_101</p>
+  <p>0x00000065</p>
+  </td>
+  <td>
+  <p>Sets the storage state associated with the root, link,
+  root target, or link target specified in <i>DfsInfo</i>.<a id="Appendix_A_Target_100"></a><a aria-label="Product behavior note 100" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_100" data-linktype="relative-path">&lt;100&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Level_102</p>
+  <p>0x00000066</p>
+  </td>
+  <td>
+  <p>Sets the time-out value associated with the root or
+  link specified in <i>DfsInfo</i>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Level_103</p>
+  <p>0x00000067</p>
+  </td>
+  <td>
+  <p>Sets the property flags for the root or link specified
+  in <i>DfsInfo</i>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Level_104</p>
+  <p>0x00000068</p>
+  </td>
+  <td>
+  <p>Sets the target priority rank and class for the root
+  target or link target specified in <i>DfsInfo</i>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Level_105</p>
+  <p>0x00000069</p>
+  </td>
+  <td>
+  <p>Sets the comment, state, time-out information, and
+  property flags for the root or link specified in <i>DfsInfo</i>. This does
+  not apply to a root target or link target.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Level_106</p>
+  <p>0x0000006A</p>
+  </td>
+  <td>
+  <p>Sets the target state and priority for the root target
+  or link target specified in <i>DfsInfo</i>. This does not apply to the DFS
+  namespace root or link.<a id="Appendix_A_Target_101"></a><a aria-label="Product behavior note 101" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_101" data-linktype="relative-path">&lt;101&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Level_107</p>
+  <p>0x0000006B</p>
+  </td>
+  <td>
+  <p>Sets the comment, state, time-out, security descriptor
+  information, and property flags for the root or link specified in <i>DfsInfo</i>.
+  Does not apply to a root target or link target. The <i>ServerName</i> and <i>ShareName</i>
+  parameters MUST be NULL. The security descriptor MUST NOT have an owner,
+  group, or <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c189801e-3752-4715-88f4-17804dad5782" data-linktype="relative-path">SACLs</a></span> in it.</p>
+  <p>The security descriptor MUST be a NULL, zero length
+  value if used on a namespace root. In this case, note that it is equivalent
+  to using Level_105.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Level_150</p>
+  <p>0x00000096</p>
+  </td>
+  <td>
+  <p>Sets the security descriptor associated with a link.
+  Only <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ce6af522-ba70-4ba1-a684-b98b809c72ad" data-linktype="relative-path">stand-alone DFS namespaces</a></span>
+  and <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8099f7c1-2a31-4a20-81e6-824689bd9c5a" data-linktype="relative-path">domainv2-based DFS namespaces</a></span>
+  are supported. The <i>ServerName</i> and <i>ShareName</i> parameters MUST
+  both be NULL. The security descriptor MUST NOT have an owner, group, or SACLs
+  in it.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The server MUST support Level values 100 and 101.
+The server SHOULD support Level values 102-107 and 150. If the server does not
+support the provided Level, it MUST fail the call.<a id="Appendix_A_Target_102"></a><a aria-label="Product behavior note 102" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_102" data-linktype="relative-path">&lt;102&gt;</a> The server SHOULD return
+error code ERROR_INVALID_PARAMETER for unsupported Level values.<a id="Appendix_A_Target_103"></a><a aria-label="Product behavior note 103" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_103" data-linktype="relative-path">&lt;103&gt;</a></p>
+</dd></dl><p><b>pDfsInfo: </b>The pointer to a <span><a href="725240d3-2da7-41ef-8161-b7df1c2af497" data-linktype="relative-path">DFS_INFO_STRUCT</a></span>
+union that contains the specified data. The <i>Level</i> parameter value
+determines the case of the union.</p><p><b>ppRootList: </b>On success, returns a list of DFS
+root targets in the domain-based DFS namespace which the client will be
+responsible for notifying about the change in the DFS namespace. See section <span><a href="e01d2b11-8884-41cb-8a77-21b72e22307c" data-linktype="relative-path">3.2.4.2.3</a></span>.
+This list MAY be empty if the server has performed the notification.<a id="Appendix_A_Target_104"></a><a aria-label="Product behavior note 104" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_104" data-linktype="relative-path">&lt;104&gt;</a></p><p><b>Return Values: </b>The method MUST return 0 on
+success and a nonzero error code on failure. The method can return any specific
+error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Successful completion.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified DFS link target was not found as a
+  target of the specified DFS link.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Permission to perform the operation was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000032</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The specified operation is not supported.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>An incorrect parameter was specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000490</p>
+  <p>ERROR_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified DFS root, DFS link, or DFS link or root
+  target does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MAY<a id="Appendix_A_Target_105"></a><a aria-label="Product behavior note 105" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_105" data-linktype="relative-path">&lt;105&gt;</a>
+implement this method.</p><p>If the NetrDfsSetInfo (Opnum 3) method on a server does not
+support a domain-based namespace, the server SHOULD support a domain-based
+namespace in the NetrDfsSetInfo2 (Opnum 22) method.<a id="Appendix_A_Target_106"></a><a aria-label="Product behavior note 106" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_106" data-linktype="relative-path">&lt;106&gt;</a><a id="Appendix_A_Target_107"></a><a aria-label="Product behavior note 107" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_107" data-linktype="relative-path">&lt;107&gt;</a></p><p>The server MUST verify the existence of the DFS namespace
+that the <i>DfsEntryPath</i> parameter specifies. If the namespace does not
+exist, the server MUST return ERROR_NOT_FOUND.</p><p>The server MUST verify the existence of the DFS link that
+the <i>DfsEntryPath</i> parameter specifies. If that existence check fails, the
+server MUST return ERROR_NOT_FOUND.</p><p>The server MUST verify the existence of the DFS link target
+of the DFS link that the <i>ServerName</i> and <i>RootShare</i> parameters
+specify. If that existence check fails, the server MUST return
+ERROR_FILE_NOT_FOUND.</p><p>If the <i>DcName</i> parameter is not NULL, it MUST be the
+PDC for the domain of the domain-based DFS namespace.</p><p>The server MUST fail any attempt to set the state of a DFS
+root, a DFS link, a DFS root target, or a DFS link target to a value that is
+not specified. The server MUST fail any attempt to set the property flags on a
+DFS link that are defined only for a DFS root.</p><p>With the <i>Level</i> parameter 101 and the <b>State</b>
+field in the <span><a href="af9d607e-04e5-4722-8d00-76cf9c7b69f9" data-linktype="relative-path">DFS_INFO_101</a></span>
+structure as DFS_VOLUME_STATE_RESYNCHRONIZE, the server MUST reload the
+contents of the DFSMetadataCache, if maintained, for the domain-based DFS
+namespace that the <i>ShareName</i> parameter specifies. In the case of both <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c37de1c8-4bd3-406f-ad8c-50c877666f91" data-linktype="relative-path">domain-based
+DFS namespaces</a></span> and stand-alone DFS namespaces, the server MUST check
+the DFS namespace it hosts locally with the DFS metadata and perform any
+required modifications.</p><p>With the <i>Level</i> parameter 101 and the <b>State</b>
+field in the DFS_INFO_101 structure as DFS_VOLUME_STATE_FORCE_SYNC, the server
+MUST perform a full synchronization instead of an incremental synchronization
+to reload the contents of the DFSMetadataCache and to identify added or deleted
+DFS links. This <b>State</b> field is supported on domainv2-based DFS
+namespaces and stand-alone DFS namespaces.</p><p>When <i>level</i> parameter 107 is used for a DFS namespace
+root or for a domainv1-based DFS link, the <i>pSecurityDescriptor</i> parameter
+has no meaning because security descriptors cannot be associated with those
+objects. In these cases, if pSecurityDescriptor is not NULL, the server MUST
+fail with ERROR_NOT_SUPPORTED.</p><p>The server MUST update the same fields in the DFS metadata
+for a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_2aad5e61-ffe9-406e-a192-328c5327ee72" data-linktype="relative-path">domain-basedv1 DFS namespace</a></span>
+as for the NetrDfsSetInfo (Opnum 3) method, as specified in section <span><a href="7b033d5b-8d26-4931-8b3d-7aa35e441fb0" data-linktype="relative-path">3.1.4.1.5</a></span>.</p><p>The server MUST synchronously update the DFS metadata of a
+domain-based DFS namespace.</p><p>If <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_cf94d206-f71c-4ca1-891a-24c83f533e45" data-linktype="relative-path">DFS root scalability mode</a></span>
+is not enabled for the domain-based DFS namespace, the server MUST do one of
+the following:</p><ul><li><p><span><span> 
+</span></span>Notify other DFS root targets of the change in DFS metadata by
+asynchronously issuing a NetrDfsSetInfo (Opnum 3) method with the <i>Level</i>
+parameter 101 and with the <b>State</b> field of <span><a href="c76762de-1249-485e-8a30-b1ff37179a3d" data-linktype="relative-path">DFS_INFO_101</a></span> set to
+DFS_VOLUME_STATE_RESYNCHRONIZE. The returned <i>ppRootList</i> parameter MUST
+be empty.</p>
+</li><li><p><span><span> 
+</span></span>Perform no notification of the other root targets, returning a
+list of DFS root targets to the client in the <i>ppRootList</i> parameter.</p>
+</li></ul></div>

@@ -1,0 +1,197 @@
+<div class="content"><p>The LINECALLSTATUS packet describes the current status of a
+call. The information in this packet depends on the device capabilities of the
+address, the ownership of the call by the invoking application, and the current
+state of the call being queried. LINECALLSTATUS is supplied by the server in
+the field VarData of the returned version of the <a href="431e5691-6b28-4ce6-9987-d0717f38b85f" data-linktype="relative-path">GetCallStatus</a> packet if
+the request is completed successfully.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallState</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallStateMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallPrivilege</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallFeatures</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevSpecificSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevSpecificOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallFeatures2
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">tStateEntryTime
+  (16 bytes, optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, allocated to this packet. </p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, for this packet that is needed to hold all the
+returned information. </p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the portion of this packet that contains useful
+information.</p><p><b>dwCallState (4 bytes): </b>An unsigned 32-bit
+integer. The value that specifies the current call state of the call using one
+of the <a href="90b1b6c3-d544-49f4-b868-38aa7ccb7b09" data-linktype="relative-path">LINECALLSTATE_Constants</a>.
+</p><p><b>dwCallStateMode (4 bytes): </b>An unsigned 32-bit
+integer. The interpretation of the <b>dwCallStateMode</b> member is
+call-state–dependent. In many cases, the value will be 0. The following table
+shows <b>dwCallStateMode</b> types for a given <b>dwCallState</b> value. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>dwCallState</p>
+   </th>
+   <th>
+   <p>CallStateMode</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>LINECALLSTATE_BUSY</p>
+  </td>
+  <td>
+  <p><a href="8d02c5c4-ad8d-441f-827a-5582fe73e911" data-linktype="relative-path">LINEBUSYMODE_Constants</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINECALLSTATE_CONNECTED</p>
+  </td>
+  <td>
+  <p><a href="60cb1ac2-b383-4331-acbc-3be58926426a" data-linktype="relative-path">LINECONNECTEDMODE_Constants</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINECALLSTATE_DIALTONE</p>
+  </td>
+  <td>
+  <p><a href="4ef21601-c6e0-4e97-9108-8779feeeba22" data-linktype="relative-path">LINEDIALTONEMODE_Constants</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINECALLSTATE_DISCONNECTED</p>
+  </td>
+  <td>
+  <p><a href="dd20df60-c91f-40e4-99a5-a264ffc5e9f5" data-linktype="relative-path">LINEDISCONNECTMODE_Constants</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINECALLSTATE_OFFERING</p>
+  </td>
+  <td>
+  <p><a href="cc370841-545b-483e-8a2b-4ad7aaea7b45" data-linktype="relative-path">LINEOFFERINGMODE_Constants</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINECALLSTATE_SPECIALINFO</p>
+  </td>
+  <td>
+  <p><a href="5986f85f-4d2d-4e04-ab69-66b1c4399254" data-linktype="relative-path">LINESPECIALINFO_Constants</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwCallPrivilege (4 bytes): </b>An unsigned 32-bit
+integer. The privilege level for this call. This field MUST use one or more of
+the <a href="7100c478-7fd1-43a5-8bd7-5720fa04e858" data-linktype="relative-path">LINECALLPRIVILEGE_Constants</a>.
+</p><p><b>dwCallFeatures (4 bytes): </b>An unsigned 32-bit
+integer. These flags indicate the TAPI functions that can be invoked on the
+call, given the availability of the feature in the device capabilities, the
+current call state, and call ownership of the invoking application. A 0
+indicates the corresponding feature cannot be invoked on the call in its
+current state; a 1 indicates the feature can be invoked. This field MUST use <a href="d771062f-a57d-4bea-bbce-ef19f2521453" data-linktype="relative-path">LINECALLFEATURE_Constants</a>.
+</p><p><b>dwDevSpecificSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the variably sized device-specific
+field. </p><p><b>dwDevSpecificOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. </p><p><b>dwCallFeatures2 (4 bytes): </b>An unsigned 32-bit
+integer. The value that indicates additional functions can be invoked on the
+call, given the availability of the feature in the device capabilities, the
+current call state, and call ownership of the invoking application. An
+extension of the <b>dwCallFeatures</b> field. This field MUST use <a href="9149d198-78f5-4f97-a66d-73fa3252687c" data-linktype="relative-path">LINECALLFEATURE2_Constants</a>.
+</p><p><b>tStateEntryTime (16 bytes): </b>A SYSTEMTIME. The
+Coordinated Universal Time (UTC) at which the current call state was entered.</p><p>Device-specific extensions SHOULD use the DevSpecific (<b>dwDevSpecificSize</b>
+and <b>dwDevSpecificOffset</b>) variably sized area of this packet. </p><p>A <a href="0a8905e3-647f-4e98-aca8-2fa77eedb2e7" data-linktype="relative-path">LINE_CALLSTATE</a>
+packet is sent whenever the call state of a call changes. This packet provides
+only the new call state of the call. Additional status about a call is
+available with the GetCallStatus packet. </p><p>The fields <b>dwCallFeatures2</b> and <b>tStateEntryTime</b>
+are available only to a line device opened with a TAPI version of 2.0, 2.1,
+2.2, 3.0, or 3.1.</p></div>

@@ -1,0 +1,11 @@
+<div class="content"><p>The Ping2 method is used to determine if the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> service is started and
+responding.</p><dl>
+<dd>
+<div><pre> HRESULT Ping2(
+   [in, string, unique] wchar_t const* pwszAuthority
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b> See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.
+</p><p>ICertAdminD2::Ping2 is as specified in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>
+section <a href="../ms-wcce/7345ed19-bb50-4984-ab22-35227610c6a4" data-linktype="relative-path">3.2.1.4.3.4</a>.</p></div>

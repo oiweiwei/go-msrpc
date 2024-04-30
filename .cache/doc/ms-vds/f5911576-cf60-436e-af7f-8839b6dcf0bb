@@ -1,0 +1,35 @@
+<div class="content"><p> </p><p>The QueryStatus method retrieves the status of the
+asynchronous operation.</p><dl>
+<dd>
+<div><pre> HRESULT QueryStatus(
+   [out] HRESULT* pHrResult,
+   [out] unsigned long* pulPercentCompleted
+ );
+</pre></div>
+</dd></dl><p><b>pHrResult: </b>A pointer to a variable that
+receives the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> that signals
+the current state of the asynchronous operation.</p><p><b>pulPercentCompleted: </b>A pointer to a variable
+that receives the completion percentage of the asynchronous operation. If the
+asynchronous operation is in progress, the value MUST be between 0 and 99. If
+the operation has finished, the value MUST be 100. If the progress of the
+operation cannot be estimated, the value MUST be 0.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error HRESULT (as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameters: </p><ul><li><p><span><span> 
+</span></span>Verify that <b>pHrResult</b> is not NULL. </p>
+</li><li><p><span><span> 
+</span></span>Verify that <b>pulPercentCompleted</b> is not NULL.</p>
+</li></ul><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>Set the <b>pHrResult</b> output parameter based on the return
+code for the asynchronous operation. If the asynchronous operation is still in
+progress, this parameter MUST be set to VDS_E_OPERATION_PENDING (HRESULT of
+0x00042409).</p>
+</li><li><p><span><span> 
+</span></span>Set the <b>pulPercentCompleted</b> output parameter based on the
+completion percentage of the asynchronous operation.</p>
+</li><li><p><span><span> 
+</span></span>Return an HRESULT that indicates success or failure for the
+QueryStatus method.</p>
+</li></ul></div>

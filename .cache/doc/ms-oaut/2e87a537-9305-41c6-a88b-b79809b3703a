@@ -1,0 +1,181 @@
+<div class="content"><p> </p><p>The SAFEARRAY structure defines a multidimensional array of
+OLE <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_30a4192b-9daa-4a21-bd87-6cb0908a2a9e" data-linktype="relative-path">automation
+types</a></span>. The definitions of SAFEARRAY data types provided in this
+section correspond to the wire formats of these data types.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p><dl>
+<dd>
+<div><pre> typedef[unique] 
+    struct _wireSAFEARRAY {
+   USHORT cDims;
+   USHORT fFeatures;
+   ULONG cbElements;
+   ULONG cLocks;
+   SAFEARRAYUNION uArrayStructs;
+   [size_is(cDims)] SAFEARRAYBOUND rgsabound[];
+ } *SAFEARRAY;
+</pre></div>
+</dd></dl><p><b>cDims:</b>  MUST be set to the number of
+dimensions of the array. cDims MUST NOT be set to 0.</p><p><b>fFeatures:</b>  MUST be set to a
+combination of the bit flags specified in section <span><a href="f06ee3d2-a61f-4e0b-a929-9369d334ea33" data-linktype="relative-path">2.2.9</a></span>. </p><p><b>cbElements:</b>  MUST be set to the
+size, in bytes, of an element in the SAFEARRAY, as specified in the table in
+section <span><a href="8c78fede-6f6c-4822-a5f8-0fcbbc8d8242" data-linktype="relative-path">2.2.8</a></span>. </p><p><b>cLocks:</b>  If the <b>fFeatures</b>
+field contains FADF_HAVEVARTYPE (see section 2.2.9), the <b>cLocks</b> field
+MUST contain a <span><a href="3fe7db9f-5803-4dc4-9d14-5425d3f5461f" data-linktype="relative-path">VARIANT (section 2.2.7)</a></span>
+type constant in its high word that specifies the type of the elements in the
+array. Otherwise, the high word of the <b>cLocks</b> field MUST be set to 0.</p><dl>
+<dd>
+<p>The low word of the <b>cLocks</b> field MAY<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a> be set to an
+implementation-specific value, and MUST be ignored on receipt.</p>
+</dd></dl><p><b>uArrayStructs:</b>  MUST be a <span><a href="5eaa490f-f6c5-4d58-b368-cf2d0ea74572" data-linktype="relative-path">SAFEARRAYUNION (section 2.2.30.9)</a></span>.</p><p><b>rgsabound:</b>  MUST contain an array of
+bounds, specifying the shape of the array. This array MUST be represented in
+reverse order. That is, for an array [0:5][0:2][0:10], the bounds would be
+represented as (10, 0), (2, 0), (5, 0).</p><p>The following consistency statements MUST hold, where <b>sfType</b>
+is the discriminant field in the SAFEARRAYUNION data member.</p><table><thead>
+  <tr>
+   <th>
+   <p>If sfType equals </p>
+   </th>
+   <th>
+   <p>fFeatures MUST be set to </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SF_HAVEIID</p>
+  </td>
+  <td>
+  <p>FADF_UNKNOWN | FADF_HAVEIID or</p>
+  <p>FADF_DISPATCH | FADF_HAVEIID</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SF_BSTR</p>
+  </td>
+  <td>
+  <p>FADF_BSTR or</p>
+  <p>FADF_BSTR | FADF_HAVEVARTYPE</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SF_UNKNOWN</p>
+  </td>
+  <td>
+  <p>FADF_UNKNOWN or </p>
+  <p>FADF_UNKNOWN | FADF_HAVEVARTYPE or</p>
+  <p>FADF_UNKNOWN | FADF_HAVEIID</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SF_DISPATCH</p>
+  </td>
+  <td>
+  <p>FADF_DISPATCH or </p>
+  <p>FADF_DISPATCH | FADF_HAVEVARTYPE or</p>
+  <p>FADF_DISPATCH | FADF_HAVEIID</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SF_VARIANT</p>
+  </td>
+  <td>
+  <p>FADF_VARIANT or</p>
+  <p>FADF_VARIANT | FADF_HAVEVARTYPE </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SF_RECORD</p>
+  </td>
+  <td>
+  <p>FADF_RECORD</p>
+  </td>
+ </tr></tbody></table><p>If <b>fFeatures</b> field specifies FADF_HAVEVARTYPE, the
+following additional statements MUST hold, where <b>vt</b> is the high word of
+the <b>cLocks</b> field.</p><table><thead>
+  <tr>
+   <th>
+   <p>If vt (the high word of cLocks) equals</p>
+   </th>
+   <th>
+   <p>sfType MUST be set to</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>VT_I1 </p>
+  <p>VT_UI1</p>
+  </td>
+  <td>
+  <p>SF_I1</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VT_I2 </p>
+  <p>VT_UI2 </p>
+  <p>VT_BOOL</p>
+  </td>
+  <td>
+  <p>SF_I2</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VT_ERROR </p>
+  <p>VT_I4 </p>
+  <p>VT_UI4 </p>
+  <p>VT_R4 </p>
+  <p>VT_INT</p>
+  <p>VT_UINT</p>
+  </td>
+  <td>
+  <p>SF_I4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VT_I8 </p>
+  <p>VT_UI8 </p>
+  <p>VT_R8 </p>
+  <p>VT_CY </p>
+  <p>VT_DATE</p>
+  </td>
+  <td>
+  <p>SF_I8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VT_BSTR</p>
+  </td>
+  <td>
+  <p>SF_BSTR</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VT_VARIANT</p>
+  </td>
+  <td>
+  <p>SF_VARIANT</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VT_UNKNOWN</p>
+  </td>
+  <td>
+  <p>SF_UNKNOWN or SF_HAVEIID</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VT_DISPATCH</p>
+  </td>
+  <td>
+  <p>SF_DISPATCH or SF_HAVEIID</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VT_RECORD</p>
+  </td>
+  <td>
+  <p>SF_RECORD</p>
+  </td>
+ </tr></tbody></table><p>In addition, the type of <b>vt</b> MUST NOT equal
+VT_DECIMAL.</p><p>If any of the consistency checks fail, the protocol
+implementation SHOULD<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="ae19ad63-7433-4568-88e9-f70e5593547d#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p><p>Data of this type MUST be marshaled as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+section 14, with the exception that it MUST be marshaled by using a
+little-endian data representation, regardless of the data representation format
+label. For more information, see [C706] section 14.2.5.</p></div>

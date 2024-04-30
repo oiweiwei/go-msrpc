@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_DP_LIST</b> structure contains a list of <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_68dc613a-d602-41ae-9acc-76ffe97877c4" data-linktype="relative-path">application
+directory partition</a></span> information structures.<a id="Appendix_A_Target_59"></a><a aria-label="Product behavior note 59" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_59" data-linktype="relative-path">&lt;59&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcDirectoryPartitionList {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   [range(0,5000)] DWORD dwDpCount;
+   [size_is(dwDpCount)] PDNS_RPC_DP_ENUM DpArray[];
+ } DNS_RPC_DP_LIST,
+  *PDNS_RPC_DP_LIST;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> As specified in section
+<span><a href="bd2a817d-6a69-40d3-befc-0c198a9c6e80" data-linktype="relative-path">2.2.7.2.1</a></span>.</p><p><b>dwReserved0:</b> As specified in section 2.2.7.2.1.</p><p><b>dwDpCount:</b> The number of DNS_RPC_DP_ENUM
+(section <span><a href="324a9398-28c6-463f-93f6-8505904dc738" data-linktype="relative-path">2.2.7.2.3</a></span>)
+structures present in the array pointed to by DpArray.</p><p><b>DpArray:</b> An array of DNS_RPC_DP_ENUM
+structures (section 2.2.7.2.3), containing information about the application
+directory partitions available to the DNS server.</p></div>

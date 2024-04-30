@@ -1,0 +1,95 @@
+<div class="content"><p> </p><p>The <b>FaxObs_EnumRoutingMethods (Opnum 16)</b> method is
+called by the client to enumerate all of the routing methods that are
+registered with the server for a specified port (device). The function returns
+detailed information about each enumerated routing method.</p><p>The client MUST set the <i>FaxPortHandle</i> parameter to a
+valid fax port handle value returned by the <b>FaxObs_OpenPort</b> (section
+<span><a href="2c8a37ec-7c13-4a2c-93b7-cf19534846c2" data-linktype="relative-path">3.1.4.2.5</a></span>)
+method.</p><p>In response, the server MUST validate that the client&#39;s fax
+user account has access to query configuration. The server MUST allocate memory
+for the routing information array to be returned to the client. On success, the
+server MUST fill the buffer with the routing information for the specified
+port, along with the buffer size and the number of enumerated methods.</p><p>The client SHOULD free the buffer.</p><dl>
+<dd>
+<div><pre> error_status_t FaxObs_EnumRoutingMethods(
+   [in] RPC_FAX_PORT_HANDLE FaxPortHandle,
+   [in, out, unique, size_is(,*RoutingInfoBufferSize)] 
+     LPBYTE* RoutingInfoBuffer,
+   [in, out] LPDWORD RoutingInfoBufferSize,
+   [out] LPDWORD PortsReturned
+ );
+</pre></div>
+</dd></dl><p><b>FaxPortHandle:</b> An <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9dfe84e3-a772-4ad1-9a25-1255c1dc0f84" data-linktype="relative-path">RPC context handle</a></span>
+that references a fax port.</p><p><b>RoutingInfoBuffer:</b> A pointer to the address of
+the returned buffer containing an array of <b>FAX_ROUTING_METHOD</b> (section
+<span><a href="8267ada5-e810-4a67-849a-cd4e9fae9735" data-linktype="relative-path">2.2.9</a></span>)
+structures. Each structure contains information about one fax routing method.</p><p><b>RoutingInfoBufferSize:</b> A variable to return
+the size, in bytes, of the routing method buffer.</p><p><b>PortsReturned: </b>A pointer to a <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+variable to receive the number of <b>FAX_ROUTING_METHOD</b> that are returned by
+the <i>RoutingInfoBuffer</i> parameter.</p><p><b>Return Values:</b> This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span> or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_INVALID_FUNCTION</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>There are no routing methods configured on the fax
+  server for the fax port specified through the <i>FaxPortHandle</i> parameter.
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The client&#39;s fax user account does
+  not have the FAX_PORT_QUERY access rights.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The fax server cannot allocate sufficient memory to
+  hold the array of <b>FAX_ROUTING_METHOD</b> structures to be returned to the
+  client. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_DATA</p>
+  <p>0x0000000D</p>
+  </td>
+  <td>
+  <p>This error SHOULD be returned if the <i>FaxPortHandle</i>
+  argument is not a valid handle obtained using <b>FaxObs_OpenPort</b>.<a id="Appendix_A_Target_202"></a><a aria-label="Product behavior note 202" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_202" data-linktype="relative-path">&lt;202&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect. This error code is
+  returned if any of the following parameters is set to a NULL pointer value: <i>RoutingInfoBuffer</i>,
+  <i>RoutingInfoBufferSize</i>, <i>PortsReturned</i>.<a id="Appendix_A_Target_203"></a><a aria-label="Product behavior note 203" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_203" data-linktype="relative-path">&lt;203&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown: </b>No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,98 @@
+import "ms-dtyp.idl";
+ 
+[ uuid (BBA9CB76-EB0C-462C-AA1B-5D8C34415701),
+  version(1.0),
+  pointer_default(unique)
+]
+interface Claims
+{
+    typedef [string] wchar_t *CLAIM_ID;
+    typedef [string] wchar_t **PCLAIM_ID;
+ 
+    typedef enum _CLAIM_TYPE
+    {
+        CLAIM_TYPE_INT64 = 1,
+        CLAIM_TYPE_UINT64 = 2,
+        CLAIM_TYPE_STRING = 3,
+        CLAIM_TYPE_BOOLEAN = 6
+ 
+    } CLAIM_TYPE, *PCLAIM_TYPE;
+ 
+    typedef enum _CLAIMS_SOURCE_TYPE
+    {
+        CLAIMS_SOURCE_TYPE_AD = 1,
+        CLAIMS_SOURCE_TYPE_CERTIFICATE
+    } CLAIMS_SOURCE_TYPE;
+ 
+    typedef enum _CLAIMS_COMPRESSION_FORMAT
+    {
+        COMPRESSION_FORMAT_NONE = 0,
+        COMPRESSION_FORMAT_LZNT1 = 2,
+        COMPRESSION_FORMAT_XPRESS = 3,
+        COMPRESSION_FORMAT_XPRESS_HUFF = 4
+    } CLAIMS_COMPRESSION_FORMAT;
+ 
+    typedef struct _CLAIM_ENTRY
+    {
+      CLAIM_ID Id;
+      CLAIM_TYPE Type;
+      [switch_is(Type), switch_type(CLAIM_TYPE)] 
+        union
+        {
+        [case(CLAIM_TYPE_INT64)] 
+          struct 
+          {
+            [range(1, 10*1024*1024)] ULONG ValueCount;
+            [size_is(ValueCount)] LONG64* Int64Values;
+          } CLAIM_ENTRY_INT64;
+        [case(CLAIM_TYPE_UINT64)] 
+          struct
+          {
+            [range(1, 10*1024*1024)] ULONG ValueCount;
+            [size_is(ValueCount)] ULONG64* Uint64Values;
+          } CLAIM_ENTRY_UINT64;
+        [case(CLAIM_TYPE_STRING)] 
+          struct
+          {
+            [range(1, 10*1024*1024)] ULONG ValueCount;
+            [size_is(ValueCount), string] LPWSTR* StringValues;
+          } CLAIM_ENTRY_STRING;
+        [case(CLAIM_TYPE_BOOLEAN)] 
+          struct
+          {
+            [range(1, 10*1024*1024)] ULONG ValueCount;
+            [size_is(ValueCount)] ULONG64* BooleanValues;
+          } CLAIM_ENTRY_BOOLEAN;
+        [default]
+          ;
+      } Values;
+    } CLAIM_ENTRY, 
+     *PCLAIM_ENTRY;
+ 
+    typedef struct _CLAIMS_ARRAY
+    {
+        CLAIMS_SOURCE_TYPE                          usClaimsSourceType;
+        ULONG                                       ulClaimsCount;
+        [size_is(ulClaimsCount)] PCLAIM_ENTRY       ClaimEntries;
+    } CLAIMS_ARRAY, *PCLAIMS_ARRAY;
+ 
+    typedef struct _CLAIMS_SET
+    {
+        ULONG                                           ulClaimsArrayCount;
+        [size_is(ulClaimsArrayCount)] PCLAIMS_ARRAY     ClaimsArrays;
+        USHORT                                          usReservedType;
+        ULONG                                           ulReservedFieldSize;
+        [size_is(ulReservedFieldSize)]  BYTE            *ReservedField;
+    } CLAIMS_SET, *PCLAIMS_SET;
+ 
+    typedef struct _CLAIMS_SET_METADATA
+    {
+        ULONG                           ulClaimsSetSize;
+        [size_is(ulClaimsSetSize)] BYTE *ClaimsSet;
+        CLAIMS_COMPRESSION_FORMAT       usCompressionFormat;
+        ULONG                           ulUncompressedClaimsSetSize;
+        USHORT                          usReservedType;
+        ULONG                           ulReservedFieldSize;
+        [size_is(ulReservedFieldSize)]  BYTE  *ReservedField;
+    } CLAIMS_SET_METADATA, *PCLAIMS_SET_METADATA;
+}

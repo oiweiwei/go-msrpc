@@ -1,0 +1,19 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/620010b4-b439-4d46-893a-cb67246de5fc" data-linktype="external">msdn link</a></p><p>The POLICY_LSA_SERVER_ROLE enumeration takes one of two
+possible values, depending on which capacity the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b56f14e3-d874-48bc-837b-5e812ee1a96e" data-linktype="relative-path">account domain</a> database is
+in: primary or backup. Certain operations of the protocol are allowed only
+against a primary account database. On non–<a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller</a> machines,
+the account domain database is in primary state. On domain controllers, if the
+machine is the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e42e52b3-e44f-4284-9c1b-e161f81ea516" data-linktype="relative-path">primary
+domain controller (PDC) role owner</a>, then the account domain database is in
+primary state; otherwise, it is in backup state.</p><dl>
+<dd>
+<div><pre> typedef  enum _POLICY_LSA_SERVER_ROLE
+ {
+   PolicyServerRoleBackup = 2,
+   PolicyServerRolePrimary
+ } POLICY_LSA_SERVER_ROLE,
+  *PPOLICY_LSA_SERVER_ROLE;
+</pre></div>
+</dd></dl><p><b>PolicyServerRoleBackup:  </b>A backup account
+database.</p><p><b>PolicyServerRolePrimary:  </b>A primary account
+database.</p></div>

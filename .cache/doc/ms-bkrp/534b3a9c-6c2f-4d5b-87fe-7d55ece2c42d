@@ -1,0 +1,87 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/534b3a9c-6c2f-4d5b-87fe-7d55ece2c42d" data-linktype="external">msdn link</a></p><p>The RecoveredSecret structure MUST be formatted as follows.
+It MUST be encrypted with the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_d57eac33-f561-4a08-b148-dfcf29cfb4d8" data-linktype="relative-path">RC4</a>
+algorithm as specified in section <a href="c8cc3008-13c4-4424-82f4-b4661c590d43" data-linktype="relative-path">3.1.4.1.2</a>. For more
+information about RC4, see <a href="https://go.microsoft.com/fwlink/?LinkId=817338" data-linktype="external">[SCHNEIER]</a> section
+17.1.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MACSalt
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MAC (20
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Secret
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>MACSalt (16 bytes): </b>This MUST be a random
+number 16 bytes in length.</p><p><b>MAC (20 bytes): </b>This MUST contain the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_168fbe0c-fc02-4722-979e-b0261766ac9c" data-linktype="relative-path">SHA1</a> <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_ba024019-a866-41df-99a5-764b7eab2e1e" data-linktype="relative-path">HMAC</a> of the <b>Secret</b>
+field, computed as specified in section 3.1.4.1.2.</p><p><b>Secret (variable): </b>This field MUST contain the
+secret recovered by the <a href="32d60aa4-e40c-414a-986c-db731aca7e71#gt_c6590684-c769-4edf-82be-62f3450b09e7" data-linktype="relative-path">unwrapping</a>
+operation.</p></div>

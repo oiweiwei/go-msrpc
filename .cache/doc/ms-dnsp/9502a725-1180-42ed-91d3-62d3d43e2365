@@ -1,0 +1,98 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_CACHE_STATS</b> structure has DNS server
+statistics related to the server cache. This structure MUST be formatted as
+follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CacheExceededLimitChecks</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SuccessfulFreePasses</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>FailedFreePasses</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PassesWithNoFrees</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PassesRequiringAggressiveFree</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>CacheExceededLimitChecks (4 bytes): </b>Not used.
+Senders MUST set this value to zero and receivers MUST ignore it.</p><p><b>SuccessfulFreePasses (4 bytes): </b>The number of
+times since the server last started that the server cache was found to exceed
+the cache size limit, which is 90 percent of the MaxCacheSize (section <span><a href="8903e50a-9183-4a7d-9640-53f6f5a91481" data-linktype="relative-path">3.1.1.1.1</a></span>),
+and that an attempt to free nodes resulted in the cache size limit being met.
+After reaching 0xFFFFFFFF, the value increments to 0x00000000.</p><p><b>FailedFreePasses (4 bytes): </b>The number of
+times since the server last started that the server cache was found to exceed
+the cache size limit, which is 90 percent of the MaxCacheSize (section
+3.1.1.1.1), and that an attempt to free nodes was unsuccessful in meeting the
+cache size limit. After reaching 0xFFFFFFFF, the value increments to
+0x00000000. </p><p><b>PassesWithNoFrees (4 bytes): </b>The number of
+times since the server last started that the server cache was found to exceed
+the cache size limit, which is 90 percent of the MaxCacheSize (section
+3.1.1.1.1), but when the server scanned the cache looking for nodes containing 
+no records or only <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_c0105e97-de24-448b-8514-78fd557e9164" data-linktype="relative-path">expired DNS records</a></span>
+to free, it found no nodes that could be freed. After reaching 0xFFFFFFFF, the
+value increments to 0x00000000.</p><p><b>PassesRequiringAggressiveFree (4 bytes): </b>The
+number of times since the server last started that the server cache was found
+to exceed the cache size limit, which is 90 percent of the MaxCacheSize
+(section 3.1.1.1.1), and that the server scanned the cache aggressively
+attempting to free even nodes that contain unexpired records. An aggressive
+scan frees, in order, nodes containing records that are to expire within the
+next hour, records that are to expire within the next day, and all records if
+needed, and halts the freeing process immediately once the cache size limit is
+reached. After reaching 0xFFFFFFFF, the value increments to 0x00000000.</p></div>

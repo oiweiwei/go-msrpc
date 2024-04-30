@@ -1,0 +1,839 @@
+<div class="content"><p> </p><p>The <b>FAX_PERSONAL_PROFILEW</b> structure contains
+information describing one <b>personal profile</b> (section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>).
+This structure is used by <b>FAX_GetPersonalProfileInfo</b> (section <span><a href="ab1dea74-e856-4bbf-abcc-c61104bc6e91" data-linktype="relative-path">3.1.4.1.50</a></span>)
+to return information about the <b>personal profile</b> of the sender or the
+recipient of a fax message. This structure is also used to specify the sender’s
+and the receiver’s <b>personal profiles</b> for <b>FAX_SendDocumentEx</b>
+(section <span><a href="bac2e95f-f18b-448f-bb42-cc63b6ff04b2" data-linktype="relative-path">3.1.4.1.73</a></span>). This
+structure is described below.</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><p>All fields of this structure except <b>dwSizeOfStruct</b> in
+the <b>Fixed_Portion</b> block are optional. If the respective information is
+not available, the offset fields in the <b>Fixed_Portion</b> block MUST be
+zero.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (68 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>Variable_Data (variable)</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>...</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+</tbody></table><dl>
+<dd>
+<p><b>Fixed_Portion (68 bytes):</b></p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>dwSizeOfStruct</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>lpwstrNameOffset</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>lpwstrFaxNumberOffset</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>lpwstrCompanyOffset</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>lpwstrStreetAddressOffset</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>lpwstrCityOffset</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>lpwstrStateOffset</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>lpwstrZipOffset</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>lpwstrCountryOffset</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>lpwstrTitleOffset</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>lpwstrDepartmentOffset</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>lpwstrOfficeLocationOffset</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>lpwstrHomePhoneOffset</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>lpwstrOfficePhoneOffset</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>lpwstrEmailOffset</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>lpwstrBillingCodeOffset</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <dl>
+<dd>
+<dl>
+<dd>
+<p>lpwstrTSIDOffset</p>
+</dd></dl></dd></dl>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>dwSizeOfStruct (4 bytes):
+</b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that holds the size of the <b>Fixed_Portion</b> block, in bytes. This
+value MUST be 68 bytes.</p>
+</dd>
+<dd>
+<p><b>lpwstrNameOffset (4
+bytes): </b>Offset to the <b>lpwstrName</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpwstrFaxNumberOffset (4
+bytes): </b>Offset to the <b>lpwstrFaxNumber</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpwstrCompanyOffset (4
+bytes): </b>Offset to the <b>lpwstrCompany</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpwstrStreetAddressOffset
+(4 bytes): </b>Offset to the <b>lpwstrStreetAddress</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpwstrCityOffset (4
+bytes): </b>Offset to the <b>lpwstrCity</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpwstrStateOffset (4 bytes):
+</b>Offset to the <b>lpwstrState</b> field in the <b>Variable_Data</b> portion
+of the structure.</p>
+</dd>
+<dd>
+<p><b>lpwstrZipOffset (4
+bytes): </b>Offset to the <b>lpwstrZip</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpwstrCountryOffset (4
+bytes): </b>Offset to the <b>lpwstrCountry</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpwstrTitleOffset (4
+bytes): </b>Offset to the <b>lpwstrTitle</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpwstrDepartmentOffset (4
+bytes): </b>Offset to the <b>lpwstrDepartment</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpwstrOfficeLocationOffset
+(4 bytes): </b>Offset to the <b>lpwstrOfficeLocation</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpwstrHomePhoneOffset (4
+bytes): </b>Offset to the <b>lpwstrHomePhone</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpwstrOfficePhoneOffset
+(4 bytes): </b>Offset to the <b>lpwstrOfficePhone</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpwstrEmailOffset (4
+bytes): </b>Offset to the <b>lpwstrEmail</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpwstrBillingCodeOffset
+(4 bytes): </b>Offset to the <b>lpwstrBillingCode</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>lpwstrTSIDOffset (4
+bytes): </b>Offset to the <b>lpwstrTSID</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<p> </p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrFaxNumber
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrCompany
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrStreetAddress
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrCity
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrState
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrZip
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrCountry
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrTitle
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrDepartment
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrOfficeLocation
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrHomePhone
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrOfficePhone
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrEmail
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrBillingCode
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lpwstrTSID
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>lpwstrName (variable): </b>Null-terminated
+character string containing the recipient or sender name.</p>
+</dd>
+<dd>
+<p><b>lpwstrFaxNumber
+(variable): </b>Null-terminated character string containing the fax number
+associated with this profile.</p>
+</dd>
+<dd>
+<p><b>lpwstrCompany (variable):
+</b>Null-terminated character string containing the name of the company for
+which the person associated with this profile works.</p>
+</dd>
+<dd>
+<p><b>lpwstrStreetAddress
+(variable): </b>Null-terminated character string containing the street address
+associated with this profile.</p>
+</dd>
+<dd>
+<p><b>lpwstrCity (variable): </b>Null-terminated
+character string containing the name of the city associated with this profile.</p>
+</dd>
+<dd>
+<p><b>lpwstrState (variable): </b>Null-terminated
+character string containing the name of the state associated with this profile.</p>
+</dd>
+<dd>
+<p><b>lpwstrZip (variable): </b>Null-terminated
+character string containing the ZIP code associated with this profile.</p>
+</dd>
+<dd>
+<p><b>lpwstrCountry (variable):
+</b>Null-terminated character string containing the name of the country/region
+associated with this profile.</p>
+</dd>
+<dd>
+<p><b>lpwstrTitle (variable): </b>Null-terminated
+character string containing the title of the person associated with this
+profile.</p>
+</dd>
+<dd>
+<p><b>lpwstrDepartment
+(variable): </b>Null-terminated character string containing the name of the
+department in which the person associated with this profile works.</p>
+</dd>
+<dd>
+<p><b>lpwstrOfficeLocation
+(variable): </b>Null-terminated character string containing the office location
+of the person associated with this profile.</p>
+</dd>
+<dd>
+<p><b>lpwstrHomePhone
+(variable): </b>Null-terminated character string containing the home telephone
+number of the person associated with this profile.</p>
+</dd>
+<dd>
+<p><b>lpwstrOfficePhone
+(variable): </b>Null-terminated character string containing the office
+telephone number of the person associated with this profile.</p>
+</dd>
+<dd>
+<p><b>lpwstrEmail (variable): </b>Null-terminated
+character string containing the email address of the person associated with
+this profile.</p>
+</dd>
+<dd>
+<p><b>lpwstrBillingCode
+(variable): </b>Null-terminated character string containing the billing code
+associated with this profile.</p>
+</dd>
+<dd>
+<p><b>lpwstrTSID (variable): </b>Null-terminated
+character string containing the transmitting subscriber identifier (TSID)
+associated with this profile.</p>
+</dd></dl></div>

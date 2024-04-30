@@ -1,0 +1,121 @@
+<div class="content"><p> </p><p>The <b>AddToShadowCopySet</b> method adds a share to an
+existing <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow copy</a></span> set.</p><dl>
+<dd>
+<div><pre> DWORD AddToShadowCopySet(
+         [in] handle_t hBinding,
+         [in] GUID ClientShadowCopyId,
+         [in] GUID ShadowCopySetId,
+         [in] [string] LPWSTR ShareName,
+         [out] GUID* pShadowCopyId);
+  
+</pre></div>
+</dd></dl><p><b>hBinding:</b>  An RPC binding handle (as defined
+in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>).</p><p><b>ClientShadowCopyId:</b> The GUID for the shadow
+copy, assigned by the client.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="97e8cd5d-666b-428d-b701-ebd48fb59e16#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p><p><b>ShadowCopySetId:</b> The GUID of the shadow copy
+set to which <i>ShareName</i> is to be added. This GUID is assigned by the
+server.</p><p><b>ShareName:</b> The name of the share, in UNC
+format, for which a shadow copy is required.</p><p><b>pShadowCopyId:</b> The GUID of the shadow copy
+associated with the share.</p><p><b>Return Values:</b> The method returns one of the
+values specified in section <span><a href="b45c794e-9362-42b7-80c6-7dae3382acf0" data-linktype="relative-path">2.2.4</a></span>. The most
+common error codes are listed in the following table:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>E_ACCESSDENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have permission to perform the
+  operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG </p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8004230C</p>
+  <p>FSRVP_E_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_220dcaa3-364d-4de3-9752-82c053762cb6" data-linktype="relative-path">file store</a></span> that
+  contains the share to be shadow copied is not supported by the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80042301</p>
+  <p>FSRVP_E_BAD_STATE</p>
+  </td>
+  <td>
+  <p>The method call is invalid because of the state of the
+  server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8004230D</p>
+  <p>FSRVP_E_OBJECT_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>The object already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80042501</p>
+  <p>FSRVP_E_SHADOWCOPYSET_ID_MISMATCH</p>
+  </td>
+  <td>
+  <p>The provided ShadowCopySetId does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST verify that the share identified by <i>ShareName</i>
+exists on the server, in an implementation-specific manner. If the share does
+not exist, the server MUST fail the call with FSRVP_E_OBJECT_NOT_FOUND.</p><p>The server MUST identify the object store on which the <i>ShareName</i>
+is hosted, in an implementation-defined manner. If the object store contains
+mount points below the share root directory, or if the object store is not
+supported by the underlying <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_b3f0aa95-0afc-49e3-a5d5-aa465c3bc385" data-linktype="relative-path">shadow copy utility</a></span>,
+the server MUST fail the call with FSRVP_E_NOT_SUPPORTED.</p><p>The server MUST look up the <b>ShadowCopySet</b> from <b>GlobalShadowCopysetTable</b>
+using the index <i>ShadowCopySetId.</i> If no shadow copy set is found, the
+server MUST fail the call with FSRVP_E_SHADOWCOPYSET_ID_MISMATCH.</p><p>If <b>ShadowCopySet.Status</b> is not &#34;Started&#34; or
+&#34;Added&#34;, the server MUST fail the call with FSRVP_E_BAD_STATE.</p><p>The server MUST stop the Message Sequence Timer as specified
+in section <span><a href="d88b9fb3-aa00-4396-91e5-f3db036d4a74" data-linktype="relative-path">3.1.2</a></span>.</p><p>The server MUST look up the <b>ShadowCopy</b> in <b>ShadowCopySet.ShadowCopyList</b>
+where <b>ShadowCopy.VolumeName</b> matches the file store (typically a <span><a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file
+system</a></span>) on which the share identified by <i>ShareName</i> is hosted.
+If an entry is found, the server MUST fail the call with
+FSRVP_E_OBJECT_ALREADY_EXISTS and start the Message Sequence Timer as specified
+in section 3.1.2 with a time-out value of 180 seconds. If no entry is found,
+the server MUST create a new <b>ShadowCopy</b> object, as specified in section <span><a href="4c11cf96-5bba-4f05-b337-a80a8ea620ca" data-linktype="relative-path">3.1.1.3</a></span>,
+with the following values, and insert it into the <b>ShadowCopySet:</b></p><ul><li><p><span><span> 
+</span></span><b>ShadowCopyId</b> is set to a unique GUID generated by the
+server. </p>
+</li><li><p><span><span> 
+</span></span><b>VolumeName</b> is set to an implementation-specific value
+identifying the file store on the server that is exposed through the share.</p>
+</li><li><p><span><span> 
+</span></span><b>CreationTimeStamp</b> is set to the current time.</p>
+</li><li><p><span><span> 
+</span></span><b>ShareMappingList</b> is set to an empty list.</p>
+</li></ul><p>The server MUST create a new <b>MappedShare</b> object (as
+specified in section <span><a href="41cbb214-3c2b-4346-9b6f-8e3f978c54e6" data-linktype="relative-path">3.1.1.4</a></span>) with the
+following values, and insert it into <b>ShadowCopy.ShareMappingList</b>.</p><ul><li><p><span><span> 
+</span></span><b>ShareName</b> is set to <i>ShareName</i>. </p>
+</li><li><p><span><span> 
+</span></span><b>ShadowCopyShareName</b> is set to an empty string.</p>
+</li><li><p><span><span> 
+</span></span><b>IsExposed</b> is set to FALSE.</p>
+</li></ul><p>The server MUST set <b>ShadowCopySet.Status</b> to
+&#34;Added&#34;.</p><p>The server MUST set <i>pShadowCopyId</i> to <b>ShadowCopy.ShadowCopyId,</b>
+start the Message Sequence Timer (as specified in section 3.1.2) with a
+time-out value of 1800 seconds, and return ZERO to the caller.</p></div>

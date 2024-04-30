@@ -1,0 +1,653 @@
+<div class="content"><p>This LINEDEVCAPS packet specifies the capabilities of a line
+device. LINEDEVCAPS is supplied by the server in the field VarData of the
+returned version of the <a href="ee317c21-100e-48a3-bcce-e9991efff889" data-linktype="relative-path">GetDevCaps</a>
+packet if the request is completed successfully.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwProviderInfoSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwProviderInfoOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSwitchInfoSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSwitchInfoOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwPermanentLineID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwLineNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwLineNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwStringFormat</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumAddresses</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwBearerModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMaxRate</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMediaModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwGenerateToneModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwGenerateToneMaxFreq</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwGenerateDigitModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMonitorToneMaxNumFreq</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMonitorToneMaxNumEntries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMonitorDigitModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwGatherDigitsMinTimeout</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwGatherDigitsMaxTimeout</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMedCtlDigitMaxListSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMedCtlMediaMaxListSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMedCtlToneMaxListSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMedCtlCallStateMaxListSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevCapFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMaxNumActiveCalls</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAnswerMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwRingModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwLineStates</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUUIAcceptSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUUIAnswerSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUUIMakeCallSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUUIDropSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUUISendUserUserInfoSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUUICallInfoSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">MinDialParams
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">MaxDialParams
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">DefaultDialParams
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumTerminals</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTerminalCapsSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTerminalCapsOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTerminalTextEntrySize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTerminalTextSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTerminalTextOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevSpecificSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevSpecificOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwLineFeatures</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSettableDevStatus
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDeviceClassesSize
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDeviceClassesOffset
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">PermanentLineGuid
+  (16 bytes, optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressTypes
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">ProtocolGuid
+  (16 bytes, optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAvailableTracking
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, that is allocated to this data packet. </p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, for this data packet that is needed to hold all
+the returned data. </p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the portion of this packet that contains useful
+data. </p><p><b>dwProviderInfoSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the field that contains service provider
+data. </p><p><b>dwProviderInfoOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. The <b>dwProviderInfoSize</b>
+and <b>dwProviderInfoOffset</b> fields are intended to provide data about the
+provider hardware or software, such as the vendor name and version numbers of
+hardware and software. This data can be useful when a user needs to call
+customer service with problems regarding the provider. </p><p><b>dwSwitchInfoSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the variably sized device field that contains
+switch data.</p><p><b>dwSwitchInfoOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet. </p><dl>
+<dd>
+<p>The <b>dwSwitchInfoSize</b> and <b>dwSwitchInfoOffset</b>
+fields are intended to provide data about the switch to which the line device
+is connected, such as the switch manufacturer, the model name, the software
+version, and so on. This data can be useful when a user needs to call customer
+service with problems regarding the switch. </p>
+</dd></dl><p><b>dwPermanentLineID (4 bytes): </b>An unsigned
+32-bit integer. A permanent identifier by which the line device is known in the
+computing system configuration. It is a permanent name for the line device.
+This permanent name does not change as lines are added to, or removed from, the
+system and persists through operating system upgrades. Therefore, it can be
+used to link line-specific information in .ini files (or other files) in a way
+that is not affected by adding or removing other lines or by changing the
+operating system.</p><p><b>dwLineNameSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the variably sized device field that contains a
+user configurable name for this line device. </p><p><b>dwLineNameOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, from the beginning of this packet. This name can
+be configured by the user when configuring the service provider of the line
+device and is provided for user convenience. </p><p><b>dwStringFormat (4 bytes): </b>An unsigned 32-bit
+integer. The value that specifies the string format that is used with this line
+device. This member MUST use one of the <a href="5511d60f-9ae8-46b0-9fd2-cd37f0875dc3" data-linktype="relative-path">STRINGFORMAT_Constants</a>. </p><p><b>dwAddressModes (4 bytes): </b>An unsigned 32-bit
+integer. The value that specifies the mode by which the originating address is
+specified. This field MUST use one of the <a href="fa130dd9-e33e-4f7e-8274-574ae8c622d3" data-linktype="relative-path">LINEADDRESSMODE_Constants</a>.
+</p><p><b>dwNumAddresses (4 bytes): </b>An unsigned 32-bit
+integer. The number of addresses that is associated with this line device.
+Individual addresses are referred to by address identifiers. Address
+identifiers range from zero to one less than the value that is indicated by <b>dwNumAddresses</b>.
+</p><p><b>dwBearerModes (4 bytes): </b>An unsigned 32-bit
+integer. A flag array that indicates the different bearer modes that the
+address is able to support. This member MUST use <a href="e184f4e2-01dc-4189-859d-62dd27bb632b" data-linktype="relative-path">LINEBEARERMODE_Constants</a>. </p><p><b>dwMaxRate (4 bytes): </b>An unsigned 32-bit
+integer. The maximum data rate, in bits per second, for data exchange over the
+call.</p><p><b>dwMediaModes (4 bytes): </b>An unsigned 32-bit
+integer. The flag array that indicates the different media modes that the
+address is able to support. This member MUST use <a href="e3b2104f-131d-4ead-9ded-45654ebfeac0" data-linktype="relative-path">LINEMEDIAMODE_Constants</a>. </p><p><b>dwGenerateToneModes (4 bytes): </b>An unsigned
+32-bit integer. The tones that can be generated on this line. This field uses
+one or more of the <a href="fabc6a63-f332-45d4-98ae-5090fae2a7dd" data-linktype="relative-path">LINETONEMODE_Constants</a>.
+A value of 0 means that tone generation is not supported on this device.</p><p><b>dwGenerateToneMaxFreq (4 bytes): </b>An unsigned
+32-bit integer. The maximum number of frequencies that can be specified in
+describing a general tone that uses the <a href="4114d674-a287-40a8-9e6a-6fe39fa20b4e" data-linktype="relative-path">LINEGENERATETONE</a> packet
+when generating a tone using lineGenerateTone. A value of 0 indicates that tone
+generation is not available.</p><p><b>dwGenerateDigitModes (4 bytes): </b>An unsigned
+32-bit integer. The digit modes that can be generated on this line. This member
+uses one or more of the <a href="fec875c7-afff-494a-94d1-b9d6fe292d5f" data-linktype="relative-path">LINEDIGITMODE_Constants</a>.
+A value of 0 means that digit generation is not supported on this device.</p><p><b>dwMonitorToneMaxNumFreq (4 bytes): </b>An unsigned
+32-bit integer. The maximum number of frequencies that can be specified in
+describing a general tone that uses the LINEGENERATETONE packet when monitoring
+a general tone that uses lineMonitorTones. A value of 0 indicates that tone
+monitor is not available. </p><p><b>dwMonitorToneMaxNumEntries (4 bytes): </b>An
+unsigned 32-bit integer. A maximum number of entries that can be specified in a
+tone list to lineMonitorTones.</p><p><b>dwMonitorDigitModes (4 bytes): </b>An unsigned
+32-bit integer. The digit modes that can be detected on this line. This member
+uses one or more of the LINEDIGITMODE_Constants. A value of 0 means that digit
+mode detection is not supported on this device. </p><p><b>dwGatherDigitsMinTimeout (4 bytes): </b>An
+unsigned 32-bit integer. The minimum value, in milliseconds, that can be
+specified for both the first digit and interdigit time-out values that are used
+by lineGatherDigits. If both <b>dwGatherDigitsMinTimeout</b> and <b>dwGatherDigitsMaxTimeout</b>
+are zero, time-outs are not supported. </p><p><b>dwGatherDigitsMaxTimeout (4 bytes): </b>An
+unsigned 32-bit integer. The maximum value, in milliseconds, that can be
+specified for both the first digit and interdigit time-out values that are used
+by lineGatherDigits. If both <b>dwGatherDigitsMinTimeout</b> and <b>dwGatherDigitsMaxTimeout</b>
+are zero, time-outs are not supported. </p><p><b>dwMedCtlDigitMaxListSize (4 bytes): </b>An
+unsigned 32-bit integer. The maximum number of entries that can be specified in
+the digit list parameter of <a href="b3f7fcb1-4451-4179-ab85-a10ea0f7fa06" data-linktype="relative-path">SetMediaControl</a>.</p><p><b>dwMedCtlMediaMaxListSize (4 bytes): </b>An
+unsigned 32-bit integer. The maximum number of entries that can be specified in
+the media list. </p><p><b>dwMedCtlToneMaxListSize (4 bytes): </b>An unsigned
+32-bit integer. The maximum number of entries that can be specified in the tone
+list parameter of SetMediaControl.</p><p><b>dwMedCtlCallStateMaxListSize (4 bytes): </b>An
+unsigned 32-bit integer. The maximum number of entries that can be specified in
+the call state list.</p><p><b>dwDevCapFlags (4 bytes): </b>An unsigned 32-bit
+integer. The value that specifies various Boolean device capabilities. This
+member MUST use <a href="2e68d295-03d4-4a47-9c58-8e855a32fb5e" data-linktype="relative-path">LINEDEVCAPFLAGS_Constants</a>.
+</p><p><b>dwMaxNumActiveCalls (4 bytes): </b>An unsigned
+32-bit integer. The maximum number of (minimum bandwidth) calls that can be
+active (connected) on the line at one time. The actual number of active calls
+can be lower if higher bandwidth calls have been established on the line. </p><p><b>dwAnswerMode (4 bytes): </b>An unsigned 32-bit
+integer. A value that specifies the effect on the active call when answering
+another offering call on a line device. This member MUST use one or more of <a href="b98bb1b7-e20e-4871-8b08-2c76f27222ff" data-linktype="relative-path">LINEANSWERMODE_Constants</a>. </p><p><b>dwRingModes (4 bytes): </b>An unsigned 32-bit
+integer. The number of different ring modes that can be reported in the <a href="be569c04-1221-4a71-94bf-6b075b25c6b1" data-linktype="relative-path">LINE_LINEDEVSTATE</a> packet
+with the ringing indication. Different ring modes range from one to <b>dwRingModes</b>.
+Zero indicates no ring. </p><p><b>dwLineStates (4 bytes): </b>An unsigned 32-bit
+integer. Specifies the different line status components for which the
+application can be notified in a LINE_LINEDEVSTATE packet on this line. This
+member MUST use one or more of <a href="0b91e805-228f-48f8-b9c2-c58d039399ca" data-linktype="relative-path">LINEDEVSTATE_Constants</a>. </p><p><b>dwUUIAcceptSize (4 bytes): </b>An unsigned 32-bit
+integer. The maximum size of user-user data that can be sent during a call
+accept. </p><p><b>dwUUIAnswerSize (4 bytes): </b>An unsigned 32-bit
+integer. The maximum size of user-user data that can be sent during a call
+answer. </p><p><b>dwUUIMakeCallSize (4 bytes): </b>An unsigned
+32-bit integer. The maximum size of user-user data that can be sent during a
+make call.</p><p><b>dwUUIDropSize (4 bytes): </b>An unsigned 32-bit
+integer. The maximum size of user-user data that can be sent during a call
+drop. </p><p><b>dwUUISendUserUserInfoSize (4 bytes): </b>An
+unsigned 32-bit integer. The maximum size of user-user information, including
+the null terminator, that can be sent separately any time during a call with <a href="e7ed26b7-fd41-4a24-b81b-5f67b387f53b" data-linktype="relative-path">SendUserUserInfo</a>.</p><p><b>dwUUICallInfoSize (4 bytes): </b>An unsigned
+32-bit integer. The maximum size of user-user data that can be received in the <a href="6ff3773f-0fad-451c-bef4-5e225626f9aa" data-linktype="relative-path">LINECALLINFO</a> packet. </p><p><b>MinDialParams (16 bytes): </b>A <a href="6478c927-0d4b-43eb-8188-e87431058e6a" data-linktype="relative-path">LINEDIALPARAMS</a> packet. The
+minimum value, in milliseconds, for the dial parameters that can be set for
+calls on this line. Dialing parameters can be set to values in the range <b>MinDialParams</b>
+to <b>MaxDialParams</b>. The granularity of the actual settings is service
+provider–specific.</p><p><b>MaxDialParams (16 bytes): </b>A LINEDIALPARAMS
+packet. The maximum value, in milliseconds, for the dial parameters that can be
+set for calls on this line. Dialing parameters can be set to values in the
+range <b>MinDialParams</b> to <b>MaxDialParams</b>. The granularity of the
+actual settings is service provider–specific. </p><p><b>DefaultDialParams (16 bytes): </b>A LINEDIALPARAMS
+packet. The default dial parameters that are used for calls on this line. These
+parameter values can be overridden on a per-call basis. </p><p><b>dwNumTerminals (4 bytes): </b>An unsigned 32-bit
+integer. The number of terminals that can be set for this line device, its
+addresses, or its calls. Individual terminals are referred to by terminal IDs
+and range from zero to one less than the value that is indicated by <b>dwNumTerminals</b>.
+</p><p><b>dwTerminalCapsSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the variably sized device field that
+contains an array with entries of type <a href="48d77f3b-c776-4d8f-985c-be65a876d65d" data-linktype="relative-path">LINETERMCAPS</a>. </p><p><b>dwTerminalCapsOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of this structure to the variably
+sized device field that contains an array with entries of type LINETERMCAPS.
+This array is indexed by terminal IDs, in the range from zero to <b>dwNumTerminals</b>
+minus one. Each entry in the array specifies the terminal device capabilities
+of the corresponding terminal. The size of the field is specified by <b>dwTerminalCapsSize</b>.
+</p><p><b>dwTerminalTextEntrySize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of each terminal text description,
+including the null terminator that is pointed to by <b>dwTerminalTextSize</b>
+and <b>dwTerminalTextOffset</b>. </p><p><b>dwTerminalTextSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the variably sized field that contains
+descriptive text about each of the line&#39;s available terminals, including the
+null terminator.</p><p><b>dwTerminalTextOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this packet to the
+descriptive text about each of the line&#39;s available terminals. Each packet is <b>dwTerminalTextEntrySize</b>
+bytes long. The string format of these textual descriptions is indicated by <b>dwStringFormat</b>
+in the device capabilities of the line. The size of the field is specified by <b>dwTerminalTextSize</b>.</p><p><b>dwDevSpecificSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the variably sized device-specific field. </p><p><b>dwDevSpecificOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset, in bytes, from the beginning of this data packet.</p><p><b>dwLineFeatures (4 bytes): </b>An unsigned 32-bit
+integer. A value that specifies the available features for this line that use
+one or more of the <a href="cc519223-cb10-445b-92bb-e6bd905b7013" data-linktype="relative-path">LINEFEATURE_Constants</a>.
+Invoking a supported feature requires the line to be in the proper state and
+the underlying line device to be opened in a compatible mode. A zero in a bit
+position indicates that the corresponding feature is never available. A one
+indicates that the corresponding feature can be available if the line is in the
+appropriate state for the operation to be meaningful. This member enables an
+application to discover which line features can be, and which can never be,
+supported by the device. </p><p><b>dwSettableDevStatus (4 bytes): </b> An unsigned
+32-bit integer. <a href="f1684169-41b1-4815-8440-90d087a7f9a6" data-linktype="relative-path">LINEDEVSTATUSFLAGS_Constants</a>
+that can be modified. This member of the packet is available only if the
+negotiated TAPI version is 2.0 or higher.</p><p><b>dwDeviceClassesSize (4 bytes): </b>An unsigned
+32-bit integer. The length, in bytes, from the beginning of LINEDEVCAPS of a
+string that consists of the device class identifiers that are supported on one
+or more addresses on this line for use with the <a href="f28ef6f7-6da5-4738-924b-80207877ef91" data-linktype="relative-path">GetID</a> packet, separated by
+null characters; the last identifier in the list is followed by two null
+characters. This member of the packet is available only if the negotiated TAPI
+version is 2.0 or higher.</p><p><b>dwDeviceClassesOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset of the string that is described in the <b>dwDeviceClassesSize</b>
+member. This member of the packet is available only if the negotiated TAPI
+version is 2.0 or higher.</p><p><b>PermanentLineGuid (16 bytes): </b>The <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> that is permanently associated
+with the line device. This member of the packet is available only if the
+negotiated TAPI version is 2.2 or higher.</p><p><b>dwAddressTypes (4 bytes): </b>An unsigned 32-bit
+integer. The address type that is used for the call. This member of the packet
+is available only if the negotiated TAPI version is 3.0 or higher. </p><p><b>ProtocolGuid (16 bytes): </b>A GUID that indicates
+the current TAPI protocol. This member of the packet is available only if the
+negotiated TAPI version is 3.0 or higher. This field MUST be one of the
+following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TAPIPROTOCOL_PSTN</p>
+  <p>831CE2D6-83B5-11d1-BB5C-00C04FB6809F</p>
+  </td>
+  <td>
+  <p><a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_475991aa-abb2-4521-a0a5-6993d27dba9f" data-linktype="relative-path">PSTN</a>
+  protocol</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TAPIPROTOCOL_H323</p>
+  <p>831CE2D7-83B5-11d1-BB5C-00C04FB6809F</p>
+  </td>
+  <td>
+  <p><a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_cf840b44-335d-4675-90bc-953513edea39" data-linktype="relative-path">H.323</a>
+  protocol</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TAPIPROTOCOL_Multicast</p>
+  <p>831CE2D8-83B5-11d1-BB5C-00C04FB6809F</p>
+  </td>
+  <td>
+  <p><a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_70b74a6e-db1d-4648-bedd-5a524dfe6396" data-linktype="relative-path">Multicast</a>
+  protocol</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwAvailableTracking (4 bytes): </b>An unsigned
+32-bit integer. The available tracking, as represented by a <a href="962051a8-7c9b-4d00-a301-cd7238ffaef2" data-linktype="relative-path">LINECALLHUBTRACKING_Constants</a>.
+This member of the packet is available only if the negotiated TAPI version is
+3.0 or higher.</p><p><b>VarData (variable): </b>MUST contain:</p><ul><li><p><span><span>  </span></span>Service
+provider–specific information as specified by <b>dwProviderInfoOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Data
+about the switch as specified by <b>dwSwitchInfoOffset</b>.</p>
+</li><li><p><span><span>  </span></span>The
+name of the line device as specified by <b>dwLineNameOffset</b>.</p>
+</li><li><p><span><span>  </span></span>An
+array that has entries of type LINETERMCAPS as specified by <b>dwTerminalCapsOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Text
+about the available terminals for each line as specified by <b>dwTerminalTextOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Device-specific
+information as specified by <b>dwDevSpecificOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Device
+class identifiers that are supported on the device as specified by <b>dwDeviceClassesOffset</b>.</p>
+</li></ul><p>Device-specific extensions SHOULD use the <b>dwDevSpecificSize</b>
+and <b>dwDevSpecificOffset</b> members of this packet. </p><p>Applications that are negotiated with TAPI versions earlier
+than TAPI versions 2.0, 2.2, or 3.0 are not aware of the new members in the
+LINEDEVCAPS packet that are available only from the corresponding TAPI version
+and MUST use a SIZEOF LINEDEVCAPS that is smaller than the new size. The
+application passes in a <b>dwAPIVersion</b> parameter with the GetDevCaps
+packet, which can be used for guidance by TAPI in handling this situation. If
+the application passes in a <b>dwTotalSize</b> member less than the size of the
+fixed portion of the packet, as defined in the specified <b>dwAPIVersion</b>,
+LINEERR_STRUCTURETOOSMALL is returned. If sufficient memory has been allocated
+by the application, before calling the GetDevCaps packet, TAPI sets the <b>dwNeededSize</b>
+and <b>dwUsedSize</b> members to the fixed size of the packet as it existed in
+the specified TAPI version. </p><p>New applications MUST be aware of the negotiated TAPI
+version and not examine the contents of members in the fixed portion beyond the
+original end of the fixed portion of the packet for the negotiated TAPI
+version. </p><p>If the LINEBEARERMODE_DATA bit is set in the <b>dwBearerModes</b>
+member, the <b>dwMaxRate</b> member indicates the maximum rate of digital
+transmission on the bearer channel. The <b>dwMaxRate</b> member of the
+LINEDEVCAPS packet can contain valid values even if the dwBearerModes member of
+the LINEDEVCAPS packet is not set to LINEBEARERMODE_DATA. </p><p>If LINEBEARERMODE_DATA is not set in <b>dwBearerModes</b>,
+but the LINEBEARERMODE_VOICE value is set and the LINEMEDIAMODE_DATAMODEM value
+is set in the <b>dwMediaModes</b> member, the <b>dwMaxRate</b> member indicates
+the maximum SYNCHRONOUS (DCE) bit rate on the phone line for the attached modem
+or functional equivalent. For example, if the fastest modulation speed of the
+modem is V.32bis at 14,400 bps, dwMaxRate equals 14400. This is not the fastest
+DTE port rate (which would most likely be 38400, 57600, or 115200), but the
+fastest bit rate the modem supports on the phone line. </p></div>

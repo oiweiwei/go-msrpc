@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/05a64da2-6e5f-40cc-9848-700634100613" data-linktype="external">msdn link</a></p><p>The <b>NLPR_LOGON_HOURS</b> structure contains the logon
+policy information that specifies when a user account is permitted to
+authenticate.</p><dl>
+<dd>
+<div><pre> typedef struct _NLPR_LOGON_HOURS {
+   USHORT UnitsPerWeek;
+   [size_is(1260), length_is((UnitsPerWeek + 7)/8)] 
+     UCHAR * LogonHours;
+ } NLPR_LOGON_HOURS,
+  *PNLPR_LOGON_HOURS;
+</pre></div>
+</dd></dl><p>The fields in this structure have the same meanings as
+identically named fields of the <b>SAMPR_LOGON_HOURS</b> structure, as
+specified in <a href="../ms-samr/4df07fab-1bbc-452f-8e92-7853a3c7e380" data-linktype="relative-path">[MS-SAMR]</a>
+section <a href="../ms-samr/d83c356b-7dda-4096-8270-5c581f84a4d9" data-linktype="relative-path">2.2.6.5</a>.</p></div>

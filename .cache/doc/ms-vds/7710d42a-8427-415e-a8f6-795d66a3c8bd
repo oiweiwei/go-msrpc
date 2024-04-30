@@ -1,0 +1,33 @@
+<div class="content"><p> </p><p>The QueryVolumeGuidPathnames method returns a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume&#39;s</a></span>
+volume <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> path names.</p><dl>
+<dd>
+<div><pre> HRESULT QueryVolumeGuidPathnames(
+   [out, string, size_is(,*pulNumberOfPaths)] 
+     LPWSTR** pwszPathArray,
+   [out] ULONG* pulNumberOfPaths
+ );
+</pre></div>
+</dd></dl><p><b>pwszPathArray: </b>Returns an array of
+null-terminated Unicode strings; one string for each volume GUID path name
+associated with the volume.</p><p><b>pulNumberOfPaths: </b>Returns the number of volume
+GUID path names returned in <i>pwszPathArray</i>.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path"><span>HRESULT</span></a> (as specified
+in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> values
+predefined by the Virtual Disk Service Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameter:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>pwszPathArray</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>pulNumberOfPaths</i> is not NULL.</p>
+</li></ul><p>The server MUST then perform the following:</p><ul><li><p><span><span> 
+</span></span>Allocate a buffer to hold the volume GUID path names associated
+with the volume, and initialize <i>pwszPathArray</i> with the address of the
+buffer.</p>
+</li><li><p><span><span> 
+</span></span>Populate the output buffer with the volume GUID path names. Set
+the value of <i>pulNumberOfPaths</i> to the number of the volume GUID path
+names being returned.</p>
+</li><li><p><span><span> 
+</span></span>Return an HRESULT indicating failure or success.</p>
+</li></ul></div>

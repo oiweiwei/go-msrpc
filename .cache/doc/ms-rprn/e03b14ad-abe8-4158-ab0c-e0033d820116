@@ -1,0 +1,48 @@
+<div class="content"><p>RpcDeletePrinterDriver removes the specified <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer driver</a> from the
+list of supported drivers for a server.</p><dl>
+<dd>
+<div><pre> DWORD RpcDeletePrinterDriver(
+   [in, string, unique] STRING_HANDLE pName,
+   [in, string] wchar_t* pEnvironment,
+   [in, string] wchar_t* pDriverName
+ );
+</pre></div>
+</dd></dl><p><b>pName: </b>Specified in <a href="acb355a4-913b-4abb-8cb5-415aea160015" data-linktype="relative-path">Print Server Name
+Parameters (section 3.1.4.1.4)</a>.</p><p><b>pEnvironment: </b>Specified in <a href="5b2bf7d5-ac77-464f-be5e-f3a7c1782246" data-linktype="relative-path">Environment Name
+Parameters (section 3.1.4.1.3)</a>.</p><p><b>pDriverName: </b>A pointer to a string that
+specifies the name of the printer driver to delete. For rules governing printer
+driver names, see section <a href="a4c7686f-a88c-48f9-96eb-bf4dfc3fe519" data-linktype="relative-path">2.2.4.3</a>.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in Print Server
+Name Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in Environment
+Name Parameters.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the string pointed to by the <i>pDriverName</i>
+parameter contains the name of a driver that is part of the list of drivers
+that are installed on the server for the environment specified by the string
+pointed to by the <i>pEnvironment</i> parameter; if that verification fails,
+return ERROR_UNKNOWN_PRINTER_DRIVER.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the printer driver is not used by any printer in the
+system, and if that verification fails, return ERROR_PRINTER_DRIVER_IN_USE.</p>
+</li><li><p><span><span> 
+</span></span>Additional validation MAY<a id="Appendix_A_Target_333"></a><a aria-label="Product behavior note 333" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_333" data-linktype="relative-path">&lt;333&gt;</a> be
+performed.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Clear all references to this printer driver from any other data
+structures.</p>
+</li><li><p><span><span> 
+</span></span>Delete the printer driver object.</p>
+</li><li><p><span><span> 
+</span></span>If any clients have registered for notifications of the server
+object change, a notification MUST be broadcast to them.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

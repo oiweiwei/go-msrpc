@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The USN_VECTOR structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> for
+the cookie (section <span><a href="67c5a415-a6c7-4098-8cf3-6ef8d173cfe8" data-linktype="relative-path">1.3.2</a></span>) used to pass
+state between calls to IDL_DRSGetNCChanges.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   USN usnHighObjUpdate;
+   USN usnReserved;
+   USN usnHighPropUpdate;
+ } USN_VECTOR;
+</pre></div>
+</dd></dl><p><b>usnHighObjUpdate:</b>  A <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_01936446-8739-4b98-b83f-fb5e2a53ce4c" data-linktype="relative-path">USN</a></span>.</p><p><b>usnReserved:</b>  A USN.</p><p><b>usnHighPropUpdate:</b>  A USN.</p><p>The USN_VECTOR type, as shown, is used in the DRS <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span>.
+However, only the size of USN_VECTOR (24 bytes) and the representation of its
+null value (24 zero bytes) are standardized for interoperability.</p></div>

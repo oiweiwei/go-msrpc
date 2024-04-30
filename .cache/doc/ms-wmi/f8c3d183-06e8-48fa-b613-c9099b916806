@@ -1,0 +1,196 @@
+<div class="content"><p> </p><p>The IWbemServices::PutInstanceAsync method is the
+asynchronous version of the <span><a href="5d2e7939-f60c-4891-a339-1bf027a6d3ec" data-linktype="relative-path">PutInstance</a></span> method.
+The PutInstanceAsync method creates or updates an instance of an existing
+class.</p><dl>
+<dd>
+<div><pre> HRESULT PutInstanceAsync(
+   [in] IWbemClassObject* pInst,
+   [in] long lFlags,
+   [in] IWbemContext* pCtx,
+   [in] IWbemObjectSink* pResponseHandler
+ );
+</pre></div>
+</dd></dl><p><b>pInst: </b>MUST be a pointer to an <span><a href="46710c5c-d7ab-4e4c-b4a5-ebff311fdcd1" data-linktype="relative-path">IWbemClassObject</a></span>
+interface object that MUST contain the class instance that the client wants to
+create or update. This parameter MUST NOT be NULL. </p><p><b>lFlags: </b>Flags that affect the behavior of the
+PutInstanceAsync method. Flag behavior MUST be interpreted as specified in the
+following table.</p><dl>
+<dd>
+<p>The server MUST accept a combination of zero or more
+flags from the following table and MUST comply with all the restrictions in a
+flag description. Any other DWORD value that does not comply with this
+condition MUST be treated as not valid.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_USE_AMENDED_QUALIFIERS</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>If this bit is set, the server SHOULD ignore all the
+  amended qualifiers while this method creates or updates a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c4119a8a-24db-40cc-9657-7cb5c23ecf43" data-linktype="relative-path">CIM
+  instance</a></span>.</p>
+  <p>If this bit is not set, the server SHOULD include all
+  the qualifiers, including amended qualifiers, while this method creates or
+  updates a CIM instance.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_UPDATE_ONLY</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The server MUST update a CIM instance <i>pObject</i>
+  if the CIM instance is present.</p>
+  <p>This flag is mutually exclusive with
+  WBEM_FLAG_CREATE_ONLY. If none of these flags are set, the server MUST create
+  or update a CIM instance <i>pObject</i>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_CREATE_ONLY</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The server MUST create a CIM instance <i>pObject</i>
+  if the CIM instance is not already present.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_SEND_STATUS</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server MUST make one final
+  <span><a href="479c78dc-73cf-4f5b-85bd-5efb26ab48a6" data-linktype="relative-path">IWbemObjectSink::SetStatus</a></span>
+  call on the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface pointer</a></span>
+  that is provided in the <i>pResponseHandler</i> parameter.</p>
+  <p>If this bit is set, the server MAY make intermediate
+  IWbemObjectSink::SetStatus calls on the interface pointer prior to call
+  completion.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pCtx: </b>This parameter is optional. The <i>pCtx</i>
+parameter MUST be a pointer to an <span><a href="18c8f1a1-652f-43b7-9186-6098bc303a8d" data-linktype="relative-path">IWbemContext (section 2.2.13)</a></span>
+interface object. The <i>pCtx</i> parameter indicates whether the client is
+requesting a partial-instance update or full-instance update. A
+partial-instance update modifies a subset of CIM instance properties; a
+full-instance update modifies all the properties. If NULL, this parameter
+indicates that the client application is requesting a full-instance update.
+When <i>pCtx</i> is used to perform a partial-instance update, the IWbemContext
+interface MUST be completed with the properties that are specified in the
+following table. If the IWbemContext interface object does not contain the
+properties in the table, the method MUST return WBEM_E_INVALID_CONTEXT.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Property name</p>
+   </th>
+   <th>
+   <p>Type</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>__PUT_EXTENSIONS</p>
+  </td>
+  <td>
+  <p>VT_BOOL</p>
+  </td>
+  <td>
+  <p>If this property is set to TRUE, one or more of the
+  other IWbemContext values have been specified. To perform a partial-instance
+  update, this property MUST be set to TRUE.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>__PUT_EXT_STRICT_NULLS</p>
+  </td>
+  <td>
+  <p>VT_BOOL</p>
+  </td>
+  <td>
+  <p>If this property is set to TRUE, the server MUST force
+  the setting of properties to NULL. This parameter is optional.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>__PUT_EXT_PROPERTIES</p>
+  </td>
+  <td>
+  <p>VT_ARRAY | VT_BSTR</p>
+  </td>
+  <td>
+  <p>Contains a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a99173af-90bf-473d-9a81-ff0ce9a85838" data-linktype="relative-path">CIM</a></span> property list
+  to update. The server MUST ignore properties that are not listed. To perform
+  a partial-instance update, the list of properties MUST be specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>__PUT_EXT_ATOMIC</p>
+  </td>
+  <td>
+  <p>VT_BOOL</p>
+  </td>
+  <td>
+  <p>If the return code indicates success, all CIM property
+  updates MUST have been successful.</p>
+  <p>On failure, the server MUST revert any changes to the
+  original state for all CIM property updates. On failure, any changes MUST NOT
+  remain. The operation is successful when all properties are updated.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pResponseHandler: </b>MUST be a pointer to an <span><a href="0ddb4f22-371a-4697-af5b-d4184b179b68" data-linktype="relative-path">IWbemObjectSink</a></span>
+interface object that is implemented by the client of this method. This
+parameter MUST NOT be NULL.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The following validation occurs before asynchronous
+operation is started.</p><p>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that makes the call MUST have WBEM_REMOTE_ENABLE and WBEM_ENABLE accesses to
+the namespace; otherwise, WBEM_E_ACCESS_DENIED MUST be returned.</p><p>The server SHOULD enforce a maximum length for the _RELPATH
+system property of the object pointed to by the <i>pInst</i> parameter and
+return WBEM_E_QUOTA_VIOLATION if the limit is exceeded.<a id="Appendix_A_Target_43"></a><a aria-label="Product behavior note 43" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_43" data-linktype="relative-path">&lt;43&gt;</a></p><p>Requirements mentioned in the parameter definitions are also
+checked before the asynchronous operation is started.</p><p>If successful, the server MUST create a new entry in <b>AsyncOperationTable</b>
+as specified in section <span><a href="83a955c3-2fba-4d06-bd88-76ed9bbada43" data-linktype="relative-path">3.1.1.1.3</a></span>.</p><p>The following validation occurs asynchronously.</p><p>If the CIM instance being updated is <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_b11172af-9369-448d-9722-444eb52b21cb" data-linktype="relative-path">dynamic</a></span>,
+the security principal that makes the call MUST have WBEM_WRITE_PROVIDER access
+to the namespace; otherwise, WBEM_E_ACCESS_DENIED MUST be returned.</p><p>If the CIM instance being updated is static and if the CIM
+instance is of a class that has a WMI system class as one of the classes in the
+parent hierarchy, the security principal that makes the call MUST have
+WBEM_FULL_WRITE access to the namespace; otherwise, WBEM_E_ACCESS_DENIED MUST
+be returned.</p><p>If the CIM instance being updated is static and if the CIM
+instance is of a class that does not have a WMI system class as one of the
+classes in the parent hierarchy, the security principal that makes the call
+MUST have WBEM_PARTIAL_WRITE_REP access to the namespace; otherwise,
+WBEM_E_ACCESS_DENIED MUST be returned.</p><p>If the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_633b12d4-e2c4-442f-95ff-4b2b5d708ed5" data-linktype="relative-path">CIM class</a></span> of the
+instance being created has a parent class that is not abstract, the server MUST
+fail the operation with WBEM_E_NOT_FOUND. <span><a href="https://go.microsoft.com/fwlink/?LinkId=89848" data-linktype="external">[DMTF-DSP0004]</a></span>
+requires that the operation MUST succeed when the parent CIM class is abstract.</p><p>If the CIM instance being created or updated is dynamic, the
+server MUST obtain <b>SupportsPut</b> for the corresponding provider in the <b>ProviderTable</b>.
+If <b>SupportsPut</b> is FALSE, the server MUST return
+WBEM_E_PROVIDER_NOT_CAPABLE.</p><p>In response to an IWbemServices::PutInstanceAsync method,
+the server MUST evaluate the <i>pInst</i> parameter as specified in this
+section. It MUST add or update this instance into the current namespace. The
+method MUST fail if one of the following is true: the server does not allow the
+creation of new instances for the class of pInst or does not allow modification
+of the instance that is represented by <i>pInst</i>; the method parameters or
+their combinations are not valid, as specified earlier in this section; or the
+server is unable to execute the method.</p><p>If the instance belongs to the <b>__Namespace</b> class,
+then the server MUST create a new namespace as described in section 3.1.4.3.13.</p></div>

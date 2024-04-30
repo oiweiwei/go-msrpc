@@ -1,0 +1,452 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/58877402-4bf1-4b40-b405-fd9d11691752" data-linktype="external">msdn link</a></p><p>The <b>DS_REPL_NEIGHBORW_BLOB</b> structure is a
+representation of a tuple from the <a href="../ms-ada3/8a9018ac-1d10-4bae-8141-04822a5f51f2" data-linktype="relative-path">repsFrom</a>
+or <a href="../ms-ada3/36e092bf-22bd-4bbe-8b05-b61c1fcd6c90" data-linktype="relative-path">repsTo</a>
+abstract <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a> of an
+<a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_325d116f-cdbe-4dbd-b7e6-769ba75bf210" data-linktype="relative-path">NC replica</a>. This
+structure, retrieved using an <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a>
+search method, is an alternative representation of DS_REPL_NEIGHBORW, retrieved
+using the IDL_DRSGetReplInfo <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+method.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>oszNamingContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>oszSourceDsaDN</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>oszSourceDsaAddress</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>oszAsyncIntersiteTransportDN</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwReplicaFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwReserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uuidNamingContextObjGuid
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uuidSourceDsaObjGuid
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uuidSourceDsaInvocationID
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uuidAsyncIntersiteTransportObjGuid
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>usnLastObjChangeSynced</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>usnAttributeFilter</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ftimeLastSyncSuccess</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ftimeLastSyncAttempt</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwLastSyncResult</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cNumConsecutiveSyncFailures</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>oszNamingContext (4 bytes): </b>A 32-bit offset,
+in bytes, from the address of this structure to a null-terminated <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string that
+contains the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_784c7cce-f782-48d8-9444-c9030ba86942" data-linktype="relative-path">naming context
+(NC)</a> to which this <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a>
+state data pertains.</p><p><b>oszSourceDsaDN (4 bytes): </b>A 32-bit offset, in
+bytes, from the address of this structure to a null-terminated Unicode string
+that contains the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">distinguished
+name (DN)</a> of the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_dc90b593-841f-4c6d-8032-b32e58e887a8" data-linktype="relative-path">nTDSDSA
+object</a> of the source server to which this replication state data pertains.
+Each source server has different associated neighbor data.</p><p><b>oszSourceDsaAddress (4 bytes): </b>A 32-bit
+offset, in bytes, from the address of this structure to a null-terminated
+Unicode string that contains the transport-specific network address of the
+source server—that is, a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_49ce3946-04d2-4cc9-9350-ebcd952b9ab9" data-linktype="relative-path">directory</a>
+name service name for RPC/IP replication, or a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_0678be67-e739-4e33-97fe-2b03b903a379" data-linktype="relative-path">Simple Mail Transfer Protocol
+(SMTP)</a> address for an SMTP replication.</p><p><b>oszAsyncIntersiteTransportDN (4 bytes): </b>A
+32-bit offset, in bytes, from the address of this structure to a
+null-terminated Unicode string that contains the DN of the <a href="../ms-adsc/299e17d3-4d05-445f-ae8c-9d5abf598873" data-linktype="relative-path">interSiteTransport</a>
+object (as specified in <a href="../ms-adsc/9abb5e97-123d-4da9-9557-b353ab79b830" data-linktype="relative-path">[MS-ADSC]</a>
+section 2.65) that corresponds to the transport over which replication is
+performed. This member contains NULL for RPC/IP replication.</p><p><b>dwReplicaFlags (4 bytes): </b>A 32-bit bit field
+containing a set of flags that specify attributes and options for the
+replication data. This can be zero or a combination of one or more of the
+following flags presented in <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_6f6f9e8e-5966-4727-8527-7e02fb864e7e" data-linktype="relative-path">big-endian</a>
+byte order.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>N C N</p>
+  </td>
+  <td>
+  <p>C C</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>N S</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>F S N</p>
+  </td>
+  <td>
+  <p>F S P</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>T W S</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>A I T</p>
+  </td>
+  <td>
+  <p>D S S</p>
+  </td>
+  <td>
+  <p>S O S</p>
+  </td>
+  <td>
+  <p>W</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>X: </b>Unused.
+Must be zero and ignored.</p>
+</dd>
+<dd>
+<p><b>W
+(DS_REPL_NBR_WRITEABLE, 0x00000010): </b>The NC replica is writable.</p>
+</dd>
+<dd>
+<p><b>SOS
+(DS_REPL_NBR_SYNC_ON_STARTUP, 0x00000020): </b>Replication of this NC from this
+source is attempted when the destination server is booted.</p>
+</dd>
+<dd>
+<p><b>DSS
+(DS_REPL_NBR_DO_SCHEDULED_SYNCS, 0x00000040): </b>Perform replication on a
+schedule.</p>
+</dd>
+<dd>
+<p><b>AIT
+(DS_REPL_NBR_USE_ASYNC_INTERSITE_TRANSPORT, 0x00000080): </b>Perform
+replication indirectly through the Inter-Site Messaging Service. This flag is
+set only when replicating over SMTP. This flag is not set when replicating over
+inter-site RPC/IP.</p>
+</dd>
+<dd>
+<p><b>TWS
+(DS_REPL_NBR_TWO_WAY_SYNC, 0x00000200): </b>When inbound replication is
+complete, the destination server requests the source server to synchronize in
+the reverse direction.</p>
+</dd>
+<dd>
+<p><b>FSP
+(DS_REPL_NBR_FULL_SYNC_IN_PROGRESS, 0x00010000): </b>The destination server is
+performing a full synchronization from the source server.</p>
+</dd>
+<dd>
+<p><b>FSN
+(DS_REPL_NBR_FULL_SYNC_NEXT_PACKET, 0x00020000): </b>The last packet from the
+source indicated a modification of an object that the destination server has
+not yet created. The next packet to be requested instructs the source server to
+put all attributes of the modified object into the packet.</p>
+</dd>
+<dd>
+<p><b>NS
+(DS_REPL_NBR_NEVER_SYNCED, 0x00200000): </b>A synchronization has never been
+successfully completed from this source.</p>
+</dd>
+<dd>
+<p><b>CC
+(DS_REPL_NBR_COMPRESS_CHANGES, 0x10000000): </b>Changes received from this
+source are to be compressed.</p>
+</dd>
+<dd>
+<p><b>NCN
+(DS_REPL_NBR_NO_CHANGE_NOTIFICATIONS, 0x20000000): </b>Applies to repsFrom
+only. The <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller
+(DC)</a> storing this repsFrom is not configured to receive change
+notifications from this source.</p>
+</dd></dl><p><b>dwReserved (4 bytes): </b>Reserved for future use.</p><p><b>uuidNamingContextObjGuid (16 bytes): </b>A <a href="../ms-dtyp/49e490b8-f972-45d6-a3a4-99f924998d97" data-linktype="relative-path">GUID</a>
+structure, as defined in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a>,
+specifying the <a href="../ms-ada3/937eb5c6-f6b3-4652-a276-5d6bb8979658" data-linktype="relative-path">objectGUID</a>
+of the NC that corresponds to oszNamingContext.</p><p><b>uuidSourceDsaObjGuid (16 bytes): </b>A GUID
+structure, as defined in [MS-DTYP] section 2.3.4, specifying the objectGUID of
+the nTDSDSA object that corresponds to oszSourceDsaDN.</p><p><b>uuidSourceDsaInvocationID (16 bytes): </b>A GUID
+structure, as defined in [MS-DTYP] section 2.3.4, specifying the <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_e7869b9a-61fa-46e3-89dd-fb3f57d1ba7a" data-linktype="relative-path">invocationId</a> used by the
+source server as of the last replication attempt.</p><p><b>uuidAsyncIntersiteTransportObjGuid (16 bytes): </b>A
+GUID structure, as defined in [MS-DTYP] section 2.3.4, specifying the
+objectGUID of the intersite transport <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a> that corresponds to
+oszAsyncIntersiteTransportDN.</p><p><b>usnLastObjChangeSynced (8 bytes): </b>An <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_01936446-8739-4b98-b83f-fb5e2a53ce4c" data-linktype="relative-path">update sequence number (USN)</a>
+value, as defined in section <a href="03c3c091-03aa-42d0-a7bf-7c5f8adaf0c2" data-linktype="relative-path">3.1.1.1.9</a>,
+containing the USN of the last object <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_b242435b-73cc-4c4e-95f0-b2a2ff680493" data-linktype="relative-path">update</a> received.</p><p><b>usnAttributeFilter (8 bytes): </b>A USN value, as
+defined in section 3.1.1.1.9, containing the usnLastObjChangeSynced value at
+the end of the last complete, successful <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_e14454ba-5d3b-4fdb-99e5-50ecf632bd16" data-linktype="relative-path">replication cycle</a>, or 0 if
+none.</p><p><b>ftimeLastSyncSuccess (8 bytes): </b>A <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a>
+structure that contains the date and time that the last successful replication
+cycle was completed from this source. All members of this structure are zero if
+the replication cycle has never been completed.</p><p><b>ftimeLastSyncAttempt (8 bytes): </b>A FILETIME
+structure that contains the date and time of the last replication attempt from
+this source. All members of this structure are zero if the replication has
+never been attempted.</p><p><b>dwLastSyncResult (4 bytes): </b>A 32-bit unsigned
+integer specifying a <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows
+error code</a> associated with the last replication attempt from this source.
+Contains ERROR_SUCCESS if the last attempt was successful or replication was
+not attempted.</p><p><b>cNumConsecutiveSyncFailures (4 bytes): </b>A
+32-bit integer specifying the number of failed replication attempts that have
+been made from this source since the last successful replication attempt or since
+the source was added as a neighbor, if no previous attempt succeeded.</p><p><b>data (variable): </b>This field contains all the
+null-terminated strings that are pointed to by the offset fields in the
+structure (oszNamingContext, oszSourceDsaDN, oszSourceDsaAddress, oszAsyncIntersiteTransportDN).
+The strings are packed into this field, and the offsets can be used to
+determine the start of each string.</p><p>All multibyte fields have <a href="b645c125-a7da-4097-84a1-2fa7cea07714#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a> byte
+ordering.</p></div>

@@ -1,0 +1,19 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/bfad5424-3e20-43bd-87f6-d35b4253792e" data-linktype="external">msdn link</a></p><p>The LSAPR_POLICY_ACCOUNT_DOM_INFO structure contains information
+about the server&#39;s <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b56f14e3-d874-48bc-837b-5e812ee1a96e" data-linktype="relative-path">account
+domain</a>. The following structure corresponds to the
+PolicyAccountDomainInformation and PolicyLocalAccountDomainInformation
+information classes.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_POLICY_ACCOUNT_DOM_INFO {
+   RPC_UNICODE_STRING DomainName;
+   PRPC_SID DomainSid;
+ } LSAPR_POLICY_ACCOUNT_DOM_INFO,
+  *PLSAPR_POLICY_ACCOUNT_DOM_INFO;
+</pre></div>
+</dd></dl><p><b>DomainName:</b>  This field contains a
+name for the account domain that is subjected to the restrictions of a NetBIOS
+name, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90266" data-linktype="external">[RFC1088]</a>.
+This value SHOULD be used (by implementations external to this protocol) to
+identify the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>  via
+the NetBIOS API, as specified in [RFC1088].</p><p><b>DomainSid:</b>  The <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> of the account domain.
+This field MUST NOT be NULL.</p></div>

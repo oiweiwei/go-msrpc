@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>This structure is used to contain <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_96b64af9-1896-4bde-b988-54d469c5affd" data-linktype="relative-path">locally unique identifier
+(LUID)</a></span> values that uniquely represent single network adapters (NICs)
+within a specific computer. </p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_INTERFACE_LUIDS {
+   [range(0, 1000)] unsigned long dwNumLUIDs;
+   [size_is(dwNumLUIDs)] GUID* pLUIDs;
+ } FW_INTERFACE_LUIDS,
+  *PFW_INTERFACE_LUIDS;
+</pre></div>
+</dd></dl><p><b>dwNumLUIDs:</b>  This field specifies
+the number of interface LUIDs that the structure contains.</p><p><b>pLUIDs:</b>  A pointer to an array of <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+elements. The number of elements is given by <b>dwNumLUIDs</b>. The <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a></span>
+data type is specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>.</p></div>

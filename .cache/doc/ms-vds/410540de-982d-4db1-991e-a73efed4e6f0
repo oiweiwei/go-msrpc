@@ -1,0 +1,66 @@
+<div class="content"><p> </p><p>The VDS_VOLUME_NOTIFICATION structure provides information
+about a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> change
+notification.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_VOLUME_NOTIFICATION {
+   unsigned long ulEvent;
+   VDS_OBJECT_ID volumeId;
+   VDS_OBJECT_ID plexId;
+   unsigned long ulPercentCompleted;
+ } VDS_VOLUME_NOTIFICATION;
+</pre></div>
+</dd></dl><p><b>ulEvent:</b>  Determines the volume
+event for which an application will be notified; it MUST be one of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>VDS_NF_VOLUME_ARRIVE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>A new volume is visible to the operating system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VDS_NF_VOLUME_DEPART</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>An existing volume is no longer visible to the
+  operating system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VDS_NF_VOLUME_MODIFY</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>The volume was modified. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VDS_NF_VOLUME_REBUILDING_PROGRESS</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>A fault tolerant volume is being regenerated or
+  resynchronized.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>volumeId:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS
+object</a></span> ID of the volume object to which the notification refers.</p><p><b>plexId:</b>  The VDS object ID of a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7d1df68a-9ec5-4f84-a64f-67888f39405d" data-linktype="relative-path">volume
+plex</a></span> object to which the notification refers, if any. <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_97581c48-09dd-4bc4-a379-a846cbf4cc39" data-linktype="relative-path">VDS</a></span>
+applies this identifier during the rebuild operation, which can execute on
+multiple <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_d864e01b-9fb1-4beb-9864-8221d293445a" data-linktype="relative-path">plexes</a></span> at different
+rates.</p><p><b>ulPercentCompleted:</b>  The percentage
+of completion for the operation. Valid values range from 0-100.</p></div>

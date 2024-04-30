@@ -1,0 +1,16 @@
+<div class="content"><p>The GetCRL method instructs the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> to return the current
+base <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_4f22841f-249b-42fb-a31a-5049c00be939" data-linktype="relative-path">CRL</a> for the current
+CA <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetCRL(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [out, ref] CERTTRANSBLOB* pctbCRL
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.</p><p><b>pctbCRL: </b>If the function succeeds, this method
+MUST return a <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a>
+structure that contains the ASN.1 DER (as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90592" data-linktype="external">[X660]</a> and <a href="https://go.microsoft.com/fwlink/?LinkId=90593" data-linktype="external">[X690]</a>) encoded CRL
+(CRLRawCRL) for the CA server&#39;s current <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_6a2366ee-fc9c-4406-963d-eac335ed8fc5" data-linktype="relative-path">signing certificate</a>.</p><p>The GetCRL method instructs the CA to return the recent base
+CRL, which is signed with the current CA key to the caller. If a CRL cannot be
+found, the CA MUST return ERROR_FILE_NOT_FOUND, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.<a id="Appendix_A_Target_35"></a><a aria-label="Product behavior note 35" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_35" data-linktype="relative-path">&lt;35&gt;</a></p></div>

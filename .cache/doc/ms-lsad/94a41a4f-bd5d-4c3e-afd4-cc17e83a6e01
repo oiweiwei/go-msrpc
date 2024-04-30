@@ -1,0 +1,17 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/94a41a4f-bd5d-4c3e-afd4-cc17e83a6e01" data-linktype="external">msdn link</a></p><p>The STRING structure holds a counted string encoded in the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_442ab13f-d2c1-4128-b1db-f3bea4b8224e" data-linktype="relative-path">OEM code page</a>.</p><p>This structure has no effect on message processing in any
+environment.</p><dl>
+<dd>
+<div><pre> typedef struct _STRING {
+   unsigned short Length;
+   unsigned short MaximumLength;
+   [size_is(MaximumLength), length_is(Length)] 
+     char* Buffer;
+ } STRING,
+  *PSTRING;
+</pre></div>
+</dd></dl><p><b>Length:</b>  The length, in bytes, of
+the string pointed to by the <b>Buffer</b> member, not including the
+terminating null character (if any).</p><p><b>MaximumLength:</b>  This field contains
+the total number of bytes in the <b>Buffer</b> field.</p><p><b>Buffer:</b>  A pointer to the actual
+string. If <b>Length</b> is greater than 0, this field MUST contain a non-NULL
+value. If <b>Length</b> is 0, this field MUST be ignored.</p></div>

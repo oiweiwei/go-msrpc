@@ -1,0 +1,29 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/55d7ea86-c4cc-4a5e-8414-426673cb77d1" data-linktype="external">msdn link</a></p><p>The <b>NLPR_QUOTA_LIMITS </b>structure defines a set of
+system resources that are available to a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> user. </p><dl>
+<dd>
+<div><pre> typedef struct _NLPR_QUOTA_LIMITS {
+   ULONG PagedPoolLimit;
+   ULONG NonPagedPoolLimit;
+   ULONG MinimumWorkingSetSize;
+   ULONG MaximumWorkingSetSize;
+   ULONG PagefileLimit;
+   OLD_LARGE_INTEGER Reserved;
+ } NLPR_QUOTA_LIMITS,
+  *PNLPR_QUOTA_LIMITS;
+</pre></div>
+</dd></dl><p><b>PagedPoolLimit:</b> A ULONG that specifies the
+number of bytes of paged pool memory assigned to the user. The paged pool is an
+area of system memory (physical memory used by the operating system) for
+objects that can be written to disk when they are not being used.</p><p><b>NonPagedPoolLimit:</b> A ULONG that specifies the
+number of bytes of nonpaged pool memory assigned to the user. The nonpaged pool
+is an area of system memory for objects that cannot be written to disk but MUST
+remain in physical memory as long as they are allocated.</p><p><b>MinimumWorkingSetSize:</b> A ULONG that specifies
+the minimum set size assigned to the user. The working set of a process is the
+set of memory pages currently visible to the process in physical RAM memory.
+These pages are present in memory when the application is running and available
+for an application to use without triggering a page fault.</p><p><b>MaximumWorkingSetSize:</b> A ULONG that specifies
+the maximum set size assigned to the user.</p><p><b>PagefileLimit:</b> A ULONG that specifies the
+maximum size, in bytes, of the paging file, which is a reserved space on disk
+that backs up committed physical memory on the computer.</p><p><b>Reserved:</b> An <b>OLD_LARGE_INTEGER</b>
+structure (<a href="https://go.microsoft.com/fwlink/?LinkId=124152" data-linktype="external">[MSDN-OLI]</a>)
+that is set to zero and ignored on receipt. </p></div>

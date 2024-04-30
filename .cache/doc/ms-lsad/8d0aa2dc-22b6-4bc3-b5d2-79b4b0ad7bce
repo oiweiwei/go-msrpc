@@ -1,0 +1,81 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/8d0aa2dc-22b6-4bc3-b5d2-79b4b0ad7bce" data-linktype="external">msdn link</a></p><p>The LsarDeleteObject method is invoked to delete an open <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b76eee27-064e-461b-81a9-fbf41e49928b" data-linktype="relative-path">account object</a>, <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_9720ddb8-c802-40b7-8dba-5e7520c3396d" data-linktype="relative-path">secret object</a>, or <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted domain object</a>.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarDeleteObject(
+   [in, out] LSAPR_HANDLE* ObjectHandle
+ );
+</pre></div>
+</dd></dl><p><b>ObjectHandle: </b>A handle to an open object of the
+correct type to be deleted. After successful completion of the call, the handle
+value cannot be reused.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One or more of the supplied parameters was invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>ObjectHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes one input parameter.</p><p><i>ObjectHandle</i>: An open handle to an object that is to
+be deleted. If the handle is not a valid context handle to an object or <i>ObjectHandle</i>.PolicyType
+is not one of the following:</p><ul><li><p><span><span> 
+</span></span>&#34;Policy&#34; for handles to policy objects</p>
+</li><li><p><span><span> 
+</span></span>&#34;Account&#34; for handles to account objects</p>
+</li><li><p><span><span> 
+</span></span>&#34;Secret&#34; for handles to secret objects</p>
+</li><li><p><span><span> 
+</span></span>&#34;Trusted Domain&#34; for handles to trusted domain objects</p>
+</li></ul><p>The server MUST return STATUS_INVALID_HANDLE. Policy objects
+cannot be deleted. Attempts to delete policy objects MUST fail with
+STATUS_INVALID_PARAMETER. For other object types, the server MUST verify that <i>ObjectHandle</i>
+grants access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a> with
+RequiredAccess set to DELETE.</p><p>The server MUST make all subsequent requests to deleted
+objects through already opened handles fail with STATUS_INVALID_HANDLE. The
+deleted handle MUST be automatically closed by the server; the caller need not
+close it.</p><p>If the object being deleted is a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted domain</a>, then the
+server MUST also check whether an <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_ba0d31d7-aa03-4e10-936a-a0ebd276ebc9" data-linktype="relative-path">interdomain trust account</a>
+with name &#34;&lt;Trusted Domain NetBIOS Name&gt;$&#34; exists. If it
+exists, the server MUST delete that account along with the trusted domain.</p><p>The server MUST free any resources associated with the
+LsaContextHandle element (section <a href="1011130b-0413-460d-81ed-d1821d141639" data-linktype="relative-path">3.1.1.7</a>) that is
+represented by <i>ObjectHandle</i>, as specified in section <a href="2184a151-ce74-4e1e-8ba7-25384f51dbf8" data-linktype="relative-path">3.1.6.1</a>,
+LSAPR_HANDLE_rundown.</p><p>The fact that a handle is no longer usable is communicated
+to the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_c2eeb200-3cd0-4916-966e-d7d6bff1737a" data-linktype="relative-path">RPC transport</a> by
+returning a NULL value in the handle parameter, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> section 5.1.6.</p></div>

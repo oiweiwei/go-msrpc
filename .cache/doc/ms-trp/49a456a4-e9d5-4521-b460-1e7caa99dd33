@@ -1,0 +1,14 @@
+<div class="content"><p>The RemoteSPDetach method is called by the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in response to a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">Client</a> call to the server&#39;s
+<a href="257fe874-49d8-4b46-bccc-a5a6663bdb8a" data-linktype="relative-path">ClientDetach</a> method to
+free the binding instance and to release the associated resources.</p><dl>
+<dd>
+<div><pre> void RemoteSPDetach(
+   [in, out] PCONTEXT_HANDLE_TYPE2* pphContext
+ );
+</pre></div>
+</dd></dl><p><b>pphContext: </b>Pointer to a <a href="199f5969-cdf3-4ffd-80c0-03e70679cf31" data-linktype="relative-path">PCONTEXT_HANDLE_TYPE2</a>
+handle to the binding instance being terminated.</p><p>This method has no return values.</p><p>On success, the binding instance is removed from the <b>Server
+List</b>.</p><p><b>Exceptions Thrown:</b></p><p>No exceptions are thrown beyond those thrown by the
+underlying <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol,
+as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 2. </p></div>

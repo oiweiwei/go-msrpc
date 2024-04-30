@@ -1,0 +1,86 @@
+<div class="content"><p>The EnumViewColumnTable method retrieves information about
+one or more columns from the specified <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> database <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_d3a7da8d-a597-4838-9756-25e30b640ba7" data-linktype="relative-path">table</a>.</p><dl>
+<dd>
+<div><pre> HRESULT EnumViewColumnTable(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] DWORD iTable,
+   [in] DWORD iColumn,
+   [in] DWORD cColumn,
+   [out] DWORD* pcColumn,
+   [out, ref] CERTTRANSBLOB* pctbColumnInfo
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the definition of the <i>pwszAuthority</i>
+parameter in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.</p><p><b>iTable: </b>An unsigned integer that specifies the
+database table to be used for the enumeration. This MUST be set from the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p><a href="2f82efc0-66dd-49b7-9556-425805e63d30" data-linktype="relative-path">Request</a> table</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00003000</p>
+  </td>
+  <td>
+  <p><a href="820f99c7-fdc6-4356-b533-9ddbe35d937c" data-linktype="relative-path">Extension</a> table</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004000</p>
+  </td>
+  <td>
+  <p><a href="c4fbb694-3387-485c-b421-278487d8325c" data-linktype="relative-path">Attribute</a> table</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00005000</p>
+  </td>
+  <td>
+  <p><a href="3c8fcd6a-6872-46c2-b464-1c86f7fdfb4a" data-linktype="relative-path">CRL</a> table</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>iColumn: </b>An unsigned integer that specifies
+the column number with which to begin the enumeration. Valid values are from 0
+to one less than the maximum number of columns for the table.</p><p><b>cColumn: </b>An unsigned integer that specifies
+the requested number of columns to return.</p><p><b>pcColumn: </b>A pointer to an unsigned integer
+that receives the actual number of <a href="2c8a82e0-8d7e-405f-bd86-e59ef4971bf1" data-linktype="relative-path">CERTTRANSDBCOLUMN</a>
+structures returned.</p><p><b>pctbColumnInfo: </b>A pointer to a <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure.
+Upon return, the <b>pb</b> member of this structure points to an array of the
+marshaled CERTTRANSDBCOLUMN structures. The format and marshaling for the value
+of <i>pctbColumnInfo</i> MUST be as specified in section 2.2.1.7.</p><p>The EnumViewColumnTable method returns information to the
+client about columns that are associated with a specific table. The CA server
+MUST enforce the following processing rules:</p><ul><li><p><span><span> 
+</span></span>The CA server MUST enforce that the <i>iTable</i> parameter has a
+value as specified in the previous table; otherwise, it MUST fail with the
+error ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>The CA server MUST enforce that <i>iColumn</i> is less than the
+number of columns associated with the table; otherwise, it MUST fail with the
+error ERROR_ARITHMETIC_OVERFLOW.</p>
+</li><li><p><span><span> 
+</span></span>The CA server MUST enforce that <i>cColumn</i> is greater than 0;
+otherwise, it MUST fail with the error ERROR_INVALID_PARAMETER.<a id="Appendix_A_Target_71"></a><a aria-label="Product behavior note 71" href="5f06c74c-1a29-4fdf-b8dd-ae3300d1b90d#Appendix_A_71" data-linktype="relative-path">&lt;71&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>The CA server MUST use the value of <b>iColumn</b> to identify
+the column identifier that is associated with the table (identified by the
+value of the <i>iTable</i> parameter).</p>
+</li><li><p><span><span> 
+</span></span>The number of column information returned MUST be a minimum of
+the <b>cColumn</b> value and the remaining number of columns in the table
+(starting from <b>iColumn</b>). The value of *pcColumn MUST be set to the
+number of the column information returned.</p>
+</li></ul></div>

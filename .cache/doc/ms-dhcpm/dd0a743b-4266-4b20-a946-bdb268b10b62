@@ -1,0 +1,193 @@
+<div class="content"><p> </p><p>The <b>R_DhcpEnumMScopeElements</b> method enumerates the
+list of specific types of IPv4 multicast subnet elements (IPv4 range of IPv4
+exclusion) from a specific IPv4 multicast subnet. The caller of this function
+can free the memory pointed to by <i>EnumElementInfo</i> and its member <b>Elements</b>
+by calling the function <b>midl_user_free</b> (section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpEnumMScopeElements(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, ref, string] LPWSTR* MScopeName,
+   [in] DHCP_SUBNET_ELEMENT_TYPE EnumElementType,
+   [in, out] DHCP_RESUME_HANDLE* ResumeHandle,
+   [in] DWORD PreferredMaximum,
+   [out] LPDHCP_SUBNET_ELEMENT_INFO_ARRAY_V4* EnumElementInfo,
+   [out] DWORD* ElementsRead,
+   [out] DWORD* ElementsTotal
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the MADCAP server. This parameter is unused.</p><p><b>MScopeName: </b>This is a pointer to a Unicode
+string that contains the name of the multicast subnet from which IPv4 multicast
+subnet elements are enumerated. There is no restriction on the length of this
+field.</p><p><b>EnumElementType: </b>This is of type <span><a href="c2ff4890-adad-4906-bb96-d9417f24545a" data-linktype="relative-path">DHCP_SUBNET_ELEMENT_TYPE (section 2.2.1.1.7)</a></span>,
+indicating the type of IPv4 multicast subnet element to enumerate.</p><p><b>ResumeHandle: </b>This is a pointer of type <span><a href="a6e4cdc0-4f71-4922-ade1-7a5392f9e920" data-linktype="relative-path">DHCP_RESUME_HANDLE (section 2.2.1.2.6)</a></span>
+that identifies the enumeration operation. Initially, this value MUST be set to
+zero, with a successful call returning the handle value used for subsequent
+enumeration requests. For example, if the <i>PreferredMaximum</i> parameter is
+set to 1,000 bytes, and 2,000 bytes&#39; worth of IPv4 multicast subnet elements
+are stored on the MADCAP server, the resume handle can be used after the first
+1,000 bytes are retrieved to obtain the next 1,000 on a subsequent call, and so
+forth.</p><p><b>PreferredMaximum: </b>This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+specifying the preferred maximum number of bytes to return. If the number of
+remaining unenumerated IPv4 multicast subnet element (in bytes) is less than
+this value, all IPv4 subnet elements for a specific type are returned. To
+retrieve all the IPv4 subnet elements of a specific type, 0xFFFFFFFF is
+specified.</p><p><b>EnumElementInfo: </b>This is a pointer of type <span><a href="753cdf6c-0c49-48df-9143-701f088d6eb2" data-linktype="relative-path">LPDHCP_SUBNET_ELEMENT_INFO_ARRAY_V4</a></span>
+in which the IPv4 multicast subnet element of type <i>EnumElementType</i> is
+returned for a specific IPv4 multicast subnet corresponding to <i>MScopeNames</i>.
+If no IPv4 multicast subnet element of that specific type is available for
+enumeration, this value is null.</p><p><b>ElementsRead: </b>This is a pointer to a DWORD
+value that specifies the number of IPv4 multicast subnet elements read in <i>EnumElementInfo</i>
+for a specific type of IPv4 multicast subnet element. The caller MUST allocate
+memory for this parameter equal to the size of a DWORD data type.</p><p><b>ElementsTotal: </b>This is a pointer to a DWORD
+value that specifies the number of IPv4 multicast subnet elements of a specific
+type from a specific IPv4 multicast subnet and that is not yet enumerated with
+respect to the resume handle that is returned. The caller MUST allocate memory
+for this parameter equal to the size of a DWORD data type.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000) indicates
+that the operation was completed successfully, else it contains a Win32 error
+code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000EA</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>There are more elements available to enumerate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  </td>
+  <td>
+  <p>There are no more elements left to enumerate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 5.</p><p>When processing this call, the MADCAP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read access per section
+<span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not, return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>MScopeName</i> is NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4MScope</b> entry corresponding to the <i>MScopeName</i>
+from the server ADM element <b>DHCPv4MScopesList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>DHCPv4MScope</b> entry is not found, return
+ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>EnumElementType</i> field is set to DhcpSecondaryHosts,
+return ERROR_NOT_SUPPORTED.</p>
+</li><li><p><span><span> 
+</span></span>If <i>EnumElementType</i> is DhcpReservedIps, DhcpIpUsedClusters,
+DhcpIpRangesDhcpOnly, DhcpIpRangesDhcpBootp, or DhcpIpRangesBootpOnly, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If <i>EnumElementType</i> is set to DhcpIpRanges, retrieve all
+the entries in <b>DHCPv4MScope.DHCPv4IPRangesList</b> starting with the <b>DHCPv4IPRange</b>
+entry at the index specified by the value in the <i>ResumeHandle</i> parameter
+and continuing while the total byte size of all retrieved <b>DHCPv4IPRange</b>
+entries is less than <i>PreferredMaximum</i>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>EnumElementType</i> is set to DhcpIpRanges, and if <i>PreferredMaximum</i>
+is 0, then ERROR_NO_MORE_ITEMS is returned.</p>
+</li><li><p><span><span> 
+</span></span>If <i>EnumElementType</i> is set to DhcpIpRanges, and if the <i>ResumeHandle</i>
+parameter points to 0x00000000, the enumeration MUST start from the first entry
+of the <b>DHCPv4IpRangesList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>EnumElementType</i> is set to DhcpIpRanges, and if the <i>ResumeHandle</i>
+parameter points to a nonzero value, the server MUST continue enumeration based
+on the value of <i>ResumeHandle</i>. If the <i>ResumeHandle</i> is greater than
+or equal to the number of entries in the <b>DHCPv4IpRangesList</b>, then return
+ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>The <i>PreferredMaximum</i> parameter specifies the maximum
+number of bytes that the server can allocate and return to the caller
+containing the data related to the multicast subnet ranges. If <i>EnumElementType</i>
+is set to DhcpIpRanges, and if the <i>PreferredMaximum</i> is unable to hold
+all the entries being retrieved, then the server must store as many entries
+that will fit into the <i>EnumElementInfo</i> parameter and return
+ERROR_MORE_DATA.</p>
+</li><li><p><span><span> 
+</span></span>If <i>EnumElementType</i> is set to DhcpIpRanges, copy the <b>RangeInfo</b>
+of the retrieved <b>DHCPv4IPRange</b> entries in <i>EnumElementInfo</i>, copy
+the number of read <b>DHCPv4IPRange</b> entries in <i>ElementsRead</i>, and
+copy the number of <b>DHCPv4IpRange</b> entries in the <b>DHCPv4MScope.DHCPv4IpRangesList</b>
+that are not yet enumerated in <i>ElementsTotal</i>. Update the <i>ResumeHandle</i>
+to the index of the last <b>DHCPv4IpRange</b> entry read plus one, and return
+ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>If <i>EnumElementType</i> is set toDhcpExcludedIpRanges, retrieve
+all the entries in <b>DHCPv4MScope.DHCPv4ExclusionRangesList</b> starting with
+the <b>DHCPv4ExclusionRange</b> entry at the index specified by the value in
+the <i>ResumeHandle</i> parameter and continuing while the total byte size of
+all retrieved <b>DHCPv4ExclusionRange</b> entries is less than <i>PreferredMaximum</i>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>EnumElementType</i> is set to DhcpExcludedIpRanges, and if <i>PreferredMaximum</i>
+is 0 and the number of entries in the <b>DHCPv4ExclusionRangesList</b>
+retrieved based on <i>EnumElementType</i> is greater than 0, then
+ERROR_MORE_DATA is returned.</p>
+</li><li><p><span><span> 
+</span></span>If <i>EnumElementType</i> is set to DhcpExcludedIpRanges, and if <i>PreferredMaximum</i>
+is 0 and the number of entries in the <b>DHCPv4ExclusionRangesList</b>
+retrieved based on <i>EnumElementType</i> is 0, then ERROR_NO_MORE_ITEMS is
+returned.</p>
+</li><li><p><span><span> 
+</span></span>If <i>EnumElementType</i> is set to DhcpExcludedIpRanges, and if
+the <i>ResumeHandle</i> parameter points to 0x00000000, the enumeration MUST
+start from the first entry of the <b>DHCPv4ExclusionRangesList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>EnumElementType</i> is set to DhcpExcludedIpRanges, and if
+the <i>ResumeHandle</i> parameter points to a nonzero value, the server MUST
+continue enumeration based on the value of <i>ResumeHandle</i>. If the <i>ResumeHandle</i>
+is greater than or equal to the number of <b>DHCPv4ExclusionRange</b> entries,
+then return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span> 
+</span></span>The <i>PreferredMaximum</i> parameter specifies the maximum
+number of bytes that the server can allocate and return to the caller
+containing the data related to the IPv4 exclusions. If <i>EnumElementType</i>
+is set to DhcpExcludedIpRanges, and if the <i>PreferredMaximum</i> is unable to
+hold all the entries being retrieved, then the server must store as many entries
+that will fit into the <i>EnumElementInfo</i> parameter and return
+ERROR_MORE_DATA.</p>
+</li><li><p><span><span> 
+</span></span>If <i>EnumElementType</i> is set to DhcpExcludedIpRanges, copy
+the retrieved <b>DHCPv4ExclusionRange</b> entries in <i>EnumElementInfo</i>,
+copy the number of read <b>DHCPv4ExclusionRange</b> entries in <i>ElementsRead</i>,
+and copy the number of <b>DHCPv4ExclusionRange</b> entries in the <b>DHCPv4MScope.DHCPv4ExclusionRangesList</b>
+that are not yet enumerated in <i>ElementsTotal</i>. Update the <b>ResumeHandle</b>
+to the index of the last <b>DHCPv4ExclusionRange</b> entry read plus one, and
+return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

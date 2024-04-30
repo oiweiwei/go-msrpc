@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The <b>JOINPR_ENCRYPTED_USER_PASSWORD</b> structure is the
+container for a password during the encoding, encryption, decryption and
+decoding process.</p><dl>
+<dd>
+<div><pre> typedef struct _JOINPR_ENCRYPTED_USER_PASSWORD {
+   unsigned char Buffer[JOIN_OBFUSCATOR_LENGTH + (JOIN_MAX_PASSWORD_LENGTH * sizeof(wchar_t)) + sizeof(unsigned long)];
+ } JOINPR_ENCRYPTED_USER_PASSWORD,
+  *PJOINPR_ENCRYPTED_USER_PASSWORD;
+</pre></div>
+</dd></dl><p><b>Buffer:</b> An array of bytes that contains a <b>JOINPR_USER_PASSWORD</b> structure
+(section <span><a href="6320ca78-6492-4eaf-ad95-a558ad399383" data-linktype="relative-path">2.2.5.17</a></span>).</p><p>The sections that follow specify the encoding, encryption,
+decryption, and decoding of a password. (Encoding and encryption are performed
+by the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>, but their
+explanations are included for completeness and to facilitate the reader&#39;s
+understanding of <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server (2)</a></span> message
+processing.) The server decrypts and decodes a <b>Buffer</b> structure to
+extract the <span><a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_f6e0fdd0-cbc1-4c9d-93b8-f25125f9c5ef" data-linktype="relative-path">cleartext</a></span> password.</p><p>The encoding, encryption, decryption, and decoding of a
+password requires the following steps:</p><ol><li><p><span>    </span>Encoding the
+cleartext password (section <span><a href="6613c3dc-744f-424c-b652-7f8804370c85" data-linktype="relative-path">2.2.5.18.1</a></span>).</p>
+</li><li><p><span>    </span>Initializing <b>JOINPR_USER_PASSWORD</b>
+with the result of step 1 (section <span><a href="fabd6340-5c6d-437d-b50a-0bc94340bcff" data-linktype="relative-path">2.2.5.18.2</a></span>).</p>
+</li><li><p><span>    </span>Initializing <b>JOINPR_ENCRYPTED_USER_PASSWORD.Buffer</b>
+with the encrypted result of step 2, and subsequently decrypting <b>JOINPR_ENCRYPTED_USER_PASSWORD.Buffer</b>
+(section <span><a href="bead3d50-0440-448a-90e3-e478d74c7555" data-linktype="relative-path">2.2.5.18.3</a></span>).</p>
+</li><li><p><span>    </span>Decoding the
+result of step 3, as a <b>JOINPR_USER_PASSWORD</b> structure, to recover the
+cleartext password (section <span><a href="b8d68e41-76a1-4895-97e5-b1f20a86fb04" data-linktype="relative-path">2.2.5.18.4</a></span>).</p>
+</li></ol></div>

@@ -1,0 +1,21 @@
+<div class="content"><p>The <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_f31d61e4-7dc6-4710-ba18-944e0dbc2a11" data-linktype="relative-path">Internet
+Information Services (IIS)</a> IMSAdminBaseW Remote Protocol is a client/server
+protocol that is used for remotely managing a hierarchical configuration data
+store (<a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_086b13f2-2715-4000-a16c-6acc3d59cc19" data-linktype="relative-path">metabase</a>). The
+layout and specifics of such a store are specified in section <a href="cc341011-6012-4be9-9787-e5cf58869dc7" data-linktype="relative-path">3.1.1</a>. </p><p>The Internet Information Services (IIS) IMSAdminBaseW Remote
+Protocol also provides DCOM interfaces to manage server entities, such as <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_6b0c6982-1354-4309-86eb-c4c4ae9d8bcb" data-linktype="relative-path">web applications</a> and <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public key</a> certificates,
+which can be defined or referenced in the metabase data store.</p><p>A remote metabase management session begins with the client
+initiating the connection request to the server. If the server grants the
+request, the connection is established. The client can then make multiple
+requests to read or modify the metabase on the server by using the same session
+until the session is terminated.</p><p>A typical remote metabase management session involves the
+client connecting to the server and requesting to open a metabase node on the
+server. If the server accepts the request, it responds with an <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle that
+refers to the node. The client uses this RPC context handle to operate on that
+node. This involves sending another request to the server specifying the type
+of operation to perform and any specific parameters that are associated with
+that operation. If the server accepts this request, it attempts to change the
+state of the node based on the request and responds to the client with the
+result of the operation. When the client is finished operating on the server
+nodes, it terminates the protocol by sending a request to close the RPC context
+handle.</p></div>

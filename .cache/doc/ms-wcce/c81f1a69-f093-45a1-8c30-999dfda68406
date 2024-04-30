@@ -1,0 +1,331 @@
+<div class="content"><p> </p><p>The dwFlags field consists of a set of flags and values that
+MUST define the <i>pctbRequest</i> parameter <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_ad861812-8cb0-497a-80bb-13c95aa4e425" data-linktype="relative-path">BLOB</a></span> and the
+expected content of the <i>pctbCertChain</i> parameter. This field MUST contain
+packed data specified as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>ExtendedFlags</p>
+  </td>
+  <td colspan="8">
+  <p>Flags</p>
+  </td>
+  <td colspan="8">
+  <p>RequestType</p>
+  </td>
+  <td colspan="8">
+  <p>Padding2</p>
+  </td>
+ </tr>
+</tbody></table><p><b>ExtendedFlags: </b>This bit-field defines extended
+options for the server’s request processing.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p><span><br/>
+   0</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   1</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   2</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   3</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   4</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   5</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   6</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   7</span></p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as follows:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p> </p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  <p>                 </p>
+  </td>
+  <td>
+  <p>If this bit is set, the server MUST process the
+  request as a new Certificate Transparency request, in accordance with section
+  <span><a href="d6b51091-94f3-4b7f-abd4-c12d9d707369" data-linktype="relative-path">3.2.1.4.2.1.4.3.1</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>If this bit is set, the server MUST process the
+  request as a new Pre-sign certificate request, in accordance with section <span><a href="90987126-0a9e-4891-80c0-04cc10222982" data-linktype="relative-path">3.2.1.4.2.1.4.10.1</a></span>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Flags (1 byte):</b> This bit-field MUST define
+options for the server&#39;s request processing and the response.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p><span><br/>
+   0</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   1</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   2</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   3</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   4</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   5</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   6</span></p>
+   </th>
+   <th>
+   <p><span><br/>
+   7</span></p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>Z</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>Y</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as
+follows: </p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>X</p>
+  <p>                 </p>
+  </td>
+  <td>
+  <p>If this bit is set, the response MUST include the CRLs
+  for all the certificates returned in the pctbCertChain and pctbEncodedCert
+  parameters.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Y</p>
+  <p>                 </p>
+  </td>
+  <td>
+  <p>If this bit is set, then the response MUST be a CMC
+  full <b>PKI</b> response. If it is not set, the response MUST be a CMS. This
+  bit supported by the <b>ICertRequestD2::Request2</b> method only.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Z</p>
+  <p>                 </p>
+  </td>
+  <td>
+  <p>If this bit is set, this is a renewal request on
+  behalf of another user. The processing rules for this type of request are
+  specified in section <span><a href="692748c6-6d29-4812-b7de-4df3eb6aac93" data-linktype="relative-path">3.2.2.6.2.1.2.4</a></span>. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>RequestType (1 byte): </b>RequestType MUST define
+the possible formats of the certificate request submitted in the <i>pctbRequest</i>
+parameter (format types are specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90382" data-linktype="external">[RFC2797]</a></span>).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>The client relies on <b>CA</b> to determine the
+  request type. See section <span><a href="2d0705e9-9189-4fd4-a51e-6e88d86cefeb" data-linktype="relative-path">3.2.1.4.2.1.4</a></span> for
+  more details.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>The request format MUST be a PKCS #10 request
+  structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>The request format MUST be a Netscape <b>KEYGEN</b>
+  request structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x03</p>
+  </td>
+  <td>
+  <p>The request format MUST be a CMS request structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x04</p>
+  </td>
+  <td>
+  <p>The request format MUST be a Certificate Management
+  Messages over a CMS (CMC) request structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x05</p>
+  </td>
+  <td>
+  <p>The request format MUST be a response to the
+  attestation <b>CAChallenge</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x06</p>
+  </td>
+  <td>
+  <p>The request format MUST be a <b>SignedCertificateTimestampList</b>
+  structure.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Padding2
+(1 byte): </b>This field MUST be set to 0 and ignored upon receipt.</p></div>

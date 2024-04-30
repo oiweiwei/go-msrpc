@@ -1,0 +1,44 @@
+<div class="content"><p>The METADATA_HANDLE_INFO structure defines information about
+a handle to a <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_086b13f2-2715-4000-a16c-6acc3d59cc19" data-linktype="relative-path">metabase</a>
+entry.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwMDPermissions;
+   DWORD dwMDSystemChangeNumber;
+ } METADATA_HANDLE_INFO;
+</pre></div>
+</dd></dl><p><b>dwMDPermissions:</b>   An unsigned
+integer value containing the permissions with which the handle was opened. This
+member MUST have a valid combination of the following flags set.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>METADATA_PERMISSION_READ</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The handle can read nodes and data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>METADATA_PERMISSION_WRITE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The handle can write nodes and data.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwMDSystemChangeNumber:</b>  An unsigned
+integer value containing the system change number when the handle was opened.
+The system change number is a 32-bit unsigned integer value that is incremented
+when a change is made to the metabase. See <a href="8ccdd400-cf13-4747-8ddb-77b1a0b6de79" data-linktype="relative-path">GetSystemChangeNumber (section 3.1.4.21)</a>
+for a specification of the system change number.</p></div>

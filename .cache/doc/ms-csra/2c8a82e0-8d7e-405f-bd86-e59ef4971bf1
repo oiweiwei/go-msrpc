@@ -1,0 +1,264 @@
+<div class="content"><p>The CERTTRANSDBCOLUMN structure is encoded within a <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure.
+The CERTTRANSDBCOLUMN structure contains <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_fd49ea36-576c-4417-93bd-d1ac63e71093" data-linktype="relative-path">schema</a> information about a
+particular database column that is associated with a specific <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_d3a7da8d-a597-4838-9756-25e30b640ba7" data-linktype="relative-path">table</a> to the client. This
+associated table is invoked when the client queries the <a href="c6851d6f-b4f0-4576-ad93-559ea8716619" data-linktype="relative-path">EnumViewColumn</a> or <a href="eeeea0fb-6076-48a4-9371-04db43c8fdf9" data-linktype="relative-path">EnumViewColumnTable</a> method
+of the <a href="46496f1f-a631-42b3-a60e-33f95fb6fed1" data-linktype="relative-path">ICertAdminD</a> and <a href="539b6648-714a-47d1-87c9-9170443df2cf" data-linktype="relative-path">ICertAdminD2</a> interfaces,
+respectively.</p><dl>
+<dd>
+<div><pre> typedef struct _CERTTRANSDBCOLUMN {
+   DWORD Type;
+   DWORD Index;
+   DWORD cbMax;
+   ULONG obwszName;
+   ULONG obwszDisplayName;
+ } CERTTRANSDBCOLUMN;
+</pre></div>
+</dd></dl><p><b>Type:</b>  This field describes the
+column. It consists of two WORDs, a high WORD and a low WORD, which are used
+separately.</p><dl>
+<dd>
+<table>
+ <thead>
+  <tr>
+   <th><p><br/>0</p></th>
+   <th><p><br/>1</p></th>
+   <th><p><br/>2</p></th>
+   <th><p><br/>3</p></th>
+   <th><p><br/>4</p></th>
+   <th><p><br/>5</p></th>
+   <th><p><br/>6</p></th>
+   <th><p><br/>7</p></th>
+   <th><p><br/>8</p></th>
+   <th><p><br/>9</p></th>
+   <th><p>1<br/>0</p></th>
+   <th><p><br/>1</p></th>
+   <th><p><br/>2</p></th>
+   <th><p><br/>3</p></th>
+   <th><p><br/>4</p></th>
+   <th><p><br/>5</p></th>
+   <th><p><br/>6</p></th>
+   <th><p><br/>7</p></th>
+   <th><p><br/>8</p></th>
+   <th><p><br/>9</p></th>
+   <th><p>2<br/>0</p></th>
+   <th><p><br/>1</p></th>
+   <th><p><br/>2</p></th>
+   <th><p><br/>3</p></th>
+   <th><p><br/>4</p></th>
+   <th><p><br/>5</p></th>
+   <th><p><br/>6</p></th>
+   <th><p><br/>7</p></th>
+   <th><p><br/>8</p></th>
+   <th><p><br/>9</p></th>
+   <th><p>3<br/>0</p></th>
+   <th><p><br/>1</p></th>
+  </tr>
+ </thead>
+ <tbody><tr>
+  <td colspan="16">
+  <p>Column Flags</p>
+  </td>
+  <td colspan="16">
+  <p>Column Type</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p><b>Column Flags:</b> This
+is the high WORD of the <b>Type</b> field. It is a 16-bit field where only bit
+15 is used, as shown in the following bit diagram.</p><dl>
+<dd>
+<dl>
+<dd>
+<table>
+ <thead>
+  <tr>
+   <th>
+   <p><br/>
+   0</p>
+   </th>
+   <th>
+   <p><br/>
+   1</p>
+   </th>
+   <th>
+   <p><br/>
+   2</p>
+   </th>
+   <th>
+   <p><br/>
+   3</p>
+   </th>
+   <th>
+   <p><br/>
+   4</p>
+   </th>
+   <th>
+   <p><br/>
+   5</p>
+   </th>
+   <th>
+   <p><br/>
+   6</p>
+   </th>
+   <th>
+   <p><br/>
+   7</p>
+   </th>
+   <th>
+   <p><br/>
+   8</p>
+   </th>
+   <th>
+   <p><br/>
+   9</p>
+   </th>
+   <th>
+   <p>1<br/>
+   0</p>
+   </th>
+   <th>
+   <p><br/>
+   1</p>
+   </th>
+   <th>
+   <p><br/>
+   2</p>
+   </th>
+   <th>
+   <p><br/>
+   3</p>
+   </th>
+   <th>
+   <p><br/>
+   4</p>
+   </th>
+   <th>
+   <p><br/>
+   5</p>
+   </th>
+  </tr>
+ </thead>
+ <tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>I</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl></dd>
+<dd>
+<p>      <b>I:</b> If set to 1,
+this bit indicates that the column is indexed for lookup purposes.</p>
+</dd>
+<dd>
+<p>      All other bits are reserved and MUST be set to
+0.</p>
+</dd>
+<dd>
+<p><b>Column Type:</b> This is
+the low WORD of the <b>Type</b> field. It is divided into two bytes:</p>
+</dd></dl><ul><li><p><span><span> 
+</span></span>The high byte of the low WORD MUST be set to 0, and MUST be
+ignored by the server on receipt.</p>
+</li><li><p><span><span> 
+</span></span>The low byte of the low WORD MUST specify the value type for the
+column that is associated with a specific table by using one of the following
+values.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>The Column
+  type is a signed integer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>The Column
+  type is a date.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x03</p>
+  </td>
+  <td>
+  <p>The Column
+  type is binary data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x04</p>
+  </td>
+  <td>
+  <p>The Column
+  type is a string.</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p><b>Index:</b>  An unsigned integer value
+that specifies the identifier for the column in the server database.</p><p><b>cbMax:</b>  An unsigned integer value
+that specifies the maximum data size, in bytes, that this column can contain.</p><p><b>obwszName:</b>  An integer that contains
+the offset from the beginning of the byte array buffer that is pointed to by
+the <b>pb</b> member in the containing CERTTRANSBLOB structure, to where the
+string that contains the name of this column can be found. The string format is
+a null-terminated UNICODE string. The offset MUST be divisible by 4.</p><p><b>obwszDisplayName:</b>  An integer that
+contains the offset from the beginning of the byte array buffer that is pointed
+to by the <b>pb</b> member in the containing CERTTRANSBLOB structure, to where
+the string that contains the display name of this column can be found. The
+string format is a null-terminated UNICODE string. The offset MUST be divisible
+by 4.</p></div>

@@ -1,0 +1,32 @@
+<div class="content"><p> </p><p>The I_nsi_lookup_done method is invoked to free any
+resources associated with the context handle returned by a preceding call to
+the <span><a href="3674c5af-b5d5-4365-8f19-9db8f64b4189" data-linktype="relative-path">I_nsi_lookup_begin</a></span>
+method. The <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a></span> syntax of this
+method is specified as follows. </p><dl>
+<dd>
+<div><pre> void I_nsi_lookup_done(
+   [in] handle_t hrpcPrimaryLocatorHndl,
+   [in, out] NSI_NS_HANDLE_T* import_context,
+   [out] unsigned short* status
+ );
+</pre></div>
+</dd></dl><p><b>hrpcPrimaryLocatorHndl: </b>An <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+server <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_1cf35308-abab-4123-9cbd-99c42dc9a6ff" data-linktype="relative-path">binding</a></span> handle, as
+specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> Part 2,
+&#34;Binding Handle&#34;. A client creates this handle by binding to the
+locator server using the UUID specified in section <span><a href="e3c9c694-f896-46b9-9452-097f53e0c03f" data-linktype="relative-path">1.9</a></span> and endpoint
+specified in section <span><a href="f6ef0bc1-f32e-45ef-bcfb-bcbd0d08c71d" data-linktype="relative-path">2.1</a></span>. A client can
+create the binding handle using the rpc_string_binding_compose and
+rpc_binding_from_string_binding APIs (as specified in [C706] the &#34;rpc_string_binding_compose&#34;
+section) or equivalent on the client system&#39;s implementation of RPC. When all
+operations using this handle are completed, use the equivalent of
+rpc_binding_free to free the handle resources.</p><p><b>import_context: </b>A context handle returned by
+the server from a preceding call to the I_nsi_lookup_begin method. On
+successful completion, this parameter MUST be set to NULL by the server and
+MUST NOT be modified on failure.</p><p><b>status: </b>A 16-bit value that indicates the
+results of the method call. In case of success, the value will contain
+NSI_S_OK, or a nonzero value on failure. All failures MUST be treated
+identically as a failure of the freeing process initiated by this method, but
+no further action is required by the caller.</p><p><b>Return Values: </b>This method does not return any
+values.</p><p>Exceptions Thrown</p><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

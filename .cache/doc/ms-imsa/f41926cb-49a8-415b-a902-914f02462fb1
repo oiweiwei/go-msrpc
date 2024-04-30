@@ -1,0 +1,80 @@
+<div class="content"><p>The SetLastChangeTime method sets the last change time
+associated with a node in the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_086b13f2-2715-4000-a16c-6acc3d59cc19" data-linktype="relative-path">metabase</a>.</p><dl>
+<dd>
+<div><pre> HRESULT SetLastChangeTime(
+   [in] METADATA_HANDLE hMDHandle,
+   [unique, in, string] LPCWSTR pszMDPath,
+   [in] PFILETIME pftMDLastChangeTime,
+   [in] BOOL bLocalTime
+ );
+</pre></div>
+</dd></dl><p><b>hMDHandle: </b>An unsigned 32-bit integer value
+containing a handle to a node in the metabase as returned by the <a href="a54be1d0-009a-493d-a53e-e2f7fbe87293" data-linktype="relative-path">OpenKey</a> method.</p><p><b>pszMDPath: </b>A pointer to a Unicode string
+containing the path of the node to be set, relative to the path of the <i>hMDHandle</i>
+parameter.</p><p><b>pftMDLastChangeTime: </b>A pointer to a <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a>
+structure that contains the last change time to set for the node.</p><p><b>bLocalTime: </b>A Boolean value indicating whether
+the time value specified in the <i>pftMDLastChangeTime</i> parameter is local
+time (TRUE) or UTC time (FALSE).</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it failed. If
+the 12-bit facility code (bits 16–27) is set to 0x007, the value contains a
+Win32 error code in the lower 16 bits. Zero or positive values indicate
+success, with the lower 16 bits in positive nonzero values containing warnings
+or flags defined in the method implementation. For more information about Win32
+error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070003</p>
+  <p>ERROR_PATH_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The system cannot find the path specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>E_ACCESSDENIED</p>
+  </td>
+  <td>
+  <p>General access denied error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 24. </p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>The server SHOULD check whether the handle was opened for write
+access. If not, return E_ACCESSDENIED.<a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="88fd1df0-e63e-41ca-9bf3-bedcab57cd86#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Check the path of the node indicated by <i>hMDHandle</i> and <i>pszMDPath</i>.
+If the path does not exist, return ERROR_PATH_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>If the path exists and is valid, the server SHOULD update the
+last modified time for the node based on the value of the <i>pftMDLastChangeTime</i>
+structure. If <i>bLocalTime</i> is 0, the time is treated as UTC time.
+Otherwise the time is treated as the local server time.<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="88fd1df0-e63e-41ca-9bf3-bedcab57cd86#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a></p>
+</li></ul></div>

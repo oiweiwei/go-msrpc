@@ -1,0 +1,260 @@
+<div class="content"><p> </p><p>The following is the diagram of elements in the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_3f85a24a-f32a-4322-9e99-eba6ae802cd6" data-linktype="relative-path">RSA</a></span>
+<span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private
+key</a></span> <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_ad861812-8cb0-497a-80bb-13c95aa4e425" data-linktype="relative-path">BLOB</a></span> that MUST be
+passed to the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>Type</p>
+  </td>
+  <td colspan="8">
+  <p>Version</p>
+  </td>
+  <td colspan="16">
+  <p>Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Key Alg</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Magic</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Bitlen</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PubExp</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Modulus
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>P
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Q
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Dp
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Dq
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Iq
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>D
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Type (1 byte): </b>Length MUST be 1 byte.</p><dl>
+<dd>
+<p>This field MUST be set to 0x07.</p>
+</dd></dl><p><b>Version (1 byte): </b>Length MUST be 1 byte.</p><dl>
+<dd>
+<p>This field MUST be set to 0x02.</p>
+</dd></dl><p><b>Reserved (2 bytes): </b>Length MUST be 2 bytes.</p><dl>
+<dd>
+<p>This field MUST be set to 0 and ignored upon
+receipt.</p>
+</dd></dl><p><b>Key Alg (4 bytes): </b>Length MUST be 4 bytes.</p><dl>
+<dd>
+<p>This field MUST be present as an unsigned integer in
+<span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a></span>
+format.</p>
+</dd>
+<dd>
+<p>Value MUST be 0x0000A400 (RSA_KEYX).</p>
+</dd></dl><p><b>Magic (4 bytes): </b>Length MUST be 4 bytes.</p><dl>
+<dd>
+<p>This field MUST be present as an unsigned integer in
+little-endian format.</p>
+</dd>
+<dd>
+<p>Value MUST be 0x32415352 (RSA2).</p>
+</dd></dl><p><b>Bitlen (4 bytes): </b>Length MUST be 4 bytes.</p><dl>
+<dd>
+<p>This field MUST be present as an unsigned integer in
+little-endian format.</p>
+</dd>
+<dd>
+<p>The value of this field MUST indicate the number of
+bits in the Rivest-Shamir-Adleman (RSA) modules. (This is the RSA <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a></span>
+size.)</p>
+</dd></dl><p><b>PubExp (4 bytes): </b>Length MUST be 4 bytes.</p><dl>
+<dd>
+<p>This field MUST be present as an unsigned integer in
+little-endian format.</p>
+</dd>
+<dd>
+<p>The value of this field MUST be the RSA <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public
+key</a></span> exponent for this key. The client SHOULD set this value to
+65,537.</p>
+</dd></dl><p><b>Modulus (variable): </b>This field MUST be of
+length ceil(bl/8), where <i>bl</i> is the value of the <b>Bitlen</b> field
+defined in the preceding diagram.</p><dl>
+<dd>
+<p>This field MUST be present as a byte string in little-endian
+format.</p>
+</dd>
+<dd>
+<p>The value MUST be the RSA key modulus. The modulus
+is defined as <i>p</i>*<i>q</i>.</p>
+</dd></dl><p><b>P (variable): </b>This field MUST be of length
+ceil(bl/16), where <i>bl</i> is the value of the <b>Bitlen</b> field defined in
+the preceding diagram.</p><dl>
+<dd>
+<p>This field MUST be present as a byte string in
+little-endian format.</p>
+</dd>
+<dd>
+<p>The value contained in this field MUST be one of the
+prime number factors of the <b>modulus</b> (given in the previous field).</p>
+</dd></dl><p><b>Q (variable): </b>This field MUST be of length
+ceil(bl/16), where <i>bl</i> is the value of the <b>Bitlen</b> field defined in
+the preceding diagram.</p><dl>
+<dd>
+<p>This field MUST be present as a byte string in
+little-endian format.</p>
+</dd>
+<dd>
+<p>The value MUST be the other prime number factor of
+the RSA modulus.</p>
+</dd></dl><p><b>Dp (variable): </b>This field MUST be of length
+ceil(bl/16), where <i>bl</i> is the value of the <b>Bitlen</b> field defined in
+the preceding diagram.</p><dl>
+<dd>
+<p>This field MUST be present as a byte string in
+little-endian format.</p>
+</dd>
+<dd>
+<p>The value of this field MUST be <i>d</i> mod (<i>p</i>-1),
+where <i>d</i> is the private exponent of this RSA private key.</p>
+</dd></dl><p><b>Dq (variable): </b>This field MUST be of length
+ceil(bl/16), where <i>bl</i> is the value of the <b>Bitlen</b> field defined in
+the preceding diagram.</p><dl>
+<dd>
+<p>This field MUST be present as a byte string in
+little-endian format.</p>
+</dd>
+<dd>
+<p>The value of this field MUST be <i>d</i> mod (<i>q</i>-1),
+where <i>d</i> is the private exponent of this RSA private key.</p>
+</dd></dl><p><b>Iq (variable): </b>This field MUST be of length
+ceil(bl/16), where <i>bl</i> is the value of the <b>Bitlen</b> field defined in
+the preceding diagram.</p><dl>
+<dd>
+<p>This field MUST be present as a byte string in
+little-endian format.</p>
+</dd>
+<dd>
+<p>This field MUST contain the inverse of <i>q</i>
+modulus <i>p</i>.</p>
+</dd></dl><p><b>D (variable): </b>This field MUST be of length
+ceil(bl/8), where <i>bl</i> is the value of the <b>Bitlen</b> field defined in
+the preceding diagram.</p><dl>
+<dd>
+<p>This field MUST be present as a byte string in
+little-endian format.</p>
+</dd>
+<dd>
+<p>The value in this field is the RSA private exponent.</p>
+</dd></dl><p><b>Note</b>  Ceil(<i>x</i>) is the value of <i>x</i>
+rounded up to the closest integer. For example, ceil(1.2) = 2 and ceil(3) = 3.</p></div>

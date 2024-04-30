@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p><b>RpcAsyncCreatePrinterIC</b> creates an <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_e6193b0f-37ad-4f30-978b-0e1e1291f674" data-linktype="relative-path">information
+context</a></span> for a specified printer.</p><p>The counterpart of this method in the Print System Remote
+Protocol is <b>RpcCreatePrinterIC</b>. All parameters not defined below are
+specified in <span><a href="../ms-rprn/d42db7d5-f141-4466-8f47-0a4be14e2fc1" data-linktype="relative-path">[MS-RPRN]</a></span>
+section <span><a href="../ms-rprn/b0686ba2-3a6b-4a6c-943f-b26600dbd88c" data-linktype="relative-path">3.1.4.2.10</a></span>.</p><dl>
+<dd>
+<div><pre> DWORD RpcAsyncCreatePrinterIC(
+   [in] PRINTER_HANDLE hPrinter,
+   [out] GDI_HANDLE* pHandle,
+   [in] DEVMODE_CONTAINER* pDevModeContainer
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object
+([MS-RPRN] section <span><a href="../ms-rprn/9c5d49b8-6920-47b0-9466-87ba910e6071" data-linktype="relative-path">2.2.1.1.4</a></span>)
+that has been opened using <b>RpcAsyncOpenPrinter</b> (section <span><a href="feddac6a-bd88-4989-95fb-715bd6ca796a" data-linktype="relative-path">3.1.4.1.1</a></span>)
+or <b>RpcAsyncAddPrinter</b> (section <span><a href="1e5e5498-e646-4fdf-8181-98862a3d6ec8" data-linktype="relative-path">3.1.4.1.2</a></span>).</p><p><b>Return Values: </b>This method returns zero to indicate
+successful completion or a nonzero Win32 error code (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>)
+to indicate failure. The client MUST treat any nonzero return value as a fatal
+error.</p><p><b>Exceptions Thrown:</b> This method MUST NOT throw any
+exceptions other than those that are thrown by the underlying <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method MUST adhere to the parameter validation,
+processing, and response requirements that are specified in [MS-RPRN] section
+3.1.4.2.10.</p></div>

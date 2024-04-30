@@ -1,0 +1,93 @@
+<div class="content"><p> </p><p>The DFS_INFO_STRUCT union relates to the <span><a href="b5dd4568-3ea4-4f27-ae03-3ebb19fa4b13" data-linktype="relative-path">NetrDfsGetInfo</a></span>,
+<span><a href="7b033d5b-8d26-4931-8b3d-7aa35e441fb0" data-linktype="relative-path">NetrDfsSetInfo</a></span>,
+and <span><a href="d2d8d56c-7ff6-4674-8193-313ddf1f1c3b" data-linktype="relative-path">NetrDfsSetInfo2</a></span>
+methods when used to retrieve or set the configuration of the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_3de8e640-501a-4b25-80a7-0ba769f3c0b9" data-linktype="relative-path">DFS
+server</a></span>. The usage model of this union is for the client to specify a
+<i>Level</i> parameter to determine which case of the DFS_INFO_STRUCT to use.</p><p>The DFS_INFO_STRUCT union has the following format.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(unsigned long)] 
+ union _DFS_INFO_STRUCT {
+   [case(1)] 
+     DFS_INFO_1* DfsInfo1;
+   [case(2)] 
+     DFS_INFO_2* DfsInfo2;
+   [case(3)] 
+     DFS_INFO_3* DfsInfo3;
+   [case(4)] 
+     DFS_INFO_4* DfsInfo4;
+   [case(5)] 
+     DFS_INFO_5* DfsInfo5;
+   [case(6)] 
+     DFS_INFO_6* DfsInfo6;
+   [case(7)] 
+     DFS_INFO_7* DfsInfo7;
+   [case(8)] 
+     DFS_INFO_8* DfsInfo8;
+   [case(9)] 
+     DFS_INFO_9* DfsInfo9;
+   [case(50)] 
+     DFS_INFO_50* DfsInfo50;
+   [case(100)] 
+     DFS_INFO_100* DfsInfo100;
+   [case(101)] 
+     DFS_INFO_101* DfsInfo101;
+   [case(102)] 
+     DFS_INFO_102* DfsInfo102;
+   [case(103)] 
+     DFS_INFO_103* DfsInfo103;
+   [case(104)] 
+     DFS_INFO_104* DfsInfo104;
+   [case(105)] 
+     DFS_INFO_105* DfsInfo105;
+   [case(106)] 
+     DFS_INFO_106* DfsInfo106;
+   [case(107)] 
+     DFS_INFO_107* DfsInfo107;
+   [case(150)] 
+     DFS_INFO_150* DfsInfo150;
+   [default]     ;
+ } DFS_INFO_STRUCT;
+</pre></div>
+</dd></dl><p><b>DfsInfo1:</b>  The <span><a href="c76762de-1249-485e-8a30-b1ff37179a3d" data-linktype="relative-path">DFS_INFO_1</a></span>
+structure contains the name of a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span> or <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS link</a></span>.
+For more information on the specifications, see section 2.2.3.1.</p><p><b>DfsInfo2:</b>  The <span><a href="a5dc283a-1fa7-4f09-a58a-0cfa3e5de625" data-linktype="relative-path">DFS_INFO_2</a></span>
+structure contains information for a DFS root or DFS link. For more information
+on specifications, see section 2.2.3.2.</p><p><b>DfsInfo3:</b>  The <span><a href="83704eb6-a3bc-4eac-8164-9625c2f2081e" data-linktype="relative-path">DFS_INFO_3</a></span>
+structure contains information for a DFS root or DFS link. For more information
+on specifications, see section 2.2.3.3.</p><p><b>DfsInfo4:</b>  The <span><a href="827866a0-973a-43a3-8df5-c5e1dd437320" data-linktype="relative-path">DFS_INFO_4</a></span>
+structure contains information for a DFS root or DFS link. For more information
+on specifications, see section 2.2.3.4.</p><p><b>DfsInfo5:</b>  The <span><a href="00691ea3-6542-44dc-8baf-200a7a747a1d" data-linktype="relative-path">DFS_INFO_5</a></span>
+structure contains information for a DFS root or DFS link. For more information
+on specifications, see section 2.2.3.5.</p><p><b>DfsInfo6:</b>  The <span><a href="30a81ad6-ace1-4312-8848-c8e03dca1a80" data-linktype="relative-path">DFS_INFO_6</a></span>
+structure contains information for a DFS root or DFS link. For more information
+on specifications, see section 2.2.3.6.</p><p><b>DfsInfo7:</b>  The <span><a href="a82f02e6-97bc-4ac2-9fb7-89e04476efda" data-linktype="relative-path">DFS_INFO_7</a></span>
+structure contains information about a DFS root or DFS link. For more
+information on specifications, see section 2.2.3.7.</p><p><b>DfsInfo8:</b>  The <span><a href="907080e2-504f-4fba-a9a6-14113a734728" data-linktype="relative-path">DFS_INFO_8</a></span>
+structure contains information about a DFS root or DFS link. For more
+information on specifications, see section 2.2.3.8.</p><p><b>DfsInfo9:</b>  The <span><a href="60b51cc6-5c92-4446-92ee-a31252de1561" data-linktype="relative-path">DFS_INFO_9</a></span>
+structure contains information about a DFS root or DFS link. For more
+information on specifications, see section 2.2.3.9.</p><p><b>DfsInfo50:</b>  The <span><a href="58eac12a-622f-44d6-bcd2-01b0e98c5139" data-linktype="relative-path">DFS_INFO_50</a></span>
+structure contains information about a DFS root or DFS link. For more
+information on specifications, see section 2.2.3.10.</p><p><b>DfsInfo100:</b>  The <span><a href="2d7862ed-0229-4cfd-973f-bbe0d2c6c0db" data-linktype="relative-path">DFS_INFO_100</a></span>
+structure contains a comment associated with a DFS root or DFS link. For more
+information on specifications, see section 2.2.5.1.</p><p><b>DfsInfo101:</b>  The <span><a href="af9d607e-04e5-4722-8d00-76cf9c7b69f9" data-linktype="relative-path">DFS_INFO_101</a></span>
+structure describes the storage state on a DFS root, DFS link, <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ac90b498-3ba4-48d6-bcd6-5495f1654671" data-linktype="relative-path">DFS root
+target</a></span>, or <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_44e2f830-c28b-41e3-8c3c-d0bb576ed9fb" data-linktype="relative-path">DFS link target</a></span>. For
+more information on specifications, see section 2.2.4.1.</p><p><b>DfsInfo102:</b>  The <span><a href="25d667fc-f150-4260-8fb2-de1d947207d4" data-linktype="relative-path">DFS_INFO_102</a></span>
+structure contains a time-out value for a DFS root or DFS link. For more
+information on specifications, see section 2.2.4.2.</p><p><b>DfsInfo103:</b>  The <span><a href="2da0a76c-4565-4766-9bba-3b6cd1e79374" data-linktype="relative-path">DFS_INFO_103</a></span>
+structure contains properties that set specific behaviors for a DFS root or DFS
+link. For more information on specifications, see section 2.2.4.3.</p><p><b>DfsInfo104:</b>  The <span><a href="088532ac-f8ff-429d-8827-844feb3318cf" data-linktype="relative-path">DFS_INFO_104</a></span>
+structure contains the priority of a DFS root target or DFS link target. For
+more information on specifications, see section 2.2.4.4.</p><p><b>DfsInfo105:</b>  The <span><a href="36898c63-0ffa-4b97-a9c1-cdae52c0f749" data-linktype="relative-path">DFS_INFO_105</a></span>
+structure contains information about a DFS root or DFS link, including comment,
+state, time-out, and <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0b8086c9-d025-45b8-bf09-6b5eca72713e" data-linktype="relative-path">DFS</a></span> behaviors that
+property flags specify. For more information on specifications, see section
+2.2.4.5.</p><p><b>DfsInfo106:</b>  The <span><a href="cda396f3-e11c-4921-9781-582a7419934f" data-linktype="relative-path">DFS_INFO_106</a></span>
+structure contains the storage state and priority for a DFS root target or DFS
+link target. For more information on specifications, see section 2.2.4.6.</p><p><b>DfsInfo107:</b>  The <span><a href="004a7aa0-92b1-4dc4-b9a3-35337fe16c14" data-linktype="relative-path">DFS_INFO_107</a></span>
+structure contains the storage state and priority for a DFS root target or DFS
+link target. For more information on specifications, see section 2.2.4.7.</p><p><b>DfsInfo150:</b>  The <span><a href="d467e9e4-91f9-414d-8861-a5bf5313972b" data-linktype="relative-path">DFS_INFO_150</a></span>
+structure contains the self-relative security descriptor associated with the
+DFS link. For more information on specifications, see section 2.2.5.2.</p></div>

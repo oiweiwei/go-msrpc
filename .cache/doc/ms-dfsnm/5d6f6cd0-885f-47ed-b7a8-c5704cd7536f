@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The DFS_INFO_200 structure relates to the <span><a href="2fc235af-49c4-476d-8b9e-933c1175a1d8" data-linktype="relative-path">NetrDfsEnumEx</a></span>
+method when used to enumerate all of the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_133ab305-ad75-4b38-8ec9-40bc0dc3b594" data-linktype="relative-path">domain-based DFS namespace</a></span>
+in a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>.
+The structure contains the name of a domain-based DFS namespace. The
+DFS_INFO_200 structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_200 {
+   [string] WCHAR* FtDfsName;
+ } DFS_INFO_200;
+</pre></div>
+</dd></dl><p><b>FtDfsName:</b>  A pointer to a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span>
+path.</p></div>

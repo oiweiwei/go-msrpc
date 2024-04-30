@@ -1,0 +1,74 @@
+<div class="content"><p> </p><p>The <b>PAC_CLIENT_INFO</b> structure is a variable length
+buffer of the PAC that contains the client&#39;s name and authentication time. It
+is used to verify that the PAC corresponds to the client of the ticket. The <b>PAC_CLIENT_INFO</b>
+structure is placed directly after the <b>Buffers</b> array of the topmost <span><a href="6655b92f-ab06-490b-845d-037e6987275f" data-linktype="relative-path">PACTYPE</a></span>
+structure (section 2.3), at the offset specified in the <b>Offset</b> field of
+the corresponding <b>PAC_INFO_BUFFER</b> structure (section <span><a href="3341cfa2-6ef5-42e0-b7bc-4544884bf399" data-linktype="relative-path">2.4</a></span>)
+in the <b>Buffers</b> array. The <b>ulType</b> field of the corresponding <b>PAC_INFO_BUFFER</b>
+is set to 0x0000000A. </p><p>The <b>PAC_CLIENT_INFO</b> structure is defined as follows.</p><p>The format of the <b>PAC_CLIENT_INFO</b> structure is
+defined as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ClientId</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>NameLength</p>
+  </td>
+  <td colspan="16">
+  <p>Name
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>ClientId (8 bytes): </b>A <span><a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a></span>
+structure in little-endian format that contains the Kerberos initial <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_7c881e2e-85a0-45e1-bd2c-5aab42bb2deb" data-linktype="relative-path">ticket-granting
+ticket (TGT)</a></span> authentication time, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90458" data-linktype="external">[RFC4120]</a></span>
+section 5.3.</p><p><b>NameLength (2 bytes): </b>An unsigned 16-bit
+integer in little-endian format that specifies the length, in bytes, of the <b>Name</b>
+field.</p><p><b>Name (variable): </b>An array of 16-bit Unicode
+characters in little-endian format that contains the client&#39;s account name.</p></div>

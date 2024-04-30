@@ -1,0 +1,7 @@
+<div class="content"><p> </p><p>This document specifies the Message Queuing (MSMQ):
+Directory Service Protocol, a <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a></span>-based
+protocol that is used by a client to remotely access and maintain <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_70ce3665-ae64-44b4-88fe-7c1dcdcd5417" data-linktype="relative-path">Message
+Queuing (MSMQ)</a></span> objects in a <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_c36db657-3138-4d9a-9289-ded5cbb8b40e" data-linktype="relative-path">directory service</a></span>
+through an <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_0e26e115-867e-4959-8a8b-5624b9d8a119" data-linktype="relative-path">MSMQ Directory Service server</a></span>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

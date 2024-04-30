@@ -1,0 +1,62 @@
+<div class="content"><p> </p><p>The <b>DNS_COUNT_NAME</b> structure is used to specify an <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">FQDN</a></span>
+in an <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a></span> message.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>Length</p>
+  </td>
+  <td colspan="8">
+  <p>LabelCount</p>
+  </td>
+  <td colspan="16">
+  <p>RawName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Length (1 byte): </b>The length, in bytes, of the
+string stored in the RawName member, including null termination. To represent
+an empty string, Length MUST be zero, LabelCount MUST be zero, and RawName MUST
+be empty.</p><p><b>LabelCount (1 byte): </b>The count of DNS labels
+in the RawName member.</p><p><b>RawName (variable): </b>A string containing an
+FQDN in which a 1-byte label length count for the subsequent label has been
+inserted before the first label and in place of each &#34;.&#34; delimiter.
+The string MUST be null-terminated. The maximum length of the string, including
+the null terminator, is 256 bytes.</p></div>

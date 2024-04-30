@@ -1,0 +1,7 @@
+<div class="content"><p> </p><p>The direct children of a given namespace are represented as
+instances of the <b>_Namespace</b> class within the parent namespace. A client
+with sufficient privilege can query and modify the child namespaces through
+operations on the <b>__Namespace</b> instances, as described in the following
+subsections.</p><p>The namespaces, their corresponding classes and instances,
+and subnamespaces and their corresponding classes and instances, MUST be
+persisted in CIM database.</p></div>

@@ -1,0 +1,217 @@
+<div class="content"><p>The WINSINTF_RECORD_ACTION_T structure defines a <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a> database record and
+the action to be performed on it. The structure <a href="cbac7a9a-0b9a-449c-96c3-d51261c95650" data-linktype="relative-path">WINSINTF_RECS_T (section 2.2.2.8)</a>
+and the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> method <a href="4f811c36-56e2-4058-a7ec-8ee6d937f608" data-linktype="relative-path">R_WinsRecordAction (section 3.1.4.1)</a>
+both use this structure.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSINTF_RECORD_ACTION_T {
+   WINSINTF_ACT_E Cmd_e;
+   [size_is(NameLen + 1)] LPSTR pName;
+   DWORD NameLen;
+   DWORD TypOfRec_e;
+   DWORD NoOfAdds;
+   [unique, size_is(NoOfAdds)] PWINSINTF_ADD_T pAdd;
+   WINSINTF_ADD_T Add;
+   LARGE_INTEGER VersNo;
+   BYTE NodeTyp;
+   DWORD OwnerId;
+   DWORD State_e;
+   DWORD fStatic;
+   DWORD_PTR TimeStamp;
+ } WINSINTF_RECORD_ACTION_T,
+  *PWINSINTF_RECORD_ACTION_T;
+</pre></div>
+</dd></dl><p><b>Cmd_e:</b>  A <a href="ebbae7e3-eb34-47e1-91be-06d40370559d" data-linktype="relative-path">WINSINTF_ACT_E</a> enumeration
+(section 2.2.1.4) value that specifies the action to be performed on the
+specified record.</p><p><b>pName:</b>  A pointer to a
+NULL-terminated string that contains the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a> and optionally
+the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_219f79c8-11bc-41f7-b06b-134566d2f5fc" data-linktype="relative-path">NetBIOS scope</a> name
+of the record. The NetBIOS scope name, if present, is appended to the NetBIOS
+name with a dot character &#34;.&#34;.</p><dl>
+<dd>
+<p>If the NetBIOS name contains fewer than 16
+characters, space characters MUST be used to pad the name string up to the <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_e0056bac-be0a-488d-86b2-eec9c6bfb947" data-linktype="relative-path">NetBIOS suffix</a>, which
+occupies the 16th character position.</p>
+</dd></dl><p><b>NameLen:</b>  The length of the string
+that <i>pName</i> points to. It has the following possible values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>16</p>
+  </td>
+  <td>
+  <p>The <b>pName</b> value points to a string that
+  contains only the NetBIOS name of the record. The <b>NameLen</b> value does
+  not include the terminating NULL character.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>18 &lt; <i>value</i></p>
+  </td>
+  <td>
+  <p>The <b>pName</b> value points to a string that
+  contains the NetBIOS name, a dot character &#34;.&#34;, and the
+  NULL-terminated NetBIOS scope name of the record. The <b>NameLen</b> value
+  includes the terminating NULL character.</p>
+  <p>If the <b>NameLen</b> value is greater than 255, the <b>pName</b>
+  string SHOULD be truncated to 254 characters plus a terminating NULL
+  character.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>TypOfRec_e:</b>  The record type. Only
+the two least-significant bits of the member value are considered valid. All
+other bits are masked with zero. The following values are allowed.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>Unique name</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>Normal group name</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>Special group name</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p><a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_de2dd901-b512-41d0-9628-1bfaf8cba365" data-linktype="relative-path">Multihomed
+  machine name</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>NoOfAdds:</b>  The number of IP
+addresses that are mapped to the NetBIOS name given in <i>pName</i>. It SHOULD
+have the value zero for unique names and <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_6e5a97b1-d09e-4ca3-8d54-00517f81fc16" data-linktype="relative-path">normal groups</a>, and it
+SHOULD have a value greater than 0x00000001 for other types of records.</p><p><b>pAdd:</b>  A pointer to an array of IP
+addresses that are mapped to the name given in <i>pName</i>. It MUST be used
+only for <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_dc10c383-6b39-433e-b8da-81e3b8471e39" data-linktype="relative-path">multihomed (2)</a>
+and <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_09607598-4e99-4144-bc61-a9b5ad002075" data-linktype="relative-path">special group</a> types
+of records.</p><p><b>Add:</b>  The IP address mapped to the
+name given in <i>pName</i>. This member MUST be used only for unique and normal
+group types of records.</p><p><b>VersNo:</b>  The version number of the
+record.</p><p><b>NodeTyp:</b>  The <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_9ae937eb-c613-45e1-be47-7354d5554795" data-linktype="relative-path">NetBT node type</a>. Only the
+two least-significant bits of the member value are considered valid. All other
+bits are masked with zero. This member MUST have one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p><a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_46333e8d-6082-46c7-945f-d0cde2a184b5" data-linktype="relative-path">B-node</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p><a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_7ffb61b0-f9a7-448a-b8ba-edf6921a18d0" data-linktype="relative-path">P-node</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p><a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_db507160-3e65-4af6-96b9-dea4444c1480" data-linktype="relative-path">M-node</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p><a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_58800c80-2904-4135-8d76-784519e39463" data-linktype="relative-path">H-node</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>OwnerId:</b>  The <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_fd7218ec-39b0-4372-bf4c-9ddfba81cb9e" data-linktype="relative-path">owner</a> IP address of the
+record, in <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a>
+byte order.</p><p><b>State_e:</b>  The state of the record.
+Only the two least-significant bits of the member value are considered valid.
+All other bits are masked with zero. This member MUST have one of the following
+values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p><a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_ea127e55-202b-4307-9009-a50438ac7e9d" data-linktype="relative-path">Active
+  record</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p><a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_1815ac10-7182-4840-aa4d-53aea8840325" data-linktype="relative-path">Released
+  record</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p><a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_07a805a3-2dd4-4f14-9738-1247b9b2226b" data-linktype="relative-path">Tombstoned</a>
+  record</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p>Deleted record</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>fStatic:</b>  A value that indicates
+whether the record is static or dynamic. A value of 0 indicates a <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_75e3d6b5-f719-46ba-8c4b-58e96ec1d5c9" data-linktype="relative-path">dynamic record</a>, and 1
+indicates a <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_7be2dd69-686c-4dbe-a5fb-0f4ca082b717" data-linktype="relative-path">static record</a>.
+Only the least-significant bit is considered valid. All other bits are masked
+with zero.</p><p><b>TimeStamp:</b>  The time stamp <a href="https://go.microsoft.com/fwlink/?LinkId=89920" data-linktype="external">[ISO-8601]</a> of the
+record.</p></div>

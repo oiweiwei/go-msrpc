@@ -1,0 +1,181 @@
+<div class="content"><p> </p><p>The value for the KEY_PROV_INFO property (if this property
+is present) MUST be in the following format:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Offset to
+  Container Name</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Offset to
+  Provider Name</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Provider
+  Type</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Key
+  Specification</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Name Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Offset to Container Name (4 bytes): </b>This MUST
+be set to the offset, in bytes, of the <b>Container Name</b> subfield of the <b>Name
+Data</b> field from the beginning of this structure. It MUST be an unsigned
+32-bit integer in little-endian format.</p><p><b>Offset to Provider Name (4 bytes): </b> This MUST
+be set to the offset, in bytes, of the <b>Provider Name</b> subfield of the <b>Name
+Data</b> field from the beginning of this structure. It MUST be an unsigned
+32-bit integer in little-endian format.</p><p><b>Provider Type  (4 bytes): </b> This field
+indicates the class of cryptographic algorithm associated with the public key
+in the <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a></span>. It MUST
+be set to the unsigned 32-bit number 0x00000001 (in little-endian format), to
+signify an RSA public key. For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90414" data-linktype="external">[RFC3280]</a></span>.</p><p><b>Flags (4 bytes): </b>This field SHOULD be set to
+0, and its value MUST be ignored by the client.</p><p><b>Reserved (8 bytes): </b>This field is 2 rows total
+in the preceding diagram and MUST be set to 0.</p><p><b>Key Specification (4 bytes): </b>This field
+indicates the cryptographic capabilities associated with the public key in the
+certificate. It MUST be set to the unsigned 32-bit number 0x00000001 (in
+little-endian format), to signify that the key is usable for both signature and
+encryption operations.</p><p><b>Name Data (variable): </b>This field MUST contain
+the following items, in any order, at the locations indicated by the respective
+preceding Offset fields. These items MUST be completely contained inside this
+field and MUST NOT overlap each other. There MUST be no unused areas within
+this field that span more than eight contiguous bytes. All unused bytes within
+this field SHOULD be set to 0. Unused bytes MUST be ignored by the
+implementation.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Container
+  Name (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Provider Name
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Container Name
+(variable): </b>This MUST be a null-terminated <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> in
+UTF-16 encoding, representing a specific key container in the cryptographic
+service provider (CSP) referred to by the provider name.</p>
+</dd>
+<dd>
+<p><b>Provider Name (variable):
+</b>This MUST be a null-terminated Unicode string in UTF-16 encoding,
+representing the CSP associated with the public key contained in the
+certificate. </p>
+</dd></dl></div>

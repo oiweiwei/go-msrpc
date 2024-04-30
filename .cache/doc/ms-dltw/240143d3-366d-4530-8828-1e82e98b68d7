@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The CMachineId structure is used to represent a <span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_e15432dc-30dd-4e3d-8757-19b639769c95" data-linktype="relative-path">MachineID</a></span>,
+which is a unique identifier that represents the identity of a computer.</p><dl>
+<dd>
+<div><pre> typedef struct CMachineId {
+   char _szMachine[16];
+ } CMachineId;
+</pre></div>
+</dd></dl><p><b>_szMachine:</b>  This member MUST be a <span><a href="87473ab8-f8a9-468d-8210-cd1d1522de42#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS
+name</a></span>, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90266" data-linktype="external">[RFC1088]</a></span>. This
+name MUST be terminated with a zero byte, and any remaining bytes MUST also be
+zero.</p></div>

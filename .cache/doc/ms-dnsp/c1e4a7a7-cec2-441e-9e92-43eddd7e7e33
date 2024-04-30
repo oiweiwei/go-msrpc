@@ -1,0 +1,106 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_RECORD_STATS</b> structure has DNS server
+statistics related to record usage. This structure MUST be formatted as
+follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>InUse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Used</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Return</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Memory</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CacheTotal</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CacheCurrent</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CacheTimeouts</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SlowFreeQueued</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SlowFreeFinished</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type
+DNSSRV_STAT_HEADER (section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>InUse (4 bytes): </b>The number of resource
+records currently allocated by the server.</p><p><b>Used (4 bytes): </b>The cumulative number of
+resource records allocated by the server.</p><p><b>Return (4 bytes): </b>The cumulative number of
+resource records freed by the server.</p><p><b>Memory (4 bytes): </b>The amount of memory, in
+bytes, currently allocated for resource records by the server.</p><p><b>CacheTotal (4 bytes): </b>The cumulative number
+resource records cached by the server.</p><p><b>CacheCurrent (4 bytes): </b>The number of resource
+records currently cached by the server.</p><p><b>CacheTimeouts (4 bytes): </b>The cumulative number
+of resource records that have been freed from the DNS server&#39;s cache.</p><p><b>SlowFreeQueued (4 bytes): </b>Some cached record
+types, such as NS and <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0365bdcc-f1f5-4494-b57c-02c897b7ea8a" data-linktype="relative-path">SOA</a></span>, are not
+immediately freed to the pool of allocated records, instead they are placed in
+a timeout queue and returned after this timeout expires. This is the cumulative
+count of such slow-free records that have been entered into the timeout queue.</p><p><b>SlowFreeFinished (4 bytes): </b>The number of slow
+frees (see <b>SlowFreeQueued</b> above) that have been completed.</p></div>

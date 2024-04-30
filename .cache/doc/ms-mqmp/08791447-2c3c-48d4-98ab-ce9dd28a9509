@@ -1,0 +1,1123 @@
+<div class="content"><p> </p><p>The CACTransferBufferV1 structure is used to send and
+receive <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">messages</a></span> via <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_70ce3665-ae64-44b4-88fe-7c1dcdcd5417" data-linktype="relative-path">MSMQ</a></span>.</p><p>Following is the layout of the CACTransferBufferV1 structure
+with <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span>
+annotations followed by descriptions of the structure members.</p><dl>
+<dd>
+<div><pre> typedef struct CACTransferBufferV1 {
+   [range(0,2)] DWORD uTransferType;
+   [switch_is(uTransferType)] union {
+     [case(CACTB_SEND)] 
+       struct {
+       QUEUE_FORMAT* pAdminQueueFormat;
+       QUEUE_FORMAT* pResponseQueueFormat;
+     } Send;
+     [case(CACTB_RECEIVE)] 
+       struct {
+       DWORD RequestTimeout;
+       DWORD Action;
+       DWORD Asynchronous;
+       DWORD Cursor;
+       [range(0,1024)] DWORD ulResponseFormatNameLen;
+       [size_is(,ulResponseFormatNameLen)] 
+         WCHAR** ppResponseFormatName;
+       DWORD* pulResponseFormatNameLenProp;
+       [range(0,1024)] DWORD ulAdminFormatNameLen;
+       [size_is(,ulAdminFormatNameLen)] 
+         WCHAR** ppAdminFormatName;
+       DWORD* pulAdminFormatNameLenProp;
+       [range(0,1024)] DWORD ulDestFormatNameLen;
+       [size_is(,ulDestFormatNameLen)] 
+         WCHAR** ppDestFormatName;
+       DWORD* pulDestFormatNameLenProp;
+       [range(0,1024)] DWORD ulOrderingFormatNameLen;
+       [size_is(,ulOrderingFormatNameLen)] 
+         WCHAR** ppOrderingFormatName;
+       DWORD* pulOrderingFormatNameLenProp;
+     } Receive;
+     [case(CACTB_CREATECURSOR)] 
+       struct CACCreateRemoteCursor CreateCursor;
+   };
+   unsigned short* pClass;
+   OBJECTID** ppMessageID;
+   [size_is(,20), length_is(,20)] unsigned char** ppCorrelationID;
+   DWORD* pSentTime;
+   DWORD* pArrivedTime;
+   unsigned char* pPriority;
+   unsigned char* pDelivery;
+   unsigned char* pAcknowledge;
+   unsigned char* pAuditing;
+   DWORD* pApplicationTag;
+   [size_is(,ulAllocBodyBufferInBytes), length_is(,ulBodyBufferSizeInBytes)] 
+     unsigned char** ppBody;
+   DWORD ulBodyBufferSizeInBytes;
+   DWORD ulAllocBodyBufferInBytes;
+   DWORD* pBodySize;
+   [size_is(,ulTitleBufferSizeInWCHARs), length_is(,ulTitleBufferSizeInWCHARs)] 
+     WCHAR** ppTitle;
+   DWORD ulTitleBufferSizeInWCHARs;
+   DWORD* pulTitleBufferSizeInWCHARs;
+   DWORD ulAbsoluteTimeToQueue;
+   DWORD* pulRelativeTimeToQueue;
+   DWORD ulRelativeTimeToLive;
+   DWORD* pulRelativeTimeToLive;
+   unsigned char* pTrace;
+   DWORD* pulSenderIDType;
+   [size_is(,uSenderIDLen)] unsigned char** ppSenderID;
+   DWORD* pulSenderIDLenProp;
+   DWORD* pulPrivLevel;
+   DWORD ulAuthLevel;
+   unsigned char* pAuthenticated;
+   DWORD* pulHashAlg;
+   DWORD* pulEncryptAlg;
+   [size_is(,ulSenderCertLen)] unsigned char** ppSenderCert;
+   DWORD ulSenderCertLen;
+   DWORD* pulSenderCertLenProp;
+   [size_is(,ulProvNameLen)] WCHAR** ppwcsProvName;
+   DWORD ulProvNameLen;
+   DWORD* pulAuthProvNameLenProp;
+   DWORD* pulProvType;
+   long fDefaultProvider;
+   [size_is(,ulSymmKeysSize)] unsigned char** ppSymmKeys;
+   DWORD ulSymmKeysSize;
+   DWORD* pulSymmKeysSizeProp;
+   unsigned char bEncrypted;
+   unsigned char bAuthenticated;
+   unsigned short uSenderIDLen;
+   [size_is(,ulSignatureSize)] unsigned char** ppSignature;
+   DWORD ulSignatureSize;
+   DWORD* pulSignatureSizeProp;
+   GUID** ppSrcQMID;
+   XACTUOW* pUow;
+   [size_is(,ulMsgExtensionBufferInBytes), length_is(,ulMsgExtensionBufferInBytes)] 
+     unsigned char** ppMsgExtension;
+   DWORD ulMsgExtensionBufferInBytes;
+   DWORD* pMsgExtensionSize;
+   GUID** ppConnectorType;
+   DWORD* pulBodyType;
+   DWORD* pulVersion;
+ } CACTransferBufferV1;
+</pre></div>
+</dd></dl><p><b>uTransferType:</b>  The <b>uTransferType</b>
+member specifies which of the <b>Send</b>, <b>Receive</b>, or <b>CreateCursor</b>
+union members is present in the CACTransferBufferV1 structure. The <b>uTransferType</b>
+member MUST be assigned a value from the <span><a href="97666dcb-8c6b-4c0b-8fc2-153bb9cfb2b7" data-linktype="relative-path">TRANSFER_TYPE (section 2.2.2.1)</a></span>
+enumeration.</p><p><b>Send:</b>  The <b>Send</b> structure is
+present in the CACTransferBufferV1 structure when the value of the <b>uTransferType</b>
+member is 0x00000000 (CACTB_SEND). The <b>Send</b> structure is defined inline
+to the CACTransferBufferV1 structure. The <b>Send</b> structure members are
+defined as follows:</p><p><b>pAdminQueueFormat:</b>  The <b>pAdminQueueFormat</b>
+member is a <b>QUEUE_FORMAT</b> (<span><a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a></span>
+section <span><a href="../ms-mqmq/905e154a-6123-42a9-86cb-e0a3169820f2" data-linktype="relative-path">2.2.7</a></span>)
+structure. If present, the <b>pAdminQueueFormat</b> member describes the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_de288973-200c-431f-99be-2165bb440243" data-linktype="relative-path">administration
+queue</a></span> that is to be used for send operation acknowledgments.</p><p><b>pResponseQueueFormat:</b>  The <b>pResponseQueueFormat</b>
+member is a <b>QUEUE_FORMAT</b> structure. If present, the <b>pResponseQueueFormat</b>
+member describes the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span> that is to be
+used for application-specific responses. As an application-specific value, this
+field SHOULD be ignored by the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>.</p><p><b>Receive:</b>  The Receive structure is
+present in the CACTransferBufferV1 structure when the value of the <b>uTransferType</b>
+member is 0x00000001 (CACTB_RECEIVE). The Receive structure is defined inline
+to the CACTransferBufferV1 structure. The Receive structure members are defined
+as follows:</p><p><b>RequestTimeout:</b>  The <b>RequestTimeout</b>
+member specifies the amount of time (in milliseconds) to wait for a message to
+be returned before returning a failure. </p><p><b>Action:</b>  The <b>Action</b> member
+specifies the type of receive operation that is to be performed. The <b>Action</b>
+member MUST specify one of the values: 0x00000000 (MQ_ACTION_RECEIVE),
+0x80000000 (MQ_ACTION_PEEK_CURRENT), or 0x80000001 (MQ_ACTION_PEEK_NEXT).</p><dl>
+<dd>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQ_ACTION_RECEIVE</p>
+  </td>
+  <td>
+  <p>0x00000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_ACTION_PEEK_CURRENT</p>
+  </td>
+  <td>
+  <p>0x80000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_ACTION_PEEK_NEXT</p>
+  </td>
+  <td>
+  <p>0x80000001</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd></dl><p><b>Asynchronous:</b>  The <b>Asynchronous</b>
+member is used as a Boolean variable to indicate if the receive is to be
+performed asynchronously. An <b>Asynchronous</b> member value of 0x00000000
+SHOULD be interpreted as specifying FALSE (receive operation is not to be
+performed asynchronously) and all other values SHOULD be interpreted as TRUE
+(receive operation is to be performed asynchronously).<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a></p><p><b>Cursor:</b>  A cursor handle obtained
+from <span><a href="e8d526c6-a119-4d27-8fac-bf59bab72f30" data-linktype="relative-path">rpc_ACCreateCursorEx (section 3.1.5.4)</a></span>.
+A cursor can be used to reference a specific position within the message queue,
+rather than the first message in the queue, from which the message will be
+retrieved.</p><p><b>ulResponseFormatNameLen:</b>  The <b>ulResponseFormatNameLen</b>
+member specifies the size (in count of Unicode characters) of the string
+allocated for the <b>ppResponseFormatName</b> member. The <b>ulResponseFormatNameLen</b>
+member MUST have a value in the range of 0 to 1024, inclusive.</p><p><b>ppResponseFormatName:</b>  A
+null-terminated Unicode string containing a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_390ae273-7109-44eb-981f-aa157e6b37c0" data-linktype="relative-path">format name</a></span> (as
+specified in [MS-MQMQ]) which indicates an application-defined queue which can
+be used for response messages. This value is used only by MSMQ applications,
+and it MUST be ignored by <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_9cc28d04-4172-4d09-bb36-9f33d073379f" data-linktype="relative-path">MSMQ queue managers</a></span>.</p><p><b>pulResponseFormatNameLenProp:</b>  The <b>pulResponseFormatNameLenProp</b>
+member specifies the size (in count of Unicode characters) of the string
+contained in the <b>ppResponseFormatName</b> member.</p><p><b>ulAdminFormatNameLen:</b>  The <b>ulAdminFormatNameLen</b>
+member specifies the size (in count of Unicode characters) of the string
+allocated for the <b>ppAdminFormatName</b> member. The <b>ulAdminFormatNameLen</b>
+member MUST have a value in the range of 0 to 1024, inclusive.</p><p><b>ppAdminFormatName:</b>  A
+null-terminated Unicode string containing a format name (as specified in
+[MS-MQMQ]) which indicates an application-defined administration queue to which
+acknowledgment messages will be directed.</p><p><b>pulAdminFormatNameLenProp:</b>  The <b>pulAdminFormatNameLenProp</b>
+member specifies the size (in count of Unicode characters) of the string
+contained in the <b>ppAdminFormatName</b> member.</p><p><b>ulDestFormatNameLen:</b>  The <b>ulDestFormatNameLen</b>
+member specifies the size (in count of Unicode characters) of the string
+allocated for the <b>ppDestFormatName</b> member. The <b>ulDestFormatNameLen</b>
+member MUST have a value in the range of 0 to 1024, inclusive.</p><p><b>ppDestFormatName:</b>  A null-terminated
+Unicode string containing a format name (as specified in [MS-MQMQ]) that
+indicates the name of a message&#39;s destination queue.</p><p><b>pulDestFormatNameLenProp:</b>  The <b>pulDestFormatNameLenProp</b>
+member specifies the size (in count of Unicode characters) of the string
+contained in the <b>ppDestFormatName</b> member.</p><p><b>ulOrderingFormatNameLen:</b>  The <b>ulOrderingFormatNameLen</b>
+member specifies the size (in count of Unicode characters) of the string
+allocated for the <b>ppOrderingFormatName</b> member. The <b>ulOrderingFormatNameLen</b>
+member MUST have a value in the range of 0 to 1024, inclusive.</p><p><b>ppOrderingFormatName:</b>  A
+null-terminated Unicode string containing a format name (as specified in
+[MS-MQMQ]) that indicates the name of the MSMQ <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_ebc1f4cb-7188-4800-aa1e-a365b2d87ba0" data-linktype="relative-path">order queue</a></span> that
+tracks the ordering of transactional messages.</p><p><b>pulOrderingFormatNameLenProp:</b>  The <b>pulOrderingFormatNameLenProp</b>
+member specifies the size (in count of Unicode characters) of the string
+contained in the <b>ppOrderingFormatName</b> member.</p><p><b>CreateCursor:</b>  The <b>CreateCursor</b>
+member contains information for creating a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a></span> which is used
+when receiving messages from a queue. The <b>CreateCursor</b> member is present
+in the CACTransferBufferV1 structure when the value of the <b>uTransferType</b>
+member is 0x00000002 (CACTB_CREATECURSOR). The <b>CreateCursor</b> member is
+not used by any of the methods defined by the qmcomm and qmcomm2 interfaces.</p><p><b>pClass:</b>  This field indicates the
+message classification, such as a positive acknowledgment, a system-generated
+report message, or a normal application-generated message. It contains a 16-bit
+structure as defined below:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>0</p>
+   </th>
+   <th>
+   <p>1</p>
+   </th>
+   <th>
+   <p>2</p>
+   </th>
+   <th>
+   <p>3</p>
+   </th>
+   <th>
+   <p>4</p>
+   </th>
+   <th>
+   <p>5</p>
+   </th>
+   <th>
+   <p>6</p>
+   </th>
+   <th>
+   <p>7</p>
+   </th>
+   <th>
+   <p>8</p>
+   </th>
+   <th>
+   <p>9</p>
+   </th>
+   <th>
+   <p>1 0</p>
+   </th>
+   <th>
+   <p>1</p>
+   </th>
+   <th>
+   <p>2</p>
+   </th>
+   <th>
+   <p>3</p>
+   </th>
+   <th>
+   <p>4</p>
+   </th>
+   <th>
+   <p>5</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td colspan="9">
+  <p>Class Code</p>
+  </td>
+  <td colspan="4">
+  <p>Reserved</p>
+  </td>
+  <td>
+  <p>H</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>S</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Class Code</p>
+  <p>0x00 — 0xFF</p>
+  </td>
+  <td>
+  <p>Specifies the type of the acknowledgment. This field
+  uniquely classifies the message type within the groupings defined by the
+  fields described above. If the H bit is set, this field contains an HTTP
+  status code.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Reserved</p>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>MUST be set to all zeros. <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">Clients</a></span> and
+  servers MUST ignore the <b>Reserved</b> member.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>H</p>
+  <p>0 — 1</p>
+  </td>
+  <td>
+  <p>Specifies whether or not HTTP is being used. A value
+  of 0 MUST be used to specify that HTTP is not being used. A value of 1 MUST
+  be used to specify that HTTP is being used. If 1, the <b>Class Code</b> field
+  contains an HTTP status code.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>R</p>
+  <p>0 — 1</p>
+  </td>
+  <td>
+  <p>Specifies the stage at which the acknowledgment is to
+  occur. A value of 0 MUST be used to specify that the acknowledgment is for
+  the delivery (arrival) stage. A value of 1 MUST be used to specify that the
+  acknowledgment is for the receive stage.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>S</p>
+  <p>0 — 1</p>
+  </td>
+  <td>
+  <p>Specifies the type of acknowledgment. A value of 0
+  MUST be used to specify that normal (positive acknowledgment) message
+  processing has occurred. A value of 1 MUST be used to specify that abnormal
+  (negative acknowledgment) message processing has occurred.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The following table provides correspondence between
+the message class values defined in [MS-MQMQ] section <span><a href="../ms-mqmq/bb697835-fe47-4ec3-8457-6c06880a2138" data-linktype="relative-path">2.2.18.1.6</a></span>
+with the abstract message class types defined in <span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section <span><a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">3.1.1.12</a></span>.</p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Message Class Value</p>
+   </th>
+   <th>
+   <p>Message Class Type</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQMSG_CLASS_NORMAL</p>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>Normal</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_REPORT</p>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>Report</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_ACK_REACH_QUEUE</p>
+  <p>0x0002</p>
+  </td>
+  <td>
+  <p>AckReachQueue</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_ACK_RECEIVE</p>
+  <p>0x4000</p>
+  </td>
+  <td>
+  <p>AckReceive</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_BAD_DST_Q</p>
+  <p>0x8000</p>
+  </td>
+  <td>
+  <p>NackBadDestQueue</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_DELETED</p>
+  <p>0x8001</p>
+  </td>
+  <td>
+  <p>NackPurged</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_REACH_QUEUE_TIMEOUT </p>
+  <p>0x8002</p>
+  </td>
+  <td>
+  <p>NackReachQueueTimeout</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_Q_EXCEED_QUOTA</p>
+  <p>0x8003</p>
+  </td>
+  <td>
+  <p>NackQueueExceedQuota</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_ACCESS_DENIED</p>
+  <p>0x8004</p>
+  </td>
+  <td>
+  <p>NackAccessDenied</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_HOP_COUNT_EXCEEDED</p>
+  <p>0x8005</p>
+  </td>
+  <td>
+  <p>NackHopCountExceeded</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_BAD_SIGNATURE</p>
+  <p>0x8006</p>
+  </td>
+  <td>
+  <p>NackBadSignature</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_BAD_ENCRYPTION </p>
+  <p>0x8007</p>
+  </td>
+  <td>
+  <p>NackBadEncryption</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_NOT_TRANSACTIONAL_Q </p>
+  <p>0x8009</p>
+  </td>
+  <td>
+  <p>NackNotTransactionalQueue</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_NOT_TRANSACTIONAL_MSG</p>
+  <p>0x800a</p>
+  </td>
+  <td>
+  <p>NackNotTransactionalMessage</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_UNSUPPORTED_CRYPTO_PROVIDER</p>
+  <p>0x800b</p>
+  </td>
+  <td>
+  <p>NackUnsupportedCryptoProvider</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_Q_DELETED</p>
+  <p>0xc000</p>
+  </td>
+  <td>
+  <p>NackQueueDeleted</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_Q_PURGED</p>
+  <p>0xc001</p>
+  </td>
+  <td>
+  <p>NackQueuePurged</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_RECEIVE_TIMEOUT</p>
+  <p>0xc002</p>
+  </td>
+  <td>
+  <p>NackReceiveTimeout</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_RECEIVE_REJECTED</p>
+  <p>0xc004</p>
+  </td>
+  <td>
+  <p>NackReceiveRejected</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd></dl><p><b>ppMessageID:</b>  The <b>ppMessageID</b>
+member, if present, specifies a value that can be used to correlate response
+messages to sent messages.</p><p><b>ppCorrelationID:</b>  If present, the <b>ppCorrelationID</b>
+member is an array of bytes containing an <span><a href="../ms-mqmq/653f80a3-6585-4cca-bb7f-5154b4ad0fab" data-linktype="relative-path">OBJECTID</a></span>
+structure (as specified in [MS-MQMQ] section 2.2.8). The <b>ppCorrelationID</b>
+member, if present, contains a value copied from the <b>ppMessageID</b> member
+of a previous request and can be used to correlate responses with previously
+sent messages. The size (in count of bytes) of <b>ppCorrelationID</b> MUST NOT
+exceed 20.</p><p><b>pSentTime:</b>  The <b>pSentTime</b>
+member is formatted in <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">UTC</a></span>. The <b>pSentTime</b>
+member specifies the time that the message was sent.</p><p><b>pArrivedTime:</b>  The <b>pArrivedTime</b>
+member is formatted in UTC. The <b>pArrivedTime</b> member specifies the time
+the message was received.</p><p><b>pPriority:</b>  The <b>pPriority</b>
+member is a single byte. The <b>pPriority</b> member specifies the processing
+priority for the message with larger values indicating a higher priority. The
+byte value MUST be in the range of 0x00 to 0x07. If no priority is set, the
+default priority value of 0x03 is used. The <b>pPriority</b> member is ignored
+for transactional messages. Messages that are not part of a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a></span>
+will be processed in arrival sequence within priority. The <b>pPriority</b>
+member is ignored if the message is a part of a transaction.</p><p><b>pDelivery:</b>  The <b>pDelivery</b>
+member is a single byte. The <b>pDelivery</b> member MUST specify a value of
+0x00 or 0x01.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>A value of 0x00 specifies that the message is not
+  recoverable. The message can remain in volatile storage and is subject to
+  loss in the event of a system crash. This value corresponds to
+  Message.DeliveryGuarantee.Express as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>A value of 0x01 specifies that the message is
+  recoverable and is to be written to non-volatile storage as it moves through
+  the network to its destination and can survive a system crash. Recoverable
+  messages do not have to be part of a transaction. This value corresponds to
+  Message.DeliveryGuarantee.Recoverable as defined in [MS-MQDMPR] section
+  3.1.1.12.</p>
+  </td>
+ </tr></tbody></table><p><b>pAcknowledge:</b>  The <b>pAcknowledge</b>
+member is a single byte. The <b>pAcknowledge</b> member value specifies the
+types of acknowledgment messages that are to be generated for this message.
+Acknowledgment messages are returned in the administration queue. The <b>pAcknowledge</b>
+member value MUST be assigned from the following list:</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQMSG_ACKNOWLEDGMENT_NONE</p>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>No acknowledgment needed. This value corresponds to
+  Message.AcknowledgementsRequested.None as defined in [MS-MQDMPR] section
+  3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_ACKNOWLEDGMENT_POS_ARRIVAL</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>Positive acknowledgment is to be sent when the message
+  is placed in the destination queue. This value corresponds to
+  Message.AcknowledgementsRequested.AckPosArrival as defined in [MS-MQDMPR]
+  section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_ACKNOWLEDGMENT_POS_RECEIVE</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>Positive acknowledgment is to be sent when the message
+  is received from the destination queue. This value corresponds to
+  Message.AcknowledgementsRequested.AckPosReceive as defined in [MS-MQDMPR]
+  section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_ACKNOWLEDGMENT_NEG_ARRIVAL</p>
+  <p>0x04</p>
+  </td>
+  <td>
+  <p>Negative acknowledgment is to be sent when the message
+  fails to arrive at the destination queue. This value corresponds to
+  Message.AcknowledgementsRequested.AckNegArrival as defined in [MS-MQDMPR]
+  section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_ACKNOWLEDGMENT_NACK_REACH_QUEUE</p>
+  <p>0x04</p>
+  </td>
+  <td>
+  <p>Negative acknowledgment is to be sent when the message
+  fails to arrive at the destination queue. This value corresponds to
+  Message.AcknowledgementsRequested.AckNegArrival as defined in [MS-MQDMPR]
+  section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_ACKNOWLEDGMENT_FULL_REACH_QUEUE</p>
+  <p>0x05</p>
+  </td>
+  <td>
+  <p>Positive acknowledgment is to be sent when the message
+  is placed in the destination queue and/or negative acknowledgment is to be
+  sent when the message fails to arrive at the destination queue. This value
+  corresponds to a combination of
+  Message.AcknowledgementsRequested.AckPosArrival and AckNegArrival as defined
+  in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_ACKNOWLEDGMENT_NEG_RECEIVE</p>
+  <p>0x08</p>
+  </td>
+  <td>
+  <p>Negative acknowledgment is to be sent when the message
+  fails to be received from the destination queue. This value corresponds to
+  Message.AcknowledgementsRequested.AckNegReceive as defined in [MS-MQDMPR]
+  section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_ACKNOWLEDGMENT_NACK_RECEIVE</p>
+  <p>0x0C</p>
+  </td>
+  <td>
+  <p>Negative acknowledgment is to be sent when the message
+  fails to arrive at the destination queue or when a receive for the message
+  from the destination queue fails. This value corresponds to a combination of
+  Message.AcknowledgementsRequested.AckNegReceive and AckNegArrival as defined
+  in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_ACKNOWLEDGMENT_FULL_RECEIVE</p>
+  <p>0x0E</p>
+  </td>
+  <td>
+  <p>Positive acknowledgment is to be sent when the message
+  is received from the destination queue and a negative acknowledgment is to be
+  sent when the message fails to arrive at the destination queue or a negative
+  acknowledgment is to be sent when a receive for the message from the
+  destination queue fails. This value corresponds to a combination of
+  Message.AcknowledgementsRequested.AckNegReceive, AckNegArrival, and
+  AckPosReceive as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr></tbody></table><p><b>pAuditing:</b>  The <b>pAuditing</b>
+member is a single byte. The <b>pAuditing</b> member value specifies the conditions
+under which copies of the message are to be stored as the message is routed to
+the destination queue. The <b>pAuditing</b> member value MUST be assigned from
+the following list:</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQMSG_JOURNAL_NONE</p>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>Do not store copies. This value corresponds to a <b>Message.PositiveJournalingRequested</b>
+  value of False and a <b>Message.NegativeJournalingRequested</b> value of
+  False, as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_DEADLETTER</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>Store copy in <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_99517f21-e7cf-4c8f-a651-0dd969828cba" data-linktype="relative-path">dead-letter queue</a></span>
+  on failure. This value corresponds to a <b>Message.PositiveJournalingRequested</b>
+  value of False and a <b>Message.NegativeJournalingRequested</b> value of
+  True, as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_JOURNAL</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>Store copy in <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_89cac287-8784-4fdf-893f-739cd0ef3785" data-linktype="relative-path">queue journal</a></span> upon
+  successful delivery to next computer. This value corresponds to a <b>Message.PositiveJournalingRequested</b>
+  value of True and a <b>Message.NegativeJournalingRequested</b> value of
+  False, as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_DEADLETTER|MQMSG_JOURNAL</p>
+  <p>0x03</p>
+  </td>
+  <td>
+  <p>Store copy in queue journal upon successful delivery
+  to next computer. Store copy in dead-letter queue on failure. This value corresponds
+  to a <b>Message.PositiveJournalingRequested</b> value of True and a <b>Message.NegativeJournalingRequested</b>
+  value of True, as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr></tbody></table><p><b>pApplicationTag:</b>  The <b>pApplicationTag</b>
+member value is a user-provided item that is passed through unmodified to the
+message-receiving application. A common use of the <b>pApplicationTag</b>
+member value is to indicate to the receiving application the type of data
+contained in the <b>ppMsgExtension</b> member.</p><p><b>ppBody:</b>  The <b>ppBody</b> member is
+an array of bytes. When the <b>ppBody</b> member is present it contains the
+user message payload.</p><p><b>ulBodyBufferSizeInBytes:</b>  The <b>ulBodyBufferSizeInBytes</b>
+member specifies the size (in count of bytes) of the data present in the <b>ppBody</b>
+member. The value of the <b>ulBodyBufferSizeInBytes</b> member MUST be less
+than or equal to the value in the <b>ulAllocBodyBufferInBytes</b> member.</p><p><b>ulAllocBodyBufferInBytes:</b>  The <b>ulAllocBodyBufferInBytes</b>
+member specifies the size (in count of bytes) of the buffer that is allocated
+to contain the <b>ppBody</b> member.</p><p><b>pBodySize:</b>  The <b>pBodySize</b>
+member specifies the size (in count of bytes) of the data present in the <b>ppBody</b>
+member after an encryption or decryption operation has been performed on the <b>ppBody</b>
+member. The value of the <b>pBodySize</b> member MUST be less than or equal to
+the value in the <b>ulAllocBodyBufferInBytes</b> member.</p><p><b>ppTitle:</b>  The <b>ppTitle</b> member,
+when present, is a Unicode string. The <b>ppTitle</b> member specifies a title
+associated with the message.</p><p><b>ulTitleBufferSizeInWCHARs:</b>  The <b>ulTitleBufferSizeInWCHARs</b>
+member specifies the size (in count of Unicode characters) of the <b>ppTitle</b>
+member. The <b>ulTitleBufferSizeInWCHARs</b> member MUST NOT exceed 250.</p><p><b>pulTitleBufferSizeInWCHARs:</b>  The <b>pulTitleBufferSizeInWCHARs</b>
+member specifies the actual size (in count of Unicode characters) of the
+string, if present, in the <b>ppTitle</b> member Unicode string.</p><p><b>ulAbsoluteTimeToQueue:</b>  The <b>ulAbsoluteTimeToQueue</b>
+member value provided by the client specifies the number of seconds within
+which the message MUST reach the destination queue or be discarded. Internally,
+<b>ulAbsoluteTimeToQueue</b> is converted to a UTC time using the clock of the
+system on which the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue manager</a></span> is
+executing.</p><p><b>pulRelativeTimeToQueue:</b>  The <b>pulRelativeTimeToQueue</b>
+member specifies the number of seconds within which the response message MUST
+reach the destination queue or be discarded. </p><p><b>ulRelativeTimeToLive:</b>  The <b>ulRelativeTimeToLive</b>
+member value specifies the number of seconds within which the message MUST be
+received from the destination queue or be discarded. Internally, <b>ulRelativeTimeToLive</b>
+is converted to a UTC time using the clock of the system on which the queue
+manager is executing.</p><p><b>pulRelativeTimeToLive:</b>  The <b>pulRelativeTimeToLive</b>
+member specifies the number of seconds remaining before the response message
+will be discarded if it is not received from the destination queue. </p><p><b>pTrace:</b>  The <b>pTrace</b> member
+MUST be a single byte and indicates whether or not tracing is active.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>A value of 0x00 MUST be used to specify that tracing
+  is not active. This value corresponds to <b>Message.TracingRequested</b>
+  value of False, as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>A value of 0x01 MUST be used to specify that tracing
+  is active. This value corresponds to <b>Message.TracingRequested</b> value of
+  True, as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr></tbody></table><p><b>pulSenderIDType:</b>  The <b>pulSenderIDType</b>
+member specifies the type of the <b>ppSenderID</b> member contents. The <b>pulSenderIDType</b>
+member value MUST be assigned from the following list:</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQMSG_SENDERID_TYPE_NONE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No sender ID is present. This value corresponds to <b>Message.SenderIdentifierType</b>
+  value of None, as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_SENDERID_TYPE_SID</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The sender ID is a <span><a href="../ms-dtyp/78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">SID</a></span>.
+  This value corresponds to <b>Message.SenderIdentifierType</b> value of Sid,
+  as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_SENDERID_TYPE_QM</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The sender ID is the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> assigned to a
+  queue manager. This value corresponds to <b>Message.SenderIdentifierType</b>
+  value of QueueManagerIdentifier, as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr></tbody></table><p><b>ppSenderID:</b>  The <b>ppSenderID</b>
+member MUST be an array of bytes. When the value of the <b>pulSenderIDType</b>
+member is 0x00000000 (MQMSG_SENDERID_TYPE_NONE), the <b>ppSenderID</b> member
+MUST NOT be present. If the value of the <b>pulSenderIDType</b> member is
+0x00000001 (MQMSG_SENDERID_TYPE_SID), the <b>ppSenderID</b> member MUST contain
+a SID. If the value of the <b>pulSenderIDType</b> member is 0x00000002
+(MQMSG_SENDERID_TYPE_QM), the <b>ppSenderID</b> member MUST contain a valid
+MSMQ Site GUID.</p><p><b>pulSenderIDLenProp:</b>  The <b>pulSenderIDLenProp</b>
+member specifies the size (in count of bytes) of the data present in the <b>ppSenderID</b>
+member.</p><p><b>pulPrivLevel:</b>  The <b>pulPrivLevel</b>
+member specifies the privacy level that is used for processing the message. The
+<b>pulPrivLevel</b> member value MUST be assigned from the following list:</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQMSG_PRIV_LEVEL_NONE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The message is not private. This value corresponds to <b>Message.PrivacyLevel</b>
+  value of None, as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_PRIV_LEVEL_BODY_BASE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The message is private and the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_c9b94107-addb-4246-85b2-6c1cab7d492e" data-linktype="relative-path">Cryptographic
+  Service Provider (CSP)</a></span> will use a 40-bit encryption key to encrypt
+  and decrypt the message body. This value corresponds to <b>Message.PrivacyLevel</b>
+  value of Base, as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_PRIV_LEVEL_BODY_ENHANCED</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The message is private and the CSP will use a 128-bit
+  encryption key to encrypt and decrypt the message body. This value
+  corresponds to <b>Message.PrivacyLevel</b> value of Enhanced, as defined in
+  [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr></tbody></table><p><b>ulAuthLevel:</b>  The <b>ulAuthLevel</b>
+member is used only in local interprocess communication and therefore has no
+meaning when this protocol is used over a network. Servers MUST ignore this
+field, and clients can specify any value.</p><p><b>pAuthenticated:</b>  The <b>pAuthenticated</b>
+member is a single byte. The <b>pAuthenticated</b> member value is used to
+determine the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_bfb9708e-9d05-4f79-8969-ef63f73aa434" data-linktype="relative-path">level of authentication</a></span>
+that has been performed on the message. The <b>pAuthenticated</b> member value
+MUST be assigned from the following list:</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQMSG_AUTHENTICATION_NOT_REQUESTED</p>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>Authentication has not been performed. This value
+  corresponds to <b>Message.AuthenticationLevel</b> value of None, as defined
+  in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_AUTHENTICATED_SIG10</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>Authentication has been performed using an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_cf9a8e0f-8060-464b-a673-fe4f815d3d8a" data-linktype="relative-path">MSMQ
+  1.0 digital signature</a></span>. This value corresponds to <b>Message.AuthenticationLevel</b>
+  value of Sig10, as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_AUTHENTICATED_SIG20</p>
+  <p>0x03</p>
+  </td>
+  <td>
+  <p>Authentication has been performed using an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_46782277-690b-4a09-ad6d-8c36b11e51cd" data-linktype="relative-path">MSMQ
+  2.0 digital signature</a></span>. This value corresponds to <b>Message.AuthenticationLevel</b>
+  value of Sig20, as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_AUTHENTICATED_SIG30</p>
+  <p>0x05</p>
+  </td>
+  <td>
+  <p>Authentication has been performed using an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_8d9cdb58-020b-4a32-8800-473577a27cd0" data-linktype="relative-path">MSMQ
+  3.0 digital signature</a></span>. This value corresponds to <b>Message.AuthenticationLevel</b>
+  value of Sig30, as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_AUTHENTICATED_SIGXML</p>
+  <p>0x09</p>
+  </td>
+  <td>
+  <p>Authentication has been performed using an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_42b577ca-a377-4062-8bbd-73d6283bd35f" data-linktype="relative-path">XML
+  digital signature</a></span>. This value corresponds to <b>Message.AuthenticationLevel</b>
+  value of XMLSig, as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr></tbody></table><p><b>pulHashAlg:</b>  The <b>pulHashAlg</b>
+member specifies the hashing algorithm that is to be used in the digital
+signing process and by the authentication process. The <b>pulHashAlg</b> member
+value MUST be assigned from the following list:</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQMSG_CALG_MD2</p>
+  <p>0x00008001</p>
+  </td>
+  <td>
+  <p>Use the MD2 algorithm as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90273" data-linktype="external">[RFC1319]</a></span>.
+  This value corresponds to the <b>Message.HashAlgorithm</b> value of MD2, as
+  defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CALG_MD4</p>
+  <p>0x00008002</p>
+  </td>
+  <td>
+  <p>Use the MD4 algorithm as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90274" data-linktype="external">[RFC1320]</a></span>.
+  This value corresponds to the <b>Message.HashAlgorithm</b> value of MD4, as
+  defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CALG_MD5</p>
+  <p>0x00008003</p>
+  </td>
+  <td>
+  <p>Use the MD5 algorithm as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90275" data-linktype="external">[RFC1321]</a></span>.
+  This value corresponds to the <b>Message.HashAlgorithm</b> value of MD5, as
+  defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CALG_SHA1</p>
+  <p>0x00008004</p>
+  </td>
+  <td>
+  <p>Use the SHA-1 algorithm as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90408" data-linktype="external">[RFC3174]</a></span>.
+  This value corresponds to the <b>Message.HashAlgorithm</b> value of SHA1, as
+  defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CALG_SHA_256</p>
+  <p> 0x0000800C</p>
+  </td>
+  <td>
+  <p>Use the SHA-256 algorithm, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89868" data-linktype="external">[FIPS180-2]</a></span>.
+  This value corresponds to the <b>Message.HashAlgorithm</b> value of SHA_256,
+  as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CALG_SHA_512</p>
+  <p>0x0000800E</p>
+  </td>
+  <td>
+  <p>Use the SHA-512 algorithm, as specified in
+  [FIPS180-2]. This value corresponds to the <b>Message.HashAlgorithm</b> value
+  of SHA_512, as defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr></tbody></table><p><b>pulEncryptAlg:</b>  The <b>pulEncryptAlg</b>
+member specifies that the encryption algorithm is to be used to encrypt and
+decrypt the message body. The <b>pulEncryptAlg</b> member value MUST be
+assigned from the following list:</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQMSG_CALG_RC2</p>
+  <p>0x00006602</p>
+  </td>
+  <td>
+  <p>Use the RC2 encryption algorithm as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90330" data-linktype="external">[RFC2268]</a></span>.
+  This value corresponds to <b>Message.EncryptionAlgorithm</b> value of RC2, as
+  defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CALG_RC4</p>
+  <p>0x00006801</p>
+  </td>
+  <td>
+  <p>Use the RC4 encryption algorithm as specified in <span>[RC4]</span>.
+  This value corresponds to <b>Message.EncryptionAlgorithm</b> value of RC4, as
+  defined in [MS-MQDMPR] section 3.1.1.12.</p>
+  </td>
+ </tr></tbody></table><p><b>ppSenderCert:</b>  The <b>ppSenderCert</b>
+member is an array of bytes. If not NULL, the <b>ppSenderCert</b> member MUST
+contain the message sender&#39;s X509 certificate. The byte length of the buffer
+MUST be indicated by <b>ulSenderCertLen</b>.</p><p><b>ulSenderCertLen:</b>  The <b>ulSenderCertLen</b>
+member specifies the byte length of the certificate contained in <b>ppSenderCert</b>.</p><p><b>pulSenderCertLenProp:</b>  The <b>pulSenderCertLenProp</b>
+member specifies the length (in count of bytes) of the certificate contained in
+<b>ppSenderCert</b>.</p><p><b>ppwcsProvName:</b>  The <b>ppwcsProvName</b>
+member is a Unicode string. If present, the <b>ppwcsProvName</b> member specifies
+the name of the Cryptographic Service Provider (CSP) that is used to generate
+digital signatures for the message.</p><p><b>ulProvNameLen:</b>  The <b>ulProvNameLen</b>
+member specifies the size (in count of Unicode characters) of the buffer that
+was allocated to contain the <b>ppwcsProvName</b> string.</p><p><b>pulAuthProvNameLenProp:</b>  The <b>pulAuthProvNameLenProp</b>
+member specifies the size (in count of Unicode characters) of the CSP name
+contained in <b>ppwcsProvName</b>, plus the size of an enhanced signature
+appended to the <b>ppSignature</b> buffer. Rules for computing and
+understanding values for this field are defined in sections <span><a href="328a5652-db8d-4426-b01c-2c1e499086df" data-linktype="relative-path">3.1.5.3</a></span>
+and 3.1.5.4.</p><p><b>pulProvType:</b>  The <b>pulProvType</b>
+member specifies the type of CSP that is named by <b>ppwcsProvName</b>.</p><p><b>fDefaultProvider:</b>  The <b>fDefaultProvider</b>
+member specifies if the CSP named by <b>ppwcsProvName</b> is a default CSP. A
+value of 0x00000000 MUST be used to specify that the <b>ppwcsProvName</b> is
+not the default name and all other values MUST be interpreted as specifying
+that the <b>ppwcsProvName</b> is the default name.</p><p><b>ppSymmKeys:</b>  The <b>ppSymmKeys</b>
+member is an array of bytes. The <b>ppSymmKeys</b> member, if present, contains
+an encrypted symmetric key.</p><p><b>ulSymmKeysSize:</b>  The <b>ulSymmKeysSize</b>
+member specifies the size (in count of bytes) of the buffer that was allocated
+to contain the <b>ppSymmKeys</b> member.</p><p><b>pulSymmKeysSizeProp:</b>  The <b>pulSymmKeysSizeProp</b>
+member specifies the size (in count of bytes) of the <b>ppSymmKeys</b> member.</p><p><b>bEncrypted:</b>  The <b>bEncrypted</b>
+member is a single byte. The <b>bEncrypted</b> member specifies if the message
+body is encrypted or is not encrypted. A <b>bEncrypted</b> member value of 0x00
+MUST be interpreted as specifying that the message is not encrypted (FALSE) and
+all other values MUST be interpreted as specifying that the message is
+encrypted (TRUE).</p><p><b>bAuthenticated:</b>  The <b>bAuthenticated</b>
+member is a single byte. The <b>bAuthenticated</b> member specifies if the
+message has been authenticated or has not been authenticated. A <b>bAuthenticated</b>
+member value of 0x00 MUST be used to specify that the message has not been
+authenticated (FALSE) and all other values MUST be interpreted as specifying
+that the message has been authenticated (TRUE).</p><p><b>uSenderIDLen:</b>  The <b>uSenderIDLen</b>
+member specifies the maximum size (in count of bytes) that is available to
+contain data in the <b>ppSenderID</b> member.</p><p><b>ppSignature:</b>  The <b>ppSignature</b>
+member is an array of bytes. The <b>ppSignature</b> member contains the
+signature(s) used to authenticate the message.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p><p><b>ulSignatureSize:</b>  The <b>ulSignatureSize</b>
+member specifies the size (in count of bytes) allocated to hold the <b>ppSignature</b>
+member.</p><p><b>pulSignatureSizeProp:</b>  The <b>pulSignatureSizeProp</b>
+member specifies the size (in count of bytes) of the authentication
+signature(s) in the <b>ppSignature</b> member.</p><p><b>ppSrcQMID:</b>  The <b>ppSrcQMID</b>
+member is a GUID. The member contains the GUID assigned to the MSMQ
+installation that is the source of the message.</p><p><b>pUow:</b>  The <b>pUow</b> member is an <span><a href="../ms-mqmq/711d679b-e7b1-4e0c-8e51-f7529bfbc02f" data-linktype="relative-path">XACTUOW</a></span>
+structure ([MS-MQMQ] section 2.2.18.1.8). If not NULL, this field identifies a
+transaction for a Send or Receive operation.</p><p><b>ppMsgExtension:</b>  The <b>ppMsgExtension</b>
+member is an array of bytes. The <b>ppMsgExtension</b> member, when present,
+contains application-specific data. The <b>ppMsgExtension</b> member is
+primarily used to pass information to <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_ee553c1a-b390-42d5-a785-2412a31f98fb" data-linktype="relative-path">foreign queues</a></span>.</p><p><b>ulMsgExtensionBufferInBytes:</b>  The <b>ulMsgExtensionBufferInBytes</b>
+member specifies the size (in count of bytes) of the buffer allocated for the <b>ppMsgExtension</b>
+array.</p><p><b>pMsgExtensionSize:</b>  The <b>pMsgExtensionSize</b>
+member specifies the size (in count of bytes) of the data contained in the <b>ppMsgExtension</b>
+array.</p><p><b>ppConnectorType:</b>  The <b>ppConnectorType</b>
+member, if present, is a GUID. The <b>ppConnectorType</b> member specifies the
+identifier of a foreign queue that is used to communicate with a foreign
+messaging system.</p><p><b>pulBodyType:</b>  The <b>pulBodyType</b>
+member value MUST be one of the valid values allowed for a <span><a href="../ms-mqmq/7ebd137c-ce66-49d6-b90e-22560f9155e5" data-linktype="relative-path">VARTYPE</a></span>
+as specified in [MS-MQMQ] section <span><a href="../ms-mqmq/876f9674-752a-4d9b-bf8b-7212c6c9a6b4" data-linktype="relative-path">2.2.12</a></span>.</p><p><b>pulVersion:</b>  The <b>pulVersion</b>
+member specifies the MSMQ packet version.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p></div>

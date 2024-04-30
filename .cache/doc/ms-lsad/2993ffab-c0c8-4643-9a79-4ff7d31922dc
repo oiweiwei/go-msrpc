@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/2993ffab-c0c8-4643-9a79-4ff7d31922dc" data-linktype="external">msdn link</a></p><p>The LSA_FOREST_TRUST_INFORMATION structure is a collection
+of <a href="08cf1a65-ef7c-46d3-aa4d-558f5135df3d" data-linktype="relative-path">LSA_FOREST_TRUST_RECORD (section 2.2.7.21)</a>
+structures.</p><dl>
+<dd>
+<div><pre> typedef struct _LSA_FOREST_TRUST_INFORMATION {
+   [range(0,4000)] unsigned long RecordCount;
+   [size_is(RecordCount)] PLSA_FOREST_TRUST_RECORD* Entries;
+ } LSA_FOREST_TRUST_INFORMATION,
+  *PLSA_FOREST_TRUST_INFORMATION;
+</pre></div>
+</dd></dl><p><b>RecordCount:</b>  A count of elements in
+the Entries array.<a id="Appendix_A_Target_38"></a><a aria-label="Product behavior note 38" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_38" data-linktype="relative-path">&lt;38&gt;</a></p><p><b>Entries:</b>  An array of
+LSA_FOREST_TRUST_RECORD structures. If the <b>RecordCount</b> field has a value
+other than 0, this field MUST NOT be NULL.</p></div>

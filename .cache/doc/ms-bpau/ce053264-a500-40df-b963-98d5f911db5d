@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The BITS Peer-Caching: Peer Authentication Protocol allows
+hosts in an <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_fcaec097-23d5-4b8f-b3e7-5739cc9c1d78" data-linktype="relative-path">Active Directory domain</a></span>
+to exchange self-signed <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_2069b65d-b546-4198-abfd-768badc2258e" data-linktype="relative-path">X.509</a></span> <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a></span>
+with enough information to associate those certificates securely with a <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_d0be6ce0-cc28-43cd-bd6b-6f324fcb8397" data-linktype="relative-path">domain
+account</a></span>.</p><p>Peer authentication is intended for use by hosts that
+implement the BITS Peer-Caching: Content Retrieval Protocol, as specified in <span><a href="../ms-bpcr/03a03c3e-2b25-43aa-b2f2-8298eff03492" data-linktype="relative-path">[MS-BPCR]</a></span>.</p><p>Peer authentication uses the Kerberos security system for
+authentication, allowing each host to do the following:</p><ul><li><p><span><span> 
+</span></span>Verify that the peer is allowed to participate in content
+retrieval.</p>
+</li><li><p><span><span> 
+</span></span>Associate the received certificate with the peer&#39;s Kerberos
+identity in a trustworthy way.</p>
+</li></ul><p>This protocol is used as part of a distributed peer-to-peer
+cache of URL content for use by the Background Intelligent Transfer Service
+(BITS) component. (For more information on BITS, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89959" data-linktype="external">[MSDN-BITS]</a></span>.)
+Peer authentication ensures that peer clients and servers are members of the
+same <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>,
+or in domains with bidirectional trust.</p></div>

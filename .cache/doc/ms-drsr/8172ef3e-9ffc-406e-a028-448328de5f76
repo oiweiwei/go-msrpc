@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The DRS_MSG_REVMEMB_REQ union defines the request messages
+sent to the <span><a href="d5ace452-7cdd-4d50-bb64-39b4c55180a2" data-linktype="relative-path">IDL_DRSGetMemberships</a></span>
+method. Only one version, identified by <i>dwInVersion</i> = 1, is currently
+defined.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_REVMEMB_REQ_V1 V1;
+ } DRS_MSG_REVMEMB_REQ;
+</pre></div>
+</dd></dl><p><b>V1:</b>  Version 1 request. Currently
+only one version is defined.</p></div>

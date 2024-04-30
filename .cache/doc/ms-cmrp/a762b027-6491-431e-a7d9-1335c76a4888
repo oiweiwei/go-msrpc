@@ -1,0 +1,79 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/a762b027-6491-431e-a7d9-1335c76a4888" data-linktype="external">msdn link</a></p><p>(Protocol Version 3) The ApiPauseNodeWithDrainTarget method
+SHOULD<a id="Appendix_A_Target_106"></a><a aria-label="Product behavior note 106" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_106" data-linktype="relative-path">&lt;106&gt;</a> instruct the server to
+suspend group ownership and failover activity on the designated target node and
+to move all groups from the designated node to a designated node in the
+cluster.</p><p>This server MUST handle this method in the same manner as <a href="88e34e18-d184-4826-aa82-9adc36dcf3a3" data-linktype="relative-path">ApiPauseNodeEx (section 3.1.4.2.125)</a>
+except that the server MUST attempt to move groups hosted by the node specified
+by the <i>hNode</i> parameter to the node specified by the <i>hNodeDrainTarget</i>
+parameter. The server SHOULD move the groups according to preferences,
+limitations, and other policies as if <a href="e0485cd4-d941-4496-a443-3d14c206f90d" data-linktype="relative-path">ApiMoveGroupToNode (section 3.1.4.2.53)</a>
+or <a href="caaf6dd2-a2f9-4408-85dd-b00240e5970b" data-linktype="relative-path">ApiMoveGroupToNodeEx (section 3.1.4.2.132)</a>
+had been called for each of these groups individually.</p><p>The server MUST fail this method with
+ERROR_HOST_NODE_NOT_AVAILABLE (0x0000138D) if the node designated by the <i>hNodeDrainTarget</i>
+parameter is not in the ClusterNodeUp state as specified in section <a href="afab819d-0521-4ce4-8eaf-b054265cc18e" data-linktype="relative-path">3.1.4.2.69</a>.</p><p>The server MUST accept an ApiPauseNodeWithDrainTarget
+request only if its <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_a93e2fea-3006-4a06-b48f-fdb36d9abac9" data-linktype="relative-path">protocol
+server state</a> is read/write, as specified in section <a href="756547e7-ca64-4b7c-9f1b-2b1fbc6153d3" data-linktype="relative-path">3.1.1</a>.</p><p>The server MUST require that the access level associated
+with the <i>hNodeDrainTarget</i> parameter context handle is &#34;All&#34;,
+as specified in section <a href="a249a463-3d3b-4058-abf6-3024d81806a0" data-linktype="relative-path">3.1.4</a>.</p><dl>
+<dd>
+<div><pre> void ApiPauseNodeWithDrainTarget(
+   [in] HNODE_RPC hNode,
+   [in] DWORD dwPauseFlags,
+   [in] HNODE_RPC hNodeDrainTarget,
+   [out] error_status_t* rpc_status
+ );
+</pre></div>
+</dd></dl><p><b>hNode: </b>An HNODE_RPC context handle that was
+obtained in a previous call to <a href="e687ff9d-9054-41ac-9c1e-bc621cade374" data-linktype="relative-path">ApiOpenNode (section 3.1.4.1.67)</a>
+or <a href="a4e4a533-09b5-4b69-b4ae-3e5436ae2390" data-linktype="relative-path">ApiOpenNodeEx (section 3.1.4.2.117)</a>.</p><p><b>dwPauseFlags: </b>This parameter can be set to
+CLUSAPI_NODE_PAUSE_REMAIN_ON_PAUSED_NODE_ON_MOVE_ERROR (0x00000001), indicating
+that the server MUST allow a group to remain on the node designated by the <i>hNode</i>
+parameter if policies prohibit moving the group to the node designated by the <i>hNodeDrainTarget</i>
+parameter. Otherwise, this parameter MUST be set to zero.</p><p><b>hNodeDrainTarget: </b>An HNODE_RPC context handle
+to the destination node, obtained in a previous call to
+ApiOpenNode (section 3.1.4.1.67) or
+ApiOpenNodeEx (section 3.1.4.2.117). The <i>hNodeDrainTarget</i>
+parameter MUST NOT specify the same node as the <i>hNode</i> parameter.</p><p><b>rpc_status: </b>A 32-bit integer used to indicate
+success or failure. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+runtime MUST indicate, by writing to this parameter, whether it succeeded in
+executing this method on the server. The encoding of the value passed in this
+parameter MUST conform to encoding for comm_status and fault_status, as
+specified in Appendix E of <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>Return Values: </b>This method MUST return one of
+the error codes returned by ApiPauseNodeEx (section 3.1.4.2.125) or
+one of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0000138D</p>
+  <p>ERROR_HOST_NODE_NOT_AVAILABLE</p>
+  </td>
+  <td>
+  <p>The node designated by the <i>hNodeDrainTarget</i>
+  parameter is in an invalid state.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000072</p>
+  <p>ERROR_INVALID_TARGET_HANDLE</p>
+  </td>
+  <td>
+  <p>The node designated by the <i>hNodeDrainTarget</i>
+  parameter is an invalid destination node. This method MUST return
+  ERROR_INVALID_TARGET_HANDLE if the node designated by the <i>hNodeDrainTarget</i>
+  parameter is the same as the node designated by the <i>hNode</i> parameter.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>For any other condition, the server returns a value that is
+not one of the values listed in the preceding table. The client MUST behave
+identically for all return values that are not listed in the preceding table;
+however, the client SHOULD treat errors specified in section <a href="ca75805a-4b39-4074-8b5b-dbaae6e81b1f" data-linktype="relative-path">3.2.4.6</a> as recoverable
+errors and initiate the reconnect procedure as specified in that section.</p></div>

@@ -1,0 +1,407 @@
+<div class="content"><p> </p><p>The <b>R_DhcpEnumOptionValuesV5</b> method enumerates all
+the option values for the specific user class and vendor class at a specified
+scope defined by <i>ScopeInfo</i>. If the user class or the vendor class is not
+specified, the option values are retrieved from the default user class or
+vendor class. The caller of this function can free the memory pointed to by <i>OptionValues</i>
+and the <b>Values</b> member of <i>OptionValues</i> by calling the function <b>midl_user_free</b>
+(section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpEnumOptionValuesV5(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DWORD Flags,
+   [in, string, unique] WCHAR* ClassName,
+   [in, string, unique] WCHAR* VendorName,
+   [in] LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+   [in, out] DHCP_RESUME_HANDLE* ResumeHandle,
+   [in] DWORD PreferredMaximum,
+   [out] LPDHCP_OPTION_VALUE_ARRAY* OptionValues,
+   [out] DWORD* OptionsRead,
+   [out] DWORD* OptionsTotal
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>Flags: </b>This is of type DWORD that specifies
+that the option values are enumerated for a specific or default vendor class.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DHCP_FLAGS_OPTION_DEFAULT</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Option values are enumerated for a default vendor
+  class.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DHCP_FLAGS_OPTION_IS_VENDOR</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>If a bitwise AND operation with this bitmask yields a
+  nonzero value, it indicates that the option values are enumerated for a
+  specific vendor class.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ClassName: </b>A pointer to a null-terminated
+Unicode string that contains the name of the user class to which the option
+values are enumerated. This parameter is optional.</p><p><b>VendorName: </b>A pointer to a null-terminated
+Unicode string that contains the name of the vendor class to which the option
+values are enumerated. This parameter is optional. If the vendor class is not
+specified, the option values are enumerated for a default vendor class.</p><p><b>ScopeInfo: </b>This is a pointer to a <b>DHCP_OPTION_SCOPE_INFO</b> (section
+<span><a href="177415f4-85c1-4496-a414-4938dca18b93" data-linktype="relative-path">2.2.1.2.41)</a></span>
+structure that contains information describing the DHCPv4 scope the option
+value is enumerated on. This value defines the option values that are being
+retrieved from the default, server, multicast scope, scope, or IPv4 reservation
+level.</p><p><b>ResumeHandle: </b>This is a pointer of type <b>DHCP_RESUME_HANDLE</b> (section
+<span><a href="a6e4cdc0-4f71-4922-ade1-7a5392f9e920" data-linktype="relative-path">2.2.1.2.6)</a></span>
+that identifies the enumeration operation. Initially, this value MUST be set to
+zero, with a successful call returning the handle value used for subsequent
+enumeration requests. For example, if <i>PreferredMaximum</i> is set to 1,000
+bytes, and 2,000 bytes&#39; worth of option values are stored on the DHCPv4 server,
+the resume handle can be used after the first 1,000 bytes are retrieved to
+obtain the next 1,000 on a subsequent call, and so forth.</p><p><b>PreferredMaximum: </b>This is of type DWORD,
+specifying the preferred maximum number of bytes to return. If the number of
+remaining unenumerated option values (in bytes) is less than this value, all
+option values are returned. To retrieve all the option values defined for a
+specific vendor and user class for a specific scope, 0xFFFFFFFF is specified.</p><p><b>OptionValues: </b>This is a pointer of type <b>LPDHCP_OPTION_VALUE_ARRAY</b>
+(section <span><a href="313eaf77-256b-44d3-b303-8cca3f158939" data-linktype="relative-path">2.2.1.2.43</a></span>) in
+which all the options values for a specific user and vendor class are
+enumerated at a specific DHCPv4 scope corresponding to <i>ScopeInfo</i>.</p><p><b>OptionsRead: </b>This is a pointer to a DWORD value
+that specifies the number of option values read in <i>OptionValues</i>. The
+caller must allocate memory for this parameter equal to the size of data type
+DWORD. </p><p><b>OptionsTotal: </b>This is a pointer to a DWORD
+value that specifies the number of option values that have not been read yet.
+The caller must allocate memory for this parameter equal to the size of data
+type DWORD.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000EA</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>There are more elements available to enumerate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  </td>
+  <td>
+  <p>There are no more elements left to enumerate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist on the DHCP
+  server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E32</p>
+  <p>ERROR_DHCP_NOT_RESERVED_CLIENT</p>
+  </td>
+  <td>
+  <p>The specified DHCP client is not a reserved client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E4C</p>
+  <p>ERROR_DHCP_CLASS_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The class name being used is unknown or incorrect.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 22.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read access per section
+<span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not, return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>The <i>Flags</i> parameter MUST pass one of the validations given
+in the <i>Flags</i> field description. Otherwise, the method returns
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ClassName</i> is not NULL, retrieve the <b>DHCPv4ClassDef</b>
+entry corresponding to the <i>ClassName</i> from the server ADM element <b>DHCPv4ClassDefList</b>.
+If the <b>DHCPv4ClassDef</b> entry is not found, return
+ERROR_DHCP_CLASS_NOT_FOUND. If <i>ClassName</i> is NULL, it refers to the
+default user class (see section <span><a href="6c69e0bd-f280-46d9-93b4-054370c6428c" data-linktype="relative-path">3.1.1.11</a></span>).</p>
+</li><li><p><span><span> 
+</span></span>If <i>VendorName</i> is not NULL, retrieve the <b>DHCPv4ClassDef</b>
+entry corresponding to the <i>VendorName</i> from the server ADM element <b>DHCPv4ClassDefList</b>.
+If the <b>DHCPv4ClassDef</b> entry is not found, return
+ERROR_DHCP_CLASS_NOT_FOUND. If <i>VendorName</i> is NULL, it refers to the
+default vendor class (see section 3.1.1.11).</p>
+</li><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> contains DhcpDefaultOptions, iterate through
+the server ADM element <b>DHCPv4OptionDefList</b> and retrieve <b>DHCPv4OptionDef.DHCPv4ClassedOptDefList</b>
+corresponding to the user and vendor class specified by <i>ClassName</i> and <i>VendorName</i>
+respectively. If there is no <b>DHCPv4OptionDef</b> entry corresponding to the
+specified user and vendor classes, return ERROR_NO_MORE_ITEMS.</p>
+<ul><li><p><span><span>  </span></span>If
+the <i>ResumeHandle</i> parameter points to 0x00000000, the enumeration MUST
+start from the first entry of <b>DHCPv4ClassedOptDefList</b>.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>ResumeHandle</i> parameter points to a nonzero value, the server MUST
+continue enumeration based on the value of <i>ResumeHandle</i>. If <i>ResumeHandle</i>
+is greater than or equal to the number of entries in <b>DHCPv4ClassedOptDefList</b>,
+return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span>  </span></span>If <i>PreferredMaximum</i>
+is 0 and the number of <b>DHCPv4ClassedOptDef</b> entries retrieved based on <i>ScopeInfo</i>
+is greater than 0, return ERROR_MORE_DATA.</p>
+</li><li><p><span><span>  </span></span>If <i>PreferredMaximum</i>
+is 0 and the number of <b>DHCPv4ClassedOptDef</b> entries retrieved based on <i>ScopeInfo</i>
+is 0, return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span>  </span></span>The
+<i>PreferredMaximum</i> parameter specifies the maximum number of bytes that
+the server can allocate and return to the caller containing the data related to
+the option values. If <i>PreferredMaximum</i> is unable to hold all the entries
+being retrieved, the server must store as many entries as will fit into the <i>OptionValues</i>
+parameter.</p>
+</li><li><p><span><span>  </span></span>Allocate
+the memory for the DHCP_OPTION_VALUE_ARRAY option for the total number of <b>DHCPv4ClassedOptDef</b>
+entries available in the retrieved list starting from the index specified by <i>ResumeHandle</i>
+to the end of the option list, if <i>PreferredMaximum</i> is 0xFFFFFFFF or if
+the <i>PreferredMaximum</i> parameter can hold all the entries, else allocate
+memory for the DHCP_OPTION_VALUE_ARRAY option equal to <i>PreferredMaximum</i>.</p>
+</li><li><p><span><span>  </span></span>Read
+the <b>DHCPv4ClassedOptDef</b> entries, starting from the index specified by <i>ResumeHandle</i>
+and continuing to the end of the list or to as many as can be saved in <i>PreferredMaximum</i>.
+Copy the information in the retrieved <b>DHCPv4ClassedOptDef</b> entries in <i>OptionValues</i>,
+copy the number of read <b>DHCPv4ClassedOptDef</b> entries in <i>OptionsRead</i>,
+and copy the number of the <b>DHCPv4ClassedOptDef</b> entries not yet
+enumerated in <i>OptionsTotal</i>. Update <i>ResumeHandle</i> to the index of
+the <b>DHCPv4ClassedOptDef</b> entry read plus one (+ 1).</p>
+</li><li><p><span><span>  </span></span>If
+all entries in the list were copied to <i>OptionValues</i>, return
+ERROR_NO_MORE_ITEMS, else return ERROR_MORE_DATA.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> contains DhcpGlobalOptions, iterate through
+the server ADM element <b>DHCPv4ServerOptValueList</b> and retrieve the <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b>
+corresponding to the user and vendor class specified by <i>ClassName</i> and <i>VendorName</i>
+respectively. If <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b> is not
+found, return ERROR_NO_MORE_ITEMS.</p>
+<ul><li><p><span><span>  </span></span>If
+the <i>ResumeHandle</i> parameter points to 0x00000000, the enumeration MUST
+start from the first entry of <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b>.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>ResumeHandle</i> parameter points to a nonzero value, the server MUST
+continue enumeration based on the value of <i>ResumeHandle</i>. If <i>ResumeHandle</i>
+is greater than or equal to the number of entries in <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b>,
+return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span>  </span></span>If <i>PreferredMaximum</i>
+is 0 and the number of <b>DHCPv4ClassedOptValue</b> entries retrieved based on <i>ScopeInfo</i>
+is greater than 0, return ERROR_MORE_DATA.</p>
+</li><li><p><span><span>  </span></span>If <i>PreferredMaximum</i>
+is 0 and the number of <b>DHCPv4ClassedOptValue</b> entries retrieved based on <i>ScopeInfo</i>
+is 0, return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span>  </span></span>The
+<i>PreferredMaximum</i> parameter specifies the maximum number of bytes that
+the server can allocate and return to the caller containing the data related to
+the option values. If <i>PreferredMaximum</i> is unable to hold all the entries
+being retrieved, the server must store as many entries as will fit into the <i>OptionValues</i>
+parameter.</p>
+</li><li><p><span><span>  </span></span>Allocate
+the memory for the DHCP_OPTION_VALUE_ARRAY option for the total number of <b>DHCPv4ClassedOptValue</b>
+entries available in the retrieved list starting from the index specified by <i>ResumeHandle</i>
+to the end of the option list, if <i>PreferredMaximum</i> is 0xFFFFFFFF or if
+the <i>PreferredMaximum</i> parameter can hold all the entries, else allocate
+memory for the DHCP_OPTION_VALUE_ARRAY option equal to <i>PreferredMaximum</i>.</p>
+</li><li><p><span><span>  </span></span>Read
+the <b>DHCPv4ClassedOptValue</b> entries starting from the index specified by <i>ResumeHandle</i>
+to the end of the list or to as many as can be saved in <i>PreferredMaximum</i>.
+Copy the information in retrieved <b>DHCPv4ClassedOptValue</b> entries in <i>OptionValues</i>,
+copy the number of read <b>DHCPv4ClassedOptValue</b> entries in <i>OptionsRead</i>,
+and copy the number of <b>DHCPv4ClassedOptValue</b> entries not yet enumerated
+in <i>OptionsTotal</i>. Update <i>ResumeHandle</i> to the index of the last <b>DHCPv4ClassedOptValue</b>
+entry read plus one (+ 1).</p>
+</li><li><p><span><span>  </span></span>If
+all entries in the list were copied to <i>OptionValues</i>, return
+ERROR_NO_MORE_ITEMS, else return ERROR_MORE_DATA.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> contains DhcpSubnetOptions, retrieve the <b>DHCPv4Scope</b>
+entry corresponding to the field <b>SubnetScopeInfo</b> of parameter <i>ScopeInfo</i>
+from the server ADM element <b>DHCPv4ScopesList</b>. If the <b>DHCPv4Scope</b>
+entry is not found, return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+<ul><li><p><span><span>  </span></span>Iterate
+through <b>DHCPv4Scope.DHCPv4ScopeOptValuesList</b> and retrieve <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b>
+corresponding to the user and vendor class specified by <i>ClassName</i> and <i>VendorName</i>
+respectively. If <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b> is not
+found, return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>ResumeHandle</i> parameter points to 0x00000000, the enumeration MUST
+start from the first entry of <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b>.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>ResumeHandle</i> parameter points to a nonzero value, the server MUST
+continue enumeration based on the value of <i>ResumeHandle</i>. If <i>ResumeHandle</i>
+is greater than or equal to the number of entries in <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b>,
+return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span>  </span></span>If <i>PreferredMaximum</i>
+is 0 and the number of <b>DHCPv4ClassedOptValue</b> entries retrieved based on <i>ScopeInfo</i>
+is greater than 0, return ERROR_MORE_DATA.</p>
+</li><li><p><span><span>  </span></span>If <i>PreferredMaximum</i>
+is 0 and the number of <b>DHCPv4ClassedOptValue</b> entries retrieved based on <i>ScopeInfo</i>
+is 0, return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span>  </span></span>The
+<i>PreferredMaximum</i> parameter specifies the maximum number of bytes that
+the server can allocate and return to the caller containing the data related to
+the option values. If <i>PreferredMaximum</i> is unable to hold all the entries
+being retrieved, the server must store as many entries as will fit into the <i>OptionValues</i>
+parameter.</p>
+</li><li><p><span><span>  </span></span>Allocate
+the memory for the DHCP_OPTION_VALUE_ARRAY option for the total number of <b>DHCPv4ClassedOptValue</b>
+entries available in the retrieved list starting from the index specified by <i>ResumeHandle</i>
+to the end of the option list, if <i>PreferredMaximum</i> is 0xFFFFFFFF or if
+the <i>PreferredMaximum</i> parameter can hold all the entries, else allocate
+memory for the DHCP_OPTION_VALUE_ARRAY option equal to <i>PreferredMaximum</i>.</p>
+</li><li><p><span><span>  </span></span>Read
+the <b>DHCPv4ClassedOptValue</b> entries starting from the index specified by <i>ResumeHandle</i>
+to the end of the list or to as many as can be saved in <i>PreferredMaximum</i>.
+Copy the information in retrieved <b>DHCPv4ClassedOptValue</b> entries in <i>OptionValues</i>,
+copy the number of read <b>DHCPv4ClassedOptValue</b> entries in <i>OptionsRead</i>
+and copy the number of <b>DHCPv4ClassedOptValue</b> entries not yet enumerated
+in <i>OptionsTotal</i>. Update <i>ResumeHandle</i> to the index of the last <b>DHCPv4ClassedOptValue</b>
+entry read plus one (+ 1).</p>
+</li><li><p><span><span>  </span></span>If
+all entries in the list were copied to <i>OptionValues</i>, return
+ERROR_NO_MORE_ITEMS, else return ERROR_MORE_DATA.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> contains DhcpMScopeOptions, retrieve the <b>DHCPv4MScope</b>
+entry corresponding to the field <b>MScopeInfo</b> of parameter <i>ScopeInfo</i>
+from the server ADM element <b>DHCPv4MScopesList</b>. If <b>DHCPv4MScope</b>
+entry is not found, return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+<ul><li><p><span><span>  </span></span>Iterate
+through <b>DHCPv4MScope.DHCPv4MScopeOptValueList</b> and retrieve <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b>
+corresponding to the user and vendor class specified by <i>ClassName</i> and <i>VendorName</i>
+respectively. If the <b>DHCPv4ClassedOptValueList</b> is not found, return
+ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>ResumeHandle</i> parameter points to 0x00000000, the enumeration MUST
+start from the first entry of the <b>DHCPv4ClassedOptValueList</b>.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>ResumeHandle</i> parameter points to a nonzero value, the server MUST
+continue enumeration based on the value of <i>ResumeHandle</i>. If <i>ResumeHandle</i>
+is greater than or equal to the number of entries in the <b>DHCPv4ClassedOptValueList</b>,
+return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span>  </span></span>If <i>PreferredMaximum</i>
+is 0 and the number of <b>DHCPv4ClassedOptValue</b> entries retrieved based on <i>ScopeInfo</i>
+is greater than 0, then return ERROR_MORE_DATA.</p>
+</li><li><p><span><span>  </span></span>If <i>PreferredMaximum</i>
+is 0 and the number of <b>DHCPv4ClassedOptValue</b> entries retrieved based on <i>ScopeInfo</i>
+is 0, then return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span>  </span></span>The
+<i>PreferredMaximum</i> parameter specifies the maximum number of bytes that
+the server can allocate and return to the caller containing the data related to
+the option values. If <i>PreferredMaximum</i> is unable to hold all the entries
+being retrieved, then the server must store as many entries as will fit into
+the <i>OptionValues</i> parameter.</p>
+</li><li><p><span><span>  </span></span>Allocate
+the memory for the DHCP_OPTION_VALUE_ARRAY option for the total number of <b>DHCPv4ClassedOptValue</b>
+entries available in the retrieved list starting from the index specified by <i>ResumeHandle</i>
+to the end of the option list, if <i>PreferredMaximum</i> is 0xFFFFFFFF or if
+the <i>PreferredMaximum</i> parameter can hold all the entries, else allocate
+memory for the DHCP_OPTION_VALUE_ARRAY option equal to <i>PreferredMaximum</i>.</p>
+</li><li><p><span><span>  </span></span>Read
+the <b>DHCPv4ClassedOptValue</b> entries starting from the index specified by <i>ResumeHandle</i>
+to the end of the list or to as many as can be saved in PreferredMaximum. Copy
+the information in retrieved <b>DHCPv4ClassedOptValue</b> entries in <i>OptionValues</i>,
+copy the number of read <b>DHCPv4ClassedOptValue</b> entries in <i>OptionsRead</i>,
+and copy the number of <b>DHCPv4ClassedOptValue</b> entries not yet enumerated in
+<b>OptionsTotal</b>. Update <i>ResumeHandle</i> to the index of the last <b>DHCPv4ClassedOptValue</b>
+entry read plus one (+ 1).</p>
+</li><li><p><span><span>  </span></span>If
+all entries in the list were copied to <i>OptionValues</i>, return
+ERROR_NO_MORE_ITEMS, else return ERROR_MORE_DATA.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> contains DhcpReservedOptions, retrieve the <b>DHCPv4Scope</b>
+entry from the server ADM element <b>DHCPv4ScopesList</b> that contains the <b>ReservedIpAddress</b>
+field of the <i>ScopeInfo</i> parameter. Retrieve the <b>DHCPv4Reservation</b>
+entry from <b>DHCPv4Scope.DHCPv4ReservationsList</b> corresponding to the <b>ReservedIpAddress</b>.</p>
+<ul><li><p><span><span>  </span></span>If
+the <b>ReservedIpAddress</b> is not part of any of the <b>DHCPv4Scope</b>, or
+if there is no <b>DHCPv4Reservation</b> corresponding to the <b>ReservedIpAddress</b>,
+return ERROR_DHCP_NOT_RESERVED_CLIENT.</p>
+</li><li><p><span><span>  </span></span>If
+the <b>DHCPv4Scope</b> entry is found, and if <b>ScopeInfo.SubnetAddress</b>
+does not match with <i>ScopeInfo&#39;s </i><b>ReservedIpSubnetAddress</b> field,
+return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span>  </span></span>Iterate
+through <b>DHCPv4Reservation.DHCPv4ResvOptValuesList</b> and retrieve <b>DHCPv4OptionValue.DHCPv4ClassedOptValuesList</b>
+corresponding to the user and vendor class specified by <i>ClassName</i> and <i>VendorName</i>
+respectively. If <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b> is not
+found, return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>ResumeHandle</i> parameter points to 0x00000000, the enumeration MUST
+start from the first entry of <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b>.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>ResumeHandle</i> parameter points to a nonzero value, the server MUST
+continue enumeration based on the value of <i>ResumeHandle</i>. If <i>ResumeHandle</i>
+is greater than or equal to the number of entries in <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b>,
+return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span>  </span></span>If <i>PreferredMaximum</i>
+is 0 and the number of <b>DHCPv4ClassedOptValue</b> entries retrieved based on <i>ScopeInfo</i>
+is greater than 0, return ERROR_MORE_DATA.</p>
+</li><li><p><span><span>  </span></span>If <i>PreferredMaximum</i>
+is 0 and the number of <b>DHCPv4ClassedOptValue</b> entries retrieved based on <i>ScopeInfo</i>
+is 0, return ERROR_NO_MORE_ITEMS.</p>
+</li><li><p><span><span>  </span></span>The
+<i>PreferredMaximum</i> parameter specifies the maximum number of <b>byte</b>s
+that the server can allocate and return to the caller containing the data
+related to the option values. If <i>PreferredMaximum</i> is unable to hold all
+the entries being retrieved, the server must store as many entries as will fit
+into the <i>OptionValues</i> parameter.</p>
+</li><li><p><span><span>  </span></span>Allocate
+the memory for the DHCP_OPTION_VALUE_ARRAY option for the total number of <b>DHCPv4ClassedOptValue</b>
+entries available in the retrieved list starting from the index specified by <i>ResumeHandle</i>
+to the end of the option list, if <i>PreferredMaximum</i> is 0xFFFFFFFF or if
+the <i>PreferredMaximum</i> parameter can hold all the entries, else allocate
+memory for the DHCP_OPTION_VALUE_ARRAY option equal to <i>PreferredMaximum</i>.</p>
+</li><li><p><span><span>  </span></span>Read
+the <b>DHCPv4ClassedOptValue</b> entries starting from index specified by <i>ResumeHandle</i>
+to the end of the list or to as many as can be saved in <i>PreferredMaximum</i>.
+Copy the information in retrieved <b>DHCPv4ClassedOptValue</b> entries in <i>OptionValues</i>,
+copy the number of read <b>DHCPv4ClassedOptValue</b> entries in <i>OptionsRead</i>,
+and copy the number of <b>DHCPv4ClassedOptValue</b> entries not yet enumerated
+in <i>OptionsTotal</i>. Update <i>ResumeHandle</i> to the index of the last <b>DHCPv4ClassedOptValue</b>
+entry read plus one (+ 1).</p>
+</li><li><p><span><span>  </span></span>If
+all entries in the list were copied to <i>OptionValues</i>, return
+ERROR_NO_MORE_ITEMS, else return ERROR_MORE_DATA.</p>
+</li></ul></li></ul></div>

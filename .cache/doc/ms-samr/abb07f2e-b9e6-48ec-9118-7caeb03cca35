@@ -1,0 +1,11 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/abb07f2e-b9e6-48ec-9118-7caeb03cca35" data-linktype="external">msdn link</a></p><p>The DOMAIN_SERVER_ROLE enumeration indicates whether a
+server is a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a>.</p><dl>
+<dd>
+<div><pre> typedef  enum _DOMAIN_SERVER_ROLE
+ {
+   DomainServerRoleBackup = 2,
+   DomainServerRolePrimary = 3
+ } DOMAIN_SERVER_ROLE,
+  *PDOMAIN_SERVER_ROLE;
+</pre></div>
+</dd></dl><p><b>DomainServerRoleBackup:  </b>The <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a> is not the PDC.</p><p><b>DomainServerRolePrimary:  </b>The DC is the PDC.</p></div>

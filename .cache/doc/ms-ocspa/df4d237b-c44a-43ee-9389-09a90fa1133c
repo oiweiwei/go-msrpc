@@ -1,0 +1,370 @@
+<div class="content"><p>The GetCAConfigInformation method retrieves all the
+properties associated with a particular <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_11c04cbf-4128-46bd-8b12-02b405424539" data-linktype="relative-path">revocation configuration</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetCAConfigInformation(
+   [in, ref] const BSTR bstrCAId,
+   [out, ref] VARIANT* pEntryValue
+ );
+</pre></div>
+</dd></dl><p><b>bstrCAId: </b>A <a href="05bfaf02-3616-41d8-bcb7-26432e265716" data-linktype="relative-path">BSTR</a> that specifies the <a href="71ee5299-c869-447e-9ac5-6a6d8de38a90" data-linktype="relative-path">RevocationConfigurationId</a>
+for the revocation configuration whose properties are to be retrieved.</p><p><b>pEntryValue: </b>A pointer to a <a href="689dfe0e-527a-47a4-a3c2-4c4cddb72ad9" data-linktype="relative-path">VARIANT</a> data type that
+contains the names and values of all configured revocation configuration
+properties.</p><p>The following processing rules apply:</p><ol><li><p><span>    </span>The server MUST
+look in the RevocationConfigurationList for the revocation configuration whose
+RevocationConfigurationId value is the same as the <i>bstrCAId</i> value. This
+is a case-insensitive lookup. If the revocation configuration is not found,
+then the responder MUST fail the request. The error code SHOULD be 0x800710d8.</p>
+</li><li><p><span>    </span>Otherwise, for
+the revocation configuration identified by <i>bstrCAId</i>, the server MUST
+return the properties associated with it as the value of <i>pEntryValue</i>.
+The server MUST set the <b>vt</b> member of the VARIANT referenced by <i>pEntryValue</i>
+to VT_ARRAY | VT_VARIANT. The pArray member of the VARIANT referenced by <i>pEntryValue</i>
+MUST reference a two-dimensional safearray. The number of elements in the
+second dimension (signifying the number of columns) of the safearray referenced
+by pArray MUST be 2. The number of elements in the first dimension (signifying
+the number of rows) of the safearray referenced by pArray MUST be set to the
+number of properties for the revocation configuration. For each revocation
+configuration property, the first column of the row MUST be a VARIANT with <b>vt</b>
+member set to VT_BSTR, and the <b>bstrVal</b> member set to the BSTR for the
+Unicode string value of the name of the property. The second column of the row
+MUST be a VARIANT with value defined in the following table, in the row
+corresponding to the name of the property. </p>
+<table><thead>
+  <tr>
+   <th>
+   <p> Property
+   name </p>
+   </th>
+   <th>
+   <p> Processing
+   rule </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CACertificate</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_ARRAY|VT_UI1, and the pArray member
+  MUST reference a single dimension safearray. The number of elements of the
+  safearray reference by pArray MUST be equal to the length in bytes of the
+  ASN.1 DER encoding of the <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a>
+  <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> for which
+  this revocation configuration is configured.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>HashAlgorithmId</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_BSTR, and the <b>bstrVal</b> member
+  MUST be the BSTR for the Unicode string value of the hash algorithm used by
+  the responder to sign <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_9076fc31-afc2-4c3d-9fd4-bf011837b362" data-linktype="relative-path">OCSP</a>
+  responses for this revocation configuration.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SigningFlags</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_I4, and the <b>lVal</b> member MUST
+  be either 0 or a bitwise OR of the following values.</p>
+  <p>0x00000002 -
+  The server is configured to use the CA certificate for this revocation configuration
+  to sign the OCSP responses.</p>
+  <p>0x00000010 -
+  The revocation configuration is configured to look for an OCSP certificate
+  that has the designated OCSP <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_6a2366ee-fc9c-4406-963d-eac335ed8fc5" data-linktype="relative-path">signing certificate</a>
+  enhanced key usage in its extension (see OCSP <a href="https://go.microsoft.com/fwlink/?LinkId=90369" data-linktype="external">[RFC2560]</a>). </p>
+  <p>0x00000020 -
+  The revocation configuration is configured to require that an OCSP signing
+  certificate be designated manually by setting the &#34;SigningCertificate&#34;
+  property.</p>
+  <p>0x00000004 -
+  When a delegated signing certificate (as defined in [RFC2560]) is used for
+  generating responses, the revocation configuration is configured to use the
+  renewed signing certificate automatically, whenever such a certificate
+  becomes available at the responder machine. Renewal is described in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>.</p>
+  <p>0x00000040 -
+  The responder is configured to include the signing public key hash in
+  responses for this revocation configuration. (See [RFC2560] for OCSP server
+  identifier details.)</p>
+  <p>0x00000080 -
+  The responder is configured to include the signing certificate subject in
+  responses for this revocation configuration. (See [RFC2560] for OCSP server
+  identifier details.)</p>
+  <p>0x00000100 -
+  The responder is configured to accept a nonce in the request. (See [RFC2560]
+  nonce extensions in the OCSP request.)</p>
+  <p>0x00000001 –
+  For this revocation configuration, the responder is configured to silently
+  acquire the <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private key</a>
+  associated with the signing certificate identified by the
+  &#34;SigningCertificate&#34; property.</p>
+  <p>0x00000008 -
+  If this value is set, the responder is configured only to use signing
+  certificates issued by the same cryptographic key as the CA for which this
+  revocation configuration is configured.</p>
+  <p>0x00000200 –
+  For this revocation configuration, the responder is configured to enroll for
+  a signing certificate from the CA defined by the property &#34;CAConfig&#34;
+  using the <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_9c47ca85-9343-4e01-96d4-53d96d3df60e" data-linktype="relative-path">certificate
+  template</a> defined by the property &#34;SigningCertificateTemplate&#34;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ReminderDuration</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_I4, and the <b>lVal</b> member MUST
+  be a DWORD value denoting the percentage of the signing certificate’s
+  lifetime, after which, if the signing certificate is not renewed, a warning
+  event will be logged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SigningCertificate</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_ARRAY|VT_UI1, and the pArray member
+  MUST reference a single dimension safearray. The number of elements of the
+  safearray referenced by pArray MUST be equal to the length in bytes of the
+  ASN.1 DER encoding of the signing certificate used by the responder to sign
+  OCSP responses for this revocation configuration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ErrorCode</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_I4, and the <b>lVal</b> member MUST
+  be the <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+  <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a>
+  value denoting the status of this revocation configuration. A value of 0
+  implies that this revocation configuration is properly configured with an
+  OCSP signing certificate and that the cryptographic key pair associated with
+  the signing certificate is accessible and ready to use for signing OCSP
+  responses. See <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+  for a list of the possible error codes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CAConfig</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_BSTR, and the <b>bstrVal</b> member
+  MUST be the BSTR for the Unicode string for the CA configuration string
+  [MS-WCCE] to which the responder submits the certificate request for the
+  signing certificate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SigningCertificateTemplate</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_BSTR, and the <b>bstrVal</b> member
+  MUST be the BSTR for the Unicode string for the common name of the
+  certificate template <a href="../ms-crtd/4c6950e4-1dc2-4ae3-98c3-b8919bb73822" data-linktype="relative-path">[MS-CRTD]</a>
+  to be used by the responder to create a certificate request for signing
+  certificate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LocalRevocationInformation</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_ARRAY|VT_UI1, and the pArray member
+  MUST reference a single dimension safearray. The number of elements of the
+  safearray reference by pArray MUST be equal to the length in bytes of the
+  ASN.1 encoded <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_4f22841f-249b-42fb-a31a-5049c00be939" data-linktype="relative-path">CRL</a> to
+  be used for local revocation checking at the responder for a particular
+  revocation configuration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CSPName</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_BSTR, and the <b>bstrVal</b> member
+  MUST be the BSTR for the Unicode string value of the <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_c9b94107-addb-4246-85b2-6c1cab7d492e" data-linktype="relative-path">cryptographic service
+  provider (CSP)</a> used by the responder to sign OCSP responses for this
+  revocation configuration. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>KeySpec</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_I4, and the <b>lVal</b> member MUST
+  be the key Specification. The possible values are based on the
+  SigningCertificate and the following rules:</p>
+  <p>Flag value –
+  Meaning</p>
+  <p>0x00000000 -
+  The asymmetric key-pair associated with the SigningCertificate and used for
+  signing could be either an encryption key or a signing key type.</p>
+  <p>0x00000001 -
+  The asymmetric key-pair associated with the SigningCertificate and used for
+  signing is an encryption key type.</p>
+  <p>0x00000002 -
+  The asymmetric key-pair associated with the SigningCertificate and used for
+  signing is a signing key type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ProviderCLSID</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_BSTR, and the <b>bstrVal</b> member
+  must be the BSTR for the Unicode string representation of <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a> for the <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_27787bf8-1ed3-4598-95a1-76e11f5b562a" data-linktype="relative-path">revocation provider</a> COM
+  server that is used by this revocation configuration to check the status of a
+  certificate.<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Provider</p>
+  </td>
+  <td>
+  <p>This is a
+  VARIANT data type that contains the value of the properties of the revocation
+  provider.</p>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set either to VT_EMPTY or VT_ARRAY |
+  VT_VARIANT.</p>
+  <p>If the <b>vt</b>
+  member is set to VT_ARRAY | VT_VARIANT, then the pArray member MUST reference
+  a two-dimensional safearray. The number of elements in the second dimension
+  (signifying the number of columns) of the safearray referenced by pArray MUST
+  be 2. The number of elements in the first dimension (signifying the number of
+  rows) of the safearray referenced by pArray MUST be set to the number of
+  properties for the revocation provider. For each revocation provider
+  property, the first column of the row MUST be a VARIANT with <b>vt</b> member
+  set to VT_BSTR, and the <b>bstrVal</b> member set to the BSTR for the Unicode
+  string value of the revocation provider property name. The second column of
+  the row MUST be a VARIANT with the value defined in the following table
+  (corresponding to the name of the revocation provider property). </p>
+  </td>
+ </tr></tbody></table>
+<p>The following table gives the
+processing rules for the revocation provider.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p> Property
+   name </p>
+   </th>
+   <th>
+   <p> Processing
+   rules </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CrlUrlTimeOut</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_I4, and the <b>lVal</b> member MUST
+  be the time-out in milliseconds that the revocation provider must wait before
+  it times out while trying to retrieve the CRL for which it is configured.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BaseCrlUrls</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_ARRAY | VT_BSTR, and the pArray
+  member MUST reference a single dimension safearray. The number of elements of
+  the safearray referenced by pArray MUST be equal to the number of URIs from
+  where a base CRL <a href="https://go.microsoft.com/fwlink/?LinkId=90414" data-linktype="external">[RFC3280]</a>
+  can be retrieved. For each URI, there MUST be an element in safearray
+  referenced by pArray containing the BSTR for the Unicode string value of the
+  URI.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DeltaCrlUrls</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_ARRAY | VT_BSTR, and the pArray
+  member MUST reference a single dimension safearray. The number of elements of
+  the safearray referenced by pArray MUST be equal to the number of URIs from
+  where a delta CRL [RFC3280] can be retrieved. For each URI, there MUST be an
+  element in safearray referenced by pArray containing the BSTR for the Unicode
+  string value of the URI.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BaseCrl</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_ARRAY|VT_UI1, and the pArray member
+  MUST reference a single dimension safearray. The number of elements of the
+  safearray referenced by pArray MUST be equal to the length in bytes of the
+  ASN.1 encoded binary representation of the Base CRL loaded by the revocation
+  provider.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DeltaCrl</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_ARRAY|VT_UI1, and the pArray member
+  MUST reference a single dimension safearray. The number of elements of the
+  safearray referenced by pArray MUST be equal to the length in bytes of the
+  ASN.1 encoded binary representation of the Delta CRL loaded by the revocation
+  provider.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RefreshTimeout</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_I4, and the <b>lVal</b> member MUST
+  be the time-out value in milliseconds associated with refreshing the CRL
+  information.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RevocationErrorCode</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_I4, and the <b>lVal</b> member MUST
+  be the HRESULT DWORD value denoting the status of this revocation provider. A
+  value of 0 means that the revocation provider can provide certificate
+  revocation status for certificates issued by the certificate authority
+  configured for the revocation configuration. See [MS-ERREF] for a list of the
+  possible error codes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IssuedSerialNumbersDirectories</p>
+  </td>
+  <td>
+  <p>The <b>vt</b>
+  member of the VARIANT MUST be set to VT_ARRAY | VT_BSTR, and the pArray
+  member MUST reference a single dimension safearray. The number of elements of
+  the safearray referenced by pArray MUST be equal to the number of UNC or
+  local file paths that are being used by the CA to store the serial numbers of
+  certificates.<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</li></ol><p> </p></div>

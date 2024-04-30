@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The <b>DHCP_SEARCH_INFO_TYPE_V6</b> enumeration defines the
+field over which the search can be performed for a specific IPv6 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e1d03cee-86a5-42f7-913f-8cf4e50b0d21" data-linktype="relative-path">DHCPv6
+client</a></span> <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6d76b31-2852-4bd5-8fbb-8e82a3cedb29" data-linktype="relative-path">lease record</a></span> in the
+DHCPv6 server database. This enumeration is used in structure <span><a href="181ee972-b76b-45dd-a460-bcc37bbb92dd" data-linktype="relative-path">DHCP_SEARCH_INFO_V6 (section 2.2.1.2.69)</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum _DHCP_CLIENT_SEARCH_TYPE_V6
+ {
+   Dhcpv6ClientIpAddress,
+   Dhcpv6ClientDUID,
+   Dhcpv6ClientName
+ } DHCP_SEARCH_INFO_TYPE_V6,
+  *LPDHCP_SEARCH_INFO_TYPE_V6;
+</pre></div>
+</dd></dl><p><b>Dhcpv6ClientIpAddress: </b>Use DHCPv6 client IPv6
+address for searching the DHCPv6 IPv6 client lease record in the DHCP server.</p><p><b>Dhcpv6ClientDUID: </b>Use DHCPv6 client <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_5c7b5d18-30dd-40fd-ac3e-a323f5663f51" data-linktype="relative-path">DUID</a></span>
+(as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90417" data-linktype="external">[RFC3315]</a></span>) for
+searching the DHCP IPv6 client lease record in the DHCPv6 server.</p><p><b>Dhcpv6ClientName: </b>Use a null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a></span> that contains the name of the DHCPv6 IPv6 client for
+searching for the DHCPv6 client lease record in the DHCPv6 server database. </p></div>

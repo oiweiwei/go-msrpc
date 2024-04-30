@@ -1,0 +1,201 @@
+<div class="content"><p> </p><p>The <b>_FAX_OUTBOX_CONFIG</b> data type is the
+custom-marshaled variant of the <b>FAX_OUTBOX_CONFIG</b> (section <span><a href="3c2cbec7-1881-4dd3-a914-17f4ddefebff" data-linktype="relative-path">2.2.16</a></span>)
+data structure. The <b>_FAX_OUTBOX_CONFIG</b> data type is returned from the <b>FAX_GetOutboxConfiguration</b>
+(section <span><a href="37e37791-690d-4562-a151-461af9149aaa" data-linktype="relative-path">3.1.4.1.47</a></span>) method.</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (36 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (36 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfStruct</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bAllowPersonalCP</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bUseDeviceTSID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRetries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRetryDelay</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dtDiscountStart</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dtDiscountEnd</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAgeLimit</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>bBranding</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>dwSizeOfStruct (4 bytes):
+</b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that holds the size of the structure. MUST be set to 36 bytes.</p>
+</dd>
+<dd>
+<p><b>bAllowPersonalCP (4
+bytes): </b>A Boolean that indicates whether fax client applications can
+include a user-designed cover page template with the fax transmission. If this
+field is TRUE, the client can provide a personal cover page template. If this
+field is FALSE, the client MUST use a common cover page template stored on the
+fax server.</p>
+</dd>
+<dd>
+<p><b>bUseDeviceTSID (4 bytes):
+</b>A Boolean variable that indicates whether the fax server can use the
+device&#39;s <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_3b1ad462-95fc-4739-b942-4a5670d6ae34" data-linktype="relative-path">transmitting subscriber
+identifier</a></span> instead of the value specified when a new job is
+submitted. If this field is TRUE, the server SHOULD use the device&#39;s
+transmitting subscriber identifier.</p>
+</dd>
+<dd>
+<p><b>dwRetries (4 bytes): </b>A
+<b>DWORD</b> that holds the number of times the fax server will attempt to
+retransmit an outgoing fax if the initial transmission fails.</p>
+</dd>
+<dd>
+<p><b>dwRetryDelay (4 bytes): </b>A
+<b>DWORD</b> that holds the minimum number of minutes that will elapse between
+retransmission attempts by the fax server.</p>
+</dd>
+<dd>
+<p><b>dtDiscountStart (4
+bytes): </b>A <b>FAX_TIME</b> (section <span><a href="eb612891-9092-4f9c-a975-db41229afe41" data-linktype="relative-path">2.2.61</a></span>) structure
+that holds the hour and minute at which the discount period begins. The
+discount period applies only to outgoing transmissions. </p>
+</dd>
+<dd>
+<p><b>dtDiscountEnd (4 bytes): </b>A
+<b>FAX_TIME</b> that holds the hour and minute at which the discount period
+ends. The discount period applies only to outgoing transmissions.</p>
+</dd>
+<dd>
+<p><b>dwAgeLimit (4 bytes): </b>A
+<b>DWORD</b> variable that holds the number of days the fax server will keep
+unsuccessful fax messages in its outbox <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>. If a fax
+message stays in the outbox queue longer than the value specified, it MAY be
+automatically deleted. If this value is zero, the time limit MUST NOT be used. </p>
+</dd>
+<dd>
+<p><b>bBranding (4 bytes): </b>A
+Boolean that indicates whether the fax server has to generate a brand (banner)
+at the top of outgoing fax transmissions. If this field is TRUE, the fax server
+generates a brand that contains transmission-related information such as the
+transmitting subscriber identifier, date, time, and page count.</p>
+</dd></dl></div>

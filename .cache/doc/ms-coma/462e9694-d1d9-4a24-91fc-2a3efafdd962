@@ -1,0 +1,46 @@
+<div class="content"><p>This method is called by a client to verify that a user
+account and password are valid.</p><dl>
+<dd>
+<div><pre> HRESULT ValidateUser(
+   [in, string, unique] LPWSTR pwszPrincipalName,
+   [in, string, unique] LPWSTR pwszPassword
+ );
+</pre></div>
+</dd></dl><p><b>pwszPrincipalName: </b> The principal name of the
+user account. </p><p><b>pwszPassword: </b> A password for the user
+account. </p><p><b>Return Values: </b>This method MUST return a value
+in the table below on success, or a failure result, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>,
+on failure. All failure results MUST be treated identically.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The user account and password are valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  <p>S_FALSE</p>
+  </td>
+  <td>
+  <p> The user account was not found or the password was
+  invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving a call to this method, a server MUST attempt
+to verify that the principal name identifies a user account and that the
+password specified is valid for that account, and fail the call if not.</p><p>The server MUST then return S_OK if the user account and
+password are valid, or S_FALSE if not.</p></div>

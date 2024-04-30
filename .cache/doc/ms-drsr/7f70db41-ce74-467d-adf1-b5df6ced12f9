@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The DRS_MSG_REPMOD union defines the request messages for
+the <span><a href="cd241bf2-56be-4537-86b1-cdbc997b0860" data-linktype="relative-path">IDL_DRSReplicaModify</a></span>
+method. Only one version, identified by <i>dwVersion </i>= 1, is currently
+defined.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_REPMOD_V1 V1;
+ } DRS_MSG_REPMOD;
+</pre></div>
+</dd></dl><p><b>V1:</b>  The version 1 request.</p></div>

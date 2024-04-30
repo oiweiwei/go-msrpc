@@ -1,0 +1,14 @@
+<div class="content"><p>The _STRING_BUFFER_HEADER structure is used at the beginning
+of a counter string header block that is returned when retrieving the names or
+description strings of <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance
+counters</a>. For more information, see Figure 2 in section <a href="c27e44fc-f8f5-4a9d-bbc5-acc241c3b9cb" data-linktype="relative-path">3.1.4.1.2</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _STRING_BUFFER_HEADER {
+   DWORD dwSize;
+   DWORD dwCounters;
+ } PERF_STRING_BUFFER_HEADER,
+  *PPERF_STRING_BUFFER_HEADER;
+</pre></div>
+</dd></dl><p><b>dwSize:</b>  The total size, in bytes, of the
+data that is returned.</p><p><b>dwCounters:</b>  The total number of counters
+in the <a href="da82a046-4e10-46ab-8da9-3d24bb48a2b2#gt_5ad9937c-a24e-4274-92c8-50ff5f97bf19" data-linktype="relative-path">counterset</a>.</p></div>

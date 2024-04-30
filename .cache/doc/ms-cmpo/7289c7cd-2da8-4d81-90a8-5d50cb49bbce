@@ -1,0 +1,130 @@
+<div class="content"><p> </p><p>The PokeW method is equivalent in all ways to the <span><a href="27e29396-1f03-4cc3-a778-5273142794ad" data-linktype="relative-path">Poke</a></span>
+method except that its string parameters are encoded in UTF-16.</p><dl>
+<dd>
+<div><pre> HRESULT PokeW(
+   [in] handle_t hBinding,
+   [in] SESSION_RANK sRank,
+   [in, string, range(GUID_LENGTH, GUID_LENGTH)] 
+     wchar_t pwszCalleeUuid[],
+   [in, string, range(1, MAX_COMPUTERNAME_LENGTH+1)] 
+     wchar_t pwszHostName[],
+   [in, string, range(GUID_LENGTH, GUID_LENGTH)] 
+     wchar_t pwszUuidString[],
+   [in, range(sizeof(BIND_INFO_BLOB),sizeof(BIND_INFO_BLOB))] 
+     DWORD dwcbSizeOfBlob,
+   [in, size_is(dwcbSizeOfBlob)] unsigned char rguchBlob[]
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> primitive
+binding handle, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> part 3.</p><p><b>sRank: </b>The <span><a href="8b849631-fa6b-4cad-861a-3cde962c408e" data-linktype="relative-path">SESSION_RANK</a></span> of the
+<span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a></span>
+making the call. This parameter MUST be set to 0x02 (SRANK_SECONDARY).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SRANK_SECONDARY</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>The caller is the secondary participant.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pwszCalleeUuid:</b> The string form of the <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7e81ed8f-e4a4-49ff-b7d8-cce6005ad036" data-linktype="relative-path">primary
+partner</a></span> <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_008df1ed-6dde-44be-be73-57a5008782ca" data-linktype="relative-path">contact identifier (CID)</a></span>.
+The contact identifier (CID) MUST match the contact identifier (CID) in the
+primary partner local name object, and MUST be formatted into a string.</p><p><b>pwszHostName:</b> The string form of the caller&#39;s
+host name. This host name identifies the machine in which the caller&#39;s instance
+of the MSDTC Connection Manager: OleTx Transports Protocol is running. This
+MUST be a <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a></span>. For
+NetBIOS, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90224" data-linktype="external">[NETBEUI]</a></span>, <span><a href="https://go.microsoft.com/fwlink/?LinkId=90260" data-linktype="external">[RFC1001]</a></span>,
+and <span><a href="https://go.microsoft.com/fwlink/?LinkId=90261" data-linktype="external">[RFC1002]</a></span>.</p><p><b>pwszUuidString:</b> The string form of the
+caller&#39;s contact identifier (CID). This contact identifier (CID) identifies the
+caller&#39;s instance of the MSDTC Connection Manager: OleTx Transports Protocol;
+it MUST match the contact identifier (CID) in the caller&#39;s local name object
+and MUST be formatted into a string.</p><p><b>dwcbSizeOfBlob:</b> The count, in bytes, of the
+size of the binding info structure. This parameter MUST be set to the size of
+the <span><a href="7de5e521-b2fa-46f8-8e12-094e0630909d" data-linktype="relative-path">BIND_INFO_BLOB</a></span>,
+8.</p><p><b>rguchBlob:</b> A byte array that contains a
+BIND_INFO_BLOB structure. </p><p><b>Return Values:</b> This method MUST return zero
+(0x00000000) on success. On failure, it MUST return an implementation-specific <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>.
+A client MUST NOT depend on implementation-specific failure HRESULT values.
+From an over-the-wire communication point of view, the client MUST implement
+only a behavior for the case when the call succeeds and another behavior for
+the case when the call does not succeed, (see section <span><a href="b10cafa4-6415-49aa-8df7-c55558e033a9" data-linktype="relative-path">3.4.6.1.2</a></span>).
+Standard errors are defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_STATUS</p>
+  </td>
+  <td>
+  <p>The return value indicates success.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000006D1</p>
+  <p>RPC_S_PROCNUM_OUT_OF_RANGE</p>
+  </td>
+  <td>
+  <p>The return value indicates that the caller does not
+  support this call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80000123</p>
+  <p>E_CM_SERVER_NOT_READY</p>
+  </td>
+  <td>
+  <p>The session object is not in the Connecting state.<a id="Appendix_A_Target_28"></a><a aria-label="Product behavior note 28" href="2f0b4979-92b7-46f5-9e94-81531e68f3fe#Appendix_A_28" data-linktype="relative-path">&lt;28&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The return value indicates that one of the specified
+  arguments is invalid.<a id="Appendix_A_Target_29"></a><a aria-label="Product behavior note 29" href="2f0b4979-92b7-46f5-9e94-81531e68f3fe#Appendix_A_29" data-linktype="relative-path">&lt;29&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000006BB</p>
+  <p>RPC_S_SERVER_TOO_BUSY</p>
+  </td>
+  <td>
+  <p>The return value indicates that the partner is too
+  busy to complete this operation. For more information, see <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+  section <span><a href="../ms-rpce/b5e81729-f356-4776-920c-c39031d48205" data-linktype="relative-path">3.1.1.5.5</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80000173</p>
+  <p>E_CM_S_PROTOCOL_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The return value indicates that none of the protocols
+  described in the <i>rguchBlob</i> parameter is supported by the partner.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>When a partner calls PokeW on another partner, an error code
+of RPC_S_PROCNUM_OUT_OF_RANGE means that the callee does not support PokeW.</p></div>

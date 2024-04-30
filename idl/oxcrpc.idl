@@ -1,0 +1,122 @@
+// XXX: use dtyp: import "ms-rpce.idl";
+import "ms-dtyp.idl";
+ 
+typedef [context_handle] void * CXH;
+typedef [context_handle] void * ACXH;
+// Special restricted types to prevent allocation of big buffers.
+typedef [range(0x0, 0x40000)] unsigned long BIG_RANGE_ULONG;
+typedef [range(0x0, 0x1008)] unsigned long SMALL_RANGE_ULONG;
+ 
+ [ uuid (A4F1DB00-CA47-1067-B31F-00DD010662DA),
+  version(0.81),
+  pointer_default(unique)]
+interface emsmdb
+{
+long /* XXX: __stdcall */ Opnum0Reserved(
+);
+ 
+long /* XXX: __stdcall */ EcDoDisconnect(
+[in, out, ref] CXH * pcxh
+);
+ 
+long /* XXX: __stdcall */ Opnum2Reserved(
+);
+ 
+long /* XXX: __stdcall */ Opnum3Reserved(
+);
+ 
+long /* XXX: __stdcall */ EcRRegisterPushNotification(
+[in, out, ref] CXH * pcxh,
+[in] unsigned long iRpc,
+[in, size_is(cbContext)]unsigned char rgbContext[],
+[in] unsigned short cbContext,
+[in] unsigned long grbitAdviseBits,
+[in, size_is(cbCallbackAddress)] unsigned char rgbCallbackAddress[],
+[in] unsigned short cbCallbackAddress,
+[out] unsigned long *hNotification
+);
+ 
+long /* XXX: __stdcall */ Opnum5Reserved(
+);
+ 
+long /* XXX: __stdcall */ EcDummyRpc(
+[in] handle_t hBinding
+);
+ 
+long /* XXX: __stdcall */ Opnum7Reserved(
+);
+ 
+long /* XXX: __stdcall */ Opnum8Reserved(
+);
+ 
+long /* XXX: __stdcall */ Opnum9Reserved(
+);
+ 
+long /* XXX: __stdcall */ EcDoConnectEx(
+[in] handle_t hBinding,
+[out, ref] CXH * pcxh,
+[in, string] unsigned char * szUserDN,
+[in] unsigned long ulFlags,
+[in] unsigned long ulConMod,
+[in] unsigned long cbLimit,
+[in] unsigned long ulCpid,
+[in] unsigned long ulLcidString,
+[in] unsigned long ulLcidSort,
+[in] unsigned long ulIcxrLink,
+[in] unsigned short usFCanConvertCodePages,
+[out] unsigned long * pcmsPollsMax,
+[out] unsigned long * pcRetry,
+[out] unsigned long * pcmsRetryDelay,
+[out] unsigned short * picxr,
+[out, string] unsigned char **szDNPrefix,
+[out, string] unsigned char **szDisplayName,
+[in] unsigned short rgwClientVersion[3],
+[out] unsigned short rgwServerVersion[3],
+[out] unsigned short rgwBestVersion[3],
+[in, out] unsigned long * pulTimeStamp,
+[in, size_is(cbAuxIn)] unsigned char rgbAuxIn[],
+[in] unsigned long cbAuxIn,
+[out, length_is(*pcbAuxOut), size_is(*pcbAuxOut)] unsigned char rgbAuxOut[],
+[in, out] SMALL_RANGE_ULONG *pcbAuxOut
+);
+ 
+long /* XXX: __stdcall */ EcDoRpcExt2(
+[in, out, ref] CXH * pcxh,
+[in, out] unsigned long *pulFlags,
+[in, size_is(cbIn)] unsigned char rgbIn[],
+[in] unsigned long cbIn,
+[out, length_is(*pcbOut), size_is(*pcbOut)] unsigned char rgbOut[],
+[in, out] BIG_RANGE_ULONG *pcbOut,
+[in, size_is(cbAuxIn)] unsigned char rgbAuxIn[],
+[in] unsigned long cbAuxIn,
+[out, length_is(*pcbAuxOut), size_is(*pcbAuxOut)] unsigned char rgbAuxOut[],
+[in, out] SMALL_RANGE_ULONG *pcbAuxOut,
+[out] unsigned long *pulTransTime
+);
+ 
+long /* XXX: __stdcall */ Opnum12Reserved(
+);
+ 
+long /* XXX: __stdcall */ Opnum13Reserved(
+);
+ 
+long /* XXX: __stdcall */ EcDoAsyncConnectEx(
+[in] CXH cxh,
+[out, ref] ACXH * pacxh
+);
+ 
+}
+ 
+[ uuid (5261574A-4572-206E-B268-6B199213B4E4),
+  version(0.01),
+  pointer_default(unique)]
+interface asyncemsmdb
+{
+long /* XXX: __stdcall */ EcDoAsyncWaitEx(
+[in] ACXH acxh,
+[in] unsigned long ulFlagsIn,
+[out] unsigned long *pulFlagsOut
+);
+ 
+}
+

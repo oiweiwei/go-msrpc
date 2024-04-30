@@ -1,0 +1,275 @@
+<div class="content"><p>The Forward packet is transmitted from a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to a TAPI <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in a <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call</a>.
+Sending this packet forwards calls that are destined for the specified address
+on the specified line, according to the specified forwarding instructions. </p><p>When an originating address (dwAddressID) is forwarded, the
+specified incoming calls for that address are deflected to the other number by
+the switch. This function provides a combination of forward and do-not-disturb
+features. This function can also cancel specific forwarding that is currently
+in effect.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwRequestID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hLine</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">bAllAddresses</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpForwardList</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumRingsNoAnswer</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lphConsultCallContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lpCallParams</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAsciiCallParamsCodePage</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>An unsigned 32-bit
+integer. The identifier of the function that will be invoked on the remote
+server. This value MUST be set to 17.</p><dl>
+<dd>
+<p><b>Return Values</b></p>
+</dd>
+<dd>
+<p>On completion of <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a>, this field
+contains the result of the encapsulated telephony request. A nonzero request ID
+value indicates that the request is in progress and will complete
+asynchronously. A <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path">LINEERR_Constants</a>
+value indicates synchronous failure.</p>
+</dd>
+<dd>
+<p>Returns a positive request identifier if the
+function will be completed asynchronously or a negative error number if an
+error occurs. The dwParam2 parameter of the corresponding <a href="8f5bc349-fd55-46f2-b0bc-dc9f757317a9" data-linktype="relative-path">LINE_REPLY</a> packet is zero
+if the function succeeds, or it is a negative error number if an error occurs.
+If the client specified a nonzero value in the dwRequestID field of the packet,
+the same value MUST be used for the returned positive request identifier.
+Common return values are as follows:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>LINEERR_INVALLINEHANDLE</p>
+  </td>
+  <td>
+  <p>0x8000002B</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_NOMEM</p>
+  </td>
+  <td>
+  <p>0x80000044</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALADDRESS</p>
+  </td>
+  <td>
+  <p>0x80000010</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x80000049</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALADDRESSID</p>
+  </td>
+  <td>
+  <p>0x80000011</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_OPERATIONFAILED</p>
+  </td>
+  <td>
+  <p>0x80000048</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALCOUNTRYCODE</p>
+  </td>
+  <td>
+  <p>0x80000022</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_RESOURCEUNAVAIL</p>
+  </td>
+  <td>
+  <p>0x8000004B</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_INVALPARAM</p>
+  </td>
+  <td>
+  <p>0x80000032</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LINEERR_STRUCTURETOOSMALL</p>
+  </td>
+  <td>
+  <p>0x8000004D</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>dwRequestID (4 bytes): </b>An unsigned 32-bit
+integer. The identifier of the asynchronous request.</p><p><b>lpContext (4 bytes): </b>An unsigned 32-bit
+integer. The opaque, client-specified value that is used by the client upon
+request completion; MUST be returned by the server in the request completion
+packet.</p><p><b>hLine (4 bytes): </b>An <a href="9a80ee5c-cf55-4a86-bd67-173059d6ff3c" data-linktype="relative-path">HLINE</a>. The handle to the
+line to be forwarded. This field MUST have been obtained by sending the <a href="2759c744-e040-4c5d-b4b5-215d391f0490" data-linktype="relative-path">Open</a>packet.</p><p><b>bAllAddresses (4 bytes): </b>An unsigned 32-bit
+integer. Specifies whether all originating addresses on the line, or just the
+one that is specified, is forwarded. If TRUE, all addresses on the line are
+forwarded and dwAddressID is ignored; if FALSE, only the address that is
+specified as dwAddressID is forwarded. This parameter is not validated by TAPI
+when this function is called.</p><p><b>dwAddressID (4 bytes): </b>An unsigned 32-bit
+integer. The address on the specified line whose incoming calls are to be
+forwarded. This parameter is ignored if bAllAddresses is TRUE. This parameter
+is not validated by TAPI when this function is called. An address identifier is
+permanently associated with an address; the identifier remains constant across
+operating system upgrades. A valid value of dwAddressID is in the range 0 to
+dwNumAddresses –1. The client obtains dwNumAddresses from the <a href="f236ea7a-c8a2-4681-b87c-9f0e07a01dc6" data-linktype="relative-path">LINEDEVCAPS</a> obtained by
+sending a <a href="ee317c21-100e-48a3-bcce-e9991efff889" data-linktype="relative-path">GetDevCaps</a>
+packet to the remote server.</p><p><b>lpForwardList (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, in the VarData field of a variable-size <a href="8681587a-c575-4806-a335-53bca1e11082" data-linktype="relative-path">LINEFORWARDLIST</a> packet
+that describes the specific forwarding instructions.</p><p><b>dwNumRingsNoAnswer (4 bytes): </b>An unsigned
+32-bit integer. Specifies the number of rings before an incoming call is
+considered a &#34;no answer.&#34; If dwNumRingsNoAnswer is out of range, the
+actual value is set to the nearest value in the allowable range. This parameter
+is not validated by TAPI when this function is called.</p><p><b>lphConsultCallContext (4 bytes): </b>An unsigned
+32-bit integer. The opaque, client-specified value that is used by the client
+upon request completion; MUST be returned by the server in the request
+completion packet.</p><p><b>lpCallParams (4 bytes): </b>An unsigned 32-bit
+integer. The offset, in bytes, in the VarData field of a <a href="c72ece07-095d-441a-93cd-660f09b7826f" data-linktype="relative-path">LINECALLPARAMS</a> packet that
+contains the specified call parameters.</p><p><b>dwAsciiCallParamsCodePage (4 bytes): </b>An
+unsigned 32-bit integer. The code page of the lpCallParams field.</p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit
+integer. This field is used for padding and MUST be ignored on receipt. It can
+be any value.</p><p><b>VarData (variable): </b>Contains the
+LINEFORWARDLIST and LINECALLPARAMS packets that are indicated in the fields
+lpForwardList and lpCallParams.</p><dl>
+<dd>
+<p>The contents of this field MUST be DWORD-aligned, as
+specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a>.</p>
+</dd></dl></div>

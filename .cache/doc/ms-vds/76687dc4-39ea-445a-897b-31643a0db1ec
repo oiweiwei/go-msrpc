@@ -1,0 +1,32 @@
+<div class="content"><p> </p><p>The VDS_SERVICE_FLAG enumeration defines the properties of
+the service.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_SERVICE_FLAG
+ {
+   VDS_SVF_SUPPORT_DYNAMIC = 0x00000001,
+   VDS_SVF_SUPPORT_FAULT_TOLERANT = 0x00000002,
+   VDS_SVF_SUPPORT_GPT = 0x00000004,
+   VDS_SVF_SUPPORT_DYNAMIC_1394 = 0x00000008,
+   VDS_SVF_CLUSTER_SERVICE_CONFIGURED = 0x00000010,
+   VDS_SVF_AUTO_MOUNT_OFF = 0x00000020,
+   VDS_SVF_OS_UNINSTALL_VALID = 0x00000040,
+   VDS_SVF_EFI = 0x00000080,
+   VDS_SVF_SUPPORT_MIRROR = 0x00000100,
+   VDS_SVF_SUPPORT_RAIDS = 0x00000200,
+   VDS_SVF_SUPPORT_REFS = 0x00000400L
+ } VDS_SERVICE_FLAG;
+</pre></div>
+</dd></dl><p><b>VDS_SVF_SUPPORT_DYNAMIC:  </b>The server supports <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b11172af-9369-448d-9722-444eb52b21cb" data-linktype="relative-path">dynamic
+disks</a></span>.</p><p><b>VDS_SVF_SUPPORT_FAULT_TOLERANT:  </b>The server
+supports <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_98c2ba19-d0f7-4db1-b6c1-4e7323cc5bc0" data-linktype="relative-path">fault-tolerant</a></span> <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disks</a></span>.</p><p><b>VDS_SVF_SUPPORT_GPT:  </b>The server supports the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GPT</a></span>
+<span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span>
+format.</p><p><b>VDS_SVF_SUPPORT_DYNAMIC_1394:  </b>The server supports
+dynamic disks that use the IEEE 1394 interface for the host bus adapter
+connection. For more information on IEEE 1394, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89900" data-linktype="external">[IEEE1394-2008]</a></span>.</p><p><b>VDS_SVF_CLUSTER_SERVICE_CONFIGURED:  </b>The server
+is running on a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_feef37b3-c173-4f51-aab6-b55a6366259b" data-linktype="relative-path">cluster</a></span>.</p><p><b>VDS_SVF_AUTO_MOUNT_OFF:  </b>The server will not
+automatically mount disks.</p><p><b>VDS_SVF_OS_UNINSTALL_VALID:  </b>The server has an
+uninstall image to which it can roll back.</p><p><b>VDS_SVF_EFI:  </b>The computer starts an <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2ab064d1-f0bb-4617-ba38-bdf4fcc10676" data-linktype="relative-path">EFI</a></span>
+from a GPT partition.</p><p><b>VDS_SVF_SUPPORT_MIRROR:  </b>The server supports <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_e7aa7465-999c-41da-b417-977871251f4a" data-linktype="relative-path">mirrored
+volumes</a></span> (RAID-1).</p><p><b>VDS_SVF_SUPPORT_RAIDS:  </b>The server supports
+striped with parity volumes (RAID-5).</p><p><b>VDS_SVF_SUPPORT_REFS<a id="Appendix_A_Target_27"></a><a aria-label="Product behavior note 27" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_27" data-linktype="relative-path">&lt;27&gt;</a>:  </b>The
+server supports the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_652d498c-f002-4e47-a794-720366b04b13" data-linktype="relative-path">ReFS</a></span>.</p></div>

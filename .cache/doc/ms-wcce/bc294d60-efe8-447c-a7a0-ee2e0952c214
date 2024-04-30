@@ -1,0 +1,177 @@
+<div class="content"><p> </p><p>A <span><a href="d6bee093-d862-4122-8f2b-7b49102097dc" data-linktype="relative-path">CERTTRANSBLOB (section 2.2.2.2)</a></span>
+structure MUST be used to return an array of <span><a href="8116912a-59e6-4849-83dd-77b39b6370e0" data-linktype="relative-path">CATRANSPROP (section 2.2.2.3)</a></span>
+structures, where the count of array elements is returned in a separate output
+parameter of the remote procedure call. It MUST also contain a null-terminated
+Unicode string for each CATRANSPROP (section 2.2.2.3) structure that
+represents the display name of the <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span> property.</p><p>The following tables show the sequence of fields in the byte
+array referenced by the <b>pb</b> field of the
+CERTTRANSBLOB (section 2.2.2.2) structure when used to transfer an
+array of CATRANSPROP (section 2.2.2.3) structures and their
+corresponding data.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CATRANSPROP
+  Structures (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Byte
+  Array (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p> </p><p><b>CATRANSPROP Structures (variable): </b>An array of
+CATRANSPROP (section 2.2.2.3) structures each of which is marshaled
+in the following manner.</p><dl>
+<dd>
+<dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>lPropID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>propType</p>
+  </td>
+  <td colspan="8">
+  <p>Reserved</p>
+  </td>
+  <td colspan="16">
+  <p>propFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>obwszDisplayName</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl></dd>
+<dd>
+<p><b>lPropID (4 bytes): </b>These
+4 bytes indicate the value of the <b>lPropID</b> field of the first CATRANSPROP
+(section 2.2.2.3) structure that is transferred in the CERTTRANSBLOB (section
+2.2.2.2) structure. <span><a href="719b890d-62e6-4322-b9b1-1f34d11535b4#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">Little-endian</a></span>
+encoding format MUST be used.</p>
+</dd>
+<dd>
+<p><b>propType (1 byte): </b>This
+byte indicates the value of <b>propType</b> field of the first CATRANSPROP
+(section 2.2.2.3) structure that is transferred in the CERTTRANSBLOB (section
+2.2.2.2) structure.</p>
+</dd>
+<dd>
+<p><b>Reserved (1 byte): </b>MUST
+be set to 0 and ignored upon receipt.</p>
+</dd>
+<dd>
+<p><b>propFlags (2 bytes): </b>These
+2 bytes indicate the value of the <b>propFlags</b> field of the first
+CATRANSPROP (section 2.2.2.3) structure that is transferred in the
+CERTTRANSBLOB (section 2.2.2.2) structure. Little-endian encoding format MUST
+be used.</p>
+</dd>
+<dd>
+<p><b>obwszDisplayName (4
+bytes): </b>These 4 bytes indicate the value of the <b>obwszDisplayName</b>
+field of the first CATRANSPROP (section 2.2.2.3) structure that transfers in
+the CERTTRANSBLOB (section 2.2.2.2) structure. Little-endian encoding format
+MUST be used. The value of this field indicates an offset from the beginning of
+the <b>pb</b> field to where the data value for this property can be found in
+the byte array. The value of this field must be DWORD-aligned.</p>
+</dd></dl><p><b>Byte Array (variable): </b>Contains the
+DisplayName data value for all the properties. The data value for one property
+MUST not overlap with another property&#39;s data value. Arbitrary padding can be
+added before or after data values. Each data value MUST be encoded as a <span><a href="https://go.microsoft.com/fwlink/?LinkId=90550" data-linktype="external">[UNICODE]</a></span>
+null-terminated string in little-endian format.</p></div>

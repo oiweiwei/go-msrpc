@@ -1,0 +1,54 @@
+<div class="content"><p> </p><p>In the <b>DNS_RPC_ZONE_CREATE_INFO_DOTNET</b> structure all
+fields have same definition as specified in section <b>DNS_RPC_ZONE_CREATE_INFO_W2K</b>
+(section <span><a href="780eba26-15ea-43d3-a2b3-77ed9ab00690" data-linktype="relative-path">2.2.5.2.7.1</a></span>), with
+the following exceptions:</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcZoneCreateInfoDotNet {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   [string] char* pszZoneName;
+   DWORD dwZoneType;
+   DWORD fAllowUpdate;
+   DWORD fAging;
+   DWORD dwFlags;
+   [string] char* pszDataFile;
+   DWORD fDsIntegrated;
+   DWORD fLoadExisting;
+   [string] char* pszAdmin;
+   PIP4_ARRAY aipMasters;
+   PIP4_ARRAY aipSecondaries;
+   DWORD fSecureSecondaries;
+   DWORD fNotifyLevel;
+   DWORD dwTimeout;
+   DWORD fRecurseAfterForwarding;
+   DWORD dwDpFlags;
+   [string] char* pszDpFqdn;
+   DWORD dwReserved[32];
+ } DNS_RPC_ZONE_CREATE_INFO_DOTNET,
+  *PDNS_RPC_ZONE_CREATE_INFO_DOTNET;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> As specified in
+section <span><a href="45b100df-57c2-4c84-86de-00b69d742372" data-linktype="relative-path">2.2.5.2.4.2</a></span>.</p><p><b>dwReserved0:</b> As specified in section
+2.2.5.2.4.2.</p><p><b>dwTimeout:</b> Equivalent to
+dwForwarderTimeout specified in section 2.2.5.2.4.2.</p><p><b>fRecurseAfterForwarding:</b> Equivalent to
+fForwarderSlave specified in section 2.2.5.2.4.2.</p><p><b>dwDpFlags:</b> As specified in section
+2.2.5.2.4.2. However, only the following values can be used and of these values
+more than one MUST NOT be specified: DNS_DP_LEGACY, DNS_DP_DOMAIN_DEFAULT, and
+DNS_DP_FOREST_DEFAULT. This field is set to zero if the zone is not to be
+created to use the directory server for persistent storage. The DNS server
+returns an error if any value not listed above is specified or if more than one
+of the allowable values are specified. </p><p><b>pszDpFqdn:</b> As specified in section
+2.2.5.2.4.2.</p><p><b>dwReserved:</b> MUST be set to zero when sent
+and MUST be ignored on receipt.</p><p>If the DNS RPC client sends an older version of
+DNS_RPC_ZONE_CREATE_INFO structure such as DNS_RPC_ZONE_CREATE_INFO_W2K
+(section 2.2.5.2.7.1), then the DNS RPC server MUST construct a current version
+of DNS_RPC_ZONE_CREATE_INFO structure such as DNS_RPC_ZONE_CREATE_INFO_DOTNET,
+using steps as specified below:</p><ol><li><p><span>    </span>Copy the same
+value for fields that are common to input and current version of
+DNS_RPC_ZONE_CREATE_INFO structures.</p>
+</li><li><p><span>    </span>dwRpcStructureVersion
+field MUST be set to 1.</p>
+</li><li><p><span>    </span>All other fields
+that are defined only in DNS_RPC_ZONE_CREATE_INFO_DOTNET and are not defined in
+DNS_RPC_ZONE_CREATE_INFO_W2K (section 2.2.5.2.7.1), MUST be set to 0.</p>
+</li></ol></div>

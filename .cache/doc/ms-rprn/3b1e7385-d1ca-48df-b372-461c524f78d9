@@ -1,0 +1,47 @@
+<div class="content"><p>Enumerates each of the connections and copies <a href="ac391864-cd99-4509-9ff3-ea0366dd9b2b" data-linktype="relative-path">PRINTER_INFO_4 (section 2.2.1.10.5)</a>
+structures for all the per-machine connections into the buffer <i>pPrinterEnum</i>.<a id="Appendix_A_Target_316"></a><a aria-label="Product behavior note 316" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_316" data-linktype="relative-path">&lt;316&gt;</a></p><p>This method is used for remote administration of client
+computers running the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_b49fcfa1-e15c-4dce-be33-d74d5bfda785" data-linktype="relative-path">print
+system</a>.</p><dl>
+<dd>
+<div><pre> DWORD RpcEnumPerMachineConnections(
+   [in, string, unique] STRING_HANDLE pServer,
+   [in, out, unique, size_is(cbBuf), disable_consistency_check] 
+     BYTE* pPrinterEnum,
+   [in] DWORD cbBuf,
+   [out] DWORD* pcbNeeded,
+   [out] DWORD* pcReturned
+ );
+</pre></div>
+</dd></dl><p><b>pServer: </b>A parameter specified in <a href="acb355a4-913b-4abb-8cb5-415aea160015" data-linktype="relative-path">Print Server Name
+Parameters (section 3.1.4.1.4)</a>.</p><p><b>pPrinterEnum: </b>A pointer to the <a href="f29e9057-df29-40d4-9c51-c615c0da62a1" data-linktype="relative-path">BUFFER</a>, as specified in
+INFO Structures Query Parameters (section 3.1.4.1.9).</p><p><b>BUFFER TYPE:</b> _PRINTER_INFO_4</p><dl>
+<dd>
+<p>This parameter can be NULL if <i>cbBuf</i> equals
+zero.</p>
+</dd></dl><p><b>cbBuf: </b>A parameter specified in section
+3.1.4.1.9.</p><p><b>pcbNeeded: </b>A parameter specified in section
+3.1.4.1.9.</p><p><b>pcReturned: </b>A parameter specified in section
+3.1.4.1.9.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps specified in section 3.1.4.1.4.</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps specified in section 3.1.4.1.9.</p>
+</li><li><p><span><span> 
+</span></span>This method SHOULD NOT perform any access checks.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Enumerate all printers in the <b>list of per-machine connections</b>
+on the server that is identified by the <i>pServer</i> parameter (regardless of
+whether the user has logged on and the printer object has actually been
+created).</p>
+</li><li><p><span><span> 
+</span></span>Using the enumerated objects, perform the processing and response
+steps specified in section 3.1.4.1.9.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul><p>The server MUST NOT change the list of printer objects representing
+pushed printers as part of processing this method.</p></div>

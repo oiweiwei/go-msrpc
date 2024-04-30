@@ -1,0 +1,84 @@
+<div class="content"><p> </p><p>The NetrMessageNameEnum (Opnum 1) interface is used to
+enumerate the <span><a href="1bb1da94-fc7e-484c-ad2a-4e0d257a50ce#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS names</a></span> for
+which the <span><a href="1bb1da94-fc7e-484c-ad2a-4e0d257a50ce#gt_18623b87-0e55-44bc-a5d3-d49388e1716a" data-linktype="relative-path">message server</a></span> is
+currently listening for messages.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NET_API_FUNCTION NetrMessageNameEnum(
+   [in, string, unique] MSGSVC_HANDLE ServerName,
+   [in, out] LPMSG_ENUM_STRUCT InfoStruct,
+   [in] DWORD PrefMaxLen,
+   [out] LPDWORD TotalEntries,
+   [in, out, unique] LPDWORD ResumeHandle
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>A pointer to a null-terminated
+string that MUST denote the NetBIOS name (as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90260" data-linktype="external">[RFC1001]</a></span>
+section 5.2) or the <span><a href="1bb1da94-fc7e-484c-ad2a-4e0d257a50ce#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">fully qualified domain name
+(FQDN)</a></span> of the remote computer on which the function is to execute.
+There are no other constraints on the format of this string. The message server
+MUST ignore this parameter.</p><p><b>InfoStruct: </b>A pointer to a buffer that
+receives a variable-length data structure of type <span><a href="ac92fadc-8449-4b06-be3c-d9620e917b8d" data-linktype="relative-path">MSG_ENUM_STRUCT</a></span>.
+The buffer MUST be allocated, and the pointer MUST be assigned by the message
+server. On return, the structure MUST contain the list of names for which the
+message server is listening for messages.</p><p><b>PrefMaxLen: </b>A 32-bit number that MUST denote
+the maximum number of bytes the message server allocates for the buffer. If <i>PrefMaxLen</i>
+is set to 0xFFFFFFFF, the message server MUST always allocate a buffer that can
+hold all of the information available in a single MSG_ENUM_STRUCT.</p><p><b>TotalEntries: </b>A pointer to a 32-bit number
+that, on return, MUST contain the total number of entries in <i>InfoStruct</i>.</p><p><b>ResumeHandle: </b>A pointer to a 32-bit number
+that MUST contain the ordinal value of the name, in the message server&#39;s
+internal list, on which to start enumeration. This MAY be null.</p><p><b>Return Values: </b>A <span><a href="../ms-dtyp/19cdb498-c67b-42b7-a540-4bc6a73c04f6" data-linktype="relative-path">NET_API_STATUS</a></span>
+value that indicates return status. If the method returns a negative value, the
+method has failed. If the 12-bit facility code (bits 16–27) is set to 0x007,
+the value contains a Win32 error code (defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+in the lower 16 bits. Zero or positive values indicate success, with the lower
+16 bits in positive nonzero values containing warnings or flags defined in the
+method implementation.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>NERR_Success</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000007C</p>
+  <p>ERROR_INVALID_LEVEL</p>
+  </td>
+  <td>
+  <p>The system call level is not correct.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000084B</p>
+  <p>NERR_BufTooSmall</p>
+  </td>
+  <td>
+  <p>The API return buffer is too small.</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

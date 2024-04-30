@@ -1,0 +1,37 @@
+<div class="content"><p>The CustomAction (get) method retrieves the <b>custom action</b>
+of the file management job and returns S_OK upon successful completion.</p><dl>
+<dd>
+<div><pre> [propget, id(FSRM_PROPERTY(FSRM_DISPID_FILE_MANAGEMENT_JOB | 0x06))] HRESULT CustomAction(
+   [out, retval] IFsrmActionCommand** action
+ );
+</pre></div>
+</dd></dl><p><b>action: </b>Pointer to an <b>IFsrmActionCommand</b>
+interface pointer (section <a href="9fb9f66d-a7da-46c7-839b-b9360cae9207" data-linktype="relative-path">3.2.4.2.9</a>)
+that upon completion contains the <b>custom action</b> of the file management
+job.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>action</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>action</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST set <i>action</i> to the <b>IFsrmActionCommand</b>
+interface of the <b>custom action</b> of the file management job.</p></div>

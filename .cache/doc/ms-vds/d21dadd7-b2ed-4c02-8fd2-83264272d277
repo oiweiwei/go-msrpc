@@ -1,0 +1,45 @@
+<div class="content"><p> </p><p>The VDS_ASYNC_OUTPUT structure provides information from a
+completed asynchronous operation. </p><dl>
+<dd>
+<div><pre> typedef struct _VDS_ASYNC_OUTPUT {
+   VDS_ASYNC_OUTPUT_TYPE type;
+   [switch_is(type)] union {
+     [case(VDS_ASYNCOUT_CREATEPARTITION)] 
+       struct _cp {
+       ULONGLONG ullOffset;
+       VDS_OBJECT_ID volumeId;
+     } cp;
+     [case(VDS_ASYNCOUT_CREATEVOLUME)] 
+       struct _cv {
+       IUnknown* pVolumeUnk;
+     } cv;
+     [case(VDS_ASYNCOUT_BREAKVOLUMEPLEX)] 
+       struct _bvp {
+       IUnknown* pVolumeUnk;
+     } bvp;
+     [case(VDS_ASYNCOUT_SHRINKVOLUME)] 
+       struct _sv {
+       ULONGLONG ullReclaimedBytes;
+     } sv;
+     [case(VDS_ASYNCOUT_CREATE_VDISK)] 
+       struct _cvd {
+       IUnknown* pVDiskUnk;
+     } cvd;
+     [default]       ;
+   };
+ } VDS_ASYNC_OUTPUT;
+</pre></div>
+</dd></dl><p><b>type:</b>  A value from the <span><a href="7004869a-7517-4f02-b5a2-e3a93302d5f0" data-linktype="relative-path">VDS_ASYNC_OUTPUT_TYPE</a></span>
+enumeration that indicates the type of operation information.</p><p><b>cp:</b>  The cp structure provides
+information about a newly created <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span>.</p><p><b>ullOffset:</b>  The byte offset of the
+partition from the beginning of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.</p><p><b>volumeId:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS
+object</a></span> ID of the associated <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> object, if
+the partition is a volume.</p><p><b>cv:</b>  The cv structure provides
+information about a newly created volume.</p><p><b>pVolumeUnk:</b>  A pointer to the
+IUnknown interface of the newly created volume.</p><p><b>bvp:</b>  The bvp structure provides
+information about a volume after a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_d864e01b-9fb1-4beb-9864-8221d293445a" data-linktype="relative-path">plex</a></span> is broken.</p><p><b>pVolumeUnk:</b>   A pointer to the
+IUnknown interface of the volume that was broken off.</p><p><b>sv:</b>  The sv structure provides
+information about a volume shrink operation.</p><p><b>ullReclaimedBytes:</b>  The number of
+bytes that the volume shrink operation reclaimed.</p><p><b>cvd:</b>  The cvd structure provides
+information about a newly created <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual disk</a></span>. </p><p><b>pVDiskUnk:</b>  A pointer to the
+IUnknown interface of the newly created virtual disk.</p></div>

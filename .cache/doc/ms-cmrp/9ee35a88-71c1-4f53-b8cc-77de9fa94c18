@@ -1,0 +1,326 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9ee35a88-71c1-4f53-b8cc-77de9fa94c18" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_OPERATIONAL_VERSION_INFO</b> structure
+contains information about the versions of cluster software with which all
+nodes in the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_feef37b3-c173-4f51-aab6-b55a6366259b" data-linktype="relative-path">cluster</a> are
+compatible.</p><dl>
+<dd>
+<div><pre> typedef struct _CLUSTER_OPERATIONAL_VERSION_INFO {
+   unsigned long dwSize;
+   unsigned long dwClusterHighestVersion;
+   unsigned long dwClusterLowestVersion;
+   unsigned long dwFlags;
+   unsigned long dwReserved;
+ } CLUSTER_OPERATIONAL_VERSION_INFO,
+  *PCLUSTER_OPERATIONAL_VERSION_INFO;
+</pre></div>
+</dd></dl><p><b>dwSize:</b> The size, in bytes, of this structure.
+MUST be set to 20 bytes.</p><p><b>dwClusterHighestVersion:</b> The highest version
+of cluster software with which all nodes in the cluster are compatible. The
+upper 2 bytes of <b>dwClusterHighestVersion</b> identify the cluster software
+internal major version number, and the lower 2 bytes identify the cluster
+software internal minor version number. Note that the internal version and
+build numbers are not necessarily identical to the operating system version and
+build numbers. The <b>dwClusterHighestVersion</b> member SHOULD<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a> be set to one of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x000100e0</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no higher than 0x0001 with internal build number 0x00e0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000200e0</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no higher than 0x0002 with internal build number 0x00e0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00030893</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no higher than 0x0003 with internal build number 0x0893.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00040ECE</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no higher than 0x0004 with internal build number 0x0ECE.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00051771</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no higher than 0x0005 with internal build number 0x1771.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00061DB0</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no higher than 0x0006 with internal build number 0x1DB0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00061DB1</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no higher than 0x0006 with internal build number 0x1DB1.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000723F0</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no higher than 0x0007 with internal build number 0x23F0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00082580</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no higher than 0x0008 with internal build number 0x2580. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00090003</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no higher than 0x0009 with internal build number 0x0003.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000a0001</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no higher than 0x000a with internal build number 0x0001.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000a0002</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no higher than 0x000a with internal build number 0x0002.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000a0003</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no higher than 0x000a with internal build number 0x0003. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000b0003</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no higher than 0x000b with internal build number 0x0003. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000c0004</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no higher than 0x000c with internal build number 0x0004. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwClusterLowestVersion:</b> The lowest version of
+cluster software with which all nodes in the cluster are compatible. The upper
+2 bytes of <i>dwClusterLowestVersion</i> identify the cluster software internal
+major version number, and the lower 2 bytes of <i>dwClusterLowestVersion</i>
+identify the cluster software internal minor version number. The <i>dwClusterLowestVersion</i>
+member SHOULD<a id="Appendix_A_Target_24"></a><a aria-label="Product behavior note 24" href="1d58eff8-a042-478c-972c-8e9c76a3f978#Appendix_A_24" data-linktype="relative-path">&lt;24&gt;</a> be set to one of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x000100e0</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no lower than 0x0001 with internal build number 0x00e0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000200e0</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no lower than 0x0002 with internal build number 0x00e0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00030893</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no lower than 0x0003 with internal build number 0x0893.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00040ECE</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no lower than 0x0004 with internal build number 0x0ECE.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00051771</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no lower than 0x0005 with internal build number 0x1771.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00061DB0</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no lower than 0x0006 with internal build number 0x1DB0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00061DB1</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is no
+  lower than 0x0003 with internal build number 0x1DB1.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000723F0</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no lower than 0x0007 with internal build number 0x23F0. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00082580</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no lower than 0x0008 with internal build number 0x2580.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00090003</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no lower than 0x0009 with internal build number 0x0003.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000a0001</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no lower than 0x000a with internal build number 0x0001.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000a0002</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no lower than 0x000a with internal build number 0x0002.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000a0003</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no higher than 0x000a with internal build number 0x0003. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000b0003</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no lower than 0x000b with internal build number 0x0003. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000c0004</p>
+  </td>
+  <td>
+  <p>One or more nodes support an internal version that is
+  no lower than 0x000c with internal build number 0x0004. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwFlags:</b>  The flags that identify
+the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_41441ad6-7a82-4a41-a89c-7e4b8d784ad8" data-linktype="relative-path">characteristics</a> of
+the cluster operational version. The <b>dwFlags</b> member MUST be set to one
+of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>All nodes in the cluster are running the same version
+  of the cluster software.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLUSTER_VERSION_FLAG_MIXED_MODE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The cluster is configured with nodes that are running
+  different versions of the cluster software.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwReserved:</b> Reserved. MUST be set to 0 and
+ignored by the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a>.</p></div>

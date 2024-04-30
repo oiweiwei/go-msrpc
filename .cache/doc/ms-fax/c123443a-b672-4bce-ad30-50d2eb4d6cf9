@@ -1,0 +1,59 @@
+<div class="content"><p> </p><p>The <b>FAX_ClientEventQueue (Opnum 1)</b> method is called
+by the fax server (acting as an RPC client for this call) when it needs to
+deliver a legacy fax event to the fax client (acting as an RPC server for this
+call). The fax client registers for notifications of legacy events with the fax
+server by calling <b>FAX_StartServerNotification</b> (section <span><a href="693ea4ae-60cd-4043-b775-1a1f19920cbb" data-linktype="relative-path">3.1.4.1.100</a></span>)
+or <b>FAX_StartServerNotificationEx</b> (section <span><a href="b73163aa-5f4b-45b3-9c5b-f95077f103c2" data-linktype="relative-path">3.1.4.1.101</a></span>). In
+this call, the fax client MUST pass a fax client notification context, which
+the fax server MUST pass back to the fax client when it sends an event. This is
+done to provide a security layer, by verifying that the notifications are
+coming from an expected source.</p><p>In response, the fax client MUST validate the notification
+context in the FaxPortHandle argument that is sent by the fax server to ensure
+that this is a valid notification context created with a successful <b>FAX_OpenConnection</b> (section
+<span><a href="6a8d8440-25a7-49aa-a4a1-7043b040dde4" data-linktype="relative-path">3.2.4.5</a></span>)
+method call for which <b>FAX_CloseConnection</b> (section <span><a href="71fcdc39-0e2a-4025-96f8-f96d81d8694b" data-linktype="relative-path">3.2.4.4</a></span>)
+was not already successfully called. If the validation fails, the fax client
+MUST abort the operation and MUST return ERROR_SUCCESS. If the notification
+context is valid, the fax client MUST accept notifications for fax client
+events. On success, the fax client MUST accept the fax event notification.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_ClientEventQueue(
+   [in] RPC_FAX_HANDLE FaxPortHandle,
+   [in] FAX_EVENT FaxEvent
+ );
+</pre></div>
+</dd></dl><p><b>FaxPortHandle: </b>A fax data type that indicates
+a context handle for this call.</p><p><b>FaxEvent: </b>A <b>FAX_EVENT</b> (section <span><a href="26974d69-9306-4683-b4b8-23fda467e717" data-linktype="relative-path">2.2.66</a></span>)
+structure that contains the contents of an I/O completion packet. The fax
+server sends the completion packet to notify a fax client application about an
+asynchronous fax server event. Since the client is to be notified of each event
+separately, in this case ORing of events is not allowed.</p><dl>
+<dd>
+<p>This method MUST return 0x00000000 (ERROR_SUCCESS)
+for success; otherwise, it MUST return one of the following error codes, one of
+the fax-specific errors that are defined in section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Not enough storage is available to process this
+  command.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

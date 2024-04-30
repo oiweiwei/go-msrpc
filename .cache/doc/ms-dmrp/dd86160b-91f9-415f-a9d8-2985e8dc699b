@@ -1,0 +1,130 @@
+<div class="content"><p> </p><p>The InitializeDiskEx method initializes a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>
+for control by the <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_3080678a-2e28-4e28-af89-8c010325a7b2" data-linktype="relative-path">volume manager</a></span>. This
+is a synchronous task.</p><dl>
+<dd>
+<div><pre> HRESULT InitializeDiskEx(
+   [in] LdmObjectId diskId,
+   [in] PARTITIONSTYLE style,
+   [in] hyper diskLastKnownState,
+   [out] TASK_INFO* tinfo
+ );
+</pre></div>
+</dd></dl><p><b>diskId: </b>Specifies the OID of the disk to
+initialize for volume manager control.</p><p><b>style: </b>Value from the PARTITIONSTYLE
+enumeration, which indicates the partition style to use.</p><p><b>diskLastKnownState: </b>Last known <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_5a574d80-6bdb-4fb0-a0dd-b0601d16b4cd" data-linktype="relative-path">modification
+sequence number</a></span> of the disk.</p><p><b>tinfo: </b>Pointer to a <span><a href="d55c167e-c6ad-445f-951c-9ac2d0de7a11" data-linktype="relative-path">TASK_INFO</a></span> structure
+the client can use to track the request&#39;s progress.</p><p><b>Return Values: </b>The method MUST return 0 or a
+nonerror <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path"><span>HRESULT</span></a> on success, or
+an implementation-specific nonzero error code on failure (as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>;
+see also section <span><a href="31eea9e6-25b0-4309-8f4a-50c74fbedc9b" data-linktype="relative-path">2.2.1</a></span> for HRESULT
+values predefined by the Disk Management Remote Protocol).</p><p>Upon receiving this message, the server MUST validate
+parameters:</p><ol><li><p><span>    </span>Verify that the
+disk specified by <i>diskId</i> is in the list of storage objects, and check
+whether <i>diskLastKnownState</i> matches the <b>LastKnownState</b> field of
+the object.</p>
+</li><li><p><span>    </span>Verify that <i>tinfo</i>
+is not NULL.</p>
+</li></ol><p>If parameter validation fails, the server MUST fail the
+operation immediately, returning an appropriate error as its response to the
+client.</p><p>Otherwise, the server MUST process the message as follows:</p><ol><li><p><span>    </span>Initialize the
+disk specified by <i>diskId</i> with an empty <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_cee39671-0b98-4ca3-904d-018780e7042f" data-linktype="relative-path">partition table</a></span> and
+write a signature to it: </p>
+<ol><li><p><span>   
+</span>If style is PARTITIONSTYLE_MBR, the disk is initialized with an <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_b251c771-5ccf-40f2-b98d-0119db210b4b" data-linktype="relative-path">MBR</a></span>
+partition table and signature.</p>
+</li><li><p><span>   
+</span>If style is PARTITIONSTYLE_GPT, the disk is initialized with a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GPT</a></span>
+partition table and signature. </p>
+</li></ol></li><li><p><span>    </span>If successful,
+convert the disk to a dynamic disk. </p>
+</li><li><p><span>    </span>Wait for the
+conversion to succeed or fail. </p>
+</li><li><p><span>    </span>Fill in the <i>tinfo</i>
+output parameter.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>TASK_INFO member</p>
+   </th>
+   <th>
+   <p>Required for this operation</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TASK_INFO::id</p>
+  </td>
+  <td>
+  <p>Required.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TASK_INFO::storageId</p>
+  </td>
+  <td>
+  <p>Not required.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TASK_INFO::createTime</p>
+  </td>
+  <td>
+  <p>Not required.<a id="Appendix_A_Target_211"></a><a aria-label="Product behavior note 211" href="5f5043a3-9e6d-40cc-a05b-1a4a3617df32#Appendix_A_211" data-linktype="relative-path">&lt;211&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TASK_INFO::clientID</p>
+  </td>
+  <td>
+  <p>Not required.<a id="Appendix_A_Target_212"></a><a aria-label="Product behavior note 212" href="5f5043a3-9e6d-40cc-a05b-1a4a3617df32#Appendix_A_212" data-linktype="relative-path">&lt;212&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TASK_INFO::percentComplete</p>
+  </td>
+  <td>
+  <p>Required for any task that returns REQ_IN_PROGRESS.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TASK_INFO::status</p>
+  </td>
+  <td>
+  <p>Required.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TASK_INFO::type</p>
+  </td>
+  <td>
+  <p>Required if PercentageComplete is being used.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TASK_INFO::error</p>
+  </td>
+  <td>
+  <p>Required.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TASK_INFO::tflag</p>
+  </td>
+  <td>
+  <p>Not required.<a id="Appendix_A_Target_213"></a><a aria-label="Product behavior note 213" href="5f5043a3-9e6d-40cc-a05b-1a4a3617df32#Appendix_A_213" data-linktype="relative-path">&lt;213&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span>    </span>Return a
+response to the client containing <i>tinfo</i> and the status of the operation.
+</p>
+</li><li><p><span>    </span>Send the task
+completion notification. </p>
+</li></ol><p>If the operation is successful, the server MUST make the
+following changes to the list of storage objects before returning the response.</p><ul><li><p><span><span> 
+</span></span>Modify the disk object to account for the change in type.</p>
+</li><li><p><span><span> 
+</span></span>Delete <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_753cb2b4-3f5c-48f3-97ef-61612c40499e" data-linktype="relative-path">disk region</a></span> objects
+that reside on the uninitialized disk.<a id="Appendix_A_Target_214"></a><a aria-label="Product behavior note 214" href="5f5043a3-9e6d-40cc-a05b-1a4a3617df32#Appendix_A_214" data-linktype="relative-path">&lt;214&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Create disk region objects that reside on the dynamic disk.</p>
+</li></ul></div>

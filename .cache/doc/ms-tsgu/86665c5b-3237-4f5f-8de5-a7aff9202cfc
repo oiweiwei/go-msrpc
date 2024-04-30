@@ -1,0 +1,13 @@
+<div class="content"><p>The TSG_PACKET_QUARCONFIGREQUEST structure contains
+information about quarantine configuration. RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> and RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> MAY support this
+structure.<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a> If the RDG server or RDG client
+do not support the TSG_PACKET_QUARCONFIGREQUEST structure, then the error code
+HRESULT_CODE(E_PROXY_NOTSUPPORTED) is returned.</p><dl>
+<dd>
+<div><pre> typedef struct _TSG_PACKET_QUARCONFIGREQUEST {
+   unsigned long flags;
+ } TSG_PACKET_QUARCONFIGREQUEST,
+  *PTSG_PACKET_QUARCONFIGREQUEST;
+</pre></div>
+</dd></dl><p><b>flags:</b>  Contains information about
+quarantine configuration.</p></div>

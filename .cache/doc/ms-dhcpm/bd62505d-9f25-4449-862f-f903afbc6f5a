@@ -1,0 +1,56 @@
+<div class="content"><p> </p><p>The <b>DHCP_OPTION_DATA_ELEMENT</b> structure contains the
+type of the option and its data value. This is used within a <span><a href="6b01abaa-f56b-4a9b-9596-64c7813fdfe7" data-linktype="relative-path">DHCP_OPTION_DATA (section 2.2.1.2.24)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_OPTION_DATA_ELEMENT {
+   DHCP_OPTION_DATA_TYPE OptionType;
+   [switch_is(OptionType), switch_type(DHCP_OPTION_DATA_TYPE)] 
+     union _DHCP_OPTION_ELEMENT_UNION {
+     [case(DhcpByteOption)] 
+       BYTE ByteOption;
+     [case(DhcpWordOption)] 
+       WORD WordOption;
+     [case(DhcpDWordOption)] 
+       DWORD DWordOption;
+     [case(DhcpDWordDWordOption)] 
+       DWORD_DWORD DWordDWordOption;
+     [case(DhcpIpAddressOption)] 
+       DHCP_IP_ADDRESS IpAddressOption;
+     [case(DhcpStringDataOption)] 
+       LPWSTR StringDataOption;
+     [case(DhcpBinaryDataOption)] 
+       DHCP_BINARY_DATA BinaryDataOption;
+     [case(DhcpEncapsulatedDataOption)] 
+       DHCP_BINARY_DATA EncapsulatedDataOption;
+     [case(DhcpIpv6AddressOption)] 
+       LPWSTR Ipv6AddressDataOption;
+   } Element;
+ } DHCP_OPTION_DATA_ELEMENT,
+  *LPDHCP_OPTION_DATA_ELEMENT;
+</pre></div>
+</dd></dl><p><b>OptionType:</b>  This is of type <span><a href="21134777-3835-46f6-8ecc-dfec6bbfcf23" data-linktype="relative-path">DHCP_OPTION_DATA_TYPE (section 2.2.1.1.10)</a></span>
+enumeration value, indicating the option value that is present in the
+subsequent field, <i>Element</i>.</p><p><b>Element:</b>  This is a union that can
+contain one of the following values chosen based on the value of <b>OptionType</b>.</p><p><b>ByteOption:</b>  Specifies the data as a
+<span><a href="../ms-dtyp/d7edc080-e499-4219-a837-1bc40b64bb04" data-linktype="relative-path">BYTE</a></span>
+value. This field is present if the <b>OptionType</b> is DhcpByteOption.</p><p><b>WordOption:</b>  Specifies the data as a
+<span><a href="../ms-dtyp/f8573df3-a44a-4a50-b070-ac4c3aa78e3c" data-linktype="relative-path">WORD</a></span>
+value. This field is present if the <b>OptionType</b> is DhcpWordOption.</p><p><b>DWordOption:</b>  Specifies the data as
+a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value. This field is present if the <b>OptionType</b> is DhcpDWordOption.</p><p><b>DWordDWordOption:</b>  Specifies the
+data as a <span><a href="e2f7667e-d814-4d37-9cde-9f129f82603e" data-linktype="relative-path">DWORD_DWORD (section 2.2.1.2.22)</a></span>
+value. This field is present if the <b>OptionType</b> is DhcpDWordDWordOption.</p><p><b>IpAddressOption:</b>  Specifies the data
+as a <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>
+value. This field is present if the <b>OptionType</b> is <b>IpAddressOption</b>.</p><p><b>StringDataOption:</b>  Specifies the
+data as <span><a href="../ms-dtyp/50e9ef83-d6fd-4e22-a34a-2c6b4e3c24f3" data-linktype="relative-path">LPWSTR</a></span>,
+a pointer to a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span>
+value. This field is present if the <b>OptionType</b> is DhcpStringDataOption.</p><p><b>BinaryDataOption:</b>  Specifies the
+data as a <span><a href="a2d136fe-4173-400d-aa11-9d146d722260" data-linktype="relative-path">DHCP_BINARY_DATA (section 2.2.1.2.9)</a></span>
+structure. This field is present if the <b>OptionType</b> is
+DhcpBinaryDataOption.</p><p><b>EncapsulatedDataOption:</b>  Specifies
+the data as encapsulated within a DHCP_BINARY_DATA structure. The application
+MUST recognize the format of the opaque data capsule in order to read it from
+the Data field of DHCP_BINARY_DATA. This field is present if the <b>OptionType</b>
+is DhcpEncapsulatedDataOption.</p><p><b>Ipv6AddressDataOption:</b>  Specifies
+the data as LPWSTR, a pointer to a Unicode string value. This field is present
+if the <b>OptionType</b> is DhcpIpv6AddressOption.</p></div>

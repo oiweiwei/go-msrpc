@@ -1,0 +1,20 @@
+<div class="content"><p>This <b>REG_UNICODE_STRING</b> structure represents a
+counted string of Unicode (UTF-16) characters.</p><dl>
+<dd>
+<div><pre> typedef struct _REG_UNICODE_STRING {
+   unsigned short Length;
+   unsigned short MaximumLength;
+   [size_is(MaximumLength/2), length_is(Length/2)] 
+     unsigned short* Buffer;
+ } REG_UNICODE_STRING,
+  *PREG_UNICODE_STRING;
+</pre></div>
+</dd></dl><p><b>Length:</b>  The number of bytes
+actually used by the string. Because all UTF-16 characters occupy 2 bytes, this
+MUST be an even number in the range [0...65534]. The behavior for odd values is
+unspecified.</p><p><b>MaximumLength:</b>  The number of bytes
+allocated for the string. This MUST be an even number in the range [<b>Length</b>...65534].</p><p><b>Buffer:</b>  The Unicode UTF-16
+characters comprising the string described by the structure. Note that counted
+strings might be terminated by a 0x0000 character, by convention; if such a
+terminator is present, it SHOULD NOT count toward the <b>Length</b> (but MUST,
+of course, be included in the <b>MaximumLength</b>).</p></div>

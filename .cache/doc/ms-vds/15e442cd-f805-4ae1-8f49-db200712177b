@@ -1,0 +1,30 @@
+<div class="content"><p> </p><p>The VDS_FILE_SYSTEM_FORMAT_SUPPORT_PROP structure provides
+information about <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file systems</a></span> that
+are supported for <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_ea22e521-1a4e-4ceb-8d64-f65fa6d0e63b" data-linktype="relative-path">formatting</a></span> <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volumes</a></span>.<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _VDS_FILE_SYSTEM_FORMAT_SUPPORT_PROP {
+   unsigned long ulFlags;
+   unsigned short usRevision;
+   unsigned long ulDefaultUnitAllocationSize;
+   unsigned long rgulAllowedUnitAllocationSizes[32];
+   WCHAR wszName[32];
+ } VDS_FILE_SYSTEM_FORMAT_SUPPORT_PROP,
+  *PVDS_FILE_SYSTEM_FORMAT_SUPPORT_PROP;
+</pre></div>
+</dd></dl><p><b>ulFlags:</b>  The combination of any
+values, by using the bitwise OR operator, that are defined in the <span><a href="3039503d-84c3-4fb2-9068-6faef1c084f1" data-linktype="relative-path">VDS_FILE_SYSTEM_FORMAT_SUPPORT_FLAG</a></span>
+enumeration.</p><p><b>usRevision:</b>  A 16-bit, binary-coded
+decimal number that indicates the file system version, if any. The first two
+(most significant) digits (8-bits) indicate the major version while the last
+two (least significant) digits (8-bits) indicate the minor version. For
+example, a value that has a bit pattern of 00000010 01010000 (0x0250 in
+hexadecimal) represents version 2.50; 0x1195 represents version 11.95, and so
+on.</p><p><b>ulDefaultUnitAllocationSize:</b>  The
+default <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2b23c239-06f9-4803-8646-bc908cbe044d" data-linktype="relative-path">allocation unit size</a></span>,
+in bytes, that the file system uses for formatting the volume. This value MUST
+be a power of 2 and MUST also appear in <b>rgulAllowedUnitAllocationSizes</b>.</p><p><b>rgulAllowedUnitAllocationSizes:</b>  A
+zero-terminated array of allocation unit sizes, in bytes, that the file system
+supports for formatting the volume. An array is not zero-terminated if the
+array contains 32 elements. Each of the values in the array MUST be a power of
+2.</p><p><b>wszName:</b>  A null-terminated Unicode
+wide-character string that indicates the name of the file system. </p></div>

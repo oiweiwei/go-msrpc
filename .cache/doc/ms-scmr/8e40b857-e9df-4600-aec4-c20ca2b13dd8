@@ -1,0 +1,12 @@
+<div class="content"><p>The STRING_PTRSW structure defines a pointer to a Unicode
+character string.</p><dl>
+<dd>
+<div><pre> typedef struct _STRING_PTRSW {
+   [string, range(0, SC_MAX_ARGUMENT_LENGTH)] 
+     wchar_t* StringPtr;
+ } STRING_PTRSW,
+  *PSTRING_PTRSW,
+  *LPSTRING_PTRSW;
+</pre></div>
+</dd></dl><p><b>StringPtr:</b>  A pointer to a Unicode
+character string.</p></div>

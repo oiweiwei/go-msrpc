@@ -1,0 +1,18 @@
+<div class="content"><p>The AdsCacheFlags enumeration defines bitmasks for the
+possible states of the <b>FCIADS stream</b> in the File Server Resource Manager
+protocol.</p><dl>
+<dd>
+<div><pre> typedef  enum AdsCacheFlags
+ {
+   AdsCacheFlags_None = 0x00000000,
+   AdsCacheFlags_Dirty = 0x00000001,
+   AdsCacheFlags_PropertyFlagsValid = 0x00000002
+ } AdsCacheFlags;
+</pre></div>
+</dd></dl><p><b>AdsCacheFlags_None:  </b>Indicates that no flags
+are set.</p><p><b>AdsCacheFlags_Dirty:  </b>If this flag is set, the
+cache might be out-of-date.</p><p><b>AdsCacheFlags_PropertyFlagsValid:  </b>If this
+flag is set, property flags of the <b>ADSSecurePropertyHeader</b> (see <a href="../ms-fciads/629d7a15-54ba-4e1c-a1b0-547afba28485" data-linktype="relative-path">[MS-FCIADS]</a>
+section <a href="../ms-fciads/0cf5c3d5-a491-4423-b813-54916b8a9351" data-linktype="relative-path">2.4</a>)
+and <b>ADSNonSecurePropertyHeader</b> (see [MS-FCIADS] section <a href="../ms-fciads/2e59f7fe-03a4-446f-9b92-503b3459bd3a" data-linktype="relative-path">2.5</a>)
+will correspond to flags in the <b>FCIADS streamPropertyFlags</b> instead of <a href="3c2cb602-193b-4d2c-a7e9-15615accab9a" data-linktype="relative-path">FsrmPropertyFlags</a>.<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a></p></div>

@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The ElfrBackupELFA (Opnum 13) method instructs the server to
+back up the <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_bb3fad7e-60bf-46d4-9c3f-7caea47a743e" data-linktype="relative-path">event log</a></span> to a
+specified file name.<a id="Appendix_A_Target_26"></a><a aria-label="Product behavior note 26" href="4acc4fbc-1378-4120-83d1-cfb4ae0240e0#Appendix_A_26" data-linktype="relative-path">&lt;26&gt;</a></p><dl>
+<dd>
+<div><pre> NTSTATUS ElfrBackupELFA(
+   [in] IELF_HANDLE LogHandle,
+   [in] PRPC_STRING BackupFileName
+ );
+</pre></div>
+</dd></dl><p><b>LogHandle: </b>Handle to an event log. This parameter is
+a server context handle, as specified in section <span><a href="de54bfbc-fbe4-43b8-b8e1-b8a6b2189604" data-linktype="relative-path">2.2.6</a></span>. This handle
+MUST NOT be obtained via the <span><a href="6dcf59eb-11ca-416f-9cc4-8f6c2979baad" data-linktype="relative-path">ElfrOpenBELA (section 3.1.4.2)</a></span>
+method or the <span><a href="4db1601c-7bc2-4d5c-8375-c58a6f8fc7e1" data-linktype="relative-path">ElfrOpenBELW (section 3.1.4.1)</a></span>
+method.</p><p><b>BackupFileName: </b>Provides an ANSI string (as specified
+in section <span><a href="1f02c63c-f59f-40b2-8046-c624f18e7e84" data-linktype="relative-path">2.2.12</a></span>) that points
+to an <span><a href="c1550f98-a1ce-426a-9991-7509e7c3787c" data-linktype="relative-path">NT Object Path</a></span> of a
+file (as specified in section 2.2.4.1), in which a current copy of the event
+log is to be placed. This MUST NOT be NULL or empty.</p><p><b>Return Values: </b>The method MUST return STATUS_SUCCESS
+(0x00000000) on success; otherwise, it MUST return an implementation-based,
+nonzero NTSTATUS value specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>ElfrBackupELFA is identical to the <span><a href="58e4c3bb-26b3-48a8-8e29-3cc56a23fc2b" data-linktype="relative-path">ElfrBackupELFW (section 3.1.4.11)</a></span>
+method except in the following case: </p><ul><li><p><span><span> 
+</span></span>When <i>BackUpFileName</i> is an ANSI string. </p>
+</li></ul></div>

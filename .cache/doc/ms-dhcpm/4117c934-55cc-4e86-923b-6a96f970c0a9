@@ -1,0 +1,34 @@
+<div class="content"><p> </p><p>The <b>DHCP_FAILOVER_STATISTICS</b> structure defines the
+statistical information for an IPv4 subnet configured for a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_f9098c6a-2548-43c0-8dd4-4327299e8506" data-linktype="relative-path">failover</a></span>
+relationship.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_FAILOVER_STATISTICS {
+   DWORD numAddr;
+   DWORD addrFree;
+   DWORD addrInUse;
+   DWORD partnerAddrFree;
+   DWORD thisAddrFree;
+   DWORD partnerAddrInUse;
+   DWORD thisAddrInUse;
+ } DHCP_FAILOVER_STATISTICS,
+  *LPDHCP_FAILOVER_STATISTICS;
+</pre></div>
+</dd></dl><p><b>numAddr:</b>  This member is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and contains the total number of IPv4 addresses that can be leased out to
+DHCPv4 clients on an IPv4 subnet that is part of a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_ba9fcec9-1438-47ec-958c-873c1a0d4c5e" data-linktype="relative-path">failover relationship</a></span>.</p><p><b>addrFree:</b>  This member is of type
+DWORD and contains the total number of IPv4 addresses that are free and can be
+leased to DHCPv4 clients on an IPv4 subnet that is part of a failover relationship.</p><p><b>addrInUse:</b>  This member is of type
+DWORD and contains the total number of IPv4 addresses leased to DHCPv4 clients
+on an IPv4 subnet that is part of a failover relationship.</p><p><b>partnerAddrFree:</b>  This member is of
+type DWORD and contains the total number of IPv4 addresses that are free and
+can be leased to DHCPv4 clients on an IPv4 subnet that is part of a failover
+relationship on the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_a454a106-1b85-422c-84ea-9ce5bd6621b8" data-linktype="relative-path">partner server</a></span>.</p><p><b>thisAddrFree:</b>  This member is of
+type DWORD and contains the total number of IPv4 addresses that are free and
+can be leased to DHCPv4 clients on an IPv4 subnet that is part of a failover
+relationship on the local DHCP server.</p><p><b>partnerAddrInUse:</b>  This member is of
+type DWORD and contains the total number of IPv4 addresses leased to DHCPv4
+clients on an IPv4 subnet that is part of a failover relationship on the
+partner server.</p><p><b>thisAddrInUse:</b>  This member is of
+type DWORD and contains the total number of IPv4 addresses leased to DHCPv4
+clients on an IPv4 subnet that is part of a failover relationship on the local
+DHCP server.</p></div>

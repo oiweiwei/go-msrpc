@@ -1,0 +1,31 @@
+<div class="content"><p>The <b>JOB_INFO_2</b> structure provides information about a
+<a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print job</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _JOB_INFO_2 {
+   DWORD JobId;
+   [string] wchar_t* pPrinterName;
+   [string] wchar_t* pMachineName;
+   [string] wchar_t* pUserName;
+   [string] wchar_t* pDocument;
+   [string] wchar_t* pNotifyName;
+   [string] wchar_t* pDatatype;
+   [string] wchar_t* pPrintProcessor;
+   [string] wchar_t* pParameters;
+   [string] wchar_t* pDriverName;
+   ULONG_PTR pDevMode;
+   [string] wchar_t* pStatus;
+   ULONG_PTR pSecurityDescriptor;
+   DWORD Status;
+   DWORD Priority;
+   DWORD Position;
+   DWORD StartTime;
+   DWORD UntilTime;
+   DWORD TotalPages;
+   DWORD Size;
+   SYSTEMTIME Submitted;
+   DWORD Time;
+   DWORD PagesPrinted;
+ } JOB_INFO_2;
+</pre></div>
+</dd></dl><p>All members not defined in this section are specified in
+sections <a href="94d1857e-c444-49b1-8fb4-83eac6696060" data-linktype="relative-path">2.2.1.3.3</a> and <a href="964b517f-6730-4b4a-99ed-ee9648e7f1f7" data-linktype="relative-path">2.2.1.3</a>.</p></div>

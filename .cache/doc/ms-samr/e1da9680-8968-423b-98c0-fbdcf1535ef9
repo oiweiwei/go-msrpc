@@ -1,0 +1,9 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/e1da9680-8968-423b-98c0-fbdcf1535ef9" data-linktype="external">msdn link</a></p><p>The DOMAIN_MODIFIED_INFORMATION structure contains <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> fields.</p><dl>
+<dd>
+<div><pre> typedef struct _DOMAIN_MODIFIED_INFORMATION {
+   OLD_LARGE_INTEGER DomainModifiedCount;
+   OLD_LARGE_INTEGER CreationTime;
+ } DOMAIN_MODIFIED_INFORMATION,
+  *PDOMAIN_MODIFIED_INFORMATION;
+</pre></div>
+</dd></dl><p>For information on each field, see section <a href="d275ab19-10b0-40e0-94bb-45b7fc130025" data-linktype="relative-path">2.2.3.1</a>.</p></div>

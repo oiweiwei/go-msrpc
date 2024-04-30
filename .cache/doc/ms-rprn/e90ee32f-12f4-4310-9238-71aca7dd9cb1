@@ -1,0 +1,32 @@
+<div class="content"><p>The <b>RPC_BranchOfficeJobDataRendered</b> structure holds a
+single <b>Branch Office Print Remote Log Entry</b> (section <a href="1bd61448-db4b-4284-a4b1-8346732402d4" data-linktype="relative-path">3.1.1</a>).<a id="Appendix_A_Target_89"></a><a aria-label="Product behavior note 89" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_89" data-linktype="relative-path">&lt;89&gt;</a> This entry contains the
+information needed to create <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_0c6539af-aed7-4baa-9d21-4aa5b41d448a" data-linktype="relative-path">event
+ID</a> 805 in the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_e6ccb1c9-7b3e-473c-9e14-0806d19c4337" data-linktype="relative-path">Microsoft-Windows-PrintService</a>/Operational
+<a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_43907602-849d-4d1c-9ff8-a2c3228b3735" data-linktype="relative-path">event channel</a>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   LONGLONG Size;
+   DWORD ICMMethod;
+   short Color;
+   short PrintQuality;
+   short YResolution;
+   short Copies;
+   short TTOption;
+ } RPC_BranchOfficeJobDataRendered;
+</pre></div>
+</dd></dl><p><b>Size:</b> A 64-bit signed integer that
+specifies the size of the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print
+job</a>, in bytes.</p><p><b>ICMMethod:</b> A 32-bit unsigned integer that
+specifies how <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_fcd5ee55-57ff-45d6-b51e-2ccba47329e3" data-linktype="relative-path">Image Color
+Management (ICM)</a> is handled for the print job. See the definition of the <b>dmICMMethod</b>
+field in section <a href="ccc2a501-794e-4d2b-b312-f69c75131c2e" data-linktype="relative-path">2.2.2.1</a>.</p><p><b>Color:</b> A 16-bit signed integer that
+specifies the color mode to use for the print job. See the definition of the <b>dmColor</b>
+field in section 2.2.2.1.</p><p><b>PrintQuality:</b> A 16-bit signed integer
+that specifies the printer resolution for the print job. See the definition of
+the <b>dmPrintQuality</b> field in section 2.2.2.1.</p><p><b>YResolution:</b> A 16-bit signed integer that
+specifies the vertical-resolution in dots per inch for the print job. See the
+definition of the <b>dmYResolution</b> field in section 2.2.2.1.</p><p><b>Copies:</b> A 16-bit signed integer that
+specifies the number of copies to be printed for the print job. See the
+definition of the <b>dmCopies</b> field in section 2.2.2.1.</p><p><b>TTOption:</b> A 16-bit signed integer that
+specifies how TrueType fonts are printed for the print job. See the definition
+of the <b>dmTTOption</b> field in section 2.2.2.1.</p></div>

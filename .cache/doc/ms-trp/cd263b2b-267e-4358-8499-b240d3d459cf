@@ -1,0 +1,113 @@
+<div class="content"><p>The LINE_DEVSPECIFIC packet is sent to notify the
+application about device-specific events that occur on a line, address, or call.
+The meaning of the event and the interpretation of the fields are device
+specific.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">TotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">InitContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">fnPostProcessProcHandle</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">hDevice</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Msg</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">OpenContext</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Param4</p>
+  </td>
+ </tr>
+</tbody></table><p><b>TotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size of the asynchronous event packet.</p><p><b>InitContext (4 bytes): </b>An unsigned 32-bit
+integer. The opaque, client-specified session value that MUST be equal to the
+InitContext value that is specified in the original scoping of the line <a href="9d8eb7cd-3245-4e44-97e0-42f7b89c9424" data-linktype="relative-path">Initialize</a> request.</p><p><b>fnPostProcessProcHandle (4 bytes): </b>An unsigned
+32-bit integer. MUST be set to zero when sent and MUST be ignored on receipt. </p><p><b>hDevice (4 bytes): </b>An unsigned 32-bit integer.
+The handle to the call or line device that is associated with the asynchronous
+event. </p><p><b>Msg (4 bytes): </b>An unsigned 32-bit integer. The
+packet type; MUST be set to 0x00000004 (LINE_DEVSPECIFIC).</p><p><b>OpenContext (4 bytes): </b>An unsigned 32-bit
+integer. The opaque, client-specified context value that MUST be equal to the
+OpenContext value that is specified in the original scoping of the line <a href="2759c744-e040-4c5d-b4b5-215d391f0490" data-linktype="relative-path">Open</a> request.</p><dl>
+<dd>
+<p>This information MUST be passed back to the
+application with each completion and event that is associated with the handle
+of the line or call on the line. This field is not interpreted by TAPI.</p>
+</dd></dl><p><b>Param1 (4 bytes): </b>An unsigned 32-bit integer.
+Device specific. </p><p><b>Param2 (4 bytes): </b>An unsigned 32-bit integer.
+Device specific.</p><p><b>Param3 (4 bytes): </b>An unsigned 32-bit integer.
+Device specific.</p><p><b>Param4 (4 bytes): </b>An unsigned 32-bit integer.
+If the event is specific to a call, this field MUST contain the remote handle
+to the line device. Otherwise, this field is set to 0.</p><p>If there is a valid call handle that is associated with the
+packet, the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST
+set the <b>hDevice</b> field to the hCall value and the <b>Param4</b> field to
+the hRemoteLine value.</p><p>If there is no valid call handle that is associated with the
+packet, the server MUST set the <b>hDevice</b> field to the hRemoteLine value
+and the <b>Param4</b> field to 0.</p></div>

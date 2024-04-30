@@ -1,0 +1,38 @@
+<div class="content"><p>The TSG_PACKET_RESPONSE structure contains the response of
+the RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> to the
+RDG <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> for the <a href="2bba72e7-e747-4a17-b890-3cc5f5c4d43b" data-linktype="relative-path">TsProxyAuthorizeTunnel</a>
+method call. The value of the <b>packetId</b> field in <a href="4c505da0-93c2-4a2f-9329-6174bbaa481b" data-linktype="relative-path">TSG_PACKET</a> MUST be set to <a href="91613bb4-e7d7-487f-ade7-31d015999ffb" data-linktype="relative-path">TSG_PACKET_TYPE_RESPONSE</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _TSG_PACKET_RESPONSE {
+   unsigned long flags;
+   unsigned long reserved;
+   [size_is(responseDataLen)] byte* responseData;
+   [range(0, 24000)] unsigned long responseDataLen;
+   TSG_REDIRECTION_FLAGS redirectionFlags;
+ } TSG_PACKET_RESPONSE,
+  *PTSG_PACKET_RESPONSE;
+</pre></div>
+</dd></dl><p><b>flags:</b>  The RDG server MUST set this
+value to <a href="a89de1f3-1dfb-476c-813d-e9e2a6167f84" data-linktype="relative-path">TSG_PACKET_TYPE_QUARREQUEST</a>
+to indicate that this structure is in response to the TsProxyAuthorizeTunnel
+method call. The RDG client MAY ignore this field.</p><p><b>reserved:</b>  This field is unused and
+can be any value when sending and ignored on receipt.</p><p><b>responseData:</b>  Byte data
+representing the response from the RDG server for the TsProxyAuthorizeTunnel
+method call. If the <b>Negotiated Capabilities</b> ADM element contains
+TSG_NAP_CAPABILITY_QUAR_SOH and TSG_NAP_CAPABILITY_IDLE_TIMEOUT and the value
+of the <b>dataLen</b> member specified in the <a href="25656e76-c6f4-492a-aac9-4bf1f78f6ce4" data-linktype="relative-path">TSG_PACKET_QUARREQUEST
+structure (section 2.2.9.2.1.4)</a> is greater than zero, then <b>responseData</b>
+MUST contain both the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_1e9f0741-3d86-4a9a-84e1-a9fcf5506d31" data-linktype="relative-path">statement
+of health response (SoHR)</a> and the idle timeout value. If <b>Negotiated
+Capabilities</b> contains only TSG_NAP_CAPABILITY_QUAR_SOH and the value of the
+<b>dataLen</b> member specified in the TSG_PACKET_QUARREQUEST
+structure (section 2.2.9.2.1.4) is greater than zero, then <b>responseData</b>
+MUST contain only the statement of health response. If <b>Negotiated
+Capabilities</b> contains only TSG_NAP_CAPABILITY_IDLE_TIMEOUT, then <b>responseData</b>
+MUST contain only the idle timeout value. The length of the data MUST be equal
+to that specified by <b>responseDataLen</b>. If <b>Negotiated Capabilities</b>
+does not contain both TSG_NAP_CAPABILITY_QUAR_SOH and
+TSG_NAP_CAPABILITY_IDLE_TIMEOUT, then <b>responseData</b> is ignored and <b>responseDataLen</b>
+is set to zero.<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a></p><p><b>responseDataLen:</b>  Length, in bytes,
+of the data specified by the <b>responseData</b> field.</p><p><b>redirectionFlags:</b>  A <a href="acf547fb-09a7-4948-a97d-5845f2be5bcc" data-linktype="relative-path">TSG_REDIRECTION_FLAGS</a>
+structure.<a id="Appendix_A_Target_18"></a><a aria-label="Product behavior note 18" href="e63f32e6-39ec-43c8-aae5-3ffa1c408966#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a></p></div>

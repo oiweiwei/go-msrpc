@@ -1,0 +1,124 @@
+<div class="content"><p> </p><p>This EvtRpcRemoteSubscriptionNext (Opnum 2) method is a
+synchronous request for events that have been delivered to a subscription. This
+method is only used for pull subscriptions in which the client polls for
+events. The <span><a href="1cae0777-1544-410c-adfb-9fe1474f1dca" data-linktype="relative-path">EvtRpcRemoteSubscriptionWaitAsync (section 3.1.4.11)</a></span>
+method can be used along with this method to minimize the frequency of polling.</p><dl>
+<dd>
+<div><pre> error_status_t EvtRpcRemoteSubscriptionNext(
+   [in, context_handle] PCONTEXT_HANDLE_REMOTE_SUBSCRIPTION handle,
+   [in] DWORD numRequestedRecords,
+   [in] DWORD timeOut,
+   [in] DWORD flags,
+   [out] DWORD* numActualRecords,
+   [out, size_is(,*numActualRecords), range(0, MAX_RPC_RECORD_COUNT)] 
+     DWORD** eventDataIndices,
+   [out, size_is(,*numActualRecords), range(0, MAX_RPC_RECORD_COUNT)] 
+     DWORD** eventDataSizes,
+   [out] DWORD* resultBufferSize,
+   [out, size_is(,*resultBufferSize), range(0, MAX_RPC_BATCH_SIZE)] 
+     BYTE** resultBuffer
+ );
+</pre></div>
+</dd></dl><p><b>handle: </b>A handle to a subscription. This
+parameter is an <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle,
+as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> Context
+Handles.</p><p><b>numRequestedRecords: </b>A 32-bit unsigned integer
+that contains the maximum number of events to return.</p><p><b>timeOut: </b>A 32-bit unsigned integer that
+contains the maximum number of milliseconds to wait before returning.</p><p><b>flags: </b>A 32-bit unsigned integer that MUST be
+set to zero when sent and MAY be ignored on receipt.<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a></p><p><b>numActualRecords: </b>A pointer to a 32-bit
+unsigned integer that contains the value that, on success, MUST be set to the
+number of events that are retrieved. This is useful in the case in which the
+method times out without receiving the full number of events specified in <i>numRequestedRecords</i>.
+If the method fails, the client MUST NOT use the value.</p><p><b>eventDataIndices: </b>A pointer to an array of
+32-bit unsigned integers that contain the offsets for the events. An event
+offset is its position relative to the start of <i>resultBuffer</i>.</p><p><b>eventDataSizes: </b>A pointer to an array of
+32-bit unsigned integers that contain the event sizes in bytes.</p><p><b>resultBufferSize: </b>A pointer to a 32-bit
+unsigned integer that contains the number of bytes of data returned in <i>resultBuffer</i>.</p><p><b>resultBuffer: </b>A pointer to a byte-array that
+contains the <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_c8a27238-8ccc-442b-9604-75f74d3e6b3d" data-linktype="relative-path">result set</a></span> of one or
+more events. The events MUST be in binary XML format, as specified in section <span><a href="762528ba-f36a-4d17-ba2b-0f0244a45f2f" data-linktype="relative-path">2.2.17</a></span>.</p><p><b>Return Values: </b>The method MUST return ERROR_SUCCESS
+(0x00000000) on success. The method MUST return ERROR_TIMEOUT (0x000005b4) if
+fewer than <i>numRequestedRecords</i> records are found within the time-out
+period. Otherwise, it MUST return a different implementation-specific nonzero
+value as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>In response to this request from the client, the server MUST
+do the following: </p><ul><li><p><span><span> 
+</span></span>Validate the handle. For processing rules for handle validation,
+see the remarks in section <span><a href="e567bf31-913a-4369-846d-a38eb3f97aa0" data-linktype="relative-path">3.1.4.9</a></span>. The server
+MUST fail the method with the return code ERROR_INVALID_PARAMETER (0x00000057)
+if the handle is invalid or there is no state for this handle on the server.</p>
+</li><li><p><span><span> 
+</span></span>After the server validates the handle, it casts the handle value
+to the subscription object. The server then MUST check whether the subscription
+object is a push subscription. Because the subscription object contains the type
+of subscription, the server checks its type and SHOULD fail the method if it is
+not a push type subscription with the error
+ERROR_INVALID_OPERATION(0x000010DD).</p>
+</li><li><p><span><span> 
+</span></span>If the handle passes the check, the server MUST determine if the
+log file contains events to send to the client. These events pass the <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_d74bcc19-5383-49d9-acfc-c79518cd2fbf" data-linktype="relative-path">subscription
+filters</a></span> but have not been sent to the client. The subscription
+filters are the XPath queries that the client specifies in the query parameter
+in the <b>EvtRpcRegisterRemoteSubscription</b> method (as specified in section <span><a href="4364e323-0885-4e2f-9d55-70cf57cd6b95" data-linktype="relative-path">3.1.4.8</a></span>).
+For information on how the server applies the filter, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=207352" data-linktype="external">[MSDN-CONSUMEVTS]</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>If the log file contains events to send to the client,
+EvtRpcRemoteSubscriptionNext (Opnum 2) starts collecting events to send to the
+client. Three factors determine the number of events that the server sends to
+the client: </p>
+<ul><li><p><span><span>  </span></span>The
+maximum number of records to send to the client. This value is specified by
+using the <i>numRequestedRecords</i> parameter.</p>
+</li><li><p><span><span>  </span></span>The
+<i>timeout interval</i>. This value is specified by using the <i>timeOut</i>
+parameter and defines the maximum time interval that the caller will wait for a
+query result. Complex queries and queries that inspect large log files are most
+likely to encounter the limit specified by the <i>timeout</i> value. If the
+execution time for delivering the next batch of events through the subscription
+exceeds the timeout value, the server MUST stop working and SHOULD return to
+the client immediately with the return code ERROR_TIMEOUT (0x000005B4). The
+server SHOULD treat a <i>timeout</i> parameter value of 0xFFFFFFFF as infinite,
+and process up to the limit of <i>numRequestedRecords</i> or the end of the log
+file regardless of the amount of time such processing takes.</p>
+</li><li><p><span><span>  </span></span>The
+end of the log file. </p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the server collects the maximum number of events to send to
+the client before reaching the end of the log file and before the <i>timeout interval</i>
+expires, the server MUST send the number of events specified in <i>numRequestedRecords</i>
+to the client.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>timeout interval</i> expires before the server reaches
+the end of the log file, the server MUST send the collected events to the
+client. The number of events is less than or equal to the number of events
+specified in <i>numRequestedRecords</i>.</p>
+</li><li><p><span><span> 
+</span></span>If the server reaches the end of the log file before the <i>timeout
+interval</i> expires, the server MUST send the collected events to the client.
+The number of events is less than or equal to the number of events specified in
+<i>numRequestedRecords</i>. </p>
+</li></ul><p>The server returns the result in the five output parameters:
+<i>numActualRecords</i>, <i>eventDataIndices</i>, <i>eventDataSizes</i>, <i>resultBufferSize</i>,
+and <i>resultBuffer</i>. On successful return, the <i>numActualRecords</i>
+contains the number of events in the <i>resultBuffer</i>. All the returned
+events are in BinXML format and they are packed as one binary blob in the <i>resultBuffer</i>.
+The total size of all these events are marked by <i>resultBufferSize</i>. Since
+all the events are packed together, there is a need to identify where the
+separator is for each event in the result. To do this, the server fills two
+arrays:  eventDataIndices and eventDataSizes. Both arrays contain the <i>numActualRecords</i>
+of elements. For the eventDataIndices array, each array element is a 32-bit
+value which is the start position of each event in the <i>resultBuffer</i>. For
+the eventDataSizes array, each element is a 32-bit value which is the size of
+every event.</p><p>The server MUST update the position value in the
+subscription object to keep track of the events received by the client so that
+subsequent calls can retrieve the rest of the result set. As specified in
+section 3.1.4.8, the subscription object keeps the positions where the events
+SHOULD start in the channels. Then the server can update the position value so
+that it can perform the task of tracking the delivered events. The entire
+result set in the log file can be retrieved by making a series of calls using
+EvtRpcRemoteSubscriptionNext (Opnum 2), including entries added to the log file
+during retrieval of the result set.</p><p>The server SHOULD be notified by the underlying network that
+the connection is lost from the client if the client abnormally terminates the
+connection. The server abandons its operation for the client in such a case.
+The server SHOULD release the subscription object it creates and free all
+associated resources. The associated resources are described in
+EvtRpcRegisterRemoteSubscription (Opnum 0) (section 3.1.4.8).</p><p>The server MUST return a value that indicates success or
+failure for this operation.</p></div>

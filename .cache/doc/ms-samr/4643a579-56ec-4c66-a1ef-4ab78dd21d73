@@ -1,0 +1,37 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/4643a579-56ec-4c66-a1ef-4ab78dd21d73" data-linktype="external">msdn link</a></p><p>The SamrDeleteUser method removes a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_e767a471-c3fa-4e4b-a40c-daeb08f82a17" data-linktype="relative-path">user object</a>.</p><dl>
+<dd>
+<div><pre> long SamrDeleteUser(
+   [in, out] SAMPR_HANDLE* UserHandle
+ );
+</pre></div>
+</dd></dl><p><b>UserHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a user object.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>The server MUST
+return an error if <i>UserHandle.HandleType</i> is not equal to
+&#34;User&#34;.</p>
+</li><li><p><span>    </span><i>UserHandle.GrantedAccess</i>
+MUST have the required access specified in section <a href="87bacbd0-7b8b-429f-abc6-4b3d895d4e90" data-linktype="relative-path">3.1.2.2</a>. Otherwise, the
+server MUST return STATUS_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>Let U be the
+object referenced by <i>UserHandle.Object</i>.</p>
+</li><li><p><span>    </span>All database operations
+MUST occur in a single transaction.</p>
+</li><li><p><span>    </span>If the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RID</a> of U&#39;s <b>objectSid</b>
+attribute value is less than 1000, an error MUST be returned.</p>
+</li><li><p><span>    </span>In the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a> configuration, if U is a
+parent to another object, an error MUST be returned.<a id="Appendix_A_Target_62"></a><a aria-label="Product behavior note 62" href="fa61e5fc-f8fb-4d5b-9695-c724af0c3829#Appendix_A_62" data-linktype="relative-path">&lt;62&gt;</a></p>
+</li><li><p><span>    </span>If the <b>UserAccountControl</b>
+attribute of U contains USER_INTERDOMAIN_TRUST_ACCOUNT and the connection does
+not have <b>SchemaUpgradeInPogress</b> set to 1 (see <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/a21db735-6025-4244-9cfe-6ce6582114a8" data-linktype="relative-path">3.1.1.3.3.14</a>)
+the server must end processing and return STATUS_ACCESS_DENIED. U MUST be
+removed from the database.<a id="Appendix_A_Target_63"></a><a aria-label="Product behavior note 63" href="fa61e5fc-f8fb-4d5b-9695-c724af0c3829#Appendix_A_63" data-linktype="relative-path">&lt;63&gt;</a></p>
+</li><li><p><span>    </span>The server MUST
+delete the <b>SamContextHandle</b> ADM element (section <a href="cc2dc6ce-e45f-481a-a8ed-5d0e273336b3" data-linktype="relative-path">3.1.1.10</a>) represented by <i>UserHandle</i>,
+and then MUST return 0 for the value of <i>UserHandle</i> and a return code of
+STATUS_SUCCESS.</p>
+</li></ol></div>

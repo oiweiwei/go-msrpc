@@ -1,0 +1,140 @@
+<div class="content"><p> </p><p>The BaseRegQueryInfoKey method is called by the client. In
+response, the server returns relevant information on the key that corresponds
+to the specified <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_1581dcd1-63a6-4e10-b26d-c521e4d10fa7" data-linktype="relative-path">key handle</a></span>.</p><dl>
+<dd>
+<div><pre> error_status_t BaseRegQueryInfoKey(
+   [in] RPC_HKEY hKey,
+   [in] PRRP_UNICODE_STRING lpClassIn,
+   [out] PRPC_UNICODE_STRING lpClassOut,
+   [out] LPDWORD lpcSubKeys,
+   [out] LPDWORD lpcbMaxSubKeyLen,
+   [out] LPDWORD lpcbMaxClassLen,
+   [out] LPDWORD lpcValues,
+   [out] LPDWORD lpcbMaxValueNameLen,
+   [out] LPDWORD lpcbMaxValueLen,
+   [out] LPDWORD lpcbSecurityDescriptor,
+   [out] PFILETIME lpftLastWriteTime
+ );
+</pre></div>
+</dd></dl><p><b>hKey: </b>A handle to a key that MUST have been
+opened previously by using one of the open methods that are specified in
+section <span><a href="053e8515-dbae-47ea-a7c6-6dc054e3a48f" data-linktype="relative-path">3.1.5</a></span>: <span><a href="956a3052-6580-43ee-91aa-aaf61726149b" data-linktype="relative-path">OpenClassesRoot</a></span>,
+<span><a href="ec140ed9-4d00-4c03-a15c-c7245a497ed5" data-linktype="relative-path">OpenCurrentUser</a></span>,
+<span><a href="6cef29ae-21ba-423f-9158-05145ac80a5b" data-linktype="relative-path">OpenLocalMachine</a></span>,
+<span><a href="7b514c63-6cad-4fe1-9780-743959e377e6" data-linktype="relative-path">OpenPerformanceData</a></span>,
+<span><a href="694e57f4-da3e-4285-8b71-3181d71d6cd1" data-linktype="relative-path">OpenUsers</a></span>,
+<span><a href="c7186ae2-1c82-45e9-933b-97d9873657e8" data-linktype="relative-path">BaseRegCreateKey</a></span>,
+<span><a href="8cb48f55-19e1-4ea2-8d76-dd0f6934f0d9" data-linktype="relative-path">BaseRegOpenKey</a></span>,
+<span><a href="160767d7-83cf-4718-a4f3-d864faee3bb1" data-linktype="relative-path">OpenCurrentConfig</a></span>,
+<span><a href="44954f6d-ef2c-4ec1-a27d-32b9b87e3c8a" data-linktype="relative-path">OpenPerformanceText</a></span>,
+<span><a href="3626fa8a-b20f-4243-bf85-cdb615ed2ca0" data-linktype="relative-path">OpenPerformanceNlsText</a></span>.</p><p><b>lpClassIn: </b>A pointer to an <span><a href="c0c90f11-a4c4-496a-ac09-8a8a3697ceef" data-linktype="relative-path">RRP_UNICODE_STRING</a></span>
+structure that contains the <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_18393bbe-0c06-42b7-890d-b94a9a40b6e0" data-linktype="relative-path">class</a></span> of the key to
+be retrieved, as specified in section <span><a href="93f88852-a82a-48d5-8af5-dab65db108a6" data-linktype="relative-path">3.1.1.6</a></span>. This
+string is optional; it is saved but is not used by the registry.</p><p><b>lpClassOut: </b>A pointer to an <span><a href="../ms-dtyp/94a16bb6-c610-4cb9-8db6-26f15f560061" data-linktype="relative-path">RPC_UNICODE_STRING</a></span>
+structure that receives the class of this key, as specified in section 3.1.1.6.
+</p><p><b>lpcSubKeys:</b> A pointer to a <b>DWORD</b> that
+MUST receive the count of the subkeys of the specified key. </p><p><b>lpcbMaxSubKeyLen:</b> A pointer to a <b>DWORD</b>
+that receives the size of the key&#39;s subkey with the longest name, or a greater
+size, as the number of <b>TCHAR</b> elements. </p><dl>
+<dd>
+<p>TCHAR elements are defined as follows.</p>
+<dl>
+<dd>
+<div><pre> #ifdef UNICODE
+ #typedef WCHAR TCHAR;
+ #endif
+  
+</pre></div>
+</dd></dl></dd></dl><p><b>lpcbMaxClassLen: </b>A pointer to a <b>DWORD</b>
+that receives the size of the longest string that specifies a <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_a5a62cd8-d275-44c1-bf4d-af707404db1e" data-linktype="relative-path">subkey</a></span>
+class, or a greater size, in Unicode characters. </p><p><b>lpcValues: </b>A pointer to a <b>DWORD</b> that
+receives the number of <span><a href="261b039d-95d9-4749-9680-db1851d03945#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">values</a></span> that are
+associated with the key. </p><p><b>lpcbMaxValueNameLen:</b> A pointer to a <b>DWORD</b>
+that receives the size of the key&#39;s longest value name, or a greater size, as
+the number of <b>TCHAR</b> elements. </p><p><b>lpcbMaxValueLen:</b> A pointer to a <b>DWORD</b>
+that receives the size in bytes of the longest data component, or a greater
+size, in the key&#39;s values. </p><p><b>lpcbSecurityDescriptor: </b>A pointer to a <b>DWORD</b>
+that receives the size in bytes of the key&#39;s <span><a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">SECURITY_DESCRIPTOR</a></span>.
+</p><p><b>lpftLastWriteTime:</b> A pointer to a <span><a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a></span>
+structure that receives the last write time. </p><p><b>Return Values: </b>The method returns 0 (ERROR_SUCCESS)
+to indicate success; otherwise, it returns a nonzero error code, as specified
+in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have KEY_QUERY_VALUE access
+  rights.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000013</p>
+  <p>ERROR_WRITE_PROTECT</p>
+  </td>
+  <td>
+  <p>A read or write operation was attempted to a volume
+  after it was dismounted. The server can no longer service registry requests
+  because server shutdown has been initiated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000000EA</p>
+  <p>ERROR_MORE_DATA</p>
+  </td>
+  <td>
+  <p>The size of the buffer is not large enough to hold the
+  requested data.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Server Operations</p><p>If the registry server can no longer service registry
+requests because server shutdown has been initiated (<b>SHUTDOWNINPROGRESS</b>
+is set to TRUE), the server MUST return ERROR_WRITE_PROTECT.</p><p>In response to this request from the client, for a
+successful operation, the server returns information for the specified registry
+key.</p><p>The server MUST return the class that is associated with the
+key in the <i>lpClassOut</i> parameter, as specified in section 3.1.1.6.</p><p>The server MUST return a pointer to the variable that
+contains the number of subkeys for the specified key in the <i>lpcSubKeys</i>
+parameter. If there are no subkeys under the key indicated by <i>hKey</i>, the
+server MUST set this value to 0.</p><p>The server MUST return a pointer to the variable that
+contains the number of values associated with the key in the <i>lpcValues</i>
+parameter. If there are no values under the key indicated by <i>hKey</i>, the
+server MUST set this value to 0.</p><p>The server MUST return a pointer to the variable that
+contains the size (as the number of <b>TCHAR</b> elements) of the key&#39;s longest
+value name, or a greater size, in the <i>lpcbMaxValueNameLen</i> parameter.
+This size MUST NOT include the terminating null character. If there are no
+values under the key indicated by <i>hKey</i>, the server MUST set this value
+to 0.</p><p>The server MUST return a pointer to the variable that
+contains the size in bytes of the longest data component in the key&#39;s values or
+a greater size in the <i>lpcbMaxValueLen</i> parameter. If there are no subkeys
+under the key indicated by <i>hKey</i>, the server MUST set this value to 0.</p><p>The server MUST return a pointer to the variable that
+contains the size in bytes of the key&#39;s SECURITY_DESCRIPTOR in the <i>lpcbSecurityDescriptor</i>
+parameter. </p><p>The server MUST return a pointer to the FILETIME structure
+that specifies the last modification time of the key in the <i>lpftLastWriteTime</i>
+parameter. </p><p>The caller MUST have KEY_QUERY_VALUE access rights to invoke
+this method. For more information, see section <span><a href="fefbc801-b141-4bb1-9dcb-bf366da3ae7e" data-linktype="relative-path">2.2.4</a></span>.</p><p>The server MUST return 0 to indicate success or an
+appropriate error code (as specified in [MS-ERREF]) to indicate an error.</p><p>If the <i>lpClassOut</i> parameter does not contain enough
+space for the class name, the server MUST return ERROR_MORE_DATA.</p><p>If any one of the parameters <i>lpcSubKeys</i>, <i>lpcbMaxSubKeyLen</i>,
+<i>lpcValues</i>, <i>lpcbMaxValueNameLen</i>, <i>lpcbMaxValueLen</i>, or <i>lpftLastWriteTime</i>
+is NULL the server MUST return ERROR_INVALID_PARAMETER.</p><p>If the caller does not have access, the server MUST return
+ERROR_ACCESS_DENIED.</p></div>

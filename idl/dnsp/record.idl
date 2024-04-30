@@ -1,0 +1,336 @@
+import "ms-dnsp.idl";
+
+typedef enum _RPC_TYPE_RECORD {
+    TYPE_RECORD_ZERO = 0x0000,
+    TYPE_RECORD_A = 0x0001,
+    TYPE_RECORD_NS = 0x0002,
+    TYPE_RECORD_MD = 0x0003,
+    TYPE_RECORD_MF = 0x0004,
+    TYPE_RECORD_CNAME = 0x0005,
+    TYPE_RECORD_SOA = 0x0006,
+    TYPE_RECORD_MB = 0x0007,
+    TYPE_RECORD_MG = 0x0008,
+    TYPE_RECORD_MR = 0x0009,
+    TYPE_RECORD_NULL = 0x000A,
+    TYPE_RECORD_WKS = 0x000B,
+    TYPE_RECORD_PTR = 0x000C,
+    TYPE_RECORD_HINFO = 0x000D,
+    TYPE_RECORD_MINFO = 0x000E,
+    TYPE_RECORD_MX = 0x000F,
+    TYPE_RECORD_TXT = 0x0010,
+    TYPE_RECORD_RP = 0x0011,
+    TYPE_RECORD_AFSDB = 0x0012,
+    TYPE_RECORD_X25 = 0x0013,
+    TYPE_RECORD_ISDN = 0x0014,
+    TYPE_RECORD_RT = 0x0015,
+    TYPE_RECORD_SIG = 0x0018,
+    TYPE_RECORD_KEY = 0x0019,
+    TYPE_RECORD_AAAA = 0x001C,
+    TYPE_RECORD_NXT = 0x001E,
+    TYPE_RECORD_SRV = 0x0021,
+    TYPE_RECORD_ATMA = 0x0022,
+    TYPE_RECORD_NAPTR = 0x0023,
+    TYPE_RECORD_DNAME = 0x0027,
+    TYPE_RECORD_DS = 0x002B,
+    TYPE_RECORD_RRSIG = 0x002E,
+    TYPE_RECORD_NSEC = 0x002F,
+    TYPE_RECORD_DNSKEY = 0x0030,
+    TYPE_RECORD_DHCID = 0x0031,
+    TYPE_RECORD_NSEC3 = 0x0032,
+    TYPE_RECORD_NSEC3PARAM = 0x0033,
+    TYPE_RECORD_TLSA = 0x0034,
+    TYPE_RECORD_WINS = 0xFF01,
+    TYPE_RECORD_WINSR = 0xFF02,
+} DNS_RPC_TYPE_RECORD;
+
+typedef struct _DnssrvRpcRecord
+{
+    WORD            wDataLength;
+    DNS_RPC_TYPE_RECORD  wType;
+    DWORD           dwFlags;
+    DWORD           dwSerial;
+    DWORD           dwTtlSeconds;
+    DWORD           dwTimeStamp;
+    DWORD           dwReserved;
+ 
+    [goext_layout(
+        [switch_type(WORD), switch_is(wType)] union {
+            [case(TYPE_RECORD_ZERO)] PDNS_RPC_RECORD_ZERO recordZERO;
+            [case(TYPE_RECORD_A)] PDNS_RPC_RECORD_A recordA;
+            [case(TYPE_RECORD_NS)] PDNS_RPC_RECORD_NS recordNS;
+            [case(TYPE_RECORD_MD)] PDNS_RPC_RECORD_MD recordMD;
+            [case(TYPE_RECORD_MF)] PDNS_RPC_RECORD_MF recordMF;
+            [case(TYPE_RECORD_CNAME)] PDNS_RPC_RECORD_CNAME recordCNAME;
+            [case(TYPE_RECORD_SOA)] PDNS_RPC_RECORD_SOA recordSOA;
+            [case(TYPE_RECORD_MB)] PDNS_RPC_RECORD_MB recordMB;
+            [case(TYPE_RECORD_MG)] PDNS_RPC_RECORD_MG recordMG;
+            [case(TYPE_RECORD_MR)] PDNS_RPC_RECORD_MR recordMR;
+            [case(TYPE_RECORD_NULL)] PDNS_RPC_RECORD_NULL recordNULL;
+            [case(TYPE_RECORD_WKS)] PDNS_RPC_RECORD_WKS recordWKS;
+            [case(TYPE_RECORD_PTR)] PDNS_RPC_RECORD_PTR recordPTR;
+            [case(TYPE_RECORD_HINFO)] PDNS_RPC_RECORD_HINFO recordHINFO;
+            [case(TYPE_RECORD_MINFO)] PDNS_RPC_RECORD_MINFO recordMINFO;
+            [case(TYPE_RECORD_MX)] PDNS_RPC_RECORD_MX recordMX;
+            [case(TYPE_RECORD_TXT)] PDNS_RPC_RECORD_TXT recordTXT;
+            [case(TYPE_RECORD_RP)] PDNS_RPC_RECORD_RP recordRP;
+            [case(TYPE_RECORD_AFSDB)] PDNS_RPC_RECORD_AFSDB recordAFSDB;
+            [case(TYPE_RECORD_X25)] PDNS_RPC_RECORD_X25 recordX25;
+            [case(TYPE_RECORD_ISDN)] PDNS_RPC_RECORD_ISDN recordISDN;
+            [case(TYPE_RECORD_RT)] PDNS_RPC_RECORD_RT recordRT;
+            [case(TYPE_RECORD_SIG)] PDNS_RPC_RECORD_SIG recordSIG;
+            [case(TYPE_RECORD_KEY)] PDNS_RPC_RECORD_KEY recordKEY;
+            [case(TYPE_RECORD_AAAA)] PDNS_RPC_RECORD_AAAA recordAAAA;
+            [case(TYPE_RECORD_NXT)] PDNS_RPC_RECORD_NXT recordNXT;
+            [case(TYPE_RECORD_SRV)] PDNS_RPC_RECORD_SRV recordSRV;
+            [case(TYPE_RECORD_ATMA)] PDNS_RPC_RECORD_ATMA recordATMA;
+            [case(TYPE_RECORD_NAPTR)] PDNS_RPC_RECORD_NAPTR recordNAPTR;
+            [case(TYPE_RECORD_DNAME)] PDNS_RPC_RECORD_DNAME recordDNAME;
+            [case(TYPE_RECORD_DS)] PDNS_RPC_RECORD_DS recordDS;
+            [case(TYPE_RECORD_RRSIG)] PDNS_RPC_RECORD_RRSIG recordRRSIG;
+            [case(TYPE_RECORD_NSEC)] PDNS_RPC_RECORD_NSEC recordNSEC;
+            [case(TYPE_RECORD_DNSKEY)] PDNS_RPC_RECORD_DNSKEY recordDNSKEY;
+            [case(TYPE_RECORD_DHCID)] PDNS_RPC_RECORD_DHCID recordDHCID;
+            [case(TYPE_RECORD_NSEC3)] PDNS_RPC_RECORD_NSEC3 recordNSEC3;
+            [case(TYPE_RECORD_NSEC3PARAM)] PDNS_RPC_RECORD_NSEC3PARAM recordNSEC3PARAM;
+            [case(TYPE_RECORD_TLSA)] PDNS_RPC_RECORD_TLSA recordTLSA;
+            [case(TYPE_RECORD_WINS)] PDNS_RPC_RECORD_WINS recordWINS;
+            [case(TYPE_RECORD_WINSR)] PDNS_RPC_RECORD_WINSR recordWINSR;
+            [default] PDNS_RPC_RECORD_UNKNOWN recordUnknown;
+        } Record
+    )]
+
+    [size_is(wDataLength)]  BYTE    Buffer[];
+
+}
+DNS_RPC_RECORD, *PDNS_RPC_RECORD;
+
+typedef struct _DnssrvRpcNodeList
+{
+    [size_is(*)] PDNS_RPC_NODE dnsNodes[];
+} DNS_RPC_NODE_LIST, *PDNS_RPC_NODE_LIST;
+
+typedef [pad(4)]  struct _DnssrvRpcNode
+{
+    WORD wLength;
+    WORD wRecordCount;
+    DWORD dwFlags;
+    DWORD dwChildCount;
+    PDNS_NODE_NAME dnsNodeName;
+    [size_is(wRecordCount)] PDNS_RPC_RECORD dnsRecords;
+} DNS_RPC_NODE, *PDNS_RPC_NODE;
+
+typedef struct _DnssrvNodeName
+{
+    BYTE cchNameLength;
+    [size_is(cchNameLength)] BYTE * dnsName;
+} DNS_NODE_NAME, *PDNS_NODE_NAME;
+
+typedef struct _DnssrvNodeText
+{
+    BYTE cchTextLength;
+    [size_is(cchTextLength)] BYTE * text;
+} DNS_NODE_TEXT, *PDNS_NODE_TEXT;
+
+typedef struct _DnssrvRecordUnknown
+{
+    [size_is(*)] BYTE bData[];
+} DNS_RPC_RECORD_UNKNOWN, *PDNS_RPC_RECORD_UNKNOWN,
+  DNS_RPC_RECORD_NULL, *PDNS_RPC_RECORD_NULL;
+
+typedef struct _DnssrvRecordMailError
+{
+    PDNS_NODE_NAME nameMailBox;
+    PDNS_NODE_NAME ErrorMailBox;
+} DNS_RPC_RECORD_MAIL_ERROR, *PDNS_RPC_RECORD_MAIL_ERROR;
+
+typedef DNS_RPC_RECORD_MAIL_ERROR
+    DNS_RPC_RECORD_MINFO, *PDNS_RPC_RECORD_MINFO,
+    DNS_RPC_RECORD_RP, *PDNS_RPC_RECORD_RP;
+
+typedef struct _DnssrvRecordTs
+{
+    FILETIME EntombedTime;
+} DNS_RPC_RECORD_ZERO, *PDNS_RPC_RECORD_ZERO;
+
+typedef struct _DnssrvRecordRrsig
+{
+    WORD wTypeCovered;
+    BYTE chAlgorithm;
+    BYTE chLabelCount;
+    DWORD dwOriginalTtl;
+    DWORD dwSigExpiration;
+    DWORD dwSigInception;
+    WORD wKeyTag;
+    PDNS_NODE_NAME nameSigner;
+    [size_is(*)] BYTE SignatureInfo[];
+} DNS_RPC_RECORD_RRSIG, *PDNS_RPC_RECORD_RRSIG,
+  DNS_RPC_RECORD_SIG, *PDNS_RPC_RECORD_SIG;
+
+typedef struct _DnssrvRecordKey
+{
+    WORD wFlags;
+    BYTE chProtocol;
+    BYTE chAlgorithm;
+    [size_is(*)] BYTE bKey[];
+} DNS_RPC_RECORD_KEY, *PDNS_RPC_RECORD_KEY,
+  DNS_RPC_RECORD_DNSKEY, *PDNS_RPC_RECORD_DNSKEY;
+
+typedef struct _DnssrvRecordNxt
+{
+    WORD wNumRecordTypes;
+    [size_is(wNumRecordTypes)] WORD * wTypeWords;
+    PDNS_NODE_NAME nextName;
+} DNS_RPC_RECORD_NXT, *PDNS_RPC_RECORD_NXT;
+
+typedef struct _DnssrvRecordAtma
+{
+    BYTE chFormat;
+    [size_is(*)] BYTE bAddress[];
+} DNS_RPC_RECORD_ATMA, *PDNS_RPC_RECORD_ATMA;
+
+typedef struct _DnssrvRecordNsec
+{
+    PDNS_NODE_NAME nameSigner;
+    [size_is(*)] WORD NSECBitmap[];
+} DNS_RPC_RECORD_NSEC, *PDNS_RPC_RECORD_NSEC;
+
+typedef struct _DnssrvRecordDhcid
+{
+    [size_is(*)] BYTE bDHCID[];
+} DNS_RPC_RECORD_DHCID, *PDNS_RPC_RECORD_DHCID;
+
+typedef struct _DnssrvRecordNsec3
+{
+    BYTE chAlgorithm;
+    BYTE bFlags;
+    WORD wIterations;
+    BYTE bSaltLength;
+    BYTE bHashLength;
+    [size_is(bSaltLength)] BYTE * salt;
+    [size_is(bHashLength)] BYTE * nextHashedOwnerName;
+    [size_is(*)] WORD bitmaps[];
+} DNS_RPC_RECORD_NSEC3, *PDNS_RPC_RECORD_NSEC3;
+
+typedef struct _DnssrvRecordNsec3Param
+{
+    BYTE chAlgorithm;
+    BYTE bFlags;
+    WORD wIterations;
+    BYTE bSaltLength;
+    [size_is(bSaltLength)] BYTE * salt;
+} DNS_RPC_RECORD_NSEC3PARAM, *PDNS_RPC_RECORD_NSEC3PARAM;
+
+typedef struct _DnssrvRecordTlsa
+{
+    BYTE bCertUsage;
+    BYTE bSelector;
+    BYTE bMatchingType;
+    [size_is(*)] BYTE bCertificateAssociationData[];
+} DNS_RPC_RECORD_TLSA, *PDNS_RPC_RECORD_TLSA;
+
+
+typedef struct _DnssrvRecordWins
+{
+    DWORD dwMappingFlag;
+    DWORD dwLookupTimeout;
+    DWORD dwCacheTimeout;
+    DWORD cWinsServerCount;
+    [size_is(cWinsServerCount,)] BYTE * aipWinsServers[4];
+} DNS_RPC_RECORD_WINS, *PDNS_RPC_RECORD_WINS;
+
+typedef struct _DnssrvRecordWinsr
+{
+    DWORD dwMappingFlag;
+    DWORD dwLookupTimeout;
+    DWORD dwCacheTimeout;
+    PDNS_NODE_NAME nameResultDomain;
+} DNS_RPC_RECORD_WINSR, *PDNS_RPC_RECORD_WINSR;
+
+
+typedef struct _DnssrvRecordDs
+{
+    WORD wKeyTag;
+    BYTE chAlgorithm;
+    BYTE chDigestType;
+    [size_is(*)] BYTE bDigest[];
+} DNS_RPC_RECORD_DS, *PDNS_RPC_RECORD_DS;
+
+typedef struct _DnssrvRecordSrv
+{
+    WORD wPriority;
+    WORD wWeight;
+    WORD wPort;
+    PDNS_NODE_NAME nameTarget;
+} DNS_RPC_RECORD_SRV, *PDNS_RPC_RECORD_SRV;
+
+typedef struct _DnssrvRecordSoa
+{
+    DWORD dwSerialNo;
+    DWORD dwRefresh;
+    DWORD dwRetry;
+    DWORD dwExpire;
+    DWORD dwMinimumTtl;
+    PDNS_NODE_NAME namePrimaryServer;
+    PDNS_NODE_NAME nameZoneAdministratorEmail;
+} DNS_RPC_RECORD_SOA, *PDNS_RPC_RECORD_SOA;
+
+typedef struct _DnssrvRecordNamePreference
+{
+    WORD wPreference;
+    PDNS_NODE_NAME nameExchange;
+} DNS_RPC_RECORD_PREFERENCE, *PDNS_RPC_RECORD_PREFERENCE;
+
+typedef DNS_RPC_RECORD_PREFERENCE
+  DNS_RPC_RECORD_MX, *PDNS_RPC_RECORD_MX,
+  DNS_RPC_RECORD_AFSDB, *PDNS_RPC_RECORD_AFSDB,
+  DNS_RPC_RECORD_RT, *PDNS_RPC_RECORD_RT;
+
+typedef struct _DnssrvRecordNaptr
+{
+    WORD wOrder;
+    WORD wPreference;
+    PDNS_NODE_TEXT nameFlags;
+    PDNS_NODE_TEXT nameService;
+    PDNS_NODE_TEXT nameSubstitution;
+    PDNS_NODE_NAME nameReplacement;
+} DNS_RPC_RECORD_NAPTR, *PDNS_RPC_RECORD_NAPTR;
+
+typedef struct _DnssrvRecordNodeName {
+    PDNS_NODE_NAME Name;
+} DNS_RPC_RECORD_NODE_NAME, *PDNS_RPC_RECORD_NODE_NAME;
+
+typedef struct _DnssrvRecordIpAddress {
+    [size_is(*)] BYTE pIpAddress[];
+} DNS_RPC_RECORD_IP_ADDRESS, *PDNS_RPC_RECORD_IP_ADDRESS;
+
+typedef DNS_RPC_RECORD_IP_ADDRESS
+    DNS_RPC_RECORD_A, *PDNS_RPC_RECORD_A,
+    DNS_RPC_RECORD_AAAA, *PDNS_RPC_RECORD_AAAA;
+
+typedef DNS_RPC_RECORD_NODE_NAME
+    DNS_RPC_RECORD_PTR, *PDNS_RPC_RECORD_PTR,
+    DNS_RPC_RECORD_NS, *PDNS_RPC_RECORD_NS,
+    DNS_RPC_RECORD_CNAME, *PDNS_RPC_RECORD_CNAME,
+    DNS_RPC_RECORD_DNAME, *PDNS_RPC_RECORD_DNAME,
+    DNS_RPC_RECORD_MB, *PDNS_RPC_RECORD_MB,
+    DNS_RPC_RECORD_MR, *PDNS_RPC_RECORD_MR,
+    DNS_RPC_RECORD_MG, *PDNS_RPC_RECORD_MG,
+    DNS_RPC_RECORD_MD, *PDNS_RPC_RECORD_MD,
+    DNS_RPC_RECORD_MF, *PDNS_RPC_RECORD_MF;
+
+typedef struct _DnssrvRecordString {
+    [size_is(*)] PDNS_NODE_TEXT Data[];
+} DNS_RPC_RECORD_STRING, *PDNS_RPC_RECORD_STRING;
+
+typedef DNS_RPC_RECORD_STRING
+  DNS_RPC_RECORD_TXT, *PDNS_RPC_RECORD_TXT,
+  DNS_RPC_RECORD_ISDN, *PDNS_RPC_RECORD_ISDN,
+  DNS_RPC_RECORD_HINFO, *PDNS_RPC_RECORD_HINFO,
+  DNS_RPC_RECORD_X25, *PDNS_RPC_RECORD_X25,
+  DNS_RPC_RECORD_LOC, *PDNS_RPC_RECORD_LOC;
+
+typedef struct _DnssrvRecordWks {
+    BYTE ipAddress[4];
+    BYTE chProtocol;
+    PDNS_NODE_TEXT nameServices;
+} DNS_RPC_RECORD_WKS, *PDNS_RPC_RECORD_WKS;

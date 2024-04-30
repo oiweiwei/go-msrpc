@@ -1,0 +1,61 @@
+<div class="content"><p>The LINEQUEUEENTRY packet provides the information for a
+single queue entry. The <a href="0e6c4e43-ab80-40f1-82af-d09bc8684512" data-linktype="relative-path">LINEQUEUELIST</a>
+packet can contain an array of LINEQUEUEENTRY packets. This packet requires
+TAPI 3.0 version negotiation. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwQueueID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNameOffset</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwQueueID (4 bytes): </b>An unsigned 32-bit
+integer. The unique identifier for a queue. It is the responsibility of the
+agent handler to generate and maintain the uniqueness of this identifier. </p><p><b>dwNameSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the queue name string, including the null
+terminator. </p><p><b>dwNameOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset, from the beginning of the packet to a null-terminated
+string that specifies the name of the queue. The size of the string is
+specified by <b>dwNameSize</b>. </p></div>

@@ -1,0 +1,34 @@
+<div class="content"><p> </p><p>The VDS_VOLUME_PROP2 structure provides the properties of a
+volume.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_VOLUME_PROP2 {
+   VDS_OBJECT_ID id;
+   VDS_VOLUME_TYPE type;
+   VDS_VOLUME_STATUS status;
+   VDS_HEALTH health;
+   VDS_TRANSITION_STATE TransitionState;
+   ULONGLONG ullSize;
+   unsigned long ulFlags;
+   VDS_FILE_SYSTEM_TYPE RecommendedFileSystemType;
+   ULONG cbUniqueId;
+   [string] WCHAR* pwszName;
+   [size_is(cbUniqueId)] BYTE* pUniqueId;
+ } VDS_VOLUME_PROP2,
+  *PVDS_VOLUME_PROP2;
+</pre></div>
+</dd></dl><p><b>id:</b>  The VDS object ID of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>
+object.</p><p><b>type:</b>  The value from the <span><a href="7d8726fc-4c14-45b5-b085-9644097811ae" data-linktype="relative-path">VDS_VOLUME_TYPE</a></span>
+enumeration that defines the type of the volume.</p><p><b>status:</b>  The value from the <span><a href="e48d1acb-9483-45cc-a6ca-fd4a0ecb188c" data-linktype="relative-path">VDS_VOLUME_STATUS</a></span>
+enumeration that defines the status of the volume.</p><p><b>health:</b>  The value from the <span><a href="61169c4a-cb63-4e5b-9035-a4465e1320ad" data-linktype="relative-path">VDS_HEALTH</a></span>
+enumeration that defines the health of the volume.</p><p><b>TransitionState:</b>  The value from the
+<span><a href="60f46f25-7c04-4427-9099-d7b75410d33e" data-linktype="relative-path">VDS_TRANSITION_STATE</a></span>
+enumeration that defines the configuration stability of the volume.</p><p><b>ullSize:</b>  The size of the volume, in
+bytes.</p><p><b>ulFlags:</b>  The combination of any
+values, by using the bitwise OR operator, of volume flags from the <span><a href="e9027885-21ae-4857-ada1-27d5b386412e" data-linktype="relative-path">VDS_VOLUME_FLAG</a></span>
+enumeration.</p><p><b>RecommendedFileSystemType:</b>  The
+value from the <span><a href="81d04cc8-5492-442e-a0c4-86b7148140a3" data-linktype="relative-path">VDS_FILE_SYSTEM_TYPE</a></span>
+enumeration that defines the recommended <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file system</a></span> type for
+the volume.</p><p><b>cbUniqueId:</b>  Count of <b>bytes</b>
+for <b>pUniqueId</b>.</p><p><b>pwszName:</b>  The null-terminated
+Unicode name that the operating system uses to identify the volume.</p><p><b>pUniqueId:</b>  A <b>byte</b> array
+containing the volume&#39;s unique id.</p></div>

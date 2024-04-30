@@ -1,0 +1,34 @@
+<div class="content"><p> </p><p>This enumeration represents the classes of functionality
+that a third-party software component can register for, take ownership of, and
+commit to implement. The implementation of such functionality by the firewall
+and advanced security component, or by the third-party software component, are
+implementation-specific decisions. This enumeration is only used to present the
+state of the registrations.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum _tag_FW_RULE_CATEGORY
+ {
+   FW_RULE_CATEGORY_BOOT = 0,
+   FW_RULE_CATEGORY_STEALTH = 1,
+   FW_RULE_CATEGORY_FIREWALL = 2,
+   FW_RULE_CATEGORY_CONSEC = 3,
+   FW_RULE_CATEGORY_MAX = 4
+ } FW_RULE_CATEGORY,
+  *PFW_RULE_CATEGORY;
+</pre></div>
+</dd></dl><p><b>FW_RULE_CATEGORY_BOOT:  </b>This category of
+functionality represents the policy that is used while the system is starting
+up and the firewall and advance security component is not yet running. This
+symbolic constant has a value of 0.</p><p><b>FW_RULE_CATEGORY_STEALTH:  </b>This category of
+functionality represents the policy that is used to make the system appear
+invisible when it is connected to a network. For example, this functionality
+helps prevent attackers from discovering the host and the ports that open to
+the host. This symbolic constant has a value of 1.</p><p><b>FW_RULE_CATEGORY_FIREWALL:  </b>This category of functionality
+represents functions that are performed by firewall objects while they are
+present on the FW_STORE_TYPE_LOCAL, FW_STORE_TYPE_DYNAMIC, and
+FW_STORE_TYPE_GP_RSOP policy stores (see section <span><a href="37ebed95-8abf-472c-8b4b-7a510a2a6baa" data-linktype="relative-path">2.2.1</a></span>). This
+symbolic constant has a value of 2.</p><p><b>FW_RULE_CATEGORY_CONSEC:  </b>This category of
+functionality represents functions that are performed by the connection
+security objects. This symbolic constant has a value of 3.</p><p><b>FW_RULE_CATEGORY_MAX:  </b>This value and values
+that exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 4.</p></div>

@@ -1,0 +1,273 @@
+<div class="content"><p> </p><p>The <b>FAX_EVENT_EX_1</b> structure defines information
+about asynchronous events delivered to applications that have been registered
+to receive notifications of fax events. This structure is passed as a byte
+array argument to <b>FAX_ClientEventQueueEx</b> (section <span><a href="d1ec6615-73e1-4c86-aef9-c738c71f08d1" data-linktype="relative-path">3.2.4.3</a></span>)
+and it requires custom marshaling.</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (56 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (56 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSizeOfStruct</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TimeStamp</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EventType4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  of EventInfo (40 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>dwSizeOfStruct (4 bytes):
+</b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+containing the size, in bytes, of this structure. MUST be set to 56 bytes.</p>
+</dd>
+<dd>
+<p><b>TimeStamp (8 bytes): </b>A
+<b>FILETIME</b> structure, as defined in [MS-DTYP] section <span><a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">2.3.3</a></span>,
+that contains the time when the fax server generated the event.</p>
+</dd>
+<dd>
+<p><b>EventType4 (4 bytes): </b>One
+of the <b>FAX_ENUM_EVENT_TYPE</b> (section <span><a href="bc289dcf-1675-403e-9060-bb2743fe0352" data-linktype="relative-path">2.2.63</a></span>) values that
+indicates the type of event. Only a single bit is set in this value; therefore,
+notification occurs for only a single event per value. This field defines which
+field of the <b>EventInfo</b> union is used. For the <b>FAX_EVENT_TYPE_FXSSVC_ENDED</b>
+event type, none of the <b>EventInfo</b> union fields are used. This field MUST
+NOT be set to FAX_EVENT_TYPE_LEGACY.</p>
+</dd>
+<dd>
+<p><b>Fixed_Portion of
+EventInfo (40 bytes): </b>The <b>Fixed_Portion</b> of a union containing
+information according to the event type:</p>
+</dd>
+<dd>
+<p>For the FAX_EVENT_TYPE_IN_QUEUE,
+FAX_EVENT_TYPE_OUT_QUEUE, FAX_EVENT_TYPE_IN_ARCHIVE, and
+FAX_EVENT_TYPE_OUT_ARCHIVE events (specified in the <b>FAX_ENUM_EVENT_TYPE</b>
+enumeration), the union contains a <b>FAX_EVENT_EX_1_JOB_INFO</b> (section <span><a href="51abd258-4407-4622-830d-9816dd0ef6dc" data-linktype="relative-path">2.2.68.1</a></span>)
+structure with status information about an existing job in the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>
+or <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9394bf31-7db9-433c-8d3d-ee6a37bf0848" data-linktype="relative-path">archives</a></span>.</p>
+</dd>
+<dd>
+<p>For the FAX_EVENT_TYPE_CONFIG event, the union
+contains a <b>FAX_EVENT_EX_1_CONFIG_TYPE</b> (section <span><a href="a28fdc50-02a6-4344-93a2-b584fe8603c8" data-linktype="relative-path">2.2.68.2</a></span>) structure
+that indicates the type of the configuration that has changed.</p>
+</dd>
+<dd>
+<p>For the FAX_EVENT_TYPE_ACTIVITY event, the union
+contains a <b>FAX_EVENT_EX_1_ACTIVITY_INFO</b> (section <span><a href="2f2afe04-d8e4-464c-aefe-7d38cab4bb76" data-linktype="relative-path">2.2.68.3</a></span>)
+structure that contains information about the server activity that has changed.</p>
+</dd>
+<dd>
+<p>For the FAX_EVENT_TYPE_NEW_CALL event, the union
+contains a <b>FAX_EVENT_EX_1_NEW_CALL</b> (section <span><a href="31011d8f-cb32-448b-9bf2-be58d4f66582" data-linktype="relative-path">2.2.68.4</a></span>) structure
+that contains information about the new incoming call detected by the fax
+service.</p>
+</dd>
+<dd>
+<p>For the FAX_EVENT_TYPE_QUEUE_STATE event, the union
+contains the <b>FAX_EVENT_EX_1_QUEUE_STATES</b> (section <span><a href="9bbc7b0f-ea77-4f31-ba8b-d2c8a93a587c" data-linktype="relative-path">2.2.68.5</a></span>)
+structure with the queue status.</p>
+</dd>
+<dd>
+<p>For the FAX_EVENT_TYPE_DEVICE_STATUS event, the
+union contains a <b>FAX_EVENT_EX_1_DEVICE_STATUS</b> (section <span><a href="d36507ff-6cf6-4524-9725-f7c584327f8a" data-linktype="relative-path">2.2.68.6</a></span>)
+structure that indicates the status of the fax devices.</p>
+</dd>
+<dd>
+<p>The six possible variants for the <b>Fixed_Portion</b>
+blocks of the <b>EventInfo</b> union are described in the following six
+sub-sections. The size of the <b>EventInfo</b> field is always 40 bytes,
+including padding. The size of 40 bytes is dictated by the size of the largest <b>Fixed_Portion</b>
+field in the union.</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  of EventInfo (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Variable_Data of
+EventInfo (variable): </b>The <b>Variable_Data</b> of the <b>EventInfo</b>
+union. The six possible variants for the <b>Variable_Data</b> blocks of the <b>EventInfo</b>
+union are described in the following six subsections.</p>
+</dd></dl></div>

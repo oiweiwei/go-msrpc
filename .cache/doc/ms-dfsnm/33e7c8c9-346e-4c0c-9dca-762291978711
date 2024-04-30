@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>The DFS_INFO_300 structure relates to the <span><a href="2fc235af-49c4-476d-8b9e-933c1175a1d8" data-linktype="relative-path">NetrDfsEnum</a></span>
+and NetrDfsEnumEx methods when used to enumerate <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS roots</a></span> hosted on
+a server. The structure contains the name and type (<span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c37de1c8-4bd3-406f-ad8c-50c877666f91" data-linktype="relative-path">domain-based</a></span> or <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_701a2cc1-eb5a-400f-b394-5bad264ec8f6" data-linktype="relative-path">stand-alone</a></span>)
+of a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS
+namespace</a></span>. The DFS_INFO_300 structure has the following format.</p><dl>
+<dd>
+<div><pre> typedef struct _DFS_INFO_300 {
+   DWORD Flags;
+   [string] WCHAR* DfsName;
+ } DFS_INFO_300;
+</pre></div>
+</dd></dl><p><b>Flags:</b>  This value specifies the
+type of the DFS namespace. This MUST have one of the following two permitted
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DFS_VOLUME_FLAVOR_STANDALONE</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>Stand-alone DFS namespace.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_VOLUME_FLAVOR_AD_BLOB</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p><span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_133ab305-ad75-4b38-8ec9-40bc0dc3b594" data-linktype="relative-path">Domain-based DFS namespace</a></span>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>DfsName:</b>  A pointer to a DFS root
+path.</p></div>

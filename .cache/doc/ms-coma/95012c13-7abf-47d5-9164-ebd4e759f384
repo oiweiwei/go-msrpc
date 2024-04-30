@@ -1,0 +1,70 @@
+<div class="content"><p>The IReplicationUtil <a href="3f01a312-3391-4109-a96e-95358babf191#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+for miscellaneous tasks specific to replication scenarios. This interface
+inherits from <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>,
+as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section 3.1.1.5.8.</p><p>To receive incoming remote calls for this interface, the
+server MUST implement a DCOM object class with the <a href="3f01a312-3391-4109-a96e-95358babf191#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">CLSID</a> CLSID_COMAServer, as
+specified in section <a href="3afd05f6-01a3-4920-951f-f9c703a3b0f1" data-linktype="relative-path">1.9</a>,
+using the UUID {98315903-7BE5-11D2-ADC1-00A02463D6E7} for this interface. </p><p>This interface includes the following methods beyond those
+of IUnknown:</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="5fc91fd4-cb15-458e-87db-4aa8dca177cc" data-linktype="relative-path">CreateShare</a></p>
+  </td>
+  <td>
+  <p>Creates a file share for copying installer package
+  files.</p>
+  <p>Opnum: 3</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="798a41fc-b88f-420a-8795-4e2ac067beea" data-linktype="relative-path">CreateEmptyDir</a></p>
+  </td>
+  <td>
+  <p>Creates an empty directory.</p>
+  <p>Opnum: 4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="965f9577-2b5b-48c8-98c3-fdfb5a0365a1" data-linktype="relative-path">RemoveShare</a></p>
+  </td>
+  <td>
+  <p>Removes a previously created file share.</p>
+  <p>Opnum: 5</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="eeb5f804-e7c2-4ac2-a91d-d136ece0e133" data-linktype="relative-path">BeginReplicationAsTarget</a></p>
+  </td>
+  <td>
+  <p>Creates the file share for a new replication
+  operation, optionally managing replication history information and/or backup
+  state.</p>
+  <p>Opnum: 6</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="61fbdbe4-1e9d-42f7-9a03-07776317f97a" data-linktype="relative-path">QueryConglomerationPassword</a></p>
+  </td>
+  <td>
+  <p>Returns the <b>Password</b> property of a <a href="3f01a312-3391-4109-a96e-95358babf191#gt_ea5c531f-5dd5-43aa-9da1-2ae068c622db" data-linktype="relative-path">conglomeration</a>.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="a0819fe9-8d2a-451f-93eb-8a01a69ee2ab" data-linktype="relative-path">CreateReplicationDir</a></p>
+  </td>
+  <td>
+  <p>Ensures that the base replication directory exists,
+  and returns its path.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr></tbody></table><p>All methods MUST NOT throw exceptions.</p></div>

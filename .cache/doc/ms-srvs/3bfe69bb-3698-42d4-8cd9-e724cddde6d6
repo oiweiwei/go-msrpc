@@ -1,0 +1,200 @@
+<div class="content"><p> </p><p>The NetrDfsFixLocalVolume method provides knowledge of a new
+<span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_0b8086c9-d025-45b8-bf09-6b5eca72713e" data-linktype="relative-path">DFS</a></span>
+share on the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>. An
+implementation MAY<a id="Appendix_A_Target_159"></a><a aria-label="Product behavior note 159" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_159" data-linktype="relative-path">&lt;159&gt;</a> choose to support this
+method.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrDfsFixLocalVolume(
+   [in, string, unique] SRVSVC_HANDLE ServerName,
+   [in, string] WCHAR* VolumeName,
+   [in] unsigned long EntryType,
+   [in] unsigned long ServiceType,
+   [in, string] WCHAR* StgId,
+   [in] GUID* EntryUid,
+   [in, string] WCHAR* EntryPrefix,
+   [in] LPNET_DFS_ENTRY_ID_CONTAINER RelationInfo,
+   [in] unsigned long CreateDisposition
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>An <span><a href="5f8329ee-1965-4ea1-ad35-3b29fbb63232" data-linktype="relative-path">SRVSVC_HANDLE (section 2.2.1.1)</a></span>
+pointer that identifies the server. The <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> MUST map this
+structure to an RPC binding handle (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> sections
+4.3.5 and 5.1.5.2). The server MUST ignore this parameter.</p><p><b>VolumeName: </b>A pointer to a null-terminated
+UTF-16 string that specifies the target for the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_639b7503-b879-4ef7-98a8-14adf85bc16d" data-linktype="relative-path">DFS root</a></span> share. This
+target MUST be local to the server; for example, \??\C:\DfsShare.<a id="Appendix_A_Target_160"></a><a aria-label="Product behavior note 160" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_160" data-linktype="relative-path">&lt;160&gt;</a> This target SHOULD NOT
+contain a directory that is in DFS, and it SHOULD NOT be a child of a DFS
+share. If the specified volume name is not valid, the server SHOULD fail the
+call by using an implementation-specific error code.</p><p><b>EntryType: </b>This parameter MUST be one of the
+values listed in section <span><a href="299f5114-40c1-4dc8-bfb8-e8598d27933e" data-linktype="relative-path">2.2.2.13</a></span>. If the
+specified entry type is not valid, the server SHOULD fail the call with an
+implementation-specific error code.</p><p><b>ServiceType: </b>This parameter MUST be a
+combination of one or more of the following values. If the specified service
+type is not valid, the server SHOULD fail the call with an
+implementation-specific error code.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DFS_SERVICE_TYPE_MASTER</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Master service</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_SERVICE_TYPE_READONLY</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Read-only service</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_SERVICE_TYPE_LOCAL</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Local service</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_SERVICE_TYPE_REFERRAL</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Referral service</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_SERVICE_TYPE_ACTIVE</p>
+  <p>0x000000010</p>
+  </td>
+  <td>
+  <p>Active service</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_SERVICE_TYPE_DOWN_LEVEL</p>
+  <p>0x000000020</p>
+  </td>
+  <td>
+  <p>Down-level service</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_SERVICE_TYPE_COSTLIER</p>
+  <p>0x000000040</p>
+  </td>
+  <td>
+  <p>Costlier service than previous</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DFS_SERVICE_TYPE_OFFLINE</p>
+  <p>0x000000080</p>
+  </td>
+  <td>
+  <p>Service is offline</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>StgId: </b>A pointer to a variable that specifies
+an ID for the local storage. The server MUST ignore the value that is passed in
+for the <i>StgId</i> parameter.</p><p><b>EntryUid: </b>Specifies the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+that corresponds to the DFS share. This GUID MUST be obtained by using the
+NetrDfsGetInfo (Opnum 4) method, which is specified in <span><a href="../ms-dfsnm/95a506a8-cae6-4c42-b19d-9c1ed1223979" data-linktype="relative-path">[MS-DFSNM]</a></span>
+section <span><a href="../ms-dfsnm/b5dd4568-3ea4-4f27-ae03-3ebb19fa4b13" data-linktype="relative-path">3.1.4.1.6</a></span>.</p><p><b>EntryPrefix: </b>A pointer to a null-terminated
+UTF-16 string that specifies the path of the DFS share to be updated.</p><p><b>RelationInfo: </b>A pointer to a <span><a href="cfb8c183-826f-4d61-859c-7fe116b0252a" data-linktype="relative-path">NET_DFS_ENTRY_ID_CONTAINER</a></span>
+structure as specified in section 2.2.4.108. Specifies the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS child
+links</a></span> under the DFS share as specified by the <i>EntryPrefix</i>
+parameter.</p><p><b>CreateDisposition: </b>Specifies what to do,
+depending on whether the share already exists. This field MUST be set to one of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FILE_SUPERSEDE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>If the share already exists, replace it with the
+  specified share. If it does not exist, create the specified share.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILE_OPEN</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>If the share already exists, fail the request and do
+  not create or open the specified share. If it does not exist, create the
+  specified share.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILE_CREATE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>If the file already exists, open it instead of
+  creating a new share. If it does not exist, fail the request and do not
+  create a new share.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>The method returns 0x00000000
+(NERR_Success) to indicate success; otherwise, it returns a nonzero error code.
+The method can take any specific error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><p>In response to a NetrDfsFixLocalVolume message, the server
+SHOULD<a id="Appendix_A_Target_161"></a><a aria-label="Product behavior note 161" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_161" data-linktype="relative-path">&lt;161&gt;</a> choose to perform no
+processing and return an implementation-specific error code when this method is
+called. If the server supports DFS, the server MAY add the link name that
+corresponds to a specified Uid. This message typically is sent by a domain
+controller when it discovers that the server is completely unaware of a new DFS
+volume.</p><p>The <i>VolumeName</i> parameter specifies the target for the
+DFS root share. This target MUST be local to the server and is in the form of a
+Windows NT operating system path name, for example, \??\C:\DfsShare.<a id="Appendix_A_Target_162"></a><a aria-label="Product behavior note 162" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_162" data-linktype="relative-path">&lt;162&gt;</a> This target SHOULD NOT
+contain a directory that is in DFS, and it SHOULD NOT be a child of a DFS
+share.</p><p>The <i>EntryType</i> parameter specifies the type of the
+link and MUST be one of the values listed in section 2.2.2.13.</p><p>The <i>ServiceType</i> parameter specifies the service type
+of the client.</p><p>The <i>StgId</i> parameter specifies an
+implementation-specific ID for the local storage.</p><p>The <i>EntryUid</i> parameter specifies the GUID for the new
+link.</p><p>The <i>Prefix</i> parameter specifies the path of the
+updated DFS link. The string MUST be in one of two forms:</p><ul><li><p><span><span> 
+</span></span>The first form is \Dfsname\sharename\path_to_link, where <i>Dfsname</i>
+is the name of the storage server that hosts the root of a <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_07f90715-4bf2-479d-9c9d-1b2cd585a280" data-linktype="relative-path">standalone
+DFS implementation</a></span>; <i>sharename</i> is the name of a shared folder
+that is published on the DFS host server; and <i>path_to_link</i> specifies the
+path on the physical network share.</p>
+</li><li><p><span><span> 
+</span></span>The second form is \DomainName\DomDfsname\path_to_link, where <i>DomainName</i>
+is the name of the domain that hosts the DFS root; <i>DomDfsname</i> is the
+name of the root of a domain-based DFS implementation that is published in the
+directory service of the domain; and <i>path_to_link</i> specifies the path on
+the physical network share.</p>
+</li></ul><p>The <i>RelationInfo</i> parameter specifies the DFS child
+links under the DFS share that is specified by <i>EntryPrefix</i>. If this
+parameter is NULL or if its <b>Count</b> member is nonzero and its <b>Buffer</b>
+member is NULL, the server fails the call by using an ERROR_INVALID_PARAMETER
+error code.</p><p>The <i>CreateDisposition</i> parameter specifies what MUST
+happen if a share with the path <i>EntryPrefix</i> already exists.</p><p>The server MAY<a id="Appendix_A_Target_163"></a><a aria-label="Product behavior note 163" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_163" data-linktype="relative-path">&lt;163&gt;</a>
+enforce security measures to verify that the caller has the required
+permissions to execute this call. If the server enforces these security
+measures and the caller does not have the required credentials, the server
+SHOULD<a id="Appendix_A_Target_164"></a><a aria-label="Product behavior note 164" href="ebb74ff2-abb1-4e1b-a76a-563a5cbbea9a#Appendix_A_164" data-linktype="relative-path">&lt;164&gt;</a> fail the call.</p></div>

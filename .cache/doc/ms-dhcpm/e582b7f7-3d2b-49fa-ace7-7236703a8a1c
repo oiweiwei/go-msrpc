@@ -1,0 +1,239 @@
+<div class="content"><p> </p><p>The <b>R_DhcpSetOptionValuesV5</b> method creates the option
+value when called for the first time, else it modifies it. It creates or
+modifies one or more options for a specific user class and vendor class. If the
+user class or the vendor class is not specified, the option values are set or
+modified for the default user class or vendor class. <i>ScopeInfo</i> defines
+the scope on which this option value is modified.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpSetOptionValuesV5(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DWORD Flags,
+   [in, string, unique] WCHAR* ClassName,
+   [in, string, unique] WCHAR* VendorName,
+   [in] LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+   [in] LPDHCP_OPTION_VALUE_ARRAY OptionValues
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>Flags: </b> This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+that specifies that the option values are set for a specific or default vendor
+class.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DHCP_FLAGS_OPTION_DEFAULT</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Option definitions are set for the default vendor
+  class.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DHCP_FLAGS_OPTION_IS_VENDOR</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>If a bitwise AND operation with this bitmask yields a
+  nonzero value, it indicates that the option definitions are set for a
+  specific vendor class.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ClassName: </b>A pointer to a null-terminated
+Unicode string that contains the name of the user class to which the option
+value is being set. This parameter is optional. If the <i>ClassName</i>
+parameter is not specified, the option values are set for the default user
+class.</p><p><b>VendorName: </b>A pointer to a null-terminated
+Unicode string that contains the name of the vendor class to which the option
+value is being set. This parameter is optional. If a vendor class is not
+specified, the option values are set for a default vendor class.</p><p><b>ScopeInfo: </b>This is a pointer to a <span><a href="177415f4-85c1-4496-a414-4938dca18b93" data-linktype="relative-path">DHCP_OPTION_SCOPE_INFO (section 2.2.1.2.41)</a></span>
+structure that contains information describing the DHCPv4 scope this option
+value is set on. This value contains the level (that is, default, server,
+scope, multicast scope, or IPv4 reservation level) at which the option values
+are set.</p><p><b>OptionValues: </b>This is a pointer of type <span><a href="313eaf77-256b-44d3-b303-8cca3f158939" data-linktype="relative-path">DHCP_OPTION_VALUE_ARRAY (section 2.2.1.2.43)</a></span>
+that points to location that contains one or more option identifiers, along
+with the values.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2A</p>
+  <p>ERROR_DHCP_OPTION_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified option definition does not exist on the
+  DHCP server database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E32</p>
+  <p>ERROR_DHCP_NOT_RESERVED_CLIENT</p>
+  </td>
+  <td>
+  <p>The specified DHCP client is not a reserved client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E4C</p>
+  <p>ERROR_DHCP_CLASS_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The class name being used is unknown or incorrect.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 20.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>NumElements</b> member of the DHCP_OPTION_VALUE_ARRAY
+structure is 0, return ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>Validate the data pointed to by the input parameter <i>OptionValues</i>.
+If the <b>Values</b> member of the DHCP_OPTION_VALUE_ARRAY structure is NULL
+and the <b>NumElements</b> member is greater than 0, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>The <i>Flags</i> parameter MUST pass one of the validations given
+in the <i>Flags</i> field description. Otherwise, the method returns
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ClassName</i> is not NULL, retrieve the <b>DHCPv4ClassDef</b>
+entry corresponding to the <i>ClassName</i> from the server ADM element <b>DHCPv4ClassDefList</b>.
+If the <b>DHCPv4ClassDef</b> entry is not found, return
+ERROR_DHCP_CLASS_NOT_FOUND. If <i>ClassName</i> is NULL, it refers to the
+default user class (see section <span><a href="4aa40625-0f9f-4e89-93a4-e4455bc1cc95" data-linktype="relative-path">3.1.1.9</a></span>).</p>
+</li><li><p><span><span> 
+</span></span>If <i>VendorName</i> is not NULL, retrieve the <b>DHCPv4ClassDef</b>
+entry corresponding to the <i>VendorName</i> from the server ADM element <b>DHCPv4ClassDefList</b>.
+If the <b>DHCPv4ClassDef</b> entry is not found, return ERROR_DHCP_CLASS_NOT_FOUND.
+If <i>VendorName</i> is NULL, it refers to the default vendor class (see
+section 3.1.1.9).</p>
+</li><li><p><span><span> 
+</span></span>For each <b>Values</b> configured in <i>OptionValues</i>, take
+the following action:</p>
+</li><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> contains DhcpDefaultOptions, iterate through
+the server ADM element <b>DHCPv4OptionDefList</b> and retrieve <b>DHCPv4OptionDef.DHCPv4ClassedOptDefList</b>
+corresponding to the user and vendor class specified by <i>ClassName</i> and <i>VendorName</i>
+respectively. If <i>ClassName</i> or <i>VendorName</i> is NULL, it refers to
+the default user class or vendor class respectively, as specified in section
+3.1.1.9. If the <b>DHCPv4OptionValue</b> entry is not found, return
+ERROR_DHCP_CLASS_NOT_FOUND. Iterate through <b>DHCPv4ClassedOptDefList</b> and
+retrieve the <b>DHCPv4ClassedOptDef</b> entry corresponding to <b>OptionID</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> contains DhcpDefaultOptions, and if <b>DHCPv4ClassedOptDef</b>
+is not found, return ERROR_DHCP_OPTION_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> contains DhcpDefaultOptions, modify the <b>DHCPv4ClassedOptDef</b>
+entry with information in <b>Values</b> for that <b>OptionID</b> and return
+ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> contains DhcpGlobalOptions, iterate through
+the server ADM element <b>DHCPv4ServerOptValueList</b> and retrieve the <b>DHCPv4OptionValue</b>
+corresponding to the user and vendor class specified by <i>ClassName</i> and <i>VendorName</i>
+respectively. If <i>ClassName</i> or <i>VendorName</i> is NULL, it refers to
+the default user class or vendor class respectively, as specified in section
+3.1.1.9. If the <b>DHCPv4OptionValue</b> entry is not found, return
+ERROR_DHCP_CLASS_NOT_FOUND. Retrieve the <b>DHCPv4ClassedOptValue</b> entry
+corresponding to the <b>OptionID</b> from <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b>.
+If the <b>DHCPv4ClassedOptValue</b> entry is not found, return
+ERROR_DHCP_OPTION_NOT_PRESENT. Modify the <b>Value</b> member of retrieved <b>DHCPv4ClassedOptValue</b>
+with information in <b>Values</b> for that <b>OptionID</b>, and return
+ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> contains DhcpSubnetOptions, retrieve the <b>DHCPv4Scope</b>
+entry corresponding to the <i>ScopeInfo</i> parameter from the server ADM
+element <b>DHCPv4ScopesList</b>. If the <b>DHCPv4Scope</b> entry is not found,
+return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> contains DhcpSubnetOptions, iterate through <b>DHCPv4Scope.DHCPv4ScopeOptValuesList</b>
+and retrieve <b>DHCPv4OptionValue</b> corresponding to the user and vendor
+class specified by <i>ClassName</i> and <i>VendorName</i> respectively. If <i>ClassName</i>
+or <i>VendorName</i> is NULL, it refers to the default user class or vendor
+class respectively, as specified in section 3.1.1.9. If the <b>DHCPv4OptionValue</b>
+entry is not found, return ERROR_DHCP_CLASS_NOT_FOUND. Retrieve the <b>DHCPv4ClassedOptValue</b>
+entry corresponding to <b>OptionID</b> from <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b>.
+If the <b>DHCPv4ClassedOptValue</b> entry is not found, return
+ERROR_DHCP_OPTION_NOT_PRESENT. Modify the <b>Value</b> member of retrieved <b>DHCPv4ClassedOptValue</b>
+with information in <b>Values</b> for that <b>OptionID</b>, and return
+ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> contains DhcpMScopeOptions, retrieve the <b>DHCPv4MScope</b>
+entry corresponding to the <i>ScopeInfo</i> parameter from the server ADM
+element <b>DHCPv4MScopesList</b>. If the <b>DHCPv4MScope</b> entry is not
+found, return ERROR_FILE_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> contains DhcpMScopeOptions, iterate through <b>DHCPv4MScope.DHCPv4MScopeOptValuesList</b>
+and retrieve <b>DHCPv4OptionValue</b> corresponding to the user and vendor
+class specified by <i>ClassName</i> and <i>VendorName</i> respectively. If <i>ClassName</i>
+or <i>VendorName</i> is NULL, it refers to the default user class or vendor
+class respectively, as specified in section 3.1.1.9. If the <b>DHCPv4OptionValue</b>
+entry is not found, return ERROR_DHCP_CLASS_NOT_FOUND. Retrieve the <b>DHCPv4ClassedOptValue</b>
+entry corresponding to <b>OptionID</b> from <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b>.
+If the <b>DHCPv4ClassedOptValue</b> entry is not found, return
+ERROR_DHCP_OPTION_NOT_PRESENT. Modify the <b>Value</b> member of retrieved <b>DHCPv4ClassedOptValue</b>
+with information in <b>Values</b> for that <b>OptionID</b>, and return
+ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> contains DhcpReservedOptions, retrieve the <b>DHCPv4Scope</b>
+entry from the server ADM element <b>DHCPv4ScopesList</b> that contains the <b>ReservedIpAddress</b>
+field of the <i>ScopeInfo</i> parameter. If the <b>DHCPv4Scope</b> entry is not
+found, return ERROR_FILE_NOT_FOUND. Retrieve the <b>DHCPv4Reservation</b> entry
+from <b>DHCPv4Scope.DHCPv4ReservationsList</b> corresponding to <b>ReservedIpAddress</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> contains DhcpReservedOptions, and if <b>ReservedIpAddress</b>
+is not part of <b>DHCPv4Scope</b>, or if there is no <b>DHCPv4Reservation</b>
+corresponding to the <b>ReservedIpAddress</b>, return
+ERROR_DHCP_NOT_RESERVED_CLIENT.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> contains DhcpReservedOptions, and if the <b>DHCPv4Scope</b>
+entry is found and if the <b>ScopeInfo.SubnetAddress</b> does not match with <i>ScopeInfo&#39;s
+</i><b>ReservedIpSubnetAddress</b> field, then return
+ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>If <i>ScopeInfo</i> contains DhcpReservedOptions, iterate through
+<b>DHCPv4Reservation.DHCPv4ResvOptValuesList</b> and retrieve <b>DHCPv4OptionValue</b>
+corresponding to the user and vendor class specified by <i>ClassName</i> and <i>VendorName</i>
+respectively. If <i>ClassName</i> or <i>VendorName</i> is NULL, it refers to
+the default user class or vendor class respectively, as specified in section 3.1.1.9.
+If the <b>DHCPv4OptionValue</b> entry is not found, return
+ERROR_DHCP_CLASS_NOT_FOUND. Retrieve the <b>DHCPv4ClassedOptValue</b> entry
+corresponding to <b>OptionID</b> from <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b>.
+If the <b>DHCPv4ClassedOptValue</b> entry is not found, return
+ERROR_DHCP_OPTION_NOT_PRESENT. Modify the <b>Value</b> member of retrieved <b>DHCPv4ClassedOptValue</b>
+with information in <b>Values</b> for that <b>OptionID</b>, and return
+ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

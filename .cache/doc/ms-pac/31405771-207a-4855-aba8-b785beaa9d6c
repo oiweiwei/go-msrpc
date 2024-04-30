@@ -1,0 +1,45 @@
+<div class="content"><p> </p><p>The <b>PAC_DEVICE_INFO</b> structure is a variable length
+buffer of the PAC that SHOULD<a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="a1c36b00-1fca-415c-a4ca-e66e98844760#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a> contain
+the device&#39;s logon and authorization information provided by the <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>.
+A pointer to the <b>PAC_DEVICE_INFO</b> structure is serialized into an array
+of bytes and placed directly after the <b>Buffers</b> array of the topmost <b>PACTYPE</b>
+structure (section <span><a href="6655b92f-ab06-490b-845d-037e6987275f" data-linktype="relative-path">2.3</a></span>), at the offset
+specified in the <b>Offset</b> field of the corresponding <b>PAC_INFO_BUFFER</b>
+structure (section <span><a href="3341cfa2-6ef5-42e0-b7bc-4544884bf399" data-linktype="relative-path">2.4</a></span>) in the <b>Buffers</b>
+array. The <b>ulType</b> field of the corresponding <b>PAC_INFO_BUFFER</b> is
+set to 0x0000000E.</p><p>The <b>PAC_DEVICE_INFO</b> structure is defined as follows.</p><dl>
+<dd>
+<div><pre> typedef struct_PAC_DEVICE_INFO {
+   ULONG UserId;
+   ULONG PrimaryGroupId;
+   PISID AccountDomainId;
+   ULONG AccountGroupCount;
+   [size_is(AccountGroupCount)] PGROUP_MEMBERSHIP AccountGroupIds;
+   ULONG SidCount;
+   [size_is(SidCount)] PKERB_SID_AND_ATTRIBUTES ExtraSids;
+   ULONG DomainGroupCount;
+   [size_is(DomainGroupCount)] PDOMAIN_GROUP_MEMBERSHIP DomainGroup;
+ } PAC_DEVICE_INFO, *PPAC_DEVICE_INFO;
+</pre></div>
+</dd></dl><p><b>UserId:</b> A 32-bit unsigned integer that
+contains the <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RID</a></span> of the account.
+If the UserId member equals 0x00000000, the first group <span><a href="../ms-dtyp/f992ad60-0fe4-4b87-9fed-beb478836861" data-linktype="relative-path">SID</a></span>
+in this member is the SID for this account.</p><p><b>PrimaryGroupId:</b> A 32-bit unsigned integer that
+contains the RID for the primary group to which this account belongs.</p><p><b>AccountDomainId:</b> A SID structure that contains
+the <span><a href="f2ef15b6-1e9b-48b5-bf0b-019f061d41c8#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a></span>
+for the domain of the account. This member is used in conjunction with the <b>UserId</b>,
+and <b>GroupIds</b> members to create the user and group SIDs for the client.</p><p><b>AccountGroupCount:</b> A 32-bit unsigned integer
+that contains the number of groups within the account domain to which the
+account belongs.</p><p><b>AccountGroupIds:</b> A pointer to a list of <b>GROUP_MEMBERSHIP</b>
+(section <span><a href="40526584-1565-4fb1-97b7-eb38fd880595" data-linktype="relative-path">2.2.2</a></span>) structures
+that contains the groups to which the account belongs in the account domain.
+The number of groups in this list MUST be equal to <b>GroupCount</b>.</p><p><b>SidCount:</b> A 32-bit unsigned integer that
+contains the total number of SIDs present in the <b>ExtraSids</b> member.</p><p><b>ExtraSids:</b> A pointer to a list of <b>KERB_SID_AND_ATTRIBUTES</b>
+structures (section <span><a href="311aab27-ebdf-47f7-b939-13dc99b15341" data-linktype="relative-path">2.2.1</a></span>) that contain
+a list of SIDs corresponding to groups not in domains. If the <b>UserId</b>
+member equals 0x00000000, the first group SID in this member is the SID for
+this account.</p><p><b>DomainGroupCount:</b> A 32-bit unsigned integer
+that contains the number of domains with groups to which the account belongs.</p><p><b>DomainGroup:</b> A pointer to a list of <b>DOMAIN_GROUP_MEMBERSHIP</b>
+structures (section <span><a href="1b9afb11-3e85-4699-97d3-456a7259a64a" data-linktype="relative-path">2.2.3</a></span>) that
+contains the domains to which the account belongs to a group. The number of
+sets in this list MUST be equal to <b>DomainCount</b>.</p></div>

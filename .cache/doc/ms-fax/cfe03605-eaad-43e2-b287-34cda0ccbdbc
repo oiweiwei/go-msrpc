@@ -1,0 +1,860 @@
+<div class="content"><p> </p><p>The <b>_FAX_JOB_ENTRY</b> structure is the custom-marshaled
+variant of the <b>FAX_JOB_ENTRY</b> (section <span><a href="7c6ea406-edbd-4a5b-b8f2-5ad5084c750d" data-linktype="relative-path">2.2.5</a></span>) structure
+and describes one <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9369467f-ee6b-427f-9d5c-f9cacc40ae66" data-linktype="relative-path">fax job</a></span>. The
+structure includes information about the job type and status, the <b>personal
+profiles</b> (section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>) of the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_53dfe4f3-05d0-41aa-8217-ecd1962b340b" data-linktype="relative-path">recipient</a></span>
+and sender, scheduling and delivery settings, and the page count. The <b>SizeOfStruct</b>,
+<b>RecipientNumber</b>, and <b>QueueStatus</b> fields in the <b>Fixed_Portion</b>
+block MUST NOT be 0. Except for these fields and the <b>JobId</b> field, all
+fields of this structure are optional, and if the respective information is not
+available, the fields in the <b>Fixed_Portion</b> block MUST be zero.</p><p>An application can call the <b>FAX_GetJob</b> (section <span><a href="33572748-3f68-49eb-bbe5-965ec450ae11" data-linktype="relative-path">3.1.4.1.41</a></span>)
+method to retrieve information about a specified job at the server, information
+which is returned in a <b>_FAX_JOB_ENTRY</b> structure.</p><p>An application can call the <b>FAX_EnumJobs</b> function
+(section <span><a href="6516d564-e0b8-4f19-80b1-70f27eca7f16" data-linktype="relative-path">3.1.4.1.21</a></span>) to
+enumerate all <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queued</a></span> and active
+fax jobs (see <b>Fax Queue</b> in section 3.1.1 for details) on the fax server
+of interest. The <b>FAX_EnumJobs</b> function returns an array of <b>_FAX_JOB_ENTRY</b>
+structures. Each structure describes one fax job in detail.</p><p>This structure is also returned as a single structure by the
+<b>FaxObs_GetJob</b> (section <span><a href="20c73988-9339-49cf-81e3-d0b43a89a264" data-linktype="relative-path">3.1.4.2.10</a></span>) method
+and as an array of structures by the <b>FaxObs_EnumJobs</b> (section <span><a href="e16a0c7e-be32-44ae-977f-2406d937dab2" data-linktype="relative-path">3.1.4.2.9</a></span>)
+method.</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (92 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (92 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SizeOfStruct</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>JobId</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UserNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>JobType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>QueueStatus</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Status</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Size</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PageCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecipientNumberOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecipientNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TsidOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SenderNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SenderCompanyOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SenderDeptOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BillingCodeOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ScheduleAction</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ScheduleTime
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DeliveryReportType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DeliveryReportAddressOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DocumentNameOffset</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>SizeOfStruct (4 bytes): </b>A
+<b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+that indicates the size, in bytes, of the <b>_FAX_JOB_ENTRY</b> structure. MUST
+be set to 92 bytes.</p>
+</dd>
+<dd>
+<p><b>JobId (4 bytes): </b>A <b>DWORD</b>
+that indicates a unique number that identifies the fax jobs of interest. This
+is the same kind of job identifier number as the <i>JobId</i> parameter for the
+<b>FAX_SetJob</b> (section <span><a href="7fa3d24d-6028-4d07-8391-1af766d07358" data-linktype="relative-path">3.1.4.1.82</a></span>)
+function.</p>
+</dd>
+<dd>
+<p><b>UserNameOffset (4 bytes):
+</b>Offset to the <b>UserName</b> field in the <b>Variable_Data</b> portion of
+the structure.</p>
+</dd>
+<dd>
+<p><b>JobType (4 bytes): </b>A <b>DWORD</b>
+variable that indicates the type of the fax job of interest. This field is one
+of the following values, which are defined in section 3.1.1.</p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The job type is JT_UNKNOWN.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The job type is JT_SEND.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The job type is JT_RECEIVE.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The job type is JT_ ROUTING.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The job type is JT_FAIL_RECEIVE.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The job type is JT_BROADCAST.<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd>
+<dd>
+<p><b>QueueStatus (4 bytes): </b>A
+<b>DWORD</b> variable containing a set of bit flags indicating the job status
+of the fax job identified by the <b>JobId</b> field. This field MUST be a
+bitwise OR combination of one or more of the <b>Job Status</b> values listed in
+section 3.1.1.</p>
+</dd>
+<dd>
+<p><b>Status (4 bytes): </b>A <b>DWORD</b>
+that specifies the status of the fax device that received or sent the fax job
+described by this structure, captured at the time the job information was
+recorded. This value MUST be one of the following predefined device status
+codes.</p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FPS_UNKNOWN</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The status of the device is unknown.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_DIALING</p>
+  <p>0x20000001</p>
+  </td>
+  <td>
+  <p>The device is dialing a fax number.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_SENDING</p>
+  <p>0x20000002</p>
+  </td>
+  <td>
+  <p>The device is sending a <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_cce65523-bec8-486a-8c6c-6091c52af3d3" data-linktype="relative-path">fax document</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_RECEIVING</p>
+  <p>0x20000004</p>
+  </td>
+  <td>
+  <p>The device is receiving a fax document.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_COMPLETED</p>
+  <p>0x20000008</p>
+  </td>
+  <td>
+  <p>The device completed sending or receiving a fax
+  transmission.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_HANDLED</p>
+  <p>0x20000010</p>
+  </td>
+  <td>
+  <p>The fax service processed the outbound fax document;
+  the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_2ba66d72-d766-440f-b5ea-0333759b147c" data-linktype="relative-path">fax service provider (FSP)</a></span>
+  will transmit the fax document.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_UNAVAILABLE</p>
+  <p>0x20000020</p>
+  </td>
+  <td>
+  <p>The device is not available because it is in use by
+  another application.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_BUSY</p>
+  <p>0x20000040</p>
+  </td>
+  <td>
+  <p>The device encountered a busy signal.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_NO_ANSWER</p>
+  <p>0x20000080</p>
+  </td>
+  <td>
+  <p>The receiving device did not answer the call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_BAD_ADDRESS</p>
+  <p>0x20000100</p>
+  </td>
+  <td>
+  <p>The device dialed an invalid fax number.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_NO_DIAL_TONE</p>
+  <p>0x20000200</p>
+  </td>
+  <td>
+  <p>The sending device cannot complete the call because it
+  does not detect a dial tone.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_DISCONNECTED</p>
+  <p>0x20000400</p>
+  </td>
+  <td>
+  <p>The fax call was disconnected by the sender or the
+  caller.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_FATAL_ERROR</p>
+  <p>0x20000800</p>
+  </td>
+  <td>
+  <p>The device has encountered a fatal protocol error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_NOT_FAX_CALL</p>
+  <p>0x20001000</p>
+  </td>
+  <td>
+  <p>The device received a call that was a data call or a
+  voice call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_CALL_DELAYED</p>
+  <p>0x20002000</p>
+  </td>
+  <td>
+  <p>The device delayed a fax call because the sending
+  device received a busy signal multiple times. The device cannot retry the
+  call because dialing restrictions exist (some countries and regions restrict the
+  number of retry attempts when a number is busy).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_CALL_BLACKLISTED</p>
+  <p>0x20004000</p>
+  </td>
+  <td>
+  <p>The device could not complete a call because the
+  telephone number was blocked or reserved; emergency numbers such as 911 are
+  blocked.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_INITIALIZING</p>
+  <p>0x20008000</p>
+  </td>
+  <td>
+  <p>The device is initializing a call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_OFFLINE</p>
+  <p>0x20010000</p>
+  </td>
+  <td>
+  <p>The device is offline and unavailable.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_RINGING</p>
+  <p>0x20020000</p>
+  </td>
+  <td>
+  <p>The device is ringing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_AVAILABLE</p>
+  <p>0x20100000</p>
+  </td>
+  <td>
+  <p>The device is available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_ABORTING</p>
+  <p>0x20200000</p>
+  </td>
+  <td>
+  <p>The device is aborting a fax job.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_ROUTING</p>
+  <p>0x20400000</p>
+  </td>
+  <td>
+  <p>The device is <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_efaa1290-6d4b-4f44-9e84-35a867069d45" data-linktype="relative-path">routing</a></span> a received
+  fax document.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FPS_ANSWERED</p>
+  <p>0x20800000</p>
+  </td>
+  <td>
+  <p>The device answered a new call.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd>
+<dd>
+<p><b>Size (4 bytes): </b>A <b>DWORD</b>
+variable that indicates the total size, in bytes, of the fax document received
+or sent, including the size of the cover page, if a cover page is present, and
+the size of the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_222c82b4-c682-4c5d-b500-a6f0a7b96d4f" data-linktype="relative-path">fax body</a></span>, if a fax body
+is present. The size MUST NOT exceed 4 gigabytes.</p>
+</dd>
+<dd>
+<p><b>PageCount (4 bytes): </b>A
+<b>DWORD</b> variable that indicates the total number of pages in the fax
+transmission.</p>
+</dd>
+<dd>
+<p><b>RecipientNumberOffset (4
+bytes): </b>Offset to the <b>RecipientNumber</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>RecipientNameOffset (4
+bytes): </b>Offset to the <b>RecipientName</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>TsidOffset (4 bytes): </b>Offset
+to the <b>Tsid</b> field in the <b>Variable_Data</b> portion of the structure.</p>
+</dd>
+<dd>
+<p><b>SenderNameOffset (4
+bytes): </b>Offset to the <b>SenderName</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>SenderCompanyOffset (4
+bytes): </b>Offset to the <b>SenderCompany</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>SenderDeptOffset (4
+bytes): </b>Offset to the <b>SenderDepth</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>BillingCodeOffset (4
+bytes): </b>Offset to the <b>BillingCode</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>ScheduleAction (4 bytes):
+</b>A <b>DWORD</b> variable that indicates how the fax was configured or is
+configured to be sent if this job is an outgoing fax transmission; otherwise,
+this parameter SHOULD be ignored. This value can be one of the following
+values.</p>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value/code</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>JSA_NOW</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The fax is to be sent as soon as a fax device is
+  available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JSA_SPECIFIC_TIME</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The fax is to be sent at the time specified by the <b>ScheduleTime</b>
+  field of this <b>_FAX_JOB_ENTRY</b> structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JSA_DISCOUNT_PERIOD</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The fax is to be sent during the discount rate period.
+  The <b>FAX_GetConfiguration</b> (section <span><a href="edf51676-d8b6-44e7-859e-95903b19b224" data-linktype="relative-path">3.1.4.1.36</a></span>) or
+  the <b>FaxObs_GetConfiguration</b> (section <span><a href="af06e79b-a8eb-4e0d-ad9d-ae71738e1a0f" data-linktype="relative-path">3.1.4.2.24</a></span>)
+  method can be called to retrieve the discount period for the fax server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd>
+<dd>
+<p><b>ScheduleTime (16 bytes): </b>A
+<b>SYSTEMTIME</b> ([MS-DTYP] section <span><a href="../ms-dtyp/2fefe8dd-ab48-4e33-a7d5-7171455a9289" data-linktype="relative-path">2.3.13</a></span>)
+structure indicating the local date and time when the fax was sent or
+configured to be sent, in <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">UTC</a></span> format. This
+parameter SHOULD be ignored unless the <i>ScheduleAction</i> parameter is set
+to 1 (JSA_SPECIFIC_TIME) and this job is an outgoing fax transmission.</p>
+</dd>
+<dd>
+<p><b>DeliveryReportType (4
+bytes): </b>A <b>DWORD</b> variable that indicates the fax delivery report
+type. This value can be one of the <b>FAX_ENUM_DELIVERY_REPORT_TYPES</b>
+(section <span><a href="7a03bb5e-3ba7-45ec-b869-31350298e9b9" data-linktype="relative-path">2.2.76</a></span>) enumeration
+values. The DRT_ATTACH_FAX value can be combined with the DRT_EMAIL value in
+one value by an OR operation.</p>
+</dd>
+<dd>
+<p><b>DeliveryReportAddressOffset
+(4 bytes): </b>Offset to the <b>DeliveryReportAddress</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd>
+<dd>
+<p><b>DocumentNameOffset (4
+bytes): </b>Offset to the <b>DocumentName</b> field in the <b>Variable_Data</b>
+portion of the structure.</p>
+</dd></dl><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>UserName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecipientNumber
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RecipientName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Tsid
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SenderName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SenderCompany
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SenderDept
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BillingCode
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DeliveryReportAddress
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DocumentName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>UserName (variable): </b>A
+null-terminated character string that contains the name of the fax user account
+that submitted the fax job.</p>
+</dd>
+<dd>
+<p><b>RecipientNumber
+(variable): </b>A null-terminated character string that contains the fax number
+of the recipient of the fax transmission. This information comes from the
+recipient&#39;s <b>personal profile</b>.</p>
+</dd>
+<dd>
+<p><b>RecipientName (variable):
+</b>A null-terminated character string that contains the name of the recipient
+of the fax. This information comes from the recipient&#39;s <b>personal profile</b>.</p>
+</dd>
+<dd>
+<p><b>Tsid (variable): </b>A
+null-terminated character string that contains the transmitting subscriber
+identifier (TSID). This information comes from the sender&#39;s <b>personal profile</b>.</p>
+</dd>
+<dd>
+<p><b>SenderName (variable): </b>A
+null-terminated character string that contains the fax sender name. This
+information comes from the sender&#39;s <b>personal profile</b>.</p>
+</dd>
+<dd>
+<p><b>SenderCompany (variable):
+</b>A null-terminated character string that contains the fax sender company.
+This information comes from the sender&#39;s <b>personal profile</b>.</p>
+</dd>
+<dd>
+<p><b>SenderDept (variable): </b>A
+null-terminated character string that contains the fax sender department. This
+information comes from the sender&#39;s <b>personal profile</b>.</p>
+</dd>
+<dd>
+<p><b>BillingCode (variable): </b>A
+null-terminated character string that contains the fax billing code.</p>
+</dd>
+<dd>
+<p><b>DeliveryReportAddress
+(variable): </b>A null-terminated character string that contains the email
+address for the delivery report.</p>
+</dd>
+<dd>
+<p><b>DocumentName (variable): </b>A
+null-terminated character string that contains the document name.</p>
+</dd></dl></div>

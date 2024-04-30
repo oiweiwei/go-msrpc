@@ -1,0 +1,8 @@
+<div class="content"><p>The File Server Remote VSS Protocol is designed to remotely
+create shadow copies of file shares hosted on a file server. This facilitates
+applications hosting their data on a file server to back up and restore their
+application state. The client-side implementation of this protocol typically
+runs on an application server and the server-side implementation runs on a file
+server. This protocol is modeled in such way that the client-side and
+server-side implementation can be integrated with existing volume <a href="0856b278-46f4-4f3e-bc06-bc382b26428b#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow copy</a> creation
+utilities. </p></div>

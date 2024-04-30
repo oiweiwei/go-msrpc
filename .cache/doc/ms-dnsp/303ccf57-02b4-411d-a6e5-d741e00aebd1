@@ -1,0 +1,614 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_MEMORY_STATS</b> structure has DNS server
+statistics related to memory usage for different operations on the server. It
+provides statistical information about memory usage since the server started or
+server statistics were last cleared. The structure supports allocations of two
+types: blocks of common (but implementation-specific) sizes, and blocks of
+arbitrary sizes. This allows servers to use a separate internal mechanism to
+optimize allocations of common sizes if they so choose. This structure MUST be
+formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Memory</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Alloc</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Free</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StdUsed</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StdReturn</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StdInUse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StdMemory</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StdToHeapAlloc</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StdToHeapFree</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StdToHeapInUse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StdToHeapMemory</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StdBlockAlloc</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StdBlockUsed</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StdBlockReturn</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StdBlockInUse</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StdBlockFreeList</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StdBlockFreeListMemory</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StdBlockMemory</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MemTags
+  (624 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>Memory (4 bytes): </b>The total memory currently
+allocated by the servers, in bytes.</p><p><b>Alloc (4 bytes): </b>The cumulative number of
+times memory was allocated by the server.</p><p><b>Free (4 bytes): </b>The cumulative number of times
+memory was released by the server.</p><p><b>StdUsed (4 bytes): </b>The cumulative number of
+times a common-size block of memory was allocated by the server.</p><p><b>StdReturn (4 bytes): </b>The cumulative number of
+times a common-size block of memory was released by the server.</p><p><b>StdInUse (4 bytes): </b>The total number of
+common-size blocks of allocated memory currently used by the server.</p><p><b>StdMemory (4 bytes): </b>The total size, in bytes,
+of common-size blocks that are currently being used by the server.</p><p><b>StdToHeapAlloc (4 bytes): </b>The cumulative number
+of arbitrary-size blocks of memory allocated from system memory.</p><p><b>StdToHeapFree (4 bytes): </b>The cumulative number
+of arbitrary-size blocks of memory released to system memory.</p><p><b>StdToHeapInUse (4 bytes): </b>The number of
+arbitrary-size blocks of memory currently in use.</p><p><b>StdToHeapMemory (4 bytes): </b>The total size of
+memory, in bytes, currently used by non-standard sized blocks.</p><p><b>StdBlockAlloc (4 bytes): </b>The cumulative number
+of common-size blocks allocated by the server.</p><p><b>StdBlockUsed (4 bytes): </b>The cumulative number
+of common-size blocks allocated from an internal free list.</p><p><b>StdBlockReturn (4 bytes): </b>The cumulative
+number of common-size blocks returned from an internal free list.</p><p><b>StdBlockInUse (4 bytes): </b>The number of
+common-size blocks currently being used.</p><p><b>StdBlockFreeList (4 bytes): </b>The number of
+common-size blocks currently on internal free lists.</p><p><b>StdBlockFreeListMemory (4 bytes): </b>The total
+size of memory, in bytes, of common size blocks currently on internal free
+lists.</p><p><b>StdBlockMemory (4 bytes): </b>The total size of
+memory, in bytes, of all currently allocated blocks.</p><p><b>MemTags (624 bytes): </b>An array of 52
+DNSSRV_MEMTAG_STATS (section <span><a href="0fbecaa9-9f8e-4e9a-8e94-e0dd94d87710" data-linktype="relative-path">2.2.10.2.15</a></span>)
+specifying memory statistics for various server operations. The table below
+gives the context applicable to each element of this array, where the Value
+column indicates the element number.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MEMTAG_NONE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Not related to a particular operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_PACKET_UDP</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>UDP Packets.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_PACKET_TCP</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>TCP Packets.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_NAME</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Name-related operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_ZONE</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Zone operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_UPDATE</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>Name updates.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_UPDATE_LIST</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>Record update list.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_TIMEOUT</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Timeout</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_NODEHASH </p>
+  <p>0x00000009</p>
+  </td>
+  <td>
+  <p>Node hash.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_DS_DN</p>
+  <p>0x0000000A</p>
+  </td>
+  <td>
+  <p><span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_04fd0982-6bb6-44f1-817e-795715049c50" data-linktype="relative-path">Directory server</a></span> <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">distinguished
+  name</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_DS_MOD</p>
+  <p>0x0000000B</p>
+  </td>
+  <td>
+  <p>Directory server module.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_DS_RECORD</p>
+  <p>0x0000000C</p>
+  </td>
+  <td>
+  <p>Directory server records.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_DS_OTHER</p>
+  <p>0x0000000D</p>
+  </td>
+  <td>
+  <p>Other directory server related operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_THREAD</p>
+  <p>0x0000000E</p>
+  </td>
+  <td>
+  <p>Thread management.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_NBSTAT</p>
+  <p>0x0000000F</p>
+  </td>
+  <td>
+  <p>NBSTAT <span><a href="https://go.microsoft.com/fwlink/?LinkId=90261" data-linktype="external">[RFC1002]</a></span>
+  packets operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_DNSLIB</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>DNS library management.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_TABLE</p>
+  <p>0x00000011</p>
+  </td>
+  <td>
+  <p>Record table operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_SOCKET</p>
+  <p>0x00000012</p>
+  </td>
+  <td>
+  <p>Socket operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_CONNECTION </p>
+  <p>0x00000013</p>
+  </td>
+  <td>
+  <p>Connection establishment / destruction.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_REGISTRY</p>
+  <p>0x00000014</p>
+  </td>
+  <td>
+  <p>Registry operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_RPC</p>
+  <p>0x00000015</p>
+  </td>
+  <td>
+  <p>RPC operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_STUFF</p>
+  <p>0x00000016</p>
+  </td>
+  <td>
+  <p>Miscellaneous operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_FILEBUF</p>
+  <p>0x00000017</p>
+  </td>
+  <td>
+  <p>File buffer operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_REMOTE</p>
+  <p>0x00000018</p>
+  </td>
+  <td>
+  <p>Remote IP address operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_EVTCTRL</p>
+  <p>0x00000019</p>
+  </td>
+  <td>
+  <p>Event control operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_SAFE </p>
+  <p>0x0000001A</p>
+  </td>
+  <td>
+  <p>Miscellaneous queuing operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_RECORD_UNKNOWN </p>
+  <p>0x0000001B</p>
+  </td>
+  <td>
+  <p>Record operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_RECORD_FILE</p>
+  <p>0x0000001C</p>
+  </td>
+  <td>
+  <p>File-based operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_RECORD_DS</p>
+  <p>0x0000001D</p>
+  </td>
+  <td>
+  <p>Directory server-based RR operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_RECORD_AXFR </p>
+  <p>0x0000001E</p>
+  </td>
+  <td>
+  <p>Complete <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_67ea3c5b-6b1e-40a3-ac20-3f7eaf056504" data-linktype="relative-path">zone transfer</a></span>
+  operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_RECORD_IXFR</p>
+  <p>0x0000001F</p>
+  </td>
+  <td>
+  <p>Single Record transfer operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_RECORD_DYNUP</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>RR operations for <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_dbff570c-a709-479a-980a-5b74ac7ab2e7" data-linktype="relative-path">dynamic update</a></span>. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_RECORD_ADMIN</p>
+  <p>0x00000021</p>
+  </td>
+  <td>
+  <p>RR operations for administration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_RECORD_AUTO </p>
+  <p>0x00000022</p>
+  </td>
+  <td>
+  <p>RR operations for autoconfig.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_RECORD_CACHE</p>
+  <p>0x00000023</p>
+  </td>
+  <td>
+  <p>RR operations for cache.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_RECORD_NOEXIST</p>
+  <p>0x00000024</p>
+  </td>
+  <td>
+  <p>RR operations for non-existent records.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_RECORD_WINS</p>
+  <p>0x00000025</p>
+  </td>
+  <td>
+  <p>RR operations for <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_RECORD_WINSPTR</p>
+  <p>0x00000026</p>
+  </td>
+  <td>
+  <p>RR operations for WINS-PTR.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_RECORD_COPY </p>
+  <p>0x00000027</p>
+  </td>
+  <td>
+  <p>RR copy operations.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_NODE_UNKNOWN </p>
+  <p>0x00000028</p>
+  </td>
+  <td>
+  <p>Node operations for database. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_NODE_FILE</p>
+  <p>0x00000029</p>
+  </td>
+  <td>
+  <p>Node operations for file. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_NODE_DS</p>
+  <p>0x0000002A</p>
+  </td>
+  <td>
+  <p>Node operations for directory server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_NODE_AXFR</p>
+  <p>0x0000002B</p>
+  </td>
+  <td>
+  <p>Node operations for complete zone transfer. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_NODE_IXFR</p>
+  <p>0x0000002C</p>
+  </td>
+  <td>
+  <p>Node operations for single record transfer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_NODE_DYNUP</p>
+  <p>0x0000002D</p>
+  </td>
+  <td>
+  <p>Node operations for dynamic update. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_NODE_ADMIN</p>
+  <p>0x0000002E</p>
+  </td>
+  <td>
+  <p>Node operations for administration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_NODE_AUTO </p>
+  <p>0x0000002F</p>
+  </td>
+  <td>
+  <p>Node operations for autoconfig.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_NODE_CACHE</p>
+  <p>0x00000030</p>
+  </td>
+  <td>
+  <p>Node operations for cache.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_NODE_NOEXIST</p>
+  <p>0x00000031</p>
+  </td>
+  <td>
+  <p>Node operations for non-existent records.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_NODE_WINS </p>
+  <p>0x00000032</p>
+  </td>
+  <td>
+  <p>Node operations for WINS.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_NODE_WINSPTR</p>
+  <p>0x00000033</p>
+  </td>
+  <td>
+  <p>Node operations for WINS-PTR.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MEMTAG_NODE_COPY</p>
+  <p>0x00000034</p>
+  </td>
+  <td>
+  <p>Node operations for copy.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

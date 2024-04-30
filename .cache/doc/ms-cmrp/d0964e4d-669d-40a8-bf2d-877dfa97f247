@@ -1,0 +1,63 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/d0964e4d-669d-40a8-bf2d-877dfa97f247" data-linktype="external">msdn link</a></p><p>(Protocol Version 3) The ApiGetResourceDependencyExpression
+method instructs the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+to retrieve the complex dependency expression, as specified in section <a href="5af0b053-32d0-46b8-bb75-898abc5aa958" data-linktype="relative-path">3.1.1.1.2</a>, for the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_94e97f15-2f1a-406f-a740-607bb97761ec" data-linktype="relative-path">resource</a> represented by <i>hResource</i>.</p><p>The server SHOULD accept an
+ApiGetResourceDependencyExpression request if its <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_a93e2fea-3006-4a06-b48f-fdb36d9abac9" data-linktype="relative-path">protocol server state</a> is
+read-only, and the server MUST accept an ApiGetResourceDependencyExpression
+request for processing if it is in the read/write state, as specified in
+section <a href="756547e7-ca64-4b7c-9f1b-2b1fbc6153d3" data-linktype="relative-path">3.1.1</a>.</p><p>The server SHOULD accept an
+ApiGetResourceDependencyExpression request if the access level associated with
+the <i>hResource</i> context handle is at least &#34;Read&#34; (section <a href="a249a463-3d3b-4058-abf6-3024d81806a0" data-linktype="relative-path">3.1.4</a>).</p><dl>
+<dd>
+<div><pre> error_status_t ApiGetResourceDependencyExpression(
+   [in] HRES_RPC hResource,
+   [out, string] LPWSTR *lpszDependencyExpression,
+   [out] error_status_t *rpc_status
+ );
+</pre></div>
+</dd></dl><p><b>hResource: </b>An <a href="5a619b4b-0af5-4c7a-b37b-ae2d50755abd" data-linktype="relative-path">HRES_RPC</a> context handle
+that was obtained in a previous <a href="181f8de0-f518-4c5b-b98e-ddb18aa325ce" data-linktype="relative-path">ApiOpenResource</a>, <a href="6595931d-2fe5-4097-9270-f6bada5d9242" data-linktype="relative-path">ApiOpenResourceEx</a>, or <a href="bc6ca940-7177-4bef-9567-ae4a692a2ba5" data-linktype="relative-path">ApiCreateResource</a> method
+call.</p><p><b>lpszDependencyExpression: </b>The address of a
+pointer that receives a pointer to a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a> buffer where
+the server MUST return the null-terminated complex dependency expression after
+successful completion of this method. The server MUST allocate as much memory
+as is required to return the expression. If the method fails, this parameter
+MUST be ignored.</p><p><b>rpc_status: </b>A 32-bit integer used to indicate
+success or failure. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+runtime MUST indicate, by writing to this parameter, whether it succeeded in
+executing this method on the server. The encoding of the value passed in this
+parameter MUST conform to encoding for comm_status and fault_status, as
+specified in appendix E of <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>Return Values: </b>The method MUST return the
+following error codes for the specified conditions.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Success.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000006</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The data that is pointed to by the <i>hResource</i>
+  parameter does not represent a valid HRES_RPC context handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>For any other condition, this method MUST return a value
+that is not one of the values listed in the preceding table. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> MUST behave in one
+consistent, identical manner for all values that are not listed in the
+preceding table. The client SHOULD treat errors as recoverable errors and
+initiate the reconnect procedure as specified in section <a href="ca75805a-4b39-4074-8b5b-dbaae6e81b1f" data-linktype="relative-path">3.2.4.6</a>.</p></div>

@@ -1,0 +1,46 @@
+<div class="content"><p>This method sets all the properties for a particular <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_11c04cbf-4128-46bd-8b12-02b405424539" data-linktype="relative-path">revocation configuration</a>.</p><dl>
+<dd>
+<div><pre> HRESULT SetCAConfigInformation(
+   [in, ref] const BSTR bstrCAId,
+   [in, ref] const VARIANT* pEntryValue
+ );
+</pre></div>
+</dd></dl><p><b>bstrCAId: </b>This is a <a href="05bfaf02-3616-41d8-bcb7-26432e265716" data-linktype="relative-path">BSTR</a> that specifies the <a href="71ee5299-c869-447e-9ac5-6a6d8de38a90" data-linktype="relative-path">RevocationConfigurationId</a>
+for the revocation configuration whose properties are to be set.</p><p><b>pEntryValue: </b>This is a pointer to a <a href="689dfe0e-527a-47a4-a3c2-4c4cddb72ad9" data-linktype="relative-path">VARIANT</a> data type that
+contains the names and values of the properties to set.</p><p>The following processing rules apply:</p><ol><li><p><span>    </span>If <i>bstrCAId</i>
+is NULL or empty, the server SHOULD return the error E_INVALIDARG
+(0x80000003L). </p>
+</li><li><p><span>    </span>The type of the
+variant as identified by <i>pEntryValue</i> MUST be either VT_EMPTY or
+VT_ARRAY|VT_VARIANT. If <i>pEntryValue</i> is a variant of type
+VT_ARRAY|VT_VARIANT, each element in this variant array SHOULD be a property
+identified in section 3.2.1.1, with the exception of the KeySpec property as
+noted in the table in that section. If the variant is of any other type, the
+responder SHOULD fail the request with an error code of 0x8000FFFF.</p>
+</li><li><p><span>    </span>If there is a
+revocation configuration in the RevocationConfigurationList with the same RevocationConfigurationId
+as the value of <i>bstrCAId</i>, then:</p>
+<ol><li><p><span>   
+</span>If <i>pEntryValue</i> is of type VT_EMPTY, the responder MUST delete the
+revocation configuration identified by <i>bstrCAId</i> from the
+RevocationConfigurationList, delete all its associated properties, and return
+success.</p>
+</li><li><p><span>   
+</span>If <i>pEntryValue</i> is of type VT_ARRAY|VT_VARIANT, the responder MUST
+delete the original revocation configuration from RevocationConfigurationList,
+add a new entry with the same RevocationConfigurationId, store the properties
+and values in the VARIANT reference by <i>pEntryValue</i> parameter, and return
+success.</p>
+</li></ol></li><li><p><span>    </span>If there is not
+a revocation configuration in the RevocationConfigurationList with the same
+RevocationConfigurationId as the value of <i>bstrCAId</i>, then:</p>
+<ol><li><p><span>   
+</span>If <i>pEntryValue</i> is of type VT_ARRAY|VT_VARIANT, the responder MUST
+create a new revocation configuration in the RevocationConfigurationList, and
+the responder MUST store all the properties present in the <i>pEntryValue</i>
+parameter for the new revocation configuration. The responder MUST successfully
+process the request.</p>
+</li><li><p><span>   
+</span>If <i>pEntryValue</i> is of type VT_EMPTY, the responder MUST fail the
+request. The error code SHOULD be 0x800710d8.</p>
+</li></ol></li></ol></div>

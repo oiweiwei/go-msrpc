@@ -1,0 +1,45 @@
+<div class="content"><p>The GetOfficerRights method is used to retrieve the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_eedf773f-7c40-4ea6-9a26-998d1501511f" data-linktype="relative-path">Officer rights</a>, as
+specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89839" data-linktype="external">[CIMC-PP]</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetOfficerRights(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [out] BOOL* pfEnabled,
+   [out, ref] CERTTRANSBLOB* pctbSD
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.
+</p><p><b>pfEnabled: </b>A pointer to a Boolean value.</p><p><b>pctbSD: </b>A pointer to the <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure
+that contains the marshaled information specified in section <a href="b497b1e1-a84c-40c8-9379-524193176fad" data-linktype="relative-path">2.2.1.11.1</a>.</p><p>The following processing rules apply:</p><ol><li><p><span>    </span>If the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> server does not support <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_b0a10741-008c-4de1-b614-4f587b1ae663" data-linktype="relative-path">Enrollment Agent rights</a>:</p>
+<ol><li><p><span>   
+</span>If no Officer rights are configured, the server MUST set the value of <i>*pfEnabled</i>
+to 0, the <b>pb </b>member of <i>pctbSD</i> to NULL, and the <b>cb</b> member
+to 0.</p>
+</li><li><p><span>   
+</span>If Officer rights are configured on the CA server, the server MUST set
+the value of <i>*pfEnabled</i> to nonzero and return the marshaled data
+specified in section 2.2.1.11.1 in pctbSD.</p>
+</li></ol></li><li><p><span>    </span>If the CA server
+supports Enrollment Agent rights:</p>
+<ol><li><p><span>   
+</span>If no Officer rights are configured (Config_Permissions_Officer_Rights)
+and no Enrollment Agent rights (Config_Permissions_Enrollment_Agent_Rights) are
+configured on the CA server, then the server MUST set the value of <i>*pfEnabled</i>
+to 0 and the <b>pb </b>member of <i>pctbSD</i> MUST contain the marshaled data
+specified in section 2.2.1.11.1.</p>
+</li><li><p><span>   
+</span>If no Officer rights are configured, but Enrollment Agent rights are
+configured on the CA server, then the server MUST set the value of <i>*pfEnabled</i>
+to 0 and <i>pctbSD</i> MUST contain the marshaled data specified in section
+2.2.1.11.1.</p>
+</li><li><p><span>   
+</span>If Officer rights are configured, but no Enrollment Agent rights are
+configured on the CA server, then the server MUST set the value of <i>*pfEnabled</i>
+to nonzero and the <b>pb </b>member of <i>pctbSD</i> MUST contain the marshaled
+data specified in section 2.2.1.11.1.</p>
+</li><li><p><span>   
+</span>If Officer rights are configured and Enrollment Agent rights are
+configured on the CA server, then the server MUST set the value of <i>*pfEnabled</i>
+to nonzero and <i>pctbSD</i> MUST contain the marshaled data specified in
+section 2.2.1.11.1.</p>
+</li></ol></li></ol></div>

@@ -1,0 +1,46 @@
+<div class="content"><p> </p><p>The IManagedObject::GetObjectIdentity method is used by a <span><a href="d8eaf696-8591-48a2-9aac-4880847e3632#gt_854253ea-e95f-40bb-9e99-cf5b1298db20" data-linktype="relative-path">CLR</a></span>
+instance to determine whether a COM <span><a href="d8eaf696-8591-48a2-9aac-4880847e3632#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> entering the
+system is really a managed object that originated in this CLR instance and
+within the current process division.</p><dl>
+<dd>
+<div><pre> HRESULT GetObjectIdentity(
+   [out] BSTR* pBSTRGUID,
+   [out] int* AppDomainID,
+   [out] CCW_PTR pCCW
+ );
+</pre></div>
+</dd></dl><p><b>pBSTRGUID: </b>The <i>pBSTRGUID</i> parameter is a
+<span><a href="d8eaf696-8591-48a2-9aac-4880847e3632#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+(<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/222af2d3-5c00-4899-bc87-ed4c6515e80d" data-linktype="relative-path">2.3.4.3</a></span>).
+The <i>pBSTRGUID</i> parameter MUST indicate the CLR instance in which this
+object was created.</p><p><b>AppDomainID: </b>Optional parameter that contains
+implementation-specific, opaque, process-unique identifiers. If present, the <i>AppDomainID</i>
+parameter MUST denote the process subdivision in which this object resides.</p><p><b>pCCW: </b>Optional field. Implementation-specific,
+opaque value that helps identify the managed object. If present, this field
+MUST map back to the implementation&#39;s internal representation of a managed
+object.</p><p><b>Return Values: </b>The method MUST return a
+positive value or 0 to indicate successful completion or a negative value to
+indicate failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Success</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+from this method beyond those thrown by the underlying <span><a href="d8eaf696-8591-48a2-9aac-4880847e3632#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+protocol.</p></div>

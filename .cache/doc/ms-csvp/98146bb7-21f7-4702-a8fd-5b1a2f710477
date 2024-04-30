@@ -1,0 +1,85 @@
+<div class="content"><p>The ProcessAddRoutes method<a id="Appendix_A_Target_30"></a><a aria-label="Product behavior note 30" href="6ea29e14-9c33-4927-90a8-258fd1d6d042#Appendix_A_30" data-linktype="relative-path">&lt;30&gt;</a> adds <b>Route</b>
+elements to a <b>Route Collection</b> and initiates monitoring of these routes
+for packet loss and status data.</p><dl>
+<dd>
+<div><pre> HRESULT ProcessAddRoutes(
+   [in] const ADD_ROUTES_REQUEST* request
+ );
+</pre></div>
+</dd></dl><p><b>request: </b>Designates <b>Route</b> elements to
+be added to <b>Route Collection</b>.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method implementation.
+For more information about Win32 error codes and HRESULT values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>
+and <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80004005</p>
+  <p>E_FAIL</p>
+  </td>
+  <td>
+  <p>Route Monitoring State is TRUE.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+protocol specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 8.</p><p>When processing this call the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Fail the request with error 0x80004005 (E_FAIL) if <b>Route
+Monitoring State</b> is TRUE.</p>
+</li><li><p><span><span> 
+</span></span>For each <a href="7ee12275-ffd3-4b25-8e7c-23d788953e0a" data-linktype="relative-path">NODE_ROUTE_INFO</a>
+element nri in the request.nodeRouteInfos:</p>
+<ul><li><p><span><span>  </span></span>For
+unsigned integer k, from 0 to the number of elements in request.nri.indices:</p>
+<ul><li><p><span><span> 
+</span></span>Construct a <b>Route</b> element newRoute as follows:</p>
+<ul><li><p><span><span> 
+</span></span>Set newRoute.LocalVirtualIP to request.localVirtualIP.</p>
+</li><li><p><span><span> 
+</span></span>Set newRoute.RemoteVirtualIP to request.nri.remoteVirtualIP.</p>
+</li><li><p><span><span> 
+</span></span>Set newRoute.LocalUnicastIP to request.nri.localUnicastIPs[k].</p>
+</li><li><p><span><span> 
+</span></span>Set newRoute.RemoteUnicastIP to request.nri.remoteUnicastIPs[k].</p>
+</li><li><p><span><span> 
+</span></span>Set newRoute.LossAndState.packetLoss to 0x00000000.</p>
+</li><li><p><span><span> 
+</span></span>Set newRoute.LossAndState.status to DOWN.</p>
+</li><li><p><span><span> 
+</span></span>Set newRoute.Index to request.nri.indices[k].</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Add newRoute to Route Collection.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>In an implementation-specific way, begin monitoring status and
+packet loss for Route elements added to Route Collection as a result of this
+method.</p>
+</li><li><p><span><span> 
+</span></span>Set <b>Route Monitoring State</b> to TRUE.</p>
+</li></ul></div>

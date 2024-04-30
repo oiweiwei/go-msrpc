@@ -1,0 +1,15 @@
+import "ms-oaut.idl";
+ 
+[
+object,
+uuid(034634FD-BA3F-11D1-856A-00A0C944138C),
+dual,
+pointer_default(unique)
+]
+ 
+interface IManageTelnetSessions : IDispatch
+{
+HRESULT GetTelnetSessions( [ out, retval ] BSTR *pszSessionData );
+HRESULT TerminateSession([in] DWORD dwUniqueId );
+HRESULT SendMsgToASession([in] DWORD dwUniqueId, [in] BSTR szMsg );
+};

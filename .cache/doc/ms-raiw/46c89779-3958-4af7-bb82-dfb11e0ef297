@@ -1,0 +1,17 @@
+<div class="content"><p>The WINSINTF_RPL_COUNTERS_T structure defines counters that
+contain the number of successful pull <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replications</a> and the number
+of communication failures for a given <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bcec149d-c534-40d5-9ec8-089cb3fd2d00" data-linktype="relative-path">replication partner</a>. It is
+used in the structure <a href="d23c464a-6bb5-4eed-b74c-15bd47bcaa09" data-linktype="relative-path">WINSINTF_STAT_T</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSINTF_RPL_COUNTERS_T {
+   WINSINTF_ADD_T Add;
+   DWORD NoOfRpls;
+   DWORD NoOfCommFails;
+ } WINSINTF_RPL_COUNTERS_T,
+  *PWINSINTF_RPL_COUNTERS_T;
+</pre></div>
+</dd></dl><p><b>Add:</b>  The IP address of a <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a> <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a> server.</p><p><b>NoOfRpls:</b>  The number of successful
+pull replications that have been performed with the replication partner. The <a href="a83205a2-23e2-41bb-84e1-4d968aaae4e8#gt_cb0d3fc4-7e24-49af-82c4-91a35bca857f" data-linktype="relative-path">target WINS server</a> stores
+the replication partner&#39;s IP address in the <i>Add</i> member.</p><p><b>NoOfCommFails:</b>  The number of
+communication failures that have occurred in pull replications between the WINS
+server whose IP address is given in <i>Add</i> and the target WINS server.</p></div>

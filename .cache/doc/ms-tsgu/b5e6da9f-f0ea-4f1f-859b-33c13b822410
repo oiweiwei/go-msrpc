@@ -1,0 +1,72 @@
+<div class="content"><p>This packet is used for channel creation.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>hdr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>numResources</p>
+  </td>
+  <td colspan="8">
+  <p>numAltResources</p>
+  </td>
+  <td colspan="16">
+  <p>port</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>protocol</p>
+  </td>
+  
+ </tr>
+</tbody></table><p><b>hdr  (8 bytes): </b>An <a href="158c24f6-cabc-4c48-b429-28509f9b4f5d" data-linktype="relative-path">HTTP_PACKET_HEADER (section
+2.2.10.9)</a> structure. Its <b>packetType</b> field is set to
+PKT_TYPE_CHANNEL_CREATE.</p><p><b>numResources (1 byte): </b>A single byte size
+field that represents the number of resource names (server names) describing
+the target. This value MUST be in the range 1 -- 50.</p><p><b>numAltResources (1 byte): </b>A single byte size
+field that represents the number of alternative resource names. This value MUST
+be in the range 0 - 3.</p><p><b>port (2 bytes): </b>An unsigned short that
+represents the port for communication with the <a href="76796f19-9e6f-48b9-8b8f-4ef9f197056b#gt_3657ab68-5a60-4cee-8082-dfc2e67435e9" data-linktype="relative-path">target server</a>.</p><p><b>protocol (2 bytes): </b>An unsigned short that
+represents the protocol number used for connection with the target server. The
+value MUST be set to 3.</p></div>

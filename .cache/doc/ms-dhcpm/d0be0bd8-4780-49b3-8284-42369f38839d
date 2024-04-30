@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The <b>SCOPE_MIB_INFO</b> structure defines a structure that
+contains the address counters for a specific IPv4 subnet. The numbers of free,
+used, and offered IPv4 addresses are stored in this structure. This structure
+is used in the <span><a href="b4db5a54-5df7-4a88-99dd-d782787c41a0" data-linktype="relative-path">DHCP_MIB_INFO (section 2.2.1.2.48)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _SCOPE_MIB_INFO {
+   DHCP_IP_ADDRESS Subnet;
+   DWORD NumAddressesInuse;
+   DWORD NumAddressesFree;
+   DWORD NumPendingOffers;
+ } SCOPE_MIB_INFO,
+  *LPSCOPE_MIB_INFO;
+</pre></div>
+</dd></dl><p><b>Subnet:</b>  This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>,
+a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+specifying the IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6a800ef-fd8a-4d87-834c-131e58f304ea" data-linktype="relative-path">subnet ID</a></span> for the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_128cd76b-eecb-41e6-96f7-f73c2bf9235a" data-linktype="relative-path">scope</a></span>.</p><p><b>NumAddressesInuse:</b>  This is of type
+DWORD, containing the number of IPv4 addresses leased out to DHCPv4 clients for
+a given IPv4 subnet. </p><p><b>NumAddressesFree:</b>  This is of type
+DWORD, containing the number of IPv4 addresses that are free and can be leased
+out to DHCPv4 clients in a specific IPv4 subnet. </p><p><b>NumPendingOffers:</b>  This is of type
+DWORD, containing the number of IPv4 addresses that have been offered to DHCPv4
+clients in a specific IPv4 subnet but that the DHCP client has not yet
+confirmed. </p></div>

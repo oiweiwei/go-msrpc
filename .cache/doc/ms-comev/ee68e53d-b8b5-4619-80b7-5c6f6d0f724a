@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The VerifyTransientSubscribers method verifies the state of
+the transient <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_6d17ce3a-aa95-4db2-83f1-09d5feef3f95" data-linktype="relative-path">subscribers</a></span>.</p><dl>
+<dd>
+<div><pre> [id(8), helpstring(&#34;method VerifyTransientSubscribers&#34;)] HRESULT VerifyTransientSubscribers();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>This function MUST return S_OK.</p><p>When this method is invoked, the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST verify
+that, for all transient subscribers, the server is able to make a method call
+on them successfully. If any transient <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_f362c255-5746-44db-aa04-e8060543a19c" data-linktype="relative-path">subscription</a></span> fails
+this test, the server MUST remove the subscription from its internal store for
+subscriptions.</p></div>

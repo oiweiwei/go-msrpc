@@ -1,0 +1,6 @@
+<div class="content"><p>The Fax Server and Client Remote Protocol Specification
+defines a protocol that is referred to as the Fax Server and Client Remote
+Protocol. This is a client/server protocol based on <a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a>
+that is used to send faxes and manage the fax server and its queues.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

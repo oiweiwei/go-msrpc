@@ -1,0 +1,133 @@
+<div class="content"><p>The <b>RpcSendRecvBidiData</b> method sends and receives <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_604aaee0-7ad4-46a3-932f-8d2def6615ad" data-linktype="relative-path">bidirectional</a> data. This
+method is used to communicate with <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1b5f368b-942b-40dd-84ea-fa9082916216" data-linktype="relative-path">port monitors</a> that support
+such data.<a id="Appendix_A_Target_317"></a><a aria-label="Product behavior note 317" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_317" data-linktype="relative-path">&lt;317&gt;</a></p><dl>
+<dd>
+<div><pre> DWORD RpcSendRecvBidiData(
+   [in] PRINTER_HANDLE hPrinter,
+   [in, string, unique] const wchar_t* pAction,
+   [in] RPC_BIDI_REQUEST_CONTAINER* pReqData,
+   [out] RPC_BIDI_RESPONSE_CONTAINER** ppRespData
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object or <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a> object that was opened
+by <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter (section 3.1.4.2.3)</a>,
+<a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx (section 3.1.4.2.15)</a>,
+<a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter (section 3.1.4.2.2)</a>,
+or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx (section 3.1.4.2.14)</a>.</p><p><b>pAction: </b>A pointer to a string that specifies
+an action to take. The following actions SHOULD be supported.<a id="Appendix_A_Target_318"></a><a aria-label="Product behavior note 318" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_318" data-linktype="relative-path">&lt;318&gt;</a><sup>, </sup><a id="Appendix_A_Target_319"></a><a aria-label="Product behavior note 319" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_319" data-linktype="relative-path">&lt;319&gt;</a> Port monitors MAY support
+additional, implementation-specific action strings.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>BIDI_ACTION_ENUM_SCHEMA</p>
+  <p>&#34;EnumSchema&#34;</p>
+  </td>
+  <td>
+  <p>The method MUST enumerate the supported schemas. The <i>pReqData</i>
+  parameter MUST be ignored. The method MUST store one or more values that
+  correspond to supported <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_fd49ea36-576c-4417-93bd-d1ac63e71093" data-linktype="relative-path">schema</a>
+  entries in the buffer that is pointed to by the <i>ppRespData</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BIDI_ACTION_GET</p>
+  <p>&#34;Get&#34;</p>
+  </td>
+  <td>
+  <p>The method MUST return the specific value item
+  requested. The <i>pReqData</i> parameter specifies a single value entry in
+  the schema. The method MUST store the value of that entry in the buffer that
+  is pointed to by the <i>ppRespData</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BIDI_ACTION_SET</p>
+  <p>&#34;Set&#34;</p>
+  </td>
+  <td>
+  <p>The method MUST store the supplied data in a single
+  value item in the schema. The <i>pReqData</i> parameter specifies a single
+  value entry for the schema and the new value to be stored there. This action
+  MUST NOT change the contents of the buffer that is pointed to by the <i>ppRespData</i>
+  parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BIDI_ACTION_GET_ALL</p>
+  <p>&#34;GetAll&#34;</p>
+  </td>
+  <td>
+  <p>The method MUST return one or more value items that
+  are reachable from the requested schema item. The <i>pReqData</i> parameter
+  specifies an entry in the schema, which is either a value item or an inner
+  schema entry. The action MUST store one or more value entries, and their
+  associated values, in the buffer that is pointed to by the <i>ppRespData</i>
+  parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BIDI_ACTION_GET_WITH_ARGUMENT</p>
+  <p>&#34;GetWithArgument&#34;</p>
+  </td>
+  <td>
+  <p>The method MUST return one or more value items that
+  are reachable from the requested schema item. The <i>pReqData</i> parameter
+  specifies an entry in the schema, which is either a value item or an inner
+  schema entry, and a data value to be used when processing the request. The
+  action MUST store one or more value entries, and their associated values, in
+  the buffer that is pointed to by the <i>ppRespData</i> parameter.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pReqData: </b>A pointer to an <a href="4ea856c4-4c37-4485-868a-e7ac8e331e5e" data-linktype="relative-path">RPC_BIDI_REQUEST_CONTAINER (section 2.2.1.2.10)</a>
+structure that contains the requested binary data.</p><p><b>ppRespData: </b>A pointer to a variable that
+receives a pointer to a <a href="bdfdec23-d503-4f86-a848-6c3386d609d6" data-linktype="relative-path">RPC_BIDI_RESPONSE_CONTAINER (section 2.2.1.2.11)</a>
+structure that contains the response binary data.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps specified in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE
+Parameters (section 3.1.4.1.11)</a>. This method SHOULD assume that
+the handle to the printer or port object can be used without further access
+checks.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the port monitor supports this method, and if that
+verification fails, return ERROR_NOT_SUPPORTED.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the string that is pointed to by the <i>pAction</i>
+parameter specifies a valid command and is supported by the port monitor, and
+if that verification fails, return any of the following error codes to indicate
+the request cannot be supported: ERROR_NOT_SUPPORTED, ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the <i>pReqData</i> is a pointer, and if that
+verification fails, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Additional validation MAY be performed<a id="Appendix_A_Target_320"></a><a aria-label="Product behavior note 320" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_320" data-linktype="relative-path">&lt;320&gt;</a>.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>If the <i>hPrinter</i> parameter is a handle to a printer object,
+load the executable object of the monitor supporting the port associated with
+the printer identified by <i>hPrinter</i>.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>hPrinter</i> parameter is a handle to a port object,
+load the executable object of the monitor supporting the port identified by <i>hPrinter</i>.</p>
+</li><li><p><span><span> 
+</span></span>Invoke the method in that library that is identified by the value
+of the <i>pAction</i> parameter and pass <i>pReqData</i> to that method.</p>
+</li><li><p><span><span> 
+</span></span>Copy the data that is sent from the action method in the buffer
+that is pointed to by the <i>ppRespData</i> parameter; the number of response
+items MUST match the number of request items.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

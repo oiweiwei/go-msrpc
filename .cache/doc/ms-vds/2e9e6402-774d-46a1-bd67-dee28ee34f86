@@ -1,0 +1,46 @@
+<div class="content"><p> </p><p>The VDS_FILE_SYSTEM_FLAG enumeration defines the set of
+valid flags for a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file system</a></span> <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_ea22e521-1a4e-4ceb-8d64-f65fa6d0e63b" data-linktype="relative-path">format</a></span>
+type.</p><p>If more than one flag is specified, the file system type
+supports all the file system allocation sizes that are specified. However, a
+specific file system on a volume does not have multiple allocation sizes at the
+same time.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_FILE_SYSTEM_FLAG
+ {
+   VDS_FSF_SUPPORT_FORMAT = 0x00000001,
+   VDS_FSF_SUPPORT_QUICK_FORMAT = 0x00000002,
+   VDS_FSF_SUPPORT_COMPRESS = 0x00000004,
+   VDS_FSF_SUPPORT_SPECIFY_LABEL = 0x00000008,
+   VDS_FSF_SUPPORT_MOUNT_POINT = 0x00000010,
+   VDS_FSF_SUPPORT_REMOVABLE_MEDIA = 0x00000020,
+   VDS_FSF_SUPPORT_EXTEND = 0x00000040,
+   VDS_FSF_ALLOCATION_UNIT_512 = 0x00010000,
+   VDS_FSF_ALLOCATION_UNIT_1K = 0x00020000,
+   VDS_FSF_ALLOCATION_UNIT_2K = 0x00040000,
+   VDS_FSF_ALLOCATION_UNIT_4K = 0x00080000,
+   VDS_FSF_ALLOCATION_UNIT_8K = 0x00100000,
+   VDS_FSF_ALLOCATION_UNIT_16K = 0x00200000,
+   VDS_FSF_ALLOCATION_UNIT_32K = 0x00400000,
+   VDS_FSF_ALLOCATION_UNIT_64K = 0x00800000,
+   VDS_FSF_ALLOCATION_UNIT_128K = 0x01000000,
+   VDS_FSF_ALLOCATION_UNIT_256K = 0x02000000
+ } VDS_FILE_SYSTEM_FLAG;
+</pre></div>
+</dd></dl><p><b>VDS_FSF_SUPPORT_FORMAT:  </b>If set, the file
+system format type supports format.</p><p><b>VDS_FSF_SUPPORT_QUICK_FORMAT:  </b>If set, the
+file system format type supports <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_551fedc1-b5b0-4bd2-b11f-86af801d1c7a" data-linktype="relative-path">quick format</a></span>.</p><p><b>VDS_FSF_SUPPORT_COMPRESS:  </b>If set, the file
+system format type supports file compression.</p><p><b>VDS_FSF_SUPPORT_SPECIFY_LABEL:  </b>If set, the
+file system format type supports <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_6487e449-b0b1-4c2e-82f6-ef4ca2677421" data-linktype="relative-path">file system labels</a></span>. </p><p><b>VDS_FSF_SUPPORT_MOUNT_POINT:  </b>If set, the file
+system format type supports <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_513fcb37-059f-475c-a13d-e89b302f8ae8" data-linktype="relative-path">mount points</a></span>.</p><p><b>VDS_FSF_SUPPORT_REMOVABLE_MEDIA:  </b>If set, the
+file system format type supports <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_58aae236-0186-4ba1-a46b-f0a997e6c6f2" data-linktype="relative-path">removable media</a></span>.</p><p><b>VDS_FSF_SUPPORT_EXTEND:  </b>If set, the file
+system format type supports extending <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volumes</a></span>.</p><p><b>VDS_FSF_ALLOCATION_UNIT_512:  </b>If set, the file
+system format supports allocation units of 512 bytes.</p><p><b>VDS_FSF_ALLOCATION_UNIT_1K:  </b>If set, the file
+system format type supports allocation units of 1 kilobyte.</p><p><b>VDS_FSF_ALLOCATION_UNIT_2K:  </b>If set, the file
+system format type supports allocation units of 2 kilobytes.</p><p><b>VDS_FSF_ALLOCATION_UNIT_4K:  </b>If set, the file
+system format type supports allocation units of 4 kilobytes.</p><p><b>VDS_FSF_ALLOCATION_UNIT_8K:  </b>If set, the file
+system format type supports allocation units of 8 kilobytes.</p><p><b>VDS_FSF_ALLOCATION_UNIT_16K:  </b>If set, the file
+system format type supports allocation units of 16 kilobytes.</p><p><b>VDS_FSF_ALLOCATION_UNIT_32K:  </b>If set, the file
+system format type supports allocation units of 32 kilobytes.</p><p><b>VDS_FSF_ALLOCATION_UNIT_64K:  </b>If set, the file
+system format type supports allocation units of 64 kilobytes.</p><p><b>VDS_FSF_ALLOCATION_UNIT_128K:  </b>If set, the
+file system format type supports allocation units of 128 kilobytes.</p><p><b>VDS_FSF_ALLOCATION_UNIT_256K:  </b>If set, the
+file system format type supports allocation units of 256 kilobytes.</p></div>

@@ -1,0 +1,33 @@
+<div class="content"><p> </p><p>The VDS_PROVIDER_PROP structure provides information about
+provider properties.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_PROVIDER_PROP {
+   VDS_OBJECT_ID id;
+   [string] WCHAR* pwszName;
+   GUID guidVersionId;
+   [string] WCHAR* pwszVersion;
+   VDS_PROVIDER_TYPE type;
+   unsigned long ulFlags;
+   unsigned long ulStripeSizeFlags;
+   short sRebuildPriority;
+ } VDS_PROVIDER_PROP;
+</pre></div>
+</dd></dl><p><b>id:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS object</a></span> ID of the
+provider object.</p><p><b>pwszName:</b>  The null-terminated
+Unicode name of the provider.</p><p><b>guidVersionId:</b>  The version <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+of the provider. This GUID MUST be unique to each version of the provider.</p><p><b>pwszVersion:</b>  The null-terminated
+Unicode version string of the provider. The convention for this string is
+&lt;major version number&gt;.&lt;minor version number&gt;.</p><p><b>type:</b>  A value from the <span><a href="9886738c-2b27-4458-99c2-214f11e913d8" data-linktype="relative-path">VDS_PROVIDER_TYPE</a></span>
+enumeration that indicates the provider type.</p><p><b>ulFlags:</b>  A combination of any
+values, by using a bitwise OR operator, from the <span><a href="df96063b-0b02-42da-b079-692879aca34e" data-linktype="relative-path">VDS_PROVIDER_FLAG</a></span>
+enumeration.</p><p><b>ulStripeSizeFlags:</b>  Stripe size that
+the provider supports, which MUST be a power of 2. Each bit in the 32-bit
+integer represents a size that the provider supports. For example, if the nth
+bit is set, the provider supports a stripe size of 2^n. This parameter is used
+only for software providers. The basic provider sets this value to zero and the
+dynamic provider sets this value to 64K.</p><p><b>sRebuildPriority:</b>  The rebuild
+priority of all <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volumes</a></span> that the
+provider manages. It specifies the regeneration order when a mirrored or <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_96e19472-82bc-4317-9b5b-8113e2fc6eb8" data-linktype="relative-path">RAID-5</a></span>
+volume requires rebuilding. Priority levels MUST be from 0 through 15. A higher
+value indicates a higher priority. This parameter is used only for software
+providers and does not apply to the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_5b50f50e-f257-4241-9c74-d48612a2253f" data-linktype="relative-path">basic provider</a></span>.</p></div>

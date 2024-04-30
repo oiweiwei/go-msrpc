@@ -1,0 +1,5 @@
+<div class="content"><p>The MSDTC Connection Manager: OleTx Transports Protocol is a
+peer-to-peer messaging protocol layered over a bidirectional pair of <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_866b0055-ceba-4acf-a692-98452943b981" data-linktype="relative-path">connections</a>. Although there
+is asymmetry in the setup and teardown of a <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0cd96b80-a737-4f06-bca4-cf9efb449d12" data-linktype="relative-path">session</a>, the peers (or <a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partners</a>) are considered
+equal for the purposes of sending messages to each other.</p><p>Together, the pair of RPC connections between the partners
+is called a session.</p></div>

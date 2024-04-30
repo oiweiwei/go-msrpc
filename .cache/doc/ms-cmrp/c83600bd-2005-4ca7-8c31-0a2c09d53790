@@ -1,0 +1,16 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c83600bd-2005-4ca7-8c31-0a2c09d53790" data-linktype="external">msdn link</a></p><p>The <b>CLUSDSK_DISKID</b> structure contains the
+identification information of the disk of the designated storage class <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_597fe367-f504-4295-9ed9-92cd892796cd" data-linktype="relative-path">resource type</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _CLUSDSK_DISKID {
+   CLUSDSK_DISKID_ENUM DiskIdType;
+   [switch_is(DiskIdType)] union {
+     [case(DiskIdSignature)] unsigned long DiskSignature;
+     [case(DiskIdGuid)] GUID DiskGuid;
+   };
+ } CLUSDSK_DISKID, *PCLUSDSK_DISKID;
+</pre></div>
+</dd></dl><p><b>DiskIdType:</b> A 32-bit integer indicating disk
+ID type. See <b>CLUSDSK_DISKID_ENUM</b> (section <a href="aded42dd-6fd0-42df-80a7-b0408d894a5f" data-linktype="relative-path">2.2.2.22</a>).</p><p><b>DiskSignature:</b> Identification information of
+the disk is an <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b251c771-5ccf-40f2-b98d-0119db210b4b" data-linktype="relative-path">MBR</a> <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_0e4c21af-021e-4059-ae9a-7821ec3c2e39" data-linktype="relative-path">disk signature</a>.</p><p><b>DiskGuid:</b> Identification information of the
+disk is a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GPT</a> disk ID,
+which is a 128-bit GUID.</p></div>

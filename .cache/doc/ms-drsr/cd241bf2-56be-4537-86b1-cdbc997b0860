@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The IDL_DRSReplicaModify method <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b242435b-73cc-4c4e-95f0-b2a2ff680493" data-linktype="relative-path">updates</a></span> the value
+for <span><a href="../ms-ada3/8a9018ac-1d10-4bae-8141-04822a5f51f2" data-linktype="relative-path">repsFrom</a></span>
+for the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_325d116f-cdbe-4dbd-b7e6-769ba75bf210" data-linktype="relative-path">NC replica</a></span>.</p><dl>
+<dd>
+<div><pre> ULONG IDL_DRSReplicaModify(
+   [in, ref] DRS_HANDLE hDrs,
+   [in] DWORD dwVersion,
+   [in, ref, switch_is(dwVersion)] 
+     DRS_MSG_REPMOD* pmsgMod
+ );
+</pre></div>
+</dd></dl><p><b>hDrs: </b>The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+returned by <span><a href="605b1ea1-9cdc-428f-ab7a-70120e020a3d" data-linktype="relative-path">IDL_DRSBind</a></span>.</p><p><b>dwVersion: </b>The version of the request message.</p><p><b>pmsgMod: </b>A pointer to the request message.</p><p><b>Return Values: </b>0 if successful, or a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows
+error code</a></span> if a failure occurs.</p><p><b>Exceptions Thrown:</b> This method might throw the
+following exceptions beyond those thrown by the underlying RPC protocol (as
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>):
+ERROR_INVALID_HANDLE, ERROR_DS_DRS_EXTENSIONS_CHANGED,
+ERROR_DS_DIFFERENT_REPL_EPOCHS, and  ERROR_INVALID_PARAMETER.</p></div>

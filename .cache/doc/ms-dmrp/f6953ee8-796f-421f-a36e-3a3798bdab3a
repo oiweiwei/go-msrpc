@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The VOLUMELAYOUT enumeration defines values for <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>
+layouts.</p><dl>
+<dd>
+<div><pre> typedef  enum _VOLUMELAYOUT
+ {
+   VOLUMELAYOUT_UNKNOWN,
+   VOLUMELAYOUT_PARTITION,
+   VOLUMELAYOUT_SIMPLE,
+   VOLUMELAYOUT_SPANNED,
+   VOLUMELAYOUT_MIRROR,
+   VOLUMELAYOUT_STRIPE,
+   VOLUMELAYOUT_RAID5 
+ } VOLUMELAYOUT;
+</pre></div>
+</dd></dl><p><b>VOLUMELAYOUT_UNKNOWN:</b>  Volume has an unknown
+layout.</p><p><b>VOLUMELAYOUT_PARTITION:</b>  Volume is a
+partition.</p><p><b>VOLUMELAYOUT_SIMPLE:</b>  Volume is a basic <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.</p><p><b>VOLUMELAYOUT_SPANNED:</b>  Volume spans multiple
+disks.</p><p><b>VOLUMELAYOUT_MIRROR:</b>  Volume is a mirror.</p><p><b>VOLUMELAYOUT_STRIPE:</b>  Volume is a striped set.</p><p><b>VOLUMELAYOUT_RAID5:</b>  Volume is a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_96e19472-82bc-4317-9b5b-8113e2fc6eb8" data-linktype="relative-path">RAID-5</a></span>
+set.</p></div>

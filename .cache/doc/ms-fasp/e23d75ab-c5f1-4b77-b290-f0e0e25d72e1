@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>This enumeration is used to identify the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span>
+phase of negotiations.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_IPSEC_PHASE
+ {
+   FW_IPSEC_PHASE_INVALID = 0,
+   FW_IPSEC_PHASE_1 = 1,
+   FW_IPSEC_PHASE_2 = 2,
+   FW_IPSEC_PHASE_MAX = 3
+ } FW_IPSEC_PHASE;
+</pre></div>
+</dd></dl><p><b>FW_IPSEC_PHASE_INVALID:  </b>This value MUST NOT
+be used. It is defined for simplicity in writing <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> definitions and
+code. This symbolic constant has a value of 0.</p><p><b>FW_IPSEC_PHASE_1:  </b>This value represents the
+IPsec first phase of negotiations, also called main mode. This symbolic
+constant has a value of 1.</p><p><b>FW_IPSEC_PHASE_2:  </b>This value represents the
+IPsec second phase of negotiations. A phase 2 authentication is the second
+authentication and can mean extended mode or quick mode. On auth sets, phase 2
+authentication refers to extended mode (specified in <span><a href="../ms-aips/eee3de64-3847-4451-978e-9513ff187d30" data-linktype="relative-path">[MS-AIPS]</a></span>
+sections <span><a href="../ms-aips/cf1bc555-01f4-4bfc-ab60-4afc73fbb80d" data-linktype="relative-path">3.6</a></span>
+and <span><a href="../ms-aips/dcaaed1e-ffe5-4b88-88c9-3b3b3bcb6ae2" data-linktype="relative-path">3.7</a></span>);
+and on crypto sets, phase 2 refers to quick mode (specified in [MS-AIPS]
+sections <span><a href="../ms-aips/34bc340d-e8ad-4d6e-ace7-6692a78ab7c9" data-linktype="relative-path">3.4</a></span>
+and <span><a href="../ms-aips/6ab9ab7a-39b0-4e67-9ed8-88f58f3970e8" data-linktype="relative-path">3.5</a></span>).
+This symbolic constant has a value of 2.</p><p><b>FW_IPSEC_PHASE_MAX:  </b>This value and values
+that exceed this value are not valid and MUST NOT be used. It is defined for
+simplicity in writing IDL definitions and code. This symbolic constant has a
+value of 3.</p></div>

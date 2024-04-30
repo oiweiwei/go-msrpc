@@ -1,0 +1,69 @@
+<div class="content"><p>The GetAddRoutesStatus method<a id="Appendix_A_Target_31"></a><a aria-label="Product behavior note 31" href="6ea29e14-9c33-4927-90a8-258fd1d6d042#Appendix_A_31" data-linktype="relative-path">&lt;31&gt;</a> retrieves
+packet loss information and status for the <b>Route</b> elements in the <b>Route
+Collection</b> previously added with the <a href="98146bb7-21f7-4702-a8fd-5b1a2f710477" data-linktype="relative-path">ProcessAddRoutes</a> method.</p><dl>
+<dd>
+<div><pre> HRESULT GetAddRoutesStatus (
+   [out] ADD_ROUTES_REPLY* reply
+ );
+</pre></div>
+</dd></dl><p><b>reply: </b>Contains packet loss information and
+status for <b>Route</b> elements.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method
+implementation. For more information about Win32 error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>
+and <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+protocol specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 9.</p><p>When processing this call the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>If <b>Route Monitoring State</b> is FALSE, set the <b>routeUnavailable</b>
+field of the <b>reply</b> data structure to TRUE and return. Otherwise, set the
+<b>routeUnavailable</b> field of the reply data structure to FALSE.</p>
+</li><li><p><span><span> 
+</span></span>Count the Route elements in Route Collection. Allocate the <a href="22f89184-4fc6-4b46-aff4-d3a1ae79f0fb" data-linktype="relative-path">ADD_ROUTES_REPLY</a> reply
+data structure such that both the reply.indices and reply.replies arrays
+contain this many elements. For integer k from 0 to the number of these
+elements:</p>
+<ul><li><p><span><span>  </span></span>Locate
+a <b>Route</b> element r in <b>Route Collection</b>.</p>
+</li><li><p><span><span>  </span></span>In
+an implementation-specific manner, update r.LossAndState.</p>
+</li><li><p><span><span>  </span></span>Set
+reply.indices[k] to r.Index.</p>
+</li><li><p><span><span>  </span></span>Set
+reply.replies[k] to r.LossAndState.</p>
+</li><li><p><span><span>  </span></span>Remove
+element r from <b>Route Collection</b>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set the <b>Route Monitoring State</b> to FALSE.</p>
+</li></ul><p>Return the following information to the client:</p><ul><li><p><span><span> 
+</span></span>The reply data structure.</p>
+</li></ul></div>

@@ -1,0 +1,60 @@
+<div class="content"><p>The ExportFileGroups method exports an XML string
+representation of the File Server Resource Manager Protocol file groups from
+the <b>List of Persisted File Groups</b> (section <a href="6226bc6a-8346-416f-83f9-3c121bdd6e59" data-linktype="relative-path">3.2.1.3</a>).</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_FILEGROUP_MANAGER | 0x04)] HRESULT ExportFileGroups(
+   [in, defaultvalue(NULL)] VARIANT* fileGroupNamesArray,
+   [out, retval] BSTR* serializedFileGroups
+ );
+</pre></div>
+</dd></dl><p><b>fileGroupNamesArray: </b>Pointer to a <a href="../ms-oaut/2e87a537-9305-41c6-a88b-b79809b3703a" data-linktype="relative-path">SAFEARRAY</a>
+that contains the names of file groups to export.</p><p><b>serializedFileGroups: </b>Pointer to a variable
+that upon completion contains the XML string representation of all the
+specified file groups.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified file group could not be found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>serializedFileGroups</i>
+  parameter is NULL.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>fileGroupNamesArray</i>
+  parameter is not a variant array of <b>BSTRs</b>.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>serializedFileGroups</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+perform one of the following actions.</p><ul><li><p><span><span> 
+</span></span>If <i>fileGroupNamesArray</i> is NULL, the server MUST return the
+XML string representation of all <a href="dcf7066a-8a51-42a7-8cfb-96272896978e" data-linktype="relative-path">Persisted File
+Groups (section 3.2.1.3.4.1)</a> on the server.</p>
+</li><li><p><span><span> 
+</span></span>If <i>fileGroupNamesArray</i> is not NULL, the server MUST return
+the XML string representation of only those Persisted File Groups specified in <i>fileGroupNamesArray</i>.</p>
+</li></ul></div>

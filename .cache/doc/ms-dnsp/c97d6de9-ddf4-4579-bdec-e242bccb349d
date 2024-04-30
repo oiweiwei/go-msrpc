@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_POLICY_NAME</b> structure contains the
+details of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_5076749f-34a6-48a6-b051-8968a55f4d7b" data-linktype="relative-path">DNS policy</a></span> when the
+DNS policies are enumerated at a specified level (section <span><a href="1519cc9d-b588-48fb-b3af-e16b319b805e" data-linktype="relative-path">2.2.15.1.1.3</a></span>).</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcPolicyType {
+   LPWSTR pwszPolicyName;
+   DNS_RPC_POLICY_TYPE appliesOn;
+   BOOL fEnabled;
+   DWORD processingOrder;
+ } DNS_RPC_POLICY_NAME,
+  *PDNS_RPC_POLICY_NAME;
+</pre></div>
+</dd></dl><p><b>pwszPolicyName:</b> A NULL-terminated Unicode
+string containing the name of the DNS policy. The name is unique across a level
+as specified in DNS_RPC_POLICY_LEVEL (section 2.2.15.1.1.3).</p><p><b>appliesOn:</b> This specifies the DNS operation to
+which the DNS policy applies. The value is of type <span><a href="e2e0048d-03a8-45dc-bc27-b7a4ad14d737" data-linktype="relative-path">DNS_RPC_POLICY_TYPE (section 2.2.15.1.1.5)</a></span>.</p><p><b>fEnabled:</b> A BOOL variable that specifies
+whether a DNS policy is enabled.</p><p><b>processingOrder:</b> An unsigned integer that
+specifies the order in which this DNS policy is processed, along with 0 or more
+other DNS policies for a given level (section 2.2.15.1.1.3) and
+DNS_RPC_POLICY_TYPE (section 2.2.15.1.1.5) during a DNS operation.</p></div>

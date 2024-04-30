@@ -1,0 +1,36 @@
+<div class="content"><p> </p><p>MSG_INFO_0 is a data structure that contains a string that
+specifies the recipient name to which a message is to be sent.</p><dl>
+<dd>
+<div><pre> typedef struct _MSG_INFO_0 {
+   [string] wchar_t* msgi0_name;
+ } MSG_INFO_0,
+  *PMSG_INFO_0,
+  *LPMSG_INFO_0;
+</pre></div>
+</dd></dl><p><b>msgi0_name:</b>   Pointer to a buffer that
+receives the name string in UTF-16 format. There are two sources for this
+parameter: </p><ol><li><p><span>    </span>It is the UTF-16
+formatted <i>Name</i> parameter passed in <span><a href="e5845829-414e-43c3-a956-e9e8dd4f6fd3" data-linktype="relative-path">NetrMessageNameGetInfo</a></span>
+(section 3.1.4.3) that has been verified to have an equivalent entry in the
+message table in section <span><a href="964e52a9-ddc0-4473-9199-200a417c50ed" data-linktype="relative-path">3.1.1</a></span> according to
+the following algorithm.</p>
+<div><pre> Function CompareName (passed in Unicode name)
+   Convert the name to uppercase as specified in [MS-UCODEREF] section 3.1.5.3
+   Convert the Unicode string to an OEM string as specified in [MS-UCODEREF] section 3.1.5.1.1
+   If OEM string is &lt; 15 bytes
+     Pad to 15 bytes with spaces
+   If OEM string is &gt; 15 bytes
+     Truncate to 15 bytes 
+   For each table entry
+     Compare the resulting 15 bytes for equality with the first 15 bytes of the NetBIOS name in the entry 
+     If equal
+       Return True
+ End CompareName
+  
+</pre></div>
+</li><li><p><span>    </span>It is returned
+in the <i>InfoStruct</i> parameter of <span><a href="14600397-2f79-4704-a902-e4101bbbc0c5" data-linktype="relative-path">NetrMessageNameEnum</a></span>
+(section 3.1.4.2) in which it was retrieved from the message table in section
+3.1.1, the <span><a href="1bb1da94-fc7e-484c-ad2a-4e0d257a50ce#gt_e0056bac-be0a-488d-86b2-eec9c6bfb947" data-linktype="relative-path">NetBIOS suffix</a></span> and
+any trailing spaces removed, and the remaining characters converted to UTF-16.</p>
+</li></ol></div>

@@ -1,0 +1,189 @@
+<div class="content"><p> </p><p>The ObjectsChanged method notifies the client of object
+changes.</p><dl>
+<dd>
+<div><pre> HRESULT ObjectsChanged(
+   [in] DWORD ByteCount,
+   [in, size_is(ByteCount)] byte* ByteStream
+ );
+</pre></div>
+</dd></dl><p><b>ByteCount: </b>Length of <i>ByteStream</i> in
+bytes.</p><p><b>ByteStream: </b>Array of bytes that compose any
+number of variable-length change notification structures. Memory for the array
+is allocated and freed by the caller (that is, the server).</p><dl>
+<dd>
+<p>Any variable-length change notification structure in
+the array starts with a fixed header that contains the fields shown in the
+following table.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Field name </p>
+   </th>
+   <th>
+   <p>Data type </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>size</p>
+  </td>
+  <td>
+  <p><span><a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">ULONG</a></span></p>
+  </td>
+  <td>
+  <p>The total size of the structure in bytes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>type</p>
+  </td>
+  <td>
+  <p><span><a href="eb06b1f4-d936-4252-8cbf-f2cddd0f789c" data-linktype="relative-path">DMNOTIFY_INFO_TYPE</a></span></p>
+  </td>
+  <td>
+  <p>The type of object that changed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>action</p>
+  </td>
+  <td>
+  <p><span><a href="a01967b9-694f-4f81-8aa0-bc54632caff7" data-linktype="relative-path">LDMACTION</a></span></p>
+  </td>
+  <td>
+  <p>The type of change that the object underwent.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Depending on the value of type, the fixed header of
+the notification structure is followed by one of the following items.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Type </p>
+   </th>
+   <th>
+   <p>Structure following the fixed header </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DMNOTIFY_VOLUME_INFO</p>
+  </td>
+  <td>
+  <p><span><a href="651f7cad-50c2-4800-b646-a0c47c138724" data-linktype="relative-path">VOLUME_INFO</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DMNOTIFY_TASK_INFO</p>
+  </td>
+  <td>
+  <p><span><a href="d55c167e-c6ad-445f-951c-9ac2d0de7a11" data-linktype="relative-path">TASK_INFO</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DMNOTIFY_DL_INFO</p>
+  </td>
+  <td>
+  <p><span><a href="c330b3ba-d013-4b93-9a16-319412ef579e" data-linktype="relative-path">DRIVE_LETTER_INFO</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DMNOTIFY_FS_INFO</p>
+  </td>
+  <td>
+  <p><span><a href="ddcbe2a1-f199-4d10-87ec-f0673d3702ee" data-linktype="relative-path">FILE_SYSTEM_INFO</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DMNOTIFY_SYSTEM_INFO</p>
+  </td>
+  <td>
+  <p>ULONG</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DMNOTIFY_DISK_INFO</p>
+  </td>
+  <td>
+  <p>If client called Initialize on <span><a href="e31bc7db-aca1-4ca1-9d32-77b1415f8584" data-linktype="relative-path">IVolumeClient</a></span>
+  interface, then <span><a href="0ddf8059-f404-46a3-9d7e-e3d13c4080e6" data-linktype="relative-path">DISK_INFO</a></span>.</p>
+  <p>If client called Initialize on <span><a href="be8a9c4c-f7b2-496c-a0e1-cb0655cea66f" data-linktype="relative-path">IVolumeClient3</a></span>
+  interface, then <span><a href="7d94d560-37f2-4031-8c3e-ecfd2dc1ec9f" data-linktype="relative-path">DISK_INFO_EX</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DMNOTIFY_REGION_INFO</p>
+  </td>
+  <td>
+  <p>If client called Initialize on IVolumeClient
+  interface, then <span><a href="5b6f15d9-489d-404c-88e8-64569315c65c" data-linktype="relative-path">REGION_INFO</a></span>.</p>
+  <p>If client called Initialize on IVolumeClient3
+  interface, then <span><a href="9a20cc96-88c3-4194-9563-9778bea15376" data-linktype="relative-path">REGION_INFO_EX</a></span>.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p><b>Note</b>  The structures that are
+transmitted within <i>ByteStream</i> are not marshaled in RPC Network Data
+Representation (NDR) format. They are C structures, and the memory layout and
+field types are those found on the Windows/Intel 32-bit and 64-bit
+architectures, and, Windows/AMD 64-bit architecture. These structures are not
+packed, and padding bytes can exist between successive structure fields to
+ensure that the field of a given data type begins at a byte offset that is an
+integer multiple of the type&#39;s size with respect to the beginning of the
+structure. The structures transmitted within ByteStream also appear in other
+interfaces as RPC-marshaled structures. In these interfaces, the structure
+fields will be marshaled in NDR format.</p>
+</dd>
+<dd>
+<p>The byte stream contains a sequence of one or more
+notification frames. Each frame is made up of a sequence of the following
+fields: size, type, action, and a structure of the type specified in the type
+field. Some of the structures contain character pointer fields. These fields
+contain pointers to variable-length character strings, and the following
+technique is used at the server to load the byte stream:</p>
+</dd></dl><ol><li><p><span>    </span>The structure is
+copied one byte at a time from memory into <i>ByteStream</i> beginning at first
+byte after action field. If the structure contains character pointer fields,
+those fields are omitted.</p>
+</li><li><p><span>    </span>The character
+strings of the character pointer fields are copied into <i>ByteStream</i>
+following the structure in the order in which they appear in the structure. All
+strings are null-terminated. There is no padding between the end of the
+structure and the first string, or between successive strings.</p>
+<p>At the client, the following technique is used to
+parse the byte stream back into the appropriate structures:</p>
+</li><li><p><span>    </span>The notification
+size, type, and action are parsed from the byte stream.</p>
+</li><li><p><span>    </span>The notification
+object structure, up through the first string field, is copied out of the byte
+stream and into the appropriate structure. For the IVolumeClient interface, the
+<span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>
+and region structures are DISK_INFO and REGION_INFO; for the IVolumeClient3
+interface, the structures are DISK_INFO_EX and REGION_INFO_EX. The client&#39;s
+ObjectsChanged implementation MUST switch based on which version of the
+IVolumeClient interface is being used. The client MUST also determine the type
+of processor architecture for both the server and client. If the architectures
+are the same, the padding in the client-defined structures will match that used
+in the server&#39;s byte stream. If the architectures are not the same, the client
+MUST use the proper method for parsing the byte stream, taking into account
+padding that MAY have been added for alignment purposes on either the client or
+on the server. For more information, see section <span><a href="562d58df-633f-4afa-89ec-80917a2852b3" data-linktype="relative-path">8</a></span>.</p>
+<p>Allocations are done on the client to hold the
+character strings of the character pointer fields. These fields are copied from
+ByteStream to the client-allocated buffers, and appropriate structure fields
+are set to point to the client-allocated buffers. All strings are
+null-terminated.</p>
+</li></ol><p><b>Return Values: </b>The method MUST return 0 or a
+nonerror <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path"><span>HRESULT</span></a> on success, or
+an implementation-specific nonzero error code on failure (as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>).</p></div>

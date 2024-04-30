@@ -1,0 +1,128 @@
+<div class="content"><p> </p><p>The <b>SubqueueHeader</b> encapsulates information about the
+<span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span>
+as specified following.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="4108f68e-80f5-40e1-b3df-b713cc4dff79#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a> This header MUST be ignored if
+its <b>SubqueueName</b> field is an empty string.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>HeaderSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>A</p>
+  </td>
+  <td colspan="16">
+  <p>AcknowledgementClass</p>
+  </td>
+  <td colspan="15">
+  <p>Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AbortCounter</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MoveCounter</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>LastMoveTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SubqueueName
+  (64 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TargetSubqueueName
+  (64 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>HeaderSize (4 bytes): </b>A <b>ULONG</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">2.2.51</a></span>)
+that specifies the size in bytes of the <b>SubqueueHeader</b>.</p><p><b>A - TM (1 bit): </b>A one-<b>bit</b> ([MS-DTYP]
+section <span><a href="../ms-dtyp/ece778e5-5d47-451b-bf03-e7ce94fc1fc4" data-linktype="relative-path">2.1.1</a></span>)
+flag that MUST be set to 0.</p><p><b>AcknowledgementClass (2 bytes): </b>A <b>USHORT</b>
+([MS-DTYP] section <span><a href="../ms-dtyp/c0618c5b-362b-4e06-9cb0-8720d240cf12" data-linktype="relative-path">2.2.58</a></span>)
+that MUST specify the acknowledgment class of the message. See <span><a href="../ms-mqqb/85498b96-f2c8-43b3-a108-c9d6269dc4af" data-linktype="relative-path">[MS-MQQB]</a></span>
+section <span><a href="../ms-mqmq/bb697835-fe47-4ec3-8457-6c06880a2138" data-linktype="relative-path">2.2.18.1.6</a></span>.</p><p><b>Reserved (15 bits): </b>MUST be ignored.</p><p><b>AbortCounter (4 bytes): </b>A <b>ULONG</b> that
+specifies the number of sequentially failed attempts to read the message or to
+move the message. See sections <span><a href="c5296e0c-9e12-4fe8-a25d-56924982ac3e" data-linktype="relative-path">3.1.4.13</a></span>, <span><a href="81c28eb5-5658-4089-b8ac-7edc5d629e28" data-linktype="relative-path">3.1.4.10</a></span>,
+and <span><a href="73afdc3f-05db-4697-802b-df975efbb8c3" data-linktype="relative-path">3.1.6.1</a></span>.</p><p><b>MoveCounter (4 bytes): </b>A <b>ULONG</b> that
+specifies the number of times that the message has been moved. See section
+3.1.4.10.</p><p><b>LastMoveTime (4 bytes): </b>A <b>ULONG</b> that
+specifies the local time of the most recent move of the message. The time is
+specified as the number of milliseconds elapsed since midnight of January 1,
+1970. If the message has never been moved, this value is 0x00000000. See
+section 3.1.4.10.</p><p><b>SubqueueName (64 bytes): </b>If the message
+belongs to a <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_328fe8aa-d006-44dd-8cc8-dba7c862aaf8" data-linktype="relative-path">subqueue</a></span>, the value
+MUST contain the null-terminated <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> string that
+specifies the subqueue name. If the subqueue name is shorter than the field
+size, the remaining bytes MUST be set to 0x00. If the message does not belong
+to the subqueue, all bytes MUST be set to 0x00.</p><p><b>TargetSubqueueName (64 bytes): </b>If the message
+is participating in the transacted Move operation that is not yet committed or
+aborted, this field MUST contain the null-terminated Unicode string that
+specifies the target subqueue name. If the subqueue name is shorter than the
+field size, the remaining bytes MUST be set to 0x00. If the message is not part
+of a transacted Move operation, all bytes MUST be set to 0x00.</p></div>

@@ -1,0 +1,102 @@
+<div class="content"><p> </p><p>The <b>FAX_CheckValidFaxFolder (Opnum 86)</b> method is
+called by the client to check whether the specified path is accessible to the
+fax server. </p><p>In response, the server MUST validate the folder path. The
+server MUST validate that the client’s fax user account has correct access
+rights (ALL_FAX_USER_ACCESS_RIGHTS) and that the folder is not the same as any
+of the folders used for persistence of the incoming and outgoing fax queues. On
+success, the server MUST confirm that the specified path is accessible for use
+by the Fax Service.</p><p>Protocol version FAX_API_VERSION_0 (0x00000000) and
+FAX_API_VERSION_1 (0x00010000) fax servers SHOULD NOT implement this call. The
+fax client MUST NOT call this method if the protocol version reported by the
+server is FAX_API_VERSION_0 (0x00000000) or FAX_API_VERSION_1 (0x00010000). For
+more information, see <b>FAX_ConnectFaxServer </b>(section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>).</p><dl>
+<dd>
+<div><pre> error_status_t FAX_CheckValidFaxFolder(
+   [in] handle_t hBinding,
+   [in, string, ref] LPCWSTR lpcwstrPath
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> or <b>FAX_ConnectionRefCount</b> (section
+<span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>)
+method call used to connect to the fax server.</p><p><b>lpcwstrPath: </b>A pointer to a null-terminated
+character string that contains the path to validate, specified as a complete
+file path. The path can be a UNC path or a path that begins with a drive
+letter. The path MUST contain a file name. The length of the path, including
+the terminating null character, MUST be under 180 characters.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The path specified by the <i>lpcwstrPath</i> argument
+  has a valid structure (the folder path is valid), but the file does not
+  exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_PATH_NOT_FOUND</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The path specified by the <i>lpcwstrPath</i> argument
+  has a valid structure, but the folder path does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The client&#39;s fax user account does
+  not have sufficient rights for this operation (ALL_FAX_USER_ACCESS_RIGHTS).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>The <i>lpcwstrPath</i> argument is NULL, or the path
+  specified by the <i>lpcwstrPath</i> argument is incomplete. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_BUFFER_OVERFLOW</p>
+  <p>0x0000006F</p>
+  </td>
+  <td>
+  <p>The length of the path (including length of the
+  terminating null character) specified by the <i>lpcwstrPath</i> argument
+  exceeds 180 characters.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FAX_ERR_DIRECTORY_IN_USE</p>
+  <p>0x00001B5F</p>
+  </td>
+  <td>
+  <p>The path specified by the <i>lpcwstrPath</i> argument
+  points to a folder currently in use by the fax server, such as the <b>server
+  queue directory</b> or the <b>Fax Archive Folder</b> (section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown: </b>No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

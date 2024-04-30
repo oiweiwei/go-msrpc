@@ -1,0 +1,19 @@
+<div class="content"><p>The KeywordsAny (Get) method retrieves the KeywordsAny
+property, as specified in the property table in section <a href="ebd49d76-5e50-4dd3-869c-8bba6eba42f7" data-linktype="relative-path">3.2.4.11</a>.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT KeywordsAny(
+   [out, retval] IValueMap** ppKeywords
+ );
+</pre></div>
+</dd></dl><p><b>ppKeywords: </b>Receives the keywords. The keyword
+is stored as an <a href="b028335d-97c1-4b1c-bc07-8748d4956b8a" data-linktype="relative-path">IValueMap</a>.
+The value of the level is stored in the Value property of the IValueMap; this
+refers to the level at which the trace provider is enabled. Each <a href="9786577c-9ac8-44d5-a29f-3f14514af0d8" data-linktype="relative-path">IValueMapItem</a> in the
+IValueMap refers to the levels that are supported by the trace provider. The
+Names property of the IValueMapItem refers to the level name, while the Values
+field of the IValueMapItem contains the numerical value of the level. The type
+of the IValueMap, specified in the ValueMapType property, is plaIndex; more
+information can be found in section <a href="03c8a331-301b-4f37-8af3-1a08d1d0b4ee" data-linktype="relative-path">2.2.11</a>.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT with the severity bit clear on success as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>;
+otherwise, it MUST return one of the errors as defined in <a href="590752a5-ddc3-49e4-9914-147a90bd0193" data-linktype="relative-path">2.2.1</a> or one of the errors
+as defined in [MS-ERREF] section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p></div>

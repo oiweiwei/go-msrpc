@@ -1,0 +1,45 @@
+<div class="content"><p> </p><p>The TIME_OF_DAY_INFO structure contains information about
+the time of day from a remote <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _TIME_OF_DAY_INFO {
+   DWORD tod_elapsedt;
+   DWORD tod_msecs;
+   DWORD tod_hours;
+   DWORD tod_mins;
+   DWORD tod_secs;
+   DWORD tod_hunds;
+   long tod_timezone;
+   DWORD tod_tinterval;
+   DWORD tod_day;
+   DWORD tod_month;
+   DWORD tod_year;
+   DWORD tod_weekday;
+ } TIME_OF_DAY_INFO,
+  *PTIME_OF_DAY_INFO,
+  *LPTIME_OF_DAY_INFO;
+</pre></div>
+</dd></dl><p><b>tod_elapsedt:</b>  Specifies a <b>DWORD</b>
+value that contains the number of seconds since 00:00:00, January 1, 1970, GMT.</p><p><b>tod_msecs:</b>  Specifies a <b>DWORD</b>
+value that contains the number of milliseconds from an arbitrary starting point
+(system reset).</p><p><b>tod_hours:</b>  Specifies a <b>DWORD</b>
+value that contains the current hour. This value MUST be in the range 0 through
+23, inclusive.</p><p><b>tod_mins:</b>  Specifies a <b>DWORD</b>
+value that contains the current minute. This value MUST be in the range 0
+through 59, inclusive.</p><p><b>tod_secs:</b>  Specifies a <b>DWORD</b>
+value that contains the current second. This value MUST be in the range 0
+through 59, inclusive.</p><p><b>tod_hunds:</b>  Specifies a <b>DWORD</b>
+value that contains the current hundredth second (0.01 second). This value MUST
+be in the range 0 through 99, inclusive.</p><p><b>tod_timezone:</b>  Specifies the time
+zone of the server. This value MUST be calculated, in minutes, from Greenwich
+Mean Time (GMT). For time zones that are west of Greenwich, the value MUST be
+positive; for time zones that are east of Greenwich, the value MUST be
+negative. A value of –1 MUST indicate that the time zone is undefined.</p><p><b>tod_tinterval:</b>  Specifies a <b>DWORD</b>
+value that contains the time interval for each tick of the clock. Each integral
+integer MUST represent one ten-thousandth second (0.0001 second).</p><p><b>tod_day:</b>   Specifies a <b>DWORD</b>
+value that contains the day of the month. This value MUST be in the range 1
+through 31, inclusive.</p><p><b>tod_month:</b>  Specifies a <b>DWORD</b>
+value that contains the month of the year. This value MUST be in the range 1
+through 12, inclusive.</p><p><b>tod_year:</b>  Specifies a <b>DWORD</b>
+value that contains the year.</p><p><b>tod_weekday:</b>  Specifies a <b>DWORD</b>
+value that contains the day of the week. This value MUST be in the range 0
+through 6, inclusive, where 0 is Sunday, 1 is Monday, and so on.</p></div>

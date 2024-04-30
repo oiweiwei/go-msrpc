@@ -1,0 +1,150 @@
+<div class="content"><p> </p><p>The VDS_DISK_PROP structure provides the properties of a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.
+</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_DISK_PROP {
+   VDS_OBJECT_ID id;
+   VDS_DISK_STATUS status;
+   VDS_LUN_RESERVE_MODE ReserveMode;
+   VDS_HEALTH health;
+   DWORD dwDeviceType;
+   DWORD dwMediaType;
+   ULONGLONG ullSize;
+   unsigned long ulBytesPerSector;
+   unsigned long ulSectorsPerTrack;
+   unsigned long ulTracksPerCylinder;
+   unsigned long ulFlags;
+   VDS_STORAGE_BUS_TYPE BusType;
+   VDS_PARTITION_STYLE PartitionStyle;
+   [switch_is(PartitionStyle)] union {
+     [case(VDS_PST_MBR)] 
+       DWORD dwSignature;
+     [case(VDS_PST_GPT)] 
+       GUID DiskGuid;
+     [default]       ;
+   };
+   [string] WCHAR* pwszDiskAddress;
+   [string] WCHAR* pwszName;
+   [string] WCHAR* pwszFriendlyName;
+   [string] WCHAR* pwszAdaptorName;
+   [string] WCHAR* pwszDevicePath;
+ } VDS_DISK_PROP,
+  *PVDS_DISK_PROP;
+</pre></div>
+</dd></dl><p><b>id:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS object</a></span> ID of the
+disk object.</p><p><b>status:</b>  The value from the <span><a href="e9f7d99f-73ea-4f18-babb-89531efbeb67" data-linktype="relative-path">VDS_DISK_STATUS</a></span>
+enumeration that indicates the disk status.</p><p><b>ReserveMode:</b>  The value from the <span><a href="2f5b5b4b-ef3b-482d-948b-53e185a24662" data-linktype="relative-path">VDS_LUN_RESERVE_MODE</a></span>
+enumeration that indicates the sharing mode of the disk.</p><p><b>health:</b>  The value from the <span><a href="61169c4a-cb63-4e5b-9035-a4465e1320ad" data-linktype="relative-path">VDS_HEALTH</a></span>
+enumeration that indicates the health of the disk.</p><p><b>dwDeviceType:</b>  The device type of
+the disk. Note that this value refers to the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_e73d1856-ae37-4059-8ffb-1b22002219f1" data-linktype="relative-path">disk type</a></span> and not
+the drive type. Thus, if there is CD media in a DVD/CD drive, it is identified
+as FILE_DEVICE_CD_ROM; however, DVD media in the same drive is identified as
+FILE_DEVICE_DVD. This field can have the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FILE_DEVICE_CD_ROM</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The device is a CD-ROM.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILE_DEVICE_DISK</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>The device is a hard disk or removable device.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILE_DEVICE_DVD</p>
+  <p>0x00000033</p>
+  </td>
+  <td>
+  <p>The device is a DVD.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwMediaType:</b>  The media type of the
+disk; it can have the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Unknown</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The disk media type is unknown.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RemovableMedia</p>
+  <p>0x0000000B</p>
+  </td>
+  <td>
+  <p>The disk media is removable.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FixedMedia</p>
+  <p>0x0000000C</p>
+  </td>
+  <td>
+  <p>The disk media is fixed.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ullSize:</b>  The size of the disk, in
+bytes.</p><p><b>ulBytesPerSector:</b>  The size of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b5bbe646-aa5f-4b4e-ae9e-bdae444cbfa2" data-linktype="relative-path">sectors</a></span>
+for the disk, in bytes.</p><p><b>ulSectorsPerTrack:</b>  The number of
+sectors per <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_97ccb480-d025-4a9c-995a-5ead9d3076f9" data-linktype="relative-path">track</a></span> on the disk.</p><p><b>ulTracksPerCylinder:</b>  The number of
+tracks per <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_cb6bd999-9860-47c5-a5d6-0f267edcaabb" data-linktype="relative-path">cylinder</a></span> on the
+disk.</p><p><b>ulFlags:</b>  The combination of any
+values, by using a bitwise OR operator, that are defined in the <span><a href="d707bc3f-197c-4edc-9b16-c2274c50593f" data-linktype="relative-path">VDS_DISK_FLAG</a></span>
+enumeration. This field can be zero if none of the VDS_DISK_FLAG values apply.</p><p><b>BusType:</b>  The value from the <span><a href="6aeda351-afcc-4818-81c8-d1f9804e5b37" data-linktype="relative-path">VDS_STORAGE_BUS_TYPE</a></span>
+enumeration that indicates the type of <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_36805c8d-5505-4906-986b-8b08a4f0741e" data-linktype="relative-path">bus</a></span> where the disk
+resides.</p><p><b>PartitionStyle:</b>  The value from the <span><a href="310c0f6a-a0ef-4b63-933e-c4b1a7ecaf37" data-linktype="relative-path">VDS_PARTITION_STYLE</a></span>
+enumeration that indicates the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partitioning</a></span> format
+of the disk.</p><p><b>dwSignature:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b251c771-5ccf-40f2-b98d-0119db210b4b" data-linktype="relative-path">MBR</a></span>
+<span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_0e4c21af-021e-4059-ae9a-7821ec3c2e39" data-linktype="relative-path">disk
+signature</a></span> of the disk.</p><p><b>DiskGuid:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+in the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GPT</a></span> that identifies
+the disk.</p><p><b>pwszDiskAddress:</b>  The
+null-terminated Unicode address of the disk, if the disk uses a SCSI-like
+address; otherwise, NULL. If present, a client can use this property to determine
+the port number, bus, target number, and LUN of the disk.</p><p><b>pwszName:</b>  The null-terminated
+Unicode name that the operating system uses to identify the disk. If present, a
+client can use this property to determine the disk&#39;s PNP device number. This is
+the number obtained from the DeviceNumber member of STORAGE_DEVICE_NUMBER (see <span><a href="https://go.microsoft.com/fwlink/?LinkId=208346" data-linktype="external">[MSDN-STRGEDEVNUM]</a></span>).
+For a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_511ca852-83e7-4a0c-8081-06e36436876b" data-linktype="relative-path">hard disk</a></span>, this name
+has the format \\?\PhysicalDriveN, where N signifies the device number of the
+disk. For a DVD/CD drive, this name has the format \\?\CdRomN, where N
+signifies the device number of the DVD/CD drive. A client can use this property
+to identify the disk.</p><p><b>pwszFriendlyName:</b>  The
+null-terminated Unicode friendly (human-readable) name of the disk as assigned
+by the operating system. This property MAY be NULL. If present, a client can
+use this property to display a human-readable name of the disk.</p><p><b>pwszAdaptorName:</b>  The
+null-terminated Unicode name that the operating system assigns to the adapter
+to which the disk is attached. This property MAY be NULL. If present, a client
+can use this property to display the adapter name of the disk.</p><p><b>pwszDevicePath:</b>  The null-terminated
+Unicode device path that the operating system uses to identify the device for
+the disk. This property MAY be NULL. If present, a client can use this property
+to display the device path of the disk. This string is used to load the
+property page information for a disk.</p></div>

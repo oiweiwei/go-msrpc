@@ -1,0 +1,65 @@
+<div class="content"><p> </p><p>The <b>R_DhcpQueryDnsRegCredentials</b> method retrieves the
+currently set Domain Name System (DNS) credentials, which are the user name and
+domain. These credentials are used by the DHCP server for DNS dynamic
+registration for DHCP clients.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpQueryDnsRegCredentials(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, range(0,1024)] ULONG UnameSize,
+   [out, size_is(UnameSize)] wchar_t* Uname,
+   [in, range(0,1024)] ULONG DomainSize,
+   [out, size_is(DomainSize)] wchar_t* Domain
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>UnameSize: </b>This is of type <span><a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">ULONG</a></span>,
+containing the length of the buffer pointed to by <i>Uname</i>. The buffer
+length is defined at the RPC client and passed as an argument to the RPC
+server.</p><p><b>Uname: </b> A pointer to a null-terminated Unicode
+string in which the DHCP server returns the user name for the DNS. The memory
+is allocated at the RPC client and passed to the RPC server.</p><p><b>DomainSize: </b>This is of type ULONG, containing
+the length of the buffer pointed to by <i>Domain</i>. The buffer length is
+defined at the RPC client and passed as an argument to the RPC server.</p><p><b>Domain: </b> A pointer to a null-terminated
+Unicode string in which the DHCP server returns the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_45a1c9f1-0263-49a8-97c7-7aca1a99308c" data-linktype="relative-path">domain name</a></span> for the
+DNS. The memory is allocated at the RPC client and passed to the RPC server.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 42.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read access per section
+<span><a href="baec2112-1146-4c42-b77e-b706e170a590" data-linktype="relative-path">3.5.4</a></span>.
+If not, return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the server ADM elements <b>DHCPServerDnsRegCredentials.Uname</b>
+and <b>DHCPServerDnsRegCredentials.Domain</b> and set the <i>Uname</i> and <i>Domain</i>
+fields respectively if the buffers provided in <i>UnameSize</i> and <i>DomainSize</i>
+are sufficient. If any of the buffers is not sufficient, return
+ERROR_INSUFFICIENT_BUFFER. Set the corresponding variable, that is,  <i>UnameSize</i>
+or <i>DomainSize</i> to the actual buffer size required to retrieve the data.</p>
+</li><li><p><span><span> 
+</span></span>Even if the DHCP server fails to retrieve the user name or domain
+name, return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

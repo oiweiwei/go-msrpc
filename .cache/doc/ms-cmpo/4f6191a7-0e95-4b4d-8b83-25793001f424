@@ -1,0 +1,96 @@
+<div class="content"><p> </p><p>The SendReceive method is invoked by one <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a></span>
+to transmit messages to the other partner. Both the primary and the secondary
+participants have the option to call this method multiple times after a <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0cd96b80-a737-4f06-bca4-cf9efb449d12" data-linktype="relative-path">session</a></span>
+has been established between them. </p><dl>
+<dd>
+<div><pre> HRESULT SendReceive(
+   [in] PCONTEXT_HANDLE phContext,
+   [in, range(1, 4095)] DWORD dwcMessages,
+   [in, range(40, 0x14000)] DWORD dwcbSizeOfBoxCar,
+   [in, size_is(dwcbSizeOfBoxCar)] 
+     unsigned char rguchBoxCar[]
+ );
+</pre></div>
+</dd></dl><p><b>phContext: </b>An <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle,
+returned by a call to <span><a href="bdb686a6-1190-4900-9dd5-2f9aac6ca621" data-linktype="relative-path">BuildContext</a></span> or <span><a href="fc4bf100-2799-4acf-a537-625f9c98500b" data-linktype="relative-path">BuildContextW</a></span>,
+correlated with a session object in the Active state. For context handles, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>.</p><p><b>dwcMessages: </b>An unsigned 32-bit integer
+specifying the number of messages being sent.</p><p><b>dwcbSizeOfBoxCar: </b>Size in bytes of the box car
+specified by <i>rguchBoxCar</i>.</p><p><b>rguchBoxCar: </b>An array of bytes that contains
+the messages being sent.</p><p><b>Return Values: </b>This method MUST return zero
+(0x00000000) on success. On failure, it MUST return either one of the values
+described in the following table of return values or an implementation-specific
+<span><a href="26fd4ecb-9127-4873-bc35-bd55362b9796" data-linktype="relative-path">HRESULT</a></span>.
+A <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>
+MUST NOT depend on implementation-specific failure HRESULT values. For more
+information about how the client SHOULD behave based on the possible return
+values, see section <span><a href="4e0a43cb-0afa-4955-86c2-b1f24e30b4f0" data-linktype="relative-path">3.4.6.4</a></span>. Standard
+errors are defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_STATUS</p>
+  </td>
+  <td>
+  <p>The return value indicates success.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The table below describes the possible errors that
+SHOULD be returned by this method.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80000119</p>
+  <p>E_CM_TEARING_DOWN</p>
+  </td>
+  <td>
+  <p>The session object is in the Requesting Teardown or
+  Teardown state.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80000123</p>
+  <p>E_CM_SERVER_NOT_READY</p>
+  </td>
+  <td>
+  <p>The session object is not in the Active state.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a></span> field value
+for this method is 3, as specified in [C706].</p><p>For the structure and sequence of data on the wire, see
+[C706] section 14.</p><p>On receiving this method call, the receiving partner MUST
+verify that the contextHandle parameter is associated with a session object
+that is in the Active state. For context handles, see [C706]. If the session
+object is in the Requesting Teardown or Teardown state or it is not in the
+Active state, the partner MUST return from this method with an
+implementation-specific error code.</p><p>Otherwise, the operation of this method is determined by the
+<span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_1fa6a098-338d-4a4e-aeab-aacf60ff44d3" data-linktype="relative-path">level-two
+protocol</a></span> that is layered on top of the MSDTC Connection Manager:
+OleTx Transports Protocol; the session object, the count of messages, and the
+byte array MUST be presented to the level-two protocol. It is this protocol
+that defines the format of the <i>rguchBoxCar</i> buffer and the messages
+contained therein. Similarly, any correlation between the <i>dwcMessages</i>
+parameter and the contents of the <i>rguchBoxCar</i> buffer lies strictly in
+the domain of the level-two protocol.</p></div>

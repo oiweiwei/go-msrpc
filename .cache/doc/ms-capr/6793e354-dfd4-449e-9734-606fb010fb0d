@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The LSAPR_WRAPPED_CAPID_SET structure is a container for an
+array of LSAPR_SID_INFORMATION structures.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_WRAPPED_CAPID_SET {
+     ULONG Entries;
+     [size_is(Entries)] LSAPR_SID_INFORMATION* SidInfo;
+ } LSAPR_WRAPPED_CAPID_SET;
+</pre></div>
+</dd></dl><p><b>Entries:</b> The number of elements in the SidInfo
+array.</p><p><b>SidInfo:</b> A pointer to an array of
+LSAPR_SID_INFORMATION structures, as defined in <span><a href="../ms-lsat/1ba21e6f-d8a9-462c-9153-4375f2020894" data-linktype="relative-path">[MS-LSAT]</a></span>
+section <span><a href="../ms-lsat/f04a771b-c018-4098-81b5-2a819f9b5db8" data-linktype="relative-path">2.2.17</a></span>.</p></div>

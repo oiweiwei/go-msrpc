@@ -1,0 +1,102 @@
+<div class="content"><p> </p><p>The DNS_RPC_RECORD_WINSR specifies a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_5b990252-86cc-4c08-b06b-49d703ea4d18" data-linktype="relative-path">Windows
+Internet Name Service Reverse Lookup (WINS-R)</a></span> <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_49c03845-ca86-48f5-9cbf-ab86c624aa29" data-linktype="relative-path">resource
+record</a></span>. This record MUST be formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwMappingFlag</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwLookupTimeout</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCacheTimeout</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>nameResultDomain
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwMappingFlag (4 bytes): </b>The scope of the
+WINS-R record lookups. This value MUST be set to zero or any combination of the
+following:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DNS_WINS_FLAG_SCOPE</p>
+  <p>0x80000000</p>
+  </td>
+  <td>
+  <p>Server forwards lookup requests to remote <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a></span>
+  servers.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_WINS_FLAG_LOCAL</p>
+  <p>0x00010000</p>
+  </td>
+  <td>
+  <p>Server performs WINS lookups locally.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwLookupTimeout (4 bytes): </b>The duration, in
+seconds, for which server waits to receive a response from a remote DNS server.</p><p><b>dwCacheTimeout (4 bytes): </b>The duration, in
+seconds, for which server keeps this record in its <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_2f48e305-acf2-470e-b481-a0b7cc5fae4f" data-linktype="relative-path">cache</a></span> before
+considering it stale.</p><p><b>nameResultDomain (variable): </b>Pointer to a
+structure of type DNS_RPC_NAME (section <span><a href="3fd41adc-c69e-407b-979e-721251403132" data-linktype="relative-path">2.2.2.2.1</a></span>)
+containing a domain name suffix that will be appended to a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_711c326a-c3c3-4f78-9e92-b10b5581c59c" data-linktype="relative-path">single-label
+name</a></span> <span><a href="https://go.microsoft.com/fwlink/?LinkId=90263" data-linktype="external">[RFC1034]</a></span> 
+obtained from a WINS-R lookup.</p></div>

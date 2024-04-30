@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The CAUH structure defines a counted array of <span><a href="603237ad-1a79-4eb6-bb83-4912f673601e" data-linktype="relative-path">ULARGE_INTEGER (section 2.2.17)</a></span>
+values.</p><dl>
+<dd>
+<div><pre> typedef struct tagCAUH {
+   unsigned long cElems;
+   [size_is(cElems)] ULARGE_INTEGER* pElems;
+ } CAUH;
+</pre></div>
+</dd></dl><p><b>cElems:</b>  MUST be set to the total
+number of elements of the array.</p><p><b>pElems:</b>  An array of
+ULARGE_INTEGER (section 2.2.17) values.</p></div>

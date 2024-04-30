@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>FOREST_TRUST_RECORD_TYPE is a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> for
+specifying the type of record contained in a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a></span> trust
+information (<span><a href="642c0d17-4f3b-4752-a9a3-464b080bf0b6" data-linktype="relative-path">FOREST_TRUST_INFORMATION</a></span>)
+entry. The allowed values are specified by the following enumerated list.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   ForestTrustTopLevelName = 0,
+   ForestTrustTopLevelNameEx = 1,
+   ForestTrustDomainInfo = 2
+ } FOREST_TRUST_RECORD_TYPE;
+</pre></div>
+</dd></dl></div>

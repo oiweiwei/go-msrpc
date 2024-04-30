@@ -1,0 +1,173 @@
+<div class="content"><p> </p><p>The DRS_MSG_GETREPLINFO_REQ_V2 structure defines a version 2
+request message sent to the <span><a href="dd29f9ce-b30b-411e-bd54-b77634eded47" data-linktype="relative-path">IDL_DRSGetReplInfo</a></span>
+method. The V2 request structure is a superset of the V1 request structure.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD InfoType;
+   [string] LPWSTR pszObjectDN;
+   UUID uuidSourceDsaObjGuid;
+   DWORD ulFlags;
+   [string] LPWSTR pszAttributeName;
+   [string] LPWSTR pszValueDN;
+   DWORD dwEnumerationContext;
+ } DRS_MSG_GETREPLINFO_REQ_V2;
+</pre></div>
+</dd></dl><p><b>InfoType:</b>  MUST be a DS_REPL_INFO
+code.</p><p><b>pszObjectDN:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a></span>
+of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> on which the
+operation is to be performed. The meaning of this parameter depends on the
+value of the <b>InfoType</b> parameter.</p><p><b>uuidSourceDsaObjGuid:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ba500a5b-8c29-467c-a335-0980c8b11304" data-linktype="relative-path">NULL GUID</a></span>
+or the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_736b1076-d1cb-40b9-9247-d66cca6819d1" data-linktype="relative-path">DSA GUID</a></span> of a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>.</p><p><b>ulFlags:</b>  Zero or more of the
+following bit flags, which are presented in little-endian byte order.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>M T</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>X:</b> Unused. MUST be
+zero and ignored.</p>
+</dd>
+<dd>
+<p><b>MT
+(DS_REPL_INFO_FLAG_IMPROVE_LINKED_ATTRS, 0x00000001):</b> Return <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span>
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ff635a35-a17d-477b-a30d-9723b415bf00" data-linktype="relative-path">stamps</a></span>
+for linked values.</p>
+</dd></dl><p><b>pszAttributeName:</b>  Null, or the <span><a href="../ms-ada1/0a4cbb52-338f-4965-859e-cdd7fd1bbf8b" data-linktype="relative-path">lDAPDisplayName</a></span>
+of a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_be41074d-ce6b-4488-853a-4bbb3ea243ce" data-linktype="relative-path">link
+attribute</a></span>.</p><p><b>pszValueDN:</b>  Null, or the DN of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_659e8352-a6db-4752-8c05-4b21c602f238" data-linktype="relative-path">link
+value</a></span> for which to retrieve a stamp.</p><p><b>dwEnumerationContext:</b>  Zero, or the
+value of <b>dwEnumerationContext</b> returned by the server on a previous call
+to IDL_DRSGetReplInfo. For an informative description of the sequencing issues
+associated with this field, see section <span><a href="67c5a415-a6c7-4098-8cf3-6ef8d173cfe8" data-linktype="relative-path">1.3.2</a></span>.</p></div>

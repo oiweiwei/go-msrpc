@@ -1,0 +1,152 @@
+<div class="content"><p>The LINEAGENTSESSIONINFO packet contains information about
+the ACD agent session. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAgentSessionState</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNextAgentSessionState</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dateSessionStartTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSessionDuration</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNumberOfCalls</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTotalTalkTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAverageTalkTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTotalCallTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAverageCallTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTotalWrapUpTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAverageWrapUpTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cyACDCallRate</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwLongestTimeToAnswer</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAverageTimeToAnswer</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, allocated to this packet. </p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, needed to hold all the information requested. </p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the portion of this packet that contains useful
+information.</p><p><b>dwAgentSessionState (4 bytes): </b> An unsigned
+32-bit integer. MUST be one of the <a href="af467253-1bf4-44a1-ae13-fd834de31bc8" data-linktype="relative-path">LINEAGENTSESSIONSTATE_Constants</a>.
+</p><p><b>dwNextAgentSessionState (4 bytes): </b>An unsigned
+32-bit integer. MUST be one of the LINEAGENTSESSIONSTATE_Constants.</p><p><b>dateSessionStartTime (4 bytes): </b>An unsigned
+32-bit integer. The time the session was created.</p><p><b>dwSessionDuration (4 bytes): </b>An unsigned
+32-bit integer. The duration of the agent session, in seconds. The active
+period only; timing stops when a session enters the ASST_SESSION_ENDED state.</p><p><b>dwNumberOfCalls (4 bytes): </b>An unsigned 32-bit
+integer. The number of ACD calls handled during this agent session by this
+agent.</p><p><b>dwTotalTalkTime (4 bytes): </b>An unsigned 32-bit
+integer. The number of seconds spent talking in ACD calls during this agent
+session by this agent. </p><p><b>dwAverageTalkTime (4 bytes): </b> An unsigned
+32-bit integer. The average time, in seconds, spent talking for each ACD call
+during this agent session by this agent. </p><p><b>dwTotalCallTime (4 bytes): </b>An unsigned 32-bit
+integer. The number of seconds spent on ACD calls during this agent session by
+this agent. It includes time on the phone plus wrap-up time.</p><p><b>dwAverageCallTime (4 bytes): </b>An unsigned
+32-bit integer. The average time, in seconds, spent for each ACD call during
+this agent session. Includes time on the phone plus wrap-up time. </p><p><b>dwTotalWrapUpTime (4 bytes): </b> An unsigned
+32-bit integer. The number of seconds spent on ACD call wrap-up (after-call
+work) during this agent session by this agent. </p><p><b>dwAverageWrapUpTime (4 bytes): </b>An unsigned
+32-bit integer. The average time, in seconds, for each ACD call spent in
+wrap-up (after-call work) during this agent session. </p><p><b>cyACDCallRate (4 bytes): </b>An unsigned 32-bit
+integer. The call rate for each agent session. This is a fixed-point decimal
+number.</p><p><b>dwLongestTimeToAnswer (4 bytes): </b> An unsigned
+32-bit integer. The longest time, in seconds, that calls waited to be answered.
+</p><p><b>dwAverageTimeToAnswer (4 bytes): </b>An unsigned
+32-bit integer. The average time, in seconds, that calls waited to be answered.
+</p></div>

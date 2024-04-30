@@ -1,0 +1,107 @@
+<div class="content"><p>The CERTVIEWRESTRICTION structure is used to restrict the
+data set that is returned by the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> server during calls to
+the OpenView method for the ICertAdminD interface.</p><p>This structure is passed by <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> technology, as
+specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>,
+and does not need special marshaling.</p><dl>
+<dd>
+<div><pre> typedef struct _CERTVIEWRESTRICTION {
+   DWORD ColumnIndex;
+   LONG SeekOperator;
+   LONG SortOrder;
+   [size_is(cbValue), unique] BYTE* pbValue;
+   DWORD cbValue;
+ } CERTVIEWRESTRICTION;
+</pre></div>
+</dd></dl><p><b>ColumnIndex:</b>  An unsigned integer
+value that specifies the identifier for the database column that is receiving
+the restriction.</p><p><b>SeekOperator:</b>  An integer value that
+specifies the logical operator of the data-query qualifier for the column. This
+parameter MUST be set to one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Equal to</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Less than</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Less than or
+  equal to</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Greater than
+  or equal to</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Greater than</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>SortOrder:</b>  An integer value that
+specifies the sort order for the column. This parameter MUST be set to one of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No sort order</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Ascending</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Descending</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pbValue:</b>  A pointer to a byte array
+that specifies the value against which the value in the corresponding column
+(specified by <b>ColumnIndex</b>) is compared, using SeekOperator.</p><p><b>cbValue:</b>  An unsigned integer value
+that specifies the length of the byte array that is pointed to by the <b>pbValue</b>
+field. </p></div>

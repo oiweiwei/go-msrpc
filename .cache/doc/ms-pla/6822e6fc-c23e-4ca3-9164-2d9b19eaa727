@@ -1,0 +1,150 @@
+<div class="content"><p>The ISchedule interface is used to specify when the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data collector set</a> runs.</p><p>The following properties MUST be implemented by the objects
+that implement the ISchedule interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Days</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the days of the week on which the data
+  collector set runs.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EndDate</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the ending date for when the schedule is
+  valid. The value is stored in a VARIANT. Any VARIANT of type Date is a legal
+  value for this type. The format and over-the-wire transmission of a VARIANT
+  is specified in <a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a>
+  section <a href="../ms-oaut/b2ee2b50-665e-43e6-a92c-8f2a29fd7add" data-linktype="relative-path">2.2.29</a>.
+  The time portion of the VARIANT is ignored; only the date portion is used. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>StartDate</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the date that the schedule becomes valid.
+  The value is stored in a VARIANT. Any VARIANT of type Date is a legal value
+  for this type. The format and over-the-wire transmission of a VARIANT is
+  specified in [MS-OAUT] section 2.2.29. The time portion of the VARIANT is
+  ignored; only the date portion is used. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>StartTime</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the time of day when the data collector set
+  starts. The value is stored in a VARIANT. Any VARIANT of type Date is a legal
+  value for this type. The format and over-the-wire transmission of a VARIANT
+  is specified in [MS-OAUT] section 2.2.29. The date portion of the VARIANT is
+  ignored; only the time portion is used.</p>
+  </td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="d41fce8a-f438-48b8-bb43-8f0468e46243" data-linktype="relative-path">StartDate
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the StartDate property.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="3a7c19c2-a731-4e5a-b9c2-a4c8b1c98cb0" data-linktype="relative-path">StartDate
+  (Put)</a></p>
+  </td>
+  <td>
+  <p> Sets the StartDate property.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="bbd462c0-84e7-46ca-ba65-0ec0773cd34a" data-linktype="relative-path">EndDate
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the EndDate property.</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="fc602033-f916-4e30-9476-ddf1fcb13af9" data-linktype="relative-path">EndDate
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the EndDate property.</p>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="172fc121-011e-4673-9776-8b10b650fcba" data-linktype="relative-path">StartTime
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the StartTime property</p>
+  <p>Opnum: 11</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="9d92604d-17d1-4b9b-b1d7-acf68ddeb71d" data-linktype="relative-path">StartTime
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the StartTime property</p>
+  <p>Opnum: 12</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="2f0226dd-42f8-44e5-b23f-3fcf96f2967e" data-linktype="relative-path">Days
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Days property.</p>
+  <p>Opnum: 13</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="5cd2879a-0264-409b-975b-e065e53b04b9" data-linktype="relative-path">Days
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the Days property.</p>
+  <p>Opnum: 14</p>
+  </td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface. </p></div>

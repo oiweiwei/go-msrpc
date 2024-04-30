@@ -1,0 +1,27 @@
+<div class="content"><p> </p><p>The GetDiskIdFromLunInfo method retrieves the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS
+object</a></span> ID of a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span> that
+corresponds to a specified <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7593b869-71a9-4a02-bab3-377e51729067" data-linktype="relative-path">LUN</a></span> information
+structure.</p><dl>
+<dd>
+<div><pre> HRESULT GetDiskIdFromLunInfo(
+   [in] VDS_LUN_INFORMATION* pLunInfo,
+   [out] VDS_OBJECT_ID* pDiskId
+ );
+</pre></div>
+</dd></dl><p><b>pLunInfo: </b>A pointer to a <span><a href="fe61fdc1-85b3-4b62-ac25-6d119f2b0565" data-linktype="relative-path">VDS_LUN_INFORMATION</a></span>
+structure that stores the disk&#39;s LUN information.</p><p><b>pDiskId: </b>A pointer to a <span><a href="9186f1ce-04de-4df2-a8cf-3925a02fcd47" data-linktype="relative-path">VDS_OBJECT_ID</a></span>
+structure that, if the operation is successfully completed, receives the VDS
+object ID of the disk object that corresponds to the LUN information that <i>pLunInfo</i>
+specifies.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameters: </p><ul><li><p><span><span> 
+</span></span>Verify that <i>pLunInfo</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>pDiskId</i> is not NULL.</p>
+</li></ul><p>The server MUST set <i>pDiskId</i> to the VDS object
+identifier of the disk that matches the LUN information that <i>pLunInfo</i>
+specifies, and return an HRESULT that indicates failure or success.</p></div>

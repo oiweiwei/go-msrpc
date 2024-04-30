@@ -1,0 +1,60 @@
+<div class="content"><p> </p><p>The <b>R_DhcpRestoreDatabase</b> method sets/modifies the
+restore path. The DHCP server uses this path to restore the configuration,
+settings, and DHCP client lease record the next time it is restarted.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpRestoreDatabase(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, string] LPWSTR Path
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>Path: </b>A pointer to a null-terminated Unicode
+string that contains the name of the new restore path where the registry
+configuration and the DHCP database are restored.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 45.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>Path</i> is not from the standard backup path, back up
+the existing information stored in the ADM elements in the standard backup path
+so that it can be used if the restore for the new ADM elements fails.</p>
+</li><li><p><span><span> 
+</span></span>Set the server ADM element <b>DHCPServerRestorePath</b> to the
+path from where the ADM elements are to be restored when the DHCP server starts
+again.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

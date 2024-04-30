@@ -1,0 +1,17 @@
+<div class="content"><p> </p><p>The Restriction_r structure is an encoding of the <b>Restriction</b>
+filters defined in <span><a href="/en-us/openspecs/exchange_server_protocols/MS-OXCDATA/1afa0cd9-b1a0-4520-b623-bf15030af5d8" data-linktype="absolute-path">[MS-OXCDATA]</a></span>.
+</p><p>The permissible number of <b>Restriction</b> structures
+encoded in AndRestriction_r and OrRestriction_r data structures recursively
+included in the Restriction_r data type exceeds that of the AndRestriction_r
+and OrRestriction_r data structures recursively included in the <b>Restriction</b>
+filters. The semantic meaning is otherwise unchanged from the <b>Restriction</b>
+filters.</p><dl>
+<dd>
+<div><pre> typedef struct _Restriction_r {
+   DWORD rt;
+   [switch_is((long)rt)] RestrictionUnion_r res;
+ } Restriction_r;
+</pre></div>
+</dd></dl><p><b>rt:</b>  Encodes the <b>RestrictType</b>
+field common to all restriction structures.</p><p><b>res:</b>  Encodes the actual restriction
+specified by the type in the <b>rt</b> field.</p></div>

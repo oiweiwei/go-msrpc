@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The DRS_MSG_RMDMNREQ union defines the request messages sent
+to the <span><a href="aa3cfa46-c737-425a-ae65-ecaf9efe7e84" data-linktype="relative-path">IDL_DRSRemoveDsDomain</a></span>
+method. Only one version, identified by <i>dwInVersion</i> = 1, is currently
+defined.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     DRS_MSG_RMDMNREQ_V1 V1;
+ } DRS_MSG_RMDMNREQ;
+</pre></div>
+</dd></dl><p><b>V1:</b>  The version 1 request.</p></div>

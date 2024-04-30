@@ -1,0 +1,181 @@
+<div class="content"><p> </p><p>The IRPCAsyncNotify_RegisterClient method is called by
+clients to register to receive notifications and to associate the parameters
+describing the set of notifications they are registering to receive with a <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_96e6d133-8e9c-4258-ae03-65cb549bce90" data-linktype="relative-path">remote
+object</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT IRPCAsyncNotify_RegisterClient(
+   [in] PRPCREMOTEOBJECT pRegistrationObj,
+   [in, string, unique] const wchar_t* pName,
+   [in] PrintAsyncNotificationType* pInNotificationType,
+   [in] PrintAsyncNotifyUserFilter NotifyFilter,
+   [in] PrintAsyncNotifyConversationStyle conversationStyle,
+   [out, string] wchar_t** ppRmtServerReferral
+ );
+</pre></div>
+</dd></dl><p><b>pRegistrationObj: </b>MUST be the remote object
+context handle that was returned by the server in the <i>ppRemoteObject</i>
+output parameter of a prior call to <span><a href="e3786f60-0b93-4c5e-8cd1-3f0487e4310a" data-linktype="relative-path">IRPCRemoteObject_Create (section 3.1.2.4.1)</a></span>.
+This value MUST NOT be NULL.</p><p><b>pName: </b>MUST be NULL or a pointer to a
+NULL-terminated string, encoded in <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_69864bcc-33be-41c9-9486-e18618ee3dd0" data-linktype="relative-path">UTF-16LE</a></span>
+(<span><a href="https://go.microsoft.com/fwlink/?LinkId=90380" data-linktype="external">[RFC2781]</a></span>
+section 4.2), which specifies the full <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_c9507dca-291d-4fd6-9cba-a9ee7da8c908" data-linktype="relative-path">UNC</a></span> name of the <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_569f1f1c-f426-46fa-91d2-3d1eb0b19aa1" data-linktype="relative-path">print
+queue</a></span> from which the <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_3b2da3d1-c159-4399-a6dd-dfd5f76fa2f5" data-linktype="relative-path">print client</a></span> is
+registering to receive notifications.</p><dl>
+<dd>
+<p>This UNC name MUST be in the following format:</p>
+</dd>
+<dd>
+<div><pre> &#34;\\&#34; SERVER_NAME &#34;\&#34; LOCAL_PRINTER_NAME
+</pre></div>
+</dd></dl><p><b>SERVER_NAME</b> is a <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a></span>, <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_b86c44e6-57df-4c48-8163-5e3fa7bdcff4" data-linktype="relative-path">NetBIOS</a></span>,
+<span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_0f25c9b5-dc73-4c3e-9433-f09d1f62ea8e" data-linktype="relative-path">IPv4</a></span>,
+or <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_64c29bb6-c8b2-4281-9f3a-c1eb5d2288aa" data-linktype="relative-path">IPv6</a></span>
+host name.</p><p><b>LOCAL_PRINTER_NAME</b> is a string that MUST NOT contain
+the characters &#34;\&#34; or &#34;,&#34;.</p><p>DNS names are specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90495" data-linktype="external">[RFC819]</a></span>
+section 2, and NetBIOS names are specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90260" data-linktype="external">[RFC1001]</a></span>
+section 14. Basic notational conventions are specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90372" data-linktype="external">[RFC2616]</a></span>
+section 2, and &#34;host&#34; is defined in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90453" data-linktype="external">[RFC3986]</a></span>
+section 3.2.2.</p><p>If <i>pName</i> is NULL, the registration MUST be made for
+the remote <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a></span> itself.</p><p><b>pInNotificationType: </b>MUST be a pointer to a <span><a href="89ef806f-96ee-4178-9f36-3e1420820a4f" data-linktype="relative-path">PrintAsyncNotificationType</a></span>
+structure that specifies the <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_928ce1b5-ae98-4601-b500-48cb24b2affc" data-linktype="relative-path">notification type identifier</a></span>
+for the notifications that the client is registering to receive.</p><p><b>NotifyFilter: </b>MUST be a value of type <span><a href="7050b0ac-aa53-4e5f-b6d9-9ec01dde7700" data-linktype="relative-path">PrintAsyncNotifyUserFilter</a></span>
+that specifies whether the client is registering to receive notifications that
+are issued to all registered clients, irrespective of their <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_916785d4-dee1-4e63-99a7-ba30240ae3d8" data-linktype="relative-path">authenticated
+user identity</a></span>, or to receive notifications that are issued only to
+the specific authenticated user identity of the registering <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+client.</p><p><b>conversationStyle: </b>MUST be a value of type <span><a href="f2aca250-1d7f-4fcd-bfaf-ad22a3fddc80" data-linktype="relative-path">PrintAsyncNotifyConversationStyle</a></span>
+that specifies whether the client is registering for <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_b1d50fe5-0a8c-44fe-8802-3382d1af77e5" data-linktype="relative-path">bidirectional communication
+mode</a></span> or <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_d203482a-15ef-4528-9064-68b0f2e0c5fa" data-linktype="relative-path">unidirectional communication
+mode</a></span>.</p><p><b>ppRmtServerReferral: </b>Servers SHOULD return
+NULL for this parameter, and clients MUST ignore it on receipt.</p><p><b>Return Values: </b>This method MUST return zero to
+indicate success, or an <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> error value
+(<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a></span>)
+to indicate failure. Protocol-specific error values are defined in the
+following table. The client SHOULD treat all error return values the same,
+except where noted.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070005</p>
+  </td>
+  <td>
+  <p>The client does not have authorization to register for
+  notifications with the set of parameters specified in this call.</p>
+  <p>If this error value is returned, the client SHOULD NOT
+  retry this call; the client SHOULD consider the error to be fatal and report
+  it to the higher level caller.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007000E</p>
+  </td>
+  <td>
+  <p>The server does not have enough memory for the new
+  registration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070015</p>
+  </td>
+  <td>
+  <p>The server has reached its maximum registration limit.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007007B</p>
+  </td>
+  <td>
+  <p>The <i>pName</i> parameter does not conform to the
+  format specified above.</p>
+  <p>If this error value is returned, the client SHOULD NOT
+  retry this call; the client SHOULD consider the error to be fatal and report
+  it to the higher level caller.</p>
+  </td>
+ </tr></tbody></table><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>Unless specified otherwise, if a failure is indicated by an
+error return or an exception, the client SHOULD retry this method call by
+performing the following steps:</p><ol><li><p><span>    </span>Call
+IRPCRemoteObject_Create to generate a new <span><a href="a47aca7c-fcc3-4151-8fb6-1de5225ecfa5" data-linktype="relative-path">PRPCREMOTEOBJECT (section 2.2.4)</a></span>.</p>
+</li><li><p><span>    </span>Call
+IRPCAsyncNotify_RegisterClient with the new PRPCREMOTEOBJECT.</p>
+</li></ol><p>Retries SHOULD be separated by time intervals decaying from
+1 second to 1 minute to reduce a potential burden on the server.</p><p>The IRPCAsyncNotify_RegisterClient method MUST be called by
+clients to register for receiving notifications. Servers MUST associate the
+given remote object with the registration parameters specified.</p><p>A client MUST NOT call IRPCAsyncNotify_RegisterClient if a
+prior call to IRPCAsyncNotify_RegisterClient succeeded using the same
+PRPCREMOTEOBJECT value, unless a later call to <span><a href="20fa79b6-4905-4a50-83d5-2bc76525b3c9" data-linktype="relative-path">IRPCAsyncNotify_UnregisterClient</a></span>
+also succeeded.</p><p>If registering for unidirectional communication mode, a
+client SHOULD call <span><a href="80f655e8-5c58-4d5a-bcb7-51d9e66d7a5c" data-linktype="relative-path">IRPCAsyncNotify_GetNotification</a></span>
+after a successful call to IRPCAsyncNotify_RegisterClient using the same
+PRPCREMOTEOBJECT value.</p><p>If registering for bidirectional communication mode, a
+client SHOULD call <span><a href="0851fada-b2ca-441f-835a-2503d3862a1f" data-linktype="relative-path">IRPCAsyncNotify_GetNewChannel</a></span>
+after a successful call to IRPCAsyncNotify_RegisterClient using the same
+PRPCREMOTEOBJECT value.</p><p>Servers MUST support the concurrent registration of multiple
+remote objects with different registration parameters, including <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_ad9bb1cf-c546-4d8a-8caa-09856386eae0" data-linktype="relative-path">notification
+type</a></span>, filter, and communication mode.</p><p>Servers SHOULD consider the security and privacy context
+prior to letting clients monitor and receive notifications for all user
+identities. Relevant access rights are defined in the following table.</p><table><thead>
+  <tr>
+   <th>
+   <p>Name/Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SERVER_ALL_ACCESS</p>
+  <p>0x000F0003</p>
+  </td>
+  <td>
+  <p>Combines the <b>WO</b> (Write Owner), <b>WD</b> (Write
+  DACL), <b>RC</b> (Read Control), and <b>DE</b> (Delete) bits of the <span><a href="../ms-dtyp/7a53f60e-e730-4dfe-bbe9-b21b62eb790b" data-linktype="relative-path">ACCESS_MASK</a></span>
+  data type (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+  section 2.4.3) with the following protocol-specific bits:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>0x00000001 (bit 31): Access
+  rights to administer print servers.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>0x00000002 (bit 30): Access
+  rights to enumerate print servers.</span></p>
+  </li></ul><p> </p>
+  <p>These printing-specific access rights allow a client
+  to administer the server and to enumerate server components such as print
+  queues.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PRINTER_ALL_ACCESS</p>
+  <p>0x000F000C</p>
+  </td>
+  <td>
+  <p>Combines the <b>WO</b> (Write Owner), <b>WD</b> (Write
+  DACL), <b>RC</b> (Read Control), and <b>DE</b> (Delete) bits of the
+  ACCESS_MASK data type with the following protocol-specific bits:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>0x00000004 (bit 29): Access
+  rights for printers to perform administrative tasks.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>0x00000008 (bit 28): Access
+  rights for printers to perform basic printing operations.</span></p>
+  </li></ul><p> </p>
+  <p>These printing-specific access rights allow a client
+  basic and administrative use of print queues.</p>
+  </td>
+ </tr></tbody></table><p>For calls to IRPCAsyncNotify_RegisterClient with <i>NotifyFilter</i>
+set to <b>kAllUsers</b>, if <i>pName</i> is set to NULL, the server SHOULD fail
+the call if the calling principal lacks any of the server access rights
+specified by <b>SERVER_ALL_ACCESS</b>. If <i>pName</i> points to the name of a
+print queue, the server SHOULD fail the call if the calling principal lacks any
+of the print queue access rights specified by <b>PRINTER_ALL_ACCESS</b>. For
+additional information concerning access rights, see <span><a href="../ms-azod/5a0a0a3e-c7a7-42e1-b5f2-cc8d8bd9739e" data-linktype="relative-path">[MS-AZOD]</a></span>
+section <span><a href="../ms-azod/d5724fd7-0341-4a08-bf5e-5bb563385845" data-linktype="relative-path">1.1.1.5</a></span>.</p></div>

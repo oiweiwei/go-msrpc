@@ -1,0 +1,101 @@
+<div class="content"><p> </p><p>The <b>FAX_StartServerNotification (Opnum 73)</b> method is
+called by the client to get notification about legacy events. On success, the
+server MUST start to notify the fax client about the occurring fax events. </p><p>Protocol version FAX_API_VERSION_2 (0x00020000) and
+FAX_API_VERSION_3 (0x00030000) fax servers SHOULD fail this call by returning
+ERROR_NOT_SUPPORTED (0x00000032). The fax client SHOULD NOT call this method if
+the protocol version reported by the server is FAX_API_VERSION_2 (0x00020000)
+or FAX_API_VERSION_3 (0x00030000). For more information, see <b>FAX_ConnectFaxServer</b> (section
+<span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>).</p><dl>
+<dd>
+<div><pre> error_status_t FAX_StartServerNotification(
+   [in] handle_t hBinding,
+   [in, string, ref] LPCWSTR lpcwstrMachineName,
+   [in, string, ref] LPCWSTR lpcwstrEndPoint,
+   [in] ULONG64 Context,
+   [in, ref, string] LPCWSTR lpcwstrProtseqString,
+   [in] BOOL bEventEx,
+   [in] DWORD dwEventTypes,
+   [out, ref] PRPC_FAX_EVENT_HANDLE lpHandle
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> or <b>FAX_ConnectionRefCount</b> (section
+<span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>)
+method call used to connect to the fax server.</p><p><b>lpcwstrMachineName: </b>A pointer to a string that
+contains the name of the fax client machine. The machine name MUST be NULL for
+a local machine and a <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">fully qualified domain name
+(FQDN)</a></span> for a remote machine.</p><p><b>lpcwstrEndPoint: </b>A pointer to a string that
+contains the client machine <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> server <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span>
+string. The endpoint MUST be a TCP port between 1024 and 65534 (in increments
+of 10).</p><p><b>Context: </b>A <b>ULONG64</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/2dc4c492-95db-4fa6-ae2b-8546b13c9141" data-linktype="relative-path">2.2.54</a></span>)
+value that can be passed to <b>FAX_OpenConnection</b> (section <span><a href="6a8d8440-25a7-49aa-a4a1-7043b040dde4" data-linktype="relative-path">3.2.4.5</a></span>)
+as a notification context.</p><p><b>lpcwstrProtseqString: </b>A pointer to a string
+that contains the fax client RPC server&#39;s protocol sequence string. The protocol
+sequence string MUST be ncalrpc for local and ncan_ip_tcp for remote.</p><p><b>bEventEx: </b>A Boolean value that indicates which
+notification method to use for notifications. This parameter is always set to <b>FALSE</b>.</p><p><b>dwEventTypes: </b>A <b>DWORD</b> ([MS-DTYP]
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that indicates which events the client needs to receive. This parameter
+is always set to FAX_EVENT_TYPE_LEGACY. For more information, see <b>FAX_ENUM_EVENT_TYPE</b> (section
+<span><a href="bc289dcf-1675-403e-9060-bb2743fe0352" data-linktype="relative-path">2.2.63</a></span>).</p><p><b>lpHandle: </b>Returned <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_34431739-568a-4d53-b449-2a771383922e" data-linktype="relative-path">subscription context</a></span>
+handle. This handle can be used in the <b>FAX_EndServerNotification</b> (section
+<span><a href="59663586-4f1a-4f10-a548-c9b088995028" data-linktype="relative-path">3.1.4.1.17</a></span>)
+method.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The client&#39;s fax user account does not have sufficient
+  rights for this call, which is ALL_FAX_USER_ACCESS_RIGHTS, or the user
+  account does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_BAD_FORMAT</p>
+  <p>0x0000000B</p>
+  </td>
+  <td>
+  <p>The length, including the terminating null character,
+  of the string specified by the <i>lpcwstrMachineName</i> argument is greater
+  than 256 characters. The length, including the terminating null character, of
+  the string specified by the <i>lpcwstrEndPoint</i> argument is greater than
+  11 characters.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NOT_SUPPORTED</p>
+  <p>0x00000032</p>
+  </td>
+  <td>
+  <p>The request is not supported.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown except
+those that are thrown by the underlying RPC protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>A fax client calls <b>FAX_StartServerNotification</b> to
+inform the server that it needs to receive the notifications of legacy fax
+events. The fax server SHOULD call <b>FAX_OpenConnection</b> on the client
+by using the supplied endpoint, protocol sequence information, and context
+handle information. The server then sends the notification of legacy events to
+the client by using FAX_ClientEventQueue (section <span><a href="c123443a-b672-4bce-ad30-50d2eb4d6cf9" data-linktype="relative-path">3.2.4.2</a></span>).
+When the client no longer needs to receive notifications, it calls <b>FAX_EndServerNotification</b>,
+and the server SHOULD call <b>FAX_CloseConnection</b> (section <span><a href="71fcdc39-0e2a-4025-96f8-f96d81d8694b" data-linktype="relative-path">3.2.4.4</a></span>)
+to close the connection.</p><p><b>Note</b>  This method only supports TCP/IP as
+the transport protocol.</p></div>

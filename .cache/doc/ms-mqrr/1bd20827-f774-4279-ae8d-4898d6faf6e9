@@ -1,0 +1,612 @@
+<div class="content"><p> </p><p>The <b>R_StartReceive</b> method peeks or receives a <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span>
+from an open <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>.</p><p>If the <b>R_StartReceive</b> method is invoked with a Peek
+action type, as specified in the <i>ulAction</i> parameter, the operation
+completes when the <b>R_StartReceive</b> method returns.</p><p>If the <b>R_StartReceive</b> method is invoked with a
+Receive action type, as specified in the <i>ulAction</i> parameter, the client
+MUST pair each call to the <b>R_StartReceive</b> method with a call to the
+R_EndReceive (Opnum 9) (section <span><a href="7e10ff5b-2991-4d73-b712-f3916bf4e85d" data-linktype="relative-path">3.1.4.9)</a></span> method to
+complete the operation, or to the R_CancelReceive (Opnum 8) (section <span><a href="471d411a-2757-478e-b121-ef24ad0543a5" data-linktype="relative-path">3.1.4.8)</a></span>
+method to cancel the operation. The call to the <b>R_EndReceive</b> method or
+the <b>R_CancelReceive</b> method is correlated to a call to the <b>R_StartReceive</b>
+method through matching <i>dwRequestId</i> parameters.</p><p>If the client specifies a nonzero <i>ulTimeout</i>
+parameter, and a message is not available in the queue at the time of the call,
+the server waits up to the specified time-out for a message to become available
+in the queue before responding to the call. The client can call the <b>R_CancelReceive</b>
+method with a matching <i>dwRequestId</i> parameter to cancel the pending <b>R_StartReceive</b>
+method request.</p><p>The message to be returned can be specified in one of three
+ways:</p><ul><li><p><span><span> 
+</span></span>LookupId: A nonzero <i>LookupId</i> parameter value specifies the
+unique identifier for the message to be returned. The <i>ulAction</i> parameter
+further specifies whether the message to be returned is the one identified by
+the <i>LookupId</i> parameter or the first unlocked message immediately
+preceding or following it. For more details, see the description of the <i>ulAction</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>Cursor: A nonzero <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a></span> handle
+specifies the cursor to be used to identify the message to be returned. The
+cursor specifies a location in the queue. The <i>ulAction</i> parameter further
+specifies whether the message to be returned is the one identified by the
+cursor or the first unlocked message immediately following it. For more
+details, see the description of the <i>ulAction</i> parameter.</p>
+</li><li><p><span><span> 
+</span></span>First: if the <i>LookupId</i> parameter is set to zero and the <i>hCursor</i>
+parameter is set to zero, the first unlocked message in the queue can be
+returned. The <i>ulAction</i> parameter further specifies whether the first
+message is to be received or peeked.</p>
+</li></ul><p>The <i>ppPacketSections</i> parameter is the address of one
+or more pointers to one or more <span><a href="4b1768af-6e95-42e5-b18b-b6e3cf778456" data-linktype="relative-path">SectionBuffer (section 2.2.6)</a></span>
+structures. The <b>pSectionBuffer</b> member of the first <b>SectionBuffer</b>
+structure points to the beginning of the <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_945305f4-e72a-469a-b171-59232870ede6" data-linktype="relative-path">message packet</a></span>. If
+more than one <b>SectionBuffer</b> structure is present, the packet sections
+are concatenated in the order in which they appear in the array to form the
+entire packet. The size of each section is stored in the <b>SectionSizeAlloc</b>
+member of the <b>SectionBuffer</b> structure.</p><dl>
+<dd>
+<div><pre> HRESULT R_StartReceive(
+   [in] handle_t hBind,
+   [in] QUEUE_CONTEXT_HANDLE_NOSERIALIZE phContext,
+   [in] ULONGLONG LookupId,
+   [in] DWORD hCursor,
+   [in] DWORD ulAction,
+   [in] DWORD ulTimeout,
+   [in] DWORD dwRequestId,
+   [in] DWORD dwMaxBodySize,
+   [in] DWORD dwMaxCompoundMessageSize,
+   [out] DWORD* pdwArriveTime,
+   [out] ULONGLONG* pSequenceId,
+   [out] DWORD* pdwNumberOfSections,
+   [out, size_is(, *pdwNumberOfSections)] 
+     SectionBuffer** ppPacketSections
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b>MUST specify an RPC binding handle
+parameter, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>phContext: </b>MUST be set by the client to a <span><a href="3e818e81-b12a-4ccd-9606-f434c346a3e9" data-linktype="relative-path">QUEUE_CONTEXT_HANDLE_NOSERIALIZE (section 2.2.4.1)</a></span>
+handle of the queue from which to read a message. The handle MUST have been
+returned by the server in the <i>pphQueue</i> output parameter of a prior call
+to the R_OpenQueue (Opnum 2) (section <span><a href="b4b3001c-f2ff-4a17-9830-7b21af371dc4" data-linktype="relative-path">3.1.4.2)</a></span> method and
+MUST NOT have been closed through a call prior to the R_CloseQueue (Opnum
+3) (section <span><a href="e480114a-587f-4110-b03b-7a6188cca307" data-linktype="relative-path">3.1.4.3)</a></span> method.
+This value MUST NOT be NULL.</p><dl>
+<dd>
+<p>The handle MUST have been opened with a <i>dwAccess</i>
+parameter value that permits the operation specified by the <i>ulAction</i>
+parameter. For more details, see the <i>dwAccess</i> parameter in the <b>R_OpenQueue</b>
+method.</p>
+</dd></dl><p><b>LookupId: </b>If nonzero, specifies the lookup
+identifier of the message to be acted on.</p><dl>
+<dd>
+<p>If the client sets the <i>LookupId</i> parameter to
+a nonzero value, the valid values for other parameters are as follows:</p>
+</dd></dl><ul><li><p><span><span>  </span></span><i>ulTimeout</i>
+set to 0x00000000.</p>
+</li><li><p><span><span>  </span></span><i>hCursor</i>
+set to 0x00000000.</p>
+</li><li><p><span><span>  </span></span><i>ulAction</i>
+set to one of the following:</p>
+<ul><li><p><span><span> 
+</span></span>MQ_LOOKUP_PEEK_PREV</p>
+</li><li><p><span><span> 
+</span></span>MQ_LOOKUP_PEEK_CURRENT</p>
+</li><li><p><span><span> 
+</span></span>MQ_LOOKUP_PEEK_NEXT</p>
+</li><li><p><span><span> 
+</span></span>MQ_LOOKUP_RECEIVE_PREV</p>
+</li><li><p><span><span> 
+</span></span>MQ_LOOKUP_RECEIVE_CURRENT</p>
+</li><li><p><span><span> 
+</span></span>MQ_LOOKUP_RECEIVE_NEXT</p>
+<p>If the client sets the <i>LookupId</i> parameter to
+0x0000000000000000, all of the preceding values of the <i>ulAction</i>
+parameter are invalid.</p>
+</li></ul></li></ul><p><b>hCursor: </b>If nonzero, specifies a handle to a
+cursor that MUST have been obtained from a prior call to the R_CreateCursor
+(Opnum 4) (section <span><a href="142d17a9-7fb3-481a-8d07-2170fd22e5ec" data-linktype="relative-path">3.1.4.4)</a></span> method.
+The handle MUST NOT have been closed through a prior call to the R_CloseCursor
+(Opnum 5) (section <span><a href="dee84ebb-3d4a-4c26-ab11-3fa3b6e1acbe" data-linktype="relative-path">3.1.4.5)</a></span> method.</p><dl>
+<dd>
+<p>If the client sets the <i>hCursor</i> parameter to a
+nonzero value, the valid values for other parameters are as follows:</p>
+</dd></dl><ul><li><p><span><span>  </span></span><i>LookupId</i>
+set to 0x0000000000000000</p>
+</li><li><p><span><span>  </span></span><i>ulAction</i>
+set to one of the following:</p>
+<ul><li><p><span><span> 
+</span></span>MQ_ACTION_RECEIVE</p>
+</li><li><p><span><span> 
+</span></span>MQ_ACTION_PEEK_CURRENT</p>
+</li><li><p><span><span> 
+</span></span>MQ_ACTION_PEEK_NEXT</p>
+</li></ul></li></ul><p><b>ulAction: </b>Specifies the action to perform on
+the message. The following table lists possible actions.</p><table><thead>
+  <tr>
+   <th>
+   <p>Type / Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQ_ACTION_RECEIVE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>If the <i>hCursor</i> parameter is nonzero, read and
+  remove the message for the current cursor location, and advance the cursor to
+  the next position.</p>
+  <p>If the <i>hCursor</i> parameter is 0x00000000, read
+  and remove the message from the front of the queue.</p>
+  <p>The valid values for other parameters are as follows:</p>
+  <ul><li><p><span><span>  
+  </span></span><i><span>LookupId</span></i><span> set to 0x0000000000000000.</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>MQ_ACTION_PEEK_CURRENT</p>
+  <p>0x80000000</p>
+  </td>
+  <td>
+  <p>If the <i>hCursor</i> parameter is nonzero, read the
+  message at the current cursor location, but do not remove it from the queue.</p>
+  <p>If the <i>hCursor</i> parameter is 0x00000000, read
+  the message at the front of the queue, but do not remove it from the queue.</p>
+  <p>The valid values for other parameters are as follows:</p>
+  <ul><li><p><span><span>  
+  </span></span><i><span>LookupId</span></i><span> set to 0x0000000000000000.</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>MQ_ACTION_PEEK_NEXT</p>
+  <p>0x80000001</p>
+  </td>
+  <td>
+  <p>If the <i>hCursor</i> parameter is nonzero, advance
+  the cursor to the next position and read the message, but do not remove it
+  from the queue.</p>
+  <p>The valid values for other parameters are as follows:</p>
+  <ul><li><p><span><span>  
+  </span></span><i><span>LookupId</span></i><span> set to 0x0000000000000000.</span></p>
+  </li><li><p><span><span>  
+  </span></span><i><span>hCursor</span></i><span> set to a nonzero cursor handle obtained from the <b>R_CreateCursor</b>
+  method.</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>MQ_LOOKUP_PEEK_CURRENT</p>
+  <p>0x40000010</p>
+  </td>
+  <td>
+  <p>Read the message specified by the <i>LookupId</i>
+  parameter, but do not remove it from the queue.</p>
+  <p>The valid values for other parameters are as follows:</p>
+  <ul><li><p><span><span>  
+  </span></span><i><span>LookupId</span></i><span> set to a nonzero value.</span></p>
+  </li><li><p><span><span>  
+  </span></span><i><span>hCursor</span></i><span> set to 0x00000000.</span></p>
+  </li><li><p><span><span>  
+  </span></span><i><span>ulTimeout</span></i><span> set to 0x00000000.</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>MQ_LOOKUP_PEEK_NEXT</p>
+  <p>0x40000011</p>
+  </td>
+  <td>
+  <p>Read the message following the message specified by
+  the <i>LookupId</i> parameter, but do not remove it.</p>
+  <p>The valid values for other parameters are as follows:</p>
+  <ul><li><p><span><span>  
+  </span></span><i><span>LookupId</span></i><span> set to a nonzero value.</span></p>
+  </li><li><p><span><span>  
+  </span></span><i><span>hCursor</span></i><span> set to 0x00000000.</span></p>
+  </li><li><p><span><span>  
+  </span></span><i><span>ulTimeout</span></i><span> set to 0x00000000.</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>MQ_LOOKUP_PEEK_PREV</p>
+  <p>0x40000012</p>
+  </td>
+  <td>
+  <p>Read the message preceding the message specified by
+  the <i>LookupId</i> parameter, but do not remove it from the queue.</p>
+  <p>The valid values for other parameters are as follows:</p>
+  <ul><li><p><span><span>  
+  </span></span><i><span>LookupId</span></i><span> set to a nonzero value.</span></p>
+  </li><li><p><span><span>  
+  </span></span><i><span>hCursor</span></i><span> set to 0x00000000.</span></p>
+  </li><li><p><span><span>  
+  </span></span><i><span>ulTimeout</span></i><span> set to 0x00000000.</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>MQ_LOOKUP_RECEIVE_CURRENT</p>
+  <p>0x40000020</p>
+  </td>
+  <td>
+  <p>Read the message specified by the <i>LookupId</i>
+  parameter, and remove it from the queue.</p>
+  <p>The valid values for other parameters are as follows:</p>
+  <ul><li><p><span><span>  
+  </span></span><i><span>LookupId</span></i><span> set to a nonzero value.</span></p>
+  </li><li><p><span><span>  
+  </span></span><i><span>hCursor</span></i><span> set to 0x00000000.</span></p>
+  </li><li><p><span><span>  
+  </span></span><i><span>ulTimeout</span></i><span> set to 0x00000000.</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>MQ_LOOKUP_RECEIVE_NEXT</p>
+  <p>0x40000021</p>
+  </td>
+  <td>
+  <p>Read the message following the message specified by
+  the <i>LookupId</i> parameter, and remove it from the queue.</p>
+  <p>The valid values for other parameters are as follows:</p>
+  <ul><li><p><span><span>  
+  </span></span><i><span>LookupId</span></i><span> set to a nonzero value.</span></p>
+  </li><li><p><span><span>  
+  </span></span><i><span>hCursor</span></i><span> set to 0x00000000.</span></p>
+  </li><li><p><span><span>  
+  </span></span><i><span>ulTimeout</span></i><span> set to 0x00000000.</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>MQ_LOOKUP_RECEIVE_PREV</p>
+  <p>0x40000022</p>
+  </td>
+  <td>
+  <p>Read the message preceding the message specified by
+  the <i>LookupId</i> parameter, and remove it from the queue.</p>
+  <p>The valid values for other parameters are as follows:</p>
+  <ul><li><p><span><span>  
+  </span></span><i><span>LookupId</span></i><span> set to 0x0000000000000000.</span></p>
+  </li><li><p><span><span>  
+  </span></span><i><span>hCursor</span></i><span> set to 0x00000000.</span></p>
+  </li><li><p><span><span>  
+  </span></span><i><span>ulTimeout</span></i><span> set to 0x00000000.</span></p>
+  </li></ul></td>
+ </tr></tbody></table><p>If the <i>hCursor</i> parameter is 0x00000000 and the <i>LookupId</i>
+parameter is 0x0000000000000000, the valid values for the <i>ulAction</i>
+parameter are as follows:</p><ul><li><p><span><span> 
+</span></span>MQ_ACTION_RECEIVE</p>
+</li><li><p><span><span> 
+</span></span>MQ_ACTION_PEEK_CURRENT</p>
+</li></ul><p><b>ulTimeout: </b>Specifies the time-out, in
+milliseconds, to wait for a message to become available in the queue. The valid
+value for this parameter is 0x00000000 if the <i>LookupId</i> parameter value
+is nonzero or if the action is not MQ_ACTION_RECEIVE, MQ_ACTION_PEEK_CURRENT,
+or MQ_ACTION_PEEK_NEXT.</p><p><b>dwRequestId: </b>MUST be set by the client to a
+unique correlation identifier for the receive request. This value MUST be used
+in a subsequent call to the <b>R_EndReceive</b> method or the <b>R_CancelReceive</b>
+method to correlate that call with the call to the <b>R_StartReceive</b>
+method. The value MUST NOT be used in another <b>R_StartReceive</b> method call
+on the same <b>QUEUE_CONTEXT_HANDLE_NOSERIALIZE</b> handle until a call to
+either the <b>R_EndReceive</b> method or the <b>R_CancelReceive</b> method with
+the same <i>dwRequestId</i> parameter value has been completed.</p><p><b>dwMaxBodySize: </b>MUST be set by the client to
+the maximum size, in bytes, of the <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_f8f4c2f5-c760-4abe-a9a1-573302980088" data-linktype="relative-path">message body</a></span> to be
+returned. The server SHOULD ignore this parameter when the message is not a <span><a href="f58c6a50-d82e-45e5-a237-d02e23c4e30f" data-linktype="relative-path">Binary
+Message (section 2.2.5.1.1)</a></span>.</p><p><b>dwMaxCompoundMessageSize: </b>MUST be set by the
+client to the maximum size, in bytes, of the <span><a href="ecf70c09-d312-4afc-9e2c-f61a5c827f47" data-linktype="relative-path">CompoundMessageHeader (section 2.2.5.1.2.2)</a></span>.
+The server SHOULD ignore this parameter when the message is not an <span><a href="33a3ca7d-5869-4478-9472-7f0e01711ca3" data-linktype="relative-path">SRMP
+Message (section 2.2.5.1.2)</a></span>. </p><p><b>pdwArriveTime: </b>The server MUST set this value
+to the time that the message was added to the queue (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section <span><a href="../ms-mqdmpr/2199b2a6-ac5b-4376-b8fd-468d9b66de4d" data-linktype="relative-path">3.1.7.3.1</a></span>),
+expressed as the number of seconds elapsed since midnight 00:00:00.0, January
+1, 1970 <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">UTC</a></span>.</p><p><b>pSequenceId: </b>The server MUST set this
+parameter to the least significant 7 bytes of the <b>Message.LookupIdentifier</b>
+of the message that is received by this request.</p><p><b>pdwNumberOfSections: </b>The server MUST set this
+parameter to the number of entries in the array pointed to by the <i>ppPacketSections</i>
+parameter.</p><p><b>ppPacketSections: </b>The server MUST set this
+parameter to an array of pointers to <b>SectionBuffer</b> structures. The
+server MUST fill this array in the following manner:</p><ul><li><p><span><span>  </span></span>Create
+two local variables of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+called <i>maxMessageSize</i> and <i>actualMessageSize</i>. Assign the following
+values to these variables:</p>
+<p>If the message is a Binary
+Message (section 2.2.5.1.1):</p>
+<ul><li><p><span><span> 
+</span></span><i>maxMessageSize</i> := <i>dwMaxBodySize</i></p>
+</li><li><p><span><span> 
+</span></span><i>actualMessageSize</i> := message packet body size</p>
+<p>If the message is an SRMP
+Message (section 2.2.5.1.2):</p>
+</li><li><p><span><span> 
+</span></span><i>maxMessageSize</i> := <i>dwMaxCompoundMessageSize</i></p>
+</li><li><p><span><span> 
+</span></span><i>actualMessageSize</i> := size in bytes of <b>CompoundMessageHeader</b></p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the value of <i>maxMessageSize</i> is greater than or equal to <i>actualMessageSize</i>,
+the <i>ppPacketSections</i> parameter MUST contain a single entry as follows:</p>
+<ul><li><p><span><span> 
+</span></span><span><a href="f325738c-eca9-4450-b09c-cfe8ade87d81" data-linktype="relative-path">SectionType (section 2.2.7)</a></span>
+MUST be set to stFullPacket (0x00000000).</p>
+</li><li><p><span><span> 
+</span></span>The <b>SectionSize</b> and <b>SectionSizeAlloc</b> elements MUST
+be set to the message packet size.</p>
+</li><li><p><span><span> 
+</span></span>The <b>pSectionBuffer</b> member MUST contain the entire message
+packet.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the value of <i>maxMessageSize</i> is less than <i>actualMessageSize</i>, the
+array MUST contain a first entry as follows:</p>
+<ul><li><p><span><span> 
+</span></span><b>SectionType</b> MUST be set to one of the following:</p>
+<ul><li><p><span><span> 
+</span></span>stBinaryFirstSection if the message packet is a binary packet.</p>
+</li><li><p><span><span> 
+</span></span>stSrmpFirstSection if the message packet is an SRMP packet.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The <b>pSectionBuffer</b> member MUST contain the <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_65255b08-c9d4-46d3-adca-3a296d43ae4f" data-linktype="relative-path">message
+packet headers</a></span> concatenated with the first <i>maxMessageSize</i>
+bytes of the message body.</p>
+</li><li><p><span><span> 
+</span></span>The <b>SectionSizeAlloc</b> member MUST be set to the message
+packet header size plus <i>actualMessageSize</i>.</p>
+</li><li><p><span><span> 
+</span></span>The <b>SectionSize</b> member MUST be set to the size of the <b>pSectionBuffer</b>
+member.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the value of <i>maxMessageSize</i> is less than <i>actualMessageSize</i> and
+the <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_8ae0387f-5b71-4be9-a326-fd130e7bef81" data-linktype="relative-path">message
+packet trailers</a></span> are not empty, the array MUST contain a second entry
+as follows:</p>
+<ul><li><p><span><span> 
+</span></span><b>SectionType</b> MUST be set to one of the following:</p>
+<ul><li><p><span><span> 
+</span></span>stBinarySecondSection if the message packet is a binary packet.</p>
+</li><li><p><span><span> 
+</span></span>stSrmpSecondSection if the message packet is an SRMP packet.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The <b>pSectionBuffer</b> member MUST contain the message packet
+trailers.</p>
+</li><li><p><span><span> 
+</span></span>The <b>SectionSize</b> member and the <b>SectionSizeAlloc</b>
+member MUST be equal and set to the message packet trailers size.</p>
+</li></ul></li><li><p><span><span>  </span></span>For
+the first entry in this array, the <b>pSectionBuffer</b> member points to a <span><a href="f9e71595-339a-4cc4-8341-371e0a4cb232" data-linktype="relative-path">Message
+Packet Structure (section 2.2.5)</a></span>. Within this structure,
+set <b>UserMessage.BaseHeader.TimeToReachQueue</b> to <b>UserHeader.SentTime</b>
++ <b>UserMessage.BaseHeader.TimeToReachQueue</b>.</p>
+</li></ul><p><b>Return Values: </b>On success, this method MUST return
+MQ_OK (0x00000000).</p><p>If an error occurs, the server MUST return a failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>,
+and the client MUST treat all failure <b>HRESULT</b>s identically. The client
+MUST disregard all output parameter values when any failure <b>HRESULT</b> is
+returned. For descriptions of the following error codes, see <span><a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a></span>
+section <span><a href="../ms-mqmq/d82d3639-1b64-44dd-88d7-9a104e8b2c58" data-linktype="relative-path">2.4</a></span>.
+For error codes not described in [MS-MQMQ], refer to <span><a href="https://go.microsoft.com/fwlink/?LinkId=90044" data-linktype="external">[MSDN-MQEIC]</a></span>.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>MQ_OK</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00E0007</p>
+  <p>MQ_ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00E001B</p>
+  <p>MQ_ERROR_IO_TIMEOUT</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00E0088</p>
+  <p>MQ_ERROR_MESSAGE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00E001D</p>
+  <p>MQ_ERROR_MESSAGE_ALREADY_RECEIVED</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00E0008</p>
+  <p>MQ_ERROR_OPERATION_CANCELLED</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00E0006</p>
+  <p>MQ_ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr></tbody></table><p>Exceptions Thrown:</p><p>No exceptions are thrown except those thrown by the
+underlying <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, as
+specified in [MS-RPCE].</p><p>While processing this method, the server MUST:</p><ul><li><p><span><span> 
+</span></span>If any of the input parameter values is invalid, return
+MQ_ERROR_INVALID_PARAMETER (0xC00E0006).</p>
+</li><li><p><span><span> 
+</span></span>Find the corresponding <b>OpenQueueDescriptor</b> ADM element
+instance by comparing the <i>phContext</i> parameter with the <b>Handle</b> ADM
+attribute for all <b>OpenQueueDescriptor</b> ADM element instances maintained
+by the local <b>QueueManager</b> ADM element instance.</p>
+</li><li><p><span><span> 
+</span></span>If not found, return a failure <b>HRESULT</b>, and perform no
+further actions; otherwise, assign the found <b>OpenQueueDescriptor</b> ADM
+element instance to the local variable <i>queueDesc</i>.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>hCursor</i> parameter is a nonzero value, find the
+corresponding <b>Cursor</b> ADM element instance by comparing the <i>hCursor</i>
+parameter with the <b>Handle</b> ADM attribute for all <b>Cursor</b> ADM
+element instances maintained by the local <b>QueueManager</b> ADM element
+instance. If not found, or the <b>Cursor</b> ADM element instance has
+previously been closed by a call to the <b>R_CloseCursor</b> method, return
+STATUS_INVALID_HANDLE (0xC0000008); otherwise, assign the found <b>Cursor</b>
+ADM element instance to the local variable <i>localCursor</i>.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ulAction</i> parameter is MQ_ACTION_RECEIVE, perform
+the following steps:</p>
+<ul><li><p><span><span>  </span></span>Create
+a new <span><a href="d068bd5b-b930-404f-a147-05b27a6a82a0" data-linktype="relative-path">PendingRequestEntry (section 3.1.1.2)</a></span>
+ADM element instance with:</p>
+<ul><li><p><span><span> 
+</span></span>The <b>RequestId</b> ADM attribute set to the <i>dwRequestId</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>The <b>QueueContextHandle</b> ADM attribute set to the <i>phContext</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>The <b>LookupIdentifier</b> ADM attribute set to zero.</p>
+</li><li><p><span><span> 
+</span></span>The <b>TimeStamp</b> ADM attribute set to the current system
+time, in milliseconds, since the operating system was started.</p>
+</li></ul></li><li><p><span><span>  </span></span>The
+server MUST create a new instance of the <span><a href="2527bcdd-6427-4695-8755-d555c4f055f3" data-linktype="relative-path">Pending Request Cleanup
+Timer (section 3.1.2.2)</a></span> associated with the new <b>PendingRequestEntry</b>
+ADM element instance and MUST start it.</p>
+</li><li><p><span><span>  </span></span>Add
+the new <b>PendingRequestEntry</b> ADM element instance to the <span><a href="9712f072-8179-43ba-861c-d9c50ab0df4f" data-linktype="relative-path">PendingRequestTable (section 3.1.1.3)</a></span>
+ADM element.</p>
+</li><li><p><span><span>  </span></span>Generate
+a <span><a href="../ms-mqdmpr/e322d06b-5bd6-4cb0-abbb-4485526834a6" data-linktype="relative-path">Dequeue
+Message Begin</a></span> ([MS-MQDMPR] section 3.1.7.1.11) event with the
+following inputs:</p>
+<ul><li><p><span><span> 
+</span></span><i>iQueueDesc</i> := <i>queueDesc</i></p>
+</li><li><p><span><span> 
+</span></span><i>iTimeout</i> := <i>ulTimeout</i></p>
+</li><li><p><span><span> 
+</span></span><i>iCursor</i> := <i>localCursor</i> only if the <i>hCursor</i>
+parameter is a nonzero value</p>
+</li><li><p><span><span> 
+</span></span><i>iTag</i> := <i>dwRequestId</i></p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the <i>rStatus</i> value returned from the Dequeue Message Begin event is MQ_OK
+(0x00000000), the server MUST set the <b>LookupIdentifier</b> ADM attribute of
+the new <b>PendingRequestEntry</b> ADM element instance to <i>rMessage</i>.<b>LookupIdentifier</b>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>ulAction</i> parameter is MQ_ACTION_PEEK_CURRENT,
+generate a <span><a href="../ms-mqdmpr/658f62aa-ac0f-4916-b6dc-d4fa7539b62d" data-linktype="relative-path">Peek
+Message</a></span> ([MS-MQDMPR] section 3.1.7.1.15) event with the following
+inputs:</p>
+<ul><li><p><span><span>  </span></span><i>iQueueDesc</i>
+:= <i>queueDesc</i></p>
+</li><li><p><span><span>  </span></span><i>iTimeout</i>
+:= <i>ulTimeout</i></p>
+</li><li><p><span><span>  </span></span><i>iCursor</i>
+:= <i>localCursor</i> only if the <i>hCursor</i> parameter is a nonzero value</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>ulAction</i> parameter is MQ_ACTION_PEEK_NEXT, generate
+a <span><a href="../ms-mqdmpr/032bebe9-fbdc-4cb4-a10a-f3fcad2314f5" data-linktype="relative-path">Peek Next
+Message</a></span> ([MS-MQDMPR] section 3.1.7.1.14) event with the following
+inputs:</p>
+<ul><li><p><span><span>  </span></span><i>iQueueDesc</i>
+:= <i>queueDesc</i></p>
+</li><li><p><span><span>  </span></span><i>iTimeout</i>
+:= <i>ulTimeout</i></p>
+</li><li><p><span><span>  </span></span><i>iCursor</i>
+:= <i>localCursor</i></p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>ulAction</i> parameter is MQ_LOOKUP_PEEK_CURRENT,
+generate a <span><a href="../ms-mqdmpr/2e10eb70-1822-4df2-8e00-06257dda0807" data-linktype="relative-path">Read
+Message By Lookup Identifier</a></span> ([MS-MQDMPR] section 3.1.7.1.13) event
+with the following inputs:</p>
+<ul><li><p><span><span>  </span></span><i>iQueueDesc</i>
+:= <i>queueDesc</i></p>
+</li><li><p><span><span>  </span></span><i>iLookupId</i>
+:= <i>LookupId</i></p>
+</li><li><p><span><span>  </span></span><i>iPeekOperation</i>
+:= True</p>
+</li><li><p><span><span>  </span></span><i>iLookupOperation</i>
+:= <b>MessageSeekAction</b>.<b>SeekCurrent</b></p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>ulAction</i> parameter is MQ_LOOKUP_PEEK_NEXT, generate
+a Read Message By Lookup Identifier event with the following inputs:</p>
+<ul><li><p><span><span>  </span></span><i>iQueueDesc</i>
+:= <i>queueDesc</i></p>
+</li><li><p><span><span>  </span></span><i>iLookupId</i>
+:= <i>LookupId</i></p>
+</li><li><p><span><span>  </span></span><i>iPeekOperation</i>
+:= True</p>
+</li><li><p><span><span>  </span></span><i>iLookupOperation</i>
+:= <b>MessageSeekAction</b>.<b>SeekNext</b></p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>ulAction</i> parameter is MQ_LOOKUP_PEEK_PREV, generate
+a Read Message By Lookup Identifier event with the following inputs:</p>
+<ul><li><p><span><span>  </span></span><i>iQueueDesc</i>
+:= <i>queueDesc</i></p>
+</li><li><p><span><span>  </span></span><i>iLookupId</i>
+:= <i>LookupId</i></p>
+</li><li><p><span><span>  </span></span><i>iPeekOperation</i>
+:= True</p>
+</li><li><p><span><span>  </span></span><i>iLookupOperation</i>
+:= <b>MessageSeekAction</b>.<b>SeekPrev</b></p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>ulAction</i> parameter is MQ_LOOKUP_RECEIVE_CURRENT,
+generate a Read Message By Lookup Identifier event with the following inputs:</p>
+<ul><li><p><span><span>  </span></span><i>iQueueDesc</i>
+:= <i>queueDesc</i></p>
+</li><li><p><span><span>  </span></span><i>iLookupId</i>
+:= <i>LookupId</i></p>
+</li><li><p><span><span>  </span></span><i>iPeekOperation</i>
+:= False</p>
+</li><li><p><span><span>  </span></span><i>iLookupOperation</i>
+:= <b>MessageSeekAction</b>.<b>SeekCurrent</b></p>
+</li><li><p><span><span>  </span></span><i>iTwoPhaseRead</i>
+:= True</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>ulAction</i> parameter is MQ_LOOKUP_RECEIVE_NEXT,
+generate a Read Message By Lookup Identifier event with the following inputs:</p>
+<ul><li><p><span><span>  </span></span><i>iQueueDesc</i>
+:= <i>queueDesc</i></p>
+</li><li><p><span><span>  </span></span><i>iLookupId</i>
+:= <i>LookupId</i></p>
+</li><li><p><span><span>  </span></span><i>iPeekOperation</i>
+:= False</p>
+</li><li><p><span><span>  </span></span><i>iLookupOperation</i>
+:= <b>MessageSeekAction</b>.<b>SeekNext</b></p>
+</li><li><p><span><span>  </span></span><i>iTwoPhaseRead</i>
+:= True</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>ulAction</i> parameter is MQ_LOOKUP_RECEIVE_PREV,
+generate a Read Message By Lookup Identifier event with the following inputs:</p>
+<ul><li><p><span><span>  </span></span><i>iQueueDesc</i>
+:= <i>queueDesc</i></p>
+</li><li><p><span><span>  </span></span><i>iLookupId</i>
+:= <i>LookupId</i></p>
+</li><li><p><span><span>  </span></span><i>iPeekOperation</i>
+:= False</p>
+</li><li><p><span><span>  </span></span><i>iLookupOperation</i>
+:= <b>MessageSeekAction</b>.<b>SeekPrev</b></p>
+</li><li><p><span><span>  </span></span><i>iTwoPhaseRead</i>
+:= True</p>
+</li></ul></li></ul><p>If the <i>rStatus</i> value returned from the preceding
+events is MQ_OK (Ox00000000), the server MUST:</p><ul><li><p><span><span> 
+</span></span>Use <i>rMessage</i> to fill the <i>ppPacketSections</i> array as
+specified in the <i>ppPacketSections</i> parameter description. If the <i>ulAction</i>
+type, as defined in the table under the <i>ulAction</i> parameter, is Receive,
+the server MUST do the following:</p>
+</li><li><p><span><span> 
+</span></span>Set the <i>pdwArriveTime</i> parameter to <i>rMessage</i>.<b>ArrivalTime</b>.</p>
+</li></ul><p>Return <i>rStatus</i>.</p></div>

@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The BLOB structure defines a counted array of unsigned
+characters.</p><dl>
+<dd>
+<div><pre> typedef struct tagBLOB {
+   unsigned long cbSize;
+   [size_is(cbSize)] unsigned char* pBlobData;
+ } BLOB;
+</pre></div>
+</dd></dl><p><b>cbSize:</b>  A 32-bit unsigned integer
+that specifies the size of the array of unsigned characters pointed to by <b>pBlobData</b>.</p><p><b>pBlobData:</b>  An array of 8-bit
+unsigned characters.</p></div>

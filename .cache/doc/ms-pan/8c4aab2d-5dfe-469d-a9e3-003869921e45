@@ -1,0 +1,166 @@
+<div class="content"><p> </p><p>The IRPCAsyncNotify_GetNotificationSendResponse method sends
+a client <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_115e9f9c-314e-49fc-977d-238daf619828" data-linktype="relative-path">response</a></span> to the
+server and returns the next <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_4571dc27-4115-4cdf-8dc3-f8fe410a9966" data-linktype="relative-path">notification</a></span> sent by
+way of the same channel when it becomes available. This method MUST be used
+only with <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_b1d50fe5-0a8c-44fe-8802-3382d1af77e5" data-linktype="relative-path">bidirectional communication
+mode</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT IRPCAsyncNotify_GetNotificationSendResponse(
+   [in, out] PNOTIFYOBJECT* pChannel,
+   [in, unique] PrintAsyncNotificationType* pInNotificationType,
+   [in] unsigned long InSize,
+   [in, size_is(InSize), unique] byte* pInNotificationData,
+   [out] PrintAsyncNotificationType** ppOutNotificationType,
+   [out] unsigned long* pOutSize,
+   [out, size_is( , *pOutSize)] byte** ppOutNotificationData
+ );
+</pre></div>
+</dd></dl><p><b>pChannel: </b>A pointer to a <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_31f349c9-3af0-4057-9d90-5ecb958398a5" data-linktype="relative-path">notification
+channel</a></span> that MUST NOT be closed or zero, and which MUST have been
+returned by the server in the <i>ppChannelCtxt</i> output parameter of a prior
+call to <span><a href="0851fada-b2ca-441f-835a-2503d3862a1f" data-linktype="relative-path">IRPCAsyncNotify_GetNewChannel</a></span>.
+If the server closes the notification channel, it MUST set the <i>pChannel</i>
+value to NULL upon return from this method. If the notification channel was
+acquired by a different client, the server MUST set the <i>pChannel</i> value
+to NULL upon return from this method.</p><p><b>pInNotificationType: </b>A NULL value or a pointer
+to a <span><a href="89ef806f-96ee-4178-9f36-3e1420820a4f" data-linktype="relative-path">PrintAsyncNotificationType</a></span>
+structure that specifies the <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_928ce1b5-ae98-4601-b500-48cb24b2affc" data-linktype="relative-path">notification type identifier</a></span>
+of the <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_ad9bb1cf-c546-4d8a-8caa-09856386eae0" data-linktype="relative-path">notification type</a></span> in
+which the registered client is interested. </p><dl>
+<dd>
+<p>On the first call to this method, the value of <i>pInNotificationType</i>
+MUST be NULL. On subsequent calls to this method, the value of <i>pInNotificationType</i>
+MUST be a pointer to a PrintAsyncNotificationType structure that specifies the
+notification type identifier for which the client has registered.</p>
+</dd></dl><p><b>InSize: </b>The size, in bytes, of the input data
+that the <i>pInNotificationData</i> parameter points to. The server SHOULD
+impose an upper limit of 0x00A00000 on this value. If the client exceeds the
+server-imposed limit, the server MUST return an error result.</p><p><b>pInNotificationData: </b>A pointer to input data
+holding the client&#39;s response to the previous notification that was received on
+the same bidirectional notification channel.</p><dl>
+<dd>
+<p>On the first call to this method for a given
+channel, the client SHOULD provide zero bytes of response data and the server
+MUST ignore any response data sent. On subsequent calls to this method, the
+response format MUST conform to the requirements of the notification channel&#39;s
+notification type, and those notification type requirements determine whether
+or a not a zero-byte response is acceptable.</p>
+</dd>
+<dd>
+<p>If the value of <i>InSize</i> is not 0x00000000, <i>pInNotificationData</i>
+MUST NOT be NULL.</p>
+</dd></dl><p><b>ppOutNotificationType: </b>A pointer to the
+returned pointer to the notification type identifier of the server-to-client
+notification. If the notification channel was acquired by a different client,
+the value MUST be <b>NOTIFICATION_RELEASE</b> (section 2.2.1). If the server
+needs to close the notification channel without sending a final response, the
+value SHOULD be <b>NOTIFICATION_RELEASE</b>. In all other cases, the value MUST
+be the same as the notification type identifier of the notification type for
+which the client has registered.</p><p><b>pOutSize: </b>A pointer to the returned length of
+server-to-client notification data, in number of bytes. The client MAY impose
+an upper limit on this value that is smaller than the maximum unsigned 32-bit
+integer. If the notification channel was acquired by a different client, the
+server SHOULD set the value of <i>pOutSize</i> to 0x00000000. If the value of <i>ppOutNotificationType</i>
+points to <b>NOTIFICATION_RELEASE</b>, the server SHOULD set the value of <i>pOutSize</i>
+to 0x00000000.</p><p><b>ppOutNotificationData: </b>A pointer to the
+returned pointer to server-to-client notification data in a format that MUST
+conform to the notification channel&#39;s notification type. If the notification
+channel was acquired by a different client, the server SHOULD set the value of <i>ppOutNotificationData</i>
+to NULL. If the value of <i>ppOutNotificationType</i> points to <b>NOTIFICATION_RELEASE</b>,
+the client MUST ignore the content of <i>ppOutNotificationData</i>. </p><p><b>Return Values: </b>This method MUST return zero to
+indicate success, or an <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> error value
+(<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a></span>)
+to indicate failure. Protocol-specific error values are defined in the
+following table. The client MUST consider all error return values fatal and
+report them to the higher-level caller.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80040008</p>
+  </td>
+  <td>
+  <p>The notification channel represented by <i>pChannel</i>
+  was previously closed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8004000C</p>
+  </td>
+  <td>
+  <p>The server has not yet returned from a previous call
+  to IRPCAsyncNotify_GetNotificationSendResponse or <span><a href="348e9e06-a6fc-47a3-9f87-69b8f805e970" data-linktype="relative-path">IRPCAsyncNotify_CloseChannel (section 3.1.1.4.6)</a></span>
+  with the same notification channel.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80040012</p>
+  </td>
+  <td>
+  <p>The size of the client-to-server response exceeded the
+  maximum size.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80040014</p>
+  </td>
+  <td>
+  <p>The notification type identifier is different from the
+  notification type of the notification channel.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007000E</p>
+  </td>
+  <td>
+  <p>The server does not have enough memory to complete the
+  request.</p>
+  </td>
+ </tr></tbody></table><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>If a failure is indicated by an error return or an
+exception, the client SHOULD close the channel.</p><p>The first call to this method on the newly opened
+notification channel serves as a mediator among all the clients that registered
+themselves for the given notification type. This MUST be done by blocking all
+calls from clients until a matching server-side event occurs, including the
+following:</p><ul><li><p><span><span> 
+</span></span>The channel issues a notification.</p>
+</li><li><p><span><span> 
+</span></span>An abnormal condition occurs, such as an initiated server
+shutdown sequence.</p>
+</li><li><p><span><span> 
+</span></span>The server receives a client request to close the channel.</p>
+</li></ul><p>The server MUST do the following.</p><ul><li><p><span><span> 
+</span></span>Choose the first client that sent a response, whether by calling
+this method or by calling <span><a href="991d48b0-4b59-4ed6-b1d0-902aa863afc9" data-linktype="relative-path">IRPCAsyncNotify_CloseChannel</a></span>
+with a notification type identifier other than <b>NOTIFICATION_RELEASE</b>, and
+assign the opened notification channel to that client.</p>
+</li><li><p><span><span> 
+</span></span>For all other clients, set the value of the <i>ppOutNotificationType</i>
+output parameter to <b>NOTIFICATION_RELEASE</b> and the value of the <i>pChannel</i>
+parameter to NULL.</p>
+</li><li><p><span><span> 
+</span></span>Return an HRESULT success value [MS-ERREF] to all the other
+clients that have outstanding blocked calls to this method.</p>
+</li></ul><p>All subsequent calls to this method MUST take the response
+provided by the client that was assigned to the notification channel and pass
+it to the server-resident <span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_7c039695-d5b5-4f3c-859a-a691d150b289" data-linktype="relative-path">notification source</a></span>
+that opened the notification channel. The call MUST return when a subsequent
+notification is sent from a notification source using the bidirectional
+notification channel; the channel is closed; or an abnormal event happens, such
+as the print spooler server terminating its execution.</p><p>The server MUST NOT indicate success to a client call to
+this method if a prior call to IRPCAsyncNotify_CloseChannel succeeded
+specifying the same notification channel.</p><p>A client MUST NOT call
+IRPCAsyncNotify_GetNotificationSendResponse following a prior successful return
+from IRPCAsyncNotify_GetNotificationSendResponse with a NULL output value of
+the <i>pChannel</i> parameter or following a prior successful return from
+IRPCAsyncNotify_CloseChannel.</p><p>A client SHOULD call IRPCAsyncNotify_GetNotificationSendResponse
+or IRPCAsyncNotify_CloseChannel following a prior successful return from
+IRPCAsyncNotify_GetNotificationSendResponse with a non-NULL output value of the
+<i>pChannel</i> parameter.</p></div>

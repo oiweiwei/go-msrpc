@@ -1,0 +1,13 @@
+<div class="content"><p>The Reconnect_Return structure is used to obtain return
+information from a Reconnect call (for more information, see section <a href="e8279307-69e0-480b-a1e6-ac9afe88f6b0" data-linktype="relative-path">3.1.4.36</a>).</p><dl>
+<dd>
+<div><pre> typedef struct Reconnect_Return {
+   long ReturnCode;
+   unsigned long dwActiveProtocol;
+ } Reconnect_Return;
+</pre></div>
+</dd></dl><p><b>ReturnCode:</b>  <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a> or Win32 Error code.
+Zero indicates success; any other value indicates failure.</p><p><b>dwActiveProtocol:</b>  A flag that
+indicates the established active protocol. For more information on acceptable
+values, see section <a href="41673567-2710-4e86-be87-7b6f46fe10af" data-linktype="relative-path">2.2.5</a>
+.</p></div>

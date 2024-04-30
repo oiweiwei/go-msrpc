@@ -1,0 +1,188 @@
+<div class="content"><p> </p><p>The <b>R_DhcpSetOptionValues</b> method creates the option
+values when called for the first time. Otherwise, it modifies the option values
+of one or more options at a specified level for a default <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_713c7395-9431-4d67-bab1-a069ae7461e2" data-linktype="relative-path">user
+class</a></span> and <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_45d20b00-7166-4f94-b679-4cc5a7835a3a" data-linktype="relative-path">vendor class</a></span> pair
+(that is, at the default, <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>, <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_128cd76b-eecb-41e6-96f7-f73c2bf9235a" data-linktype="relative-path">scope</a></span>,
+<span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_04286a2c-1484-44d0-9854-7c57c8b4118c" data-linktype="relative-path">multicast
+scope</a></span>, or IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4e525014-9425-4eb0-9141-61189c4f04f9" data-linktype="relative-path">reservation</a></span> level).
+The <i>ScopeInfo</i> parameter defines the scope on which these option values
+are modified. The extension of this method is <span><a href="e582b7f7-3d2b-49fa-ace7-7236703a8a1c" data-linktype="relative-path">R_DhcpSetOptionValuesV5 (section 3.2.4.21)</a></span>,
+which sets/modifies the option values of one or more options for a specific
+user class and vendor class pair.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpSetOptionValues(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, ref] LPDHCP_OPTION_SCOPE_INFO ScopeInfo,
+   [in, ref] LPDHCP_OPTION_VALUE_ARRAY OptionValues
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>ScopeInfo: </b>This is a pointer to a <span><a href="177415f4-85c1-4496-a414-4938dca18b93" data-linktype="relative-path">DHCP_OPTION_SCOPE_INFO (section 2.2.1.2.41)</a></span>
+structure that contains the level (that is, default, server, scope, multicast
+scope, or IPv4 reservation level) at which the option values are set.</p><p><b>OptionValues: </b>This is a pointer of type <span><a href="313eaf77-256b-44d3-b303-8cca3f158939" data-linktype="relative-path">DHCP_OPTION_VALUE_ARRAY (section 2.2.1.2.43)</a></span>
+structure that points to the location that contains one or more option
+identifiers along with the values.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist on the DHCP
+  server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2A</p>
+  <p>ERROR_DHCP_OPTION_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified option definition does not exist in the
+  DHCP server database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E4C</p>
+  <p>ERROR_DHCP_CLASS_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The class name being used is unknown or incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E32</p>
+  <p>ERROR_DHCP_NOT_RESERVED_CLIENT</p>
+  </td>
+  <td>
+  <p>The specified DHCP client is not a reserved client.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 24.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read/write access
+per section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not, return
+ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>NumElements</b> member of the DHCP_OPTION_VALUE_ARRAY
+structure is 0, return ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>Validate the data pointed to by the input parameter <i>OptionValues</i>.
+If the <b>Values</b> member of the DHCP_OPTION_VALUE_ARRAY structure is NULL
+and the <b>NumElements</b> member is greater than 0, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>For each <b>Values</b> member configured in the <i>OptionValues</i>
+parameter, take the following action:</p>
+<ul><li><p><span><span>  </span></span>If
+the <i>ScopeInfo</i> parameter contains DhcpDefaultOptions, iterate though the
+server Abstract Data Model (ADM) element <b>DHCPv4OptionDefList</b> and
+retrieve the <b>DHCPv4ClassedOptDefList</b> ADM element corresponding to the <b>DHCPv4OptionDef</b>
+ADM element entry whose <b>UserClass</b> and <b>VendorClass</b> ADM element
+fields are NULL. If <b>DHCPv4OptionDef</b> entry is not found, return
+ERROR_DHCP_CLASS_NOT_FOUND.  Iterate through the <b>DHCPv4ClassedOptDefList</b>
+ADM element and retrieve the <b>DHCPv4ClassedOptDef</b> ADM element entry
+corresponding to <b>OptionID</b> member.</p>
+</li><li><p><span><span>  </span></span>If the
+<i>ScopeInfo</i> parameter contains DhcpDefaultOptions, and if the <b>DHCPv4ClassedOptDef</b>
+ADM element is not found, return ERROR_DHCP_OPTION_NOT_PRESENT.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>ScopeInfo</i> parameter contains DhcpDefaultOptions, modify the <b>DHCPv4ClassedOptDef</b>
+ADM element entry with information in the <b>Values</b> member for that <b>OptionID</b>
+member, and return ERROR_SUCCESS.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>ScopeInfo</i> parameter contains DhcpGlobalOptions, iterate through the
+server ADM element <b>DHCPv4ServerOptValueList</b> and retrieve the <b>DHCPv4OptionValue</b>
+ADM element entry whose <b>UserClass</b> and <b>VendorClass</b> ADM element
+fields are NULL. If the <b>DHCPv4OptionValue</b> ADM element entry is not
+found, return ERROR_DHCP_CLASS_NOT_FOUND. Retrieve the <b>DHCPv4ClassedOptValue</b>
+ADM element entry corresponding to the <b>OptionID</b> member from the <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b>
+ADM element. If the <b>DHCPv4ClassedOptValue</b> ADM element entry is not
+found, return ERROR_DHCP_OPTION_NOT_PRESENT. Modify the <b>Value</b> member of
+the retrieved <b>DHCPv4ClassedOptValue</b> ADM element with information in the <b>Values</b>
+member for that <b>OptionID</b> member, and return ERROR_SUCCESS.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>ScopeInfo</i> parameter contains DhcpSubnetOptions, retrieve the <b>DHCPv4Scope</b>
+ADM element entry corresponding to the <i>ScopeInfo</i> parameter from the
+server ADM element <b>DHCPv4ScopesList</b> ADM element. If the <b>DHCPv4Scope</b>
+ADM element entry is not found, return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span>  </span></span>If <i>ScopeInfo</i>
+contains DhcpSubnetOptions, iterate through <b>DHCPv4Scope.DHCPv4ScopeOptValuesList</b>
+and retrieve the <b>DHCPv4OptionValue</b> ADM element entry whose <b>UserClass</b>
+and <b>VendorClass</b> ADM element fields are NULL. If the <b>DHCPv4OptionValue</b> 
+ADM element entry is not found, return ERROR_DHCP_CLASS_NOT_FOUND. Retrieve the
+<b>DHCPv4ClassedOptValue</b> ADM element entry corresponding to the <b>OptionID</b>
+member from the <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b> ADM element.
+If the <b>DHCPv4ClassedOptValue</b> ADM element entry is not found, return
+ERROR_DHCP_OPTION_NOT_PRESENT. Modify the <b>Value</b> member of the retrieved <b>DHCPv4ClassedOptValue</b>
+ADM element with information in the <b>Values</b> member for that <b>OptionID</b>
+member, and return ERROR_SUCCESS.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>ScopeInfo</i> parameter contains DhcpMScopeOptions, retrieve the <b>DHCPv4MScope</b>
+ADM element entry corresponding to the <i>ScopeInfo</i> parameter from the
+server ADM element <b>DHCPv4MScopesList</b>. If the <b>DHCPv4MScope</b> ADM
+element entry is not found, return ERROR_FILE_NOT_FOUND.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>ScopeInfo</i> parameter contains DhcpMScopeOptions, iterate through <b>DHCPv4MScope.DHCPv4MScopeOptValuesList</b>
+ADM element and retrieve the <b>DHCPv4OptionValue</b> ADM element entry whose <b>UserClass</b>
+and <b>VendorClass</b> ADM element fields are NULL. If the <b>DHCPv4OptionValue</b>
+ADM element entry is not found, return ERROR_DHCP_CLASS_NOT_FOUND. Retrieve the
+<b>DHCPv4ClassedOptValue</b> ADM element entry corresponding to <b>OptionID</b>
+member from the <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b> ADM element.
+If the <b>DHCPv4ClassedOptValue</b> entry is not found, return
+ERROR_DHCP_OPTION_NOT_PRESENT. Modify the <b>Value</b> member of the retrieved <b>DHCPv4ClassedOptValue</b>
+ADM element with information in the <b>Values</b> member for that <b>OptionID</b>
+member, and return ERROR_SUCCESS.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>ScopeInfo</i> parameter contains DhcpReservedOptions, retrieve the <b>DHCPv4Scope</b>
+ADM element entry from the server ADM element <b>DHCPv4ScopesList</b> that
+contains the <b>ReservedIpAddress</b> member of the <i>ScopeInfo</i> parameter.
+If the <b>DHCPv4Scope</b> ADM element entry is not found, return
+ERROR_FILE_NOT_FOUND. Retrieve the <b>DHCPv4Reservation</b> ADM element entry
+from the <b>DHCPv4Scope.DHCPv4ReservationsList</b> ADM element corresponding to
+the <b>ReservedIpAddress</b> member.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>ScopeInfo</i> parameter contains DhcpReservedOptions, and if the <b>ReservedIpAddress</b>
+member is not part of any of the <b>DHCPv4Scope</b> ADM element, or if there is
+no <b>DHCPv4Reservation</b> ADM element corresponding to the <b>ReservedIpAddress</b>
+member, return ERROR_DHCP_NOT_RESERVED_CLIENT.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>ScopeInfo</i> parameter contains DhcpReservedOptions, and if the <b>DHCPv4Scope</b>
+ADM element entry is found, and if the <b>ScopeInfo.SubnetAddress</b> ADM
+element does not match the <i>ScopeInfo</i> parameter&#39;s <b>ReservedIpSubnetAddress</b>
+member, then return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span>  </span></span> If
+the <i>ScopeInfo</i> parameter contains DhcpReservedOptions, iterate through <b>DHCPv4Reservation.DHCPv4ResvOptValuesList</b>
+ADM element and retrieve the <b>DHCPv4OptionValue</b> ADM element entry whose <b>UserClass</b>
+and <b>VendorClass</b> ADM element fields are NULL. If the <b>DHCPv4OptionValue</b>
+ADM element entry is not found, return ERROR_DHCP_CLASS_NOT_FOUND. Retrieve the
+<b>DHCPv4ClassedOptValue</b> entry corresponding to <b>OptionID</b> member from
+the <b>DHCPv4OptionValue.DHCPv4ClassedOptValueList</b>. If the <b>DHCPv4ClassedOptValue</b>
+ADM element entry is not found, return ERROR_DHCP_OPTION_NOT_PRESENT. Modify
+the <b>Value</b> member of the retrieved <b>DHCPv4ClassedOptValue</b> ADM
+element with information in the <b>Values</b> member for that <b>OptionID</b>
+member, and return ERROR_SUCCESS.</p>
+</li></ul></li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,62 @@
+<div class="content"><p>The LINEMEDIACONTROLDIGIT packet describes a media action to
+be executed when detecting a digit. It is used as an entry in an array. The <a href="b3f7fcb1-4451-4179-ab85-a10ea0f7fa06" data-linktype="relative-path">SetMediaControl</a> packet
+uses this packet. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwDigit</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwDigitModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwMediaControl</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwDigit (4 bytes): </b>An unsigned 32-bit integer.
+Low-order byte is the digit in whose detection is to trigger a media
+action.Valid digits depend on the media type. </p><p><b>dwDigitModes (4 bytes): </b>An unsigned 32-bit
+integer. The digit modes to monitor. This member MUST use one or more of the <a href="fec875c7-afff-494a-94d1-b9d6fe292d5f" data-linktype="relative-path">LINEDIGITMODE_Constants</a>. </p><p><b>dwMediaControl (4 bytes): </b>An unsigned 32-bit
+integer. The media control action. This member MUST use one of the <a href="3e050929-c418-49ee-b0d9-45e33e6c6f0f" data-linktype="relative-path">LINEMEDIACONTROL_Constants</a>.
+</p><p>This packet cannot be extended.</p><p>The LINEMEDIACONTROLDIGIT packet defines a triple &lt;digit,
+digit modes, media-control action&gt;. An array of these triples is passed to
+the SetMediaControl packet to set the media control actions triggered by digits
+detected on a given call. When a listed digit is detected, then the
+corresponding action on the media stream is invoked.</p></div>

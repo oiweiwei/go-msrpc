@@ -1,0 +1,23 @@
+<div class="content"><p>The <b>BaseInitiateShutdown</b> method is used to initiate
+the shutdown of the remote computer.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="226cc244-36f0-441f-8ce9-57e616e8409b#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p><dl>
+<dd>
+<div><pre> unsigned long BaseInitiateShutdown(
+   [in, unique] PREGISTRY_SERVER_NAME ServerName,
+   [in, unique] PREG_UNICODE_STRING lpMessage,
+   [in] unsigned long dwTimeout,
+   [in] unsigned char bForceAppsClosed,
+   [in] unsigned char bRebootAfterShutdown
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>The custom <a href="7a7ca3c2-1346-417b-93e8-e8940a524da6#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding <a href="7a7ca3c2-1346-417b-93e8-e8940a524da6#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a> (<a href="c9a7064d-27c8-4886-ab14-fe884166a240" data-linktype="relative-path">PREGISTRY_SERVER_NAME (section 2.2.1)</a>).</p><p><b>lpMessage: </b>Null-terminated Unicode string that
+contains the message to display during the shutdown waiting period. If this
+parameter is NULL, no message MUST be displayed.</p><p><b>dwTimeout: </b>Number of seconds to wait before
+shutting down.</p><p><b>bForceAppsClosed: </b>If TRUE, all applications SHOULD
+be terminated unconditionally.</p><p><b>bRebootAfterShutdown: </b>If TRUE, the system
+SHOULD shut down and reboot. If FALSE, the system SHOULD only shut down.</p><p><b>Return Values: </b>The method returns
+ERROR_SUCCESS (0x00000000) on success; otherwise, it returns a nonzero error
+code.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="226cc244-36f0-441f-8ce9-57e616e8409b#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p><p>On receiving this call, the server MUST perform the
+following validation step:</p><ul><li><p><span><span> 
+</span></span>Verify that the caller has sufficient privileges to shut down the
+computer; otherwise, the server MUST return ERROR_ACCESS_DENIED.</p>
+</li></ul></div>

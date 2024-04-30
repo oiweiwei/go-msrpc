@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/225147b1-45b7-4fde-a5bf-bf420e18fa08" data-linktype="external">msdn link</a></p><p>The SAMPR_GET_MEMBERS_BUFFER structure represents the
+membership of a group.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_GET_MEMBERS_BUFFER {
+   unsigned long MemberCount;
+   [size_is(MemberCount)] unsigned long* Members;
+   [size_is(MemberCount)] unsigned long* Attributes;
+ } SAMPR_GET_MEMBERS_BUFFER,
+  *PSAMPR_GET_MEMBERS_BUFFER;
+</pre></div>
+</dd></dl><p><b>MemberCount:</b>  The number of elements
+in <b>Members</b> and <b>Attributes</b>. If zero, <b>Members</b> and <b>Attributes</b>
+MUST be ignored. If nonzero, <b>Members</b> and <b>Attributes</b> MUST point to
+at least MemberCount * sizeof(unsigned long) bytes of memory.</p><p><b>Members:</b>  An array of <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RIDs</a>.</p><p><b>Attributes:</b>  Characteristics about
+the membership, represented as a bitmask. Values are defined in section <a href="9e093bd2-e451-4dd5-9700-97b977d7ebb2" data-linktype="relative-path">2.2.1.10</a>.</p></div>

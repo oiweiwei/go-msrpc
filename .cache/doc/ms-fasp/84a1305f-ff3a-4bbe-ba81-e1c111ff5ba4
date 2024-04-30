@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The FW_CERT_CRITERIA_TYPE enumeration defines whether the
+criteria are to be used for selection, validation, or both.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FW_CERT_CRITERIA_TYPE_BOTH,
+   FW_CERT_CRITERIA_TYPE_SELECTION,
+   FW_CERT_CRITERIA_TYPE_VALIDATION,
+   FW_CERT_CRITERIA_TYPE_MAX
+ } FW_CERT_CRITERIA_TYPE;
+</pre></div>
+</dd></dl><p><b>FW_CERT_CRITERIA_TYPE_BOTH:  </b>Indicates that
+the criteria are to be used for both certificate selection and validation.</p><p><b>FW_CERT_CRITERIA_TYPE_SELECTION:  </b>Indicates
+that the criteria are meant for local certificate selection.</p><p><b>FW_CERT_CRITERIA_TYPE_VALIDATION:  </b>Indicates
+that the criteria are meant for validation of a peer certificate.</p><p><b>FW_CERT_CRITERIA_TYPE_MAX:  </b>To be valid, a
+value of this type MUST be less than this constant.</p></div>

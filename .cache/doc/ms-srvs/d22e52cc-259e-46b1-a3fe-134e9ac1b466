@@ -1,0 +1,33 @@
+<div class="content"><p> </p><p>The CONNECTION_INFO_1 structure contains the identifier of a
+<span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_866b0055-ceba-4acf-a692-98452943b981" data-linktype="relative-path">connection</a></span>,
+the number of open files, the connection time, the number of users on the
+connection, and the type of connection.</p><dl>
+<dd>
+<div><pre> typedef struct _CONNECTION_INFO_1 {
+   DWORD coni1_id;
+   DWORD coni1_type;
+   DWORD coni1_num_opens;
+   DWORD coni1_num_users;
+   DWORD coni1_time;
+   [string] wchar_t* coni1_username;
+   [string] wchar_t* coni1_netname;
+ } CONNECTION_INFO_1,
+  *PCONNECTION_INFO_1,
+  *LPCONNECTION_INFO_1;
+</pre></div>
+</dd></dl><p><b>coni1_id:</b>  Specifies a connection
+identifier.</p><p><b>coni1_type:</b>  Specifies the type of
+connection made from the local device name to the shared resource. It MUST be
+one of the values listed in section <span><a href="6069f8c0-c93f-43a0-a5b4-7ed447eb4b84" data-linktype="relative-path">2.2.2.4</a></span>. </p><p><b>coni1_num_opens:</b>  Specifies the
+number of files that are currently opened by using the connection. </p><p><b>coni1_num_users:</b>  Specifies the
+number of users on the connection.</p><p><b>coni1_time:</b>  Specifies the number of
+seconds that the connection has been established. </p><p><b>coni1_username:</b>  A pointer to a
+null-terminated Unicode UTF-16 string that specifies the name of the user that
+is associated with the connection.</p><p><b>coni1_netname:</b>  A pointer to a
+null-terminated Unicode UTF-16 <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_4d5d5403-372f-4f9f-8d7a-65c310c807d9" data-linktype="relative-path">Internet host name</a></span>
+or <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_150cc108-7e58-4fdb-957d-2a3734ba15f5" data-linktype="relative-path">NetBIOS
+host name</a></span> which is the computer name of the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span>.
+The value of this member depends on which name was specified as the <i>Qualifier</i>
+parameter to the <span><a href="64ee6bbe-01dc-41a5-baff-26ef1146ee29" data-linktype="relative-path">NetrConnectionEnum (section 3.1.4.1)</a></span>
+method. The name that is not specified in the <i>Qualifier</i> parameter to
+NetrConnectionEnum MUST be returned in the coni1_netname field.</p></div>

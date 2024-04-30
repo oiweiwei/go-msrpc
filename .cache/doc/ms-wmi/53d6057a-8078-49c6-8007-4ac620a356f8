@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The IWbemLoginClientID::SetClientInfo method MUST pass the
+client NETBIOS name and a unique client-generated number to the server.</p><dl>
+<dd>
+<div><pre> HRESULT SetClientInfo(
+   [in, unique, string] LPWSTR wszClientMachine,
+   [in] long lClientProcId,
+   [in] long lReserved
+ );
+</pre></div>
+</dd></dl><p><b>wszClientMachine: </b>MUST specify the client
+NETBIOS name. This parameter MUST NOT be NULL. </p><p><b>lClientProcId: </b>Specifies a client-generated
+number. The server MAY use this for logging purposes.<a id="Appendix_A_Target_56"></a><a aria-label="Product behavior note 56" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_56" data-linktype="relative-path">&lt;56&gt;</a></p><p><b>lReserved: </b>This parameter is not used, and its
+value MUST be NULL.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p>In case of failure, the server MUST return an <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">HRESULT</a></span>
+whose S (severity) bit is set as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section 2.1. The actual HRESULT value is implementation dependent.</p>
+</dd>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl></div>

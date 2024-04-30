@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>The RESOURCE_TYPE enumeration provides 4-byte signed integer
+values that describe the resource to be negotiated.</p><dl>
+<dd>
+<div><pre> typedef  enum _ResourceType
+ {
+   RT_CONNECTIONS = 0x00000000
+ } RESOURCE_TYPE;
+</pre></div>
+</dd></dl><p><b>RT_CONNECTIONS:  </b>Indicates that the resource
+is a <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_866b0055-ceba-4acf-a692-98452943b981" data-linktype="relative-path">connection</a></span>.</p></div>

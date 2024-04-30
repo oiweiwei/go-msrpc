@@ -1,0 +1,194 @@
+<div class="content"><p>The SetExtension method allows adding, modifying, or
+disabling of extensions, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90414" data-linktype="external">[RFC3280]</a>. A <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> can include an extension
+in an issued <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a>
+for a particular pending request.</p><dl>
+<dd>
+<div><pre> HRESULT SetExtension(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] DWORD dwRequestId,
+   [in, string, unique] wchar_t const* pwszExtensionName,
+   [in] DWORD dwType,
+   [in] DWORD dwFlags,
+   [in, ref] CERTTRANSBLOB* pctbValue
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>A null-terminated Unicode
+string that contains the name of the certificate server. The pwszAuthority is a
+Unicode string in the form of a <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">distinguished name (DN)</a>
+value, such as &#34;CAName&#34;, where CAName MUST be the full <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_a86706d6-bcdf-4107-be38-d2f08a7eaa68" data-linktype="relative-path">common name (CN)</a> or <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_de084567-c0d0-4b19-8612-aa88b38ef7c8" data-linktype="relative-path">sanitized name</a> of the CA,
+as specified in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>
+section <a href="../ms-wcce/bb738507-c9c3-4175-baf2-fe21f17c076c" data-linktype="relative-path">3.1.1.4.1.1</a>.</p><p><b>dwRequestId: </b>A 32-bit nonzero unsigned integer
+value that specifies the ID of the certificate request.</p><p><b>pwszExtensionName: </b>A null-terminated Unicode
+string that specifies the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_aaaf2f1a-0b0a-487e-a0f0-c3510a6091b2" data-linktype="relative-path">OID
+(1)</a> for the extension to set, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90594" data-linktype="external">[X680]</a>. The string
+MUST be 31 or fewer characters in length and the characters MUST NOT be NULL.</p><p><b>dwType: </b>An unsigned integer value that
+specifies the type of extension being set. The <i>dwType</i> parameter MUST
+agree with the data type of the pb member of the <i>pctbValue</i> parameter.
+This parameter can be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Unsigned long
+  data</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Date/time</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Binary data</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Unicode</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwFlags: </b>An unsigned integer value that
+specifies the flags for the extension being set. This parameter can be one of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>This is a
+  critical extension.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>The extension
+  MUST NOT be used on issued certificates.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pctbValue: </b>A pointer to a <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure.
+The <b>pb</b> member MUST point to the binary data for the extension and the <b>cb
+</b>member MUST contain the length, in bytes, of the value. Depending on the
+value of the <i>dwType</i> parameter, the format of the binary data that is
+pointed to by the <b>pb</b> member is shown in the following <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_d3a7da8d-a597-4838-9756-25e30b640ba7" data-linktype="relative-path">table</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value of
+   dwType</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The
+  CERTTRANSBLOB structure <b>pb</b> member MUST point to an unsigned long data
+  value in <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a>
+  format.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The
+  CERTTRANSBLOB structure <b>pb</b> member MUST point to data using
+  little-endian encoding format.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The
+  CERTTRANSBLOB structure <b>pb</b> member MUST point to an array of bytes that
+  are not in need of endian forcing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The
+  CERTTRANSBLOB structure <b>pb</b> member MUST point to a null-terminated
+  Unicode string in little-endian format.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>This method instructs the CA to add, modify, or disable an
+extension that is associated with a previously submitted certificate request
+that is in a pending state, as specified in [MS-WCCE] section <a href="../ms-wcce/febfb31d-380b-4417-879a-5708c3305f4e" data-linktype="relative-path">3.2.1.4.2.1.3</a>.
+If the certificate request does not contain an extension with the name
+specified in <i>pwszExtensionName</i>, then the extension is added to the
+certificate request. If the request already contains an extension of that name,
+then the extension specified in the SetExtension call will replace the old one,
+hence modifying the contents. To disable an extension, a value of 2 can be
+specified in <i>dwFlags</i> parameter, described above, when calling
+SetExtension.</p><p>The following processing rules apply:</p><ol><li><p><span>    </span>The CA MUST look
+up the request based on the provided <i>dwRequestId</i> parameter in the
+request table. If the request is not found, the CA MUST fail the request.</p>
+</li><li><p><span>    </span>If the request
+is found in the CA database, the CA MUST verify that the value of the
+Request_Disposition column is &#34;request pending&#34;. If the value of the
+Request_Disposition column is not &#34;request pending&#34;, the CA MUST fail
+the request.</p>
+</li><li><p><span>    </span>The CA MUST
+verify if the <i>pwszExtensionName</i> parameter contains a valid OID (1), as
+specified in [X680]. If the OID (1) is not valid, the CA MUST fail the request.</p>
+</li><li><p><span>    </span>The CA MUST
+associate the specified extension and flags with the pending request, for
+possible inclusion later in the issued certificate, by adding the entry to the
+Extension table:</p>
+<ul><li><p><span><span>  </span></span>If
+dwType is 1 (PROPTYPE_LONG), the CA MUST encode the LONG value into an ASN.1
+integer, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90592" data-linktype="external">[X660]</a>,
+and save the encoded value as the extension value.</p>
+</li><li><p><span><span>  </span></span>If
+dwType is 2 (PROPTYPE_DATE), the CA MUST encode the FILETIME value into an
+ASN.1 Choice-of-Time, as specified in [X660], and save the encoded value as the
+extension value.</p>
+</li><li><p><span><span>  </span></span>If
+dwType is 3 (PROPTYPE_BINARY), the CA MUST save the specified value as the
+extension value.</p>
+</li><li><p><span><span>  </span></span>If
+dwType is 4 (PROPTYPE_STRING), the CA MUST encode the Unicode string value into
+an IA5String, as specified in [X660], and save the encoded value as the
+extension value.</p>
+</li><li><p><span><span>  </span></span>If
+dwType is any other value, the CA MUST fail the request. The error code SHOULD
+be ERROR_INVALID_PARAMETER (0x80070057).</p>
+</li></ul></li></ol></div>

@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>The DRS_MSG_NT4_CHGLOG_REPLY_V1 structure defines the
+response message received from the <span><a href="6e000eb6-60fd-4d6c-ae82-bb6479df02fa" data-linktype="relative-path">IDL_DRSGetNT4ChangeLog</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [range(0,10485760)] DWORD cbRestart;
+   [range(0,10485760)] DWORD cbLog;
+   NT4_REPLICATION_STATE ReplicationState;
+   DWORD ActualNtStatus;
+   [size_is(cbRestart)] BYTE* pRestart;
+   [size_is(cbLog)] BYTE* pLog;
+ } DRS_MSG_NT4_CHGLOG_REPLY_V1;
+</pre></div>
+</dd></dl><p><b>cbRestart:</b>  Zero if <b>pRestart</b>
+= null. Otherwise, the size, in bytes, of <b>pRestart</b>^.</p><p><b>cbLog:</b>  Zero if <b>pRestart</b> =
+null. Otherwise, the size, in bytes, of <b>pLog</b>^.</p><p><b>ReplicationState:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span>
+state for Windows NT 4.0 operating system <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DCs</a></span>.</p><p><b>ActualNtStatus:</b>  A <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_dfc7ec7a-2b99-4312-a947-5d90a117d1c7" data-linktype="relative-path">STATUS
+code</a></span>. See the pseudo-code for interpretation.</p><p><b>pRestart:</b>  Null if no entries were
+returned. Otherwise, a pointer to an opaque value identifying the last entry
+returned in <b>pLog</b>.</p><p><b>pLog:</b>  The buffer containing the
+next entries from the change log.</p></div>

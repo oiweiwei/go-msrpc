@@ -1,0 +1,11 @@
+<div class="content"><p> </p><p>The LSAPR_TRUST_INFORMATION structure contains information
+about a <span><a href="e79f2680-84d9-4d34-bc78-5ab9e1255653#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_TRUST_INFORMATION {
+   RPC_UNICODE_STRING Name;
+   PRPC_SID Sid;
+ } LSAPR_TRUST_INFORMATION,
+  *PLSAPR_TRUST_INFORMATION;
+</pre></div>
+</dd></dl><p>Individual member semantics are specified in <span><a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a></span>
+section <span><a href="../ms-lsad/71e86cdd-ae19-4a02-9179-a2a103b383a0" data-linktype="relative-path">2.2.7.1</a></span>.</p></div>

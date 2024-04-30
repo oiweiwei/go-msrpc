@@ -1,0 +1,49 @@
+<div class="content"><p>The GetSigningCertficates method retrieves a list of <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a> available at the
+responder machine that can be used to sign responses to <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_9076fc31-afc2-4c3d-9fd4-bf011837b362" data-linktype="relative-path">OCSP</a> requests regarding
+certificates issued by the <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a>
+certificate specified.</p><dl>
+<dd>
+<div><pre> HRESULT GetSigningCertificates(
+   [in, ref] const VARIANT* pCAVar,
+   [out, ref] VARIANT* pSigningCertificates
+ );
+</pre></div>
+</dd></dl><p><b>pCAVar: </b>A pointer to a <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a>
+data type containing the CA certificate. The <b>vt</b> member of VARIANT SHOULD
+be set to VT_ARRAY | VT_UI1, and the pArray member SHOULD reference a safearray
+that contains the ASN.1 DER encoded X.509 certificate data type containing the
+CA certificate.</p><p><b>pSigningCertificates: </b>A pointer to VARIANT
+data type containing the list of certificates. On successful return, the server
+SHOULD set the vt member of the VARIANT to VT_ARRAY|VT_UI1, and the pArray
+member SHOULD reference a safearray that contains the ASN.1 DER encoded degenerate
+PKCS#7 <a href="https://go.microsoft.com/fwlink/?LinkId=90334" data-linktype="external">[RFC2315]</a>
+containing the certificates. </p><p>The following processing rules apply:</p><ol><li><p><span>    </span>If <i>pCAVar</i>
+or <i>pSigningCertificates</i> is NULL, the responder MUST fail the request.
+The error code SHOULD be 0x800706f4.</p>
+</li><li><p><span>    </span>The VARIANT
+referenced by <i>pCAVar</i> SHOULD have <b>vt</b> member set to VT_ARRAY |
+VT_UI1; otherwise, the server MUST fail the request. The error code SHOULD be
+0x80070057.</p>
+</li><li><p><span>    </span>The pArray
+member of the VARIANT referenced by <i>pCAVar</i> SHOULD reference a safearray
+that contains the ASN.1 DER encoded X509 certificate; otherwise, the server
+MUST fail the request. The error code SHOULD be 0x80070057.</p>
+</li><li><p><span>    </span>Each certificate
+returned in the PKCS#7 contained in <i>pSigningCertificate</i> SHOULD meet the
+following criteria:</p>
+<ul><li><p><span><span>  </span></span>The
+certificate MUST include the extension id-kp-OCSPSigning in an extendedKeyUsage
+defined in <a href="https://go.microsoft.com/fwlink/?LinkId=90369" data-linktype="external">[RFC2560]</a>
+section 4.2.2.2.</p>
+</li><li><p><span><span>  </span></span>The
+certificate MUST be signed by the CA certificate passed in <i>pCAVar</i> to this
+method.</p>
+</li><li><p><span><span>  </span></span>The
+responder MUST have access to the <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private key</a> corresponding
+to the public key in the certificate.</p>
+</li></ul></li><li><p><span>    </span>If there are no
+OCSP <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_6a2366ee-fc9c-4406-963d-eac335ed8fc5" data-linktype="relative-path">signing certificates</a>
+that match the criteria specified in processing rule (4), the server SHOULD
+return an empty list of signing certificates as an ASN.1 DER encoded degenerate
+PKCS#7 [RFC2315] containing no certificates.</p>
+</li></ol></div>

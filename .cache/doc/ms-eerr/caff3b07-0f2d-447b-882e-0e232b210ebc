@@ -1,0 +1,31 @@
+<div class="content"><p> </p><p>The ExtendedErrorParam structure contains a parameter, as
+described in section <span><a href="bbc56e07-6f53-4c70-a6f5-fddab7a6aab1" data-linktype="relative-path">1.3.1</a></span>, that
+provides additional details about the <span><a href="ba724cab-c810-480e-ae60-f61f3952c492#gt_54409f9a-49d4-4e6e-ab75-5bd013dc5416" data-linktype="relative-path">error record</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct tagParam {
+   ExtendedErrorParamTypesInternal Type;
+   [switch_type(short), switch_is(Type)] 
+     union {
+     [case(1)] 
+       EEAString AnsiString;
+     [case(2)] 
+       EEUString UnicodeString;
+     [case(3)] 
+       long LVal;
+     [case(4)] 
+       short IVal;
+     [case(5)] 
+       __int64 PVal;
+     [case(6)] 
+             ;
+     [case(7)] 
+       BinaryEEInfo Blob;
+   };
+ } ExtendedErrorParam;
+</pre></div>
+</dd></dl><p><b>Type:</b>  Indicates which member of the
+union is valid. <span><a href="0cf6d863-6df2-4a8a-b5b7-32f607294787" data-linktype="relative-path">ExtendedErrorParamTypesInternal</a></span>
+lists all of the possible values. </p><p><b>AnsiString:</b>  A parameter of type <span><a href="dd30d275-aae9-408e-89cf-4482c429cb89" data-linktype="relative-path">EEAString</a></span>.</p><p><b>UnicodeString:</b>  A parameter of type <span><a href="c57ed5d6-f550-44e1-af90-1149a674f4d4" data-linktype="relative-path">EEUString</a></span>.</p><p><b>LVal:</b>  This parameter MUST be used
+to encode long values that contain troubleshooting information.</p><p><b>IVal:</b>  This parameter MUST be used
+to encode integer values that contain troubleshooting information.</p><p><b>PVal:</b>  This parameter MUST be used
+to encode 64-bit integer values that contain troubleshooting information.</p><p><b>Blob:</b>  A parameter of type <span><a href="827e3b69-1e3c-484a-95bf-e634e9ab395a" data-linktype="relative-path">BinaryEEInfo</a></span>.</p></div>

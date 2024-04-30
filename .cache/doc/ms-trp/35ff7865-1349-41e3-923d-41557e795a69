@@ -1,0 +1,578 @@
+<div class="content"><p>The LINEADDRESSCAPS packet describes the capabilities of a
+specified address. LINEADDRESSCAPS is supplied by the server in the field
+VarData of the returned version of the <a href="aacadc44-9c22-43f2-8046-9b37dd95d2c1" data-linktype="relative-path">GetAddressCaps</a> packet if
+the request is completed successfully.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwLineDeviceID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevSpecificSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDevSpecificOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressSharing</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressStates</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallInfoStates</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallerIDFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCalledIDFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwConnectedIDFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwRedirectionIDFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwRedirectingIDFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallStates</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDialToneModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwBusyModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwSpecialInfo</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDisconnectModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMaxNumActiveCalls</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMaxNumOnHoldCalls</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMaxNumOnHoldPendingCalls</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMaxNumConference</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMaxNumTransConf</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddrCapFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallFeatures</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwRemoveFromConfCaps</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwRemoveFromConfState</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwTransferModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwParkModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwForwardModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMaxForwardEntries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMaxSpecificEntries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMinFwdNumRings</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMaxFwdNumRings</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMaxCallCompletions</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallCompletionConds</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallCompletionModes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumCompletionMessages</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCompletionMsgTextEntrySize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCompletionMsgTextSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCompletionMsgTextOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAddressFeatures</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwPredictiveAutoTransferStates
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumCallTreatments
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallTreatmentListSize
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallTreatmentListOffset
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDeviceClassesSize
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwDeviceClassesOffset
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMaxCallDataSize
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwCallFeatures2
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwMaxNoAnswerTimeout
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwConnectedModes
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwOfferingModes
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwAvailableMediaModes
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, that is allocated to this packet. </p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, for this packet that is needed to hold all the
+returned information.</p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the portion of this packet that contains useful
+information. </p><p><b>dwLineDeviceID (4 bytes): </b>An unsigned 32-bit
+integer. The device identifier of the line device with which this address is
+associated. </p><p><b>dwAddressSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the address field.</p><p><b>dwAddressOffset (4 bytes): </b>An unsigned 32-bit
+integer. The offset from the beginning of the packet to the variably sized
+address field. The size of the field MUST be specified by <b>dwAddressSize</b>.
+</p><p><b>dwDevSpecificSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the device-specific field. </p><p><b>dwDevSpecificOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of the packet to the variably
+sized device-specific field. The size of the field MUST be specified by <b>dwDevSpecificSize</b>.
+</p><p><b>dwAddressSharing (4 bytes): </b>An unsigned 32-bit
+integer. The sharing mode of the address. This member MUST be one of the <a href="589ab2bf-11e4-4942-86bd-b654d7f2d158" data-linktype="relative-path">LINEADDRESSSHARING_Constants</a>.
+</p><p><b>dwAddressStates (4 bytes): </b>An unsigned 32-bit
+integer. When the address state changes, the application can get notified in
+the <a href="46fd73ed-5e83-40b0-9077-4f31ed69f7ea" data-linktype="relative-path">LINE_ADDRESSSTATE</a>
+packet. This member MUST use one or more of the <a href="b0c31486-218f-4786-b89f-edf05b09ad46" data-linktype="relative-path">LINEADDRESSSTATE_Constants</a>.</p><p><b>dwCallInfoStates (4 bytes): </b>An unsigned 32-bit
+integer. The call information elements that are meaningful for all calls on
+this address. An application can get notified about changes in some of these
+states in <a href="077cbcc4-50cd-4422-b255-aed244902730" data-linktype="relative-path">LINE_CALLINFO</a>
+packets. This member MUST use one or more of the <a href="092c60f8-50c8-41b7-a371-edac5331eab9" data-linktype="relative-path">LINECALLINFOSTATE_Constants</a>.</p><p><b>dwCallerIDFlags (4 bytes): </b>An unsigned 32-bit
+integer. The party identifier information types that can be provided for calls
+on this address. The caller MUST be the originator of the session. MUST be one
+or more of the <a href="dc0c01ec-9224-46eb-8596-950c5132db41" data-linktype="relative-path">LINECALLPARTYID_Constants</a>.
+</p><p><b>dwCalledIDFlags (4 bytes): </b>An unsigned 32-bit
+integer. The party identifier information types that can be provided for calls
+on this address. Here, &#34;called&#34; refers to the original destination.
+MUST be one or more of the LINECALLPARTYID_Constants.</p><p><b>dwConnectedIDFlags (4 bytes): </b>An unsigned
+32-bit integer. The party identifier information types that can be provided for
+calls on this address. MUST be one or more of the LINECALLPARTYID_Constants. </p><p><b>dwRedirectionIDFlags (4 bytes): </b>An unsigned
+32-bit integer. The party identifier information types that can be provided for
+calls on this address. Here, &#34;redirection&#34; is the new destination.
+MUST be one or more of the LINECALLPARTYID_Constants. </p><p><b>dwRedirectingIDFlags (4 bytes): </b>An unsigned
+32-bit integer. The party identifier information types that can be provided for
+calls on this address. Here, &#34;redirecting&#34; is the address that
+invoked redirection. MUST be one or more of the LINECALLPARTYID_Constants. </p><p><b>dwCallStates (4 bytes): </b>An unsigned 32-bit
+integer. The call states that can be reported for calls on this address. This
+member MUST use one or more of the <a href="90b1b6c3-d544-49f4-b868-38aa7ccb7b09" data-linktype="relative-path">LINECALLSTATE_Constants</a>.</p><p><b>dwDialToneModes (4 bytes): </b>An unsigned 32-bit
+integer. The dial tone modes that can be reported for calls made on this
+address. This member is meaningful only if the dial tone call state can be
+reported. This member MUST use one or more of the <a href="4ef21601-c6e0-4e97-9108-8779feeeba22" data-linktype="relative-path">LINEDIALTONEMODE_Constants</a>.
+</p><p><b>dwBusyModes (4 bytes): </b>An unsigned 32-bit
+integer. The busy modes that can be reported for calls made on this address.
+This member is meaningful only if the busy call state can be reported. This
+member MUST use one or more of the <a href="8d02c5c4-ad8d-441f-827a-5582fe73e911" data-linktype="relative-path">LINEBUSYMODE_Constants</a>. </p><p><b>dwSpecialInfo (4 bytes): </b>An unsigned 32-bit
+integer. The special information types that can be reported for calls made on
+this address. This member is meaningful only if the specialInfo call state can
+be reported. This member MUST use one or more of the <a href="5986f85f-4d2d-4e04-ab69-66b1c4399254" data-linktype="relative-path">LINESPECIALINFO_Constants</a>.
+</p><p><b>dwDisconnectModes (4 bytes): </b>An unsigned
+32-bit integer. The disconnect modes that can be reported for calls that are
+made on this address. This member is meaningful only if the disconnected call
+state can be reported. This member MUST use one or more of the <a href="dd20df60-c91f-40e4-99a5-a264ffc5e9f5" data-linktype="relative-path">LINEDISCONNECTMODE_Constants</a>.
+</p><p><b>dwMaxNumActiveCalls (4 bytes): </b>An unsigned
+32-bit integer. The maximum number of active call appearances that the address
+can handle. This number does not include calls on hold or calls on hold pending
+transfer or conference. </p><p><b>dwMaxNumOnHoldCalls (4 bytes): </b>An unsigned
+32-bit integer. The maximum number of call appearances at the address that can
+be on hold.</p><p><b>dwMaxNumOnHoldPendingCalls (4 bytes): </b>An
+unsigned 32-bit integer. The maximum number of call appearances at the address
+that can be on hold pending transfer or conference.</p><p><b>dwMaxNumConference (4 bytes): </b>An unsigned
+32-bit integer. The maximum number of parties that can join a single conference
+call on this address. </p><p><b>dwMaxNumTransConf (4 bytes): </b>An unsigned
+32-bit integer. The number of parties (including &#34;self&#34;) that can be
+added in a conference call that is initiated as a generic consultation call
+using the <a href="a2de9751-da25-4c63-b255-05fd728a8f82" data-linktype="relative-path">SetUpTransfer</a>
+packet. </p><p><b>dwAddrCapFlags (4 bytes): </b>An unsigned 32-bit
+integer. The packed bit flags that describe a variety of address capabilities.
+This member MUST use one or more of the <a href="e435f27b-2839-48ca-bc9f-56ccded6c4f8" data-linktype="relative-path">LINEADDRCAPFLAGS_Constants</a>.
+</p><p><b>dwCallFeatures (4 bytes): </b>An unsigned 32-bit
+integer. The switching capabilities or features that are available for all
+calls on this address by using the <a href="d771062f-a57d-4bea-bbce-ef19f2521453" data-linktype="relative-path">LINECALLFEATURE_Constants</a>.
+This member represents the call-related features that can possibly be available
+on an address (static availability as opposed to dynamic availability).
+Invoking a supported feature requires the call to be in the correct state and
+the underlying line device to be opened in a compatible mode. A zero in a bit
+position indicates that the corresponding feature is never available. A one
+indicates that the corresponding feature can be available if the application
+has the right privileges to the call and the call is in the appropriate state
+for the operation to be meaningful. This member allows an application to
+discover which call features can be (and which can never be) supported by the
+address. </p><p><b>dwRemoveFromConfCaps (4 bytes): </b>An unsigned
+32-bit integer. The capabilities of an address for removing calls from a
+conference call. This member MUST use one of the <a href="dc24fee3-5309-4256-9f82-1c6984cc5849" data-linktype="relative-path">LINEREMOVEFROMCONF_Constants</a>.
+</p><p><b>dwRemoveFromConfState (4 bytes): </b>An unsigned
+32-bit integer. Uses one or more of the LINECALLSTATE_Constants to specify the
+state of the call after it has been removed from a conference call. </p><p><b>dwTransferModes (4 bytes): </b>An unsigned 32-bit
+integer. The capabilities of an address for resolving transfer requests. This
+member MUST use one of the <a href="6ff05bec-709e-4101-8ee2-460f5bd8afaf" data-linktype="relative-path">LINETRANSFERMODE_Constants</a>.
+</p><p><b>dwParkModes (4 bytes): </b>An unsigned 32-bit
+integer. The different call park modes that are available at this address. This
+member MUST use one of the <a href="06995a53-18ea-46ca-b720-2da06896e2d2" data-linktype="relative-path">LINEPARKMODE_Constants</a>.
+</p><p><b>dwForwardModes (4 bytes): </b>An unsigned 32-bit
+integer. The different modes of forwarding that are available for this address.
+This member MUST use one or more of the <a href="b206ee98-85a6-473b-8fa0-4fb2ea55534d" data-linktype="relative-path">LINEFORWARDMODE_Constants</a>.
+</p><p><b>dwMaxForwardEntries (4 bytes): </b>An unsigned
+32-bit integer. The maximum number of entries that can be passed to the <a href="648adb7c-672e-412e-b1ba-cf17e986122c" data-linktype="relative-path">Forward</a> packet in the
+lpForwardList parameter. </p><p><b>dwMaxSpecificEntries (4 bytes): </b>An unsigned
+32-bit integer. The maximum number of entries in the lpForwardList parameter
+that is passed to the Forward packet that can contain forwarding instructions
+based on a specific caller ID (selective call forwarding). This member is zero
+if selective call forwarding is not supported. </p><p><b>dwMinFwdNumRings (4 bytes): </b>An unsigned 32-bit
+integer. The minimum number of rings that can be set to determine when a call
+is officially considered &#34;no answer.&#34; </p><p><b>dwMaxFwdNumRings (4 bytes): </b>An unsigned 32-bit
+integer. The maximum number of rings that can be set to determine when a call
+is officially considered &#34;no answer.&#34; If this number of rings cannot
+be set, then <b>dwMinFwdNumRings</b> and <b>dwMaxNumRings</b> are equal.</p><p><b>dwMaxCallCompletions (4 bytes): </b>An unsigned
+32-bit integer. The maximum number of concurrent call completion requests that
+can be outstanding on this line device. Zero implies that call completion is
+not available. </p><p><b>dwCallCompletionConds (4 bytes): </b>An unsigned
+32-bit integer. The different call conditions under which call completion can
+be requested. This member MUST use one or more of the <a href="9dbaf16b-a2c2-4532-b039-a6ccbffd8fef" data-linktype="relative-path">LINECALLCOMPLCOND_Constants</a>.
+</p><p><b>dwCallCompletionModes (4 bytes): </b>An unsigned
+32-bit integer. The ways in which the call can be completed. This member MUST
+use one of the <a href="0ff8a841-b118-4208-a16b-74cc68ad91ab" data-linktype="relative-path">LINECALLCOMPLMODE_Constants</a>.</p><p><b>dwNumCompletionMessages (4 bytes): </b>An unsigned
+32-bit integer. The number of call completion packets that can be selected
+from, when using the LINECALLCOMPLMODE_MESSAGE option. Individual packets are
+identified by values in the range zero through one less than <b>dwNumCompletionMessages</b>.
+</p><p><b>dwCompletionMsgTextEntrySize (4 bytes): </b>An
+unsigned 32-bit integer. The size, in bytes, of each of the call completion
+text descriptions that are specified by <b>dwCompletionMsgTextSize</b> and <b>dwCompletionMsgTextOffset</b>.
+</p><p><b>dwCompletionMsgTextSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the call completion text. </p><p><b>dwCompletionMsgTextOffset (4 bytes): </b>An
+unsigned 32-bit integer. The offset from the beginning of this packet to the
+variably sized field that contains descriptive text about each of the call
+completion packets. Each packet is <b>dwCompletionMsgTextEntrySize</b> bytes
+long. The string format of these textual descriptions is indicated by <b>dwStringFormat</b>
+in the line&#39;s device capabilities. The size of the field MUST be specified by <b>dwCompletionMsgTextSize</b>.</p><p><b>dwAddressFeatures (4 bytes): </b>An unsigned
+32-bit integer. The features that are available for this address by using the <a href="374a66bd-1545-4150-b576-ea4368df40d7" data-linktype="relative-path">LINEADDRFEATURE_Constants</a>.
+Invoking a supported feature requires the address to be in the proper state and
+the underlying line device to be opened in a compatible mode. A zero in a bit
+position indicates that the corresponding feature is never available. A one
+indicates that the corresponding feature can be available if the address is in
+the appropriate state for the operation to be meaningful. This member allows an
+application to discover which address features can be (and which can never be)
+supported by the address.</p><p><b>dwPredictiveAutoTransferStates (4 bytes): </b>An
+unsigned 32-bit integer. The call state or states upon which a call that is
+made by a predictive dialer can be set to automatically transfer the call to
+another address; one or more of the LINECALLSTATE_Constants. The value 0
+indicates that automatic transfer based on call state is unavailable. This
+member of the packet is available only if the negotiated TAPI version is 2.0 or
+higher. </p><p><b>dwNumCallTreatments (4 bytes): </b>An unsigned
+32-bit integer. The number of entries in the array of <a href="33203fc3-9ce3-47b6-881e-88e37fd76580" data-linktype="relative-path">LINECALLTREATMENTENTRY</a>
+packets delimited by <b>dwCallTreatmentListSize</b> and <b>dwCallTreatmentListOffset</b>.
+This member of the packet is available only if the negotiated TAPI version is
+2.0 or higher. </p><p><b>dwCallTreatmentListSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the call treatment array. This member of
+the packet is available only if the negotiated TAPI version is 2.0 or higher.</p><p><b>dwCallTreatmentListOffset (4 bytes): </b>An
+unsigned 32-bit integer. The offset from the beginning of the packet to an
+array of LINECALLTREATMENTENTRY packets that specify the call treatments
+supported on the address (that can be selected using the <a href="8f0582de-a2fd-4064-9971-503c491eae1d" data-linktype="relative-path">SetCallTreatment</a> packet).
+The value is <b>dwNumCallTreatments</b> times SIZEOF(LINECALLTREATMENTENTRY).
+The size of the field MUST be specified by <b>dwCallTreatmentListSize</b>. This
+member of the packet is available only if the negotiated TAPI version is 2.0 or
+higher.</p><p><b>dwDeviceClassesSize (4 bytes): </b>An unsigned
+32-bit integer. The size, in bytes, of the list of supported device classes.
+This member of the packet is available only if the negotiated TAPI version is
+2.0 or higher.</p><p><b>dwDeviceClassesOffset (4 bytes): </b>An unsigned
+32-bit integer. The offset from the beginning of the packet to a string that
+consists of the device class identifiers that are supported on this address for
+use with the <a href="d4c635f0-06eb-4c52-b512-4a94c4bd46bb" data-linktype="relative-path">GetID</a>
+packet. The elements are separated by null characters, and the last class
+identifier is followed by two null characters. The size of the field MUST be
+specified by <b>dwDeviceClassesSize</b>. This member of the packet is available
+only if the negotiated TAPI version is 2.0 or higher.</p><p><b>dwMaxCallDataSize (4 bytes): </b>An unsigned
+32-bit integer. The maximum number of bytes that an application can set in <a href="6ff3773f-0fad-451c-bef4-5e225626f9aa" data-linktype="relative-path">LINECALLINFO</a> by using the <a href="4b62935a-6177-49b0-92d6-20793dae15bf" data-linktype="relative-path">SetCallData</a> packet. This
+member of the packet is available only if the negotiated TAPI version is 2.0 or
+higher.</p><p><b>dwCallFeatures2 (4 bytes): </b>An unsigned 32-bit
+integer. The additional switching capabilities or features that are available
+for all calls on this address by using the <a href="9149d198-78f5-4f97-a66d-73fa3252687c" data-linktype="relative-path">LINECALLFEATURE2_Constants</a>.
+It is an extension of the dwCallFeatures member. This member of the packet is
+available only if the negotiated TAPI version is 2.0 or higher.</p><dl>
+<dd>
+<p><b>dwMaxNoAnswerTimeout (4
+bytes): </b>An unsigned 32-bit integer. The maximum value, in seconds, that can
+be set in the <b>dwNoAnswerTimeout</b> member in <a href="c72ece07-095d-441a-93cd-660f09b7826f" data-linktype="relative-path">LINECALLPARAMS</a> when making
+a call. A value of 0 indicates that automatic abandonment of unanswered calls
+is not supported by the service provider or that the time-out value is not
+adjustable by applications. This member of the packet is available only if the
+negotiated TAPI version is 2.0 or higher.</p>
+</dd></dl><p><b>dwConnectedModes (4 bytes): </b>An unsigned 32-bit
+integer. The <a href="60cb1ac2-b383-4331-acbc-3be58926426a" data-linktype="relative-path">LINECONNECTEDMODE_Constants</a>
+that can appear in the <b>dwCallStateMode</b> member of <a href="793dc2d8-b4df-4699-8e49-02f459d9ca12" data-linktype="relative-path">LINECALLSTATUS</a> and in <a href="0a8905e3-647f-4e98-aca8-2fa77eedb2e7" data-linktype="relative-path">LINE_CALLSTATE</a> packets for
+calls on this address. This member of the packet is available only if the
+negotiated TAPI version is 2.0 or higher.</p><p><b>dwOfferingModes (4 bytes): </b>An unsigned 32-bit
+integer. The LINECONNECTEDMODE_Constants that can appear in the <b>dwCallStateMode</b>
+member of LINECALLSTATUS and in LINE_CALLSTATE packets for calls on this
+address. This member of the packet is available only if the negotiated TAPI
+version is 2.0 or higher.</p><p><b>dwAvailableMediaModes (4 bytes): </b>An unsigned
+32-bit integer. The media types (modes) that can be invoked on new calls
+created on this address, when the <b>dwAddressFeatures</b> member indicates
+that new calls are possible. If this member is zero, it indicates that the
+service provider either does not know or cannot indicate which media types are
+available; in which case, any or all of the media types that are indicated in
+the <b>dwMediaModes</b> member in <a href="f236ea7a-c8a2-4681-b87c-9f0e07a01dc6" data-linktype="relative-path">LINEDEVCAPS</a> can be
+available. This member of the packet is available only if the negotiated TAPI
+version is 2.0 or higher.</p><p><b>VarData (variable): </b>MUST contain</p><ul><li><p><span><span>  </span></span>Address
+information as specified by <b>dwAddressOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Device-specific
+information as specified by <b>dwDevSpecificOffset</b>.</p>
+</li><li><p><span><span>  </span></span>Descriptive
+text about each of the call completion packets as specified by <b>dwCompletionMsgTextOffset</b>.</p>
+</li><li><p><span><span>  </span></span>An
+array of LINECALLTREATMENTENTRY packets that specify the call treatments
+supported on the address as specified by <b>dwCallTreatmentListOffset</b>.</p>
+</li><li><p><span><span>  </span></span>A
+string consisting of the device class identifiers that are supported on this
+address as specified by <b>dwDeviceClassesOffset</b>.</p>
+</li></ul><p>Device-specific extensions SHOULD use the DevSpecific (<b>dwDevSpecificSize</b>
+and <b>dwDevSpecificOffset</b>) variably sized area of this packet.</p><p>Sessions that are negotiated with TAPI versions that are
+earlier than TAPI version 2.0 are not aware of the new members in the
+LINEADDRESSCAPS packet. The application passes in a <b>dwAPIVersion</b>
+parameter with the GetAddressCaps packet, which can be used for guidance by
+TAPI in handling this situation. If the application passes in a <b>dwTotalSize</b>
+member that is less than the size of the fixed portion of the packet, as
+defined in the <b>dwAPIVersion</b> member specified, LINEERR_STRUCTURETOOSMALL
+MUST be returned. If sufficient memory has been allocated by the application,
+before sending the GetAddressCaps packet, TAPI MUST set the <b>dwNeededSize</b>
+and dwUsedSize members to the fixed size of the packet as it existed in the
+specified TAPI version.</p><p>New service providers (that support the new TAPI version)
+MUST examine the TAPI version that is passed in. If the TAPI version is less
+than the highest version that is supported by the provider, the service
+provider MUST NOT fill in fields that are not supported in older TAPI versions
+because these would fall in the variable portion of the older packet.</p><p>New applications MUST be aware of the TAPI version that is
+negotiated and not examine the contents of fields in the fixed portion beyond
+the original end of the fixed portion of the packet for the negotiated TAPI
+version. </p><p>The members <b>dwPredictiveAutoTransferStates</b> through <b>dwAvailableMediaModes</b>
+are available only to sessions that request a TAPI version of 2.0, 2.1, 2.2,
+3.0, or 3.1 by using the GetAddressCaps packet.</p></div>

@@ -1,0 +1,321 @@
+<div class="content"><p>The IAlertDataCollector is used to monitor <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance counters</a> and to
+perform actions each time a counter value crosses the given threshold.</p><p>The following properties MUST
+be implemented by the objects that implement the IAlertDataCollector interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>AlertThresholds</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>List of Performance Counters to monitor, along with
+  the threshold values which are used to generate alerts. The threshold is
+  specified by appending either a &#39;&gt;&#39; or &#39;&lt;&#39; sign along with a value to
+  the <a href="b8a867c6-f2f3-41b6-9074-186af4decd7a" data-linktype="relative-path">Performance Counter
+  path</a>. This defines the threshold to be either greater than or less than
+  the provided value, respectively.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EventLog</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies whether or not an event MUST be written to
+  the Eventlog each time the value of any counter specified in the AlertThresholds
+  property. If set to true and the threshold is crossed, then the event will be
+  logged; otherwise, if set to false, and even if the threshold is crossed, the
+  event is not logged. <a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="905cad7f-1a12-49b4-a263-461a2977ab71#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SampleInterval</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>The time, in seconds, between two consecutive samples.
+  The default value is 15 seconds. The minimum sample interval is 1 second, and
+  there is no maximum sample interval. However, if the sample interval is set
+  to 0xFFFFFFFF, only one sample will ever be collected. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Task</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Name of the Task Scheduler job to be executed each
+  time a Performance Counter value crosses the specified threshold.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TaskArguments</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>If a task is to run, this specifies the arguments that
+  are passed to it. The arguments need to be formatted as command-line
+  arguments. See section <a href="2119fd11-0284-47e4-bbd1-1426955a233c" data-linktype="relative-path">3.2.4.8.11</a>
+  for a table of the command line arguments.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TaskRunAsSelf</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>When a Task Scheduler job is executed by this
+  AlertDataCollector, this property determines which user it runs as. If the
+  property is set to true, the Task Scheduler job runs with the same user
+  credentials as the DataCollectorSet. By default, this means the Task
+  Scheduler job runs with System credentials. Consequently, it is inadvisable
+  to set this property to true when the task to be run is not fully trusted
+  unless the UserAccount property for the DataCollectorSet has been carefully configured.
+  When the property is set to false, the Task Scheduler job runs with the
+  credentials it was created with. </p>
+  <p> The mechanism in use here is delegation. When the
+  creator of a <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data collector
+  set</a> sets this property to true, he or she is granting this task the same
+  rights that the data collector set is running with.</p>
+  <p> When the RunAsSelf property is set to false, no
+  delegation occurs. The task will run only with the permissions it was created
+  with. The credentials that the task runs with are initially created with
+  SchRpcRegisterTask specified in <a href="../ms-tsch/d1058a28-7e02-4948-8b8d-4a347fa64931" data-linktype="relative-path">[MS-TSCH]</a>
+  section <a href="../ms-tsch/849c131a-64e4-46ef-b015-9d4c599c5167" data-linktype="relative-path">3.2.5.4.2</a>
+  and can be updated by SASetAccountInformation specified in [MS-TSCH] section <a href="../ms-tsch/ca3e0305-4582-4e75-9c27-598c715f771d" data-linktype="relative-path">3.2.5.3.4</a>.
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TaskUserTextArguments</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>If a task is to run and the arguments include the
+  {usertext} variable, this property determines the value of this variable. Any
+  BSTR is potentially a valid value for this property. For example a random
+  string such as &#34;ch&amp;(26D@!k&#34; is a valid value, as are the
+  strings which would normally reference other task arguments, such as
+  &#34;{name}&#34;. In no case will only substring contained in the
+  TaskUserTextArguments be expanded (so if the string includes {name}, the
+  string will be passed to the Task with the {name}, not with the value of
+  {name}. The put method for this property will never fail. The actual semantic
+  validity of any particular BSTR depends on the task specified by the Task
+  property. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TriggerDataCollectorSet</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Name of the data collector set to be started each time
+  a counter value crosses the threshold.</p>
+  </td>
+ </tr></tbody></table><p>A <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_3184c8c5-f13b-4d77-b04a-b92feff97f61" data-linktype="relative-path">data
+collector</a> can be represented as an XML file, which can be used to serialize
+(using Xml (Get) <a href="38b478b4-408e-4702-aecf-946177a9f06b" data-linktype="relative-path">3.2.4.5.21</a>)
+and deserialize (using SetXml <a href="6f99ca8b-2197-43eb-b17a-7761c529787c" data-linktype="relative-path">3.2.4.5.22</a>) it. The format
+of the XML that defines an alert data collector is as follows (the full XML
+specification of the data collector set is in section <a href="b5be2d38-3f21-478d-a8b9-a61128eb2751" data-linktype="relative-path">3.2.4.19</a>): </p><dl>
+<dd>
+<div><pre> &lt;AlertDataCollector&gt;
+   &lt;!-- elements for DataCollectorType --&gt;
+   &lt;Alert/&gt; 
+   &lt;AlertDisplayName/&gt;
+   &lt;EventLog/&gt; 
+   &lt;SampleInterval/&gt; 
+   &lt;Task /&gt; 
+   &lt;TaskRunAsSelf/&gt; 
+   &lt;TaskArguments /&gt; 
+   &lt;TaskUserTextArguments /&gt; 
+   &lt;TriggerDataCollectorSet /&gt;
+ &lt;/AlertDataCollector&gt; 
+  
+  
+</pre></div>
+</dd></dl><p>The format of &lt;Alert&gt; is [performance counter]
+[&lt;|&gt;] [number]. For example: \Processor(_Total)\% Processor Time&gt;1.
+See <a href="https://go.microsoft.com/fwlink/?LinkId=89980" data-linktype="external">[MSDN-COUNT]</a>
+for the performance counter path representation.</p><p>The example does not show the property elements inherited
+from IDataCollector that also need to be specified.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="4eec695c-3db7-48b2-acc9-4614050eb73e" data-linktype="relative-path">AlertThresholds
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the AlertThresholds property.</p>
+  <p>Opnum: 32</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="5a4acb29-3360-4f6b-9b4f-445d6149d0c8" data-linktype="relative-path">AlertThresholds
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the AlertThresholds property. </p>
+  <p>Opnum: 33</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="04577c6c-6db4-4761-8176-fa5a9049e9b2" data-linktype="relative-path">EventLog
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the EventLog property.</p>
+  <p>Opnum: 34</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="679ce9c8-5b7b-4700-975e-d90ace6cb063" data-linktype="relative-path">EventLog
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the EventLog property.</p>
+  <p>Opnum: 35</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b6290d8b-f328-41cc-9c86-29087a2bf614" data-linktype="relative-path">SampleInterval
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the SampleInterval property.</p>
+  <p>Opnum: 36</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="d40a0e2e-7b5f-4c23-ac55-48caa8244b12" data-linktype="relative-path">SampleInterval
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the SampleInterval property.</p>
+  <p>Opnum: 37</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="51a93873-f056-4538-b249-363dd1cdff02" data-linktype="relative-path">Task
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Task property.</p>
+  <p>Opnum: 38</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="78389bd6-5858-4a1a-8a9a-46aeae55fc00" data-linktype="relative-path">Task
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the Task property. </p>
+  <p>Opnum: 39</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="50157afd-28bb-4ff7-a20d-ecdc46a76182" data-linktype="relative-path">TaskRunAsSelf
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the TaskRunAsSelf property.</p>
+  <p>Opnum: 40</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b613e1f7-23d4-423e-9bbc-5113c82e1cf3" data-linktype="relative-path">TaskRunAsSelf
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the TaskRunAsSelf property.</p>
+  <p>Opnum: 41</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TaskArguments (Get)</p>
+  </td>
+  <td>
+  <p>Retrieves the TaskArguments property.</p>
+  <p>Opnum: 42</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="9910e792-7b2f-4d15-a2d4-d8f59a5b6acb" data-linktype="relative-path">TaskArguments
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the TaskArguments property.</p>
+  <p>Opnum: 43</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b0045452-410f-4b17-9dae-f29fac0c306e" data-linktype="relative-path">TaskUserTextArguments
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the TaskUserTextArguments property. </p>
+  <p>Opnum: 44</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="ea28d49c-850e-4605-863f-d23c0302e2d5" data-linktype="relative-path">TaskUserTextArguments
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the TaskUserTextArguments property.</p>
+  <p>Opnum: 45</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b922ca5c-503c-47ad-b0e5-21337a7ee8c7" data-linktype="relative-path">TriggerDataCollectorSet
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the TriggerDataCollectorSet property.</p>
+  <p>Opnum: 46</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="a6751255-e0a1-41b2-a36b-0c3616a9cfe9" data-linktype="relative-path">TriggerDataCollectorSet
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the TriggerDataCollectorSet property.</p>
+  <p>Opnum: 47</p>
+  </td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface. Opnums 7–31 are
+used by IDataCollector.</p></div>

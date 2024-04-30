@@ -1,0 +1,580 @@
+<div class="content"><p> </p><p>The MessagePropertiesHeader contains property information
+about a <span><a href="56bae708-1289-48ff-a411-bf3782602476" data-linktype="relative-path">UserMessage Packet</a></span>
+and the application-defined message payload.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>Flags</p>
+  </td>
+  <td colspan="8">
+  <p>LabelLength</p>
+  </td>
+  <td colspan="16">
+  <p>MessageClass</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CorrelationID
+  (20 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BodyType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ApplicationTag</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MessageSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AllocationBodySize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PrivacyLevel</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>HashAlgorithm</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EncryptionAlgorithm</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ExtensionSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Label
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ExtensionData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MessageBody
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Flags (1 byte): </b>An 8-bit unsigned integer
+field that specifies administration acknowledgments. Any combination of these
+values is acceptable unless otherwise noted in the following table. </p><dl>
+<dd>
+<p>For more details on administration acknowledgments,
+see <span><a href="../ms-mqqb/85498b96-f2c8-43b3-a108-c9d6269dc4af" data-linktype="relative-path">[MS-MQQB]</a></span>
+sections <span><a href="../ms-mqqb/2e15b171-8d47-4c95-9e73-15e44df80580" data-linktype="relative-path">3.1.7.2.1</a></span>
+and <span><a href="../ms-mqqb/62c640a9-93ff-4723-94c2-6a3e40e41f2f" data-linktype="relative-path">3.1.5.8.10</a></span>.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p><br/>
+   0</p>
+   </th>
+   <th>
+   <p><br/>
+   1</p>
+   </th>
+   <th>
+   <p><br/>
+   2</p>
+   </th>
+   <th>
+   <p><br/>
+   3</p>
+   </th>
+   <th>
+   <p><br/>
+   4</p>
+   </th>
+   <th>
+   <p><br/>
+   5</p>
+   </th>
+   <th>
+   <p><br/>
+   6</p>
+   </th>
+   <th>
+   <p><br/>
+   7</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>P</p>
+  <p>A</p>
+  </td>
+  <td>
+  <p>P</p>
+  <p>R</p>
+  </td>
+  <td>
+  <p>N</p>
+  <p>A</p>
+  </td>
+  <td>
+  <p>N</p>
+  <p>R</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PA</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>If the <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span> is
+  delivered to the destination <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>, the server
+  MUST send a positive acknowledgment.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PR</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>If the message is retrieved from the destination queue
+  by the application, the server MUST send a positive acknowledgment.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NA</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>If the message is not delivered to the destination
+  queue, the server MUST send a negative acknowledgment.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NR</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>If the message is not retrieved from the destination
+  queue by the application, the server MUST send a negative acknowledgment.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>X</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>Unused bit field. This field SHOULD NOT be set when
+  sent and MUST be ignored on receipt.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>X</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>Unused bit field. This field SHOULD NOT be set when
+  sent and MUST be ignored on receipt.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>X</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>Unused bit field. This field SHOULD NOT be set when
+  sent and MUST be ignored on receipt.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>X</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>Unused bit field. This field SHOULD NOT be set when
+  sent and MUST be ignored on receipt.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>LabelLength (1 byte): </b>An 8-bit unsigned
+integer field that MUST be set to the number of elements of <b>WCHAR</b> in the
+<b>Label</b> field. This field has a valid range from 0x00 to 0xFA. When the
+value of this field is 0x00, the <b>Label</b> field MUST NOT be present after
+the <b>ExtensionSize</b> field. When greater than 0x00, this value MUST include
+the terminating null character.</p><p><b>MessageClass (2 bytes): </b>A 16-bit unsigned
+integer that specifies the class of the message in the packet. The value MUST
+be set to a value of the <b>MESSAGE_CLASS_VALUES</b> enumeration specified in
+section <span><a href="bb697835-fe47-4ec3-8457-6c06880a2138" data-linktype="relative-path">2.2.18.1.6</a></span>.</p><p><b>CorrelationID (20 bytes): </b>If this header
+appears outside an administration acknowledgement message, as specified in
+[MS-MQQB] section 3.1.5.8.10, then this field MUST be treated as an
+application-defined buffer and the server MUST not process or interpret this
+field. </p><dl>
+<dd>
+<p>If this header appears inside an administration
+acknowledgment message, as specified in [MS-MQQB] section 3.1.5.8.10, then this
+field MUST be set to a <span><a href="37e4ba86-e249-488b-b5b5-735892d56511" data-linktype="relative-path">MessageIdentifier</a></span>
+consisting of <b>UserMessage.UserHeader.MessageID</b> and <b>UserMessage.UserHeader.SourceQueueManager</b>
+of the message being acknowledged. See section 2.2.18.1.3 for details of the
+MessageIdentifier type.</p>
+</dd></dl><p><b>BodyType (4 bytes): </b>A 32-bit unsigned integer
+that specifies the type of data that is contained in the <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_f8f4c2f5-c760-4abe-a9a1-573302980088" data-linktype="relative-path">message
+body</a></span>. This value MUST be set to a <span><a href="876f9674-752a-4d9b-bf8b-7212c6c9a6b4" data-linktype="relative-path">PROPVARIANT</a></span> type
+constant as specified in section 2.2.12.</p><p><b>ApplicationTag (4 bytes): </b>A 32-bit unsigned
+integer that specifies an application-defined value that can be used to
+organize messages and the server MUST not process or interpret this field.</p><p><b>MessageSize (4 bytes): </b>A 32-bit unsigned
+integer that MUST be set to the size, in bytes, of the <b>MessageBody</b>
+field. The field MUST be set to a value between 0x00000000 and the size limit
+imposed by the value of <b>BaseHeader.PacketSize</b>.</p><p><b>AllocationBodySize (4 bytes): </b>A 32-bit
+unsigned integer field that MUST be set to the size, in bytes, of the data
+allocated for the <b>MessageBody</b> field. This size can be larger than the
+actual message body size; for example, an encrypted message body might be
+larger than the original unencrypted message body, up to the size limit imposed
+by the value of <b>BaseHeader.PacketSize</b>.</p><p><b>PrivacyLevel (4 bytes): </b>A 32-bit unsigned
+integer field that specifies the privacy level of the message in the
+UserMessage Packet. The privacy level determines what part of the message is
+encrypted. The field MUST be set to one of the following values.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No encryption. The <b>MessageBody</b> field is sent as
+  clear text.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The <b>MessageBody</b> field is encrypted using 40-bit
+  end-to-end encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The <b>MessageBody</b> field is encrypted using
+  128-bit end-to-end encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The <b>MessageBody</b> field is encrypted using
+  Advanced Encryption Standard (AES).</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Any value not specified in the preceding table MUST
+be treated as an authentication failure.</p>
+</dd></dl><p><b>HashAlgorithm (4 bytes): </b>A 32-bit unsigned
+integer that specifies the hashing algorithm that is used when authenticating
+the message. The following table lists the allowed values for this field.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00008001</p>
+  </td>
+  <td>
+  <p>Specifies the MD2 hash algorithm, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90273" data-linktype="external">[RFC1319]</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00008002</p>
+  </td>
+  <td>
+  <p>Specifies the MD4 hash algorithm, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90274" data-linktype="external">[RFC1320]</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00008003</p>
+  </td>
+  <td>
+  <p>Specifies the MD5 hash algorithm, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90275" data-linktype="external">[RFC1321]</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00008004</p>
+  </td>
+  <td>
+  <p>Specifies the SHA-1 hash algorithm, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90406" data-linktype="external">[RFC3110]</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000800C</p>
+  </td>
+  <td>
+  <p>Specifies the SHA-256 hash algorithm <span><a href="https://go.microsoft.com/fwlink/?LinkId=89868" data-linktype="external">[FIPS180-2]</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000800E</p>
+  </td>
+  <td>
+  <p>Specifies the SHA-512 hash algorithm [FIPS180-2].</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Any value not specified in the preceding table MUST
+be treated as an authentication failure when the <b>SecurityHeader</b> is
+present in the UserMessage and the <b>SecurityHeader.SecurityData.Signature</b>
+field is present. The SHA-512 hash algorithm (0x0000800E) SHOULD be used to
+generate the message signature.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p>
+</dd></dl><p><b>EncryptionAlgorithm (4 bytes): </b>A 32-bit
+unsigned integer that specifies the encryption algorithm used to encrypt the <b>MessageBody</b>
+field. This field MUST be set to a value in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00006602</p>
+  </td>
+  <td>
+  <p>Specifies the RC2 algorithm, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90330" data-linktype="external">[RFC2268]</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00006610</p>
+  </td>
+  <td>
+  <p>Specifies the AES 256 algorithm, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89870" data-linktype="external">[FIPS197]</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000660E</p>
+  </td>
+  <td>
+  <p>Specifies the AES 128 algorithm, as specified in
+  [FIPS197].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000660F</p>
+  </td>
+  <td>
+  <p>Specifies the AES 192 algorithm, as specified in
+  [FIPS197].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00006801</p>
+  </td>
+  <td>
+  <p>Specifies the RC4 algorithm, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90488" data-linktype="external">[RFC4757]</a></span>.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>Any value not specified in the preceding table MUST
+be treated as a failed decryption error when the <b>SecurityHeader</b> is
+present in the UserMessage and the <b>SecurityHeader.EB</b> flag is set. </p>
+</dd>
+<dd>
+<p>This field MUST be set according to <b>PrivacyLevel</b>
+as specified in the following table.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>PrivacyLevel</p>
+   </th>
+   <th>
+   <p>Allowed encryption algorithms</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>RC2, RC4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>RC2, RC4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>AES 128, AES 192, AES 256</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>When specifying AES or RC2, the initialization
+vector must be set to zero. The Padding used with AES or RC2 is <span><a href="https://go.microsoft.com/fwlink/?LinkId=90250" data-linktype="external">[PKCS5]</a></span>
+padding.</p>
+</dd></dl><p><b>ExtensionSize (4 bytes): </b>A 32-bit unsigned
+integer field that MUST be set to the length, in bytes, of the
+application-defined <b>ExtensionData</b> field. The field MUST be set to a
+value between 0x00000000 and the size limit imposed by the value of <b>BaseHeader.PacketSize</b>.</p><p><b>Label (variable): </b>The <b>Label</b> field is an
+application-defined <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> string. This
+field can be used by an application to assign a short descriptive string to the
+message. This field is of length <b>LabelLength</b> * 2 bytes and MUST NOT be
+more than 500 bytes. If <b>LabelLength</b> is nonzero, this field MUST be in
+the format specified by the following ABNF rule.</p><dl>
+<dd>
+<dl>
+<dd>
+<div><pre> label = 0*249(%x0001-FFFF) 0x0000
+</pre></div>
+</dd></dl></dd>
+<dd>
+<p>If <b>LabelLength</b> is zero then this field MUST
+NOT be present.</p>
+</dd>
+<dd>
+<p>Unlike the fields preceding and including the <b>Label</b>
+field, the <b>ExtensionData</b> and <b>MessageBody</b> fields are not
+guaranteed to be on 4-byte boundaries.</p>
+</dd></dl><p><b>ExtensionData (variable): </b>This field is a
+buffer containing additional application-defined information that is associated
+with the message. This field is of length <b>ExtensionSize</b> bytes. If <b>ExtensionSize</b>
+is zero then this field MUST NOT be present.</p><p><b>MessageBody (variable): </b>The <b>MessageBody</b>
+field is a buffer containing the application-defined message payload. This
+field is of length <b>MessageSize</b> bytes. If <b>MessageSize</b> is zero then
+this field MUST NOT be present.</p><dl>
+<dd>
+<p>The MessagePropertiesHeader packet MUST be a
+multiple of 4 bytes in length and MUST append padding bytes needed to ensure
+this requirement. There are no restrictions on the value of the padding bytes.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p>
+</dd></dl></div>

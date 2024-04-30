@@ -1,0 +1,67 @@
+<div class="content"><p> </p><p>The Repair method repairs a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_98c2ba19-d0f7-4db1-b6c1-4e7323cc5bc0" data-linktype="relative-path">fault-tolerant</a></span> <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7d1df68a-9ec5-4f84-a64f-67888f39405d" data-linktype="relative-path">volume
+plex</a></span> by moving defective members to good <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disks</a></span>. Only <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_d864e01b-9fb1-4beb-9864-8221d293445a" data-linktype="relative-path">plexes</a></span>
+that are <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_96e19472-82bc-4317-9b5b-8113e2fc6eb8" data-linktype="relative-path">RAID-5</a></span>, striped with
+parity, can be repaired with this method.</p><dl>
+<dd>
+<div><pre> HRESULT Repair(
+   [in, size_is(lNumberOfDisks)] VDS_INPUT_DISK* pInputDiskArray,
+   [in] long lNumberOfDisks,
+   [out] IVdsAsync** ppAsync
+ );
+</pre></div>
+</dd></dl><p><b>pInputDiskArray: </b>An array of <span><a href="2ec3b542-a7d7-4927-bdd6-b0dc8a8881ae" data-linktype="relative-path">VDS_INPUT_DISK</a></span>
+structures that describe the replacement disks. Only <b>diskId</b> and <b>ullSize</b>
+SHOULD be specified in each VDS_INPUT_DISK element. Only one new disk can be
+passed to this method at a time.</p><p><b>lNumberOfDisks: </b>The number of elements in <b>pInputDiskArray</b>.
+Only one new disk can be passed to this method at a time.</p><p><b>ppAsync: </b>A pointer to an <span><a href="97ea9c0f-5c8a-43e9-a9ee-deda29e2a09e" data-linktype="relative-path">IVdsAsync</a></span>
+interface that, if the operation is successfully completed, receives the
+IVdsAsync interface to monitor and control this operation. Callers MUST release
+the interface when they are done with it. If the <span><a href="ccba511e-b299-4153-bb2f-c25ba97840f4" data-linktype="relative-path">Wait</a></span> method is
+called on the interface, the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a></span> returned
+in the <span><a href="d21dadd7-b2ed-4c02-8fd2-83264272d277" data-linktype="relative-path">VDS_ASYNC_OUTPUT</a></span>
+structure MUST be released as well. For information on asynchronous tasks, see
+section <span><a href="28fc0a76-54bc-4d7d-81c3-37cf36586b23" data-linktype="relative-path">3.4.5.1.9</a></span>.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p><b>ERROR_SUCCESS</b> (0x00000000)</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that the volume plex is RAID-5.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <b>pInputDiskArray</b> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <b>ppAsync</b> is not NULL.</p>
+</li></ul><p>If the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> resides on a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_425be2e8-ca0d-45db-afba-d9daee040d07" data-linktype="relative-path">basic
+disk</a></span>, the server MUST return VDS_E_NOT_SUPPORTED (HRESULT of
+0x80042400) or E_NOTIMPL (HRESULT of 0x80004001, which means that the method is
+not implemented).</p><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>Verify that the disks specified using the <i>pInputDiskArray</i>
+parameter have no extents belonging to the volume that is being repaired. If
+the <i>pInputDiskArray</i> parameter fails this requirement, then the server
+MUST return VDS_E_DISK_IN_USE_BY_VOLUME.</p>
+</li><li><p><span><span> 
+</span></span>Create a new async object implementing the IVdsAsync interface
+with an output type of VDS_ASYNCOUT_REPAIRVOLUMEPLEX and set the pointer that <b>ppAsync</b>
+references to the interface.</p>
+</li><li><p><span><span> 
+</span></span>Return an HRESULT indicating failure or success. Any errors
+encountered up through this point in processing the operation are returned in
+this HRESULT.</p>
+</li></ul><p>The server MUST then perform the following in sequence.
+Errors generated in this sequence of steps are returned in the pHrResult
+parameter to the IVdsAsync::Wait or IVdsAsyncQueryStatus methods.</p><ul><li><p><span><span> 
+</span></span>Repair the volume plex corresponding to the <span><a href="9186f1ce-04de-4df2-a8cf-3925a02fcd47" data-linktype="relative-path">VDS_OBJECT_ID</a></span>
+that <b>PlexId</b> specifies from this volume by moving defective members to
+good disks.</p>
+</li><li><p><span><span> 
+</span></span>Set the return code in the async object to an HRESULT indicating
+failure or success.</p>
+</li><li><p><span><span> 
+</span></span>If the task completed successfully, set the percentage completed
+value in the async object to 100.</p>
+</li><li><p><span><span> 
+</span></span>Set the signal state in the async object to TRUE.</p>
+</li></ul><p>The server MUST update the percentage completed value
+periodically during the preceding sequence. How often the percentage completed
+is updated, and at what point in the sequence, is implementation-specific.</p></div>

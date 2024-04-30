@@ -1,0 +1,52 @@
+<div class="content"><p>RpcWaitForPrinterChange retrieves information about the most
+recent change notification that is associated with a printer or <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a>.</p><dl>
+<dd>
+<div><pre> DWORD RpcWaitForPrinterChange(
+   [in] PRINTER_HANDLE hPrinter,
+   [in] DWORD Flags,
+   [out] DWORD* pFlags
+ );
+</pre></div>
+</dd></dl><p><b>hPrinter: </b>A handle to a printer object or
+server object that was opened by <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter (section 3.1.4.2.3)</a>,
+<a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx (section 3.1.4.2.15)</a>,
+<a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter (section 3.1.4.2.2)</a>,
+or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx (section 3.1.4.2.14)</a>.</p><p><b>Flags: </b>The change notifications to wait for.
+The value of this parameter is a bitwise OR of one or more printer change
+values, defined in sections <a href="1d63f9ef-a4cd-41e9-9152-004fd2a8855a" data-linktype="relative-path">2.2.3.6.1</a>
+and <a href="badfe1eb-a521-4686-b2ac-cac29dff311a" data-linktype="relative-path">2.2.3.6.2</a>. For
+rules governing printer change values, see section <a href="f7e72f6c-8ba3-4573-8a7e-dd12f2cff50e" data-linktype="relative-path">2.2.4.13</a>.</p><p><b>pFlags: </b>A pointer to a variable that receives
+the bitwise OR combination of one or more printer change values.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE Parameters</a>,
+section 3.1.4.1.11. This method SHOULD assume that the handle to the printer or
+server object can be used without further access checks.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately, returning a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Add the client and the requested change notifications to the list
+of notification clients for the printer or server object.</p>
+</li><li><p><span><span> 
+</span></span>Wait for an implementation-specific period of time,<a id="Appendix_A_Target_379"></a><a aria-label="Product behavior note 379" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_379" data-linktype="relative-path">&lt;379&gt;</a> or until one of the changes
+specified by the value of the <i>Flags</i> parameter occurs.</p>
+</li><li><p><span><span> 
+</span></span>Remove the client from the list of notification clients for the
+printer or server object.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>hPrinter</i> handle is closed with <a href="8482c186-7773-4fb5-8034-e9bae7a91e52" data-linktype="relative-path">RpcClosePrinter (section 3.1.4.2.9)</a>
+during this wait period, return ERROR_INVALID_HANDLE.</p>
+</li><li><p><span><span> 
+</span></span>If one or more of the specified changes occurred within the
+time-out period, write a bitwise OR combination of the changes to the variable
+that is pointed to by <i>pFlags</i> and return zero.</p>
+</li><li><p><span><span> 
+</span></span>If the time-out period has expired without any of the specified
+changes, return <b>PRINTER_CHANGE_TIMEOUT</b> [MS-ERREF].</p>
+</li></ul><p><b>Note:</b> Because this method waits for an
+implementation-specific, potentially long, period of time, it can cause the
+client system to stop responding. Therefore, this method is deprecated and
+SHOULD NOT be used. The implementer of a protocol client SHOULD consider using <a href="eb66b221-1c1f-4249-b8bc-c5befec2314d" data-linktype="relative-path">RpcRemoteFindFirstPrinterChangeNotificationEx</a>
+instead.</p></div>

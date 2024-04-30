@@ -1,0 +1,51 @@
+<div class="content"><p> </p><p>The FUNCFLAGS enumeration values are used in the <b>wFuncFlags</b>
+field of a FUNCDESC to identify features of a function, as specified in section
+<span><a href="d3349d25-e11d-4095-ba86-de3fda178c4e" data-linktype="relative-path">2.2.42</a></span>.</p><p>The function feature constants are defined in the FUNCFLAGS
+enumeration.</p><dl>
+<dd>
+<div><pre> typedef  enum tagFUNCFLAGS
+ {
+   FUNCFLAG_FRESTRICTED = 1,
+   FUNCFLAG_FSOURCE = 0x2,
+   FUNCFLAG_FBINDABLE = 0x4,
+   FUNCFLAG_FREQUESTEDIT = 0x8,
+   FUNCFLAG_FDISPLAYBIND = 0x10,
+   FUNCFLAG_FDEFAULTBIND = 0x20,
+   FUNCFLAG_FHIDDEN = 0x40,
+   FUNCFLAG_FUSESGETLASTERROR = 0x80,
+   FUNCFLAG_FDEFAULTCOLLELEM = 0x100,
+   FUNCFLAG_FUIDEFAULT = 0x200,
+   FUNCFLAG_FNONBROWSABLE = 0x400,
+   FUNCFLAG_FREPLACEABLE = 0x800,
+   FUNCFLAG_FIMMEDIATEBIND = 0x1000
+ } FUNCFLAGS;
+</pre></div>
+</dd></dl><p><b>FUNCFLAG_FRESTRICTED:  </b>MUST be set if the
+method or <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_f930baab-25f1-4142-bced-5effc9f62d45" data-linktype="relative-path">property</a></span> was
+declared with the <b>[restricted]</b> attribute (as specified in section <span><a href="232d5f12-4b88-43e3-a633-60fc157b1a5f" data-linktype="relative-path">2.2.49.5.1</a></span>).</p><p><b>FUNCFLAG_FSOURCE:  </b>MUST be set if the method
+or property is a member of an <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a></span> declared
+with the <b>[source]</b> attribute (as specified in section <span><a href="e86fe771-d836-47b6-b846-846de41d592c" data-linktype="relative-path">2.2.49.8</a></span>).
+</p><p><b>FUNCFLAG_FBINDABLE:  </b>MUST be set if the
+property was declared with the <b>[bindable]</b> attribute (as specified in
+section <span><a href="ac18004e-7af7-4feb-8ae6-d42e7a14267c" data-linktype="relative-path">2.2.49.5.2</a></span>).</p><p><b>FUNCFLAG_FREQUESTEDIT:  </b>MUST be set if the
+property was declared with the <b>[requestedit]</b> attribute (as specified in
+section 2.2.49.5.2).</p><p><b>FUNCFLAG_FDISPLAYBIND:  </b>MUST be set if the
+property was declared with the <b>[displaybind]</b> attribute (as specified in
+section 2.2.49.5.2).</p><p><b>FUNCFLAG_FDEFAULTBIND:  </b>MUST be set if the
+property was declared with the <b>[defaultbind]</b> attribute (as specified in
+section 2.2.49.5.2).</p><p><b>FUNCFLAG_FHIDDEN:  </b>MUST be set if the method
+or property was declared with the <b>[hidden]</b> attribute (as specified in
+section 2.2.49.5.1).</p><p><b>FUNCFLAG_FUSESGETLASTERROR:  </b>MUST be set if
+the method or property was declared with the <b>[usesgetlasterror]</b>
+attribute (as specified in section <span><a href="82f9465b-ae46-474e-87ff-e65e9751affb" data-linktype="relative-path">2.2.49.9</a></span>) and MUST
+be ignored on receipt. </p><p><b>FUNCFLAG_FDEFAULTCOLLELEM:  </b>MUST be set if the
+method or property was declared with the <b>[defaultcollelem]</b> attribute (as
+specified in section 2.2.49.5.1).</p><p><b>FUNCFLAG_FUIDEFAULT:  </b>MUST be set if the
+method or property was declared with the <b>[uidefault]</b> attribute (as
+specified in section 2.2.49.5.1).</p><p><b>FUNCFLAG_FNONBROWSABLE:  </b>MUST be set if the
+property was declared with the <b>[nonbrowsable]</b> attribute (as specified in
+section 2.2.49.5.1).</p><p><b>FUNCFLAG_FREPLACEABLE:  </b>MUST be set if the
+property was declared with the <b>[replaceable]</b> attribute (as specified in
+section 2.2.49.5.1). MUST be ignored on receipt.</p><p><b>FUNCFLAG_FIMMEDIATEBIND:  </b>MUST be set if the
+property was declared with the <b>[immediatebind]</b> attribute (as specified
+in section 2.2.49.5.2).</p></div>

@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The <b>DHCP_CLASS_INFO_ARRAY_V6</b> structure contains a
+list of information regarding a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_713c7395-9431-4d67-bab1-a069ae7461e2" data-linktype="relative-path">user class</a></span> or a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_45d20b00-7166-4f94-b679-4cc5a7835a3a" data-linktype="relative-path">vendor
+class</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_CLASS_INFO_ARRAY_V6 {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_CLASS_INFO_V6 Classes;
+ } DHCP_CLASS_INFO_ARRAY_V6,
+  *LPDHCP_CLASS_INFO_ARRAY_V6;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+specifying the number of classes whose information is contained in the array
+specified by the <b>Classes</b> member. </p><p><b>Classes:</b>  A pointer to an array of <span><a href="c820453d-a53c-4e36-99dd-caf5aa55909a" data-linktype="relative-path">DHCP_CLASS_INFO_V6 (section 2.2.1.2.70)</a></span>
+structures that contains information regarding the various user classes and
+vendor classes.</p></div>

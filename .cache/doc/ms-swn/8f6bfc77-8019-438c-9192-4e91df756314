@@ -1,0 +1,102 @@
+<div class="content"><p>The WitnessrGetInterfaceList method returns information
+about the interfaces to which witness client connections can be made.</p><dl>
+<dd>
+<div><pre> DWORD WitnessrGetInterfaceList(
+         [in] handle_t Handle,
+         [out] PWITNESS_INTERFACE_LIST* InterfaceList);
+            
+</pre></div>
+</dd></dl><p><b>Handle:</b>  An RPC binding handle <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>InterfaceList:</b>  A pointer to a
+PWITNESS_INTERFACE_LIST, as specified in section <a href="59914cf8-1240-4251-b8fc-d749e8fcf39c" data-linktype="relative-path">2.2.2.6</a>.</p><p><b>Return Values:</b> Returns 0x00000000
+(ERROR_SUCCESS) on success or a nonzero error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p> ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p> ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  </td>
+  <td>
+  <p>No more data is available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000000E </p>
+  <p>ERROR_OUTOFMEMORY</p>
+  </td>
+  <td>
+  <p>There is not enough storage space to complete the
+  operation.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>If there are no entries in the <b>InterfaceList</b>, the
+server MUST fail the request and return the error code ERROR_NO_MORE_ITEMS.</p><p>If no entry in the InterfaceList has a State of AVAILABLE,
+the server MUST wait until at least one entry enters that State, as specified
+in section <a href="f3a8a41d-19d6-4b59-be85-2ba8d3172ba2" data-linktype="relative-path">3.1.6.1</a>.</p><p>For each <b>Interface</b> in the <b>InterfaceList</b>, the
+server MUST construct a WITNESS_INTERFACE_INFO structure as follows:</p><ul><li><p><span><span> 
+</span></span>The <b>InterfaceGroupName</b> field of the WITNESS_INTERFACE_INFO
+structure MUST be set to <b>Interface.InterfaceGroupName</b>.</p>
+</li><li><p><span><span> 
+</span></span>The <b>State</b> field MUST be set to <b>Interface.State</b>.</p>
+</li><li><p><span><span> 
+</span></span>The <b>Version</b> field MUST be set to <b>WitnessServiceVersion</b>.</p>
+</li><li><p><span><span> 
+</span></span>If <b>Interface.IPv4Address</b> is not empty, the <b>IPV4</b>
+field MUST be set to <b>Interface.IPv4Address</b>, and IPv4 flag MUST be set in
+the <b>Flags</b> field.</p>
+</li><li><p><span><span> 
+</span></span>If <b>Interface.IPv6Address</b> is not empty, the <b>IPV6</b>
+field MUST be set to <b>Interface.IPv6Address</b>, and IPv6 flag MUST be set in
+the <b>Flags</b> field.</p>
+</li><li><p><span><span> 
+</span></span>In an implementation-dependent manner, the server MUST determine
+if the <b>IPv4Address</b> or <b>IPv6Address</b> match any interface which is
+hosted on the server and the server is also running this Witness Service
+instance. If the address is not hosted on the local server, the
+INTERFACE_WITNESS flag MUST be set in the <b>Flags</b> field. Otherwise, the
+flag MUST NOT be set.</p>
+</li></ul><p>The server MUST construct the WITNESS_INTERFACE_LIST
+structure as follows:</p><ul><li><p><span><span> 
+</span></span>All WITNESS_INTERFACE_INFO structures MUST be copied into the <b>InterfaceInfo</b>
+field of the WITNESS_INTERFACE_LIST structure.</p>
+</li><li><p><span><span> 
+</span></span>The <b>NumberOfInterfaces</b> field of the WITNESS_INTERFACE_LIST
+structure MUST be set to the number of interfaces provided by <b>InterfaceInfo</b>.
+</p>
+</li></ul><p>The WITNESS_INTERFACE_LIST structures MUST be copied into
+the <i>InterfaceList</i> parameter.</p><p>The server MUST return ERROR_SUCCESS and the <i>InterfaceList</i>
+parameter to the caller.</p></div>

@@ -1,0 +1,13 @@
+<div class="content"><p>The AUTHZR_SECURITY_ATTRIBUTE_STRING_VALUE structure
+contains the string value of a claim.</p><dl>
+<dd>
+<div><pre> typedef struct _AUTHZR_SECURITY_ATTRIBUTE_STRING_VALUE {
+     [range(2, 32768)] ULONG Length;
+     [string] [size_is(Length)] WCHAR* Value;
+ } AUTHZR_SECURITY_ATTRIBUTE_STRING_VALUE;
+  
+  
+</pre></div>
+</dd></dl><p><b>Length:</b> The length of the string in the Value
+parameter.</p><p><b>Value:</b> A Unicode string containing the pass-through
+string value of the claim.</p></div>

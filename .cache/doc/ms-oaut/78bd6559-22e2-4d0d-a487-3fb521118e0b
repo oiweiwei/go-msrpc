@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The SAFEARR_HAVEIID structure defines an array of
+MInterfacePointers (see <span><a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a></span>
+section <span><a href="../ms-dcom/21781a97-cb45-4655-82b0-02c4a1584603" data-linktype="relative-path">2.2.14</a></span></p><dl>
+<dd>
+<div><pre> typedef struct _wireSAFEARR_HAVEIID {
+   ULONG Size;
+   [size_is(Size), ref] IUnknown** apUnknown;
+   IID iid;
+ } SAFEARR_HAVEIID;
+</pre></div>
+</dd></dl><p><b>Size:</b>  MUST be set to the total
+number of elements in the array. This MUST be nonzero.</p><p><b>apUnknown:</b>  MUST be an array of
+MInterfacePointer elements. The <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_d2b5b331-4e5f-417f-92c5-38eef54176c2" data-linktype="relative-path">OBJREF</a></span> <b>iid</b>
+field MUST be the same as the value of the <b>iid</b>. </p><p><b>iid:</b>  MUST specify the <span><a href="94ea3f27-ba29-45f3-a821-323f0a0c6d60" data-linktype="relative-path">IID</a></span>
+of each of the elements in the SAFEARRAY.</p><p>The <b>Size</b> and <b>iid</b> fields of this type MUST be
+marshaled as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> section
+14, with the exception that it MUST be marshaled by using a little-endian data
+representation, regardless of the data representation format label. For more
+information, see [C706] section 14.2.5.</p></div>

@@ -1,0 +1,37 @@
+<div class="content"><p> </p><p>The Skip method skips ahead in the collection by the number
+of elements specified.</p><dl>
+<dd>
+<div><pre> [id(5), helpstring(&#34;method Skip&#34;)] HRESULT Skip(
+   [in] ULONG cSkipElem
+ );
+</pre></div>
+</dd></dl><p><b>cSkipElem: </b>The number of elements to skip
+ahead in the collection.</p><p><b>Return Values: </b>An <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>
+specifying success or failure. All success codes other than S_FALSE MUST be
+treated the same, and all failure codes MUST be treated the same.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  <p>S_FALSE</p>
+  </td>
+  <td>
+  <p>The number of elements skipped was not the same as the
+  number requested.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>When this method is invoked, the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST attempt
+to skip ahead <i>cSkipElem</i> elements in the enumerator from its current
+location, and fail the call, returning a failure HRESULT back to the client if
+it cannot. If the number of elements in the enumerator from its current
+location is less than the count specified in <i>cSkipElem</i>, the server MUST
+return S_FALSE as a success HRESULT.</p></div>

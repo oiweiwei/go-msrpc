@@ -1,0 +1,24 @@
+<div class="content"><p>A client calls this method to obtain tracking information
+for <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_71669ed9-7eaf-4328-9e2e-4d3430f0f9bf" data-linktype="relative-path">components</a> that have
+one or more <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_712af290-acfd-4e3a-a768-0530caa93b18" data-linktype="relative-path">component
+instances</a> in a given <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_791190e6-1e02-42cb-bd25-5aee3ab516ed" data-linktype="relative-path">instance
+container</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetComponentDataByContainer(
+   [in] DWORD idContainer,
+   [out] DWORD* nComponents,
+   [out, size_is(,*nComponents)] ComponentData** aComponentData
+ );
+</pre></div>
+</dd></dl><p><b>idContainer:</b> The <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_89558104-aaa5-4aad-a89c-1b8febc6b7e4" data-linktype="relative-path">container legacy identifier</a>
+of an instance container.</p><p><b>nComponents: </b>A pointer to a variable that,
+upon successful completion, MUST contain the number of elements in <i>aComponentData</i>.</p><p><b>aComponentData: </b>A pointer to a variable that,
+upon successful completion, MUST contain an array of zero or more <a href="e5f5dc8e-d308-43b6-8b32-073d3ea099cd" data-linktype="relative-path">ComponentData (section 2.2.4)</a>
+structures. An array with zero elements MUST be represented by null.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success and a failure result (as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>)
+on failure.</p><p>When this method is invoked, the server MUST verify that the
+<i>idContainer</i> parameter identifies a tracked instance container and fail
+the call if not. The server then MUST attempt to return an array of zero or more
+ComponentData structures, one for each distinct component instance instantiated
+in the instance container, and fail the call if it cannot.</p></div>

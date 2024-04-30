@@ -1,0 +1,45 @@
+<div class="content"><p>RpcDeleteMonitor removes a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1b5f368b-942b-40dd-84ea-fa9082916216" data-linktype="relative-path">port monitor</a>.</p><dl>
+<dd>
+<div><pre> DWORD RpcDeleteMonitor(
+   [in, string, unique] STRING_HANDLE Name,
+   [in, string, unique] wchar_t* pEnvironment,
+   [in, string] wchar_t* pMonitorName
+ );
+</pre></div>
+</dd></dl><p><b>Name: </b>This parameter MUST adhere to the
+parameter specification in <a href="acb355a4-913b-4abb-8cb5-415aea160015" data-linktype="relative-path">Print
+Server Name Parameters</a>, section 3.1.4.1.4.</p><p><b>pEnvironment: </b>This parameter MUST adhere to
+the parameter specification in <a href="5b2bf7d5-ac77-464f-be5e-f3a7c1782246" data-linktype="relative-path">Environment Name Parameters</a>,
+section 3.1.4.1.3.</p><p><b>pMonitorName: </b>A pointer to a string that
+specifies the name of the monitor to remove. For rules governing monitor names,
+see section <a href="808e2e6c-7f91-4bdd-92da-56fbca513404" data-linktype="relative-path">2.2.4.8</a>.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate the
+following:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in Print Server
+Name Parameters, section 3.1.4.1.4.</p>
+</li><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in Environment
+Name Parameters, section 3.1.4.1.3.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the <i>pMonitorName</i> parameter points to a string
+identifying a port monitor installed on the system and, if that verification
+fails, return ERROR_UNKNOWN_PRINT_MONITOR as specified in MS-ERREF section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.</p>
+</li><li><p><span><span> 
+</span></span>Verify that there are no <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">ports</a> (in use by any
+printer or print job) on the system that are controlled by this monitor at this
+time and, if that verification fails, return ERROR_PRINT_MONITOR_IN_USE as
+specified in MS-ERREF section 2.2.</p>
+</li><li><p><span><span> 
+</span></span>Additional validation MAY be performed.<a id="Appendix_A_Target_369"></a><a aria-label="Product behavior note 369" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_369" data-linktype="relative-path">&lt;369&gt;</a></p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.
+Otherwise, the server MUST process the message and compose a response to the
+client as follows:</p><ul><li><p><span><span> 
+</span></span>Clear references to the port monitor from any other data
+structures.</p>
+</li><li><p><span><span> 
+</span></span>Delete the port monitor object.</p>
+</li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

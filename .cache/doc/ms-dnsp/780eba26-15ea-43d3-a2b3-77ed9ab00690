@@ -1,0 +1,167 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_ZONE_CREATE_INFO_W2K</b> structure is used to
+specify parameters required when creating a new DNS zone.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcZoneCreateInfo {
+   [string] char* pszZoneName;
+   DWORD dwZoneType;
+   DWORD fAllowUpdate;
+   DWORD fAging;
+   DWORD dwFlags;
+   [string] char* pszDataFile;
+   DWORD fDsIntegrated;
+   DWORD fLoadExisting;
+   [string] char* pszAdmin;
+   PIP4_ARRAY aipMasters;
+   PIP4_ARRAY aipSecondaries;
+   DWORD fSecureSecondaries;
+   DWORD fNotifyLevel;
+   [string] char* pvReserved1;
+   [string] char* pvReserved2;
+   [string] char* pvReserved3;
+   [string] char* pvReserved4;
+   [string] char* pvReserved5;
+   [string] char* pvReserved6;
+   [string] char* pvReserved7;
+   [string] char* pvReserved8;
+   DWORD dwReserved1;
+   DWORD dwReserved2;
+   DWORD dwReserved3;
+   DWORD dwReserved4;
+   DWORD dwReserved5;
+   DWORD dwReserved6;
+   DWORD dwReserved7;
+   DWORD dwReserved8;
+ } DNS_RPC_ZONE_CREATE_INFO_W2K,
+  *PDNS_RPC_ZONE_CREATE_INFO_W2K;
+</pre></div>
+</dd></dl><p><b>pszZoneName:</b> As specified in section <span><a href="e8651544-0fbb-4038-8232-375ff2d8a55e" data-linktype="relative-path">2.2.5.2.4.1</a></span>.</p><p><b>dwZoneType:</b> The zone type. This MUST be
+set to one of the allowed values specified in DNS_ZONE_TYPE (section <span><a href="27e138a7-110c-44a4-afcb-b95f35f00306" data-linktype="relative-path">2.2.5.1.1</a></span>),
+and it MUST NOT be either DNS_ZONE_TYPE_CACHE or DNS_ZONE_TYPE_SECONDARY_CACHE.</p><p><b>fAllowUpdate:</b> As specified in section
+2.2.5.2.4.1.</p><p><b>fAging:</b> As specified in section
+2.2.5.2.4.1.</p><p><b>dwFlags:</b> The <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span> creation
+behavior that the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a></span> server is to
+follow while creating the zone. This field is only used when the operation is <b>ZoneCreate</b>.
+The DNS server MUST ignore the value of this field when the operation is <b>ZoneTypeReset</b>.
+This field MUST be set to any combination of the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DNS_ZONE_LOAD_OVERWRITE_MEMORY</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>If <b>dwZoneType</b> is not set to the value
+  DNS_ZONE_TYPE_PRIMARY (section 2.2.5.1.1), then this flag MUST be ignored.
+  Otherwise, the DNS server MUST attempt to find and load the zone database
+  from persistent storage instead of creating a new empty zone database. If the
+  value of fDsIntegrated is 0x00000001 then the DNS server MUST search for a
+  pre-existing zone database in the directory server, otherwise the DNS server
+  MUST search for a pre-existing zone database in a file. If a pre-existing
+  zone database is not found then it continues with zone creation, however if a
+  pre-existing zone database is found but could not be loaded, the DNS server
+  MUST fail the operation and return an error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_ZONE_CREATE_FOR_DCPROMO</p>
+  <p>0x00001000</p>
+  </td>
+  <td>
+  <p>If this flag is set, the DNS server MUST create the
+  zone such that it is <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0f196310-8f7b-462b-af06-6d955831d6f9" data-linktype="relative-path">directory server-integrated</a></span>
+  and stored in the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_24873c07-a6aa-4d4b-8064-fa64dff80204" data-linktype="relative-path">DNS domain partition</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_ZONE_CREATE_FOR_DCPROMO_FOREST</p>
+  <p>0x00004000</p>
+  </td>
+  <td>
+  <p>If this flag is set, the DNS server MUST create the
+  zone such that it is directory server-integrated and stored in the DNS <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a></span>
+  partition. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pszDataFile:</b> As specified in section
+2.2.5.2.4.1.</p><p><b>fDsIntegrated:</b> A value of 0x00000001
+indicates that the zone is to be created to use the directory server for
+persistent storage, and 0x00000000 indicates it is not. If this is set to
+0x00000001 the caller MUST specify the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_68dc613a-d602-41ae-9acc-76ffe97877c4" data-linktype="relative-path">application directory partition</a></span>
+information in pszDpFqdn (section <span><a href="f0a44576-1d3f-43cc-bece-07ae958f5b36" data-linktype="relative-path">2.2.5.2.7.2</a></span>); in
+this case the DNS server MUST ignore the value of pszDataFile.</p><p><b>fLoadExisting:</b> If the operation is <b>ZoneCreate</b>
+this field is interpreted as a <span><a href="../ms-dtyp/51bbfbb1-08e2-4c13-a95e-1eaa7d310670" data-linktype="relative-path">Boolean</a></span>
+value. If set to TRUE this has the same effect as specifying
+DNS_ZONE_LOAD_OVERWRITE_MEMORY in the <b>dwFlags</b> field. If the operation is
+<b>ZoneTypeReset</b>, this field can be set to one of the following values;
+however, the DNS server MUST ignore the value of this field if <b>fDsIntegrated</b>
+is not TRUE or <b>dwZoneType</b> is not DNS_ZONE_TYPE_PRIMARY (section
+2.2.5.1.1).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DNS_ZONE_LOAD_OVERWRITE_MEMORY</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The server MUST attempt to find and load the zone
+  database from persistent storage instead of retaining the existing in-memory
+  zone database by searching for a pre-existing zone database in the directory
+  server. If a pre-existing zone database is not found, then the server MUST
+  fail the operation and return an error. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_ZONE_LOAD_OVERWRITE_DS</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>If this flag is set and if the zone already exists in
+  the database, then the server MUST overwrite the existing zone database with
+  current in-memory zone database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pszAdmin:</b> A pointer to a null-terminated
+UTF-8 string containing the administrator&#39;s email name (in the format specified
+in <span><a href="https://go.microsoft.com/fwlink/?LinkId=90264" data-linktype="external">[RFC1035]</a></span>
+section 8) or NULL to cause the DNS server to use a default value
+&#34;hostmaster&#34;, followed by the name of the zone. This value MUST be
+used to populate the zone administrator email field in the SOA record in the
+new zone.</p><p><b>aipMasters:</b> As specified in section
+2.2.5.2.4.1.</p><p><b>aipSecondaries:</b> As specified in section
+2.2.5.2.4.1.</p><p><b>fSecureSecondaries:</b> As specified in
+section 2.2.5.2.4.1.</p><p><b>fNotifyLevel:</b> As specified in section
+2.2.5.2.4.1.</p><p><b>pvReserved1:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>pvReserved2:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>pvReserved3:</b>MUST be set to zero when sent and
+MUST be ignored on receipt.</p><p><b>pvReserved4:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>pvReserved5:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>pvReserved6:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>pvReserved7:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>pvReserved8:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>dwReserved1:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>dwReserved2:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>dwReserved3:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>dwReserved4:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>dwReserved5:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>dwReserved6:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>dwReserved7:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p><p><b>dwReserved8:</b> MUST be set to zero when
+sent and MUST be ignored on receipt.</p></div>

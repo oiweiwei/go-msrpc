@@ -1,0 +1,166 @@
+<div class="content"><p> </p><p>The NetrDfsRemoveRootTarget (Opnum 24) method is the unified
+<span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS
+namespace</a></span> deletion method. It deletes <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ce6af522-ba70-4ba1-a684-b98b809c72ad" data-linktype="relative-path">stand-alone DFS namespaces</a></span>,
+<span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_2aad5e61-ffe9-406e-a192-328c5327ee72" data-linktype="relative-path">domainv1-based
+DFS namespaces</a></span>, or <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8099f7c1-2a31-4a20-81e6-824689bd9c5a" data-linktype="relative-path">domainv2-based DFS namespaces</a></span>
+based on parameters specified.<a id="Appendix_A_Target_74"></a><a aria-label="Product behavior note 74" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_74" data-linktype="relative-path">&lt;74&gt;</a></p><p>The NetrDfsRemoveRootTarget (Opnum 24) method has the
+following <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a></span> syntax.</p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrDfsRemoveRootTarget(
+   [in, unique, string] LPWSTR pDfsPath,
+   [in, unique, string] LPWSTR pTargetPath,
+   [in] ULONG Flags
+ );
+</pre></div>
+</dd></dl><p><b>pDfsPath: </b>The pointer to a null-terminated <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string. This MUST be <code>\\&lt;domain&gt;\&lt;dfsname&gt;</code>
+for domain-based <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0b8086c9-d025-45b8-bf09-6b5eca72713e" data-linktype="relative-path">DFS</a></span> or <code>\\&lt;server&gt;\&lt;share&gt;</code> for stand-alone DFS.</p><p><b>pTargetPath: </b>The pointer to a null-terminated
+Unicode string. This MUST be <code>\\&lt;server&gt;\&lt;share&gt;[\&lt;path&gt;]</code>
+for domain-based DFS or NULL for stand-alone DFS.</p><p><b>Flags: </b>A bit field specifying the type of
+removal operation. For a standalone namespace, this bit-field parameter MUST be
+zero. For a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_133ab305-ad75-4b38-8ec9-40bc0dc3b594" data-linktype="relative-path">domain-based DFS namespace</a></span>,
+it can be zero or the following value. Zero indicates a normal removal
+operation.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DFS_FORCE_REMOVE</p>
+  <p>0x80000000</p>
+  </td>
+  <td>
+  <p>Specifying this flag for a domain-based DFS namespace
+  removes the root target even if it is not accessible.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits are reserved and MUST NOT be used. If
+reserved bits are specified, the server SHOULD fail the call with an
+implementation-dependent failure value.<a id="Appendix_A_Target_75"></a><a aria-label="Product behavior note 75" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_75" data-linktype="relative-path">&lt;75&gt;</a></p>
+</dd></dl><p><b>Return Values: </b>The method MUST return 0 on
+success and a nonzero error code on failure. The method can return any specific
+error code value, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Successful completion.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified DFS root target was not found as a
+  target of the specified DFS namespace.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Permission to perform the operation was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>An incorrect parameter was specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000490</p>
+  <p>ERROR_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified DFS root namespace does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST verify the existence of the DFS namespace
+that the <i>pDfsPath</i> parameter specifies. If that existence check fails,
+the server MUST return ERROR_NOT_FOUND.</p><p>The server MUST verify the existence of the DFS root target
+of the DFS namespace that the <i>pTargetPath</i> parameter specifies. If that
+existence check fails, the server MUST return ERROR_FILE_NOT_FOUND.</p><p>The server MUST support deleting a DFS namespace without
+first requiring removal of all the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_0611e93d-f0e7-42ee-a591-d77ebcbb6619" data-linktype="relative-path">DFS links</a></span> in it.</p><p>The client-side method is responsible for deleting the DFS
+namespace anchor <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_45643bfb-b4c4-432c-a10f-b98790063f8d" data-linktype="relative-path">LDAP</a></span> entry
+corresponding to a domainv2-based DFS namespace.</p><p>The server MAY support DFS_FORCE_REMOVE on <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_46c7db22-d5fb-431c-9d28-b2052d18ffda" data-linktype="relative-path">member
+servers</a></span>.<a id="Appendix_A_Target_76"></a><a aria-label="Product behavior note 76" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_76" data-linktype="relative-path">&lt;76&gt;</a> If it is not supported and
+DFS_FORCE_REMOVE is specified, the server MUST return a failure.</p><p>If DFS_FORCE_REMOVE is not specified and it is a
+domain-based DFS namespace, the server MUST verify it is the host specified by
+the <i>pTargetPath</i> parameter. If it is not, the server MUST return
+ERROR_FILE_NOT_FOUND.</p><p>If DFS_FORCE_REMOVE is not specified, the server SHOULD<a id="Appendix_A_Target_77"></a><a aria-label="Product behavior note 77" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_77" data-linktype="relative-path">&lt;77&gt;</a> also remove any local
+information related to hosting the removed root target. If DFS_FORCE_REMOVE is
+specified, the server MUST NOT do so.</p><p>The effect of DFS_FORCE_REMOVE is to clean up after the
+named root target has become nonfunctional and is unable to remove itself from
+the namespace.</p><p>The server MUST synchronously update the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_e8de88fd-d760-46fa-ad77-76961fa20aea" data-linktype="relative-path">DFS
+metadata</a></span> of a domain-based DFS namespace. </p><p>The server SHOULD remove any intermediate directories and
+reparse points that were part of the namespace.</p><p>If <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_cf94d206-f71c-4ca1-891a-24c83f533e45" data-linktype="relative-path">DFS root scalability mode</a></span>
+is not enabled for the domain-based DFS namespace, the server MUST notify other
+<span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ac90b498-3ba4-48d6-bcd6-5495f1654671" data-linktype="relative-path">DFS
+root targets</a></span> of the change in DFS metadata by asynchronously issuing
+a NetrDfsSetInfo (Opnum 3) method with the Level parameter 101 and with the <b>State</b>
+field of <span><a href="af9d607e-04e5-4722-8d00-76cf9c7b69f9" data-linktype="relative-path">DFS_INFO_101</a></span> set to
+DFS_VOLUME_STATE_RESYNCHRONIZE.</p><p>The following table summarizes the various actions that the
+NetrDfsRemoveRootTarget method takes based on the parameter values.</p><table><thead>
+  <tr>
+   <th>
+   <p>pDfsPath parameter</p>
+   </th>
+   <th>
+   <p>pTargetPath parameter</p>
+   </th>
+   <th>
+   <p>Explanation</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>\\&lt;domain&gt;\&lt;dfsname&gt;</p>
+  </td>
+  <td>
+  <p>\\&lt;server&gt;\&lt;share&gt;</p>
+  </td>
+  <td>
+  <p>Deletes a domain-based DFS root target. If the DFS
+  root target that is removed is the last one for the DFS namespace, then it
+  removes the DFS namespace itself. This parameter can be used for either a
+  domainv1-based DFS namespace or a domainv2-based DFS namespace.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>\\&lt;server&gt;\&lt;dfsname&gt;</p>
+  </td>
+  <td>
+  <p>NULL</p>
+  </td>
+  <td>
+  <p>Deletes a <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_701a2cc1-eb5a-400f-b394-5bad264ec8f6" data-linktype="relative-path">stand-alone DFS namespace</a></span>.</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

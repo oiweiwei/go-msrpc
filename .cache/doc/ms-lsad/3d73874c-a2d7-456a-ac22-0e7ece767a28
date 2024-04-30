@@ -1,0 +1,68 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/3d73874c-a2d7-456a-ac22-0e7ece767a28" data-linktype="external">msdn link</a></p><p>The LsarSetSystemAccessAccount method is invoked to set
+system access account flags for an <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b76eee27-064e-461b-81a9-fbf41e49928b" data-linktype="relative-path">account object</a>. </p><dl>
+<dd>
+<div><pre> NTSTATUS LsarSetSystemAccessAccount(
+   [in] LSAPR_HANDLE AccountHandle,
+   [in] unsigned long SystemAccess
+ );
+</pre></div>
+</dd></dl><p><b>AccountHandle: </b>An open account object handle
+obtained from either <a href="841e3211-5be4-4b50-9f11-2d4941c40a30" data-linktype="relative-path">LsarCreateAccount (section 3.1.4.5.1)</a>
+or <a href="355e2952-abe4-47c3-96d9-a2f4bd01cf3d" data-linktype="relative-path">LsarOpenAccount (section 3.1.4.5.3)</a>.</p><p><b>SystemAccess: </b>A bitmask containing the account
+flags to be set on the account.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the supplied parameters was invalid. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>AccountHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes two arguments:</p><p><i>AccountHandle</i>: An open handle to an account object.
+If the handle is not a valid context handle to an account object or <i>AccountHandle</i>.HandleType
+does not equal &#34;Account&#34;, the server MUST return
+STATUS_INVALID_HANDLE. The server MUST verify that AccountHandle grants access
+as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a>
+with RequiredAccess set to ACCOUNT_ADJUST_SYSTEM_ACCESS.</p><p><i>SystemAccess</i>: Specifies the set of access bits to be
+added to account&#39;s system access. The server MUST verify that the bits do not
+fall outside the set of system access rights defined on the system, and fail
+the request with STATUS_INVALID_PARAMETER otherwise. The new system access bits
+replace the old ones.</p></div>

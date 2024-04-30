@@ -1,0 +1,10 @@
+<div class="content"><p> </p><p>ENTINFLIST is a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> for a
+list of <span><a href="6d69822e-adb6-4977-8553-c2d529c17e5b" data-linktype="relative-path">ENTINF</a></span> entries.</p><dl>
+<dd>
+<div><pre> typedef struct ENTINFLIST {
+   struct ENTINFLIST* pNextEntInf;
+   ENTINF Entinf;
+ } ENTINFLIST;
+</pre></div>
+</dd></dl><p><b>pNextEntInf:</b>  The next ENTINFLIST in
+the sequence, or null.</p><p><b>Entinf:</b>  An ENTINF entry.</p></div>

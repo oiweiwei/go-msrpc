@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p>The R_DnssrvUpdateRecord3 method is used to add a new DNS
+record or modify or delete an existing DNS record in a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span>
+or in a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bbe7722c-420e-48e7-b4bb-9838ff07b9e6" data-linktype="relative-path">zone scope</a></span>, or in a
+cache zone or cache scope, if specified. The DNS server SHOULD<a id="Appendix_A_Target_283"></a><a aria-label="Product behavior note 283" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_283" data-linktype="relative-path">&lt;283&gt;</a> implement
+R_DnssrvUpdateRecord3.</p><p>All parameters are as specified by the methods <span><a href="37eea101-00b8-4958-99eb-de8cda4b8417" data-linktype="relative-path">R_DnssrvUpdateRecord (section 3.1.4.5)</a></span>
+and <span><a href="8f50ae96-d87f-4fdb-8526-5a86cea25837" data-linktype="relative-path">R_DnssrvUpdateRecord2 (section 3.1.4.10)</a></span>
+with the following exceptions:</p><dl>
+<dd>
+<div><pre> LONG R_DnssrvUpdateRecord3(
+   [in]                        handle_t              hBindingHandle,
+   [in]                        DWORD                 dwClientVersion,
+   [in]                        DWORD                 dwSettingFlags,
+   [in, unique, string]        LPCWSTR               pwszServerName,
+   [in, unique, string]        LPCSTR                pszZone,
+   [in, unique, string]        LPCWSTR               pwszZoneScope,
+   [in, string]                LPCSTR                pszNodeName,
+   [in, unique]                PDNS_RPC_RECORD       pAddRecord,
+   [in, unique]                PDNS_RPC_RECORD       pDeleteRecord
+ );
+</pre></div>
+</dd></dl><p><b>pwszZoneScope: </b>A pointer to a null-terminated
+character string that contains the name of the zone scope or cache scope inside
+the zone to be queried. For operations specific to a particular zone scope or
+cache scope, this field MUST contain the name of the zone scope or cache scope.
+If the value is NULL, the API gives the same behavior as R_DnssrvUpdateRecord2.</p><p>When processing this call, the server MUST perform the same
+actions as for the R_DnssrvUpdateRecord2 method.</p></div>

@@ -1,0 +1,11 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9c07428c-a907-4590-a2c1-bb95a009e527" data-linktype="external">msdn link</a></p><p>The <b>USER_SESSION_KEY</b> structure defines an encrypted
+user <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_4f67a585-fb00-4166-93e8-cf4abca8226d" data-linktype="relative-path">session key</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _USER_SESSION_KEY {
+   CYPHER_BLOCK data[2];
+ } USER_SESSION_KEY,
+  *PUSER_SESSION_KEY;
+</pre></div>
+</dd></dl><p><b>data:</b> A two-element <b>CYPHER_BLOCK</b>
+structure, as specified in section <a href="56a8d298-dbeb-4eb5-ad98-76536ec352f8" data-linktype="relative-path">2.2.1.1.1</a>, that contains
+the 16-byte encrypted user session key.</p></div>

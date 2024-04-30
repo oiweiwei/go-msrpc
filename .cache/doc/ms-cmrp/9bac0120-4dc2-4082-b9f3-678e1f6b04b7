@@ -1,0 +1,90 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9bac0120-4dc2-4082-b9f3-678e1f6b04b7" data-linktype="external">msdn link</a></p><p>(Protocol Version 3) The ApiGetResourceNetworkName method
+retrieves the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS
+computer name</a> associated with the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_94e97f15-2f1a-406f-a740-607bb97761ec" data-linktype="relative-path">resource</a> upon which the
+designated resource depends and whose <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_597fe367-f504-4295-9ed9-92cd892796cd" data-linktype="relative-path">resource type</a>, as specified
+in section <a href="214523c7-493e-4254-ad84-b268499345fb" data-linktype="relative-path">3.1.4.2.16</a>,
+matches the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a>
+&#34;Network Name&#34;.</p><p>The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+MUST return a &#34;Network Name&#34; type resource even if the dependency is
+not direct; that is, the designated resource can have a chain of dependencies
+that lead to the &#34;Network Name&#34; type resource.</p><p>If there is more than one &#34;Network Name&#34; type
+resource on which the designated resource depends (as specified in the
+preceding paragraph), the server MUST return the name of one resource. The set
+of &#34;Network Name&#34; type resources that the server returns is
+implementation-specific.</p><p>The dependency chain, as previously specified, can include
+zero or more complex dependencies, as specified in section <a href="b98642ea-f1d3-44ef-8bdd-081d63a2cfc5" data-linktype="relative-path">3.1.1.1.2.2</a>.</p><p>The server SHOULD accept an ApiGetResourceNetworkName
+request if its <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_a93e2fea-3006-4a06-b48f-fdb36d9abac9" data-linktype="relative-path">protocol
+server state</a> is read-only, and the server MUST accept the request for
+processing if it is in the read/write state, as specified in section <a href="756547e7-ca64-4b7c-9f1b-2b1fbc6153d3" data-linktype="relative-path">3.1.1</a>.</p><p>The server SHOULD accept an ApiGetResourceNetworkName
+request if the access level associated with the <i>hResource</i> context handle
+is at least &#34;Read&#34; (section <a href="a249a463-3d3b-4058-abf6-3024d81806a0" data-linktype="relative-path">3.1.4</a>).</p><dl>
+<dd>
+<div><pre> error_status_t ApiGetResourceNetworkName(
+   [in] HRES_RPC hResource,
+   [out, string] LPWSTR *lpszName,
+   [out] error_status_t *rpc_status
+ );
+</pre></div>
+</dd></dl><p><b>hResource: </b>An <a href="5a619b4b-0af5-4c7a-b37b-ae2d50755abd" data-linktype="relative-path">HRES_RPC</a> context handle
+that was obtained in a previous <a href="181f8de0-f518-4c5b-b98e-ddb18aa325ce" data-linktype="relative-path">ApiOpenResource</a>, <a href="6595931d-2fe5-4097-9270-f6bada5d9242" data-linktype="relative-path">ApiOpenResourceEx,</a> or <a href="bc6ca940-7177-4bef-9567-ae4a692a2ba5" data-linktype="relative-path">ApiCreateResource</a> method
+call.</p><p><b>lpszName: </b>A pointer to a Unicode string
+buffer. The <i>lpszName</i> parameter receives the NetBIOS computer name
+associated with the resource with the following properties:</p><ul><li><p><span><span> 
+</span></span>This resource has a resource type that matches the Unicode string
+&#34;Network Name&#34;.</p>
+</li><li><p><span><span> 
+</span></span>This resource is depended upon by the specified resource,
+possibly through a chain of dependencies.</p>
+<p>The server MUST allocate as much memory as is
+required to return the resource type. If the method fails, this parameter MUST
+be ignored.</p>
+</li></ul><p><b>rpc_status: </b>A 32-bit integer used to indicate
+success or failure. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+runtime MUST indicate, by writing to this parameter, whether it succeeded in
+executing this method on the server. The encoding of the value passed in this
+parameter MUST conform to encoding for comm_status and fault_status, as
+specified in Appendix E of <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>Return Values: </b>The method MUST return the
+following error codes for the specified conditions.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Success.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000006</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The data that is pointed to by the <i>hResource</i>
+  parameter does not represent a valid HRES_RPC context handle.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000138A</p>
+  <p>ERROR_DEPENDENCY_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>A resource that has the resource type that matches the
+  Unicode string &#34;Network Name&#34; was not found in any dependency
+  chains that start from the designated resource.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>For any other condition, this method MUST return a value
+that is not one of the values listed in the preceding table. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> MUST behave in one
+consistent, identical manner for all values that are not listed in the
+preceding table. The client SHOULD treat errors specified in <a href="ca75805a-4b39-4074-8b5b-dbaae6e81b1f" data-linktype="relative-path">3.2.4.6</a> as recoverable
+errors and initiate the reconnect procedure as specified in section 3.2.4.6.</p></div>

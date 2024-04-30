@@ -1,0 +1,8 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/eb5f1508-ede1-4ff1-be82-55f3e2ef1633" data-linktype="external">msdn link</a></p><p>The USER_CONTROL_INFORMATION structure contains user fields.</p><dl>
+<dd>
+<div><pre> typedef struct _USER_CONTROL_INFORMATION {
+   unsigned long UserAccountControl;
+ } USER_CONTROL_INFORMATION,
+  *PUSER_CONTROL_INFORMATION;
+</pre></div>
+</dd></dl><p>For information on each field, see section <a href="899d68a9-8145-4334-a52f-2fbd92bec94f" data-linktype="relative-path">2.2.6.1</a>.</p></div>

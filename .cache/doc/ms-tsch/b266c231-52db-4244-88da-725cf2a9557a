@@ -1,0 +1,51 @@
+<div class="content"><p> </p><p>The SchRpcHighestVersion method MUST return the highest
+version of the Task Scheduler Remoting Protocol that is supported by the
+server.<a id="Appendix_A_Target_65"></a><a aria-label="Product behavior note 65" href="2d1fbbab-fe6c-4ae5-bdf5-41dc526b2439#Appendix_A_65" data-linktype="relative-path">&lt;65&gt;</a></p><dl>
+<dd>
+<div><pre> HRESULT SchRpcHighestVersion(
+   [out] DWORD* pVersion
+ );
+</pre></div>
+</dd></dl><p><b>pVersion: </b>The server MUST return the highest
+version of the Task Scheduler Remoting Protocol that is supported by the
+server. This version MUST be in the format 0xMMMMmmmm, where &#39;M&#39; stands for the
+major version hex digits and &#39;m&#39; stands for the minor version hex digits. <i>pVersion</i>
+SHOULD be set to 0x00010002 or 0x00010003.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00010002</p>
+  </td>
+  <td>
+  <p>Version 1.2 of the protocol is in use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00010003</p>
+  </td>
+  <td>
+  <p>Version 1.3 of the protocol is in use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00010004</p>
+  </td>
+  <td>
+  <p>Version 1.4 of the protocol is in use.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>For more information on return
+codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>, or Win32
+Error Codes in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><p>Upon receipt of the SchRpcHighestVersion call, the server
+MUST return the highest version of the Task Scheduler Remoting Protocol that is
+supported by the server in the <i>pVersion</i> parameter.</p></div>

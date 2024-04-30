@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The RPC_SID structure is used by methods that write <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_472f97f2-82ec-4623-8e46-d348a7984967" data-linktype="relative-path">events</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _RPC_SID {
+   unsigned char Revision;
+   unsigned char SubAuthorityCount;
+   RPC_SID_IDENTIFIER_AUTHORITY IdentifierAuthority;
+   [size_is(SubAuthorityCount)] unsigned long SubAuthority[*];
+ } RPC_SID,
+  *PRPC_SID;
+</pre></div>
+</dd></dl><p><b>Revision:</b>  This member is specified
+in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">2.4.2</a></span>.</p><p><b>SubAuthorityCount:</b>  This member is
+specified in [MS-DTYP] section 2.4.2.</p><p><b>IdentifierAuthority:</b>  This member is
+specified in [MS-DTYP] section 2.4.2.</p><p><b>SubAuthority:</b>  This member is
+specified in [MS-DTYP] section 2.4.2.</p><p>The fields in this structure exactly correspond to the
+fields in the SID structure, which defines a security identifier (SID)—a
+variable-length byte array that uniquely identifies a security principal—as
+specified in [MS-DTYP] section 2.4.2.</p></div>

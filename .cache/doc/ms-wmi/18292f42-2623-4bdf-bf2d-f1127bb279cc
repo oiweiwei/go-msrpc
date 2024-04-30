@@ -1,0 +1,37 @@
+<div class="content"><p> </p><p>This method does not perform any action.</p><dl>
+<dd>
+<div><pre> HRESULT WBEMLogin(
+   [in, unique, string] wchar_t* reserved1,
+   [in, size_is(16), length_is(16), unique] 
+     unsigned char* reserved2,
+   [in] long reserved3,
+   [in] IWbemContext* reserved4,
+   [out] IWbemServices** reserved5
+ );
+</pre></div>
+</dd></dl><p><b>reserved1: </b>MUST be set to NULL when sent and MUST be
+ignored on receipt.</p><p><b>reserved2: </b>MUST be set to NULL when sent and MUST be
+ignored on receipt.</p><p><b>reserved3: </b>MUST be set to 0 when sent and MUST be
+ignored on receipt.</p><p><b>reserved4: </b>MUST be set to NULL when sent and MUST be
+ignored on receipt.</p><p><b>reserved5: </b>MUST be set to NULL when sent and MUST be
+ignored on receipt.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80004001</p>
+  <p>E_NOTIMPL</p>
+  </td>
+  <td>
+  <p>The server SHOULD return this value.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

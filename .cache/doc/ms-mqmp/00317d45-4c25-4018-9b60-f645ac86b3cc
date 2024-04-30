@@ -1,0 +1,94 @@
+<div class="content"><p> </p><p>A <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> calls the
+rpc_ACHandleToFormatName method to retrieve a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_390ae273-7109-44eb-981f-aa157e6b37c0" data-linktype="relative-path">format name</a></span> for a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>
+handle.</p><dl>
+<dd>
+<div><pre> HRESULT rpc_ACHandleToFormatName(
+   [in] RPC_QUEUE_HANDLE hQueue,
+   [in, range(0, 524288)] DWORD dwFormatNameRPCBufferLen,
+   [in, out, unique, size_is(dwFormatNameRPCBufferLen), length_is(dwFormatNameRPCBufferLen)] 
+     WCHAR* lpwcsFormatName,
+   [in, out] DWORD* pdwLength
+ );
+</pre></div>
+</dd></dl><p><b>hQueue: </b> MUST be an <span><a href="1482aa96-e1e2-40e9-8fb8-b35895ca5b4a" data-linktype="relative-path">RPC_QUEUE_HANDLE (section 2.2.1.1.2)</a></span>
+acquired from the <i>phQueue</i> parameter of <span><a href="de086803-3f83-44ec-9bd3-417216c171c8" data-linktype="relative-path">rpc_QMOpenQueueInternal (section 3.1.4.17)</a></span>.
+Prior to this method being invoked, the queue MUST NOT have been deleted, and
+the queue handle MUST NOT have been closed.</p><p><b>dwFormatNameRPCBufferLen: </b> Length of the
+buffer (in Unicode characters) provided for the <i>lpwcsFormatName</i>
+parameter.</p><p><b>lpwcsFormatName: </b> Pointer to a Unicode
+character buffer into which the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> writes the
+format name (as specified in <span><a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a></span>)
+for the queue identified by the <i>hQueue</i> parameter. The character buffer
+MUST be null-terminated by the server prior to returning, even if the provided
+buffer is not large enough to contain the entire format name string. Can be
+NULL if <i>dwFormatNameRPCBufferLen</i> is 0x00000000. MUST NOT be NULL if <i>dwFormatNameRPCBufferLen</i>
+is nonzero.</p><p><b>pdwLength: </b> On input, the maximum number of
+Unicode characters to write to the <i>lpwcsFormatName</i> buffer. This value
+MUST be equal to the <i>dwFormatNameRPCBufferLen</i> parameter. On return, the
+server MUST update the value of this parameter to indicate the complete length
+of the format name string for the queue identified by <i>hQueue</i>, without
+regard for the size of the provided buffer.</p><p><b>Return Values: </b> If the provided buffer is long enough
+to contain the null-terminated format name for the queue identified by <i>hQueue</i>,
+the server MUST take the following actions:</p><ul><li><p><span><span> 
+</span></span>Copy the null-terminated format name into the <i>lpwcsFormatName</i>
+buffer.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>pdwLength</i> to the length (in Unicode characters) of the
+format name, including the terminating null character.</p>
+</li><li><p><span><span> 
+</span></span>Return MQ_OK (0x00000000).</p>
+</li></ul><p>If the provided buffer is too small to contain the complete
+format name for the queue identified by <i>hQueue</i> (including the
+terminating null character), the server MUST take the following actions:</p><ul><li><p><span><span> 
+</span></span>If the buffer length (indicated by <i>pdwLength</i>) is greater
+than 0x00000000, and if <i>lpwcsFormatName</i> is non-NULL, copy the format
+name to the <i>lpwcsFormatName</i> buffer, truncated to fit the length
+indicated by the input value for <i>pdwLength</i>. The string MUST be
+null-terminated post-truncation.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>pdwLength</i> to the length of the untruncated format
+name, including the terminating null character.</p>
+</li><li><p><span><span> 
+</span></span>Take no further action and return
+MQ_ERROR_FORMATNAME_BUFFER_TOO_SMALL (0xc00e001f).</p>
+</li></ul><p>If input parameter values violate constraints specified
+above, the server MUST take no further action and return a failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>.</p><p>If any other error occurs, the server MUST return a failure
+HRESULT,<a id="Appendix_A_Target_57"></a><a aria-label="Product behavior note 57" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_57" data-linktype="relative-path">&lt;57&gt;</a> and the client MUST treat all
+other failure HRESULTs identically. Additionally, if any other failure HRESULT
+is returned, the client MUST disregard all out-parameter values.</p><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, as
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method is invoked at the dynamically assigned <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span>
+returned by the <span><a href="a8c96155-a7e6-41cb-95c7-6ab7e4f8214d" data-linktype="relative-path">R_QMGetRTQMServerPort (section 3.1.4.24)</a></span>
+method when IP_HANDSHAKE (0x00000000) or IPX_HANDSHAKE (0x00000002) is the
+interface specified by the <i>fIP</i> parameter.</p><p> The format name to be returned to the client (using the
+rules defined above) is determined as follows:</p><ul><li><p><span><span> 
+</span></span>Locate a <span><a href="910315e4-d43e-4c99-b086-555cc271563f" data-linktype="relative-path">LocalQueueContextHandle (section 3.1.1.3)</a></span>
+ADM element instance in the server&#39;s <i>iLocalQueueContextHandleTable</i>
+(section <span><a href="6d5edb49-62b1-46de-a235-f2cc97df6a31" data-linktype="relative-path">3.1.1.2</a></span>) where the
+value of the <b>Handle</b> attribute of the <b>LocalQueueContextHandle</b> ADM
+element instance equals <i>hQueue</i>.</p>
+</li><li><p><span><span> 
+</span></span>If such a <b>LocalQueueContextHandle</b> ADM element instance
+exists:</p>
+<ul><li><p><span><span>  </span></span>Declare
+<i>iLocatedLocalQueueContextHandle</i> and set it to a reference to the located
+<b>LocalQueueContextHandle</b> ADM element instance.</p>
+</li><li><p><span><span>  </span></span>The
+format name to be returned to the client is <i>iLocatedLocalQueueContextHandle</i>.<b>OpenQueueDescriptorReference.FormatName</b>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>Locate
+a <span><a href="01412cba-2803-4644-be30-76cdb8560cec" data-linktype="relative-path">RemoteQueueProxyHandle (section 3.1.1.5)</a></span>
+ADM element instance in the server&#39;s <i>iRemoteQueueProxyHandleTable</i>
+(section <span><a href="50eab75b-1cc0-4023-bb19-a20975e50883" data-linktype="relative-path">3.1.1.4</a></span>) where the
+value of the Handle attribute of the <b>RemoteQueueProxyHandle</b> ADM element
+instance equals <i>hQueue</i>.</p>
+</li><li><p><span><span>  </span></span>If
+no such <b>RemoteQueueProxyHandle</b> ADM element instance exists, take no
+further action and return a failure <b>HRESULT</b>.</p>
+</li><li><p><span><span>  </span></span>Declare
+<i>iLocatedRemoteQueueProxyHandle</i> and set it to a reference to the located <b>RemoteQueueProxyHandle</b>
+ADM element instance.</p>
+</li><li><p><span><span>  </span></span>The
+format name to be returned to the client is <i>iLocatedRemoteQueueProxyHandle</i>.<b>FormatName</b>.</p>
+</li></ul></li></ul></div>

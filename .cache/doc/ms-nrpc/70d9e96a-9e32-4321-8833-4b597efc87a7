@@ -1,0 +1,12 @@
+<div class="content"><p>The Netlogon Remote Protocol is used for secure
+communication between machines in a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> and <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controllers (DCs)</a>
+(both <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_6234a38c-ed1b-4c69-969f-6e6479566f65" data-linktype="relative-path">domain members</a> and
+DCs). The communication is secured by using a shared <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_4f67a585-fb00-4166-93e8-cf4abca8226d" data-linktype="relative-path">session key</a> computed
+between the client and the DC that is engaged in the secure communication. The
+session key is computed by using a preconfigured <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_ae8614db-83d9-406d-aa79-90b2f07c3ed1" data-linktype="relative-path">shared secret</a> that is known
+to the client and the DC.</p><p>The Netlogon Remote Protocol client and server can only run
+on domain-joined systems and are started during boot. When a system is unjoined
+from the domain, then the client and server are stopped and will not be started
+during boot.</p><p>The following sections describe the scenarios in which this
+protocol is used. It provides an overview about the general purpose of this
+protocol and the flow of its operations.</p></div>

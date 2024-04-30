@@ -1,0 +1,6 @@
+<div class="content"><p>The Windows Remote Registry Protocol is a <a href="261b039d-95d9-4749-9680-db1851d03945#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a>–based
+client/server protocol that is used for remotely managing a hierarchical <b>Data
+Store</b> such as the <a href="261b039d-95d9-4749-9680-db1851d03945#gt_5ae1b1fd-a770-4028-b1ca-bcc8fa9bcf0a" data-linktype="relative-path">Windows
+registry</a>. For more information, see <a href="https://go.microsoft.com/fwlink/?LinkId=90221" data-linktype="external">[MSWINREG]</a>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

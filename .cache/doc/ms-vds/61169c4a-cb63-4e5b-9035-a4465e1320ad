@@ -1,0 +1,37 @@
+<div class="content"><p> </p><p>The VDS_HEALTH enumeration defines the possible health
+states of the storage objects in the Virtual Disk Service Remote Protocol. The
+storage objects are <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_890bb28d-df68-420f-a8bc-83899d34ad5c" data-linktype="relative-path">packs</a></span>, <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volumes</a></span>,
+<span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7d1df68a-9ec5-4f84-a64f-67888f39405d" data-linktype="relative-path">volume
+plexes</a></span> and <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disks</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_HEALTH
+ {
+   VDS_H_UNKNOWN = 0x00000000,
+   VDS_H_HEALTHY = 0x00000001,
+   VDS_H_REBUILDING = 0x00000002,
+   VDS_H_STALE = 0x00000003,
+   VDS_H_FAILING = 0x00000004,
+   VDS_H_FAILING_REDUNDANCY = 0x00000005,
+   VDS_H_FAILED_REDUNDANCY = 0x00000006,
+   VDS_H_FAILED_REDUNDANCY_FAILING = 0x00000007,
+   VDS_H_FAILED = 0x00000008
+ } VDS_HEALTH;
+</pre></div>
+</dd></dl><p><b>VDS_H_UNKNOWN:  </b>The health of the object
+cannot be determined.</p><p><b>VDS_H_HEALTHY:  </b>The object indicates <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_783ae2e4-7c04-40ba-a974-f95a30aa1ab2" data-linktype="relative-path">online</a></span>
+status. If the object is a disk, the disk is not missing, <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b11172af-9369-448d-9722-444eb52b21cb" data-linktype="relative-path">dynamic
+disk</a></span> log and configuration files are synchronized, and the disk is
+free of input/output errors. If the object is a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7593b869-71a9-4a02-bab3-377e51729067" data-linktype="relative-path">LUN</a></span> or volume, all <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_d864e01b-9fb1-4beb-9864-8221d293445a" data-linktype="relative-path">plexes</a></span>
+(mirrored, simple, spanned, and striped) and columns (<span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_96e19472-82bc-4317-9b5b-8113e2fc6eb8" data-linktype="relative-path">RAID-5</a></span>) are active.
+For a volume, VDS_H_HEALTHY implies no disks containing volume extents have IO
+errors. For a LUN, VDS_H_HEALTHY implies no drives containing LUN extents have
+IO errors.</p><p><b>VDS_H_REBUILDING:  </b>The volume is
+resynchronizing all plexes, or a striped with parity (RAID-5) plex is
+regenerating the parity.</p><p><b>VDS_H_STALE:  </b>The object configuration is
+stale.</p><p><b>VDS_H_FAILING:  </b>The object is failing but
+still working. For example, a volume with failing health might produce
+occasional input/output errors from which it can still recover.</p><p><b>VDS_H_FAILING_REDUNDANCY:  </b>One or more plexes
+have errors, but the object is working and all plexes are online.</p><p><b>VDS_H_FAILED_REDUNDANCY:  </b>One or more plexes
+have failed, but at least one plex is working.</p><p><b>VDS_H_FAILED_REDUNDANCY_FAILING:  </b>The last
+working plex is failing.</p><p><b>VDS_H_FAILED:  </b>The object has failed. Any
+object with a failed health status also has a failed object status.</p></div>

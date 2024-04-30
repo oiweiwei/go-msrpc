@@ -1,0 +1,10 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/b04175b3-fedf-4dda-9034-f754a10fe64e" data-linktype="external">msdn link</a></p><p>The LSAPR_POLICY_PD_ACCOUNT_INFO structure is obsolete and
+exists for backward compatibility purposes only.</p><p><b>Name:</b> Represents the name of an account in the
+domain that is to be used for authentication and name/ID lookup requests.</p><dl>
+<dd>
+<div><pre> typedef struct _LSAPR_POLICY_PD_ACCOUNT_INFO {
+   RPC_UNICODE_STRING Name;
+ } LSAPR_POLICY_PD_ACCOUNT_INFO,
+  *PLSAPR_POLICY_PD_ACCOUNT_INFO;
+</pre></div>
+</dd></dl></div>

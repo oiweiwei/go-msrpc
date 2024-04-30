@@ -1,0 +1,57 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/79ca6e90-ccd2-429e-b5ac-8050b620eef6" data-linktype="external">msdn link</a></p><p>The <b>NetrLogonComputeClientDigest</b> method is used by a
+client to compute a cryptographic digest of a message by using the MD5
+message-digest algorithm, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90275" data-linktype="external">[RFC1321]</a>. This method
+is called by a client to compute a message digest, as specified in this
+section. The client SHOULD<a id="Appendix_A_Target_235"></a><a aria-label="Product behavior note 235" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_235" data-linktype="relative-path">&lt;235&gt;</a> use
+this digest to compare against one that is returned by a call to <a href="5f95c374-7951-42d9-816c-c7f4cff2ed52" data-linktype="relative-path">NetrLogonComputeServerDigest</a>.
+This comparison allows the client to ensure that the server that it
+communicates with knows the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_ae8614db-83d9-406d-aa79-90b2f07c3ed1" data-linktype="relative-path">shared
+secret</a> between the client machine and the domain. </p><dl>
+<dd>
+<div><pre> NET_API_STATUS NetrLogonComputeClientDigest(
+   [in, unique, string] LOGONSRV_HANDLE ServerName,
+   [in, string, unique] wchar_t* DomainName,
+   [in, size_is(MessageSize)] UCHAR * Message,
+   [in] ULONG MessageSize,
+   [out] CHAR NewMessageDigest[16],
+   [out] CHAR OldMessageDigest[16]
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>The custom binding handle, as
+defined in section <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>.</p><p><b>DomainName: </b>A pointer to a null-terminated
+Unicode string that contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a> or <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a> of the trusted
+domain. If this parameter is NULL, the domain of which the client computer is a
+member is used.</p><p><b>Message: </b>A pointer to a buffer that contains
+the message for which the digest is to be computed.</p><p><b>MessageSize: </b>The length, in bytes, of the <i>Message</i>
+parameter.</p><p><b>NewMessageDigest: </b>A 128-bit MD5 digest of the
+current computer account password and the message in the <i>Message</i> buffer.</p><p><b>OldMessageDigest: </b>A 128-bit MD5 digest of the
+previous machine account password and the message in the <i>Message</i> buffer.
+If no previous computer account password exists, the current password is used.</p><p><b>Return Values: </b>The method returns 0x00000000
+on success; otherwise, it returns a nonzero error code.</p><p>If the client does not have sufficient <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privilege</a>, the server MUST
+return ERROR_ACCESS_DENIED.</p><p>The server MUST compute or retrieve the NTOWFv1 of the
+current machine password and the NTOWFv1 of the previous machine password, if
+it exists. If the password cannot be found, the server MUST return
+ERROR_NO_TRUST_LSA_SECRET.</p><p>The server MUST compute the NTOWFv1 (as specified in <a href="../ms-nlmp/b38c36ed-2804-4868-a9ff-8dd3182128e4" data-linktype="relative-path">[MS-NLMP]</a>
+section <a href="../ms-nlmp/464551a8-9fc4-428e-b3d3-bc5bfb2e73a5" data-linktype="relative-path">3.3.1</a>)
+of each password, if present. The digest of the <i>Message</i> parameter MUST
+be calculated using this <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9a5d11c7-eea9-4217-b9a8-478c6786e9e8" data-linktype="relative-path">OWF</a>
+of the password, as follows.</p><ol><li><p><span>    </span>CALL
+MD5Init(md5context)</p>
+</li><li><p><span>    </span>IF OWF of
+password is present:</p>
+<ol><li><p><span>   
+</span>CALL MD5Update(md5context, OWF of password, length of OWF of password)</p>
+</li><li><p><span>   
+</span>CALL MD5Update(md5context, Message, MessageSize)</p>
+</li><li><p><span>   
+</span>CALL MD5Final(md5context)</p>
+</li><li><p><span>   
+</span>SET digest to md5context.digest</p>
+</li></ol></li></ol><p>The <i>NewMessageDigest</i> parameter MUST be computed by
+using the current password. The <i>OldMessageDigest</i> parameter MUST be
+computed by using the previous password, if it exists. If the previous password
+is not present, the new password MUST be used to compute the <i>OldMessageDigest</i>.</p><p>Creating a message digest for the previous password allows
+the possibility of password replication latency to be accounted for. If the
+client computer password was recently changed, but the change has not
+propagated to the server processing this method, the client and the server will
+have two different passwords.</p></div>

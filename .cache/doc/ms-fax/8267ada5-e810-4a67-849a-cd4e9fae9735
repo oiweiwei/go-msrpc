@@ -1,0 +1,339 @@
+<div class="content"><p> </p><p>The <b>FAX_ROUTING_METHOD</b> structure contains information
+about one <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_d98e028a-1e6d-4e09-a915-7e8b90d9f9de" data-linktype="relative-path">fax routing method</a></span>
+as it pertains to one fax device. This information describes one fax routing
+method (section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>). The data
+indicates (among other items) whether the fax routing method is enabled for the
+device, and the name of the binary that exports the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_efaa1290-6d4b-4f44-9e84-35a867069d45" data-linktype="relative-path">routing</a></span> method. It
+also includes the <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> and function
+name that uniquely identify the routing method and the method&#39;s user-friendly
+name.</p><p>A fax client application can call the <b>FAX_EnumRoutingMethods</b>
+(section <span><a href="d9a47f58-bbf8-4a36-be63-d92453c8ec04" data-linktype="relative-path">3.1.4.1.31</a></span>) or <b>FaxObs_EnumRoutingMethods</b>
+(section <span><a href="0b782aca-117e-4384-a873-291dd86a623f" data-linktype="relative-path">3.1.4.2.18</a></span>)
+functions to enumerate all of the fax routing methods associated with a
+specific fax device. These functions each return an array of <b>FAX_ROUTING_METHOD</b>
+structures. Each structure describes one fax routing method in detail.</p><p>Call the <b>FAX_EnableRoutingMethod</b> (section <span><a href="0cb776f8-953d-4fa2-82a1-28100f4f046e" data-linktype="relative-path">3.1.4.1.14</a></span>)
+or the <b>FaxObs_EnableRoutingMethod</b> (section <span><a href="92737d78-302e-4860-9bc0-305a1cec6bad" data-linktype="relative-path">3.1.4.2.19</a></span>)
+functions to enable or disable a fax routing method for a specific fax device.</p><p>This data structure is custom marshaled as follows and uses
+the custom-marshaling rules defined in section <span><a href="a660ed3e-062f-4b49-ab5b-0ba19ea7598d" data-linktype="relative-path">2.2.1</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (36 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (36 bytes):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>SizeOfStruct</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DeviceId</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Enabled</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DeviceNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>GuidOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>FriendlyNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>FunctionNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ExtensionImageNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ExtensionFriendlyNameOffset</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>SizeOfStruct (4 bytes): </b>A
+<b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value that holds the size of the <b>Fixed_Portion</b> block, in bytes. This
+value MUST be 36 bytes.</p>
+</dd>
+<dd>
+<p><b>DeviceId (4 bytes): </b>A
+<b>DWORD</b> that holds the line identifier for the fax device (port) of
+interest.</p>
+</dd>
+<dd>
+<p><b>Enabled (4 bytes): </b>A
+Boolean that indicates whether the fax routing method is enabled or disabled
+for the fax device of interest. If this value is equal to TRUE, the fax routing
+method is enabled for the device.</p>
+</dd>
+<dd>
+<p><b>DeviceNameOffset (4
+bytes): </b>Offset to the <b>DeviceName</b> field in the <b>Variable_Data</b>
+block of the structure.</p>
+</dd>
+<dd>
+<p><b>GuidOffset (4 bytes): </b>Offset
+to the <b>Guid</b> field in the <b>Variable_Data</b> block of the structure.</p>
+</dd>
+<dd>
+<p><b>FriendlyNameOffset (4
+bytes): </b>Offset to the <b>FriendlyName</b> field in the <b>Variable_Data</b>
+block of the structure.</p>
+</dd></dl><p><b>FunctionNameOffset (4
+bytes): </b>Offset to the <b>FunctionName</b> field in the <b>Variable_Data</b>
+block of the structure.</p><p><b>ExtensionImageNameOffset
+(4 bytes): </b>Offset to the <b>ExtensionImageName</b> field in the <b>Variable_Data</b>
+block of the structure.</p><p><b>ExtensionFriendlyNameOffset
+(4 bytes): </b>Offset to the <b>ExtensionFriendlyName</b> field in the <b>Variable_Data</b>
+block of the structure.</p><p><b>Variable_Data (variable):</b></p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DeviceName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Guid
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>FriendlyName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>FunctionName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ExtensionImageName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ExtensionFriendlyName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>DeviceName (variable): </b>A
+null-terminated character string that holds the name of the fax device.</p>
+</dd>
+<dd>
+<p><b>Guid (variable): </b>A
+null-terminated character string that holds the GUID that uniquely identifies
+the fax routing method.</p>
+</dd>
+<dd>
+<p><b>FriendlyName (variable): </b>A
+null-terminated character string that holds the user-friendly name to display
+for the fax routing method.</p>
+</dd>
+<dd>
+<p><b>FunctionName (variable): </b>A
+null-terminated character string that holds the name of the function that executes
+the specified fax routing procedure. The fax routing extension binary
+identified by the <b>ExtensionImageName</b> field exports the function.</p>
+</dd>
+<dd>
+<p><b>ExtensionImageName
+(variable): </b>A null-terminated character string that holds the name of the
+fax routing extension binary that implements the fax routing method.</p>
+</dd>
+<dd>
+<p><b>ExtensionFriendlyName
+(variable): </b>A null-terminated character string that holds the user-friendly
+name to display for the fax routing extension binary.</p>
+</dd></dl></div>

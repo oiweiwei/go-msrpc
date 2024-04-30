@@ -1,0 +1,239 @@
+<div class="content"><p> </p><p>The <b>INET_INFO_CONFIG_INFO</b> structure stores
+configuration values for an <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_d9a0cf88-f6d7-4c52-a9fc-4ce5a7cb7260" data-linktype="relative-path">Internet protocol server</a></span>.<a id="Appendix_A_Target_3"></a><a aria-label="Product behavior note 3" href="29ba1825-00cc-45cb-8b68-4758993395cd#Appendix_A_3" data-linktype="relative-path">&lt;3&gt;</a></p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _INET_INFO_CONFIG_INFO {
+   DWORD FieldControl;
+   DWORD dwConnectionTimeout;
+   DWORD dwMaxConnections;
+   [string] LPWSTR lpszAdminName;
+   [string] LPWSTR lpszAdminEmail;
+   [string] LPWSTR lpszServerComment;
+   LPINET_LOG_CONFIGURATION lpLogConfig;
+   WORD LangId;
+   LCID LocalId;
+   BYTE ProductId[64];
+   BOOL fLogAnonymous;
+   BOOL fLogNonAnonymous;
+   [string] LPWSTR lpszAnonUserName;
+   WCHAR szAnonPassword[257];
+   DWORD dwAuthentication;
+   short sPort;
+   LPINET_INFO_IP_SEC_LIST DenyIPList;
+   LPINET_INFO_IP_SEC_LIST GrantIPList;
+   LPINET_INFO_VIRTUAL_ROOT_LIST VirtualRoots;
+ } INET_INFO_CONFIG_INFO,
+  *LPINET_INFO_CONFIG_INFO;
+</pre></div>
+</dd></dl><p><b>FieldControl:</b>  A 32-bit unsigned
+integer that specifies a bit field. This field specifies the values of the <b>INET_INFO_CONFIG_INFO</b>
+structure that contain valid data. An implementation MUST set the flag
+corresponding to the structure field when returning or updating configuration
+data. This field MUST be set to a valid combination of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FC_INET_INFO_CONNECTION_TIMEOUT</p>
+  </td>
+  <td>
+  <p>0x00000001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FC_INET_INFO_MAX_CONNECTIONS</p>
+  </td>
+  <td>
+  <p>0x00000002</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FC_INET_INFO_LOG_CONFIG</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FC_INET_INFO_ADMIN_NAME</p>
+  </td>
+  <td>
+  <p>0x00000008</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FC_INET_INFO_SERVER_COMMENT</p>
+  </td>
+  <td>
+  <p>0x00000010</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FC_INET_INFO_ADMIN_EMAIL</p>
+  </td>
+  <td>
+  <p>0x00000020</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FC_INET_INFO_HOST_NAME</p>
+  </td>
+  <td>
+  <p>0x00000040</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FC_INET_INFO_SERVER_SIZE</p>
+  </td>
+  <td>
+  <p>0x00000080</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> FC_INET_INFO_DEF_LOGON_DOMAIN</p>
+  </td>
+  <td>
+  <p>0x00008000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> FC_INET_INFO_AUTHENTICATION</p>
+  </td>
+  <td>
+  <p>0x00010000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> FC_INET_INFO_ALLOW_ANONYMOUS</p>
+  </td>
+  <td>
+  <p>0x00020000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> FC_INET_INFO_LOG_ANONYMOUS</p>
+  </td>
+  <td>
+  <p>0x00040000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> FC_INET_INFO_LOG_NONANONYMOUS</p>
+  </td>
+  <td>
+  <p>0x00080000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> FC_INET_INFO_ANON_USER_NAME</p>
+  </td>
+  <td>
+  <p>0x00100000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> FC_INET_INFO_ANON_PASSWORD</p>
+  </td>
+  <td>
+  <p>0x00200000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> FC_INET_INFO_PORT_NUMBER</p>
+  </td>
+  <td>
+  <p>0x00400000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> FC_INET_INFO_SITE_SECURITY</p>
+  </td>
+  <td>
+  <p>0x00800000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> FC_INET_INFO_VIRTUAL_ROOTS</p>
+  </td>
+  <td>
+  <p>0x01000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> FC_INET_INFO_SECURE_PORT_NUMBER</p>
+  </td>
+  <td>
+  <p>0x02000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> FC_INET_INFO_SERVER_NAME</p>
+  </td>
+  <td>
+  <p>0x04000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> FC_INET_INFO_AUTO_START</p>
+  </td>
+  <td>
+  <p>0x08000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> FC_INET_INFO_ADDRESS_TYPE</p>
+  </td>
+  <td>
+  <p>0x10000000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> FC_INET_INFO_IP_ADDRESS</p>
+  </td>
+  <td>
+  <p>0x20000000</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwConnectionTimeout:</b>  The time limit
+to maintain an inactive connection specified as the number of seconds from the
+last request.</p><p><b>dwMaxConnections:</b>  The maximum
+number of allowed connections to the Internet protocol server.</p><p><b>lpszAdminName:</b>  A pointer to a
+null-terminated Unicode string that contains the name of the Internet protocol
+server administrator.</p><p><b>lpszAdminEmail:</b>  A pointer to a
+null-terminated Unicode string that contains the email address of the Internet
+protocol server administrator.</p><p><b>lpszServerComment:</b>  A pointer to a
+null-terminated Unicode string that contains a comment that describes the
+Internet protocol server instance.</p><p><b>lpLogConfig:</b>  A pointer to an <span><b><a href="eb38be5b-de2c-4de1-83b4-c19ae72e8a3b" data-linktype="relative-path">INET_LOG_CONFIGURATION</a></b></span>
+structure that specifies the configuration of the Internet protocol server log.</p><p><b>LangId:</b>   A <span><b><a href="../ms-dtyp/f8573df3-a44a-4a50-b070-ac4c3aa78e3c" data-linktype="relative-path">WORD</a></b></span>
+containing the language identifier, a standard international numerical
+identifier for the language in the country or region where the server is in
+use, as specified in <span><a href="../ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f" data-linktype="relative-path">[MS-LCID]</a></span>
+section <span><a href="../ms-lcid/c4ece252-4acf-4961-bf5f-f9adacfff27e" data-linktype="relative-path">2.1</a></span>.</p><p><b>LocalId:</b>  A locale identifier that
+is a <span><b><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></b></span>
+value that consists of a language identifier, such as one specified for the <b>LangID</b>
+member, combined with a sort identifier indicating location. For example, the <b>LangID</b>
+member might indicate French, where the <b>LocalID</b> indicates Canada. The <b>LocalID</b>
+member is given as specified in [MS-LCID] section 2.1.</p><p><b>ProductId:</b>  An array of 64 bytes
+that MAY contain a string value, which identifies the server implementation.</p><p><b>fLogAnonymous:</b>  A value that is set
+to TRUE if data transfers from anonymous users are to be logged.</p><p><b>fLogNonAnonymous:</b>  A value that is
+set to TRUE if data transfers from non-anonymous users are to be logged. </p><p><b>lpszAnonUserName:</b>  A pointer to a
+null-terminated Unicode string that contains the name requested and accepted
+from an anonymous user.</p><p><b>szAnonPassword:</b>  An array of 257
+Unicode characters containing a null-terminated Unicode string that contains a
+password requested and accepted from an anonymous user.<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="29ba1825-00cc-45cb-8b68-4758993395cd#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a></p><p><b>dwAuthentication:</b>  A value that
+indicates what authentication methods can be used.</p><p><b>sPort:</b>  A 16-bit unsigned integer
+that specifies the network port on which the <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_1623705d-a7a0-4e46-9a66-66e9ee63d961" data-linktype="relative-path">Internet protocol server
+instance</a></span> is running.</p><p><b>DenyIPList:</b>  A pointer to an <span><b><a href="9679ef05-ee24-4ba6-86df-5621c0276355" data-linktype="relative-path">INET_INFO_IP_SEC_LIST</a></b></span>
+structure that contains a list of IP addresses that will be denied connections
+to the Internet protocol server.</p><p><b>GrantIPList:</b>  A pointer to an <b>INET_INFO_IP_SEC_LIST</b>
+structure that contains a list of IP addresses that will be granted connections
+to the Internet protocol server.</p><p><b>VirtualRoots:</b>  A pointer to an <span><b><a href="01c0158e-4690-4b60-8b88-0d01cd7b3ecc" data-linktype="relative-path">INET_INFO_VIRTUAL_ROOT_LIST</a></b></span>
+structure that contains a list of <span><a href="ce912734-75c3-403c-8816-38e34e24df2f#gt_528d71de-529e-403f-9480-a98d8bc3bda1" data-linktype="relative-path">virtual root</a></span>
+directories for the Internet protocol server instance.</p></div>

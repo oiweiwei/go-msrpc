@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The <b>DWORD_DWORD</b> structure defines a 64-bit integer
+value. This is used in <span><a href="bd62505d-9f25-4449-862f-f903afbc6f5a" data-linktype="relative-path">DHCP_OPTION_DATA_ELEMENT (section 2.2.1.2.23)</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DWORD_DWORD {
+   DWORD DWord1;
+   DWORD DWord2;
+ } DWORD_DWORD,
+  *LPDWORD_DWORD;
+</pre></div>
+</dd></dl><p><b>DWord1:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>,
+specifying the upper 32 bits of the value.</p><p><b>DWord2:</b>  This is of type DWORD,
+specifying the lower 32 bits of the value.</p></div>

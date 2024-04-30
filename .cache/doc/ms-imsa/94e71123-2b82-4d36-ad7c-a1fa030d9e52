@@ -1,0 +1,159 @@
+<div class="content"><p>The Backup method backs up the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_086b13f2-2715-4000-a16c-6acc3d59cc19" data-linktype="relative-path">metabase</a>.</p><dl>
+<dd>
+<div><pre> HRESULT Backup(
+   [unique, in, string] LPCWSTR pszMDBackupName,
+   [in] DWORD dwMDVersion,
+   [in] DWORD dwMDFlags
+ );
+</pre></div>
+</dd></dl><p><b>pszMDBackupName: </b>A string of up to 100 Unicode
+characters that names the backup.</p><p><b>dwMDVersion: </b>An integer value specifying the
+version number to be used for the backup.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MD_BACKUP_HIGHEST_VERSION</p>
+  <p>0xFFFFFFFE</p>
+  </td>
+  <td>
+  <p>Overwrite the highest existing backup version with the
+  specified backup name.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MD_BACKUP_NEXT_VERSION</p>
+  <p>0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>Use the next backup version number available with the
+  specified backup name.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwMDFlags: </b>An integer value containing the bit
+flags describing the type of backup operation to be performed. The flags can be
+one or more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MD_BACKUP_FORCE_BACKUP</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Force the backup even if the <a href="11d7ab23-ecd4-4764-8aa8-765564e8501d" data-linktype="relative-path">SaveData</a> operation
+  specified by MD_BACKUP_SAVE_FIRST fails.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MD_BACKUP_OVERWRITE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Back up even if a backup of the same name and version
+  exists, overwriting it if necessary.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MD_BACKUP_SAVE_FIRST</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Perform a SaveData operation before the backup.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it failed. If
+the 12-bit facility code (bits 16–27) is set to 0x007, the value contains a
+Win32 error code in the lower 16 bits. Zero or positive values indicate success,
+with the lower 16 bits in positive nonzero values containing warnings or flags
+defined in the method implementation. For more information about Win32 error
+codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000CC809</p>
+  <p>MD_WARNING_SAVE FAILED</p>
+  </td>
+  <td>
+  <p>The metadata save prior to backup failed. The previous
+  version of the data was backed up.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>There is not enough memory to complete the operation.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 28.</p><p>The location string can be up to 100 Unicode characters in
+length. Multiple metabase backups can be stored with the same name.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Check the <i>pszMDBackupName</i> parameter. If the length of the
+string is 100 characters or more, or if it contains any characters in the
+following set (&#39;/&#39;, &#39;\&#39;, &#39;*&#39;, &#39;.&#39;, &#39;?&#39;, &#39;&#34;&#39;, &#39;&amp;&#39;, &#39;!&#39;, &#39;@&#39;, &#39;#&#39;, &#39;$&#39;,
+&#39;%&#39;, &#39;^&#39;, &#39;(&#39;, &#39;)&#39;, &#39;=&#39;, &#39;+&#39;, &#39;|&#39;, &#39;`&#39;, &#39;~&#39;) return E_INVALIDARG.</p>
+</li><li><p><span><span> 
+</span></span>Check the version parameter. If it is greater than the maximum
+allowed version number and is not either MD_BACKUP_HIGHEST_VERSION or
+MD_BACKUP_NEXT_VERSION, return E_INVALIDARG.</p>
+</li><li><p><span><span> 
+</span></span>If the parameter flags have the bit MD_BACKUP_SAVE_FIRST set,
+flush the in-memory configuration data first. If this operation fails, check
+the MD_BACKUP_FORCE_BACKUP bit. If this bit is not set, return an error.
+Otherwise, continue the operation. If no subsequent error occurs, return MD_WARNING_SAVE_FAILED.</p>
+</li><li><p><span><span> 
+</span></span>Check the MD_BACKUP_OVERWRITE bit. If it is not set, check if a
+backup with the target version exists. If it is TRUE, return an error,
+otherwise overwrite the existing backup.</p>
+</li><li><p><span><span> 
+</span></span>If the value of the <i>pszMDBackupName</i> parameter is an empty
+string, the server uses a default name for the backup.</p>
+</li><li><p><span><span> 
+</span></span>The server saves the persisted data using the backup name and the
+version number as a key so that the data can be restored later.</p>
+</li></ul></div>

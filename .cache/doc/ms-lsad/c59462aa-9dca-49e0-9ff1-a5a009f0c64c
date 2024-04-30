@@ -1,0 +1,112 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c59462aa-9dca-49e0-9ff1-a5a009f0c64c" data-linktype="external">msdn link</a></p><p>The LsarOpenTrustedDomain method is invoked to obtain a
+handle to a <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted domain
+object</a>.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarOpenTrustedDomain(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PRPC_SID TrustedDomainSid,
+   [in] ACCESS_MASK DesiredAccess,
+   [out] LSAPR_HANDLE* TrustedDomainHandle
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>TrustedDomainSid: </b>A <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security identifier</a> of the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted domain</a> that is
+being opened.</p><p><b>DesiredAccess: </b>A bitmask of access rights to
+open the object with.</p><p><b>TrustedDomainHandle: </b>Used to return the
+trusted domain object handle.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the supplied parameters is invalid. For instance,
+  this can happen if the security identifier <i>TrustedDomainSid</i> is not a
+  valid <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> security
+  identifier. Section <a href="ba5f1e31-b2a7-42bd-9a90-3650a6e5f6f5" data-linktype="relative-path">3.1.4.10</a>
+  specifies data validation rules, including what constitutes a valid domain
+  security identifier.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00000DF</p>
+  <p>STATUS_NO_SUCH_DOMAIN</p>
+  </td>
+  <td>
+  <p>The specified trusted domain object does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00002B1</p>
+  <p>STATUS_DIRECTORY_SERVICE_REQUIRED</p>
+  </td>
+  <td>
+  <p>The <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+  Directory</a> <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_2dc07ca2-2b40-437e-a5ec-ed28ebfb116a" data-linktype="relative-path">service</a>
+  was not available on the server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>If Active Directory is not running on this machine, the
+server MUST return STATUS_DIRECTORY_SERVICE_REQUIRED.</p><p>This message takes four arguments:</p><p><i>PolicyHandle</i>: An open handle to the policy object. If
+the handle is not a valid context handle to the policy object or <i>PolicyHandle</i>.HandleType
+does not equal &#34;Policy&#34;, the server MUST return
+STATUS_INVALID_HANDLE. <i>PolicyHandle</i>.GrantedAccess MUST NOT be considered
+for this call because the access check MUST happen on the trusted domain
+object.</p><p><i>TrustedDomainSid</i>: A SID of the trusted domain object.
+The server MUST verify that the SID is a valid domain SID and reject the
+request with STATUS_INVALID_PARAMETER otherwise. If the trusted domain object
+with this SID does not exist, the server MUST fail the request with
+STATUS_NO_SUCH_DOMAIN error code.</p><p><i>DesiredAccess</i>: A bitmask specifying the type of
+access the caller attempts to obtain from the trusted domain object, which is
+access-checked according to section <a href="e5e1e32e-4066-435d-b669-044fe997eaf7" data-linktype="relative-path">3.1.4.2.1</a>. There is no
+method-specific portion of the check. The valid trusted-domain-rights bits are
+specified in section <a href="e035f552-0313-48b7-9bca-fdd9fd4e948e" data-linktype="relative-path">2.2.1.1.5</a>,
+and the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a>
+is specified in section <a href="0228f75e-9725-479c-b4cd-1cacd667343c" data-linktype="relative-path">3.1.1.5</a>.</p><p><i>TrustedDomainHandle</i>: If the request is successful,
+this parameter is used to return a handle (section <a href="1011130b-0413-460d-81ed-d1821d141639" data-linktype="relative-path">3.1.1.7</a>) to the opened
+trusted domain object with its fields initialized as follows:<a id="Appendix_A_Target_91"></a><a aria-label="Product behavior note 91" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_91" data-linktype="relative-path">&lt;91&gt;</a><a id="Appendix_A_Target_92"></a><a aria-label="Product behavior note 92" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_92" data-linktype="relative-path">&lt;92&gt;</a></p><ul><li><p><span><span> 
+</span></span>LsaContextHandle.HandleType = &#34;Trusted Domain&#34;</p>
+</li><li><p><span><span> 
+</span></span>LsaContextHandle.Object = the trusted domain object</p>
+</li><li><p><span><span> 
+</span></span>LsaContextHandle.GrantedAccess = as specified in section
+3.1.4.2.1</p>
+</li></ul></div>

@@ -1,0 +1,84 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV6GetStatelessStoreParams</b> method retrieves
+the current DHCPv6 stateless client inventory-related configuration setting at
+the server or scope level. The caller of this function can free the memory
+pointed to by the <i>Params</i> parameter by calling the function <b>midl_user_free</b>
+(section <span><a href="a7e5f2d1-04b7-4363-bdc0-76a1099664eb" data-linktype="relative-path">3</a></span>).</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV6GetStatelessStoreParams(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] BOOL fServerLevel,
+   [in] DHCP_IPV6_ADDRESS SubnetAddress,
+   [out] LPDHCPV6_STATELESS_PARAMS Params
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address of the DHCP
+server. This parameter is unused.</p><p><b>fServerLevel: </b>A flag representing whether the
+configuration settings for DHCPv6 stateless client inventory are to be
+retrieved at the server level or the scope level. A value of TRUE indicates the
+server level; FALSE indicates the scope level.</p><p><b>SubnetAddress: </b>The IPv6 subnet address for
+which the configuration settings are to be retrieved. If the <i>fServerLevel</i>
+parameter is set to TRUE, this parameter MUST be ignored.</p><p><b>Params: </b>A pointer of type <b>LPDHCPV6_STATELESS_PARAMS</b>
+into which this method will place the configuration settings for a DHCPv6
+server.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully. Otherwise, it contains
+a Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or to any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00020005</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The IPv6 subnet does not exist on the DHCPv6 server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 117.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Return ERROR_INVALID_PARAMETER if any of the following conditions
+are true:</p>
+<ul><li><p><span><span>  </span></span>The
+<i>Params</i> parameter is a null pointer.</p>
+</li><li><p><span><span>  </span></span>The
+<i>fServerLevel</i> parameter is FALSE, and the <i>SubnetAddress</i> parameter
+is 0.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Validate that this method is authorized for read/write access as
+specified in section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If it is not
+authorized, return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>pServerLevel</i> parameter is TRUE, retrieve the <b>DHCPv6ServerStatelessSettings</b>
+server ADM element. Assign the values in the <b>Status</b> and <b>PurgeInterval</b>
+members of <b>DHCPv6ServerStatelessSettings</b> to the <b>Status</b> and <b>PurgeInterval</b>
+members of the <i>Params</i> parameter, respectively. Return ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>pServerLevel</i> parameter is FALSE, retrieve the <b>DHCPv6ScopesList</b>
+server ADM element. Retrieve the <b>DHCPv6Scope</b> ADM element entry of the <b>DHCPv6ScopesList</b>
+ADM element corresponding to the <i>SubnetAddress</i> parameter. If no such
+entry is present, return ERROR_DHCP_SUBNET_NOT_PRESENT. Otherwise, retrieve the
+<b>DHCPv6Scope.DHCPv6StatelessSettings</b> ADM element for the retrieved <b>DHCPv6Scope</b>
+ADM element. Assign the values in the <b>Status</b> and <b>PurgeInterval</b>
+members of the <b>DHCPv6StatelessSettings</b> ADM element to the <b>Status</b>
+and <b>PurgeInterval</b> members of the <i>Params</i> parameter, respectively.
+Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

@@ -1,0 +1,110 @@
+<div class="content"><p> </p><p>This method returns the properties for the object specified
+by object identifier. This method differs from <span><a href="0e4d0095-54ef-4b30-9599-3b8613b7d8ea" data-linktype="relative-path">S_DSGetPropsGuid</a></span> in
+that it supports a restricted set of properties that pertain only to <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>
+or machine object security.</p><dl>
+<dd>
+<div><pre> HRESULT S_DSGetPropsGuidEx(
+   [in] handle_t hBind,
+   [in, range(1, 58)] DWORD dwObjectType,
+   [in, unique] const GUID* pGuid,
+   [in, range(1,128)] DWORD cp,
+   [in, size_is(cp)] PROPID aProp[],
+   [in, out, size_is(cp)] PROPVARIANT apVar[],
+   [in] PCONTEXT_HANDLE_SERVER_AUTH_TYPE phServerAuth,
+   [out, size_is(*pdwServerSignatureSize)] 
+     unsigned char * pbServerSignature,
+   [in, out] LPBOUNDED_SIGNATURE_SIZE pdwServerSignatureSize
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST specify an <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle,
+as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>dwObjectType: </b> Specifies the type of object for which
+properties are to be retrieved. MUST be set to one of the object types, as
+specified in section <span><a href="0d63e0e1-8b17-4103-9080-01e6c7c9f61f" data-linktype="relative-path">2.2.8</a></span>.</p><p><b>pGuid: </b> MUST specify a pointer to the object
+identifier of the object for which properties are to be retrieved.</p><p><b>cp: </b> MUST be set to the size (in elements) of the
+arrays <i>aProp</i> and <i>apVar</i>, which for this method MUST be one
+(0x00000001). The arrays <i>aProp</i> and <i>apVar</i> MUST have an identical
+number of elements, and MUST each contain exactly one element.</p><p><b>aProp: </b> An array of identifiers of properties to
+retrieve from the object. Each element MUST specify a value from the <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_382ac1cd-8ff9-493a-bfec-d9ad08955707" data-linktype="relative-path">property
+identifiers</a></span> for the object type specified in <i>dwObjectType</i>.
+Each element MUST specify the property identifier for the corresponding
+property value at the same element index in <i>apVar</i>. The array MUST
+contain exactly one element.</p><p><b>apVar: </b> MUST be set by the client to an array that
+holds the property values retrieved from the object. Each element MUST be set
+by the server to the property value for the corresponding property identifier
+at the same element index in <i>aProp</i>. The array MUST contain exactly one
+element.</p><p><b>phServerAuth: </b> A <span><a href="c28a1e6b-4092-4443-b69f-5814d5c4f9e4" data-linktype="relative-path">PCONTEXT_HANDLE_SERVER_AUTH_TYPE</a></span>
+RPC context handle acquired from the <i>pphServerAuth</i> parameter in a
+previous call to <span><a href="0e3ad7d0-6a64-480a-9f13-e94dd608d79d" data-linktype="relative-path">S_DSValidateServer</a></span>.
+The server MUST use this parameter as a key to locate the GSS security context
+used to compute the signature returned in <i>pbServerSignature</i>. See section
+3.1.4.2. </p><p><b>pbServerSignature: </b> A buffer that contains a signed hash
+over the returned property values. See the <i>pbServerSignature</i> parameter
+description in section <span><a href="f9f1a376-c436-4a27-815d-7d1e27a151e5" data-linktype="relative-path">3.1.4.7</a></span>.</p><p><b>pdwServerSignatureSize: </b> A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+that contains the maximum length of the server signature in bytes to return.</p><p><b>Return Values: </b> If the method succeeds, the return
+value is MQ_OK (0x00000000). If the method fails, the return value is an
+implementation-specific error code.</p><p><b>MQ_OK</b> (0x00000000)</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC extension protocol, as specified in
+[MS-RPCE].</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Verify that the arrays <i>aProp</i> and <i>apVar</i> contain at
+least one element. If not, the server SHOULD<a id="Appendix_A_Target_156"></a><a aria-label="Product behavior note 156" href="9c868bc8-426a-4e5f-8b45-cee7d49c3d10#Appendix_A_156" data-linktype="relative-path">&lt;156&gt;</a> return
+an error.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>dwObjectType</i> is either MQDS_QUEUE or
+MQDS_MACHINE. Verify that the property identifier supplied in the <i>aProp</i>
+parameter is one of the following identifiers. Return an error when the input
+is invalid.</p>
+<ul><li><p><span><span>  </span></span><span><a href="../ms-mqmq/976cd78e-d83f-4499-8919-2d8370b40881" data-linktype="relative-path">PROPID_Q_OBJ_SECURITY</a></span>
+(1102)</p>
+</li><li><p><span><span>  </span></span><span><a href="../ms-mqmq/06e19212-fbd0-4783-9eac-6274e463215c" data-linktype="relative-path">PROPID_QM_OBJ_SECURITY</a></span>
+(234) </p>
+</li><li><p><span><span>  </span></span><span><a href="../ms-mqmq/bcb085df-51cf-4de1-9ac4-1c3bbe7068dd" data-linktype="relative-path">PROPID_QM_ENCRYPT_PKS</a></span>
+(238) </p>
+</li><li><p><span><span>  </span></span><span><a href="../ms-mqmq/0c608c2a-1546-4914-8f4f-5031a97bf258" data-linktype="relative-path">PROPID_QM_SIGN_PKS</a></span>
+(239)</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Let <i>dirObject</i> be a directory object and initialized to
+NULL.</p>
+</li><li><p><span><span> 
+</span></span>Generate a <span><a href="5c5b8c07-fef2-4e03-ba2d-7e6fc6527d6e" data-linktype="relative-path">Get Directory
+Object (section 3.1.6.12)</a></span> event with the following
+arguments:</p>
+<ul><li><p><span><span>  </span></span><i>iObjectType</i>
+:= <i>dwObjectType</i>.</p>
+</li><li><p><span><span>  </span></span><i>iPathName</i>
+:= NULL.</p>
+</li><li><p><span><span>  </span></span><i>iGuid</i>
+:= <i>pGuid</i>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <i>rStatus</i> returned by the event is not 0x00000000, return
+an error, and take no further action; otherwise, set <i>dirObject</i> to the
+returned <i>rObject</i>.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>dwObjectType</i> parameter is MQDS_QUEUE:</p>
+<ul><li><p><span><span>  </span></span>And
+the property identifier supplied in the <i>aProp</i> parameter is
+PROPID_Q_OBJ_SECURITY:</p>
+<ul><li><p><span><span> 
+</span></span>Set the first element in <i>apVar</i> to <i>dirObject</i>.<b>Security</b>.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>If the <i>dwObjectType</i> is MQDS_MACHINE: </p>
+<ul><li><p><span><span>  </span></span>And
+the property identifier supplied in the <i>aProp</i> parameter is
+PROPID_Q_OBJ_SECURITY:</p>
+<ul><li><p><span><span> 
+</span></span>Set the first element in <i>apVar</i> to <i>dirObject</i>.<b>Security</b>.</p>
+</li></ul></li><li><p><span><span>  </span></span>And
+the property identifier supplied in the <i>aProp</i> parameter is
+PROPID_QM_ENCRYPT_PKS: </p>
+<ul><li><p><span><span> 
+</span></span>Set the first element in <i>apVar</i> to <i>dirObject</i>.<b>PublicEncryptionKeyList</b>.</p>
+</li></ul></li><li><p><span><span>  </span></span>And
+the property identifier supplied in the <i>aProp</i> parameter is PROPID_QM_SIGN_PKS:</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set the first element in <i>apVar</i> to <i>dirObject</i>.<b>PublicSigningKeyList</b>.</p>
+</li><li><p><span><span> 
+</span></span>Set the <i>pdwServerSignatureSize</i> to contain the actual
+length in bytes of the server signature on output. If the server signature is
+larger than the supplied buffer, the server MUST return
+MQ_ERROR_USER_BUFFER_TOO_SMALL (0xC00E0028).</p>
+</li></ul></div>

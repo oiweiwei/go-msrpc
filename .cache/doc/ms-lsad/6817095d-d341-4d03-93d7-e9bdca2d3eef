@@ -1,0 +1,145 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/6817095d-d341-4d03-93d7-e9bdca2d3eef" data-linktype="external">msdn link</a></p><p>The LsarCreateTrustedDomainEx method is invoked to create a
+new <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted domain object
+(TDO)</a>.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarCreateTrustedDomainEx(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] PLSAPR_TRUSTED_DOMAIN_INFORMATION_EX TrustedDomainInformation,
+   [in] PLSAPR_TRUSTED_DOMAIN_AUTH_INFORMATION AuthenticationInformation,
+   [in] ACCESS_MASK DesiredAccess,
+   [out] LSAPR_HANDLE* TrustedDomainHandle
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>TrustedDomainInformation: </b>Information about
+the new TDO to be created.</p><p><b>AuthenticationInformation: </b>Encrypted
+authentication information for the new TDO.</p><p><b>DesiredAccess: </b>An access mask that specifies
+desired access to the TDO handle.</p><p><b>TrustedDomainHandle: </b>Used to return the handle
+for the newly created TDO.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the supplied arguments is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000300</p>
+  <p>STATUS_NOT_SUPPORTED_ON_SBS</p>
+  </td>
+  <td>
+  <p>The operation is not supported on a particular
+  product.<a id="Appendix_A_Target_100"></a><a aria-label="Product behavior note 100" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_100" data-linktype="relative-path">&lt;100&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00000DD</p>
+  <p>STATUS_INVALID_DOMAIN_STATE</p>
+  </td>
+  <td>
+  <p>The operation cannot complete in the current state of
+  the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00002B1</p>
+  <p>STATUS_DIRECTORY_SERVICE_REQUIRED</p>
+  </td>
+  <td>
+  <p>The <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+  Directory</a> <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_2dc07ca2-2b40-437e-a5ec-ed28ebfb116a" data-linktype="relative-path">service</a>
+  was not available on the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000078</p>
+  <p>STATUS_INVALID_SID</p>
+  </td>
+  <td>
+  <p>The <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security
+  identifier</a> of the <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2f00d47-6cf2-4b32-b8f7-b63e38e2e9c4" data-linktype="relative-path">trusted
+  domain</a> is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC00002E9</p>
+  <p>STATUS_CURRENT_DOMAIN_NOT_ALLOWED</p>
+  </td>
+  <td>
+  <p><a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">Trust</a>
+  cannot be established with the current domain.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000035</p>
+  <p>STATUS_OBJECT_NAME_COLLISION</p>
+  </td>
+  <td>
+  <p>Another TDO already exists that matches some of the
+  identifying information of the supplied information.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000401</p>
+  <p>STATUS_PER_USER_TRUST_QUOTA_EXCEEDED</p>
+  </td>
+  <td>
+  <p>The caller&#39;s quota for the maximum number of TDOs that
+  can be created by control access right Create-Inbound-Trust is exceeded.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000402</p>
+  <p>STATUS_ALL_USER_TRUST_QUOTA_EXCEEDED</p>
+  </td>
+  <td>
+  <p>The combined users&#39; quota for the maximum number of
+  TDOs that can be created by control access right Create-Inbound-Trust is exceeded.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message MUST be processed in an identical manner to <a href="cc86a55d-b619-48fd-998a-65cca15efeb9" data-linktype="relative-path">LsarCreateTrustedDomainEx2</a>,
+with the following exceptions.</p><p><i>AuthenticationInformation</i> is a structure containing
+authentication information for the trusted domain. The authentication
+information is not encrypted, which makes this an insecure message to call. As
+a result, callers SHOULD NOT invoke this message and SHOULD instead call
+LsarCreateTrustedDomainEx2.</p></div>

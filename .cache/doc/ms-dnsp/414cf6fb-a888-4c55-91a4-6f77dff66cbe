@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_AUTOCONFIGURE</b> structure contains the
+information required to auto-configure the DNS server.</p><dl>
+<dd>
+<div><pre> typedef struct _DnsRpcAutoConfigureLonghorn {
+   DWORD dwRpcStructureVersion;
+   DWORD dwReserved0;
+   DWORD dwAutoConfigFlags;
+   DWORD dwReserved1;
+   [string] char* pszNewDomainName;
+ } DNS_RPC_AUTOCONFIGURE,
+  *PDNS_RPC_AUTOCONFIGURE;
+</pre></div>
+</dd></dl><p><b>dwRpcStructureVersion:</b> The structure version
+number; this value MUST be set to 0x00000000.</p><p><b>dwReserved0:</b> MUST be set to zero when sent and
+MUST be ignored on receipt.</p><p><b>dwAutoConfigFlags:</b> The autoconfiguration
+operation being requested by the client as specified in DNS_RPC_AUTOCONFIG
+(section <span><a href="d02b0aa2-3a70-4f66-a637-09bd55f6ec6d" data-linktype="relative-path">2.2.8.1.1</a></span>).</p><p><b>dwReserved1:</b> MUST be set to zero when sent and
+MUST be ignored on receipt.</p><p><b>pszNewDomainName:</b> A pointer to a
+null-terminated UTF-8 string which contains the name of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_04fd0982-6bb6-44f1-817e-795715049c50" data-linktype="relative-path">directory
+server</a></span> domain that this DNS server is about to join.</p></div>

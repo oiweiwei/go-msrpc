@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The DRS_MSG_GETREPLINFO_REQ_V1 structure defines a version 1
+request message sent to the <span><a href="dd29f9ce-b30b-411e-bd54-b77634eded47" data-linktype="relative-path">IDL_DRSGetReplInfo</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD InfoType;
+   [string] LPWSTR pszObjectDN;
+   UUID uuidSourceDsaObjGuid;
+ } DRS_MSG_GETREPLINFO_REQ_V1;
+</pre></div>
+</dd></dl><p><b>InfoType:</b>  MUST be a DS_REPL_INFO
+code.</p><p><b>pszObjectDN:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a></span>
+of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span> on which the
+operation is to be performed. The meaning of this parameter depends on the
+value of the <b>InfoType</b> parameter.</p><p><b>uuidSourceDsaObjGuid:</b>  <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ba500a5b-8c29-467c-a335-0980c8b11304" data-linktype="relative-path">NULL GUID</a></span>
+or the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_736b1076-d1cb-40b9-9247-d66cca6819d1" data-linktype="relative-path">DSA GUID</a></span> of a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>.</p></div>

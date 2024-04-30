@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>The FUNCKIND enumeration values are used in the <b>funckind</b>
+field of a <span><a href="d3349d25-e11d-4095-ba86-de3fda178c4e" data-linktype="relative-path">FUNCDESC</a></span> to specify
+the way that a method is accessed, as specified in section 2.2.42.</p><p>The following function access constants are defined in the
+FUNCKIND enumeration.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum tagFUNCKIND
+ {
+   FUNC_PUREVIRTUAL = 1,
+   FUNC_STATIC = 3,
+   FUNC_DISPATCH = 4
+ } FUNCKIND;
+</pre></div>
+</dd></dl><p><b>FUNC_PUREVIRTUAL:  </b>MUST be set if the method
+described by the <b>FUNCDESC</b> structure is a member of an <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a></span>
+whose associated TYPEKIND value is TKIND_INTERFACE (as specified in section <span><a href="78ccbd1c-d8ff-4301-9afc-df562372fb33" data-linktype="relative-path">2.2.17</a></span>).</p><p><b>FUNC_STATIC:  </b>MUST be set if the method described
+by the <b>FUNCDESC</b> structure is a method member of the module defined with
+the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_07ad91dc-c12a-44f7-9c64-7e496933183a" data-linktype="relative-path">automation
+scope</a></span> (as specified in section <span><a href="82f9465b-ae46-474e-87ff-e65e9751affb" data-linktype="relative-path">2.2.49.9</a></span>).</p><p><b>FUNC_DISPATCH:  </b>MUST be set if the method
+described by the <b>FUNCDESC</b> structure is a member of an interface whose
+associated TYPEKIND value is TKIND_DISPATCH (as specified in section 2.2.17).
+MUST NOT be set if the FUNC_PUREVIRTUAL flag is set.</p></div>

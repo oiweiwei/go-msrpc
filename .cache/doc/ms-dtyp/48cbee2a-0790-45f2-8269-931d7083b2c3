@@ -1,0 +1,13 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/48cbee2a-0790-45f2-8269-931d7083b2c3" data-linktype="external">msdn link</a></p><p>The LUID structure is 64-bit value guaranteed to be unique
+only on the system on which it was generated. The uniqueness of a locally
+unique identifier (LUID) is guaranteed only until the system is restarted.</p><dl>
+<dd>
+<div><pre> typedef struct _LUID {
+   DWORD LowPart;
+   LONG HighPart;
+ } LUID,
+  *PLUID;
+</pre></div>
+</dd></dl><p><b>LowPart:</b>  The low-order bits of the
+structure.</p><p><b>HighPart:</b>  The high-order bits of
+the structure.</p></div>

@@ -1,0 +1,50 @@
+<div class="content"><p> </p><p>The VARFLAGS enumeration values are used in the <b>wVarFlags</b>
+field of a <span><a href="ae7791d2-4399-4dff-b7c6-b0d4f3dce982" data-linktype="relative-path">VARDESC</a></span> to specify
+the features of a field, constant, or <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_544446d5-79ab-4b08-85c4-214f1b64fdf2" data-linktype="relative-path">ODL dispinterface</a></span> <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_f930baab-25f1-4142-bced-5effc9f62d45" data-linktype="relative-path">property</a></span>,
+as specified in section 2.2.43.</p><p>The variable feature constants are defined in the VARFLAGS
+enumeration.</p><dl>
+<dd>
+<div><pre> typedef  enum tagVARFLAGS
+ {
+   VARFLAG_FREADONLY = 0x1,
+   VARFLAG_FSOURCE = 0x2,
+   VARFLAG_FBINDABLE = 0x4,
+   VARFLAG_FREQUESTEDIT = 0x8,
+   VARFLAG_FDISPLAYBIND = 0x10,
+   VARFLAG_FDEFAULTBIND = 0x20,
+   VARFLAG_FHIDDEN = 0x40,
+   VARFLAG_FRESTRICTED = 0x80,
+   VARFLAG_FDEFAULTCOLLELEM = 0x100,
+   VARFLAG_FUIDEFAULT = 0x200,
+   VARFLAG_FNONBROWSABLE = 0x400,
+   VARFLAG_FREPLACEABLE = 0x800,
+   VARFLAG_FIMMEDIATEBIND = 0x1000
+ } VARFLAGS;
+</pre></div>
+</dd></dl><p><b>VARFLAG_FREADONLY:  </b>MUST be set if the
+variable is an ODL dispinterface property that was declared with the [readonly]
+attribute (see section <span><a href="e23aaa6d-3ad4-4886-b652-0203a1a50c58" data-linktype="relative-path">2.2.49.5.3</a></span>).</p><p><b>VARFLAG_FSOURCE:  </b>MUST be set if the variable
+is a property member of an ODL interface that was declared with the [source]
+attribute (see section <span><a href="e86fe771-d836-47b6-b846-846de41d592c" data-linktype="relative-path">2.2.49.8</a></span>).</p><p><b>VARFLAG_FBINDABLE:  </b>MUST be set if the
+variable is an ODL dispinterface property that was declared with the [bindable]
+attribute (see section <span><a href="ac18004e-7af7-4feb-8ae6-d42e7a14267c" data-linktype="relative-path">2.2.49.5.2</a></span>).</p><p><b>VARFLAG_FREQUESTEDIT:  </b>MUST be set if the
+variable is an ODL dispinterface property that was declared with the
+[requestedit] attribute (see section 2.2.49.5.2).</p><p><b>VARFLAG_FDISPLAYBIND:  </b>MUST be set if the
+variable is an ODL dispinterface property that was declared with the
+[displaybind] attribute (see section 2.2.49.5.2).</p><p><b>VARFLAG_FDEFAULTBIND:  </b>MUST be set if the
+variable is an ODL dispinterface property that was declared with the
+[defaultbind] attribute (see section 2.2.49.5.2).</p><p><b>VARFLAG_FHIDDEN:  </b>MUST be set if the variable
+is a member of a type that was declared with the [hidden] attribute (see
+section <span><a href="232d5f12-4b88-43e3-a633-60fc157b1a5f" data-linktype="relative-path">2.2.49.5.1</a></span>).</p><p><b>VARFLAG_FRESTRICTED:  </b>MUST be set if the
+variable is a member of a type that was declared with the [restricted]
+attribute (see section 2.2.49.5.1).</p><p><b>VARFLAG_FDEFAULTCOLLELEM:  </b>MUST be set if the
+variable is an ODL dispinterface property that was declared with the
+[defaultcollelem] attribute (see section 2.2.49.5.1).</p><p><b>VARFLAG_FUIDEFAULT:  </b>MUST be set if the
+variable is an ODL dispinterface property that was declared with the
+[uidefault] attribute (see section 2.2.49.5.1).</p><p><b>VARFLAG_FNONBROWSABLE:  </b>MUST be set if the
+variable is an ODL dispinterface property that was declared with the
+[nonbrowsable] attribute (see section 2.2.49.5.1).</p><p><b>VARFLAG_FREPLACEABLE:  </b>MUST be set if the
+variable is an ODL dispinterface property that was declared with the
+[replaceable] attribute (see section 2.2.49.5.1). MUST be ignored on receipt.</p><p><b>VARFLAG_FIMMEDIATEBIND:  </b>MUST be set if the
+variable is an ODL dispinterface property that was declared with the
+[immediatebind] attribute (see section 2.2.49.5.2).</p></div>

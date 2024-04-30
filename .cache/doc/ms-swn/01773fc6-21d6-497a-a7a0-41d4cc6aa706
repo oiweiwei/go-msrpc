@@ -1,0 +1,202 @@
+<div class="content"><p>The WitnessrAsyncNotify method is used by the client to
+request notification of registered resource changes from the server.</p><dl>
+<dd>
+<div><pre> DWORD WitnessrAsyncNotify(
+         [in] handle_t Handle,
+         [in] PCONTEXT_HANDLE_SHARED pContext,
+         [out] PRESP_ASYNC_NOTIFY* pResp);
+            
+</pre></div>
+</dd></dl><p><b>Handle:</b>  An RPC binding handle <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.</p><p><b>pContext:</b> A context handle of type
+PCONTEXT_HANDLE_SHARED, as specified in section <a href="d0ad2187-be33-4e3d-8193-e7c8684f529e" data-linktype="relative-path">2.2.1.3</a>, that identifies
+the client on the server.</p><p><b>pResp:</b>  A pointer to a PRESP_ASYNC_NOTIFY
+structure, as specified in section <a href="77057389-6642-4ffe-bc26-9e4e8e939f5a" data-linktype="relative-path">2.2.2.4</a>. </p><p><b>Return Values:</b> Returns 0x00000000
+(ERROR_SUCCESS) on success or a nonzero error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>.
+The most common error codes are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p> ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p> ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000005AA</p>
+  <p>ERROR_NO_SYSTEM_RESOURCES</p>
+  </td>
+  <td>
+  <p>Insufficient system resources exist to complete the
+  requested service.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000490</p>
+  <p>ERROR_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified resource name is not found.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server MUST search for the <b>WitnessRegistration</b> in
+<b>WitnessRegistrationList</b>, where <b>WitnessRegistration.RegistrationKey</b>
+matches the <i>pContext</i> parameter. </p><p>If no matching entry is found, the server MUST fail the
+request and return the error code ERROR_NOT_FOUND. </p><p>If the matching entry is found, and <b>WitnessServiceVersion</b>
+is 0x00020000, the server MUST update <b>WitnessRegistration.LastUseTime</b> to
+the current time, and <b>WitnessRegistration.IsAsyncNotifyRegistered</b> to
+TRUE. </p><p>The server MUST wait until either <b>WitnessRegistration.PendingChangeNotifications</b>
+or <b>WitnessRegistration.PendingMoveNotification</b> are not empty.</p><p>If <b>WitnessRegistration.PendingChangeNotifications</b> is
+not empty, the server MUST construct a RESP_ASYNC_NOTIFY structure as follows: </p><ul><li><p><span><span> 
+</span></span><i>pResp.MessageType</i>: MUST be set to
+RESOURCE_CHANGE_NOTIFICATION.</p>
+</li><li><p><span><span> 
+</span></span><i>pResp.MessageBuffer</i>: MUST be set to a RESOURCE_CHANGE
+structure with the following values:</p>
+<ul><li><p><span><span>  </span></span>The
+<b>Length</b> field MUST be set to the size of the RESOURCE_CHANGE structure.</p>
+</li><li><p><span><span>  </span></span>If
+the <b>NewState</b> of the <b>Notification</b> is UNAVAILABLE, the <b>ChangeType</b>
+field MUST be set to RESOURCE_STATE_UNAVAILABLE, else <b>ChangeType</b> MUST be
+set to RESOURCE_STATE_AVAILABLE.</p>
+</li><li><p><span><span>  </span></span>The
+<b>ResourceName</b> field MUST be set to the <b>ResourceName</b> of the <b>Notification</b>.</p>
+</li><li><p><span><span>  </span></span>If
+additional entries are present in <b>WitnessRegistration.PendingChangeNotifications</b>,
+the server MUST continue to add RESOURCE_CHANGE structures to the <i>pResp.MessageBuffer</i>,
+until no entries remain in the list.</p>
+</li></ul></li><li><p><span><span> 
+</span></span><i>pResp.NumberOfMessages</i>: MUST be set to the number of
+resources changed.</p>
+</li><li><p><span><span> 
+</span></span><i>pResp.Length</i>: MUST be set to the length of the <b>MessageBuffer</b>
+field.</p>
+</li></ul><p>If the <b>WitnessRegistration.PendingMoveNotification</b> is
+not empty, the server MUST construct the structure as follows: </p><ul><li><p><span><span> 
+</span></span><i>pResp.MessageType</i>: MUST be set to
+CLIENT_MOVE_NOTIFICATION.</p>
+</li><li><p><span><span> 
+</span></span><i>pResp.MessageBuffer</i>: MUST be set to an IPADDR_INFO_LIST
+structure with the following values:</p>
+<ul><li><p><span><span>  </span></span>The
+<b>Reserved</b> field MUST be set to 0. </p>
+</li><li><p><span><span>  </span></span>The
+<b>IPAddrInstances</b> field MUST be set to the number of available interfaces
+in <b>InterfaceList</b> for which <b>Interface.InterfaceGroupName</b> matches
+the <b>Notification.ChangeIndication</b>.</p>
+</li><li><p><span><span>  </span></span>For
+each <b>Interface</b> matched, the server MUST construct an IPADDR_INFO
+structure as follows:  </p>
+<ul><li><p><span><span> 
+</span></span>If <b>Interface.State</b> is AVAILABLE, then the IPADDR_ONLINE
+flag in the <b>Flags</b> field MUST be set. If <b>Interface.State</b> is
+UNAVAILABLE, then the IPADDR_OFFLINE flag in the <b>Flags</b> field MUST be
+set.</p>
+</li><li><p><span><span> 
+</span></span>If <b>Interface.IPv4Address</b> is not empty, the <b>IPV4</b>
+field MUST be set to <b>Interface.IPv4Address</b>, and IPADDR_V4 MUST be set in
+the <b>Flags</b> field.</p>
+</li><li><p><span><span> 
+</span></span>If <b>Interface.IPv6Address</b> is not empty, the <b>IPV6</b>
+field MUST be set to <b>Interface.IPv6Address</b>, and IPADDR_V6 MUST be set in
+the <b>Flags</b> field.</p>
+</li></ul></li><li><p><span><span>  </span></span>The
+IPADDR_INFO structure MUST be copied into the <b>IPAddrInfo</b> field.</p>
+</li><li><p><span><span>  </span></span>The
+<b>Length</b> field MUST be set to the size of the IPADDR_INFO_LIST structure.</p>
+</li></ul></li><li><p><span><span> 
+</span></span><i>pResp.NumberOfMessages</i>: MUST be set to 1.</p>
+</li><li><p><span><span> 
+</span></span><i>pResp.Length</i>: MUST be set to the length of the <b>MessageBuffer</b>
+field.</p>
+</li></ul><p>If <b>WitnessServiceVersion</b> is 0x00020000, <b>WitnessRegistration.WitnessClientVersion</b>
+is 0x00020000, and <b>WitnessRegistration.PendingShareMoveNotification</b> is
+not empty, the server MUST construct the structure as follows: </p><ul><li><p><span><span> 
+</span></span><i>pResp.MessageType</i>: MUST be set to SHARE_MOVE_NOTIFICATION.</p>
+</li><li><p><span><span> 
+</span></span><i>pResp.MessageBuffer</i>: MUST be set to an IPADDR_INFO_LIST
+structure with the following values:</p>
+<ul><li><p><span><span>  </span></span>The
+<b>Reserved</b> field MUST be set to 0. </p>
+</li><li><p><span><span>  </span></span>The
+<b>IPAddrInstances</b> field MUST be set to the number of available interfaces
+in <b>InterfaceList</b> for which <b>Interface.InterfaceGroupName</b> matches
+the <b>Notification.Destination</b>.</p>
+</li><li><p><span><span>  </span></span>For
+each <b>Interface</b> matched, the server MUST construct an IPADDR_INFO
+structure as follows:  </p>
+<ul><li><p><span><span> 
+</span></span>If <b>Interface.IPv4Address</b> is not empty, the <b>IPV4</b>
+field MUST be set to <b>Interface.IPv4Address</b>, and IPADDR_V4 MUST be set in
+the <b>Flags</b> field.</p>
+</li><li><p><span><span> 
+</span></span>If <b>Interface.IPv6Address</b> is not empty, the <b>IPV6</b>
+field MUST be set to <b>Interface.IPv6Address</b>, and IPADDR_V6 MUST be set in
+the <b>Flags</b> field.</p>
+</li></ul></li><li><p><span><span>  </span></span>The
+IPADDR_INFO structure MUST be copied into the <b>IPAddrInfo</b> field.</p>
+</li><li><p><span><span>  </span></span>The
+<b>Length</b> field MUST be set to the size of the IPADDR_INFO_LIST structure.</p>
+</li></ul></li><li><p><span><span> 
+</span></span><i>pResp.NumberOfMessages</i>: MUST be set to 1.</p>
+</li><li><p><span><span> 
+</span></span><i>pResp.Length</i>: MUST be set to the length of the <b>MessageBuffer</b>
+field.</p>
+</li></ul><p>If <b>WitnessServiceVersion</b> is 0x00020000, <b>WitnessRegistration.WitnessClientVersion</b>
+is 0x00020000, and <b>WitnessRegistration.PendingIPNotification</b> is not
+empty, the server MUST construct the structure as follows: </p><ul><li><p><span><span> 
+</span></span><i>pResp.MessageType</i>: MUST be set to IP_CHANGE_NOTIFICATION.</p>
+</li><li><p><span><span> 
+</span></span><i>pResp.MessageBuffer</i>: MUST be set to an IPADDR_INFO_LIST
+structure with the following values:</p>
+<ul><li><p><span><span>  </span></span>The
+<b>Reserved</b> field MUST be set to 0. </p>
+</li><li><p><span><span>  </span></span>The
+<b>IPAddrInstances</b> field MUST be set to the number of available interfaces
+in <b>InterfaceList</b> for which <b>Interface.InterfaceGroupName</b> matches
+the <b>Notification.Destination</b>.</p>
+</li><li><p><span><span>  </span></span>For
+each <b>Interface</b> matched, the server MUST construct an IPADDR_INFO
+structure as follows:  </p>
+<ul><li><p><span><span> 
+</span></span>If <b>Interface.IPv4Address</b> is not empty, the <b>IPV4</b>
+field MUST be set to <b>Interface.IPv4Address</b>, and IPADDR_V4 MUST be set in
+the <b>Flags</b> field.</p>
+</li><li><p><span><span> 
+</span></span>If <b>Interface.IPv6Address</b> is not empty, the <b>IPV6</b>
+field MUST be set to <b>Interface.IPv6Address</b>, and IPADDR_V6 MUST be set in
+the <b>Flags</b> field.</p>
+</li></ul></li><li><p><span><span>  </span></span>The
+IPADDR_INFO structure MUST be copied into the <b>IPAddrInfo</b> field.</p>
+</li><li><p><span><span>  </span></span>The
+<b>Length</b> field MUST be set to the size of the IPADDR_INFO_LIST structure.</p>
+</li></ul></li><li><p><span><span> 
+</span></span><i>pResp.NumberOfMessages</i>: MUST be set to 1.</p>
+</li><li><p><span><span> 
+</span></span><i>pResp.Length</i>: MUST be set to the length of the MessageBuffer
+field.</p>
+</li></ul><p>The server MUST remove all entries that were processed from <b>WitnessRegistration.PendingChangeNotifications,
+WitnessRegistration.PendingMoveNotification,</b> <b>WitnessRegistration.PendingShareMoveNotification</b>,
+and <b>WitnessRegistration.PendingIPNotification</b>.</p><p>If <b>WitnessServiceVersion</b> is 0x00020000, the server
+MUST set <b>WitnessRegistration.LastUseTime</b> to the current time and <b>WitnessRegistration.IsAsyncNotifyRegistered</b>
+to FALSE.</p><p>The server MUST return ERROR_SUCCESS and the <i>pResp</i>
+parameter to the client.</p></div>

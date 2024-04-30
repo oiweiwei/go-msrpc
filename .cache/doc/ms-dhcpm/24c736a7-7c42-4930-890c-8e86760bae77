@@ -1,0 +1,297 @@
+<div class="content"><p> </p><p>The <b>R_DhcpAddSubnetElementV5</b> method adds an IPv4
+subnet element to the specified IPv4 subnet defined on the DHCPv4 server. The
+subnet elements can be IPv4 reservation for DHCPv4 or BOOTP clients, IPv4
+range, or the IPv4 exclusion range for DHCPv4 or BOOTP clients.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpAddSubnetElementV5(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [in, ref] LPDHCP_SUBNET_ELEMENT_DATA_V5 AddElementInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SubnetAddress: </b>This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>
+that contains the IPv4 subnet ID to which the IPv4 subnet element is added.</p><p><b>AddElementInfo: </b>This is a pointer to structure
+<span><a href="0a196713-4790-412f-a2d7-893cbad301da" data-linktype="relative-path">DHCP_SUBNET_ELEMENT_DATA_V5 (section 2.2.1.2.38)</a></span>
+that contains the IPv4 subnet element which needs to be added to the IPv4
+subnet.</p><p>For this call with <b>ElementType</b> of
+DhcpSecondaryHosts (section <span><a href="c2ff4890-adad-4906-bb96-d9417f24545a" data-linktype="relative-path">2.2.1.1.7</a></span>),
+ERROR_CALL_NOT_IMPLEMENTED is returned.</p><p>For this call with <b>ElementType</b> of
+DhcpIpUsedClusters, ERROR_INVALID_PARAMETER is returned.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist on the DHCP
+  server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E32</p>
+  <p>ERROR_DHCP_NOT_RESERVED_CLIENT</p>
+  </td>
+  <td>
+  <p>The specified DHCP client is not an IPv4-reserved client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E36</p>
+  <p>ERROR_DHCP_RESERVEDIP_EXITS</p>
+  </td>
+  <td>
+  <p>The specified IPv4 address or hardware address is
+  being used by another DHCP client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E37</p>
+  <p>ERROR_DHCP_INVALID_RANGE</p>
+  </td>
+  <td>
+  <p>The specified IPv4 range either overlaps an existing
+  range or is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E51</p>
+  <p>ERROR_DHCP_IPRANGE_CONV_ILLEGAL</p>
+  </td>
+  <td>
+  <p>Conversion of a scope to a DHCP-only scope or to a
+  BOOTP-only scope is not allowed when DHCP and BOOTP clients both exist in the
+  scope. Manually delete either the DHCP or the BOOTP clients from the scope,
+  as appropriate for the type of scope being created.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E90</p>
+  <p>ERROR_SCOPE_RANGE_POLICY_RANGE_CONFLICT</p>
+  </td>
+  <td>
+  <p>There is an IP range configured for a policy in this
+  scope. This operation on the scope IP address range cannot be performed until
+  the policy IP address range is suitably modified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004EA1</p>
+  <p>ERROR_DHCP_FO_IPRANGE_TYPE_CONV_ILLEGAL</p>
+  </td>
+  <td>
+  <p>Conversion of a failover scope to a scope of type
+  BOOTP or BOTH could not be performed. Failover is supported only for DHCP
+  scopes.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 37.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4Scope</b> ADM element entry corresponding
+to <i>SubnetAddress</i> from the <b>DHCPv4ScopesList</b> server ADM element.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>DHCPv4Scope</b> element entry is not found, return
+ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member in the <i>AddElementInfo</i>
+parameter is set to DhcpSecondaryHosts, return ERROR_CALL_NOT_IMPLEMENTED.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ElementType</b> member is DhcpIpUsedClusters, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If <b>ElementType</b> member is set to DhcpIpRanges or
+DhcpIpRangesDhcpOnly or DhcpIpRangesDhcpBootp or DhcpIpRangesBootpOnly, and <b>IpRange</b>
+member is NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>IsFailover</b> member of the <b>DHCPv4Scope</b> ADM
+element entry is set to TRUE and if the <b>ElementType</b> member of the <i>AddElementInfo</i>
+parameter is set to  DhcpIpRangesBootpOnly or DhcpIpRangesDhcpBootp, return
+ERROR_DHCP_FO_IPRANGE_TYPE_CONV_ILLEGAL.<a id="Appendix_A_Target_49"></a><a aria-label="Product behavior note 49" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_49" data-linktype="relative-path">&lt;49&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member is set to DhcpIpRanges or
+DhcpIpRangesDhcpOnly and the new IP address range is the same as the existing
+IP address range or the new IP address range is either completely within the
+existing address range or completely contains the existing address range, then
+the existing <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b63eb4e5-64bf-40a5-bc59-12b83ad184cb" data-linktype="relative-path">IP range</a></span> can be
+changed. If there is any <b>DHCPv4Client</b> element entry in <b>DHCPv4Scope.DHCPv4ClientsList</b>
+element with <b>bClientType</b> member matching CLIENT_TYPE_BOOTP, then the
+range cannot be converted into a DHCP-only range; in which case return
+ERROR_DHCP_IPRANGE_CONV_ILLEGAL.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member is set to DhcpIpRangesBootpOnly
+and the new IP address range is the same as the existing IP address range or
+the new IP address range is either completely within the existing address range
+or completely contains the existing address range, then the existing IP range
+can be changed. If there is any <b>DHCPv4Client</b> element entry in <b>DHCPv4Scope.DHCPv4ClientsList</b>
+element with <b>bClientType</b> member matching CLIENT_TYPE_DHCP, then the
+range cannot be converted into a BOOTP-only range; in which case return
+ERROR_DHCP_IPRANGE_CONV_ILLEGAL.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member is set to DhcpIpRanges, iterate
+over the DHCPv4Policy objects in <b>DHCPv4Scope.DHCPv4ScopePolicyList</b>. For
+each DHCPv4Policy object found, iterate over the ranges in the object&#39;s <b>DHCPv4Policy.Ranges</b>
+member. If the <b>StartAddress</b> or <b>EndAddress</b> member of any range is
+found to lie outside the new IP address range specified by the <b>StartAddress</b>
+or <b>EndAddress</b> member of the DHCP_IP_RANGE structure within the input
+parameter <i>AddElementInfo</i>, return
+ERROR_SCOPE_RANGE_POLICY_RANGE_CONFLICT.<a id="Appendix_A_Target_50"></a><a aria-label="Product behavior note 50" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_50" data-linktype="relative-path">&lt;50&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member is set to DhcpIpRangesDhcpBootp
+and the <b>IpRange</b> member is same as the <b>DHCPv4IpRange.RangeInfo</b> in
+the first entry of <b>DHCPv4Scope.DHCPv4IpRangesList</b> element, then return
+ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>If <b>EndAddress</b> of any kind of IPv4 range is less than <b>StartAddress</b>,
+return ERROR_DHCP_INVALID_RANGE.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ElementType</b> member is set to DhcpIpRanges,
+DhcpIpRangesDhcpOnly, DhcpIpRangesDhcpBootp, or DhcpIpRangesBootpOnly, do the
+following:</p>
+<ul><li><p><span><span>  </span></span> If
+<b>DHCPv4Scope.DHCPv4IpRangesList</b> is not empty and the new IP address range
+is not the same as the <b>DHCPv4IpRange.RangeInfo</b> of an existing IP address
+range, the new IP address range (specified by the <b>StartAddress</b> and <b>EndAddress</b>
+members of the <span><a href="90717769-5494-407d-931a-41d75eca0045" data-linktype="relative-path">DHCP_BOOTP_IP_RANGE (section 2.2.1.2.37)</a></span>
+structure) has to either be completely within the existing address range or
+completely contain the existing address range; if neither condition is met,
+return error ERROR_DHCP_INVALID_RANGE.</p>
+</li><li><p><span><span>  </span></span>If <b>DHCPv4Scope.DHCPv4IpRangesList</b>
+is empty, create a new <b>DHCPv4IpRange</b> object, set the <b>DHCPv4IpRange.RangeInfo</b>
+to <b>IpRange</b> and <b>DHCPv4IpRange.RangeInfo.BootPAllocated</b> to 0. If
+the <b>ElementType</b> is set to DhcpIpRanges or DhcpIpRangesDhcpOnly or
+DhcpIpRangesBootpOnly, <b>DHCPv4IpRange.RangeInfo.MaxBootpAllowed</b> is set to
+0xFFFFFFFF. Populate the <b>DHCPv4IpRange.BitMask</b> with bits corresponding
+to all of the addresses within the newly created range and initialize each bit
+to 0 indicating the availability of its corresponding address for allocation to
+a DHCPv4 client. Insert the new object into <b>DHCPv4Scope.DHCPv4IpRangesList</b>.</p>
+</li><li><p><span><span>  </span></span>If <b>DHCPv4Scope.DHCPv4IpRangesList</b>
+is not empty, set the existing <b>DHCPv4IpRange.RangeInfo.StartAddress</b> and <b>DHCPv4IpRange.RangeInfo.EndAddress</b>
+to <b>IpRange.StartAddress</b> and <b>IpRange.EndAddress</b> respectively. <b>DHCPv4IpRange.BitMask</b>
+needs to be expanded or contracted according to the new <b>IpRange.StartAddress</b>
+and <b>IpRange.EndAddress</b>. Accordingly, add or remove bits from the <b>DHCPv4IpRange.BitMask</b>.
+If adding bits for expansion, initialize them to 0 indicating the availability
+of their corresponding addresses for allocation to a DHCPv4 client.</p>
+</li><li><p><span><span>  </span></span>If <b>ElementType</b>
+member is DhcpExcludedIpRanges (section <span><a href="6bb458f2-d276-40b4-99a5-58ca96b68e07" data-linktype="relative-path">2.2.1.1.6</a></span>), create
+a <b>DHCPv4ExclusionRange</b> element entry and set it to <b>ExcludeIpRange</b>
+and insert it into <b>DHCPv4ExclusionRangesList</b> element.</p>
+</li><li><p><span><span>  </span></span>If
+the <b>ElementType</b> member is set to DhcpReservedIps, and <b>ReservedIpAddress</b>
+specified in the <b>ReservedIp</b> field in <b>Element</b> does not fall within
+the <b>DHCPv4IpRange.RangeInfo</b> of a range within <b>DHCPv4Scope.DHCPv4IpRangesList</b>
+and is not an existing reserved address, return ERROR_DHCP_NOT_RESERVED_CLIENT.<a id="Appendix_A_Target_51"></a><a aria-label="Product behavior note 51" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_51" data-linktype="relative-path">&lt;51&gt;</a></p>
+</li><li><p><span><span>  </span></span>If <b>ElementType</b>
+member is set to DhcpReservedIps (section 2.2.1.1.6), and there is a <b>DHCPv4Reservation</b>
+element in <b>DHCPv4ReservationsList</b> element that corresponds to the
+reserved IPv4 address and/or hardware address specified in <b>ReservedIp</b>
+(section 2.2.1.2.38), return ERROR_DHCP_RESERVEDIP_EXITS; else create a <b>DHCPv4Reservation</b>
+element entry and set it to <b>ReservedIp</b> input field. Insert the object
+into the <b>DHCPv4Scope.DHCPv4ReservationsList</b> ADM element.</p>
+</li><li><p><span><span>  </span></span>If <b>ElementType</b>
+is set to DhcpReservedIps and the previous steps resulted in a <b>DHCPv4Reservation</b>
+ADM element object being inserted into the <b>DHCPv4Scope.DHCPv4ReservationsList</b>
+ADM element, construct a temporary <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4c35997a-5d90-4d7e-96c8-346f4ad0a63f" data-linktype="relative-path">DHCPv4 client unique ID</a></span>
+(section <span><a href="651865ec-6404-4191-ad30-113578a94556" data-linktype="relative-path">2.2.1.2.5.2</a></span>) by
+combining the <b>DHCPv4Scope.ScopeInfo.SubnetAddress</b> ADM element and the <i>ReservedForClient</i>
+input field. If a <b>DHCPv4Client</b> ADM element object corresponding to the <i>ReservedForClient</i>
+input field and the temporary unique ID does not exist within the <b>DHCPv4Scope.DHCPv4ClientsList</b>
+ADM element, create one and insert it into the list thereby marking the address
+as unavailable to other clients. The <b>DHCPv4Client</b> ADM element object is
+initialized as follows:</p>
+<ul><li><p><span><span> 
+</span></span><b>DHCPv4Client.ClientIpAddress</b> ADM element is set to the <i>ReservedIpAddress</i>
+input field.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4Client.SubnetMask</b> ADM element is set to the <b>DHCPv4Scope.Scopeinfo.SubnetMask</b>
+ADM element.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4Client.ClientHardwareAddress</b> ADM element is set to
+the temporary DHCPv4 client unique ID constructed above.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4Client.ClientLeaseExpires</b> ADM element is set to 0.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4Client.ClientName</b> ADM element is set to NULL.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4Client.ClientComment</b> ADM element is set to NULL.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4Client.OwnerHost.NetBiosName</b> ADM element is set to
+the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b86c44e6-57df-4c48-8163-5e3fa7bdcff4" data-linktype="relative-path">NetBIOS</a></span>
+name of the DHCPv4 server.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4Client.OwnerHost.IpAddress</b> ADM element is set to
+255.255.255.255.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4Client.bClientType</b> ADM element is set to
+CLIENT_TYPE_NONE.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4Client.AddressState</b> ADM element is set to
+ADDRESS_STATE_ACTIVE.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4Client.QuarantineCapable</b> ADM element is set to
+FALSE.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4Client.Status</b> ADM element is set to NOQUARANTINE.</p>
+</li><li><p><span><span> 
+</span></span><b>DHCPv4Client.ProbationEnds</b> ADM element is set to 0.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DHCPv4Client.SentPotExpTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DHCPv4Client.AckPotExpTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DHCPv4Client.RecvPotExpTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DHCPv4Client.StartTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DHCPv4Client.CltLastTransTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DHCPv4Client.LastBndUpdTime</b> ADM element is set to 0.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DHCPv4Client.flags</b> ADM element is set to 0.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DHCPv4Client.bndMsgStatus</b> ADM element is set to 0.</p>
+</li><li><p><span><span> 
+</span></span>The <b>DHCPv4Client.PolicyName</b> ADM element is set to 0.</p>
+</li></ul></li><li><p><span><span>  </span></span>In
+continuation of the previous step, if the <i>ReservedIp</i> input field falls
+within the limits of a range element contained in <b>DHCPv4Scope.DHCPv4IpRangesList</b>
+ADM element, then set the bit corresponding to the IPv4 address in that <b>DHCPv4IpRange.Bitmask</b>
+ADM element to 1 to indicate the unavailability of the address when selecting a
+fresh address for allocation to DHCPv4 clients.</p>
+</li></ul></li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

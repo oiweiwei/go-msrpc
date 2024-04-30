@@ -1,0 +1,56 @@
+<div class="content"><p> </p><p>The R_QMCreateRemoteCursor method creates a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a></span>
+at the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> for use
+during <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_603b69cc-6ddd-43aa-a263-59d39a844e61" data-linktype="relative-path">remote read</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT R_QMCreateRemoteCursor(
+   [in] handle_t hBind,
+   [in] struct CACTransferBufferV1* ptb1,
+   [in] DWORD hQueue,
+   [out] DWORD* phCursor
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST be set to an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>ptb1: </b> MUST be ignored. <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">Clients</a></span>
+SHOULD pass NULL.<a id="Appendix_A_Target_29"></a><a aria-label="Product behavior note 29" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_29" data-linktype="relative-path">&lt;29&gt;</a></p><p><b>hQueue: </b>A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+that contains the value of the <b>Handle</b> attribute of an <b>OpenQueueDescriptor</b>
+(<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section <span><a href="../ms-mqdmpr/e2005510-8785-414e-9a71-fa313fa6e119" data-linktype="relative-path">3.1.1.16</a></span>)
+ADM element instance. The client obtains this value from either the <i>pcc.srv_hACQueue</i>
+out-parameter of <span><a href="e8d526c6-a119-4d27-8fac-bf59bab72f30" data-linktype="relative-path">rpc_ACCreateCursorEx</a></span>
+or the <i>phQueue</i> out-parameter of <span><a href="47482511-3c4a-4d7e-8edb-46715e89e4af" data-linktype="relative-path">R_QMOpenRemoteQueue</a></span>.</p><p><b>phCursor: </b>A pointer to a <b>DWORD</b> to
+receive the value of the <b>Handle</b> attribute of the <b>Cursor</b>
+([MS-MQDMPR] section <span><a href="../ms-mqdmpr/2d741458-1c04-47b4-831b-13779e588bf9" data-linktype="relative-path">3.2</a></span>)
+ADM element instance that references the created cursor. It MUST NOT be NULL on
+input.</p><p><b>Return Values: </b> On success, this method MUST return
+MQ_OK (0x00000000); otherwise, the server MUST return a failure HRESULT, and
+the client MUST treat all failure HRESULTs identically. Additionally, if a
+failure HRESULT is returned, the client MUST disregard all out-parameter
+values.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol, as specified in [MS-RPCE].</p><p>This method is invoked at the dynamically assigned <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span>
+returned by the <span><a href="a8c96155-a7e6-41cb-95c7-6ab7e4f8214d" data-linktype="relative-path">R_QMGetRTQMServerPort</a></span>
+method when IP_HANDSHAKE (0x00000000) or IPX_HANDSHAKE (0x00000002) is the
+interface specified by the <i>fIP</i> parameter.</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Search the <b>OpenQueueDescriptorCollection</b> attribute of each
+<b>Queue</b> ([MS-MQDMPR] section <span><a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">3.1.1.2</a></span>)
+ADM element instance that is contained in the server&#39;s <b>LocalQueueManager.QueueCollection</b>
+attribute for an <b>OpenQueueDescriptor</b> ADM element instance where the
+value of the <b>Handle</b> attribute of the <b>OpenQueueDescriptor</b> ADM
+element instance equals <i>hQueue</i>.</p>
+</li><li><p><span><span> 
+</span></span>If no such <b>OpenQueueDescriptor</b> ADM element instance
+exists, take no further action and return a failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Generate an <span><a href="../ms-mqdmpr/7f3a6707-ae54-4751-b199-d4cb15d85a62" data-linktype="relative-path">Open
+Cursor</a></span> ([MS-MQDMPR] section 3.1.7.1.1) event with the following
+argument value:</p>
+<ul><li><p><span><span>  </span></span><i>iQueueDesc</i>
+:= The <b>OpenQueueDescriptor</b> ADM element instance found preceding.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The Open Cursor event returns a reference to the <b>Cursor</b>
+ADM element instance, <i>rCursor</i>.</p>
+</li><li><p><span><span> 
+</span></span>Set the <i>phCursor</i> parameter to <i>rCursor</i>.<b>Handle</b>.</p>
+</li><li><p><span><span> 
+</span></span>Return MQ_OK (0x00000000).</p>
+</li></ul></div>

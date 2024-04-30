@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The SERVER_INFO_101 structure contains information about the
+specified <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>, including
+name, platform, type of server, and associated software. For a description
+about the fields in this structure, see the description for the <span><a href="b503efd7-5ec4-48f8-b8d9-e61ca2724eff" data-linktype="relative-path">SERVER_INFO_103</a></span>
+structure (sv101_xxx denotes the same information as sv103_xxx).</p><dl>
+<dd>
+<div><pre> typedef struct _SERVER_INFO_101 {
+   DWORD sv101_platform_id;
+   [string] wchar_t* sv101_name;
+   DWORD sv101_version_major;
+   DWORD sv101_version_minor;
+   DWORD sv101_type;
+   [string] wchar_t* sv101_comment;
+ } SERVER_INFO_101,
+  *PSERVER_INFO_101,
+  *LPSERVER_INFO_101;
+</pre></div>
+</dd></dl></div>

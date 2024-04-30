@@ -1,0 +1,50 @@
+<div class="content"><p> </p><p>When the IWbemCallResult::GetResultString method is called,
+the server MUST return the assigned <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_775e4b82-5447-4125-b887-b404421e1269" data-linktype="relative-path">CIM path</a></span> of a <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_a99173af-90bf-473d-9a81-ff0ce9a85838" data-linktype="relative-path">CIM</a></span>
+instance that was created by the <span><a href="5d2e7939-f60c-4891-a339-1bf027a6d3ec" data-linktype="relative-path">IWbemServices::PutInstance</a></span>
+method that returned <span><a href="23ec4065-3fbe-4e39-baef-69e22c285623" data-linktype="relative-path">IWbemCallResult</a></span> in
+the ppCallResult parameter.</p><dl>
+<dd>
+<div><pre> HRESULT GetResultString(
+   [in] long lTimeout,
+   [out] BSTR* pstrResultString
+ );
+</pre></div>
+</dd></dl><p><b>lTimeout: </b>MUST be a maximum amount of time, in
+milliseconds, that the call to GetResultString allows to pass before timing
+out. If the constant WBEM_INFINITE (0xFFFFFFFF) is used, the GetResultString
+method call MUST wait until the operation succeeds. This parameter MUST NOT be
+NULL.</p><p><b>pstrResultString: </b>MUST be a pointer to a BSTR
+value, which MUST contain the CIM path of the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c1fdd6c7-06cb-4787-8735-4d19a68dd802" data-linktype="relative-path">CIM object</a></span> instance,
+which MUST lead to the CIM instance that was created using
+IWbemServices::PutInstance. In case of failure of the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_51f3288a-1aea-49f6-96a1-91f368e8b49b" data-linktype="relative-path">semisynchronous operation</a></span>,
+the returned string MUST be NULL. When sent by the client, this pointer
+parameter MUST NOT be NULL. If the original operation does not return a string,
+the returned string MUST be NULL.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return WBEM_S_NO_ERROR (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The server MUST locate the entry in <b>WbemCallResultTable</b>
+with <b>WbemCallResultPointer</b> matching IWbemCallResult. The
+IWbemCallResult::GetResultString method MUST be called on the interface
+obtained in responses to a previous call to a semisynchronous operation
+returning an IWbemCallResult interface.</p><p>IWbemCallResult::GetResultString MUST be called to obtain
+the CIM path created after IWbemServices::PutInstance execution. In response to
+the IWbemCallResult::GetResultString method, the server MUST wait for the
+operation to finish in <i>lTimeout</i> time. The operation is finished when <b>OperationFinished</b>
+is TRUE. If the operation is not finished in <i>lTimeout</i> time, the server
+MUST return WBEM_S_TIMEDOUT. If the operation is finished successfully in <i>lTimeout</i>
+time, the server MUST make a copy of the <b>ResultString</b> in <b>WbemCallResultTable</b>
+for this operation and return it in the <i>pstrResultString</i> parameter. The
+method MUST fail if the method parameters are not valid, as specified earlier
+in this section, or if the server is unable to execute the method. If the
+operation is finished successfully, and if <b>ResultString</b> is set to NULL,
+the server MUST return WBEM_E_INVALID_OPERATION for this method.</p><p>The successful method execution MUST fill <i>pstrResultString</i>
+with a string value of type BSTR and MUST return WBEM_S_NO_ERROR.</p><p>The failed method execution sets the value referenced by the
+output parameters to NULL and MUST return an error in the format specified in
+section 2.2.11. In case the operation is not completed after lTimeout
+milliseconds, the server MUST return WBEM_S_TIMEDOUT and MUST allow for further
+retries to be made.</p><p>If the original semisynchronous operation fails, the
+IWbemCallResult::GetResultString method MUST return the error code that the
+original method would have returned in its synchronous version.</p></div>

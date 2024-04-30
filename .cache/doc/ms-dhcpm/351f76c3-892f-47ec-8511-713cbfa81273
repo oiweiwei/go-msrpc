@@ -1,0 +1,21 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4CreatePolicyEx</b> method creates the policy
+according to the data specified in the policy data structure.</p><p>The <b>R_DhcpV4CreatePolicyEx</b> method is an extension of
+the <b>R_DhcpV4CreatePolicy</b> (Opnum 108) (section <span><a href="f6a46c64-1d9d-4a29-bcde-cc656ad62430" data-linktype="relative-path">3.2.4.109)</a></span>
+method, where a <span><a href="a63aaffd-1c6b-4ad8-9d95-c1064b2112ea" data-linktype="relative-path">DHCP_POLICY_EX (section 2.2.1.2.121)</a></span>
+structure is specified for the <i>pPolicy</i> parameter, rather than a <span><a href="77e79969-cedf-4aa9-9059-6223ba815f30" data-linktype="relative-path">DHCP_POLICY (section 2.2.1.2.110)</a></span>
+structure. The structure contains the members of the policy to be created.</p><p>Using the extension method, a list of <span><a href="1ac6e6e5-f2bc-42ef-9d6a-c9457d48c3c3" data-linktype="relative-path">DHCP_PROPERTY (section 2.2.1.2.117)</a></span>
+elements can be specified that can be associated with the given policy when
+creating the policy.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4CreatePolicyEx(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] LPDHCP_POLICY_EX pPolicy
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>As specified in <b>R_DhcpV4CreatePolicy</b>
+(Opnum 108).</p><p><b>pPolicy: </b>A
+DHCP_POLICY_EX (section 2.2.1.2.121) structure that specifies a list
+of DHCP_PROPERTY (section 2.2.1.2.117) elements that can be
+associated with the given policy when creating the policy.</p><p><b>Return Values: </b>As specified in <b>R_DhcpV4CreatePolicy</b>
+(Opnum 108).</p><p>The opnum field value for this method is 126.</p><p>The remainder of the processing behavior for this method is
+as defined for the <b>R_DhcpV4CreatePolicy</b> (Opnum 108) method.</p></div>

@@ -1,0 +1,19 @@
+<div class="content"><p>The ClockType enumeration defines the clock resolution to
+use when tracing events.</p><dl>
+<dd>
+<div><pre> typedef  enum
+ {
+   plaTimeStamp = 0,
+   plaPerformance = 1,
+   plaSystem = 2,
+   plaCycle = 3
+ } ClockType;
+</pre></div>
+</dd></dl><p><b>plaTimeStamp:  </b>Use the raw (unconverted) time
+stamp.</p><p><b>plaPerformance:  </b>Query <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_35645a67-9e0b-4c05-b2d9-3b2b25f2beac" data-linktype="relative-path">performance counter</a> (QPC).
+Provides a high-resolution (100 nanoseconds) time stamp that is more expensive
+to retrieve.</p><p><b>plaSystem:  </b>System time. Provides a
+low-resolution (10 milliseconds) time stamp that is less expensive to retrieve.
+</p><p><b>plaCycle:  </b>CPU cycle counter. MAY provide the
+highest resolution time stamp and is the least expensive to retrieve. However,
+the CPU counter is unreliable and its use is not recommended.</p></div>

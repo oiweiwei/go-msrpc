@@ -1,0 +1,53 @@
+<div class="content"><p> </p><p>A TxSequenceID is a 64-bit value that identifies a sequence
+of <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_3b80e01d-5155-4378-b692-82122af044aa" data-linktype="relative-path">transactional
+messages</a></span> originated from a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue manager</a></span>. This
+structure contains two monotonically increasing numeric values.</p><p>When comparing ADM elements of type TxSequenceID, the
+structure is treated as a 64-bit unsigned integer with <b>Ordinal</b> being the
+low-order bytes and <b>Timestamp</b> being the high-order bytes.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Ordinal</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TimeStamp</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Ordinal (4 bytes): </b>A 32-bit unsigned integer
+field. This field has a valid range from 0x00000000 to 0xFFFFFFFF.</p><p><b>TimeStamp (4 bytes): </b>A 32-bit unsigned integer
+field. This field has a valid range from 0x00000000 to 0xFFFFFFFF.</p></div>

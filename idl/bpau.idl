@@ -1,0 +1,16 @@
+import "ms-dtyp.idl";
+[
+  uuid(e3d0d746-d2af-40fd-8a7a-0d7078bb7092), version(1.0),
+  pointer_default(unique)]
+interface BitsPeerAuth
+{
+  typedef [range(0, 65536)] DWORD KEY_LENGTH;
+  
+  HRESULT ExchangePublicKeys(
+    [in] handle_t  Binding,
+    [in] KEY_LENGTH ClientKeyLength,
+    [in, unique, size_is(ClientKeyLength)] byte * ClientKey,
+    [out, ref] KEY_LENGTH * pServerKeyLength,
+    [out, ref, size_is( , *pServerKeyLength)] byte ** pServerKey
+    );
+};

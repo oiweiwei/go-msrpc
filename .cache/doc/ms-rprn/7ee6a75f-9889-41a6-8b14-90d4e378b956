@@ -1,0 +1,9 @@
+<div class="content"><p>The <b>MONITOR_INFO_1</b> structure provides information
+about a monitor.</p><dl>
+<dd>
+<div><pre> typedef struct _MONITOR_INFO_1 {
+   [string] wchar_t* pName;
+ } MONITOR_INFO_1;
+</pre></div>
+</dd></dl><p>All members not defined in this section are specified in
+sections <a href="70e8e102-3875-4ce8-a292-aaabc88e1458" data-linktype="relative-path">2.2.1.3.4</a> and <a href="964b517f-6730-4b4a-99ed-ee9648e7f1f7" data-linktype="relative-path">2.2.1.3</a>.</p></div>

@@ -1,0 +1,31 @@
+<div class="content"><p> </p><p>The WBEM_REFRESHED_OBJECT structure MUST be used to encode
+the results of the remote refreshing service that is returned by the <span><a href="b124c22e-4a76-48a7-b934-e8e8e33b56c0" data-linktype="relative-path">IWbemRemoteRefresher::RemoteRefresh (section 3.1.4.13.1)</a></span>
+interface method.</p><dl>
+<dd>
+<div><pre> typedef struct _WBEM_REFRESHED_OBJECT {
+   long m_lRequestId;
+   WBEM_INSTANCE_BLOB_TYPE m_lBlobType;
+   long m_lBlobLength;
+   [size_is(m_lBlobLength)] byte* m_pbBlob;
+ } WBEM_REFRESHED_OBJECT;
+</pre></div>
+</dd></dl><p><b>m_lRequestId:</b>  MUST contain the
+request ID.</p><p><b>m_lBlobType:</b>  MUST represent the
+type of the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c1fdd6c7-06cb-4787-8735-4d19a68dd802" data-linktype="relative-path">CIM object</a></span> that is
+encoded in m_pbBlob as specified in <span><a href="eb3aefd4-2795-420f-9785-ae77dd573e13" data-linktype="relative-path">2.2.17</a></span>.</p><p><b>m_lBlobLength:</b>  MUST represent the
+length of the m_pbBlob array.</p><p><b>m_pBlob:</b>  When the <i>m_lBlobType</i>
+parameter is set to WBEM_BLOB_TYPE_ALL, it MUST contain the instance
+information that is represented in the <span><a href="4cb5e950-2c61-4a63-bfb9-1c9aa8826d6b" data-linktype="relative-path">RefreshedSingleInstance</a></span>
+format for a single <span><a href="46710c5c-d7ab-4e4c-b4a5-ebff311fdcd1" data-linktype="relative-path">IWbemClassObject</a></span> <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface
+pointer</a></span> being part of the refreshing result.</p><dl>
+<dd>
+<p>When <i>m_lBlobType</i> is set to
+WBEM_BLOB_TYPE_ERROR, the <i>m_lBlobLength</i> parameter MUST be set to NULL. </p>
+</dd>
+<dd>
+<p>When <i>m_lBlobType</i> is set to
+WBEM_BLOB_TYPE_ENUM, it MUST contain the instance information that is
+represented in the <span><a href="94c2c029-4ec6-4fb8-9cbe-d201d49f5958" data-linktype="relative-path">WBEM_INSTANCE_BLOB</a></span>
+format for several IWbemClassObject interface pointers being part of the
+refreshing result.</p>
+</dd></dl></div>

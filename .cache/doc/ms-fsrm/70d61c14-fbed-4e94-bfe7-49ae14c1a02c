@@ -1,0 +1,48 @@
+<div class="content"><p>The FsrmPropertyFlags enumeration defines the set of
+possible states of classification properties.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmPropertyFlags{
+   FsrmPropertyFlags_Orphaned = 0x00000001,
+   FsrmPropertyFlags_RetrievedFromCache = 0x00000002,
+   FsrmPropertyFlags_RetrievedFromStorage = 0x00000004,
+   FsrmPropertyFlags_SetByClassifier = 0x00000008,
+   FsrmPropertyFlags_Deleted = 0x00000010,
+   FsrmPropertyFlags_Reclassified = 0x00000020,
+   FsrmPropertyFlags_AggregationFailed = 0x00000040,
+   FsrmPropertyFlags_Existing = 0x00000080,
+   FsrmPropertyFlags_FailedLoadingProperties = 0x00000100,
+   FsrmPropertyFlags_FailedClassifyingProperties = 0x00000200,
+   FsrmPropertyFlags_FailedSavingProperties = 0x00000400,
+   FsrmPropertyFlags_Secure = 0x00000800,
+   FsrmPropertyFlags_PolicyDerived = 0x00001000,
+   FsrmPropertyFlags_Inherited = 0x00002000,
+   FsrmPropertyFlags_Manual = 0x00004000,
+   FsrmPropertyFlags_PropertySourceMask = 0x0000000E
+ } FsrmPropertyFlags;
+</pre></div>
+</dd></dl><p><b>FsrmPropertyFlags_Orphaned:  </b>If set, the
+classification property does not have a corresponding property definition
+defined in the File Server Resource Manager.</p><p><b>FsrmPropertyFlags_RetrievedFromCache:  </b>If set,
+the value of the classification property was retrieved from a cache storage
+module.</p><p><b>FsrmPropertyFlags_RetrievedFromStorage:  </b>If
+set, the value of the classification property was retrieved from the file
+content.</p><p><b>FsrmPropertyFlags_SetByClassifier:  </b>If set,
+the value of the classification property was set by a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_4bd4bf29-9046-4cb8-b637-fd107cd756aa" data-linktype="relative-path">classification rule</a>.</p><p><b>FsrmPropertyFlags_Deleted:  </b>If set, indicates
+that the classification property has been deleted.</p><p><b>FsrmPropertyFlags_Reclassified:  </b>If set, the
+value was loaded by a storage module but changed by a classification module.</p><p><b>FsrmPropertyFlags_AggregationFailed:  </b>If set,
+the server could not properly aggregate different values of the property
+supplied by different pipeline modules.</p><p><b>FsrmPropertyFlags_Existing:  </b>If set, the
+property was initially retrieved from a storage module.</p><p><b>FsrmPropertyFlags_FailedLoadingProperties:  </b>If
+set, the classification property might only be partially classified because a
+failure occurred while loading properties from storage.</p><p><b>FsrmPropertyFlags_FailedClassifyingProperties:  </b>If
+set, the classification property might only be partially classified because a
+failure occurred while classifying properties. </p><p><b>FsrmPropertyFlags_FailedSavingProperties:  </b>If
+set, the classification property failed to be saved by a storage module.</p><p><b>FsrmPropertyFlags_Secure:  </b>If set, the
+classification property is defined to be a secure property.</p><p><b>FsrmPropertyFlags_PolicyDerived:  </b>If set, the
+classification property was applied as a result of a classification rule.</p><p><b>FsrmPropertyFlags_Inherited:  </b>If set, the
+classification property value was inherited from the property value of the
+file&#39;s parent folder.</p><p><b>FsrmPropertyFlags_Manual:  </b>If set, the
+classification property value was set manually.</p><p><b>FsrmPropertyFlags_PropertySourceMask:  </b>This is
+the bitwise-OR&#39;d combination of <b>FsrmPropertyFlags_RetrievedFromCache</b>, <b>FsrmPropertyFlags_RetrievedFromStorage</b>,
+and <b>FsrmPropertyFlags_SetByClassifier</b>, which reference to the source of
+the property.  </p></div>

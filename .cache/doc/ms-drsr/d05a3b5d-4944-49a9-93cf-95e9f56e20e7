@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The SVCERR_DRS_WIRE_V1 structure defines a service error.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dsid;
+   DWORD extendedErr;
+   DWORD extendedData;
+   USHORT problem;
+ } SVCERR_DRS_WIRE_V1;
+</pre></div>
+</dd></dl><p><b>dsid:</b>  The implementation-specific
+diagnostic code.</p><p><b>extendedErr:</b>  0, <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_dfc7ec7a-2b99-4312-a947-5d90a117d1c7" data-linktype="relative-path">STATUS
+code</a></span>, or <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows error code</a></span>.</p><p><b>extendedData:</b>  The
+implementation-specific diagnostic code.</p><p><b>problem:</b>  0 or PROBLEM error code
+(section <span><a href="4e239b71-e454-4908-a759-1fa412312db7" data-linktype="relative-path">4.1.1.1.26</a></span>).</p></div>

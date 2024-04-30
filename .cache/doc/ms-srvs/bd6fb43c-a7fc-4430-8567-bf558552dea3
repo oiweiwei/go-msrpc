@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The SHARE_INFO_501 structure contains information about the
+shared resource, including the name and type of the resource and a comment that
+is associated with the resource. For a description of the fields in this
+structure, see the description for the <span><a href="8605fd54-6ede-4316-b30d-ecfafa133c1d" data-linktype="relative-path">SHARE_INFO_502_I (section 2.2.4.26)</a></span>
+structure (shi501_netname, shi501_type, and shi501_remark denote the same
+information as shi502_xxx in section 2.2.4.26, and shi501_flags denotes the
+same information as shi1005_flags in section <span><a href="8a481783-9c6e-4f17-99d1-aea6578e21fb" data-linktype="relative-path">2.2.4.29</a></span>).</p><dl>
+<dd>
+<div><pre> typedef struct _SHARE_INFO_501 {
+   [string] wchar_t* shi501_netname;
+   DWORD shi501_type;
+   [string] wchar_t* shi501_remark;
+   DWORD shi501_flags;
+ } SHARE_INFO_501,
+  *PSHARE_INFO_501,
+  *LPSHARE_INFO_501;
+</pre></div>
+</dd></dl></div>

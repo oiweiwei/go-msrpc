@@ -1,0 +1,158 @@
+<div class="content"><p> </p><p>The <b>R_DhcpDeleteClientInfo</b> method deletes the
+specified DHCPv4 client <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6d76b31-2852-4bd5-8fbb-8e82a3cedb29" data-linktype="relative-path">lease record</a></span> from
+the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_005ffc96-bb67-44ca-938f-dd7ec3c95cab" data-linktype="relative-path">DHCPv4
+server database</a></span>. It also frees up the DHCPv4 client IPv4 address for
+redistribution.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpDeleteClientInfo(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in, ref] LPDHCP_SEARCH_INFO ClientInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is not used.</p><p><b>ClientInfo: </b>This is of type <span><a href="f8ab6a93-be31-4643-b32c-e0ae6ba95a44" data-linktype="relative-path">DHCP_SEARCH_INFO (section 2.2.1.2.18)</a></span>
+structure, defining the key to be used to search the DHCPv4 client lease record
+that needs to be deleted on the DHCPv4 server. In case the <b>SearchType</b>
+member is DhcpClientName and there are multiple lease records with the same <b>ClientName</b>
+member, the server will delete the lease record for any of the clients with
+that client name.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database, or the client entry is not present in the database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E33</p>
+  <p>ERROR_DHCP_RESERVED_CLIENT</p>
+  </td>
+  <td>
+  <p>The specified DHCP client is a reserved DHCP client.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 19.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read/write access
+per section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If the
+method is not authorized, return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server Abstract Data Model (ADM) element <b>DHCPv4ClientsList</b>
+of all the <b>DHCPv4Scope</b> ADM element entries in the server ADM element <b>DHCPv4ScopesList</b>,
+and retrieve the first <b>DHCPv4Client</b> ADM element entry corresponding to
+the <b>ClientIpAddress</b> member, <b>ClientHardwareAddress</b> member, or <b>ClientName</b>
+member as specified by the <b>SearchType</b> member in the <i>SearchInfo</i>
+parameter (section 2.2.1.2.18). If no such entry is found, return
+ERROR_DHCP_JET_ERROR.</p>
+</li><li><p><span><span> 
+</span></span> If there is any <b>DHCPv4Reservation</b> ADM element entry in
+the <b>DHCPv4ReservationsList</b> ADM element corresponding to the <b>DHCPv4Client.ClientIpAddress</b>
+ADM element, return the error ERROR_DHCP_RESERVED_CLIENT.</p>
+</li><li><p><span><span> 
+</span></span>Delete the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a></span> resource records
+for the DHCPv4 client from the DNS server. If the DHCPv4 client lease address
+state specified in the <b>DHCPv4Client.AddressState</b> ADM element has
+ADDRESS_BIT_CLEANUP and ADDRESS_BIT_BOTH_REC (section <span><a href="690df0f0-e9f9-4e06-993f-f1ad46dd3cd1" data-linktype="relative-path">3.1.1.2</a></span>) set to 1,
+then delete both A and PTR records from the DNS server by sending the message
+for DNS PTR and A resource record deletion, (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90264" data-linktype="external">[RFC1035]</a></span>
+sections 3.3, 3.4 and 4.1, and <span><a href="https://go.microsoft.com/fwlink/?LinkId=107017" data-linktype="external">[RFC2136]</a></span>
+sections 2.5 and 3.4) with the data given in the table below. If the DHCPv4
+client lease address state specified in the <b>DHCPv4Client.AddressState</b>
+ADM element has ADDRESS_BIT_CLEANUP set to 1 and ADDRESS_BIT_BOTH_REC (section
+3.1.1.2) set to 0, then delete PTR record from the DNS server by sending the
+message for DNS PTR resource record deletion, ([RFC1035] sections 3.3 and 4.1,
+and [RFC2136] sections 2.5 and 3.4) with the data shown in the table below. The
+DNS update message is sent to the DNS server(s) configured as the DNS server
+option (option 6) value (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90319" data-linktype="external">[RFC2132]</a></span>
+section 3.8) in the <b>DHCPv4Scope.DHCPv4ScopeOptValuesList</b> ADM element. If
+the DNS server option value is not found in the <b>DHCPv4Scope.DHCPv4ScopeOptValuesList</b>
+ADM element, then the message for creation of the DNS PTR record is sent to the
+DNS server(s) configured as DNS server option value in the <b>DHCPv4ServerOptValueList</b>
+ADM element. If the DNS server option value is not found in the <b>DHCPv4ServerOptValueList</b>
+ADM element, too, then the message for deletion of the DNS resource record is
+sent to the DNS server configured on the network interface of the DHCP server.</p>
+<p>The DNS message is sent to
+the DNS server by using the transport specified in [RFC1035] section 4.2.</p>
+<p>The resource record (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90263" data-linktype="external">[RFC1034]</a></span>
+section 3.6) is populated with the following information for a DNS A delete
+message.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>DNS Fields</p>
+   </th>
+   <th>
+   <p>Values</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NAME ([RFC1035] sections 3.3 and 4.1, and [RFC2136]
+  section 2.5)</p>
+  </td>
+  <td>
+  <p>If the <i>SearchInfo</i> parameter has the <b>SearchType</b>
+  member as DhcpClientName, then the <b>ClientName</b> member of the <i>SearchInfo</i>
+  parameter is used to populate this field. If the <i>SearchInfo</i> parameter
+  has the <b>SearchType</b> member as DhcpClientIpAddress or
+  DhcpClientHardwareAddress, then obtain the client name from the <b>DHCPv4Client</b>
+  ADM element to populate this field.</p>
+  </td>
+ </tr></tbody></table>
+<p>The resource record is
+populated with the following information for a DNS PTR delete message.</p>
+<table><thead>
+  <tr>
+   <th>
+   <p>DNS Fields</p>
+   </th>
+   <th>
+   <p>Values</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NAME ([RFC1035] sections 3.3 and 4.1, and [RFC2136]
+  section 2.5)</p>
+  </td>
+  <td>
+  <p>The IP address in the <b>ClientIpAddress</b> member of
+  the <i>SearchInfo</i> parameter, or the IP address corresponding to the <b>ClientName</b>
+  member or <b>ClientHardwareAddress</b> member of the <i>SearchInfo</i>
+  parameter.</p>
+  </td>
+ </tr></tbody></table>
+</li><li><p><span><span> 
+</span></span>Set the IPv4 address to be free for redistribution to other
+DHCPv4 clients by deleting the <b>DHCPv4Client</b> ADM element entry from the <b>DHCPv4ClientsList</b>
+ADM element and setting the bit corresponding to the IPv4 address in that the <b>DHCPv4IpRange.Bitmask</b>
+ADM element to 0 to indicate the availability of the address for allocation to
+DHCPv4 clients. Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions SHOULD be thrown
+beyond those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

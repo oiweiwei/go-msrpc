@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The <b>NOTIFY_OPTIONS_CONTAINER</b>
+structure encapsulates an <b>RPC_V2_NOTIFY_OPTIONS</b> structure (<span><a href="../ms-rprn/d42db7d5-f141-4466-8f47-0a4be14e2fc1" data-linktype="relative-path">[MS-RPRN]</a></span>
+section <span><a href="../ms-rprn/4599c052-e814-4174-9bd5-00473329a9f8" data-linktype="relative-path">2.2.1.13.1</a></span>),
+which specifies options for a change notification object that monitors a
+printer or <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a></span> for
+changes in state.</p><dl>
+<dd>
+<div><pre> typedef struct _NOTIFY_OPTIONS_CONTAINER {
+   RPC_V2_NOTIFY_OPTIONS* pOptions;
+ } NOTIFY_OPTIONS_CONTAINER;
+</pre></div>
+</dd></dl><p><b>pOptions: </b>A pointer to an <b>RPC_V2_NOTIFY_OPTIONS</b>.</p></div>

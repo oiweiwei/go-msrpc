@@ -1,0 +1,13 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/b091ee7e-f5c3-4b48-8567-1b08ea002221" data-linktype="external">msdn link</a></p><p>The TRUSTED_POSIX_OFFSET_INFO structure communicates any
+offset necessary for POSIX compliance. The following structure corresponds to
+the TrustedPosixOffsetInformation information class.</p><dl>
+<dd>
+<div><pre> typedef struct _TRUSTED_POSIX_OFFSET_INFO {
+   unsigned long Offset;
+ } TRUSTED_POSIX_OFFSET_INFO,
+  *PTRUSTED_POSIX_OFFSET_INFO;
+</pre></div>
+</dd></dl><p><b>Offset:</b>  The offset to use for the
+generation of POSIX IDs for users and groups, as specified in
+&#34;trustPosixOffset&#34; in <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/2ac85b30-ce8e-40ba-be10-b624dfb17ee2" data-linktype="relative-path">6.1.6.7.14</a>.</p></div>

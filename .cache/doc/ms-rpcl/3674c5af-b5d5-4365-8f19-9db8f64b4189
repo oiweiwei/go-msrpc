@@ -1,0 +1,60 @@
+<div class="content"><p> </p><p>The I_nsi_lookup_begin method is invoked by a <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_ced0eb6d-07b5-42f6-9231-e5dbb301e860" data-linktype="relative-path">client
+locator</a></span> to enumerate the <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_1cf35308-abab-4123-9cbd-99c42dc9a6ff" data-linktype="relative-path">binding</a></span> information
+for a set of <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> servers that
+satisfy a given set of criteria. The <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">Microsoft Interface Definition
+Language (MIDL)</a></span> syntax of the method is specified as follows.</p><dl>
+<dd>
+<div><pre> void I_nsi_lookup_begin(
+   [in] handle_t hrpcPrimaryLocatorHndl,
+   [in] unsigned long entry_name_syntax,
+   [in] STRING_T entry_name,
+   [in, unique] RPC_SYNTAX_IDENTIFIER* interfaceid,
+   [in, unique] RPC_SYNTAX_IDENTIFIER* xfersyntax,
+   [in] NSI_UUID_P_T obj_uuid,
+   [in] unsigned long binding_max_count,
+   [in] unsigned long MaxCacheAge,
+   [out] NSI_NS_HANDLE_T* import_context,
+   [out] unsigned short* status
+ );
+</pre></div>
+</dd></dl><p><b>hrpcPrimaryLocatorHndl: </b>An RPC server binding
+handle, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> Part 2,
+&#34;Binding Handle&#34;. A client creates this handle by binding to the
+locator server using the UUID specified in section <span><a href="e3c9c694-f896-46b9-9452-097f53e0c03f" data-linktype="relative-path">1.9</a></span> and endpoint
+specified in section <span><a href="f6ef0bc1-f32e-45ef-bcfb-bcbd0d08c71d" data-linktype="relative-path">2.1</a></span>. A client can
+create the binding handle using the rpc_string_binding_compose and
+rpc_binding_from_string_binding APIs (as specified in [C706] the
+&#34;rpc_string_binding_compose&#34; section) or equivalent on the client
+systems&#39; implementation of RPC. When all operations using this handle are
+completed, use the equivalent of rpc_binding_free to free the handle resources.</p><p><b>entry_name_syntax: </b>An identifier that represents
+the syntax used for entry_name. The value MUST be RPC_C_NS_SYNTAX_DCE.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="c3f4113b-48f1-4395-9284-ee937948047b#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p><p><b>entry_name: </b>A Unicode <span><a href="https://go.microsoft.com/fwlink/?LinkId=90550" data-linktype="external">[UNICODE]</a></span>
+string optionally specifying the entry name of the <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_6cfe4abe-94bd-43b6-b666-3618d9093373" data-linktype="relative-path">name service entry</a></span>,
+using the syntax identified by the entry_name_syntax parameter, as specified in
+section <span><a href="99becf64-89ed-4bd8-adf0-470add859d15" data-linktype="relative-path">2.2.2</a></span>. This
+parameter can optionally be null or an empty string.</p><p><b>interfaceid: </b>An optional interface
+specification. Specified to request only bindings for server entries that have
+advertised interfaces compatible with this parameter. The client sets interfaceid
+to NULL to indicate that this parameter is not specified. Interface
+compatibility is specified in section <span><a href="e17cae58-39d6-4512-9f91-1c36e0bebd58" data-linktype="relative-path">3.4.1.5.1</a></span>.</p><p><b>xfersyntax: </b>An optional <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_01216ea7-ac8a-4cc8-9d19-b901bc424c09" data-linktype="relative-path">transfer
+syntax</a></span> specification. Specified to request only bindings for server
+entries that have advertised interfaces compatible with this parameter. The
+client sets xfersyntax to NULL to indicate that this parameter is not
+specified. Interface compatibility is specified in section 3.4.1.5.1.</p><p><b>obj_uuid: </b>An optional pointer to an <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_0a38e28d-7525-4d2d-8c62-43aedaf47b74" data-linktype="relative-path">object
+UUID</a></span> specification. Specified to request only bindings for the
+server entries that export this object UUID. If the parameter is NULL or if it
+contains a null <span><a href="55ec267c-87d9-4d97-a9d5-5681f5f283b8#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>, the parameter
+is ignored.</p><p><b>binding_max_count: </b>The maximum number of
+elements allowed in the binding vector returned from the <span><a href="8e23ebb6-155b-48e1-9315-57fe113d095a" data-linktype="relative-path">I_nsi_lookup_next</a></span>
+method. If 0 is specified, an appropriate implementation-specific default
+maximum MUST be used.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="c3f4113b-48f1-4395-9284-ee937948047b#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p><p><b>MaxCacheAge: </b>Specifies the maximum number of
+seconds that any results returned from a cache might have been present in the
+cache without being refreshed. This information is as specified in [C706] Part
+2, Name Service Caching.</p><p><b>import_context: </b>On successful completion of
+this method, returns a context handle for enumerating binding vectors by using
+the I_nsi_lookup_next method. This context handle MUST be closed by using the <span><a href="f6d8c155-3ef4-4c22-b43d-68fe0e375bcf" data-linktype="relative-path">I_nsi_lookup_done</a></span>
+method.</p><p><b>status: </b>A 16-bit value that indicates the
+results of the method call. In case of success, the value MUST be NSI_S_OK. The
+value MUST be a nonzero value on failure. All failures MUST be treated
+identically as failure of the whole enumeration process.</p><p><b>Return Values: </b>This method does not return any
+values. RPC exceptions might be thrown from this method.</p><p>Exceptions Thrown</p><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

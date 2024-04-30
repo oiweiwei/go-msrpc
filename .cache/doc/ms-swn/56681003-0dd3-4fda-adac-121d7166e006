@@ -1,0 +1,10 @@
+<div class="content"><p>In highly available systems, there can be many instances of
+a service (for instance an SMB3 file service <a href="../ms-smb2/5606ad47-5ee0-437a-817e-70c366052962" data-linktype="relative-path">[MS-SMB2]</a>)
+running on a server or group of servers. These service instances are accessed
+by clients through network DNS names and associated IP addresses.</p><p>The Service Witness Protocol enables a client application
+(for instance, an SMB3 client) to receive prompt and explicit notifications
+about the failure or recovery of a network name and associated services, rather
+than relying on slower detection mechanisms such as time-outs and keep-alives. </p><p>The Service Witness Protocol is an independent protocol
+which is used alongside other protocols, as illustrated by the following
+figure.</p><p><img src="ms-swn_files/image001.png" alt="Witness clients communicating with Witness servers" title="Witness clients communicating with Witness servers" data-linktype="relative-path"/></p><p><b>Figure 1: Witness clients communicating with Witness
+servers</b></p></div>

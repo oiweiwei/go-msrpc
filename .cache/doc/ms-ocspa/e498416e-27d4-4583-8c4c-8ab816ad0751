@@ -1,0 +1,16 @@
+<div class="content"><p>The SetSecurity method is used to set the <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_688a239d-e58b-42df-b622-da727dca4227" data-linktype="relative-path">Online Responder</a> Security,
+as defined in the <a href="30ac32ad-0d69-4d41-a7a8-799238212f11" data-linktype="relative-path">Abstract
+Data Model</a>.</p><dl>
+<dd>
+<div><pre> HRESULT SetSecurity(
+   [in, ref] CERTTRANSBLOB* pctbSD
+ );
+</pre></div>
+</dd></dl><p><b>pctbSD: </b>A pointer to the <a href="../ms-wcce/d6bee093-d862-4122-8f2b-7b49102097dc" data-linktype="relative-path">CERTTRANSBLOB</a>
+structure that contains the marshaled <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_e5213722-75a9-44e7-b026-8e4833f0d350" data-linktype="relative-path">security descriptor</a>.
+Information on security descriptors is documented in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a>.</p><dl>
+<dd>
+<p>The responder SHOULD use the permissions set in <i>pctbSD</i>
+to deny and allow operations on the responder.</p>
+</dd></dl></div>

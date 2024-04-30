@@ -1,0 +1,193 @@
+<div class="content"><p>The GetUIDllName packet, along with the <a href="ce962d13-3082-4287-bcea-42411b16b962" data-linktype="relative-path">TUISPIDLLCallback</a> packet
+and the <a href="59e93510-f560-4a4d-a710-e52e53dfb96a" data-linktype="relative-path">FreeDialogInstance</a>
+packet, is used to install, configure, or remove a TSP on the server. The
+GetUIDllName packet begins the installation or removal process of the TSP; the
+TUISPIDLLCallback packet obtains any data required for display by the TSP user
+interface during installation, configuration, or removal of the TSP; and the
+FreeDialogInstance packet informs the server about the completion of the
+installation, configuration, or removal process of the TSP.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Req_Func</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwObjectID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwObjectType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUIDllNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwUIDllNameSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwProviderFilenameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">bRemoveProvider</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">htDlgInst</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved5</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved6</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved7</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">VarData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Req_Func (4 bytes): </b>The identifier of the
+function that is invoked on the remote <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>. This value MUST be
+set to 1.</p><dl>
+<dd>
+<p>On completion of the <a href="c28c36d0-579b-4e20-a100-f4e71012d5f8" data-linktype="relative-path">ClientRequest</a> method, this
+field MUST contain the result of the encapsulated telephony request. A value of
+0 indicates success, and a <a href="e0e8af90-24f1-4dbc-8d4e-01b8e4e7cb53" data-linktype="relative-path">LINEERR_Constants</a>
+value indicates failure. The remote server MUST complete this call
+synchronously.</p>
+</dd></dl><p><b>Reserved1 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>dwObjectID (4 bytes): </b>The <b>dwObjectType</b>
+field in this packet determines the interpretation of this field as follows: </p><ul><li><p><span><span>  </span></span>TUISPIDLL_OBJECT_LINEID:
+<b>dwObjectID</b> is a line device identifier. </p>
+</li><li><p><span><span>  </span></span>TUISPIDLL_OBJECT_PHONEID:
+<b>dwObjectID</b> is a phone device identifier. </p>
+</li><li><p><span><span>  </span></span>TUISPIDLL_OBJECT_PROVIDERID:
+<b>dwObjectID</b> is a permanent provider identifier. The client MUST provide a
+valid permanent provider identifier corresponding to the TSP being configured
+or removed. If this operation is an installation of the TSP, as indicated by
+the <b>dwProviderFilenameOffset</b> field of this packet being a valid Unicode
+string (not 0xffffffff), then upon successful completion of this request, the
+server MUST provide the permanent provider identifier that will be used for the
+TSP being installed.</p>
+</li><li><p><span><span>  </span></span>TUISPIDLL_OBJECT_DIALOGINSTANCE:
+<b>dwObjectID</b> is an opaque handle that was provided as part of the <a href="dbe0c6ae-f243-4562-990a-219b4da6710b" data-linktype="relative-path">LINE_CREATEDIALOGINSTANCE</a>
+packet.</p>
+</li></ul><p><b>dwObjectType (4 bytes): </b>One of the <a href="12ba1e28-1fde-427b-af15-37f377decc40" data-linktype="relative-path">TUISPIDLL_OBJECT_Constants</a>.</p><p><b>dwUIDllNameOffset (4 bytes): </b>On successful
+completion of this client request, the server MUST provide in this field the
+offset of a Unicode string in the <b>VARDATA</b> field of the packet. This
+Unicode string is the path to a DLL on the client. It is the responsibility of
+the client to call one or more functions exported by this DLL corresponding to
+the operation desired by the client. The function or functions to be called for
+the operation to be performed is part of the API contract between the TSP and
+the server or client. Typically, the functions called will display some user
+interface on the client so that the user can control the operation being
+performed. Note that the name or path of the user interface DLL is from the
+client perspective. Ensuring the presence the DLL at the given path or in that
+name so the client can use the DLL is the responsibility of the client.</p><p><b>dwUIDllNameSize (4 bytes): </b>Gives the size of
+the Unicode string specified by the <b>UIDllName</b> field.</p><p><b>dwProviderFilenameOffset (4 bytes): </b>This field
+is used only if the <b>dwObjectType</b> is TUISPIDLL_OBJECT_PROVIDERID;
+otherwise, it is ignored. This field MUST be the offset of a Unicode string in
+the <b>VARDATA</b> field of this packet if the client wants to install the TSP;
+otherwise, this field MUST be set to 0xffffffff. The Unicode string corresponds
+to the DLL file name of the TSP that MUST be installed, configured, or
+uninstalled. Note that the name or path of the user interface DLL is from the
+server perspective. Ensuring the presence of that DLL at that path or in that
+name so that the server can use that DLL is the responsibility of the server.</p><p><b>bRemoveProvider (4 bytes): </b>This field MUST be
+set to 1 if the client wants to remove (uninstall) the TSP; otherwise, this
+field MUST be set to 0. </p><p><b>htDlgInst (4 bytes): </b>On successful completion
+of the request, the server MUST provide in this field an opaque handle that the
+client MUST provide to the server when calling the FreeDialogInstance packet
+after the client completes an operation (for example, the client completes
+calling the corresponding function in the user interface DLL for installing,
+removing, or configuring the TSP). This opaque handle value cannot be used
+after it is used in a FreeDialogInstance packet. </p><p><b>Reserved2 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved3 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved4 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved5 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved6 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>Reserved7 (4 bytes): </b>An unsigned 32-bit
+integer. This MUST be 0x00000000 and ignored on receipt. </p><p><b>VarData (variable): </b>A Unicode string that
+corresponds to the DLL file name of the TSP that </p><dl>
+<dd>
+<p>MUST be installed, configured, or uninstalled.</p>
+</dd></dl></div>

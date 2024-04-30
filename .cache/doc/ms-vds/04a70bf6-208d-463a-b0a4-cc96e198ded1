@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The OnNotify method passes notifications from <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_97581c48-09dd-4bc4-a379-a846cbf4cc39" data-linktype="relative-path">VDS</a></span>
+to applications.</p><dl>
+<dd>
+<div><pre> HRESULT OnNotify(
+   [in, range(1,100)] long lNumberOfNotifications,
+   [in, size_is(lNumberOfNotifications)] 
+     VDS_NOTIFICATION* pNotificationArray
+ );
+</pre></div>
+</dd></dl><p><b>lNumberOfNotifications: </b>The number of
+notifications that are specified in <i>pNotificationArray</i>. This parameter
+MUST be a value from 1 through 100.</p><p><b>pNotificationArray: </b>An array of <span><a href="4f29057f-ab32-4a3d-9fcb-00ba3457cb42" data-linktype="relative-path">VDS_NOTIFICATION</a></span>
+structures.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p></div>

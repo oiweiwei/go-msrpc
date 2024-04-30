@@ -1,0 +1,112 @@
+<div class="content"><p>The EnumFileProperties method enumerates the <a href="666f71d4-2f9d-4a15-9e9a-1a1190cc9313" data-linktype="relative-path">Property Definition Instances</a>
+of the specified file or folder.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_CLASSIFICATION_MANAGER | 0x0D)] HRESULT EnumFileProperties(
+   [in] BSTR filePath,
+   [in, defaultvalue(FsrmGetFilePropertyOptions_None)] 
+     FsrmGetFilePropertyOptions options,
+   [out, retval] IFsrmCollection** fileProperties
+ );
+</pre></div>
+</dd></dl><p><b>filePath: </b>The file or folder that contains the
+Property Definition Instances that you want to enumerate. You can specify an
+absolute or relative path to the file or folder. You cannot specify a file
+share.</p><p><b>options: </b>Contains the options to use for
+enumerating the file&#39;s Property Definition Instances. For possible values, see
+the <a href="172f4462-c263-4098-9b30-010de0e573de" data-linktype="relative-path">FsrmGetFilePropertyOptions (section 2.2.2.5.1.2)</a>
+enumeration.</p><p><b>fileProperties: </b>Pointer to <b>IFsrmCollection</b>
+interface pointer (section <a href="171d3b3c-0f4d-40b9-8f48-0e97f9ff17be" data-linktype="relative-path">3.2.4.2.1</a>)
+that contains a collection of file Property Definition Instances. Each item in
+the collection is a VARIANT of type VT_DISPATCH. Query the <b>pdispVal</b>
+member of the variant for the <b>IFsrmProperty</b> interface (section
+<a href="df7e1162-c2fc-45cb-9047-4afb0f9a558d" data-linktype="relative-path">3.2.4.2.40</a>).</p><p><b>Return Values: </b>The method MUST return zero on
+success or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045305</p>
+  <p>FSRM_S_PARTIAL_CLASSIFICATION</p>
+  </td>
+  <td>
+  <p>The enumerated properties could not be completely
+  classified because a failure occurred while loading or classifying the file
+  properties.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80045353</p>
+  <p>FSRM_E_ENUM_PROPERTIES_FAILED</p>
+  </td>
+  <td>
+  <p>The properties could not be enumerated because a
+  failure occurred while loading or classifying the file properties.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>options</i> parameter is
+  not a valid <b>FsrmGetFilePropertyOptions</b> (section 2.2.2.5.1.2) value.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>fileProperties</i>
+  parameter is NULL.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>filePath</i> parameter is
+  NULL.</span></p>
+  </li></ul></td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <b>filePath</b> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <b>fileProperties</b> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <b>options</b> contains valid <a href="4688adcd-859d-4ef4-bf52-bcfe0367bd68" data-linktype="relative-path">FsrmGetFilePropertyOptions</a>
+values.  If <b>options</b> contains <b>FsrmGetFilePropertyOptions_None</b>,
+FSRM reruns classification on the file to ensure the correct value is returned.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST perform the following steps in sequence or
+return a nonzero error code:</p><ol><li><p><span>    </span>Perform <a href="8fe62844-c8f1-4317-9752-9706ea401638" data-linktype="relative-path">retrieve stored classification
+properties</a> for the file.</p>
+</li><li><p><span>    </span>If <b>options</b>
+does not contain FsrmGetFilePropertyOptions_NoRuleEvaluation, perform the <a href="5e49c580-6b10-48a6-9661-fab7f9b0c724" data-linktype="relative-path">Generate new classification
+properties</a> action for the file given the list of <b>Property Definition
+Instances</b> from the previous action. If the property definition instance.flags
+of any of the resulting <b>Property Definition Instances</b> contains <a href="70d61c14-fbed-4e94-bfe7-49ae14c1a02c" data-linktype="relative-path">FsrmPropertyFlags_SetByClassifier</a>,
+add the file to the <a href="c916b18a-8094-42a4-84b8-5c5e57df1e97" data-linktype="relative-path">Report
+item list</a>.</p>
+</li><li><p><span>    </span>If <b>options</b>
+contains FsrmGetFilePropertyOptions_Persistent, perform the <a href="b018899d-6743-410c-9bc2-7d43afa56e50" data-linktype="relative-path">Store classification
+properties</a> action for the file given the <a href="a4da1447-54a5-4b37-b135-bfa7481aed1c" data-linktype="relative-path">List of Property Definition
+Instances</a> from the previous actions.</p>
+</li><li><p><span>    </span>If <b>options</b>
+contains FsrmGetFilePropertyOptions_SkipOrphaned, any of the <b>Property
+Definition Instance</b> objects in the List of Property Definition Instances
+for which there is not a <b>Property Definition.Name</b> in the List of
+Persisted Property Definitions that matches the <b>Property Definition.Name</b>
+of the <b>Property Definition Instance</b> SHOULD be removed from the List of
+Property Definition Instances.<a id="Appendix_A_Target_71"></a><a aria-label="Product behavior note 71" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_71" data-linktype="relative-path">&lt;71&gt;</a></p>
+</li><li><p><span>    </span>The server MUST
+populate <b>fileProperties</b> with the IFsrmProperty interface pointer of
+every <b>Property Definition Instance</b> in the List of Property Definition
+Instances.</p>
+</li><li><p><span>    </span>If <b>options</b>
+contains FsrmGetFilePropertyOptions_FailOnPersistErrors and any of the property
+definition instance.flags of the <b>Property Definition Instances</b> in the
+list of <b>Property Definition Instances</b> contains the flag
+FsrmPropertyFlags_FailedSavingProperties, the server MUST return
+FSRM_S_PARTIAL_CLASSIFICATION.</p>
+</li></ol></div>

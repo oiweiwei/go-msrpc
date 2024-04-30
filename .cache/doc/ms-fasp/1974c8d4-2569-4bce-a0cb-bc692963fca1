@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>This structure holds random numbers generated out of <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span>
+negotiations.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_COOKIE_PAIR {
+   unsigned __int64 Initiator;
+   unsigned __int64 Responder;
+ } FW_COOKIE_PAIR,
+  *PFW_COOKIE_PAIR;
+</pre></div>
+</dd></dl><p><b>Initiator:</b>  A random number that
+maps to the negotiated state that is a <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_67cbf867-7a49-41f3-a68f-37b5f9035acb" data-linktype="relative-path">security association</a></span>
+of the machine that initiated communication and, hence, initiated <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_294fef97-5790-4d41-971e-dd255b783e68" data-linktype="relative-path">IKE</a></span>/<span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_3791f3e1-cf2f-4605-9fcc-54f526f036cf" data-linktype="relative-path">AuthIP</a></span>
+(for more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90349" data-linktype="external">[RFC2409]</a></span>) as
+specified in <span><a href="../ms-ikee/e05e2762-179a-4c3f-bfb5-0aca7bbefe79" data-linktype="relative-path">[MS-IKEE]</a></span>
+and <span><a href="../ms-aips/eee3de64-3847-4451-978e-9513ff187d30" data-linktype="relative-path">[MS-AIPS]</a></span>
+traffic.</p><p><b>Responder:</b>  A random number that
+maps to the negotiated state that is a security association of the machine that
+responded to the communication and, hence, responded to the IKE/AuthIP traffic.</p></div>

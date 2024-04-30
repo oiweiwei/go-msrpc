@@ -1,0 +1,39 @@
+<div class="content"><p> </p><p>The SERVER_ALIAS_ENUM_STRUCT structure specifies the
+information level that the client requests in the <span><a href="b8f42b05-7feb-43c9-8409-ce13260ce127" data-linktype="relative-path">NetrServerAliasEnum</a></span>
+method and encapsulates the <b>SERVER_ALIAS_ENUM_UNION</b> union that receives
+the entries that are enumerated by the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVER_ALIAS_ENUM_STRUCT {
+   DWORD Level;
+   [switch_is(Level)] union _SERVER_ALIAS_ENUM_UNION {
+     [case(0)] 
+       SERVER_ALIAS_INFO_0_CONTAINER* Level0;
+   } ServerAliasInfo;
+ } SERVER_ALIAS_ENUM_STRUCT,
+  *PSERVER_ALIAS_ENUM_STRUCT,
+  *LPSERVER_ALIAS_ENUM_STRUCT;
+</pre></div>
+</dd></dl><p><b>Level:</b>  Specifies the information
+level of the data. This parameter MUST have one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>SERVER_ALIAS_INFO_0_CONTAINER</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ServerAliasInfo:</b>  Contains
+information about server aliases in the format that is determined by the <i>Level</i>
+parameter, as shown in the preceding table. This member receives the enumerated
+information.</p></div>

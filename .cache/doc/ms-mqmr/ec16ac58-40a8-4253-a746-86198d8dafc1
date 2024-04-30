@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The MgmtObjectType enumeration identifies the type of
+management object (as specified in section <span><a href="818a8e35-b3b5-42e0-95bf-bd851b30edd8" data-linktype="relative-path">2.2.1.2</a></span>) being
+used.</p><dl>
+<dd>
+<div><pre> typedef enum __MgmtObjectType {
+     MGMT_MACHINE = 1,
+     MGMT_QUEUE = 2,
+     MGMT_SESSION = 3,
+ } MgmtObjectType;
+</pre></div>
+</dd></dl><p><b>MGMT_MACHINE:  </b>A machine management object.</p><p><b>MGMT_QUEUE:  </b>A <span><a href="a59a1c97-3eea-4af5-b31d-937739889af4#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span> management
+object.</p><p><b>MGMT_SESSION:  </b> A session management object.</p></div>

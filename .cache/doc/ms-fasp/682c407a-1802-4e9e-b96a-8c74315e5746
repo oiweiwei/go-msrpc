@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>This structure represents a network that is associated with
+a firewall profile. It is used for display purposes in user interfaces.</p><dl>
+<dd>
+<div><pre> typedef struct _tag_FW_NETWORK {
+   [string, unique] wchar_t* pszName;
+   FW_PROFILE_TYPE ProfileType;
+ } FW_NETWORK,
+  *PFW_NETWORK;
+</pre></div>
+</dd></dl><p><b>pszName:</b>  A pointer to a <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string that represents the name of the network.</p><p><b>ProfileType:</b>  The profile type that
+is associated with the network. The type MUST be one of the <span><a href="7704e238-174d-4a5e-b809-5f3787dd8acc" data-linktype="relative-path">FW_PROFILE_TYPE</a></span>
+flags, except FW_PROFILE_TYPE_ALL.</p></div>

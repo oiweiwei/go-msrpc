@@ -1,0 +1,192 @@
+<div class="content"><p> </p><p>The NspiGetMatches method returns an Explicit Table. The
+rows in the table are chosen based on a two possible criteria: a restriction
+applied to an <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_a34b031c-18b2-40e1-acfa-3b73cc71e80b" data-linktype="relative-path">address book container</a></span>
+or the values of a property on a single object that hold references to other
+objects.</p><dl>
+<dd>
+<div><pre> long NspiGetMatches(
+   [in] NSPI_HANDLE hRpc,
+   [in] DWORD Reserved1,
+   [in, out] STAT* pStat,
+   [in, unique] PropertyTagArray_r* pReserved,
+   [in] DWORD Reserved2,
+   [in, unique] Restriction_r* Filter,
+   [in, unique] PropertyName_r* lpPropName,
+   [in] DWORD ulRequested,
+   [out] PropertyTagArray_r** ppOutMIds,
+   [in, unique] PropertyTagArray_r* pPropTags,
+   [out] PropertyRowSet_r** ppRows
+ );
+</pre></div>
+</dd></dl><p><b>hRpc: </b>An <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+as specified in section <span><a href="67195f6a-2002-4d81-b279-ba8b0aefb4af" data-linktype="relative-path">2.3.9</a></span>.</p><p><b>Reserved1: </b>A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value reserved for future use.</p><p><b>pStat: </b>A reference to a <span><a href="5902bec9-3124-4725-8a8f-1a50282ed023" data-linktype="relative-path">STAT</a></span>
+block describing a logical position in a specific address book container.</p><p><b>pReserved: </b>A <span><a href="9dc42856-90da-4df9-85ca-f8307db84659" data-linktype="relative-path">PropertyTagArray_r</a></span>
+reserved for future use. </p><p><b>Reserved2: </b>A DWORD value reserved for future
+use. Ignored by the server. </p><p><b>Filter: </b>The value NULL or a Restriction_r
+value. Holds a logical restriction to apply to the rows in the address book
+container specified in the <i>pStat</i> parameter.</p><p><b>lpPropName: </b>The value NULL or a <span><a href="0060b749-9873-450e-9b4b-b288afc42dc5" data-linktype="relative-path">PropertyName_r</a></span>
+value. Holds the property to be opened as a restricted address book container.</p><p><b>ulRequested: </b>A DWORD value. Contains the
+maximum number of rows to return in a restricted address book container.</p><p><b>ppOutMIds: </b> A PropertyTagArray_r value. On
+return, it holds a list of <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_42ecf4ed-a7e5-4044-a1f0-f67ca58fb4b6" data-linktype="relative-path">MId</a></span> that comprise a
+restricted address book container.</p><p><b>pPropTags: </b> The value NULL or a reference to a
+PropertyTagArray_r value. Contains list of the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_7eb84614-827d-4b68-a71c-dd94eb0ad27f" data-linktype="relative-path">proptags</a></span> of the
+columns that client wants to be returned for each row returned. </p><p><b>ppRows: </b> A reference to a <span><a href="0c81c77a-009c-4077-991e-a2ce23584adf" data-linktype="relative-path">PropertyRowSet_r</a></span>
+value. Contains the address book container rows the server returns in response
+to the request. </p><p><b>Return Values: </b>The server returns a long value
+specifying the return status of the method.</p><p>Exceptions Thrown</p><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>Server Processing Rules</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints: </p><ol><li><p><span>    </span>If the <b>CodePage</b>
+field of the input parameter <i>pStat</i> contains the value CP_WINUNICODE, the
+server MUST return one of the return values documented in section <span><a href="03bb2ea3-f2e9-4adb-ab46-751aca824b72" data-linktype="relative-path">2.2.2</a></span>. 
+No further constraints are applied to server processing of this method; in this
+case server behavior is undefined.  Note especially that there is no constraint
+on the data the server returns in any output parameter other than the return
+value, nor is there any constraint on how or if the server changes its state.</p>
+</li><li><p><span>    </span>If the input
+parameter <i>Filter</i> contains any value other than NULL and the <b>SortOrder</b>
+field of the input parameter <i>pStat</i> contains any value other than
+SortTypeDisplayName or SortTypePhoneticDisplayName, the server MUST return one
+of the return values documented in section 2.2.2.  No further constraints are
+applied to server processing of this method; in this case server behavior is
+undefined.  Note especially that there is no constraint on the data the server
+returns in any output parameter other than the return value, nor is there any
+constraint on how or if the server changes its state.</p>
+</li><li><p><span>    </span>If the input
+parameter Reserved1 contains any value other than 0, the server MUST return one
+of the return values documented in section 2.2.2.  No further constraints are
+applied to server processing of this method; in this case server behavior is
+undefined.  Note especially that there is no constraint on the data the server
+returns in any output parameter other than the return value, nor is there any
+constraint on how or if the server changes its state.</p>
+</li><li><p><span>    </span>If the server
+returns any return values other than Success, the server MUST return a NULL for
+the output parameters <i>ppOutMIds</i> and <i>ppRows</i> and MUST NOT modify the
+value of the parameter <i>pStat</i>. </p>
+</li><li><p><span>    </span>The server MAY
+make additional validations as described in section <span><a href="39bcbcd7-fa18-4eb2-a2ae-c598b6683185" data-linktype="relative-path">5</a></span>. If the server
+chooses to limit the visibility of data based on these validations, the server
+MUST proceed as if that data did not exist in the address book. See the product
+behavior note cited in section <span><a href="36c0f768-1fdd-4709-9875-6c387b107560" data-linktype="relative-path">5.1</a></span> for more
+information.</p>
+</li><li><p><span>    </span>If the reserved
+input parameter <b>pReserved</b> contains any value other than NULL, the server
+MUST return the value TooComplex.</p>
+</li><li><p><span>    </span>If the server
+does not support the SortTypePhoneticDisplayName and the <b>SortType</b> field
+of the input parameter <i>pStat</i> has the value SortTypePhoneticDisplayName,
+the server MUST return the value GeneralFailure.</p>
+</li><li><p><span>    </span>If the input <b>SortType</b>
+field of the input parameter <i>pStat</i> is SortTypeDisplayName or
+SortTypePhoneticDisplayName and the server is unable to locate the address book
+container specified by the <b>ContainerID</b> field in the input parameter <i>pStat</i>,
+the server MUST return the return value InvalidBookmark.</p>
+</li><li><p><span>    </span>If the input
+parameter <i>Filter</i> is not NULL, the server constructs an Explicit Table as
+follows:</p>
+<ol><li><p><span>   
+</span>If the input parameter <i>Filter</i> is not NULL, it specifies a
+restriction, according to <span><a href="/en-us/openspecs/exchange_server_protocols/MS-OXCDATA/1afa0cd9-b1a0-4520-b623-bf15030af5d8" data-linktype="absolute-path">[MS-OXCDATA]</a></span>.
+</p>
+</li><li><p><span>   
+</span>If the server will not support the call because the search is too
+complex, the server MUST return the value TooComplex. The NSPI Protocol does
+not prescribe what constitutes a search that is too complex.</p>
+</li><li><p><span>   
+</span>If the server will support the filter, it identifies the rows in the
+table specified in the input parameter <i>pStat</i> for which the filter is
+true. The Minimal IDs of these rows are inserted into the Explicit Table,
+maintaining their order from the originating table.</p>
+</li></ol></li><li><p><span>  </span>If the input parameter <i>Filter</i>
+is NULL, the server constructs an Explicit Table as follows:</p>
+<ol><li><p><span>   
+</span>The MId of the object the server is to read values from is specified in
+the <b>CurrentRec</b> field of the input parameter <i>pStat</i>. The server
+MUST ignore any values of the <b>Delta</b> and <b>ContainerID</b> fields while
+locating the object. That is, the server MUST NOT enforce any restrictions that
+the object specified by <b>CurrentRec</b> is actually in any particular address
+book container. Note that this is an exceptional use of the <i>pStat</i>
+parameter for position, not conforming to the semantic meaning of this field in
+all other <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_e63aea5b-046b-4176-9359-fde82613a406" data-linktype="relative-path">NSPI</a></span> methods.</p>
+</li><li><p><span>   
+</span>If the input parameter <i>lpPropName</i> is not NULL, it specifies the
+property the server is to read the values of. If the input parameter <i>lpPropName</i>
+is NULL, the server is to read the values of the property specified as a
+proptag value in the <b>ContainerID</b> field of the input parameter <i>pStat</i>.
+Note, this is an exceptional use of this field, not conforming to the semantic
+meaning of this field in all other NSPI methods.</p>
+</li><li><p><span>   
+</span>The server locates the object specified by the client, subject to these
+restraints. If the server is unable to locate the object, the server MUST
+return the value GeneralFailure.</p>
+</li><li><p><span>   
+</span>If the field <b>SortType</b> of the input parameter <i>pStat</i> has the
+value SortTypeDisplayName_W and the server does not support modifying the value
+of the property specified by the client on the object specified by the client,
+the server MUST return the value NotSupported.</p>
+</li><li><p><span>   
+</span>If the server is unable to locate objects in the address book based on
+values of the property specified by the client on the object specified by the
+client, the server MUST return the value NotSupported. Note that this
+constraint is intended to apply in the case where the server is categorically unable
+to locate specific objects based on the value of the property, not the case
+where the property has no values.</p>
+</li><li><p><span>   
+</span>The server reads the values of the property specified by the client. For
+each value read, the server attempts to locate a specific object in the address
+book corresponding to this value. If a specific object is located, the Minimal
+ID of the object is inserted into the Explicit Table. </p>
+</li><li><p><span>   
+</span>The server MUST sort the rows in Explicit Table by the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+representation of the value of the property <b>PidTagDisplayName</b>, as
+specified in <span><a href="522c7a16-a670-4bea-9c11-74a3d7dfedbe" data-linktype="relative-path">String
+Handling (section 3.1.1.2)</a></span>.</p>
+</li><li><p><span>   
+</span>If the server returns Success, the server MUST set the <b>ContainerID</b>
+field of the output parameter <i>pStat</i> to be equal to the <b>CurrentRec</b>
+field of the input parameter <i>pStat</i>. The server MUST NOT modify any other
+fields in this parameter.</p>
+</li></ol></li><li><p><span>  </span>If the number of rows in the
+constructed Explicit Table is greater than the input parameter <i>ulRequested</i>,
+the server MUST return the value TableTooBig.</p>
+</li><li><p><span>  </span>If the server will not
+support the call because the Explicit Table is larger than the server will
+allow, the server MUST return the value TableTooBig. The NSPI Protocol does not
+prescribe what constitutes a table that is too large.</p>
+</li><li><p><span>  </span>If the input parameter
+proptags is not NULL, the client is requesting the server to return an
+PropertyRowSet_r. Subject to the prior constraints, the server MUST construct
+an PropertyRowSet_r to return to the client in the output parameter <i>ppRows</i>.
+This PropertyRowSet_r MUST be exactly the same PropertyRowSet_r that would be
+returned in the <i>ppRows</i> parameter of a call to the method <span><a href="f38b81ac-23d8-4040-a12e-aa4d106f5fc5" data-linktype="relative-path">NspiQueryRows</a></span>
+with the following parameters:</p>
+<ol><li><p><span>   
+</span>The NspiGetMatches parameter <i>hRpc</i> is used as the NspiQueryRows
+parameter <i>hRpc</i>. </p>
+</li><li><p><span>   
+</span>The value <b>fEphID</b> is used as the NspiQueryRows parameter <i>dwFlags</i>.</p>
+</li><li><p><span>   
+</span>The NspiGetMatches output parameter <i>pStat</i> (as modified by the
+prior constraints) is used as the NspiQueryRows parameter <i>pStat</i>.</p>
+</li><li><p><span>   
+</span>The number of MIds in the constructed Explicit Table is used as the
+NspiQueryRows parameter <i>dwETableCount</i>.</p>
+</li><li><p><span>   
+</span>The constructed Explicit Table is used as the NspiQueryRows parameter <i>lpETable</i>.
+These MIds are expressed as a simple array of DWORD values rather than as a
+PropertyTagArray_r value.</p>
+</li><li><p><span>   
+</span>The number of MIds in the constructed Explicit Table is used as the
+NspiQueryRows parameter <i>Count</i>.</p>
+</li><li><p><span>   
+</span>The NspiGetMatches parameter proptags is used as the NspiQueryRows
+parameter proptags.</p>
+<p>Note that the server MUST
+NOT modify the return value of the <span><a href="d2b081c0-33be-4ebe-9926-bba4dbc4a596" data-linktype="relative-path">NspiSeekEntries</a></span>
+output parameter <i>pStat</i> in any way in the process of constructing the
+output PropertyRowSet_r. The server MUST return the constructed
+PropertyRowSet_r in the output parameter <i>ppRows</i>.</p>
+</li></ol></li><li><p><span>  </span>If no other return values
+have been specified by these constraints, the server MUST return the return
+value Success.</p>
+</li></ol></div>

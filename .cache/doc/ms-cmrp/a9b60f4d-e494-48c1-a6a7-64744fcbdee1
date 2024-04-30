@@ -1,0 +1,52 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/a9b60f4d-e494-48c1-a6a7-64744fcbdee1" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_PROPERTY_FORMAT</b> enumeration is used to
+specify the data type of a property value in a <b>PROPERTY_LIST</b> (section <a href="7ed348f2-eddf-4c3f-a1cb-b651ec3cff92" data-linktype="relative-path">2.2.3.10</a>) structure.</p><p><b>CLUSTER_PROPERTY_FORMAT</b> values are 16-bit unsigned
+integers. <b>CLUSTER_PROPERTY_FORMAT</b> values provide the lower 2 bytes for
+the <b>CLUSTER_PROPERTY_SYNTAX</b> (section <a href="7ea3a0e0-d3b9-43e8-85d8-263fff3499da" data-linktype="relative-path">2.2.2.3</a>) enumeration
+values.</p><p><b>CLUSTER_PROPERTY_FORMAT</b> values identify the type of
+representation of a data value that is stored in a <b>PROPERTY_LIST</b>. Using
+the <b>CLUSTER_PROPERTY_FORMAT</b> value, a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> that is parsing a <b>PROPERTY_LIST</b>
+can correctly interpret a buffer of bytes in a <b>PROPERTY_LIST</b> value as
+the correct, specific data type.</p><p>These values MUST be used when specifying the representation
+of a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">value</a> that is
+stored in a <b>PROPERTY_LIST</b>. Any other value, when received in a form that
+specifies the representation of a value that is stored in a <b>PROPERTY_LIST</b>,
+MUST be treated as an error.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   CLUSPROP_FORMAT_UNKNOWN = 0x0000,
+   CLUSPROP_FORMAT_BINARY = 0x0001,
+   CLUSPROP_FORMAT_DWORD = 0x0002,
+   CLUSPROP_FORMAT_SZ = 0x0003,
+   CLUSPROP_FORMAT_EXPAND_SZ = 0x0004,
+   CLUSPROP_FORMAT_MULTI_SZ = 0x0005,
+   CLUSPROP_FORMAT_ULARGE_INTEGER = 0x0006,
+   CLUSPROP_FORMAT_LONG = 0x0007,
+   CLUSPROP_FORMAT_EXPANDED_SZ = 0x0008,
+   CLUSPROP_FORMAT_SECURITY_DESCRIPTOR = 0x0009,
+   CLUSPROP_FORMAT_LARGE_INTEGER = 0x000a,
+   CLUSPROP_FORMAT_WORD = 0x000b,
+   CLUSPROP_FORMAT_FILETIME = 0x000c
+ } CLUSTER_PROPERTY_FORMAT;
+</pre></div>
+</dd></dl><p><b>CLUSPROP_FORMAT_UNKNOWN: </b>The property format
+is unknown, or this property value represents an end mark for a value list.</p><p><b>CLUSPROP_FORMAT_BINARY: </b>The property value
+contains data, but the data MUST NOT be interpreted or assigned a more granular
+structure.</p><p><b>CLUSPROP_FORMAT_DWORD: </b>The property value is
+an unsigned long integer.</p><p><b>CLUSPROP_FORMAT_SZ: </b>The property value is a
+null-terminated <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a>.</p><p><b>CLUSPROP_FORMAT_EXPAND_SZ: </b>The property value
+is a null-terminated Unicode string that contains embedded <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_88ed56e1-69f6-455d-94c5-af28b49c54e4" data-linktype="relative-path">environment variables</a>.</p><p><b>CLUSPROP_FORMAT_MULTI_SZ: </b>The property value
+in the format string, as specified for <b>REG_MULTI_SZ</b> in <a href="../ms-rrp/0fa3191d-bb79-490a-81bd-54c2601b7a78" data-linktype="relative-path">[MS-RRP]</a>
+(section <a href="../ms-rrp/1a1489d7-e61a-48cd-9b61-bfb56a957f22" data-linktype="relative-path">2.2.5</a>).</p><p><b>CLUSPROP_FORMAT_ULARGE_INTEGER: </b>The property
+value is a ULARGE_INTEGER structure, as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/d37e0ce7-a358-4c07-a5c4-59c8b5da8b08" data-linktype="relative-path">2.3.15</a>.</p><p><b>CLUSPROP_FORMAT_LONG: </b>The property value is a
+32-bit signed integer.</p><p><b>CLUSPROP_FORMAT_EXPANDED_SZ: </b>The property
+value is a null-terminated Unicode string where embedded environment variables
+have been substituted with their corresponding values as stored on the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>. See section 2.2.2.3
+for more information.</p><p><b>CLUSPROP_FORMAT_SECURITY_DESCRIPTOR: </b>The
+property value is a <b>SECURITY_DESCRIPTOR</b> structure, as specified in
+[MS-DTYP] section <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a>.</p><p><b>CLUSPROP_FORMAT_LARGE_INTEGER: </b>The property
+value is a <b>LARGE_INTEGER</b> structure, as specified in [MS-DTYP] section <a href="../ms-dtyp/e904b1ba-f774-4203-ba1b-66485165ab1a" data-linktype="relative-path">2.3.5</a>.</p><p><b>CLUSPROP_FORMAT_WORD: </b>The property value is a
+16-bit unsigned integer.</p><p><b>CLUSPROP_FORMAT_FILETIME: </b>The property value
+is a <b>FILETIME</b> structure, as specified in [MS-DTYP] section <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">2.3.3</a>.</p></div>

@@ -1,0 +1,26 @@
+<div class="content"><p> </p><p>When the IWbemObjectSink::Indicate method is called, the <i>apObjArray</i>
+parameter MUST contain additional result objects as an array of an
+IWbemClassObject, sent by the client to the server. The
+IWbemObjectSink::Indicate method has the following syntax, expressed in <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">Microsoft
+Interface Definition Language (MIDL)</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT Indicate(
+   [in] long lObjectCount,
+   [in, size_is(lObjectCount)] IWbemClassObject** apObjArray
+ );
+</pre></div>
+</dd></dl><p><b>lObjectCount: </b>MUST be the number of CIM
+objects in the array of pointers in the ppObjArray parameter. </p><p><b>apObjArray: </b>MUST contain an array of result
+objects sent by the caller. </p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR </b>(0x00)</p>
+</dd></dl><p>When the IWbemObjectSink::Indicate method is called for the
+first time, the server that implements the <span><a href="3685744a-4f8e-44f4-88db-c1013cb616e3" data-linktype="relative-path">ObjectArray</a></span>
+structure MUST return WBEM_S_NEW_STYLE if the execution of the method succeeds.
+If a server does not implement the ObjectArray structure, it MUST return
+WBEM_S_NO_ERROR for successful execution of the method.</p><p>If the server implements the ObjectArray structure and
+WBEM_S_NEW_STYLE is returned during the first call to the
+IWbemObjectSink::Indicate method, the server MUST support subsequent calls to
+the IWbemObjectSink::Indicate method by using both the DCOM Remote Protocol
+marshaling and the ObjectArray structure as specified in section 2.2.14.</p></div>

@@ -1,0 +1,47 @@
+<div class="content"><p> </p><p>The <b>DHCP_ADDR_PATTERN</b> structure contains the
+information regarding the link-layer address/pattern.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_ADDR_PATTERN {
+     BOOL MatchHWType;
+     BYTE HWType;
+     BOOL IsWildcard;
+     BYTE Length;
+     BYTE Pattern[MAX_PATTERN_LENGTH];
+ } DHCP_ADDR_PATTERN, *LPDHCP_ADDR_PATTERN;
+</pre></div>
+</dd></dl><p><b>MatchHWType:</b>  This is of type <span><a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">BOOL</a></span>.
+Setting the field to FALSE will cause the filtering to disregard the hardware
+type field and a TRUE value will match the hardware type field.</p><p><b>HWType:</b>  This is of type <span><a href="../ms-dtyp/d7edc080-e499-4219-a837-1bc40b64bb04" data-linktype="relative-path">BYTE</a></span>
+and specifies the hardware type of the address, specified in the pattern. For
+the list of valid options, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90285" data-linktype="external">[RFC1700]</a></span>.</p><p><b>IsWildcard:</b>  This is of type BOOL
+and specifies whether the current pattern represents a wildcard pattern.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>BOOL</p>
+   </th>
+   <th>
+   <p>MEANING</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUE</p>
+  <p>1</p>
+  </td>
+  <td>
+  <p>The pattern is a wildcard pattern.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0</p>
+  </td>
+  <td>
+  <p>The pattern is a hardware address.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Length:</b>  This is of type BYTE and
+specifies the length of the pattern.</p><p><b>Pattern:</b>  This is a pointer to a
+type BYTE and contains the address/pattern.</p></div>

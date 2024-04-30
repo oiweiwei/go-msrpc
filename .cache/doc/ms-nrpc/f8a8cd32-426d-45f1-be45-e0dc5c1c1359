@@ -1,0 +1,43 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/f8a8cd32-426d-45f1-be45-e0dc5c1c1359" data-linktype="external">msdn link</a></p><p>The <b>NETLOGON_DELTA_TYPE</b> enumeration defines an
+enumerated set of possible <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_00f35ba3-4dbb-4ff9-8e27-572a6aea1b15" data-linktype="relative-path">database</a>
+changes.</p><dl>
+<dd>
+<div><pre> typedef  enum _NETLOGON_DELTA_TYPE
+ {
+   AddOrChangeDomain = 1,
+   AddOrChangeGroup = 2,
+   DeleteGroup = 3,
+   RenameGroup = 4,
+   AddOrChangeUser = 5,
+   DeleteUser = 6,
+   RenameUser = 7,
+   ChangeGroupMembership = 8,
+   AddOrChangeAlias = 9,
+   DeleteAlias = 10,
+   RenameAlias = 11,
+   ChangeAliasMembership = 12,
+   AddOrChangeLsaPolicy = 13,
+   AddOrChangeLsaTDomain = 14,
+   DeleteLsaTDomain = 15,
+   AddOrChangeLsaAccount = 16,
+   DeleteLsaAccount = 17,
+   AddOrChangeLsaSecret = 18,
+   DeleteLsaSecret = 19,
+   DeleteGroupByName = 20,
+   DeleteUserByName = 21,
+   SerialNumberSkip = 22
+ } NETLOGON_DELTA_TYPE;
+</pre></div>
+</dd></dl><p><b>AddOrChangeDomain:</b> Adds or changes a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0b53d5bb-74ab-4705-8657-c22d32781103" data-linktype="relative-path">Security Account Manager (SAM)</a>
+account.</p><p><b>AddOrChangeGroup: </b>Adds or changes a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_51c51c14-7f9d-4c0b-a69c-d3e059bfffac" data-linktype="relative-path">group</a> SAM account.</p><p><b>DeleteGroup: </b>Deletes a group SAM account.</p><p><b>RenameGroup: </b>Renames a group SAM account.</p><p><b>AddOrChangeUser: </b>Adds or changes a user SAM
+account.</p><p><b>DeleteUser: </b>Deletes a user SAM account.</p><p><b>RenameUser: </b>Renames a user SAM account.</p><p><b>ChangeGroupMembership: </b>Changes a group
+membership record.</p><p><b>AddOrChangeAlias: </b>Adds or changes an <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_d046b6e2-3f79-47e1-87d7-754566744dcd" data-linktype="relative-path">alias</a>.</p><p><b>DeleteAlias: </b>Deletes an alias.</p><p><b>RenameAlias: </b>Renames an alias.</p><p><b>ChangeAliasMembership: </b>Changes the membership
+record for an alias.</p><p><b>AddOrChangeLsaPolicy: </b>Adds or changes an <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9e5f2104-d6df-4ae7-8a5c-6bd14a0da8fa" data-linktype="relative-path">LSA</a> policy.</p><p><b>AddOrChangeLsaTDomain: </b>Adds or changes a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trusted</a> <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_d0be6ce0-cc28-43cd-bd6b-6f324fcb8397" data-linktype="relative-path">domain account</a>.</p><p><b>DeleteLsaTDomain: </b>Deletes a trusted domain
+account.</p><p><b>AddOrChangeLsaAccount: </b>Adds or changes an LSA
+user or machine account.</p><p><b>DeleteLsaAccount: </b>Deletes an LSA user or
+machine account.</p><p><b>AddOrChangeLsaSecret: </b>Adds or changes an LSA
+encrypted data block.</p><p><b>DeleteLsaSecret: </b>Deletes an LSA encrypted data
+block.</p><p>The following three types MAY<a id="Appendix_A_Target_53"></a><a aria-label="Product behavior note 53" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_53" data-linktype="relative-path">&lt;53&gt;</a> have an
+additional requirement.</p><p><b>DeleteGroupByName: </b>Deletes a group account
+based on a string name.</p><p><b>DeleteUserByName: </b>Deletes a user account based
+on a string name.</p><p><b>SerialNumberSkip: </b>Updates the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0b04ee8e-be04-4d04-94c4-90e58390f83d" data-linktype="relative-path">database serial number</a>.</p></div>

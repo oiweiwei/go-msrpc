@@ -1,0 +1,38 @@
+<div class="content"><p> </p><p>The AddVDisk method creates a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1fbc35d5-bcf5-4ce7-9449-4197a1671440" data-linktype="relative-path">virtual disk</a></span> object
+representing the specified virtual disk and adds it to the list of virtual
+disks managed by the provider. This method returns an <span><a href="c217a96a-dc47-4190-b5be-ba464aaf9f9e" data-linktype="relative-path">IVdsVDisk (section 3.1.15.1)</a></span>
+interface pointer to the specified virtual disk object.</p><dl>
+<dd>
+<div><pre> HRESULT AddVDisk(
+   [in] PVIRTUAL_STORAGE_TYPE VirtualDeviceType,
+   [in, string] LPWSTR pPath,
+   [out] IVdsVDisk** ppVDisk
+ );
+</pre></div>
+</dd></dl><p><b>VirtualDeviceType: </b>A pointer to a <span><a href="83aab33f-b675-4b22-8c5f-fd6c3ed27df2" data-linktype="relative-path">VIRTUAL_STORAGE_TYPE (section 2.2.1.3.23)</a></span>
+structure that specifies the type of virtual <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_511ca852-83e7-4a0c-8081-06e36436876b" data-linktype="relative-path">hard disk</a></span> to open.</p><p><b>pPath: </b>A NULL-terminated wide-character string
+containing the fully qualified pathname for the virtual disk&#39;s backing file.</p><p><b>ppVDisk: </b>A pointer to a variable that, if the
+operation is successfully completed, receives an IVdsVDisk interface pointer to
+the newly created virtual disk object. Callers MUST release the interface
+pointer when it is no longer needed by calling the <b>IUnknown::Release</b>
+method.</p><p><b>Return Values: </b>The method MUST return zero or
+a nonerror <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>VirtualDeviceType</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>pPath</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>ppVDisk</i> is not NULL.</p>
+</li></ul><p>The server MUST then perform the following in sequence:</p><ul><li><p><span><span> 
+</span></span>Search its cached virtual disk objects for an object whose file
+name matches the input <i>pPath</i>. If such an object does not exist, create a
+new virtual disk cache object that implements the IVdsVDisk interface and
+assign it a unique <span><a href="9186f1ce-04de-4df2-a8cf-3925a02fcd47" data-linktype="relative-path">VDS_OBJECT_ID (section 2.2.1.1.3)</a></span>.</p>
+</li><li><p><span><span> 
+</span></span>Point <i>ppVDisk</i> to an IVdsVDisk interface of the virtual
+disk object found or created and return an HRESULT indicating success.</p>
+</li></ul></div>

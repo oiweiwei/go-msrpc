@@ -1,0 +1,97 @@
+<div class="content"><p> </p><p>The GetRefTypeOfImplType method retrieves the <span><a href="ed6620b1-6b23-4fa1-99e6-781832999f93" data-linktype="relative-path">HREFTYPE</a></span>
+corresponding to the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_fb6a1829-c102-482c-902f-51c197b22860" data-linktype="relative-path">automation type description</a></span>
+of an interface that is inherited, implemented, or referenced by the <span><a href="99504cf9-16d8-401e-a873-83b85d1ee4aa" data-linktype="relative-path">ITypeInfo
+server</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT GetRefTypeOfImplType(
+   [in] UINT index,
+   [out] HREFTYPE* pRefType
+ );
+</pre></div>
+</dd></dl><p><b>index: </b>MUST be a nonnegative integer, or -1.</p><dl>
+<dd>
+<p>If the ITypeInfo server describes a <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_3bb740fd-35c1-4082-a912-2bde177753b9" data-linktype="relative-path">dual
+interface</a></span> (see sections <span><a href="bd30db0d-6c38-4d54-9c44-67c0e9d25551" data-linktype="relative-path">2.2.49.4.2</a></span> and <span><a href="1e542e10-fe4d-475f-9615-6b6d956b7073" data-linktype="relative-path">3.7.1</a></span>),
+the value of index MUST be 0 or -1.</p>
+</dd>
+<dd>
+<p>If the ITypeInfo server describes a <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_670b0ee2-d101-41b0-ac77-6ac7dbeee7dc" data-linktype="relative-path">coclass</a></span>,
+the value of index MUST be nonnegative and less than the value of the <i>cImplTypes</i>
+field in the <span><a href="0ca10d08-61d2-4059-9109-7bbaf545715e" data-linktype="relative-path">TYPEATTR (section 2.2.44)</a></span>
+structure returned by the <span><a href="b96292a8-c06e-4b9c-905e-129b95697ee4" data-linktype="relative-path">GetTypeAttr (section 3.7.4.1)</a></span>
+method.</p>
+</dd>
+<dd>
+<p>For all other ITypeInfo servers, the value of index
+MUST be 0.</p>
+</dd></dl><p><b>pRefType: </b>MUST be set to one of the following
+values, if index is -1 or specifies an interface table entry.</p><dl>
+<dd>
+<p>If the ITypeInfo server describes a dual interface
+and index is -1, <i>pRefType</i> is specified by the <span><a href="78ccbd1c-d8ff-4301-9afc-df562372fb33" data-linktype="relative-path">TYPEKIND</a></span> value
+associated with the ITypeInfo server (see section 2.2.44):</p>
+</dd>
+<dd>
+<p>TKIND_DISPATCH: MUST be set to the HREFTYPE of the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_3610e61d-bd5c-454f-992a-0a020995e66b" data-linktype="relative-path">partner
+interface</a></span>.</p>
+</dd>
+<dd>
+<p>TKIND_INTERFACE: MUST be set to the HREFTYPE of the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_603521de-c0d9-4732-ad40-2ece61f8c7eb" data-linktype="relative-path">partner
+dispinterface</a></span>.</p>
+</dd>
+<dd>
+<p>In all other cases, <i>pRefType</i> is specified by
+the interface table member whose ordinal position is specified by index:</p>
+</dd>
+<dd>
+<p>If the interface table member is a dual interface
+and the ITypeInfo server describes a <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_4b20db64-5f0c-4df0-9ecf-91cdde2c2408" data-linktype="relative-path">DCOM interface</a></span> or
+partner interface, <i>pRefType</i> MUST be the HREFTYPE of the partner
+interface of the interface table member. </p>
+</dd>
+<dd>
+<p><b>Note</b>  This is the only case where
+an OLE Automation Protocol interface method returns a partner interface by
+default.</p>
+</dd>
+<dd>
+<p>If the interface table member is a dual interface
+and the ITypeInfo server describes a coclass, <i>pRefType</i> MUST be the
+HREFTYPE of the partner dispinterface of the interface table member.</p>
+</dd>
+<dd>
+<p>MUST be set to the HREFTYPE of the interface table
+member in all other cases.</p>
+</dd></dl><p><b>Return Values: </b>The method MUST return
+information in an HRESULT data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions: </p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD does
+not match a value in the following table, a fatal failure occurred.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1 and the entire HRESULT DWORD
+matches a value in the following table, a failure occurred. </p>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8002802B</p>
+  <p>TYPE_E_ELEMENTNOTFOUND</p>
+  </td>
+  <td>
+  <p>The value of index did not specify the ordinal
+  position of an element in the interface table, or the value of index was -1
+  and the type was not a dual interface. See [MS-ERREF].</p>
+  </td>
+ </tr></tbody></table>
+</li></ul><p> </p></div>

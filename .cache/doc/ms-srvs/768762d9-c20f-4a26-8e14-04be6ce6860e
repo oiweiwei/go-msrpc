@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The ADT_SECURITY_DESCRIPTOR structure contains a security
+descriptor in self-relative format and a value that includes the length of the
+buffer that contains the descriptor. For more information, see <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _ADT_SECURITY_DESCRIPTOR {
+   DWORD Length;
+   [size_is(Length)] unsigned char* Buffer;
+ } ADT_SECURITY_DESCRIPTOR,
+  *PADT_SECURITY_DESCRIPTOR;
+</pre></div>
+</dd></dl><p><b>Length:</b>  The length of the <b>Buffer</b>
+member.</p><p><b>Buffer:</b>  A buffer for the security
+descriptor in self-relative form. For more information, see [MS-DTYP] section
+2.4.6.</p></div>

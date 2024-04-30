@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The SCHEMA_PREFIX_TABLE structure defines the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete
+type</a></span> for a table to map <span><a href="91173129-08e6-497c-8266-b5ac0aa5f983" data-linktype="relative-path">ATTRTYP</a></span> values to
+and from <span><a href="33950485-3a96-4b66-8a28-a3a33e80302b" data-linktype="relative-path">OID</a></span>s.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [range(0,1048576)] DWORD PrefixCount;
+   [size_is(PrefixCount)] PrefixTableEntry* pPrefixEntry;
+ } SCHEMA_PREFIX_TABLE;
+</pre></div>
+</dd></dl><p><b>PrefixCount:</b>  The number of items in
+the <b>pPrefixEntry</b> array.</p><p><b>pPrefixEntry:</b>  An array of <span><a href="d26d36cd-10c4-4b27-a84e-98336abf357a" data-linktype="relative-path">PrefixTableEntry</a></span>
+items in the table.</p></div>

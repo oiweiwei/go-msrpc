@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>AUTH_SCHEME_VECTOR</b> structure encapsulates a
+variable-length array of <b>AUTH_SCHEME</b> <span><a href="ab2191b0-371a-497a-b184-eba073d04269#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>s that are
+stored consecutively.  </p><dl>
+<dd>
+<div><pre> struct
+ {
+   ULONG AuthSchemeArrayOffset;
+   USHORT AuthSchemeCount;
+ } AUTH_SCHEME_VECTOR; 
+</pre></div>
+</dd></dl><p><b>AuthSchemeArrayOffset:</b> A ULONG type array of
+ordered <b>AUTH_SCHEME</b> GUID values, specified in section <span><a href="fa13c53c-f15c-4506-9679-c8cd69684463" data-linktype="relative-path">2.2.2</a></span>,
+that represents the security mechanism&#39;s ID in decreasing order of preference. </p><p><b>AuthSchemeCount:</b> A USHORT that contains the
+count of <b>AUTH_SCHEME</b> values.  </p></div>

@@ -1,0 +1,349 @@
+<div class="content"><p> </p><p>The <b>R_DhcpV4CreatePolicy</b> method creates the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_52323544-69e0-4172-8921-2711cbda988e" data-linktype="relative-path">policy</a></span>
+according to the data specified in the policy data structure.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpV4CreatePolicy(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] LPDHCP_POLICY pPolicy
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>pPolicy: </b>This is a pointer to a type <span><a href="77e79969-cedf-4aa9-9059-6223ba815f30" data-linktype="relative-path">DHCP_POLICY (section 2.2.1.2.110)</a></span>
+and contains the members of the policy to be created.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value of ERROR_SUCCESS (0x00000000) indicates
+that the operation was completed successfully. Otherwise, it contains a Win32
+error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or to any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E8C</p>
+  <p>ERROR_DHCP_RANGE_INVALID_IN_SERVER_POLICY</p>
+  </td>
+  <td>
+  <p>A policy range has been specified for a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e4c4b49e-bca4-4854-9e27-67ef0035f06e" data-linktype="relative-path">server
+  level policy</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E8D</p>
+  <p>ERROR_DHCP_INVALID_POLICY_EXPRESSION</p>
+  </td>
+  <td>
+  <p>The specified <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_9a1c3bd3-d971-482a-adfe-6f41e427b95f" data-linktype="relative-path">conditions</a></span> or <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_6d43b116-acad-45af-aea5-a8e7240a1106" data-linktype="relative-path">expressions</a></span>
+  of the policy are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E8B</p>
+  <p>ERROR_DHCP_POLICY_RANGE_BAD</p>
+  </td>
+  <td>
+  <p>The specified <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_eb84404c-885e-48de-9f2a-ae76b8b3c5be" data-linktype="relative-path">policy IP range</a></span> is
+  not contained within the IP address range of the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_128cd76b-eecb-41e6-96f7-f73c2bf9235a" data-linktype="relative-path">scope</a></span>, or the
+  specified policy IP range is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E89</p>
+  <p>ERROR_DHCP_POLICY_EXISTS</p>
+  </td>
+  <td>
+  <p>The specified policy name exists at the specified
+  level (server or scope).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E8A</p>
+  <p>ERROR_DHCP_POLICY_RANGE_EXISTS</p>
+  </td>
+  <td>
+  <p>The specified policy IP range overlaps the policy IP
+  ranges of an existing policy at the specified scope.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E8E</p>
+  <p>ERROR_DHCP_INVALID_PROCESSING_ORDER</p>
+  </td>
+  <td>
+  <p>The specified processing order is greater than the
+  maximum processing order of the existing policies at the specified level
+  (server or scope).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E4C</p>
+  <p>ERROR_DHCP_CLASS_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_45d20b00-7166-4f94-b679-4cc5a7835a3a" data-linktype="relative-path">vendor class</a></span> or <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_713c7395-9431-4d67-bab1-a069ae7461e2" data-linktype="relative-path">user
+  class</a></span> reference in the conditions of the policy does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004EAC</p>
+  <p>ERROR_DHCP_POLICY_FQDN_RANGE_UNSUPPORTED</p>
+  </td>
+  <td>
+  <p>Ranges are not allowed to be set on the given policy.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 108.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Check whether the <b>PolicyName</b>, <b>Conditions</b>, <b>Expressions</b>,
+or <b>Ranges</b> member inside the <i>pPolicy</i> parameter is NULL. If any of
+these is NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Check whether the <b>NumElements</b> member of the <b>Conditions</b>
+member or the <b>Expressions</b> member inside the <i>pPolicy</i> parameter is
+0. If any of these is 0, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Check whether the <b>Elements</b> member of the <b>Conditions</b>
+member or the <b>Expressions</b> member inside the <i>pPolicy</i> parameter is
+NULL. If any of these is NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read/write access
+as specified in section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Validate the <b>Conditions</b> member and the <b>Expressions</b>
+member in the <i>pPolicy</i> parameter data structure by returning
+ERROR_DHCP_INVALID_POLICY_EXPRESSION if any of the following are true:</p>
+<ul><li><p><span><span>  </span></span>For
+each condition element in the <b>Conditions</b> member in the <i>pPolicy</i>
+parameter<a id="Appendix_A_Target_75"></a><a aria-label="Product behavior note 75" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_75" data-linktype="relative-path">&lt;75&gt;</a>:</p>
+<ul><li><p><span><span> 
+</span></span>If the <i>ParentExpr</i> member in the <b>Conditions</b> member
+is greater than the <b>NumElements</b> member in the <b>Expressions</b> member</p>
+</li><li><p><span><span> 
+</span></span>If the <b>Type</b> member is not set to one of the values defined
+for the <span><a href="f05fc88f-3ac7-4c44-9998-40e4acaeb776" data-linktype="relative-path">DHCP_POL_ATTR_TYPE (section 2.2.1.1.23)</a></span>
+enumeration</p>
+</li><li><p><span><span> 
+</span></span>If the <b>Type</b> member is not set to the DhcpAttrOption or
+DhcpAttrSubOption value of the <b>DHCP_POL_ATTR_TYPE</b> enumeration and the
+values for both the <b>OptionID</b> and <b>SubOptionID</b> members are not 0</p>
+</li><li><p><span><span> 
+</span></span>If the <b>Type</b> member is set to the DhcpAttrOption value of
+the <b>DHCP_POL_ATTR_TYPE</b> enumeration, and the <b>OptionID</b> member is
+not equal to the vendor class identifier option (60), the user class identifier
+option (77), the client identifier option (61), or the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_53cb4370-b090-46e0-9039-939f04c90aa0" data-linktype="relative-path">relay
+agent information option</a></span> (82), or the <b>SubOptionID</b> member is
+not equal to 0</p>
+</li><li><p><span><span> 
+</span></span>If the Type member is set to the DhcpAttrSubOption value of the <b>DHCP_POL_ATTR_TYPE</b>
+enumeration and the <b>OptionID</b> member is not equal to the relay agent
+information option (82), or the <b>SubOptionID</b> member is not equal to the
+agent circuit ID suboption (12), agent remote ID suboption (2), or subscriber
+ID suboption (6)</p>
+</li><li><p><span><span> 
+</span></span>If the Type member is set to the DhcpAttrHWAddr value of the <b>DHCP_POL_ATTR_TYPE</b>
+enumeration and the <b>Operator</b> member is set to the DhcpCompEqual or
+DhcpCompNotEqual value of the <span><a href="92e62ae9-0aae-4c67-b742-17524afe79d7" data-linktype="relative-path">DHCP_POL_COMPARATOR (section 2.2.1.1.22)</a></span>
+enumeration, and the ValueLength member is not equal to 6</p>
+</li><li><p><span><span> 
+</span></span>If the Type member is set to the DhcpAttrHWAddr value of the <b>DHCP_POL_ATTR_TYPE</b>
+enumeration and the <b>Operator</b> member is set to the DhcpCompBeginsWith,
+DhcpCompNotBeginWith, DhcpCompEndsWith, or DhcpCompNotEndWith value of the <b>DHCP_POL_COMPARATOR</b>
+enumeration and the ValueLength member is equal to or greater than 6<a id="Appendix_A_Target_76"></a><a aria-label="Product behavior note 76" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_76" data-linktype="relative-path">&lt;76&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If there are other conditions with the <b>ParentExpr</b> member
+that are the same as this condition and if:</p>
+<ul><li><p><span><span> 
+</span></span>The <b>OptionID</b> member is the relay agent information option
+(82) </p>
+</li><li><p><span><span> 
+</span></span>The <b>OptionID</b> member or the <b>SubOptionID</b> member or
+the <b>Type</b> member or the <b>VendorName</b> member is different for the
+conditions</p>
+</li><li><p><span><span> 
+</span></span>If the Operator member for the condition is set to the
+DhcpCompEqual value of the <b>DHCP_POL_COMPARATOR</b> enumeration, the operator
+of all other conditions (with the same ParentExpr member) is not set to the
+DhcpCompEqual, DhcpCompBeginsWith, or DhcpCompEndsWith value of the <b>DHCP_POL_COMPARATOR</b>
+enumeration<a id="Appendix_A_Target_77"></a><a aria-label="Product behavior note 77" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_77" data-linktype="relative-path">&lt;77&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If the Operator member for the condition element is not set to
+the DhcpCompNotEqual value of the <b>DHCP_POL_COMPARATOR</b> enumeration, the
+operator of all other conditions (with the same <b>ParentExpr</b> member) is
+not set to the DhcpCompNotEqual, DhcpCompNotBeginWith, or DhcpCompNotEndWith
+value of the <b>DHCP_POL_COMPARATOR</b> enumeration.<a id="Appendix_A_Target_78"></a><a aria-label="Product behavior note 78" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_78" data-linktype="relative-path">&lt;78&gt;</a></p>
+</li></ul></li></ul></li><li><p><span><span>  </span></span>For
+each expression in the <b>Expressions</b> member:</p>
+<ul><li><p><span><span> 
+</span></span>If the <b>NumElements</b> member is 0, there are no other <b>Expressions</b>
+members or <b>Conditions</b> members that have the index of this expression
+element in their <b>ParentExpr</b> member.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>Operator</b> member of the expression element is not
+the DhcpLogicalAnd enumeration value or DhcpLogicalOr enumeration value</p>
+</li><li><p><span><span> 
+</span></span>If the <b>ParentExpr</b> member value is not 0</p>
+</li><li><p><span><span> 
+</span></span>If the expression element is not the first element in the array
+and if the <b>Operator</b> member of the expression is not DhcpLogicalAnd
+enumeration value</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Validate the <b>Ranges</b> member of the <i>pPolicy</i> parameter
+according to the following:</p>
+<ul><li><p><span><span>  </span></span>If
+the <b>IsGlobalPolicy</b> member of the <i>pPolicy</i> parameter is TRUE,
+indicating that this is a server level policy, check whether the <b>NumElements</b>
+member of the <b>Ranges</b> member of the <i>pPolicy</i> parameter is 0. Return
+ERROR_DHCP_RANGE_INVALID_IN_SERVER_POLICY if the <b>NumElements</b> member of
+the <b>Ranges</b> member is not 0.</p>
+</li><li><p><span><span>  </span></span>If
+the <b>IsGlobalPolicy</b> member of the <i>pPolicy</i> parameter is TRUE and
+the <b>Subnet</b> member of the <i>pPolicy</i> parameter is not 0, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span>  </span></span>If
+the <b>IsGlobalPolicy</b> member of the <i>pPolicy</i> parameter is FALSE and
+the <b>Subnet</b> member of the <i>pPolicy</i> parameter is 0, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span>  </span></span>If
+the <b>IsGlobalPolicy</b> member of the <i>pPolicy</i> parameter is FALSE and
+the <b>Subnet</b> member of the <i>pPolicy</i> parameter is not 0, perform the
+following checks:</p>
+<ul><li><p><span><span> 
+</span></span>If the <b>StartAddress</b> member of any of the <b>Ranges</b>
+member elements specified is greater than the <b>EndAddress</b> member, return
+ERROR_DHCP_POLICY_RANGE_BAD.</p>
+</li><li><p><span><span> 
+</span></span>If any of the <b>Ranges</b> member elements in the <i>pPolicy</i>
+parameter is overlapping another <b>Ranges</b> member element in the <i>pPolicy</i>
+parameter, return ERROR_DHCP_POLICY_RANGE_BAD.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the <b>Conditions</b> member contains a condition element where the <b>Type</b>
+is set to the value DhcpAttrFqdn or DhcpAttrFqdnSingleLabel as defined in the
+DHCP_POL_ATTR_TYPE (section 2.2.1.1.23) enumeration, and the <b>NumElements</b>
+member of the Ranges member is not 0, return
+ERROR_DHCP_POLICY_FQDN_RANGE_UNSUPPORTED.<a id="Appendix_A_Target_79"></a><a aria-label="Product behavior note 79" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_79" data-linktype="relative-path">&lt;79&gt;</a></p>
+</li></ul></li><li><p><span><span> 
+</span></span>Validate the <b>PolicyName</b> member of the <i>pPolicy</i>
+parameter according to the following:</p>
+<ul><li><p><span><span>  </span></span>If
+the <b>IsGlobalPolicy</b> member of the <i>pPolicy</i> parameter is set to
+TRUE, retrieve the server ADM element <b>DHCPv4ServerPolicyList</b> and check
+whether any of the policies have the same name as the name specified in the <b>PolicyName</b>
+member of the <i>pPolicy</i> parameter. Return ERROR_DHCP_POLICY_EXISTS if
+there is a server policy by the same name.</p>
+</li><li><p><span><span>  </span></span>If
+the <b>IsGlobalPolicy</b> member of the <i>pPolicy</i> parameter is set to
+FALSE and a <b>Subnet</b> member of the <i>pPolicy</i> parameter is specified,
+retrieve the server ADM element <b>DHCPv4ScopesList</b>. Retrieve the <b>DHCPv4Scope</b>
+ADM element from the <b>DHCPv4ScopesList</b> ADM element where the <b>SubnetAddress</b>
+ADM element member in the <b>ScopeInfo</b> ADM element of the <b>DHCPv4Scope</b>
+ADM element is the same as the <b>Subnet</b> member in the <i>pPolicy</i>
+parameter. If there is no <b>DHCPv4Scope</b> ADM element that matches the <b>Subnet</b>
+member address of the <i>pPolicy</i> parameter, return
+ERROR_DHCP_SUBNET_NOT_PRESENT. Retrieve the <b>DHCPv4Scope.DHCpv4ScopePolicyList</b>
+ADM element for the matched <b>DHCPv4Scope</b> ADM element. Check whether the <b>DHCPv4Policy.Policy.PolicyName</b>
+ADM element of any of the policies in the <b>DHCPv4Scope.DHCPv4ScopePolicyList</b>
+ADM element is the same as the <b>PolicyName</b> member in the <i>pPolicy</i>
+parameter. Return ERROR_DHCP_POLICY_EXISTS if there is a policy by the same
+name.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Validate the <b>Ranges</b> member of the <i>pPolicy</i> parameter
+according to the following:</p>
+<ul><li><p><span><span>  </span></span>Retrieve
+the <b>DHCPv4Scope</b> ADM element for the <b>Subnet</b> member address
+specified in the <i>pPolicy</i> parameter. Retrieve the <b>DHCPv4Scope.DHCPv4ScopeIPRangesList</b>
+ADM element. Check whether the <b>Ranges</b> member specified in the <i>pPolicy</i>
+parameter is within at least one of the <b>DHCPv4IPRange</b> ADM elements in
+the <b>DHCPv4Scope.DHCPv4ScopeIPRangesList</b> ADM element. Return
+ERROR_DHCP_POLICY_RANGE_BAD if this check fails.</p>
+</li><li><p><span><span>  </span></span>Retrieve
+the <b>DHCPv4Scope.DHCPv4ScopePolicyList</b> ADM element. For each <b>DHCPv4Policy</b>
+ADM element in the <b>DHCPv4Scope.DHCPv4ScopePolicyList</b> ADM element,
+retrieve the <b>DHCPv4Policy.Policy.Ranges</b> ADM element member. Check
+whether each range element in the <b>Ranges</b> member specified in the <i>pPolicy</i>
+parameter overlaps any of the <b>Range</b> ADM element members in the <b>DHCPv4Policy.Policy.Ranges</b>
+ADM element. Return ERROR_DHCP_POLICY_RANGE_EXISTS if the check succeeds.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Validate the <b>ProcessingOrder</b> member of the <i>pPolicy</i>
+parameter according to the following:</p>
+<ul><li><p><span><span>  </span></span>If
+this is a scope level policy, retrieve the <b>DHCPv4Scope</b> ADM element for
+the <b>Subnet</b> member address specified in the <i>pPolicy</i> parameter. Get
+the maximum <b>ProcessingOrder</b> ADM element of all the <b>DHCPv4Policy</b>
+ADM elements in the <b>DHCPv4Scope.DHCPv4ScopePolicyList</b> ADM element. If
+the <b>ProcessingOrder</b> member in the <i>pPolicy</i> parameter is greater
+than the maximum <b>ProcessingOrder</b> ADM element plus 1, return
+ERROR_DHCP_INVALID_PROCESSING_ORDER.</p>
+</li><li><p><span><span>  </span></span>If
+this is a server level policy, retrieve the server ADM element <b>DHCPv4ServerPolicyList</b>.
+Get the maximum <b>ProcessingOrder</b> ADM element of all the <b>DHCPv4Policy</b>
+ADM elements in the <b>DHCPv4ServerPolicyList</b> ADM element. If the <b>ProcessingOrder</b>
+member in the <i>pPolicy</i> parameter is greater than the maximum processing
+order plus 1, return ERROR_DHCP_INVALID_PROCESSING_ORDER.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>For each condition element in the <b>Conditions</b> member in the
+<i>pPolicy</i> parameter, retrieve the server ADM element <b>DHCPv4ClassDefList</b>
+and check whether the <b>VendorName</b> member of the condition exists in the <b>DHCPv4ClassDefList</b>
+ADM element. If the <b>vendorname</b> member specified does not exist in the <b>DHCPv4ClassDefList</b>
+ADM element, return ERROR_DHCP_CLASS_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>Create a <b>DHCPv4Policy</b> ADM element, and populate the ADM
+elements of <b>DHCPv4Policy</b> with the members in the <i>pPolicy</i>
+parameter.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>pPolicy</i> parameter contains only one condition
+record with the <b>Operator</b> member set to DhcpCompEqual, iterate over the
+global ADM element <b>DHCPv4ClassDefList</b> and retrieve a <b>DHCPv4ClassDef</b>
+ADM object whose <b>DHCPv4ClassDef.IsVendor</b> value is set to FALSE and whose
+<b>DHCPv4ClassDef.ClassData</b> value is the same as the <b>Value</b> member of
+that condition. If such a <b>DHCPv4ClassDef</b> object exists, set the object&#39;s
+<b>DHCPv4Policy.ClassName</b> to the <b>DHCPv4ClassDef.ClassName</b> of the
+retrieved user class. Otherwise, set <b>DHCPv4Policy.ClassName</b> to NULL.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>IsGlobalPolicy</b> member is TRUE, add the <b>DHCPv4Policy</b>
+ADM element to the <b>DHCPv4ServerPolicyList</b> ADM element.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>IsGlobalPolicy</b> member is FALSE, retrieve the <b>DHCPv4Scope</b>
+ADM element for the subnet identified by the <b>Subnet</b> member address in the
+<i>pPolicy</i> parameter and add the <b>DHCPv4Policy</b> ADM element to the <b>DHCPv4Scope.DHCPv4ScopePolicyList</b>
+ADM element.</p>
+</li><li><p><span><span> 
+</span></span>Modify the processing order of existing policies as follows:</p>
+<ul><li><p><span><span>  </span></span>If
+a scope level policy is being created, retrieve the <b>DHCPv4Scope</b> ADM
+element for the subnet identified by the <b>Subnet</b> member address in the <i>pPolicy</i>
+parameter. For policies in the <b>DHCPv4Scope.DHCPv4ScopePolicyList</b> ADM
+element whose <b>DHCPv4Policy.Policy.ProcessingOrder</b> ADM element is greater
+than or equal to the <b>ProcessingOrder</b> member specified in the <i>pPolicy</i>
+parameter, increment the <b>ProcessingOrder</b> ADM element by 1.</p>
+</li><li><p><span><span>  </span></span>If
+a server level policy is being created, for policies in the <b>DHCPv4ServerPolicyList</b>
+ADM element whose <b>DHCPv4Policy.Policy.ProcessingOrder</b> ADM element is
+greater than or equal to the <b>ProcessingOrder</b> member specified in the <i>pPolicy</i>
+parameter, increment the <b>ProcessingOrder</b> ADM element by 1.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

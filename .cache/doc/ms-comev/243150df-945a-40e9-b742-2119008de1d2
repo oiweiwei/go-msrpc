@@ -1,0 +1,8 @@
+<div class="content"><p>This document specifies the behavior of the Component Object
+Model Plus (COM+) Event System Protocol.</p><p>The COM+ Event System Protocol is a protocol that exposes
+DCOM interfaces for storing and managing configuration data for <a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_7db8a6a0-d924-48bb-b9f3-08fcd58d0dc5" data-linktype="relative-path">publishers</a> of <a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_472f97f2-82ec-4623-8e46-d348a7984967" data-linktype="relative-path">events</a> and their respective
+<a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_6d17ce3a-aa95-4db2-83f1-09d5feef3f95" data-linktype="relative-path">subscribers</a> on remote
+computers. This protocol also specifies how to get specific information about a
+publisher and its subscribers.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

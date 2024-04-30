@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The PrintAsyncNotifyConversationStyle enumeration MUST
+specify the communication mode expected between the sender and a registered
+client.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum 
+ {
+   kBiDirectional = 0,
+   kUniDirectional = 1,
+ } PrintAsyncNotifyConversationStyle;
+</pre></div>
+</dd></dl><p><b>kBiDirectional:  </b><span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_b1d50fe5-0a8c-44fe-8802-3382d1af77e5" data-linktype="relative-path">Bidirectional communication
+mode</a></span> is specified. The sender expects the client to send responses
+to notifications.</p><p><b>kUniDirectional:  </b><span><a href="4751a17a-76f3-4a7a-aef3-fdfc5d1bc7a5#gt_d203482a-15ef-4528-9064-68b0f2e0c5fa" data-linktype="relative-path">Unidirectional communication
+mode</a></span> is specified. The sender does not expect the client to respond
+to notifications.</p></div>

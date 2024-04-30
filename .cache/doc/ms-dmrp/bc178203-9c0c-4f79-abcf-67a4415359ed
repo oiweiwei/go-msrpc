@@ -1,0 +1,28 @@
+<div class="content"><p> </p><p>The CreateRemoteObject method creates a <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>
+management server, on the remote machine specified by <i>RemoteComputerName</i>,
+by invoking <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a></span> with the class <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+of Disk Management server and the name of the remote machine, which starts the
+disk management server on the remote machine. The method negotiates for the
+interface as described in section <span><a href="e60a9e4c-6f74-4426-8a96-4da63e895023" data-linktype="relative-path">3.1.3</a></span>, and as
+illustrated in section <span><a href="6a675eac-e9f6-47c6-8500-30ff36b398fe" data-linktype="relative-path">4</a></span>. The client holds
+a reference to the <span><a href="eea588cb-c2d2-4476-997e-492d2d3f7685" data-linktype="relative-path">IDMRemoteServer</a></span>
+interface binding on the server, until the client has received an <span><a href="452a624e-91d3-4fd9-a869-01c006bac79a" data-linktype="relative-path">IVolumeClient</a></span>,
+or <span><a href="7574c440-f6f5-4140-b978-d60f54a58415" data-linktype="relative-path">IVolumeClient3</a></span>
+interface binding to the remote server. The client MAY then release the
+IDMRemoteServer interface on the server.</p><dl>
+<dd>
+<div><pre> HRESULT CreateRemoteObject(
+   [in] unsigned long cMax,
+   [in, max_is(cMax)] wchar_t* RemoteComputerName
+ );
+</pre></div>
+</dd></dl><p><b>cMax: </b>Length of <i>RemoteComputerName</i> (in <span><a href="3c91641b-e5cd-409e-a445-2e4d61ae33c6#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+characters), including the terminating null character.</p><p><b>RemoteComputerName: </b>Null-terminated Unicode
+string that specifies the name of the computer on which the server is to be
+activated. All UNC names (&#34;\\server&#34; or &#34;server&#34;) and DNS
+names (&#34;domain.com&#34;, &#34;example.microsoft.com&#34;, or
+&#34;135.5.33.19&#34;) are allowed.</p><p><b>Return Values: </b>The method MUST return 0 or a
+nonerror <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path"><span>HRESULT</span></a> on success, or
+an implementation-specific nonzero error code on failure (as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>;
+see also section <span><a href="31eea9e6-25b0-4309-8f4a-50c74fbedc9b" data-linktype="relative-path">2.2.1</a></span> for HRESULT
+values predefined by the Disk Management Remote Protocol).</p></div>

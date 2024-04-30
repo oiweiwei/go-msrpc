@@ -1,0 +1,61 @@
+<div class="content"><p> </p><p>The NetrDfsManagerGetVersion method returns the version
+number of the <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_3de8e640-501a-4b25-80a7-0ba769f3c0b9" data-linktype="relative-path">DFS server</a></span> in use on
+the server. </p><p>The NetrDfsManagerGetVersion method has the following <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a></span>
+syntax.</p><dl>
+<dd>
+<div><pre> DWORD NetrDfsManagerGetVersion();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>This method MUST return one of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The server MUST support <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_ce6af522-ba70-4ba1-a684-b98b809c72ad" data-linktype="relative-path">stand-alone DFS namespaces</a></span>
+  and <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnums</a></span> from 0
+  through 5, inclusive. The server MAY support <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_c37de1c8-4bd3-406f-ad8c-50c877666f91" data-linktype="relative-path">domain-based DFS namespaces</a></span>
+  and other opnums.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>In addition to the preceding, the server MUST support <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_2aad5e61-ffe9-406e-a192-328c5327ee72" data-linktype="relative-path">domainv1-based
+  DFS namespaces</a></span> and opnums 10 through 22, inclusive. The server MAY
+  support hosting more than one <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_6a3f0be9-b9b4-49df-9d1c-a3b89e4e9890" data-linktype="relative-path">DFS namespace</a></span> on
+  the same server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>In addition to the preceding, the server MUST support
+  hosting more than one DFS namespace on the same server and Level parameter
+  value 200 of the <span><a href="2fc235af-49c4-476d-8b9e-933c1175a1d8" data-linktype="relative-path">NetrDfsEnumEx</a></span>
+  method. It SHOULD support opnum 6.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>In addition to the preceding, the server MUST support <span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8099f7c1-2a31-4a20-81e6-824689bd9c5a" data-linktype="relative-path">domainv2-based
+  DFS namespace</a></span> and opnums 23 through 25, inclusive.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The clients MAY use the version information to determine the
+<span><a href="a9bc4403-a862-48b9-b99b-1b44a887d177#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+methods that the DFS server supports.<a id="Appendix_A_Target_37"></a><a aria-label="Product behavior note 37" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_37" data-linktype="relative-path">&lt;37&gt;</a><a id="Appendix_A_Target_38"></a><a aria-label="Product behavior note 38" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_38" data-linktype="relative-path">&lt;38&gt;</a><a id="Appendix_A_Target_39"></a><a aria-label="Product behavior note 39" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_39" data-linktype="relative-path">&lt;39&gt;</a><a id="Appendix_A_Target_40"></a><a aria-label="Product behavior note 40" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_40" data-linktype="relative-path">&lt;40&gt;</a><a id="Appendix_A_Target_41"></a><a aria-label="Product behavior note 41" href="3a466440-1ef6-4439-b4e2-be9eaddeb511#Appendix_A_41" data-linktype="relative-path">&lt;41&gt;</a></p></div>

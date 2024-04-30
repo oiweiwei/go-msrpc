@@ -1,0 +1,133 @@
+<div class="content"><p> </p><p>The R_DnssrvUpdateRecord method is used to add a new DNS
+record or modify/delete an existing DNS record at the server. This operation
+SHOULD<a id="Appendix_A_Target_277"></a><a aria-label="Product behavior note 277" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_277" data-linktype="relative-path">&lt;277&gt;</a> be supported.</p><dl>
+<dd>
+<div><pre> LONG R_DnssrvUpdateRecord(
+   [in]                       handle_t                 hBindingHandle,
+   [in, unique, string]       LPCWSTR                  pwszServerName,
+   [in, unique, string]       LPCSTR                   pszZone,
+   [in, string]               LPCSTR                   pszNodeName,
+   [in, unique]               PDNS_RPC_RECORD          pAddRecord,
+   [in, unique]               PDNS_RPC_RECORD          pDeleteRecord
+ );
+</pre></div>
+</dd></dl><p><b>hBindingHandle: </b>An RPC binding handle to the
+server. Details concerning binding handles are specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>
+section 2.3.</p><p><b>pwszServerName: </b>The client SHOULD pass a
+pointer to the FQDN of the target server as a null-terminated <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_69864bcc-33be-41c9-9486-e18618ee3dd0" data-linktype="relative-path">UTF-16LE</a></span>
+character string. The server MUST ignore this value.</p><p><b>pszZone: </b>A pointer to a null-terminated
+character string that contains the name of the zone to be queried. For
+operations specific to a particular zone, this field MUST contain the name of
+the zone in UTF-8 format. For all other operations, this field MUST be NULL.</p><p><b>pszNodeName: </b>A pointer to a null-terminated
+character string that contains the node name at which to modify a record. A
+string that is not dot-terminated indicates a name relative to the zone root. A
+value of &#34;@&#34; indicates the zone root itself. A dot-terminated string
+indicates the name is an FQDN.</p><p><b>pAddRecord: </b>A pointer to a structure of type
+DNS_RPC_RECORD (section <span><a href="ac793981-1c60-43b8-be59-cdbb5c4ecb8a" data-linktype="relative-path">2.2.2.2.5</a></span>) that
+contains information based on the operation being performed as specified below.</p><p><b>pDeleteRecord: </b>A pointer to a structure of
+type DNS_RPC_RECORD (section 2.2.2.2.5) that contains information based on the
+operation being performed as specified below.</p><dl>
+<dd>
+<p>To add a record:</p>
+</dd></dl><ul><li><p><span><span>  </span></span>pAddRecord:
+The DNS RR data of the new record.</p>
+</li><li><p><span><span>  </span></span>pDeleteRecord:
+MUST be set to NULL.</p>
+</li></ul><dl>
+<dd>
+<p>To delete a record: </p>
+</dd></dl><ul><li><p><span><span>  </span></span>pAddRecord:
+MUST be set to NULL.</p>
+</li><li><p><span><span>  </span></span>pDeleteRecord:
+Individual DNS RR data of the record to be deleted.</p>
+</li></ul><dl>
+<dd>
+<p>To replace a record:</p>
+</dd></dl><ul><li><p><span><span>  </span></span>pAddRecord:
+New record data.</p>
+</li><li><p><span><span>  </span></span>pDeleteRecord:
+Old record data.</p>
+</li></ul><dl>
+<dd>
+<p>To add an empty node:</p>
+</dd></dl><ul><li><p><span><span>  </span></span>pAddRecord:
+MUST be set to NULL.</p>
+</li><li><p><span><span>  </span></span>pDeleteRecord:
+MUST be set to NULL.</p>
+</li></ul><p><b>Return Values: </b>The method MUST return
+ERROR_SUCCESS (0x00000000) on success or a non-zero Win32 error code if an
+error occurred. See <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>
+or section <span><a href="aa521c99-3e44-4b75-9faa-c0c1ebcca5b6" data-linktype="relative-path">2.2.1.1.5</a></span>. All
+error values MUST be treated the same.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>If the Global Server State (section <span><a href="bdac5142-4baf-4b62-bcce-d49eafc9c3e6" data-linktype="relative-path">3.1</a></span>) is not
+&#34;Running&#34;, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Check that the input parameters conform to the syntax
+requirements above, and if not return a failure.</p>
+</li><li><p><span><span> 
+</span></span>The server SHOULD support <b>pAddRecord</b> and/or <b>pDeleteRecord</b>
+for the explicitly defined types in section <span><a href="39b03b89-2264-4063-8198-d62f62a6441a" data-linktype="relative-path">2.2.2.1.1</a></span>.<a id="Appendix_A_Target_278"></a><a aria-label="Product behavior note 278" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_278" data-linktype="relative-path">&lt;278&gt;</a> If any of the passed record
+types are not supported by the server, return a failure.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>pAddRecord</b> is for an explicitly defined resource
+record type DNS_TYPE_CNAME (section 2.2.2.1.1), then delete any existing
+DNS_TYPE_CNAME record for the node specified in <b>pszNodeName</b>, before
+adding the record.</p>
+</li><li><p><span><span> 
+</span></span>If pszZone is not NULL, search the DNS Zone Table for a zone with
+a name matching the value of pszZone. If a matching zone cannot be found return
+a failure.</p>
+</li><li><p><span><span> 
+</span></span>Validate, as specified in section <span><a href="7ba0801d-74f1-499e-81a3-00231ef31952" data-linktype="relative-path">3.1.6.1</a></span>, that the
+client has permissions to perform the attempted operation. The DNS server MUST
+perform the Phase 2 authorization test using the Zone Access Control List for
+the zone specified by pszZone. Read privilege MUST be tested for this
+operation. If the client does not have permission to perform the operation, the
+server MUST return a failure.</p>
+</li><li><p><span><span> 
+</span></span>Locate the node indicated by <b>pszNodeName</b> in the zone
+indicated by pszZoneName. If no such node is found then return ERROR_SUCCESS.</p>
+</li><li><p><span><span> 
+</span></span>If both <b>pAddRecord</b> and pDeleteRecord are NULL, then the
+server MUST add an empty node to the database if the node does not already
+exist. If the node already exists, the server MUST return ERROR_SUCCESS. </p>
+</li><li><p><span><span> 
+</span></span>If pszZoneName is NULL or points to &#34;..Cache&#34; then the
+operation SHOULD be performed on the DNS server&#39;s cache and MAY be performed on
+the DNS server&#39;s set of root hint records.<a id="Appendix_A_Target_279"></a><a aria-label="Product behavior note 279" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_279" data-linktype="relative-path">&lt;279&gt;</a> If
+pszZoneName points to &#34;..RootHints&#34; then the operation MUST be
+performed on the DNS server&#39;s set of root hint records.</p>
+</li><li><p><span><span> 
+</span></span>If pszZoneName points to a primary zone, attempt to perform
+addition/deletion/update of the record. If the operation is successful,
+increment the zone serial number using serial number arithmetic <span><a href="https://go.microsoft.com/fwlink/?LinkId=184551" data-linktype="external">[RFC1982]</a></span>.
+If the last record at the node is being deleted and the zone is stored in the
+directory server, the DNS server MUST set the node&#39;s dnsTombstoned attribute to
+TRUE and the node&#39;s dnsRecord (section <span><a href="6912b338-5472-4f59-b912-0edb536b6ed8" data-linktype="relative-path">2.3.2.2</a></span>) attribute
+to contain a DNS_RPC_RECORD_TS record (section <span><a href="def7736a-dd09-4b4a-b8d6-6a702a7ecde0" data-linktype="relative-path">2.2.2.2.4.23</a></span>) with
+an EntombedTime value equal to the current time expressed as the number seconds
+since 12:00 A.M. January 1, 1601 <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">Coordinated Universal Time
+(UTC)</a></span>. If the zone is directory server-integrated and the update
+causes new or modified records to be committed to the directory, the new zone
+serial number MUST also be written to the <b>Serial</b> field of the <b>dnsRecord</b>
+attribute, as specified in2.3.2.2. If this operation deletes the last record
+from the node and the zone is directory server-integrated, the DNS server MUST
+set the node&#39;s DNS Node Tombstone State (section <span><a href="e72286df-3e4c-4535-9a0c-e9cc944248c2" data-linktype="relative-path">3.1.1</a></span>) to TRUE by
+setting the value of the <b>dnsTombstoned</b> attribute to TRUE and writing a
+DNS_RPC_RECORD_TS (section 2.2.2.2.4.23) in the <b>dnsRecord</b> attribute.</p>
+</li><li><p><span><span> 
+</span></span>If a node indicated by <b>pszNodeName</b> already exists and has
+at least one record for which <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_0288f9f1-b244-4551-8638-a2280001b531" data-linktype="relative-path">aging</a></span> is disabled,
+then subsequent records added on the node will also have aging disabled.</p>
+</li><li><p><span><span> 
+</span></span>If both <b>pAddRecord</b> and <b>pDeleteRecord</b> are not NULL
+and a resource record is being replaced, if the <b>dwFlags</b> field is not set
+to DNS_RPC_FLAG_RECORD_CREATE_PTR, the PTR record for the A/AAAA record being
+replaced is deleted. If the <b>dwFlags</b> field is set to
+DNS_RPC_FLAG_SUPPRESS_RECORD_UPDATE_PTR, the PTR record of the A/AAAA record
+being replaced is not deleted.</p>
+</li><li><p><span><span> 
+</span></span>Return success or a failure to indicate the result of the
+attempted operation.</p>
+</li></ul></div>

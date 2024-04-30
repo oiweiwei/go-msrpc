@@ -1,0 +1,36 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/a3a192c8-0070-4ae3-a537-dfe0a144426a" data-linktype="external">msdn link</a></p><p>The <b>NetrLogonSamLogon</b> method<a id="Appendix_A_Target_213"></a><a aria-label="Product behavior note 213" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_213" data-linktype="relative-path">&lt;213&gt;</a> is a predecessor to the <a href="d17f1077-de4b-4fcd-8867-39068cb789f5" data-linktype="relative-path">NetrLogonSamLogonWithFlags</a>
+method (section 3.5.4.5.2). All parameters of this method have the same
+meanings as the identically named parameters of the NetrLogonSamLogonWithFlags
+method. </p><dl>
+<dd>
+<div><pre> NTSTATUS NetrLogonSamLogon(
+   [in, unique, string] LOGONSRV_HANDLE LogonServer,
+   [in, string, unique] wchar_t* ComputerName,
+   [in, unique] PNETLOGON_AUTHENTICATOR Authenticator,
+   [in, out, unique] PNETLOGON_AUTHENTICATOR ReturnAuthenticator,
+   [in] NETLOGON_LOGON_INFO_CLASS LogonLevel,
+   [in, switch_is(LogonLevel)] PNETLOGON_LEVEL LogonInformation,
+   [in] NETLOGON_VALIDATION_INFO_CLASS ValidationLevel,
+   [out, switch_is(ValidationLevel)] 
+     PNETLOGON_VALIDATION ValidationInformation,
+   [out] UCHAR * Authoritative
+ );
+</pre></div>
+</dd></dl><p>Message processing<a id="Appendix_A_Target_214"></a><a aria-label="Product behavior note 214" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_214" data-linktype="relative-path">&lt;214&gt;</a> is
+identical to <a href="17257351-3384-4de5-bfe0-453926ef67cd" data-linktype="relative-path">NetrLogonSamLogonEx</a>,
+as specified in section 3.5.4.5.1, except for the following:</p><ul><li><p><span><span> 
+</span></span>The method uses Netlogon <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_e72a2c02-84a2-4ce3-b66f-86f725642dc3" data-linktype="relative-path">authenticators</a>, so instead
+of checking for Secure RPC, the server MUST confirm the validity of the <i>Authenticator</i>
+(section <a href="da7acaa3-030b-481e-979b-f58f89389806" data-linktype="relative-path">3.1.4.5</a>) that
+it received using the ComputerName for the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure channel</a> to find the
+corresponding record in the ClientSessionInfo table. If the <i>Authenticator</i>
+parameter is valid, the server MUST compute the <i>ReturnAuthenticator</i>
+parameter returned (section 3.1.4.5). Otherwise, the server MUST return
+STATUS_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>The ExtraFlags parameter is not processed. </p>
+</li></ul><p>This method SHOULD only be called by a machine that has established
+a secure channel with the server.</p><p>On receiving this call, the server MUST perform the
+following validation step:</p><ul><li><p><span><span> 
+</span></span>Apply Common Error Processing Rule A, specified in section <a href="2d776bfc-e81f-4c8f-9da8-4c2920f65413" data-linktype="relative-path">3</a>.</p>
+</li></ul></div>

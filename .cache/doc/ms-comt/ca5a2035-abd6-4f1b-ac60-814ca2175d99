@@ -1,0 +1,69 @@
+<div class="content"><p>The TrackingInfoObject MUST be marshaled using the
+OBJREF_CUSTOM format (as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section <a href="../ms-dcom/88fdb261-7c9a-41ea-bfac-31583bdc65e6" data-linktype="relative-path">2.2.18.6</a>).
+The <b>CLSID</b> field of the OBJREF_CUSTOM instance MUST be set to
+{ECABAFCE-7f19-11D2-978E-0000F8757E2A} (CLSID_TrkInfoObjUnmarshal). The format
+of the OBJREF_CUSTOM.pObjectData buffer for CLSID_TrkInfoObjUnmarshal is as
+follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>MaxVersion</p>
+  </td>
+  <td colspan="16">
+  <p>MinVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PropCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Properties (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>MaxVersion (2 bytes): </b>The major version of
+this marshaled format; this MUST be set to 0x0001.</p><p><b>MinVersion (2 bytes): </b>The minor version of
+this marshaled format; this MUST be set to 0x0001.</p><p><b>PropCount (4 bytes): </b>The (unsigned) number of
+elements in the <b>Properties</b> field.</p><p><b>Properties (variable): </b>An array of <a href="7223aba8-4235-48a1-ba31-e9dbff9a1be3" data-linktype="relative-path">TrackingInfoProperty (section
+2.2.5.3)</a> structures.</p></div>

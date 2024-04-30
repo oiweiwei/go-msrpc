@@ -1,0 +1,16 @@
+<div class="content"><p>The GetStatusChangeA_Call structure provides the state
+change in the reader as specified in section <a href="e5ea2e6c-9b12-4fd6-b45d-800213dd96a1" data-linktype="relative-path">3.1.4.23</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _GetStatusChangeA_Call {
+   REDIR_SCARDCONTEXT Context;
+   unsigned long dwTimeOut;
+   [range(0,11)] unsigned long cReaders;
+   [size_is(cReaders)] ReaderStateA* rgReaderStates;
+ } GetStatusChangeA_Call;
+</pre></div>
+</dd></dl><p><b>Context:</b>  A valid context, as
+specified in section <a href="060abee1-e520-4149-9ef7-ce79eb500a59" data-linktype="relative-path">2.2.1.1</a>.</p><p><b>dwTimeOut:</b>  The maximum amount of
+time, in milliseconds, to wait for an action. If this member is set to
+0xFFFFFFFF (INFINITE), the caller MUST wait until an action occurs.</p><p><b>cReaders:</b>  The number of
+ReaderStates to track.</p><p><b>rgReaderStates:</b>  <a href="d361b24c-611e-46c5-9ac6-93cb6490a472#gt_5cddf14c-b925-4494-9b55-d2c8259f9ad0" data-linktype="relative-path">Smart card readers</a> that the
+caller is tracking.</p></div>

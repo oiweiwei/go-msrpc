@@ -1,0 +1,218 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/de73d6f9-bfdf-47ef-b008-b2da17c1a073" data-linktype="external">msdn link</a></p><p>The <b>Property Value</b> is a custom-marshaled contiguous
+buffer with fields that are specified as follows. This buffer MUST contain at
+least one element in the PropertyValues array.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CLUSPROP_SYNTAX_NAME</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>size</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>buffer
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>padding
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PropertyValues
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>CLUSPROP_SYNTAX_ENDMARK</p>
+  </td>
+ </tr>
+</tbody></table><p><b>CLUSPROP_SYNTAX_NAME (4 bytes): </b>An unsigned
+long. The property name structure MUST begin with the <b>CLUSTER_PROPERTY_SYNTAX</b>
+(section <a href="7ea3a0e0-d3b9-43e8-85d8-263fff3499da" data-linktype="relative-path">2.2.2.3</a>) value
+CLUSPROP_SYNTAX_NAME (0x00040003).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CLUSPROP_SYNTAX_NAME</p>
+  </td>
+  <td>
+  <p>0x00040003</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>size (4 bytes): </b>An unsigned long. This field
+MUST be an unsigned long that specifies the size of the buffer that contains
+the property name. Padding MUST be included so that the next byte in contiguous
+memory after the buffer is aligned to 4 bytes; however, the padding is not
+included in the size specified by this parameter.</p><p><b>buffer (variable): </b>A buffer of 16-bit <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> characters. This
+field MUST be a buffer that contains the property name as a null-terminated <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a>. Following
+the property name buffer MUST be 0 or more bytes of padding. The contents of
+the padding bytes MUST be ignored.</p><p><b>padding (variable): </b>This field MUST be 0 or 2
+bytes of padding such that the size of the buffer field, plus the size of this
+field, is divisible by 4. The contents of the padding bytes MUST be ignored.</p><p><b>PropertyValues (variable): </b>One to three <b>PropertyValues</b>
+structures, as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Syntax</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Size</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Buffer
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Padding
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Syntax (4 bytes): </b>An
+unsigned 32-bit integer. This field MUST be one of the <b>CLUSTER_PROPERTY_SYNTAX</b>
+values and MUST NOT contain CLUSPROP_SYNTAX_NAME or CLUSPROP_SYNTAX_ENDMARK.</p>
+</dd>
+<dd>
+<p><b>Size (4 bytes): </b>An
+unsigned 32-bit integer. This field MUST be an unsigned long that specifies the
+size of the buffer that contains the property. Padding MUST be included so that
+the next byte in contiguous memory after the buffer is aligned to 4 bytes;
+however, the padding is not included in the size specified by this parameter.</p>
+</dd>
+<dd>
+<p><b>Buffer (variable): </b>A
+buffer of 8-bit integers. This field MUST be a buffer that contains the value
+of the property as specified by the Syntax member of this structure. Following
+the property buffer there MUST be 0 or more bytes of padding. The contents of
+the padding bytes MUST be ignored.</p>
+</dd>
+<dd>
+<p><b>Padding (variable): </b>This
+field MUST be 0 to 3 bytes of padding such that the size of the buffer field,
+plus the size of this field, is divisible by 4. The contents of the padding
+bytes MUST be ignored.</p>
+</dd></dl><p><b>CLUSPROP_SYNTAX_ENDMARK (4 bytes): </b>An unsigned
+32-bit integer. The last <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">value</a>
+in the value list MUST be followed by a 4-byte <b>CLUSPROP_SYNTAX_ENDMARK</b>,
+as specified in section 2.2.2.3. Any other syntax value, as specified in
+section 2.2.2.3, that follows a value MUST mark the beginning of another value
+in the value list.</p></div>

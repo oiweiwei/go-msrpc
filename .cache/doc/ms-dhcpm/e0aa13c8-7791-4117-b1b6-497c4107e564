@@ -1,0 +1,135 @@
+<div class="content"><p> </p><p>The <b>R_DhcpAddFilterV4</b> method is used to add a
+link-layer address/pattern to allow list or deny list. The DHCPv4 server allows
+the DHCPv4 clients whose link-layer address is in the allow list to be given
+leases and blocks DHCPv4 clients whose link-layer address is in the deny list
+provided the respective lists are enabled using the <span><a href="36a535d6-7b8a-4bd8-8b02-95af7b20f790" data-linktype="relative-path">R_DhcpSetFilterV4 (section 3.2.4.85)</a></span>
+method. This method is also used to exempt one or more hardware types from
+filtering. However, hardware type 1 (Ethernet 10 Mb) cannot be exempted.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpAddFilterV4(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_FILTER_ADD_INFO* AddFilterInfo,
+   [in] BOOL ForceFlag
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>AddFilterInfo: </b>This is a pointer to a <span><a href="3cfacbec-b3ca-43a0-9d99-e85b44cc63f8" data-linktype="relative-path">DHCP_FILTER_ADD_INFO (section 2.2.1.2.90)</a></span>
+that contains link-layer address/pattern , hardware type information, or both
+to be added to the database.</p><p><b>ForceFlag: </b>This is of type <span><a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">BOOL</a></span>
+that defines the behavior of this method. If the flag is set to TRUE and the
+filter exists, then it will be overwritten, else if the flag is FALSE and the
+filter already exists, then it will remain the same and will return error
+ERROR_DHCP_LINKLAYER_ADDDRESS_EXISTS.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server
+  database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E7E</p>
+  <p>ERROR_DHCP_LINKLAYER_ADDRESS_EXISTS</p>
+  </td>
+  <td>
+  <p>Address or Address pattern is already contained in one
+  of the lists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>Invalid input - address/pattern</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E85</p>
+  <p>ERROR_DHCP_HARDWARE_ADDRESS_TYPE_ALREADY_EXEMPT</p>
+  </td>
+  <td>
+  <p>Hardware type already exempted from filtering.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 82.</p><p>When processing this call the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate whether this method is authorized for read/write access
+per section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If <i>AddFilterInfo</i> is NULL, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>MatchHWType</b> field of <i>AddFilterInfo</i> is FALSE,
+return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>An exemption for hardware types other than hardware type 1
+(Ethernet 10 Mb) can be added if the <b>AddrPatt</b> member of the <i>AddFilterInfo</i>
+parameter contains an <b>HWType</b> value other than 1 and the value of the <b>IsWildCard</b>
+member of <i>AddFilterInfo</i> is TRUE, the hardware type specified by <b>ListType</b>
+is allowed, and the value of the <b>Length</b> member is 0. For any other value
+of <b>IsWildCard</b>, <b>ListType</b>, or <b>Length</b>, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>AddrPatt</b> member specified in <i>AddFilterInfo</i>
+contains an <b>HWType</b> value of 1, the value of the <b>IsWildCard</b> member
+of <i>AddFilterInfo</i> is FALSE, and <b>Length</b> value is not equal to 6,
+return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>AddrPatt</b> member specified in <i>AddFilterInfo</i>
+contains an <b>HWType</b> value of 1, the value of the <b>IsWildCard</b> member
+of <i>AddFilterInfo</i> is TRUE, and <b>Length</b> value is greater than 5 or
+less than 1, return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the server ADM element <b>DHCPv4FiltersList</b>
+and if there is any <b>DHCPv4Filter</b> entry in which the <b>AddrPatt.Pattern</b>
+field matches the <b>AddrPatt.Pattern</b> field of <i>AddFilterInfo</i> input
+parameter, the <b>AddrPatt.HwType</b> field matches the <b>AddrPatt.HwType</b>
+field of <i>AddFilterInfo</i> input parameter, and the <b>ForceFlag</b> is set
+to FALSE, then return ERROR_DHCP_LINKLAYER_ADDRESS_EXISTS. Otherwise, if the <b>ForceFlag</b>
+is set to TRUE, modify the fields of the <b>DHCPv4Filter</b> with information
+in <i>AddFilterInfo</i> input parameter. A record can only be added to the deny
+list or the allow list. The same record cannot exist in both the lists.</p>
+<p>If no entry exists in which
+the <b>AddrPatt.Pattern</b> field matches the <b>AddrPatt.Pattern</b> field of <i>AddFilterInfo</i>
+input parameter and the <b>AddrPatt.HwType</b> field matches <b>AddrPatt.HwType</b>
+field of <i>AddFilterInfo</i> input parameter, then create a <b>DHCPv4Filter</b>
+object and insert it into the <b>DHCPv4FiltersList</b>. Set the fields of <b>DHCPv4Filter</b>
+objects to values in <i>AddFilterInfo</i> input parameter.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>AddrPatt.HwType</b> field of the <i>AddFilterInfo</i>
+input parameter is not equal to 1 and there is a <b>DHCPv4Filter</b> entry in
+which the <b>AddrPatt.HwType</b> field matches the <b>AddrPatt.HwType</b> field
+of <i>AddFilterInfo</i> input parameter and the <b>ForceFlag</b> parameter is
+FALSE, return ERROR_DHCP_HARDWARE_ADDRESS_TYPE_ALREADY_EXEMPT. Otherwise, if <b>ForceFlag</b>
+is set to TRUE, return ERROR_SUCCESS. If the <b>DHCPv4Filter</b> entry is not
+found, create a <b>DHCPv4Filter</b> object and insert it into the <b>DHCPv4FiltersList</b>.
+Set the fields of <b>DHCPv4Filter</b> objects to values in <i>AddFilterInfo</i>
+input parameter.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

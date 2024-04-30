@@ -1,0 +1,35 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9a5d2c35-e84b-4e59-b7b0-96c6fa0fc8d7" data-linktype="external">msdn link</a></p><p>The SamrAddMemberToAlias method adds a member to an alias.</p><dl>
+<dd>
+<div><pre> long SamrAddMemberToAlias(
+   [in] SAMPR_HANDLE AliasHandle,
+   [in] PRPC_SID MemberId
+ );
+</pre></div>
+</dd></dl><p><b>AliasHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing an <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_0387e636-5654-4910-9519-1f8326cf5ec0" data-linktype="relative-path">alias object</a>.</p><p><b>MemberId: </b>The <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> of an <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_8d10bd9d-392e-431b-8218-742bdac19815" data-linktype="relative-path">account</a> to add to the
+alias.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>The server MUST
+return an error if <i>AliasHandle.HandleType</i> is not equal to
+&#34;Alias&#34;.</p>
+</li><li><p><span>    </span><i>AliasHandle.GrantedAccess</i>
+MUST have the required access specified in section <a href="87bacbd0-7b8b-429f-abc6-4b3d895d4e90" data-linktype="relative-path">3.1.2.2</a> Otherwise, the
+server MUST return STATUS_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>All database
+operations MUST occur in a single transaction.</p>
+</li><li><p><span>    </span>Let A be the
+alias referenced by <i>AliasHandle.Object</i>.</p>
+</li><li><p><span>    </span>If the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_9066e9dc-8275-4452-9073-daab5fd427c5" data-linktype="relative-path">domain prefix</a> of MemberId
+is the same domain prefix as the account domain and there is no object whose <b>objectSid</b>
+attribute is MemberId, the server MUST return an error.</p>
+</li><li><p><span>    </span>If A&#39;s member
+attribute already has a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_4d5e1f08-aa00-4dde-9411-7dd6e09ed85a" data-linktype="relative-path">dsname</a>
+value that references the object whose <b>objectSid</b> is MemberId, the server
+MUST return an error.</p>
+</li><li><p><span>    </span>A&#39;s member
+attribute MUST be updated to add a dsname value that references the object with
+the <b>objectSid</b> value MemberId.</p>
+</li></ol></div>

@@ -1,0 +1,71 @@
+<div class="content"><p>The LINECALLHUBTRACKINGINFO packet contains information that
+reports the type of tracking available to a call hub. This packet is exposed
+only to applications that negotiate a TAPI version of 2.2 or higher. The <a href="76dfe273-9267-4e7c-9fe6-f561e1c1ba39" data-linktype="relative-path">GetCallHubtracking</a> and <a href="5d67c9dd-0919-4c85-9fcd-b2c24198ec75" data-linktype="relative-path">SetCallHubTracking</a> packets
+use this packet. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAvailableTracking</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwCurrentTracking</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes. </p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, needed.</p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, used.</p><p><b>dwAvailableTracking (4 bytes): </b>An unsigned 32-bit
+integer. The available tracking, as represented by one of the <a href="962051a8-7c9b-4d00-a301-cd7238ffaef2" data-linktype="relative-path">LINECALLHUBTRACKING_Constants</a>.
+</p><p><b>dwCurrentTracking (4 bytes): </b>An unsigned
+32-bit integer. The current tracking, as represented by a
+LINECALLHUBTRACKING_Constants.</p></div>

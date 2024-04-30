@@ -1,0 +1,116 @@
+<div class="content"><p> </p><p>The IWbemServices::CreateInstanceEnum method provides an
+instance enumeration. When this method is invoked, the server MUST return all
+instances for the specific class in the current namespace.</p><dl>
+<dd>
+<div><pre> HRESULT CreateInstanceEnum(
+   [in] const BSTR strSuperClass,
+   [in] long lFlags,
+   [in] IWbemContext* pCtx,
+   [out] IEnumWbemClassObject** ppEnum
+ );
+</pre></div>
+</dd></dl><p><b>strSuperClass: </b>MUST contain the name of the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_633b12d4-e2c4-442f-95ff-4b2b5d708ed5" data-linktype="relative-path">CIM class</a></span>
+for which the client wants instances. This parameter MUST NOT be NULL.</p><p><b>lFlags: </b>Flags that affect the behavior of the
+CreateInstanceEnum method. Flag behavior MUST be interpreted as specified in
+the following table.</p><dl>
+<dd>
+<p>The server MUST allow any combination of zero or
+more flags from the following table and MUST comply with all the restrictions
+in a flag description. Any other DWORD value that does not match a flag
+condition MUST be treated as not valid.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WBEM_FLAG_USE_AMENDED_QUALIFIERS</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server SHOULD return no <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f82a4363-0099-479c-b42c-a8d398a90443" data-linktype="relative-path">CIM
+  localizable information</a></span>.</p>
+  <p>If this bit is set, the server SHOULD return CIM
+  localizable information for the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_c1fdd6c7-06cb-4787-8735-4d19a68dd802" data-linktype="relative-path">CIM object</a></span>, as
+  specified in section <span><a href="2bbdf995-93d8-4902-a39d-38f2a9790b85" data-linktype="relative-path">2.2.6</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_RETURN_IMMEDIATELY</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server MUST make the
+  method call <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_4dccb43d-a5c2-450f-9c9c-cadb68ecbd3e" data-linktype="relative-path">synchronously</a></span>.</p>
+  <p>If this bit is set, the server MUST make the method
+  call <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_51f3288a-1aea-49f6-96a1-91f368e8b49b" data-linktype="relative-path">semisynchronously</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_DIRECT_READ</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server MUST consider the
+  entire class hierarchy when it returns the result.</p>
+  <p>If this bit is set, the server MUST disregard any
+  derived class when it searches the result.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_SHALLOW</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>If this bit is set, the server MUST return instances
+  of the requested class only and MUST exclude instances of classes that are
+  derived from the requested class.</p>
+  <p>If this bit is not set, the server MUST return all
+  instances of the requested class as well as instances of classes that are
+  derived from the requested class.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WBEM_FLAG_FORWARD_ONLY</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>If this bit is not set, the server MUST return an
+  enumerator that has reset capability.</p>
+  <p>If this bit is set, the server MUST return an
+  enumerator that does not have reset capability, as specified in section <span><a href="56022f1e-3761-4c17-8d55-8e62dc334b86" data-linktype="relative-path">3.1.4.4</a></span>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pCtx: </b>MUST be a pointer to an <span><a href="18c8f1a1-652f-43b7-9186-6098bc303a8d" data-linktype="relative-path">IWbemContext</a></span>
+interface, which contains additional information that the client wants to pass
+to the server. If <i>pCtx</i> is NULL, the parameter MUST be ignored.</p><p><b>ppEnum: </b>MUST receive the pointer to the
+enumerator that is used to enumerate through the returned class instances, which
+implements the IEnumWbemClassObject interface. This parameter MUST NOT be NULL.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. The server MUST
+return the following value (specified in section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method.</p><dl>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that makes the call MUST have WBEM_ENABLE and WBEM_REMOTE_ENABLE accesses to
+the namespace; otherwise, WBEM_E_ACCESS_DENIED MUST be returned.</p><p>If <i>strSuperClass</i> is dynamic, the server MUST obtain <b>SupportsEnumerate</b>
+for the given provider in the <b>ProviderTable</b>. If <b>SupportsEnumerate</b>
+is FALSE, the server MUST return WBEM_E_PROVIDER_NOT_CAPABLE.</p><p>In response to the IWbemServices::CreateInstanceEnum method,
+the server MUST evaluate the <i>strSuperClass</i> parameter (as specified in
+this section) and MUST return all instances for the specific class in the
+current namespace. The method MUST fail if the following applies: if <i>strSuperClass</i>
+does not exist; if the method parameters or their combinations are not valid,
+as specified in this section; or if the server is unable to execute the method.</p><p>The server SHOULD enforce a maximum length for the <i>strSuperClass</i>
+parameter, and return WBEM_E_QUOTA_VIOLATION if the limit is exceeded.<a id="Appendix_A_Target_46"></a><a aria-label="Product behavior note 46" href="27182640-aa3f-43b6-941f-a77d25f798e8#Appendix_A_46" data-linktype="relative-path">&lt;46&gt;</a></p><p>The successful synchronous method execution MUST fill the <i>ppEnum</i>
+parameter with an IEnumWbemClassObject interface pointer after all instances
+are collected and MUST return WBEM_S_NO_ERROR.</p><p>The semisynchronous method execution MUST follow the rules
+as specified in section <span><a href="c40421d8-b195-4268-884f-a4e74ea58dce" data-linktype="relative-path">3.1.1.1.2</a></span>.</p><p>The failed method execution MUST set the value that is
+referenced by the output parameters to NULL and MUST return an error in the
+format that is specified in section 2.2.11.</p></div>

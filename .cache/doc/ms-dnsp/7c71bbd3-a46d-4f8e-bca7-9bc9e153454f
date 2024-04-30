@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_FORWARDERS_W2K</b> structure specifies
+the set of DNS servers this DNS server will forward unresolved queries to.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcForwardersW2K {
+   DWORD fRecurseAfterForwarding;
+   DWORD dwForwardTimeout;
+   PIP4_ARRAY aipForwarders;
+ } DNS_RPC_FORWARDERS_W2K,
+  *PDNS_RPC_FORWARDERS_W2K;
+</pre></div>
+</dd></dl><p><b>fRecurseAfterForwarding:</b> A value of
+0x00000001 indicates that the DNS server is configured to use normal recursion
+for name resolution if forwarders are not configured or are unreachable; a
+value of 0x00000000 indicates it is not.</p><p><b>dwForwardTimeout:</b> The time-interval, in
+seconds, for which the DNS server waits for a response from each server in the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_025cfacf-ebc5-4659-971a-ee2ab5903575" data-linktype="relative-path">forwarders</a></span>
+list. No restrictions are applied to the range for the <b>dwForwardTimeout</b>
+member when modifying its value through this structure. If <b>dwForwardTimeout</b>
+is set to zero, then the server SHOULD<a id="Appendix_A_Target_45"></a><a aria-label="Product behavior note 45" href="4a9a3ba3-10eb-430e-b157-1fed0aaf85a5#Appendix_A_45" data-linktype="relative-path">&lt;45&gt;</a> reset the
+forward timeout to the default value, 3 minutes (180 seconds).</p><p><b>aipForwarders:</b> The list of IP addresses
+that will be used as forwarders by the DNS server.</p></div>

@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>EventLog Remoting Protocol APIs use the RPC_UNICODE_STRING
+structure to specify a <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span> string
+parameter.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned short Length;
+   unsigned short MaximumLength;
+   [size_is(MaximumLength/2), length_is(Length / 2)] 
+     WCHAR* Buffer;
+ } RPC_UNICODE_STRING,
+  *PRPC_UNICODE_STRING;
+</pre></div>
+</dd></dl><p><b>Length:</b>  The length, in bytes, of
+the string pointed to by the <b>Buffer</b> member, not including the
+terminating null character, if any. The length MUST be a multiple of 2. The
+length SHOULD equal the entire size of the <b>Buffer</b>, in which case there
+is no terminating null character. Any method that accesses this structure MUST
+use the <b>Length</b> that is specified, instead of relying on the presence or
+absence of a null character.</p><p><b>MaximumLength:</b>  The maximum size, in
+bytes, of the string pointed to by <b>Buffer</b>. The size MUST be a multiple
+of 2. If not, the size MUST be decremented by 1 prior to use. This value MUST
+not be less than <b>Length</b>.</p><p><b>Buffer:</b>  A pointer to a string
+buffer. If <b>MaximumLength</b> is greater than zero, the buffer MUST contain a
+non-null value.</p></div>

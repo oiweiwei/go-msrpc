@@ -1,0 +1,530 @@
+<div class="content"><p> </p><p>A <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> calls
+rpc_ACReceiveMessageEx to peek or receive a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span> from a
+message <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT rpc_ACReceiveMessageEx(
+   [in] handle_t hBind,
+   [in] DWORD hQMContext,
+   [in, out] struct CACTransferBufferV2* ptb
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b>MUST be set to an <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+binding handle as described in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>hQMContext: </b>A queue context value obtained
+from the pdwQMContext parameter of <span><a href="de086803-3f83-44ec-9bd3-417216c171c8" data-linktype="relative-path">rpc_QMOpenQueueInternal</a></span>.
+The queue MUST have been opened with MQ_PEEK_ACCESS or MQ_RECEIVE_ACCESS as the
+dwDesiredAccess parameter when rpc_QMOpenQueueInternal was called. Prior to
+this method being invoked, the queue MUST NOT have been deleted, and the queue
+handle for the open queue MUST NOT have been closed.</p><p><b>ptb: </b>MUST NOT be NULL. The <i>ptb</i>
+parameter points to a <span><a href="4debed0c-8ae5-4629-86d5-a0b1f273afb3" data-linktype="relative-path">CACTransferBufferV2 (section 2.2.3.3)</a></span>
+structure. Constraints for the member fields are defined following. In the
+sections following, &#34;ptb.old&#34; is used as shorthand to refer to the <b>CACTransferBufferOld</b>
+member of the <b>CACTransferBufferV2</b> structure.</p><dl>
+<dd>
+<p>ptb.old.uTransferType MUST be CACTB_RECEIVE
+(0x00000001).</p>
+</dd>
+<dd>
+<p>ptb.old.Receive.Action MUST contain one of the
+following values: 0x00000000 (MQ_ACTION_RECEIVE), 0x80000000
+(MQ_ACTION_PEEK_CURRENT) or 0x80000001 (MQ_ACTION_PEEK_NEXT).</p>
+</dd>
+<dd>
+<p>On input, ptb.old.Receive.Cursor can be 0x00000000,
+in which case no <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a></span> is associated
+with the receive operation. Otherwise, ptb.old.Receive.Cursor MUST contain a <b>Cursor
+Handle</b> obtained from the pcc.hCursor parameter of <span><a href="e8d526c6-a119-4d27-8fac-bf59bab72f30" data-linktype="relative-path">rpc_ACCreateCursorEx</a></span>.
+The cursor MUST have been created using the queue handle associated with the
+queue context value provided for the <i>hQMContext</i> parameter, and the cursor
+MUST NOT have been closed prior to this call. On output, the value of
+ptb.old.Receive.Cursor MUST be the same as it was on input.</p>
+</dd>
+<dd>
+<p>ptb.old.Receive.ulResponseFormatNameLen is used for
+RPC marshaling of the ppResponseFormatName buffer. On input, the client MUST
+set this value to the minimum of pulResponseFormatNameLenProp and 1024 bytes.
+If ptb.old.Receive.ppResponseFormatName is NULL, this value MUST be 0x00000000.
+On output, the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> MUST set this
+value to the minimum of ulResponseFormatNameLen and
+pulResponseFormatNameLenProp.</p>
+</dd>
+<dd>
+<p>On input,
+ptb.old.Receive.pulResponseFormatNameLenProp indicates the Unicode character
+length of the buffer contained in ppResponseFormatName. On output, the server
+MUST set this value to indicate the full length of the response queue <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_390ae273-7109-44eb-981f-aa157e6b37c0" data-linktype="relative-path">format
+name</a></span> associated with the message being retrieved.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.Receive.ppResponseFormatName can
+be NULL, in which case it MUST be NULL on output. Otherwise, on successful
+retrieval of a message and prior to filling the buffer, the server MUST verify
+that the pulResponseFormatNameLenProp field indicates that the buffer is large
+enough to contain the response queue format name for the retrieved message.</p>
+</dd>
+<dd>
+<p>ptb.old.Receive.ulAdminFormatNameLen is used for RPC
+marshaling of the ppAdminFormatName buffer. On input, the client MUST set this
+value to the minimum of pulAdminFormatNameLenProp and 1024 bytes. If
+ptb.old.Receive.ppAdminFormatName is NULL, this value MUST be 0x00000000. On
+output, the server MUST set this value to the minimum of ulAdminFormatNameLen
+and pulAdminFormatNameLenProp.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.Receive.pulAdminFormatNameLenProp
+indicates the Unicode character length of the buffer contained in
+ppAdminFormatName. On output, the server MUST set this value to indicate the
+full length of the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_de288973-200c-431f-99be-2165bb440243" data-linktype="relative-path">administration queue</a></span>
+format name associated with the message being retrieved.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.Receive.ppAdminFormatName can be
+NULL, in which case it MUST be NULL on output. Otherwise, on successful
+retrieval of a message and prior to filling the buffer, the server MUST verify
+that the pulAdminFormatNameLenProp field indicates that the buffer is large
+enough to contain the administration queue format name for the retrieved
+message.</p>
+</dd>
+<dd>
+<p>ptb.old.Receive.ulDestFormatNameLen is used for RPC
+marshaling of the ppDestFormatName buffer. On input, the client MUST set this
+value to the minimum of pulDestFormatNameLenProp and 1024 bytes. If
+ptb.old.Receive.ppDestFormatName is NULL, this value MUST be 0x00000000. On
+output, the server MUST set this value to the minimum of ulDestFormatNameLen
+and pulDestFormatNameLenProp.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.Receive.pulDestFormatNameLenProp
+indicates the Unicode character length of the buffer contained in
+ppDestFormatName. On output, the server MUST set this value to indicate the
+full length of the destination queue format name associated with the message being
+retrieved.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.Receive.ppDestFormatName can be
+NULL, in which case it MUST be NULL on output. Otherwise, on successful
+retrieval of a message and prior to filling the buffer, the server MUST verify
+that the pulDestFormatNameLenProp field indicates that the buffer is large
+enough to contain the destination queue format name for the retrieved message.</p>
+</dd>
+<dd>
+<p>ptb.old.Receive.ulOrderingFormatNameLen is used for
+RPC marshaling of the ppOrderingFormatName buffer. On input, the client MUST
+set this value to the minimum of pulOrderingFormatNameLenProp and 1024 bytes.
+If ptb.old.Receive.ppOrderingFormatName is NULL, this value MUST be 0x00000000.
+On output, the server MUST set this value to the minimum of
+ulOrderingFormatNameLen and pulOrderingFormatNameLenProp.</p>
+</dd>
+<dd>
+<p>On input,
+ptb.old.Receive.pulOrderingFormatNameLenProp indicates the Unicode character
+length of the buffer contained in ppOrderingFormatName. On output, the server
+MUST set this value to indicate the full length of the <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_ebc1f4cb-7188-4800-aa1e-a365b2d87ba0" data-linktype="relative-path">order
+queue</a></span> format name associated with the message being retrieved.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.Receive.ppOrderingFormatName can
+be NULL, in which case it MUST be NULL on output. Otherwise, on successful
+retrieval of a message and prior to filling the buffer, the server MUST verify
+that the pulOrderingFormatNameLenProp field indicates that the buffer is large
+enough to contain the order queue format name for the retrieved message.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.ppBody can be NULL, in which case
+it MUST be NULL on output. Otherwise, on successful retrieval of a message,
+prior to filling the buffer, the server MUST verify that the
+ulBodyBufferSizeInBytes field indicates that the buffer is large enough to
+contain the message body for the retrieved message. On output, the byte length
+of the complete body for the retrieved message MUST be returned in the
+pBodySize field, if it is not NULL.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.ulBodyBufferSizeInBytes MUST be
+0x00000000 if ptb.old.ppBody is NULL. On output, the value of
+ptb.old.ulBodyBufferSizeInBytes MUST be the same as it was on input.</p>
+</dd>
+<dd>
+<p>ptb.old.ulAllocBodyBufferInBytes is used for RPC
+marshaling of the ppBody buffer. If ppBody is NULL, this value MUST be
+0x00000000.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.pBodySize can be NULL, in which case
+it MUST be NULL on output. Otherwise, on successful retrieval of a message, the
+server MUST set this value to the byte length of the message body.</p>
+</dd>
+<dd>
+<p>ptb.old.ulTitleBufferSizeInWCHARs is used for RPC
+marshaling of the ptb.old.ppTitle buffer. On input, the client MUST set this
+value to the minimum of pulTitleBufferSizeInWCHARs and 250. If ptb.old.ppTitle
+is NULL, this value MUST be 0x00000000. On output, the server MUST set this
+value to the minimum of ulTitleBufferSizeInWCHARs and pulTitleBufferSizeInWCHARs.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.pulTitleBufferSizeInWCHARs
+indicates the Unicode character length of the buffer contained in ppTitle. On
+output, the server MUST set this value to indicate the full length of the
+message label associated with the message being retrieved.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.ppTitle can be NULL, in which case
+it MUST be NULL on output. Otherwise, on successful retrieval of a message,
+prior to filling the buffer, the server MUST verify that the
+pulTitleBufferSizeInWCHARs field indicates that the buffer is large enough to
+contain the message label for the retrieved message.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.ppMsgExtension can be NULL, in
+which case it MUST be NULL on output. Otherwise, on successful retrieval of a
+message, prior to filling the buffer, the server MUST verify that the
+ptb.old.ulMsgExtensionBufferInBytes field indicates that the buffer is large
+enough to contain the message extension array for the retrieved message.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.ulMsgExtensionBufferInBytes MUST
+be 0x00000000 if ptb.old.ppMsgExtension is NULL. On output, the value of
+ptb.old.ulMsgExtensionBufferInBytes MUST be the same as it was on input.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.pMsgExtensionSize can be NULL, in
+which case it MUST be NULL on output. Otherwise, the server MUST return the
+full length of the retrieved message extension array in
+ptb.old.pMsgExtensionSize.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.pUow can be NULL, in which case
+the Receive operation is not associated with a <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a></span>.
+Otherwise, ptb.old.pUow MUST contain a 16-byte transaction identifier which has
+been enlisted by a prior call to <span><a href="702de7cd-17a9-4be4-a5ae-7404ed79b68e" data-linktype="relative-path">R_QMEnlistTransaction</a></span>
+or <span><a href="79058235-2adf-44f7-b81d-2ac3555c1b2b" data-linktype="relative-path">R_QMEnlistInternalTransaction</a></span>.
+On output, the value of ptb.old.pUow MUST be the same as it was on input.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.ppSenderID can be NULL, in which
+case it MUST be NULL on output. Otherwise, on successful retrieval of a message
+and prior to filling the buffer, the server MUST verify that the
+ptb.old.uSenderIDLen field indicates that the buffer is large enough to contain
+the sender ID buffer for the retrieved message.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.pulSenderIDLenProp can be NULL;
+otherwise, on output, the server MUST return the full length of the sender ID
+buffer for the retrieved message in ptb.old.pulSenderIDLenProp, or 0x00000000
+if the value was not included in the retrieved message.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.ppwcsProvName can be NULL, in
+which case it MUST be NULL on output. Otherwise, prior to filling the buffer,
+the server MUST verify that the ptb.old.ulProvNameLen field indicates that the
+buffer is large enough to contain the null-terminated <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_c9b94107-addb-4246-85b2-6c1cab7d492e" data-linktype="relative-path">CSP</a></span> name string. If
+the retrieved message does not include a CSP name buffer, the server MUST
+return 0x00000000 for ptb.old.pulAuthProvNameLenProp if the
+pulAuthProvNameLenProp pointer is not NULL.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.pulAuthProvNameLenProp can be
+NULL, in which case it MUST be NULL on output. Otherwise, the server MUST
+return the length of the CSP name buffer for the retrieved message in
+ptb.old.pulAuthProvNameLenProp, or 0x00000000 if the value was not included in
+the retrieved message.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.ppSenderCert can be NULL, in which
+case it MUST be NULL on output. Otherwise, prior to filling the buffer, the
+server MUST verify that the ptb.old.ulSenderCertLen field indicates that the
+buffer is large enough to contain the sender certificate buffer. If the
+retrieved message does not include a sender certificate, the server MUST return
+0x00000000 for ptb.old.pulSenderCertLenProp if the pulSenderCertLenProp pointer
+is not NULL.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.pulSenderCertLenProp can be NULL,
+in which case it MUST be NULL on output. Otherwise, the server MUST return the
+length of the sender certificate buffer for the retrieved message in
+ptb.old.pulSenderCertLenProp, or 0x00000000 if the value is not included in the
+retrieved message.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.ppSymmKeys can be NULL, in which
+case it MUST be NULL on output. Otherwise, prior to filling the buffer, the
+server MUST verify that the ptb.old.ulSymmKeysSize field indicates that the
+buffer is large enough to contain the symmetric key buffer. If the retrieved
+message does not include a symmetric key, the server MUST return 0x00000000 for
+ptb.old.pulSymmKeysSizeProp if the pulSymmKeysSizeProp pointer is not NULL.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.pulSymmKeysSizeProp can be NULL,
+in which case it MUST be NULL on output. Otherwise, the server MUST return the
+length of the symmetric key buffer for the retrieved message in
+ptb.old.pulSymmKeysSizeProp or 0x00000000 if the value is not included in the
+retrieved message.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.ppSignature can be NULL, in which
+case it MUST be NULL on output. Otherwise, prior to filling the buffer, the
+server MUST verify that the ptb.old.ulSignatureSize field indicates that the
+buffer is large enough to contain the signed hash buffer. If the retrieved
+message does not include a signed hash, the server MUST return 0x00000000 for
+ptb.old.pulSignatureSizeProp if the pulSignatureSizeProp pointer is not NULL.</p>
+</dd>
+<dd>
+<p>On input, ptb.old.pulSignatureSizeProp can be NULL,
+in which case it MUST be NULL on output. Otherwise, the server MUST return the
+length of the signed hash buffer for the retrieved message in
+ptb.old.pulSignatureSizeProp, or 0x00000000 if the value is not included in the
+retrieved message.</p>
+</dd>
+<dd>
+<p>The following fields can be NULL, in which case the
+server MUST ignore them. On successful retrieval of a message, the server MUST
+return the appropriate message property value into each non-NULL field. See
+section <span><a href="08791447-2c3c-48d4-98ab-ce9dd28a9509" data-linktype="relative-path">2.2.3.2</a></span> for
+definitions of these fields:</p>
+</dd></dl><ul><li><p><span><span>  </span></span>ptb.old.pClass</p>
+</li><li><p><span><span>  </span></span>ptb.old.ppMessageID</p>
+</li><li><p><span><span>  </span></span>ptb.old.ppCorrelationID</p>
+</li><li><p><span><span>  </span></span>ptb.old.pSentTime</p>
+</li><li><p><span><span>  </span></span>ptb.old.pArrivedTime</p>
+</li><li><p><span><span>  </span></span>ptb.old.pPriority</p>
+</li><li><p><span><span>  </span></span>ptb.old.pDelivery</p>
+</li><li><p><span><span>  </span></span>ptb.old.pAcknowledge</p>
+</li><li><p><span><span>  </span></span>ptb.old.pAuditing</p>
+</li><li><p><span><span>  </span></span>ptb.old.pApplicationTag</p>
+</li><li><p><span><span>  </span></span>ptb.old.pulRelativeTimeToQueue</p>
+</li><li><p><span><span>  </span></span>ptb.old.pulRelativeTimeToLive</p>
+</li><li><p><span><span>  </span></span>ptb.old.pTrace</p>
+</li><li><p><span><span>  </span></span>ptb.old.pulPrivLevel</p>
+</li><li><p><span><span>  </span></span>ptb.old.pAuthenticated</p>
+</li><li><p><span><span>  </span></span>ptb.old.pulHashAlg</p>
+</li><li><p><span><span>  </span></span>ptb.old.pulEncryptAlg</p>
+</li><li><p><span><span>  </span></span>ptb.old.pulProvType</p>
+</li><li><p><span><span>  </span></span>ptb.old.pulSenderIDType</p>
+</li><li><p><span><span>  </span></span>ptb.old.ppSrcQMID</p>
+</li><li><p><span><span>  </span></span>ptb.old.ppConnectorType</p>
+</li><li><p><span><span>  </span></span>ptb.old.pulBodyType</p>
+</li><li><p><span><span>  </span></span>ptb.old.pulVersion</p>
+</li><li><p><span><span>  </span></span>ptb.pbFirstInXact</p>
+</li><li><p><span><span>  </span></span>ptb.pbLastInXact</p>
+</li><li><p><span><span>  </span></span>ptb.ppXactID</p>
+</li></ul><dl>
+<dd>
+<p>The following fields MUST be
+ignored by the server:</p>
+</dd></dl><ul><li><p><span><span>  </span></span>ptb.old.Send</p>
+</li><li><p><span><span>  </span></span>ptb.old.CreateCursor</p>
+</li><li><p><span><span>  </span></span>ptb.old.Receive.Asynchronous</p>
+</li><li><p><span><span>  </span></span>ptb.old.ulAbsoluteTimeToQueue</p>
+</li><li><p><span><span>  </span></span>ptb.old.ulRelativeTimeToLive</p>
+</li><li><p><span><span>  </span></span>ptb.old.ulAuthLevel</p>
+</li><li><p><span><span>  </span></span>ptb.old.bEncrypted</p>
+</li><li><p><span><span>  </span></span>ptb.old.bAuthenticated</p>
+</li><li><p><span><span>  </span></span>ptb.old.fDefaultProvider</p>
+</li></ul><p><b>Return Values: </b> On success, this method MUST return
+MQ_OK (0x00000000); otherwise, the server MUST return a failure <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>,<a id="Appendix_A_Target_73"></a><a aria-label="Product behavior note 73" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_73" data-linktype="relative-path">&lt;73&gt;</a><a id="Appendix_A_Target_74"></a><a aria-label="Product behavior note 74" href="3d105257-668f-4768-83fe-344c8405a5a5#Appendix_A_74" data-linktype="relative-path">&lt;74&gt;</a> and the
+client MUST treat all failure HRESULTs identically. Additionally, if a failure
+HRESULT is returned, the client MUST disregard all out-parameter values.</p><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol, as specified in [MS-RPCE].</p><p>This method is invoked at the dynamically assigned <span><a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span>
+returned by the <span><a href="a8c96155-a7e6-41cb-95c7-6ab7e4f8214d" data-linktype="relative-path">R_QMGetRTQMServerPort</a></span>
+method when IP_HANDSHAKE (0x00000000) or IPX_HANDSHAKE (0x00000002) is the
+interface specified by the <i>fIP</i> parameter.</p><p>When processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Determine if the input parameter values violate the constraints
+previously specified. If an invalid parameter is detected, the server MUST take
+no further action and return a failure HRESULT.</p>
+</li><li><p><span><span> 
+</span></span>If ptb.old.pUow is non-NULL:</p>
+<ul><li><p><span><span>  </span></span>Look
+up a <b>Transaction</b> (<span><a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a></span>
+section <span><a href="../ms-mqdmpr/977818a4-098a-44f4-a6e2-97b8e8b1bb6b" data-linktype="relative-path">3.1.1.14</a></span>)
+ADM element instance in the server&#39;s <b>LocalQueueManager.TransactionCollection</b>
+where ptb.old.pUow matches <b>Transaction.Identifier</b>.</p>
+</li><li><p><span><span>  </span></span>If
+no such <b>Transaction</b> ADM element instance exists, take no further action
+and return a failure <b>HRESULT</b>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Locate a <span><a href="01412cba-2803-4644-be30-76cdb8560cec" data-linktype="relative-path">RemoteQueueProxyHandle (section 3.1.1.5)</a></span>
+ADM element instance in the server&#39;s <i>iRemoteQueueProxyHandleTable</i>
+(section <span><a href="50eab75b-1cc0-4023-bb19-a20975e50883" data-linktype="relative-path">3.1.1.4</a></span>) where the <b>Context</b>
+attribute of the <b>RemoteQueueProxyHandle</b> ADM element instance equals <i>hQMContext</i>.</p>
+</li><li><p><span><span> 
+</span></span>If such a <b>RemoteQueueProxyHandle</b> ADM element instance
+exists:</p>
+<ul><li><p><span><span>  </span></span>Declare
+<i>iLocatedRemoteQueueProxyHandle</i> and set it to a reference to the located <b>RemoteQueueProxyHandle</b>
+ADM element instance.</p>
+</li><li><p><span><span>  </span></span>If
+ptb.old.pUow is non-NULL, take no further action and return a failure HRESULT.</p>
+</li><li><p><span><span>  </span></span>If ptb.old.Receive.Cursor
+is not zero (0x00000000):</p>
+<ul><li><p><span><span> 
+</span></span>Locate a <b>CursorProxy</b> ADM element instance in <i>iLocatedRemoteQueueProxyHandle</i>.<b>CursorProxyCollection</b>
+where the value of the <b>Handle</b> attribute of the <b>CursorProxy</b> ADM
+element instance equals ptb.old.Receive.Cursor.</p>
+</li><li><p><span><span> 
+</span></span>If no such <b>CursorProxy</b> ADM element instance exists, take
+no further action and return a failure <b>HRESULT</b>.</p>
+</li></ul></li><li><p><span><span>  </span></span>Declare
+<i>iLocatedCursorProxy</i> and set it to a reference to the located <b>CursorProxy</b>
+ADM element instance.</p>
+</li><li><p><span><span>  </span></span>Using
+<i>iLocatedRemoteQueueProxyHandle</i>.<b>RemoteBindingHandle</b>, invoke the <b>RemoteQMStartReceive</b>
+method of the qm2qm RPC interface specified in <span><a href="../ms-mqqp/c9a334a7-89b4-4e75-902a-bc029e29a072" data-linktype="relative-path">[MS-MQQP]</a></span>
+section <span><a href="../ms-mqqp/aab4d8fa-3a56-483c-ac61-4172a09fc199" data-linktype="relative-path">3.1.4.1</a></span>.
+Specify the following input values in the <b>REMOTEREADDESC</b> structure
+([MS-MQQP] section <span><a href="../ms-mqqp/645e7b85-18f0-4f50-a905-1dd55565728b" data-linktype="relative-path">2.2.2.1</a></span>):</p>
+<ul><li><p><span><span> 
+</span></span><i>hRemoteQueue</i> := <i>iLocatedRemoteQueueProxyHandle</i>.<b>RemoteContext</b></p>
+</li><li><p><span><span> 
+</span></span><i>hCursor</i> := If ptb.old.Receive.Cursor is not zero
+(0x00000000), <i>iLocatedCursorProxy</i>.<b>RemoteCursorHandle</b>; otherwise,
+zero (0x00000000).</p>
+</li><li><p><span><span> 
+</span></span><i>ulAction</i> := ptb.old.Receive.Action</p>
+</li><li><p><span><span> 
+</span></span><i>ulTimeout</i> := ptb.old.Receive.RequestTimeout</p>
+</li><li><p><span><span> 
+</span></span><i>dwpQueue</i> := <i>iLocatedRemoteQueueProxyHandle</i>.<b>RemoteContext</b></p>
+</li><li><p><span><span> 
+</span></span><i>dwRequestID</i> := Create a <b>DWORD</b> value to uniquely
+identify this invocation of the RemoteQMStartReceive method among any other
+simultaneous invocations occurring between this RPC client (the Message Queuing
+(MSMQ): Queue Manager Client Protocol server) and the Message Queuing (MSMQ):
+Queue Manager to Queue Manager Protocol server. This <b>DWORD</b> value is used
+to correlate the call to RemoteQMStartReceive with an associated call to <span><a href="../ms-mqqp/4c0b91ba-37fa-441c-974a-91bbea58a62d" data-linktype="relative-path">RemoteQMEndReceive</a></span>
+following.</p>
+</li><li><p><span><span> 
+</span></span><i>Reserved</i> := 0x00000000</p>
+</li><li><p><span><span> 
+</span></span><i>eAckNack</i> := RR_UNKNOWN (0x0000)</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+RemoteQMStartReceive did not return MQ_OK (0x00000000), take no further action
+and return the value returned by RemoteQMStartReceive.</p>
+</li><li><p><span><span>  </span></span>Generate
+the Get Message Data Element From Buffer event (<span><a href="../ms-mqqb/85498b96-f2c8-43b3-a108-c9d6269dc4af" data-linktype="relative-path">[MS-MQQB]</a></span>
+section <span><a href="../ms-mqqb/95a35607-1cef-43b9-b48e-a4dc81042a7c" data-linktype="relative-path">3.1.7.10</a></span>)
+with the following argument:</p>
+<ul><li><p><span><span> 
+</span></span><i>iBuffer</i>: MUST be set to <b>REMOTEREADDESC.lpBuffer</b></p>
+</li></ul></li><li><p><span><span>  </span></span>Copy
+the contents of the returned <i>rMessage</i> into the <i>ptb</i> structure
+using the defined translation rules.</p>
+</li><li><p><span><span>  </span></span>Using
+<i>iLocatedRemoteQueueProxyHandle</i>.<b>RemoteBindingHandle</b>, invoke the <b>RemoteQMEndReceive</b>
+method of the qm2qm RPC interface specified in [MS-MQQP] section 3.1.4.2.
+Specify the following parameter values:</p>
+<ul><li><p><span><span> 
+</span></span><i>pphContext</i> := Set to the value returned from the <i>pphContext</i>
+out-parameter of RemoteQMStartReceive previously invoked.</p>
+</li><li><p><span><span> 
+</span></span><i>dwAck</i> := If the process of converting the content of <b>REMOTEREADDESC.lpBuffer</b>
+to a <b>Message</b> ([MS-MQDMPR] section <span><a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">3.1.1.12</a></span>)
+ADM element instance and then to <i>ptb</i> was successful, specify RR_ACK
+(0x00000002); otherwise, specify RR_NACK (0x00000001).</p>
+</li></ul></li><li><p><span><span>  </span></span>Take
+no further action and return the result of RemoteQMEndReceive.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else (<i>hQMContext</i> did not match a <b>RemoteQueueProxyHandle</b>
+ADM element instance):</p>
+<ul><li><p><span><span>  </span></span>Locate
+a <span><a href="910315e4-d43e-4c99-b086-555cc271563f" data-linktype="relative-path">LocalQueueContextHandle (section 3.1.1.3)</a></span>
+ADM element instance in the server&#39;s <i>iLocalQueueContextHandleTable</i> where
+the value of the <b>Handle</b> attribute of the <b>LocalQueueContextHandle</b>
+ADM element instance equals <i>hQueue</i>.</p>
+</li><li><p><span><span>  </span></span> If
+no such <b>LocalQueueContextHandle</b> ADM element instance exists, take no
+further action and return a failure <b>HRESULT</b>.</p>
+</li><li><p><span><span>  </span></span>Declare
+<i>iLocalQueueContextHandle</i> and set it to a reference to the located <b>LocalQueueContextHandle</b>
+ADM element instance.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>iLocalQueueContextHandle</i>.<b>OpenQueueDescriptorReference</b>.<b>AccessMode</b>
+value is SendAccess, take no further action and return a failure <b>HRESULT</b>.</p>
+</li><li><p><span><span>  </span></span>If
+the <i>iLocalQueueContextHandle</i>.<b>OpenQueueDescriptorReference</b>.<b>AccessMode</b>
+value is PeekAccess, confirm that ptb.old.Receive.Action is not
+MQ_ACTION_RECEIVE (0x00000000); otherwise, return a failure <b>HRESULT</b>.</p>
+</li><li><p><span><span>  </span></span>If
+ptb.old.Receive.Cursor is not zero (0x00000000):</p>
+<ul><li><p><span><span> 
+</span></span>Locate a <b>Cursor</b> ([MS-MQDMPR] section <span><a href="../ms-mqdmpr/2d741458-1c04-47b4-831b-13779e588bf9" data-linktype="relative-path">3.2</a></span>)
+ADM element instance in <i>iLocalQueueContextHandle</i>.<b>OpenQueueDescriptorReference</b>.<b>CursorCollection</b>
+where the value of the <b>Handle</b> attribute of the <b>Cursor</b> ADM element
+instance equals ptb.old.Receive.Cursor.</p>
+</li><li><p><span><span> 
+</span></span>If no such <b>Cursor</b> ADM element instance exists, take no
+further action and return a failure <b>HRESULT</b>.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+ptb.old.Receive.Action is MQ_ACTION_RECEIVE (0x00000000):</p>
+<ul><li><p><span><span> 
+</span></span>Generate a <span><a href="../ms-mqdmpr/a2e1dc60-8783-4479-93f4-5e9a77698129" data-linktype="relative-path">Dequeue
+Message</a></span> ([MS-MQDMPR] section 3.1.7.1.10) event with the following
+argument values:</p>
+<ul><li><p><span><span> 
+</span></span><i>iQueueDesc</i> := <i>iLocalQueueContextHandle</i>.<b>OpenQueueDescriptorReference</b></p>
+</li><li><p><span><span> 
+</span></span><i>iTimeout</i> := ptb.old.Receive.RequestTimeout</p>
+</li><li><p><span><span> 
+</span></span><i>iCursor</i> := If ptb.old.Receive.Cursor is not zero, the <b>Cursor</b>
+ADM element instance resolved preceding; otherwise, this optional argument is
+not specified.</p>
+</li><li><p><span><span> 
+</span></span><i>iTransaction</i> := If ptb.old.pUow is non-NULL, the <b>Transaction</b>
+ADM element instance resolved preceding; otherwise, this optional argument is
+not specified.</p>
+</li><li><p><span><span> 
+</span></span><i>iTag</i> := Optional argument not specified.</p>
+</li><li><p><span><span> 
+</span></span><i>iTwoPhaseRead</i> := False</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>rStatus</i> return value from the Dequeue Message event
+is not MQ_OK (0x00000000), take no further action and return <i>rStatus</i>.</p>
+</li><li><p><span><span> 
+</span></span>Copy the contents of the <i>rMessage</i> return value from the
+Dequeue Message event to the <i>ptb</i> structure using the defined translation
+rules.</p>
+</li><li><p><span><span> 
+</span></span>Take no further action and return MQ_OK (0x00000000).</p>
+</li></ul></li><li><p><span><span>  </span></span>Else,
+if ptb.old.Receive.Action is MQ_ACTION_PEEK_CURRENT (0x80000000):</p>
+<ul><li><p><span><span> 
+</span></span>Generate a <span><a href="../ms-mqdmpr/658f62aa-ac0f-4916-b6dc-d4fa7539b62d" data-linktype="relative-path">Peek
+Message</a></span> ([MS-MQDMPR] section 3.1.7.1.15) event with the following
+argument values:</p>
+<ul><li><p><span><span> 
+</span></span><i>iQueueDesc</i> := <i>iLocalQueueContextHandle</i>.<b>OpenQueueDescriptorReference</b></p>
+</li><li><p><span><span> 
+</span></span><i>iTimeout</i> := ptb.old.Receive.RequestTimeout</p>
+</li><li><p><span><span> 
+</span></span><i>iCursor</i> := If ptb.old.Receive.Cursor is not zero, the <b>Cursor</b>
+ADM element instance resolved preceding; otherwise, this optional argument is
+not specified.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>rStatus</i> return value from the Peek Message event is
+not MQ_OK (0x00000000), take no further action and return <i>rStatus</i>.</p>
+</li><li><p><span><span> 
+</span></span>Copy the contents of the <i>rMessage</i> return value from the
+Peek Message event to the <i>ptb</i> structure using the defined translation
+rules.</p>
+</li><li><p><span><span> 
+</span></span>Take no further action and return MQ_OK (0x00000000).</p>
+</li></ul></li><li><p><span><span>  </span></span>Else,
+if ptb.old.Receive.Action is MQ_ACTION_PEEK_NEXT (0x80000001):</p>
+<ul><li><p><span><span> 
+</span></span>Generate a <span><a href="../ms-mqdmpr/032bebe9-fbdc-4cb4-a10a-f3fcad2314f5" data-linktype="relative-path">Peek Next
+Message</a></span> ([MS-MQDMPR] section 3.1.7.1.14) event with the following
+argument values:</p>
+<ul><li><p><span><span> 
+</span></span><i>iQueueDesc</i> := <i>iLocalQueueContextHandle</i>.<b>OpenQueueDescriptorReference</b></p>
+</li><li><p><span><span> 
+</span></span><i>iTimeout</i> := ptb.old.Receive.RequestTimeout</p>
+</li><li><p><span><span> 
+</span></span><i>iCursor</i> := If ptb.old.Receive.Cursor is not zero, the <b>Cursor</b>
+ADM element instance resolved preceding; otherwise, this optional argument is
+not specified.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>rStatus</i> return value from the Peek Next Message
+event is not MQ_OK (0x00000000), take no further action and return <i>rStatus</i>.</p>
+</li><li><p><span><span> 
+</span></span>Copy the contents of the <i>rMessage</i> return value from the
+Peek Next Message event to the <i>ptb</i> structure using the defined
+translation rules.</p>
+</li></ul></li></ul></li></ul></div>

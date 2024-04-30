@@ -1,0 +1,21 @@
+<div class="content"><p>The <b>CPREP_DISKID_ENUM</b> enumeration defines possible
+kinds of <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a>
+identifiers.</p><dl>
+<dd>
+<div><pre> typedef  enum _CPREP_DISKID_ENUM
+ {
+   CprepIdSignature = 0x00000000,
+   CprepIdGuid = 0x00000001,
+   CprepIdNumber = 0x00000fa0,
+   CprepIdUnknown = 0x00001388
+ } CPREP_DISKID_ENUM,
+  *PCPREP_DISKID_ENUM;
+</pre></div>
+</dd></dl><p><b>CprepIdSignature:</b>  A <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_c8818c63-7458-4054-a17d-bea04fa50618" data-linktype="relative-path">small computer system interface
+(SCSI)</a> signature that is 4 bytes in length. Used to identify <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_b251c771-5ccf-40f2-b98d-0119db210b4b" data-linktype="relative-path">master boot record (MBR)</a>
+disks.</p><p><b>CprepIdGuid:  </b>A signature of a <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GUID partitioning table (GPT)</a>
+disk, which is a <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>. A
+GUID, also known as a <a href="b30bcd1c-8ff6-46d2-a27e-61bd85ace9f4#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a>,
+is a 16-byte structure, intended to serve as a unique identifier for an object.</p><p><b>CprepIdNumber:  </b>The number by which the disk
+is identified.</p><p><b>CprepIdUnknown:  </b>Used for disks that are not
+identified via one of the previously described ways.</p></div>

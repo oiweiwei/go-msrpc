@@ -1,0 +1,180 @@
+<div class="content"><p>The GetDataPaths method returns the paths of all nodes in
+the subtree relative to a specified starting node that contains the supplied
+identifier.</p><dl>
+<dd>
+<div><pre> HRESULT GetDataPaths(
+   [in] METADATA_HANDLE hMDHandle,
+   [unique, in, string] LPCWSTR pszMDPath,
+   [in] DWORD dwMDIdentifier,
+   [in] DWORD dwMDDataType,
+   [in] DWORD dwMDBufferSize,
+   [out, size_is(dwMDBufferSize)] WCHAR* pszBuffer,
+   [out] DWORD* pdwMDRequiredBufferSize
+ );
+</pre></div>
+</dd></dl><p><b>hMDHandle: </b>An unsigned 32-bit integer value
+containing an open <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_086b13f2-2715-4000-a16c-6acc3d59cc19" data-linktype="relative-path">metabase</a>
+handle specifying the key to be queried.</p><p><b>pszMDPath: </b>A pointer to a Unicode string that
+contains the path of the node to be queried, relative to the <i>hMDHandle</i>
+parameter.</p><p><b>dwMDIdentifier: </b>An integer value identifying
+the data to be queried.</p><p><b>dwMDDataType: </b>An integer value specifying a
+data type. If this parameter is not set to ALL_METADATA, the data item will be
+returned only if its data type matches the specified type.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ALL_METADATA</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Specifies all data, regardless of type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BINARY_METADATA</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Specifies binary data in any form.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DWORD_METADATA</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Specifies all <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a>
+  (unsigned 32-bit integer) data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EXPANDSZ_METADATA</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Specifies all data consisting of a string that
+  includes the terminating null character, which contains unexpanded
+  environment variables.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MULTISZ_METADATA</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Specifies all data represented as an array of strings,
+  where each string contains two occurrences of the terminating null character.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>STRING_METADATA</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Specifies all data consisting of an ASCII string that
+  includes the terminating null character.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwMDBufferSize: </b>An integer value specifying
+the size, in <a href="../ms-dtyp/7df7c1d5-492c-4db4-a992-5cd9e887c5d7" data-linktype="relative-path">WCHARs</a>,
+of the <i>pszBuffer</i> parameter.</p><p><b>pszBuffer: </b>A pointer to a buffer that contains
+the retrieved data. If the method call is successful, the buffer will contain a
+contiguous sequence of null-terminated strings in &#34;multi-string&#34;
+format. Each string in the sequence is a metabase path at which data matching
+the <b>dwMDIdentifier</b> and <b>dwMDDataType</b> fields were found.</p><p><b>pdwMDRequiredBufferSize: </b>A pointer to an
+integer value that contains the buffer length required, in WCHARs.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, it failed. If
+the 12-bit facility code (bits 16–27) is set to 0x007, the value contains a
+Win32 error code in the lower 16 bits. Zero or positive values indicate
+success, with the lower 16 bits in positive nonzero values containing warnings
+or flags defined in the method implementation. For more information about Win32
+error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070003</p>
+  <p>ERROR_PATH_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The system cannot find the path specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070006</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The handle is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007007A</p>
+  <p>ERROR_INSUFFICIENT_BUFFER</p>
+  </td>
+  <td>
+  <p>The data area passed to a system call is too small.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 16.</p><p>When processing this call, the <a href="1243ba70-74ca-44f9-be0b-dfd6697010b4#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Check the handle. This handle is valid if it is either the master
+root handle or a handle returned from a previous <a href="a54be1d0-009a-493d-a53e-e2f7fbe87293" data-linktype="relative-path">OpenKey</a> call. If the
+handle is invalid, return ERROR_INVALID_HANDLE.</p>
+</li><li><p><span><span> 
+</span></span>Check that the relative path points to a valid node. Otherwise,
+return ERROR_PATH_NOT_FOUND.</p>
+</li><li><p><span><span> 
+</span></span>On the destination node, find data based on the data ID and the
+data type. If the data type is set to anything but ALL_METADATA, check that the
+found data type is the same as the requested parameter, <i>dwMDDataType</i>. If
+the data type matches or the requested data type is ALL_METADATA, copy the path
+of the node relative to <i>hMDHandle</i> to the buffer <i>pszBuffer</i>.</p>
+</li><li><p><span><span> 
+</span></span>For all nodes below the destination node, repeat the same
+procedure. Find the data by data ID and data type. If the data is available,
+check its inheritance flag. If the data is inherited, skip to the next node. If
+the data is not inherited, append the node path to the buffer. Each new path is
+appended to the buffer in &#34;multi-string&#34; format: Each string is
+separated by the null character, and an extra null character is added at the end
+of buffer after the last string.</p>
+</li><li><p><span><span> 
+</span></span>If the size of the buffer as specified by the <i>dwMDBufferSize</i>
+parameter is insufficient to hold all the path data, set the <i>pdwMDRequiredBufferSize</i>
+parameter to the required buffer size and return ERROR_INSUFFICIENT_BUFFER.</p>
+</li></ul></div>

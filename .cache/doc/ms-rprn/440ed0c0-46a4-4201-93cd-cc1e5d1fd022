@@ -1,0 +1,54 @@
+<div class="content"><p>The <b>RPC_V2_NOTIFY_INFO_DATA</b> structure specifies
+printer or <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_12a6e569-e97c-4761-92f0-e397f8d5125f" data-linktype="relative-path">print job</a>
+notification information data.<a id="Appendix_A_Target_77"></a><a aria-label="Product behavior note 77" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_77" data-linktype="relative-path">&lt;77&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _RPC_V2_NOTIFY_INFO_DATA {
+   unsigned short Type;
+   unsigned short Field;
+   DWORD Reserved;
+   DWORD Id;
+   [switch_is(Reserved &amp; 0xFFFF)] 
+     RPC_V2_NOTIFY_INFO_DATA_DATA Data;
+ } RPC_V2_NOTIFY_INFO_DATA;
+</pre></div>
+</dd></dl><p><b>Type:</b> The type of notification
+information that is contained in this structure. This MUST be one of the
+following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PRINTER_NOTIFY_TYPE</p>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>Printer-related notifications</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>JOB_NOTIFY_TYPE</p>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>Job-related notifications</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Field:</b> The member that changed using the
+printer notification values and job notification values in sections <a href="41d5c622-ec77-49ff-95e3-69b325ce4e77" data-linktype="relative-path">2.2.3.8</a> and <a href="76acb7fb-b63f-4cad-88dd-6920096a2f13" data-linktype="relative-path">2.2.3.3</a>.</p><p><b>Reserved:</b> The member of the
+RPC_V2_NOTIFY_INFO_DATA_DATA union (section <a href="7567e260-f004-4427-832c-4eda6449bfa0" data-linktype="relative-path">2.2.1.13.5)</a> that is used
+to specify the data type of the <b>Data</b> member. Only the 16
+least-significant bits of this member are used. The value of these bits MUST be
+one of the <a href="6e1ac559-84a3-4b3e-a897-07159974661e" data-linktype="relative-path">Notification
+Data Type values (section 2.2.3.5)</a>.</p><p><b>Id:</b> The job identifier if the <b>Type</b>
+member specifies <b>JOB_NOTIFY_TYPE</b>; otherwise, this value MUST be ignored.</p><p><b>Data:</b> The data determined by the values
+of the <b>Type</b> and <b>Reserved</b> members of this structure. The data is
+in an <b>RPC_V2_NOTIFY_INFO_DATA_DATA</b> structure using the data type
+specified by the value of the <b>Reserved</b> member.</p></div>

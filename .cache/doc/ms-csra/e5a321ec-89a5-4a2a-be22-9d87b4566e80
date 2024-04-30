@@ -1,0 +1,21 @@
+<div class="content"><p>The CERTTRANSDBATTRIBUTE structure is encoded within a <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure.
+The CERTTRANSDBATTRIBUTE structure is used by the server to return <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a> information that
+is associated with a request to the client (upon the client&#39;s query via
+invocation of the <a href="14dbe3e1-d0a3-41da-a910-b1f72826863f" data-linktype="relative-path">EnumAttributesOrExtensions</a>
+method of the <a href="46496f1f-a631-42b3-a60e-33f95fb6fed1" data-linktype="relative-path">ICertAdminD</a>
+interface).</p><dl>
+<dd>
+<div><pre> typedef struct _CERTTRANSDBATTRIBUTE {
+   ULONG obwszName;
+   ULONG obwszValue;
+ } CERTTRANSDBATTRIBUTE;
+</pre></div>
+</dd></dl><p><b>obwszName:</b>  An integer that contains
+the offset from the beginning of the byte array buffer that is pointed to by
+the <b>pb</b> member in the containing CERTTRANSBLOB structure to where the
+string that contains the name of this attribute can be found. The format is a
+null-terminated UNICODE string. The offset MUST be divisible by 4.</p><p><b>obwszValue:</b>  An integer that
+contains the offset from the beginning of the byte array buffer that is pointed
+to by the <b>pb</b> member in the containing CERTTRANSBLOB structure to where
+the string that contains the value of this attribute can be found. The format
+is a null-terminated UNICODE string. The offset MUST be divisible by 4.</p></div>

@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The <b>DHCP_POL_COND_ARRAY</b> structure specifies an array
+of conditions of a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_52323544-69e0-4172-8921-2711cbda988e" data-linktype="relative-path">policy</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_POL_COND_ARRAY {
+   DWORD NumElements;
+   [size_is(NumElements)] LPDHCP_POL_COND Elements;
+ } DHCP_POL_COND_ARRAY,
+  *PDHCP_POL_COND_ARRAY,
+  *LPDHCP_POL_COND_ARRAY;
+</pre></div>
+</dd></dl><p><b>NumElements:</b>  This member is of type
+<span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+and specifies the number of conditions in the array.</p><p><b>Elements:</b>  This member is a pointer
+of type LPDHCP_POL_COND (section <span><a href="5186dcd9-8530-4531-b6f8-a7503c0c96e3" data-linktype="relative-path">2.2.1.2.105</a></span>) that
+points to an array of <b>DHCP_POL_COND</b> structure (section 2.2.1.2.105)
+elements.</p></div>

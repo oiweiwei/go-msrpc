@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The R_GetServerPort method returns the <span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+<span><a href="b23ea276-dfad-4083-bc48-d0f8a40255fd#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a></span>
+port for the client to use in subsequent method calls on the <b>RemoteRead</b>
+interface.</p><p>The server MUST return the TCP port number for the <b>RemoteRead</b>
+RPC interface. The default port number used is 2103. If this port is already in
+use, the server SHOULD increment the port number by 11 until an unused port is
+found.</p><p>The client MAY call this method prior to calling any other
+method on the protocol. The client MAY use the returned value to obtain another
+RPC binding handle to use with the remaining methods on the protocol.<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="4108f68e-80f5-40e1-b3df-b713cc4dff79#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a></p><dl>
+<dd>
+<div><pre> DWORD R_GetServerPort(
+   [in] handle_t hBind
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b>MUST specify an RPC binding handle
+parameter, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>Return Values: </b>On success, this method MUST return a
+nonzero TCP port value for the RPC interface. If an error occurs, the server
+MUST return 0x00000000.</p><p>Exceptions Thrown:</p><p>No exceptions are thrown except those thrown by the
+underlying RPC protocol, as specified in [MS-RPCE].</p><p>As specified in section <span><a href="0b50608a-37ed-4dc0-806c-22e2c8256124" data-linktype="relative-path">3.1.3</a></span>, this
+protocol configures a fixed listening endpoint at an RPC port number that can
+vary. This method returns the RPC port number determined at server
+initialization time.</p></div>

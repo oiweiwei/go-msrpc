@@ -1,0 +1,53 @@
+<div class="content"><p> </p><p>The IEventSubscription2 interface provides methods to get
+and set the properties of a <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_f362c255-5746-44db-aa04-e8060543a19c" data-linktype="relative-path">subscription</a></span>. This
+interface inherits opnums 0 through 40 from <span><a href="542e1c26-d18a-4686-a47e-8be9ca73e352" data-linktype="relative-path">IEventSubscription</a></span>
+as specified in section 3.1.4.4. The version for this interface is 0.0. </p><p>To receive incoming remote calls for this interface, the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>
+MUST implement a DCOM <span><a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a></span>
+<span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_a224e395-3fea-48bd-b141-3dd9bee2136a" data-linktype="relative-path">object
+class</a></span> with the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_e433c806-6cb6-46a2-bb95-523df8818c99" data-linktype="relative-path">class ID</a></span>
+CLSID_Subscription (see section <span><a href="25e89236-b0b3-4d8b-b1fb-64e0e9f0e156" data-linktype="relative-path">1.9</a></span>) using the <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+{4A6B0E16-2E38-11D1-9965-00C04FBBB345} for this interface.</p><p>The interface contains the following methods beyond the ones
+for IEventSubscription.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span><a href="48d0cc17-3f67-4491-811e-472df344641a" data-linktype="relative-path">get_FilterCriteria</a></span></p>
+  </td>
+  <td>
+  <p>Gets the FilterCriteria property of the subscription.</p>
+  <p>Opnum: 41</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="80490877-cce1-476e-a211-ef9770bc21ee" data-linktype="relative-path">put_FilterCriteria</a></span></p>
+  </td>
+  <td>
+  <p>Sets the FilterCriteria property of the subscription.</p>
+  <p>Opnum: 42</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="ca95daac-bb70-4fda-8873-8d618533dd75" data-linktype="relative-path">get_SubscriberMoniker</a></span></p>
+  </td>
+  <td>
+  <p>Gets the SubscriberMoniker property of the
+  subscription.</p>
+  <p>Opnum: 43</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="d5332a5f-8e91-4c20-ab54-7ffc1c1a38f8" data-linktype="relative-path">put_SubscriberMoniker</a></span></p>
+  </td>
+  <td>
+  <p>Sets the SubscriberMoniker property of the
+  subscription.</p>
+  <p>Opnum: 44</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The <b>DHCP_SEARCH_INFO_TYPE</b> enumeration defines the
+type of search that can be performed on the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_746786e7-458f-45aa-ab24-5534a94b4fb3" data-linktype="relative-path">DHCPv4 server</a></span> to
+query specific <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_c35fc04f-54fe-4570-afd3-c96ca84c8d83" data-linktype="relative-path">DHCP client</a></span> records.
+DHCPM uses this value in conjunction with <span><a href="f8ab6a93-be31-4643-b32c-e0ae6ba95a44" data-linktype="relative-path">DHCP_SEARCH_INFO (section 2.2.1.2.18)</a></span>
+to query specific DHCPv4 client address records.</p><dl>
+<dd>
+<div><pre> typedef  enum _DHCP_CLIENT_SEARCH_TYPE
+ {
+   DhcpClientIpAddress,
+   DhcpClientHardwareAddress,
+   DhcpClientName
+ } DHCP_SEARCH_INFO_TYPE,
+  *LPDHCP_SEARCH_INFO_TYPE;
+</pre></div>
+</dd></dl><p><b>DhcpClientIpAddress: </b>The DHCPv4 client IP
+address MUST be used for querying the DHCPv4 client lease records from the
+database on the DHCPv4 server.</p><p><b>DhcpClientHardwareAddress: </b>The <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4c35997a-5d90-4d7e-96c8-346f4ad0a63f" data-linktype="relative-path">DHCPv4
+client unique ID</a></span> (section <span><a href="651865ec-6404-4191-ad30-113578a94556" data-linktype="relative-path">2.2.1.2.5.2</a></span>) MUST
+be used for querying the DHCPv4 client lease records from the database on the
+DHCPv4 server.</p><p><b>DhcpClientName: </b>The null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a></span> containing the name of the DHCPv4 client MUST be used for
+querying the DHCPv4 client <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6d76b31-2852-4bd5-8fbb-8e82a3cedb29" data-linktype="relative-path">lease records</a></span> on the
+DHCPv4 server. There is no restriction on the length of this UNICODE string.</p></div>

@@ -1,0 +1,45 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/23f9ef4c-cf3e-4330-9287-ea4799b03201" data-linktype="external">msdn link</a></p><p>The SAMPR_ENCRYPTED_USER_PASSWORD structure carries an
+encrypted string.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_ENCRYPTED_USER_PASSWORD {
+   unsigned char Buffer[(256 * 2) + 4];
+ } SAMPR_ENCRYPTED_USER_PASSWORD,
+  *PSAMPR_ENCRYPTED_USER_PASSWORD;
+</pre></div>
+</dd></dl><p><b>Buffer:</b>  An array to carry encrypted
+cleartext password data. The encryption key is method-specific, while the
+algorithm specified in section <a href="5fe3c4c4-e71b-440d-b2fd-8448bfaf6e04" data-linktype="relative-path">3.2.2.1</a> is common for all
+methods that use this structure. See the message syntax for <a href="8d0bf63e-fa5f-4c75-be22-558c52075842" data-linktype="relative-path">SamrOemChangePasswordUser2 (section 3.1.5.10.2)</a>
+and <a href="acb3204a-da8b-478e-9139-1ea589edb880" data-linktype="relative-path">SamrUnicodeChangePasswordUser2 (section 3.1.5.10.3)</a>,
+and the message processing for <a href="99ee9f39-43e8-4bba-ac3a-82e0c0e0699e" data-linktype="relative-path">SamrSetInformationUser2 (section 3.1.5.6.4)</a>,
+for details on the encryption key selection. The size of (256 * 2) + 4 for <b>Buffer</b>
+is determined by the size of the structure that is encrypted,
+SAMPR_USER_PASSWORD; see below for more details.</p><dl>
+<dd>
+<p>For all protocol uses, the decrypted format of <b>Buffer</b>
+is the following structure.</p>
+</dd>
+<dd>
+<div><pre> typedef struct _SAMPR_USER_PASSWORD {
+     wchar_t       Buffer[256];
+     unsigned long Length;
+ } SAMPR_USER_PASSWORD, *PSAMPR_USER_PASSWORD;
+</pre></div>
+</dd>
+<dd>
+<p><b>Buffer:</b> This array contains the cleartext
+value at the end of the buffer. The start of the string is <b>Length</b> number
+of bytes from the end of the buffer. The cleartext value can be no more than
+512 bytes. The unused portions of SAMPR_USER_PASSWORD.Buffer SHOULD be filled
+with random bytes by the client. The value 512 is chosen because that is the
+longest password allowed by this protocol (and enforced by the server).</p>
+</dd>
+<dd>
+<p><b>Length:</b> An unsigned integer, in little-endian
+byte order, that indicates the number of bytes of the cleartext value located
+in SAMPR_USER_PASSWORD.Buffer.</p>
+</dd></dl><p>Implementations of this protocol MUST protect the
+SAMPR_ENCRYPTED_USER_PASSWORD structure by encrypting the 516 bytes of data
+referenced in its <b>Buffer</b> field on request (and reply), and decrypting on
+receipt. See section 3.2.2.1 for the specification of the algorithm performing
+encryption and decryption.</p></div>

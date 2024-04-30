@@ -1,0 +1,44 @@
+<div class="content"><p> </p><p>The CONNECT_ENUM_STRUCT structure specifies the information
+level that the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a></span> requests when
+invoking the <span><a href="64ee6bbe-01dc-41a5-baff-26ef1146ee29" data-linktype="relative-path">NetrConnectionEnum (section 3.1.4.1)</a></span>
+method and encapsulates the <span><a href="2a3b690a-e39c-4c94-914e-312dfb246ca7" data-linktype="relative-path">CONNECT_ENUM_UNION (section 2.2.3.1)</a></span>
+union that receives the entries that are enumerated by the <span><a href="1709f6a7-efb8-4ded-b7ae-5cee9ee36320#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _CONNECT_ENUM_STRUCT {
+   DWORD Level;
+   [switch_is(Level)] CONNECT_ENUM_UNION ConnectInfo;
+ } CONNECT_ENUM_STRUCT,
+  *PCONNECT_ENUM_STRUCT,
+  *LPCONNECT_ENUM_STRUCT;
+</pre></div>
+</dd></dl><p><b>Level:</b>  Specifies the information
+level of the data. This parameter MUST have one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>CONNECT_INFO_0_CONTAINER</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>CONNECT_INFO_1_CONTAINER</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ConnectInfo:</b>  Contains either a <span><a href="eeb410c8-f932-451a-931f-e98a3d6c0e93" data-linktype="relative-path">CONNECT_INFO_0_CONTAINER</a></span>
+structure or a <span><a href="a7d955fb-f062-405b-b93f-45f0face4398" data-linktype="relative-path">CONNECT_INFO_1_CONTAINER</a></span>
+structure depending on the value of the <i>Level</i> parameter. The enumerated
+elements are returned in this member.</p></div>

@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The <b>DHCP_POL_COMPARATOR</b> enumeration defines the
+different comparison operators used within a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_9a1c3bd3-d971-482a-adfe-6f41e427b95f" data-linktype="relative-path">condition</a></span> of a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_52323544-69e0-4172-8921-2711cbda988e" data-linktype="relative-path">policy</a></span>.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p><dl>
+<dd>
+<div><pre> typedef enum {
+     DhcpCompEqual,
+     DhcpCompNotEqual,
+     DhcpCompBeginsWith,
+     DhcpCompNotBeginWith,
+     DhcpCompEndsWith,
+     DhcpCompNotEndWith
+ } DHCP_POL_COMPARATOR;
+</pre></div>
+</dd></dl><p><b>DhcpCompEqual: </b>Specifies the equal operator
+for a condition.</p><p><b>DhcpCompNotEqual: </b>Specifies the not-equal
+operator for a condition.</p><p><b>DhcpCompBeginsWith: </b>Specifies the begins-with
+operator for a condition.</p><p><b>DhcpCompNotBeginWith: </b>Specifies the
+does-not-begin-with operator for a condition.</p><p><b>DhcpCompEndsWith: </b>Specifies the ends-with
+operator for a condition.</p><p><b>DhcpCompNotEndWith: </b>Specifies the
+does-not-end-with operator for a condition.</p></div>

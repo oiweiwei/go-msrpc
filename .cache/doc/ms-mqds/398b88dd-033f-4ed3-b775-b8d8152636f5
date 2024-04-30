@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The MQRESTRICTION structure specifies a set of <span><a href="95994f9c-27df-4cfe-9834-ed2fdba363ec" data-linktype="relative-path">MQPROPERTYRESTRICTION</a></span>
+structures. This structure is used in directory query operations to define a
+set of constraints over the set of directory objects to be returned. An object
+is deemed to satisfy the constraint if all the binary expressions specified by
+the MQPROPERTYRESTRICTION array evaluate to TRUE, and is deemed not to satisfy
+the constraint otherwise. See section <span><a href="ebe8417a-ded8-4f3d-9187-bbbdb0856f41" data-linktype="relative-path">3.1.4.17</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct tagMQRESTRICTION {
+   [range(0,128)] unsigned long cRes;
+   [size_is(cRes)] MQPROPERTYRESTRICTION* paPropRes;
+ } MQRESTRICTION;
+</pre></div>
+</dd></dl><p><b>cRes:</b>   MUST be set to the count of
+MQPROPERTYRESTRICTION structures in the <b>paPropRes</b> array.</p><p><b>paPropRes:</b>   A pointer to an array of
+MQPROPERTYRESTRICTION structures.</p></div>

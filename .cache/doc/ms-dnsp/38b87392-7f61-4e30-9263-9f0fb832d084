@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_RECORD_DATA</b> defines a collection of
+possible <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_49c03845-ca86-48f5-9cbf-ab86c624aa29" data-linktype="relative-path">resource record</a></span>
+structures that are available on the DNS server. This is used by the DNS server
+while responding to R_DnssrvEnumRecords2 (section <span><a href="0d236e58-9944-4cdf-ae98-f92460202e29" data-linktype="relative-path">3.1.4.9</a></span>) method
+call to return resource record information inside a DNS_RPC_RECORD (<span><a href="ac793981-1c60-43b8-be59-cdbb5c4ecb8a" data-linktype="relative-path">2.2.2.2.5</a></span>)
+structure that in turn is encapsulated inside a DNS_RPC_BUFFER (section <span><a href="cd4d047c-3e89-4bc2-b165-1dc60ba538d5" data-linktype="relative-path">2.2.1.2.2</a></span>)
+structure. It is similarly used as input to the R_DnssrvUpdateRecord (section <span><a href="37eea101-00b8-4958-99eb-de8cda4b8417" data-linktype="relative-path">3.1.4.5</a></span>)
+and R_DnssrvUpdateRecord2 (section <span><a href="8f50ae96-d87f-4fdb-8526-5a86cea25837" data-linktype="relative-path">3.1.4.10</a></span>) method
+calls.</p><p>The DNS_RPC_RECORD_DATA MUST be specified in one of the
+type-specific formats defined in a section that follows, where the type is
+indicated by the <b>wType</b> value in the DNS_RPC_RECORD (section 2.2.2.2.5)
+structure. Further, for each DNS_RECORD_TYPE (section <span><a href="39b03b89-2264-4063-8198-d62f62a6441a" data-linktype="relative-path">2.2.2.1.1</a></span>) that the
+server supports, the server MUST support the corresponding DNS_RPC_RECORD_DATA
+subtype.</p></div>

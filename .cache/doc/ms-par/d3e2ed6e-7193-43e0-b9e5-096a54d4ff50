@@ -1,0 +1,76 @@
+<div class="content"><p> </p><p><b>RpcAsyncGetPrinterDriverPackagePath</b> gets the path to
+the specified <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer driver</a></span> <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_4f0cc3a7-3067-4da4-a126-52f03256d162" data-linktype="relative-path">package</a></span>.</p><p>The counterpart of this method in the Print System Remote
+Protocol is <b>RpcGetPrinterDriverPackagePath</b>, <span><a href="../ms-rprn/d42db7d5-f141-4466-8f47-0a4be14e2fc1" data-linktype="relative-path">[MS-RPRN]</a></span>
+section <span><a href="../ms-rprn/e453b113-50c6-4a12-9ca6-e327b5accca6" data-linktype="relative-path">3.1.4.4.10</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT RpcAsyncGetPrinterDriverPackagePath(
+   [in] handle_t hRemoteBinding,
+   [in, string, unique] const wchar_t* pszServer,
+   [in, string] const wchar_t* pszEnvironment,
+   [in, string, unique] const wchar_t* pszLanguage,
+   [in, string] const wchar_t* pszPackageID,
+   [in, out, unique, size_is(cchDriverPackageCab)] 
+     wchar_t* pszDriverPackageCab,
+   [in] DWORD cchDriverPackageCab,
+   [out] DWORD* pcchRequiredSize
+ );
+</pre></div>
+</dd></dl><p><b>hRemoteBinding: </b>An <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> explicit binding
+handle.</p><p><b>pszServer: </b>A pointer to a string that contains
+the name of the <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a></span> from
+which to get the printer driver package path. This server name MUST be
+identical to the server name that was used to create the <i>hRemoteBinding</i>
+parameter. For details on RPC bind handles, see <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+For rules governing print server names, see [MS-RPRN] section <span><a href="../ms-rprn/9b3f8135-7022-4b72-accb-aefcc360c83b" data-linktype="relative-path">2.2.4.16</a></span>.</p><p><b>pszEnvironment: </b>A pointer to a string that
+contains the environment name for which the <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_1874576f-4b40-4a78-a1f3-9e47b7ce21c9" data-linktype="relative-path">driver package</a></span> path
+is returned. For rules governing environment names and behaviors, see [MS-RPRN]
+section <span><a href="../ms-rprn/ad775893-8a19-4786-ab46-34731f52d1af" data-linktype="relative-path">2.2.4.4</a></span>.</p><p><b>pszLanguage: </b>A pointer to a string that
+contains the language for which the driver package path is returned.<a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a> Providing this pointer is
+optional. If the pointer is not provided, the value of this parameter MUST be
+NULL.</p><p><b>pszPackageID: </b>A pointer to a string that
+contains package name. The package name is obtained by calling <b>RpcAsyncGetCorePrinterDrivers</b>.</p><p><b>pszDriverPackageCab: </b>A pointer to a string
+that contains the path name of the driver package file.<a id="Appendix_A_Target_26"></a><a aria-label="Product behavior note 26" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_26" data-linktype="relative-path">&lt;26&gt;</a> For rules governing path names,
+see [MS-RPRN] section <span><a href="../ms-rprn/1d75f622-d07c-45cc-bf1e-a6191e408516" data-linktype="relative-path">2.2.4.9</a></span>.
+The <i>pszDriverPackageCab</i> parameter MUST NOT be NULL unless <i>cchDriverPackageCab</i>
+is zero.</p><p><b>cchDriverPackageCab: </b>The size, in characters,
+of the buffer that is referenced by the <i>pszDriverPackageCab</i> parameter.
+The value of this parameter MAY<a id="Appendix_A_Target_27"></a><a aria-label="Product behavior note 27" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_27" data-linktype="relative-path">&lt;27&gt;</a> be zero.</p><p><b>pcchRequiredSize: </b>A pointer to a variable that
+receives the required size of the buffer that is pointed to by the <i>pszDriverPackageCab</i>
+parameter.</p><p><b>Return Values: </b>This method returns either an HRESULT
+success value (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>)
+or an HRESULT error value to indicate failure.</p><p><b>Exceptions Thrown:</b> This method MUST NOT throw any
+exceptions other than those that are thrown by the underlying RPC protocol
+[MS-RPCE].</p><p><b>Parameter Validation Requirements:</b> Upon receiving
+this method call, the server MUST validate parameters as follows:</p><ul><li><p><span><span> 
+</span></span>The string pointed to by the <i>pszEnvironment</i> parameter
+specifies one of the supported environment names on the server for that type of
+driver; otherwise the server MUST return ERROR_INVALID_ENVIRONMENT.</p>
+</li><li><p><span><span> 
+</span></span>The value of the <i>pszPackageID</i> parameter MUST NOT be NULL;
+otherwise the server MUST return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>The value of the <i>pcchRequiredSize</i> parameter MUST NOT be
+NULL; otherwise the server MUST return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>The size specified by <i>cchDriverPackageCab</i> MUST be
+sufficient to hold the path name of the driver package file; otherwise the
+server MUST calculate the required number of characters and write this number
+to the variable pointed to by the <i>pcchRequiredSize</i> output parameter, and
+return ERROR_INSUFFICIENT_BUFFER.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.</p><p><b>Processing and Response Requirements:</b> If parameter
+validation succeeds, the server MUST process the method call by:</p><ul><li><p><span><span> 
+</span></span>Searching for the driver-package <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_0e252d5d-1186-4d88-85fd-ade539a23550" data-linktype="relative-path">cab file</a></span> for the
+specified <i>pszPackageID</i>.</p>
+</li><li><p><span><span> 
+</span></span>Returning the driver package cab path for package ID in the
+output parameter <i>pszDriverPackageCab</i>.</p>
+</li><li><p><span><span> 
+</span></span>Setting the contents of the parameter <i>pcchRequiredSize</i> to
+the size of the string buffer required to hold the driver package cab.</p>
+</li><li><p><span><span> 
+</span></span>Returning a response that contains the output parameters
+mentioned above and the status of the operation.</p>
+</li></ul><p>The server MUST NOT change the list of driver package cabs
+as part of processing this method call.</p></div>

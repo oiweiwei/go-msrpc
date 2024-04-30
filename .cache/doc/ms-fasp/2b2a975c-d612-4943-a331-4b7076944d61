@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>This enumeration identifies the two types of traffic
+enforcement modes that <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_f8a5b7f0-25e0-4c81-9abf-00b56a580deb" data-linktype="relative-path">IPsec</a></span> supports. It
+is defined in the <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span> for future use.</p><dl>
+<dd>
+<div><pre> typedef  enum _tag_FW_PHASE2_TRAFFIC_TYPE
+ {
+   FW_PHASE2_TRAFFIC_TYPE_INVALID = 0,
+   FW_PHASE2_TRAFFIC_TYPE_TRANSPORT = 1,
+   FW_PHASE2_TRAFFIC_TYPE_TUNNEL = 2,
+   FW_PHASE2_TRAFFIC_TYPE_MAX = 3
+ } FW_PHASE2_TRAFFIC_TYPE;
+</pre></div>
+</dd></dl><p><b>FW_PHASE2_TRAFFIC_TYPE_INVALID:  </b>This value
+MUST NOT be used. It is defined for simplicity in writing IDL definitions and
+code. This symbolic constant has a value of 0.</p><p><b>FW_PHASE2_TRAFFIC_TYPE_TRANSPORT:  </b>This value
+represents IPsec transport mode, which happens directly between two <span><a href="d891304d-92d8-4f9f-9e60-a1f02b28ae30#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoints</a></span>.
+This symbolic constant has a value of 1.</p><p><b>FW_PHASE2_TRAFFIC_TYPE_TUNNEL:  </b>This value
+represents IPsec tunnel mode, which uses two other endpoints to tunnel through
+them when the original endpoints communicate. This symbolic constant has a
+value of 2.</p><p><b>FW_PHASE2_TRAFFIC_TYPE_MAX:  </b>This value and
+values that exceed this value are not valid and MUST NOT be used. It is defined
+for simplicity in writing IDL definitions and code. This symbolic constant has
+a value of 3.</p></div>

@@ -1,0 +1,58 @@
+<div class="content"><p> </p><p>The NspiBind method initiates a session between a client and
+the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_e63aea5b-046b-4176-9359-fde82613a406" data-linktype="relative-path">NSPI</a></span>
+server.</p><dl>
+<dd>
+<div><pre> long NspiBind(
+   [in] handle_t hRpc,
+   [in] DWORD dwFlags,
+   [in] STAT* pStat,
+   [in, out, unique] FlatUID_r* pServerGuid,
+   [out, ref] NSPI_HANDLE* contextHandle
+ );
+</pre></div>
+</dd></dl><p><b>hRpc: </b>An <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle
+parameter, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> section
+2.</p><p><b>dwFlags: </b> A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value containing a set of bit flags. The server MUST ignore values other than
+the bit flag <b>fAnonymousLogin</b>.</p><p><b>pStat: </b>A pointer to a <span><a href="5902bec9-3124-4725-8a8f-1a50282ed023" data-linktype="relative-path">STAT</a></span>
+block describing a logical position in a specific <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_a34b031c-18b2-40e1-acfa-3b73cc71e80b" data-linktype="relative-path">address book container</a></span>.
+This parameter is used to specify both input parameters from the client and
+return values from the NSPI server.</p><p><b>pServerGuid: </b>The value NULL or a pointer to a <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span>
+value associated with the specific NSPI server.</p><p><b>contextHandle: </b>An RPC context handle as
+specified in section <span><a href="67195f6a-2002-4d81-b279-ba8b0aefb4af" data-linktype="relative-path">2.3.9</a></span>.</p><p><b>Return Values: </b>The server returns a long value
+specifying the return status of the method.</p><p>Exceptions Thrown</p><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>Server Processing Rules</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>If the <b>CodePage</b>
+field of the input parameter <i>pStat</i> contains the value CP_WINUNICODE, the
+server MUST return one of the return values specified in section <span><a href="03bb2ea3-f2e9-4adb-ab46-751aca824b72" data-linktype="relative-path">2.2.2</a></span>.
+No further constraints are applied to server processing of this method; in this
+case server behavior is undefined. Note especially that there is no constraint
+on the data the server returns in any output parameter other than the return
+value, nor is there any constraint on how or if the server changes its state.</p>
+</li><li><p><span>    </span>If the server
+returns any return value other than Success, the server MUST return a NULL for
+the output parameter <i>pServerGuid</i>. </p>
+</li><li><p><span>    </span>The server MAY<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="c89d64b3-3ccf-427b-a6b2-f40178dec51a#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a> make additional validations
+including but not limited to limiting the number of concurrent connections to
+any specific client or checking the data access rights of the client. If these
+checks fail, the server MUST return LogonFailed.</p>
+</li><li><p><span>    </span>A value of <b>fAnonymousLogin</b>
+in the input parameter <i>dwFlags</i> indicates that the server did not
+validate that the client is an authenticated user. The server MAY<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="c89d64b3-3ccf-427b-a6b2-f40178dec51a#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a> ignore this request.</p>
+</li><li><p><span>    </span>Subject to
+constraint 4, the server MAY<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="c89d64b3-3ccf-427b-a6b2-f40178dec51a#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a>
+authenticate the client. How a server authenticates a client is an
+implementation-specific detail.</p>
+</li><li><p><span>    </span>The <b>CodePage</b>
+field of the input parameter <i>pStat</i> specifies the <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_210637d9-9634-4652-a935-ded3cd434f38" data-linktype="relative-path">codepage</a></span>
+to use in this session. If the server will not service connections using that
+codepage, the server MUST return the error code InvalidCodepage.</p>
+</li><li><p><span>    </span>Subject to the
+prior constraints, if the input parameter <i>pServerGuid</i> is not NULL, the
+server MUST set the output parameter <i>pServerGuid</i> to a GUID associated
+with the NSPI server. The NSPI server MAY<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="c89d64b3-3ccf-427b-a6b2-f40178dec51a#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a> use a
+different GUID for each RPC connection. Each NSPI server MUST use a different
+GUID.</p>
+</li><li><p><span>    </span>If no other
+return code has been set, the server MUST return the value Success.</p>
+</li></ol></div>

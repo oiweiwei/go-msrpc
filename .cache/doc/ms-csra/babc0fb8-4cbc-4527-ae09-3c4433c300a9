@@ -1,0 +1,14 @@
+<div class="content"><p>The GetServerState method is used to validate that the
+caller has permission to read the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> database.</p><dl>
+<dd>
+<div><pre> HRESULT GetServerState(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [out] DWORD* pdwState
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b> See the <i>pwszAuthority</i>
+definition in section <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">3.1.4.1.1</a>.
+</p><p><b>pdwState: </b>A pointer to an unsigned integer
+value that specifies whether the caller has permission to read from the CA
+database.</p><p>The CA MUST return 1 for <i>pdwState</i> if the caller has
+permission to read from the CA database. Otherwise, the CA MUST return 0.</p></div>

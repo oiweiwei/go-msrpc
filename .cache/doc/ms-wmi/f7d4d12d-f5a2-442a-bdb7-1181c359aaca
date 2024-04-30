@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The WBEM_STATUS_TYPE enumeration gives information about the
+status of the operation.</p><dl>
+<dd>
+<div><pre> typedef enum tag_WBEM_STATUS_TYPE
+ {
+   WBEM_STATUS_COMPLETE = 0,
+   WBEM_STATUS_REQUIREMENTS = 0x01,
+   WBEM_STATUS_PROGRESS = 2
+ } WBEM_STATUS_TYPE;
+</pre></div>
+</dd></dl><p><b>WBEM_STATUS_COMPLETE:  </b>When the WMI operation
+is completed, WMI calls <span><a href="479c78dc-73cf-4f5b-85bd-5efb26ab48a6" data-linktype="relative-path">IWbemObjectSink::SetStatus</a></span>
+with WBEM_STATUS_COMPLETE.</p><p><b>WBEM_STATUS_REQUIREMENTS:  </b>This flag MUST NOT
+be set, and MUST be ignored on receipt.</p><p><b>WBEM_STATUS_PROGRESS:  </b>WMI reports the
+progress of the operation to IWbemObjectSink::SetStatus with flag WBEM_STATUS_PROGRESS.</p></div>

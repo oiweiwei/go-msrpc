@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The IMPLTYPEFLAGS enumeration values are stored in the
+pImplTypeFlags parameter of the <span><a href="4232aaa9-57a8-44bf-b0d0-a02dbdb3e9bc" data-linktype="relative-path">ITypeInfo::GetImplTypeFlags</a></span>
+method to specify the implementation features of a <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_afe9a4a6-56fc-4162-8c9b-ca7c7e44449c" data-linktype="relative-path">COM server</a></span>, as
+specified in section 3.7.4.7.</p><p>The following implementation type feature constants are
+defined in the IMPLTYPEFLAGS enumeration.</p><dl>
+<dd>
+<div><pre> typedef  enum tagIMPLTYPEFLAGS
+ {
+   IMPLTYPEFLAG_FDEFAULT = 0x1,
+   IMPLTYPEFLAG_FSOURCE = 0x2,
+   IMPLTYPEFLAG_FRESTRICTED = 0x4,
+   IMPLTYPEFLAG_FDEFAULTVTABLE = 0x8
+ } IMPLTYPEFLAGS;
+</pre></div>
+</dd></dl><p><b>IMPLTYPEFLAG_FDEFAULT:  </b>MUST be set if the
+interface was declared with the <b>[default]</b> attribute (as specified in
+section <span><a href="e86fe771-d836-47b6-b846-846de41d592c" data-linktype="relative-path">2.2.49.8</a></span>).</p><p><b>IMPLTYPEFLAG_FSOURCE:  </b>MUST be set if the
+interface was declared with the <b>[source]</b> or <b>[defaultvtable]</b>
+attributes (as specified in section 2.2.49.8).</p><p><b>IMPLTYPEFLAG_FRESTRICTED:  </b>MUST be set if the
+interface was declared with the <b>[restricted]</b> attribute (as specified in
+section 2.2.49.8).</p><p><b>IMPLTYPEFLAG_FDEFAULTVTABLE:  </b>MUST be set if
+the interface was declared with the <b>[defaultvtable]</b> attribute (as
+specified in section 2.2.49.8).</p></div>

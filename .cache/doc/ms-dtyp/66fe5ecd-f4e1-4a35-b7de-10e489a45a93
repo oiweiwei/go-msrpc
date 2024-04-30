@@ -1,0 +1,12 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/66fe5ecd-f4e1-4a35-b7de-10e489a45a93" data-linktype="external">msdn link</a></p><p>The RPC representation of the <a href="628ebb1d-c509-4ea0-a10f-77ef97ca4586" data-linktype="relative-path">ACE_HEADER</a> defines the
+type and size of an <a href="d06e5a81-176e-46c6-9cf7-9137aad4455e" data-linktype="relative-path">ACE</a>.
+The members and values are as specified in section 2.4.4.1.</p><dl>
+<dd>
+<div><pre> typedef struct _ACE_HEADER {
+   UCHAR AceType;
+   UCHAR AceFlags;
+   USHORT AceSize;
+ } ACE_HEADER,
+  *PACE_HEADER;
+</pre></div>
+</dd></dl></div>

@@ -1,0 +1,13 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/548d7519-53d1-4891-92d5-f7d240c73496" data-linktype="external">msdn link</a></p><p>The <b>NL_IN_CHAIN_SET_CLIENT_ATTRIBUTES</b> union defines
+versioning.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(1)] 
+     NL_IN_CHAIN_SET_CLIENT_ATTRIBUTES_V1 V1;
+ } NL_IN_CHAIN_SET_CLIENT_ATTRIBUTES;
+</pre></div>
+</dd></dl><p><b>V1:</b> An <b>NL_IN_CHAIN_SET_CLIENT_ATTRIBUTES_V1</b>
+(section <a href="f4ed8790-d7e8-4ca1-8062-d25784ed79e3" data-linktype="relative-path">2.2.1.3.16)</a>
+structure.<a id="Appendix_A_Target_43"></a><a aria-label="Product behavior note 43" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_43" data-linktype="relative-path">&lt;43&gt;</a></p></div>

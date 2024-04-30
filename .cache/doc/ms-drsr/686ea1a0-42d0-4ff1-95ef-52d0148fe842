@@ -1,0 +1,8 @@
+<div class="content"><p> </p><p>ULARGE_INTEGER is a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> for a
+64-bit, unsigned integer.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   ULONGLONG QuadPart;
+ } ULARGE_INTEGER;
+</pre></div>
+</dd></dl></div>

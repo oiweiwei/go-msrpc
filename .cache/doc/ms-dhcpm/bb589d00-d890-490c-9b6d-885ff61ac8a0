@@ -1,0 +1,29 @@
+<div class="content"><p> </p><p>The <b>QuarantineStatus</b> enumeration defines the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_f30fdc41-d7c1-422e-b5a8-9dcce071ebeb" data-linktype="relative-path">Network
+Access Protection (NAP)</a></span> state of the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_c35fc04f-54fe-4570-afd3-c96ca84c8d83" data-linktype="relative-path">DHCP client</a></span>.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p><dl>
+<dd>
+<div><pre> typedef enum _QuarantineStatus {
+      NOQUARANTINE = 0,
+      RESTRICTEDACCESS,
+      DROPPACKET,
+      PROBATION,
+      EXEMPT,
+      DEFAULTQUARSETTING,
+      NOQUARINFO
+ } QuarantineStatus;
+</pre></div>
+</dd></dl><p><b>NOQUARANTINE: </b>The DHCP client is compliant
+with the health policies defined by the administrator and has normal access to
+the network.</p><p><b>RESTRICTEDACCESS: </b>The DHCP client is not
+compliant with the health policies defined by the administrator and is being
+quarantined with restricted access to the network.</p><p><b>DROPPACKET: </b>The DHCP client is not compliant
+with the health policies defined by the administrator and is being denied
+access to the network. The DHCP server does not grant an IP address lease to
+this client.</p><p><b>PROBATION: </b>The DHCP client is not compliant
+with the health policies defined by the administrator and is being granted
+normal access to the network for a limited time.</p><p><b>EXEMPT: </b>The DHCP client is exempt from
+compliance with the health policies defined by the administrator and is granted
+normal access to the network.</p><p><b>DEFAULTQUARSETTING: </b>The DHCP client is put
+into the default quarantine state configured on the DHCP NAP server. When a
+network policy server (NPS) is unavailable, the DHCP client can be put in any
+of the states NOQUARANTINE, RESTRICTEDACCESS, or DROPPACKET, depending on the
+default setting on the DHCP NAP server.</p><p><b>NOQUARINFO: </b>No quarantine.</p></div>

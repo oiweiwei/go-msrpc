@@ -1,0 +1,72 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/8a82ce81-68e1-42da-88a7-51096dcde022" data-linktype="external">msdn link</a></p><p>The LsarSetInformationPolicy method is invoked to set a
+policy on the server.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarSetInformationPolicy(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in] POLICY_INFORMATION_CLASS InformationClass,
+   [in, switch_is(InformationClass)] 
+     PLSAPR_POLICY_INFORMATION PolicyInformation
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>InformationClass: </b>A parameter that specifies
+what type of information the caller is setting.</p><p><b>PolicyInformation: </b>Data that represents the
+policy being set.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000000D</p>
+  <p>STATUS_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One of the parameters is incorrect. For instance, this
+  can happen if <i>InformationClass</i> is not supported or some of the
+  supplied policy data is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000002</p>
+  <p>STATUS_NOT_IMPLEMENTED</p>
+  </td>
+  <td>
+  <p>This information class cannot be set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message MUST be processed in an identical manner to <a href="fc14e9ae-a26e-4031-809e-a908dd3e13a3" data-linktype="relative-path">LsarSetInformationPolicy2</a>.</p></div>

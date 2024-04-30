@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The SetSANMode method sets the SAN mode of a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>
+to either <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_e42c8573-c14f-4a3d-bd1e-549aa1f7ec13" data-linktype="relative-path">offline</a></span> or <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_783ae2e4-7c04-40ba-a974-f95a30aa1ab2" data-linktype="relative-path">online</a></span>.
+A disk that is offline exposes no volume devices for partitions or volumes with
+extents on that disk. A disk can be REAONLY or READWRITE independent of the
+offline or online setting.</p><dl>
+<dd>
+<div><pre> HRESULT SetSANMode(
+   [in] long bEnable
+ );
+</pre></div>
+</dd></dl><p><b>bEnable: </b>A Boolean value that indicates
+whether to set the disk to either online or offline.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p><b>ERROR_SUCCESS</b> (0x00000000)</p><p>When the server receives this message, it MUST set the SAN
+mode of the disk to offline or online, as specified by <b>bEnable</b>, and then
+return an HRESULT indicating failure or success.<a id="Appendix_A_Target_92"></a><a aria-label="Product behavior note 92" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_92" data-linktype="relative-path">&lt;92&gt;</a><a id="Appendix_A_Target_93"></a><a aria-label="Product behavior note 93" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_93" data-linktype="relative-path">&lt;93&gt;</a></p></div>

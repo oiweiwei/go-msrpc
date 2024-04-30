@@ -1,0 +1,29 @@
+<div class="content"><p> </p><p>The DRS_MSG_GETCHGREQ union defines request messages that
+are sent to the <span><a href="b63730ac-614c-431c-9501-28d6aca91894" data-linktype="relative-path">IDL_DRSGetNCChanges</a></span>
+method. There are no V1, V2, V3, V6, or V9 messages.</p><dl>
+<dd>
+<div><pre> typedef 
+ [switch_type(DWORD)] 
+ union {
+   [case(4)]
+     DRS_MSG_GETCHGREQ_V4 V4;
+   [case(5)]
+     DRS_MSG_GETCHGREQ_V5 V5;
+   [case(7)]
+     DRS_MSG_GETCHGREQ_V7 V7;
+   [case(8)]
+     DRS_MSG_GETCHGREQ_V8 V8;
+   [case(10)]
+     DRS_MSG_GETCHGREQ_V10 V10;
+   [case(11)]
+     DRS_MSG_GETCHGREQ_V11 V11;
+ } DRS_MSG_GETCHGREQ;
+</pre></div>
+</dd></dl><p><b>V4:</b>  Version 4 request (Windows 2000
+operating system SMTP <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span> <span><a href="../ms-srpl/ec69eea5-0d5e-428a-b5bc-66732aaeb866" data-linktype="relative-path">[MS-SRPL]</a></span>).</p><p><b>V5:</b>  Version 5 request (Windows 2000
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+replication).</p><p><b>V7:</b>  Version 7 request (Windows
+Server 2003 operating system SMTP replication [MS-SRPL]).</p><p><b>V8:</b>  Version 8 request (Windows
+Server 2003 RPC replication).</p><p><b>V10:</b>  Version 10 request (Windows
+Server 2008 R2 operating system RPC replication).</p><p><b>V11:</b>  Version 11 request (Windows
+Server v1803 operating system RPC replication).</p></div>

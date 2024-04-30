@@ -1,0 +1,681 @@
+import "ms-oaut.idl";
+   // XXX: SAFEARRAY macro expanded: SAFEARRAY(type) -> [safearray(type)] SAFEARRAY
+   // #define SAFEARRAY(type) SAFEARRAY
+   
+   typedef enum _CPREP_DISKID_ENUM {
+       CprepIdSignature = 0x00000000,
+       CprepIdGuid      = 0x00000001,
+       CprepIdNumber    = 0x00000fa0,
+       CprepIdUnknown   = 0x00001388
+   } CPREP_DISKID_ENUM, *PCPREP_DISKID_ENUM;
+   
+   typedef struct _CPREP_DISKID {
+       CPREP_DISKID_ENUM       DiskIdType;
+       [switch_is(DiskIdType)] union {
+           [case(CprepIdSignature)]    unsigned long DiskSignature;
+           [case(CprepIdGuid)]         GUID          DiskGuid;
+           [case(CprepIdNumber)]       unsigned long DeviceNumber;
+           [case(CprepIdUnknown)]      unsigned long Junk;
+       };
+   } CPREP_DISKID, *PCPREP_DISKID;
+   
+   typedef enum _DiskStackType {
+       DiskStackScsiPort = 0x00000000,
+       DiskStackStorPort = 0x00000001,
+       DiskStackFullPort = 0x00000002
+   } DiskStackType;
+   
+   typedef struct _CPREP_SCSI_ADDRESS {
+       unsigned long  Length;
+       unsigned char  PortNumber;
+       unsigned char  PathId;
+       unsigned char  TargetId;
+       unsigned char  Lun;
+   } CPREP_SCSI_ADDRESS, *PCPREP_SCSI_ADDRESS;
+   
+   typedef struct _DISK_PROPS {
+       unsigned long       DiskNumber;
+       CPREP_DISKID        DiskId;
+       unsigned long       DiskBusType;
+       DiskStackType       StackType;
+       CPREP_SCSI_ADDRESS  ScsiAddress;
+       long                DiskIsClusterable; 
+       wchar_t             AdapterDesc[260];
+       unsigned long       NumPaths; 
+       unsigned long       Flags;
+   } DISK_PROPS, * PDISK_PROPS;
+   
+   typedef struct _DISK_PROPS_EX {
+       ULONG               DiskNumber;
+       CPREP_DISKID        DiskId;
+       ULONG               DiskBusType;
+       DiskStackType       StackType;
+       CPREP_SCSI_ADDRESS  ScsiAddress;
+       BOOL                DiskIsClusterable; 
+       wchar_t             AdapterDesc[260];
+       [string] LPWSTR     pwszFriendlyName;
+       unsigned long       NumPaths;               
+       unsigned long       Flags;
+       unsigned long       ExtendedFlags;
+       [string] LPWSTR     pwszPoolName;
+       [string] LPWSTR     pwszPage83Id;
+       [string] LPWSTR     pwszSerialNumber;
+       GUID                guidPoolId;
+   } DISK_PROPS_EX, * PDISK_PROPS_EX;
+   
+   typedef  enum _CLUSTER_NETWORK_PROFILE {
+     ClusterNetworkProfilePublic = 0x00,
+     ClusterNetworkProfilePrivate = 0x01,
+     ClusterNetworkProfileDomainAuthenticated = 0x02
+   } CLUSTER_NETWORK_PROFILE, *PCLUSTER_NETWORK_PROFILE;
+   
+   [
+       object,
+       uuid(12108A88-6858-4467-B92F-E6CF4568DFB6),
+       pointer_default(unique)
+   ]
+   interface IClusterStorage2 : IUnknown
+   {
+       HRESULT CprepDiskRawRead(
+           [in] CPREP_DISKID DiskId, 
+           [in] unsigned long ulSector, 
+           [in] unsigned long cbData, 
+           [out, size_is(cbData), length_is(*pcbDataRead)] byte *pbData, 
+           [out] unsigned long *pcbDataRead, 
+           [out] unsigned long *ulLatency
+       );
+   
+       HRESULT CprepDiskRawWrite(
+           [in] CPREP_DISKID DiskId, 
+           [in] unsigned long ulSector, 
+           [in] unsigned long cbData, 
+           [in, size_is(cbData)] byte* pbData, 
+           [out] unsigned long* pcbDataWritten, 
+           [out] unsigned long *ulLatency
+       );
+   
+       HRESULT CprepPrepareNode(
+           [out] unsigned long* pulMajorVersion, 
+           [out] unsigned long* pulMinorVersion, 
+           [out] unsigned long* pdwCPrepVersion
+       );
+   
+       HRESULT CprepPrepareNodePhase2(
+           [in] unsigned long Flags, 
+           [out] unsigned long* pulNumDisks
+       );
+   
+       HRESULT CprepDiskGetProps(
+           [in] CPREP_DISKID DiskId, 
+           [out] DISK_PROPS * DiskProps
+       );
+   
+       HRESULT Opnum8NotUsedOnWire();
+       HRESULT Opnum9NotUsedOnWire();
+       HRESULT Opnum10NotUsedOnWire();
+       HRESULT Opnum11NotUsedOnWire();
+   
+       HRESULT CprepDiskStopDefense(
+           [in] CPREP_DISKID DiskId
+       );
+   
+       HRESULT CprepDiskOnline(
+           [in] CPREP_DISKID DiskId, 
+           [out] unsigned long* MaxPartitionNumber
+       );
+   
+       HRESULT CprepDiskVerifyUnique(
+           [in] CPREP_DISKID DiskId
+       );
+   
+       HRESULT Opnum15NotUsedOnWire();
+       HRESULT Opnum16NotUsedOnWire();
+   
+       HRESULT CprepDiskWriteFileData(
+           [in] CPREP_DISKID DiskId, 
+           [in] unsigned long ulPartition, 
+           [in, string] wchar_t* FileName, 
+           [in] unsigned long cbDataIn, 
+           [in, size_is(cbDataIn)] byte* DataIn
+       );
+   
+       HRESULT CprepDiskVerifyFileData(
+           [in] CPREP_DISKID DiskId, 
+           [in] unsigned long ulPartition, 
+           [in, string] wchar_t* FileName, 
+           [in] unsigned long cbDataIn, 
+           [in, size_is(cbDataIn)] byte* DataIn
+       );
+   
+       HRESULT CprepDiskDeleteFile(
+           [in] CPREP_DISKID DiskId, 
+           [in] unsigned long ulPartition, 
+           [in, string] wchar_t* FileName
+       );
+   
+       HRESULT CprepDiskOffline(
+           [in] CPREP_DISKID DiskId
+       );
+   
+       HRESULT Opnum21NotUsedOnWire();
+   
+       HRESULT CprepDiskGetUniqueIds(
+           [in] CPREP_DISKID DiskId, 
+           [in] unsigned long cbData, 
+           [out, size_is(cbData), length_is(*pcbDataOut)] byte* pbData, 
+           [out] unsigned long *pcbDataOut, 
+           [out] unsigned long *pcbNeeded
+       );
+   
+       HRESULT CprepDiskAttach(
+           [in] CPREP_DISKID DiskId
+       );
+   
+       HRESULT CprepDiskPRArbitrate(
+           [in] CPREP_DISKID DiskId
+       );
+   
+       HRESULT CprepDiskPRRegister(
+           [in] CPREP_DISKID DiskId
+       );
+   
+       HRESULT CprepDiskPRUnRegister(
+           [in] CPREP_DISKID DiskId
+       );
+   
+       HRESULT CprepDiskPRReserve(
+           [in] CPREP_DISKID DiskId
+       );
+   
+       HRESULT CprepDiskPRRelease(
+           [in] CPREP_DISKID DiskId
+       );
+   
+       HRESULT CprepDiskDiskPartitionIsNtfs(
+           [in] CPREP_DISKID DiskId, 
+           [in] unsigned long ulPartition
+       );
+   
+       HRESULT CprepDiskGetArbSectors(
+           [in] CPREP_DISKID DiskId, 
+           [out] unsigned long *SectorX, 
+           [out] unsigned long *SectorY
+       );
+   
+       HRESULT CprepDiskIsPRPresent(
+           [in] CPREP_DISKID DiskId, 
+           [out] unsigned long *Present
+       );
+   
+       HRESULT CprepDiskPRPreempt(
+           [in] CPREP_DISKID DiskId
+       );
+   
+       HRESULT CprepDiskPRClear(
+           [in] CPREP_DISKID DiskId
+       );
+   
+       HRESULT CprepDiskIsOnline(
+           [in] CPREP_DISKID DiskId
+       );
+   
+       HRESULT CprepDiskSetOnline(
+           [in] CPREP_DISKID DiskId
+       );
+   
+       HRESULT CprepDiskGetFSName(
+           [in] CPREP_DISKID DiskId, 
+           [in] unsigned long Partition, 
+           [out] wchar_t FsName[100] // TODO: static string?
+       );
+   
+       HRESULT CprepDiskIsReadable(
+           [in] CPREP_DISKID DiskId
+       );
+   
+       HRESULT CprepDiskGetDsms(
+           [in] unsigned long Size, 
+           [out] unsigned long *pResgisteredDsms,  // XXX: pResgisteredDsms -> pRegisteredDsms
+           [out, size_is(Size), length_is(*pResgisteredDsms)] byte *RegisteredDsms
+       );
+   };
+   
+   
+   [
+       object,
+       uuid(11942D87-A1DE-4E7F-83FB-A840D9C5928D),
+       helpstring("IClusterStorage3 Interface"),
+       pointer_default(unique)
+   ]
+ 
+ 
+ 
+ 
+   interface IClusterStorage3 : IUnknown{
+   
+       [helpstring("method DiskGetUniqueIds3")] 
+       HRESULT CprepDiskGetUniqueIds3(
+   [in]                            CPREP_DISKID                DiskId, 
+   [out, size_is( ,*pcbDihSize)]   BYTE                        **ppbDeviceIdHeader,            
+   [out]                           ULONG                       *pcbDihSize,
+   [out, size_is( ,*pcbDdSize)]    BYTE                        **ppDeviceDescriptor,           
+   [out]                           ULONG                       *pcbDdSize
+   
+   
+   
+                   );
+   
+       [helpstring("method CprepCheckNetFtBindings3")]
+       HRESULT CprepCheckNetFtBindings3( 
+            void 
+       );
+   
+       [helpstring("method CprepCsvTestSetup3")] 
+       HRESULT CprepCsvTestSetup3(            
+   [in]                                        GUID        TestShareGuid,
+   [in, string]                                LPWSTR      Reserved
+   );
+   
+   
+   
+       [helpstring("method CprepIsNodeClustered3")] 
+       HRESULT CprepIsNodeClustered3(
+               [out]                                       BOOLEAN     *pbIsClusterNode
+               );
+   
+       [helpstring("method CprepCreateNewSmbShares3")] 
+       HRESULT CprepCreateNewSmbShares3( 
+               [out, string, size_is(,*pdwNumberOfPaths)]  LPWSTR      **ppwszSharePaths, 
+               [out]                                       DWORD       *pdwNumberOfPaths
+               );
+   
+       [helpstring("method CprepConnectToNewSmbShares3")] 
+       HRESULT CprepConnectToNewSmbShares3(                                 
+               [in, string, size_is(dwNumberOfPaths,)]     LPWSTR      *ppwszSharePaths, 
+               [in]                                        DWORD       dwNumberOfPaths
+               );
+   
+       [helpstring("method CprepDiskGetProps3")] 
+       HRESULT CprepDiskGetProps3(
+               [in]                                        CPREP_DISKID    DiskId, 
+               [out]                                       DISK_PROPS_EX   *pDiskProps
+               );
+   
+   
+       [helpstring("method CprepDiskIsReadOnly3")] 
+       HRESULT CprepDiskIsReadOnly3(                      
+               [in]                                        CPREP_DISKID    DiskId, 
+               [out]                                       BOOLEAN         *pbReadOnly
+               );
+   
+   
+       [helpstring("method CprepDiskPRRegister3")] 
+       HRESULT CprepDiskPRRegister3(
+           [in]                                            CPREP_DISKID    DiskId, 
+           [in]                                            ULONGLONG       OldPrKey,
+           [in]                                            ULONGLONG       NewPrKey
+           );
+   
+       [helpstring("method CprepDiskFindKey3")] 
+       HRESULT CprepDiskFindKey3(
+           [in]                                            CPREP_DISKID    DiskId, 
+           [in]                                            ULONGLONG       Key,
+           [out]                                           BOOLEAN         *pbFound
+           );
+   
+       [helpstring("method CprepDiskPRPreempt3")] 
+       HRESULT CprepDiskPRPreempt3(
+           [in]                                            CPREP_DISKID    DiskId,
+           [in]                                            ULONGLONG       OwnerKey,
+           [in]                                            ULONGLONG       NewKey
+           );
+   
+       [helpstring("method CprepDiskPRReserve3")] 
+       HRESULT CprepDiskPRReserve3(
+           [in]                                            CPREP_DISKID    DiskId,
+           [in]                                            ULONGLONG       Key
+           );
+   
+       [helpstring("method CprepDiskIsPRPresent3")] 
+       HRESULT CprepDiskIsPRPresent3(
+           [in]                                            CPREP_DISKID    DiskId,
+           [in]                                            ULONGLONG       Key
+           );
+   
+       [helpstring("method CprepDiskPRRelease3")] 
+       HRESULT CprepDiskPRRelease3(
+           [in]                                            CPREP_DISKID    DiskId,
+           [in]                                            ULONGLONG       Key
+           );
+   
+       [helpstring("method CprepDiskPRClear3")] 
+       HRESULT CprepDiskPRClear3(
+           [in]                                            CPREP_DISKID    DiskId,
+           [in]                                            ULONGLONG       Key
+           );
+   };
+   
+   typedef struct NODE_ROUTE_INFO {
+       BSTR                    remoteVirtualIP;
+       [safearray(BSTR)] SAFEARRAY         localUnicastIPs;
+       [safearray(BSTR)] SAFEARRAY         remoteUnicastIPs;
+       [safearray(ULONG)] SAFEARRAY        indices;
+   } NODE_ROUTE_INFO;
+   
+   typedef struct ADD_ROUTES_REQUEST{
+       BSTR                        localVirtualIP;
+       [safearray(NODE_ROUTE_INFO)] SAFEARRAY  nodeRouteInfos; 
+   } ADD_ROUTES_REQUEST;
+   
+   typedef enum ROUTE_STATUS {
+       DOWN,
+       UP,
+       UP_DOWN
+   } ROUTE_STATUS;
+   
+   typedef struct ROUTE_LOSS_AND_STATE {
+       ULONG            packetLoss;
+       ROUTE_STATUS     status;
+   } ROUTE_LOSS_AND_STATE;
+   
+   typedef struct ADD_ROUTES_REPLY {
+       [safearray(ULONG)] SAFEARRAY                    indices;
+       [safearray(ROUTE_LOSS_AND_STATE)] SAFEARRAY     replies;
+       BOOLEAN                             routeUnavailable;
+   } ADD_ROUTES_REPLY;
+                 
+   typedef enum DiskMediaType
+{
+  DiskMediaTypeUnknown = 0x00000000,
+  DiskMediaTypeHDD = 0x00000001,
+  DiskMediaTypeSSD = 0x00000002,
+  DiskMediaTypeSCM = 0x00000003
+}  DiskMediaType;
+ 
+    typedef enum _ClusterLogExFlag {
+          ClusterLogFlagNone = 0,
+          ClusterLogFlagLocalTime = 1,
+          ClusterLogFlagSkipClusterState = 2,
+   } ClusterLogExFlag;
+   
+   typedef enum CLUSTER_CERTTYPE
+   {
+          Cluster_SChannel = 0,
+          ClusterSet_SChannel = 1,
+          Cluster_PKU2U = 2,
+          ClusterSet_PKU2U = 3
+   }CLUSTER_CERTTYPE;
+ 
+   typedef struct _CLUSTER_CERT {
+       ULONG  CbCertData;
+       ULONG  CbKeyData;
+       BYTE  CertData[1024 * 5];
+       BYTE  KeyData[1024 * 10];
+       WCHAR  ClusterSecret[32 + 1];
+   } CLUSTER_CERT;
+   [
+       object,
+       uuid(2931C32C-F731-4c56-9FEB-3D5F1C5E72BF),
+       pointer_default(unique)
+   ]
+   interface IClusterNetwork2 : IUnknown
+   {
+       HRESULT SendRTMessage(
+           [in] BSTR SourceIPAddress, 
+           [in] BSTR DestIPAddress, 
+           [in] unsigned short DestPort, 
+           [in] unsigned short AddressFamily,
+           [in] unsigned long MessageSize, 
+           [in] unsigned long Timeout,
+           [out] unsigned long* RTElapsedTime
+       );
+   
+       HRESULT InitializeNode(
+           [in] unsigned short RequestUDPPort, 
+           [out] unsigned short *BoundUDPPort, 
+           [out] unsigned long* NodeMajorVersion, 
+           [out] unsigned long* NodeMinorVersion, 
+           [out] unsigned long* ClusprepVersion
+       );
+   
+       HRESULT GetIpConfigSerialized(
+           [in]  BOOLEAN ApplyClusterFilter,
+           [out] [safearray(byte)] SAFEARRAY * Data,
+           [out] int* pcbOut
+       );
+   
+       HRESULT CleanupNode ();
+   
+       HRESULT QueryFirewallConfiguration(
+           [out] BOOLEAN* serverRulesEnabled,
+           [out] BOOLEAN* mgmtRulesEnabled
+       );
+   
+       HRESULT ProcessAddRoutes(
+           [in]  const ADD_ROUTES_REQUEST* request
+           );
+   
+       HRESULT GetAddRoutesStatus(
+          [out] ADD_ROUTES_REPLY* reply
+          );
+   
+       HRESULT Opnum10Reserved();
+   
+       HRESULT CancelAddRoutesRequest();
+   };
+   
+   [
+       object,
+       uuid(D6105110-8917-41A5-AA32-8E0AA2933DC9),
+       pointer_default(unique)
+   ]
+   
+   interface IClusterCleanup : IUnknown
+   {
+       HRESULT CleanUpEvictedNode(
+           [in] unsigned long DelayBeforeCleanup,
+           [in] unsigned long TimeOut,
+           [in] unsigned long Flags
+       );
+   
+       HRESULT ClearPR(
+           [in] unsigned long DeviceNumber
+       );
+   };
+   
+   [
+       object,
+       uuid(491260B5-05C9-40D9-B7F2-1F7BDAE0927F),
+       pointer_default(unique)
+   ]
+   interface IClusterSetup : IUnknown
+   {
+       HRESULT ConfigSvcSecret(
+           [in] BSTR SecretBLOB
+       );
+   
+       HRESULT RetrieveSvcSecret(
+           [out] BSTR* SecretBLOB
+       );
+   
+       HRESULT RetrieveHostLabel(
+           [out] BSTR* HostLabel
+       );
+   
+       HRESULT GetFunctionalLevel(
+         [out] WORD* FunctionalLevel
+       );
+        HRESULT Opnum7Reserved();
+   
+        HRESULT Opnum8Reserved();
+   
+       HRESULT ConfigClusterCert(
+         [in] CLUSTER_CERT * ClusterCert
+       );
+   
+       HRESULT RetrieveClusterCert(
+         [out] CLUSTER_CERT * ClusterCert
+       );
+   
+       HRESULT GenerateClusterCert(
+         [in,out] CLUSTER_CERT * ClusterCert
+       );
+ 
+         HRESULT GetUpgradeVersion(
+         [out] WORD* UpgradeVersion
+       );
+ 
+       HRESULT Opnum13Reserved();
+ 
+         HRESULT ConfigClusterCerV2(
+         [in] CLUSTER_CERT * ClusterCert,
+         [in] CLUSTER_CERTTYPE certType
+       );
+   
+       HRESULT RetrieveClusterCertV2(
+         [in] CLUSTER_CERT * ClusterCert,
+         [out] CLUSTER_CERTTYPE *certType
+       );
+   
+       HRESULT GenerateClusterCertV2(
+         [in, out] CLUSTER_CERT * ClusterCert,
+         [in] CLUSTER_CERTTYPE certType
+       );
+ 
+       
+ 
+   };
+   [
+       object,
+       uuid(85923CA7-1B6B-4E83-A2E4-F5BA3BFBB8A3),
+       pointer_default(unique)
+   ]
+   interface IClusterLog : IUnknown
+   {
+       HRESULT GenerateClusterLog(
+           [out] BSTR* LogFilePath
+       );
+   
+       HRESULT GenerateTimeSpanLog(
+           [in] unsigned long SpanMinutes, 
+           [out] BSTR* LogFilePath
+       );
+   
+       HRESULT GenerateClusterLogInLocalTime(
+           [out] BSTR* LogFilePath
+       );
+   
+       HRESULT GenerateTimeSpanLogInLocalTime(
+           [in] ULONG SpanMinutes,
+           [out] BSTR* LogFilePath
+       );
+   };
+   
+   [
+       object,
+       uuid (BD7C23C2-C805-457C-8F86-D17FE6B9D19F),
+       pointer_default(unique)
+   ]
+   interface IClusterLogEx : IUnknown{
+       HRESULT GenerateClusterLog(
+           [in] ULONG SpanMinutes,
+           [in] ClusterLogExFlag flags,
+           [out] BSTR* LogFilePath
+       );
+       
+       HRESULT GenerateClusterHealthLog(
+           [in] ULONG SpanMinutes,
+           [in] ClusterLogExFlag flags,
+           [out] BSTR* LogFilePath
+       );
+   };
+   
+   [
+       object,
+       uuid(F1D6C29C-8FBE-4691-8724-F6D8DEAEAFC8),
+       pointer_default(unique)
+   ]
+   interface IClusterFirewall : IUnknown{
+       HRESULT InitializeAdapterConfiguration (
+           [out] unsigned long* cRetAdapters
+           );
+       HRESULT GetNextAdapterFirewallConfiguration (
+           [in] unsigned long idx,
+           [out] GUID * adapterId,
+           [out] CLUSTER_NETWORK_PROFILE * adapterProfile,
+           [out] BOOLEAN* serverRulesEnabled,
+           [out] BOOLEAN* managementRulesEnabled,
+           [out] BOOLEAN* commonRulesEnabled
+           );
+   };
+   
+   [  
+       object,  
+       uuid(E3C9B851-C442-432B-8FC6-A7FAAFC09D3B),  
+       pointer_default(unique)  
+   ]  
+   interface IClusterUpdate : IUnknown {  
+     
+       HRESULT GetUpdates(  
+           [out] ULONG* UpdateCount,  
+           [out] BSTR* updates 
+        );  
+     
+       HRESULT Count(  
+           [out] LONG* Count 
+       );  
+   };  
+       [
+           uuid(C72B09DB-4D53-4f41-8DCC-2D752AB56F7C),
+       ]
+       coclass ClusterStorage2
+       {
+           [default] interface IClusterStorage2;
+       };
+   
+       [
+           uuid(E1568352-586D-43e4-933F-8E6DC4DE317A),
+       ]
+       coclass ClusterNetwork2
+       {
+           [default] interface IClusterNetwork2;
+       };
+   
+       [
+           uuid(A6D3E32B-9814-4409-8DE3-CFA673E6D3DE),
+       ]
+       coclass ClusterCleanup
+       {
+           [default] interface IClusterCleanup;
+       };
+   
+       [
+           uuid(04D55210-B6AC-4248-9E69-2A569D1D2AB6),
+       ]
+       coclass ClusterSetup
+       {
+           [default] interface IClusterSetup;
+       };
+   
+       [
+           uuid(88E7AC6D-C561-4F03-9A60-39DD768F867D),
+       ]
+       coclass ClusterLog
+       {
+           [default] interface IClusterLog;
+       }; 
+   
+       [
+           uuid(3CFEE98C-FB4B-44C6-BD98-A1DB14ABCA3F),
+       ]
+       coclass ClusterFirewall
+       {
+           [default] interface IClusterFirewall;
+       };
+       [  
+           uuid(4142DD5D-3472-4370-8641-DE7856431FB0),  
+       ]  
+       coclass ClusterUpdate  
+       {  
+           [default] interface IClusterUpdate;  
+       };  

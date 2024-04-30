@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The <b>INET_INFO_SITE_LIST</b> structure contains a list of <span><b><a href="717119c6-e700-4074-8d72-7cc86dcd979a" data-linktype="relative-path">INET_INFO_SITE_ENTRY</a></b></span>
+site entries.</p><p>This type is declared as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _INET_INFO_SITE_LIST {
+   DWORD cEntries;
+   [size_is(cEntries)] INET_INFO_SITE_ENTRY aSiteEntry[];
+ } INET_INFO_SITE_LIST,
+  *LPINET_INFO_SITE_LIST;
+</pre></div>
+</dd></dl><p><b>cEntries:</b>  The number of entries
+contained in the list.</p><p><b>aSiteEntry:</b>   An array of <b>INET_INFO_SITE_ENTRY</b>
+site entries.</p></div>

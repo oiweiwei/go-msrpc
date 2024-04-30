@@ -1,0 +1,8 @@
+<div class="content"><p>This protocol provides a means for <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_15dae0ae-da4d-4984-9c8f-4f337e8e42d2" data-linktype="relative-path">applications</a> to communicate
+with a <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_2739ef12-a749-4540-9ac3-715968ef4df4" data-linktype="relative-path">supporting server</a>.
+An MSMQ application uses this protocol to perform basic <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_1b759876-c6fc-4e31-8ccb-1517c45dba30" data-linktype="relative-path">message queuing</a> operations
+on a supporting server, such as creating <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queues</a>, altering <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_1eb17224-1b51-44ab-9bc3-7ad17ba87517" data-linktype="relative-path">queue properties</a>, sending <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">messages</a>, and receiving
+messages. An MSMQ application also uses this protocol to communicate with a
+remote <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_9cc28d04-4172-4d09-bb36-9f33d073379f" data-linktype="relative-path">MSMQ queue manager</a>
+to open and close <a href="102555d1-0dbf-4b2e-b78c-e388823d252c#gt_91d29587-3e24-439b-8f2c-c2a43be99afc" data-linktype="relative-path">remote
+queues</a>.</p></div>

@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The GetLibStatistics method returns statistics about the
+unique names in the <span><a href="5583e1b8-454c-4147-9f56-f72416a15bee#gt_4057fc86-007f-496f-a966-01c762088a8e" data-linktype="relative-path">automation type library</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT GetLibStatistics(
+   [out] ULONG* pcUniqueNames,
+   [out] ULONG* pcchUniqueNames
+ );
+</pre></div>
+</dd></dl><p><b>pcUniqueNames: </b>MUST be set to the number of
+unique names in the Type library.</p><p><b>pcchUniqueNames: </b>MUST be set to the total
+length, in characters, of the unique names in the library.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul></div>

@@ -1,0 +1,67 @@
+<div class="content"><p>The CreatePropertyDefinition method creates a blank <a href="5d17b734-466f-4c07-9328-adc8cde6ba5a" data-linktype="relative-path">Non-Persisted Property
+Definition Instance (section 3.2.1.6.1.2)</a> and returns S_OK upon
+successful completion.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_CLASSIFICATION_MANAGER | 0x02)] HRESULT CreatePropertyDefinition(
+   [out, retval] IFsrmPropertyDefinition **propertyDefinition
+ );
+</pre></div>
+</dd></dl><p><b>propertyDefinition: </b>Pointer to an <b>IFsrmPropertyDefinition</b>
+interface pointer (section <a href="d6a2c986-14d7-4a53-be09-ed52b5ac5033" data-linktype="relative-path">3.2.4.2.37</a>)
+that upon completion points to a blank <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_56f7f556-18df-4592-8e2e-68d81fbed565" data-linktype="relative-path">property definition</a>. To
+have the property definition added to the server&#39;s <b>List of Persisted
+Property Definitions</b> (section <a href="a4da1447-54a5-4b37-b135-bfa7481aed1c" data-linktype="relative-path">3.2.1.6</a>), the client MUST
+call <a href="fef90aeb-95c6-4ed7-8cd6-4e434c353525" data-linktype="relative-path">Commit (section 3.2.4.2.37.1)</a>.
+The caller MUST release the property definition when the caller is done with
+it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>propertyDefinition</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>PropertyDefinition</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+perform the following actions.</p><ul><li><p><span><span> 
+</span></span>Create a new Non-Persisted Property Definition Instance.</p>
+<ul><li><p><span><span>  </span></span>Set
+<b>FSRM Base Object.Id</b> to a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Property Definition.Type</b> to FsrmPropertyDefinitionType_Unknown.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Property Definition.Name</b> to an empty string.</p>
+</li><li><p><span><span>  </span></span>Set
+<a href="aeb8c879-da1a-4676-8d16-d7f85bac7a04" data-linktype="relative-path">Property
+Definition.Deprecated</a> to false.</p>
+</li><li><p><span><span>  </span></span>Set
+Property Definition.Global to false.</p>
+</li><li><p><span><span>  </span></span>Set
+Property Definition.AppliesTo to Files.</p>
+</li><li><p><span><span>  </span></span>Set
+Property Definition.Secure to false.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Possible values</b> to an empty list.</p>
+</li><li><p><span><span>  </span></span>Set
+<b>Value descriptions</b> to an empty list. </p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set <i>propertyDefinition</i> to the <b>IFsrmPropertyDefinition</b>
+interface pointer for the newly created Non-Persisted Property Definition
+Instance.</p>
+</li></ul></div>

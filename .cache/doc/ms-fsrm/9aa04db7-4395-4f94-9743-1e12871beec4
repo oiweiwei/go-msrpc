@@ -1,0 +1,33 @@
+<div class="content"><p>The FsrmReportLimit enumeration defines the set of maxima
+that can be used to limit the files listed in a report.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmReportLimit
+ {
+   FsrmReportLimit_MaxFiles = 1,
+   FsrmReportLimit_MaxFileGroups = 2,
+   FsrmReportLimit_MaxOwners = 3,
+   FsrmReportLimit_MaxFilesPerFileGroup = 4,
+   FsrmReportLimit_MaxFilesPerOwner = 5,
+   FsrmReportLimit_MaxFilesPerDuplGroup = 6,
+   FsrmReportLimit_MaxDuplicateGroups = 7,
+   FsrmReportLimit_MaxQuotas = 8,
+   FsrmReportLimit_MaxFileScreenEvents = 9,
+   FsrmReportLimit_MaxPropertyValues = 10,
+   FsrmReportLimit_MaxFilesPerPropertyValue = 11,
+   FsrmReportLimit_MaxFolders = 12
+ } FsrmReportLimit;
+</pre></div>
+</dd></dl><p><b>FsrmReportLimit_MaxFiles:  </b>The report will
+list a maximum number of files.</p><p><b>FsrmReportLimit_MaxFileGroups:  </b>The report
+will list a maximum number of file groups.</p><p><b>FsrmReportLimit_MaxOwners:  </b>The report will
+list a maximum number of owners.</p><p><b>FsrmReportLimit_MaxFilesPerFileGroup:  </b>The
+report will list a maximum number of files per file group.</p><p><b>FsrmReportLimit_MaxFilesPerOwner:  </b>The report
+will be limited to a maximum number of files per owner.</p><p><b>FsrmReportLimit_MaxFilesPerDuplGroup:  </b>The
+report will list a maximum number of file entries per duplicated file.</p><p><b>FsrmReportLimit_MaxDuplicateGroups:  </b>The
+report will list a maximum number of groups for duplicated files (each set of
+duplicate files is one group).</p><p><b>FsrmReportLimit_MaxQuotas:  </b>The report will
+list a maximum number of quotas.</p><p><b>FsrmReportLimit_MaxFileScreenEvents:  </b>The
+report will list a maximum number of file screen events.</p><p><b>FsrmReportLimit_MaxPropertyValues:  </b>The report
+will list a maximum number of property values per property.</p><p><b>FsrmReportLimit_MaxFilesPerPropertyValue:  </b>The
+report will list a maximum number of files per <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_13091c0e-746f-478c-b54c-ad0294a94ea8" data-linktype="relative-path">property value</a>.</p><p><b>FsrmReportLimit_MaxFolders:  </b>The report will
+list a maximum number of folders.</p></div>

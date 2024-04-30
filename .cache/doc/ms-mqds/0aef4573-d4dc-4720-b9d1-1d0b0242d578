@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The MQCOLUMNSET structure specifies a list of <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_0409899a-2e1c-452a-b5ae-5a524e2d9280" data-linktype="relative-path">MSMQ
+object property</a></span> identifiers. This structure is used in directory
+query operations to define the set of MSMQ object properties to be returned. See
+section <span><a href="ebe8417a-ded8-4f3d-9187-bbbdb0856f41" data-linktype="relative-path">3.1.4.17</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct tagMQCOLUMNSET {
+   [range(0,128)] unsigned long cCol;
+   [size_is(cCol)] PROPID* aCol;
+ } MQCOLUMNSET;
+</pre></div>
+</dd></dl><p><b>cCol:</b>   MUST be set to the count of <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_382ac1cd-8ff9-493a-bfec-d9ad08955707" data-linktype="relative-path">property
+identifiers</a></span> in <b>aCol</b>.</p><p><b>aCol:</b>   A pointer to an array of property
+identifiers. Each element of the array MUST be one of the values specified in
+the object property identifier table in section <span><a href="1f12668a-2fa3-45cf-8236-74f0fe4a6b7d" data-linktype="relative-path">2.2.10.1</a></span>.</p></div>

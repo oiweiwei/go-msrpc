@@ -1,0 +1,129 @@
+<div class="content"><p>The LINEAGENTINFO packet contains information about an ACD
+agent. LINEAGENTINFO is supplied by the server in the field VarData of the
+completion packet of the <a href="2b3d3064-5a97-4c70-9b55-5c1607cae103" data-linktype="relative-path">GetAgentInfo</a>
+request.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTotalSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNeededSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwUsedSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwAgentState</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNextAgentState</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwMeasurementPeriod</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cyOverallCallRate</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNumberOfACDCalls</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNumberOfIncomingCalls</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNumberOfOutgoingCalls</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTotalACDTalkTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTotalACDCallTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwTotalACDWrapUpTime</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwTotalSize (4 bytes): </b>An unsigned 32-bit
+integer. The total size, in bytes, allocated to this packet, including the null
+terminator. </p><p><b>dwNeededSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, needed to hold all the information requested. </p><p><b>dwUsedSize (4 bytes): </b>An unsigned 32-bit
+integer. The size, in bytes, of the portion of this packet that contains useful
+information. </p><p><b>dwAgentState (4 bytes): </b>An unsigned 32-bit
+integer. This field MUST be one of the <a href="f62aec17-f4d9-45a2-b1c3-9303eaa4841a" data-linktype="relative-path">LINEAGENTSTATEEX_Constants</a>.
+</p><p><b>dwNextAgentState (4 bytes): </b>An unsigned 32-bit
+integer. This field MUST be one of the LINEAGENTSTATEEX_Constants. </p><p><b>dwMeasurementPeriod (4 bytes): </b>An unsigned
+32-bit integer. The period, in seconds, for which the switch or implementation
+stores and calculates information. For example, <b>dwNumberOfACDCalls</b> holds
+the number of calls the agent handled; <b>dwMeasurementPeriod</b> indicates if
+this value referenced the calls handled in the last hour, day, or month. </p><p><b>cyOverallCallRate (4 bytes): </b>An unsigned
+32-bit integer. The agent&#39;s call rate (calls per agent hour, where agent hour
+represents the time that an agent was active in one or more agent sessions)
+across all agent sessions. This is a fixed-point decimal number. </p><p><b>dwNumberOfACDCalls (4 bytes): </b>An unsigned
+32-bit integer. The number of ACD calls handled by this agent across all
+sessions. </p><p><b>dwNumberOfIncomingCalls (4 bytes): </b>An unsigned
+32-bit integer. The number of incoming non-ACD calls handled by this agent. </p><p><b>dwNumberOfOutgoingCalls (4 bytes): </b>An unsigned
+32-bit integer. The number of outgoing non-ACD calls handled by this agent. </p><p><b>dwTotalACDTalkTime (4 bytes): </b>An unsigned
+32-bit integer. The number of seconds spent talking in ACD calls by this agent
+across all sessions. </p><p><b>dwTotalACDCallTime (4 bytes): </b>An unsigned
+32-bit integer. The number of seconds spent on ACD calls by this agent (across
+all sessions). Includes time on the phone plus wrap-up time. </p><p><b>dwTotalACDWrapUpTime (4 bytes): </b>An unsigned
+32-bit integer. The number of seconds spent on ACD call wrap-up (after call
+work) by this agent across all sessions. </p></div>

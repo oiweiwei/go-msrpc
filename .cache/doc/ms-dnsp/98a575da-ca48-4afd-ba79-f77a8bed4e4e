@@ -1,0 +1,133 @@
+<div class="content"><p> </p><p>The <b>Protection Key Identifier</b> structure is used to
+store metadata about the key used to cryptographically wrap the DNSSEC key as
+part of the <b>Exported Key Pair</b> structure specified in section <span><a href="820903b3-1704-40b6-b977-ac9154a90ffd" data-linktype="relative-path">2.2.11.2.6</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Reserved1</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Reserved2</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Reserved3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>L0KeyID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>L1KeyID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>L2KeyID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RootKeyID
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Reserved4</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DomainNameLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ForestNameLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DNSDomainName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DNSForestName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Reserved1 (4 bytes): </b>MUST be 0x00000001.</p><p><b>Reserved2 (4 bytes): </b>MUST be 0x4B53444B.</p><p><b>Reserved3 (4 bytes): </b>MUST be 0x00000000.</p><p><b>L0KeyID (4 bytes): </b>An L0 index, as defined in <span><a href="../ms-gkdi/943dd4f6-6b80-4a66-8594-80df6d2aad0a" data-linktype="relative-path">[MS-GKDI]</a></span>
+section <span><a href="../ms-gkdi/4cac87a3-521e-4918-a272-240f8fabed39" data-linktype="relative-path">3.1.4.1</a></span>.</p><p><b>L1KeyID (4 bytes): </b>An L1 index, as defined in
+[MS-GKDI] section 3.1.4.1.</p><p><b>L2KeyID (4 bytes): </b>An L2 index, as defined in
+[MS-GKDI] section 3.1.4.1.</p><p><b>RootKeyID (16 bytes): </b>A root key identifier,
+as defined in [MS-GKDI] section 3.1.4.1.</p><p><b>Reserved4 (4 bytes): </b>MUST be 0x00000000.</p><p><b>DomainNameLength (4 bytes): </b>A 32-bit unsigned
+integer, encoded in little-endian format. It MUST be the length, in bytes, of
+the <b>DNSDomainName</b> field.</p><p><b>ForestNameLength (4 bytes): </b>A 32-bit unsigned
+integer, encoded in little-endian format. It MUST be the length, in bytes, of
+the <b>DNSForestName</b> field.</p><p><b>DNSDomainName (variable): </b>A null-terminated
+Unicode string containing the DNS-style name of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_fcaec097-23d5-4b8f-b3e7-5739cc9c1d78" data-linktype="relative-path">Active Directory domain</a></span>
+in which this identifier was created.</p><p><b>DNSForestName (variable): </b>A null-terminated
+Unicode string containing the DNS-style name of the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_9bf0a16f-e546-41f1-9e45-50655e20beb5" data-linktype="relative-path">Active Directory forest</a></span>
+in which this identifier was created.</p></div>

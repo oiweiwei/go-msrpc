@@ -1,0 +1,233 @@
+<div class="content"><p>The CERTTRANSDBEXTENSION structure is encoded within a <a href="a94fb0b1-902f-43ea-9422-f2d24bcb10b6" data-linktype="relative-path">CERTTRANSBLOB</a> structure.
+The CERTTRANSDBEXTENSION structure is used by the server to return <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> extension
+information, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90414" data-linktype="external">[RFC3280]</a> section 4,
+that is associated with a request. This associated request to the client occurs
+when the client performs a query by invoking the <a href="14dbe3e1-d0a3-41da-a910-b1f72826863f" data-linktype="relative-path">EnumAttributesOrExtensions</a>
+method of the <a href="46496f1f-a631-42b3-a60e-33f95fb6fed1" data-linktype="relative-path">ICertAdminD</a>
+interface.</p><dl>
+<dd>
+<div><pre> typedef struct _CERTTRANSDBEXTENSION {
+   ULONG obwszName;
+   LONG ExtFlags;
+   DWORD cbValue;
+   ULONG obValue;
+ } CERTTRANSDBEXTENSION;
+</pre></div>
+</dd></dl><p><b>obwszName:</b>  An unsigned integer that
+contains the offset from the beginning of the byte array buffer that is pointed
+to by the <b>pb</b> member in the containing CERTTRANSBLOB structure to the
+string representation of an <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_aaaf2f1a-0b0a-487e-a0f0-c3510a6091b2" data-linktype="relative-path">OID
+(1)</a> of this extension (as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90594" data-linktype="external">[X680]</a>). The string
+format is a null-terminated UNICODE string. The offset MUST be divisible by 4.</p><p><b>ExtFlags:</b>  An integer value that specifies
+the flags that are associated with the extension. The following diagram shows
+its contents.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p align="center">C</p>
+  </td>
+  <td>
+  <p align="center">D</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td>
+  <p align="center">0</p>
+  </td>
+  <td colspan="16">
+  <p align="center">Nigiro</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>C (1 bit): </b>C is the
+ExtensionCriticalFlag, as defined in section <a href="820f99c7-fdc6-4356-b533-9ddbe35d937c" data-linktype="relative-path">3.1.1.3</a>, the <b>Extension_Flags</b>
+ADM element. A value of 0 means the extension is not critical. A value of 1
+means the extension is critical.</p>
+</dd>
+<dd>
+<p><b>D (1 bit): </b>D is the
+ExtensionDisabledFlag, as defined in section 3.1.1.3, the <b>Extension_Flags</b>
+ADM element. A value of 0 means the extension is not disabled. A value of 1
+means the extension is disabled.</p>
+</dd>
+<dd>
+<p><b>Nigiro (2 bytes): </b>The <b>Nigiro</b>
+field is defined as follows:</p>
+<dl>
+<dd>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Mirrored
+   (Nigiro) byte</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x8000</p>
+  </td>
+  <td>
+  <p>The extension
+  comes from the request.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x4000</p>
+  </td>
+  <td>
+  <p>The extension
+  was added by the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a>.
+  The CA assigns a value of 2 if the extension was added by the policy module
+  of the CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC000</p>
+  </td>
+  <td>
+  <p>The extension
+  was added by the CA. The CA assigns a value of 3 if the extension was added
+  interactively by a human administrator of the CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x2000</p>
+  </td>
+  <td>
+  <p>The extension
+  was added by the CA. The CA assigns a value of 4 if the extension was added
+  by the certificate server engine and not the policy module component of the
+  CA.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xA000</p>
+  </td>
+  <td>
+  <p>The extension
+  was in the preceding certificate, which might occur, for example, when a
+  certificate is renewed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x6000</p>
+  </td>
+  <td>
+  <p>The extension
+  comes from an imported certificate (a certificate that was imported into the
+  CA database).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xE000</p>
+  </td>
+  <td>
+  <p>The extension
+  comes from a PKCS7 request.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x1000</p>
+  </td>
+  <td>
+  <p>The extension
+  comes from a CMC request.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x9000</p>
+  </td>
+  <td>
+  <p>The extension
+  comes from the current CA <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_6a2366ee-fc9c-4406-963d-eac335ed8fc5" data-linktype="relative-path">signing
+  certificate</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd></dl></dd></dl><p><b>cbValue:</b>  An unsigned integer value
+that contains the length, in bytes, of data that is referenced by the <i>obValue</i>
+parameter.</p><p><b>obValue:</b>  An unsigned integer that
+contains the offset from the beginning of the byte array buffer that is pointed
+to by the <b>pb</b> member in the containing CERTTRANSBLOB structure to where
+the value for this extension can be found. The length of the value is specified
+in the <b>cbValue</b> field. The value is in ASN.1 Distinguished Encoding Rules
+(DER) format for the extension, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90592" data-linktype="external">[X660]</a>. The offset
+MUST be divisible by 4.</p></div>

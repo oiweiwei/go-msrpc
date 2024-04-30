@@ -1,0 +1,35 @@
+<div class="content"><p> </p><p>The QueryDriveLetters method enumerates the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_1b153cd0-e3f3-4383-bc66-d5ad482c9766" data-linktype="relative-path">drive
+letters</a></span> of the server.</p><dl>
+<dd>
+<div><pre> HRESULT QueryDriveLetters(
+   [in] WCHAR wcFirstLetter,
+   [in] DWORD count,
+   [out, size_is(count)] VDS_DRIVE_LETTER_PROP* pDriveLetterPropArray
+ );
+</pre></div>
+</dd></dl><p><b>wcFirstLetter: </b>The first drive letter to query
+as a single uppercase or lowercase alphabetical (A-Z) Unicode character.</p><p><b>count: </b>The total number of drive letters to
+retrieve, beginning with the letter that <i>wcFirstLetter</i> specifies. This
+MUST also be the number of elements in the <i>pDriveLetterPropArray</i>. It
+MUST NOT exceed the total number of drive letters between the letter in <i>wcFirstLetter</i>
+and the last possible drive letter (Z), inclusive.</p><p><b>pDriveLetterPropArray: </b>An array of <span><a href="8919154a-76bb-42b8-8791-8ddd76917dd4" data-linktype="relative-path">VDS_DRIVE_LETTER_PROP</a></span>
+structures that, if the operation is successfully completed, receives the array
+of drive letter properties.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>wcFirstLetter</i> is an uppercase or lowercase
+alphabetical character (A-Z) in Unicode format.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the count does not exceed the total number of drive
+letters between the letter in <i>wcFirstLetter</i> and the last possible drive
+letter (Z), inclusive.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>pDriveLetterPropArray</i> is not NULL.</p>
+</li></ul><p>The server MUST populate the VDS_DRIVE_LETTER_PROP structure
+that <i>pDriveLetterPropArray</i> references with information about each drive
+letter that is requested. The server MUST then return an HRESULT indicating
+failure or success.</p></div>

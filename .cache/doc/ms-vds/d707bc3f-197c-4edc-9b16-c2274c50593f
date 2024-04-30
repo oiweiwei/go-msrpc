@@ -1,0 +1,59 @@
+<div class="content"><p> </p><p>The VDS_DISK_FLAG enumeration defines the properties of a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>.</p><dl>
+<dd>
+<div><pre> typedef enum _VDS_DISK_FLAG
+ {
+   VDS_DF_AUDIO_CD = 0x1,
+   VDS_DF_HOTSPARE = 0x2,
+   VDS_DF_RESERVE_CAPABLE = 0x4,
+   VDS_DF_MASKED = 0x8,
+   VDS_DF_STYLE_CONVERTIBLE = 0x10,
+   VDS_DF_CLUSTERED = 0x20,
+   VDS_DF_READ_ONLY = 0x40,
+   VDS_DF_SYSTEM_DISK = 0x80,
+   VDS_DF_BOOT_DISK = 0x100,
+   VDS_DF_PAGEFILE_DISK = 0x200,
+   VDS_DF_HIBERNATIONFILE_DISK = 0x400,
+   VDS_DF_CRASHDUMP_DISK = 0x800,
+   VDS_DF_HAS_ARC_PATH = 0x1000,
+   VDS_DF_DYNAMIC = 0x2000,
+   VDS_DF_BOOT_FROM_DISK = 0x4000,
+   VDS_DF_CURRENT_READ_ONLY = 0x8000
+ } VDS_DISK_FLAG;
+</pre></div>
+</dd></dl><p><b>VDS_DF_AUDIO_CD:  </b>The disk is an audio CD, as
+specified in [IEC60908].</p><p><b>VDS_DF_HOTSPARE:  </b>The disk is a hot spare.</p><p><b>VDS_DF_RESERVE_CAPABLE:  </b>The disk can be
+reserved for a host.</p><p><b>VDS_DF_MASKED:  </b>The disk is currently hidden
+from the host.</p><p><b>VDS_DF_STYLE_CONVERTIBLE:  </b>The disk is
+convertible between the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b251c771-5ccf-40f2-b98d-0119db210b4b" data-linktype="relative-path">MBR</a></span> <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2f24f458-7d39-47a2-93f7-de433ea85c75" data-linktype="relative-path">partition</a></span>
+format and the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2fc866b7-7f83-479a-ad4e-fdffcbcff989" data-linktype="relative-path">GPT</a></span> partition
+format.</p><p><b>VDS_DF_CLUSTERED:  </b>The disk is <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_feef37b3-c173-4f51-aab6-b55a6366259b" data-linktype="relative-path">clustered</a></span>.</p><p><b>VDS_DF_READ_ONLY:  </b>The disk <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_ca1db15f-c3cf-41ca-832e-b2c98007cb6a" data-linktype="relative-path">read-only</a></span>
+attribute is set.</p><p><b>VDS_DF_SYSTEM_DISK:  </b>The disk contains the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_f0a0d3af-8361-43e5-9ace-8279850d2da8" data-linktype="relative-path">system
+volume</a></span>.</p><p><b>VDS_DF_BOOT_DISK:  </b>The disk contains the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_92dc821b-aa52-41ad-802c-26adbab4e378" data-linktype="relative-path">boot
+volume</a></span>.</p><p><b>VDS_DF_PAGEFILE_DISK:  </b>The disk contains the
+paging file on one of its volumes.</p><p><b>VDS_DF_HIBERNATIONFILE_DISK:  </b>The disk
+contains the hibernation file on one of its volumes.</p><p><b>VDS_DF_CRASHDUMP_DISK:  </b>The disk is configured
+to contain a crash-dump file on one of its volumes.</p><p><b>VDS_DF_HAS_ARC_PATH:  </b>The disk has an Advanced
+RISC Computing (ARC) <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2cd71385-2d9c-4ab8-bf4a-7b258816d613" data-linktype="relative-path">path</a></span> specified in
+the BIOS. For information on ARC paths, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=208754" data-linktype="external">[KB102873]</a></span>.</p><p><b>VDS_DF_DYNAMIC:  </b>The disk is a logical disk
+manager <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_b11172af-9369-448d-9722-444eb52b21cb" data-linktype="relative-path">dynamic disk</a></span>.</p><p><b>VDS_DF_BOOT_FROM_DISK:  </b>Indicates the disk
+from which the machine will boot. Note that this is BIOS disk 0 on the MBR, not
+the current system volume disk. For example, if the machine boots to <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_f16bfbca-387f-4b5c-be1c-cddaf20f799c" data-linktype="relative-path">Windows
+PE</a></span>, this flag is set on BIOS disk 0. For <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_2ab064d1-f0bb-4617-ba38-bdf4fcc10676" data-linktype="relative-path">EFI</a></span> machines, this
+flag is set on a disk containing the EFI <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_20217edf-2c20-4bb0-af04-44f20b6c4847" data-linktype="relative-path">system partition</a></span>
+used to boot the machine.</p><p><b>VDS_DF_CURRENT_READ_ONLY:  </b>Indicates that the
+disk is in a read-only state. If this flag is not set, the disk is read/write.
+Unlike the VDS_DF_READ_ONLY flag, which is used to indicate the disk&#39;s
+read-only attribute maintained by the operating system, this flag reflects the
+actual disk state. This flag cannot be set by using the <span><a href="32c0cdf1-37d0-4ac5-afb7-b40e86b43d7c" data-linktype="relative-path">IVdsDisk::SetFlags</a></span>
+method or cleared by using the <span><a href="a7766af8-6cfe-4079-a05f-540bec4dd190" data-linktype="relative-path">IVdsDisk::ClearFlags</a></span>
+method.</p><dl>
+<dd>
+<p>The disk will be in a read-only state if its
+read-only attribute is set. However, a disk can be in a read-only state even if
+its read-only attribute is not set, if the underlying hardware is read-only.
+For example, if the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7593b869-71a9-4a02-bab3-377e51729067" data-linktype="relative-path">LUN</a></span> is in read-only
+state or if the disk is a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_83dab6da-f129-4a2b-b680-0777fb4707f4" data-linktype="relative-path">virtual hard disk</a></span>
+that resides on a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> that is
+read-only, the underlying hardware is read-only and therefore the disk is in a
+read-only state.</p>
+</dd></dl></div>

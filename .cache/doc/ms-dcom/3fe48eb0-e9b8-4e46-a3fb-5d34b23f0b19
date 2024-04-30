@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The ScmReplyInfoData structure contains a <span><a href="eab34106-2ea4-4bf5-ae6c-77b57fda5d6c" data-linktype="relative-path">customREMOTE_REPLY_SCM_INFO</a></span>
+structure.</p><p>CLSID_ScmReplyInfo (see section <span><a href="c25391af-f59e-40da-885e-cc84076673e4" data-linktype="relative-path">1.9</a></span>) is used to
+identify this property in the CustomHeader.pclsid array.</p><dl>
+<dd>
+<div><pre> typedef struct tagScmReplyInfoData {
+   DWORD* pdwReserved;
+   customREMOTE_REPLY_SCM_INFO* remoteReply;
+ } ScmReplyInfoData;
+</pre></div>
+</dd></dl><p><b>pdwReserved:</b>   This MUST be set to
+NULL and MUST be ignored on receipt.</p><p><b>remoteReply:</b>  This MUST specify the
+customREMOTE_REPLY_SCM_INFO for the <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_5b284f60-ee33-4d15-9a7b-0fb82d7c6b68" data-linktype="relative-path">object exporter</a></span> of
+the server object.</p></div>

@@ -1,0 +1,92 @@
+<div class="content"><p> </p><p>The <b>R_DhcpSetSubnetInfoVQ</b> method sets/modifies the
+information about an IPv4 subnet defined on the DHCPv4 server. This method is
+an extension of the <span><a href="6549f5e9-2b6b-40b3-8902-9ae9a93b541a" data-linktype="relative-path">R_DhcpSetSubnetInfo</a></span>
+method in which <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_f30fdc41-d7c1-422e-b5a8-9dcce071ebeb" data-linktype="relative-path">NAP</a></span> state is not
+set.</p><dl>
+<dd>
+<div><pre> DWORD R_DhcpSetSubnetInfoVQ(
+   [in, unique, string] DHCP_SRV_HANDLE ServerIpAddress,
+   [in] DHCP_IP_ADDRESS SubnetAddress,
+   [in, ref] LPDHCP_SUBNET_INFO_VQ SubnetInfoVQ
+ );
+</pre></div>
+</dd></dl><p><b>ServerIpAddress: </b>The IP address/host name of
+the DHCP server. This parameter is unused.</p><p><b>SubnetAddress: </b>This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS</a></span>,
+containing the IPv4 subnet ID for which the subnet information is modified.</p><p><b>SubnetInfoVQ: </b>This is a pointer to a <span><a href="baec452a-0eda-44d4-b2d7-acd86950b2a6" data-linktype="relative-path">DHCP_SUBNET_INFO_VQ (section 2.2.1.2.45)</a></span>
+structure that contains the information about the IPv4 subnet that is modified
+in the existing IPv4 subnet identified by the <i>SubnetAddress</i> parameter.
+The structure <span><a href="51e16f4a-cb1d-400a-85c7-defe4cba1609" data-linktype="relative-path">DHCP_HOST_INFO (section 2.2.1.2.7)</a></span>
+(referred by the <b>PrimaryHost</b> member) stored in the <i>SubnetInfoVQ</i>
+parameter MUST be ignored by both the caller and the server.</p><p><b>Return Values: </b>A 32-bit unsigned integer value
+that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully, else it contains a
+Win32 error code, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.
+This error code value can correspond to a DHCP-specific failure, which takes a
+value between 20000 and 20099, or any generic failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E25</p>
+  <p>ERROR_DHCP_SUBNET_NOT_PRESENT</p>
+  </td>
+  <td>
+  <p>The specified IPv4 subnet does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00004E2D</p>
+  <p>ERROR_DHCP_JET_ERROR</p>
+  </td>
+  <td>
+  <p>An error occurred while accessing the DHCP server database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 50.</p><p>When processing this call, the DHCP server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate if this method is authorized for read/write access per
+section <span><a href="38840bd0-0a5a-47ed-bc69-0dd870d33aec" data-linktype="relative-path">3.5.5</a></span>. If not,
+return the error ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>SubnetInfoVQ</i> input parameter is NULL, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>SubnetAddress</i> input parameter is not the same as
+the <b>SubnetAddress</b> member of the <i>SubnetInfoVQ</i> input parameter,
+return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>If the bitwise AND operation of the <i>SubnetAddress</i> input
+parameter with the <b>SubnetMask</b> member of the <i>SubnetInfoVQ</i> input
+parameter is not the same as the <i>SubnetAddress</i> input parameter, return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <b>DHCPv4Scope</b> ADM element entry that has subnet
+ID equal to the <i>SubnetAddress</i> parameter from the server ADM element <b>DHCPv4ScopesList</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>DHCPv4Scope</b> ADM element entry corresponding to the <i>SubnetAddress</i>
+parameter is not found, return ERROR_DHCP_SUBNET_NOT_PRESENT.</p>
+</li><li><p><span><span> 
+</span></span>Modify this <b>DHCPv4Scope.ScopeInfo</b> ADM element with
+information in the <i>SubnetInfoVQ</i> parameter. The structure DHCP_HOST_INFO
+(referred by the <b>PrimaryHost</b> member) stored in the <i>SubnetInfoVQ</i>
+parameter is ignored by the server.<a id="Appendix_A_Target_43"></a><a aria-label="Product behavior note 43" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_43" data-linktype="relative-path">&lt;43&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Return ERROR_SUCCESS.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

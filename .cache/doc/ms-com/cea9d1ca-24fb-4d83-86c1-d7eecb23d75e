@@ -1,0 +1,94 @@
+<div class="content"><p>The TransactionBuffer structure is used when the client
+passes the currently active <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a>
+to the server.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Header
+  (24 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">BufferSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">TransactionBuffer
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p align="center">…</p>
+  </td>
+  <td colspan="24">
+  <p align="center">IsolationLevel
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p align="center">...</p>
+  </td>
+  
+ </tr>
+</tbody></table><p><b>Header (24 bytes): </b>A <a href="a2527ae5-9c1b-41ff-9d94-a6607d7b8ba0" data-linktype="relative-path">TransactionContextPropertyHeader</a>
+structure. The <b>StreamVariant</b> field of the structure MUST be set to
+0x0002.</p><p><b>BufferSize (4 bytes): </b>The unsigned size, in
+bytes, of <b>TransactionBuffer</b>.</p><p><b>TransactionBuffer (variable): </b>An array of
+bytes that MUST contain a <a href="../ms-dtco/f5911ac2-7663-477b-bf76-8d4d01cc090c" data-linktype="relative-path">Propagation_Token</a>
+structure as specified in <a href="../ms-dtco/c367c571-33f3-44ac-85cb-4b9ebbb2779d" data-linktype="relative-path">[MS-DTCO]</a>
+section 2.2.5.4.</p><p><b>IsolationLevel (optional) (4 bytes): </b>The <a href="e9ee0a50-6558-4527-ba8d-67f3180862eb" data-linktype="relative-path">Transaction Isolation Level
+(section 2.2.6.2)</a> used by the COM+ client. This field MUST be present if
+the <b>MaxVersion</b> field of header is 0x0002; otherwise, this field MUST NOT
+be present. </p></div>

@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The IEnumVARIANT::Skip method skips over the requested
+number of elements in the enumeration sequence.</p><dl>
+<dd>
+<div><pre> HRESULT Skip(
+   [in] ULONG celt
+ );
+</pre></div>
+</dd></dl><p><b>celt: </b>MUST be set to the maximum number of
+elements to skip over.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure, defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul><p> A static or semi-static <span><a href="716d04d1-cd16-4065-9b19-1b8808b3df31" data-linktype="relative-path">IEnumVARIANT server</a></span>
+MUST update the current position in the sequence by either celt elements, or
+the number of elements remaining, whichever is smaller.</p><p>A dynamic server MUST use its server-specific state to
+affect the dynamic collection it manages, and MUST update the current position
+in the sequence by either celt elements, or the number of elements remaining,
+whichever is smaller.</p><p>In all cases, the server MUST return 1 (S_FALSE), if the
+current position was updated by less than celt elements. </p></div>

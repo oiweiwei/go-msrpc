@@ -1,0 +1,22 @@
+<div class="content"><p>The <b>PRINTER_INFO_1</b> structure provides information
+about a printer.</p><dl>
+<dd>
+<div><pre> typedef struct _PRINTER_INFO_1 {
+   DWORD Flags;
+   [string] wchar_t* pDescription;
+   [string] wchar_t* pName;
+   [string] wchar_t* pComment;
+ } PRINTER_INFO_1;
+</pre></div>
+</dd></dl><p><b>Flags:</b> The value of this member MUST be
+the result of a bitwise OR of zero or more of the <a href="2a1fe8a4-e8be-4cf3-8b37-8d19f9a2edcd" data-linktype="relative-path">Printer Enumeration
+Flags (section 2.2.3.7)</a>.</p><dl>
+<dd>
+<p>If the <b>PRINTER_INFO_1</b> structure is used in a <b>PRINTER_CONTAINER</b> (section <a href="ad7d4d4e-0feb-45e0-93ed-b3b2b9a313d1" data-linktype="relative-path">2.2.1.2.9)</a> as input to <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter (section 3.1.4.2.3)</a>
+or <a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx (section 3.1.4.2.15)</a>,
+<b>Flags</b> MUST be a bitwise OR of zero or more of the PRINTER_ATTRIBUTE
+values defined in <a href="1625e9d9-29e4-48f4-b83d-3bd0fdaea787" data-linktype="relative-path">Status
+and Attribute Values (section 2.2.3.12)</a>.</p>
+</dd></dl><p><b>pName:</b> This member is synonymous with <b>pPrinterName</b>
+(section <a href="3f2d41eb-30e1-47e1-93bb-534ea50cf8eb" data-linktype="relative-path">3.1.4.1.5</a>).</p><p>All members not defined in this section are specified in
+sections <a href="c07c2bfd-e2c9-4d36-9259-354a229d645d" data-linktype="relative-path">2.2.1.3.6</a> and <a href="964b517f-6730-4b4a-99ed-ee9648e7f1f7" data-linktype="relative-path">2.2.1.3</a>.</p></div>

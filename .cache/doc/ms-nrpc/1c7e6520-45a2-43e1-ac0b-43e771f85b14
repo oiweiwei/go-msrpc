@@ -1,0 +1,178 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/1c7e6520-45a2-43e1-ac0b-43e771f85b14" data-linktype="external">msdn link</a></p><p>The <b>NL_DNS_NAME_INFO</b> structure provides the
+information on a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a>
+name (record) (as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90381" data-linktype="external">[RFC2782]</a>) to be
+updated by the <b>DsrUpdateReadOnlyServerDnsRecords</b><span> </span>method (section <a href="e83df161-5c13-4520-ae5a-79218ed0bb19" data-linktype="relative-path">3.5.4.3.11</a>). <b>DsrUpdateReadOnlyServerDnsRecords</b>
+method will update DNS as requested by the <b>Register</b> field&#39;s value in
+this structure.</p><dl>
+<dd>
+<div><pre> typedef struct _NL_DNS_NAME_INFO {
+   ULONG Type;
+   [string] wchar_t* DnsDomainInfo;
+   ULONG DnsDomainInfoType;
+   ULONG Priority;
+   ULONG Weight;
+   ULONG Port;
+   UCHAR Register;
+   ULONG Status;
+ } NL_DNS_NAME_INFO,
+  *PNL_DNS_NAME_INFO;
+</pre></div>
+</dd></dl><p><b>Type:</b> The type of DNS name, which MUST be one,
+and only one, of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NlDnsLdapAtSite</p>
+  <p>22</p>
+  </td>
+  <td>
+  <p>_ldap._tcp.&lt;SiteName&gt;._sites.&lt;DnsDomainName&gt;.</p>
+  <p>Allows a client to find an LDAP server in the domain
+  named by &lt;DnsDomainName&gt; and is in the site named by &lt;SiteName&gt;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NlDnsGcAtSite</p>
+  <p>25</p>
+  </td>
+  <td>
+  <p>_ldap._tcp.&lt;SiteName&gt;._sites.gc._msdcs.&lt;DnsForestName&gt;.</p>
+  <p>Allows a client to find a DC serving a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_4f5d605a-7b3f-4db7-8c21-b146856d7169" data-linktype="relative-path">global catalog (GC)</a> in
+  the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a> named by
+  &lt;DnsForestName&gt; and is in the site named by &lt;SiteName&gt;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NlDnsDsaCname</p>
+  <p>28</p>
+  </td>
+  <td>
+  <p>&lt;DsaGuid&gt;._msdcs.&lt;DnsForestName&gt;.</p>
+  <p>Allows a client to find a DC in the forest named by
+  &lt;DnsForestName&gt; based on the DSA GUID. For a definition of DSA GUID,
+  see <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+  section <a href="../ms-adts/b645c125-a7da-4097-84a1-2fa7cea07714" data-linktype="relative-path">1.1</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NlDnsKdcAtSite</p>
+  <p>30</p>
+  </td>
+  <td>
+  <p>_kerberos._tcp.&lt;SiteName&gt;._sites.dc._msdcs.&lt;DnsDomainName&gt;.</p>
+  <p>Allows a client to find a DC running a Kerberos <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_6e5aafba-6b66-4fdd-872e-844f142af287" data-linktype="relative-path">KDC</a> in the domain named
+  by &lt;DnsDomainName&gt; and is in the site named by &lt;SiteName&gt;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NlDnsDcAtSite</p>
+  <p>32</p>
+  </td>
+  <td>
+  <p>_ldap._tcp.&lt;SiteName&gt;._sites.dc._msdcs.&lt;DnsDomainName&gt;.</p>
+  <p>Allows a client to find a DC in the domain named by
+  &lt;DnsDomainName&gt; and is in the site named by &lt;SiteName&gt;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NlDnsRfc1510KdcAtSite</p>
+  <p>34</p>
+  </td>
+  <td>
+  <p>_kerberos._tcp.&lt;SiteName&gt;._sites.&lt;DnsDomainName&gt;.</p>
+  <p>Allows a client to find an RFC-1510 compliant Kerberos
+  KDC in the domain named by &lt;DnsDomainName&gt; and is in the site named by
+  &lt;SiteName&gt;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NlDnsGenericGcAtSite</p>
+  <p>36</p>
+  </td>
+  <td>
+  <p>_gc._tcp.&lt;SiteName&gt;._sites.&lt;DnsForestName&gt;.</p>
+  <p>Allows a client to find a global catalog (GC) server
+  in the forest named by &lt;DnsForestName&gt; and is in the site named by
+  &lt;SiteName&gt;.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>DnsDomainInfo:</b> The string that will be based
+on the <b>DnsDomainInfoType</b> field defined below.</p><p><b>DnsDomainInfoType:</b> The type of <b>DnsDomainInfo</b>
+member, which MUST be one, and only one, of the following:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NlDnsDomainName</p>
+  <p>1</p>
+  </td>
+  <td>
+  <p>The <b>DnsDomainInfo</b> member is a DNS domain name.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NlDnsDomainNameAlias</p>
+  <p>2</p>
+  </td>
+  <td>
+  <p>The <b>DnsDomainInfo</b> member is a DNS domain name <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_d046b6e2-3f79-47e1-87d7-754566744dcd" data-linktype="relative-path">alias</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NlDnsForestName</p>
+  <p>3</p>
+  </td>
+  <td>
+  <p>The <b>DnsDomainInfo</b> member is a DNS forest name.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NlDnsForestNameAlias</p>
+  <p>4</p>
+  </td>
+  <td>
+  <p>The <b>DnsDomainInfo</b> member is a DNS forest name
+  alias.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NlDnsNdncDomainName </p>
+  <p>5</p>
+  </td>
+  <td>
+  <p>The <b>DnsDomainInfo</b> member is a non-domain <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_784c7cce-f782-48d8-9444-c9030ba86942" data-linktype="relative-path">NC</a> (application NC) name.
+  For a definition of application NC, see [MS-ADTS] section 1.1.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NlDnsRecordName</p>
+  <p>6</p>
+  </td>
+  <td>
+  <p>The <b>DnsDomainInfo</b> member is a DNS record name
+  that is required to be deregistered. This is valid only for deregistration in
+  which the Register value is set to FALSE. For the types of DNS record name,
+  see [MS-ADTS] section <a href="../ms-adts/ad6cd52a-a294-407b-a5bd-0ca76569c8e5" data-linktype="relative-path">6.3.2</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Priority:</b> The priority for DNS SRV records.</p><p><b>Weight:</b> The weight for DNS SRV records.</p><p><b>Port:</b> The port for the DNS SRV record.</p><p><b>Register:</b> Zero indicates to deregister the DNS
+name; other values indicate to register the DNS name.</p><p><b>Status:</b> The update status of the DNS name.
+Status SHOULD<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a> be set to 0x00000000 on
+success; otherwise, it contains a nonzero error code. </p></div>

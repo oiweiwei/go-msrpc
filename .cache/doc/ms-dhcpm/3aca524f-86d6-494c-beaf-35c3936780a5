@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The <b>DHCP_FORCE_FLAG</b> enumeration defines the type of
+deletion operation being requested by an <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> method specified
+by this protocol. This value is used with the RPC method <span><a href="129d50c7-9d34-4a44-be46-1612bb18b92b" data-linktype="relative-path">R_DhcpDeleteSubnetV6 (section 3.2.4.63)</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum _DHCP_FORCE_FLAG
+ {
+   DhcpFullForce,
+   DhcpNoForce,
+   DhcpFailoverForce
+ } DHCP_FORCE_FLAG,
+  *LPDHCP_FORCE_FLAG;
+</pre></div>
+</dd></dl><p><b>DhcpFullForce: </b>The DHCP server deletes all the
+active <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_c35fc04f-54fe-4570-afd3-c96ca84c8d83" data-linktype="relative-path">DHCP client</a></span> <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6d76b31-2852-4bd5-8fbb-8e82a3cedb29" data-linktype="relative-path">lease
+records</a></span> for the specified subnet and then deletes all the
+configurations associated with that subnet. </p><p><b>DhcpNoForce: </b>The DHCP server deletes all the
+configuration associated with the specified subnet, but only if there are no
+active DHCP client lease records for the specified subnet. If there are any
+active DHCP client lease records for the specified subnet, then nothing is
+deleted.</p><p><b>DhcpFailoverForce:</b> 
+The DHCP server deletes all the active DHCP client lease records for the
+specified subnet but does not delete the Dynamic DNS updates.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="afab0546-79ae-4764-8dab-27a85cca5145#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p></div>

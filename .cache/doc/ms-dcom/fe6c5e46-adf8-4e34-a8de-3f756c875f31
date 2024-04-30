@@ -1,0 +1,133 @@
+<div class="content"><p> </p><p><span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_d2b5b331-4e5f-417f-92c5-38eef54176c2" data-linktype="relative-path">OBJREF</a></span> is the
+marshaled format for a DCOM Remote Protocol <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_3ca938ae-c14f-4f59-8a7d-daca9f76db4e" data-linktype="relative-path">object reference</a></span>.
+There are four different formats for an OBJREF, which are specified by
+different definitions of the <b>u_objref</b> field. This section defines the
+initial header information. The following sections define substructures found
+in the <b>u_objref</b> field.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>signature</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>iid (16
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>u_objref
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>signature (4 bytes): </b>This MUST be set to the
+value 0x574f454d.</p><p><b>flags (4 bytes): </b>This MUST be set to ONE of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>OBJREF_STANDARD</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p><b>u_objref</b> MUST contain an <span><a href="51312511-36e1-4ab6-993c-523643b11a29" data-linktype="relative-path">OBJREF_STANDARD</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>OBJREF_HANDLER</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p><b>u_objref</b> MUST contain an <span><a href="08892f38-1df4-4f30-8171-64dbd5333b18" data-linktype="relative-path">OBJREF_HANDLER</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>OBJREF_CUSTOM</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p><b>u_objref</b> MUST contain an <span><a href="88fdb261-7c9a-41ea-bfac-31583bdc65e6" data-linktype="relative-path">OBJREF_CUSTOM</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>OBJREF_EXTENDED</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p><b>u_objref</b> MUST contain an <span><a href="06220154-0372-495a-bfc6-a96b804884c6" data-linktype="relative-path">OBJREF_EXTENDED</a></span>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>iid (16 bytes): </b> The <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_76ad3105-3f05-479d-a40c-c9c8fa2ebd83" data-linktype="relative-path">IID</a></span> for which this
+OBJREF was marshaled; this MUST NOT be set to GUID_NULL.</p><dl>
+<dd>
+<p>The iid MUST be specified either by the uuid <span><a href="ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">IDL</a></span>
+attribute (as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> section
+4.2.4.1) of the interface type method parameter, or it MUST be specified using
+the <span><a href="e2acd5d8-3d4d-48a8-acd6-fc278642272a" data-linktype="relative-path">iid_is
+IDL Attribute</a></span>.</p>
+</dd></dl><p><b>u_objref (variable): </b> A structure specified by
+the value of the preceding <b>flags</b>.</p></div>

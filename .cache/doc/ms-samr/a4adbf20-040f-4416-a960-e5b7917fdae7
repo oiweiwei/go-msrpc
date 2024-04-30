@@ -1,0 +1,48 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/a4adbf20-040f-4416-a960-e5b7917fdae7" data-linktype="external">msdn link</a></p><p>The SamrGetGroupsForUser method obtains a listing of groups
+that a user is a member of.</p><dl>
+<dd>
+<div><pre> long SamrGetGroupsForUser(
+   [in] SAMPR_HANDLE UserHandle,
+   [out] PSAMPR_GET_GROUPS_BUFFER* Groups
+ );
+</pre></div>
+</dd></dl><p><b>UserHandle: </b>An RPC context handle, as
+specified in section <a href="8138c078-d881-4d1f-b378-94b4c34a287a" data-linktype="relative-path">2.2.7.2</a>,
+representing a <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_e767a471-c3fa-4e4b-a40c-daeb08f82a17" data-linktype="relative-path">user object</a>.</p><p><b>Groups: </b>An array of <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RIDs</a> of the groups that the
+user referenced by <i>UserHandle</i> is a member of.</p><p>This protocol asks the RPC runtime, via the <b>strict_context_handle</b>
+attribute, to reject the use of context handles created by a method of a
+different RPC interface than this one, as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/38ae9f5a-dac2-46ad-b2b7-9c43f211d9f6" data-linktype="relative-path">3</a>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints: </p><ol><li><p><span>    </span>The server MUST
+return an error if <i>UserHandle.HandleType</i> is not equal to
+&#34;User&#34;.</p>
+</li><li><p><span>    </span><i>UserHandle.GrantedAccess</i>
+MUST have the required access specified in section <a href="87bacbd0-7b8b-429f-abc6-4b3d895d4e90" data-linktype="relative-path">3.1.2.2</a>. Otherwise, the
+server MUST return STATUS_ACCESS_DENIED.</p>
+</li><li><p><span>    </span>The server MUST
+determine the union of all <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_60122e64-9d34-40ee-a387-782eaf7adf2f" data-linktype="relative-path">database
+objects</a> that meet the following criteria:</p>
+<ul><li><p><span><span>  </span></span>They
+are of class group. </p>
+</li><li><p><span><span>  </span></span>Their
+groupType is GROUP_TYPE_SECURITY_ACCOUNT or GROUP_TYPE_SECURITY_UNIVERSAL. </p>
+</li><li><p><span><span>  </span></span>Their
+member value contains the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a>
+of the user referenced by <i>UserHandle.Object</i>.</p>
+</li><li><p><span><span>  </span></span>They
+are in the same <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>
+as the user referenced by <i>UserHandle.Object</i>. </p>
+</li></ul><p>The union MUST also contain the
+group identified by the <b>primaryGroupId</b> attribute of the user that is
+referenced by <i>UserHandle.Object</i>.</p>
+</li><li><p><span>    </span>The returned <b>Groups.MembershipCount</b>
+MUST be set to the cardinality that the union determined from step 3.</p>
+</li><li><p><span>    </span>For each group
+in the union determined from step 3, the server MUST set a corresponding
+element in <b>Groups.Groups</b> as follows:</p>
+<ol><li><p><span>   
+</span><b>RelativeId</b> MUST contain the RID of the SID of the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_4d5e1f08-aa00-4dde-9411-7dd6e09ed85a" data-linktype="relative-path">dsname</a> member value.</p>
+</li><li><p><span>   
+</span>Set the <b>Attributes</b> field according to the message processing
+rules in section <a href="87988bdd-b100-4b19-874e-9fce919d9114" data-linktype="relative-path">3.1.5.14.7</a>.</p>
+</li></ol></li></ol></div>

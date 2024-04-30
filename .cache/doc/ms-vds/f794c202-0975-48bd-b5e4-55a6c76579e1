@@ -1,0 +1,34 @@
+<div class="content"><p> </p><p>The VDS_MOUNT_POINT_NOTIFICATION structure provides
+information about a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_513fcb37-059f-475c-a13d-e89b302f8ae8" data-linktype="relative-path">mount point</a></span> change
+notification.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_MOUNT_POINT_NOTIFICATION {
+   unsigned long ulEvent;
+   VDS_OBJECT_ID volumeId;
+ } VDS_MOUNT_POINT_NOTIFICATION;
+</pre></div>
+</dd></dl><p><b>ulEvent:</b>  Determines the mount point
+event for which an application will be notified; it MUST be the following
+value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>VDS_NF_MOUNT_POINTS_CHANGE</p>
+  <p>0x000000CD</p>
+  </td>
+  <td>
+  <p>The mount point changed.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>volumeId:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS
+object</a></span> ID of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span> object
+containing the mount point that triggered the event.</p></div>

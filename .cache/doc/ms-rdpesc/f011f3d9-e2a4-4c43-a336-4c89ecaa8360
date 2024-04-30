@@ -1,0 +1,15 @@
+<div class="content"><p>The GetReaderIcon_Return structure is used to obtain the
+data that corresponds to the lookup item requested in the <b>GetReaderIcon_Call</b>
+as specified in section <a href="e6a68d90-697f-4b98-8ad6-f74853d27ccb" data-linktype="relative-path">2.2.2.31</a>.
+For more information, see section <a href="3c9ee405-5d68-4a6d-80a0-b053ea88d987" data-linktype="relative-path">3.1.4.48</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _GetReaderIcon_Return {
+   long ReturnCode;
+   [range(0, 4194304)] unsigned long cbDataLen;
+   [unique, size_is(cbDataLen)] byte* pbData;
+ } GetReaderIcon_Return;
+</pre></div>
+</dd></dl><p><b>ReturnCode:</b>  HRESULT or Win32 error
+code. Zero indicates success; any other value indicates failure.</p><p><b>cbDataLen:</b>  The number of bytes in
+the <b>pbData</b> field.</p><p><b>pbData:</b>  The value of the lookup
+item.</p></div>

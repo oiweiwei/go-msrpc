@@ -1,0 +1,29 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/9bcad7d2-b8e1-4d28-a033-86040b7b3ce9" data-linktype="external">msdn link</a></p><p>The SamrSetDSRMPassword method sets a local recovery
+password.</p><dl>
+<dd>
+<div><pre> long SamrSetDSRMPassword(
+   [in] handle_t BindingHandle,
+   [in, unique] PRPC_UNICODE_STRING Unused,
+   [in] unsigned long UserId,
+   [in, unique] PENCRYPTED_NT_OWF_PASSWORD EncryptedNtOwfPassword
+ );
+</pre></div>
+</dd></dl><p><b>BindingHandle: </b>An RPC binding handle parameter,
+as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+section 1.</p><p><b>Unused: </b>A string value. This value is not used
+in the protocol and is ignored by the server.</p><p><b>UserId: </b>A <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_df3d0b61-56cd-4dac-9402-982f1fedc41c" data-linktype="relative-path">RID</a> of a user account. See
+the message processing later in this section for details on restrictions on
+this value.</p><p><b>EncryptedNtOwfPassword: </b>The <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_7eb5bce8-bdc5-4d61-a3d9-263ada14ba1f" data-linktype="relative-path">NT hash</a> of the new password
+(as presented by the client) encrypted according to the specification of <a href="ce061fef-6d4f-4802-bd5d-26b11f14f4a6" data-linktype="relative-path">ENCRYPTED_NT_OWF_PASSWORD</a>,
+where the key is the <i>UserId</i>.</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>The client MUST
+be a member of the Administrators alias, which is an <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_0387e636-5654-4910-9519-1f8326cf5ec0" data-linktype="relative-path">alias object</a> with the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security identifier (SID)</a>
+S-1-5-32-544.</p>
+</li><li><p><span>    </span>On a non-<a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a> configuration, the
+server MUST return an error code.</p>
+</li><li><p><span>    </span>The server MAY<a id="Appendix_A_Target_70"></a><a aria-label="Product behavior note 70" href="fa61e5fc-f8fb-4d5b-9695-c724af0c3829#Appendix_A_70" data-linktype="relative-path">&lt;70&gt;</a> enforce parameter checks on the
+<i>UserId</i> parameter.</p>
+</li><li><p><span>    </span>The server MAY<a id="Appendix_A_Target_71"></a><a aria-label="Product behavior note 71" href="fa61e5fc-f8fb-4d5b-9695-c724af0c3829#Appendix_A_71" data-linktype="relative-path">&lt;71&gt;</a> decrypt <i>EncryptedNtOwfPassword</i>
+using <i>UserId</i> as a key and use the result to store the password of a
+local recovery account.</p>
+</li></ol></div>

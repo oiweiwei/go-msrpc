@@ -1,0 +1,53 @@
+<div class="content"><p> </p><p><b>RpcAsyncDeletePrinterDriverPackage</b> deletes a
+specified <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer driver</a></span> <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_4f0cc3a7-3067-4da4-a126-52f03256d162" data-linktype="relative-path">package</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT RpcAsyncDeletePrinterDriverPackage(
+   [in] handle_t hRemoteBinding,
+   [in, string, unique] const wchar_t* pszServer,
+   [in, string] const wchar_t* pszInfPath,
+   [in, string] const wchar_t* pszEnvironment
+ );
+</pre></div>
+</dd></dl><p><b>hRemoteBinding: </b>An <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> explicit binding
+handle.</p><p><b>pszServer: </b>A non-NULL pointer to a string that
+specifies the name of the <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_59fb3ddc-63cf-45df-8a90-46a6af9e00cb" data-linktype="relative-path">print server</a></span> from
+which to delete the printer driver package. This string contains a server name
+that is identical to the server name that was used to create the <i>hRemoteBinding</i>
+parameter. For details on RPC bind handles, see <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.
+For rules governing print server names, see <span><a href="../ms-rprn/d42db7d5-f141-4466-8f47-0a4be14e2fc1" data-linktype="relative-path">[MS-RPRN]</a></span>
+section <span><a href="../ms-rprn/9b3f8135-7022-4b72-accb-aefcc360c83b" data-linktype="relative-path">2.2.4.16</a></span>.</p><p><b>pszInfPath: </b>A non-NULL pointer to a string
+that specifies the path name of a driver installation control file that
+specifies the printer driver and MAY<a id="Appendix_A_Target_28"></a><a aria-label="Product behavior note 28" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_28" data-linktype="relative-path">&lt;28&gt;</a> be used
+to delete the driver from the print server. For rules governing path names, see
+[MS-RPRN] section <span><a href="../ms-rprn/1d75f622-d07c-45cc-bf1e-a6191e408516" data-linktype="relative-path">2.2.4.9</a></span>.</p><p><b>pszEnvironment: </b>A non-NULL pointer to a string
+that specifies the environment name for which the driver will be deleted. For
+rules governing environment names, see [MS-RPRN] section <span><a href="../ms-rprn/ad775893-8a19-4786-ab46-34731f52d1af" data-linktype="relative-path">2.2.4.4</a></span>.</p><p><b>Return Values: </b>This method returns either an HRESULT
+success value (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>)
+or an HRESULT error value to indicate failure.</p><p><b>Exceptions Thrown:</b> This method MUST NOT throw any
+exceptions other than those that are thrown by the underlying RPC protocol
+[MS-RPCE].</p><p><b>Parameter Validation Requirements:</b> Upon receiving
+this method call, the server MUST validate parameters as follows:</p><ul><li><p><span><span> 
+</span></span>The string pointed to by the <i>pszInfPath</i> parameter contains
+an existing path name; otherwise the server MUST return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>The string pointed to by the <i>pszEnvironment</i> parameter
+specifies one of the supported environment names on the server for that type of
+driver; otherwise the server MUST return ERROR_INVALID_ENVIRONMENT.</p>
+</li></ul><p>Additional validation SHOULD<a id="Appendix_A_Target_29"></a><a aria-label="Product behavior note 29" href="d3e1685c-9f7c-4e09-9538-e81034bac916#Appendix_A_29" data-linktype="relative-path">&lt;29&gt;</a> be
+performed.</p><p>If parameter validation fails, the server MUST fail the
+operation immediately and return a nonzero error response to the client.</p><p><b>Processing and Response Requirements:</b> If parameter
+validation succeeds, the server MUST search for the <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_1874576f-4b40-4a78-a1f3-9e47b7ce21c9" data-linktype="relative-path">driver package</a></span> based
+on <i>pszInfPath</i> and determine if the driver package is in use on the print
+server. A driver package is in use on a server if at least one printer driver
+on the server has been installed from the driver package as specified in
+section <span><a href="8c7c8847-8400-4a28-847f-b8a898b422d1" data-linktype="relative-path">3.1.4.2.7</a></span>, or if
+the driver package contains a core printer driver on which other printer
+drivers on the server depend. If the driver package is in use on the server,
+the server MUST return ERROR_PRINTER_DRIVER_PACKAGE_IN_USE. If the driver
+package is not in use, the server MUST delete it from the driver store of the
+print server.</p><p>If the operation is successful, the server MUST delete the
+driver package from the <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_55d56bf9-1542-43e4-b603-2e08ad5cdd3f" data-linktype="relative-path">driver store</a></span> of the
+print server, before returning a response that contains the status of the
+operation.</p></div>

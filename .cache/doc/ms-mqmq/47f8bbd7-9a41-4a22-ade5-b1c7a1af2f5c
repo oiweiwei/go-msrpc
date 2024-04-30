@@ -1,0 +1,261 @@
+<div class="content"><p> </p><p>The TransactionHeader packet contains sequence information
+for a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_3b80e01d-5155-4378-b692-82122af044aa" data-linktype="relative-path">transactional message</a></span>.
+The presence of this packet in a <span><a href="56bae708-1289-48ff-a411-bf3782602476" data-linktype="relative-path">UserMessage Packet</a></span>
+indicates that the message contained in the packet is transactional.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TxSequenceID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TxSequenceNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PreviousTxSequenceNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ConnectorQMGuid
+  (16 bytes, optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Flags (4 bytes): </b>A 32-bit unsigned integer
+that contains a set of options that provide additional information about the
+packet. Any combination of these values is acceptable unless otherwise noted in
+the following table.</p><dl>
+<dd>
+<p>Any value not specified in the table MUST be treated
+as an error by closing the session.</p>
+</dd>
+<dd>
+<p>The value SHOULD be set to a combination of the
+following values.<a id="Appendix_A_Target_18"></a><a aria-label="Product behavior note 18" href="96cd5098-ad7f-43ce-a27c-dcafc367f364#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a></p>
+</dd>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>B</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+  <td colspan="20">
+  <p>ID</p>
+  </td>
+  <td>
+  <p>E</p>
+  </td>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>G</p>
+  </td>
+  <td>
+  <p>H</p>
+  </td>
+  <td>
+  <p>I</p>
+  </td>
+  <td>
+  <p>J</p>
+  </td>
+  <td>
+  <p>K</p>
+  </td>
+  <td>
+  <p>L</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>A - CG (1 bit): </b>A bit
+that specifies whether the <b>ConnectorQMGuid</b> field contains a connector <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue
+manager</a></span> <b>GUID</b>. If set, the <b>ConnectorQMGuid</b> field MUST
+contain a <b>GUID</b>.</p>
+</dd>
+<dd>
+<p><b>B - FA (1 bit): </b>A bit
+that specifies whether a FinalAck Packet, as defined in <span><a href="../ms-mqqb/85498b96-f2c8-43b3-a108-c9d6269dc4af" data-linktype="relative-path">[MS-MQQB]</a></span>
+section <span><a href="../ms-mqqb/484801b2-2d28-418a-b4c3-7a10ac04f50b" data-linktype="relative-path">2.2.5</a></span>,
+is required. For more details see [MS-MQQB] section <span><a href="../ms-mqqb/448a1c11-292f-4400-b2e8-abd3df478dc2" data-linktype="relative-path">3.1.7.2.2</a></span>.</p>
+</dd>
+<dd>
+<p><b>C - FM (1 bit): </b>A bit
+that specifies whether the <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a></span> is the first
+one sent within the context of a transaction. This bit MUST be set if the
+message is the first one in a transaction, otherwise it MUST be clear.</p>
+</dd>
+<dd>
+<p><b>D - LM (1 bit): </b>A bit
+that specifies whether the message is the last one sent within the context of a
+transaction. This bit MUST be set if the message is the last one in a transaction,
+otherwise it MUST be clear.</p>
+</dd>
+<dd>
+<p><b>ID (20 bits): </b>An
+array of 20 bits that specifies an identifier to correlate this packet to the
+transaction under which it was captured. The <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_1c892b3d-e961-498c-9f84-30a652a70341" data-linktype="relative-path">message transfer protocols</a></span>
+MUST generate an identifier for the transaction and assign all packets captured
+under the transaction to the value. This identifier MUST be unique across all
+such identifiers generated by the sender queue manager.</p>
+</dd>
+<dd>
+<p><b>E - X1 (1 bit): </b>An
+unused bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>F - X2 (1 bit): </b>An
+unused bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>G - X3 (1 bit): </b>An
+unused bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>H - X4 (1 bit): </b>An
+unused bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>I - X5 (1 bit): </b>An
+unused bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>J - X6 (1 bit): </b>An
+unused bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>K - X7 (1 bit): </b>An
+unused bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd>
+<dd>
+<p><b>L - X8 (1 bit): </b>An
+unused bit field. This field SHOULD NOT be set when sent and MUST be ignored on
+receipt.</p>
+</dd></dl><p><b>TxSequenceID (8 bytes): </b>A transactional
+sequence identifier, as specified in <span><a href="d34b8364-cd9a-4321-80b9-ca29368dce04" data-linktype="relative-path">TxSequenceID</a></span>. This
+value identifies the transactional sequence that the <b>TxSequenceNumber</b>
+and <b>PreviousTxSequenceNumber</b> are within. For more details, see section
+2.2.18.1.2.</p><p><b>TxSequenceNumber (4 bytes): </b>A 32-bit unsigned
+integer that is the message sequence number within the <b>TxSequenceID</b>
+sequence. This field MUST be set to the value that represents the message
+position within the transactional sequence. The first message within a sequence
+MUST be set to the value 1. This field has a valid range from 0x00000001 to
+0xFFFFFFFF.</p><p><b>PreviousTxSequenceNumber (4 bytes): </b>A 32-bit
+unsigned integer that is the sequence number of the previous message in the <b>TxSequenceID</b>
+sequence. This field MUST be set to the sequence number of the message that
+precedes this message in the transactional sequence. This value MUST be set to
+0x00000000 if there is no previous message. This field has a valid range from
+0x00000000 to 0xFFFFFFFE.</p><p><b>ConnectorQMGuid (16 bytes): </b>An optional field
+containing an application-defined <b>GUID</b>, as specified in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a></span>.
+If <b>Flags.CG</b> is set, this field MUST be present; otherwise, it MUST NOT.
+This field can be used by higher-layer messaging applications. The server MUST
+NOT process or interpret this field.</p></div>

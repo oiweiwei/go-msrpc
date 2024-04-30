@@ -1,0 +1,1503 @@
+<div class="content"><p>The ClientRequest method is called by the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> to submit requests
+to the <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>.</p><dl>
+<dd>
+<div><pre> void ClientRequest(
+   [in] PCONTEXT_HANDLE_TYPE phContext,
+   [in, out, length_is(*plUsedSize), size_is(lNeededSize)] 
+     unsigned char* pBuffer,
+   [in] long lNeededSize,
+   [in, out] long* plUsedSize
+ );
+</pre></div>
+</dd></dl><p><b>phContext: </b>Parameter that MUST contain the
+context handle of type <a href="855ea515-15c6-42c1-88b7-7a40cac25ab3" data-linktype="relative-path">PCONTEXT_HANDLE_TYPE</a>.
+</p><p><b>pBuffer: </b>Packet that MUST contain event
+packets or function calls. The packet follows the structure of a <a href="2b49d075-4b32-4d60-8567-0c522b95f165" data-linktype="relative-path">TAPI32_MSG (section 2.2.5.2)</a>
+packet. The Req_Func field of this packet contains information about the
+operation to be performed on the server.</p><p><b>lNeededSize: </b>The size, in bytes, of a valid
+pBuffer. </p><p><b>plUsedSize: </b>The size, in bytes, of a valid
+pBuffer data. If any variable-length input data is specified, both the size of
+the input data length and all the padding bytes are included, or else all the
+padding bytes are excluded.</p><p><b>Return Values: </b>This method has no return
+values. However, the status of the request is encapsulated within the <i>pBuffer</i>
+parameter and contained in the TAPI32_MSG.Ack_ReturnValue field.</p><p><b>Exceptions Thrown:</b></p><p>No exceptions are thrown beyond those thrown by the
+underlying <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol
+as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The <a href="489de77f-16d8-4c4f-939a-f795e8b42893#gt_e127848e-c66d-427d-b3aa-9f904fa4ada7" data-linktype="relative-path">opnum</a>
+field value for this method is 1.</p><p>When processing a call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Fail the request if lNeededSize is less than the size of the
+structure TAPI32_MSG.</p>
+</li><li><p><span><span> 
+</span></span>Fail the request if the value in plUsedSize is less than the size
+of a ULONG_PTR.</p>
+</li><li><p><span><span> 
+</span></span>Fail the request if phContext is not a valid handle.</p>
+</li><li><p><span><span> 
+</span></span>Fail the request if Req_Func in pBuffer is not a valid value.</p>
+</li></ul><p>Depending on the value of Req_Func in pBuffer, the server
+performs additional checks described as follows:</p><p>When Req_Func is equal to 47 (Initialize):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if dwFriendlyNameOffset is not
+WCHAR-aligned. </p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwFriendlyNameOffset lies outside the
+variable data area (VarData).</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the string pointed by
+dwFriendlyNameOffset is not NULL-terminated. </p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwModuleNameOffset is not WCHAR-aligned. </p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwModuleNameOffset lies outside the
+variable data area (VarData).</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the string pointed by dwModuleNameOffset
+is not NULL-terminated.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server creates a new client&#39;s usage handle
+(HLINEAPP) and adds it to the <b>LineApp Handle List</b>. The server also adds
+the handle to the list of usage handles for the client in the <b>Client List</b>.
+The server queries the number of lines from service providers installed on the
+machine and updates the <b>Provider List</b> with this information.</p>
+</li></ul><p>When Req_Func is equal to 52 (NegotiateAPIVersion):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if the size of VarData is less than the size
+of the LINEEXTENSIONID structure.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwDeviceID is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLineApp is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwVersion is greater than
+dwVersionCurrent.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if no valid TAPI version exists between
+dwVersion or dwVersionCurrent (both inclusive). The valid values are
+0x00010003, 0x00010004, 0x00020000, 0x00020001, 0x00020002, 0x00030000 and
+0x00030001.</p>
+</li></ul><p>When Req_Func is equal to 34 (GetDevCaps):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if the size of VarData is less than the size
+of lpLineDevCaps.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the size of lpLineDevCaps is less than
+the size of the LINEDEVCAPS packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwDeviceID is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwTSPIVersion is invalid. The valid
+values are 0x00010003, 0x00010004, 0x00020000, 0x00020001, 0x00020002,
+0x00030000 and 0x00030001.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwExtVersion is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLineApp is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 21 (GetAddressCaps):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLineApp is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the size of VarData is less than the size
+of lpAddressCaps.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the size of lpAddressCaps is less than
+size of the LINEADDRESSCAPS packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if VarData is less than the size of the
+LINEADDRESSCAPS packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwDeviceID is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwTSPIVersion is invalid. The valid
+values are 0x00010003, 0x00010004, 0x00020000, 0x00020001, 0x00020002,
+0x00030000 and 0x00030001.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwExtVersion is invalid.</p>
+</li></ul><p>When Req_Func is equal to 9 (Close):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server removes the handle (HLINE) and removes the
+client from the <b>List of Opened Lines</b>.</p>
+</li></ul><p>When Req_Func is equal to 86 (Shutdown):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLineApp is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server removes the handle from the <b>LineApp Handle
+List</b> and from the list of usage handles for the client in the <b>Client
+List</b>.</p>
+</li></ul><p>When Req_Func is equal to 4 (Accept):</p><ul><li><p><span><span> 
+</span></span>If lpsUserUserInfo is not set to -1(0xFFFFFFFF), the server MUST
+check that lpsUserUserInfo (offset) is DWORD-aligned and lies within VarData
+and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>If lpsUserUserInfo is not set to -1(0xFFFFFFFF), the server MUST
+fail if the sum of lpsUserUserInfo (offset) and dwSize falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 5 (AddToConference):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hConfCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hConsultCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 6 (AgentSpecific):</p><ul><li><p><span><span> 
+</span></span>The server MUST check that lpParams (offset) is DWORD-aligned and
+lies within VarData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpParams (offset) and dwSize
+falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 7 (Answer):</p><ul><li><p><span><span> 
+</span></span>The server MUST check that lpsUserUserInfo (offset) is
+DWORD-aligned and lies within VarData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpsUserUserInfo (offset) and
+dwSize falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 8 (BlindTransfer):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if the string pointed to by lpszDestAddress
+is not WCHAR-aligned, not NULL-terminated, or lies outside VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 12 (DeallocateCall):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server removes the client for the call from the <b>Call
+List</b>.</p>
+</li></ul><p>When Req_Func is equal to 10 (CompleteCall):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwCompletionMode has more than one bit set
+or its value is not one among LINECALLCOMPLMODE_Constants.</p>
+</li></ul><p>When Req_Func is equal to 11 (CompleteTransfer):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if dwTransferMode is not one among
+LINETRANSFERMODE_Constants.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hConsultCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall and hConsultCall are the same.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall and hConsultCall are not on the
+same line.</p>
+</li><li><p><span><span> 
+</span></span>On success, if <b>dwTransferMode</b> is set to
+LINETRANSFERMODE_CONFERENCE, the server creates a conference call with a new
+handle (HCALL) and adds it to the <b>Conference List</b>. The server adds the
+hCall and hConsultCall to the list of calls maintained for the conference call
+in the <b>Conference List</b>.</p>
+</li></ul><p>When Req_Func is equal to 146 (CreateAgent):</p><ul><li><p><span><span> 
+</span></span>If lpszAgentPIN is not set to TAPI_NO_DATA (0xffffffff), the
+server MUST fail if the string pointed to by lpszAgentPIN is not WCHAR-aligned,
+not NULL-terminated, or lies outside VarData.</p>
+</li><li><p><span><span> 
+</span></span>If lpszAgentID is not set to TAPI_NO_DATA (0xffffffff), the server
+MUST fail if the string pointed to by lpszAgentID is not WCHAR-aligned, not
+NULL-terminated, or lies outside VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 147 (CreateAgentSession):</p><ul><li><p><span><span> 
+</span></span>If lpszAgentPIN is not set to TAPI_NO_DATA (0xffffffff), the
+server MUST fail if the string pointed to by lpszAgentPIN is not WCHAR-aligned,
+not NULL-terminated, or lies outside VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST check that lpGroupID (offset) is DWORD-aligned
+and lies within VarData and fail otherwise. </p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpGroupID (offset) and dwSize
+falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwSize is less than the size of GUID.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwWorkingAddressID is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 13 (DevSpecific):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hCall is specified and is an invalid
+handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is not specified and hLine is an
+invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST check that lpParams (offset) is DWORD-aligned and
+lies within VarData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpParams (offset) and dwSize
+falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>If hCall is passed, the server MUST fail if hCall is an invalid
+handle.</p>
+</li></ul><p>When Req_Func is equal to 14 (DevSpecificFeature):</p><ul><li><p><span><span> 
+</span></span>The server MUST check that lpParams (offset) is DWORD-aligned and
+lies within VarData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpParams (offset) and dwSize
+falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwFeature is invalid.</p>
+</li></ul><p>When Req_Func is equal to 15 (Dial):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if the string pointed to by lpszDestAddress
+is not WCHAR-aligned, not NULL-terminated, or lies outside VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 16 (Drop):</p><ul><li><p><span><span> 
+</span></span>The server MUST check that lpsUserUserInfo (offset) is
+DWORD-aligned and lies within VarData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpsUserUserInfo (offset) and
+dwSize falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 18 (GatherDigits):</p><ul><li><p><span><span> 
+</span></span>If lpszTerminationDigits is not set to TAPI_NO_DATA (0xffffffff),
+the server MUST fail if the string pointed to by lpszTerminationDigits is not
+WCHAR-aligned, not NULL-terminated, or lies outside VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwDigitModes does not have value either
+LINEDIGITMODE_PULSE or LINEDIGITMODE_DTMF (LINEDIGITMODE_Constants). </p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpsDigitsContext is not set to 0 and the
+value of dwNumDigits is set to 0.</p>
+</li></ul><p>When Req_Func is equal to 19 (GenerateDigits):</p><ul><li><p><span><span> 
+</span></span>If lpszDigits is not set to 0xffffffff, server MUST fail if the
+string pointed to by lpszDigits is not WCHAR-aligned, not NULL-terminated, or
+lies outside VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwDigitMode does not have a value of
+either LINEDIGITMODE_PULSE or LINEDIGITMODE_DTMF.</p>
+</li></ul><p>When Req_Func is equal to 20 (GenerateTone):</p><ul><li><p><span><span> 
+</span></span>If dwToneMode is set to LINETONEMODE_CUSTOM, the server MUST fail
+if the size of VarData is less than the size of the LINEGENERATETONE packets
+which will be dwNumTones in number.</p>
+</li><li><p><span><span> 
+</span></span>For dwToneMode = LINETONEMODE_CUSTOM, the server MUST check that
+lpTones (offset) is DWORD-aligned and lies within VarData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>For dwToneMode = LINETONEMODE_CUSTOM, the server MUST fail if the
+sum of lpTones (offset) and dwSize falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwToneMode has more than one bit set or
+its value is not one among LINETONEMODE_Constants.</p>
+</li></ul><p>When Req_Func is equal to 22 (GetAddressID):</p><ul><li><p><span><span> 
+</span></span>The server MUST check that lpsAddress (offset) is DWORD-aligned
+and lies within VarData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpsAddress (offset) and dwSize
+falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwAddressMode does not have value
+LINEADDRESSMODE_DIALABLEADDR.</p>
+</li></ul><p>When Req_Func is equal to 23 (GetAddressStatus):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the size of VarData is less than
+lpAddressCaps.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpAddressCaps is less than size of the
+LINEADDRESSSTATUS packet.</p>
+</li></ul><p>When Req_Func is equal to 24 (GetAgentActivityList):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwAddressID is invalid or there is no
+agent associated with dwAddressID.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpAgentActivityList is greater than
+0x40000.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpAgentActivityList is less than size of
+LINEAGENTACTIVITYLIST packet.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 25 (GetAgentCaps):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLineApp is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the size of VarData is less than
+lpAgentCapsSize.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpAgentCapsSize is less than the size of
+LINEAGENTCAPS packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwAppAPIVersion is invalid. The valid
+values are 0x00020000, 0x00020001, 0x00020002, 0x00030000, and 0x00030001.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for the line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 26 (GetAgentGroupList):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwAddressID is invalid or there is no
+agent associated with dwAddressID.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpAgentGroupListSize is greater than
+0x40000.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpAgentGroupListSize is less than the
+size of the LINEAGENTGROUPLIST packet.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 148 (GetAgentInfo):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if lpAgentInfo is greater than 0x40000.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpAgentInfo is less than the size of the
+LINEAGENTINFO packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hAgent is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 149 (GetAgentSessionInfo):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if lpAgentSessionInfo is greater than
+0x40000.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpAgentSessionInfo is less than the size
+of the LINEAGENTSESSIONINFO packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hAgentSession is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 150 (GetAgentSessionList):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if lpAgentSessionList is greater than
+0x40000.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpAgentSessionList is less than the size
+of the LINEAGENTSESSIONLIST packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hAgent is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 27 (GetAgentStatus):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwAddressID is invalid or there is no
+agent associated with dwAddressID.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpAgentStatusSize is greater than
+0x40000.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpAgentStatusSize is less than the size
+of the LINEAGENTSTATUS packet.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 140 (GetCallHubTracking):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if the size of VarData is less than
+lpTrackingInfo.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the size of lpTrackingInfo is less than
+the size of the LINECALLHUBTRACKINGINFO packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the size of VarData is less than the size
+of the LINECALLHUBTRACKINGINFO packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 141 (GetCallIDs):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if no lines are initialized on the server.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 30 (GetCallInfo):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if the size of VarData is less than
+lpCallInfo.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpCallInfo is less than size of the
+LINECALLINFO packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 31 (GetCallStatus):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if the size of VarData is less than
+lpCallStatus.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpCallStatus is less than size of the
+LINECALLSTATUS packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 35 (GetDevConfig):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if the size of VarData is less than the size
+of the VARSTRING packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the string pointed to by lpszDeviceClass
+is not WCHAR-aligned, not NULL-terminated, or lies outside VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwDeviceID is invalid.</p>
+</li></ul><p>When Req_Func is equal to 152 (GetGroupList):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if lpAgentGroupListSize is greater than 0x40000.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpAgentGroupListSize is less than the
+size of the LINEAGENTGROUPLIST packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the size of VarData is less than the size
+of the LINEAGENTGROUPLIST packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for the line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 37 (GetID):</p><ul><li><p><span><span> 
+</span></span>The Server MUST fail if lpDeviceId is less than size of the
+VARSTRING packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the size of VarData is less than
+lpDeviceID.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the string pointed to by lpszDeviceClass
+is not WCHAR-aligned, not NULL-terminated, or lies outside VarData.</p>
+</li><li><p><span><span> 
+</span></span>Depending upon the type of parameter passed in dwSelect, the
+server MUST check that hCall and hLine handles are valid and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwSelect is set to
+LINECALLSELECT_DEVICEID and dwAddressID is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwSelect is invalid.</p>
+</li></ul><p>When Req_Func is equal to 38 (GetLineDevStatus):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if the size of VarData is less than
+lpLineDevStatus.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpLineDevStatus is less than size of the
+LINEDEVSTATUS packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 39 (GetNewCalls):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if the size of VarData is less than
+pCallList.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the pCallList is less than size of the
+LINECALLLIST packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwSelect does not have value either
+LINECALLSELECT_ADDRESS or LINECALLSELECT_LINE.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 40 (GetNumAddressIDs):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 158 (GetProxyStatus):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if dwDeviceID is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwAppAPIVersion is invalid. The valid
+values are 0x00010003, 0x00010004, 0x00020000, 0x00020001, 0x00020002,
+0x00030000, and 0x00030001.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the size of VarData is less than
+lpLineProxyRequestList.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the lpLineProxyRequestList is less than
+size of the LINEPROXYREQUESTLIST packet.</p>
+</li></ul><p>When Req_Func is equal to 151 (GetQueueInfo):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if lpQueueInfo is less than the size of the
+LINEQUEUEINFO packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the size of lpQueueInfo is greater than
+0x40000.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 153 (GetQueueList):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if the size of VarData is less than the size
+of the LINEQUEUELIST packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST check that pGroupID (offset) is DWORD-aligned and
+lies within VarData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of pGroupID (offset) and cbGUID
+falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+doesn&#39;t handle this request.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 46 (Hold):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 49 ( MonitorDigits):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwDigitModes is invalid.</p>
+</li></ul><p>When Req_Func is equal to 50 (MonitorMedia):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwMediaModes is invalid.</p>
+</li></ul><p>When Req_Func is equal to 51 (MonitorTones):</p><ul><li><p><span><span> 
+</span></span>If lpTones is not set to -1(0xFFFFFFFF), the server MUST check
+that lpToneList (offset) is DWORD-aligned and lies within VarData and fail
+otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpToneList (offset) and
+dwNumEntries falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 53 (NegotiateExtVersion):</p><ul><li><p><span><span> 
+</span></span>The Server MUST fail if hLineApp is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwDeviceID is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwTSPIVersion is invalid. The valid
+values are 0x00010003, 0x00010004, 0x00020000, 0x00020001, 0x00020002,
+0x00030000, and 0x00030001.</p>
+</li></ul><p>When Req_Func is equal to 55 (Park):</p><ul><li><p><span><span> 
+</span></span>The Server MUST fail if dwParkMode is invalid.</p>
+</li><li><p><span><span> 
+</span></span>If dwParkMode is equal to LINEPARKMODE_DIRECTED, the server MUST
+fail if the string pointed to by lpszDirAddress is not WCHAR-aligned, not
+NULL-terminated, or lies outside VarData.</p>
+</li><li><p><span><span> 
+</span></span>If dwParkMode is equal to LINEPARKMODE_NONDIRECTED, the server
+MUST fail if the size of lpNonDirAddress is less than the size of the VARSTRING
+packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 56 (Pickup):</p><ul><li><p><span><span> 
+</span></span>If lpszDestAddress is not set to 0xffffffff, the server MUST fail
+if the string pointed to by lpszDestAddress is not WCHAR-aligned, not
+NULL-terminated, or lies outside VarData.</p>
+</li><li><p><span><span> 
+</span></span>If lpszGroupID is not set to 0xffffffff, the server MUST fail if
+the string pointed to by lpszGroupID is not WCHAR-aligned, not NULL-terminated,
+or lies outside VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server creates a call with a new handle (HCALL)
+and add it to the <b>Call List</b>. The server updates the call with the handle
+of the line on which the call is made and adds this call to the list of calls maintained
+for an opened line. The server adds the client to the list of clients
+maintained for the call handle (HCALL) in the <b>Call List</b>.</p>
+</li></ul><p>When Req_Func is equal to 60 (Redirect):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the string pointed to by lpszDestAddress
+is not WCHAR-aligned, not NULL-terminated, or lies outside VarData.</p>
+</li></ul><p>When Req_Func is equal to 62 (ReleaseUseruserInfo):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 63 (RemoveFromConference):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the call is not currently conferenced.</p>
+</li></ul><p>When Req_Func is equal to 64 (SecureCall):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 128 (SelectExtVersion):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 65 (SendUserUserInfo):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST check that lpsUserUserInfo (offset) is
+DWORD-aligned and lies within VarData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpsUserUserInfo (offset) and
+dwSize falls beyond VarData.</p>
+</li></ul><p>When Req_Func is equal to 66 (SetAgentActivity):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 67 (SetAgentGroup):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the LINEAGENTGROUPLIST packet pointed by
+lpAgentGroupList (offset) lies outside VarData or is not DWORD-aligned.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if VarData is not big enough to accommodate
+LINEAGENTGROUPLIST packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 154 (SetAgentMeasurementPeriod):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the value of dwMeasurementPeriod is zero.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 155 (SetAgentSessionState):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the values of both dwAgentSessionState
+and dwNextAgentSessionState are zero.</p>
+</li><li><p><span><span> 
+</span></span>If the value of dwAgentSessionState is nonzero, the server MUST
+fail if dwAgentSessionState has more than one bit set or its value is not one
+among LINEAGENTSESSIONSTATE_Constants.</p>
+</li><li><p><span><span> 
+</span></span>If the value of dwNextAgentSessionState is nonzero, the server
+MUST fail if dwNextAgentSessionState has more than one bit set or its value is
+not one among LINEAGENTSESSIONSTATE_Constants.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 68 (SetAgentState):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the values of both dwAgentState and
+dwNextAgentState are zero.</p>
+</li><li><p><span><span> 
+</span></span>If the value of dwAgentState is nonzero, server MUST fail if
+dwAgentState has more than one bit set or its value is not one among
+LINEAGENTSESSIONSTATE_Constants.</p>
+</li><li><p><span><span> 
+</span></span>If the value of dwNextAgentState is nonzero, the server MUST fail
+if dwNextAgentState has more than one bit set or its value is not one among
+LINEAGENTSESSIONSTATE_Constants.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 157 (SetAgentStateEx):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the values of both dwAgentState and
+dwNextAgentState are zero.</p>
+</li><li><p><span><span> 
+</span></span>If the value of dwAgentState is nonzero, the server MUST fail if
+dwAgentState has more than one bit set or its value is not one among
+LINEAGENTSTATEEX_Constants.</p>
+</li><li><p><span><span> 
+</span></span>If the value of dwNextAgentState is nonzero, the server MUST fail
+if dwBearerMode has more than one bit set or its value is not one among
+LINEAGENTSTATEEX_Constants.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li></ul><p>When Req_Func is equal to 70 (SetAppSpecific):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 71 (SetCallData):</p><ul><li><p><span><span> 
+</span></span>The server MUST check that lpCallData (offset) is DWORD-aligned
+and lies within VarData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpCallData (offset) and dwSize
+falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 143 (SetCallhubTracking):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if the LINECALLHUBTRACKINGINFO packet
+pointed by lpTrackingInfo lies outside VarData or is not DWORD-aligned.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if VarData is not big enough to accommodate
+the LINECALLHUBTRACKINGINFO packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if LINECALLHUBTRACKINGINFO.dwCurrentTracking
+is invalid.</p>
+</li></ul><p>When Req_Func is equal to 72 (SetCallParams):</p><ul><li><p><span><span> 
+</span></span>If lpDialParams is not set to -1(0xffffffff), the server MUST
+check that lpDialParams (offset) is DWORD-aligned and lies within VarData and
+fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>If lpDialParams is not set to -1(0xffffffff), the server MUST
+fail if the sum of lpDialParams (offset) and dwSize falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwBearerMode has more than one bit set or
+its value is not one among LINEBEARERMODE_Constants.</p>
+</li></ul><p>When Req_Func is equal to 74 (SetCallqualityofservice):</p><ul><li><p><span><span> 
+</span></span>The server MUST check that lpSendingFlowspec (offset) is
+DWORD-aligned and lies within VarData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpSendingFlowspec (offset) and
+dwSendingFlowspecSize falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST check that lpReceivingFlowspec (offset) is
+DWORD-aligned and lies within VarData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpReceivingFlowspec (offset)
+and dwSendingFlowspecSize falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 75 (SetCallTreatment):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the value of dwTreatment is zero or
+between 4 to 256.</p>
+</li></ul><p>When Req_Func is equal to 76 (SetDefaultMediaDetection):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 77 (SetDevConfig):</p><ul><li><p><span><span> 
+</span></span>The server MUST check that lpDeviceConfig (offset) is
+DWORD-aligned and lies within VarData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpDeviceConfig (offset) and
+dwSize falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the string pointed to by lpszDeviceClass
+is not WCHAR-aligned, not NULL-terminated, or lies outside VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwDeviceID is invalid.</p>
+</li></ul><p>When Req_Func is equal to 78 (SetLineDevStatus):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwStatusToChange is zero or does not have
+a value among LINEDEVSTATUSFLAGS_Constants.</p>
+</li></ul><p>When Req_Func is equal to 79 (SetMediaControl):</p><ul><li><p><span><span> 
+</span></span>The server MUST check that lpDigitList (offset) is DWORD-aligned
+and lies within VarData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpDigitList (offset) and
+dwDigitNumEntries falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST check that lpMediaList (offset) is DWORD-aligned
+and lies within VarData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpMediaList (offset) and
+dwMediaNumEntries falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST check that lpToneList (offset) is DWORD-aligned
+and lies within VarData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpToneList (offset) and
+dwToneNumEntries falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST check that lpCallStateList (offset) is
+DWORD-aligned and lies within VarData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpCallStateList (offset) and
+dwCallStateNumEntries falls beyond VarData.</p>
+</li><li><p><span><span> 
+</span></span>Depending upon the type of parameter passed in dwSelect, the
+server MUST check that hCall and hLine handles are valid or fail otherwise.</p>
+</li></ul><p>When Req_Func is equal to 80 (SetMediaMode):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>For version &lt; = 2.1, the server MUST fail if there is more
+than one bit set in dwMediaModes without the UNKNOWN flag set or its value is
+not one among LINEMEDIAMODE_Constants.</p>
+</li></ul><p>When Req_Func is equal to 156 (SetQueueMeasurementPeriod):</p><ul><li><p><span><span> 
+</span></span>The Server MUST fail if dwMeasurementPeriod is set to zero.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if there is no registered proxy function
+handler for line handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the registered proxy function handler
+does not handle this request.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server sends the request to the registered proxy
+function handler.</p>
+</li></ul><p>When Req_Func is equal to 82 (SetStatusMessages):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwLineStates value is not one among valid
+LINEDEVSTATE_Constants.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the dwAddressStates value is not one
+among valid LINEADDRESSSTATE_Constants.</p>
+</li></ul><p>When Req_Func is equal to 83 (SetTerminal):</p><ul><li><p><span><span> 
+</span></span>Depending upon the type of parameter passed in dwSelect, the
+server MUST check that hCall and hLine handles are valid or fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwSelect has more than one bit set or its
+value is not one among LINECALLSELECT_Constants.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the dwTerminalModes is zero or its value
+is not one among valid LINETERMMODE_Constants.</p>
+</li></ul><p>When Req_Func is equal to 87 (SwapHold):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hActiveCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hHeldCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if call handle for HeldCall and ActiveCall
+are the same.</p>
+</li></ul><p>When Req_Func is equal to 88 (UncompleteCall):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 89 (Unhold):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 90 (Unpark):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if the string pointed to by lpszDestAddress
+is not WCHAR-aligned, not NULL-terminated, or lies outside VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server creates a call with a new handle (HCALL)
+and adds it to the <b>Call List</b>. The server updates the call with the
+handle of the line on which the call is made and adds this call to the list of
+calls maintained for an opened line. The server adds the client to the list of
+clients maintained for the call handle (HCALL) in the <b>Call List</b>.</p>
+</li></ul><p>When Req_Func is equal to 54 (Open):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLineApp is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwAPIVersion is invalid. The valid values
+are 0x00010003, 0x00010004, 0x00020000, 0x00020001, 0x00020002, 0x00030000, and
+0x00030001.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if none of the privilege bits are set in
+dwPrivileges or LINECALLPRIVILEGE_NONE is set with either
+LINECALLPRIVILEGE_MONITOR and LINECALLPRIVILEGE_OWNER also being set.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if any bit other than a valid bit is set in
+dwPrivileges.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwPrivileges is set to
+LINEOPENOPTION_SINGLEADDRESS or LINEOPENOPTION_PROXY and the LINECALLPARAMS
+packet pointed to by pCallParams lies outside VarData or is not DWORD-aligned.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwPrivileges has
+LINEOPENOPTION_SINGLEADDRESS set and dwAddressMode is not set to
+LINEADDRESSMODE_ADDRESSID.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwPrivileges has LINEOPENOPTION_OWNER set
+and dwMediaModes is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwExtVersion is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwPrivileges has
+LINEOPENOPTION_SINGLEADDRESS set and dwAddressID is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwPrivileges is set to
+LINEOPENOPTION_SINGLEADDRESS or LINEOPENOPTION_PROXY and the LINECALLPARAMS
+packet pointed by pCallParams is invalid. The invalidity of the LINECALLPARAMS
+packet is defined directly after the processing rules for SetUpTransfer.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server creates a line with a new handle (HLINE)
+and adds it to the <b>List of Opened Lines</b>. The server updates the client
+and provider information for the added line handle (HLINE). If <b>dwPrivileges</b>
+is set to LINEOPENOPTION_PROXY, add the client as a registered proxy function
+handler to the line in the <b>Provider List</b>.</p>
+</li></ul><p>When Req_Func is equal to 127 (ConditionalMediaDetection):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if LINECALLPARAMS packet pointed by
+lpCallParams is invalid. The invalidity of the LINECALLPARAMS packet is defined
+directly after the processing rules for SetUpTransfer.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the lpCallParams(offset) lies outside
+VarData or is not DWORD-aligned.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if VarData is not big enough to accommodate
+LINECALLPARAMS packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 17 (Forward):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>If lpForwardList is not set to 0xffffffff, the server MUST fail
+if the LINEFORWARDLIST packet pointed by lpForwardList lies outside VarData or
+is not DWORD-aligned.</p>
+</li><li><p><span><span> 
+</span></span>If lpCallParams is not set to 0xffffffff, the server MUST fail if
+the LINECALLPARAMS packet pointed by lpCallParams lies outside VarData or is
+not DWORD-aligned.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the size of lpForwardList is less than
+size of LINEFORWARDLIST packet.</p>
+</li><li><p><span><span> 
+</span></span>For each LINEFORWARD in LINEFORWARDLIST packet:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST fail if dwForwardMode has more than one bit set or its value is not
+one among LINEFORWARDMODE_Constants.</p>
+</li><li><p><span><span>  </span></span>The
+server MUST check that dwCallerAddressOffset is DWORD-aligned and lies within
+VarData and fail otherwise.</p>
+</li><li><p><span><span>  </span></span>The
+server MUST fail if the sum of dwCallerAddressOffset and dwSize falls beyond
+VarData.</p>
+</li><li><p><span><span>  </span></span>The
+server MUST check that dwDestAddressOffset is DWORD-aligned and lies within
+VarData and fail otherwise.</p>
+</li><li><p><span><span>  </span></span>The
+server MUST fail if the sum of dwDestAddressOffset and dwSize falls beyond
+VarData.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The server MUST fail if the LINECALLPARAMS packet pointed by
+lpCallParams is invalid. The invalidity of the LINECALLPARAMS packet is defined
+directly after the processing rules for SetUpTransfer.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server creates a call with a new handle (HCALL)
+and adds it to the <b>Call List</b>. The server updates the call with the
+handle of the line on which the call is made and adds this call to the list of
+calls maintained for an opened line. The server adds the client to the list of
+clients maintained for the call handle (HCALL) in the <b>Call List</b>.</p>
+</li></ul><p>When Req_Func is equal to 48 (MakeCall):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hLine is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the string pointed to by lpszDestAddress
+is not WCHAR-aligned, not NULL-terminated, or lies outside VarData.</p>
+</li><li><p><span><span> 
+</span></span>If lpszDigits is not set to 0xffffffff, the server MUST fail if
+the LINECALLPARAMS packet pointed by dwCallParamsOffset lies outside VarData or
+is not DWORD-aligned.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if VarData is not big enough to accommodate
+LINECALLPARAMS packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the LINECALLPARAMS packet pointed by
+lpCallParams is invalid. The invalidity of the LINECALLPARAMS packet is defined
+directly after the processing rules for SetUpTransfer.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server creates a call with a new handle (HCALL)
+and adds it to the <b>Call List</b>. The server updates the call with the
+handle of the line on which the call is made and adds this call to the list of
+calls maintained for an opened line. The server adds the client to the list of
+clients maintained for the call handle (HCALL) in the <b>Call List</b>.</p>
+</li></ul><p>When Req_Func is equal to 57 (PrepareAddtoConference):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hConfCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the LINECALLPARAMS packet pointed by
+lpCallParams lies outside VarData buffer or is not DWORD-aligned.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if VarData is not big enough to accommodate
+LINECALLPARAMS packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the LINECALLPARAMS packet pointed by
+lpCallParams is invalid. The invalidity of the LINECALLPARAMS packet is defined
+directly after the processing rules for SetUpTransfer.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server creates a consultation call with a new
+handle (HCALL) and adds it to the <b>Call List</b>. The server updates the call
+with the handle of the line on which the call is made and adds this call to the
+list of calls maintained for an opened line. The server adds the client to the
+list of clients maintained for the call handle (HCALL) in the <b>Call List</b>.</p>
+</li></ul><p>When Req_Func is equal to 84 (SetUpConference):</p><ul><li><p><span><span> 
+</span></span>The server MUST check that hCall and hLine handles are valid or
+fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>If lpCallParams is not set to 0xffffffff, the server MUST fail if
+the LINECALLPARAMS packet pointed by lpCallParams lies outside VarData buffer
+or is not DWORD-aligned.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if VarData is not big enough to accommodate
+the LINECALLPARAMS packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the LINECALLPARAMS packet pointed by
+lpCallParams is invalid. The invalidity of the LINECALLPARAMS packet is defined
+directly after the processing rules for SetUpTransfer.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server creates a conference call with a new
+handle (HCALL) and adds it to the <b>Conference List</b>. The server also
+creates a consultation call with a new handle (HCALL) and adds it to the call
+list. The server updates the calls with the handle of the line on which the
+call is made and adds the calls to the list of calls maintained for an opened
+line. The server adds the client to the list of clients maintained for the call
+handle (HCALL) in the <b>Call List</b>. If hCall is specified, the server adds
+the call to the list of calls maintained for the conference call in the <b>Conference
+List</b>.</p>
+</li></ul><p>When Req_Func is equal to 85 (SetUpTransfer):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hCall is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>If lpCallParams is not set to 0xffffffff, the server MUST fail if
+the LINECALLPARAMS packet pointed by lpCallParams lies outside VarData buffer
+or is not DWORD-aligned.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if VarData is not big enough to accommodate
+the LINECALLPARAMS packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the LINECALLPARAMS packet pointed by
+lpCallParams is invalid. The invalidity of the LINECALLPARAMS packet is defined
+directly after the processing rules for SetUpTransfer.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server creates a consultation call with a new
+handle (HCALL) and adds it to the <b>Call List</b>. The server updates the call
+with the handle of the line on which the call is made and adds this call to the
+list of calls maintained for an opened line. The server adds the client to the
+list of clients maintained for the call handle (HCALL) in the <b>Call List</b>.</p>
+</li></ul><p>LINECALLPARAMS packet is invalid if (this validity is
+checked as part of Open, ConditionalMediaDetection, Forward, MakeCall,
+PrepareAddtoConference, SetUpConference, and SetUpTransfer requests):</p><ul><li><p><span><span> 
+</span></span>dwTotalSize is less than size of fixed portion of LINECALLPARAMS.</p>
+</li><li><p><span><span> 
+</span></span>dwBearerMode is invalid.</p>
+</li><li><p><span><span> 
+</span></span>More than one bit is set for dwBearerMode; this is valid for API
+versions greater than 0x00020000.</p>
+</li><li><p><span><span> 
+</span></span>dwMediaMode, dwCallParamFlags, dwAddressMode,
+dwPredictiveAutoTransferStates, or dwAddressType are invalid.</p>
+</li><li><p><span><span> 
+</span></span>dwOrigAddressOffset, dwUserUserInfoOffset, dwHighLevelCompOffset,
+dwLowLevelCompOffset, dwDevSpecificOffset, dwDisplayableAddressOffset,
+dwCalledPartyOffset, dwCommentOffset, dwTargetAddressOffset,
+dwSendingFlowspecOffset, dwReceivingFlowspecOffset, dwDeviceClassOffset,
+dwDeviceConfigOffset, dwCallDataOffset, dwCallingPartyIDOffset are not
+DWORD-aligned or do not lie within VarData.</p>
+</li><li><p><span><span> 
+</span></span>The sum of dwOrigAddressSize and dwOrigAddressOffset, or sum of
+dwUserUserInfoSize and dwUserUserInfoOffset, or sum of dwHighLevelCompSize and
+dwHighLevelCompOffset, or sum of dwLowLevelCompSize and dwLowLevelCompOffset,
+or sum of dwDevSpecificSize and dwDevSpecificOffset, or sum of
+dwTargetAddressSize and dwTargetAddressOffset, or sum of dwSendingFlowspecSize
+and dwSendingFlowspecOffset, or sum of dwReceivingFlowspecSize and
+dwReceivingFlowspecOffset, or sum of dwDeviceClassSize and dwDeviceClassOffset,
+or sum of dwDeviceConfigSize and dwDeviceConfigOffset, or sum of dwCallDataSize
+and dwCallDataOffset, or sum of dwCallingPartyIDSize and dwCallingPartyIDOffset
+do not lie within varData.</p>
+</li><li><p><span><span> 
+</span></span>For API version greater than 0x00020000, the sum of
+dwDisplayableAddressSize and dwDisplayableAddressOffset or sum of
+dwCalledPartySize and dwCalledPartyOffset or sum of dwCommentSize and dwCommentOffset
+do not lie within varData.</p>
+</li></ul><p>When Req_Func is equal to 106 (Initialize):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if dwFriendlyNameOffset is not
+WCHAR-aligned.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the string pointed by
+dwFriendlyNameOffset lies outside the variable data area (VarData).</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the string pointed by
+dwFriendlyNameOffset is not NULL-terminated.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwModuleNameOffset is not WCHAR-aligned.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the string pointed by dwModuleNameOffset
+lies outside the variable data area.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the string pointed by dwModuleNameOffset
+is not NULL-terminated.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server creates a new client&#39;s usage handle
+(HPHONEAPP) and adds it to the <b>PhoneApp Handle List</b>. The server also
+adds the handle to the list of usage handles for the client in the <b>Client
+List</b>. The server queries the number of phones from service providers
+installed on the machine and updates the <b>Provider List</b> with this
+information.</p>
+</li></ul><p>When Req_Func is equal to 108 (NegotiateAPIVersion):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if the size of vardata is less than the size
+of the PHONEEXTENSIONID structure.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwDeviceIDLocal is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hPhoneApp is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwVersion is greater than dwVersionCurrent.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if no valid TAPI version exists between
+dwVersion or dwVersionCurrent (both inclusive). The valid values are
+0x00010003, 0x00010004, 0x00020000, 0x00020001, 0x00020002, 0x00030000, and
+0x00030001.</p>
+</li></ul><p>When Req_Func is equal to 95 (GetDevCaps):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if the size of VarData is less than the size
+of the PHONECAPS structure.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwExtVersion is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwDeviceID is invalid.</p>
+</li></ul><p>When Req_Func is equal to 107 (Open):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhoneApp is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwPrivilege is invalid. The valid values
+are PHONEPRIVILEGE_MONITOR and PHONEPRIVILEGE_OWNER.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwNegotiatedVersion is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwExtVersion is invalid.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server creates a phone with a new handle (HPHONE)
+and adds it to the <b>List of Opened Phones</b>. The server updates the client
+and provider information for the added phone handle (HPHONE).</p>
+</li></ul><p>When Req_Func is equal to 91 (Close):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server removes the handle (HPHONE) and the client
+from the <b>List of Opened Phones</b>.</p>
+</li></ul><p>When Req_Func is equal to 119 (Shutdown):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhoneApp is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server removes the handle from <b>PhoneApp Handle
+List</b> and from the list of usage handles for the client in the <b>Client
+List</b>.</p>
+</li></ul><p>When Req_Func is equal to 92 (DevSpecific):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if lpParams is invalid (negative) or dwSize
++ lpParams points outside VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 93 (GetButtonInfo):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if lpButtonInfo is greater than the size of
+the VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpButtonInfo is less than size of
+PHONEBUTTONINFO.</p>
+</li></ul><p>When Req_Func is equal to 94 (GetData):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if dwSize is greater than the size of
+VarData.</p>
+</li></ul><p>When Req_Func is equal to 96 (GetDisplay):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpDisplay greater than the size of
+VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpDisplay is less than the size of
+VARSTRING structure.</p>
+</li></ul><p>When Req_Func is equal to 97 (GetGain):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwHookSwitchDev has more than one bit set
+or its value is not one among PHONEHOOKSWITCHDEV_Constants.</p>
+</li></ul><p>When Req_Func is equal to 98 (GetHookSwitch):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 99 (GetID):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if lpDeviceID is greater than the size of
+varData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpDeviceID is less than the size of
+VARSTRING packet.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the string pointed to by lpszDeviceClass
+is not WCHAR-aligned, not NULL-terminated, or lies outside varData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 101 (GetLamp):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 102 (GetRing):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 103 (GetStatus):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if lpPhoneStatus is greater than the size of
+varData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpPhoneStatus is not equal to the size of
+the PHONESTATUS packet.</p>
+</li></ul><p>When Req_Func is equal to 105 (GetVolume):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if exactly one of the following bits are not
+set in dwHookSwitchDev:</p>
+<ul><li><p><span><span>  </span></span>PHONEHOOKSWITCHDEV_HANDSET</p>
+</li><li><p><span><span>  </span></span>PHONEHOOKSWITCHDEV_SPEAKER</p>
+</li><li><p><span><span>  </span></span>PHONEHOOKSWITCHDEV_HEADSET</p>
+</li></ul></li></ul><p>When Req_Func is equal to 109 (NegotiateExtVersion):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhoneApp is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwDeviceID is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwTSPIVersion is invalid. The valid
+values are 0x00010003, 0x00010004, 0x00020000, 0x00020001, 0x00020002,
+0x00030000, and 0x00030001.</p>
+</li></ul><p>When Req_Func is equal to 129 (SelectExtVersion):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is an invalid handle.</p>
+</li></ul><p>When Req_Func is equal to 110 (SetButtonInfo):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the PHONEBUTTIONINFO packet lies outside
+varData buffer or is not DWORD-aligned.</p>
+</li></ul><p>When Req_Func is equal to 111 (SetData):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST check that lpData (offset) is DWORD-aligned and
+lies within varData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpData (offset) and dwSize
+falls beyond varData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the client does not have privileges
+greater than or equal to PHONEPRIVILEGE_OWNER.</p>
+</li></ul><p>When Req_Func is equal to 112 (SetDisplay):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST check that lpsDisplay (offset) is DWORD-aligned
+and lies within varData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of lpsDisplay (offset) and dwSize
+falls beyond varData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the client does not have privileges
+greater than or equal to PHONEPRIVILEGE_OWNER.</p>
+</li></ul><p>When Req_Func is equal to 113 (SetGain):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwHookSwitchDev is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the client does not have privileges
+greater than or equal to PHONEPRIVILEGE_OWNER.</p>
+</li></ul><p>When Req_Func is equal to 114 (SetHookSwitch):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwHookSwitchDev is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwHookSwitchMode is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the client does not have privileges
+greater than or equal to PHONEPRIVILEGE_OWNER.</p>
+</li></ul><p>When Req_Func is equal to 115 (SetLamp):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwLampMode is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the client does not have privileges
+greater than or equal to PHONEPRIVILEGE_OWNER.</p>
+</li></ul><p>When Req_Func is equal to 116 (SetRing):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the client does not have privileges
+greater than or equal to PHONEPRIVILEGE_OWNER.</p>
+</li></ul><p>When Req_Func is equal to 117 (SetStatusMessages):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwPhoneStates is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwButtonModes is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwButtonStates is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwButtonModes has at least one valid flag
+set and dwButtonStates has no valid flag set.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the client does not have privileges
+greater than or equal to PHONEPRIVILEGE_MONITOR.</p>
+</li></ul><p>When Req_Func is equal to 118 (SetVolume):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if hPhone is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwHookSwitchDev is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the client does not have privileges
+greater than or equal to PHONEPRIVILEGE_OWNER.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if VarData is not big enough to accommodate
+PHONEBUTTONINFO.</p>
+</li></ul><p>When Req_Func is equal to 131 (GetAvailableProviders):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if lpProviderList is greater than size of
+VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpProviderList is less than size of
+AVAILABLEPROVIDERLIST.</p>
+</li></ul><p>When Req_Func is equal to 165 (GetDeviceFlags):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if dwProviderID is invalid.</p>
+</li></ul><p>When Req_Func is equal to 132 (GetLineInfo):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if lpDeviceInfoList is greater than size of
+VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if VarData is not big enough to accommodate
+DEVICEINFOLIST.</p>
+</li></ul><p>When Req_Func is equal to 133 (GetPhoneInfo):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if lpDeviceInfoList is greater than size of
+VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if VarData is not big enough to accommodate
+DEVICEINFOLIST.</p>
+</li></ul><p>When Req_Func is equal to 42 (GetProviderList):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if lpProviderList is greater than size of
+VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwAPIVersion is invalid. The valid values
+are 0x00010003, 0x00010004, 0x00020000, 0x00020001, 0x00020002, 0x00030000, and
+0x00030001.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpProviderList is less than size of
+LINEPROVIDERLIST.</p>
+</li></ul><p>When Req_Func is equal to 134 (GetServerConfig):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if lpProviderList is greater than size of
+VarData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if VarData is not big enough to accommodate
+TAPISERVERCONFIG.</p>
+</li></ul><p>When Req_Func is equal to 135 (SetLineInfo):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if client does not have admin privileges.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpDeviceInfoList is not a multiple of 4.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if VarData is not big enough to accommodate
+DEVICEINFOLIST.</p>
+</li></ul><p>When Req_Func is equal to 136 (SetPhoneInfo):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if client does not have admin privileges.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lpDeviceInfoList is not a multiple of 4.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if VarData is not big enough to accommodate
+DEVICEINFOLIST.</p>
+</li></ul><p>When Req_Func is equal to 1 (GetUIDllName):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if dwObjectType is set to
+TUISPIDLL_OBJECT_LINEID or TUISPIDLL_OBJECT_PHONEID and the client does not
+have admin privileges.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwObjectType is set to
+TUISPIDLL_OBJECT_PROVIDERID and the client is trying to install or uninstall
+the TSP and does not have admin privileges. The server MUST fail if dwObjectID
+is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The following failures are valid if dwProviderFileNameOffset is
+not set to 0xffffffff.</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST fail if dwProviderFileNameOffset is not WCHAR-aligned.</p>
+</li><li><p><span><span>  </span></span>The
+server MUST fail if the string pointed by dwProviderFileNameOffset lies outside
+the variable data area (VarData).</p>
+</li><li><p><span><span>  </span></span>The
+server MUST fail if the string pointed by dwProviderFileNameOffset is not
+NULL-terminated.</p>
+</li></ul></li></ul><p>When Req_Func is equal to 2 (TUISPIDLLCallBack):</p><ul><li><p><span><span> 
+</span></span>The server MUST check that dwParamsInOffset is DWORD-aligned and
+lies within varData and fail otherwise.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if the sum of dwParamsInOffset and
+dwParamsInSize falls beyond varData.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwObjectType is set to
+TUISPIDLL_OBJECT_LINEID or TUISPIDLL_OBJECT_PHONEID and the client does not
+have admin privileges.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwObjectID is invalid.</p>
+</li></ul><p>When Req_Func is equal to 3 (FreeDialogInstance):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if htDlgInst is an invalid handle.</p>
+</li><li><p><span><span> 
+</span></span>On success, the server adds (or removes) a provider to (or from)
+the provider list if the operation that is initiated using the GetUIDllName
+packet is installation (or removal) of the provider. If added, the server
+updates the provider with the provider name, service provider version, provider
+ID, and the list of lines available on the service provider.</p>
+</li></ul><p>When Req_Func is equal to 137 (SetServerConfig):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if client does not have admin privileges.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if VarData is not big enough to accommodate
+TAPISERVERCONFIG.</p>
+</li></ul><p>When Req_Func is equal to 0 (GetAsyncEvents):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if dwTotalBufferSize is greater than the
+size of VarData.</p>
+</li></ul><p>When Req_Func is equal to 130
+(NegotiateAPIVersionForAllDevices):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if VarData is not big enough to accommodate
+a LINEEXTENSIONID packet, a PHONEEXTENSIONID packet, and DWORD-arrays of Line
+API Version and Phone API Version.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwNumLineDevices or dwNumPhoneDevices is
+invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwLineAPIVersionListSize is not a
+multiple of 4 and dwNumLineDevices.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwPhoneAPIVersionListSize is not a
+multiple of 4 and dwNumPhoneDevices.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwLineExtensionIDListSize is not equal to
+a multiple of the size of LINEEXTENSIONID and dwNumLineDevices.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwPhoneExtensionIDListSize is not equal
+to a multiple of the size of PHONEEXTENSIONID and dwNumPhoneDevices.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if dwAPIHighVersion is invalid. The valid
+values are 0x00010003, 0x00010004, 0x00020000, 0x00020001, 0x00020002,
+0x00030000, and 0x00030001.</p>
+</li></ul><p>When Req_Func is equal to 161 (RSPSetEventFilterMasks):</p><ul><li><p><span><span> 
+</span></span>The server MUST fail if dwObjType is invalid.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST fail if lObjectID is invalid.</p>
+</li></ul></div>

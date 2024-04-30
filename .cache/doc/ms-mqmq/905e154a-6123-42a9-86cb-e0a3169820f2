@@ -1,0 +1,198 @@
+<div class="content"><p> </p><p>The QUEUE_FORMAT structure describes the type of <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>
+being managed and an identifier for that queue.</p><dl>
+<dd>
+<div><pre> typedef struct __QUEUE_FORMAT {
+   unsigned char m_qft;
+   unsigned char m_SuffixAndFlags;
+   unsigned short m_reserved;
+   [switch_is(m_qft)] union {
+     [case(QUEUE_FORMAT_TYPE_UNKNOWN)] 
+             ;
+     [case(QUEUE_FORMAT_TYPE_PUBLIC)] 
+       GUID m_gPublicID;
+     [case(QUEUE_FORMAT_TYPE_PRIVATE)] 
+       OBJECTID m_oPrivateID;
+     [case(QUEUE_FORMAT_TYPE_DIRECT)] 
+       [string] wchar_t* m_pDirectID;
+     [case(QUEUE_FORMAT_TYPE_MACHINE)] 
+       GUID m_gMachineID;
+     [case(QUEUE_FORMAT_TYPE_CONNECTOR)] 
+       GUID m_GConnectorID;
+     [case(QUEUE_FORMAT_TYPE_DL)] 
+       DL_ID m_DlID;
+     [case(QUEUE_FORMAT_TYPE_MULTICAST)] 
+       MULTICAST_ID m_MulticastID;
+     [case(QUEUE_FORMAT_TYPE_SUBQUEUE)] 
+       [string] wchar_t* m_pDirectSubqueueID;
+   };
+ } QUEUE_FORMAT;
+</pre></div>
+</dd></dl><p><b>m_qft:</b>  The type of queue <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_390ae273-7109-44eb-981f-aa157e6b37c0" data-linktype="relative-path">format
+name</a></span>. It MUST be set to one of the values of <span><a href="9dda9d68-2ee5-4ab2-adaf-84ca989a658a" data-linktype="relative-path">QUEUE_FORMAT_TYPE</a></span>.
+It is used as a union discriminant in the QUEUE_FORMAT structure.</p><p><b>m_SuffixAndFlags:</b>  This member is
+broken into two subfields: <b>Suffix Type</b> is located in the 4 least-significant
+bits, and <b>Flags</b> is located in the 4 most-significant bits.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p> 0 </p>
+   </th>
+   <th>
+   <p> 1 </p>
+   </th>
+   <th>
+   <p> 2 </p>
+   </th>
+   <th>
+   <p> 3 </p>
+   </th>
+   <th>
+   <p> 4 </p>
+   </th>
+   <th>
+   <p> 5 </p>
+   </th>
+   <th>
+   <p> 6 </p>
+   </th>
+   <th>
+   <p> 7 </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td colspan="4">
+  <p>Flags</p>
+  </td>
+  <td colspan="4">
+  <p>Suffix type</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Flags</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>QUEUE_FORMAT_FLAG_NOT_SYSTEM</p>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>The specified queue is not a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_fa7af2a3-4d37-43a0-835e-d34ed325ca90" data-linktype="relative-path">system queue</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>QUEUE_FORMAT_FLAG_SYSTEM</p>
+  <p>0x80</p>
+  </td>
+  <td>
+  <p>The specified queue is a system queue.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Suffix type</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>QUEUE_SUFFIX_TYPE_NONE</p>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>No suffix is specified. The <b>Flags</b> subfield MUST
+  be set to 0x00. The <b>m_qft</b> member MUST NOT be set to 0x04.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>QUEUE_SUFFIX_TYPE_JOURNAL</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>A journal suffix. The <b>Flags</b> subfield MUST be
+  set to 0x80. The <b>m_qft</b> member MUST NOT be set to 0x05, 0x06, or 0x07.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>QUEUE_SUFFIX_TYPE_DEADLETTER</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>A dead-letter suffix. The <b>Flags</b> subfield MUST
+  be set to 0x80. The <b>m_qft</b> member MUST NOT be set to 0x01, 0x02, 0x05,
+  0x06, or 0x07. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>QUEUE_SUFFIX_TYPE_DEADXACT</p>
+  <p>0x03</p>
+  </td>
+  <td>
+  <p>A transacted dead-letter suffix. The <b>Flags</b>
+  subfield MUST be set to 0x80. The <b>m_qft</b> member MUST be set to 0x03 or
+  0x04.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>QUEUE_SUFFIX_TYPE_XACTONLY</p>
+  <p>0x04</p>
+  </td>
+  <td>
+  <p>A transaction-only suffix. The <b>m_qft</b> member
+  MUST be set to 0x05.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>QUEUE_SUFFIX_TYPE_SUBQUEUE</p>
+  <p>0x05</p>
+  </td>
+  <td>
+  <p>A <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_328fe8aa-d006-44dd-8cc8-dba7c862aaf8" data-linktype="relative-path">subqueue</a></span> suffix.
+  The <b>Flags</b> subfield MUST be 0x00. The <b>m_qft</b> member MUST be set
+  to 0x08.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>m_reserved:</b>  The integer value used
+for padding. The client SHOULD set this value to 0. The server MUST not use it.</p><p><b>(unnamed union):</b>  Based on the value
+of <b>m_qft</b>.</p><p><b>m_gPublicID:</b>  A <b>GUID</b> (as specified
+in <span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a></span>)
+of a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_bb49bace-e853-4c7a-b4ab-59f1097c3dc8" data-linktype="relative-path">public
+queue</a></span>. Selected when <b>m_qft</b> is set to 0x01.</p><p><b>m_oPrivateID:</b>  An <span><a href="653f80a3-6585-4cca-bb7f-5154b4ad0fab" data-linktype="relative-path">OBJECTID</a></span>
+of a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_1a7f2b81-359e-4d2f-b4b4-f30bc7dd0d8f" data-linktype="relative-path">private
+queue</a></span>; members MUST be used as specified in OBJECTID. Selected when <b>m_qft</b>
+is set to 0x02.</p><p><b>m_pDirectID:</b>  A direct format name
+(as specified in section <span><a href="0f7c2894-f918-4e96-a4bb-93e2b3cfd18f" data-linktype="relative-path">2.1.2</a></span>) with the
+&#34;DIRECT=&#34; prefix removed. It is selected when <b>m_qft</b> is set to
+0x03.</p><p><b>m_gMachineID:</b>  The <b>GUID</b> (as
+specified in [MS-DTYP] section 2.3.4) of a machine. It is selected when <b>m_qft</b>
+is set to 0x04.</p><p><b>m_GConnectorID:</b>  The <b>GUID</b> (as
+specified in [MS-DTYP] section 2.3.4) of a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_86bc3fbd-dfae-4737-a56a-3c0d9045c967" data-linktype="relative-path">connector queue</a></span>. It
+is selected when <b>m_qft</b> is set to 0x05.</p><p><b>m_DlID:</b>  The identifier of a <span><a href="87486cd1-6ef0-4b58-93f9-f9b97b2279c4#gt_ccbb0292-fefe-493f-80c3-11533e473591" data-linktype="relative-path">distribution
+list</a></span>. It is selected when <b>m_qft</b> is set to 0x06.</p><p><b>m_MulticastID:</b>  A <b>MULTICAST_ID</b>
+(section <span><a href="d32116c6-b0b0-43be-b24f-f2c10acba63c" data-linktype="relative-path">2.2.10</a></span>) which
+specifies a multicast address and port. It is selected when <b>m_qft</b> is set
+to 0x07.</p><p><b>m_pDirectSubqueueID:</b>  The identifier
+of a subqueue. Selected when <b>m_qft</b> is set to 0x08.</p><dl>
+<dd>
+<p>The value MUST conform to the ABNF for DirectName
+and contain the optional &lt;Subqueue&gt; element, as specified in section <span><a href="14166e26-b9d3-4a5d-aec5-4c8899403812" data-linktype="relative-path">2.1</a></span>.</p>
+</dd>
+<dd>
+<p>The full QUEUE_FORMAT IDL is specified in <span><a href="../ms-mqmr/7271d4fa-afdb-47b1-abf1-610f1c06386c" data-linktype="relative-path">[MS-MQMR]</a></span>
+<span><a href="../ms-mqmr/227c88b0-f73a-4527-8f61-6e272d0dceb3" data-linktype="relative-path">Appendix
+A (section 6)</a></span>.</p>
+</dd></dl></div>

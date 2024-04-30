@@ -1,0 +1,18 @@
+<div class="content"><p> </p><p>The <b>DHCPV6_STATELESS_PARAMS</b> structure contains
+stateless settings for a DHCPv6 server. This structure is used with the <span><a href="dcb3a367-c783-4c86-b03f-f808e8bd8c3a" data-linktype="relative-path">R_DhcpV6SetStatelessStoreParams (section 3.2.4.117)</a></span>
+and <span><a href="1d4bce00-6879-4b39-b91a-e0b77ff3460a" data-linktype="relative-path">R_DhcpV6GetStatelessStoreParams (section 3.2.4.118)</a></span>
+methods.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCPV6_STATELESS_PARAMS {
+     BOOL    Status;
+     DWORD   PurgeInterval; 
+ } DHCPV6_STATELESS_PARAMS, *PDHCPV6_STATELESS_PARAMS, 
+  *LPDHCPV6_STATELESS_PARAMS;
+</pre></div>
+</dd></dl><p><b>Status:</b>  This member indicates
+whether a stateless client inventory needs to be maintained by the DHCPv6
+server. The value of this member defaults to FALSE, indicating that the server
+does not need to maintain a stateless client inventory.</p><p><b>PurgeInterval:</b>  This member
+specifies the maximum time interval, in hours, that stateless IPv6 DHCP client
+lease records will persist before being deleted from the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_005ffc96-bb67-44ca-938f-dd7ec3c95cab" data-linktype="relative-path">DHCP
+server database</a></span>.</p></div>

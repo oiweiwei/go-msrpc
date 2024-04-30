@@ -1,0 +1,7 @@
+<div class="content"><p>The File Server Remote VSS Protocol (FSRVP) is a remote
+procedure call (RPC)-based protocol that is used for creating shadow copies of file
+shares on a remote computer. This protocol facilitates the backup applications&#39;
+tasks in performing application-consistent backup and restore of VSS-aware
+applications storing data on network file shares.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The <b>FAX_ENUM_DEVICE_STATUS</b> enumeration defines the
+possible status values of a fax device.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   FAX_DEVICE_STATUS_POWERED_OFF = 0x00000001,
+   FAX_DEVICE_STATUS_SENDING = 0x00000002,
+   FAX_DEVICE_STATUS_RECEIVING = 0x00000004,
+   FAX_DEVICE_STATUS_RINGING = 0x00000008
+ } FAX_ENUM_DEVICE_STATUS;
+</pre></div>
+</dd></dl><p><b>FAX_DEVICE_STATUS_POWERED_OFF: </b>The device is
+powered off. This status MUST NOT be combined with any other status.</p><p><b>FAX_DEVICE_STATUS_SENDING: </b>The device is
+currently sending one or more fax jobs.</p><p><b>FAX_DEVICE_STATUS_RECEIVING: </b>The device is
+currently receiving one or more fax jobs.</p><p><b>FAX_DEVICE_STATUS_RINGING: </b>The device is
+currently ringing.</p></div>

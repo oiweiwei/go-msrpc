@@ -1,0 +1,67 @@
+<div class="content"><p>The <b>CprepDiskIsOnline</b> method reports whether the <b>ClusPrepDisk</b>,
+identified by the <i>DiskId</i> parameter, has <b>ClusPrepDisk.OnlineState</b>
+equal to Online.</p><dl>
+<dd>
+<div><pre> HRESULT CprepDiskIsOnline(
+   [in] CPREP_DISKID DiskId
+ );
+</pre></div>
+</dd></dl><p><b>DiskId: </b>The identifier representing the <b>ClusPrepDisk</b>.</p><p><b>Return Values: </b> A signed 32-bit value that
+indicates return status. If the method returns a negative value, it has failed.
+Zero or positive values indicate success, with the lower 16 bits in positive
+nonzero values containing warnings or flags defined in the method
+implementation. For more information about Win32 error codes and <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+values, see <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+sections <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>
+and <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful and <b>ClusPrepDisk.OnlineState</b>
+  is equal to Online.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070015</p>
+  <p>ERROR_NOT_READY</p>
+  </td>
+  <td>
+  <p><b>ClusPrepDisk.OnlineState</b> is not equal to
+  Online.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070548</p>
+  <p>ERROR_INVALID_SERVER_STATE</p>
+  </td>
+  <td>
+  <p>The server&#39;s <b>Prepare State</b> is not Online.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other condition, this method MUST return a
+value that is not one of the values listed in the preceding table. The client
+MUST behave in one consistent, identical manner for all values that are not
+listed in the preceding table.</p>
+</dd></dl><p>Exceptions Thrown: No exceptions are thrown beyond those
+thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The opnum field value for this method is 34.</p><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>Obtain the <b>ClusPrepDisk</b> identified by the <i>DiskId</i>
+parameter as specified in section <a href="c17ce220-d244-45c9-95c0-4c31942253ee" data-linktype="relative-path">3.2.4</a>.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK if the <b>ClusPrepDisk.OnlineState</b> is Online or
+ERROR_NOT_READY if the <b>ClusPrepDisk.OnlineState</b> is Not Online state.</p>
+</li></ul></div>

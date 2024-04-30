@@ -1,0 +1,448 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/8bff4d0b-e06c-4c3a-8bd9-b0e2a7f2b06b" data-linktype="external">msdn link</a></p><p>The <b>DsrGetForestTrustInformation</b> method SHOULD<a id="Appendix_A_Target_229"></a><a aria-label="Product behavior note 229" href="0c858a52-732a-43ec-85dd-e44b357c1898#Appendix_A_229" data-linktype="relative-path">&lt;229&gt;</a> retrieve the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_5ee032d0-d944-4acb-bbb5-b1cfc7df6db6" data-linktype="relative-path">trust</a> information for the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_fd104241-4fb3-457c-b2c4-e0c18bb20b62" data-linktype="relative-path">forest</a> of the specified <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller (DC)</a>, or
+for a forest trusted by the forest of the specified DC. </p><dl>
+<dd>
+<div><pre> NET_API_STATUS DsrGetForestTrustInformation(
+   [in, unique, string] LOGONSRV_HANDLE ServerName,
+   [in, unique, string] wchar_t* TrustedDomainName,
+   [in] DWORD Flags,
+   [out] PLSA_FOREST_TRUST_INFORMATION* ForestTrustInfo
+ );
+</pre></div>
+</dd></dl><p><b>ServerName: </b>The custom binding handle, as
+defined in section <a href="3b224201-b531-43e2-8c79-b61f6dea8640" data-linktype="relative-path">3.5.4.1</a>.</p><p><b>TrustedDomainName: </b>The optional
+null-terminated Unicode string that contains the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_604dcfcd-72f5-46e5-85c1-f3ce69956700" data-linktype="relative-path">DNS</a> or <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a> of the trusted
+domain for which the <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_8c0b82d9-efec-4723-95a9-8564edf9ba44" data-linktype="relative-path">forest
+trust information</a> is to be gathered.</p><p><b>Flags: </b>A set of bit flags that specify
+additional applications for the forest trust information. A flag is TRUE (or
+set) if its value is equal to 1.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  </td>
+  <td>
+  <p>Update a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted domain object (TDO)</a>
+  with the information returned in ForestTrustInfo.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>All other bits MUST be set to zero.</p>
+</dd></dl><p><b>ForestTrustInfo: </b>A pointer to an <a href="../ms-lsad/2993ffab-c0c8-4643-9a79-4ff7d31922dc" data-linktype="relative-path">LSA_FOREST_TRUST_INFORMATION</a>
+structure, as specified in <a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a>
+section 2.2.7.25, that contains data for each <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_035d9ce5-f117-4251-8d4d-127c462ec4a0" data-linktype="relative-path">forest trust</a>.</p><p><b>Return Values: </b>The method returns 0x00000000
+on success; otherwise, it SHOULD return the following error code.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return Value/Code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  <p>ERROR_INVALID_FUNCTION</p>
+  </td>
+  <td>
+  <p>Incorrect function.</p>
+  </td>
+ </tr></tbody></table><p>On receiving this call, the server MUST perform the
+following validation steps:</p><ul><li><p><span><span> 
+</span></span>Apply Common Error Processing Rule A, specified in section <a href="2d776bfc-e81f-4c8f-9da8-4c2920f65413" data-linktype="relative-path">3</a>.</p>
+</li><li><p><span><span> 
+</span></span>Apply Common Error Processing Rule B, specified in section 3.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the client has sufficient <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_d8092e10-b227-4b44-b015-511bb8178940" data-linktype="relative-path">privileges</a>. The server
+determines if the client has sufficient privileges (as specified in section
+3.5.4.1) with the Access Request mask set to match the NETLOGON_FTINFO_ACCESS
+mask; otherwise, the server MUST return ERROR_ACCESS_DENIED.</p>
+</li><li><p><span><span> 
+</span></span>Verify that if the <i>Flags</i> parameter has bit A enabled, the
+server is a PDC; otherwise, the server MUST return NERR_NotPrimary (<a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>).</p>
+</li><li><p><span><span> 
+</span></span>The <i>Flags</i> parameter MUST be checked for invalid bit flags.
+The server MUST return ERROR_INVALID_FLAGS if any bit other than A is set.</p>
+</li></ul><p>If the <i>TrustedDomainName</i> parameter is specified, the
+server calls the DsrGetForestTrustInformation method on a DC in the trusted domain
+specified by the <i>TrustedDomainName </i>parameter.</p><p>Additionally, if the <i>TrustedDomainName</i> is not NULL,
+the server MUST perform the additional following validation steps:</p><ul><li><p><span><span> 
+</span></span>Verify that the server has established a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_08ce423c-9f9c-48ed-afa8-8b64c04ecdca" data-linktype="relative-path">secure channel</a> with the
+domain specified in the <i>TrustedDomainName</i> parameter, and apply Common
+Error Processing Rule E, specified in section 3. If the server has not
+established a secure channel with the domain specified in the <i>TrustedDomainName</i>
+parameter, then the server MUST return the error code ERROR_NO_SUCH_DOMAIN.</p>
+</li><li><p><span><span> 
+</span></span>Apply Common Error Processing Rule C, specified in section 3.</p>
+</li><li><p><span><span> 
+</span></span>The forest trust information for the domain specified by the <i>TrustedDomainName</i>
+parameter MUST be returned.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST verify that the <i>TrustedDomainName</i> refers
+to a cross-forest trust by performing external behavior consistent with locally
+invoking LsarQueryTrustedDomainInfoByName ([MS-LSAD] section <a href="../ms-lsad/5778eba1-8f9b-4696-b304-34c58edbc5b1" data-linktype="relative-path">3.1.4.7.5</a>),
+using the following parameters (a policy handle is not needed locally):</p>
+<ul><li><p><span><span>  </span></span><i>Domain</i>
+is set to the value of the <i>TrustedDomainName</i> parameter.</p>
+</li><li><p><span><span>  </span></span><i>InformationClass</i>
+is set to the value of TrustedDomainInformationEx.</p>
+<p>If the call returns STATUS_OBJECT_NAME_NOT_FOUND
+the server MUST return ERROR_NO_SUCH_DOMAIN. Additionally, the server MUST
+verify that:</p>
+</li><li><p><span><span>  </span></span>The
+<b>securityIdentifier</b> (Sid) field (<a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>
+section <a href="../ms-adts/eadd9abb-64c1-4a5d-9c77-e4d4d0404922" data-linktype="relative-path">6.1.6.7.8</a>)
+is not NULL.</p>
+</li><li><p><span><span>  </span></span>The
+<b>trustType</b> field ([MS-ADTS] section <a href="../ms-adts/36565693-b5e4-4f37-b0a8-c1b12138e18e" data-linktype="relative-path">6.1.6.7.15</a>)
+is 1 or 2.</p>
+</li><li><p><span><span>  </span></span>The
+<b>trustAttributes</b> field ([MS-ADTS] section <a href="../ms-adts/e9a2d23c-c31e-4a6f-88a0-6646fdb51a3c" data-linktype="relative-path">6.1.6.7.9</a>)
+does not contain TRUST_ATTRIBUTE_UPLEVEL_ONLY.</p>
+</li><li><p><span><span>  </span></span>The
+<b>trustAttributes</b> field ([MS-ADTS] section 6.1.6.7.9) contains
+TRUST_ATTRIBUTE_FOREST_TRANSITIVE.</p>
+<p>If the server fails to
+verify any of the preceding conditions, the server MUST return
+ERROR_NO_SUCH_DOMAIN.</p>
+<p>Otherwise, if the <i>TrustedDomainName</i>
+is NULL, the server MUST check to see if Flags bit A is set. If Flags bit A is
+set, the server MUST return ERROR_INVALID_FLAGS, and no further processing
+occurs.</p>
+</li></ul></li></ul><p>The server MUST retrieve the forest trust information for
+the domain specified by the TrustedDomainName parameter:</p><ul><li><p><span><span> 
+</span></span>If the <i>TrustedDomainName</i> is NULL the server performs
+external behavior equivalent to locally invoking NetrGetForestTrustInformation
+with the parameters specified in the previous paragraph, return the forest
+trust information, and stop further processing.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the server calls NetrGetForestTrustInformation with
+the following parameters (in addition to those specified in section <a href="c7308656-b404-469f-b976-947ae0ae2370" data-linktype="relative-path">3.4.5.5.4</a>) to a <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_663cb13a-8b75-477f-b6e1-bea8f2fba64d" data-linktype="relative-path">PDC</a>, in the domain
+specified by the <i>TrustedDomainName</i> Parameter, in order to retrieve the
+Trusted Forest&#39;s version of the LSA_FOREST_TRUST_INFORMATION, referred to in
+the rest of this section as NewTrustInfo:</p>
+<ul><li><p><span><span>  </span></span><b>ServerName</b>
+is set to NULL, indicating the current server&#39;s domain.</p>
+</li><li><p><span><span>  </span></span><b>ComputerName</b>
+is set to the NetBIOS <a href="b5e7d25a-40b2-41c8-9611-98f53358af66#gt_9a7bc8b3-3374-4608-8f73-be20a90b898b" data-linktype="relative-path">computer
+name</a> of the server.</p>
+</li><li><p><span><span>  </span></span><b>Flags</b>
+is set to 0.</p>
+</li></ul></li></ul><p>Otherwise, if the <i>TrustedDomainName</i> is not NULL and
+Flags bit A is set, the server updates the server&#39;s forest information for the
+domain specified by the <i>TrustedDomainName</i> parameter as follows:</p><ul><li><p><span><span> 
+</span></span>The server MUST retrieve its version of the forest trust
+information, referred to in the rest of this section as OldTrustInfo, by
+performing external behavior equivalent to locally invoking
+LsarQueryForestTrustInformation with the following parameters (a policy handle
+is not required locally):</p>
+<ul><li><p><span><span>  </span></span><b>TrustedDomainName</b>
+is set to the <i>TrustedDomainName</i> parameter that was passed by the caller
+of DsrGetForestTrustInformation.</p>
+</li><li><p><span><span>  </span></span><b>HighestRecordType</b>
+is set to ForestTrustRecordTypeLast ([MS-LSAD] section <a href="../ms-lsad/700a91e8-a1a4-4e1b-9ad6-096b3cf0bef0" data-linktype="relative-path">2.2.7.22</a>).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the call returns STATUS_NOT_FOUND, the server ignores this
+error and continue processing. If any other error is returned, the server
+passes the error through and stops processing. </p>
+</li><li><p><span><span> 
+</span></span>The server merges the OldTrustInfo LSA_FOREST_TRUST_INFORMATION
+with the Trusted Forest&#39;s version of the NewTrustInfo
+LSA_FOREST_TRUST_INFORMATION. The server creates an
+LSA_FOREST_TRUST_INFORMATION structure. After the merge, the new version of the
+LSA_FOREST_TRUST_INFORMATION will result in the merged result, referred to in
+this section as MergedTrustInfo. The server performs the merge using the
+following rules: </p>
+<ul><li><p><span><span>  </span></span>The
+server iterates through the LSA_FOREST_TRUST_RECORD ([MS-LSAD] section <a href="../ms-lsad/08cf1a65-ef7c-46d3-aa4d-558f5135df3d" data-linktype="relative-path">2.2.7.21</a>)
+entries in the NewTrustInfo version of the LSA_FOREST_TRUST_INFORMATION
+according to the following rules. The index for the current entry in
+NewTrustInfo.Entries is denoted as &#34;i&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>If the NewTrustInfo.Entries[i].ForestTrustType is not
+ForestTrustTopLevelName, then ignore further rules for NewTrustInfo.Entries[i],
+and continue iterating through NewTrustInfo.Entries.</p>
+</li><li><p><span><span> 
+</span></span>If the NewTrustInfo.Entries[i].ForestTrustData.TopLevelName is
+equal to the DNS domain name of the TDO, copy NewTrustInfo.Entries[i] into
+MergedTrustInfo.Entries, ignore further rules for NewTrustInfo.Entries[i] and
+continue iterating through NewTrustInfo.Entries.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the LSA_FOREST_TRUST_RECORD entries in the
+MergedTrustInfo version of the LSA_FOREST_TRUST_INFORMATION according to the
+following rules. The index for the current entry in MergedTrustInfo.Entries is
+denoted as &#34;m&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>If the NewTrustInfo.Entries[i].ForestTrustData.TopLevelName is
+subordinate to the MergedTrustInfo.Entries[m].ForestTrustData.TopLevelName,
+stop iterating through MergedTrustInfo.Entries, ignore further rules for
+NewTrustInfo.Entries[i], and continue iterating through NewTrustInfo.Entries.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Copy the NewTrustInfo.Entries[i] to MergedTrustInfo.Entries. The
+new entry in MergedTrustInfo.Entries is referred to as MergedEntry.</p>
+<ul><li><p><span><span> 
+</span></span>Iterate through the LSA_FOREST_TRUST_RECORD entries in the
+OldTrustInfo version of the LSA_FOREST_TRUST_INFORMATION according to the
+following rules. The index for the current entry in OldTrustInfo.Entries is
+denoted as &#34;k&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>If the OldTrustInfo.Entries[k].ForestTrustType is equal to
+ForestTrustTopLevelName, and the NewTrustInfo.Entries[i].ForestTrustData.TopLevelName
+is equal to OldTrustInfo.Entries[k].ForestTrustData.TopLevelName, copy
+OldTrustInfo.Entries[k].Flags to MergedEntry.Flags and copy
+OldTrustInfo.Entries[k].Time to MergedEntry.Time.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, MergedEntry.Flags is set to LSA_TLN_DISABLED_NEW
+(0x00000001) ([MS-LSAD] section <a href="../ms-lsad/1b5fa90f-5d6d-4193-830c-1a53cd518fdb" data-linktype="relative-path">2.2.1.5</a>)
+and MergedEntry.Time is set to 0.</p>
+</li></ul></li></ul></li></ul></li><li><p><span><span>  </span></span>The
+server iterates through the LSA_FOREST_TRUST_RECORD ([MS-LSAD] section
+2.2.7.21) entries in the NewTrustInfo version of the
+LSA_FOREST_TRUST_INFORMATION ([MS-LSAD] section 2.2.7.25) according to the
+following rules. The index for the current entry in NewTrustInfo.Entries is
+denoted as &#34;i&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>If the NewTrustInfo.Entries[i].ForestTrustType is a
+ForestTrustDomainInfo, create a new LSA_FOREST_TRUST_RECORD, referred to in
+this section as TempEntry, and copy NewTrustInfo.Entries[i] into TempEntry.
+TempEntry.Flags is set to 0 and TempEntry.Time is set to 0.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the LSA_FOREST_TRUST_RECORD entries in the
+MergedTrustInfo version of the LSA_FOREST_TRUST_INFORMATION according to the
+following rules. The index for the current entry in MergedTrustInfo.Entries is
+denoted as &#34;m&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>If MergedTrustInfo.Entries[m].ForestTrustType is a
+ForestTrustDomainInfo and TempEntry.ForestTrustData.DomainInfo.Sid is equal to
+MergedTrustInfo.Entries[m].ForestTrustData.DomainInfo.Sid, delete TempEntry,
+stop iterating through MergedTrustInfo.Entries, ignore further rules for
+NewTrustInfo.Entries[i], and continue iterating through NewTrustInfo.Entries.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the LSA_FOREST_TRUST_RECORD Entries in the
+OldTrustInfo version of the LSA_FOREST_TRUST_INFORMATION according to the
+following rules. The index for the current entry in OldTrustInfo.Entries is
+denoted as &#34;n&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>If OldTrustInfo.Entries[n].ForestTrustType is a
+ForestTrustDomainInfo and TempEntry.ForestTrustData.DomainInfo.NetbiosName is
+equal to OldTrustInfo.Entries[n].ForestTrustData.DomainInfo.NetbiosName, copy OldTrustInfo.Entries[n].Flags
+into TempEntry.Flags and also copy OldTrustInfo.Entries[n].Time into
+TempEntry.Time.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Copy TempEntry into MergedTrustedInfo.Entries.</p>
+</li></ul></li><li><p><span><span>  </span></span>The
+server iterates through the LSA_FOREST_TRUST_RECORD ([MS-LSAD] section
+2.2.7.21) entries in the OldTrustInfo version of the
+LSA_FOREST_TRUST_INFORMATION according to the following rules. The index for
+the current entry in OldTrustInfo.Entries is denoted as &#34;i&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>If OldTrustInfo.Entries[i].ForestTrustType is not
+ForestTrustDomainInfo, then ignore further rules for OldTrustInfo.Entries[i]
+and continue iterating through OldTrustInfo.Entries.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the LSA_FOREST_TRUST_RECORD entries in the
+MergedTrustInfo version of the LSA_FOREST_TRUST_INFORMATION according to the
+following rules. The index for the current entry in MergedTrustInfo.Entries is
+denoted as &#34;m&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>If MergedTrustInfo.Entries[m].ForestTrustType is a
+ForestTrustDomainInfo and
+OldTrustInfo.Entries[m].ForestTrustData.DomainInfo.NetbiosName equals
+MergedTrustInfo.Entries[m].ForestTrustData.DomainInfo.NetbiosName, stop
+iterating through the MergedTrustInfo.Entries, ignore further rules for
+OldTrustInfo.Entries[i] and continue iterating through OldTrustInfo.Entries.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If OldTrustInfo.Entries[i].Flags has either the
+LSA_SID_DISABLED_ADMIN (0x00000001) flag set or the LSA_NB_DISABLED_ADMIN
+(0x00000004) flag set ([MS-LSAD] section 2.2.1.5), copy OldTrustInfo.Entries[i]
+into MergedTrustInfo.Entries.</p>
+</li></ul></li><li><p><span><span>  </span></span>The
+server iterates through the LSA_FOREST_TRUST_RECORD ([MS-LSAD] section
+2.2.7.21) entries in the OldTrustInfo version of the
+LSA_FOREST_TRUST_INFORMATION according to the following rules. The index for
+the current entry in OldTrustInfo.Entries is denoted as &#34;i&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>If OldTrustInfo.Entries[i].ForestTrustType is not equal to
+ForestTrustTopLevelNameEx, then ignore further rules for
+OldTrustInfo.Entries[i] and continue iterating through OldTrustInfo.Entries.</p>
+</li><li><p><span><span> 
+</span></span>Iterate through the LSA_FOREST_TRUST_RECORD entries in the
+MergedTrustInfo version of the LSA_FOREST_TRUST_INFORMATION according to the
+following rules. The index for the current entry in MergedTrustInfo.Entries is
+denoted as &#34;m&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>If MergedTrustInfo.Entries[m].ForestTrustType is a
+ForestTrustTopLevelName and
+OldTrustInfo.Entries[i].ForestTrustData.TopLevelName is equal to or subordinate
+to MergedTrustInfo.Entries[m].ForestTrustData.TopLevelName, copy
+OldTrustInfo.Entries[i] into MergedTrustInfo.Entries. Stop iterating through
+MergedTrustInfo.Entries but continue iterating through OldTrustInfo.Entries.</p>
+</li></ul></li></ul></li></ul></li></ul><p>The server MUST update its version of the forest trust
+information for the domain specified by the TrustedDomainName parameter by
+performing external behavior equivalent to locally invoking
+LsarSetForestTrustInformation, with the following parameters (a policy handle
+is not needed locally):</p><ul><li><p><span><span> 
+</span></span><b>TrustedDomainName</b> is set to the TrustedDomainName
+parameter that was passed by the caller of DsrGetForestTrustInformation.</p>
+</li><li><p><span><span> 
+</span></span><b>HighestRecordType</b> is set to ForestTrustRecordTypeLast.</p>
+</li><li><p><span><span> 
+</span></span><b>ForestTrustInfo</b> is set to the merged forest trust
+information, MergedTrustInfo.</p>
+</li></ul><p>If the <i>TrustedDomainName</i> is NULL:</p><ul><li><p><span><span> 
+</span></span>The forest trust information for the domain hosted by <i>ServerName</i>
+MUST be returned if <i>Flags</i> bit A is not set.</p>
+</li><li><p><span><span> 
+</span></span>The server MUST return ERROR_INVALID_FLAGS if <i>Flags</i> bit A
+is set.</p>
+</li></ul></div>

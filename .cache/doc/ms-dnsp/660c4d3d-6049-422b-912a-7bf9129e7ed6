@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The <b>DNS_RPC_ZONE_DATABASE_W2K</b> structure specifies how
+a DNS zone is stored in persistent storage.</p><dl>
+<dd>
+<div><pre> typedef struct _DnssrvRpcZoneDatabaseW2K {
+   DWORD fDsIntegrated;
+   [string] char* pszFileName;
+ } DNS_RPC_ZONE_DATABASE_W2K,
+  *PDNS_RPC_ZONE_DATABASE_W2K;
+</pre></div>
+</dd></dl><p><b>fDsIntegrated:</b> This MUST be set TRUE
+(0x00000001) if the <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_e6a86700-c17d-4513-8f4f-5aacaff014df" data-linktype="relative-path">zone</a></span> is stored in a <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_04fd0982-6bb6-44f1-817e-795715049c50" data-linktype="relative-path">directory
+server</a></span>, or FALSE (0x00000000) if not.</p><p><b>pszFileName:</b> A pointer to a
+null-terminated UTF-8 string that specifies the name of the file in which this
+zone is stored, or NULL if this zone is to be stored in a directory server or
+in a file with the default file name for the zone.</p></div>

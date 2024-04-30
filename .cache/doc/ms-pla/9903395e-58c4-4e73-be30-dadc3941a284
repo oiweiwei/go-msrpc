@@ -1,0 +1,19 @@
+<div class="content"><p>The WeekDays enumeration defines the days of the week on
+which to run the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data
+collector set</a>. Any combination of the bits MUST be allowed.</p><dl>
+<dd>
+<div><pre> typedef  enum
+ {
+   plaRunOnce = 0x00,
+   plaSunday = 0x01,
+   plaMonday = 0x02,
+   plaTuesday = 0x04,
+   plaWednesday = 0x08,
+   plaThursday = 0x10,
+   plaFriday = 0x20,
+   plaSaturday = 0x40,
+   plaEveryday = 0x7F
+ } WeekDays;
+</pre></div>
+</dd></dl><p><b>plaRunOnce:  </b>Run only once on the given start
+date and time.</p><p><b>plaSunday:  </b>Run on Sunday.</p><p><b>plaMonday:  </b> Run on Monday.</p><p><b>plaTuesday:  </b>Run on Tuesday.</p><p><b>plaWednesday:  </b>Run on Wednesday.</p><p><b>plaThursday:  </b>Run on Thursday.</p><p><b>plaFriday:  </b>Run on Friday.</p><p><b>plaSaturday:  </b>Run on Saturday.</p><p><b>plaEveryday:  </b>Run every day of the week.</p></div>

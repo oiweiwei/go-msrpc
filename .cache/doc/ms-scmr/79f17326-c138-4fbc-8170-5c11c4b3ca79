@@ -1,0 +1,19 @@
+<div class="content"><p>The ENUM_SERVICE_STATUSW structure defines the name and status
+of a service in an SCM database and returns information about the service.
+String values are stored in Unicode.</p><dl>
+<dd>
+<div><pre> typedef struct _ENUM_SERVICE_STATUSW {
+   LPWSTR lpServiceName;
+   LPWSTR lpDisplayName;
+   SERVICE_STATUS ServiceStatus;
+ } ENUM_SERVICE_STATUSW,
+  *LPENUM_SERVICE_STATUSW;
+</pre></div>
+</dd></dl><p><b>lpServiceName:</b>  A pointer to a
+null-terminated string that names a service in an <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_afc3f782-a908-486d-9c05-8a054cd9cc84" data-linktype="relative-path">SCM</a> database.</p><dl>
+<dd>
+<p>The forward slash, back slash, comma, and space
+characters are illegal in service names.</p>
+</dd></dl><p><b>lpDisplayName:</b>  A pointer to a
+null-terminated string that user interface programs use to identify the <a href="4f66d32e-2f4f-4482-998e-e5ccbb445223#gt_2dc07ca2-2b40-437e-a5ec-ed28ebfb116a" data-linktype="relative-path">service</a>.</p><p><b>ServiceStatus:</b>  A <a href="4e91ff36-ab5f-49ed-a43d-a308e72b0b3c" data-linktype="relative-path">SERVICE_STATUS (section 2.2.47)</a>
+structure that contains status information.</p></div>

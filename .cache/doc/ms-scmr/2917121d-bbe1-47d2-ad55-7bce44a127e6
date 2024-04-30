@@ -1,0 +1,16 @@
+<div class="content"><p>The SERVICE_RPC_REQUIRED_PRIVILEGES_INFO structure<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="041d2a89-9d7d-4f79-91a1-c336d0a668f6#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a> defines the required privileges
+for a service.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVICE_RPC_REQUIRED_PRIVILEGES_INFO {
+   [range(0, 1024 * 4)] DWORD cbRequiredPrivileges;
+   [size_is(cbRequiredPrivileges)] 
+     PBYTE pRequiredPrivileges;
+ } SERVICE_RPC_REQUIRED_PRIVILEGES_INFO,
+  *LPSERVICE_RPC_REQUIRED_PRIVILEGES_INFO;
+</pre></div>
+</dd></dl><p><b>cbRequiredPrivileges:</b>  Size, in
+bytes, of the pRequiredPrivileges buffer.</p><p><b>pRequiredPrivileges:</b>  Buffer that
+contains the required privileges of a service in the format of a sequence of
+null-terminated strings, terminated by an empty string (\0). The privilege
+constants are detailed in <a href="../ms-lsad/1b5471ef-4c33-4a91-b079-dfcbb82f05cc" data-linktype="relative-path">[MS-LSAD]</a>
+section <a href="../ms-lsad/1a92af76-d45f-42c3-b67c-f1dc61bd6ee1" data-linktype="relative-path">3.1.1.2.1</a>.</p></div>

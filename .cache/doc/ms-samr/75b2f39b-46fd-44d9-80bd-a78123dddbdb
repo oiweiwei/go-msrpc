@@ -1,0 +1,9 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/75b2f39b-46fd-44d9-80bd-a78123dddbdb" data-linktype="external">msdn link</a></p><p>The SAMPR_GROUP_NAME_INFORMATION structure contains group
+fields.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_GROUP_NAME_INFORMATION {
+   RPC_UNICODE_STRING Name;
+ } SAMPR_GROUP_NAME_INFORMATION,
+  *PSAMPR_GROUP_NAME_INFORMATION;
+</pre></div>
+</dd></dl><p>For information on each field, see section <a href="2c93edfe-ae77-4f49-b849-b6435ff63444" data-linktype="relative-path">2.2.4.1</a>.</p></div>

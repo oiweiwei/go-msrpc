@@ -1,0 +1,755 @@
+<div class="content"><p>The <b>_DRIVER_INFO_8</b> structure specifies <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_1a48eebd-e72c-494d-b8cb-84dfb7bc3b65" data-linktype="relative-path">printer driver</a> information.<a id="Appendix_A_Target_110"></a><a aria-label="Product behavior note 110" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_110" data-linktype="relative-path">&lt;110&gt;</a> It is a custom-<a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_37e89d91-2800-49d1-9d17-45ebe167ad87" data-linktype="relative-path">marshaled</a> form of the <b>RPC_DRIVER_INFO_8</b>
+(section <a href="937d5fc8-67f1-45f8-ab87-8b56a8fca558" data-linktype="relative-path">2.2.1.5.6</a>).<span> </span></p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (variable): </b>An array of one or
+more groups of fixed-size fields, which are defined as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EnvironmentOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DriverPathOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DataFileOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ConfigFileOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>HelpFileOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DependentFilesOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MonitorNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DefaultDataTypeOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szzPreviousNamesOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ftDriverDate.dwLowDateTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ftDriverDate.dwHighDateTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PaddingForAlignment</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwlDriverVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MfgNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>OEMUrlOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>HardwareIDOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ProviderOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PrintProcessorOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>VendorSetupOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szzColorProfilesOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>InfPathOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwPrinterDriverAttributes</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szzCoreDependenciesOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ftMinInboxDriverVerDate</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwlMinInboxDriverVerVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><a id="_Hlk142656385"><b>cVersion
+(4 bytes):</b> A DWORD that has an implementation-specific value that
+identifies the driver version and the operating system version for which the
+printer driver was written, as specified in section </a><a href="4464eaf0-f34f-40d5-b970-736437a21913" data-linktype="relative-path">2.2.1.3.1</a>.</p>
+</dd>
+<dd>
+<p><b>NameOffset (4 bytes): </b>A
+32-bit unsigned integer that specifies the number of bytes from the start of
+the structure to the <b>NameArray</b> member.</p>
+</dd>
+<dd>
+<p><b>EnvironmentOffset (4
+bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>EnvironmentArray</b> member. </p>
+</dd>
+<dd>
+<p><b>DriverPathOffset (4
+bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>DriverPathArray</b> member. </p>
+</dd>
+<dd>
+<p><b>DataFileOffset (4 bytes):</b>
+An unsigned integer that specifies the number of bytes from the start of the
+structure to the start of the <b>DataFileArray</b> member. </p>
+</dd>
+<dd>
+<p><b>ConfigFileOffset (4
+bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>ConfigFileArray</b> member. </p>
+</dd>
+<dd>
+<p><b>HelpFileOffset (4 bytes):</b>
+An unsigned integer that specifies the number of bytes from the start of the
+structure to the start of the <b>HelpFileArray</b> member. </p>
+</dd>
+<dd>
+<p><b>DependentFilesOffset (4
+bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>DependentFilesArray</b> member. </p>
+</dd>
+<dd>
+<p><b>MonitorNameOffset (4
+bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>MonitorNameArray</b> member. </p>
+</dd>
+<dd>
+<p><b>DefaultDataTypeOffset (4
+bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>DefaultDataTypeArray</b> member. </p>
+</dd>
+<dd>
+<p><b>szzPreviousNamesOffset (4
+bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>szzPreviousNamesArray</b> member.
+</p>
+</dd>
+<dd>
+<p><b>ftDriverDate.dwLowDateTime
+(4 bytes): </b>A FILETIME value (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">2.3.3</a>)
+that specifies the date this package was published, see field DWORD
+dwLowDateTime.</p>
+</dd>
+<dd>
+<p><b>ftDriverDate.dwHighDateTime
+(4 bytes): </b>A FILETIME value ([MS-DTYP] section 2.3.3) that specifies the
+date this package was published, see field DWORD dwHighDateTime.</p>
+</dd>
+<dd>
+<p><b>PaddingForAlignment (4
+bytes): </b>4 bytes of padding to align the <b>dwlDriverVersion</b> field on an
+8-byte boundary. The contents of this field MUST be ignored.</p>
+</dd>
+<dd>
+<p><b>dwlDriverVersion (8
+bytes): </b>A 64-bit value that specifies the version of the core printer
+driver that can be used to match the driver version in the driver installation
+control file.<a id="Appendix_A_Target_111"></a><a aria-label="Product behavior note 111" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_111" data-linktype="relative-path">&lt;111&gt;</a></p>
+</dd>
+<dd>
+<p><b>MfgNameOffset (4 bytes):</b>
+An unsigned integer that specifies the number of bytes from the start of the
+structure to the start of the <b>MfgNameArray</b> member. </p>
+</dd>
+<dd>
+<p><b>OEMUrlOffset (4 bytes):</b>
+An unsigned integer that specifies the number of bytes from the start of the
+structure to the start of the <b>OEMUrlArray</b> member. </p>
+</dd>
+<dd>
+<p><b>HardwareIDOffset (4
+bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the start of the <b>HardwareIDArray</b> member.</p>
+</dd>
+<dd>
+<p><b>ProviderOffset (4 bytes):</b>
+An unsigned integer that specifies the number of bytes from the start of the
+structure to the start of the <b>ProviderArray</b> member.</p>
+</dd>
+<dd>
+<p><b>PrintProcessorOffset (4
+bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the <b>PrintProcessorArray</b> member. </p>
+</dd>
+<dd>
+<p><b>VendorSetupOffset (4
+bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the <b>VendorSetupArray</b> member. </p>
+</dd>
+<dd>
+<p><b>szzColorProfilesOffset (4
+bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the <b>szzColorProfilesArray</b> member. </p>
+</dd>
+<dd>
+<p><b>InfPathOffset (4 bytes):</b>
+An unsigned integer that specifies the number of bytes from the start of the
+structure to the <b>InfPathArray</b> member. </p>
+</dd>
+<dd>
+<p><b>dwPrinterDriverAttributes
+(4 bytes):</b> A bit field that specifies attributes of the printer driver.
+When used as an input parameter in a call to RpcAddPrinterDriverEx, this value
+MUST be zero. When used as output in the custom-marshaled form of this
+structure (<b>_DRIVER_INFO_8</b>), this bit field is defined as one or more of
+the bit flags described in the table in section 2.2.1.5.6</p>
+</dd>
+<dd>
+<p><b>szzCoreDependenciesOffset
+(4 bytes):</b> An unsigned integer that specifies the number of bytes from the
+start of the structure to the <b>szzCoreDependenciesArray</b>.</p>
+</dd>
+<dd>
+<p><b>ftMinInboxDriverVerDate <a id="_Hlk147251347">(8 bytes):</a></b> The minimum date version that is required
+in order for any <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_d4010501-f6e4-4cba-817b-403a9c5ea41c" data-linktype="relative-path">core
+printer driver</a> to be used as a dependency as listed in the multisz
+structure pointed to by the <b>pszzCoreDriverDependencies</b> member. The value
+of this member MUST be specified in the same format as the <b>ftDriverDate</b>
+member.<a id="Appendix_A_Target_112"></a><a aria-label="Product behavior note 112" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_112" data-linktype="relative-path">&lt;112&gt;</a> </p>
+</dd>
+<dd>
+<p><b>dwlMinInboxDriverVerVersion
+(8 bytes):</b> The minimum file version that is required for any core printer
+driver to be used as a dependency as listed in the multisz structure pointed to
+by the <b>pszzCoreDriverDependencies</b> member. The value of this member MUST
+be specified in the same format as the <b>dwlDriverVersion</b> member, as
+specified in section 2.2.1.5.6.<a id="Appendix_A_Target_113"></a><a aria-label="Product behavior note 113" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_113" data-linktype="relative-path">&lt;113&gt;</a></p>
+</dd></dl><p><b>Variable_Data (variable): </b>An array of zero or
+more groups of optional, variable-size fields, which are defined as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>InfPathArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szzColorProfilesArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>VendorSetupArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PrintProcessorArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ProviderArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>HardwareIDArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>OEMUrlArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MfgNameArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szzPreviousNamesArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DefaultDataTypeArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MonitorNameArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DependentFilesArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>HelpFileArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ConfigFileArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DataFileArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DriverPathArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EnvironmentArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NameArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szzCoreDependenciesArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>InfPathArray (variable): </b>See
+<b>pInfPath</b> specified in section 2.2.1.5.6.</p>
+</dd>
+<dd>
+<p><b>szzColorProfilesArray
+(variable):</b> A string that specifies the color profiles of the driver. The
+location of this buffer is determined by the value of the <b>szzColorProfilesOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>VendorSetupArray
+(variable):</b> A string that specifies the vendor setup DLL for the driver.
+The location of this buffer is determined by the value of the <b>VendorSetupOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>PrintProcessorArray
+(variable):</b> A string that specifies the print processor associated with the
+driver. The location of this buffer is determined by the value of the <b>PrintProcessorOffset</b>
+member.</p>
+</dd>
+<dd>
+<p><b>ProviderArray (variable):</b>
+A string that specifies the publisher of the printer driver. The location of
+this buffer is determined by the value of the <b>ProviderOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>HardwareIDArray
+(variable):</b> A string that specifies the hardware identifier for the printer
+driver. The location of this buffer is determined by the value of the <b>HardwareIDOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>OEMUrlArray (variable):</b>
+A string that specifies the URL for the manufacturer of the printer driver. The
+location of this buffer is determined by the value of the <b>OEMUrlOffset</b>
+member.</p>
+</dd>
+<dd>
+<p><b>MfgNameArray
+(variable):</b> A string that specifies the manufacturer’s name. The location
+of this buffer is determined by the value of the <b>MfgNameOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>szzPreviousNamesArray
+(variable):</b> A multisz that specifies any previous printer drivers that are
+compatible with this driver. The location of this buffer is determined by the
+value of the <b>szzPreviousNamesOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>DefaultDataTypeArray
+(variable):</b> A string that specifies the default data type of print jobs
+created by the driver. The location of this buffer is determined by the value
+of the <b>DefaultDataTypeOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>MonitorNameArray
+(variable):</b> A string that specifies a language monitor. The location of
+this buffer is determined by the value of the <b>MonitorNameOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>DependentFilesArray
+(variable):</b> A <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_70f2be54-4d89-416a-965a-c7055873d2b1" data-linktype="relative-path">multisz</a>
+that specifies the names of the files that the printer driver is dependent on.
+The location of this buffer is determined by the value of the <b>DependentFilesOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>HelpFileArray
+(variable):</b> A string that specifies a file name or a full path and file
+name for the printer driver help file. The location of this buffer is
+determined by the value of the <b>HelpFileOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>ConfigFileArray
+(variable):</b> A string that specifies a file name or a full path and file
+name for the printer driver configuration module. The location of this buffer
+is determined by the value of the <b>ConfigFileOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>DataFileArray
+(variable):</b> A string that specifies a file name or a full path and file
+name for the file that contains printer driver data. The location of this
+buffer is determined by the value of the <b>DataFileOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>DriverPathArray
+(variable):</b> A string that specifies a file name or full path and file name
+for the file that contains the printer driver. The location of this buffer is
+determined by the value of the <b>DependentFilesOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>EnvironmentArray
+(variable):</b> A string that specifies the environment that the printer driver
+supports. The location of this buffer is determined by the value of the <b>EnvironmentOffset</b>
+member. </p>
+</dd>
+<dd>
+<p><b>NameArray (variable): </b>This
+member MUST contain a string that specifies the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_062f3e76-3149-468c-bf64-1535651725d1" data-linktype="relative-path">print processor</a>  name. The
+location of this buffer is determined by the value of the <b>NameOffset</b>
+member. For rules governing print processor names, see section <a href="807e0bdd-21a5-4a72-9a6a-1a7fb1b08a8e" data-linktype="relative-path">2.2.4.11</a>.</p>
+</dd>
+<dd>
+<p><b>szzCoreDependenciesArray
+(variable):</b> A string that specifies the core dependencies of the driver.
+The location of this buffer is determined by the value of the <b>szzCoreDependenciesOffset</b>
+member.</p>
+</dd></dl></div>

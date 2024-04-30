@@ -1,0 +1,24 @@
+<div class="content"><p> </p><p>The VDS_INPUT_DISK structure provides information about a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a></span>
+for <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>
+creation and modification. </p><dl>
+<dd>
+<div><pre> typedef struct _VDS_INPUT_DISK {
+   VDS_OBJECT_ID diskId;
+   ULONGLONG ullSize;
+   VDS_OBJECT_ID plexId;
+   unsigned long memberIdx;
+ } VDS_INPUT_DISK;
+</pre></div>
+</dd></dl><p><b>diskId:</b>  The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_27e6393b-d035-40c5-8503-d7affe7bd27b" data-linktype="relative-path">VDS
+object</a></span> ID of the disk object.</p><p><b>ullSize:</b>  The size of the disk to
+use, in bytes.</p><p><b>plexId:</b>  When extending a volume,
+the VDS object ID of the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_d864e01b-9fb1-4beb-9864-8221d293445a" data-linktype="relative-path">plex</a></span> object to which
+the disk will be added. A volume can only be extended by extending all members
+of all plexes in the same operation. This member is used when extending any
+volume and ignored when creating a volume or repairing a <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_96e19472-82bc-4317-9b5b-8113e2fc6eb8" data-linktype="relative-path">RAID-5</a></span>
+volume.</p><p><b>memberIdx:</b>  The zero-based member
+index of the disk to which the extent belongs. Either specify a memberIdx for
+all disks or specify it for none. <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_97581c48-09dd-4bc4-a379-a846cbf4cc39" data-linktype="relative-path">VDS</a></span> uses disks with
+the same memberIdx in the order they appear in the array. For example, the
+first disk in the array is always used first, even if it does not have the
+lowest index. This member is ignored when repairing a RAID-5 volume.</p></div>

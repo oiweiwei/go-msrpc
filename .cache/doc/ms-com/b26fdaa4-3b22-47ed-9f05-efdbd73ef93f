@@ -1,0 +1,28 @@
+<div class="content"><p>This method returns the <a href="../ms-dtco/f5911ac2-7663-477b-bf76-8d4d01cc090c" data-linktype="relative-path">Propagation_Token</a>
+(<a href="../ms-dtco/c367c571-33f3-44ac-85cb-4b9ebbb2779d" data-linktype="relative-path">[MS-DTCO]</a>
+section 2.2.5.4) of the currently active transaction, or returns an error if
+the specified <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_ef97ef16-ebb2-45e5-8543-d1b189bdb659" data-linktype="relative-path">TSN</a> is not
+the same as the CurrentTSN value.</p><dl>
+<dd>
+<div><pre> HRESULT GetTxViaTransmitter(
+   [in] unsigned long ulRequestSeq,
+   [out] unsigned long* pulcbTransmitterBuffer,
+   [out, size_is(,*pulcbTransmitterBuffer)] 
+     BYTE** prgbTransmitterBuffer
+ );
+</pre></div>
+</dd></dl><p><b>ulRequestSeq: </b>The caller&#39;s TSN of the
+currently active <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a>.</p><p><b>pulcbTransmitterBuffer: </b>The unsigned size, in
+bytes, of <i>prgbTransmitterBuffer</i>.</p><p><b>prgbTransmitterBuffer: </b>A Propagation_Token of
+the currently active transaction.</p><p><b>Return Values: </b>The method MUST return a
+positive value or zero to indicate successful completion, or a negative value
+to indicate failure. The client MUST treat any negative return value as a fatal
+error.</p><p>When processing this <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_d4ad46fe-cbab-43f2-a125-b2f125824f33" data-linktype="relative-path">ORPC</a> call, if <i>ulRequestSeq</i>
+is the same as the CurrentTSN, the <a href="e105692e-61da-49dd-9bb1-09cd6b8c67bc" data-linktype="relative-path">ITransactionStream
+Server (section 3.23)</a> MUST:</p><ul><li><p><span><span> 
+</span></span>Set <i>pulcbExportCookie</i> to the size of <i>prgbExportCookie</i>.</p>
+</li><li><p><span><span> 
+</span></span>Copy Propagation_Token of the currently active transaction to the
+<i>prgbExportCookie</i> out parameter.</p>
+</li></ul><p>Otherwise, the ITransactionStream Server MUST return
+CONTEXT_E_ABORTED.</p></div>

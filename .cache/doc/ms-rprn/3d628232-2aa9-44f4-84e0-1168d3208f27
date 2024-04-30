@@ -1,0 +1,70 @@
+<div class="content"><p>RpcGetCorePrinterDrivers gets the <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUIDs</a>, versions, and
+publish dates of the specified <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_d4010501-f6e4-4cba-817b-403a9c5ea41c" data-linktype="relative-path">core printer drivers</a>, and
+the paths to their packages.<a id="Appendix_A_Target_347"></a><a aria-label="Product behavior note 347" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_347" data-linktype="relative-path">&lt;347&gt;</a></p><dl>
+<dd>
+<div><pre> HRESULT RpcGetCorePrinterDrivers(
+   [in, string, unique] STRING_HANDLE pszServer,
+   [in, string] const wchar_t* pszEnvironment,
+   [in] DWORD cchCoreDrivers,
+   [in, size_is(cchCoreDrivers)] const wchar_t* pszzCoreDriverDependencies,
+   [in] DWORD cCorePrinterDrivers,
+   [out, size_is(cCorePrinterDrivers)] 
+     CORE_PRINTER_DRIVER* pCorePrinterDrivers
+ );
+</pre></div>
+</dd></dl><p><b>pszServer: </b>A STRING_HANDLE (section <a href="59883eb8-5ce6-4ad4-bdd2-599434cfdcf2" data-linktype="relative-path">2.2.1.1.7</a>) for a server
+object. This parameter MUST adhere to the specification in Print Server Name
+Parameters (section <a href="acb355a4-913b-4abb-8cb5-415aea160015" data-linktype="relative-path">3.1.4.1.4</a>).</p><p><b>pszEnvironment: </b>A pointer to a <b>string</b>
+that specifies the environment name for which the core printer driver
+information is returned. For rules governing environment names and product
+behaviors, see section <a href="ad775893-8a19-4786-ab46-34731f52d1af" data-linktype="relative-path">2.2.4.4</a>.</p><p><b>cchCoreDrivers: </b>The size, in bytes, of the
+buffer that is referenced by the <i>pszzCoreDriverDependencies</i> parameter.</p><p><b>pszzCoreDriverDependencies: </b>A pointer to a <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_70f2be54-4d89-416a-965a-c7055873d2b1" data-linktype="relative-path">multisz</a> that contains a
+list of IDs of the core printer drivers to be retrieved.<a id="Appendix_A_Target_348"></a><a aria-label="Product behavior note 348" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_348" data-linktype="relative-path">&lt;348&gt;</a></p><dl>
+<dd>
+<p>A print client SHOULD obtain this list of IDs as
+follows:</p>
+</dd></dl><ol><li><p><span>   
+</span>Call RpcGetPrinterDriver (section <a href="00d91852-785d-42e4-a774-b1d96361b0ce" data-linktype="relative-path">3.1.4.4.3</a>) with a <i>Level</i>
+parameter value of 0x00000008.</p>
+</li><li><p><span>   
+</span>A pointer to a _DRIVER_INFO_8 custom-marshaled structure (section <a href="f9b749d6-08fc-4820-8d7b-fe0ee33e42c5" data-linktype="relative-path">2.2.2.4.8</a>) is returned in
+the <i>pDriver</i> parameter.</p>
+</li><li><p><span>   
+</span>In the _DRIVER_INFO_8 structure, the <b>szzCoreDependenciesOffset</b>
+member contains an offset to a multisz that contains the list of IDs.</p>
+</li></ol><p><b>cCorePrinterDrivers: </b>The count of
+CORE_PRINTER_DRIVER (section <a href="7cdc8cf1-5285-4420-bfa5-3233ed20125b" data-linktype="relative-path">2.2.2.13</a>) structures that
+are contained in the buffer that is pointed to by the <i>pCorePrinterDrivers</i>
+parameter. It MUST equal the number of IDs that are specified in the multisz
+that is pointed to by the <i>pszzCoreDriverDependencies</i> parameter.</p><p><b>pCorePrinterDrivers: </b>A pointer to a buffer
+that receives an array of CORE_PRINTER_DRIVER structures.</p><p><b>Return Values: </b>This method MUST return zero or
+an <b>HRESULT</b> success value (<a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>)
+to indicate successful completion or an <b><i>HRESULT</i></b> error value to
+indicate failure.</p><p><b>Exceptions Thrown:</b> This method MUST NOT throw any
+exceptions other than those that are thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Parameter Validation Requirements:</b> Upon receiving
+this method call, the server MUST validate parameters as follows:</p><ul><li><p><span><span> 
+</span></span>The string pointed to by the <i>pszEnvironment</i> parameter
+specifies one of the supported environment names on the server for that type of
+driver; otherwise the server MUST return ERROR_INVALID_ENVIRONMENT.</p>
+</li><li><p><span><span> 
+</span></span><i>cCorePrinterDrivers</i> MUST be equal to or greater than 1;
+otherwise the server MUST return ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span><i>cCorePrinterDrivers</i> MUST be equal to the number of GUIDs
+present in <i>pszzCoreDriverDependencies</i>; otherwise the server MUST return
+ERROR_INVALID_PARAMETER.</p>
+</li><li><p><span><span> 
+</span></span>The <i>pCorePrinterDrivers</i> parameter MUST NOT be NULL.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately, and return a nonzero error response to the client.</p><p><b>Processing and Response Requirements:</b> If parameter
+validation succeeds, the server MUST process the method call by</p><ul><li><p><span><span> 
+</span></span>Enumerating the CORE_PRINTER_DRIVER structures in the system.</p>
+</li><li><p><span><span> 
+</span></span>Populating each CORE_PRINTER_DRIVER structure in the supplied
+buffer with information about the core printer driver.</p>
+</li><li><p><span><span> 
+</span></span>Returning a response that MUST contain the output parameters
+mentioned above and the status of the operation.</p>
+</li></ul><p>The server MUST NOT change the <b>List of Core Printer
+Drivers</b> as part of processing this method call.</p></div>

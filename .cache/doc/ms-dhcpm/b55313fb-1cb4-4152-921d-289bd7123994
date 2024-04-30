@@ -1,0 +1,20 @@
+<div class="content"><p> </p><p>The <b>DHCP_SCAN_FLAG</b> enumeration defines whether an
+inconsistent IP address needs to be fixed in the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_c35fc04f-54fe-4570-afd3-c96ca84c8d83" data-linktype="relative-path">DHCPv4 client</a></span> <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6d76b31-2852-4bd5-8fbb-8e82a3cedb29" data-linktype="relative-path">Lease
+records</a></span> or the bitmask representation in memory (section <span><a href="3feff318-a575-4a27-8360-5dd3ee7203b5" data-linktype="relative-path">3.1.1.4</a></span>).
+This enumeration is used in the <span><a href="5033e404-3f59-45e9-aaa6-c4f3b0543cbb" data-linktype="relative-path">DHCP_SCAN_ITEM (section 2.2.1.2.73)</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef  enum _DHCP_SCAN_FLAG
+ {
+   DhcpRegistryFix,
+   DhcpDatabaseFix
+ } DHCP_SCAN_FLAG,
+  *LPDHCP_SCAN_FLAG;
+</pre></div>
+</dd></dl><p><b>DhcpRegistryFix: </b>The DHCPv4 server sets this
+value in DHCP_SCAN_ITEM when a DHCP client IPv4 address is found in the DHCPv4
+client Lease records but not in the bitmask representation in memory (section
+3.1.1.4).</p><p><b>DhcpDatabaseFix: </b>The DHCPv4 server sets this
+value in DHCP_SCAN_ITEM when the DHCP client IPv4 address is found in the
+bitmask representation in memory (section 3.1.1.4) but not in the DHCPv4 client
+Lease records. </p></div>

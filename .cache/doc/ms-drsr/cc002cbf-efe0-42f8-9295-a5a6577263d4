@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The ATTRVAL structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_cd539538-9f7e-4881-b5af-2301b420244d" data-linktype="relative-path">concrete type</a></span> for
+the value of a single <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attribute</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [range(0,26214400)] ULONG valLen;
+   [size_is(valLen)] UCHAR* pVal;
+ } ATTRVAL;
+</pre></div>
+</dd></dl><p><b>valLen:</b>  The size, in bytes, of the <b>pVal</b>
+array.</p><p><b>pVal:</b>  The value of the attribute.
+The encoding of the attribute varies by syntax, as described in the following
+sections.</p></div>

@@ -1,0 +1,39 @@
+<div class="content"><p>The CreateFileScreenCollection method creates an empty
+collection. This creates a location where callers can add file screens.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_FILESCREEN_MANAGER | 0x07)] HRESULT CreateFileScreenCollection(
+   [out, retval] IFsrmCommittableCollection** collection
+ );
+</pre></div>
+</dd></dl><p><b>collection: </b>Pointer to an <b>IFsrmCommittableCollection</b>
+interface pointer (section <a href="854116b8-04aa-4342-a308-da8b524ec0d9" data-linktype="relative-path">3.2.4.2.3</a>)
+that, upon completion, points to an empty <b>IFsrmCommittableCollection</b>
+specific to file screen objects. A caller MUST release the collection received
+when the caller is done with it.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>collection</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>collection</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST create a new <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_c1e4c9ff-40a2-4abd-80db-3543889d80ca" data-linktype="relative-path">collection object</a> and set
+the <i>collection</i> parameter to the new collection&#39;s <b>IFsrmCommittableCollection</b>
+interface object.</p></div>

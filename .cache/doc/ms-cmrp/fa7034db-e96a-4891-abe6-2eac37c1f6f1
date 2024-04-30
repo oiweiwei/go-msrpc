@@ -1,0 +1,504 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/fa7034db-e96a-4891-abe6-2eac37c1f6f1" data-linktype="external">msdn link</a></p><p>The <b>CLUS_POOL_DRIVE_INFO</b> structure contains the
+information about a <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_4b6d1f61-5664-489c-b9a4-5c4e127d2d3a" data-linktype="relative-path">storage
+pool drive</a>. See <b>CLUSCTL_RESOURCE_POOL_GET_DRIVE_INFO</b> (section <a href="8fd7410b-7819-44f4-82f6-5a3f4d27422b" data-linktype="relative-path">3.1.4.3.1.56</a>) for more
+information.</p><p><b>CLUS_POOL_DRIVE_INFO</b> is a custom-marshaled structure
+that has fields as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DriveName
+  (512 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>IncursSeekPenalty</p>
+  </td>
+  <td colspan="8">
+  <p>Padding1</p>
+  </td>
+  <td colspan="8">
+  <p>Padding2</p>
+  </td>
+  <td colspan="8">
+  <p>Padding3</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DriveHealth</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DriveState</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TotalCapacity</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ConsumedCapacity</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Usage</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BusType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Slot</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EnclosureName
+  (2048 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>DriveName (512 bytes): </b>A buffer of 16-bit <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> characters
+representing the name of the storage pool drive. This buffer MUST contain the
+name as a null-terminated <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode
+string</a>. If the name is less than the size of the buffer, the string MUST be
+padded with null characters. The client MUST ignore any padding.</p><p><b>IncursSeekPenalty (1 byte): </b>A flag that
+indicates whether the storage pool drive incurs any latency when reading from an
+arbitrary sector.</p><p><b>Padding1 (1 byte): </b>The client MUST ignore this
+field.</p><p><b>Padding2 (1 byte): </b>The client MUST ignore this
+field.</p><p><b>Padding3 (1 byte): </b>The client MUST ignore this
+field.</p><p><b>DriveHealth (4 bytes): </b>The health of the
+storage pool drive. The <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+MUST set this field to one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SpHealthUnknown</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The health of the storage pool drive is not known.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SpHealthUnhealthy</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The storage pool drive has encountered a severe error
+  condition, such as a media failure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SpHealthWarning</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The storage pool drive has encountered an
+  automatically recoverable error condition, such as an I/O error that can be
+  retried.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SpHealthHealthy</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The storage pool drive is healthy.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>DriveState (4 bytes): </b>The state of the storage
+pool drive. The server MUST set this field to one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SpDriveStateUnknown</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The state of the storage pool drive is not known.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SpDriveStateBecomingReady</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The storage pool drive is becoming ready.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SpDriveStateCorruptMetadata</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The storage pool drive has corrupt metadata.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SpDriveStateFailedMedia</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The storage pool drive detected a failure when
+  accessing the media.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SpDriveStateSplit</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The storage pool drive metadata was changed while
+  separated from a two-drive pool. The split metadata cannot automatically be
+  corrected.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SpDriveStateStaleMetadata</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The storage pool drive has stale metadata</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SpDriveStateIOError</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>The storage pool drive has encountered an I/O error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SpDriveStateMissing</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>The storage pool drive is missing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SpDriveStateOkay</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The storage pool drive is ready and in a nominal
+  state.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>TotalCapacity (8 bytes): </b>A 64-bit value
+containing the total capacity, in bytes, of the storage pool drive.</p><p><b>ConsumedCapacity (8 bytes): </b>A 64-bit value
+containing the amount of capacity, in bytes, that is currently in use on the storage
+pool drive.</p><p><b>Usage (4 bytes): </b>The usage of the storage pool
+drive. The server MUST set this field to one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>SpDriveUsageUnknown</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The usage of the storage pool drive is unknown.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SpDriveUsageAutoAllocation</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The storage pool drive is used for automatic
+  allocation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SpDriveUsageManualAllocation</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The storage pool drive is used for manual allocation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SpDriveUsageSpare</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The storage pool drive is used as a spare.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SpDriveUsageJournal</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The storage pool drive is used exclusively for
+  journaling.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SpDriveUsageRetired</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The storage pool drive is retired and not used for
+  capacity allocations.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>BusType (4 bytes): </b>The type of bus to which
+the storage pool drive is attached. The server MUST set this field to one of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>BusTypeUnknown</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The bus type is unknown.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeScsi</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The bus type is small computer system interface
+  (SCSI).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeAtapi</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The bus type is AT attachment packet interface
+  (ATAPI).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeAta</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The bus type is advanced technology attachment (ATA).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusType1394</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The bus type is IEEE 1394, commonly known as FireWire.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeSsa</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The bus type is serial storage architecture (SSA)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeFibre</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>The bus type is Fibre Channel.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeUsb</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>The bus type is universal serial bus (USB).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeRAID</p>
+  <p>0x000000008</p>
+  </td>
+  <td>
+  <p>The bus type is redundant array of independent disks
+  (RAID).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeiScsi</p>
+  <p>0x00000009</p>
+  </td>
+  <td>
+  <p>The bus type is internet small computer system
+  interface (iSCSI).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeSas</p>
+  <p>0x0000000A</p>
+  </td>
+  <td>
+  <p>The bus type is serial attached SCSI (SAS).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeSata</p>
+  <p>0x0000000B</p>
+  </td>
+  <td>
+  <p>The bus type is serial ATA (SATA).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeSd</p>
+  <p>0x0000000C</p>
+  </td>
+  <td>
+  <p>The bus type is secure digital (SD).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeMmc</p>
+  <p>0x0000000D</p>
+  </td>
+  <td>
+  <p>The bus type is multimedia card (MMC).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeVirtual</p>
+  <p>0x00000000E</p>
+  </td>
+  <td>
+  <p>The bus type is virtual.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeFileBackedVirtual</p>
+  <p>0x00000000F</p>
+  </td>
+  <td>
+  <p>The bus type is file-backed virtual.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BusTypeSpaces</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The bus type is Spaces.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Slot (4 bytes): </b>A 32-bit value containing the
+slot in which the storage pool drive is located.</p><p><b>EnclosureName (2048 bytes): </b>A buffer of 16-bit
+Unicode characters representing the name of the enclosure in which the storage
+pool drive is located. This buffer MUST contain the name as a null-terminated
+Unicode string. If the name is less than the size of the buffer, the string
+MUST be padded with null characters. Any such padding MUST be ignored.</p></div>

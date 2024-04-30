@@ -1,0 +1,73 @@
+<div class="content"><p> </p><p>The <b>DNSSRV_WINS_STATS</b> structure has DNS server
+statistics related to <span><a href="a95b05da-f1fd-4db3-94b4-817fdaa1f642#gt_bafb050b-b593-4517-8093-f721bd2378ac" data-linktype="relative-path">WINS</a></span> lookups. This
+structure MUST be formatted as follows:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>WinsLookups</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>WinsResponses</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>WinsReverseLookups</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>WinsReverseResponses</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b>A structure of type <b>DNSSRV_STAT_HEADER</b>
+(section <span><a href="271b57b1-759c-4c5c-8238-912cd1b3be2a" data-linktype="relative-path">2.2.10.2.1</a></span>).</p><p><b>WinsLookups (4 bytes): </b>The number of WINS
+lookup requests received by the server.</p><p><b>WinsResponses (4 bytes): </b>The number of WINS
+responses sent by the server.</p><p><b>WinsReverseLookups (4 bytes): </b>The number of
+reverse WINS lookup requests received by the server.</p><p><b>WinsReverseResponses (4 bytes): </b>The number of
+reverse WINS lookup responses sent by the server.</p></div>

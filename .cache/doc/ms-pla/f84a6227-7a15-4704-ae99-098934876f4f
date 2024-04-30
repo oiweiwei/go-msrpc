@@ -1,0 +1,28 @@
+<div class="content"><p>The Run method is used to manually run the data manager.
+When the data manager is run, the actions specified in the Steps parameter are
+executed on the data stored in the folder specified by the <i>bstrFolder</i>.
+Actions taken can include creating an XML report from binary performance files
+(.blg) or event trace files (.etl), running XPath expressions against the
+report, transforming the report to HTML, cabbing the report and sending it to a
+remote server, and deleting files in the directory specified by <i>bstrFolder</i>.
+</p><dl>
+<dd>
+<div><pre> HRESULT Run(
+   [in] DataManagerSteps Steps,
+   [in] BSTR bstrFolder,
+   [out, retval] IValueMap** Errors
+ );
+</pre></div>
+</dd></dl><p><b>Steps: </b>Supplies the actions to be performed by
+the data manager. For more information, see section <a href="f29f9b13-6cbe-4442-abd3-0369ea2657bd" data-linktype="relative-path">2.2.2.6</a>.</p><p><b>bstrFolder: </b>Supplies the name of the subfolder
+where the report will be generated, rules applied, and/or HTML created.</p><p><b>Errors: </b>Receives a validation value map,
+stored as an <a href="b028335d-97c1-4b1c-bc07-8748d4956b8a" data-linktype="relative-path">IValueMap</a>,
+containing a list of subfolders on which the data manager did not successfully
+run; each subfolder is represented as an <a href="9786577c-9ac8-44d5-a29f-3f14514af0d8" data-linktype="relative-path">IValueMapItem</a>. The Names
+property of the IValueMapItem represents the path to a subfolder, while the
+Values property of the IValueMapItem represents the HRESULT describing the
+specific problem with that subfolder. The ValueMapType of the IValueMap is
+plaValidation; more information can be found in section <a href="03c8a331-301b-4f37-8af3-1a08d1d0b4ee" data-linktype="relative-path">2.2.11</a>.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT with the severity bit clear on success as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>;
+otherwise, it MUST return one of the errors as defined in <a href="590752a5-ddc3-49e4-9914-147a90bd0193" data-linktype="relative-path">2.2.1</a> or one of the errors
+as defined in [MS-ERREF] section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p></div>

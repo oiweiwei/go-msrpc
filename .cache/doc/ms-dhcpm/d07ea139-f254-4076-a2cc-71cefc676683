@@ -1,0 +1,63 @@
+<div class="content"><p> </p><p>The <b>DHCP_CLIENT_INFO_V6</b> structure contains
+information on <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e1d03cee-86a5-42f7-913f-8cf4e50b0d21" data-linktype="relative-path">DHCPv6 client</a></span>. This
+structure is used in the <span><a href="240ff203-cf5b-4559-9713-a75fdbaf63b3" data-linktype="relative-path">R_DhcpGetClientInfoV6 (section 3.2.4.73)</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_CLIENT_INFO_V6 {
+   DHCP_IPV6_ADDRESS ClientIpAddress;
+   DHCP_CLIENT_UID ClientDUID;
+   DWORD AddressType;
+   DWORD IAID;
+   LPWSTR ClientName;
+   LPWSTR ClientComment;
+   DATE_TIME ClientValidLeaseExpires;
+   DATE_TIME ClientPrefLeaseExpires;
+   DHCP_HOST_INFO_V6 OwnerHost;
+ } DHCP_CLIENT_INFO_V6,
+  *LPDHCP_CLIENT_INFO_V6;
+</pre></div>
+</dd></dl><p><b>ClientIpAddress:</b>  This is of type <span><a href="48b74c46-bf64-40db-92b9-6e61cee1bd33" data-linktype="relative-path">DHCP_IPV6_ADDRESS (section 2.2.1.2.28)</a></span>,
+a structure that contains the DHCPv6 client&#39;s IPv6 address.</p><p><b>ClientDUID:</b>  This is of type <span><a href="b4da2d52-9737-46ec-8bc2-1c598fc3b8c8" data-linktype="relative-path">DHCP_CLIENT_UID (section 2.2.1.2.5)</a></span>,
+a structure that represents the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_6b55682d-9815-4dcd-b990-af62890ca699" data-linktype="relative-path">DHCPv6 client-identifier</a></span>
+(section <span><a href="c3703409-c016-4f58-ba0f-a4da12f605fb" data-linktype="relative-path">2.2.1.2.5.3</a></span>).</p><p><b>AddressType:</b>  This is of type <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+that specifies the type of IPv6 address. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ADDRESS_TYPE_IANA</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Indicates an IANA address. <span><a href="https://go.microsoft.com/fwlink/?LinkId=90417" data-linktype="external">[RFC3315]</a></span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADDRESS_TYPE_IATA</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Indicates an IATA address. [RFC3315]</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IAID:</b>  This is of type DWORD that
+specifies the interface identifier of the DHCPv6 client interface.</p><p><b>ClientName:</b>  A pointer to a
+null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+contains the name of the DHCPv6 client. There is no restriction on the length
+of this Unicode string.</p><p><b>ClientComment:</b>  A pointer to a
+null-terminated Unicode string that contains a comment relating to the DHCPv6
+client. There is no restriction on the length of this Unicode string.</p><p><b>ClientValidLeaseExpires:</b>  This is of
+type <span><a href="0f93bea1-8172-4efa-826a-e12667e1bcee" data-linktype="relative-path">DATE_TIME (section 2.2.1.2.11)</a></span>,
+a structure that contains the valid lifetime of the DHCPv6 client lease.</p><p><b>ClientPrefLeaseExpires:</b>  This is of
+type DATE_TIME, a structure that contains the preferred lifetime of the DHCPv6
+client lease.</p><p><b>OwnerHost:</b>  This is of type <span><a href="0cac23ef-b867-4a71-803b-b55ead370890" data-linktype="relative-path">DHCP_HOST_INFO_V6 (section 2.2.1.2.63)</a></span>,
+a structure that contains information about the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_746786e7-458f-45aa-ab24-5534a94b4fb3" data-linktype="relative-path">DHCPv6 server</a></span>
+machine that has given this IPv6 lease to this DHCPv6 client. </p></div>

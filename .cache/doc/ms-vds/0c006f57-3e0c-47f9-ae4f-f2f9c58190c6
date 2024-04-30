@@ -1,0 +1,68 @@
+<div class="content"><p> </p><p>The BreakPlex method removes a specified <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_d864e01b-9fb1-4beb-9864-8221d293445a" data-linktype="relative-path">plex</a></span>
+from the current <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a></span>. The
+interface pointer for the new volume object can be retrieved by calling <span><a href="ccba511e-b299-4153-bb2f-c25ba97840f4" data-linktype="relative-path">IVdsAsync::Wait</a></span>
+through the <i>ppAsync</i> parameter. The <span><a href="d21dadd7-b2ed-4c02-8fd2-83264272d277" data-linktype="relative-path">VDS_ASYNC_OUTPUT</a></span>
+structure that is returned contains the volume object interface pointer in the
+bvp.pVolumeUnk member.</p><dl>
+<dd>
+<div><pre> HRESULT BreakPlex(
+   [in] VDS_OBJECT_ID plexId,
+   [out] IVdsAsync** ppAsync
+ );
+</pre></div>
+</dd></dl><p><b>plexId: </b>The <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a></span> of the plex to
+be broken.</p><p><b>ppAsync: </b>A pointer to an <span><a href="97ea9c0f-5c8a-43e9-a9ee-deda29e2a09e" data-linktype="relative-path">IVdsAsync</a></span>
+interface that, if the operation is successfully completed, receives the
+IVdsAsync interface to monitor and control this operation. Callers MUST release
+the interface when they are done with it. If the IVdsAsync::Wait method is
+called on the interface, the interfaces returned in the VDS_ASYNC_OUTPUT
+structure MUST be released as well. For information on asynchronous tasks, see
+section <span><a href="28fc0a76-54bc-4d7d-81c3-37cf36586b23" data-linktype="relative-path">3.4.5.1.9</a></span>.</p><p><b>Return Values: </b>The method MUST return zero or
+a non-error <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> (as
+specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>)
+to indicate success, or return an implementation-specific nonzero error code to
+indicate failure. For the HRESULT values predefined by the Virtual Disk Service
+Remote Protocol, see section <span><a href="5102cc53-3143-4268-ba4c-6ea39e999ab4" data-linktype="relative-path">2.2.3</a></span>.</p><p>When the server receives this message, it MUST validate the
+following parameter:</p><ul><li><p><span><span> 
+</span></span>Verify that <b>ppAsync</b> is not NULL.</p>
+</li></ul><p>The server MUST perform the following:</p><ul><li><p><span><span> 
+</span></span>Create a new async object implementing the IVdsAsync interface
+with an output type of VDS_ASYNCOUT_BREAKVOLUMEPLEX and set the pointer that <b>ppAsync</b>
+references to the interface.</p>
+</li><li><p><span><span> 
+</span></span>Return an HRESULT indicating failure or success. Any errors
+encountered up through this point in processing the operation are returned in
+this HRESULT.</p>
+</li></ul><p>If the volume resides on a basic disk, the server MUST
+return VDS_E_NOT_SUPPORTED (HRESULT of 0x80042400).</p><p>The server MUST then perform the following in sequence.
+Errors generated in this sequence of steps are returned in the pHrResult
+parameter to the IVdsAsync::Wait or IVdsAsyncQueryStatus methods.</p><ul><li><p><span><span> 
+</span></span>Break the <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_7d1df68a-9ec5-4f84-a64f-67888f39405d" data-linktype="relative-path">volume plex</a></span>
+corresponding to the <span><a href="9186f1ce-04de-4df2-a8cf-3925a02fcd47" data-linktype="relative-path">VDS_OBJECT_ID</a></span> that <b>PlexId</b>
+specifies for this volume.</p>
+</li><li><p><span><span> 
+</span></span>Create a new volume object that corresponds to the new volume,
+implements the <span><a href="555601e2-1103-4423-b62b-0b1f3d3370e6" data-linktype="relative-path">IVdsVolume</a></span>
+interface, and assigns it a unique VDS_OBJECT_ID.</p>
+</li><li><p><span><span> 
+</span></span>Set the new volume object&#39;s <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_890bb28d-df68-420f-a8bc-83899d34ad5c" data-linktype="relative-path">pack</a></span> pointer to the
+pack object that this volume&#39;s pack pointer references.</p>
+</li><li><p><span><span> 
+</span></span>Add the new volume object to the list of storage management
+objects.</p>
+</li><li><p><span><span> 
+</span></span>Set the volume plex&#39;s volume pointer to the new volume object.
+Set the task-specific return values in the async object to return the values
+that are associated with VDS_ASYNCOUT_BREAKVOLUMEPLEX (as specified in section
+3.4.5.1.9).</p>
+</li><li><p><span><span> 
+</span></span> Set the return code in the async object to an HRESULT indicating
+failure or success.</p>
+</li><li><p><span><span> 
+</span></span>If the task completed successfully, set the percentage completed
+value in the async object to 100.</p>
+</li><li><p><span><span> 
+</span></span>Set the signal state in the async object to TRUE.</p>
+</li></ul><p>The server MUST update the percentage completed value
+periodically during the preceding sequence. How often the percentage completed
+is updated, and at what point in the sequence, is implementation-specific.</p></div>

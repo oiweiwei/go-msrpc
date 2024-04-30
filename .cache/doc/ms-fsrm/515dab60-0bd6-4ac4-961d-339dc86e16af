@@ -1,0 +1,13 @@
+<div class="content"><p>The FsrmCommitOptions enumeration defines the different
+options that can be used when committing a collection of File Server Resource
+Manager Protocol objects.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmCommitOptions
+ {
+   FsrmCommitOptions_None = 0x00000000,
+   FsrmCommitOptions_Asynchronous = 0x00000001
+ } FsrmCommitOptions;
+</pre></div>
+</dd></dl><p><b>FsrmCommitOptions_None:  </b>Use no options and
+commit the collection of objects synchronously.</p><p><b>FsrmCommitOptions_Asynchronous:  </b>Commit the
+collection of objects asynchronously. </p></div>

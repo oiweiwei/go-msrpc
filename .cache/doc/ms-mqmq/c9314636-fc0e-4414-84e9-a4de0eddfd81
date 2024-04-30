@@ -1,0 +1,42 @@
+<div class="content"><p> </p><p>The MQENTACCESSMASK bitfield enumeration values can be used
+to set the value of an <b>ACCESS_MASK</b> structure (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/7a53f60e-e730-4dfe-bbe9-b21b62eb790b" data-linktype="relative-path">2.4.3</a></span>),
+which is used to constrain the permissions for an Enterprise.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   MQSEC_CREATE_USER = 0x00000001,
+   MQSEC_CREATE_SITE = 0x00000002,
+   MQSEC_CREATE_CN = 0x00000004,
+   MQSEC_SET_ENTERPRISE_PROPERTIES = 0x00000010,
+   MQSEC_GET_ENTERPRISE_PROPERTIES = 0x00000020,
+   MQSEC_DELETE_ENTERPRISE = 0x00010000,
+   MQSEC_GET_ENTERPRISE_PERMISSIONS = 0x00020000,
+   MQSEC_CHANGE_ENTERPRISE_PERMISSIONS = 0x00040000,
+   MQSEC_TAKE_ENTERPRISE_OWNERSHIP = 0x00080000,
+   MQSEC_ENTERPRISE_GENERIC_READ = (MQSEC_CREATE_USER    + MQSEC_GET_ENTERPRISE_PROPERTIES    + MQSEC_GET_ENTERPRISE_PERMISSIONS),
+   MQSEC_ENTERPRISE_GENERIC_WRITE = (MQSEC_CREATE_USER    + MQSEC_GET_ENTERPRISE_PROPERTIES    + MQSEC_GET_ENTERPRISE_PERMISSIONS    + MQSEC_CREATE_SITE    + MQSEC_CREATE_CN),
+   MQSEC_ENTERPRISE_GENERIC_ALL = (MQSEC_CREATE_USER    + MQSEC_CREATE_CN    + MQSEC_CREATE_SITE    + MQSEC_SET_ENTERPRISE_PROPERTIES    + MQSEC_GET_ENTERPRISE_PROPERTIES    + MQSEC_DELETE_ENTERPRISE    + MQSEC_GET_ENTERPRISE_PERMISSIONS    + MQSEC_CHANGE_ENTERPRISE_PERMISSIONS    + MQSEC_TAKE_ENTERPRISE_OWNERSHIP)
+ } MQENTACCESSMASK;
+</pre></div>
+</dd></dl><p><b>MQSEC_CREATE_USER:  </b>Specifies the permission required
+by a security principal to add a user to the enterprise.</p><p><b>MQSEC_CREATE_SITE:  </b>Specifies the permission required
+by a security principal to create a site in the enterprise.</p><p><b>MQSEC_CREATE_CN:  </b>Specifies the permission required
+by a security principal to create a connected network in the enterprise.</p><p><b>MQSEC_SET_ENTERPRISE_PROPERTIES:  </b>Specifies the
+permission required by a security principal to modify properties of the
+enterprise.</p><p><b>MQSEC_GET_ENTERPRISE_PROPERTIES:  </b>Specifies the
+permission required by a security principal to read properties of the
+enterprise.</p><p><b>MQSEC_DELETE_ENTERPRISE:  </b>Specifies the permission
+required by a security principal to delete the enterprise.</p><p><b>MQSEC_GET_ENTERPRISE_PERMISSIONS:  </b>Specifies the
+permission required by a security principal to read permissions for the
+enterprise.</p><p><b>MQSEC_CHANGE_ENTERPRISE_PERMISSIONS:  </b>Specifies the
+permission required by a security principal to modify permissions for the
+enterprise.</p><p><b>MQSEC_TAKE_ENTERPRISE_OWNERSHIP:  </b>Specifies the
+permission required by a security principal to modify the owner of the
+enterprise.</p><p><b>MQSEC_ENTERPRISE_GENERIC_READ:  </b>Specifies the
+permission required by a security principal to read the properties and
+permissions for the enterprise, and create users.</p><p><b>MQSEC_ENTERPRISE_GENERIC_WRITE:  </b>Specifies the
+permission required by a security principal to read properties and permissions,
+and to add users, connected networks, and sites to the enterprise.</p><p><b>MQSEC_ENTERPRISE_GENERIC_ALL:  </b>Specifies the
+permission required by a security principal to perform all of the operations
+listed previously.</p></div>

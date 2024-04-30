@@ -1,0 +1,77 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/352944c7-4fb6-4988-8036-0a25dcedc730" data-linktype="external">msdn link</a></p><p>The SYSTEM_RESOURCE_ATTRIBUTE_ACE structure defines an ACE
+for the specification of a resource attribute associated with an object. A
+SYSTEM_RESOURCE_ATTRIBUTE_ACE is used in conditional ACEs in specifying access
+or audit policy for the resource.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Mask</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Sid
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Attribute
+  Data (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (4 bytes): </b>An <a href="628ebb1d-c509-4ea0-a10f-77ef97ca4586" data-linktype="relative-path">ACE_HEADER</a> structure that
+specifies the size and type of the ACE. It also contains flags that control
+applicability and inheritance of the ACE by child objects.</p><p><b>Mask (4 bytes): </b>An <a href="7a53f60e-e730-4dfe-bbe9-b21b62eb790b" data-linktype="relative-path">ACCESS_MASK</a> that MUST be
+set to zero.</p><p><b>Sid (variable): </b>The <a href="78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">SID</a> corresponding to the
+Everyone SID (S-1-1-0) in binary form.</p><p><b>Attribute Data (variable): </b>Data describing a
+resource attribute type, name, and value(s). This data MUST be encoded in <a href="21f2b5f0-7376-45bb-bc31-eaa60841dbe9" data-linktype="relative-path">CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1</a>
+format as described in section 2.4.10.1</p></div>

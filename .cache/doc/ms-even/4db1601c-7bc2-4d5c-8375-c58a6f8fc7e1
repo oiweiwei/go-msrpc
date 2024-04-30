@@ -1,0 +1,54 @@
+<div class="content"><p> </p><p>The ElfrOpenBELW (Opnum 9) method instructs the server to
+return a handle to a <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_ddd2e7db-ea8f-4488-ac5f-e77d59abe9e4" data-linktype="relative-path">backup event log</a></span>.
+The caller MUST have permission to read the file containing the backup event
+log for this to succeed.</p><p><b>Note</b>  The server has an <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_9f92aa05-dd0a-45f2-88d6-89f1fb654395" data-linktype="relative-path">Access
+Control List (ACL)</a></span> that is used to control access to the log. The
+protocol has no methods for reading or setting that ACL.</p><dl>
+<dd>
+<div><pre> NTSTATUS ElfrOpenBELW(
+   [in] EVENTLOG_HANDLE_W UNCServerName,
+   [in] PRPC_UNICODE_STRING BackupFileName,
+   [in] unsigned long MajorVersion,
+   [in] unsigned long MinorVersion,
+   [out] IELF_HANDLE* LogHandle
+ );
+</pre></div>
+</dd></dl><p><b>UNCServerName: </b>A server interface handle. A pointer
+to a <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string specifying the server, as specified in section <span><a href="12315f0e-4143-45ee-bcda-490a80e5bed5" data-linktype="relative-path">2.2.7</a></span>. The client
+MUST map this string to an <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle,
+and the server MUST ignore this argument. See <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> sections
+4.3.5 and 5.1.5.2.</p><p><b>BackupFileName: </b>Provides a Unicode string (as
+specified in section <span><a href="40e4e566-b7fb-46e2-b179-893231f39e8d" data-linktype="relative-path">2.2.11</a></span>) that points
+to an <span><a href="c1550f98-a1ce-426a-9991-7509e7c3787c" data-linktype="relative-path">NT Object Path</a></span> of
+the file where the backup event log is located, as specified in section
+2.2.4.1.</p><p><b>MajorVersion: </b>Major version of the client. This value
+MUST be set to 1. </p><p><b>MinorVersion: </b>Minor version of the client. This value
+MUST be set to 1. </p><p><b>LogHandle: </b>Pointer to an <span><a href="e74c8719-c30e-4f7a-bef7-82753cc0e159#gt_bb3fad7e-60bf-46d4-9c3f-7caea47a743e" data-linktype="relative-path">event log</a></span> handle.
+This parameter is a server context handle, as specified in section <span><a href="de54bfbc-fbe4-43b8-b8e1-b8a6b2189604" data-linktype="relative-path">2.2.6</a></span>.
+This handle MUST be closed using the ElfrCloseEL (Opnum 2) (section <span><a href="e6b61523-8e7a-4279-a90f-2600b7e9da5d" data-linktype="relative-path">3.1.4.21)</a></span>
+method once the handle is no longer needed. In the case when the client cannot
+call the ElfrCloseEL function, such as the abnormal termination of the client,
+this context handle will be revoked by the server so that there will not be any
+resource leaks. The processing rule to revoke a context handle that has been
+terminated abnormally is defined in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/678e4235-0a3b-4b81-99fb-86ae3ac357f3" data-linktype="relative-path">3.3.3.2.1</a></span>.</p><p><b>Return Values: </b>The method MUST return STATUS_SUCCESS
+on success; otherwise, it MUST return an implementation-based, nonzero NTSTATUS
+value specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p><b>Note</b>  The value of STATUS_SUCCESS is
+0x00000000.</p><p>In response to this request from the client, the server MUST
+fail the method if the <i>BackupFileName</i> parameter is NULL or empty, or is
+not a legal NT Object Path. In these cases, the server SHOULD return
+STATUS_INVALID_PARAMETER (0xC000000D).</p><p>The server MUST verify that the caller has read access to
+the file, and MUST fail the method if the caller does not have read access. The
+server SHOULD return STATUS_ACCESS_DENIED (0xC0000022) to indicate this
+failure.</p><p>The server MUST attempt to open the file, and MUST fail the
+method if the open does not succeed.</p><p>The server SHOULD return STATUS_OBJECT_PATH_NOT_FOUND
+(0xC000003A) for this case. The server MUST fail the method if the file exists
+but does not contain a backed up event log. In this case, the server SHOULD
+return STATUS_OBJECT_PATH_INVALID (0xC0000039).<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="4acc4fbc-1378-4120-83d1-cfb4ae0240e0#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a></p><p>If the backup file happens to point to a live event log
+file, the server will still treat this as valid and will attempt to open it.</p><p>If all of the above checks succeed, the server MUST attempt
+to create a server context handle as specified in section 2.2.6, and if
+successful, assign it to the <i>LogHandle</i> parameter. Creating the handle
+only fails when there is not enough memory. In such a case, the server SHOULD
+return STATUS_NO_MEMORY (0xC0000017).</p><p>The server MUST return a value indicating success or failure
+for this operation.<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="4acc4fbc-1378-4120-83d1-cfb4ae0240e0#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a></p></div>

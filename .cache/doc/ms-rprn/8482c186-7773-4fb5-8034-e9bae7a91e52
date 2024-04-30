@@ -1,0 +1,52 @@
+<div class="content"><p>RpcClosePrinter closes a handle to a printer object, server
+object, job object, or <a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a>
+object.</p><dl>
+<dd>
+<div><pre> DWORD RpcClosePrinter(
+   [in, out] PRINTER_HANDLE* phPrinter
+ );
+</pre></div>
+</dd></dl><p><b>phPrinter: </b>A pointer to a handle to a printer
+object, server object, job object, or port object that was opened by <a href="bd0bb8d5-26fd-4705-81f5-614d32b9f38f" data-linktype="relative-path">RpcAddPrinter (section 3.1.4.2.3)</a>,
+<a href="3af45717-308f-4b4f-8428-430d12856110" data-linktype="relative-path">RpcAddPrinterEx (section 3.1.4.2.15)</a>,
+<a href="989357e2-446e-4872-bb38-1dce21e1313f" data-linktype="relative-path">RpcOpenPrinter (section 3.1.4.2.2)</a>,
+or <a href="0e81ce18-72b1-46c3-8584-a205393b04ff" data-linktype="relative-path">RpcOpenPrinterEx (section 3.1.4.2.14)</a>.</p><p><b>Return Values: </b>This method MUST return zero
+(ERROR_SUCCESS) to indicate successful completion or a nonzero Windows error
+code to indicate failure <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.</p><p>Upon receiving this message, the server MUST validate
+parameters as follows:</p><ul><li><p><span><span> 
+</span></span>Perform the validation steps that are specified in <a href="10bfa8c2-d456-4ad0-912d-e674766a36c8" data-linktype="relative-path">PRINTER_HANDLE
+Parameters (section 3.1.4.1.11)</a>. This method SHOULD assume that
+the handle to the printer object, server object, job object, or port object can
+be used without further access checks.</p>
+<p>If parameter validation fails, the
+server MUST fail the operation immediately and return a nonzero error response
+to the client.</p>
+</li></ul><p>Otherwise, the server MUST process the message and compose a
+response to the client as follows:</p><ul><li><p><span><span> 
+</span></span>If the object is a printer object, and <a href="90f95ff0-3ae0-4dde-a83d-35f457c710a6" data-linktype="relative-path">RpcStartDocPrinter</a> has
+been called without a matching <a href="209fcf32-05b4-44ab-a3a4-779cfae181ca" data-linktype="relative-path">RpcEndDocPrinter</a>, the same
+processing as for RpcEndDocPrinter MUST occur.</p>
+<p>If there is an active notification
+context associated with the object, as a result of the client not calling <a href="f50c8a86-1b2d-4124-b220-5b840aacd2c7" data-linktype="relative-path">RpcFindClosePrinterChangeNotification</a>,
+the server MUST close the notification context now by calling the client&#39;s <a href="d6c73ecb-c02b-4150-a01b-ad73a642990a" data-linktype="relative-path">RpcReplyClosePrinter</a>
+method.</p>
+</li><li><p><span><span> 
+</span></span>Free any internal state that is associated with the handle that
+is pointed to by <i>phPrinter</i>.</p>
+</li><li><p><span><span> 
+</span></span>Store NULL in the variable that is pointed to by <i>phPrinter</i>.</p>
+</li><li><p><span><span> 
+</span></span>Decrement the reference count on that object.</p>
+</li><li><p><span><span> 
+</span></span>If the object is a printer object marked as &#34;Delete
+Pending&#34;, and the usage count is zero, the following steps MUST be
+performed:</p>
+<ul><li><p><span><span>  </span></span>Handle
+any pending jobs in an implementation-specific manner.</p>
+</li><li><p><span><span>  </span></span>Clear
+references to this printer from any other data structures.</p>
+</li><li><p><span><span>  </span></span>Delete
+the printer object.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return the status of the operation.</p>
+</li></ul></div>

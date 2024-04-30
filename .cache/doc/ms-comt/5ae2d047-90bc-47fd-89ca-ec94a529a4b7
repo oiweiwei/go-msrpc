@@ -1,0 +1,18 @@
+<div class="content"><p>The ContainerStatistics type represents activity statistics
+for an <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_791190e6-1e02-42cb-bd25-5aee3ab516ed" data-linktype="relative-path">instance container</a>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD cCalls;
+   DWORD cComponentInstances;
+   DWORD cComponents;
+   DWORD cCallsPerSecond;
+ } ContainerStatistics;
+</pre></div>
+</dd></dl><p><b>cCalls:</b>  The number of <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_c8bba35a-8be0-463f-986f-4cfe4d53e9b3" data-linktype="relative-path">method calls</a> that the <a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_712af290-acfd-4e3a-a768-0530caa93b18" data-linktype="relative-path">component instances</a> perform
+in an instance container.</p><p><b>cComponentInstances:</b>  The number of
+component instances in an instance container.</p><p><b>cComponents:</b>  The number of distinct
+<a href="e6e3f493-e460-4df6-95a1-74ff12ea822d#gt_71669ed9-7eaf-4328-9e2e-4d3430f0f9bf" data-linktype="relative-path">components</a> currently
+instantiated in an instance container.</p><p><b>cCallsPerSecond:</b>  This SHOULD be set
+to a running average, over an implementation-specific time period,<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="8a5428f5-1574-4b06-9c20-5963b11e9035#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a> of the number of method calls per
+second received by an instance container. Alternatively, an implementation MAY
+instead simply set this field to zero.</p></div>

@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The DS_NAME_RESULTW structure defines the translated names
+returned by the <span><a href="9b4bfb44-6656-4404-bcc8-dc88111658b3" data-linktype="relative-path">IDL_DRSCrackNames</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD cItems;
+   [size_is(cItems)] PDS_NAME_RESULT_ITEMW rItems;
+ } DS_NAME_RESULTW,
+  *PDS_NAME_RESULTW;
+</pre></div>
+</dd></dl><p><b>cItems:</b>  The count of items in the <b>rItems</b>
+array.</p><p><b>rItems:</b>  Translated names that
+correspond one-to-one with the elements in the <b>rpNames</b> field of the
+request.</p></div>

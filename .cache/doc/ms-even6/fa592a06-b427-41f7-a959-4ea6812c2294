@@ -1,0 +1,156 @@
+<div class="content"><p> </p><p>The EvtRpcGetLogFileInfo (Opnum 18) method is used by a
+client to get information about a live channel or a <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_ddd2e7db-ea8f-4488-ac5f-e77d59abe9e4" data-linktype="relative-path">backup event log</a></span>.</p><dl>
+<dd>
+<div><pre> error_status_t EvtRpcGetLogFileInfo(
+   [in, context_handle] PCONTEXT_HANDLE_LOG_HANDLE logHandle,
+   [in] DWORD propertyId,
+   [in, range(0, MAX_RPC_PROPERTY_BUFFER_SIZE)] 
+     DWORD propertyValueBufferSize,
+   [out, size_is(propertyValueBufferSize)] 
+     BYTE* propertyValueBuffer,
+   [out] DWORD* propertyValueBufferLength
+ );
+</pre></div>
+</dd></dl><p><b>logHandle: </b>A handle to an <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_bb3fad7e-60bf-46d4-9c3f-7caea47a743e" data-linktype="relative-path">event log</a></span>.
+This parameter is an <span><a href="fda52b23-608b-444e-a979-6b62a00e8f48#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle,
+as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span>, Context
+Handles. For more information about the server-side object that maps to this
+handle, see section <span><a href="30a294b1-4e95-468a-a90a-185a5ea63ea0" data-linktype="relative-path">3.1.4.19</a></span>.</p><p><b>propertyId: </b>A 32-bit unsigned integer that
+indicates what log file property (as specified in section <span><a href="77e3552a-90e8-4dae-9612-99ee54ec1f6d" data-linktype="relative-path">3.1.1.6</a></span>)
+needs to be retrieved.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>EvtLogCreationTime</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>A <span><a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a></span>
+  containing the creation time of the file. This is the creation time of a log
+  file associated with the channel or the creation time of the backup event log
+  file in the server&#39;s file system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtLogLastAccessTime</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>A FILETIME containing the last access time of the
+  file. This is the last access time of a log file associated with the channel
+  or the last access time of the backup event log file in the server&#39;s file
+  system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtLogLastWriteTime</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>A FILETIME containing the last write time of the file.
+  This is the last written time of a log file associated with the channel or
+  the last written time of the backup event log file in the server&#39;s file
+  system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtLogFileSize</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>An unsigned 64-bit integer containing the size of the
+  file. This is the file size of a log file associated with the channel or the
+  file size of the backup event log file in the server&#39;s file system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtLogAttributes</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>An unsigned 32-bit integer containing the attributes
+  of the file. The attributes are implementation-specific, and clients MUST<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a> treat all values equally. The
+  attributes are tracked by the server&#39;s file system and SHOULD be able to be
+  retrieved from the file system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtLogNumberOfLogRecords</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>An unsigned 64-bit integer containing the number of
+  records in the file. See the following processing rules for how the server
+  gets this value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtLogOldestRecordNumber</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>An unsigned 64-bit integer containing the oldest
+  record number in the file. See the following processing rules for how the
+  server gets this value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EvtLogFull</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>A <span><a href="../ms-dtyp/51bbfbb1-08e2-4c13-a95e-1eaa7d310670" data-linktype="relative-path">BOOLEAN</a></span>
+  value; MUST be true if the log is full, and MUST be false otherwise. See the
+  following processing rules for how the server gets this value.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>propertyValueBufferSize: </b>A 32-bit unsigned
+integer that contains the length of caller&#39;s buffer in bytes.</p><p><b>propertyValueBuffer: </b>A byte-array that
+contains the buffer for returned data.</p><p><b>propertyValueBufferLength: </b>A pointer to a
+32-bit unsigned integer that contains the size in bytes of the returned data.</p><p><b>Return Values: </b>The method MUST return ERROR_SUCCESS
+(0x00000000) on success. The method MUST return ERROR_INSUFFICIENT_BUFFER
+(0x0000007A) if the buffer is too small; otherwise, it MUST return a different
+implementation-specific nonzero value as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>.</p><p>In response to this request from the client, the server MUST
+first validate the handle. The server SHOULD save the log handle value it
+creates in the EvtRpcOpenLogHandle (section 3.1.4.19) method in its
+handle table (as specified in section <span><a href="32102cb3-ea77-4171-bd1a-33c8c4d882aa" data-linktype="relative-path">3.1.1.12</a></span>) so that
+it can compare that value with the value in the <i>logHandle</i> parameter to
+perform the check. If the values differ, the handle is invalid.<a id="Appendix_A_Target_24"></a><a aria-label="Product behavior note 24" href="65f22d62-5f0f-4306-85c4-50fb9e77075b#Appendix_A_24" data-linktype="relative-path">&lt;24&gt;</a> The server MUST fail the
+operation if the handle is invalid with the error code ERROR_INVALID_PARAMETER
+(0x00000057).</p><p>Next, the server MUST verify the <i>propertyId</i> value as
+one specified in the preceding <i>propertyId&#39;s</i> fields table. Otherwise, it
+SHOULD return ERROR_INVALID_PARAMETER (0x00000057).</p><p>If <i>propertyValueBufferSize</i> is too small, the server
+MUST return the size needed in the <i>propertyValueBufferLength</i> parameter
+and fail the method with a return code of ERROR_INSUFFICIENT_BUFFER
+(0X0000007A).</p><p>If the preceding checks succeed, the server MUST attempt to
+return the request information. The server SHOULD first cast the logHandle into
+the log object. The server SHOULD decide if the Channel pointer points to a
+live channel or the handle to a backup event log file based on the LogType
+field. If it is a live channel, the server SHOULD get the associated log file
+path and open the file to get a file handle. If it is a backup event log file,
+the log object contains the handle to the file. Then the server SHOULD get the <i>EvtLogCreationTime</i>,
+<i>EvtLogLastAccessTime</i>, <i>EvtLogLastWriteTime</i>, <i>EvtLogFileSize</i>,
+and <i>EvtLogAttributes</i> information by querying the file system to get the
+creation time, last access time, last written time, file size, and file
+attributes of the specified log file (if channel is specified, the log file is
+the disk file which associates with the channel).</p><p><b>Note</b>  This information is tracked by the
+file system automatically and the server does not need to touch any files for
+any operation, such as exporting events from the channel or clearing events in
+a channel.</p><p>The server keeps the number of event records, the oldest
+event record, and the log full flag in its live channel file (log file
+associated with the channel) or backup event log file header (as specified in
+section 3.1.1.6). The server reads the information directly when returning the
+mentioned properties to the client. </p><p>The server MUST pack the return data into a single <span><a href="1c7b8b86-acc7-4db8-805c-20cc1ea2f7bc" data-linktype="relative-path">BinXmlVariant
+structure</a></span>, as specified in section 2.2.18, and copy it into the buffer
+that is pointed to by the <i>propertyValueBuffer</i> parameter. The server MUST
+NOT update its state.</p><p>The server MUST return a value indicating success or failure
+for this operation.</p></div>

@@ -1,0 +1,13 @@
+<div class="content"><p> </p><p>The VDS_SERVICE_PROP structure provides information about
+the properties of a service.</p><dl>
+<dd>
+<div><pre> typedef struct _VDS_SERVICE_PROP {
+   [string] WCHAR* pwszVersion;
+   unsigned long ulFlags;
+ } VDS_SERVICE_PROP;
+</pre></div>
+</dd></dl><p><b>pwszVersion:</b>  The version of <span><a href="8eef5d42-22d7-4302-aed9-12face91505a#gt_97581c48-09dd-4bc4-a379-a846cbf4cc39" data-linktype="relative-path">VDS</a></span>;
+a human-readable, null-terminated Unicode string. This string can be any
+human-readable, null-terminated Unicode value.<a id="Appendix_A_Target_29"></a><a aria-label="Product behavior note 29" href="6b2552ee-ba27-409f-99a8-18841573327a#Appendix_A_29" data-linktype="relative-path">&lt;29&gt;</a></p><p><b>ulFlags:</b>  A combination of any
+values, by using the bitwise OR operator, that is defined in the <span><a href="76687dc4-39ea-445a-897b-31643a0db1ec" data-linktype="relative-path">VDS_SERVICE_FLAG</a></span>
+enumeration.</p></div>

@@ -1,0 +1,77 @@
+<div class="content"><p>The TransactionPropRetWhereabouts structure is used by the
+server to return additional data and to communicate <a href="482ab606-0b55-4821-8b6d-d453351406c5#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a> status to the
+client.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">Reserved</p>
+  </td>
+  <td colspan="16">
+  <p align="center">Whereabouts
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Header (8 bytes): </b> A <a href="d2ba56a2-ac5b-4efe-af4b-fe877e6b0c1e" data-linktype="relative-path">TransactionPropRetHeader
+(section 2.2.3.1.2.1)</a>. The <b>m_usVariant</b> field of the structure MUST
+be set to <b>TransactionPropRet_Whereabouts</b> (0x1).</p><p><b>Reserved (2 bytes): </b>This can be set to any
+arbitrary value and MUST be ignored on receipt.</p><p><b>Whereabouts (variable): </b> An <a href="../ms-dtco/f5ab2327-10b0-469c-ac79-f35da8daa3ff" data-linktype="relative-path">SWhereabouts
+(section 2.2.5.11)</a> structure as specified in <a href="../ms-dtco/c367c571-33f3-44ac-85cb-4b9ebbb2779d" data-linktype="relative-path">[MS-DTCO]</a>
+section 2.2.5.11. The size of the array is indicated as follows: </p><dl>
+<dd>
+<p>Obtain the value of the <b>cbEHBuffer</b> field from
+the <a href="../ms-dcom/629d4c21-91df-48dd-92ca-b150832da051" data-linktype="relative-path">EntryHeader</a>,
+<a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section 2.2.21.5, corresponding to the <a href="2c0e1493-4215-4e49-a17d-cc676d3479c7" data-linktype="relative-path">Transaction ORPC Return
+Extensions (section 2.2.3.1.2)</a>. Subtract the sum of the size of
+the TransactionPropRetHeader structure and the size of the <b>cbWhereabouts</b>
+field in the TransactionPropRetWhereabouts structure from the value of the <b>cbEHBuffer</b>
+field. The size of the SWhereabouts structure is the result.</p>
+</dd></dl></div>

@@ -1,0 +1,30 @@
+<div class="content"><p> </p><p><b>RpcSyncUnRegisterForRemoteNotifications</b> closes a
+notification handle opened by calling <b>RpcSyncRegisterForRemoteNotifications</b>
+(section <span><a href="a48d2fcd-81e8-4a94-841b-9b777c9723b4" data-linktype="relative-path">3.1.4.9.1</a></span>).</p><dl>
+<dd>
+<div><pre> HRESULT RpcSyncUnRegisterForRemoteNotifications(
+   [in, out] RMTNTFY_HANDLE* phRpcHandle
+ );
+</pre></div>
+</dd></dl><p><b>phRpcHandle: </b>A pointer to the remote
+notification handle from which the user no longer wants to receive
+notifications.</p><p><b>Return Values: </b>This method returns either an <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span>
+success value (<span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>)
+to indicate successful completion or an HRESULT error value to indicate
+failure.</p><p><b>Exceptions Thrown:</b> This method MUST NOT throw any
+exceptions other than those that are thrown by the underlying <span><a href="a98de8d9-8e9e-4cd7-92f7-f9269206a41e#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p><b>Parameter Validation Requirements:</b> Upon receiving
+this method call, the server MUST verify that the <i>phRpcHandle</i> parameter
+is not NULL, and that it points to a non-NULL <b>RMTNTFY_HANDLE</b> (section <span><a href="3d9537af-0da1-4b9a-a70e-42bc41915f6b" data-linktype="relative-path">2.2.5</a></span>)
+that is associated with a valid notification object created by a call to <b>RpcSyncRegisterForRemoteNotifications</b>
+(section 3.1.4.9.1).</p><p>If parameter validation fails, the server MUST return
+immediately, with a failure indication in its response to the client.</p><p><b>Processing and Response Requirements:</b> If the
+operation is successful, the server MUST execute the following steps before
+returning:</p><ul><li><p><span><span> 
+</span></span>Remove the client from the list of notification clients
+associated with the printer object or server.</p>
+</li><li><p><span><span> 
+</span></span>Delete the notification object associated with the <b>RMTNTFY_HANDLE</b>
+specified by the <i>phRpcHandle</i> parameter.</p>
+</li></ul></div>

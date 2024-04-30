@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The SchRpcRename method renames a folder or task.</p><dl>
+<dd>
+<div><pre> HRESULT SchRpcRename(
+   [in, string] const wchar_t* path,
+   [in, string] const wchar_t* newName,
+   [in] DWORD flags
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>MUST be the full path to the task or to
+a folder to rename. The path MUST be in the format specified in section <span><a href="fa8809c8-4f0f-4c6d-994a-6c10308757c1" data-linktype="relative-path">2.3.11</a></span>.</p><p><b>newName: </b>The new name of the task.</p><p><b>flags: </b>Reserved. The client MUST set this
+parameter to zero.</p><p><b>Return Values: </b>For more information on return
+codes, see section <span><a href="774cd43a-8376-4c8b-a2e3-57aaa6357088" data-linktype="relative-path">2.3.14</a></span>, or Win32
+Error Codes in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a></span>.</p><p>Upon receipt of the SchRpcRename call the server MUST return
+E_NOTIMPL.</p></div>

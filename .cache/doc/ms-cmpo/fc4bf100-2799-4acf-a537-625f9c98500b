@@ -1,0 +1,213 @@
+<div class="content"><p> </p><p>The BuildContextW method is equivalent in all ways to the <span><a href="bdb686a6-1190-4900-9dd5-2f9aac6ca621" data-linktype="relative-path">BuildContext</a></span>
+method, except that its string parameters are encoded in UTF-16. The <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_9c5903c1-1477-4181-b451-3ba1e34a0c0c" data-linktype="relative-path">MIDL</a></span>
+syntax of the method is as follows.</p><dl>
+<dd>
+<div><pre> HRESULT BuildContextW(
+   [in] handle_t hBinding,
+   [in] SESSION_RANK sRank,
+   [in] BIND_VERSION_SET BindVersionSet,
+   [in, string, range(GUID_LENGTH, GUID_LENGTH)] 
+     wchar_t pwszCalleeUuid[],
+   [in, string, range(1, MAX_COMPUTERNAME_LENGTH+1)] 
+     wchar_t pwszHostName[],
+   [in, string, range(GUID_LENGTH, GUID_LENGTH)] 
+     wchar_t pwszUuidString[],
+   [in, string, range(GUID_LENGTH, GUID_LENGTH)] 
+     wchar_t pwszGuidIn[],
+   [in, out, string, range(GUID_LENGTH, GUID_LENGTH)] 
+     wchar_t pwszGuidOut[],
+   [in, out] BOUND_VERSION_SET* pBoundVersionSet,
+   [in, range(sizeof(BIND_INFO_BLOB), sizeof(BIND_INFO_BLOB))] 
+     DWORD dwcbSizeOfBlob,
+   [in, size_is(dwcbSizeOfBlob)] unsigned char rguchBlob[],
+   [out] PPCONTEXT_HANDLE ppHandle
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b><span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> primitive
+binding handle, as specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a></span> part 3.</p><p><b>sRank: </b>The rank of the caller.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span><a href="8b849631-fa6b-4cad-861a-3cde962c408e" data-linktype="relative-path">SRANK_PRIMARY</a></span></p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>The caller is the <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7e81ed8f-e4a4-49ff-b7d8-cce6005ad036" data-linktype="relative-path">primary partner</a></span> in
+  this <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0cd96b80-a737-4f06-bca4-cf9efb449d12" data-linktype="relative-path">session</a></span>. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SRANK_SECONDARY</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>The caller is the <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_b4738f56-9936-4714-beb6-1c861116dd5c" data-linktype="relative-path">secondary partner</a></span>
+  in this session. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>BindVersionSet: </b>A <span><a href="1808d4f0-3842-47bc-8c5b-a177f2ede4d0" data-linktype="relative-path">BIND_VERSION_SET</a></span>
+structure that contains the minimum and maximum versions supported by the <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a></span>.</p><p><b>pwszCalleeUuid: </b>The string form of the
+callee&#39;s <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_008df1ed-6dde-44be-be73-57a5008782ca" data-linktype="relative-path">contact identifier (CID)</a></span>.
+The contact identifier (CID) MUST match the contact identifier (CID) in the
+callee&#39;s local name object and MUST be formatted into a string.</p><p><b>pwszHostName: </b>The string form of the caller&#39;s
+host name. This host name identifies the machine in which the caller&#39;s instance
+of the MSDTC Connection Manager: OleTx Transports Protocol is running. This
+MUST be a <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0334e0bd-2755-42f6-aeff-2d4a22bf4abf" data-linktype="relative-path">NetBIOS name</a></span>. For
+NetBIOS, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90224" data-linktype="external">[NETBEUI]</a></span>, <span><a href="https://go.microsoft.com/fwlink/?LinkId=90260" data-linktype="external">[RFC1001]</a></span>,
+and <span><a href="https://go.microsoft.com/fwlink/?LinkId=90261" data-linktype="external">[RFC1002]</a></span>.</p><p><b>pwszUuidString: </b>The string form of the
+caller&#39;s contact identifier (CID). This contact identifier (CID) identifies the
+caller&#39;s instance of the MSDTC Connection Manager: OleTx Transports Protocol.
+This MUST match the contact identifier (CID) in the caller&#39;s local name object
+and MUST be formatted into a string.</p><p><b>pwszGuidIn: </b>A string form of a UUID that represents
+a unique identifier for this bind attempt. The UUID MUST be formatted into a
+string.</p><p><b>pwszGuidOut: </b>A string form of a UUID that
+represents a unique identifier for this bind attempt. On input, the <i>pwszGuidOut</i>
+parameter MUST be set to 00000000-0000-0000-0000-000000000000. On return, if
+the bind attempt is ultimately successful, the <i>pwszGuidOut</i> parameter
+MUST be equal to the value of the <i>pszGuidIn</i> parameter. Otherwise, if the
+bind attempt is ultimately unsuccessful, the <i>pwszGuidOut</i> parameter MUST
+be set to 00000000-0000-0000-0000-000000000000 on return.</p><p><b>pBoundVersionSet: </b>A pointer to a <span><a href="1a0b77a6-65cc-4aa0-99a4-da4277b35ec1" data-linktype="relative-path">BOUND_VERSION_SET</a></span>
+structure. When the method is called, every field of the BOUND_VERSION_SET
+structure MUST be initialized to zero. This parameter receives a
+BOUND_VERSION_SET on successful completion and also on return.</p><p><b>dwcbSizeOfBlob: </b>The count in bytes of the size
+of the binding info structure. This parameter MUST be set to the size of <span><a href="7de5e521-b2fa-46f8-8e12-094e0630909d" data-linktype="relative-path">BIND_INFO_BLOB</a></span>,
+8.</p><p><b>rguchBlob: </b>A byte array that contains a
+BIND_INFO_BLOB structure. </p><p><b>ppHandle: </b>On successful return, an RPC context
+handle (see [C706]) that correlates with the session object created by, or
+referenced by, this method.</p><p><b>Return Values: </b>This method MUST return zero
+(0x00000000) on success. On failure, it MUST return either 0x80000172
+(E_CM_VERSION_SET_NOTSUPPORTED) or an implementation-specific <span><a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a></span>.
+A client SHOULD distinguish between 0x80000172 and other error codes, as
+specified in sections <span><a href="a0f6d5af-4866-454d-8d33-5a983d893a7c" data-linktype="relative-path">3.3.4.2.1</a></span> and <span><a href="39557ed1-8073-4deb-8922-109d6a25edaa" data-linktype="relative-path">3.3.4.2.2</a></span>,
+but MUST NOT depend on implementation-specific failure HRESULT values. From an
+over-the-wire communication point of view, the client MUST implement only
+behaviors for the errors described in the following table.</p><dl>
+<dd>
+<p>Standard errors are defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/08834f40-5300-492f-a11a-591769b3d60a" data-linktype="relative-path">4</a></span>.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_STATUS</p>
+  </td>
+  <td>
+  <p>The return value indicates success.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80000172</p>
+  <p>E_CM_VERSION_SET_NOTSUPPORTED</p>
+  </td>
+  <td>
+  <p>The return value indicates that the callee partner
+  does not support the caller&#39;s <i>BindVersionSet</i> parameter and will not
+  execute the requested operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000006D1</p>
+  <p>RPC_S_PROCNUM_OUT_OF_RANGE</p>
+  </td>
+  <td>
+  <p>The return value indicates that the caller does not
+  support this call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80000124</p>
+  <p>E_CM_S_TIMEDOUT</p>
+  </td>
+  <td>
+  <p>The return value indicates that the callee timed out
+  while waiting for the caller to complete the bind. This value is returned by
+  a secondary partner to a primary partner if the primary partner does not
+  return from the secondary partner&#39;s call to <b>BuildContext</b> within half
+  the amount of time specified in the <span><a href="df71ea77-cd07-41f7-b455-d2a1c612b65f" data-linktype="relative-path">Session Setup
+  Timer (section 3.2.2.1)</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000006BB</p>
+  <p>RPC_S_SERVER_TOO_BUSY</p>
+  </td>
+  <td>
+  <p>The return value indicates that the partner is too
+  busy to complete this operation. For more information, see <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+  section <span><a href="../ms-rpce/b5e81729-f356-4776-920c-c39031d48205" data-linktype="relative-path">3.1.1.5.5</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80000173</p>
+  <p>E_CM_S_PROTOCOL_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The return value indicates that none of the protocols
+  described in the <i>rguchBlob</i> parameter is supported by the partner.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The return value indicates that one of the specified
+  arguments is invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The following table describes the possible
+implementation-specific errors that SHOULD be returned by this method.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80000120</p>
+  <p>E_CM_SESSION_DOWN</p>
+  </td>
+  <td>
+  <p>In a scenario where the value of the <i>sRank</i>
+  parameter is SRANK_SECONDARY, if BuildContextW is called and an existing
+  session object is not found, the call SHOULD return this value.<a id="Appendix_A_Target_30"></a><a aria-label="Product behavior note 30" href="2f0b4979-92b7-46f5-9e94-81531e68f3fe#Appendix_A_30" data-linktype="relative-path">&lt;30&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80000123</p>
+  <p>E_CM_SERVER_NOT_READY</p>
+  </td>
+  <td>
+  <p>The session object is not in the Connecting state.<a id="Appendix_A_Target_31"></a><a aria-label="Product behavior note 31" href="2f0b4979-92b7-46f5-9e94-81531e68f3fe#Appendix_A_31" data-linktype="relative-path">&lt;31&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>When a partner calls BuildContextW on another partner, an
+error code of RPC_S_PROCNUM_OUT_OF_RANGE means that the callee does not support
+BuildContextW.</p></div>

@@ -1,0 +1,51 @@
+<div class="content"><p>The Count method retrieves the number of elements in the
+collection.</p><dl>
+<dd>
+<div><pre> [propget, id(DISPID_PCH_COL__COUNT)] HRESULT Count(
+   [out, retval] long* pVal
+ );
+</pre></div>
+</dd></dl><p><b>pVal: </b>A pointer to the number of elements in the
+collection.</p><p><b>Return Values: </b>A signed 32-bit value
+indicating return status. This method MUST return zero to indicate success, or
+an <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+error value (as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+to indicate failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80004003</p>
+  <p>E_POINTER</p>
+  </td>
+  <td>
+  <p>The method failed due to an invalid pointer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007000E</p>
+  <p>E_OUTOFMEMORY</p>
+  </td>
+  <td>
+  <p>The method was unable to allocate required memory.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b></p><p>No exceptions are thrown beyond those thrown by the
+underlying <a href="1ef0b4e0-d88e-4b60-bc24-c983bec1e088#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

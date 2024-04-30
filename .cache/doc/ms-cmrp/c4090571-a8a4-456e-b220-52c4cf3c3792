@@ -1,0 +1,99 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c4090571-a8a4-456e-b220-52c4cf3c3792" data-linktype="external">msdn link</a></p><p>(Protocol Version 3) The ApiGetBatchNotification method
+instructs the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> to
+retrieve the first queued batch update event indication from the designated
+batch update <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_aedc8c3e-1557-4dfc-a89c-ff6f04345886" data-linktype="relative-path">notification_port</a>.
+The server MUST NOT complete this method until an indication has been queued to
+the port or the port has been closed through a separate call to the <a href="6698ab67-aa8d-47f9-99ca-a1196f9f2f6d" data-linktype="relative-path">ApiCloseBatchPort</a> method.</p><p>Upon successful completion of this method, the server MUST
+write a <a href="71c7bedf-88cf-4eb8-9bc5-80d14a222e53" data-linktype="relative-path">CLUSTER_REG_BATCH_UPDATE</a>
+structure, as specified in section 2.2.3.17, indicating the modifications that
+have been made to the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_13de67f6-ac9d-491f-8dfb-12601a8b0838" data-linktype="relative-path">cluster
+registry</a>. This information essentially mirrors the CLUSTER_REG_BATCH_UPDATE
+structure provided to the <a href="757fe2b7-2826-4c5d-b472-da7f125a2c3c" data-linktype="relative-path">ApiExecuteBatch</a>
+method with the modification that a CLUSREG_VALUE_DELETED command precedes
+every CLUSREG_SET_VALUE and CLUSREG_DELETE_VALUE command in the returned
+notification data if the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_7bc13a0c-ca1a-4c78-b1bf-67e243f778bb" data-linktype="relative-path">value</a>
+has existing data. The Name field identifies the name of the value that was
+modified, and the Data field contains the value data that existed prior to
+executing the aforementioned value command.</p><p>For example, the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> calls
+ApiExecuteBatch with the following series of commands for a value named
+&#34;NotifyTest&#34; that does not already exist in the <a href="694e5e7a-5833-4f3d-b47e-323ee1d452c2#gt_2d67ea57-10e6-422f-985e-694834945a02" data-linktype="relative-path">registry</a>:</p><ul><li><p><span><span> 
+</span></span>Delete Value</p>
+</li><li><p><span><span> 
+</span></span>Set Value to &#34;hello world&#34;</p>
+</li><li><p><span><span> 
+</span></span>Set Value to &#34;hello universe&#34;</p>
+</li><li><p><span><span> 
+</span></span>Delete Value</p>
+</li></ul><p>The series of change notifications that the server returns
+to the client through this method are as follows:</p><ul><li><p><span><span> 
+</span></span>Delete Value</p>
+</li><li><p><span><span> 
+</span></span>Set Value to &#34;hello world&#34;</p>
+</li><li><p><span><span> 
+</span></span>Value Deleted with the data set to &#34;hello world&#34;</p>
+</li><li><p><span><span> 
+</span></span>Set Value to &#34;hello universe&#34;</p>
+</li><li><p><span><span> 
+</span></span>Value Deleted with the data set to &#34;hello universe&#34;</p>
+</li><li><p><span><span> 
+</span></span>Delete Value</p>
+</li></ul><p>The following diagrams illustrate the preceding command and
+notification sequence.</p><p><img id="MS-CMRP_pict1cc08ff7-f258-1b83-ca89-a9c16731bc60.png" src="ms-cmrp_files/image003.png" alt="Client-issued registry update" title="Client-issued registry update" data-linktype="relative-path"/></p><p><b>Figure 3: Client-issued registry update</b></p><p><img id="MS-CMRP_pict79c7ccf7-55db-d17e-c17f-a790c6c150e8.png" src="ms-cmrp_files/image004.png" alt="Corresponding change notifications returned by server" title="Corresponding change notifications returned by server" data-linktype="relative-path"/></p><p><b>Figure 4: Corresponding change notifications returned by
+server</b></p><p>The server SHOULD accept an ApiGetBatchNotification request
+if the client&#39;s access level is at least &#34;Read&#34; (section <a href="a249a463-3d3b-4058-abf6-3024d81806a0" data-linktype="relative-path">3.1.4</a>).</p><dl>
+<dd>
+<div><pre> error_status_t ApiGetBatchNotification(
+   [in] HBATCH_PORT_RPC hBatchNotify,
+   [out] DWORD * cbData,
+   [out, size_is(,*cbData)] UCHAR ** lpData
+ );
+</pre></div>
+</dd></dl><p><b>hBatchNotify: </b>A pointer to an <a href="e273a61a-e2e6-4901-a3fa-2d3a21ca42f5" data-linktype="relative-path">HBATCH_PORT_RPC</a> context
+handle that was obtained in a previous <a href="8f8778db-0dbe-473b-b786-30d4c2c54978" data-linktype="relative-path">ApiCreateBatchPort</a> method
+call.</p><p><b>cbData: </b>A pointer to a 32-bit integer. Upon
+successful completion of this method, the server MUST write the size, in bytes,
+of the <i>lpData</i> buffer to the integer location indicated by <b>cbData</b>.</p><p><b>lpData: </b>The address of a pointer where the
+server MUST write, upon successful completion of this method, a
+CLUSTER_REG_BATCH_UPDATE structure as previously described.</p><p><b>Return Values: </b>The method MUST return the
+following error codes for the specified conditions.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>Success.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000006</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The data that is pointed to by the <i>hBatchNotify</i>
+  parameter does not represent a valid HBATCH_PORT_RPC context handle.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000103</p>
+  <p>ERROR_NO_MORE_ITEMS</p>
+  </td>
+  <td>
+  <p>The port referenced by the <i>hBatchNotify</i>
+  parameter has been closed by a separate call to the ApiCloseBatchPort method.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>For any other condition, this method MUST return a value
+that is not one of those listed in the preceding table. The client MUST behave
+in one consistent, identical manner for all values that are not listed in the
+preceding table.</p></div>

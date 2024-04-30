@@ -1,0 +1,58 @@
+<div class="content"><p>The IsAffectedByQuota method retrieves a value that
+determines whether a specified path is subject to a <a href="4a94faeb-8aed-46fa-9d03-479f6708995a" data-linktype="relative-path">Persisted Directory
+Quota (section 3.2.1.2.1.1)</a>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_QUOTA_MANAGER_EX | 0x01), helpstring(&#34;This method is used to check whether a given path is subject to quota&#34;)] HRESULT IsAffectedByQuota(
+   [in] BSTR path,
+   [in, defaultvalue(FsrmEnumOptions_None)] 
+     FsrmEnumOptions options,
+   [out, retval] VARIANT_BOOL* affected
+ );
+</pre></div>
+</dd></dl><p><b>path: </b>The local directory path to determine
+whether a Persisted Directory Quota applies. The maximum length of this string
+MUST be 260 characters.</p><p><b>options: </b>The options to use when checking for
+a Persisted Directory Quota. For possible values, see the <a href="d01ee30b-4ef8-4eec-8026-3b5a1ccda298" data-linktype="relative-path">FsrmEnumOptions (section 2.2.1.2.5)</a>
+enumeration. It is ignored on receipt.</p><p><b>affected: </b>Pointer to a Boolean variable that
+returns whether a specified path is subject to a Persisted Directory Quota.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>This code is returned for the following reasons:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>The <i>affected</i> parameter is
+  NULL.</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>The <i>options</i> parameter is
+  not a valid FsrmEnumOptions (section 2.2.1.2.5) value.</span></p>
+  </li></ul></td>
+ </tr><tr>
+  <td>
+  <p>0x80004003</p>
+  <p>E_POINTER</p>
+  </td>
+  <td>
+  <p>The <i>path</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>path</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST set <i>affected</i> to VARIANT_TRUE if the <a href="592dad39-f14e-4c5b-b7bc-a1c0bc4724b3" data-linktype="relative-path">Directory Quota.Folder path</a>
+referred to by the <i>path</i> parameter has quota enable/disable set to
+enabled; otherwise, <i>affected</i> is set to VARIANT_FALSE.</p></div>

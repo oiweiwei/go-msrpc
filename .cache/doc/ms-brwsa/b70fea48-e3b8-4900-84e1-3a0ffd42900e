@@ -1,0 +1,8 @@
+<div class="content"><p>This document specifies the Common Internet File System
+(CIFS) Browser Auxiliary Protocol Specification. This protocol is used by the <a href="48f4ceaf-3cd0-4964-a964-2f4682b8d2f0#gt_542ffc1e-9bbc-47f9-a6ca-284d0a39c680" data-linktype="relative-path">master browser server</a> and <a href="48f4ceaf-3cd0-4964-a964-2f4682b8d2f0#gt_ef026994-26e6-4c9d-b34b-dfb7f1f80d6f" data-linktype="relative-path">domain master browser server</a>
+as defined in <a href="../ms-brws/d2d83b29-4b62-479e-b427-9b750303387b" data-linktype="relative-path">[MS-BRWS]</a>.
+The master browser server uses this protocol to query configuration information
+for the domains from the domain master browser server. The protocol operation
+is stateless.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

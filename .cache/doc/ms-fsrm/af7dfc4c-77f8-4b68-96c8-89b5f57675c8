@@ -1,0 +1,43 @@
+<div class="content"><p>The DeleteScheduleTask method deletes the specified task so
+that it no longer triggers the generation of a File Server Resource Manager
+Protocol <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_15957e50-08ab-48d2-8824-57a71b23f833" data-linktype="relative-path">report job</a>.</p><dl>
+<dd>
+<div><pre> [id(FSRM_DISPID_REPORT_SCHEDULER | 0x04)] HRESULT DeleteScheduleTask(
+   [in] BSTR taskName
+ );
+</pre></div>
+</dd></dl><p><b>taskName: </b>Contains the name of the task to
+delete.</p><p><b>Return Values: </b>The method MUST return zero on
+success, or a nonzero error code on failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80045301</p>
+  <p>FSRM_E_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified task could not be found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>The <i>taskName</i> parameter is NULL.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>taskName</i> is not NULL.</p>
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST delete the specified task.</p></div>

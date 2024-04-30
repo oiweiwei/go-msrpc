@@ -1,0 +1,37 @@
+<div class="content"><p>The SetAttributes method sets <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attributes</a> in the specified
+pending <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a>
+request.</p><dl>
+<dd>
+<div><pre> HRESULT SetAttributes(
+   [in, string, unique] wchar_t const* pwszAuthority,
+   [in] DWORD dwRequestId,
+   [in, string, unique] wchar_t const* pwszAttributes
+ );
+</pre></div>
+</dd></dl><p><b>pwszAuthority: </b>See the <i>pwszAuthority</i>
+definition in <a href="faae1099-4b4f-463c-95b0-5962c9bf400e" data-linktype="relative-path">ICertAdminD::SetExtension (section 3.1.4.1.1)</a>.
+</p><p><b>dwRequestId: </b>A 32-bit nonzero unsigned integer
+value that specifies the ID of the certificate request.</p><p><b>pwszAttributes: </b>A null-terminated Unicode
+string. The value of the string MUST have the same format as specified in <a href="../ms-wcce/446a0fca-7f27-4436-965d-191635518466" data-linktype="relative-path">[MS-WCCE]</a>
+section <a href="../ms-wcce/13b7f3f7-c809-4c1e-97fd-52f2ed044c7e" data-linktype="relative-path">3.2.1.4.2.1.2</a>.</p><p>This method instructs the <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a> to add or modify a
+name-value pair that is associated with a previously submitted certificate
+request that is in a pending state. Information about a pending certificate
+request is specified in section <a href="07e92aa5-b7d4-446a-b5b8-cfe775993388" data-linktype="relative-path">3.1.1.1.1</a>. </p><p>The following processing rules apply:</p><ol><li><p><span>    </span>The CA MUST look
+up the request based on the provided <i>dwRequestId</i> parameter in the
+Request <a href="c6451297-197d-4b4b-b786-3f3187b67b8f#gt_d3a7da8d-a597-4838-9756-25e30b640ba7" data-linktype="relative-path">table</a>. If the
+request is not found, the CA MUST fail the request.</p>
+</li><li><p><span>    </span>If the request
+is found in the CA database, the CA MUST verify that the value of the
+Request_Disposition column is &#34;request pending&#34;. If the value of the
+Request_Disposition column is not &#34;request pending&#34;, the CA MUST fail
+the request.</p>
+</li><li><p><span>    </span>The CA MUST
+parse the <b>pwszAttributes</b> string, as is done for the
+ICertRequestD::Request and ICertRequestD2::Request2 methods as specified in
+[MS-WCCE] section <a href="../ms-wcce/37918b82-4e98-409c-b3c1-b0ae76bdc73c" data-linktype="relative-path">3.2.1.4.3</a>.</p>
+</li><li><p><span>    </span>The CA MUST
+ignore invalid name-value pair entries.</p>
+</li><li><p><span>    </span>The CA MUST
+associate the valid name-value pair entries with the pending requests, for
+possible later impact on the issued certificate, by adding the entries in the <a href="c4fbb694-3387-485c-b421-278487d8325c" data-linktype="relative-path">Attribute table</a>.</p>
+</li></ol></div>

@@ -1,0 +1,231 @@
+<div class="content"><p> </p><p>Each property in the <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a></span> blob
+MUST be formatted as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PropertyID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Length</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Value (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>PropertyID (4 bytes): </b>This field MUST identify
+the property whose value is contained in the <b>Value</b> field. It MUST be an
+unsigned 32-bit integer in little-endian format. This field MUST be set to one
+of the following values. All the values MUST be in little-endian format.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>KEY_PROV_INFO</p>
+  <p>2</p>
+  </td>
+  <td>
+  <p>This property is used to provide additional
+  information regarding the certificate. Its format is specified in section <span><a href="a0febf01-4556-4e75-a6a3-10f2e224e19d" data-linktype="relative-path">2.2.2.1.1</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SHA1_HASH</p>
+  <p>3</p>
+  </td>
+  <td>
+  <p>A 20-byte array representing the SHA-1 hash of the
+  certificate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MD5_HASH</p>
+  <p>4</p>
+  </td>
+  <td>
+  <p>A 16-byte array representing the MD5 hash of the
+  certificate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>KEY_SPEC</p>
+  <p>6</p>
+  </td>
+  <td>
+  <p>An unsigned 32-bit integer. This is a flag which
+  specifies the allowed use of the private key. The value MUST be 1, which
+  specifies the key can be used for encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ENHKEY_USAGE</p>
+  <p>9</p>
+  </td>
+  <td>
+  <p>The value of the Extended Key Usage extension on the
+  certificate, in ASN.1 DER encoding. For details on the Extended Key Usage
+  Extension, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90414" data-linktype="external">[RFC3280]</a></span>
+  section 4.2.1.13.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FRIENDLY_NAME</p>
+  <p>11</p>
+  </td>
+  <td>
+  <p>A null-terminated <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> in
+  UTF-16 encoding, representing the display name for the certificate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DESCRIPTION</p>
+  <p>13</p>
+  </td>
+  <td>
+  <p>A null-terminated Unicode string in UTF-16 encoding,
+  representing a brief description of the certificate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SIGNATURE_HASH</p>
+  <p>15</p>
+  </td>
+  <td>
+  <p>A 20-byte array containing the SHA-1 hash of the
+  certificate signature.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>KEY_IDENTIFIER</p>
+  <p>20</p>
+  </td>
+  <td>
+  <p>A 20-byte array containing the SHA-1 hash of the
+  certificate subject public key.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AUTO_ENROLL</p>
+  <p>21</p>
+  </td>
+  <td>
+  <p>A null-terminated Unicode string in UTF-16 encoding,
+  containing the name or object identifier used for auto-enrollment. This is
+  present when the certificate was obtained through auto-enrollment.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PUBKEY_ALG_PARA</p>
+  <p>22</p>
+  </td>
+  <td>
+  <p>The algorithm identifier for the public key contained
+  in the certificate, in DER encoding. For details, see [RFC3280] section 4.1.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ISSUER_PUBLIC_KEY_MD5_HASH</p>
+  <p>24</p>
+  </td>
+  <td>
+  <p>A 16-byte array containing the MD5 hash of the public
+  key associated with the private key used to sign the certificate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SUBJECT_PUBLIC_KEY_MD5_HASH</p>
+  <p>25</p>
+  </td>
+  <td>
+  <p>A 16-byte array containing the MD5 hash of the public
+  key contained in the certificate.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DATE_STAMP</p>
+  <p>27</p>
+  </td>
+  <td>
+  <p>A date stamp, in the form of an unsigned 64-bit
+  integer, representing the number of 100-nanosecond intervals since January 1,
+  1601.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ISSUER_SERIAL_NUMBER_MD5_HASH</p>
+  <p>28</p>
+  </td>
+  <td>
+  <p>A 16-byte array containing the MD5 hash of the <span><a href="f436206d-ad1d-4ab1-bcc7-761d5c9738b6#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">CA</a></span>
+  signing certificate serial number.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SUBJECT_NAME_MD5_HASH</p>
+  <p>29</p>
+  </td>
+  <td>
+  <p>A 16-byte array containing the MD5 hash of the subject
+  name in the certificate.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved (4 bytes): </b>This is a 32-bit unsigned
+integer in little-endian format that must be set to 0x00000001.</p><p><b>Length (4 bytes): </b>This field MUST contain the
+length of the <b>Value</b> field in bytes. It MUST be an unsigned 32-bit number
+in little-endian format.</p><p><b>Value (variable): </b>This field MUST contain the
+value of the specified property, in the format specified for the property
+associated with the table of possible values for <b>PropertyID</b>.</p></div>

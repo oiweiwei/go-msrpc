@@ -1,0 +1,12 @@
+<div class="content"><p> </p><p>The TEARDOWN_TYPE enumeration provides a set of 4-byte
+signed integer values indicating the reason for starting the teardown phase of <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0cd96b80-a737-4f06-bca4-cf9efb449d12" data-linktype="relative-path">session</a></span>
+management.</p><dl>
+<dd>
+<div><pre> typedef  enum _TearDownType
+ {
+   TT_FORCE = 0x00000000,
+   TT_PROBLEM = 0x00000002,
+ } TEARDOWN_TYPE;
+</pre></div>
+</dd></dl><p><b>TT_FORCE:  </b>Force a teardown.</p><p><b>TT_PROBLEM:  </b>Severe session error detected;
+start a teardown.</p></div>

@@ -1,0 +1,28 @@
+<div class="content"><p>The Security Account Manager (SAM) Remote Protocol
+(Client-to-Server) provides management functionality for an account store or
+directory containing users and groups. SAM Remote Protocol specifies the
+behavior for both local and remote domains by using the <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a> data model
+as a common data model for both scenarios, see <a href="../ms-authsod/953d700a-57cb-4cf7-b0c3-a64f34581cc9" data-linktype="relative-path">[MS-AUTHSOD]</a>
+section <a href="../ms-authsod/fa8e09d1-02b9-4526-a6ed-b6ff244e721e" data-linktype="relative-path">1.1.1.5.1</a>.
+Implementers should familiarize themselves with the following documents:
+Windows System Overview <a href="https://go.microsoft.com/fwlink/?LinkId=311687" data-linktype="external">[MS-SYS-ARCHIVE]</a>,
+Windows Protocols Overview <a href="../ms-wpo/c5f54a77-65be-40a0-bb82-9e4181d8ab67" data-linktype="relative-path">[MS-WPO]</a>,
+and Active Directory Technical Specification <a href="../ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a" data-linktype="relative-path">[MS-ADTS]</a>.
+</p><p>The goal of this protocol is to enable IT administrators and
+end users to manage users, groups, and computers. IT administrators and their
+delegates generally have full access control to these entities, and
+consequently can manage the entities&#39; life cycles. End users are allowed to
+make changes to their own data (in most cases, limited to just their
+passwords).</p><p>SAM Remote Protocol achieves its goal by enabling the
+creation, reading, updating, and deleting of <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a>
+information. These security principals could be in any account store; typically
+they are in an Active Directory service ([MS-ADTS]) and in a computer-local
+security account database. Normative differences in the protocol between the
+two cases local and remote domains are indicated by referring to the
+configuration of the server as a DC or non-DC configuration, where DC stands
+for <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller (DC)</a>.</p><p>It is helpful to consider the following two perspectives
+when understanding and implementing this protocol:</p><ul><li><p><span><span> 
+</span></span>Object-based perspective (section <a href="8aaff2f7-1edd-41a0-ab58-4807ac6124c5" data-linktype="relative-path">1.3.1</a>)</p>
+</li><li><p><span><span> 
+</span></span>Method-based perspective (section <a href="d7b62596-4a46-4556-92dc-3aba6d517907" data-linktype="relative-path">1.3.2</a>)</p>
+</li></ul></div>

@@ -1,0 +1,19 @@
+<div class="content"><p> </p><p>The DRS_MSG_VERIFYREPLY_V1 structure defines a response
+message received from the <span><a href="80739a29-e8ed-4478-8490-475a18e9779d" data-linktype="relative-path">IDL_DRSVerifyNames</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD error;
+   [range(0,10000)] DWORD cNames;
+   [size_is(cNames)] ENTINF* rpEntInf;
+   SCHEMA_PREFIX_TABLE PrefixTable;
+ } DRS_MSG_VERIFYREPLY_V1;
+</pre></div>
+</dd></dl><p><b>error:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>cNames:</b>  The number of items in the <b>rpEntInf</b>
+array.</p><p><b>rpEntInf:</b>  An array of <span><a href="6d69822e-adb6-4977-8553-c2d529c17e5b" data-linktype="relative-path">ENTINF</a></span>
+structures that contain the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_108a1419-49a9-4d19-b6ca-7206aa726b3f" data-linktype="relative-path">attributes</a></span> requested
+in the <b>RequiredAttrs</b> field of the input <span><a href="4593a76b-71f1-4e4c-b5e1-4d2e27afb3cb" data-linktype="relative-path">DRS_MSG_VERIFYREQ_V1</a></span>
+structure if the corresponding name is verified.</p><p><b>PrefixTable:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_028437b6-7749-4428-b874-22e9559c1abe" data-linktype="relative-path">prefix
+table</a></span> used to translate <span><a href="91173129-08e6-497c-8266-b5ac0aa5f983" data-linktype="relative-path">ATTRTYP</a></span> values in
+the response to <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_aaaf2f1a-0b0a-487e-a0f0-c3510a6091b2" data-linktype="relative-path">OIDs</a></span>.</p></div>

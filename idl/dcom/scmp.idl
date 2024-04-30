@@ -1,0 +1,230 @@
+import "ms-dtyp.idl";
+import "ms-dcom.idl";
+import "ms-oaut.idl";
+ 
+typedef [v1_enum] enum _VSS_OBJECT_TYPE {
+   VSS_OBJECT_UNKNOWN      = 0x00000000,
+   VSS_OBJECT_NONE         = 0x00000001,
+   VSS_OBJECT_SNAPSHOT_SET = 0x00000002,
+   VSS_OBJECT_SNAPSHOT     = 0x00000003,
+   VSS_OBJECT_PROVIDER     = 0x00000004,
+   VSS_OBJECT_TYPE_COUNT   = 0x00000005
+} VSS_OBJECT_TYPE;
+ 
+typedef [v1_enum] enum _VSS_SNAPSHOT_STATE {
+   VSS_SS_UNKNOWN  = 0x00000000,
+   VSS_SS_CREATED  = 0x0000000c,
+} VSS_SNAPSHOT_STATE;
+ 
+typedef [v1_enum] enum _VSS_VOLUME_SNAPSHOT_ATTRIBUTES {
+   VSS_VOLSNAP_ATTR_PERSISTENT         = 0x00000001,
+   VSS_VOLSNAP_ATTR_NO_AUTORECOVERY    = 0x00000002,
+   VSS_VOLSNAP_ATTR_CLIENT_ACCESSIBLE  = 0x00000004,
+   VSS_VOLSNAP_ATTR_NO_AUTO_RELEASE    = 0x00000008,
+   VSS_VOLSNAP_ATTR_NO_WRITERS         = 0x00000010,
+} VSS_VOLUME_SNAPSHOT_ATTRIBUTES;
+ 
+typedef [v1_enum] enum _VSS_MGMT_OBJECT_TYPE {
+   VSS_MGMT_OBJECT_UNKNOWN     = 0x00000000,                            
+   VSS_MGMT_OBJECT_VOLUME      = 0x00000001,          
+   VSS_MGMT_OBJECT_DIFF_VOLUME = 0x00000002,
+   VSS_MGMT_OBJECT_DIFF_AREA   = 0x00000003,
+} VSS_MGMT_OBJECT_TYPE;
+ 
+typedef [v1_enum] enum _VSS_PROVIDER_TYPE
+{
+   VSS_PROV_UNKNOWN    = 0x00000000,
+} VSS_PROVIDER_TYPE;
+ 
+typedef GUID VSS_ID;
+ 
+typedef [unique, string] WCHAR* VSS_PWSZ;
+ 
+typedef LONGLONG VSS_TIMESTAMP;
+ 
+typedef struct _VSS_SNAPSHOT_PROP {
+   VSS_ID m_SnapshotId;
+   VSS_ID m_SnapshotSetId;
+   LONG m_lSnapshotsCount;
+   VSS_PWSZ m_pwszSnapshotDeviceObject;
+   VSS_PWSZ m_pwszOriginalVolumeName;
+   VSS_PWSZ m_pwszOriginatingMachine;
+   VSS_PWSZ m_pwszServiceMachine;
+   VSS_PWSZ m_pwszExposedName;
+   VSS_PWSZ m_pwszExposedPath;
+   VSS_ID m_ProviderId;
+   LONG m_lSnapshotAttributes;
+   VSS_TIMESTAMP m_tsCreationTimestamp;
+   VSS_SNAPSHOT_STATE m_eStatus;
+} VSS_SNAPSHOT_PROP;
+ 
+typedef struct _VSS_PROVIDER_PROP {
+   VSS_ID m_ProviderId;
+   VSS_PWSZ m_pwszProviderName;
+   VSS_PROVIDER_TYPE m_eProviderType;
+   VSS_PWSZ m_pwszProviderVersion;
+   VSS_ID m_ProviderVersionId;
+   CLSID m_ClassId;
+} VSS_PROVIDER_PROP;
+ 
+[ switch_type(VSS_OBJECT_TYPE) ]
+typedef union {
+   [case(VSS_OBJECT_SNAPSHOT)] VSS_SNAPSHOT_PROP Snap;
+   [case(VSS_OBJECT_PROVIDER)] VSS_PROVIDER_PROP Prov;
+   [default];
+} VSS_OBJECT_UNION;
+ 
+typedef struct _VSS_OBJECT_PROP {
+   VSS_OBJECT_TYPE Type;
+   [ switch_is(Type) ] VSS_OBJECT_UNION Obj;
+} VSS_OBJECT_PROP;
+ 
+typedef struct _VSS_VOLUME_PROP {
+   VSS_PWSZ m_pwszVolumeName;
+   VSS_PWSZ m_pwszVolumeDisplayName;
+} VSS_VOLUME_PROP;
+ 
+typedef struct _VSS_DIFF_VOLUME_PROP {
+   VSS_PWSZ m_pwszVolumeName;
+   VSS_PWSZ m_pwszVolumeDisplayName;
+   LONGLONG m_llVolumeFreeSpace;
+   LONGLONG m_llVolumeTotalSpace;
+} VSS_DIFF_VOLUME_PROP;
+ 
+typedef struct _VSS_DIFF_AREA_PROP {
+   VSS_PWSZ m_pwszVolumeName;
+   VSS_PWSZ m_pwszDiffAreaVolumeName;
+   LONGLONG m_llMaximumDiffSpace;
+   LONGLONG m_llAllocatedDiffSpace;
+   LONGLONG m_llUsedDiffSpace;
+} VSS_DIFF_AREA_PROP;
+ 
+[ switch_type(VSS_MGMT_OBJECT_TYPE) ]
+typedef union {                     
+   [case(VSS_MGMT_OBJECT_VOLUME)] VSS_VOLUME_PROP Vol;
+   [case(VSS_MGMT_OBJECT_DIFF_VOLUME)] VSS_DIFF_VOLUME_PROP DiffVol;
+   [case(VSS_MGMT_OBJECT_DIFF_AREA)] VSS_DIFF_AREA_PROP DiffArea;
+   [default];
+} VSS_MGMT_OBJECT_UNION;
+ 
+typedef struct _VSS_MGMT_OBJECT_PROP {
+   VSS_MGMT_OBJECT_TYPE Type;                          
+   [ switch_is(Type) ] VSS_MGMT_OBJECT_UNION Obj;      
+} VSS_MGMT_OBJECT_PROP;
+ 
+interface IVssSnapshotMgmt;
+interface IVssDifferentialSoftwareSnapshotMgmt;
+interface IVssEnumObject;
+interface IVssEnumMgmtObject;
+ 
+[
+   object,
+   uuid(FA7DF749-66E7-4986-A27F-E2F04AE53772),
+   pointer_default(unique)
+]
+interface IVssSnapshotMgmt: IUnknown
+{
+   HRESULT GetProviderMgmtInterface(
+       [in] VSS_ID ProviderId,
+       [in] REFIID InterfaceId,
+       [out, iid_is(InterfaceId)] IUnknown** ppItf
+       );
+ 
+   HRESULT QueryVolumesSupportedForSnapshots(
+       [in] VSS_ID ProviderId,
+       [in] LONG lContext,
+       [out] IVssEnumMgmtObject **ppEnum
+       );
+ 
+   HRESULT QuerySnapshotsByVolume(
+       [in] VSS_PWSZ pwszVolumeName,
+       [in] VSS_ID ProviderId,
+       [out] IVssEnumObject **ppEnum
+       );
+};
+ 
+[
+   object,
+   uuid(214A0F28-B737-4026-B847-4F9E37D79529),
+   pointer_default(unique)
+]
+interface IVssDifferentialSoftwareSnapshotMgmt: IUnknown
+{
+   HRESULT AddDiffArea(
+       [in] VSS_PWSZ pwszVolumeName,
+       [in] VSS_PWSZ pwszDiffAreaVolumeName,
+       [in] LONGLONG llMaximumDiffSpace
+       );
+ 
+   HRESULT ChangeDiffAreaMaximumSize(
+       [in] VSS_PWSZ pwszVolumeName,
+       [in] VSS_PWSZ pwszDiffAreaVolumeName,
+       [in] LONGLONG llMaximumDiffSpace
+       );
+ 
+   HRESULT QueryVolumesSupportedForDiffAreas(
+       [in] VSS_PWSZ pwszOriginalVolumeName,
+       [out] IVssEnumMgmtObject **ppEnum
+       );
+ 
+   HRESULT QueryDiffAreasForVolume(
+       [in] VSS_PWSZ pwszVolumeName,
+       [out] IVssEnumMgmtObject **ppEnum
+       );
+ 
+   HRESULT QueryDiffAreasOnVolume(
+       [in] VSS_PWSZ pwszVolumeName,
+       [out] IVssEnumMgmtObject **ppEnum
+       );
+ 
+   HRESULT Opnum08NotUsedOnWire(void);
+};
+ 
+[
+       object,
+       uuid(AE1C7110-2F60-11d3-8A39-00C04F72D8E3),
+       pointer_default(unique)
+]
+interface IVssEnumObject : IUnknown
+{
+       HRESULT Next(
+           [in] ULONG celt,
+           [out, size_is(celt), length_is(*pceltFetched)] VSS_OBJECT_PROP *rgelt,
+           [out] ULONG *pceltFetched
+           );
+ 
+       HRESULT Skip(
+           [in] ULONG celt
+           );
+ 
+       HRESULT Reset();
+ 
+       HRESULT Clone(
+           [in, out] IVssEnumObject **ppenum
+           );
+};
+ 
+[
+   object,
+   uuid(01954E6B-9254-4e6e-808C-C9E05D007696),
+   pointer_default(unique)
+]
+interface IVssEnumMgmtObject : IUnknown
+{
+   HRESULT Next(
+       [in] ULONG celt,                             
+       [out, size_is(celt), length_is(*pceltFetched)] VSS_MGMT_OBJECT_PROP *rgelt,
+       [out] ULONG *pceltFetched
+       );
+ 
+   HRESULT Skip(
+       [in] ULONG celt
+       );
+ 
+   HRESULT Reset();
+ 
+   HRESULT Clone(            
+       [in, out] IVssEnumMgmtObject **ppenum
+       );
+}; 
+ 

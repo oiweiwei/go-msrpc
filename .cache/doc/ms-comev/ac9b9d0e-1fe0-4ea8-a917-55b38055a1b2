@@ -1,0 +1,72 @@
+<div class="content"><p> </p><p>The IEventObjectCollection interface provides methods that
+manage and enumerate over a collection of <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">objects</a></span>. The
+interface inherits opnums 0 through 6 from <span><a href="../ms-oaut/ac9c502b-ac1c-4202-8ad4-048ac98afcc9" data-linktype="relative-path">IDispatch</a></span>
+as specified in <span><a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a></span>
+section 3.1.4. The version for this interface is 0.0. </p><p>The <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a></span> returns a
+DCOM object implementing this interface with <span><a href="e74594a9-404c-4729-91f4-3fe4453cdf4d#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+{f89ac270-d4eb-11d1-b682-00805fc79216} from the following methods:</p><ol><li><p><span>    </span>Query (Opnum
+7) (section <span><a href="2929ddac-3b08-4976-be20-876189da05b3" data-linktype="relative-path">3.1.4.1.1)</a></span></p>
+</li><li><p><span>    </span>GetPublisherPropertyCollection
+(Opnum 34) (section <span><a href="9d995cc7-5efa-47bc-9429-d4c9d2d6d087" data-linktype="relative-path">3.1.4.4.28)</a></span></p>
+</li><li><p><span>    </span>GetSubscriberPropertyCollection
+(Opnum 38) (section <span><a href="7b3c746c-9ce3-4027-a5fa-64c0701fdaf7" data-linktype="relative-path">3.1.4.4.32)</a></span></p>
+</li></ol><p>This interface includes the following methods beyond those
+of IDispatch.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span><a href="51f00701-b662-4944-8cc4-5230f9747057" data-linktype="relative-path">get__NewEnum</a></span></p>
+  </td>
+  <td>
+  <p>Returns an enumerator DCOM object.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="750d4e6c-c305-4739-8190-7a51847a4357" data-linktype="relative-path">get_Item</a></span></p>
+  </td>
+  <td>
+  <p>Gets the item in the collection based on an ID.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="3daff6c2-d474-4173-962d-f53bf89eebb5" data-linktype="relative-path">get_NewEnum</a></span></p>
+  </td>
+  <td>
+  <p>Gets the <span><a href="70b37fd7-5c0a-4354-9242-47dce8c00bf0" data-linktype="relative-path">IEnumEventObject</a></span>
+  supporting the DCOM based object instance for the underlying collection.</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="c9be0a30-d684-44e9-a68d-83ecb5fd35a6" data-linktype="relative-path">get_Count</a></span></p>
+  </td>
+  <td>
+  <p>Gets the number of items in the collection. </p>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="1a7ac278-27d8-4e44-b529-fe8dd244400d" data-linktype="relative-path">Add</a></span></p>
+  </td>
+  <td>
+  <p>Adds an item to the collection.</p>
+  <p>Opnum: 11</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="5a39769d-9e3a-4aa2-ba24-777f16c3db1d" data-linktype="relative-path">Remove</a></span></p>
+  </td>
+  <td>
+  <p>Removes an item from the collection.</p>
+  <p>Opnum: 12</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

@@ -1,0 +1,44 @@
+<div class="content"><p> </p><p>The IWbemRemoteRefresher::RemoteRefresh method MUST return
+the updated collection of <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_94e80069-5f2a-4281-a676-50ea656c4795" data-linktype="relative-path">CIM instances</a></span> and
+enumerations previously configured by the <span><a href="e2c4f36d-dc59-48bb-bb51-821732610e17" data-linktype="relative-path">IWbemRefreshingServices</a></span>
+<span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_e5ba77ec-1a10-4a4e-a980-c81942237b34" data-linktype="relative-path">interface
+pointer</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT RemoteRefresh(
+   [in] long lFlags,
+   [out] long* plNumObjects,
+   [out, size_is(,*plNumObjects)] WBEM_REFRESHED_OBJECT** paObjects
+ );
+</pre></div>
+</dd></dl><p><b>lFlags: </b>This parameter is not used, and its
+value MUST be 0x0.</p><p><b>plNumObjects: </b>If successful, <i>plNumObjects</i>
+MUST be a pointer to the number of CIM instances and enumerations that the
+method returns. It MUST NOT be NULL.</p><dl>
+<dd>
+<p>If the method fails, the server MUST set <i>plNumObjects</i>
+to NULL.</p>
+</dd></dl><p><b>paObjects: </b>If successful, <i>paObjects</i>
+MUST be a pointer to an array of WBEM_REFRESHED_OBJECT objects specified in
+section <span><a href="0b50e73d-1b94-48bd-bc5c-8dfd893c6d6d" data-linktype="relative-path">2.2.15</a></span>. The array
+MUST contain CIM instances and enumerations. It MUST NOT be NULL.</p><dl>
+<dd>
+<p>If the method fails, the server MUST set <i>paObjects</i>
+to NULL.</p>
+</dd></dl><p><b>Return Values: </b>This method MUST return an
+HRESULT value that MUST indicate the status of the method call. </p><dl>
+<dd>
+<p>The server MUST return WBEM_S_NO_ERROR (specified in
+section <span><a href="a2899649-a5a3-4b13-9ffa-d8394dcdac63" data-linktype="relative-path">2.2.11</a></span>) to indicate
+the successful completion of the method. </p>
+</dd>
+<dd>
+<p><b>WBEM_S_NO_ERROR</b> (0x00)</p>
+</dd></dl><p>The IWbemRemoteRefresher::RemoteRefresh method MUST be
+called on the <span><a href="7e35e02b-092d-407f-a4bf-131f648b7691" data-linktype="relative-path">IWbemRemoteRefresher</a></span>
+interface pointer returned as a member of the _WBEM_REFRESH_INFO structure from
+IWbemRefreshingServices methods or on the interface returned by <span><a href="09fcc398-c22f-4cf4-af67-2968b6d4e57e" data-linktype="relative-path">IWbemRefreshingServices::GetRemoteRefresher</a></span>
+method invocation.</p><p>In response to IWbemRemoteRefresher::RemoteRefresh method,
+the server MUST read the current values of all the <span><a href="6837a7cb-ba2d-46b1-802c-fce2fd5a6ad6#gt_8d8f4b2c-bf33-4964-b55c-96ac2cc999bb" data-linktype="relative-path">CIM objects</a></span>
+previously added to the set of refreshing objects using IWbemRefreshingServices
+methods. The updated values for all CIM objects MUST be encoded into the output
+parameter using the format specified in this section.</p></div>

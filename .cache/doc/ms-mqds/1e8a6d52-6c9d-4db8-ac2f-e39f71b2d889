@@ -1,0 +1,23 @@
+<div class="content"><p> </p><p>The S_DSEndDeleteNotification method closes the <span><a href="993fa29f-3deb-494f-b4b4-492ee945735f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span>
+context handle acquired from a previous call to <span><a href="8fa89cc3-1cd0-455b-81c6-3f5a72ea568c" data-linktype="relative-path">S_DSBeginDeleteNotification</a></span>.</p><dl>
+<dd>
+<div><pre> void S_DSEndDeleteNotification(
+   [in] handle_t hBind,
+   [in, out] PPCONTEXT_HANDLE_DELETE_TYPE pHandle
+ );
+</pre></div>
+</dd></dl><p><b>hBind: </b> MUST specify an RPC binding handle, as
+specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>
+section <span><a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a></span>.</p><p><b>pHandle: </b> MUST be set by the client to a pointer to
+an RPC context_handle returned by a previous call to
+S_DSBeginDeleteNotification. The RPC context handle MUST NOT have been used in
+a previous call to S_DSEndDeleteNotification. The server MUST set this
+parameter to NULL.</p><p><b>Return Values: </b> None.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol, as specified in [MS-RPCE].</p><p>While processing this call, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Look up the handle in the delete notification table. If not
+found, return an implementation-specific error code.</p>
+</li><li><p><span><span> 
+</span></span>Remove the entry from the delete notification table.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>pHandle</i> to NULL.</p>
+</li></ul></div>

@@ -1,0 +1,23 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="external">msdn link</a></p><p>The LsarOpenPolicy method is exactly the same as <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>, except
+that the <i>SystemName</i> parameter in this function, because of its syntactic
+definition, contains only one character instead of a full string. This <i>SystemName</i>
+parameter does not have any effect on message processing in any environment. It
+MUST be ignored.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarOpenPolicy(
+   [in, unique] wchar_t* SystemName,
+   [in] PLSAPR_OBJECT_ATTRIBUTES ObjectAttributes,
+   [in] ACCESS_MASK DesiredAccess,
+   [out] LSAPR_HANDLE* PolicyHandle
+ );
+</pre></div>
+</dd></dl><p><b>SystemName: </b>This parameter does not have any
+effect on message processing in any environment. It MUST be ignored on receipt.</p><p><b>ObjectAttributes: </b>This parameter does not have
+any effect on message processing in any environment. All fields MUST<a id="Appendix_A_Target_60"></a><a aria-label="Product behavior note 60" href="2a769a08-e023-459f-aebe-4fb3f595c0b7#Appendix_A_60" data-linktype="relative-path">&lt;60&gt;</a> be ignored except <b>RootDirectory</b>,
+which MUST be NULL.</p><p><b>DesiredAccess: </b>An <a href="7aeb7f17-0a6e-4f04-ac7e-7b1363cf9ecf" data-linktype="relative-path">ACCESS_MASK</a> value that
+specifies the requested access rights that MUST be granted on the returned
+PolicyHandle, if the request is successful.</p><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle (as
+specified in section <a href="0d093105-e8c8-45f7-a79d-182aafd60c6e" data-linktype="relative-path">2.2.2.1</a>)
+that represents a reference to the abstract data model of a policy object, as
+specified in section <a href="c939c70e-8cf0-4d90-a9cc-1c5002951723" data-linktype="relative-path">3.1.1.1</a>.</p><p>Processing:</p><p>The processing is the same as for LsarOpenPolicy2.
+LsarOpenPolicy2 supersedes this message and MUST be used when possible.</p></div>

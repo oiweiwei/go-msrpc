@@ -1,0 +1,50 @@
+<div class="content"><p> </p><p>The <b>FAX_JOB_EXTENDED_STATUS_ENUM</b> enumeration defines
+the extended status values for a fax job. These are basic values provided for
+developers of an <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_2ba66d72-d766-440f-b5ea-0333759b147c" data-linktype="relative-path">FSP</a></span>. However, with
+the exception of fjesPARTIALLY_RECEIVED, these values or other proprietary
+values that can be developed for a specific FSP are not recognized or
+interpreted by the fax server.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   fjesNONE = 0,
+   fjesDISCONNECTED = 1,
+   fjesINITIALIZING = 2,
+   fjesDIALING = 3,
+   fjesTRANSMITTING = 4,
+   fjesANSWERED = 5,
+   fjesRECEIVING = 6,
+   fjesLINE_UNAVAILABLE = 7,
+   fjesBUSY = 8,
+   fjesNO_ANSWER = 9,
+   fjesBAD_ADDRESS = 10,
+   fjesNO_DIAL_TONE = 11,
+   fjesFATAL_ERROR = 12,
+   fjesCALL_DELAYED = 13,
+   fjesCALL_BLACKLISTED = 14,
+   fjesNOT_FAX_CALL = 15,
+   fjesPARTIALLY_RECEIVED = 16,
+   fjesHANDLED = 17,
+   fjesCALL_COMPLETED = 18,
+   fjesCALL_ABORTED = 19,
+   fjesPROPRIETARY = 0x01000000
+ } FAX_JOB_EXTENDED_STATUS_ENUM;
+</pre></div>
+</dd></dl><p><b>fjesNONE: </b>No extended status value.</p><p><b>fjesDISCONNECTED: </b>The sender or the caller
+disconnected the fax call.</p><p><b>fjesINITIALIZING: </b>The device is initializing a
+call.</p><p><b>fjesDIALING: </b>The device is dialing a fax
+number.</p><p><b>fjesTRANSMITTING: </b>The device is sending a fax.</p><p><b>fjesANSWERED: </b>The device answered a new call.</p><p><b>fjesRECEIVING: </b>The device is receiving a fax.</p><p><b>fjesLINE_UNAVAILABLE: </b>The device is not
+available because it is in use by another application.</p><p><b>fjesBUSY: </b>The device encountered a busy
+signal.</p><p><b>fjesNO_ANSWER: </b>The receiving device did not
+answer the call.</p><p><b>fjesBAD_ADDRESS: </b>The device dialed an invalid
+fax number.</p><p><b>fjesNO_DIAL_TONE: </b>The sending device cannot
+complete the call because it does not detect a dial tone.</p><p><b>fjesFATAL_ERROR: </b>The device has encountered a
+fatal protocol error.</p><p><b>fjesCALL_DELAYED: </b>The device delayed a fax
+call because the sending device received a busy signal multiple times. The
+device cannot retry the call because dialing restrictions exist (some
+countries/regions restrict the number of retry attempts when a number is busy).</p><p><b>fjesCALL_BLACKLISTED: </b>The device could not
+complete a call because the telephone number was blocked or reserved; emergency
+numbers such as 911 are blocked.</p><p><b>fjesNOT_FAX_CALL: </b>The device received a call
+that was a data call or a voice call.</p><p><b>fjesPARTIALLY_RECEIVED: </b>The incoming fax was
+partially received. Some (but not all) of the pages are available.</p><p><b>fjesHANDLED: </b>The fax service processed the
+outbound fax; the FSP will transmit the fax.</p><p><b>fjesCALL_COMPLETED: </b>The call was completed.</p><p><b>fjesCALL_ABORTED: </b>The call was aborted.</p><p><b>fjesPROPRIETARY: </b>Obsolete.</p></div>

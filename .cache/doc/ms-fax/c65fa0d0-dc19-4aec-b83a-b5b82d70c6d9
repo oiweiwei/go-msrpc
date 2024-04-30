@@ -1,0 +1,231 @@
+<div class="content"><p> </p><p>The <b>FAX_EnumJobsEx (Opnum 28)</b> method is called by the
+client to enumerate a specified set of jobs on the server&#39;s <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a></span>.
+The type of jobs to enumerate is described by the <i>dwJobTypes</i> argument. </p><p>In response, the server MUST validate whether the client&#39;s
+fax user account has access to enumerate the jobs. On success, the server MUST
+return information about all the jobs of the specified type. It MUST also
+return the total size of the buffer in which the information is returned and
+the total number of enumerated jobs.</p><p>The client SHOULD free the returned buffer.</p><dl>
+<dd>
+<div><pre> error_status_t FAX_EnumJobsEx(
+   [in] handle_t hBinding,
+   [in] DWORD dwJobTypes,
+   [out, size_is(, *BufferSize)] LPBYTE* Buffer,
+   [out, ref] LPDWORD BufferSize,
+   [out, ref] LPDWORD lpdwJobs
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The RPC binding handle for this
+call. The client SHOULD reuse the RPC binding handle used as an input <i>hBinding</i>
+argument for the <b>FAX_ConnectFaxServer</b> (section <span><a href="5cbfd38d-7a14-4560-ad24-9ed78f19a3bb" data-linktype="relative-path">3.1.4.1.10</a></span>) or <b>FAX_ConnectionRefCount</b>
+(section <span><a href="a92941ac-bd07-4a71-af85-c2c157c97cf9" data-linktype="relative-path">3.1.4.1.11</a></span>) method
+call used to connect to the fax server.</p><p><b>dwJobTypes: </b>A <b>DWORD</b> (<span><a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a></span>
+section <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">2.2.9</a></span>)
+value. The <i>dwJobTypes</i> parameter SHOULD be a bitwise combination of job
+types defined in section <span><a href="bd422bcf-7ce8-4576-addb-89345ea84f9f" data-linktype="relative-path">3.1.1</a></span>. Only jobs
+that are of the requested types SHOULD be returned in the buffer. If zero is
+passed as a value for the parameter (0 is not a valid job type), the server
+will return success, but with a zero-byte buffer.</p><p><b>Buffer: </b>A pointer to the address of a buffer
+to receive an array of <b>FAX_JOB_ENTRY_EXW</b> (section <span><a href="0c0c6cad-4f41-4b3f-b9ed-2383cf318d44" data-linktype="relative-path">2.2.35</a></span>)
+structures followed by an array of the same number of <b>FAX_JOB_STATUS</b>
+(section <span><a href="e1f304ec-977b-45e0-9db7-95c395a0a337" data-linktype="relative-path">2.2.36</a></span>) structures,
+followed by other data pointed at from these structures (from pointer type
+fields). Each <b>FAX_JOB_ENTRY_EXW</b> and <b>FAX_JOB_STATUS</b> pair describes
+one <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_9369467f-ee6b-427f-9d5c-f9cacc40ae66" data-linktype="relative-path">fax
+job</a></span>. For each returned <b>FAX_JOB_ENTRY_EXW</b>, if the <b>pStatus</b>
+pointer is not NULL, it MUST point to one of the <b>FAX_JOB_STATUS</b> in the
+buffer. If the <b>pStatus</b> pointer is NULL, the <b>FAX_JOB_STATUS</b>
+attached to the current <b>FAX_JOB_ENTRY_EXW</b> is located at the
+corresponding index position in the structure array. This data is serialized on
+the wire. The field length MUST be clamped to 32 bits before serialization.</p><dl>
+<dd>
+<p>For example, when three jobs are successfully
+enumerated, the call returns ERROR_SUCCESS with a value of 3 for the <i>*lpdwJobs</i>
+output argument. The returned data is arranged in memory as follows, from the
+start of the address specified by the <i>Buffer</i> parameter:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Data structure</p>
+   </th>
+   <th>
+   <p>Size</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><b>FAX_JOB_ENTRY_EXW</b></p>
+  </td>
+  <td>
+  <dl>
+<dd>
+<div><pre>sizeof(FAX_JOB_ENTRY_EXW)
+</pre></div>
+</dd></dl>
+  <p> </p>
+  </td>
+  <td>
+  <p>The first <b>FAX_JOB_ENTRY_EXW</b> in the buffer,
+  corresponding to the first <b>FAX_JOB_STATUS</b> in the buffer if <i>pStatus</i>
+  is NULL in this <b>FAX_JOB_ENTRY_EXW</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>FAX_JOB_ENTRY_EXW</b></p>
+  </td>
+  <td>
+  <dl>
+<dd>
+<div><pre> sizeof(FAX_JOB_ENTRY_EXW)
+</pre></div>
+</dd></dl>
+  <p> </p>
+  </td>
+  <td>
+  <p>The second <b>FAX_JOB_ENTRY_EXW</b> in the buffer,
+  corresponding to the second <b>FAX_JOB_STATUS</b> in the buffer if <i>pStatus</i>
+  is NULL in this <b>FAX_JOB_ENTRY_EXW</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>FAX_JOB_ENTRY_EXW</b></p>
+  </td>
+  <td>
+  <dl>
+<dd>
+<div><pre> sizeof(FAX_JOB_ENTRY_EXW)
+</pre></div>
+</dd></dl>
+  <p> </p>
+  </td>
+  <td>
+  <p>The third <b>FAX_JOB_ENTRY_EXW</b> in the buffer,
+  corresponding to the third <b>FAX_JOB_STATUS</b> in the buffer if <i>pStatus</i>
+  is NULL in this <b>FAX_JOB_ENTRY_EXW</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>FAX_JOB_STATUS</b></p>
+  </td>
+  <td>
+  <dl>
+<dd>
+<div><pre> sizeof(FAX_JOB_STATUS)
+</pre></div>
+</dd></dl>
+  <p> </p>
+  </td>
+  <td>
+  <p>The first <b>FAX_JOB_STATUS</b> in the buffer,
+  corresponding to the first <b>FAX_JOB_ENTRY_EXW</b> in the buffer if <i>pStatus</i>
+  is NULL in this <b>FAX_JOB_ENTRY_EXW</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>FAX_JOB_STATUS</b></p>
+  </td>
+  <td>
+  <dl>
+<dd>
+<div><pre> sizeof(FAX_JOB_STATUS)
+</pre></div>
+</dd></dl>
+  <p> </p>
+  </td>
+  <td>
+  <p>The second <b>FAX_JOB_STATUS</b> in the buffer,
+  corresponding to the second <b>FAX_JOB_ENTRY_EXW</b> in the buffer if <i>pStatus</i>
+  is NULL in this <b>FAX_JOB_ENTRY_EXW</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>FAX_JOB_STATUS</b></p>
+  </td>
+  <td>
+  <dl>
+<dd>
+<div><pre> sizeof(FAX_JOB_STATUS)
+</pre></div>
+</dd></dl>
+  <p> </p>
+  </td>
+  <td>
+  <p>The third <b>FAX_JOB_STATUS</b> in the buffer,
+  corresponding to the third <b>FAX_JOB_ENTRY_EXW</b> in the buffer if <i>pStatus</i>
+  is NULL in this <b>FAX_JOB_ENTRY_EXW</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Other data</p>
+  </td>
+  <td>
+  <dl>
+<dd>
+<div><pre> *BufferSize   – (3 * (sizeof(FAX_JOB_ENTRY_EXW) + sizeof(FAX_JOB_STATUS)))
+</pre></div>
+</dd></dl>
+  <p> </p>
+  </td>
+  <td>
+  <p>Data pointed at by pointer fields in <b>FAX_JOB_ENTRY_EXW</b>
+  and <b>FAX_JOB_STATUS</b> at the beginning of the buffer.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>BufferSize: </b>A variable to return the size, in
+bytes, of the buffer.</p><p><b>lpdwJobs: </b>A pointer to a <b>DWORD</b>
+([MS-DTYP] section 2.2.9) variable to receive the number of <b>FAX_JOB_ENTRY_EXW</b>
+and <b>FAX_JOB_STATUS</b> that the method returns in the <i>Buffer</i>
+parameter.</p><p><b>Return Values: </b>This method MUST return
+0x00000000 (ERROR_SUCCESS) for success; otherwise, it MUST return one of the
+following error codes, one of the fax-specific errors that are defined in
+section <span><a href="cbe6c4fb-4dda-4f6c-9701-0d490ba0d105" data-linktype="relative-path">2.2.52</a></span>, or one of
+the other standard errors defined in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Access is denied. The client&#39;s fax user account does
+  not have any of the access rights defined in <b>ALL_FAX_USER_ACCESS_RIGHTS </b>(section
+  <span><a href="6b6ab8ee-03ec-42de-a4fa-fd0b5703b2c3" data-linktype="relative-path">2.2.83</a></span>)
+  when enumerating jobs of type JT_SEND. The client&#39;s fax user account does not
+  have the <b>FAX_ACCESS_MANAGE_RECEIVE_FOLDER</b> access right when
+  enumerating jobs of type <b>JT_RECEIVE</b> or <b>JT_ROUTING</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Not enough storage is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_INVALID_PARAMETER</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>At least one of the following arguments has been
+  specified as NULL: <i>Buffer</i>, <i>BufferSize</i>, or <i>lpdwJobs</i>.<a id="Appendix_A_Target_88"></a><a aria-label="Product behavior note 88" href="056171e7-80bc-45ff-8107-66ba3abb2023#Appendix_A_88" data-linktype="relative-path">&lt;88&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown: </b>No exceptions are thrown
+except those that are thrown by the underlying <span><a href="46aba9c4-ebb1-4b10-86ac-4bb3025657b9#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> protocol, <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p></div>

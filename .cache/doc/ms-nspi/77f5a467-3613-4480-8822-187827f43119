@@ -1,0 +1,38 @@
+<div class="content"><p> </p><p>The NspiDNToMId method maps a set of <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a></span>
+to a set of <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_42ecf4ed-a7e5-4044-a1f0-f67ca58fb4b6" data-linktype="relative-path">MId</a></span>.</p><dl>
+<dd>
+<div><pre> long NspiDNToMId(
+   [in] NSPI_HANDLE hRpc,
+   [in] DWORD Reserved,
+   [in] StringsArray_r* pNames,
+   [out] PropertyTagArray_r** ppOutMIds
+ );
+</pre></div>
+</dd></dl><p><b>hRpc: </b> An <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+as specified in section <span><a href="67195f6a-2002-4d81-b279-ba8b0aefb4af" data-linktype="relative-path">2.3.9</a></span>.</p><p><b>Reserved: </b>A <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value reserved for future use. Ignored by the server.</p><p><b>pNames: </b>A <span><a href="2c7ac29c-0124-464e-a018-16950cfcfabb" data-linktype="relative-path">StringsArray_r</a></span>
+value. It holds a list of strings containing DNs, according to <span><a href="/en-us/openspecs/exchange_server_protocols/MS-OXOABK/f4cf9b4c-9232-4506-9e71-2270de217614" data-linktype="absolute-path">[MS-OXOABK]</a></span>.</p><p><b>ppOutMIds: </b>A <span><a href="9dc42856-90da-4df9-85ca-f8307db84659" data-linktype="relative-path">PropertyTagArray_r</a></span>
+value. On return, it holds a list of MIds.</p><p><b>Return Values: </b>The server returns a long value
+specifying the return status of the method.</p><p>Exceptions Thrown</p><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>Server Processing Rules</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints: </p><ol><li><p><span>    </span>If the server
+returns any return value other than Success, the server MUST return the value
+NULL in the return parameter <i>ppOutMIds</i>.</p>
+</li><li><p><span>    </span>The server MAY
+make additional validations as described in <span><a href="39bcbcd7-fa18-4eb2-a2ae-c598b6683185" data-linktype="relative-path">Security (section 5)</a></span>.
+If the server chooses to limit the visibility of data based on these
+validations, the server MUST proceed as if that data did not exist in the
+address book. See the product behavior note cited in section <span><a href="36c0f768-1fdd-4709-9875-6c387b107560" data-linktype="relative-path">5.1</a></span>
+for more information.</p>
+</li><li><p><span>    </span>If the server is
+unable to locate an appropriate mapping between a DN and a MId, it MUST map the
+DN to a MId with the value 0.</p>
+</li><li><p><span>    </span>The server
+constructs a list of MIds to return to the client, encoding the mappings. The
+list is in a one-to-one order preserving correspondence with the list of DNs in
+the input parameter <i>pNames</i>. The server MUST return the list in the
+output parameter <i>ppOutMIds</i>.</p>
+</li><li><p><span>    </span>If no other
+return values have been specified by these constraints, the server MUST return
+the return value Success.</p>
+</li></ol></div>

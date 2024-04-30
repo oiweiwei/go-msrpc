@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The DS_REPL_NEIGHBORSW structure defines a set of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span>
+neighbors. This structure is a concrete representation of a sequence of <span><a href="3ef27d3c-b9c9-4404-8e53-ebf3a64a9a10" data-linktype="relative-path">RepsFrom</a></span>
+or <span><a href="302391a9-f6e1-4c0c-a1b2-5604a42e982b" data-linktype="relative-path">RepsTo</a></span>
+values.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD cNumNeighbors;
+   DWORD dwReserved;
+   [size_is(cNumNeighbors)] DS_REPL_NEIGHBORW rgNeighbor[];
+ } DS_REPL_NEIGHBORSW;
+</pre></div>
+</dd></dl><p><b>cNumNeighbors:</b>  The count of items
+in the <b>rgNeighbor</b> array.</p><p><b>dwReserved:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>rgNeighbor:</b>  A set of replication
+neighbors.</p></div>

@@ -1,0 +1,28 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/c2efbd27-7166-4305-a33d-e2519a1dc2cf" data-linktype="external">msdn link</a></p><p>The SAM_VALIDATE_PASSWORD_CHANGE_INPUT_ARG structure holds
+information about a password change request.</p><dl>
+<dd>
+<div><pre> typedef struct _SAM_VALIDATE_PASSWORD_CHANGE_INPUT_ARG {
+   SAM_VALIDATE_PERSISTED_FIELDS InputPersistedFields;
+   RPC_UNICODE_STRING ClearPassword;
+   RPC_UNICODE_STRING UserAccountName;
+   SAM_VALIDATE_PASSWORD_HASH HashedPassword;
+   unsigned char PasswordMatch;
+ } SAM_VALIDATE_PASSWORD_CHANGE_INPUT_ARG,
+  *PSAM_VALIDATE_PASSWORD_CHANGE_INPUT_ARG;
+</pre></div>
+</dd></dl><p><b>InputPersistedFields:</b>  Password
+state. See section <a href="e0b2d21d-0b1c-4fc0-8f4a-895bef6ffc4e" data-linktype="relative-path">2.2.9.2</a>.</p><p><b>ClearPassword:</b>  The cleartext
+password of the change-password operation.</p><p><b>UserAccountName:</b>  The
+application-specific logon name of an <a href="7b2aeb27-92fc-41f6-8437-deb65d950921#gt_8d10bd9d-392e-431b-8218-742bdac19815" data-linktype="relative-path">account</a> performing the
+change-password operation.</p><p><b>HashedPassword:</b>  A binary value
+containing a hashed form of the value contained in the <b>ClearPassword</b>
+field. The structure of this binary value is specified in section <a href="295b336b-27c8-4dfe-bc18-216c13bb6ebc" data-linktype="relative-path">2.2.9.1</a>. The hash function
+used to generate this value is chosen by the client. An example hash function
+might be MD5 (as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90275" data-linktype="external">[RFC1321]</a>). The server
+implementation is independent of that choice; that is, through this protocol,
+the server is exposed to a sequence of bytes formatted per section 2.2.9.1 and
+is, therefore, not exposed to the hash function chosen by the client.
+Furthermore, there is no processing by the server that requires knowledge of
+the specific hash function chosen. Section <a href="218e3a7a-042f-4c80-97ce-3d46c4efa3fe" data-linktype="relative-path">2.2.9</a> contains more
+information about a scenario in which this field is used.</p><p><b>PasswordMatch:</b>  A nonzero value
+indicates that a valid password was presented to the change-password request.</p></div>

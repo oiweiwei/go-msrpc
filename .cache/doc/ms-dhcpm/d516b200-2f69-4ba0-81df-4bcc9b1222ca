@@ -1,0 +1,43 @@
+<div class="content"><p> </p><p>The <b>SCOPE_MIB_INFO_VQ</b> structure contains the address
+counters for a specific IPv4 subnet. The numbers of free, used, and offered
+IPv4 address are stored in this structure. This structure is an extension of
+the <span><a href="d0be0bd8-4780-49b3-8284-42369f38839d" data-linktype="relative-path">SCOPE_MIB_INFO (section 2.2.1.2.47)</a></span>
+structure and is used in the <span><a href="058a3247-3961-4b72-b0ce-19ef92606a04" data-linktype="relative-path">DHCP_MIB_INFO_VQ (section 2.2.1.2.50)</a></span>
+structure. </p><dl>
+<dd>
+<div><pre> typedef struct _SCOPE_MIB_INFO_VQ {
+   DHCP_IP_ADDRESS Subnet;
+   DWORD NumAddressesInuse;
+   DWORD NumAddressesFree;
+   DWORD NumPendingOffers;
+   DWORD QtnNumLeases;
+   DWORD QtnPctQtnLeases;
+   DWORD QtnProbationLeases;
+   DWORD QtnNonQtnLeases;
+   DWORD QtnExemptLeases;
+   DWORD QtnCapableClients;
+ } SCOPE_MIB_INFO_VQ,
+  *LPSCOPE_MIB_INFO_VQ;
+</pre></div>
+</dd></dl><p><b>Subnet:</b>  This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>,
+a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+containing the IPv4 <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_e6a800ef-fd8a-4d87-834c-131e58f304ea" data-linktype="relative-path">subnet ID</a></span> for the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_128cd76b-eecb-41e6-96f7-f73c2bf9235a" data-linktype="relative-path">scope</a></span>.</p><p><b>NumAddressesInuse:</b>  This is of type
+DWORD, containing the number of IPv4 addresses leased to DHCPv4 clients on a
+given IPv4 subnet. </p><p><b>NumAddressesFree:</b>  This is of type
+DWORD, containing the number of IPv4 addresses that are free and can be leased
+to DHCPv4 clients on a given IPv4 subnet. </p><p><b>NumPendingOffers:</b>  This is of type
+DWORD, containing the number of IPv4 addresses that are offered to DHCPv4
+clients on a given IPv4 subnet but which the DHCPv4 client has not confirmed. </p><p><b>QtnNumLeases:</b>  This field MUST be
+set to zero when sent and ignored on receipt. This is treated as an error if it
+is nonzero in an <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> method that
+queries DHCPv4 server configuration.</p><p><b>QtnPctQtnLeases:</b>  This field MUST be
+set to zero when sent and ignored on receipt. This is treated as an error if it
+is nonzero in an RPC method that queries DHCPv4 server configuration.</p><p><b>QtnProbationLeases:</b>  This field MUST
+be set to zero when sent and ignored on receipt. This is treated as an error if
+it is nonzero in an RPC method that queries DHCPv4 server configuration.</p><p><b>QtnNonQtnLeases:</b>  This field MUST be
+set to zero when sent and ignored on receipt. This is treated as an error if it
+is nonzero in an RPC method that queries DHCPv4 server configuration.</p><p><b>QtnExemptLeases:</b>  This field MUST be
+set to zero when sent and ignored on receipt. This is treated as an error if it
+is nonzero in an RPC method that queries DHCPv4 server configuration.</p><p><b>QtnCapableClients:</b>  This field MUST
+be set to zero when sent and ignored on receipt. This is treated as an error if
+it is nonzero in an RPC method that queries DHCPv4 server configuration.</p></div>

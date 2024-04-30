@@ -1,0 +1,75 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/71c7bedf-88cf-4eb8-9bc5-80d14a222e53" data-linktype="external">msdn link</a></p><p>The <b>CLUSTER_REG_BATCH_UPDATE</b> structure is a
+self-describing data structure that contains a sequence of command blocks that
+describes one or more modifications or read operations to be performed on the
+cluster registry. A <b>CLUSTER_REG_BATCH_UPDATE</b> structure MUST consist of
+the following elements:</p><ul><li><p><span><span> 
+</span></span>A version number.</p>
+</li><li><p><span><span> 
+</span></span>One or more batch update command blocks describing a set of
+modifications to the registry or read operations from the registry.</p>
+<p>Each batch update command
+block, in turn, MUST consist of the following elements:</p>
+<ul><li><p><span><span>  </span></span>A
+command type.</p>
+</li><li><p><span><span>  </span></span>The
+name of a key or value.</p>
+</li><li><p><span><span>  </span></span>Any
+optional data required for the command.</p>
+</li></ul></li></ul><p>Conceptually, a <b>CLUSTER_REG_BATCH_UPDATE</b> structure
+can be illustrated as in the following diagram.</p><p><img id="MS-CMRP_pictf20d0898-d7f2-2e04-3a6c-3bddc7867092.png" src="ms-cmrp_files/image002.png" alt="CLUSTER_REG_BATCH_UPDATE structure" title="CLUSTER_REG_BATCH_UPDATE structure" data-linktype="relative-path"/></p><p><b>Figure 2: CLUSTER_REG_BATCH_UPDATE structure</b></p><p><b>CLUSTER_REG_BATCH_UPDATE</b> is a custom-marshaled
+structure that has fields as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>VersionNumber</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>BatchUpdateCommand
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>VersionNumber (4 bytes): </b>A 32-bit integer that
+indicates the version of the batch update command block. This value MUST be set
+to one.</p><p><b>BatchUpdateCommand (variable): </b>One or more
+instances of a variable-length data structure that describes a set of
+modifications to be made to the cluster registry.</p></div>

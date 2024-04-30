@@ -1,0 +1,189 @@
+<div class="content"><p> </p><p>The DRS_MSG_FINISH_DEMOTIONREQ_V1 structure defines the
+request message sent to the <span><a href="0bf530e8-1be0-4f48-b8c2-208031a8725f" data-linktype="relative-path">IDL_DRSFinishDemotion</a></span>
+method.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwOperations;
+   UUID uuidHelperDest;
+   [string] LPWSTR szScriptBase;
+ } DRS_MSG_FINISH_DEMOTIONREQ_V1;
+</pre></div>
+</dd></dl><p><b>dwOperations:</b>  Zero or more of the
+following bit flags, which are presented in little-endian byte order.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>U 2</p>
+  </td>
+  <td>
+  <p>U 1</p>
+  </td>
+  <td>
+  <p>D</p>
+  </td>
+  <td>
+  <p>C</p>
+  </td>
+  <td>
+  <p>R</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+  <td>
+  <p>X</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>X:</b> Unused. MUST be
+zero and ignored.</p>
+</dd>
+<dd>
+<p><b>R
+(DS_DEMOTE_ROLLBACK_DEMOTE, 0x00000001):</b> Undo the effects of <span><a href="faca17da-3f7f-4092-98db-fd2ce7d98b8c" data-linktype="relative-path">IDL_DRSInitDemotion</a></span>.
+If present, any other flags present (except for DS_DEMOTE_OPT_FAIL_ON_UNKNOWN)
+are ignored.</p>
+</dd>
+<dd>
+<p><b>C
+(DS_DEMOTE_COMMIT_DEMOTE, 0x00000002):</b> Discontinue being a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span>
+for the current DC instance by stopping all <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_afdbd6cd-9f55-4d2f-a98e-1207985534ab" data-linktype="relative-path">AD LDS</a></span> protocols.</p>
+</dd>
+<dd>
+<p><b>D
+(DS_DEMOTE_DELETE_CSMETA, 0x00000004):</b> Delete the <span><a href="../ms-adsc/5a79757d-2412-4846-bd7c-7585838a5a44" data-linktype="relative-path">nTDSDSA</a></span>
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>
+for this DC; see <span><a href="9bb77bbf-7fcc-40a9-9cb9-a60739e3cf41" data-linktype="relative-path">RemoveADLDSServer (section 4.1.7.2.1)</a></span>.</p>
+</dd>
+<dd>
+<p><b>U1
+(DS_DEMOTE_UNREGISTER_SCPS, 0x00000008):</b> Delete any <span><a href="../ms-adsc/d9025ca2-017a-483f-8fd1-47b61f843e42" data-linktype="relative-path">serviceConnectionPoint</a></span>
+objects for this DC from <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_2e72eeeb-aee9-4b0a-adc6-4476bacf5024" data-linktype="relative-path">AD DS</a></span>; see <span><a href="1e458dcf-4e99-480b-a543-a03ea0c65403" data-linktype="relative-path">RemoveADLDSSCP (section 4.1.7.2.2)</a></span>.</p>
+</dd>
+<dd>
+<p><b>U2
+(DS_DEMOTE_UNREGISTER_SPNS, 0x00000010):</b> Delete any AD LDS <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_547217ca-134f-4b43-b375-f5bca4c16ce4" data-linktype="relative-path">SPNs</a></span>
+from the object (in the external AD DS <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>) that
+corresponds to the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_f3ef2572-95cf-4c5c-b3c9-551fd648f409" data-linktype="relative-path">security principal</a></span>
+that the AD LDS service is running as; see <span><a href="3090a835-67d9-404a-8110-9d443a0c8921" data-linktype="relative-path">RemoveADLDSSPNs (section 4.1.7.2.3)</a></span>.</p>
+</dd>
+<dd>
+<p><b>F
+(DS_DEMOTE_OPT_FAIL_ON_UNKNOWN_OP, 0x80000000):</b> If this flag is present, then
+the request fails.</p>
+</dd></dl><p><b>uuidHelperDest:</b> Unused. Must be <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_ba500a5b-8c29-467c-a335-0980c8b11304" data-linktype="relative-path">NULL GUID</a></span>
+and ignored.</p><p><b>szScriptBase:</b> The path name of the folder
+in which to store SPN unregistration scripts. Required when
+DS_DEMOTE_UNREGISTER_SPNS is specified in <b>dwOperations</b>.</p></div>

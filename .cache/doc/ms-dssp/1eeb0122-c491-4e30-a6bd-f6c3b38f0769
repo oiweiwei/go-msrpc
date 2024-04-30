@@ -1,0 +1,14 @@
+<div class="content"><p> </p><p>The DSROLE_PRIMARY_DOMAIN_INFO_LEVEL enumeration defines the
+information level that the client requests.</p><dl>
+<dd>
+<div><pre> typedef  enum _DSROLE_PRIMARY_DOMAIN_INFO_LEVEL
+ {
+   DsRolePrimaryDomainInfoBasic = 1,
+   DsRoleUpgradeStatus,
+   DsRoleOperationState
+ } DSROLE_PRIMARY_DOMAIN_INFO_LEVEL;
+</pre></div>
+</dd></dl><p><b>DsRolePrimaryDomainInfoBasic:  </b>Request for
+information about the domain to which the computer belongs.</p><p><b>DsRoleUpgradeStatus:</b>  Request for computer <span><a href="4339df3c-494b-49b4-9c60-d25526a35a0d#gt_5f20a152-dcb9-40a4-9c34-9ba11c74f8e6" data-linktype="relative-path">operating
+system upgrade</a></span> status.</p><p><b>DsRoleOperationState:  </b>Request for computer
+operation state.</p></div>

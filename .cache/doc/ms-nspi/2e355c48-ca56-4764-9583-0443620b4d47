@@ -1,0 +1,22 @@
+<div class="content"><p> </p><p>The NspiUnbind method destroys the context handle. No other
+action is taken.</p><dl>
+<dd>
+<div><pre> DWORD NspiUnbind(
+   [in, out] NSPI_HANDLE* contextHandle,
+   [in] DWORD Reserved
+ );
+</pre></div>
+</dd></dl><p><b>contextHandle: </b>An <span><a href="1b8009c5-72bc-41da-bbab-612b31da4410#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> context handle
+as specified in section <span><a href="67195f6a-2002-4d81-b279-ba8b0aefb4af" data-linktype="relative-path">2.3.9</a></span>.</p><p><b>Reserved: </b>A DWORD value reserved for future
+use. MUST be ignored by the server.</p><p><b>Return Values: </b>The server returns a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+value specifying the return status of the method.</p><p>Exceptions Thrown</p><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol, as specified in <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>Server Processing Rules</p><p>Upon receiving this message, the server MUST process the
+data from the message subject to the following constraints:</p><ol><li><p><span>    </span>If the input
+parameter <i>contextHandle</i> is NULL, the server MUST return the value 2.</p>
+</li><li><p><span>    </span>If the server
+successfully destroys the context handle, the server MUST return the value 1.</p>
+</li><li><p><span>    </span>If no other
+return code has been set, the server MUST return the value 2.</p>
+</li><li><p><span>    </span>The server MUST
+set the output parameter <i>contextHandle</i> to NULL.</p>
+</li></ol></div>

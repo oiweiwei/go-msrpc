@@ -1,0 +1,15 @@
+<div class="content"><p> </p><p>The DS_REPL_KCC_DSA_FAILURESW structure defines a set of <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DCs</a></span>
+that are in an error state with respect to <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span>. This
+structure is a concrete representation of <span><a href="eaffa80d-8baf-4784-898e-e9fbc7bd8296" data-linktype="relative-path">KCCFailedConnections</a></span>
+and <span><a href="fec285f3-7f03-4cfc-89ac-911f61c0c7d3" data-linktype="relative-path">KCCFailedLinks</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD cNumEntries;
+   DWORD dwReserved;
+   [size_is(cNumEntries)] DS_REPL_KCC_DSA_FAILUREW rgDsaFailure[];
+ } DS_REPL_KCC_DSA_FAILURESW;
+</pre></div>
+</dd></dl><p><b>cNumEntries:</b>  The count of items in
+the <b>rgDsaFailure</b> array.</p><p><b>dwReserved:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>rgDsaFailure:</b>  An array of <span><a href="5d5ac3d8-dc80-401b-9ca8-1e7a385024a4" data-linktype="relative-path">DS_REPL_KCC_DSA_FAILUREW</a></span>
+structures.</p></div>

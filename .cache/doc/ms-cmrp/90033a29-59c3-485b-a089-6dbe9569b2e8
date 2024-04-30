@@ -1,0 +1,15 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/90033a29-59c3-485b-a089-6dbe9569b2e8" data-linktype="external">msdn link</a></p><p>The <b>RESOURCE_ENUM_LIST</b> structure is a container for a
+list of <b>RESOURCE_ENUM_ENTRY</b> (section <a href="c1db118d-90a8-4b99-a11a-b99597693cd0" data-linktype="relative-path">2.2.3.27</a>) structures. This
+structure encapsulates the results of a call to <b>ApiCreateResourceEnum</b>
+(section <a href="ee51adff-a3ac-4676-8972-418dff630174" data-linktype="relative-path">3.1.4.2.140</a>),
+which clients use to enumerate resources.</p><dl>
+<dd>
+<div><pre> typedef struct _RESOURCE_ENUM_LIST {
+   DWORD EntryCount;
+   [size_is(EntryCount)] RESOURCE_ENUM_ENTRY Entry[*];
+ } RESOURCE_ENUM_LIST,
+  *PRESOURCE_ENUM_LIST;
+</pre></div>
+</dd></dl><p><b>EntryCount:</b> The number of <b>RESOURCE_ENUM_ENTRY</b>
+in the <b>Entry</b> field.</p><p><b>Entry:</b> An array of <b>RESOURCE_ENUM_ENTRY</b>
+that contain information for each enumerated resource.</p></div>

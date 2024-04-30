@@ -1,0 +1,25 @@
+<div class="content"><p>The FsrmEnumOptions enumeration defines the different
+options that can be used when enumerating collections of File Server Resource
+Manager Protocol objects.</p><dl>
+<dd>
+<div><pre> typedef  enum _FsrmEnumOptions
+ {
+   FsrmEnumOptions_None = 0x00000000,
+   FsrmEnumOptions_Asynchronous = 0x00000001,
+   FsrmEnumOptions_CheckRecycleBin = 0x00000002,
+   FsrmEnumOptions_IncludeClusterNodes = 0x00000004,
+   FsrmEnumOptions_IncludeDeprecatedObjects = 0x00000008
+ } FsrmEnumOptions;
+</pre></div>
+</dd></dl><p><b>FsrmEnumOptions_None:  </b>Use no options and
+enumerate objects synchronously.</p><p><b>FsrmEnumOptions_Asynchronous:  </b>Enumerate the
+objects asynchronously.</p><p><b>FsrmEnumOptions_CheckRecycleBin:  </b>Include
+items that are in the Recycle Bin when enumerating. This will include files
+that are located in a folder that has &#34;$RECYCLE.BIN&#34; in its <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_2cd71385-2d9c-4ab8-bf4a-7b258816d613" data-linktype="relative-path">path</a> regardless of
+capitalization. Without this option, those files will be excluded.</p><p><b>FsrmEnumOptions_IncludeClusterNodes:  </b>If the
+system is configured to be part of a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_feef37b3-c173-4f51-aab6-b55a6366259b" data-linktype="relative-path">cluster</a>, include all
+objects even if they are not currently available on the system (identified by
+the machine name). Without this option, only objects available on the current system
+will be included.</p><p><b>FsrmEnumOptions_IncludeDeprecatedObjects:  </b>If
+any objects were marked Deprecated, they will appear only when enumerated with
+this option.</p></div>

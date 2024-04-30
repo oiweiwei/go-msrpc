@@ -1,0 +1,46 @@
+<div class="content"><p> </p><p>The DS_REPL_NEIGHBORW structure defines a <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_a5678f3c-cf60-4b89-b835-16d643d1debb" data-linktype="relative-path">replication</a></span>
+neighbor. This structure is a concrete representation of a <span><a href="3ef27d3c-b9c9-4404-8e53-ebf3a64a9a10" data-linktype="relative-path">RepsFrom</a></span>
+or <span><a href="302391a9-f6e1-4c0c-a1b2-5604a42e982b" data-linktype="relative-path">RepsTo</a></span>
+value.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   [string] LPWSTR pszNamingContext;
+   [string] LPWSTR pszSourceDsaDN;
+   [string] LPWSTR pszSourceDsaAddress;
+   [string] LPWSTR pszAsyncIntersiteTransportDN;
+   DWORD dwReplicaFlags;
+   DWORD dwReserved;
+   UUID uuidNamingContextObjGuid;
+   UUID uuidSourceDsaObjGuid;
+   UUID uuidSourceDsaInvocationID;
+   UUID uuidAsyncIntersiteTransportObjGuid;
+   USN usnLastObjChangeSynced;
+   USN usnAttributeFilter;
+   FILETIME ftimeLastSyncSuccess;
+   FILETIME ftimeLastSyncAttempt;
+   DWORD dwLastSyncResult;
+   DWORD cNumConsecutiveSyncFailures;
+ } DS_REPL_NEIGHBORW;
+</pre></div>
+</dd></dl><p><b>pszNamingContext:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_784c7cce-f782-48d8-9444-c9030ba86942" data-linktype="relative-path">NC</a></span>
+root of the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_325d116f-cdbe-4dbd-b7e6-769ba75bf210" data-linktype="relative-path">NC replica</a></span>.</p><p><b>pszSourceDsaDN:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_1175dd11-9368-41d5-98ed-d585f268ad4b" data-linktype="relative-path">DN</a></span>
+of the server <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DC</a></span> <span><a href="../ms-adsc/5a79757d-2412-4846-bd7c-7585838a5a44" data-linktype="relative-path">nTDSDSA</a></span>
+<span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_8bb43a65-7a8c-4585-a7ed-23044772f8ca" data-linktype="relative-path">object</a></span>.</p><p><b>pszSourceDsaAddress:</b>  The <span><a href="3d0d3777-9358-47dd-b555-34405f57f912" data-linktype="relative-path">NetworkAddress</a></span>
+of the server DC.</p><p><b>pszAsyncIntersiteTransportDN:</b>  The
+DN of the <span><a href="../ms-adsc/299e17d3-4d05-445f-ae8c-9d5abf598873" data-linktype="relative-path">interSiteTransport</a></span>
+object corresponding to the transport used to communicate with the server DC.</p><p><b>dwReplicaFlags:</b>  The <span><a href="ac9c8a11-cd46-4080-acbf-9faa86344030" data-linktype="relative-path">DRS_OPTIONS</a></span>
+flags.</p><p><b>dwReserved:</b>  Unused. MUST be 0 and
+ignored.</p><p><b>uuidNamingContextObjGuid:</b>  The <span><a href="../ms-ada3/937eb5c6-f6b3-4652-a276-5d6bb8979658" data-linktype="relative-path">objectGUID</a></span>
+of the NC root.</p><p><b>uuidSourceDsaObjGuid:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_736b1076-d1cb-40b9-9247-d66cca6819d1" data-linktype="relative-path">DSA GUID</a></span>
+of the server DC.</p><p><b>uuidSourceDsaInvocationID:</b>  The <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_e7869b9a-61fa-46e3-89dd-fb3f57d1ba7a" data-linktype="relative-path">invocation
+ID</a></span> associated with the server DC.</p><p><b>uuidAsyncIntersiteTransportObjGuid:</b>  The
+objectGUID of the interSiteTransport object corresponding to the transport used
+to communicate with the server DC.</p><p><b>usnLastObjChangeSynced:</b>  An
+implementation-specific value.</p><p><b>usnAttributeFilter:</b>  An
+implementation-specific value.</p><p><b>ftimeLastSyncSuccess:</b>  The time of
+the last successful replication from the server DC.</p><p><b>ftimeLastSyncAttempt:</b>  The time of
+the last attempt to replicate from the server DC.</p><p><b>dwLastSyncResult:</b>  0, or the <span><a href="e5c2026b-f732-4c9d-9d60-b945c0ab54eb#gt_459db7bd-5066-44e3-89c1-f0e4806b7a1b" data-linktype="relative-path">Windows
+error code</a></span>, as specified in <span><a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a></span>
+section <span><a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a></span>,
+resulting from the last sync attempt.</p><p><b>cNumConsecutiveSyncFailures:</b>  The
+number of consecutive failures to replicate from the server DC.</p></div>

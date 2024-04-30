@@ -1,0 +1,431 @@
+<div class="content"><p>The IDataManager interface is used to manage data generated
+by the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_3184c8c5-f13b-4d77-b04a-b92feff97f61" data-linktype="relative-path">data collectors</a>,
+including report generation, data retention policy, and data transfer.</p><p>The following properties MUST be implemented by the objects
+that implement the IDataManager interface.</p><table><thead>
+  <tr>
+   <th>
+   <p>Property </p>
+   </th>
+   <th>
+   <p>Read/write </p>
+   </th>
+   <th>
+   <p>Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CheckBeforeRunning</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Indicates whether maximum folder count and minimum
+  free <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a> space
+  thresholds MUST be checked before running the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data collector set</a>. If
+  set to VARIANT_TRUE and either one of the conditions is not met, the data
+  collector set MUST fail the start. If set to VARIANT_FALSE, the thresholds
+  will still be used after collection to determine if the resource policy will
+  be invoked. The ResourcePolicy property is defined below. </p>
+  <p>The MaxSize threshold is never checked before running
+  an IDataManager, irrespective of the value of this property. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Enabled</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Determines whether <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_7159c556-babb-45a8-9bc6-fcfbc9244f17" data-linktype="relative-path">data management</a> is
+  enabled. If set to VARIANT_FALSE, all other settings of this object are
+  ignored and no data management operations (such as creating a report)
+  execute; the data manager is not run. If set to VARIANT_TRUE, all other
+  properties of this object are used and the data manager is run. The
+  properties that are used when the data manager runs are as follows:</p>
+  <ul><li><p><span><span>  
+  </span></span><span>CheckBeforeRunning</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>EventsFileName</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>FolderAction</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>MaxFolderCount</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>MaxSize</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>MinFreeDisk</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>ReportFileName</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>ReportSchema</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>ResourcePolicy</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>Rules</span></p>
+  </li><li><p><span><span>  
+  </span></span><span>RulesTargetFileName</span></p>
+  </li></ul><p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EventsFileName</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the name of the file that MUST be created by
+  the Performance Logs and Alerts Protocol, during report generation. This file
+  contains all the events that were collected, serialized to XML. This file
+  differs from the report file because the events are not normalized,
+  performance data is not included, and rules are not run against this file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FolderActions</p>
+  </td>
+  <td>
+  <p>R </p>
+  </td>
+  <td>
+  <p>List of actions to be performed on the subfolders that
+  match the criteria. The IFolderAction interface is specified in section <a href="69a01836-fb8d-4eba-84e8-3cdb1a417cdb" data-linktype="relative-path">3.2.4.3</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MaxFolderCount</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the threshold for the maximum number of
+  subfolders under the data collector sets root path. If this threshold is
+  violated, the action specified by the ResourcePolicy property is invoked. If
+  this property is set to zero, there is no maximum. The default value is zero.
+  Any unsigned long is a valid value for this property.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MaxSize</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the maximum size, in megabytes, of all files
+  under the data collector set root path. If this threshold is violated, the
+  action specified by the ResourcePolicy property is invoked. If this property
+  is set to zero, there is no maximum. The default value is zero. Any unsigned
+  long is a valid value for this property.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MinFreeDisk</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the minimum free space, in MB, that MUST
+  remain available in the data collector set root path volume. If this
+  threshold is violated, the data collector set will not start collecting data.
+  If this property is set to zero, there is no minimum. The default value is
+  zero. Any unsigned long is a valid value for this property.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ReportFileName</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the name of the HTML file that results from
+  converting the file in RuleTargetFileName from XML to HTML.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ReportSchema</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the XML used to customize the report
+  generated from the data. The XSD that defines the format of the XML is
+  specified in section <a href="70508bf9-a77a-4684-850b-86ea897176a5" data-linktype="relative-path">2.2.3.3</a>
+  . </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ResourcePolicy</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the action to be performed if one of the
+  disk resource limits is violated. The limits are the maximum folder count,
+  the maximum size and the minimum free disk space. The possible actions are
+  described in the ResourcePolicy enumeration in section <a href="07a555bb-7d4b-4817-a597-351bc39349d4" data-linktype="relative-path">2.2.2.9</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Rules</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>The rules to be applied to the report file. The rules
+  are specified in an XML format, which is specified in section <a href="7d7ec9e7-5e33-4371-9e4c-56734c515d55" data-linktype="relative-path">2.2.3.4</a>. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RuleTargetFileName</p>
+  </td>
+  <td>
+  <p>RW</p>
+  </td>
+  <td>
+  <p>Specifies the name of the file where the report data
+  is stored before rules are run against it and it is converted to HTML. </p>
+  </td>
+ </tr></tbody></table><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="ffab257c-ba97-4650-96a0-3e856cadcd61" data-linktype="relative-path">Enabled
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Enabled property.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="0d6a3cd2-0dba-44d0-8d74-b25a38483b82" data-linktype="relative-path">Enabled
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the Enabled property.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="f5291099-adc7-4223-b52d-60063597e76d" data-linktype="relative-path">CheckBeforeRunning
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the CheckBeforeRunning property. </p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="15da347e-201f-494f-99ce-5357182aa2e8" data-linktype="relative-path">CheckBeforeRunning
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the CheckBeforeRunning property. </p>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="90973ffb-3c58-49d9-8109-7288f2a41aba" data-linktype="relative-path">MinFreeDisk
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the MinFreeDisk property.</p>
+  <p>Opnum: 11</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="774e879a-5cb6-4d79-a176-b3af8c4ed591" data-linktype="relative-path">MinFreeDisk
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the MinFreeDisk property.</p>
+  <p>Opnum: 12</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="c278331e-ef39-4053-a3c1-acad113aeac4" data-linktype="relative-path">MaxSize
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the MaxSize property.</p>
+  <p>Opnum: 13</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="50865ab1-0ae0-4538-aad5-011655269326" data-linktype="relative-path">MaxSize
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the MaxSize property.</p>
+  <p>Opnum: 14</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="857aa5d5-5c43-4066-9884-9b0441ecf79f" data-linktype="relative-path">MaxFolderCount
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the MaxFolderCount property.</p>
+  <p>Opnum: 15</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b2f5aace-f055-4288-a010-8d28dfbef0ea" data-linktype="relative-path">MaxFolderCount
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the MaxFolderCount property.</p>
+  <p>Opnum: 16</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="9022ce57-c01e-44cb-a091-551d680a7594" data-linktype="relative-path">ResourcePolicy
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the ResourcePolicy property.</p>
+  <p>Opnum: 17</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="964dfabe-ae12-4834-a101-615a8aac4429" data-linktype="relative-path">ResourcePolicy
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the ResourcePolicy property. </p>
+  <p>Opnum: 18</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="c0a98e16-08b8-4f90-a219-b1e9ac9f30e9" data-linktype="relative-path">FolderActions
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the FolderAction property.</p>
+  <p>Opnum: 19</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="39e1b0cc-2d9b-4ffe-9223-4973be3251ce" data-linktype="relative-path">ReportSchema
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the ReportSchema property.</p>
+  <p>Opnum: 20</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="f7b6f21a-b2b4-48f4-bdeb-5ae882da470f" data-linktype="relative-path">ReportSchema
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the ReportSchema property.</p>
+  <p>Opnum: 21</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="d6e33423-82ee-4a5a-9808-e7295b7d48bf" data-linktype="relative-path">ReportFileName
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the ReportFileName property.</p>
+  <p>Opnum: 22</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b0d8e82f-13f8-4fd8-b845-2c199f27df00" data-linktype="relative-path">ReportFileName
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the ReportFileName property.</p>
+  <p>Opnum: 23</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="10e49625-8dc5-4960-8586-b4a215dbc097" data-linktype="relative-path">RuleTargetFileName
+  (Get)</a></p>
+  </td>
+  <td>
+  <p> Retrieves the RuleTargetFileName property.</p>
+  <p>Opnum: 24</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="6d3812be-4191-4085-88a2-c63b0ba6507a" data-linktype="relative-path">RuleTargetFileName
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the RuleTargetFileName property. </p>
+  <p>Opnum: 25</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="48e5e69b-f5fa-40b6-b464-4bd9cc95befc" data-linktype="relative-path">EventsFileName
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the EventsFileName property.</p>
+  <p>Opnum: 26</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="ad19e103-86a8-4c8a-a234-8e1f74b5cb84" data-linktype="relative-path">EventsFileName
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the EventsFileName property.</p>
+  <p>Opnum: 27</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="05c60034-6d2a-4680-9efa-fd3a55d6023b" data-linktype="relative-path">Rules
+  (Get)</a></p>
+  </td>
+  <td>
+  <p>Retrieves the Rules property.</p>
+  <p>Opnum: 28</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="2f7ad091-f97d-4f5f-b50c-03eae469bf27" data-linktype="relative-path">Rules
+  (Put)</a></p>
+  </td>
+  <td>
+  <p>Sets the Rules property.</p>
+  <p>Opnum: 29</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="f84a6227-7a15-4704-ae99-098934876f4f" data-linktype="relative-path">Run</a></p>
+  </td>
+  <td>
+  <p>Manually runs the data manager.</p>
+  <p>Opnum: 30</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="e0fbbb46-286e-4d68-bd3b-a84238f80e1a" data-linktype="relative-path">Extract</a></p>
+  </td>
+  <td>
+  <p>Extracts the specified CAB file.</p>
+  <p>Opnum: 31</p>
+  </td>
+ </tr></tbody></table><p>Opnums 0, 1, and 2 are reserved for the IUnknown interface.
+Opnums 3, 4, 5, and 6 are reserved for the IDispatch interface.</p></div>

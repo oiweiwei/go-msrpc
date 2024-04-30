@@ -1,0 +1,14 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="external">msdn link</a></p><p>The FILETIME structure is a 64-bit value that represents the
+number of 100-nanosecond intervals that have elapsed since January 1, 1601,
+Coordinated Universal Time (UTC).</p><dl>
+<dd>
+<div><pre> typedef struct _FILETIME {
+   DWORD dwLowDateTime;
+   DWORD dwHighDateTime;
+ } FILETIME,
+  *PFILETIME,
+  *LPFILETIME;
+</pre></div>
+</dd></dl><p><b>dwLowDateTime:</b>  A 32-bit unsigned
+integer that contains the low-order bits of the file time.</p><p><b>dwHighDateTime:</b>  A 32-bit unsigned
+integer that contains the high-order bits of the file time.</p></div>

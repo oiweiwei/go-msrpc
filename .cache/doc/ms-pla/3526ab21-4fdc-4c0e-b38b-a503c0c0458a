@@ -1,0 +1,12 @@
+<div class="content"><p>The TraceDataProviders (Get) method retrieves the
+TraceDataProviders property.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT TraceDataProviders(
+   [out, retval] ITraceDataProviderCollection** providers
+ );
+</pre></div>
+</dd></dl><p><b>providers: </b>Receives a pointer to the trace
+data provider collection object.</p><p><b>Return Values: </b>This method MUST return an
+HRESULT with the severity bit clear on success as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>;
+otherwise, it MUST return one of the errors as defined in <a href="590752a5-ddc3-49e4-9914-147a90bd0193" data-linktype="relative-path">2.2.1</a> or one of the errors
+as defined in [MS-ERREF] section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p></div>

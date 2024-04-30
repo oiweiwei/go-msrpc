@@ -1,0 +1,24 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/d83c356b-7dda-4096-8270-5c581f84a4d9" data-linktype="external">msdn link</a></p><p>The SAMPR_LOGON_HOURS structure contains logon policy
+information that describes when a user account is permitted to authenticate.</p><dl>
+<dd>
+<div><pre> typedef struct _SAMPR_LOGON_HOURS {
+   unsigned short UnitsPerWeek;
+   [size_is(1260), length_is((UnitsPerWeek+7)/8)] 
+     unsigned char* LogonHours;
+ } SAMPR_LOGON_HOURS,
+  *PSAMPR_LOGON_HOURS;
+</pre></div>
+</dd></dl><p><b>UnitsPerWeek:</b>  A division of the
+week (7 days). For example, the value 7 means that each unit is a day; a value
+of (7*24) means that the units are hours. The minimum granularity of time is
+one minute, where the UnitsPerWeek would be 10080; therefore, the maximum size
+of LogonHours is 10080/8, or 1,260 bytes.</p><p><b>LogonHours:</b>  A pointer to a bit
+field containing at least <b>UnitsPerWeek</b> number of bits. The leftmost bit
+represents the first unit, starting at Sunday, 12 A.M. If a bit is set, authentication
+is allowed to occur; otherwise, authentication is not allowed to occur.</p><dl>
+<dd>
+<p>For example, if the <b>UnitsPerWeek</b> value is 168
+(that is, the units per week is hours, resulting in a 21-byte bit field), and
+if the leftmost bit is set and the rightmost bit is set, the user is able to
+log on for two consecutive hours between Saturday, 11 P.M. and Sunday, 1 A.M.</p>
+</dd></dl></div>

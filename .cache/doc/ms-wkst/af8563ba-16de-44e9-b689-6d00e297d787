@@ -1,0 +1,41 @@
+<div class="content"><p>The Workstation Service Remote Protocol is designed for
+remotely querying and configuring certain aspects of an <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_09dbec39-5e75-4d9a-babf-1c9f1d499625" data-linktype="relative-path">SMB</a> <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_15c89cb5-6767-49e7-b461-66acaf6c06c8" data-linktype="relative-path">network redirector</a> on a
+remote computer. For example, an implementer can use this protocol to query the
+computer name or major and minor version numbers of the operating system
+running on a remote computer.</p><p>An implementer can also use the protocol to configure the
+behavior of an SMB network redirector. For example, an implementer can use this
+protocol to configure the following:</p><ul><li><p><span><span> 
+</span></span>The number of seconds the SMB network redirector maintains an
+inactive <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_e1d88514-18e6-4e2e-a459-20d5e17e9078" data-linktype="relative-path">SMB connection</a>
+to a remote computer&#39;s resource before closing it.</p>
+</li><li><p><span><span> 
+</span></span>The number of simultaneous network commands that can be sent to
+the SMB network redirector.</p>
+</li><li><p><span><span> 
+</span></span>The number of seconds the SMB network redirector waits before
+disconnecting an inactive <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_ee1ec898-536f-41c4-9d90-b4f7d981fd67" data-linktype="relative-path">SMB
+session</a>.</p>
+</li></ul><p>The protocol is also designed to enumerate all the users
+currently logged onto a remote computer, and to enumerate the transport
+protocols currently enabled for use by the SMB network redirector on a remote
+computer. When enumerating currently logged-on users or transport protocols,
+the protocol does not guarantee that all logged-on users or transport protocols
+are enumerated. The protocol also does not guarantee that the enumerated users
+or transport protocols are not duplicated. </p><p>The protocol can also be used to manage <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a> membership and the <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_9a7bc8b3-3374-4608-8f73-be20a90b898b" data-linktype="relative-path">computer names</a> of a
+computer on a network. For example, this protocol can be used to configure the
+following:</p><ul><li><p><span><span> 
+</span></span>The primary name of a computer</p>
+</li><li><p><span><span> 
+</span></span>Alternate names of a computer</p>
+</li><li><p><span><span> 
+</span></span>The domain membership of a computer</p>
+</li></ul><p>This is an RPC-based protocol. This protocol contains no
+protocol-specific state that is stored across protocol messages and only
+operates on state accessible through other protocols and local services. Some
+methods manipulate the server state and the state at a <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">domain controller (DC)</a>
+during message processing. This state is not part of this protocol but is
+exposed by other protocols.</p><p>This is a simple request-response protocol. For every method
+call that the <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server (2)</a>
+receives, it executes the method and returns a completion. The <a href="3acf0e02-9bbd-4ce0-a7a0-586bc72d3ef4#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> simply returns the
+completion status to the caller. Each method call is independent of any
+previous method call.</p></div>

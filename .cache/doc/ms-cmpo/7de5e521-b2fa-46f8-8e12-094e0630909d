@@ -1,0 +1,50 @@
+<div class="content"><p> </p><p>The BIND_INFO_BLOB packet is a structure containing details
+on how to bind to a <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a></span>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwcbThisStruct</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>grbitComProtocols</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwcbThisStruct (4 bytes): </b>An unsigned 4-byte
+integer. The size of this structure in bytes. This value MUST be set to 8.</p><p><b>grbitComProtocols (4 bytes): </b>A <span><a href="1b8931ee-08b1-49df-849b-1c68e66a87c4" data-linktype="relative-path">COM_PROTOCOL</a></span>
+bit field specifying the <span><a href="2b0e7911-f115-477a-92db-2d9bd5a69ca8#gt_0c171cc7-e9c4-41b6-95a9-536db0042c7a" data-linktype="relative-path">RPC protocol sequences</a></span>
+that the partner supports. </p></div>

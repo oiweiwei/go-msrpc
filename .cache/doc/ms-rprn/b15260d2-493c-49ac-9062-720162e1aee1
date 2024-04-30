@@ -1,0 +1,401 @@
+<div class="content"><p>The <b>_FORM_INFO_2</b> structure specifies printer media
+information.<a id="Appendix_A_Target_117"></a><a aria-label="Product behavior note 117" href="e81cbc09-ab05-4a32-ae4a-8ec57b436c43#Appendix_A_117" data-linktype="relative-path">&lt;117&gt;</a> It is a custom-<a href="831cd729-be7c-451e-b729-bd8d84ce4d24#gt_37e89d91-2800-49d1-9d17-45ebe167ad87" data-linktype="relative-path">marshaled</a> form of the <b>RPC_FORM_INFO_2</b> (section <a href="dca49b4f-3eb1-4656-9e97-2f0b0c569bf6" data-linktype="relative-path">2.2.1.6.2)</a> structure.<span> </span></p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Fixed_Portion
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Variable_Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fixed_Portion (variable): </b>An array of one or
+more groups of fixed-size fields, which are defined as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Size.cx</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Size.cy</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ImageableArea.left</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ImageableArea.top</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ImageableArea.right</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ImageableArea.bottom</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>KeywordOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StringType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MuiDllOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwResourceId</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DisplayNameOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>wLangID</p>
+  </td>
+  <td colspan="16">
+  <p>unused</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Flags (4
+bytes):</b> The form property from the following table.</p>
+<dl>
+<dd>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name/value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FORM_USER</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The form
+  has been defined by the user and appears in the registry.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FORM_BUILTIN</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The form
+  is part of the spooler and does not appear in the registry.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FORM_PRINTER</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The form
+  is associated with a particular printer and appears in the registry.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd></dl></dd>
+<dd>
+<p><b>NameOffset<a id="_Hlk149036372"> (4 bytes):</a> </b>An unsigned integer that specifies the
+number of bytes from the start of the structure to the start of the <b>NameArray</b>
+member. </p>
+</dd>
+<dd>
+<p><b>Size.cx (4 bytes):</b> A
+long integer. The form&#39;s width in thousandths of millimeters using a <b>SIZE</b>
+structure, as specified in section <a href="c76b61d3-1665-43f5-9584-a40d42bf05c5" data-linktype="relative-path">2.2.1.1.6</a>.</p>
+</dd>
+<dd>
+<p><b>Size.cy (4 bytes): </b>A
+long integer. The form&#39;s height in thousandths of millimeters using a <b>SIZE</b>
+structure, as specified in section 2.2.1.1.6.</p>
+</dd>
+<dd>
+<p><b>ImageableArea:</b>
+The part of the form that the printer can print on as a rectangle in
+thousandths of millimeters using a <b>RECTL</b> structure, as specified in
+section <a href="d81607da-4aa7-44b0-ae44-07d0c2227b34" data-linktype="relative-path">2.2.1.1.5</a>.</p>
+<dl>
+<dd>
+<p><b>ImageableArea.left
+(4 bytes):</b> The x-coordinate of the upper-left corner of the rectangle
+relative to the top edge of the form.</p>
+</dd>
+<dd>
+<p><b>ImageableArea.top (4
+bytes): </b>The y-coordinate of the upper-left corner of the rectangle relative
+to the top edge of the form.</p>
+</dd>
+<dd>
+<p><b>ImageableArea.right (4
+bytes): </b>The x-coordinate of the lower-right corner of the rectangle
+relative to the left edge of the form.</p>
+</dd>
+<dd>
+<p><b>ImageableArea.bottom
+(4 bytes): </b>The y-coordinate of the lower-right corner of the rectangle
+relative to the top edge of the form.</p>
+</dd></dl></dd>
+<dd>
+<p><b>KeywordOffset <a id="_Hlk147251576">(4 bytes): </a></b>An unsigned integer that specifies the
+number of bytes from the start of the structure to the <b>KeywordArray</b>
+member. </p>
+</dd>
+<dd>
+<p><b>StringType (4 bytes): </b>A
+value that specifies how a form&#39;s display name is passed. The value of this member
+MUST be a value from the table in section 2.2.1.6.2.</p>
+</dd>
+<dd>
+<p><b>MuiDllOffset (4 bytes): </b>An
+unsigned integer that specifies the number of bytes from the start of the
+structure to the <b>MuiDllArray</b> member.</p>
+</dd>
+<dd>
+<p><b>dwResourceId (4 bytes): </b>The
+value of this member SHOULD be set to zero when sent and ignored on receipt if
+the value of the <b>StringType</b> member is not equal to <b>STRING_MUIDLL</b>;
+otherwise, the value of this member specifies the string resource ID of the
+form name in the library that is identified by the string that is pointed to by
+the <b>pMuiDll</b> member.<b> </b></p>
+</dd>
+<dd>
+<p><b>DisplayNameOffset (4
+bytes): </b>An unsigned integer that specifies the number of bytes from the
+start of the structure to the <b>DisplayNameArray</b> member.</p>
+</dd>
+<dd>
+<p><b>wLangID (2 bytes):</b>
+The value of this member SHOULD be set to zero when sent and ignored on receipt
+if <b>StringType</b> is not equal to <b>STRING_LANGPAIR</b>; otherwise, the
+value of this member MUST be the Language Identifier of the <b>pDisplayName</b>
+member <a href="../ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f" data-linktype="relative-path">[MS-LCID]</a>.</p>
+</dd>
+<dd>
+<p><b>unused (2 bytes): </b>A
+value that SHOULD be set to zero when sent and MUST be ignored on receipt.</p>
+</dd></dl><p><b>Variable_Data (variable): </b>An array of zero or
+more groups of optional, variable-size fields, which are defined as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>NameArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>KeywordArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>MuiDllArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>DisplayNameArray
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>NameArray (variable): </b>A
+string that specifies the data type used to record a print job. The location of
+this buffer is determined by the value of the <b>NameOffset</b> member. For
+rules governing data type names, see section <a href="f40cbad0-88dd-4e86-a16b-cf62c3b17c52" data-linktype="relative-path">2.2.4.2</a>.</p>
+</dd>
+<dd>
+<p><b>KeywordArray (variable):</b>
+A string that specifies the form’s unique keyword. The location of this buffer
+is determined by the value of the <b>KeywordOffset</b> member. </p>
+</dd>
+<dd>
+<p><b>MuiDllArray (variable):</b>
+A string that specifies the MUI resource DLL name of the form. The location of
+this buffer is determined by the value of the <b>MuiDllOffset</b> member.  </p>
+</dd>
+<dd>
+<p><b>DisplayNameArray
+(variable):</b> A string that specifies the localized form name. The location
+of this buffer is determined by the value of the <b>DisplayNameOffset</b>
+member.</p>
+</dd></dl></div>

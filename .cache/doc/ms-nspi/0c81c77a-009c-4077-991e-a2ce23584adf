@@ -1,0 +1,16 @@
+<div class="content"><p> </p><p>The PropertyRowSet_r structure is an encoding of the <b>PropertyRowSet</b>
+data structure defined in <span><a href="/en-us/openspecs/exchange_server_protocols/MS-OXCDATA/1afa0cd9-b1a0-4520-b623-bf15030af5d8" data-linktype="absolute-path">[MS-OXCDATA]</a></span>
+section 2.19.2, PropertyRowSet. </p><p>The permissible number of <b>PropertyRows</b> in the
+PropertyRowSet_r data structure exceeds that of the <b>PropertyRowSet</b> data
+structure. The semantic meaning is otherwise unchanged from the <b>PropertyRowSet</b>
+data structure.</p><dl>
+<dd>
+<div><pre> typedef struct _PropertyRowSet_r {
+   [range(0,100000)] DWORD cRows;
+   [size_is(cRows)] PropertyRow_r aRow[];
+ } PropertyRowSet_r;
+</pre></div>
+</dd></dl><p><b>cRows:</b>   Encodes the <b>RowCount</b>
+field of the <b>PropertyRowSet</b> data structures. This value MUST NOT exceed
+100,000.</p><p><b>aRow:</b>  Encodes the <b>Rows</b> field
+of the <b>PropertyRowSet</b> data structure.</p></div>

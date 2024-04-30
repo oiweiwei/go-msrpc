@@ -1,0 +1,31 @@
+<div class="content"><p>The SERVICE_FAILURE_ACTIONSA structure defines the action
+that the service controller takes on each failure of a service. String values
+are stored in ANSI.</p><dl>
+<dd>
+<div><pre> typedef struct _SERVICE_FAILURE_ACTIONSA {
+   DWORD dwResetPeriod;
+   [string, range(0, 8 * 1024)] LPSTR lpRebootMsg;
+   [string, range(0, 8 * 1024)] LPSTR lpCommand;
+   [range(0, 1024)] DWORD cActions;
+   [size_is(cActions)] SC_ACTION* lpsaActions;
+ } SERVICE_FAILURE_ACTIONSA,
+  *LPSERVICE_FAILURE_ACTIONSA;
+</pre></div>
+</dd></dl><p><b>dwResetPeriod:</b>  The time, in
+seconds, after which to reset the failure count to zero if there are no
+failures.</p><p><b>lpRebootMsg:</b>  The buffer that
+contains the message to be broadcast to server users before rebooting in
+response to the SC_ACTION_REBOOT service controller action.</p><p><b>lpCommand:</b>  The buffer that contains
+the command line of the process for the process creation function to execute in
+response to the SC_ACTION_RUN_COMMAND service controller action.</p><p><b>cActions:</b>  The number of elements in
+the <b>lpsaActions</b> array.</p><p><b>lpsaActions:</b>  A pointer to an array
+of <a href="5e3e9ca1-6c33-4c94-bf36-c5b75262d7d6" data-linktype="relative-path">SC_ACTION (section 2.2.19)</a>
+structures.</p><dl>
+<dd>
+<p>The service controller counts the number of times
+each service has failed since the system booted. The count is reset to 0 if the
+service has not failed for <b>dwResetPeriod</b> seconds. When the service fails
+for the Nth time, the service controller performs the action specified in
+element [N-1] of the <b>lpsaActions</b> array. If N is greater than <b>cActions</b>,
+the service controller repeats the last action in the array.</p>
+</dd></dl></div>

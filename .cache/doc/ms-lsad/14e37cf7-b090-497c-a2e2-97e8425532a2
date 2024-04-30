@@ -1,0 +1,105 @@
+<div class="content"><p align="right"><a href="https://msdn.microsoft.com/en-us/library/14e37cf7-b090-497c-a2e2-97e8425532a2" data-linktype="external">msdn link</a></p><p>The LsarEnumerateTrustedDomainsEx method is invoked to
+enumerate <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_f2ceef4e-999b-4276-84cd-2e2829de5fc4" data-linktype="relative-path">trusted domain
+objects</a> in the server&#39;s database. The method is designed to be invoked
+multiple times to retrieve the data in fragments.</p><dl>
+<dd>
+<div><pre> NTSTATUS LsarEnumerateTrustedDomainsEx(
+   [in] LSAPR_HANDLE PolicyHandle,
+   [in, out] unsigned long* EnumerationContext,
+   [out] PLSAPR_TRUSTED_ENUM_BUFFER_EX EnumerationBuffer,
+   [in] unsigned long PreferedMaximumLength
+ );
+</pre></div>
+</dd></dl><p><b>PolicyHandle: </b>An <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> context handle obtained
+from either <a href="2a482ccf-1f89-4693-8594-855ff738ae8a" data-linktype="relative-path">LsarOpenPolicy</a>
+or <a href="9456a963-7c21-4710-af77-d0a2f5a72d6b" data-linktype="relative-path">LsarOpenPolicy2</a>.</p><p><b>EnumerationContext: </b>Used to keep track of the
+state of the enumeration in cases where the caller obtains its information in
+several fragments.</p><p><b>EnumerationBuffer: </b>Contains a fragment of
+requested information.</p><p><b>PreferedMaximumLength: </b>A value that indicates
+the approximate size of the data to be returned.</p><p><b>Return Values: </b>The following is a summary of
+the return values that an implementation MUST return, as specified by the
+message processing that follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>STATUS_SUCCESS</p>
+  </td>
+  <td>
+  <p>The request was successfully completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000022</p>
+  <p>STATUS_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The caller does not have the permissions to perform
+  this operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8000001A</p>
+  <p>STATUS_NO_MORE_ENTRIES</p>
+  </td>
+  <td>
+  <p>No more information is available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000105</p>
+  <p>STATUS_MORE_ENTRIES</p>
+  </td>
+  <td>
+  <p>More information is available by calling this method
+  again.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC0000008</p>
+  <p>STATUS_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p><i>PolicyHandle</i> is not a valid handle.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Processing:</p><p>This message takes four arguments:</p><p><i>PolicyHandle</i>: An open handle to the policy object. If
+the handle is not a valid context handle to the policy object or <i>PolicyHandle</i>.HandleType
+does not equal &#34;Policy&#34;, the server MUST return
+STATUS_INVALID_HANDLE. The server MUST verify that <i>PolicyHandle</i> grants
+access as specified in section <a href="d1c2802a-70d5-4f81-843c-6523ab0c5e03" data-linktype="relative-path">3.1.4.2.2</a> with
+RequiredAccess set to POLICY_VIEW_LOCAL_INFORMATION.</p><p><i>EnumerationContext</i>: A number that indicates a
+starting index at which to begin the enumeration. The server MUST always return
+all trusted domain objects in the same order, starting at the object whose
+index is <i>EnumerationContext</i>. To initiate a new enumeration, the client
+sets <i>EnumerationContext</i> to zero; otherwise, the client sets <i>EnumerationContext</i>
+to a value returned by a previous call to the method.</p><p>The server MUST return STATUS_INVALID_PARAMETER if the <i>EnumerationContext</i>
+parameter is NULL.</p><p><i>EnumerationBuffer</i>: Used to return the results of
+enumeration. The server MUST fill <i>EnumerationBuffer</i> with as many trusted
+domain objects as possible, as determined by <i>PreferedMaximumLength</i>. If
+the size of all remaining objects is less than or equal to <i>PreferedMaximumLength</i>,
+the server MUST fill <i>EnumerationBuffer</i> with all objects. If the size of
+all remaining objects is greater than <i>PreferedMaximumLength</i>, the server
+MUST fill <i>EnumerationBuffer</i> with objects such that the size of the
+trusted domain objects returned is greater than or equal to <i>PreferedMaximumLength</i>,
+but would be less than <i>PreferedMaximumLength</i> if the last object had not
+been added to <i>EnumerationBuffer</i>. If there are no more objects than are
+returned in <i>EnumerationBuffer</i>, the server MUST return STATUS_NO_MORE_ENTRIES.
+If there are more database objects than are returned in <i>EnumerationBuffer</i>,
+the server MUST set the <i>EnumerationContext</i> value to the index value that
+would allow it to resume enumeration correctly when this method is called
+again, and the server MUST return STATUS_MORE_ENTRIES. Note that this return
+value is not an error status.</p><p><i>PreferedMaximumLength</i>: An indication about the
+approximate size, in bytes, of the data to be returned. Any unsigned 32-bit
+value is valid for the <i>PreferedMaximumLength</i> parameter.</p><p>If <a href="31ca2a31-0be4-4773-bcef-05ad6cd3ccfb#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+Directory</a> is not running on this machine, the server MUST fill 0 objects in
+<i>EnumerationBuffer</i>, and return STATUS_NO_MORE_ENTRIES.</p></div>

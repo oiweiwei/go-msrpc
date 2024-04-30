@@ -1,0 +1,299 @@
+<div class="content"><p> </p><p>The <b>DHCP_CLIENT_INFO_V5</b> structure defines information
+about the <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_c35fc04f-54fe-4570-afd3-c96ca84c8d83" data-linktype="relative-path">DHCPv4 client</a></span>. It
+augments the <span><a href="0605fa26-c2ab-4f06-a15b-36d81a3b0690" data-linktype="relative-path">DHCP_CLIENT_INFO_V4 (section 2.2.1.2.14)</a></span>
+structure by including the additional element <b>AddressState</b>. This
+structure is used in the <span><a href="de354c76-2e46-4662-ada5-3fb5ba14f259" data-linktype="relative-path">DHCP_CLIENT_INFO_ARRAY_V5</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _DHCP_CLIENT_INFO_V5 {
+   DHCP_IP_ADDRESS ClientIpAddress;
+   DHCP_IP_MASK SubnetMask;
+   DHCP_CLIENT_UID ClientHardwareAddress;
+   LPWSTR ClientName;
+   LPWSTR ClientComment;
+   DATE_TIME ClientLeaseExpires;
+   DHCP_HOST_INFO OwnerHost;
+   BYTE bClientType;
+   BYTE AddressState;
+ } DHCP_CLIENT_INFO_V5,
+  *LPDHCP_CLIENT_INFO_V5;
+</pre></div>
+</dd></dl><p><b>ClientIpAddress:</b>   This is of type <span><a href="5122557b-b85d-4982-8ffb-98d8d934e353" data-linktype="relative-path">DHCP_IP_ADDRESS (section 2.2.1.2.1)</a></span>,
+a <span><a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a></span>
+that contains the DHCPv4 client&#39;s IPv4 address.</p><p><b>SubnetMask:</b>  This is of type <span><a href="5cd312d5-c29f-4352-9fbb-8119ce48082b" data-linktype="relative-path">DHCP_IP_MASK (section 2.2.1.2.2)</a></span>,
+a DWORD that contains the DHCPv4 client&#39;s IPv4 subnet mask address.</p><p><b>ClientHardwareAddress:</b>  This is of
+type <span><a href="b4da2d52-9737-46ec-8bc2-1c598fc3b8c8" data-linktype="relative-path">DHCP_CLIENT_UID (section 2.2.1.2.5)</a></span>,
+a structure that represents a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_195d8585-7de6-4574-9abf-9db104aaa40c" data-linktype="relative-path">DHCPv4 client-identifier</a></span>
+(section <span><a href="7c88f58b-c615-4386-a643-ab05b860a003" data-linktype="relative-path">2.2.1.2.5.1</a></span>) or a <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_4c35997a-5d90-4d7e-96c8-346f4ad0a63f" data-linktype="relative-path">DHCPv4
+client unique ID</a></span> (section <span><a href="651865ec-6404-4191-ad30-113578a94556" data-linktype="relative-path">2.2.1.2.5.2</a></span>).
+Methods that accept <b>DHCP_CLIENT_INFO_V5</b> as a parameter specify which
+representations are acceptable.</p><p><b>ClientName:</b>  A pointer to a
+null-terminated <span><a href="a9d6a415-4de6-4058-befe-ca2e42764485#gt_b069acb4-e364-453e-ac83-42d469bb339e" data-linktype="relative-path">Unicode string</a></span> that
+represents the DHCPv4 client&#39;s internet host name. There is no restriction on
+the length of this Unicode string.</p><p><b>ClientComment:</b>  A pointer to a
+null-terminated Unicode string that represents the description given to the
+DHCPv4 client. There is no restriction on the length of this Unicode string.</p><p><b>ClientLeaseExpires:</b>  This is of type
+<span><a href="0f93bea1-8172-4efa-826a-e12667e1bcee" data-linktype="relative-path">DATE_TIME (section 2.2.1.2.11)</a></span>,
+a structure that contains the lease expiry time for the DHCPv4 client. This is
+UTC time.</p><p><b>OwnerHost:</b>  This of type <span><a href="51e16f4a-cb1d-400a-85c7-defe4cba1609" data-linktype="relative-path">DHCP_HOST_INFO (section 2.2.1.2.7)</a></span>,
+a structure that contains information about the DHCPv4 server machine that has
+provided a lease to the DHCPv4 client.</p><p><b>bClientType:</b>  This is of type <span><a href="../ms-dtyp/d7edc080-e499-4219-a837-1bc40b64bb04" data-linktype="relative-path">BYTE</a></span>
+that identifies the type of the DHCPv4 client. Possible values for this field
+are provided in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CLIENT_TYPE_UNSPECIFIED</p>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>A DHCPv4 client other than ones defined in this table.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_DHCP</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client supports the DHCP protocol.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_BOOTP</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client supports the BOOTP protocols (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90319" data-linktype="external">[RFC2132]</a></span>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_BOTH</p>
+  <p>0x03</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client identifies both the DHCPv4 and the
+  BOOTP protocols.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_RESERVATION_FLAG</p>
+  <p>0x04</p>
+  </td>
+  <td>
+  <p>There is an IPv4 reservation created for the DHCPv4
+  client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLIENT_TYPE_NONE</p>
+  <p>0x64</p>
+  </td>
+  <td>
+  <p>Backward compatibility for manual addressing.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>AddressState:</b>  This is of type BYTE,
+as shown by the following set of bits. The <b>AddressState</b> member
+represents the state of the IPv4 address given to the DHCPv4 client.</p><dl>
+<dd>
+<table>
+ <thead>
+  <tr>
+   <th>
+   <p>BIT 7</p>
+   </th>
+   <th>
+   <p>BIT6</p>
+   </th>
+   <th>
+   <p>BIT5</p>
+   </th>
+   <th>
+   <p>BIT4</p>
+   </th>
+   <th>
+   <p>BIT3</p>
+   </th>
+   <th>
+   <p>BIT2</p>
+   </th>
+   <th>
+   <p>BIT1</p>
+   </th>
+   <th>
+   <p>BIT0</p>
+   </th>
+  </tr>
+ </thead>
+</table>
+</dd>
+<dd>
+<p>The following tables show the various bit
+representation values and their meanings. </p>
+</dd>
+<dd>
+<p>BIT 0 and BIT 1 signify the state of the leased IPv4
+address, as shown in the table that follows.</p>
+</dd></dl><p> </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ADDRESS_STATE_OFFERED</p>
+  <p>0x0</p>
+  </td>
+  <td>
+  <p>The DHCPv4 client is offered this IPv4 address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADDRESS_STATE_ACTIVE</p>
+  <p>0x1</p>
+  </td>
+  <td>
+  <p>The IPv4 address is active and has an active DHCPv4
+  client lease record.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADDRESS_STATE_DECLINED</p>
+  <p>0x2</p>
+  </td>
+  <td>
+  <p>The IPv4 address request is declined by the DHCPv4
+  client; hence it is a bad IPv4 address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADDRESS_STATE_DOOM</p>
+  <p>0x3</p>
+  </td>
+  <td>
+  <p>The IPv4 address is in DOOMED state and is due to be
+  deleted.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>BIT 2 and BIT 3 signify the Name Protection (section
+<span><a href="79303b80-aa6e-4aca-a0ea-cb5279a377ad" data-linktype="relative-path">3.3.3</a></span>)
+related information of the leased IPv4 address, as shown in the table that
+follows.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ADDRESS_BIT_NO_DHCID</p>
+  <p>0x0</p>
+  </td>
+  <td>
+  <p>The address is leased to the DHCPv4 client without
+  DHCID (sections 3 and 3.5 of <span><a href="https://go.microsoft.com/fwlink/?LinkId=125431" data-linktype="external">[RFC4701]</a></span>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADDRESS_BIT_DHCID_NO_CLIENTIDOPTION</p>
+  <p>0x1</p>
+  </td>
+  <td>
+  <p>The address is leased to the DHCPv4 client with DHCID
+  as specified in section 3.5.3 of [RFC4701].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADDRESS_BIT_DHCID_WITH_CLIENTIDOPTION</p>
+  <p>0x2</p>
+  </td>
+  <td>
+  <p>The address is leased to the DHCPv4 client with DHCID
+  as specified in section 3.5.2 of [RFC4701].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADDRESS_BIT_DHCID_WITH_DUID</p>
+  <p>0x3</p>
+  </td>
+  <td>
+  <p>The address is leased to the DHCPv4 client with DHCID
+  as specified in section 3.5.1 of [RFC4701].</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>BIT 4, BIT 5, BIT 6, and BIT 7 specify DNS-related
+information as shown in the table that follows.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ADDRESS_BIT_CLEANUP</p>
+  <p>0x10</p>
+  </td>
+  <td>
+  <p>The DNS update for the DHCPv4 client lease record
+  needs to be deleted from the DNS server when the lease is deleted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADDRESS_BIT_BOTH_REC</p>
+  <p>0x20</p>
+  </td>
+  <td>
+  <p>The DNS update needs to be sent for both A and PTR
+  resource records (<span><a href="https://go.microsoft.com/fwlink/?LinkId=90263" data-linktype="external">[RFC1034]</a></span>
+  section 3.6).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADDRESS_BIT_UNREGISTERED</p>
+  <p>0x40</p>
+  </td>
+  <td>
+  <p>The DNS update is not completed for the lease record.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADDRESS_BIT_DELETED</p>
+  <p>0x80</p>
+  </td>
+  <td>
+  <p>The address lease is expired, but the DNS updates for
+  the lease record have not been deleted from the DNS server.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>
